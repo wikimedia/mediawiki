@@ -26,7 +26,7 @@
 /**
  * Search a directory for files with one of a set of extensions
  *
- * @param $dir Path to directory to search
+ * @param $dir string Path to directory to search
  * @param $exts Array of extensions to search for
  * @return mixed Array of filenames on success, or false on failure
  */
@@ -74,9 +74,9 @@ function splitFilename( $filename ) {
  * files for acme.foo.bar and the extension ".txt". With $maxStrip = 2,
  * acme.txt would also be acceptable.
  *
- * @param $file base path
- * @param $auxExtension the extension to be appended to the base path
- * @param $maxStrip the maximum number of extensions to strip from the base path (default: 1)
+ * @param $file string base path
+ * @param $auxExtension string the extension to be appended to the base path
+ * @param $maxStrip int the maximum number of extensions to strip from the base path (default: 1)
  * @return string or false
  */
 function findAuxFile( $file, $auxExtension, $maxStrip = 1 ) {

@@ -217,7 +217,7 @@ class RefreshLinks extends Maintenance {
 			return;
 		}
 
-		$dbw->begin();
+		$dbw->begin( __METHOD__ );
 
 		$options = new ParserOptions;
 		$parserOutput = $wgParser->parse( $revision->getText(), $title, $options, true, true, $revision->getId() );
@@ -226,14 +226,18 @@ class RefreshLinks extends Maintenance {
         SecondaryDataUpdate::runUpdates( $updates );
 
         $dbw->commit();
+        // TODO: We don't know what happens here.
+		$update = new LinksUpdate( $title, $parserOutput, false );
+		$update->doUpdate();
+		$dbw->commit( __METHOD__ );
 	}
 
 	/**
 	 * Removes non-existing links from pages from pagelinks, imagelinks,
 	 * categorylinks, templatelinks, externallinks, interwikilinks, langlinks and redirect tables.
 	 *
-	 * @param $maxLag
-	 * @param $batchSize The size of deletion batches
+	 * @param $maxLag int
+	 * @param $batchSize int The size of deletion batches
 	 *
 	 * @author Merlijn van Deen <valhallasw@arctus.nl>
 	 */

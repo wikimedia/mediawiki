@@ -45,6 +45,8 @@ class HTMLFileCache extends FileCacheBase {
 
 	/**
 	 * Get the cache type subdirectory (with the trailing slash) or the empty string
+	 * Alter the type -> directory mapping to put action=view cache at the root.
+	 *
 	 * @return string
 	 */
 	protected function typeSubdirectory() {
@@ -61,17 +63,21 @@ class HTMLFileCache extends FileCacheBase {
 	 * @return bool
 	 */
 	public static function useFileCache( IContextSource $context ) {
-		global $wgUseFileCache, $wgShowIPinHeader, $wgContLang;
+		global $wgUseFileCache, $wgShowIPinHeader, $wgDebugToolbar, $wgContLang;
 		if ( !$wgUseFileCache ) {
 			return false;
 		}
+		if ( $wgShowIPinHeader || $wgDebugToolbar ) {
+			wfDebug( "HTML file cache skipped. Either \$wgShowIPinHeader and/or \$wgDebugToolbar on\n" );
+			return false;
+		}
+
 		// Get all query values
 		$queryVals = $context->getRequest()->getValues();
 		foreach ( $queryVals as $query => $val ) {
 			if ( $query === 'title' || $query === 'curid' ) {
 				continue; // note: curid sets title
 			// Normal page view in query form can have action=view.
-			// Raw hits for pages also stored, like .css pages for example.
 			} elseif ( $query === 'action' && in_array( $val, self::cacheablePageActions() ) ) {
 				continue;
 			// Below are header setting params
@@ -86,7 +92,7 @@ class HTMLFileCache extends FileCacheBase {
 		$ulang = $context->getLanguage()->getCode();
 		$clang = $wgContLang->getCode();
 		// Check that there are no other sources of variation
-		return !$wgShowIPinHeader && !$user->getId() && !$user->getNewtalk() && $ulang == $clang;
+		return !$user->getId() && !$user->getNewtalk() && $ulang == $clang;
 	}
 
 	/**
@@ -99,19 +105,20 @@ class HTMLFileCache extends FileCacheBase {
 
 		wfDebug( __METHOD__ . "()\n");
 		$filename = $this->cachePath();
+
 		$context->getOutput()->sendCacheControl();
 		header( "Content-Type: $wgMimeType; charset=UTF-8" );
 		header( "Content-Language: $wgLanguageCode" );
 		if ( $this->useGzip() ) {
 			if ( wfClientAcceptsGzip() ) {
 				header( 'Content-Encoding: gzip' );
+				readfile( $filename );
 			} else {
 				/* Send uncompressed */
+				wfDebug( __METHOD__ . " uncompressing cache file and sending it\n" );
 				readgzfile( $filename );
-				return;
 			}
 		}
-		readfile( $filename );
 		$context->getOutput()->disable(); // tell $wgOut that output is taken care of
 	}
 

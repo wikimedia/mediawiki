@@ -103,7 +103,7 @@ class Category {
 	 * Factory function.
 	 *
 	 * @param $title Title for the category page
-	 * @return category|false on a totally invalid name
+	 * @return Category|bool on a totally invalid name
 	 */
 	public static function newFromTitle( $title ) {
 		$cat = new self();
@@ -185,7 +185,7 @@ class Category {
 	public function getFileCount() { return $this->getX( 'mFiles' ); }
 
 	/**
-	 * @return Title|false Title for this category, or false on failure.
+	 * @return Title|bool Title for this category, or false on failure.
 	 */
 	public function getTitle() {
 		if ( $this->mTitle ) return $this->mTitle;
@@ -231,7 +231,10 @@ class Category {
 		);
 	}
 
-	/** Generic accessor */
+	/**
+	 * Generic accessor
+	 * @return bool
+	 */
 	private function getX( $key ) {
 		if ( !$this->initialize() ) {
 			return false;
@@ -257,7 +260,7 @@ class Category {
 		}
 
 		$dbw = wfGetDB( DB_MASTER );
-		$dbw->begin();
+		$dbw->begin( __METHOD__  );
 
 		# Insert the row if it doesn't exist yet (e.g., this is being run via
 		# update.php from a pre-1.16 schema).  TODO: This will cause lots and
@@ -297,7 +300,7 @@ class Category {
 			array( 'cat_title' => $this->mName ),
 			__METHOD__
 		);
-		$dbw->commit();
+		$dbw->commit( __METHOD__ );
 
 		# Now we should update our local counts.
 		$this->mPages   = $result->pages;

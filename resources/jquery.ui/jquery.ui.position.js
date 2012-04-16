@@ -1,5 +1,5 @@
 /*
- * jQuery UI Position 1.8.17
+ * jQuery UI Position 1.8.18
  *
  * Copyright 2011, AUTHORS.txt (http://jqueryui.com/about)
  * Dual licensed under the MIT or GPL Version 2 licenses.
@@ -269,7 +269,7 @@ if ( !$.offset.setOffset ) {
 		background: "none"
 	};
 	if ( body ) {
-		jQuery.extend( testElementStyle, {
+		$.extend( testElementStyle, {
 			position: "absolute",
 			left: "-1000px",
 			top: "-1000px"

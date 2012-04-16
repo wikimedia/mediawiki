@@ -30,7 +30,7 @@ class CreditsAction extends FormlessAction {
 	}
 
 	protected function getDescription() {
-		return wfMsgHtml( 'creditspage' );
+		return $this->msg( 'creditspage' )->escaped();
 	}
 
 	/**
@@ -219,8 +219,7 @@ class CreditsAction extends FormlessAction {
 
 	/**
 	 * Get a link to action=credits of $article page
-	 * @param $article Article object
-	 * @return String: html
+	 * @return String: HTML link
 	 */
 	protected function othersLink() {
 		return Linker::linkKnown(

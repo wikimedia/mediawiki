@@ -8,7 +8,7 @@ By Tim Starling, January 2006.
 For information about the MediaWiki database layout, such as a 
 description of the tables and their contents, please see:
   http://www.mediawiki.org/wiki/Manual:Database_layout
-  http://svn.wikimedia.org/viewvc/mediawiki/trunk/phase3/maintenance/tables.sql?view=markup
+  https://gerrit.wikimedia.org/r/gitweb?p=mediawiki/core.git;a=blob_plain;f=maintenance/tables.sql;hb=HEAD
 
 
 ------------------------------------------------------------------------
@@ -153,9 +153,9 @@ enclose small groups of queries in their own transaction. Use the
 following syntax:
 
 $dbw = wfGetDB( DB_MASTER );
-$dbw->begin();
+$dbw->begin( __METHOD__ );
 /* Do queries */
-$dbw->commit();
+$dbw->commit( __METHOD__ );
 
 Use of locking reads (e.g. the FOR UPDATE clause) is not advised. They
 are poorly implemented in InnoDB and will cause regular deadlock errors.

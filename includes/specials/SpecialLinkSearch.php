@@ -88,13 +88,22 @@ class LinkSearchPage extends QueryPage {
 		$s = Xml::openElement( 'form', array( 'id' => 'mw-linksearch-form', 'method' => 'get', 'action' => $GLOBALS['wgScript'] ) ) .
 			Html::hidden( 'title', $this->getTitle()->getPrefixedDbKey() ) .
 			'<fieldset>' .
-			Xml::element( 'legend', array(), wfMsg( 'linksearch' ) ) .
-			Xml::inputLabel( wfMsg( 'linksearch-pat' ), 'target', 'target', 50, $target ) . ' ';
+			Xml::element( 'legend', array(), $this->msg( 'linksearch' )->text() ) .
+			Xml::inputLabel( $this->msg( 'linksearch-pat' )->text(), 'target', 'target', 50, $target ) . ' ';
 		if ( !$wgMiserMode ) {
-			$s .= Xml::label( wfMsg( 'linksearch-ns' ), 'namespace' ) . ' ' .
-				Xml::namespaceSelector( $namespace, '' );
+			$s .= Html::namespaceSelector(
+				array(
+					'selected' => $namespace,
+					'all' => '',
+					'label' => $this->msg( 'linksearch-ns' )->text()
+				), array(
+					'name'  => 'namespace',
+					'id'    => 'namespace',
+					'class' => 'namespaceselector',
+				)
+			);
 		}
-		$s .=	Xml::submitButton( wfMsg( 'linksearch-ok' ) ) .
+		$s .=	Xml::submitButton( $this->msg( 'linksearch-ok' )->text() ) .
 			'</fieldset>' .
 			Xml::closeElement( 'form' );
 		$out->addHTML( $s );
@@ -112,6 +121,7 @@ class LinkSearchPage extends QueryPage {
 
 	/**
 	 * Disable RSS/Atom feeds
+	 * @return bool
 	 */
 	function isSyndicated() {
 		return false;
@@ -180,7 +190,7 @@ class LinkSearchPage extends QueryPage {
 		$pageLink = Linker::linkKnown( $title );
 		$urlLink = Linker::makeExternalLink( $url, $url );
 
-		return wfMsgHtml( 'linksearch-line', $urlLink, $pageLink );
+		return $this->msg( 'linksearch-line' )->rawParams( $urlLink, $pageLink )->escaped();
 	}
 
 	/**
@@ -203,6 +213,7 @@ class LinkSearchPage extends QueryPage {
 	 * We do a truncated index search, so the optimizer won't trust
 	 * it as good enough for optimizing sort. The implicit ordering
 	 * from the scan will usually do well enough for our needs.
+	 * @return array
 	 */
 	function getOrderFields() {
 		return array();

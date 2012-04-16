@@ -6,9 +6,9 @@ var mwTestIgnore, mwTester, addons;
 /**
  * Add bogus to url to prevent IE crazy caching
  *
- * @param value {String} a relative path (eg. 'data/defineTestCallback.js'
+ * @param value {String} a relative path (eg. 'data/foo.js'
  * or 'data/test.php?foo=bar').
- * @return {String} Such as 'data/defineTestCallback.js?131031765087663960'
+ * @return {String} Such as 'data/foo.js?131031765087663960'
  */
 QUnit.fixurl = function (value) {
 	return value + (/\?/.test( value ) ? '&' : '?')
@@ -29,9 +29,14 @@ QUnit.config.urlConfig.push( 'debug' );
 /**
  *  Load TestSwarm agent
  */
-if ( QUnit.urlParams.swarmURL  ) {
-	document.write( "<scr" + "ipt src='" + QUnit.fixurl( mw.config.get( 'wgScriptPath' )
-		+ '/tests/qunit/data/testwarm.inject.js' ) + "'></scr" + "ipt>" );
+// Only if the current url indicates that there is a TestSwarm instance watching us
+// (TestSwarm appends swarmURL to the test suites url it loads in iframes).
+// Otherwise this is just a simple view of Special:JavaScriptTest/qunit directly,
+// no point in loading inject.js in that case. Also, make sure that this instance
+// of MediaWiki has actually been configured with the required url to that inject.js
+// script. By default it is false.
+if ( QUnit.urlParams.swarmURL && mw.config.get( 'QUnitTestSwarmInjectJSPath' ) ) {
+	document.write( "<scr" + "ipt src='" + QUnit.fixurl( mw.config.get( 'QUnitTestSwarmInjectJSPath' ) ) + "'></scr" + "ipt>" );
 }
 
 /**
@@ -105,37 +110,45 @@ QUnit.config.urlConfig.push( 'mwlogenv' );
  * </code>
  */
 QUnit.newMwEnvironment = ( function () {
-	var liveConfig, freshConfigCopy, log;
+	var log, liveConfig, liveMsgs;
 
 	liveConfig = mw.config.values;
+	liveMsgs = mw.messages.values;
 
-	freshConfigCopy = function ( custom ) {
+	function freshConfigCopy( custom ) {
 		// "deep=true" is important here.
 		// Otherwise we just create a new object with values referring to live config.
 		// e.g. mw.config.set( 'wgFileExtensions', [] ) would not effect liveConfig,
 		// but mw.config.get( 'wgFileExtensions' ).push( 'png' ) would as the array
 		// was passed by reference in $.extend's loop.
 		return $.extend({}, liveConfig, custom, /*deep=*/true );
-	};
+	}
+
+	function freshMsgsCopy( custom ) {
+		return $.extend({}, liveMsgs, custom, /*deep=*/true );
+	}
 
 	log = QUnit.urlParams.mwlogenv ? mw.log : function () {};
 
-	return function ( override ) {
-		override = override || {};
+	return function ( overrideConfig, overrideMsgs ) {
+		overrideConfig = overrideConfig || {};
+		overrideMsgs = overrideMsgs || {};
 
 		return {
 			setup: function () {
 				log( 'MwEnvironment> SETUP    for "' + QUnit.config.current.module
 					+ ': ' + QUnit.config.current.testName + '"' );
-				// Greetings, mock configuration!
-				mw.config.values = freshConfigCopy( override );
+				// Greetings, mock environment!
+				mw.config.values = freshConfigCopy( overrideConfig );
+				mw.messages.values = freshMsgsCopy( overrideMsgs );
 			},
 
 			teardown: function () {
 				log( 'MwEnvironment> TEARDOWN for "' + QUnit.config.current.module
 					+ ': ' + QUnit.config.current.testName + '"' );
-				// Farewell, mock configuration!
+				// Farewell, mock environment!
 				mw.config.values = liveConfig;
+				mw.messages.values = liveMsgs;
 			}
 		};
 	};

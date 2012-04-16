@@ -16,6 +16,8 @@
  * UploadStash represents the entire stash of temporary files.
  * UploadStashFile is a filestore for the actual physical disk files.
  * UploadFromStash extends UploadBase, and represents a single stashed file as it is moved from the stash to the regular file repository
+ *
+ * @ingroup Upload
  */
 class UploadStash {
 
@@ -212,7 +214,8 @@ class UploadStash {
 					$error = array( 'unknown', 'no error recorded' );
 				}
 			}
-			throw new UploadStashFileException( "Error storing file in '$path': " . implode( '; ', $error ) );
+			// at this point, $error should contain the single "most important" error, plus any parameters.
+			throw new UploadStashFileException( "Error storing file in '$path': " . wfMessage( $error )->text() );
 		}
 		$stashPath = $storeStatus->value;
 
@@ -388,6 +391,7 @@ class UploadStash {
 	 * with an extension.
 	 * XXX this is somewhat redundant with the checks that ApiUpload.php does with incoming
 	 * uploads versus the desired filename. Maybe we can get that passed to us...
+	 * @return string
 	 */
 	public static function getExtensionForPath( $path ) {
 		// Does this have an extension?
@@ -495,7 +499,7 @@ class UploadStashFile extends UnregisteredLocalFile {
 			}
 
 			// check if path exists! and is a plain file.
-			if ( ! $repo->fileExists( $path, FileRepo::FILES_ONLY ) ) {
+			if ( ! $repo->fileExists( $path ) ) {
 				wfDebug( "UploadStash: tried to construct an UploadStashFile from a file that should already exist at '$path', but path is not found\n" );
 				throw new UploadStashFileNotFoundException( 'cannot find path, or not a plain file' );
 			}
@@ -619,7 +623,7 @@ class UploadStashFile extends UnregisteredLocalFile {
 	 * @return Status: success
 	 */
 	public function remove() {
-		if ( !$this->repo->fileExists( $this->path, FileRepo::FILES_ONLY ) ) {
+		if ( !$this->repo->fileExists( $this->path ) ) {
 			// Maybe the file's already been removed? This could totally happen in UploadBase.
 			return true;
 		}
@@ -628,7 +632,7 @@ class UploadStashFile extends UnregisteredLocalFile {
 	}
 
 	public function exists() {
-		return $this->repo->fileExists( $this->path, FileRepo::FILES_ONLY );
+		return $this->repo->fileExists( $this->path );
 	}
 
 }

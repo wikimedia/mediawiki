@@ -11,7 +11,6 @@
 	border: solid 1px #a7d7f9;
 	color: black;
 	max-width: 15em;
-	text-align: left;
 	border-radius: 4px;
 	-moz-border-radius: 4px;
 	-webkit-border-radius: 4px;
@@ -30,36 +29,36 @@
 	width: 11px;
 	height: 6px;
 }
-.tipsy-n .tipsy-arrow {
+/* @noflip */ .tipsy-n .tipsy-arrow {
 	top: 0px;
 	left: 50%;
 	margin-left: -5px;
 }
-.tipsy-nw .tipsy-arrow {
+/* @noflip */ .tipsy-nw .tipsy-arrow {
 	top: 1px;
 	left: 10px;
 }
-.tipsy-ne .tipsy-arrow {
+/* @noflip */ .tipsy-ne .tipsy-arrow {
 	top: 1px;
 	right: 10px;
 }
-.tipsy-s .tipsy-arrow {
+/* @noflip */ .tipsy-s .tipsy-arrow {
 	bottom: 0px;
 	left: 50%;
 	margin-left: -5px;
 	background-position: bottom left;
 }
-.tipsy-sw .tipsy-arrow {
+/* @noflip */ .tipsy-sw .tipsy-arrow {
 	bottom: 0px;
 	left: 10px;
 	background-position: bottom left;
 }
-.tipsy-se .tipsy-arrow {
+/* @noflip */ .tipsy-se .tipsy-arrow {
 	bottom: 0px;
 	right: 10px;
 	background-position: bottom left;
 }
-.tipsy-e .tipsy-arrow {
+/* @noflip */ .tipsy-e .tipsy-arrow {
 	top: 50%;
 	margin-top: -5px;
 	right: 1px;
@@ -67,7 +66,7 @@
 	height: 11px;
 	background-position: top right;
 }
-.tipsy-w .tipsy-arrow {
+/* @noflip */ .tipsy-w .tipsy-arrow {
 	top: 50%;
 	margin-top: -5px;
 	left: 0px;

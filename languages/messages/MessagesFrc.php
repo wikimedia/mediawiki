@@ -21,7 +21,6 @@ $fallback = 'fr';
 $messages = array(
 # User preference toggles
 'tog-underline'               => 'Souligner les liens:',
-'tog-highlightbroken'         => 'Préparez les liens déconnectés <a href=""class="new">comme ça ici</a> (autrement: comme ça ici<a href=""class="internal">?</a>).',
 'tog-justify'                 => 'Égalisez les paragraphes',
 'tog-hideminor'               => 'Cachez les petits changements dans la liste des derniers changements',
 'tog-hidepatrolled'           => '↓ Cachez les petits changements dans la liste des derniers changements',
@@ -305,8 +304,8 @@ L'administrateur qui l'a barrée a donné cette explication: $1",
 'cannotdelete'         => "Impossible d'ôter la page ou le dossier choisi.  (Il est possible que quèqu'une d'autre l'a déjà ôté.)",
 'badtitle'             => 'Mauvais titre',
 'badtitletext'         => 'Le titre que vous avez demandé était pas bon, vide, ou y avait un mauvais titre entre-langue ou entre-wiki.  Ça pourrait avoir des caractères qui pouvont pas être usés dans les titres.',
-'perfcached'           => 'Cette information est en cache et pourrait pas être courante.',
-'perfcachedts'         => 'Cette information est en cache et le dernier changement a été fait $1.',
+'perfcached'           => 'Cette information est en cache et pourrait pas être courante. A maximum of {{PLURAL:$1|one result is|$1 results are}} available in the cache.',
+'perfcachedts'         => 'Cette information est en cache et le dernier changement a été fait $1. A maximum of {{PLURAL:$4|one result is|$4 results are}} available in the cache.',
 'querypage-no-updates' => "À présent, les renouvelages pour cette page sont barrés.  L'information ici va pas être renouvelée t'à l'heure.",
 'wrong_wfQuery_params' => 'Informaton incorrecte sus le wfQuery()<br />
 Fonction: $1<br />
@@ -315,7 +314,9 @@ Demande: $2',
 'protectedpagetext'    => 'Cette page est barrée pour empêcher des changements.',
 'viewsourcetext'       => 'Vous pouvez voir et copier la source de cette page:',
 'protectedinterface'   => "Cette page crée le texte de l'interface pour le software, et est barrée pour empêcher l'abus.",
-'editinginterface'     => "'''Attention:'''  Vous êtes après changer une page qu'est usée pour créer le texte de l'interface pour le software.  Si vous changerait cette page, vous changerait des autres pages aussi.",
+'editinginterface'     => "'''Warning:''' You are editing a page which is used to provide interface text for the software.
+Changes to this page will affect the appearance of the user interface for other users.
+For translations, please consider using [//translatewiki.net/wiki/Main_Page?setlang=en translatewiki.net], the MediaWiki localisation project.",
 'sqlhidden'            => '(Demande SQL cachée)',
 'cascadeprotected'     => 'Cette page est protégée parce qu’elle est incluse par {{PLURAL:$1|la page suivante, qui est protégée|les pages suivantes, qui sont protégées}} avec l’option « protection en cascade » activée :
 $2',

@@ -29,6 +29,10 @@ if ( function_exists( 'mb_strtoupper' ) ) {
  * @ingroup Language
  */
 class FakeConverter {
+
+	/**
+	 * @var Language
+	 */
 	var $mLang;
 	function __construct( $langobj ) { $this->mLang = $langobj; }
 	function autoConvertToAllVariants( $text ) { return array( $this->mLang->getCode() => $text ); }
@@ -154,6 +158,7 @@ class Language {
 	/**
 	 * Create a language object for a given language code
 	 * @param $code String
+	 * @throws MWException
 	 * @return Language
 	 */
 	protected static function newFromCode( $code ) {
@@ -364,7 +369,7 @@ class Language {
 		}
 		return $this->namespaceNames;
 	}
-	
+
 	/**
 	 * Arbitrarily set all of the namespace names at once. Mainly used for testing
 	 * @param $namespaces Array of namespaces (id => name)
@@ -551,11 +556,10 @@ class Language {
 	 */
 	function getVariantname( $code, $usemsg = true ) {
 		$msg = "variantname-$code";
-		list( $rootCode ) = explode( '-', $code );
 		if ( $usemsg && wfMessage( $msg )->exists() ) {
 			return $this->getMessageFromDB( $msg );
 		}
-		$name = self::getLanguageName( $code );
+		$name = self::fetchLanguageName( $code );
 		if ( $name ) {
 			return $name; # if it's defined as a language name, show that
 		} else {
@@ -655,29 +659,10 @@ class Language {
 	 * @param $customisedOnly bool
 	 *
 	 * @return array
+	 * @deprecated in 1.20, use fetchLanguageNames()
 	 */
 	public static function getLanguageNames( $customisedOnly = false ) {
-		global $wgExtraLanguageNames;
-		static $coreLanguageNames;
-
-		if ( $coreLanguageNames === null ) {
-			include( MWInit::compiledPath( 'languages/Names.php' ) );
-		}
-
-		$allNames = $wgExtraLanguageNames + $coreLanguageNames;
-		if ( !$customisedOnly ) {
-			return $allNames;
-		}
-
-		$names = array();
-		// We do this using a foreach over the codes instead of a directory
-		// loop so that messages files in extensions will work correctly.
-		foreach ( $allNames as $code => $value ) {
-			if ( is_readable( self::getMessagesFileName( $code ) ) ) {
-				$names[$code] = $allNames[$code];
-			}
-		}
-		return $names;
+		return self::fetchLanguageNames( null, $customisedOnly ? 'mwfile' : 'mw' );
 	}
 
 	/**
@@ -687,16 +672,84 @@ class Language {
 	 * @param $code String Language code.
 	 * @return Array language code => language name
 	 * @since 1.18.0
+	 * @deprecated in 1.20, use fetchLanguageNames()
 	 */
 	public static function getTranslatedLanguageNames( $code ) {
-		$names = array();
-		wfRunHooks( 'LanguageGetTranslatedLanguageNames', array( &$names, $code ) );
+		return self::fetchLanguageNames( $code, 'all' );
+	}
 
-		foreach ( self::getLanguageNames() as $code => $name ) {
-			if ( !isset( $names[$code] ) ) $names[$code] = $name;
+	/**
+	 * Get an array of language names, indexed by code.
+	 * @param $inLanguage null|string: Code of language in which to return the names
+	 *		Use null for autonyms (native names)
+	 * @param $include string:
+	 *		'all' all available languages
+	 *		'mw' only if the language is defined in MediaWiki or wgExtraLanguageNames
+	 *		'mwfile' only if the language is in 'mw' *and* has a message file
+	 * @return array|bool: language code => language name, false if $include is wrong
+	 * @since 1.20
+	 */
+	public static function fetchLanguageNames( $inLanguage = null, $include = 'mw' ) {
+		global $wgExtraLanguageNames;
+		static $coreLanguageNames;
+
+		if ( $coreLanguageNames === null ) {
+			include( MWInit::compiledPath( 'languages/Names.php' ) );
 		}
 
-		return $names;
+		$names = array();
+
+		if( $inLanguage ) {
+			# TODO: also include when $inLanguage is null, when this code is more efficient
+			wfRunHooks( 'LanguageGetTranslatedLanguageNames', array( &$names, $inLanguage ) );
+		}
+
+		$mwNames = $wgExtraLanguageNames + $coreLanguageNames;
+		foreach ( $mwNames as $mwCode => $mwName ) {
+			# - Prefer own MediaWiki native name when not using the hook
+			#	TODO: prefer it always to make it consistent, but casing is different in CLDR
+			# - For other names just add if not added through the hook
+			if ( ( $mwCode === $inLanguage && !$inLanguage ) || !isset( $names[$mwCode] ) ) {
+				$names[$mwCode] = $mwName;
+			}
+		}
+
+		if ( $include === 'all' ) {
+			return $names;
+		}
+
+		$returnMw = array();
+		$coreCodes = array_keys( $mwNames );
+		foreach( $coreCodes as $coreCode ) {
+			$returnMw[$coreCode] = $names[$coreCode];
+		}
+
+		if( $include === 'mw' ) {
+			return $returnMw;
+		} elseif( $include === 'mwfile' ) {
+			$namesMwFile = array();
+			# We do this using a foreach over the codes instead of a directory
+			# loop so that messages files in extensions will work correctly.
+			foreach ( $returnMw as $code => $value ) {
+				if ( is_readable( self::getMessagesFileName( $code ) ) ) {
+					$namesMwFile[$code] = $names[$code];
+				}
+			}
+			return $namesMwFile;
+		}
+		return false;
+	}
+
+	/**
+	 * @param $code string: The code of the language for which to get the name
+	 * @param $inLanguage null|string: Code of language in which to return the name (null for autonyms)
+	 * @param $include string: 'all', 'mw' or 'mwfile'; see fetchLanguageNames()
+	 * @return string: Language name or empty
+	 * @since 1.20
+	 */
+	public static function fetchLanguageName( $code, $inLanguage = null, $include = 'all' ) {
+		$array = self::fetchLanguageNames( $inLanguage, $include );
+		return !array_key_exists( $code, $array ) ? '' : $array[$code];
 	}
 
 	/**
@@ -714,13 +767,10 @@ class Language {
 	 * Only if defined in MediaWiki, no other data like CLDR.
 	 * @param $code string
 	 * @return string
+	 * @deprecated in 1.20, use fetchLanguageName()
 	 */
 	function getLanguageName( $code ) {
-		$names = self::getLanguageNames();
-		if ( !array_key_exists( $code, $names ) ) {
-			return '';
-		}
-		return $names[$code];
+		return self::fetchLanguageName( $code );
 	}
 
 	/**
@@ -1261,7 +1311,7 @@ class Language {
 	 *
 	 * Based on a PHP-Nuke block by Sharjeel which is released under GNU/GPL license
 	 *
-	 * @link http://phpnuke.org/modules.php?name=News&file=article&sid=8234&mode=thread&order=0&thold=0
+	 * @see http://phpnuke.org/modules.php?name=News&file=article&sid=8234&mode=thread&order=0&thold=0
 	 *
 	 * @param $ts string
 	 *
@@ -2490,6 +2540,7 @@ class Language {
 	 * @param $file string
 	 * @param $string string
 	 *
+	 * @throws MWException
 	 * @return string
 	 */
 	function transformUsingPairFile( $file, $string ) {
@@ -2545,16 +2596,35 @@ class Language {
 	}
 
 	/**
-	 * A hidden direction mark (LRM or RLM), depending on the language direction
+	 * A hidden direction mark (LRM or RLM), depending on the language direction.
+	 * Unlike getDirMark(), this function returns the character as an HTML entity.
+	 * This function should be used when the output is guaranteed to be HTML,
+	 * because it makes the output HTML source code more readable. When
+	 * the output is plain text or can be escaped, getDirMark() should be used.
+	 *
+	 * @param $opposite Boolean Get the direction mark opposite to your language
+	 * @return string
+	 */
+	function getDirMarkEntity( $opposite = false ) {
+		if ( $opposite ) { return $this->isRTL() ? '&lrm;' : '&rlm;'; }
+		return $this->isRTL() ? '&rlm;' : '&lrm;';
+	}
+
+	/**
+	 * A hidden direction mark (LRM or RLM), depending on the language direction.
+	 * This function produces them as invisible Unicode characters and
+	 * the output may be hard to read and debug, so it should only be used
+	 * when the output is plain text or can be escaped. When the output is
+	 * HTML, use getDirMarkEntity() instead.
 	 *
 	 * @param $opposite Boolean Get the direction mark opposite to your language
 	 * @return string
 	 */
 	function getDirMark( $opposite = false ) {
-		$rtl = "\xE2\x80\x8F";
-		$ltr = "\xE2\x80\x8E";
-		if ( $opposite ) { return $this->isRTL() ? $ltr : $rtl; }
-		return $this->isRTL() ? $rtl : $ltr;
+		$lrm = "\xE2\x80\x8E"; # LEFT-TO-RIGHT MARK, commonly abbreviated LRM
+		$rlm = "\xE2\x80\x8F"; # RIGHT-TO-LEFT MARK, commonly abbreviated RLM
+		if ( $opposite ) { return $this->isRTL() ? $lrm : $rlm; }
+		return $this->isRTL() ? $rlm : $lrm;
 	}
 
 	/**
@@ -3131,7 +3201,7 @@ class Language {
 	 * (b) clear $tag value
 	 * @param &$tag string Current HTML tag name we are looking at
 	 * @param $tagType int (0-open tag, 1-close tag)
-	 * @param $lastCh char|string Character before the '>' that ended this tag
+	 * @param $lastCh string Character before the '>' that ended this tag
 	 * @param &$openTags array Open tag stack (not accounting for $tag)
 	 */
 	private function truncate_endBracket( &$tag, $tagType, $lastCh, &$openTags ) {
@@ -3163,14 +3233,31 @@ class Language {
 		}
 		return $word;
 	}
-
+	/**
+	 * Get the grammar forms for the content language
+	 * @return array of grammar forms
+	 * @since 1.20
+	 */
+	function getGrammarForms() {
+		global $wgGrammarForms;
+		if ( isset( $wgGrammarForms[$this->getCode()] ) && is_array( $wgGrammarForms[$this->getCode()] ) ) {
+			 return $wgGrammarForms[$this->getCode()];
+		}
+		return array();
+	}
 	/**
 	 * Provides an alternative text depending on specified gender.
 	 * Usage {{gender:username|masculine|feminine|neutral}}.
 	 * username is optional, in which case the gender of current user is used,
 	 * but only in (some) interface messages; otherwise default gender is used.
-	 * If second or third parameter are not specified, masculine is used.
-	 * These details may be overriden per language.
+	 *
+	 * If no forms are given, an empty string is returned. If only one form is
+	 * given, it will be returned unconditionally. These details are implied by
+	 * the caller and cannot be overridden in subclasses.
+	 *
+	 * If more than one form is given, the default is to use the neutral one
+	 * if it is specified, and to use the masculine one otherwise. These
+	 * details can be overridden in subclasses.
 	 *
 	 * @param $gender string
 	 * @param $forms array
@@ -3238,7 +3325,7 @@ class Language {
 	 * match up with it.
 	 *
 	 * @param $str String: the validated block duration in English
-	 * @return Somehow translated block duration
+	 * @return string Somehow translated block duration
 	 * @see LanguageFi.php for example implementation
 	 */
 	function translateBlockExpiry( $str ) {
@@ -3522,6 +3609,7 @@ class Language {
 	 * @param $prefix string Prepend this to the filename
 	 * @param $code string Language code
 	 * @param $suffix string Append this to the filename
+	 * @throws MWException
 	 * @return string $prefix . $mangledCode . $suffix
 	 */
 	public static function getFileName( $prefix = 'Language', $code, $suffix = '.php' ) {
@@ -3577,7 +3665,7 @@ class Language {
 	 *
 	 * @param $code string
 	 *
-	 * @return false|string
+	 * @return bool|string
 	 */
 	public static function getFallbackFor( $code ) {
 		if ( $code === 'en' || !Language::isValidBuiltInCode( $code ) ) {
@@ -3699,6 +3787,8 @@ class Language {
 
 	/**
 	 * Decode an expiry (block, protection, etc) which has come from the DB
+	 *
+	 * @FIXME: why are we returnings DBMS-dependent strings???
 	 *
 	 * @param $expiry String: Database expiry String
 	 * @param $format Bool|Int true to process using language functions, or TS_ constant

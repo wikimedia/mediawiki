@@ -28,7 +28,7 @@
 
 define( 'MW_NO_OUTPUT_COMPRESSION', 1 );
 if ( isset( $_SERVER['MW_COMPILED'] ) ) {
-	require ( 'phase3/includes/WebStart.php' );
+	require ( 'core/includes/WebStart.php' );
 } else {
 	require ( dirname( __FILE__ ) . '/includes/WebStart.php' );
 }
@@ -43,7 +43,7 @@ wfImageAuthMain();
 wfLogProfilingData();
 
 function wfImageAuthMain() {
-	global $wgImgAuthPublicTest, $wgRequest, $wgUploadDirectory;
+	global $wgImgAuthPublicTest, $wgRequest;
 
 	// See if this is a public Wiki (no protections).
 	if ( $wgImgAuthPublicTest
@@ -56,6 +56,10 @@ function wfImageAuthMain() {
 
 	// Get the requested file path (source file or thumbnail)
 	$matches = WebRequest::getPathInfo();
+	if ( !isset( $matches['title'] ) ) {
+		wfForbidden( 'img-auth-accessdenied', 'img-auth-nopathinfo' );
+		return;
+	}
 	$path = $matches['title'];
 	if ( $path && $path[0] !== '/' ) {
 		// Make sure $path has a leading /
@@ -104,7 +108,7 @@ function wfImageAuthMain() {
 		wfForbidden( $result[0], $result[1], array_slice( $result, 2 ) );
 		return;
 	}
-	
+
 	// Check user authorization for this title
 	// Checks Whitelist too
 	if ( !$title->userCan( 'read' ) ) {

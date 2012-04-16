@@ -33,7 +33,7 @@ class MWNamespace {
 	 * @param $index
 	 * @param $method
 	 *
-	 * @return true
+	 * @return bool
 	 */
 	private static function isMethodValidFor( $index, $method ) {
 		if ( $index < NS_MAIN ) {
@@ -67,6 +67,7 @@ class MWNamespace {
 	/**
 	 * @see self::isSubject
 	 * @deprecated Please use the more consistently named isSubject (since 1.19)
+	 * @return bool
 	 */
 	public static function isMain( $index ) {
 		wfDeprecated( __METHOD__, '1.19' );
@@ -185,7 +186,7 @@ class MWNamespace {
 	 * Returns array of all defined namespaces with their canonical
 	 * (English) names.
 	 *
-	 * @return \array
+	 * @return array
 	 * @since 1.17
 	 */
 	public static function getCanonicalNamespaces() {

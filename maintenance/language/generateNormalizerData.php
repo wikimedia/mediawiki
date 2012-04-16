@@ -155,4 +155,3 @@ class GenerateNormalizerData extends Maintenance {
 
 $maintClass = 'GenerateNormalizerData';
 require_once( RUN_MAINTENANCE_IF_MAIN );
-

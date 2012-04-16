@@ -55,6 +55,8 @@ class DBLockManager extends LockManager {
 	 * @param Array $config 
 	 */
 	public function __construct( array $config ) {
+		parent::__construct( $config );
+
 		$this->dbServers = isset( $config['dbServers'] )
 			? $config['dbServers']
 			: array(); // likely just using 'localDBMaster'
@@ -90,6 +92,7 @@ class DBLockManager extends LockManager {
 
 	/**
 	 * @see LockManager::doLock()
+	 * @return Status
 	 */
 	protected function doLock( array $paths, $type ) {
 		$status = Status::newGood();
@@ -140,6 +143,7 @@ class DBLockManager extends LockManager {
 
 	/**
 	 * @see LockManager::doUnlock()
+	 * @return Status
 	 */
 	protected function doUnlock( array $paths, $type ) {
 		$status = Status::newGood();
@@ -245,7 +249,7 @@ class DBLockManager extends LockManager {
 	 * Get (or reuse) a connection to a lock DB
 	 *
 	 * @param $lockDb string
-	 * @return Database
+	 * @return DatabaseBase
 	 * @throws DBError
 	 */
 	protected function getConnection( $lockDb ) {
@@ -274,7 +278,7 @@ class DBLockManager extends LockManager {
 			$this->initConnection( $lockDb, $this->conns[$lockDb] );
 		}
 		if ( !$this->conns[$lockDb]->trxLevel() ) {
-			$this->conns[$lockDb]->begin(); // start transaction
+			$this->conns[$lockDb]->begin( __METHOD__ ); // start transaction
 		}
 		return $this->conns[$lockDb];
 	}
@@ -300,7 +304,7 @@ class DBLockManager extends LockManager {
 		foreach ( $this->conns as $lockDb => $db ) {
 			if ( $db->trxLevel() ) { // in transaction
 				try {
-					$db->rollback(); // finish transaction and kill any rows
+					$db->rollback( __METHOD__ ); // finish transaction and kill any rows
 				} catch ( DBError $e ) {
 					$status->fatal( 'lockmanager-fail-db-release', $lockDb );
 				}
@@ -389,7 +393,7 @@ class DBLockManager extends LockManager {
 		foreach ( $this->conns as $lockDb => $db ) {
 			if ( $db->trxLevel() ) { // in transaction
 				try {
-					$db->rollback(); // finish transaction and kill any rows
+					$db->rollback( __METHOD__ ); // finish transaction and kill any rows
 				} catch ( DBError $e ) {
 					// oh well
 				}

@@ -78,6 +78,8 @@ $mwExcludePaths = array(
 /** Variable to get user input */
 $input = '';
 $exclude_patterns = '';
+/** Whether to generates man pages: */
+$wgDoxyGenerateMan = false;
 
 #
 # Functions
@@ -114,31 +116,7 @@ function getSvnRevision( $dir ) {
 
 	$content = file( $entries );
 
-	// check if file is xml (subversion release <= 1.3) or not (subversion release = 1.4)
-	if ( preg_match( '/^<\?xml/', $content[0] ) ) {
-		// subversion is release <= 1.3
-		if ( !function_exists( 'simplexml_load_file' ) ) {
-			// We could fall back to expat... YUCK
-			return false;
-		}
-
-		$xml = simplexml_load_file( $entries );
-
-		if ( $xml ) {
-			foreach ( $xml->entry as $entry ) {
-				if ( $xml->entry[0]['name'] == '' ) {
-					// The directory entry should always have a revision marker.
-					if ( $entry['revision'] ) {
-						return intval( $entry['revision'] );
-					}
-				}
-			}
-		}
-		return false;
-	} else {
-		// subversion is release 1.4
-		return intval( $content[3] );
-	}
+	return intval( $content[3] );
 }
 
 /**
@@ -271,6 +249,7 @@ case 5:
 		$file = readaline( "Enter file name $mwPath" );
 	}
 	$input = $mwPath . $file;
+	break;
 case 6:
 	$input = $mwPath;
 	$exclude_patterns = 'extensions';

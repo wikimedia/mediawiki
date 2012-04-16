@@ -102,7 +102,7 @@ foreach ( $wgLanguages->getLanguages() as $code ) {
 	}
 
 	# Calculate the numbers
-	$language = $wgContLang->getLanguageName( $code );
+	$language = Language::fetchLanguageName( $code );
 	$fallback = $wgLanguages->getFallback( $code );
 	$messages = $wgLanguages->getMessages( $code );
 	$messagesNumber = count( $messages['translated'] );
@@ -134,5 +134,3 @@ foreach ( $wgLanguages->getLanguages() as $code ) {
 
 # Footer
 $output->footer();
-
-

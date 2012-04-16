@@ -42,7 +42,7 @@ abstract class MediaTransformOutput {
 	}
 
 	/**
-	 * @return string|false The permanent thumbnail storage path
+	 * @return string|bool The permanent thumbnail storage path
 	 */
 	public function getStoragePath() {
 		return $this->storagePath;
@@ -80,41 +80,50 @@ abstract class MediaTransformOutput {
 
 	/**
 	 * This will be overridden to return true in error classes
+	 * @return bool
 	 */
 	public function isError() {
 		return false;
 	}
 
 	/**
-	 * Check if an output thumbnail file was actually made.
+	 * Check if an output thumbnail file actually exists.
 	 * This will return false if there was an error, the
-	 * thumnail is to be handled client-side only, or if
+	 * thumbnail is to be handled client-side only, or if
 	 * transformation was deferred via TRANSFORM_LATER.
-	 *
+	 * 
 	 * @return Bool
 	 */
 	public function hasFile() {
-		// If TRANSFORM_LATER, $this->path will be false
-		return ( !$this->isError() && $this->path );
+		// If TRANSFORM_LATER, $this->path will be false.
+		// Note: a null path means "use the source file".
+		return ( !$this->isError() && ( $this->path || $this->path === null ) );
 	}
 
 	/**
-	 * Check if the output thumbnail file is the same as the source.
+	 * Check if the output thumbnail is the same as the source.
 	 * This can occur if the requested width was bigger than the source.
 	 *
 	 * @return Bool
 	 */
 	public function fileIsSource() {
-		return ( !$this->isError() && $this->path === $this->file->getLocalRefPath() );
+		return ( !$this->isError() && $this->path === null );
 	}
 
 	/**
-	 * Get the path of a file system copy of the thumbnail
+	 * Get the path of a file system copy of the thumbnail.
+	 * Callers should never write to this path.
 	 *
-	 * @return string|false Returns false if there isn't one
+	 * @return string|bool Returns false if there isn't one
 	 */
 	public function getLocalCopyPath() {
-		return $this->path;
+		if ( $this->isError() ) {
+			return false;
+		} elseif ( $this->path === null ) {
+			return $this->file->getLocalRefPath();
+		} else {
+			return $this->path; // may return false
+		}
 	}
 
 	/**
@@ -124,7 +133,7 @@ abstract class MediaTransformOutput {
 	 * @return Bool success
 	 */
 	public function streamFile( $headers = array() ) {
-		return $this->path && StreamFile::stream( $this->path, $headers );
+		return $this->path && StreamFile::stream( $this->getLocalCopyPath(), $headers );
 	}
 
 	/**
@@ -170,13 +179,16 @@ abstract class MediaTransformOutput {
  * @ingroup Media
  */
 class ThumbnailImage extends MediaTransformOutput {
-
 	/**
+	 * Get a thumbnail object from a file and parameters.
+	 * If $path is set to null, the output file is treated as a source copy.
+	 * If $path is set to false, no output file will be created.
+	 * 
 	 * @param $file File object
 	 * @param $url String: URL path to the thumb
 	 * @param $width Integer: file's width
 	 * @param $height Integer: file's height
-	 * @param $path String: filesystem path to the thumb
+	 * @param $path String|bool|null: filesystem path to the thumb
 	 * @param $page Integer: page number, for multipage files
 	 * @private
 	 */

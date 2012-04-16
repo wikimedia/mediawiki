@@ -63,7 +63,7 @@ class ChangesList extends ContextSource {
 	 * This first argument used to be an User object.
 	 *
 	 * @deprecated in 1.18; use newFromContext() instead
-	 * @param $unused Unused
+	 * @param $unused string|User Unused
 	 * @return ChangesList|EnhancedChangesList|OldChangesList derivative
 	 */
 	public static function newFromUser( $unused ) {
@@ -252,7 +252,7 @@ class ChangesList extends ContextSource {
 	public function insertLog( &$s, $title, $logtype ) {
 		$page = new LogPage( $logtype );
 		$logname = $page->getName()->escaped();
-		$s .= '(' . Linker::linkKnown( $title, $logname ) . ')';
+		$s .= $this->msg( 'parentheses' )->rawParams( Linker::linkKnown( $title, $logname ) )->escaped();
 	}
 
 	/**
@@ -284,9 +284,9 @@ class ChangesList extends ContextSource {
 				$query
 			);
 		}
-		$s .= '(' . $diffLink . $this->message['pipe-separator'];
+		$diffhist = $diffLink . $this->message['pipe-separator'];
 		# History link
-		$s .= Linker::linkKnown(
+		$diffhist .= Linker::linkKnown(
 			$rc->getTitle(),
 			$this->message['hist'],
 			array(),
@@ -295,7 +295,7 @@ class ChangesList extends ContextSource {
 				'action' => 'history'
 			)
 		);
-		$s .= ') . . ';
+		$s .= $this->msg( 'parentheses' )->rawParams( $diffhist )->escaped() . ' . . ';
 	}
 
 	/**
@@ -344,9 +344,11 @@ class ChangesList extends ContextSource {
 			$this->getLanguage()->time( $rc->mAttribs['rc_timestamp'], true, true ) . ' . . ';
 	}
 
-	/** Insert links to user page, user talk page and eventually a blocking link
+	/**
+	 * Insert links to user page, user talk page and eventually a blocking link
 	 *
-	 * @param $rc RecentChange
+	 * @param &$s String HTML to update
+	 * @param &$rc RecentChange
 	 */
 	public function insertUserRelatedLinks( &$s, &$rc ) {
 		if( $this->isDeleted( $rc, Revision::DELETED_USER ) ) {
@@ -359,9 +361,10 @@ class ChangesList extends ContextSource {
 	}
 
 	/**
-	 * insert a formatted action
+	 * Insert a formatted action
 	 *
 	 * @param $rc RecentChange
+	 * @return string
 	 */
 	public function insertLogEntry( $rc ) {
 		$formatter = LogFormatter::newFromRow( $rc->mAttribs );
@@ -373,6 +376,7 @@ class ChangesList extends ContextSource {
 	/** 
 	 * Insert a formatted comment
 	 * @param $rc RecentChange
+	 * @return string
 	 */
 	public function insertComment( $rc ) {
 		if( $rc->mAttribs['rc_type'] != RC_MOVE && $rc->mAttribs['rc_type'] != RC_MOVE_OVER_REDIRECT ) {
@@ -395,6 +399,7 @@ class ChangesList extends ContextSource {
 
 	/**
 	 * Returns the string which indicates the number of watching users
+	 * @return string
 	 */
 	protected function numberofWatchingusers( $count ) {
 		static $cache = array();
@@ -512,6 +517,7 @@ class OldChangesList extends ChangesList {
 	 * Format a line using the old system (aka without any javascript).
 	 *
 	 * @param $rc RecentChange
+	 * @return string
 	 */
 	public function recentChangesLine( &$rc, $watched = false, $linenumber = null ) {
 		global $wgRCShowChangedSize;
@@ -673,7 +679,7 @@ class EnhancedChangesList extends ChangesList {
 				$logtitle = SpecialPage::getTitleFor( 'Log', $logType );
 				$logpage = new LogPage( $logType );
 				$logname = $logpage->getName()->escaped();
-				$clink = '(' . Linker::linkKnown( $logtitle, $logname ) . ')';
+				$clink = $this->msg( 'parentheses' )->rawParams( Linker::linkKnown( $logtitle, $logname ) )->escaped();
 			} else {
 				$clink = Linker::link( $rc->getTitle() );
 			}
@@ -777,6 +783,7 @@ class EnhancedChangesList extends ChangesList {
 
 	/**
 	 * Enhanced RC group
+	 * @return string
 	 */
 	protected function recentChangesBlockGroup( $block ) {
 		global $wgRCShowChangedSize;
@@ -845,7 +852,7 @@ class EnhancedChangesList extends ChangesList {
 			$text = $userlink;
 			$text .= $this->getLanguage()->getDirMark();
 			if( $count > 1 ) {
-				$text .= ' (' . $this->getLanguage()->formatNum( $count ) . '×)';
+				$text .= ' ' . $this->msg( 'parentheses' )->rawParams( $this->getLanguage()->formatNum( $count ) . '×' )->escaped();
 			}
 			array_push( $users, $text );
 		}
@@ -853,16 +860,7 @@ class EnhancedChangesList extends ChangesList {
 		$users = ' <span class="changedby">[' .
 			implode( $this->message['semicolon-separator'], $users ) . ']</span>';
 
-		# Title for <a> tags
-		$expandTitle = htmlspecialchars( wfMsg( 'rc-enhanced-expand' ) );
-		$closeTitle = htmlspecialchars( wfMsg( 'rc-enhanced-hide' ) );
-
-		$tl = "<span class='mw-collapsible-toggle'>"
-			. "<span class='mw-rc-openarrow'>"
-			. "<a href='#' title='$expandTitle'>{$this->sideArrow()}</a>"
-			. "</span><span class='mw-rc-closearrow'>"
-			. "<a href='#' title='$closeTitle'>{$this->downArrow()}</a>"
-			. "</span></span>";
+		$tl = '<span class="mw-collapsible-toggle mw-enhancedchanges-arrow"></span>';
 		$r .= "<td>$tl</td>";
 
 		# Main line
@@ -896,18 +894,18 @@ class EnhancedChangesList extends ChangesList {
 		}
 		# Total change link
 		$r .= ' ';
+		$logtext = '';
 		if( !$allLogs ) {
-			$r .= '(';
 			if( !ChangesList::userCan( $rcObj, Revision::DELETED_TEXT, $this->getUser() ) ) {
-				$r .= $nchanges[$n];
+				$logtext .= $nchanges[$n];
 			} elseif( $isnew ) {
-				$r .= $nchanges[$n];
+				$logtext .= $nchanges[$n];
 			} else {
 				$params = $queryParams;
 				$params['diff'] = $currentRevision;
 				$params['oldid'] = $oldid;
 
-				$r .= Linker::link(
+				$logtext .= Linker::link(
 					$block[0]->getTitle(),
 					$nchanges[$n],
 					array(),
@@ -921,19 +919,24 @@ class EnhancedChangesList extends ChangesList {
 		if( $allLogs ) {
 			// don't show history link for logs
 		} elseif( $namehidden || !$block[0]->getTitle()->exists() ) {
-			$r .= $this->message['pipe-separator'] . $this->message['hist'] . ')';
+			$logtext .= $this->message['pipe-separator'] . $this->message['hist'];
 		} else {
 			$params = $queryParams;
 			$params['action'] = 'history';
 
-			$r .= $this->message['pipe-separator'] .
+			$logtext .= $this->message['pipe-separator'] .
 				Linker::linkKnown(
 					$block[0]->getTitle(),
 					$this->message['hist'],
 					array(),
 					$params
-				) . ')';
+				);
 		}
+
+		if( $logtext !== '' ) {
+			$r .= $this->msg( 'parentheses' )->rawParams( $logtext )->escaped();
+		}
+
 		$r .= ' . . ';
 
 		# Character difference (does not apply if only log items)
@@ -967,7 +970,6 @@ class EnhancedChangesList extends ChangesList {
 			$classes = array();
 			$type = $rcObj->mAttribs['rc_type'];
 
-			#$r .= '<tr><td valign="top">'.$this->spacerArrow();
 			$r .= '<tr><td></td><td class="mw-enhanced-rc">';
 			$r .= $this->recentChangesFlags( array(
 				'newpage' => $rcObj->mAttribs['rc_new'],
@@ -1006,11 +1008,7 @@ class EnhancedChangesList extends ChangesList {
 			$r .= $link . '</span>';
 
 			if ( !$type == RC_LOG || $type == RC_NEW ) {
-				$r .= ' (';
-				$r .= $rcObj->curlink;
-				$r .= $this->message['pipe-separator'];
-				$r .= $rcObj->lastlink;
-				$r .= ')';
+				$r .= ' ' . $this->msg( 'parentheses' )->rawParams( $rcObj->curlink . $this->message['pipe-separator'] . $rcObj->lastlink )->escaped();
 			}
 			$r .= ' . . ';
 
@@ -1112,7 +1110,7 @@ class EnhancedChangesList extends ChangesList {
 		$r = Html::openElement( 'table', array( 'class' => $classes ) ) .
 			Html::openElement( 'tr' );
 
-		$r .= '<td class="mw-enhanced-rc">' . $this->spacerArrow();
+		$r .= '<td class="mw-enhanced-rc"><span class="mw-enhancedchanges-arrow mw-enhancedchanges-arrow-space"></span>';
 		# Flag and Timestamp
 		if( $type == RC_MOVE || $type == RC_MOVE_OVER_REDIRECT ) {
 			$r .= '&#160;&#160;&#160;&#160;'; // 4 flags -> 4 spaces
@@ -1129,20 +1127,19 @@ class EnhancedChangesList extends ChangesList {
 		if( $logType ) {
 			$logtitle = SpecialPage::getTitleFor( 'Log', $logType );
 			$logname = LogPage::logName( $logType );
-			$r .= '(' . Linker::linkKnown( $logtitle, htmlspecialchars( $logname ) ) . ')';
+			$r .= $this->msg( 'parentheses' )->rawParams( Linker::linkKnown( $logtitle, htmlspecialchars( $logname ) ) )->escaped();
 		} else {
 			$this->insertArticleLink( $r, $rcObj, $rcObj->unpatrolled, $rcObj->watched );
 		}
 		# Diff and hist links
 		if ( $type != RC_LOG ) {
-			$r .= ' ('. $rcObj->difflink . $this->message['pipe-separator'];
 			$query['action'] = 'history';
-			$r .= Linker::linkKnown(
+			$r .= ' ' . $this->msg( 'parentheses' )->rawParams( $rcObj->difflink . $this->message['pipe-separator'] . Linker::linkKnown(
 				$rcObj->getTitle(),
 				$this->message['hist'],
 				array(),
 				$query
-			) . ')';
+			) )->escaped();
 		}
 		$r .= ' . . ';
 		# Character diff

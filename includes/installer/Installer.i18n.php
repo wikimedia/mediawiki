@@ -550,6 +550,7 @@ $3
 When that has been done, you can '''[$2 enter your wiki]'''.",
 	'config-download-localsettings' => 'Download LocalSettings.php',
 	'config-help' => 'help',
+	'config-nofile'     => 'File "$1" could not be found. Has it been deleted?',
 	'mainpagetext'      => "'''MediaWiki has been successfully installed.'''",
 	'mainpagedocfooter' => "Consult the [//meta.wikimedia.org/wiki/Help:Contents User's Guide] for information on using the wiki software.
 
@@ -765,19 +766,6 @@ Ha ezzel készen van, '''[$2 beléphet a wikibe]'''.",
 * [//www.mediawiki.org/wiki/Manual:Configuration_settings Beállítások listája]
 * [//www.mediawiki.org/wiki/Manual:FAQ MediaWiki GyIK]
 * [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce MediaWiki-kiadások levelezőlistája]",
-);
-
-/** Moroccan Spoken Arabic (Maġribi)
- * @author Enzoreg
- */
-$messages['ary'] = array(
-	'mainpagetext' => "'''MediaWiki ṫ'instala be najaḫ.'''",
-	'mainpagedocfooter' => 'Ila bġiṫiw meĝlomaṫ ĥrin baċ ṫesṫeĝmlo had l-lojisyél siro ċofo [//meta.wikimedia.org/wiki/Aide:Contenu Gid dyal l-mosṫeĥdim]
-
-== L-bdaya mĝa MediaWiki ==
-* [//www.mediawiki.org/wiki/Manual:Configuration_settings Lista dyal l-paramétraṫ dyal l-konfigurasyon]
-* [//www.mediawiki.org/wiki/Manual:FAQ/fr FAQ fe MediaWiki]
-* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce Lista dyal l-modakaraṫ ĝla versyonaṫ jdad dyal MediaWiki]',
 );
 
 /** Español (formal) (Español (formal))
@@ -1081,6 +1069,19 @@ $messages['arc'] = array(
 	'config-admin-email' => 'ܦܪܫܓܢܐ ܕܒܝܠܕܪܐ ܐܠܩܛܪܘܢܝܐ:',
 	'config-profile-private' => 'ܘܝܩܝ ܦܪܨܘܦܝܐ',
 	'config-email-settings' => 'ܛܘܝܒ̈ܐ ܕܒܝܠܕܪܐ ܐܠܩܛܪܘܢܝܐ',
+);
+
+/** Moroccan Spoken Arabic (Maġribi)
+ * @author Enzoreg
+ */
+$messages['ary'] = array(
+	'mainpagetext' => "'''MediaWiki ṫ'instala be najaḫ.'''",
+	'mainpagedocfooter' => 'Ila bġiṫiw meĝlomaṫ ĥrin baċ ṫesṫeĝmlo had l-lojisyél siro ċofo [//meta.wikimedia.org/wiki/Aide:Contenu Gid dyal l-mosṫeĥdim]
+
+== L-bdaya mĝa MediaWiki ==
+* [//www.mediawiki.org/wiki/Manual:Configuration_settings Lista dyal l-paramétraṫ dyal l-konfigurasyon]
+* [//www.mediawiki.org/wiki/Manual:FAQ/fr FAQ fe MediaWiki]
+* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce Lista dyal l-modakaraṫ ĝla versyonaṫ jdad dyal MediaWiki]',
 );
 
 /** Egyptian Spoken Arabic (مصرى) */
@@ -1763,6 +1764,7 @@ $3
 Калі Вы гэта зробіце, Вы можаце '''[$2 ўвайсьці ў Вашую вікі]'''.",
 	'config-download-localsettings' => 'Загрузіць LocalSettings.php',
 	'config-help' => 'дапамога',
+	'config-nofile' => 'Файл «$1» ня знойдзены. Ці быў ён выдалены?',
 	'mainpagetext' => "'''MediaWiki пасьпяхова ўсталяваная.'''",
 	'mainpagedocfooter' => 'Глядзіце [//meta.wikimedia.org/wiki/Help:Contents дапаможнік карыстальніка] для атрыманьня інфармацыі па карыстаньні вікі-праграмамі.
 
@@ -3090,6 +3092,7 @@ Jsou podporovány následující typy databází: $1.
 Pokud jste na sdíleném hostingu, požádejte svého poskytovale o instalaci vhodného databázového ovladače.
 Pokud jste si PHP přeložili sami, překonfigurujte ho se zapnutým databázovým klientem, například pomocí <code>./configure --with-mysql</code>.
 Pokud jste PHP nainstalovali z balíčku Debian či Ubuntu, potřebujete nainstalovat také modul php5-mysql.',
+	'config-outdated-sqlite' => "'''Upozornění''': Máte SQLite $1, které je starší než minimálně vyžadovaná verze $2. SQLite nebude dostupné.",
 	'config-no-fts3' => "'''Upozornění''': SQLite bylo přeloženo bez [//sqlite.org/fts3.html modulu FTS3], funkce pro vyhledávání zde nebudou dostupné.",
 	'config-register-globals' => "'''Upozornění: Je zapnuta PHP volba <code>[http://php.net/register_globals register_globals]</code>.'''
 '''Pokud můžete, vypněte ji.'''
@@ -3587,6 +3590,7 @@ $messages['da'] = array(
 /** German (Deutsch)
  * @author Kghbln
  * @author LWChris
+ * @author Metalhead64
  * @author Purodha
  * @author The Evil IP address
  * @author Umherirrender
@@ -3619,10 +3623,10 @@ Dieser kann durch Anhebung des Parameters <code>session.gc_maxlifetime</code> in
 Den Installationsvorgang erneut starten.',
 	'config-no-session' => 'Die Sitzungsdaten sind verloren gegangen!
 Die Datei <code>php.ini</code> muss geprüft und es muss dabei sichergestellt werden, dass der Parameter <code>session.save_path</code> auf das richtige Verzeichnis verweist.',
-	'config-your-language' => 'Sprache:',
+	'config-your-language' => 'Sprache während des Installierens:',
 	'config-your-language-help' => 'Bitte die Sprache auswählen, die während des Installationsvorgangs verwendet werden soll.',
 	'config-wiki-language' => 'Sprache des Wikis:',
-	'config-wiki-language-help' => 'Bitte die Hauptbearbeitungssprache des Wikis auswählen.',
+	'config-wiki-language-help' => 'Bitte die Sprache auswählen, die überwiegend beim Erstellen der Inhalte verwendet werden soll.',
 	'config-back' => '← Zurück',
 	'config-continue' => 'Weiter →',
 	'config-page-language' => 'Sprache',
@@ -4121,6 +4125,7 @@ $3
 Sobald alles erledigt wurde, kann auf das '''[$2 Wiki zugegriffen werden]'''. Wir wünschen viel Spaß und Erfolg mit dem Wiki.",
 	'config-download-localsettings' => 'LocalSettings.php herunterladen',
 	'config-help' => 'Hilfe',
+	'config-nofile' => 'Datei „$1“ wurde nicht gefunden. Wurde sie gelöscht?',
 	'mainpagetext' => "'''MediaWiki wurde erfolgreich installiert.'''",
 	'mainpagedocfooter' => 'Hilfe zur Benutzung und Konfiguration der Wiki-Software findest du im [//meta.wikimedia.org/wiki/Help:Contents Benutzerhandbuch].
 
@@ -4212,6 +4217,7 @@ $messages['eo'] = array(
 );
 
 /** Spanish (Español)
+ * @author Armando-Martin
  * @author Crazymadlover
  * @author Danke7
  * @author Locos epraix
@@ -4227,6 +4233,20 @@ $messages['es'] = array(
 	'config-localsettings-upgrade' => 'Se ha encontrado un archivo <code>LocalSettings.php</code>.
 Para actualizar esta instalación, por favor ingresa el valor de <code>$wgUpgradeKey</code> en el cuadro de abajo.
 Lo encontrarás en LocalSettings.php.',
+	'config-localsettings-cli-upgrade' => 'Se ha detectado un archivo LocalSettings.php.
+Para actualizar la instalación, vuelva a ejecutar update.php',
+	'config-localsettings-key' => 'Clave de actualización:',
+	'config-localsettings-badkey' => 'La clave proporcionada es incorrecta.',
+	'config-upgrade-key-missing' => 'Se ha detectado una instalación existente de MediaWiki.
+Para actualizar la instalación, por favor, ponga la siguiente línea al final de su archivo LocalSettings.php:
+
+$1',
+	'config-localsettings-incomplete' => 'El archivo LocalSettings.php existente parece estar incompleto.
+La variable $1 no está definida.
+Cambie el archivo LocalSettings.php para que esta variable quede establecida y haga clic en "Continuar".',
+	'config-localsettings-connection-error' => 'Se detectó un error al conectarse a la base de datos utilizando la configuración especificada en los archivos LocalSettings.php o AdminSettings.php. Corrija estas opciones y vuelva a intentarlo.
+
+$1',
 	'config-session-error' => 'Error comenzando sesión: $1',
 	'config-session-expired' => 'Tus datos de sesión parecen haber expirado.
 Las sesiones están configuradas por una duración de $1.
@@ -4254,6 +4274,7 @@ Verifica tu php.ini y comprueba que <code>session.save_path</code> está estable
 	'config-page-releasenotes' => 'Notas de la versión',
 	'config-page-copying' => 'Copiando',
 	'config-page-upgradedoc' => 'Actualizando',
+	'config-page-existingwiki' => 'Wiki existente',
 	'config-help-restart' => '¿Deseas borrar todos los datos que has ingresado hasta ahora y reiniciar el proceso de instalación desde el principio?',
 	'config-restart' => 'Sí, reiniciarlo',
 	'config-welcome' => '=== Comprobación del entorno ===
@@ -4283,6 +4304,8 @@ Puedes instalar MediaWiki.',
 	'config-env-bad' => 'El entorno ha sido comprobado.
 No puedes instalar MediaWiki.',
 	'config-env-php' => 'PHP $1 está instalado.',
+	'config-env-php-toolow' => 'PHP $1 está instalado.
+Sin embargo, MediaWiki requiere PHP $2 o superior.',
 	'config-unicode-using-utf8' => 'Usando utf8_normalize.so de Brion Vibber para la normalización Unicode.',
 	'config-unicode-using-intl' => 'Usando la [http://pecl.php.net/intl extensión intl PECL] para la normalización Unicode.',
 	'config-unicode-pure-php-warning' => "'''Advertencia''': La [http://pecl.php.net/intl extensión intl] no está disponible para efectuar la normalización Unicode. Utilizando la implementación más lenta en PHP.
@@ -4294,6 +4317,7 @@ Las siguientes bases de datos son soportadas: $1.
 Si estás en alojamiento compartido, pregunta a tu proveedor el instalar un controlador de base de datos adecuado.
 Si estás compilando PHP por ti mismo, reconfigúralo con un cliente de base de datos disponible, por ejemplo usando <code>./configure --with-mysql</code>.
 Si instalaste PHP de un paquete Debian o Ubuntu, entonces también necesitas instalar el módulo php5-mysql.',
+	'config-outdated-sqlite' => "''' Advertencia ''': tiene la versión SQLite $1, que es inferior a la mínima versión requerida: $2 . SQLite no estará disponible.",
 	'config-no-fts3' => "'''Advertencia''': SQLite está compilado sin el [//sqlite.org/fts3.html módulo FTS3]. Las funcionalidades de búsqueda no estarán disponibles en esta instalación.",
 	'config-register-globals' => "'''Advertencia: La opción de <code>[http://php.net/register_globals register_globals]</code> de PHP está habilitada.'''
 '''Desactívela si puede.'''
@@ -4317,15 +4341,20 @@ MediaWiki necesita funciones en este módulo y no funcionará con esta configura
 Si está ejecutando Mandrake, instale el paquete php-xml.',
 	'config-pcre' => 'Parece faltar el módulo de compatibilidad PCRE.
 MediaWiki necesita que las funciones de expresiones regulares compatibles con Perl estén funcionando.',
+	'config-pcre-no-utf8' => "'''Error fatal ''': Parece que el módulo PCRE de PHP fue compilado sin el soporte PCRE_UTF8.
+MediaWiki requiere compatibilidad con UTF-8 para funcionar correctamente.",
 	'config-memory-raised' => 'el parámetro <code>memory_limit</code> de PHP es $1, aumentada a $2.',
 	'config-memory-bad' => "'''Advertencia:''' El parámetro <code>memory_limit</code> de PHP es $1.
 Probablemente este valor es demasiado bajo.
 ¡La instalación podrá fallar!",
+	'config-ctype' => "'''Fatal''': PHP debe ser compilado con soporte para la [http://www.php.net/manual/en/ctype.installation.php extensión Ctype].",
 	'config-xcache' => '[http://xcache.lighttpd.net/ XCache] está instalado',
 	'config-apc' => '[http://www.php.net/apc APC] está instalado',
 	'config-wincache' => '[http://www.iis.net/download/WinCacheForPhp WinCache] está instalado',
 	'config-no-cache' => "'''Advertencia:''' No pudo encontrarse [http://www.php.net/apc APC], [http://xcache.lighttpd.net/ XCache] o [http://www.iis.net/download/WinCacheForPhp WinCache].
 El caché de objetos no está habilitado.",
+	'config-mod-security' => "''' Advertencia ''': Su servidor web tiene [http://modsecurity.org/ mod_security] habilitado. Si la configuración es incorrecta, puede causar problemas a MediaWiki u otro software que permita a los usuarios publicar contenido arbitrarios.
+Consulte la [http://modsecurity.org/documentation/ documentación de mod_security] o contacte con el soporte de su servidor (''host'') si encuentra errores aleatorios.",
 	'config-diff3-bad' => 'GNU diff3 no se encuentra.',
 	'config-imagemagick' => 'ImageMagick encontrado: <code>$1</code>.
 La miniaturización de imágenes se habilitará si habilitas las cargas.',
@@ -4335,33 +4364,93 @@ La miniaturización de imágenes se habilitará si habilitas las subidas.',
 Se inhabilitará la miniaturización de imágenes.',
 	'config-no-uri' => "'''Error:''' No se pudo determinar el URI actual.
 Instalación abortada.",
+	'config-no-cli-uri' => "''' Advertencia ''': No se ha especificado ningún --scriptpath, por defecto, se usará: <code>$1</code> .",
+	'config-using-server' => 'Utilizando el nombre de servidor "<nowiki>$1</nowiki>".',
+	'config-using-uri' => 'Utilizando la dirección URL del servidor "<nowiki>$1$2</nowiki>".',
+	'config-uploads-not-safe' => "'''Atención:''' Su directorio por defecto para las cargas, <code>$1</code>, es vulnerable a la ejecución de scripts arbitrarios.
+Aunque MediaWiki comprueba todos los archivos cargados por si hubiese amenazas de seguridad, es altamente recomendable [//www.mediawiki.org/wiki/Manual:Security#Upload_security cerrar esta vulnerabilidad de seguridad] antes de activar las cargas.",
+	'config-no-cli-uploads-check' => "'''Atención:''' Su directorio predeterminado para cargas (<code>$1</code>) no está comprobado para la vulnerabilidad
+ de ejecución arbitraria de comandos script durante la instalación de CLI.",
+	'config-brokenlibxml' => 'El sistema tiene una combinación de versiones de PHP y de libxml2 que puede ser problemática y puede causar daños en datos ocultos de MediaWiki y otras aplicaciones web
+Actualizar a PHP 5.2.9 o posterior y a libxml2 2.7.3 o posterior ([//bugs.php.net/bug.php?id=45996 bug presentado con PHP]).
+Instalación anulada.',
+	'config-using531' => 'MediaWiki no puede utilizarse con PHP $1 debido a un error con los parámetros de referencia para <code>__call()</code> .
+Actualice el sistema a PHP 5.3.2 o superior, o vuelva a la versión PHP 5.3.0 para resolver este problema.
+Instalación anulada.',
+	'config-suhosin-max-value-length' => 'Suhosin está instalado y limita la longitud del parámetro GET a $1 bytes. El componente ResourceLoader de MediaWiki trabajará en este límite, pero eso degradará el rendimiento. Si es posible, debe establecer el valor de suhosin.get.max_value_length en 1024 o superior en el archivo php.ini y establecer $wgResourceLoaderMaxQueryLength en el mismo valor en LocalSettings.php.',
 	'config-db-type' => 'Tipo de base de datos',
 	'config-db-host' => 'Servidor de la base de datos:',
+	'config-db-host-help' => 'Si su servidor de base de datos está en otro servidor, escriba el nombre del host o su dirección IP aquí.
+Si está utilizando alojamiento web compartido, su proveedor de alojamiento debería darle el nombre correcto del servidor de alojamiento (host) en su documentación.
+Si va a instalarlo en un servidor Windows y utiliza MySQL, el uso de "localhost" como nombre del servidor puede no funcionar. Si no es así, intente poner "127.0.0.1" como dirección IP local.
+Si utiliza PostgreSQL, deje este campo en blanco para conectarse a través de un socket de Unix.',
+	'config-db-host-oracle' => 'TNS de la base de datos:',
+	'config-db-host-oracle-help' => 'Introduzca un [http://download.oracle.com/docs/cd/B28359_01/network.111/b28317/tnsnames.htm nombre de conexión local] válido; un archivo tnsnames.ora debe ser visible para esta instalación.<br />Si está utilizando bibliotecas de cliente 10g o más recientes también puede utilizar el método de asignación de nombres [http://download.oracle.com/docs/cd/E11882_01/network.112/e10836/naming.htm Easy Connect].',
 	'config-db-wiki-settings' => 'Identifique este wiki',
 	'config-db-name' => 'Nombre de base de datos:',
+	'config-db-name-help' => 'Elija un nombre que identifique su wiki.
+No debe contener espacios.
+
+Si está utilizando alojamiento web compartido, su proveedor de alojamiento le dará un nombre específico de base de datos para que lo utilice, o bien le permitirá crear bases de datos a través de un panel de control.',
+	'config-db-name-oracle' => 'Esquema de base de datos:',
+	'config-db-account-oracle-warn' => 'Hay tres escenarios compatibles para la instalación de Oracle como base de datos back-end:
+
+Si desea crear una cuenta de base de datos como parte del proceso de instalación, por favor suministre una cuenta con función SYSDBA como cuenta de base de datos para la instalación y especifique las credenciales deseadas de la cuenta de acceso al web, de lo contrario puede crear manualmente la cuenta de acceso al web y suministrar sólo esa cuenta (si tiene los permisos necesarios para crear los objetos de esquema) o suministrar dos cuentas diferentes, una con privilegios de creación y otra con acceso restringido a la web
+
+La secuencia de comandos (script) para crear una cuenta con los privilegios necesarios puede encontrarse en el directorio "maintenance/oracle/" de esta instalación. Tenga en cuenta que utilizando una cuenta restringida desactivará todas las capacidades de mantenimiento con la cuenta predeterminada.',
 	'config-db-install-account' => 'Cuenta de usuario para instalación',
 	'config-db-username' => 'Nombre de usuario de base de datos:',
 	'config-db-password' => 'contraseña de base de datos:',
+	'config-db-password-empty' => 'Introduzca una contraseña para el nuevo usuario de base de datos:  $1.
+Aunque es posible crear usuarios sin contraseña, esto no es seguro.',
+	'config-db-install-username' => 'Introduzca el nombre de usuario que se utilizará para conectarse a la base de datos durante el proceso de instalación.
+Este no es el nombre de usuario de la cuenta de MediaWiki; Este es el nombre de usuario para la base de datos.',
+	'config-db-install-password' => 'Introduzca la contraseña que se utilizará para conectarse a la base de datos durante el proceso de instalación.
+Esta no es la contraseña para la cuenta de MediaWiki; esta es la contraseña para la base de datos.',
 	'config-db-install-help' => 'Ingresar el nombre de usuario y la contraseña que será usada para conectar a la base de datos durante el proceso de instalación.',
 	'config-db-account-lock' => 'Usar el mismo nombre de usuario y contraseña durante operación normal',
 	'config-db-wiki-account' => 'Usar cuenta para operación normal',
 	'config-db-wiki-help' => 'Introduce el nombre de usuario y la contraseña que serán usados para acceder a la base de datos durante la operación normal del wiki.
 Si esta cuenta no existe y la cuenta de instalación tiene suficientes privilegios, se creará esta cuenta de usuario con los privilegios mínimos necesarios para la operación normal del wiki.',
 	'config-db-prefix' => 'Prefijo para las tablas de la base de datos:',
+	'config-db-prefix-help' => 'Si necesita compartir una base de datos entre múltiples wikis, o entre MediaWiki y otra aplicación web, puede optar por agregar un prefijo a todos los nombres de tabla para evitar conflictos. 
+No utilice espacios.
+
+Normalmente se deja este campo vacío.',
 	'config-db-charset' => 'Conjunto de caracteres de la base de datos',
 	'config-charset-mysql5-binary' => 'MySQL 4.1/5.0 binario',
 	'config-charset-mysql5' => 'MySQL 4.1/5.0 UTF-8',
 	'config-charset-mysql4' => 'MySQL 4.0 retrocompatible UTF-8',
+	'config-charset-help' => "'''Atención:''' Si emplea '''backwards-compatible UTF-8''' en MySQL 4.1+ y posteriormente hace copia de seguridad de la base de datos con <code>mysqldump</code> , puede destruir todos los caracteres no-ASCII, ¡dañando irreversiblemente sus copias de seguridad!
+
+En '''modo binario''', MediaWiki almacena texto UTF-8 en la base de datos en campos binarios.
+Esto es más eficiente que el modo UTF-8 de MySQL, y le permite utilizar la gama completa de caracteres Unicode.
+En ''' modo UTF-8'' ', MySQL sabrá el juego de caracteres de sus datos y puede presentarlos y convertirlos apropiadamente,
+pero no le permitirá almacenar caracteres por encima del [//en.wikipedia.org/wiki/Mapping_of_Unicode_character_planes plano multilingüe básico].",
 	'config-mysql-old' => 'Se necesita MySQL $1 o una versión más reciente. Tienes la versión $2.',
 	'config-db-port' => 'Puerto de la base de datos:',
 	'config-db-schema' => 'Esquema para MediaWiki',
 	'config-db-schema-help' => 'Estos esquemas usualmente estarán bien.
 Altéralos sólo si tienes la seguridad de que necesitas hacerlo.',
+	'config-pg-test-error' => "No se puede conectar a la base de datos '''$1''': $2",
 	'config-sqlite-dir' => 'Directorio de datos SQLite:',
+	'config-sqlite-dir-help' => "SQLite almacena todos los datos en un único archivo.
+
+El directorio que proporcione debe ser escribible por el servidor Web durante la instalación.
+
+'''No''' debería ser accesible a través de Internet, por eso no vamos a ponerlo en el sitio donde están los archivos PHP.
+
+El instalador escribirá un archivo <code>.htaccess</code> junto con él, pero si falla alguien podría tener acceso a la base de datos en bloque.
+Eso incluye los datos de usuario en bloque (direcciones de correo electrónico, las contraseñas con hash) así como revisiones eliminadas y otros datos restringidos del wiki.
+
+Considere la posibilidad de poner la base de datos en algún otro sitio, por ejemplo en <code>/var/lib/mediawiki/yourwiki</code> .",
+	'config-oracle-def-ts' => 'Espacio de tablas por defecto:',
+	'config-oracle-temp-ts' => 'Espacio de tablas temporal:',
 	'config-type-mysql' => 'MySQL',
 	'config-type-postgres' => 'PostgreSQL',
 	'config-type-sqlite' => 'SQLite',
 	'config-type-oracle' => 'Oracle',
+	'config-type-ibm_db2' => 'IBM DB2',
 	'config-support-info' => 'MediaWiki es compatible con los siguientes sistemas de bases de datos:
 
 $1
@@ -4371,12 +4460,17 @@ Si no encuentras en el listado el sistema de base de datos que estás intentando
 	'config-support-postgres' => '$1 es un popular sistema de base de datos de código abierto, alternativa a MySQL. ([http://www.php.net/manual/es/pgsql.installation.php cómo compilar PHP con compatibilidad PostgreSQL]). Puede haber algunos defectos menores destacables, y no es recomendable para uso en un entorno de producción.',
 	'config-support-sqlite' => '* $1 es una base de datos ligera con gran compatibilidad con MediaWiki. ([http://www.php.net/manual/es/pdo.installation.php Cómo compilar PHP con compatibilidad SQLite], usa PDO)',
 	'config-support-oracle' => '* $1 es una base de datos comercial a nivel empresarial ([http://www.php.net/manual/es/oci8.installation.php cómo compilar PHP con compatibilidad con OCI8])',
+	'config-support-ibm_db2' => ' $1  es una base de datos de empresa comercial.',
 	'config-header-mysql' => 'Configuración de MySQL',
 	'config-header-postgres' => 'Configuración de PostgreSQL',
 	'config-header-sqlite' => 'Configuración de SQLite',
 	'config-header-oracle' => 'Configuración de Oracle',
+	'config-header-ibm_db2' => 'Configuración de IBM DB2',
 	'config-invalid-db-type' => 'Tipo de base de datos inválida',
 	'config-missing-db-name' => 'Debes introducir un valor para "Nombre de la base de datos"',
+	'config-missing-db-host' => 'Debe introducir un valor para "Servidor (host) de base de datos"',
+	'config-missing-db-server-oracle' => 'Debe introducir un valor para "TNS de la base de datos"',
+	'config-invalid-db-server-oracle' => 'El TNS de la base de datos, "$1", es inválido.Use sólo carateres ASCII: letras (a-z, A-Z), números (0-9), guiones bajos (_) y guiones (-).Usa sólo caracteres ASCII: letras (a-z, A-Z), dígitos (0-9), guiones bajos (_) y puntos (.).',
 	'config-invalid-db-name' => 'El nombre de la base de datos "$1"  es inválido.
 Usa sólo caracteres ASCII: letras (a-z, A-Z), números (0-9), guiones bajos (_)y guiones (-).',
 	'config-invalid-db-prefix' => 'El prefijo de la base de datos "$1"  es inválido.
@@ -4386,10 +4480,31 @@ Use sólo carateres ASCII: letras (a-z, A-Z), números (0-9), guiones bajos (_) 
 Verifique el servidor, el nombre de usuario y la contraseña, e intente de nuevo.',
 	'config-invalid-schema' => 'El esquema de la base de datos "$1"  es inválido.
 Use sólo carateres ASCII: letras (a-z, A-Z), guarismos (0-9) y guiones bajos (_).',
+	'config-db-sys-create-oracle' => 'El instalador sólo admite el empleo de cuentas SYSDBA como método para crear una cuenta nueva.',
+	'config-db-sys-user-exists-oracle' => 'La cuenta de usuario "$1" ya existe. ¡SYSDBA sólo puede utilizarse para crear una nueva cuenta!',
 	'config-postgres-old' => 'Se necesita PostgreSQL $1 o una versión más reciente; tienes la versión $2.',
 	'config-sqlite-name-help' => 'Elige el nombre que identificará tu wiki.
 No uses espacios o guiones.
 Este nombre será usado como nombre del archivo de datos de SQLite.',
+	'config-sqlite-parent-unwritable-group' => 'No se puede crear el directorio de datos <code><nowiki>$1</nowiki></code> , porque el directorio padre <code><nowiki>$2</nowiki></code> no es accesible en escritura por el servidor Web.
+
+El instalador ha determinado el usuario cuyo servidor Web se está ejecutando.
+Conceda permisos de escritura en el directorio <code><nowiki>$3</nowiki></code> para continuar.
+En un sistema Unix/Linux haga:
+
+<pre>cd $2
+mkdir $3
+chgrp $4 $3
+chmod g+w $3</pre>',
+	'config-sqlite-parent-unwritable-nogroup' => 'No se puede crear el directorio de datos <code><nowiki>$1</nowiki></code> , porque el directorio padre <code><nowiki>$2</nowiki></code> no es accesible en escritura por el servidor Web.
+
+El programa de instalación no pudo determinar el usuario que se ejecuta en el servidor Web
+Conceda permisos de escritura en el directorio <code><nowiki>$3</nowiki></code> para continuar.
+En un sistema Unix/Linux haga:
+
+<pre>cd $2
+mkdir $3
+chmod a+w $3</pre>',
 	'config-sqlite-mkdir-error' => 'Error al crear el directorio de datos "$1".
 Comprueba la ubicación e inténtalo de nuevo.',
 	'config-sqlite-dir-unwritable' => 'No se puede escribir en el directorio "$1".
@@ -4402,6 +4517,15 @@ Verifique el directório de datos y el nombre de la base de datos mostrada a con
 	'config-sqlite-fts3-downgrade' => 'El PHP no tiene compatibilidad FTS3. actualizando tablas a una versión anterior',
 	'config-can-upgrade' => "Esta base de datos contiene tablas de MediaWiki.
 Para actualizarlas a MediaWiki $1, haz clic en '''Continuar'''.",
+	'config-upgrade-done' => "Actualización completa.
+
+Usted puede ahora [ $1  empezar a usar su wiki].
+
+Si desea regenerar su archivo <code>LocalSettings.php</code> de archivo, haga clic en el botón de abajo.
+Esto '''no se recomienda''' a menos que esté teniendo problemas con su wiki.",
+	'config-upgrade-done-no-regenerate' => 'Actualización completa.
+
+Usted puede ahora [$1  empezar a usar su wiki].',
 	'config-regenerate' => 'Regenerar LocalSettings.php →',
 	'config-show-table-status' => 'SHOW TABLE STATUS ha fallado!',
 	'config-unknown-collation' => "'''Advertencia:''' La base de datos está utilizando una intercalación no reconocida.",
@@ -4414,6 +4538,13 @@ La cuenta que especifiques aquí debe existir.',
 	'config-mysql-engine' => 'Motor de almacenamiento:',
 	'config-mysql-innodb' => 'InnoDB',
 	'config-mysql-myisam' => 'MyISAM',
+	'config-mysql-myisam-dep' => "'''Atención''': Ha seleccionado MyISAM como motor de almacenamiento de MySQL, el cual no está recomendado para su uso con MediaWiki, porque:
+ * apenas soporta accesos simultáneos debido al bloqueo de tablas
+ * es más propenso a la corrupción que otros motores
+ * el código MediaWiki no siempre controla MyISAM como debiera
+
+Si su instalación de MySQL soporta InnoDB, es muy recomendable que lo elija en su lugar.
+Si la instalación de MySQL no admite InnoDB, quizás es el momento de una actualización.",
 	'config-mysql-engine-help' => "'''InnoDB''' es casi siempre la mejor opción, dado que soporta bien los accesos simultáneos.
 
 '''MyISAM''' es más rápido en instalaciones de usuario único o de sólo lectura.
@@ -4421,6 +4552,11 @@ Las bases de datos MyISAM tienden a corromperse más a menudo que las bases de d
 	'config-mysql-charset' => 'Conjunto de caracteres de la base de datos:',
 	'config-mysql-binary' => 'Binario',
 	'config-mysql-utf8' => 'UTF-8',
+	'config-mysql-charset-help' => "En '''modo binario''', MediaWiki almacena texto UTF-8 para la base de datos en campos binarios.
+Esto es más eficiente que el modo UTF-8 de MySQL y le permite utilizar la gama completa de caracteres Unicode.
+
+En '''modo UTF-8''', MySQL sabrá qué conjunto de caracteres emplean sus datos y puede presentarlos y convertirlos adecuadamente, pero no le permitirá almacenar caracteres por encima del [//en.wikipedia.org/wiki/Mapping_of_Unicode_character_planes plano multilingüe básico].",
+	'config-ibm_db2-low-db-pagesize' => "Su base de datos DB2 tiene un espacio de tablas por defecto con un tamaño de página insuficiente. El tamaño de página tiene que ser '''32 K''' o superior.",
 	'config-site-name' => 'Nombre del wiki:',
 	'config-site-name-help' => 'Esto aparecerá en la barra de título del navegador y en varios otros lugares.',
 	'config-site-name-blank' => 'Ingresar un nombre de sitio.',
@@ -4429,8 +4565,14 @@ Las bases de datos MyISAM tienden a corromperse más a menudo que las bases de d
 	'config-ns-site-name' => 'Igual como el nombre del wiki: $1',
 	'config-ns-other' => 'Otro (especificar)',
 	'config-ns-other-default' => 'MiWiki',
+	'config-project-namespace-help' => 'Siguiendo el ejemplo de  Wikipedia, muchos wikis mantienen sus páginas de políticas separadas de sus páginas de contenido, en un "\'\'\'espacio de nombres del proyecto\'\'\'".
+
+Todos los títulos de página en este espacio de nombres comienzan con un determinado prefijo, que usted puede especificar aquí.
+Tradicionalmente, este prefijo se deriva del nombre del wiki, pero no puede contener caracteres de puntuación como "#" o ":".',
 	'config-ns-invalid' => 'El espacio de nombre especificado "<nowiki>$1</nowiki>" no es válido.
 Especifica un espacio de nombre de proyecto diferente.',
+	'config-ns-conflict' => 'El espacio de nombres especificado "<nowiki>$1</nowiki>" entra en conflicto con un espacio de nombres predeterminado de MediaWiki.
+Especifique un espacio de nombres de proyecto diferente.',
 	'config-admin-box' => 'Cuenta de administrador',
 	'config-admin-name' => 'Su nombre:',
 	'config-admin-password' => 'Contraseña:',
@@ -4447,9 +4589,12 @@ Especifique un nombre de usuario diferente.',
 	'config-admin-email-help' => 'Introduce aquí un correo electrónico que te permita recibir mensajes de otros usuarios del wiki, vuelve a configurar tu contraseña y recibe notificaciones de cambios realizados a tus páginas vigiladas. Puedes dejar este campo vacío.',
 	'config-admin-error-user' => 'Error interno al crear un administrador con el nombre "<nowiki>$1</nowiki>".',
 	'config-admin-error-password' => 'Error interno al establecer una contraseña para el administrador " <nowiki>$1</nowiki> ": <pre>$2</pre>',
+	'config-admin-error-bademail' => 'Ha introducido una dirección de correo electrónico inválida.',
 	'config-subscribe' => 'Suscribirse para recibir [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce avisos de nuevas versiones].',
 	'config-subscribe-help' => 'Esta es una lista de divulgación de bajo volumen para anuncios de lanzamiento de versiones nuevas, incluyendo anuncios de seguridad importantes.
 Te recomendamos suscribirte y actualizar tu instalación MediaWiki cada vez que se lance una nueva versión.',
+	'config-subscribe-noemail' => 'Ha intentado suscribirse a la lista de correo de anuncios de nuevos lanzamientos sin proporcionar una dirección de correo electrónico.
+Proporcione una dirección de correo electrónico si desea suscribirse a la lista de correo.',
 	'config-almost-done' => '¡Ya casi has terminado!
 Ahora puedes saltarte el resto de pasos e instalar el wiki con valores predeterminados.',
 	'config-optional-continue' => 'Hazme más preguntas.',
@@ -4459,12 +4604,36 @@ Ahora puedes saltarte el resto de pasos e instalar el wiki con valores predeterm
 	'config-profile-no-anon' => 'Creación de cuenta requerida',
 	'config-profile-fishbowl' => 'Sólo editores autorizados',
 	'config-profile-private' => 'Wiki privado',
+	'config-profile-help' => "Los wikis funcionan mejor cuando dejas que los edite tanta gente como sea posible.
+En MediaWiki, es fácil revisar los cambios recientes y revertir los daños realizados por usuarios malintencionados o novatos.
+Sin embargo, muchos han encontrado que MediaWiki es útil para una amplia variedad de funciones, y a veces no es fácil convencer a todos de los beneficios de la forma wiki.
+Por lo tanto tienes la elección.
+
+Un '''{{int:config-profile-wiki}}''' permite que cualquiera pueda editar, sin siquiera iniciar sesión.
+Un wiki con '''{{int:config-profile-no-anon}}''' ofrece rendición de cuentas adicional, pero puede disuadir a colaboradores.
+
+El escenario '''{{int:config-profile-fishbowl}}''' permite editar a los usuarios autorizados, pero el público puede ver las páginas, incluyendo el historial.
+Un '''{{int:config-profile-private}}''' sólo permite ver páginas a los usuarios autorizados, el mismo grupo al que le está permitido editar.
+
+Configuraciones más complejas de derechos de usuario están disponibles después de la instalación, consulte [//www.mediawiki.org/wiki/Manual:User_rights esta entrada en el manual].",
 	'config-license' => 'Copyright and licencia:',
 	'config-license-none' => 'Pie sin licencia',
 	'config-license-cc-by-sa' => 'Creative Commons Reconocimiento Compartir Igual',
+	'config-license-cc-by' => 'Creative Commons Reconocimiento',
 	'config-license-cc-by-nc-sa' => 'Creative Commons Reconocimiento Compartir Igual no comercial',
+	'config-license-cc-0' => 'Creative Commons Zero (dominio público)',
+	'config-license-gfdl' => 'Licencia de documentación libre de GNU 1.3 o posterior',
 	'config-license-pd' => 'Dominio Público',
 	'config-license-cc-choose' => 'Selecciona una licencia personalizada de Creative Commons',
+	'config-license-help' => "Muchos wikis públicos ponen todas las contribuciones bajo una [http://freedomdefined.org/Definition licencia libre].
+Esto ayuda a crear un sentido de propiedad comunitaria y alienta la contribución a largo plazo.
+Esto no es generalmente necesario para un wiki privado o corporativo.
+
+Si desea poder utilizar texto de Wikipedia, y desea que Wikipedia pueda aceptar el texto copiado de tu wiki, debe elegir '''Creative Commons Reconocimiento Compartir Igual'''.
+
+Wikipedia utilizaba anteriormente la licencia de documentación libre de GNU (GFDL).
+La GFDL es una licencia válida, pero es difícil de entender.
+También es difícil reutilizar el contenido licenciado bajo la GFDL.",
 	'config-email-settings' => 'Configuración de correo electrónico',
 	'config-enable-email' => 'Activar el envío de e-mails',
 	'config-enable-email-help' => 'Si quieres que el correo electrónico funcione, la [http://www.php.net/manual/en/mail.configuration.php configuración PHP de correo electrónico] debe ser la correcta.
@@ -4476,17 +4645,33 @@ Si no quieres la funcionalidad de correo electrónico, puedes desactivarla aquí
 	'config-email-watchlist' => 'Activar notificación de alteraciones a la páginas vigiladas',
 	'config-email-watchlist-help' => 'Permitir a los usuarios recibir notificaciones de cambios en la páginas que vigilan, si lo han activado en sus preferencias.',
 	'config-email-auth' => 'Activar autenticación del correo electrónico',
+	'config-email-auth-help' => "Si esta opción está habilitada, los usuarios tienen que confirmar su dirección de correo electrónico mediante un enlace que se les envía a ellos cuando éstos lo establecen o lo cambian.
+Solo las direcciones de correo electrónico autenticadas pueden recibir correos electrónicos de otros usuarios o correos electrónicos de notificación de cambios.
+Esta opción está '''recomendada''' para wikis públicos debido a posibles abusos de las características del correo electrónico.",
 	'config-email-sender' => 'Dirección de correo electrónico de retorno:',
 	'config-email-sender-help' => 'Introduce la dirección de correo electrónico que será usada como dirección de retorno en los mensajes electrónicos de salida.
 Aquí llegarán los correos electrónicos que no lleguen a su destino.
 Muchos servidores de correo electrónico exigen que por lo menos la parte del nombre del dominio sea válida.',
 	'config-upload-settings' => 'Cargas de imágenes y archivos',
 	'config-upload-enable' => 'Habilitar la subida de archivos',
+	'config-upload-help' => 'La carga de archivos expone potencialmente su servidor a riesgos de seguridad.
+Para obtener más información, lea la [//www.mediawiki.org/wiki/Manual:Security sección de seguridad] en el manual.
+
+Para habilitar la carga de archivos, cambie el modo en el subdirectorio <code>images</code> bajo el directorio raíz de MediaWiki para que el servidor web pueda escribir en él.
+A continuación, habilite esta opción.',
 	'config-upload-deleted' => '*Directório para los archivos eliminados:',
 	'config-upload-deleted-help' => 'Elige un directorio en el que guardar los archivos eliminados.
 Lo ideal es una carpeta no accesible desde la red.',
 	'config-logo' => 'URL del logo :',
+	'config-logo-help' => 'La apariencia por defecto de MediaWiki incluye espacio para un logotipo de 135x160 píxeles encima del menú de la barra lateral.
+Cargue una imagen de tamaño adecuado e introduzca la dirección URL aquí.
+
+Si no desea un logotipo, deje esta casilla en blanco.',
 	'config-instantcommons' => 'Habilitar Instant Commons',
+	'config-instantcommons-help' => '[//www.mediawiki.org/wiki/InstantCommons Instant Commons] es una característica que permite que los wikis puedan utilizar imágenes, sonidos y otros archivos multimedia que se encuentran en el sitio [//commons.wikimedia.org/ Wikimedia Commons].
+Para ello, MediaWiki requiere acceso a Internet.
+
+Para obtener más información sobre esta función, incluidas las instrucciones sobre cómo configurarlo para otras wikis distintas de Wikimedia Commons, consulte [//mediawiki.org/wiki/Manual:$wgForeignFileRepos el manual].',
 	'config-cc-error' => 'El selector de licencia de Creative Commons no dio resultado.
 Escribe el nombre de la licencia manualmente.',
 	'config-cc-again' => 'Elegir otra vez...',
@@ -4503,20 +4688,42 @@ A los sitios medianos y grandes se les recomienda que permitirlo. También es be
 Deben especificarse una por cada línea y especificar el puerto a utilizar. Por ejemplo:
 127.0.0.1:11211
 192.168.1.25:1234',
+	'config-memcache-needservers' => 'Ha seleccionado Memcached como su tipo de caché pero no especificó ninguno de los servidores.',
+	'config-memcache-badip' => 'Ha introducido una dirección IP no válida para Memcached:  $1 .',
+	'config-memcache-noport' => 'No ha especificado un puerto a usar en el servidor Memcached:  $1 .
+Si no conoce el puerto, el valor predeterminado es 11211.',
+	'config-memcache-badport' => 'Los números de puerto de Memcached deben estar entre  $1  y  $2.',
 	'config-extensions' => 'Extensiones',
 	'config-extensions-help' => 'Se ha detectado en tu directorio <code>./extensions</code>  las extensiones listadas arriba.
 
 Puede que necesiten configuraciones adicionales, pero puedes habilitarlas ahora.',
 	'config-install-alreadydone' => "'''Aviso:''' Parece que ya habías instalado MediaWiki y estás intentando instalarlo nuevamente.
 Pasa a la próxima página, por favor.",
+	'config-install-begin' => 'Pulsando "{{int:config-continue}}", se iniciará la instalación de MediaWiki.
+Si todavía desea realizar algún cambio, pulse atrás.',
 	'config-install-step-done' => 'hecho',
 	'config-install-step-failed' => 'falló',
 	'config-install-extensions' => 'Extensiones inclusive',
 	'config-install-database' => 'Configurando la base de datos',
+	'config-install-schema' => 'Creando el esquema',
+	'config-install-pg-schema-not-exist' => 'El esquema PostgreSQL no existe.',
 	'config-install-pg-schema-failed' => 'La creación de las tablas ha fallado.
 Asegúrate de que el usuario "$1" puede escribir en el esquema "$2".',
+	'config-install-pg-commit' => 'Validando los cambios',
+	'config-install-pg-plpgsql' => 'Comprobación de lenguaje PL/pgSQL',
+	'config-pg-no-plpgsql' => 'Necesita instalar el lenguaje PL/pgSQL en la base de datos $1',
+	'config-pg-no-create-privs' => 'La cuenta especificada para la instalación no tiene suficientes privilegios para crear una cuenta.',
+	'config-pg-not-in-role' => 'La cuenta especificada para el usuario web ya existe.
+La cuenta especificada para la instalación no es de un superusuario y no es miembro del grupo de usuarios con acceso a la web, por lo que es incapaz de crear objetos pertenecientes al usuario web.
+
+MediaWiki requiere actualmente que las tablas sean propiedad del usuario web. Especifique otro nombre de cuenta web, o haga clic en "atrás" y especifique un usuario de instalación con los privilegios convenientes.',
 	'config-install-user' => 'Creando el usuario de la base de datos',
+	'config-install-user-alreadyexists' => 'El usuario "$1" ya existe',
+	'config-install-user-create-failed' => 'La creación del usuario "$1" falló:  $2',
 	'config-install-user-grant-failed' => 'La concesión de permisos para el usuario "$1" ha fallado: $2',
+	'config-install-user-missing' => 'El usuario especificado "$1" no existe.',
+	'config-install-user-missing-create' => 'El usuario especificado "$1" no existe.
+Por favor, haga clic en la casilla "Crear cuenta" que aparece a continuación si desea crearlo.',
 	'config-install-tables' => 'Creando tablas',
 	'config-install-tables-exist' => "'''Advertencia''': Al parecer, las tablas de MediaWiki ya existen. Saltándose su creación.",
 	'config-install-tables-failed' => "'''Error''': La creación de las tablas falló con el siguiente error: $1",
@@ -4524,8 +4731,32 @@ Asegúrate de que el usuario "$1" puede escribir en el esquema "$2".',
 	'config-install-interwiki-list' => 'No se pudo encontrar el archivo <code>interwiki.list</code>.',
 	'config-install-interwiki-exists' => "'''Advertencia''': La tabla de interwikis parece ya contener entradas.
 Se omitirá la lista predeterminada.",
+	'config-install-stats' => 'Iniciando las estadísticas',
 	'config-install-keys' => 'Generación de claves secretas',
+	'config-insecure-keys' => "''' Atención:'' '  {{PLURAL:$2|Una clave de seguridad generada|Las claves de seguridad generadas}} ($1) durante la instalación no  {{PLURAL:$2|es totalmente segura|son totalmente seguras}}. Considere {{PLURAL:$2| cambiarla|cambiarlas}} manualmente.",
 	'config-install-sysop' => 'Creando cuenta de usuario del administrador',
+	'config-install-subscribe-fail' => 'No se ha podido suscribir a mediawiki-announce: $1',
+	'config-install-subscribe-notpossible' => 'cURL no está instalado y allow_url_fopen no está disponible.',
+	'config-install-mainpage' => 'Creando página principal con contenido predeterminado',
+	'config-install-extension-tables' => 'Creando las tablas para las extensiones habilitadas',
+	'config-install-mainpage-failed' => 'No se pudo insertar la página principal: $1',
+	'config-install-done' => "''' Felicidades!'''
+Ha instalado MediaWiki correctamente.
+
+El instalador ha generado un  archivo<code>LocalSettings.php</code>.
+Contiene toda su configuración.
+
+Deberá descargarlo y ponerlo en la base de la instalación de wiki (el mismo directorio que index.php). Debería haber comenzado automáticamente la descarga.
+
+Si no comenzó la descarga, o si se ha cancelado, puede reiniciar la descarga haciendo clic en el enlace siguiente:
+$3
+
+'''Nota''': Si no haces esto ahora, este archivo de configuración generado no estará disponible para usted más tarde si sale de la instalación sin descargarlo.
+
+Cuando lo haya hecho, usted puede '''[$2  entrar en su wiki]'''.",
+	'config-download-localsettings' => 'Descargar archivo LocalSettings.php',
+	'config-help' => 'Ayuda',
+	'config-nofile' => 'El archivo "$1" no se pudo encontrar. ¿Se ha eliminado?',
 	'mainpagetext' => "'''MediaWiki ha sido instalado con éxito.'''",
 	'mainpagedocfooter' => 'Consulta la [//meta.wikimedia.org/wiki/Ayuda:Contenido Guía de usuario] para obtener información sobre el uso del software wiki.
 
@@ -4778,6 +5009,7 @@ Asennus saattaa epäonnistua!",
 	'config-charset-mysql5-binary' => 'MySQL 4.1/5.0, binääri',
 	'config-charset-mysql5' => 'MySQL 4.1/5.0, UTF-8',
 	'config-charset-mysql4' => 'MySQL 4.0, taaksepäin yhteensopiva UTF-8',
+	'config-mysql-old' => 'MediaWiki tarvitsee MySQL:n version $1 tai uudemman. Nykyinen versio on $2.',
 	'config-type-mysql' => 'MySQL',
 	'config-type-postgres' => 'PostgreSQL',
 	'config-type-sqlite' => 'SQLite',
@@ -4836,6 +5068,7 @@ Voit ohittaa jäljellä olevat määritykset ja asentaa wikin juuri nyt.',
 	'config-profile-wiki' => 'Perinteinen wiki',
 	'config-profile-no-anon' => 'Tunnuksen luonti vaaditaan',
 	'config-profile-private' => 'Yksityinen wiki',
+	'config-license-pd' => 'Public domain',
 	'config-email-settings' => 'Sähköpostiasetukset',
 	'config-logo' => 'Logon URL-osoite',
 	'config-cc-again' => 'Valitse uudelleen...',
@@ -4884,6 +5117,7 @@ $messages['fo'] = array(
  * @author Sherbrooke
  * @author Urhixidur
  * @author Verdy p
+ * @author Wyz
  * @author Yumeki
  */
 $messages['fr'] = array(
@@ -5410,6 +5644,7 @@ $3
 Lorsque c'est fait, vous pouvez '''[$2 accéder à votre wiki]'''.",
 	'config-download-localsettings' => 'Télécharger LocalSettings.php',
 	'config-help' => 'aide',
+	'config-nofile' => 'Le fichier « $1 » est introuvable. A-t-il été supprimé ?',
 	'mainpagetext' => "'''MediaWiki a été installé avec succès.'''",
 	'mainpagedocfooter' => 'Consultez le [//meta.wikimedia.org/wiki/Aide:Contenu Guide de l’utilisateur] pour plus d’informations sur l’utilisation de ce logiciel.
 
@@ -6216,19 +6451,22 @@ $3
 Cando faga todo isto, xa poderá '''[$2 entrar no seu wiki]'''.",
 	'config-download-localsettings' => 'Descargar o LocalSettings.php',
 	'config-help' => 'axuda',
+	'config-nofile' => 'Non se puido atopar o ficheiro "$1". Se cadra, foi borrado?',
 	'mainpagetext' => "'''MediaWiki instalouse correctamente.'''",
-	'mainpagedocfooter' => 'Consulte a [//meta.wikimedia.org/wiki/Help:Contents Guía do usuario] para máis información sobre como usar o software wiki.
+	'mainpagedocfooter' => 'Consulte a [//meta.wikimedia.org/wiki/Help:Contents guía de usuario] para obter máis información sobre como usar o software wiki.
 
-== Comezando ==
-* [//www.mediawiki.org/wiki/Manual:Configuration_settings Lista de opcións de configuración]
-* [//www.mediawiki.org/wiki/Manual:FAQ Preguntas frecuentes sobre MediaWiki]
-* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce Lista de correo das edicións de MediaWiki]',
+== Primeiros pasos ==
+* [//www.mediawiki.org/wiki/Manual:Configuration_settings Lista das opcións de configuración]
+* [//www.mediawiki.org/wiki/Manual:FAQ Preguntas máis frecuentes sobre MediaWiki]
+* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce Lista de correo dos lanzamentos de MediaWiki]',
 );
 
 /** Ancient Greek (Ἀρχαία ἑλληνικὴ)
+ * @author Crazymadlover
  * @author Omnipaedista
  */
 $messages['grc'] = array(
+	'config-page-language' => 'Γλῶττα',
 	'mainpagetext' => "'''Ἡ ἐγκατάστασις τῆς MediaWiki ἦν ἐπιτυχής'''",
 	'mainpagedocfooter' => 'Βουλευθήσεσθε τὰς [//meta.wikimedia.org/wiki/Help:Contents βουλὰς τοῖς Χρωμένοις] ἵνα πληροφορηθῇτε περὶ τοῦ βίκιλογισμικοῦ.
 
@@ -6918,6 +7156,7 @@ $3
 אחרי שתעשו את זה, תוכלו '''[$2 להיכנס לוויקי שלכם]'''.",
 	'config-download-localsettings' => 'הורדת LocalSettings.php',
 	'config-help' => 'עזרה',
+	'config-nofile' => 'הקובץ "$1" לא נמצא. האם הוא נמחק?',
 	'mainpagetext' => "'''תוכנת מדיה־ויקי הותקנה בהצלחה.'''",
 	'mainpagedocfooter' => 'היעזרו ב[//meta.wikimedia.org/wiki/Help:Contents מדריך למשתמש] למידע על שימוש בתוכנת הוויקי.
 
@@ -8396,6 +8635,7 @@ $3
 Post facer isto, tu pote '''[$2 entrar in tu wiki]'''.",
 	'config-download-localsettings' => 'Discargar LocalSettings.php',
 	'config-help' => 'adjuta',
+	'config-nofile' => 'Le file "$1" non poteva esser trovate. Ha illo essite delite?',
 	'mainpagetext' => "'''MediaWiki ha essite installate con successo.'''",
 	'mainpagedocfooter' => 'Consulta le [//meta.wikimedia.org/wiki/Help:Contents Guida del usator] pro informationes super le uso del software wiki.
 
@@ -9746,8 +9986,84 @@ $messages['kn'] = array(
 * [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce MediaWiki release mailing list]',
 );
 
-/** Korean (한국어) */
+/** Korean (한국어)
+ * @author Kwj2772
+ */
 $messages['ko'] = array(
+	'config-desc' => '미디어위키 인스톨러',
+	'config-title' => '미디어위키 $1 설치',
+	'config-information' => '정보',
+	'config-wiki-language' => '위키 언어:',
+	'config-back' => '← 뒤로',
+	'config-continue' => '계속 →',
+	'config-page-language' => '언어',
+	'config-page-dbconnect' => '데이터베이스에 연결',
+	'config-page-name' => '이름',
+	'config-page-install' => '설치',
+	'config-page-complete' => '완료!',
+	'config-help-restart' => '당신이 입력한 모든 저장된 데이터를 지우고 설치 과정을 다시 시작하시겠습니까?',
+	'config-restart' => '예, 다시 시작합니다.',
+	'config-welcome' => '=== 사용 환경 검사 ===
+이 환경이 미디어위키 설치에 적합할 지 기본 검사를 실행합니다.
+설치 중 도움이 필요하다면 이 검사 결과를 함께 제공해주셔야 합니다.',
+	'config-env-php' => 'PHP $1가 설치되었습니다.',
+	'config-env-php-toolow' => 'PHP $1가 설치되었습니다.
+하지만 미디어위키는 PHP $2 이상이 필요합니다.',
+	'config-db-type' => '데이터베이스 종류:',
+	'config-db-host' => '데이터베이스 호스트:',
+	'config-db-name' => '데이터베이스 이름:',
+	'config-db-username' => '데이터베이스 사용자 이름:',
+	'config-db-password' => '데이터베이스 비밀번호:',
+	'config-db-prefix' => '데이터베이스 테이블 접두어:',
+	'config-charset-mysql5-binary' => 'MySQL 4.1/5.0 바이너리',
+	'config-charset-mysql5' => 'MySQL 4.1/5.0 UTF-8',
+	'config-header-mysql' => 'MySQL 설정',
+	'config-header-postgres' => 'PostgreSQL 설정',
+	'config-header-sqlite' => 'SQLite 설정',
+	'config-sqlite-readonly' => '파일 <code>$1</code>은 쓰기가 불가능합니다.',
+	'config-mysql-utf8' => 'UTF-8',
+	'config-site-name' => '위키의 이름:',
+	'config-site-name-help' => '이것이 브라우저 제목 표시줄과 다른 여러 곳에 나타날 것입니다.',
+	'config-site-name-blank' => '사이트 이름을 입력하세요.',
+	'config-project-namespace' => '프로젝트 이름공간:',
+	'config-ns-generic' => '프로젝트',
+	'config-admin-box' => '관리자 계정',
+	'config-admin-password' => '비밀번호:',
+	'config-admin-password-confirm' => '비밀번호 확인:',
+	'config-admin-password-blank' => '관리자 계정의 비밀번호를 입력하십시오.',
+	'config-admin-password-same' => '비밀번호는 계정 이름과 같아서는 안 됩니다.',
+	'config-admin-password-mismatch' => '당신이 입력한 비밀번호 두 개가 일치하지 않습니다.',
+	'config-admin-email' => '이메일 주소:',
+	'config-optional-skip' => '지겨워요, 그냥 위키를 설치할래요.',
+	'config-profile-wiki' => '평범한 위키',
+	'config-profile-no-anon' => '계정 생성 필요',
+	'config-profile-fishbowl' => '승인된 편집자만 이용 가능',
+	'config-profile-private' => '비공개 위키',
+	'config-license' => '저작권 및 라이선스:',
+	'config-license-cc-by-sa' => '크리에이티브 커먼즈 저작자표시-동일조건변경허락',
+	'config-license-cc-by' => '크리에이티브 커먼즈 저작자표시',
+	'config-license-cc-by-nc-sa' => '크리에이티브 커먼즈 저작자표시-비영리-동일조건변경허락',
+	'config-license-cc-0' => '크리에이티브 커먼즈 CC0 (퍼블릭 도메인)',
+	'config-license-gfdl' => 'GNU 자유 문서 사용 허가서 1.3 이상',
+	'config-license-pd' => '퍼블릭 도메인',
+	'config-license-cc-choose' => '다른 크리에이티브 커먼즈 라이선스 선택',
+	'config-email-settings' => '이메일 설정',
+	'config-logo' => '로고 URL:',
+	'config-logo-help' => '미디어위키 기본 스킨은 사이드바 메뉴 위에 135×160픽셀의 로고를 포함하고 있습니다.
+적당한 크기로 이미지를 올리고 URL을 여기 적어주세요.
+
+로고 사용을 원치 않으면 이 상자를 비워 두십시오.',
+	'config-extensions' => '확장 기능',
+	'config-extensions-help' => '위에 나열된 확장 기능이 <code>./extensions</code>에서 발견되었습니다.
+
+이들은 추가적인 설정이 필요할 수 있습니다만 지금 활성화시킬 수 있습니다.',
+	'config-install-user' => '데이터베이스 사용자 생성 중',
+	'config-install-tables' => '테이블을 생성하는 중',
+	'config-install-tables-exist' => "'''경고''': 미디어위키 테이블이 이미 있는 것 같습니다.
+테이블 생성을 생략합니다.",
+	'config-install-tables-failed' => "'''오류''': 다음 오류와 함께 테이블 생성에 실패했습니다: $1",
+	'config-install-interwiki' => '기본 인터위키 표를 채우는 중',
+	'config-nofile' => '파일 "$1"을 찾을 수 없습니다. 이미 삭제되었나요?',
 	'mainpagetext' => "'''미디어위키가 성공적으로 설치되었습니다.'''",
 	'mainpagedocfooter' => '[//meta.wikimedia.org/wiki/Help:Contents 이곳]에서 위키 프로그램에 대한 정보를 얻을 수 있습니다.
 
@@ -11313,6 +11629,7 @@ $3
 Откога ќе завршите со тоа, можете да '''[$2 влезете на вашето вики]'''.",
 	'config-download-localsettings' => 'Преземи го LocalSettings.php',
 	'config-help' => 'помош',
+	'config-nofile' => 'Податотеката „$1“ не е пронајдена. Да не е избришана?',
 	'mainpagetext' => "'''МедијаВики е успешно инсталиран.'''",
 	'mainpagedocfooter' => 'Погледнете го [//meta.wikimedia.org/wiki/Help:Contents Упатството за корисници] за подетални иформации како се користи вики-програмот.
 
@@ -12667,6 +12984,7 @@ $3
 Na het plaatsen van het bestand met instellingen kunt u '''[$2 uw wiki betreden]'''.",
 	'config-download-localsettings' => 'LocalSettings.php downloaden',
 	'config-help' => 'hulp',
+	'config-nofile' => 'Het bestand "$1" is niet gevonden. Is het verwijderd?',
 	'mainpagetext' => "'''De installatie van MediaWiki is geslaagd.'''",
 	'mainpagedocfooter' => 'Raadpleeg de [//meta.wikimedia.org/wiki/NL_Help:Inhoudsopgave handleiding] voor informatie over het gebruik van de wikisoftware.
 
@@ -12800,7 +13118,9 @@ $messages['pdc'] = array(
 );
 
 /** Polish (Polski)
+ * @author BeginaFelicysym
  * @author Holek
+ * @author Saper
  * @author Sp5uhe
  * @author Woytecr
  */
@@ -12848,13 +13168,13 @@ Sprawdź plik php.ini i upewnij się, że <code>session.save_path</code> wskazuj
 	'config-page-options' => 'Opcje',
 	'config-page-install' => 'Instaluj',
 	'config-page-complete' => 'Zakończono!',
-	'config-page-restart' => 'Ponowne uruchomienie instalacji',
+	'config-page-restart' => 'Rozpoczęcie instalacji od nowa',
 	'config-page-readme' => 'Podstawowe informacje',
 	'config-page-releasenotes' => 'Informacje o wersji',
 	'config-page-copying' => 'Kopiowanie',
 	'config-page-upgradedoc' => 'Uaktualnienie',
 	'config-page-existingwiki' => 'Istniejąca wiki',
-	'config-help-restart' => 'Czy chcesz usunąć wszystkie zapisane dane, które podałeś i uruchomić ponownie proces instalacji?',
+	'config-help-restart' => 'Czy chcesz usunąć wszystkie zapisane dane i uruchomić ponownie proces instalacji?',
 	'config-restart' => 'Tak, zacznij od nowa',
 	'config-welcome' => '=== Sprawdzenie środowiska instalacji ===
 Wykonywane są podstawowe testy sprawdzające czy to środowisko jest odpowiednie dla instalacji MediaWiki.
@@ -12897,6 +13217,7 @@ Można użyć następujących typów baz danych: $1.
 Jeżeli korzystasz ze współdzielonego hostingu, zwróć się do administratora o zainstalowanie odpowiedniego sterownika bazy danych.
 Jeśli skompilowałeś PHP samodzielnie, skonfiguruj je ponownie z włączonym klientem bazy danych, na przykład za pomocą polecenia <code>./configure --with-mysql</code>.
 Jeśli zainstalowałeś PHP jako pakiet Debiana lub Ubuntu, musisz również zainstalować moduł php5-mysql.',
+	'config-outdated-sqlite' => "'''Ostrzeżenie''': masz SQLite  $1, która jest niższa od minimalnej wymaganej wersji  $2 . SQLite będzie niedostępne.",
 	'config-no-fts3' => "'''Uwaga''' – SQLite został skompilowany bez [//sqlite.org/fts3.html modułu FTS3] – funkcje wyszukiwania nie będą dostępne.",
 	'config-register-globals' => "'''Uwaga –  w konfiguracji PHP włączona jest opcja <code>[http://php.net/register_globals register_globals]</code>.'''
 '''Jeśli możesz, wyłącz ją.'''
@@ -12926,29 +13247,33 @@ MediaWiki wymaga wsparcia dla UTF‐8 do prawidłowego działania.",
 	'config-memory-bad' => "'''Uwaga:''' PHP <code>memory_limit</code> jest ustawione na $1.
 To jest prawdopodobnie zbyt mało.
 Instalacja może się nie udać!",
+	'config-ctype' => "''' Krytyczny ''': PHP musi być skompilowany z obsługą [http://www.php.net/manual/en/ctype.installation.php rozszerzenia Ctype].",
 	'config-xcache' => '[Http://trac.lighttpd.net/xcache/ XCache] jest zainstalowany',
 	'config-apc' => '[Http://www.php.net/apc APC] jest zainstalowany',
 	'config-wincache' => '[http://www.iis.net/download/WinCacheForPhp WinCache] jest zainstalowany',
-	'config-no-cache' => "'''Uwaga:''' Nie można odnaleźć [http://www.php.net/apc APC], [http://xcache.lighttpd.net/ XCache] lub [http://www.iis.net/download/WinCacheForPhp WinCache].
-Buforowanie obiektów nie będzie możliwe.",
+	'config-no-cache' => "'''Uwaga:''' Pamięć podręczna dla kodu MediaWiki nie będzie uruchomiona., gdyż nie ma żadnego z następujących narzędzi: [http://www.php.net/apc APC], [http://xcache.lighttpd.net/ XCache] lub [http://www.iis.net/download/WinCacheForPhp WinCache].",
+	'config-mod-security' => "''' Ostrzeżenie ''': Serwer sieci web ma włączone [http://modsecurity.org/ mod_security]. Jeśli niepoprawnie skonfigurowane, może być przyczyną problemów MediaWiki lub innego oprogramowania, które pozwala użytkownikom na wysyłanie dowolnej zawartości.
+Sprawdź w [http://modsecurity.org/documentation/ dokumentacji mod_security] lub skontaktuj się z obsługa hosta, jeśli wystąpią losowe błędy.",
 	'config-diff3-bad' => 'Nie znaleziono GNU diff3.',
-	'config-imagemagick' => 'Odnaleziono ImageMagick <code>$1</code>.
-Miniatury grafik będą generowane jeśli włączysz przesyłanie plików.',
-	'config-gd' => 'Odnaleziono wbudowaną bibliotekę graficzną GD.
-Miniatury grafik będą generowane jeśli włączysz przesyłanie plików.',
-	'config-no-scaling' => 'Nie można odnaleźć biblioteki GD lub ImageMagick.
-Tworzenie miniatur grafik będzie wyłączone.',
+	'config-imagemagick' => 'Mamy zainstalowany ImageMagick <code>$1</code>, dzięki czemu będzie można pomniejszać załadowane grafiki.',
+	'config-gd' => 'Mamy wbudowaną bibliotekę graficzną GD, dzięki ceymu będzie można pomniejszać załadowane grafiki.',
+	'config-no-scaling' => 'Nie można odnaleźć biblioteki GD lub ImageMagick. Nie będzie działać pomniejszanie załadowane grafiki.',
 	'config-no-uri' => "'''Błąd.''' Nie można określić aktualnego URI.
 Instalacja została przerwana.",
-	'config-using-server' => 'Przy użyciu nazwy serwera „<nowiki>$1</nowiki>“.',
+	'config-no-cli-uri' => "''' Ostrzeżenie ''': nie wskazano --scriptpath,  użycie wartości domyślnej: <code>$1</code> .",
+	'config-using-server' => '„<nowiki>$1</nowiki>“ jest adresem serwera, na którym instalowana jest wiki.',
+	'config-using-uri' => 'Wiki będzie zainstalowana pod adresem "<nowiki>$1$2</nowiki>".',
 	'config-uploads-not-safe' => "'''Uwaga''' – domyślny katalog do którego zapisywane są przesyłane pliki <code>$1</code> jest podatny na wykonanie dowolnego skryptu.
 Chociaż MediaWiki sprawdza wszystkie przesłane pliki pod kątem bezpieczeństwa, zaleca się jednak, aby [//www.mediawiki.org/wiki/Manual:Security#Upload_security zamknąć tę lukę w zabezpieczeniach] przed włączeniem przesyłania plików.",
+	'config-no-cli-uploads-check' => "'''Ostrzeżenie:''' Katalog domyślny przesyłanych plików ( <code>$1</code> ) nie jest sprawdzona względem luki
+ wykonania dowolnego skryptu podczas instalacji CLI w zabezpieczeniach.",
 	'config-brokenlibxml' => 'Twój system jest kombinacją wersji PHP i libxml2, które zawierają błędy mogące powodować ukryte uszkodzenia danych w MediaWiki i innych aplikacjach sieci web.
 Wykonaj aktualizację PHP do wersji 5.2.9 lub późniejszej oraz libxml2 do wersji 2.7.3 lub późniejszej ([//bugs.php.net/bug.php?id=45996 błąd w PHP]).
 Instalacja została przerwana.',
 	'config-using531' => 'MediaWiki nie może być używane z PHP $1 z powodu błędu dotyczącego referencyjnych argumentów funkcji <code>__call()</code>.
 Uaktualnij do PHP 5.3.2 lub nowszego. Możesz również cofnąć wersję do PHP 5.3.0, aby naprawić ten błąd.
 Instalacja została przerwana.',
+	'config-suhosin-max-value-length' => 'Jest zainstalowany Suhosin i ogranicza długość parametru GET do $1  bajtów. Komponent ResourceLoader w MediaWiki  wykona obejście tego ograniczenia, ale kosztem wydajności. Jeśli to możliwe należy ustawić suhosin.get.max_value_length na 1024 lub wyższej w php.ini oraz ustawić $wgResourceLoaderMaxQueryLength w LocalSettings.php na tę samą wartość.',
 	'config-db-type' => 'Typ bazy danych',
 	'config-db-host' => 'Adres serwera bazy danych',
 	'config-db-host-help' => 'Jeśli serwer bazy danych jest na innej maszynie, wprowadź jej nazwę domenową lub adres IP.
@@ -12958,7 +13283,7 @@ Jeśli korzystasz ze współdzielonego hostingu, operator serwera powinien poda�
 Jeśli instalujesz oprogramowanie na serwerze Windowsowym i korzystasz z MySQL, użycie „localhost” może nie zadziałać jako nazwa hosta. Jeśli wystąpi ten problem użyj „127.0.0.1” jako lokalnego adresu IP.
 
 Jeżeli korzystasz z PostgreSQL, pozostaw to pole puste, aby połączyć się poprzez gniazdo Unix‐a.',
-	'config-db-host-oracle' => 'TNS bazy danych',
+	'config-db-host-oracle' => 'Nazwa instancji bazy danych (TNS):',
 	'config-db-host-oracle-help' => 'Wprowadź prawidłową [http://download.oracle.com/docs/cd/B28359_01/network.111/b28317/tnsnames.htm nazwę połączenia lokalnego]. Plik „tnsnames.ora” musi być widoczny dla instalatora.<br />Jeśli używasz biblioteki klienckiej 10g lub nowszej możesz również skorzystać z metody nazw [http://download.oracle.com/docs/cd/E11882_01/network.112/e10836/naming.htm łatwego łączenia].',
 	'config-db-wiki-settings' => 'Zidentyfikuj tę wiki',
 	'config-db-name' => 'Nazwa bazy danych',
@@ -12966,7 +13291,14 @@ Jeżeli korzystasz z PostgreSQL, pozostaw to pole puste, aby połączyć się po
 Nie może ona zawierać spacji.
 
 Jeśli korzystasz ze współdzielonego hostingu, dostawca usługi hostingowej może wymagać użycia konkretnej nazwy bazy danych lub pozwalać na tworzenie baz danych za pośrednictwem panelu użytkownika.',
-	'config-db-name-oracle' => 'Schemat bazy danych',
+	'config-db-name-oracle' => 'Nazwa schematu bazy danych:',
+	'config-db-account-oracle-warn' => 'Bazę danych Oracle można przygotować do pracy z MediaWIki na trzy sposoby:
+
+Możesz utworzyć konto użytkownika bazy danych podczas instalacji MediaWiki. Wówczas należy podać nazwę i hasło użytkownika z rolą SYSDBA w celu użycia go przez instalator do utworzenia nowe konta użytkownika, z którego korzystać będzie MediaWiki.
+
+Możesz również skorzystać z konta użytkownika bazy danych utworzonego bezpośrednio w Oracle i wówczas wystarczy podać tylko nazwę i hasło tego użytkownika. Konto z rolą SYSDBA nie będzie potrzebne, jednak konto użytkownika powinno mieć uprawnienia do utworzenia obiektów w schemacie bazy danych. Możesz też podać dwa konta - konto dla instalatora, z pomocą którego zostaną obiekty w schemacie bazy danych i drugie konto, z którego będzie MediaWiki korzystać będzie do pracy. 
+
+W podkatalogu "maintenance/oracle" znajduje się skrypt do tworzenia konta użytkownika. Korzystanie z konta użytkownika z ograniczonymi uprawnieniami spowoduje wyłączenie funkcji związanych z aktualizacją oprogramowania MediaWiki.',
 	'config-db-install-account' => 'Konto użytkownika dla instalatora',
 	'config-db-username' => 'Nazwa użytkownika bazy danych',
 	'config-db-password' => 'Hasło bazy danych',
@@ -12979,18 +13311,38 @@ To nie jest hasło konta MediaWiki, lecz hasło do bazy danych.',
 	'config-db-install-help' => 'Podaj nazwę użytkownika i jego hasło, które zostaną użyte do połączenia z bazą danych w czasie procesu instalacji.',
 	'config-db-account-lock' => 'Użyj tej samej nazwy użytkownika i hasła w czasie normalnej pracy.',
 	'config-db-wiki-account' => 'Konto użytkownika do normalnej pracy',
+	'config-db-wiki-help' => 'Wprowadź nazwę użytkownika i hasło, które będą używane do połączenia z bazą danych podczas normalnej pracy wiki.
+Jeśli konto nie istnieje, a konto instalacji ma wystarczające uprawnienia, to zostanie utworzone konto użytkownika z minimalnymi uprawnieniami wymaganymi do działania wiki.',
 	'config-db-prefix' => 'Przedrostek tabel bazy danych',
+	'config-db-prefix-help' => 'Jeśli zachodzi potrzeba współdzielenia jednej bazy danych między wieloma wiki, lub między MediaWiki i inną aplikacją sieciową, można dodać przedrostek do wszystkich nazw tabel w celu uniknięcia konfliktów.
+Nie należy używać spacji.
+
+To pole zwykle pozostawiane jest puste.',
 	'config-db-charset' => 'Zestaw znaków bazy danych',
 	'config-charset-mysql5-binary' => 'MySQL 4.1/5.0 binarny',
 	'config-charset-mysql5' => 'MySQL 4.1/5.0 UTF-8',
 	'config-charset-mysql4' => 'MySQL 4.0 kompatybilny wstecz UTF-8',
+	'config-charset-help' => "'''Ostrzeżenie:''' W przypadku użycia opcji '''UTF-8 zgodnego ze starszymi wersjami''' podczas korzystania z wersji MySQL nowszych niż 4.1 kopie zapasowe wykonane przy użyciu programu <code>mysqldump</code> będą bezużyteczne - wszystkie znaki inne niż ASCII zostaną zapisane nieprawidłowo.
+
+W '''trybie binarnym''', MediaWiki zapisuje tekst UTF-8 do bazy danych w polach binarnych.
+To jest bardziej wydajne niż tryb UTF-8 w MySQL i pozwala na używanie pełnego zakresu znaków Unicode.
+W ''' trybie UTF-8''', MySQL będzie wiedzieć, w jakim zestawie znaków są dane i umożliwia ich prezentowanie i odpowiednią konwersję, ale nie pozwoli Ci przechowywać znaków spoza [//en.wikipedia.org/wiki/Mapping_of_Unicode_character_planes podstawowej płaszczyzny wielojęzyczności].",
 	'config-mysql-old' => 'Wymagany jest MySQL $1 lub nowszy; korzystasz z $2.',
-	'config-db-port' => 'Port bazy danych',
-	'config-db-schema' => 'Schemat dla MediaWiki',
-	'config-db-schema-help' => 'Ten schemat jest zazwyczaj właściwy.
-Zmień go wyłącznie jeśli jesteś pewien, że powinieneś.',
+	'config-db-port' => 'Numer portu TCP dla połączeń do bazy danych',
+	'config-db-schema' => 'Nazwa schematu bazy danych, z którego ma korzystać MediaWiki',
+	'config-db-schema-help' => 'Zaproponowana nazwa schematu jest odpowiednia dla większości sytuacji i przeważnie nie trzeba jej zmieniać.',
 	'config-pg-test-error' => "Nie można połączyć się z bazą danych''' $1 ''': $2",
 	'config-sqlite-dir' => 'Katalog danych SQLite',
+	'config-sqlite-dir-help' => "SQLite przechowuje wszystkie dane w pojedynczym pliku.
+
+Wskazany katalog musi być dostępny do zapisu przez webserver podczas instalacji.
+
+Powinien '''nie''' być dostępny za z sieci web, dlatego nie umieszczamy ich tam, gdzie znajdują się pliki PHP.
+
+Instalator zapisze plik <code>.htaccess</code> obokniego, ale jeśli to zawiedzie, ktoś może uzyskać dostęp do nieprzetworzonej bazy danych.
+Zawiera ona nieopracowane dane użytkownika (adresy e-mail, zahaszowane hasła) jak również usunięte wersje oraz inne dane o ograniczonym dostępie na wiki.
+
+Warto rozważyć umieszczenie w bazie danych zupełnie gdzie indziej, na przykład w <code>/var/lib/mediawiki/yourwiki</code> .",
 	'config-oracle-def-ts' => 'Domyślna przestrzeń tabel',
 	'config-oracle-temp-ts' => 'Przestrzeń tabel tymczasowych',
 	'config-type-ibm_db2' => 'IBM DB2',
@@ -12998,10 +13350,10 @@ Zmień go wyłącznie jeśli jesteś pewien, że powinieneś.',
 
 $1
 
-Jeśli system baz danych, z którego chcesz skorzystać nie jest wymieniony, postępuj zgodnie z instrukcjami aby móc z niego skorzystać.',
-	'config-support-mysql' => '* $1 jest domyślną bazą danych dla MediaWiki i jest najlepiej wspierane ([http://www.php.net/manual/en/mysql.installation.php jak skompilować PHP ze wsparciem dla MySQL])',
-	'config-support-postgres' => '* $1 jest popularnym systemem baz danych z otwartym kodem alternatywnym dla MySQL ([http://www.php.net/manual/en/pgsql.installation.php jak skompilować PHP ze wsparciem dla PostgreSQL]). Z powodu możliwości wystąpienia drobnych błędów, nie jest zalecane użycie go w środowisku produkcyjnym.',
-	'config-support-sqlite' => '* $1 jest lekkim systemem bazy danych, który jest bardzo dobrze wspierany. ([http://www.php.net/manual/en/pdo.installation.php Jak skompilować PHP ze wsparciem dla SQLite], korzystając z PDO)',
+Poniżej wyświetlone są systemy baz danych gotowe do użycia. Jeżeli poniżej brakuje bazy danych, z której chcesz skorzystać, oznacza to, że brakuje odpowiedniego oprogramowania lub zostało ono niepoprawnie skonfigurowane. Powyżej znajdziesz odnośniki do dokumentacji, która pomoże w konfiguracji odpowiednich komponentów.',
+	'config-support-mysql' => '* $1 jest bazą danych, na której rozwijane jest oprogramowanie MediaWiki. Ewentualne błędy w współpracy z bazą danych są odnajdowane i naprawiane dość szybko. ([http://www.php.net/manual/en/mysql.installation.php zobacz, jak skompilować PHP ze wsparciem dla MySQL])',
+	'config-support-postgres' => '* $1 jest popularnym systemem baz danych, często stosowanym zamiast MySQL  ([http://www.php.net/manual/en/pgsql.installation.php Zobacz, jak skompilować PHP ze wsparciem dla PostgreSQL]). Z powodu możliwości wystąpienia drobnych błędów, nie jest zalecana do wymagających wdrożeń.',
+	'config-support-sqlite' => '* $1 jest niewielkim systemem bazy danych, z którym MediaWiki bardzo dobrze współpracuje. ([http://www.php.net/manual/en/pdo.installation.php Jak skompilować PHP ze wsparciem dla SQLite], korzystając z PDO)',
 	'config-support-oracle' => '* $1 jest komercyjną profesjonalną bazą danych. ([http://www.php.net/manual/en/oci8.installation.php Jak skompilować PHP ze wsparciem dla OCI8])',
 	'config-support-ibm_db2' => '* $1 jest komercyjną zaawansowaną bazą danych.',
 	'config-header-mysql' => 'Ustawienia MySQL',
@@ -13012,9 +13364,9 @@ Jeśli system baz danych, z którego chcesz skorzystać nie jest wymieniony, pos
 	'config-invalid-db-type' => 'Nieprawidłowy typ bazy danych',
 	'config-missing-db-name' => 'Należy wpisać wartość w polu „Nazwa bazy danych”',
 	'config-missing-db-host' => 'Musisz wpisać wartość w polu „Serwer bazy danych”',
-	'config-missing-db-server-oracle' => 'Należy wpisać wartość w polu „Baza danych TNS”',
-	'config-invalid-db-server-oracle' => 'Nieprawidłowa baza danych TNS „$1”.
-Używaj wyłącznie liter ASCII (a-z, A-Z), cyfr (0-9), podkreślenia (_) i kropek (.).',
+	'config-missing-db-server-oracle' => 'Należy wpisać wartość w polu „Nazwa instancji bazy danych (TNS)”',
+	'config-invalid-db-server-oracle' => 'Nieprawidłowa nazwa instancji bazy danych (TNS) „$1”.
+W nazwie można użyć wyłącznie liter ASCII (a-z, A-Z), cyfr (0-9), podkreślenia (_) i kropek (.).',
 	'config-invalid-db-name' => 'Nieprawidłowa nazwa bazy danych „$1”.
 Używaj wyłącznie liter ASCII (a-z, A-Z), cyfr (0-9), podkreślenia (_) lub znaku odejmowania (-).',
 	'config-invalid-db-prefix' => 'Nieprawidłowy prefiks bazy danych „$1”.
@@ -13022,14 +13374,33 @@ Używaj wyłącznie liter ASCII (a-z, A-Z), cyfr (0-9), podkreślenia (_) lub zn
 	'config-connection-error' => '$1.
 
 Sprawdź adres serwera, nazwę użytkownika i hasło, a następnie spróbuj ponownie.',
-	'config-invalid-schema' => 'Nieprawidłowy schemat dla MediaWiki „$1”.
-Używaj wyłącznie liter ASCII (a-z, A-Z), cyfr (0-9) i podkreślenia (_).',
+	'config-invalid-schema' => 'Nieprawidłowa nazwa schematu dla MediaWiki „$1”.
+Nazwa może zawierać wyłącznie liter ASCII (a-z, A-Z), cyfr (0-9) i podkreślenia (_).',
 	'config-db-sys-create-oracle' => 'Instalator może wykorzystać wyłącznie konto SYSDBA do tworzenia nowych kont użytkowników.',
 	'config-db-sys-user-exists-oracle' => 'Konto użytkownika „$1“ już istnieje. SYSDBA można użyć tylko do utworzenia nowego konta!',
-	'config-postgres-old' => 'Wymagany jest PostgreSQL $1 lub nowszy; korzystasz z $2.',
+	'config-postgres-old' => 'Korzystasz z wersji $2 oprogramowania PostgreSQL, a potrzebna jest wersja co najmniej $1.',
 	'config-sqlite-name-help' => 'Wybierz nazwę, która będzie identyfikować Twoją wiki.
 Nie wolno używać spacji ani myślników.
 Zostanie ona użyta jako nazwa pliku danych SQLite.',
+	'config-sqlite-parent-unwritable-group' => 'Nie można utworzyć katalogu danych <code><nowiki>$1</nowiki></code> , ponieważ katalog nadrzędny <code><nowiki>$2</nowiki></code> nie jest dostępny do zapisu przez webserwer.
+
+Instalator nie może określić, jako kttóry użytkownik działa webserwer.
+Zezwól by katalog <code><nowiki>$3</nowiki></code> był dostępny do zapisu przez niego, aby przejść dalej.
+W systemie Unix/Linux wykonaj:
+
+<pre>cd $2
+mkdir $3
+chgrp $4 $3
+chmod g+w $3</pre>',
+	'config-sqlite-parent-unwritable-nogroup' => 'Nie można utworzyć katalogu danych <code><nowiki>$1</nowiki></code> , ponieważ katalog nadrzędny <code><nowiki>$2</nowiki></code> nie jest dostępny do zapisu przez webserwer.
+
+Instalator nie może określić, jako kttóry użytkownik działa webserwer.
+Zezwól by katalog <code><nowiki>$3</nowiki></code> był globalnie modyfikowalny przez niego (i innych!) aby przejść dalej.
+W systemie Unix/Linux wykonaj:
+
+<pre>cd $2
+mkdir $3
+chmod a+w $3</pre>',
 	'config-sqlite-mkdir-error' => 'Błąd podczas tworzenia katalogu dla danych „$1”.
 Sprawdź lokalizację i spróbuj ponownie.',
 	'config-sqlite-dir-unwritable' => 'Nie można zapisać do katalogu „$1”.
@@ -13042,6 +13413,12 @@ Sprawdź katalog danych oraz nazwę bazy danych, a następnie spróbuj ponownie.
 	'config-sqlite-fts3-downgrade' => 'Brak wsparcia FTS3 dla PHP. Tabele zostały cofnięte',
 	'config-can-upgrade' => "W bazie danych są już tabele MediaWiki.
 Aby uaktualnić je do MediaWiki $1, kliknij '''Dalej'''.",
+	'config-upgrade-done' => "Uaktualnienie kompletne.
+
+Można teraz [ $1  rozpocząć korzystanie z wiki].
+
+Jeśli chcesz ponownie wygenerować plik <code>LocalSettings.php</code>, kliknij przycisk poniżej.
+Jest to '''nie zalecane''', chyba że występują problemy z twoją wiki.",
 	'config-upgrade-done-no-regenerate' => 'Aktualizacja zakończona.
 
 Możesz wreszcie [$1 zacząć korzystać ze swojej wiki].',
@@ -13057,9 +13434,25 @@ Konto, które wskazałeś tutaj musi już istnieć.',
 	'config-mysql-engine' => 'Silnik przechowywania',
 	'config-mysql-innodb' => 'InnoDB',
 	'config-mysql-myisam' => 'MyISAM',
+	'config-mysql-myisam-dep' => "'''Ostrzeżenie''': wybrano MyISIAM jako silnik  składowania danych MySQL, co nie jest zalecane do użytku w MediaWiki, ponieważ:
+ * ledwo obsługuje współbieżnośći ze względu na blokowanie tabel
+ * jest bardziej podatna na uszkodzenie niż inne silniki
+ * kod źródłowy MediaWiki nie zawsze obsługuje MyISAM tak, jak powinien
+
+Jeśli instalacja MySQL obsługuje InnoDB, jest wysoce zalecane, by to je wybrać.
+Jeśli instalacja MySQL nie obsługuje InnoDB, być może nadszedł czas na jej uaktualnienie.",
+	'config-mysql-engine-help' => "'''InnoDB''' jest prawie zawsze najlepszą opcją, ponieważ posiada dobrą obsługę współbieżności.
+
+'''MyISAM''' może być szybsze w instalacjach pojedynczego użytkownika lub tylko do odczytu.
+Bazy danych MyISAM mają tendencję do ulegania uszkodzeniom częściej niż bazy InnoDB.",
 	'config-mysql-charset' => 'Zestaw znaków bazy danych',
 	'config-mysql-binary' => 'binarny',
 	'config-mysql-utf8' => 'UTF‐8',
+	'config-mysql-charset-help' => "W '''trybie binarnym''', MediaWiki zapisuje tekst UTF-8 do bazy danych w polach binarnych.
+Jest on bardziej wydajny niż tryb UTF-8 w MySQL i pozwala na używanie znaków pełnego zakresu Unicode.
+
+W '''trybie UTF-8''', MySQL będzie znać zestaw znaków w jakim zakodowano dane, można też przedstawić i przekonwertuj je odpowiednio, ale nie pozwoli Ci przechowywać znaków spoza [//en.wikipedia.org/wiki/Mapping_of_Unicode_character_planes podstawowej płaszczyzny wielojęzyczności].",
+	'config-ibm_db2-low-db-pagesize' => "Baza danych DB2 posiada domyślny obszar tabel z niewystarczającym rozmiarem strony. Wartość rozmiaru strony musi być równa lub powyżej  '''32 K'''.",
 	'config-site-name' => 'Nazwa wiki',
 	'config-site-name-help' => 'Ten napis pojawi się w pasku tytułowym przeglądarki oraz w różnych innych miejscach.',
 	'config-site-name-blank' => 'Wprowadź nazwę witryny.',
@@ -13068,8 +13461,13 @@ Konto, które wskazałeś tutaj musi już istnieć.',
 	'config-ns-site-name' => 'Taka sama jak nazwa wiki $1',
 	'config-ns-other' => 'Inna (należy określić)',
 	'config-ns-other-default' => 'MojaWiki',
+	'config-project-namespace-help' => 'Według przykładu Wikipedii wiele wiki przechowuje swoje strony zasad oddzielnie od stron z zawartością, w "\'\'\'przestrzeni nazw projektu\'\'\'".
+Wszystkie tytuły stron w tej przestrzeni nazw zaczynają się od pewnego przedrostka, który można tutaj określić.
+Tradycyjnie ten przedrostek wywodzi się od nazwy wiki, ale nie może zawierać pewnych znaków przestankowych takich jak "#" lub ":".',
 	'config-ns-invalid' => 'Podana przestrzeń nazw „<nowiki>$1</nowiki>” jest nieprawidłowa.
 Podaj inną przestrzeń nazw projektu.',
+	'config-ns-conflict' => 'Określona przestrzeń nazw "<nowiki>$1</nowiki>" powoduje konflikt z domyślną przestrzenią nazw MediaWiki.
+Wskaż inną przestrzeń nazw projektu.',
 	'config-admin-box' => 'Konto administratora',
 	'config-admin-name' => 'Administrator',
 	'config-admin-password' => 'Hasło',
@@ -13090,6 +13488,8 @@ Podaj inną nazwę.',
 	'config-subscribe' => 'Zapisz się na [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce listę pocztową z ogłaszaniami o nowych wersjach].',
 	'config-subscribe-help' => 'Jest to lista o małej liczbie wiadomości, wykorzystywana do przesyłania informacji o udostępnieniu nowej wersji oraz istotnych sprawach dotyczących bezpieczeństwa.
 Powinieneś zapisać się na tę listę i aktualizować zainstalowane oprogramowanie MediaWiki gdy pojawia się nowa wersja.',
+	'config-subscribe-noemail' => 'Próbowano subskrybować listę mailingową ogłoszeń wersji bez podania adresu e-mail.
+Proszę podać adres e-mail, jeśli chcesz subskrybować listę wysyłkową.',
 	'config-almost-done' => 'To już prawie koniec!
 Możesz pominąć pozostałe czynności konfiguracyjne i zainstalować wiki.',
 	'config-optional-continue' => 'Zadaj mi więcej pytań.',
@@ -13099,6 +13499,18 @@ Możesz pominąć pozostałe czynności konfiguracyjne i zainstalować wiki.',
 	'config-profile-no-anon' => 'Wymagane utworzenie konta',
 	'config-profile-fishbowl' => 'Wyłącznie zatwierdzeni edytorzy',
 	'config-profile-private' => 'Prywatna wiki',
+	'config-profile-help' => "Strony typu wiki działają najlepiej, gdy pozwolisz je edytować tak wielu osobom, jak to możliwie.
+W MediaWiki, jest łatwe sprawdzenie ostatnich zmian i wycofać szkody, które są spowodowane przez naiwnych lub złośliwych użytkowników.
+
+Jednakże wielu uznało MediaWiki użytecznymi w różnorodnych rolach, a czasami nie jest łatwo przekonać wszystkich do korzyści ze sposobu działania wiki.
+
+Ustawienie '''{{int:config-profil-wiki}}''' pozwala każdemu na edycję, nawet bez logowania się.
+Wiki z '''{{int:config-profile-no-anon}}''' zawiera dodatkowe funkcje rozliczania się, ale może powstrzymać dorywczych współpracowników.
+
+Scenariusz '''{{int:config-profile-fishbowl}}''' umożliwia zatwierdzonym użytkownikom edycję, ale wyświetlanie stron jest powszechnie dostępne, włącznie z historią.
+Ustawienie '''{{int:config-profile-private}}'' ' pozwala na wyświetlanie stron tylko zatwierdzonym użytkownikom, ta sama grupa może edytować.
+
+Bardziej skomplikowane konfiguracje uprawnień użytkowników są dostępne po zakończeniu instalacji, zobacz [//www.mediawiki.org/wiki/Manual:User_rights odpowiednią część podręcznika].",
 	'config-license' => 'Prawa autorskie i licencja',
 	'config-license-none' => 'Brak stopki z licencją',
 	'config-license-cc-by-sa' => 'Creative Commons – za uznaniem autora, na tych samych zasadach',
@@ -13108,8 +13520,19 @@ Możesz pominąć pozostałe czynności konfiguracyjne i zainstalować wiki.',
 	'config-license-gfdl' => 'GNU licencja wolnej dokumentacji 1.3 lub nowsza',
 	'config-license-pd' => 'Domena publiczna',
 	'config-license-cc-choose' => 'Wybierz własną licencję Creative Commons',
+	'config-license-help' => "Wiele publicznych wiki umieszcza wszystkie dopisane treści na [http://freedomdefined.org/Definition wolnej licencji].
+To pomaga tworzyć poczucie wspólnoty i zachęca do długoterminowego wkładu.
+Nie jest to zazwyczaj konieczne w prywatnych lub firmowych wiki.
+
+Jeśli chcesz móc użyć tekstu z Wikipedii i chcesz Wikipedia mogła zaakceptować tekst skopiowany z twojej wiki, należy wybrać '''Creative Commons Attribution Share Alike'''.
+
+Wikipedia używała poprzednio GNU Free Documentation License.
+GFDL jest poprawną licencję, ale trudno ją zrozumieć.
+Trudno także ponowne użyć zawartości na licencji GFDL.",
 	'config-email-settings' => 'Ustawienia e-maili',
 	'config-enable-email' => 'Włącz wychodzące wiadomości e–mail',
+	'config-enable-email-help' => 'Jeśli chcesz, aby działał e-mail, [http://www.php.net/manual/en/mail.configuration.php Ustawienia poczty PHP] muszą być poprawnie wprowadzone.
+Jeśli nie chcesz jakichś funkcji poczty e-mail, można je wyłączyć tutaj.',
 	'config-email-user' => 'Włącz możliwość przesyłania e‐maili pomiędzy użytkownikami',
 	'config-email-user-help' => 'Zezwalaj użytkownikom na wysyłanie wzajemnie e‐maili, jeśli będą mieć włączoną tę funkcję w swoich preferencjach.',
 	'config-email-usertalk' => 'Włącz powiadamianie o zmianach na stronie dyskusji użytkownika',
@@ -13117,20 +13540,41 @@ Możesz pominąć pozostałe czynności konfiguracyjne i zainstalować wiki.',
 	'config-email-watchlist' => 'Włącz powiadomienie o zmianach stron obserwowanych',
 	'config-email-watchlist-help' => 'Pozwól użytkownikom otrzymywać powiadomienia o zmianach na stronach obserwowanych, jeśli będą mieć włączoną tę funkcję w swoich preferencjach.',
 	'config-email-auth' => 'Włącz uwierzytelnianie e‐mailem',
+	'config-email-auth-help' => "Jeśli ta opcja jest włączona, użytkownicy będą musieli potwierdzić swoje adresy e-mail przy użyciu wysłanego do nich łącza, gdy będą je ustawiać lub zmieniać.
+Tylko uwierzytelnione adresy e-mail mogą otrzymywać wiadomości od innych użytkowników lub mailowe powiadomienia o zmianach.
+Ustawienie tej opcji jest'''zalecane''' na publicznych wiki ze względu na potencjalne nadużycia funkcji poczty e-mail.",
 	'config-email-sender' => 'Zwrotny adres e‐mail',
+	'config-email-sender-help' => 'Wprowadź adres e-mail używany jako adres zwrotny wiadomości wychodzących.
+To tam będą wysyłane szturchnięcia.
+Wiele serwerów poczty wymaga, by co najmniej część nazwy domeny była prawidłowa.',
 	'config-upload-settings' => 'Przesyłanie obrazków i plików',
 	'config-upload-enable' => 'Włącz przesyłanie plików na serwer',
+	'config-upload-help' => 'Przesyłanie plików potencjalnie wystawia serwer na zagrożenia.
+Więcej informacji na ten temat można znaleźć w [//www.mediawiki.org/wiki/Manual:Security sekcji zabezpieczeń] podręcznika.
+
+Aby włączyć przesyłanie plików, zmień właściwości podkatalogu <code>images</code> katalogu głównego MediaWiki tak, aby serwer sieci web mógł zapisywać do niego.
+Następnie włącz tę opcję.',
 	'config-upload-deleted' => 'Katalog dla usuniętych plików',
 	'config-upload-deleted-help' => 'Wybierz katalog, w którym będzie archiwum usuniętych plików.
 Najlepiej, aby nie był on dostępny z internetu.',
 	'config-logo' => 'Adres URL logo',
+	'config-logo-help' => 'Domyślny motyw MediaWiki zawiera miejsce na logo wielkości 135 x 160 pikseli powyżej menu na pasku bocznym.
+Prześlij obrazek o odpowiednim rozmiarze, a następnie wpisz jego URL tutaj.
+
+Jeśli nie chcesz logo, pozostaw to pole puste.',
 	'config-instantcommons' => 'Włącz Instant Commons',
+	'config-instantcommons-help' => '[//www.mediawiki.org/wiki/InstantCommons Instant Commons] jest funkcją, która pozwala wiki używać obrazów, dźwięków i innych mediów znalezionych na  witrynie [//commons.wikimedia.org/ Wikimedia Commons].
+Aby to zrobić, MediaWiki wymaga dostępu do internetu.
+
+Aby uzyskać więcej informacji na temat tej funkcji, w tym instrukcje dotyczące sposobu ustawiania go na wiki innych niż Wikimedia Commons, sprawdź w [//mediawiki.org/wiki/Manual:$wgForeignFileRepos podręczniku].',
 	'config-cc-error' => 'Wybieranie licencji Creative Commons nie dało wyniku.
 Wpisz nazwę licencji ręcznie.',
 	'config-cc-again' => 'Wybierz jeszcze raz...',
 	'config-cc-not-chosen' => 'Wybierz którą chcesz licencję Creative Commons i kliknij „Dalej”.',
 	'config-advanced-settings' => 'Konfiguracja zaawansowana',
 	'config-cache-options' => 'Ustawienia buforowania obiektów',
+	'config-cache-help' => 'Buforowanie obiekto jest używane aby przyspieszyć MediaWiki przez trzymanie w pamięci podręcznej często używanych danych.
+Średnie oraz duże witryny są wysoce zachęcane by je włączyć, a małe witryny także dostrzegą korzyści.',
 	'config-cache-none' => 'Brak buforowania (wszystkie funkcje będą działać, ale mogą wystąpić kłopoty z wydajnością na dużych witrynach wiki)',
 	'config-cache-accel' => 'Buforowania obiektów PHP (APC, XCache lub WinCache)',
 	'config-cache-memcached' => 'Użyj Memcached (wymaga dodatkowej instalacji i konfiguracji)',
@@ -13139,21 +13583,42 @@ Wpisz nazwę licencji ręcznie.',
 Adresy powinny być umieszczane po jednym w linii i określać również wykorzystywany port. Na przykład:
  127.0.0.1:11211
  192.168.1.25:1234',
+	'config-memcache-needservers' => 'Został wybrany Memcached jako typ pamięci podręcznej, ale nie określono żadnych serwerów.',
+	'config-memcache-badip' => 'Wprowadzono nieprawidłowy adres IP dla Memcached:  $1.',
+	'config-memcache-noport' => 'Nie określono portu dla serwera Memcached:  $1.
+Jeśli nie znasz numeru portu, wartością domyślną jest 11211.',
+	'config-memcache-badport' => 'Numery portu Memcached powinny zawierać się pomiędzy $1 i $2.',
 	'config-extensions' => 'Rozszerzenia',
+	'config-extensions-help' => 'Rozszerzenia wyżej wymienione zostały wykryte w katalogu <code>./extensions</code>.
+
+Mogą one wymagać dodatkowych czynności konfiguracyjnych, ale można je teraz włączyć',
 	'config-install-alreadydone' => "'''Uwaga''' – wydaje się, że MediaWiki jest już zainstalowane, a obecnie próbujesz zainstalować je ponownie.
 Przejdź do następnej strony.",
+	'config-install-begin' => 'Po naciśnięciu "{{int:config-continue}}", rozpocznie się instalacji MediaWiki.
+Jeśli nadal chcesz dokonać zmian, naciśnij wstecz.',
 	'config-install-step-done' => 'gotowe',
 	'config-install-step-failed' => 'nieudane',
 	'config-install-extensions' => 'Włącznie z rozszerzeniami',
 	'config-install-database' => 'Konfigurowanie bazy danych',
+	'config-install-schema' => 'Tworzenie schematu',
+	'config-install-pg-schema-not-exist' => 'Schemat PostgreSQL nie istnieje.',
 	'config-install-pg-schema-failed' => 'Utworzenie tabel nie powiodło się.
 Upewnij się, że użytkownik „$1” może zapisywać do schematu „$2”.',
 	'config-install-pg-commit' => 'Zatwierdzanie zmian',
+	'config-install-pg-plpgsql' => 'Sprawdzanie języka PL/pgSQL',
 	'config-pg-no-plpgsql' => 'Musisz zainstalować język PL/pgSQL w bazie danych $1',
+	'config-pg-no-create-privs' => 'Konto, które zostało określone dla instalacji nie ma wystarczających uprawnień, aby utworzyć konto.',
+	'config-pg-not-in-role' => 'Konto określone dla użytkownika sieci już istnieje.
+Konto określone dla instalacji nie ma uprawnień administratora ani nie jest przynależy do roli użytkownika sieci web, więc nie można utworzyć obiektów stanowiących własność użytkownika sieci.
+
+MediaWiki wymaga obecnie, by tabele były własnością konta zwykłego użytkownika. Podaj inną nazwę konta użytkownika, lub kliknij przycisk "Wstecz" i podaj nazwę konta użytkownika instalatora, które posiada odpowiednie uprawnienia.',
 	'config-install-user' => 'Tworzenie użytkownika bazy danych',
 	'config-install-user-alreadyexists' => 'Konto użytkownika „$1“ już istnieje',
+	'config-install-user-create-failed' => 'Tworzenie użytkownika "$1" nie powiodło się: $2',
 	'config-install-user-grant-failed' => 'Przyznanie uprawnień użytkownikowi „$1” nie powiodło się – $2',
 	'config-install-user-missing' => 'Nie istnieje konto użytkownika „$1“.',
+	'config-install-user-missing-create' => 'Określony użytkownik "$1" nie istnieje.
+Kliknij poniższe pole wyboru „utwórz konto" jeśli chcesz go utworzyć.',
 	'config-install-tables' => 'Tworzenie tabel',
 	'config-install-tables-exist' => "'''Uwaga''' – wygląda na to, że tabele MediaWiki już istnieją.
 Pomijam tworzenie tabel.",
@@ -13162,14 +13627,32 @@ Pomijam tworzenie tabel.",
 	'config-install-interwiki-list' => 'Nie można odnaleźć pliku <code>interwiki.list</code>.',
 	'config-install-interwiki-exists' => "'''Uwaga''' – wygląda na to, że tabela interwiki ma już jakieś wpisy.
 Tworzenie domyślnej listy pominięto.",
+	'config-install-stats' => 'Inicjowanie statystyki',
 	'config-install-keys' => 'Generowanie tajnych kluczy',
+	'config-insecure-keys' => "'''Ostrzeżenie:''' {{PLURAL:$2|Klucz bezpieczeństwa|Klucze bezpieczeństwa|Klucze bezpieczeństwa}} ($1) utworzone podczas instalacji {{PLURAL:$2|utworzony podczas instalacji nie jest|utworzone podczas instalacji nie są|utworzone podczas instalacji nie są}} w pełni bezpieczne. Być może warto wygenerować {{PLURAL:$2|własny klucz|własne klucze|własne klucze}}.",
 	'config-install-sysop' => 'Tworzenie konta administratora',
 	'config-install-subscribe-fail' => 'Nie można zapisać na listę „mediawiki-announce“ – $1',
+	'config-install-subscribe-notpossible' => 'cURL nie jest zainstalowany, więc allow_url_fopen nie jest dostępne.',
 	'config-install-mainpage' => 'Tworzenie strony głównej z domyślną zawartością',
 	'config-install-extension-tables' => 'Tworzenie tabel dla aktywnych rozszerzeń',
 	'config-install-mainpage-failed' => 'Nie udało się wstawić strony głównej – $1',
+	'config-install-done' => "'''Gratulacje!'''
+Udało ci się zainstalować MediaWiki.
+
+Instalator wygenerował plik konfiguracyjny <code>LocalSettings.php</code>.
+
+Musisz go pobrać i umieścić go w korzeniu twojej instalacji wiki (tym samym katalogu co index.php). Pobieranie powinno zacząć się automatycznie.
+
+Jeżeli pobieranie nie zostało zaproponowane, lub jeśli użytkownik anulował je, można ponownie uruchomić pobranie klikając poniższe łącze:
+
+$3
+
+'''Uwaga''': Jeśli tego nie zrobisz tego teraz, wygenerowany plik konfiguracyjny nie będzie już dostępny po zakończeniu instalacji.
+
+Po załadowaniu pliku konfiguracyjnego możesz '''[ $2  wejść na wiki]'''.",
 	'config-download-localsettings' => 'Pobierz LocalSettings.php',
 	'config-help' => 'pomoc',
+	'config-nofile' => 'Nie udało się odnaleźć pliku "$1". Czy nie został usunięty?',
 	'mainpagetext' => "'''Instalacja MediaWiki powiodła się.'''",
 	'mainpagedocfooter' => 'Zobacz [//meta.wikimedia.org/wiki/Help:Contents przewodnik użytkownika] w celu uzyskania informacji o działaniu oprogramowania wiki.
 
@@ -14403,6 +14886,7 @@ $messages['roa-tara'] = array(
  * @author Adata80
  * @author DCamer
  * @author Eleferen
+ * @author Express2000
  * @author Kaganer
  * @author Krinkle
  * @author Lockal
@@ -14501,6 +14985,7 @@ MediaWiki распространяется в надежде, что она бу
 Если вы используете виртуальный хостинг, обратитесь к своему хостинг-провайдеру с просьбой установить подходящий драйвер базы данных.
 Если вы скомпилировали PHP сами, сконфигурируйте его снова с включенным клиентом базы данных, например, с помощью <code>./configure --with-mysql</code>.
 Если вы установили PHP из пакетов Debian или Ubuntu, то вам также необходимо установить модуль php5-mysql.',
+	'config-outdated-sqlite' => "'''Предупреждение''': у Вас установлен SQLite  $1, версия которого ниже требуемой $2 . SQLite будет недоступен.",
 	'config-no-fts3' => "'''Внимание''': SQLite собран без модуля [//sqlite.org/fts3.html FTS3] — поиск не будет работать для этой базы данных.",
 	'config-register-globals' => "'''Внимание: PHP-опция <code>[http://php.net/register_globals register_globals]</code> включена.'''
 '''Отключите её, если это возможно.'''
@@ -14546,9 +15031,13 @@ MediaWiki требует поддержки UTF-8 для корректной р
 Возможность использования миниатюр изображений будет отключена.',
 	'config-no-uri' => "'''Ошибка:''' Не могу определить текущий URI.
 Установка прервана.",
-	'config-using-server' => 'Будет использовано имя сервера «<nowiki>$1</nowiki>».',
+	'config-no-cli-uri' => "'''Предупреждение''': нет задан параметр --scriptpath, используется по умолчанию: <code>$1</code> .",
+	'config-using-server' => 'Используется имя сервера «<nowiki>$1</nowiki>».',
+	'config-using-uri' => 'Используется имя сервера "<nowiki>$1$2</nowiki>".',
 	'config-uploads-not-safe' => "'''Внимание:''' директория, используемая по умолчанию для загрузок (<code>$1</code>) уязвима к выполнению произвольных скриптов.
 Хотя MediaWiki проверяет все загружаемые файлы на наличие угроз, настоятельно рекомендуется [//www.mediawiki.org/wiki/Manual:Security#Upload_security закрыть данную уязвимость] перед включением загрузки файлов.",
+	'config-no-cli-uploads-check' => "'''Предупреждение:''' каталог для загрузки по умолчанию ( <code>$1</code> ) не проверялся на уязвимости
+ на выполнение произвольного сценария во время установки CLI.",
 	'config-brokenlibxml' => 'В вашей системе имеется сочетание версий PHP и libxml2, могущее привести к скрытым повреждениям данных в MediaWiki и других веб-приложениях.
 Обновите PHP до версии 5.2.9 или старше и libxml2 до 2.7.3 или старше ([//bugs.php.net/bug.php?id=45996 сведения об ошибке]).
 Установка прервана.',
@@ -14936,6 +15425,7 @@ $3
 По окончании действий, описанных выше, вы сможете '''[$2 войти в вашу вики]'''.",
 	'config-download-localsettings' => 'Загрузить LocalSettings.php',
 	'config-help' => 'справка',
+	'config-nofile' => 'Файл "$1" не удается найти. Он был удален?',
 	'mainpagetext' => "'''Вики-движок «MediaWiki» успешно установлен.'''",
 	'mainpagedocfooter' => 'Информацию по работе с этой вики можно найти в [//meta.wikimedia.org/wiki/%D0%9F%D0%BE%D0%BC%D0%BE%D1%89%D1%8C:%D0%A1%D0%BE%D0%B4%D0%B5%D1%80%D0%B6%D0%B0%D0%BD%D0%B8%D0%B5 справочном руководстве].
 
@@ -16271,6 +16761,7 @@ $messages['yi'] = array(
 	'config-back' => '→ צוריק',
 	'config-page-language' => 'שפראַך',
 	'config-admin-name' => 'אײַער נאָמען:',
+	'config-help' => 'הילף',
 	'mainpagetext' => "'''מעדיעוויקי אינסטאלירט מיט דערפאלג.'''",
 	'mainpagedocfooter' => "גיט זיך אן עצה מיט [//meta.wikimedia.org/wiki/Help:Contents באניצער'ס וועגווײַזער] פֿאר אינפֿארמאציע וויאזוי זיך באנוצן מיט וויקי ווייכוואַרג.
 

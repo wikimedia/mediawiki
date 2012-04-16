@@ -77,6 +77,7 @@ class ParserCache {
 	 *
 	 * @param $article Article
 	 * @param $popts ParserOptions
+	 * @return string
 	 */
 	function getETag( $article, $popts ) {
 		return 'W/"' . $this->getParserOutputKey( $article,
@@ -88,7 +89,7 @@ class ParserCache {
 	 * Retrieve the ParserOutput from ParserCache, even if it's outdated.
 	 * @param $article Article
 	 * @param $popts ParserOptions
-	 * @return ParserOutput|false
+	 * @return ParserOutput|bool False on failure
 	 */
 	public function getDirty( $article, $popts ) {
 		$value = $this->get( $article, $popts, true );
@@ -100,8 +101,11 @@ class ParserCache {
 	 * It would be preferable to have this code in get()
 	 * instead of having Article looking in our internals.
 	 *
+	 * @todo Document parameter $useOutdated
+	 *
 	 * @param $article Article
 	 * @param $popts ParserOptions
+	 * @return bool|mixed|string
 	 */
 	public function getKey( $article, $popts, $useOutdated = true ) {
 		global $wgCacheEpoch;
@@ -141,7 +145,7 @@ class ParserCache {
 	 * @param $popts ParserOptions
 	 * @param $useOutdated
 	 *
-	 * @return ParserOutput|false
+	 * @return ParserOutput|bool False on failure
 	 */
 	public function get( $article, $popts, $useOutdated = false ) {
 		global $wgCacheEpoch;

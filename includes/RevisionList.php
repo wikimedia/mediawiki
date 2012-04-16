@@ -31,6 +31,7 @@ abstract class RevisionListBase extends ContextSource {
 	/**
 	 * Get the internal type name of this list. Equal to the table name.
 	 * Override this function.
+	 * @return null
 	 */
 	public function getType() {
 		return null;
@@ -80,6 +81,7 @@ abstract class RevisionListBase extends ContextSource {
 
 	/**
 	 * Get the number of items in the list.
+	 * @return int
 	 */
 	public function length() {
 		if( !$this->res ) {
@@ -124,6 +126,7 @@ abstract class RevisionItemBase {
 	/**
 	 * Get the DB field name associated with the ID list.
 	 * Override this function.
+	 * @return null
 	 */
 	public function getIdField() {
 		return null;
@@ -132,6 +135,7 @@ abstract class RevisionItemBase {
 	/**
 	 * Get the DB field name storing timestamps.
 	 * Override this function.
+	 * @return bool
 	 */
 	public function getTimestampField() {
 		return false;
@@ -140,6 +144,7 @@ abstract class RevisionItemBase {
 	/**
 	 * Get the DB field name storing user ids.
 	 * Override this function.
+	 * @return bool
 	 */
 	public function getAuthorIdField() {
 		return false;
@@ -148,6 +153,7 @@ abstract class RevisionItemBase {
 	/**
 	 * Get the DB field name storing user names.
 	 * Override this function.
+	 * @return bool
 	 */
 	public function getAuthorNameField() {
 		return false;
@@ -155,6 +161,7 @@ abstract class RevisionItemBase {
 
 	/**
 	 * Get the ID, as it would appear in the ids URL parameter
+	 * @return
 	 */
 	public function getId() {
 		$field = $this->getIdField();
@@ -163,6 +170,7 @@ abstract class RevisionItemBase {
 
 	/**
 	 * Get the date, formatted in user's languae
+	 * @return String
 	 */
 	public function formatDate() {
 		return $this->list->getLanguage()->userDate( $this->getTimestamp(),
@@ -171,6 +179,7 @@ abstract class RevisionItemBase {
 
 	/**
 	 * Get the time, formatted in user's languae
+	 * @return String
 	 */
 	public function formatTime() {
 		return $this->list->getLanguage()->userTime( $this->getTimestamp(),
@@ -179,6 +188,7 @@ abstract class RevisionItemBase {
 
 	/**
 	 * Get the timestamp in MW 14-char form
+	 * @return Mixed
 	 */
 	public function getTimestamp() {
 		$field = $this->getTimestampField();
@@ -187,6 +197,7 @@ abstract class RevisionItemBase {
 
 	/**
 	 * Get the author user ID
+	 * @return int
 	 */
 	public function getAuthorId() {
 		$field = $this->getAuthorIdField();
@@ -195,6 +206,7 @@ abstract class RevisionItemBase {
 
 	/**
 	 * Get the author user name
+	 * @return string
 	 */
 	public function getAuthorName() {
 		$field = $this->getAuthorNameField();
@@ -258,7 +270,7 @@ class RevisionItem extends RevisionItemBase {
 	public function __construct( $list, $row ) {
 		parent::__construct( $list, $row );
 		$this->revision = new Revision( $row );
-		$this->context = $list->context;
+		$this->context = $list->getContext();
 	}
 
 	public function getIdField() {
@@ -292,6 +304,7 @@ class RevisionItem extends RevisionItemBase {
 	/**
 	 * Get the HTML link to the revision text.
 	 * Overridden by RevDel_ArchiveItem.
+	 * @return string
 	 */
 	protected function getRevisionLink() {
 		$date = $this->list->getLanguage()->timeanddate( $this->revision->getTimestamp(), true );
@@ -312,6 +325,7 @@ class RevisionItem extends RevisionItemBase {
 	/**
 	 * Get the HTML link to the diff.
 	 * Overridden by RevDel_ArchiveItem
+	 * @return string
 	 */
 	protected function getDiffLink() {
 		if ( $this->isDeleted() && !$this->canViewContent() ) {

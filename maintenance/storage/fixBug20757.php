@@ -213,7 +213,7 @@ class FixBug20757 extends Maintenance {
 
 				if ( !$dryRun ) {
 					// Reset the text row to point to the original copy
-					$dbw->begin();
+					$dbw->begin( __METHOD__ );
 					$dbw->update(
 						'text',
 						// SET
@@ -241,7 +241,7 @@ class FixBug20757 extends Maintenance {
 						),
 						__METHOD__
 					);
-					$dbw->commit();
+					$dbw->commit( __METHOD__ );
 					$this->waitForSlaves();
 				}
 

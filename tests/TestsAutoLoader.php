@@ -9,6 +9,7 @@ $wgAutoloadClasses += array(
 	'MediaWikiTestCase' => "$testFolder/phpunit/MediaWikiTestCase.php",
 	'MediaWikiPHPUnitCommand' => "$testFolder/phpunit/MediaWikiPHPUnitCommand.php",
 	'MediaWikiLangTestCase' => "$testFolder/phpunit/MediaWikiLangTestCase.php",
+	'NewParserTest' => "$testFolder/phpunit/includes/parser/NewParserTest.php",
 
 	//includes
 	'BlockTest' => "$testFolder/phpunit/includes/BlockTest.php",
@@ -23,6 +24,9 @@ $wgAutoloadClasses += array(
 
 	//Selenium
 	'SeleniumTestConstants' => "$testFolder/selenium/SeleniumTestConstants.php",
+
+	//maintenance
+	'DumpTestCase' => "$testFolder/phpunit/maintenance/DumpTestCase.php",
 
 	//Generic providers
 	'MediaWikiProvide' => "$testFolder/phpunit/includes/Providers.php",

@@ -258,13 +258,32 @@
 		} );
 
 		describe( "should handle protocol-relative URLs", function() { 
+			var uriRel = mw.UriRelative( 'glork://en.wiki.local/foo.php' );
 
 			it ( "should create protocol-relative URLs with same protocol as document", function() {
-				var uriRel = mw.UriRelative( 'glork://en.wiki.local/foo.php' );
 				var uri = new uriRel( '//en.wiki.local/w/api.php' );
 				expect( uri.protocol ).toEqual( 'glork' );
 			} );
 
+			it( "should handle absolute paths by supplying protocol and host from document in loose mode", function() {
+				var uri = new uriRel( '/foo.com' );
+				expect( uri.toString() ).toEqual( 'glork://en.wiki.local/foo.com' );
+			} );
+
+			it( "should handle absolute paths by supplying host from document in loose mode", function() {
+				var uri = new uriRel( 'http:/foo.com' );
+				expect( uri.toString() ).toEqual( 'http://en.wiki.local/foo.com' );
+			} );
+
+			it( "should handle absolute paths by supplying protocol and host from document in strict mode", function() {
+				var uri = new uriRel( '/foo.com', true );
+				expect( uri.toString() ).toEqual( 'glork://en.wiki.local/foo.com' );
+			} );
+
+			it( "should handle absolute paths by supplying host from document in strict mode", function() {
+				var uri = new uriRel( 'http:/foo.com', true );
+				expect( uri.toString() ).toEqual( 'http://en.wiki.local/foo.com' );
+			} );
 		} );
 
 		it( "should throw error on no arguments to constructor", function() {
@@ -285,13 +304,7 @@
 			} ).toThrow( "Bad constructor arguments" );
 		} );
 
-		it( "should throw error on improper URI as argument to constructor", function() {
-			expect( function() { 
-				var uri = new mw.Uri( 'http:/foo.com' );
-			} ).toThrow( "Bad constructor arguments" );
-		} );
-
-		it( "should throw error on URI without protocol or // in strict mode", function() {
+		it( "should throw error on URI without protocol or // or leading / in strict mode", function() {
 			expect( function() { 
 				var uri = new mw.Uri( 'foo.com/bar/baz', true );
 			} ).toThrow( "Bad constructor arguments" );

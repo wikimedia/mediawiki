@@ -1,5 +1,7 @@
 .svn
 *~
+*.kate-swp
+.*.swp
 .classpath
 .idea
 .metadata*
@@ -17,5 +19,12 @@ static*
 tags
 cache/*.cdb
 images/[0-9a-f]
+images/archive
+images/deleted
 images/temp
 images/thumb
+images/timeline
+images/tmp
+maintenance/dev/data
+maintenance/.mweval_history
+maintenance/.mwsql_history

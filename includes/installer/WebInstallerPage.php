@@ -36,6 +36,7 @@ abstract class WebInstallerPage {
 	 * Is this a slow-running page in the installer? If so, WebInstaller will
 	 * set_time_limit(0) before calling execute(). Right now this only applies
 	 * to Install and Upgrade pages
+	 * @return bool
 	 */
 	public function isSlow() {
 		return false;
@@ -161,7 +162,7 @@ class WebInstaller_Language extends WebInstallerPage {
 		$userLang = $r->getVal( 'uselang' );
 		$contLang = $r->getVal( 'ContLang' );
 
-		$languages = Language::getLanguageNames();
+		$languages = Language::fetchLanguageNames();
 		$lifetime = intval( ini_get( 'session.gc_maxlifetime' ) );
 		if ( !$lifetime ) {
 			$lifetime = 1440; // PHP default
@@ -232,7 +233,7 @@ class WebInstaller_Language extends WebInstallerPage {
 		$s .= Html::openElement( 'select', array( 'id' => $name, 'name' => $name,
 				'tabindex' => $this->parent->nextTabIndex() ) ) . "\n";
 
-		$languages = Language::getLanguageNames();
+		$languages = Language::fetchLanguageNames();
 		ksort( $languages );
 		foreach ( $languages as $code => $lang ) {
 			if ( isset( $wgDummyLanguageCodes[$code] ) ) continue;
@@ -341,7 +342,7 @@ class WebInstaller_ExistingWiki extends WebInstallerPage {
 
 	/**
 	 * Initiate an upgrade of the existing database
-	 * @param $vars Variables from LocalSettings.php and AdminSettings.php
+	 * @param $vars array Variables from LocalSettings.php and AdminSettings.php
 	 * @return Status
 	 */
 	protected function handleExistingUpgrade( $vars ) {
@@ -1250,7 +1251,11 @@ abstract class WebInstaller_Document extends WebInstallerPage {
 	}
 
 	public function getFileContents() {
-		return file_get_contents( dirname( __FILE__ ) . '/../../' . $this->getFileName() );
+		$file = dirname( __FILE__ ) . '/../../' . $this->getFileName();
+		if( ! file_exists( $file ) ) {
+			return wfMsgNoTrans( 'config-nofile', $file );
+		}
+		return file_get_contents( $file );
 	}
 
 }
@@ -1260,7 +1265,15 @@ class WebInstaller_Readme extends WebInstaller_Document {
 }
 
 class WebInstaller_ReleaseNotes extends WebInstaller_Document {
-	protected function getFileName() { return 'RELEASE-NOTES'; }
+	protected function getFileName() {
+		global $wgVersion;
+
+		if(! preg_match( '/^(\d+)\.(\d+).*/i', $wgVersion, $result ) ) {
+			throw new MWException('Variable $wgVersion has an invalid value.');
+		}
+
+		return 'RELEASE-NOTES-' . $result[1] . '.' . $result[2];
+	}
 }
 
 class WebInstaller_UpgradeDoc extends WebInstaller_Document {

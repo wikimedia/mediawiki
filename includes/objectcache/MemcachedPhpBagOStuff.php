@@ -153,6 +153,7 @@ class MemcachedPhpBagOStuff extends BagOStuff {
 	 * the other control characters for compatibility with libmemcached 
 	 * verify_key. We leave other punctuation alone, to maximise backwards
 	 * compatibility.
+	 * @return string
 	 */
 	public function encodeKey( $key ) {
 		return preg_replace_callback( '/[\x00-\x20\x25\x7f]+/', 

@@ -30,13 +30,14 @@
  *	                         the message.
  *	'label'               -- alternatively, a raw text message. Overridden by
  *	                         label-message
+ *	'help'                -- message text for a message to use as a help text.
  *	'help-message'        -- message key for a message to use as a help text.
  *	                         can be an array of msg key and then parameters to
  *	                         the message.
- *	                         Overwrites 'help-messages'.
+ *	                         Overwrites 'help-messages' and 'help'.
  *	'help-messages'       -- array of message key. As above, each item can
  *	                         be an array of msg key and then parameters.
- *	                         Overwrites 'help-message'.
+ *	                         Overwrites 'help'.
  *	'required'            -- passed through to the object, indicating that it
  *	                         is a required field.
  *	'size'                -- the length of text fields
@@ -111,7 +112,7 @@ class HTMLForm extends ContextSource {
 	/**
 	 * Form action URL. false means we will use the URL to set Title
 	 * @since 1.19
-	 * @var false|string
+	 * @var bool|string
 	 */
 	protected $mAction = false;
 
@@ -217,6 +218,10 @@ class HTMLForm extends ContextSource {
 
 		$descriptor['fieldname'] = $fieldname;
 
+		# TODO
+		# This will throw a fatal error whenever someone try to use
+		# 'class' to feed a CSS class instead of 'cssclass'. Would be
+		# great to avoid the fatal error and show a nice error.
 		$obj = new $class( $descriptor );
 
 		return $obj;
@@ -266,7 +271,7 @@ class HTMLForm extends ContextSource {
 
 	/**
 	 * The here's-one-I-made-earlier option: do the submission if
-	 * posted, or display the form with or without funky valiation
+	 * posted, or display the form with or without funky validation
 	 * errors
 	 * @return Bool or Status whether submission was successful.
 	 */
@@ -274,7 +279,7 @@ class HTMLForm extends ContextSource {
 		$this->prepareForm();
 
 		$result = $this->tryAuthorizedSubmit();
-		if ( $result === true || ( $result instanceof Status && $result->isGood() ) ){
+		if ( $result === true || ( $result instanceof Status && $result->isGood() ) ) {
 			return $result;
 		}
 
@@ -511,7 +516,7 @@ class HTMLForm extends ContextSource {
 	 * @return String HTML.
 	 */
 	function getHiddenFields() {
-		global $wgUsePathInfo;
+		global $wgArticlePath;
 
 		$html = '';
 		if( $this->getMethod() == 'post' ){
@@ -519,7 +524,7 @@ class HTMLForm extends ContextSource {
 			$html .= Html::hidden( 'title', $this->getTitle()->getPrefixedText() ) . "\n";
 		}
 
-		if ( !$wgUsePathInfo && $this->getMethod() == 'get' ) {
+		if ( strpos( $wgArticlePath, '?' ) !== false && $this->getMethod() == 'get' ) {
 			$html .= Html::hidden( 'title', $this->getTitle()->getPrefixedText() ) . "\n";
 		}
 
@@ -659,12 +664,12 @@ class HTMLForm extends ContextSource {
 	 * @param $msg String message key
 	 */
 	public function setSubmitTextMsg( $msg ) {
-		return $this->setSubmitText( $this->msg( $msg )->escaped() );
+		return $this->setSubmitText( $this->msg( $msg )->text() );
 	}
 
 	/**
 	 * Get the text for the submit button, either customised or a default.
-	 * @return unknown_type
+	 * @return string
 	 */
 	function getSubmitText() {
 		return $this->mSubmitText
@@ -742,11 +747,11 @@ class HTMLForm extends ContextSource {
 	 * Set the method used to submit the form
 	 * @param $method String
 	 */
-	public function setMethod( $method='post' ){
+	public function setMethod( $method = 'post' ) {
 		$this->mMethod = $method;
 	}
 
-	public function getMethod(){
+	public function getMethod() {
 		return $this->mMethod;
 	}
 
@@ -852,7 +857,7 @@ class HTMLForm extends ContextSource {
 	 * to the form as a whole, after it's submitted but before it's
 	 * processed.
 	 * @param $data
-	 * @return unknown_type
+	 * @return
 	 */
 	function filterDataForSubmit( $data ) {
 		return $data;
@@ -874,7 +879,7 @@ class HTMLForm extends ContextSource {
 	 *
 	 * @since 1.19
 	 *
-	 * @param string|false $action
+	 * @param string|bool $action
 	 */
 	public function setAction( $action ) {
 		$this->mAction = $action;
@@ -1082,27 +1087,29 @@ abstract class HTMLFormField {
 		$helptext = null;
 
 		if ( isset( $this->mParams['help-message'] ) ) {
-			$msg = wfMessage( $this->mParams['help-message'] );
-			if ( $msg->exists() ) {
-				$helptext = $msg->parse();
-			}
-		} elseif ( isset( $this->mParams['help-messages'] ) ) {
-			# help-message can be passed a message key (string) or an array containing
-			# a message key and additional parameters. This makes it impossible to pass
-			# an array of message key
+			$this->mParams['help-messages'] = array( $this->mParams['help-message'] );
+		}
+
+		if ( isset( $this->mParams['help-messages'] ) ) {
 			foreach( $this->mParams['help-messages'] as $name ) {
-				$msg = wfMessage( $name );
+				$helpMessage = (array)$name;
+				$msg = wfMessage( array_shift( $helpMessage ), $helpMessage );
+
 				if( $msg->exists() ) {
-					$helptext .= $msg->parse(); // append message
+					$helptext .= $msg->parse(); // Append message
 				}
 			}
-		} elseif ( isset( $this->mParams['help'] ) ) {
+		}
+		elseif ( isset( $this->mParams['help'] ) ) {
 			$helptext = $this->mParams['help'];
 		}
 
 		if ( !is_null( $helptext ) ) {
-			$row = Html::rawElement( 'td', array( 'colspan' => 2, 'class' => 'htmlform-tip' ),
-				$helptext );
+			$row = Html::rawElement(
+				'td',
+				array( 'colspan' => 2, 'class' => 'htmlform-tip' ),
+				$helptext
+			);
 			$row = Html::rawElement( 'tr', array(), $row );
 			$html .= "$row\n";
 		}

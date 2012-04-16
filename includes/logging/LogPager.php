@@ -131,6 +131,7 @@ class LogPager extends ReverseChronologicalPager {
 	 * Set the log reader to return only entries by the given user.
 	 *
 	 * @param $name String: (In)valid user name
+	 * @return bool
 	 */
 	private function limitPerformer( $name ) {
 		if( $name == '' ) {
@@ -166,6 +167,7 @@ class LogPager extends ReverseChronologicalPager {
 	 *
 	 * @param $page String or Title object: Title name
 	 * @param $pattern String
+	 * @return bool
 	 */
 	private function limitTitle( $page, $pattern ) {
 		global $wgMiserMode;

@@ -296,13 +296,14 @@ class ApiQueryWatchlist extends ApiQueryGeneratorBase {
 			$vals['logid'] = intval( $row->rc_logid );
 			$vals['logtype'] = $row->rc_log_type;
 			$vals['logaction'] = $row->rc_log_action;
+			$logEntry = DatabaseLogEntry::newFromRow( (array)$row );
 			ApiQueryLogEvents::addLogParams(
 				$this->getResult(),
 				$vals,
-				$row->rc_params,
-				$row->rc_log_type,
-				$row->rc_log_action,
-				$row->rc_timestamp
+				$logEntry->getParameters(),
+				$logEntry->getType(),
+				$logEntry->getSubtype(),
+				$logEntry->getTimestamp()
 			);
 		}
 

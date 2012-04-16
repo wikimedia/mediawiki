@@ -2,7 +2,7 @@
 /**
  * Contain a class for special pages
  * @file
- * @ingroup SpecialPages
+ * @ingroup SpecialPage
  */
 
 /**
@@ -259,6 +259,7 @@ abstract class QueryPage extends SpecialPage {
 	 * Setting this to return true will ensure formatResult() is called
 	 * one more time to make sure that the very last result is formatted
 	 * as well.
+	 * @return bool
 	 */
 	function tryLastResult() {
 		return false;
@@ -269,6 +270,7 @@ abstract class QueryPage extends SpecialPage {
 	 *
 	 * @param $limit Integer: limit for SQL statement
 	 * @param $ignoreErrors Boolean: whether to ignore database errors
+	 * @return bool|int
 	 */
 	function recache( $limit, $ignoreErrors = true ) {
 		if ( !$this->isCacheable() ) {
@@ -293,7 +295,7 @@ abstract class QueryPage extends SpecialPage {
 		$res = $this->reallyDoQuery( $limit, false );
 		$num = false;
 		if ( $res ) {
-			$num = $dbr->numRows( $res );
+			$num = $res->numRows();
 			# Fetch results
 			$vals = array();
 			while ( $res && $row = $dbr->fetchObject( $res ) ) {
@@ -382,6 +384,7 @@ abstract class QueryPage extends SpecialPage {
 
 	/**
 	 * Somewhat deprecated, you probably want to be using execute()
+	 * @return ResultWrapper
 	 */
 	function doQuery( $offset = false, $limit = false ) {
 		if ( $this->isCached() && $this->isCacheable() ) {
@@ -435,6 +438,7 @@ abstract class QueryPage extends SpecialPage {
 	/**
 	 * This is the actual workhorse. It does everything needed to make a
 	 * real, honest-to-gosh query page.
+	 * @return int
 	 */
 	function execute( $par ) {
 		global $wgQueryCacheLimit, $wgDisableQueryPageUpdate;
@@ -621,6 +625,7 @@ abstract class QueryPage extends SpecialPage {
 
 	/**
 	 * Similar to above, but packaging in a syndicated feed instead of a web page
+	 * @return bool
 	 */
 	function doFeed( $class = '', $limit = 50 ) {
 		global $wgFeed, $wgFeedClasses;
@@ -660,6 +665,7 @@ abstract class QueryPage extends SpecialPage {
 	/**
 	 * Override for custom handling. If the titles/links are ok, just do
 	 * feedItemDesc()
+	 * @return FeedItem|null
 	 */
 	function feedResult( $row ) {
 		if ( !isset( $row->title ) ) {
@@ -727,6 +733,10 @@ abstract class WantedQueryPage extends QueryPage {
 	 * Cache page existence for performance
 	 */
 	function preprocessResults( $db, $res ) {
+		if ( !$res->numRows() ) {
+			return;
+		}
+
 		$batch = new LinkBatch;
 		foreach ( $res as $row ) {
 			$batch->add( $row->namespace, $row->title );
@@ -734,9 +744,7 @@ abstract class WantedQueryPage extends QueryPage {
 		$batch->execute();
 
 		// Back to start for display
-		if ( $db->numRows( $res ) > 0 )
-			// If there are no rows we get an error seeking.
-			$db->dataSeek( $res, 0 );
+		$res->seek( 0 );
 	}
 
 	/**
@@ -745,6 +753,7 @@ abstract class WantedQueryPage extends QueryPage {
 	 * kluge for Special:WantedFiles, which may contain false
 	 * positives for files that exist e.g. in a shared repo (bug
 	 * 6220).
+	 * @return bool
 	 */
 	function forceExistenceCheck() {
 		return false;

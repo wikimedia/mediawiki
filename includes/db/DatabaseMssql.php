@@ -46,6 +46,7 @@ class DatabaseMssql extends DatabaseBase {
 
 	/**
 	 * Usually aborts on failure
+	 * @return bool|DatabaseBase|null
 	 */
 	function open( $server, $user, $password, $dbName ) {
 		# Test for driver support, to avoid suppressed fatal error
@@ -107,14 +108,10 @@ class DatabaseMssql extends DatabaseBase {
 	/**
 	 * Closes a database connection, if it is open
 	 * Returns success, true if already closed
+	 * @return bool
 	 */
-	function close() {
-		$this->mOpened = false;
-		if ( $this->mConn ) {
-			return sqlsrv_close( $this->mConn );
-		} else {
-			return true;
-		}
+	protected function closeConnection() {
+		return sqlsrv_close( $this->mConn );
 	}
 
 	protected function doQuery( $sql ) {
@@ -226,6 +223,7 @@ class DatabaseMssql extends DatabaseBase {
 
 	/**
 	 * This must be called after nextSequenceVal
+	 * @return null
 	 */
 	function insertId() {
 		return $this->mInsertId;
@@ -310,6 +308,7 @@ class DatabaseMssql extends DatabaseBase {
 	 * This is not necessarily an accurate estimate, so use sparingly
 	 * Returns -1 if count cannot be found
 	 * Takes same arguments as Database::select()
+	 * @return int
 	 */
 	function estimateRowCount( $table, $vars = '*', $conds = '', $fname = 'DatabaseMssql::estimateRowCount', $options = array() ) {
 		$options['EXPLAIN'] = true;// http://msdn2.microsoft.com/en-us/library/aa259203.aspx
@@ -326,6 +325,7 @@ class DatabaseMssql extends DatabaseBase {
 	/**
 	 * Returns information about an index
 	 * If errors are explicitly ignored, returns NULL on failure
+	 * @return array|bool|null
 	 */
 	function indexInfo( $table, $index, $fname = 'DatabaseMssql::indexExists' ) {
 		# This does not return the same info as MYSQL would, but that's OK because MediaWiki never uses the
@@ -365,6 +365,7 @@ class DatabaseMssql extends DatabaseBase {
 	 *
 	 * Usually aborts on failure
 	 * If errors are explicitly ignored, returns success
+	 * @return bool
 	 */
 	function insert( $table, $arrToInsert, $fname = 'DatabaseMssql::insert', $options = array() ) {
 		# No rows to insert, easy just return now
@@ -494,6 +495,7 @@ class DatabaseMssql extends DatabaseBase {
 	 * Source items may be literals rather than field names, but strings should be quoted with Database::addQuotes()
 	 * $conds may be "*" to copy the whole table
 	 * srcTable may be an array of tables.
+	 * @return null|\ResultWrapper
 	 */
 	function insertSelect( $destTable, $srcTable, $varMap, $conds, $fname = 'DatabaseMssql::insertSelect',
 		$insertOptions = array(), $selectOptions = array() ) {
@@ -511,6 +513,7 @@ class DatabaseMssql extends DatabaseBase {
 
 	/**
 	 * Return the next in a sequence, save the value for retrieval via insertId()
+	 * @return
 	 */
 	function nextSequenceValue( $seqName ) {
 		if ( !$this->tableExists( 'sequence_' . $seqName ) ) {
@@ -527,6 +530,7 @@ class DatabaseMssql extends DatabaseBase {
 
 	/**
 	 * Return the current value of a sequence. Assumes it has ben nextval'ed in this session.
+	 * @return
 	 */
 	function currentSequenceValue( $seqName ) {
 		$ret = sqlsrv_query( $this->mConn, "SELECT TOP 1 id FROM [sequence_$seqName] ORDER BY id DESC" );
@@ -559,6 +563,7 @@ class DatabaseMssql extends DatabaseBase {
 	 * $sql string SQL query we will append the limit too
 	 * $limit integer the SQL limit
 	 * $offset integer the SQL offset (default false)
+	 * @return mixed|string
 	 */
 	function limitResult( $sql, $limit, $offset = false ) {
 		if ( $offset === false || $offset == 0 ) {
@@ -647,6 +652,7 @@ class DatabaseMssql extends DatabaseBase {
 
 	/**
 	 * Query whether a given column exists in the mediawiki schema
+	 * @return bool
 	 */
 	function fieldExists( $table, $field, $fname = 'DatabaseMssql::fieldExists' ) {
 		$table = $this->tableName( $table );
@@ -707,6 +713,7 @@ class DatabaseMssql extends DatabaseBase {
 	 * Escapes a identifier for use inm SQL.
 	 * Throws an exception if it is invalid.
 	 * Reference: http://msdn.microsoft.com/en-us/library/aa224033%28v=SQL.80%29.aspx
+	 * @return string
 	 */
 	private function escapeIdentifier( $identifier ) {
 		if ( strlen( $identifier ) == 0 ) {
@@ -795,6 +802,7 @@ class DatabaseMssql extends DatabaseBase {
 
 	/**
 	 * @private
+	 * @return string
 	 */
 	function tableNamesWithUseIndexOrJOIN( $tables, $use_index = array(), $join_conds = array() ) {
 		$ret = array();
@@ -893,6 +901,7 @@ class DatabaseMssql extends DatabaseBase {
 
 	/**
 	 * Get the type of the DBMS, as it appears in $wgDBtype.
+	 * @return string
 	 */
 	function getType(){
 		return 'mssql';
@@ -909,6 +918,7 @@ class DatabaseMssql extends DatabaseBase {
 	/**
 	 * Since MSSQL doesn't recognize the infinity keyword, set date manually.
 	 * @todo Remove magic date
+	 * @return string
 	 */
 	public function getInfinity() {
 		return '3000-01-31 00:00:00.000';

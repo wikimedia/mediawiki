@@ -1,4 +1,8 @@
 <?php
+/**
+ * @file
+ * @ingroup Benchmark
+ */
 
 require_once( dirname( __FILE__ ) . '/Benchmarker.php' );
 

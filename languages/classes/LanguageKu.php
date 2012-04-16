@@ -55,8 +55,7 @@ class KuConverter extends LanguageConverter {
 		'h' => 'ه', 'j' => 'ژ', 'k' => 'ک', 'l' => 'ل',
 		'm' => 'م', 'n' => 'ن', 'p' => 'پ', 'q' => 'ق', 'r' => 'ر', 's' => 'س', 'ş' => 'ش',
 		't' => 'ت', 'v' => 'ڤ',
-                'x' => 'خ', 'y' => 'ی', 'z' => 'ز',
-
+		'x' => 'خ', 'y' => 'ی', 'z' => 'ز',
 
 		'B' => 'ب', 'C' => 'ج', 'Ç' => 'چ', 'D' => 'د', 'F' => 'ف', 'G' => 'گ', 'H' => 'ھ',
 		'H' => 'ہ', 'H' => 'ه', 'H' => 'ح', 'J' => 'ژ', 'K' => 'ك', 'K' => 'ک', 'L' => 'ل',
@@ -196,6 +195,7 @@ class KuConverter extends LanguageConverter {
 	 * @param $text string
 	 * @param $toVariant bool
 	 *
+	 * @throws MWException
 	 * @return string
 	 */
 	function translate( $text, $toVariant ) {

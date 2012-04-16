@@ -198,7 +198,7 @@ class PageArchive {
 					'ar_timestamp' => $dbr->timestamp( $timestamp ) ),
 			__METHOD__ );
 		if( $row ) {
-			return Revision::newFromArchiveRow( $row, array( 'page' => $this->title->getArticleId() ) );
+			return Revision::newFromArchiveRow( $row, array( 'page' => $this->title->getArticleID() ) );
 		} else {
 			return null;
 		}
@@ -408,13 +408,12 @@ class PageArchive {
 		$article->loadPageData( 'fromdbmaster' );
 		$oldcountable = $article->isCountable();
 
-		$options = 'FOR UPDATE'; // lock page
 		$page = $dbw->selectRow( 'page',
 			array( 'page_id', 'page_latest' ),
 			array( 'page_namespace' => $this->title->getNamespace(),
 				   'page_title'     => $this->title->getDBkey() ),
 			__METHOD__,
-			$options
+			array( 'FOR UPDATE' ) // lock page
 		);
 		if( $page ) {
 			$makepage = false;
@@ -751,14 +750,20 @@ class SpecialUndelete extends SpecialPage {
 		$out->addHTML( "<ul>\n" );
 		foreach ( $result as $row ) {
 			$title = Title::makeTitleSafe( $row->ar_namespace, $row->ar_title );
-			$link = Linker::linkKnown(
-				$undelete,
-				htmlspecialchars( $title->getPrefixedText() ),
-				array(),
-				array( 'target' => $title->getPrefixedText() )
-			);
+			if ( $title !== null ) {
+				$item = Linker::linkKnown(
+					$undelete,
+					htmlspecialchars( $title->getPrefixedText() ),
+					array(),
+					array( 'target' => $title->getPrefixedText() )
+				);
+			} else {
+				// The title is no longer valid, show as text
+				$title = Title::makeTitle( $row->ar_namespace, $row->ar_title );
+				$item = htmlspecialchars( $title->getPrefixedText() );
+			}
 			$revs = $this->msg( 'undeleterevisions' )->numParams( $row->count )->parse();
-			$out->addHTML( "<li>{$link} ({$revs})</li>\n" );
+			$out->addHTML( "<li>{$item} ({$revs})</li>\n" );
 		}
 		$result->free();
 		$out->addHTML( "</ul>\n" );
@@ -1166,7 +1171,7 @@ class SpecialUndelete extends SpecialPage {
 
 	private function formatRevisionRow( $row, $earliestLiveTime, $remaining ) {
 		$rev = Revision::newFromArchiveRow( $row,
-			array( 'page' => $this->mTargetObj->getArticleId() ) );
+			array( 'page' => $this->mTargetObj->getArticleID() ) );
 		$stxt = '';
 		$ts = wfTimestamp( TS_MW, $row->ar_timestamp );
 		// Build checkboxen...
@@ -1239,9 +1244,9 @@ class SpecialUndelete extends SpecialPage {
 			$pageLink = $this->getLanguage()->userTimeAndDate( $ts, $user );
 		}
 		$userLink = $this->getFileUser( $file );
-		$data = $this->msg( 'widthheight' )->numParams( $row->fa_width, $row->fa_height )->text() .
-			' (' . $this->msg( 'nbytes' )->numParams( $row->fa_size )->text() . ')';
-		$data = htmlspecialchars( $data );
+		$data = $this->msg( 'widthheight' )->numParams( $row->fa_width, $row->fa_height )->text();
+		$bytes = $this->msg( 'parentheses' )->rawParams( $this->msg( 'nbytes' )->numParams( $row->fa_size )->text() )->plain();
+		$data = htmlspecialchars( $data . ' ' . $bytes );
 		$comment = $this->getFileComment( $file );
 
 		// Add show/hide deletion links if available
@@ -1269,6 +1274,8 @@ class SpecialUndelete extends SpecialPage {
 	 * Fetch revision text link if it's available to all users
 	 *
 	 * @param $rev Revision
+	 * @param $titleObj Title
+	 * @param $ts string Timestamp
 	 * @return string
 	 */
 	function getPageLink( $rev, $titleObj, $ts ) {
@@ -1298,6 +1305,10 @@ class SpecialUndelete extends SpecialPage {
 	 * Fetch image view link if it's available to all users
 	 *
 	 * @param $file File
+	 * @param $titleObj Title
+	 * @param $ts string A timestamp
+	 * @param $key String: a storage key
+	 *
 	 * @return String: HTML fragment
 	 */
 	function getFileLink( $file, $titleObj, $ts, $key ) {
@@ -1400,7 +1411,7 @@ class SpecialUndelete extends SpecialPage {
 		// Show file deletion warnings and errors
 		$status = $archive->getFileStatus();
 		if( $status && !$status->isGood() ) {
-			$out->addWikiText( $status->getWikiText( 'undelete-error-short', 'undelete-error-long' ) );
+			$out->addWikiText( '<div class="error">' . $status->getWikiText( 'undelete-error-short', 'undelete-error-long' ) . '</div>' );
 		}
 	}
 }

@@ -345,6 +345,7 @@ a.stub {
 }
 a.new,
 #p-personal a.new {
+	color: #BA0000;
 	text-decoration: line-through;
 }
 li.new {
@@ -371,8 +372,9 @@ li.new {
 #p-cactions {
 	background-color: inherit;
 }
-div.printfooter {
-	display: none;
+
+#footer {
+	padding-left: 11.8em;
 }
 
 #n-portal,

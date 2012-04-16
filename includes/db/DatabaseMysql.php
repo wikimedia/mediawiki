@@ -154,16 +154,8 @@ class DatabaseMysql extends DatabaseBase {
 	/**
 	 * @return bool
 	 */
-	function close() {
-		$this->mOpened = false;
-		if ( $this->mConn ) {
-			if ( $this->trxLevel() ) {
-				$this->commit();
-			}
-			return mysql_close( $this->mConn );
-		} else {
-			return true;
-		}
+	protected function closeConnection() {
+		return mysql_close( $this->mConn );
 	}
 
 	/**
@@ -385,7 +377,7 @@ class DatabaseMysql extends DatabaseBase {
 	 * @param $table string
 	 * @param $index string
 	 * @param $fname string
-	 * @return false|array
+	 * @return bool|array|null False or null on failure
 	 */
 	function indexInfo( $table, $index, $fname = 'DatabaseMysql::indexInfo' ) {
 		# SHOW INDEX works in MySQL 3.23.58, but SHOW INDEXES does not.
@@ -558,7 +550,7 @@ class DatabaseMysql extends DatabaseBase {
 
 		# Commit any open transactions
 		if ( $this->mTrxLevel ) {
-			$this->commit();
+			$this->commit( __METHOD__ );
 		}
 
 		if ( !is_null( $this->mFakeSlaveLag ) ) {
@@ -585,7 +577,7 @@ class DatabaseMysql extends DatabaseBase {
 	/**
 	 * Get the position of the master from SHOW SLAVE STATUS
 	 *
-	 * @return MySQLMasterPos|false
+	 * @return MySQLMasterPos|bool
 	 */
 	function getSlavePos() {
 		if ( !is_null( $this->mFakeSlaveLag ) ) {
@@ -606,7 +598,7 @@ class DatabaseMysql extends DatabaseBase {
 	/**
 	 * Get the position of the master from SHOW MASTER STATUS
 	 *
-	 * @return MySQLMasterPos|false
+	 * @return MySQLMasterPos|bool
 	 */
 	function getMasterPos() {
 		if ( $this->mFakeMaster ) {
@@ -860,7 +852,7 @@ class DatabaseMysql extends DatabaseBase {
 	/**
 	 * List all tables on the database
 	 *
-	 * @param $prefix Only show tables with this prefix, e.g. mw_
+	 * @param $prefix string Only show tables with this prefix, e.g. mw_
 	 * @param $fname String: calling function name
 	 * @return array
 	 */

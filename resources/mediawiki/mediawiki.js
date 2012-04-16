@@ -1,9 +1,11 @@
+/*jslint browser: true, continue: true, white: true, forin: true*/
+/*global jQuery*/
 /*
  * Core MediaWiki JavaScript Library
  */
 
 var mw = ( function ( $, undefined ) {
-"use strict";
+	"use strict";
 
 	/* Private Members */
 
@@ -49,7 +51,9 @@ var mw = ( function ( $, undefined ) {
 					results[selection[i]] = this.get( selection[i], fallback );
 				}
 				return results;
-			} else if ( typeof selection === 'string' ) {
+			}
+
+			if ( typeof selection === 'string' ) {
 				if ( this.values[selection] === undefined ) {
 					if ( fallback !== undefined ) {
 						return fallback;
@@ -58,11 +62,13 @@ var mw = ( function ( $, undefined ) {
 				}
 				return this.values[selection];
 			}
+
 			if ( selection === undefined ) {
 				return this.values;
-			} else {
-				return null; // invalid selection key
 			}
+
+			// invalid selection key
+			return null;
 		},
 
 		/**
@@ -80,7 +86,8 @@ var mw = ( function ( $, undefined ) {
 					this.values[s] = selection[s];
 				}
 				return true;
-			} else if ( typeof selection === 'string' && value !== undefined ) {
+			}
+			if ( typeof selection === 'string' && value !== undefined ) {
 				this.values[selection] = value;
 				return true;
 			}
@@ -103,9 +110,8 @@ var mw = ( function ( $, undefined ) {
 					}
 				}
 				return true;
-			} else {
-				return this.values[selection] !== undefined;
 			}
+			return this.values[selection] !== undefined;
 		}
 	};
 
@@ -308,14 +314,14 @@ var mw = ( function ( $, undefined ) {
 		 *  each a parameter for $N replacement in messages.
 		 * @return String.
 		 */
-		msg: function ( key, parameters ) {
+		msg: function ( /* key, parameter_1, parameter_2, .. */ ) {
 			return mw.message.apply( mw.message, arguments ).toString();
 		},
 	
 		/**
 		 * Client-side module loader which integrates with the MediaWiki ResourceLoader
 		 */
-		loader: ( function() {
+		loader: ( function () {
 	
 			/* Private Members */
 	
@@ -364,9 +370,6 @@ var mw = ( function ( $, undefined ) {
 				jobs = [],
 				// Flag indicating that document ready has occured
 				ready = false,
-				// Whether we should try to load scripts in a blocking way 
-				// Set with setBlocking()
-				blocking = false,
 				// Selector cache for the marker element. Use getMarker() to get/use the marker!
 				$marker = null;
 	
@@ -378,21 +381,71 @@ var mw = ( function ( $, undefined ) {
 	
 			/* Private methods */
 	
-			function getMarker(){
+			function getMarker() {
 				// Cached ?
 				if ( $marker ) {
 					return $marker;
-				} else {
-					$marker = $( 'meta[name="ResourceLoaderDynamicStyles"]' );
-					if ( $marker.length ) {
-						return $marker;
-					}
-					mw.log( 'getMarker> No <meta name="ResourceLoaderDynamicStyles"> found, inserting dynamically.' );
-					$marker = $( '<meta>' ).attr( 'name', 'ResourceLoaderDynamicStyles' ).appendTo( 'head' );
+				}
+
+				$marker = $( 'meta[name="ResourceLoaderDynamicStyles"]' );
+				if ( $marker.length ) {
 					return $marker;
 				}
+				mw.log( 'getMarker> No <meta name="ResourceLoaderDynamicStyles"> found, inserting dynamically.' );
+				$marker = $( '<meta>' ).attr( 'name', 'ResourceLoaderDynamicStyles' ).appendTo( 'head' );
+
+				return $marker;
 			}
-	
+
+			/**
+			 * Create a new style tag and add it to the DOM.
+			 *
+			 * @param text String: CSS text
+			 * @param $nextnode mixed: [optional] An Element or jQuery object for an element where
+			 * the style tag should be inserted before. Otherwise appended to the <head>.
+			 * @return HTMLStyleElement
+			 */
+			function addStyleTag( text, $nextnode ) {
+				var s = document.createElement( 'style' );
+				s.type = 'text/css';
+				s.rel = 'stylesheet';
+				// Insert into document before setting cssText (bug 33305)
+				if ( $nextnode ) {
+					// If a raw element, create a jQuery object, otherwise use directly
+					if ( $nextnode.nodeType ) {
+						$nextnode = $( $nextnode );
+					}
+					$nextnode.before( s );
+				} else {
+					document.getElementsByTagName('head')[0].appendChild( s );
+				}
+				if ( s.styleSheet ) {
+					s.styleSheet.cssText = text; // IE
+				} else {
+					// Safari sometimes borks on null
+					s.appendChild( document.createTextNode( String( text ) ) );
+				}
+				return s;
+			}
+
+			function addInlineCSS( css ) {
+				var $style, style, $newStyle;
+				$style = getMarker().prev();
+				if ( $style.is( 'style' ) && $style.data( 'ResourceLoaderDynamicStyleTag' ) === true ) {
+					// There's already a dynamic <style> tag present, append to it. This recycling of
+					// <style> tags is for bug 31676 (can't have more than 32 <style> tags in IE)
+					style = $style.get( 0 );
+					if ( style.styleSheet ) {
+						style.styleSheet.cssText += css; // IE
+					} else {
+						style.appendChild( document.createTextNode( String( css ) ) );
+					}
+				} else {
+					$newStyle = $( addStyleTag( css, getMarker() ) )
+						.data( 'ResourceLoaderDynamicStyleTag', true );
+				}
+			}
+
 			function compare( a, b ) {
 				var i;
 				if ( a.length !== b.length ) {
@@ -485,11 +538,14 @@ var mw = ( function ( $, undefined ) {
 						}
 					}
 					return modules;
-				} else if ( typeof module === 'string' ) {
+				}
+
+				if ( typeof module === 'string' ) {
 					resolved = [];
 					recurse( module, resolved, [] );
 					return resolved;
 				}
+
 				throw new Error( 'Invalid module argument: ' + module );
 			}
 	
@@ -549,20 +605,21 @@ var mw = ( function ( $, undefined ) {
 				var j, r;
 	
 				try {
-					// Run jobs who's dependencies have just been met
+					// Run jobs whose dependencies have just been met
 					for ( j = 0; j < jobs.length; j += 1 ) {
 						if ( compare(
 							filter( 'ready', jobs[j].dependencies ),
 							jobs[j].dependencies ) )
 						{
-							if ( $.isFunction( jobs[j].ready ) ) {
-								jobs[j].ready();
-							}
+							var callback = jobs[j].ready;
 							jobs.splice( j, 1 );
 							j -= 1;
+							if ( $.isFunction( callback ) ) {
+								callback();
+							}
 						}
 					}
-					// Execute modules who's dependencies have just been met
+					// Execute modules whose dependencies have just been met
 					for ( r in registry ) {
 						if ( registry[r].state === 'loaded' ) {
 							if ( compare(
@@ -584,19 +641,20 @@ var mw = ( function ( $, undefined ) {
 							j -= 1;
 						}
 					}
+					throw e;
 				}
 			}
 	
 			/**
 			 * Adds a script tag to the DOM, either using document.write or low-level DOM manipulation,
-			 * depending on whether document-ready has occured yet and whether we are in blocking mode.
+			 * depending on whether document-ready has occured yet and whether we are in async mode.
 			 *
 			 * @param src String: URL to script, will be used as the src attribute in the script tag
 			 * @param callback Function: Optional callback which will be run when the script is done
 			 */
-			function addScript( src, callback ) {
+			function addScript( src, callback, async ) {
 				var done = false, script, head;
-				if ( ready || !blocking ) {
+				if ( ready || async ) {
 					// jQuery's getScript method is NOT better than doing this the old-fashioned way
 					// because jQuery will eval the script's code, and errors will not have sane
 					// line numbers.
@@ -617,17 +675,21 @@ var mw = ( function ( $, undefined ) {
 	
 								done = true;
 	
-								// Handle memory leak in IE
-								script.onload = script.onreadystatechange = null;
-	
 								callback();
 	
-								if ( script.parentNode ) {
-									script.parentNode.removeChild( script );
-								}
-	
-								// Dereference the script
-								script = undefined;
+								// Handle memory leak in IE. This seems to fail in
+								// IE7 sometimes (Permission Denied error when
+								// accessing script.parentNode) so wrap it in
+								// a try catch.
+								try {
+									script.onload = script.onreadystatechange = null;
+									if ( script.parentNode ) {
+										script.parentNode.removeChild( script );
+									}
+		
+									// Dereference the script
+									script = undefined;
+								} catch ( e ) { }
 							}
 						};
 					}
@@ -677,22 +739,19 @@ var mw = ( function ( $, undefined ) {
 	
 				// Add styles
 				if ( $.isPlainObject( registry[module].style ) ) {
+					// 'media' type ignored, see documentation of mw.loader.implement
 					for ( media in registry[module].style ) {
 						style = registry[module].style[media];
 						if ( $.isArray( style ) ) {
 							for ( i = 0; i < style.length; i += 1 ) {
 								getMarker().before( mw.html.element( 'link', {
 									'type': 'text/css',
-									'media': media,
 									'rel': 'stylesheet',
 									'href': style[i]
 								} ) );
 							}
 						} else if ( typeof style === 'string' ) {
-							getMarker().before( mw.html.element( 'style', {
-								'type': 'text/css',
-								'media': media
-							}, new mw.html.Cdata( style ) ) );
+							addInlineCSS( style );
 						}
 					}
 				}
@@ -710,7 +769,7 @@ var mw = ( function ( $, undefined ) {
 							callback();
 						}
 					};
-					nestedAddScript = function ( arr, callback, i ) {
+					nestedAddScript = function ( arr, callback, async, i ) {
 						// Recursively call addScript() in its own callback
 						// for each element of arr.
 						if ( i >= arr.length ) {
@@ -720,15 +779,15 @@ var mw = ( function ( $, undefined ) {
 						}
 	
 						addScript( arr[i], function() {
-							nestedAddScript( arr, callback, i + 1 );
-						} );
+							nestedAddScript( arr, callback, async, i + 1 );
+						}, async );
 					};
 	
 					if ( $.isArray( script ) ) {
 						registry[module].state = 'loading';
-						nestedAddScript( script, markModuleReady, 0 );
+						nestedAddScript( script, markModuleReady, registry[module].async, 0 );
 					} else if ( $.isFunction( script ) ) {
-						script( $ );
+						script();
 						markModuleReady();
 					}
 				} catch ( e ) {
@@ -736,9 +795,9 @@ var mw = ( function ( $, undefined ) {
 					// and not in debug mode, such as when a symbol that should be global isn't exported
 					if ( window.console && typeof window.console.log === 'function' ) {
 						console.log( 'mw.loader::execute> Exception thrown by ' + module + ': ' + e.message );
+						console.log( e );
 					}
 					registry[module].state = 'error';
-					throw e;
 				}
 			}
 	
@@ -749,8 +808,10 @@ var mw = ( function ( $, undefined ) {
 			 * @param dependencies string module name or array of string module names
 			 * @param ready function callback to execute when all dependencies are ready
 			 * @param error function callback to execute when any dependency fails
+			 * @param async (optional) If true, load modules asynchronously even if
+			 *  document ready has not yet occurred
 			 */
-			function request( dependencies, ready, error ) {
+			function request( dependencies, ready, error, async ) {
 				var regItemDeps, regItemDepLen, n;
 	
 				// Allow calling by single module name
@@ -766,8 +827,9 @@ var mw = ( function ( $, undefined ) {
 						}
 					}
 				}
+
 				// Add ready and error callbacks if they were given
-				if ( arguments.length > 1 ) {
+				if ( ready !== undefined || error !== undefined ) {
 					jobs[jobs.length] = {
 						'dependencies': filter(
 							['registered', 'loading', 'loaded'],
@@ -777,13 +839,19 @@ var mw = ( function ( $, undefined ) {
 						'error': error
 					};
 				}
+
 				// Queue up any dependencies that are registered
 				dependencies = filter( ['registered'], dependencies );
 				for ( n = 0; n < dependencies.length; n += 1 ) {
 					if ( $.inArray( dependencies[n], queue ) === -1 ) {
 						queue[queue.length] = dependencies[n];
+						if ( async ) {
+							// Mark this module as async in the registry
+							registry[dependencies[n]].async = true;
+						}
 					}
 				}
+
 				// Work the queue
 				mw.loader.work();
 			}
@@ -821,8 +889,9 @@ var mw = ( function ( $, undefined ) {
 			 * @param moduleMap {Object}: Module map, see buildModulesString()
 			 * @param currReqBase {Object}: Object with other parameters (other than 'modules') to use in the request
 			 * @param sourceLoadScript {String}: URL of load.php
+			 * @param async {Boolean}: If true, use an asynchrounous request even if document ready has not yet occurred
 			 */
-			function doRequest( moduleMap, currReqBase, sourceLoadScript ) {
+			function doRequest( moduleMap, currReqBase, sourceLoadScript, async ) {
 				var request = $.extend(
 					{ 'modules': buildModulesString( moduleMap ) },
 					currReqBase
@@ -830,11 +899,13 @@ var mw = ( function ( $, undefined ) {
 				request = sortQuery( request );
 				// Asynchronously append a script tag to the end of the body
 				// Append &* to avoid triggering the IE6 extension check
-				addScript( sourceLoadScript + '?' + $.param( request ) + '&*' );
+				addScript( sourceLoadScript + '?' + $.param( request ) + '&*', null, async );
 			}
 	
 			/* Public Methods */
 			return {
+				addStyleTag: addStyleTag,
+
 				/**
 				 * Requests dependencies from server, loading and executing when things when ready.
 				 */
@@ -842,7 +913,7 @@ var mw = ( function ( $, undefined ) {
 					var	reqBase, splits, maxQueryLength, q, b, bSource, bGroup, bSourceGroup,
 						source, group, g, i, modules, maxVersion, sourceLoadScript,
 						currReqBase, currReqBaseLength, moduleMap, l,
-						lastDotIndex, prefix, suffix, bytesAdded;
+						lastDotIndex, prefix, suffix, bytesAdded, async;
 		
 					// Build a list of request parameters common to all requests.
 					reqBase = {
@@ -919,7 +990,7 @@ var mw = ( function ( $, undefined ) {
 		
 							currReqBase = $.extend( { 'version': formatVersionNumber( maxVersion ) }, reqBase );
 							currReqBaseLength = $.param( currReqBase ).length;
-							moduleMap = {};
+							async = true;
 							// We may need to split up the request to honor the query string length limit,
 							// so build it piece by piece.
 							l = currReqBaseLength + 9; // '&modules='.length == 9
@@ -941,19 +1012,26 @@ var mw = ( function ( $, undefined ) {
 								if ( maxQueryLength > 0 && !$.isEmptyObject( moduleMap ) && l + bytesAdded > maxQueryLength ) {
 									// This request would become too long, create a new one
 									// and fire off the old one
-									doRequest( moduleMap, currReqBase, sourceLoadScript );
+									doRequest( moduleMap, currReqBase, sourceLoadScript, async );
 									moduleMap = {};
+									async = true;
 									l = currReqBaseLength + 9;
 								}
 								if ( moduleMap[prefix] === undefined ) {
 									moduleMap[prefix] = [];
 								}
 								moduleMap[prefix].push( suffix );
+								if ( !registry[modules[i]].async ) {
+									// If this module is blocking, make the entire request blocking
+									// This is slightly suboptimal, but in practice mixing of blocking
+									// and async modules will only occur in debug mode.
+									async = false;
+								}
 								l += bytesAdded;
 							}
 							// If there's anything left in moduleMap, request that too
 							if ( !$.isEmptyObject( moduleMap ) ) {
-								doRequest( moduleMap, currReqBase, sourceLoadScript );
+								doRequest( moduleMap, currReqBase, sourceLoadScript, async );
 							}
 						}
 					}
@@ -1048,7 +1126,12 @@ var mw = ( function ( $, undefined ) {
 				 * @param script Mixed: Function of module code or String of URL to be used as the src
 				 *  attribute when adding a script element to the body
 				 * @param style Object: Object of CSS strings keyed by media-type or Object of lists of URLs
-				 *  keyed by media-type
+				 *  keyed by media-type. Media-type should be "all" or "", actual types are not supported
+				 *  right now due to the way execute() processes the stylesheets (they are concatenated
+				 *  into a single <style> tag). In the past these weren't concatenated together (which is
+				 *  these are keyed by media-type),  but bug 31676 forces us to. In practice this is not a
+				 *  problem because ResourceLoader only generates stylesheets for media-type all (e.g. print
+				 *  stylesheets are wrapped in @media print {} and concatenated with the others).
 				 * @param msgs Object: List of key/value pairs to be passed through mw.messages.set
 				 */
 				implement: function ( module, script, style, msgs ) {
@@ -1135,8 +1218,12 @@ var mw = ( function ( $, undefined ) {
 				 * @param type {String} mime-type to use if calling with a URL of an
 				 *  external script or style; acceptable values are "text/css" and
 				 *  "text/javascript"; if no type is provided, text/javascript is assumed.
+				 * @param async {Boolean} (optional) If true, load modules asynchronously
+				 *  even if document ready has not yet occurred. If false (default),
+				 *  block before document ready and load async after. If not set, true will
+				 *  be assumed if loading a URL, and false will be assumed otherwise.
 				 */
-				load: function ( modules, type ) {
+				load: function ( modules, type, async ) {
 					var filtered, m;
 
 					// Validate input
@@ -1147,6 +1234,10 @@ var mw = ( function ( $, undefined ) {
 					if ( typeof modules === 'string' ) {
 						// Support adding arbitrary external scripts
 						if ( /^(https?:)?\/\//.test( modules ) ) {
+							if ( async === undefined ) {
+								// Assume async for bug 34542
+								async = true;
+							}
 							if ( type === 'text/css' ) {
 								$( 'head' ).append( $( '<link>', {
 									rel: 'stylesheet',
@@ -1154,8 +1245,9 @@ var mw = ( function ( $, undefined ) {
 									href: modules
 								} ) );
 								return;
-							} else if ( type === 'text/javascript' || type === undefined ) {
-								addScript( modules );
+							}
+							if ( type === 'text/javascript' || type === undefined ) {
+								addScript( modules, null, async );
 								return;
 							}
 							// Unknown type
@@ -1183,14 +1275,12 @@ var mw = ( function ( $, undefined ) {
 						return;
 					}
 					// If any modules have errors
-					else if ( filter( ['error'], filtered ).length ) {
+					if ( filter( ['error'], filtered ).length ) {
 						return;
 					}
 					// Since some modules are not yet ready, queue up a request
-					else {
-						request( filtered );
-						return;
-					}
+					request( filtered, null, null, async );
+					return;
 				},
 		
 				/**
@@ -1253,18 +1343,6 @@ var mw = ( function ( $, undefined ) {
 					return $.map( registry, function ( i, key ) {
 						return key;
 					} );
-				},
-
-				/**
-				 * Enable or disable blocking. If blocking is enabled and
-				 * document ready has not yet occurred, scripts will be loaded
-				 * in a blocking way (using document.write) rather than
-				 * asynchronously using DOM manipulation
-				 * 
-				 * @param b {Boolean} True to enable blocking, false to disable it
-				 */
-				setBlocking: function( b ) {
-					blocking = b;
 				},
 		
 				/**
@@ -1386,10 +1464,16 @@ var mw = ( function ( $, undefined ) {
 					return s;
 				}
 			};
-		})()
+		}() ),
+
+		// Skeleton user object. mediawiki.user.js extends this
+		user: {
+			options: new Map(),
+			tokens: new Map()
+		}
 	};
 	
-})( jQuery );
+}( jQuery ) );
 
 // Alias $j to jQuery for backwards compatibility
 window.$j = jQuery;
@@ -1398,7 +1482,7 @@ window.$j = jQuery;
 window.mw = window.mediaWiki = mw;
 
 // Auto-register from pre-loaded startup scripts
-if ( typeof startUp !== 'undefined' && jQuery.isFunction( startUp ) ) {
-	startUp();
-	startUp = undefined;
+if ( jQuery.isFunction( window.startUp ) ) {
+	window.startUp();
+	window.startUp = undefined;
 }

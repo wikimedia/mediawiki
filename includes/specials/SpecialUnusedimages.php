@@ -77,7 +77,7 @@ class UnusedimagesPage extends ImageQueryPage {
 	}
 
 	function getPageHeader() {
-		return wfMsgExt( 'unusedimagestext', array( 'parse' ) );
+		return $this->msg( 'unusedimagestext' )->parseAsBlock();
 	}
 
 }

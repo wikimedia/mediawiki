@@ -32,13 +32,6 @@ class MWDebug {
 	protected static $query = array();
 
 	/**
-	 * Request information
-	 *
-	 * @var array
-	 */
-	protected static $request = array();
-
-	/**
 	 * Is the debugger enabled?
 	 *
 	 * @var bool
@@ -59,7 +52,18 @@ class MWDebug {
 	 */
 	public static function init() {
 		self::$enabled = true;
-		RequestContext::getMain()->getOutput()->addModules( 'mediawiki.debug' );
+	}
+
+	/**
+	 * Add ResourceLoader modules to the OutputPage object if debugging is
+	 * enabled.
+	 *
+	 * @param $out OutputPage
+	 */
+	public static function addModules( OutputPage $out ) {
+		if ( self::$enabled ) {
+			$out->addModules( 'mediawiki.debug.init' );
+		}
 	}
 
 	/**
@@ -83,6 +87,7 @@ class MWDebug {
 
 	/**
 	 * Returns internal log array
+	 * @return array
 	 */
 	public static function getLog() {
 		return self::$log;
@@ -195,8 +200,8 @@ class MWDebug {
 			'sql' => $sql,
 			'function' => $function,
 			'master' => (bool) $isMaster,
-			'time' > 0.0,
-			'_start' => wfTime(),
+			'time' => 0.0,
+			'_start' => microtime( true ),
 		);
 
 		return count( self::$query ) - 1;
@@ -212,26 +217,8 @@ class MWDebug {
 			return;
 		}
 
-		self::$query[$id]['time'] = wfTime() - self::$query[$id]['_start'];
+		self::$query[$id]['time'] = microtime( true ) - self::$query[$id]['_start'];
 		unset( self::$query[$id]['_start'] );
-	}
-
-	/**
-	 * Processes a WebRequest object
-	 *
-	 * @param $request WebRequest
-	 */
-	public static function processRequest( WebRequest $request ) {
-		if ( !self::$enabled ) {
-			return;
-		}
-
-		self::$request = array(
-			'method' => $_SERVER['REQUEST_METHOD'],
-			'url' => $request->getRequestURL(),
-			'headers' => $request->getAllHeaders(),
-			'params' => $request->getValues(),
-		);
 	}
 
 	/**
@@ -267,23 +254,35 @@ class MWDebug {
 
 		global $wgVersion, $wgRequestTime;
 		MWDebug::log( 'MWDebug output complete' );
+		$request = $context->getRequest();
 		$debugInfo = array(
 			'mwVersion' => $wgVersion,
 			'phpVersion' => PHP_VERSION,
-			'time' => wfTime() - $wgRequestTime,
+			'gitRevision' => GitInfo::headSHA1(),
+			'gitBranch' => GitInfo::currentBranch(),
+			'gitViewUrl' => GitInfo::headViewUrl(),
+			'time' => microtime( true ) - $wgRequestTime,
 			'log' => self::$log,
 			'debugLog' => self::$debug,
 			'queries' => self::$query,
-			'request' => self::$request,
+			'request' => array(
+				'method' => $_SERVER['REQUEST_METHOD'],
+				'url' => $request->getRequestURL(),
+				'headers' => $request->getAllHeaders(),
+				'params' => $request->getValues(),
+			),
 			'memory' => $context->getLanguage()->formatSize( memory_get_usage() ),
 			'memoryPeak' => $context->getLanguage()->formatSize( memory_get_peak_usage() ),
 			'includes' => self::getFilesIncluded( $context ),
 		);
-		// TODO: Clean this up
-		$html = Html::openElement( 'script' );
-		$html .= 'var debugInfo = ' . Xml::encodeJsVar( $debugInfo ) . ';';
-		$html .= " $(function() { mw.loader.using( 'mediawiki.debug', function() { mw.Debug.init( debugInfo ) } ); }); ";
-		$html .= Html::closeElement( 'script' );
+
+		// Cannot use OutputPage::addJsConfigVars because those are already outputted
+		// by the time this method is called.
+		$html = Html::inlineScript(
+			ResourceLoader::makeLoaderConditionalScript(
+				ResourceLoader::makeConfigSetScript( array( 'debugInfo' => $debugInfo ) )
+			)
+		);
 
 		return $html;
 	}

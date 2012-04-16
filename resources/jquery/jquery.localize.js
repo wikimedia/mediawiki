@@ -45,8 +45,15 @@ $.fn.localize = function( options ) {
 		.find( 'msg,html\\:msg' )
 			.each( function() {
 				var $el = $(this);
+				var msgText = msg( $el.attr( 'key' ) );
+
+				if ( $el.attr('raw') ) {
+					$el.html(msgText);
+				} else {
+					$el.text(msgText);
+				}
+				
 				$el
-					.text( msg( $el.attr( 'key' ) ) )
 					.replaceWith( $el.html() );
 			} )
 			.end()

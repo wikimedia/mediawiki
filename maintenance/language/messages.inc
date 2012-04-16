@@ -28,7 +28,6 @@ $wgMessageStructure = array(
 	),
 	'toggles' => array(
 		'tog-underline',
-		'tog-highlightbroken',
 		'tog-justify',
 		'tog-hideminor',
 		'tog-hidepatrolled',
@@ -409,6 +408,7 @@ $wgMessageStructure = array(
 		'customjsprotected',
 		'ns-specialprotected',
 		'titleprotected',
+		'filereadonlyerror'
 	),
 	'virus' => array(
 		'virus-badscanner',
@@ -432,6 +432,7 @@ $wgMessageStructure = array(
 		'userloginnocreate',
 		'logout',
 		'userlogout',
+		'userlogout-summary',
 		'notloggedin',
 		'nologin',
 		'nologinlink',
@@ -484,6 +485,7 @@ $wgMessageStructure = array(
 		'emailconfirmlink',
 		'invalidemailaddress',
 		'cannotchangeemail',
+		'emaildisabled',
 		'accountcreated',
 		'accountcreatedtext',
 		'createaccount-title',
@@ -539,6 +541,7 @@ $wgMessageStructure = array(
 	),
 	'changeemail' => array(
 		'changeemail',
+		'changeemail-summary',
 		'changeemail-header',
 		'changeemail-text',
 		'changeemail-no-info',
@@ -626,6 +629,7 @@ $wgMessageStructure = array(
 		'token_suffix_mismatch',
 		'edit_form_incomplete',
 		'editing',
+		'creating',
 		'editingsection',
 		'editingcomment',
 		'editconflict',
@@ -671,6 +675,7 @@ $wgMessageStructure = array(
 		'edit-already-exists',
 		'addsection-preload',
 		'addsection-editintro',
+		'defaultmessagetext',
 	),
 	'parserwarnings' => array(
 		'expensive-parserfunction-warning',
@@ -926,6 +931,7 @@ $wgMessageStructure = array(
 		'prefsnologin',
 		'prefsnologintext',
 		'changepassword',
+		'changepassword-summary',
 		'prefs-skin',
 		'skin-preview',
 		'datedefault',
@@ -1230,6 +1236,7 @@ $wgMessageStructure = array(
 		'newsectionsummary',
 		'rc-enhanced-expand',
 		'rc-enhanced-hide',
+		'rc-old-title',
 	),
 	'recentchangeslinked' => array(
 		'recentchangeslinked',
@@ -1345,6 +1352,7 @@ $wgMessageStructure = array(
 		'upload-too-many-redirects',
 		'upload-unknown-size',
 		'upload-http-error',
+		'upload-copy-upload-invalid-domain',
 	),
 
 	'filebackend-errors' => array(
@@ -1364,12 +1372,18 @@ $wgMessageStructure = array(
 		'backend-fail-closetemp',
 		'backend-fail-read',
 		'backend-fail-create',
+		'backend-fail-maxsize',
 		'backend-fail-readonly',
 		'backend-fail-synced',
 		'backend-fail-connect',
 		'backend-fail-internal',
 		'backend-fail-contenttype',
 		'backend-fail-batchsize'
+	),
+
+	'filejournal-errors' => array(
+		'filejournal-fail-dbconnect',
+		'filejournal-fail-dbquery'
 	),
 
 	'lockmanager-errors' => array(
@@ -1483,6 +1497,8 @@ $wgMessageStructure = array(
 		'sharedupload',
 		'sharedupload-desc-there',
 		'sharedupload-desc-here',
+		'sharedupload-desc-edit',
+		'sharedupload-desc-create',
 		'shareddescriptionfollows',
 		'filepage-nofile',
 		'filepage-nofile-link',
@@ -1626,7 +1642,9 @@ $wgMessageStructure = array(
 		'uncategorizedtemplates',
 		'uncategorizedtemplates-summary',
 		'unusedcategories',
+		'unusedcategories-summary',
 		'unusedimages',
+		'unusedimages-summary',
 		'popularpages',
 		'popularpages-summary',
 		'wantedcategories',
@@ -1735,6 +1753,7 @@ $wgMessageStructure = array(
 		'allpagesprefix',
 		'allpagesbadtitle',
 		'allpages-bad-ns',
+		'allpages-hide-redirects',
 	),
 	'categories' => array(
 		'categories',
@@ -1746,11 +1765,13 @@ $wgMessageStructure = array(
 	),
 	'deletedcontribs' => array(
 		'deletedcontributions',
+		'deletedcontributions-summary',
 		'deletedcontributions-title',
 		'sp-deletedcontributions-contribs',
 	),
 	'linksearch' => array(
 		'linksearch',
+		'linksearch-summary',
 		'linksearch-pat',
 		'linksearch-ns',
 		'linksearch-ok',
@@ -1803,6 +1824,7 @@ $wgMessageStructure = array(
 		'mailnologin',
 		'mailnologintext',
 		'emailuser',
+		'emailuser-summary',
 		'emailpage',
 		'emailpagetext',
 		'usermailererror',
@@ -1836,6 +1858,7 @@ $wgMessageStructure = array(
 	),
 	'watchlist' => array(
 		'watchlist',
+		'watchlist-summary',
 		'mywatchlist',
 		'watchlistfor2',
 		'nowatchlist',
@@ -1984,6 +2007,7 @@ $wgMessageStructure = array(
 	),
 	'undelete' => array(
 		'undelete',
+		'undelete-summary',
 		'undeletepage',
 		'undeletepagetitle',
 		'viewdeletedpage',
@@ -2034,6 +2058,7 @@ $wgMessageStructure = array(
 	),
 	'contributions' => array(
 		'contributions',
+		'contributions-summary',
 		'contributions-title',
 		'mycontris',
 		'contribsub2',
@@ -2061,6 +2086,7 @@ $wgMessageStructure = array(
 		'sp-contributions-explain',
 		'sp-contributions-footer',
 		'sp-contributions-footer-anon',
+		'sp-contributions-footer-newbies',
 	),
 	'whatlinkshere' => array(
 		'whatlinkshere',
@@ -2086,6 +2112,7 @@ $wgMessageStructure = array(
 		'autoblockid',
 		'block',
 		'unblock',
+		'unblock-summary',
 		'blockip',
 		'blockip-title',
 		'blockip-legend',
@@ -2217,6 +2244,7 @@ $wgMessageStructure = array(
 	),
 	'movepage' => array(
 		'move-page',
+		'movepage-summary',
 		'move-page-legend',
 		'movepagetext',
 		'movepagetext-noredirectfixer',
@@ -2278,6 +2306,7 @@ $wgMessageStructure = array(
 	),
 	'export' => array(
 		'export',
+		'export-summary',
 		'exporttext',
 		'exportall',
 		'exportcuronly',
@@ -2324,6 +2353,7 @@ $wgMessageStructure = array(
 	),
 	'import' => array(
 		'import',
+		'import-summary',
 		'importinterwiki',
 		'import-interwiki-text',
 		'import-interwiki-source',
@@ -3337,6 +3367,7 @@ $wgMessageStructure = array(
 		'confirm-watch-button',
 	),
 	'watchlisteditor' => array(
+		'editwatchlist-summary',
 		'watchlistedit-numitems',
 		'watchlistedit-noitems',
 		'watchlistedit-normal-title',
@@ -3427,6 +3458,7 @@ $wgMessageStructure = array(
 	),
 	'version' => array(
 		'version',
+		'version-summary',
 		'version-extensions',
 		'version-specialpages',
 		'version-parserhooks',
@@ -3495,6 +3527,7 @@ $wgMessageStructure = array(
 	),
 	'special-tags' => array(
 		'tags',
+		'tags-summary',
 		'tag-filter',
 		'tag-filter-submit',
 		'tags-title',
@@ -3508,6 +3541,7 @@ $wgMessageStructure = array(
 	),
 	'comparepages' => array(
 		'comparepages',
+		'comparepages-summary',
 		'compare-selector',
 		'compare-page1',
 		'compare-page2',
@@ -3577,6 +3611,34 @@ $wgMessageStructure = array(
 		'logentry-newusers-create2',
 		'logentry-newusers-autocreate',
 		'newuserlog-byemail',
+	),
+	'logging-irc' => array(
+		'revdelete-logentry',
+		'logdelete-logentry',
+		'revdelete-content',
+		'revdelete-summary',
+		'revdelete-uname',
+		'revdelete-hid',
+		'revdelete-unhid',
+		'revdelete-log-message',
+		'logdelete-log-message',
+		'deletedarticle',
+		'suppressedarticle',
+		'undeletedarticle',
+		'patrol-log-line',
+		'patrol-log-auto',
+		'patrol-log-diff',
+		'1movedto2',
+		'1movedto2_redir',
+		'move-redirect-suppressed',
+		// 'newuserlog-byemail',
+		'newuserlog-create-entry',
+		'newuserlog-create2-entry',
+		'newuserlog-autocreate-entry',
+		'suppressedarticle',
+		'deletedarticle',
+		// 'uploadedimage',
+		// 'overwroteimage',
 	),
 	'feedback' => array(
 		'feedback-bugornote',
@@ -3695,6 +3757,7 @@ XHTML id names.",
 	'zip'                 => 'ZipDirectoryReader',
 	'upload-errors'       => '',
 	'filebackend-errors'  => 'File backend',
+	'filejournal-errors'  => 'File journal errors',
 	'lockmanager-errors'  => 'Lock manager',
 	'uploadstash'         => 'Special:UploadStash',
 	'img-auth'            => 'img_auth script messages',
@@ -3865,6 +3928,7 @@ Variants for Chinese language",
 	'html-forms'            => 'HTML forms',
 	'sqlite'                => 'SQLite database support',
 	'logging'               => 'New logging system',
+	'logging-irc'           => 'For IRC, see bug 34508. Do not change',
 	'feedback'              => 'Feedback',
 	'apierrors'             => 'API errors',
 );

@@ -47,7 +47,6 @@ $namespaceGenderAliases = array();
 $messages = array(
 # User preference toggles
 'tog-underline'               => 'Ажедмӓшвлӓм ыдыралаш',
-'tog-highlightbroken'         => 'Уке ылшы ажедмӓшвлӓм <a href="" class="new"> тенге </a> (уке гӹнь тенге<a href="" class="internal">?</a>).',
 'tog-justify'                 => 'Текстӹм ӹлӹштӓш кымдык тӧрлӓш',
 'tog-hideminor'               => 'Изи тӧрлӹмӓшвлӓм у вашталтымашвлӓ лошты шӹлташ, анжыкташ агыл',
 'tog-hidepatrolled'           => 'Патрулируйымы тӧрлӹмӓшвлӓм у вашталтымашвлӓ лошты шӹлташ, анжыкташ агыл',

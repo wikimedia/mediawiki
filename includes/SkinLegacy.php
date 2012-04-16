@@ -84,6 +84,7 @@ class LegacyTemplate extends BaseTemplate {
 	/**
 	 * This will be called immediately after the <body> tag.  Split into
 	 * two functions to make it easier to subclass.
+	 * @return string
 	 */
 	function beforeContent() {
 		return $this->doBeforeContent();
@@ -152,7 +153,9 @@ class LegacyTemplate extends BaseTemplate {
 		return $this->doAfterContent();
 	}
 
-	/** overloaded by derived classes */
+	/** overloaded by derived classes
+	 * @return string
+	 */
 	function doAfterContent() {
 		return '</div></div>';
 	}
@@ -247,7 +250,7 @@ class LegacyTemplate extends BaseTemplate {
 				}
 				$s = $wgLang->pipeList( array(
 					$s,
-					'<a href="' . htmlspecialchars( $title->getLocalURL( 'variant=' . $code ) ) . '">' . htmlspecialchars( $varname ) . '</a>'
+					'<a href="' . htmlspecialchars( $title->getLocalURL( 'variant=' . $code ) ) . '" lang="' . $code . '" hreflang="' . $code .  '">' . htmlspecialchars( $varname ) . '</a>'
 				) );
 			}
 		}
@@ -321,7 +324,7 @@ class LegacyTemplate extends BaseTemplate {
 
 			$s = implode( $element, $sep );
 
-			if ( $title->getArticleId() ) {
+			if ( $title->getArticleID() ) {
 				$s .= "\n<br />";
 
 				// Delete/protect/move links for privileged users
@@ -345,7 +348,7 @@ class LegacyTemplate extends BaseTemplate {
 	}
 
 	function otherLanguages() {
-		global $wgOut, $wgLang, $wgContLang, $wgHideInterlanguageLinks;
+		global $wgOut, $wgLang, $wgHideInterlanguageLinks;
 
 		if ( $wgHideInterlanguageLinks ) {
 			return '';
@@ -372,7 +375,7 @@ class LegacyTemplate extends BaseTemplate {
 			$first = false;
 
 			$nt = Title::newFromText( $l );
-			$text = $wgContLang->getLanguageName( $nt->getInterwiki() );
+			$text = Language::fetchLanguageName( $nt->getInterwiki() );
 
 			$s .= Html::element( 'a',
 				array( 'href' => $nt->getFullURL(), 'title' => $nt->getText(), 'class' => "external" ),
@@ -388,6 +391,7 @@ class LegacyTemplate extends BaseTemplate {
 
 	/**
 	 * Show a drop-down box of special pages
+	 * @return string
 	 */
 	function specialPagesList() {
 		global $wgScript;
@@ -530,6 +534,7 @@ class LegacyTemplate extends BaseTemplate {
 
 	/**
 	 * @deprecated in 1.19
+	 * @return string
 	 */
 	function getQuickbarCompensator( $rows = 1 ) {
 		wfDeprecated( __METHOD__, '1.19' );
@@ -568,7 +573,7 @@ class LegacyTemplate extends BaseTemplate {
 		$diff = $wgRequest->getVal( 'diff' );
 		$title = $this->getSkin()->getTitle();
 
-		if ( $title->getArticleId() && ( !$diff ) && $wgUser->isAllowed( 'delete' ) ) {
+		if ( $title->getArticleID() && ( !$diff ) && $wgUser->isAllowed( 'delete' ) ) {
 			$t = wfMsg( 'deletethispage' );
 
 			$s = Linker::linkKnown(
@@ -590,7 +595,7 @@ class LegacyTemplate extends BaseTemplate {
 		$diff = $wgRequest->getVal( 'diff' );
 		$title = $this->getSkin()->getTitle();
 
-		if ( $title->getArticleId() && ( ! $diff ) && $wgUser->isAllowed( 'protect' ) ) {
+		if ( $title->getArticleID() && ( ! $diff ) && $wgUser->isAllowed( 'protect' ) ) {
 			if ( $title->isProtected() ) {
 				$text = wfMsg( 'unprotectthispage' );
 				$query = array( 'action' => 'unprotect' );
@@ -697,7 +702,7 @@ class LegacyTemplate extends BaseTemplate {
 		global $wgOut;
 
 		if ( !$wgOut->isArticleRelated() ) {
-			return '(' . wfMsg( 'notanarticle' ) . ')';
+			return wfMessage( 'parentheses', wfMessage( 'notanarticle' )->text() )->escaped();
 		} else {
 			return Linker::linkKnown(
 				SpecialPage::getTitleFor( 'Recentchangeslinked', $this->getSkin()->getTitle()->getPrefixedDBkey() ),
@@ -810,8 +815,9 @@ class LegacyTemplate extends BaseTemplate {
 
 				$talkLink = Linker::link( $wgUser->getTalkPage(),
 					$wgLang->getNsText( NS_TALK ) );
+				$talkLink = wfMessage( 'parentheses' )->rawParams( $talkLink )->escaped();
 
-				$ret .= "$name ($talkLink)";
+				$ret .= "$name $talkLink";
 			} else {
 				$ret .= wfMsg( 'notloggedin' );
 			}
@@ -832,10 +838,11 @@ class LegacyTemplate extends BaseTemplate {
 		} else {
 			$talkLink = Linker::link( $wgUser->getTalkPage(),
 				$wgLang->getNsText( NS_TALK ) );
+			$talkLink = wfMessage( 'parentheses' )->rawParams( $talkLink )->escaped();
 
 			$ret .= Linker::link( $wgUser->getUserPage(),
 				htmlspecialchars( $wgUser->getName() ) );
-			$ret .= " ($talkLink)<br />";
+			$ret .= " $talkLink<br />";
 			$ret .= $wgLang->pipeList( array(
 				Linker::link(
 					SpecialPage::getTitleFor( 'Userlogout' ), wfMsg( 'logout' ),
@@ -855,6 +862,4 @@ class LegacyTemplate extends BaseTemplate {
 
 		return $ret;
 	}
-
 }
-

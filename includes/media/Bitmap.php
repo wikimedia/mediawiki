@@ -125,7 +125,6 @@ class BitmapHandler extends ImageHandler {
 			'srcWidth' => $image->getWidth(),
 			'srcHeight' => $image->getHeight(),
 			'mimeType' => $image->getMimeType(),
-			'srcPath' => $image->getLocalRefPath(),
 			'dstPath' => $dstPath,
 			'dstUrl' => $dstUrl,
 		);
@@ -162,6 +161,9 @@ class BitmapHandler extends ImageHandler {
 			wfDebug( __METHOD__ . ": Unable to create thumbnail destination directory, falling back to client scaling\n" );
 			return $this->getClientScalingThumbnailImage( $image, $scalerParams );
 		}
+
+		# Transform functions and binaries need a FS source file
+		$scalerParams['srcPath'] = $image->getLocalRefPath();
 
 		# Try a hook
 		$mto = null;
@@ -248,7 +250,7 @@ class BitmapHandler extends ImageHandler {
 	 */
 	protected function getClientScalingThumbnailImage( $image, $params ) {
 		return new ThumbnailImage( $image, $image->getURL(),
-				$params['clientWidth'], $params['clientHeight'], $params['srcPath'] );
+			$params['clientWidth'], $params['clientHeight'], null );
 	}
 
 	/**
@@ -570,6 +572,7 @@ class BitmapHandler extends ImageHandler {
 	/**
 	 * Escape a string for ImageMagick's property input (e.g. -set -comment)
 	 * See InterpretImageProperties() in magick/property.c
+	 * @return mixed|string
 	 */
 	function escapeMagickProperty( $s ) {
 		// Double the backslashes
@@ -597,6 +600,7 @@ class BitmapHandler extends ImageHandler {
 	 *
 	 * @param $path string The file path
 	 * @param $scene string The scene specification, or false if there is none
+	 * @return string
 	 */
 	function escapeMagickInput( $path, $scene = false ) {
 		# Die on initial metacharacters (caller should prepend path)
@@ -614,6 +618,7 @@ class BitmapHandler extends ImageHandler {
 	/**
 	 * Escape a string for ImageMagick's output filename. See
 	 * InterpretImageFilename() in magick/image.c.
+	 * @return string
 	 */
 	function escapeMagickOutput( $path, $scene = false ) {
 		$path = str_replace( '%', '%%', $path );
@@ -626,6 +631,7 @@ class BitmapHandler extends ImageHandler {
 	 *
 	 * @param $path string The file path
 	 * @param $scene string The scene specification, or false if there is none
+	 * @return string
 	 */
 	protected function escapeMagickPath( $path, $scene = false ) {
 		# Die on format specifiers (other than drive letters). The regex is

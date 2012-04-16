@@ -9,6 +9,7 @@
  */
 class WatchedItem {
 	var $mTitle, $mUser, $id, $ns, $ti;
+	private $loaded = false, $watched, $timestamp;
 
 	/**
 	 * Create a WatchedItem object with the given user and title
@@ -32,18 +33,83 @@ class WatchedItem {
 	}
 
 	/**
-	 * Is mTitle being watched by mUser?
-	 * @return bool
+	 * Return an array of conditions to select or update the appropriate database
+	 * row.
+	 *
+	 * @return array
 	 */
-	public function isWatched() {
+	private function dbCond() {
+		return array( 'wl_user' => $this->id, 'wl_namespace' => $this->ns, 'wl_title' => $this->ti );
+	}
+
+	/**
+	 * Load the object from the database
+	 */
+	private function load() {
+		if ( $this->loaded ) {
+			return;
+		}
+		$this->loaded = true;
+
 		# Pages and their talk pages are considered equivalent for watching;
 		# remember that talk namespaces are numbered as page namespace+1.
 
 		$dbr = wfGetDB( DB_SLAVE );
-		$res = $dbr->select( 'watchlist', 1, array( 'wl_user' => $this->id, 'wl_namespace' => $this->ns,
-			'wl_title' => $this->ti ), __METHOD__ );
-		$iswatched = ($dbr->numRows( $res ) > 0) ? 1 : 0;
-		return $iswatched;
+		$row = $dbr->selectRow( 'watchlist', 'wl_notificationtimestamp',
+			$this->dbCond(), __METHOD__ );
+
+		if ( $row === false ) {
+			$this->watched = false;
+		} else {
+			$this->watched = true;
+			$this->timestamp = $row->wl_notificationtimestamp;
+		}
+	}
+
+	/**
+	 * Is mTitle being watched by mUser?
+	 * @return bool
+	 */
+	public function isWatched() {
+		$this->load();
+		return $this->watched;
+	}
+
+	/**
+	 * Get the notification timestamp of this entry.
+	 *
+	 * @return false|null|string: false if the page is not watched, the value of
+	 *         the wl_notificationtimestamp field otherwise
+	 */
+	public function getNotificationTimestamp() {
+		$this->load();
+		if ( $this->watched ) {
+			return $this->timestamp;
+		} else {
+			return false;
+		}
+	}
+
+	/**
+	 * Reset the notification timestamp of this entry
+	 *
+	 * @param $force Whether to force the write query to be executed even if the
+	 *        page is not watched or the notification timestamp is already NULL.
+	 */
+	public function resetNotificationTimestamp( $force = '' ) {
+		if ( $force != 'force' ) {
+			$this->load();
+			if ( !$this->watched || $this->timestamp === null ) {
+				return;
+			}
+		}
+
+		// If the page is watched by the user (or may be watched), update the timestamp on any
+		// any matching rows
+		$dbw = wfGetDB( DB_MASTER );
+		$dbw->update( 'watchlist', array( 'wl_notificationtimestamp' => null ),
+			$this->dbCond(), __METHOD__ );
+		$this->timestamp = null;
 	}
 
 	/**
@@ -74,6 +140,8 @@ class WatchedItem {
 			'wl_title' => $this->ti,
 			'wl_notificationtimestamp' => null
 		  ), __METHOD__, 'IGNORE' );
+
+		$this->watched = true;
 
 		wfProfileOut( __METHOD__ );
 		return true;
@@ -115,6 +183,8 @@ class WatchedItem {
 			$success = true;
 		}
 
+		$this->watched = false;
+
 		wfProfileOut( __METHOD__ );
 		return $success;
 	}
@@ -139,7 +209,7 @@ class WatchedItem {
 	 *
 	 * @return bool
 	 */
-	private static function doDuplicateEntries( $ot, $nt ) {	
+	private static function doDuplicateEntries( $ot, $nt ) {
 		$oldnamespace = $ot->getNamespace();
 		$newnamespace = $nt->getNamespace();
 		$oldtitle = $ot->getDBkey();

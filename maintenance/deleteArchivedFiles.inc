@@ -24,7 +24,7 @@ class DeleteArchivedFilesImplementation {
 	static public function doDelete( $output, $force ) {
 		# Data should come off the master, wrapped in a transaction
 		$dbw = wfGetDB( DB_MASTER );
-		$dbw->begin();
+		$dbw->begin( __METHOD__ );
 		$tbl_arch = $dbw->tableName( 'filearchive' );
 		$repo = RepoGroup::singleton()->getLocalRepo();
 		# Get "active" revisions from the filearchive table
@@ -59,7 +59,7 @@ class DeleteArchivedFilesImplementation {
 				}
 			}
 		}
-		$dbw->commit();
+		$dbw->commit( __METHOD__ );
 		$output->handleOutput( "Done! [$count file(s)]\n" );
 	}
 }

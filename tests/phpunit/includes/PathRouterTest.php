@@ -125,6 +125,16 @@ class PathRouterTest extends MediaWikiTestCase {
 	}
 
 	/**
+	 * Test to ensure that matches are not made if a parameter expects nonexistent input
+	 */
+	public function testFail() {
+		$router = new PathRouter;
+		$router->add( "/wiki/$1", array( 'title' => "$1$2" ) );
+		$matches = $router->parse( "/wiki/A" );
+		$this->assertEquals( array(), $matches );
+	}
+
+	/**
 	 * Test to ensure weight of paths is handled correctly
 	 */
 	public function testWeight() {
@@ -172,12 +182,30 @@ class PathRouterTest extends MediaWikiTestCase {
 		$this->assertEquals( $matches, array( 'title' => "Title_With Space" ) );
 	}
 
+	public function dataRegexpChars() {
+		return array(
+			array( "$" ),
+			array( "$1" ),
+			array( "\\" ),
+			array( "\\$1" ),
+		);
+	}
+
+	/**
+	 * Make sure the router doesn't break on special characters like $ used in regexp replacements
+	 * @dataProvider dataRegexpChars
+	 */
+	public function testRegexpChars( $char ) {
+		$matches = $this->basicRouter->parse( "/wiki/$char" );
+		$this->assertEquals( $matches, array( 'title' => "$char" ) );
+	}
+
 	/**
 	 * Make sure the router handles characters like +&() properly
 	 */
 	public function testCharacters() {
-		$matches = $this->basicRouter->parse( "/wiki/Plus+And&Stuff()" );
-		$this->assertEquals( $matches, array( 'title' => "Plus+And&Stuff()" ) );
+		$matches = $this->basicRouter->parse( "/wiki/Plus+And&Dollar\\Stuff();[]{}*" );
+		$this->assertEquals( $matches, array( 'title' => "Plus+And&Dollar\\Stuff();[]{}*" ) );
 	}
 
 	/**

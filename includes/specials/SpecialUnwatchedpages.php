@@ -78,7 +78,7 @@ class UnwatchedpagesPage extends QueryPage {
 		$token = WatchAction::getWatchToken( $nt, $this->getUser() );
 		$wlink = Linker::linkKnown(
 			$nt,
-			wfMsgHtml( 'watch' ),
+			$this->msg( 'watch' )->escaped(),
 			array(),
 			array( 'action' => 'watch', 'token' => $token )
 		);

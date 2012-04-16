@@ -69,7 +69,6 @@ class HistoryAction extends FormlessAction {
 
 	/**
 	 * Print the history page for an article.
-	 * @return nothing
 	 */
 	function onView() {
 		global $wgScript, $wgUseFileCache, $wgSquidMaxage;
@@ -107,12 +106,13 @@ class HistoryAction extends FormlessAction {
 		// Handle atom/RSS feeds.
 		$feedType = $request->getVal( 'feed' );
 		if ( $feedType ) {
+			$this->feed( $feedType );
 			wfProfileOut( __METHOD__ );
-			return $this->feed( $feedType );
+			return;
 		}
 
 		// Fail nicely if article doesn't exist.
-		if ( !$this->getTitle()->exists() ) {
+		if ( !$this->page->exists() ) {
 			$out->addWikiMsg( 'nohistory' );
 			# show deletion/move log if there is an entry
 			LogEventsList::showLogExtract(
@@ -206,7 +206,7 @@ class HistoryAction extends FormlessAction {
 			$offsets = array();
 		}
 
-		$page_id = $this->getTitle()->getArticleID();
+		$page_id = $this->page->getId();
 
 		return $dbr->select( 'revision',
 			Revision::selectFields(),
@@ -316,6 +316,10 @@ class HistoryPager extends ReverseChronologicalPager {
 	public $lastRow = false, $counter, $historyPage, $buttons, $conds;
 	protected $oldIdChecked;
 	protected $preventClickjacking = false;
+	/**
+	 * @var array
+	 */
+	protected $parentLens;
 
 	function __construct( $historyPage, $year = '', $month = '', $tagFilter = '', $conds = array() ) {
 		parent::__construct( $historyPage->getContext() );
@@ -343,7 +347,7 @@ class HistoryPager extends ReverseChronologicalPager {
 			'tables'  => array( 'revision', 'user' ),
 			'fields'  => array_merge( Revision::selectFields(), Revision::selectUserFields() ),
 			'conds'   => array_merge(
-				array( 'rev_page' => $this->getTitle()->getArticleID() ),
+				array( 'rev_page' => $this->getWikiPage()->getId() ),
 				$this->conds ),
 			'options' => array( 'USE INDEX' => array( 'revision' => 'page_timestamp' ) ),
 			'join_conds' => array(
@@ -384,12 +388,45 @@ class HistoryPager extends ReverseChronologicalPager {
 		# Do a link batch query
 		$this->mResult->seek( 0 );
 		$batch = new LinkBatch();
+		$revIds = array();
 		foreach ( $this->mResult as $row ) {
-			$batch->addObj( Title::makeTitleSafe( NS_USER, $row->user_name ) );
-			$batch->addObj( Title::makeTitleSafe( NS_USER_TALK, $row->user_name ) );
+			if( $row->rev_parent_id ) {
+				$revIds[] = $row->rev_parent_id;
+			}
+			if( !is_null( $row->user_name ) ) {
+				$batch->add( NS_USER, $row->user_name );
+				$batch->add( NS_USER_TALK, $row->user_name );
+			} else { # for anons or usernames of imported revisions
+				$batch->add( NS_USER, $row->rev_user_text );
+				$batch->add( NS_USER_TALK, $row->rev_user_text );
+			}
 		}
+		$this->parentLens = $this->getParentLengths( $revIds );
 		$batch->execute();
 		$this->mResult->seek( 0 );
+	}
+
+	/**
+	 * Do a batched query to get the parent revision lengths
+	 * @param $revIds array
+	 * @return array
+	 * @TODO: stolen from Contributions, refactor
+	 */
+	private function getParentLengths( array $revIds ) {
+		$revLens = array();
+		if ( !$revIds ) {
+			return $revLens; // empty
+		}
+		wfProfileIn( __METHOD__ );
+		$res = $this->mDb->select( 'revision',
+			array( 'rev_id', 'rev_len' ),
+			array( 'rev_id' => $revIds ),
+			__METHOD__ );
+		foreach ( $res as $row ) {
+			$revLens[$row->rev_id] = $row->rev_len;
+		}
+		wfProfileOut( __METHOD__ );
+		return $revLens;
 	}
 
 	/**
@@ -518,7 +555,7 @@ class HistoryPager extends ReverseChronologicalPager {
 		$histLinks = Html::rawElement(
 				'span',
 				array( 'class' => 'mw-history-histlinks' ),
-				'(' . $curlink . $this->historyPage->message['pipe-separator'] . $lastlink . ') '
+				$this->msg( 'parentheses' )->rawParams( $curlink . $this->historyPage->message['pipe-separator'] . $lastlink )->escaped()
 		);
 		$s = $histLinks . $diffButtons;
 
@@ -568,18 +605,19 @@ class HistoryPager extends ReverseChronologicalPager {
 			$s .= ' ' . ChangesList::flag( 'minor' );
 		}
 
-		if ( $prevRev
-			&& !$prevRev->isDeleted( Revision::DELETED_TEXT )
-			&& !$rev->isDeleted( Revision::DELETED_TEXT ) )
-		{
-			$sDiff = ChangesList::showCharacterDifference( $prevRev->getSize(), $rev->getSize() );
-			$s .= ' . . ' . $sDiff . ' . . ';
-		}
+		# Size is always public data
+		$prevSize = isset( $this->parentLens[$row->rev_parent_id] )
+			? $this->parentLens[$row->rev_parent_id]
+			: 0;
+		$sDiff = ChangesList::showCharacterDifference( $prevSize, $rev->getSize() );
+		$fSize = Linker::formatRevisionSize($rev->getSize());
+		$s .= " . . $fSize $sDiff";
 
-		$s .= Linker::revComment( $rev, false, true );
+		# Text following the character difference is added just before running hooks
+		$s2 = Linker::revComment( $rev, false, true );
 
 		if ( $notificationtimestamp && ( $row->rev_timestamp >= $notificationtimestamp ) ) {
-			$s .= ' <span class="updatedmarker">' .  $this->msg( 'updatedmarker' )->escaped() . '</span>';
+			$s2 .= ' <span class="updatedmarker">' .  $this->msg( 'updatedmarker' )->escaped() . '</span>';
 		}
 
 		$tools = array();
@@ -616,13 +654,20 @@ class HistoryPager extends ReverseChronologicalPager {
 		}
 
 		if ( $tools ) {
-			$s .= ' (' . $lang->pipeList( $tools ) . ')';
+			$s2 .= ' '. $this->msg( 'parentheses' )->rawParams( $lang->pipeList( $tools ) )->escaped();
 		}
 
 		# Tags
 		list( $tagSummary, $newClasses ) = ChangeTags::formatSummaryRow( $row->ts_tags, 'history' );
 		$classes = array_merge( $classes, $newClasses );
-		$s .= " $tagSummary";
+		if ( $tagSummary !== '' ) {
+			$s2 .= " $tagSummary";
+		}
+
+		# Include separator between character difference and following text
+		if ( $s2 !== '' ) {
+			$s .= " . . $s2";
+		}
 
 		wfRunHooks( 'PageHistoryLineEnding', array( $this, &$row , &$s, &$classes ) );
 
@@ -676,7 +721,7 @@ class HistoryPager extends ReverseChronologicalPager {
 				$cur,
 				array(),
 				array(
-					'diff' => $this->getTitle()->getLatestRevID(),
+					'diff' => $this->getWikiPage()->getLatest(),
 					'oldid' => $rev->getId()
 				)
 			);
@@ -782,6 +827,7 @@ class HistoryPager extends ReverseChronologicalPager {
 
 	/**
 	 * Get the "prevent clickjacking" flag
+	 * @return bool
 	 */
 	function getPreventClickjacking() {
 		return $this->preventClickjacking;

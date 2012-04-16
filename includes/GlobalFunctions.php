@@ -20,33 +20,48 @@ if ( !defined( 'MEDIAWIKI' ) ) {
  */
 
 if( !function_exists( 'iconv' ) ) {
-	/** @codeCoverageIgnore */
+	/**
+	 * @codeCoverageIgnore
+	 * @return string
+	 */
 	function iconv( $from, $to, $string ) {
 		return Fallback::iconv( $from, $to, $string );
 	}
 }
 
 if ( !function_exists( 'mb_substr' ) ) {
-	/** @codeCoverageIgnore */
+	/**
+	 * @codeCoverageIgnore
+	 * @return string
+	 */
 	function mb_substr( $str, $start, $count='end' ) {
 		return Fallback::mb_substr( $str, $start, $count );
 	}
 
-	/** @codeCoverageIgnore */
+	/**
+	 * @codeCoverageIgnore
+	 * @return int
+	 */
 	function mb_substr_split_unicode( $str, $splitPos ) {
 		return Fallback::mb_substr_split_unicode( $str, $splitPos );
 	}
 }
 
 if ( !function_exists( 'mb_strlen' ) ) {
-	/** @codeCoverageIgnore */
+	/**
+	 * @codeCoverageIgnore
+	 * @return int
+	 */
 	function mb_strlen( $str, $enc = '' ) {
 		return Fallback::mb_strlen( $str, $enc );
 	}
 }
 
 if( !function_exists( 'mb_strpos' ) ) {
-	/** @codeCoverageIgnore */
+	/**
+	 * @codeCoverageIgnore
+	 * @return int
+	 */
 	function mb_strpos( $haystack, $needle, $offset = 0, $encoding = '' ) {
 		return Fallback::mb_strpos( $haystack, $needle, $offset, $encoding );
 	}
@@ -54,7 +69,10 @@ if( !function_exists( 'mb_strpos' ) ) {
 }
 
 if( !function_exists( 'mb_strrpos' ) ) {
-	/** @codeCoverageIgnore */
+	/**
+	 * @codeCoverageIgnore
+	 * @return int
+	 */
 	function mb_strrpos( $haystack, $needle, $offset = 0, $encoding = '' ) {
 		return Fallback::mb_strrpos( $haystack, $needle, $offset, $encoding );
 	}
@@ -63,7 +81,10 @@ if( !function_exists( 'mb_strrpos' ) ) {
 
 // Support for Wietse Venema's taint feature
 if ( !function_exists( 'istainted' ) ) {
-	/** @codeCoverageIgnore */
+	/**
+	 * @codeCoverageIgnore
+	 * @return int
+	 */
 	function istainted( $var ) {
 		return 0;
 	}
@@ -200,7 +221,7 @@ function wfMergeErrorArrays( /*...*/ ) {
  * @param $after Mixed: The key to insert after
  * @return Array
  */
-function wfArrayInsertAfter( $array, $insert, $after ) {
+function wfArrayInsertAfter( array $array, array $insert, $after ) {
 	// Find the offset of the element to insert after.
 	$keys = array_keys( $array );
 	$offsetByKey = array_flip( $keys );
@@ -271,6 +292,24 @@ function wfRandom() {
 	$rand = number_format( ( mt_rand() * $max + mt_rand() )
 		/ $max / $max, 12, '.', '' );
 	return $rand;
+}
+
+/**
+ * Get a random string containing a number of pesudo-random hex
+ * characters.
+ * @note This is not secure, if you are trying to generate some sort
+ *       of token please use MWCryptRand instead.
+ *
+ * @param $length int The length of the string to generate
+ * @return String
+ * @since 1.20
+ */
+function wfRandomString( $length = 32 ) {
+	$str = '';
+	while ( strlen( $str ) < $length ) {
+		$str .= dechex( mt_rand() );
+	}
+	return substr( $str, 0, $length );
 }
 
 /**
@@ -764,6 +803,31 @@ function wfParseUrl( $url ) {
 }
 
 /**
+ * Take a URL, make sure it's expanded to fully qualified, and replace any
+ * encoded non-ASCII Unicode characters with their UTF-8 original forms
+ * for more compact display and legibility for local audiences.
+ *
+ * @todo handle punycode domains too
+ *
+ * @param $url string
+ * @return string
+ */
+function wfExpandIRI( $url ) {
+	return preg_replace_callback( '/((?:%[89A-F][0-9A-F])+)/i', 'wfExpandIRI_callback', wfExpandUrl( $url ) );
+}
+
+/**
+ * Private callback for wfExpandIRI
+ * @param array $matches
+ * @return string
+ */
+function wfExpandIRI_callback( $matches ) {
+	return urldecode( $matches[1] );
+}
+
+
+
+/**
  * Make URL indexes, appropriate for the el_index field of externallinks.
  *
  * @param $url String
@@ -855,10 +919,14 @@ function wfDebug( $text, $logonly = false ) {
 	global $wgDebugLogPrefix, $wgShowDebug;
 
 	static $cache = array(); // Cache of unoutputted messages
-	$text = wfDebugTimer() . $text;
 
 	if ( !$wgDebugRawPage && wfIsDebugRawPage() ) {
 		return;
+	}
+
+	$timer = wfDebugTimer();
+	if ( $timer !== '' ) {
+		$text = preg_replace( '/[^\n]/', $timer . '\0', $text, 1 );
 	}
 
 	if ( ( $wgDebugComments || $wgShowDebug ) && !$logonly ) {
@@ -885,6 +953,7 @@ function wfDebug( $text, $logonly = false ) {
 
 /**
  * Returns true if debug logging should be suppressed if $wgDebugRawPage = false
+ * @return bool
  */
 function wfIsDebugRawPage() {
 	static $cache;
@@ -911,20 +980,15 @@ function wfIsDebugRawPage() {
  * @return string
  */
 function wfDebugTimer() {
-	global $wgDebugTimestamps;
+	global $wgDebugTimestamps, $wgRequestTime;
+
 	if ( !$wgDebugTimestamps ) {
 		return '';
 	}
-	static $start = null;
 
-	if ( $start === null ) {
-		$start = microtime( true );
-		$prefix = "\n$start";
-	} else {
-		$prefix = sprintf( "%6.4f", microtime( true ) - $start );
-	}
-	$mem = sprintf( "%5.1fM", ( memory_get_usage( true ) / (1024*1024) ) );
-	return "$prefix $mem  " ;
+	$prefix = sprintf( "%6.4f", microtime( true ) - $wgRequestTime );
+	$mem = sprintf( "%5.1fM", ( memory_get_usage( true ) / ( 1024 * 1024 ) ) );
+	return "$prefix $mem  ";
 }
 
 /**
@@ -952,16 +1016,12 @@ function wfDebugMem( $exact = false ) {
  *                     log file is specified, (default true)
  */
 function wfDebugLog( $logGroup, $text, $public = true ) {
-	global $wgDebugLogGroups, $wgShowHostnames;
+	global $wgDebugLogGroups;
 	$text = trim( $text ) . "\n";
 	if( isset( $wgDebugLogGroups[$logGroup] ) ) {
 		$time = wfTimestamp( TS_DB );
 		$wiki = wfWikiID();
-		if ( $wgShowHostnames ) {
-			$host = wfHostname();
-		} else {
-			$host = '';
-		}
+		$host = wfHostname();
 		if ( wfRunHooks( 'Debug', array( $text, $logGroup ) ) ) {
 			wfErrorLog( "$time $host $wiki: $text", $wgDebugLogGroups[$logGroup] );
 		}
@@ -976,11 +1036,97 @@ function wfDebugLog( $logGroup, $text, $public = true ) {
  * @param $text String: database error message.
  */
 function wfLogDBError( $text ) {
-	global $wgDBerrorLog, $wgDBname;
+	global $wgDBerrorLog;
 	if ( $wgDBerrorLog ) {
-		$host = trim(`hostname`);
-		$text = date( 'D M j G:i:s T Y' ) . "\t$host\t$wgDBname\t$text";
+		$host = wfHostname();
+		$wiki = wfWikiID();
+		$text = date( 'D M j G:i:s T Y' ) . "\t$host\t$wiki\t$text";
 		wfErrorLog( $text, $wgDBerrorLog );
+	}
+}
+
+/**
+ * Throws a warning that $function is deprecated
+ *
+ * @param $function String
+ * @param $version String|bool: Version of MediaWiki that the function was deprecated in (Added in 1.19).
+ * @param $component String|bool: Added in 1.19.
+ * @param $callerOffset integer: How far up the callstack is the original
+ *    caller. 2 = function that called the function that called
+ *    wfDeprecated (Added in 1.20)
+ *
+ * @return null
+ */
+function wfDeprecated( $function, $version = false, $component = false, $callerOffset = 2 ) {
+	static $functionsWarned = array();
+
+	MWDebug::deprecated( $function, $version, $component );
+
+	if ( !isset( $functionsWarned[$function] ) ) {
+		$functionsWarned[$function] = true;
+
+		if ( $version ) {
+			global $wgDeprecationReleaseLimit;
+
+			if ( $wgDeprecationReleaseLimit && $component === false ) {
+				# Strip -* off the end of $version so that branches can use the
+				# format #.##-branchname to avoid issues if the branch is merged into
+				# a version of MediaWiki later than what it was branched from
+				$comparableVersion = preg_replace( '/-.*$/', '', $version );
+
+				# If the comparableVersion is larger than our release limit then
+				# skip the warning message for the deprecation
+				if ( version_compare( $wgDeprecationReleaseLimit, $comparableVersion, '<' ) ) {
+					return;
+				}
+			}
+
+			$component = $component === false ? 'MediaWiki' : $component;
+			wfWarn( "Use of $function was deprecated in $component $version.", $callerOffset );
+		} else {
+			wfWarn( "Use of $function is deprecated.", $callerOffset );
+		}
+	}
+}
+
+/**
+ * Send a warning either to the debug log or in a PHP error depending on
+ * $wgDevelopmentWarnings
+ *
+ * @param $msg String: message to send
+ * @param $callerOffset Integer: number of items to go back in the backtrace to
+ *        find the correct caller (1 = function calling wfWarn, ...)
+ * @param $level Integer: PHP error level; only used when $wgDevelopmentWarnings
+ *        is true
+ */
+function wfWarn( $msg, $callerOffset = 1, $level = E_USER_NOTICE ) {
+	global $wgDevelopmentWarnings;
+
+	MWDebug::warning( $msg, $callerOffset + 2 );
+
+	$callers = wfDebugBacktrace();
+	if ( isset( $callers[$callerOffset + 1] ) ) {
+		$callerfunc = $callers[$callerOffset + 1];
+		$callerfile = $callers[$callerOffset];
+		if ( isset( $callerfile['file'] ) && isset( $callerfile['line'] ) ) {
+			$file = $callerfile['file'] . ' at line ' . $callerfile['line'];
+		} else {
+			$file = '(internal function)';
+		}
+		$func = '';
+		if ( isset( $callerfunc['class'] ) ) {
+			$func .= $callerfunc['class'] . '::';
+		}
+		if ( isset( $callerfunc['function'] ) ) {
+			$func .= $callerfunc['function'];
+		}
+		$msg .= " [Called from $func in $file]";
+	}
+
+	if ( $wgDevelopmentWarnings ) {
+		trigger_error( $msg, $level );
+	} else {
+		wfDebug( "$msg\n" );
 	}
 }
 
@@ -1064,8 +1210,7 @@ function wfLogProfilingData() {
 
 	// Get total page request time and only show pages that longer than
 	// $wgProfileLimit time (default is 0)
-	$now = wfTime();
-	$elapsed = $now - $wgRequestTime;
+	$elapsed = microtime( true ) - $wgRequestTime;
 	if ( $elapsed <= $wgProfileLimit ) {
 		return;
 	}
@@ -1100,6 +1245,57 @@ function wfLogProfilingData() {
 		urldecode( $wgRequest->getRequestURL() . $forward ) );
 
 	wfErrorLog( $log . $profiler->getOutput(), $wgDebugLogFile );
+}
+
+/**
+ * Increment a statistics counter
+ *
+ * @param $key String
+ * @param $count Int
+ */
+function wfIncrStats( $key, $count = 1 ) {
+	global $wgStatsMethod;
+
+	$count = intval( $count );
+
+	if( $wgStatsMethod == 'udp' ) {
+		global $wgUDPProfilerHost, $wgUDPProfilerPort, $wgDBname, $wgAggregateStatsID;
+		static $socket;
+
+		$id = $wgAggregateStatsID !== false ? $wgAggregateStatsID : $wgDBname;
+
+		if ( !$socket ) {
+			$socket = socket_create( AF_INET, SOCK_DGRAM, SOL_UDP );
+			$statline = "stats/{$id} - 1 1 1 1 1 -total\n";
+			socket_sendto(
+				$socket,
+				$statline,
+				strlen( $statline ),
+				0,
+				$wgUDPProfilerHost,
+				$wgUDPProfilerPort
+			);
+		}
+		$statline = "stats/{$id} - {$count} 1 1 1 1 {$key}\n";
+		wfSuppressWarnings();
+		socket_sendto(
+			$socket,
+			$statline,
+			strlen( $statline ),
+			0,
+			$wgUDPProfilerHost,
+			$wgUDPProfilerPort
+		);
+		wfRestoreWarnings();
+	} elseif( $wgStatsMethod == 'cache' ) {
+		global $wgMemc;
+		$key = wfMemcKey( 'stats', $key );
+		if ( is_null( $wgMemc->incr( $key, $count ) ) ) {
+			$wgMemc->add( $key, $count );
+		}
+	} else {
+		// Disabled
+	}
 }
 
 /**
@@ -1173,7 +1369,7 @@ function wfGetLangObj( $langcode = false ) {
 		return $wgLang;
 	}
 
-	$validCodes = array_keys( Language::getLanguageNames() );
+	$validCodes = array_keys( Language::fetchLanguageNames() );
 	if( in_array( $langcode, $validCodes ) ) {
 		# $langcode corresponds to a valid language.
 		return Language::factory( $langcode );
@@ -1186,7 +1382,7 @@ function wfGetLangObj( $langcode = false ) {
 
 /**
  * Old function when $wgBetterDirectionality existed
- * Removed in core, kept in extensions for backwards compat.
+ * All usage removed, wfUILang can be removed in near future
  *
  * @deprecated since 1.18
  * @return Language
@@ -1482,13 +1678,18 @@ function wfMsgExt( $key, $options ) {
 	}
 
 	$messageCache = MessageCache::singleton();
-	if( in_array( 'parse', $options, true ) ) {
-		$string = $messageCache->parse( $string, null, true, !$forContent, $langCodeObj )->getText();
-	} elseif ( in_array( 'parseinline', $options, true ) ) {
-		$string = $messageCache->parse( $string, null, true, !$forContent, $langCodeObj )->getText();
-		$m = array();
-		if( preg_match( '/^<p>(.*)\n?<\/p>\n?$/sU', $string, $m ) ) {
-			$string = $m[1];
+	$parseInline = in_array( 'parseinline', $options, true );
+	if( in_array( 'parse', $options, true ) || $parseInline ) {
+		$string = $messageCache->parse( $string, null, true, !$forContent, $langCodeObj );
+		if ( $string instanceof ParserOutput ) {
+			$string = $string->getText();
+		}
+
+		if ( $parseInline ) {
+			$m = array();
+			if( preg_match( '/^<p>(.*)\n?<\/p>\n?$/sU', $string, $m ) ) {
+				$string = $m[1];
+			}
 		}
 	} elseif ( in_array( 'parsemag', $options, true ) ) {
 		$string = $messageCache->transform( $string,
@@ -1568,8 +1769,7 @@ function wfHostname() {
 function wfReportTime() {
 	global $wgRequestTime, $wgShowHostnames;
 
-	$now = wfTime();
-	$elapsed = $now - $wgRequestTime;
+	$elapsed = microtime( true ) - $wgRequestTime;
 
 	return $wgShowHostnames
 		? sprintf( '<!-- Served by %s in %01.3f secs. -->', wfHostname(), $elapsed )
@@ -1691,7 +1891,7 @@ function wfGetCaller( $level = 2 ) {
  * Return a string consisting of callers in the stack. Useful sometimes
  * for profiling specific points.
  *
- * @param $limit The maximum depth of the stack frame to return, or false for
+ * @param $limit int The maximum depth of the stack frame to return, or false for
  *               the entire stack.
  * @return String
  */
@@ -1750,7 +1950,7 @@ function wfShowingResults( $offset, $limit ) {
  */
 function wfViewPrevNext( $offset, $limit, $link, $query = '', $atend = false ) {
 	wfDeprecated( __METHOD__, '1.19' );
-	
+
 	global $wgLang;
 
 	$query = wfCgiToArray( $query );
@@ -1778,6 +1978,8 @@ function wfViewPrevNext( $offset, $limit, $link, $query = '', $atend = false ) {
  * @deprecated since 1.19; use Language::specialList() instead
  */
 function wfSpecialList( $page, $details, $oppositedm = true ) {
+	wfDeprecated( __METHOD__, '1.19' );
+
 	global $wgLang;
 	return $wgLang->specialList( $page, $details, $oppositedm );
 }
@@ -1900,7 +2102,7 @@ function wfSetBit( &$dest, $bit, $state = true ) {
  * A wrapper around the PHP function var_export().
  * Either print it or add it to the regular output ($wgOut).
  *
- * @param $var A PHP variable to dump.
+ * @param $var mixed A PHP variable to dump.
  */
 function wfVarDump( $var ) {
 	global $wgOut;
@@ -1927,7 +2129,7 @@ function wfHttpError( $code, $label, $desc ) {
 	$wgOut->sendCacheControl();
 
 	header( 'Content-type: text/html; charset=utf-8' );
-	print "<!DOCTYPE HTML PUBLIC \"-//IETF//DTD HTML 2.0//EN\">".
+	print "<!doctype html>" .
 		'<html><head><title>' .
 		htmlspecialchars( $label ) .
 		'</title></head><body><h1>' .
@@ -2461,53 +2663,25 @@ function wfMkdirParents( $dir, $mode = null, $caller = null ) {
 }
 
 /**
- * Increment a statistics counter
- *
- * @param $key String
- * @param $count Int
+ * Remove a directory and all its content.
+ * Does not hide error.
  */
-function wfIncrStats( $key, $count = 1 ) {
-	global $wgStatsMethod;
-
-	$count = intval( $count );
-
-	if( $wgStatsMethod == 'udp' ) {
-		global $wgUDPProfilerHost, $wgUDPProfilerPort, $wgDBname, $wgAggregateStatsID;
-		static $socket;
-
-		$id = $wgAggregateStatsID !== false ? $wgAggregateStatsID : $wgDBname;
-
-		if ( !$socket ) {
-			$socket = socket_create( AF_INET, SOCK_DGRAM, SOL_UDP );
-			$statline = "stats/{$id} - {$count} 1 1 1 1 -total\n";
-			socket_sendto(
-				$socket,
-				$statline,
-				strlen( $statline ),
-				0,
-				$wgUDPProfilerHost,
-				$wgUDPProfilerPort
-			);
+function wfRecursiveRemoveDir( $dir ) {
+	wfDebug( __FUNCTION__ . "( $dir )\n" );
+	// taken from http://de3.php.net/manual/en/function.rmdir.php#98622
+	if ( is_dir( $dir ) ) {
+		$objects = scandir( $dir );
+		foreach ( $objects as $object ) {
+			if ( $object != "." && $object != ".." ) {
+				if ( filetype( $dir . '/' . $object ) == "dir" ) {
+					wfRecursiveRemoveDir( $dir . '/' . $object );
+				} else {
+					unlink( $dir . '/' . $object );
+				}
+			}
 		}
-		$statline = "stats/{$id} - {$count} 1 1 1 1 {$key}\n";
-		wfSuppressWarnings();
-		socket_sendto(
-			$socket,
-			$statline,
-			strlen( $statline ),
-			0,
-			$wgUDPProfilerHost,
-			$wgUDPProfilerPort
-		);
-		wfRestoreWarnings();
-	} elseif( $wgStatsMethod == 'cache' ) {
-		global $wgMemc;
-		$key = wfMemcKey( 'stats', $key );
-		if ( is_null( $wgMemc->incr( $key, $count ) ) ) {
-			$wgMemc->add( $key, $count );
-		}
-	} else {
-		// Disabled
+		reset( $objects );
+		rmdir( $dir );
 	}
 }
 
@@ -2672,11 +2846,11 @@ function wfEscapeShellArg( ) {
  * Execute a shell command, with time and memory limits mirrored from the PHP
  * configuration if supported.
  * @param $cmd String Command line, properly escaped for shell.
- * @param &$retval optional, will receive the program's exit code.
+ * @param &$retval null|Mixed optional, will receive the program's exit code.
  *                 (non-zero is usually failure)
  * @param $environ Array optional environment variables which should be
  *                 added to the executed command environment.
- * @return collected stdout as a string (trailing newlines stripped)
+ * @return string collected stdout as a string (trailing newlines stripped)
  */
 function wfShellExec( $cmd, &$retval = null, $environ = array() ) {
 	global $IP, $wgMaxShellMemory, $wgMaxShellFileSize, $wgMaxShellTime;
@@ -2778,21 +2952,29 @@ function wfInitShellLocale() {
 }
 
 /**
- * Generate a shell-escaped command line string to run a maintenance script.
+ * Alias to wfShellWikiCmd()
+ * @see wfShellWikiCmd()
+ */
+function wfShellMaintenanceCmd( $script, array $parameters = array(), array $options = array() ) {
+	return wfShellWikiCmd( $script, $parameters, $options );
+}
+
+/**
+ * Generate a shell-escaped command line string to run a MediaWiki cli script.
  * Note that $parameters should be a flat array and an option with an argument
  * should consist of two consecutive items in the array (do not use "--option value").
- * @param $script string MediaWiki maintenance script path
+ * @param $script string MediaWiki cli script path
  * @param $parameters Array Arguments and options to the script
  * @param $options Array Associative array of options:
  * 		'php': The path to the php executable
  * 		'wrapper': Path to a PHP wrapper to handle the maintenance script
  * @return Array
  */
-function wfShellMaintenanceCmd( $script, array $parameters = array(), array $options = array() ) {
+function wfShellWikiCmd( $script, array $parameters = array(), array $options = array() ) {
 	global $wgPhpCli;
 	// Give site config file a chance to run the script in a wrapper.
 	// The caller may likely want to call wfBasename() on $script.
-	wfRunHooks( 'wfShellMaintenanceCmd', array( &$script, &$parameters, &$options ) );
+	wfRunHooks( 'wfShellWikiCmd', array( &$script, &$parameters, &$options ) );
 	$cmd = isset( $options['php'] ) ? array( $options['php'] ) : array( $wgPhpCli );
 	if ( isset( $options['wrapper'] ) ) {
 		$cmd[] = $options['wrapper'];
@@ -3192,6 +3374,33 @@ function wfHttpOnlySafe() {
 }
 
 /**
+ * Override session_id before session startup if php's built-in
+ * session generation code is not secure.
+ */
+function wfFixSessionID() {
+	// If the cookie or session id is already set we already have a session and should abort
+	if ( isset( $_COOKIE[ session_name() ] ) || session_id() ) {
+		return;
+	}
+
+	// PHP's built-in session entropy is enabled if:
+	// - entropy_file is set or you're on Windows with php 5.3.3+
+	// - AND entropy_length is > 0
+	// We treat it as disabled if it doesn't have an entropy length of at least 32
+	$entropyEnabled = (
+			( wfIsWindows() && version_compare( PHP_VERSION, '5.3.3', '>=' ) )
+			|| ini_get( 'session.entropy_file' )
+		)
+		&& intval( ini_get( 'session.entropy_length' ) ) >= 32;
+
+	// If built-in entropy is not enabled or not sufficient override php's built in session id generation code
+	if ( !$entropyEnabled ) {
+		wfDebug( __METHOD__ . ": PHP's built in entropy is disabled or not sufficient, overriding session id generation using our cryptrand source.\n" );
+		session_id( MWCryptRand::generateHex( 32 ) );
+	}
+}
+
+/**
  * Initialise php session
  *
  * @param $sessionId Bool
@@ -3230,6 +3439,8 @@ function wfSetupSession( $sessionId = false ) {
 	session_cache_limiter( 'private, must-revalidate' );
 	if ( $sessionId ) {
 		session_id( $sessionId );
+	} else {
+		wfFixSessionID();
 	}
 	wfSuppressWarnings();
 	session_start();
@@ -3368,7 +3579,7 @@ function &wfGetLBFactory() {
  * Shortcut for RepoGroup::singleton()->findFile()
  *
  * @param $title String or Title object
- * @param $options Associative array of options:
+ * @param $options array Associative array of options:
  *     time:           requested time for an archived image, or false for the
  *                     current version. An image object will be returned which was
  *                     created at the specified time.
@@ -3392,7 +3603,7 @@ function wfFindFile( $title, $options = array() ) {
  * Returns a valid placeholder object if the file does not exist.
  *
  * @param $title Title|String
- * @return File|null A File, or null if passed an invalid Title
+ * @return LocalFile|null A File, or null if passed an invalid Title
  */
 function wfLocalFile( $title ) {
 	return RepoGroup::singleton()->getLocalRepo()->newFile( $title );
@@ -3436,7 +3647,7 @@ function wfScript( $script = 'index' ) {
 /**
  * Get the script URL.
  *
- * @return script URL
+ * @return string script URL
  */
 function wfGetScriptUrl() {
 	if( isset( $_SERVER['SCRIPT_NAME'] ) ) {
@@ -3486,88 +3697,6 @@ function wfGetNull() {
 	return wfIsWindows()
 		? 'NUL'
 		: '/dev/null';
-}
-
-/**
- * Throws a warning that $function is deprecated
- *
- * @param $function String
- * @param $version String|false: Added in 1.19.
- * @param $component String|false: Added in 1.19.
- * 
- * @return null
- */
-function wfDeprecated( $function, $version = false, $component = false ) {
-	static $functionsWarned = array();
-
-	MWDebug::deprecated( $function, $version, $component );
-
-	if ( !isset( $functionsWarned[$function] ) ) {
-		$functionsWarned[$function] = true;
-		
-		if ( $version ) {
-			global $wgDeprecationReleaseLimit;
-			
-			if ( $wgDeprecationReleaseLimit && $component === false ) {
-				# Strip -* off the end of $version so that branches can use the
-				# format #.##-branchname to avoid issues if the branch is merged into
-				# a version of MediaWiki later than what it was branched from
-				$comparableVersion = preg_replace( '/-.*$/', '', $version );
-				
-				# If the comparableVersion is larger than our release limit then
-				# skip the warning message for the deprecation
-				if ( version_compare( $wgDeprecationReleaseLimit, $comparableVersion, '<' ) ) {
-					return;
-				}
-			}
-			
-			$component = $component === false ? 'MediaWiki' : $component;
-			wfWarn( "Use of $function was deprecated in $component $version.", 2 );
-		} else {
-			wfWarn( "Use of $function is deprecated.", 2 );
-		}
-	}
-}
-
-/**
- * Send a warning either to the debug log or in a PHP error depending on
- * $wgDevelopmentWarnings
- *
- * @param $msg String: message to send
- * @param $callerOffset Integer: number of items to go back in the backtrace to
- *        find the correct caller (1 = function calling wfWarn, ...)
- * @param $level Integer: PHP error level; only used when $wgDevelopmentWarnings
- *        is true
- */
-function wfWarn( $msg, $callerOffset = 1, $level = E_USER_NOTICE ) {
-	global $wgDevelopmentWarnings;
-
-	MWDebug::warning( $msg, $callerOffset + 2 );
-
-	$callers = wfDebugBacktrace();
-	if ( isset( $callers[$callerOffset + 1] ) ) {
-		$callerfunc = $callers[$callerOffset + 1];
-		$callerfile = $callers[$callerOffset];
-		if ( isset( $callerfile['file'] ) && isset( $callerfile['line'] ) ) {
-			$file = $callerfile['file'] . ' at line ' . $callerfile['line'];
-		} else {
-			$file = '(internal function)';
-		}
-		$func = '';
-		if ( isset( $callerfunc['class'] ) ) {
-			$func .= $callerfunc['class'] . '::';
-		}
-		if ( isset( $callerfunc['function'] ) ) {
-			$func .= $callerfunc['function'];
-		}
-		$msg .= " [Called from $func in $file]";
-	}
-
-	if ( $wgDevelopmentWarnings ) {
-		trigger_error( $msg, $level );
-	} else {
-		wfDebug( "$msg\n" );
-	}
 }
 
 /**
@@ -3632,8 +3761,11 @@ function wfCountDown( $n ) {
  *              characters before hashing.
  * @return string
  * @codeCoverageIgnore
+ * @deprecated since 1.20; Please use MWCryptRand for security purposes and wfRandomString for pesudo-random strings
+ * @warning This method is NOT secure. Additionally it has many callers that use it for pesudo-random purposes.
  */
 function wfGenerateToken( $salt = '' ) {
+	wfDeprecated( __METHOD__, '1.20' );
 	$salt = serialize( $salt );
 	return md5( mt_rand( 0, 0x7fffffff ) . $salt );
 }
@@ -3789,6 +3921,16 @@ function wfGetParserCacheStorage() {
 }
 
 /**
+ * Get the cache object used by the language converter
+ *
+ * @return BagOStuff
+ */
+function wfGetLangConverterCacheStorage() {
+	global $wgLanguageConverterCacheType;
+	return ObjectCache::getInstance( $wgLanguageConverterCacheType );
+}
+
+/**
  * Call hook functions defined in $wgHooks
  *
  * @param $event String: event name
@@ -3811,7 +3953,7 @@ function wfRunHooks( $event, $args = array() ) {
  * because php might make it negative.
  *
  * @throws MWException if $data not long enough, or if unpack fails
- * @return Associative array of the extracted data
+ * @return array Associative array of the extracted data
  */
 function wfUnpack( $format, $data, $length=false ) {
 	if ( $length !== false ) {
@@ -3833,4 +3975,85 @@ function wfUnpack( $format, $data, $length=false ) {
 		throw new MWException( "unpack could not unpack binary data" );
 	}
 	return $result;
+}
+
+/**
+ * Determine if an image exists on the 'bad image list'.
+ *
+ * The format of MediaWiki:Bad_image_list is as follows:
+ *    * Only list items (lines starting with "*") are considered
+ *    * The first link on a line must be a link to a bad image
+ *    * Any subsequent links on the same line are considered to be exceptions,
+ *      i.e. articles where the image may occur inline.
+ *
+ * @param $name string the image name to check
+ * @param $contextTitle Title|bool the page on which the image occurs, if known
+ * @param $blacklist string wikitext of a file blacklist
+ * @return bool
+ */
+function wfIsBadImage( $name, $contextTitle = false, $blacklist = null ) {
+	static $badImageCache = null; // based on bad_image_list msg
+	wfProfileIn( __METHOD__ );
+
+	# Handle redirects
+	$redirectTitle = RepoGroup::singleton()->checkRedirect( Title::makeTitle( NS_FILE, $name ) );
+	if( $redirectTitle ) {
+		$name = $redirectTitle->getDbKey();
+	}
+
+	# Run the extension hook
+	$bad = false;
+	if( !wfRunHooks( 'BadImage', array( $name, &$bad ) ) ) {
+		wfProfileOut( __METHOD__ );
+		return $bad;
+	}
+
+	$cacheable = ( $blacklist === null );
+	if( $cacheable && $badImageCache !== null ) {
+		$badImages = $badImageCache;
+	} else { // cache miss
+		if ( $blacklist === null ) {
+			$blacklist = wfMsgForContentNoTrans( 'bad_image_list' ); // site list
+		}
+		# Build the list now
+		$badImages = array();
+		$lines = explode( "\n", $blacklist );
+		foreach( $lines as $line ) {
+			# List items only
+			if ( substr( $line, 0, 1 ) !== '*' ) {
+				continue;
+			}
+
+			# Find all links
+			$m = array();
+			if ( !preg_match_all( '/\[\[:?(.*?)\]\]/', $line, $m ) ) {
+				continue;
+			}
+
+			$exceptions = array();
+			$imageDBkey = false;
+			foreach ( $m[1] as $i => $titleText ) {
+				$title = Title::newFromText( $titleText );
+				if ( !is_null( $title ) ) {
+					if ( $i == 0 ) {
+						$imageDBkey = $title->getDBkey();
+					} else {
+						$exceptions[$title->getPrefixedDBkey()] = true;
+					}
+				}
+			}
+
+			if ( $imageDBkey !== false ) {
+				$badImages[$imageDBkey] = $exceptions;
+			}
+		}
+		if ( $cacheable ) {
+			$badImageCache = $badImages;
+		}
+	}
+
+	$contextKey = $contextTitle ? $contextTitle->getPrefixedDBkey() : false;
+	$bad = isset( $badImages[$name] ) && !isset( $badImages[$name][$contextKey] );
+	wfProfileOut( __METHOD__ );
+	return $bad;
 }

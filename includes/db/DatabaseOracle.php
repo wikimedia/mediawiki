@@ -226,6 +226,7 @@ class DatabaseOracle extends DatabaseBase {
 
 	/**
 	 * Usually aborts on failure
+	 * @return DatabaseBase|null
 	 */
 	function open( $server, $user, $password, $dbName ) {
 		if ( !function_exists( 'oci_connect' ) ) {
@@ -285,17 +286,10 @@ class DatabaseOracle extends DatabaseBase {
 	/**
 	 * Closes a database connection, if it is open
 	 * Returns success, true if already closed
+	 * @return bool
 	 */
-	function close() {
-		$this->mOpened = false;
-		if ( $this->mConn ) {
-			if ( $this->mTrxLevel ) {
-				$this->commit();
-			}
-			return oci_close( $this->mConn );
-		} else {
-			return true;
-		}
+	protected function closeConnection() {
+		return oci_close( $this->mConn );
 	}
 
 	function execFlags() {
@@ -401,6 +395,7 @@ class DatabaseOracle extends DatabaseBase {
 
 	/**
 	 * This must be called after nextSequenceVal
+	 * @return null
 	 */
 	function insertId() {
 		return $this->mInsertId;
@@ -439,6 +434,7 @@ class DatabaseOracle extends DatabaseBase {
 	/**
 	 * Returns information about an index
 	 * If errors are explicitly ignored, returns NULL on failure
+	 * @return bool
 	 */
 	function indexInfo( $table, $index, $fname = 'DatabaseOracle::indexExists' ) {
 		return false;
@@ -679,6 +675,7 @@ class DatabaseOracle extends DatabaseBase {
 	}
 	/**
 	 * Return the next in a sequence, save the value for retrieval via insertId()
+	 * @return null
 	 */
 	function nextSequenceValue( $seqName ) {
 		$res = $this->query( "SELECT $seqName.nextval FROM dual" );
@@ -689,6 +686,7 @@ class DatabaseOracle extends DatabaseBase {
 
 	/**
 	 * Return sequence_name if table has a sequence
+	 * @return bool
 	 */
 	private function getSequenceData( $table ) {
 		if ( $this->sequenceData == null ) {
@@ -836,6 +834,7 @@ class DatabaseOracle extends DatabaseBase {
 
 	/**
 	 * Query whether a given index exists
+	 * @return bool
 	 */
 	function indexExists( $table, $index, $fname = 'DatabaseOracle::indexExists' ) {
 		$table = $this->tableName( $table );
@@ -855,6 +854,7 @@ class DatabaseOracle extends DatabaseBase {
 
 	/**
 	 * Query whether a given table exists (in the given schema, or the default mw one if not given)
+	 * @return int
 	 */
 	function tableExists( $table, $fname = __METHOD__ ) {
 		$table = $this->tableName( $table );
@@ -970,7 +970,8 @@ class DatabaseOracle extends DatabaseBase {
 	}
 
 	/* defines must comply with ^define\s*([^\s=]*)\s*=\s?'\{\$([^\}]*)\}'; */
-	function sourceStream( $fp, $lineCallback = false, $resultCallback = false, $fname = 'DatabaseOracle::sourceStream' ) {
+	function sourceStream( $fp, $lineCallback = false, $resultCallback = false,
+		$fname = 'DatabaseOracle::sourceStream', $inputCallback = false ) {
 		$cmd = '';
 		$done = false;
 		$dollarquote = false;
@@ -1024,6 +1025,9 @@ class DatabaseOracle extends DatabaseBase {
 					}
 
 					$cmd = $this->replaceVars( $cmd );
+					if ( $inputCallback ) {
+						call_user_func( $inputCallback, $cmd );
+					}
 					$res = $this->doQuery( $cmd );
 					if ( $resultCallback ) {
 						call_user_func( $resultCallback, $res, $this );

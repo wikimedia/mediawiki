@@ -77,6 +77,9 @@ class ApiQueryBlocks extends ApiQueryBase {
 
 		$this->addOption( 'LIMIT', $params['limit'] + 1 );
 		$this->addTimestampWhereRange( 'ipb_timestamp', $params['dir'], $params['start'], $params['end'] );
+
+		$db = $this->getDB();
+
 		if ( isset( $params['ids'] ) ) {
 			$this->addWhereFld( 'ipb_id', $params['ids'] );
 		}
@@ -100,7 +103,6 @@ class ApiQueryBlocks extends ApiQueryBase {
 			}
 			$prefix = substr( $lower, 0, 4 );
 
-			$db = $this->getDB();
 			$this->addWhere( array(
 				'ipb_range_start' . $db->buildLike( $prefix, $db->anyString() ),
 				"ipb_range_start <= '$lower'",

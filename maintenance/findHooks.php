@@ -63,8 +63,10 @@ class FindHooks extends Maintenance {
 			$IP . '/includes/db/',
 			$IP . '/includes/diff/',
 			$IP . '/includes/filerepo/',
+			$IP . '/includes/filerepo/file/',
 			$IP . '/includes/installer/',
 			$IP . '/includes/interwiki/',
+			$IP . '/includes/logging/',
 			$IP . '/includes/media/',
 			$IP . '/includes/parser/',
 			$IP . '/includes/resourceloader/',
@@ -157,7 +159,7 @@ class FindHooks extends Maintenance {
 
 	/**
 	 * Get hooks from a PHP file
-	 * @param $file Full filename to the PHP file.
+	 * @param $file string Full filename to the PHP file.
 	 * @return array of hooks found.
 	 */
 	private function getHooksFromFile( $file ) {
@@ -188,7 +190,7 @@ class FindHooks extends Maintenance {
 
 	/**
 	 * Get bad hooks (where the hook name could not be determined) from a PHP file
-	 * @param $file Full filename to the PHP file.
+	 * @param $file string Full filename to the PHP file.
 	 * @return array of bad wfRunHooks() lines
 	 */
 	private function getBadHooksFromFile( $file ) {

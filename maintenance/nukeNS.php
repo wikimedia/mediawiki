@@ -49,7 +49,7 @@ class NukeNS extends Maintenance {
 		$delete = $this->getOption( 'delete', false );
 		$all = $this->getOption( 'all', false );
 		$dbw = wfGetDB( DB_MASTER );
-		$dbw->begin();
+		$dbw->begin( __METHOD__ );
 
 		$tbl_pag = $dbw->tableName( 'page' );
 		$tbl_rev = $dbw->tableName( 'revision' );
@@ -80,7 +80,7 @@ class NukeNS extends Maintenance {
 				// I already have the id & revs
 				if ( $delete ) {
 					$dbw->query( "DELETE FROM $tbl_pag WHERE page_id = $id" );
-					$dbw->commit();
+					$dbw->commit( __METHOD__ );
 					// Delete revisions as appropriate
 					$child = $this->runChild( 'NukePage', 'nukePage.php' );
 					$child->deleteRevisions( $revs );
@@ -91,7 +91,7 @@ class NukeNS extends Maintenance {
 			  $this->output( "skip: " . $title->getPrefixedText() . "\n" );
 			}
 		}
-		$dbw->commit();
+		$dbw->commit( __METHOD__ );
 
 		if ( $n_deleted > 0 ) {
 			# update statistics - better to decrement existing count, or just count

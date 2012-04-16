@@ -113,8 +113,8 @@ class CSSJanus {
 		$patterns['four_notation_color'] = "/(-color\s*:\s*){$patterns['color']}(\s+){$patterns['color']}(\s+){$patterns['color']}(\s+){$patterns['color']}/i";
 		// The two regexes below are parenthesized differently then in the original implementation to make the
 		// callback's job more straightforward
-		$patterns['bg_horizontal_percentage'] = "/(background(?:-position)?\s*:\s*[^%]*?)({$patterns['num']})(%\s*(?:{$patterns['quantity']}|{$patterns['ident']}))/";
-		$patterns['bg_horizontal_percentage_x'] = "/(background-position-x\s*:\s*)({$patterns['num']})(%)/";
+		$patterns['bg_horizontal_percentage'] = "/(background(?:-position)?\s*:\s*[^%]*?)(-?{$patterns['num']})(%\s*(?:{$patterns['quantity']}|{$patterns['ident']}))/";
+		$patterns['bg_horizontal_percentage_x'] = "/(background-position-x\s*:\s*)(-?{$patterns['num']})(%)/";
 	}
 
 	/**
@@ -122,7 +122,7 @@ class CSSJanus {
 	 * @param $css String: stylesheet to transform
 	 * @param $swapLtrRtlInURL Boolean: If true, swap 'ltr' and 'rtl' in URLs
 	 * @param $swapLeftRightInURL Boolean: If true, swap 'left' and 'right' in URLs
-	 * @return Transformed stylesheet
+	 * @return string Transformed stylesheet
 	 */
 	public static function transform( $css, $swapLtrRtlInURL = false, $swapLeftRightInURL = false ) {
 		// We wrap tokens in ` , not ~ like the original implementation does.

@@ -36,16 +36,14 @@ var encapsulateTest = function( options ) {
 
 	test( opt.description, function() {
 		var tests = 1;
-		if (opt.after.selected !== null) {
+		if ( opt.after.selected !== null ) {
 			tests++;
 		}
-		expect(tests);
+		expect( tests );
 
-		var $fixture = $( '<div id="qunit-fixture"></div>' );
 		var $textarea = $( '<textarea>' );
 
-		$fixture.append($textarea);
-		$( 'body' ).append($fixture);
+		$( '#qunit-fixture' ).append( $textarea );
 
 		//$textarea.textSelection( 'setContents', opt.before.text); // this method is actually missing atm...
 		$textarea.val( opt.before.text ); // won't work with the WikiEditor iframe?
@@ -228,11 +226,9 @@ var caretTest = function(options) {
 	test(options.description, function() {
 		expect(2);
 
-		var $fixture = $( '<div id="qunit-fixture"></div>' );
 		var $textarea = $( '<textarea>' ).text(options.text);
 
-		$fixture.append($textarea);
-		$( 'body' ).append($fixture);
+		$( '#qunit-fixture' ).append( $textarea );
 
 		if (options.mode == 'set') {
 			$textarea.textSelection('setSelection', {
@@ -257,6 +253,8 @@ var caretTest = function(options) {
 
 var caretSample = "Some big text that we like to work with. Nothing fancy... you know what I mean?";
 
+/*
+ // @broken: Disabled per bug 34820
 caretTest({
 	description: 'getCaretPosition with original/empty selection - bug 31847 with IE 6/7/8',
 	text: caretSample,
@@ -264,6 +262,7 @@ caretTest({
 	end: [0, caretSample.length], // Other browsers default it to the beginning (0), so check both.
 	mode: 'get'
 });
+*/
 
 caretTest({
 	description: 'set/getCaretPosition with forced empty selection',

@@ -1,5 +1,5 @@
 /**
- * JavaScript for the new debug toolbar, enabled with $wgDebugToolbar
+ * JavaScript for the new debug toolbar, enabled through $wgDebugToolbar.
  *
  * @author John Du Hart
  * @since 1.19
@@ -26,13 +26,15 @@
 		data: {},
 
 		/**
-		 * Initializes the debugging pane
+		 * Initializes the debugging pane.
+		 * Shouldn't be called before the document is ready
+		 * (since it binds to elements on the page).
 		 *
-		 * @param {Object} data
+		 * @param {Object} data, defaults to 'debugInfo' from mw.config
 		 */
 		init: function ( data ) {
 
-			this.data = data;
+			this.data = data || mw.config.get( 'debugInfo' );
 			this.buildHtml();
 
 			// Insert the container into the DOM
@@ -157,9 +159,22 @@
 
 			paneTriggerBitDiv( 'includes', 'PHP includes', this.data.includes.length );
 
+			var gitInfo = '';
+			if ( this.data.gitRevision != false ) {
+				gitInfo = '(' + this.data.gitRevision.substring( 0, 7 ) + ')';
+				if ( this.data.gitViewUrl != false ) {
+					gitInfo = $( '<a></a>' ).attr( 'href', this.data.gitViewUrl ).text( gitInfo );
+				}
+			}
+
 			bitDiv( 'mwversion' )
 				.append( $( '<a href="//www.mediawiki.org/"></a>' ).text( 'MediaWiki' ) )
-				.append( ': ' + this.data.mwVersion );
+				.append( ': ' + this.data.mwVersion + ' ' )
+				.append( gitInfo );
+
+			if ( this.data.gitBranch != false ) {
+				bitDiv( 'gitbranch' ).text( 'Git branch: ' + this.data.gitBranch );
+			}
 
 			bitDiv( 'phpversion' )
 				.append( $( '<a href="//www.php.net/"></a>' ).text( 'PHP' ) )

@@ -29,7 +29,7 @@ ini_set( 'zlib.output_compression', 'off' );
 
 $wgEnableProfileInfo = $wgProfileToDatabase = false;
 if ( isset( $_SERVER['MW_COMPILED'] ) ) {
-	require ( 'phase3/includes/WebStart.php' );
+	require ( 'core/includes/WebStart.php' );
 } else {
 	require ( dirname( __FILE__ ) . '/includes/WebStart.php' );
 }
@@ -56,16 +56,20 @@ header( 'Content-Type: text/html; charset=utf-8' );
 		text-align: right;
 	}
 	td.timep, td.tpc, td.tpr {
-		background-color: #fffff0;
+		background-color: #ffff80;
 	}
 	td.memoryp, td.mpc, td.mpr {
-		background-color: #f0f8ff;
+		background-color: #80f8ff;
 	}
 	td.count, td,cpr {
-		background-color: #f0fff0;
+		background-color: #80ff80;
 	}
 	td.name {
-		background-color: #f9f9f9;
+		background-color: #89f9f9;
+	}
+
+	tr:hover {
+		font-weight: bold;
 	}
 </style>
 </head>

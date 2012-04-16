@@ -58,4 +58,3 @@ function getVars( $filename ) {
 	unset( $vars['filename'] );
 	return $vars;
 }
-

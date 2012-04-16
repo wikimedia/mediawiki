@@ -69,7 +69,7 @@ class SpecialPreferences extends SpecialPage {
 
 		$htmlForm = new HTMLForm( array(), $this->getContext(), 'prefs-restore' );
 
-		$htmlForm->setSubmitText( wfMsg( 'restoreprefs' ) );
+		$htmlForm->setSubmitTextMsg( 'restoreprefs' );
 		$htmlForm->setTitle( $this->getTitle( 'reset' ) );
 		$htmlForm->setSubmitCallback( array( $this, 'submitReset' ) );
 		$htmlForm->suppressReset();
@@ -82,7 +82,7 @@ class SpecialPreferences extends SpecialPage {
 		$user->resetOptions();
 		$user->saveSettings();
 
-		$url = SpecialPage::getTitleFor( 'Preferences' )->getFullURL( 'success' );
+		$url = $this->getTitle()->getFullURL( 'success' );
 
 		$this->getOutput()->redirect( $url );
 

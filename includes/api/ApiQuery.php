@@ -135,7 +135,7 @@ class ApiQuery extends ApiBase {
 
 	/**
 	 * Gets a default slave database connection object
-	 * @return Database
+	 * @return DatabaseBase
 	 */
 	public function getDB() {
 		if ( !isset( $this->mSlaveDB ) ) {
@@ -154,7 +154,7 @@ class ApiQuery extends ApiBase {
 	 * @param $name string Name to assign to the database connection
 	 * @param $db int One of the DB_* constants
 	 * @param $groups array Query groups
-	 * @return Database
+	 * @return DatabaseBase
 	 */
 	public function getNamedDB( $name, $db, $groups ) {
 		if ( !array_key_exists( $name, $this->mNamedDB ) ) {

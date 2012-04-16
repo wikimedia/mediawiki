@@ -130,13 +130,14 @@ class Interwiki {
 			$value = '';
 		}
 
+
 		return $value;
 	}
 
 	/**
 	 * Load the interwiki, trying first memcached then the DB
 	 *
-	 * @param $prefix The interwiki prefix
+	 * @param $prefix string The interwiki prefix
 	 * @return Boolean: the prefix is valid
 	 */
 	protected static function load( $prefix ) {
@@ -186,8 +187,8 @@ class Interwiki {
 	/**
 	 * Fill in member variables from an array (e.g. memcached result, Database::fetchRow, etc)
 	 *
-	 * @param $mc Associative array: row from the interwiki table
-	 * @return Boolean: whether everything was there
+	 * @param $mc array Associative array: row from the interwiki table
+	 * @return Boolean|Interwiki whether everything was there
 	 */
 	protected static function loadFromArray( $mc ) {
 		if( isset( $mc['iw_url'] ) ) {
@@ -206,7 +207,7 @@ class Interwiki {
 	/**
 	 * Fetch all interwiki prefixes from interwiki cache
 	 *
-	 * @param $local If not null, limits output to local/non-local interwikis
+	 * @param $local null|string If not null, limits output to local/non-local interwikis
 	 * @return Array List of prefixes
 	 * @since 1.19
 	 */
@@ -270,7 +271,7 @@ class Interwiki {
 	/**
 	 * Fetch all interwiki prefixes from DB
 	 *
-	 * @param $local If not null, limits output to local/non-local interwikis
+	 * @param $local string|null If not null, limits output to local/non-local interwikis
 	 * @return Array List of prefixes
 	 * @since 1.19
 	 */
@@ -301,7 +302,7 @@ class Interwiki {
 	/**
 	 * Returns all interwiki prefixes
 	 *
-	 * @param $local If set, limits output to local/non-local interwikis
+	 * @param $local string|null If set, limits output to local/non-local interwikis
 	 * @return Array List of prefixes
 	 * @since 1.19
 	 */

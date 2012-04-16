@@ -203,6 +203,39 @@ abstract class DatabaseUpdater {
 	}
 
 	/**
+	 *
+	 * @since 1.20
+	 *
+	 * @param $tableName string
+	 * @param $columnName string
+	 * @param $sqlPath string
+	 */
+	public function dropExtensionField( $tableName, $columnName, $sqlPath ) {
+		$this->extensionUpdates[] = array( 'dropField', $tableName, $columnName, $sqlPath, true );
+	}
+
+	/**
+	 *
+	 * @since 1.20
+	 *
+	 * @param $tableName string
+	 * @param $sqlPath string
+	 */
+	public function dropExtensionTable( $tableName, $sqlPath ) {
+		$this->extensionUpdates[] = array( 'dropTable', $tableName, $sqlPath, true );
+	}
+
+	/**
+	 *
+	 * @since 1.20
+	 *
+	 * @param $tableName string
+	 */
+	public function tableExists( $tableName ) {
+		return ( $this->db->tableExists( $tableName, __METHOD__ ) );
+	}
+
+	/**
 	 * Add a maintenance script to be run after the database updates are complete.
 	 * 
 	 * @since 1.19
@@ -239,6 +272,7 @@ abstract class DatabaseUpdater {
 	public function doUpdates( $what = array( 'core', 'extensions', 'purge', 'stats' ) ) {
 		global $wgLocalisationCacheConf, $wgVersion;
 
+		$this->db->begin( __METHOD__ );
 		$what = array_flip( $what );
 		if ( isset( $what['core'] ) ) {
 			$this->runUpdates( $this->getCoreUpdateList(), false );
@@ -261,6 +295,7 @@ abstract class DatabaseUpdater {
 				$this->rebuildLocalisationCache();
 			}
 		}
+		$this->db->commit( __METHOD__ );
 	}
 
 	/**

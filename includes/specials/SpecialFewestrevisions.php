@@ -68,6 +68,7 @@ class FewestrevisionsPage extends QueryPage {
 	/**
 	 * @param $skin Skin object
 	 * @param $result Object: database row
+	 * @return String
 	 */
 	function formatResult( $skin, $result ) {
 		global $wgContLang;
@@ -82,7 +83,7 @@ class FewestrevisionsPage extends QueryPage {
 
 		$nl = $this->msg( 'nrevisions' )->numParams( $result->value )->escaped();
 		$redirect = isset( $result->redirect ) && $result->redirect ?
-			' - ' . wfMsgHtml( 'isredirect' ) : '';
+			' - ' . $this->msg( 'isredirect' )->escaped() : '';
 		$nlink = Linker::linkKnown(
 			$nt,
 			$nl,

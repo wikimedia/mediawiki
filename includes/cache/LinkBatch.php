@@ -45,6 +45,11 @@ class LinkBatch {
 		}
 	}
 
+	/**
+	 * @param $ns int
+	 * @param $dbkey string
+	 * @return mixed
+	 */
 	public function add( $ns, $dbkey ) {
 		if ( $ns < 0 ) {
 			return;

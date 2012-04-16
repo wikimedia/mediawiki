@@ -259,7 +259,7 @@ class Hooks {
 	/**
 	 * This REALLY should be protected... but it's public for compatibility
 	 *
-	 * @param $errno Unused
+	 * @param $errno int Unused
 	 * @param $errstr String: error message
 	 * @return Boolean: false
 	 */

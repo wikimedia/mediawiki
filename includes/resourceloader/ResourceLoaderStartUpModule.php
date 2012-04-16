@@ -68,7 +68,9 @@ class ResourceLoaderStartUpModule extends ResourceLoaderModule {
 			'wgScriptExtension' => $wgScriptExtension,
 			'wgScript' => $wgScript,
 			'wgVariantArticlePath' => $wgVariantArticlePath,
-			'wgActionPaths' => $wgActionPaths,
+			// Force object to avoid "empty" associative array from
+			// becoming [] instead of {} in JS (bug 34604)
+			'wgActionPaths' => (object)$wgActionPaths,
 			'wgServer' => $wgServer,
 			'wgUserLanguage' => $context->getLanguage(),
 			'wgContentLanguage' => $wgContLang->getCode(),

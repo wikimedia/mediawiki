@@ -107,7 +107,7 @@ class InfoAction extends FormlessAction {
 	 * @return mixed array or boolean false
 	 */
 	public static function pageCountInfo( $title ) {
-		$id = $title->getArticleId();
+		$id = $title->getArticleID();
 		$dbr = wfGetDB( DB_SLAVE );
 
 		$watchers = (int)$dbr->selectField(

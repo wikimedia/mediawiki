@@ -109,16 +109,17 @@ class UserMailer {
 	/**
 	 * Creates a single string from an associative array
 	 *
-	 * @param $header Associative Array: keys are header field names,
-	 *                values are ... values.
+	 * @param $headers array Associative Array: keys are header field names,
+	 *                 values are ... values.
 	 * @param $endl String: The end of line character.  Defaults to "\n"
 	 * @return String
 	 */
 	static function arrayToHeaderString( $headers, $endl = "\n" ) {
+		$strings = array();
 		foreach( $headers as $name => $value ) {
-			$string[] = "$name: $value";
+			$strings[] = "$name: $value";
 		}
-		return implode( $endl, $string );
+		return implode( $endl, $strings );
 	}
 
 	/**
@@ -162,29 +163,52 @@ class UserMailer {
 
 		wfDebug( __METHOD__ . ': sending mail to ' . implode( ', ', $to ) . "\n" );
 
-		$dest = array();
+		# Make sure we have at least one address
+		$has_address = false;
 		foreach ( $to as $u ) {
 			if ( $u->address ) {
-				$dest[] = $u->address;
+				$has_address = true;
+				break;
 			}
 		}
-		if ( count( $dest ) == 0 ) {
+		if ( !$has_address ) {
 			return Status::newFatal( 'user-mail-no-addy' );
 		}
 
+		# Forge email headers
+		# -------------------
+		#
+		# WARNING
+		#
+		# DO NOT add To: or Subject: headers at this step. They need to be
+		# handled differently depending upon the mailer we are going to use.
+		#
+		# To:
+		#  PHP mail() first argument is the mail receiver. The argument is
+		#  used as a recipient destination and as a To header.
+		#
+		#  PEAR mailer has a recipient argument which is only used to
+		#  send the mail. If no To header is given, PEAR will set it to
+		#  to 'undisclosed-recipients:'.
+		#
+		#  NOTE: To: is for presentation, the actual recipient is specified
+		#  by the mailer using the Rcpt-To: header.
+		#
+		# Subject: 
+		#  PHP mail() second argument to pass the subject, passing a Subject
+		#  as an additional header will result in a duplicate header.
+		#
+		#  PEAR mailer should be passed a Subject header.
+		#
+		# -- hashar 20120218
+
 		$headers['From'] = $from->toString();
 		$headers['Return-Path'] = $from->address;
-		if ( count( $to ) == 1 ) {
-			$headers['To'] = $to[0]->toString();
-		} else {
-			$headers['To'] = 'undisclosed-recipients:;';
-		}
 
 		if ( $replyto ) {
 			$headers['Reply-To'] = $replyto->toString();
 		}
 
-		$headers['Subject'] = self::quotedPrintable( $subject );
 		$headers['Date'] = date( 'r' );
 		$headers['MIME-Version'] = '1.0';
 		$headers['Content-type'] = ( is_null( $contentType ) ?
@@ -202,6 +226,10 @@ class UserMailer {
 		}
 
 		if ( is_array( $wgSMTP ) ) {
+			#
+			# PEAR MAILER
+			# 
+
 			if ( function_exists( 'stream_resolve_include_path' ) ) {
 				$found = stream_resolve_include_path( 'Mail.php' );
 			} else {
@@ -223,9 +251,20 @@ class UserMailer {
 			}
 
 			wfDebug( "Sending mail via PEAR::Mail\n" );
-			$chunks = array_chunk( $dest, $wgEnotifMaxRecips );
+
+			$headers['Subject'] = self::quotedPrintable( $subject );
+
+			# When sending only to one recipient, shows it its email using To:
+			if ( count( $to ) == 1 ) {
+				$headers['To'] = $to[0]->toString();
+			}
+
+			# Split jobs since SMTP servers tends to limit the maximum
+			# number of possible recipients.	
+			$chunks = array_chunk( $to, $wgEnotifMaxRecips );
 			foreach ( $chunks as $chunk ) {
 				$status = self::sendWithPear( $mail_object, $chunk, $headers, $body );
+				# FIXME : some chunks might be sent while others are not!
 				if ( !$status->isOK() ) {
 					wfRestoreWarnings();
 					return $status;
@@ -234,6 +273,10 @@ class UserMailer {
 			wfRestoreWarnings();
 			return Status::newGood();
 		} else	{
+			# 
+			# PHP mail()
+			#
+
 			# Line endings need to be different on Unix and Windows due to
 			# the bug described at http://trac.wordpress.org/ticket/2603
 			if ( wfIsWindows() ) {
@@ -243,6 +286,9 @@ class UserMailer {
 				$endl = "\n";
 			}
 
+			if( count($to) > 1 ) {
+				$headers['To'] = 'undisclosed-recipients:;';
+			}
 			$headers = self::arrayToHeaderString( $headers, $endl );
 
 			wfDebug( "Sending mail via internal mail() function\n" );
@@ -253,7 +299,7 @@ class UserMailer {
 			set_error_handler( 'UserMailer::errorHandler' );
 
 			$safeMode = wfIniGetBool( 'safe_mode' );
-			foreach ( $dest as $recip ) {
+			foreach ( $to as $recip ) {
 				if ( $safeMode ) {
 					$sent = mail( $recip, self::quotedPrintable( $subject ), $body, $headers );
 				} else {
@@ -300,6 +346,7 @@ class UserMailer {
 	/**
 	 * Converts a string into quoted-printable format
 	 * @since 1.17
+	 * @return string
 	 */
 	public static function quotedPrintable( $string, $charset = '' ) {
 		# Probably incomplete; see RFC 2045
@@ -401,7 +448,7 @@ class EmailNotification {
 			if ( $watchers ) {
 				// Update wl_notificationtimestamp for all watching users except
 				// the editor
-				$dbw->begin();
+				$dbw->begin( __METHOD__ );
 				$dbw->update( 'watchlist',
 					array( /* SET */
 						'wl_notificationtimestamp' => $dbw->timestamp( $timestamp )
@@ -411,7 +458,7 @@ class EmailNotification {
 						'wl_user' => $watchers
 					), __METHOD__
 				);
-				$dbw->commit();
+				$dbw->commit( __METHOD__ );
 			}
 		}
 
@@ -572,14 +619,16 @@ class EmailNotification {
 		# simply editing the Meta pages
 
 		$keys = array();
+		$postTransformKeys = array();
 
 		if ( $this->oldid ) {
-			if ( $wgEnotifImpersonal ) {
-				// For impersonal mail, show a diff link to the last revision.
-				$keys['$NEWPAGE'] = wfMsgForContent( 'enotif_lastdiff',
-					$this->title->getCanonicalUrl( 'diff=next&oldid=' . $this->oldid ) );
-			} else {
-				$keys['$NEWPAGE'] = wfMsgForContent( 'enotif_lastvisited',
+			// Always show a link to the diff which triggered the mail. See bug 32210.
+			$keys['$NEWPAGE'] = wfMsgForContent( 'enotif_lastdiff',
+				$this->title->getCanonicalUrl( 'diff=next&oldid=' . $this->oldid ) );
+			if ( !$wgEnotifImpersonal ) {
+				// For personal mail, also show a link to the diff of all changes
+				// since last visited.
+				$keys['$NEWPAGE'] .= " \n" . wfMsgForContent( 'enotif_lastvisited',
 					$this->title->getCanonicalUrl( 'diff=0&oldid=' . $this->oldid ) );
 			}
 			$keys['$OLDID']   = $this->oldid;
@@ -594,7 +643,6 @@ class EmailNotification {
 		$keys['$PAGETITLE'] = $this->title->getPrefixedText();
 		$keys['$PAGETITLE_URL'] = $this->title->getCanonicalUrl();
 		$keys['$PAGEMINOREDIT'] = $this->minorEdit ? wfMsgForContent( 'minoredit' ) : '';
-		$keys['$PAGESUMMARY'] = $this->summary == '' ? ' - ' : $this->summary;
 		$keys['$UNWATCHURL'] = $this->title->getCanonicalUrl( 'action=unwatch' );
 
 		if ( $this->editor->isAnon() ) {
@@ -609,16 +657,20 @@ class EmailNotification {
 
 		$keys['$PAGEEDITOR_WIKI'] = $this->editor->getUserPage()->getCanonicalUrl();
 
+		# Replace this after transforming the message, bug 35019
+		$postTransformKeys['$PAGESUMMARY'] = $this->summary == '' ? ' - ' : $this->summary;
+
 		# Now build message's subject and body
 
 		$subject = wfMsgExt( 'enotif_subject', 'content' );
 		$subject = strtr( $subject, $keys );
-		$this->subject = MessageCache::singleton()->transform( $subject, false, null, $this->title );
+		$subject = MessageCache::singleton()->transform( $subject, false, null, $this->title );
+		$this->subject = strtr( $subject, $postTransformKeys );
 
 		$body = wfMsgExt( 'enotif_body', 'content' );
 		$body = strtr( $body, $keys );
 		$body = MessageCache::singleton()->transform( $body, false, null, $this->title );
-		$this->body = wordwrap( $body, 72 );
+		$this->body = wordwrap( strtr( $body, $postTransformKeys ), 72 );
 
 		# Reveal the page editor's address as REPLY-TO address only if
 		# the user has not opted-out and the option is enabled at the
@@ -705,6 +757,7 @@ class EmailNotification {
 	/**
 	 * Same as sendPersonalised but does impersonal mail suitable for bulk
 	 * mailing.  Takes an array of MailAddress objects.
+	 * @return Status
 	 */
 	function sendImpersonal( $addresses ) {
 		global $wgContLang;

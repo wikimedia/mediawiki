@@ -5,6 +5,8 @@
 	border-bottom-right-radius: 0.8em;
 	border-top-right-radius: 0.8em;
 }
+
+/** colors also used in mediawiki.special.preferences.css */
 #mw-emailaddress-validity.valid {
 	border: 1px solid #80FF80;
 	background-color: #C0FFC0;

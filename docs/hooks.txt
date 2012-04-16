@@ -290,7 +290,7 @@ $pageInfo: associative array of page information
 of the javascript ajax engine. The hook is only called when ajax
 is enabled ( $wgUseAjax = true; ).
 
-'AlternateEdit': before checking if an user can edit a page and
+'AlternateEdit': before checking if a user can edit a page and
 before showing the edit form ( EditPage::edit() ). This is triggered
 on &action=edit.
 $EditPage: the EditPage object
@@ -587,6 +587,11 @@ $name: Image name being checked
 Change $bad and return false to override. If an image is "bad", it is not
 rendered inline in wiki pages or galleries in category pages.
 
+'BeforeDisplayNoArticleText': before displaying noarticletext or noarticletext-nopermission
+at Article::showMissingArticle()
+
+$article: article object
+
 'BeforeInitialize': before anything is initialized in MediaWiki::performRequest()
 &$title: Title being used for request
 $unused: null
@@ -769,12 +774,13 @@ $request: Webrequest
 return value is ignored (should always return true)
 
 'EditPage::showEditForm:fields': allows injection of form field into edit form
-&$editor: the EditPage instance for reference
-&$out: an OutputPage instance to write to
+$editor: the EditPage instance for reference
+$out: an OutputPage instance to write to
 return value is ignored (should always return true)
 
 'EditPage::showEditForm:initial': before showing the edit form
 $editor: EditPage instance (object)
+$out: an OutputPage instance to write to
 
 Return false to halt editing; you'll need to handle error messages, etc.
 yourself. Alternatively, modifying $error and returning true will cause the
@@ -1238,10 +1244,8 @@ $data: Associative array of data for handlers to record. It must include values 
  - 'comment'   Wikitext string in the same format as an edit summary
  - 'timestamp' Timestamp when the action occured
 
-'LoginAuthenticateAudit': a login attempt either succeeded or
-failed. This may be called before the User object is populated, so a
-user object equivalent to an anonymous user. No return data is
-accepted; this hook is for auditing only.
+'LoginAuthenticateAudit': a login attempt for a valid user account either
+succeeded or failed. No return data is accepted; this hook is for auditing only.
 $user: the User object being authenticated against
 $password: the password being submitted and found wanting
 $retval: a LoginForm class constant with authenticateUserData() return
@@ -1474,6 +1478,7 @@ to modify the parameters of the image.
 $title: title object representing the file
 $file: file object that will be used to create the image
 &$params: 2-D array of parameters
+$parser: Parser object that called the hook
 
 'ParserSectionCreate': Called each time the parser creates a document section
 from wikitext.  Use this to apply per-section modifications to HTML (like
@@ -1905,6 +1910,12 @@ $title: The title in question.
 $title: Title object that is being checked
 $result: Boolean; whether MediaWiki currently thinks this is a CSS/JS page. Hooks may change this value to override the return value of Title::isCssOrJsPage()
 
+'TitleIsAlwaysKnown': Called when determining if a page exists.
+Allows overriding default behaviour for determining if a page exists.
+If $isKnown is kept as null, regular checks happen. If it's a boolean, this value is returned by the isKnown method.
+$title: Title object that is being checked
+$result: Boolean|null; whether MediaWiki currently thinks this page is known
+
 'TitleIsMovable': Called when determining if it is possible to move a page.
 Note that this hook is not called for interwiki pages or pages in immovable namespaces: for these, isMovable() always returns false.
 $title: Title object that is being checked
@@ -2231,9 +2242,9 @@ One, and only one hook should set this, and return false.
 &$opts: Options to use for the query
 &$join: Join conditions
 
-'wfShellMaintenanceCmd': Called when generating a shell-escaped command line
-	string to run a maintenance script.
-&$script: MediaWiki maintenance script path
+'wfShellWikiCmd': Called when generating a shell-escaped command line
+	string to run a MediaWiki cli script.
+&$script: MediaWiki cli script path
 &$parameters: Array of arguments and options to the script
 &$options: Associative array of options, may contain the 'php' and 'wrapper'
 	keys

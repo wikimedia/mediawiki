@@ -297,6 +297,7 @@ class SpecialBlock extends FormSpecialPage {
 
 	/**
 	 * Add header elements like block log entries, etc.
+	 * @return String
 	 */
 	protected function preText(){
 		$text = $this->msg( 'blockiptext' )->parse();
@@ -380,19 +381,19 @@ class SpecialBlock extends FormSpecialPage {
 			$this->getLanguage()->pipeList( $links )
 		);
 
-		if( $this->target instanceof User ){
+		$userTitle = self::getTargetUserTitle( $this->target );
+		if( $userTitle ){
 			# Get relevant extracts from the block and suppression logs, if possible
-			$userpage = $this->target->getUserPage();
 			$out = '';
 
 			LogEventsList::showLogExtract(
 				$out,
 				'block',
-				$userpage,
+				$userTitle,
 				'',
 				array(
 					'lim' => 10,
-					'msgKey' => array( 'blocklog-showlog', $userpage->getText() ),
+					'msgKey' => array( 'blocklog-showlog', $userTitle->getText() ),
 					'showIfEmpty' => false
 				)
 			);
@@ -403,12 +404,12 @@ class SpecialBlock extends FormSpecialPage {
 				LogEventsList::showLogExtract(
 					$out,
 					'suppress',
-					$userpage,
+					$userTitle,
 					'',
 					array(
 						'lim' => 10,
 						'conds' => array( 'log_action' => array( 'block', 'reblock', 'unblock' ) ),
-						'msgKey' => array( 'blocklog-showsuppresslog', $userpage->getText() ),
+						'msgKey' => array( 'blocklog-showsuppresslog', $userTitle->getText() ),
 						'showIfEmpty' => false
 					)
 				);
@@ -418,6 +419,21 @@ class SpecialBlock extends FormSpecialPage {
 		}
 
 		return $text;
+	}
+
+	/**
+	 * Get a user page target for things like logs.
+	 * This handles account and IP range targets.
+	 * @param $target User|string
+	 * @return Title|null
+	 */
+	protected static function getTargetUserTitle( $target ) {
+		if( $target instanceof User ) {
+			return $target->getUserPage();
+		} elseif ( IP::isIPAddress( $target ) ) {
+			return Title::makeTitleSafe( NS_USER, $target );
+		}
+		return null;
 	}
 
 	/**

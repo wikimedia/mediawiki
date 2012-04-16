@@ -63,7 +63,9 @@ class ResourceLoaderContext {
 		$this->only      = $request->getVal( 'only' );
 		$this->version   = $request->getVal( 'version' );
 
-		if ( !$this->skin ) {
+		$skinnames = Skin::getSkinNames();
+		// If no skin is specified, or we don't recognize the skin, use the default skin
+		if ( !$this->skin || !isset( $skinnames[$this->skin] ) ) {
 			$this->skin = $wgDefaultSkin;
 		}
 	}

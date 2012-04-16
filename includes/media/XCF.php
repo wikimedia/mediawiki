@@ -58,7 +58,7 @@ class XCFHandler extends BitmapHandler {
 	 * @author Hashar
 	 *
 	 * @param $filename String Full path to a XCF file
-	 * @return false|metadata array just like PHP getimagesize()
+	 * @return bool|array metadata array just like PHP getimagesize()
 	 */
 	static function getXCFMetaData( $filename ) {
 		# Decode master structure

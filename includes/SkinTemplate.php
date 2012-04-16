@@ -216,7 +216,7 @@ class SkinTemplate extends Skin {
 		$tpl->setRef( 'thispage', $this->thispage );
 		$tpl->setRef( 'titleprefixeddbkey', $this->thispage );
 		$tpl->set( 'titletext', $title->getText() );
-		$tpl->set( 'articleid', $title->getArticleId() );
+		$tpl->set( 'articleid', $title->getArticleID() );
 
 		$tpl->set( 'isarticle', $out->isArticle() );
 
@@ -397,18 +397,23 @@ class SkinTemplate extends Skin {
 		$tpl->set( 'bottomscripts', $this->bottomScripts() );
 		$tpl->set( 'printfooter', $this->printSource() );
 
-		# Add a <div class="mw-content-ltr/rtl"> around the body text
+		# An ID that includes the actual body text; without categories, contentSub, ...
+		$realBodyAttribs = array( 'id' => 'mw-content-text' );
+
+		# Add a mw-content-ltr/rtl class to be able to style based on text direction
+		# when the content is different from the UI language, i.e.:
 		# not for special pages or file pages AND only when viewing AND if the page exists
 		# (or is in MW namespace, because that has default content)
 		if( !in_array( $title->getNamespace(), array( NS_SPECIAL, NS_FILE ) ) &&
 			in_array( $request->getVal( 'action', 'view' ), array( 'view', 'historysubmit' ) ) &&
 			( $title->exists() || $title->getNamespace() == NS_MEDIAWIKI ) ) {
 			$pageLang = $title->getPageLanguage();
-			$realBodyAttribs = array( 'lang' => $pageLang->getHtmlCode(), 'dir' => $pageLang->getDir(),
-				'class' => 'mw-content-'.$pageLang->getDir() );
-			$out->mBodytext = Html::rawElement( 'div', $realBodyAttribs, $out->mBodytext );
+			$realBodyAttribs['lang'] = $pageLang->getHtmlCode();
+			$realBodyAttribs['dir'] = $pageLang->getDir();
+			$realBodyAttribs['class'] = 'mw-content-'.$pageLang->getDir();
 		}
 
+		$out->mBodytext = Html::rawElement( 'div', $realBodyAttribs, $out->mBodytext );
 		$tpl->setRef( 'bodytext', $out->mBodytext );
 
 		# Language links
@@ -423,8 +428,8 @@ class SkinTemplate extends Skin {
 				if ( $nt ) {
 					$language_urls[] = array(
 						'href' => $nt->getFullURL(),
-						'text' => ( $wgContLang->getLanguageName( $nt->getInterwiki() ) != '' ?
-									$wgContLang->getLanguageName( $nt->getInterwiki() ) : $l ),
+						'text' => ( Language::fetchLanguageName( $nt->getInterwiki() ) != '' ?
+									Language::fetchLanguageName( $nt->getInterwiki() ) : $l ),
 						'title' => $nt->getText(),
 						'class' => $class,
 						'lang' => $nt->getInterwiki(),
@@ -455,7 +460,7 @@ class SkinTemplate extends Skin {
 		if ( $this->useHeadElement ) {
 			$tpl->set( 'headelement', $out->headElement( $this ) );
 		} else {
-			$tpl->set( 'headscripts', $out->getScript() );
+			$tpl->set( 'headscripts', $out->getHeadScripts() . $out->getHeadItems() );
 		}
 
 		$tpl->set( 'debughtml', $this->generateDebugHTML() );
@@ -513,6 +518,7 @@ class SkinTemplate extends Skin {
 	 * This is setup as a method so that like with $wgLogo and getLogo() a skin
 	 * can override this setting and always output one or the other if it has
 	 * a reason it can't output one of the two modes.
+	 * @return bool
 	 */
 	function useCombinedLoginLink() {
 		global $wgUseCombinedLoginLink;
@@ -575,10 +581,12 @@ class SkinTemplate extends Skin {
 			);
 
 			# We need to do an explicit check for Special:Contributions, as we
-			# have to match both the title, and the target (which could come
-			# from request values or be specified in "sub page" form. The plot
+			# have to match both the title, and the target, which could come
+			# from request values (Special:Contributions?target=Jimbo_Wales)
+			# or be specified in "sub page" form
+			# (Special:Contributions/Jimbo_Wales). The plot
 			# thickens, because the Title object is altered for special pages,
-			# so doesn't contain the original alias-with-subpage.
+			# so it doesn't contain the original alias-with-subpage.
 			$origTitle = Title::newFromText( $request->getText( 'title' ) );
 			if( $origTitle instanceof Title && $origTitle->isSpecialPage() ) {
 				list( $spName, $spPar ) = SpecialPageFactory::resolveAlias( $origTitle->getText() );
@@ -994,7 +1002,9 @@ class SkinTemplate extends Skin {
 						$content_navigation['variants'][] = array(
 							'class' => ( $code == $preferred ) ? 'selected' : false,
 							'text' => $varname,
-							'href' => $title->getLocalURL( array( 'variant' => $code ) )
+							'href' => $title->getLocalURL( array( 'variant' => $code ) ),
+							'lang' => $code,
+							'hreflang' => $code
 						);
 					}
 				}
@@ -1165,7 +1175,7 @@ class SkinTemplate extends Skin {
 			$nav_urls['whatlinkshere'] = array(
 				'href' => SpecialPage::getTitleFor( 'Whatlinkshere', $this->thispage )->getLocalUrl()
 			);
-			if ( $this->getTitle()->getArticleId() ) {
+			if ( $this->getTitle()->getArticleID() ) {
 				$nav_urls['recentchangeslinked'] = array(
 					'href' => SpecialPage::getTitleFor( 'Recentchangeslinked', $this->thispage )->getLocalUrl()
 				);
@@ -1180,12 +1190,10 @@ class SkinTemplate extends Skin {
 				'href' => self::makeSpecialUrlSubpage( 'Contributions', $rootUser )
 			);
 
-			if ( $user->isLoggedIn() ) {
-				$logPage = SpecialPage::getTitleFor( 'Log' );
-				$nav_urls['log'] = array(
-					'href' => $logPage->getLocalUrl( array( 'user' => $rootUser ) )
-				);
-			}
+			$logPage = SpecialPage::getTitleFor( 'Log' );
+			$nav_urls['log'] = array(
+				'href' => $logPage->getLocalUrl( array( 'user' => $rootUser ) )
+			);
 
 			if ( $this->getUser()->isAllowed( 'block' ) ) {
 				$nav_urls['blockip'] = array(
@@ -1310,6 +1318,7 @@ abstract class QuickTemplate {
 
 	/**
 	 * @private
+	 * @return bool
 	 */
 	function haveData( $str ) {
 		return isset( $this->data[$str] );
@@ -1345,7 +1354,7 @@ abstract class BaseTemplate extends QuickTemplate {
 	/**
 	 * Get a Message object with its context set
 	 *
-	 * @param $name Str message name
+	 * @param $name string message name
 	 * @return Message
 	 */
 	public function getMsg( $name ) {
@@ -1369,6 +1378,7 @@ abstract class BaseTemplate extends QuickTemplate {
 	 * stored by SkinTemplate.
 	 * The resulting array is built acording to a format intended to be passed
 	 * through makeListItem to generate the html.
+	 * @return array
 	 */
 	function getToolbox() {
 		wfProfileIn( __METHOD__ );
@@ -1429,6 +1439,7 @@ abstract class BaseTemplate extends QuickTemplate {
 	 * This is in reality the same list as already stored in personal_urls
 	 * however it is reformatted so that you can just pass the individual items
 	 * to makeListItem instead of hardcoding the element creation boilerplate.
+	 * @return array
 	 */
 	function getPersonalTools() {
 		$personal_tools = array();
@@ -1602,6 +1613,7 @@ abstract class BaseTemplate extends QuickTemplate {
 	 *   A link-fallback can be used to specify a tag to use instead of <a> if there is
 	 *   no link. eg: If you specify 'link-fallback' => 'span' than any non-link will
 	 *   output a <span> instead of just text.
+	 * @return string
 	 */
 	function makeLink( $key, $item, $options = array() ) {
 		if ( isset( $item['text'] ) ) {
@@ -1680,6 +1692,7 @@ abstract class BaseTemplate extends QuickTemplate {
 	 * If you need an id or class on a single link you should include a "links"
 	 * array with just one link item inside of it.
 	 * $options is also passed on to makeLink calls
+	 * @return string
 	 */
 	function makeListItem( $key, $item, $options = array() ) {
 		if ( isset( $item['links'] ) ) {
@@ -1774,6 +1787,7 @@ abstract class BaseTemplate extends QuickTemplate {
 	 * If you pass "flat" as an option then the returned array will be a flat array
 	 * of footer icons instead of a key/value array of footerlinks arrays broken
 	 * up into categories.
+	 * @return array|mixed
 	 */
 	function getFooterLinks( $option = null ) {
 		$footerlinks = $this->data['footerlinks'];
@@ -1812,6 +1826,7 @@ abstract class BaseTemplate extends QuickTemplate {
 	 * in the list of footer icons. This is mostly useful for skins which only
 	 * display the text from footericons instead of the images and don't want a
 	 * duplicate copyright statement because footerlinks already rendered one.
+	 * @return
 	 */
 	function getFooterIcons( $option = null ) {
 		// Generate additional footer icons

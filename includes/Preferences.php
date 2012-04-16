@@ -84,9 +84,9 @@ class Preferences {
 				// Already set, no problem
 				continue;
 			} elseif ( !is_null( $prefFromUser ) && // Make sure we're not just pulling nothing
-					$field->validate( $prefFromUser, $user->mOptions ) === true ) {
+					$field->validate( $prefFromUser, $user->getOptions() ) === true ) {
 				$info['default'] = $prefFromUser;
-			} elseif ( $field->validate( $globalDefault, $user->mOptions ) === true ) {
+			} elseif ( $field->validate( $globalDefault, $user->getOptions() ) === true ) {
 				$info['default'] = $globalDefault;
 			} else {
 				throw new MWException( "Global default '$globalDefault' is invalid for field $name" );
@@ -252,7 +252,7 @@ class Preferences {
 		}
 
 		// Language
-		$languages = Language::getLanguageNames( false );
+		$languages = Language::fetchLanguageNames( null, 'mw' );
 		if ( !array_key_exists( $wgLanguageCode, $languages ) ) {
 			$languages[$wgLanguageCode] = $wgLanguageCode;
 		}
@@ -354,16 +354,20 @@ class Preferences {
 				$emailAddress .= $emailAddress == '' ? $link : " ($link)";
 			}
 
+
 			$defaultPreferences['emailaddress'] = array(
 				'type' => 'info',
 				'raw' => true,
 				'default' => $emailAddress,
 				'label-message' => 'youremail',
 				'section' => 'personal/email',
+				'help-messages' => $helpMessages,
+				# 'cssclass' chosen below
 			);
 
 			$disableEmailPrefs = false;
 
+			$emailauthenticationclass = 'mw-email-not-authenticated';
 			if ( $wgEmailAuthentication ) {
 				if ( $user->getEmail() ) {
 					if ( $user->getEmailAuthenticationTimestamp() ) {
@@ -378,6 +382,7 @@ class Preferences {
 						$emailauthenticated = $context->msg( 'emailauthenticated',
 							$time, $d, $t )->parse() . '<br />';
 						$disableEmailPrefs = false;
+						$emailauthenticationclass = 'mw-email-authenticated';
 					} else {
 						$disableEmailPrefs = true;
 						$emailauthenticated = $context->msg( 'emailnotauthenticated' )->parse() . '<br />' .
@@ -385,10 +390,12 @@ class Preferences {
 								SpecialPage::getTitleFor( 'Confirmemail' ),
 								$context->msg( 'emailconfirmlink' )->escaped()
 							) . '<br />';
+						$emailauthenticationclass="mw-email-not-authenticated";
 					}
 				} else {
 					$disableEmailPrefs = true;
 					$emailauthenticated = $context->msg( 'noemailprefs' )->escaped();
+					$emailauthenticationclass = 'mw-email-none';
 				}
 
 				$defaultPreferences['emailauthentication'] = array(
@@ -397,9 +404,11 @@ class Preferences {
 					'section' => 'personal/email',
 					'label-message' => 'prefs-emailconfirm-label',
 					'default' => $emailauthenticated,
+					# Apply the same CSS class used on the input to the message:
+					'cssclass' => $emailauthenticationclass,
 				);
-
 			}
+			$defaultPreferences['emailaddress']['cssclass'] = $emailauthenticationclass;
 
 			if ( $wgEnableUserEmail && $user->isAllowed( 'sendemail' ) ) {
 				$defaultPreferences['disablemail'] = array(
@@ -638,11 +647,6 @@ class Preferences {
 		);
 
 		if ( $wgAllowUserCssPrefs ) {
-			$defaultPreferences['highlightbroken'] = array(
-				'type' => 'toggle',
-				'section' => 'rendering/advancedrendering',
-				'label' => $context->msg( 'tog-highlightbroken' )->text(), // Raw HTML
-			);
 			$defaultPreferences['showtoc'] = array(
 				'type' => 'toggle',
 				'section' => 'rendering/advancedrendering',
@@ -912,6 +916,7 @@ class Preferences {
 
 		if ( $wgEnableAPI ) {
 			# Some random gibberish as a proposed default
+			// @fixme This should use CryptRand but we may not want to read urandom on every view
 			$hash = sha1( mt_rand() . microtime( true ) );
 
 			$defaultPreferences['watchlisttoken'] = array(
@@ -1427,39 +1432,21 @@ class Preferences {
 	 * Try to set a user's email address.
 	 * This does *not* try to validate the address.
 	 * Caller is responsible for checking $wgAuth.
+	 *
+	 * @deprecated in 1.20; use User::setEmailWithConfirmation() instead.
 	 * @param $user User
 	 * @param $newaddr string New email address
 	 * @return Array (true on success or Status on failure, info string)
 	 */
 	public static function trySetUserEmail( User $user, $newaddr ) {
-		global $wgEnableEmail, $wgEmailAuthentication;
-		$info = ''; // none
+		wfDeprecated( __METHOD__, '1.20' );
 
-		if ( $wgEnableEmail ) {
-			$oldaddr = $user->getEmail();
-			if ( ( $newaddr != '' ) && ( $newaddr != $oldaddr ) ) {
-				# The user has supplied a new email address on the login page
-				# new behaviour: set this new emailaddr from login-page into user database record
-				$user->setEmail( $newaddr );
-				if ( $wgEmailAuthentication ) {
-					# Mail a temporary password to the dirty address.
-					# User can come back through the confirmation URL to re-enable email.
-					$type = $oldaddr != '' ? 'changed' : 'set';
-					$result = $user->sendConfirmationMail( $type );
-					if ( !$result->isGood() ) {
-						return array( $result, 'mailerror' );
-					}
-					$info = 'eauth';
-				}
-			} elseif ( $newaddr != $oldaddr ) { // if the address is the same, don't change it
-				$user->setEmail( $newaddr );
-			}
-			if ( $oldaddr != $newaddr ) {
-				wfRunHooks( 'PrefsEmailAudit', array( $user, $oldaddr, $newaddr ) );
-			}
+		$result = $user->setEmailWithConfirmation( $newaddr );
+		if ( $result->isGood() ) {
+			return array( true, $result->value );
+		} else {
+			return array( $result, 'mailerror' );
 		}
-
-		return array( true, $info );
 	}
 
 	/**

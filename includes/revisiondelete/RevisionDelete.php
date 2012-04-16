@@ -191,6 +191,7 @@ class RevDel_RevisionItem extends RevDel_Item {
 	/**
 	 * Get the HTML link to the revision text.
 	 * Overridden by RevDel_ArchiveItem.
+	 * @return string
 	 */
 	protected function getRevisionLink() {
 		$date = $this->list->getLanguage()->timeanddate( $this->revision->getTimestamp(), true );
@@ -211,6 +212,7 @@ class RevDel_RevisionItem extends RevDel_Item {
 	/**
 	 * Get the HTML link to the diff.
 	 * Overridden by RevDel_ArchiveItem
+	 * @return string
 	 */
 	protected function getDiffLink() {
 		if ( $this->isDeleted() && !$this->canViewContent() ) {
@@ -298,7 +300,7 @@ class RevDel_ArchiveItem extends RevDel_RevisionItem {
 	public function __construct( $list, $row ) {
 		RevDel_Item::__construct( $list, $row );
 		$this->revision = Revision::newFromArchiveRow( $row,
-			array( 'page' => $this->list->title->getArticleId() ) );
+			array( 'page' => $this->list->title->getArticleID() ) );
 	}
 
 	public function getIdField() {
@@ -375,7 +377,7 @@ class RevDel_ArchivedRevisionItem extends RevDel_ArchiveItem {
 		RevDel_Item::__construct( $list, $row );
 
 		$this->revision = Revision::newFromArchiveRow( $row,
-			array( 'page' => $this->list->title->getArticleId() ) );
+			array( 'page' => $this->list->title->getArticleID() ) );
 	}
 
 	public function getIdField() {
@@ -569,6 +571,7 @@ class RevDel_FileItem extends RevDel_Item {
 	/**
 	 * Get the link to the file.
 	 * Overridden by RevDel_ArchivedFileItem.
+	 * @return string
 	 */
 	protected function getLink() {
 		$date = $this->list->getLanguage()->timeanddate( $this->file->getTimestamp(), true  );
@@ -848,8 +851,9 @@ class RevDel_LogItem extends RevDel_Item {
 
 	public function getHTML() {
 		$date = htmlspecialchars( $this->list->getLanguage()->timeanddate( $this->row->log_timestamp ) );
-		$paramArray = LogPage::extractParams( $this->row->log_params );
 		$title = Title::makeTitle( $this->row->log_namespace, $this->row->log_title );
+		$formatter = LogFormatter::newFromRow( $this->row );
+		$formatter->setAudience( LogFormatter::FOR_THIS_USER );
 
 		// Log link for this page
 		$loglink = Linker::link(
@@ -858,27 +862,14 @@ class RevDel_LogItem extends RevDel_Item {
 			array(),
 			array( 'page' => $title->getPrefixedText() )
 		);
-		// Action text
-		if( !$this->canView() ) {
-			$action = '<span class="history-deleted">' . wfMsgHtml('rev-deleted-event') . '</span>';
-		} else {
-			$skin = $this->list->getSkin();
-			$action = LogPage::actionText( $this->row->log_type, $this->row->log_action,
-				$title, $skin, $paramArray, true, true );
-			if( $this->row->log_deleted & LogPage::DELETED_ACTION )
-				$action = '<span class="history-deleted">' . $action . '</span>';
-		}
-		// User links
-		$userLink = Linker::userLink( $this->row->log_user,
-			User::WhoIs( $this->row->log_user ) );
-		if( LogEventsList::isDeleted($this->row,LogPage::DELETED_USER) ) {
-			$userLink = '<span class="history-deleted">' . $userLink . '</span>';
-		}
+		// User links and action text
+		$action = $formatter->getActionText();
 		// Comment
 		$comment = $this->list->getLanguage()->getDirMark() . Linker::commentBlock( $this->row->log_comment );
 		if( LogEventsList::isDeleted($this->row,LogPage::DELETED_COMMENT) ) {
 			$comment = '<span class="history-deleted">' . $comment . '</span>';
 		}
-		return "<li>($loglink) $date $userLink $action $comment</li>";
+
+		return "<li>($loglink) $date $action $comment</li>";
 	}
 }

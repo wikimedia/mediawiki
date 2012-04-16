@@ -53,11 +53,20 @@ function wfGetIP() {
  * @return bool
  */
 function wfIsTrustedProxy( $ip ) {
-	global $wgSquidServers, $wgSquidServersNoPurge;
+	$trusted = wfIsConfiguredProxy( $ip );
+	wfRunHooks( 'IsTrustedProxy', array( &$ip, &$trusted ) );
+	return $trusted;
+}
 
+/**
+ * Checks if an IP matches a proxy we've configured.
+ * @param $ip String
+ * @return bool
+ */
+function wfIsConfiguredProxy( $ip ) {
+	global $wgSquidServers, $wgSquidServersNoPurge;
 	$trusted = in_array( $ip, $wgSquidServers ) ||
 		in_array( $ip, $wgSquidServersNoPurge );
-	wfRunHooks( 'IsTrustedProxy', array( &$ip, &$trusted ) );
 	return $trusted;
 }
 

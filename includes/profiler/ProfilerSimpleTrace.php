@@ -10,21 +10,11 @@
  * @ingroup Profiler
  */
 class ProfilerSimpleTrace extends ProfilerSimple {
-	var $mMinimumTime = 0;
-	var $trace = "";
+	var $trace = "Beginning trace: \n";
 	var $memory = 0;
 
-	function __construct( $params ) {
-		global $wgRequestTime, $wgRUstart;
-		parent::__construct( $params );
-		if ( !empty( $wgRequestTime ) && !empty( $wgRUstart ) ) {
-			$this->mWorkStack[] = array( '-total', 0, $wgRequestTime, $this->getCpuTime( $wgRUstart ) );
-		}
-		$this->trace .= "Beginning trace: \n";
-	}
-
-	function profileIn($functionname) {
-		$this->mWorkStack[] = array($functionname, count( $this->mWorkStack ), microtime(true), $this->getCpuTime());
+	function profileIn( $functionname ) {
+		parent::profileIn( $functionname );
 		$this->trace .= "         " . sprintf("%6.1f",$this->memoryDiff()) .
 				str_repeat( " ", count($this->mWorkStack)) . " > " . $functionname . "\n";
 	}
@@ -49,7 +39,7 @@ class ProfilerSimpleTrace extends ProfilerSimple {
 			elseif ( $ofname != $functionname ) {
 				$this->trace .= "Profiling error: in({$ofname}), out($functionname)";
 			}
-			$elapsedreal = microtime( true ) - $ortime;
+			$elapsedreal = $this->getTime() - $ortime;
 			$this->trace .= sprintf( "%03.6f %6.1f", $elapsedreal, $this->memoryDiff() ) .
 					str_repeat(" ", count( $this->mWorkStack ) + 1 ) . " < " . $functionname . "\n";
 		}

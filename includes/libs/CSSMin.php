@@ -116,10 +116,10 @@ class CSSMin {
 	 * @param $source string CSS data to remap
 	 * @param $local string File path where the source was read from
 	 * @param $remote string URL path to the file
-	 * @param $embed ???
+	 * @param $embedData bool If false, never do any data URI embedding, even if / * @embed * / is found
 	 * @return string Remapped CSS data
 	 */
-	public static function remap( $source, $local, $remote, $embed = true ) {
+	public static function remap( $source, $local, $remote, $embedData = true ) {
 		$pattern = '/((?P<embed>\s*\/\*\s*\@embed\s*\*\/)(?P<pre>[^\;\}]*))?' .
 			self::URL_REGEX . '(?P<post>[^;]*)[\;]?/';
 		$offset = 0;
@@ -166,7 +166,7 @@ class CSSMin {
 				// using Z for the timezone, meaning GMT
 				$url .= '?' . gmdate( 'Y-m-d\TH:i:s\Z', round( filemtime( $file ), -2 ) );
 				// Embedding requires a bit of extra processing, so let's skip that if we can
-				if ( $embed ) {
+				if ( $embedData && $embed ) {
 					$type = self::getMimeType( $file );
 					// Detect when URLs were preceeded with embed tags, and also verify file size is
 					// below the limit

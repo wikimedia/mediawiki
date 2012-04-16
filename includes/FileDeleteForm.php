@@ -89,9 +89,7 @@ class FileDeleteForm {
 
 			if( !$status->isGood() ) {
 				$wgOut->addHTML( '<h2>' . $this->prepareMessage( 'filedeleteerror-short' ) . "</h2>\n" );
-				$wgOut->addHTML( '<span class="error">' );
-				$wgOut->addWikiText( $status->getWikiText( 'filedeleteerror-short', 'filedeleteerror-long' ) );
-				$wgOut->addHTML( '</span>' );
+				$wgOut->addWikiText( '<div class="error">' . $status->getWikiText( 'filedeleteerror-short', 'filedeleteerror-long' ) . '</div>' );
 			}
 			if( $status->ok ) {
 				$wgOut->setPageTitle( wfMessage( 'actioncomplete' ) );
@@ -117,11 +115,12 @@ class FileDeleteForm {
 	 * Really delete the file
 	 *
 	 * @param $title Title object
-	 * @param $file File object
+	 * @param File $file: file object
 	 * @param $oldimage String: archive name
 	 * @param $reason String: reason of the deletion
 	 * @param $suppress Boolean: whether to mark all deleted versions as restricted
 	 * @param $user User object performing the request
+	 * @return bool|Status
 	 */
 	public static function doDelete( &$title, &$file, &$oldimage, $reason, $suppress, User $user = null ) {
 		if ( $user === null ) {
@@ -142,28 +141,30 @@ class FileDeleteForm {
 				$log->addEntry( 'delete', $title, $logComment );
 			}
 		} else {
-			$status = Status::newFatal( 'error' );
+			$status = Status::newFatal( 'cannotdelete',
+				wfEscapeWikiText( $title->getPrefixedText() )
+			);
 			$page = WikiPage::factory( $title );
 			$dbw = wfGetDB( DB_MASTER );
 			try {
 				// delete the associated article first
 				$error = '';
-				if ( $page->doDeleteArticle( $reason, $suppress, 0, false, $error, $user ) ) {
+				if ( $page->doDeleteArticleReal( $reason, $suppress, 0, false, $error, $user ) >= WikiPage::DELETE_SUCCESS ) {
 					$status = $file->delete( $reason, $suppress );
-					if( $status->ok ) {
-						$dbw->commit();
+					if( $status->isOK() ) {
+						$dbw->commit( __METHOD__ );
 					} else {
-						$dbw->rollback();
+						$dbw->rollback( __METHOD__ );
 					}
 				}
 			} catch ( MWException $e ) {
 				// rollback before returning to prevent UI from displaying incorrect "View or restore N deleted edits?"
-				$dbw->rollback();
+				$dbw->rollback( __METHOD__ );
 				throw $e;
 			}
 		}
 
-		if ( $status->isGood() ) {
+		if ( $status->isOK() ) {
 			wfRunHooks( 'FileDeleteComplete', array( &$file, &$oldimage, &$page, &$user, &$reason ) );
 		}
 

@@ -257,7 +257,7 @@ class NamespaceConflictChecker extends Maintenance {
 			$newTitle->getDBkey(),
 			$newTitle->getPrefixedText() ) );
 
-		$id = $newTitle->getArticleId();
+		$id = $newTitle->getArticleID();
 		if ( $id ) {
 			$this->output( "...  *** cannot resolve automatically; page exists with ID $id ***\n" );
 			return false;
@@ -285,7 +285,7 @@ class NamespaceConflictChecker extends Maintenance {
 					$this->output( "... !!! invalid title\n" );
 					return false;
 				}
-				$id = $title->getArticleId();
+				$id = $title->getArticleID();
 				if ( $id ) {
 					$this->output( "...  *** page exists with ID $id ***\n" );
 				} else {

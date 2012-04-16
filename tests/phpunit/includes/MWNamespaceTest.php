@@ -53,10 +53,6 @@ class MWNamespaceTest extends MediaWikiTestCase {
 		$this->assertIsNotSubject( NS_TALK      );
 		$this->assertIsNotSubject( NS_USER_TALK );
 		$this->assertIsNotSubject( 101          ); # user defined
-
-		// Back compat
-		$this->assertTrue( MWNamespace::isMain( NS_MAIN ) == MWNamespace::isSubject( NS_MAIN ) );
-		$this->assertTrue( MWNamespace::isMain( NS_USER_TALK ) == MWNamespace::isSubject( NS_USER_TALK ) );
 	}
 
 	/**

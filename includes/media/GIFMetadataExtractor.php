@@ -286,7 +286,7 @@ class GIFMetadataExtractor {
 	 *  sub-blocks in the returned value. Normally this is false,
 	 *  except XMP is weird and does a hack where you need to keep
 	 *  these length bytes.
-	 * @return The data.
+	 * @return string The data.
 	 */
 	static function readBlock( $fh, $includeLengths = false ) {
 		$data = '';

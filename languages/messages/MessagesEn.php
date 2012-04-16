@@ -183,7 +183,7 @@ $bookstoreList = array(
 	'AddALL' => 'http://www.addall.com/New/Partner.cgi?query=$1&type=ISBN',
 	'PriceSCAN' => 'http://www.pricescan.com/books/bookDetail.asp?isbn=$1',
 	'Barnes & Noble' => 'http://search.barnesandnoble.com/bookSearch/isbnInquiry.asp?isbn=$1',
-	'Amazon.com' => 'http://www.amazon.com/exec/obidos/ISBN=$1'
+	'Amazon.com' => 'http://www.amazon.com/gp/search/?field-isbn=$1'
 );
 
 /**
@@ -240,6 +240,7 @@ $magicWords = array(
 	'pagenamee'              => array( 1,    'PAGENAMEE'              ),
 	'namespace'              => array( 1,    'NAMESPACE'              ),
 	'namespacee'             => array( 1,    'NAMESPACEE'             ),
+	'namespacenumber'        => array( 1,    'NAMESPACENUMBER'        ),
 	'talkspace'              => array( 1,    'TALKSPACE'              ),
 	'talkspacee'             => array( 1,    'TALKSPACEE'              ),
 	'subjectspace'           => array( 1,    'SUBJECTSPACE', 'ARTICLESPACE' ),
@@ -335,6 +336,7 @@ $magicWords = array(
 	'padleft'                => array( 0,    'PADLEFT'                ),
 	'padright'               => array( 0,    'PADRIGHT'               ),
 	'special'                => array( 0,    'special',               ),
+	'speciale'               => array( 0,    'speciale',              ),
 	'defaultsort'            => array( 1,    'DEFAULTSORT:', 'DEFAULTSORTKEY:', 'DEFAULTCATEGORYSORT:' ),
 	'filepath'               => array( 0,    'FILEPATH:'              ),
 	'tag'                    => array( 0,    'tag'                    ),
@@ -499,42 +501,46 @@ $preloadedMessages = array(
 	'accesskey-ca-history',
 	'accesskey-ca-nstab-main',
 	'accesskey-ca-talk',
+	'accesskey-ca-view',
 	'accesskey-n-currentevents',
 	'accesskey-n-help',
 	'accesskey-n-mainpage-description',
 	'accesskey-n-portal',
 	'accesskey-n-randompage',
 	'accesskey-n-recentchanges',
-	'accesskey-n-sitesupport',
 	'accesskey-p-logo',
 	'accesskey-pt-login',
 	'accesskey-search',
 	'accesskey-search-fulltext',
 	'accesskey-search-go',
 	'accesskey-t-permalink',
-	'accesskey-t-print',
 	'accesskey-t-recentchangeslinked',
 	'accesskey-t-specialpages',
 	'accesskey-t-whatlinkshere',
+	'actions',
 	'anonnotice',
-	'colon-separator',
 	'currentevents',
 	'currentevents-url',
 	'disclaimerpage',
 	'disclaimers',
 	'edit',
+	'editsection',
+	'editsection-brackets',
+	'editsectionhint',
 	'help',
 	'helppage',
-	'history_short',
 	'jumpto',
 	'jumptonavigation',
 	'jumptosearch',
 	'lastmodifiedat',
 	'mainpage',
 	'mainpage-description',
-	'nav-login-createaccount',
+	'mainpage-nstab',
+	'namespaces',
 	'navigation',
+	'nav-login-createaccount',
 	'nstab-main',
+	'nstab-talk',
 	'opensearch-desc',
 	'pagecategories',
 	'pagecategorieslink',
@@ -550,15 +556,14 @@ $preloadedMessages = array(
 	'randompage',
 	'randompage-url',
 	'recentchanges',
-	'recentchanges-url',
 	'recentchangeslinked-toolbox',
+	'recentchanges-url',
 	'retrievedfrom',
 	'search',
 	'searcharticle',
 	'searchbutton',
 	'sidebar',
 	'site-atom-feed',
-	'site-rss-feed',
 	'sitenotice',
 	'specialpages',
 	'tagline',
@@ -568,24 +573,29 @@ $preloadedMessages = array(
 	'tooltip-ca-history',
 	'tooltip-ca-nstab-main',
 	'tooltip-ca-talk',
+	'tooltip-ca-view',
 	'tooltip-n-currentevents',
 	'tooltip-n-help',
 	'tooltip-n-mainpage-description',
 	'tooltip-n-portal',
 	'tooltip-n-randompage',
 	'tooltip-n-recentchanges',
-	'tooltip-n-sitesupport',
 	'tooltip-p-logo',
 	'tooltip-p-navigation',
+	'tooltip-p-tb',
 	'tooltip-pt-login',
 	'tooltip-search',
 	'tooltip-search-fulltext',
 	'tooltip-search-go',
 	'tooltip-t-permalink',
-	'tooltip-t-print',
 	'tooltip-t-recentchangeslinked',
 	'tooltip-t-specialpages',
 	'tooltip-t-whatlinkshere',
+	'variants',
+	'vector-view-edit',
+	'vector-view-history',
+	'vector-view-view',
+	'viewcount',
 	'views',
 	'whatlinkshere',
 );
@@ -620,7 +630,6 @@ XHTML id names.
 
 # User preference toggles
 'tog-underline'               => 'Link underlining:',
-'tog-highlightbroken'         => 'Format broken links <a href="" class="new">like this</a> (alternative: Like this<a href="" class="internal">?</a>)',
 'tog-justify'                 => 'Justify paragraphs',
 'tog-hideminor'               => 'Hide minor edits in recent changes',
 'tog-hidepatrolled'           => 'Hide patrolled edits in recent changes',
@@ -991,6 +1000,9 @@ Please report this to an [[Special:ListUsers/sysop|administrator]], making note 
 'directorycreateerror' => 'Could not create directory "$1".',
 'filenotfound'         => 'Could not find file "$1".',
 'fileexistserror'      => 'Unable to write to file "$1": File exists.',
+'filereadonlyerror'    => 'Unable to modify the file "$1" because the file repository "$2" is in read-only mode.
+
+The administrator who locked it offered this explanation: "$3".',
 'unexpected'           => 'Unexpected value: "$1"="$2".',
 'formerror'            => 'Error: Could not submit form.',
 'badarticleerror'      => 'This action cannot be performed on this page.',
@@ -1056,6 +1068,7 @@ Do not forget to change your [[Special:Preferences|{{SITENAME}} preferences]].',
 'userloginnocreate'          => 'Log in',
 'logout'                     => 'Log out',
 'userlogout'                 => 'Log out',
+'userlogout-summary'         => '', # do not translate or duplicate this message to other languages
 'notloggedin'                => 'Not logged in',
 'nologin'                    => "Don't have an account? $1.",
 'nologinlink'                => 'Create an account',
@@ -1134,6 +1147,7 @@ No e-mail will be sent for any of the following features.',
 'invalidemailaddress'        => 'The e-mail address cannot be accepted as it appears to have an invalid format.
 Please enter a well-formatted address or empty that field.',
 'cannotchangeemail'          => 'Account e-mail addresses cannot be changed on this wiki.',
+'emaildisabled'              => 'This site cannot send e-mails.',
 'accountcreated'             => 'Account created',
 'accountcreatedtext'         => 'The user account for $1 has been created.',
 'createaccount-title'        => 'Account creation for {{SITENAME}}',
@@ -1222,6 +1236,7 @@ Temporary password: $2',
 
 # Special:ChangeEmail
 'changeemail'          => 'Change e-mail address',
+'changeemail-summary'  => '', # do not translate or duplicate this message to other languages
 'changeemail-header'   => 'Change account e-mail address',
 'changeemail-text'     => 'Complete this form to change your e-mail address. You will need to enter your password to confirm this change.',
 'changeemail-no-info'  => 'You must be logged in to access this page directly.',
@@ -1286,7 +1301,7 @@ You cannot use the 'e-mail this user' feature unless a valid e-mail address is s
 Your current IP address is $3, and the block ID is #$5.
 Please include all above details in any queries you make.",
 'autoblockedtext'                  => 'Your IP address has been automatically blocked because it was used by another user, who was blocked by $1.
-The reason given is this:
+The reason given is:
 
 :\'\'$2\'\'
 
@@ -1358,7 +1373,7 @@ Custom .css and .js pages use a lowercase title, e.g. {{ns:user}}:Foo/vector.css
 'updated'                          => '(Updated)',
 'note'                             => "'''Note:'''",
 'previewnote'                      => "'''Remember that this is only a preview.'''
-Your changes have not yet been saved!",
+Your changes have not yet been saved! [[#editform|→ Continue editing]]",
 'previewconflict'                  => 'This preview reflects the text in the upper text editing area as it will appear if you choose to save.',
 'session_fail_preview'             => "'''Sorry! We could not process your edit due to a loss of session data.'''
 Please try again.
@@ -1374,6 +1389,7 @@ The edit has been rejected to prevent corruption of the page text.
 This sometimes happens when you are using a buggy web-based anonymous proxy service.",
 'edit_form_incomplete'             => "'''Some parts of the edit form did not reach the server; double-check that your edits are intact and try again.'''",
 'editing'                          => 'Editing $1',
+'creating'                         => 'Creating $1',
 'editingsection'                   => 'Editing $1 (section)',
 'editingcomment'                   => 'Editing $1 (new section)',
 'editconflict'                     => 'Edit conflict: $1',
@@ -1446,6 +1462,7 @@ It appears to have been deleted.',
 It already exists.',
 'addsection-preload'               => '', # do not translate or duplicate this message to other languages
 'addsection-editintro'             => '', # do not translate or duplicate this message to other languages
+'defaultmessagetext'               => 'Default message text',
 
 # Parser/template warnings
 'expensive-parserfunction-warning'        => "'''Warning:''' This page contains too many expensive parser function calls.
@@ -1758,6 +1775,7 @@ Note that their indexes of {{SITENAME}} content may be out of date.',
 'prefsnologin'                  => 'Not logged in',
 'prefsnologintext'              => 'You must be <span class="plainlinks">[{{fullurl:{{#Special:UserLogin}}|returnto=$1}} logged in]</span> to set user preferences.',
 'changepassword'                => 'Change password',
+'changepassword-summary'        => '', # do not translate or duplicate this message to other languages
 'prefs-skin'                    => 'Skin',
 'skin-preview'                  => 'Preview',
 'datedefault'                   => 'No preference',
@@ -2067,6 +2085,7 @@ Your e-mail address is not revealed when other users contact you.',
 'newsectionsummary'                 => '/* $1 */ new section',
 'rc-enhanced-expand'                => 'Show details (requires JavaScript)',
 'rc-enhanced-hide'                  => 'Hide details',
+'rc-old-title'                      => 'originally created as "$1"',
 
 # Recent changes linked
 'recentchangeslinked'          => 'Related changes',
@@ -2225,18 +2244,19 @@ $1',
 'upload-warning-subj'         => 'Upload warning',
 'upload-warning-msg'          => 'There was a problem with your upload from [$2]. You may return to the [[Special:Upload/stash/$1|upload form]] to correct this problem.',
 
-'upload-proto-error'        => 'Incorrect protocol',
-'upload-proto-error-text'   => 'Remote upload requires URLs beginning with <code>http://</code> or <code>ftp://</code>.',
-'upload-file-error'         => 'Internal error',
-'upload-file-error-text'    => 'An internal error occurred when attempting to create a temporary file on the server.
+'upload-proto-error'                => 'Incorrect protocol',
+'upload-proto-error-text'           => 'Remote upload requires URLs beginning with <code>http://</code> or <code>ftp://</code>.',
+'upload-file-error'                 => 'Internal error',
+'upload-file-error-text'            => 'An internal error occurred when attempting to create a temporary file on the server.
 Please contact an [[Special:ListUsers/sysop|administrator]].',
-'upload-misc-error'         => 'Unknown upload error',
-'upload-misc-error-text'    => 'An unknown error occurred during the upload.
+'upload-misc-error'                 => 'Unknown upload error',
+'upload-misc-error-text'            => 'An unknown error occurred during the upload.
 Please verify that the URL is valid and accessible and try again.
 If the problem persists, contact an [[Special:ListUsers/sysop|administrator]].',
-'upload-too-many-redirects' => 'The URL contained too many redirects',
-'upload-unknown-size'       => 'Unknown size',
-'upload-http-error'         => 'An HTTP error occured: $1',
+'upload-too-many-redirects'         => 'The URL contained too many redirects',
+'upload-unknown-size'               => 'Unknown size',
+'upload-http-error'                 => 'An HTTP error occured: $1',
+'upload-copy-upload-invalid-domain' => 'Copy uploads are not available from this domain.',
 
 # File backend
 'backend-fail-stream'        => 'Could not stream file $1.',
@@ -2255,12 +2275,17 @@ If the problem persists, contact an [[Special:ListUsers/sysop|administrator]].',
 'backend-fail-closetemp'     => 'Could not close temporary file.',
 'backend-fail-read'          => 'Could not read file $1.',
 'backend-fail-create'        => 'Could not create file $1.',
-'backend-fail-readonly'      => 'The backend "$1" is currently read-only. The reason given is: "$2"',
-'backend-fail-synced'        => 'The file "$1" is in an inconsistent state within the internal backends',
-'backend-fail-connect'       => 'Could not connect to file backend "$1".',
-'backend-fail-internal'      => 'An unknown error occurred in file backend "$1".',
-'backend-fail-contenttype'   => 'Could not determine the content type of file to store at "$1".',
-'backend-fail-batchsize'     => 'Backend given a batch of $1 file {{PLURAL:$1|operation|operations}}; the limit is $2 {{PLURAL:$2|operation|operations}}.',
+'backend-fail-maxsize'       => 'Could not create file $1 because it is larger than {{PLURAL:$2|one byte|$2 bytes}}.',
+'backend-fail-readonly'      => 'The storage backend "$1" is currently read-only. The reason given is: "\'\'$2\'\'"',
+'backend-fail-synced'        => 'The file "$1" is in an inconsistent state within the internal storage backends',
+'backend-fail-connect'       => 'Could not connect to storage backend "$1".',
+'backend-fail-internal'      => 'An unknown error occurred in storage backend "$1".',
+'backend-fail-contenttype'   => 'Could not determine the content type of the file to store at "$1".',
+'backend-fail-batchsize'     => 'Storage backend given a batch of $1 file {{PLURAL:$1|operation|operations}}; the limit is $2 {{PLURAL:$2|operation|operations}}.',
+
+# File journal
+'filejournal-fail-dbconnect' => 'Could not connect to the journal database for storage backend "$1".',
+'filejournal-fail-dbquery'   => 'Could not update the journal database for storage backend "$1".',
 
 # Lock manager
 'lockmanager-notlocked'        => 'Could not unlock "$1"; it is not locked.',
@@ -2296,7 +2321,7 @@ It cannot be properly checked for security.',
 'img-auth-nopathinfo'       => 'Missing PATH_INFO.
 Your server is not set up to pass this information.
 It may be CGI-based and cannot support img_auth.
-[//www.mediawiki.org/wiki/Manual:Image_Authorization See image authorization.]',
+See https://www.mediawiki.org/wiki/Manual:Image_Authorization.',
 'img-auth-notindir'         => 'Requested path is not in the configured upload directory.',
 'img-auth-badtitle'         => 'Unable to construct a valid title from "$1".',
 'img-auth-nologinnWL'       => 'You are not logged in and "$1" is not in the whitelist.',
@@ -2382,6 +2407,10 @@ A [[Special:WhatLinksHere/$2|full list]] is available.',
 Please see the [$2 file description page] for further information.',
 'sharedupload-desc-here'            => 'This file is from $1 and may be used by other projects.
 The description on its [$2 file description page] there is shown below.',
+'sharedupload-desc-edit'            => 'This file is from $1 and may be used by other projects.
+Maybe you want to edit the description on its [$2 file description page] there.',
+'sharedupload-desc-create'          => 'This file is from $1 and may be used by other projects.
+Maybe you want to edit the description on its [$2 file description page] there.',
 'shareddescriptionfollows'          => '-', # do not translate or duplicate this message to other languages
 'filepage-nofile'                   => 'No file by this name exists.',
 'filepage-nofile-link'              => 'No file by this name exists, but you can [$1 upload it].',
@@ -2528,7 +2557,9 @@ It now redirects to [[$2]].',
 'uncategorizedtemplates'          => 'Uncategorized templates',
 'uncategorizedtemplates-summary'  => '', # do not translate or duplicate this message to other languages
 'unusedcategories'                => 'Unused categories',
+'unusedcategories-summary'        => '', # do not translate or duplicate this message to other languages
 'unusedimages'                    => 'Unused files',
+'unusedimages-summary'            => '', # do not translate or duplicate this message to other languages
 'popularpages'                    => 'Popular pages',
 'popularpages-summary'            => '', # do not translate or duplicate this message to other languages
 'wantedcategories'                => 'Wanted categories',
@@ -2640,6 +2671,7 @@ You can narrow down the view by selecting a log type, the username (case-sensiti
 'allpagesbadtitle'  => 'The given page title was invalid or had an inter-language or inter-wiki prefix.
 It may contain one or more characters which cannot be used in titles.',
 'allpages-bad-ns'   => '{{SITENAME}} does not have namespace "$1".',
+'allpages-hide-redirects' => 'Hide redirects',
 
 # Special:Categories
 'categories'                    => 'Categories',
@@ -2653,19 +2685,21 @@ Also see [[Special:WantedCategories|wanted categories]].',
 
 # Special:DeletedContributions
 'deletedcontributions'             => 'Deleted user contributions',
+'deletedcontributions-summary'     => '', # do not translate or duplicate this message to other languages
 'deletedcontributions-title'       => 'Deleted user contributions',
 'sp-deletedcontributions-contribs' => 'contributions',
 
 # Special:LinkSearch
-'linksearch'       => 'External links search',
-'linksearch-pat'   => 'Search pattern:',
-'linksearch-ns'    => 'Namespace:',
-'linksearch-ok'    => 'Search',
-'linksearch-text'  => 'Wildcards such as "*.wikipedia.org" may be used.
+'linksearch'         => 'External links search',
+'linksearch-summary' => '', # do not translate or duplicate this message to other languages
+'linksearch-pat'     => 'Search pattern:',
+'linksearch-ns'      => 'Namespace:',
+'linksearch-ok'      => 'Search',
+'linksearch-text'    => 'Wildcards such as "*.wikipedia.org" may be used.
 Needs at least a top-level domain, for example "*.org".<br />
 Supported protocols: <tt>$1</tt> (do not add any of these in your search).',
-'linksearch-line'  => '$1 is linked from $2',
-'linksearch-error' => 'Wildcards may appear only at the start of the hostname.',
+'linksearch-line'    => '$1 is linked from $2',
+'linksearch-error'   => 'Wildcards may appear only at the start of the hostname.',
 
 # Special:ListUsers
 'listusersfrom'      => 'Display users starting at:',
@@ -2712,6 +2746,7 @@ There may be [[{{MediaWiki:Listgrouprights-helppage}}|additional information]] a
 'mailnologin'          => 'No send address',
 'mailnologintext'      => 'You must be [[Special:UserLogin|logged in]] and have a valid e-mail address in your [[Special:Preferences|preferences]] to send e-mail to other users.',
 'emailuser'            => 'E-mail this user',
+'emailuser-summary'    => '', # do not translate or duplicate this message to other languages
 'emailpage'            => 'E-mail user',
 'emailpagetext'        => 'You can use the form below to send an e-mail message to this user.
 The e-mail address you entered in [[Special:Preferences|your user preferences]] will appear as the "From" address of the e-mail, so the recipient will be able to reply directly to you.',
@@ -2746,6 +2781,7 @@ The e-mail address you entered in [[Special:Preferences|your user preferences]] 
 
 # Watchlist
 'watchlist'            => 'My watchlist',
+'watchlist-summary'    => '', # do not translate or duplicate this message to other languages
 'mywatchlist'          => 'My watchlist',
 'watchlistfor2'        => 'For $1 $2',
 'nowatchlist'          => 'You have no items on your watchlist.',
@@ -2947,6 +2983,7 @@ You can change this page's protection level, but it will not affect the cascadin
 
 # Undelete
 'undelete'                     => 'View deleted pages',
+'undelete-summary'             => '', # do not translate or duplicate this message to other languages
 'undeletepage'                 => 'View and restore deleted pages',
 'undeletepagetitle'            => "'''The following consists of deleted revisions of [[:$1|$1]]'''.",
 'viewdeletedpage'              => 'View deleted pages',
@@ -3009,14 +3046,15 @@ $1',
 'blanknamespace'                => '(Main)',
 
 # Contributions
-'contributions'       => 'User contributions',
-'contributions-title' => 'User contributions for $1',
-'mycontris'           => 'My contributions',
-'contribsub2'         => 'For $1 ($2)',
-'nocontribs'          => 'No changes were found matching these criteria.',
-'uctop'               => '(top)',
-'month'               => 'From month (and earlier):',
-'year'                => 'From year (and earlier):',
+'contributions'         => 'User contributions',
+'contributions-summary' => '', # do not translate or duplicate this message to other languages
+'contributions-title'   => 'User contributions for $1',
+'mycontris'             => 'My contributions',
+'contribsub2'           => 'For $1 ($2)',
+'nocontribs'            => 'No changes were found matching these criteria.',
+'uctop'                 => '(top)',
+'month'                 => 'From month (and earlier):',
+'year'                  => 'From year (and earlier):',
 
 'sp-contributions-newbies'             => 'Show contributions of new accounts only',
 'sp-contributions-newbies-sub'         => 'For new accounts',
@@ -3038,6 +3076,7 @@ The latest block log entry is provided below for reference:',
 'sp-contributions-explain'             => '', # only translate this message to other languages if you have to change it
 'sp-contributions-footer'              => '-', # do not translate or duplicate this message to other languages
 'sp-contributions-footer-anon'         => '-', # do not translate or duplicate this message to other languages
+'sp-contributions-footer-newbies'      => '-', # do not translate or duplicate this message to other languages
 
 # What links here
 'whatlinkshere'            => 'What links here',
@@ -3063,6 +3102,7 @@ The latest block log entry is provided below for reference:',
 'autoblockid'                     => 'Autoblock #$1',
 'block'                           => 'Block user',
 'unblock'                         => 'Unblock user',
+'unblock-summary'                 => '', # do not translate or duplicate this message to other languages
 'blockip'                         => 'Block user',
 'blockip-title'                   => 'Block user',
 'blockip-legend'                  => 'Block user',
@@ -3144,7 +3184,7 @@ See [[Special:BlockList|IP block list]] to review blocks.',
 'contribslink'                    => 'contribs',
 'emaillink'                       => 'send e-mail',
 'autoblocker'                     => 'Autoblocked because your IP address has been recently used by "[[User:$1|$1]]".
-The reason given for $1\'s block is: "$2"',
+The reason given for $1\'s block is "\'\'$2\'\'"',
 'blocklogpage'                    => 'Block log',
 'blocklog-showlog'                => 'This user has been blocked previously.
 The block log is provided below for reference:',
@@ -3216,6 +3256,7 @@ To lock or unlock the database, this needs to be writable by the web server.',
 
 # Move page
 'move-page'                    => 'Move $1',
+'movepage-summary'             => '', # do not translate or duplicate this message to other languages
 'move-page-legend'             => 'Move page',
 'movepagetext'                 => "Using the form below will rename a page, moving all of its history to the new name.
 The old title will become a redirect page to the new title.
@@ -3310,6 +3351,7 @@ Please choose another name.',
 
 # Export
 'export'            => 'Export pages',
+'export-summary'    => '', # do not translate or duplicate this message to other languages
 'exporttext'        => 'You can export the text and editing history of a particular page or set of pages wrapped in some XML.
 This can be imported into another wiki using MediaWiki via the [[Special:Import|import page]].
 
@@ -3363,6 +3405,7 @@ Please visit [//www.mediawiki.org/wiki/Localisation MediaWiki Localisation] and 
 
 # Special:Import
 'import'                     => 'Import pages',
+'import-summary'             => '', # do not translate or duplicate this message to other languages
 'importinterwiki'            => 'Transwiki import',
 'import-interwiki-text'      => "Select a wiki and page title to import.
 Revision dates and editors' names will be preserved.
@@ -3420,7 +3463,7 @@ Please try again.',
 # JavaScriptTest
 'javascripttest'                           => 'JavaScript testing',
 'javascripttest-backlink'                  => '< $1', # do not translate or duplicate this message to other languages
-'javascripttest-disabled'                  => 'This function is disabled.',
+'javascripttest-disabled'                  => 'This function has not been enabled on this wiki.',
 'javascripttest-title'                     => 'Running $1 tests',
 'javascripttest-pagetext-noframework'      => 'This page is reserved for running JavaScript tests.',
 'javascripttest-pagetext-unknownframework' => 'Unknown testing framework "$1".',
@@ -4451,6 +4494,7 @@ Try normal preview.',
 'lag-warn-high'   => 'Due to high database server lag, changes newer than $1 {{PLURAL:$1|second|seconds}} may not be shown in this list.',
 
 # Watchlist editor
+'editwatchlist-summary'        => '', # do not translate or duplicate this message to other languages
 'watchlistedit-numitems'       => 'Your watchlist contains {{PLURAL:$1|1 title|$1 titles}}, excluding talk pages.',
 'watchlistedit-noitems'        => 'Your watchlist contains no titles.',
 'watchlistedit-normal-title'   => 'Edit watchlist',
@@ -4546,6 +4590,7 @@ You can also [[Special:EditWatchlist|use the standard editor]].',
 
 # Special:Version
 'version'                       => 'Version',
+'version-summary'               => '', # do not translate or duplicate this message to other languages
 'version-extensions'            => 'Installed extensions',
 'version-specialpages'          => 'Special pages',
 'version-parserhooks'           => 'Parser hooks',
@@ -4628,6 +4673,7 @@ Images are shown in full resolution, other file types are started with their ass
 
 # Special:Tags
 'tags'                    => 'Valid change tags',
+'tags-summary'            => '', # do not translate or duplicate this message to other languages
 'tag-filter'              => '[[Special:Tags|Tag]] filter:',
 'tag-filter-submit'       => 'Filter',
 'tags-title'              => 'Tags',
@@ -4641,6 +4687,7 @@ Images are shown in full resolution, other file types are started with their ass
 
 # Special:ComparePages
 'comparepages'                => 'Compare pages',
+'comparepages-summary'        => '', # do not translate or duplicate this message to other languages
 'compare-selector'            => 'Compare page revisions',
 'compare-page1'               => 'Page 1',
 'compare-page2'               => 'Page 2',
@@ -4678,17 +4725,17 @@ This site is experiencing technical difficulties.',
 'sqlite-no-fts'  => '$1 without full-text search support',
 
 # New logging system
-'logentry-delete-delete'              => '$1 {{GENDER:$2|deleted}} page $3',
-'logentry-delete-restore'             => '$1 {{GENDER:$2|restored}} page $3',
-'logentry-delete-event'               => '$1 {{GENDER:$2|changed}} visibility of {{PLURAL:$5|a log event|$5 log events}} on $3: $4',
-'logentry-delete-revision'            => '$1 {{GENDER:$2|changed}} visibility of {{PLURAL:$5|a revision|$5 revisions}} on page $3: $4',
-'logentry-delete-event-legacy'        => '$1 {{GENDER:$2|changed}} visibility of log events on $3',
-'logentry-delete-revision-legacy'     => '$1 {{GENDER:$2|changed}} visibility of revisions on page $3',
-'logentry-suppress-delete'            => '$1 {{GENDER:$2|suppressed}} page $3',
-'logentry-suppress-event'             => '$1 secretly {{GENDER:$2|changed}} visibility of {{PLURAL:$5|a log event|$5 log events}} on $3: $4',
-'logentry-suppress-revision'          => '$1 secretly {{GENDER:$2|changed}} visibility of {{PLURAL:$5|a revision|$5 revisions}} on page $3: $4',
-'logentry-suppress-event-legacy'      => '$1 secretly {{GENDER:$2|changed}} visibility of log events on $3',
-'logentry-suppress-revision-legacy'   => '$1 secretly {{GENDER:$2|changed}} visibility of revisions on page $3',
+'logentry-delete-delete'              => '$1 deleted page $3',
+'logentry-delete-restore'             => '$1 restored page $3',
+'logentry-delete-event'               => '$1 changed visibility of {{PLURAL:$5|a log event|$5 log events}} on $3: $4',
+'logentry-delete-revision'            => '$1 changed visibility of {{PLURAL:$5|a revision|$5 revisions}} on page $3: $4',
+'logentry-delete-event-legacy'        => '$1 changed visibility of log events on $3',
+'logentry-delete-revision-legacy'     => '$1 changed visibility of revisions on page $3',
+'logentry-suppress-delete'            => '$1 suppressed page $3',
+'logentry-suppress-event'             => '$1 secretly changed visibility of {{PLURAL:$5|a log event|$5 log events}} on $3: $4',
+'logentry-suppress-revision'          => '$1 secretly changed visibility of {{PLURAL:$5|a revision|$5 revisions}} on page $3: $4',
+'logentry-suppress-event-legacy'      => '$1 secretly changed visibility of log events on $3',
+'logentry-suppress-revision-legacy'   => '$1 secretly changed visibility of revisions on page $3',
 'revdelete-content-hid'               => 'content hidden',
 'revdelete-summary-hid'               => 'edit summary hidden',
 'revdelete-uname-hid'                 => 'username hidden',
@@ -4697,17 +4744,40 @@ This site is experiencing technical difficulties.',
 'revdelete-uname-unhid'               => 'username unhidden',
 'revdelete-restricted'                => 'applied restrictions to administrators',
 'revdelete-unrestricted'              => 'removed restrictions for administrators',
-'logentry-move-move'                  => '$1 {{GENDER:$2|moved}} page $3 to $4',
-'logentry-move-move-noredirect'       => '$1 {{GENDER:$2|moved}} page $3 to $4 without leaving a redirect',
-'logentry-move-move_redir'            => '$1 {{GENDER:$2|moved}} page $3 to $4 over redirect',
-'logentry-move-move_redir-noredirect' => '$1 {{GENDER:$2|moved}} page $3 to $4 over a redirect without leaving a redirect',
-'logentry-patrol-patrol'              => '$1 {{GENDER:$2|marked}} revision $4 of page $3 patrolled',
-'logentry-patrol-patrol-auto'         => '$1 automatically {{GENDER:$2|marked}} revision $4 of page $3 patrolled',
-'logentry-newusers-newusers'          => '$1 {{GENDER:$2|created}} a user account',
-'logentry-newusers-create'            => '$1 {{GENDER:$2|created}} a user account',
-'logentry-newusers-create2'           => '$1 {{GENDER:$2|created}} {{GENDER:$4|a user account}} $3',
-'logentry-newusers-autocreate'        => 'Account $1 was {{GENDER:$2|created}} automatically',
+'logentry-move-move'                  => '$1 moved page $3 to $4',
+'logentry-move-move-noredirect'       => '$1 moved page $3 to $4 without leaving a redirect',
+'logentry-move-move_redir'            => '$1 moved page $3 to $4 over redirect',
+'logentry-move-move_redir-noredirect' => '$1 moved page $3 to $4 over a redirect without leaving a redirect',
+'logentry-patrol-patrol'              => '$1 marked revision $4 of page $3 patrolled',
+'logentry-patrol-patrol-auto'         => '$1 automatically marked revision $4 of page $3 patrolled',
+'logentry-newusers-newusers'          => '$1 created a user account',
+'logentry-newusers-create'            => '$1 created a user account',
+'logentry-newusers-create2'           => '$1 created a user account $3',
+'logentry-newusers-autocreate'        => 'Account $1 was created automatically',
 'newuserlog-byemail'                  => 'password sent by e-mail',
+
+# For IRC, see bug 34508. Do not change
+'revdelete-logentry'          => 'changed revision visibility of "[[$1]]"', # do not translate or duplicate this message to other languages
+'logdelete-logentry'          => 'changed event visibility of "[[$1]]"', # do not translate or duplicate this message to other languages
+'revdelete-content'           => 'content', # do not translate or duplicate this message to other languages
+'revdelete-summary'           => 'edit summary', # do not translate or duplicate this message to other languages
+'revdelete-uname'             => 'username', # do not translate or duplicate this message to other languages
+'revdelete-hid'               => 'hid $1', # do not translate or duplicate this message to other languages
+'revdelete-unhid'             => 'unhid $1', # do not translate or duplicate this message to other languages
+'revdelete-log-message'       => '$1 for $2 {{PLURAL:$2|revision|revisions}}', # do not translate or duplicate this message to other languages
+'logdelete-log-message'       => '$1 for $2 {{PLURAL:$2|event|events}}', # do not translate or duplicate this message to other languages
+'deletedarticle'              => 'deleted "[[$1]]"', # do not translate or duplicate this message to other languages
+'suppressedarticle'           => 'suppressed "[[$1]]"', # do not translate or duplicate this message to other languages
+'undeletedarticle'            => 'restored "[[$1]]"', # do not translate or duplicate this message to other languages
+'patrol-log-line'             => 'marked $1 of $2 patrolled $3', # do not translate or duplicate this message to other languages
+'patrol-log-auto'             => '(automatic)', # do not translate or duplicate this message to other languages
+'patrol-log-diff'             => 'revision $1', # do not translate or duplicate this message to other languages
+'1movedto2'                   => 'moved [[$1]] to [[$2]]', # do not translate or duplicate this message to other languages
+'1movedto2_redir'             => 'moved [[$1]] to [[$2]] over redirect', # do not translate or duplicate this message to other languages
+'move-redirect-suppressed'    => 'redirect suppressed', # do not translate or duplicate this message to other languages
+'newuserlog-create-entry'     => 'New user account', # do not translate or duplicate this message to other languages
+'newuserlog-create2-entry'    => 'created new account $1', # do not translate or duplicate this message to other languages
+'newuserlog-autocreate-entry' => 'Account created automatically', # do not translate or duplicate this message to other languages
 
 # Feedback
 'feedback-bugornote' => 'If you are ready to describe a technical problem in detail please [$1 report a bug].

@@ -7,16 +7,11 @@
  */
 
 /**
- * @defgroup FileRepo FileRepo
- */
-
-/**
  * Prioritized list of file repositories
  *
  * @ingroup FileRepo
  */
 class RepoGroup {
-
 	/**
 	 * @var LocalRepo
 	 */
@@ -30,7 +25,7 @@ class RepoGroup {
 	 * @var RepoGroup
 	 */
 	protected static $instance;
-	const MAX_CACHE_SIZE = 1000;
+	const MAX_CACHE_SIZE = 500;
 
 	/**
 	 * Get a RepoGroup instance. At present only one instance of RepoGroup is
@@ -69,7 +64,7 @@ class RepoGroup {
 	/**
 	 * Construct a group of file repositories.
 	 *
-	 * @param $localInfo Associative array for local repo's info
+	 * @param $localInfo array Associative array for local repo's info
 	 * @param $foreignInfo Array of repository info arrays.
 	 *     Each info array is an associative array with the 'class' member
 	 *     giving the class name. The entire array is passed to the repository
@@ -118,48 +113,41 @@ class RepoGroup {
 			&& empty( $options['private'] )
 			&& empty( $options['bypassCache'] ) )
 		{
-			$useCache = true;
 			$time = isset( $options['time'] ) ? $options['time'] : '';
 			$dbkey = $title->getDBkey();
 			if ( isset( $this->cache[$dbkey][$time] ) ) {
 				wfDebug( __METHOD__.": got File:$dbkey from process cache\n" );
 				# Move it to the end of the list so that we can delete the LRU entry later
-				$tmp = $this->cache[$dbkey];
-				unset( $this->cache[$dbkey] );
-				$this->cache[$dbkey] = $tmp;
+				$this->pingCache( $dbkey );
 				# Return the entry
 				return $this->cache[$dbkey][$time];
-			} else {
-				# Add a negative cache entry, may be overridden
-				$this->trimCache();
-				$this->cache[$dbkey][$time] = false;
-				$cacheEntry =& $this->cache[$dbkey][$time];
 			}
+			$useCache = true;
 		} else {
 			$useCache = false;
 		}
 
 		# Check the local repo
 		$image = $this->localRepo->findFile( $title, $options );
-		if ( $image ) {
-			if ( $useCache ) {
-				$cacheEntry = $image;
-			}
-			return $image;
-		}
 
 		# Check the foreign repos
-		foreach ( $this->foreignRepos as $repo ) {
-			$image = $repo->findFile( $title, $options );
-			if ( $image ) {
-				if ( $useCache ) {
-					$cacheEntry = $image;
+		if ( !$image ) {
+			foreach ( $this->foreignRepos as $repo ) {
+				$image = $repo->findFile( $title, $options );
+				if ( $image ) {
+					break;
 				}
-				return $image;
 			}
 		}
-		# Not found, do not override negative cache
-		return false;
+
+		$image = $image ? $image : false; // type sanity
+		# Cache file existence or non-existence
+		if ( $useCache && ( !$image || $image->isCacheable() ) ) {
+			$this->trimCache();
+			$this->cache[$dbkey][$time] = $image;
+		}
+
+		return $image;
 	}
 
 	function findFiles( $inputItems ) {
@@ -193,6 +181,7 @@ class RepoGroup {
 
 	/**
 	 * Interface for FileRepo::checkRedirect()
+	 * @return bool
 	 */
 	function checkRedirect( Title $title ) {
 		if ( !$this->reposInitialised ) {
@@ -217,7 +206,7 @@ class RepoGroup {
 	 * Returns false if the file does not exist.
 	 *
 	 * @param $hash String base 36 SHA-1 hash
-	 * @param $options Option array, same as findFile()
+	 * @param $options array Option array, same as findFile()
 	 * @return File object or false if it is not found
 	 */
 	function findFileFromKey( $hash, $options = array() ) {
@@ -255,6 +244,7 @@ class RepoGroup {
 
 	/**
 	 * Get the repo instance with a given key.
+	 * @return bool|LocalRepo
 	 */
 	function getRepo( $index ) {
 		if ( !$this->reposInitialised ) {
@@ -270,6 +260,7 @@ class RepoGroup {
 	}
 	/**
 	 * Get the repo instance by its name
+	 * @return bool
 	 */
 	function getRepoByName( $name ) {
 		if ( !$this->reposInitialised ) {
@@ -298,6 +289,7 @@ class RepoGroup {
 	 *
 	 * @param $callback Callback: the function to call
 	 * @param $params Array: optional additional parameters to pass to the function
+	 * @return bool
 	 */
 	function forEachForeignRepo( $callback, $params = array() ) {
 		foreach( $this->foreignRepos as $repo ) {
@@ -343,7 +335,8 @@ class RepoGroup {
 
 	/**
 	 * Split a virtual URL into repo, zone and rel parts
-	 * @return an array containing repo, zone and rel
+	 * @param $url string
+	 * @return array containing repo, zone and rel
 	 */
 	function splitVirtualUrl( $url ) {
 		if ( substr( $url, 0, 9 ) != 'mwrepo://' ) {
@@ -367,6 +360,17 @@ class RepoGroup {
 			return $repo->getFileProps( $fileName );
 		} else {
 			return FSFile::getPropsFromPath( $fileName );
+		}
+	}
+
+	/**
+	 * Move a cache entry to the top (such as when accessed)
+	 */
+	protected function pingCache( $key ) {
+		if ( isset( $this->cache[$key] ) ) {
+			$tmp = $this->cache[$key];
+			unset( $this->cache[$key] );
+			$this->cache[$key] = $tmp;
 		}
 	}
 

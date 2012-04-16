@@ -276,6 +276,7 @@ class SpecialPageFactory {
 	 * Get the group that the special page belongs in on Special:SpecialPage
 	 *
 	 * @param $page SpecialPage
+	 * @return String
 	 */
 	public static function getGroup( &$page ) {
 		$name = $page->getName();

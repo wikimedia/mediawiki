@@ -1,5 +1,5 @@
 test('jquery.delayedBind with data option', function() {
-	var $fixture = $('<div>').appendTo('body'),
+	var $fixture = $('<div>').appendTo('#qunit-fixture'),
 		data = { magic: "beeswax" },
 		delay = 50;
 
@@ -20,7 +20,7 @@ test('jquery.delayedBind with data option', function() {
 });
 
 test('jquery.delayedBind without data option', function() {
-	var $fixture = $('<div>').appendTo('body'),
+	var $fixture = $('<div>').appendTo('#qunit-fixture'),
 		data = { magic: "beeswax" },
 		delay = 50;
 

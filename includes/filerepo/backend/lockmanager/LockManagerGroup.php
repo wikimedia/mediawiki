@@ -31,6 +31,14 @@ class LockManagerGroup {
 	}
 
 	/**
+	 * Destroy the singleton instance, so that a new one will be created next
+	 * time singleton() is called.
+	 */
+	public static function destroySingleton() {
+		self::$instance = null;
+	}
+
+	/**
 	 * Register lock managers from the global variables
 	 * 
 	 * @return void

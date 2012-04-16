@@ -88,7 +88,7 @@ class DatabaseSqlite extends DatabaseBase {
 	 *
 	 * @param $fileName string
 	 *
-	 * @return PDO|false SQL connection or false if failed
+	 * @return PDO|bool SQL connection or false if failed
 	 */
 	function openFile( $fileName ) {
 		$this->mDatabaseFile = $fileName;
@@ -115,16 +115,11 @@ class DatabaseSqlite extends DatabaseBase {
 	}
 
 	/**
-	 * Close an SQLite database
-	 *
+	 * Does not actually close the connection, just destroys the reference for GC to do its work
 	 * @return bool
 	 */
-	function close() {
-		$this->mOpened = false;
-		if ( is_object( $this->mConn ) ) {
-			if ( $this->trxLevel() ) $this->commit();
-			$this->mConn = null;
-		}
+	protected function closeConnection() {
+		$this->mConn = null;
 		return true;
 	}
 
@@ -140,7 +135,7 @@ class DatabaseSqlite extends DatabaseBase {
 
 	/**
 	 * Check if the searchindext table is FTS enabled.
-	 * @return false if not enabled.
+	 * @return bool False if not enabled.
 	 */
 	function checkForEnabledSearch() {
 		if ( self::$fulltextEnabled === null ) {
@@ -347,7 +342,8 @@ class DatabaseSqlite extends DatabaseBase {
 	 * @return int
 	 */
 	function insertId() {
-		return $this->mConn->lastInsertId();
+		// PDO::lastInsertId yields a string :(
+		return intval( $this->mConn->lastInsertId() );
 	}
 
 	/**
@@ -497,6 +493,7 @@ class DatabaseSqlite extends DatabaseBase {
 
 	/**
 	 * Based on generic method (parent) with some prior SQLite-sepcific adjustments
+	 * @return bool
 	 */
 	function insert( $table, $a, $fname = 'DatabaseSqlite::insert', $options = array() ) {
 		if ( !count( $a ) ) {
@@ -617,7 +614,9 @@ class DatabaseSqlite extends DatabaseBase {
 	 * Get information about a given field
 	 * Returns false if the field does not exist.
 	 *
-	 * @return SQLiteField|false
+	 * @param $table string
+	 * @param $field string
+	 * @return SQLiteField|bool False on failure
 	 */
 	function fieldInfo( $table, $field ) {
 		$tableName = $this->tableName( $table );
@@ -633,7 +632,7 @@ class DatabaseSqlite extends DatabaseBase {
 
 	function begin( $fname = '' ) {
 		if ( $this->mTrxLevel == 1 ) {
-			$this->commit();
+			$this->commit( __METHOD__ );
 		}
 		$this->mConn->beginTransaction();
 		$this->mTrxLevel = 1;
@@ -723,6 +722,7 @@ class DatabaseSqlite extends DatabaseBase {
 
 	/**
 	 * No-op version of deadlockLoop
+	 * @return mixed
 	 */
 	public function deadlockLoop( /*...*/ ) {
 		$args = func_get_args();
@@ -817,7 +817,7 @@ class DatabaseSqlite extends DatabaseBase {
 	/**
 	 * List all tables on the database
 	 *
-	 * @param $prefix Only show tables with this prefix, e.g. mw_
+	 * @param $prefix string Only show tables with this prefix, e.g. mw_
 	 * @param $fname String: calling function name
 	 *
 	 * @return array

@@ -116,7 +116,7 @@ class FiveUpgrade extends Maintenance {
 
 	/**
 	 * Open a connection to the master server with the admin rights.
-	 * @return Database
+	 * @return DatabaseBase
 	 * @access private
 	 */
 	function newConnection() {
@@ -141,7 +141,7 @@ class FiveUpgrade extends Maintenance {
 	 * Open a second connection to the master server, with buffering off.
 	 * This will let us stream large datasets in and write in chunks on the
 	 * other end.
-	 * @return Database
+	 * @return DatabaseBase
 	 * @access private
 	 */
 	function streamConnection() {
@@ -342,7 +342,7 @@ class FiveUpgrade extends Maintenance {
 	 *              MW_UPGRADE_COPY   - straight copy
 	 *              MW_UPGRADE_ENCODE - for old Latin1 wikis, conv to UTF-8
 	 *              MW_UPGRADE_NULL   - just put NULL
-	 * @param callable $callback An optional callback to modify the data
+	 * @param $callback callback An optional callback to modify the data
 	 *                           or perform other processing. Func should be
 	 *                           ( object $row, array $copy ) and return $copy
 	 * @access private

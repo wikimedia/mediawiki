@@ -433,6 +433,7 @@ class WebInstaller extends Installer {
 	 *
 	 * @param $name String
 	 * @param $default
+	 * @return null
 	 */
 	public function getSession( $name, $default = null ) {
 		if ( !isset( $this->session[$name] ) ) {
@@ -484,7 +485,7 @@ class WebInstaller extends Installer {
 	public function getAcceptLanguage() {
 		global $wgLanguageCode, $wgRequest;
 
-		$mwLanguages = Language::getLanguageNames();
+		$mwLanguages = Language::fetchLanguageNames();
 		$headerLanguages = array_keys( $wgRequest->getAcceptLang() );
 
 		foreach ( $headerLanguages as $lang ) {

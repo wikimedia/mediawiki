@@ -6,6 +6,8 @@
  */
 
 /**
+ * @brief Proxy backend that mirrors writes to several internal backends.
+ * 
  * This class defines a multi-write backend. Multiple backends can be
  * registered to this proxy backend and it will act as a single backend.
  * Use this when all access to those backends is through this proxy backend.
@@ -76,12 +78,14 @@ class FileBackendMultiWrite extends FileBackend {
 
 	/**
 	 * @see FileBackend::doOperationsInternal()
+	 * @return Status
 	 */
 	final protected function doOperationsInternal( array $ops, array $opts ) {
 		$status = Status::newGood();
 
 		$performOps = array(); // list of FileOp objects
-		$filesRead = $filesChanged = array(); // storage paths used
+		$filesRead = array(); // storage paths read from
+		$filesChanged = array(); // storage paths written to
 		// Build up a list of FileOps. The list will have all the ops
 		// for one backend, then all the ops for the next, and so on.
 		// These batches of ops are all part of a continuous array.
@@ -129,10 +133,11 @@ class FileBackendMultiWrite extends FileBackend {
 		}
 
 		// Actually attempt the operation batch...
-		$subStatus = FileOp::attemptBatch( $performOps, $opts );
+		$subStatus = FileOp::attemptBatch( $performOps, $opts, $this->fileJournal );
 
 		$success = array();
-		$failCount = $successCount = 0;
+		$failCount = 0;
+		$successCount = 0;
 		// Make 'success', 'successCount', and 'failCount' fields reflect
 		// the overall operation, rather than all the batches for each backend.
 		// Do this by only using success values from the master backend's batch.
@@ -256,7 +261,7 @@ class FileBackendMultiWrite extends FileBackend {
 	protected function substPaths( $paths, FileBackendStore $backend ) {
 		return preg_replace(
 			'!^mwstore://' . preg_quote( $this->name ) . '/!',
-			'mwstore://' . $backend->getName() . '/',
+			StringUtils::escapeRegexReplacement( "mwstore://{$backend->getName()}/" ),
 			$paths // string or array
 		);
 	}
@@ -270,15 +275,16 @@ class FileBackendMultiWrite extends FileBackend {
 	protected function unsubstPaths( $paths ) {
 		return preg_replace(
 			'!^mwstore://([^/]+)!',
-			"mwstore://{$this->name}",
+			StringUtils::escapeRegexReplacement( "mwstore://{$this->name}" ),
 			$paths // string or array
 		);
 	}
 
 	/**
 	 * @see FileBackend::doPrepare()
+	 * @return Status
 	 */
-	public function doPrepare( array $params ) {
+	protected function doPrepare( array $params ) {
 		$status = Status::newGood();
 		foreach ( $this->backends as $backend ) {
 			$realParams = $this->substOpPaths( $params, $backend );
@@ -289,8 +295,9 @@ class FileBackendMultiWrite extends FileBackend {
 
 	/**
 	 * @see FileBackend::doSecure()
+	 * @return Status
 	 */
-	public function doSecure( array $params ) {
+	protected function doSecure( array $params ) {
 		$status = Status::newGood();
 		foreach ( $this->backends as $backend ) {
 			$realParams = $this->substOpPaths( $params, $backend );
@@ -301,8 +308,9 @@ class FileBackendMultiWrite extends FileBackend {
 
 	/**
 	 * @see FileBackend::doClean()
+	 * @return Status
 	 */
-	public function doClean( array $params ) {
+	protected function doClean( array $params ) {
 		$status = Status::newGood();
 		foreach ( $this->backends as $backend ) {
 			$realParams = $this->substOpPaths( $params, $backend );

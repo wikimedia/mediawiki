@@ -334,8 +334,8 @@ class ApiQueryDeletedrevs extends ApiQueryBase {
 
 	public function getParamDescription() {
 		return array(
-			'start' => 'The timestamp to start enumerating from (1,2)',
-			'end' => 'The timestamp to stop enumerating at (1,2)',
+			'start' => 'The timestamp to start enumerating from (1, 2)',
+			'end' => 'The timestamp to stop enumerating at (1, 2)',
 			'dir' => $this->getDirectionDescription( $this->getModulePrefix(), ' (1, 3)' ),
 			'from' => 'Start listing at this title (3)',
 			'to' => 'Stop listing at this title (3)',

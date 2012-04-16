@@ -73,6 +73,7 @@ class ExternalStoreDB {
 	/**
 	 * Fetch data from given URL
 	 * @param $url String: an url of the form DB://cluster/id or DB://cluster/id/itemid for concatened storage.
+	 * @return mixed
 	 */
 	function fetchFromURL( $url ) {
 		$path = explode( '/', $url );
@@ -157,7 +158,7 @@ class ExternalStoreDB {
 			throw new MWException( __METHOD__.': no insert ID' );
 		}
 		if ( $dbw->getFlag( DBO_TRX ) ) {
-			$dbw->commit();
+			$dbw->commit( __METHOD__ );
 		}
 		return "DB://$cluster/$id";
 	}

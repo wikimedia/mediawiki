@@ -108,17 +108,17 @@ class DisambiguationsPage extends PageQueryPage {
 	 * @param $res
 	 */
 	function preprocessResults( $db, $res ) {
+		if ( !$res->numRows() ) {
+			return;
+		}
+
 		$batch = new LinkBatch;
 		foreach ( $res as $row ) {
 			$batch->add( $row->namespace, $row->title );
 		}
 		$batch->execute();
 
-		// Back to start for display
-		if ( $db->numRows( $res ) > 0 ) {
-			// If there are no rows we get an error seeking.
-			$db->dataSeek( $res, 0 );
-		}
+		$res->seek( 0 );
 	}
 
 	function formatResult( $skin, $result ) {

@@ -203,7 +203,11 @@ class MWException extends Exception {
 			wfDebugLog( 'exception', $log );
 		}
 
-		if ( self::isCommandLine() ) {
+		if ( defined( 'MW_API' ) ) {
+			// Unhandled API exception, we can't be sure that format printer is alive
+			header( 'MediaWiki-API-Error: internal_api_error_' . get_class( $this ) );
+			wfHttpError(500, 'Internal Server Error', $this->getText() );
+		} elseif ( self::isCommandLine() ) {
 			MWExceptionHandler::printError( $this->getText() );
 		} else {
 			$this->reportHTML();
@@ -265,7 +269,6 @@ class ErrorPageError extends MWException {
 
 	function report() {
 		global $wgOut;
-
 
 		$wgOut->showErrorPage( $this->title, $this->msg, $this->params );
 		$wgOut->output();
@@ -369,7 +372,7 @@ class ThrottledError extends ErrorPageError {
 	public function report(){
 		global $wgOut;
 		$wgOut->setStatusCode( 503 );
-		return parent::report();
+		parent::report();
 	}
 }
 

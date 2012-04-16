@@ -16,6 +16,8 @@ class MessageTest extends MediaWikiLangTestCase {
 		$this->assertInstanceOf( 'Message', wfMessage( 'i-dont-exist-evar' ) );
 		$this->assertEquals( 'Main Page', wfMessage( 'mainpage' )->text() );
 		$this->assertEquals( '&lt;i-dont-exist-evar&gt;', wfMessage( 'i-dont-exist-evar' )->text() );
+		$this->assertEquals( '<i-dont-exist-evar>', wfMessage( 'i-dont-exist-evar' )->plain() );
+		$this->assertEquals( '&lt;i-dont-exist-evar&gt;', wfMessage( 'i-dont-exist-evar' )->escaped() );
 	}
 
 	function testInLanguage() {

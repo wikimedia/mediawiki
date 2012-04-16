@@ -44,10 +44,7 @@ class SpecialContributions extends SpecialPage {
 		$this->opts = array();
 		$request = $this->getRequest();
 
-		if ( $par == 'newbies' ) {
-			$target = 'newbies';
-			$this->opts['contribs'] = 'newbie';
-		} elseif ( $par !== null ) {
+		if ( $par !== null ) {
 			$target = $par;
 		} else {
 			$target = $request->getVal( 'target' );
@@ -74,12 +71,16 @@ class SpecialContributions extends SpecialPage {
 		$this->opts['target'] = $target;
 		$this->opts['topOnly'] = $request->getBool( 'topOnly' );
 
-		$userObj = User::newFromName( $target, false );
+		$nt = Title::makeTitleSafe( NS_USER, $target );
+		if ( !$nt ) {
+			$out->addHTML( $this->getForm() );
+			return;
+		}
+		$userObj = User::newFromName( $nt->getText(), false );
 		if ( !$userObj ) {
 			$out->addHTML( $this->getForm() );
 			return;
 		}
-		$nt = $userObj->getUserPage();
 		$id = $userObj->getID();
 
 		if ( $this->opts['contribs'] != 'newbie' ) {
@@ -188,18 +189,20 @@ class SpecialContributions extends SpecialPage {
 			}
 			$out->preventClickjacking( $pager->getPreventClickjacking() );
 
-			# Show the appropriate "footer" message - WHOIS tools, etc.
-			if ( $this->opts['contribs'] != 'newbie' ) {
-				$message = 'sp-contributions-footer';
-				if ( IP::isIPAddress( $target ) ) {
-					$message = 'sp-contributions-footer-anon';
-				} else {
-					if ( $userObj->isAnon() ) {
-						// No message for non-existing users
-						return;
-					}
-				}
 
+			# Show the appropriate "footer" message - WHOIS tools, etc.
+			if ( $this->opts['contribs'] == 'newbie' ) {
+				$message = 'sp-contributions-footer-newbies';
+			} elseif( IP::isIPAddress( $target ) ) {
+				$message = 'sp-contributions-footer-anon';
+			} elseif( $userObj->isAnon() ) {
+				// No message for non-existing users
+				$message = '';
+			} else {
+				$message = 'sp-contributions-footer';
+			}
+
+			if( $message ) {
 				if ( !$this->msg( $message, $target )->isDisabled() ) {
 					$out->wrapWikiMsg(
 						"<div class='mw-contributions-footer'>\n$1\n</div>",
@@ -223,6 +226,7 @@ class SpecialContributions extends SpecialPage {
 		}
 		$nt = $userObj->getUserPage();
 		$talk = $userObj->getTalkPage();
+		$links = '';
 		if ( $talk ) {
 			$tools = $this->getUserLinks( $nt, $talk, $userObj );
 			$links = $this->getLanguage()->pipeList( $tools );
@@ -254,9 +258,11 @@ class SpecialContributions extends SpecialPage {
 		// languages that want to put the "for" bit right after $user but before
 		// $links.  If 'contribsub' is around, use it for reverse compatibility,
 		// otherwise use 'contribsub2'.
+		// @todo Should this be removed at some point?
 		$oldMsg = $this->msg( 'contribsub' );
 		if ( $oldMsg->exists() ) {
-			return $oldMsg->rawParams( "$user ($links)" );
+			$linksWithParentheses = $this->msg( 'parentheses' )->rawParams( $links )->escaped();
+			return $oldMsg->rawParams( "$user $linksWithParentheses" );
 		} else {
 			return $this->msg( 'contribsub2' )->rawParams( $user, $links );
 		}
@@ -327,7 +333,7 @@ class SpecialContributions extends SpecialPage {
 		# Add a link to change user rights for privileged users
 		$userrightsPage = new UserrightsPage();
 		$userrightsPage->setContext( $this->getContext() );
-		if ( $id !== null && $userrightsPage->userCanChangeRights( $target ) ) {
+		if ( $userrightsPage->userCanChangeRights( $target ) ) {
 			$tools[] = Linker::linkKnown(
 				SpecialPage::getTitleFor( 'Userrights', $username ),
 				$this->msg( 'sp-contributions-userrights' )->escaped()
@@ -445,7 +451,15 @@ class SpecialContributions extends SpecialPage {
 				)
 			) .
 			Xml::tags( 'td', null,
-				Xml::namespaceSelector( $this->opts['namespace'], '' ) . '&#160;' .
+				Html::namespaceSelector( array(
+					'selected' => $this->opts['namespace'],
+					'all'      => '',
+				), array(
+					'name'  => 'namespace',
+					'id'    => 'namespace',
+					'class' => 'namespaceselector',
+				) ) .
+				'&#160;' .
 				Html::rawElement( 'span', array( 'style' => 'white-space: nowrap' ),
 					Xml::checkLabel(
 						$this->msg( 'invert' )->text(),
@@ -511,9 +525,9 @@ class SpecialContributions extends SpecialPage {
 					$filterSelection .
 				Xml::closeElement( 'tr' ) .
 				Xml::openElement( 'tr' ) .
- 					$extraOptions .
- 				Xml::closeElement( 'tr' ) .
- 				Xml::openElement( 'tr' ) .
+					$extraOptions .
+				Xml::closeElement( 'tr' ) .
+				Xml::openElement( 'tr' ) .
 					$dateSelectionAndSubmit .
 				Xml::closeElement( 'tr' ) .
 			Xml::closeElement( 'table' );
@@ -537,6 +551,11 @@ class ContribsPager extends ReverseChronologicalPager {
 	var $messages, $target;
 	var $namespace = '', $mDb;
 	var $preventClickjacking = false;
+
+	/**
+	 * @var array
+	 */
+	protected $mParentLens;
 
 	function __construct( IContextSource $context, array $options ) {
 		parent::__construct( $context );
@@ -628,13 +647,14 @@ class ContribsPager extends ReverseChronologicalPager {
 			# @todo FIXME: Other groups may have 'bot' rights
 			$join_conds['user_groups'] = array( 'LEFT JOIN', "ug_user = rev_user AND ug_group = 'bot'" );
 		} else {
-			if ( IP::isIPAddress( $this->target ) ) {
+			$uid = User::idFromName( $this->target );
+			if ( $uid ) {
+				$condition['rev_user'] = $uid;
+				$index = 'user_timestamp';
+			} else {
 				$condition['rev_user_text'] = $this->target;
 				$index = 'usertext_timestamp';
-			} else {
-				$condition['rev_user'] = User::idFromName( $this->target );
-				$index = 'user_timestamp';
-			}
+			} 
 		}
 		if ( $this->deletedOnly ) {
 			$condition[] = "rev_deleted != '0'";
@@ -677,27 +697,32 @@ class ContribsPager extends ReverseChronologicalPager {
 		$this->mResult->rewind();
 		$revIds = array();
 		foreach ( $this->mResult as $row ) {
-			$revIds[] = $row->rev_parent_id;
+			if( $row->rev_parent_id ) {
+				$revIds[] = $row->rev_parent_id;
+			}
 		}
 		$this->mParentLens = $this->getParentLengths( $revIds );
 		$this->mResult->rewind(); // reset
 
-		if ( $this->contribs === 'newbie' ) { // multiple users
-			# Do a link batch query
-			$this->mResult->seek( 0 );
-			$batch = new LinkBatch();
-			# Give some pointers to make (last) links
-			foreach ( $this->mResult as $row ) {
-				$batch->addObj( Title::makeTitleSafe( NS_USER, $row->user_name ) );
-				$batch->addObj( Title::makeTitleSafe( NS_USER_TALK, $row->user_name ) );
+		# Do a link batch query
+		$this->mResult->seek( 0 );
+		$batch = new LinkBatch();
+		# Give some pointers to make (last) links
+		foreach ( $this->mResult as $row ) {
+			if ( $this->contribs === 'newbie' ) { // multiple users
+				$batch->add( NS_USER, $row->user_name );
+				$batch->add( NS_USER_TALK, $row->user_name );
 			}
-			$batch->execute();
-			$this->mResult->seek( 0 );
+			$batch->add( $row->page_namespace, $row->page_title );
 		}
+		$batch->execute();
+		$this->mResult->seek( 0 );
 	}
 
 	/**
 	 * Do a batched query to get the parent revision lengths
+	 * @param $revIds array
+	 * @return array
 	 */
 	private function getParentLengths( array $revIds ) {
 		$revLens = array();
@@ -739,6 +764,8 @@ class ContribsPager extends ReverseChronologicalPager {
 	 * was not written by the target user.
 	 *
 	 * @todo This would probably look a lot nicer in a table.
+	 * @param $row
+	 * @return string
 	 */
 	function formatRow( $row ) {
 		wfProfileIn( __METHOD__ );
@@ -787,11 +814,15 @@ class ContribsPager extends ReverseChronologicalPager {
 			array( 'action' => 'history' )
 		);
 
-		if ( isset( $this->mParentLens[$row->rev_parent_id] ) ) {
-			$chardiff = ' . . ' . ChangesList::showCharacterDifference(
-				$this->mParentLens[$row->rev_parent_id], $row->rev_len ) . ' . . ';
+		if ( $row->rev_parent_id === null ) {
+			// For some reason rev_parent_id isn't populated for this row.
+			// Its rumoured this is true on wikipedia for some revisions (bug 34922).
+			// Next best thing is to have the total number of bytes.
+			$chardiff = ' . . ' . Linker::formatRevisionSize( $row->rev_len ) . ' . . ';
 		} else {
-			$chardiff = ' ';
+			$parentLen = isset( $this->mParentLens[$row->rev_parent_id] ) ? $this->mParentLens[$row->rev_parent_id] : 0;
+			$chardiff = ' . . ' . ChangesList::showCharacterDifference(
+					$parentLen, $row->rev_len ) . ' . . ';
 		}
 
 		$lang = $this->getLanguage();
@@ -838,7 +869,7 @@ class ContribsPager extends ReverseChronologicalPager {
 			$del .= ' ';
 		}
 
-		$diffHistLinks = '(' . $difftext . $this->messages['pipe-separator'] . $histlink . ')';
+		$diffHistLinks = $this->msg( 'parentheses' )->rawParams( $difftext . $this->messages['pipe-separator'] . $histlink )->escaped();
 		$ret = "{$del}{$d} {$diffHistLinks}{$chardiff}{$nflag}{$mflag} {$link}{$userlink} {$comment} {$topmarktext}";
 
 		# Denote if username is redacted for this edit
@@ -871,6 +902,7 @@ class ContribsPager extends ReverseChronologicalPager {
 
 	/**
 	 * Overwrite Pager function and return a helpful comment
+	 * @return string
 	 */
 	function getSqlComment() {
 		if ( $this->namespace || $this->deletedOnly ) {
@@ -884,6 +916,9 @@ class ContribsPager extends ReverseChronologicalPager {
 		$this->preventClickjacking = true;
 	}
 
+	/**
+	 * @return bool
+	 */
 	public function getPreventClickjacking() {
 		return $this->preventClickjacking;
 	}

@@ -90,8 +90,7 @@
  *         ->plain();
  * @endcode
  *
- * @note You cannot parse the text except in the content or interface
- * @note languages
+ * @note You can parse the text only in the content or interface languages
  *
  * @section message_compare_old Comparison with old wfMsg* functions:
  *
@@ -295,6 +294,7 @@ class Message {
 	public function setContext( IContextSource $context ) {
 		$this->inLanguage( $context->getLanguage() );
 		$this->title( $context->getTitle() );
+		$this->interface = true;
 
 		return $this;
 	}
@@ -342,6 +342,18 @@ class Message {
 	}
 
 	/**
+	 * Allows manipulating the interface message flag directly.
+	 * Can be used to restore the flag after setting a language.
+	 * @param $value bool
+	 * @return Message: $this
+	 * @since 1.20
+	 */
+	public function setInterfaceMessageFlag( $value ) {
+		$this->interface = (bool) $value;
+		return $this;
+	}
+
+	/**
 	 * Enable or disable database use.
 	 * @param $value Boolean
 	 * @return Message: $this
@@ -367,7 +379,15 @@ class Message {
 	 * @return String: HTML
 	 */
 	public function toString() {
-		$string = $this->getMessageText();
+		$string = $this->fetchMessage();
+
+		if ( $string === false ) {
+			$key =  htmlspecialchars( is_array( $this->key ) ? $this->key[0] : $this->key );
+			if ( $this->format === 'plain' ) {
+				return '<' . $key . '>';
+			}
+			return '&lt;' . $key . '&gt;';
+		}
 
 		# Replace parameters before text parsing
 		$string = $this->replaceParameters( $string, 'before' );
@@ -550,19 +570,6 @@ class Message {
 	}
 
 	/**
-	 * Returns the textual value for the message.
-	 * @return Message contents or placeholder
-	 */
-	protected function getMessageText() {
-		$message = $this->fetchMessage();
-		if ( $message === false ) {
-			return '&lt;' . htmlspecialchars( is_array($this->key) ? $this->key[0] : $this->key ) . '&gt;';
-		} else {
-			return $message;
-		}
-	}
-
-	/**
 	 * Wrapper for what ever method we use to get message contents
 	 *
 	 * @return string
@@ -570,7 +577,10 @@ class Message {
 	protected function fetchMessage() {
 		if ( !isset( $this->message ) ) {
 			$cache = MessageCache::singleton();
-			if ( is_array($this->key) ) {
+			if ( is_array( $this->key ) ) {
+				if ( !count( $this->key ) ) {
+					throw new MWException( "Given empty message key array." );
+				}
 				foreach ( $this->key as $key ) {
 					$message = $cache->get( $key, $this->useDatabase, $this->language );
 					if ( $message !== false && $message !== '' ) {

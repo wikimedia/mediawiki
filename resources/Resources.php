@@ -4,14 +4,25 @@ return array(
 
 	/* Special modules who have their own classes */
 
+	// Scripts managed by the local wiki (stored in the MediaWiki namespace)
 	'site' => array( 'class' => 'ResourceLoaderSiteModule' ),
 	'noscript' => array( 'class' => 'ResourceLoaderNoscriptModule' ),
 	'startup' => array( 'class' => 'ResourceLoaderStartUpModule' ),
-	'user' => array( 'class' => 'ResourceLoaderUserModule' ),
+	'filepage' => array( 'class' => 'ResourceLoaderFilePageModule' ),
 	'user.groups' => array( 'class' => 'ResourceLoaderUserGroupsModule' ),
+
+	// Scripts managed by the current user (stored in their user space)
+	'user' => array( 'class' => 'ResourceLoaderUserModule' ),
+
+	// Scripts generated based on the current user's preferences
+	'user.cssprefs' => array( 'class' => 'ResourceLoaderUserCSSPrefsModule' ),
+
+	// Populate mediawiki.user placeholders with information about the current user
 	'user.options' => array( 'class' => 'ResourceLoaderUserOptionsModule' ),
 	'user.tokens' => array( 'class' => 'ResourceLoaderUserTokensModule' ),
-	'filepage' => array( 'class' => 'ResourceLoaderFilePageModule' ),
+
+	// Scripts for the dynamic language specific data, like grammar forms.
+	'mediawiki.language.data' => array( 'class' => 'ResourceLoaderLanguageDataModule' ),
 
 	/* Skins */
 
@@ -54,7 +65,7 @@ return array(
 		'localBasePath' => $GLOBALS['wgStyleDirectory'],
 	),
 	'skins.standard' => array(
-		'styles' => array( 'common/wikistandard.css' => array( 'media' => 'screen' ) ),
+		'styles' => array( 'standard/main.css' => array( 'media' => 'screen' ) ),
 		'remoteBasePath' => $GLOBALS['wgStylePath'],
 		'localBasePath' => $GLOBALS['wgStyleDirectory'],
 	),
@@ -202,6 +213,7 @@ return array(
 	),
 	'jquery.textSelection' => array(
 		'scripts' => 'resources/jquery/jquery.textSelection.js',
+		'dependencies' => 'jquery.client',
 	),
 	'jquery.validate' => array(
 		'scripts' => 'resources/jquery/jquery.validate.js',
@@ -342,6 +354,7 @@ return array(
 			'fr' => 'resources/jquery.ui/i18n/jquery.ui.datepicker-fr.js',
 			'gl' => 'resources/jquery.ui/i18n/jquery.ui.datepicker-gl.js',
 			'he' => 'resources/jquery.ui/i18n/jquery.ui.datepicker-he.js',
+			'hi' => 'resources/jquery.ui/i18n/jquery.ui.datepicker-hi.js',
 			'hr' => 'resources/jquery.ui/i18n/jquery.ui.datepicker-hr.js',
 			'hu' => 'resources/jquery.ui/i18n/jquery.ui.datepicker-hu.js',
 			'hy' => 'resources/jquery.ui/i18n/jquery.ui.datepicker-hy.js',
@@ -350,6 +363,7 @@ return array(
 			'it' => 'resources/jquery.ui/i18n/jquery.ui.datepicker-it.js',
 			'ja' => 'resources/jquery.ui/i18n/jquery.ui.datepicker-ja.js',
 			'kk' => 'resources/jquery.ui/i18n/jquery.ui.datepicker-kk.js',
+			'km' => 'resources/jquery.ui/i18n/jquery.ui.datepicker-km.js',
 			'ko' => 'resources/jquery.ui/i18n/jquery.ui.datepicker-ko.js',
 			'lb' => 'resources/jquery.ui/i18n/jquery.ui.datepicker-lb.js',
 			'lt' => 'resources/jquery.ui/i18n/jquery.ui.datepicker-lt.js',
@@ -506,45 +520,57 @@ return array(
 		'debugRaw' => false,
 	),
 	'mediawiki.api' => array(
-		'scripts' => 'resources/mediawiki/mediawiki.api.js',
+		'scripts' => 'resources/mediawiki.api/mediawiki.api.js',
 		'dependencies' => 'mediawiki.util',
 	),
 	'mediawiki.api.category' => array( 
-		'scripts' => 'resources/mediawiki/mediawiki.api.category.js',
+		'scripts' => 'resources/mediawiki.api/mediawiki.api.category.js',
 		'dependencies' => array( 
 			'mediawiki.api',
 			'mediawiki.Title' 
 		),
 	),
 	'mediawiki.api.edit' => array( 
-		'scripts' => 'resources/mediawiki/mediawiki.api.edit.js',
+		'scripts' => 'resources/mediawiki.api/mediawiki.api.edit.js',
 		'dependencies' => array( 
 			'mediawiki.api',
 			'mediawiki.Title' 
 		),
 	),
 	'mediawiki.api.parse' => array( 
-		'scripts' => 'resources/mediawiki/mediawiki.api.parse.js',
+		'scripts' => 'resources/mediawiki.api/mediawiki.api.parse.js',
 		'dependencies' => 'mediawiki.api',
 	),
 	'mediawiki.api.titleblacklist' => array( 
-		'scripts' => 'resources/mediawiki/mediawiki.api.titleblacklist.js',
+		'scripts' => 'resources/mediawiki.api/mediawiki.api.titleblacklist.js',
 		'dependencies' => array( 
 			'mediawiki.api',
 			'mediawiki.Title' 
 		),
 	),
 	'mediawiki.api.watch' => array( 
-		'scripts' => 'resources/mediawiki/mediawiki.api.watch.js',
-		'dependencies' => 'mediawiki.api',
+		'scripts' => 'resources/mediawiki.api/mediawiki.api.watch.js',
+		'dependencies' => array(
+			'mediawiki.api',
+			'user.tokens',
+		),
 	),
 	'mediawiki.debug' => array(
 		'scripts' => 'resources/mediawiki/mediawiki.debug.js',
 		'styles' => 'resources/mediawiki/mediawiki.debug.css',
 		'dependencies' => 'jquery.footHovzer',
+		'position' => 'bottom',
+	),
+	'mediawiki.debug.init' => array(
+		'scripts' => 'resources/mediawiki/mediawiki.debug.init.js',
+		'dependencies' => 'mediawiki.debug',
+		// Uses a custom mw.config variable that is set in debughtml,
+		// must be loaded on the bottom
+		'position' => 'bottom',
 	),
 	'mediawiki.feedback' => array(
 		'scripts' => 'resources/mediawiki/mediawiki.feedback.js',
+		'styles' => 'resources/mediawiki/mediawiki.feedback.css',
 		'dependencies' => array( 
 			'mediawiki.api.edit', 
 			'mediawiki.Title',
@@ -726,6 +752,7 @@ return array(
 		'scripts' => 'resources/mediawiki.page/mediawiki.page.startup.js',
 		'dependencies' => array(
 			'jquery.client',
+			'mediawiki.util',
 		),
 		'position' => 'top',
 	),
@@ -764,6 +791,7 @@ return array(
 	),
 	'mediawiki.special.preferences' => array(
 		'scripts' => 'resources/mediawiki.special/mediawiki.special.preferences.js',
+		'styles'  => 'resources/mediawiki.special/mediawiki.special.preferences.css',
 	),
 	'mediawiki.special.recentchanges' => array(
 		'scripts' => 'resources/mediawiki.special/mediawiki.special.recentchanges.js',
@@ -823,6 +851,7 @@ return array(
 			'mediawiki.util',
 			'mediawiki.legacy.wikibits',
 		),
+		'position' => 'top', // Temporary hack for legacy support
 	),
 	'mediawiki.legacy.commonPrint' => array(
 		'styles' => array( 'common/commonPrint.css' => array( 'media' => 'print' ) ),

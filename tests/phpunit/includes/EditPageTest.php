@@ -1,5 +1,8 @@
 <?php
 
+/**
+ * @group Editing	
+ */
 class EditPageTest extends MediaWikiTestCase {
 
 	/**
@@ -27,7 +30,11 @@ class EditPageTest extends MediaWikiTestCase {
 			array(
 				"== Section ==\nfollowed by a fake == Non-section == ??\nnoooo",
 				"Section"
-			)
+			),
+			array(
+				"== Section== \t\r\n followed by whitespace (bug 35051)",
+				'Section',
+			),
 		);
 	}
 }

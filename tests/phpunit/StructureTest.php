@@ -20,6 +20,7 @@ class StructureTest extends MediaWikiTestCase {
 			'MediaWikiLangTestCase',
 			'MediaWikiTestCase',
 			'PHPUnit_Framework_TestCase',
+			'DumpTestCase',
 		) );
 		$testClassRegex = "^class .* extends ($testClassRegex)";
 		$finder = "find $rootPath -name '*.php' '!' -name '*Test.php'" .
@@ -39,11 +40,14 @@ class StructureTest extends MediaWikiTestCase {
 			$results,
 			array( $this, 'filterSuites' )
 		);
-
+		$strip = strlen( $rootPath ) - 1;
+		foreach( $results as $k => $v) {
+			$results[$k] = substr( $v, $strip );
+		}
 		$this->assertEquals(
 			array(),
 			$results,
-			'Unit test file names must end with Test.'
+			"Unit test file in $rootPath must end with Test."
 		);
 	}
 

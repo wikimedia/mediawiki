@@ -111,6 +111,7 @@ class SearchIBM_DB2 extends SearchEngine {
 	 * The guts shoulds be constructed in queryMain()
 	 * @param $filteredTerm String
 	 * @param $fulltext Boolean
+	 * @return String
 	 */
 	function getQuery( $filteredTerm, $fulltext ) {
 		return $this->queryLimit($this->queryMain($filteredTerm, $fulltext) . ' ' .
@@ -145,7 +146,9 @@ class SearchIBM_DB2 extends SearchEngine {
 			'WHERE page_id=si_page AND ' . $match;
 	}
 
-	/** @todo document */
+	/** @todo document
+	 * @return string
+	 */
 	function parseQuery($filteredText, $fulltext) {
 		global $wgContLang;
 		$lc = SearchEngine::legalSearchChars();

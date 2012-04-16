@@ -374,7 +374,7 @@ class Sanitizer {
 		if ( !$staticInitialised ) {
 
 			$htmlpairsStatic = array( # Tags that must be closed
-				'b', 'del', 'i', 'ins', 'u', 'font', 'big', 'small', 'sub', 'sup', 'h1',
+				'b', 'bdi', 'del', 'i', 'ins', 'u', 'font', 'big', 'small', 'sub', 'sup', 'h1',
 				'h2', 'h3', 'h4', 'h5', 'h6', 'cite', 'code', 'em', 's',
 				'strike', 'strong', 'tt', 'var', 'div', 'center',
 				'blockquote', 'ol', 'ul', 'dl', 'table', 'caption', 'pre',
@@ -1611,6 +1611,10 @@ class Sanitizer {
 			# 'title' may not be 100% valid here; it's XHTML
 			# http://www.w3.org/TR/REC-MathML/
 			'math'       => array( 'class', 'style', 'id', 'title' ),
+
+			# HTML 5 section 4.6
+			'bdi' => $common,
+
 			);
 		return $whitelist;
 	}

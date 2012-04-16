@@ -51,7 +51,9 @@ abstract class ApiBase extends ContextSource {
 	const PARAM_MIN = 5; // Lowest value allowed for a parameter. Only applies if TYPE='integer'
 	const PARAM_ALLOW_DUPLICATES = 6; // Boolean, do we allow the same value to be set more than once when ISMULTI=true
 	const PARAM_DEPRECATED = 7; // Boolean, is the parameter deprecated (will show a warning)
+	/// @since 1.17
 	const PARAM_REQUIRED = 8; // Boolean, is the parameter required?
+	/// @since 1.17
 	const PARAM_RANGE_ENFORCE = 9; // Boolean, if MIN/MAX are set, enforce (die) these? Only applies if TYPE='integer' Use with extreme caution
 
 	const LIMIT_BIG1 = 500; // Fast query, std user limit
@@ -280,12 +282,12 @@ abstract class ApiBase extends ContextSource {
 					if ( is_numeric( $k ) ) {
 						$msg .= "  $v\n";
 					} else {
-						$v .= ":";
 						if ( is_array( $v ) ) {
 							$msgExample = implode( "\n", array_map( array( $this, 'indentExampleText' ), $v ) );
 						} else {
 							$msgExample = "  $v";
 						}
+						$msgExample .= ":";
 						$msg .= wordwrap( $msgExample, 100, "\n" ) . "\n    $k\n";
 					}
 				}
@@ -365,21 +367,30 @@ abstract class ApiBase extends ContextSource {
 					$desc = implode( $paramPrefix, $desc );
 				}
 
+				//handle shorthand
 				if ( !is_array( $paramSettings ) ) {
 					$paramSettings = array(
 						self::PARAM_DFLT => $paramSettings,
 					);
 				}
 
-				$deprecated = isset( $paramSettings[self::PARAM_DEPRECATED] ) ?
-						$paramSettings[self::PARAM_DEPRECATED] : false;
-				if ( $deprecated ) {
+				//handle missing type
+				if ( !isset( $paramSettings[ApiBase::PARAM_TYPE] ) ) {
+					$dflt = isset( $paramSettings[ApiBase::PARAM_DFLT] ) ? $paramSettings[ApiBase::PARAM_DFLT] : null;
+					if ( is_bool( $dflt ) ) {
+						$paramSettings[ApiBase::PARAM_TYPE] = 'boolean';
+					} elseif ( is_string( $dflt ) || is_null( $dflt ) ) {
+						$paramSettings[ApiBase::PARAM_TYPE] = 'string';
+					} elseif ( is_int( $dflt ) ) {
+						$paramSettings[ApiBase::PARAM_TYPE] = 'integer';
+					}
+				}
+
+				if ( isset( $paramSettings[self::PARAM_DEPRECATED] ) && $paramSettings[self::PARAM_DEPRECATED] ) {
 					$desc = "DEPRECATED! $desc";
 				}
 
-				$required = isset( $paramSettings[self::PARAM_REQUIRED] ) ?
-						$paramSettings[self::PARAM_REQUIRED] : false;
-				if ( $required ) {
+				if ( isset( $paramSettings[self::PARAM_REQUIRED] ) && $paramSettings[self::PARAM_REQUIRED] ) {
 					$desc .= $paramPrefix . "This parameter is required";
 				}
 
@@ -435,22 +446,20 @@ abstract class ApiBase extends ContextSource {
 								}
 								break;
 						}
+					}
 
-						if ( isset( $paramSettings[self::PARAM_ISMULTI] ) ) {
-							$isArray = is_array( $paramSettings[self::PARAM_TYPE] );
+					if ( isset( $paramSettings[self::PARAM_ISMULTI] ) && $paramSettings[self::PARAM_ISMULTI] ) {
+						$isArray = is_array( $type );
 
-							if ( !$isArray
-									|| $isArray && count( $paramSettings[self::PARAM_TYPE] ) > self::LIMIT_SML1 ) {
-								$desc .= $paramPrefix . "Maximum number of values " .
-										self::LIMIT_SML1 . " (" . self::LIMIT_SML2 . " for bots)";
-							}
+						if ( !$isArray
+								|| $isArray && count( $type ) > self::LIMIT_SML1 ) {
+							$desc .= $paramPrefix . "Maximum number of values " .
+									self::LIMIT_SML1 . " (" . self::LIMIT_SML2 . " for bots)";
 						}
 					}
 				}
 
-				$default = is_array( $paramSettings )
-						? ( isset( $paramSettings[self::PARAM_DFLT] ) ? $paramSettings[self::PARAM_DFLT] : null )
-						: $paramSettings;
+				$default = isset( $paramSettings[self::PARAM_DFLT] ) ? $paramSettings[self::PARAM_DFLT] : null;
 				if ( !is_null( $default ) && $default !== false ) {
 					$desc .= $paramPrefix . "Default: $default";
 				}
@@ -512,7 +521,7 @@ abstract class ApiBase extends ContextSource {
 
 	/**
 	 * Returns usage examples for this module. Return false if no examples are available.
-	 * @return false|string|array
+	 * @return bool|string|array
 	 */
 	protected function getExamples() {
 		return false;
@@ -523,7 +532,7 @@ abstract class ApiBase extends ContextSource {
 	 * value) or (parameter name) => (array with PARAM_* constants as keys)
 	 * Don't call this function directly: use getFinalParams() to allow
 	 * hooks to modify parameters as needed.
-	 * @return array or false
+	 * @return array|bool
 	 */
 	protected function getAllowedParams() {
 		return false;
@@ -533,7 +542,7 @@ abstract class ApiBase extends ContextSource {
 	 * Returns an array of parameter descriptions.
 	 * Don't call this functon directly: use getFinalParamDescription() to
 	 * allow hooks to modify descriptions as needed.
-	 * @return array or false
+	 * @return array|bool False on no parameter descriptions
 	 */
 	protected function getParamDescription() {
 		return false;
@@ -543,7 +552,7 @@ abstract class ApiBase extends ContextSource {
 	 * Get final list of parameters, after hooks have had a chance to
 	 * tweak it as needed.
 	 *
-	 * @return array or false
+	 * @return array|Bool False on no parameters
 	 */
 	public function getFinalParams() {
 		$params = $this->getAllowedParams();
@@ -555,7 +564,7 @@ abstract class ApiBase extends ContextSource {
 	 * Get final parameter descriptions, after hooks have had a chance to tweak it as
 	 * needed.
 	 *
-	 * @return array
+	 * @return array|bool False on no parameter descriptions
 	 */
 	public function getFinalParamDescription() {
 		$desc = $this->getParamDescription();
@@ -567,7 +576,7 @@ abstract class ApiBase extends ContextSource {
 	 * Get final module description, after hooks have had a chance to tweak it as
 	 * needed.
 	 *
-	 * @return array
+	 * @return array|bool False on no parameters
 	 */
 	public function getFinalDescription() {
 		$desc = $this->getDescription();
@@ -773,7 +782,7 @@ abstract class ApiBase extends ContextSource {
 	 * Using the settings determine the value for the given parameter
 	 *
 	 * @param $paramName String: parameter name
-	 * @param $paramSettings Mixed: default value or an array of settings
+	 * @param $paramSettings array|mixed default value or an array of settings
 	 *  using PARAM_* constants.
 	 * @param $parseLimit Boolean: parse limit?
 	 * @return mixed Parameter value
@@ -809,8 +818,8 @@ abstract class ApiBase extends ContextSource {
 
 		if ( $type == 'boolean' ) {
 			if ( isset( $default ) && $default !== false ) {
-				// Having a default value of anything other than 'false' is pointless
-				ApiBase::dieDebug( __METHOD__, "Boolean param $encParamName's default is set to '$default'" );
+				// Having a default value of anything other than 'false' is not allowed
+				ApiBase::dieDebug( __METHOD__, "Boolean param $encParamName's default is set to '$default'. Boolean parameters must default to false." );
 			}
 
 			$value = $this->getRequest()->getCheck( $encParamName );
@@ -1186,7 +1195,6 @@ abstract class ApiBase extends ContextSource {
 		'toofewexpiries' => array( 'code' => 'toofewexpiries', 'info' => "\$1 expiry timestamps were provided where \$2 were needed" ),
 		'cantimport' => array( 'code' => 'cantimport', 'info' => "You don't have permission to import pages" ),
 		'cantimport-upload' => array( 'code' => 'cantimport-upload', 'info' => "You don't have permission to import uploaded pages" ),
-		'nouploadmodule' => array( 'code' => 'nomodule', 'info' => 'No upload module set' ),
 		'importnofile' => array( 'code' => 'nofile', 'info' => "You didn't upload a file" ),
 		'importuploaderrorsize' => array( 'code' => 'filetoobig', 'info' => 'The file you uploaded is bigger than the maximum upload size' ),
 		'importuploaderrorpartial' => array( 'code' => 'partialupload', 'info' => 'The file was only partially uploaded' ),
@@ -1231,6 +1239,7 @@ abstract class ApiBase extends ContextSource {
 		'nouploadmodule' => array( 'code' => 'nouploadmodule', 'info' => 'No upload module set' ),
 		'uploaddisabled' => array( 'code' => 'uploaddisabled', 'info' => 'Uploads are not enabled.  Make sure $wgEnableUploads is set to true in LocalSettings.php and the PHP ini setting file_uploads is true' ),
 		'copyuploaddisabled' => array( 'code' => 'copyuploaddisabled', 'info' => 'Uploads by URL is not enabled.  Make sure $wgAllowCopyUploads is set to true in LocalSettings.php.' ),
+		'copyuploadbaddomain' => array( 'code' => 'copyuploadbaddomain', 'info' => 'Uploads by URL are not allowed from this domain.' ),
 
 		'filename-tooshort' => array( 'code' => 'filename-tooshort', 'info' => 'The filename is too short' ),
 		'filename-toolong' => array( 'code' => 'filename-toolong', 'info' => 'The filename is too long' ),
@@ -1269,6 +1278,7 @@ abstract class ApiBase extends ContextSource {
 	 * @return array('code' => code, 'info' => info)
 	 */
 	public function parseMsg( $error ) {
+		$error = (array)$error; // It seems strings sometimes make their way in here
 		$key = array_shift( $error );
 
 		// Check whether the error array was nested
@@ -1372,7 +1382,7 @@ abstract class ApiBase extends ContextSource {
 	}
 
 	/**
-	 * @return false|string|array Returns a false if the module has no help url, else returns a (array of) string
+	 * @return bool|string|array Returns a false if the module has no help url, else returns a (array of) string
 	 */
 	public function getHelpUrls() {
 		return false;

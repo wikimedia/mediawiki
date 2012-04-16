@@ -38,7 +38,12 @@ class Article extends Page {
 	public $mParserOptions;
 
 	var $mContent;                    // !< #BC cruft
-	var $mContentObject;              // !<
+
+	/**
+	 * @var Content
+	 */
+	var $mContentObject;
+
 	var $mContentLoaded = false;      // !<
 	var $mOldId;                      // !<
 
@@ -190,8 +195,9 @@ class Article extends Page {
 	 * This function has side effects! Do not use this function if you
 	 * only want the real revision text if any.
 	 *
-	 * @return Return the text of this revision
 	 * @deprecated in 1.20; use getContentObject() instead
+	 *
+	 * @return string The text of this revision
 	 */
 	public function getContent() {
 		wfDeprecated( __METHOD__, '1.20' );
@@ -210,7 +216,7 @@ class Article extends Page {
 	 * This function has side effects! Do not use this function if you
 	 * only want the real revision text if any.
 	 *
-	 * @return Return the content of this revision
+	 * @return Content
 	 */
    protected function getContentObject() {
 		global $wgUser;
@@ -272,12 +278,16 @@ class Article extends Page {
 		if ( $oldid !== 0 ) {
 			# Load the given revision and check whether the page is another one.
 			# In that case, update this instance to reflect the change.
-			$this->mRevision = Revision::newFromId( $oldid );
-			if ( $this->mRevision !== null ) {
-				// Revision title doesn't match the page title given?
-				if ( $this->mPage->getID() != $this->mRevision->getPage() ) {
-					$function = array( get_class( $this->mPage ), 'newFromID' );
-					$this->mPage = call_user_func( $function, $this->mRevision->getPage() );
+			if ( $oldid === $this->mPage->getLatest() ) {
+				$this->mRevision = $this->mPage->getRevision();
+			} else {
+				$this->mRevision = Revision::newFromId( $oldid );
+				if ( $this->mRevision !== null ) {
+					// Revision title doesn't match the page title given?
+					if ( $this->mPage->getID() != $this->mRevision->getPage() ) {
+						$function = array( get_class( $this->mPage ), 'newFromID' );
+						$this->mPage = call_user_func( $function, $this->mRevision->getPage() );
+					}
 				}
 			}
 		}
@@ -341,8 +351,9 @@ class Article extends Page {
 	/**
 	 * Get text content object
 	 * Does *NOT* follow redirects.
+	 * TODO: when is this null?
 	 *
-	 * @return Content object containing article contents, or null
+	 * @return Content|null
 	 */
 	protected function fetchContentObject() {
 		if ( $this->mContentLoaded ) {
@@ -504,7 +515,7 @@ class Article extends Page {
 		if ( $wgOut->isPrintable() ) {
 			$parserOptions->setIsPrintable( true );
 			$parserOptions->setEditSection( false );
-		} elseif ( !$this->getTitle()->quickUserCan( 'edit' ) ) {
+		} elseif ( !$this->isCurrent() || !$this->getTitle()->quickUserCan( 'edit' ) ) {
 			$parserOptions->setEditSection( false );
 		}
 
@@ -1044,6 +1055,18 @@ class Article extends Page {
 				'msgKey' => array( 'moveddeleted-notice' ) )
 		);
 
+		if ( !$this->mPage->hasViewableContent() && $wgSend404Code ) {
+			// If there's no backing content, send a 404 Not Found
+			// for better machine handling of broken links.
+			$wgRequest->response()->header( "HTTP/1.1 404 Not Found" );
+		}
+
+		$hookResult = wfRunHooks( 'BeforeDisplayNoArticleText', array( $this ) );
+
+		if ( ! $hookResult ) {
+			return;
+		}
+
 		# Show error message
 		$oldid = $this->getOldID();
 		if ( $oldid ) {
@@ -1065,12 +1088,6 @@ class Article extends Page {
 			}
 		}
 		$text = "<div class='noarticletext'>\n$text\n</div>";
-
-		if ( !$this->mPage->hasViewableContent() && $wgSend404Code ) {
-			// If there's no backing content, send a 404 Not Found
-			// for better machine handling of broken links.
-			$wgRequest->response()->header( "HTTP/1.1 404 Not Found" );
-		}
 
 		$wgOut->addWikiText( $text );
 	}
@@ -1135,11 +1152,16 @@ class Article extends Page {
 
 		# Cascade unhide param in links for easy deletion browsing
 		$extraParams = array();
-		if ( $wgRequest->getVal( 'unhide' ) ) {
+		if ( $unhide ) {
 			$extraParams['unhide'] = 1;
 		}
 
-		$revision = Revision::newFromId( $oldid );
+		if ( $this->mRevision && $this->mRevision->getId() === $oldid ) {
+			$revision = $this->mRevision;
+		} else {
+			$revision = Revision::newFromId( $oldid );
+		}
+
 		$timestamp = $revision->getTimestamp();
 
 		$current = ( $oldid == $this->mPage->getLatest() );
@@ -1644,7 +1666,7 @@ class Article extends Page {
 
 	/**
 	 * Get parser options suitable for rendering the primary article wikitext
-	 * @return ParserOptions|false
+	 * @return ParserOptions
 	 */
 	public function getParserOptions() {
 		global $wgUser;
@@ -1832,6 +1854,7 @@ class Article extends Page {
 	 *
 	 * @param $fname String Name of called method
 	 * @param $args Array Arguments to the method
+	 * @return mixed
 	 */
 	public function __call( $fname, $args ) {
 		if ( is_callable( array( $this->mPage, $fname ) ) ) {

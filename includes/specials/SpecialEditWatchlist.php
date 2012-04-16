@@ -1,4 +1,7 @@
 <?php
+/**
+ * @defgroup Watchlist Users watchlist handling
+ */
 
 /**
  * Provides the UI through which users can perform editing
@@ -19,6 +22,8 @@ class SpecialEditWatchlist extends UnlistedSpecialPage {
 	protected $successMessage;
 
 	protected $toc;
+
+	private $badItems = array();
 
 	public function __construct(){
 		parent::__construct( 'EditWatchlist' );
@@ -221,11 +226,15 @@ class SpecialEditWatchlist extends UnlistedSpecialPage {
 		if( $res->numRows() > 0 ) {
 			foreach ( $res as $row ) {
 				$title = Title::makeTitleSafe( $row->wl_namespace, $row->wl_title );
-				if( $title instanceof Title && !$title->isTalkPage() )
+				if ( $this->checkTitle( $title, $row->wl_namespace, $row->wl_title )
+					&& !$title->isTalkPage()
+				) {
 					$list[] = $title->getPrefixedText();
+				}
 			}
 			$res->free();
 		}
+		$this->cleanupWatchlist();
 		return $list;
 	}
 
@@ -257,6 +266,58 @@ class SpecialEditWatchlist extends UnlistedSpecialPage {
 
 		$lb->execute();
 		return $titles;
+	}
+
+	/**
+	 * Validates watchlist entry
+	 *
+	 * @param Title $title
+	 * @param int $namespace
+	 * @param String $dbKey
+	 * @return bool: Whether this item is valid
+	 */
+	private function checkTitle( $title, $namespace, $dbKey ) {
+		if ( $title
+			&& ( $title->isExternal()
+				|| $title->getNamespace() < 0
+			)
+		) {
+			$title = false; // unrecoverable
+		}
+		if ( !$title
+			|| $title->getNamespace() != $namespace
+			|| $title->getDBkey() != $dbKey
+		) {
+			$this->badItems[] = array( $title, $namespace, $dbKey );
+		}
+		return (bool)$title;
+	}
+
+	/**
+	 * Attempts to clean up broken items
+	 */
+	private function cleanupWatchlist() {
+		$dbw = wfGetDB( DB_MASTER );
+		foreach ( $this->badItems as $row ) {
+			list( $title, $namespace, $dbKey ) = $row;
+			wfDebug( "User {$this->getUser()} has broken watchlist item ns($namespace):$dbKey, "
+				. ( $title ? 'cleaning up' : 'deleting' ) . ".\n"
+			);
+
+			$dbw->delete( 'watchlist',
+				array(
+					'wl_user' => $this->getUser()->getId(),
+					'wl_namespace' => $namespace,
+					'wl_title' => $dbKey,
+				),
+				__METHOD__
+			);
+
+			// Can't just do an UPDATE instead of DELETE/INSERT due to unique index
+			if ( $title ) {
+				$this->getUser()->addWatch( $title );
+			}
+		}
 	}
 
 	/**
@@ -348,7 +409,7 @@ class SpecialEditWatchlist extends UnlistedSpecialPage {
 
 		foreach( $data as $titles ) {
 			$this->unwatchTitles( $titles );
-			$removed += $titles;
+			$removed = array_merge( $removed, $titles );
 		}
 
 		if( count( $removed ) > 0 ) {
@@ -372,30 +433,25 @@ class SpecialEditWatchlist extends UnlistedSpecialPage {
 		$fields = array();
 		$count = 0;
 
-		$haveInvalidNamespaces = false;
 		foreach( $this->getWatchlistInfo() as $namespace => $pages ){
-			if ( $namespace < 0 ) {
-				$haveInvalidNamespaces = true;
-				continue;
+			if ( $namespace >= 0 ) {
+				$fields['TitlesNs'.$namespace] = array(
+					'class' => 'EditWatchlistCheckboxSeriesField',
+					'options' => array(),
+					'section' => "ns$namespace",
+				);
 			}
-
-			$fields['TitlesNs'.$namespace] = array(
-				'class' => 'EditWatchlistCheckboxSeriesField',
-				'options' => array(),
-				'section' => "ns$namespace",
-			);
 
 			foreach( array_keys( $pages ) as $dbkey ){
 				$title = Title::makeTitleSafe( $namespace, $dbkey );
-				$text = $this->buildRemoveLine( $title );
-				$fields['TitlesNs'.$namespace]['options'][$text] = $title->getEscapedText();
-				$count++;
+				if ( $this->checkTitle( $title, $namespace, $dbkey ) ) {
+					$text = $this->buildRemoveLine( $title );
+					$fields['TitlesNs'.$namespace]['options'][$text] = $title->getEscapedText();
+					$count++;
+				}
 			}
 		}
-		if ( $haveInvalidNamespaces ) {
-			wfDebug( "User {$this->getContext()->getUser()->getId()} has invalid watchlist entries, cleaning up...\n" );
-			$this->getContext()->getUser()->cleanupWatchlist();
-		}
+		$this->cleanupWatchlist();
 
 		if ( count( $fields ) > 1 && $count > 30 ) {
 			$this->toc = Linker::tocIndent();
@@ -517,7 +573,7 @@ class SpecialEditWatchlist extends UnlistedSpecialPage {
 	 * Build a set of links for convenient navigation
 	 * between watchlist viewing and editing modes
 	 *
-	 * @param $unused Unused
+	 * @param $unused
 	 * @return string
 	 */
 	public static function buildTools( $unused ) {

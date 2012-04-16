@@ -3,6 +3,7 @@
  * Command line script to check for an open proxy at a specified location
  *
  * @file
+ * @ingroup Maintenance
  */
 
 if( php_sapi_name() != 'cli' ) {

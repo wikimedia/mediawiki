@@ -65,83 +65,127 @@ body .ui-button.disabled {
 	background: #f2f2f2 url(images/button-disabled.png) repeat-x scroll 50% 100% !important;	
 }
 /* Disables the annoying dashed border Firefox puts on active buttons */
-body  button.ui-button::-moz-focus-inner { 
+body button.ui-button::-moz-focus-inner { 
 	border: 0; 
+}
+/* Give large buttons some extra padding */
+body .ui-button-large {
+	padding: 5px;
+}
+/* Use white icons for colored buttons */
+.ui-button-green .ui-icon, .ui-button-blue .ui-icon, .ui-button-red .ui-icon, .ui-button-orange .ui-icon {
+	/* @embed */
+	background-image: url(images/ui-icons_ffffff_256x240.png) !important;
 }
 
 /* Green buttons */
 
 body .ui-button.ui-button-green {
-	color: white;
+	color: white !important;
 	border-color: #97af7e !important;
 	/* @embed */
-	background: #85c940 url(images/button-off-green.png) repeat-x scroll 50% 100% !important;
+	background: #3cb677 url(images/button-green.png) repeat-x scroll 50% 100% !important;
 }
 body .ui-button.ui-button-green:hover {
-	border-color: #778e61;
+	border-color: #778e61 !important;
 	/* @embed */
-	background: #77ad40 url(images/button-over-green.png) repeat-x scroll 50% 100% !important;
+	background: #339b65 url(images/button-green-hover.png) repeat-x scroll 50% 100% !important;
 }
-body .ui-button.ui-button-green:active,
-body .ui-button.ui-button-green:focus {
-	border-color: #61b000;
+body .ui-button.ui-button-green.ui-button-large {
 	/* @embed */
-	background: #54a800 url(images/button-down-green.png) repeat-x scroll 50% 100% !important;
+	background: #3cb677 url(images/button-green-large.png) repeat-x scroll 50% 100% !important;
+}
+body .ui-button.ui-button-green.ui-button-large:hover {
+	/* @embed */
+	background: #339b65 url(images/button-green-hover-large.png) repeat-x scroll 50% 100% !important;
 }
 body .ui-button.ui-button-green.disabled {
-	color: #7f7f7f;
-	border-color: #b8d29f;
-	/* @embed */
-	background: #c9cfc3 url(images/button-disabled-green.png) repeat-x scroll 50% 100% !important;	
+	filter:alpha(opacity=50);
+	-moz-opacity:0.50;
+	-khtml-opacity: 0.50;
+	opacity: 0.50;
 }
 
 /* Blue buttons */
 
 body .ui-button.ui-button-blue {
-	color: white;
-	border-color: #407ec9 !important;
+	color: white !important;
+	border-color: #628acb !important;
 	/* @embed */
-	background: #407ec9 url(images/button-off-blue.png) repeat-x scroll 50% 100% !important;
+	background: #3365ba url(images/button-blue.png) repeat-x scroll 50% 100% !important;
 }
 body .ui-button.ui-button-blue:hover {
-	border-color: #245289;
+	border-color: #5375ad !important;
 	/* @embed */
-	background: #4071ad url(images/button-over-blue.png) repeat-x scroll 50% 100% !important;
+	background: #2b569e url(images/button-blue-hover.png) repeat-x scroll 50% 100% !important;
 }
-body .ui-button.ui-button-blue:active,
-body .ui-button.ui-button-blue:focus {
-	border-color: #003980;
+body .ui-button.ui-button-blue.ui-button-large {
 	/* @embed */
-	background: #004daa url(images/button-down-blue.png) repeat-x scroll 50% 100% !important;
+	background: #3365ba url(images/button-blue-large.png) repeat-x scroll 50% 100% !important;
+}
+body .ui-button.ui-button-blue.ui-button-large:hover {
+	/* @embed */
+	background: #2b569e url(images/button-blue-hover-large.png) repeat-x scroll 50% 100% !important;
 }
 body .ui-button.ui-button-blue.disabled {
-	border-color: #9eafc6;
-	/* @embed */
-	background: #c3c8cf url(images/button-disabled-blue.png) repeat-x scroll 50% 100% !important;	
+	filter:alpha(opacity=50);
+	-moz-opacity:0.50;
+	-khtml-opacity: 0.50;
+	opacity: 0.50;
 }
 
 /* Red buttons */
 
 body .ui-button.ui-button-red {
-	color: white;
+	color: white !important;
 	border-color: #af977e !important;
 	/* @embed */
-	background: #c9404c url(images/button-off-red.png) repeat-x scroll 50% 100% !important;
+	background: #cb0000 url(images/button-red.png) repeat-x scroll 50% 100% !important;
 }
 body .ui-button.ui-button-red:hover {
-	border-color: #8e7761;
+	border-color: #8e7761 !important;
 	/* @embed */
-	background: #ad404a url(images/button-over-red.png) repeat-x scroll 50% 100% !important;
+	background: #ad0000 url(images/button-red-hover.png) repeat-x scroll 50% 100% !important;
 }
-body .ui-button.ui-button-red:active,
-body .ui-button.ui-button-red:focus {
-	border-color: #b06100;
+body .ui-button.ui-button-red.ui-button-large {
 	/* @embed */
-	background: #aa000f url(images/button-down-red.png) repeat-x scroll 50% 100% !important;
+	background: #cb0000 url(images/button-red.png) repeat-x scroll 50% 100% !important;
+}
+body .ui-button.ui-button-red.ui-button-large:hover {
+	/* @embed */
+	background: #ad0000 url(images/button-red-hover.png) repeat-x scroll 50% 100% !important;
 }
 body .ui-button.ui-button-red.disabled {
-	color: #7f7f7f;
-	border-color: #c3acae;
+	filter:alpha(opacity=50);
+	-moz-opacity:0.50;
+	-khtml-opacity: 0.50;
+	opacity: 0.50;
+}
+
+/* Orange buttons */
+
+body .ui-button.ui-button-orange {
+	color: white !important;
+	border-color: #f3a863 !important;
 	/* @embed */
-	background: #cfc3c4 url(images/button-disabled-red.png) repeat-x scroll 50% 100% !important;	
+	background: #f07f14 url(images/button-orange.png) repeat-x scroll 50% 100% !important;
+}
+body .ui-button.ui-button-orange:hover {
+	border-color: #ce9055 !important;
+	/* @embed */
+	background: #cc6c11 url(images/button-orange-hover.png) repeat-x scroll 50% 100% !important;
+}
+body .ui-button.ui-button-orange.ui-button-large {
+	/* @embed */
+	background: #f07f14 url(images/button-orange-large.png) repeat-x scroll 50% 100% !important;
+}
+body .ui-button.ui-button-orange.ui-button-large:hover {
+	/* @embed */
+	background: #cc6c11 url(images/button-orange-hover-large.png) repeat-x scroll 50% 100% !important;
+}
+body .ui-button.ui-button-orange.disabled {
+	filter:alpha(opacity=50);
+	-moz-opacity:0.50;
+	-khtml-opacity: 0.50;
+	opacity: 0.50;
 }

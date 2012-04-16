@@ -19,6 +19,7 @@ class SquidUpdate {
 		} else {
 			$this->mMaxTitles = $maxTitles;
 		}
+		$urlArr = array_unique( $urlArr ); // Remove duplicates
 		if ( count( $urlArr ) > $this->mMaxTitles ) {
 			$urlArr = array_slice( $urlArr, 0, $this->mMaxTitles );
 		}
@@ -102,7 +103,7 @@ class SquidUpdate {
 	 * @return void
 	 */
 	static function purge( $urlArr ) {
-		global $wgSquidServers, $wgHTCPMulticastAddress, $wgHTCPPort;
+		global $wgSquidServers, $wgHTCPMulticastRouting;
 
 		/*if ( (@$wgSquidServers[0]) == 'echo' ) {
 			echo implode("<br />\n", $urlArr) . "<br />\n";
@@ -113,12 +114,13 @@ class SquidUpdate {
 			return;
 		}
 
-		if ( $wgHTCPMulticastAddress && $wgHTCPPort ) {
+		if ( $wgHTCPMulticastRouting ) {
 			SquidUpdate::HTCPPurge( $urlArr );
 		}
 
 		wfProfileIn( __METHOD__ );
 
+		$urlArr = array_unique( $urlArr ); // Remove duplicates
 		$maxSocketsPerSquid = 8; //  socket cap per Squid
 		$urlsPerSocket = 400; // 400 seems to be a good tradeoff, opening a socket takes a while
 		$socketsPerSquid = ceil( count( $urlArr ) / $urlsPerSocket );
@@ -147,7 +149,7 @@ class SquidUpdate {
 	 * @param $urlArr array
 	 */
 	static function HTCPPurge( $urlArr ) {
-		global $wgHTCPMulticastAddress, $wgHTCPMulticastTTL, $wgHTCPPort;
+		global $wgHTCPMulticastRouting, $wgHTCPMulticastTTL;
 		wfProfileIn( __METHOD__ );
 
 		$htcpOpCLR = 4; // HTCP CLR
@@ -168,11 +170,20 @@ class SquidUpdate {
 				socket_set_option( $conn, IPPROTO_IP, IP_MULTICAST_TTL,
 					$wgHTCPMulticastTTL );
 
+			$urlArr = array_unique( $urlArr ); // Remove duplicates
 			foreach ( $urlArr as $url ) {
 				if( !is_string( $url ) ) {
 					throw new MWException( 'Bad purge URL' );
 				}
 				$url = SquidUpdate::expand( $url );
+				$conf = self::getRuleForURL( $url, $wgHTCPMulticastRouting );
+				if ( !$conf ) {
+					wfDebug( "No HTCP rule configured for URL $url , skipping\n" );
+					continue;
+				}
+				if ( !isset( $conf['host'] ) || !isset( $conf['port'] ) ) {
+					throw new MWException( "Invalid HTCP rule for URL $url\n" );
+				}
 
 				// Construct a minimal HTCP request diagram
 				// as per RFC 2756
@@ -196,7 +207,7 @@ class SquidUpdate {
 				// Send out
 				wfDebug( "Purging URL $url via HTCP\n" );
 				socket_sendto( $conn, $htcpPacket, $htcpLen, 0,
-					$wgHTCPMulticastAddress, $wgHTCPPort );
+					$conf['host'], $conf['port'] );
 			}
 		} else {
 			$errstr = socket_strerror( socket_last_error() );
@@ -223,4 +234,20 @@ class SquidUpdate {
 	static function expand( $url ) {
 		return wfExpandUrl( $url, PROTO_INTERNAL );
 	}
+	
+	/**
+	 * Find the HTCP routing rule to use for a given URL.
+	 * @param $url string URL to match
+	 * @param $rules array Array of rules, see $wgHTCPMulticastRouting for format and behavior
+	 * @return mixed Element of $rules that matched, or false if nothing matched
+	 */
+	static function getRuleForURL( $url, $rules ) {
+		foreach ( $rules as $regex => $routing ) {
+			if ( $regex === '' || preg_match( $regex, $url ) ) {
+				return $routing;
+			}
+		}
+		return false;
+	}
+	
 }

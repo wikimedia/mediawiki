@@ -37,9 +37,18 @@ class ApiProtect extends ApiBase {
 		global $wgRestrictionLevels;
 		$params = $this->extractRequestParams();
 
-		$titleObj = Title::newFromText( $params['title'] );
-		if ( !$titleObj ) {
-			$this->dieUsageMsg( array( 'invalidtitle', $params['title'] ) );
+		$this->requireOnlyOneParameter( $params, 'title', 'pageid' );
+
+		if ( isset( $params['title'] ) ) {
+			$titleObj = Title::newFromText( $params['title'] );
+			if ( !$titleObj ) {
+				$this->dieUsageMsg( array( 'invalidtitle', $params['title'] ) );
+			}
+		} elseif ( isset( $params['pageid'] ) ) {
+			$titleObj = Title::newFromID( $params['pageid'] );
+			if ( !$titleObj ) {
+				$this->dieUsageMsg( array( 'nosuchpageid', $params['pageid'] ) );
+			}
 		}
 
 		$errors = $titleObj->getUserPermissionsErrors( 'protect', $this->getUser() );
@@ -138,7 +147,9 @@ class ApiProtect extends ApiBase {
 		return array(
 			'title' => array(
 				ApiBase::PARAM_TYPE => 'string',
-				ApiBase::PARAM_REQUIRED => true
+			),
+			'pageid' => array(
+				ApiBase::PARAM_TYPE => 'integer',
 			),
 			'token' => null,
 			'protections' => array(
@@ -169,8 +180,10 @@ class ApiProtect extends ApiBase {
 	}
 
 	public function getParamDescription() {
+		$p = $this->getModulePrefix();
 		return array(
-			'title' => 'Title of the page you want to (un)protect',
+			'title' => "Title of the page you want to (un)protect. Cannot be used together with {$p}pageid",
+			'pageid' => "ID of the page you want to (un)protect. Cannot be used together with {$p}title",
 			'token' => 'A protect token previously retrieved through prop=info',
 			'protections' => 'Pipe-separated list of protection levels, formatted action=group (e.g. edit=sysop)',
 			'expiry' => array( 'Expiry timestamps. If only one timestamp is set, it\'ll be used for all protections.',
@@ -188,16 +201,20 @@ class ApiProtect extends ApiBase {
 	}
 
 	public function getPossibleErrors() {
-		return array_merge( parent::getPossibleErrors(), array(
-			array( 'invalidtitle', 'title' ),
-			array( 'toofewexpiries', 'noofexpiries', 'noofprotections' ),
-			array( 'create-titleexists' ),
-			array( 'missingtitle-createonly' ),
-			array( 'protect-invalidaction', 'action' ),
-			array( 'protect-invalidlevel', 'level' ),
-			array( 'invalidexpiry', 'expiry' ),
-			array( 'pastexpiry', 'expiry' ),
-		) );
+		return array_merge( parent::getPossibleErrors(),
+			$this->getRequireOnlyOneParameterErrorMessages( array( 'title', 'pageid' ) ),
+			array(
+				array( 'invalidtitle', 'title' ),
+				array( 'nosuchpageid', 'pageid' ),
+				array( 'toofewexpiries', 'noofexpiries', 'noofprotections' ),
+				array( 'create-titleexists' ),
+				array( 'missingtitle-createonly' ),
+				array( 'protect-invalidaction', 'action' ),
+				array( 'protect-invalidlevel', 'level' ),
+				array( 'invalidexpiry', 'expiry' ),
+				array( 'pastexpiry', 'expiry' ),
+			)
+		);
 	}
 
 	public function needsToken() {

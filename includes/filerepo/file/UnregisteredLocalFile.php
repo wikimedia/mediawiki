@@ -3,7 +3,7 @@
  * File without associated database record
  *
  * @file
- * @ingroup FileRepo
+ * @ingroup FileAbstraction
  */
 
 /**
@@ -16,7 +16,7 @@
  * lots of functions missing. It is used by the WebStore extension in the
  * standalone role.
  *
- * @ingroup FileRepo
+ * @ingroup FileAbstraction
  */
 class UnregisteredLocalFile extends File {
 	var $title, $path, $mime, $dims;
@@ -49,7 +49,7 @@ class UnregisteredLocalFile extends File {
 	 * A FileRepo object is not required here, unlike most other File classes.
 	 * 
 	 * @throws MWException
-	 * @param $title Title|false
+	 * @param $title Title|bool
 	 * @param $repo FileRepo
 	 * @param $path string
 	 * @param $mime string

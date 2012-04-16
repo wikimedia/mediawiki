@@ -19,18 +19,25 @@ class StreamFile {
 	 * @return bool Success
 	 */
 	public static function stream( $fname, $headers = array(), $sendErrors = true ) {
+		wfProfileIn( __METHOD__ );
+
 		wfSuppressWarnings();
 		$stat = stat( $fname );
 		wfRestoreWarnings();
 
 		$res = self::prepareForStream( $fname, $stat, $headers, $sendErrors );
 		if ( $res == self::NOT_MODIFIED ) {
-			return true; // use client cache
+			$ok = true; // use client cache
 		} elseif ( $res == self::READY_STREAM ) {
-			return readfile( $fname );
+			wfProfileIn( __METHOD__ . '-send' );
+			$ok = readfile( $fname );
+			wfProfileOut( __METHOD__ . '-send' );
 		} else {
-			return false; // failed
+			$ok = false; // failed
 		}
+
+		wfProfileOut( __METHOD__ );
+		return $ok;
 	}
 
 	/**
@@ -41,10 +48,10 @@ class StreamFile {
 	 * (c) sends Content-Length header based on HTTP_IF_MODIFIED_SINCE check
 	 *
 	 * @param $path string Storage path or file system path
-	 * @param $info Array|false File stat info with 'mtime' and 'size' fields
+	 * @param $info Array|bool File stat info with 'mtime' and 'size' fields
 	 * @param $headers Array Additional headers to send
 	 * @param $sendErrors bool Send error messages if errors occur (like 404)
-	 * @return int|false READY_STREAM, NOT_MODIFIED, or false on failure
+	 * @return int|bool READY_STREAM, NOT_MODIFIED, or false on failure
 	 */
 	public static function prepareForStream(
 		$path, $info, $headers = array(), $sendErrors = true

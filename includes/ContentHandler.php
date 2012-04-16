@@ -15,9 +15,11 @@ class MWContentSerializationException extends MWException {
  * same as their serialized form. Examples would be JavaScript and CSS code. As of now,
  * this also applies to wikitext (mediawiki's default content type), but wikitext
  * content may be represented by a DOM or AST structure in the future.
- *  
+ *
+ * TODO: add documentation
  */
 abstract class ContentHandler {
+
 
     /**
      * Conveniance function for getting flat text from a Content object. This shleould only
@@ -39,17 +41,49 @@ abstract class ContentHandler {
      * @return null|string the textual form of $content, if available
      * @throws MWException if $content is not an instance of TextContent and $wgContentHandlerTextFallback was set to 'fail'.
      */
+
+	/**
+	 * @abstract
+	 * @param Content $content
+	 * @param null $format
+	 * @return String
+	 */
+	public abstract function serialize( Content $content, $format = null );
+
+	/**
+	 * TODO: calling unserialize on a ContentHandler returns a Content?!! Something looks wrong here...
+	 *
+	 * @abstract
+	 * @param $blob String
+	 * @param null $format
+	 * @return Content
+	 */
+	public abstract function unserialize( $blob, $format = null );
+
+	/**
+	 * FIXME: bad method name: suggests it empties the content of an instance rather then creating a new empty one
+	 */
+	public abstract function emptyContent();
+
+
     public static function getContentText( Content $content = null ) {
         global $wgContentHandlerTextFallback;
 
-        if ( !$content ) return '';
+        if ( is_null( $content ) ) {
+			return '';
+		}
 
         if ( $content instanceof TextContent ) {
             return $content->getNativeData();
         }
 
-        if ( $wgContentHandlerTextFallback == 'fail' ) throw new MWException( "Attempt to get text from Content with model " . $content->getModelName() );
-        if ( $wgContentHandlerTextFallback == 'serialize' ) return $content->serialize();
+        if ( $wgContentHandlerTextFallback == 'fail' ) {
+			throw new MWException( "Attempt to get text from Content with model " . $content->getModelName() );
+		}
+
+        if ( $wgContentHandlerTextFallback == 'serialize' ) {
+			return $content->serialize();
+		}
 
         return null;
     }
@@ -69,7 +103,8 @@ abstract class ContentHandler {
      * @return Content a Content object representing $text
      */
     public static function makeContent( $text, Title $title, $modelName = null, $format = null ) {
-        if ( !$modelName ) {
+
+        if ( is_null( $modelName ) ) {
             $modelName = $title->getContentModelName();
         }
 
@@ -102,8 +137,8 @@ abstract class ContentHandler {
     public static function getDefaultModelFor( Title $title ) {
         global $wgNamespaceContentModels;
 
-        # NOTE: this method must not rely on $title->getContentModelName() directly or indirectly,
-        #       because it is used to initialized the mContentModelName memebr.
+        // NOTE: this method must not rely on $title->getContentModelName() directly or indirectly,
+        //       because it is used to initialized the mContentModelName memebr.
 
         $ns = $title->getNamespace();
 
@@ -115,43 +150,48 @@ abstract class ContentHandler {
             $model = $wgNamespaceContentModels[ $ns ];
         }
 
-        # hook can determin default model
+        // hook can determin default model
         if ( !wfRunHooks( 'DefaultModelFor', array( $title, &$model ) ) ) { #FIXME: document new hook!
-            if ( $model ) return $model;
+            if ( !is_null( $model ) ) {
+				return $model;
+			}
         }
 
-        # Could this page contain custom CSS or JavaScript, based on the title?
-        $isCssOrJsPage = ( NS_MEDIAWIKI == $ns && preg_match( '!\.(css|js)$!u', $title->getText(), $m ) );
-        if ( $isCssOrJsPage ) $ext = $m[1];
+        // Could this page contain custom CSS or JavaScript, based on the title?
+        $isCssOrJsPage = NS_MEDIAWIKI == $ns && preg_match( '!\.(css|js)$!u', $title->getText(), $m );
+        if ( $isCssOrJsPage ) {
+			$ext = $m[1];
+		}
 
-        # hook can force js/css
+        // hook can force js/css
         wfRunHooks( 'TitleIsCssOrJsPage', array( $title, &$isCssOrJsPage ) );
 
-        # Is this a .css subpage of a user page?
-        $isJsCssSubpage = ( NS_USER == $ns && !$isCssOrJsPage && preg_match( "/\\/.*\\.(js|css)$/", $title->getText(), $m ) );
-        if ( $isJsCssSubpage ) $ext = $m[1];
+        // Is this a .css subpage of a user page?
+        $isJsCssSubpage = NS_USER == $ns && !$isCssOrJsPage && preg_match( "/\\/.*\\.(js|css)$/", $title->getText(), $m );
+        if ( $isJsCssSubpage ) {
+			$ext = $m[1];
+		}
 
-        # is this wikitext, according to $wgNamespaceContentModels or the DefaultModelFor hook?
-        $isWikitext = ( $model == CONTENT_MODEL_WIKITEXT || $model === null );
-        $isWikitext = ( $isWikitext && !$isCssOrJsPage && !$isJsCssSubpage );
+        // is this wikitext, according to $wgNamespaceContentModels or the DefaultModelFor hook?
+        $isWikitext = is_null( $model ) || $model == CONTENT_MODEL_WIKITEXT;
+        $isWikitext = $isWikitext && !$isCssOrJsPage && !$isJsCssSubpage;
 
-        # hook can override $isWikitext
+        // hook can override $isWikitext
         wfRunHooks( 'TitleIsWikitextPage', array( $title, &$isWikitext ) );
 
         if ( !$isWikitext ) {
-
-            if ( $ext == 'js' )
-                return CONTENT_MODEL_JAVASCRIPT;
-            else if ( $ext == 'css' )
-                return CONTENT_MODEL_CSS;
-
-            if ( $model )
-                return $model;
-            else
-                return CONTENT_MODEL_TEXT;
+			switch ( $ext ) {
+				case 'js':
+					return CONTENT_MODEL_JAVASCRIPT;
+				case 'css':
+					return CONTENT_MODEL_CSS;
+				default:
+					return is_null( $model ) ? CONTENT_MODEL_TEXT : $model;
+			}
         }
 
-        # we established that is must be wikitext
+        // we established that is must be wikitext
+
         return CONTENT_MODEL_WIKITEXT;
     }
 
@@ -203,9 +243,11 @@ abstract class ContentHandler {
 
         if ( empty( $wgContentHandlers[$modelName] ) ) {
             $handler = null;
-            wfRunHooks( "ContentHandlerForModelName", array( $modelName, &$handler ) );  #FIXME: document new hook
 
-            if ( $handler ) { # NOTE: may be a string or an object, either is fine!
+			// TODO: document new hook
+            wfRunHooks( 'ContentHandlerForModelName', array( $modelName, &$handler ) );
+
+            if ( $handler ) { // NOTE: may be a string or an object, either is fine!
                 $wgContentHandlers[$modelName] = $handler;
             } else {
                 throw new MWException( "No handler for model $modelName registered in \$wgContentHandlers" );
@@ -220,7 +262,7 @@ abstract class ContentHandler {
         return $wgContentHandlers[$modelName];
     }
 
-    # ----------------------------------------------------------------------------------------------------------
+    // ----------------------------------------------------------------------------------------------------------
 
     /**
      * Constructor, initializing the ContentHandler instance with it's model name and a list of supported formats.
@@ -239,8 +281,8 @@ abstract class ContentHandler {
      * @return String the model name
      */
     public function getModelName() {
-        # for wikitext: wikitext; in the future: wikiast, wikidom?
-        # for wikidata: wikidata
+        // for wikitext: wikitext; in the future: wikiast, wikidom?
+        // for wikidata: wikidata
         return $this->mModelName;
     }
 
@@ -251,8 +293,8 @@ abstract class ContentHandler {
     }
 
     public function getSupportedFormats() {
-        # for wikitext: "text/x-mediawiki-1", "text/x-mediawiki-2", etc
-        # for wikidata: "application/json", "application/x-php", etc
+        // for wikitext: "text/x-mediawiki-1", "text/x-mediawiki-2", etc
+        // for wikidata: "application/json", "application/x-php", etc
         return $this->mSupportedFormats;
     }
 
@@ -261,7 +303,10 @@ abstract class ContentHandler {
     }
 
     public function isSupportedFormat( $format ) {
-        if ( !$format ) return true; # this means "use the default"
+
+        if ( !$format ) {
+			return true; // this means "use the default"
+		}
 
         return in_array( $format, $this->mSupportedFormats );
     }
@@ -273,31 +318,13 @@ abstract class ContentHandler {
     }
 
     /**
-     * @abstract
-     * @param Content $content
-     * @param null $format
-     * @return String
-     */
-    public abstract function serialize( Content $content, $format = null );
-
-    /**
-     * @abstract
-     * @param $blob String
-     * @param null $format
-     * @return Content
-     */
-    public abstract function unserialize( $blob, $format = null );
-
-    public abstract function emptyContent();
-
-    /**
      * Return an Article object suitable for viewing the given object
      *
      * NOTE: does *not* do special handling for Image and Category pages!
      *       Use Article::newFromTitle() for that!
      *
-     * @param type $title
-     * @return \Article
+     * @param Title $title
+     * @return Article
      * @todo Article is being refactored into an action class, keep track of that
      */
     public function createArticle( Title $title ) {
@@ -309,9 +336,9 @@ abstract class ContentHandler {
 
     /**
      * Return an EditPage object suitable for editing the given object
-     * 
-     * @param type $article
-     * @return \EditPage 
+     *
+     * @param Article $article
+     * @return EditPage
      */
     public function createEditPage( Article $article ) {
         $this->checkModelName( $article->getContentModelName() );
@@ -323,8 +350,8 @@ abstract class ContentHandler {
     /**
      * Return an ExternalEdit object suitable for editing the given object
      *
-     * @param type $article
-     * @return \ExternalEdit
+     * @param IContextSource $context
+     * @return ExternalEdit
      */
     public function createExternalEdit( IContextSource $context ) {
         $this->checkModelName( $context->getTitle()->getModelName() );
@@ -341,16 +368,29 @@ abstract class ContentHandler {
      * @param $rcid Integer ??? FIXME (default 0)
      * @param $refreshCache boolean If set, refreshes the diff cache
      * @param $unhide boolean If set, allow viewing deleted revs
+	 *
+	 * @return DifferenceEngine
      */
     public function getDifferenceEngine( IContextSource $context, $old = 0, $new = 0, $rcid = 0, #FIMXE: use everywhere!
                                          $refreshCache = false, $unhide = false ) {
 
         $this->checkModelName( $context->getTitle()->getModelName() );
 
-        $de = new DifferenceEngine( $context, $old, $new, $rcid, $refreshCache, $unhide );
+		$diffEngineClass = $this->getDiffEngineClass();
 
-        return $de;
+        return new $diffEngineClass( $context, $old, $new, $rcid, $refreshCache, $unhide );
     }
+
+	/**
+	 * Returns the name of the diff engine to use.
+	 *
+	 * @since 0.1
+	 *
+	 * @return string
+	 */
+	protected function getDiffEngineClass() {
+		return 'DifferenceEngine';
+	}
 
     /**
      * attempts to merge differences between three versions.
@@ -379,9 +419,10 @@ abstract class ContentHandler {
     public function getAutosummary( Content $oldContent = null, Content $newContent = null, $flags ) {
         global $wgContLang;
 
-        # Decide what kind of autosummary is needed.
+        // Decide what kind of autosummary is needed.
 
-        # Redirect autosummaries
+        // Redirect autosummaries
+
         $ot = !empty( $ot ) ? $oldContent->getRedirectTarget() : false;
         $rt = !empty( $rt ) ? $newContent->getRedirectTarget() : false;
 
@@ -395,9 +436,9 @@ abstract class ContentHandler {
             return wfMsgForContent( 'autoredircomment', $rt->getFullText(), $truncatedtext );
         }
 
-        # New page autosummaries
+        // New page autosummaries
         if ( $flags & EDIT_NEW && $newContent->getSize() > 0 ) {
-            # If they're making a new article, give its text, truncated, in the summary.
+            // If they're making a new article, give its text, truncated, in the summary.
 
             $truncatedtext = $newContent->getTextForSummary(
                 200 - strlen( wfMsgForContent( 'autosumm-new' ) ) );
@@ -405,11 +446,11 @@ abstract class ContentHandler {
             return wfMsgForContent( 'autosumm-new', $truncatedtext );
         }
 
-        # Blanking autosummaries
+        // Blanking autosummaries
         if ( $oldContent->getSize() > 0 && $newContent->getSize() == 0 ) {
             return wfMsgForContent( 'autosumm-blank' );
         } elseif ( $oldContent->getSize() > 10 * $newContent->getSize() && $newContent->getSize() < 500 ) {
-            # Removing more than 90% of the article
+            // Removing more than 90% of the article
 
             $truncatedtext = $newContent->getTextForSummary(
                 200 - strlen( wfMsgForContent( 'autosumm-replace' ) ) );
@@ -417,8 +458,9 @@ abstract class ContentHandler {
             return wfMsgForContent( 'autosumm-replace', $truncatedtext );
         }
 
-        # If we reach this point, there's no applicable autosummary for our case, so our
-        # autosummary is empty.
+        // If we reach this point, there's no applicable autosummary for our case, so our
+        // autosummary is empty.
+
         return '';
     }
 
@@ -431,8 +473,6 @@ abstract class ContentHandler {
      *    if no revision occurred
      */
     public function getAutoDeleteReason( Title $title, &$hasHistory ) {
-        global $wgContLang;
-
         $dbw = wfGetDB( DB_MASTER );
 
         // Get the last revision
@@ -532,7 +572,7 @@ abstract class ContentHandler {
         $undoafter_content = $undoafter->getContent();
 
         if ( $cur_content->equals( $undo_content ) ) {
-            # No use doing a merge if it's just a straight revert.
+            // No use doing a merge if it's just a straight revert.
             return $undoafter_content;
         }
 
@@ -577,8 +617,13 @@ abstract class TextContentHandler extends ContentHandler {
 
         $ok = wfMerge( $old, $mine, $yours, $result );
 
-        if ( !$ok ) return false;
-        if ( !$result ) return $this->emptyContent();
+        if ( !$ok ) {
+			return false;
+		}
+
+        if ( !$result ) {
+			return $this->emptyContent();
+		}
 
         $mergedContent = $this->unserialize( $result, $format );
         return $mergedContent;
@@ -599,7 +644,7 @@ class WikitextContentHandler extends TextContentHandler {
     }
 
     public function emptyContent() {
-        return new WikitextContent( "" );
+        return new WikitextContent( '' );
     }
 
 
@@ -618,7 +663,7 @@ class JavaScriptContentHandler extends TextContentHandler {
     }
 
     public function emptyContent() {
-        return new JavaScriptContent( "" );
+        return new JavaScriptContent( '' );
     }
 }
 
@@ -633,7 +678,7 @@ class CssContentHandler extends TextContentHandler {
     }
 
     public function emptyContent() {
-        return new CssContent( "" );
+        return new CssContent( '' );
     }
 
 }

@@ -93,12 +93,12 @@ abstract class BagOStuff {
 
 	/**
 	 * Delete all objects expiring before a certain date.
-	 * @param $date The reference date in MW format
-	 * @param $progressCallback Optional, a function which will be called 
+	 * @param $date string The reference date in MW format
+	 * @param $progressCallback callback|bool Optional, a function which will be called
 	 *     regularly during long-running operations with the percentage progress
 	 *     as the first parameter.
 	 *
-	 * @return true on success, false if unimplemented
+	 * @return bool on success, false if unimplemented
 	 */
 	public function deleteObjectsExpiringBefore( $date, $progressCallback = false ) {
 		// stub
@@ -155,6 +155,7 @@ abstract class BagOStuff {
 
 	/**
 	 * Convert an optionally relative time to an absolute time
+	 * @return int
 	 */
 	protected function convertExpiry( $exptime ) {
 		if ( ( $exptime != 0 ) && ( $exptime < 86400 * 3650 /* 10 years */ ) ) {

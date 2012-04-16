@@ -17,7 +17,6 @@
 $messages = array(
 # User preference toggles
 'tog-underline'            => "Koritan ang dalum kang manga ''link'':",
-'tog-highlightbroken'      => 'I-format ang mga guba nga links <a href="" class="new">paryas kaja</a> (alternative: paryas kaja<a href="" class="internal">?</a>).',
 'tog-justify'              => 'Tururupungun ang kilid kang manga paragraph',
 'tog-hideminor'            => "Tagoon ang gagmay nga ''edit'' sa mga bag-o nga ilis",
 'tog-extendwatchlist'      => "Palapadun ang ''watchlist'' agud nga mapakita ang tanan nga ginasogtan nga pag-ilis",

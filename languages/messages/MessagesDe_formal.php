@@ -9,6 +9,7 @@
  *
  * @author *Surak*
  * @author ChrisiPK
+ * @author Geitost
  * @author Imre
  * @author Jimmy Collins <jimmy.collins@web.de>
  * @author Kghbln
@@ -40,7 +41,7 @@ $1',
 
 'badaccess-group0' => 'Sie haben nicht die erforderliche Berechtigung für diese Aktion.',
 
-'youhavenewmessages'      => 'Sie haben $1 auf Ihrer Diskussionsseite ($2).',
+'youhavenewmessages'      => 'Sie haben $1 ($2).',
 'youhavenewmessagesmulti' => 'Sie haben neue Nachrichten: $1',
 
 # General errors
@@ -245,7 +246,7 @@ Reichen Sie keine Texte ein, falls Sie nicht wollen, dass diese ohne Einschränk
 
 Sie bestätigen hiermit auch, dass Sie diese Texte selbst geschrieben haben oder diese von einer gemeinfreien Quelle kopiert haben
 (siehe $1 für weitere Details). '''ÜBERTRAGEN SIE OHNE GENEHMIGUNG KEINE URHEBERRECHTLICH GESCHÜTZTEN INHALTE!'''",
-'longpageerror'                    => "'''Fehler: Der Text, den Sie zu speichern versuchen, ist $1 KB groß. Dies ist größer als das erlaubte Maximum von $2 KB.'''
+'longpageerror'                    => "'''Fehler: Der Text, den Sie zu speichern versuchen, ist {{PLURAL:$1|ein Kilobyte|$1 Kilobyte}} groß. Dies ist größer als das erlaubte Maximum von {{PLURAL:$2|ein Kilobyte|$2 Kilobyte}}.'''
 Er kann nicht gespeichert werden.",
 'readonlywarning'                  => "'''Achtung: Die Datenbank wurde für Wartungsarbeiten gesperrt, so dass Ihre Änderungen derzeit nicht gespeichert werden können.
 Sichern Sie den Text bitte lokal auf Ihrem Computer und versuchen Sie zu einem späteren Zeitpunkt, die Änderungen zu übertragen.'''
@@ -399,10 +400,6 @@ Prüfen Sie die URL auf Fehler, den Online-Status der Seite und versuchem Sie er
 Wenn das Problem weiter besteht, informieren Sie einen [[Special:ListUsers/sysop|System-Administrator]].',
 
 # img_auth script messages
-'img-auth-nopathinfo' => 'PATH_INFO fehlt.
-Ihr Server ist nicht dafür eingerichtet, diese Information weiterzugeben.
-Es könnte CGI-basiert sein und unterstützt img_auth nicht.
-Siehe http://www.mediawiki.org/wiki/Manual:Image_Authorization.',
 'img-auth-nologinnWL' => 'Sie sind nicht angemeldet und „$1“ ist nicht in der weißen Liste.',
 'img-auth-isdir'      => 'Sie versuchen, auf ein Verzeichnis „$1“ zuzugreifen.
 Nur Dateizugriff ist erlaubt.',
@@ -435,6 +432,10 @@ Nur Dateizugriff ist erlaubt.',
 # Book sources
 'booksources-invalid-isbn' => 'Vermutlich ist die ISBN ungültig.
 Bitte prüfen Sie, ob sie korrekt von der Quelle übertragen wurde.',
+
+# SpecialCachedPage
+'cachedspecial-viewing-cached-ttl' => 'Sie sehen die gecachte Version dieser Seite, die bis zu $1 alt sein kann.',
+'cachedspecial-viewing-cached-ts'  => 'Sie sehen die gecachte Version dieser Seite, die möglicherweise nicht aktuell ist.',
 
 # E-mail user
 'mailnologintext' => 'Sie müssen [[Special:UserLogin|angemeldet sein]] und eine bestätigte E-Mail-Adresse in Ihren [[Special:Preferences|Einstellungen]] eingetragen haben, um anderen Benutzern E-Mails schicken zu können.',
@@ -605,14 +606,13 @@ Alle Transwiki-Import-Aktionen werden im [[Special:Log/import|Import-Logbuch]] p
 'javascripttest-pagetext-skins' => 'Wählen Sie eine Benutzeroberfläche zur Durchführung der Tests aus:',
 
 # Tooltip help for the actions
-'tooltip-pt-userpage'            => 'Ihre Benutzerseite',
-'tooltip-pt-anonuserpage'        => 'Benutzerseite der IP-Adresse, von der aus Sie Änderungen durchführen',
-'tooltip-pt-mytalk'              => 'Ihre Diskussionsseite',
-'tooltip-pt-mycontris'           => 'Liste Ihrer Beiträge',
-'tooltip-n-mainpage'             => 'Besuchen Sie die Hauptseite',
-'tooltip-n-mainpage-description' => 'Besuchen Sie die Hauptseite',
-'tooltip-n-portal'               => 'Über das Projekt, was Sie tun können, wo was zu finden ist',
-'tooltip-watch'                  => 'Fügt diese Seite Ihrer Beobachtungsliste hinzu',
+'tooltip-pt-userpage'     => 'Ihre Benutzerseite',
+'tooltip-pt-anonuserpage' => 'Benutzerseite der IP-Adresse, von der aus Sie Änderungen durchführen',
+'tooltip-pt-mytalk'       => 'Ihre Diskussionsseite',
+'tooltip-pt-mycontris'    => 'Liste Ihrer Beiträge',
+'tooltip-n-portal'        => 'Über das Projekt, was Sie tun können, wo was zu finden ist',
+'tooltip-watch'           => 'Diese Seite zu Ihrer Beobachtungsliste hinzufügen',
+'tooltip-summary'         => 'Geben Sie eine kurze Zusammenfassung ein.',
 
 # Metadata
 'notacceptable' => 'Der Wiki-Server kann die Daten nicht für Ihr Ausgabegerät aufbereiten.',

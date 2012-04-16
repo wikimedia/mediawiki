@@ -150,8 +150,7 @@ class ApiFeedContributions extends ApiBase {
 				ApiBase::PARAM_REQUIRED => true,
 			),
 			'namespace' => array(
-				ApiBase::PARAM_TYPE => 'namespace',
-				ApiBase::PARAM_ISMULTI => true
+				ApiBase::PARAM_TYPE => 'namespace'
 			),
 			'year' => array(
 				ApiBase::PARAM_TYPE => 'integer'

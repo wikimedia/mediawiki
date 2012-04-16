@@ -1,4 +1,4 @@
-MediaWiki 1.19 is a collaborative project released under the
+MediaWiki 1.20 is a collaborative project released under the
 GNU General Public License v2. We would like to recognize the
 following names for their contribution to the product.
 
@@ -8,7 +8,7 @@ following names for their contribution to the product.
 * Alexandre Emsenhuber
 * Andrew Garrett
 * Aryeh Gregor
-* Antoine Musso 
+* Antoine Musso
 * Brian Wolff
 * Bertrand Grondin
 * Brad Jorsch
@@ -24,7 +24,7 @@ following names for their contribution to the product.
 * Derk-Jan Hartman
 * Domas Mituzas
 * Emufarmers
-* Fran Rogers
+* Fran McCrory
 * Greg Sabino Mullane
 * Guy Van den Broeck
 * Happy-melon
@@ -86,7 +86,9 @@ following names for their contribution to the product.
 * Amir E. Aharoni
 * Andrew Dunbar
 * Antonio Ospite
+* Asier Lostalé
 * Azliq7
+* Bagariavivek
 * Beau
 * Bergi
 * Borislav Manolov
@@ -95,6 +97,8 @@ following names for their contribution to the product.
 * Brianna Laugher
 * Carlin
 * Carsten Nielsen
+* Christian Neubauer
+* Christian Aistleitner
 * Conrad Irwin
 * cryptocoryne
 * Dan Barrett
@@ -108,6 +112,7 @@ following names for their contribution to the product.
 * FunPika
 * fomafix
 * Gero Scholz
+* Gilles van den Hoven
 * Grunny
 * Harry Burt
 * Ireas
@@ -116,13 +121,14 @@ following names for their contribution to the product.
 * Jidanni
 * Jimmy Xu
 * Jonathan Wiltshire
+* John N
 * Karun Dambietz
 * Kim Hyun-Joon
+* Krenair
 * Lee Worden
 * Lejonel
 * liangent
 * Louperivois
-* Luca Fulchir
 * Lucas Garczewski
 * Luigi Corsaro
 * Lupo
@@ -143,6 +149,7 @@ following names for their contribution to the product.
 * Michael Walsh
 * Mike Horvath
 * Mormegil
+* moejoe0000
 * MrBlueSky
 * MrPete
 * MZMcBride
@@ -154,6 +161,7 @@ following names for their contribution to the product.
 * Nx.devnull
 * Nikola Kovacs
 * Nikolaos S. Karastathis
+* Nischay Nahata
 * Olaf Lenz
 * Olivier Finlay Beaton
 * Paul Copperman
@@ -170,6 +178,7 @@ following names for their contribution to the product.
 * Simon Walker
 * Solitarius
 * Søren Løvborg
+* Srikanth Lakshmanan
 * Stefano Codari
 * Str4nd
 * svip
@@ -181,6 +190,7 @@ following names for their contribution to the product.
 * Ville Stadista
 * Vitaliy Filippov
 * William Demchick
+* Yusuke Matsubara
 * Yuvaraj Pandian T
 * Zachary Hauri
 
@@ -191,4 +201,4 @@ following names for their contribution to the product.
 * Meno25
 * Rotem Liss
 * Shinjiman
-* Translatewiki.net Translators http://translatewiki.net/wiki/Special:ListUsers/translator
+* Translatewiki.net Translators https://translatewiki.net/wiki/Special:ListUsers/translator

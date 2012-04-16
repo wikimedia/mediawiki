@@ -124,19 +124,18 @@ class SpecialPage {
 	 *
 	 * @param $page Mixed: SpecialPage or string
 	 * @param $group String
-	 * @return null
 	 * @deprecated since 1.18 call SpecialPageFactory method directly
 	 */
 	static function setGroup( $page, $group ) {
 		wfDeprecated( __METHOD__, '1.18' );
-		return SpecialPageFactory::setGroup( $page, $group );
+		SpecialPageFactory::setGroup( $page, $group );
 	}
 
 	/**
 	 * Get the group that the special page belongs in on Special:SpecialPage
 	 *
 	 * @param $page SpecialPage
-	 * @return null
+	 * @return string
 	 * @deprecated since 1.18 call SpecialPageFactory method directly
 	 */
 	static function getGroup( &$page ) {
@@ -200,7 +199,7 @@ class SpecialPage {
 	 *
 	 * @param $user User object to check permissions, $wgUser will be used
 	 *              if not provided
-	 * @return Associative array mapping page's name to its SpecialPage object
+	 * @return array Associative array mapping page's name to its SpecialPage object
 	 * @deprecated since 1.18 call SpecialPageFactory method directly
 	 */
 	static function getUsablePages( User $user = null ) {
@@ -211,7 +210,7 @@ class SpecialPage {
 	/**
 	 * Return categorised listable special pages for all users
 	 *
-	 * @return Associative array mapping page's name to its SpecialPage object
+	 * @return array Associative array mapping page's name to its SpecialPage object
 	 * @deprecated since 1.18 call SpecialPageFactory method directly
 	 */
 	static function getRegularPages() {
@@ -223,7 +222,7 @@ class SpecialPage {
 	 * Return categorised listable special pages which are available
 	 * for the current user, but not for everyone
 	 *
-	 * @return Associative array mapping page's name to its SpecialPage object
+	 * @return array Associative array mapping page's name to its SpecialPage object
 	 * @deprecated since 1.18 call SpecialPageFactory method directly
 	 */
 	static function getRestrictedPages() {
@@ -768,7 +767,15 @@ class SpecialPage {
 		// Works fine as the first parameter, which appears elsewhere in the
 		// code base. Sighhhh.
 		$args = func_get_args();
-		return call_user_func_array( array( $this->getContext(), 'msg' ), $args );
+		$message = call_user_func_array( array( $this->getContext(), 'msg' ), $args );
+		// RequestContext passes context to wfMessage, and the language is set from
+		// the context, but setting the language for Message class removes the
+		// interface message status, which breaks for example usernameless gender
+		// invokations. Restore the flag when not including special page in content.
+		if ( $this->including() ) {
+			$message->setInterfaceMessageFlag( false );
+		}
+		return $message;
 	}
 
 	/**
@@ -891,7 +898,7 @@ abstract class FormSpecialPage extends SpecialPage {
 		$this->checkPermissions();
 
 		if ( $this->requiresUnblock() && $user->isBlocked() ) {
-			$block = $user->mBlock;
+			$block = $user->getBlock();
 			throw new UserBlockedError( $block );
 		}
 
@@ -988,7 +995,7 @@ abstract class RedirectSpecialPage extends UnlistedSpecialPage {
 	 * False otherwise.
 	 *
 	 * @param $par String Subpage string
-	 * @return Title|false
+	 * @return Title|bool
 	 */
 	abstract public function getRedirect( $par );
 
@@ -1082,7 +1089,7 @@ class SpecialCreateAccount extends SpecialRedirectToSpecial {
 class SpecialMypage extends RedirectSpecialPage {
 	function __construct() {
 		parent::__construct( 'Mypage' );
-		$this->mAllowedRedirectParams = array( 'action' , 'preload' , 'editintro',
+		$this->mAllowedRedirectParams = array( 'action', 'preload', 'preloadtitle', 'editintro',
 			'section', 'oldid', 'diff', 'dir',
 			// Options for action=raw; missing ctype can break JS or CSS in some browsers
 			'ctype', 'maxage', 'smaxage' );
@@ -1104,7 +1111,7 @@ class SpecialMypage extends RedirectSpecialPage {
 class SpecialMytalk extends RedirectSpecialPage {
 	function __construct() {
 		parent::__construct( 'Mytalk' );
-		$this->mAllowedRedirectParams = array( 'action' , 'preload' , 'editintro',
+		$this->mAllowedRedirectParams = array( 'action', 'preload', 'preloadtitle', 'editintro',
 			'section', 'oldid', 'diff', 'dir' );
 	}
 

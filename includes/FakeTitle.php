@@ -59,7 +59,6 @@ class FakeTitle extends Title {
 	function getSkinFromCssJsSubpage() { $this->error(); }
 	function isCssSubpage() { $this->error(); }
 	function isJsSubpage() { $this->error(); }
-	function userCanEditCssJsSubpage() { $this->error(); }
 	function userCanEditCssSubpage() { $this->error(); }
 	function userCanEditJsSubpage() { $this->error(); }
 	function isCascadeProtected() { $this->error(); }

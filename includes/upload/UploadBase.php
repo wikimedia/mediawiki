@@ -1,7 +1,10 @@
 <?php
 /**
- * @file
- * @ingroup upload
+ * @defgroup Upload
+ */
+
+/**
+ * @ingroup Upload
  *
  * UploadBase and subclasses are the backend of MediaWiki's file uploads.
  * The frontends are formed by ApiUpload and SpecialUpload.
@@ -12,7 +15,6 @@
  * @author Bryan Tong Minh
  * @author Michael Dale
  */
-
 abstract class UploadBase {
 	protected $mTempPath;
 	protected $mDesiredDestName, $mDestName, $mRemoveTempFile, $mSourceType;
@@ -62,6 +64,7 @@ abstract class UploadBase {
 	/**
 	 * Returns true if uploads are enabled.
 	 * Can be override by subclasses.
+	 * @return bool
 	 */
 	public static function isEnabled() {
 		global $wgEnableUploads;
@@ -80,6 +83,7 @@ abstract class UploadBase {
 	 * Can be overriden by subclasses.
 	 *
 	 * @param $user User
+	 * @return bool
 	 */
 	public static function isAllowed( $user ) {
 		foreach ( array( 'upload', 'edit' ) as $permission ) {
@@ -98,6 +102,7 @@ abstract class UploadBase {
 	 *
 	 * @param $request WebRequest
 	 * @param $type
+	 * @return null
 	 */
 	public static function createFromRequest( &$request, $type = null ) {
 		$type = $type ? $type : $request->getVal( 'wpSourceType', 'File' );
@@ -138,6 +143,7 @@ abstract class UploadBase {
 
 	/**
 	 * Check whether a request if valid for this handler
+	 * @return bool
 	 */
 	public static function isValidRequest( $request ) {
 		return false;
@@ -178,6 +184,7 @@ abstract class UploadBase {
 
 	/**
 	 * Fetch the file. Usually a no-op
+	 * @return Status
 	 */
 	public function fetchFile() {
 		return Status::newGood();
@@ -201,7 +208,7 @@ abstract class UploadBase {
 
 	/**
 	 * @param $srcPath String: the source path
-	 * @return the real path if it was a virtual URL
+	 * @return stringthe real path if it was a virtual URL
 	 */
 	function getRealPath( $srcPath ) {
 		$repo = RepoGroup::singleton()->getLocalRepo();
@@ -708,26 +715,6 @@ abstract class UploadBase {
 	}
 
 	/**
-	 * NOTE: Probably should be deprecated in favor of UploadStash, but this is sometimes
-	 * called outside that context.
-	 *
-	 * Stash a file in a temporary directory for later processing
-	 * after the user has confirmed it.
-	 *
-	 * If the user doesn't explicitly cancel or accept, these files
-	 * can accumulate in the temp directory.
-	 *
-	 * @param $saveName String: the destination filename
-	 * @param $tempSrc String: the source temporary file to save
-	 * @return String: full path the stashed file, or false on failure
-	 */
-	protected function saveTempUploadedFile( $saveName, $tempSrc ) {
-		$repo = RepoGroup::singleton()->getLocalRepo();
-		$status = $repo->storeTemp( $saveName, $tempSrc );
-		return $status;
-	}
-
-	/**
 	 * If the user does not supply all necessary information in the first upload form submission (either by accident or
 	 * by design) then we may want to stash the file temporarily, get more information, and publish the file later.
 	 *
@@ -982,6 +969,7 @@ abstract class UploadBase {
 
 	/**
 	 * @todo Replace this with a whitelist filter!
+	 * @return bool
 	 */
 	public function checkSvgScriptCallback( $element, $attribs ) {
 		$stripped = $this->stripXmlNamespace( $element );
@@ -1247,6 +1235,7 @@ abstract class UploadBase {
 
 	/**
 	 * Helper function that checks whether the filename looks like a thumbnail
+	 * @return bool
 	 */
 	public static function isThumbName( $filename ) {
 		$n = strrpos( $filename, '.' );

@@ -52,6 +52,10 @@ class LinksUpdate extends SecondaryDBDataUpdate {
                 "Please see Article::editUpdates() for an invocation example.\n" );
         }
 
+       	if ( !is_object( $title ) ) {
+   			throw new MWException( "The calling convention to LinksUpdate::__construct() has changed. " .
+				"Please see WikiPage::doEditUpdates() for an invocation example.\n" );
+    		}
         $this->mTitle = $title;
         $this->mId = $title->getArticleID();
 

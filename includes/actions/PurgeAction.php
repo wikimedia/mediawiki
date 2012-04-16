@@ -79,15 +79,15 @@ class PurgeAction extends FormAction {
 	}
 
 	protected function alterForm( HTMLForm $form ) {
-		$form->setSubmitText( wfMsg( 'confirm_purge_button' ) );
+		$form->setSubmitTextMsg( 'confirm_purge_button' );
 	}
 
 	protected function preText() {
-		return wfMessage( 'confirm-purge-top' )->parse();
+		return $this->msg( 'confirm-purge-top' )->parse();
 	}
 
 	protected function postText() {
-		return wfMessage( 'confirm-purge-bottom' )->parse();
+		return $this->msg( 'confirm-purge-bottom' )->parse();
 	}
 
 	public function onSuccess() {

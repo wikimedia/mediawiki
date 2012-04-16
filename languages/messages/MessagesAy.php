@@ -18,7 +18,6 @@ $fallback = 'es';
 $messages = array(
 # User preference toggles
 'tog-underline'               => 'Sipita siqiraña',
-'tog-highlightbroken'         => 'P\'akita sipita utt\'ayaña <a href="" class="new">ukhama</a> (maykipa: ukhama<a href="" class="internal">?</a>).',
 'tog-justify'                 => "Tanta amuyanak purapt'ayaña",
 'tog-hideminor'               => 'Jichha jaqukipawina sullka askiptawix imantaña',
 'tog-hidepatrolled'           => "Jichhnaki jaqukipawina askiptawix unch'ukita imantaña",
