@@ -92,8 +92,59 @@
 	window.addButton = toolbar.addButton;
 	window.insertTags = toolbar.insertTags;
 
-	// Explose API publicly
+	// Expose API publicly
 	mw.toolbar = toolbar;
+
+	function saveToLocalStorage( page, contents ) {
+		localStorage.setItem( wgDBname + '-savedta-' + page, contents);
+	}
+
+	function getLocalStorage( page ) {
+		return localStorage.getItem( wgDBname + '-savedta-' + page );
+	}
+
+	function removeFromLocalStorage( page ) {
+		return localStorage.removeItem( wgDBname + '-savedta-' + page );
+	}
+
+	function textAreaAutoSaveInit() {
+		// If there's no localStorage, there's no point in doing the checks or adding listeners.
+		// Also, it should only be run when editing, and not previewing.
+		if ( 'localStorage' in window && mw.config.get( 'wgAction' ) == 'edit' ) {
+			var pageName = mw.config.get( 'wgPageName' ),
+				textArea = $( '#wpTextbox1' );
+
+			textArea.change( function () {
+				saveToLocalStorage( pageName, textArea.val() );
+			} );
+
+			$( '#wpSave' ).click( function () {
+				removeFromLocalStorage( pageName );
+			} );
+
+			if ( getLocalStorage( pageName ).trim() != textArea.val().trim() ) {
+				var replaceLink = $( '<a>' ).click( function ( e ) {
+					textArea.val( getLocalStorage( pageName ) );
+					//removeFromLocalStorage( pageName );
+					e.preventDefault();
+					notif.close();
+				} ).html( mw.msg( 'textarea-replace' ) );
+
+				var discardLink = $( '<a>' ).click( function ( e ) {
+					removeFromLocalStorage( pageName );
+					e.preventDefault();
+					notif.close();
+				} ).html( mw.msg( 'textarea-discard' ) );
+
+				var node = $( '<span>' );
+				node.append( $( '<span>' ).html( mw.msg( 'textarea-savedversion' ) ) );
+				node.append( replaceLink );
+				node.append( ' · ' );
+				node.append( discardLink );
+				var notif = mw.notification.notify( node, { autoHide: false } );
+			}
+		}
+	}
 
 	$( document ).ready( function () {
 		var buttons, i, b, $iframe;
@@ -164,6 +215,7 @@
 					currentFocused = $iframe;
 				} );
 		}
+		textAreaAutoSaveInit();
 	});
 
 }( mediaWiki, jQuery ) );
