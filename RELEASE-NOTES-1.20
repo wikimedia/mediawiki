@@ -48,7 +48,7 @@ production.
 * (bug 12021) Added user talk link on Special:Listusers.
 * (bug 34445) section edit and TOC hide/show links are excluded from selection and
   copy/paste on supporting browsers.
-* (bug 34428) Fixed incorrect hash mismatch errors in the DiffHistoryBlob 
+* (bug 34428) Fixed incorrect hash mismatch errors in the DiffHistoryBlob
   history compression method.
 * (bug 34702) Localised parentheses are now used in more special pages.
 * (bug 34723) When editing a script page on a RTL wiki the textbox should be LTR.
@@ -56,7 +56,7 @@ production.
 * (bug 34863) Show deletion log extract on non-existent file pages if applicable.
 * (bug 28019) Let ?preloadtitle=foo be passed on to target of
   Special:MyPage and Special:MyTalk.
-* (bug 34929) Show the correct diff when a section edit is rejected by the spam 
+* (bug 34929) Show the correct diff when a section edit is rejected by the spam
   filter.
 * (bug 15816) Add a switch for SETting the search_path (Postgres).
 * (bug 34521) Returning to the previous page after logging in loses any array-
@@ -101,6 +101,8 @@ changes to languages because of Bugzilla reports.
 * (bug 34192) Namespace gender aliases for Albanian languages (sq & aln).
 * (bug 35541) Namespace gender aliases for Croatian (hr).
 * Mizo (lus) added.
+* (bug 36012) Space in $separatorTransformTable should be non-breaking in
+  Portuguese, Esperanto and Udmurt.
 
 === Other changes in 1.20 ===
 * The user_token field is now left empty until a user attempts to login and
