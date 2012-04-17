@@ -499,7 +499,6 @@ class Sanitizer {
 							$badtag = true;
 						} elseif ( in_array( $t, $tagstack ) &&
 						!isset( $htmlnest [$t ] ) ) {
-							print_r($t);
 							$badtag = true;
 						# Is it a self closed htmlpair ? (bug 5487)
 						} elseif ( $brace == '/>' &&
