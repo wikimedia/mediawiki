@@ -500,10 +500,6 @@ class ResourceLoader {
 			$response = $this->makeComment( $warnings ) . $response;
 		}
 
-		// Remove the output buffer and output the response
-		ob_end_clean();
-		echo $response;
-
 		// Save response to file cache unless there are errors
 		if ( isset( $fileCache ) && !$errors && !$missing ) {
 			// Cache single modules...and other requests if there are enough hits
@@ -515,6 +511,10 @@ class ResourceLoader {
 				}
 			}
 		}
+
+		// Remove the output buffer and output the response
+		ob_end_clean();
+		echo $response;
 
 		wfProfileOut( __METHOD__ );
 	}
