@@ -64,8 +64,8 @@ class ApiQuery extends ApiBase {
 	);
 
 	private $mQueryListModules = array(
-		'allimages' => 'ApiQueryAllimages',
-		'allpages' => 'ApiQueryAllpages',
+		'allimages' => 'ApiQueryAllImages',
+		'allpages' => 'ApiQueryAllPages',
 		'alllinks' => 'ApiQueryAllLinks',
 		'allcategories' => 'ApiQueryAllCategories',
 		'allusers' => 'ApiQueryAllUsers',
@@ -95,7 +95,7 @@ class ApiQuery extends ApiBase {
 	private $mQueryMetaModules = array(
 		'siteinfo' => 'ApiQuerySiteinfo',
 		'userinfo' => 'ApiQueryUserInfo',
-		'allmessages' => 'ApiQueryAllmessages',
+		'allmessages' => 'ApiQueryAllMessages',
 	);
 
 	private $mSlaveDB = null;

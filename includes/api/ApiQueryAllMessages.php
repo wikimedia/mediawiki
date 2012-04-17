@@ -29,7 +29,7 @@
  *
  * @ingroup API
  */
-class ApiQueryAllmessages extends ApiQueryBase {
+class ApiQueryAllMessages extends ApiQueryBase {
 
 	public function __construct( $query, $moduleName ) {
 		parent::__construct( $query, $moduleName, 'am' );
