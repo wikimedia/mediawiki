@@ -1088,11 +1088,9 @@ class SpecialCreateAccount extends SpecialRedirectToSpecial {
  */
 class SpecialMypage extends RedirectSpecialPage {
 	function __construct() {
+		global $wgSpecialMyPageAllowedRedirectParams;
 		parent::__construct( 'Mypage' );
-		$this->mAllowedRedirectParams = array( 'action', 'preload', 'preloadtitle', 'editintro',
-			'section', 'oldid', 'diff', 'dir',
-			// Options for action=raw; missing ctype can break JS or CSS in some browsers
-			'ctype', 'maxage', 'smaxage' );
+		$this->mAllowedRedirectParams = $wgSpecialMyPageAllowedRedirectParams;
 	}
 
 	function getRedirect( $subpage ) {
@@ -1110,9 +1108,9 @@ class SpecialMypage extends RedirectSpecialPage {
  */
 class SpecialMytalk extends RedirectSpecialPage {
 	function __construct() {
+		global $wgSpecialMyPageAllowedRedirectParams;
 		parent::__construct( 'Mytalk' );
-		$this->mAllowedRedirectParams = array( 'action', 'preload', 'preloadtitle', 'editintro',
-			'section', 'oldid', 'diff', 'dir' );
+		$this->mAllowedRedirectParams = $wgSpecialMyPageAllowedRedirectParams;
 	}
 
 	function getRedirect( $subpage ) {
