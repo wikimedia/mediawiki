@@ -917,7 +917,7 @@ class EditPage {
 			if ( !$this->content_model ) $this->content_model = $this->getTitle()->getContentModelName();
 			$handler = ContentHandler::getForModelName( $this->content_model );
 
-			return $handler->emptyContent();
+			return $handler->makeEmptyContent();
 		}
         $content = $revision->getContent();
 		return $content;
@@ -939,7 +939,7 @@ class EditPage {
             if ( !$this->content_model ) $this->content_model = $this->getTitle()->getContentModelName();
             $handler = ContentHandler::getForModelName( $this->content_model );
 
-            return $handler->emptyContent();
+            return $handler->makeEmptyContent();
         } else {
             #FIXME: nasty side-effect!
             $this->content_model = $rev->getContentModelName();
@@ -1000,13 +1000,13 @@ class EditPage {
         $handler = ContentHandler::getForTitle( $this->getTitle() );
 
         if ( $preload === '' ) {
-            return $handler->emptyContent();
+            return $handler->makeEmptyContent();
         }
 
         $title = Title::newFromText( $preload );
         # Check for existence to avoid getting MediaWiki:Noarticletext
         if ( $title === null || !$title->exists() || !$title->userCan( 'read' ) ) {
-            return $handler->emptyContent();
+            return $handler->makeEmptyContent();
         }
 
         $page = WikiPage::factory( $title );
@@ -1014,7 +1014,7 @@ class EditPage {
             $title = $page->getRedirectTarget();
             # Same as before
             if ( $title === null || !$title->exists() || !$title->userCan( 'read' ) ) {
-                return $handler->emptyContent();
+                return $handler->makeEmptyContent();
             }
             $page = WikiPage::factory( $title );
         }

@@ -256,8 +256,6 @@ abstract class ContentHandler {
     /**
      * Serializes Content object of the type supported by this ContentHandler.
      *
-     * @FIXME: bad method name: suggests it serializes a ContentHandler, while in fact it serializes a Content object
-     *
      * @abstract
      * @param Content $content the Content object to serialize
      * @param null $format the desired serialization format
@@ -267,8 +265,6 @@ abstract class ContentHandler {
 
     /**
      * Unserializes a Content object of the type supported by this ContentHandler.
-     *
-     * @FIXME: bad method name: suggests it unserializes a ContentHandler, while in fact it unserializes a Content object
      *
      * @abstract
      * @param $blob String serialized form of the content
@@ -280,9 +276,8 @@ abstract class ContentHandler {
     /**
      * Creates an empty Content object of the type supported by this ContentHandler.
      *
-     * @FIXME: bad method name: suggests it empties the content of an instance rather then creating a new empty one
      */
-    public abstract function emptyContent();
+    public abstract function makeEmptyContent();
 
     /**
      * Returns the model name that identifies the content model this ContentHandler can handle.
@@ -680,7 +675,7 @@ abstract class TextContentHandler extends ContentHandler {
 		}
 
         if ( !$result ) {
-			return $this->emptyContent();
+			return $this->makeEmptyContent();
 		}
 
         $mergedContent = $this->unserializeContent( $result, $format );
@@ -701,7 +696,7 @@ class WikitextContentHandler extends TextContentHandler {
         return new WikitextContent( $text );
     }
 
-    public function emptyContent() {
+    public function makeEmptyContent() {
         return new WikitextContent( '' );
     }
 
@@ -720,7 +715,7 @@ class JavaScriptContentHandler extends TextContentHandler {
         return new JavaScriptContent( $text );
     }
 
-    public function emptyContent() {
+    public function makeEmptyContent() {
         return new JavaScriptContent( '' );
     }
 }
@@ -735,7 +730,7 @@ class CssContentHandler extends TextContentHandler {
         return new CssContent( $text );
     }
 
-    public function emptyContent() {
+    public function makeEmptyContent() {
         return new CssContent( '' );
     }
 
