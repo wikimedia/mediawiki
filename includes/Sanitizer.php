@@ -387,9 +387,9 @@ class Sanitizer {
 			$htmlsingleonly = array( # Elements that cannot have close tags
 				'br', 'hr'
 			);
-			$htmlnest = array( # Tags that can be nested--??
+			$htmlnest = array( # Tags that can be nested directly or indirectly
 				'table', 'tr', 'td', 'th', 'div', 'blockquote', 'ol', 'ul',
-				'dl', 'font', 'big', 'small', 'sub', 'sup', 'span'
+				'li', 'dl', 'dt', 'dd', 'font', 'big', 'small', 'sub', 'sup', 'span'
 			);
 			$tabletags = array( # Can only appear inside table, we will close them
 				'td', 'th', 'tr',
@@ -499,6 +499,7 @@ class Sanitizer {
 							$badtag = true;
 						} elseif ( in_array( $t, $tagstack ) &&
 						!isset( $htmlnest [$t ] ) ) {
+							print_r($t);
 							$badtag = true;
 						# Is it a self closed htmlpair ? (bug 5487)
 						} elseif ( $brace == '/>' &&
@@ -510,6 +511,10 @@ class Sanitizer {
 						} elseif ( isset( $htmlsingle[$t] ) ) {
 							# Hack to not close $htmlsingle tags
 							$brace = null;
+							# Still need to push this optionally-closed tag to
+							# the tag stack so that we can match end tags
+							# instead of marking them as bad.
+							array_push( $tagstack, $t );
 						} elseif ( isset( $tabletags[$t] )
 						&& in_array( $t, $tagstack ) ) {
 							// New table tag but forgot to close the previous one
