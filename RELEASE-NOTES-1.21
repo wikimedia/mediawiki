@@ -49,7 +49,8 @@ production.
   to support Squid configured in forward-proxy mode, set 
   $wgSquidPurgeUseHostHeader to false.
 * (bug 37020) sql.php with readline eats semicolon
-
+* (bug 11748) Properly handle optionally-closed HTML tags when Tidy is
+  disabled, and don't wrap HTML-syntax definition lists in paragraphs.
 
 === API changes in 1.21 ===
 * prop=revisions can now report the contentmodel and contentformat, see docs/contenthandler.txt

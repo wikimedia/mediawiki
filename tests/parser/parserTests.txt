@@ -1202,7 +1202,6 @@ Definition lists: colon in HTML attribute
 
 !! end
 
-
 !! test
 Definition lists: self-closed tag
 !! input
@@ -1215,8 +1214,6 @@ Definition lists: self-closed tag
 
 !! test
 Bug 11748: Literal closing tags
-!! options
-disabled
 !! input
 <dl>
 <dt>test 1</dt>
@@ -1231,6 +1228,7 @@ disabled
 <dt>test 2</dt>
 <dd>test test test test test</dd>
 </dl>
+
 !! end
 
 !! test
@@ -1253,6 +1251,7 @@ Definition and unordered list using wiki syntax nested in unordered list using h
 !! end
 
 !! test
+
 Definition list with empty definition and following paragraph
 !! input
 ; term:
@@ -1262,6 +1261,23 @@ Paragraph text
 </dd></dl>
 <p>Paragraph text
 </p>
+!! end
+
+!! test
+Nested definition lists using html syntax
+!! input
+<dl><dd>
+<dl>
+<dd>Foo</dd>
+</dl>
+</dd></dl>
+!! result
+<dl><dd>
+<dl>
+<dd>Foo</dd>
+</dl>
+</dd></dl>
+
 !! end
 
 !! test
