@@ -3,7 +3,6 @@
 /**
  * A content object represents page content, e.g. the text to show on a page.
  * Content objects have no knowledge about how they relate to Wiki pages.
- * Content objects are imutable.
  *
  */
 abstract class Content {
@@ -171,8 +170,12 @@ abstract class Content {
      *
      * Will returns false if $that is null.
      * Will return true if $that === $this.
+     * Will return false if $that->getModleName() != $this->getModelName().
      *
-     * Returns false if this Content object uses a different content model than the
+     * Implementations should be careful to make equals() transitive and reflexive:
+     *
+     * * $a->equals( $b ) <=> $b->equals( $b )
+     * * $a->equals( $b ) &&  $b->equals( $c ) ==> $a->equals( $c )
      *
      * @param Content $that the Content object to compare to
      * @return bool true if this Content object is euzqla to $that, false otherwise.
@@ -196,6 +199,22 @@ abstract class Content {
 
         return $this->getNativeData() === $that->getNativeData();
     }
+
+    /**
+     * Return a copy of this Content object. The following must be true for the object returned
+     * if $copy = $original->copy()
+     *
+     * * get_class($original) === get_class($copy)
+     * * $original->getModelName() === $copy->getModelName()
+     * * $original->equals( $copy )
+     *
+     * If and only if the Content object is imutable, the copy() method can and should
+     * return $this. That is,  $copy === $original may be true, but only for imutable content
+     * objects.
+     *
+     * @return a copy of this Content object
+     */
+    public abstract function copy( );
 
     /**
      * Returns true if this content is countable as a "real" wiki page, provided
@@ -316,7 +335,6 @@ abstract class Content {
         return $this;
     }
 
-    # TODO: minimize special cases for CSS/JS; how to handle extra message for JS/CSS previews??
     # TODO: handle ImagePage and CategoryPage
     # TODO: hook into dump generation to serialize and record model and format!
 
@@ -337,7 +355,9 @@ abstract class Content {
 }
 
 /**
- * Content object implementation for representing flat text. The
+ * Content object implementation for representing flat text.
+ *
+ * TextContent instances are imutable
  */
 abstract class TextContent extends Content {
 
@@ -345,6 +365,10 @@ abstract class TextContent extends Content {
         parent::__construct( $modelName );
 
         $this->mText = $text;
+    }
+
+    public function copy() {
+        return $this; #NOTE: this is ok since TextContent are imutable.
     }
 
     public function getTextForSummary( $maxlength = 250 ) {
@@ -362,7 +386,7 @@ abstract class TextContent extends Content {
     /**
      * returns the content's nominal size in bogo-bytes.
      */
-    public function getSize( ) { #FIXME: use! replace strlen in WikiPage.
+    public function getSize( ) {
         $text = $this->getNativeData( );
         return strlen( $text );
     }
