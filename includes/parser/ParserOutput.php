@@ -463,28 +463,15 @@ class ParserOutput extends CacheTime {
 
     /**
      * Returns any SecondaryDataUpdate jobs to be executed in order to store secondary information
-     * extracted from the page's content.
-     *
-     * This does not automatically include an LinksUpdate object for the links in this ParserOutput instance.
-     * Use getLinksUpdateAndOtherUpdates() if you want that.
-     *
-     * @return array an array of instances of SecondaryDataUpdate
-     */
-    public function getSecondaryDataUpdates() {
-        return $this->mSecondaryDataUpdates;
-    }
-
-    /**
-     * Conveniance method that returns any SecondaryDataUpdate jobs to be executed in order
-     * to store secondary information extracted from the page's content, including the LinksUpdate object
-     * for all links stopred in this ParserOutput object.
+     * extracted from the page's content, includingt a LinksUpdate object for all links stopred in
+     * this ParserOutput object.
      *
      * @param $title Title of the page we're updating. If not given, a title object will be created based on $this->getTitleText()
      * @param $recursive Boolean: queue jobs for recursive updates?
      *
      * @return array an array of instances of SecondaryDataUpdate
      */
-    public function getLinksUpdateAndOtherUpdates( Title $title = null, $recursive = true ) {
+    public function getSecondaryDataUpdates( Title $title = null, $recursive = true ) {
         if ( empty( $title ) ) {
             $title = Title::newFromText( $this->getTitleText() );
         }
