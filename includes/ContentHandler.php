@@ -85,7 +85,7 @@ abstract class ContentHandler {
         }
 
         $handler = ContentHandler::getForModelName( $modelName );
-        return $handler->unserialize( $text, $format );
+        return $handler->unserializeContent( $text, $format );
     }
 
     /**
@@ -263,7 +263,7 @@ abstract class ContentHandler {
      * @param null $format the desired serialization format
      * @return String serialized form of the content
      */
-    public abstract function serialize( Content $content, $format = null );
+    public abstract function serializeContent( Content $content, $format = null );
 
     /**
      * Unserializes a Content object of the type supported by this ContentHandler.
@@ -275,7 +275,7 @@ abstract class ContentHandler {
      * @param null $format the format used for serialization
      * @return Content the Content object created by deserializing $blob
      */
-    public abstract function unserialize( $blob, $format = null );
+    public abstract function unserializeContent( $blob, $format = null );
 
     /**
      * Creates an empty Content object of the type supported by this ContentHandler.
@@ -306,7 +306,7 @@ abstract class ContentHandler {
     }
 
     /**
-     * Returns a list of serialization formats supported by the serialize() and unserialize() methods of
+     * Returns a list of serialization formats supported by the serializeContent() and unserializeContent() methods of
      * this ContentHandler.
      *
      * @return array of serialization formats as MIME type like strings
@@ -647,7 +647,7 @@ abstract class TextContentHandler extends ContentHandler {
         parent::__construct( $modelName, $formats );
     }
 
-    public function serialize( Content $content, $format = null ) {
+    public function serializeContent( Content $content, $format = null ) {
         $this->checkFormat( $format );
         return $content->getNativeData();
     }
@@ -669,9 +669,9 @@ abstract class TextContentHandler extends ContentHandler {
 
         $format = $this->getDefaultFormat();
 
-        $old = $this->serialize( $oldContent, $format );
-        $mine = $this->serialize( $myContent, $format );
-        $yours = $this->serialize( $yourContent, $format );
+        $old = $this->serializeContent( $oldContent, $format );
+        $mine = $this->serializeContent( $myContent, $format );
+        $yours = $this->serializeContent( $yourContent, $format );
 
         $ok = wfMerge( $old, $mine, $yours, $result );
 
@@ -683,7 +683,7 @@ abstract class TextContentHandler extends ContentHandler {
 			return $this->emptyContent();
 		}
 
-        $mergedContent = $this->unserialize( $result, $format );
+        $mergedContent = $this->unserializeContent( $result, $format );
         return $mergedContent;
     }
 
@@ -695,7 +695,7 @@ class WikitextContentHandler extends TextContentHandler {
         parent::__construct( $modelName, array( 'application/x-wikitext' ) ); #FIXME: mime
     }
 
-    public function unserialize( $text, $format = null ) {
+    public function unserializeContent( $text, $format = null ) {
         $this->checkFormat( $format );
 
         return new WikitextContent( $text );
@@ -716,7 +716,7 @@ class JavaScriptContentHandler extends TextContentHandler {
         parent::__construct( $modelName, array( 'text/javascript' ) ); #XXX: or use $wgJsMimeType? this is for internal storage, not HTTP...
     }
 
-    public function unserialize( $text, $format = null ) {
+    public function unserializeContent( $text, $format = null ) {
         return new JavaScriptContent( $text );
     }
 
@@ -731,7 +731,7 @@ class CssContentHandler extends TextContentHandler {
         parent::__construct( $modelName, array( 'text/css' ) );
     }
 
-    public function unserialize( $text, $format = null ) {
+    public function unserializeContent( $text, $format = null ) {
         return new CssContent( $text );
     }
 

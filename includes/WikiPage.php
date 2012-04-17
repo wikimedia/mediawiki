@@ -1384,7 +1384,7 @@ class WikiPage extends Page {
 
             if ( $txt !== $content_text ) {
                 # if the text changed, unserialize the new version to create an updated Content object.
-                $content = $content->getContentHandler()->unserialize( $txt );
+                $content = $content->getContentHandler()->unserializeContent( $txt );
             }
         }
 
@@ -2627,8 +2627,8 @@ class WikiPage extends Page {
 		# NOTE: stub for backwards-compatibility. assumes the given text is wikitext. will break horribly if it isn't.
 
         $handler = ContentHandler::getForModelName( CONTENT_MODEL_WIKITEXT );
-        $oldContent = $oldtext ? $handler->unserialize( $oldtext ) : null;
-        $newContent = $newtext ? $handler->unserialize( $newtext ) : null;
+        $oldContent = $oldtext ? $handler->unserializeContent( $oldtext ) : null;
+        $newContent = $newtext ? $handler->unserializeContent( $newtext ) : null;
 
         return $handler->getAutosummary( $oldContent, $newContent, $flags );
 	}

@@ -148,13 +148,13 @@ abstract class Content {
     /**
      * Conveniance method for serializing this Content object.
      *
-     * Shorthand for $this->getContentHandler()->serialize( $this, $format )
+     * Shorthand for $this->getContentHandler()->serializeContent( $this, $format )
      *
      * @param null|String $format the desired serialization format (or null for the default format).
      * @return String serialized form of this Content object
      */
 	public function serialize( $format = null ) {
-		return $this->getContentHandler()->serialize( $this, $format );
+		return $this->getContentHandler()->serializeContent( $this, $format );
 	}
 
     /**

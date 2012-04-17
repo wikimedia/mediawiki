@@ -5830,7 +5830,7 @@ $wgNamespaceContentModels = array();
  *
  * * 'ignore': return null
  * * 'fail': throw an MWException
- * * 'serialize': serialize to default format
+ * * 'serializeContent': serializeContent to default format
  */
 $wgContentHandlerTextFallback = 'ignore';
 
