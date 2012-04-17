@@ -1089,10 +1089,7 @@ class SpecialCreateAccount extends SpecialRedirectToSpecial {
 class SpecialMypage extends RedirectSpecialPage {
 	function __construct() {
 		parent::__construct( 'Mypage' );
-		$this->mAllowedRedirectParams = array( 'action', 'preload', 'preloadtitle', 'editintro',
-			'section', 'oldid', 'diff', 'dir',
-			// Options for action=raw; missing ctype can break JS or CSS in some browsers
-			'ctype', 'maxage', 'smaxage' );
+ 		$this->mAllowedRedirectParams = SpecialMypage::getAllowedRedirectParams();
 	}
 
 	function getRedirect( $subpage ) {
@@ -1102,6 +1099,22 @@ class SpecialMypage extends RedirectSpecialPage {
 			return Title::makeTitle( NS_USER, $this->getUser()->getName() );
 		}
 	}
+
+	static function getAllowedRedirectParams() {
+	    return array( 'action',
+		    'redirect', 'rdfrom',
+		    // Options for preloaded edits
+		    'preload', 'editintro', 'preloadtitle', 'summary',
+		    // Options for overriding user settings
+		    'preview', 'internaledit', 'externaledit', 'mode',
+		    // Options for history/diffs
+		    'section', 'oldid', 'diff', 'dir',
+		    'limit', 'offset', 'feed',
+		    // Misc options
+		    'redlink', 'debug', 'stable'
+		    // Options for action=raw; missing ctype can break JS or CSS in some browsers
+		    'ctype', 'maxage', 'smaxage' );
+        }
 }
 
 /**
@@ -1111,8 +1124,7 @@ class SpecialMypage extends RedirectSpecialPage {
 class SpecialMytalk extends RedirectSpecialPage {
 	function __construct() {
 		parent::__construct( 'Mytalk' );
-		$this->mAllowedRedirectParams = array( 'action', 'preload', 'preloadtitle', 'editintro',
-			'section', 'oldid', 'diff', 'dir' );
+ 		$this->mAllowedRedirectParams = SpecialMypage::getAllowedRedirectParams();
 	}
 
 	function getRedirect( $subpage ) {
