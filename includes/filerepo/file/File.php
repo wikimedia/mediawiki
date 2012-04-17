@@ -864,7 +864,6 @@ abstract class File {
 					$thumb = $this->handler->getTransform( $this, $tmpThumbPath, $thumbUrl, $params );
 				}
 			} elseif ( $this->repo && $thumb->hasFile() && !$thumb->fileIsSource() ) {
-				$backend = $this->repo->getBackend();
 				// Copy the thumbnail from the file system into storage...
 				$status = $this->repo->quickImport( $tmpThumbPath, $thumbPath );
 				if ( $status->isOK() ) {
