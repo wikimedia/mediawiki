@@ -362,7 +362,7 @@ abstract class ContentHandler {
      * Returns overrides for action handlers.
      * Classes listed here will be used instead of the default one when
      * (and only when) $wgActions[$action] === true. This allows subclasses
-     * to override the default actiuon handlers.
+     * to override the default action handlers.
      *
      * @return Array
      */
