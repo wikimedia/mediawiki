@@ -2794,7 +2794,9 @@ HTML
 
                 #XXX: For CSS/JS pages, we should have called the ShowRawCssJs hook here. But it's now deprecated, so never mind
                 $content = $content->preSaveTransform( $this->mTitle, $wgUser, $parserOptions );
-                $parserOutput = $content->getParserOutput( $this->mTitle, null, $parserOptions );
+
+				// TODO: might be a saner way to get a meaningfull context here?
+                $parserOutput = $content->getParserOutput( $this->getArticle()->getContext(), null, $parserOptions );
 
                 $previewHTML = $parserOutput->getText();
                 $this->mParserOutput = $parserOutput;

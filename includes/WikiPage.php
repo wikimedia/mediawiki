@@ -1687,7 +1687,11 @@ class WikiPage extends Page {
         $edit->format = $serialization_format;
 
 		$edit->popts = $this->makeParserOptions( 'canonical' );
-		$edit->output = $edit->pstContent->getParserOutput( $this->mTitle, $revid, $edit->popts );
+
+		// TODO: is there no better way to obtain a context here?
+		$context = RequestContext::getMain();
+		$context->setTitle( $this->mTitle );
+		$edit->output = $edit->pstContent->getParserOutput( $context, $revid, $edit->popts );
 
         $edit->newContent = $content;
 		$edit->oldContent = $this->getContent( Revision::RAW );
@@ -3088,7 +3092,8 @@ class PoolWorkArticleView extends PoolCounterWork {
 		}
 
 		$time = - microtime( true );
-		$this->parserOutput = $content->getParserOutput( $this->page->getTitle(), $this->revid, $this->parserOptions );
+		// TODO: page might not have this method? Hard to tell what page is supposed to be here...
+		$this->parserOutput = $content->getParserOutput( $this->page->getContext(), $this->revid, $this->parserOptions );
 		$time += microtime( true );
 
 		# Timing hack

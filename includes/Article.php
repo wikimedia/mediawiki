@@ -638,7 +638,7 @@ class Article extends Page {
 							# Viewing a redirect page (e.g. with parameter redirect=no)
 							$wgOut->addHTML( $this->viewRedirect( $rt ) );
 							# Parse just to get categories, displaytitle, etc.
-							$this->mParserOutput = $content->getParserOutput( $this->getTitle(), $oldid, $parserOptions, false );
+							$this->mParserOutput = $content->getParserOutput( $this->getContext(), $oldid, $parserOptions, false );
 							$wgOut->addParserOutputNoText( $this->mParserOutput );
 							$outputDone = true;
 						}
