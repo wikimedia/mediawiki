@@ -744,7 +744,7 @@ class Article extends Page {
 		$oldid = $this->getOldID();
 
 		$contentHandler = ContentHandler::getForTitle( $this->getTitle() );
-		$de = $contentHandler->getDifferenceEngine( $this->getContext(), $oldid, $diff, $rcid, $purge, $unhide );
+		$de = $contentHandler->createDifferenceEngine( $this->getContext(), $oldid, $diff, $rcid, $purge, $unhide );
 
 		// DifferenceEngine directly fetched the revision:
 		$this->mRevIdFetched = $de->mNewid;

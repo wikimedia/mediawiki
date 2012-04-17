@@ -36,7 +36,7 @@ class ApiComparePages extends ApiBase {
 		$rev2 = $this->revisionOrTitleOrId( $params['torev'], $params['totitle'], $params['toid'] );
 
         $contentHandler = ContentHandler::getForModelName( $rev1->getContentModelName() );
-        $de = $contentHandler->getDifferenceEngine( $this->getContext(),
+        $de = $contentHandler->createDifferenceEngine( $this->getContext(),
 			$rev1,
 			$rev2,
 			null, // rcid

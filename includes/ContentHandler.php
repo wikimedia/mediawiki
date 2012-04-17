@@ -420,9 +420,8 @@ abstract class ContentHandler {
      * @param $unhide boolean If set, allow viewing deleted revs
 	 *
 	 * @return DifferenceEngine
-     * @todo rename to createDifferenceEngine for consistency.
      */
-    public function getDifferenceEngine( IContextSource $context, $old = 0, $new = 0, $rcid = 0, #FIMXE: use everywhere!
+    public function createDifferenceEngine( IContextSource $context, $old = 0, $new = 0, $rcid = 0, #FIMXE: use everywhere!
                                          $refreshCache = false, $unhide = false ) {
 
         $this->checkModelName( $context->getTitle()->getModelName() );

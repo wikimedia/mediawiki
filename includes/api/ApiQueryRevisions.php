@@ -506,10 +506,10 @@ class ApiQueryRevisions extends ApiQueryBase {
                 $handler = ContentHandler::getForTitle( $title );
 
 				if ( !is_null( $this->difftotext ) ) {
-					$engine = $handler->getDifferenceEngine( $context );
+					$engine = $handler->createDifferenceEngine( $context );
 					$engine->setText( $text, $this->difftotext ); #FIXME: use content objects!...
 				} else {
-					$engine = $handler->getDifferenceEngine( $context, $revision->getID(), $this->diffto );
+					$engine = $handler->createDifferenceEngine( $context, $revision->getID(), $this->diffto );
 					$vals['diff']['from'] = $engine->getOldid();
 					$vals['diff']['to'] = $engine->getNewid();
 				}

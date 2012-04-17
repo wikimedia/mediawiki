@@ -2598,7 +2598,7 @@ HTML
 			$content2 = ContentHandler::makeContent( $this->textbox2, $this->getTitle(), $this->content_model, $this->content_format ); #XXX: handle parse errors?
 
 			$handler = ContentHandler::getForModelName( $this->content_model );
-			$de = $handler->getDifferenceEngine( $this->mArticle->getContext() );
+			$de = $handler->createDifferenceEngine( $this->mArticle->getContext() );
 			$de->setContent( $content2, $content1 );
 			$de->showDiff( wfMsgExt( 'yourtext', 'parseinline' ), wfMsg( 'storedversion' ) );
 
