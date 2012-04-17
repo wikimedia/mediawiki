@@ -718,6 +718,10 @@ abstract class File {
 		list( $thumbExt, $thumbMime ) = $this->handler->getThumbType(
 			$extension, $this->getMimeType(), $params );
 		$thumbName = $this->handler->makeParamString( $params ) . '-' . $name;
+		if ( strlen( $thumbName ) + strlen( $thumbExt ) > 254 ) {
+			// Hardcode max filename length to 255 characters - this is the limit for most filesystems
+			$thumbName = substr( $thumbName, 0, 254 - strlen( $thumbExt ) );
+		}
 		if ( $thumbExt != $extension ) {
 			$thumbName .= ".$thumbExt";
 		}
