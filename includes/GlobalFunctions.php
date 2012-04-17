@@ -2656,6 +2656,8 @@ function wfMkdirParents( $dir, $mode = null, $caller = null ) {
 	wfRestoreWarnings();
 
 	if( !$ok ) {
+		$mode = sprintf("0%o", 0777); // Transform the mode into octal, which is the commonly used format.
+
 		// PHP doesn't report the path in its warning message, so add our own to aid in diagnosis.
 		trigger_error( __FUNCTION__ . ": failed to mkdir \"$dir\" mode $mode", E_USER_WARNING );
 	}
