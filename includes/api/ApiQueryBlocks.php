@@ -87,6 +87,7 @@ class ApiQueryBlocks extends ApiQueryBase {
 			$this->addWhereFld( 'ipb_address', $this->usernames );
 			$this->addWhereFld( 'ipb_auto', 0 );
 		}
+		$db = $this->getDB();
 		if ( isset( $params['ip'] ) ) {
 			list( $ip, $range ) = IP::parseCIDR( $params['ip'] );
 			if ( $ip && $range ) {
@@ -100,7 +101,6 @@ class ApiQueryBlocks extends ApiQueryBase {
 			}
 			$prefix = substr( $lower, 0, 4 );
 
-			$db = $this->getDB();
 			$this->addWhere( array(
 				'ipb_range_start' . $db->buildLike( $prefix, $db->anyString() ),
 				"ipb_range_start <= '$lower'",
