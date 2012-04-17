@@ -207,7 +207,7 @@ abstract class Content {
     public abstract function isCountable( $hasLinks = null ) ;
 
     /**
-     * @param null|Title $title
+     * @param IContextSource $context
      * @param null $revId
      * @param null|ParserOptions $options
      * @param Boolean $generateHtml whether to generate Html (default: true). If false,
@@ -216,7 +216,7 @@ abstract class Content {
      *
      * @return ParserOutput
      */
-    public abstract function getParserOutput( Title $title = null, $revId = null, ParserOptions $options = NULL, $generateHtml = true );
+    public abstract function getParserOutput( IContextSource $context, $revId = null, ParserOptions $options = NULL, $generateHtml = true );
 
     /**
      * Construct the redirect destination from this content and return an
@@ -420,7 +420,7 @@ abstract class TextContent extends Content {
      *
      * @return ParserOutput representing the HTML form of the text
      */
-    public function getParserOutput( Title $title = null, $revId = null, ParserOptions $options = null, $generateHtml = true ) {
+    public function getParserOutput( IContextSource $context, $revId = null, ParserOptions $options = null, $generateHtml = true ) {
         # generic implementation, relying on $this->getHtml()
 
         if ( $generateHtml ) $html = $this->getHtml( $options );
@@ -458,18 +458,25 @@ class WikitextContent extends TextContent {
     }
 
     /**
-     * Returns a ParserOutput object reesulting from parsing the content's text using $wgParser
-     *
-     * @return ParserOutput representing the HTML form of the text
-     */
-    public function getParserOutput( Title $title = null, $revId = null, ParserOptions $options = null, $generateHtml = true ) {
+	 * Returns a ParserOutput object resulting from parsing the content's text using $wgParser.
+	 *
+	 * @since WikiData1
+	 *
+	 * @param IContextSource|null $context
+	 * @param null $revId
+	 * @param null|ParserOptions $options
+	 * @param bool $generateHtml
+	 *
+	 * @return ParserOutput representing the HTML form of the text
+	 */
+    public function getParserOutput( IContextSource $context = null, $revId = null, ParserOptions $options = null, $generateHtml = true ) {
         global $wgParser;
 
         if ( !$options ) {
             $options = $this->getDefaultParserOptions();
         }
 
-        $po = $wgParser->parse( $this->mText, $title, $options, true, true, $revId );
+        $po = $wgParser->parse( $this->mText, $context->getTitle(), $options, true, true, $revId );
 
         return $po;
     }
