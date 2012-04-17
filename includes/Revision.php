@@ -508,7 +508,7 @@ class Revision {
             # if we have a content object, serialize it, overriding mText
             if ( !empty( $row['content'] ) ) {
                 $handler = $this->getContentHandler();
-                $this->mText = $handler->serialize( $row['content'], $this->getContentFormat() );
+                $this->mText = $handler->serializeContent( $row['content'], $this->getContentFormat() );
             }
 		} else {
 			throw new MWException( 'Revision constructor passed invalid row format.' );
@@ -841,7 +841,7 @@ class Revision {
                 $this->mText = $this->loadText();
             }
 
-            $this->mContent = is_null( $this->mText ) ? null : $handler->unserialize( $this->mText, $format );
+            $this->mContent = is_null( $this->mText ) ? null : $handler->unserializeContent( $this->mText, $format );
         }
 
         return $this->mContent;
