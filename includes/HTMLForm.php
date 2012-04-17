@@ -1306,6 +1306,10 @@ class HTMLTextAreaField extends HTMLFormField {
 			$attribs['readonly'] = 'readonly';
 		}
 
+		if ( !empty( $this->mParams['placeholder'] ) ) {
+			$attribs['placeholder'] = $this->mParams['placeholder'];
+		}
+
 		foreach ( array( 'required', 'autofocus' ) as $param ) {
 			if ( isset( $this->mParams[$param] ) ) {
 				$attribs[$param] = '';
