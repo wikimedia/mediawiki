@@ -497,9 +497,9 @@ abstract class ContentHandler {
         }
 
         // Blanking autosummaries
-        if ( $oldContent->getSize() > 0 && $newContent->getSize() == 0 ) {
+        if ( !empty( $oldContent ) && $oldContent->getSize() > 0 && $newContent->getSize() == 0 ) {
             return wfMsgForContent( 'autosumm-blank' );
-        } elseif ( $oldContent->getSize() > 10 * $newContent->getSize() && $newContent->getSize() < 500 ) {
+        } elseif ( !empty( $oldContent ) && $oldContent->getSize() > 10 * $newContent->getSize() && $newContent->getSize() < 500 ) {
             // Removing more than 90% of the article
 
             $truncatedtext = $newContent->getTextForSummary(
