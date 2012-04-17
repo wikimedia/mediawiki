@@ -5021,6 +5021,29 @@ $wgPagePropLinkInvalidations = array(
 	'hiddencat' => 'categorylinks',
 );
 
+/**
+ * Determines which GET parameters to Special:MyPage and Special:MyTalk will be passed on.
+ * 
+ * Allows extensions which add GET parameters like FlaggedRevs to retain those parameters
+ * when redirecting using these special pages. Use like this:
+ *
+ * $wgSpecialMyPageAllowedRedirectParams[] = 'stable';
+ */
+$wgSpecialMyPageAllowedRedirectParams = array(
+		'action',
+		'redirect', 'rdfrom',
+		# Options for preloaded edits
+		'preload', 'editintro', 'preloadtitle', 'summary',
+		# Options for overriding user settings
+		'preview', 'internaledit', 'externaledit', 'mode',
+		# Options for history/diffs
+		'section', 'oldid', 'diff', 'dir',
+		'limit', 'offset', 'feed',
+		# Misc options
+		'redlink', 'debug',
+		# Options for action=raw; missing ctype can break JS or CSS in some browsers
+		'ctype', 'maxage', 'smaxage' );
+
 /** @} */ # End extensions }
 
 /*************************************************************************//**
