@@ -121,11 +121,26 @@ class WikiPage extends Page {
 	 * @return WikiPage|null
 	 */
 	public static function newFromID( $id ) {
-		$t = Title::newFromID( $id );
-		if ( $t ) {
-			return self::factory( $t );
+		$dbr = wfGetDB( DB_SLAVE );
+		$row = $dbr->selectRow( 'page', self::selectFields(), array( 'page_id' => $id ), __METHOD__ );
+		if ( !$row ) {
+			return null;
 		}
-		return null;
+		return self::newFromRow( $row );
+	}
+
+	/**
+	 * Constructor from a database row
+	 *
+	 * @since 1.20
+	 * @param $row object: database row containing at least fields returned
+	 *        by selectFields().
+	 * @return WikiPage
+	 */
+	public static function newFromRow( $row ) {
+		$page = self::factory( Title::newFromRow( $row ) );
+		$page->loadFromRow( $row );
+		return $page;
 	}
 
 	/**
@@ -256,6 +271,17 @@ class WikiPage extends Page {
 			}
 		}
 
+		$this->loadFromRow( $data );
+	}
+
+	/**
+	 * Load the object from a database row
+	 *
+	 * @since 1.20
+	 * @param $data object: database row containing at least fields returned
+	 *        by selectFields()
+	 */
+	public function loadFromRow( $data ) {
 		$lc = LinkCache::singleton();
 
 		if ( $data ) {
