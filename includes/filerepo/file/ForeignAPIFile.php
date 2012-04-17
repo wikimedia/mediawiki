@@ -247,8 +247,8 @@ class ForeignAPIFile extends File {
 		}
 
 		# Delete the thumbnails
-		$this->repo->cleanupBatch( $purgeList, FileRepo::SKIP_LOCKING );
+		$this->repo->quickPurgeBatch( $purgeList );
 		# Clear out the thumbnail directory if empty
-		$this->repo->getBackend()->clean( array( 'dir' => $dir ) );
+		$this->repo->cleanDir( $dir );
 	}
 }
