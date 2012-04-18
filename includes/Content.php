@@ -212,7 +212,7 @@ abstract class Content {
      * return $this. That is,  $copy === $original may be true, but only for imutable content
      * objects.
      *
-     * @return a copy of this Content object
+     * @return Content. A copy of this object
      */
     public abstract function copy( );
 
@@ -222,6 +222,7 @@ abstract class Content {
      *
      * @param $hasLinks Bool: if it is known whether this content contains links, provide this information here,
      *                        to avoid redundant parsing to find out.
+	 * @return boolean
      */
     public abstract function isCountable( $hasLinks = null ) ;
 

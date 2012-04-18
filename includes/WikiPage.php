@@ -448,7 +448,7 @@ class WikiPage extends Page {
         if ( $this->mLastRevision ) {
             return $this->mLastRevision->getContent( $audience );
         }
-        return false;
+        return null;
     }
 
 	/**
