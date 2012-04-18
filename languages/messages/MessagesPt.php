@@ -95,7 +95,7 @@ $dateFormats = array(
 	'dmy both' => 'H\hi\m\i\n \d\e j \d\e F \d\e Y',
 );
 
-$separatorTransformTable = array( ',' => ' ', '.' => ',' );
+$separatorTransformTable = array( ',' => "\xc2\xa0", '.' => ',' );
 $linkTrail = '/^([áâãàéêẽçíòóôõq̃úüűũa-z]+)(.*)$/sDu'; # Bug 21168, 27633
 
 $specialPageAliases = array(

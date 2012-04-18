@@ -40,7 +40,7 @@ $namespaceGenderAliases = array();
 
 $linkTrail = '/^([a-zа-яёӝӟӥӧӵ“»]+)(.*)$/sDu';
 $fallback8bitEncoding = 'windows-1251';
-$separatorTransformTable = array( ',' => ' ', '.' => ',' );
+$separatorTransformTable = array( ',' => "\xc2\xa0", '.' => ',' );
 
 $messages = array(
 # User preference toggles

@@ -96,7 +96,7 @@ $dateFormats = array(
 
 );
 
-$separatorTransformTable = array( ',' => ' ', '.' => ',' );
+$separatorTransformTable = array( ',' => "\xc2\xa0", '.' => ',' );
 
 $specialPageAliases = array(
 	'Activeusers'               => array( 'Usuários_ativos' ),
