@@ -2271,6 +2271,8 @@ class WikiPage extends Page {
 
 		$this->updateCategoryCounts( array(), $cats );
 
+        #TODO: move this to an Update object!
+
 		# If using cascading deletes, we can skip some explicit deletes
 		if ( !$dbw->cascadingDeletes() ) {
 			$dbw->delete( 'revision', array( 'rev_page' => $id ), __METHOD__ );

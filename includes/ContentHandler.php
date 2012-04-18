@@ -605,6 +605,9 @@ abstract class ContentHandler {
         return $reason;
     }
 
+    #TODO: getSecondaryUpdatesForDeletion( Content ) returns an array of SecondaryDataUpdate objects
+    #... or do that in the Content class?
+
     /**
      * Get the Content object that needs to be saved in order to undo all revisions
      * between $undo and $undoafter. Revisions must belong to the same page,
