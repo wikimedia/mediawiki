@@ -140,6 +140,22 @@ class Language {
 	);
 
 	/**
+	 * @since 1.20
+	 * @var array
+	 */
+	static public $durationIntervals = array(
+		'millennia' => 31557600000,
+		'centuries' => 3155760000,
+		'decades' => 315576000,
+		'years' => 31557600, // 86400 * 365.25
+		'weeks' => 604800,
+		'days' => 86400,
+		'hours' => 3600,
+		'minutes' => 60,
+		'seconds' => 1,
+	);
+
+	/**
 	 * Get a cached language object for a given language code
 	 * @param $code String
 	 * @return Language
@@ -1906,6 +1922,63 @@ class Language {
 		}
 		$df = $this->getDateFormatString( 'both', $this->dateFormat( $format ) );
 		return $this->sprintfDate( $df, $ts );
+	}
+
+	/**
+	 * Takes a number of seconds and turns it into a text using values such as hours and minutes.
+	 *
+	 * @since 1.20
+	 *
+	 * @param integer $seconds The amount of seconds.
+	 * @param array $chosenIntervals The intervals to enable.
+	 *
+	 * @return string
+	 */
+	public function formatDuration( $seconds, array $chosenIntervals = array() ) {
+		$intervals = $this->getDurationIntervals( $seconds, $chosenIntervals );
+
+		$segments = array();
+
+		foreach ( $intervals as $intervalName => $intervalValue ) {
+			$message = new Message( 'duration-' . $intervalName, array( $intervalValue ) );
+			$segments[] = $message->inLanguage( $this )->escaped();
+		}
+
+		return $this->listToText( $segments );
+	}
+
+	/**
+	 * Takes a number of seconds and returns an array with a set of corresponding intervals.
+	 * For example 65 will be turned into array( minutes => 1, seconds => 5 ).
+	 *
+	 * @since 1.20
+	 *
+	 * @param integer $seconds The amount of seconds.
+	 * @param array $chosenIntervals The intervals to enable.
+	 *
+	 * @return array
+	 */
+	public function getDurationIntervals( $seconds, array $chosenIntervals = array() ) {
+		if ( empty( $chosenIntervals ) ) {
+			$chosenIntervals = array( 'millennia', 'centuries', 'decades', 'years', 'days', 'hours', 'minutes', 'seconds' );
+		}
+
+		$intervals = array_intersect_key( self::$durationIntervals, array_flip( $chosenIntervals ) );
+		$sortedNames = array_keys( $intervals );
+		$smallestInterval = array_pop( $sortedNames );
+
+		$segments = array();
+
+		foreach ( $intervals as $name => $length ) {
+			$value = floor( $seconds / $length );
+
+			if ( $value > 0 || ( $name == $smallestInterval && empty( $segments ) ) ) {
+				$seconds -= $value * $length;
+				$segments[$name] = $value;
+			}
+		}
+
+		return $segments;
 	}
 
 	/**
