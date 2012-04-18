@@ -21,8 +21,8 @@ class TitleMethodsTest extends MediaWikiTestCase {
 		$titleA = Title::newFromText( $titleA );
 		$titleB = Title::newFromText( $titleB );
 
-		$this->assertEquals( $titleA->equals( $titleB ), $expectedBool );
-		$this->assertEquals( $titleB->equals( $titleA ), $expectedBool );
+		$this->assertEquals( $expectedBool, $titleA->equals( $titleB ) );
+		$this->assertEquals( $expectedBool, $titleB->equals( $titleA ) );
 	}
 
 	public function dataInNamespace() {
@@ -72,7 +72,7 @@ class TitleMethodsTest extends MediaWikiTestCase {
 	 */
 	public function testHasSubjectNamespace( $title, $ns, $expectedBool ) {
 		$title = Title::newFromText( $title );
-		$this->assertEquals( $title->hasSubjectNamespace( $ns ), $expectedBool );
+		$this->assertEquals( $expectedBool, $title->hasSubjectNamespace( $ns ) );
 	}
 
 }
