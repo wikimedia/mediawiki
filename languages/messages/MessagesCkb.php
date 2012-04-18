@@ -3206,4 +3206,15 @@ $5
 'api-error-unknown-code' => 'ھەڵەی نەزانراو: «$1».',
 'api-error-unknownerror' => 'ھەڵەی نەزانراو: «$1».',
 
+# Durations
+'duration-seconds' => '$1 {{PLURAL:$1|چرکە|چرکە}}',
+'duration-minutes' => '$1 {{PLURAL:$1|خولەک|خولەک}}',
+'duration-hours' => '$1 {{PLURAL:$1|کاتژمێر|کاتژمێر}}',
+'duration-days' => '$1 {{PLURAL:$1|ڕۆژ|ڕۆژ}}',
+'duration-weeks' => '$1 {{PLURAL:$1|ھەفتە|ھەفتە}}',
+'duration-years' => '$1 {{PLURAL:$1|ساڵ|ساڵ}}',
+'duration-decades' => '$1 {{PLURAL:$1|دەیە|دەیە}}',
+'duration-centuries' => '$1 {{PLURAL:$1|سەدە|سەدە}}',
+'duration-millennia' => '$1 {{PLURAL:$1|ھەزارە|ھەزارە}}',
+
 );

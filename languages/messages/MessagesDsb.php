@@ -1967,6 +1967,11 @@ Pšosym glědaj na to, až druge websedła móžu k drugej dataji z direktnym UR
 'allpages-bad-ns' => 'Mjenjowy rum „$1“ w {{SITENAME}} njeeksistěrujo.',
 'allpages-hide-redirects' => 'Dalejpósrědnjenja schowaś',
 
+# SpecialCachedPage
+'cachedspecial-viewing-cached-ttl' => 'Woglědujoš se pufrowanu wersiju toś togo boka, kótaraž móžo do $1 stara byś.',
+'cachedspecial-viewing-cached-ts' => 'Woglědujoš se pufrowanu wersiju toś togo boka, kótaraž by mógła njeaktualna byś.',
+'cachedspecial-refresh-now' => 'Aktualnu wersiju se woglědaś.',
+
 # Special:Categories
 'categories' => 'Kategorije',
 'categoriespagetext' => '{{PLURAL:$1|Slědujuca kategorija wopśimujo|Slědujucej kategoriji wopśimujotej|Slědujuce kategorije wopśimuju|Slědujuce kategorije wopśimuju}} boki abo medije.
@@ -3693,5 +3698,16 @@ Hować móžoš slědujucy jadnory formular wužywaś. Twój komentar pśidajo s
 'api-error-unknownerror' => 'Njeznata zmólka: "$1".',
 'api-error-uploaddisabled' => 'Nagraśa su na toś tom wikiju znjemóžnjone.',
 'api-error-verification-error' => 'Toś ta dataja by mógła wobkškóźona byś abo wopacnu kóńcowku měś.',
+
+# Durations
+'duration-seconds' => '$1 {{PLURAL:$1|sekunda|sekunźe|sekundy|sekundow}}',
+'duration-minutes' => '$1 {{PLURAL:$1|minuta|minuśe|minuty|minutow}}',
+'duration-hours' => '$1 {{PLURAL:$1|góźina|góźinje|góźiny|góźinow}}',
+'duration-days' => '$1 {{PLURAL:$1|źeń|dnja|dny|dnjow}}',
+'duration-weeks' => '$1 {{PLURAL: $1|tyźeń|tyźenja|tyźenje|tyźenjow}}',
+'duration-years' => '$1 {{PLURAL: $1|lěto|lěśe|lěta|lět}}',
+'duration-decades' => '$1 {{PLURAL:$1|lětźasetk|lětźasetka|lětźasetki|lětźastkow}}',
+'duration-centuries' => '$1 {{PLURAL:$1|stolěśe|stolěśi|stolěśa|stolěśow}}',
+'duration-millennia' => '$1 {{PLURAL:$1|lěttysac|lěttysaca|lěttysace|lěttysacow}}',
 
 );

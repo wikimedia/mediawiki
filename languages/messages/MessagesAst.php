@@ -170,63 +170,63 @@ $messages = array(
 
 # Categories related messages
 'pagecategories' => '{{PLURAL:$1|Categoría|Categoríes}}',
-'category_header' => 'Páxines na categoría "$1"',
+'category_header' => 'Páxines na categoría «$1»',
 'subcategories' => 'Subcategoríes',
-'category-media-header' => 'Archivos multimedia na categoría "$1"',
-'category-empty' => "''Esta categoría nun tien anguaño nengún artículu o ficheru multimedia.''",
-'hidden-categories' => '{{PLURAL:$1|Categoría anubría|Categoríes anubríes}}',
-'hidden-category-category' => 'Categoríes ocultes',
-'category-subcat-count' => "{{PLURAL:$2|Esta categoría namái tien la subcategoría siguiente.|Esta categoría tien {{PLURAL:$1|la siguiente subcategoría|les siguientes $1 subcategoríes}}, d'un total de $2.}}",
-'category-subcat-count-limited' => 'Esta categoría tien {{PLURAL:$1|la siguiente subcategoría|les siguientes $1 subcategoríes}}.',
-'category-article-count' => "{{PLURAL:$2|Esta categoría contién namái la páxina siguiente.|{{PLURAL:$1|La siguiente páxina ta|Les $1 páxines siguientes tán}} nesta categoría, d'un total de $2.}}",
-'category-article-count-limited' => '{{PLURAL:$1|La siguiente páxina ta|Les siguientes $1 páxines tán}} na categoría actual.',
-'category-file-count' => "{{PLURAL:$2|Esta categoría contién namái el siguiente ficheru.|{{PLURAL:$1|El siguiente ficheru ta|Los $1 ficheros siguientes tán}} nesta categoría, d'un total de $2.}}",
-'category-file-count-limited' => '{{PLURAL:$1|El siguiente archivu ta|Los siguientes $1 archivos tán}} na categoría actual.',
+'category-media-header' => 'Ficheros multimedia na categoría «$1»',
+'category-empty' => "''Anguaño esta categoría nun tien nengún artículu nin ficheru multimedia.''",
+'hidden-categories' => '{{PLURAL:$1|Categoría anubrida|Categoríes anubríes}}',
+'hidden-category-category' => 'Categoríes anubríes',
+'category-subcat-count' => "{{PLURAL:$2|Esta categoría tien namái la subcategoría siguiente.|Esta categoría tien {{PLURAL:$1|la siguiente subcategoría|les siguientes $1 subcategoríes}}, d'un total de $2.}}",
+'category-subcat-count-limited' => 'Esta categoría tien {{PLURAL:$1|la subcategoría siguiente|les $1 subcategoríes siguientes}}.',
+'category-article-count' => "{{PLURAL:$2|Esta categoría contién namái la páxina siguiente.|{{PLURAL:$1|La páxina siguiente ta|Les $1 páxines siguientes tán}} nesta categoría, d'un total de $2.}}",
+'category-article-count-limited' => '{{PLURAL:$1|La páxina siguiente ta|Les $1 páxines siguientes tán}} na categoría actual.',
+'category-file-count' => "{{PLURAL:$2|Esta categoría contién namái'l ficheru siguiente.|{{PLURAL:$1|El ficheru siguiente ta|Los $1 ficheros siguientes tán}} nesta categoría, d'un total de $2.}}",
+'category-file-count-limited' => '{{PLURAL:$1El ficheru siguiente ta|Los $1 ficheeros siguientes tán}} na categoría actual.',
 'listingcontinuesabbrev' => 'cont.',
 'index-category' => 'Páxines indexaes',
-'noindex-category' => 'Páxines ensin indexar',
-'broken-file-category' => 'Páxines con enllaces frañaos a ficheros',
+'noindex-category' => 'Páxines non indexaes',
+'broken-file-category' => 'Páxines con enllaces frañíos a ficheros',
 
 'about' => 'Tocante a',
-'article' => 'Conteníu de la páxina',
-'newwindow' => '(abriráse nuna ventana nueva)',
+'article' => 'Páxina de conteníu',
+'newwindow' => '(ábrese nuna ventana nueva)',
 'cancel' => 'Encaboxar',
 'moredotdotdot' => 'Más...',
 'mypage' => 'La mio páxina',
-'mytalk' => "La mio páxina d'alderique",
+'mytalk' => 'El mio alderique',
 'anontalk' => 'Alderique pa esta IP',
 'navigation' => 'Navegación',
 'and' => '&#32;y',
 
 # Cologne Blue skin
-'qbfind' => 'Alcontrar',
-'qbbrowse' => 'Escartafoyar',
+'qbfind' => 'Guetar',
+'qbbrowse' => 'Restolar',
 'qbedit' => 'Editar',
 'qbpageoptions' => 'Esta páxina',
 'qbpageinfo' => 'Contestu',
 'qbmyoptions' => 'Les mios páxines',
 'qbspecialpages' => 'Páxines especiales',
-'faq' => 'FAQ',
-'faqpage' => 'Project:Entrugues más frecuentes',
+'faq' => 'EMF (entrugues más frecuentes)',
+'faqpage' => 'Project:EMF',
 
 # Vector skin
-'vector-action-addsection' => 'Amestar asuntu',
+'vector-action-addsection' => 'Amestar seición',
 'vector-action-delete' => 'Desaniciar',
 'vector-action-move' => 'Treslladar',
 'vector-action-protect' => 'Protexer',
-'vector-action-undelete' => 'Des-desaniciar',
+'vector-action-undelete' => 'Restaurar',
 'vector-action-unprotect' => 'Camudar la proteición',
-'vector-simplesearch-preference' => 'Activar suxerencies de gueta enantaes (piel Vector namái)',
+'vector-simplesearch-preference' => 'Activar suxerencies meyoraes de gueta (namái apariencia Vector)',
 'vector-view-create' => 'Crear',
 'vector-view-edit' => 'Editar',
 'vector-view-history' => 'Ver historial',
 'vector-view-view' => 'Lleer',
-'vector-view-viewsource' => 'Ver códigu fonte',
+'vector-view-viewsource' => 'Ver fonte',
 'actions' => 'Aiciones',
 'namespaces' => 'Espacios de nome',
 'variants' => 'Variantes',
 
-'errorpagetitle' => 'Error',
+'errorpagetitle' => 'Fallu',
 'returnto' => 'Tornar a $1.',
 'tagline' => 'De {{SITENAME}}',
 'help' => 'Ayuda',
@@ -236,7 +236,7 @@ $messages = array(
 'searcharticle' => 'Dir',
 'history' => 'Historial de la páxina',
 'history_short' => 'Historial',
-'updatedmarker' => 'actualizáu dende la mio última visita',
+'updatedmarker' => 'anovada dende la mio visita cabera',
 'printableversion' => 'Versión pa imprentar',
 'permalink' => 'Enllaz permanente',
 'print' => 'Imprentar',
@@ -253,54 +253,54 @@ $messages = array(
 'protect_change' => 'camudar',
 'protectthispage' => 'Protexer esta páxina',
 'unprotect' => 'Camudar la proteición',
-'unprotectthispage' => 'Camudar la proteición desta páxina',
+'unprotectthispage' => "Camudar la proteición d'esta páxina",
 'newpage' => 'Páxina nueva',
 'talkpage' => 'Aldericar sobre esta páxina',
 'talkpagelinktext' => 'Alderique',
 'specialpage' => 'Páxina especial',
 'personaltools' => 'Ferramientes personales',
 'postcomment' => 'Seición nueva',
-'articlepage' => 'Ver conteníu de la páxina',
+'articlepage' => 'Ver la páxina de conteníu',
 'talk' => 'Alderique',
 'views' => 'Vistes',
 'toolbox' => 'Ferramientes',
-'userpage' => "Ver páxina d'usuariu",
-'projectpage' => 'Ver la páxina de proyeutu',
-'imagepage' => 'Ver la páxina de ficheros',
-'mediawikipage' => 'Ver la páxina de mensaxe',
+'userpage' => "Ver la páxina d'usuariu",
+'projectpage' => 'Ver la páxina del proyeutu',
+'imagepage' => 'Ver la páxina del ficheru',
+'mediawikipage' => 'Ver la páxina de mensaxes',
 'templatepage' => 'Ver la páxina de plantía',
 'viewhelppage' => "Ver la páxina d'ayuda",
-'categorypage' => 'Ver páxina de categoríes',
-'viewtalkpage' => 'Ver alderique',
+'categorypage' => 'Ver la páxina de la categoría',
+'viewtalkpage' => "Ver la páxina d'alderique",
 'otherlanguages' => "N'otres llingües",
 'redirectedfrom' => '(Redirixío dende $1)',
 'redirectpagesub' => 'Páxina de redireición',
-'lastmodifiedat' => "Esta páxina se camudó por cabera vegada'l $1 a les $2.",
-'viewcount' => 'Esta páxina foi vista {{PLURAL:$1|una vegada|$1 vegaes}}.',
+'lastmodifiedat' => "Esta páxina camudóse per postrer vegada'l $1 a les $2.",
+'viewcount' => 'Esta páxina visitóse {{PLURAL:$1|una vegada|$1 vegaes}}.',
 'protectedpage' => 'Páxina protexida',
 'jumpto' => 'Saltar a:',
 'jumptonavigation' => 'navegación',
-'jumptosearch' => 'gueta',
-'view-pool-error' => "Lo siento, los sirvidores tan sobrecargaos nesti intre.
-Hai demasiaos usuarios intentando ver esta páxina.
-Espera un momentu enantes d'intentar acceder a esta páxina.
+'jumptosearch' => 'guetar',
+'view-pool-error' => 'Sentímoslo, los sirvidores tán sobrecargaos nestos momentos.
+Hai demasiaos usuarios faciendo por ver esta páxina.
+Por favor espera un cachín enantes de volver intentar acceder a esta páxina.
 
-$1",
-'pool-timeout' => 'Tiempu escosáu esperando pol bloquéu',
-'pool-queuefull' => "La cola d'agrupación ta llena",
-'pool-errorunknown' => 'Error desconocíu',
+$1',
+'pool-timeout' => 'Tiempu escosáu esperando pal bloquéu',
+'pool-queuefull' => 'La cola de trabayu ta enllena',
+'pool-errorunknown' => 'Fallu desconocíu',
 
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
 'aboutsite' => 'Tocante a {{SITENAME}}',
 'aboutpage' => 'Project:Tocante a',
-'copyright' => 'Esti conteníu ta disponible baxo los términos de la  $1.',
-'copyrightpage' => "{{ns:project}}:Derechos d'autor",
+'copyright' => 'El conteníu ta disponible baxo los términos de llicencia  $1.',
+'copyrightpage' => "{{ns:project}}:Drechos d'autor",
 'currentevents' => 'Actualidá',
 'currentevents-url' => 'Project:Actualidá',
 'disclaimers' => 'Avisu llegal',
-'disclaimerpage' => 'Project:Alvertencia xeneral',
+'disclaimerpage' => 'Project:Avisu xeneral',
 'edithelp' => "Ayuda d'edición",
-'edithelppage' => 'Help:Edición de páxines',
+'edithelppage' => 'Help:Cómo editar una páxina',
 'helppage' => 'Help:Conteníu',
 'mainpage' => 'Portada',
 'mainpage-description' => 'Portada',
@@ -310,29 +310,29 @@ $1",
 'privacy' => 'Politica de privacidá',
 'privacypage' => 'Project:Política de privacidá',
 
-'badaccess' => 'Error de permisos',
+'badaccess' => 'Fallu de permisos',
 'badaccess-group0' => "Nun tienes permisu pa executar l'aición solicitada.",
-'badaccess-groups' => "L'aición solicitada ta llimitada a usuarios {{PLURAL:$2|del grupu|d'ún de los grupos}}: $1.",
+'badaccess-groups' => "L'aición solicitada ta acutada pa usuarios {{PLURAL:$2|del grupu|d'ún d'estos grupos}}: $1.",
 
 'versionrequired' => 'Necesítase la versión $1 de MediaWiki',
 'versionrequiredtext' => 'Necesítase la versión $1 de MediaWiki pa usar esta páxina. Ver la [[Special:Version|páxina de versión]].',
 
 'ok' => 'Aceutar',
-'retrievedfrom' => 'Sacáu de "$1"',
+'retrievedfrom' => 'Sacáu de «$1»',
 'youhavenewmessages' => 'Tienes $1 ($2).',
 'newmessageslink' => 'mensaxes nuevos',
-'newmessagesdifflink' => 'últimu cambiu',
+'newmessagesdifflink' => 'cambéu postreru',
 'youhavenewmessagesmulti' => 'Tienes mensaxes nuevos en $1',
 'editsection' => 'editar',
 'editold' => 'editar',
 'viewsourceold' => 'ver fonte',
 'editlink' => 'editar',
-'viewsourcelink' => 'amosar la fonte',
+'viewsourcelink' => 'ver fonte',
 'editsectionhint' => 'Editar seición: $1',
-'toc' => 'Conteníu',
+'toc' => 'Índiz',
 'showtoc' => 'amosar',
 'hidetoc' => 'anubrir',
-'collapsible-collapse' => 'Esconder',
+'collapsible-collapse' => 'Plegar',
 'collapsible-expand' => 'Espander',
 'thisisdeleted' => '¿Ver o restaurar $1?',
 'viewdeleted' => '¿Ver $1?',
@@ -342,18 +342,18 @@ $1",
 'feed-unavailable' => 'Les canales de sindicación nun tán disponibles',
 'site-rss-feed' => 'Canal RSS $1',
 'site-atom-feed' => 'Canal Atom $1',
-'page-rss-feed' => 'Canal RSS "$1"',
-'page-atom-feed' => 'Canal Atom "$1"',
+'page-rss-feed' => 'Canal RSS «$1»',
+'page-atom-feed' => 'Canal Atom «$1»',
 'red-link-title' => '$1 (la páxina nun esiste)',
-'sort-descending' => 'Orde descendiente',
-'sort-ascending' => 'Orde ascendiente',
+'sort-descending' => 'Orde descendente',
+'sort-ascending' => 'Orde ascendente',
 
 # Short words for each namespace, by default used in the namespace tab in monobook
 'nstab-main' => 'Páxina',
 'nstab-user' => "Páxina d'usuariu",
-'nstab-media' => "Páxina d'archivu multimedia",
+'nstab-media' => 'Páxina de ficheru multimedia',
 'nstab-special' => 'Páxina especial',
-'nstab-project' => 'Páxina de proyeutu',
+'nstab-project' => 'Páxina del proyeutu',
 'nstab-image' => 'Ficheru',
 'nstab-mediawiki' => 'Mensaxe',
 'nstab-template' => 'Plantía',
@@ -368,46 +368,46 @@ Tamién podría ser un bug nel software usáu por {{SITENAME}}.",
 'nosuchspecialpage' => 'Nun esiste esa páxina especial',
 'nospecialpagetext' => '<strong>Pidisti una páxina especial non válida.</strong>
 
-Pues consultar la llista de les páxines especiales válides en [[Special:SpecialPages|{{int:specialpages}}]].',
+Pues atopar una llista de les páxines especiales válides en [[Special:SpecialPages|{{int:specialpages}}]].',
 
 # General errors
-'error' => 'Error',
-'databaseerror' => 'Error na base de datos',
-'dberrortext' => 'Hebo un fallu de sintaxis nuna consulta de la base de datos.
+'error' => 'Fallu',
+'databaseerror' => 'Fallu na base de datos',
+'dberrortext' => "Hebo un fallu de sintaxis nuna consulta a la base de datos.
 Esti fallu puede ser por un problema del software.
-La postrer consulta que s\'intentó foi:
+La postrer consulta a la base de datos que s'intentó foi:
 <blockquote><tt>$1</tt></blockquote>
-dende la función "<tt>$2</tt>".
-La base datos dió el fallu "<tt>$3: $4</tt>".',
-'dberrortextcl' => 'Hebo un fallu de sintaxis nuna consulta a la base de datos.
-La postrer consulta que s\'intentó foi:
-"$1"
-dende la función "$2".
-La base de datos dió\'l fallu "$3: $4"',
-'laggedslavemode' => 'Avisu: Esta páxina pue que nun tenga actualizaciones recientes.',
+dende la función «<tt>$2</tt>».
+La base datos dio'l fallu «<tt>$3: $4</tt>».",
+'dberrortextcl' => "Hebo un fallu de sintaxis nuna consulta a la base de datos.
+La postrer consulta de la base de datos que s'intentó foi:
+«$1»
+dende la función «$2».
+La base de datos dio'l fallu «$3: $4».",
+'laggedslavemode' => "'''Avisu:''' Esta páxina pue que nun tenga actualizaciones recientes.",
 'readonly' => 'Base de datos candada',
-'enterlockreason' => 'Introduz un motivu pal candáu, amiestando una estimación de cuándo va ser llevantáu esti',
-'readonlytext' => "Nestos momentos la base de datos ta candada pa nueves entraes y otres modificaciones, seique por un mantenimientu de rutina, depués d'él tará accesible de nuevo.
+'enterlockreason' => 'Introduz un motivu pal candáu, amestando una estimación de cuándo va tener llugar el descandáu',
+'readonlytext' => "Nestos momentos la base de datos ta candada pa nueves entraes y otres modificaciones, seique por un mantenimientu de rutina, volviendo tar accesible cuando esti dea fin.
 
 L'alministrador que la candó conseñó esti motivu: $1",
-'missing-article' => "La base de datos nun alcontró'l testu d'una páxina que tendría d'haber alcontrao, nomada \"\$1\" \$2.
+'missing-article' => "La base de datos nun atopó'l testu d'una páxina qu'hubiera tener alcontrao, nomada «\$1» \$2.
 
-Esto débese davezu a siguir un diff caducáu o un enllaz d'historial a una páxina que se desanició.
+Esto débese davezu a siguir una \"dif\" caducada o un enllaz d'historial a una páxina que se desanició.
 
 Si esti nun ye'l casu, seique tengas atopao un bug nel software.
 Por favor informa d'esto a un [[Special:ListUsers/sysop|alministrador]], anotando la URL.",
-'missingarticle-rev' => '(revisión: $1)',
+'missingarticle-rev' => '(núm. revisión: $1)',
 'missingarticle-diff' => '(dif: $1, $2)',
-'readonly_lag' => 'La base de datos foi candada automáticamente mentes los sirvidores de la base de datos esclava se sincronicen cola maestra',
-'internalerror' => 'Error internu',
-'internalerror_info' => 'Error internu: $1',
-'fileappenderrorread' => 'Nun se pudo lleer "$1" mientres s\'amestaba.',
-'fileappenderror' => 'Nun se pudo amestar "$1" a "$2".',
-'filecopyerror' => 'Nun se pudo copiar el ficheru "$1" como "$2".',
-'filerenameerror' => 'Nun se pudo renomar l\'archivu "$1" como "$2".',
-'filedeleteerror' => 'Nun se pudo desaniciar el ficheru "$1".',
-'directorycreateerror' => 'Nun se pudo crear el direutoriu "$1".',
-'filenotfound' => 'Nun se pudo atopar el ficheru "$1".',
+'readonly_lag' => 'La base de datos candóse automáticamente mentes los sirvidores de la base de datos esclava se sincronicen cola maestra',
+'internalerror' => 'Fallu internu',
+'internalerror_info' => 'Fallu internu: $1',
+'fileappenderrorread' => "Nun se pudo lleer «$1» mentanto l'amestadura.",
+'fileappenderror' => 'Nun se pudo amestar «$1» a «$2».',
+'filecopyerror' => 'Nun se pudo copiar el ficheru «$1» como «$2».',
+'filerenameerror' => 'Nun se pudo renomar el ficheru «$1» como «$2».',
+'filedeleteerror' => 'Nun se pudo desaniciar el ficheru «$1».',
+'directorycreateerror' => 'Nun se pudo crear el direutoriu «$1».',
+'filenotfound' => 'Nun se pudo atopar el ficheru «$1».',
 'fileexistserror' => 'Nun se pue escribir nel archivu "$1": yá esiste',
 'unexpected' => 'Valor inesperáu: "$1"="$2".',
 'formerror' => 'Error: nun se pudo unviar el formulariu',
@@ -988,8 +988,8 @@ Comprueba los rexistros, por favor.",
 
 # Suppression log
 'suppressionlog' => 'Rexistru de supresiones',
-'suppressionlogtext' => "Embaxo hai una llista de desanicios y bloqueos rellacionaos con conteníu anubríu a los alministradores.
-Mira la [[Special:BlockList|llista de bloqueos d'IP]] pa ver la llista de los bloqueos y torgues activos anguaño.",
+'suppressionlogtext' => 'Más abaxo hai una llista de desanicios y bloqueos rellacionaos con conteníu anubríu a los alministradores.
+Mira la [[Special:BlockList|llista de bloqueos]] pa ver la llista de los bloqueos y torgues activos anguaño.',
 
 # History merging
 'mergehistory' => 'Fusionar historiales de páxina',
@@ -1938,6 +1938,11 @@ Pues filtrar la visualización seleicionando una mena de rexistru, el nome d'usu
 'allpages-bad-ns' => '{{SITENAME}} nun tien l\'espaciu de nomes "$1".',
 'allpages-hide-redirects' => 'Anubrir redireiciones',
 
+# SpecialCachedPage
+'cachedspecial-viewing-cached-ttl' => "Tas viendo una versión en caché d'esta páxina, que pue llegar a tener $1 d'antigüedá.",
+'cachedspecial-viewing-cached-ts' => "Tas viendo una versión en caché d'esta páxina, que pue nun tar anovada dafechu.",
+'cachedspecial-refresh-now' => 'Ver la más nueva.',
+
 # Special:Categories
 'categories' => 'Categoríes',
 'categoriespagetext' => "{{PLURAL:$1|La categoría darréu contién|Les categoríes darréu contienen}} páxines o ficheros multimedia.
@@ -2380,8 +2385,8 @@ Esto debería facese sólo pa prevenir vandalismu como indiquen les [[{{MediaWik
 'ipb-confirm' => 'Confirmar bloquéu',
 'badipaddress' => 'IP non válida',
 'blockipsuccesssub' => 'Bloquéu fechu correctamente',
-'blockipsuccesstext' => "Bloquióse al usuariu [[Special:Contributions/$1|$1]].
-<br />Mira na [[Special:BlockList|llista d'IPs bloquiaes]] pa revisar los bloqueos.",
+'blockipsuccesstext' => '[[Special:Contributions/$1|$1]] ta {{GENDER:$1|bloquiáu|bloquiada}}.<br />
+Mira na [[Special:BlockList|llista de bloqueos]] pa revisar los bloqueos.',
 'ipb-blockingself' => '¡Tas a piques de bloquiate tú mesmu! ¿Tas seguru de que quies facer eso?',
 'ipb-confirmhideuser' => 'Tas a piques de bloquiar un usuariu con "anubrir usuariu" activao. Esto desaniciará el nome del usuariu de tolos llistaos y entraes de los rexistros. ¿De xuro quies facer eso?',
 'ipb-edit-dropdown' => 'Editar motivos de bloquéu',
@@ -2435,7 +2440,7 @@ El rexistru de desanicios s'ufre darréu pa referencia:",
 'reblock-logentry' => 'camudó los parámetros de bloquéu de [[$1]] con una caducidá de $2 $3',
 'blocklogtext' => "Esti ye un rexistru de los bloqueos y desbloqueos d'usuarios.
 Les direcciones IP bloquiaes automáticamente nun salen equí.
-Pa ver los bloqueos qu'hai agora mesmo, mira na [[Special:BlockList|llista d'IP bloquiaes]].",
+Pa ver los bloqueos qu'hai agora mesmo, mira na [[Special:BlockList|llista de bloqueos]].",
 'unblocklogentry' => 'desbloquió $1',
 'block-log-flags-anononly' => 'namái usuarios anónimos',
 'block-log-flags-nocreate' => 'creación de cuentes desactivada',
@@ -3728,5 +3733,16 @@ D\'otra miente, pues usar el formulariu cenciellu d\'abaxo. El to comentariu apa
 'api-error-unknownerror' => 'Fallu desconocíu: «$1».',
 'api-error-uploaddisabled' => 'Les xubíes tan desactivaes nesta wiki.',
 'api-error-verification-error' => 'Esti ficheru pudiera tar corrompíu, o tien una estensión incorreuta.',
+
+# Durations
+'duration-seconds' => '$1 {{PLURAL: $1|segundu|segundos}}',
+'duration-minutes' => '$1 {{PLURAL: $1|minutu|minutos}}',
+'duration-hours' => '$1 {{PLURAL: $1|hora|hores}}',
+'duration-days' => '$1 {{PLURAL: $1|día|díes}}',
+'duration-weeks' => '$1 {{PLURAL: $1|selmana|selmanes}}',
+'duration-years' => '$1 {{PLURAL: $1|añu|años}}',
+'duration-decades' => '$1 {{PLURAL:$1|década|décades}}',
+'duration-centuries' => '$1 {{PLURAL:$1|sieglu|sieglos}}',
+'duration-millennia' => '$1 {{PLURAL:$1|mileniu|milenios}}',
 
 );

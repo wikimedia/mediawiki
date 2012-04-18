@@ -844,7 +844,7 @@ $2
 Ĉi {{PLURAL:$3|tiu provizora pasvorto|tiuj provizoraj pasvortoj}} findatiĝos {{PLURAL:$5|unu tagon|$5 tagojn}}.
 Vi ensalutu kaj elektu novan pasvorton nun. Se iu alia petis ĉi tion,
 aŭ se vi memoris vian originalan pasvorton, kaj vi ne plu volas
-ŝanĝi ĝin, vi povas ignori ĉi tiun mesaĝon kaj plu uzi vian
+ŝanĝi ĝin, vi povas ignori ĉi tiun mesaĝon kaj plu uzi vian 
 malnovan pasvorton.',
 'passwordreset-emailtext-user' => 'Uzanto $1 de {{SITENAME}} petis rememoraĵo de viaj kontaj detaloj por {{SITENAME}}
 ($4). La {{PLURAL:$3|jena uzanto-konto|jenaj uzanto-kontoj}} estas asociita kun ĉi tiu retpoŝtadreso:
@@ -969,10 +969,10 @@ aŭ <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}
 'userpage-userdoesnotexist-view' => 'Uzanto-konto "$1" ne estas registrita.',
 'blocked-notice-logextract' => 'Ĉi tiu uzanto estas ĉi-momente forbarita.
 La lasta protokolero estas jene montrata por via referenco:',
-'clearyourcache' => "'''Notu:''' Post konservado vi forviŝu la kaŝmemoron de via foliumilo por vidi la ŝanĝojn.
+'clearyourcache' => "'''Notu:''' Post konservado vi forviŝu la kaŝmemoron de via foliumilo por vidi la ŝanĝojn. 
 * '''Firefox / Safari:''' Premu majuskligan klavon klakante ''Reŝarĝi'', aŭ premu ''Stir-F5'', aŭ premu ''Stir-R'' aŭ ''⌘-R'' kun Makintoŝo
 * '''Google Chrome:''' Premu ''Stir-majuskligklavon'' aŭ ⌘-Majuskligklavo-R'' kun Makintoŝo
-* '''Interreta Esplorilo''': Premu ''Stir'' klakante ''Refreŝu'', aŭ premu ''Stir-F5''
+* '''Interreta Esplorilo''': Premu ''Stir'' klakante ''Refreŝu'', aŭ premu ''Stir-F5'' 
 * '''Safari:''' ''Cmd-R''
 * '''Konqueror:''' Klaku ''Reŝarĝu'' aŭ premu ''F5''
 * '''Opera:''' Nuligi la kaŝmemoro en ''Iloj → Preferoj''",
@@ -2696,7 +2696,7 @@ Pro tio, vi ja povos removi la paĝon je la antaŭa titolo se vi mistajpus, kaj 
 '''AVERTO!'''
 Tio povas esti drasta kaj neatendita ŝanĝo por populara paĝo;
 bonvolu certigi vin, ke vi komprenas ties konsekvencojn antaŭ ol vi antaŭeniru.",
-'movepagetext-noredirectfixer' => "Per jena formularo vi povas alinomigi paĝon, kaj movi tutan ĝian redaktohistorion al la nova nomo.
+'movepagetext-noredirectfixer' => "Per jena formularo vi povas alinomigi paĝon, kaj movi tutan ĝian redaktohistorion al la nova nomo. 
 La antaŭa titolo alidirektigos onin al la nova titolo.
 Kontrolu pri [[Special:DoubleRedirects|duoblajn]] aŭ [[Special:BrokenRedirects|nefunkciantajn alidirektilojn]].
 Vi respondecas pri tio ke ligoj restas montrantaj ĝustadirekten.
@@ -3083,7 +3083,7 @@ Sekvaj ligilo en la sama linio estas konsiderata kiel esceptoj (paĝoj kiel la b
 'metadata-help' => 'Ĉi tiu dosiero enhavas plian informon, verŝajne aldonitan de la cifereca fotilo aŭ skanilo uzita por krei aŭ skani ĝin. Se la dosiero estis modifita de sia originala stato, iuj detaloj eble ne konformos al efektiva stato de la modifita bildo.',
 'metadata-expand' => 'Montri etendajn detalojn',
 'metadata-collapse' => 'Kaŝi etendajn detalojn',
-'metadata-fields' => 'Metadatumaj kampoj de ĉi tiu mesaĝo estos inkluzivita en la paĝoj de bidloj kiam la metadatuma tabelo estas disfaldigita.
+'metadata-fields' => 'Metadatumaj kampoj de ĉi tiu mesaĝo estos inkluzivita en la paĝoj de bidloj kiam la metadatuma tabelo estas disfaldigita. 
 Aliaj estos kaŝitaj defaŭlte.
 * make
 * model

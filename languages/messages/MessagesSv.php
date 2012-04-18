@@ -1226,7 +1226,7 @@ Vänligen kontrollera loggarna.',
 # Suppression log
 'suppressionlog' => 'Undanhållandelogg',
 'suppressionlogtext' => 'Nedan visas en lista över raderingar och blockeringar som berör innehåll dolt för administratörer.
-Se [[Special:BlockList|IP-blockeringslistan]] för listan över gällande blockeringar.',
+Se [[Special:BlockList|blockeringslistan]] för listan över gällande blockeringar.',
 
 # History merging
 'mergehistory' => 'Sammanfoga sidhistoriker',
@@ -2169,6 +2169,11 @@ Du kan avgränsa sökningen och få färre träffar genom att ange typ av logg, 
 'allpages-bad-ns' => 'Namnrymden "$1" finns inte på {{SITENAME}}.',
 'allpages-hide-redirects' => 'Göm omdirigeringar',
 
+# SpecialCachedPage
+'cachedspecial-viewing-cached-ttl' => 'Du visar en cachad version av denna sida, som kan vara upp till $1 gammal.',
+'cachedspecial-viewing-cached-ts' => 'Du visar en cachad version av denna sida, som kanske inte är helt aktuell.',
+'cachedspecial-refresh-now' => 'Visa senaste.',
+
 # Special:Categories
 'categories' => 'Kategorier',
 'categoriespagetext' => 'Följande {{PLURAL:$1|kategori|kategorier}} innehåller sidor eller media.
@@ -2603,8 +2608,8 @@ Ange orsak nedan (exempelvis genom att nämna sidor som blivit vandaliserade).',
 'ipb-confirm' => 'Bekräfta blockering',
 'badipaddress' => 'Du har inte skrivit IP-adressen korrekt.',
 'blockipsuccesssub' => 'Blockeringen är utförd',
-'blockipsuccesstext' => '[[Special:Contributions/$1|$1]] har blockerats.
-<br />För att se alla aktuella blockeringar, gå till [[Special:BlockList|listan över blockeringar]].',
+'blockipsuccesstext' => '[[Special:Contributions/$1|$1]] har blockerats.<br />
+För att se alla aktuella blockeringar, gå till [[Special:BlockList|listan över blockeringar]].',
 'ipb-blockingself' => 'Du håller på att blockera dig själv! Är du säker på att du vill göra det?',
 'ipb-confirmhideuser' => 'Du är på väg att blockera en användare med "göm användare" aktiverat. Detta kommer upphäva användarens namn i alla listor och loggar. Är du säker på att du vill göra det?',
 'ipb-edit-dropdown' => 'Redigera blockeringsanledningar',
@@ -2659,7 +2664,7 @@ Undanhållandeloggen visas nedan för referens:',
 'reblock-logentry' => 'ändrade blockeringsinställningar för [[$1]] med en varaktighet på $2 $3',
 'blocklogtext' => 'Detta är en logg över blockeringar och avblockeringar.
 Automatiskt blockerade IP-adresser listas ej.
-I [[Special:BlockList|blockeringslistan]] listas alla IP-adresser och användare som är blockerade för närvarande.',
+Se [[Special:BlockList|blockeringslistan]] för en översikt av gällande blockeringar.',
 'unblocklogentry' => 'tog bort blockering av "$1"',
 'block-log-flags-anononly' => 'bara oinloggade',
 'block-log-flags-nocreate' => 'hindrar kontoregistrering',
@@ -3952,5 +3957,16 @@ Annars kan du använda det enkla formuläret nedan. Din kommentar kommer att lä
 'api-error-unknownerror' => 'Okänt fel: "$1".',
 'api-error-uploaddisabled' => 'Uppladdning är inaktiverad på denna wiki.',
 'api-error-verification-error' => 'Denna fil kan vara skadad eller har fel filändelse.',
+
+# Durations
+'duration-seconds' => '$1 {{PLURAL:$1|sekund|sekunder}}',
+'duration-minutes' => '$1 {{PLURAL:$1|minut|minuter}}',
+'duration-hours' => '$1 {{PLURAL:$1|timme|timmar}}',
+'duration-days' => '$1 {{PLURAL:$1|dag|dagar}}',
+'duration-weeks' => '$1 {{PLURAL:$1|vecka|veckor}}',
+'duration-years' => '$1 {{PLURAL:$1|år|år}}',
+'duration-decades' => '$1 {{PLURAL:$1|decennium|decennier}}',
+'duration-centuries' => '$1 {{PLURAL:$1|sekel|sekel}}',
+'duration-millennia' => '$1 {{PLURAL:$1|millennium|millennier}}',
 
 );

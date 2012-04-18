@@ -1096,7 +1096,7 @@ Mohon semak log.',
 # Suppression log
 'suppressionlog' => 'Log penahanan',
 'suppressionlogtext' => 'Berikut adalah daftar penghapusan dan sekatan yang melibatkan kandungan yang disembunyikan daripada pentadbir.
-Lihat [[Special:BlockList|senarai sekatan IP]] untuk senarai larangan dan sekatan semasa.',
+Lihat [[Special:BlockList|senarai sekatan]] untuk senarai larangan dan sekatan semasa.',
 
 # History merging
 'mergehistory' => 'Gabungkan sejarah laman',
@@ -2033,6 +2033,11 @@ serta mungkin mempunyai maklumat lanjut mengenai buku yang anda cari:',
 'allpages-bad-ns' => '{{SITENAME}} tidak mempunyai ruang nama "$1".',
 'allpages-hide-redirects' => 'Sorokkan lencongan',
 
+# SpecialCachedPage
+'cachedspecial-viewing-cached-ttl' => 'Anda sedang melihat versi dalam cache laman ini yang mungkin selama $1.',
+'cachedspecial-viewing-cached-ts' => 'Anda sedang melihat versi dalam cache laman ini yang mungkin tidak lengkap sepenuhnya.',
+'cachedspecial-refresh-now' => 'Lihat yang terkini.',
+
 # Special:Categories
 'categories' => 'Kategori',
 'categoriespagetext' => '{{PLURAL:$1|Kategori|Kategori-kategori}} berikut mengandungi laman-laman atau media.
@@ -2479,7 +2484,7 @@ dirosakkan).',
 'badipaddress' => 'Alamat IP tidak sah',
 'blockipsuccesssub' => 'Sekatan berjaya',
 'blockipsuccesstext' => '[[Special:Contributions/$1|$1]] telah disekat.
-<br />Sila lihat [[Special:BlockList|senarai sekatan IP]] untuk maklumat lanjut.',
+<br />Sila lihat [[Special:BlockList|senarai sekatan]] untuk menyemak sekatan.',
 'ipb-blockingself' => 'Anda akan menyekat diri sendiri! Pastikah anda mahu berbuat demikian?',
 'ipb-confirmhideuser' => 'Anda akan menyekat seorang pengguna yang menghidupkan "sorokkan pengguna". Ini akan menindaskan nama pengguna itu di semua senarai dan entri log. Pastikah anda mahu berbuat demikian?',
 'ipb-edit-dropdown' => 'Sunting sebab sekatan',
@@ -2532,7 +2537,7 @@ Log sekatan disediakan di bawah sebagai rujukan:',
 'reblock-logentry' => 'menukar tetapan sekatan [[$1]] yang tamat pada $2 $3',
 'blocklogtext' => 'Ini adalah log bagi sekatan dan penyahsekatan.
 Alamat IP yang disekat secara automatik tidak disenaraikan di sini.
-Sila lihat juga [[Special:BlockList|senarai sekatan IP]] yang sedang berkuatkuasa.',
+Sila lihat juga [[Special:BlockList|senarai sekatan]] yang sedang berkuatkuasa.',
 'unblocklogentry' => 'menyahsekat $1',
 'block-log-flags-anononly' => 'pengguna tanpa nama sahaja',
 'block-log-flags-nocreate' => 'pembukaan akaun dimatikan',
@@ -3805,5 +3810,16 @@ Ataupun, anda boleh menggunakan borang yang mudah di bawah. Ulasan anda akan dic
 'api-error-unknownerror' => 'Ralat tidak dikenali: "$1".',
 'api-error-uploaddisabled' => 'Ciri muat naik dimatikan di wiki ini.',
 'api-error-verification-error' => 'Fail ini mungkin tercemar atau tersalah sambungannya.',
+
+# Durations
+'duration-seconds' => '$1 saat',
+'duration-minutes' => '$1 minit',
+'duration-hours' => '$1 jam',
+'duration-days' => '$1 hari',
+'duration-weeks' => '$1 minggu',
+'duration-years' => '$1 tahun',
+'duration-decades' => '$1 dekad',
+'duration-centuries' => '$1 abad',
+'duration-millennia' => '$1 alaf',
 
 );

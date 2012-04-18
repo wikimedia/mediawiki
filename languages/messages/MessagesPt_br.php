@@ -8,6 +8,7 @@
  * @file
  *
  * @author Alcali
+ * @author Alchimista
  * @author Bani
  * @author Brion
  * @author BrunaaAa
@@ -1833,7 +1834,7 @@ Caso o problema persista, procure um [[Special:ListUsers/sysop|administrador]].'
 'backend-fail-maxsize' => 'Não foi possível criar o arquivo $1 por ele ser maior que {{PLURAL:$2|1 byte|$2 bytes}}.',
 'backend-fail-readonly' => 'O servidor de armazenamento "$1" está atualmente no modo "somente leitura". A razão dada foi: "$2"',
 'backend-fail-synced' => 'O arquivo "$1" está em um estado inconsistente dentro do sistema de armazenamento interno',
-'backend-fail-connect' => 'Não foi possível conectar com o servidor de armazenamento "$1".',
+'backend-fail-connect' => 'Não foi possível ligar ao servidor de armazenamento "$1".',
 'backend-fail-internal' => 'Ocorreu um erro desconhecido no servidor de armazenamento "$1".',
 'backend-fail-contenttype' => 'Não foi possível determinar o tipo de conteúdo do arquivo para armazenar em "$1".',
 'backend-fail-batchsize' => 'O servidor de armazenamento retornou um conjunto de $1 {{PLURAL:$1|operação|operações}} de arquivo, enquanto seu limite é de $2 {{PLURAL:$1|operação|operações}}.',

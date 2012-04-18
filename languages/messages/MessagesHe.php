@@ -1276,7 +1276,7 @@ $1",
 # Suppression log
 'suppressionlog' => 'יומן הסתרות',
 'suppressionlogtext' => 'להלן רשימת המחיקות והחסימות הכוללות תוכן המוסתר ממפעילי המערכת.
-ראו את [[Special:BlockList|רשימת כתובות ה־IP החסומות]] לרשימת החסימות הפעילות כעת.',
+ראו את [[Special:BlockList|רשימת החסומים]] לרשימת החסימות הפעילות כעת.',
 
 # History merging
 'mergehistory' => 'מיזוג גרסאות של דפים',
@@ -2230,6 +2230,11 @@ $1',
 'allpages-bad-ns' => 'אין מרחב שם בשם "$1".',
 'allpages-hide-redirects' => 'הסתרת הפניות',
 
+# SpecialCachedPage
+'cachedspecial-viewing-cached-ttl' => 'זוהי גרסה שמורה בזיכרון המטמון של דף זה, שעשויה להיות בת $1.',
+'cachedspecial-viewing-cached-ts' => 'זוהי גרסה שמורה בזיכרון המטמון של דף זה, שעשויה שלא להיות מעודכנת.',
+'cachedspecial-refresh-now' => 'צפייה באחרון.',
+
 # Special:Categories
 'categories' => 'קטגוריות',
 'categoriespagetext' => '{{PLURAL:$1|הקטגוריה הבאה כוללת|הקטגוריות הבאות כוללות}} דפים או קובצי מדיה.
@@ -2667,7 +2672,7 @@ $1',
 'blockipsuccesssub' => 'החסימה הושלמה בהצלחה',
 'blockipsuccesstext' => '{{GENDER:$1|המשתמש|המשתמשת}} [[Special:Contributions/$1|$1]] {{GENDER:$1|נחסם|נחסמה}}.
 
-ראו את [[Special:BlockList|רשימת הכתובות החסומות]] כדי לצפות בחסימות.',
+ראו את [[Special:BlockList|רשימת החסומים]] כדי לצפות בחסימות.',
 'ipb-blockingself' => 'אתם עומדים לחסום את עצמכם! האם אתם באמת רוצים לעשות את זה?',
 'ipb-confirmhideuser' => 'אתם עומדים לחסום משתמש עם האפשרות "הסתרת משתמש". פעולה זו תסתיר את שם המשתמש בכל הרשימות ופעולות היומן. האם אתם בטוחים שברצונכם לעשות זאת?',
 'ipb-edit-dropdown' => 'עריכת סיבות החסימה',
@@ -2720,7 +2725,7 @@ $1',
 'reblock-logentry' => 'שינה את הגדרות החסימה של [[$1]] עם זמן פקיעה של $2 $3',
 'blocklogtext' => 'זהו יומן פעולות החסימה והשחרור של משתמשים.
 כתובות IP שנחסמו אוטומטית אינן מופיעות.
-ראו גם את [[Special:BlockList|רשימת הכתובות החסומות]] לרשימה של החרמות וחסימות פעילות כעת.',
+ראו גם את [[Special:BlockList|רשימת החסומים]] לרשימה של החרמות וחסימות פעילות כעת.',
 'unblocklogentry' => 'שחרר את $1',
 'block-log-flags-anononly' => 'משתמשים אנונימיים בלבד',
 'block-log-flags-nocreate' => 'יצירת חשבונות נחסמה',
@@ -4072,5 +4077,16 @@ $5
 'api-error-unknownerror' => 'שגיאה בלתי ידועה: "$1".',
 'api-error-uploaddisabled' => 'ההעלאה מבוטלת באתר הוויקי הזה.',
 'api-error-verification-error' => 'קובץ זה עשוי להיות פגום או בעל סיומת שגויה.',
+
+# Durations
+'duration-seconds' => '{{PLURAL:$1|שנייה|$1 שניות}}',
+'duration-minutes' => '{{PLURAL:$1|דקה|$1 דקות}}',
+'duration-hours' => '{{PLURAL:$1|שעה|$1 שעות|שעתיים}}',
+'duration-days' => '{{PLURAL:$1|יום|$1 ימים|יומיים}}',
+'duration-weeks' => '{{PLURAL:$1|שבוע|$1 שבועות|שבועיים}}',
+'duration-years' => '{{PLURAL:$1|שנה|$1 שנים|שנתיים}}',
+'duration-decades' => '{{PLURAL:$1|עשור|$1 עשורים}}',
+'duration-centuries' => '{{PLURAL:$1|מאה שנה|$1 מאות שנים|מאתיים שנה}}',
+'duration-millennia' => '{{PLURAL:$1|אלף שנה|$1 אלפי שנים|אלפיים שנה}}',
 
 );

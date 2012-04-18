@@ -1263,7 +1263,7 @@ Vérifiez les journaux.',
 # Suppression log
 'suppressionlog' => 'Journal des suppressions',
 'suppressionlogtext' => 'Voici la liste des suppressions et des blocages qui portent sur du contenu caché aux administrateurs.
-Voir la [[Special:BlockList|liste des adresses IP et utilisateurs bloqués]] pour la liste des bannissements et des blocages actuellement opérationnels.',
+Voir la [[Special:BlockList|liste des blocages]] pour la liste des bannissements et des blocages actuellement opérationnels.',
 
 # History merging
 'mergehistory' => 'Fusionner les historiques des pages',
@@ -2208,6 +2208,11 @@ Vous pouvez personnaliser l’affichage en sélectionnant le type de journal, le
 'allpages-bad-ns' => '{{SITENAME}} n’a pas d’espace de noms « $1 ».',
 'allpages-hide-redirects' => 'Masquer les redirections',
 
+# SpecialCachedPage
+'cachedspecial-viewing-cached-ttl' => "Vous visualisez une version de cette page mise en cache, qui peut être dater d'au plus $1.",
+'cachedspecial-viewing-cached-ts' => 'Vous visualisez une version de cette page mise en cache, qui pourrait ne pas être complètement à jour.',
+'cachedspecial-refresh-now' => 'Voir le plus récent.',
+
 # Special:Categories
 'categories' => 'Liste des catégories',
 'categoriespagetext' => '{{PLURAL:$1|La catégorie suivante est utilisée|Les catégories suivantes sont utilisées}} par des pages ou fichiers.
@@ -2651,7 +2656,7 @@ Donnez ci-dessous un motif précis (par exemple en citant les pages qui ont ét�
 'badipaddress' => 'Adresse IP incorrecte',
 'blockipsuccesssub' => 'Blocage réussi',
 'blockipsuccesstext' => '[[Special:Contributions/$1|$1]] a été bloqué{{GENDER:$1||e|}}.<br />
-Consultez la [[Special:BlockList|liste des adresses IP et comptes bloqués]] pour revoir les blocages.',
+Consultez la [[Special:BlockList|liste des blocages]] pour revoir les blocages.',
 'ipb-blockingself' => 'Vous êtes sur le point de bloquer votre propre compte ! Êtes-vous certain de vouloir faire cela ?',
 'ipb-confirmhideuser' => 'Vous êtes sur le point de bloquer un utilisateur avec « cacher l’utilisateur » activé. Cela supprime le nom de l’utilisateur dans toutes les listes et les entrées du journal. Êtes-vous sûr de vouloir le faire ?',
 'ipb-edit-dropdown' => 'Modifier les motifs de blocage par défaut',
@@ -2704,7 +2709,7 @@ Le motif fourni pour le blocage de $1 est : « $2 ».',
 'reblock-logentry' => 'a modifié les paramètres du blocage de [[$1]] avec une expiration au $2 $3',
 'blocklogtext' => 'Ceci est le journal des actions de blocages et déblocages d’utilisateurs.
 Les adresses IP automatiquement bloquées ne sont pas listées.
-Consultez la [[Special:BlockList|liste des IP bloquées]] pour voir les bannissements et blocages effectivement en cours.',
+Consultez la [[Special:BlockList|liste des blocages]] pour voir les bannissements et blocages effectivement en cours.',
 'unblocklogentry' => 'a débloqué $1',
 'block-log-flags-anononly' => 'utilisateurs anonymes seulement',
 'block-log-flags-nocreate' => 'création de compte interdite',
@@ -4008,5 +4013,16 @@ Sinon, vous pouvez utiliser le formulaire simplifié ci-dessous. Votre commentai
 'api-error-unknownerror' => 'Erreur inconnue : « $1 ».',
 'api-error-uploaddisabled' => 'Le versement est désactivé sur ce wiki.',
 'api-error-verification-error' => 'Ce fichier peut être corrompu, ou son extension est incorrecte.',
+
+# Durations
+'duration-seconds' => '$1 {{PLURAL:$1|seconde|secondes}}',
+'duration-minutes' => '$1 {{PLURAL:$1|minute|minutes}}',
+'duration-hours' => '$1 {{PLURAL:$1|heure|heures}}',
+'duration-days' => '$1 {{PLURAL:$1|jour|jours}}',
+'duration-weeks' => '$1 {{PLURAL:$1|semaine|semaines}}',
+'duration-years' => '$1 {{PLURAL:$1|année|années}}',
+'duration-decades' => '$1 {{PLURAL:$1|décennie|décennies}}',
+'duration-centuries' => '$1 {{PLURAL:$1|siècle|siècles}}',
+'duration-millennia' => '$1 {{PLURAL:$1|millénaire|millénaires}}',
 
 );

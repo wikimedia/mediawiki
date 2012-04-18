@@ -3773,7 +3773,7 @@ Slike se na taj način prikazuju u punoj rezoluciji, a drugi tipovi datoteka se 
 'sqlite-no-fts' => '$1 bez podrške pretraživanja cijelog teksta',
 
 # New logging system
-'logentry-delete-delete' => '$1 je obrisao stranicu $3',
+'logentry-delete-delete' => '$1 obrisao je stranicu $3',
 'logentry-delete-restore' => '$1 je vratio stranicu $3',
 'logentry-delete-event' => '$1 je promijenio vidljivost {{PLURAL:$5|zapisa u evidenciji|$5 zapisa u evidenciji}} na $3: $4',
 'logentry-delete-revision' => '$1 je promijenio vidljivost {{PLURAL:$5|uređivanja|$5 uređivanja}} na stranici $3: $4',

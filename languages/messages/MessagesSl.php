@@ -1113,7 +1113,7 @@ Prosimo, preverite dnevnik.',
 # Suppression log
 'suppressionlog' => 'Dnevnik vračanj',
 'suppressionlogtext' => 'Spodaj je seznam izbrisov in blokiranj, ki vključuje vsebino skrito pred administratorji.
-Oglejte si [[Special:BlockList|seznam blokiranih IP-jev]] za seznam trenutno aktivnih prepovedi in blokiranj.',
+Oglejte si [[Special:BlockList|seznam blokad]] za seznam trenutno aktivnih prepovedi in blokiranj.',
 
 # History merging
 'mergehistory' => 'Združi zgodovine strani',
@@ -2073,6 +2073,11 @@ Morda vsebuje enega ali več znakov, ki niso dovoljeni v naslovih.',
 'allpages-bad-ns' => '{{SITENAME}} nima imenskega prostora »$1«.',
 'allpages-hide-redirects' => 'Skrij preusmeritve',
 
+# SpecialCachedPage
+'cachedspecial-viewing-cached-ttl' => 'Ogledujete si predpomnjeno različico strani, ki je lahko stara $1.',
+'cachedspecial-viewing-cached-ts' => 'Ogledujete si predpomnjeno različico strani, ki morda ni popolnoma posodobljena.',
+'cachedspecial-refresh-now' => 'Ogled najnovejše.',
+
 # Special:Categories
 'categories' => 'Kategorije',
 'categoriespagetext' => '{{PLURAL:$1|Naslednja $1 kategorija vsebuje|Naslednji $1 kategoriji vsebujeta|Naslednje $1 kategorije vsebujejo|Naslednjih $1 kategorij vsebuje}} strani ali datoteke.
@@ -2518,7 +2523,7 @@ Vnesite tudi razlog (''na primer'' seznam strani, ki jih je uporabnik po nepotre
 'badipaddress' => 'Neveljaven IP-naslov ali uporabniško ime.',
 'blockipsuccesssub' => 'Blokiranje je uspelo',
 'blockipsuccesstext' => '[[Special:Contributions/$1|$1]] je {{GENDER:$1|blokiran|blokirana|blokiran(-a)}}.<br />
-Oglejte si [[Special:BlockList|seznam blokiranih IP-naslovov]] za pregled blokad.',
+Oglejte si [[Special:BlockList|seznam blokad]] za pregled blokad.',
 'ipb-blockingself' => 'Nameravate se blokirati! Ste prepričani, da želite to storiti?',
 'ipb-confirmhideuser' => 'Nameravate blokirati uporabnika z omogočeno možnostjo »skrij uporabnika«. To bo skrilo uporabnikovo ime na vseh seznamih in dnevniških vnosih. Ste prepričani, da želite to storiti?',
 'ipb-edit-dropdown' => 'Uredi razloge blokade',
@@ -2571,7 +2576,7 @@ Dnevnik blokiranja je na voljo spodaj:',
 Dnevnik skrivanja je na voljo spodaj:',
 'blocklogentry' => '[[$1]] blokiran s časom poteka blokade $2 $3',
 'reblock-logentry' => 'spremenil nastavitve blokade za [[$1]] z iztekom dne $2 ob $3',
-'blocklogtext' => 'Prikazan je dnevnik blokiranja in deblokiranja uporabnikov. Samodejno blokirani IP-naslovi niso navedeni. Trenutno veljavna blokiranja so navedena na [[Special:BlockList|seznamu blokiranih IP-naslovov]].',
+'blocklogtext' => 'Prikazan je dnevnik blokiranja in deblokiranja uporabnikov. Samodejno blokirani IP-naslovi niso navedeni. Trenutno veljavna blokiranja so navedena na [[Special:BlockList|seznamu blokad]].',
 'unblocklogentry' => 'je deblokiral(-a) »$1«',
 'block-log-flags-anononly' => 'samo za brezimne uporabnike',
 'block-log-flags-nocreate' => 'ustvarjanje uporabniških računov onemogočeno',
@@ -3837,5 +3842,16 @@ V nasprotnem primeru lahko uporabite preprost obrazec spodaj. Vašo pripombo bom
 'api-error-unknownerror' => 'Neznana napaka: »$1«.',
 'api-error-uploaddisabled' => 'Nalaganje je onemogočeno na tem wikiju.',
 'api-error-verification-error' => 'Ta datoteka je morda poškodovana ali ima napačno končnico.',
+
+# Durations
+'duration-seconds' => '$1 {{PLURAL:$1|sekunda|sekundi|sekunde|sekund}}',
+'duration-minutes' => '$1 {{PLURAL:$1|minuta|minuti|minute|minut}}',
+'duration-hours' => '$1 {{PLURAL:$1|ura|uri|ure|ur}}',
+'duration-days' => '$1 {{PLURAL:$1|dan|dneva|dnevi|dni}}',
+'duration-weeks' => '$1 {{PLURAL:$1|teden|tedna|tedni|tednov}}',
+'duration-years' => '$1 {{PLURAL:$1|leto|leti|leta|let}}',
+'duration-decades' => '$1 {{PLURAL:$1|desetletje|desetletji|desetletja|desetletij}}',
+'duration-centuries' => '$1 {{PLURAL:$1|stoletje|stoletji|stoletja|stoletij}}',
+'duration-millennia' => '$1 {{PLURAL:$1|tisočletje|tisočletji|tisočletja|tisočletij}}',
 
 );

@@ -2738,8 +2738,8 @@ $1',
 'ipb-confirm' => 'أكّد المنع',
 'badipaddress' => 'عنوان أيبي غير صحيح',
 'blockipsuccesssub' => 'تم المنع بنجاح',
-'blockipsuccesstext' => 'تم منع [[Special:Contributions/$1|$1]].<br />
-انظر [[Special:BlockList|قائمة منع الأيبي]] لمراجعة حالات المنع.',
+'blockipsuccesstext' => '[[Special:Contributions/$1|$1]] تم منعها.<br />
+أنظر [[Special:BlockList|قائمة منع الآيبي]] لمراجعة حالات المنع.',
 'ipb-blockingself' => 'أنت على وشك منع نفسك! أمتأكد من رغبتك في القيام بذلك؟',
 'ipb-confirmhideuser' => 'أنت على وشك منع مستخدم مع تفعيل خيار "أخف المستخدم". سوف يخفي هذا الخيار اسم المستخدم من جميل القوائم ومدخلات السجلات. أمتأكد من رغبتك في القيام بذلك؟',
 'ipb-edit-dropdown' => 'عدل أسباب المنع',
@@ -2794,7 +2794,7 @@ $1',
 'reblock-logentry' => 'غير إعدادات المنع ل[[$1]] بتاريخ انتهاء $2 $3',
 'blocklogtext' => 'هذا سجل بعمليات المنع ورفع المنع.
 عناوين الأيبي الممنوعة تلقائيا ليست معروضة.
-انظر [[Special:BlockList|عناوين الأيبي الممنوعة]] لرؤية عمليات المنع المفعلة حاليا.',
+أنظر [[Special:BlockList|قائمة منع الآيبي]] لرؤية عمليات المنع المفعلة حاليا.',
 'unblocklogentry' => 'رفع منع $1',
 'block-log-flags-anononly' => 'المستخدمون المجهولون فقط',
 'block-log-flags-nocreate' => 'إنشاء الحسابات ممنوع',
@@ -4156,6 +4156,7 @@ $5
 'api-error-duplicate-archive-popup-title' => 'تكرار {{PLURAL:$1|ملف|ملفات}} قد تم حذفه مسبقاً',
 'api-error-duplicate-popup-title' => 'ارفع {{PLURAL:$1|الملف|الملف|الملفين|الملفات|الملفات|الملفات}}',
 'api-error-empty-file' => 'كان ملف الذي قمت بإرسال فارغة.',
+'api-error-emptypage' => 'إنشاء صفحات فارغة جديدة، غير مسموح به.',
 'api-error-fetchfileerror' => 'خطأ داخلي: قد حدث خطأ أثناء إحضار الملف.',
 'api-error-file-too-large' => 'الملف الذي أرسلته كان كبيرا جدا.',
 'api-error-filename-tooshort' => 'اسم الملف قصير جدا.',

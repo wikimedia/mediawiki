@@ -1846,6 +1846,15 @@ Caso o problema persista, contacte um [[Special:ListUsers/sysop|administrador]].
 'backend-fail-closetemp' => 'Não foi possível fechar o arquivo temporário.',
 'backend-fail-read' => 'Não foi possível ler o arquivo $1.',
 'backend-fail-create' => 'Não foi possível criar o arquivo $1.',
+'backend-fail-readonly' => 'O servidor de armazenamento "$1" está actualmente no modo "somente leitura". A razão dada foi: "$2"',
+'backend-fail-connect' => 'Não foi possível estabelecer ligação com o servidor de armazenamento "$1".',
+'backend-fail-internal' => 'Ocorreu um erro desconhecido no servidor de armazenamento "$1".',
+'backend-fail-contenttype' => 'Não foi possível determinar o tipo de conteúdo do ficheiro para armazenar em " $1 ".',
+
+# Lock manager
+'lockmanager-notlocked' => 'Não foi possível desbloquear " $1 "; não se encontra bloqueado.',
+'lockmanager-fail-closelock' => 'Não foi possível encerrar a referência de bloqueio para "$1".',
+'lockmanager-fail-deletelock' => 'Não foi possível eliminar a referência de bloqueio para "$1".',
 
 # ZipDirectoryReader
 'zip-file-open-error' => 'Foi encontrado um erro ao abrir o ficheiro ZIP para verificação.',

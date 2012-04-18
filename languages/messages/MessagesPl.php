@@ -2159,6 +2159,11 @@ Możesz zawęzić liczbę wyników poprzez wybranie typu rejestru, nazwy użytko
 'allpages-bad-ns' => 'W {{GRAMMAR:MS.lp|{{SITENAME}}}} nie istnieje przestrzeń nazw „$1”.',
 'allpages-hide-redirects' => 'Ukryj przekierowania',
 
+# SpecialCachedPage
+'cachedspecial-viewing-cached-ttl' => 'Oglądasz buforowaną wersję tej strony, której wiek to maksymalnie  $1.',
+'cachedspecial-viewing-cached-ts' => 'Oglądasz buforowaną wersję tej strony, który nie może być w pełni aktualny.',
+'cachedspecial-refresh-now' => 'Najpóźniejszy widok.',
+
 # Special:Categories
 'categories' => 'Kategorie',
 'categoriespagetext' => 'Strona przedstawia {{PLURAL:$1|kategorię zawierającą|listę kategorii zawierających}} strony lub pliki.
@@ -3995,5 +4000,16 @@ W przeciwnym wypadku można użyć prostego formularza poniżej. Komentarz zosta
 'api-error-unknownerror' => 'Nieznany błąd: „$1”',
 'api-error-uploaddisabled' => 'Na tej wiki przesyłanie zostało wyłączone.',
 'api-error-verification-error' => 'Plik może być uszkodzony lub nazwa pliku ma nieprawidłowe rozszerzenie.',
+
+# Durations
+'duration-seconds' => '$1 {{PLURAL:$1|sekunda|sekundy|sekund}}',
+'duration-minutes' => '$1 {{PLURAL:$1|minuta|minuty|minut}}',
+'duration-hours' => '$1 {{PLURAL:$1|godzina|godziny|godzin}}',
+'duration-days' => '$1 {{PLURAL:$1|dzień|dni}}',
+'duration-weeks' => '$1 {{PLURAL:$1|tydzień|tygodnie|tygodni}}',
+'duration-years' => '$1 {{PLURAL:$1|rok|lata|lat}}',
+'duration-decades' => '$1 {{PLURAL:$1|dziesięciolecie|dekady|dekad}}',
+'duration-centuries' => '$1 {{PLURAL:$1|stulecie|stulecia|stuleci}}',
+'duration-millennia' => '$1 {{PLURAL:$1|tysiąclecie|tysiąclecia|tysiącleci}}',
 
 );

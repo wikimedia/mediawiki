@@ -3598,4 +3598,15 @@ MediaWiki是為著使用的目的才發佈，毋過無負任何擔保責任；�
 'api-error-uploaddisabled' => '佇這个Wiki袂當上載。',
 'api-error-verification-error' => '這个檔案可能已經毀掉，抑是檔案尾仔名稱毋著。',
 
+# Durations
+'duration-seconds' => '$1 {{PLURAL:$1|秒|秒}}',
+'duration-minutes' => '$1 {{PLURAL:$1|分鐘|分鐘}}',
+'duration-hours' => '$1 {{PLURAL:$1|點鐘|點鐘}}',
+'duration-days' => '$1 {{PLURAL:$1|工|工}}',
+'duration-weeks' => '$1 {{PLURAL:$1|禮拜|禮拜}}',
+'duration-years' => '$1 {{PLURAL:$1|冬|冬}}',
+'duration-decades' => '$1 {{PLURAL:$1|十冬|十冬}}',
+'duration-centuries' => '$1 {{PLURAL:$1|百年|百年}}',
+'duration-millennia' => '$1 {{PLURAL:$1|千年|千年}}',
+
 );

@@ -2190,6 +2190,11 @@ Zobrazení můžete zúžit výběrem typu záznamu, uživatelského jména (zá
 'allpages-bad-ns' => '{{SITENAME}} nemá jmenný prostor "$1".',
 'allpages-hide-redirects' => 'Skrýt přesměrování',
 
+# SpecialCachedPage
+'cachedspecial-viewing-cached-ttl' => 'Prohlížíte si cachovanou verzi této stránky, která může být až $1 stará.',
+'cachedspecial-viewing-cached-ts' => 'Prohlížíte si cachovanou verzi této stránky, která nemusí být zcela aktuální.',
+'cachedspecial-refresh-now' => 'Zobrazit nejnovější.',
+
 # Special:Categories
 'categories' => 'Kategorie',
 'categoriespagetext' => 'Následující kategorie {{PLURAL:$1|obsahuje|obsahují}} stránky nebo soubory.
@@ -2618,7 +2623,7 @@ Udejte přesný důvod níže (například ocitujte, které stránky byly poško
 'ipb-confirm' => 'Potvrdit zablokování',
 'badipaddress' => 'Neplatná IP adresa',
 'blockipsuccesssub' => 'Zablokování uspělo',
-'blockipsuccesstext' => 'Uživatel „[[Special:Contributions/$1|$1]]“ je zablokován.<br />
+'blockipsuccesstext' => '„[[Special:Contributions/$1|$1]]“ je {{GENDER:$1|zablokován|zablokována}}.<br />
 Můžete si prohlédnout [[Special:BlockList|seznam zablokovaných uživatelů]].',
 'ipb-blockingself' => 'Chystáte se zablokovat {{gender:|sám|sama|sami}} sebe! Jste si {{gender:|jist|jista|jisti}}, že to chcete udělat?',
 'ipb-confirmhideuser' => 'Chystáte se zablokovat uživatele se zapnutou volbou „skrýt uživatelské jméno“. To způsobí, že jméno uživatele zmizí ze všech seznamů a protokolovacích záznamů. Jste si {{gender:|jist|jista|jisti}}, že to chcete udělat?',
@@ -2670,7 +2675,9 @@ Zde je pro přehled zobrazen výpis z knihy zablokování:',
 'blocklog-showsuppresslog' => 'Tento uživatel byl zablokován a skryt. Zde je pro přehled zobrazen výpis záznamu utajení:',
 'blocklogentry' => 'blokuje „[[$1]]“ s časem vypršení $2 $3',
 'reblock-logentry' => 'mění nastavení bloku „[[$1]]“ s časem vypršení $2 $3',
-'blocklogtext' => 'Toto je kniha úkonů blokování a odblokování uživatelů. Automaticky blokované IP adresy nejsou vypsány. Podívejte se na [[Special:BlockList|seznam blokování IP]] s výčtem aktuálních zákazů a blokování.',
+'blocklogtext' => 'Toto je kniha úkonů blokování a odblokování uživatelů.
+Automaticky blokované IP adresy nejsou vypsány.
+Vizte též [[Special:BlockList|seznam všech probíhajících bloků]].',
 'unblocklogentry' => 'odblokovává „$1“',
 'block-log-flags-anononly' => 'pouze anonymní uživatelé',
 'block-log-flags-nocreate' => 'vytváření účtů zablokováno',
@@ -4003,5 +4010,16 @@ Jinak můžete využít jednoduchý formulář níže. Váš komentář bude př
 'api-error-unknownerror' => 'Neznámá chyba: „$1“.',
 'api-error-uploaddisabled' => 'Načítání souborů je na této wiki vypnuto.',
 'api-error-verification-error' => 'Soubor je možná poškozen nebo má špatnou příponu.',
+
+# Durations
+'duration-seconds' => '$1 {{PLURAL:$1|sekunda|sekundy|sekund}}',
+'duration-minutes' => '$1 {{PLURAL:$1|minuta|minuty|minut}}',
+'duration-hours' => '$1 {{PLURAL:$1|hodina|hodiny|hodin}}',
+'duration-days' => '$1 {{PLURAL:$1|den|dny|dní}}',
+'duration-weeks' => '$1 {{PLURAL:$1|týden|týdny|týdnů}}',
+'duration-years' => '$1 {{PLURAL:$1|rok|roky|let}}',
+'duration-decades' => '$1 {{PLURAL:$1|dekáda|dekády|dekád}}',
+'duration-centuries' => '$1 {{PLURAL:$1|století}}',
+'duration-millennia' => '$1 {{PLURAL:$1|tisíciletí}}',
 
 );

@@ -570,8 +570,8 @@ $2",
 'ns-specialprotected' => 'No es poden modificar les pàgines especials.',
 'titleprotected' => "La creació d'aquesta pàgina està protegida per [[User:$1|$1]].
 Els seus motius han estat: «''$2''».",
-'filereadonlyerror' => "No s'ha pogut modificar el fitxer «$1» perquè el repositori de fitxers «$2» està en mode només de lectura.
-El motiu donat és «''$3''».",
+'filereadonlyerror' => 'No s\'ha pogut modificar el fitxer «$1» perquè el repositori de fitxers "$2" està en mode només de lectura.
+L\'administrador que l\'ha bloquejat ha donat aquesta explicació: "$3".',
 
 # Virus scanner
 'virus-badscanner' => "Mala configuració: antivirus desconegut: ''$1''",
@@ -929,6 +929,7 @@ Sembla haver estat esborrada.",
 'edit-no-change' => 'La vostra modificació ha estat ignorada perquè no feia cap canvi al text.',
 'edit-already-exists' => "No s'ha pogut crear una pàgina.
 Ja existeix.",
+'defaultmessagetext' => 'Missatge per defecte',
 
 # Parser/template warnings
 'expensive-parserfunction-warning' => "Atenció: Aquesta pàgina conté massa crides a funcions parserfunction complexes.
@@ -1671,6 +1672,10 @@ $1',
 'backend-fail-internal' => "S'ha produït un error desconegut en el fitxer de rerefons d'emmagatzemament «$1».",
 'backend-fail-contenttype' => 'No es pot determinar el tipus de contingut del fitxer per emmagatzemar a «$1».',
 'backend-fail-batchsize' => "El rerefons d'emmagatzemament ha rebut un lot {{PLURAL:$1|d'$1 operació|de $1 operacions}} de fitxer; el límit és $2 {{PLURAL:$2|operació|operacions}}.",
+
+# File journal errors
+'filejournal-fail-dbconnect' => 'No es pot connectar amb la base de dades per emmagatzemar el backend "$1".',
+'filejournal-fail-dbquery' => 'No es pot actualitzat la base de dades per a emmagatzemar el backend "$1".',
 
 # Lock manager
 'lockmanager-notlocked' => "No s'ha pogut desbloquejar «$1»; no és bloquejat.",

@@ -1219,7 +1219,7 @@ Nu ai acces asupra lui.',
 # Suppression log
 'suppressionlog' => 'Înlătură jurnalul',
 'suppressionlogtext' => 'Mai jos este afișată o listă a ștergerilor și a blocărilor care implică conținutul ascuns de administratori.
-Vedeți [[Special:BlockList|adresele IP blocate]] pentru o listă a interzicerilor operaționale sau a blocărilor.',
+Vedeți [[Special:BlockList|lista blocărilor]] pentru o listă a interzicerilor operaționale sau a blocărilor.',
 
 # History merging
 'mergehistory' => 'Unește istoricul paginilor',
@@ -2158,6 +2158,11 @@ Puteți limita vizualizarea selectând tipul jurnalului, numele de utilizator sa
 'allpages-bad-ns' => '{{SITENAME}} nu are spațiul de nume „$1”.',
 'allpages-hide-redirects' => 'Ascunde redirecționările',
 
+# SpecialCachedPage
+'cachedspecial-viewing-cached-ttl' => 'În acest moment vizualizați o versiune din cache a acestei pagini, versiune care poate avea o vechime de $1.',
+'cachedspecial-viewing-cached-ts' => 'În acest moment vizualizați o versiune din cache a acestei pagini, versiune care poate fi incomplet actualizată.',
+'cachedspecial-refresh-now' => 'Ultima versiune.',
+
 # Special:Categories
 'categories' => 'Categorii',
 'categoriespagetext' => '{{PLURAL:$1|Următoarea categorie conține|Următoarele categorii conțin}} pagini sau fișiere.
@@ -2594,8 +2599,8 @@ Precizați motivul blocării; de exemplu indicați paginile vandalizate de acest
 'ipb-confirm' => 'Confirmare blocare',
 'badipaddress' => 'Adresa IP este invalidă.',
 'blockipsuccesssub' => 'Utilizatorul a fost blocat',
-'blockipsuccesstext' => '[[Special:Contributions/$1|$1]] a fost blocată.<br />
-Vezi [[Special:BlockList|lista de adrese IP și conturi blocate]] pentru a revizui adresele blocate.',
+'blockipsuccesstext' => '[[Special:Contributions/$1|$1]] a fost blocat{{GENDER:$1||ă|}}.<br />
+Vedeți [[Special:BlockList|lista blocărilor]] pentru a revizui adresele blocate.',
 'ipb-blockingself' => 'Sunteți pe cale să vă autoblocați! Sunteți sigur că doriți să continuați?',
 'ipb-confirmhideuser' => 'Sunteți pe cale să blocați un utilizator cu funcția „ascunde utilizator” activată. Acest lucru va înlătura numele său de utilizator din toate listele și jurnalele. Sunteți sigur că vreți să continuați?',
 'ipb-edit-dropdown' => 'Modifică motivele blocării',
@@ -2648,7 +2653,7 @@ Jurnalul blocărilor este indicat mai jos:',
 Jurnalul suprimărilor este indicat mai jos:',
 'blocklogentry' => 'a blocat utilizatorul „[[$1]]” pe o perioadă de $2 $3',
 'reblock-logentry' => 'a fost schimbată blocarea pentru [[$1]] cu data expirării la $2 $3',
-'blocklogtext' => 'Acest jurnal cuprinde acțiunile de blocare și deblocare. Adresele IP blocate automat nu sunt afișate. Vizitați [[Special:BlockList|lista de adrese blocate]] pentru o listă explicită a adreselor blocate în acest moment.',
+'blocklogtext' => 'Acest jurnal cuprinde acțiunile de blocare și deblocare. Adresele IP blocate automat nu sunt afișate. Vizitați [[Special:BlockList|lista blocărilor]] pentru o listă explicită a adreselor blocate în acest moment.',
 'unblocklogentry' => 'a deblocat utilizatorul $1',
 'block-log-flags-anononly' => 'doar utilizatorii anonimi',
 'block-log-flags-nocreate' => 'crearea de conturi dezactivată',
@@ -3920,5 +3925,16 @@ Imaginile sunt afișate la rezoluția lor maximă, în timp ce alte tipuri de fi
 'api-error-unknownerror' => 'Eroare necunoscută: „$1”.',
 'api-error-uploaddisabled' => 'Încărcarea este dezactivată pe acest wiki.',
 'api-error-verification-error' => 'Acest fișier ar putea fi corupt sau poate avea extensia greșită.',
+
+# Durations
+'duration-seconds' => '$1 {{PLURAL:$1|secundă|secunde|de secunde}}',
+'duration-minutes' => '$1 {{PLURAL:$1|minut|minute|de minute}}',
+'duration-hours' => '$1 {{PLURAL:$1|oră|ore|de ore}}',
+'duration-days' => '$1 {{PLURAL:$1|zi|zile|de zile}}',
+'duration-weeks' => '$1 {{PLURAL:$1|săptămână|săptămâni|de săptămâni}}',
+'duration-years' => '$1 {{PLURAL:$1|an|ani|de ani}}',
+'duration-decades' => '$1 {{PLURAL:$1|deceniu|decenii|de decenii}}',
+'duration-centuries' => '$1 {{PLURAL:$1|secol|secole|de secole}}',
+'duration-millennia' => '$1 {{PLURAL:$1|mileniu|milenii|de milenii}}',
 
 );

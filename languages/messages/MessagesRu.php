@@ -1291,7 +1291,7 @@ $1",
 'searchhelp-url' => 'Help:Содержание',
 'searchmenu-prefix' => '[[Special:PrefixIndex/$1|Показать страницы с этим префиксом]]',
 'searchprofile-articles' => 'Основные страницы',
-'searchprofile-project' => 'Страницы справки и проектов',
+'searchprofile-project' => 'Страницы справки и проекта',
 'searchprofile-images' => 'Мультимедиа',
 'searchprofile-everything' => 'Везде',
 'searchprofile-advanced' => 'Расширенный',
@@ -2169,6 +2169,11 @@ $1',
 'allpages-bad-ns' => '{{SITENAME}} не содержит пространства имён «$1».',
 'allpages-hide-redirects' => 'Скрыть перенаправления',
 
+# SpecialCachedPage
+'cachedspecial-viewing-cached-ttl' => 'Вы просматриваете закэшированную версию страницы, она могла быть обновлена $1 назад.',
+'cachedspecial-viewing-cached-ts' => 'Вы просматриваете кэшированную версию этой страницы, которая может серьёзно отличаться от текущей версии.',
+'cachedspecial-refresh-now' => 'Просмотреть последнюю версию.',
+
 # Special:Categories
 'categories' => 'Категории',
 'categoriespagetext' => '{{PLURAL:$1|Следующая категория содержит|Следующие категории содержат}} страницы или медиа-файлы.
@@ -2606,8 +2611,8 @@ $1',
 'ipb-confirm' => 'Подтвердить блокировку',
 'badipaddress' => 'IP-адрес записан в неправильном формате, или участника с таким именем не существует.',
 'blockipsuccesssub' => 'Блокировка произведена',
-'blockipsuccesstext' => '[[Special:Contributions/$1|«$1»]] заблокирован.<br />
-См. [[Special:BlockList|список заблокированных IP-адресов]].',
+'blockipsuccesstext' => '[[Special:Contributions/$1|«$1»]] {{GENDER:$1|заблокирован|заблокирована}}.<br />
+См. [[Special:BlockList|список заблокированных IP-адресов]] для просмотра блокировок.',
 'ipb-blockingself' => 'Вы пытаетесь заблокировать себя самого! Вы уверены, что вы хотите это сделать?',
 'ipb-confirmhideuser' => 'Вы намереваетесь заблокировать участника и скрыть его имя. Оно не будет отображаться в списках и журналах. Вы уверены, что хотите это сделать?',
 'ipb-edit-dropdown' => 'Править список причин',
@@ -4014,5 +4019,16 @@ MediaWiki распространяется в надежде, что она бу
 'api-error-unknownerror' => 'Неизвестная ошибка: «$1».',
 'api-error-uploaddisabled' => 'В этой вики отключена возможность загрузки файлов.',
 'api-error-verification-error' => 'Возможно, этот файл повреждён или имеет неправильное расширение.',
+
+# Durations
+'duration-seconds' => '$1 {{PLURAL:$1|секунда|секунды|секунд}}',
+'duration-minutes' => '$1 {{PLURAL:$1|минута|минуты|минут}}',
+'duration-hours' => '$1 {{PLURAL:$1|час|часа|часов}}',
+'duration-days' => '$1 {{PLURAL:$1|день|дня|дней}}',
+'duration-weeks' => '$1 {{PLURAL:$1|неделя|недели|недель}}',
+'duration-years' => '$1 {{PLURAL:$1|год|года|лет}}',
+'duration-decades' => '$1 {{PLURAL:$1|декада|декады|декад}}',
+'duration-centuries' => '$1 {{PLURAL:$1|век|века|веков}}',
+'duration-millennia' => '$1 {{PLURAL:$1|тысячелетие|тысячелетия|тысячелетий}}',
 
 );

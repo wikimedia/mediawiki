@@ -1064,7 +1064,7 @@ Kuckt w.e.g. an de Logbicher no.",
 # Suppression log
 'suppressionlog' => 'Lëscht vun de verstoppten a geläschte Säiten',
 'suppressionlogtext' => 'Ënnendrënner ass eng Lëscht vun de geläschte Säiten a Spären a vun den Administrateuren verstopptem Inhalt.
-Kuckt [[Special:BlockList|Lëscht vun de gespaarten IPen]] fir déi aktuell Spären.',
+Kuckt [[Special:BlockList|Lëscht vun Späre]] fir déi aktuell Spären.',
 
 # History merging
 'mergehistory' => 'Historiquë fusionéieren',
@@ -2417,7 +2417,7 @@ $1',
 'blockipsuccesssub' => 'Gouf gespaart',
 'blockipsuccesstext' => "[[Special:Contributions/$1|$1]] gouf gespaart. <br />
 
-Kuckt d'[[Special:BlockList|IP Spär-Lëscht]] fir all Spären ze gesin.",
+Kuckt d'[[Special:BlockList|Spär-Lëscht]] fir all Spären nozekucken.",
 'ipb-blockingself' => 'Dir sidd am gaang Iech selwer ze spären! Sidd Dir sécher datt Dir dat maache wëllt?',
 'ipb-confirmhideuser' => 'Dir sidd am gaang e Benotzer ze späre mat der Fonctioun "Benotzer verstoppen" ageschalt. Dëst hëlt den Numm vum Benotzer aus alle Lëschten a Logbicher eraus. Sidd Dir sécher datt Dir dat maache wëllt?',
 'ipb-edit-dropdown' => 'Spärgrënn änneren',
@@ -2470,7 +2470,7 @@ De Grond dee fir d\'Spär vum $1 ugi gouf ass: "$2".',
 'reblock-logentry' => "huet d'Spär vum [[$1]] bis den $2 $3 geännert",
 'blocklogtext' => "Dëst ass eng Lëscht vu Spären a vu Spären déi opgehuewe goufen.
 Automatesch gespaarten IP-Adresse sinn hei net opgelëscht.
-Kuckt d'[[Special:BlockList|IP Spärlëscht]] fir déi aktuell Spären.",
+Kuckt d'[[Special:BlockList|Spärlëscht]] fir déi aktuell Spären.",
 'unblocklogentry' => "huet d'Spär vum $1 opgehuewen",
 'block-log-flags-anononly' => 'Nëmmen anonym Benotzer',
 'block-log-flags-nocreate' => 'Schafe vu Benotzerkonte gespaart',
@@ -3706,5 +3706,16 @@ Soss kënnt Dir den einfache Formulär hei drënner benotzen. Är Bemierkung gë
 'api-error-unknownerror' => 'Onbekannte Feeler: "$1".',
 'api-error-uploaddisabled' => "D'Eroplueden ass op dëser Wiki ausgeschalt.",
 'api-error-verification-error' => 'Dëse Fichier kéint korrupt sinn, oder en huet eng falsch Erweiderung.',
+
+# Durations
+'duration-seconds' => '$1 {{PLURAL:$1|Sekonn|Sekonnen}}',
+'duration-minutes' => '$1 {{PLURAL:$1|Minutt|Minutten}}',
+'duration-hours' => '$1 {{PLURAL:$1|Stonn|Stonnen}}',
+'duration-days' => '$1 {{PLURAL:$1|Dag|Deeg}}',
+'duration-weeks' => '$1 {{PLURAL: $1|Woch|Wochen}}',
+'duration-years' => '$1 {{PLURAL:$1|Joer|Joer}}',
+'duration-decades' => '$1 {{PLURAL:$1|Joerzéngt|Joerzéngten}}',
+'duration-centuries' => '$1 {{PLURAL:$1|Joerhonnert|Joerhonnerten}}',
+'duration-millennia' => '$1 {{PLURAL:$1|Millenaire|Millenairen}}',
 
 );

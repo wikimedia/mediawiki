@@ -1529,9 +1529,9 @@ $1',
 
 # New logging system
 'logentry-move-move' => '$1 ܫܢܐ ܕܦܐ ܕ $3 ܠ $4',
-'logentry-move-move-noredirect' => '$1 ܫܢܐ ܕܦܐ ܕ $3 ܠ $4 ܕܠܐ ܫܒܩܐ ܕܦܐ ܕܨܘܝܒܐ',
+'logentry-move-move-noredirect' => '$1 ܫܢܐ ܕܦܐ ܕ $3 ܠ $4 ܕܠܐ ܫܒܩܐ ܕܕܦܐ ܕܨܘܝܒܐ',
 'logentry-move-move_redir' => '$1 ܫܢܐ ܕܦܐ ܕ $3 ܠ $4 ܕܐܝܬܘܗܝ ܗܘܐ ܕܦܐ ܕܨܘܝܒܐ',
-'logentry-move-move_redir-noredirect' => '$1 ܫܢܐ ܕܦܐ ܕ $3 ܠ $4 ܕܐܝܬܘܗܝ ܗܘܐ ܕܦܐ ܕܨܘܝܒܐ ܘܕܠܐ ܫܒܩܐ ܕܦܐ ܕܨܘܝܒܐ',
+'logentry-move-move_redir-noredirect' => '$1 ܫܢܐ ܕܦܐ ܕ $3 ܠ $4 ܕܐܝܬܘܗܝ ܗܘܐ ܕܦܐ ܕܨܘܝܒܐ ܘܕܠܐ ܫܒܩܐ ܕܕܦܐ ܕܨܘܝܒܐ',
 'logentry-newusers-newusers' => '$1 ܒܪܐ ܚܘܫܒܢܐ ܕܡܦܠܚܢܐ',
 'logentry-newusers-create' => '$1 ܒܪܐ ܚܘܫܒܢܐ ܕܡܦܠܚܢܐ',
 'logentry-newusers-create2' => '$1 ܒܪܐ ܚܘܫܒܢܐ ܕܡܦܠܚܢܐ $3',

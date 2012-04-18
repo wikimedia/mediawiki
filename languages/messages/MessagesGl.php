@@ -2109,6 +2109,11 @@ Pode precisar máis a vista seleccionando o tipo de rexistro, o nome do usuario 
 'allpages-bad-ns' => '{{SITENAME}} carece do espazo de nomes "$1".',
 'allpages-hide-redirects' => 'Agochar as redireccións',
 
+# SpecialCachedPage
+'cachedspecial-viewing-cached-ttl' => 'Está a ver unha versión da páxina gardada na caché, que pode ser de hai $1.',
+'cachedspecial-viewing-cached-ts' => 'Está a ver unha versión da páxina gardada na caché, que pode non estar completamente actualizada.',
+'cachedspecial-refresh-now' => 'Ir á versión máis recente.',
+
 # Special:Categories
 'categories' => 'Categorías',
 'categoriespagetext' => '{{PLURAL:$1|A seguinte categoría contén|As seguintes categorías conteñen}} páxinas ou contidos multimedia.
@@ -3901,5 +3906,16 @@ En caso contrario, pode empregar o formulario sinxelo inferior. O seu comentario
 'api-error-unknownerror' => 'Erro descoñecido: "$1".',
 'api-error-uploaddisabled' => 'As cargas están desactivadas neste wiki.',
 'api-error-verification-error' => 'Este ficheiro podería estar corrupto ou ter unha extensión incorrecta.',
+
+# Durations
+'duration-seconds' => '$1 {{PLURAL:$1|segundo|segundos}}',
+'duration-minutes' => '$1 {{PLURAL:$1|minuto|minutos}}',
+'duration-hours' => '$1 {{PLURAL:$1|hora|horas}}',
+'duration-days' => '$1 {{PLURAL:$1|día|días}}',
+'duration-weeks' => '$1 {{PLURAL:$1|semana|semanas}}',
+'duration-years' => '$1 {{PLURAL:$1|ano|anos}}',
+'duration-decades' => '$1 {{PLURAL:$1|década|décadas}}',
+'duration-centuries' => '$1 {{PLURAL:$1|século|séculos}}',
+'duration-millennia' => '$1 {{PLURAL:$1|milenio|milenios}}',
 
 );

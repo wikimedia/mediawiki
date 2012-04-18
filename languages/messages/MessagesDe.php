@@ -2224,6 +2224,11 @@ Die Ausgabe kann durch die Auswahl des Logbuchtyps, des Benutzers oder des Seite
 'allpages-bad-ns' => 'Der Namensraum „$1“ ist in {{SITENAME}} nicht vorhanden.',
 'allpages-hide-redirects' => 'Weiterleitungen ausblenden',
 
+# SpecialCachedPage
+'cachedspecial-viewing-cached-ttl' => 'Du siehst die gecachte Version dieser Seite, die bis zu $1 alt sein kann.',
+'cachedspecial-viewing-cached-ts' => 'Du siehst die gecachte Version dieser Seite, die möglicherweise nicht aktuell ist.',
+'cachedspecial-refresh-now' => 'Aktuelle Version ansehen.',
+
 # Special:Categories
 'categories' => 'Kategorien',
 'categoriespagetext' => 'Folgende {{PLURAL:$1|Kategorie enthält|Kategorien enthalten}} Seiten oder Dateien.
@@ -2649,7 +2654,7 @@ Bitte gib den Grund für die Sperre an.',
 'ipb-confirm' => 'Sperrung bestätigen',
 'badipaddress' => 'Die IP-Adresse hat ein falsches Format.',
 'blockipsuccesssub' => 'Sperre erfolgreich',
-'blockipsuccesstext' => 'Der Benutzer/die IP-Adresse [[Special:Contributions/$1|$1]] wurde gesperrt.<br />
+'blockipsuccesstext' => 'Der Benutzer / die IP-Adresse [[Special:Contributions/$1|$1]] wurde gesperrt.<br />
 Zur Aufhebung der Sperre siehe die [[Special:BlockList|Liste aller aktiven Sperren]].',
 'ipb-blockingself' => 'Du bist gerade dabei, dich selbst zu sperren! Möchtest du das wirklich tun?',
 'ipb-confirmhideuser' => 'Du bist gerade dabei einen Benutzer im Modus „Benutzer verstecken“ zu sperren. Dies führt dazu, dass der Benutzername in allen Listen und Logbüchern unterdrückt wird. Möchtest du das wirklich tun?',
@@ -4005,5 +4010,16 @@ Anderenfalls kannst du auch das untenstehende einfache Formular nutzen. Dein Kom
 'api-error-unknownerror' => 'Unbekannter Fehler: „$1“',
 'api-error-uploaddisabled' => 'Das Hochladen ist in diesem Wiki deaktiviert.',
 'api-error-verification-error' => 'Die hochzuladende Datei ist entweder fehlerhaft oder hat keine Dateinamenserweiterung.',
+
+# Durations
+'duration-seconds' => '$1 {{PLURAL:$1|Sekunde|Sekunden}}',
+'duration-minutes' => '$1 {{PLURAL:$1|Minute|Minuten}}',
+'duration-hours' => '$1 {{PLURAL:$1|Stunde|Stunden}}',
+'duration-days' => '$1 {{PLURAL:$1|Tag|Tage}}',
+'duration-weeks' => '$1 {{PLURAL:$1|Woche|Wochen}}',
+'duration-years' => '$1 {{PLURAL:$1|Jahr|Jahre}}',
+'duration-decades' => '$1 {{PLURAL:$1|Jahrzehnt|Jahrzehnte}}',
+'duration-centuries' => '$1 {{PLURAL:$1|Jahrhundert|Jahrhunderte}}',
+'duration-millennia' => '$1 {{PLURAL:$1|Jahrtausend|Jahrtausende}}',
 
 );

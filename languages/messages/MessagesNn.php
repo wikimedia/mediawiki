@@ -916,7 +916,8 @@ Det siste elementet i blokkeringsloggen er oppgjeve nedanfor:',
 'userinvalidcssjstitle' => "'''Åtvaring:''' Det finst ikkje noka sidedrakt som heiter «$1». Hugs på at vanlege .css- og .js-sider brukar titlar med små bokstavar, til dømes {{ns:user}}:Døme/vector.css, og ikkje {{ns:user}}:Døme/Vector.css.",
 'updated' => '(Oppdatert)',
 'note' => "'''Merk:'''",
-'previewnote' => "'''Hugs at dette berre er ei førehandsvising og at teksten ikkje er lagra!'''",
+'previewnote' => "'''Hugsa at dette berre er ei førehandsvising.'''
+Endringane dine er ikkje lagra enno! [[#editform|→ Haldt fram med å endra]]",
 'previewconflict' => 'Dette er ei førehandsvising av teksten i endringsboksen over, slik han vil sjå ut om du lagrar han',
 'session_fail_preview' => "'''Orsak! Endringa di kunne ikkje lagrast. Ver venleg og prøv ein gong til. Dersom det framleis ikkje går, prøv å logge deg ut og inn att.'''",
 'session_fail_preview_html' => "'''Beklagar! Endringa di kunne ikkje lagrast.'''

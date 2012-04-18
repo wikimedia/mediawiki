@@ -29,6 +29,7 @@
  * @author FollowTheMedia
  * @author Gianfranco
  * @author HalphaZ
+ * @author Jasonbleinel
  * @author Kaganer
  * @author Klutzy
  * @author Marco 27
@@ -1146,7 +1147,8 @@ $1",
 
 # Suppression log
 'suppressionlog' => 'Log delle soppressioni',
-'suppressionlogtext' => "Di seguito sono elencate le cancellazioni e i blocchi con del contenuto nascosto agli amministratori. Vedi l'[[Special:BlockList|elenco degli IP bloccati]] per l'elenco dei blocchi attivi al momento.",
+'suppressionlogtext' => "Di seguito sono elencate le cancellazioni e i blocchi con del contenuto nascosto agli amministratori.
+Vedi l'[[Special:BlockList|elenco dei blocchi]] per l'elenco dei bandi e dei blocchi attivi al momento.",
 
 # History merging
 'mergehistory' => 'Unione cronologie',
@@ -1736,6 +1738,10 @@ $1',
 'backend-fail-contenttype' => 'Impossibile determinare la tipologia del file da archiviare in "$1".',
 'backend-fail-batchsize' => 'Il backend di memoria ha programmato una serie di $1 {{PLURAL:$1|operazione|operazioni}} su file; il limite è di $2 {{PLURAL:$2|operazione|operazioni}}.',
 
+# File journal errors
+'filejournal-fail-dbconnect' => 'Impossibile connettersi al database journal per l\'archiviazione back-end "$1".',
+'filejournal-fail-dbquery' => 'Impossibile aggiornare il database journal per l\'archiviazione back-end "$1".',
+
 # Lock manager
 'lockmanager-notlocked' => 'Impossibile sbloccare "$1"; non è bloccato.',
 'lockmanager-fail-closelock' => 'Non riuscita chiusura del file di blocco per "$1".',
@@ -2066,6 +2072,9 @@ Potrebbero essere presenti immagini che sono usate da altri siti con un collegam
 'allpagesbadtitle' => 'Il titolo indicato per la pagina non è valido o contiene prefissi interlingua o interwiki. Potrebbe inoltre contenere uno o più caratteri il cui uso non è ammesso nei titoli.',
 'allpages-bad-ns' => 'Il namespace "$1" non esiste su {{SITENAME}}.',
 'allpages-hide-redirects' => 'Nascondi redirect',
+
+# SpecialCachedPage
+'cachedspecial-refresh-now' => 'Mostra la più recente.',
 
 # Special:Categories
 'categories' => 'Categorie',
@@ -2494,8 +2503,8 @@ Indicare il motivo specifico per il quale si procede al blocco (per esempio, cit
 'ipb-confirm' => 'Conferma il blocco',
 'badipaddress' => 'Indirizzo IP non valido.',
 'blockipsuccesssub' => 'Blocco eseguito',
-'blockipsuccesstext' => '[[Special:Contributions/$1|$1]] è stato bloccato. <br />
-Consultare la [[Special:BlockList|lista degli IP bloccati]] per vedere i blocchi attivi.',
+'blockipsuccesstext' => '[[Special:Contributions/$1|$1]] è stato bloccato.<br />
+Consultare la [[Special:BlockList|lista dei blocchi]] per vedere i blocchi attivi.',
 'ipb-blockingself' => 'Stai per bloccare te stesso! Sei sicuro di volerlo fare?',
 'ipb-confirmhideuser' => 'Si sta per bloccare un utente con l\'opzione "Nascondi utente" abilitata.
 In questo modo si evita che il nome utente compaia in tutte le liste e le voci di registro.
@@ -2548,7 +2557,9 @@ Il blocco dell\'utente $1 è stato imposto per il seguente motivo: "$2".',
 'blocklog-showsuppresslog' => 'Questo utente è stato bloccato e nascosto in precedenza. Il registro delle rimozioni è riportato di seguito per informazione:',
 'blocklogentry' => 'ha bloccato [[$1]] per un periodo di $2 $3',
 'reblock-logentry' => 'ha cambiato le impostazioni del blocco per [[$1]] con una scadenza di $2 $3',
-'blocklogtext' => "Di seguito sono elencate le azioni di blocco e sblocco utenti. Gli indirizzi IP bloccati automaticamente non sono elencati. Consultare l'[[Special:BlockList|elenco IP bloccati]] per l'elenco degli indirizzi e nomi utente il cui blocco è operativo.",
+'blocklogtext' => "Di seguito sono elencate le azioni di blocco e sblocco utenti.
+Gli indirizzi IP bloccati automaticamente non sono elencati.
+Consultare l'[[Special:BlockList|elenco dei blocchi]] per l'elenco dei bandi o blocchi attualmente operativi.",
 'unblocklogentry' => 'ha sbloccato $1',
 'block-log-flags-anononly' => 'solo utenti anonimi',
 'block-log-flags-nocreate' => 'creazione account bloccata',
@@ -3817,5 +3828,16 @@ Le immagini vengono mostrate alla massima risoluzione disponibile, per gli altri
 'api-error-unknownerror' => 'Errore sconosciuto: "$1".',
 'api-error-uploaddisabled' => 'Il caricamento è disabilitato su questa wiki.',
 'api-error-verification-error' => "Questo file potrebbe essere danneggiato, o avere l'estensione sbagliata.",
+
+# Durations
+'duration-seconds' => '$1 {{PLURAL:$1|secondo|secondi}}',
+'duration-minutes' => '$1 {{PLURAL:$1|minuto|minuti}}',
+'duration-hours' => '$1 {{PLURAL:$1|ora|ore}}',
+'duration-days' => '$1 {{PLURAL:$1|giorno|giorni}}',
+'duration-weeks' => '$1 {{PLURAL:$1|settimana|settimane}}',
+'duration-years' => '$1 {{PLURAL:$1|anno|anni}}',
+'duration-decades' => '$1 {{PLURAL:$1|decade|decadi}}',
+'duration-centuries' => '$1 {{PLURAL:$1|secolo|secoli}}',
+'duration-millennia' => '$1 {{PLURAL:$1|millennio|millenni}}',
 
 );

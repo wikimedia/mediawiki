@@ -42,6 +42,7 @@
  * @author PhiLiP
  * @author Shinjiman
  * @author Shizhao
+ * @author Supaiku
  * @author Tommyang
  * @author Waihorace
  * @author Wilsonmess
@@ -634,9 +635,9 @@ $2',
 'customjsprotected' => '您没有权限编辑此JavaScript页面，因为它包含另一位用户的个人设置。',
 'ns-specialprotected' => '您不能编辑特殊页面。',
 'titleprotected' => '此标题已被[[User:$1|$1]]保护以防止创建。理由是“$2”。',
-'filereadonlyerror' => '无法修改文件“$1”，因为文件库“$2”处于只读模式。
+'filereadonlyerror' => '无法修改文件“$1”，因为文件库“$2”处于只读模式。 
 
-给出的理由是“$3”。',
+管理员对锁定它给出的解释是：“$3”。',
 
 # Virus scanner
 'virus-badscanner' => "错误的配置：未知的病毒扫描程序：''$1''",
@@ -1800,6 +1801,8 @@ $1',
 请参阅在[$2 文件描述页面]以了解其相关信息。',
 'sharedupload-desc-here' => '该文件来自于$1，它可能在其它计划项目中被应用。
 它在[$2 文件描述页面]那边上的描述于下面显示。',
+'sharedupload-desc-edit' => '此文件是从 $1 和可能由其他维基项目使用。 ！N ！也许您想在其[ $2 文件描述页面]编辑说明。',
+'sharedupload-desc-create' => '此文件是从 $1 和可能由其他维基项目使用。 ！N ！也许您想在其[ $2 文件描述页面]编辑说明。',
 'filepage-nofile' => '不存在此名称的文件。',
 'filepage-nofile-link' => '不存在此名称的文件，但您可以[$1 上传它]。',
 'uploadnewversion-linktext' => '上传该文件的新版本',
