@@ -974,6 +974,8 @@ class Title {
      * This is generally true for pages in the MediaWiki namespace having CONTENT_MODEL_CSS
      * or CONTENT_MODEL_JAVASCRIPT.
      *
+     * This method does *not* return true for per-user JS/CSS. Use isCssJsSubpage() for that!
+     *
      * Note that this method should not return true for pages that contain and show "inactive" CSS or JS.
 	 *
 	 * @return Bool
@@ -997,7 +999,8 @@ class Title {
 	 */
 	public function isCssJsSubpage() {
 		return ( NS_USER == $this->mNamespace && $this->isSubpage()
-            && $this->isCssOrJsPage() );
+                && ( $this->hasContentModel( CONTENT_MODEL_CSS )
+                    || $this->hasContentModel( CONTENT_MODEL_JAVASCRIPT ) ) );
 	}
 
 	/**
