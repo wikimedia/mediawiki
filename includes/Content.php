@@ -493,7 +493,7 @@ class WikitextContent extends TextContent {
 	 *
 	 * @return ParserOutput representing the HTML form of the text
 	 */
-    public function getParserOutput( IContextSource $context = null, $revId = null, ParserOptions $options = null, $generateHtml = true ) {
+    public function getParserOutput( IContextSource $context, $revId = null, ParserOptions $options = null, $generateHtml = true ) {
         global $wgParser;
 
         if ( !$options ) {
