@@ -559,7 +559,7 @@ class DatabasePostgres extends DatabaseBase {
 				i.indoption[s.g] as option,
 				pg_am.amname
 			FROM
-				(SELECT generate_subscripts(isub.indkey, 1) AS g
+				(SELECT generate_series(array_lower(isub.indkey,1), array_upper(isub.indkey,1)) AS g
 					FROM
 						pg_index isub
 					JOIN pg_class cis
