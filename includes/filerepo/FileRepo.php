@@ -706,9 +706,7 @@ class FileRepo {
 			}
 
 			// Resolve source to a storage path if virtual
-			if ( self::isVirtualUrl( $srcPath ) ) {
-				$srcPath = $this->resolveVirtualUrl( $srcPath );
-			}
+			$srcPath = $this->resolveToStoragePath( $srcPath );
 
 			// Get the appropriate file operation
 			if ( FileBackend::isStoragePath( $srcPath ) ) {
@@ -767,9 +765,7 @@ class FileRepo {
 				$path = $this->getZonePath( $zone ) . "/$rel";
 			} else {
 				// Resolve source to a storage path if virtual
-				if ( self::isVirtualUrl( $path ) ) {
-					$path = $this->resolveVirtualUrl( $path );
-				}
+				$path = $this->resolveToStoragePath( $path );
 			}
 			$operations[] = array( 'op' => 'delete', 'src' => $path );
 		}
@@ -1007,9 +1003,7 @@ class FileRepo {
 		foreach ( $triplets as $i => $triplet ) {
 			list( $srcPath, $dstRel, $archiveRel ) = $triplet;
 			// Resolve source to a storage path if virtual
-			if ( $this->isVirtualUrl( $srcPath ) ) {
-				$srcPath = $this->resolveVirtualUrl( $srcPath );
-			}
+			$srcPath = $this->resolveToStoragePath( $srcPath );
 			if ( !$this->validateFilename( $dstRel ) ) {
 				throw new MWException( 'Validation error in $dstRel' );
 			}
@@ -1128,9 +1122,7 @@ class FileRepo {
 	public function fileExistsBatch( array $files ) {
 		$result = array();
 		foreach ( $files as $key => $file ) {
-			if ( self::isVirtualUrl( $file ) ) {
-				$file = $this->resolveVirtualUrl( $file );
-			}
+			$file = $this->resolveToStoragePath( $file );
 			$result[$key] = $this->backend->fileExists( array( 'src' => $file ) );
 		}
 		return $result;
