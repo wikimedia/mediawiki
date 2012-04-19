@@ -99,7 +99,7 @@ class UploadFromStash extends UploadBase {
 		// chooses one of wpDestFile, wpUploadFile, filename in that order.
 		$desiredDestName = $request->getText( 'wpDestFile', $request->getText( 'wpUploadFile', $request->getText( 'filename' ) ) );
 
-		return $this->initialize( $fileKey, $desiredDestName );
+		$this->initialize( $fileKey, $desiredDestName );
 	}
 
 	/**
