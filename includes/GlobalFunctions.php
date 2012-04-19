@@ -2657,7 +2657,8 @@ function wfMkdirParents( $dir, $mode = null, $caller = null ) {
 
 	if( !$ok ) {
 		// PHP doesn't report the path in its warning message, so add our own to aid in diagnosis.
-		trigger_error( __FUNCTION__ . ": failed to mkdir \"$dir\" mode $mode", E_USER_WARNING );
+		trigger_error( sprintf( "%s: failed to mkdir \"%s\" mode 0%o", __FUNCTION__, $dir, $mode ),
+			E_USER_WARNING );
 	}
 	return $ok;
 }
