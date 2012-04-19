@@ -32,5 +32,7 @@ $wgAutoloadClasses += array(
 
 	//Generic providers
 	'MediaWikiProvide' => "$testFolder/phpunit/includes/Providers.php",
+
+	'TestContext' => "$testFolder/phpunit/TestContext.php",
 );
 
