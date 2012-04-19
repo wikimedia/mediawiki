@@ -520,6 +520,7 @@ function wfExpandUrl( $url, $defaultProto = PROTO_CURRENT ) {
  *
  * @todo Need to integrate this into wfExpandUrl (bug 32168)
  *
+ * @since 1.19
  * @param $urlParts Array URL parts, as output from wfParseUrl
  * @return string URL assembled from its component parts
  */
