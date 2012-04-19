@@ -5,6 +5,7 @@
  * Created on July 30, 2007
  *
  * Copyright © 2007 Yuri Astrakhan <Firstname><Lastname>@gmail.com
+ * Copyright © 2011 John Du Hart john@johnduhart.me
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -39,14 +40,23 @@ class ApiQueryUserInfo extends ApiQueryBase {
 
 	public function execute() {
 		$params = $this->extractRequestParams();
-		$result = $this->getResult();
 
 		if ( !is_null( $params['prop'] ) ) {
 			$this->prop = array_flip( $params['prop'] );
 		}
 
-		$r = $this->getCurrentUserInfo();
-		$result->addValue( 'query', $this->getModuleName(), $r );
+		$res = $this->getCurrentUserInfo();
+
+		if ( !is_null( $params['tokens'] ) ) {
+			if ( empty($params['tokens']) ) {
+				$tokens = array('edit'); // set default for empty, but existing parameter
+			} else {
+				$tokens = $params['tokens'];
+			}
+			$res['tokens'] = $this->getTokens($tokens);
+		}
+
+		$this->getResult()->addValue( 'query', $this->getModuleName(), $res );
 	}
 
 	protected function getCurrentUserInfo() {
@@ -184,6 +194,27 @@ class ApiQueryUserInfo extends ApiQueryBase {
 		return $retval;
 	}
 
+	protected function getTokens($tokens) {
+		$res = array();
+		foreach ( $tokens as $type ) {
+			$type = strtolower( $type );
+			$func = 'get' .
+					ucfirst( $type ) .
+					'Token';
+			if ( $type === 'patrol' ) {
+				$val = call_user_func( array( 'ApiQueryRecentChanges', $func ), null, null );
+			} else {
+				$val = call_user_func( array( 'ApiQueryInfo', $func ), null, null );
+			}
+			if ( $val === false ) {
+				$this->setWarning( "Action '$type' is not allowed for the current user" );
+			} else {
+				$res[$type . 'token'] = $val;
+			}
+		}
+		return $res;
+	}
+
 	public function getAllowedParams() {
 		return array(
 			'prop' => array(
@@ -204,6 +235,14 @@ class ApiQueryUserInfo extends ApiQueryBase {
 					'realname',
 					'acceptlang',
 					'registrationdate'
+				)
+			),
+			'tokens' => array(
+				ApiBase::PARAM_DFLT => null,
+				ApiBase::PARAM_ISMULTI => true,
+				ApiBase::PARAM_TYPE => array(
+					'edit', 'delete', 'protect', 'move', 'block', 'unblock',
+					'email', 'import', 'watch', 'patrol'
 				)
 			)
 		);
@@ -227,18 +266,21 @@ class ApiQueryUserInfo extends ApiQueryBase {
 				'  email            - Adds the user\'s email address and email authentication date',
 				'  acceptlang       - Echoes the Accept-Language header sent by the client in a structured format',
 				'  registrationdate - Adds the user\'s registration date',
-			)
+			),
+			'tokens' => 'Type of token(s) to request. Defaults to "edit"'
 		);
 	}
 
 	public function getDescription() {
-		return 'Get information about the current user';
+		return 'Get information about the current user and tokens for data-modifying actions';
 	}
 
 	public function getExamples() {
 		return array(
 			'api.php?action=query&meta=userinfo',
 			'api.php?action=query&meta=userinfo&uiprop=blockinfo|groups|rights|hasmsg',
+			'api.php?action=query&meta=userinfo&uitokens' => 'Retrieve an edit token (the default)',
+			'api.php?action=query&meta=userinfo&uitokens=email|move' => 'Retrieve an email token and a move token'
 		);
 	}
 
