@@ -1102,7 +1102,7 @@ $1",
 
 # Suppression log
 'suppressionlog' => '监督日志',
-'suppressionlogtext' => '该列表列出对管理员隐藏的删除与封禁。另参见[[Special:BlockList|IP封锁名单]]以查询当前的封禁列表。',
+'suppressionlogtext' => '该列表列出了管理员隐藏的删除与封禁。另参见[[Special:BlockList|封禁列表]]查询当前的封禁列表。',
 
 # History merging
 'mergehistory' => '合并页面历史',
@@ -2012,6 +2012,9 @@ $1',
 'allpagesbadtitle' => '给定的页面标题是非法的，或者具有一个内部语言或内部 wiki 的前缀。它可能包含一个或更多的不能用于标题的字符。',
 'allpages-bad-ns' => '在{{SITENAME}}中没有一个叫做"$1"的名字空间。',
 'allpages-hide-redirects' => '隐藏重定向页',
+
+# SpecialCachedPage
+'cachedspecial-refresh-now' => '查看最新的。',
 
 # Special:Categories
 'categories' => '分类',
@@ -3779,5 +3782,16 @@ MediaWiki是基于使用目的而加以发布，然而不负任何担保责任�
 'api-error-unknownerror' => '未知错误：$1。',
 'api-error-uploaddisabled' => '这个维基不接受上传。',
 'api-error-verification-error' => '此文件可能已损坏，或有错误的扩展名。',
+
+# Durations
+'duration-seconds' => '$1{{PLURAL:$1|秒|秒}}',
+'duration-minutes' => '$1{{PLURAL:$1|分钟|分钟}}',
+'duration-hours' => '$1{{PLURAL:$1|小时|小时}}',
+'duration-days' => '$1{{PLURAL:$1|天|天}}',
+'duration-weeks' => '$1{{PLURAL:$1|星期|星期}}',
+'duration-years' => '$1{{PLURAL:$1|年|年}}',
+'duration-decades' => '$1{{PLURAL:$1|0年|0年}}',
+'duration-centuries' => '$1{{PLURAL:$1|00年|00年}}',
+'duration-millennia' => '$1{{PLURAL:$1|千年|千年}}',
 
 );

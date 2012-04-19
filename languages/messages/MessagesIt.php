@@ -2074,6 +2074,8 @@ Potrebbero essere presenti immagini che sono usate da altri siti con un collegam
 'allpages-hide-redirects' => 'Nascondi redirect',
 
 # SpecialCachedPage
+'cachedspecial-viewing-cached-ttl' => 'Stai vedendo una versione di questa pagina memorizzata nella cache, che può essere vecchia al massimo di $1.',
+'cachedspecial-viewing-cached-ts' => 'Stai vedendo una versione di questa pagina memorizzata nella cache, che potrebbe non essere completamente aggiornata.',
 'cachedspecial-refresh-now' => 'Mostra la più recente.',
 
 # Special:Categories

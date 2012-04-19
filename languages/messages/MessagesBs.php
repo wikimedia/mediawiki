@@ -960,7 +960,8 @@ Posljednje stavke zapisnika blokiranja možete pogledati ispod:',
 Ne zaboravite da imena stranica s .css i .js kodom počinju malim slovom, npr. {{ns:user}}:Foo/vector.css, a ne {{ns:user}}:Foo/Vector.css.",
 'updated' => '(Osvježeno)',
 'note' => "'''Pažnja:'''",
-'previewnote' => "'''Ovo je samo pregled; izmjene stranice nisu još sačuvane!'''",
+'previewnote' => "'''Ne zaboravite da je ovo samo pregled'''
+Izmjene stranice nisu još sačuvane! [[#editform|→ Nastavi s uređivanjem]]",
 'previewconflict' => 'Ovaj pregled reflektuje tekst u gornjem polju
 kako će izgledati ako pritisnete "Sačuvaj članak".',
 'session_fail_preview' => "'''Izvinjavamo se! Nismo mogli obraditi vašu izmjenu zbog gubitka podataka o prijavi. Molimo pokušajte ponovno. Ako i dalje ne bude radilo, pokušajte se [[Special:UserLogout|odjaviti]] i ponovno prijaviti.'''",
@@ -1202,7 +1203,7 @@ Molimo provjerite zapise.',
 # Suppression log
 'suppressionlog' => 'Zapisi sakrivanja',
 'suppressionlogtext' => 'Ispod je spisak brisanja i blokiranja koja su povezana sa sadržajem koji je sakriven od administratora. 
-Vidi [[Special:BlockList|spisak IP blokiranja]] za pregled trenutno važećih blokada.',
+Vidi [[Special:BlockList|spisak blokiranja]] za pregled trenutno važećih blokada.',
 
 # History merging
 'mergehistory' => 'Spoji historije stranice',
@@ -1317,7 +1318,7 @@ Pokušajte u Vaš upit uključiti prefiks ''all:'' da bi ste pretražili sav sad
 'qbsettings-fixedright' => 'Pričvršćena desno',
 'qbsettings-floatingleft' => 'Plutajuća lijevo',
 'qbsettings-floatingright' => 'Plutajući desno',
-'qbsettings-directionality' => 'Čvrsto, u zavisnosti od usmjerenosti pisma vašeg jezika',
+'qbsettings-directionality' => 'Čvrsto, u zavisnosti od usmjerenosti pisma Vašeg jezika',
 
 # Preferences page
 'preferences' => 'Podešavanja',
@@ -2239,7 +2240,7 @@ Ako kasnije želite da uklonite stranicu sa vašeg spiska praćenih članaka, kl
 'watchmethod-list' => 'provjerava se da li ima nedavnih izmjena u praćenim stranicama',
 'watchlistcontains' => 'Vaš spisak praćenih članaka sadrži $1 {{PLURAL:$1|stranicu|stranica}}.',
 'iteminvalidname' => "Problem sa '$1', neispravno ime...",
-'wlnote' => "Ispod je {{PLURAL:$1|najskorija izmjena|'''$1''' najskorije izmjene|'''$1''' najskorijih izmjena}} načinjenih {{PLURAL:$2|posljednjeg sata|u posljednjih '''$2''' sata|u posljednjih '''$2''' sati}}.",
+'wlnote' => "Ispod je {{PLURAL:$1|najskorija izmjena|'''$1''' najskorije izmjene|'''$1''' najskorijih izmjena}} načinjenih {{PLURAL:$2|posljednjeg sata|u posljednjih '''$2''' sata|u posljednjih '''$2''' sati}}, od $3, $4.",
 'wlshowlast' => 'Prikaži posljednjih $1 sati $2 dana $3',
 'watchlist-options' => 'Opcije spiska praćenja',
 
@@ -2550,8 +2551,8 @@ Posljednje stavke zapisnika blokiranja možete pogledati ispod:',
 'ipb-confirm' => 'Potvrdite blokiranje',
 'badipaddress' => 'Pogrešna IP adresa',
 'blockipsuccesssub' => 'Blokiranje je uspjelo',
-'blockipsuccesstext' => '[[Special:Contributions/$1|$1]] je blokiran.
-<br />Pogledajte [[Special:BlockList|IP spisak blokiranih korisnika]] za pregled blokiranja.',
+'blockipsuccesstext' => '[[Special:Contributions/$1|$1]] je {{GENDER:$1|blokiran|blokirana|blokiran}}.<br />
+Pogledajte [[Special:BlockList|spisak blokiranja]] za pregled blokiranja.',
 'ipb-blockingself' => 'Ovom akcijom ćete blokirati sebe! Da li ste sigurni da to želite?',
 'ipb-confirmhideuser' => "Upravo ćete blokirati korisnika sa uključenom opcijom ''sakrij korisnika''. Ovim će korisničko ime biti sakriveno u svim spiskovima i stavkama zapisnika. Da li ste sigurni da to želite?",
 'ipb-edit-dropdown' => 'Uredi razloge blokiranja',
@@ -2604,8 +2605,8 @@ Razlog za blokiranje je korisnika $1 je: \'\'$2\'\'',
 'blocklogentry' => 'je blokirao [[$1]] sa vremenom isticanja blokade od $2 $3',
 'reblock-logentry' => 'promjena postavki blokiranja za [[$1]] sa vremenom isteka u $2 $3',
 'blocklogtext' => 'Ovo je historija akcija blokiranja i deblokiranja korisnika.
-Automatsko blokirane IP adrese nisu uspisane ovde.
-Pogledajte [[Special:BlockList|blokirane IP adrese]] za spisak trenutnih zabrana i blokiranja.',
+Automatski blokirane IP adrese nisu navedene ovdje.
+Pogledajte [[Special:BlockList|spisak blokiranja]] za spisak trenutnih zabrana i blokiranja.',
 'unblocklogentry' => 'deblokiran $1',
 'block-log-flags-anononly' => 'samo anonimni korisnici',
 'block-log-flags-nocreate' => 'pravljenje računa onemogućeno',
@@ -2869,10 +2870,11 @@ Nedostaje privremeni folder.',
 
 # JavaScriptTest
 'javascripttest' => 'Testiranje JavaScript-e',
-'javascripttest-disabled' => 'Ova funkcija je onemogućena.',
+'javascripttest-disabled' => 'Ova funkcija je onemogućena na ovom wikiju.',
 'javascripttest-title' => 'Pokretanje $1 testova',
 'javascripttest-pagetext-noframework' => 'Ova stranica je određena za pokretanje JavaScript testova.',
 'javascripttest-pagetext-unknownframework' => 'Nepoznat radni okvir testiranja"$1".',
+'javascripttest-pagetext-skins' => 'Izaberite s kojom temom želite da pokrenete probu:',
 'javascripttest-qunit-intro' => 'Pogledajte [$1 dokumentaciju za testiranje] na mediawiki.org.',
 
 # Tooltip help for the actions
@@ -3874,6 +3876,10 @@ Slike su prikazane u punoj veličini, ostale vrste datoteka su prikazane direktn
 'revdelete-unrestricted' => 'uklonjena ograničenja za administratore',
 'logentry-move-move' => '$1 je premjestio stranicu $3 na $4',
 'logentry-move-move-noredirect' => '$1 je premjestio stranicu $3 na $4 bez ostavljanja preusmjerenja',
+'logentry-move-move_redir' => '$1 je premjestio stranicu $3 na $4 preko preusmjeravanja',
+'logentry-move-move_redir-noredirect' => '$1 je premjestio stranicu $3 na $4 preko preusmjeravanja bez ostavljanja preusmjeravanja',
+'logentry-patrol-patrol' => '$1 je označio izmjenu $4 stranice $3 pregledanim',
+'logentry-patrol-patrol-auto' => '$1 je automatski označio izmjenu $4 stranice $3 pregledanim',
 'logentry-newusers-newusers' => '$1 je napravio korisnički račun',
 'logentry-newusers-create' => '$1 je napravio korisnički račun',
 'logentry-newusers-create2' => '$1 je napravio korisnički račun $3',
@@ -3881,6 +3887,8 @@ Slike su prikazane u punoj veličini, ostale vrste datoteka su prikazane direktn
 'newuserlog-byemail' => 'šifra je poslana putem e-maila',
 
 # Feedback
+'feedback-bugornote' => 'Ako ste spremni detaljno opisati tehnički problem molimo [$1 prijavite "bug" (grešku)].
+Inače, možete ispuniti jednostavan obrazac ispod. Vaš komentar biti će dodan na stranicu "[$3 $2]", zajedno s vašim korisničkim imenom i internetskog preglednika koji koristite.',
 'feedback-subject' => 'Tema:',
 'feedback-message' => 'Poruka:',
 'feedback-cancel' => 'Odustani',
@@ -3931,5 +3939,9 @@ Slike su prikazane u punoj veličini, ostale vrste datoteka su prikazane direktn
 'api-error-unknownerror' => 'Nepoznata greška: "$1"',
 'api-error-uploaddisabled' => 'Postavljanje je onemogućeno na ovoj wiki.',
 'api-error-verification-error' => 'Ova datoteka je možda oštećenja ili ima pogrešan nastavak.',
+
+# Durations
+'duration-seconds' => '$1 {{PLURAL:$1|sekunda|sekunde}}',
+'duration-days' => '$1 {{PLURAL:$1|dan|dana}}',
 
 );

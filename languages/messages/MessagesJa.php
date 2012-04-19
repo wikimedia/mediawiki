@@ -821,7 +821,7 @@ $2',
 'passwordtooshort' => 'パスワードは {{PLURAL:$1|$1 文字}}以上にしてください。',
 'password-name-match' => 'パスワードは利用者名と同じであってはいけません。',
 'password-login-forbidden' => 'このような利用者名とパスワードを使用することは禁止されています。',
-'mailmypassword' => '新しいパスワードを電子メールで送る',
+'mailmypassword' => '新しいパスワードをメールで送信',
 'passwordremindertitle' => '{{SITENAME}}の仮パスワード通知',
 'passwordremindertext' => '誰かが（おそらくご自身が、IPアドレス$1から）{{SITENAME}}（$4）のログイン用パスワードの再発行を申請しました。
 ユーザ「$2」の仮パスワードが作成され「$3」に設定されました。
@@ -831,7 +831,7 @@ $2',
 この申請をしたのが他人である場合、あるいはパスワードを思い出してパスワード変更が不要になった場合は、
 このメッセージを無視して、引き続き以前のパスワードを使用し続けることができます。',
 'noemail' => '利用者「$1」のメールアドレスは登録されていません。',
-'noemailcreate' => '有効な電子メールアドレスを入力する必要があります。',
+'noemailcreate' => '有効なメール アドレスを入力する必要があります',
 'passwordsent' => '新しいパスワードを「$1」に登録されたメールアドレスに送信しました。
 メールを受け取ったら、再度ログインしてください。',
 'blocked-mailpassword' => '使用しているIPアドレスからの編集はブロックされており、不正利用防止のため、パスワードの再発行機能は使用できません。',
@@ -849,15 +849,16 @@ $2',
 'emailconfirmlink' => 'メールアドレスを確認する',
 'invalidemailaddress' => '入力されたメールアドレスが正しい形式に従っていないため、受け付けられません。
 正しい形式で入力し直すか、メールアドレス欄を空にしておいてください。',
-'cannotchangeemail' => 'このウィキでは、アカウントの電子メールアドレスを変更できません。',
-'emaildisabled' => 'このサイトでは、メールの送信はできません。',
+'cannotchangeemail' => 'このウィキではアカウントのメールアドレスを変更できません。',
+'emaildisabled' => 'このサイトではメールを送信できません。',
 'accountcreated' => 'アカウントを作成しました',
-'accountcreatedtext' => '利用者アカウント：$1が作成されました。',
+'accountcreatedtext' => '利用者アカウント「$1」を作成しました。',
 'createaccount-title' => '{{SITENAME}}のアカウント作成',
-'createaccount-text' => '{{SITENAME}} ($4) に「$2」という名前のアカウントが、この電子メールアドレスを連絡先として作成されました。パスワードは「$3」です。
-今すぐログインし、パスワードを変更してください。
+'createaccount-text' => '誰か（おそらくあなた）が、{{SITENAME}} ($4) にあなたのメール アドレスのアカウントを作成しました。
+アカウント名「$2」、パスワード「$3」です。
+今すぐログインしてパスワードを変更してください。
 
-何かの手違いでアカウントが作成されたと思う場合、このメッセージは無視してください。',
+このアカウントが何かの手違いで作成された場合は、このメッセージを無視してください。',
 'usernamehasherror' => '利用者名には番号記号を含むことができません',
 'login-throttled' => 'ログインの失敗が制限回数を超えました。
 しばらく時間をおいてから再度お試しください。',
@@ -867,12 +868,12 @@ $2',
 
 # E-mail sending
 'php-mail-error-unknown' => 'PHPのmail()関数で不明なエラー',
-'user-mail-no-addy' => '電子メールアドレスなしで、電子メールを送信しようとしました。',
+'user-mail-no-addy' => 'メール アドレスなしでメールを送信しようとしました。',
 
 # Change password dialog
 'resetpass' => 'パスワードの変更',
-'resetpass_announce' => '電子メールで送信された仮パスワードでログインしています。
-ログインを完了するには、ここで新しいパスワードを設定しなおす必要があります：',
+'resetpass_announce' => 'メールでお送りした仮パスワードでログインしました。
+ログインを完了するには、ここで新しいパスワードを設定する必要があります：',
 'resetpass_text' => '<!-- ここに文を挿入 -->',
 'resetpass_header' => 'アカウントのパスワードを変更',
 'oldpassword' => '古いパスワード：',
@@ -891,15 +892,15 @@ $2',
 
 # Special:PasswordReset
 'passwordreset' => 'パスワードの再設定',
-'passwordreset-text' => 'このフォームに回答すると、ご自身のアカウントの詳細が電子メールで通知されます。',
+'passwordreset-text' => 'このフォームに入力すると、アカウント詳細のリマインダーをメールでお送りします。',
 'passwordreset-legend' => 'パスワードの再設定',
 'passwordreset-disabled' => 'パスワードの再設定は、このウィキでは無効になっています。',
 'passwordreset-pretext' => '{{PLURAL:$1||以下のデータのうちの 1 つを入力してください}}',
 'passwordreset-username' => '利用者名：',
-'passwordreset-domain' => 'ドメイン:',
+'passwordreset-domain' => 'ドメイン：',
 'passwordreset-capture' => '送られるメールの内容を見ますか？',
 'passwordreset-capture-help' => 'このボックスをチェックすると、利用者に送られるメールの内容（一時的なパスワードを含む）をあなたも見ることができます。',
-'passwordreset-email' => '電子メールアドレス:',
+'passwordreset-email' => 'メール アドレス：',
 'passwordreset-emailtitle' => '{{SITENAME}}上のアカウントの詳細',
 'passwordreset-emailtext-ip' => 'どなたか（おそらくあなた、IP アドレス $1）が {{SITENAME}} ($4) での
 あなたのアカウントの詳細情報を送信するよう申請しました。
@@ -923,8 +924,8 @@ $2
 この申請が他のだれかによるものであるか、あるいはあなたが自身の元々のパスワードを
 覚えており、変えたくない場合には、このメッセージを無視して
 以前のパスワードを使い続けることができます。',
-'passwordreset-emailelement' => '利用者名： $1
-仮パスワード： $2',
+'passwordreset-emailelement' => '利用者名：$1
+仮パスワード：$2',
 'passwordreset-emailsent' => '確認のメールが送信されました。',
 'passwordreset-emailsent-capture' => '確認のメールが送信されました。以下に表示します。',
 'passwordreset-emailerror-capture' => '生成された確認メールを以下に表示していますが、利用者への送信には失敗しました: $1',
@@ -1490,7 +1491,7 @@ $1",
 'timezoneregion-europe' => 'ヨーロッパ',
 'timezoneregion-indian' => 'インド洋',
 'timezoneregion-pacific' => '太平洋',
-'allowemail' => '他の利用者からの電子メールの受信を有効化する',
+'allowemail' => '他の利用者からのメールを受信',
 'prefs-searchoptions' => '検索設定',
 'prefs-namespaces' => '名前空間',
 'defaultns' => 'その他の場合、次の名前空間でのみ検索する：',
@@ -1523,10 +1524,10 @@ HTMLタグを見直してください。',
 'gender-female' => '女',
 'prefs-help-gender' => '省略可能：ソフトウェアによる文法的性の解決に使用されます。
 この情報は公開されます。',
-'email' => '電子メール',
+'email' => 'メール',
 'prefs-help-realname' => '本名登録は省略可能です。
 登録した場合、著作物の帰属表示に本名が用いられます。',
-'prefs-help-email' => '電子メールアドレスの設定は省略可能ですが、パスワードを忘れた際に新しいパスワードを電子メールで受け取る場合に必要です。',
+'prefs-help-email' => 'メールアドレスは省略できますが、パスワードを忘れた際にパスワードをリセットするのに必要です。',
 'prefs-help-email-others' => 'あなたの身元を明らかにすることなく、他の利用者に利用者ページやトークページを使って連絡をしてもらうようにすることもできます。',
 'prefs-help-email-required' => 'メールアドレスが必要です。',
 'prefs-info' => '基本情報',
@@ -1545,8 +1546,8 @@ HTMLタグを見直してください。',
 'prefs-diffs' => '差分',
 
 # User preference: e-mail validation using jQuery
-'email-address-validity-valid' => '電子メールアドレスは有効なようです',
-'email-address-validity-invalid' => '有効な電子メールアドレスを入力してください',
+'email-address-validity-valid' => 'メール アドレスは有効のようです',
+'email-address-validity-invalid' => '有効なメール アドレスを入力',
 
 # User rights
 'userrights' => '利用者権限の管理',
@@ -1627,7 +1628,7 @@ HTMLタグを見直してください。',
 'right-suppressrevision' => '管理者から隠された版の確認と復元',
 'right-suppressionlog' => '非公開記録の閲覧',
 'right-block' => '他の利用者の編集をブロック',
-'right-blockemail' => '利用者の電子メール送信をブロック',
+'right-blockemail' => '利用者のメール送信をブロック',
 'right-hideuser' => '利用者名ブロックし、公開記録から隠す',
 'right-ipblock-exempt' => 'IPブロック、自動ブロック、広域ブロックを回避',
 'right-proxyunbannable' => 'プロキシの自動ブロックを回避',
@@ -1652,7 +1653,7 @@ HTMLタグを見直してください。',
 'right-userrights-interwiki' => '他のウィキの利用者の利用者権限の編集',
 'right-siteadmin' => 'データベースのロックおよびロック解除',
 'right-override-export-depth' => 'リンク先ページを5階層まで含めて書き出す',
-'right-sendemail' => '他の利用者へ電子メールを送る',
+'right-sendemail' => '他の利用者にメールを送信',
 'right-passwordreset' => 'パスワード再設定メールを閲覧する',
 
 # User rights log
@@ -1663,41 +1664,41 @@ HTMLタグを見直してください。',
 'rightsnone' => '（なし）',
 
 # Associated actions - in the sentence "You do not have permission to X"
-'action-read' => 'このページの閲覧',
-'action-edit' => 'このページの編集',
-'action-createpage' => 'ページの新規作成',
-'action-createtalk' => 'トークページの新規作成',
-'action-createaccount' => 'このアカウントの作成',
-'action-minoredit' => '細部の編集として印付け',
+'action-read' => 'このページを閲覧',
+'action-edit' => 'このページを編集',
+'action-createpage' => 'ページを作成',
+'action-createtalk' => 'トークページを作成',
+'action-createaccount' => 'この利用者アカウントを作成',
+'action-minoredit' => '細部の編集として印を付ける',
 'action-move' => 'このページの移動',
 'action-move-subpages' => 'このページと下位ページの移動',
 'action-move-rootuserpages' => '利用者ページ本体の移動',
 'action-movefile' => 'このファイルの移動',
 'action-upload' => 'このファイルのアップロード',
-'action-reupload' => 'このファイルの上書き',
-'action-reupload-shared' => '共有リポジトリにあるこのファイルの上書き',
+'action-reupload' => 'この既存のファイルに上書き',
+'action-reupload-shared' => '共有リポジトリにあるこのファイルに上書き',
 'action-upload_by_url' => 'URLからこのファイルをアップロード',
 'action-writeapi' => '書き込みAPIを使用',
-'action-delete' => 'このページの削除',
-'action-deleterevision' => 'この版の削除',
-'action-deletedhistory' => 'このページの削除履歴の表示',
+'action-delete' => 'このページを削除',
+'action-deleterevision' => 'この版を削除',
+'action-deletedhistory' => 'このページの削除履歴を表示',
 'action-browsearchive' => '削除されたページの検索',
 'action-undelete' => 'このページの復帰',
 'action-suppressrevision' => '隠された版の確認と復元',
 'action-suppressionlog' => 'この非公開記録の表示',
 'action-block' => 'この利用者の編集をブロック',
-'action-protect' => 'このページの保護レベルの変更',
-'action-rollback' => '特定ページを最後に編集した利用者の編集の即時巻き戻し',
-'action-import' => '他のウィキからのこのページの取り込み',
-'action-importupload' => 'ファイルアップロードからこのページの取り込み',
+'action-protect' => 'このページの保護レベルを変更',
+'action-rollback' => '特定ページを最後に編集した利用者の編集を即時巻き戻し',
+'action-import' => 'このページを他のウィキから取り込む',
+'action-importupload' => 'このページをファイルアップロードから取り込む',
 'action-patrol' => '他の利用者の編集を巡回済みにする',
 'action-autopatrol' => '自身の編集を巡回済みにする',
 'action-unwatchedpages' => 'ウォッチされていないページ一覧の表示',
-'action-mergehistory' => 'このページの履歴統合',
+'action-mergehistory' => 'このページの履歴を統合',
 'action-userrights' => '全利用者権限の変更',
 'action-userrights-interwiki' => '他のウィキ上の利用者の利用者権限変更',
-'action-siteadmin' => 'データベースのロックもしくはロック解除',
-'action-sendemail' => '電子メールの送信',
+'action-siteadmin' => 'データベースをロックまたはロック解除',
+'action-sendemail' => 'メールを送信',
 
 # Recent changes
 'nchanges' => '$1回の変更',
@@ -2341,22 +2342,22 @@ contenttype/subtypeの形式で指定してください（例：<tt>image/jpeg</
 'mailnologin' => '送信アドレスがありません',
 'mailnologintext' => '他の利用者宛にメールを送信するためには、[[Special:UserLogin|ログイン]]し、[[Special:Preferences|個人設定]]で有効なメールアドレスを設定する必要があります。',
 'emailuser' => 'この利用者にメールを送信',
-'emailpage' => '利用者にメール送信',
-'emailpagetext' => '下のフォームを通じて、この利用者にメールを送ることができます。
-受信者が直接返事を出せるよう、[[Special:Preferences|利用者の個人設定]]で登録した電子メールアドレスがメール中で「差出人」アドレスとして表示されます。',
+'emailpage' => '利用者にメールを送信',
+'emailpagetext' => '以下のフォームを使用してこの利用者にメールを送信できます。
+[[Special:Preferences|利用者の個人設定]]で入力したメール アドレスが「差出人」に設定され、受信者があなたに直接返信できるようになります。',
 'usermailererror' => 'メールが以下のエラーを返しました：',
-'defemailsubject' => '利用者「$1」からの {{SITENAME}} 電子メール',
+'defemailsubject' => '{{SITENAME}} 利用者「$1」からのメール',
 'usermaildisabled' => '利用者メール機能は無効になっています',
 'usermaildisabledtext' => 'このウィキ上で他の利用者へメールを送ることはできません。',
 'noemailtitle' => 'メールアドレスがありません',
 'noemailtext' => 'この利用者は有効なメールアドレスを登録していません。',
-'nowikiemailtitle' => '電子メール不許可',
+'nowikiemailtitle' => 'メールは許可されていません',
 'nowikiemailtext' => 'この利用者は他の利用者からメールを受け取らない設定にしています。',
 'emailnotarget' => '受信者の利用者名が存在しない、あるいは無効です。',
 'emailtarget' => '受信者の利用者名を入力してください',
 'emailusername' => '利用者名：',
 'emailusernamesubmit' => '送信',
-'email-legend' => '{{SITENAME}}の他の利用者に電子メールを送る',
+'email-legend' => '{{SITENAME}} の他の利用者にメールを送信',
 'emailfrom' => '差出人：',
 'emailto' => '宛先：',
 'emailsubject' => '件名：',
@@ -2364,9 +2365,9 @@ contenttype/subtypeの形式で指定してください（例：<tt>image/jpeg</
 'emailsend' => '送信',
 'emailccme' => '自分宛に控えを送信する。',
 'emailccsubject' => '$1に送信したメールの控え：$2',
-'emailsent' => 'メールを送りました',
-'emailsenttext' => 'メールは無事送信されました。',
-'emailuserfooter' => 'この電子メールは$1から$2へ、{{SITENAME}}の「利用者へメールを送信」機能を使って送られました。',
+'emailsent' => 'メールを送信しました',
+'emailsenttext' => 'メールを送信しました。',
+'emailuserfooter' => 'このメールは {{SITENAME}} の「利用者にメール送信」機能が、「$1」から「$2」に送信したものです。',
 
 # User Messenger
 'usermessage-summary' => 'システムメッセージを残す。',
@@ -2417,7 +2418,7 @@ contenttype/subtypeの形式で指定してください（例：<tt>image/jpeg</
 'enotif_subject' => '{{SITENAME}}のページ「$PAGETITLE」が$PAGEEDITORによって$CHANGEDORCREATEDされました',
 'enotif_lastvisited' => '最後に閲覧した後に行なわれた全ての変更は、 $1 で見ることができます。',
 'enotif_lastdiff' => 'この変更内容を表示するには $1 をご覧ください。',
-'enotif_anon_editor' => '匿名利用者：$1',
+'enotif_anon_editor' => '匿名利用者「$1」',
 'enotif_body' => '$WATCHINGUSERNAMEさん
 
 {{SITENAME}}のページ$PAGETITLEが$PAGEEDITDATEに、$PAGEEDITORによって$CHANGEDORCREATEDされました。現在の版を見るには $PAGETITLE_URL をご覧ください。
@@ -2455,7 +2456,7 @@ $UNWATCHURL
 'excontentauthor' => '内容：「$1」（投稿者は「[[Special:Contributions/$2|$2]]」のみ）',
 'exbeforeblank' => '白紙化前の内容：「$1」',
 'exblank' => '白紙ページ',
-'delete-confirm' => '「$1」の削除',
+'delete-confirm' => '「$1」を削除',
 'delete-legend' => '削除',
 'historywarning' => "'''警告：'''削除しようとしているページには、約$1版の履歴があります：",
 'confirmdeletetext' => 'ページをすべての履歴とともに削除しようとしています。
@@ -2764,7 +2765,7 @@ $1',
 'unblocklink' => 'ブロックを解除',
 'change-blocklink' => '設定を変更',
 'contribslink' => '投稿記録',
-'emaillink' => '電子メールを送る',
+'emaillink' => 'メールを送信',
 'autoblocker' => '使用中のIPアドレスが「[[User:$1|$1]]」に使用されたため、自動ブロックされています。
 $1のブロックの理由は「$2」です。',
 'blocklogpage' => 'ブロック記録',
@@ -2954,8 +2955,8 @@ hideuser権限を持っていないため、この利用者のブロックを閲
 'allmessagesname' => '名前',
 'allmessagesdefault' => '既定のメッセージ文',
 'allmessagescurrent' => '現在のメッセージ文',
-'allmessagestext' => 'これはMediaWiki名前空間で利用可能なシステムメッセージの一覧です。
-一般的なMediaWikiの地域化に貢献したい場合は、[//www.mediawiki.org/wiki/Localisation MediaWikiの地域化]や[//translatewiki.net?setlang=ja translatewiki.net]を訪れてみてください。',
+'allmessagestext' => 'これは MediaWiki 名前空間で利用できるシステム メッセージの一覧です。
+MediaWiki 全般のローカライズ（地域化）に貢献したい場合は、[//www.mediawiki.org/wiki/Localisation/ja MediaWiki のローカライズ] や [//translatewiki.net?setlang=ja translatewiki.net] をご覧ください。',
 'allmessagesnotsupportedDB' => "'''\$wgUseDatabaseMessages'''が無効なので、このページを使うことはできません。",
 'allmessages-filter-legend' => '絞り込み',
 'allmessages-filter' => '変更状態により絞り込む：',
@@ -3087,7 +3088,7 @@ hideuser権限を持っていないため、この利用者のブロックを閲
 'tooltip-feed-rss' => 'このページのRSSフィード',
 'tooltip-feed-atom' => 'このページのAtomフィード',
 'tooltip-t-contributions' => 'この利用者の投稿の一覧を表示',
-'tooltip-t-emailuser' => 'この利用者に電子メールを送信',
+'tooltip-t-emailuser' => 'この利用者にメールを送信',
 'tooltip-t-upload' => 'ファイルをアップロード',
 'tooltip-t-specialpages' => '特別ページの一覧',
 'tooltip-t-print' => 'このページの印刷用ページ',
@@ -3791,34 +3792,34 @@ $3
 $5
 
 この確認用コードは、$4に期限切れになります。',
-'confirmemail_body_changed' => 'だれかが、IPアドレス$1から
-{{SITENAME}}でアカウント「$2」の電子メールアドレスをこのアドレスに変更しました。
+'confirmemail_body_changed' => '誰か（おそらくあなた）が IP アドレス $1 から、
+{{SITENAME}} のアカウント「$2」のメール アドレスをこのアドレスに変更しました。
 
-このアカウントが本当に自分のものであるならば、
-{{SITENAME}}のメール機能を再び有効化にするために、以下のURLをブラウザーで開いてください：
-
-$3
-
-もし自分のアカウントでない場合は、
-次のURLをブラウザーで開いて、電子メール確認を中止してください：
-
-$5
-
-この確認用コードは$4に期限切れになります。',
-'confirmemail_body_set' => 'だれかが、IPアドレス$1から
-{{SITENAME}}でアカウント「$2」の電子メールアドレスをこのアドレスに設定しました。
-
-このアカウントが本当に自分のものであるならば、
-{{SITENAME}}のメール機能を再び有効化にするために、以下のURLをブラウザーで開いてください：
+このアカウントが本当にあなたのものであれば、以下のリンクをブラウザーで開いて、
+{{SITENAME}} のメール機能を再び有効にしてください：
 
 $3
 
-もし自分のアカウントでない場合は、
-次のURLをブラウザーで開いて、電子メール確認を中止してください：
+もしあなたのアカウント *ではない* 場合は、
+ブラウザーで以下のリンクを開いて、メール アドレスの確認をキャンセルしてください：
 
 $5
 
-この確認用コードは$4に期限切れになります。',
+この確認コードは $4 に期限切れになります。',
+'confirmemail_body_set' => '誰か（おそらくあなた）が IP アドレス $1 から
+{{SITENAME}} のアカウント「$2」のメール アドレスをこのアドレスに設定しました。
+
+このアカウントが本当にあなたのものであれば、以下のリンクをブラウザーで開いて、
+{{SITENAME}} のメール機能を再び有効にしてください。
+
+$3
+
+もしあなたのアカウントでない場合は、
+次のリンクをブラウザーで開いて、メール アドレスの確認をキャンセルしてください：
+
+$5
+
+この確認コードは $4 に期限切れになります。',
 'confirmemail_invalidated' => 'メールアドレスの確認が中止されました',
 'invalidateemail' => 'メールアドレスの認証中止',
 
@@ -4149,7 +4150,7 @@ MediaWikiは、有用であることを期待して配布されていますが�
 'logentry-newusers-create' => '$1 が利用者アカウントを作成しました',
 'logentry-newusers-create2' => '$1 が利用者アカウント「$3」を作成しました',
 'logentry-newusers-autocreate' => 'アカウント「$1」が自動的に作成されました',
-'newuserlog-byemail' => 'パスワードを電子メールで送信しました',
+'newuserlog-byemail' => 'パスワードをメールで送信しました',
 
 # Feedback
 'feedback-bugornote' => '技術的な問題の詳細をご説明する準備ができているなら[$1 バグを報告]してください。それ以外の場合、下の簡易フォームを使用すれば、あなたのコメントが"[$3 $2]"にあなたの利用者名と使用中のブラウザ名と共に追加されます。',

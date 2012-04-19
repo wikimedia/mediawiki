@@ -923,8 +923,8 @@ $1",
 
 # Suppression log
 'suppressionlog' => '隱藏記錄',
-'suppressionlogtext' => '下跤是管理員為著隱藏文章所做的刣掉抑封鎖的清單。
-若欲看這馬禁止使用、封鎖的清單，請看[[Special:BlockList|IP封鎖清單]]。',
+'suppressionlogtext' => '下跤是管理員為著藏文章所做的刣掉，抑封鎖的清單。
+若欲看這馬禁止使用、封鎖的清單，請看[[Special:BlockList|封鎖清單]]。',
 
 # History merging
 'mergehistory' => '合併兩个頁的修改歷史:',
@@ -1870,6 +1870,11 @@ Chhiáⁿ chù-ì: kî-thaⁿ ê bāng-chām ū khó-lêng iōng URL ti̍t-chiap
 'allpages-bad-ns' => '佇{{SITENAME}}無"$1"這个名空間。',
 'allpages-hide-redirects' => '掩轉頁',
 
+# SpecialCachedPage
+'cachedspecial-viewing-cached-ttl' => '你當咧看這頁的快取(cached)版本，彼可能是第$1舊的。',
+'cachedspecial-viewing-cached-ts' => '你當咧看這頁的快取版本，彼可能佮這馬的無仝款。',
+'cachedspecial-refresh-now' => '看上新。',
+
 # Special:Categories
 'categories' => 'Lūi-pia̍t',
 'categoriespagetext' => 'Ē-kha {{PLURAL:$1| ê ūi-pia̍t|ê ūi-pia̍t}} ū ia̍h ia̍h-sī mûi-thé.
@@ -2312,7 +2317,7 @@ $1',
 'ipb-confirm' => '確定封鎖',
 'badipaddress' => 'Bô-hāu ê IP chū-chí',
 'blockipsuccesssub' => 'Hong-só sêng-kong',
-'blockipsuccesstext' => '[[Special:Contributions/$1|$1]] í-keng pī hong-só. <br />Khì [[Special:BlockList|IP hong-só lia̍t-toaⁿ]] review hong-só ê IP.',
+'blockipsuccesstext' => '[[Special:Contributions/$1|$1]] í-keng pī hong-só. <br />Khì [[Special:BlockList|hong-só lia̍t-toaⁿ]] thang khoàⁿ pī hong-só ê .',
 'ipb-blockingself' => '你欲封鎖你家己！你敢確定欲按呢做？',
 'ipb-confirmhideuser' => '你是欲封鎖一个用者佮隱藏伊的用者名稱，這會隱藏用者名稱出現佇所有的表佮記錄的項目當中，你敢確定欲按呢做？',
 'ipb-edit-dropdown' => '編輯封鎖的理由',
@@ -2365,7 +2370,7 @@ $1 ê kìm-chí lí-iû sī in-ūi "$2".',
 下跤有封鎖的記錄會當參考：',
 'blocklogentry' => 'hong-só [[$1]], siat kî-hān chì $2 $3',
 'reblock-logentry' => '改[[$1]]的封鎖到期時間 $2 $3',
-'blocklogtext' => 'Chit-ê log lia̍t-chhut block/unblock ê tōng-chok. Chū-tōng block ê IP chū-chí bô lia̍t--chhut-lâi ([[Special:BlockList]] ū hiān-chú-sî ū-hāu ê block/ban o·-miâ-toaⁿ).',
+'blocklogtext' => 'Chit-ê kì-lio̍k lia̍t-chhut hong-só/khui-só ê tōng-chok. Chū-tōng block ê IP tē-chí bô lia̍t--chhut-lâi ([[Special:BlockList|hong-só chheng-toaⁿ]] ū hiān-chú-sî ū-hāu ê kìm-chí hong-só o·-miâ-toaⁿ).',
 'unblocklogentry' => '解除封鎖$1',
 'block-log-flags-anononly' => '只會當是無名氏用者',
 'block-log-flags-nocreate' => 'Khui kháu-chō thêng-iōng ah',

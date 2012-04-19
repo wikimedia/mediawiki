@@ -408,153 +408,155 @@ Por favor informa d'esto a un [[Special:ListUsers/sysop|alministrador]], anotand
 'filedeleteerror' => 'Nun se pudo desaniciar el ficheru «$1».',
 'directorycreateerror' => 'Nun se pudo crear el direutoriu «$1».',
 'filenotfound' => 'Nun se pudo atopar el ficheru «$1».',
-'fileexistserror' => 'Nun se pue escribir nel archivu "$1": yá esiste',
-'unexpected' => 'Valor inesperáu: "$1"="$2".',
-'formerror' => 'Error: nun se pudo unviar el formulariu',
-'badarticleerror' => 'Esta aición nun pue facese nesta páxina',
-'cannotdelete' => 'Nun pudo desaniciase la páxina o el ficheru "$1".
-Seique daquién yá la desaniciara.',
-'cannotdelete-title' => 'Nun se pue desaniciar la páxina "$1"',
+'fileexistserror' => 'Nun se pue escribir nel archivu «$1»: yá esiste',
+'unexpected' => 'Valor inesperáu: «$1»=«$2».',
+'formerror' => 'Fallu: Nun se pudo unviar el formulariu.',
+'badarticleerror' => 'Esta aición nun pue facese nesta páxina.',
+'cannotdelete' => "Nun pudo desaniciase la páxina o'l ficheru «$1».
+Seique daquién yá lo desaniciara.",
+'cannotdelete-title' => 'Nun se pue desaniciar la páxina «$1»',
 'badtitle' => 'Títulu incorreutu',
-'badtitletext' => 'El títulu de páxina solicitáu nun ye válidu, ta baleru o tien enllaces inter-llingua o inter-wiki incorreutos.
-Pue contener ún o más caráuteres que nun se puen usar nos títulos.',
-'perfcached' => 'Los siguientes datos tán na caché, seique nun tean actualizaos dafechu. Hai un máximu de {{PLURAL:$1|$1 resultáu disponible|$1 resultaos disponibles}} na caché.',
-'perfcachedts' => "Los siguientes datos tán na caché, y s'anovaron la cabera vegada'l $1. Hai un máximu de {{PLURAL:$4|$4 resultáu disponible|$4 resultaos disponibles}} na caché.",
-'querypage-no-updates' => "Los anovamientos d'esta páxina anguaño tán desactivaos.
-Estos datos nun se refrescarán nestos momentos.",
+'badtitletext' => 'El títulu de páxina solicitáu nun ye válidu, ta baleru o tien enllaces interllingua o interwiki incorreutos.
+Pue contener ún o más carauteres que nun se puen usar nos títulos.',
+'perfcached' => "Los datos siguientes tán na caché y seique nun tean anovaos. Hai un máximu {{PLURAL:$1|d'un resultáu disponible|de $1 resultaos disponibles}} na caché.",
+'perfcachedts' => "Los datos siguientes tán na caché y anováronse per postrer vegada'l $1. Hai un máximu {{PLURAL:$4|d'un resultáu disponible|de $4 resultaos disponibles}} na caché.",
+'querypage-no-updates' => "Anguaño los anovamientos d'esta páxina tán desactivaos.
+Estos datos nun van refrescase nestos momentos.",
 'wrong_wfQuery_params' => 'Parámetros incorreutos pa wfQuery()<br />
 Función: $1<br />
 Consulta: $2',
-'viewsource' => 'Ver códigu fonte',
-'viewsource-title' => 'Ver la fonte de "$1"',
+'viewsource' => 'Ver fonte',
+'viewsource-title' => 'Ver la fonte de «$1»',
 'actionthrottled' => 'Aición llendada',
-'actionthrottledtext' => "Como midida anti-spam, nun se pue repetir esta aición munches vegaes en pocu tiempu, y trespasasti esi llímite.
-Por favor vuelve a tentalo dientro d'unos minutos.",
+'actionthrottledtext' => 'Como midida anti-spam, nun se pue repetir esta aición munches vegaes en pocu tiempu, y trespasasti esi llímite.
+Por favor vuelvi intentalo nunos minutos.',
 'protectedpagetext' => 'Esta páxina ta candada pa torgar la so edición.',
-'viewsourcetext' => "Pues ver y copiar el códigu fonte d'esta páxina:",
-'viewyourtext' => "Pues ver y copiar el códigu fonte de '''les tos ediciones''' d'esta páxina:",
-'protectedinterface' => "Esta páxina proporciona testu d'interfaz a l'aplicación y ta candada pa evitar el so abusu.",
-'editinginterface' => "'''Avisu:''' Tas editando una páxina que s'usa pa proporcionar el testu de la interfaz a l'aplicación.
-Los cambeos nesta páxina afeutarán a l'apariencia de la interfaz pa otros usuarios.
+'viewsourcetext' => "Pues ver y copiar la fonte d'esta páxina:",
+'viewyourtext' => "Pues ver y copiar la fonte de '''les tos ediciones''' d'esta páxina:",
+'protectedinterface' => "Esta páxina proporciona testu d'interfaz de l'aplicación, y ta candada pa torgar abusos.",
+'editinginterface' => "'''Avisu:''' Tas editando una páxina que s'usa pa proporcionar el testu d'interfaz de l'aplicación.
+Los cambeos nesta páxina van afeutar l'apariencia de la interfaz pa otros usuarios.
 Si quies facer traducciones, por favor usa [//translatewiki.net/wiki/Main_Page?setlang=ast translatewiki.net], el proyeutu de traducción de MediaWiki.",
-'sqlhidden' => '(consulta SQL escondida)',
-'cascadeprotected' => 'Esta páxina ta protexida d\'ediciones porque ta enxerta {{PLURAL:$1|na siguiente páxina|nes siguientes páxines}}, que {{PLURAL:$1|ta protexida|tán protexíes}} cola opción "en cascada":
-$2',
+'sqlhidden' => '(consulta SQL anubrida)',
+'cascadeprotected' => "Esta páxina ta protexida d'ediciones porque ta enxerta {{PLURAL:$1|na siguiente páxina|nes siguientes páxines}}, que {{PLURAL:$1|ta protexida|tán protexíes}} cola opción «en cascada» activada:
+$2",
 'namespaceprotected' => "Nun tienes permisu pa editar páxines nel espaciu de nomes '''$1'''.",
 'customcssprotected' => "Nun tienes permisu pa editar esta páxina CSS porque contién preferencies personales d'otru usuariu.",
 'customjsprotected' => "Nun tienes permisu pa editar esta páxina de JavaScript porque contién preferencies personales d'otru usuariu.",
 'ns-specialprotected' => 'Les páxines especiales nun se puen editar.',
 'titleprotected' => "Esti títulu foi protexíu de la so creación por [[User:$1|$1]].
-El motivu conseñáu ye ''$2''.",
-'filereadonlyerror' => "Nun se pudo camudar el ficheru «$1» porque l'almacén de ficheros «$2» ta en mou de sólo llectura.
+El motivu conseñáu ye «''$2''».",
+'filereadonlyerror' => "Nun se pudo camudar el ficheru «$1» porque'l repositoriu de ficheros «$2» ta en mou de namái llectura.
 
-L'alministrador que lu bloquió dió esti motivu: «$3».",
+L'alministrador que lu bloquió dio esti motivu: «$3».",
 
 # Virus scanner
-'virus-badscanner' => "Error de configuración: escáner de virus desconocíu: ''$1''",
+'virus-badscanner' => "Fallu de configuración: Escáner de virus desconocíu: ''$1''",
 'virus-scanfailed' => "fallu d'escanéu (códigu $1)",
 'virus-unknownscanner' => 'antivirus desconocíu:',
 
 # Login and logout pages
-'logouttext' => "'''Yá tas desconectáu.'''
+'logouttext' => "'''Agora tas desconeutáu.'''
 
-Pues siguir usando {{SITENAME}} de forma anónima, o pues [[Special:UserLogin|volver a entrar]] como'l mesmu o como otru usuariu.
-Ten en cuenta que dalgunes páxines puen siguir apaeciendo como si tovía tuvieres coneutáu, hasta que llimpies la caché del navegador.",
-'welcomecreation' => "== Bienveníu, $1! ==
-Se creó la to cuenta.
+Pues siguir usando {{SITENAME}} de forma anónima, o pues [[Special:UserLogin|volver entrar]] como'l mesmu o como otru usuariu.
+Ten en cuenta que dalgunes páxines puen siguir apaeciendo como si tovía tuvieres coneutáu, hasta que llimpies la caché del restolador.",
+'welcomecreation' => "== ¡Bienllegáu, $1! ==
+Creóse la to cuenta.
 Nun t'escaezas d'escoyer les tos [[Special:Preferences|preferencies de {{SITENAME}}]].",
 'yourname' => "Nome d'usuariu:",
 'yourpassword' => 'Conseña:',
 'yourpasswordagain' => 'Escribi otra vuelta la to conseña:',
-'remembermypassword' => 'Recordar la mio identificación nesti ordenador (por un máximu de $1 {{PLURAL:$1|día|díes}})',
-'securelogin-stick-https' => "Siguir coneutáu al HTTPS dempués d'identificate",
+'remembermypassword' => "Recordar la mio identificación nesti restolador (un máximu {{PLURAL:$1|d'un día|de $1 díes}})",
+'securelogin-stick-https' => "Siguir coneutáu al HTTPS dempués d'identificase",
 'yourdomainname' => 'El to dominiu:',
-'externaldberror' => "O hebo un error de l'autenticación esterna de la base de datos o nun tienes permisu p'actualizar la to cuenta esterna.",
-'login' => 'Entrar',
-'nav-login-createaccount' => 'Entrar / Crear cuenta',
-'loginprompt' => "Has tener les ''cookies'' activaes pa entrar en {{SITENAME}}.",
-'userlogin' => 'Entrar / Crear cuenta',
-'userloginnocreate' => 'Entrar',
-'logout' => 'Colar',
-'userlogout' => 'Colar',
+'externaldberror' => "O hebo un fallu d'autenticación de la base de datos o nun tienes permisu p'anovar la to cuenta esterna.",
+'login' => 'Identificase',
+'nav-login-createaccount' => 'Identificase / crear una cuenta',
+'loginprompt' => 'Has tener les «cookies» activaes pa identificate en {{SITENAME}}.',
+'userlogin' => 'Identificase / crear una cuenta',
+'userloginnocreate' => 'Identificase',
+'logout' => 'Dexar de tar identificáu',
+'userlogout' => 'Dexar de tar identificáu',
 'notloggedin' => 'Non identificáu',
-'nologin' => "¿Nun tienes una cuenta? '''$1'''.",
-'nologinlink' => '¡Fai una!',
+'nologin' => '¿Nun tienes una cuenta? $1.',
+'nologinlink' => 'Crear una cuenta',
 'createaccount' => 'Crear una cuenta',
-'gotaccount' => "¿Ya tienes una cuenta? '''$1'''.",
-'gotaccountlink' => 'Aniciar sesión',
-'userlogin-resetlink' => '¿Escaecisti la información de conexón?',
-'createaccountmail' => 'per e-mail',
+'gotaccount' => '¿Ya tienes una cuenta? $1.',
+'gotaccountlink' => 'Identificase',
+'userlogin-resetlink' => "¿Escaecisti los datos d'identificación?",
+'createaccountmail' => 'Per corréu electrónicu',
 'createaccountreason' => 'Motivu:',
 'badretype' => "Les claves qu'escribisti nun concuayen.",
 'userexists' => "El nome d'usuariu conseñáu yá ta usándose.
 Por favor escueyi un nome diferente.",
-'loginerror' => "Error d'identificación",
+'loginerror' => "Fallu d'identificación",
 'createaccounterror' => 'Nun se pudo crear la cuenta: $1',
 'nocookiesnew' => "La cuenta d'usuariu ta creada, pero nun tas identificáu.
-{{SITENAME}} usa cookies pa identificar a los usuarios.
-Tienes les cookies desactivaes.
-Por favor activales y depués entra col to nuevu nome d'usuariu y conseña.",
-'nocookieslogin' => '{{SITENAME}} usa cookies pa identificar a los usuarios. Tienes les cookies deshabilitaes. Por favor actívales y inténtalo otra vuelta.',
-'nocookiesfornew' => "La cuenta nun se creó, porque nun pudimos confirmar l'orixe.
-Asegúrate de tener activaes les cookies, recarga esta páxina y vuelve a tentalo.",
-'noname' => "Nun punxisti un nome d'usuariu válidu.",
+{{SITENAME}} usa «cookies» pa identificar a los usuarios.
+Tienes les «cookies» desactivaes.
+Por favor activales y depués entra col to nome d'usuariu y conseña nuevos.",
+'nocookieslogin' => '{{SITENAME}} usa «cookies» pa identificar a los usuarios.
+Tienes les «cookies» desactivaes.
+Por favor actívales y vuelvi intentalo.',
+'nocookiesfornew' => "La cuenta nun se creó porque nun pudimos confirmar l'orixe.
+Asegúrate de tener activaes les «cookies», recarga esta páxina y vuelvi intentalo.",
+'noname' => "Nun conseñasti un nome d'usuariu válidu.",
 'loginsuccesstitle' => 'Identificación correuta',
-'loginsuccess' => "'''Quedasti identificáu en {{SITENAME}} como \"\$1\".'''",
-'nosuchuser' => 'Nun hai usuariu dalu col nome "$1".
-Los nomes d\'usuariu distinguen mayúscules y minúscules.
-Comprueba la ortografía o [[Special:UserLogin/signup|crea una cuenta d\'usuariu nueva]].',
-'nosuchusershort' => 'Nun hai nengún usuariu col nome "$1".
+'loginsuccess' => "'''Quedasti identificáu en {{SITENAME}} como «$1».'''",
+'nosuchuser' => "Nun hai nengún usuariu col nome «$1».
+Los nomes d'usuariu distinguen mayúscules y minúscules.
+Mira que tea bien escritu o [[Special:UserLogin/signup|crea una cuenta nueva]].",
+'nosuchusershort' => 'Nun hai nengún usuariu col nome «$1».
 Mira que tea bien escritu.',
 'nouserspecified' => "Has especificar un nome d'usuariu.",
-'login-userblocked' => 'Esti usuariu ta bloquiáu. Nun se permite la conexón.',
+'login-userblocked' => 'Esti usuariu ta bloquiáu. Nun se permite la so identificación.',
 'wrongpassword' => 'La conseña escrita ye incorreuta.
-Vuelvi a intentalo.',
+Vuelvi intentalo.',
 'wrongpasswordempty' => 'La conseña taba en blanco.
-Vuelvi a intentalo.',
-'passwordtooshort' => 'Les contraseñes han de tener a lo menos {{PLURAL:$1|1 caráuter|$1 caráuteres}}.',
-'password-name-match' => "La conseña tien de ser distinta del nome d'usuariu.",
+Vuelvi intentalo.',
+'passwordtooshort' => 'Les contraseñes han tener a lo menos {{PLURAL:$1|1 caráuter|$1 carauteres}}.',
+'password-name-match' => "La conseña ha ser distinta del nome d'usuariu.",
 'password-login-forbidden' => "Ta torgao usar esti nome d'usuariu y conseña.",
 'mailmypassword' => 'Unviar la conseña nueva per corréu',
 'passwordremindertitle' => 'Nueva conseña provisional pa {{SITENAME}}',
-'passwordremindertext' => 'Daquién (seique tu, dende la direición IP $1) solicitó una conseña
-nueva pa {{SITENAME}} ($4). Se creó una conseña temporal pal usuariu
-"$2" que ye "$3". Si fuisti tu, necesites identificate y escoyer
-una conseña nueva agora. La conseña temporal caducará {{PLURAL:$5|nun día|en $5 díes}}.
+'passwordremindertext' => "Daquién (seique tu, dende la direición IP $1) solicitó una conseña
+nueva pa {{SITENAME}} ($4). Creóse una conseña provisional pal usuariu
+«$2» que ye «$3». Si fuisti tu, necesites identificate y escoyer
+una conseña nueva agora. La conseña provisional caduca {{PLURAL:$5|nun día|en $5 díes}}.
 
 Si esta solicitú la fizo otra persona, o si recuerdes la conseña y
-nun quies volver a camudala, pues escaecete d\'esti mensaxe y siguir
-usando la conseña antigua.',
-'noemail' => 'L\'usuariu "$1" nun tien puesta direición de corréu.',
-'noemailcreate' => 'Tienes de conseñar una direición de corréu válida',
-'passwordsent' => 'S\'unvió una conseña nueva a la direición de corréu rexistrada pa "$1".
-Por favor vuelve a coneutate depués de recibila.',
-'blocked-mailpassword' => 'La edición dende la to direición IP ta bloquiada, y poro nun se pue usar la función de recuperación de conseña pa evitar abusos.',
-'eauthentsent' => "S'unvió un corréu electrónicu de confirmación a la direición indicada.
-Enantes de que s'unvie nengún otru corréu a la cuenta, has siguir les instrucciones del corréu electrónicu, pa confirmar que la cuenta ye de to.",
-'throttled-mailpassword' => "Yá s'unvió un recordatoriu de la conseña {{PLURAL:$1|na cabera hora|nes caberes $1 hores}}.
+nun quies volver camudala, pues escaecete d'esti mensaxe y siguir
+usando la conseña antigua.",
+'noemail' => "L'usuariu «$1» nun tien rexistrada nenguna direición de corréu.",
+'noemailcreate' => 'Has conseñar una direición de corréu válida',
+'passwordsent' => 'Univóse una conseña nueva a la direición de corréu rexistrada pa «$1».
+Por favor vuelvi identificate depués de recibila.',
+'blocked-mailpassword' => 'Ta bloquiada la edición dende la to direición IP, polo que pa evitar abusos nun se pue usar la función de recuperación de conseña.',
+'eauthentsent' => "Unvióse un corréu electrónicu de confirmación a la direición indicada.
+Enantes de que s'unvie nengún otru corréu a la cuenta, has siguir les instrucciones del corréu electrónicu pa confirmar que la cuenta ye de to.",
+'throttled-mailpassword' => "Yá s'unvió un recordatoriu de la conseña {{PLURAL:$1|na postrer hora|nes postreres $1 hores}}.
 Pa evitar abusos, namái s'unviará un recordatoriu cada {{PLURAL:$1|hora|$1 hores}}.",
-'mailerror' => 'Error al unviar el corréu: $1',
+'mailerror' => 'Fallu al unviar el corréu: $1',
 'acct_creation_throttle_hit' => "Los visitantes d'esta wiki qu'usen la to direición IP yá crearon güei {{PLURAL:$1|1 cuenta|$1 cuentes}}, que ye'l máximu almitíu nesti periodu de tiempu.
 Poro, los visitantes qu'usen esta direición IP nun puen crear más cuentes de momentu.",
-'emailauthenticated' => "La to direición de corréu se confirmó'l $2 a les $3.",
-'emailnotauthenticated' => "La to direición de corréu nun se comprobó entá.
-Nun s'unviará corréu de denguna de les funciones siguientes.",
-'noemailprefs' => 'Conseña una direición de corréu nes tos preferencies pa que funcionen eses carauterístiques.',
-'emailconfirmlink' => 'Confirmar la direición de corréu',
-'invalidemailaddress' => "La direición de corréu nun se pue aceutar yá que paez tener un formatu non válidu.
-Por favor escribi una direición con formatu afayadizu o dexa vaciu'l campu.",
-'cannotchangeemail' => 'Les direiciones de corréu de la cuenta nun puen camudase nesta wiki.',
+'emailauthenticated' => "La to direición de corréu electrónicu confirmóse'l $2 a les $3.",
+'emailnotauthenticated' => 'La to direición de corréu electrónicu nun se comprobó entá.
+Nun va unviase nengún corréu pa nenguna de les funciones siguientes.',
+'noemailprefs' => 'Conseña una direición de corréu electrónicu nes tos preferencies pa que funcionen eses carauterístiques.',
+'emailconfirmlink' => 'Confirmar la direición de corréu electrónicu',
+'invalidemailaddress' => "La direición de corréu electrónicu nun se pue aceutar yá que paez tener un formatu non válidu.
+Por favor conseña una direición con formatu afayadizu o dexa baleru'l campu.",
+'cannotchangeemail' => 'Les direiciones de corréu electrónicu de la cuenta nun puen camudase nesta wiki.',
 'emaildisabled' => 'Esti sitiu nun pue unviar correos electrónicos.',
 'accountcreated' => 'Cuenta creada',
-'accountcreatedtext' => "La cuenta d'usuariu de $1 ta creada.",
+'accountcreatedtext' => "Creóse la cuenta d'usuariu de $1.",
 'createaccount-title' => 'Creación de cuenta pa {{SITENAME}}',
-'createaccount-text' => 'Daquién creó una cuenta cola to direición de corréu electrónicu en {{SITENAME}} ($4) nomada "$2", asociada a la conseña "$3".
-Tendríes d\'entrar y camudar la conseña agora.
+'createaccount-text' => 'Daquién creó una cuenta cola to direición de corréu electrónicu en {{SITENAME}} ($4) col nome «$2», asociada a la conseña «$3».
+Habríes identificte y camudar la conseña agora.
 
 Pues escaecer esti mensaxe si esta cuenta se creó por error.',
-'usernamehasherror' => "El nome d'usuariu nun pue contener caráuteres hash",
-'login-throttled' => "Ficisti demasiaos intentos recientes de conexón.
+'usernamehasherror' => "El nome d'usuariu nun pue contener carauteres «hash»",
+'login-throttled' => "Ficisti demasiaos intentos recientes d'identificación.
 Por favor espera enantes d'intentalo otra vuelta.",
 'login-abort-generic' => 'Falló la to identificación - Encaboxao',
 'loginlanguagelabel' => 'Llingua: $1',

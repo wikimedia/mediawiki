@@ -1088,7 +1088,7 @@ Per favor verifica le registros.',
 # Suppression log
 'suppressionlog' => 'Registro de suppressiones',
 'suppressionlogtext' => 'Infra es un lista de deletiones e blocadas que involve contento que es celate de administratores.
-Vide le [[Special:BlockList|lista de blocadas IP]] pro le lista de bannimentos e blocadas actualmente in operation.',
+Vide le [[Special:BlockList|lista de blocadas]] pro le lista de bannimentos e blocadas actualmente in operation.',
 
 # History merging
 'mergehistory' => 'Fusionar historias del paginas',
@@ -2508,7 +2508,7 @@ specific que ha essite vandalisate).',
 'badipaddress' => 'Adresse IP mal formate.',
 'blockipsuccesssub' => 'Blocada succedite',
 'blockipsuccesstext' => '[[Special:Contributions/$1|$1]] ha essite blocate.<br />
-Vide le [[Special:BlockList|lista de adresses IP blocate]] pro revider le blocadas.',
+Vide le [[Special:BlockList|lista de blocadas]] pro revider le blocadas.',
 'ipb-blockingself' => 'Tu sta super le puncto de blocar te mesme! Es tu secur de voler facer isto?',
 'ipb-confirmhideuser' => 'Tu es super le puncto de blocar un usator con le option "celar usator" activate. Isto supprimera le nomine del usator in tote le listas e entratas de registro. Es tu secur de voler facer isto?',
 'ipb-edit-dropdown' => 'Modificar le motivos pro blocar',
@@ -2562,7 +2562,7 @@ Le motivo specificate pro le blocada de $1 es: "$2"',
 'reblock-logentry' => 'cambiava configurationes de blocada pro [[$1]] con un tempore de expiration de $2 $3',
 'blocklogtext' => 'Isto es un registro de blocadas e disblocadas de usatores.
 Le adresses IP automaticamente blocate non es includite.
-Vide le [[Special:BlockList|lista de blocadas IP]] pro le lista de bannimentos e blocadas actualmente in operation.',
+Vide le [[Special:BlockList|lista de blocadas]] pro le lista de bannimentos e blocadas actualmente in operation.',
 'unblocklogentry' => 'disblocava $1',
 'block-log-flags-anononly' => 'usatores anonyme solmente',
 'block-log-flags-nocreate' => 'creation de contos disactivate',

@@ -941,7 +941,7 @@ It peule pa vëddlo.',
 # Suppression log
 'suppressionlog' => 'Registr ëd le scancelassion',
 'suppressionlogtext' => "Sì-sota a-i é na lista djë scancelament e dij blocagi che a rësguardo dij contnù stërmà a j'aministrator.
-Beiché la [[Special:BlockList|lista dj'IP blocà]] për la lista dj'esclusion operassionaj e dij blocagi ativ.",
+Beiché la [[Special:BlockList|lista dij blòch]] për la lista dj'esclusion operassionaj e dij blocagi ativ.",
 
 # History merging
 'mergehistory' => 'Buté ansema je stòrie',
@@ -2320,7 +2320,7 @@ Che a scriva codì che st'adrëssa IP o së stranòm a dev second chiel esse blo
 'badipaddress' => "L'adrëssa IP che a l'ha dane a l'é nen giusta.",
 'blockipsuccesssub' => 'Blocagi fàit',
 'blockipsuccesstext' => "[[Special:Contributions/$1|$1]] a l'é stàit blocà.<br />
-Ch'a consulta la [[Special:BlockList|lista dj'IP blocà]] për rivëdde ij blocagi.",
+Ch'a consulta la [[Special:BlockList|lista dij blòch]] për rivëdde ij blocagi.",
 'ipb-blockingself' => "A l'é an camin ch'as blòca chiel-midem! É-lo sigur ëd vorèj fé lòn?",
 'ipb-confirmhideuser' => "A l'é an camin ch'a blòca n'utent con «stërmé l'utent» abilità. Sòn a gaverà lë stranòm ëd l'utent da tute le liste e le vos ëd registr. É-lo sigur ëd vorèj fé lòn?",
 'ipb-edit-dropdown' => 'Modifiché le rason dël blocagi',
@@ -2372,7 +2372,7 @@ Ch'a consulta la [[Special:BlockList|lista dj'IP blocà]] për rivëdde ij bloca
 'reblock-logentry' => "a l'ha cambià j'ampostassion dël blocagi për [[$1]] con na scadensa ai $2 $3",
 'blocklogtext' => "Sossì a l'é ël registr dij blocagi e dësblocagi dj'Utent. J'adrësse che
 a son ëstàite blocà n'automàtich ambelessì a së s-ciàiro nen.
-Che a varda la [[Special:BlockList|lista dj'adrësse IP blocà]] për vëdde
+Che a varda la [[Special:BlockList|lista dij blòch]] për vëdde
 coj che sio ij blocagi ativ al dì d'ancheuj.",
 'unblocklogentry' => "a l'ha dësblocà $1",
 'block-log-flags-anononly' => 'mach utent anònim',

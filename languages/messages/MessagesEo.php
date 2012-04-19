@@ -24,6 +24,7 @@
  * @author Michawiki
  * @author Mihxil
  * @author MinuteElectron
+ * @author Objectivesea
  * @author Omnipaedista
  * @author Pedroca cerebral
  * @author Petrus Adamus
@@ -2957,6 +2958,41 @@ Datoj de versioj kaj nomoj de redaktantoj estos preservitaj.
 'tooltip-preferences-save' => 'Konservi preferojn',
 'tooltip-summary' => 'Enigu mallongan resumon',
 
+# Stylesheets
+'common.css' => '/* La jena CSS influos la aspekton de ĉiaj temoj. */',
+'standard.css' => '/* La jena CSS influos la paĝaspekton por uzantoj de la Klasika temo. */',
+'nostalgia.css' => '/* La jena CSS influos la paĝaspekton por uzantoj de la Nostalgia temo. */',
+'cologneblue.css' => '/* La jena CSS influos la paĝaspekton por uzantoj de la Kolonja Blua temo. */',
+'monobook.css' => '/* La jena CSS influos la paĝaspekton por uzantoj de la Libreja temo. */',
+'myskin.css' => '/* La jena CSS influos la paĝaspekton por uzantoj de la Miŝela temo. */',
+'chick.css' => '/* La jena CSS influos la paĝaspekton por uzantoj de la Kokida temo. */',
+'simple.css' => '/* La jena CSS influos la paĝaspekton por uzantoj de la Simpla temo. */',
+'modern.css' => '/* La jena CSS influos la paĝaspekton por uzantoj de la Moderna temo. */',
+'vector.css' => '/* La jena CSS influos la paĝaspekton por uzantoj de la Vektora temo. */',
+'print.css' => '/* La jena CSS influos la prezentadon de la presaĵo. */',
+'handheld.css' => '/* La jena CSS influos manpremitajn komputilojn sur bazo de la temo kiu arangiĝis en $wgHandheldStyle. */',
+'noscript.css' => '/* La jena CSS influos uzantojn, kiuj desebligis Ĝavaskripton. */',
+'group-autoconfirmed.css' => '/* La jena CSS sole influos auxtokonfirmatajn uzantojn. */',
+'group-bot.css' => '/* La jena CSS sole influos robotojn. */',
+'group-sysop.css' => '/* La jena CSS sole influos administrantojn. */',
+'group-bureaucrat.css' => '/* La jena CSS sole influos burokratojn. */',
+
+# Scripts
+'common.js' => '/* La jena Ĝavaskripto ŝargiĝos por ĉiaj uzantoj ĉe ĉiu paĝoŝargado. */',
+'standard.js' => '/* La jena Ĝavaskripto ŝargiĝos por uzantoj de la Klasika temo. */',
+'nostalgia.js' => '/* La jena Ĝavaskripto ŝargiĝos por uzantoj de la Nostalgia temo. */',
+'cologneblue.js' => '/* La jena Ĝavaskripto ŝargiĝos por uzantoj de la Kolonja Blua temo. */',
+'monobook.js' => '/* La jena Ĝavaskripto ŝargiĝos por uzantoj de la Libreja temo. */',
+'myskin.js' => '/* La jena Ĝavaskripto ŝargiĝos por uzantoj de la Miŝela temo. */',
+'chick.js' => '/* La jena Ĝavaskripto ŝargiĝos por uzantoj de la Kokida temo. */',
+'simple.js' => '/* La jena Ĝavaskripto ŝargiĝos por uzantoj de la Simpla temo. */',
+'modern.js' => '/* La jena Ĝavaskripto ŝargiĝos por uzantoj de la Moderna temo. */',
+'vector.js' => '/* La jena Ĝavaskripto ŝargiĝos por uzantoj de la Vektora temo. */',
+'group-autoconfirmed.js' => '/* La jena Ĝavaskripto sole ŝargiĝos por auxtokonfirmataj uzantoj. */',
+'group-bot.js' => '/* La jena Ĝavaskripto sole ŝargiĝos por robotoj. */',
+'group-sysop.js' => '/* La jena Ĝavaskripto sole ŝargiĝos por administrantoj. */',
+'group-bureaucrat.js' => '/* La jena Ĝavaskripto sole ŝargiĝos por burokratoj. */',
+
 # Metadata
 'notacceptable' => 'La viki-servilo ne povas doni datumon en formato kiun via kliento povas legi.',
 
@@ -2995,11 +3031,15 @@ Datoj de versioj kaj nomoj de redaktantoj estos preservitaj.
 'pageinfo-viewsperedit' => 'Po rigardoj por redakto',
 
 # Skin names
-'skinname-standard' => 'Klasika',
+'skinname-standard' => 'Klasiko',
 'skinname-nostalgia' => 'Nostalgio',
 'skinname-cologneblue' => 'Kolonja Bluo',
 'skinname-monobook' => 'Librejo',
+'skinname-myskin' => 'Miŝelo',
 'skinname-chick' => 'Kokido',
+'skinname-simple' => 'Simplo',
+'skinname-modern' => 'Moderno',
+'skinname-vector' => 'Vektoro',
 
 # Patrolling
 'markaspatrolleddiff' => 'Marki kiel patrolitan',

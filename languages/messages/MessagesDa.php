@@ -571,7 +571,7 @@ $2',
 'titleprotected' => "Dette sidenavn er beskyttet mod oprettelse af [[User:$1|$1]]. Begrundelsen for beskyttelsen er ''$2''.",
 'filereadonlyerror' => 'Ude af stand til at redigere filen "$1", fordi fildatabasen "$2" er skrivebeskyttet.
 
-Begrundelsen er "\'\'$3\'\'".',
+Administratoren, som skrivebeskyttede den, gav følgende begrundelse: "$3".',
 
 # Virus scanner
 'virus-badscanner' => "Konfigurationsfejl: ukendt virus-scanner: ''$1''",
@@ -1086,7 +1086,7 @@ Se venligst loglisterne.',
 # Suppression log
 'suppressionlog' => 'Skjulningslog',
 'suppressionlogtext' => 'Nedenfor listes de sletninger og blokeringer, som involverer indhold, der er skjult for administratorer.
-Se [[Special:BlockList|IP-blokeringslisten]] for listen over alle aktuelle blokeringer.',
+Se [[Special:BlockList|blokeringslisten]] for listen over alle aktuelle blokeringer.',
 
 # History merging
 'mergehistory' => 'Sammenflet sidehistorikker',
@@ -2007,6 +2007,8 @@ Du kan afgrænse visningen ved at vælge en logtype, brugernavn eller påvirket 
 'allpages-hide-redirects' => 'Skjul omdirigeringer',
 
 # SpecialCachedPage
+'cachedspecial-viewing-cached-ttl' => 'Du ser en hengemt version af denne side, som kan være op til $1 gammel.',
+'cachedspecial-viewing-cached-ts' => 'Du ser en hengemt version af denne side, som måske ikke er helt aktuel.',
 'cachedspecial-refresh-now' => 'Vis seneste.',
 
 # Special:Categories
@@ -2443,7 +2445,7 @@ Angiv en konkret begrundelse herunder (for eksempel med angivelse af sider der h
 'badipaddress' => 'IP-adressen/brugernavnet er udformet forkert eller eksistere ikke.',
 'blockipsuccesssub' => 'Blokeringen er gennemført.',
 'blockipsuccesstext' => '[[Special:Contributions/$1|$1]] er blevet blokeret.<br />
-Se [[Special:BlockList|IP-blokeringslisten]] for alle blokeringer.',
+Se [[Special:BlockList|blokeringslisten]] for alle blokeringer.',
 'ipb-blockingself' => 'Du er ved at blokere dig selv! Er du sikker på, du vil gøre det?',
 'ipb-confirmhideuser' => 'Du er ved at blokere en bruger med "skjul bruger" aktiveret. Dette vil skjule brugerens navn på alle lister og logposter. Er du sikker på du vil gøre det?',
 'ipb-edit-dropdown' => 'Ændre spærreårsager',
@@ -2496,7 +2498,9 @@ Blokeringsloggen vises nedenfor som reference:',
 Skjulningsloggen vises nedenfor som reference:',
 'blocklogentry' => 'blokerede [[$1]] med en varighed på $2 $3',
 'reblock-logentry' => 'ændrede blokeringsindstillinger for [[$1]] med en varighed $2 $3',
-'blocklogtext' => 'Dette er en liste med blokerede brugere og ophævede blokeringer af brugere. Automatisk blokerede IP-adresser er ikke anført her. Se [[Special:BlockList|blokeringslisten]] for den nuværende liste med blokerede brugere.',
+'blocklogtext' => 'Dette er en liste med blokerede brugere og ophævede blokeringer af brugere.
+Automatisk blokerede IP-adresser er ikke anført her.
+Se [[Special:BlockList|blokeringslisten]] for den nuværende liste med aktuelle blokeringer.',
 'unblocklogentry' => 'ophævede blokering af "$1"',
 'block-log-flags-anononly' => 'kun anonyme',
 'block-log-flags-nocreate' => 'Oprettelse af brugerkonti blokeret',

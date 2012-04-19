@@ -1005,6 +1005,7 @@ A edição foi rejeitada para evitar perdas no texto da página.
 Isso acontece ocasionalmente quando se usa um serviço de proxy anonimizador mal configurado.'''",
 'edit_form_incomplete' => "'''Algumas partes do formulário de edição não chegaram ao servidor; verifique que a sua edição continua intacta e tente novamente, por favor.'''",
 'editing' => 'A editar $1',
+'creating' => 'A criar $1',
 'editingsection' => 'A editar $1 (secção)',
 'editingcomment' => 'A editar $1 (nova secção)',
 'editconflict' => 'Conflito de edição: $1',
@@ -1072,6 +1073,7 @@ Ela parece ter sido eliminada.',
 'edit-no-change' => 'A sua edição foi ignorada, uma vez que o texto não sofreu alterações.',
 'edit-already-exists' => 'Não foi possível criar uma página nova.
 Ela já existia.',
+'defaultmessagetext' => 'Texto da mensagem padrão',
 
 # Parser/template warnings
 'expensive-parserfunction-warning' => 'Aviso: Esta página contém demasiadas chamadas de funções exigentes do analisador sintáctico.
@@ -1234,8 +1236,8 @@ Verifique os registos, por favor.',
 
 # Suppression log
 'suppressionlog' => 'Registo de supressões',
-'suppressionlogtext' => 'Abaixo está uma lista das eliminações e bloqueios envolvendo conteúdo ocultado a administradores.
-Veja a [[Special:BlockList|lista de bloqueios a IPs]] para uma lista de banimentos e bloqueios em efeito neste momento.',
+'suppressionlogtext' => 'Abaixo está uma lista das eliminações e bloqueios envolvendo conteúdo ocultado para administradores.
+Veja a [[Special:BlockList|lista de bloqueios]] para uma lista de banimentos e bloqueios em efeito neste momento.',
 
 # History merging
 'mergehistory' => 'Fundir histórico de páginas',
@@ -2170,6 +2172,7 @@ Pode reduzir a lista escolhendo um tipo de registo, um nome de utilizador ou um 
 'allpagesbadtitle' => 'O título de página fornecido era inválido ou tinha um prefixo interlínguas ou interwikis.
 Talvez contenha um ou mais caracteres que não podem ser usados nos títulos.',
 'allpages-bad-ns' => 'A {{SITENAME}} não possui o espaço nominal "$1".',
+'allpages-hide-redirects' => 'Ocultar redirecionamentos',
 
 # Special:Categories
 'categories' => 'Categorias',
@@ -2611,8 +2614,8 @@ Isto só deve ser feito para prevenir vandalismo e de acordo com a [[{{MediaWiki
 'ipb-confirm' => 'Confirmar o bloqueio',
 'badipaddress' => 'Endereço IP inválido',
 'blockipsuccesssub' => 'Bloqueio bem sucedido',
-'blockipsuccesstext' => '[[Special:Contributions/$1|$1]] foi bloqueado.<br />
-Consulte a [[Special:BlockList|lista de IPs bloqueados]] para rever os bloqueios.',
+'blockipsuccesstext' => '[[Special:Contributions/$1|$1]] foi {{GENDER:$1|bloqueado|bloqueada}}.<br />
+Consulte a [[Special:BlockList|lista de bloqueios]] para rever os bloqueios.',
 'ipb-blockingself' => 'Está prestes a bloquear-se a si próprio. Tem a certeza de que pretende fazê-lo?',
 'ipb-confirmhideuser' => 'Está prestes a bloquear um utilizador com "Ocultar nome de utilizador/IP" activado. Isto irá suprimir o nome do utilizador de todas as listas e entradas dos registos. Tem a certeza de que pretende fazê-lo?',
 'ipb-edit-dropdown' => 'Editar motivos de bloqueio',
@@ -2664,9 +2667,9 @@ O registo de bloqueios é fornecido abaixo para referência:',
 O registo de supressão é fornecido abaixo para referência:',
 'blocklogentry' => 'bloqueou "[[$1]]" $3. O bloqueio expira em $2.',
 'reblock-logentry' => 'modificou parâmetros de bloqueio de [[$1]] $3. O bloqueio expira em $2.',
-'blocklogtext' => 'Este é um registo de acções de bloqueio e desbloqueio.
-Endereços IP sujeitos a bloqueio automático não são listados.
-Consulte a [[Special:BlockList|lista de IPs bloqueados]] para obter a lista de bloqueios e banimentos actualmente válidos.',
+'blocklogtext' => 'Este é um registo de ações de bloqueio e desbloqueio.
+Endereços IP sujeitos a bloqueio automático não estão listados.
+Consulte a [[Special:BlockList|lista de bloqueios]] para obter a lista de bloqueios e banimentos atualmente válidos.',
 'unblocklogentry' => 'desbloqueou $1',
 'block-log-flags-anononly' => 'apenas utilizadores anónimos',
 'block-log-flags-nocreate' => 'criação de contas impossibilitada',
@@ -2859,6 +2862,7 @@ Se deseja colaborar na localização genérica do MediaWiki, visite [//www.media
 'thumbnail_error' => 'Erro ao criar miniatura: $1',
 'djvu_page_error' => 'página DjVu inacessível',
 'djvu_no_xml' => 'Não foi possível aceder ao XML para o ficheiro DjVU',
+'thumbnail-temp-create' => 'Não foi possível criar ficheiro temporário de miniatura',
 'thumbnail-dest-create' => 'Não é possível salvar miniatura',
 'thumbnail_invalid_params' => 'Parâmetros de miniatura inválidos',
 'thumbnail_dest_directory' => 'Não foi possível criar o directório de destino',
@@ -3951,5 +3955,16 @@ Imagens serão apresentadas pelo browser na resolução máxima; ficheiros de ou
 'api-error-unknownerror' => 'Erro desconhecido: "$1".',
 'api-error-uploaddisabled' => 'Esta wiki não está configurada para poder receber ficheiros.',
 'api-error-verification-error' => 'Este ficheiro pode estar corrompido, ou ter a extensão errada.',
+
+# Durations
+'duration-seconds' => '$1 {{PLURAL:$1|segundo|segundos}}',
+'duration-minutes' => '$1 {{PLURAL:$1|minuto|minutos}}',
+'duration-hours' => '$1 {{PLURAL:$1|hora|horas}}',
+'duration-days' => '$1 {{PLURAL:$1|dia|dias}}',
+'duration-weeks' => '$1 {{PLURAL:$1|semana|semanas}}',
+'duration-years' => '$1 {{PLURAL:$1|ano|anos}}',
+'duration-decades' => '$1 {{PLURAL:$1|década|décadas}}',
+'duration-centuries' => '$1 {{PLURAL:$1|século|séculos}}',
+'duration-millennia' => '$1 {{PLURAL:$1|milénio|milénios}}',
 
 );

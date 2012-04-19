@@ -384,18 +384,18 @@ $messages = array(
 'tog-previewontop' => 'Afficher la prévisualisation au-dessus de la zone de modification',
 'tog-previewonfirst' => 'Afficher la prévisualisation lors de la première modification',
 'tog-nocache' => 'Désactiver le cache des pages par le navigateur',
-'tog-enotifwatchlistpages' => "M'avertir par courriel lorsqu'une page de ma liste de suivi est modifiée",
-'tog-enotifusertalkpages' => "M'avertir par courriel si ma page de discussion est modifiée",
+'tog-enotifwatchlistpages' => 'M’avertir par courriel lorsqu’une page de ma liste de suivi est modifiée',
+'tog-enotifusertalkpages' => 'M’avertir par courriel si ma page de discussion est modifiée',
 'tog-enotifminoredits' => "M'avertir par courriel même en cas de modifications mineures des pages",
 'tog-enotifrevealaddr' => 'Afficher mon adresse de courriel dans les courriels de notification',
-'tog-shownumberswatching' => "Afficher le nombre d'utilisateurs qui suivent cette page",
+'tog-shownumberswatching' => 'Afficher le nombre d’utilisateurs qui suivent cette page',
 'tog-oldsig' => 'Signature existante :',
 'tog-fancysig' => 'Traiter la signature comme du wikitexte (sans lien automatique)',
-'tog-externaleditor' => "Utiliser par défaut un éditeur de texte externe (pour les utilisateurs avancés, nécessite des réglages spécifiques sur votre ordinateur, [//www.mediawiki.org/wiki/Manual:External_editors/fr plus d'informations]).",
-'tog-externaldiff' => "Utiliser un comparateur externe par défaut (pour les utilisateurs avancés, nécessite des réglages sur votre ordinateur, [//www.mediawiki.org/wiki/Manual:External_editors/fr plus d'informations]).",
+'tog-externaleditor' => 'Utiliser par défaut un éditeur de texte externe (pour les utilisateurs avancés, nécessite des réglages spécifiques sur votre ordinateur, [//www.mediawiki.org/wiki/Manual:External_editors/fr plus d’informations]).',
+'tog-externaldiff' => 'Utiliser un comparateur externe par défaut (pour les utilisateurs avancés, nécessite des réglages sur votre ordinateur, [//www.mediawiki.org/wiki/Manual:External_editors/fr plus d’informations]).',
 'tog-showjumplinks' => 'Activer les liens « navigation » et « recherche » en haut de page',
-'tog-uselivepreview' => "Utiliser l'aperçu rapide (nécessite JavaScript) (expérimental)",
-'tog-forceeditsummary' => "M'avertir lorsque je n'ai pas spécifié de résumé de modification",
+'tog-uselivepreview' => 'Utiliser l’aperçu rapide (nécessite JavaScript) (expérimental)',
+'tog-forceeditsummary' => 'M’avertir lorsque je n’ai pas spécifié de résumé de modification',
 'tog-watchlisthideown' => 'Masquer mes propres modifications dans la liste de suivi',
 'tog-watchlisthidebots' => 'Masquer les modifications faites par des robots dans la liste de suivi',
 'tog-watchlisthideminor' => 'Masquer les modifications mineures dans la liste de suivi',
@@ -403,18 +403,18 @@ $messages = array(
 'tog-watchlisthideanons' => 'Masquer les modifications anonymes dans la liste de suivi',
 'tog-watchlisthidepatrolled' => 'Masquer les modifications surveillées dans la liste de suivi',
 'tog-nolangconversion' => 'Désactiver la conversion des variantes linguistiques',
-'tog-ccmeonemails' => "M'envoyer une copie des courriels que j'envoie aux autres utilisateurs",
+'tog-ccmeonemails' => 'M’envoyer une copie des courriels que j’envoie aux autres utilisateurs',
 'tog-diffonly' => 'Ne pas afficher le contenu des pages sous les diffs',
 'tog-showhiddencats' => 'Afficher les catégories cachées',
 'tog-noconvertlink' => 'Désactiver la conversion des titres',
-'tog-norollbackdiff' => "Ne pas afficher le diff lors d'une révocation",
+'tog-norollbackdiff' => 'Ne pas afficher le diff lors d’une révocation',
 
 'underline-always' => 'Toujours',
 'underline-never' => 'Jamais',
 'underline-default' => 'Valeur par défaut du navigateur',
 
 # Font style option in Special:Preferences
-'editfont-style' => "Style de police de la zone d'édition :",
+'editfont-style' => 'Style de police de la zone d’édition :',
 'editfont-default' => 'Celui par défaut du navigateur',
 'editfont-monospace' => 'Police de chasse fixe',
 'editfont-sansserif' => 'Police sans empattement',
@@ -523,7 +523,7 @@ $messages = array(
 'vector-simplesearch-preference' => 'Activer les suggestions de recherche améliorées (seulement pour Vector)',
 'vector-view-create' => 'Créer',
 'vector-view-edit' => 'Modifier',
-'vector-view-history' => "Afficher l'historique",
+'vector-view-history' => 'Afficher l’historique',
 'vector-view-view' => 'Lire',
 'vector-view-viewsource' => 'Voir la source',
 'actions' => 'Actions',
@@ -573,7 +573,7 @@ $messages = array(
 'imagepage' => 'Voir la page du fichier',
 'mediawikipage' => 'Voir la page du message',
 'templatepage' => 'Voir la page du modèle',
-'viewhelppage' => "Voir la page d'aide",
+'viewhelppage' => 'Voir la page d’aide',
 'categorypage' => 'Voir la page de catégorie',
 'viewtalkpage' => 'Page de discussion',
 'otherlanguages' => 'Autres langues',
@@ -585,12 +585,12 @@ $messages = array(
 'jumpto' => 'Aller à :',
 'jumptonavigation' => 'Navigation',
 'jumptosearch' => 'rechercher',
-'view-pool-error' => "Désolé, les serveurs sont surchargés en ce moment.
-Trop d'utilisateurs cherchent à consulter cette page.
-Veuillez attendre un moment avant de retenter l'accès à cette page.
+'view-pool-error' => 'Désolé, les serveurs sont surchargés en ce moment.
+Trop d’utilisateurs cherchent à consulter cette page.
+Veuillez attendre un moment avant de retenter l’accès à cette page.
 
-$1",
-'pool-timeout' => "Délai dépassé durant l'attente du verrou",
+$1',
+'pool-timeout' => 'Délai dépassé durant l’attente du verrou',
 'pool-queuefull' => 'La file de travail est pleine',
 'pool-errorunknown' => 'Erreur inconnue',
 
@@ -615,8 +615,8 @@ $1",
 'privacypage' => 'Project:Confidentialité',
 
 'badaccess' => 'Erreur de permission',
-'badaccess-group0' => "Vous n'avez pas les droits suffisants pour réaliser l'action demandée.",
-'badaccess-groups' => "L'action que vous essayez de réaliser n'est accessible qu'aux utilisateurs {{PLURAL:$2|du groupe|des groupes}} : $1.",
+'badaccess-group0' => 'Vous n’avez pas les droits suffisants pour réaliser l’action demandée.',
+'badaccess-groups' => 'L’action que vous essayez de réaliser n’est accessible qu’aux utilisateurs {{PLURAL:$2|du groupe|des groupes}} : $1.',
 
 'versionrequired' => 'Version $1 de MediaWiki nécessaire',
 'versionrequiredtext' => 'La version $1 de MediaWiki est nécessaire pour utiliser cette page. Consultez [[Special:Version|la page des versions]]',
@@ -666,61 +666,61 @@ $1",
 
 # Main script and global functions
 'nosuchaction' => 'Action inconnue',
-'nosuchactiontext' => "L'action spécifiée dans l'URL est invalide.
-Vous avez peut-être mal entré l'URL ou suivi un lien erroné.
-Il peut également s'agir d'un bogue dans le logiciel utilisé par {{SITENAME}}.",
+'nosuchactiontext' => 'L’action spécifiée dans l’URL est invalide.
+Vous avez peut-être mal entré l’URL ou suivi un lien erroné.
+Il peut également s’agir d’un bogue dans le logiciel utilisé par {{SITENAME}}.',
 'nosuchspecialpage' => 'Page spéciale inexistante',
-'nospecialpagetext' => "<strong>Vous avez demandé une page spéciale qui n'existe pas.</strong>
+'nospecialpagetext' => '<strong>Vous avez demandé une page spéciale qui n’existe pas.</strong>
 
-Une liste des pages spéciales valides se trouve sur [[Special:SpecialPages|{{int:specialpages}}]].",
+Une liste des pages spéciales valides se trouve sur [[Special:SpecialPages|{{int:specialpages}}]].',
 
 # General errors
 'error' => 'Erreur',
 'databaseerror' => 'Erreur de la base de données',
-'dberrortext' => "Une erreur de syntaxe de la requête dans la base de données est survenue.
+'dberrortext' => 'Une erreur de syntaxe de la requête dans la base de données est survenue.
 Ceci peut indiquer un bogue dans le logiciel.
 La dernière requête traitée par la base de données était :
 <blockquote><tt>$1</tt></blockquote>
 depuis la fonction « <tt>$2</tt> ».
-La base de données a renvoyé l'erreur « <tt>$3 : $4</tt> ».",
-'dberrortextcl' => "Une requête dans la base de données comporte une erreur de syntaxe.
+La base de données a renvoyé l’erreur « <tt>$3 : $4</tt> ».',
+'dberrortextcl' => 'Une requête dans la base de données comporte une erreur de syntaxe.
 La dernière requête émise était :
 « $1 »
 dans la fonction « $2 ».
-La base de données a renvoyé l'erreur « $3 : $4 ».",
+La base de données a renvoyé l’erreur « $3 : $4 ».',
 'laggedslavemode' => 'Attention, cette page peut ne pas contenir les toutes dernières modifications effectuées',
 'readonly' => 'Base de données verrouillée',
-'enterlockreason' => "Indiquez la raison du verrouillage ainsi qu'une estimation de sa durée",
-'readonlytext' => "Les ajouts et mises à jour de la base de données sont actuellement bloqués, probablement pour permettre la maintenance de la base, après quoi, tout rentrera dans l'ordre.
+'enterlockreason' => 'Indiquez la raison du verrouillage ainsi qu’une estimation de sa durée',
+'readonlytext' => 'Les ajouts et mises à jour de la base de données sont actuellement bloqués, probablement pour permettre la maintenance de la base, après quoi, tout rentrera dans l’ordre.
 
-L'administrateur ayant verrouillé la base de données a fourni l'explication suivante :<br />$1",
-'missing-article' => "La base de données n'a pas trouvé le texte d'une page qu'elle aurait dû trouver, intitulée « $1 » $2.
+L’administrateur ayant verrouillé la base de données a fourni l’explication suivante :<br />$1',
+'missing-article' => "La base de données n’a pas trouvé le texte d'une page qu’elle aurait dû trouver, intitulée « $1 » $2.
 
-Généralement, cela survient en suivant un lien vers un diff périmé ou vers l'historique d'une page supprimée.
+Généralement, cela survient en suivant un lien vers un diff périmé ou vers l’historique d'une page supprimée.
 
-Si ce n'est pas le cas, il peut s'agir d'un bogue dans le programme.
-Veuillez le signaler à un [[Special:ListUsers/sysop|administrateur]] sans oublier de lui indiquer l'URL du lien.",
+Si ce n’est pas le cas, il peut s’agir d'un bogue dans le programme.
+Veuillez le signaler à un [[Special:ListUsers/sysop|administrateur]] sans oublier de lui indiquer l’URL du lien.",
 'missingarticle-rev' => '(numéro de version : $1)',
 'missingarticle-diff' => '(diff : $1, $2)',
 'readonly_lag' => 'La base de données a été automatiquement verrouillée pendant que les serveurs secondaires rattrapent leur retard sur le serveur principal.',
 'internalerror' => 'Erreur interne',
 'internalerror_info' => 'Erreur interne : $1',
-'fileappenderrorread' => "Impossible de lire « $1 » lors de l'insertion",
-'fileappenderror' => "Impossible d'ajouter « $1 » à « $2 ».",
+'fileappenderrorread' => 'Impossible de lire « $1 » lors de l’insertion',
+'fileappenderror' => 'Impossible d’ajouter « $1 » à « $2 ».',
 'filecopyerror' => 'Impossible de copier le fichier « $1 » vers « $2 ».',
 'filerenameerror' => 'Impossible de renommer le fichier « $1 » en « $2 ».',
 'filedeleteerror' => 'Impossible de supprimer le fichier « $1 ».',
 'directorycreateerror' => 'Impossible de créer le dossier « $1 ».',
 'filenotfound' => 'Impossible de trouver le fichier « $1 ».',
-'fileexistserror' => "Impossible d'écrire dans le dossier « $1 » : le fichier existe",
+'fileexistserror' => 'Impossible d’écrire dans le dossier « $1 » : le fichier existe',
 'unexpected' => 'Valeur inattendue : « $1 » = « $2 ».',
 'formerror' => 'Erreur : Impossible de soumettre le formulaire',
 'badarticleerror' => 'Cette action ne peut pas être effectuée sur cette page.',
-'cannotdelete' => "Impossible de supprimer la page ou le fichier « $1 ».
-La suppression a peut-être déjà été effectuée par quelqu'un d'autre.",
+'cannotdelete' => 'Impossible de supprimer la page ou le fichier « $1 ».
+La suppression a peut-être déjà été effectuée par quelqu’un d’autre.',
 'cannotdelete-title' => 'Impossible de supprimer la page « $1 »',
 'badtitle' => 'Mauvais titre',
-'badtitletext' => "Le titre de la page demandée est invalide, vide, ou il s'agit d'un titre inter-langue ou inter-projet mal lié. Il contient peut-être un ou plusieurs caractères qui ne peuvent pas être utilisés dans les titres.",
+'badtitletext' => 'Le titre de la page demandée est invalide, vide, ou il s’agit d’un titre inter-langue ou inter-projet mal lié. Il contient peut-être un ou plusieurs caractères qui ne peuvent pas être utilisés dans les titres.',
 'perfcached' => 'Les données suivantes sont en cache et peuvent ne pas être à jour. Un maximum de {{PLURAL:$1|un résultat|$1 résultats}} est disponible dans le cache.',
 'perfcachedts' => 'Les données suivantes sont en cache et ont été mises à jour pour la dernière fois à $1. Un maximum de {{PLURAL:$4|un résultat|$4 résultats}} est disponible dans le cache.',
 'querypage-no-updates' => 'Les mises à jour pour cette page sont actuellement désactivées. Les données ci-dessous ne sont pas mises à jour.',
@@ -730,25 +730,25 @@ Requête : $2',
 'viewsource' => 'Voir le texte source',
 'viewsource-title' => 'Voir la source de $1',
 'actionthrottled' => 'Action limitée',
-'actionthrottledtext' => "Pour lutter contre les pourriels, l'utilisation de cette action est limitée à un certain nombre de fois dans un laps de temps assez court. Il s'avère que vous avez dépassé cette limite.
-Essayez à nouveau dans quelques minutes.",
+'actionthrottledtext' => 'Pour lutter contre les pourriels, l’utilisation de cette action est limitée à un certain nombre de fois dans un laps de temps assez court. Il s’avère que vous avez dépassé cette limite.
+Essayez à nouveau dans quelques minutes.',
 'protectedpagetext' => 'Cette page a été protégée pour empêcher sa modification.',
 'viewsourcetext' => 'Vous pouvez voir et copier le contenu de la page :',
 'viewyourtext' => "Vous pouvez voir et copier le contenu de '''vos modifications''' à cette page :",
-'protectedinterface' => "Cette page fournit du texte d'interface pour le logiciel et est protégée pour éviter les abus.",
-'editinginterface' => "'''Attention :''' vous êtes en train de modifier une page utilisée pour créer le texte de l'interface du logiciel. Les changements se répercuteront, selon le contexte, sur toutes ou certaines pages visibles par les autres utilisateurs. Pour les traductions, nous vous invitons à utiliser le projet MediaWiki d'internationalisation des messages [//translatewiki.net/wiki/Main_Page?setlang=fr translatewiki.net].",
+'protectedinterface' => 'Cette page fournit du texte d’interface pour le logiciel et est protégée pour éviter les abus.',
+'editinginterface' => "'''Attention :''' vous êtes en train de modifier une page utilisée pour créer le texte de l’interface du logiciel. Les changements se répercuteront, selon le contexte, sur toutes ou certaines pages visibles par les autres utilisateurs. Pour les traductions, nous vous invitons à utiliser le projet MediaWiki d’internationalisation des messages [//translatewiki.net/wiki/Main_Page?setlang=fr translatewiki.net].",
 'sqlhidden' => '(Requête SQL cachée)',
-'cascadeprotected' => "Cette page est protégée car elle est incluse par {{PLURAL:$1|la page suivante, qui a été protégée|les pages suivantes, qui ont été protégées}} avec l'option « protection en cascade » activée :
-$2",
-'namespaceprotected' => "Vous n'avez pas la permission de modifier les pages de l'espace de noms « '''$1''' ».",
-'customcssprotected' => "Vous n'avez pas la permission de modifier cette page de CSS, car elle contient les paramètres personnels d'un autre utilisateur.",
-'customjsprotected' => "Vous n'avez pas la permission de modifier cette page de JavaScript, car elle contient les paramètres personnels d'un autre utilisateur.",
+'cascadeprotected' => 'Cette page est protégée car elle est incluse par {{PLURAL:$1|la page suivante, qui a été protégée|les pages suivantes, qui ont été protégées}} avec l’option « protection en cascade » activée :
+$2',
+'namespaceprotected' => "Vous n’avez pas la permission de modifier les pages de l’espace de noms « '''$1''' ».",
+'customcssprotected' => 'Vous n’avez pas la permission de modifier cette page de CSS, car elle contient les paramètres personnels d’un autre utilisateur.',
+'customjsprotected' => 'Vous n’avez pas la permission de modifier cette page de JavaScript, car elle contient les paramètres personnels d’un autre utilisateur.',
 'ns-specialprotected' => 'Les pages dans l’espace de noms « {{ns:special}} » ne peuvent pas être modifiées.',
 'titleprotected' => "Ce titre a été protégé à la création par [[User:$1|$1]].
 Le motif avancé est « ''$2'' ».",
-'filereadonlyerror' => 'Impossible de modifier le fichier "$1" parce que le répertoire de fichiers "$2" est en lecture seule.
+'filereadonlyerror' => 'Impossible de modifier le fichier « $1 » parce que le répertoire de fichiers « $2 » est en lecture seule.
 
-L\'administrateur qui l\'a verrouillé a fourni ce motif: "$3".',
+L’administrateur qui l’a verrouillé a fourni ce motif: « $3 ».',
 
 # Virus scanner
 'virus-badscanner' => "Mauvaise configuration : scanneur de virus inconnu : ''$1''",
@@ -760,17 +760,17 @@ L\'administrateur qui l\'a verrouillé a fourni ce motif: "$3".',
 
 Vous pouvez continuer à utiliser {{SITENAME}} de façon anonyme, [[Special:UserLogin|vous reconnecter]] sous le même nom ou un autre.
 Notez que certaines pages peuvent être encore affichées comme si vous étiez toujours connecté(e), jusqu’à ce que vous effaciez le cache de votre navigateur.",
-'welcomecreation' => "== Bienvenue, $1 ! ==
+'welcomecreation' => '== Bienvenue, $1 ! ==
 
 Votre compte a été créé.
-N'oubliez pas de personnaliser vos [[Special:Preferences|préférences sur {{SITENAME}}]].",
-'yourname' => "Nom d'utilisateur :",
+N’oubliez pas de personnaliser vos [[Special:Preferences|préférences sur {{SITENAME}}]].',
+'yourname' => 'Nom d’utilisateur :',
 'yourpassword' => 'Mot de passe :',
 'yourpasswordagain' => 'Confirmez le mot de passe :',
 'remembermypassword' => 'Me reconnecter automatiquement aux prochaines visites avec ce navigateur (au maximum $1 {{PLURAL:$1|jour|jours}})',
 'securelogin-stick-https' => 'Rester connecté en HTTPS après la connexion',
 'yourdomainname' => 'Votre domaine',
-'externaldberror' => "Une erreur s'est produite avec la base de données d'authentification externe, ou bien vous n'êtes pas autorisé{{GENDER:||e|(e)}} à mettre à jour votre compte externe.",
+'externaldberror' => 'Une erreur s’est produite avec la base de données d’authentification externe, ou bien vous n’êtes pas autorisé{{GENDER:||e|(e)}} à mettre à jour votre compte externe.',
 'login' => 'Connexion',
 'nav-login-createaccount' => 'Créer un compte ou se connecter',
 'loginprompt' => "Vous devez activer les témoins (''cookies'') pour vous connecter à {{SITENAME}}.",
@@ -779,7 +779,7 @@ N'oubliez pas de personnaliser vos [[Special:Preferences|préférences sur {{SIT
 'logout' => 'Se déconnecter',
 'userlogout' => 'Déconnexion',
 'notloggedin' => 'Non connecté',
-'nologin' => "Vous n'êtes pas encore inscrit ? $1.",
+'nologin' => 'Vous n’êtes pas encore inscrit ? $1.',
 'nologinlink' => 'Créer un compte',
 'createaccount' => 'Créer un compte',
 'gotaccount' => "Vous avez déjà un compte ? '''$1'''.",
@@ -788,46 +788,46 @@ N'oubliez pas de personnaliser vos [[Special:Preferences|préférences sur {{SIT
 'createaccountmail' => 'par courriel',
 'createaccountreason' => 'Motif :',
 'badretype' => 'Les mots de passe que vous avez saisis ne correspondent pas.',
-'userexists' => "Nom d'utilisateur entré déjà utilisé.
-Veuillez choisir un nom différent.",
+'userexists' => 'Nom d’utilisateur entré déjà utilisé.
+Veuillez choisir un nom différent.',
 'loginerror' => 'Erreur de connexion',
 'createaccounterror' => 'Impossible de créer le compte : $1',
-'nocookiesnew' => "Le compte utilisateur a été créé, mais vous n'êtes pas connecté{{GENDER:||e|(e)}}. {{SITENAME}} utilise des témoins (''cookies'') pour la connexion mais vous les avez désactivés. Veuillez les activer et vous reconnecter avec le même nom et le même mot de passe.",
+'nocookiesnew' => "Le compte utilisateur a été créé, mais vous n’êtes pas connecté{{GENDER:||e|(e)}}. {{SITENAME}} utilise des témoins (''cookies'') pour la connexion mais vous les avez désactivés. Veuillez les activer et vous reconnecter avec le même nom et le même mot de passe.",
 'nocookieslogin' => "{{SITENAME}} utilise des témoins (''cookies'') pour la connexion mais vous les avez désactivés. Veuillez les activer et vous reconnecter.",
-'nocookiesfornew' => "Le compte utilisateur n'a pas été créé, car nous n'avons pas pu identifier son origine.
-Vérifiez que vous avez activé les cookies, rechargez la page et rééssayez.",
-'noname' => "Vous n'avez pas saisi un nom d'utilisateur valide.",
+'nocookiesfornew' => 'Le compte utilisateur n’a pas été créé, car nous n’avons pas pu identifier son origine.
+Vérifiez que vous avez activé les cookies, rechargez la page et réessayez.',
+'noname' => 'Vous n’avez pas saisi un nom d’utilisateur valide.',
 'loginsuccesstitle' => 'Connexion réussie',
 'loginsuccess' => 'Vous êtes maintenant connecté{{GENDER:$1||e|(e)}} à {{SITENAME}} en tant que « $1 ».',
-'nosuchuser' => "L'utilisateur « $1 » n'existe pas.
-Les noms d'utilisateurs sont sensibles à la casse.
-Vérifiez l'orthographe, ou [[Special:UserLogin/signup|créez un nouveau compte]].",
-'nosuchusershort' => "Il n'y a pas de contributeur avec le nom « $1 ». Veuillez vérifier l'orthographe.",
-'nouserspecified' => "Vous devez saisir un nom d'utilisateur.",
+'nosuchuser' => 'L’utilisateur « $1 » n’existe pas.
+Les noms d’utilisateurs sont sensibles à la casse.
+Vérifiez l’orthographe, ou [[Special:UserLogin/signup|créez un nouveau compte]].',
+'nosuchusershort' => 'Il n’y a pas de contributeur avec le nom « $1 ». Veuillez vérifier l’orthographe.',
+'nouserspecified' => 'Vous devez saisir un nom d’utilisateur.',
 'login-userblocked' => 'Cet utilisateur est bloqué. Connexion non autorisée.',
 'wrongpassword' => 'Le mot de passe est incorrect. Veuillez essayer à nouveau.',
-'wrongpasswordempty' => "Vous n'avez pas entré de mot de passe. Veuillez essayer à nouveau.",
+'wrongpasswordempty' => 'Vous n’avez pas entré de mot de passe. Veuillez essayer à nouveau.',
 'passwordtooshort' => 'Votre mot de passe doit contenir au moins $1 caractère{{PLURAL:$1||s}}.',
-'password-name-match' => "Votre mot de passe doit être différent de votre nom d'utilisateur.",
-'password-login-forbidden' => "L'utilisation de ce nom d'utilisateur et de ce mot de passe a été interdite.",
+'password-name-match' => 'Votre mot de passe doit être différent de votre nom d’utilisateur.',
+'password-login-forbidden' => "L’utilisation de ce nom d'utilisateur et de ce mot de passe a été interdite.",
 'mailmypassword' => 'Recevoir un nouveau mot de passe par courriel',
 'passwordremindertitle' => 'Nouveau mot de passe temporaire pour {{SITENAME}}',
-'passwordremindertext' => "Quelqu'un (probablement vous, ayant l'adresse IP $1) a demandé un nouveau mot de
+'passwordremindertext' => 'Quelqu’un (probablement vous, ayant l’adresse IP $1) a demandé un nouveau mot de
 passe pour {{SITENAME}} ($4 ). Un mot de passe temporaire a été créé pour
-l'utilisateur « $2 » et est « $3 ». Si cela était votre intention, vous devrez
+l’utilisateur « $2 » et est « $3 ». Si cela était votre intention, vous devrez
 vous connecter et choisir un nouveau mot de passe.
 Votre mot de passe temporaire expirera dans $5 jour{{PLURAL:$5||s}}.
 
-Si vous n'êtes pas l'auteur de cette demande, ou si vous vous souvenez à présent
+Si vous n’êtes pas l’auteur de cette demande, ou si vous vous souvenez à présent
 de votre ancien mot de passe et que vous ne souhaitez plus en changer, vous
-pouvez ignorer ce message et continuer à utiliser votre ancien mot de passe.",
-'noemail' => "Aucune adresse de courriel n'a été enregistrée pour l'utilisateur « $1 ».",
+pouvez ignorer ce message et continuer à utiliser votre ancien mot de passe.',
+'noemail' => "Aucune adresse de courriel n’a été enregistrée pour l'utilisateur « $1 ».",
 'noemailcreate' => 'Vous devez fournir une adresse de courriel valide',
-'passwordsent' => "Un nouveau mot de passe a été envoyé à l'adresse de courriel de l'utilisateur « $1 ». Veuillez vous reconnecter après l'avoir reçu.",
+'passwordsent' => 'Un nouveau mot de passe a été envoyé à l’adresse de courriel de l’utilisateur « $1 ». Veuillez vous reconnecter après l’avoir reçu.',
 'blocked-mailpassword' => 'Votre adresse IP est bloquée en écriture, la fonction de rappel du mot de passe est donc désactivée pour éviter les abus.',
-'eauthentsent' => "Un courriel de confirmation a été envoyé à l'adresse indiquée.
-Avant qu'un autre courriel ne soit envoyé à ce compte, vous devrez suivre les instructions du courriel et confirmer que le compte est bien le vôtre.",
-'throttled-mailpassword' => "Un courriel de rappel de votre mot de passe a déjà été envoyé durant {{PLURAL:$1|la dernière heure|les $1 dernières heures}}. Afin d'éviter les abus, un seul courriel de rappel sera envoyé par {{PLURAL:$1|heure|intervalle de $1 heures}}.",
+'eauthentsent' => 'Un courriel de confirmation a été envoyé à l’adresse indiquée.
+Avant qu’un autre courriel ne soit envoyé à ce compte, vous devrez suivre les instructions du courriel et confirmer que le compte est bien le vôtre.',
+'throttled-mailpassword' => 'Un courriel de rappel de votre mot de passe a déjà été envoyé durant {{PLURAL:$1|la dernière heure|les $1 dernières heures}}. Afin d’éviter les abus, un seul courriel de rappel sera envoyé par {{PLURAL:$1|heure|intervalle de $1 heures}}.',
 'mailerror' => 'Erreur lors de l’envoi du courriel : $1',
 'acct_creation_throttle_hit' => 'Quelqu’un utilisant votre adresse IP a créé {{PLURAL:$1|un compte|$1 comptes}} au cours des dernières 24 heures, ce qui constitue la limite autorisée dans cet intervalle de temps.
 Par conséquent, la création de compte a été temporairement désactivée pour cette adresse IP.',
@@ -1029,8 +1029,8 @@ La dernière entrée du registre des blocages est indiquée ci-dessous à titre 
 'userinvalidcssjstitle' => "'''Attention :''' il n’existe pas d’habillage « $1 ». Rappelez-vous que les pages personnelles avec extensions .css et .js utilisent des titres en minuscules, par exemple {{ns:user}}:Foo/vector.css et non {{ns:user}}:Foo/Vector.css.",
 'updated' => '(Mis à jour)',
 'note' => "'''Note :'''",
-'previewnote' => "'''Rappelez-vous que ce n'est qu'une prévisualisation.'''
-Vos modifications n'ont pas encore été enregistrées! [[#editform|→ Continuer la modification]]",
+'previewnote' => "'''Rappelez-vous que ce n’est qu’une prévisualisation.'''
+Vos modifications n’ont pas encore été enregistrées ! [[#editform|→ Continuer la modification]]",
 'previewconflict' => 'Cette prévisualisation montre le texte de la boîte supérieure de modification tel qu’il apparaîtra si vous choisissez de le publier.',
 'session_fail_preview' => "'''Nous ne pouvons enregistrer votre modification à cause d’une perte d’informations concernant votre session.'''
 Veuillez réessayer.
@@ -1044,7 +1044,7 @@ Si cela échoue de nouveau, [[Special:UserLogout|déconnectez-vous]], puis recon
 'token_suffix_mismatch' => "'''Votre modification n’a pas été acceptée car votre navigateur a mal codé les caractères de ponctuation dans l’identifiant de modification.'''
 Ce rejet est nécessaire pour empêcher la corruption du texte de la page.
 Ce problème se produit parfois lorsque vous utilisez un serveur mandataire anonyme problématique basé sur le web.",
-'edit_form_incomplete' => "'''Certaines parties du formulaire de modification n'ont pas atteint le serveur, vérifiez que vos modifications sont intactes et essayez à nouveau.'''",
+'edit_form_incomplete' => "'''Certaines parties du formulaire de modification n’ont pas atteint le serveur, vérifiez que vos modifications sont intactes et essayez à nouveau.'''",
 'editing' => 'Modification de $1',
 'creating' => 'Création de $1',
 'editingsection' => 'Modification de $1 (section)',
@@ -1166,7 +1166,7 @@ Elle a peut-être été effacée ou renommée.
 Essayez de [[Special:Search|rechercher sur le wiki]] pour trouver des pages en rapport.',
 
 # Revision deletion
-'rev-deleted-comment' => "(résumé d'édition enlevé)",
+'rev-deleted-comment' => '(résumé d’édition enlevé)',
 'rev-deleted-user' => '(nom d’utilisateur supprimé)',
 'rev-deleted-event' => '(entrée supprimée)',
 'rev-deleted-user-contribs' => '[nom d’utilisateur ou adresse IP supprimée - modification cachée sur les contributions]',
@@ -1303,7 +1303,7 @@ Assurez-vous que cette opération conservera la continuité de l’historique de
 'showhideselectedversions' => 'Afficher/masquer les versions sélectionnées',
 'editundo' => 'défaire',
 'diff-multi' => '({{PLURAL:$1|Une révision intermédiaire|$1 révisions intermédiaires}} par {{PLURAL:$2|un utilisateur|$2 utilisateurs}} {{PLURAL:$1|est masquée|sont masquées}})',
-'diff-multi-manyusers' => "({{PLURAL:$1|Une révision intermédiaire|$1 révisions intermédiaires}} par plus {{PLURAL:$2|d'un utilisateur|de $2 utilisateurs}} {{PLURAL:$1|est masquée|sont masquées}})",
+'diff-multi-manyusers' => '({{PLURAL:$1|Une révision intermédiaire|$1 révisions intermédiaires}} par plus {{PLURAL:$2|d’un utilisateur|de $2 utilisateurs}} {{PLURAL:$1|est masquée|sont masquées}})',
 
 # Search results
 'searchresults' => 'Résultats de la recherche',
@@ -1698,18 +1698,18 @@ Elle ne doit pas dépasser $1 caractère{{PLURAL:$1||s}}.',
 # Upload
 'upload' => 'Importer un fichier',
 'uploadbtn' => 'Importer le fichier',
-'reuploaddesc' => "Annuler et retourner au formulaire d'import",
+'reuploaddesc' => 'Annuler et retourner au formulaire d’import',
 'upload-tryagain' => 'Envoyer la description du fichier modifiée',
 'uploadnologin' => 'Non connecté(e)',
 'uploadnologintext' => 'Vous devez être [[Special:UserLogin|connecté(e)]] pour importer des fichiers sur le serveur.',
-'upload_directory_missing' => "Le répertoire d'import de fichier ($1) est introuvable et n’a pas pu être créé par le serveur web.",
-'upload_directory_read_only' => "Le répertoire d'import de fichier ($1) n’est pas accessible en écriture depuis le serveur web.",
-'uploaderror' => "Erreur lors de l'import",
+'upload_directory_missing' => 'Le répertoire d’import de fichier ($1) est introuvable et n’a pas pu être créé par le serveur web.',
+'upload_directory_read_only' => 'Le répertoire d’import de fichier ($1) n’est pas accessible en écriture depuis le serveur web.',
+'uploaderror' => 'Erreur lors de l’import',
 'upload-recreate-warning' => "'''Attention : Un fichier portant ce nom a été supprimé ou déplacé.'''
 
 Le journal des suppressions et celui des déplacements de cette page sont affichés ici pour informations :",
 'uploadtext' => "Utilisez ce formulaire pour importer des fichiers sur le serveur.
-Pour voir ou rechercher des images précédemment envoyées, consultez la [[Special:FileList|liste des images]]. L'import est aussi enregistrés dans le [[Special:Log/upload|journal d'import des fichiers]], et les suppressions dans le [[Special:Log/delete|journal des suppressions]].
+Pour voir ou rechercher des images précédemment envoyées, consultez la [[Special:FileList|liste des images]]. L’import est aussi enregistrés dans le [[Special:Log/upload|journal d'import des fichiers]], et les suppressions dans le [[Special:Log/delete|journal des suppressions]].
 
 Pour inclure un fichier dans une page, utilisez un lien de la forme :
 * '''<code><nowiki>[[</nowiki>{{ns:file}}<nowiki>:fichier.jpg]]</nowiki></code>''', pour afficher le fichier en pleine résolution (dans le cas d’une image) ;
@@ -1718,7 +1718,7 @@ Pour inclure un fichier dans une page, utilisez un lien de la forme :
 'upload-permitted' => 'Formats de fichiers autorisés : $1.',
 'upload-preferred' => 'Formats de fichiers préférés : $1.',
 'upload-prohibited' => 'Formats de fichiers interdits : $1.',
-'uploadlog' => "Journal d'import de fichiers",
+'uploadlog' => 'Journal d’import de fichiers',
 'uploadlogpage' => "Journal d'import de fichiers",
 'uploadlogpagetext' => 'Voici la liste des derniers fichiers importés sur le serveur.
 Voyez la [[Special:NewFiles|galerie des nouvelles images]] pour une présentation plus visuelle.',
@@ -1999,6 +1999,7 @@ Vous voulez peut-être modifier la description sur sa [$2 page de description].'
 'shared-repo-from' => 'de : $1',
 'shared-repo' => 'un dépôt partagé',
 'shared-repo-name-wikimediacommons' => 'Wikimédia Commons',
+'filepage.css' => '/* Les styles CSS placés ici sont inclus dans la page de description du fichier, également incluse sur les clients wikis étrangers */',
 
 # File reversion
 'filerevert' => 'Rétablir $1',
@@ -2572,8 +2573,8 @@ $1',
 'blanknamespace' => '(Principal)',
 
 # Contributions
-'contributions' => "Contributions de l'utilisateur",
-'contributions-title' => "Liste des contributions de l'utilisateur $1",
+'contributions' => 'Contributions de l’utilisateur',
+'contributions-title' => 'Liste des contributions de l’utilisateur $1',
 'mycontris' => 'Contributions',
 'contribsub2' => 'Pour $1 ($2)',
 'nocontribs' => 'Aucune modification correspondant à ces critères n’a été trouvée.',
@@ -3053,9 +3054,14 @@ Permet de rétablir la version précédente et d’ajouter un motif dans la boî
 'chick.css' => '/* Le CSS placé ici affectera les utilisateurs de l’habillage Chick. */',
 'simple.css' => '/* Le CSS placé ici affectera les utilisateurs de l’habillage Simple. */',
 'modern.css' => '/* Le CSS placé ici affectera les utilisateurs de l’habillage Modern. */',
+'vector.css' => '/* Le CSS placé ici affectera les utilisateurs de l’habillage Vector. */',
 'print.css' => '/* Le CSS placé ici affectera les impressions */',
 'handheld.css' => '/* Le CSS placé ici affectera les appareils mobiles en fonction de l\'habillage configuré $wgHandheldStyle */',
+'noscript.css' => '/* Le CSS placé ici affectera les utilisateurs ayant désactivé Javascript. */',
+'group-autoconfirmed.css' => '/* Le CSS placé ici affectera les utilisateurs auto-confirmés seulement. */',
+'group-bot.css' => '/* Le CSS placé ici affectera les robots seulement. */',
 'group-sysop.css' => '/* Le CSS inclus ici n’affectera que les administrateurs */',
+'group-bureaucrat.css' => '/* Le CSS inclus ici n’affectera que les bureaucrates */',
 
 # Scripts
 'common.js' => '/* Tout JavaScript ici sera chargé avec chaque page accédée par n’importe quel utilisateur. */',
@@ -3850,7 +3856,7 @@ Les images sont montrées dans leur pleine résolution, les autres fichiers sont
 'specialpages-note' => '----
 * Pages spéciales normales.
 * <span class="mw-specialpagerestricted">Pages spéciales restreintes.</span>
-* <span class="mw-specialpagecached">Pages spéciales seulement en cache (pourraient être obsolètes).</span>',
+* <span class="mw-specialpagecached">Pages spéciales seulement en cache (pourraient être désuètes).</span>',
 'specialpages-group-maintenance' => 'Rapports de maintenance',
 'specialpages-group-other' => 'Autres pages spéciales',
 'specialpages-group-login' => 'S’identifier / s’inscrire',

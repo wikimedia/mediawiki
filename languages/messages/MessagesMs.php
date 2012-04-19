@@ -2535,9 +2535,9 @@ dirosakkan).',
 Log sekatan disediakan di bawah sebagai rujukan:',
 'blocklogentry' => 'menyekat [[$1]] sehingga $2 $3',
 'reblock-logentry' => 'menukar tetapan sekatan [[$1]] yang tamat pada $2 $3',
-'blocklogtext' => 'Ini adalah log bagi sekatan dan penyahsekatan.
-Alamat IP yang disekat secara automatik tidak disenaraikan di sini.
-Sila lihat juga [[Special:BlockList|senarai sekatan]] yang sedang berkuatkuasa.',
+'blocklogtext' => 'Ini adalah log bagi tindakan menyekat dan menyahsekat pengguna.
+Alamat-alamat IP yang disekat secara automatik tidak disenaraikan di sini.
+Sila lihat juga [[Special:BlockList|senarai sekatan]] untuk senarai larangan dan sekatan yang sedang berkuatkuasa.',
 'unblocklogentry' => 'menyahsekat $1',
 'block-log-flags-anononly' => 'pengguna tanpa nama sahaja',
 'block-log-flags-nocreate' => 'pembukaan akaun dimatikan',

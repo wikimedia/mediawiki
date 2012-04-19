@@ -1563,6 +1563,7 @@ Dette kan ikke tilbakestillast.',
 'newsectionsummary' => '/* $1 */ ny bolk',
 'rc-enhanced-expand' => 'Vis detaljar (krev JavaScript)',
 'rc-enhanced-hide' => 'Skjul detaljar',
+'rc-old-title' => 'opphavleg oppretta som «$1»',
 
 # Recent changes linked
 'recentchangeslinked' => 'Relaterte endringar',

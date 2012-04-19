@@ -4419,8 +4419,8 @@ This is being used in [[Special:Version]], preceeding the subversion revision nu
 'version-entrypoints-articlepath' => 'A short description of the article path entry point. Links to the mediawiki.org documentation page for $wgArticlePath.',
 'version-entrypoints-scriptpath' => 'A short description of the script path entry point. Links to the mediawiki.org documentation page for $wgScriptPath.',
 'version-entrypoints-index-php' => 'A short description of the index.php entry point. Links to the mediawiki.org documentation page for index.php.',
-'version-entrypoints-api-php'   => 'A short description of the api.php entry point. Links to the mediawiki.org documentation page for api.php.',
-'version-entrypoints-load-php'  => 'A short description of the load.php entry point. Links to the mediawiki.org documentation page for load.php.',
+'version-entrypoints-api-php' => 'A short description of the api.php entry point. Links to the mediawiki.org documentation page for api.php.',
+'version-entrypoints-load-php' => 'A short description of the load.php entry point. Links to the mediawiki.org documentation page for load.php.',
 
 # Special:FilePath
 'filepath' => 'Legend of fieldset around input box in [[Special:FilePath]].',

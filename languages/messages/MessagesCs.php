@@ -1526,7 +1526,7 @@ Tuto operaci nelze vrátit zpět.',
 
 'group-user-member' => '{{GENDER:$1|uživatel|uživatelka|uživatel}}',
 'group-autoconfirmed-member' => 'automaticky {{GENDER:$1|schválený uživatel|schválená uživatelka|schválený uživatel}}',
-'group-bot-member' => '{{GENDER:$1|bot}}',
+'group-bot-member' => '{{GENDER:$1|bot|botka|bot}}',
 'group-sysop-member' => '{{GENDER:$1|správce|správkyně|správce}}',
 'group-bureaucrat-member' => '{{GENDER:$1|byrokrat|byrokratka|byrokrat}}',
 'group-suppress-member' => '{{GENDER:$1|dohlížitel|dohlížitelka|dohlížitel}}',
