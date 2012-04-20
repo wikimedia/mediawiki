@@ -2118,26 +2118,14 @@ function wfVarDump( $var ) {
 /**
  * Provide a simple HTTP error.
  *
+ * Wrapper around HttpError exception since 1.20
+ *
  * @param $code Int|String
  * @param $label String
  * @param $desc String
  */
 function wfHttpError( $code, $label, $desc ) {
-	global $wgOut;
-	$wgOut->disable();
-	header( "HTTP/1.0 $code $label" );
-	header( "Status: $code $label" );
-	$wgOut->sendCacheControl();
-
-	header( 'Content-type: text/html; charset=utf-8' );
-	print "<!doctype html>" .
-		'<html><head><title>' .
-		htmlspecialchars( $label ) .
-		'</title></head><body><h1>' .
-		htmlspecialchars( $label ) .
-		'</h1><p>' .
-		nl2br( htmlspecialchars( $desc ) ) .
-		"</p></body></html>\n";
+	throw new HttpError( $code, $desc, $label );
 }
 
 /**
