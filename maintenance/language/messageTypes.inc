@@ -237,6 +237,9 @@ $wgIgnoredMessages = array(
 	'version-summary',
 	'tags-summary',
 	'comparepages-summary',
+	'version-entrypoints-index-php',
+	'version-entrypoints-api-php',
+	'version-entrypoints-load-php',
 );
 
 /** Optional messages, which may be translated only if changed in the target language. */
