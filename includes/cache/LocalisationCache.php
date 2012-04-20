@@ -51,6 +51,16 @@ class LocalisationCache {
 	private $forceRecache = false;
 
 	/**
+	 * Whether to cache messages provided via $wgExtensionMessageFiles.
+	 *
+	 * This is used by tests to prevents loading extension message, set it up
+	 * by passing 'cacheExtensions' => false in $wgLocalisationCacheConf.
+	 *
+	 * @since 1.20
+	 */
+	var $cacheExtensions = true;
+
+	/**
 	 * The cache data. 3-d array, where the first key is the language code,
 	 * the second key is the item key e.g. 'messages', and the third key is
 	 * an item specific subkey index. Some items are not arrays and so for those
@@ -218,7 +228,7 @@ class LocalisationCache {
 		}
 
 		$this->store = new $storeClass( $storeConf );
-		foreach ( array( 'manualRecache', 'forceRecache' ) as $var ) {
+		foreach ( array( 'manualRecache', 'forceRecache', 'cacheExtensions' ) as $var ) {
 			if ( isset( $conf[$var] ) ) {
 				$this->$var = $conf[$var];
 			}
@@ -851,6 +861,7 @@ class LocalisationCache {
 		# like site-specific message overrides.
 		wfProfileIn( __METHOD__ . '-extensions' );
 		$allData = $initialData;
+
 		foreach ( $wgMessagesDirs as $dirs ) {
 			foreach ( (array)$dirs as $dir ) {
 				foreach ( $codeSequence as $csCode ) {
@@ -866,26 +877,38 @@ class LocalisationCache {
 			}
 		}
 
-		foreach ( $wgExtensionMessagesFiles as $extension => $fileName ) {
-			$data = $this->readPHPFile( $fileName, 'extension' );
-			$used = false;
+		if( !$this->cacheExtensions ) {
+			# In some rare cases we are not interested in loading extension
+			# messages for example when checking MediaWiki core translation
+			# completness see:
+			#   tests/phpunit/languages/LanguageDocumentationTest.php
+			wfDebug( __METHOD__ . " not caching extension messages per configuration.\n" );
+		} else {
+			# Load extension messages
+			foreach ( $wgExtensionMessagesFiles as $extension => $fileName ) {
+				$data = $this->readPHPFile( $fileName, 'extension' );
+				$used = false;
 
-			foreach ( $data as $key => $item ) {
-				if ( $key === 'messages' && isset( $wgMessagesDirs[$extension] ) ) {
-					# For backwards compatibility, ignore messages from extensions in
-					# $wgExtensionMessagesFiles that are also present in $wgMessagesDirs.
-					# This allows extensions to use both and be backwards compatible.
-					# Variables other than $messages still need to be supported though.
-					continue;
+				foreach ( $data as $key => $item ) {
+					if ( $key === 'messages' && isset( $wgMessagesDirs[$extension] ) ) {
+						# For backwards compatibility, ignore messages from extensions in
+						# $wgExtensionMessagesFiles that are also present in $wgMessagesDirs.
+						# This allows extensions to use both and be backwards compatible.
+						# Variables other than $messages still need to be supported though.
+						continue;
+					}
+					if ( $this->mergeExtensionItem( $codeSequence, $key, $allData[$key], $item ) ) {
+						$used = true;
+					}
 				}
-				if ( $this->mergeExtensionItem( $codeSequence, $key, $allData[$key], $item ) ) {
-					$used = true;
+
+				if ( $used ) {
+					$deps[] = new FileDependency( $fileName );
 				}
 			}
-
-			if ( $used ) {
-				$deps[] = new FileDependency( $fileName );
-			}
+			# Add cache dependencies for any referenced globals
+			$deps['wgExtensionMessagesFiles'] = new GlobalDependency( 'wgExtensionMessagesFiles' );
+			$deps['wgMessagesDirs'] = new GlobalDependency( 'wgMessagesDirs' );
 		}
 
 		# Merge core data into extension data
@@ -894,9 +917,6 @@ class LocalisationCache {
 		}
 		wfProfileOut( __METHOD__ . '-extensions' );
 
-		# Add cache dependencies for any referenced globals
-		$deps['wgExtensionMessagesFiles'] = new GlobalDependency( 'wgExtensionMessagesFiles' );
-		$deps['wgMessagesDirs'] = new GlobalDependency( 'wgMessagesDirs' );
 		$deps['version'] = new ConstantDependency( 'MW_LC_VERSION' );
 
 		# Add dependencies to the cache entry
