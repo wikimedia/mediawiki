@@ -467,8 +467,11 @@ class NewParserTest extends MediaWikiTestCase {
 	public function setParserTestFile( $filename ) {
 		$this->file = $filename;
 	}
-	
-	/** @dataProvider parserTestProvider */
+
+	/**
+	 * @group medium
+	 * @dataProvider parserTestProvider
+	 */
 	public function testParserTest( $desc, $input, $result, $opts, $config ) {
 		if ( !preg_match( '/' . $this->regex . '/', $desc ) ) return; //$this->markTestSkipped( 'Filtered out by the user' );
 
