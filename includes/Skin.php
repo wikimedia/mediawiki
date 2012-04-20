@@ -688,6 +688,7 @@ abstract class Skin extends ContextSource {
 	 * @return string
 	 */
 	function subPageSubtitle() {
+		global $wgLang;
 		$out = $this->getOutput();
 		$subpages = '';
 
@@ -718,7 +719,7 @@ abstract class Skin extends ContextSource {
 						$c++;
 
 						if ( $c > 1 ) {
-							$subpages .= $this->msg( 'pipe-separator' )->escaped();
+							$subpages .= $wgLang->getDirMarkEntity() . $this->msg( 'pipe-separator' )->escaped();
 						} else  {
 							$subpages .= '&lt; ';
 						}
