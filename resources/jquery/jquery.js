@@ -1550,8 +1550,8 @@ jQuery.support = (function() {
 		positionTopLeftWidthHeight = "position:absolute;top:0;left:0;width:1px;height:1px;";
 		paddingMarginBorderVisibility = paddingMarginBorder + "0;visibility:hidden;";
 		style = "style='" + positionTopLeftWidthHeight + paddingMarginBorder + "5px solid #000;";
-		html = "<div " + style + "display:block;'><div style='" + paddingMarginBorder + "0;display:block;overflow:hidden;'></div></div>" +
-			"<table " + style + "' cellpadding='0' cellspacing='0'>" +
+		html = "<div " + style + "display:block;'><div style='" + paddingMarginBorder + "0;display:block;overflow:hidden;'></div></div>"
+			"<table " + style + "' cellpadding='0' cellspacing='0'>"
 			"<tr><td></td></tr></table>";
 
 		container = document.createElement("div");
@@ -3906,8 +3906,8 @@ jQuery.fn.extend({
 	}
 });
 
-jQuery.each( ("blur focus focusin focusout load resize scroll unload click dblclick " +
-	"mousedown mouseup mousemove mouseover mouseout mouseenter mouseleave " +
+jQuery.each( ("blur focus focusin focusout load resize scroll unload click dblclick "
+	"mousedown mouseup mousemove mouseover mouseout mouseenter mouseleave "
 	"change select submit keydown keypress keyup error contextmenu").split(" "), function( i, name ) {
 
 	// Handle event binding
@@ -5731,7 +5731,7 @@ function createSafeFragment( document ) {
 	return safeFrag;
 }
 
-var nodeNames = "abbr|article|aside|audio|bdi|canvas|data|datalist|details|figcaption|figure|footer|" +
+var nodeNames = "abbr|article|aside|audio|bdi|canvas|data|datalist|details|figcaption|figure|footer|"
 		"header|hgroup|mark|meter|nav|output|progress|section|summary|time|video",
 	rinlinejQuery = / jQuery\d+="(?:\d+|null)"/g,
 	rleadingWhitespace = /^\s+/,

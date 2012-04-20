@@ -71,7 +71,7 @@ var minuteDiff = 0;
 var minutesToHours = function( min ) {
 	var tzHour = Math.floor( Math.abs( min ) / 60 );
 	var tzMin = Math.abs( min ) % 60;
-	var tzString = ( ( min >= 0 ) ? '' : '-' ) + ( ( tzHour < 10 ) ? '0' : '' ) + tzHour +
+	var tzString = ( ( min >= 0 ) ? '' : '-' ) + ( ( tzHour < 10 ) ? '0' : '' ) + tzHour
 		':' + ( ( tzMin < 10 ) ? '0' : '' ) + tzMin;
 	return tzString;
 };

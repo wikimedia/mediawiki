@@ -388,12 +388,12 @@ tableTest(
 test( 'bug 32047 - caption must be before thead', function() {
 	var $table;
 	$table = $(
-		'<table class="sortable">' +
-		'<caption>CAPTION</caption>' +
-		'<tr><th>THEAD</th></tr>' +
-		'<tr><td>A</td></tr>' +
-		'<tr><td>B</td></tr>' +
-		'<tr class="sortbottom"><td>TFOOT</td></tr>' +
+		'<table class="sortable">'
+		'<caption>CAPTION</caption>'
+		'<tr><th>THEAD</th></tr>'
+		'<tr><td>A</td></tr>'
+		'<tr><td>B</td></tr>'
+		'<tr class="sortbottom"><td>TFOOT</td></tr>'
 		'</table>'
 		);
 	$table.tablesorter();
@@ -410,13 +410,13 @@ test( 'data-sort-value attribute, when available, should override sorting positi
 
 	// Simple example, one without data-sort-value which should be sorted at it's text.
 	$table = $(
-		'<table class="sortable"><thead><tr><th>Data</th></tr></thead>' +
-			'<tbody>' +
-			'<tr><td>Cheetah</td></tr>' +
-			'<tr><td data-sort-value="Apple">Bird</td></tr>' +
-			'<tr><td data-sort-value="Bananna">Ferret</td></tr>' +
-			'<tr><td data-sort-value="Drupe">Elephant</td></tr>' +
-			'<tr><td data-sort-value="Cherry">Dolphin</td></tr>' +
+		'<table class="sortable"><thead><tr><th>Data</th></tr></thead>'
+			'<tbody>'
+			'<tr><td>Cheetah</td></tr>'
+			'<tr><td data-sort-value="Apple">Bird</td></tr>'
+			'<tr><td data-sort-value="Bananna">Ferret</td></tr>'
+			'<tr><td data-sort-value="Drupe">Elephant</td></tr>'
+			'<tr><td data-sort-value="Cherry">Dolphin</td></tr>'
 		'</tbody></table>'
 	);
 	$table.tablesorter().find( '.headerSort:eq(0)' ).click();
@@ -449,13 +449,13 @@ test( 'data-sort-value attribute, when available, should override sorting positi
 
 	// Another example
 	$table = $(
-		'<table class="sortable"><thead><tr><th>Data</th></tr></thead>' +
-			'<tbody>' +
-			'<tr><td>D</td></tr>' +
-			'<tr><td data-sort-value="E">A</td></tr>' +
-			'<tr><td>B</td></tr>' +
-			'<tr><td>G</td></tr>' +
-			'<tr><td data-sort-value="F">C</td></tr>' +
+		'<table class="sortable"><thead><tr><th>Data</th></tr></thead>'
+			'<tbody>'
+			'<tr><td>D</td></tr>'
+			'<tr><td data-sort-value="E">A</td></tr>'
+			'<tr><td>B</td></tr>'
+			'<tr><td>G</td></tr>'
+			'<tr><td data-sort-value="F">C</td></tr>'
 		'</tbody></table>'
 	);
 	$table.tablesorter().find( '.headerSort:eq(0)' ).click();
@@ -527,12 +527,12 @@ test( 'bug 32888 - Tables inside a tableheader cell', function() {
 
 	var $table;
 	$table = $(
-		'<table class="sortable" id="32888">' +
+		'<table class="sortable" id="32888">'
 		'<tr><th>header<table id="32888-2">'+
-			'<tr><th>1</th><th>2</th></tr>' +
-		'</table></th></tr>' +
-		'<tr><td>A</td></tr>' +
-		'<tr><td>B</td></tr>' +
+			'<tr><th>1</th><th>2</th></tr>'
+		'</table></th></tr>'
+		'<tr><td>A</td></tr>'
+		'<tr><td>B</td></tr>'
 		'</table>'
 		);
 	$table.tablesorter();

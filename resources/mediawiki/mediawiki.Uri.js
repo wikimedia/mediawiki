@@ -155,7 +155,7 @@
 
 		/**
 		 * Standard encodeURIComponent, with extra stuff to make all browsers work similarly and more compliant with RFC 3986
-		 * Similar to rawurlencode from PHP and our JS library mw.util.rawurlencode, but we also replace space with a +
+		 * Similar to rawurlencode from PHP and our JS library mw.util.rawurlencode, but we also replace space with a
 		 * @param {String} string
 		 * @return {String} encoded for URI
 		 */

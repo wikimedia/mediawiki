@@ -216,7 +216,7 @@ encapsulateSelection: function( options ) {
 					post += "\n";
 				}
 			}
-			this.value = this.value.substring( 0, startPos ) + insertText +
+			this.value = this.value.substring( 0, startPos ) + insertText
 				this.value.substring( endPos, this.value.length );
 			// Setting this.value scrolls the textarea to the top, restore the scroll position
 			this.scrollTop = scrollTop;

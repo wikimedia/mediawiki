@@ -154,7 +154,7 @@
 		 * @return string Address to script (eg. '/w/api.php' )
 		 */
 		wikiScript: function ( str ) {
-			return mw.config.get( 'wgScriptPath' ) + '/' + ( str || 'index' ) +
+			return mw.config.get( 'wgScriptPath' ) + '/' + ( str || 'index' )
 				mw.config.get( 'wgScriptExtension' );
 		},
 
@@ -523,19 +523,19 @@
 			HTML5_email_regexp = new RegExp(
 				// start of string
 				'^'
-				+
+			
 				// User part which is liberal :p
 				'[' + rfc5322_atext + '\\.]+'
-				+
+			
 				// 'at'
 				'@'
-				+
+			
 				// Domain first part
 				'[' + rfc1034_ldh_str + ']+'
-				+
+			
 				// Optional second part and following are separated by a dot
 				'(?:\\.[' + rfc1034_ldh_str + ']+)*'
-				+
+			
 				// End of string
 				'$',
 				// RegExp is case insensitive
@@ -578,11 +578,11 @@
 			var	block = allowBlock ? '(?:\\/(?:12[0-8]|1[01][0-9]|[1-9]?\\d))?' : '',
 				RE_IPV6_ADD =
 			'(?:' + // starts with "::" (including "::")
-			':(?::|(?::' + '[0-9A-Fa-f]{1,4}' + '){1,7})' +
+			':(?::|(?::' + '[0-9A-Fa-f]{1,4}' + '){1,7})'
 			'|' + // ends with "::" (except "::")
-			'[0-9A-Fa-f]{1,4}' + '(?::' + '[0-9A-Fa-f]{1,4}' + '){0,6}::' +
+			'[0-9A-Fa-f]{1,4}' + '(?::' + '[0-9A-Fa-f]{1,4}' + '){0,6}::'
 			'|' + // contains no "::"
-			'[0-9A-Fa-f]{1,4}' + '(?::' + '[0-9A-Fa-f]{1,4}' + '){7}' +
+			'[0-9A-Fa-f]{1,4}' + '(?::' + '[0-9A-Fa-f]{1,4}' + '){7}'
 			')';
 
 			if ( address.search( new RegExp( '^' + RE_IPV6_ADD + block + '$' ) ) !== -1 ) {

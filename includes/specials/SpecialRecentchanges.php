@@ -422,7 +422,7 @@ class SpecialRecentChanges extends IncludableSpecialPage {
 			|| !$dbr->unionSupportsOrderAndLimit() )
 		{
 			$res = $dbr->select( $tables, $fields, $conds, __METHOD__,
-				array( 'ORDER BY' => 'rc_timestamp DESC', 'LIMIT' => $limit ) +
+				array( 'ORDER BY' => 'rc_timestamp DESC', 'LIMIT' => $limit )
 				$query_options,
 				$join_conds );
 		// We have a new_namespace_time index! UNION over new=(0,1) and sort result set!

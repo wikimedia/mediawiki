@@ -108,7 +108,7 @@ $.widget.bridge = function( name, object ) {
 						instance;
 				// TODO: add this back in 1.9 and use $.error() (see #5972)
 //				if ( !instance ) {
-//					throw "cannot call methods on " + name + " prior to initialization; " +
+//					throw "cannot call methods on " + name + " prior to initialization; "
 //						"attempted to call method '" + options + "'";
 //				}
 //				if ( !$.isFunction( instance[options] ) ) {
@@ -181,7 +181,7 @@ $.Widget.prototype = {
 			.unbind( "." + this.widgetName )
 			.removeAttr( "aria-disabled" )
 			.removeClass(
-				this.widgetBaseClass + "-disabled " +
+				this.widgetBaseClass + "-disabled "
 				"ui-state-disabled" );
 	},
 
@@ -223,7 +223,7 @@ $.Widget.prototype = {
 		if ( key === "disabled" ) {
 			this.widget()
 				[ value ? "addClass" : "removeClass"](
-					this.widgetBaseClass + "-disabled" + " " +
+					this.widgetBaseClass + "-disabled" + " "
 					"ui-state-disabled" )
 				.attr( "aria-disabled", value );
 		}

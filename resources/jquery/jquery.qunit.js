@@ -548,10 +548,10 @@ extend(QUnit, {
 		var qunit = id( "qunit" );
 		if ( qunit ) {
 			qunit.innerHTML =
-				'<h1 id="qunit-header">' + escapeInnerText( document.title ) + '</h1>' +
-				'<h2 id="qunit-banner"></h2>' +
-				'<div id="qunit-testrunner-toolbar"></div>' +
-				'<h2 id="qunit-userAgent"></h2>' +
+				'<h1 id="qunit-header">' + escapeInnerText( document.title ) + '</h1>'
+				'<h2 id="qunit-banner"></h2>'
+				'<div id="qunit-testrunner-toolbar"></div>'
+				'<h2 id="qunit-userAgent"></h2>'
 				'<ol id="qunit-tests"></ol>';
 		}
 
@@ -707,7 +707,7 @@ extend(QUnit, {
 			if ( !hasOwn.call( params, key ) ) {
 				continue;
 			}
-			querystring += encodeURIComponent( key ) + "=" +
+			querystring += encodeURIComponent( key ) + "="
 				encodeURIComponent( params[ key ] ) + "&";
 		}
 		return window.location.pathname + querystring.slice( 0, -1 );

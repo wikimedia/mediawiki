@@ -504,7 +504,7 @@ var mw = ( function ( $, undefined ) {
 					if ( $.inArray( deps[n], resolved ) === -1 ) {
 						if ( $.inArray( deps[n], unresolved ) !== -1 ) {
 							throw new Error(
-								'Circular reference detected: ' + module +
+								'Circular reference detected: ' + module
 								' -> ' + deps[n]
 							);
 						}

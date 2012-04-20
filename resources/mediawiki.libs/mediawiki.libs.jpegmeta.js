@@ -248,7 +248,7 @@
 	    return "[JpegFile " + this.filename + " " + 
 		this.general.type + " " + 
 		this.general.pixelWidth + "x" + 
-		this.general.pixelHeight +
+		this.general.pixelHeight
 		" Depth: " + this.general.depth + "]";
 	};
 	

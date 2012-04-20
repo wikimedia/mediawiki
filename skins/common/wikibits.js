@@ -66,8 +66,8 @@ window.addOnloadHook = function( hookFunct ) {
 };
 
 window.importScript = function( page ) {
-	var uri = mw.config.get( 'wgScript' ) + '?title=' +
-		mw.util.wikiUrlencode( page ) +
+	var uri = mw.config.get( 'wgScript' ) + '?title='
+		mw.util.wikiUrlencode( page )
 		'&action=raw&ctype=text/javascript';
 	return importScriptURI( uri );
 };

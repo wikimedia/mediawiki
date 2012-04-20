@@ -27,7 +27,7 @@
 
 		$link
 			.text( mw.msg( msgKey ) )
-			.attr( 'title', mw.msg( 'tooltip-ca-' + action ) +
+			.attr( 'title', mw.msg( 'tooltip-ca-' + action )
 				( accesskeyTip ? ' ' + accesskeyTip[0] : '' )
 			)
 			.attr( 'href', mw.util.wikiScript() + '?' + $.param({
@@ -81,8 +81,8 @@
 	}
 
 	$( document ).ready( function () {
-		var $links = $( '.mw-watchlink a, a.mw-watchlink, ' +
-			'#ca-watch a, #ca-unwatch a, #mw-unwatch-link1, ' +
+		var $links = $( '.mw-watchlink a, a.mw-watchlink, '
+			'#ca-watch a, #ca-unwatch a, #mw-unwatch-link1, '
 			'#mw-unwatch-link2, #mw-watch-link2, #mw-watch-link1' );
 
 		// Allowing people to add inline animated links is a little scary

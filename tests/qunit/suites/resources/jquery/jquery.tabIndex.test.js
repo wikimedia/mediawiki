@@ -11,11 +11,11 @@ test( 'firstTabIndex', function() {
 	expect(2);
 
 	var testEnvironment =
-'<form>' +
-	'<input tabindex="7" />' +
-	'<input tabindex="9" />' +
-	'<textarea tabindex="2">Foobar</textarea>' +
-	'<textarea tabindex="5">Foobar</textarea>' +
+'<form>'
+	'<input tabindex="7" />'
+	'<input tabindex="9" />'
+	'<textarea tabindex="2">Foobar</textarea>'
+	'<textarea tabindex="5">Foobar</textarea>'
 '</form>';
 
 	var $testA = $( '<div>' ).html( testEnvironment ).appendTo( '#qunit-fixture' );
@@ -29,11 +29,11 @@ test( 'lastTabIndex', function() {
 	expect(2);
 
 	var testEnvironment =
-'<form>' +
-	'<input tabindex="7" />' +
-	'<input tabindex="9" />' +
-	'<textarea tabindex="2">Foobar</textarea>' +
-	'<textarea tabindex="5">Foobar</textarea>' +
+'<form>'
+	'<input tabindex="7" />'
+	'<input tabindex="9" />'
+	'<textarea tabindex="2">Foobar</textarea>'
+	'<textarea tabindex="5">Foobar</textarea>'
 '</form>';
 
 	var $testA = $( '<div>' ).html( testEnvironment ).appendTo( '#qunit-fixture' );

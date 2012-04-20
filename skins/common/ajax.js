@@ -145,7 +145,7 @@ window.sajax_do_call = function(func_name, args, target) {
 				if ( x.status == 200 ) {
 					target.innerHTML = x.responseText;
 				} else {
-					target.innerHTML = '<div class="error">Error: ' + x.status +
+					target.innerHTML = '<div class="error">Error: ' + x.status
 						' ' + x.statusText + ' (' + x.responseText + ')</div>';
 				}
 			}

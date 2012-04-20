@@ -120,7 +120,7 @@ $.fn.extend({
 	},
 
 	disableSelection: function() {
-		return this.bind( ( $.support.selectstart ? "selectstart" : "mousedown" ) +
+		return this.bind( ( $.support.selectstart ? "selectstart" : "mousedown" )
 			".ui-disableSelection", function( event ) {
 				event.preventDefault();
 			});

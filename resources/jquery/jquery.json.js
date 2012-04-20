@@ -91,8 +91,8 @@
 				if ( milli < 10 ) {
 					milli = '0' + milli;
 				}
-				return '"' + year + '-' + month + '-' + day + 'T' +
-						hours + ':' + minutes + ':' + seconds +
+				return '"' + year + '-' + month + '-' + day + 'T'
+						hours + ':' + minutes + ':' + seconds
 						'.' + milli + 'Z"';
 			}
 			if ( o.constructor === Array ) {

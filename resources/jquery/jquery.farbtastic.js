@@ -229,8 +229,8 @@ jQuery._farbtastic = function (container, callback) {
 		var r = Math.round(rgb[0] * 255);
 		var g = Math.round(rgb[1] * 255);
 		var b = Math.round(rgb[2] * 255);
-		return '#' + (r < 16 ? '0' : '') + r.toString(16) +
-					 (g < 16 ? '0' : '') + g.toString(16) +
+		return '#' + (r < 16 ? '0' : '') + r.toString(16)
+					 (g < 16 ? '0' : '') + g.toString(16)
 					 (b < 16 ? '0' : '') + b.toString(16);
 	}
 

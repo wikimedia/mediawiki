@@ -44,11 +44,11 @@ jQuery( function( $ ) {
 	 */
 	function showPreview( file ) {
 		var	previewSize = 180,
-			thumb = $( '<div id="mw-upload-thumbnail" class="thumb tright">' +
-						'<div class="thumbinner">' +
-							'<div class="mw-small-spinner" style="width: 180px; height: 180px"></div>' +
-							'<div class="thumbcaption"><div class="filename"></div><div class="fileinfo"></div></div>' +
-						'</div>' +
+			thumb = $( '<div id="mw-upload-thumbnail" class="thumb tright">'
+						'<div class="thumbinner">'
+							'<div class="mw-small-spinner" style="width: 180px; height: 180px"></div>'
+							'<div class="thumbcaption"><div class="filename"></div><div class="fileinfo"></div></div>'
+						'</div>'
 					'</div>' );
 		thumb.find( '.filename' ).text( file.name ).end()
 			.find( '.fileinfo' ).text( prettySize( file.size ) ).end();
@@ -129,7 +129,7 @@ jQuery( function( $ ) {
 				thumb.find('.mw-small-spinner').replaceWith($canvas);
 
 				// Image size
-				var info = mw.msg( 'widthheight', logicalWidth, logicalHeight ) +
+				var info = mw.msg( 'widthheight', logicalWidth, logicalHeight )
 					', ' + prettySize( file.size );
 				$( '#mw-upload-thumbnail .fileinfo' ).text( info );
 			};
@@ -225,7 +225,7 @@ jQuery( function( $ ) {
 
 		var maxSize = getMaxUploadSize( 'file' );
 		if ( file.size > maxSize ) {
-			var error = $( '<p class="error mw-upload-source-error" id="wpSourceTypeFile-error">' +
+			var error = $( '<p class="error mw-upload-source-error" id="wpSourceTypeFile-error">'
 					mw.message( 'largefileserver', file.size, maxSize ).escaped() + '</p>' );
 			$( '#wpUploadFile' ).after( error );
 			return false;

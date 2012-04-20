@@ -184,8 +184,8 @@ $.colorUtil = {
 		var	rgbArr = $.colorUtil.getRGB( currentColor ),
 			hslArr = $.colorUtil.rgbToHsl(rgbArr[0], rgbArr[1], rgbArr[2] );
 		rgbArr = $.colorUtil.hslToRgb(hslArr[0], hslArr[1], hslArr[2]+mod);
-		return 'rgb(' +
-			[parseInt( rgbArr[0], 10), parseInt( rgbArr[1], 10 ), parseInt( rgbArr[2], 10 )].join( ',' ) +
+		return 'rgb('
+			[parseInt( rgbArr[0], 10), parseInt( rgbArr[1], 10 ), parseInt( rgbArr[2], 10 )].join( ',' )
 			')';
 	}
 

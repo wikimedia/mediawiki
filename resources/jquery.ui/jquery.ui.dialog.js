@@ -19,9 +19,9 @@
 (function( $, undefined ) {
 
 var uiDialogClasses =
-		'ui-dialog ' +
-		'ui-widget ' +
-		'ui-widget-content ' +
+		'ui-dialog '
+		'ui-widget '
+		'ui-widget-content '
 		'ui-corner-all ',
 	sizeRelatedOptions = {
 		buttons: true,
@@ -129,22 +129,22 @@ $.widget("ui.dialog", {
 				.show()
 				.removeAttr('title')
 				.addClass(
-					'ui-dialog-content ' +
+					'ui-dialog-content '
 					'ui-widget-content')
 				.appendTo(uiDialog),
 
 			uiDialogTitlebar = (self.uiDialogTitlebar = $('<div></div>'))
 				.addClass(
-					'ui-dialog-titlebar ' +
-					'ui-widget-header ' +
-					'ui-corner-all ' +
+					'ui-dialog-titlebar '
+					'ui-widget-header '
+					'ui-corner-all '
 					'ui-helper-clearfix'
 				)
 				.prependTo(uiDialog),
 
 			uiDialogTitlebarClose = $('<a href="#"></a>')
 				.addClass(
-					'ui-dialog-titlebar-close ' +
+					'ui-dialog-titlebar-close '
 					'ui-corner-all'
 				)
 				.attr('role', 'button')
@@ -170,7 +170,7 @@ $.widget("ui.dialog", {
 
 			uiDialogTitlebarCloseText = (self.uiDialogTitlebarCloseText = $('<span></span>'))
 				.addClass(
-					'ui-icon ' +
+					'ui-icon '
 					'ui-icon-closethick'
 				)
 				.text(options.closeText)
@@ -366,8 +366,8 @@ $.widget("ui.dialog", {
 			hasButtons = false,
 			uiDialogButtonPane = $('<div></div>')
 				.addClass(
-					'ui-dialog-buttonpane ' +
-					'ui-widget-content ' +
+					'ui-dialog-buttonpane '
+					'ui-widget-content '
 					'ui-helper-clearfix'
 				),
 			uiButtonSet = $( "<div></div>" )

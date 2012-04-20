@@ -265,7 +265,7 @@ class UserDupes {
 		if ( $this->newSchema() ) {
 			return $this->editCountOn( 'revision', 'rev_user', $userid );
 		} else {
-			return $this->editCountOn( 'cur', 'cur_user', $userid ) +
+			return $this->editCountOn( 'cur', 'cur_user', $userid )
 				$this->editCountOn( 'old', 'old_user', $userid );
 		}
 	}

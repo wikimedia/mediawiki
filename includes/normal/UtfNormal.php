@@ -693,7 +693,7 @@ class UtfNormal {
 						$lIndex = ord( $startChar[2] ) - 0x80;
 						$vIndex = ord( $c[2]         ) - 0xa1;
 
-						$hangulPoint = UNICODE_HANGUL_FIRST +
+						$hangulPoint = UNICODE_HANGUL_FIRST
 							UNICODE_HANGUL_TCOUNT *
 							(UNICODE_HANGUL_VCOUNT * $lIndex + $vIndex);
 

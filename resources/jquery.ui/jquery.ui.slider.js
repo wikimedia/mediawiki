@@ -50,11 +50,11 @@ $.widget( "ui.slider", $.ui.mouse, {
 		this._mouseInit();
 
 		this.element
-			.addClass( "ui-slider" +
-				" ui-slider-" + this.orientation +
-				" ui-widget" +
-				" ui-widget-content" +
-				" ui-corner-all" +
+			.addClass( "ui-slider"
+				" ui-slider-" + this.orientation
+				" ui-widget"
+				" ui-widget-content"
+				" ui-corner-all"
 				( o.disabled ? " ui-slider-disabled ui-disabled" : "" ) );
 
 		this.range = $([]);
@@ -71,7 +71,7 @@ $.widget( "ui.slider", $.ui.mouse, {
 
 			this.range = $( "<div></div>" )
 				.appendTo( this.element )
-				.addClass( "ui-slider-range" +
+				.addClass( "ui-slider-range"
 				// note: this isn't the most fittingly semantic framework class for this element,
 				// but worked best visually with a variety of themes
 				" ui-widget-header" + 
@@ -206,12 +206,12 @@ $.widget( "ui.slider", $.ui.mouse, {
 		this.range.remove();
 
 		this.element
-			.removeClass( "ui-slider" +
-				" ui-slider-horizontal" +
-				" ui-slider-vertical" +
-				" ui-slider-disabled" +
-				" ui-widget" +
-				" ui-widget-content" +
+			.removeClass( "ui-slider"
+				" ui-slider-horizontal"
+				" ui-slider-vertical"
+				" ui-slider-disabled"
+				" ui-widget"
+				" ui-widget-content"
 				" ui-corner-all" )
 			.removeData( "slider" )
 			.unbind( ".slider" );
@@ -283,7 +283,7 @@ $.widget( "ui.slider", $.ui.mouse, {
 			top: event.pageY - offset.top -
 				( closestHandle.height() / 2 ) -
 				( parseInt( closestHandle.css("borderTopWidth"), 10 ) || 0 ) -
-				( parseInt( closestHandle.css("borderBottomWidth"), 10 ) || 0) +
+				( parseInt( closestHandle.css("borderBottomWidth"), 10 ) || 0)
 				( parseInt( closestHandle.css("marginTop"), 10 ) || 0)
 		};
 
