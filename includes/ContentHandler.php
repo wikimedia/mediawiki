@@ -655,6 +655,8 @@ abstract class TextContentHandler extends ContentHandler {
      * attempts to merge differences between three versions.
      * Returns a new Content object for a clean merge and false for failure or a conflict.
      *
+     * All three Content objects passed as parameters must have the same content model.
+     *
      * This text-based implementation uses wfMerge().
      *
      * @param $oldContent String
@@ -664,7 +666,8 @@ abstract class TextContentHandler extends ContentHandler {
      */
     public function merge3( Content $oldContent, Content $myContent, Content $yourContent ) {
         $this->checkModelName( $oldContent->getModelName() );
-        #TODO: check that all Content objects have the same content model! #XXX: what to do if they don't?
+        $this->checkModelName( $myContent->getModelName() );
+        $this->checkModelName( $yourContent->getModelName() );
 
         $format = $this->getDefaultFormat();
 
