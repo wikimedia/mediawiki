@@ -461,7 +461,7 @@ class HttpError extends MWException {
 			$content = htmlspecialchars( $this->content );
 		}
 
-		print "<!DOCTYPE HTML PUBLIC \"-//IETF//DTD HTML 2.0//EN\">\n".
+		print "<!DOCTYPE html>\n".
 			"<html><head><title>$header</title></head>\n" .
 			"<body><h1>$header</h1><p>$content</p></body></html>\n";
 	}
