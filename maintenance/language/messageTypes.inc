@@ -464,6 +464,11 @@ $wgOptionalMessages = array(
 	'metadata-langitem',
 	'metadata-langitem-default',
 	'nocookiesforlogin',
+	'version-entrypoints-articlepath',
+	'version-entrypoints-scriptpath',
+	'version-entrypoints-index-php',
+	'version-entrypoints-api-php',
+	'version-entrypoints-load-php',
 );
 
 /** EXIF messages, which may be set as optional in several checks, but are generally mandatory */
