@@ -1840,6 +1840,11 @@ $wgAdaptiveMessageCache = false;
  *
  * manualRecache:   Set this to true to disable cache updates on web requests.
  *                  Use maintenance/rebuildLocalisationCache.php instead.
+ *
+ * extensionCache:  Set this to false to disable loading of extension messages
+ *                  (used by unit tests, you really never want to disable it).
+ *                  Since 1.20.
+ *
  */
 $wgLocalisationCacheConf = array(
 	'class' => 'LocalisationCache',
@@ -1847,6 +1852,7 @@ $wgLocalisationCacheConf = array(
 	'storeClass' => false,
 	'storeDirectory' => false,
 	'manualRecache' => false,
+	'cacheExtensions' => true,
 );
 
 /** Allow client-side caching of pages */

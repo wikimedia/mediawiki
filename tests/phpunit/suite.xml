@@ -40,7 +40,6 @@
 	</testsuites>
 	<groups>
 		<exclude>
-			<group>Utility</group>
 			<group>Broken</group>
 			<group>ParserFuzz</group>
 			<group>Stub</group>
