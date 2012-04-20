@@ -444,6 +444,13 @@ class TextPassDumper extends BackupDumper {
 					} else {
 						$text = $this->getTextDb( $id );
 					}
+
+					// No more checks for texts from DB for now.
+					// If we received something that is not false,
+					// We treat it as good text, regardless of whether it actually is or is not
+					if ( $text !== false ) {
+						return $text;
+					}
 				}
 
 				if ( $text === false ) {
