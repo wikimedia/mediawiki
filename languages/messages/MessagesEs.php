@@ -2680,9 +2680,9 @@ Véase la [[Special:BlockList|lista de bloqueos]] para revisarlo.',
 'blocklog-showsuppresslog' => 'Este usuario ha sido bloqueado y ocultado. Se provee el registro de supresiones para más detalle:',
 'blocklogentry' => 'bloqueó a [[$1]] $3 durante un plazo de $2',
 'reblock-logentry' => 'cambió el bloqueo para  [[$1]] con una caducidad de $2 $3',
-'blocklogtext' => 'Esto es un registro de bloqueos y desbloqueos de usuarios.
-Las direcciones bloqueadas automáticamente no aparecen aquí.
-Consulte la [[Special:BlockList|lista de direcciones IP bloqueadas]] para ver la lista de bloqueos vigente.',
+'blocklogtext' => 'Esto es un registro de acciones de bloqueo y desbloqueo de usuarios.
+Las direcciones IP bloqueadas automáticamente no aparecen aquí.
+Consulta la [[Special:BlockList|lista de bloqueos]] para ver la lista de bloqueos y prohibiciones de operar en vigor.',
 'unblocklogentry' => 'desbloqueó a $1',
 'block-log-flags-anononly' => 'sólo anónimos',
 'block-log-flags-nocreate' => 'desactivada la creación de cuentas',
@@ -3774,6 +3774,11 @@ Has recibido [{{SERVER}}{{SCRIPTPATH}}/COPYING una copia de la Licencia Pública
 'version-software' => 'Software instalado',
 'version-software-product' => 'Producto',
 'version-software-version' => 'Versión',
+'version-entrypoints' => 'URL del punto de entrada',
+'version-entrypoints-header-entrypoint' => 'Punto de entrada',
+'version-entrypoints-header-url' => 'Dirección URL',
+'version-entrypoints-articlepath' => '[https://www.mediawiki.org/wiki/Manual:$wgArticlePath Ruta del artículo]',
+'version-entrypoints-scriptpath' => '[https://www.mediawiki.org/wiki/Manual:$wgScriptPath Ruta de la secuencia de comandos (script)]',
 
 # Special:FilePath
 'filepath' => 'Ruta de archivo',

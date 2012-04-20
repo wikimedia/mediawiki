@@ -3661,6 +3661,11 @@ MediaWiki ვრცელდება იმ იმედით, რომ ი�
 'version-software' => 'დაინსტალირებული პროგრამული უზრუნველყოფა',
 'version-software-product' => 'პროდუქტი',
 'version-software-version' => 'ვერსია',
+'version-entrypoints' => 'შესვლის წერტილის URL-ები',
+'version-entrypoints-header-entrypoint' => 'შესვლის წერტილი',
+'version-entrypoints-header-url' => 'URL',
+'version-entrypoints-articlepath' => '[https://www.mediawiki.org/wiki/Manual:$wgArticlePath გზა სტატიისაკენ]',
+'version-entrypoints-scriptpath' => '[https://www.mediawiki.org/wiki/Manual:$wgScriptPath გზა სკრიპტისაკენ]',
 
 # Special:FilePath
 'filepath' => 'გზა ფაილისდამი',

@@ -801,6 +801,7 @@ Karenanya, pengunjung dengan alamat IP ini tidak dapat lagi membuat akun lain un
 'invalidemailaddress' => 'Alamat surel ini tidak dapat diterima karena formatnya tidak sesuai.
 Harap masukkan alamat surel dalam format yang benar atau kosongkan isian tersebut.',
 'cannotchangeemail' => 'Alamat surel akun tidak dapat diubah di wiki ini.',
+'emaildisabled' => 'Situs ini tidak dapat mengirim surel.',
 'accountcreated' => 'Akun dibuat',
 'accountcreatedtext' => 'Akun pengguna untuk $1 telah dibuat.',
 'createaccount-title' => 'Pembuatan akun untuk {{SITENAME}}',
@@ -1013,6 +1014,7 @@ Suntingan tersebut ditolak untuk mencegah kesalahan pada teks halaman.
 Hal ini kadang terjadi jika Anda menggunakan layanan proxy anonim berbasis web yang bermasalah.",
 'edit_form_incomplete' => "'''Beberapa bagian dari formulir suntingan tidak mencapai server; periksa ulang apakah suntingan Anda tetap utuh dan coba lagi.'''",
 'editing' => 'Menyunting $1',
+'creating' => 'Membuat $1',
 'editingsection' => 'Menyunting $1 (bagian)',
 'editingcomment' => 'Menyunting $1 (bagian baru)',
 'editconflict' => 'Konflik penyuntingan: $1',

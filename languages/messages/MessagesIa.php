@@ -3666,6 +3666,11 @@ Vos deberea haber recipite [{{SERVER}}{{SCRIPTPATH}}/COPYING un exemplar del Lic
 'version-software' => 'Software installate',
 'version-software-product' => 'Producto',
 'version-software-version' => 'Version',
+'version-entrypoints' => 'URL del puncto de entrata',
+'version-entrypoints-header-entrypoint' => 'Puncto de entrata',
+'version-entrypoints-header-url' => 'URL',
+'version-entrypoints-articlepath' => '[https://www.mediawiki.org/wiki/Manual:$wgArticlePath Cammino al articulo]',
+'version-entrypoints-scriptpath' => '[https://www.mediawiki.org/wiki/Manual:$wgScriptPath Cammino al script]',
 
 # Special:FilePath
 'filepath' => 'Cammino del file',

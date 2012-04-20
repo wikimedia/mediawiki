@@ -947,7 +947,7 @@ $1",
 # Suppression log
 'suppressionlog' => 'Йәшереү яҙмалары',
 'suppressionlogtext' => 'Түбәндә, администраторҙарҙан йәшерелгән материалдар булған һуңғы юйыуҙыр һәм блоклауҙар исемлеге килтерелгән.
-Ағымдағы блоклауҙарҙы күрер өсөн [[Special:BlockList|IP-блоклауҙар исемлеген]] ҡарағыҙ.',
+Ағымдағы блоклауҙарҙы күрер өсөн [[Special:BlockList|блоклауҙар исемлеген]] ҡарағыҙ.',
 
 # History merging
 'mergehistory' => 'Үҙгәртеүҙәр тарихын берләштерергә',
@@ -1875,6 +1875,7 @@ $1',
 'allpagesbadtitle' => 'Күрһәтелгән бит исеме дөрөҫ түгел йәки телдәр араһы йәки интервики ҡушымтаһы менән башлана.
 Исемдә тыйылған символдар булыуы ла мөмкин.',
 'allpages-bad-ns' => '{{SITENAME}} проектында "$1" исемдәр арауығы юҡ.',
+'allpages-hide-redirects' => 'Йүнәлтеүҙәрҙе йәшерергә',
 
 # Special:Categories
 'categories' => 'Категориялар',
@@ -2632,7 +2633,7 @@ $1 ҡатнашыусыһын бикләү сәбәбе: "$2"',
 # JavaScriptTest
 'javascripttest' => '
 JavaScript тикшереү',
-'javascripttest-disabled' => 'Был мөмкинлек һүндерелгән.',
+'javascripttest-disabled' => 'Был мөмкинлек был Википроектта ғәмәлгә индерелмәгән.',
 'javascripttest-title' => '$1 тикшеренеү үткәрелә',
 'javascripttest-pagetext-noframework' => 'Был бит JavaScript тикшеренеүҙәре үткәреү өсөн  резервланған.',
 'javascripttest-pagetext-unknownframework' => 'Билдәһеҙ тикшеренеүҙәр мөхитнамәһе "$1".',

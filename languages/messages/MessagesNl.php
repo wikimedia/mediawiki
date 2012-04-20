@@ -3902,6 +3902,11 @@ Samen met dit programma hoort u een [{{SERVER}}{{SCRIPTPATH}}/COPYING kopie van 
 'version-software' => 'Geïnstalleerde software',
 'version-software-product' => 'Product',
 'version-software-version' => 'Versie',
+'version-entrypoints' => "URL's voor ingangen",
+'version-entrypoints-header-entrypoint' => 'Ingang',
+'version-entrypoints-header-url' => 'URL',
+'version-entrypoints-articlepath' => '[https://www.mediawiki.org/wiki/Manual:$wgArticlePath Article path]',
+'version-entrypoints-scriptpath' => '[https://www.mediawiki.org/wiki/Manual:$wgScriptPath Script path]',
 
 # Special:FilePath
 'filepath' => 'Bestandslocatie',

@@ -39,6 +39,7 @@
  * @author Illusion
  * @author Iniquity
  * @author Innv
+ * @author Jackie
  * @author JenVan
  * @author Jl
  * @author KPu3uC B Poccuu
@@ -433,7 +434,7 @@ $messages = array(
 'cancel' => 'Отменить',
 'moredotdotdot' => 'Далее…',
 'mypage' => 'Личная страница',
-'mytalk' => 'Моя страница обсуждения',
+'mytalk' => 'моя страница обсуждения',
 'anontalk' => 'Обсуждение для этого IP-адреса',
 'navigation' => 'Навигация',
 'and' => '&#32;и',
@@ -713,7 +714,7 @@ $2',
 'loginprompt' => 'Вы должны разрешить «cookies», чтобы представиться системе.',
 'userlogin' => 'Представиться или зарегистрироваться',
 'userloginnocreate' => 'Представиться',
-'logout' => 'Завершение сеанса',
+'logout' => 'завершение сеанса',
 'userlogout' => 'Завершение сеанса',
 'notloggedin' => 'Вы не представились системе',
 'nologin' => "Нет учётной записи? '''$1'''.",
@@ -1342,7 +1343,7 @@ $1",
 'qbsettings-directionality' => 'Закреплённая, в зависимости от направления письменности вашего языка',
 
 # Preferences page
-'preferences' => 'Настройки',
+'preferences' => 'настройки',
 'mypreferences' => 'Настройки',
 'prefs-edits' => 'Количество правок:',
 'prefsnologin' => 'Вы не представились системе',
@@ -2275,7 +2276,7 @@ $1',
 'usermessage-editor' => 'Системная доставка',
 
 # Watchlist
-'watchlist' => 'Список наблюдения',
+'watchlist' => 'список наблюдения',
 'mywatchlist' => 'Список наблюдения',
 'watchlistfor2' => 'Для $1 $2',
 'nowatchlist' => 'Ваш список наблюдения пуст.',
@@ -2530,7 +2531,7 @@ $1',
 # Contributions
 'contributions' => 'Вклад участника',
 'contributions-title' => 'Вклад {{GENDER:$1|участника|участницы}} $1',
-'mycontris' => 'Мой вклад',
+'mycontris' => 'мой вклад',
 'contribsub2' => 'Вклад $1 ($2)',
 'nocontribs' => 'Изменений, соответствующих заданным условиям, найдено не было.',
 'uctop' => ' (последняя)',
@@ -3832,6 +3833,11 @@ MediaWiki распространяется в надежде, что она бу
 'version-software' => 'Установленное программное обеспечение',
 'version-software-product' => 'Продукт',
 'version-software-version' => 'Версия',
+'version-entrypoints' => 'Адреса точек входа',
+'version-entrypoints-header-entrypoint' => 'Точка входа',
+'version-entrypoints-header-url' => 'URL',
+'version-entrypoints-articlepath' => '[https://www.mediawiki.org/wiki/Manual:$wgArticlePath Путь к статье]',
+'version-entrypoints-scriptpath' => '[https://www.mediawiki.org/wiki/Manual:$wgScriptPath Путь к скрипту]',
 
 # Special:FilePath
 'filepath' => 'Путь к файлу',

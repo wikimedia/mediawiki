@@ -3832,6 +3832,11 @@ Vous devriez avoir reçu [{{SERVER}}{{SCRIPTPATH}}/COPYING une copie de la Licen
 'version-software' => 'Logiciels installés',
 'version-software-product' => 'Produit',
 'version-software-version' => 'Version',
+'version-entrypoints' => "URLs de point d'entrée",
+'version-entrypoints-header-entrypoint' => "Point d'entrée",
+'version-entrypoints-header-url' => 'URL',
+'version-entrypoints-articlepath' => '[https://www.mediawiki.org/wiki/Manual:$wgArticlePath Chemin d\'article]',
+'version-entrypoints-scriptpath' => '[https://www.mediawiki.org/wiki/Manual:$wgScriptPath Chemin de script]',
 
 # Special:FilePath
 'filepath' => 'Chemin d’accès du fichier',

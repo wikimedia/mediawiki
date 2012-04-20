@@ -3999,6 +3999,11 @@ $5
 'version-software' => 'Инсталирана програмска опрема',
 'version-software-product' => 'Производ',
 'version-software-version' => 'Верзија',
+'version-entrypoints' => 'URL-а на влезните точки',
+'version-entrypoints-header-entrypoint' => 'Влезна точка',
+'version-entrypoints-header-url' => 'URL',
+'version-entrypoints-articlepath' => '[https://www.mediawiki.org/wiki/Manual:$wgArticlePath?uselang=mk Патека на статијата]',
+'version-entrypoints-scriptpath' => '[https://www.mediawiki.org/wiki/Manual:$wgScriptPath?uselang=mk Патека на скриптата]',
 
 # Special:FilePath
 'filepath' => 'Патека до податотека',

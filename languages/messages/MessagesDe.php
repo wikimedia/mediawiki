@@ -3824,6 +3824,11 @@ Eine [{{SERVER}}{{SCRIPTPATH}}/COPYING Kopie der ''GNU General Public License'']
 'version-software' => 'Installierte Software',
 'version-software-product' => 'Software',
 'version-software-version' => 'Version',
+'version-entrypoints' => 'Eingangspunkt-URLs',
+'version-entrypoints-header-entrypoint' => 'Eingangspunkt',
+'version-entrypoints-header-url' => 'URL',
+'version-entrypoints-articlepath' => '[https://www.mediawiki.org/wiki/Manual:$wgArticlePath Artikelpfad]',
+'version-entrypoints-scriptpath' => '[https://www.mediawiki.org/wiki/Manual:$wgScriptPath Skriptpfad]',
 
 # Special:FilePath
 'filepath' => 'Dateipfad',

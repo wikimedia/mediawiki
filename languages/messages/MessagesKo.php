@@ -3694,6 +3694,7 @@ $5
 'version-software' => '설치된 프로그램',
 'version-software-product' => '제품',
 'version-software-version' => '버전',
+'version-entrypoints-header-url' => 'URL',
 
 # Special:FilePath
 'filepath' => '파일 경로',
@@ -3799,7 +3800,7 @@ $5
 'logentry-delete-delete' => '$1 사용자가 $3 문서를 삭제하였습니다.',
 'logentry-delete-restore' => '$1 사용자가 $3 문서를 복구하였습니다.',
 'logentry-delete-event' => '$1 사용자가 $3의 $5개의 기록에 대해 표시 설정을 바꾸었습니다: $4',
-'logentry-delete-revision' => '$1 사용자가 $3 문서의 {{PLURAL:$5}}개 편집의 설정을 변경하였습니다: $4',
+'logentry-delete-revision' => '$1 사용자가 $3 문서의 {{PLURAL:$5|$5}}개 편집의 설정을 변경하였습니다: $4',
 'logentry-delete-event-legacy' => '$1 사용자가 $3 문서 기록의 표시 설정을 변경하였습니다.',
 'logentry-delete-revision-legacy' => '$1 사용자가 $3 문서 편집의 표시 설정을 변경하였습니다.',
 'logentry-suppress-delete' => '$1 사용자가 $3 문서를 숨겼습니다.',
@@ -3880,5 +3881,16 @@ $5
 'api-error-unknownerror' => '알 수 없는 오류: "$1".',
 'api-error-uploaddisabled' => '이 위키에서 파일 올리기가 비활성화되어 있습니다.',
 'api-error-verification-error' => '파일이 손상되었거나 잘못된 확장자를 사용하고 있습니다.',
+
+# Durations
+'duration-seconds' => '$1{{PLURAL:$1|초}}',
+'duration-minutes' => '$1{{PLURAL:$1|분}}',
+'duration-hours' => '$1{{PLURAL:$1|시간}}',
+'duration-days' => '$1{{PLURAL:$1|일}}',
+'duration-weeks' => '$1{{PLURAL:$1|주}}',
+'duration-years' => '$1{{PLURAL:$1|년}}',
+'duration-decades' => '$1{{PLURAL:$1|0년}}',
+'duration-centuries' => '$1{{PLURAL:$1|세기}}',
+'duration-millennia' => '$1{{PLURAL:$1|천년}}',
 
 );

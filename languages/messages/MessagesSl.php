@@ -3652,6 +3652,11 @@ Skupaj s programom bi morali bi prejeti [{{SERVER}}{{SCRIPTPATH}}/COPYING kopijo
 'version-software' => 'Nameščena programska oprema',
 'version-software-product' => 'Izdelek',
 'version-software-version' => 'Različica',
+'version-entrypoints' => 'URL-ji vstopnih točk',
+'version-entrypoints-header-entrypoint' => 'Vstopna točka',
+'version-entrypoints-header-url' => 'URL',
+'version-entrypoints-articlepath' => '[https://www.mediawiki.org/wiki/Manual:$wgArticlePath Pot članka]',
+'version-entrypoints-scriptpath' => '[https://www.mediawiki.org/wiki/Manual:$wgScriptPath Pot skripta]',
 
 # Special:FilePath
 'filepath' => 'Pot do datoteke',

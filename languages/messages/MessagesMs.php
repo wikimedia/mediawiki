@@ -3623,6 +3623,11 @@ Anda patut telah menerima [{{SERVER}}{{SCRIPTPATH}}/COPYING sebuah salinan bagi 
 'version-software' => 'Perisian yang dipasang',
 'version-software-product' => 'Produk',
 'version-software-version' => 'Versi',
+'version-entrypoints' => 'URL titik permulaan',
+'version-entrypoints-header-entrypoint' => 'Titik permulaan',
+'version-entrypoints-header-url' => 'URL',
+'version-entrypoints-articlepath' => '[https://www.mediawiki.org/wiki/Manual:$wgArticlePath Laluan rencana]',
+'version-entrypoints-scriptpath' => '[https://www.mediawiki.org/wiki/Manual:$wgScriptPath Laluan skrip]',
 
 # Special:FilePath
 'filepath' => 'Laluan fail',

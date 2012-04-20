@@ -44,6 +44,7 @@
  * @author StefanB
  * @author Steinninn
  * @author Str4nd
+ * @author Thurs
  * @author Tobulos1
  * @author VickyC
  * @author Where next Columbus
@@ -676,8 +677,8 @@ Den kanske redan har raderats av någon annan.',
 'badtitle' => 'Felaktig titel',
 'badtitletext' => 'Den begärda sidtiteln är antingen ogiltig eller tom, eller så är titeln felaktigt länkad från en annan wiki.
 Den kan innehålla ett eller flera tecken som inte får användas i sidtitlar.',
-'perfcached' => 'Följande data är cachad och är möjligtvis inte helt uppdaterad. Maximalt {{PLURAL:$1|ett|$1}} restultat finns {{PLURAL:$1|tillgängligt|tillgängliga}} i cachen.',
-'perfcachedts' => 'Sidan är hämtad ur ett cacheminne och uppdaterades senast $1. Maximalt {{PLURAL:$4|ett|$4}} restultat finns {{PLURAL:$4|tillgängligt|tillgängliga}} i cachen.',
+'perfcached' => 'Följande data är cachad och är möjligtvis inte helt uppdaterad. Maximalt {{PLURAL:$1|ett|$1}} resultat finns {{PLURAL:$1|tillgängligt|tillgängliga}} i cachen.',
+'perfcachedts' => 'Sidan är hämtad ur ett cacheminne och uppdaterades senast $1. Maximalt {{PLURAL:$4|ett|$4}} resultat finns {{PLURAL:$4|tillgängligt|tillgängliga}} i cachen.',
 'querypage-no-updates' => 'Uppdatering av den här sidan är inte aktiverad. Datan kommer i nuläget inte att uppdateras.',
 'wrong_wfQuery_params' => 'Felaktiga parametrar för wfQuery()<br /> Funktion: $1<br /> Förfrågan: $2',
 'viewsource' => 'Visa wikitext',

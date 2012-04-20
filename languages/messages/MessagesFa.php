@@ -3959,6 +3959,8 @@ $5
 'version-software' => 'نسخهٔ نصب‌شده',
 'version-software-product' => 'محصول',
 'version-software-version' => 'نسخه',
+'version-entrypoints-articlepath' => '[https://www.mediawiki.org/wiki/Manual:$wgArticlePath مسیر مقاله]',
+'version-entrypoints-scriptpath' => '[https://www.mediawiki.org/wiki/Manual:$wgScriptPath مسیر اسکریپت]',
 
 # Special:FilePath
 'filepath' => 'مسیر پرونده',
@@ -4154,6 +4156,6 @@ $5
 'duration-years' => '$1 سال',
 'duration-decades' => '$1 دهه',
 'duration-centuries' => '$1 قرن',
-'duration-millennia' => '{{PLURAL:$1| هزار سال |$1 هزار سال}}',
+'duration-millennia' => '{{PLURAL:$1|هزار سال |$1 هزار سال}}',
 
 );
