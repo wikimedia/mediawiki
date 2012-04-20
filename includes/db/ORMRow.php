@@ -207,7 +207,7 @@ abstract class ORMRow {
 	 * @param integer|null $id
 	 */
 	public function setId( $id ) {
-		return $this->setField( 'id', $id );
+		$this->setField( 'id', $id );
 	}
 
 	/**
