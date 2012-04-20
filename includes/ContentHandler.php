@@ -716,6 +716,8 @@ class JavaScriptContentHandler extends TextContentHandler {
     }
 
     public function unserializeContent( $text, $format = null ) {
+        $this->checkFormat( $format );
+
         return new JavaScriptContent( $text );
     }
 
@@ -731,6 +733,8 @@ class CssContentHandler extends TextContentHandler {
     }
 
     public function unserializeContent( $text, $format = null ) {
+        $this->checkFormat( $format );
+
         return new CssContent( $text );
     }
 

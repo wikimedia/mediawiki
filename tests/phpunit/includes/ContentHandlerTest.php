@@ -90,6 +90,112 @@ class ContentHandlerTest extends MediaWikiTestCase {
         $this->assertNull( $text );
     }
 
+    #public static function makeContent( $text, Title $title, $modelName = null, $format = null )
+
+    public function dataMakeContent() {
+        return array(
+            array( 'hallo', 'Test', null, null, CONTENT_MODEL_WIKITEXT, 'hallo', false ),
+            array( 'hallo', 'MediaWiki:Test.js', null, null, CONTENT_MODEL_JAVASCRIPT, 'hallo', false ),
+            array( serialize('hallo'), 'Dummy:Test', null, null, 'DUMMY', 'hallo', false ),
+
+            array( 'hallo', 'Test', null, 'application/x-wikitext', CONTENT_MODEL_WIKITEXT, 'hallo', false ),
+            array( 'hallo', 'MediaWiki:Test.js', null, 'text/javascript', CONTENT_MODEL_JAVASCRIPT, 'hallo', false ),
+            array( serialize('hallo'), 'Dummy:Test', null, 'dummy', 'DUMMY', 'hallo', false ),
+
+            array( 'hallo', 'Test', CONTENT_MODEL_CSS, null, CONTENT_MODEL_CSS, 'hallo', false ),
+            array( 'hallo', 'MediaWiki:Test.js', CONTENT_MODEL_CSS, null, CONTENT_MODEL_CSS, 'hallo', false ),
+            array( serialize('hallo'), 'Dummy:Test', CONTENT_MODEL_CSS, null, CONTENT_MODEL_CSS, serialize('hallo'), false ),
+
+            array( 'hallo', 'Test', CONTENT_MODEL_WIKITEXT, 'dummy', null, null, true ),
+            array( 'hallo', 'MediaWiki:Test.js', CONTENT_MODEL_CSS, 'dummy', null, null, true ),
+            array( 'hallo', 'Dummy:Test', CONTENT_MODEL_JAVASCRIPT, 'dummy', null, null, true ),
+        );
+    }
+
+    /**
+     * @dataProvider dataMakeContent
+     */
+    public function testMakeContent( $data, $title, $modelName, $format, $expectedModelName, $expectedNativeData, $shouldFail ) {
+        global $wgExtraNamespaces, $wgNamespaceContentModels, $wgContentHandlers;
+
+        $title = Title::newFromText( $title );
+
+        try {
+            $content = ContentHandler::makeContent( $data, $title, $modelName, $format );
+
+            if ( $shouldFail ) $this->fail( "ContentHandler::makeContent should have failed!" );
+
+            $this->assertEquals( $expectedModelName, $content->getModelName(), 'bad model name' );
+            $this->assertEquals( $expectedNativeData, $content->getNativeData(), 'bads native data' );
+        } catch ( MWException $ex ) {
+            if ( !$shouldFail ) $this->fail( "ContentHandler::makeContent failed unexpectedly!" );
+            else $this->assertTrue( true ); // dummy, so we don't get the "test did not perform any assertions" message.
+        }
+
+    }
+
+
+    public function setup() {
+        global $wgExtraNamespaces, $wgNamespaceContentModels, $wgContentHandlers;
+
+        $wgExtraNamespaces[ 12312 ] = 'Dummy';
+        $wgExtraNamespaces[ 12313 ] = 'Dummy_talk';
+
+        $wgNamespaceContentModels[ 12312 ] = 'DUMMY';
+        $wgContentHandlers[ 'DUMMY' ] = 'DummyContentHandlerForTesting';
+    }
+
+    public function teardown() {
+        global $wgExtraNamespaces, $wgNamespaceContentModels, $wgContentHandlers;
+
+        unset( $wgExtraNamespaces[ 12312 ] );
+        unset( $wgExtraNamespaces[ 12313 ] );
+
+        unset( $wgNamespaceContentModels[ 12312 ] );
+        unset( $wgContentHandlers[ 'DUMMY' ] );
+    }
+
+}
+
+class DummyContentHandlerForTesting extends ContentHandler {
+
+    public function __construct( $dataModel ) {
+        parent::__construct( $dataModel, array('dummy') );
+    }
+
+    /**
+     * Serializes Content object of the type supported by this ContentHandler.
+     *
+     * @param Content $content the Content object to serialize
+     * @param null $format the desired serialization format
+     * @return String serialized form of the content
+     */
+    public function serializeContent( Content $content, $format = null )
+    {
+       return $content->serialize();
+    }
+
+    /**
+     * Unserializes a Content object of the type supported by this ContentHandler.
+     *
+     * @param $blob String serialized form of the content
+     * @param null $format the format used for serialization
+     * @return Content the Content object created by deserializing $blob
+     */
+    public function unserializeContent( $blob, $format = null )
+    {
+        $d = unserialize( $blob );
+        return new DummyContentForTesting( $d );
+    }
+
+    /**
+     * Creates an empty Content object of the type supported by this ContentHandler.
+     *
+     */
+    public function makeEmptyContent()
+    {
+        return new DummyContentForTesting( '' );
+    }
 }
 
 class DummyContentForTesting extends Content {
@@ -128,7 +234,7 @@ class DummyContentForTesting extends Content {
      * @param int $maxlength maximum length of the summary text
      * @return String the summary text
      */
-    public function getTextForSummary($maxlength = 250)
+    public function getTextForSummary( $maxlength = 250 )
     {
         return '';
     }
@@ -182,7 +288,7 @@ class DummyContentForTesting extends Content {
      *                        to avoid redundant parsing to find out.
      * @return boolean
      */
-    public function isCountable($hasLinks = null)
+    public function isCountable( $hasLinks = null )
     {
         return false;
     }
@@ -197,7 +303,7 @@ class DummyContentForTesting extends Content {
      *
      * @return ParserOutput
      */
-    public function getParserOutput(IContextSource $context, $revId = null, ParserOptions $options = NULL, $generateHtml = true)
+    public function getParserOutput( IContextSource $context, $revId = null, ParserOptions $options = NULL, $generateHtml = true )
     {
         return new ParserOutput( $this->data );
     }
