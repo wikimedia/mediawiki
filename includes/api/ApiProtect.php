@@ -44,11 +44,14 @@ class ApiProtect extends ApiBase {
 			if ( !$titleObj ) {
 				$this->dieUsageMsg( array( 'invalidtitle', $params['title'] ) );
 			}
+			$pageObj = WikiPage::factory( $titleObj );
+			$pageObj->loadPageData( 'fromdbmaster' );
 		} elseif ( isset( $params['pageid'] ) ) {
-			$titleObj = Title::newFromID( $params['pageid'] );
-			if ( !$titleObj ) {
+			$pageObj = WikiPage::newFromID( $params['pageid'] );
+			if ( !$pageObj ) {
 				$this->dieUsageMsg( array( 'nosuchpageid', $params['pageid'] ) );
 			}
+			$titleObj = $pageObj->getTitle();
 		}
 
 		$errors = $titleObj->getUserPermissionsErrors( 'protect', $this->getUser() );
@@ -115,7 +118,6 @@ class ApiProtect extends ApiBase {
 		$watch = $params['watch'] ? 'watch' : $params['watchlist'];
 		$this->setWatch( $watch, $titleObj );
 
-		$pageObj = WikiPage::factory( $titleObj );
 		$status = $pageObj->doUpdateRestrictions( $protections, $expiryarray, $cascade, $params['reason'], $this->getUser() );
 
 		if ( !$status->isOK() ) {
