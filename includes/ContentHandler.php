@@ -23,19 +23,20 @@ class MWContentSerializationException extends MWException {
 abstract class ContentHandler {
 
     /**
-     * Conveniance function for getting flat text from a Content object. This shleould only
+     * Conveniance function for getting flat text from a Content object. This should only
      * be used in the context of backwards compatibility with code that is not yet able
      * to handle Content objects!
      *
-     * If $content is equal to null or false, this method returns the empty string.
+     * If $content is null, this method returns the empty string.
      *
-     * If $content is an instance of TextContent, this method returns the flat text as returned by $content->getnativeData().
+     * If $content is an instance of TextContent, this method returns the flat text as returned by $content->getNativeData().
      *
      * If $content is not a TextContent object, the bahaviour of this method depends on the global $wgContentHandlerTextFallback:
-     * If $wgContentHandlerTextFallback is 'fail' and $content is not a TextContent object, an MWException is thrown.
-     * If $wgContentHandlerTextFallback is 'serialize' and $content is not a TextContent object, $content->serialize()
+     * * If $wgContentHandlerTextFallback is 'fail' and $content is not a TextContent object, an MWException is thrown.
+     * * If $wgContentHandlerTextFallback is 'serialize' and $content is not a TextContent object, $content->serialize()
      * is called to get a string form of the content.
-     * Otherwise, this method returns null.
+     * * If $wgContentHandlerTextFallback is 'ignore' and $content is not a TextContent object, this method returns null.
+     * * otherwise, the behaviour is undefined.
      *
      * @static
      * @param Content|null $content
@@ -77,6 +78,7 @@ abstract class ContentHandler {
      * @param null|String $format the format to use for deserialization. If not given, the model's default format is used.
      *
      * @return Content a Content object representing $text
+     * @throw MWException if $model or $format is not supported or if $text can not be unserialized using $format.
      */
     public static function makeContent( $text, Title $title, $modelName = null, $format = null ) {
 

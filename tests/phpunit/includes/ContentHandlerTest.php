@@ -30,6 +30,24 @@ class ContentHandlerTest extends MediaWikiTestCase {
         $this->assertEquals( $expectedModelName, ContentHandler::getDefaultModelFor( $title ) );
     }
 
+    public function testGetContentText_Null( ) {
+        global $wgContentHandlerTextFallback;
+
+        $content = null;
+
+        $wgContentHandlerTextFallback = 'fail';
+        $text = ContentHandler::getContentText( $content );
+        $this->assertEquals( '', $text );
+
+        $wgContentHandlerTextFallback = 'serialize';
+        $text = ContentHandler::getContentText( $content );
+        $this->assertEquals( '', $text );
+
+        $wgContentHandlerTextFallback = 'ignore';
+        $text = ContentHandler::getContentText( $content );
+        $this->assertEquals( '', $text );
+    }
+
     public function testGetContentText_TextContent( ) {
         global $wgContentHandlerTextFallback;
 
