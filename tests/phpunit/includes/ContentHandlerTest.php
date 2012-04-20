@@ -29,6 +29,14 @@ class ContentHandlerTest extends MediaWikiTestCase {
         $title = Title::newFromText( $title );
         $this->assertEquals( $expectedModelName, ContentHandler::getDefaultModelFor( $title ) );
     }
+    /**
+     * @dataProvider dataGetDefaultModelFor
+     */
+    public function testGetForTitle( $title, $expectedContentModel ) {
+        $title = Title::newFromText( $title );
+        $handler = ContentHandler::getForTitle( $title );
+        $this->assertEquals( $expectedContentModel, $handler->getModelName() );
+    }
 
     public function testGetContentText_Null( ) {
         global $wgContentHandlerTextFallback;
