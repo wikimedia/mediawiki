@@ -1478,6 +1478,10 @@ These arguments have been omitted.",
 'parser-template-loop-warning'            => 'Template loop detected: [[$1]]',
 'parser-template-recursion-depth-warning' => 'Template recursion depth limit exceeded ($1)',
 'language-converter-depth-warning'        => 'Language converter depth limit exceeded ($1)',
+'node-count-exceeded-category'            => 'Pages where node-count is exceeded',
+'node-count-exceeded-warning'             => 'Page exceeded the node-count',
+'expansion-depth-exceeded-category'       => 'Pages where expansion depth is exceeded',
+'expansion-depth-exceeded-warning'        => 'Page exceeded the expansion depth',
 
 # "Undo" feature
 'undo-success' => 'The edit can be undone.
