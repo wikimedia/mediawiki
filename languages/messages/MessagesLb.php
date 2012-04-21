@@ -1977,6 +1977,9 @@ Dir kënnt d'Siche limitéieren wann Dir e Log-Typ, e Benotzernumm (case-senisit
 'allpages-bad-ns' => 'Den Nummraum „$1“ gëtt et net op {{SITENAME}}.',
 'allpages-hide-redirects' => 'Viruleedunge verstoppen',
 
+# SpecialCachedPage
+'cachedspecial-refresh-now' => 'Déi rezentst weisen.',
+
 # Special:Categories
 'categories' => 'Kategorien',
 'categoriespagetext' => 'Dës {{PLURAL:$1|Kategorie huet|Kategorien hu}} Säiten oder Medien.
@@ -3523,6 +3526,7 @@ Dir misst eng [{{SERVER}}{{SCRIPTPATH}}/COPYING Kopie vun der GNU General Public
 'version-software' => 'Installéiert Software',
 'version-software-product' => 'Produkt',
 'version-software-version' => 'Versioun',
+'version-entrypoints-header-url' => 'URL',
 
 # Special:FilePath
 'filepath' => 'Pad bei de Fichier',

@@ -3891,6 +3891,9 @@ $5
 'version-software' => 'תוכנות מותקנות',
 'version-software-product' => 'תוכנה',
 'version-software-version' => 'גרסה',
+'version-entrypoints' => 'כתובות של נקודות כניסה',
+'version-entrypoints-header-entrypoint' => 'נקודת כניסה',
+'version-entrypoints-header-url' => 'כתובת',
 
 # Special:FilePath
 'filepath' => 'נתיב לקובץ',

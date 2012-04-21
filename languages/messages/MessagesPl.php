@@ -773,7 +773,7 @@ Poniższe funkcje poczty nie działają.",
 'invalidemailaddress' => 'Adres e‐mail jest niepoprawny i nie może być zaakceptowany.
 Wpisz poprawny adres e‐mail lub wyczyść pole.',
 'cannotchangeemail' => 'Na tej wiki nie ma możliwości zmiany adresu e‐mail przypisanego do konta.',
-'emaildisabled' => 'Ta witryna nie można wysłać wiadomości e-mail.',
+'emaildisabled' => 'Ta witryna nie może wysłać wiadomości e-mail.',
 'accountcreated' => 'Konto zostało utworzone',
 'accountcreatedtext' => 'Konto dla $1 zostało utworzone.',
 'createaccount-title' => 'Utworzenie konta w {{GRAMMAR:MS.lp|{{SITENAME}}}}',

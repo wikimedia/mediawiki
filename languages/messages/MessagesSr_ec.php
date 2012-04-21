@@ -1339,7 +1339,7 @@ $1",
 
 # Suppression log
 'suppressionlog' => 'Историја сакривања',
-'suppressionlogtext' => 'Испод се налази списак брисања и блокирања који укључује садржај сакривен од администратора. Погледајте [[Special:BlockList|списак блокираних IP адреса]] за преглед важећих забрана и блокирања.',
+'suppressionlogtext' => 'Испод се налази списак брисања и блокирања који укључује садржај сакривен од администратора. Текуће забране и блокирања можете наћи [[Special:BlockList|овде]].',
 
 # History merging
 'mergehistory' => 'Споји историје страница',
@@ -2311,6 +2311,11 @@ $1',
 'allpages-bad-ns' => '{{SITENAME}} нема именски простор „$1“.',
 'allpages-hide-redirects' => 'Сакриј преусмерења',
 
+# SpecialCachedPage
+'cachedspecial-viewing-cached-ttl' => 'Гледате кеширану верзију ове странице, која може бити стара и до $1.',
+'cachedspecial-viewing-cached-ts' => 'Гледате кеширану верзију ове странице, која може да се разликује од тренутне.',
+'cachedspecial-refresh-now' => 'Погледај најновију.',
+
 # Special:Categories
 'categories' => 'Категоријe',
 'categoriespagetext' => '{{PLURAL:$1|Следећа категорија садржи|Следеће категорије садрже}} странице или датотеке.
@@ -2760,7 +2765,7 @@ $1',
 'badipaddress' => 'Неисправна IP адреса',
 'blockipsuccesssub' => 'Блокирање је успело',
 'blockipsuccesstext' => '[[Special:Contributions/$1|$1]] је {{GENDER:$1|блокиран|блокирана|блокиран}}.<br />
-Погледајте [[Special:BlockList|списак блокираних ИП адреса]] за преглед блокирања.',
+Блокирања можете да погледате [[Special:BlockList|овде]].',
 'ipb-blockingself' => 'Овом радњом ћете блокирати себе! Јесте ли сигурни да то желите?',
 'ipb-confirmhideuser' => 'Управо ћете блокирати корисника с укљученом могућношћу „сакриј корисника“. Овим ће корисничко име бити сакривено у свим списковима и извештајима. Желите ли то да урадите?',
 'ipb-edit-dropdown' => 'Уреди разлоге блокирања',
@@ -2815,7 +2820,7 @@ $1',
 'reblock-logentry' => '{{GENDER:|је променио|је променила|је променио}} подешавања за блокирање {{GENDER:$1|корисника|кориснице|корисника}} [[$1]] с роком истека од $2 ($3)',
 'blocklogtext' => 'Ово је дневник блокирања и деблокирања корисника.
 Аутоматски блокиране ИП адресе нису наведене.
-Погледајте [[Special:BlockList|списак блокираних ИП адреса]].',
+Текуће забране и блокирања можете наћи [[Special:BlockList|овде]].',
 'unblocklogentry' => '{{GENDER:|је деблокирао|је деблокирала|је деблокирао}} „$1“',
 'block-log-flags-anononly' => 'само анонимни корисници',
 'block-log-flags-nocreate' => 'онемогућено отварање налога',
@@ -4107,6 +4112,9 @@ $5
 'version-software' => 'Инсталирани софтвер',
 'version-software-product' => 'Производ',
 'version-software-version' => 'Верзија',
+'version-entrypoints' => 'Адресе улазне тачке',
+'version-entrypoints-header-entrypoint' => 'Улазна тачка',
+'version-entrypoints-header-url' => 'Адреса',
 
 # Special:FilePath
 'filepath' => 'Путања датотеке',
@@ -4294,5 +4302,16 @@ $5
 'api-error-unknownerror' => 'Непозната грешка: „$1“.',
 'api-error-uploaddisabled' => 'Отпремање је онемогућено на овом викију.',
 'api-error-verification-error' => 'Датотека је оштећена или има неисправан наставак.',
+
+# Durations
+'duration-seconds' => '$1 {{PLURAL:$1|секунд|секунде|секунди}}',
+'duration-minutes' => '$1 {{PLURAL:$1|минут|минута|минута}}',
+'duration-hours' => '$1 {{PLURAL:$1|сат|сата|сати}}',
+'duration-days' => '$1 {{PLURAL:$1|дан|дана|дана}}',
+'duration-weeks' => '$1 {{PLURAL:$1|недеља|недеље|недеља}}',
+'duration-years' => '$1 {{PLURAL:$1|година|године|година}}',
+'duration-decades' => '$1 {{PLURAL:$1|деценија|деценије|деценија}}',
+'duration-centuries' => '$1 {{PLURAL:$1|век|века|векова}}',
+'duration-millennia' => '$1 {{PLURAL:$1|миленијум|миленијума|миленијума}}',
 
 );

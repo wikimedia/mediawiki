@@ -7,6 +7,7 @@
  * @ingroup Language
  * @file
  *
+ * @author Amire80
  * @author Cekli829
  * @author Flrn
  * @author Hanberke

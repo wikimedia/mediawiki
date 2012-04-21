@@ -3415,6 +3415,9 @@ MediaWiki是為著使用的目的才發佈，毋過無負任何擔保責任；�
 'version-software' => '已經安裝的軟體',
 'version-software-product' => '產品',
 'version-software-version' => '版本',
+'version-entrypoints' => '進入點網址',
+'version-entrypoints-header-entrypoint' => '進入點',
+'version-entrypoints-header-url' => '網址',
 
 # Special:FilePath
 'filepath' => 'Tóng-àn ê soàⁿ-lō·',

@@ -685,6 +685,7 @@ Memolös, das pads: .css e .js mutons labön tiädi minudik: {{ns:user}}:Foo/vec
 Redakam perefudon ad vitön dädükami padavödema.
 Atos jenon ömna ven geboy düni pladulöma nennemik bevüresodik säkädik.'''",
 'editing' => 'Redakam pada: $1',
+'creating' => 'Jafäd pada: $1',
 'editingsection' => 'Redakam pada: $1 (diläd)',
 'editingcomment' => 'Redakam pada: $1 (diläd nulik)',
 'editconflict' => 'Redakamakonflit: $1',

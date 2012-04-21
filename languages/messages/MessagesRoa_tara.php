@@ -970,7 +970,7 @@ Pe piacere condrolle l'archivije.",
 # Suppression log
 'suppressionlog' => 'Archivie de le soppressiune',
 'suppressionlogtext' => "Sotte stè 'n'elenghe de scangellaminde e blocche sus a le condenute scunnute da l'amministrature.
-Vide l'[[Special:BlockList|elenghe de le IP bloccate]] pa liste de le operazziune corrende de espulsione e blocche.",
+Vide l'[[Special:BlockList|elenghe de le IP bloccate]] pe l'elenghe de le operazziune corrende de espulsione e blocche.",
 
 # History merging
 'mergehistory' => "Scuagghie 'a storie de le pàggene",
@@ -1922,6 +1922,9 @@ Pò condenè une  cchiù carattere ca non ge ponne essere ausate jndr'à le tite
 'allpages-bad-ns' => '{{SITENAME}} non ge tène \'u namaspace "$1".',
 'allpages-hide-redirects' => 'Scunne le redirezionaminde',
 
+# SpecialCachedPage
+'cachedspecial-refresh-now' => "Vide l'urteme.",
+
 # Special:Categories
 'categories' => 'Le Categorije',
 'categoriespagetext' => "{{PLURAL:$1|'A seguende categorije tène|Le seguende categorije tènene}} pàggene o media.
@@ -2427,7 +2430,7 @@ L'archivije de le soppressiune 'u puè acchià aqquà sotte pe riferimende:",
 'blocklogentry' => "blocchete [[$1]] pe 'nu timbe de $2 $3",
 'reblock-logentry' => "cangiate l'imbostazione de le blocche pe [[$1]] cu 'na data de scadenze de $2 $3",
 'blocklogtext' => "Quiste è l'archivije de l'aziune de blocche e sblocche pe l'utinde.
-L'indirizze IP automaticamende bloccate non ge stonne jndr'à liste.
+L'indirizze IP automaticamende bloccate non ge stonne jndr'à l'elenghe.
 Vide 'a [[Special:BlockList|liste de le IP bloccate]] pa liste de le operaziune de ban e blocche ca stonne attive mò.",
 'unblocklogentry' => 'sblocchete $1',
 'block-log-flags-anononly' => "sulamende l'utinde anonime",
@@ -3718,6 +3721,9 @@ Avisse avè ricevute [{{SERVER}}{{SCRIPTPATH}}/COPYING 'na copie d'a GNU (Licenz
 'version-software' => 'Softuer installete',
 'version-software-product' => 'Prodotte',
 'version-software-version' => 'Versione',
+'version-entrypoints' => 'Punde de ingresse de le URL',
+'version-entrypoints-header-entrypoint' => "Punde d'ingresse",
+'version-entrypoints-header-url' => 'URL',
 
 # Special:FilePath
 'filepath' => "Percorse d'u fail",
@@ -3898,5 +3904,15 @@ Ce nò, tu puè ausà 'u module facile aqquà sotte. 'U commende tune avène agg
 'api-error-unknownerror' => 'Errore scanusciute: "$1"',
 'api-error-uploaddisabled' => 'Le carecaminde sonde disabbilitate sus a sta Uicchi.',
 'api-error-verification-error' => "Stu file pò essere scuasciate, o ave 'n'estenzione sbagliate.",
+
+# Durations
+'duration-seconds' => '{{PLURAL:$1|seconde|seconde}}',
+'duration-minutes' => '{{PLURAL:$1|minute|minute}}',
+'duration-hours' => '{{PLURAL: $1|ore|ore}}',
+'duration-weeks' => '{{PLURAL: $1|sumàne|sumàne}}',
+'duration-years' => '{{PLURAL: $1|anne|anne}}',
+'duration-decades' => '$1 {{PLURAL:$1|decade|decade}}',
+'duration-centuries' => '$1 {{PLURAL:$1|sechele|sechele}}',
+'duration-millennia' => '$1 {{PLURAL:$1|millennie|millennie}}',
 
 );

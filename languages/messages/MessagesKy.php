@@ -9,6 +9,7 @@
  *
  * @author AidaBishkek
  * @author Aidabishkek
+ * @author Muratjumashev
  * @author Ztimur
  */
 
@@ -341,7 +342,7 @@ IP дарегиңиз бул барактын оңдоо тарыхына жаз
 Сиз башка барактардан [[Special:Search/{{PAGENAME}}|ушул аталыш менен баракты издөө]] салып,
 же <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} тийиштүү жазууларды таба аласыз]</span>.',
 'previewnote' => "'''Бул алдын ала көрүнүшү гана болгонун эсиңизге алыңыз.'''
-Өзгөртүүлөрүңүз сактала элек!",
+Өзгөртүүлөрүңүз сактала элек! [[#editform|→ Оңдоону улант]]",
 'editing' => 'Оңдоо $1',
 'editingsection' => '$1 (бөлүмү) оңдолууда',
 'yourtext' => 'Текстиңиз',
