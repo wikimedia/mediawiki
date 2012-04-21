@@ -1015,7 +1015,7 @@ class SpecialUndelete extends SpecialPage {
 		}
 		$out->wrapWikiMsg(
 			"<div class='mw-undelete-pagetitle'>\n$1\n</div>\n",
-			array( 'undeletepagetitle', $this->mTargetObj->getPrefixedText() )
+			array( 'undeletepagetitle', wfEscapeWikiText( $this->mTargetObj->getPrefixedText() ) )
 		);
 
 		$archive = new PageArchive( $this->mTargetObj );

@@ -277,7 +277,7 @@ class SpecialBlock extends FormSpecialPage {
 			}
 
 			$this->alreadyBlocked = true;
-			$this->preErrors[] = array( 'ipb-needreblock', (string)$block->getTarget() );
+			$this->preErrors[] = array( 'ipb-needreblock', wfEscapeWikiText( (string)$block->getTarget() ) );
 		}
 
 		# We always need confirmation to do HideUser
@@ -349,7 +349,7 @@ class SpecialBlock extends FormSpecialPage {
 
 		# Link to unblock the specified user, or to a blank unblock form
 		if( $this->target instanceof User ) {
-			$message = $this->msg( 'ipb-unblock-addr', $this->target->getName() )->parse();
+			$message = $this->msg( 'ipb-unblock-addr', wfEscapeWikiText( $this->target->getName() ) )->parse();
 			$list = SpecialPage::getTitleFor( 'Unblock', $this->target->getName() );
 		} else {
 			$message = $this->msg( 'ipb-unblock' )->parse();
@@ -904,7 +904,7 @@ class SpecialBlock extends FormSpecialPage {
 	public function onSuccess() {
 		$out = $this->getOutput();
 		$out->setPageTitle( $this->msg( 'blockipsuccesssub' ) );
-		$out->addWikiMsg( 'blockipsuccesstext',  $this->target );
+		$out->addWikiMsg( 'blockipsuccesstext', wfEscapeWikiText( $this->target ) );
 	}
 }
 
