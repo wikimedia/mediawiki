@@ -842,6 +842,13 @@ abstract class File {
 				}
 			}
 
+			// If the backend is ready-only, don't keep generating thumbnails
+			// only to return transformation errors, just return the error now.
+			if ( $this->repo->getReadOnlyReason() !== false ) {
+				$thumb = $this->transformErrorOutput( $thumbPath, $thumbUrl, $params, $flags );
+				break;
+			}
+
 			// Create a temp FS file with the same extension and the thumbnail
 			$thumbExt = FileBackend::extensionFromPath( $thumbPath );
 			$tmpFile = TempFSFile::factory( 'transform_', $thumbExt );
