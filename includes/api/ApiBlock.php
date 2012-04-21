@@ -96,16 +96,18 @@ class ApiBlock extends ApiBase {
 
 		list( $target, /*...*/ ) = SpecialBlock::getTargetAndType( $params['user'] );
 		$res['user'] = $params['user'];
-		$res['userID'] = $target instanceof User ? $target->getId() : 0;
+		$res['userid'] = $target instanceof User ? $target->getId() : 0;
 
 		$block = Block::newFromTarget( $target );
 		if( $block instanceof Block ){
 			$res['expiry'] = $block->mExpiry == wfGetDB( DB_SLAVE )->getInfinity()
 				? 'infinite'
 				: wfTimestamp( TS_ISO_8601, $block->mExpiry );
+			$res['id'] = $block->getId();
 		} else {
 			# should be unreachable
 			$res['expiry'] = '';
+			$res['id'] = '';
 		}
 
 		$res['reason'] = $params['reason'];
