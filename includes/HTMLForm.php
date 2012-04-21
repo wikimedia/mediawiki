@@ -1096,6 +1096,11 @@ abstract class HTMLFormField {
 				$msg = wfMessage( array_shift( $helpMessage ), $helpMessage );
 
 				if( $msg->exists() ) {
+					if( is_null( $helptext ) ) {
+						$helptext = '';
+					} else {
+						$helptext .= wfMessage( 'word-separator' )->escaped(); // some space
+					}
 					$helptext .= $msg->parse(); // Append message
 				}
 			}
