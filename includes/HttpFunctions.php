@@ -216,6 +216,11 @@ class MWHttpRequest {
 
 		foreach ( $members as $o ) {
 			if ( isset( $options[$o] ) ) {
+				// ensure that MWHttpRequest::method is always
+				// uppercased. Bug 36137
+				if ( $o == 'method' ) {
+					$options[$o] = strtoupper( $options[$o] );
+				}
 				$this->$o = $options[$o];
 			}
 		}
