@@ -58,14 +58,14 @@ class SpecialUnblock extends SpecialPage {
 			switch( $this->type ){
 				case Block::TYPE_USER:
 				case Block::TYPE_IP:
-					$out->addWikiMsg( 'unblocked',  $this->target );
+					$out->addWikiMsg( 'unblocked', wfEscapeWikiText( $this->target ) );
 					break;
 				case Block::TYPE_RANGE:
-					$out->addWikiMsg( 'unblocked-range', $this->target );
+					$out->addWikiMsg( 'unblocked-range', wfEscapeWikiText( $this->target ) );
 					break;
 				case Block::TYPE_ID:
 				case Block::TYPE_AUTO:
-					$out->addWikiMsg( 'unblocked-id', $this->target );
+					$out->addWikiMsg( 'unblocked-id', wfEscapeWikiText( $this->target ) );
 					break;
 			}
 		}
