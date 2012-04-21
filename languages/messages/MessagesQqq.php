@@ -1019,6 +1019,16 @@ When templates are expanded, there is a size limit for the number of bytes yield
 'language-converter-depth-warning' => 'Error message shown when a page uses too deeply nested language conversion syntax
 
 * <tt>$1</tt> is the value of the depth limit',
+'node-count-exceeded-category'            => 'This message is used as a category name for a [[mw:Help:Tracking categories|tracking category]] where pages are placed automatically if the node-count of the preprocessor exceeds the limit.',
+'node-count-exceeded-warning'             => 'Error message shown when a page exceeded the node-count limit of the preprocessor
+
+* <tt>$1</tt> is the value of the node-count limit
+* <tt>$2</tt> is the value of the max node-count limit',
+'expansion-depth-exceeded-category'       => 'This message is used as a category name for a [[mw:Help:Tracking categories|tracking category]] where pages are placed automatically if the expansion depth of the preprocessor exceeds the limit.',
+'expansion-depth-exceeded-warning'        => 'Error message shown when a page exceeded the expansion depth limit of the preprocessor
+
+* <tt>$1</tt> is the value of the depth limit
+* <tt>$2</tt> is the value of the max depth limit',
 
 # "Undo" feature
 'undo-success' => 'Text on special page to confirm edit revert. You arrive on this page by clicking on the "undo" link on a revision history special page.
