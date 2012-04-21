@@ -64,6 +64,15 @@ class MemcachedPhpBagOStuff extends BagOStuff {
 	}
 
 	/**
+	 * @param $keys Array
+	 * @return Array
+	 */
+	public function getBatch( array $keys ) {
+		$callback = array( $this, 'encodeKey' );
+		return $this->client->get_multi( array_map( $callback, $keys ) );
+	}
+
+	/**
 	 * @param $key string
 	 * @param $value
 	 * @param $exptime int
@@ -137,7 +146,7 @@ class MemcachedPhpBagOStuff extends BagOStuff {
 	}
 
 	/**
-	 * Get the underlying client object. This is provided for debugging 
+	 * Get the underlying client object. This is provided for debugging
 	 * purposes.
 	 *
 	 * @return MemCachedClientforWiki
@@ -149,14 +158,14 @@ class MemcachedPhpBagOStuff extends BagOStuff {
 	/**
 	 * Encode a key for use on the wire inside the memcached protocol.
 	 *
-	 * We encode spaces and line breaks to avoid protocol errors. We encode 
-	 * the other control characters for compatibility with libmemcached 
+	 * We encode spaces and line breaks to avoid protocol errors. We encode
+	 * the other control characters for compatibility with libmemcached
 	 * verify_key. We leave other punctuation alone, to maximise backwards
 	 * compatibility.
 	 * @return string
 	 */
 	public function encodeKey( $key ) {
-		return preg_replace_callback( '/[\x00-\x20\x25\x7f]+/', 
+		return preg_replace_callback( '/[\x00-\x20\x25\x7f]+/',
 			array( $this, 'encodeKeyCallback' ), $key );
 	}
 
@@ -165,7 +174,7 @@ class MemcachedPhpBagOStuff extends BagOStuff {
 	}
 
 	/**
-	 * Decode a key encoded with encodeKey(). This is provided as a convenience 
+	 * Decode a key encoded with encodeKey(). This is provided as a convenience
 	 * function for debugging.
 	 *
 	 * @param $key string
