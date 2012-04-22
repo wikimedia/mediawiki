@@ -165,7 +165,9 @@ class ApiQueryUsers extends ApiQueryBase {
 					$data[$name]['hidden'] = '';
 				}
 				if ( isset( $this->prop['blockinfo'] ) && !is_null( $row->ipb_by_text ) ) {
+					$data[$name]['blockid'] = $row->ipb_id;
 					$data[$name]['blockedby'] = $row->ipb_by_text;
+					$data[$name]['blockedbyid'] = $row->ipb_by;
 					$data[$name]['blockreason'] = $row->ipb_reason;
 					$data[$name]['blockexpiry'] = $row->ipb_expiry;
 				}
