@@ -113,7 +113,7 @@ class ApiQueryWatchlistRaw extends ApiQueryGeneratorBase {
 				{
 					$vals['changed'] = wfTimestamp( TS_ISO_8601, $row->wl_notificationtimestamp );
 				}
-				$fit = $this->getResult()->addValue( $this->getModuleName(), null, $vals );
+				$fit = $this->getResult()->addValue( array( 'query', $this->getModuleName() ), null, $vals );
 				if ( !$fit ) {
 					$this->setContinueEnumParameter( 'continue', $row->wl_namespace . '|' .
 									$this->keyToTitle( $row->wl_title ) );
@@ -124,7 +124,7 @@ class ApiQueryWatchlistRaw extends ApiQueryGeneratorBase {
 			}
 		}
 		if ( is_null( $resultPageSet ) ) {
-			$this->getResult()->setIndexedTagName_internal( $this->getModuleName(), 'wr' );
+			$this->getResult()->setIndexedTagName_internal( array( 'query', $this->getModuleName() ), 'wr' );
 		} else {
 			$resultPageSet->populateFromTitles( $titles );
 		}
