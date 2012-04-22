@@ -1387,6 +1387,14 @@ abstract class ApiBase extends ContextSource {
 	}
 
 	/**
+	 * Indicates whether this module is deprecated.
+	 * @return bool
+	 */
+	public function isDeprecated() {
+		return false;
+	}
+
+	/**
 	 * Returns whether this module requires a Token to execute
 	 * @return bool
 	 */
