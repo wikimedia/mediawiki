@@ -101,6 +101,8 @@ production.
 * (bug 32492) API now allows editing using pageid
 * (bug 32497) API now allows changing of protection level using pageid
 * (bug 32498) API now allows comparing pages using pageids
+* The results of list=watchlistraw are now inside query element,
+  like for other query modules
 
 === Languages updated in 1.20 ===
 
