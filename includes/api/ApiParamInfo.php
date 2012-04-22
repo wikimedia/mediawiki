@@ -129,6 +129,9 @@ class ApiParamInfo extends ApiBase {
 		if ( $obj->mustBePosted() ) {
 			$retval['mustbeposted'] = '';
 		}
+		if ( $obj->isDeprecated() ) {
+			$retval['deprecated'] = '';
+		}
 		if ( $obj instanceof ApiQueryGeneratorBase ) {
 			$retval['generator'] = '';
 		}
