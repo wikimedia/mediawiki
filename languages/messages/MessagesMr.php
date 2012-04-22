@@ -154,7 +154,7 @@ $specialPageAliases = array(
 	'Wantedfiles'               => array( 'संचिकाहवी' ),
 	'Wantedpages'               => array( 'हवे_असलेले_लेख' ),
 	'Wantedtemplates'           => array( 'साचाहवा' ),
-	'Watchlist'                 => array( 'पहार्‍याची_सूची' ),
+	'Watchlist'                 => array( 'नित्य_पहाण्याची_सूची' ),
 	'Whatlinkshere'             => array( 'येथे_काय_जोडले_आहे' ),
 	'Withoutinterwiki'          => array( 'विनाआंतरविकि' ),
 );
