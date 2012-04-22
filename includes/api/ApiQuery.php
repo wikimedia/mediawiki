@@ -85,6 +85,7 @@ class ApiQuery extends ApiBase {
 		'usercontribs' => 'ApiQueryContributions',
 		'watchlist' => 'ApiQueryWatchlist',
 		'watchlistraw' => 'ApiQueryWatchlistRaw',
+		'rawwatchlist' => 'ApiQueryWatchlistRaw',
 		'exturlusage' => 'ApiQueryExtLinksUsage',
 		'users' => 'ApiQueryUsers',
 		'random' => 'ApiQueryRandom',

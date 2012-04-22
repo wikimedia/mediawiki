@@ -130,6 +130,8 @@ upgrade PHP if you have not done so prior to upgrading MediaWiki.
 * (bug 28814) add properties to output of action=parse
 * (bug 33224) add variants of content language to meta=siteinfo
 * (bug 36761) "Mark pages as visited" now submits previously established filter options
+* New module rawwatchlist with results correctly inside query element,
+  like for other query modules; watchlistraw was marked as deprecated
 
 === Languages updated in 1.20 ===
 
