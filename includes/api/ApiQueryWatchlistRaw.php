@@ -32,8 +32,31 @@
  */
 class ApiQueryWatchlistRaw extends ApiQueryGeneratorBase {
 
+	private $deprecated, $hasQueryElement;
+
+	private static $watchlistRawSettings = array(
+		'watchlistraw' => array(
+			'prefix' => 'wr',
+			'description' => 'DEPRECATED version of list=rawwatchlist, do not use',
+			'deprecated' => true,
+			'hasQueryElement' => false
+		),
+		'rawwatchlist' => array(
+			'prefix' => 'rw',
+			'description' => "Get all pages on the logged in user's watchlist",
+			'deprecated' => false,
+			'hasQueryElement' => true
+		)
+	);
+
 	public function __construct( $query, $moduleName ) {
-		parent::__construct( $query, $moduleName, 'wr' );
+		$settings = self::$watchlistRawSettings[$moduleName];
+
+		$this->deprecated = $settings['deprecated'];
+		$this->hasQueryElement = $settings['hasQueryElement'];
+		$this->description = $settings['description'];
+
+		parent::__construct( $query, $moduleName, $settings['prefix'] );
 	}
 
 	public function execute() {
@@ -98,6 +121,12 @@ class ApiQueryWatchlistRaw extends ApiQueryGeneratorBase {
 		$this->addOption( 'LIMIT', $params['limit'] + 1 );
 		$res = $this->select( __METHOD__ );
 
+		if ( $this->hasQueryElement ) {
+			$rootElement = array( 'query', $this->getModuleName() );
+		} else {
+			$rootElement = $this->getModuleName();
+		}
+
 		$titles = array();
 		$count = 0;
 		foreach ( $res as $row ) {
@@ -115,7 +144,7 @@ class ApiQueryWatchlistRaw extends ApiQueryGeneratorBase {
 				{
 					$vals['changed'] = wfTimestamp( TS_ISO_8601, $row->wl_notificationtimestamp );
 				}
-				$fit = $this->getResult()->addValue( $this->getModuleName(), null, $vals );
+				$fit = $this->getResult()->addValue( $rootElement, null, $vals );
 				if ( !$fit ) {
 					$this->setContinueEnumParameter( 'continue', $row->wl_namespace . '|' . $row->wl_title );
 					break;
@@ -125,7 +154,7 @@ class ApiQueryWatchlistRaw extends ApiQueryGeneratorBase {
 			}
 		}
 		if ( is_null( $resultPageSet ) ) {
-			$this->getResult()->setIndexedTagName_internal( $this->getModuleName(), 'wr' );
+			$this->getResult()->setIndexedTagName_internal( $rootElement, $this->getModulePrefix() );
 		} else {
 			$resultPageSet->populateFromTitles( $titles );
 		}
@@ -206,7 +235,7 @@ class ApiQueryWatchlistRaw extends ApiQueryGeneratorBase {
 	}
 
 	public function getDescription() {
-		return "Get all pages on the logged in user's watchlist";
+		return $this->description;
 	}
 
 	public function getPossibleErrors() {
@@ -220,12 +249,16 @@ class ApiQueryWatchlistRaw extends ApiQueryGeneratorBase {
 
 	public function getExamples() {
 		return array(
-			'api.php?action=query&list=watchlistraw',
-			'api.php?action=query&generator=watchlistraw&gwrshow=changed&prop=revisions',
+			"api.php?action=query&list={$this->getModuleName()}",
+			"api.php?action=query&generator={$this->getModuleName()}&g{$this->getModulePrefix()}show=changed&prop=revisions"
 		);
 	}
 
 	public function getVersion() {
 		return __CLASS__ . ': $Id$';
+	}
+
+	public function isDeprecated() {
+		return $this->deprecated;
 	}
 }
