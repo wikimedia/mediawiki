@@ -50,7 +50,7 @@ class ApiQueryUserInfo extends ApiQueryBase {
 	}
 
 	protected function getCurrentUserInfo() {
-		global $wgRequest, $wgHiddenPrefs;
+		global $wgHiddenPrefs;
 		$user = $this->getUser();
 		$result = $this->getResult();
 		$vals = array();
@@ -136,7 +136,7 @@ class ApiQueryUserInfo extends ApiQueryBase {
 		}
 
 		if ( isset( $this->prop['acceptlang'] ) ) {
-			$langs = $wgRequest->getAcceptLang();
+			$langs = $this->getRequest()->getAcceptLang();
 			$acceptLang = array();
 			foreach ( $langs as $lang => $val ) {
 				$r = array( 'q' => $val );
