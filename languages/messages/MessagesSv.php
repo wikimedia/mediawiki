@@ -3771,6 +3771,8 @@ Du bör ha fått [{{SERVER}}{{SCRIPTPATH}}/COPYING en kopia av GNU General Publi
 'version-software' => 'Installerad programvara',
 'version-software-product' => 'Produkt',
 'version-software-version' => 'Version',
+'version-entrypoints-header-entrypoint' => 'Ingångspunkt',
+'version-entrypoints-header-url' => 'URL',
 
 # Special:FilePath
 'filepath' => 'Sökväg till fil',

@@ -754,6 +754,7 @@ Nijedan e-mail neće biti poslan za bilo koju uslugu od slijedećih.',
 'invalidemailaddress' => 'Ova e-mail adresa ne može biti prihvaćena jer je u neodgovarajućem obliku.
 Molimo vas da unesete ispravnu adresu ili ostavite prazno polje.',
 'cannotchangeemail' => 'Na ovom wikiju ne možete promijeniti e-mail adresu računa.',
+'emaildisabled' => 'Ova web-stranica ne može da šalje e-poruke.',
 'accountcreated' => 'Korisnički račun je napravljen',
 'accountcreatedtext' => 'Korisnički račun za $1 je napravljen.',
 'createaccount-title' => 'Pravljenje korisničkog računa za {{SITENAME}}',
@@ -2744,7 +2745,7 @@ stranica za razgovor nije mogla biti premještena jer takva već postoji na novo
 Odredišna stranica "[[:$1]]" već postoji.
 Da li je želite obrisati kako bi ste mogli izvršiti premještanje?',
 'delete_and_move_confirm' => 'Da, obriši stranicu',
-'delete_and_move_reason' => 'Obrisano da bi se napravio prostor za premještanje',
+'delete_and_move_reason' => 'Obrisano da bi se napravio prostor za premještanje iz "[[$1]]"',
 'selfmove' => 'Izvorni i ciljani naziv su isti; strana ne može da se premjesti preko same sebe.',
 'immobile-source-namespace' => 'Ne mogu premjestiti stranice u imenski prostor "$1"',
 'immobile-target-namespace' => 'Ne mogu se premjestiti stranice u imenski prostor "$1"',
@@ -3763,6 +3764,7 @@ Trebali biste dobiti [{{SERVER}}{{SCRIPTPATH}}/KOPIJU GNU opće javne licence] z
 'version-software' => 'Instalirani softver',
 'version-software-product' => 'Proizvod',
 'version-software-version' => 'Verzija',
+'version-entrypoints-header-url' => 'URL',
 
 # Special:FilePath
 'filepath' => 'Putanja datoteke',

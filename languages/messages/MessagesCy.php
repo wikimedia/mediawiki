@@ -1012,7 +1012,7 @@ Edrychwch ar y logiau er mwyn cael rhagor o wybodaeth.",
 # Suppression log
 'suppressionlog' => 'Lòg cuddio',
 'suppressionlogtext' => "Dyma restr y dileuon a'r blociau lle y cuddiwyd cynnwys rhag y gweinyddwyr.
-Gallwch weld rhestr y gwaharddiadau a'r blociau gweithredol ar y [[Special:BlockList|rhestr blociau IP]].",
+Gallwch weld rhestr y gwaharddiadau a'r blociau gweithredol ar y [[Special:BlockList|rhestr blociau]].",
 
 # History merging
 'mergehistory' => 'Cyfuno hanesion y tudalennau',
@@ -2385,8 +2385,8 @@ Rhowch reswm dros rwystro'r defnyddiwr (er enghraifft, dywedwch pa dudalen(au) a
 'ipb-confirm' => "Cadarnhau'r rhwystr",
 'badipaddress' => 'Cyfeiriad IP annilys.',
 'blockipsuccesssub' => 'Llwyddodd y rhwystr',
-'blockipsuccesstext' => 'Mae cyfeiriad IP [[Special:Contributions/$1|$1]] wedi cael ei flocio.<br />
-Gwelwch y [[Special:BlockList|rhestr flociau IP]] er mwyn arolygu blociau.',
+'blockipsuccesstext' => 'Mae [[Special:Contributions/$1|$1]] wedi cael ei flocio.<br />
+Gweler y [[Special:BlockList|rhestr blociau]] er mwyn arolygu blociau.',
 'ipb-blockingself' => "Rydych ar rwystro'ch hunan! A ydych yn siŵr eich bod chi am wneud hyn?",
 'ipb-confirmhideuser' => 'Rydych ar rwystro defnyddiwr sydd yn "guddiedig." Bydd hyn yn atal enw\'r defnyddiwr ym mhob rhestr a chofnod lòg. A ydych yn siŵr eich bod chi am wneud hyn?',
 'ipb-edit-dropdown' => "Golygu'r rhesymau dros flocio",
@@ -2439,7 +2439,9 @@ Dyma'r lòg rhwystro perthnasol:",
 Dyma'r lòg cuddio perthnasol:",
 'blocklogentry' => 'wedi rhwystro "[[$1]]" sy\'n dod i\'w ben ar $2 $3',
 'reblock-logentry' => "wedi newid y gosodiadau rhwystro sydd ar [[$1]] sy'n dod i'w ben am $2 $3",
-'blocklogtext' => "Dyma lòg o'r holl weithredoedd rhwystro a dadrwystro. Nid yw'r cyfeiriadau IP sydd wedi cael ei rwystro'n awtomatig ar y rhestr. Gweler y [[Special:BlockList|rhestr rhwystrau IP]] am restr y rhwystrau a'r gwaharddiadau sydd yn weithredol ar hyn o bryd.",
+'blocklogtext' => "Dyma lòg o'r holl weithredoedd rhwystro a dadrwystro. 
+Nid yw'r cyfeiriadau IP sydd wedi cael eu rhwystro'n awtomatig ar y rhestr. 
+Gallwch weld rhestr y rhwystrau a'r gwaharddiadau sydd yn weithredol ar hyn o bryd ar y [[Special:BlockList|rhestr rhwystrau]].",
 'unblocklogentry' => 'wedi dadrwystro $1',
 'block-log-flags-anononly' => 'defnyddwyr anhysbys yn unig',
 'block-log-flags-nocreate' => 'analluogwyd creu cyfrif',
@@ -3492,6 +3494,7 @@ Dylech fod wedi derbyn [{{SERVER}}{{SCRIPTPATH}}/COPYING gopi o GNU General Publ
 'version-software' => 'Meddalwedd gosodedig',
 'version-software-product' => 'Cynnyrch',
 'version-software-version' => 'Fersiwn',
+'version-entrypoints-header-url' => 'URL',
 
 # Special:FilePath
 'filepath' => 'Llwybr y ffeil',
@@ -3678,5 +3681,15 @@ Dangosir delweddau ar eu maint llawn, dechreuir ffeiliau o fathau eraill yn unio
 'api-error-unknownerror' => 'Gwall anhysbys: "$1".',
 'api-error-uploaddisabled' => 'Analluogwyd uwchlwytho ar y wici hwn.',
 'api-error-verification-error' => "Gallai'r ffeil hon fod wedi ei llygru, neu gall fod estyniad anghywir iddi.",
+
+# Durations
+'duration-seconds' => '$1 {{PLURAL:$1|eiliad}}',
+'duration-minutes' => '$1 {{PLURAL:$1|munud|munud|funud|munud|munud|munud}}',
+'duration-hours' => '$1 {{PLURAL:$1|awr}}',
+'duration-days' => '$1 {{PLURAL:$1|diwrnod|diwrnod|ddiwrnod|diwrnod|diwrnod|diwrnod}}',
+'duration-weeks' => '$1 {{PLURAL:$1|wythnos}}',
+'duration-years' => '$1 {{PLURAL:$1|mlynedd|mlynedd|flynedd|mlynedd|mlynedd|mlynedd}}',
+'duration-decades' => '$1 {{PLURAL:$1|degawd|degawd|ddegawd|degawd|degawd|degawd}}',
+'duration-centuries' => '$1 {{PLURAL:$1|canrif|canrif|ganrif|chanrif|chanrif|canrif}}',
 
 );

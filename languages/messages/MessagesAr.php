@@ -3272,9 +3272,9 @@ $1',
 
 # Video information, used by Language::formatTimePeriod() to format lengths in the above messages
 'video-dims' => '$1، $2×$3',
-'seconds-abbrev' => '$1ث',
-'minutes-abbrev' => '$1د',
-'hours-abbrev' => '$1س',
+'seconds-abbrev' => '$1s',
+'minutes-abbrev' => '$1m',
+'hours-abbrev' => '$1h',
 'seconds' => '{{PLURAL:$1||ثانية واحدة|ثانيتين|$1 ثوانٍ|$1 ثانية}}',
 'minutes' => '{{PLURAL:$1||دقيقة واحدة|دقيقتين|$1 دقائق|$1 دقيقة}}',
 'hours' => '{{PLURAL:$1||ساعة واحدة|ساعتين|$1 ساعات|$1 ساعة}}',
@@ -3957,7 +3957,7 @@ $5
 'hebrew-calendar-m6-gen' => 'أدار',
 'hebrew-calendar-m6a-gen' => 'أدار الأول',
 'hebrew-calendar-m6b-gen' => 'أدار الثاني',
-'hebrew-calendar-m7-gen' => 'نيزان',
+'hebrew-calendar-m7-gen' => 'نيسان/أبريل',
 'hebrew-calendar-m8-gen' => 'أيار',
 'hebrew-calendar-m9-gen' => 'سيفان',
 'hebrew-calendar-m10-gen' => 'تموز',
@@ -3966,7 +3966,7 @@ $5
 
 # Signatures
 'signature' => '[[{{ns:user}}:$1|$2]] ([[{{ns:user_talk}}:$1|نقاش]])',
-'timezone-utc' => 'ت ع م',
+'timezone-utc' => 'بالتوقيت العالمي',
 
 # Core parser functions
 'unknown_extension_tag' => 'وسم امتداد غير معروف "$1"',
@@ -3989,7 +3989,7 @@ $5
 'version-hook-name' => 'اسم الخطاف',
 'version-hook-subscribedby' => 'يستخدم بواسطة',
 'version-version' => '(نسخة $1)',
-'version-svn-revision' => '(&رلم;r$2)',
+'version-svn-revision' => '(r$2)',
 'version-license' => 'الرخصة',
 'version-poweredby-credits' => "تدار هذه الويكي ب'''[//www.mediawiki.org/ ميدياويكي]''', حقوق النشر © 2001-$1 $2.",
 'version-poweredby-others' => 'آخرون',

@@ -3836,6 +3836,9 @@ hoặc [//www.gnu.org/licenses/old-licenses/gpl-2.0.html đọc nó trực tuy�
 'version-software' => 'Phần mềm được cài đặt',
 'version-software-product' => 'Phần mềm',
 'version-software-version' => 'Phiên bản',
+'version-entrypoints' => 'Các URL lối vào',
+'version-entrypoints-header-entrypoint' => 'Lối vào',
+'version-entrypoints-header-url' => 'URL',
 
 # Special:FilePath
 'filepath' => 'Đường dẫn tập tin',

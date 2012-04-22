@@ -3738,6 +3738,9 @@ MediaWiki este distribuit în speranța că va fi folositor, dar FĂRĂ VREO GAR
 'version-software' => 'Software instalat',
 'version-software-product' => 'Produs',
 'version-software-version' => 'Versiune',
+'version-entrypoints' => 'URL-uri pentru puncte de intrare',
+'version-entrypoints-header-entrypoint' => 'Punct de intrare',
+'version-entrypoints-header-url' => 'URL',
 
 # Special:FilePath
 'filepath' => 'Cale fișier',

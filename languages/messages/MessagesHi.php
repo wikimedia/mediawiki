@@ -36,6 +36,7 @@
  * @author Reedy
  * @author Sajeel.irkal
  * @author Sayak Sarkar
+ * @author Shantanoo
  * @author Shrish
  * @author Shyam
  * @author Shyam123.ckp
@@ -3195,9 +3196,9 @@ $1',
 'exif-focalplaneresolutionunit-2' => 'इंच',
 
 'exif-sensingmethod-1' => 'अव्यक्त',
-'exif-sensingmethod-2' => 'वन चीप कलर एरीया सेन्‍सर',
-'exif-sensingmethod-3' => 'टू चीप कलर एरीया सेन्‍सर',
-'exif-sensingmethod-4' => 'थ्री चीप कलर एरीया सेन्‍सर',
+'exif-sensingmethod-2' => 'वन चीप कलर एरीया सेन्सर',
+'exif-sensingmethod-3' => 'टू चीप कलर एरीया सेन्सर',
+'exif-sensingmethod-4' => 'थ्री चीप कलर एरीया सेन्सर',
 'exif-sensingmethod-5' => 'कलर सिक्वेण्शीयल एरीया सेंसर',
 'exif-sensingmethod-7' => 'ट्रायलिनीयर सेंसर',
 'exif-sensingmethod-8' => 'कलर सिक्वेंशीयल लिनीयर सेन्‍सर',

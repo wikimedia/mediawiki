@@ -1088,8 +1088,8 @@ Si us plau, verifica els registres.",
 
 # Suppression log
 'suppressionlog' => 'Registre de supressió',
-'suppressionlogtext' => 'A continuació es mostra una llista de les supressions i blocs que impliquen contingut ocult a administradors.
-Veure la [[Special:BlockList|List]] per a la llista de prohibicions actualment operatives i blocs.',
+'suppressionlogtext' => 'A continuació es mostra una llista de les supressions i blocs que impliquen contingut ocult per administradors.
+Veure la [[Special:BlockList|llista de bloqueigs]] per a la llista de prohibicions actualment operatives i bloqueigs.',
 
 # History merging
 'mergehistory' => 'Fusiona els historials de les pàgines',
@@ -2449,8 +2449,8 @@ quines pàgines en concret estan sent vandalitzades).",
 'ipb-confirm' => 'Confirma el blocatge',
 'badipaddress' => "L'adreça IP no té el format correcte.",
 'blockipsuccesssub' => "S'ha blocat amb èxit",
-'blockipsuccesstext' => "L'usuari «[[Special:Contributions/$1|$1]]» ha estat blocat.
-<br />Vegeu la [[Special:BlockList|llista d'IP blocades]] per revisar els bloquejos.",
+'blockipsuccesstext' => "[[Special:Contributions/$1|$1]] ha estat {{GENDER:$1|bloquejat|bloquejada|bloquejat/da}}.<br />
+Vegeu la [[Special:BlockList|llista d'IP blocades]] per revisar els bloqueigs.",
 'ipb-blockingself' => 'Esteu a punt de blocar-vos a vós mateix! Esteu segurs de voler-ho fer?',
 'ipb-confirmhideuser' => "Esteu a punt de bloquejar un usuari que està marcat amb l'opció «amaga l'usuari». Això suprimirà el seu nom a totes les llistes i registres. Esteu segurs de voler-ho fer?",
 'ipb-edit-dropdown' => 'Edita les raons per a blocar',
@@ -2504,7 +2504,7 @@ Per més detalls, a sota es mostra el registre de bloquejos:',
 Per més detalls, a sota es mostra el registre de supressions:',
 'blocklogentry' => "ha blocat l'{{GENDER:$1|usuari|usuària}} [[$1]] per un període de: $2 $3",
 'reblock-logentry' => 'canviades les opcions del blocatge a [[$1]] amb caducitat a $2, $3',
-'blocklogtext' => "Això és una relació de accions de bloqueig i desbloqueig. Les adreces IP bloquejades automàticament no apareixen. Vegeu la [[Special:BlockList|llista d'usuaris actualment bloquejats]].",
+'blocklogtext' => 'Això és una relació de accions de bloqueig i desbloqueig. Les adreces IP bloquejades automàticament no apareixen. Vegeu la [[Special:BlockList|llista de bloqueigs]] per veure una llista dels actuals bloqueigs operatius.',
 'unblocklogentry' => 'ha desblocat $1',
 'block-log-flags-anononly' => 'només els usuaris anònims',
 'block-log-flags-nocreate' => "s'ha desactivat la creació de comptes",

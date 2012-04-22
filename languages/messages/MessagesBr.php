@@ -3629,6 +3629,9 @@ Sañset oc'h bezañ resevet [{{SERVER}}{{SCRIPTPATH}}/COPYING un eilskrid eus ar
 'version-software' => 'Meziant staliet',
 'version-software-product' => 'Produ',
 'version-software-version' => 'Stumm',
+'version-entrypoints' => 'URLoù ar poent mont e-barzh',
+'version-entrypoints-header-entrypoint' => 'Poent mont e-barzh',
+'version-entrypoints-header-url' => 'URL',
 
 # Special:FilePath
 'filepath' => 'Hent moned ur restr',

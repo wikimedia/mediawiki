@@ -1036,7 +1036,7 @@ Prošu přepruwuj protokole.',
 # Suppression log
 'suppressionlog' => 'Protokol potłóčenjow',
 'suppressionlogtext' => 'Deleka je lisćina wušmórnjenjow a zablokowanjow, inkluziwnje wobsaha schowaneho wot administratorow.
-Hlej [[Special:BlockList|Lisćina zablokowanych IP-adresow]] za lisćinu tuchwilnych zablokowanjow.',
+Hlej [[Special:BlockList|Lisćinu blokowanjow]] za lisćinu tuchwilnych zablokowanjow.',
 
 # History merging
 'mergehistory' => 'Stawizny stronow zjednoćić',
@@ -2401,8 +2401,8 @@ Najnowši zapisk w protokolu blokowanjow so deleka jako referenca podawa:',
 'ipb-confirm' => 'Blokowanje wobkrućić',
 'badipaddress' => 'Njepłaćiwa IP-adresa',
 'blockipsuccesssub' => 'Zablokowanje wuspěšne',
-'blockipsuccesstext' => '[[Special:Contributions/$1|$1]] bu zablokowany.
-<br />Hlej [[Special:BlockList|lisćinu blokowanjow IP]], zo by zablokowanjow pruwował.',
+'blockipsuccesstext' => '[[Special:Contributions/$1|$1]] bu {{GENDER:$1|zablokowany|zablokowana}}.<br />
+Hlej [[Special:BlockList|lisćinu blokowanjow]], zo by zablokowanjow pruwował.',
 'ipb-blockingself' => 'Chceš samoho blokować! Chceš to woprawdźe činić?',
 'ipb-confirmhideuser' => 'Chceš runje wužiwarja z nastajenjom "wužiwarja schować" blokować. To k tomu dowjedźe, zo mjeno wužiwarja so we wšch lisćinach a protokolowych zapiskach potłóči. Chceš to woprawdźe činić?',
 'ipb-edit-dropdown' => 'přičiny zablokowanjow wobdźěłać',
@@ -2452,7 +2452,7 @@ Najnowši zapisk w protokolu blokowanjow so deleka jako referenca podawa:',
 'blocklog-showsuppresslog' => 'Tutón wužiwar bu prjedy zablokowany a schowany. Protokol potłóčenjow  so deleka jako referenca podawa:',
 'blocklogentry' => 'je wužiwarja [[$1]] zablokował z časom spadnjenja $2 $3',
 'reblock-logentry' => 'změni blokowanske nastajenja za [[$1]] z časom spadnjenja $2 $3',
-'blocklogtext' => 'To je protokol blokowanja a wotblokowanja wužiwarjow. Awtomatisce blokowane IP-adresy so njenalistuja. Hlej [[Special:BlockList|lisćinu zablokowanych IP-adresow]] za lisćinu tuchwilnych wuhnaćow a zablokowanjow.',
+'blocklogtext' => 'To je protokol blokowanja a wotblokowanja wužiwarjow. Awtomatisce blokowane IP-adresy so njenalistuja. Hlej [[Special:BlockList|lisćinu blokowanjow]] za lisćinu tuchwilnych wuhnaćow a zablokowanjow.',
 'unblocklogentry' => 'zablokowanje wužiwarja $1 bu zběhnjene',
 'block-log-flags-anononly' => 'jenož anonymnych',
 'block-log-flags-nocreate' => 'wutworjenje wužiwarskich kontow znjemóžnjene',
@@ -3500,6 +3500,9 @@ Ty měł [{{SERVER}}{{SCRIPTPATH}}/COPYING kopiju licency GNU General Public Lic
 'version-software' => 'Instalowana software',
 'version-software-product' => 'Produkt',
 'version-software-version' => 'Wersija',
+'version-entrypoints' => 'URL zastupneho dypka',
+'version-entrypoints-header-entrypoint' => 'Zastupny dypk',
+'version-entrypoints-header-url' => 'URL',
 
 # Special:FilePath
 'filepath' => 'Datajowy puć',

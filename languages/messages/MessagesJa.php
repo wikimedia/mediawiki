@@ -363,7 +363,7 @@ $magicWords = array(
 $messages = array(
 # User preference toggles
 'tog-underline' => 'リンクの下線：',
-'tog-justify' => '段落を均等割り付けする',
+'tog-justify' => '段落に均等割り付けを設定',
 'tog-hideminor' => '最近の更新に細部の編集を表示しない',
 'tog-hidepatrolled' => '最近の更新に巡回済みの編集を表示しない',
 'tog-newpageshidepatrolled' => '新しいページの一覧に巡回済みのページを表示しない',
@@ -373,7 +373,7 @@ $messages = array(
 'tog-showtoolbar' => '編集用のツールバーを表示（JavaScriptが必要）',
 'tog-editondblclick' => 'ダブルクリックで編集（JavaScriptが必要）',
 'tog-editsection' => '[編集]リンクから節を編集できるようにする',
-'tog-editsectiononrightclick' => '節見出しの右クリックで節編集ができるようにする（JavaScriptが必要）',
+'tog-editsectiononrightclick' => '節見出しの右クリックで節を編集できるようにする（JavaScriptが必要）',
 'tog-showtoc' => '目次を表示（ページに見出しが4つ以上ある場合）',
 'tog-rememberpassword' => 'このブラウザにログイン情報を記憶（最大 $1 {{PLURAL:$1|日間}}）',
 'tog-watchcreations' => '自分が作成したページをウォッチリストに追加',
@@ -520,7 +520,7 @@ $messages = array(
 'vector-action-protect' => '保護',
 'vector-action-undelete' => '復帰',
 'vector-action-unprotect' => '保護再設定',
-'vector-simplesearch-preference' => '検索語の提案機能を拡張する（ベクター外装のみ）',
+'vector-simplesearch-preference' => '検索語の提案機能を拡張（ベクター外装のみ）',
 'vector-view-create' => '作成',
 'vector-view-edit' => '編集',
 'vector-view-history' => '履歴表示',
@@ -810,7 +810,7 @@ $2',
 'loginsuccess' => "'''{{SITENAME}}に「$1」としてログインしました。'''",
 'nosuchuser' => '「$1」という名前の利用者は見当たりません。
 利用者名では大文字と小文字を区別します。
-綴りが正しいことを確認するか、[[Special:UserLogin/signup|新たにアカウントを作成してください]]。',
+綴りが正しいことを確認するか、[[Special:UserLogin/signup|新たにアカウントを作成]]してください。',
 'nosuchusershort' => '「$1」という利用者は見当たりません。
 綴りが正しいことを再度確認してください。',
 'nouserspecified' => '利用者名を指定してください。',
@@ -824,12 +824,12 @@ $2',
 'password-login-forbidden' => 'この利用者名とパスワードの使用は禁止されています。',
 'mailmypassword' => '新しいパスワードをメールで送信',
 'passwordremindertitle' => '{{SITENAME}}の仮パスワード通知',
-'passwordremindertext' => '誰かが（おそらくご自身が、IPアドレス$1から）{{SITENAME}}（$4）のログイン用パスワードの再発行を申請しました。
-ユーザ「$2」の仮パスワードが作成され「$3」に設定されました。
-もしご自身でこの申請をしたのであれば、ログインして新しいパスワードを決めてください。
+'passwordremindertext' => '誰か（おそらくあなた）がIPアドレス$1から{{SITENAME}}（$4）のログイン用パスワードの再発行を申請しました。
+利用者「$2」の仮パスワードが作成され「$3」に設定されました。
+もしあなたがこの申請をしたのであれば、ログインして新しいパスワードを決めてください。
 この仮パスワードは {{PLURAL:$5|$5 日間}}で有効期限が切れます。
 
-この申請をしたのが他人である場合、あるいはパスワードを思い出してパスワード変更が不要になった場合は、
+この申請をしたのが他人の場合、あるいはパスワードを思い出してパスワード変更が不要になった場合は、
 このメッセージを無視して、引き続き以前のパスワードを使用し続けることができます。',
 'noemail' => '利用者「$1」のメールアドレスは登録されていません。',
 'noemailcreate' => '有効なメール アドレスを入力する必要があります',
@@ -837,7 +837,7 @@ $2',
 メールを受け取ったら、再度ログインしてください。',
 'blocked-mailpassword' => '使用しているIPアドレスからの編集はブロックされており、不正利用防止のため、パスワードの再発行機能は使用できません。',
 'eauthentsent' => '指定されたメールアドレスにアドレス確認のためのメールを送信しました。
-その他のメールがこのアカウント宛に送信される前に、メールの指示に従って、このアカウントが本当に自身のものであるか確認してください。',
+その他のメールがこのアカウント宛に送信される前に、メールの指示に従って、このアカウントが本当にあなたのものか確認してください。',
 'throttled-mailpassword' => '新しいパスワードは過去 {{PLURAL:$1|$1 時間}}に送信済みです。
 悪用防止のため、パスワードの再発行は {{PLURAL:$1|$1 時間}}に 1 回のみです。',
 'mailerror' => 'メールの送信中にエラーが発生しました：$1',
@@ -845,9 +845,9 @@ $2',
 そのため、現在この IP アドレスではアカウントをこれ以上作成できません。',
 'emailauthenticated' => 'メールアドレスは$2 $3に認証されています。',
 'emailnotauthenticated' => 'メールアドレスが認証されていません。
-確認されるまで以下のいかなるメールも送られません。',
+認証されるまで、以下のいかなる機能でもメールは送信されません。',
 'noemailprefs' => 'これらの機能を有効にするためには個人設定でメールアドレスを登録する必要があります。',
-'emailconfirmlink' => 'メールアドレスを確認する',
+'emailconfirmlink' => 'あなたのメールアドレスを確認',
 'invalidemailaddress' => '入力されたメールアドレスが正しい形式に従っていないため、受け付けられません。
 正しい形式で入力し直すか、メールアドレス欄を空にしておいてください。',
 'cannotchangeemail' => 'このウィキではアカウントのメールアドレスを変更できません。',
@@ -900,7 +900,7 @@ $2',
 'passwordreset-username' => '利用者名：',
 'passwordreset-domain' => 'ドメイン：',
 'passwordreset-capture' => '送信されるメールの内容を表示しますか？',
-'passwordreset-capture-help' => 'このボックスをチェックすると、利用者に送られるメールの内容（一時的なパスワードを含む）をあなたも見ることができます。',
+'passwordreset-capture-help' => 'このボックスにチェックを入れると、利用者に送信されるメールの内容（一時的なパスワードを含む）をあなたも見ることができます。',
 'passwordreset-email' => 'メールアドレス：',
 'passwordreset-emailtitle' => '{{SITENAME}}上のアカウントの詳細',
 'passwordreset-emailtext-ip' => 'どなたか（おそらくあなた、IP アドレス $1）が {{SITENAME}} ($4) での
@@ -915,15 +915,15 @@ $2
 覚えていてそれを変更したくない場合には、このメッセージを無視して以前のパスワードを
 使用し続けることができます。',
 'passwordreset-emailtext-user' => '{{SITENAME}} の利用者 $1 があなたの {{SITENAME}} ($4)
-におけるアカウントの詳細情報を送信するよう申請されました。
+におけるアカウントの詳細情報を送信するよう申請しました。
 下記の利用者{{PLURAL:$3|アカウント}}がこのメールアドレスと紐付けられています。
 
 $2
 
-{{PLURAL:$3|この一時的なパスワード}}は{{PLURAL:$5|$5日}}で有効期限が切れます。
-あなたはログインし、新しいパスワードをすぐに選ぶ必要があります。
-この申請が他のだれかによるものであるか、あるいはあなたが自身の元々のパスワードを
-覚えており、変えたくない場合には、このメッセージを無視して
+{{PLURAL:$3|この一時的なパスワード|これらの一時的なパスワード}}は{{PLURAL:$5|$5日}}で有効期限が切れます。
+あなたは、ログインして新しいパスワードをすぐに選ぶ必要があります。
+この申請が他の誰かによるものの場合、あるいはあなたが自身の元のパスワードを
+覚えていて、変更したくない場合は、このメッセージを無視して
 以前のパスワードを使い続けることができます。',
 'passwordreset-emailelement' => '利用者名：$1
 仮パスワード：$2',
@@ -1032,7 +1032,7 @@ $1または他の[[{{MediaWiki:Grouppage-sysop}}|管理者]]にこの件につ�
 'anontalkpagetext' => "----''このページはアカウントをまだ作成していないか使用していない匿名利用者のための議論ページです。
 匿名利用者を識別するために、利用者名の代わりにIPアドレスが使用されています。
 IP アドレスは複数の利用者で共有されている場合があります。
-もし、自身が匿名利用者であり、自分に関係のないコメントが寄せられている考えられる場合は、[[Special:UserLogin/signup|アカウントを作成する]]か[[Special:UserLogin|ログインして]]他の匿名利用者と間違えられないようにしてください。''",
+もし、あなたが匿名利用者であり、自分に関係のないコメントが寄せられている考えられる場合は、[[Special:UserLogin/signup|アカウントを作成する]]か[[Special:UserLogin|ログインして]]他の匿名利用者と間違えられないようにしてください。''",
 'noarticletext' => '現在このページには内容がありません。
 他のページ内で[[Special:Search/{{PAGENAME}}|このページ名を検索する]]か、
 <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} 関連する記録を検索]するか、
@@ -1066,10 +1066,10 @@ IP アドレスは複数の利用者で共有されている場合がありま�
 'previewnote' => "'''これはプレビューです。'''
 変更箇所はまだ保存されていません！　[[#editform|→ 編集を続行]]",
 'previewconflict' => 'このプレビューは、上の文章編集エリアの文章を保存した場合にどう見えるようになるかを示すものです。',
-'session_fail_preview' => "'''申し訳ありません！セッションが切断されたため編集を処理できませんでした。'''
-もう一度やりなおしてください。
+'session_fail_preview' => "'''申し訳ありません！セッションデータが消失したため編集を処理できませんでした。'''
+もう一度やり直してください。
 それでも失敗する場合、[[Special:UserLogout|ログアウト]]してからログインし直してください。",
-'session_fail_preview_html' => "'''すみません！セッション データが消失したため編集を処理できませんでした。'''
+'session_fail_preview_html' => "'''申し訳ありません！セッション データが消失したため編集を処理できませんでした。'''
 
 ''{{SITENAME}}では生のHTMLが有効であり、JavaScriptでの攻撃を予防するためにプレビューを表示していません。''
 
@@ -1098,11 +1098,11 @@ IP アドレスは複数の利用者で共有されている場合がありま�
 'yourdiff' => '差分',
 'copyrightwarning' => "{{SITENAME}}への投稿は、すべて$2（詳細は$1を参照）のもとで公開したと見なされることにご注意ください。
 あなたが投稿したものを、他人がよって遠慮なく編集し、それを自由に配布するのを望まない場合は、ここには投稿しないでください。<br />
-また、投稿するのは、ご自身が書いたものか、パブリック ドメインまたはそれに類するフリーな資料からの複製であることを約束してください。
+また、投稿するのは、あなたが書いたものか、パブリック ドメインまたはそれに類するフリーな資料からの複製であることを約束してください。
 '''著作権保護されている作品を、許諾なしに投稿しないでください！'''",
 'copyrightwarning2' => "{{SITENAME}}へのすべての投稿は、他の利用者が編集、変更、除去する可能性があります。
 あなたの投稿を、他人が遠慮なく編集するのを望まない場合は、ここには投稿しないでください。<br />
-また、あなたが投稿するのは、ご自身が書いたものか、パブリック ドメインまたはそれに類するフリーな資料からの複製であることを約束してください（詳細は$1を参照）。
+また、投稿するのは、あなたが書いたものか、パブリック ドメインまたはそれに類するフリーな資料からの複製であることを約束してください（詳細は$1を参照）。
 '''著作権保護されている作品を、許諾なしに投稿してはいけません！'''",
 'longpageerror' => "'''エラー：投稿された文章は {{PLURAL:$1|$1 KB}} の長さがあります。これは投稿できる最大の長さ {{PLURAL:$2|$2 KB}} を超えています。'''
 この編集は保存できません。",
@@ -1397,7 +1397,7 @@ $1",
 'search-mwsuggest-disabled' => '検索候補を表示しない',
 'search-relatedarticle' => '関連',
 'mwsuggest-disable' => 'AJAXによる検索候補の提示を無効にする',
-'searcheverything-enable' => '全名前空間を検索する',
+'searcheverything-enable' => 'すべての名前空間を検索',
 'searchrelated' => '関連',
 'searchall' => 'すべて',
 'showingresults' => "'''$2'''件目からの{{PLURAL:$1|'''$1'''件の結果}}を表示しています。",
@@ -1416,8 +1416,8 @@ $1",
 'powersearch-togglenone' => 'すべて外す',
 'search-external' => '外部検索',
 'searchdisabled' => '{{SITENAME}}の検索機能は無効化されています。
-さしあたってはGoogleなどの検索が利用できます。
-ただし外部の検索エンジンの索引にある{{SITENAME}}の情報は古い場合があります。',
+さしあたってはGoogleなどで検索できます。
+ただし外部の検索エンジンの索引にある{{SITENAME}}のコンテンツは古い場合があります。',
 
 # Quickbar
 'qbsettings' => 'クイックバー',
@@ -1470,7 +1470,7 @@ $1",
 'recentchangesdays-max' => '（最大 $1 {{PLURAL:$1|日間}}）',
 'recentchangescount' => '既定で表示する件数：',
 'prefs-help-recentchangescount' => 'この設定は最近の更新、ページの履歴、および記録に適用されます。',
-'prefs-help-watchlist-token' => 'この欄に秘密鍵を入力すると、自身のウォッチリストのRSSフィードが生成されます。
+'prefs-help-watchlist-token' => 'この欄に秘密鍵を入力すると、あなたのウォッチリストのRSSフィードが生成されます。
 この欄に入力されている鍵を知っている人は誰でもこのウォッチリストを閲覧できるようになるため、他人に分からない値を選んでください。
 乱数によって生成された次の値を使うこともできます：$1',
 'savedprefs' => '個人設定を保存しました。',
@@ -1499,7 +1499,7 @@ $1",
 'prefs-files' => 'ファイル',
 'prefs-custom-css' => 'カスタムCSS',
 'prefs-custom-js' => 'カスタムJS',
-'prefs-common-css-js' => 'すべての外装に共通のCSSとJavaScript：',
+'prefs-common-css-js' => '全外装に共通のCSSとJavaScript：',
 'prefs-reset-intro' => 'このページを使用すると、自分の個人設定をこのサイトの初期設定に戻せます。
 この操作は取り消せません。',
 'prefs-emailconfirm-label' => 'メール確認：',
@@ -1514,7 +1514,7 @@ $1",
 'yourvariant' => 'コンテンツ言語変種：',
 'prefs-help-variant' => 'あなたがこのウィキのコンテンツに表示に使いたい言語変種または正書法',
 'yournick' => '新しい署名：',
-'prefs-help-signature' => 'トークページ上での発言には「<nowiki>~~~~</nowiki>」と付けて署名するべきです。これは自分の署名に時刻印を付加したものに変換されます。',
+'prefs-help-signature' => 'トークページ上での発言には「<nowiki>~~~~</nowiki>」と付けて署名すべきです。これは自分の署名に時刻印を付けたものに変換されます。',
 'badsig' => '署名用のソースが正しくありません。
 HTMLタグを見直してください。',
 'badsiglength' => '署名が長すぎます。$1文字以下でなければなりません。',
@@ -2007,7 +2007,7 @@ URLが正しいものであり、ウェブサイトが稼働していること�
 'nolicense' => '選択なし',
 'license-nopreview' => '（プレビューはありません）',
 'upload_source_url' => '（有効かつ一般に公開されているURL）',
-'upload_source_file' => '（自身のコンピューター上のファイル）',
+'upload_source_file' => '（あなたのコンピューター上のファイル）',
 
 # Special:ListFiles
 'listfiles-summary' => 'この特別ページでは、アップロードされたすべてのファイルを表示します。
@@ -2336,12 +2336,12 @@ contenttype/subtypeの形式で指定してください（例：<tt>image/jpeg</
 'listgrouprights-members' => '（該当者一覧）',
 'listgrouprights-addgroup' => '{{PLURAL:$2|グループ}}を追加：$1',
 'listgrouprights-removegroup' => '{{PLURAL:$2|グループ}}を除去：$1',
-'listgrouprights-addgroup-all' => '全グループ追加可能',
-'listgrouprights-removegroup-all' => '全グループ除去可能',
-'listgrouprights-addgroup-self' => '自身のアカウントに{{PLURAL:$2|グループ}}を追加：$1',
-'listgrouprights-removegroup-self' => '自身のアカウントから{{PLURAL:$2|グループ}}を除去：$1',
-'listgrouprights-addgroup-self-all' => '自身のアカウントに全グループを追加可能',
-'listgrouprights-removegroup-self-all' => '自身のアカウントから全グループを除去可能',
+'listgrouprights-addgroup-all' => '全グループを追加可能',
+'listgrouprights-removegroup-all' => '全グループを除去可能',
+'listgrouprights-addgroup-self' => '自分のアカウントに{{PLURAL:$2|グループ}}を追加：$1',
+'listgrouprights-removegroup-self' => '自分のアカウントから{{PLURAL:$2|グループ}}を除去：$1',
+'listgrouprights-addgroup-self-all' => '自分のアカウントに全グループを追加可能',
+'listgrouprights-removegroup-self-all' => '自分のアカウントから全グループを除去可能',
 
 # E-mail user
 'mailnologin' => '送信アドレスがありません',
@@ -2586,8 +2586,8 @@ $2による最後の版へ変更されました。',
 'undeletepagetext' => '以下の{{PLURAL:$1|削除されたページ|削除されたページ群}}は、保存版に残っているため復元できます。
 保存版は定期的に消去される可能性があります。',
 'undelete-fieldset-title' => '削除された版の復元',
-'undeleteextrahelp' => "すべての版を復元する場合は、チェックボックスをどれも選択していない状態で'''''{{int:undeletebtn}}'''''をクリックしてください。
-特定の版を復帰する場合は、復帰する版のチェックボックスを選択した状態で'''''{{int:undeletebtn}}'''''をクリックしてください。",
+'undeleteextrahelp' => "すべての版を復元する場合は、どのボックスにもチェックを入れていない状態で'''''{{int:undeletebtn}}'''''をクリックしてください。
+特定の版を復帰する場合は、復帰する版のボックスにチェックを入れた状態で'''''{{int:undeletebtn}}'''''をクリックしてください。",
 'undeleterevisions' => '$1版が保存されています',
 'undeletehistory' => 'ページの復帰を行うと、すべての版が履歴に復帰します。
 削除されたあとに同じ名前で新しくページが作成されていた場合、復帰した版はそれに先行する履歴として現れます。',
@@ -2620,8 +2620,8 @@ $2による最後の版へ変更されました。',
 'undelete-search-prefix' => '表示を開始するページ名：',
 'undelete-search-submit' => '検索',
 'undelete-no-results' => '削除の保存版に、一致するページが見つかりませんでした。',
-'undelete-filename-mismatch' => '時刻印$1をもつファイルの版を復帰できません：ファイル名が一致しません',
-'undelete-bad-store-key' => '時刻印$1をもつファイルの版を復帰できません：削除前にファイルが失われています。',
+'undelete-filename-mismatch' => 'ファイルの時刻印$1の版を復帰できません：ファイル名が一致しません。',
+'undelete-bad-store-key' => 'ファイルの時刻印$1の版を復帰できません：削除前にファイルが失われています。',
 'undelete-cleanup-error' => '未使用の保存版のファイル「$1」の削除中にエラーが発生しました。',
 'undelete-missing-filearchive' => 'データベースに存在しないため、ID$1を持つファイルの保存版を復元できません。
 既に復帰されている可能性があります。',
@@ -2636,9 +2636,9 @@ $1',
 # Namespace form on various pages
 'namespace' => '名前空間：',
 'invert' => '選択したものを除く',
-'tooltip-invert' => '選択した名前空間（および、チェックされている場合、関連づけられた名前空間）のページの変更を非表示にするには、このチェックボックスをオンにします。',
+'tooltip-invert' => '選択した名前空間（チェックされている場合は、関連付けられた名前空間も）のページの変更を非表示にするには、このボックスにチェックを入れます。',
 'namespace_association' => '対応付けられた名前空間',
-'tooltip-namespace_association' => '選択した名前空間に関連付けられている、議論ページまたは対象の名前空間も含めるには、このボックスをチェック',
+'tooltip-namespace_association' => '選択した名前空間に関連付けられているトークページまたは対象の名前空間も含めるには、このボックスにチェックを入れる',
 'blanknamespace' => '（標準）',
 
 # Contributions
@@ -2721,21 +2721,21 @@ $1',
 'ipbotherreason' => '他の、または追加の理由：',
 'ipbhidename' => '利用者名を編集履歴や各種一覧から秘匿する',
 'ipbwatchuser' => 'この利用者の利用者ページとトークページをウォッチする',
-'ipb-disableusertalk' => 'この利用者がブロック中に自身のトークページを編集することを不許可',
+'ipb-disableusertalk' => 'この利用者がブロック中に自分のトークページを編集するのを不許可',
 'ipb-change-block' => 'これらの設定で、利用者を再びブロック',
 'ipb-confirm' => 'ブロックの確認',
 'badipaddress' => '不正なIPアドレス',
 'blockipsuccesssub' => 'ブロックしました',
 'blockipsuccesstext' => '[[Special:Contributions/$1|$1]]をブロックしました。<br />
 [[Special:BlockList|ブロックの一覧]]を参照してください。',
-'ipb-blockingself' => '自分自身をブロックしようとしています。本当に実行しますか。',
-'ipb-confirmhideuser' => '利用者名の秘匿を有効にしてブロックしようとしています。実行すると、すべてのリストやログにおいて利用者名が非表示になります。本当にこれでよろしいですか。',
+'ipb-blockingself' => '自分自身をブロックしようとしています。本当に実行しますか?',
+'ipb-confirmhideuser' => '秘匿が有効になっている利用者をブロックしようとしています。実行すると、すべてのリストやログでこの利用者名が表示されません。本当に実行しますか?',
 'ipb-edit-dropdown' => 'ブロック理由を編集する',
 'ipb-unblock-addr' => '$1のブロックを解除',
 'ipb-unblock' => '利用者またはIPアドレスのブロックを解除する',
 'ipb-blocklist' => '現在有効なブロックを表示',
 'ipb-blocklist-contribs' => '$1の投稿の一覧',
-'unblockip' => 'ブロックを解除する',
+'unblockip' => 'ブロックを解除',
 'unblockiptext' => '以下のフォームで利用者またはIPアドレスの投稿ブロックを解除できます。',
 'ipusubmit' => 'この投稿ブロックを解除',
 'unblocked' => '[[User:$1|$1]]のブロックを解除しました',
@@ -2747,8 +2747,8 @@ $1',
 'blocklist-userblocks' => 'アカウントのブロックを非表示',
 'blocklist-tempblocks' => '有期ブロックを非表示',
 'blocklist-addressblocks' => '単一IPのブロックを非表示',
-'blocklist-rangeblocks' => 'レンジブロックを非表示',
-'blocklist-timestamp' => 'タイムスタンプ',
+'blocklist-rangeblocks' => '範囲ブロックを非表示',
+'blocklist-timestamp' => '時刻印',
 'blocklist-target' => '対象',
 'blocklist-expiry' => '期限',
 'blocklist-by' => 'ブロックした管理者',
@@ -2763,7 +2763,7 @@ $1',
 'noautoblockblock' => '自動ブロック無効',
 'createaccountblock' => 'アカウント作成のブロック',
 'emailblock' => 'メール送信のブロック',
-'blocklist-nousertalk' => '自身のトークページ編集禁止',
+'blocklist-nousertalk' => '自分のトークページの編集禁止',
 'ipblocklist-empty' => 'ブロック一覧は空です。',
 'ipblocklist-no-results' => '指定されたIPアドレスまたは利用者名はブロックされていません。',
 'blocklink' => 'ブロック',
@@ -2788,7 +2788,7 @@ $1のブロックの理由は「$2」です。',
 'block-log-flags-nocreate' => 'アカウント作成のブロック',
 'block-log-flags-noautoblock' => '自動ブロック無効',
 'block-log-flags-noemail' => 'メール送信のブロック',
-'block-log-flags-nousertalk' => '自身のトークページの編集禁止',
+'block-log-flags-nousertalk' => '自分のトークページの編集禁止',
 'block-log-flags-angry-autoblock' => '拡張自動ブロック有効',
 'block-log-flags-hiddenname' => '利用者名の秘匿',
 'range_block_disabled' => '範囲ブロックを作成する管理者機能は無効化されています。',
@@ -2817,21 +2817,21 @@ $1のブロックの理由は「$2」です。',
 'cant-block-while-blocked' => 'ブロック中は、他の利用者をブロックできません。',
 'cant-see-hidden-user' => '投稿ブロックしようとした利用者は、既にブロックされ隠されています。
 hideuser権限を持っていないため、この利用者のブロックを閲覧または編集できません。',
-'ipbblocked' => '自身がブロックされているため、他の利用者のブロックやブロック解除をすることはできません',
-'ipbnounblockself' => '自分自身に対するブロックを解除することはできません',
+'ipbblocked' => '自分をブロックしているため、他の利用者のブロックやブロック解除はできません',
+'ipbnounblockself' => '自分自身のブロックは解除できません',
 
 # Developer tools
-'lockdb' => 'データベースのロック',
+'lockdb' => 'データベースをロック',
 'unlockdb' => 'データベースのロック解除',
 'lockdbtext' => 'データベースをロックするとすべての利用者はページの編集や、個人設定の変更、ウォッチリストの編集、その他データベースでの変更を要求する作業ができなくなります。
 本当にデータベースをロックしていいかどうか確認し、メンテナンスが終了したらロックを解除してください。',
 'unlockdbtext' => 'データベースのロックを解除すると、すべての利用者がページの編集や、個人設定の変更、ウォッチリストの編集、その他データベースでの変更を要求する作業ができるようになります。
 本当にデータベースのロックを解除していいかどうか確認してください。',
 'lockconfirm' => '本当にデータベースをロックする。',
-'unlockconfirm' => '本当にデータベースのロックを解除する。',
+'unlockconfirm' => '本当にデータベースのロックを解除します。',
 'lockbtn' => 'データベースをロック',
 'unlockbtn' => 'データベースのロックを解除',
-'locknoconfirm' => '確認ボックスがチェックされていません。',
+'locknoconfirm' => '確認ボックスにチェックが入っていません。',
 'lockdbsuccesssub' => 'データベースのロックに成功しました',
 'unlockdbsuccesssub' => 'データベースのロックを除去しました',
 'lockdbsuccesstext' => 'データベースはロックされました。<br />
@@ -3015,7 +3015,7 @@ MediaWiki 全般のローカライズ（地域化）に貢献したい場合は�
 'importnosources' => 'ウィキ間移動の取り込み元が定義されていないため、履歴の直接アップロードは無効になっています。',
 'importnofile' => 'ファイルがアップロードされませんでした',
 'importuploaderrorsize' => '取り込みファイルのアップロードに失敗しました。
-ファイルは、アップロード可能なサイズを超えています。',
+ファイルが、アップロードできるサイズを超えています。',
 'importuploaderrorpartial' => '取り込みファイルのアップロードに失敗しました。
 ファイルの一部のみアップロードされました。',
 'importuploaderrortemp' => '取り込みファイルのアップロードに失敗しました。
@@ -3214,8 +3214,8 @@ MediaWiki 全般のローカライズ（地域化）に貢献したい場合は�
 'rcpatroldisabled' => '最近の更新の巡回は無効です',
 'rcpatroldisabledtext' => '最近の更新の巡回機能は現在無効になっています。',
 'markedaspatrollederror' => '巡回済みにできません。',
-'markedaspatrollederrortext' => '巡回済みにするためにはどの版かを指定する必要があります。',
-'markedaspatrollederror-noautopatrol' => '自分自身による編集を巡回済みにする権限がありません。',
+'markedaspatrollederrortext' => '巡回済みにするためには、版を指定する必要があります。',
+'markedaspatrollederror-noautopatrol' => '自分の編集を巡回済みにする権限がありません。',
 
 # Patrol log
 'patrol-log-page' => '巡回記録',
@@ -3274,8 +3274,8 @@ $1',
 # Video information, used by Language::formatTimePeriod() to format lengths in the above messages
 'video-dims' => '$1、 $2 × $3',
 'seconds' => '{{PLURAL:$1|$1 秒}}',
-'minutes' => '{{PLURAL:$1|$1 分}}',
-'hours' => '{{PLURAL:$1|$1 時間}}',
+'minutes' => '{{PLURAL:$1|$1分}}',
+'hours' => '{{PLURAL:$1|$1時間}}',
 'days' => '{{PLURAL:$1|$1 日}}',
 'ago' => '$1前',
 
@@ -3904,20 +3904,20 @@ $5
 
 # Watchlist editor
 'watchlistedit-numitems' => 'ウォッチリストには、$1件のページ名が含まれています（トークページは除く）。',
-'watchlistedit-noitems' => 'ウォッチリストにはページ名が1つも含まれていません。',
+'watchlistedit-noitems' => 'ウォッチリストにはページ名が1つもありません。',
 'watchlistedit-normal-title' => 'ウォッチリストの編集',
 'watchlistedit-normal-legend' => 'ウォッチリストからページ名を除去',
-'watchlistedit-normal-explain' => 'ウォッチリストに入っているページ名が以下に表示されています。
-ページ名を除去するには、横にあるボックスにチェックを入れ、「{{int:watchlistedit-normal-submit}}」をクリックしてください。
-また、[[Special:EditWatchlist/raw|そのままの一覧で編集]]することもできます。',
-'watchlistedit-normal-submit' => 'ページの除去',
+'watchlistedit-normal-explain' => 'ウォッチリストに入っているページ名を以下に表示しています。
+ページ名を除去するには、隣のボックスにチェックを入れて「{{int:watchlistedit-normal-submit}}」をクリックしてください。
+また、[[Special:EditWatchlist/raw|ウォッチリストをそのまま編集]]も使用できます。',
+'watchlistedit-normal-submit' => 'ページを除去',
 'watchlistedit-normal-done' => 'ウォッチリストから $1 {{PLURAL:$1|件}}を削除しました：',
 'watchlistedit-raw-title' => 'ウォッチリストをそのまま編集',
 'watchlistedit-raw-legend' => 'ウォッチリストをそのまま編集',
-'watchlistedit-raw-explain' => 'ウォッチリストに含まれるページ名が以下に表示されており、この一覧から追加や除去できます。
+'watchlistedit-raw-explain' => 'ウォッチリストに含まれるページ名を以下に表示しています。この一覧で追加または除去ができます。
 1行に1ページ名です。
 完了したら、「{{int:Watchlistedit-raw-submit}}」をクリックしてください。
-[[Special:EditWatchlist|標準の編集ページ]]も利用できます。',
+[[Special:EditWatchlist|標準の編集ページ]]も使用できます。',
 'watchlistedit-raw-titles' => 'ページ名：',
 'watchlistedit-raw-submit' => 'ウォッチリストを更新',
 'watchlistedit-raw-done' => 'ウォッチリストを更新しました。',

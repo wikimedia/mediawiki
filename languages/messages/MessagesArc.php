@@ -926,10 +926,12 @@ $1',
 ܗܫܐ ܐܝܬܝܗܝ  ܨܘܝܒܐ ܠ [[$2]].',
 
 'brokenredirects' => 'ܨܘܝܒ̈ܐ ܬܒܝܪ̈ܐ',
+'brokenredirectstext' => 'ܨܘ̈ܝܒܐ ܗܠܝܢ ܡܛܝܢ ܠܕ̈ܦܐ ܕܠܝܬ:',
 'brokenredirects-edit' => 'ܫܚܠܦ',
 'brokenredirects-delete' => 'ܫܘܦ',
 
 'withoutinterwiki' => 'ܦܐܬܬ̈ܐ ܕܠܐ ܐܣܘܪ̈ܐ ܕܠܫܢ̈ܐ ܐܚܪ̈ܢܐ',
+'withoutinterwiki-summary' => 'ܕ̈ܦܐ ܗܠܝܢ ܠܐ ܡܛܝܢ ܠܨ̈ܚܚܐ ܕܠܫܢ̈ܐ ܐܚܪ̈ܢܐ.',
 'withoutinterwiki-legend' => 'ܫܪܘܝܐ',
 'withoutinterwiki-submit' => 'ܚܘܝ',
 
@@ -942,6 +944,7 @@ $1',
 'nmembers' => '$1 {{PLURAL:$1|ܗܕܡܐ|ܗܕ̈ܡܐ}}',
 'nrevisions' => '$1 {{PLURAL:$1|ܬܢܝܬܐ|ܬܢܝܬ̈ܐ }}',
 'nviews' => '$1 {{PLURAL:$1|ܚܘܘܝܐ|ܚܘܘܝ̈ܐ}}',
+'specialpage-empty' => 'ܠܝܬ ܦܠܛ̈ܐ ܒܬܫܪܪܐ ܗܢܐ.',
 'lonelypages' => 'ܦܐܬܬ̈ܐ ܝܬܡܬ̈ܐ',
 'uncategorizedpages' => 'ܦܐܬܬ̈ܐ ܠܐ ܣܕܝܪ̈ܬܐ',
 'uncategorizedcategories' => 'ܣܕܪ̈ܐ ܠܐ ܣܕܝܪ̈ܐ',
@@ -1293,6 +1296,7 @@ Do you want to change the settings?',
 
 # Export
 'export' => 'ܐܦܩ ܦܐܬܬ̈ܐ',
+'exportall' => 'ܐܦܩ ܟܠ ܕ̈ܦܐ',
 'export-submit' => 'ܐܦܩ',
 'export-addcattext' => 'ܐܘܣܦ ܦܐܬܬ̈ܐ ܡܢ ܣܕܪܐ:',
 'export-addcat' => 'ܐܘܣܦ',

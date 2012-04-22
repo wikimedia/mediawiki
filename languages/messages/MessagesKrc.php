@@ -533,6 +533,7 @@ $2',
 'changeemail-no-info' => 'Бу бетни кёрюр ючюн сиз системагъа тергеу джазыуугъуз (аккаунтугъуз) бла кирирге керексиз.',
 'changeemail-newemail' => 'Электрон почтаны джангы адреси:',
 'changeemail-none' => '(джокъ)',
+'changeemail-cancel' => 'Ызына алыу',
 
 # Edit page toolbar
 'bold_sample' => 'Къалын джазыу',
@@ -1594,7 +1595,7 @@ URL-ни тюз , сайтны ачыкъ болгъанына ишексиз б
 'unusedtemplateswlh' => 'башха джибериуле',
 
 # Random page
-'randompage' => 'Къайсы болса да',
+'randompage' => 'Эсде болмагъан бет',
 'randompage-nopages' => '{{PLURAL:$2|Ат аланында|Ат аланында}} чырт бир бет джокъду: $1.',
 
 # Random redirect
@@ -2476,7 +2477,7 @@ MediaWiki локализациясына юлюш къошаргъа излей 
 'tooltip-n-portal' => 'Проектни юсюнден, сизни не этерге боллугъугъузню юсюнден, хар не къайда болгъаныны юсюнден',
 'tooltip-n-currentevents' => 'Бусагъатда болгъан ишлени списогу',
 'tooltip-n-recentchanges' => 'Ахыр тюрлениулени списогу',
-'tooltip-n-randompage' => 'Къайсы болсада бир бетге къара',
+'tooltip-n-randompage' => 'Эсде болмагъан бир бетге къара',
 'tooltip-n-help' => '«{{SITENAME}}» проектге джардам этиу',
 'tooltip-t-whatlinkshere' => 'Бу бетге джибериу берген бютеу бетлени списогу',
 'tooltip-t-recentchangeslinked' => 'Бу бет джибериуле берген бетледе ахыр тюрлениуле',
@@ -2668,7 +2669,7 @@ $1',
 'exif-componentsconfiguration' => 'Хар компонентни ангыламы',
 'exif-compressedbitsperpixel' => 'Суратны къысдырыу амалы',
 'exif-pixelydimension' => 'Суратны кенглиги',
-'exif-pixelxdimension' => 'Суратны толу кенглиги',
+'exif-pixelxdimension' => 'Суратны мийиклиги',
 'exif-usercomment' => 'Къошакъ комментарий',
 'exif-relatedsoundfile' => 'Тауушлу комментарийни файлы',
 'exif-datetimeoriginal' => 'Оригинал джаратыу заман',
@@ -2682,9 +2683,9 @@ $1',
 'exif-exposureprogram' => 'Экспозицияны программасы',
 'exif-spectralsensitivity' => 'Спектрал сезимлилик',
 'exif-isospeedratings' => 'ISO терклик дараджасы',
-'exif-shutterspeedvalue' => 'Декланшорну терклиги',
-'exif-aperturevalue' => 'Диафрагма',
-'exif-brightnessvalue' => 'Джарыкълыкъ',
+'exif-shutterspeedvalue' => 'APEX декланшорну терклиги',
+'exif-aperturevalue' => 'APEX-де диафрагма',
+'exif-brightnessvalue' => 'APEX-де джарыкълыкъ',
 'exif-exposurebiasvalue' => 'Экспозицияны коменсациясы',
 'exif-maxaperturevalue' => 'Максимум диафрагма саны',
 'exif-subjectdistance' => 'Объектге дери узакълыкъ',
@@ -2747,9 +2748,27 @@ $1',
 'exif-gpsareainformation' => 'GPS тёгерекни аты',
 'exif-gpsdatestamp' => 'GPS заман',
 'exif-gpsdifferential' => 'GPS дифференциялы тюзетиу',
+'exif-headline' => 'Башлыкъ',
+'exif-urgency' => 'Бу сагъатха магъаналылыгъы',
+'exif-writer' => 'Текстни автору',
+'exif-languagecode' => 'Тил',
+'exif-iimversion' => 'IIM версиясы',
+'exif-iimcategory' => 'Категория',
+'exif-datetimeexpires' => 'Бу датадан сора хайырланмагъыз:',
+'exif-datetimereleased' => 'Чыкъгъан датасы:',
+'exif-identifier' => 'Идентификатор',
+'exif-lens' => 'Хайырланнган объектив',
+'exif-cameraownername' => 'Камераны иеси',
+'exif-label' => 'Белги',
+'exif-rating' => 'Багъа (5-ден)',
+'exif-disclaimer' => 'Джууаблылыкъны унамау',
+'exif-intellectualgenre' => 'Объектни типи',
 
 # EXIF attributes
 'exif-compression-1' => 'Къысдырылмагъан',
+
+'exif-copyrighted-true' => 'Автор хакъла бла джакъланыбды',
+'exif-copyrighted-false' => 'Джамагъат мюлк',
 
 'exif-unknowndate' => 'Билинмеген заман',
 
@@ -2758,9 +2777,9 @@ $1',
 'exif-orientation-3' => '180° бурулгъанды',
 'exif-orientation-4' => 'Вертикал бла кёргюзюлгенди',
 'exif-orientation-5' => '90° бурулгъан (солгъа) эмда вертикал бла кёргюзюлгенди',
-'exif-orientation-6' => '90° бурулгъаннды (сагъат стрелкагъа)',
+'exif-orientation-6' => 'Сагъат стрелкагъа къаршчы 90° бурулгъанды',
 'exif-orientation-7' => '90° бурулгъанды (сагъат стрелкагъа) эмда вертикал бла кёргюзюлгенди',
-'exif-orientation-8' => '90° бурулгъанды (солгъа)',
+'exif-orientation-8' => 'Сагъат стрелкагъа кёре 90° бурулгъанды',
 
 'exif-planarconfiguration-1' => '«chunky» формат',
 'exif-planarconfiguration-2' => '«planar» формат',
@@ -2769,7 +2788,7 @@ $1',
 'exif-xyresolution-c' => '$1 dpc',
 
 'exif-colorspace-1' => 'sRGB',
-'exif-colorspace-65535' => 'FFFF.H',
+'exif-colorspace-65535' => 'Суратны бояу джарашдырыуу этилмегенди',
 
 'exif-componentsconfiguration-0' => 'Джокъду',
 
@@ -2897,9 +2916,30 @@ $1',
 'exif-gpsspeed-m' => 'Миль/сагъат',
 'exif-gpsspeed-n' => 'Тенгиз миля',
 
+# Pseudotags used for GPSDestDistanceRef
+'exif-gpsdestdistance-k' => 'Километрле',
+'exif-gpsdestdistance-m' => 'Миляла',
+'exif-gpsdestdistance-n' => 'Тенгиз миляла',
+
+'exif-gpsdop-excellent' => 'Айырма иги ($1)',
+'exif-gpsdop-good' => 'Иги ($1)',
+'exif-gpsdop-moderate' => 'Орта ($1)',
+'exif-gpsdop-fair' => 'Ортадан аман ($1)',
+'exif-gpsdop-poor' => 'Аман ($1)',
+
+'exif-objectcycle-a' => 'Къуру эртдембла',
+'exif-objectcycle-p' => 'Къуру ингирде',
+'exif-objectcycle-b' => 'Эртдембла эм ингирде',
+
 # Pseudotags used for GPSTrackRef, GPSImgDirectionRef and GPSDestBearingRef
 'exif-gpsdirection-t' => 'Керти',
 'exif-gpsdirection-m' => 'Мукъладис',
+
+'exif-ycbcrpositioning-1' => 'Centered',
+'exif-ycbcrpositioning-2' => 'CO-sited',
+
+'exif-dc-contributor' => 'Автор нёгерле',
+'exif-dc-coverage' => 'Медианы кенгликле чеклери бла заман чеклери',
 
 'exif-iimcategory-edu' => 'Окъуу',
 'exif-iimcategory-hth' => 'Саулукъ',
