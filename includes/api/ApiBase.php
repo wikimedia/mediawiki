@@ -287,8 +287,11 @@ abstract class ApiBase extends ContextSource {
 			if ( $this->mustBePosted() ) {
 				$msg .= "\nThis module only accepts POST requests";
 			}
+			if ( $this->isDeprecated() ) {
+				$msg .= "\nThis module is deprecated";
+			}
 			if ( $this->isReadMode() || $this->isWriteMode() ||
-					$this->mustBePosted() ) {
+					$this->mustBePosted() || $this->isDeprecated() ) {
 				$msg .= "\n";
 			}
 
@@ -1449,6 +1452,14 @@ abstract class ApiBase extends ContextSource {
 	 * @return bool
 	 */
 	public function mustBePosted() {
+		return false;
+	}
+
+	/**
+	 * Indicates whether this module is deprecated.
+	 * @return bool
+	 */
+	public function isDeprecated() {
 		return false;
 	}
 

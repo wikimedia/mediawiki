@@ -208,6 +208,8 @@ production.
   iicontinue).
 * Add supports for all pageset capabilities - generators, redirects, converttitles to
   action=purge and action=setnotificationtimestamp.
+* New module rawwatchlist with results correctly inside query element,
+  like for other query modules; watchlistraw was marked as deprecated
 
 === API internal changes in 1.21 ===
 * For debugging only, a new global $wgDebugAPI removes many API restrictions when true.
