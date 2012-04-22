@@ -59,13 +59,13 @@ class ApiParse extends ApiBase {
 		// The parser needs $wgTitle to be set, apparently the
 		// $title parameter in Parser::parse isn't enough *sigh*
 		// TODO: Does this still need $wgTitle?
-		global $wgParser, $wgTitle, $wgLang;
+		global $wgParser, $wgTitle;
 
 		// Currently unnecessary, code to act as a safeguard against any change in current behaviour of uselang breaks
 		$oldLang = null;
-		if ( isset( $params['uselang'] ) && $params['uselang'] != $wgLang->getCode() ) {
-			$oldLang = $wgLang; // Backup wgLang
-			$wgLang = Language::factory( $params['uselang'] );
+		if ( isset( $params['uselang'] ) && $params['uselang'] != $this->getContext()->getLanguage()->getCode() ) {
+			$oldLang = $this->getContext()->getLanguage(); // Backup language
+			$this->getContext()->setLanguage( Language::factory( $params['uselang'] ) );
 		}
 
 		$popts = ParserOptions::newFromContext( $this->getContext() );
@@ -302,7 +302,7 @@ class ApiParse extends ApiBase {
 		$result->addValue( null, $this->getModuleName(), $result_array );
 
 		if ( !is_null( $oldLang ) ) {
-			$wgLang = $oldLang; // Reset $wgLang to $oldLang
+			$this->getContext()->setLanguage( $oldLang ); // Reset language to $oldLang
 		}
 	}
 
