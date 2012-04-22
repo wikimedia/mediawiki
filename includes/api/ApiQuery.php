@@ -91,6 +91,7 @@ class ApiQuery extends ApiBase {
 		'protectedtitles' => 'ApiQueryProtectedTitles',
 		'querypage' => 'ApiQueryQueryPage',
 		'random' => 'ApiQueryRandom',
+		'rawwatchlist' => 'ApiQueryWatchlistRaw',
 		'recentchanges' => 'ApiQueryRecentChanges',
 		'search' => 'ApiQuerySearch',
 		'tags' => 'ApiQueryTags',
