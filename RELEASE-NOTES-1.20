@@ -300,6 +300,8 @@ upgrade PHP if you have not done so prior to upgrading MediaWiki.
 * (bug 11142) Improve file extension blacklist error reporting in API upload.
 * (bug 39665) List of query generators is now not built using reflection, instead it is
   defined in code.
+* New module rawwatchlist with results correctly inside query element,
+  like for other query modules; watchlistraw was marked as deprecated
 
 === Languages updated in 1.20 ===
 
