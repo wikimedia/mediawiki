@@ -975,6 +975,8 @@ $wgAutoloadLocalClasses = array(
 	# tests/phpunit
 	'WikitextContentTest' => 'tests/phpunit/includes/WikitextContentTest.php',
 	'JavascriptContentTest' => 'tests/phpunit/includes/JavascriptContentTest.php',
+	'DummyContentHandlerForTesting' => 'tests/phpunit/includes/ContentHandlerTest.php',
+	'DummyContentForTesting' => 'tests/phpunit/includes/ContentHandlerTest.php',
 
 	# tests/parser
 	'ParserTest' => 'tests/parser/parserTest.inc',
