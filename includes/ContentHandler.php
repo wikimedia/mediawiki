@@ -475,8 +475,8 @@ abstract class ContentHandler {
 
         // Redirect autosummaries
 
-        $ot = !empty( $ot ) ? $oldContent->getRedirectTarget() : false;
-        $rt = !empty( $rt ) ? $newContent->getRedirectTarget() : false;
+        $ot = !is_null( $oldContent ) ? $oldContent->getRedirectTarget() : false;
+        $rt = !is_null( $newContent ) ? $newContent->getRedirectTarget() : false;
 
         if ( is_object( $rt ) && ( !is_object( $ot ) || !$rt->equals( $ot ) || $ot->getFragment() != $rt->getFragment() ) ) {
 
