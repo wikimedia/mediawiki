@@ -810,7 +810,7 @@ class EditPage {
 				# If this is a system message, get the default text.
 				$msg = $this->mTitle->getDefaultMessageText();
 
-				$content = new WikitextContent($msg); //XXX: really hardcode wikitext here?
+				$content = ContentHandler::makeContent( $msg, $this->mTitle );
 			}
 			if ( $content === false ) {
 				# If requested, preload some text.
