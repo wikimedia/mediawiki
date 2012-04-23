@@ -776,7 +776,7 @@ class Article extends Page {
 
 		// Give hooks a chance to customise the output
 		if ( !Hooks::isRegistered('ShowRawCssJs') || wfRunHooks( 'ShowRawCssJs', array( $this->fetchContent(), $this->getTitle(), $wgOut ) ) ) { #FIXME: fetchContent() is deprecated #FIXME: hook is deprecated
-			$po = $this->mContentObject->getParserOutput();
+			$po = $this->mContentObject->getParserOutput( $this->getContext() );
 			$wgOut->addHTML( $po->getText() );
 		}
 	}
