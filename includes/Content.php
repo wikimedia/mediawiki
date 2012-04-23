@@ -171,6 +171,8 @@ abstract class Content {
 	 * Will returns false if $that is null.
 	 * Will return true if $that === $this.
 	 * Will return false if $that->getModleName() != $this->getModelName().
+	 * Will return false if $that->getNativeData() is not equal to $this->getNativeData(),
+	 * where the meaning of "equal" depends on the actual data model.
 	 *
 	 * Implementations should be careful to make equals() transitive and reflexive:
 	 *
@@ -178,16 +180,12 @@ abstract class Content {
 	 * * $a->equals( $b ) &&  $b->equals( $c ) ==> $a->equals( $c )
 	 *
 	 * @param Content $that the Content object to compare to
-	 * @return bool true if this Content object is euzqla to $that, false otherwise.
+	 * @return bool true if this Content object is euqual to $that, false otherwise.
 	 */
 	public function equals( Content $that = null ) {
-		if ( empty( $that ) ){ // FIXME: empty on an object?
+		if ( is_null( $that ) ){
 			return false;
 		}
-
-		return false;
-		// FIXME: something is doing wrong here, causing the compared objects to always be the same.
-		// Hence returning false for now, so changes can actually be saved...
 
 		if ( $that === $this ) {
 			return true;
