@@ -899,6 +899,12 @@ $article: in case all revisions of the file are deleted a reference to the
 $user: user who performed the deletion
 $reason: reason
 
+'FileTransformed': When a file is transformed and moved into storage
+$file: reference to the File object
+$thumb: the MediaTransformOutput object
+$tmpThumbPath: The temporary file system path of the transformed file
+$thumbPath: The permanent storage path of the transformed file
+
 'FileUpload': When a file upload occurs
 $file : Image object representing the file that was uploaded
 $reupload : Boolean indicating if there was a previously another image there or not (since 1.17)
