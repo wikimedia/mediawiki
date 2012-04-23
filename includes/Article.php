@@ -371,7 +371,7 @@ class Article extends Page {
 		# fails we'll have something telling us what we intended.
 		$t = $this->getTitle()->getPrefixedText();
 		$d = $oldid ? wfMsgExt( 'missingarticle-rev', array( 'escape' ), $oldid ) : '';
-		$this->mContentObject = new MessageContent( 'missing-article', array($t, $d), array() ) ;
+		$this->mContentObject = new MessageContent( 'missing-article', array($t, $d), array() ) ; // @todo: this isn't page content but a UI message. horrible.
 
 		if ( $oldid ) {
 			# $this->mRevision might already be fetched by getOldIDFromRequest()
