@@ -44,6 +44,7 @@ class ORMResult implements Iterator {
 	}
 
 	/**
+	 * @since 1.20
 	 * @param $row
 	 */
 	protected function setCurrent( $row ) {
@@ -55,6 +56,7 @@ class ORMResult implements Iterator {
 	}
 
 	/**
+	 * @since 1.20
 	 * @return integer
 	 */
 	public function count() {
@@ -62,6 +64,7 @@ class ORMResult implements Iterator {
 	}
 
 	/**
+	 * @since 1.20
 	 * @return boolean
 	 */
 	public function isEmpty() {
@@ -69,6 +72,7 @@ class ORMResult implements Iterator {
 	}
 
 	/**
+	 * @since 1.20
 	 * @return ORMRow
 	 */
 	public function current() {
@@ -76,6 +80,7 @@ class ORMResult implements Iterator {
 	}
 
 	/**
+	 * @since 1.20
 	 * @return integer
 	 */
 	public function key() {
@@ -95,10 +100,25 @@ class ORMResult implements Iterator {
 	}
 
 	/**
+	 * @since 1.20
 	 * @return boolean
 	 */
 	public function valid() {
 		return $this->current !== false;
+	}
+
+	/**
+	 * @since 1.20
+	 * @return array of ORMRow
+	 */
+	public function toArray() {
+		$rows = array();
+
+		foreach ( $this as /* ORMRow */ $row ) {
+			$rows[] = $row;
+		}
+
+		return $rows;
 	}
 
 }
