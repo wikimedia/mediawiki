@@ -298,7 +298,7 @@ abstract class Content {
 	 * @return string Complete article text, or null if error
 	 */
 	public function replaceSection( $section, Content $with, $sectionTitle = ''  ) {
-		return $this;
+		return null;
 	}
 
 	/**
