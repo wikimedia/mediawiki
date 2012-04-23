@@ -185,9 +185,7 @@ class PostgresUpdater extends DatabaseUpdater {
 			array( 'changeNullableField', 'oldimage', 'oi_timestamp',  'NULL' ),
 			array( 'changeNullableField', 'oldimage', 'oi_major_mime', 'NULL' ),
 			array( 'changeNullableField', 'oldimage', 'oi_minor_mime', 'NULL' ),
-			array( 'setDefault', 'image', 'img_metadata', '\'\x\'::bytea'),
 			array( 'changeNullableField', 'image', 'img_metadata', 'NOT NULL'),
-			array( 'setDefault', 'filearchive', 'fa_metadata', '\'\x\'::bytea'),
 			array( 'changeNullableField', 'filearchive', 'fa_metadata', 'NOT NULL'),
 			array( 'changeNullableField', 'recentchanges', 'rc_cur_id', 'NULL' ),
 
