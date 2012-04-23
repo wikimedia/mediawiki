@@ -1477,6 +1477,8 @@ These arguments have been omitted.",
 'parser-template-loop-warning'            => 'Template loop detected: [[$1]]',
 'parser-template-recursion-depth-warning' => 'Template recursion depth limit exceeded ($1)',
 'language-converter-depth-warning'        => 'Language converter depth limit exceeded ($1)',
+'parser-unstrip-loop-warning'             => 'Unstrip loop detected',
+'parser-unstrip-recursion-limit'          => 'Unstrip recursion limit exceeded ($1)',
 
 # "Undo" feature
 'undo-success' => 'The edit can be undone.
