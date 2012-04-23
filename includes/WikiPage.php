@@ -353,8 +353,8 @@ class WikiPage extends Page {
     public function getContentModelName() {
         if ( $this->exists() ) {
             # look at the revision's actual content model
-            $content = $this->getContent();
-            return $content->getModelName();
+            $rev = $this->getRevision();
+            return $rev->getContentModelName();
         } else {
             # use the default model for this page
             return $this->mTitle->getContentModelName();

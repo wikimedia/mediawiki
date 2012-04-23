@@ -515,8 +515,8 @@ class Revision {
 		}
 		$this->mUnpatrolled = null;
 
-        #FIXME: add patch for ar_content_format, ar_content_model, rev_content_format, rev_content_model to installer
-        #FIXME: add support for ar_content_format, ar_content_model, rev_content_format, rev_content_model to API
+        // @TODO: add support for ar_content_format, ar_content_model, rev_content_format, rev_content_model to API
+        // @TODO: get rid of $mText
 	}
 
 	/**
@@ -867,15 +867,10 @@ class Revision {
 
     public function getContentHandler() {
         if ( !$this->mContentHandler ) {
-            $title = $this->getTitle();
-
-            if ( $title ) $model = $title->getContentModelName();
-            else $model = CONTENT_MODEL_WIKITEXT;
-
+            $model = $this->getContentModelName();
             $this->mContentHandler = ContentHandler::getForModelName( $model );
 
-            #XXX: do we need to verify that mContentHandler supports mContentFormat?
-            #     otherwise, a fixed content format may cause problems on insert.
+            assert( $this->mContentHandler->isSupportedFormat( $this->getContentFormat() ) );
         }
 
         return $this->mContentHandler;
