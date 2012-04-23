@@ -7,6 +7,10 @@ class WikitextContentTest extends MediaWikiTestCase {
 		$this->context->setTitle( Title::newFromText( "Test" ) );
 	}
 
+	public function newContent( $text ) {
+		return new WikitextContent( $text );
+	}
+
 	public function dataGetParserOutput() {
 		return array(
 			array("hello ''world''\n", "<p>hello <i>world</i>\n</p>"),
@@ -18,7 +22,7 @@ class WikitextContentTest extends MediaWikiTestCase {
 	 * @dataProvider dataGetParserOutput
 	 */
 	public function testGetParserOutput( $text, $expectedHtml ) {
-		$content = new WikitextContent( $text );
+		$content = $this->newContent( $text );
 
 		$po = $content->getParserOutput( $this->context );
 
@@ -62,11 +66,11 @@ just a test"
 	 * @dataProvider dataGetSection
 	 */
 	public function testGetSection( $text, $sectionId, $expectedText ) {
-		$content = new WikitextContent( $text );
+		$content = $this->newContent( $text );
 
 		$sectionContent = $content->getSection( $sectionId );
 
-		$this->assertEquals( $expectedText, $sectionContent->getNativeData() );
+		$this->assertEquals( $expectedText, is_null( $sectionContent ) ? null : $sectionContent->getNativeData() );
 	}
 
 	public function dataReplaceSection() {
@@ -108,20 +112,14 @@ just a test"
 	 * @dataProvider dataReplaceSection
 	 */
 	public function testReplaceSection( $text, $section, $with, $sectionTitle, $expected ) {
-		$content = new WikitextContent( $text );
-		$c = $content->replaceSection( $section, new WikitextContent( $with ), $sectionTitle );
+		$content = $this->newContent( $text );
+		$c = $content->replaceSection( $section, $this->newContent( $with ), $sectionTitle );
 
-		$this->assertEquals( $expected, $c->getNativeData() );
+		$this->assertEquals( $expected, is_null( $c ) ? null : $c->getNativeData() );
 	}
 
-	/**
-	 * Returns a new WikitextContent object with the given section heading prepended.
-	 *
-	 * @param $header String
-	 * @return Content
-	 */
 	public function testAddSectionHeader( ) {
-		$content = new WikitextContent( 'hello world' );
+		$content = $this->newContent( 'hello world' );
 		$content = $content->addSectionHeader( 'test' );
 
 		$this->assertEquals( "== test ==\n\nhello world", $content->getNativeData() );
@@ -142,7 +140,7 @@ just a test"
 	 * @dataProvider dataPreSaveTransform
 	 */
 	public function testPreSaveTransform( $text, $expected ) {
-		$content = new WikitextContent( $text );
+		$content = $this->newContent( $text );
 		$content = $content->preSaveTransform( $this->context->getTitle(), $this->context->getUser() );
 
 		$this->assertEquals( $expected, $content->getNativeData() );
@@ -163,7 +161,7 @@ just a test"
 	 * @dataProvider dataPreloadTransform
 	 */
 	public function testPreloadTransform( $text, $expected ) {
-		$content = new WikitextContent( $text );
+		$content = $this->newContent( $text );
 		$content = $content->preloadTransform( $this->context->getTitle() );
 
 		$this->assertEquals( $expected, $content->getNativeData() );
@@ -187,7 +185,7 @@ just a test"
 	 * @dataProvider dataGetRedirectTarget
 	 */
 	public function testGetRedirectTarget( $text, $expected ) {
-		$content = new WikitextContent( $text );
+		$content = $this->newContent( $text );
 		$t = $content->getRedirectTarget( );
 
 		if ( is_null( $expected ) ) $this->assertNull( $t, "text should not have generated a redirect target: $text" );
@@ -198,7 +196,7 @@ just a test"
 	 * @dataProvider dataGetRedirectTarget
 	 */
 	public function isRedirect( $text, $expected ) {
-		$content = new WikitextContent( $text );
+		$content = $this->newContent( $text );
 
 		$this->assertEquals( !is_null($expected), $content->isRedirect() );
 	}
@@ -295,7 +293,7 @@ just a test"
 		$old = $wgArticleCountMethod;
 		$wgArticleCountMethod = $mode;
 
-		$content = new WikitextContent( $text );
+		$content = $this->newContent( $text );
 
 		$v = $content->isCountable( $hasLinks, $this->context );
 		$wgArticleCountMethod = $old;
@@ -325,20 +323,20 @@ just a test"
 	 * @dataProvider dataGetTextForSummary
 	 */
 	public function testGetTextForSummary( $text, $maxlength, $expected ) {
-		$content = new WikitextContent( $text );
+		$content = $this->newContent( $text );
 
 		$this->assertEquals( $expected, $content->getTextForSummary( $maxlength ) );
 	}
 
 
 	public function testGetTextForSearchIndex( ) {
-		$content = new WikitextContent( "hello world." );
+		$content = $this->newContent( "hello world." );
 
 		$this->assertEquals( "hello world.", $content->getTextForSearchIndex() );
 	}
 
 	public function testCopy() {
-		$content = new WikitextContent( "hello world." );
+		$content = $this->newContent( "hello world." );
 		$copy = $content->copy();
 
 		$this->assertTrue( $content->equals( $copy ), "copy must be equal to original" );
@@ -346,19 +344,19 @@ just a test"
 	}
 
 	public function testGetSize( ) {
-		$content = new WikitextContent( "hello world." );
+		$content = $this->newContent( "hello world." );
 
 		$this->assertEquals( 12, $content->getSize() );
 	}
 
 	public function testGetNativeData( ) {
-		$content = new WikitextContent( "hello world." );
+		$content = $this->newContent( "hello world." );
 
 		$this->assertEquals( "hello world.", $content->getNativeData() );
 	}
 
 	public function testGetWikitextForTransclusion( ) {
-		$content = new WikitextContent( "hello world." );
+		$content = $this->newContent( "hello world." );
 
 		$this->assertEquals( "hello world.", $content->getWikitextForTransclusion() );
 	}
@@ -366,13 +364,13 @@ just a test"
 	# =================================================================================================================
 
 	public function getModelName() {
-		$content = new WikitextContent( "hello world." );
+		$content = $this->newContent( "hello world." );
 
 		$this->assertEquals( CONTENT_MODEL_WIKITEXT, $content->getModelName() );
 	}
 
 	public function getContentHandler() {
-		$content = new WikitextContent( "hello world." );
+		$content = $this->newContent( "hello world." );
 
 		$this->assertEquals( CONTENT_MODEL_WIKITEXT, $content->getContentHandler()->getModelName() );
 	}
@@ -390,7 +388,7 @@ just a test"
 	 * @dataProvider dataIsEmpty
 	 */
 	public function testIsEmpty( $text, $empty ) {
-		$content = new WikitextContent( $text );
+		$content = $this->newContent( $text );
 
 		$this->assertEquals( $empty, $content->isEmpty() );
 	}
