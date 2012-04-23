@@ -1037,7 +1037,7 @@ Pšosym pśeglědaj protokole.',
 
 # Suppression log
 'suppressionlog' => 'Protokol pódłocowanjow',
-'suppressionlogtext' => 'To jo lisćina wulašowanjow a blokěrowanjow, kótaraž ma wopśimjeśe, kótarež jo wót administratorow schowane. Glědaj  [[Special:BlockList|lisćinu IP-blokěrowanjow]] za lisćinu aktualnych wugnanjow a blokěrowanjow.',
+'suppressionlogtext' => 'To jo lisćina wulašowanjow a blokěrowanjow, kótaraž ma wopśimjeśe, kótarež jo wót administratorow schowane. Glědaj  [[Special:BlockList|lisćinu blokěrowanjow]] za lisćinu aktualnych wugnanjow a blokěrowanjow.',
 
 # History merging
 'mergehistory' => 'Zwězaś stawizny bokow',
@@ -2396,8 +2396,8 @@ Nejnowšy zapisk protokola blokěrowanjow pódawa se dołojce ako referenca:',
 'ipb-confirm' => 'Blokěrowanje wobkšuśiś',
 'badipaddress' => 'IP-adresa jo njekorektna',
 'blockipsuccesssub' => 'Wuspěšnje blokěrowane',
-'blockipsuccesstext' => '[[Special:Contributions/$1|$1]] jo se blokěrował.<br />
-Glědaj do [[Special:BlockList|lisćiny aktiwnych blokěrowanjow]], aby blokěrowanja pśeglědał.',
+'blockipsuccesstext' => '[[Special:Contributions/$1|$1]] jo se {{GENDER:$1|blokěrował|blokěrowała}}.<br />
+Glědaj do [[Special:BlockList|lisćiny blokěrowanjow]], aby blokěrowanja pśeglědał.',
 'ipb-blockingself' => 'Coš samogo blokěrowaś! Coš to napšawdu cyniś?',
 'ipb-confirmhideuser' => 'Coš rowno wužywarja z nastajenim "wužywarja schowaś" blokěrowaś. To k tomu dowjeźo, až mě wužywarja pódłocyjo se we wšych lisćinach a protokolowych zapiskach. Coš to napšawdu cyniś?',
 'ipb-edit-dropdown' => 'Pśicyny blokěrowanja wobźěłaś',
@@ -2447,9 +2447,7 @@ Glědaj do [[Special:BlockList|lisćiny aktiwnych blokěrowanjow]], aby blokěro
 'blocklog-showsuppresslog' => 'Toś ten wužywaŕ jo se pjerwjej zablokěrował a schował. Protokol pódtłocowanjow pódawa se dołojce ako referenca:',
 'blocklogentry' => '[[$1]] blokěrujo se na $2 $3',
 'reblock-logentry' => 'jo změnił blokěrowańske nastajenja za [[$1]] z casom spadnjenja $2 $3',
-'blocklogtext' => 'To jo protokol blokěrowanjow a dopušćenjow.
-IP-adresy, ako su awtomatiski se blokěrowali, se njepokažu.
-Na boce [[Special:BlockList|Lisćina blokěrowanych IP-adresow a wužywarskich mjenjow]] jo móžno, akualne blokěrowanja pśeglědowaś.',
+'blocklogtext' => 'To jo protokol blokěrowanja a wótblokěrowanja wužywarjow. Awtomatiski blokěrowane IP-adrese se njenalistuju. Glědaj [[Special:BlockList|lisćinu blokěrowanjow]] za lisćinu tuchylnych wugnanjow a blokěrowanjow.',
 'unblocklogentry' => 'jo $1 zasej dopušćił',
 'block-log-flags-anononly' => 'jano anonymne',
 'block-log-flags-nocreate' => 'stwórjenje konta jo se znjemóžniło',
@@ -3512,6 +3510,9 @@ Ty by dejał [{{SERVER}}{{SCRIPTPATH}}/COPYING kopiju licence GNU General Public
 'version-software' => 'Instalěrowana software',
 'version-software-product' => 'Produkt',
 'version-software-version' => 'Wersija',
+'version-entrypoints' => 'URL zastupneho dypka',
+'version-entrypoints-header-entrypoint' => 'Zastupny dypk',
+'version-entrypoints-header-url' => 'URL',
 
 # Special:FilePath
 'filepath' => 'Datajowa droga',

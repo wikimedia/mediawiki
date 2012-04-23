@@ -3877,6 +3877,7 @@ Ce nò, tu puè ausà 'u module facile aqquà sotte. 'U commende tune avène agg
 # API errors
 'api-error-badaccess-groups' => 'Tu non ge puè carecà file sus a sta Uicchi.',
 'api-error-badtoken' => 'Errore inderne: Gettone errate.',
+'api-error-copyuploaddisabled' => "'U carecamende da URL jè disabbilitate sus a stu server.",
 'api-error-duplicate-popup-title' => 'Dupleche {{PLURAL:$1|file|file}}',
 'api-error-empty-file' => "'U file ca tu è confermate ere vacande.",
 'api-error-emptypage' => 'Quanne se ne ccreje une, le pàggene vacande non ge sò permesse.',

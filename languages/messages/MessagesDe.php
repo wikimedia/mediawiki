@@ -1900,8 +1900,8 @@ Wenn das Problem weiter besteht, informiere einen [[Special:ListUsers/sysop|Syst
 'lockmanager-fail-openlock' => 'Die Sperrdatei für „$1“ konnte nicht geöffnet werden.',
 'lockmanager-fail-releaselock' => 'Die Sperre für „$1“ konnte nicht freigegeben werden.',
 'lockmanager-fail-db-bucket' => 'Es konnte mit Sammelabruf $1 keine ausreichende Anzahl an Verbindungen zu Sperrdatenbanken hergestellt werden.',
-'lockmanager-fail-db-release' => 'Die Sperren auf Datenbank $1 konnte nicht freigegeben werden.',
-'lockmanager-fail-svr-release' => 'Die Sperren auf Server $1 konnte nicht freigegeben werden.',
+'lockmanager-fail-db-release' => 'Die Sperren auf Datenbank $1 konnten nicht freigegeben werden.',
+'lockmanager-fail-svr-release' => 'Die Sperren auf Server $1 konnten nicht freigegeben werden.',
 
 # ZipDirectoryReader
 'zip-file-open-error' => 'Es ist ein Fehler beim Öffnen der Datei zur ZIP-Überprüfung aufgetreten.',

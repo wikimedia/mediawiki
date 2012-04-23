@@ -683,7 +683,7 @@ URL を間違って入力したか、正しくないリンクをたどった可�
 最後に実行を試みたクエリは次の通りです：
 関数「<tt>$2</tt>」内
 <blockquote><tt>$1</tt></blockquote>。
-データベースの返したエラー「<tt>$3：$4</tt>」',
+データベースが返したエラー「<tt>$3：$4</tt>」',
 'dberrortextcl' => 'データベース クエリの構文エラーが発生しました。
 最後に実行を試みたクエリは以下の通りです：
 関数「$2」内から
@@ -1444,9 +1444,9 @@ $1",
 'prefs-personal' => '利用者情報',
 'prefs-rc' => '最近の更新',
 'prefs-watchlist' => 'ウォッチリスト',
-'prefs-watchlist-days' => 'ウォッチリストに表示する日数：',
+'prefs-watchlist-days' => 'ウォッチリストの表示件数：',
 'prefs-watchlist-days-max' => '最大 $1 {{PLURAL:$1|日間}}',
-'prefs-watchlist-edits' => '拡張ウォッチリストに表示する件数：',
+'prefs-watchlist-edits' => '拡張ウォッチリストの表示件数：',
 'prefs-watchlist-edits-max' => '最大数：1000',
 'prefs-watchlist-token' => 'ウォッチリストのトークン：',
 'prefs-misc' => 'その他',
@@ -2061,7 +2061,7 @@ $1での[$2 ファイル解説ページ]にある説明を編集したほうが�
 'filepage-nofile' => 'この名前のファイルは存在しません。',
 'filepage-nofile-link' => 'この名前のファイルは存在しませんが、[$1 アップロード]することができます。',
 'uploadnewversion-linktext' => 'このファイルの新しい版をアップロードする',
-'shared-repo-from' => '$1より',
+'shared-repo-from' => '$1 より',
 'shared-repo' => '共有リポジトリ',
 'shared-repo-name-wikimediacommons' => 'ウィキメディア・コモンズ',
 'filepage.css' => '/* ここに記述したCSSはファイル解説ページにて読み込まれます。また外部のクライアントウィキにも影響します */',
@@ -2154,8 +2154,8 @@ contenttype/subtypeの形式で指定してください（例：<tt>image/jpeg</
 'doubleredirectstext' => 'これは他のリダイレクトページへのリダイレクトの一覧です。
 各行には、最初のリダイレクトと、その転送先のリダイレクト、そのまた転送先へのリンクが表示されています。多くの場合、最終の転送先が正しい転送先であり、最初のリダイレクトは直接最後の転送先に向けるべきです。
 <del>打ち消し線</del>のはいった項目は既に修正されています。',
-'double-redirect-fixed-move' => '[[$1]]が移動されました。
-これからは[[$2]]に転送されます。',
+'double-redirect-fixed-move' => '[[$1]]を移動しました。
+今後は[[$2]]に転送されます。',
 'double-redirect-fixed-maintenance' => '[[$1]]から[[$2]]への二重転送を修正します。',
 'double-redirect-fixer' => '転送修正係',
 
@@ -2908,7 +2908,7 @@ hideuser権限を持っていないため、この利用者のブロックを閲
 'delete_and_move' => '削除して移動',
 'delete_and_move_text' => '== 削除が必要です ==
 移動先「[[:$1]]」は既に存在しています。
-移動するためにこのページを削除しますか？',
+移動のためにこのページを削除しますか？',
 'delete_and_move_confirm' => 'はい、ページを削除します',
 'delete_and_move_reason' => '「[[$1]]」からの移動のために削除',
 'selfmove' => '移動元と移動先のページ名が同じです。
@@ -2922,7 +2922,7 @@ hideuser権限を持っていないため、この利用者のブロックを閲
 'nonfile-cannot-move-to-file' => 'ファイルでないものを、ファイル名前空間に移動することはできません',
 'imagetypemismatch' => '新しいファイルの拡張子がファイルのタイプと一致していません。',
 'imageinvalidfilename' => '対象ファイル名が不正です',
-'fix-double-redirects' => 'このページへのリダイレクトがあればそのリダイレクトを修正する',
+'fix-double-redirects' => 'このページへのリダイレクトがあればそのリダイレクトを修正',
 'move-leave-redirect' => '移動元にリダイレクトを作成する',
 'protectedpagemovewarning' => "'''警告：'''このページは保護されているため、管理者権限をもつ利用者のみが移動できます。
 参考として以下に一番最後の記録を表示します：",

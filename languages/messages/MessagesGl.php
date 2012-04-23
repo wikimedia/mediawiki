@@ -1156,7 +1156,7 @@ Por favor, comprobe os rexistros.',
 # Suppression log
 'suppressionlog' => 'Rexistro de supresións',
 'suppressionlogtext' => 'A continuación móstrase unha lista coas eliminacións e cos bloqueos recentes, que inclúen contido oculto dos administradores.
-Vexa a [[Special:BlockList|lista de enderezos IP bloqueados]] para comprobar as prohibicións e os bloqueos vixentes.',
+Olle a [[Special:BlockList|lista de bloqueos]] para comprobar os bloqueos vixentes.',
 
 # History merging
 'mergehistory' => 'Fusionar os historiais das páxinas',
@@ -2556,8 +2556,8 @@ Explique a razón específica do bloqueo (por exemplo, citando as páxinas concr
 'ipb-confirm' => 'Confirmar o bloqueo',
 'badipaddress' => 'O enderezo IP non é válido',
 'blockipsuccesssub' => 'Bloqueo exitoso',
-'blockipsuccesstext' => 'O enderezo IP [[Special:Contributions/$1|$1]] foi bloqueado.<br />
-Olle a [[Special:BlockList|lista de enderezos IP e usuarios bloqueados]] para revisalo.',
+'blockipsuccesstext' => '[[Special:Contributions/$1|$1]] foi {{GENDER:$1|bloqueado|bloqueada}}.<br />
+Olle a [[Special:BlockList|lista de bloqueos]] para revisalo.',
 'ipb-blockingself' => 'Está a piques de se bloquear! Está seguro de querer facelo?',
 'ipb-confirmhideuser' => 'Está a piques de bloquear un usuario coa opción "agochar o usuario" activada. Isto suprime o nome de usuario de todas as listas e entradas de rexistro. Está seguro de querer facelo?',
 'ipb-edit-dropdown' => 'Editar os motivos de bloqueo',
@@ -2610,7 +2610,7 @@ O motivo do bloqueo de $1 é: "$2"',
 'reblock-logentry' => 'cambiou as configuracións do bloqueo de "[[$1]]" cunha caducidade de $2 $3',
 'blocklogtext' => 'Este é o rexistro das accións de bloqueo e desbloqueo de usuarios.
 Non se listan os enderezos IP bloqueados automaticamente.
-Olle a [[Special:BlockList|lista de enderezos IP e usuarios bloqueados]] se quere comprobar a lista cos bloqueos vixentes.',
+Olle a [[Special:BlockList|lista de bloqueos]] para comprobar os bloqueos vixentes.',
 'unblocklogentry' => 'desbloqueou a "$1"',
 'block-log-flags-anononly' => 'só os usuarios anónimos',
 'block-log-flags-nocreate' => 'desactivada a creación de contas',
@@ -3720,6 +3720,9 @@ Debería recibir [{{SERVER}}{{SCRIPTPATH}}/COPYING unha copia da licenza públic
 'version-software' => 'Software instalado',
 'version-software-product' => 'Produto',
 'version-software-version' => 'Versión',
+'version-entrypoints' => 'Enderezos URL de punto de entrada',
+'version-entrypoints-header-entrypoint' => 'Punto de entrada',
+'version-entrypoints-header-url' => 'URL',
 
 # Special:FilePath
 'filepath' => 'Ruta do ficheiro',

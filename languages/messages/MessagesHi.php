@@ -3201,7 +3201,7 @@ $1',
 'exif-sensingmethod-4' => 'थ्री चीप कलर एरीया सेन्सर',
 'exif-sensingmethod-5' => 'कलर सिक्वेण्शीयल एरीया सेंसर',
 'exif-sensingmethod-7' => 'ट्रायलिनीयर सेंसर',
-'exif-sensingmethod-8' => 'कलर सिक्वेंशीयल लिनीयर सेन्‍सर',
+'exif-sensingmethod-8' => 'कलर सिक्वेंशीयल लिनीयर सेन्सर',
 
 'exif-filesource-3' => 'डिजिटल स्टिल कैमरा',
 

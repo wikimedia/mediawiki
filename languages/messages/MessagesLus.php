@@ -318,7 +318,7 @@ $1',
 'nosuchaction' => 'Hetiang hi a tih theih loh',
 'nosuchactiontext' => 'URL-a tihtur lang hi a tihtheih loh.
 URL i chhu dik lo a ni mai thei, emaw zawm dik loah i kal a niang.
-{{SITENAME}} software hmanah hian dik tawk lo lai a awm a ni thei bawk.',
+{{SITENAME}} khawlthlûak hmanah hian dik tawk lo lai a awm a ni thei bawk.',
 'nosuchspecialpage' => 'Hetiang vohbik phek hi a awm lo',
 'nospecialpagetext' => '<strong>Vohbik phek awm lo en i tum.</strong>
 
@@ -560,7 +560,7 @@ Tihsual palh thilthua heta lo lût i nih chuan i rangpuifanna-a '''letna''' fei 
 Phêk dangah [[Special:Search/{{PAGENAME}}| he phêk hming hi i zawng]] thei ang, a nih loh pawhin a laichin 
 <span class="plainlinks">[{{fullurl:{{#Special:Log}} | page={{FULLPAGENAMEE}}}} log dang i zawng thei ang]; a nih loh chuan [{{fullurl:{{FULLPAGENAME}}|action=edit}} he phêk hi i siamţha thei ang] </span>.',
 'noarticletext-nopermission' => 'He phêkah hian thu a la awm hrih lo.
-He phêk hming hi hmun dangah i [[Special:Search/{{PAGENAME}}|zawng]] thei ang, a nih loh pawhin <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{GULLPAGENAMEE}}}} a laichin chanchin dang] i zawng thei bawk ang. </span>',
+He phêk hming hi hmun dangah i [[Special:Search/{{PAGENAME}}|zawng]] thei ang, a nih loh pawhin <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}}-a a laichin chanchin dang] i zawng thei bawk ang. </span>',
 'userpage-userdoesnotexist' => 'Hmangtu siangchan "$1" hi hriat a ni lo.
 He phêk hi siam/siamţhat emaw i duh chuan enfiah rawh.',
 'userpage-userdoesnotexist-view' => 'Hmangtu siangchan "$1" hi hriat a ni lo.',
