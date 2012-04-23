@@ -1058,6 +1058,7 @@ class WikiPage extends Page {
 				'page_is_new'      => ( $lastRevision === 0 ) ? 1 : 0,
 				'page_is_redirect' => $rt !== null ? 1 : 0,
 				'page_len'         => $len,
+				'page_content_model' => $revision->getContentModelName(),
 			),
 			$conditions,
 			__METHOD__ );
