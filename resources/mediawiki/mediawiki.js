@@ -788,7 +788,7 @@ var mw = ( function ( $, undefined ) {
 						registry[module].state = 'loading';
 						nestedAddScript( script, markModuleReady, registry[module].async, 0 );
 					} else if ( $.isFunction( script ) ) {
-						script();
+						script( $ );
 						markModuleReady();
 					}
 				} catch ( e ) {
