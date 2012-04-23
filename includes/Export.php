@@ -594,6 +594,14 @@ class XmlDumpWriter {
 			$out .= "      " . Xml::elementClean( 'comment', null, strval( $row->rev_comment ) ) . "\n";
 		}
 
+		if ( $row->rev_content_model ) {
+			$out .= "      " . Xml::element('model', null, strval( $row->rev_content_model ) ) . "\n";
+		}
+
+		if ( $row->rev_content_format ) {
+			$out .= "      " . Xml::element('format', null, strval( $row->rev_content_format ) ) . "\n";
+		}
+
 		$text = '';
 		if ( $row->rev_deleted & Revision::DELETED_TEXT ) {
 			$out .= "      " . Xml::element( 'text', array( 'deleted' => 'deleted' ) ) . "\n";

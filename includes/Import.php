@@ -578,7 +578,7 @@ class WikiImporter {
 		$this->debug( "Enter revision handler" );
 		$revisionInfo = array();
 
-		$normalFields = array( 'id', 'timestamp', 'comment', 'minor', 'text' );
+		$normalFields = array( 'id', 'timestamp', 'comment', 'minor', 'model', 'format', 'text' );
 
 		$skip = false;
 
@@ -622,6 +622,12 @@ class WikiImporter {
 		}
 		if ( isset( $revisionInfo['text'] ) ) {
 			$revision->setText( $revisionInfo['text'] );
+		}
+		if ( isset( $revisionInfo['model'] ) ) {
+			$revision->setModel( $revisionInfo['model'] );
+		}
+		if ( isset( $revisionInfo['text'] ) ) {
+			$revision->setFormat( $revisionInfo['format'] );
 		}
 		$revision->setTitle( $pageInfo['_title'] );
 
@@ -972,6 +978,8 @@ class WikiRevision {
 	var $timestamp = "20010115000000";
 	var $user = 0;
 	var $user_text = "";
+	var $model = null;
+	var $format = null;
 	var $text = "";
 	var $comment = "";
 	var $minor = false;
@@ -1026,6 +1034,20 @@ class WikiRevision {
 	 */
 	function setUserIP( $ip ) {
 		$this->user_text = $ip;
+	}
+
+	/**
+	 * @param $model
+	 */
+	function setModel( $model ) {
+		$this->model = $model;
+	}
+
+	/**
+	 * @param $format
+	 */
+	function setFormat( $format ) {
+		$this->format = $format;
 	}
 
 	/**
@@ -1154,6 +1176,28 @@ class WikiRevision {
 	 */
 	function getText() {
 		return $this->text;
+	}
+
+	/**
+	 * @return string
+	 */
+	function getModel() {
+		if ( is_null( $this->model ) ) {
+			$this->model = $this->getTitle()->getContentModelName();
+		}
+
+		return $this->model;
+	}
+
+	/**
+	 * @return string
+	 */
+	function getFormat() {
+		if ( is_null( $this->model ) ) {
+			$this->format = ContentHandler::getForTitle( $this->getTitle() )->getDefaultFormat();
+		}
+
+		return $this->format;
 	}
 
 	/**
@@ -1295,6 +1339,8 @@ class WikiRevision {
 		# Insert the row
 		$revision = new Revision( array(
 			'page'       => $pageId,
+			'content_model'  => $this->getModel(),
+			'content_format' => $this->getFormat(),
 			'text'       => $this->getText(),
 			'comment'    => $this->getComment(),
 			'user'       => $userId,
