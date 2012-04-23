@@ -2588,9 +2588,7 @@ HTML
 		$parserOptions->setIsSectionPreview( !is_null( $this->section ) && $this->section !== '' );
 
 		# don't parse non-wikitext pages, show message about preview
-		# XXX: stupid php bug won't let us use $this->getContextTitle()->isCssJsSubpage() here -- This note has been there since r3530. Sure the bug was fixed time ago?
-
-		if ( $this->isCssJsSubpage || !$this->mTitle->isWikitextPage() ) {
+		if ( $this->mTitle->isCssJsSubpage() || !$this->mTitle->isWikitextPage() ) {
 			if ( $this->mTitle->isCssJsSubpage() ) {
 				$level = 'user';
 			} elseif ( $this->mTitle->isCssOrJsPage() ) {
@@ -2601,20 +2599,23 @@ HTML
 
 			# Used messages to make sure grep find them:
 			# Messages: usercsspreview, userjspreview, sitecsspreview, sitejspreview
+			$class = 'mw-code';
 			if ( $level ) {
 				if ( preg_match( "/\\.css$/", $this->mTitle->getText() ) ) {
 					$previewtext = "<div id='mw-{$level}csspreview'>\n" . wfMsg( "{$level}csspreview" ) . "\n</div>";
-					$class = "mw-code mw-css";
+					$class .= " mw-css";
 				} elseif ( preg_match( "/\\.js$/", $this->mTitle->getText() ) ) {
 					$previewtext = "<div id='mw-{$level}jspreview'>\n" . wfMsg( "{$level}jspreview" ) . "\n</div>";
-					$class = "mw-code mw-js";
+					$class .= " mw-js";
 				} else {
 					throw new MWException( 'A CSS/JS (sub)page but which is not css nor js!' );
 				}
+				$parserOutput = $wgParser->parse( $previewtext, $this->mTitle, $parserOptions );
+				$previewHTML = $parserOutput->getText();
+			} else {
+				$previewHTML = '';
 			}
 
-			$parserOutput = $wgParser->parse( $previewtext, $this->mTitle, $parserOptions );
-			$previewHTML = $parserOutput->mText;
 			$previewHTML .= "<pre class=\"$class\" dir=\"ltr\">\n" . htmlspecialchars( $this->textbox1 ) . "\n</pre>\n";
 		} else {
 			$toparse = $this->textbox1;
