@@ -482,13 +482,24 @@ class Revision {
 			$this->mParentId  = isset( $row['parent_id']  ) ? intval( $row['parent_id']  ) : null;
 			$this->mSha1      = isset( $row['sha1']  )      ? strval( $row['sha1']  )      : null;
 
-            $this->mContentModelName = isset( $row['content_model']  )  ? strval( $row['content_model'] ) : null;
-            $this->mContentFormat    = isset( $row['content_format']  )   ? strval( $row['content_format'] ) : null;
+            $this->mContentModelName = isset( $row['content_model']  )  ? strval( $row['content_model'] )  : null;
+            $this->mContentFormat    = isset( $row['content_format']  ) ? strval( $row['content_format'] ) : null;
 
 			// Enforce spacing trimming on supplied text
 			$this->mComment   = isset( $row['comment']    ) ?  trim( strval( $row['comment'] ) ) : null;
 			$this->mText      = isset( $row['text']       ) ? rtrim( strval( $row['text']    ) ) : null;
 			$this->mTextRow   = null;
+
+			# if we have a content object, override mText and mContentModelName
+			if ( !empty( $row['content'] ) ) {
+				$handler = $this->getContentHandler();
+				$this->mContent = $row['content'];
+
+				$this->mContentModelName = $this->mContent->getModelName();
+				$this->mContentHandler = null;
+				
+				$this->mText = $handler->serializeContent( $row['content'], $this->getContentFormat() );
+			}
 
 			$this->mTitle     = null; # Load on demand if needed
 			$this->mCurrent   = false;
@@ -504,12 +515,6 @@ class Revision {
 
             $this->getContentModelName(); # force lazy init
             $this->getContentFormat();      # force lazy init
-
-            # if we have a content object, serialize it, overriding mText
-            if ( !empty( $row['content'] ) ) {
-                $handler = $this->getContentHandler();
-                $this->mText = $handler->serializeContent( $row['content'], $this->getContentFormat() );
-            }
 		} else {
 			throw new MWException( 'Revision constructor passed invalid row format.' );
 		}
@@ -865,6 +870,9 @@ class Revision {
         return $this->mContentFormat;
     }
 
+	/**
+	 * @return ContentHandlert
+	 */
     public function getContentHandler() {
         if ( !$this->mContentHandler ) {
             $model = $this->getContentModelName();
