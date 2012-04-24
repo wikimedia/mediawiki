@@ -52,10 +52,19 @@
 class PathRouter {
 
 	/**
+	 * @var array
+	 */
+	private $patterns = array();
+
+	/**
 	 * Protected helper to do the actual bulk work of adding a single pattern.
 	 * This is in a separate method so that add() can handle the difference between
 	 * a single string $path and an array() $path that contains multiple path
 	 * patterns each with an associated $key to pass on.
+	 * @param $path string|array
+	 * @param $params array
+	 * @param $options array
+	 * @param $key null|string
 	 */
 	protected function doAdd( $path, $params, $options, $key = null ) {
 		// Make sure all paths start with a /
@@ -140,6 +149,9 @@ class PathRouter {
 	/**
 	 * Add a new path pattern to the path router with the strict option on
 	 * @see self::add
+	 * @param $path string|array
+	 * @param $params array
+	 * @param $options array
 	 */
 	public function addStrict( $path, $params = array(), $options = array() ) {
 		$options['strict'] = true;
@@ -158,6 +170,10 @@ class PathRouter {
 		array_multisort( $weights, SORT_DESC, SORT_NUMERIC, $this->patterns );
 	}
 
+	/**
+	 * @param $pattern object
+	 * @return float|int
+	 */
 	protected static function makeWeight( $pattern ) {
 		# Start with a weight of 0
 		$weight = 0;
@@ -219,6 +235,11 @@ class PathRouter {
 		return is_null( $matches ) ? array() : $matches;
 	}
 
+	/**
+	 * @param $path string
+	 * @param $pattern string
+	 * @return array|null
+	 */
 	protected static function extractTitle( $path, $pattern ) {
 		// Convert the path pattern into a regexp we can match with
 		$regexp = preg_quote( $pattern->path, '#' );
@@ -321,6 +342,8 @@ class PathRouterPatternReplacer {
 	 * We do this inside of a replacement callback because after replacement we can't tell the
 	 * difference between a $1 that was not replaced and a $1 that was part of
 	 * the content a $1 was replaced with.
+	 * @param $value string
+	 * @return string
 	 */
 	public function replace( $value ) {
 		$this->error = false;
@@ -331,6 +354,10 @@ class PathRouterPatternReplacer {
 		return $value;
 	}
 
+	/**
+	 * @param $m array
+	 * @return string
+	 */
 	protected function callback( $m ) {
 		if ( $m[1] == "key" ) {
 			if ( is_null( $this->key ) ) {
