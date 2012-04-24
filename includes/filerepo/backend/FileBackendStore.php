@@ -727,6 +727,29 @@ abstract class FileBackendStore extends FileBackend {
 	}
 
 	/**
+	 * Get a list of storage paths to lock for a list of operations
+	 * Returns an array with 'sh' (shared) and 'ex' (exclusive) keys,
+	 * each corresponding to a list of storage paths to be locked.
+	 *
+	 * @param $performOps Array List of FileOp objects
+	 * @return Array ('sh' => list of paths, 'ex' => list of paths)
+	 */
+	final public function getPathsToLockForOpsInternal( array $performOps ) {
+		// Build up a list of files to lock...
+		$paths = array( 'sh' => array(), 'ex' => array() );
+		foreach ( $performOps as $fileOp ) {
+			$paths['sh'] = array_merge( $paths['sh'], $fileOp->storagePathsRead() );
+			$paths['ex'] = array_merge( $paths['ex'], $fileOp->storagePathsChanged() );
+		}
+		// Optimization: if doing an EX lock anyway, don't also set an SH one
+		$paths['sh'] = array_diff( $paths['sh'], $paths['ex'] );
+		// Get a shared lock on the parent directory of each path changed
+		$paths['sh'] = array_merge( $paths['sh'], array_map( 'dirname', $paths['ex'] ) );
+
+		return $paths;
+	}
+
+	/**
 	 * @see FileBackend::doOperationsInternal()
 	 * @return Status
 	 */
@@ -741,18 +764,10 @@ abstract class FileBackendStore extends FileBackend {
 		// Acquire any locks as needed...
 		if ( empty( $opts['nonLocking'] ) ) {
 			// Build up a list of files to lock...
-			$filesLockEx = $filesLockSh = array();
-			foreach ( $performOps as $fileOp ) {
-				$filesLockSh = array_merge( $filesLockSh, $fileOp->storagePathsRead() );
-				$filesLockEx = array_merge( $filesLockEx, $fileOp->storagePathsChanged() );
-			}
-			// Optimization: if doing an EX lock anyway, don't also set an SH one
-			$filesLockSh = array_diff( $filesLockSh, $filesLockEx );
-			// Get a shared lock on the parent directory of each path changed
-			$filesLockSh = array_merge( $filesLockSh, array_map( 'dirname', $filesLockEx ) );
+			$paths = $this->getPathsToLockForOpsInternal( $performOps );
 			// Try to lock those files for the scope of this function...
-			$scopeLockS = $this->getScopedFileLocks( $filesLockSh, LockManager::LOCK_UW, $status );
-			$scopeLockE = $this->getScopedFileLocks( $filesLockEx, LockManager::LOCK_EX, $status );
+			$scopeLockS = $this->getScopedFileLocks( $paths['sh'], LockManager::LOCK_UW, $status );
+			$scopeLockE = $this->getScopedFileLocks( $paths['ex'], LockManager::LOCK_EX, $status );
 			if ( !$status->isOK() ) {
 				wfProfileOut( __METHOD__ . '-' . $this->name );
 				wfProfileOut( __METHOD__ );

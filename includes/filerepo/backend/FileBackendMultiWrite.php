@@ -7,7 +7,7 @@
 
 /**
  * @brief Proxy backend that mirrors writes to several internal backends.
- * 
+ *
  * This class defines a multi-write backend. Multiple backends can be
  * registered to this proxy backend and it will act as a single backend.
  * Use this when all access to those backends is through this proxy backend.
@@ -84,8 +84,7 @@ class FileBackendMultiWrite extends FileBackend {
 		$status = Status::newGood();
 
 		$performOps = array(); // list of FileOp objects
-		$filesRead = array(); // storage paths read from
-		$filesChanged = array(); // storage paths written to
+		$paths = array(); // storage paths read from or written to
 		// Build up a list of FileOps. The list will have all the ops
 		// for one backend, then all the ops for the next, and so on.
 		// These batches of ops are all part of a continuous array.
@@ -97,25 +96,18 @@ class FileBackendMultiWrite extends FileBackend {
 			if ( $index == 0 ) { // first batch
 				// Get the files used for these operations. Each backend has a batch of
 				// the same operations, so we only need to get them from the first batch.
-				foreach ( $performOps as $fileOp ) {
-					$filesRead = array_merge( $filesRead, $fileOp->storagePathsRead() );
-					$filesChanged = array_merge( $filesChanged, $fileOp->storagePathsChanged() );
-				}
+				$paths = $backend->getPathsToLockForOpsInternal( $performOps );
 				// Get the paths under the proxy backend's name
-				$filesRead = $this->unsubstPaths( $filesRead );
-				$filesChanged = $this->unsubstPaths( $filesChanged );
+				$paths['sh'] = $this->unsubstPaths( $paths['sh'] );
+				$paths['ex'] = $this->unsubstPaths( $paths['ex'] );
 			}
 		}
 
 		// Try to lock those files for the scope of this function...
 		if ( empty( $opts['nonLocking'] ) ) {
-			$filesLockSh = array_diff( $filesRead, $filesChanged ); // optimization
-			$filesLockEx = $filesChanged;
-			// Get a shared lock on the parent directory of each path changed
-			$filesLockSh = array_merge( $filesLockSh, array_map( 'dirname', $filesLockEx ) );
 			// Try to lock those files for the scope of this function...
-			$scopeLockS = $this->getScopedFileLocks( $filesLockSh, LockManager::LOCK_UW, $status );
-			$scopeLockE = $this->getScopedFileLocks( $filesLockEx, LockManager::LOCK_EX, $status );
+			$scopeLockS = $this->getScopedFileLocks( $paths['sh'], LockManager::LOCK_UW, $status );
+			$scopeLockE = $this->getScopedFileLocks( $paths['ex'], LockManager::LOCK_EX, $status );
 			if ( !$status->isOK() ) {
 				return $status; // abort
 			}
@@ -126,7 +118,7 @@ class FileBackendMultiWrite extends FileBackend {
 
 		// Do a consistency check to see if the backends agree
 		if ( count( $this->backends ) > 1 ) {
-			$status->merge( $this->consistencyCheck( array_merge( $filesRead, $filesChanged ) ) );
+			$status->merge( $this->consistencyCheck( array_merge( $paths['sh'], $paths['ex'] ) ) );
 			if ( !$status->isOK() ) {
 				return $status; // abort
 			}
@@ -220,7 +212,7 @@ class FileBackendMultiWrite extends FileBackend {
 	/**
 	 * Substitute the backend name in storage path parameters
 	 * for a set of operations with that of a given internal backend.
-	 * 
+	 *
 	 * @param $ops Array List of file operation arrays
 	 * @param $backend FileBackendStore
 	 * @return Array
@@ -241,7 +233,7 @@ class FileBackendMultiWrite extends FileBackend {
 
 	/**
 	 * Same as substOpBatchPaths() but for a single operation
-	 * 
+	 *
 	 * @param $op File operation array
 	 * @param $backend FileBackendStore
 	 * @return Array
@@ -253,7 +245,7 @@ class FileBackendMultiWrite extends FileBackend {
 
 	/**
 	 * Substitute the backend of storage paths with an internal backend's name
-	 * 
+	 *
 	 * @param $paths Array|string List of paths or single string path
 	 * @param $backend FileBackendStore
 	 * @return Array|string
@@ -268,7 +260,7 @@ class FileBackendMultiWrite extends FileBackend {
 
 	/**
 	 * Substitute the backend of internal storage paths with the proxy backend's name
-	 * 
+	 *
 	 * @param $paths Array|string List of paths or single string path
 	 * @return Array|string
 	 */
