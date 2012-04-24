@@ -705,7 +705,7 @@ abstract class FileBackendStore extends FileBackend {
 	 * @return Array List of FileOp objects
 	 * @throws MWException
 	 */
-	final public function getOperations( array $ops ) {
+	final public function getOperationsInternal( array $ops ) {
 		$supportedOps = $this->supportedOperations();
 
 		$performOps = array(); // array of FileOp objects
@@ -719,7 +719,7 @@ abstract class FileBackendStore extends FileBackend {
 				// Append the FileOp class
 				$performOps[] = new $class( $this, $params );
 			} else {
-				throw new MWException( "Operation `$opName` is not supported." );
+				throw new MWException( "Operation '$opName' is not supported." );
 			}
 		}
 
@@ -736,7 +736,7 @@ abstract class FileBackendStore extends FileBackend {
 		$status = Status::newGood();
 
 		// Build up a list of FileOps...
-		$performOps = $this->getOperations( $ops );
+		$performOps = $this->getOperationsInternal( $ops );
 
 		// Acquire any locks as needed...
 		if ( empty( $opts['nonLocking'] ) ) {
