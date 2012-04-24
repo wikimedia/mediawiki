@@ -145,6 +145,11 @@ class EditPage {
 	const AS_IMAGE_REDIRECT_LOGGED     = 234;
 
 	/**
+	 * HTML id and name for the beginning of the edit form.
+	 */
+	const EDITFORM_ID                  = 'editform';
+
+	/**
 	 * @var Article
 	 */
 	var $mArticle;
@@ -1769,7 +1774,7 @@ class EditPage {
 			}
 		}
 
-		$wgOut->addHTML( Html::openElement( 'form', array( 'id' => 'editform', 'name' => 'editform',
+		$wgOut->addHTML( Html::openElement( 'form', array( 'id' => EDITFORM_ID, 'name' => EDITFORM_ID,
 			'method' => 'post', 'action' => $this->getActionURL( $this->getContextTitle() ),
 			'enctype' => 'multipart/form-data' ) ) );
 
@@ -2550,7 +2555,7 @@ HTML
 	 * @return string
 	 */
 	function getPreviewText() {
-		global $wgOut, $wgUser, $wgParser, $wgRawHtml;
+		global $wgOut, $wgUser, $wgParser, $wgRawHtml, $wgLang;
 
 		wfProfileIn( __METHOD__ );
 
@@ -2578,7 +2583,8 @@ HTML
 		} elseif ( $this->incompleteForm ) {
 			$note = wfMsg( 'edit_form_incomplete' );
 		} else {
-			$note = wfMsg( 'previewnote' );
+			$note = wfMsg( 'previewnote' ) .
+				' [[#' . EDITFORM_ID . '|' . $wgLang->getArrow() . ' ' . wfMsg( 'continue-editing' ) . ']]';
 		}
 
 		$parserOptions = ParserOptions::newFromUser( $wgUser );

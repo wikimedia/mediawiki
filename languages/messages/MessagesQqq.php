@@ -972,6 +972,7 @@ See also {{msg-mw|Noarticletext-nopermission}}.',
 'sitejspreview' => 'Text displayed on preview of .js pages in MediaWiki namespace',
 'updated' => '{{Identical|Updated}}',
 'previewnote' => 'Note displayed when clicking on Show preview',
+'continue-editing' => 'A link to the beginning of the editing textarea on the same page. Displayed after {{msg-mw|previewnote}}.',
 'editing' => "Shown as page title when editing a page. \$1 is the name of the page that is being edited. Example: \"''Editing Main Page''\".",
 'creating' => "Shown as page title when creating a page. Parameters:
 * \$1 is the name of the page that is being created. Example: \"''Creating Main Page''\".",
