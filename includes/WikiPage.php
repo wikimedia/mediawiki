@@ -1846,7 +1846,7 @@ class WikiPage extends Page {
     public function doQuickEdit( $text, User $user, $comment = '', $minor = 0 ) {
         #TODO: log use of deprecated function
         $content = ContentHandler::makeContent( $text, $this->getTitle() );
-        return $this->doQuickEdit( $content, $user, $comment , $minor );
+        return $this->doQuickEditContent( $content, $user, $comment , $minor );
     }
 
     /**
