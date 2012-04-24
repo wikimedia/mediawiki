@@ -461,8 +461,9 @@ class WikiPage extends Page {
 	 * @return String|false The text of the current revision
      * @deprecated as of 1.20, getContent() should be used instead.
 	 */
-	public function getText( $audience = Revision::FOR_PUBLIC ) { #FIXME: deprecated, replace usage!
+	public function getText( $audience = Revision::FOR_PUBLIC ) { #@todo: deprecated, replace usage!
         wfDeprecated( __METHOD__, '1.20' );
+
 		$this->loadLastEdit();
 		if ( $this->mLastRevision ) {
 			return $this->mLastRevision->getText( $audience );
@@ -474,8 +475,11 @@ class WikiPage extends Page {
 	 * Get the text of the current revision. No side-effects...
 	 *
 	 * @return String|bool The text of the current revision. False on failure
+	 * @deprecated as of 1.20, getContent() should be used instead.
 	 */
-	public function getRawText() { #FIXME: deprecated, replace usage!
+	public function getRawText() { #@todo: deprecated, replace usage!
+		wfDeprecated( __METHOD__, '1.20' );
+
 		return $this->getText( Revision::RAW );
 	}
 
@@ -613,8 +617,7 @@ class WikiPage extends Page {
 		}
 
         if ( $editInfo ) {
-            $content = ContentHandler::makeContent( $editInfo->pst, $this->mTitle );
-            # TODO: take model and format from edit info!
+            $content = $editInfo->pstContent;
         } else {
             $content = $this->getContent();
         }
@@ -883,7 +886,7 @@ class WikiPage extends Page {
 			&& $parserOptions->getStubThreshold() == 0
 			&& $this->mTitle->exists()
 			&& ( $oldid === null || $oldid === 0 || $oldid === $this->getLatest() )
-			&& $this->getContentHandler()->isParserCacheSupported(); 
+			&& $this->getContentHandler()->isParserCacheSupported();
 	}
 
 	/**
@@ -1164,6 +1167,8 @@ class WikiPage extends Page {
      * @deprecated since 1.20: use ContentHandler::getUndoContent() instead.
 	 */
 	public function getUndoText( Revision $undo, Revision $undoafter = null ) { #FIXME: replace usages.
+		wfDeprecated( __METHOD__, '1.20' );
+
         $this->loadLastEdit();
 
         if ( $this->mLastRevision ) {
@@ -1189,8 +1194,7 @@ class WikiPage extends Page {
      * @deprected since 1.20, use replaceSectionContent() instead
 	 */
 	public function replaceSection( $section, $text, $sectionTitle = '', $edittime = null ) { #FIXME: use replaceSectionContent() instead!
-        // TODO FIXME
-        //wfDeprecated( __METHOD__, '1.20' );
+        wfDeprecated( __METHOD__, '1.20' );
 
         $sectionContent = ContentHandler::makeContent( $text, $this->getTitle() ); #XXX: could make section title, but that's not required.
 
@@ -1842,9 +1846,12 @@ class WikiPage extends Page {
 	 * @param $user User The relevant user
 	 * @param $comment String: comment submitted
 	 * @param $minor Boolean: whereas it's a minor modification
+	 *
+	 * @deprecated since 1.20, use doEditContent() instead.
 	 */
     public function doQuickEdit( $text, User $user, $comment = '', $minor = 0 ) {
-        #TODO: log use of deprecated function
+        wfDeprecated( __METHOD__, "1.20" );
+
         $content = ContentHandler::makeContent( $text, $this->getTitle() );
         return $this->doQuickEditContent( $content, $user, $comment , $minor );
     }
