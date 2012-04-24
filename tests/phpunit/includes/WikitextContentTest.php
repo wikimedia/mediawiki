@@ -85,7 +85,7 @@ just a test"
 			       "",
 			       "No more",
 			       null,
-			       trim( preg_replace( '/^Intro/sm', 'No more', WikitextContentTest::$sections ) )
+			       "No more"
 			),
 			array( WikitextContentTest::$sections,
 			       "2",

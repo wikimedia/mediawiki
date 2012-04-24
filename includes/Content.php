@@ -541,7 +541,9 @@ class WikitextContent extends TextContent {
 		$oldtext = $this->getNativeData();
 		$text = $with->getNativeData();
 
-		if ( $section == 'new' ) {
+		if ( $section === '' ) {
+			return $with; #XXX: copy first?
+		} if ( $section == 'new' ) {
 			# Inserting a new section
 			$subject = $sectionTitle ? wfMsgForContent( 'newsectionheaderdefaultlevel', $sectionTitle ) . "\n\n" : '';
 			if ( wfRunHooks( 'PlaceNewSection', array( $this, $oldtext, $subject, &$text ) ) ) {
