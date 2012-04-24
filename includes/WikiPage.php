@@ -897,9 +897,11 @@ class WikiPage extends Page {
 	 * @param $parserOptions ParserOptions to use for the parse operation
 	 * @param $oldid Revision ID to get the text from, passing null or 0 will
 	 *               get the current revision (default value)
+	 * @param $context IContextSource context for parsing
+	 *
 	 * @return ParserOutput or false if the revision was not found
 	 */
-	public function getParserOutput( ParserOptions $parserOptions, $oldid = null ) {
+	public function getParserOutput( ParserOptions $parserOptions, $oldid = null, IContextSource $context = null ) {
 		wfProfileIn( __METHOD__ );
 
 		$useParserCache = $this->isParserCacheUsed( $parserOptions, $oldid );
@@ -920,7 +922,7 @@ class WikiPage extends Page {
 			$oldid = $this->getLatest();
 		}
 
-		$pool = new PoolWorkArticleView( $this, $parserOptions, $oldid, $useParserCache );
+		$pool = new PoolWorkArticleView( $this, $parserOptions, $oldid, $useParserCache, null, $context );
 		$pool->execute();
 
 		wfProfileOut( __METHOD__ );
@@ -1191,7 +1193,7 @@ class WikiPage extends Page {
 	 * @param $sectionTitle String: new section's subject, only if $section is 'new'
 	 * @param $edittime String: revision timestamp or null to use the current revision
 	 * @return Content new complete article content, or null if error
-     * @deprected since 1.20, use replaceSectionContent() instead
+     * @deprecated since 1.20, use replaceSectionContent() instead
 	 */
 	public function replaceSection( $section, $text, $sectionTitle = '', $edittime = null ) { #FIXME: use replaceSectionContent() instead!
         wfDeprecated( __METHOD__, '1.20' );
@@ -3037,16 +3039,23 @@ class PoolWorkArticleView extends PoolCounterWork {
 	 * @param $useParserCache Boolean: whether to use the parser cache
 	 * @param $parserOptions parserOptions to use for the parse operation
 	 * @param $content Content|String: content to parse or null to load it; may also be given as a wikitext string, for BC
+	 * @param $context IContextSource context for parsing
 	 */
-	function __construct( Page $page, ParserOptions $parserOptions, $revid, $useParserCache, $content = null ) {
+	function __construct( Page $page, ParserOptions $parserOptions, $revid, $useParserCache, $content = null, IContextSource $context = null ) {
         if ( is_string($content) ) { #BC: old style call
             $modelName = $page->getRevision()->getContentModelName();
             $format = $page->getRevision()->getContentFormat();
             $content = ContentHandler::makeContent( $content, $page->getTitle(), $modelName, $format );
         }
 
+		if ( is_null( $context ) ) {
+			$context = RequestContext::getMain();
+			#XXX: clone and then set title?
+		}
+
 		$this->page = $page;
 		$this->revid = $revid;
+		$this->context = $context;
 		$this->cacheable = $useParserCache;
 		$this->parserOptions = $parserOptions;
 		$this->content = $content;
@@ -3085,7 +3094,9 @@ class PoolWorkArticleView extends PoolCounterWork {
 	 * @return bool
 	 */
 	function doWork() {
-		global $wgParser, $wgUseFileCache;
+		global $wgUseFileCache;
+
+		// @todo: several of the methods called on $this->page are not declared in Page, but present in WikiPage and delegated by Article.
 
 		$isCurrent = $this->revid === $this->page->getLatest();
 
@@ -3103,7 +3114,7 @@ class PoolWorkArticleView extends PoolCounterWork {
 
 		$time = - microtime( true );
 		// TODO: page might not have this method? Hard to tell what page is supposed to be here...
-		$this->parserOutput = $content->getParserOutput( $this->page->getContext(), $this->revid, $this->parserOptions );
+		$this->parserOutput = $content->getParserOutput( $this->context, $this->revid, $this->parserOptions );
 		$time += microtime( true );
 
 		# Timing hack
