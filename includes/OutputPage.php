@@ -2939,12 +2939,11 @@ $templates
 	}
 
 	/**
-	 * @param $unused
-	 * @param $addContentType bool
+	 * @param $addContentType bool: Whether <meta> specifying content type should be returned
 	 *
-	 * @return string HTML tag links to be put in the header.
+	 * @return array in format "link name or number => 'link html'".
 	 */
-	public function getHeadLinks( $unused = null, $addContentType = false ) {
+	public function getHeadLinksArray( $addContentType = false ) {
 		global $wgUniversalEditButton, $wgFavicon, $wgAppleTouchIcon, $wgEnableAPI,
 			$wgSitename, $wgVersion, $wgHtml5, $wgMimeType,
 			$wgFeed, $wgOverrideSiteFeed, $wgAdvertisedFeedTypes,
@@ -2957,20 +2956,20 @@ $templates
 			if ( $wgHtml5 ) {
 				# More succinct than <meta http-equiv=Content-Type>, has the
 				# same effect
-				$tags[] = Html::element( 'meta', array( 'charset' => 'UTF-8' ) );
+				$tags['meta-charset'] = Html::element( 'meta', array( 'charset' => 'UTF-8' ) );
 			} else {
-				$tags[] = Html::element( 'meta', array(
+				$tags['meta-content-type'] = Html::element( 'meta', array(
 					'http-equiv' => 'Content-Type',
 					'content' => "$wgMimeType; charset=UTF-8"
 				) );
-				$tags[] = Html::element( 'meta', array(  // bug 15835
+				$tags['meta-content-style-type'] = Html::element( 'meta', array(  // bug 15835
 					'http-equiv' => 'Content-Style-Type',
 					'content' => 'text/css'
 				) );
 			}
 		}
 
-		$tags[] = Html::element( 'meta', array(
+		$tags['meta-generator'] = Html::element( 'meta', array(
 			'name' => 'generator',
 			'content' => "MediaWiki $wgVersion",
 		) );
@@ -2979,7 +2978,7 @@ $templates
 		if( $p !== 'index,follow' ) {
 			// http://www.robotstxt.org/wc/meta-user.html
 			// Only show if it's different from the default robots policy
-			$tags[] = Html::element( 'meta', array(
+			$tags['meta-robots'] = Html::element( 'meta', array(
 				'name' => 'robots',
 				'content' => $p,
 			) );
@@ -2990,7 +2989,7 @@ $templates
 				"/<.*?" . ">/" => '',
 				"/_/" => ' '
 			);
-			$tags[] = Html::element( 'meta', array(
+			$tags['meta-keywords'] = Html::element( 'meta', array(
 				'name' => 'keywords',
 				'content' =>  preg_replace(
 					array_keys( $strip ),
@@ -3007,7 +3006,7 @@ $templates
 			} else {
 				$a = 'name';
 			}
-			$tags[] = Html::element( 'meta',
+			$tags["meta-{$tag[0]}"] = Html::element( 'meta',
 				array(
 					$a => $tag[0],
 					'content' => $tag[1]
@@ -3026,14 +3025,14 @@ $templates
 				&& ( $this->getTitle()->exists() || $this->getTitle()->quickUserCan( 'create', $user ) ) ) {
 				// Original UniversalEditButton
 				$msg = $this->msg( 'edit' )->text();
-				$tags[] = Html::element( 'link', array(
+				$tags['universal-edit-button'] = Html::element( 'link', array(
 					'rel' => 'alternate',
 					'type' => 'application/x-wiki',
 					'title' => $msg,
 					'href' => $this->getTitle()->getLocalURL( 'action=edit' )
 				) );
 				// Alternate edit link
-				$tags[] = Html::element( 'link', array(
+				$tags['alternative-edit'] = Html::element( 'link', array(
 					'rel' => 'edit',
 					'title' => $msg,
 					'href' => $this->getTitle()->getLocalURL( 'action=edit' )
@@ -3046,15 +3045,15 @@ $templates
 		# uses whichever one appears later in the HTML source. Make sure
 		# apple-touch-icon is specified first to avoid this.
 		if ( $wgAppleTouchIcon !== false ) {
-			$tags[] = Html::element( 'link', array( 'rel' => 'apple-touch-icon', 'href' => $wgAppleTouchIcon ) );
+			$tags['apple-touch-icon'] = Html::element( 'link', array( 'rel' => 'apple-touch-icon', 'href' => $wgAppleTouchIcon ) );
 		}
 
 		if ( $wgFavicon !== false ) {
-			$tags[] = Html::element( 'link', array( 'rel' => 'shortcut icon', 'href' => $wgFavicon ) );
+			$tags['favicon'] = Html::element( 'link', array( 'rel' => 'shortcut icon', 'href' => $wgFavicon ) );
 		}
 
 		# OpenSearch description link
-		$tags[] = Html::element( 'link', array(
+		$tags['opensearch'] = Html::element( 'link', array(
 			'rel' => 'search',
 			'type' => 'application/opensearchdescription+xml',
 			'href' => wfScript( 'opensearch_desc' ),
@@ -3066,7 +3065,7 @@ $templates
 			# for the MediaWiki API (and potentially additional custom API
 			# support such as WordPress or Twitter-compatible APIs for a
 			# blogging extension, etc)
-			$tags[] = Html::element( 'link', array(
+			$tags['rsd'] = Html::element( 'link', array(
 				'rel' => 'EditURI',
 				'type' => 'application/rsd+xml',
 				// Output a protocol-relative URL here if $wgServer is protocol-relative
@@ -3086,14 +3085,14 @@ $templates
 				if ( !$urlvar ) {
 					$variants = $lang->getVariants();
 					foreach ( $variants as $_v ) {
-						$tags[] = Html::element( 'link', array(
+						$tags["variant-$_v"] = Html::element( 'link', array(
 							'rel' => 'alternate',
 							'hreflang' => $_v,
 							'href' => $this->getTitle()->getLocalURL( array( 'variant' => $_v ) ) )
 						);
 					}
 				} else {
-					$tags[] = Html::element( 'link', array(
+					$tags['canonical'] = Html::element( 'link', array(
 						'rel' => 'canonical',
 						'href' => $this->getTitle()->getCanonicalUrl()
 					) );
@@ -3116,7 +3115,7 @@ $templates
 		}
 
 		if ( $copyright ) {
-			$tags[] = Html::element( 'link', array(
+			$tags['copyright'] = Html::element( 'link', array(
 				'rel' => 'copyright',
 				'href' => $copyright )
 			);
@@ -3165,7 +3164,17 @@ $templates
 				}
 			}
 		}
-		return implode( "\n", $tags );
+		return $tags;
+	}
+
+	/**
+	 * @param $unused
+	 * @param $addContentType bool: Whether <meta> specifying content type should be returned
+	 *
+	 * @return string HTML tag links to be put in the header.
+	 */
+	public function getHeadLinks( $unused = null, $addContentType = false ) {
+		return implode( "\n", $this->getHeadLinksArray( $addContentType ) );
 	}
 
 	/**
