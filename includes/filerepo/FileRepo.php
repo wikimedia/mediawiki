@@ -782,6 +782,7 @@ class FileRepo {
 	/**
 	 * Import a file from the local file system into the repo.
 	 * This does no locking nor journaling and overrides existing files.
+	 * This function can be used to write to otherwise read-only foreign repos.
 	 * This is intended for copying generated thumbnails into the repo.
 	 *
 	 * @param $src string File system path
@@ -794,7 +795,8 @@ class FileRepo {
 
 	/**
 	 * Purge a file from the repo. This does no locking nor journaling.
-	 * This is intended for purging thumbnail.
+	 * This function can be used to write to otherwise read-only foreign repos.
+	 * This is intended for purging thumbnails.
 	 *
 	 * @param $path string Virtual URL or storage path
 	 * @return FileRepoStatus
@@ -806,14 +808,13 @@ class FileRepo {
 	/**
 	 * Import a batch of files from the local file system into the repo.
 	 * This does no locking nor journaling and overrides existing files.
+	 * This function can be used to write to otherwise read-only foreign repos.
 	 * This is intended for copying generated thumbnails into the repo.
 	 *
 	 * @param $src Array List of tuples (file system path, virtual URL or storage path)
 	 * @return FileRepoStatus
 	 */
 	public function quickImportBatch( array $pairs ) {
-		$this->assertWritableRepo(); // fail out if read-only
-
 		$status = $this->newGood();
 		$operations = array();
 		foreach ( $pairs as $pair ) {
@@ -834,15 +835,14 @@ class FileRepo {
 	}
 
 	/**
-	 * Purge a batch of files from the repo. This does no locking nor journaling.
-	 * This is intended for purging thumbnails.
+	 * Purge a batch of files from the repo.
+	 * This function can be used to write to otherwise read-only foreign repos.
+	 * This does no locking nor journaling and is intended for purging thumbnails.
 	 *
 	 * @param $path Array List of virtual URLs or storage paths
 	 * @return FileRepoStatus
 	 */
 	public function quickPurgeBatch( array $paths ) {
-		$this->assertWritableRepo(); // fail out if read-only
-
 		$status = $this->newGood();
 		$operations = array();
 		foreach ( $paths as $path ) {
@@ -1087,14 +1087,13 @@ class FileRepo {
 	}
 
 	/**
-	 * Deletes a directory if empty
+	 * Deletes a directory if empty.
+	 * This function can be used to write to otherwise read-only foreign repos.
 	 *
 	 * @param $dir string Virtual URL (or storage path) of directory to clean
 	 * @return Status
 	 */
 	public function cleanDir( $dir ) {
-		$this->assertWritableRepo(); // fail out if read-only
-
 		$status = $this->newGood();
 		$status->merge( $this->backend->clean(
 			array( 'dir' => $this->resolveToStoragePath( $dir ) ) ) );
