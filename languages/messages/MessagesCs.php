@@ -1022,7 +1022,7 @@ Zde je pro přehled zobrazen nejnovější záznam z knihy zablokování:',
 'updated' => '(Změna uložena)',
 'note' => "'''Poznámka:'''&nbsp;",
 'previewnote' => "'''Pamatujte, že toto je pouze náhled.'''
-Změny zatím nebyly uloženy! [[#editform|→ Pokračovat v editaci]]",
+Změny zatím nebyly uloženy!",
 'previewconflict' => 'Tento náhled ukazuje text tak, jak bude vypadat po uložení stránky.',
 'session_fail_preview' => "'''Váš požadavek se nepodařilo zpracovat kvůli ztrátě dat z relace.
 Zkuste to prosím znovu.

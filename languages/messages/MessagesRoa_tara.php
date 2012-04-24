@@ -725,7 +725,7 @@ Arrecuerdete ca jndr'à le file personalizzete .css e .js s'ause scrivere le tit
 'updated' => '(Cangiete)',
 'note' => "'''Vide Bbuene:'''",
 'previewnote' => "'''Arrecuerdete queste è sole 'n'andeprime.'''
-le cangiaminde non g'onne state angore reggistrate! [[#editform|→ Condinue cu 'u cangiamende]]",
+le cangiaminde non g'onne state angore reggistrate!",
 'previewconflict' => "Sta andeprime fece vedè 'u teste ca ste jndr'à 'u teste de l'area de sus cumme avène fore ce tu decide cu reggistre.",
 'session_fail_preview' => "'''Ne dispiace! Non ge putime processà 'u cangiamende tue purcè s'a perse 'a sessione de le date.
 Pe piacere pruève 'n'otra vote.

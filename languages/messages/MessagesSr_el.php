@@ -1000,7 +1000,7 @@ Prilagođene stranice CSS i javaskript počinju malim slovom, npr. {{ns:user}}:F
 'updated' => '(Ažurirano)',
 'note' => "'''Napomena:'''",
 'previewnote' => "'''Imajte u vidu da je ovo samo pregled.'''
-Vaše izmene još nisu sačuvane! [[#editform|→ Nastavi s uređivanjem]]",
+Vaše izmene još nisu sačuvane!",
 'previewconflict' => 'Ovaj pregled oslikava kako će tekst u tekstualnom okviru izgledati.',
 'session_fail_preview' => "'''Nismo mogli da obradimo vašu izmenu zbog gubitka podataka sesije.'''
 Pokušajte ponovo.

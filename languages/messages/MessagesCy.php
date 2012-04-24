@@ -775,7 +775,7 @@ Dyma'r cofnod lòg diweddaraf, er gwybodaeth:",
 Cofiwch bod y tudalennau .css a .js yn defnyddio llythrennau bach, e.e. {{ns:user}}:Foo/vector.css yn hytrach na {{ns:user}}:Foo/Vector.css.",
 'updated' => '(Diweddariad)',
 'note' => "'''Dalier sylw:'''",
-'previewnote' => "'''Cofiwch taw rhagolwg yw hwn.''' Nid yw eich gwaith wedi ei roi ar gadw eto! [[#editform|→ Parhau i olygu]]",
+'previewnote' => "'''Cofiwch taw rhagolwg yw hwn.''' Nid yw eich gwaith wedi ei roi ar gadw eto!",
 'previewconflict' => "Mae'r rhagolwg hwn yn dangos y testun yn yr ardal golygu uchaf, fel ag y byddai'n ymddangos petaech yn rhoi'r dudalen ar gadw.",
 'session_fail_preview' => "'''Ymddiheurwn! Methwyd prosesu eich golygiad gan fod rhan o ddata'r sesiwn wedi'i golli. Ceisiwch eto.
 Os digwydd yr un peth eto, ceisiwch [[Special:UserLogout|allgofnodi]] ac yna mewngofnodi eto.'''",

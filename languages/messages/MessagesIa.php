@@ -843,7 +843,7 @@ Memora que le paginas .css and .js personalisate usa un titulo in minusculas, p.
 'updated' => '(Actualisate)',
 'note' => "'''Nota:'''",
 'previewnote' => "'''Isto es solmente un previsualisation.'''
-Le modificationes non ha ancora essite publicate! [[#editform|→ Continuar le modification]]",
+Le modificationes non ha ancora essite publicate!",
 'previewconflict' => 'Iste previsualisation reflecte le apparentia final del texto in le area de modification superior
 si tu opta pro publicar lo.',
 'session_fail_preview' => "'''Nos non poteva processar tu modification proque nos perdeva le datos del session.

@@ -514,7 +514,7 @@ naɣ <span class="plainlinks">[{{fullurl:{{#Special:Log}}|asebter={{FULLPAGENAME
 'previewnote' => "'''Ttagi d azar-timeẓriwt kan, ibeddlen mazal ur ttusmektin ara!'''
 
 '''Cfut, ttagi d azar-timeẓriwt kan.'''
-Ibeddlen mazal ur ttusmektin ara! [[#editform|→ Kemmel abeddel]]",
+Ibeddlen mazal ur ttusmektin ara!",
 'previewconflict' => 'Pre-timeẓriwt-agi tesskan aḍris i yellan deg usawen lemmer tebɣiḍ a tt-tesmektiḍ.',
 'session_fail_preview' => "'''Suref-aɣ! ur nezmir ara a nesmekti abeddil inek axaṭer yella ugur.
 G leɛnayek ɛreḍ tikelt nniḍen. Lukan mazal yella ugur, ffeɣ umbeɛd kcem.'''",

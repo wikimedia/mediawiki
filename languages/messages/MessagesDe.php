@@ -1048,7 +1048,8 @@ Zur Information folgt ein aktueller Auszug aus dem Benutzersperr-Logbuch:',
 'updated' => '(Geändert)',
 'note' => "'''Hinweis:'''",
 'previewnote' => "'''Dies ist nur eine Vorschau.'''
-Die Seite wurde noch nicht gespeichert! [[#editform|→ Weiter bearbeiten]]",
+Die Seite wurde noch nicht gespeichert!",
+'continue-editing' => 'Weiter bearbeiten',
 'previewconflict' => 'Diese Vorschau gibt den Inhalt des oberen Textfeldes wieder. So wird die Seite aussehen, wenn du jetzt speicherst.',
 'session_fail_preview' => "'''Deine Bearbeitung konnte nicht gespeichert werden, da Sitzungsdaten verloren gegangen sind.
 Bitte versuche es erneut, indem du unter der folgenden Textvorschau nochmals auf „Seite speichern“ klickst.

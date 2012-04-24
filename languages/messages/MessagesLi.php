@@ -818,7 +818,7 @@ De leste bloklogregel wuuertj hiejónger t'r raodpleging gegaeve:",
 Lèt op: dien eige .css- en .js-pagina's beginne mèt  'ne klein lètter, beveurbeeld {{ns:user}}:Naam/vector.css in plaats van {{ns:user}}:Naam/Vector.css.",
 'updated' => '(Biegewèrk)',
 'note' => "'''Opmirking:'''",
-'previewnote' => "'''Lèt op: dit is 'n controlepagina; dien teks is nog neet opgesjlage!''' [[#editform|→ Gank dórch mit bewirke]]",
+'previewnote' => "'''Lèt op: dit is 'n controlepagina; dien teks is nog neet opgesjlage!'''",
 'previewconflict' => "Dees versie toent wie de tèks in 't bôvesjte vèld oet git zeen es e zouws opsjlaon.",
 'session_fail_preview' => "'''Sorry! Dien bewerking is neet verwerkt omdat sessiegegevens verlaore zeen gegaon.
 Probeer 't opnieuw. Als 't dan nog neet lukt, meldt dich dan aaf en weer aan.'''",

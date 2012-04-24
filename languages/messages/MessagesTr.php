@@ -984,7 +984,7 @@ Son engelleme günlüğü girdisi referans için aşağıda sağlanmıştır:',
 'updated' => '(Güncellendi)',
 'note' => "'''Not: '''",
 'previewnote' => "'''Bunun yalnızca bir ön izleme olduğunu unutmayın.'''
-Yaptığınız değişiklikler henüz kaydedilmedi! [[#editform|→ Düzenlemeye devam edin]]",
+Yaptığınız değişiklikler henüz kaydedilmedi!",
 'previewconflict' => 'Bu önizleme metin düzenleme kutucuğunun üstünde, maddenin eğer değişikliklerinizi kaydetmeyi seçerseniz nasıl görüneceğini yansıtır.',
 'session_fail_preview' => 'Özür dileriz. Oturum açılması ile ilgili veri kaybından kaynaklı değişikliğinizi kaydedemedik. Lütfen tekrar deneyiniz. Eğer bu yöntem işe yaramazsa oturumu kapatıp tekrar sisteme geri giriş yapınız.',
 'session_fail_preview_html' => "'''Üzgünüz! Oturum verisinin kaybolmasından dolayı düzenlemenizi işleme geçiremeyeceğiz.'''

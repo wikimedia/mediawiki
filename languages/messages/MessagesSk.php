@@ -963,7 +963,7 @@ Dolu je pre informáciu posledná položka zo záznamu blokovaní:',
 'updated' => '(Aktualizovaný)',
 'note' => "'''Poznámka: '''",
 'previewnote' => "'''Nezabudnite, toto je iba náhľad stránky, ktorú upravujete.
-Zmeny ešte nie sú uložené!''' [[#editform|→ Pokračujte v úpravách]]",
+Zmeny ešte nie sú uložené!'''",
 'previewconflict' => 'Tento náhľad upravenej stránky zobrazuje text z horného poľa s textom tak, ako sa zobrazí potom, keď ju uložíte.',
 'session_fail_preview' => "'''Prepáčte, nemohli sme spracovať váš príspevok kvôli strate údajov relácie.
 Skúste to prosím ešte raz.

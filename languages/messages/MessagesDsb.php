@@ -810,7 +810,7 @@ Nejnowšy zapisk blokěrowańskego protokola pódawa se dołojce ako referenca:'
 'updated' => '(Zaktualizěrowane)',
 'note' => "'''Pokazka:'''",
 'previewnote' => "'''Wobmysli, až to jo jano pśeglěd.'''
-Twóje změny hyšći njejsu składowane! [[#editform|→ Dalej wobźěłaś]]",
+Twóje změny hyšći njejsu składowane!",
 'previewconflict' => 'Toś ten pśeglěd wótbłyšćujo tekst górjejcnego póla. Bok buźo tak wuglědaś, jolic jen něnto składujoš.',
 'session_fail_preview' => "'''Wódaj! Twójo wobźěłanje njejo se mógało składowaś, dokulaž su daty twójogo pósejźenja se zgubili. Pšosym wopytaj hyšći raz. Jolic až to pón pśecej hyšći njejźo, wopytaj se wótzjawiś a zasej pśizjawiś.'''",
 'session_fail_preview_html' => "'''Wódaj! Twójo wobźěłanje njejo se mógało składowaś, dokulaž su daty twójogo pósejźenja se zgubili.'''

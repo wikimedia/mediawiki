@@ -313,7 +313,7 @@ kam [{{fullurl:{{FULLPAGENAME}}|action=edit}} kümeelaymi tüfachi wülngiñ]</s
 Eymi [[Special:Search/{{PAGENAME}}|pepikintuymi tüfachi üy]] kake wülngiñ mew,
 kam <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} kintuymi koneltuyelelu wirintukun]</span>.',
 'previewnote' => "'''Ngüneduamimi tüfachi wüne pen petu eltukawam!'''
-Eltukawlelay feychi kalekünun! [[#editform|→ Continuar editando]]",
+Eltukawlelay feychi kalekünun!",
 'editing' => 'Kümeelngey $1',
 'editingsection' => 'Wirin $1 (Dungu)',
 'editingcomment' => 'Wirin $1 (we dungu)',

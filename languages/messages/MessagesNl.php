@@ -1049,7 +1049,7 @@ Uw eigen .css- en .js-pagina's beginnen met een kleine letter, bijvoorbeeld {{ns
 'updated' => '(Bijgewerkt)',
 'note' => "'''Opmerking:'''",
 'previewnote' => "'''Let op: dit is een controlepagina.'''
-Uw tekst is niet opgeslagen! [[#editform|→ Doorgaan met bewerken]]",
+Uw tekst is niet opgeslagen!",
 'previewconflict' => 'Deze voorvertoning geeft aan hoe de tekst in het bovenste veld eruit ziet als u deze opslaat.',
 'session_fail_preview' => "'''Uw bewerking is niet verwerkt, omdat de sessiegegevens verloren zijn gegaan.
 Probeer het opnieuw.

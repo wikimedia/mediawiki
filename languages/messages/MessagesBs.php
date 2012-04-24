@@ -962,7 +962,7 @@ Ne zaboravite da imena stranica s .css i .js kodom počinju malim slovom, npr. {
 'updated' => '(Osvježeno)',
 'note' => "'''Pažnja:'''",
 'previewnote' => "'''Ne zaboravite da je ovo samo pregled'''
-Izmjene stranice nisu još sačuvane! [[#editform|→ Nastavi s uređivanjem]]",
+Izmjene stranice nisu još sačuvane!",
 'previewconflict' => 'Ovaj pregled reflektuje tekst u gornjem polju
 kako će izgledati ako pritisnete "Sačuvaj članak".',
 'session_fail_preview' => "'''Izvinjavamo se! Nismo mogli obraditi vašu izmjenu zbog gubitka podataka o prijavi. Molimo pokušajte ponovno. Ako i dalje ne bude radilo, pokušajte se [[Special:UserLogout|odjaviti]] i ponovno prijaviti.'''",

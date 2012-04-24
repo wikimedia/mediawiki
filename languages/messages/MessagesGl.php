@@ -914,7 +914,7 @@ Velaquí está a última entrada do rexistro de bloqueos, por se quere consultal
 Lembre que as páxinas .css e .js personalizadas utilizan un título en minúsculas, como por exemplo {{ns:user}}:Foo/vector.css no canto de {{ns:user}}:Foo/Vector.css.",
 'updated' => '(Actualizado)',
 'note' => "'''Nota:'''",
-'previewnote' => "'''Lembre que esta é só unha vista previa e que aínda non gardou os seus cambios!''' [[#editform|→ Continuar editando]]",
+'previewnote' => "'''Lembre que esta é só unha vista previa e que aínda non gardou os seus cambios!'''",
 'previewconflict' => 'Esta vista previa mostra o texto na área superior tal e como aparecerá se escolle gardar.',
 'session_fail_preview' => "'''O sistema non pode procesar a súa edición porque se perderon os datos de inicio da sesión.
 Por favor, inténteo de novo.

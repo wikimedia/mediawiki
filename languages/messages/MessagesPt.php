@@ -990,7 +990,7 @@ Este ainda não foi gravado!",
 'updated' => '(Actualizado)',
 'note' => "'''Nota:'''",
 'previewnote' => "'''Lembre-se que esta é apenas uma antevisão do resultado.'''
-As modificações ainda não foram gravadas! [[#editform|→ Continuar a editar]]",
+As modificações ainda não foram gravadas!",
 'previewconflict' => 'Esta antevisão do resultado apresenta o texto da caixa de edição acima tal como este aparecerá se escolher gravá-lo.',
 'session_fail_preview' => "'''Não foi possível processar a edição devido à perda dos dados da sua sessão.
 Tente novamente, por favor.

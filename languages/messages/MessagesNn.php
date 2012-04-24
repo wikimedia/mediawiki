@@ -917,7 +917,7 @@ Det siste elementet i blokkeringsloggen er oppgjeve nedanfor:',
 'updated' => '(Oppdatert)',
 'note' => "'''Merk:'''",
 'previewnote' => "'''Hugsa at dette berre er ei førehandsvising.'''
-Endringane dine er ikkje lagra enno! [[#editform|→ Haldt fram med å endra]]",
+Endringane dine er ikkje lagra enno!",
 'previewconflict' => 'Dette er ei førehandsvising av teksten i endringsboksen over, slik han vil sjå ut om du lagrar han',
 'session_fail_preview' => "'''Orsak! Endringa di kunne ikkje lagrast. Ver venleg og prøv ein gong til. Dersom det framleis ikkje går, prøv å logge deg ut og inn att.'''",
 'session_fail_preview_html' => "'''Beklagar! Endringa di kunne ikkje lagrast.'''
@@ -2570,7 +2570,7 @@ I desse falla lyt du flytte eller flette saman sida manuelt.",
 
 Målsida «[[:$1]]» finst allereie. Vil du slette ho for å gje rom for flytting?',
 'delete_and_move_confirm' => 'Ja, slett sida',
-'delete_and_move_reason' => 'Sletta for å gi rom for flytting frå "[[$1]]"',
+'delete_and_move_reason' => 'Sletta for å gje rom for flytting frå «[[$1]]»',
 'selfmove' => 'Kjelde- og måltitlane er like; kan ikkje flytte sida over seg sjølv.',
 'immobile-source-namespace' => 'Kan ikkje flytte sider i namnerommet «$1»',
 'immobile-target-namespace' => 'Kan ikkje flytte sider til namnerommet «$1»',

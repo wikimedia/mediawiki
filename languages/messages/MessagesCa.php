@@ -849,7 +849,7 @@ Per més detalls, la darrera entrada del registre es mostra a continuació:",
 'updated' => '(Actualitzat)',
 'note' => "'''Nota:'''",
 'previewnote' => "'''Recorda que això és només una previsualització.'''
-Els vostres canvis encara no s'han desat! [[#editform|→ Continuar editant]]",
+Els vostres canvis encara no s'han desat!",
 'previewconflict' => "Aquesta previsualització reflecteix, a l'àrea
 d'edició superior, el text tal i com apareixerà si trieu desar-lo.",
 'session_fail_preview' => "'''No s'ha pogut processar la vostra modificació a causa d'una pèrdua de dades de la sessió.

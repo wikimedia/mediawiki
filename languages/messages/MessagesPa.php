@@ -324,6 +324,7 @@ A list of valid special pages can be found at [[Special:SpecialPages]].',
 'internalerror' => 'ਅੰਦਰੂਨੀ ਗਲਤੀ',
 'internalerror_info' => 'ਅੰਦਰੂਨੀ ਗਲਤੀ: $1',
 'badtitle' => 'ਗਲਤ ਟਾਇਟਲ',
+'badtitletext' => 'ਤੁਹਾਡਾ ਅਰਜ਼ਿਤ ਸਿਰਲੇਖ ਅਪ੍ਰਮਾਣਿਕ,ਖਾਲੀ ਯਾ ਗਲਤ ਜੁੜਿਆ ਹੋਇਆ ਅੰਤਰ-ਭਾਸ਼ਾ ਯਾ ਅੰਤਰ-ਵਿਕਿ ਸਿਰਲੇਖ ਹੈ।ਇਹ ਵੀ ਹੋ ਸਕਦਾ ਹੈ ਕਿ ਇਸ ਵਿਚ ਇਕ ਦੋ ਅੱਖਰ ਐਸੇ ਹੋਣ ਜੋ ਸਿਰਲੇਖ ਵਿਚ ਵਰਤੇ ਨਹੀਂ ਜਾ ਸਕਦੇ।',
 'viewsource' => 'ਸਰੋਤ ਵੇਖੋ',
 'protectedpagetext' => 'ਇਸ ਪੰਨੇ ਨੂੰ ਐਡਿਟ ਕਰਨ ਦੀ ਮਨਾਹੀ ਹੈ।',
 'viewsourcetext' => 'ਤੁਸੀਂ ਇਸ ਪੰਨੇ ਦਾ ਸੋਮਾ ਦੇਖ ਸਕਦੇ ਹੋ ਤੇ ਉਸ ਦਾ ਉਤਾਰਾ ਵੀ ਲੈ ਸਕਦੇ ਹੋ।',
@@ -507,6 +508,7 @@ $1 ਘੰਟੇ ਵਿੱਚ। ਨੁਕਸਾਨ ਤੋਂ ਬਚਣ ਲਈ, $
 'last' => 'ਆਖਰੀ',
 'page_first' => 'ਪਹਿਲਾਂ',
 'page_last' => 'ਆਖਰੀ',
+'history-show-deleted' => 'ਕੇਵਲ ਮਿਟਾਏ ਗਏ',
 'histfirst' => 'ਸਭ ਤੋਂ ਪਹਿਲਾਂ',
 'histlast' => 'ਸਭ ਤੋਂ ਨਵਾਂ',
 'historysize' => '($1 ਬਾਈਟ)',
@@ -538,6 +540,7 @@ $1 ਘੰਟੇ ਵਿੱਚ। ਨੁਕਸਾਨ ਤੋਂ ਬਚਣ ਲਈ, $
 'revertmerge' => 'ਬਿਨ-ਮਿਲਾਨ',
 
 # Diffs
+'history-title' => '"$1" ਦੀ ਸ਼ੋਧ ਤਵਾਰੀਖ',
 'difference' => '(ਰੀਵਿਜ਼ਨ ਵਿੱਚ ਅੰਤਰ)',
 'lineno' => 'ਲਾਈਨ $1:',
 'compareselectedversions' => 'ਚੁਣੇ ਵਰਜਨਾਂ ਦੀ ਤੁਲਨਾ',
@@ -560,6 +563,7 @@ $1 ਘੰਟੇ ਵਿੱਚ। ਨੁਕਸਾਨ ਤੋਂ ਬਚਣ ਲਈ, $
 ਅਗਲਾ $1 {{PLURAL:$1|ਨਤੀਜਾ|ਨਤੀਜੇ}}',
 'shown-title' => 'ਪ੍ਰਤੀ ਪੇਜ਼ $1 {{PLURAL:$1|ਨਤੀਜਾ|ਨਤੀਜੇ}} ਵੇਖਾਓ',
 'viewprevnext' => 'ਵੇਖੋ ($1 {{int:pipe-separator}} $2) ($3)',
+'searchmenu-exists' => "'''ਇਸ ਵਿਕਿ ਤੇ \"[[:\$1]]\" ਨਾਮ ਦਾ ਇਕ ਸਫ਼ਾ ਹੈ'''",
 'searchmenu-new' => "'''ਇਸ ਵਿਕਿ ਪਰ \"[[:\$1]]\" ਨਾਮ ਨਾਲ ਪੰਨਾ ਬਣਾਓ!'''",
 'searchhelp-url' => 'Help:ਸਮੱਗਰੀ',
 'searchprofile-articles' => 'ਸਮੱਗਰੀ ਪੇਜ',
@@ -667,6 +671,9 @@ $1 ਘੰਟੇ ਵਿੱਚ। ਨੁਕਸਾਨ ਤੋਂ ਬਚਣ ਲਈ, $
 # User rights log
 'rightsnone' => '(ਕੋਈ ਨਹੀਂ)',
 
+# Associated actions - in the sentence "You do not have permission to X"
+'action-edit' => 'ਇਹ ਪੰਨਾ ਸੋਧੋ',
+
 # Recent changes
 'recentchanges' => 'ਤਾਜ਼ਾ ਬਦਲਾਅ',
 'recentchanges-legend' => 'ਤਾਜ਼ਾ ਬਦਲਾਅ ਚੋਣਾਂ',
@@ -745,7 +752,7 @@ to upload files.',
 'upload-curl-error28' => 'ਅੱਪਲੋਡ ਟਾਈਮ-ਆਉਟ',
 
 'license' => 'ਲਾਈਸੈਂਸਿੰਗ:',
-'license-header' => 'ਲਾਈਸੈਂਸਿੰਗ:',
+'license-header' => 'ਵਰਤਣ ਲਈ ਮੰਜ਼ੂਰੀ ਦੇਣਾ',
 'nolicense' => 'ਕੁਝ ਵੀ ਚੁਣਿਆ',
 'license-nopreview' => '(ਝਲਕ ਉਪਲੱਬਧ ਨਹੀਂ)',
 'upload_source_file' => ' (ਤੁਹਾਡੇ ਕੰਪਿਊਟਰ ਉੱਤੇ ਇੱਕ ਫਾਇਲ)',
@@ -777,6 +784,7 @@ to upload files.',
 'filehist-comment' => 'ਟਿੱਪਣੀ',
 'imagelinks' => 'ਫ਼ਾਈਲ ਦੀ ਵਰਤੌਂ',
 'linkstoimage' => 'ਹੇਠ ਲਿਖਿਤ {{PLURAL:$1|ਪੰਨੇ ਦਾ ਹਵਾਲਾ ਹੈ|$1 ਪੰਨੇ ਦੇ ਹਵਾਲੇ ਹਨ}} to this file:',
+'nolinkstoimage' => 'ਇਸ ਮਿਸਲ ਨਾਲ ਕੋਈ ਵਿ ਸਫ਼ੇ ਮੇਲ ਨਹੀਂ ਖਾਂਦੇ ।',
 'sharedupload-desc-here' => 'ਇਹ ਮਿਸਲ $1 ਦੀ ਹੈ ਅਤੇ ਹੋਰ ਪ੍ਰਾਜੈਕਟਾਂ ਵਿਚ ਵੀ ਵਰਤੀ ਜਾ ਸਕਦੀ ਹੈ । ਇਸ ਦੇ [$2 ਮਿਸਲ ਵਾਲੇ ਬ੍ਰਿਤਾਂਤ ਪੰਨੇ] ਵਿਚ ਮੌਜੂਦ ਵਰਨਣ ਨਿਮਨ ਲਿਖਿਤ ਹੈ।',
 'uploadnewversion-linktext' => 'ਇਸ ਫਾਇਲ ਦਾ ਇੱਕ ਨਵਾਂ ਵਰਜਨ ਅੱਪਲੋਡ ਕਰੋ',
 
@@ -857,6 +865,7 @@ to upload files.',
 
 # Special:LinkSearch
 'linksearch' => 'ਬਾਹਰੀ ਲਿੰਕ',
+'linksearch-line' => '$2 ਵਿਚ $1 ਬਾਹਰੀ ਸਿਰਨਾਵਾਂ ਹੈ',
 
 # Special:ListUsers
 'listusers-submit' => 'ਵੇਖੋ',
@@ -909,6 +918,7 @@ to upload files.',
 'delete-confirm' => '"$1" ਹਟਾਓ',
 'delete-legend' => 'ਹਟਾਓ',
 'actioncomplete' => 'ਐਕਸ਼ਨ ਪੂਰਾ ਹੋਇਆ',
+'actionfailed' => 'ਹਰਕਤ ਨਿਸ਼ਫ਼ਲ',
 'dellogpage' => 'ਹਟਾਉਣ ਲਾਗ',
 'deletecomment' => 'ਕਾਰਨ:',
 'deleteotherreason' => 'ਹੋਰ/ਵਾਧੂ ਕਾਰਨ:',
@@ -961,6 +971,8 @@ to upload files.',
 'mycontris' => 'ਮੇਰਾ ਯੋਗਦਾਨ',
 'contribsub2' => '$1 ($2) ਲਈ',
 'uctop' => '(ਉੱਤੇ)',
+'month' => 'ਇਸ(ਯਾ ਹੋਰ ਪਿਛਲੇ) ਮਹੀਨੇ ਤੌਂ',
+'year' => 'ਇਸ(ਜਾਂ ਹੋਰ ਪਿਛਲੇ) ਸਾਲ ਤੌਂ',
 
 'sp-contributions-newbies-sub' => 'ਨਵੇਂ ਅਕਾਊਂਟਾਂ ਲਈ',
 'sp-contributions-blocklog' => 'ਪਾਬੰਦੀ ਲਾਗ',
@@ -1115,10 +1127,12 @@ to upload files.',
 'tooltip-ca-nstab-template' => 'ਟੈਪਲੇਟ ਵੇਖੋ',
 'tooltip-ca-nstab-help' => 'ਮੱਦਦ ਪੇਜ ਵੇਖੋ',
 'tooltip-ca-nstab-category' => 'ਕੈਟਾਗਰੀ ਪੇਜ ਵੇਖੋ',
+'tooltip-minoredit' => 'ਇਸ ਤੇ ਛੋਟੇ ਬਦਲਾਅ ਦਾ  ਨਿਸ਼ਾਨ ਲਾਓ',
 'tooltip-save' => 'ਆਪਣੇ ਬਦਲਾਅ ਸੰਭਾਲੋ',
 'tooltip-preview' => 'ਆਪਣੇ ਬਦਲਾਅ ਦੀ ਝਲਕ ਵੇਖੋ, ਸੰਭਾਲਣ ਤੋਂ ਪਹਿਲਾਂ ਇਹ ਵਰਤੋਂ ਜੀ!',
 'tooltip-diff' => 'ਇਸ ਪਾਠ ਵਿਚ ਆਪਣੇ ਕੀਤੇ ਹੋਏ ਬਦਲਾਅ ਦੇਖੋ',
 'tooltip-compareselectedversions' => 'ਇਸ ਪੰਨੇ ਦੇ ਚੁਣੇ ਹੋਏ ਸ਼ੋਧਾਂ ਵਿਚ ਫ਼ਰਕ ਦੇਖੋ',
+'tooltip-watch' => 'ਇਹ ਸਫ਼ੇ ਨੂੰ ਆਪਣੀ ਵਾਚ-ਲਿਸਟ ਵਿਚ ਪਾਓ',
 'tooltip-upload' => 'ਅੱਪਲੋਡ ਸਟਾਰਟ ਕਰੋ',
 'tooltip-rollback' => "'' ਵਾਪਸ ਲੈ ਜਾਓ '' ਇਕ ਝਟਕੇ ਵਿਚ ਹੀ ਪਿਛਲੇ ਯੂਜ਼ਰ ਦੇ ਬਦਲਾਵਾਂ ਨੂੰ ਗਾਇਬ ਕਰ ਦੇਂਦਾ ਹੈ।",
 'tooltip-undo' => '" ਪੁਰਾਣੀ ਹਾਲਤ ਵਿਚ ਪਰਤੋ " ਇਸ ਬਦਲਾਅ ਨੂੰ ਰੱਦ ਕਰਕੇ ਸੰਪਾਦਨ ਫਾਰਮ ਨੂੰ ਝਲਕ ਦੇ ਅੰਦਾਜ਼ ਵਿਚ ਦਿਖਾਂਦਾ ਹੈ।
@@ -1167,6 +1181,7 @@ to upload files.',
 # Metadata
 'metadata' => 'ਮੇਟਾ ਡੈਟਾ',
 'metadata-help' => 'ਇਸ ਮਿਸਲ ਵਿਚ ਵਾਧੂ ਜਾਨਕਾਰੀਆਂ ਹਨ , ਜੋ ਸ਼ਾਇਦ ਉਸ ਕੈਮਰੇ ਯਾ ਸਕੈਨਰ ਦੀ ਦੇਣ ਹਨ ਜੋਕਿ ਇਸ ਮਿਸਲ ਨੂੰ ਬਨਾਉਣ ਲਈ ਵਰਤਿਆ ਗਿਆ ਹੈ।ਅਗ਼ਰ ਇਹ ਮਿਸਲ ਬਦਲਾਈ ਗਈ ਹੈ ਤਾਂ ਹੋ ਸਕਦਾ ਹੈ ਕੁਝ ਵੇਰਵੇ ਬਦਲੀ ਮਿਸਲ ਦਾ ਸਹੀ ਰੂਪਮਾਨ ਨਾ ਹੋਣ।',
+'metadata-fields' => 'ਮੈਟਾਡੈਟਾ ਸੂਚੀ ਪਟ ਨੂੰ ਛੋਟਾ ਕਰਣ ਨਾਲ ਇਸ ਸੁਨੇਹੇ ਵਿਚ ਸੂਚੀਬੱਧ ਫ਼ੀਲਡ ਮੂਰਤ ਦੇ ਦ੍ਰਿਸ਼ ਵਿਚ ਸ਼ਾਮਲ ਕੀਤੇ ਜਾਣਗੇ।ਬਾਕੀ ਫ਼ੀਲਡਾਂ ਨੂੰ ਛਿਪਾਇਆ ਜਾਏਗਾ।',
 
 # EXIF tags
 'exif-imagewidth' => 'ਚੌੜਾਈ',

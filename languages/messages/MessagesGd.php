@@ -599,7 +599,7 @@ no [{{fullurl:{{FULLPAGENAME}}|action=edit}} an duilleag seo a dheasachadh]</spa
 no <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} na logaichean co-cheangailte a rannsachadh]</span>.',
 'updated' => '(Air ùrachadh)',
 'previewnote' => "'''Cuimhnich nach eil ann ach ro-shealladh.'''
-Cha deach na mùthaidhean agad a shàbhaladh fhathast! [[#editform|→ Lean ort a' deasachadh]]",
+Cha deach na mùthaidhean agad a shàbhaladh fhathast!",
 'editing' => "A' deasachadh $1",
 'editingsection' => "A' deasachadh $1 (earrann)",
 'editconflict' => 'Còmhstri deasachaidh: $1',

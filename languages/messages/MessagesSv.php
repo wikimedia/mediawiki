@@ -984,7 +984,7 @@ Den har inte sparats än!'''",
 'updated' => '(Uppdaterad)',
 'note' => "'''Obs!'''",
 'previewnote' => "'''Kom ihåg att detta bara är en förhandsvisning.'''
-Dina ändringar har ännu inte sparats! [[#editform|→ Fortsätt redigera]]",
+Dina ändringar har ännu inte sparats!",
 'previewconflict' => 'Den här förhandsvisningen är resultatet av den
 redigerbara texten ovanför,
 så som det kommer att se ut om du väljer att spara.',

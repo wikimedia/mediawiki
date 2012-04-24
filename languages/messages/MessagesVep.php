@@ -693,7 +693,7 @@ Alemba om anttud jälgmäine kirjutuz blokiruindaiglehtesespäi:",
 'updated' => '(Udištadud)',
 'note' => "'''Homaičend:'''",
 'previewnote' => "'''Muštkat, miše nece om vaiše ezikacund.''' 
-Teiden toižetused ei olgoi völ kirjutadud! [[#editform|→ jatkta redakrtiruind]]",
+Teiden toižetused ei olgoi völ kirjutadud!",
 'previewconflict' => "Tekst redaktiruindan üläiknas kuvazub neche ezikacundha muga, kut se nägub lopkirjutamižen jäl'ghe.",
 'editing' => '$1-lehtpolen redaktiruind',
 'creating' => 'Sätas $1',

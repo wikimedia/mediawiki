@@ -629,7 +629,7 @@ oke <span class="plainlinks">[{{fullurl:{{#Special:Log}}|bu={{FULLPAGENAMEE}}}} 
 'updated' => '(Nuskeyen)',
 'note' => "'''Straga :'''",
 'previewnote' => "'''Obral, bat krent anton tir abdinedik.'''
-Rinafa betara men tid giwayan ! [[#editform|→ Continue editing]]",
+Rinafa betara men tid giwayan !",
 'previewconflict' => 'Abdinedira nedir va krent ke batu bu inde in giwayanon titir.',
 'editing' => 'betara va $1',
 'editingsection' => 'betara va $1 (gabot)',

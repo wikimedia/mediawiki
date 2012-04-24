@@ -874,7 +874,8 @@ Vedite, da .css in .js strani po meri uporabljajo naslov z malo začetnico, npr.
 'updated' => '(Posodobljeno)',
 'note' => "'''Opomba:'''",
 'previewnote' => "'''Pomnite, da je to le predogled strani.'''
-Vaših sprememb še nismo shranili! [[#editform|→ Nadaljujte z urejanjem]]",
+Vaših sprememb še nismo shranili!",
+'continue-editing' => 'Nadaljuj z urejanjem',
 'previewconflict' => 'V prikazanem predogledu je v zgornjem predelu urejanja navedeno besedilo, kakor se bo prikazalo, če ga boste shranili.',
 'session_fail_preview' => "'''Oprostite! Zaradi izgube podatkov o seji nam vašega urejanja žal ni uspelo obdelati.'''
 Prosimo, poskusite znova.

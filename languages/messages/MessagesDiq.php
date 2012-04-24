@@ -656,7 +656,7 @@ Dosyanê be namey .css u .js'i de herfa werdiye bıgurêne, mesela herında {{ns
 'updated' => '(Biyo rocane)',
 'note' => "'''Not:'''",
 'previewnote' => "Teme! ena teyna verqeyda.'''
-Vurnayışê tu hama qeyd nıbiyo![[#editform|→ timar kerdışi rê dewam ke]]",
+Vurnayışê tu hama qeyd nıbiyo!",
 'previewconflict' => 'No seyrkerdışê verqaydi serê qutiyê nuşte tezim kerdış de yo, eke şıma qayile vurnayişê maddeyi seyino bıvini, no mocneno şıma.',
 'session_fail_preview' => 'Ma ef kere. Vindibiyayişê tayê datay ra a kerdışê hesabê şıma de ma vurnayişê şıma qayd nêkerd. Newe ra tesel (cereb) bıkere. Eke no qayde zi nêbo, [[Special:UserLogout|hesabê xo bıqefelne]] u newera a kere.',
 'session_fail_preview_html' => "'''Ma meluli! Sebayê vindbiyayişê datasistemi ma vurnayişê şıma nêeşkeni qaydker.'''

@@ -425,7 +425,7 @@ The password for this new account can be changed on the ''[[Special:ChangePasswo
 'newarticle' => '(Чаа)',
 'note' => "'''Тайылбыр:'''",
 'previewnote' => "'''Бо чүгле шенеп көөрү-дүр.'''
- Бижик ам-даа шыгжатынмаан! [[#editform|→ Continue editing]]",
+ Бижик ам-даа шыгжатынмаан!",
 'editing' => '«$1» деп арынны өскертип турар',
 'editingsection' => '«$1» деп арынның салбырын өскертип турар',
 'editingcomment' => '«$1» деп арынны өскертип турар (чаа салбыр)',

@@ -736,7 +736,7 @@ Tó bá jẹ́ pé oníṣe aláìlórúkọ ni yín, tí ẹ sì ri pé wọ́n
 'updated' => '(Sísọdọ̀tun)',
 'note' => "'''Àkíyèsí:'''",
 'previewnote' => "'''Ẹ rántí pé àyẹ̀wò lásán nì yí.'''
-Àwọn àtúnṣe yín kò tíì jẹ́ kìkópamọ́! [[#editform|→ Ẹ tẹ̀síwájú ìṣàtúnṣe]]",
+Àwọn àtúnṣe yín kò tíì jẹ́ kìkópamọ́!",
 'previewconflict' => 'Àkọ́wò yìí jẹ́ bí ìkọ̀rọ̀ inú àlà ìtúnṣe ìkọ̀rọ̀ òkè yíò ṣe hàn tí ẹ bá yàn láti ṣàmúpamọ́.',
 'session_fail_preview' => "'''Àforíjìn! A kò le gbésẹ̀ àtúnṣe yín nítorí ìpòfo data ìsinsìyí.
 Ẹ jọ̀wọ́ ẹ gbìyànjú lẹ́ẹ̀kan si.

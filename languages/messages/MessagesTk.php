@@ -648,7 +648,7 @@ Salgylanmak üçin iň soňky blokirleme gündeligi ýazgysy aşakda berilýär:
 Hususy .css we .js sahypalarynyň setir harp bilen ýazylýandygyny ýatda saklaň, ýagny {{ns:user}}:Ulanyjy/Vector.css däl-de, eýsem {{ns:user}}:Ulanyjy/vector.css.",
 'updated' => '(Täzelenen)',
 'note' => "'''Bellik:'''",
-'previewnote' => "'''Ýatda saklaň, bu bir ýöne deslapky syn.''' Üýtgeşmeleriňiz heniz ýazdyrylan däldir! [[#editform|→ Redaktirläberiň]]",
+'previewnote' => "'''Ýatda saklaň, bu bir ýöne deslapky syn.''' Üýtgeşmeleriňiz heniz ýazdyrylan däldir!",
 'previewconflict' => 'Bu deslapky syn redaktirleme penjiresiniň üstünde ýerleşip, ol ýazdyran mahalyňyz sahypanyň nähili görünjekdigini görkezýär.',
 'session_fail_preview' => "'''Bagyşlaň! Sessiýa maglumatynyň ýitirilmegi zerarly serwer özgerdişiňizi işläp bilenok.'''
 Gaýtadan synanyşmagyňyzy haýyş edýäris.

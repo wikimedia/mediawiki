@@ -252,7 +252,7 @@ $messages = array(
 'noindex-category' => 'Syte wu nit verzeichnet sin',
 'broken-file-category' => 'Syte mit kaputtige Dateilink',
 
-'about' => 'Über',
+'about' => 'Iber',
 'article' => 'Inhaltssyte',
 'newwindow' => '(imene nöie Fänschter)',
 'cancel' => 'Abbräche',
@@ -793,7 +793,7 @@ As Information chunnt do ne aktuälle Uuszug us em Benutzersperr-Logbuech:',
 'updated' => '(Gänderet)',
 'note' => "'''Obacht: '''",
 'previewnote' => "'''Das isch numen e Vorschau und nonig gspycheret!'''
-Die Syte isch nonig gspycheret wore! [[#editform|→ Wyter bearbeite]]",
+Die Syte isch nonig gspycheret wore!",
 'previewconflict' => 'Die Vorschau zeigt dr Inhalt vum obere Täxtfäld. Eso siht dr Artikel us, wän Du jetz uf Spychere drucksch.',
 'session_fail_preview' => "'''Dyyni Bearbeitig het nid chenne gspycheret wäre, wel Sitzigsdate verlore gange sin.
 Bitte versuech s nomol. Derzue drucksch unter däre Täxtvorschau nomol uf „Syte spychere“.

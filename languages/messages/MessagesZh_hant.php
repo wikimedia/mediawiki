@@ -864,8 +864,7 @@ $2
 'userinvalidcssjstitle' => "'''警告:''' 不存在面板\"\$1\"。注意自訂的 .css 和 .js 頁要使用小寫標題，例如，{{ns:user}}:Foo/vector.css 不同於 {{ns:user}}:Foo/Vector.css。",
 'updated' => '（已更新）',
 'note' => "'''注意:'''",
-'previewnote' => "'''請記住這只是預覽，內容尚未儲存！'''
-[[#editform|→ 繼續修改]]",
+'previewnote' => "'''請記住這只是預覽，內容尚未儲存！'''",
 'previewconflict' => '這個預覽顯示了上面文字編輯區中的內容。它將在{{GENDER:|你|妳|你}}選擇保存後出現。',
 'session_fail_preview' => "'''很抱歉！由於部份資料遺失，我們無法處理您的編輯。'''
 請再試一次。

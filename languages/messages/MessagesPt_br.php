@@ -979,7 +979,7 @@ O registro de bloqueio mais recente é fornecido abaixo, para referência:',
 'updated' => '(Atualizado)',
 'note' => "'''Nota:'''",
 'previewnote' => "'''Lembre-se de que isto é apenas uma previsão.'''
-Suas alterações ainda não foram salvas! [[#editform|→ Continuar editando]]",
+Suas alterações ainda não foram salvas!",
 'previewconflict' => 'Esta previsão reflete o texto que está na área de edição acima e como ele aparecerá se você escolher salvar.',
 'session_fail_preview' => "'''Pedimos desculpas, mas não foi possível processar a sua edição devido à perda de dados da sua sessão.
 Por favor tente novamente.

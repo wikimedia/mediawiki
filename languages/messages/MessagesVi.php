@@ -959,7 +959,8 @@ Nó chưa được lưu!'''",
 'updated' => '(Cập nhật)',
 'note' => "'''Ghi chú:'''",
 'previewnote' => "'''Đây chỉ mới là xem thử.'''
-Các thay đổi của bạn vẫn chưa được lưu! [[#editform|→ Sửa tiếp]]",
+Các thay đổi của bạn vẫn chưa được lưu!",
+'continue-editing' => 'Sửa tiếp',
 'previewconflict' => 'Phần xem thử này là kết quả của văn bản trong vùng soạn thảo phía trên và nó sẽ xuất hiện như vậy nếu bạn chọn lưu trang.',
 'session_fail_preview' => "'''Những sửa đổi của bạn chưa được lưu giữ do mất dữ liệu về phiên làm việc.
 Xin hãy thử lần nữa.

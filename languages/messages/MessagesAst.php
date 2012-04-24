@@ -750,19 +750,21 @@ La postrer entrada del rexistru de bloqueos úfrese darréu pa referencia:',
 * '''Konqueror:''' Calca en ''Recargar'', o calca ''F5''
 * '''Opera:''' llimpia la caché en ''Ferramientes → Preferencies''",
 'usercssyoucanpreview' => "'''Conseyu:''' Usa'l botón \"{{int:showpreview}}\" pa probar el to CSS nuevu enantes de guardalu.",
-'userjsyoucanpreview' => "'''Conseyu:''' Usa'l botón \"{{int:showpreview}}\" pa probar el to nuevu JavaScript enantes de guardalu.",
+'userjsyoucanpreview' => "'''Conseyu:''' Usa'l botón \"{{int:showpreview}}\" pa probar el to JavaScript nuevu enantes de guardalu.",
 'usercsspreview' => "'''Recuerda que namái tas previsualizando'l to CSS d'usuariu.'''
 '''¡Tovía nun ta guardáu!'''",
-'userjspreview' => "'''¡Recuerda que namái tas probando/previsualizando'l to JavaScript d'usuariu, entá nun se grabó!'''",
+'userjspreview' => "'''¡Recuerda que namái tas probando/previsualizando'l to JavaScript d'usuariu.'''
+'''¡Tovía nun ta guardáu!'''",
 'sitecsspreview' => "'''Recuerda que namái tas previsualizando esti CSS.'''
 '''¡Tovía nun ta guardáu!'''",
-'sitejspreview' => "'''¡Recuerda que namái tas probando esti códigu JavaScript'''
+'sitejspreview' => "'''¡Recuerda que namái tas probando esti códigu JavaScript.'''
 '''¡Tovía nun tá guardáu!'''",
-'userinvalidcssjstitle' => "'''Avisu:''' Nun hai piel \"\$1\". Recuerda que les páxines personalizaes .css y .js usen un títulu en minúscules, p. ex. {{ns:user}}:Foo/vector.css en cuenta de {{ns:user}}:Foo/Vector.css.",
+'userinvalidcssjstitle' => "'''Avisu:''' Nun hai apariencia «$1».
+Les páxines personalizaes .css y .js usen un títulu en minúscules, p. ex. {{ns:user}}:Foo/vector.css en cuenta de {{ns:user}}:Foo/Vector.css.",
 'updated' => '(Actualizao)',
 'note' => "'''Nota:'''",
 'previewnote' => "'''Alcuerdate de qu'esto ye sólo una vista previa.'''
-¡Los cambios entá nun se guardaron! [[#editform|→ Siguir editando]]",
+¡Los cambios entá nun se guardaron!",
 'previewconflict' => "Esta vista previa amuesa'l testu del área d'edición d'arriba tal como apaecerá si escueyes guardar.",
 'session_fail_preview' => "'''¡Sentímoslo muncho! Nun se pudo procesar la to edición porque hebo una perda de datos de la sesión.
 Inténtalo otra vuelta. Si nun se t'arregla, intenta salir y volver a rexistrate.'''",

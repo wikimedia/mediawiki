@@ -596,7 +596,7 @@ Mamnuucida ugu danbeyso in oo soo galo hoostaan ee ku qorantahay',
 'updated' => '(waa la opdate gareeyay)',
 'note' => "'''fiiro gaar ah:'''",
 'previewnote' => "'''Ogaaw kan waa horfiirin oo kaliya.'''
-Bedelyadaada wali lama keydin!  [[#editform|→ Wax ka sii badal]]",
+Bedelyadaada wali lama keydin!",
 'session_fail_preview' => "'''Waan ka xunahay! Wixii aad bedeshay ma'suurto galin in la'keydiyo cilad dhacday awgeed.
 Fadlan markale isku day. Hadii aysan weli shaqaynin, ka bax ee markale soo gudagal.'''",
 'session_fail_preview_html' => "'''Waan ka xunahay! Wixii aad bedeshay ma'suurto galin in la'keydiyo cilad dhacday awgeed.'''

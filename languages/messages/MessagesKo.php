@@ -952,7 +952,7 @@ $1, 또는 [[{{MediaWiki:Grouppage-sysop}}|다른 관리자]]에게 차단에 �
 .css와 .js 문서의 제목은 {{ns:user}}:Foo/vector.css 처럼 소문자로 써야 합니다. {{ns:user}}:Foo/Vector.css 와 같이 대문자로 쓸 경우 작동하지 않습니다.",
 'updated' => '(바뀜)',
 'note' => "'''주의:'''",
-'previewnote' => "'''이 화면은 미리 보기입니다'''. 편집한 내용은 아직 저장되지 않았습니다! [[#editform|→ 편집 계속하기]]",
+'previewnote' => "'''이 화면은 미리 보기입니다'''. 편집한 내용은 아직 저장되지 않았습니다!",
 'previewconflict' => '이 미리 보기는 저장할 때의 모습, 즉 위쪽 편집창의 문서를 반영합니다.',
 'session_fail_preview' => "'''세션 데이터가 없어져 편집을 저장하지 못했습니다.
 다시 시도해도 되지 않으면 [[Special:UserLogout|로그아웃]]한 다음 다시 로그인해 보십시오.'''",

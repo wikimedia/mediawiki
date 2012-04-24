@@ -877,7 +877,7 @@ Onthou dat u eie .css- en .js-bladsye met 'n kleinletter begin, byvoorbeeld {{ns
 'updated' => '(Gewysig)',
 'note' => "'''Nota:'''",
 'previewnote' => "'''Onthou dat hierdie slegs 'n voorskou is.'''
-U teks is nog nie gestoor nie! [[#editform|→ Wysig verder]]",
+U teks is nog nie gestoor nie!",
 'previewconflict' => 'Hierdie voorskou vertoon die teks in die boonste teksarea soos dit sou lyk indien u die bladsy stoor.',
 'session_fail_preview' => "'''Jammer! Weens verlies aan sessie-inligting is die wysiging nie verwerk nie.
 Probeer asseblief weer. As dit steeds nie werk nie, probeer om [[Special:UserLogout|af te teken]] en dan weer aan te teken.'''",

@@ -834,7 +834,7 @@ Denkt drun datt eegen .css an .js Säiten e kleng geschriwwenen Titel benotzen, 
 'updated' => '(Geännert)',
 'note' => "'''Notiz:'''",
 'previewnote' => "'''Denkt drun datt dëst nëmmen eng net gespäichert Versioun ass.'''
-Är Ännerunge sinn nach net gespäichert! [[#editform|→ Virufuere mam Änneren]]",
+Är Ännerunge sinn nach net gespäichert!",
 'previewconflict' => 'Dir gesitt an dem ieweschten Textfeld wéi den Text ausgesi wäert, wann Dir späichert.',
 'session_fail_preview' => "'''Är Ännerung konnt net gespäichert gi well d'Date vun Ärer Sessioun verluergaange sinn.
 Versicht et w.e.g. nach eng Kéier.
@@ -1766,6 +1766,10 @@ Eng [[Special:WhatLinksHere/$2|komplett Lëscht]] ass disponibel.',
 Kuckt w.e.g. d'[$2 Säit mat der Beschreiwung vum Fichier] fir méi Informatiounen.",
 'sharedupload-desc-here' => "Dëse Fichier ass vu(n) $1 an däerf vun anere Projete benotzt ginn.
 D'Beschreiwung op senger [$2 Beschreiwungssäit] steet hei ënnendrënner.",
+'sharedupload-desc-edit' => 'Dëse Fichier ass vu(n) $1 a ka vun anere Projete benotzt ginn.
+Dir kënnt seng Beschreiwung op senger [$2 Beschreiwungssäit] änneren.',
+'sharedupload-desc-create' => 'Dëse Fichier ass vu(n) $1 a ka vun anere Projete benotzt ginn.
+Dir kënnt seng Beschreiwung op senger [$2 Beschreiwungssäit] änneren.',
 'filepage-nofile' => 'Et gëtt kee Fichier mat deem Numm.',
 'filepage-nofile-link' => 'Et gëtt kee Fichier mat deem Numm, awer Dir kënnt [$1 en eroplueden].',
 'uploadnewversion-linktext' => 'Eng nei Versioun vun dësem Fichier eroplueden',
@@ -2357,7 +2361,7 @@ $1',
 'sp-contributions-userrights' => 'Verwaltung vun de Benotzerrechter',
 'sp-contributions-blocked-notice' => 'Dëse Benotzer ass elo gespaart. Déi lescht Entrée am Läsch-Logbuch steet als Referenz hei ënnendrënner:',
 'sp-contributions-blocked-notice-anon' => "Dës IP-Adress ass elo gespaart.
-Ënnendrënner steet déi lescht Androung an d'Spärlëscht:",
+Ënnendrënner steet déi lescht Aschreiwung an d'Spärlëscht:",
 'sp-contributions-search' => 'No Kontributioune sichen',
 'sp-contributions-username' => 'IP-Adress oder Benotzernumm:',
 'sp-contributions-toponly' => 'Nëmmen Ännerunge weisen déi déi lescht Versioun sinn',

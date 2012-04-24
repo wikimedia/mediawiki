@@ -849,7 +849,7 @@ Dindan emañ merket moned diwezhañ marilh ar stankadennoù, d'ho kelaouiñ :",
 'updated' => '(Hizivaet)',
 'note' => "'''Notenn :'''",
 'previewnote' => "'''Diwallit mat, n'eus ken ur rakweled eus an destenn-mañ.'''
-N'eo ket bet enrollet ho kemmoù evit c'hoazh ! [[#editform|→ Kenderc'hel da gemmañ]]",
+N'eo ket bet enrollet ho kemmoù evit c'hoazh !",
 'previewconflict' => 'Gant ar rakweled e teu testenn ar bajenn war wel evel ma vo pa vo bet enrollet.',
 'session_fail_preview' => "'''Ho tigarez! N'eus ket bet tu da enrollañ ho kemmoù rak kollet eo bet roadennoù an dalc'h.'''
 Klaskit en-dro mar plij.
