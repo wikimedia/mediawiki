@@ -72,7 +72,7 @@ abstract class ContentHandler {
      * if that is not given, $title->getContentModelName()) using the given format.
      *
      * @static
-     * @param $text the textual represenation, will be unserialized to create the Content object
+     * @param string $text the textual represenation, will be unserialized to create the Content object
      * @param Title $title the title of the page this text belongs to, required as a context for deserialization
      * @param null|String $modelName the model to deserialize to. If not provided, $title->getContentModelName() is used.
      * @param null|String $format the format to use for deserialization. If not given, the model's default format is used.
