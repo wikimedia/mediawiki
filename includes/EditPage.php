@@ -1774,7 +1774,7 @@ class EditPage {
 			}
 		}
 
-		$wgOut->addHTML( Html::openElement( 'form', array( 'id' => EDITFORM_ID, 'name' => EDITFORM_ID,
+		$wgOut->addHTML( Html::openElement( 'form', array( 'id' => self::EDITFORM_ID, 'name' => self::EDITFORM_ID,
 			'method' => 'post', 'action' => $this->getActionURL( $this->getContextTitle() ),
 			'enctype' => 'multipart/form-data' ) ) );
 
@@ -2584,7 +2584,7 @@ HTML
 			$note = wfMsg( 'edit_form_incomplete' );
 		} else {
 			$note = wfMsg( 'previewnote' ) .
-				' [[#' . EDITFORM_ID . '|' . $wgLang->getArrow() . ' ' . wfMsg( 'continue-editing' ) . ']]';
+				' [[#' . self::EDITFORM_ID . '|' . $wgLang->getArrow() . ' ' . wfMsg( 'continue-editing' ) . ']]';
 		}
 
 		$parserOptions = ParserOptions::newFromUser( $wgUser );
