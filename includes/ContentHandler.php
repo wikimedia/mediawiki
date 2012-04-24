@@ -614,11 +614,12 @@ abstract class ContentHandler {
      * Get the Content object that needs to be saved in order to undo all revisions
      * between $undo and $undoafter. Revisions must belong to the same page,
      * must exist and must not be deleted
-     * @param $undo Revision
-     * @param $undoafter null|Revision Must be an earlier revision than $undo
+     * @param $current Revision the current text
+     * @param $undo Revision the revision to undo
+     * @param $undoafter Revision Must be an earlier revision than $undo
      * @return mixed string on success, false on failure
      */
-    public function getUndoContent( Revision $current, Revision $undo, Revision $undoafter = null ) {
+    public function getUndoContent( Revision $current, Revision $undo, Revision $undoafter ) {
         $cur_content = $current->getContent();
 
         if ( empty( $cur_content ) ) {

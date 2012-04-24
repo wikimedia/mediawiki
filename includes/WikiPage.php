@@ -1166,25 +1166,29 @@ class WikiPage extends Page {
 	 * @param $undo Revision
 	 * @param $undoafter Revision Must be an earlier revision than $undo
 	 * @return mixed string on success, false on failure
-     * @deprecated since 1.20: use ContentHandler::getUndoContent() instead.
+	 * @deprecated since 1.20: use ContentHandler::getUndoContent() instead.
 	 */
 	public function getUndoText( Revision $undo, Revision $undoafter = null ) { #FIXME: replace usages.
 		wfDeprecated( __METHOD__, '1.20' );
 
-        $this->loadLastEdit();
+		$this->loadLastEdit();
 
-        if ( $this->mLastRevision ) {
-            $handler = ContentHandler::getForTitle( $this->getTitle() );
-            $undone = $handler->getUndoContent( $this->mLastRevision, $undo, $undoafter );
+		if ( $this->mLastRevision ) {
+			if ( is_null( $undoafter ) ) {
+				$undoafter = $undo->getPrevious();
+			}
 
-            if ( !$undone ) {
-                return false;
-            } else {
-                return ContentHandler::getContentText( $undone );
-            }
-        }
+			$handler = $this->getContentHandler();
+			$undone = $handler->getUndoContent( $this->mLastRevision, $undo, $undoafter );
 
-        return false;
+			if ( !$undone ) {
+				return false;
+			} else {
+				return ContentHandler::getContentText( $undone );
+			}
+		}
+
+		return false;
 	}
 
 	/**
@@ -2633,8 +2637,8 @@ class WikiPage extends Page {
 
 	/**
 	* Return an applicable autosummary if one exists for the given edit.
-	* @param $oldtext String: the previous text of the page.
-	* @param $newtext String: The submitted text of the page.
+	* @param $oldtext String|null: the previous text of the page.
+	* @param $newtext String|null: The submitted text of the page.
 	* @param $flags Int bitmask: a bitmask of flags submitted for the edit.
 	* @return string An appropriate autosummary, or an empty string.
     * @deprecated since 1.20, use ContentHandler::getAutosummary() instead
@@ -2643,8 +2647,8 @@ class WikiPage extends Page {
 		# NOTE: stub for backwards-compatibility. assumes the given text is wikitext. will break horribly if it isn't.
 
         $handler = ContentHandler::getForModelName( CONTENT_MODEL_WIKITEXT );
-        $oldContent = $oldtext ? $handler->unserializeContent( $oldtext ) : null;
-        $newContent = $newtext ? $handler->unserializeContent( $newtext ) : null;
+        $oldContent = is_null( $oldtext ) ? null : $handler->unserializeContent( $oldtext );
+        $newContent = is_null( $newtext ) ? null : $handler->unserializeContent( $newtext );
 
         return $handler->getAutosummary( $oldContent, $newContent, $flags );
 	}
