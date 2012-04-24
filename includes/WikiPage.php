@@ -883,7 +883,7 @@ class WikiPage extends Page {
 			&& $parserOptions->getStubThreshold() == 0
 			&& $this->mTitle->exists()
 			&& ( $oldid === null || $oldid === 0 || $oldid === $this->getLatest() )
-			&& $this->mTitle->isWikitextPage(); #FIXME: ask ContentHandler if cachable!
+			&& $this->getContentHandler()->isParserCacheSupported(); 
 	}
 
 	/**

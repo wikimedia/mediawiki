@@ -637,6 +637,16 @@ abstract class ContentHandler {
 
         return $undone_content;
     }
+
+	/**
+	 * Returns true for content models that support caching using the ParserCache mechanism.
+	 * See WikiPage::isParserCacheUser().
+	 *
+	 * @return book
+	 */
+	public function isParserCacheSupported() {
+		return true;
+	}
 }
 
 
