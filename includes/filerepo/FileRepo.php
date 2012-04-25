@@ -806,6 +806,21 @@ class FileRepo {
 	}
 
 	/**
+	 * Deletes a directory if empty.
+	 * This function can be used to write to otherwise read-only foreign repos.
+	 *
+	 * @param $dir string Virtual URL (or storage path) of directory to clean
+	 * @return Status
+	 */
+	public function quickCleanDir( $dir ) {
+		$status = $this->newGood();
+		$status->merge( $this->backend->clean(
+			array( 'dir' => $this->resolveToStoragePath( $dir ) ) ) );
+
+		return $status;
+	}
+
+	/**
 	 * Import a batch of files from the local file system into the repo.
 	 * This does no locking nor journaling and overrides existing files.
 	 * This function can be used to write to otherwise read-only foreign repos.
@@ -1088,12 +1103,13 @@ class FileRepo {
 
 	/**
 	 * Deletes a directory if empty.
-	 * This function can be used to write to otherwise read-only foreign repos.
 	 *
 	 * @param $dir string Virtual URL (or storage path) of directory to clean
 	 * @return Status
 	 */
 	public function cleanDir( $dir ) {
+		$this->assertWritableRepo(); // fail out if read-only
+
 		$status = $this->newGood();
 		$status->merge( $this->backend->clean(
 			array( 'dir' => $this->resolveToStoragePath( $dir ) ) ) );

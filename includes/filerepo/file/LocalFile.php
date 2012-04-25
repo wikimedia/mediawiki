@@ -779,7 +779,7 @@ class LocalFile extends File {
 		# Delete the thumbnails
 		$this->repo->quickPurgeBatch( $purgeList );
 		# Clear out the thumbnail directory if empty
-		$this->repo->cleanDir( $dir );
+		$this->repo->quickCleanDir( $dir );
 	}
 
 	/** purgeDescription inherited */
