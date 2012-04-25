@@ -313,7 +313,7 @@ class FileBackendMultiWrite extends FileBackend {
 	}
 
 	/**
-	 * @see FileBackend::getFileList()
+	 * @see FileBackend::concatenate()
 	 */
 	public function concatenate( array $params ) {
 		// We are writing to an FS file, so we don't need to do this per-backend
@@ -399,6 +399,22 @@ class FileBackendMultiWrite extends FileBackend {
 	public function getLocalCopy( array $params ) {
 		$realParams = $this->substOpPaths( $params, $this->backends[$this->masterIndex] );
 		return $this->backends[$this->masterIndex]->getLocalCopy( $realParams );
+	}
+
+	/**
+	 * @see FileBackend::directoryExists()
+	 */
+	public function directoryExists( array $params ) {
+		$realParams = $this->substOpPaths( $params, $this->backends[$this->masterIndex] );
+		return $this->backends[$this->masterIndex]->directoryExists( $realParams );
+	}
+
+	/**
+	 * @see FileBackend::getSubdirectoryList()
+	 */
+	public function getDirectoryList( array $params ) {
+		$realParams = $this->substOpPaths( $params, $this->backends[$this->masterIndex] );
+		return $this->backends[$this->masterIndex]->getDirectoryList( $realParams );
 	}
 
 	/**

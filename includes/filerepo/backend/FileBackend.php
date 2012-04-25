@@ -546,21 +546,88 @@ abstract class FileBackend {
 	abstract public function getLocalCopy( array $params );
 
 	/**
-	 * Get an iterator to list out all stored files under a storage directory.
+	 * Check if a directory exists at a given storage path.
+	 * Backends using key/value stores will check if the path is a
+	 * virtual directory, meaning there are files under the given directory.
+	 *
+	 * Storage backends with eventual consistency might return stale data.
+	 *
+	 * $params include:
+	 *     dir : storage directory
+	 *
+	 * @return bool|null Returns null on failure
+	 * @since 1.20
+	 */
+	abstract public function directoryExists( array $params );
+
+	/**
+	 * Get an iterator to list *all* directories under a storage directory.
+	 * If the directory is of the form "mwstore://backend/container",
+	 * then all directories in the container should be listed.
+	 * If the directory is of form "mwstore://backend/container/dir",
+	 * then all directories directly under that directory should be listed.
+	 * Results should be storage directories relative to the given directory.
+	 *
+	 * Storage backends with eventual consistency might return stale data.
+	 *
+	 * $params include:
+	 *     dir     : storage directory
+	 *     topOnly : only return direct child directories of the directory
+	 *
+	 * @return Traversable|Array|null Returns null on failure
+	 * @since 1.20
+	 */
+	abstract public function getDirectoryList( array $params );
+
+	/**
+	 * Same as FileBackend::getDirectoryList() except only lists
+	 * directories that are immediately under the given directory.
+	 *
+	 * Storage backends with eventual consistency might return stale data.
+	 *
+	 * $params include:
+	 *     dir : storage directory
+	 *
+	 * @return Traversable|Array|null Returns null on failure
+	 * @since 1.20
+	 */
+	final public function getTopDirectoryList( array $params ) {
+		return $this->getDirectoryList( array( 'topOnly' => true ) + $params );
+	}
+
+	/**
+	 * Get an iterator to list *all* stored files under a storage directory.
 	 * If the directory is of the form "mwstore://backend/container",
 	 * then all files in the container should be listed.
 	 * If the directory is of form "mwstore://backend/container/dir",
-	 * then all files under that container directory should be listed.
+	 * then all files under that directory should be listed.
 	 * Results should be storage paths relative to the given directory.
 	 *
 	 * Storage backends with eventual consistency might return stale data.
 	 *
 	 * $params include:
-	 *     dir : storage path directory
+	 *     dir     : storage directory
+	 *     topOnly : only return direct child files of the directory
 	 *
 	 * @return Traversable|Array|null Returns null on failure
 	 */
 	abstract public function getFileList( array $params );
+
+	/**
+	 * Same as FileBackend::getFileList() except only lists
+	 * files that are immediately under the given directory.
+	 *
+	 * Storage backends with eventual consistency might return stale data.
+	 *
+	 * $params include:
+	 *     dir : storage directory
+	 *
+	 * @return Traversable|Array|null Returns null on failure
+	 * @since 1.20
+	 */
+	final public function getTopFileList( array $params ) {
+		return $this->getFileList( array( 'topOnly' => true ) + $params );
+	}
 
 	/**
 	 * Invalidate any in-process file existence and property cache.
@@ -708,6 +775,7 @@ abstract class FileBackend {
 	 *
 	 * @param $path string
 	 * @return bool
+	 * @since 1.20
 	 */
 	final public static function isPathTraversalFree( $path ) {
 		return ( self::normalizeContainerPath( $path ) !== null );

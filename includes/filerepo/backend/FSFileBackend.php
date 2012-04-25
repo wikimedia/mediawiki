@@ -7,11 +7,11 @@
 
 /**
  * @brief Class for a file system (FS) based file backend.
- * 
+ *
  * All "containers" each map to a directory under the backend's base directory.
  * For backwards-compatibility, some container paths can be set to custom paths.
  * The wiki ID will not be used in any custom paths, so this should be avoided.
- * 
+ *
  * Having directories with thousands of files will diminish performance.
  * Sharding can be accomplished by using FileRepo-style hash paths.
  *
@@ -76,7 +76,7 @@ class FSFileBackend extends FileBackendStore {
 
 	/**
 	 * Sanity check a relative file system path for validity
-	 * 
+	 *
 	 * @param $path string Normalized relative path
 	 * @return bool
 	 */
@@ -95,14 +95,14 @@ class FSFileBackend extends FileBackendStore {
 	/**
 	 * Given the short (unresolved) and full (resolved) name of
 	 * a container, return the file system path of the container.
-	 * 
+	 *
 	 * @param $shortCont string
 	 * @param $fullCont string
-	 * @return string|null 
+	 * @return string|null
 	 */
 	protected function containerFSRoot( $shortCont, $fullCont ) {
 		if ( isset( $this->containerPaths[$shortCont] ) ) {
-			return $this->containerPaths[$shortCont]; 
+			return $this->containerPaths[$shortCont];
 		} elseif ( isset( $this->basePath ) ) {
 			return "{$this->basePath}/{$fullCont}";
 		}
@@ -111,7 +111,7 @@ class FSFileBackend extends FileBackendStore {
 
 	/**
 	 * Get the absolute file system path for a storage path
-	 * 
+	 *
 	 * @param $storagePath string Storage path
 	 * @return string|null
 	 */
@@ -440,6 +440,41 @@ class FSFileBackend extends FileBackendStore {
 	}
 
 	/**
+	 * @see FileBackendStore::doDirectoryExists()
+	 * @return bool|null
+	 */
+	protected function doDirectoryExists( $fullCont, $dirRel, array $params ) {
+		list( $b, $shortCont, $r ) = FileBackend::splitStoragePath( $params['dir'] );
+		$contRoot = $this->containerFSRoot( $shortCont, $fullCont ); // must be valid
+		$dir = ( $dirRel != '' ) ? "{$contRoot}/{$dirRel}" : $contRoot;
+
+		$this->trapWarnings(); // don't trust 'false' if there were errors
+		$exists = is_dir( $dir );
+		$hadError = $this->untrapWarnings();
+
+		return $hadError ? null : $exists;
+	}
+
+	/**
+	 * @see FileBackendStore::getDirectoryListInternal()
+	 * @return Array|null
+	 */
+	public function getDirectoryListInternal( $fullCont, $dirRel, array $params ) {
+		list( $b, $shortCont, $r ) = FileBackend::splitStoragePath( $params['dir'] );
+		$contRoot = $this->containerFSRoot( $shortCont, $fullCont ); // must be valid
+		$dir = ( $dirRel != '' ) ? "{$contRoot}/{$dirRel}" : $contRoot;
+		$exists = is_dir( $dir );
+		if ( !$exists ) {
+			wfDebug( __METHOD__ . "() given directory does not exist: '$dir'\n" );
+			return array(); // nothing under this dir
+		} elseif ( !is_readable( $dir ) ) {
+			wfDebug( __METHOD__ . "() given directory is unreadable: '$dir'\n" );
+			return null; // bad permissions?
+		}
+		return new FSFileBackendDirList( $dir, $params );
+	}
+
+	/**
 	 * @see FileBackendStore::getFileListInternal()
 	 * @return array|FSFileBackendFileList|null
 	 */
@@ -451,13 +486,11 @@ class FSFileBackend extends FileBackendStore {
 		if ( !$exists ) {
 			wfDebug( __METHOD__ . "() given directory does not exist: '$dir'\n" );
 			return array(); // nothing under this dir
-		}
-		$readable = is_readable( $dir );
-		if ( !$readable ) {
+		} elseif ( !is_readable( $dir ) ) {
 			wfDebug( __METHOD__ . "() given directory is unreadable: '$dir'\n" );
 			return null; // bad permissions?
 		}
-		return new FSFileBackendFileList( $dir );
+		return new FSFileBackendFileList( $dir, $params );
 	}
 
 	/**
@@ -543,51 +576,63 @@ class FSFileBackend extends FileBackendStore {
 }
 
 /**
- * Wrapper around RecursiveDirectoryIterator that catches
- * exception or does any custom behavoir that we may want.
+ * Wrapper around RecursiveDirectoryIterator/DirectoryIterator that
+ * catches exception or does any custom behavoir that we may want.
  * Do not use this class from places outside FSFileBackend.
  *
  * @ingroup FileBackend
  */
-class FSFileBackendFileList implements Iterator {
-	/** @var RecursiveIteratorIterator */
+abstract class FSFileBackendList implements Iterator {
+	/** @var Iterator */
 	protected $iter;
 	protected $suffixStart; // integer
 	protected $pos = 0; // integer
+	/** @var Array */
+	protected $params = array();
 
 	/**
 	 * @param $dir string file system directory
 	 */
-	public function __construct( $dir ) {
+	public function __construct( $dir, array $params ) {
 		$dir = realpath( $dir ); // normalize
 		$this->suffixStart = strlen( $dir ) + 1; // size of "path/to/dir/"
+		$this->params = $params;
+
 		try {
-			# Get an iterator that will return leaf nodes (non-directories)
-			if ( MWInit::classExists( 'FilesystemIterator' ) ) { // PHP >= 5.3
-				# RecursiveDirectoryIterator extends FilesystemIterator.
-				# FilesystemIterator::SKIP_DOTS default is inconsistent in PHP 5.3.x.
-				$flags = FilesystemIterator::CURRENT_AS_FILEINFO | FilesystemIterator::SKIP_DOTS;
-				$this->iter = new RecursiveIteratorIterator( 
-					new RecursiveDirectoryIterator( $dir, $flags ) );
-			} else { // PHP < 5.3
-				# RecursiveDirectoryIterator extends DirectoryIterator
-				$this->iter = new RecursiveIteratorIterator( 
-					new RecursiveDirectoryIterator( $dir ) );
-			}
+			$this->iter = $this->initIterator( $dir );
 		} catch ( UnexpectedValueException $e ) {
 			$this->iter = null; // bad permissions? deleted?
 		}
 	}
 
 	/**
-	 * @see Iterator::current()
-	 * @return string|bool String or false
+	 * Return an appropriate iterator object to wrap
+	 *
+	 * @param $dir string file system directory
+	 * @return Iterator
 	 */
-	public function current() {
-		// Return only the relative path and normalize slashes to FileBackend-style
-		// Make sure to use the realpath since the suffix is based upon that
-		return str_replace( '\\', '/',
-			substr( realpath( $this->iter->current() ), $this->suffixStart ) );
+	protected function initIterator( $dir ) {
+		if ( !empty( $this->params['topOnly'] ) ) { // non-recursive
+			# Get an iterator that will get direct sub-nodes
+			return new DirectoryIterator( $dir );
+		} else { // recursive
+			# Get an iterator that will return leaf nodes (non-directories)
+			if ( MWInit::classExists( 'FilesystemIterator' ) ) { // PHP >= 5.3
+				# RecursiveDirectoryIterator extends FilesystemIterator.
+				# FilesystemIterator::SKIP_DOTS default is inconsistent in PHP 5.3.x.
+				$flags = FilesystemIterator::CURRENT_AS_SELF | FilesystemIterator::SKIP_DOTS;
+				return new RecursiveIteratorIterator(
+					new RecursiveDirectoryIterator( $dir, $flags ),
+					RecursiveIteratorIterator::CHILD_FIRST // include dirs
+				);
+			} else { // PHP < 5.3
+				# RecursiveDirectoryIterator extends DirectoryIterator
+				return new RecursiveIteratorIterator(
+					new RecursiveDirectoryIterator( $dir ),
+					RecursiveIteratorIterator::CHILD_FIRST // include dirs
+				);
+			}
+		}
 	}
 
 	/**
@@ -599,12 +644,21 @@ class FSFileBackendFileList implements Iterator {
 	}
 
 	/**
+	 * @see Iterator::current()
+	 * @return string|bool String or false
+	 */
+	public function current() {
+		return $this->getRelPath( $this->iter->current()->getPathname() );
+	}
+
+	/**
 	 * @see Iterator::next()
 	 * @return void
 	 */
 	public function next() {
 		try {
 			$this->iter->next();
+			$this->filterViaNext();
 		} catch ( UnexpectedValueException $e ) {
 			$this->iter = null;
 		}
@@ -619,6 +673,7 @@ class FSFileBackendFileList implements Iterator {
 		$this->pos = 0;
 		try {
 			$this->iter->rewind();
+			$this->filterViaNext();
 		} catch ( UnexpectedValueException $e ) {
 			$this->iter = null;
 		}
@@ -630,5 +685,45 @@ class FSFileBackendFileList implements Iterator {
 	 */
 	public function valid() {
 		return $this->iter && $this->iter->valid();
+	}
+
+	/**
+	 * Filter out items by advancing to the next ones
+	 */
+	protected function filterViaNext() {}
+
+	/**
+	 * Return only the relative path and normalize slashes to FileBackend-style.
+	 * Uses the "real path" since the suffix is based upon that.
+	 *
+	 * @param $path string
+	 * @return string
+	 */
+	protected function getRelPath( $path ) {
+		return strtr( substr( realpath( $path ), $this->suffixStart ), '\\', '/' );
+	}
+}
+
+class FSFileBackendDirList extends FSFileBackendList {
+	protected function filterViaNext() {
+		while ( $this->iter->valid() ) {
+			if ( $this->iter->current()->isDot() || !$this->iter->current()->isDir() ) {
+				$this->iter->next(); // skip non-directories and dot files
+			} else {
+				break;
+			}
+		}
+	}
+}
+
+class FSFileBackendFileList extends FSFileBackendList {
+	protected function filterViaNext() {
+		while ( $this->iter->valid() ) {
+			if ( !$this->iter->current()->isFile() ) {
+				$this->iter->next(); // skip non-files and dot files
+			} else {
+				break;
+			}
+		}
 	}
 }
