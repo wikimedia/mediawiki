@@ -487,20 +487,22 @@ class TextPassDumper extends BackupDumper {
 			// Something went wrong; we did not a text that was plausible :(
 			$failures++;
 
-
-			// After backing off for some time, we try to reboot the whole process as
-			// much as possible to not carry over failures from one part to the other
-			// parts
-			sleep( $this->failureTimeout );
-			try {
-				$this->rotateDb();
-				if ( $this->spawn ) {
-					$this->closeSpawn();
-					$this->openSpawn();
+			// A failure in a prefetch hit does not warrant resetting db connection etc.
+			if ( ! $tryIsPrefetch ) {
+				// After backing off for some time, we try to reboot the whole process as
+				// much as possible to not carry over failures from one part to the other
+				// parts
+				sleep( $this->failureTimeout );
+				try {
+					$this->rotateDb();
+					if ( $this->spawn ) {
+						$this->closeSpawn();
+						$this->openSpawn();
+					}
+				} catch ( Exception $e ) {
+					$this->progress( "Rebooting getText infrastructure failed (" . $e->getMessage() . ")" .
+						" Trying to continue anyways" );
 				}
-			} catch ( Exception $e ) {
-				$this->progress( "Rebooting getText infrastructure failed (" . $e->getMessage() . ")" .
-					" Trying to continue anyways" );
 			}
 		}
 
