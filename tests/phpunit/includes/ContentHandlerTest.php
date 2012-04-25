@@ -106,7 +106,7 @@ class ContentHandlerTest extends MediaWikiTestCase {
 			array( 'hallo', 'MediaWiki:Test.js', null, null, CONTENT_MODEL_JAVASCRIPT, 'hallo', false ),
 			array( serialize('hallo'), 'Dummy:Test', null, null, 'DUMMY', 'hallo', false ),
 
-			array( 'hallo', 'Test', null, 'application/x-wiki', CONTENT_MODEL_WIKITEXT, 'hallo', false ),
+			array( 'hallo', 'Test', null, 'text/x-wiki', CONTENT_MODEL_WIKITEXT, 'hallo', false ),
 			array( 'hallo', 'MediaWiki:Test.js', null, 'text/javascript', CONTENT_MODEL_JAVASCRIPT, 'hallo', false ),
 			array( serialize('hallo'), 'Dummy:Test', null, 'dummy', 'DUMMY', 'hallo', false ),
 

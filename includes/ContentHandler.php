@@ -711,7 +711,7 @@ abstract class TextContentHandler extends ContentHandler {
 class WikitextContentHandler extends TextContentHandler {
 
 	public function __construct( $modelName = CONTENT_MODEL_WIKITEXT ) {
-		parent::__construct( $modelName, array( 'application/x-wiki' ) );
+		parent::__construct( $modelName, array( 'text/x-wiki' ) );
 	}
 
 	public function unserializeContent( $text, $format = null ) {
