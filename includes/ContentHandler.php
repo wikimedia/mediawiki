@@ -278,6 +278,7 @@ abstract class ContentHandler {
 	/**
 	 * Creates an empty Content object of the type supported by this ContentHandler.
 	 *
+	 * @return Content
 	 */
 	public abstract function makeEmptyContent();
 
@@ -294,7 +295,7 @@ abstract class ContentHandler {
 	/**
 	 * Throws an MWException if $modelName is not the content model handeled by this ContentHandler.
 	 *
-	 * @param $modelName the model name to check
+	 * @param String $modelName the model name to check
 	 */
 	protected function checkModelName( $modelName ) {
 		if ( $modelName !== $this->mModelName ) {
@@ -331,7 +332,7 @@ abstract class ContentHandler {
 	 * Note that if $format is null, this method always returns true, because null
 	 * means "use the default format".
 	 *
-	 * @param $format the serialization format to check
+	 * @param String $format the serialization format to check
 	 * @return bool
 	 */
 	public function isSupportedFormat( $format ) {
@@ -347,7 +348,7 @@ abstract class ContentHandler {
 	 * Throws an MWException if isSupportedFormat( $format ) is not true. Convenient
 	 * for checking whether a format provided as a parameter is actually supported.
 	 *
-	 * @param $format the serialization format to check
+	 * @param String $format the serialization format to check
 	 */
 	protected function checkFormat( $format ) {
 		if ( !$this->isSupportedFormat( $format ) ) {
@@ -475,8 +476,13 @@ abstract class ContentHandler {
 
 		// Redirect autosummaries
 
-		$ot = !is_null( $oldContent ) ? $oldContent->getRedirectTarget() : false;
-		$rt = !is_null( $newContent ) ? $newContent->getRedirectTarget() : false;
+		/**
+		 * @var $ot Title
+		 * @var $rt Title
+		 */
+
+		$ot = !is_null( $oldContent ) ? $oldContent->getRedirectTarget() : null;
+		$rt = !is_null( $newContent ) ? $newContent->getRedirectTarget() : null;
 
 		if ( is_object( $rt ) && ( !is_object( $ot ) || !$rt->equals( $ot ) || $ot->getFragment() != $rt->getFragment() ) ) {
 
@@ -643,7 +649,7 @@ abstract class ContentHandler {
 	 * Returns true for content models that support caching using the ParserCache mechanism.
 	 * See WikiPage::isParserCacheUser().
 	 *
-	 * @return book
+	 * @return bool
 	 */
 	public function isParserCacheSupported() {
 		return true;

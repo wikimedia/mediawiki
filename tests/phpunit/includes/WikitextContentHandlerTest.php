@@ -2,6 +2,9 @@
 
 class WikitextContentHandlerTest extends MediaWikiTestCase {
 
+	/**
+	 * @var ContentHandler
+	 */
 	var $handler;
 
     public function setup() {
