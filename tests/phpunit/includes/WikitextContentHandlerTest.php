@@ -7,12 +7,12 @@ class WikitextContentHandlerTest extends MediaWikiTestCase {
 	 */
 	var $handler;
 
-    public function setup() {
-        $this->handler = ContentHandler::getForModelName( CONTENT_MODEL_WIKITEXT );
-    }
+	public function setup() {
+		$this->handler = ContentHandler::getForModelName( CONTENT_MODEL_WIKITEXT );
+	}
 
-    public function teardown() {
-    }
+	public function teardown() {
+	}
 
 	public function testSerializeContent( ) {
 		$content = new WikitextContent( 'hello world' );
@@ -87,11 +87,11 @@ class WikitextContentHandlerTest extends MediaWikiTestCase {
 			array( "first paragraph
 					second paragraph\n",
 
-			       "Bla bla\n",
+				   "Bla bla\n",
 
-			       "Blubberdibla\n",
+				   "Blubberdibla\n",
 
-			       false,
+				   false,
 			),
 
 		);
