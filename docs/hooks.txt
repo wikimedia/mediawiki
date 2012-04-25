@@ -395,6 +395,11 @@ In this data array, the key-value-pair identified by the apiLink key is
 required.
 &$apis: array of services
 
+'ApiTokensGetTokenTypes': use this hook to extend action=tokens with new
+token types.
+&$tokenTypes: supported token types in format 'type' => callback function
+used to retrieve this type of tokens.
+
 'ArticleAfterFetchContent': after fetching content of an article from
 the database
 $article: the article (object) being loaded from the database
