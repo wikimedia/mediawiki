@@ -700,9 +700,9 @@ $2',
 'ns-specialprotected' => 'Posebne stranice se ne mogu uređivati.',
 'titleprotected' => "Ovaj naslov je {{GENDER:$1|zaštitio korisnik|zaštitila korisnica|zaštitio korisnik}} [[User:$1|$1]].
 Navedeni razlog: ''$2''.",
-'filereadonlyerror' => "Ne mogu da izmenim datoteku „$1“ jer je riznica „$2“ u režimu za čitanje.
+'filereadonlyerror' => 'Ne mogu da izmenim datoteku „$1“ jer je riznica „$2“ u režimu za čitanje.
 
-Navedeni razlog glasi: „''$3''“.",
+Administrator koji ju je zaključao ponudio je sledeće objašnjenje: „$3“.',
 
 # Virus scanner
 'virus-badscanner' => "Neispravna postavka: nepoznati skener za viruse: ''$1''",
@@ -1000,7 +1000,7 @@ Prilagođene stranice CSS i javaskript počinju malim slovom, npr. {{ns:user}}:F
 'updated' => '(Ažurirano)',
 'note' => "'''Napomena:'''",
 'previewnote' => "'''Imajte u vidu da je ovo samo pregled.'''
-Vaše izmene još nisu sačuvane! [[#editform|→ Nastavi s uređivanjem]]",
+Vaše izmene još nisu sačuvane!",
 'previewconflict' => 'Ovaj pregled oslikava kako će tekst u tekstualnom okviru izgledati.',
 'session_fail_preview' => "'''Nismo mogli da obradimo vašu izmenu zbog gubitka podataka sesije.'''
 Pokušajte ponovo.
@@ -1083,6 +1083,7 @@ Izgleda da je obrisana.',
 'edit-no-change' => 'Vaša izmena je zanemarena jer nije bilo nikakvih izmena u tekstu.',
 'edit-already-exists' => 'Ne mogu da napravim stranicu.
 Izgleda da ona već postoji.',
+'defaultmessagetext' => 'Podrazumevani tekst poruke',
 
 # Parser/template warnings
 'expensive-parserfunction-warning' => "'''Upozorenje:''' ova stranica sadrži previše poziva za raščlanjivanje.
@@ -1870,6 +1871,7 @@ Ako se problem ne reši, kontaktirajte [[Special:ListUsers/sysop|administratora]
 'backend-fail-contenttype' => 'Ne mogu da utvrdim kakav sadržaj ima datoteka koju treba da smestim u „$1“.',
 'backend-fail-batchsize' => 'Skladišna osnova je dobila blokadu od $1 {{PLURAL:$1|operacije|operacije|operacija}}; ograničenje je $2 {{PLURAL:$2|operacija|operacije|operacija}}.',
 
+# File journal errors
 'filejournal-fail-dbconnect' => 'Ne mogu da se povežem s novinarskom bazom za skladišnu osnovu „$1“.',
 'filejournal-fail-dbquery' => 'Ne mogu da ažuriram novinarsku bazu za skladišnu osnovu „$1“.',
 

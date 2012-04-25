@@ -188,7 +188,7 @@ class Parser {
 	public function __construct( $conf = array() ) {
 		$this->mConf = $conf;
 		$this->mUrlProtocols = wfUrlProtocols();
-		$this->mExtLinkBracketedRegex = '/\[((' . wfUrlProtocols() . ')'.
+		$this->mExtLinkBracketedRegex = '/\[((' . $this->mUrlProtocols . ')'.
 			self::EXT_LINK_URL_CLASS.'+)\p{Zs}*([^\]\\x00-\\x08\\x0a-\\x1F]*?)\]/Su';
 		if ( isset( $conf['preprocessorClass'] ) ) {
 			$this->mPreprocessorClass = $conf['preprocessorClass'];
@@ -1814,7 +1814,7 @@ class Parser {
 			# Don't allow internal links to pages containing
 			# PROTO: where PROTO is a valid URL protocol; these
 			# should be external links.
-			if ( preg_match( '/^(?:' . wfUrlProtocols() . ')/', $m[1] ) ) {
+			if ( preg_match( '/^(?:' . $this->mUrlProtocols . ')/', $m[1] ) ) {
 				$s .= $prefix . '[[' . $line ;
 				wfProfileOut( __METHOD__."-misc" );
 				continue;
@@ -2051,7 +2051,7 @@ class Parser {
 	 * @return String: less-or-more HTML with NOPARSE bits
 	 */
 	function armorLinks( $text ) {
-		return preg_replace( '/\b(' . wfUrlProtocols() . ')/',
+		return preg_replace( '/\b(' . $this->mUrlProtocols . ')/',
 			"{$this->mUniqPrefix}NOPARSE$1", $text );
 	}
 
@@ -4854,30 +4854,41 @@ class Parser {
 
 			$label = '';
 			$alt = '';
+			$link = '';
 			if ( isset( $matches[3] ) ) {
 				// look for an |alt= definition while trying not to break existing
 				// captions with multiple pipes (|) in it, until a more sensible grammar
 				// is defined for images in galleries
 
 				$matches[3] = $this->recursiveTagParse( trim( $matches[3] ) );
-				$altmatches = StringUtils::explode('|', $matches[3]);
+				$parameterMatches = StringUtils::explode('|', $matches[3]);
 				$magicWordAlt = MagicWord::get( 'img_alt' );
+				$magicWordLink = MagicWord::get( 'img_link' );
 
-				foreach ( $altmatches as $altmatch ) {
-					$match = $magicWordAlt->matchVariableStartToEnd( $altmatch );
-					if ( $match ) {
+				foreach ( $parameterMatches as $parameterMatch ) {
+					if ( $match = $magicWordAlt->matchVariableStartToEnd( $parameterMatch ) ) {
 						$alt = $this->stripAltText( $match, false );
+					}
+					elseif( $match = $magicWordLink->matchVariableStartToEnd( $parameterMatch ) ){
+						$link = strip_tags($this->replaceLinkHoldersText($match));
+						$chars = self::EXT_LINK_URL_CLASS;
+						$prots = $this->mUrlProtocols;
+						//check to see if link matches an absolute url, if not then it must be a wiki link.
+						if(!preg_match( "/^($prots)$chars+$/u", $link)){
+							$localLinkTitle = Title::newFromText($link);
+							$link = $localLinkTitle->getLocalURL();
+						}
 					}
 					else {
 						// concatenate all other pipes
-						$label .= '|' . $altmatch;
+						$label .= '|' . $parameterMatch;
 					}
 				}
 				// remove the first pipe
 				$label = substr( $label, 1 );
 			}
 
-			$ig->add( $title, $label, $alt );
+			$ig->add( $title, $label, $alt ,$link);
 		}
 		return $ig->toHTML();
 	}
@@ -5562,7 +5573,7 @@ class Parser {
 		# @todo FIXME: Not tolerant to blank link text
 		# I.E. [http://www.mediawiki.org] will render as [1] or something depending
 		# on how many empty links there are on the page - need to figure that out.
-		$text = preg_replace( '/\[(?:' . wfUrlProtocols() . ')([^ ]+?) ([^[]+)\]/', '$2', $text );
+		$text = preg_replace( '/\[(?:' . $this->mUrlProtocols . ')([^ ]+?) ([^[]+)\]/', '$2', $text );
 
 		# Parse wikitext quotes (italics & bold)
 		$text = $this->doQuotes( $text );

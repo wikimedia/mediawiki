@@ -89,12 +89,13 @@ class ApiQueryCategories extends ApiQueryGeneratorBase {
 				$this->dieUsage( "Invalid continue param. You should pass the " .
 					"original value returned by the previous query", "_badcontinue" );
 			}
+			$op = $params['dir'] == 'descending' ? '<' : '>';
 			$clfrom = intval( $cont[0] );
-			$clto = $this->getDB()->strencode( $this->titleToKey( $cont[1] ) );
+			$clto = $this->getDB()->addQuotes( $this->titleToKey( $cont[1] ) );
 			$this->addWhere(
-				"cl_from > $clfrom OR " .
+				"cl_from $op $clfrom OR " .
 				"(cl_from = $clfrom AND " .
-				"cl_to >= '$clto')"
+				"cl_to $op= $clto)"
 			);
 		}
 

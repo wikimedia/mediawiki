@@ -667,6 +667,9 @@ $2',
 'customjsprotected' => 'Sul pole õigust seda JavaScripti lehekülge redigeerida, sest see sisaldab teise kasutaja isiklikke sätteid.',
 'ns-specialprotected' => 'Erilehekülgi ei saa redigeerida.',
 'titleprotected' => "Kasutaja [[User:$1|$1]] on selle pealkirjaga lehe loomise keelanud esitades järgmise põhjenduse: ''$2''.",
+'filereadonlyerror' => 'Faili "$1" ei saa muuta, sest hoidla "$2" on kirjutuskaitstud.
+
+Administraator lukustas selle järgmisel põhjusel: "$3".',
 
 # Virus scanner
 'virus-badscanner' => "Viga konfiguratsioonis: tundmatu viirusetõrje: ''$1''",
@@ -753,6 +756,7 @@ Seetõttu ei saa seda IP-aadressi kasutades hetkel rohkem kontosid luua.',
 'invalidemailaddress' => 'E-aadress ei ole aktsepteeritav, sest see on vigaselt kirjutatud.
 Ole hea ja anna õige e-aadress või jäta lahter tühjaks.',
 'cannotchangeemail' => 'Selles vikis ei saa konto e-posti aadressi muuta.',
+'emaildisabled' => 'Selle võrgukoha kaudu ei saa e-kirju saata.',
 'accountcreated' => 'Konto loodud',
 'accountcreatedtext' => 'Kasutajakonto kasutajatunnusele $1 loodud.',
 'createaccount-title' => '{{GRAMMAR:illative|{{SITENAME}}}} konto loomine',
@@ -948,7 +952,7 @@ Allpool on toodud viimane blokeerimislogi sissekanne:',
 'updated' => '(Värskendatud)',
 'note' => "'''Meeldetuletus:'''",
 'previewnote' => "'''Ära unusta, et see on kõigest eelvaade!'''
-Sinu muudatused pole veel salvestatud! [[#editform|→ Jätka redigeerimist]]",
+Sinu muudatused pole veel salvestatud!",
 'previewconflict' => 'See eelvaade näitab, kuidas ülemises toimetuskastis olev tekst hakkab välja nägema, kui otsustate salvestada.',
 'session_fail_preview' => "'''Vabandust! Meil ei õnnestunud seansiandmete kaotuse tõttu sinu muudatust töödelda.'''
 Palun proovi uuesti.
@@ -964,6 +968,7 @@ Muudatus lükati tagasi, et vältida lehekülje segiminekut.
 See juhtub mõnikord siis, kui kasutatakse vigast veebipõhist anonüümsusserverit.",
 'edit_form_incomplete' => "'''Redigeerimisvormi mõni osa ei jõudnud serverisse; kontrolli, kas sinu tehtud muudatused on alles, ja proovi uuesti.'''",
 'editing' => 'Redigeerimisel on $1',
+'creating' => 'Alustamisel on $1',
 'editingsection' => 'Redigeerimisel on osa leheküljest $1',
 'editingcomment' => 'Muutmisel on $1 (uus alaosa)',
 'editconflict' => 'Redigeerimiskonflikt: $1',
@@ -1026,6 +1031,7 @@ Tundub, et see on kustutatud.',
 'edit-no-change' => 'Sinu redigeerimist ignoreeriti, sest tekstile ei olnud tehtud muudatusi.',
 'edit-already-exists' => 'Ei saanud alustada uut lehekülge.
 See on juba olemas.',
+'defaultmessagetext' => 'Sõnumi vaiketekst',
 
 # Parser/template warnings
 'expensive-parserfunction-warning' => "'''Hoiatus:''' See lehekülg kasutab liialt palju aeglustavaid laiendusfunktsioone. Neid võiks kasutada vähem kui {{PLURAL:$2|ühel|$2}} korral, praegu on kasutatud {{PLURAL:$1|ühel|$1}} korral.",
@@ -1181,7 +1187,7 @@ Palun vaata logisid.',
 # Suppression log
 'suppressionlog' => 'Varjamislogi',
 'suppressionlogtext' => 'Allpool on nimekiri kustutamistest ja blokeeringutest, millega kaasneb administraatorite eest sisu varjamine.
-Jõus olevad keelud ja blokeeringud leiad [[Special:BlockList|blokeeritud IP-aadresside loendist]].',
+Jõus olevad keelud ja blokeeringud leiad [[Special:BlockList|blokeerimisnimekirja]].',
 
 # History merging
 'mergehistory' => 'Ühenda lehtede ajalood',
@@ -1888,6 +1894,10 @@ Järgnevas loetelus on kuvatud ainult {{PLURAL:$1|esimene viitav lehekülg|esime
 'sharedupload' => 'See fail pärineb allikast $1 ning võib olla kasutusel ka teistes projektides.',
 'sharedupload-desc-there' => 'See fail pärineb kesksest failivaramust $1. Palun vaata [$2 faili kirjelduse lehekülge], et saada rohkem teavet.',
 'sharedupload-desc-here' => 'See on jagatud fail allikast $1 ja seda saab kasutada ka teistes projektides. Faili sealne [$2 kirjeldus] on kuvatud allpool.',
+'sharedupload-desc-edit' => 'See fail on pärit allikast $1 ja seda saab kasutada teistes projektides.
+Võib-olla tahad redigeerida selle faili [$2 sealset kirjelduslehekülge].',
+'sharedupload-desc-create' => 'See fail on pärit allikast $1 ja seda saab kasutada teistes projektides.
+Võib-olla tahad redigeerida selle faili [$2 sealset kirjelduslehekülge].',
 'filepage-nofile' => 'Sellenimelist faili ei ole.',
 'filepage-nofile-link' => 'Sellenimelist faili ei ole, kuid sa saad selle [$1 üles laadida].',
 'uploadnewversion-linktext' => 'Laadi üles selle faili uus versioon',
@@ -2099,6 +2109,12 @@ Valiku kitsendamiseks vali logitüüp, sisesta kasutajanimi (tõstutundlik) või
 'allpagesbadtitle' => 'Lehekülje pealkiri oli vigane või sisaldas teise viki või keele eesliidet.
 See võib sisaldada üht või enamat märki, mida ei saa pealkirjades kasutada.',
 'allpages-bad-ns' => '{{GRAMMAR:inessive|{{SITENAME}}}} ei ole nimeruumi "$1".',
+'allpages-hide-redirects' => 'Peida ümbersuunamised',
+
+# SpecialCachedPage
+'cachedspecial-viewing-cached-ttl' => 'Vaata vahemälus olevat lehekülje versiooni, mis võib olla kuni $1 vanune.',
+'cachedspecial-viewing-cached-ts' => 'Vaatad vahemälus olevat lehekülje versiooni, mis ei pruugi olla täiesti ajakohane.',
+'cachedspecial-refresh-now' => 'Vaata uusimat versiooni.',
 
 # Special:Categories
 'categories' => 'Kategooriad',
@@ -2412,7 +2428,7 @@ Sellisel juhul tuleb uusima kustutatud redaktsiooni juurest linnuke eemaldada v�
 'undeletehistorynoadmin' => 'See lehekülg on kustutatud.
 Kustutamise põhjus ning selle lehekülje kustutamiseelne redigeerimislugu on näha allolevas kokkuvõttes.
 Lehekülje kustutamiseelsed redaktsioonid on kättesaadavad ainult administraatoritele.',
-'undelete-revision' => 'Lehekülje $1 kustutatud redaktsioonid, mille autor on $3, seisuga $4 kell $5.',
+'undelete-revision' => 'Lehekülje $1 kustutatud redaktsioon, mille autor on $3, seisuga $4, kell $5.',
 'undeleterevision-missing' => 'Vigane või puuduv redaktsioon.
 Link võib olla kõlbmatu või redaktsioon võib olla taastatud või arhiivist eemaldatud.',
 'undelete-nodiff' => 'Varasemat redaktsiooni ei leidunud.',
@@ -2540,7 +2556,7 @@ Täida ka põhjuse väli, näiteks viidates lehekülgedele, mis rikuti.',
 'badipaddress' => 'Vigane IP-aadress',
 'blockipsuccesssub' => 'Blokeerimine õnnestus',
 'blockipsuccesstext' => '[[Special:Contributions/$1|$1]] on blokeeritud.<br />
-Kehtivaid blokeeringuid vaata [[Special:BlockList|blokeeringute loendist]].',
+Kehtivaid blokeeringuid vaata [[Special:BlockList|blokeerimisnimekirjast]].',
 'ipb-blockingself' => 'Sa blokeerid iseenda! Kas tahad tõesti seda teha?',
 'ipb-confirmhideuser' => 'Avaldasid soovi kasutaja blokeerida ja peita. Kasutaja nimi peidetakse kõigist loenditest ja logisissekannetest. Kas oled kindel, et soovid seda teha?',
 'ipb-edit-dropdown' => 'Muuda blokeeringu põhjuseid',
@@ -2590,7 +2606,9 @@ Kehtivaid blokeeringuid vaata [[Special:BlockList|blokeeringute loendist]].',
 'blocklog-showsuppresslog' => 'See kasutaja on varem blokeeritud ja peidetud. Allpool on toodud varjamislogi:',
 'blocklogentry' => 'blokeeris kasutaja [[$1]]. Blokeeringu aegumistähtaeg on $2 $3',
 'reblock-logentry' => 'muutis kasutaja või IP-aadressi [[$1]] blokeeringu sätteid. Blokeering aegumistähtaeg: $2. Põhjus: $3',
-'blocklogtext' => 'See on kasutajate blokeerimiste ja blokeeringute eemaldamiste nimekiri. Automaatselt blokeeritud IP aadresse siin ei näidata. Hetkel aktiivsete blokeeringute ja redigeerimiskeeldude nimekirja vaata [[Special:BlockList|IP blokeeringute nimekirja]] leheküljelt.',
+'blocklogtext' => 'See on kasutajate blokeerimiste ja blokeeringute eemaldamiste logi.
+Automaatselt blokeeritud IP-aadresse siin ei näidata.
+Praegu jõus olevad blokeeringud ja redigeerimiskeelud leiad [[Special:BlockList|blokeerimisnimekirjast]].',
 'unblocklogentry' => 'eemaldas kasutaja $1 blokeeringu',
 'block-log-flags-anononly' => 'ainult anonüümsed kasutajad',
 'block-log-flags-nocreate' => 'kontode loomine on blokeeritud',
@@ -3633,6 +3651,9 @@ GNU Üldise Avaliku Litsentsi [{{SERVER}}{{SCRIPTPATH}}/COPYING eksemplar] peaks
 'version-software' => 'Paigaldatud tarkvara',
 'version-software-product' => 'Toode',
 'version-software-version' => 'Versioon',
+'version-entrypoints' => 'Sisendpunktide internetiaadressid',
+'version-entrypoints-header-entrypoint' => 'Sisendpunkt',
+'version-entrypoints-header-url' => 'URL',
 
 # Special:FilePath
 'filepath' => 'Failitee',
@@ -3820,5 +3841,16 @@ Kui ei, kasuta allolevat lihtsat vormi. Sinu kommentaar lisatakse koos kasutajan
 'api-error-unknownerror' => 'Tundmatu tõrge: "$1".',
 'api-error-uploaddisabled' => 'Üleslaadimine on selles vikis keelatud.',
 'api-error-verification-error' => 'See fail võib olla rikutud või vale laiendiga.',
+
+# Durations
+'duration-seconds' => '$1 {{PLURAL:$1|sekundi}}',
+'duration-minutes' => '$1 {{PLURAL:$1|minuti}}',
+'duration-hours' => '$1 {{PLURAL:$1|tunni}}',
+'duration-days' => '$1 {{PLURAL:$1|päeva}}',
+'duration-weeks' => '$1 {{PLURAL:$1|nädala}}',
+'duration-years' => '$1 {{PLURAL:$1|aasta}}',
+'duration-decades' => '$1 {{PLURAL:$1|kümnendi}}',
+'duration-centuries' => '$1 {{PLURAL:$1|sajandi}}',
+'duration-millennia' => '$1 {{PLURAL:$1|aastatuhande}}',
 
 );

@@ -6,7 +6,7 @@
  * Created on Mar 16, 2008
  *
  * Copyright © 2008 Vasiliev Victor vasilvv@gmail.com,
- * based on ApiQueryAllpages.php
+ * based on ApiQueryAllPages.php
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -31,7 +31,7 @@
  *
  * @ingroup API
  */
-class ApiQueryAllimages extends ApiQueryGeneratorBase {
+class ApiQueryAllImages extends ApiQueryGeneratorBase {
 
 	protected $mRepo;
 

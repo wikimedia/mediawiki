@@ -282,7 +282,7 @@ $messages = array(
 'jul' => 'Jull',
 'aug' => 'Ago',
 'sep' => 'Set',
-'oct' => 'Ochů',
+'oct' => 'Och',
 'nov' => 'Nov',
 'dec' => 'Diz',
 

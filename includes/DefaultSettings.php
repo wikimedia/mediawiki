@@ -952,8 +952,7 @@ $wgImageLimits = array(
 	array( 640, 480 ),
 	array( 800, 600 ),
 	array( 1024, 768 ),
-	array( 1280, 1024 ),
-	array( 10000, 10000 )
+	array( 1280, 1024 )
 );
 
 /**

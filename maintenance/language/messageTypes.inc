@@ -237,6 +237,9 @@ $wgIgnoredMessages = array(
 	'version-summary',
 	'tags-summary',
 	'comparepages-summary',
+	'version-entrypoints-index-php',
+	'version-entrypoints-api-php',
+	'version-entrypoints-load-php',
 );
 
 /** Optional messages, which may be translated only if changed in the target language. */
@@ -464,6 +467,8 @@ $wgOptionalMessages = array(
 	'metadata-langitem',
 	'metadata-langitem-default',
 	'nocookiesforlogin',
+	'version-entrypoints-articlepath',
+	'version-entrypoints-scriptpath',
 );
 
 /** EXIF messages, which may be set as optional in several checks, but are generally mandatory */

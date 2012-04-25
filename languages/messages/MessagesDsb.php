@@ -810,7 +810,7 @@ Nejnowšy zapisk blokěrowańskego protokola pódawa se dołojce ako referenca:'
 'updated' => '(Zaktualizěrowane)',
 'note' => "'''Pokazka:'''",
 'previewnote' => "'''Wobmysli, až to jo jano pśeglěd.'''
-Twóje změny hyšći njejsu składowane! [[#editform|→ Dalej wobźěłaś]]",
+Twóje změny hyšći njejsu składowane!",
 'previewconflict' => 'Toś ten pśeglěd wótbłyšćujo tekst górjejcnego póla. Bok buźo tak wuglědaś, jolic jen něnto składujoš.',
 'session_fail_preview' => "'''Wódaj! Twójo wobźěłanje njejo se mógało składowaś, dokulaž su daty twójogo pósejźenja se zgubili. Pšosym wopytaj hyšći raz. Jolic až to pón pśecej hyšći njejźo, wopytaj se wótzjawiś a zasej pśizjawiś.'''",
 'session_fail_preview_html' => "'''Wódaj! Twójo wobźěłanje njejo se mógało składowaś, dokulaž su daty twójogo pósejźenja se zgubili.'''
@@ -1037,7 +1037,7 @@ Pšosym pśeglědaj protokole.',
 
 # Suppression log
 'suppressionlog' => 'Protokol pódłocowanjow',
-'suppressionlogtext' => 'To jo lisćina wulašowanjow a blokěrowanjow, kótaraž ma wopśimjeśe, kótarež jo wót administratorow schowane. Glědaj  [[Special:BlockList|lisćinu IP-blokěrowanjow]] za lisćinu aktualnych wugnanjow a blokěrowanjow.',
+'suppressionlogtext' => 'To jo lisćina wulašowanjow a blokěrowanjow, kótaraž ma wopśimjeśe, kótarež jo wót administratorow schowane. Glědaj  [[Special:BlockList|lisćinu blokěrowanjow]] za lisćinu aktualnych wugnanjow a blokěrowanjow.',
 
 # History merging
 'mergehistory' => 'Zwězaś stawizny bokow',
@@ -1635,6 +1635,7 @@ $1',
 'backend-fail-contenttype' => 'Wopśimjeśowy typ dataje, kótaraž ma se na "$1" składowaś, njedajo se zwěsćiś.',
 'backend-fail-batchsize' => 'Štapjelowa dataja, kótaraž wopśimujo {{PLURAL:$1|jadnu operaciju|$1 operaciji|$1 operacije|$1 operacijow}},  jo se  na składowański backend pósłała; limit jo $2 {{PLURAL:$1|operaciju|operaciji|operacije|operacijow}}.',
 
+# File journal errors
 'filejournal-fail-dbconnect' => 'Njejo žeden zwisk ze žurnaloweju datoweju banku za składowański backend "$1" móžno.',
 'filejournal-fail-dbquery' => 'Žurnalowa datowa banka za składowański backend "$1" njedajo se aktualizěrowaś.',
 
@@ -1965,6 +1966,11 @@ Pšosym glědaj na to, až druge websedła móžu k drugej dataji z direktnym UR
 'allpagesbadtitle' => 'Zapódane mě boka njejo płaśece: Jo móžno, až ma pśedstajonu rěcnu resp. interwikijowu krotceńku abo wopśimjejo jadno abo wěcej znamuškow, kótarež njamgu se za mjenja bokow wužywaś.',
 'allpages-bad-ns' => 'Mjenjowy rum „$1“ w {{SITENAME}} njeeksistěrujo.',
 'allpages-hide-redirects' => 'Dalejpósrědnjenja schowaś',
+
+# SpecialCachedPage
+'cachedspecial-viewing-cached-ttl' => 'Woglědujoš se pufrowanu wersiju toś togo boka, kótaraž móžo do $1 stara byś.',
+'cachedspecial-viewing-cached-ts' => 'Woglědujoš se pufrowanu wersiju toś togo boka, kótaraž by mógła njeaktualna byś.',
+'cachedspecial-refresh-now' => 'Aktualnu wersiju se woglědaś.',
 
 # Special:Categories
 'categories' => 'Kategorije',
@@ -2390,8 +2396,8 @@ Nejnowšy zapisk protokola blokěrowanjow pódawa se dołojce ako referenca:',
 'ipb-confirm' => 'Blokěrowanje wobkšuśiś',
 'badipaddress' => 'IP-adresa jo njekorektna',
 'blockipsuccesssub' => 'Wuspěšnje blokěrowane',
-'blockipsuccesstext' => '[[Special:Contributions/$1|$1]] jo se blokěrował.<br />
-Glědaj do [[Special:BlockList|lisćiny aktiwnych blokěrowanjow]], aby blokěrowanja pśeglědał.',
+'blockipsuccesstext' => '[[Special:Contributions/$1|$1]] jo se {{GENDER:$1|blokěrował|blokěrowała}}.<br />
+Glědaj do [[Special:BlockList|lisćiny blokěrowanjow]], aby blokěrowanja pśeglědał.',
 'ipb-blockingself' => 'Coš samogo blokěrowaś! Coš to napšawdu cyniś?',
 'ipb-confirmhideuser' => 'Coš rowno wužywarja z nastajenim "wužywarja schowaś" blokěrowaś. To k tomu dowjeźo, až mě wužywarja pódłocyjo se we wšych lisćinach a protokolowych zapiskach. Coš to napšawdu cyniś?',
 'ipb-edit-dropdown' => 'Pśicyny blokěrowanja wobźěłaś',
@@ -2441,9 +2447,7 @@ Glědaj do [[Special:BlockList|lisćiny aktiwnych blokěrowanjow]], aby blokěro
 'blocklog-showsuppresslog' => 'Toś ten wužywaŕ jo se pjerwjej zablokěrował a schował. Protokol pódtłocowanjow pódawa se dołojce ako referenca:',
 'blocklogentry' => '[[$1]] blokěrujo se na $2 $3',
 'reblock-logentry' => 'jo změnił blokěrowańske nastajenja za [[$1]] z casom spadnjenja $2 $3',
-'blocklogtext' => 'To jo protokol blokěrowanjow a dopušćenjow.
-IP-adresy, ako su awtomatiski se blokěrowali, se njepokažu.
-Na boce [[Special:BlockList|Lisćina blokěrowanych IP-adresow a wužywarskich mjenjow]] jo móžno, akualne blokěrowanja pśeglědowaś.',
+'blocklogtext' => 'To jo protokol blokěrowanja a wótblokěrowanja wužywarjow. Awtomatiski blokěrowane IP-adrese se njenalistuju. Glědaj [[Special:BlockList|lisćinu blokěrowanjow]] za lisćinu tuchylnych wugnanjow a blokěrowanjow.',
 'unblocklogentry' => 'jo $1 zasej dopušćił',
 'block-log-flags-anononly' => 'jano anonymne',
 'block-log-flags-nocreate' => 'stwórjenje konta jo se znjemóžniło',
@@ -3506,6 +3510,9 @@ Ty by dejał [{{SERVER}}{{SCRIPTPATH}}/COPYING kopiju licence GNU General Public
 'version-software' => 'Instalěrowana software',
 'version-software-product' => 'Produkt',
 'version-software-version' => 'Wersija',
+'version-entrypoints' => 'URL zastupneho dypka',
+'version-entrypoints-header-entrypoint' => 'Zastupny dypk',
+'version-entrypoints-header-url' => 'URL',
 
 # Special:FilePath
 'filepath' => 'Datajowa droga',
@@ -3692,5 +3699,16 @@ Hować móžoš slědujucy jadnory formular wužywaś. Twój komentar pśidajo s
 'api-error-unknownerror' => 'Njeznata zmólka: "$1".',
 'api-error-uploaddisabled' => 'Nagraśa su na toś tom wikiju znjemóžnjone.',
 'api-error-verification-error' => 'Toś ta dataja by mógła wobkškóźona byś abo wopacnu kóńcowku měś.',
+
+# Durations
+'duration-seconds' => '$1 {{PLURAL:$1|sekunda|sekunźe|sekundy|sekundow}}',
+'duration-minutes' => '$1 {{PLURAL:$1|minuta|minuśe|minuty|minutow}}',
+'duration-hours' => '$1 {{PLURAL:$1|góźina|góźinje|góźiny|góźinow}}',
+'duration-days' => '$1 {{PLURAL:$1|źeń|dnja|dny|dnjow}}',
+'duration-weeks' => '$1 {{PLURAL: $1|tyźeń|tyźenja|tyźenje|tyźenjow}}',
+'duration-years' => '$1 {{PLURAL: $1|lěto|lěśe|lěta|lět}}',
+'duration-decades' => '$1 {{PLURAL:$1|lětźasetk|lětźasetka|lětźasetki|lětźastkow}}',
+'duration-centuries' => '$1 {{PLURAL:$1|stolěśe|stolěśi|stolěśa|stolěśow}}',
+'duration-millennia' => '$1 {{PLURAL:$1|lěttysac|lěttysaca|lěttysace|lěttysacow}}',
 
 );

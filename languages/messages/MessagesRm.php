@@ -579,6 +579,9 @@ Ti duessas t'annunziar e tscherner ussa in nov pled-clav. Sche ti na levas betg 
 Pled-clav temporar: $2",
 'passwordreset-emailsent' => 'In e-mail cun in nov pled-clav è vegnì tramess.',
 
+# Special:ChangeEmail
+'changeemail' => "Midar l'adressa dad e-mail",
+
 # Edit page toolbar
 'bold_sample' => 'Text grass',
 'bold_tip' => 'Text grass',

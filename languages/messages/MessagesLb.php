@@ -834,7 +834,7 @@ Denkt drun datt eegen .css an .js Säiten e kleng geschriwwenen Titel benotzen, 
 'updated' => '(Geännert)',
 'note' => "'''Notiz:'''",
 'previewnote' => "'''Denkt drun datt dëst nëmmen eng net gespäichert Versioun ass.'''
-Är Ännerunge sinn nach net gespäichert! [[#editform|→ Virufuere mam Änneren]]",
+Är Ännerunge sinn nach net gespäichert!",
 'previewconflict' => 'Dir gesitt an dem ieweschten Textfeld wéi den Text ausgesi wäert, wann Dir späichert.',
 'session_fail_preview' => "'''Är Ännerung konnt net gespäichert gi well d'Date vun Ärer Sessioun verluergaange sinn.
 Versicht et w.e.g. nach eng Kéier.
@@ -850,6 +850,7 @@ D'Ännerung gouf refuséiert, fir ze verhënneren datt den Text op der Säit onl
 Dëst geschitt heiandsdo wann Dir en anonyme Proxy-Service um Internet benotzt.",
 'edit_form_incomplete' => "'''En Deel vum Ännerungsformulaire koum net um Server un; iwwerpréift w.e.g ob Är Ännerunge komplett sinn a probéiert nach emol.'''",
 'editing' => 'Ännere vu(n) $1',
+'creating' => '$1 gëtt ugeluecht',
 'editingsection' => 'Ännere vu(n) $1 (Abschnitt)',
 'editingcomment' => 'Ännere vu(n) $1 (neien Abschnitt)',
 'editconflict' => 'Ännerungskonflikt: $1',
@@ -905,6 +906,7 @@ Si gouf anscheinend geläscht.",
 'edit-conflict' => 'Ännerungskonflikt.',
 'edit-no-change' => 'Är ännerung gouf ignoréiert, well Dir näischt um Text geännert hutt.',
 'edit-already-exists' => 'Déi nei Säit konnt net ugeluecht ginn, well et se scho gëtt.',
+'defaultmessagetext' => 'Standardtext',
 
 # Parser/template warnings
 'expensive-parserfunction-warning' => "'''Opgepasst:'' Dës Säit huet ze vill Ufroe vu komplexe Parserfunktiounen.
@@ -1062,7 +1064,7 @@ Kuckt w.e.g. an de Logbicher no.",
 # Suppression log
 'suppressionlog' => 'Lëscht vun de verstoppten a geläschte Säiten',
 'suppressionlogtext' => 'Ënnendrënner ass eng Lëscht vun de geläschte Säiten a Spären a vun den Administrateuren verstopptem Inhalt.
-Kuckt [[Special:BlockList|Lëscht vun de gespaarten IPen]] fir déi aktuell Spären.',
+Kuckt [[Special:BlockList|Lëscht vun Späre]] fir déi aktuell Spären.',
 
 # History merging
 'mergehistory' => 'Historiquë fusionéieren',
@@ -1764,6 +1766,10 @@ Eng [[Special:WhatLinksHere/$2|komplett Lëscht]] ass disponibel.',
 Kuckt w.e.g. d'[$2 Säit mat der Beschreiwung vum Fichier] fir méi Informatiounen.",
 'sharedupload-desc-here' => "Dëse Fichier ass vu(n) $1 an däerf vun anere Projete benotzt ginn.
 D'Beschreiwung op senger [$2 Beschreiwungssäit] steet hei ënnendrënner.",
+'sharedupload-desc-edit' => 'Dëse Fichier ass vu(n) $1 a ka vun anere Projete benotzt ginn.
+Dir kënnt seng Beschreiwung op senger [$2 Beschreiwungssäit] änneren.',
+'sharedupload-desc-create' => 'Dëse Fichier ass vu(n) $1 a ka vun anere Projete benotzt ginn.
+Dir kënnt seng Beschreiwung op senger [$2 Beschreiwungssäit] änneren.',
 'filepage-nofile' => 'Et gëtt kee Fichier mat deem Numm.',
 'filepage-nofile-link' => 'Et gëtt kee Fichier mat deem Numm, awer Dir kënnt [$1 en eroplueden].',
 'uploadnewversion-linktext' => 'Eng nei Versioun vun dësem Fichier eroplueden',
@@ -1974,6 +1980,9 @@ Dir kënnt d'Siche limitéieren wann Dir e Log-Typ, e Benotzernumm (case-senisit
 'allpagesbadtitle' => 'Den Titel vun dëser Säit ass net valabel oder hat en Interwiki-Prefix. Et ka sinn datt een oder méi Zeechen drasinn, déi net an Titele benotzt kënne ginn.',
 'allpages-bad-ns' => 'Den Nummraum „$1“ gëtt et net op {{SITENAME}}.',
 'allpages-hide-redirects' => 'Viruleedunge verstoppen',
+
+# SpecialCachedPage
+'cachedspecial-refresh-now' => 'Déi rezentst weisen.',
 
 # Special:Categories
 'categories' => 'Kategorien',
@@ -2352,7 +2361,7 @@ $1',
 'sp-contributions-userrights' => 'Verwaltung vun de Benotzerrechter',
 'sp-contributions-blocked-notice' => 'Dëse Benotzer ass elo gespaart. Déi lescht Entrée am Läsch-Logbuch steet als Referenz hei ënnendrënner:',
 'sp-contributions-blocked-notice-anon' => "Dës IP-Adress ass elo gespaart.
-Ënnendrënner steet déi lescht Androung an d'Spärlëscht:",
+Ënnendrënner steet déi lescht Aschreiwung an d'Spärlëscht:",
 'sp-contributions-search' => 'No Kontributioune sichen',
 'sp-contributions-username' => 'IP-Adress oder Benotzernumm:',
 'sp-contributions-toponly' => 'Nëmmen Ännerunge weisen déi déi lescht Versioun sinn',
@@ -2415,7 +2424,7 @@ $1',
 'blockipsuccesssub' => 'Gouf gespaart',
 'blockipsuccesstext' => "[[Special:Contributions/$1|$1]] gouf gespaart. <br />
 
-Kuckt d'[[Special:BlockList|IP Spär-Lëscht]] fir all Spären ze gesin.",
+Kuckt d'[[Special:BlockList|Spär-Lëscht]] fir all Spären nozekucken.",
 'ipb-blockingself' => 'Dir sidd am gaang Iech selwer ze spären! Sidd Dir sécher datt Dir dat maache wëllt?',
 'ipb-confirmhideuser' => 'Dir sidd am gaang e Benotzer ze späre mat der Fonctioun "Benotzer verstoppen" ageschalt. Dëst hëlt den Numm vum Benotzer aus alle Lëschten a Logbicher eraus. Sidd Dir sécher datt Dir dat maache wëllt?',
 'ipb-edit-dropdown' => 'Spärgrënn änneren',
@@ -2468,7 +2477,7 @@ De Grond dee fir d\'Spär vum $1 ugi gouf ass: "$2".',
 'reblock-logentry' => "huet d'Spär vum [[$1]] bis den $2 $3 geännert",
 'blocklogtext' => "Dëst ass eng Lëscht vu Spären a vu Spären déi opgehuewe goufen.
 Automatesch gespaarten IP-Adresse sinn hei net opgelëscht.
-Kuckt d'[[Special:BlockList|IP Spärlëscht]] fir déi aktuell Spären.",
+Kuckt d'[[Special:BlockList|Spärlëscht]] fir déi aktuell Spären.",
 'unblocklogentry' => "huet d'Spär vum $1 opgehuewen",
 'block-log-flags-anononly' => 'Nëmmen anonym Benotzer',
 'block-log-flags-nocreate' => 'Schafe vu Benotzerkonte gespaart',
@@ -3521,6 +3530,7 @@ Dir misst eng [{{SERVER}}{{SCRIPTPATH}}/COPYING Kopie vun der GNU General Public
 'version-software' => 'Installéiert Software',
 'version-software-product' => 'Produkt',
 'version-software-version' => 'Versioun',
+'version-entrypoints-header-url' => 'URL',
 
 # Special:FilePath
 'filepath' => 'Pad bei de Fichier',
@@ -3704,5 +3714,16 @@ Soss kënnt Dir den einfache Formulär hei drënner benotzen. Är Bemierkung gë
 'api-error-unknownerror' => 'Onbekannte Feeler: "$1".',
 'api-error-uploaddisabled' => "D'Eroplueden ass op dëser Wiki ausgeschalt.",
 'api-error-verification-error' => 'Dëse Fichier kéint korrupt sinn, oder en huet eng falsch Erweiderung.',
+
+# Durations
+'duration-seconds' => '$1 {{PLURAL:$1|Sekonn|Sekonnen}}',
+'duration-minutes' => '$1 {{PLURAL:$1|Minutt|Minutten}}',
+'duration-hours' => '$1 {{PLURAL:$1|Stonn|Stonnen}}',
+'duration-days' => '$1 {{PLURAL:$1|Dag|Deeg}}',
+'duration-weeks' => '$1 {{PLURAL: $1|Woch|Wochen}}',
+'duration-years' => '$1 {{PLURAL:$1|Joer|Joer}}',
+'duration-decades' => '$1 {{PLURAL:$1|Joerzéngt|Joerzéngten}}',
+'duration-centuries' => '$1 {{PLURAL:$1|Joerhonnert|Joerhonnerten}}',
+'duration-millennia' => '$1 {{PLURAL:$1|Millenaire|Millenairen}}',
 
 );

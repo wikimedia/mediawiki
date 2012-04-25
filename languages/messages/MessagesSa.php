@@ -536,7 +536,7 @@ $1',
 'versionrequiredtext' => 'एतत्पृष्ठं प्रयोक्तुं मीडियाविकि इत्येतस्य $1तमा आवृत्तिः आवश्यकी। पश्यतु [[Special:Version|आवृत्ति-सूचिका]]',
 
 'ok' => 'अस्तु',
-'pagetitle' => '',
+'pagetitle' => '$1 - {{SITENAME}}',
 'retrievedfrom' => '"$1" इत्यस्माद् उद्धृतम्',
 'youhavenewmessages' => 'भवदर्थम् $1 सन्ति। ($2).',
 'newmessageslink' => 'नूतनाः सन्देशाः',

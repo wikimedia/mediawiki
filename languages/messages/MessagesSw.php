@@ -799,7 +799,7 @@ Kumbuka kwamba desturi ya kurasa za .css na .js hutumia herufi ndogo, yaani, {{n
 'updated' => '(Imesasishwa)',
 'note' => "'''Taarifa:'''",
 'previewnote' => "'''Hii ni hakikisho tu.''' 
-Mabadiliko hayajahifadhiwa bado! [[#editform|→ Endelea kuhariri]]",
+Mabadiliko hayajahifadhiwa bado!",
 'previewconflict' => 'Hakikisho hii inaonyesha maandiko yaliyopo sanduku la juu yataonekayo ukiyahifadhi.',
 'session_fail_preview' => "'''Pole! Hatukuweza kuhifadhi sahihisho lako kwa sababu data za kipindi zilipotelewa.'''
 Tafadhali jaribu tena.

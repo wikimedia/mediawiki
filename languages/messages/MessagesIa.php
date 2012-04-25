@@ -843,7 +843,7 @@ Memora que le paginas .css and .js personalisate usa un titulo in minusculas, p.
 'updated' => '(Actualisate)',
 'note' => "'''Nota:'''",
 'previewnote' => "'''Isto es solmente un previsualisation.'''
-Le modificationes non ha ancora essite publicate! [[#editform|→ Continuar le modification]]",
+Le modificationes non ha ancora essite publicate!",
 'previewconflict' => 'Iste previsualisation reflecte le apparentia final del texto in le area de modification superior
 si tu opta pro publicar lo.',
 'session_fail_preview' => "'''Nos non poteva processar tu modification proque nos perdeva le datos del session.
@@ -1088,7 +1088,7 @@ Per favor verifica le registros.',
 # Suppression log
 'suppressionlog' => 'Registro de suppressiones',
 'suppressionlogtext' => 'Infra es un lista de deletiones e blocadas que involve contento que es celate de administratores.
-Vide le [[Special:BlockList|lista de blocadas IP]] pro le lista de bannimentos e blocadas actualmente in operation.',
+Vide le [[Special:BlockList|lista de blocadas]] pro le lista de bannimentos e blocadas actualmente in operation.',
 
 # History merging
 'mergehistory' => 'Fusionar historias del paginas',
@@ -1704,6 +1704,7 @@ Si le problema persiste, contacta un [[Special:ListUsers/sysop|administrator]].'
 'backend-fail-contenttype' => 'Non poteva determinar le typo de contento del file a immagazinar in "$1".',
 'backend-fail-batchsize' => 'Le systema de immagazinage ha recipite un lot de $1 {{PLURAL:$1|operation|operationes}} de file; le limite es $2 {{PLURAL:$2|operation|operationes}}.',
 
+# File journal errors
 'filejournal-fail-dbconnect' => 'Non poteva connecter al base de datos de jornal pro le systema de immagazinage "$1".',
 'filejournal-fail-dbquery' => 'Non poteva actualisar le base de datos de jornal pro le systema de immagazinage "$1".',
 
@@ -2044,6 +2045,11 @@ Pro restringer le presentation, selige un typo de registro, le nomine de usator 
 Es possibile que illo contine un o plus characteres que non pote esser usate in titulos.',
 'allpages-bad-ns' => '{{SITENAME}} non ha un spatio e nomines "$1".',
 'allpages-hide-redirects' => 'Celar redirectiones',
+
+# SpecialCachedPage
+'cachedspecial-viewing-cached-ttl' => 'Tu vide un version in cache de iste pagina, que pote haber usque a $1 de etate.',
+'cachedspecial-viewing-cached-ts' => 'Tu vide un version in cache de iste pagina, que pote non esser completemente actual.',
+'cachedspecial-refresh-now' => 'Vider le plus recente.',
 
 # Special:Categories
 'categories' => 'Categorias',
@@ -2502,7 +2508,7 @@ specific que ha essite vandalisate).',
 'badipaddress' => 'Adresse IP mal formate.',
 'blockipsuccesssub' => 'Blocada succedite',
 'blockipsuccesstext' => '[[Special:Contributions/$1|$1]] ha essite blocate.<br />
-Vide le [[Special:BlockList|lista de adresses IP blocate]] pro revider le blocadas.',
+Vide le [[Special:BlockList|lista de blocadas]] pro revider le blocadas.',
 'ipb-blockingself' => 'Tu sta super le puncto de blocar te mesme! Es tu secur de voler facer isto?',
 'ipb-confirmhideuser' => 'Tu es super le puncto de blocar un usator con le option "celar usator" activate. Isto supprimera le nomine del usator in tote le listas e entratas de registro. Es tu secur de voler facer isto?',
 'ipb-edit-dropdown' => 'Modificar le motivos pro blocar',
@@ -2556,7 +2562,7 @@ Le motivo specificate pro le blocada de $1 es: "$2"',
 'reblock-logentry' => 'cambiava configurationes de blocada pro [[$1]] con un tempore de expiration de $2 $3',
 'blocklogtext' => 'Isto es un registro de blocadas e disblocadas de usatores.
 Le adresses IP automaticamente blocate non es includite.
-Vide le [[Special:BlockList|lista de blocadas IP]] pro le lista de bannimentos e blocadas actualmente in operation.',
+Vide le [[Special:BlockList|lista de blocadas]] pro le lista de bannimentos e blocadas actualmente in operation.',
 'unblocklogentry' => 'disblocava $1',
 'block-log-flags-anononly' => 'usatores anonyme solmente',
 'block-log-flags-nocreate' => 'creation de contos disactivate',
@@ -3660,6 +3666,11 @@ Vos deberea haber recipite [{{SERVER}}{{SCRIPTPATH}}/COPYING un exemplar del Lic
 'version-software' => 'Software installate',
 'version-software-product' => 'Producto',
 'version-software-version' => 'Version',
+'version-entrypoints' => 'URL del puncto de entrata',
+'version-entrypoints-header-entrypoint' => 'Puncto de entrata',
+'version-entrypoints-header-url' => 'URL',
+'version-entrypoints-articlepath' => '[https://www.mediawiki.org/wiki/Manual:$wgArticlePath Cammino al articulo]',
+'version-entrypoints-scriptpath' => '[https://www.mediawiki.org/wiki/Manual:$wgScriptPath Cammino al script]',
 
 # Special:FilePath
 'filepath' => 'Cammino del file',
@@ -3847,5 +3858,16 @@ Si non, tu pote usar le formulario facile hic infra. Tu commento essera addite a
 'api-error-unknownerror' => 'Error incognite: "$1".',
 'api-error-uploaddisabled' => 'Le incargamento es disactivate in iste wiki.',
 'api-error-verification-error' => 'Le file pote esser corrumpite o su nomine pote haber un extension errate.',
+
+# Durations
+'duration-seconds' => '$1 {{PLURAL:$1|secunda|secundas}}',
+'duration-minutes' => '$1 {{PLURAL:$1|minuta|minutas}}',
+'duration-hours' => '$1 {{PLURAL:$1|hora|horas}}',
+'duration-days' => '$1 {{PLURAL:$1|die|dies}} retro',
+'duration-weeks' => '$1 {{PLURAL:$1|septimana|septimanas}}',
+'duration-years' => '$1 {{PLURAL:$1|anno|annos}}',
+'duration-decades' => '$1 {{PLURAL:$1|decennio|decennios}}',
+'duration-centuries' => '$1 {{PLURAL:$1|seculo|seculos}}',
+'duration-millennia' => '$1 {{PLURAL:$1|millennio|millennios}}',
 
 );

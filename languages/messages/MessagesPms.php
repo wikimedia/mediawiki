@@ -705,7 +705,8 @@ o <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} 
 'userinvalidcssjstitle' => "'''Avis:''' A-i é pa gnun-a pel \"\$1\". Che as visa che le pàgine .css e .js che un as fa daspërchiel a deuvro tute minùscole për tìtol, pr'esempi {{ns:user}}:Scaramacaj/vector.css nopà che {{ns:user}}:Scaramacaj/Vector.css.",
 'updated' => '(Agiornà)',
 'note' => "'''NÒTA:'''",
-'previewnote' => "'''Che a ten-a mach present che costa-sì a l'é nomach na PREUVA, e che soa version a l'é ancó pa stàita salvà!'''",
+'previewnote' => "'''Che a ten-a present che costa-sì a l'é mach na preuva.'''
+Ij sò cambi a son anco' pa stàit salvà!",
 'previewconflict' => "Costa preuva a-j mostra ël test dl'artìcol ambelessì dzora. Se a sërn dë salvelo, a l'é parèj che a lo s-ciairëran ëdcò tuti j'àutri Utent.",
 'session_fail_preview' => "'''Darmagi! I l'oma pa podù processé soa modìfica per via che a son përdusse për la stra ij dat ëd session.
 Për piasì che a preuva n'àutra vira. Se a dovèissa mai torna riveje sossì, che a preuva a seurte dal sistema e peuj torna a rintré.'''",
@@ -940,7 +941,7 @@ It peule pa vëddlo.',
 # Suppression log
 'suppressionlog' => 'Registr ëd le scancelassion',
 'suppressionlogtext' => "Sì-sota a-i é na lista djë scancelament e dij blocagi che a rësguardo dij contnù stërmà a j'aministrator.
-Beiché la [[Special:BlockList|lista dj'IP blocà]] për la lista dj'esclusion operassionaj e dij blocagi ativ.",
+Beiché la [[Special:BlockList|lista dij blocagi]] për la lista dj'esclusion operassionaj e dij blocagi ativ.",
 
 # History merging
 'mergehistory' => 'Buté ansema je stòrie',
@@ -2319,7 +2320,7 @@ Che a scriva codì che st'adrëssa IP o së stranòm a dev second chiel esse blo
 'badipaddress' => "L'adrëssa IP che a l'ha dane a l'é nen giusta.",
 'blockipsuccesssub' => 'Blocagi fàit',
 'blockipsuccesstext' => "[[Special:Contributions/$1|$1]] a l'é stàit blocà.<br />
-Ch'a consulta la [[Special:BlockList|lista dj'IP blocà]] për rivëdde ij blocagi.",
+Ch'a consulta la [[Special:BlockList|lista dij blocagi]] për rivëdde ij blocagi.",
 'ipb-blockingself' => "A l'é an camin ch'as blòca chiel-midem! É-lo sigur ëd vorèj fé lòn?",
 'ipb-confirmhideuser' => "A l'é an camin ch'a blòca n'utent con «stërmé l'utent» abilità. Sòn a gaverà lë stranòm ëd l'utent da tute le liste e le vos ëd registr. É-lo sigur ëd vorèj fé lòn?",
 'ipb-edit-dropdown' => 'Modifiché le rason dël blocagi',
@@ -2371,7 +2372,7 @@ Ch'a consulta la [[Special:BlockList|lista dj'IP blocà]] për rivëdde ij bloca
 'reblock-logentry' => "a l'ha cambià j'ampostassion dël blocagi për [[$1]] con na scadensa ai $2 $3",
 'blocklogtext' => "Sossì a l'é ël registr dij blocagi e dësblocagi dj'Utent. J'adrësse che
 a son ëstàite blocà n'automàtich ambelessì a së s-ciàiro nen.
-Che a varda la [[Special:BlockList|lista dj'adrësse IP blocà]] për vëdde
+Che a varda la [[Special:BlockList|lista dij blocagi]] për vëdde
 coj che sio ij blocagi ativ al dì d'ancheuj.",
 'unblocklogentry' => "a l'ha dësblocà $1",
 'block-log-flags-anononly' => 'mach utent anònim',
@@ -2467,16 +2468,16 @@ për podèj tramudé na pàgina.",
 'movenotallowed' => "A l'ha pa ij përmess dont a fa da manca për tramudé le pàgine.",
 'movenotallowedfile' => "A l'ha pa ij përmess për tramudé j'archivi.",
 'cant-move-user-page' => "A l'ha pa ij përmess për tramudé le pàgine d'utent (gavà le sot-pàgine).",
-'cant-move-to-user-page' => "It l'has pa ij përmess për tramudé na pàgina a na pàgina utent (an gavand a na sotpàgina utent).",
+'cant-move-to-user-page' => "A l'ha pa ël përmess për tramudé na pàgina a na pàgina utent (gavà a na sot-pàgina utent).",
 'newtitle' => 'Neuv tìtol ëd',
-'move-watch' => 'Ten sot euj sta pàgina-sì',
-'movepagebtn' => 'Tramuda sta pàgina-sì',
+'move-watch' => 'Ten-e sot-euj la pàgina sorgiss e la pàgina selessionà',
+'movepagebtn' => 'Tramudé la pàgina',
 'pagemovedsub' => 'San Martin bele finì!',
-'movepage-moved' => "'''\"\$1\" a l'é stàit spostà a \"\$2\"'''",
-'movepage-moved-redirect' => "A l'é stàita creà na rediression.",
+'movepage-moved' => "'''«$1» a l'é stàit tramudà a «$2»'''",
+'movepage-moved-redirect' => "A l'é stàita creà na ridiression.",
 'movepage-moved-noredirect' => "La creassion ëd na ridiression a l'é stàita scancelà.",
 'articleexists' => "Na pàgina che as ciama parej a-i é già, ò pura ël nòm che a l'ha sërnù a va nen bin.<br />
-Che as sërna, për piasì, un nòm diferent për st'articol.",
+Che as sërna, për piasì, un nòm diferent për st'artìcol.",
 'cantmove-titleprotected' => "As peul pa fesse San Martin ambelelì, për via che col tìtol-lì a l'é stàit proibì e a peul pa ess-ie na pàgina ciamà parej",
 'talkexists' => "La pàgina a l'é staita bin tramudà, ma a l'é pa podusse tramudé soa pàgina ëd discussion, përchè a-i në j'é già n'àutra ant la pàgina con ël tìtol neuv. Për piasì, che a modìfica a man ij contnù dle doe pàgine ëd discussion, an manera che as perdo nen dij pensé anteressant.",
 'movedto' => 'tramudà a',

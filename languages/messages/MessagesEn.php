@@ -1000,9 +1000,6 @@ Please report this to an [[Special:ListUsers/sysop|administrator]], making note 
 'directorycreateerror' => 'Could not create directory "$1".',
 'filenotfound'         => 'Could not find file "$1".',
 'fileexistserror'      => 'Unable to write to file "$1": File exists.',
-'filereadonlyerror'    => 'Unable to modify the file "$1" because the file repository "$2" is in read-only mode.
-
-The administrator who locked it offered this explanation: "$3".',
 'unexpected'           => 'Unexpected value: "$1"="$2".',
 'formerror'            => 'Error: Could not submit form.',
 'badarticleerror'      => 'This action cannot be performed on this page.',
@@ -1040,6 +1037,9 @@ $2',
 'ns-specialprotected'  => 'Special pages cannot be edited.',
 'titleprotected'       => 'This title has been protected from creation by [[User:$1|$1]].
 The reason given is "\'\'$2\'\'".',
+'filereadonlyerror'    => 'Unable to modify the file "$1" because the file repository "$2" is in read-only mode.
+
+The administrator who locked it offered this explanation: "$3".',
 
 # Virus scanner
 'virus-badscanner'     => "Bad configuration: Unknown virus scanner: ''$1''",
@@ -1373,7 +1373,8 @@ Custom .css and .js pages use a lowercase title, e.g. {{ns:user}}:Foo/vector.css
 'updated'                          => '(Updated)',
 'note'                             => "'''Note:'''",
 'previewnote'                      => "'''Remember that this is only a preview.'''
-Your changes have not yet been saved! [[#editform|→ Continue editing]]",
+Your changes have not yet been saved!",
+'continue-editing'                 => "Continue editing",
 'previewconflict'                  => 'This preview reflects the text in the upper text editing area as it will appear if you choose to save.',
 'session_fail_preview'             => "'''Sorry! We could not process your edit due to a loss of session data.'''
 Please try again.
@@ -1400,7 +1401,7 @@ You will have to merge your changes into the existing text.
 '''Only''' the text in the upper text area will be saved when you press \"{{int:savearticle}}\".",
 'yourtext'                         => 'Your text',
 'storedversion'                    => 'Stored revision',
-'nonunicodebrowser'                => "'''Warning: Your browser is not unicode compliant.'''
+'nonunicodebrowser'                => "'''Warning: Your browser is not Unicode compliant.'''
 A workaround is in place to allow you to safely edit pages: Non-ASCII characters will appear in the edit box as hexadecimal codes.",
 'editingold'                       => "'''Warning: You are editing an out-of-date revision of this page.'''
 If you save it, any changes made since this revision will be lost.",
@@ -1627,7 +1628,7 @@ Please check the logs.',
 # Suppression log
 'suppressionlog'     => 'Suppression log',
 'suppressionlogtext' => 'Below is a list of deletions and blocks involving content hidden from administrators.
-See the [[Special:BlockList|IP block list]] for the list of currently operational bans and blocks.',
+See the [[Special:BlockList|block list]] for the list of currently operational bans and blocks.',
 
 # History merging
 'mergehistory'                     => 'Merge page histories',
@@ -2283,7 +2284,6 @@ If the problem persists, contact an [[Special:ListUsers/sysop|administrator]].',
 'backend-fail-contenttype'   => 'Could not determine the content type of the file to store at "$1".',
 'backend-fail-batchsize'     => 'Storage backend given a batch of $1 file {{PLURAL:$1|operation|operations}}; the limit is $2 {{PLURAL:$2|operation|operations}}.',
 
-# File journal
 'filejournal-fail-dbconnect' => 'Could not connect to the journal database for storage backend "$1".',
 'filejournal-fail-dbquery'   => 'Could not update the journal database for storage backend "$1".',
 
@@ -2509,7 +2509,7 @@ Remember to check for other links to the templates before deleting them.',
 'disambiguationspage'     => 'Template:disambig',
 'disambiguations-text'    => "The following pages link to a '''disambiguation page'''.
 They should link to the appropriate topic instead.<br />
-A page is treated as disambiguation page if it uses a template which is linked from [[MediaWiki:Disambiguationspage]]",
+A page is treated as disambiguation page if it uses a template which is linked from [[MediaWiki:Disambiguationspage]].",
 
 'doubleredirects'                   => 'Double redirects',
 'doubleredirects-summary'           => '', # do not translate or duplicate this message to other languages
@@ -2654,24 +2654,29 @@ You can narrow down the view by selecting a log type, the username (case-sensiti
 'log-title-wildcard'   => 'Search titles starting with this text',
 
 # Special:AllPages
-'allpages'          => 'All pages',
-'allpages-summary'  => '', # do not translate or duplicate this message to other languages
-'alphaindexline'    => '$1 to $2',
-'nextpage'          => 'Next page ($1)',
-'prevpage'          => 'Previous page ($1)',
-'allpagesfrom'      => 'Display pages starting at:',
-'allpagesto'        => 'Display pages ending at:',
-'allarticles'       => 'All pages',
-'allinnamespace'    => 'All pages ($1 namespace)',
-'allnotinnamespace' => 'All pages (not in $1 namespace)',
-'allpagesprev'      => 'Previous',
-'allpagesnext'      => 'Next',
-'allpagessubmit'    => 'Go',
-'allpagesprefix'    => 'Display pages with prefix:',
-'allpagesbadtitle'  => 'The given page title was invalid or had an inter-language or inter-wiki prefix.
+'allpages'                => 'All pages',
+'allpages-summary'        => '', # do not translate or duplicate this message to other languages
+'alphaindexline'          => '$1 to $2',
+'nextpage'                => 'Next page ($1)',
+'prevpage'                => 'Previous page ($1)',
+'allpagesfrom'            => 'Display pages starting at:',
+'allpagesto'              => 'Display pages ending at:',
+'allarticles'             => 'All pages',
+'allinnamespace'          => 'All pages ($1 namespace)',
+'allnotinnamespace'       => 'All pages (not in $1 namespace)',
+'allpagesprev'            => 'Previous',
+'allpagesnext'            => 'Next',
+'allpagessubmit'          => 'Go',
+'allpagesprefix'          => 'Display pages with prefix:',
+'allpagesbadtitle'        => 'The given page title was invalid or had an inter-language or inter-wiki prefix.
 It may contain one or more characters which cannot be used in titles.',
-'allpages-bad-ns'   => '{{SITENAME}} does not have namespace "$1".',
+'allpages-bad-ns'         => '{{SITENAME}} does not have namespace "$1".',
 'allpages-hide-redirects' => 'Hide redirects',
+
+# SpecialCachedPage
+'cachedspecial-viewing-cached-ttl' => 'You are viewing a cached version of this page, which can be up to $1 old.',
+'cachedspecial-viewing-cached-ts' => 'You are viewing a cached version of this page, which might not be completely actual.',
+'cachedspecial-refresh-now' => 'View latest.',
 
 # Special:Categories
 'categories'                    => 'Categories',
@@ -3138,7 +3143,7 @@ Fill in a specific reason below (for example, citing particular pages that were 
 'badipaddress'                    => 'Invalid IP address',
 'blockipsuccesssub'               => 'Block succeeded',
 'blockipsuccesstext'              => '[[Special:Contributions/$1|$1]] has been blocked.<br />
-See [[Special:BlockList|IP block list]] to review blocks.',
+See the [[Special:BlockList|block list]] to review blocks.',
 'ipb-blockingself'                => 'You are about to block yourself!  Are you sure you want to do that?',
 'ipb-confirmhideuser'             => 'You are about to block a user with "hide user" enabled.  This will suppress the user\'s name in all lists and log entries.  Are you sure you want to do that?',
 'ipb-edit-dropdown'               => 'Edit block reasons',
@@ -3176,7 +3181,7 @@ See [[Special:BlockList|IP block list]] to review blocks.',
 'createaccountblock'              => 'account creation blocked',
 'emailblock'                      => 'e-mail blocked',
 'blocklist-nousertalk'            => 'cannot edit own talk page',
-'ipblocklist-empty'               => 'The blocklist is empty.',
+'ipblocklist-empty'               => 'The block list is empty.',
 'ipblocklist-no-results'          => 'The requested IP address or username is not blocked.',
 'blocklink'                       => 'block',
 'unblocklink'                     => 'unblock',
@@ -3194,7 +3199,7 @@ The suppress log is provided below for reference:',
 'reblock-logentry'                => 'changed block settings for [[$1]] with an expiry time of $2 $3',
 'blocklogtext'                    => 'This is a log of user blocking and unblocking actions.
 Automatically blocked IP addresses are not listed.
-See the [[Special:BlockList|IP block list]] for the list of currently operational bans and blocks.',
+See the [[Special:BlockList|block list]] for the list of currently operational bans and blocks.',
 'unblocklogentry'                 => 'unblocked $1',
 'block-log-flags-anononly'        => 'anonymous users only',
 'block-log-flags-nocreate'        => 'account creation disabled',
@@ -4619,6 +4624,14 @@ You should have received [{{SERVER}}{{SCRIPTPATH}}/COPYING a copy of the GNU Gen
 'version-software'              => 'Installed software',
 'version-software-product'      => 'Product',
 'version-software-version'      => 'Version',
+'version-entrypoints'           => 'Entry point URLs',
+'version-entrypoints-header-entrypoint' => 'Entry point',
+'version-entrypoints-header-url' => 'URL',
+'version-entrypoints-articlepath' => '[https://www.mediawiki.org/wiki/Manual:$wgArticlePath Article path]',
+'version-entrypoints-scriptpath' => '[https://www.mediawiki.org/wiki/Manual:$wgScriptPath Script path]',
+'version-entrypoints-index-php' => '[https://www.mediawiki.org/wiki/Manual:index.php index.php]',
+'version-entrypoints-api-php'   => '[https://www.mediawiki.org/wiki/Manual:api.php api.php]',
+'version-entrypoints-load-php'  => '[https://www.mediawiki.org/wiki/Manual:load.php load.php]',
 
 # Special:FilePath
 'filepath'         => 'File path',
@@ -4832,5 +4845,16 @@ Otherwise, you can use the easy form below. Your comment will be added to the pa
 'api-error-unknownerror'                  => 'Unknown error: "$1".',
 'api-error-uploaddisabled'                => 'Uploading is disabled on this wiki.',
 'api-error-verification-error'            => 'This file might be corrupt, or have the wrong extension.',
+
+# Durations
+'duration-seconds'   => '$1 {{PLURAL:$1|second|seconds}}',
+'duration-minutes'   => '$1 {{PLURAL:$1|minute|minutes}}',
+'duration-hours'     => '$1 {{PLURAL:$1|hour|hours}}',
+'duration-days'      => '$1 {{PLURAL:$1|day|days}}',
+'duration-weeks'     => '$1 {{PLURAL:$1|week|weeks}}',
+'duration-years'     => '$1 {{PLURAL:$1|year|years}}',
+'duration-decades'   => '$1 {{PLURAL:$1|decade|decades}}',
+'duration-centuries' => '$1 {{PLURAL:$1|century|centuries}}',
+'duration-millennia' => '$1 {{PLURAL:$1|millennium|millennia}}',
 
 );

@@ -404,8 +404,8 @@ $2',
 'customjsprotected' => '你無權限通改這javaScript頁面，因為伊包括著其他用戶的個人設定。',
 'ns-specialprotected' => '特殊頁袂使改得',
 'titleprotected' => "這个標題已經予[[User:$1|$1]]保護牢咧袂使用。理由是''$2''。",
-'filereadonlyerror' => '無法度修改"$1" 這个檔案，因為"$2"這个儲存庫佇讀的模式。
-原因是"\'\'$3\'\'"。',
+'filereadonlyerror' => '無法度改"$1" 這个檔案，因為"$2"這个儲存庫佇讀的模式。
+共封鎖的管理員有解說講："$3"。',
 
 # Virus scanner
 'virus-badscanner' => "毋著的設定: 毋知影的病毒掃瞄器：''$1''",
@@ -492,6 +492,7 @@ Tiō-sī kóng, tī chit-má iōng chit ê IP bāng-chí ê lâng bē-sái koh k
 'invalidemailaddress' => '電子批的地址無正確，規格毋著，
 請拍一个符合規格的地址抑是放空格。',
 'cannotchangeemail' => '口座的e-mail住址無法度佇這个wiki改',
+'emaildisabled' => '這个網站袂當寄電子批。',
 'accountcreated' => '口座開好矣',
 'accountcreatedtext' => '$1的口座開好矣',
 'createaccount-title' => '佇{{SITENAME}}開好口座',
@@ -686,7 +687,8 @@ Kháu-chō ê sin bi̍t-bé thang tī teng-ji̍p liáu tī ''[[Special:ChangePas
 {{ns:user}}:Foo/Vector.css。",
 'updated' => '（改過矣）',
 'note' => "'''Chù-ì:'''",
-'previewnote' => "'''Thê-chhéⁿ lí che sī 1 bīn kiám-cha chho͘-phe ēng--ê \"seng-khoàⁿ-ia̍h\", iáu-bōe pó-chûn--khí-lâi!'''",
+'previewnote' => "'''Thê-chhéⁿ lí, che chí-sī  hō͘ lí sian khoàⁿ chi̍t-ē.'''
+Lí kái--ê iáu-bōe pó-chûn--khí-lâi !",
 'previewconflict' => '這个先看覓會反應你文字編輯區的內容，顯示佇面頂。佇你保存了就會公開。',
 'session_fail_preview' => "'''Pháiⁿ-sè! Gún chiām-sî bô hoat-tō͘ chhú-lí lí ê pian-chi̍p (goân-in: \"phàng-kiàn sú-iōng kî-kan ê chu-liāu\"). Lô-hoân têng chhì khoàⁿ-māi. Ká-sú iû-goân bô-hāu, ē-sái teng-chhut koh-chài teng-ji̍p hoān-sè tō ē-tit kái-koat.'''",
 'session_fail_preview_html' => "'''歹勢！因為phàng見資料，阮無法度處理你的編輯。'''
@@ -698,6 +700,7 @@ Kháu-chō ê sin bi̍t-bé thang tī teng-ji̍p liáu tī ''[[Special:ChangePas
 這種情況會出現佇你用網路上匿名代理服務的時陣。",
 'edit_form_incomplete' => "'''一寡部份的編輯無送到伺服器，請檢查你的編輯是毋是完整，才閣試。'''",
 'editing' => 'Siu-kái $1',
+'creating' => '當咧建立$1',
 'editingsection' => 'Pian-chi̍p $1 (section)',
 'editingcomment' => 'Teh pian-chi̍p $1 (lâu-oē)',
 'editconflict' => 'Siu-kái sio-chhiong: $1',
@@ -763,6 +766,7 @@ Chia ū chit ia̍h ê san-tû kì-lo̍k hō͘ lí chham-khó:",
 'edit-no-change' => '你的編輯閬過，因為攏無改著字。',
 'edit-already-exists' => '無法度開新頁，
 已經有彼頁。',
+'defaultmessagetext' => 'Siat piān ê bûn-jī',
 
 # Parser/template warnings
 'expensive-parserfunction-warning' => "'''警示：'''這頁用傷濟擺函數呼叫。
@@ -919,8 +923,8 @@ $1",
 
 # Suppression log
 'suppressionlog' => '隱藏記錄',
-'suppressionlogtext' => '下跤是管理員為著隱藏文章所做的刣掉抑封鎖的清單。
-若欲看這馬禁止使用、封鎖的清單，請看[[Special:BlockList|IP封鎖清單]]。',
+'suppressionlogtext' => '下跤是管理員為著藏文章所做的刣掉，抑封鎖的清單。
+若欲看這馬禁止使用、封鎖的清單，請看[[Special:BlockList|封鎖清單]]。',
 
 # History merging
 'mergehistory' => '合併兩个頁的修改歷史:',
@@ -1370,13 +1374,13 @@ Tī pat-lâng liân-lo̍k lí ê sî-chūn bē kā e-mail tsū-tsí siá chhut--
 
 這頁有刣掉佮徙走的記錄通參考：",
 'uploadtext' => "用下跤的表來共檔案上載。
-若欲看抑是揣往過上載的檔案，會使進入[[Special:FileList|檔案上載清單]]，（重）上載嘛會記錄佇[[Special:Log/upload|上傳記錄]]，若刣掉就會記錄佇[[Special:Log/delete|刪除記錄]]。
+若欲看，抑是揣往過上載的檔案，會使入去[[Special:FileList|檔案上載清單]]。上載嘛會記錄佇[[Special:Log/upload|上載記錄]]，若刣掉就會記錄佇[[Special:Log/delete|刣掉記錄]]。
 
-若欲佇頁加入檔案，用下跤的一種方式來連結：
+上載後，若欲佇頁加入檔案，會使用下跤的一種方式來連結：
 * '''<tt><nowiki>[[</nowiki>{{ns:file}}<nowiki>:File.jpg]]</nowiki></tt>'''使用檔案的完整版本
 * '''<tt><nowiki>[[</nowiki>{{ns:file}}<nowiki>:File.png|200px|thumb|left|替換文字]]</nowiki></tt>'''用一个囥佇倒爿的一个200 像素圖相框，「替換文字」做說明
 * '''<tt><nowiki>[[</nowiki>{{ns:media}}<nowiki>:File.ogg]]</nowiki></tt>'''直接連結到檔案，毋過無顯示檔案",
-'upload-permitted' => '准許的檔案類型: $1',
+'upload-permitted' => '通用的檔案類型: $1',
 'upload-preferred' => '建議的檔案類型: $1',
 'upload-prohibited' => '禁止的檔案類型: $1。',
 'uploadlog' => '上載記錄',
@@ -1521,6 +1525,7 @@ $1',
 'backend-fail-batchsize' => '囥位一批$1个檔案
 {{PLURAL:$1|遍動作|遍動作}}，上濟$2遍{{PLURAL:$2|動作|動作}}。',
 
+# File journal errors
 'filejournal-fail-dbconnect' => '無法度連接到佇囥位"$1"的資料庫。',
 'filejournal-fail-dbquery' => '無法度更新佇囥位"$1"的資料庫。',
 
@@ -1864,6 +1869,11 @@ Chhiáⁿ chù-ì: kî-thaⁿ ê bāng-chām ū khó-lêng iōng URL ti̍t-chiap
 伊可能是有一字抑一字以上的字是袂當用佇標題。',
 'allpages-bad-ns' => '佇{{SITENAME}}無"$1"這个名空間。',
 'allpages-hide-redirects' => '掩轉頁',
+
+# SpecialCachedPage
+'cachedspecial-viewing-cached-ttl' => '你當咧看這頁的快取(cached)版本，彼可能是第$1舊的。',
+'cachedspecial-viewing-cached-ts' => '你當咧看這頁的快取版本，彼可能佮這馬的無仝款。',
+'cachedspecial-refresh-now' => '看上新。',
 
 # Special:Categories
 'categories' => 'Lūi-pia̍t',
@@ -2307,7 +2317,7 @@ $1',
 'ipb-confirm' => '確定封鎖',
 'badipaddress' => 'Bô-hāu ê IP chū-chí',
 'blockipsuccesssub' => 'Hong-só sêng-kong',
-'blockipsuccesstext' => '[[Special:Contributions/$1|$1]] í-keng pī hong-só. <br />Khì [[Special:BlockList|IP hong-só lia̍t-toaⁿ]] review hong-só ê IP.',
+'blockipsuccesstext' => '[[Special:Contributions/$1|$1]] í-keng pī hong-só. <br />Khì [[Special:BlockList|hong-só lia̍t-toaⁿ]] thang khoàⁿ pī hong-só ê .',
 'ipb-blockingself' => '你欲封鎖你家己！你敢確定欲按呢做？',
 'ipb-confirmhideuser' => '你是欲封鎖一个用者佮隱藏伊的用者名稱，這會隱藏用者名稱出現佇所有的表佮記錄的項目當中，你敢確定欲按呢做？',
 'ipb-edit-dropdown' => '編輯封鎖的理由',
@@ -2360,7 +2370,7 @@ $1 ê kìm-chí lí-iû sī in-ūi "$2".',
 下跤有封鎖的記錄會當參考：',
 'blocklogentry' => 'hong-só [[$1]], siat kî-hān chì $2 $3',
 'reblock-logentry' => '改[[$1]]的封鎖到期時間 $2 $3',
-'blocklogtext' => 'Chit-ê log lia̍t-chhut block/unblock ê tōng-chok. Chū-tōng block ê IP chū-chí bô lia̍t--chhut-lâi ([[Special:BlockList]] ū hiān-chú-sî ū-hāu ê block/ban o·-miâ-toaⁿ).',
+'blocklogtext' => 'Chit-ê kì-lio̍k lia̍t-chhut hong-só/khui-só ê tōng-chok. Chū-tōng block ê IP tē-chí bô lia̍t--chhut-lâi ([[Special:BlockList|hong-só chheng-toaⁿ]] ū hiān-chú-sî ū-hāu ê kìm-chí hong-só o·-miâ-toaⁿ).',
 'unblocklogentry' => '解除封鎖$1',
 'block-log-flags-anononly' => '只會當是無名氏用者',
 'block-log-flags-nocreate' => 'Khui kháu-chō thêng-iōng ah',
@@ -3405,6 +3415,9 @@ MediaWiki是為著使用的目的才發佈，毋過無負任何擔保責任；�
 'version-software' => '已經安裝的軟體',
 'version-software-product' => '產品',
 'version-software-version' => '版本',
+'version-entrypoints' => '進入點網址',
+'version-entrypoints-header-entrypoint' => '進入點',
+'version-entrypoints-header-url' => '網址',
 
 # Special:FilePath
 'filepath' => 'Tóng-àn ê soàⁿ-lō·',
@@ -3592,5 +3605,16 @@ MediaWiki是為著使用的目的才發佈，毋過無負任何擔保責任；�
 'api-error-unknownerror' => '毋知的錯誤："$1"。',
 'api-error-uploaddisabled' => '佇這个Wiki袂當上載。',
 'api-error-verification-error' => '這个檔案可能已經毀掉，抑是檔案尾仔名稱毋著。',
+
+# Durations
+'duration-seconds' => '$1 {{PLURAL:$1|秒|秒}}',
+'duration-minutes' => '$1 {{PLURAL:$1|分鐘|分鐘}}',
+'duration-hours' => '$1 {{PLURAL:$1|點鐘|點鐘}}',
+'duration-days' => '$1 {{PLURAL:$1|工|工}}',
+'duration-weeks' => '$1 {{PLURAL:$1|禮拜|禮拜}}',
+'duration-years' => '$1 {{PLURAL:$1|冬|冬}}',
+'duration-decades' => '$1 {{PLURAL:$1|十冬|十冬}}',
+'duration-centuries' => '$1 {{PLURAL:$1|百年|百年}}',
+'duration-millennia' => '$1 {{PLURAL:$1|千年|千年}}',
 
 );

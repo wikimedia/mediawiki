@@ -916,7 +916,8 @@ Det siste elementet i blokkeringsloggen er oppgjeve nedanfor:',
 'userinvalidcssjstitle' => "'''Åtvaring:''' Det finst ikkje noka sidedrakt som heiter «$1». Hugs på at vanlege .css- og .js-sider brukar titlar med små bokstavar, til dømes {{ns:user}}:Døme/vector.css, og ikkje {{ns:user}}:Døme/Vector.css.",
 'updated' => '(Oppdatert)',
 'note' => "'''Merk:'''",
-'previewnote' => "'''Hugs at dette berre er ei førehandsvising og at teksten ikkje er lagra!'''",
+'previewnote' => "'''Hugsa at dette berre er ei førehandsvising.'''
+Endringane dine er ikkje lagra enno!",
 'previewconflict' => 'Dette er ei førehandsvising av teksten i endringsboksen over, slik han vil sjå ut om du lagrar han',
 'session_fail_preview' => "'''Orsak! Endringa di kunne ikkje lagrast. Ver venleg og prøv ein gong til. Dersom det framleis ikkje går, prøv å logge deg ut og inn att.'''",
 'session_fail_preview_html' => "'''Beklagar! Endringa di kunne ikkje lagrast.'''
@@ -927,6 +928,7 @@ Det siste elementet i blokkeringsloggen er oppgjeve nedanfor:',
 'token_suffix_mismatch' => "'''Endringa di vart avvist fordi klienten/nettlesaren din lagar teiknfeil i teksten. Dette vart gjort for å hindre øydelegging av teksten på sida. Slikt kan av og til hende når ein brukar feilprogrammerte og vevbaserte anonyme proxytenester.'''",
 'edit_form_incomplete' => 'Delar av redigeringsskjemaet nådde ikkje fram til tenaren; dobbelsjekk at redigeringa er korrekt, og prøv om att.',
 'editing' => 'Endrar $1',
+'creating' => 'Opprettar $1',
 'editingsection' => 'Endrar $1 (bolk)',
 'editingcomment' => 'Endrar $1 (ny bolk)',
 'editconflict' => 'Endringskonflikt: $1',
@@ -1562,6 +1564,7 @@ Dette kan ikke tilbakestillast.',
 'newsectionsummary' => '/* $1 */ ny bolk',
 'rc-enhanced-expand' => 'Vis detaljar (krev JavaScript)',
 'rc-enhanced-hide' => 'Skjul detaljar',
+'rc-old-title' => 'opphavleg oppretta som «$1»',
 
 # Recent changes linked
 'recentchangeslinked' => 'Relaterte endringar',
@@ -1993,6 +1996,7 @@ Merk at andre internettsider kan ha direkte lenkjer til filer, og difor kan file
 'allpagesprefix' => 'Vis sider med prefikset:',
 'allpagesbadtitle' => 'Det oppgjevne sidenamnet var ugyldig eller hadde eit interwiki-prefiks. Det kan også ha hatt eitt eller fleire teikn som ikkje kan brukast i sidenamn.',
 'allpages-bad-ns' => '{{SITENAME}} har ikkje namnerommet «$1».',
+'allpages-hide-redirects' => 'Gøym omdirigeringar',
 
 # Special:Categories
 'categories' => 'Kategoriar',
@@ -2566,7 +2570,7 @@ I desse falla lyt du flytte eller flette saman sida manuelt.",
 
 Målsida «[[:$1]]» finst allereie. Vil du slette ho for å gje rom for flytting?',
 'delete_and_move_confirm' => 'Ja, slett sida',
-'delete_and_move_reason' => 'Sletta for å gi rom for flytting frå "[[$1]]"',
+'delete_and_move_reason' => 'Sletta for å gje rom for flytting frå «[[$1]]»',
 'selfmove' => 'Kjelde- og måltitlane er like; kan ikkje flytte sida over seg sjølv.',
 'immobile-source-namespace' => 'Kan ikkje flytte sider i namnerommet «$1»',
 'immobile-target-namespace' => 'Kan ikkje flytte sider til namnerommet «$1»',
@@ -2869,6 +2873,7 @@ $1',
 'file-info-gif-frames' => '$1 {{PLURAL:$1|rame|ramer}}',
 'file-info-png-looped' => '↓oppatteke',
 'file-info-png-repeat' => 'spela av {{PLURAL:$1|éin gong|$1 gonger}}',
+'file-info-png-frames' => '$1 {{PLURAL:$1|bilete|bilete}}',
 
 # Special:NewFiles
 'newimages' => 'Filgalleri',
@@ -2881,6 +2886,13 @@ $1',
 'ilsubmit' => 'Søk',
 'bydate' => 'etter dato',
 'sp-newimages-showfrom' => 'Vis nye filer frå og med $2 $1',
+
+# Video information, used by Language::formatTimePeriod() to format lengths in the above messages
+'seconds' => '{{PLURAL:$1|$1 sekund|$1 sekund}}',
+'minutes' => '{{PLURAL:$1|$1 minutt|$1 minutt}}',
+'hours' => '{{PLURAL:$1|$1 time|$1 timar}}',
+'days' => '{{PLURAL:$1|$1 dag|$1 dagar}}',
+'ago' => '$1 sidan',
 
 # Bad image list
 'bad_image_list' => 'Formatet er slik:
@@ -3043,6 +3055,7 @@ Andre er gøymde som standard.
 'exif-headline' => 'Overskrift',
 'exif-credit' => 'Opphavrettseigar/filgjevar',
 'exif-source' => 'Kjelde',
+'exif-writer' => 'Forfattar',
 'exif-languagecode' => 'Språk',
 'exif-iimversion' => 'IIM-versjon',
 'exif-iimcategory' => 'Kategori',
@@ -3212,6 +3225,8 @@ Andre er gøymde som standard.
 'exif-gpsdestdistance-k' => 'Kilometer',
 'exif-gpsdestdistance-m' => 'Miles',
 'exif-gpsdestdistance-n' => 'Nautiske mil',
+
+'exif-gpsdop-good' => 'God ($1)',
 
 # Pseudotags used for GPSTrackRef, GPSImgDirectionRef and GPSDestBearingRef
 'exif-gpsdirection-t' => 'Verkeleg retning',
@@ -3565,5 +3580,16 @@ Skriv inn filnamnet utan «{{ns:file}}:»-prefikset.',
 'api-error-unknownerror' => 'Ukjend feil: «$1».',
 'api-error-uploaddisabled' => 'Det er ikkje høve til å lasta opp filer til wikien.',
 'api-error-verification-error' => 'Fila kan vera øydelagd eller ha rang filending.',
+
+# Durations
+'duration-seconds' => '$1 {{PLURAL:$1|sekund|sekund}}',
+'duration-minutes' => '$1 {{PLURAL:$1|minutt|minutt}}',
+'duration-hours' => '$1 {{PLURAL:$1|time|timar}}',
+'duration-days' => '$1 {{PLURAL:$1|dag|dagar}}',
+'duration-weeks' => '$1 {{PLURAL:$1|veke|veker}}',
+'duration-years' => '$1 {{PLURAL:$1|år|år}}',
+'duration-decades' => '$1 {{PLURAL:$1|tiår|tiår}}',
+'duration-centuries' => '$1 {{PLURAL:$1|hundreår|hundreår}}',
+'duration-millennia' => '$1 {{PLURAL:$1|tusenår|tusenår}}',
 
 );

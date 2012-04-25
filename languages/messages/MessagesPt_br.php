@@ -8,6 +8,7 @@
  * @file
  *
  * @author Alcali
+ * @author Alchimista
  * @author Bani
  * @author Brion
  * @author BrunaaAa
@@ -96,7 +97,7 @@ $dateFormats = array(
 
 );
 
-$separatorTransformTable = array( ',' => ' ', '.' => ',' );
+$separatorTransformTable = array( ',' => "\xc2\xa0", '.' => ',' );
 
 $specialPageAliases = array(
 	'Activeusers'               => array( 'Usuários_ativos' ),
@@ -338,7 +339,7 @@ $messages = array(
 'tog-fancysig' => 'Tratar assinatura como wikitexto (sem link automático)',
 'tog-externaleditor' => 'Utilizar editor externo por padrão (apenas para usuários avançados; requer configurações adicionais em seu computador. [//www.mediawiki.org/wiki/Manual:External_editors Mais informações.])',
 'tog-externaldiff' => 'Utilizar comparador de versões externo por padrão (apenas para usuários avançados; requer configurações adicionais em seu computador. [//www.mediawiki.org/wiki/Manual:External_editors Mais informações.])',
-'tog-showjumplinks' => 'Ativar hiperligações de acessibilidade "ir para"',
+'tog-showjumplinks' => 'Ativar links de acessibilidade "ir para"',
 'tog-uselivepreview' => 'Utilizar pré-visualização em tempo real (JavaScript) (Experimental)',
 'tog-forceeditsummary' => 'Avisar-me ao introduzir um sumário vazio',
 'tog-watchlisthideown' => 'Esconder as minhas edições da lista de páginas vigiadas',
@@ -571,7 +572,7 @@ Veja a [[Special:Version|página sobre a versão do sistema]].',
 'retrievedfrom' => 'Obtida de "$1"',
 'youhavenewmessages' => 'Você tem $1 ($2).',
 'newmessageslink' => 'novas mensagens',
-'newmessagesdifflink' => 'comparar com a penúltima revisão',
+'newmessagesdifflink' => 'última alteração',
 'youhavenewmessagesmulti' => 'Você tem novas mensagens em $1',
 'editsection' => 'editar',
 'editold' => 'editar',
@@ -579,7 +580,7 @@ Veja a [[Special:Version|página sobre a versão do sistema]].',
 'editlink' => 'editar',
 'viewsourcelink' => 'ver código-fonte',
 'editsectionhint' => 'Editar seção: $1',
-'toc' => 'Tabela de conteúdo',
+'toc' => 'Conteúdo',
 'showtoc' => 'exibir',
 'hidetoc' => 'ocultar',
 'collapsible-collapse' => 'Ocultar',
@@ -693,6 +694,9 @@ $2',
 'ns-specialprotected' => 'Não é possível editar páginas especiais',
 'titleprotected' => "Este título foi protegido, para que não seja criado.
 Quem o protegeu foi [[User:$1|$1]], com a justificativa: ''$2''.",
+'filereadonlyerror' => 'Não é possível modificar o arquivo "$1" porque o repositório do arquivo "$2" está em modo somente leitura.
+
+O administrador que bloqueou ofereceu a seguinte explicação: "$3".',
 
 # Virus scanner
 'virus-badscanner' => "Má configuração: antivírus desconhecido: ''$1''",
@@ -704,9 +708,9 @@ Quem o protegeu foi [[User:$1|$1]], com a justificativa: ''$2''.",
 
 É possível continuar usando {{SITENAME}} anonimamente ou [[Special:UserLogin|autenticar-se novamente]] com o mesmo nome de usuário ou com um nome diferente.
 Note que algumas páginas podem continuar sendo exibidas como se você ainda estivesse autenticado até que você limpe a ''cache'' do seu navegador.",
-'welcomecreation' => '== Bem-vindo, $1! ==
+'welcomecreation' => '== Bem-vindo(a), $1! ==
 A sua conta foi criada.
-Não se esqueça de personalizar as suas [[Special:Preferences|preferências na {{SITENAME}}]].',
+Não se esqueça de personalizar as suas [[Special:Preferences|preferências no wiki {{SITENAME}}]].',
 'yourname' => 'Nome de usuário:',
 'yourpassword' => 'Senha:',
 'yourpasswordagain' => 'Redigite sua senha',
@@ -716,9 +720,9 @@ Não se esqueça de personalizar as suas [[Special:Preferences|preferências na 
 'externaldberror' => 'Ocorreu ou um erro no banco de dados durante a autenticação ou não lhe é permitido atualizar a sua conta externa.',
 'login' => 'Autenticar-se',
 'nav-login-createaccount' => 'Criar uma conta ou entrar',
-'loginprompt' => 'É necessário estar com os <i>cookies</i> ativados para poder autenticar-se na {{SITENAME}}.',
+'loginprompt' => 'É necessário estar com cookies ativados para poder autenticar-se no wiki {{SITENAME}}.',
 'userlogin' => 'Criar uma conta ou entrar',
-'userloginnocreate' => 'Autenticar-se',
+'userloginnocreate' => 'Entrar',
 'logout' => 'Sair',
 'userlogout' => 'Sair',
 'notloggedin' => 'Não autenticado',
@@ -732,7 +736,7 @@ Não se esqueça de personalizar as suas [[Special:Preferences|preferências na 
 'createaccountreason' => 'Razão:',
 'badretype' => 'As senhas que você digitou não são iguais.',
 'userexists' => 'O nome de usuário fornecido já está em uso.
-Escolha um nome diferente, por favor.',
+Escolha um nome diferente.',
 'loginerror' => 'Erro de autenticação',
 'createaccounterror' => 'Não foi possível criar a conta: $1',
 'nocookiesnew' => "A conta do usuário foi criada, mas você não foi autenticado.
@@ -744,7 +748,7 @@ Por favor ative-os, depois autentique-se com o seu novo nome de usuário e a sua
 Certifique-se de que tem os cookies ativados, recarregue esta página e tente novamente.',
 'noname' => 'Você não colocou um nome de usuário válido.',
 'loginsuccesstitle' => 'Login bem sucedido',
-'loginsuccess' => "'''Agora você está ligado à {{SITENAME}} como \"\$1\"'''.",
+'loginsuccess' => "'''Agora você está autenticado ao wiki {{SITENAME}} como \"\$1\"'''.",
 'nosuchuser' => 'Não existe nenhum usuário com o nome "$1".
 Os nomes de usuário são sensíveis à capitalização.
 Verifique a ortografia, ou [[Special:UserLogin/signup|crie uma nova conta]].',
@@ -752,10 +756,11 @@ Verifique a ortografia, ou [[Special:UserLogin/signup|crie uma nova conta]].',
 'nouserspecified' => 'Você precisa especificar um nome de usuário.',
 'login-userblocked' => 'Este usuário está bloqueado. Entrada proibida.',
 'wrongpassword' => 'A senha que introduziu é inválida. Por favor, tente novamente.',
-'wrongpasswordempty' => 'A senha introduzida está em branco. Por favor, tente novamente.',
+'wrongpasswordempty' => 'Foi fornecida uma senha em branco.
+Tente novamente.',
 'passwordtooshort' => 'As senhas devem ter no mínimo {{PLURAL:$1|1 caractere|$1 caracteres}}.',
 'password-name-match' => 'A sua senha deve ser diferente do seu nome de usuário.',
-'password-login-forbidden' => 'Foi proibido o uso deste nome de utilizador e palavra-chave.',
+'password-login-forbidden' => 'O uso deste nome de usuário e senha foi desautorizado.',
 'mailmypassword' => 'Enviar uma nova senha por e-mail',
 'passwordremindertitle' => 'Nova senha temporária em {{SITENAME}}',
 'passwordremindertext' => 'Alguém (provavelmente você, a partir do endereço de IP $1) solicitou uma nova senha para {{SITENAME}} ($4). Foi criada uma senha temporária para o usuário "$2", sendo ela "$3". Se esta era sua intenção, você precisará se autenticar e escolher uma nova senha agora.
@@ -780,6 +785,7 @@ Como resultado, visitantes que usam este endereço IP não podem criar mais nenh
 'emailconfirmlink' => 'Confirme o seu endereço de e-mail',
 'invalidemailaddress' => "O endereço de ''e-mail'' não pode ser aceite devido a talvez possuir um formato inválido. Por favor, introduza um endereço bem formatado ou esvazie o campo.",
 'cannotchangeemail' => 'A conta de e-mail não pode ser alterada neste wiki.',
+'emaildisabled' => 'Este site não tem como enviar e-mails.',
 'accountcreated' => 'Conta criada',
 'accountcreatedtext' => 'A conta de usuário para $1 foi criada.',
 'createaccount-title' => 'Criação de conta em {{SITENAME}}',
@@ -819,7 +825,7 @@ Você pode já ter alterado com sucesso a sua senha, ou solicitado uma nova senh
 'passwordreset' => 'Redefinir senha',
 'passwordreset-text' => 'Preencha este formulário para recuperar os dados da sua conta pelo e-mail.',
 'passwordreset-legend' => 'Reiniciar a senha',
-'passwordreset-disabled' => 'Reiniciar a senha foi impossibilitado nesta wiki.',
+'passwordreset-disabled' => 'Redefinições de senha foram desabilitadas neste wiki.',
 'passwordreset-pretext' => '{{PLURAL:$1||Introduza um dos dados abaixo}}',
 'passwordreset-username' => 'Nome de usuário:',
 'passwordreset-domain' => 'Domínio:',
@@ -973,7 +979,7 @@ O registro de bloqueio mais recente é fornecido abaixo, para referência:',
 'updated' => '(Atualizado)',
 'note' => "'''Nota:'''",
 'previewnote' => "'''Lembre-se de que isto é apenas uma previsão.'''
-Suas alterações ainda não foram salvas! [[#editform|→ Continuar editando]]",
+Suas alterações ainda não foram salvas!",
 'previewconflict' => 'Esta previsão reflete o texto que está na área de edição acima e como ele aparecerá se você escolher salvar.',
 'session_fail_preview' => "'''Pedimos desculpas, mas não foi possível processar a sua edição devido à perda de dados da sua sessão.
 Por favor tente novamente.
@@ -988,6 +994,7 @@ Caso continue não funcionando, tente [[Special:UserLogout|desautenticar-se]] e 
 Isso acontece ocasionalmente quando se usa um serviço de proxy anonimizador mal configurado.'''",
 'edit_form_incomplete' => "'''Algumas partes do formulário de edição não chegaram ao servidor; verifique que a sua edição continua intacta e tente novamente, por favor.'''",
 'editing' => 'Editando $1',
+'creating' => 'Criando $1',
 'editingsection' => 'Editando $1 (seção)',
 'editingcomment' => 'Editando $1 (nova seção)',
 'editconflict' => 'Conflito de edição: $1',
@@ -1053,6 +1060,7 @@ Ela parece ter sido eliminada.',
 'edit-no-change' => 'A sua edição foi ignorada, uma vez que o texto não sofreu alterações.',
 'edit-already-exists' => 'Não foi possível criar uma nova página.
 Ela já existia.',
+'defaultmessagetext' => 'Texto da mensagem padrão',
 
 # Parser/template warnings
 'expensive-parserfunction-warning' => 'Aviso: Esta página contém muitas chamadas a funções do analisador "parser".
@@ -1107,11 +1115,11 @@ Legenda: ''({{int:cur}})''' = diferença com relação a versão atual,
 
 # Revision feed
 'history-feed-title' => 'Histórico de revisão',
-'history-feed-description' => 'Histórico de revisões para esta página nesta wiki',
+'history-feed-description' => 'Histórico de revisões para esta página neste wiki',
 'history-feed-item-nocomment' => '$1 em $2',
 'history-feed-empty' => 'A página requisitada não existe.
-Poderá ter sido eliminada da wiki ou renomeada.
-Tente [[Special:Search|pesquisar na wiki]] por páginas relevantes.',
+Poderá ter sido eliminada do wiki ou renomeada.
+Tente [[Special:Search|pesquisar no wiki]] por páginas relevantes.',
 
 # Revision deletion
 'rev-deleted-comment' => '(resumo da edição suprimido)',
@@ -1304,7 +1312,8 @@ Certifique-se de que tal alteração manterá a continuidade das ações.',
 'showingresults' => "A seguir {{PLURAL:$1|é mostrado '''um''' resultado|são mostrados até '''$1''' resultados}}, iniciando no '''$2'''º.",
 'showingresultsnum' => "A seguir {{PLURAL:$3|é mostrado '''um''' resultado|são mostrados '''$3''' resultados}}, iniciando com o '''$2'''º.",
 'showingresultsheader' => "{{PLURAL:$5|Resulado '''$1''' de '''$3'''|Resultados '''$1 - $2''' de '''$3'''}} para '''$4'''",
-'nonefound' => "'''Nota''': apenas alguns espaços nominais são pesquisados por padrão. Tente utilizar o prefixo ''all:'' em sua busca, para pesquisar por todos os conteúdos desta wiki (inclusive páginas de discussão, predefinições etc), ou mesmo, utilizando o espaço nominal desejado como prefixo.",
+'nonefound' => "'''Nota''': apenas alguns espaços nominais são pesquisados por padrão.
+Tente utilizar o prefixo ''all:'' em sua busca, para pesquisar por todos os conteúdos deste wiki (inclusive páginas de discussão, predefinições etc), ou mesmo, utilizando o espaço nominal desejado como prefixo.",
 'search-nonefound' => 'Não houve resultados para a pesquisa.',
 'powersearch' => 'Pesquisa avançada',
 'powersearch-legend' => 'Pesquisa avançada',
@@ -1376,7 +1385,7 @@ Eis um valor gerado aleatoriamente que você pode usar: $1",
 'savedprefs' => 'As suas preferências foram salvas.',
 'timezonelegend' => 'Fuso horário:',
 'localtime' => 'Horário local:',
-'timezoneuseserverdefault' => 'Usar padrão da wiki ($1)',
+'timezoneuseserverdefault' => 'Utilizar padrão do wiki ($1)',
 'timezoneuseoffset' => 'Outro (especifique diferença horária)',
 'timezoneoffset' => 'Diferença horária¹',
 'servertime' => 'Horário do servidor:',
@@ -1412,7 +1421,7 @@ Esta ação não pode ser desfeita.',
 'yourrealname' => 'Nome verdadeiro:',
 'yourlanguage' => 'Língua:',
 'yourvariant' => 'Variante da língua de conteúdo:',
-'prefs-help-variant' => 'A sua variante preferida ou ortografia para mostrar no conteúdo das páginas desta wiki.',
+'prefs-help-variant' => 'A sua variante preferida ou ortografia para mostrar no conteúdo das páginas deste wiki.',
 'yournick' => 'Assinatura:',
 'prefs-help-signature' => 'Ao inserir comentários em páginas de discussão, assine-os colocando quatro tiles (<nowiki>~~~~</nowiki>) no fim dos comentários. Ao salvar, estes serão convertidos na sua assinatura mais a data e a hora da edição.',
 'badsig' => 'Assinatura inválida; verifique o código HTML utilizado.',
@@ -1463,7 +1472,7 @@ Caso decida fornecê-lo, este será utilizado para dar-lhe crédito pelo seu tra
 * Uma caixa de seleção desselecionada significa que o usuário não se encontra no grupo.
 * Um * indica que não pode remover o grupo depois de o adicionar, ou vice-versa.',
 'userrights-reason' => 'Motivo:',
-'userrights-no-interwiki' => 'Você não tem permissão de alterar privilégios de usuários em outras wikis.',
+'userrights-no-interwiki' => 'Você não tem permissão para alterar privilégios de usuários em outros wikis.',
 'userrights-nodatabase' => 'O banco de dados $1 não existe ou não é um banco de dados local.',
 'userrights-nologin' => 'Você precisa [[Special:UserLogin|autenticar-se]] como um administrador para especificar os privilégios de usuário.',
 'userrights-notallowed' => 'A sua conta não tem permissão para adicionar ou remover privilégios a usuários.',
@@ -1558,7 +1567,7 @@ Caso decida fornecê-lo, este será utilizado para dar-lhe crédito pelo seu tra
 # User rights log
 'rightslog' => 'Registro de privilégios de usuário',
 'rightslogtext' => 'Este é um registro de mudanças nos privilégios de usuários.',
-'rightslogentry' => 'foi alterado o grupo de acesso de $1 (de $2 para $3)',
+'rightslogentry' => 'alterou os grupos de privilégios {{GENDER:$1|do usuário|da usuária|de usuário para}} $1 (de $2 para $3)',
 'rightslogentry-autopromote' => 'foi automaticamente promovido de $2 para $3',
 'rightsnone' => '(nenhum)',
 
@@ -1588,7 +1597,7 @@ Caso decida fornecê-lo, este será utilizado para dar-lhe crédito pelo seu tra
 'action-block' => 'impedir que este usuário edite',
 'action-protect' => 'alterar os níveis de proteção desta página',
 'action-rollback' => 'Reverter rapidamente as edições do último usuário que editou uma página em particular',
-'action-import' => 'importar esta página a partir de outra wiki',
+'action-import' => 'importar esta página a partir de outro wiki',
 'action-importupload' => 'importar esta página através do carregamento de um arquivo',
 'action-patrol' => 'marcar as edições de outros usuários como patrulhadas',
 'action-autopatrol' => 'ter suas edições marcadas como patrulhadas',
@@ -1825,11 +1834,12 @@ Caso o problema persista, procure um [[Special:ListUsers/sysop|administrador]].'
 'backend-fail-maxsize' => 'Não foi possível criar o arquivo $1 por ele ser maior que {{PLURAL:$2|1 byte|$2 bytes}}.',
 'backend-fail-readonly' => 'O servidor de armazenamento "$1" está atualmente no modo "somente leitura". A razão dada foi: "$2"',
 'backend-fail-synced' => 'O arquivo "$1" está em um estado inconsistente dentro do sistema de armazenamento interno',
-'backend-fail-connect' => 'Não foi possível conectar com o servidor de armazenamento "$1".',
+'backend-fail-connect' => 'Não foi possível se conectar com o servidor de armazenamento "$1".',
 'backend-fail-internal' => 'Ocorreu um erro desconhecido no servidor de armazenamento "$1".',
 'backend-fail-contenttype' => 'Não foi possível determinar o tipo de conteúdo do arquivo para armazenar em "$1".',
 'backend-fail-batchsize' => 'O servidor de armazenamento retornou um conjunto de $1 {{PLURAL:$1|operação|operações}} de arquivo, enquanto seu limite é de $2 {{PLURAL:$1|operação|operações}}.',
 
+# File journal errors
 'filejournal-fail-dbconnect' => 'Não foi possível se conectar ao banco de dados de registros do sistema de armazenamento "$1".',
 'filejournal-fail-dbquery' => 'Não foi possível atualizar o banco de dados de registros do sistema de armazenamento "$1".',
 
@@ -1840,6 +1850,7 @@ Caso o problema persista, procure um [[Special:ListUsers/sysop|administrador]].'
 'lockmanager-fail-acquirelock' => 'Não foi possível obter uma referência de bloqueio para "$1".',
 'lockmanager-fail-openlock' => 'Não foi possível abrir a referência de bloqueio para "$1".',
 'lockmanager-fail-releaselock' => 'Não foi possível liberar o bloqueio para "$1".',
+'lockmanager-fail-db-bucket' => 'Não foi possível contatar suficientemente bloqueio das bases de dados no bucket $1 .',
 'lockmanager-fail-db-release' => 'Não foi possível liberar os bloqueios para "$1".',
 'lockmanager-fail-svr-release' => 'Não foi possível liberar os bloqueios do servidor "$1".',
 
@@ -1853,7 +1864,7 @@ A sua segurança não pode ser devidamente verificada.',
 
 # Special:UploadStash
 'uploadstash' => 'Arquivos escondidos',
-'uploadstash-summary' => 'Esta página dá acesso aos arquivos enviados (ou que estão no processo de envio) mas que ainda não foram publicados na wiki. Estes arquivos não são visíveis para ninguém, exceto para o usuário que os enviou.',
+'uploadstash-summary' => 'Esta página dá acesso aos arquivos enviados (ou que estão no processo de envio) mas que ainda não foram publicados no wiki. Estes arquivos não são visíveis para ninguém, exceto para o usuário que os enviou.',
 'uploadstash-clear' => 'Apagar os arquivos escondidos',
 'uploadstash-nofiles' => 'Você não tem nenhum arquivo escondido.',
 'uploadstash-badtoken' => 'Não foi possível executar essa operação, talvez porque as suas credenciais de edição expiraram. Tente novamente.',
@@ -1873,8 +1884,8 @@ Consulte a documentação em [//www.mediawiki.org/wiki/Manual:Image_Authorizatio
 'img-auth-isdir' => 'Você está tentando acessar o diretório "$1".
 Somente acesso ao arquivo é permitido.',
 'img-auth-streaming' => "Realizando ''streaming'' de \"\$1\".",
-'img-auth-public' => 'A img_auth.php produz arquivos a partir de uma wiki privada.
-Esta wiki está configurada como uma wiki pública.
+'img-auth-public' => 'A img_auth.php produz arquivos a partir de um wiki privado.
+Este wiki está configurado como um wiki público.
 Para melhor segurança, o img_auth.php está desativado.',
 'img-auth-noread' => 'Usuário não tem acesso para ler "$1".',
 'img-auth-bad-query-string' => 'A URL tem um texto de consulta inválido.',
@@ -1998,8 +2009,8 @@ A descrição na sua [$2 página de descrição de arquivo] é exibida abaixo.',
 
 # Unused templates
 'unusedtemplates' => 'Predefinições não utilizadas',
-'unusedtemplatestext' => 'Esta página lista todas as páginas no espaço nominal {{ns:template}} que não estão incluídas numa outra página. Lembre-se de conferir se há outras ligações para as predefinições antes de apaga-las.',
-'unusedtemplateswlh' => 'outras ligações',
+'unusedtemplatestext' => 'Esta página lista todas as páginas no espaço nominal {{ns:template}} que não estão incluídas em uma outra página. Lembre-se de conferir se há outros links para as predefinições antes de apaga-las.',
+'unusedtemplateswlh' => 'outros links',
 
 # Random page
 'randompage' => 'Página aleatória',
@@ -2018,7 +2029,7 @@ A descrição na sua [$2 página de descrição de arquivo] é exibida abaixo.',
 'statistics-header-hooks' => 'Outras estatísticas',
 'statistics-articles' => 'Páginas de conteúdo',
 'statistics-pages' => 'Páginas',
-'statistics-pages-desc' => 'Todas as páginas na wiki, incluindo páginas de discussão, redirecionamentos, etc.',
+'statistics-pages-desc' => 'Todas as páginas no wiki, incluindo páginas de discussão, redirecionamentos, etc.',
 'statistics-files' => 'Arquivos carregados',
 'statistics-edits' => 'Edições de página desde que {{SITENAME}} foi instalado',
 'statistics-edits-average' => 'Média de edições por página',
@@ -2037,7 +2048,7 @@ Uma página é considerada como de desambiguação se utilizar uma predefiniçã
 
 'doubleredirects' => 'Redirecionamentos duplos',
 'doubleredirectstext' => 'Esta página lista as páginas que redirecionam para outros redirecionamentos.
-Cada linha contém ligações para o primeiro e o segundo redirecionamentos, juntamente com o alvo do segundo redirecionamento, que é geralmente a verdadeira página de destino, para a qual o primeiro redirecionamento deveria apontar.
+Cada linha contém links para o primeiro e o segundo redirecionamentos, juntamente com o alvo do segundo redirecionamento, que é geralmente a verdadeira página de destino, para a qual o primeiro redirecionamento deveria apontar.
 Entradas <del>riscadas</del> foram resolvidas.',
 'double-redirect-fixed-move' => '[[$1]] foi movido e agora é um redirecionamento para [[$2]]',
 'double-redirect-fixed-maintenance' => 'Corrigindo redirecionamento duplo de [[$1]] para [[$2]].',
@@ -2066,7 +2077,7 @@ Entradas <del>riscadas</del> foram resolvidas.',
 'ntransclusions' => 'usada {{PLURAL:$1|numa página|em $1 páginas}}',
 'specialpage-empty' => 'Atualmente não há dados a serem exibidos nesta página.',
 'lonelypages' => 'Páginas órfãs',
-'lonelypagestext' => 'As seguintes páginas não recebem ligações nem são incluídas em outras páginas do {{SITENAME}}.',
+'lonelypagestext' => 'As seguintes páginas não recebem links nem são incluídas em outras páginas do {{SITENAME}}.',
 'uncategorizedpages' => 'Páginas não categorizadas',
 'uncategorizedcategories' => 'Categorias não categorizadas',
 'uncategorizedimages' => 'Imagens não categorizadas',
@@ -2089,7 +2100,7 @@ Entradas <del>riscadas</del> foram resolvidas.',
 'shortpages' => 'Páginas curtas',
 'longpages' => 'Páginas longas',
 'deadendpages' => 'Páginas sem saída',
-'deadendpagestext' => 'As seguintes páginas não contêm hiperligações para outras páginas nesta wiki.',
+'deadendpagestext' => 'As seguintes páginas não contêm links para outras páginas no wiki {{SITENAME}}.',
 'protectedpages' => 'Páginas protegidas',
 'protectedpages-indef' => 'Proteções infinitas apenas',
 'protectedpages-cascade' => 'Apenas proteções progressivas',
@@ -2153,6 +2164,7 @@ Você pode diminuir a lista escolhendo um tipo de registro, um nome de usuário 
 'allpagesprefix' => 'Exibir páginas com o prefixo:',
 'allpagesbadtitle' => 'O título de página fornecido encontrava-se inválido ou tinha um prefixo interlíngua ou inter-wiki. Ele poderá conter um ou mais caracteres que não podem ser utilizados em títulos.',
 'allpages-bad-ns' => '{{SITENAME}} não possui o espaço nominal "$1".',
+'allpages-hide-redirects' => 'Ocultar redirecionamentos',
 
 # Special:Categories
 'categories' => 'Categorias',
@@ -2169,7 +2181,7 @@ Veja também [[Special:WantedCategories|categorias pedidas]].',
 'sp-deletedcontributions-contribs' => 'contribuições',
 
 # Special:LinkSearch
-'linksearch' => 'Pesquisa de ligações externas',
+'linksearch' => 'Pesquisa de links externos',
 'linksearch-pat' => 'Procurar padrão:',
 'linksearch-ns' => 'Espaço nominal:',
 'linksearch-ok' => 'Pesquisar',
@@ -2200,7 +2212,7 @@ Protocolos suportados: <tt>$1</tt> (não adicionado nenhum desses em sua pesquis
 
 # Special:ListGroupRights
 'listgrouprights' => 'Privilégios de grupo de usuários',
-'listgrouprights-summary' => 'O que segue é uma lista dos grupos de usuários definidos nesta wiki, com os seus privilégios de acessos associados.
+'listgrouprights-summary' => 'O que segue é uma lista dos grupos de usuários definidos neste wiki, com os seus privilégios de acessos associados.
 Pode haver [[{{MediaWiki:Listgrouprights-helppage}}|informações adicionais]] sobre privilégios individuais.',
 'listgrouprights-key' => '* <span class="listgrouprights-granted">Privilégio concedido</span>
 * <span class="listgrouprights-revoked">Privilégio revogado</span>',
@@ -2538,8 +2550,8 @@ Segue, para referência, a entrada mais recente no registro de bloqueios:',
 'whatlinkshere' => 'Páginas afluentes',
 'whatlinkshere-title' => 'Páginas que apontam para "$1"',
 'whatlinkshere-page' => 'Página:',
-'linkshere' => "As seguintes páginas possuem ligações para '''[[:$1]]''':",
-'nolinkshere' => "Não existem ligações para '''[[:$1]]'''.",
+'linkshere' => "As seguintes páginas possuem links para '''[[:$1]]''':",
+'nolinkshere' => "Não existem links para '''[[:$1]]'''.",
 'nolinkshere-ns' => "Não há links para '''[[:$1]]''' no espaço nominal selecionado.",
 'isredirect' => 'página de redirecionamento',
 'istemplate' => 'inclusão',
@@ -2549,7 +2561,7 @@ Segue, para referência, a entrada mais recente no registro de bloqueios:',
 'whatlinkshere-links' => '← links',
 'whatlinkshere-hideredirs' => '$1 redirecionamentos',
 'whatlinkshere-hidetrans' => '$1 transclusões',
-'whatlinkshere-hidelinks' => '$1 ligações',
+'whatlinkshere-hidelinks' => '$1 links',
 'whatlinkshere-hideimages' => '$1 links de imagens',
 'whatlinkshere-filters' => 'Filtros',
 
@@ -2788,11 +2800,13 @@ Por favor, escolha outro nome.',
 
 # Export
 'export' => 'Exportação de páginas',
-'exporttext' => 'Você pode exportar o texto e o histórico de edições de uma página em particular para um arquivo XML. Poderá então importar esse conteúdo noutra wiki que utilize o software MediaWiki através da [[Special:Import|página de importações]].
+'exporttext' => 'Você pode exportar o texto e o histórico de edições, ou de uma página em particular ou de um conjunto de páginas, para um arquivo XML.
+A partir disso, será possível importar esse conteúdo em outro wiki que utilize o software MediaWiki através da [[Special:Import|página de importações]].
 
-Para exportar páginas, introduza os títulos na caixa de texto abaixo (um título por linha) e selecione se deseja todas as versões, com as linhas de histórico de edições, ou apenas a edição atual e informações apenas sobre a mais recente das edições.
+Para exportar páginas, insira os títulos na caixa de texto abaixo, um título por linha; selecione entre a edição atual acompanhada das edições anteriores e respectivo histórico de edições ou entre apenas a última edição e suas respectivas informações.
 
-Se desejar, pode utilizar uma ligação (por exemplo, [[{{#Special:Export}}/{{MediaWiki:Mainpage}}]] para a [[{{MediaWiki:Mainpage}}]]).',
+Para o último caso, é possível obter o XML a partir de um link direto (por exemplo, [[{{#Special:Export}}/{{MediaWiki:Mainpage}}]] para a edição mais recente da página "[[{{MediaWiki:Mainpage}}]]").',
+'exportall' => 'Exportar todas as páginas',
 'exportcuronly' => 'Incluir apenas a revisão atual, não o histórico inteiro',
 'exportnohistory' => "----
 '''Nota:''' a exportação do histórico completo das páginas através deste formulário foi desativada devido a questões de performance.",
@@ -2848,7 +2862,7 @@ Todas as ações de importação transwiki são registradas no [[Special:Log/imp
 'import-interwiki-namespace' => 'Domínio de destino:',
 'import-upload-filename' => 'Nome do arquivo:',
 'import-comment' => 'Comentário:',
-'importtext' => 'Por favor, exporte o arquivo da wiki de origem utilizando a página especial [[Special:Export|exportação de páginas]].
+'importtext' => 'Por favor, exporte o arquivo do wiki de origem utilizando a página especial [[Special:Export|exportação de páginas]].
 Salve o arquivo no seu computador e importe-o aqui.',
 'importstart' => 'Importando páginas...',
 'import-revision-count' => '{{PLURAL:$1|uma edição|$1 edições}}',
@@ -2872,17 +2886,21 @@ Salve o arquivo no seu computador e importe-o aqui.',
 'xml-error-string' => '$1 na linha $2, coluna $3 (byte $4): $5',
 'import-upload' => 'Enviar dados em XML',
 'import-token-mismatch' => 'Perda dos dados da sessão. Por favor tente novamente.',
-'import-invalid-interwiki' => 'Não é possível importar da wiki especificada.',
+'import-invalid-interwiki' => 'Não é possível importar do wiki especificado.',
 'import-error-edit' => 'A página "$1" não foi importada porque você não tem permissão para editá-la.',
 'import-error-create' => 'A página "$1" não foi importada porque você não tem permissão para criá-la.',
 
 # Import log
 'importlogpage' => 'Registro de importações',
-'importlogpagetext' => 'Importações administrativas de páginas com a preservação do histórico de edição de outras wikis.',
+'importlogpagetext' => 'Importações administrativas de páginas com a preservação do histórico de edição de outros wikis.',
 'import-logentry-upload' => 'importou [[$1]] através de arquivo de importação',
 'import-logentry-upload-detail' => '{{PLURAL:$1|uma edição|$1 edições}}',
 'import-logentry-interwiki' => 'transwiki $1',
 'import-logentry-interwiki-detail' => '{{PLURAL:$1|$1 edição|$1 edições}} de $2',
+
+# JavaScriptTest
+'javascripttest' => 'Teste de JavaScript',
+'javascripttest-pagetext-noframework' => 'Esta página é exclusiva para testes de JavaScript.',
 
 # Tooltip help for the actions
 'tooltip-pt-userpage' => 'Sua página de usuário',
@@ -2907,7 +2925,7 @@ Salve o arquivo no seu computador e importe-o aqui.',
 'tooltip-ca-move' => 'Mover esta página',
 'tooltip-ca-watch' => 'Adicionar esta página às páginas vigiadas',
 'tooltip-ca-unwatch' => 'Remover esta página da lista de páginas vigiadas',
-'tooltip-search' => 'Pesquisar nesta wiki',
+'tooltip-search' => 'Pesquisar em {{SITENAME}}',
 'tooltip-search-go' => 'Ir a uma página com este exato nome, caso exista',
 'tooltip-search-fulltext' => 'Procurar por páginas contendo este texto',
 'tooltip-p-logo' => 'Página principal',
@@ -2915,7 +2933,7 @@ Salve o arquivo no seu computador e importe-o aqui.',
 'tooltip-n-mainpage-description' => 'Visitar a página principal',
 'tooltip-n-portal' => 'Sobre o projeto',
 'tooltip-n-currentevents' => 'Informação temática sobre eventos atuais',
-'tooltip-n-recentchanges' => 'A lista de mudanças recentes nesta wiki.',
+'tooltip-n-recentchanges' => 'Uma lista de mudanças recentes no wiki',
 'tooltip-n-randompage' => 'Abrir uma página aleatoriamente',
 'tooltip-n-help' => 'Um local reservado para auxílio.',
 'tooltip-t-whatlinkshere' => 'Lista de todas as páginas que ligam-se a esta',
@@ -2944,6 +2962,8 @@ Salve o arquivo no seu computador e importe-o aqui.',
 'tooltip-diff' => 'Mostrar alterações que fez a este texto.',
 'tooltip-compareselectedversions' => 'Ver as diferenças entre as duas versões selecionadas desta página.',
 'tooltip-watch' => 'Adicionar esta página à sua lista de páginas vigiadas',
+'tooltip-watchlistedit-normal-submit' => 'Remover títulos',
+'tooltip-watchlistedit-raw-submit' => 'Atualizar a lista de páginas vigiadas',
 'tooltip-recreate' => 'Recriar a página apesar de ter sido eliminada',
 'tooltip-upload' => 'Iniciar o carregamento',
 'tooltip-rollback' => '"{{int:rollbacklink}}" reverte, com um só clique, as edições do último editor desta página.',
@@ -2989,7 +3009,7 @@ Tal bloqueio foi provavelmente causado por uma ligação para um ''website'' ext
 'spamprotectionmatch' => 'O seguinte texto ativou o filtro de spam: $1',
 'spambot_username' => 'MediaWiki limpeza de spam',
 'spam_reverting' => 'Revertendo para a última versão que não contém links para $1',
-'spam_blanking' => 'Todas revisões contendo hiperligações para $1, limpando',
+'spam_blanking' => 'Todas revisões contendo links para $1, limpando',
 
 # Info page
 'pageinfo-title' => 'Informações sobre "$1"',
@@ -3515,7 +3535,10 @@ Caso o arquivo tenha sido modificado a partir do seu estado original, alguns det
 # E-mail address confirmation
 'confirmemail' => 'Confirmar endereço de E-mail',
 'confirmemail_noemail' => 'Não possui um endereço de e-mail válido indicado nas suas [[Special:Preferences|preferências de usuário]].',
-'confirmemail_text' => 'Esta wiki requer que valide o seu endereço de e-mail antes de utilizar as funcionalidades que requerem um endereço de e-mail. Ative o botão abaixo para enviar uma confirmação para o seu endereço de e-mail. A mensagem incluíra um endereço que contém um código; carregue o endereço no seu navegador para confirmar que o seu endereço de e-mail encontra-se válido.',
+'confirmemail_text' => '{{SITENAME}} requer o seu endereço de e-mail esteja validado antes de utilizar as funcionalidades que requerem um endereço de e-mail.
+Ative o botão abaixo para enviar uma confirmação para o seu endereço de e-mail.
+A mensagem incluirá um link que contém um código;
+acesse o link no seu navegador para confirmar que o seu endereço de e-mail é válido.',
 'confirmemail_pending' => 'Um código de confirmação já foi enviado para você; caso tenha criado sua conta recentemente, é recomendável aguardar alguns minutos para o receber antes de tentar pedir um novo código.',
 'confirmemail_send' => 'Enviar código de confirmação',
 'confirmemail_sent' => 'E-mail de confirmação enviado.',
@@ -3690,7 +3713,7 @@ Você também pode [[Special:EditWatchlist|editar a lista da maneira convenciona
 'version-hook-subscribedby' => 'Subscrito por',
 'version-version' => '(Versão $1)',
 'version-license' => 'Licença',
-'version-poweredby-credits' => "Esta é um wiki '''[//www.mediawiki.org/ MediaWiki]''', copyright © 2001-$1 $2.",
+'version-poweredby-credits' => "Este é um wiki '''[//www.mediawiki.org/ MediaWiki]''', copyright © 2001-$1 $2.",
 'version-poweredby-others' => 'outros',
 'version-license-info' => 'O MediaWiki é software livre; pode redistribuí-lo e/ou modificá-lo nos termos da licença GNU General Public License, tal como publicada pela Free Software Foundation; tanto a versão 2 da Licença, como (por opção sua) qualquer versão posterior.
 
@@ -3804,7 +3827,7 @@ As imagens serão exibidas em sua resolução máxima, outros tipos de arquivos 
 # New logging system
 'logentry-delete-delete' => '$1 apagou a página $3',
 'logentry-delete-restore' => '$1 restaurou a página $3',
-'logentry-delete-event' => '$1 alterou a visibilidade {{PLURAL:$5|de uma entrada|das $5 entradas}} em $3: $4',
+'logentry-delete-event' => '$1 alterou a visibilidade {{PLURAL:$5|de uma entrada|de $5 entradas}} do registro $3: $4',
 'logentry-delete-revision' => '$1 alterou a visibilidade {{PLURAL:$5|de uma revisão|das $5 revisões}} em $3: $4',
 'logentry-delete-event-legacy' => '$1 alterou a visibilidade de uma entrada em $3',
 'logentry-delete-revision-legacy' => '$1 alterou a visibilidade de uma revisão em $3',
@@ -3845,7 +3868,7 @@ As imagens serão exibidas em sua resolução máxima, outros tipos de arquivos 
 'feedback-close' => 'Feito',
 
 # API errors
-'api-error-badaccess-groups' => 'Você não tem permissão para enviar arquivos para esta wiki.',
+'api-error-badaccess-groups' => 'Você não tem permissão para enviar arquivos para este wiki.',
 'api-error-badtoken' => 'Erro interno: token inválido.',
 'api-error-copyuploaddisabled' => 'O upload por URL está desativado neste servidor.',
 'api-error-duplicate' => 'Já {{PLURAL:$1|há [$2 outro arquivo]|existem [$2 outros arquivos]}} com o mesmo conteúdo',
@@ -3853,6 +3876,7 @@ As imagens serão exibidas em sua resolução máxima, outros tipos de arquivos 
 'api-error-duplicate-archive-popup-title' => 'Duplicata de {{PLURAL:$1|arquivo|arquivos}} que já {{PLURAL:$1|foi apagado|foram apagados}}',
 'api-error-duplicate-popup-title' => '{{PLURAL:$1|Arquivo|Arquivos}} em duplicata',
 'api-error-empty-file' => 'O arquivo que você enviou está vazio.',
+'api-error-emptypage' => 'Não é permitido criar páginas novas vazias.',
 'api-error-fetchfileerror' => 'Erro interno: ocorreu um problema indeterminado ao acessar o arquivo.',
 'api-error-file-too-large' => 'O arquivo que você enviou é muito grande.',
 'api-error-filename-tooshort' => 'O nome do arquivo é curto demais.',
@@ -3861,7 +3885,7 @@ As imagens serão exibidas em sua resolução máxima, outros tipos de arquivos 
 'api-error-hookaborted' => 'A modificação que você tentou realizar foi abortada pelo hook de uma extensão.',
 'api-error-http' => 'Erro interno: não foi possível conectar ao servidor.',
 'api-error-illegal-filename' => 'O nome do arquivo não é permitido.',
-'api-error-internal-error' => 'Erro interno: ocorreu um erro indeterminado na wiki ao processar o arquivo que você enviou.',
+'api-error-internal-error' => 'Erro interno: ocorreu algum erro ao processar o arquivo que você enviou ao wiki.',
 'api-error-invalid-file-key' => 'Erro interno: o arquivo não foi encontrado no armazenamento temporário.',
 'api-error-missingparam' => 'Erro interno: parâmetros em falta no pedido.',
 'api-error-missingresult' => 'Erro interno: não foi possível determinar se a cópia foi feita.',
@@ -3878,7 +3902,7 @@ As imagens serão exibidas em sua resolução máxima, outros tipos de arquivos 
 'api-error-unknown-error' => 'Erro interno: ocorreu um erro indeterminado ao tentar enviar o arquivo.',
 'api-error-unknown-warning' => 'Aviso desconhecido: $1',
 'api-error-unknownerror' => 'Erro desconhecido: "$1".',
-'api-error-uploaddisabled' => 'Esta wiki está com uploads de arquivos desativados.',
+'api-error-uploaddisabled' => 'Este wiki está com o upload de arquivos desabilitado.',
 'api-error-verification-error' => 'Este arquivo pode estar corrompido ou ter a extensão errada.',
 
 );

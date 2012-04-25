@@ -570,8 +570,8 @@ $2",
 'ns-specialprotected' => 'No es poden modificar les pàgines especials.',
 'titleprotected' => "La creació d'aquesta pàgina està protegida per [[User:$1|$1]].
 Els seus motius han estat: «''$2''».",
-'filereadonlyerror' => "No s'ha pogut modificar el fitxer «$1» perquè el repositori de fitxers «$2» està en mode només de lectura.
-El motiu donat és «''$3''».",
+'filereadonlyerror' => 'No s\'ha pogut modificar el fitxer «$1» perquè el repositori de fitxers "$2" està en mode només de lectura.
+L\'administrador que l\'ha bloquejat ha donat aquesta explicació: "$3".',
 
 # Virus scanner
 'virus-badscanner' => "Mala configuració: antivirus desconegut: ''$1''",
@@ -849,7 +849,7 @@ Per més detalls, la darrera entrada del registre es mostra a continuació:",
 'updated' => '(Actualitzat)',
 'note' => "'''Nota:'''",
 'previewnote' => "'''Recorda que això és només una previsualització.'''
-Els vostres canvis encara no s'han desat! [[#editform|→ Continuar editant]]",
+Els vostres canvis encara no s'han desat!",
 'previewconflict' => "Aquesta previsualització reflecteix, a l'àrea
 d'edició superior, el text tal i com apareixerà si trieu desar-lo.",
 'session_fail_preview' => "'''No s'ha pogut processar la vostra modificació a causa d'una pèrdua de dades de la sessió.
@@ -929,6 +929,7 @@ Sembla haver estat esborrada.",
 'edit-no-change' => 'La vostra modificació ha estat ignorada perquè no feia cap canvi al text.',
 'edit-already-exists' => "No s'ha pogut crear una pàgina.
 Ja existeix.",
+'defaultmessagetext' => 'Missatge per defecte',
 
 # Parser/template warnings
 'expensive-parserfunction-warning' => "Atenció: Aquesta pàgina conté massa crides a funcions parserfunction complexes.
@@ -1087,8 +1088,8 @@ Si us plau, verifica els registres.",
 
 # Suppression log
 'suppressionlog' => 'Registre de supressió',
-'suppressionlogtext' => 'A continuació es mostra una llista de les supressions i blocs que impliquen contingut ocult a administradors.
-Veure la [[Special:BlockList|List]] per a la llista de prohibicions actualment operatives i blocs.',
+'suppressionlogtext' => 'A continuació es mostra una llista de les supressions i blocs que impliquen contingut ocult per administradors.
+Veure la [[Special:BlockList|llista de bloqueigs]] per a la llista de prohibicions actualment operatives i bloqueigs.',
 
 # History merging
 'mergehistory' => 'Fusiona els historials de les pàgines',
@@ -1672,6 +1673,10 @@ $1',
 'backend-fail-contenttype' => 'No es pot determinar el tipus de contingut del fitxer per emmagatzemar a «$1».',
 'backend-fail-batchsize' => "El rerefons d'emmagatzemament ha rebut un lot {{PLURAL:$1|d'$1 operació|de $1 operacions}} de fitxer; el límit és $2 {{PLURAL:$2|operació|operacions}}.",
 
+# File journal errors
+'filejournal-fail-dbconnect' => 'No es pot connectar amb la base de dades per emmagatzemar el backend "$1".',
+'filejournal-fail-dbquery' => 'No es pot actualitzat la base de dades per a emmagatzemar el backend "$1".',
+
 # Lock manager
 'lockmanager-notlocked' => "No s'ha pogut desbloquejar «$1»; no és bloquejat.",
 'lockmanager-fail-closelock' => "No s'ha pogut bloquejar el fitxer per «$1».",
@@ -1980,7 +1985,7 @@ Tingueu en compte que altres llocs web poden enllaçar un fitxer amb un URL dire
 'log' => 'Registres',
 'all-logs-page' => 'Tots els registres públics',
 'alllogstext' => "Presentació combinada de tots els registres disponibles de {{SITENAME}}.
-Podeu reduir l'extensió seleccionant el tipus de registre, el nom del usuari (distingeix entre majúscules i minúscules), o la pàgina afectada (també en distingeix).",
+Podeu reduir l'extensió seleccionant el tipus de registre, el nom d'usuari realitzador (distingeix entre majúscules i minúscules), o la pàgina objectiu (també en distingeix).",
 'logempty' => 'No hi ha cap coincidència en el registre.',
 'log-title-wildcard' => 'Cerca els títols que comencin amb aquest text',
 
@@ -2444,8 +2449,8 @@ quines pàgines en concret estan sent vandalitzades).",
 'ipb-confirm' => 'Confirma el blocatge',
 'badipaddress' => "L'adreça IP no té el format correcte.",
 'blockipsuccesssub' => "S'ha blocat amb èxit",
-'blockipsuccesstext' => "L'usuari «[[Special:Contributions/$1|$1]]» ha estat blocat.
-<br />Vegeu la [[Special:BlockList|llista d'IP blocades]] per revisar els bloquejos.",
+'blockipsuccesstext' => "[[Special:Contributions/$1|$1]] ha estat {{GENDER:$1|bloquejat|bloquejada|bloquejat/da}}.<br />
+Vegeu la [[Special:BlockList|llista d'IP blocades]] per revisar els bloqueigs.",
 'ipb-blockingself' => 'Esteu a punt de blocar-vos a vós mateix! Esteu segurs de voler-ho fer?',
 'ipb-confirmhideuser' => "Esteu a punt de bloquejar un usuari que està marcat amb l'opció «amaga l'usuari». Això suprimirà el seu nom a totes les llistes i registres. Esteu segurs de voler-ho fer?",
 'ipb-edit-dropdown' => 'Edita les raons per a blocar',
@@ -2499,7 +2504,7 @@ Per més detalls, a sota es mostra el registre de bloquejos:',
 Per més detalls, a sota es mostra el registre de supressions:',
 'blocklogentry' => "ha blocat l'{{GENDER:$1|usuari|usuària}} [[$1]] per un període de: $2 $3",
 'reblock-logentry' => 'canviades les opcions del blocatge a [[$1]] amb caducitat a $2, $3',
-'blocklogtext' => "Això és una relació de accions de bloqueig i desbloqueig. Les adreces IP bloquejades automàticament no apareixen. Vegeu la [[Special:BlockList|llista d'usuaris actualment bloquejats]].",
+'blocklogtext' => 'Això és una relació de accions de bloqueig i desbloqueig. Les adreces IP bloquejades automàticament no apareixen. Vegeu la [[Special:BlockList|llista de bloqueigs]] per veure una llista dels actuals bloqueigs operatius.',
 'unblocklogentry' => 'ha desblocat $1',
 'block-log-flags-anononly' => 'només els usuaris anònims',
 'block-log-flags-nocreate' => "s'ha desactivat la creació de comptes",

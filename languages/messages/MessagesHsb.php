@@ -803,7 +803,7 @@ Móžeš [[Special:Search/{{PAGENAME}}|tutón titul strony]] na druhich stronach
 'updated' => '(Zaktualizowany)',
 'note' => "'''Kedźbu:'''",
 'previewnote' => "'''Wobmysl, zo to je jenož přehlad.'''
-Twoje změny hišće njejsu składowane! [[#editform|→ Dale wobdźěłaś]]",
+Twoje změny hišće njejsu składowane!",
 'previewconflict' => 'Tutón přehlad zwobraznja tekst w hornim tekstowym polu,  kaž so zjewi, jeli jón składuješ.',
 'session_fail_preview' => "'''Njemóžachmy twoju změnu předźěłać, dokelž su so posedźenske daty zhubili.'''
 Spytaj prošu hišće raz.
@@ -1036,7 +1036,7 @@ Prošu přepruwuj protokole.',
 # Suppression log
 'suppressionlog' => 'Protokol potłóčenjow',
 'suppressionlogtext' => 'Deleka je lisćina wušmórnjenjow a zablokowanjow, inkluziwnje wobsaha schowaneho wot administratorow.
-Hlej [[Special:BlockList|Lisćina zablokowanych IP-adresow]] za lisćinu tuchwilnych zablokowanjow.',
+Hlej [[Special:BlockList|Lisćinu blokowanjow]] za lisćinu tuchwilnych zablokowanjow.',
 
 # History merging
 'mergehistory' => 'Stawizny stronow zjednoćić',
@@ -1639,6 +1639,7 @@ $1',
 'backend-fail-contenttype' => 'Wobsahowy typ dataje, kotraž ma so na "$1" składować, njeda so zwěsćić.',
 'backend-fail-batchsize' => 'Staplowa dataja, kotraž {{PLURAL:$1|jednu operaciju|$1 operaciji|$1 operacije|$1 operacijow}} wobsahuje,  je so  na składowanski backend pósłała; limit je $2 {{PLURAL:$2|operaciju|operaciji|operacije|operacijow}} .',
 
+# File journal errors
 'filejournal-fail-dbconnect' => 'Njeje žadyn zwisk ze žurnalowej datowej banku za składowanski backend "$1" móžno.',
 'filejournal-fail-dbquery' => 'Žurnalowa datowa banka za składowanski backend "$1" njeda so aktualizować.',
 
@@ -1966,6 +1967,11 @@ Prošu wobkedźbuj, zo druhe websydła móža na dataju z direktnym URL wotkazow
 'allpagesbadtitle' => 'Mjeno strony, kotrež sy zapodał, njebě płaćiwe. Měješe pak mjezyrěčny, pak mjezywikijowy prefiks abo wobsahowaše jedne abo wjace znamješkow, kotrež w titlach dowolene njejsu.',
 'allpages-bad-ns' => 'Mjenowy rum „$1" w {{grammar:lokatiw|{{SITENAME}}}} njeeksistuje.',
 'allpages-hide-redirects' => 'Dalesposrědkowanja schować',
+
+# SpecialCachedPage
+'cachedspecial-viewing-cached-ttl' => 'Wobhladuješ sej pufrowanu wersiju tuteje strony, kotraž móže do $1 stara być.',
+'cachedspecial-viewing-cached-ts' => 'Wobhladuješ sej pufrowanu wersiju tuteje strony, kotraž móhła njeaktualna być.',
+'cachedspecial-refresh-now' => 'Aktualnu wersiju sej wobhladać.',
 
 # Special:Categories
 'categories' => 'Kategorije',
@@ -2395,8 +2401,8 @@ Najnowši zapisk w protokolu blokowanjow so deleka jako referenca podawa:',
 'ipb-confirm' => 'Blokowanje wobkrućić',
 'badipaddress' => 'Njepłaćiwa IP-adresa',
 'blockipsuccesssub' => 'Zablokowanje wuspěšne',
-'blockipsuccesstext' => '[[Special:Contributions/$1|$1]] bu zablokowany.
-<br />Hlej [[Special:BlockList|lisćinu blokowanjow IP]], zo by zablokowanjow pruwował.',
+'blockipsuccesstext' => '[[Special:Contributions/$1|$1]] bu {{GENDER:$1|zablokowany|zablokowana}}.<br />
+Hlej [[Special:BlockList|lisćinu blokowanjow]], zo by zablokowanjow pruwował.',
 'ipb-blockingself' => 'Chceš samoho blokować! Chceš to woprawdźe činić?',
 'ipb-confirmhideuser' => 'Chceš runje wužiwarja z nastajenjom "wužiwarja schować" blokować. To k tomu dowjedźe, zo mjeno wužiwarja so we wšch lisćinach a protokolowych zapiskach potłóči. Chceš to woprawdźe činić?',
 'ipb-edit-dropdown' => 'přičiny zablokowanjow wobdźěłać',
@@ -2446,7 +2452,7 @@ Najnowši zapisk w protokolu blokowanjow so deleka jako referenca podawa:',
 'blocklog-showsuppresslog' => 'Tutón wužiwar bu prjedy zablokowany a schowany. Protokol potłóčenjow  so deleka jako referenca podawa:',
 'blocklogentry' => 'je wužiwarja [[$1]] zablokował z časom spadnjenja $2 $3',
 'reblock-logentry' => 'změni blokowanske nastajenja za [[$1]] z časom spadnjenja $2 $3',
-'blocklogtext' => 'To je protokol blokowanja a wotblokowanja wužiwarjow. Awtomatisce blokowane IP-adresy so njenalistuja. Hlej [[Special:BlockList|lisćinu zablokowanych IP-adresow]] za lisćinu tuchwilnych wuhnaćow a zablokowanjow.',
+'blocklogtext' => 'To je protokol blokowanja a wotblokowanja wužiwarjow. Awtomatisce blokowane IP-adresy so njenalistuja. Hlej [[Special:BlockList|lisćinu blokowanjow]] za lisćinu tuchwilnych wuhnaćow a zablokowanjow.',
 'unblocklogentry' => 'zablokowanje wužiwarja $1 bu zběhnjene',
 'block-log-flags-anononly' => 'jenož anonymnych',
 'block-log-flags-nocreate' => 'wutworjenje wužiwarskich kontow znjemóžnjene',
@@ -3494,6 +3500,9 @@ Ty měł [{{SERVER}}{{SCRIPTPATH}}/COPYING kopiju licency GNU General Public Lic
 'version-software' => 'Instalowana software',
 'version-software-product' => 'Produkt',
 'version-software-version' => 'Wersija',
+'version-entrypoints' => 'URL zastupneho dypka',
+'version-entrypoints-header-entrypoint' => 'Zastupny dypk',
+'version-entrypoints-header-url' => 'URL',
 
 # Special:FilePath
 'filepath' => 'Datajowy puć',
@@ -3681,5 +3690,16 @@ Hewak móžeš slědowacy jednory formular wužiwać. Twój komentar přida so s
 'api-error-unknownerror' => 'Njeznaty zmylk: "$1".',
 'api-error-uploaddisabled' => 'Nahraća su na tutym wikiju znjemóžnjene.',
 'api-error-verification-error' => 'Tuta dataja móhła wobkškodźena być abo wopačny sufiks měć.',
+
+# Durations
+'duration-seconds' => '$1 {{PLURAL:$1|sekunda|sekundźe|sekundy|sekundow}}',
+'duration-minutes' => '$1 {{PLURAL:$1|mjeńšina|mjeńšinje|mjeńšiny|mjeńšin}}',
+'duration-hours' => '$1 {{PLURAL:$1|hodźina|hodźinje|hodźiny|hodźin}}',
+'duration-days' => '$1 {{PLURAL:$1|dźeń|dnjej|dny|dnjow}}',
+'duration-weeks' => '$1 {{PLURAL: $1|tydźeń|njedźeli|njedźele|njedźel}}',
+'duration-years' => '$1 {{PLURAL: $1|lěto|lěće|lěta|lět}}',
+'duration-decades' => '$1 {{PLURAL:$1|lětdźesatk|lětdźesatkaj|lětdźesatki|lětdźesatkow}}',
+'duration-centuries' => '$1 {{PLURAL:$1|lětstotk|lětstotkaj|lětstotki|lětstotkow}}',
+'duration-millennia' => '$1 {{PLURAL:$1|lěttysac|lěttysacaj|lěttysacy|lěttysacow}}',
 
 );

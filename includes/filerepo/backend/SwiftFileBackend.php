@@ -42,17 +42,17 @@ class SwiftFileBackend extends FileBackendStore {
 	 *    shardViaHashLevels : Map of container names to sharding config with:
 	 *                         'base'   : base of hash characters, 16 or 36
 	 *                         'levels' : the number of hash levels (and digits)
-	 *                         'repeat' : hash subdirectories are prefixed with all the 
+	 *                         'repeat' : hash subdirectories are prefixed with all the
 	 *                                    parent hash directory names (e.g. "a/ab/abc")
 	 */
 	public function __construct( array $config ) {
 		parent::__construct( $config );
 		// Required settings
 		$this->auth = new CF_Authentication(
-			$config['swiftUser'], 
-			$config['swiftKey'], 
+			$config['swiftUser'],
+			$config['swiftKey'],
 			null, // account; unused
-			$config['swiftAuthUrl'] 
+			$config['swiftAuthUrl']
 		);
 		// Optional settings
 		$this->authTTL = isset( $config['swiftAuthTTL'] )
@@ -116,7 +116,7 @@ class SwiftFileBackend extends FileBackendStore {
 		try {
 			$dContObj = $this->getContainer( $dstCont );
 			if ( empty( $params['overwrite'] ) &&
-				$this->fileExists( array( 'src' => $params['dst'], 'latest' => 1 ) ) ) 
+				$this->fileExists( array( 'src' => $params['dst'], 'latest' => 1 ) ) )
 			{
 				$status->fatal( 'backend-fail-alreadyexists', $params['dst'] );
 				return $status;
@@ -179,7 +179,7 @@ class SwiftFileBackend extends FileBackendStore {
 		try {
 			$dContObj = $this->getContainer( $dstCont );
 			if ( empty( $params['overwrite'] ) &&
-				$this->fileExists( array( 'src' => $params['dst'], 'latest' => 1 ) ) ) 
+				$this->fileExists( array( 'src' => $params['dst'], 'latest' => 1 ) ) )
 			{
 				$status->fatal( 'backend-fail-alreadyexists', $params['dst'] );
 				return $status;
@@ -255,7 +255,7 @@ class SwiftFileBackend extends FileBackendStore {
 			$sContObj = $this->getContainer( $srcCont );
 			$dContObj = $this->getContainer( $dstCont );
 			if ( empty( $params['overwrite'] ) &&
-				$this->fileExists( array( 'src' => $params['dst'], 'latest' => 1 ) ) ) 
+				$this->fileExists( array( 'src' => $params['dst'], 'latest' => 1 ) ) )
 			{
 				$status->fatal( 'backend-fail-alreadyexists', $params['dst'] );
 				return $status;
@@ -480,7 +480,7 @@ class SwiftFileBackend extends FileBackendStore {
 
 	/**
 	 * Fill in any missing object metadata and save it to Swift
-	 * 
+	 *
 	 * @param $obj CF_Object
 	 * @param $path string Storage path to object
 	 * @return bool Success
@@ -545,7 +545,7 @@ class SwiftFileBackend extends FileBackendStore {
 
 	/**
 	 * Do not call this function outside of SwiftFileBackendFileList
-	 * 
+	 *
 	 * @param $fullCont string Resolved container name
 	 * @param $dir string Resolved storage directory with no trailing slash
 	 * @param $after string Storage path of file to list items after
@@ -560,7 +560,6 @@ class SwiftFileBackend extends FileBackendStore {
 			$prefix = ( $dir == '' ) ? null : "{$dir}/";
 			$files = $container->list_objects( $limit, $after, $prefix );
 		} catch ( NoSuchContainerException $e ) {
-		} catch ( NoSuchObjectException $e ) {
 		} catch ( InvalidResponseException $e ) {
 		} catch ( Exception $e ) { // some other exception?
 			$this->logException( $e, __METHOD__, array( 'cont' => $fullCont, 'dir' => $dir ) );
@@ -573,7 +572,7 @@ class SwiftFileBackend extends FileBackendStore {
 	 * @see FileBackendStore::doGetFileSha1base36()
 	 * @return bool
 	 */
-	public function doGetFileSha1base36( array $params ) {
+	protected function doGetFileSha1base36( array $params ) {
 		$stat = $this->getFileStat( $params );
 		if ( $stat ) {
 			return $stat['sha1'];
@@ -667,11 +666,11 @@ class SwiftFileBackend extends FileBackendStore {
 
 	/**
 	 * Get headers to send to Swift when reading a file based
-	 * on a FileBackend params array, e.g. that of getLocalCopy(). 
+	 * on a FileBackend params array, e.g. that of getLocalCopy().
 	 * $params is currently only checked for a 'latest' flag.
-	 * 
+	 *
 	 * @param $params Array
-	 * @return Array 
+	 * @return Array
 	 */
 	protected function headersFromParams( array $params ) {
 		$hdrs = array();
@@ -799,7 +798,7 @@ class SwiftFileBackend extends FileBackendStore {
 
 	/**
 	 * Log an unexpected exception for this backend
-	 * 
+	 *
 	 * @param $e Exception
 	 * @param $func string
 	 * @param $params Array
@@ -830,7 +829,7 @@ class SwiftFileBackendFileList implements Iterator {
 	protected $pos = 0; // integer
 
 	/** @var SwiftFileBackend */
-	protected $backend; 
+	protected $backend;
 	protected $container; //
 	protected $dir; // string storage directory
 	protected $suffixStart; // integer

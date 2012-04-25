@@ -657,6 +657,7 @@ $2',
 'passwordreset-disabled' => 'ఈ వికీలో సంకేతపదాల మార్పును అచేతనం చేసాం.',
 'passwordreset-pretext' => '{{PLURAL:$1||డేటా శకలాల్లోంచి ఒకదాన్ని ఇవ్వండి}}',
 'passwordreset-username' => 'వాడుకరిపేరు:',
+'passwordreset-domain' => 'డొమైన్:',
 'passwordreset-email' => 'ఈ-మెయిలు చిరునామా:',
 'passwordreset-emailtitle' => '{{SITENAME}}లో ఖాతా వివరాలు',
 'passwordreset-emailtext-ip' => 'ఎవరో (బహుశా మీరే, ఐపీ అడ్రసు $1 నుంచి)  {{SITENAME}} ($4) లో మీ ఖాతా వివరాలను చెప్పమంటూ అడిగారు. కింది వాడుకరి {{PLURAL:$3|ఖాతా|ఖాతాలు}}
@@ -795,8 +796,8 @@ $2
 అభిమత .css మరియు .js పుటల శీర్షికలు ఇంగ్లీషు చిన్నబడి అక్షరాల లోనే ఉండాలని గుర్తుంచుకోండి, ఉదాహరణకు ఇలా {{ns:user}}:Foo/vector.css అంతేగానీ, {{ns:user}}:Foo/Vector.css ఇలా కాదు.",
 'updated' => '(నవీకరించబడింది)',
 'note' => "'''గమనిక:'''",
-'previewnote' => "'''ఇది మునుజూపు మాత్రమే;
-మార్పులని ఇంకా భద్రపరచలేదు!'''",
+'previewnote' => "'''ఇది మునుజూపు మాత్రమేనని గుర్తుంచుకోండి.'''
+మీ మార్పులు ఇంకా భద్రమవ్వలేదు!",
 'previewconflict' => 'భద్రపరచిన తరువాత పై టెక్స్ట్‌ ఏరియాలోని టెక్స్టు ఇలాగ కనిపిస్తుంది.',
 'session_fail_preview' => "'''క్షమించండి! సెషను డేటా పోవడం వలన మీ మార్పులను స్వీకరించలేకపోతున్నాం.'''
 దయచేసి మళ్ళీ ప్రయత్నించండి.
@@ -1893,6 +1894,7 @@ https://www.mediawiki.org/wiki/Manual:Image_Authorization చూడండి.',
 'allpagesprefix' => 'ఈ ఆదిపదం కలిగిన పేజీలను చూపించు:',
 'allpagesbadtitle' => 'మీరిచ్చిన పేజీ పేరు సరైనది కాకపోయి ఉండాలి లేదా దానికి భాషాంతర లేదా అంతర్వికీ ఆదిపదమైనా ఉండి ఉండాలి. పేర్లలో వాడకూడని కారెక్టర్లు ఆ పేరులో ఉండి ఉండవచ్చు.',
 'allpages-bad-ns' => '{{SITENAME}} లో "$1" అనే నేమ్&zwnj;స్పేస్ లేదు.',
+'allpages-hide-redirects' => 'దారిమార్పులను దాచు',
 
 # Special:Categories
 'categories' => 'వర్గాలు',
@@ -3491,6 +3493,7 @@ $5
 # API errors
 'api-error-badaccess-groups' => 'ఈ వికీ లోనికి దస్త్రాలను ఎక్కించే అనుమతి మీకు లేదు.',
 'api-error-empty-file' => 'మీరు దాఖలుచేసిన ఫైల్ ఖాళీది.',
+'api-error-emptypage' => 'కొత్త మరియు ఖాళీ పేజీలను సృష్టించడానికి అనుమతి లేదు.',
 'api-error-filename-tooshort' => 'దస్త్రపు పేరు మరీ చిన్నగా ఉంది.',
 'api-error-filetype-banned' => 'ఈ రకపు దస్త్రాలని నిషేధించారు.',
 'api-error-http' => 'అంతర్గత దోషము: సేవకానికి అనుసంధానమవలేకపోతున్నది.',
@@ -3504,5 +3507,16 @@ $5
 'api-error-unknown-warning' => 'తెలియని హెచ్చరిక: $1',
 'api-error-uploaddisabled' => 'ఈ వికీలో ఎక్కింపులని అచేతనం చేసారు.',
 'api-error-verification-error' => 'ఈ ఫైల్ పాడైవుండవచ్చు, లేదా తప్పుడు పొడిగింతను కలిగివుండవచ్చు.',
+
+# Durations
+'duration-seconds' => '$1 {{PLURAL:$1|క్షణం|క్షణాలు}}',
+'duration-minutes' => '$1 {{PLURAL:$1|నిమిషం|నిమిషాలు}}',
+'duration-hours' => '$1 {{PLURAL:$1|గంట|గంటలు}}',
+'duration-days' => '$1 {{PLURAL:$1|రోజు|రోజులు}}',
+'duration-weeks' => '$1 {{PLURAL: $1|వారం|వారాలు}}',
+'duration-years' => '$1 {{PLURAL:$1|సంవత్సరం|సంవత్సరాలు}}',
+'duration-decades' => '$1 {{PLURAL:$1|దశాబ్దం|దశాబ్దాలు}}',
+'duration-centuries' => '$1 {{PLURAL:$1|శతాబ్దం|శతాబ్దాలు}}',
+'duration-millennia' => '$1 {{PLURAL:$1|సహస్రాబ్దం|సహస్రాబ్దాలు}}',
 
 );

@@ -62,6 +62,21 @@ abstract class BagOStuff {
 	abstract public function get( $key );
 
 	/**
+	 * Get an associative array containing the item for each of the given keys.
+	 * Each item will be false if it does not exist.
+	 * @param $keys Array List of strings
+	 *
+	 * @return Array
+	 */
+	public function getBatch( array $keys ) {
+		$res = array();
+		foreach ( $keys as $key ) {
+			$res[$key] = $this->get( $key );
+		}
+		return $res;
+	}
+
+	/**
 	 * Set an item.
 	 * @param $key string
 	 * @param $value mixed

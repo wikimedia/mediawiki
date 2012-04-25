@@ -623,6 +623,7 @@ $wgMessageStructure = array(
 		'updated',
 		'note',
 		'previewnote',
+		'continue-editing',
 		'previewconflict',
 		'session_fail_preview',
 		'session_fail_preview_html',
@@ -1754,6 +1755,11 @@ $wgMessageStructure = array(
 		'allpagesbadtitle',
 		'allpages-bad-ns',
 		'allpages-hide-redirects',
+	),
+	'cachedspecial' => array(
+		'cachedspecial-viewing-cached-ttl',
+		'cachedspecial-viewing-cached-ts',
+		'cachedspecial-refresh-now',
 	),
 	'categories' => array(
 		'categories',
@@ -3483,6 +3489,14 @@ $wgMessageStructure = array(
 		'version-software',
 		'version-software-product',
 		'version-software-version',
+		'version-entrypoints',
+		'version-entrypoints-header-entrypoint',
+		'version-entrypoints-header-url',
+		'version-entrypoints-articlepath',
+		'version-entrypoints-scriptpath',
+		'version-entrypoints-index-php',
+		'version-entrypoints-api-php',
+		'version-entrypoints-load-php',
 	),
 	'filepath' => array(
 		'filepath',
@@ -3692,6 +3706,17 @@ $wgMessageStructure = array(
 		'api-error-unknownerror',
 		'api-error-uploaddisabled',
 		'api-error-verification-error',
+	),
+	'duration' => array(
+		'duration-seconds',
+		'duration-minutes',
+		'duration-hours',
+		'duration-days',
+		'duration-weeks',
+		'duration-years',
+		'duration-decades',
+		'duration-centuries',
+		'duration-millennia'
 	),
 );
 
@@ -3931,4 +3956,6 @@ Variants for Chinese language",
 	'logging-irc'           => 'For IRC, see bug 34508. Do not change',
 	'feedback'              => 'Feedback',
 	'apierrors'             => 'API errors',
+	'duration'              => 'Durations',
+	'cachedspecial'         => 'SpecialCachedPage',
 );

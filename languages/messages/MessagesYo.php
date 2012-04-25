@@ -975,7 +975,7 @@ Kò ṣe é bòmọ́lẹ̀.',
 # Suppression log
 'suppressionlog' => 'Àkọọ́lẹ̀ ìfisílẹ̀',
 'suppressionlogtext' => 'Nísàlẹ̀ ni àtòjọ àwọn ìparẹ́ àti ìdínà tó ní àwọn àkóónú àbòmọ́lẹ̀ sí àwọn olùmójútó.
-Ẹ wo [[Special:BlockList|àtòjọ ìdínà IP]] fún àtòjọ àwọn ìdénà àti ìdínà ìgbàyí.',
+Ẹ wo [[Special:BlockList|àtòjọ ìdínà]] fún àtòjọ àwọn ìdénà àti ìdínà ìgbàyí.',
 
 # History merging
 'mergehistory' => 'Ìdàpọ̀ àwọn ìtàn ojúewé',
@@ -1390,9 +1390,11 @@ Tí ẹ bá fisílẹ̀ a ó lòó láti tóka iṣẹ́ yín fún yín.',
 'number_of_watching_users_pageview' => '[{{PLURAL:$1|Oníṣe $1|Àwọn oníṣe $1}} ún ṣe ìmójútó]',
 'rc_categories' => 'Òpin sí àwọn ẹ̀ka (pínsọ́tọ̀ pẹ̀lú "|")',
 'rc_categories_any' => 'Èyíkéyìí',
+'rc-change-size-new' => '$1 {{PLURAL:$1|byte|bytes}} lẹ́yìn àtúnṣe',
 'newsectionsummary' => '/* $1 */ abala tuntun',
 'rc-enhanced-expand' => 'Ìfihàn ẹ̀kúnrẹ́rẹ́ (JavaScript pọndandan)',
 'rc-enhanced-hide' => 'Ìfipamọ́ ẹ̀kúnrẹ́rẹ́',
+'rc-old-title' => 'dídá tẹ́lẹ̀tẹ́lẹ̀ bíi "$1"',
 
 # Recent changes linked
 'recentchangeslinked' => 'Àtúnṣe tó báramu',
@@ -1456,7 +1458,7 @@ Láti fí fáìlì pọ̀mọ́ sínú ojúewé kan, ẹ lo àjápọ̀ bíi ìk
 'filetype-missing' => 'Fáìlì yìí kò ní ìfàgùn (fún àpẹrẹ ".jpg").',
 'empty-file' => 'Fáílì tí ẹ fúnsílẹ̀ jẹ́ òfo nínú.',
 'file-too-large' => 'Fáílì tí ẹ fúnsílẹ̀ jẹ́ títóbijù',
-'filename-tooshort' => 'Orúkọ fáílì jẹ́ kíkéréjú.',
+'filename-tooshort' => 'Orúkọ fáílì kéréjú bó ṣe yẹ lọ.',
 'filetype-banned' => 'Irú fáílì yìí ti jẹ́ dídí lọ́nà.',
 'verification-error' => 'Fáìlì yìí kò kọjá ìfidájú fáìlì.',
 'illegal-filename' => 'Orúkọ fáílì yìí kò jẹ́ gbígbàláàyè.',
@@ -2299,7 +2301,7 @@ $1',
 'badipaddress' => 'Àdírẹ́ẹ̀sì IP tíkòtọ́',
 'blockipsuccesssub' => 'Ìdínà yọrí sí rere',
 'blockipsuccesstext' => '[[Special:Contributions/$1|$1]] ti jẹ́ dídílọ́nà.<br />
-Ẹ wo [[Special:BlockList|IP àkójọ ìdínà]] láti ṣàtúnyẹ̀wò àwọn ìdínà.',
+Ẹ wo [[Special:BlockList|àtòjọ ìdínà]] láti ṣàtúnyẹ̀wò àwọn ìdínà.',
 'ipb-blockingself' => 'Ẹ ti fẹ́ dínà ara yín! Ṣé èyí dáa yín lójú?',
 'ipb-edit-dropdown' => 'Àtúnṣe àwọn ìdí ìdínà',
 'ipb-unblock-addr' => 'Ìmúkúrò ìdínà $1',
@@ -2756,10 +2758,22 @@ Tóbájẹ́pé fáìlì ọ̀hún ti jẹ́ títúnṣe sí bóṣewà ní bẹ
 
 'exif-subjectdistancerange-0' => 'Aláìmọ̀',
 
+# Pseudotags used for GPSAltitudeRef
+'exif-gpsaltitude-above-sealevel' => '$1 {{PLURAL:$1|meter|meters}} ló fiwà lókè omi-òkun',
+'exif-gpsaltitude-below-sealevel' => '$1 {{PLURAL:$1|meter|meters}} ló fiwà lábẹ́ omi-òkun',
+
 'exif-gpsmeasuremode-2' => 'Ìwọ̀n ẹlẹ́gbẹ̀ẹ́ 2',
 'exif-gpsmeasuremode-3' => 'Ìwọ̀n ẹlẹ́gbẹ̀ẹ́ 3',
 
+# Pseudotags used for GPSSpeedRef
+'exif-gpsspeed-k' => 'Kilometers láàrin wákàtí kan',
+
+# Pseudotags used for GPSDestDistanceRef
+'exif-gpsdestdistance-k' => 'Kilometers',
+
 'exif-dc-date' => 'Ọjọ́ọdún',
+'exif-dc-publisher' => 'Olùtẹ̀jáde',
+'exif-dc-type' => 'Irú amóhùnmáwòrán',
 
 'exif-iimcategory-ace' => 'Ìṣẹ́ọnà, àṣà àti fàájì',
 'exif-iimcategory-edu' => 'Ẹ̀kọ́',
@@ -2768,6 +2782,8 @@ Tóbájẹ́pé fáìlì ọ̀hún ti jẹ́ títúnṣe sí bóṣewà ní bẹ
 'exif-iimcategory-lab' => 'Ìsẹ́',
 'exif-iimcategory-pol' => 'Ìṣèlú',
 'exif-iimcategory-rel' => 'Ẹ̀sìn àti ìgbàgbọ́',
+'exif-iimcategory-sci' => 'Sáyẹ̀nsì àti ọ̀rọ̀iṣẹ́ọnà',
+'exif-iimcategory-spo' => 'Àwọn eréìdárayá',
 'exif-iimcategory-wea' => 'Ojúọjọ́',
 
 'exif-urgency-low' => 'Kúkúrú ($1)',
@@ -2958,5 +2974,10 @@ Tóbájẹ́pé fáìlì ọ̀hún ti jẹ́ títúnṣe sí bóṣewà ní bẹ
 'feedback-error2' => 'Àsìṣe: Àtúnṣe kùnà',
 'feedback-error3' => 'Àsìṣe: Kò sí ìdáhùn látọ̀dọ̀ API',
 'feedback-close' => 'Ṣetán',
+
+# API errors
+'api-error-filename-tooshort' => 'Orúkọ fáílì kéréjú bó ṣe yẹ lọ.',
+'api-error-unknown-code' => 'Àsìṣe aláìlójúùtú: "$1".',
+'api-error-unknownerror' => 'Àsìṣe aláìlójúùtú: "$1".',
 
 );

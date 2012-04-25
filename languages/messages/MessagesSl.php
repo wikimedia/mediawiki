@@ -874,7 +874,8 @@ Vedite, da .css in .js strani po meri uporabljajo naslov z malo začetnico, npr.
 'updated' => '(Posodobljeno)',
 'note' => "'''Opomba:'''",
 'previewnote' => "'''Pomnite, da je to le predogled strani.'''
-Vaših sprememb še nismo shranili! [[#editform|→ Nadaljujte z urejanjem]]",
+Vaših sprememb še nismo shranili!",
+'continue-editing' => 'Nadaljuj z urejanjem',
 'previewconflict' => 'V prikazanem predogledu je v zgornjem predelu urejanja navedeno besedilo, kakor se bo prikazalo, če ga boste shranili.',
 'session_fail_preview' => "'''Oprostite! Zaradi izgube podatkov o seji nam vašega urejanja žal ni uspelo obdelati.'''
 Prosimo, poskusite znova.
@@ -1113,7 +1114,7 @@ Prosimo, preverite dnevnik.',
 # Suppression log
 'suppressionlog' => 'Dnevnik vračanj',
 'suppressionlogtext' => 'Spodaj je seznam izbrisov in blokiranj, ki vključuje vsebino skrito pred administratorji.
-Oglejte si [[Special:BlockList|seznam blokiranih IP-jev]] za seznam trenutno aktivnih prepovedi in blokiranj.',
+Oglejte si [[Special:BlockList|seznam blokad]] za seznam trenutno aktivnih prepovedi in blokiranj.',
 
 # History merging
 'mergehistory' => 'Združi zgodovine strani',
@@ -1731,6 +1732,7 @@ Prosimo, preverite veljavnost in dostopnost naslova URL ter poskusite ponovno.
 'backend-fail-contenttype' => 'Ne morem določiti vrsto vsebine datoteke za shranjevanje pri »$1«.',
 'backend-fail-batchsize' => 'Skladiščnemu zaledju je dana vrsta $1 {{PLURAL:$1|datotečne operacije|datotečnih operacij}}; omejitev {{PLURAL:$2|je $2 operacija|sta $2 operaciji|so $2 operacije|je $2 operacij}}.',
 
+# File journal errors
 'filejournal-fail-dbconnect' => 'Ne morem se povezati z listovno zbirko podatkov za skladiščno zaledje »$1«.',
 'filejournal-fail-dbquery' => 'Ne morem posodobiti listovne zbirke podatkov za skladiščno zaledje »$1«.',
 
@@ -2071,6 +2073,11 @@ Prosimo, upoštevajte, da se lahko druge spletne strani povezujejo na datoteko z
 Morda vsebuje enega ali več znakov, ki niso dovoljeni v naslovih.',
 'allpages-bad-ns' => '{{SITENAME}} nima imenskega prostora »$1«.',
 'allpages-hide-redirects' => 'Skrij preusmeritve',
+
+# SpecialCachedPage
+'cachedspecial-viewing-cached-ttl' => 'Ogledujete si predpomnjeno različico strani, ki je lahko stara $1.',
+'cachedspecial-viewing-cached-ts' => 'Ogledujete si predpomnjeno različico strani, ki morda ni popolnoma posodobljena.',
+'cachedspecial-refresh-now' => 'Ogled najnovejše.',
 
 # Special:Categories
 'categories' => 'Kategorije',
@@ -2517,7 +2524,7 @@ Vnesite tudi razlog (''na primer'' seznam strani, ki jih je uporabnik po nepotre
 'badipaddress' => 'Neveljaven IP-naslov ali uporabniško ime.',
 'blockipsuccesssub' => 'Blokiranje je uspelo',
 'blockipsuccesstext' => '[[Special:Contributions/$1|$1]] je {{GENDER:$1|blokiran|blokirana|blokiran(-a)}}.<br />
-Oglejte si [[Special:BlockList|seznam blokiranih IP-naslovov]] za pregled blokad.',
+Oglejte si [[Special:BlockList|seznam blokad]] za pregled blokad.',
 'ipb-blockingself' => 'Nameravate se blokirati! Ste prepričani, da želite to storiti?',
 'ipb-confirmhideuser' => 'Nameravate blokirati uporabnika z omogočeno možnostjo »skrij uporabnika«. To bo skrilo uporabnikovo ime na vseh seznamih in dnevniških vnosih. Ste prepričani, da želite to storiti?',
 'ipb-edit-dropdown' => 'Uredi razloge blokade',
@@ -2570,7 +2577,7 @@ Dnevnik blokiranja je na voljo spodaj:',
 Dnevnik skrivanja je na voljo spodaj:',
 'blocklogentry' => '[[$1]] blokiran s časom poteka blokade $2 $3',
 'reblock-logentry' => 'spremenil nastavitve blokade za [[$1]] z iztekom dne $2 ob $3',
-'blocklogtext' => 'Prikazan je dnevnik blokiranja in deblokiranja uporabnikov. Samodejno blokirani IP-naslovi niso navedeni. Trenutno veljavna blokiranja so navedena na [[Special:BlockList|seznamu blokiranih IP-naslovov]].',
+'blocklogtext' => 'Prikazan je dnevnik blokiranja in deblokiranja uporabnikov. Samodejno blokirani IP-naslovi niso navedeni. Trenutno veljavna blokiranja so navedena na [[Special:BlockList|seznamu blokad]].',
 'unblocklogentry' => 'je deblokiral(-a) »$1«',
 'block-log-flags-anononly' => 'samo za brezimne uporabnike',
 'block-log-flags-nocreate' => 'ustvarjanje uporabniških računov onemogočeno',
@@ -3646,6 +3653,11 @@ Skupaj s programom bi morali bi prejeti [{{SERVER}}{{SCRIPTPATH}}/COPYING kopijo
 'version-software' => 'Nameščena programska oprema',
 'version-software-product' => 'Izdelek',
 'version-software-version' => 'Različica',
+'version-entrypoints' => 'URL-ji vstopnih točk',
+'version-entrypoints-header-entrypoint' => 'Vstopna točka',
+'version-entrypoints-header-url' => 'URL',
+'version-entrypoints-articlepath' => '[https://www.mediawiki.org/wiki/Manual:$wgArticlePath Pot članka]',
+'version-entrypoints-scriptpath' => '[https://www.mediawiki.org/wiki/Manual:$wgScriptPath Pot skripta]',
 
 # Special:FilePath
 'filepath' => 'Pot do datoteke',
@@ -3836,5 +3848,16 @@ V nasprotnem primeru lahko uporabite preprost obrazec spodaj. Vašo pripombo bom
 'api-error-unknownerror' => 'Neznana napaka: »$1«.',
 'api-error-uploaddisabled' => 'Nalaganje je onemogočeno na tem wikiju.',
 'api-error-verification-error' => 'Ta datoteka je morda poškodovana ali ima napačno končnico.',
+
+# Durations
+'duration-seconds' => '$1 {{PLURAL:$1|sekunda|sekundi|sekunde|sekund}}',
+'duration-minutes' => '$1 {{PLURAL:$1|minuta|minuti|minute|minut}}',
+'duration-hours' => '$1 {{PLURAL:$1|ura|uri|ure|ur}}',
+'duration-days' => '$1 {{PLURAL:$1|dan|dneva|dnevi|dni}}',
+'duration-weeks' => '$1 {{PLURAL:$1|teden|tedna|tedni|tednov}}',
+'duration-years' => '$1 {{PLURAL:$1|leto|leti|leta|let}}',
+'duration-decades' => '$1 {{PLURAL:$1|desetletje|desetletji|desetletja|desetletij}}',
+'duration-centuries' => '$1 {{PLURAL:$1|stoletje|stoletji|stoletja|stoletij}}',
+'duration-millennia' => '$1 {{PLURAL:$1|tisočletje|tisočletji|tisočletja|tisočletij}}',
 
 );

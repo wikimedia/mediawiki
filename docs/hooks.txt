@@ -395,6 +395,11 @@ In this data array, the key-value-pair identified by the apiLink key is
 required.
 &$apis: array of services
 
+'ApiTokensGetTokenTypes': use this hook to extend action=tokens with new
+token types.
+&$tokenTypes: supported token types in format 'type' => callback function
+used to retrieve this type of tokens.
+
 'ArticleAfterFetchContent': after fetching content of an article from
 the database
 $article: the article (object) being loaded from the database
@@ -996,6 +1001,11 @@ $result: User permissions error to add. If none, return true.
 
 'getUserPermissionsErrorsExpensive': Absolutely the same, but is called only
 	if expensive checks are enabled.
+
+'GitViewers': called when generating the list of git viewers for Special:Version, use
+	this to change the list.
+&$extTypes: associative array of repo URLS to viewer URLs.
+
 
 'ImageBeforeProduceHTML': Called before producing the HTML created by a wiki
 	image insertion.  You can skip the default logic entirely by returning

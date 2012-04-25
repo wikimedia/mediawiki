@@ -671,6 +671,7 @@ class WebRequest {
 
 	/**
 	 * HTML-safe version of appendQuery().
+	 * @deprecated: Deprecated in 1.20, warnings in 1.21, remove in 1.22.
 	 *
 	 * @param $query String: query string fragment; do not include initial '?'
 	 * @return String

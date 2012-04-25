@@ -39,6 +39,7 @@
  * @author Illusion
  * @author Iniquity
  * @author Innv
+ * @author Jackie
  * @author JenVan
  * @author Jl
  * @author KPu3uC B Poccuu
@@ -48,6 +49,7 @@
  * @author Kv75
  * @author Lockal
  * @author MaxSem
+ * @author Ola
  * @author Ole Yves
  * @author Putnik
  * @author Rave
@@ -685,7 +687,7 @@ $2',
 Указана следующая причина: ''$2''.",
 'filereadonlyerror' => "Не удаётся изменить файл «$1», так как хранилище «$2» находится в режиме «только для чтения».
 
-Указана причина: «''$3''».",
+Установивший этот режим администратор оставил следующее разъяснение: «''$3''».",
 
 # Virus scanner
 'virus-badscanner' => "Ошибка настройки. Неизвестный сканер вирусов: ''$1''",
@@ -983,7 +985,7 @@ $2
 'updated' => '(Обновлена)',
 'note' => "'''Примечание:'''",
 'previewnote' => "'''Помните, что это только предварительный просмотр.'''
-Ваши изменения ещё не были записаны! [[#editform|→ продолжить редактирование]]",
+Ваши изменения ещё не были сохранены!",
 'previewconflict' => 'Этот предварительный просмотр отражает текст в верхнем окне редактирования так, как он будет выглядеть, если вы решите записать его.',
 'session_fail_preview' => "'''К сожалению, сервер не смог обработать вашу правку из-за потери идентификатора сессии.
 Пожалуйста, попробуйте ещё раз.
@@ -1066,6 +1068,7 @@ $2
 'edit-no-change' => 'Ваша правка была отклонена, так как в тексте не было сделано изменений.',
 'edit-already-exists' => 'Невозможно создать новую страницу.
 Она уже существует.',
+'defaultmessagetext' => 'Текст по умолчанию',
 
 # Parser/template warnings
 'expensive-parserfunction-warning' => 'Внимание. Эта страница содержит слишком много вызовов ресурсоёмких функций.
@@ -1289,7 +1292,7 @@ $1",
 'searchhelp-url' => 'Help:Содержание',
 'searchmenu-prefix' => '[[Special:PrefixIndex/$1|Показать страницы с этим префиксом]]',
 'searchprofile-articles' => 'Основные страницы',
-'searchprofile-project' => 'Страницы справки и проектов',
+'searchprofile-project' => 'Страницы справки и проекта',
 'searchprofile-images' => 'Мультимедиа',
 'searchprofile-everything' => 'Везде',
 'searchprofile-advanced' => 'Расширенный',
@@ -1829,6 +1832,7 @@ $1',
 'backend-fail-contenttype' => 'Не удалось определить тип содержимого файла, чтобы сохранить его в «$1».',
 'backend-fail-batchsize' => 'Хранилище получило блок из $1 {{PLURAL:$1|файловой операции|файловых операций|файловых операций}}, ограничение составляет $2 {{PLURAL:$1|операцию|операции|файловых операций}}.',
 
+# File journal errors
 'filejournal-fail-dbconnect' => 'Не удалось подключиться к базе данных журнала для хранилища «$1».',
 'filejournal-fail-dbquery' => 'Не удалось обновить базу данных журнала для хранилища «$1».',
 
@@ -2165,6 +2169,11 @@ $1',
 'allpagesbadtitle' => 'Недопустимое название страницы. Заголовок содержит интервики, межъязыковой префикс или запрещённые в заголовках символы.',
 'allpages-bad-ns' => '{{SITENAME}} не содержит пространства имён «$1».',
 'allpages-hide-redirects' => 'Скрыть перенаправления',
+
+# SpecialCachedPage
+'cachedspecial-viewing-cached-ttl' => 'Вы просматриваете закэшированную версию страницы, она могла быть обновлена $1 назад.',
+'cachedspecial-viewing-cached-ts' => 'Вы просматриваете кэшированную версию этой страницы, которая может серьёзно отличаться от текущей версии.',
+'cachedspecial-refresh-now' => 'Просмотреть последнюю версию.',
 
 # Special:Categories
 'categories' => 'Категории',
@@ -2603,8 +2612,8 @@ $1',
 'ipb-confirm' => 'Подтвердить блокировку',
 'badipaddress' => 'IP-адрес записан в неправильном формате, или участника с таким именем не существует.',
 'blockipsuccesssub' => 'Блокировка произведена',
-'blockipsuccesstext' => '[[Special:Contributions/$1|«$1»]] заблокирован.<br />
-См. [[Special:BlockList|список заблокированных IP-адресов]].',
+'blockipsuccesstext' => '[[Special:Contributions/$1|«$1»]] {{GENDER:$1|заблокирован|заблокирована}}.<br />
+См. [[Special:BlockList|список заблокированных IP-адресов]] для просмотра блокировок.',
 'ipb-blockingself' => 'Вы пытаетесь заблокировать себя самого! Вы уверены, что вы хотите это сделать?',
 'ipb-confirmhideuser' => 'Вы намереваетесь заблокировать участника и скрыть его имя. Оно не будет отображаться в списках и журналах. Вы уверены, что хотите это сделать?',
 'ipb-edit-dropdown' => 'Править список причин',
@@ -3824,6 +3833,11 @@ MediaWiki распространяется в надежде, что она бу
 'version-software' => 'Установленное программное обеспечение',
 'version-software-product' => 'Продукт',
 'version-software-version' => 'Версия',
+'version-entrypoints' => 'Адреса точек входа',
+'version-entrypoints-header-entrypoint' => 'Точка входа',
+'version-entrypoints-header-url' => 'URL',
+'version-entrypoints-articlepath' => '[https://www.mediawiki.org/wiki/Manual:$wgArticlePath Путь к статье]',
+'version-entrypoints-scriptpath' => '[https://www.mediawiki.org/wiki/Manual:$wgScriptPath Путь к скрипту]',
 
 # Special:FilePath
 'filepath' => 'Путь к файлу',
@@ -4011,5 +4025,16 @@ MediaWiki распространяется в надежде, что она бу
 'api-error-unknownerror' => 'Неизвестная ошибка: «$1».',
 'api-error-uploaddisabled' => 'В этой вики отключена возможность загрузки файлов.',
 'api-error-verification-error' => 'Возможно, этот файл повреждён или имеет неправильное расширение.',
+
+# Durations
+'duration-seconds' => '$1 {{PLURAL:$1|секунда|секунды|секунд}}',
+'duration-minutes' => '$1 {{PLURAL:$1|минута|минуты|минут}}',
+'duration-hours' => '$1 {{PLURAL:$1|час|часа|часов}}',
+'duration-days' => '$1 {{PLURAL:$1|день|дня|дней}}',
+'duration-weeks' => '$1 {{PLURAL:$1|неделя|недели|недель}}',
+'duration-years' => '$1 {{PLURAL:$1|год|года|лет}}',
+'duration-decades' => '$1 {{PLURAL:$1|декада|декады|декад}}',
+'duration-centuries' => '$1 {{PLURAL:$1|век|века|веков}}',
+'duration-millennia' => '$1 {{PLURAL:$1|тысячелетие|тысячелетия|тысячелетий}}',
 
 );

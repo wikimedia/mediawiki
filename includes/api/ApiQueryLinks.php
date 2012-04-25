@@ -116,15 +116,16 @@ class ApiQueryLinks extends ApiQueryGeneratorBase {
 				$this->dieUsage( 'Invalid continue param. You should pass the ' .
 					'original value returned by the previous query', '_badcontinue' );
 			}
+			$op = $params['dir'] == 'descending' ? '<' : '>';
 			$plfrom = intval( $cont[0] );
 			$plns = intval( $cont[1] );
-			$pltitle = $this->getDB()->strencode( $this->titleToKey( $cont[2] ) );
+			$pltitle = $this->getDB()->addQuotes( $this->titleToKey( $cont[2] ) );
 			$this->addWhere(
-				"{$this->prefix}_from > $plfrom OR " .
+				"{$this->prefix}_from $op $plfrom OR " .
 				"({$this->prefix}_from = $plfrom AND " .
-				"({$this->prefix}_namespace > $plns OR " .
+				"({$this->prefix}_namespace $op $plns OR " .
 				"({$this->prefix}_namespace = $plns AND " .
-				"{$this->prefix}_title >= '$pltitle')))"
+				"{$this->prefix}_title $op= $pltitle)))"
 			);
 		}
 

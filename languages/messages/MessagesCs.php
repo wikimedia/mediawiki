@@ -371,7 +371,7 @@ $messages = array(
 'tog-rememberpassword' => 'Zapamatovat si mé přihlášení v tomto prohlížeči (maximálně $1 {{PLURAL:$1|den|dny|dní}})',
 'tog-watchcreations' => 'Přidávat mnou založené stránky ke sledovaným',
 'tog-watchdefault' => 'Přidávat mnou editované stránky ke sledovaným',
-'tog-watchmoves' => 'Přidávat přesouvané stránky mezi sledované',
+'tog-watchmoves' => 'Přidávat mnou přesouvané stránky mezi sledované',
 'tog-watchdeletion' => 'Přidávat stránky, které smažu, mezi sledované',
 'tog-minordefault' => 'Označit editaci implicitně jako malá editace',
 'tog-previewontop' => 'Zobrazovat náhled před editačním oknem (ne za ním)',
@@ -950,16 +950,16 @@ Pokud ještě jednou kliknete na „{{int:savearticle}}“, bude vaše editace z
 'summary-preview' => 'Náhled shrnutí:',
 'subject-preview' => 'Náhled předmětu/nadpisu:',
 'blockedtitle' => 'Uživatel zablokován',
-'blockedtext' => "'''Vaší IP adrese či uživatelskému jménu byla zablokována možnost editace.'''
+'blockedtext' => "Vaší IP adrese či uživatelskému jménu byla zablokována možnost editace.'''
 
-Zablokování provedl $1.
+Zablokování provedl{{gender:$1||a}} $1.
 Udaným důvodem bylo ''$2''.
 
 * Začátek blokování: $8
 * Zablokování vyprší: $6
 * Blokovaný uživatel: $7
 
-Pokud chcete zablokování prodiskutovat, můžete kontaktovat uživatele $1 či jiného [[{{MediaWiki:Grouppage-sysop}}|správce]].
+Pokud chcete zablokování prodiskutovat, můžete kontaktovat {{gender:$1|uživatele|uživatelku}} $1 či jiného [[{{MediaWiki:Grouppage-sysop}}|správce]].
 Uvědomte si, že nemůžete použít nabídku „Poslat e-mail“, jestliže nemáte ve svém [[Special:Preferences|nastavení]] uvedenu platnou e-mailovou adresu nebo pokud vám byla tato možnost zakázána.
 Vaše IP adresa je $3 a&nbsp;identifikační číslo bloku je #$5; tyto údaje uvádějte ve všech dotazech na správce.",
 'autoblockedtext' => "Vaše IP adresa byla automaticky zablokována, protože ji používal jiný uživatel, kterého zablokoval $1.
@@ -1022,7 +1022,7 @@ Zde je pro přehled zobrazen nejnovější záznam z knihy zablokování:',
 'updated' => '(Změna uložena)',
 'note' => "'''Poznámka:'''&nbsp;",
 'previewnote' => "'''Pamatujte, že toto je pouze náhled.'''
-Změny zatím nebyly uloženy! [[#editform|→ Pokračovat v editaci]]",
+Změny zatím nebyly uloženy!",
 'previewconflict' => 'Tento náhled ukazuje text tak, jak bude vypadat po uložení stránky.',
 'session_fail_preview' => "'''Váš požadavek se nepodařilo zpracovat kvůli ztrátě dat z relace.
 Zkuste to prosím znovu.
@@ -1098,6 +1098,7 @@ Zřejmě byla smazána.',
 'edit-conflict' => 'Editační konflikt.',
 'edit-no-change' => 'Vaše editace byla ignorována, protože nedošlo k žádné změně textu.',
 'edit-already-exists' => 'Nepodařilo se vytvořit novou stránku, protože již existuje.',
+'defaultmessagetext' => 'Výchozí text hlášení',
 
 # Parser/template warnings
 'expensive-parserfunction-warning' => 'Varování: Tato stránka obsahuje příliš mnoho volání výkonnostně náročných funkcí parseru.
@@ -1854,6 +1855,7 @@ Kontaktuje prosím [[Special:ListUsers/sysop|správce]].',
 'backend-fail-contenttype' => 'Nelze určit typ obsahu souboru k uložení do „$1“.',
 'backend-fail-batchsize' => 'Koncový úložný systém přijal dávku s $1 {{PLURAL:souborovou operací|souborovými operacemi}}; maximum je {{PLURAL:$2|$2}}.',
 
+# File journal errors
 'filejournal-fail-dbconnect' => 'Nelze se připojit k žurnálové databázi pro koncový úložný systém „$1“.',
 'filejournal-fail-dbquery' => 'Nepodařilo se aktualizovat žurnálovou databázi pro koncový úložný systém „$1“.',
 
@@ -2187,6 +2189,11 @@ Zobrazení můžete zúžit výběrem typu záznamu, uživatelského jména (zá
 'allpagesbadtitle' => 'Zadaný název stránky nebyl platný nebo obsahoval předponu mezijazykového či interwiki odkazu. Možná obsahoval znaky, které v názvu nejsou dovoleny.',
 'allpages-bad-ns' => '{{SITENAME}} nemá jmenný prostor "$1".',
 'allpages-hide-redirects' => 'Skrýt přesměrování',
+
+# SpecialCachedPage
+'cachedspecial-viewing-cached-ttl' => 'Prohlížíte si cachovanou verzi této stránky, která může být až $1 stará.',
+'cachedspecial-viewing-cached-ts' => 'Prohlížíte si cachovanou verzi této stránky, která nemusí být zcela aktuální.',
+'cachedspecial-refresh-now' => 'Zobrazit nejnovější.',
 
 # Special:Categories
 'categories' => 'Kategorie',
@@ -2616,7 +2623,7 @@ Udejte přesný důvod níže (například ocitujte, které stránky byly poško
 'ipb-confirm' => 'Potvrdit zablokování',
 'badipaddress' => 'Neplatná IP adresa',
 'blockipsuccesssub' => 'Zablokování uspělo',
-'blockipsuccesstext' => 'Uživatel „[[Special:Contributions/$1|$1]]“ je zablokován.<br />
+'blockipsuccesstext' => '„[[Special:Contributions/$1|$1]]“ je {{GENDER:$1|zablokován|zablokována}}.<br />
 Můžete si prohlédnout [[Special:BlockList|seznam zablokovaných uživatelů]].',
 'ipb-blockingself' => 'Chystáte se zablokovat {{gender:|sám|sama|sami}} sebe! Jste si {{gender:|jist|jista|jisti}}, že to chcete udělat?',
 'ipb-confirmhideuser' => 'Chystáte se zablokovat uživatele se zapnutou volbou „skrýt uživatelské jméno“. To způsobí, že jméno uživatele zmizí ze všech seznamů a protokolovacích záznamů. Jste si {{gender:|jist|jista|jisti}}, že to chcete udělat?',
@@ -2668,7 +2675,9 @@ Zde je pro přehled zobrazen výpis z knihy zablokování:',
 'blocklog-showsuppresslog' => 'Tento uživatel byl zablokován a skryt. Zde je pro přehled zobrazen výpis záznamu utajení:',
 'blocklogentry' => 'blokuje „[[$1]]“ s časem vypršení $2 $3',
 'reblock-logentry' => 'mění nastavení bloku „[[$1]]“ s časem vypršení $2 $3',
-'blocklogtext' => 'Toto je kniha úkonů blokování a odblokování uživatelů. Automaticky blokované IP adresy nejsou vypsány. Podívejte se na [[Special:BlockList|seznam blokování IP]] s výčtem aktuálních zákazů a blokování.',
+'blocklogtext' => 'Toto je kniha úkonů blokování a odblokování uživatelů.
+Automaticky blokované IP adresy nejsou vypsány.
+Vizte též [[Special:BlockList|seznam všech probíhajících bloků]].',
 'unblocklogentry' => 'odblokovává „$1“',
 'block-log-flags-anononly' => 'pouze anonymní uživatelé',
 'block-log-flags-nocreate' => 'vytváření účtů zablokováno',
@@ -4001,5 +4010,16 @@ Jinak můžete využít jednoduchý formulář níže. Váš komentář bude př
 'api-error-unknownerror' => 'Neznámá chyba: „$1“.',
 'api-error-uploaddisabled' => 'Načítání souborů je na této wiki vypnuto.',
 'api-error-verification-error' => 'Soubor je možná poškozen nebo má špatnou příponu.',
+
+# Durations
+'duration-seconds' => '$1 {{PLURAL:$1|sekunda|sekundy|sekund}}',
+'duration-minutes' => '$1 {{PLURAL:$1|minuta|minuty|minut}}',
+'duration-hours' => '$1 {{PLURAL:$1|hodina|hodiny|hodin}}',
+'duration-days' => '$1 {{PLURAL:$1|den|dny|dní}}',
+'duration-weeks' => '$1 {{PLURAL:$1|týden|týdny|týdnů}}',
+'duration-years' => '$1 {{PLURAL:$1|rok|roky|let}}',
+'duration-decades' => '$1 {{PLURAL:$1|dekáda|dekády|dekád}}',
+'duration-centuries' => '$1 {{PLURAL:$1|století}}',
+'duration-millennia' => '$1 {{PLURAL:$1|tisíciletí}}',
 
 );

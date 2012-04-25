@@ -550,6 +550,7 @@ Voluntez konfirmez se vu volas krear/redaktar ica pagino.',
 Voluntez probar itere.
 Se ol ankore nefuncionas, probez [[Special:UserLogout|ekirar]] e pose enirar.",
 'editing' => 'Vu redaktas $1',
+'creating' => 'Vu kreas $1',
 'editingsection' => 'Vu redaktas $1 (seciono)',
 'editingcomment' => 'Vu redaktas $1 (nova seciono)',
 'editconflict' => 'Redakto-konflikto: $1',

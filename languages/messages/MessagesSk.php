@@ -11,6 +11,7 @@
  * @author Danny B.
  * @author Helix84
  * @author Kaganer
+ * @author Kusavica
  * @author Liso
  * @author Maros
  * @author Michawiki
@@ -664,9 +665,9 @@ $2',
 'ns-specialprotected' => 'Stránky v mennom pristore {{ns:special}} nie je možné upravovať.',
 'titleprotected' => "Používateľ [[User:$1|$1]] zabránil vytváraniu stránky s týmto názvom.
 Udaný dôvod: ''$2''.",
-'filereadonlyerror' => "Nebolo možné modifikovať súbor „$1“, protože úložisko „$2“ je momentálne v režime len na čítanie.
+'filereadonlyerror' => 'Nebolo možné modifikovať súbor „$1“, pretože úložisko „$2“ je momentálne v režime len na čítanie.
 
-Udaný dôvod: „''$3''“.",
+Správca, ktorý ho zamkol ponúkol toto vysvetlenie: „$3“.',
 
 # Virus scanner
 'virus-badscanner' => "Chybná konfigurácia: neznámy antivírus: ''$1''",
@@ -757,6 +758,7 @@ Z tohto dôvodu nemôžu návštevníci z tejto IP adresy momentálne vytvoriť 
 'emailconfirmlink' => 'Potvrďte vašu e-mailovú adresu',
 'invalidemailaddress' => 'Emailovú adresu nemožno akceptovať, pretože sa zdá, že má neplatný formát. Zadajte adresu v správnom tvare alebo nechajte príslušné políčko prázdne.',
 'cannotchangeemail' => 'Na tejto wiki nie je možné meniť e-mailové adresy používateľského konta.',
+'emaildisabled' => 'Táto lokalita nedokáže posielať emaily.',
 'accountcreated' => 'Účet vytvorený',
 'accountcreatedtext' => 'Používateľský účet $1 bol vytvorený.',
 'createaccount-title' => 'Vytvorenie účtu na {{GRAMMAR:lokál|{{SITENAME}}}}',
@@ -974,6 +976,7 @@ Ak to nebude fungovať, skúste sa [[Special:UserLogout|odhlásiť]] a znovu pri
 'token_suffix_mismatch' => "'''Vaša úprava bola zamietnutá, pretože váš klient pokazil znaky s diakritikou v editačnom symbole (token). Úprava bola zamietnutá, aby sa zabránilo poškodeniu textu stránky. Toto sa občas stáva, keď používate chybnú anonymnú proxy službu cez webové rozhranie.'''",
 'edit_form_incomplete' => "'''Niektoré časti editačného formulára nedosiahli server. Prosím, znova skontrolujte, že vaše úpravy sú nepoškodené a skúste to znova.'''",
 'editing' => 'Úprava stránky $1',
+'creating' => 'Vytvára sa $1',
 'editingsection' => 'Úprava stránky $1 (sekcia)',
 'editingcomment' => 'Úprava stránky $1 (nová sekcia)',
 'editconflict' => 'Konflikt pri úprave: $1',
@@ -1039,6 +1042,7 @@ Zdá sa, že bola zmazaná.',
 'edit-no-change' => 'Vaša úprava bola ignorovaná, pretože ste v texte nič nezmenili.',
 'edit-already-exists' => 'Nebolo možné vytvoriť novú stránku.
 Už existuje.',
+'defaultmessagetext' => 'Predvolený text správy',
 
 # Parser/template warnings
 'expensive-parserfunction-warning' => 'Upozornenie: Táto stránka obsahuje príliš mnoho volaní funkcií syntaktického analyzátora, ktoré nadmerne zaťažujú server.
@@ -1800,6 +1804,7 @@ Ak problém pretrváva, kontaktujte [[Special:ListUsers/sysop|správcu systému]
 'backend-fail-contenttype' => 'Nebolo možné určiť typ obsahu súboru, ktorý sa má uložiť na „$1“.',
 'backend-fail-batchsize' => 'Do úložiska bola zaslaná dávka s $1 {{PLURAL:$1|operáciou|operáciami}}; limit je $2 {{PLURAL:$2|operácia|operácie|operácií}}.',
 
+# File journal errors
 'filejournal-fail-dbconnect' => 'Nepodarilo sa pripojiť k žurnálovej databáze úložiska „$1“.',
 'filejournal-fail-dbquery' => 'Nepodarilo sa aktualizovať žurnálovú databázu úložiska „$1“.',
 
@@ -1916,6 +1921,10 @@ Môžete si pozrieť [[Special:WhatLinksHere/$2|úplný zoznam]].',
 'sharedupload' => 'Tento zdieľaný súbor je z $1 a je možné ho používať na iných projektoch.',
 'sharedupload-desc-there' => 'Tento zdieľaný súbor je z $1 a je možné ho používať na iných projektoch. Ďalšie informácie nájdete na [$2 popisnej stránke súboru].',
 'sharedupload-desc-here' => 'Tento zdieľaný súbor je z $1 a je možné ho používať na iných projektoch. Nižšie sú zobrazené informácie z [$2 popisnej stránky súboru].',
+'sharedupload-desc-edit' => 'Tento súbor je z $1 a môžu ho používať iné projekty.
+Možno chcete upraviť popis na jeho [$2 popisnej stránke súboru] tam.',
+'sharedupload-desc-create' => 'Tento súbor je z $1 a môžu ho používať iné projekty.
+Možno chcete upraviť popis na jeho [$2 popisnej stránke súboru] tam.',
 'filepage-nofile' => 'Neexistuje žiadny súbor s takýmto názvom.',
 'filepage-nofile-link' => 'Súbor s takýmto názvom neexistuje, ale môžete ho [$1 nahrať].',
 'uploadnewversion-linktext' => 'Nahrať novú verziu tohto súboru',
@@ -2126,6 +2135,12 @@ Môžete zúžiť rozsah, ak zvolíte typ záznamu, používateľské meno alebo
 'allpagesprefix' => 'Zobraziť stránky s predponou:',
 'allpagesbadtitle' => 'Zadaný názov stránky je neplatný alebo mal medzijazykový alebo interwiki prefix. Môže obsahovať jeden alebo viac znakov, ktoré nie je možné použiť v názve stránky.',
 'allpages-bad-ns' => '{{SITENAME}} nemá menný priestor „$1“.',
+'allpages-hide-redirects' => 'Skryť presmerovania',
+
+# SpecialCachedPage
+'cachedspecial-viewing-cached-ttl' => 'Prezeráte si kópiu stránky z vyrovnávacej pamäte, môže byť stará až $1.',
+'cachedspecial-viewing-cached-ts' => 'Prezeráte si kópiu stránky z vyrovnávacej pamäte, nemusí byť úplne aktuálna.',
+'cachedspecial-refresh-now' => 'Zobraziť aktuálnu.',
 
 # Special:Categories
 'categories' => 'Kategórie',
@@ -3909,5 +3924,16 @@ V opačnom prípade môžete použiť zjednodušený formulár nižšie. Váš k
 'api-error-unknownerror' => 'Neznáma chyba: „$1“',
 'api-error-uploaddisabled' => 'Nahrávanie je na tejto wiki zakázané.',
 'api-error-verification-error' => 'Tento súbor môže byť poškodený, alebo má zlú príponu.',
+
+# Durations
+'duration-seconds' => '$1 {{PLURAL:$1|sekunda|sekundy|sekúnd}}',
+'duration-minutes' => '$1 {{PLURAL:$1|minúta|minúty|minút}}',
+'duration-hours' => '$1 {{PLURAL:$1|hodina|hodiny|hodín}}',
+'duration-days' => '$1 {{PLURAL:$1|deň|dni|dní}}',
+'duration-weeks' => '$1 {{PLURAL:$1|týždeň|týždne|týždňov}}',
+'duration-years' => '$1 {{PLURAL:$1|rok|roky|rokov}}',
+'duration-decades' => '$1 {{PLURAL:$1|dekáda|dekády|dekád}}',
+'duration-centuries' => '$1 {{PLURAL:$1|storočie|storočia|storočí}}',
+'duration-millennia' => '$1 {{PLURAL:$1|tisícročie|tisícročia|tisícročí}}',
 
 );

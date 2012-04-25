@@ -677,7 +677,7 @@ $2',
 Uzasadnienie blokady: ''$2''.",
 'filereadonlyerror' => 'Nie można zmodyfikować pliku "$1" ponieważ repozytorium plików "$2" jest w trybie tylko do odczytu.
 
-Podany powód to "\'\'$3\'\'".',
+Administrator blokujący go podał następujący powód "\'\'$3\'\'".',
 
 # Virus scanner
 'virus-badscanner' => "Zła konfiguracja – nieznany skaner antywirusowy ''$1''",
@@ -773,7 +773,7 @@ Poniższe funkcje poczty nie działają.",
 'invalidemailaddress' => 'Adres e‐mail jest niepoprawny i nie może być zaakceptowany.
 Wpisz poprawny adres e‐mail lub wyczyść pole.',
 'cannotchangeemail' => 'Na tej wiki nie ma możliwości zmiany adresu e‐mail przypisanego do konta.',
-'emaildisabled' => 'Ta witryna nie można wysłać wiadomości e-mail.',
+'emaildisabled' => 'Ta witryna nie może wysłać wiadomości e-mail.',
 'accountcreated' => 'Konto zostało utworzone',
 'accountcreatedtext' => 'Konto dla $1 zostało utworzone.',
 'createaccount-title' => 'Utworzenie konta w {{GRAMMAR:MS.lp|{{SITENAME}}}}',
@@ -973,7 +973,7 @@ Strony użytkownika zawierające CSS i JavaScript powinny zaczynać się małą 
 'updated' => '(Zmodyfikowano)',
 'note' => "'''Uwaga:'''",
 'previewnote' => "'''To jest tylko podgląd'''
-Zmiany nie zostały jeszcze zapisane! [[#editform|→ Kontynuuj edycję]]",
+Zmiany nie zostały jeszcze zapisane!",
 'previewconflict' => 'Podgląd odnosi się do tekstu z górnego pola edycji. Tak będzie wyglądać strona, jeśli zdecydujesz się ją zapisać.',
 'session_fail_preview' => "'''Uwaga! Serwer nie może przetworzyć tej edycji z powodu utraty danych sesji.
 Spróbuj jeszcze raz.
@@ -1054,12 +1054,13 @@ Zdaje się, że została skasowana.',
 'edit-no-change' => 'Twoja edycja została zignorowana, ponieważ nie zmienił{{GENDER:|eś|aś|eś(‐aś)}} niczego w tekście.',
 'edit-already-exists' => 'Nie udało się stworzyć nowej strony.
 Strona już istnieje.',
+'defaultmessagetext' => 'Domyślny tekst komunikatu',
 
 # Parser/template warnings
 'expensive-parserfunction-warning' => 'Uwaga! Ta strona zawiera zbyt wiele wywołań złożonych obliczeniowo funkcji parsera.
 
 Powinno być mniej niż $2 {{PLURAL:$2|wywołanie|wywołania|wywołań}}, a obecnie {{PLURAL:$1|jest $1 wywołanie|są $1 wywołania|jest $1 wywołań}}.',
-'expensive-parserfunction-category' => 'Strony ze zbyt dużą liczbą wywołań trudnych funkcji parsera',
+'expensive-parserfunction-category' => 'Strony ze zbyt dużą liczbą wywołań kosztownych funkcji parsera',
 'post-expand-template-inclusion-warning' => 'Uwaga – zbyt duża wielkość wykorzystanych szablonów.
 Niektóre szablony nie zostaną użyte.',
 'post-expand-template-inclusion-category' => 'Strony, w których przekroczone jest ograniczenie wielkości użytych szablonów',
@@ -1824,6 +1825,7 @@ Jeśli problem będzie się powtarzał, skontaktuj się z [[Special:ListUsers/sy
 'backend-fail-contenttype' => 'Nie można określić typ zawartości pliku do przechowywania w "$1".',
 'backend-fail-batchsize' => 'Wewnętrzne funkcje magazynowania otrzymały $1 {{PLURAL:$1|operację|operacje|operacji}} na pliku; limit wynosi $2 {{PLURAL:$2| operacja|operacje|operacji}}.',
 
+# File journal errors
 'filejournal-fail-dbconnect' => 'Nie można połączyć się z bazą danych dziennika dla backendu magazynowania "$1".',
 'filejournal-fail-dbquery' => 'Nie można zaktualizować bazy danych dziennika dla backendu magazynowania"$1".',
 
@@ -2156,6 +2158,11 @@ Możesz zawęzić liczbę wyników poprzez wybranie typu rejestru, nazwy użytko
 'allpagesbadtitle' => 'Podana nazwa jest nieprawidłowa, zawiera prefiks międzyprojektowy lub międzyjęzykowy. Może ona także zawierać w sobie jeden lub więcej znaków, których użycie w nazwach jest niedozwolone.',
 'allpages-bad-ns' => 'W {{GRAMMAR:MS.lp|{{SITENAME}}}} nie istnieje przestrzeń nazw „$1”.',
 'allpages-hide-redirects' => 'Ukryj przekierowania',
+
+# SpecialCachedPage
+'cachedspecial-viewing-cached-ttl' => 'Oglądasz buforowaną wersję tej strony, której wiek to maksymalnie  $1.',
+'cachedspecial-viewing-cached-ts' => 'Oglądasz buforowaną wersję tej strony, który nie może być w pełni aktualny.',
+'cachedspecial-refresh-now' => 'Najpóźniejszy widok.',
 
 # Special:Categories
 'categories' => 'Kategorie',
@@ -3074,8 +3081,8 @@ Najprawdopodobniej zostało to spowodowane przez link do zewnętrznej strony int
 'markedaspatrollederror-noautopatrol' => 'Nie masz uprawnień wymaganych do oznaczania swoich edycji jako „sprawdzone”.',
 
 # Patrol log
-'patrol-log-page' => 'Dziennik patrolowania',
-'patrol-log-header' => 'Poniżej znajduje się dziennik patrolowania stron.',
+'patrol-log-page' => 'Rejestr patrolowania',
+'patrol-log-header' => 'Poniżej znajduje się rejestr patrolowania stron.',
 'log-show-hide-patrol' => '$1 rejestr sprawdzania',
 
 # Image deletion
@@ -3993,5 +4000,16 @@ W przeciwnym wypadku można użyć prostego formularza poniżej. Komentarz zosta
 'api-error-unknownerror' => 'Nieznany błąd: „$1”',
 'api-error-uploaddisabled' => 'Na tej wiki przesyłanie zostało wyłączone.',
 'api-error-verification-error' => 'Plik może być uszkodzony lub nazwa pliku ma nieprawidłowe rozszerzenie.',
+
+# Durations
+'duration-seconds' => '$1 {{PLURAL:$1|sekunda|sekundy|sekund}}',
+'duration-minutes' => '$1 {{PLURAL:$1|minuta|minuty|minut}}',
+'duration-hours' => '$1 {{PLURAL:$1|godzina|godziny|godzin}}',
+'duration-days' => '$1 {{PLURAL:$1|dzień|dni}}',
+'duration-weeks' => '$1 {{PLURAL:$1|tydzień|tygodnie|tygodni}}',
+'duration-years' => '$1 {{PLURAL:$1|rok|lata|lat}}',
+'duration-decades' => '$1 {{PLURAL:$1|dziesięciolecie|dekady|dekad}}',
+'duration-centuries' => '$1 {{PLURAL:$1|stulecie|stulecia|stuleci}}',
+'duration-millennia' => '$1 {{PLURAL:$1|tysiąclecie|tysiąclecia|tysiącleci}}',
 
 );

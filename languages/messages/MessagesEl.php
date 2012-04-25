@@ -3795,6 +3795,11 @@ $5
 'sqlite-no-fts' => '$1 χωρίς την υποστήριξη αναζήτησης πλήρους κειμένου',
 
 # New logging system
+'logentry-delete-delete' => 'Ο/η $1 διέγραψε τη σελίδα $3',
+'logentry-delete-restore' => 'Ο/η $1 αποκατέστησε τη σελίδα $3',
+'revdelete-content-hid' => 'το περιεχόμενο αποκρύφθηκε',
+'revdelete-summary-hid' => 'Η σύνοψη επεξεργασίας αποκρύφθηκε',
+'revdelete-uname-hid' => 'Το όνομα χρήστη αποκρύφθηκε',
 'revdelete-restricted' => 'εφάρμοσε περιορισμούς στους sysops',
 'revdelete-unrestricted' => 'αφαίρεσε περιορισμούς στους sysops',
 'logentry-newusers-create' => '$1 δημιούργησε έναν λογαριασμό χρήστη',

@@ -1,42 +1,28 @@
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
-  "http://www.w3.org/TR/html4/loose.dtd">
-<html>
-<head>
-  <title>Jasmine Test Runner</title>
-  <link rel="stylesheet" type="text/css" href="lib/jasmine-1.0.1/jasmine.css">
-  <script type="text/javascript" src="lib/jasmine-1.0.1/jasmine.js"></script>
-  <script type="text/javascript" src="lib/jasmine-1.0.1/jasmine-html.js"></script>
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+	<head>
+		<title>Jasmine Test Runner</title>
+		<meta charset="UTF-8" />
+		<link rel="stylesheet" type="text/css" href="lib/jasmine-1.0.1/jasmine.css">
+		<script src="lib/jasmine-1.0.1/jasmine.js"></script>
+		<script src="lib/jasmine-1.0.1/jasmine-html.js"></script>
 
-  <!-- include source files here... -->
-  <script type="text/javascript" src="../../load.php?debug=true&lang=en&modules=jquery%7Cmediawiki&only=scripts&skin=vector"></script>
-  
-  <script type="text/javascript" src="../../resources/mediawiki/mediawiki.js"></script>
+		<!-- include source files here... -->
+		<script src="../../load.php?debug=true&amp;lang=en&amp;modules=startup&amp;only=scripts&amp;skin=vector&amp;*"></script>
+		<script>
+		mw.loader.load( ['mediawiki.jqueryMsg'] );
+		</script>
 
-  <script type="text/javascript" src="../../resources/mediawiki.language/mediawiki.language.js"></script>
-  <script type="text/javascript" src="../../resources/mediawiki/mediawiki.jqueryMsg.js"></script>
-  <script type="text/javascript" src="../../resources/mediawiki/mediawiki.Uri.js"></script>
-<!--
-  <script type="text/javascript" src="../../resources/mediawiki/mediawiki.api.js"></script>
-  <script type="text/javascript" src="../../resources/mediawiki/mediawiki.api.edit.js"></script>
--->
+		<!-- insert test data files here -->
+		<script src="spec/mediawiki.jqueryMsg.spec.data.js"></script>
 
-  <!-- insert test data files here -->
-  <script type="text/javascript" src="spec/mediawiki.jqueryMsg.spec.data.js"></script>
-
-  <!-- include spec files here... -->
-  <script type="text/javascript" src="spec/mediawiki.Uri.spec.js"></script>
-  <!-- 
-	<script type="text/javascript" src="spec/mw.Api.spec.js"></script>
-    <script type="text/javascript" src="spec/mw.Api.edit.spec.js"></script>
-  -->
-  <script type="text/javascript" src="spec/mediawiki.jqueryMsg.spec.js"></script>
- 
-</head>
+		<!-- include spec files here... -->
+		<script src="spec/mediawiki.jqueryMsg.spec.js"></script>
+	</head>
 <body>
-<script type="text/javascript">
-  jasmine.getEnv().addReporter( new jasmine.TrivialReporter() );
-  jasmine.getEnv().execute();
-</script>
-
+	<script>
+		jasmine.getEnv().addReporter( new jasmine.TrivialReporter() );
+		jasmine.getEnv().execute();
+	</script>
 </body>
 </html>

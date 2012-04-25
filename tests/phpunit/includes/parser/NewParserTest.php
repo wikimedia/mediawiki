@@ -510,7 +510,10 @@ class NewParserTest extends MediaWikiTestCase {
 		$this->file = $filename;
 	}
 
-	/** @dataProvider parserTestProvider */
+	/**
+	 * @group medium
+	 * @dataProvider parserTestProvider
+	 */
 	public function testParserTest( $desc, $input, $result, $opts, $config ) {
 		if ( $this->regex != '' && !preg_match( '/' . $this->regex . '/', $desc ) ) {
 			$this->assertTrue( true ); // XXX: don't flood output with "test made no assertions"

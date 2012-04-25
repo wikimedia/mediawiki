@@ -1048,7 +1048,8 @@ Zur Information folgt ein aktueller Auszug aus dem Benutzersperr-Logbuch:',
 'updated' => '(Geändert)',
 'note' => "'''Hinweis:'''",
 'previewnote' => "'''Dies ist nur eine Vorschau.'''
-Die Seite wurde noch nicht gespeichert! [[#editform|→ Weiter bearbeiten]]",
+Die Seite wurde noch nicht gespeichert!",
+'continue-editing' => 'Weiter bearbeiten',
 'previewconflict' => 'Diese Vorschau gibt den Inhalt des oberen Textfeldes wieder. So wird die Seite aussehen, wenn du jetzt speicherst.',
 'session_fail_preview' => "'''Deine Bearbeitung konnte nicht gespeichert werden, da Sitzungsdaten verloren gegangen sind.
 Bitte versuche es erneut, indem du unter der folgenden Textvorschau nochmals auf „Seite speichern“ klickst.
@@ -1063,7 +1064,7 @@ Sollte das Problem bestehen bleiben, [[Special:UserLogout|melde dich ab]] und da
 Eine Speicherung kann den Seiteninhalt zerstören. Dies geschieht bisweilen durch die Benutzung eines anonymen Proxy-Dienstes, der fehlerhaft arbeitet.'''",
 'edit_form_incomplete' => "'''Der Inhalt des Bearbeitungsformulars hat den Server nicht vollständig erreicht. Bitte prüfe deine Bearbeitungen auf Vollständigkeit und versuche es erneut.'''",
 'editing' => 'Bearbeiten von „$1“',
-'creating' => '$1 wird erstellt',
+'creating' => 'Erstellen von „$1“',
 'editingsection' => 'Bearbeiten von „$1“ (Abschnitt)',
 'editingcomment' => 'Bearbeiten von „$1“ (Neuer Abschnitt)',
 'editconflict' => 'Bearbeitungskonflikt: $1',
@@ -1888,6 +1889,7 @@ Wenn das Problem weiter besteht, informiere einen [[Special:ListUsers/sysop|Syst
 'backend-fail-contenttype' => 'Der Inhaltstyp, der im Pfad „$1“ zu speichernden Datei, konnte nicht bestimmt werden.',
 'backend-fail-batchsize' => 'Eine Stapelverarbeitungsdatei, die {{PLURAL:$1|eine Operation|$1 Operationen}} enthält, wurde an das Speicher-Backend gesandt. Die Begrenzung liegt allerdings bei {{PLURAL:$2|einer Operation|$2 Operationen}}.',
 
+# File journal errors
 'filejournal-fail-dbconnect' => 'Es konnte keine Verbindung zur Journaldatenbank des Speicher-Backends „$1“ hergestellt werden.',
 'filejournal-fail-dbquery' => 'Die Journaldatenbank des Speicher-Backends „$1“ konnte nicht aktualisiert werden.',
 
@@ -1899,8 +1901,8 @@ Wenn das Problem weiter besteht, informiere einen [[Special:ListUsers/sysop|Syst
 'lockmanager-fail-openlock' => 'Die Sperrdatei für „$1“ konnte nicht geöffnet werden.',
 'lockmanager-fail-releaselock' => 'Die Sperre für „$1“ konnte nicht freigegeben werden.',
 'lockmanager-fail-db-bucket' => 'Es konnte mit Sammelabruf $1 keine ausreichende Anzahl an Verbindungen zu Sperrdatenbanken hergestellt werden.',
-'lockmanager-fail-db-release' => 'Die Sperren auf Datenbank $1 konnte nicht freigegeben werden.',
-'lockmanager-fail-svr-release' => 'Die Sperren auf Server $1 konnte nicht freigegeben werden.',
+'lockmanager-fail-db-release' => 'Die Sperren auf Datenbank $1 konnten nicht freigegeben werden.',
+'lockmanager-fail-svr-release' => 'Die Sperren auf Server $1 konnten nicht freigegeben werden.',
 
 # ZipDirectoryReader
 'zip-file-open-error' => 'Es ist ein Fehler beim Öffnen der Datei zur ZIP-Überprüfung aufgetreten.',
@@ -2222,6 +2224,11 @@ Die Ausgabe kann durch die Auswahl des Logbuchtyps, des Benutzers oder des Seite
 'allpagesbadtitle' => 'Der eingegebene Seitenname ist ungültig: Er hat entweder ein vorangestelltes Sprach-, ein Interwiki-Kürzel oder enthält ein oder mehrere Zeichen, welche in Seitennamen nicht verwendet werden dürfen.',
 'allpages-bad-ns' => 'Der Namensraum „$1“ ist in {{SITENAME}} nicht vorhanden.',
 'allpages-hide-redirects' => 'Weiterleitungen ausblenden',
+
+# SpecialCachedPage
+'cachedspecial-viewing-cached-ttl' => 'Du siehst die gecachte Version dieser Seite, die bis zu $1 alt sein kann.',
+'cachedspecial-viewing-cached-ts' => 'Du siehst die gecachte Version dieser Seite, die möglicherweise nicht aktuell ist.',
+'cachedspecial-refresh-now' => 'Aktuelle Version ansehen.',
 
 # Special:Categories
 'categories' => 'Kategorien',
@@ -2648,7 +2655,7 @@ Bitte gib den Grund für die Sperre an.',
 'ipb-confirm' => 'Sperrung bestätigen',
 'badipaddress' => 'Die IP-Adresse hat ein falsches Format.',
 'blockipsuccesssub' => 'Sperre erfolgreich',
-'blockipsuccesstext' => 'Der Benutzer/die IP-Adresse [[Special:Contributions/$1|$1]] wurde gesperrt.<br />
+'blockipsuccesstext' => 'Der Benutzer / die IP-Adresse [[Special:Contributions/$1|$1]] wurde gesperrt.<br />
 Zur Aufhebung der Sperre siehe die [[Special:BlockList|Liste aller aktiven Sperren]].',
 'ipb-blockingself' => 'Du bist gerade dabei, dich selbst zu sperren! Möchtest du das wirklich tun?',
 'ipb-confirmhideuser' => 'Du bist gerade dabei einen Benutzer im Modus „Benutzer verstecken“ zu sperren. Dies führt dazu, dass der Benutzername in allen Listen und Logbüchern unterdrückt wird. Möchtest du das wirklich tun?',
@@ -3818,6 +3825,11 @@ Eine [{{SERVER}}{{SCRIPTPATH}}/COPYING Kopie der ''GNU General Public License'']
 'version-software' => 'Installierte Software',
 'version-software-product' => 'Software',
 'version-software-version' => 'Version',
+'version-entrypoints' => 'Eingangspunkt-URLs',
+'version-entrypoints-header-entrypoint' => 'Eingangspunkt',
+'version-entrypoints-header-url' => 'URL',
+'version-entrypoints-articlepath' => '[https://www.mediawiki.org/wiki/Manual:$wgArticlePath Artikelpfad]',
+'version-entrypoints-scriptpath' => '[https://www.mediawiki.org/wiki/Manual:$wgScriptPath Skriptpfad]',
 
 # Special:FilePath
 'filepath' => 'Dateipfad',
@@ -4004,5 +4016,16 @@ Anderenfalls kannst du auch das untenstehende einfache Formular nutzen. Dein Kom
 'api-error-unknownerror' => 'Unbekannter Fehler: „$1“',
 'api-error-uploaddisabled' => 'Das Hochladen ist in diesem Wiki deaktiviert.',
 'api-error-verification-error' => 'Die hochzuladende Datei ist entweder fehlerhaft oder hat keine Dateinamenserweiterung.',
+
+# Durations
+'duration-seconds' => '$1 {{PLURAL:$1|Sekunde|Sekunden}}',
+'duration-minutes' => '$1 {{PLURAL:$1|Minute|Minuten}}',
+'duration-hours' => '$1 {{PLURAL:$1|Stunde|Stunden}}',
+'duration-days' => '$1 {{PLURAL:$1|Tag|Tage}}',
+'duration-weeks' => '$1 {{PLURAL:$1|Woche|Wochen}}',
+'duration-years' => '$1 {{PLURAL:$1|Jahr|Jahre}}',
+'duration-decades' => '$1 {{PLURAL:$1|Jahrzehnt|Jahrzehnte}}',
+'duration-centuries' => '$1 {{PLURAL:$1|Jahrhundert|Jahrhunderte}}',
+'duration-millennia' => '$1 {{PLURAL:$1|Jahrtausend|Jahrtausende}}',
 
 );

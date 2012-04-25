@@ -129,11 +129,11 @@ $messages = array(
 'category-empty' => '"He pawl hian phêk leh media pakhat mah a nei hrih lo."',
 'hidden-categories' => 'Pawl thuhrûk {{PLURAL:$1||-te}}',
 'hidden-category-category' => 'Pawl thuhrûkte',
-'category-subcat-count' => '{{PLURAL:$2|He pawl hian he pawlpeng chauh hi a nei. |He pawl hian heng: {{PLURAL:$1|pawlpeng|pawlpeng $1-te}} hi a nei, a vaia $2 zingah.}}',
-'category-subcat-count-limited' => 'He pawl hian hengte hi a ni: {{PLURAL:$1|pawlpeng|$1 pawlpengte}}',
-'category-article-count' => '{{PLURAL:$2|He pawl hian hë phêk chauh hi a nei. | Heng phek{{PLURAL:$1||$1-te}} hi he pawlah hian a awm, a vaia $2 zingah.}}',
+'category-subcat-count' => '{{PLURAL:$2|He pawl hian he pawlpeng chauh hi a nei. |He pawl hian heng  {{PLURAL:$1|pawlpéng|pawlpéng $1-te}} hi a nei, avaia  $2  zingah.}}',
+'category-subcat-count-limited' => "He pawl hian  {{PLURAL:$1|hë pawlpéng chauh|$1 hê'ng pawlpéngte}} hi a nei.",
+'category-article-count' => "{{PLURAL:$2|He pawl hian hemi phêk chauh hi a nei. | Hê'ng phek {{PLURAL:$1||$1-te}} hi he pawlah hian a awm, avaia $2 zingah.}}",
 'category-article-count-limited' => '{{PLURAL: $1 |$1He|$1 Heng}} phekte hi hë pawl, i en mékah hian a awm.',
-'category-file-count' => '{{PLURAL:$2|He pawl hian hë taksa (file) chauh hi a kengtel.|{{PLURAL:$1|He taksa $1 |Heng taksa $1-te}} hi he pawlah hian a awm, a vaia $2 zingah}}',
+'category-file-count' => '{{PLURAL:$2|He pawl hian hë taksa chauh hi a kengtel.|{{PLURAL:$1|He taksa $1 |Heng taksa $1-te}} hi he pawlah hian a awm, a vaia $2 zingah}}',
 'category-file-count-limited' => '{{PLURAL:$1|He taksa (file)|$1Heng taksate}} hi hemi pawl, i en mékah hian a awm.',
 'listingcontinuesabbrev' => 'chhunz.',
 'index-category' => 'Phêk tarlante',
@@ -247,7 +247,7 @@ $1',
 'aboutsite' => '{{SITENAME}}  chungchang',
 'aboutpage' => 'Project:Chungchang',
 'copyright' => 'A chhung thute hi $1 hmanga lakchhawn phal a ni.',
-'copyrightpage' => '{{ns:project}}:Lakchhawn phalna',
+'copyrightpage' => '{{ns:project}}:Lakchhawn phalphung',
 'currentevents' => 'Chanchin thar',
 'currentevents-url' => 'Project: Chanchin thar',
 'disclaimers' => 'Intlawhkhalhna',
@@ -318,7 +318,7 @@ $1',
 'nosuchaction' => 'Hetiang hi a tih theih loh',
 'nosuchactiontext' => 'URL-a tihtur lang hi a tihtheih loh.
 URL i chhu dik lo a ni mai thei, emaw zawm dik loah i kal a niang.
-{{SITENAME}} software hmanah hian dik tawk lo lai a awm a ni thei bawk.',
+{{SITENAME}} khawlthlûak hmanah hian dik tawk lo lai a awm a ni thei bawk.',
 'nosuchspecialpage' => 'Hetiang vohbik phek hi a awm lo',
 'nospecialpagetext' => '<strong>Vohbik phek awm lo en i tum.</strong>
 
@@ -560,7 +560,7 @@ Tihsual palh thilthua heta lo lût i nih chuan i rangpuifanna-a '''letna''' fei 
 Phêk dangah [[Special:Search/{{PAGENAME}}| he phêk hming hi i zawng]] thei ang, a nih loh pawhin a laichin 
 <span class="plainlinks">[{{fullurl:{{#Special:Log}} | page={{FULLPAGENAMEE}}}} log dang i zawng thei ang]; a nih loh chuan [{{fullurl:{{FULLPAGENAME}}|action=edit}} he phêk hi i siamţha thei ang] </span>.',
 'noarticletext-nopermission' => 'He phêkah hian thu a la awm hrih lo.
-He phêk hming hi hmun dangah i [[Special:Search/{{PAGENAME}}|zawng]] thei ang, a nih loh pawhin <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{GULLPAGENAMEE}}}} a laichin chanchin dang] i zawng thei bawk ang. </span>',
+He phêk hming hi hmun dangah i [[Special:Search/{{PAGENAME}}|zawng]] thei ang, a nih loh pawhin <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}}-a a laichin chanchin dang] i zawng thei bawk ang. </span>',
 'userpage-userdoesnotexist' => 'Hmangtu siangchan "$1" hi hriat a ni lo.
 He phêk hi siam/siamţhat emaw i duh chuan enfiah rawh.',
 'userpage-userdoesnotexist-view' => 'Hmangtu siangchan "$1" hi hriat a ni lo.',
@@ -570,7 +570,7 @@ I rawn atan a danbeh chhinchhiahna kan han tarlang a ni e:',
 'userjsyoucanpreview' => "'''Rawlrûk:''' I JavaScript thar fiah tùrin i dahţhat hmain \"{{int:showpreview}}\" hmehkhep hi hmang rawh.",
 'note' => "'''Hriat tùr:'''",
 'previewnote' => "'''Heihi endikna chauh a ni tih hrereng ang che.'''
-I tihdanglamna dahţhat a la ni lo!  [[#editform|→ Ziah chhunzawmna]]",
+I tihdanglamna dahţhat a la ni lo!",
 'editing' => '$1 i siam(ţha) mék',
 'editingsection' => '$1 (hlawm) i siam(ţha) mék',
 'editingcomment' => '$1 (hlawm thar) i siam(ţha) mék',
@@ -602,6 +602,7 @@ I rawn atan he phek paihna leh sawnna chanchin chhinchhiahna a hnuaiah khuan chh
 'edit-conflict' => 'Siamţhat inchuh buaina.',
 'edit-already-exists' => 'Phêk thar siam theih a ni lo.
 A awm tawh sa.',
+'defaultmessagetext' => 'Thuthawn tùr ziahsa',
 
 # Parser/template warnings
 'post-expand-template-inclusion-warning' => "'''Vaukhanna:''' Siamsa telh a lian leh lutuk.
@@ -698,7 +699,7 @@ Lamtawi hmante: '''({{int:cur}})'''= ennawnna thar ber nena danglamna, '''({{int
 'searcheverything-enable' => 'Hminghmun zawng zawngah zawng rawh',
 'searchrelated' => 'laichin',
 'searchall' => 'a vaiin',
-'showingresultsheader' => "'''$4''' tana {{PLURAL:$5|chhuak  '''$3''' zinga '''$1'''|chhuak '''$3''' zinga  '''$1 - $2'''  }}",
+'showingresultsheader' => "'''$4'''  tana {{PLURAL:$5|chhuak   '''$3'''  zinga  '''$1'''|chhuak  '''$3'''  zinga   '''$1 - $2'''  }}",
 'search-nonefound' => 'I zawn mil a awm lo',
 'powersearch' => 'Zawnna chi sang',
 'powersearch-legend' => 'Zawnna chi sang',
@@ -1304,6 +1305,10 @@ Amah leh amah inluahlantir a theih loh.',
 'filemissing' => 'Taksa a awm lo',
 'thumbnail_error' => 'Zungbï siam hlawhchham: $1',
 
+# Special:Import
+'import-token-mismatch' => 'Ṭhut chhung hriatrengna hloh hman a ni.
+Khawngaihin tum nawn leh rawh.',
+
 # Tooltip help for the actions
 'tooltip-pt-userpage' => 'Nangma pual phek',
 'tooltip-pt-mytalk' => 'I sawihona phêk',
@@ -1513,6 +1518,17 @@ A bak zawng chu thuhrûk sa vek a ni ang.
 
 # Special:Tags
 'tag-filter' => '[[Special:Tags|Tag]] thlitfimna:',
+
+# New logging system
+'logentry-move-move' => '$3 tih phêk kha $4-ah $1 hian a thlâk.',
+'logentry-move-move-noredirect' => 'Hruailuhna phêk hnutchhiah lovin $1-in $3 phêk kha $4-ah a sawn.',
+'logentry-move-move_redir' => 'Hruailuhna chungah $3 phêk kha $4-ah $1 hian a sawn.',
+'logentry-move-move_redir-noredirect' => 'Hruailuhna hnutchhiah lovin $3 phêk kha $4-ah $1 hian a sawn.',
+'logentry-newusers-newusers' => '$1 hian hmangtu siangchan a siam.',
+'logentry-newusers-create' => '$1 hian hmangtu siangchan a siam.',
+'logentry-newusers-create2' => '$1 hian hmangtu siangchan $3 a siam.',
+'logentry-newusers-autocreate' => 'Siangchan $1 hi amahin a insiam.',
+'newuserlog-byemail' => 'thurûk e-lehkha hmanga thawn a ni.',
 
 # Feedback
 'feedback-subject' => 'Thupui:',

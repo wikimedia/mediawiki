@@ -742,9 +742,9 @@ $2',
 'ns-specialprotected' => 'לא ניתן לערוך דפים מיוחדים.',
 'titleprotected' => 'לא ניתן ליצור דף זה, כיוון שהמשתמש [[User:$1|$1]] הגן עליו מפני יצירה.
 הסיבה שניתנה לכך היא "$2".',
-'filereadonlyerror' => 'לא ניתן לשנות את הקובץ "$1" כיוון שמאגר הקבצים "$2" הוא במצב קריאה בלבד.
+'filereadonlyerror' => 'לא ניתן לשנות את הקובץ "$1" כיוון שמאגר הקבצים "$2" במצב קריאה בלבד.
 
-הסיבה שניתנה לכך היא "\'\'\'$3\'\'\'".',
+מנהל המערכת שנעל את המאגר סיפק את ההסבר הבא: "\'\'\'$3\'\'\'".',
 
 # Virus scanner
 'virus-badscanner' => "הגדרות שגויות: סורק הווירוסים אינו ידוע: ''$1''",
@@ -1041,7 +1041,7 @@ $2
 'updated' => '(מעודכן)',
 'note' => "'''הערה:'''",
 'previewnote' => "'''זכרו שזו רק תצוגה מקדימה.'''
-השינויים שלכם טרם נשמרו! [[#editform|← להמשך העריכה]]",
+השינויים שלכם טרם נשמרו!",
 'previewconflict' => 'תצוגה מקדימה זו מציגה כיצד ייראה הטקסט בחלון העריכה העליון, אם תבחרו לשמור אותו.',
 'session_fail_preview' => "'''לא ניתן לבצע את עריכתכם עקב אובדן מידע הכניסה.'''
 אנא נסו שוב.
@@ -1118,6 +1118,7 @@ $2
 'edit-no-change' => 'המערכת התעלמה מעריכתכם, כיוון שלא נעשה שינוי בטקסט.',
 'edit-already-exists' => 'לא ניתן ליצור דף חדש.
 הוא כבר קיים.',
+'defaultmessagetext' => 'טקסט ההודעה המקורי',
 
 # Parser/template warnings
 'expensive-parserfunction-warning' => "'''אזהרה:''' דף זה כולל יותר מדי קריאות לפונקציות מפענח שגוזלות משאבים.
@@ -1275,7 +1276,7 @@ $1",
 # Suppression log
 'suppressionlog' => 'יומן הסתרות',
 'suppressionlogtext' => 'להלן רשימת המחיקות והחסימות הכוללות תוכן המוסתר ממפעילי המערכת.
-ראו את [[Special:BlockList|רשימת כתובות ה־IP החסומות]] לרשימת החסימות הפעילות כעת.',
+ראו את [[Special:BlockList|רשימת החסומים]] לרשימת החסימות הפעילות כעת.',
 
 # History merging
 'mergehistory' => 'מיזוג גרסאות של דפים',
@@ -1889,6 +1890,7 @@ $1',
 'backend-fail-contenttype' => 'לא ניתן היה לקבוע את סוג התוכן של הקובץ לאחסון ב־"$1".',
 'backend-fail-batchsize' => 'למאגר אחסון הקבצים הפנימי הועבר אוסף של {{PLURAL:$1|פעולת קובץ אחת|$1 פעולות קובץ}}; המגבלה היא {{PLURAL:$2|פעולה אחת|$2 פעולות}}.',
 
+# File journal errors
 'filejournal-fail-dbconnect' => 'לא ניתן היה להתחבר לבסיס הנתונים של היומן עבור מאגר אחסון הקבצים הפנימי "$1".',
 'filejournal-fail-dbquery' => 'לא ניתן היה לעדכן את בסיס הנתונים של היומן עבור מאגר אחסון הקבצים הפנימי "$1".',
 
@@ -2227,6 +2229,11 @@ $1',
 ייתכן שהיא מכילה תו אחד או יותר האסורים לשימוש בכותרות.',
 'allpages-bad-ns' => 'אין מרחב שם בשם "$1".',
 'allpages-hide-redirects' => 'הסתרת הפניות',
+
+# SpecialCachedPage
+'cachedspecial-viewing-cached-ttl' => 'זוהי גרסה שמורה בזיכרון המטמון של דף זה, שעשויה להיות בת $1.',
+'cachedspecial-viewing-cached-ts' => 'זוהי גרסה שמורה בזיכרון המטמון של דף זה, שעשויה שלא להיות מעודכנת.',
+'cachedspecial-refresh-now' => 'צפייה באחרון.',
 
 # Special:Categories
 'categories' => 'קטגוריות',
@@ -2665,7 +2672,7 @@ $1',
 'blockipsuccesssub' => 'החסימה הושלמה בהצלחה',
 'blockipsuccesstext' => '{{GENDER:$1|המשתמש|המשתמשת}} [[Special:Contributions/$1|$1]] {{GENDER:$1|נחסם|נחסמה}}.
 
-ראו את [[Special:BlockList|רשימת הכתובות החסומות]] כדי לצפות בחסימות.',
+ראו את [[Special:BlockList|רשימת החסומים]] כדי לצפות בחסימות.',
 'ipb-blockingself' => 'אתם עומדים לחסום את עצמכם! האם אתם באמת רוצים לעשות את זה?',
 'ipb-confirmhideuser' => 'אתם עומדים לחסום משתמש עם האפשרות "הסתרת משתמש". פעולה זו תסתיר את שם המשתמש בכל הרשימות ופעולות היומן. האם אתם בטוחים שברצונכם לעשות זאת?',
 'ipb-edit-dropdown' => 'עריכת סיבות החסימה',
@@ -2718,7 +2725,7 @@ $1',
 'reblock-logentry' => 'שינה את הגדרות החסימה של [[$1]] עם זמן פקיעה של $2 $3',
 'blocklogtext' => 'זהו יומן פעולות החסימה והשחרור של משתמשים.
 כתובות IP שנחסמו אוטומטית אינן מופיעות.
-ראו גם את [[Special:BlockList|רשימת הכתובות החסומות]] לרשימה של החרמות וחסימות פעילות כעת.',
+ראו גם את [[Special:BlockList|רשימת החסומים]] לרשימה של החרמות וחסימות פעילות כעת.',
 'unblocklogentry' => 'שחרר את $1',
 'block-log-flags-anononly' => 'משתמשים אנונימיים בלבד',
 'block-log-flags-nocreate' => 'יצירת חשבונות נחסמה',
@@ -3884,6 +3891,9 @@ $5
 'version-software' => 'תוכנות מותקנות',
 'version-software-product' => 'תוכנה',
 'version-software-version' => 'גרסה',
+'version-entrypoints' => 'כתובות של נקודות כניסה',
+'version-entrypoints-header-entrypoint' => 'נקודת כניסה',
+'version-entrypoints-header-url' => 'כתובת',
 
 # Special:FilePath
 'filepath' => 'נתיב לקובץ',
@@ -4070,5 +4080,16 @@ $5
 'api-error-unknownerror' => 'שגיאה בלתי ידועה: "$1".',
 'api-error-uploaddisabled' => 'ההעלאה מבוטלת באתר הוויקי הזה.',
 'api-error-verification-error' => 'קובץ זה עשוי להיות פגום או בעל סיומת שגויה.',
+
+# Durations
+'duration-seconds' => '{{PLURAL:$1|שנייה|$1 שניות}}',
+'duration-minutes' => '{{PLURAL:$1|דקה|$1 דקות}}',
+'duration-hours' => '{{PLURAL:$1|שעה|$1 שעות|שעתיים}}',
+'duration-days' => '{{PLURAL:$1|יום|$1 ימים|יומיים}}',
+'duration-weeks' => '{{PLURAL:$1|שבוע|$1 שבועות|שבועיים}}',
+'duration-years' => '{{PLURAL:$1|שנה|$1 שנים|שנתיים}}',
+'duration-decades' => '{{PLURAL:$1|עשור|$1 עשורים}}',
+'duration-centuries' => '{{PLURAL:$1|מאה שנה|$1 מאות שנים|מאתיים שנה}}',
+'duration-millennia' => '{{PLURAL:$1|אלף שנה|$1 אלפי שנים|אלפיים שנה}}',
 
 );

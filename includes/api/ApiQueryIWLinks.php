@@ -62,15 +62,17 @@ class ApiQueryIWLinks extends ApiQueryBase {
 				$this->dieUsage( 'Invalid continue param. You should pass the ' .
 					'original value returned by the previous query', '_badcontinue' );
 			}
+			$op = $params['dir'] == 'descending' ? '<' : '>';
+			$db = $this->getDB();
 			$iwlfrom = intval( $cont[0] );
-			$iwlprefix = $this->getDB()->strencode( $cont[1] );
-			$iwltitle = $this->getDB()->strencode( $this->titleToKey( $cont[2] ) );
+			$iwlprefix = $db->addQuotes( $cont[1] );
+			$iwltitle = $db->addQuotes( $this->titleToKey( $cont[2] ) );
 			$this->addWhere(
-				"iwl_from > $iwlfrom OR " .
+				"iwl_from $op $iwlfrom OR " .
 				"(iwl_from = $iwlfrom AND " .
-				"(iwl_prefix > '$iwlprefix' OR " .
-				"(iwl_prefix = '$iwlprefix' AND " .
-				"iwl_title >= '$iwltitle')))"
+				"(iwl_prefix $op $iwlprefix OR " .
+				"(iwl_prefix = $iwlprefix AND " .
+				"iwl_title $op= $iwltitle)))"
 			);
 		}
 

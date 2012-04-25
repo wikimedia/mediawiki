@@ -201,7 +201,7 @@ class RefreshLinks extends Maintenance {
 	 * @param $id int The page_id
 	 */
 	public static function fixLinksFromArticle( $id ) {
-		global $wgParser;
+		global $wgParser, $wgContLang;
 
 		$title = Title::newFromID( $id );
 		$dbw = wfGetDB( DB_MASTER );
@@ -219,7 +219,7 @@ class RefreshLinks extends Maintenance {
 
 		$dbw->begin( __METHOD__ );
 
-		$options = new ParserOptions;
+		$options = ParserOptions::newFromUserAndLang( new User, $wgContLang );
 		$parserOutput = $wgParser->parse( $revision->getText(), $title, $options, true, true, $revision->getId() );
 
         $updates = $parserOutput->getSecondaryDataUpdates( $title, false );

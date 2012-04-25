@@ -431,7 +431,8 @@ var mw = ( function ( $, undefined ) {
 			function addInlineCSS( css ) {
 				var $style, style, $newStyle;
 				$style = getMarker().prev();
-				if ( $style.is( 'style' ) && $style.data( 'ResourceLoaderDynamicStyleTag' ) === true ) {
+				// Disable <style> tag recycling/concatenation because of bug 34669
+				if ( false && $style.is( 'style' ) && $style.data( 'ResourceLoaderDynamicStyleTag' ) === true ) {
 					// There's already a dynamic <style> tag present, append to it. This recycling of
 					// <style> tags is for bug 31676 (can't have more than 32 <style> tags in IE)
 					style = $style.get( 0 );
@@ -787,7 +788,7 @@ var mw = ( function ( $, undefined ) {
 						registry[module].state = 'loading';
 						nestedAddScript( script, markModuleReady, registry[module].async, 0 );
 					} else if ( $.isFunction( script ) ) {
-						script();
+						script( $ );
 						markModuleReady();
 					}
 				} catch ( e ) {

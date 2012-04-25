@@ -12,6 +12,7 @@
  * @author Dakrismeno
  * @author DracoRoboter
  * @author Flavio05
+ * @author GatoSelvadego
  * @author Insübrich
  * @author Kemmótar
  * @author Malafaya
@@ -1363,6 +1364,9 @@ Te riçevaree un mesacc cun deent un ligamm specjal; ti duvaree clicaa sül liga
 'watchlisttools-view' => 'Varda i mudifegh impurtant',
 'watchlisttools-edit' => 'Varda e mudifega la lista di paginn che te tegnet sut ögg',
 'watchlisttools-raw' => 'Mudifega la lista in furmaa test',
+
+# Signatures
+'signature' => '[[{{ns:user}}:$1|$2]] ([[{{ns:user_talk}}:$1|ciciaràde]])',
 
 # Special:Version
 'version' => 'Versiun',

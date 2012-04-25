@@ -75,6 +75,7 @@ return array(
 			'common/commonContent.css' => array( 'media' => 'screen' ),
 			'common/commonInterface.css' => array( 'media' => 'screen' ),
 			'vector/screen.css' => array( 'media' => 'screen' ),
+			'vector/screen-hd.css' => array( 'media' => 'screen and (min-width: 900px)' ),
 		),
 		'scripts' => 'vector/vector.js',
 		'remoteBasePath' => $GLOBALS['wgStylePath'],

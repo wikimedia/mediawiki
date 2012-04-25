@@ -150,6 +150,11 @@ class EditPage {
 	const AS_PARSE_ERROR                = 240;
 
 	/**
+	 * HTML id and name for the beginning of the edit form.
+	 */
+	const EDITFORM_ID                  = 'editform';
+
+	/**
 	 * @var Article
 	 */
 	var $mArticle;
@@ -1903,7 +1908,7 @@ class EditPage {
 		}
 
 		#FIXME: add EditForm plugin interface and use it here! #FIXME: search for textarea1 and textares2, and allow EditForm to override all uses.
-		$wgOut->addHTML( Html::openElement( 'form', array( 'id' => 'editform', 'name' => 'editform',
+		$wgOut->addHTML( Html::openElement( 'form', array( 'id' => self::EDITFORM_ID, 'name' => self::EDITFORM_ID,
 			'method' => 'post', 'action' => $this->getActionURL( $this->getContextTitle() ),
 			'enctype' => 'multipart/form-data' ) ) );
 
@@ -2474,7 +2479,19 @@ HTML
 	function showDiff() {
 		global $wgUser, $wgContLang, $wgParser, $wgOut;
 
-        $oldContent = $this->getOriginalContent();
+		$oldtitlemsg = 'currentrev';
+		# if message does not exist, show diff against the preloaded default
+		if( $this->mTitle->getNamespace() == NS_MEDIAWIKI && !$this->mTitle->exists() ) {
+			$oldtext = $this->mTitle->getDefaultMessageText();
+			if( $oldtext !== false ) {
+				$oldtitlemsg = 'defaultmessagetext';
+				$oldContent = ContentHandler::makeContent( $oldtext, $this->mTitle );
+			} else {
+				$oldContent = null;
+			}
+		} else {
+			$oldContent = $this->getOriginalContent();
+		}
 
         $textboxContent = ContentHandler::makeContent( $this->textbox1, $this->getTitle(),
 														$this->content_model, $this->content_format ); #XXX: handle parse errors ?
@@ -2499,10 +2516,10 @@ HTML
         $newContent = $newContent->preSaveTransform( $this->mTitle, $wgUser, $popts );
 
         if ( ( $oldContent && !$oldContent->isEmpty() ) || ( $newContent && !$newContent->isEmpty() ) ) {
-			$oldtitle = wfMsgExt( 'currentrev', array( 'parseinline' ) );
+			$oldtitle = wfMsgExt( $oldtitlemsg, array( 'parseinline' ) );
 			$newtitle = wfMsgExt( 'yourtext', array( 'parseinline' ) );
 
-            $de = $oldContent->getContentHandler()->getDifferenceEngine( $this->mArticle->getContext() );
+            $de = $oldContent->getContentHandler()->createDifferenceEngine( $this->mArticle->getContext() );
             $de->setContent( $oldContent, $newContent );
 
 			$difftext = $de->getDiff( $oldtitle, $newtitle );
@@ -2700,7 +2717,7 @@ HTML
 	 * @return string
 	 */
 	function getPreviewText() {
-		global $wgOut, $wgUser, $wgParser, $wgRawHtml;
+		global $wgOut, $wgUser, $wgParser, $wgRawHtml, $wgLang;
 
 		wfProfileIn( __METHOD__ );
 
@@ -2719,21 +2736,32 @@ HTML
 			return $parsedNote;
 		}
 
+		$note = '';
+
         try {
-            $content = ContentHandler::makeContent( $this->textbox1, $this->getTitle(), $this->content_model, $this->content_format );
+		    $content = ContentHandler::makeContent( $this->textbox1, $this->getTitle(), $this->content_model, $this->content_format );
 
-            if ( $this->mTriedSave && !$this->mTokenOk ) {
-                if ( $this->mTokenOkExceptSuffix ) {
-                    $note = wfMsg( 'token_suffix_mismatch' );
-                } else {
-                    $note = wfMsg( 'session_fail_preview' );
-                }
-            } elseif ( $this->incompleteForm ) {
-                $note = wfMsg( 'edit_form_incomplete' );
-            } elseif ( $this->isCssJsSubpage || $this->mTitle->isCssOrJsPage() ) {
-                # if this is a CSS or JS page used in the UI, show a special notice
-                # XXX: stupid php bug won't let us use $this->getContextTitle()->isCssJsSubpage() here -- This note has been there since r3530. Sure the bug was fixed time ago?
+			if ( $this->mTriedSave && !$this->mTokenOk ) {
+				if ( $this->mTokenOkExceptSuffix ) {
+					$note = wfMsg( 'token_suffix_mismatch' );
+				} else {
+					$note = wfMsg( 'session_fail_preview' );
+				}
+			} elseif ( $this->incompleteForm ) {
+				$note = wfMsg( 'edit_form_incomplete' );
+			} else {
+				$note = wfMsg( 'previewnote' ) .
+					' [[#' . self::EDITFORM_ID . '|' . $wgLang->getArrow() . ' ' . wfMsg( 'continue-editing' ) . ']]';
+			}
 
+            $parserOptions = ParserOptions::newFromUser( $wgUser );
+            $parserOptions->setEditSection( false );
+            $parserOptions->setTidy( true );
+            $parserOptions->setIsPreview( true );
+            $parserOptions->setIsSectionPreview( !is_null($this->section) && $this->section !== '' );
+
+			if ( $this->mTitle->isCssJsSubpage() || $this->mTitle->isCssOrJsPage() ) {
+                # don't parse non-wikitext pages, show message about preview
                 if( $this->mTitle->isCssJsSubpage() ) {
                     $level = 'user';
                 } elseif( $this->mTitle->isCssOrJsPage() ) {
@@ -2760,12 +2788,6 @@ HTML
             } else {
                 $note = wfMsg( 'previewnote' );
             }
-
-            $parserOptions = ParserOptions::newFromUser( $wgUser );
-            $parserOptions->setEditSection( false );
-            $parserOptions->setTidy( true );
-            $parserOptions->setIsPreview( true );
-            $parserOptions->setIsSectionPreview( !is_null($this->section) && $this->section !== '' );
 
             $rt = $content->getRedirectChain();
 

@@ -1025,7 +1025,7 @@ La última entrada del registro de bloqueos se proporciona debajo para mayor ref
 'updated' => '(Actualizado)',
 'note' => "'''Nota:'''",
 'previewnote' => "'''¡Recuerda que esto es solo una previsualización.'''
-¡Tus cambios aún no se ha guardado! [[#editform|→ Continuar editando]]",
+¡Tus cambios aún no se ha guardado!",
 'previewconflict' => 'Esta previsualización refleja el texto en el área de edición superior como aparecerá una vez guardados los cambios.',
 'session_fail_preview' => "'''Lo sentimos, no pudimos procesar la edición debido a una pérdida de los datos de sesión.'''
 Por favor, inténtalo de nuevo.
@@ -1262,8 +1262,8 @@ No tiene acceso a él.',
 
 # Suppression log
 'suppressionlog' => 'Registro de supresiones',
-'suppressionlogtext' => 'Debajo hay una lista con los borrados y bloqueos recientes cuyo contenido se encuentra oculto para administradores.
-Mire la [[Special:BlockList|lista de bloqueos activos]] para ver la lista de bloqueos actualmente operativos.',
+'suppressionlogtext' => 'A continuación hay una lista con los borrados y bloqueos cuyo contenido se encuentra oculto para los administradores.
+Ver la [[Special:BlockList|lista de bloqueos]] que incluye las prohibiciones y bloqueos actualmente operativos.',
 
 # History merging
 'mergehistory' => 'Fusionar historiales de páginas',
@@ -1853,6 +1853,7 @@ $1',
 'backend-fail-contenttype' => 'No se pudo determinar el tipo de contenido del archivo a guardar en " $1 ".',
 'backend-fail-batchsize' => 'El servidor (back-end) de almacenamiento ha suministrado un lote de $1 {{PLURAL:$1|operación|operaciones}} de archivo; el límite es de $2 {{PLURAL:$2|operación|operaciones}}.',
 
+# File journal errors
 'filejournal-fail-dbconnect' => 'No se pudo conectar a la base de datos del registro del sistema de almacenamiento "$1".',
 'filejournal-fail-dbquery' => 'No se pudo actualizar la base de datos del registro del sistema de almacenamiento "$1".',
 
@@ -2189,6 +2190,11 @@ Puedes filtrar la vista seleccionando un tipo de registro, el nombre del usuario
 'allpagesbadtitle' => 'El título dado era inválido o tenía un prefijo de enlace inter-idioma o inter-wiki. Puede contener uno o más caracteres que no se pueden usar en títulos.',
 'allpages-bad-ns' => '{{SITENAME}} no tiene un espacio de nombres llamado «$1».',
 'allpages-hide-redirects' => 'Ocultar redirecciones',
+
+# SpecialCachedPage
+'cachedspecial-viewing-cached-ttl' => 'Usted está viendo una versión en caché de esta página, que puede tener hasta  $1 días de antigüedad.',
+'cachedspecial-viewing-cached-ts' => 'Está viendo una versión en caché de esta página, que puede no estar completamente actualizada.',
+'cachedspecial-refresh-now' => 'Ver lo más reciente.',
 
 # Special:Categories
 'categories' => 'Categorías',
@@ -2674,9 +2680,9 @@ Véase la [[Special:BlockList|lista de bloqueos]] para revisarlo.',
 'blocklog-showsuppresslog' => 'Este usuario ha sido bloqueado y ocultado. Se provee el registro de supresiones para más detalle:',
 'blocklogentry' => 'bloqueó a [[$1]] $3 durante un plazo de $2',
 'reblock-logentry' => 'cambió el bloqueo para  [[$1]] con una caducidad de $2 $3',
-'blocklogtext' => 'Esto es un registro de bloqueos y desbloqueos de usuarios.
-Las direcciones bloqueadas automáticamente no aparecen aquí.
-Consulte la [[Special:BlockList|lista de direcciones IP bloqueadas]] para ver la lista de bloqueos vigente.',
+'blocklogtext' => 'Esto es un registro de acciones de bloqueo y desbloqueo de usuarios.
+Las direcciones IP bloqueadas automáticamente no aparecen aquí.
+Consulta la [[Special:BlockList|lista de bloqueos]] para ver la lista de bloqueos y prohibiciones de operar en vigor.',
 'unblocklogentry' => 'desbloqueó a $1',
 'block-log-flags-anononly' => 'sólo anónimos',
 'block-log-flags-nocreate' => 'desactivada la creación de cuentas',
@@ -3768,6 +3774,11 @@ Has recibido [{{SERVER}}{{SCRIPTPATH}}/COPYING una copia de la Licencia Pública
 'version-software' => 'Software instalado',
 'version-software-product' => 'Producto',
 'version-software-version' => 'Versión',
+'version-entrypoints' => 'URL del punto de entrada',
+'version-entrypoints-header-entrypoint' => 'Punto de entrada',
+'version-entrypoints-header-url' => 'Dirección URL',
+'version-entrypoints-articlepath' => '[https://www.mediawiki.org/wiki/Manual:$wgArticlePath Ruta del artículo]',
+'version-entrypoints-scriptpath' => '[https://www.mediawiki.org/wiki/Manual:$wgScriptPath Ruta de la secuencia de comandos (script)]',
 
 # Special:FilePath
 'filepath' => 'Ruta de archivo',
@@ -3957,5 +3968,16 @@ En otro caso, puedes usar el siguiente formulario. Tu comentario será añadido 
 'api-error-unknownerror' => 'Error desconocido: «$1».',
 'api-error-uploaddisabled' => 'Las subidas están desactivadas en este wiki.',
 'api-error-verification-error' => 'Este archivo puede estar dañado, o tiene una extensión incorrecta.',
+
+# Durations
+'duration-seconds' => '$1 {{PLURAL:$1|segundo|segundos}}',
+'duration-minutes' => '$1 {{PLURAL:$1|minuto|minutos}}',
+'duration-hours' => '$1 {{PLURAL:$1|hora|horas}}',
+'duration-days' => '$1 {{PLURAL:$1|día|días}}',
+'duration-weeks' => '$1 {{PLURAL:$1|semana|semanas}}',
+'duration-years' => '$1 {{PLURAL: $1|año|años}}',
+'duration-decades' => '$1 {{PLURAL:$1|década|décadas}}',
+'duration-centuries' => '$1 {{PLURAL:$1|siglo|siglos}}',
+'duration-millennia' => '$1 {{PLURAL:$1|milenio|milenios}}',
 
 );

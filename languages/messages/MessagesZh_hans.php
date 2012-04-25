@@ -42,6 +42,7 @@
  * @author PhiLiP
  * @author Shinjiman
  * @author Shizhao
+ * @author Supaiku
  * @author Tommyang
  * @author Waihorace
  * @author Wilsonmess
@@ -634,9 +635,9 @@ $2',
 'customjsprotected' => '您没有权限编辑此JavaScript页面，因为它包含另一位用户的个人设置。',
 'ns-specialprotected' => '您不能编辑特殊页面。',
 'titleprotected' => '此标题已被[[User:$1|$1]]保护以防止创建。理由是“$2”。',
-'filereadonlyerror' => '无法修改文件“$1”，因为文件库“$2”处于只读模式。
+'filereadonlyerror' => '无法修改文件“$1”，因为文件库“$2”处于只读模式。 
 
-给出的理由是“$3”。',
+管理员对锁定它给出的解释是：“$3”。',
 
 # Virus scanner
 'virus-badscanner' => "错误的配置：未知的病毒扫描程序：''$1''",
@@ -887,7 +888,7 @@ $2
 'userinvalidcssjstitle' => "'''警告：''' 不存在皮肤\"\$1\"。注意自定义的 .css 和 .js 页要使用小写标题，例如，{{ns:user}}:Foo/vector.css 不同于 {{ns:user}}:Foo/Vector.css。",
 'updated' => '（已更新）',
 'note' => "'''注意：'''",
-'previewnote' => "'''请记住这仅为预览。'''您的更改还未保存！[[#editform|→ 继续编辑]]",
+'previewnote' => "'''请记住这仅为预览。'''您的更改还未保存！",
 'previewconflict' => '这个预览显示了上面文字编辑区中的内容。它将在你选择保存后出现。',
 'session_fail_preview' => "'''抱歉！由于会话数据丢失，我们不能处理你的编辑。'''请重试。如果再次失败，请尝试[[Special:UserLogout|退出]]后重新登录。",
 'session_fail_preview_html' => "'''抱歉！我们不能处理你在进程数据丢失时的编辑。'''
@@ -960,6 +961,7 @@ $2
 'edit-no-change' => '您的编辑已经略过，因为文字无任何改动。',
 'edit-already-exists' => '不可以建立一个新页面。
 它已经存在。',
+'defaultmessagetext' => '默认消息文本',
 
 # Parser/template warnings
 'expensive-parserfunction-warning' => '警告：这个页面有太多高昂的语法功能调用。
@@ -1100,7 +1102,7 @@ $1",
 
 # Suppression log
 'suppressionlog' => '监督日志',
-'suppressionlogtext' => '该列表列出对管理员隐藏的删除与封禁。另参见[[Special:BlockList|IP封锁名单]]以查询当前的封禁列表。',
+'suppressionlogtext' => '该列表列出了管理员隐藏的删除与封禁。另参见[[Special:BlockList|封禁列表]]查询当前的封禁列表。',
 
 # History merging
 'mergehistory' => '合并页面历史',
@@ -1682,6 +1684,7 @@ $1',
 'backend-fail-contenttype' => '无法判断文件的内容类型来储存于“$1”。',
 'backend-fail-batchsize' => '存储后端被给予了一批$1个文件{{PLURAL:$1|操作|操作}}；限值为$2个{{PLURAL:$2|操作|操作}}。',
 
+# File journal errors
 'filejournal-fail-dbconnect' => '无法连接到后端存储的日志数据库“$1”。',
 'filejournal-fail-dbquery' => '无法更新后端存储的日志数据库“$1”。',
 
@@ -1798,6 +1801,8 @@ $1',
 请参阅在[$2 文件描述页面]以了解其相关信息。',
 'sharedupload-desc-here' => '该文件来自于$1，它可能在其它计划项目中被应用。
 它在[$2 文件描述页面]那边上的描述于下面显示。',
+'sharedupload-desc-edit' => '此文件是从 $1 和可能由其他维基项目使用。 ！N ！也许您想在其[ $2 文件描述页面]编辑说明。',
+'sharedupload-desc-create' => '此文件是从 $1 和可能由其他维基项目使用。 ！N ！也许您想在其[ $2 文件描述页面]编辑说明。',
 'filepage-nofile' => '不存在此名称的文件。',
 'filepage-nofile-link' => '不存在此名称的文件，但您可以[$1 上传它]。',
 'uploadnewversion-linktext' => '上传该文件的新版本',
@@ -1955,7 +1960,7 @@ $1',
 'listusers-creationsort' => '按建立日期排序',
 'usereditcount' => '$1次编辑',
 'usercreated' => '$1 $2{{GENDER:$3|创建}}',
-'newpages' => '新页面',
+'newpages' => '最新页面',
 'newpages-username' => '用户名：',
 'ancientpages' => '最早页面',
 'move' => '移动',
@@ -2007,6 +2012,9 @@ $1',
 'allpagesbadtitle' => '给定的页面标题是非法的，或者具有一个内部语言或内部 wiki 的前缀。它可能包含一个或更多的不能用于标题的字符。',
 'allpages-bad-ns' => '在{{SITENAME}}中没有一个叫做"$1"的名字空间。',
 'allpages-hide-redirects' => '隐藏重定向页',
+
+# SpecialCachedPage
+'cachedspecial-refresh-now' => '查看最新的。',
 
 # Special:Categories
 'categories' => '分类',
@@ -3774,5 +3782,16 @@ MediaWiki是基于使用目的而加以发布，然而不负任何担保责任�
 'api-error-unknownerror' => '未知错误：$1。',
 'api-error-uploaddisabled' => '这个维基不接受上传。',
 'api-error-verification-error' => '此文件可能已损坏，或有错误的扩展名。',
+
+# Durations
+'duration-seconds' => '$1{{PLURAL:$1|秒|秒}}',
+'duration-minutes' => '$1{{PLURAL:$1|分钟|分钟}}',
+'duration-hours' => '$1{{PLURAL:$1|小时|小时}}',
+'duration-days' => '$1{{PLURAL:$1|天|天}}',
+'duration-weeks' => '$1{{PLURAL:$1|星期|星期}}',
+'duration-years' => '$1{{PLURAL:$1|年|年}}',
+'duration-decades' => '$1{{PLURAL:$1|0年|0年}}',
+'duration-centuries' => '$1{{PLURAL:$1|00年|00年}}',
+'duration-millennia' => '$1{{PLURAL:$1|千年|千年}}',
 
 );

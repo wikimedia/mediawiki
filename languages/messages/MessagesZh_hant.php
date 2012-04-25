@@ -21,6 +21,7 @@
  * @author Hzy980512
  * @author Jidanni
  * @author Jimmy xu wrk
+ * @author Justincheng12345
  * @author Kaganer
  * @author KaiesTse
  * @author Kuailong
@@ -877,6 +878,7 @@ $2
 這種情況通常出現於使用含有很多臭蟲、以網絡為主的匿名代理服務的時候。",
 'edit_form_incomplete' => '編輯表單的某些部分沒有到達伺服器 ；請檢查您的編輯內容是否完整並再試一次。',
 'editing' => '編輯“$1”',
+'creating' => '創建$1',
 'editingsection' => '編輯“$1”（段落）',
 'editingcomment' => '編輯“$1”（新段落）',
 'editconflict' => '編輯衝突：$1',
@@ -942,6 +944,7 @@ $2
 'edit-no-change' => '您的編輯已經略過，因為文字無任何改動。',
 'edit-already-exists' => '不可以建立一個新頁面。
 它已經存在。',
+'defaultmessagetext' => '預設訊息文字',
 
 # Parser/template warnings
 'expensive-parserfunction-warning' => '警告: 這個頁面有太多耗費的語法功能呼叫。
@@ -1083,7 +1086,7 @@ $1",
 
 # Suppression log
 'suppressionlog' => '監督日誌',
-'suppressionlogtext' => '該列表列出對管理員隱藏的刪除與封禁。另參見[[Special:BlockList|IP封鎖名單]]以查詢當前的封禁列表。',
+'suppressionlogtext' => '該列表列出對管理員隱藏的刪除與封禁。另參見[[Special:BlockList|封鎖名單]]以查詢當前的封禁列表。',
 
 # History merging
 'mergehistory' => '合併頁面歷史',
@@ -1502,6 +1505,7 @@ $1",
 'newsectionsummary' => '/* $1 */ 新段落',
 'rc-enhanced-expand' => '顯示細節 （需要 JavaScript）',
 'rc-enhanced-hide' => '隱藏細節',
+'rc-old-title' => '最初創建為"$1"',
 
 # Recent changes linked
 'recentchangeslinked' => '相關更改',
@@ -2739,7 +2743,7 @@ $1被封禁的理由是“$2”',
 
 # JavaScriptTest
 'javascripttest' => 'JavaScript測試',
-'javascripttest-disabled' => '此功能已禁用。',
+'javascripttest-disabled' => '此功能在此Wiki上未被使用。',
 'javascripttest-title' => '運行$1測試。',
 'javascripttest-pagetext-noframework' => '這個頁面預留了作JavaScript測試。',
 'javascripttest-pagetext-unknownframework' => '未知框架"$1"',
@@ -3587,6 +3591,7 @@ MediaWiki是基於使用目的而加以發佈，然而不負任何擔保責任�
 'version-software' => '已經安裝的軟件',
 'version-software-product' => '產品',
 'version-software-version' => '版本',
+'version-entrypoints-header-url' => 'URL',
 
 # Special:FilePath
 'filepath' => '檔案路徑',
@@ -3773,5 +3778,16 @@ MediaWiki是基於使用目的而加以發佈，然而不負任何擔保責任�
 'api-error-unknownerror' => '未知錯誤：$1。',
 'api-error-uploaddisabled' => '本wiki的上傳檔案功能已停用。',
 'api-error-verification-error' => '本檔案可能已損壞，或副檔名錯誤。',
+
+# Durations
+'duration-seconds' => '$1秒',
+'duration-minutes' => '$1分',
+'duration-hours' => '$1小時',
+'duration-days' => '$1天',
+'duration-weeks' => '$1週',
+'duration-years' => '$1年',
+'duration-decades' => '$1十年',
+'duration-centuries' => '$1世紀',
+'duration-millennia' => '$1千年',
 
 );

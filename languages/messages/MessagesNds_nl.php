@@ -1802,6 +1802,7 @@ As t probleem zo blif, neem dan kontakt op mit één van de [[Special:ListUsers/
 'backend-fail-contenttype' => 'Kon t inhoudstype van t bestaand um op "$1" op te slaon niet bepaolen.',
 'backend-fail-batchsize' => 'Reeks van $1 bestaands{{PLURAL:$1|operasie|operasies}} in de opslagbackend; de limiet is $2 {{PLURAL:$2|operasie|operasies}}.',
 
+# File journal errors
 'filejournal-fail-dbconnect' => 'Kon gien verbiending maken mit de journaaldatabanke veur t opslagbackend "$1".',
 'filejournal-fail-dbquery' => 'Kon de journaaldatabanke niet biewarken veur t opslagbackend "$1".',
 

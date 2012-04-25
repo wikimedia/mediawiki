@@ -542,7 +542,7 @@ $2",
 De gegaeve ree is ''$2''.",
 'filereadonlyerror' => '\'t Waar neet meugelik óm \'t bestandj "$1" aan te passe went de bestandjsrepositoir "$2" steit noe op allein-laeze.
 
-d\'n Opgegaeve raej waar "\'\'$3\'\'".',
+d\'n Opgegaeve raej vanne sloetendje admin waar "\'\'$3\'\'".',
 
 # Virus scanner
 'virus-badscanner' => "Slechte configuratie: onbekenge virusscanner: ''$1''",
@@ -628,6 +628,7 @@ e-mail óntvange veur alle volgende toepassinge.',
 'emailconfirmlink' => 'Bevèstig dien e-mailadres',
 'invalidemailaddress' => "'t E-mailadres is neet geaccepteerd omdet 't 'n ongeldige opmaak haet. Gaef a.u.b. 'n geldig e-mailadres op of laot 't veld laeg.",
 'cannotchangeemail' => 'E-mailadresse kinne neet waere verangerdj óp deze wiki.',
+'emaildisabled' => 'Dees site kin gein mails versjikke.',
 'accountcreated' => 'Gebroeker aangemaak',
 'accountcreatedtext' => 'De gebroeker $1 is aangemaak.',
 'createaccount-title' => 'Gebroekers aanmake veur {{SITENAME}}',
@@ -829,6 +830,7 @@ Probeer 't opnieuw. Als 't dan nog neet lukt, meldt dich dan aaf en weer aan.'''
 'token_suffix_mismatch' => "'''Dien bewerking is geweigerd omdat dien client de laesteikes in 't bewerkingstoken onjuist haet behandeld. De bewerking is geweigerd om verminking van de paginateks te veurkomme. Dit gebeurt soms es d'r een webgebaseerde proxydienst wurt gebroek die foute bevat.'''",
 'edit_form_incomplete' => "'''Sommige ongerdeile van 't bewerkingsformuleer höbbe de server neet bereik. Controleer of dien bewerkinge intak zien en perbeer 't obbenuits.'''",
 'editing' => 'Bewirkingspagina: $1',
+'creating' => '$1 aanmakendj',
 'editingsection' => 'Bewirke van sectie van $1',
 'editingcomment' => 'Bewirke $1 (commentair)',
 'editconflict' => 'Bewirkingsconflik: $1',
@@ -887,6 +889,7 @@ Ze lik eweggesjaf te zien.',
 'edit-no-change' => "Dien bewirking is genegeerd, ómdet d'r gein verangering in de teks is gemaak.",
 'edit-already-exists' => 'De pagina is neet aangemaak.
 Zie besjteit al.',
+'defaultmessagetext' => 'Obligaten teks',
 
 # Parser/template warnings
 'expensive-parserfunction-warning' => "'''Waarschuwing:''' dees pagina gebroek te väöl kosbare parserfuncties.
@@ -1047,7 +1050,7 @@ Controleer de logbeuk.",
 # Suppression log
 'suppressionlog' => 'Verbergingslogbook',
 'suppressionlogtext' => 'De ongerstaonde lies bevat de verwiederinge en blokkades die veur beheerders verborge zeen.
-In de [[Special:BlockList|IP-blokkeerlies]] zeen de hudige blokkades te bekieke.',
+In de [[Special:BlockList|blokkeerlies]] zeen de hudige blokkades te bekieke.',
 
 # History merging
 'mergehistory' => "Gesjiedenis van pagina's samevoege",
@@ -1641,6 +1644,7 @@ Gank trök nao t [[Special:Upload/stash/$1|uploadformuleer]] om dit perbleem te 
 'backend-fail-contenttype' => 'Kós \'t inhawdtype van \'t bestnadj óm es "$1" op te slaon neet bepaole.',
 'backend-fail-batchsize' => 'Reiks van $1 {{PLURAL:$1|bestandjsoperatie|bestandjsoperaties}} in de opslaagbackend; de limiet is $2 {{PLURAL:$2|operatie|operaties}}.',
 
+# File journal errors
 'filejournal-fail-dbconnect' => 'Kós neet verbinje mit de journaaldatabase veur de opslaagbackend "$1".',
 'filejournal-fail-dbquery' => 'Kós de journaaldatabase neet biewèrke veur de opslaagbackend "$1".',
 
@@ -1760,6 +1764,8 @@ d'r Is ouch ne [[Special:WhatLinksHere/$2|volledige lies]].",
 Bekiek de [$2 pagina mit de besjtandjsbesjrieving] veur mie infermasie.',
 'sharedupload-desc-here' => 'Dit besjtandj kump van $1 en kin ouch in anger projekte gebroek waere.
 De [$2 pagina mit de besjtandjsbesjrieving] wurt hiejónger weergegaeve.',
+'sharedupload-desc-edit' => 'Dit bestandj kump van $1 en kin ouch in anger projekte gebroek waere. De kins de [$2 pagina mit bestandjsbesjrieving] dao bewirke.',
+'sharedupload-desc-create' => 'Dit bestandj kump van $1 en kin ouch in anger projekte gebroek waere. De kins de [$2 pagina mit bestandjsbesjrieving] dao bewirke.',
 'filepage-nofile' => 'dr Besteit gei bestandj mit deze naam.',
 'filepage-nofile-link' => 'dr Besteit gei bestandj mit deze naam, mer doe kins t [$1 uploade].',
 'uploadnewversion-linktext' => "Upload 'n nuuj versie van dit besjtand",
@@ -1971,6 +1977,12 @@ Controleer of se wellich n fout höbs gemaak bie de inveur.',
 'allpagesprefix' => "Betrach pazjena's mit 't veurvoogsel:",
 'allpagesbadtitle' => "De opgegaeve paginanaam is ongeldig of haj 'n intertaal of interwiki veurvoegsel. Meugelik bevatte de naam karakters die neet gebroek moge waere in paginanäöm.",
 'allpages-bad-ns' => '{{SITENAME}} haet gein naamruumde mit de naam "$1".',
+'allpages-hide-redirects' => 'Verbèrg redireks',
+
+# SpecialCachedPage
+'cachedspecial-viewing-cached-ttl' => "De bekieks 'ne paginacache dae maximaal $1 aad is.",
+'cachedspecial-viewing-cached-ts' => "De bekieks 'ne paginacache dae muuegelik neet gans biegewirk is.",
+'cachedspecial-refresh-now' => 'Tuin lèste.',
 
 # Special:Categories
 'categories' => 'Categorieë',
@@ -2449,7 +2461,7 @@ Zuug de [[Special:BlockList|lies van geblokkeerde IP-adresse]].',
 'blocklog-showsuppresslog' => "Deze gebroeker is al geblok gewaes en d'r zeen (deil van) bewerkinge van deze gebroeker verbórge. 't Verbèrgingslogbook steit hieónger:",
 'blocklogentry' => '"[[$1]]" is geblokkeerd veur d\'n tied van $2 $3',
 'reblock-logentry' => 'haet de instellinge veur de blokkaasj veur [[$1]] gewiezig. Deze verlöp noe op $2 om $3',
-'blocklogtext' => "Dit is 'n log van blokkades van gebroekers. Automatisch geblokkeerde IP-adresse sjtoon hie neet bie. Zuug de [[Special:BlockList|Lies van geblokkeerde IP-adresse]] veur de lies van op dit mement wèrkende blokkades.",
+'blocklogtext' => "Dit is 'n log van blokkades van gebroekers. Automatisch geblokkeerde IP-adresse sjtoon hie neet bie. Zuug de [[Special:BlockList|Lies van geblokkeerde adresse]] veur de lies van op dit mement wèrkende blokkades.",
 'unblocklogentry' => 'blokkade van $1 opgeheve',
 'block-log-flags-anononly' => 'allein anoniem',
 'block-log-flags-nocreate' => 'aanmake gebroekers geblokkeerd',
@@ -3498,6 +3510,9 @@ Same mit dit programma heurs se 'n [{{SERVER}}{{SCRIPTPATH}}/COPYING kopie van d
 'version-software' => 'Geïnstallieërde sofwaer',
 'version-software-product' => 'Perduk',
 'version-software-version' => 'Versie',
+'version-entrypoints' => 'Ingang-URLs',
+'version-entrypoints-header-entrypoint' => 'Ingank',
+'version-entrypoints-header-url' => 'URL',
 
 # Special:FilePath
 'filepath' => 'Bestandjspaad',
@@ -3685,5 +3700,16 @@ Anges kin se-n ouch \'t einvawdig formeleer hieónger gebroeke. Dien commentaar 
 'api-error-unknownerror' => 'Ónbekèndje fout: "$1"',
 'api-error-uploaddisabled' => 'Upload steit oet óp deze wiki.',
 'api-error-verification-error' => "Dit bestandj is meugelik besjadig of haet 'n ónjuuste extensie.",
+
+# Durations
+'duration-seconds' => '$1 {{PLURAL:$1|sekond|sekond}}',
+'duration-minutes' => '$1 {{PLURAL:$1|menuut|menuut}}',
+'duration-hours' => '$1 {{PLURAL:$1|oer|oer}}',
+'duration-days' => '$1 {{PLURAL:$1|daag|daag}}',
+'duration-weeks' => '$1 {{PLURAL:$1|waek|waek}}',
+'duration-years' => '$1 {{PLURAL:$1|jaor|jaor}}',
+'duration-decades' => '$1 {{PLURAL:$1|decennium|decennia}}',
+'duration-centuries' => '$1 {{PLURAL:$1|ieëf|ieëf}}',
+'duration-millennia' => '$1 {{PLURAL:$1|millennium|millennia}}',
 
 );

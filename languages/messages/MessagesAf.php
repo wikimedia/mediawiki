@@ -876,7 +876,8 @@ Die laaste inskrywing in die blokkeerlogboek word hieronder vertoon:',
 Onthou dat u eie .css- en .js-bladsye met 'n kleinletter begin, byvoorbeeld {{ns:user}}:Naam/vector.css in plaas van {{ns:user}}:Naam/Vector.css.",
 'updated' => '(Gewysig)',
 'note' => "'''Nota:'''",
-'previewnote' => "'''Onthou dat hierdie slegs 'n voorskou is en nog nie gestoor is nie!'''",
+'previewnote' => "'''Onthou dat hierdie slegs 'n voorskou is.'''
+U teks is nog nie gestoor nie!",
 'previewconflict' => 'Hierdie voorskou vertoon die teks in die boonste teksarea soos dit sou lyk indien u die bladsy stoor.',
 'session_fail_preview' => "'''Jammer! Weens verlies aan sessie-inligting is die wysiging nie verwerk nie.
 Probeer asseblief weer. As dit steeds nie werk nie, probeer om [[Special:UserLogout|af te teken]] en dan weer aan te teken.'''",
@@ -890,6 +891,7 @@ Die bewerking is geweier om verminking van die bladsy se teks te voorkom.
 Dit gebeur soms as 'n webgebaseerde instaandiens (proxy) gebruik word wat foute bevat.",
 'edit_form_incomplete' => "'''Dele van die vorm het nie die bediener bereik nie. Kyk of alles reg lyk en probeer weer.'''",
 'editing' => 'Besig om $1 te wysig',
+'creating' => 'Besig om $1 te skep',
 'editingsection' => 'Besig om $1 (onderafdeling) te wysig',
 'editingcomment' => 'Besig om $1 te wysig (nuwe opskrif)',
 'editconflict' => 'Wysigingskonflik: $1',
@@ -953,6 +955,7 @@ Dit lyk of dit verwyder is.',
 'edit-no-change' => 'U wysiging was geignoreer omdat die teks nie verander is nie.',
 'edit-already-exists' => 'Die bladsy is nie geskep nie.
 Dit bestaan alreeds.',
+'defaultmessagetext' => 'Verstekteks',
 
 # Parser/template warnings
 'expensive-parserfunction-warning' => 'Waarskuwing: Die bladsy gebruik te veel duur ontlederfunksies.
@@ -1537,6 +1540,7 @@ Die inligting is vir ander gebruikers sigbaar.',
 'newsectionsummary' => '/* $1 */ nuwe afdeling',
 'rc-enhanced-expand' => 'Wys details (benodig JavaScript)',
 'rc-enhanced-hide' => 'Steek details weg',
+'rc-old-title' => 'oorspronklik geskep as "$1"',
 
 # Recent changes linked
 'recentchangeslinked' => 'Verwante veranderings',
@@ -2033,6 +2037,12 @@ U kan die resultate vernou deur 'n boekstaaftipe, gebruikersnaam (kas-sensitief)
 'allpagesbadtitle' => "Die gespesifiseerde bladsynaam is ongeldig of het 'n intertaal- of interwiki-voorvoegsel.
 Dit is moontlik dat die naam karakters bevat wat nie in titels gebruik mag word nie.",
 'allpages-bad-ns' => '{{SITENAME}} het geen naamspasie "$1" nie.',
+'allpages-hide-redirects' => 'Versteek aansture',
+
+# SpecialCachedPage
+'cachedspecial-viewing-cached-ttl' => "U kyk na 'n gekasde weergawe ban die bladsy, wat tot $1 oud kan wees.",
+'cachedspecial-viewing-cached-ts' => "U kyk na 'n gekasde weergawe ban die bladsy, wat moontlik nie volledig bygewerk is nie.",
+'cachedspecial-refresh-now' => 'Wys nuutste.',
 
 # Special:Categories
 'categories' => 'Kategorieë',
@@ -3738,10 +3748,12 @@ Beelde word in hulle volle resolusie gewys. Ander lêertipes word direk met hull
 # API errors
 'api-error-badaccess-groups' => 'U word nie toegelaat om lêers te laai op hierdie wiki.',
 'api-error-badtoken' => 'Interne fout: slegte teken.',
+'api-error-copyuploaddisabled' => 'Oplaai via URL is gedeaktiveer op hierdie bediener.',
 'api-error-duplicate-archive-popup-title' => 'Duplikaat {{PLURAL:$1|lêer|lêers}} wat al verwyder is.',
 'api-error-duplicate-popup-title' => 'Duplikaat {{PLURAL:$1|lêer|lêers}}',
 'api-error-empty-file' => 'Die lêer wat u probeer oplaai is leeg.',
 'api-error-emptypage' => 'Die skep van leë nuwe bladsye word nie toegelaat nie.',
+'api-error-fetchfileerror' => 'Interne fout: Iets het verkeerd gegaan met die haal van die lêer.',
 'api-error-file-too-large' => 'Die lêer wat u probeer oplaai is te groot.',
 'api-error-filename-tooshort' => 'Die lêernaam is te kort.',
 'api-error-filetype-banned' => 'Hierdie tipe lêer is verban en word nie toegelaat nie.',
@@ -3750,10 +3762,13 @@ Beelde word in hulle volle resolusie gewys. Ander lêertipes word direk met hull
 'api-error-http' => "Interne fout: Kan nie 'n verbinding met die bediener maak nie.",
 'api-error-illegal-filename' => 'Die lêernaam word nie toegelaat nie.',
 'api-error-internal-error' => 'Interne fout: daar is iets verkeerd gegaan het met die verwerking van die oplaai van die lêer op die wiki.',
+'api-error-invalid-file-key' => 'Interne fout: die lêer is nie in tydelike berging gevind nie.',
 'api-error-missingparam' => 'Interne fout: ontbrekende parameters op aanvraag.',
 'api-error-missingresult' => 'Interne fout: Kon nie bepaal of die kopie daarin geslaag.',
 'api-error-mustbeloggedin' => 'U moet ingeteken wees om lêers te kan laai.',
+'api-error-mustbeposted' => "Interne fout: Die versoek vereis 'n HTTP POST-metode.",
 'api-error-noimageinfo' => 'Die oplaai daarin geslaag, maar die bediener het ons nie enige inligting oor die lêer.',
+'api-error-nomodule' => "Interne fout: daar is nie 'n uploadmodule ingestel nie.",
 'api-error-ok-but-empty' => 'Interne fout: geen reaksie van die bediener.',
 'api-error-overwrite' => "'N bestaande lêer vervang word nie toegelaat nie.",
 'api-error-stashfailed' => 'Interne fout: Server nie tydelike lêer te stoor.',

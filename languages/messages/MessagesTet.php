@@ -346,7 +346,7 @@ Check your spelling, ka [[Special:UserLogin/signup|kria konta foun]].',
 'newarticle' => '(Foun)',
 'noarticletext' => "Iha momentu lá'os testu iha pájina ne'e, bele [[Special:Search/{{PAGENAME}}|buka naran pájina nian]] iha pájina seluk, <span class=\"plainlinks\">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} search the related logs], ka [{{fullurl:{{FULLPAGENAME}}|action=edit}} edita pájina ne'e]</span>.",
 'previewnote' => "'''Ne'e de'it pájina ba kontrola.'''
-Ita-nia mudansa la armazenadu seidauk! [[#editform|→ Nafatin edita]]",
+Ita-nia mudansa la armazenadu seidauk!",
 'editing' => 'Edita $1',
 'editingsection' => 'Edita $1 (seksaun)',
 'editingcomment' => 'Edita $1 (seksaun foun)',

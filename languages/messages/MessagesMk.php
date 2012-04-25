@@ -1024,7 +1024,7 @@ $2
 'updated' => '(Подновено)',
 'note' => "'''Напомена:'''",
 'previewnote' => "'''Имајте предвид дека ова е само преглед.'''
-Вашите промени сè уште не се зачувани! [[#editform|→ Продолжете со уредување]]",
+Вашите промени сè уште не се зачувани!",
 'previewconflict' => 'Овој преглед прикажува како ќе изгледа текстот внесен во горниот дел откако ќе се зачува страницата.',
 'session_fail_preview' => "'''Жалиме! Не можевме да го обработиме вашето уредување поради загуба на сесиски податоци.'''
 Обидете се повторно.
@@ -1262,7 +1262,7 @@ $1",
 # Suppression log
 'suppressionlog' => 'Дневник на сокривања',
 'suppressionlogtext' => 'Подолу е прикажан список на бришења и блокирања поврзани со содржини скриени од администратори.
-Тековните забрани и блокирања ќе ги најдете на [[Special:BlockList|списокот на блокирани IP-адреси]].',
+Тековните забрани и блокирања ќе ги најдете на [[Special:BlockList|списокот на блокирања]].',
 
 # History merging
 'mergehistory' => 'Спојување на истории на страница',
@@ -1880,6 +1880,7 @@ $1',
 'backend-fail-contenttype' => 'Не можев да утврдам каква содржина има податотеката што треба да ја складирам во „$1“.',
 'backend-fail-batchsize' => 'Складишната основа доби блок од $1 податочна {{PLURAL:$1|операција|операции}}, а ограничувањето е $2 {{PLURAL:$2|операција|операции}}.',
 
+# File journal errors
 'filejournal-fail-dbconnect' => 'Не можев да се поврзам со дневничката база за складишната основа „$1“.',
 'filejournal-fail-dbquery' => 'Не можев да ја подновам дневничката база за складишната основа „$1“.',
 
@@ -2223,6 +2224,11 @@ $1',
 'allpagesbadtitle' => 'Дадениот наслов е неважечки или има меѓујазичен или интервики префикс. Може да содржи повеќе знаци кои не смеат да се користат во наслови.',
 'allpages-bad-ns' => 'Википедија не содржи именски простор „$1“.',
 'allpages-hide-redirects' => 'Скриј пренасочувања',
+
+# SpecialCachedPage
+'cachedspecial-viewing-cached-ttl' => 'Гледате кеширана верзија на оваа страница, која може да е стара $1.',
+'cachedspecial-viewing-cached-ts' => 'Гледате кеширана верзија на оваа страница, која може да се разликува од тековната.',
+'cachedspecial-refresh-now' => 'Погл. најновата.',
 
 # Special:Categories
 'categories' => 'Категории',
@@ -2668,8 +2674,8 @@ $1',
 'ipb-confirm' => 'Потврди блок',
 'badipaddress' => 'Неважечка IP-адреса',
 'blockipsuccesssub' => 'Успешно блокирање',
-'blockipsuccesstext' => 'IP-адресата [[Special:Contributions/$1|$1]] е блокирана.<br />
-[[Special:BlockList|Список на блокирани IP-адреси]].',
+'blockipsuccesstext' => '[[Special:Contributions/$1|$1]] е блокирана.<br />
+Блоковите можете да ги прегледате на [[Special:BlockList|списокот на блокови]].',
 'ipb-blockingself' => 'Се спремате да се блокирате самите себеси! Сигурни сте дека го сакате ова?',
 'ipb-confirmhideuser' => 'Сакате да блокирате корисник со можноста „скриј корисник“. Ова ќе го затаи името на корисникот во сите списоци и дневнички записи. Дали сте сигурни дека сакате да го направите тоа?',
 'ipb-edit-dropdown' => 'Наведи причина за блокирање',
@@ -2724,7 +2730,7 @@ $1',
 'reblock-logentry' => 'ги промени нагодувањата за блокирање на [[$1]] со рок на истекување од $2 $3',
 'blocklogtext' => 'Ова е дневник на блокирање и одблокирање на кориснци.
 Автоматски блокираните IP-адреси не се наведени.
-Видете го [[Special:BlockList|списокот на блокирани IP-адреси]].',
+Тековните забрани и блокирања ќе ги најдете на [[Special:BlockList|списокот на блокирања]].',
 'unblocklogentry' => 'го одблокира „$1“',
 'block-log-flags-anononly' => 'само анонимни корисници',
 'block-log-flags-nocreate' => 'оневозможено создавање кориснички сметки',
@@ -3993,6 +3999,11 @@ $5
 'version-software' => 'Инсталирана програмска опрема',
 'version-software-product' => 'Производ',
 'version-software-version' => 'Верзија',
+'version-entrypoints' => 'URL-а на влезните точки',
+'version-entrypoints-header-entrypoint' => 'Влезна точка',
+'version-entrypoints-header-url' => 'URL',
+'version-entrypoints-articlepath' => '[https://www.mediawiki.org/wiki/Manual:$wgArticlePath?uselang=mk Патека на статијата]',
+'version-entrypoints-scriptpath' => '[https://www.mediawiki.org/wiki/Manual:$wgScriptPath?uselang=mk Патека на скриптата]',
 
 # Special:FilePath
 'filepath' => 'Патека до податотека',
@@ -4179,5 +4190,16 @@ $5
 'api-error-unknownerror' => 'Непозната грешка: „$1“.',
 'api-error-uploaddisabled' => 'Подигањето е оневозможено на ова вики.',
 'api-error-verification-error' => 'Податотеката е оштетена или има погрешна наставка.',
+
+# Durations
+'duration-seconds' => '$1 {{PLURAL:$1|секунда|секунди}}',
+'duration-minutes' => '$1 {{PLURAL:$1|минута|минути}}',
+'duration-hours' => '$1 {{PLURAL:$1|час|часа}}',
+'duration-days' => '$1 {{PLURAL:$1|ден|дена}}',
+'duration-weeks' => '$1 {{PLURAL:$1|недела|недели}}',
+'duration-years' => '{{PLURAL: $1|година|години}}',
+'duration-decades' => '$1 {{PLURAL:$1|деценија|децении}}',
+'duration-centuries' => '$1 {{PLURAL:$1|век|века}}',
+'duration-millennia' => '$1 {{PLURAL:$1|милениум|милениуми}}',
 
 );

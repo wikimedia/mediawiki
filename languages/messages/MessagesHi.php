@@ -36,6 +36,7 @@
  * @author Reedy
  * @author Sajeel.irkal
  * @author Sayak Sarkar
+ * @author Shantanoo
  * @author Shrish
  * @author Shyam
  * @author Shyam123.ckp
@@ -1624,6 +1625,7 @@ $1',
 'backend-fail-contenttype' => '"$1" पर संजोने के लिये फ़ाइल का प्रकार नहीं निश्चित किया जा सका।',
 'backend-fail-batchsize' => 'भंडारण बैकेंड को $1 फ़ाइल {{PLURAL:$1|कार्य}} दिये गए थे; सीमा {{PLURAL:$2|$2 कार्य|$2 कार्यों}} की है।',
 
+# File journal errors
 'filejournal-fail-dbconnect' => 'भंडारण बैकेंड "$1" के जर्नल डाटाबेस से सम्पर्क नहीं हो पाया।',
 'filejournal-fail-dbquery' => 'भंडारण बैकेंड "$1" के जर्नल डाटाबेस का अद्यतन नहीं किया जा सका।',
 
@@ -3194,12 +3196,12 @@ $1',
 'exif-focalplaneresolutionunit-2' => 'इंच',
 
 'exif-sensingmethod-1' => 'अव्यक्त',
-'exif-sensingmethod-2' => 'वन चीप कलर एरीया सेन्‍सर',
-'exif-sensingmethod-3' => 'टू चीप कलर एरीया सेन्‍सर',
-'exif-sensingmethod-4' => 'थ्री चीप कलर एरीया सेन्‍सर',
+'exif-sensingmethod-2' => 'वन चीप कलर एरीया सेन्सर',
+'exif-sensingmethod-3' => 'टू चीप कलर एरीया सेन्सर',
+'exif-sensingmethod-4' => 'थ्री चीप कलर एरीया सेन्सर',
 'exif-sensingmethod-5' => 'कलर सिक्वेण्शीयल एरीया सेंसर',
 'exif-sensingmethod-7' => 'ट्रायलिनीयर सेंसर',
-'exif-sensingmethod-8' => 'कलर सिक्वेंशीयल लिनीयर सेन्‍सर',
+'exif-sensingmethod-8' => 'कलर सिक्वेंशीयल लिनीयर सेन्सर',
 
 'exif-filesource-3' => 'डिजिटल स्टिल कैमरा',
 

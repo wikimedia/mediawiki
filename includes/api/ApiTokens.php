@@ -35,19 +35,16 @@ class ApiTokens extends ApiBase {
 	}
 
 	public function execute() {
+		wfProfileIn( __METHOD__ );
 		$params = $this->extractRequestParams();
 		$res = array();
 
+		$types = $this->getTokenTypes();
 		foreach ( $params['type'] as $type ) {
 			$type = strtolower( $type );
-			$func = 'get' .
-					ucfirst( $type ) .
-					'Token';
-			if ( $type === 'patrol' ) {
-				$val = call_user_func( array( 'ApiQueryRecentChanges', $func ), null, null );
-			} else {
-				$val = call_user_func( array( 'ApiQueryInfo', $func ), null, null );
-			}
+
+			$val = call_user_func( $types[$type], null, null );
+
 			if ( $val === false ) {
 				$this->setWarning( "Action '$type' is not allowed for the current user" );
 			} else {
@@ -56,6 +53,25 @@ class ApiTokens extends ApiBase {
 		}
 
 		$this->getResult()->addValue( null, $this->getModuleName(), $res );
+		wfProfileOut( __METHOD__ );
+	}
+
+	private function getTokenTypes() {
+		static $types = null;
+		if ( $types ) {
+			return $types;
+		}
+		wfProfileIn( __METHOD__ );
+		$types = array( 'patrol' => 'ApiQueryRecentChanges::getPatrolToken' );
+		$names = array( 'edit', 'delete', 'protect', 'move', 'block', 'unblock',
+			'email', 'import', 'watch' );
+		foreach ( $names as $name ) {
+			$types[$name] = 'ApiQUeryInfo::get' . ucfirst( $name ) . 'Token';
+		}
+		wfRunHooks( 'ApiTokensGetTokenTypes', array( &$types ) );
+		ksort( $types );
+		wfProfileOut( __METHOD__ );
+		return $types;
 	}
 
 	public function getAllowedParams() {
@@ -63,11 +79,8 @@ class ApiTokens extends ApiBase {
 			'type' => array(
 				ApiBase::PARAM_DFLT => 'edit',
 				ApiBase::PARAM_ISMULTI => true,
-				ApiBase::PARAM_TYPE => array(
-					'edit', 'delete', 'protect', 'move', 'block', 'unblock',
-					'email', 'import', 'watch', 'patrol'
-				)
-			)
+				ApiBase::PARAM_TYPE => array_keys( $this->getTokenTypes() ),
+			),
 		);
 	}
 

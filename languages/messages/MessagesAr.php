@@ -18,6 +18,7 @@
  * @author Bassem JARKAS
  * @author Chaos
  * @author Ciphers
+ * @author DRIHEM
  * @author DrFO.Tn
  * @author Elmondo21st
  * @author Elmoro
@@ -1141,7 +1142,7 @@ $2
 تذكر أن ملفات ال.css و ال.js تستخدم حروف صغيرة في العنوان ، كمثال {{ns:user}}:Foo/vector.css و ليس {{ns:user}}:Foo/Vector.css.",
 'updated' => '(محدثة)',
 'note' => "'''ملاحظة:'''",
-'previewnote' => "'''تذكر أن هذه مجرد معاينة للصفحة؛''''
+'previewnote' => "'''تذكر أن هذه مجرد معاينة أولية.'''
 لم تحفظ تغييراتك إلى الآن!",
 'previewconflict' => 'هذا العرض يوضح النص الموجود في صندوق التحرير العلوي والذي سيظهر إذا اخترت الحفظ.',
 'session_fail_preview' => "'''عذرا! لم نتمكن من حفظ التعديلات التي قمت بها نتيجة لضياع بيانات هذه الجلسة.
@@ -1181,8 +1182,8 @@ $2
 إذا لم تكن ترغب أن تعدل مشاركاتك بهذا الشكل، لا تضعها هنا.<br />
 أنت تقر أيضا أنك كتبت هذا بنفسك، أو نسخته من مصدر يخضع للملكية العامة، أو مصدر حر آخر (انظر $1 للتفاصيل).
 '''لا تضف أي عمل ذي حقوق محفوظة بدون تصريح!'''",
-'longpageerror' => "'''خطأ: النص الذي أدخلته حجمه $1 كيلوبايت، وهذا أكبر من الحد الأقصى وهو $2 كيلوبايت.
-لا يمكن حفظه.'''",
+'longpageerror' => "'''خطأ: النص الذي قمت بإدخاله {{PLURAL:$1|واحد كيلوبايت|$1 كيلوبيات}} أطول, وهو أطول من الحد الأقصى {{PLURAL:$2|واحد كيلوبايت|$2 كيلوبايت}}.'''
+و يتعذر حفظه.",
 'readonlywarning' => "'''تحذير: لقد أغلقت قاعدة البيانات للصيانة، لذلك لن تتمكن من حفظ التعديلات التي قمت بها حاليا.
 إذا رغبت بإمكانك أن تنسخ النص الذي تعمل عليه وتحفظه في ملف نصي إلى وقت لاحق.'''
 
@@ -1998,9 +1999,9 @@ $1',
 # img_auth script messages
 'img-auth-accessdenied' => 'رفض الوصول',
 'img-auth-nopathinfo' => 'PATH_INFO مفقود.
-خادومك ليس مضبوطا لتمرير هذه المعلومات.
-ربما يكون مبني على CGI ولا يمكنه دعم img_auth.
-[https://www.mediawiki.org/wiki/Manual:Image_Authorization راجع تصريح الصور].',
+خادمك ليس مضبوطا  لتمرير هذه المعلومة.
+قد يكون مبنيا على نظام CGI ولا يمكنه دعم img_auth.
+راجع https://www.mediawiki.org/wiki/Manual:Image_Authorization.',
 'img-auth-notindir' => 'المسار المطلوب غير موجود في مجلد الرفع المضبوط.',
 'img-auth-badtitle' => 'تعذر تشكيل عنوان صالح من "$1".',
 'img-auth-nologinnWL' => 'لست والجا و"$1" ليست في القائمة البيضاء.',
@@ -2318,8 +2319,9 @@ $1',
 'linksearch-pat' => 'نمط البحث:',
 'linksearch-ns' => 'النطاق:',
 'linksearch-ok' => 'ابحث',
-'linksearch-text' => 'الكروت الخاصة مثل "*.wikipedia.org" يمكن استخدامها.<br />
-البروتوكولات المدعومة: <tt>$1</tt>',
+'linksearch-text' => 'Wildcards مثل "*.wikipedia.org" يمكن استخدامها.
+تحتاج على الأقل إلى نطاق ذو مستوى أعلى، كمثال "*.org".<br />
+البروتوكولات المدعومة: <tt>$1</tt> (لا تقم بإضافة أي من هذه إلى بحثك).',
 'linksearch-line' => '$1 موصولة من $2',
 'linksearch-error' => 'الكروت الخاصة يمكن أن تظهر فقط في بداية اسم المضيف.',
 
@@ -2736,8 +2738,8 @@ $1',
 'ipb-confirm' => 'أكّد المنع',
 'badipaddress' => 'عنوان أيبي غير صحيح',
 'blockipsuccesssub' => 'تم المنع بنجاح',
-'blockipsuccesstext' => 'تم منع [[Special:Contributions/$1|$1]].<br />
-انظر [[Special:BlockList|قائمة منع الأيبي]] لمراجعة حالات المنع.',
+'blockipsuccesstext' => '[[Special:Contributions/$1|$1]] تم منعها.<br />
+أنظر [[Special:BlockList|قائمة منع الآيبي]] لمراجعة حالات المنع.',
 'ipb-blockingself' => 'أنت على وشك منع نفسك! أمتأكد من رغبتك في القيام بذلك؟',
 'ipb-confirmhideuser' => 'أنت على وشك منع مستخدم مع تفعيل خيار "أخف المستخدم". سوف يخفي هذا الخيار اسم المستخدم من جميل القوائم ومدخلات السجلات. أمتأكد من رغبتك في القيام بذلك؟',
 'ipb-edit-dropdown' => 'عدل أسباب المنع',
@@ -2792,7 +2794,7 @@ $1',
 'reblock-logentry' => 'غير إعدادات المنع ل[[$1]] بتاريخ انتهاء $2 $3',
 'blocklogtext' => 'هذا سجل بعمليات المنع ورفع المنع.
 عناوين الأيبي الممنوعة تلقائيا ليست معروضة.
-انظر [[Special:BlockList|عناوين الأيبي الممنوعة]] لرؤية عمليات المنع المفعلة حاليا.',
+أنظر [[Special:BlockList|قائمة منع الآيبي]] لرؤية عمليات المنع المفعلة حاليا.',
 'unblocklogentry' => 'رفع منع $1',
 'block-log-flags-anononly' => 'المستخدمون المجهولون فقط',
 'block-log-flags-nocreate' => 'إنشاء الحسابات ممنوع',
@@ -3270,9 +3272,9 @@ $1',
 
 # Video information, used by Language::formatTimePeriod() to format lengths in the above messages
 'video-dims' => '$1، $2×$3',
-'seconds-abbrev' => '$1ث',
-'minutes-abbrev' => '$1د',
-'hours-abbrev' => '$1س',
+'seconds-abbrev' => '$1s',
+'minutes-abbrev' => '$1m',
+'hours-abbrev' => '$1h',
 'seconds' => '{{PLURAL:$1||ثانية واحدة|ثانيتين|$1 ثوانٍ|$1 ثانية}}',
 'minutes' => '{{PLURAL:$1||دقيقة واحدة|دقيقتين|$1 دقائق|$1 دقيقة}}',
 'hours' => '{{PLURAL:$1||ساعة واحدة|ساعتين|$1 ساعات|$1 ساعة}}',
@@ -3955,7 +3957,7 @@ $5
 'hebrew-calendar-m6-gen' => 'أدار',
 'hebrew-calendar-m6a-gen' => 'أدار الأول',
 'hebrew-calendar-m6b-gen' => 'أدار الثاني',
-'hebrew-calendar-m7-gen' => 'نيزان',
+'hebrew-calendar-m7-gen' => 'نيسان/أبريل',
 'hebrew-calendar-m8-gen' => 'أيار',
 'hebrew-calendar-m9-gen' => 'سيفان',
 'hebrew-calendar-m10-gen' => 'تموز',
@@ -3964,7 +3966,7 @@ $5
 
 # Signatures
 'signature' => '[[{{ns:user}}:$1|$2]] ([[{{ns:user_talk}}:$1|نقاش]])',
-'timezone-utc' => 'ت ع م',
+'timezone-utc' => 'بالتوقيت العالمي',
 
 # Core parser functions
 'unknown_extension_tag' => 'وسم امتداد غير معروف "$1"',
@@ -3987,7 +3989,7 @@ $5
 'version-hook-name' => 'اسم الخطاف',
 'version-hook-subscribedby' => 'يستخدم بواسطة',
 'version-version' => '(نسخة $1)',
-'version-svn-revision' => '(&رلم;r$2)',
+'version-svn-revision' => '(r$2)',
 'version-license' => 'الرخصة',
 'version-poweredby-credits' => "تدار هذه الويكي ب'''[//www.mediawiki.org/ ميدياويكي]''', حقوق النشر © 2001-$1 $2.",
 'version-poweredby-others' => 'آخرون',
@@ -4154,6 +4156,7 @@ $5
 'api-error-duplicate-archive-popup-title' => 'تكرار {{PLURAL:$1|ملف|ملفات}} قد تم حذفه مسبقاً',
 'api-error-duplicate-popup-title' => 'ارفع {{PLURAL:$1|الملف|الملف|الملفين|الملفات|الملفات|الملفات}}',
 'api-error-empty-file' => 'كان ملف الذي قمت بإرسال فارغة.',
+'api-error-emptypage' => 'إنشاء صفحات فارغة جديدة، غير مسموح به.',
 'api-error-fetchfileerror' => 'خطأ داخلي: قد حدث خطأ أثناء إحضار الملف.',
 'api-error-file-too-large' => 'الملف الذي أرسلته كان كبيرا جدا.',
 'api-error-filename-tooshort' => 'اسم الملف قصير جدا.',

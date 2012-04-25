@@ -10,24 +10,26 @@ var mwTestIgnore, mwTester, addons;
  * or 'data/test.php?foo=bar').
  * @return {String} Such as 'data/foo.js?131031765087663960'
  */
-QUnit.fixurl = function (value) {
+QUnit.fixurl = function ( value ) {
 	return value + (/\?/.test( value ) ? '&' : '?')
 		+ String( new Date().getTime() )
-		+ String( parseInt( Math.random()*100000, 10 ) );
+		+ String( parseInt( Math.random() * 100000, 10 ) );
 };
 
 /**
  * Configuration
  */
-QUnit.config.testTimeout = 5000;
 
-/**
- * MediaWiki debug mode
- */
+// When a test() indicates asynchronicity with stop(),
+// allow 10 seconds to pass before killing the test(),
+// and assuming failure.
+QUnit.config.testTimeout = 10 * 1000;
+
+// Add a checkbox to QUnit header to toggle MediaWiki ResourceLoader debug mode.
 QUnit.config.urlConfig.push( 'debug' );
 
 /**
- *  Load TestSwarm agent
+ * Load TestSwarm agent
  */
 // Only if the current url indicates that there is a TestSwarm instance watching us
 // (TestSwarm appends swarmURL to the test suites url it loads in iframes).

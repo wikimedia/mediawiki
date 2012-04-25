@@ -23,10 +23,11 @@ class FileBackendTest extends MediaWikiTestCase {
 				foreach ( $wgFileBackends as $conf ) {
 					if ( $conf['name'] == $name ) {
 						$useConfig = $conf;
+						break;
 					}
 				}
 				$useConfig['name'] = 'localtesting'; // swap name
-				$class = $conf['class'];
+				$class = $useConfig['class'];
 				self::$backendToUse = new $class( $useConfig );
 				$this->singleBackend = self::$backendToUse;
 			}
@@ -823,7 +824,7 @@ class FileBackendTest extends MediaWikiTestCase {
 			$size = $this->backend->getFileSize( array( 'src' => $path ) );
 			$time = $this->backend->getFileTimestamp( array( 'src' => $path ) );
 			$stat = $this->backend->getFileStat( array( 'src' => $path ) );
-			
+
 			$this->assertFalse( $size, "Correct file size of '$path'" );
 			$this->assertFalse( $time, "Correct file timestamp of '$path'" );
 			$this->assertFalse( $stat, "Correct file stat of '$path'" );

@@ -777,9 +777,9 @@ class LocalFile extends File {
 		}
 
 		# Delete the thumbnails
-		$this->repo->cleanupBatch( $purgeList, FileRepo::SKIP_LOCKING );
+		$this->repo->quickPurgeBatch( $purgeList );
 		# Clear out the thumbnail directory if empty
-		$this->repo->getBackend()->clean( array( 'dir' => $dir ) );
+		$this->repo->cleanDir( $dir );
 	}
 
 	/** purgeDescription inherited */
@@ -2319,7 +2319,8 @@ class LocalFileMoveBatch {
 			'oldimage',
 			array(
 				'oi_name' => $this->newName,
-				'oi_archive_name = ' . $dbw->strreplace( 'oi_archive_name', $dbw->addQuotes( $this->oldName ), $dbw->addQuotes( $this->newName ) ),
+				'oi_archive_name = ' . $dbw->strreplace( 'oi_archive_name',
+					$dbw->addQuotes( $this->oldName ), $dbw->addQuotes( $this->newName ) ),
 			),
 			array( 'oi_name' => $this->oldName ),
 			__METHOD__
@@ -2328,7 +2329,10 @@ class LocalFileMoveBatch {
 		$affected = $dbw->affectedRows();
 		$total = $this->oldCount;
 		$status->successCount += $affected;
-		$status->failCount += $total - $affected;
+		// Bug 34934: $total is based on files that actually exist.
+		// There may be more DB rows than such files, in which case $affected
+		// can be greater than $total. We use max() to avoid negatives here.
+		$status->failCount += max( 0, $total - $affected );
 		if ( $status->failCount ) {
 			$status->error( 'imageinvalidfilename' );
 		}

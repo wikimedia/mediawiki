@@ -19,6 +19,7 @@
  * @author Bangin
  * @author Bennylin
  * @author Beta16
+ * @author Bilalokms
  * @author Boivie
  * @author Brest
  * @author BrokenArrow
@@ -971,6 +972,7 @@ See also {{msg-mw|Noarticletext-nopermission}}.',
 'sitejspreview' => 'Text displayed on preview of .js pages in MediaWiki namespace',
 'updated' => '{{Identical|Updated}}',
 'previewnote' => 'Note displayed when clicking on Show preview',
+'continue-editing' => 'A link to the beginning of the editing textarea on the same page. Displayed after {{msg-mw|previewnote}}.',
 'editing' => "Shown as page title when editing a page. \$1 is the name of the page that is being edited. Example: \"''Editing Main Page''\".",
 'creating' => "Shown as page title when creating a page. Parameters:
 * \$1 is the name of the page that is being created. Example: \"''Creating Main Page''\".",
@@ -1002,6 +1004,7 @@ Please report at [[Support]] if you are unable to properly translate this messag
 'recreate-moveddeleted-warn' => 'Warning shown when creating a page which has already been deleted. See for example [[Test]].',
 'moveddeleted-notice' => 'Shown on top of a deleted page in normal view modus ([http://translatewiki.net/wiki/Test example]).',
 'edit-conflict' => "An 'Edit conflict' happens when more than one edit is being made to a page at the same time. This would usually be caused by separate individuals working on the same page. However, if the system is slow, several edits from one individual could back up and attempt to apply simultaneously - causing the conflict.",
+'defaultmessagetext' => 'Caption above the default message text shown on the left-hand side of a diff displayed after clicking “Show changes” when creating a new page in the MediaWiki: namespace',
 
 # Parser/template warnings
 'expensive-parserfunction-warning' => 'On some (expensive) [[MetaWikipedia:Help:ParserFunctions|parser functions]] (e.g. <code><nowiki>{{#ifexist:}}</nowiki></code>) there is a limit of how many times it may be used. This is an error message shown when the limit is exceeded.
@@ -1904,8 +1907,8 @@ Extensions making use of it:
 'backend-fail-notexists' => 'Parameters:
 * $1 is a filename.',
 'backend-fail-hashes' => 'Definition of "[[w:en:Hash_function|hashes]]".',
-'backend-fail-notsame' => 'Parameters:
-* $1 is a filename.',
+'backend-fail-notsame' => 'Parametreler:
+* $1 bir dosya ismi.',
 'backend-fail-invalidpath' => 'Parameters:
 * $1 is a storage path.',
 'backend-fail-delete' => 'Parameters:
@@ -1930,9 +1933,16 @@ Extensions making use of it:
 'backend-fail-connect' => 'A "[[:wikipedia:Front and back ends|backend]]" is a system or component that ordinary users don\'t interact with directly and don\'t need to know about, and that is responsible for a distinct task or service - for example, a storage back-end is a generic system for storing data which other applications can use. Possible alternatives for back-end are "system" or "service", or (depending on context and language) even leave it untranslated.',
 'backend-fail-internal' => 'A "[[:wikipedia:Front and back ends|backend]]" is a system or component that ordinary users don\'t interact with directly and don\'t need to know about, and that is responsible for a distinct task or service - for example, a storage back-end is a generic system for storing data which other applications can use. Possible alternatives for back-end are "system" or "service", or (depending on context and language) even leave it untranslated.',
 'backend-fail-contenttype' => '$1 is a storage (file) path',
-'backend-fail-batchsize' => 'Error message when the limit of 1000 operations in the file backend was reached.',
+'backend-fail-batchsize' => 'Error message when the limit of operations to be done at once in the file backend was reached.
+Parameters:
+* $1 is the number of operations attempted at once in this case.
+* $2 is the maximum number of operations that can be attempted at once.',
 
-'filejournal-fail-dbconnect' => '"Journal database" probably as described in [[w:en:Transaction_log|this article]].',
+# File journal errors
+'filejournal-fail-dbconnect' => 'Parameters:
+* $1 is the name of the "[[:wikipedia:Front and back ends|backend]]" that the file journal logs changes for.',
+'filejournal-fail-dbquery' => 'Parameters:
+* $1 is the name of the "[[:wikipedia:Front and back ends|backend]]" that the file journal logs changes for.',
 
 # Lock manager
 'lockmanager-notlocked' => 'Parameters:
@@ -2362,6 +2372,11 @@ The title is {{msg-mw|nopagetitle}}.',
 {{Identical|Go}}',
 'allpagesprefix' => "Used for the label of the input box of [[Special:PrefixIndex]]. On this page you can either write 'Name of namespace:string from which to begin display in alphabetical order' in the top box, or you can choose a namespace in the bottom box and put 'string from which to begin display in alphabetical order' in the top box. The result will be the same.",
 'allpages-hide-redirects' => 'Label for a checkbox. If the checkbox is checked redirects will not be shown in the list. Used in [[Special:PrefixIndex]] and [[Special:Allpages]].',
+
+# SpecialCachedPage
+'cachedspecial-viewing-cached-ttl' => 'Message notifying they are watching a cached page. $1 is a duration (ie "1 hour and 30 minutes")',
+'cachedspecial-viewing-cached-ts' => 'Message notifying they are watching a cached page.',
+'cachedspecial-refresh-now' => 'Link text pointing to the most recent version of the page.',
 
 # Special:Categories
 'categories' => 'The page name of [[Special:Categories]].
@@ -4399,6 +4414,11 @@ This is being used in [[Special:Version]], preceeding the subversion revision nu
 'version-license-info' => '[[wikipedia:GNU GPL|GNU GPL]] notice shown at [[Special:Version]]. See //www.gnu.org/licenses/old-licenses/gpl-2.0-translations.html for available translations.',
 'version-software-product' => 'Shown in [[Special:Version]]',
 'version-software-version' => '{{Identical|Version}}',
+'version-entrypoints' => 'Header on [[Special:Version]] above a table that lists the URLs of various entry points in this MediaWiki installation.',
+'version-entrypoints-header-entrypoint' => 'Header for the first column in the entry points table on [[Special:Version]].',
+'version-entrypoints-header-url' => 'Header for the second column in the entry points table on [[Special:Version]].',
+'version-entrypoints-articlepath' => 'A short description of the article path entry point. Links to the mediawiki.org documentation page for $wgArticlePath.',
+'version-entrypoints-scriptpath' => 'A short description of the script path entry point. Links to the mediawiki.org documentation page for $wgScriptPath.',
 
 # Special:FilePath
 'filepath' => 'Legend of fieldset around input box in [[Special:FilePath]].',

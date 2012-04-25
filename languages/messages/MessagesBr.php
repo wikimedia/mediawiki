@@ -561,9 +561,9 @@ $2',
 'ns-specialprotected' => "N'haller ket kemmañ ar pajennoù en esaouenn anv {{ns:special}}.",
 'titleprotected' => "Gwarezet eo bet an titl-mañ p'eo bet krouet gant [[User:$1|$1]].
 Setu amañ perak ''$2''.",
-'filereadonlyerror' => 'Dibosupl kemmañ ar restr "$1" abalamour m\'emañ ar c\'havlec\'h restrom "$2" e mod lenn nemetken.
+'filereadonlyerror' => 'Dibosupl kemmañ ar restr "$1" abalamour m\'emañ ar c\'havlec\'h restroù "$2" e mod lenn nemetken.
 
-"\'\'$3\'\'" eo an abeg roet.',
+"\'\'$3\'\'" eo an abeg roet gant ar merour en deus prennet anezhi.',
 
 # Virus scanner
 'virus-badscanner' => "Kefluniadur fall : skanner viruzoù dianav : ''$1''",
@@ -849,7 +849,7 @@ Dindan emañ merket moned diwezhañ marilh ar stankadennoù, d'ho kelaouiñ :",
 'updated' => '(Hizivaet)',
 'note' => "'''Notenn :'''",
 'previewnote' => "'''Diwallit mat, n'eus ken ur rakweled eus an destenn-mañ.'''
-N'eo ket bet enrollet ho kemmoù evit c'hoazh ! [[#editform|→ Kenderc'hel da gemmañ]]",
+N'eo ket bet enrollet ho kemmoù evit c'hoazh !",
 'previewconflict' => 'Gant ar rakweled e teu testenn ar bajenn war wel evel ma vo pa vo bet enrollet.',
 'session_fail_preview' => "'''Ho tigarez! N'eus ket bet tu da enrollañ ho kemmoù rak kollet eo bet roadennoù an dalc'h.'''
 Klaskit en-dro mar plij.
@@ -923,6 +923,7 @@ Diverket eo bet evit doare.',
 'edit-no-change' => "N'eo ket bet kemeret ho tegasadenn e kont rak ne oa ket bet kemmet netra en destenn.",
 'edit-already-exists' => "N'eus ket bet gallet krouiñ ur bajenn nevez.
 Krouet e oa bet c'hoazh.",
+'defaultmessagetext' => 'Testenn dre ziouer',
 
 # Parser/template warnings
 'expensive-parserfunction-warning' => "Diwallit : Re a c'halvoù koustus e-keñver an arc'hwelioù parser zo gant ar bajenn-mañ.
@@ -1684,6 +1685,7 @@ Ma talc'h ar gudenn, kit e darempred gant [[Special:ListUsers/sysop|merourien ar
 'backend-fail-contenttype' => 'Dibosupl termeniñ ar seurt danvez da enrollañ e "$1".',
 'backend-fail-batchsize' => 'Pourvezet he deus an dermenell stokañ ur pakad a $1 {{PLURAL:$1|oberiadenn|oberiadenn}}; sevel a ra ar vevenn da $2 {{PLURAL:$2|oberiadenn|oberiadenn}}.',
 
+# File journal errors
 'filejournal-fail-dbconnect' => 'N\'eus ket bet gallet kevreañ ouzh diaz roadennoù ar marilh evit an dermenell stokañ "$1".',
 'filejournal-fail-dbquery' => 'N\'eus ket bet gallet hizivaat diaz roadennoù marilh an dermenell stokañ "$1".',
 
@@ -2019,6 +2021,11 @@ Gallout a rit strishaat ar mod diskwel en ur zibab ar marilh, an anv implijer (d
 'allpagesbadtitle' => "Fall e oa anv ar bajenn lakaet pe neuze ez eus ennañ ur rakger etrewiki pe etreyezhoù. Evit doare ez arouezennoù n'haller ket implijout en titloù.",
 'allpages-bad-ns' => 'N\'eus ket a esaouenn anv anvet "$1" war {{SITENAME}}.',
 'allpages-hide-redirects' => 'Kuzhat an adkasoù',
+
+# SpecialCachedPage
+'cachedspecial-viewing-cached-ttl' => "Emaoc'h o sellet ouzh ur stumm krubuilhet eus ar bajenn-mañ, a c'hall bezañ kement ha $1 kozh",
+'cachedspecial-viewing-cached-ts' => "Emaoc'h o sellet ouzh ur stumm krubuilhet eus ar bajenn-mañ a c'hall bezañ dispredet un disterañ.",
+'cachedspecial-refresh-now' => 'Gwelet an hini nevesañ.',
 
 # Special:Categories
 'categories' => 'Roll ar rummadoù',
@@ -2515,7 +2522,7 @@ Setu aze an abeg(où) m\'eo bet stanket $1 : "$2"',
 'blocklog-showsuppresslog' => "Stanket ha kuzhet eo bet an implijer-mañ c'hoazh. A-is emañ marilh ar diverkadennoù, d'ho titouriñ :",
 'blocklogentry' => 'en/he deus stanket [[$1]] betek an $2 $3',
 'reblock-logentry' => "en deus kemmet an arventennoù stankañ evit [[$1]] gant un termen d'an $2 $3",
-'blocklogtext' => "Setu roud stankadennoù ha distankadennoù an implijerien. N'eo ket bet rollet ar chomlec'hioù IP bet stanket outo ent emgefre. Sellet ouzh [[Special:BlockList|roll an implijerien stanket]] evit gwelet piv zo stanket e gwirionez.",
+'blocklogtext' => "Setu roud stankadennoù ha distankadennoù an implijerien. N'eo ket bet rollet ar chomlec'hioù IP bet stanket ent emgefre. Sellet ouzh [[Special:BlockList|roll an implijerien stanket]] evit gwelet piv zo stanket e gwirionez.",
 'unblocklogentry' => 'distanket "$1"',
 'block-log-flags-anononly' => 'implijerien dizanv hepken',
 'block-log-flags-nocreate' => 'berzet eo krouiñ kontoù',
@@ -3622,6 +3629,9 @@ Sañset oc'h bezañ resevet [{{SERVER}}{{SCRIPTPATH}}/COPYING un eilskrid eus ar
 'version-software' => 'Meziant staliet',
 'version-software-product' => 'Produ',
 'version-software-version' => 'Stumm',
+'version-entrypoints' => 'URLoù ar poent mont e-barzh',
+'version-entrypoints-header-entrypoint' => 'Poent mont e-barzh',
+'version-entrypoints-header-url' => 'URL',
 
 # Special:FilePath
 'filepath' => 'Hent moned ur restr',
@@ -3809,5 +3819,16 @@ A-hend-all e c'hallit ober gant ar furmskrid eeunaet dindan. Ouzhpennet e vo hoc
 'api-error-unknownerror' => 'Fazi dianav : "$1".',
 'api-error-uploaddisabled' => 'Diweredekaat eo an enporzh war ar wiki-mañ.',
 'api-error-verification-error' => 'Pe eo brein ar restr pe eo fall an astenn anezhi.',
+
+# Durations
+'duration-seconds' => '$1 {{PLURAL:$1|eilenn|eilenn}}',
+'duration-minutes' => '$1 {{PLURAL:$1|munut|munut}}',
+'duration-hours' => '($1 {{PLURAL:$1|eurvezh|eurvezh}})',
+'duration-days' => '($1 {{PLURAL:$1|deiz|deiz}})',
+'duration-weeks' => '$1 {{PLURAL:$1|sizhun|sizhun}}',
+'duration-years' => '$1 {{PLURAL:$1|bloaz|bloaz}}',
+'duration-decades' => '$1 {{PLURAL:$1|degad|degas}}',
+'duration-centuries' => "$1 {{PLURAL:$1|c'hantved|kantved}}",
+'duration-millennia' => '$1 {{PLURAL:$1|milvloaz|milvoaz}}',
 
 );

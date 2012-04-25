@@ -1096,6 +1096,11 @@ abstract class HTMLFormField {
 				$msg = wfMessage( array_shift( $helpMessage ), $helpMessage );
 
 				if( $msg->exists() ) {
+					if( is_null( $helptext ) ) {
+						$helptext = '';
+					} else {
+						$helptext .= wfMessage( 'word-separator' )->escaped(); // some space
+					}
 					$helptext .= $msg->parse(); // Append message
 				}
 			}
@@ -1304,6 +1309,10 @@ class HTMLTextAreaField extends HTMLFormField {
 
 		if ( !empty( $this->mParams['readonly'] ) ) {
 			$attribs['readonly'] = 'readonly';
+		}
+
+		if ( isset( $this->mParams['placeholder'] ) ) {
+			$attribs['placeholder'] = $this->mParams['placeholder'];
 		}
 
 		foreach ( array( 'required', 'autofocus' ) as $param ) {

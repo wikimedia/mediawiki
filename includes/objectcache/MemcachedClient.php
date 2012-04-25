@@ -1139,7 +1139,13 @@ class MWMemcached {
 // }}}
 
 class MemCachedClientforWiki extends MWMemcached {
+
 	function _debugprint( $text ) {
-		wfDebug( "memcached: $text" );
+		global $wgDebugLogGroups;
+		if( !isset( $wgDebugLogGroups['memcached'] ) ) {
+			# Prefix message since it will end up in main debug log file
+			$text = "memcached: $text";
+		}
+		wfDebugLog( 'memcached', $text );
 	}
 }

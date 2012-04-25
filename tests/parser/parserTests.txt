@@ -59,6 +59,12 @@ MediaWiki:bad image list
 * [[File:Bad.jpg]] except [[Nasty page]]
 !!endarticle
 
+!! article
+Template:inner list
+!! text
+* item 1
+!! endarticle
+
 ###
 ### Basic tests
 ###
@@ -2143,6 +2149,36 @@ List items are not parsed correctly following a <pre> block (bug 785)
 <ul><li> <pre>foo</pre>
 </li><li> <pre>bar</pre>
 </li><li> zar
+</li></ul>
+
+!! end
+
+!! test
+List items from template
+!! input
+
+{{inner list}}
+* item 2
+
+* item 0
+{{inner list}}
+* item 2
+
+* item 0
+* notSOL{{inner list}}
+* item 2
+!! result
+<ul><li> item 1
+</li><li> item 2
+</li></ul>
+<ul><li> item 0
+</li><li> item 1
+</li><li> item 2
+</li></ul>
+<ul><li> item 0
+</li><li> notSOL
+</li><li> item 1
+</li><li> item 2
 </li></ul>
 
 !! end
@@ -9251,6 +9287,63 @@ Ignore pipe between table row attributes
 <tr id="foo" style="color: red">
 <td> bar
 </td></tr></table>
+
+!! end
+
+!!test
+Gallery override link with WikiLink (bug 34852)
+!! input
+<gallery>
+File:foobar.jpg|caption|alt=galleryalt|link=InterWikiLink
+</gallery>
+!! result
+<ul class="gallery">
+		<li class="gallerybox" style="width: 155px"><div style="width: 155px">
+			<div class="thumb" style="width: 150px;"><div style="margin:68px auto;"><a href="/wiki/InterWikiLink"><img alt="galleryalt" src="http://example.com/images/3/3a/Foobar.jpg" width="120" height="14" /></a></div></div>
+			<div class="gallerytext">
+<p>caption
+</p>
+			</div>
+		</div></li>
+</ul>
+
+!! end
+
+!!test
+Gallery override link with absolute external link (bug 34852)
+!! input
+<gallery>
+File:foobar.jpg|caption|alt=galleryalt|link=http://www.example.org
+</gallery>
+!! result
+<ul class="gallery">
+		<li class="gallerybox" style="width: 155px"><div style="width: 155px">
+			<div class="thumb" style="width: 150px;"><div style="margin:68px auto;"><a href="http://www.example.org"><img alt="galleryalt" src="http://example.com/images/3/3a/Foobar.jpg" width="120" height="14" /></a></div></div>
+			<div class="gallerytext">
+<p>caption
+</p>
+			</div>
+		</div></li>
+</ul>
+
+!! end
+
+!!test
+Gallery override link with malicious javascript (bug 34852)
+!! input
+<gallery>
+File:foobar.jpg|caption|alt=galleryalt|link=" onclick="alert('malicious javascript code!');
+</gallery>
+!! result
+<ul class="gallery">
+		<li class="gallerybox" style="width: 155px"><div style="width: 155px">
+			<div class="thumb" style="width: 150px;"><div style="margin:68px auto;"><a href="/wiki/%22_onclick%3D%22alert(%27malicious_javascript_code!%27);"><img alt="galleryalt" src="http://example.com/images/3/3a/Foobar.jpg" width="120" height="14" /></a></div></div>
+			<div class="gallerytext">
+<p>caption
+</p>
+			</div>
+		</div></li>
+</ul>
 
 !! end
 
