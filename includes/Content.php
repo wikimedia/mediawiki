@@ -7,7 +7,13 @@
  */
 abstract class Content {
 
-	// TODO: create actual fields and document them
+	/**
+	 * Name of the content model this COntent object represents.
+	 * Use with CONTENT_MODEL_XXX constants
+	 *
+	 * @var String $model_name
+	 */
+	protected $model_name;
 
 	/**
 	 * @return String a string representing the content in a way useful for building a full text search index.
@@ -18,9 +24,11 @@ abstract class Content {
 	/**
 	 * @return String the wikitext to include when another page includes this  content, or false if the content is not
 	 *         includable in a wikitext page.
+	 *
+	 * @TODO: allow native handling, bypassing wikitext representation, like for includable special pages.
+	 * @TODO: use in parser, etc!
 	 */
-	#TODO: allow native handling, bypassing wikitext representation, like for includable special pages.
-	public abstract function getWikitextForTransclusion( ); #FIXME: use in parser, etc!
+	public abstract function getWikitextForTransclusion( );
 
 	/**
 	 * Returns a textual representation of the content suitable for use in edit summaries and log messages.
@@ -36,8 +44,10 @@ abstract class Content {
 	 *
 	 * @return mixed the native representation of the content. Could be a string, a nested array
 	 *         structure, an object, a binary blob... anything, really.
+	 *
+	 * @NOTE: review all calls carefully, caller must be aware of content model!
 	 */
-	public abstract function getNativeData( ); #FIXME: review all calls carefully, caller must be aware of content model!
+	public abstract function getNativeData( );
 
 	/**
 	 * returns the content's nominal size in bogo-bytes.
@@ -47,13 +57,10 @@ abstract class Content {
 	public abstract function getSize( );
 
 	/**
-	 * TODO: do we really need to pass a $modelName here?
-	 * Seems odd and makes lots of stuff hard (ie having a newEmpty static method in TextContent)
-	 *
-	 * @param $modelName
+	 * @param $model_name
 	 */
-	public function __construct( $modelName = null ) {
-		$this->mModelName = $modelName;
+	public function __construct( $model_name = null ) {
+		$this->model_name = $model_name;
 	}
 
 	/**
@@ -63,16 +70,18 @@ abstract class Content {
 	 * @return String the model name
 	 */
 	public function getModelName() {
-		return $this->mModelName;
+		return $this->model_name;
 	}
 
 	/**
-	 * Throws an MWException if $modelName is not the name of the content model
+	 * Throws an MWException if $model_name is not the name of the content model
 	 * supported by this Content object.
+	 *
+	 * @param String $model_name the model to check
 	 */
-	protected function checkModelName( $modelName ) {
-		if ( $modelName !== $this->mModelName ) {
-			throw new MWException( "Bad content model: expected " . $this->mModelName . " but got found " . $modelName );
+	protected function checkModelName( $model_name ) {
+		if ( $model_name !== $this->model_name ) {
+			throw new MWException( "Bad content model: expected " . $this->model_name . " but got found " . $model_name );
 		}
 	}
 
@@ -336,11 +345,9 @@ abstract class Content {
 	}
 
 	# TODO: handle ImagePage and CategoryPage
-	# TODO: hook into dump generation to serialize and record model and format!
-
 	# TODO: make sure we cover lucene search / wikisearch.
 	# TODO: make sure ReplaceTemplates still works
-	# TODO: nice&sane integration of GeSHi syntax highlighting
+	# FUTURE: nice&sane integration of GeSHi syntax highlighting
 	#   [11:59] <vvv> Hooks are ugly; make CodeHighlighter interface and a config to set the class which handles syntax highlighting
 	#   [12:00] <vvv> And default it to a DummyHighlighter
 
@@ -349,10 +356,11 @@ abstract class Content {
 	# TODO: tie into API to provide contentModel for Revisions
 	# TODO: tie into API to provide serialized version and contentFormat for Revisions
 	# TODO: tie into API edit interface
-	# TODO: make EditForm plugin for EditPage
-
-	# XXX: isCacheable( ) # can/should we do this here?
+	# FUTURE: make EditForm plugin for EditPage
 }
+	# FUTURE: special type for redirects?!
+	# FUTURE: MultipartMultipart < WikipageContent (Main + Links + X)
+	# FUTURE: LinksContent < LanguageLinksContent, CategoriesContent
 
 /**
  * Content object implementation for representing flat text.
@@ -361,8 +369,8 @@ abstract class Content {
  */
 abstract class TextContent extends Content {
 
-	public function __construct( $text, $modelName = null ) {
-		parent::__construct( $modelName );
+	public function __construct( $text, $model_name = null ) {
+		parent::__construct( $model_name );
 
 		$this->mText = $text;
 	}
@@ -384,7 +392,9 @@ abstract class TextContent extends Content {
 	}
 
 	/**
-	 * returns the content's nominal size in bogo-bytes.
+	 * returns the text's size in bytes.
+	 *
+	 * @return int the size
 	 */
 	public function getSize( ) {
 		$text = $this->getNativeData( );
@@ -396,6 +406,8 @@ abstract class TextContent extends Content {
 	 *
 	 * @param $hasLinks Bool: if it is known whether this content contains links, provide this information here,
 	 *                        to avoid redundant parsing to find out.
+	 *
+	 * @return bool true if the content is countable
 	 */
 	public function isCountable( $hasLinks = null ) {
 		global $wgArticleCountMethod;
@@ -426,7 +438,7 @@ abstract class TextContent extends Content {
 	 *
 	 * @return String the raw text
 	 */
-	public function getTextForSearchIndex( ) { #FIXME: use!
+	public function getTextForSearchIndex( ) {
 		return $this->getNativeData();
 	}
 
@@ -435,7 +447,7 @@ abstract class TextContent extends Content {
 	 *
 	 * @return String the raw text
 	 */
-	public function getWikitextForTransclusion( ) { #FIXME: use!
+	public function getWikitextForTransclusion( ) {
 		return $this->getNativeData();
 	}
 
@@ -635,6 +647,8 @@ class WikitextContent extends TextContent {
 	 * @param Bool $hasLinks if it is known whether this content contains links, provide this information here,
 	 *                        to avoid redundant parsing to find out.
 	 * @param IContextSource $context context for parsing if necessary
+	 *
+	 * @return bool true if the content is countable
 	 */
 	public function isCountable( $hasLinks = null, IContextSource $context = null ) {
 		global $wgArticleCountMethod, $wgRequest;
@@ -649,9 +663,6 @@ class WikitextContent extends TextContent {
 			case 'any':
 				return true;
 			case 'comma':
-				if ( $text === false ) {
-					$text = $this->getRawText();
-				}
 				return strpos( $text,  ',' ) !== false;
 			case 'link':
 				if ( $hasLinks === null ) { # not known, find out
@@ -753,9 +764,3 @@ class CssContent extends TextContent {
 		return $html;
 	}
 }
-
-#FUTURE: special type for redirects?!
-#FUTURE: MultipartMultipart < WikipageContent (Main + Links + X)
-#FUTURE: LinksContent < LanguageLinksContent, CategoriesContent
-#EXAMPLE: CoordinatesContent
-#EXAMPLE: WikidataContent
