@@ -1292,6 +1292,7 @@ var mw = ( function ( $, undefined ) {
 				 */
 				state: function ( module, state ) {
 					var m;
+
 					if ( typeof module === 'object' ) {
 						for ( m in module ) {
 							mw.loader.state( m, module[m] );
@@ -1301,7 +1302,14 @@ var mw = ( function ( $, undefined ) {
 					if ( registry[module] === undefined ) {
 						mw.loader.register( module );
 					}
-					registry[module].state = state;
+					if ( state === 'ready' && registry[module].state !== state) {
+						// Make sure pending modules depending on this one get executed if their
+						// dependencies are now fulfilled!
+						registry[module].state = state;
+						handlePending( module );
+					} else {
+						registry[module].state = state;
+					}
 				},
 		
 				/**
