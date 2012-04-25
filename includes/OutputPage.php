@@ -2573,12 +2573,24 @@ $templates
 				$extraQuery
 			);
 			$context = new ResourceLoaderContext( $resourceLoader, new FauxRequest( $query ) );
-			// Drop modules that know they're empty
+			// Extract modules that know they're empty
+			$emptyModules = array ();
 			foreach ( $modules as $key => $module ) {
 				if ( $module->isKnownEmpty( $context ) ) {
+					$emptyModules[$key] = 'ready';
 					unset( $modules[$key] );
 				}
 			}
+			// Inline empty modules: since they're empty, just mark them as 'ready'
+			if ( count( $emptyModules ) > 0 && $only !== ResourceLoaderModule::TYPE_STYLES ) {
+				// If we're only getting the styles, we don't need to do anything for empty modules.
+				$links .= Html::inlineScript(
+						ResourceLoader::makeLoaderConditionalScript(
+								ResourceLoader::makeLoaderStateScript( $emptyModules )
+						)
+				) . "\n";
+			}
+
 			// If there are no modules left, skip this group
 			if ( $modules === array() ) {
 				continue;
@@ -2642,7 +2654,7 @@ $templates
 				// Automatically select style/script elements
 				if ( $only === ResourceLoaderModule::TYPE_STYLES ) {
 					$link = Html::linkedStyle( $url );
-				} else if ( $loadCall ) { 
+				} else if ( $loadCall ) {
 					$link = Html::inlineScript(
 						ResourceLoader::makeLoaderConditionalScript(
 							Xml::encodeJsCall( 'mw.loader.load', array( $url, 'text/javascript', true ) )
@@ -2670,7 +2682,7 @@ $templates
 	 */
 	function getHeadScripts() {
 		global $wgResourceLoaderExperimentalAsyncLoading;
-		
+
 		// Startup - this will immediately load jquery and mediawiki modules
 		$scripts = $this->makeResourceLoaderLink( 'startup', ResourceLoaderModule::TYPE_SCRIPTS, true );
 
@@ -2702,7 +2714,7 @@ $templates
 				)
 			);
 		}
-		
+
 		if ( $wgResourceLoaderExperimentalAsyncLoading ) {
 			$scripts .= $this->getScriptsForBottomQueue( true );
 		}
@@ -2748,43 +2760,87 @@ $templates
 		// Legacy Scripts
 		$scripts .= "\n" . $this->mScripts;
 
-		$userScripts = array();
+		$defaultModules = array();
 
 		// Add site JS if enabled
 		if ( $wgUseSiteJs ) {
 			$scripts .= $this->makeResourceLoaderLink( 'site', ResourceLoaderModule::TYPE_SCRIPTS,
 				/* $useESI = */ false, /* $extraQuery = */ array(), /* $loadCall = */ $inHead
 			);
-			if( $this->getUser()->isLoggedIn() ){
-				$userScripts[] = 'user.groups';
-			}
+			$defaultModules['site'] = 'loading';
+		} else {
+			// The wiki is configured to not allow a site module.
+			$defaultModules['site'] = 'missing';
 		}
 
 		// Add user JS if enabled
-		if ( $wgAllowUserJs && $this->getUser()->isLoggedIn() ) {
-			if( $this->getTitle() && $this->getTitle()->isJsSubpage() && $this->userCanPreview() ) {
-				# XXX: additional security check/prompt?
-				// We're on a preview of a JS subpage
-				// Exclude this page from the user module in case it's in there (bug 26283)
-				$scripts .= $this->makeResourceLoaderLink( 'user', ResourceLoaderModule::TYPE_SCRIPTS, false,
-					array( 'excludepage' => $this->getTitle()->getPrefixedDBkey() ), $inHead
-				);
-				// Load the previewed JS
-				$scripts .= Html::inlineScript( "\n" . $this->getRequest()->getText( 'wpTextbox1' ) . "\n" ) . "\n";
+		if ( $wgAllowUserJs ) {
+			if ( $this->getUser()->isLoggedIn() ) {
+				if( $this->getTitle() && $this->getTitle()->isJsSubpage() && $this->userCanPreview() ) {
+					# XXX: additional security check/prompt?
+					// We're on a preview of a JS subpage
+					// Exclude this page from the user module in case it's in there (bug 26283)
+					$scripts .= $this->makeResourceLoaderLink( 'user', ResourceLoaderModule::TYPE_SCRIPTS, false,
+						array( 'excludepage' => $this->getTitle()->getPrefixedDBkey() ), $inHead
+					);
+					// Load the previewed JS
+					$scripts .= Html::inlineScript( "\n" . $this->getRequest()->getText( 'wpTextbox1' ) . "\n" ) . "\n";
+					// FIXME: If the user is previewing, say, ./vector.js, his ./common.js will be loaded
+					// asynchronously and may arrive *after* the inline script here. So the previewed code
+					// may execute before ./common.js runs. Normally, ./common.js runs before ./vector.js...
+				} else {
+					// Include the user module normally, i.e., raw to avoid it being wrapped in a closure.
+					$scripts .= $this->makeResourceLoaderLink( 'user', ResourceLoaderModule::TYPE_SCRIPTS,
+						/* $useESI = */ false, /* $extraQuery = */ array(), /* $loadCall = */ $inHead
+					);
+				}
+				$defaultModules['user'] = 'loading';
 			} else {
-				// Include the user module normally
-				// We can't do $userScripts[] = 'user'; because the user module would end up
-				// being wrapped in a closure, so load it raw like 'site'
-				$scripts .= $this->makeResourceLoaderLink( 'user', ResourceLoaderModule::TYPE_SCRIPTS,
+				// Non-logged-in users have no user module. Treat it as empty and 'ready' to avoid
+				// blocking default gadgets that might depend on it. Although arguably default-enabled
+				// gadgets should not depend on the user module, it's harmless and less error-prone to
+				// handle this case.
+				$defaultModules['user'] = 'ready';
+			}
+		} else {
+			// User JS diabled
+			$defaultModules['user'] = 'missing';
+		}
+
+		// Group JS is only enabled if site JS is enabled.
+		if ( $wgUseSiteJs ) {
+			if ( $this->getUser()->isLoggedIn() ) {
+				$scripts .= $this->makeResourceLoaderLink( 'user.groups', ResourceLoaderModule::TYPE_COMBINED,
 					/* $useESI = */ false, /* $extraQuery = */ array(), /* $loadCall = */ $inHead
 				);
+				$defaultModules['user.groups'] = 'loading';
+			} else {
+				// Non-logged-in users have no user.groups module. Treat it as empty and 'ready' to
+				// avoid blocking gadgets that might depend upon the module.
+				$defaultModules['user.groups'] = 'ready';
+			}
+		} else {
+			// Site (and group JS) disabled
+			$defaultModules['user.groups'] = 'missing';
+		}
+
+		$loaderInit = '';
+		if ( $inHead ) {
+			// We generate loader calls anyway, so no need to fix the client-side loader's state to 'loading'.
+			foreach ( $defaultModules as $m => $state ) {
+				if ( $state == 'loading' ) {
+					unset( $defaultModules[$m] );
+				}
 			}
 		}
-		$scripts .= $this->makeResourceLoaderLink( $userScripts, ResourceLoaderModule::TYPE_COMBINED,
-			/* $useESI = */ false, /* $extraQuery = */ array(), /* $loadCall = */ $inHead
-		);
-
-		return $scripts;
+		if ( count( $defaultModules ) > 0 ) {
+			$loaderInit = Html::inlineScript(
+				ResourceLoader::makeLoaderConditionalScript(
+					ResourceLoader::makeLoaderStateScript( $defaultModules )
+				)
+			) . "\n";
+		}
+		return $loaderInit . $scripts;
 	}
 
 	/**
@@ -3260,7 +3316,7 @@ $templates
 				$otherTags .= $this->makeResourceLoaderLink( 'user', ResourceLoaderModule::TYPE_STYLES, false,
 					array( 'excludepage' => $this->getTitle()->getPrefixedDBkey() )
 				);
-				
+
 				// Load the previewed CSS
 				// If needed, Janus it first. This is user-supplied CSS, so it's
 				// assumed to be right for the content language directionality.
