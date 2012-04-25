@@ -15,7 +15,7 @@ class WikitextContentHandlerTest extends MediaWikiTestCase {
 		$content = new WikitextContent( 'hello world' );
 
 		$this->assertEquals( 'hello world', $this->handler->serializeContent( $content ) );
-		$this->assertEquals( 'hello world', $this->handler->serializeContent( $content, 'application/x-wikitext' ) );
+		$this->assertEquals( 'hello world', $this->handler->serializeContent( $content, 'application/x-wiki' ) );
 
 		try {
 			$this->handler->serializeContent( $content, 'dummy/foo' );
@@ -29,7 +29,7 @@ class WikitextContentHandlerTest extends MediaWikiTestCase {
 		$content = $this->handler->unserializeContent( 'hello world' );
 		$this->assertEquals( 'hello world', $content->getNativeData() );
 
-		$content = $this->handler->unserializeContent( 'hello world', 'application/x-wikitext' );
+		$content = $this->handler->unserializeContent( 'hello world', 'application/x-wiki' );
 		$this->assertEquals( 'hello world', $content->getNativeData() );
 
 		try {
@@ -50,7 +50,7 @@ class WikitextContentHandlerTest extends MediaWikiTestCase {
 	public function dataIsSupportedFormat( ) {
 		return array(
 			array( null, true ),
-			array( 'application/x-wikitext', true ),
+			array( 'application/x-wiki', true ),
 			array( 'dummy/foo', false ),
 		);
 	}
