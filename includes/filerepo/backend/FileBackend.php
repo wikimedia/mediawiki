@@ -176,8 +176,9 @@ abstract class FileBackend {
 	 *                         contents as the new contents to be written there.
 	 *
 	 * $opts is an associative of boolean flags, including:
-	 * 'force'               : Errors that would normally cause a rollback do not.
-	 *                         The remaining operations are still attempted if any fail.
+	 * 'force'               : Operation precondition errors no longer trigger an abort.
+	 *                         Any remaining operations are still attempted. Unexpected
+	 *                         failures may still cause remaning operations to be aborted.
 	 * 'nonLocking'          : No locks are acquired for the operations.
 	 *                         This can increase performance for non-critical writes.
 	 *                         This has no effect unless the 'force' flag is set.
@@ -315,8 +316,8 @@ abstract class FileBackend {
 	 * otherwise safe from modification from other processes. Normally,
 	 * the file will be a new temp file, which should be adequate.
 	 * $params include:
-	 *     srcs          : ordered source storage paths (e.g. chunk1, chunk2, ...)
-	 *     dst           : file system path to 0-byte temp file
+	 *     srcs : ordered source storage paths (e.g. chunk1, chunk2, ...)
+	 *     dst  : file system path to 0-byte temp file
 	 *
 	 * @param $params Array Operation parameters
 	 * @return Status
@@ -572,7 +573,7 @@ abstract class FileBackend {
 	 *
 	 * $params include:
 	 *     dir     : storage directory
-	 *     topOnly : only return direct child directories of the directory
+	 *     topOnly : only return direct child dirs of the directory (@since 1.20)
 	 *
 	 * @return Traversable|Array|null Returns null on failure
 	 * @since 1.20
@@ -607,7 +608,7 @@ abstract class FileBackend {
 	 *
 	 * $params include:
 	 *     dir     : storage directory
-	 *     topOnly : only return direct child files of the directory
+	 *     topOnly : only return direct child files of the directory (@since 1.20)
 	 *
 	 * @return Traversable|Array|null Returns null on failure
 	 */

@@ -1007,7 +1007,11 @@ abstract class SwiftFileBackendList implements Iterator {
 	 * @return bool
 	 */
 	public function valid() {
-		return ( current( $this->bufferIter ) !== false ); // no paths can have this value
+		if ( $this->bufferIter === null ) {
+			return false; // some failure?
+		} else {
+			return ( current( $this->bufferIter ) !== false ); // no paths can have this value
+		}
 	}
 
 	/**
@@ -1018,7 +1022,7 @@ abstract class SwiftFileBackendList implements Iterator {
 	 * @param $after string|null
 	 * @param $limit integer
 	 * @param $params Array
-	 * @return Traversable|Array|null
+	 * @return Traversable|Array|null Returns null on failure
 	 */
 	abstract protected function pageFromList( $container, $dir, &$after, $limit, array $params );
 }
@@ -1037,7 +1041,7 @@ class SwiftFileBackendDirList extends SwiftFileBackendList {
 
 	/**
 	 * @see SwiftFileBackendList::pageFromList()
-	 * @return Array
+	 * @return Array|null
 	 */
 	protected function pageFromList( $container, $dir, &$after, $limit, array $params ) {
 		return $this->backend->getDirListPageInternal( $container, $dir, $after, $limit, $params );
@@ -1058,7 +1062,7 @@ class SwiftFileBackendFileList extends SwiftFileBackendList {
 
 	/**
 	 * @see SwiftFileBackendList::pageFromList()
-	 * @return Array
+	 * @return Array|null
 	 */
 	protected function pageFromList( $container, $dir, &$after, $limit, array $params ) {
 		return $this->backend->getFileListPageInternal( $container, $dir, $after, $limit, $params );
