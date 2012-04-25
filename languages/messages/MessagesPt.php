@@ -3909,6 +3909,8 @@ Imagens serão apresentadas pelo browser na resolução máxima; ficheiros de ou
 'newuserlog-byemail' => 'palavra-chave enviada por correio-electrónico',
 
 # Feedback
+'feedback-bugornote' => 'Se está pronto para descrever um problema técnico em detalhe, por favor, [$1 denuncie um defeito].
+Caso contrário, pode facilmente usar o formulário abaixo. O seu comentário será adicionado à página "[$3 $2]", junto com o seu nome de utilizador e o navegador que está a usar.',
 'feedback-subject' => 'Assunto:',
 'feedback-message' => 'Mensagem:',
 'feedback-cancel' => 'Cancelar',
@@ -3917,9 +3919,10 @@ Imagens serão apresentadas pelo browser na resolução máxima; ficheiros de ou
 'feedback-error1' => 'Erro: O resultado da API não foi reconhecido',
 'feedback-error2' => 'Erro: A edição falhou',
 'feedback-error3' => 'Erro: A API não responde',
+'feedback-thanks' => 'Obrigado! O seu comentário foi adicionado à página "[ $2  $1 ]".',
 'feedback-close' => 'Feito',
 'feedback-bugcheck' => 'Perfeito! Verifique apenas que não é já um dos [$1 defeitos conhecidos].',
-'feedback-bugnew' => 'Eu verifiquei. Reportar um novo bug.',
+'feedback-bugnew' => 'Eu verifiquei. Denunciar um novo defeito.',
 
 # API errors
 'api-error-badaccess-groups' => 'Não tem permissão para enviar ficheiros para esta wiki.',

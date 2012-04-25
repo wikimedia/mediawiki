@@ -9,6 +9,7 @@
  *
  * @author Akaniji
  * @author Alexsh
+ * @author Ant176
  * @author Aotake
  * @author Aphaia
  * @author Broad-Sky
@@ -640,7 +641,7 @@ $1',
 'collapsible-collapse' => '折り畳む',
 'collapsible-expand' => '展開する',
 'thisisdeleted' => '$1を閲覧または復帰しますか？',
-'viewdeleted' => '$1を表示しますか？',
+'viewdeleted' => '$1を閲覧しますか？',
 'restorelink' => '削除された$1編集',
 'feedlinks' => 'フィード：',
 'feed-invalid' => 'フィード形式の指定が間違っています。',
@@ -771,7 +772,7 @@ $2',
 'yourname' => '利用者名：',
 'yourpassword' => 'パスワード：',
 'yourpasswordagain' => 'パスワード再入力：',
-'remembermypassword' => 'このブラウザーにログイン情報を保存 (最長{{PLURAL:$1|日|日間}})',
+'remembermypassword' => 'このブラウザーにログイン情報を保存 (最長 $1 {{PLURAL:$1|日|日間}})',
 'securelogin-stick-https' => 'ログイン後にHTTPS接続を維持',
 'yourdomainname' => 'ドメイン：',
 'externaldberror' => '外部の認証データベースでエラーが発生したか、または外部アカウント情報の更新が許可されていません。',
@@ -1064,7 +1065,8 @@ IP アドレスは複数の利用者で共有されている場合がありま�
 'updated' => '（更新）',
 'note' => "'''お知らせ：'''",
 'previewnote' => "'''これはプレビューです。'''
-変更箇所はまだ保存されていません",
+変更箇所はまだ保存されていません！",
+'continue-editing' => '編集を続行',
 'previewconflict' => 'このプレビューは、上の文章編集エリアの文章を保存した場合にどう見えるようになるかを示すものです。',
 'session_fail_preview' => "'''申し訳ありません！セッションデータが消失したため編集を処理できませんでした。'''
 もう一度やり直してください。
@@ -1139,7 +1141,7 @@ IP アドレスは複数の利用者で共有されている場合がありま�
 参考のため以下にこのページの削除と移動の記録を表示します：",
 'moveddeleted-notice' => 'このページは削除されています。
 参考のため、このページの削除と移動の記録を以下に表示します。',
-'log-fulllog' => '完全な記録を見る',
+'log-fulllog' => '完全な記録を閲覧',
 'edit-hook-aborted' => 'フックによって編集が破棄されました。
 理由は不明です。',
 'edit-gone-missing' => 'ページを更新できませんでした。
@@ -1179,7 +1181,7 @@ IP アドレスは複数の利用者で共有されている場合がありま�
 $3が示した理由は ''$2'' です。",
 
 # History pages
-'viewpagelogs' => 'このページに関する記録を表示',
+'viewpagelogs' => 'このページに関する記録を閲覧',
 'nohistory' => 'このページには編集履歴がありません。',
 'currentrev' => '最新版',
 'currentrev-asof' => '$1時点における最新版',
@@ -3064,7 +3066,7 @@ MediaWiki 全般のローカライズ（地域化）に貢献したい場合は�
 'tooltip-pt-login' => 'ログインすることが推奨されます。ただし、必須ではありません。',
 'tooltip-pt-anonlogin' => 'ログインすることが推奨されます。ただし、必須ではありません。',
 'tooltip-pt-logout' => 'ログアウト',
-'tooltip-ca-talk' => '記事についての議論',
+'tooltip-ca-talk' => '本文ページについての議論',
 'tooltip-ca-edit' => 'このページを編集できます。保存する前にプレビューボタンを使用してください。',
 'tooltip-ca-addsection' => '新しい節を開始する',
 'tooltip-ca-viewsource' => 'このページは保護されています。
@@ -3098,7 +3100,7 @@ MediaWiki 全般のローカライズ（地域化）に貢献したい場合は�
 'tooltip-t-specialpages' => '特別ページの一覧',
 'tooltip-t-print' => 'このページの印刷用ページ',
 'tooltip-t-permalink' => 'このページのこの版への固定リンク',
-'tooltip-ca-nstab-main' => '本文を表示',
+'tooltip-ca-nstab-main' => '本文を閲覧',
 'tooltip-ca-nstab-user' => '利用者ページを表示',
 'tooltip-ca-nstab-media' => 'メディアページを表示',
 'tooltip-ca-nstab-special' => 'これは特別ページです。編集することはできません。',
@@ -3107,7 +3109,7 @@ MediaWiki 全般のローカライズ（地域化）に貢献したい場合は�
 'tooltip-ca-nstab-mediawiki' => 'システムメッセージを表示',
 'tooltip-ca-nstab-template' => 'テンプレートを表示',
 'tooltip-ca-nstab-help' => 'ヘルプページを表示',
-'tooltip-ca-nstab-category' => 'カテゴリページを表示',
+'tooltip-ca-nstab-category' => 'カテゴリページを閲覧',
 'tooltip-minoredit' => 'この編集を細部の変更とマーク',
 'tooltip-save' => '変更を保存',
 'tooltip-preview' => '変更をプレビューで確認できます。保存前に使用してください！',

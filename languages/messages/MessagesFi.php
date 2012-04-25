@@ -961,7 +961,8 @@ Alla on viimeisin estolokin tapahtuma:',
 'userinvalidcssjstitle' => "'''Varoitus:''' Tyyliä nimeltä ”$1” ei ole olemassa. Muista, että käyttäjän määrittelemät .css- ja .js-sivut alkavat pienellä alkukirjaimella, esim. {{ns:user}}:Matti Meikäläinen/vector.css eikä {{ns:user}}:Matti Meikäläinen/Vector.css.",
 'updated' => '(Päivitetty)',
 'note' => "'''Huomautus:'''",
-'previewnote' => "'''Tämä on vasta sivun esikatselu. Sivua ei ole vielä tallennettu!'''",
+'previewnote' => "'''Tämä on vasta sivun esikatselu. Tekemiäsi muokkauksia ei ole vielä tallennettu!'''",
+'continue-editing' => 'Jatka muokkaamista',
 'previewconflict' => 'Tämä esikatselu näyttää miltä muokkausalueella oleva teksti näyttää tallennettuna.',
 'session_fail_preview' => "'''Muokkaustasi ei voitu tallentaa, koska istuntosi tiedot ovat kadonneet.''' Yritä uudelleen. Jos ongelma ei katoa, yritä [[Special:UserLogout|kirjautua ulos]] ja takaisin sisään.",
 'session_fail_preview_html' => "'''Muokkaustasi ei voitu tallentaa, koska istuntosi tiedot ovat kadonneet.'''
@@ -972,6 +973,7 @@ Yritä uudelleen. Jos ongelma ei katoa, yritä [[Special:UserLogout|kirjautua ul
 'token_suffix_mismatch' => "'''Muokkauksesi on hylätty, koska asiakasohjelmasi ei osaa käsitellä välimerkkejä muokkaustarkisteessa. Syynä voi olla viallinen välityspalvelin.'''",
 'edit_form_incomplete' => "'''Osa muokkauslomakkeesta ei saavuttanut palvelinta. Tarkista, että muokkauksesi ovat vahingoittumattomia ja yritä uudelleen.'''",
 'editing' => 'Muokataan sivua $1',
+'creating' => 'Luodaan sivu $1',
 'editingsection' => 'Muokataan osiota sivusta $1',
 'editingcomment' => 'Muokataan uutta osiota sivulla $1',
 'editconflict' => 'Päällekkäinen muokkaus: $1',
@@ -987,7 +989,7 @@ Sinun täytyy yhdistää muutoksesi olemassa olevaan tekstiin.
 'yourdiff' => 'Eroavaisuudet',
 'copyrightwarning' => "'''Muutoksesi astuvat voimaan välittömästi.''' Kaikki {{GRAMMAR:illative|{{SITENAME}}}} tehtävät tuotokset katsotaan julkaistuksi $2 -lisenssin mukaisesti ($1). Jos et halua, että kirjoitustasi muokataan armottomasti ja uudelleenkäytetään vapaasti, älä tallenna kirjoitustasi. Tallentamalla muutoksesi lupaat, että kirjoitit tekstisi itse, tai kopioit sen jostain vapaasta lähteestä. '''ÄLÄ KÄYTÄ TEKIJÄNOIKEUDEN ALAISTA MATERIAALIA ILMAN LUPAA!'''",
 'copyrightwarning2' => "Huomaa, että kuka tahansa voi muokata, muuttaa ja poistaa kaikkia sivustolle tekemiäsi lisäyksiä ja muutoksia. Muokkaamalla sivustoa luovutat sivuston käyttäjille tämän oikeuden ja takaat, että lisäämäsi aineisto on joko itse kirjoittamaasi tai peräisin jostain vapaasta lähteestä. Lisätietoja sivulla $1. '''TEKIJÄNOIKEUDEN ALAISEN MATERIAALIN KÄYTTÄMINEN ILMAN LUPAA ON EHDOTTOMASTI KIELLETTYÄ!'''",
-'longpageerror' => "'''Sivun koko on $1 binäärikilotavua. Sivua ei voida tallentaa, koska enimmäiskoko on $2 binäärikilotavua.'''",
+'longpageerror' => "'''Virhe: Lähettämäsi tekstin pituus on {{PLURAL:$1|kilotavu|$1 kilotavua}}. Tekstiä ei voida tallentaa, koska se on pitempi kuin sallittu {{PLURAL:$2|yksi kilotavu|$2 kilotavua}}.'''",
 'readonlywarning' => "'''Varoitus: Tietokanta on lukittu huoltoa varten, joten et pysty tallentamaan muokkauksiasi juuri nyt.'''
 Saattaa olla paras leikata ja liimata tekstisi omaan tekstitiedostoosi ja tallentaa se tänne myöhemmin.
 
@@ -1026,6 +1028,7 @@ Se on ilmeisesti poistettu.',
 'edit-no-change' => 'Muokkauksesi sivuutettiin, koska tekstiin ei tehty mitään muutoksia.',
 'edit-already-exists' => 'Uuden sivun luominen ei onnistunut.
 Se on jo olemassa.',
+'defaultmessagetext' => 'Viestin oletusteksti',
 
 # Parser/template warnings
 'expensive-parserfunction-warning' => 'Tällä sivulla on liian monta hitaiden laajennusfunktioiden kutsua.
@@ -1598,6 +1601,7 @@ Tässä satunnaisesti tuotettu arvo, jota voit käyttää: $1',
 'newsectionsummary' => '/* $1 */ uusi osio',
 'rc-enhanced-expand' => 'Näytä yksityiskohdat (JavaScript)',
 'rc-enhanced-hide' => 'Piilota yksityiskohdat',
+'rc-old-title' => 'alun perin luotu nimellä "$1"',
 
 # Recent changes linked
 'recentchangeslinked' => 'Linkitettyjen sivujen muutokset',
@@ -2085,6 +2089,7 @@ Voit rajoittaa listaa valitsemalla lokityypin, käyttäjän tai sivun johon muut
 'allpagesprefix' => 'Katkaisuhaku',
 'allpagesbadtitle' => 'Annettu otsikko oli kelvoton tai siinä oli wikien välinen etuliite.',
 'allpages-bad-ns' => '{{GRAMMAR:inessive|{{SITENAME}}}} ei ole nimiavaruutta ”$1”.',
+'allpages-hide-redirects' => 'Piilota uudelleenohjaukset',
 
 # Special:Categories
 'categories' => 'Luokat',
@@ -2558,7 +2563,7 @@ Alla on ote estolokista.',
 Alla on ote häivytyslokista.',
 'blocklogentry' => 'esti käyttäjän tai IP-osoitteen [[$1]]. Eston kesto $2 $3',
 'reblock-logentry' => 'muutti käyttäjän tai IP-osoitteen [[$1]] eston asetuksia. Eston kesto $2 $3',
-'blocklogtext' => 'Tämä on loki muokkausestoista ja niiden purkamisista. Automaattisesti estettyjä IP-osoitteita ei kirjata. Tutustu [[Special:BlockList|estolistaan]] nähdäksesi listan tällä hetkellä voimassa olevista estoista.',
+'blocklogtext' => 'Tämä on loki muokkausestoista ja niiden purkamisista. Automaattisesti estettyjä IP-osoitteita ei kirjata. Tutustu [[Special:BlockList|estolistaan]] nähdäksesi luettelon tällä hetkellä voimassa olevista estoista.',
 'unblocklogentry' => 'poisti käyttäjältä $1 muokkauseston',
 'block-log-flags-anononly' => 'vain kirjautumattomat käyttäjät estetty',
 'block-log-flags-nocreate' => 'tunnusten luonti estetty',
@@ -2797,7 +2802,7 @@ Tallenna tiedot koneellesi ja tuo ne tällä sivulla.',
 
 # JavaScriptTest
 'javascripttest' => 'JavaScriptin testaus',
-'javascripttest-disabled' => 'Tämä toiminto ei ole käytössä.',
+'javascripttest-disabled' => 'Tämä toiminto ei ole käytössä tässä wikissä.',
 'javascripttest-title' => 'Suoritetaan $1-testejä.',
 'javascripttest-pagetext-noframework' => 'Tämä sivu on varattu JavaScript-testien suorittamiseen.',
 'javascripttest-pagetext-unknownframework' => 'Tuntematon testausalusta $1.',
@@ -3822,5 +3827,16 @@ Muussa tapauksessa voit käyttää alla olevaa helpompaa lomaketta. Kommenttisi 
 'api-error-unknownerror' => 'Tuntematon virhe: $1.',
 'api-error-uploaddisabled' => 'Tiedostojen tallentaminen ei ole käytössä.',
 'api-error-verification-error' => 'Tiedosto voi olla vioittunut, tai sillä saattaa olla väärä tiedostopääte.',
+
+# Durations
+'duration-seconds' => '$1 {{PLURAL:$1|sekunti|sekuntia}}',
+'duration-minutes' => '$1 {{PLURAL:$1|minuutti|minuuttia}}',
+'duration-hours' => '$1 {{PLURAL:$1|tunti|tuntia}}',
+'duration-days' => '$1 {{PLURAL:$1|päivä|päivää}}',
+'duration-weeks' => '$1 {{PLURAL:$1|viikko|viikkoa}}',
+'duration-years' => '$1 {{PLURAL:$1|vuosi|vuotta}}',
+'duration-decades' => '$1 {{PLURAL:$1|vuosikymmen|vuosikymmentä}}',
+'duration-centuries' => '$1 {{PLURAL:$1|vuosisata|vuosisataa}}',
+'duration-millennia' => '$1 {{PLURAL:$1|vuosituhat|vuosituhatta}}',
 
 );

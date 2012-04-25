@@ -859,6 +859,7 @@ Loggen over den seneste blokering ses nedenfor:',
 'note' => "'''Bemærk:'''",
 'previewnote' => "'''Husk at dette er kun en forhåndsvisning.'''
 Dine ændringer er endnu ikke blevet gemt!",
+'continue-editing' => 'Fortsæt med at redigere',
 'previewconflict' => 'Denne forhåndsvisning er resultatet af den redigérbare tekst ovenfor, sådan vil det komme til at se ud hvis du vælger at gemme teksten.',
 'session_fail_preview' => "'''Din ændring kunne ikke gemmes, da dine sessionsdata er gået tabt.
 Prøv venligst igen. Hvis problemet fortsætter, log af og log på igen.'''",
