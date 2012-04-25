@@ -222,7 +222,7 @@ abstract class ContentHandler {
         if ( empty( $wgContentHandlers[$modelName] ) ) {
             $handler = null;
 
-			// TODO: document new hook
+			// FIXME: document new hook
             wfRunHooks( 'ContentHandlerForModelName', array( $modelName, &$handler ) );
 
             if ( $handler ) { // NOTE: may be a string or an object, either is fine!
@@ -406,7 +406,7 @@ abstract class ContentHandler {
      * @todo does anyone or anythign actually use the external edit facility? Can we just deprecate and ignore it?
      */
     public function createExternalEdit( IContextSource $context ) {
-        $this->checkModelName( $context->getTitle()->getModelName() );
+        $this->checkModelName( $context->getTitle()->getContentModelName() );
 
         $externalEdit = new ExternalEdit( $context );
         return $externalEdit;
@@ -426,7 +426,7 @@ abstract class ContentHandler {
     public function createDifferenceEngine( IContextSource $context, $old = 0, $new = 0, $rcid = 0, #FIMXE: use everywhere!
                                          $refreshCache = false, $unhide = false ) {
 
-        $this->checkModelName( $context->getTitle()->getModelName() );
+        $this->checkModelName( $context->getTitle()->getContentModelName() );
 
 		$diffEngineClass = $this->getDiffEngineClass();
 
@@ -524,7 +524,7 @@ abstract class ContentHandler {
      * @return mixed String containing deletion reason or empty string, or boolean false
      *    if no revision occurred
      *
-     * @todo &$hasHistory is extremely ugly, it's here because WikiPage::getAutoDeleteReason() and Article::getReason() have it / want it.
+     * @XXX &$hasHistory is extremely ugly, it's here because WikiPage::getAutoDeleteReason() and Article::getReason() have it / want it.
      */
     public function getAutoDeleteReason( Title $title, &$hasHistory ) {
         $dbw = wfGetDB( DB_MASTER );
@@ -607,7 +607,7 @@ abstract class ContentHandler {
         return $reason;
     }
 
-    #TODO: getSecondaryUpdatesForDeletion( Content ) returns an array of SecondaryDataUpdate objects
+    #@TODO: getSecondaryUpdatesForDeletion( Content ) returns an array of SecondaryDataUpdate objects
     #... or do that in the Content class?
 
     /**
@@ -705,7 +705,7 @@ abstract class TextContentHandler extends ContentHandler {
 class WikitextContentHandler extends TextContentHandler {
 
     public function __construct( $modelName = CONTENT_MODEL_WIKITEXT ) {
-        parent::__construct( $modelName, array( 'application/x-wikitext' ) ); #FIXME: mime
+        parent::__construct( $modelName, array( 'application/x-wikitext' ) ); #FIXME: which mime type?
     }
 
     public function unserializeContent( $text, $format = null ) {
@@ -721,7 +721,7 @@ class WikitextContentHandler extends TextContentHandler {
 
 }
 
-#TODO: make ScriptContentHandler base class with plugin interface for syntax highlighting!
+#XXX: make ScriptContentHandler base class with plugin interface for syntax highlighting?
 
 class JavaScriptContentHandler extends TextContentHandler {
 
