@@ -41,6 +41,7 @@ class Article extends Page {
 
 	/**
 	 * @var Content
+	 * @since 1.WD
 	 */
 	var $mContentObject;
 
@@ -195,12 +196,12 @@ class Article extends Page {
 	 * This function has side effects! Do not use this function if you
 	 * only want the real revision text if any.
 	 *
-	 * @deprecated in 1.20; use getContentObject() instead
+	 * @deprecated in 1.WD; use getContentObject() instead
 	 *
 	 * @return string The text of this revision
 	 */
 	public function getContent() {
-		wfDeprecated( __METHOD__, '1.20' );
+		wfDeprecated( __METHOD__, '1.WD' );
 		$content = $this->getContentObject();
 		return ContentHandler::getContentText( $content );
 	}
@@ -217,6 +218,8 @@ class Article extends Page {
 	 * only want the real revision text if any.
 	 *
 	 * @return Content
+	 *
+	 * @since 1.WD
 	 */
    protected function getContentObject() {
 		global $wgUser;
@@ -326,10 +329,10 @@ class Article extends Page {
 	 * Does *NOT* follow redirects.
 	 *
 	 * @return mixed string containing article contents, or false if null
-	 * @deprecated in 1.20, use getContentObject() instead
+	 * @deprecated in 1.WD, use getContentObject() instead
 	 */
 	protected function fetchContent() { #BC cruft!
-		wfDeprecated( __METHOD__, '1.20' );
+		wfDeprecated( __METHOD__, '1.WD' );
 
 		if ( $this->mContentLoaded && $this->mContent ) {
 			return $this->mContent;
@@ -354,6 +357,8 @@ class Article extends Page {
 	 * TODO: when is this null?
 	 *
 	 * @return Content|null
+	 *
+	 * @since 1.WD
 	 */
 	protected function fetchContentObject() {
 		if ( $this->mContentLoaded ) {
@@ -1976,7 +1981,7 @@ class Article extends Page {
 	 * @param $newtext
 	 * @param $flags
 	 * @return string
-	 * @deprecated since 1.20, use ContentHandler::getAutosummary() instead
+	 * @deprecated since 1.WD, use ContentHandler::getAutosummary() instead
 	 */
 	public static function getAutosummary( $oldtext, $newtext, $flags ) {
 		return WikiPage::getAutosummary( $oldtext, $newtext, $flags );

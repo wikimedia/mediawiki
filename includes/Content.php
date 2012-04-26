@@ -4,11 +4,12 @@
  * A content object represents page content, e.g. the text to show on a page.
  * Content objects have no knowledge about how they relate to Wiki pages.
  *
+ * @since 1.WD
  */
 abstract class Content {
 
 	/**
-	 * Name of the content model this COntent object represents.
+	 * Name of the content model this Content object represents.
 	 * Use with CONTENT_MODEL_XXX constants
 	 *
 	 * @var String $model_name

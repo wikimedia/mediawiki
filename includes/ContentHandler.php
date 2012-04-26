@@ -19,6 +19,8 @@ class MWContentSerializationException extends MWException {
  * same as their serialized form. Examples would be JavaScript and CSS code. As of now,
  * this also applies to wikitext (mediawiki's default content type), but wikitext
  * content may be represented by a DOM or AST structure in the future.
+ *
+ * @since 1.WD
  */
 abstract class ContentHandler {
 

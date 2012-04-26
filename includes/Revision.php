@@ -781,10 +781,10 @@ class Revision {
 	 * @param $user User object to check for, only if FOR_THIS_USER is passed
 	 *              to the $audience parameter
 	 * @return String
-     * @deprectaed in 1.20, use getContent() instead
+     * @deprectaed in 1.WD, use getContent() instead
 	 */
 	public function getText( $audience = self::FOR_PUBLIC, User $user = null ) { #FIXME: deprecated, replace usage! #FIXME: used a LOT!
-        wfDeprecated( __METHOD__, '1.20' );
+        wfDeprecated( __METHOD__, '1.WD' );
 
         $content = $this->getContent();
         return ContentHandler::getContentText( $content ); # returns the raw content text, if applicable
@@ -802,6 +802,8 @@ class Revision {
      * @param $user User object to check for, only if FOR_THIS_USER is passed
      *              to the $audience parameter
      * @return Content
+     *
+     * @since 1.WD
      */
     public function getContent( $audience = self::FOR_PUBLIC, User $user = null ) {
         if( $audience == self::FOR_PUBLIC && $this->isDeleted( self::DELETED_TEXT ) ) {

@@ -787,9 +787,11 @@ class EditPage {
 	 * @param $def_text string
 	 * @return mixed string on success, $def_text for invalid sections
 	 * @private
-	 * @deprecated since 1.20
+	 * @deprecated since 1.WD
 	 */
 	function getContent( $def_text = false ) { #FIXME: deprecated, replace usage!
+		wfDeprecated( __METHOD__, '1.WD' );
+
 		if ( $def_text !== null && $def_text !== false && $def_text !== '' ) {
 			$def_content = ContentHandler::makeContent( $def_text, $this->getTitle() );
 		} else {
@@ -933,7 +935,7 @@ class EditPage {
 	 * WikiPage::getContent( Revision::RAW ) except that when the page doesn't exist an empty
 	 * content object is returned instead of null.
 	 *
-	 * @since 1.20
+	 * @since 1.WD
 	 * @return string
 	 */
 	private function getCurrentContent() {
@@ -959,10 +961,10 @@ class EditPage {
 	 * Use this method before edit() to preload some text into the edit box
 	 *
 	 * @param $text string
-	 * @deprecated since 1.20
+	 * @deprecated since 1.WD
 	 */
-	public function setPreloadedText( $text ) { #FIXME: deprecated, use setPreloadedContent()
-		wfDeprecated( __METHOD__, "1.20" );
+	public function setPreloadedText( $text ) {
+		wfDeprecated( __METHOD__, "1.WD" );
 
 		$content = ContentHandler::makeContent( $text, $this->getTitle() );
 
@@ -973,8 +975,10 @@ class EditPage {
 	 * Use this method before edit() to preload some content into the edit box
 	 *
 	 * @param $content Content
+	 *
+	 * @since 1.WD
 	 */
-	public function setPreloadedContent( Content $content ) { #FIXME: use this!
+	public function setPreloadedContent( Content $content ) {
 		$this->mPreloadedContent = $content;
 	}
 
@@ -983,11 +987,13 @@ class EditPage {
 	 * an earlier setPreloadText() or by loading the given page.
 	 *
 	 * @param $preload String: representing the title to preload from.
+	 *
 	 * @return String
-	 * @deprecated since 1.20
+	 *
+	 * @deprecated since 1.WD, use getPreloadedContent() instead
 	 */
-	protected function getPreloadedText( $preload ) { #FIXME: B/C only, replace usage!
-		wfDeprecated( __METHOD__, "1.20" );
+	protected function getPreloadedText( $preload ) { #NOTE: B/C only, replace usage!
+		wfDeprecated( __METHOD__, "1.WD" );
 
 		$content = $this->getPreloadedContent( $preload );
 		$text = $content->serialize( $this->content_format ); #XXX: really use serialized form? use ContentHandler::getContentText() instead?!
@@ -995,7 +1001,17 @@ class EditPage {
 		return $text;
 	}
 
-	protected function getPreloadedContent( $preload ) { #FIXME: use this!
+	/**
+	 * Get the contents to be preloaded into the box, either set by
+	 * an earlier setPreloadText() or by loading the given page.
+	 *
+	 * @param $preload String: representing the title to preload from.
+	 *
+	 * @return Content
+	 *
+	 * @since 1.WD
+	 */
+	protected function getPreloadedContent( $preload ) { #@todo: use this!
 		global $wgUser;
 
 		if ( !empty( $this->mPreloadContent ) ) {
@@ -1608,10 +1624,10 @@ class EditPage {
 	 * @parma $editText string
 	 *
 	 * @return bool
-	 * @deprecated since 1.20
+	 * @deprecated since 1.WD, use mergeChangesIntoContent() instead
 	 */
 	function mergeChangesInto( &$editText ){
-		wfDebug( __METHOD__, "1.20" );
+		wfDebug( __METHOD__, "1.WD" );
 
 		$editContent = ContentHandler::makeContent( $editText, $this->getTitle(), $this->content_model, $this->content_format );
 
@@ -1632,7 +1648,7 @@ class EditPage {
 	 * @parma $editText string
 	 *
 	 * @return bool
-	 * @since since 1.20
+	 * @since since 1.WD
 	 */
 	private function mergeChangesIntoContent( &$editContent ){
 		wfProfileIn( __METHOD__ );

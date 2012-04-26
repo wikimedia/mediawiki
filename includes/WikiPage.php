@@ -149,6 +149,8 @@ class WikiPage extends Page {
      * Shorthand for ContentHandler::getForModelName( $this->getContentModelName() );
      *
      * @return ContentHandler
+     *
+     * @since 1.WD
      */
     public function getContentHandler() {
         return ContentHandler::getForModelName( $this->getContentModelName() );
@@ -349,6 +351,8 @@ class WikiPage extends Page {
      * and the page's default if the page doesn't exist yet.
      *
      * @return int
+     *
+     * @since 1.WD
      */
     public function getContentModelName() {
         if ( $this->exists() ) {
@@ -442,6 +446,8 @@ class WikiPage extends Page {
      *      Revision::FOR_THIS_USER    to be displayed to $wgUser
      *      Revision::RAW              get the text regardless of permissions
      * @return Content|null The content of the current revision
+     *
+     * @since 1.WD
      */
     public function getContent( $audience = Revision::FOR_PUBLIC ) {
         $this->loadLastEdit();
@@ -459,10 +465,10 @@ class WikiPage extends Page {
 	 *      Revision::FOR_THIS_USER    to be displayed to $wgUser
 	 *      Revision::RAW              get the text regardless of permissions
 	 * @return String|false The text of the current revision
-     * @deprecated as of 1.20, getContent() should be used instead.
+     * @deprecated as of 1.WD, getContent() should be used instead.
 	 */
 	public function getText( $audience = Revision::FOR_PUBLIC ) { #@todo: deprecated, replace usage!
-        wfDeprecated( __METHOD__, '1.20' );
+        wfDeprecated( __METHOD__, '1.WD' );
 
 		$this->loadLastEdit();
 		if ( $this->mLastRevision ) {
@@ -475,10 +481,10 @@ class WikiPage extends Page {
 	 * Get the text of the current revision. No side-effects...
 	 *
 	 * @return String|bool The text of the current revision. False on failure
-	 * @deprecated as of 1.20, getContent() should be used instead.
+	 * @deprecated as of 1.WD, getContent() should be used instead.
 	 */
 	public function getRawText() { #@todo: deprecated, replace usage!
-		wfDeprecated( __METHOD__, '1.20' );
+		wfDeprecated( __METHOD__, '1.WD' );
 
 		return $this->getText( Revision::RAW );
 	}
@@ -487,6 +493,8 @@ class WikiPage extends Page {
      * Get the content of the current revision. No side-effects...
      *
      * @return Contet|false The text of the current revision
+     *
+     * @since 1.WD
      */
     protected function getNativeData() { #FIXME: examine all uses carefully! caller must be aware of content model!
         $content = $this->getContent( Revision::RAW );
@@ -1166,10 +1174,10 @@ class WikiPage extends Page {
 	 * @param $undo Revision
 	 * @param $undoafter Revision Must be an earlier revision than $undo
 	 * @return mixed string on success, false on failure
-	 * @deprecated since 1.20: use ContentHandler::getUndoContent() instead.
+	 * @deprecated since 1.WD: use ContentHandler::getUndoContent() instead.
 	 */
 	public function getUndoText( Revision $undo, Revision $undoafter = null ) { #FIXME: replace usages.
-		wfDeprecated( __METHOD__, '1.20' );
+		wfDeprecated( __METHOD__, '1.WD' );
 
 		$this->loadLastEdit();
 
@@ -1196,11 +1204,12 @@ class WikiPage extends Page {
 	 * @param $text String: new text of the section
 	 * @param $sectionTitle String: new section's subject, only if $section is 'new'
 	 * @param $edittime String: revision timestamp or null to use the current revision
-	 * @return Content new complete article content, or null if error
-     * @deprecated since 1.20, use replaceSectionContent() instead
+	 * @return String new complete article text, or null if error
+	 *
+	 * @deprecated since 1.WD, use replaceSectionContent() instead
 	 */
 	public function replaceSection( $section, $text, $sectionTitle = '', $edittime = null ) { #FIXME: use replaceSectionContent() instead!
-        wfDeprecated( __METHOD__, '1.20' );
+        wfDeprecated( __METHOD__, '1.WD' );
 
         $sectionContent = ContentHandler::makeContent( $text, $this->getTitle() ); #XXX: could make section title, but that's not required.
 
@@ -1209,6 +1218,16 @@ class WikiPage extends Page {
 		return ContentHandler::getContentText( $newContent ); #XXX: unclear what will happen for non-wikitext!
 	}
 
+	/**
+	 * @param $section null|bool|int or a section number (0, 1, 2, T1, T2...)
+	 * @param $content Content: new content of the section
+	 * @param $sectionTitle String: new section's subject, only if $section is 'new'
+	 * @param $edittime String: revision timestamp or null to use the current revision
+	 *
+	 * @return Content new complete article content, or null if error
+	 *
+	 * @since 1.WD
+	 */
     public function replaceSectionContent( $section, Content $sectionContent, $sectionTitle = '', $edittime = null ) {
         wfProfileIn( __METHOD__ );
 
@@ -1307,10 +1326,12 @@ class WikiPage extends Page {
 	 *     revision:                The revision object for the inserted revision, or null
 	 *
 	 *  Compatibility note: this function previously returned a boolean value indicating success/failure
-     * @deprecated since 1.20: use doEditContent() instead.
+	 *
+	 * @deprecated since 1.WD: use doEditContent() instead.
 	 */
     public function doEdit( $text, $summary, $flags = 0, $baseRevId = false, $user = null ) { #FIXME: use doEditContent() instead
-        #TODO: log use of deprecated function
+        wfDeprecated( __METHOD__, '1.WD' );
+
         $content = ContentHandler::makeContent( $text, $this->getTitle() );
 
         return $this->doEditContent( $content, $summary, $flags, $baseRevId, $user );
@@ -1361,7 +1382,7 @@ class WikiPage extends Page {
      *     new:                     Boolean indicating if the function attempted to create a new article
      *     revision:                The revision object for the inserted revision, or null
      *
-     *  Compatibility note: this function previously returned a boolean value indicating success/failure
+     * @since 1.WD
      */
 	public function doEditContent( Content $content, $summary, $flags = 0, $baseRevId = false,
                                    User $user = null, $serialisation_format = null ) { #FIXME: use this
@@ -1653,7 +1674,8 @@ class WikiPage extends Page {
 	/**
 	 * Prepare text which is about to be saved.
 	 * Returns a stdclass with source, pst and output members
-     * @deprecated in 1.20: use prepareContentForEdit instead.
+	 *
+	 * @deprecated in 1.WD: use prepareContentForEdit instead.
 	 */
     public function prepareTextForEdit( $text, $revid = null, User $user = null ) {  #FIXME: use prepareContentForEdit() instead #XXX: who uses this?!
         #TODO: log use of deprecated function
@@ -1669,7 +1691,10 @@ class WikiPage extends Page {
      * @param null $revid
      * @param null|\User $user
      * @param null $serialization_format
+     *
      * @return bool|object
+     *
+     * @since 1.WD
      */
 	public function prepareContentForEdit( Content $content, $revid = null, User $user = null, $serialization_format = null ) { #FIXME: use this #XXX: really public?!
 		global $wgParser, $wgContLang, $wgUser;
@@ -1721,7 +1746,6 @@ class WikiPage extends Page {
 	 * Purges pages that include this page if the text was changed here.
 	 * Every 100th edit, prune the recent changes table.
 	 *
-	 * @private
 	 * @param $revision Revision object
 	 * @param $user User object that did the revision
 	 * @param $options Array of options, following indexes are used:
@@ -1853,10 +1877,10 @@ class WikiPage extends Page {
 	 * @param $comment String: comment submitted
 	 * @param $minor Boolean: whereas it's a minor modification
 	 *
-	 * @deprecated since 1.20, use doEditContent() instead.
+	 * @deprecated since 1.WD, use doEditContent() instead.
 	 */
     public function doQuickEdit( $text, User $user, $comment = '', $minor = 0 ) {
-        wfDeprecated( __METHOD__, "1.20" );
+        wfDeprecated( __METHOD__, "1.WD" );
 
         $content = ContentHandler::makeContent( $text, $this->getTitle() );
         return $this->doQuickEditContent( $content, $user, $comment , $minor );
@@ -2641,10 +2665,12 @@ class WikiPage extends Page {
 	* @param $newtext String|null: The submitted text of the page.
 	* @param $flags Int bitmask: a bitmask of flags submitted for the edit.
 	* @return string An appropriate autosummary, or an empty string.
-    * @deprecated since 1.20, use ContentHandler::getAutosummary() instead
+    * @deprecated since 1.WD, use ContentHandler::getAutosummary() instead
 	*/
 	public static function getAutosummary( $oldtext, $newtext, $flags ) {
 		# NOTE: stub for backwards-compatibility. assumes the given text is wikitext. will break horribly if it isn't.
+
+		wfDeprecated( __METHOD__, '1.WD' );
 
         $handler = ContentHandler::getForModelName( CONTENT_MODEL_WIKITEXT );
         $oldContent = is_null( $oldtext ) ? null : $handler->unserializeContent( $oldtext );
@@ -2659,10 +2685,12 @@ class WikiPage extends Page {
 	 * @param &$hasHistory Boolean: whether the page has a history
 	 * @return mixed String containing deletion reason or empty string, or boolean false
 	 *    if no revision occurred
-     * @deprecated since 1.20, use ContentHandler::getAutoDeleteReason() instead
+     * @deprecated since 1.WD, use ContentHandler::getAutoDeleteReason() instead
 	 */
 	public function getAutoDeleteReason( &$hasHistory ) {
         #NOTE: stub for backwards-compatibility.
+
+		wfDeprecated( __METHOD__, '1.WD' );
 
 		$handler = ContentHandler::getForTitle( $this->getTitle() );
         $handler->getAutoDeleteReason( $this->getTitle(), $hasHistory );
