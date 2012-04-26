@@ -64,6 +64,8 @@ class SwiftFileBackend extends FileBackendStore {
 		$this->shardViaHashLevels = isset( $config['shardViaHashLevels'] )
 			? $config['shardViaHashLevels']
 			: '';
+		// Cache container info to mask latency
+		$this->memCache = wfGetMainCache();
 	}
 
 	/**
@@ -856,23 +858,30 @@ class SwiftFileBackend extends FileBackendStore {
 	 * Use $reCache if the file count or byte count is needed.
 	 *
 	 * @param $container string Container name
-	 * @param $reCache bool Refresh the process cache
+	 * @param $bypassCache bool Bypass all caches and load from Swift
 	 * @return CF_Container
+	 * @throws InvalidResponseException
 	 */
-	protected function getContainer( $container, $reCache = false ) {
+	protected function getContainer( $container, $bypassCache = false ) {
 		$conn = $this->getConnection(); // Swift proxy connection
-		if ( $reCache ) {
-			unset( $this->connContainers[$container] ); // purge cache
+		if ( $bypassCache ) { // purge cache
+			unset( $this->connContainers[$container] );
+		} elseif ( !isset( $this->connContainers[$container] ) ) {
+			$this->primeContainerCache( array( $container ) ); // check persistent cache
 		}
 		if ( !isset( $this->connContainers[$container] ) ) {
 			$contObj = $conn->get_container( $container );
 			// NoSuchContainerException not thrown: container must exist
 			if ( count( $this->connContainers ) >= $this->maxContCacheSize ) { // trim cache?
 				reset( $this->connContainers );
-				$key = key( $this->connContainers );
-				unset( $this->connContainers[$key] );
+				unset( $this->connContainers[key( $this->connContainers )] );
 			}
 			$this->connContainers[$container] = $contObj; // cache it
+			if ( !$bypassCache ) {
+				$this->setContainerCache( $container, // update persistent cache
+					array( 'bytes' => $contObj->bytes_used, 'count' => $contObj->object_count )
+				);
+			}
 		}
 		return $this->connContainers[$container];
 	}
@@ -882,6 +891,7 @@ class SwiftFileBackend extends FileBackendStore {
 	 *
 	 * @param $container string Container name
 	 * @return CF_Container
+	 * @throws InvalidResponseException
 	 */
 	protected function createContainer( $container ) {
 		$conn = $this->getConnection(); // Swift proxy connection
@@ -895,11 +905,34 @@ class SwiftFileBackend extends FileBackendStore {
 	 *
 	 * @param $container string Container name
 	 * @return void
+	 * @throws InvalidResponseException
 	 */
 	protected function deleteContainer( $container ) {
 		$conn = $this->getConnection(); // Swift proxy connection
 		$conn->delete_container( $container );
 		unset( $this->connContainers[$container] ); // purge cache
+	}
+
+	/**
+	 * @see FileBackendStore::doPrimeContainerCache()
+	 * @return void
+	 */
+	protected function doPrimeContainerCache( array $containerInfo ) {
+		try {
+			$conn = $this->getConnection(); // Swift proxy connection
+			foreach ( $containerInfo as $container => $info ) {
+				$this->connContainers[$container] = new CF_Container(
+					$conn->cfs_auth,
+					$conn->cfs_http,
+					$container,
+					$info['count'],
+					$info['bytes']
+				);
+			}
+		} catch ( InvalidResponseException $e ) {
+		} catch ( Exception $e ) { // some other exception?
+			$this->logException( $e, __METHOD__, array() );
+		}
 	}
 
 	/**

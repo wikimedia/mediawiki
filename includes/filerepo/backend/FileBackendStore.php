@@ -19,6 +19,9 @@
  * @since 1.19
  */
 abstract class FileBackendStore extends FileBackend {
+	/** @var BagOStuff */
+	protected $memCache;
+
 	/** @var Array Map of paths to small (RAM/disk) cache items */
 	protected $cache = array(); // (storage path => key => value)
 	protected $maxCacheSize = 100; // integer; max paths with entries
@@ -30,6 +33,16 @@ abstract class FileBackendStore extends FileBackend {
 	protected $shardViaHashLevels = array(); // (container name => config array)
 
 	protected $maxFileSize = 4294967296; // integer bytes (4GiB)
+
+	/**
+	 * @see FileBackend::__construct()
+	 *
+	 * @param $config Array
+	 */
+	public function __construct( array $config ) {
+		parent::__construct( $config );
+		$this->memCache = new EmptyBagOStuff(); // disabled by default
+	}
 
 	/**
 	 * Get the maximum allowable file size given backend
@@ -390,11 +403,13 @@ abstract class FileBackendStore extends FileBackend {
 
 		if ( $shard !== null ) { // confined to a single container/shard
 			$status->merge( $this->doCleanInternal( $fullCont, $dir, $params ) );
+			$this->deleteContainerCache( $fullCont ); // purge cache
 		} else { // directory is on several shards
 			wfDebug( __METHOD__ . ": iterating over all container shards.\n" );
 			list( $b, $shortCont, $r ) = self::splitStoragePath( $params['dir'] );
 			foreach ( $this->getContainerSuffixes( $shortCont ) as $suffix ) {
 				$status->merge( $this->doCleanInternal( "{$fullCont}{$suffix}", $dir, $params ) );
+				$this->deleteContainerCache( "{$fullCont}{$suffix}" ); // purge cache
 			}
 		}
 
@@ -846,8 +861,11 @@ abstract class FileBackendStore extends FileBackend {
 			}
 		}
 
-		// Clear any cache entries (after locks acquired)
+		// Clear any file cache entries (after locks acquired)
 		$this->clearCache();
+
+		// Load from the persistent container cache
+		$this->primeContainerCache( $performOps );
 
 		// Actually attempt the operation batch...
 		$subStatus = FileOp::attemptBatch( $performOps, $opts, $this->fileJournal );
@@ -1140,6 +1158,87 @@ abstract class FileBackendStore extends FileBackend {
 	protected function resolveContainerPath( $container, $relStoragePath ) {
 		return $relStoragePath;
 	}
+
+	/**
+	 * Get the cache key for a container
+	 *
+	 * @param $container Resolved container name
+	 * @return string
+	 */
+	private function containerCacheKey( $container ) {
+		return wfMemcKey( 'backend', $this->getName(), 'container', $container );
+	}
+
+	/**
+	 * Set the cached info for a container
+	 *
+	 * @param $container Resolved container name
+	 * @param $val mixed Information to cache
+	 * @return void
+	 */
+	final protected function setContainerCache( $container, $val ) {
+		$this->memCache->set( $this->containerCacheKey( $container ), $val, 7*86400 );
+	}
+
+	/**
+	 * Delete the cached info for a container
+	 *
+	 * @param $container Resolved container name
+	 * @return void
+	 */
+	final protected function deleteContainerCache( $container ) {
+		$this->memCache->delete( $this->containerCacheKey( $container ) );
+	}
+
+	/**
+	 * Do a batch lookup from cache for container stats for all containers
+	 * used in a list of container names, storage paths, or FileOp objects.
+	 *
+	 * @param $items Array List of storage paths or FileOps
+	 * @return void
+	 */
+	final protected function primeContainerCache( array $items ) {
+		$paths = array(); // list of storage paths
+		$contNames = array(); // (cache key => resolved container name)
+		// Get all the paths/containers from the items...
+		foreach ( $items as $item ) {
+			if ( $item instanceof FileOp ) {
+				$paths = array_merge( $paths, $item->storagePathsRead() );
+				$paths = array_merge( $paths, $item->storagePathsChanged() );
+			} elseif ( self::isStoragePath( $item ) ) {
+				$paths[] = $item;
+			} elseif ( is_string( $item ) ) { // full container name
+				$contNames[$this->containerCacheKey( $item )] = $item;
+			}
+		}
+		// Get all the corresponding cache keys for paths...
+		foreach ( $paths as $path ) {
+			list( $fullCont, $r, $s ) = $this->resolveStoragePath( $path );
+			if ( $fullCont !== null ) { // valid path for this backend
+				$contNames[$this->containerCacheKey( $fullCont )] = $fullCont;
+			}
+		}
+
+		$contInfo = array(); // (resolved container name => cache value)
+		// Get all cache entries for these container cache keys...
+		$values = $this->memCache->getBatch( array_keys( $contNames ) );
+		foreach ( $values as $cacheKey => $val ) {
+			$contInfo[$contNames[$cacheKey]] = $val;
+		}
+
+		// Populate the container process cache for the backend...
+		$this->doPrimeContainerCache( array_filter( $contInfo, 'is_array' ) );
+	}
+
+	/**
+	 * Fill the backend-specific process cache given an array of
+	 * resolved container names and their corresponding cached info.
+	 * Only containers that actually exist should appear in the map.
+	 *
+	 * @param $containerInfo Array Map of resolved container names to cached info
+	 * @return void
+	 */
+	protected function doPrimeContainerCache( array $containerInfo ) {}
 }
 
 /**
