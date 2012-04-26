@@ -2803,7 +2803,7 @@ $templates
 				$defaultModules['user'] = 'ready';
 			}
 		} else {
-			// User JS diabled
+			// User JS disabled
 			$defaultModules['user'] = 'missing';
 		}
 
