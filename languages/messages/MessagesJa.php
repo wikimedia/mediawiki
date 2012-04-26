@@ -481,12 +481,12 @@ $messages = array(
 'category-empty' => "''このカテゴリには、ページまたはメディアがひとつもありません。''",
 'hidden-categories' => '{{PLURAL:$1|隠しカテゴリ}}',
 'hidden-category-category' => '隠しカテゴリ',
-'category-subcat-count' => '{{PLURAL:$2|このカテゴリには以下の下位カテゴリのみが含まれています。|このカテゴリには $2 下位カテゴリが含まれており、そのうち以下の{{PLURAL:$1|下位カテゴリ| $1 下位カテゴリ}}を表示しています。}}',
-'category-subcat-count-limited' => 'このカテゴリには以下の{{PLURAL:$1|下位カテゴリ| $1 下位カテゴリ}}が含まれています。',
-'category-article-count' => '{{PLURAL:$2|このカテゴリには以下のページのみ含まれています。|このカテゴリには $2 ページが含まれており、そのうち以下の {{PLURAL:$1|$1 ページ}}を表示しています。}}',
-'category-article-count-limited' => '現在のカテゴリには以下の{{PLURAL:$1|ページ| $1 ページ}}が含まれています。',
+'category-subcat-count' => '{{PLURAL:$2|このカテゴリには以下の下位カテゴリのみが含まれています。|このカテゴリには $2 下位カテゴリが含まれており、そのうち以下の{{PLURAL:$1|下位カテゴリ|&#32;$1 下位カテゴリ}}を表示しています。}}',
+'category-subcat-count-limited' => 'このカテゴリには以下の{{PLURAL:$1|下位カテゴリ|&#32;$1 下位カテゴリ}}が含まれています。',
+'category-article-count' => '{{PLURAL:$2|このカテゴリには以下のページのみが含まれています。|このカテゴリには $2 ページが含まれており、そのうち以下の {{PLURAL:$1|$1 ページ}}を表示しています。}}',
+'category-article-count-limited' => '現在のカテゴリには以下の{{PLURAL:$1|ページ|&#32;$1 ページ}}が含まれています。',
 'category-file-count' => '{{PLURAL:$2|このカテゴリには以下のファイルのみが含まれています。|このカテゴリには $2 ファイルが含まれており、そのうち以下の {{PLURAL:$1|$1 ファイル}}を表示しています。}}',
-'category-file-count-limited' => '現在のカテゴリには以下の{{PLURAL:$1|ファイル| $1 ファイル}}が含まれています。',
+'category-file-count-limited' => '現在のカテゴリには以下の{{PLURAL:$1|ファイル|&#32;$1 ファイル}}が含まれています。',
 'listingcontinuesabbrev' => 'の続き',
 'index-category' => '検索エンジンに収集されるページ',
 'noindex-category' => '検索エンジンに収集されないページ',
@@ -1561,7 +1561,7 @@ HTMLタグを見直してください。',
 'saveusergroups' => '利用者グループを保存',
 'userrights-groupsmember' => '所属グループ：',
 'userrights-groupsmember-auto' => '自動的に付与される権限：',
-'userrights-groups-help' => 'この利用者が属するグループを変更することができます。
+'userrights-groups-help' => 'この利用者が属するグループを変更できます。
 * チェックが入っているボックスは、この利用者がそのグループに属していることを意味します。
 * チェックが入っていないボックスは、この利用者がそのグループに属していないことを意味します。
 * 「*」はグループに一旦追加した場合に除去（あるいはその逆）ができないことを示しています。',
@@ -1600,7 +1600,7 @@ HTMLタグを見直してください。',
 # Rights
 'right-read' => 'ページを閲覧',
 'right-edit' => 'ページを編集',
-'right-createpage' => '（議論ページではない）ページを作成',
+'right-createpage' => '（議論ページ以外の）ページを作成',
 'right-createtalk' => '議論ページを作成',
 'right-createaccount' => '新しい利用者アカウントを作成',
 'right-minoredit' => '細部の編集の印を付ける',
@@ -1827,13 +1827,13 @@ HTMLタグを見直してください。',
 * アップロード中のファイルの名前：'''<tt>[[:$1]]</tt>'''
 * 既存ファイルの名前：'''<tt>[[:$2]]</tt>'''
 違う名前を選択してください。",
-'fileexists-thumbnail-yes' => "このファイルは元の画像から縮小されたもの（サムネイル）のようです。
+'fileexists-thumbnail-yes' => "このファイルは元の画像から縮小されたもの''（サムネイル）''のようです。
 [[$1|thumb]]
 ファイル'''<tt>[[:$1]]</tt>'''を確認してください。
-確認したファイルが同じ画像のもとのサイズの版である場合、サムネイルを個別にアップロードする必要はありません。",
+確認したファイルが同じ画像の元のサイズの版の場合は、サムネイルを別途アップロードする必要はありません。",
 'file-thumbnail-no' => "ファイル名が'''<tt>$1</tt>'''から始まっています。
-他の画像から縮小されたもの（サムネイル）のようです。
-より高精細な画像をお持ちの場合は、そちらをアップロードしてください。そうでない場合はファイル名を変更してください。",
+他の画像から縮小されたもの''（サムネイル）''のようです。
+より高精細な画像をお持ちの場合はそれをアップロードしてください。お持ちではない場合はファイル名を変更してください。",
 'fileexists-forbidden' => 'この名前のファイルは既に存在しており、上書きできません。
 アップロードを継続したい場合は、前のページに戻り、別のファイル名を使用してください。
 [[File:$1|thumb|center|$1]]',
@@ -2041,7 +2041,7 @@ URLが正しいものであり、ウェブサイトが稼働していること�
 'filehist-dimensions' => '解像度',
 'filehist-filesize' => 'ファイルサイズ',
 'filehist-comment' => 'コメント',
-'filehist-missing' => 'ファイルがみつかりません',
+'filehist-missing' => 'ファイルがありません',
 'imagelinks' => 'ファイルの使用状況',
 'linkstoimage' => 'このファイルへは以下の {{PLURAL:$1|ページ| $1 ページ}}からリンクしています：',
 'linkstoimage-more' => 'このファイルへは $1 を超える数のページからリンクがあります。
@@ -2713,7 +2713,7 @@ $1',
 ** 複数アカウントの不正利用
 ** 不適切な利用者名',
 'ipb-hardblock' => 'ログインしている利用者によるこのIPアドレスからの編集を不許可',
-'ipbcreateaccount' => 'アカウント作成を禁止する',
+'ipbcreateaccount' => 'アカウント作成を禁止',
 'ipbemailban' => 'メール送信を防止',
 'ipbenableautoblock' => 'この利用者が最後に使用したIPアドレスと、後に編集しようとしたIPアドレスを自動的にブロック',
 'ipbsubmit' => 'この利用者をブロック',
@@ -4046,7 +4046,7 @@ MediaWikiは、有用であることを期待して配布されていますが�
 'fileduplicatesearch-info' => '$1×$2 ピクセル<br />ファイルサイズ：$3<br />MIMEタイプ：$4',
 'fileduplicatesearch-result-1' => 'ファイル「$1」と重複するファイルはありません。',
 'fileduplicatesearch-result-n' => 'ファイル「$1」は$2件のファイルと重複しています。',
-'fileduplicatesearch-noresults' => '「$1」という名前のファイルがみつかりません。',
+'fileduplicatesearch-noresults' => '「$1」という名前のファイルはありません。',
 
 # Special:SpecialPages
 'specialpages' => '特別ページ',

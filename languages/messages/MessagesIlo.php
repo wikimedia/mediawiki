@@ -405,7 +405,7 @@ $2',
 Ti naited a rason ket ''$2''.",
 'filereadonlyerror' => 'Di nabaliwan ti papales "$1" gapu ket ti repositorio ti papeles "$2" ket basaen laeng a moda.
 
-Ti rason a naited ket "\'\'$3\'\'".',
+Ti administrador a nagserra ket nagited iti daytoy a panagilawlawag "\'\'$3\'\'".',
 
 # Virus scanner
 'virus-badscanner' => 'Madi di panaka-aramidna: Di am-ammo a birus a panagskan: "$1"',
@@ -501,6 +501,7 @@ Awan ti e-surat nga ipatulod para dagitoy a langa.',
 'invalidemailaddress' => 'Ti e-surat a pagtaengam ket saan a maawat, ket kasla addaan ti saan a napudno a nakabuklan.
 Pangngaasi ta ikkam ti nasayaat  a  nakabuklan a pagtaengan wenno ikkatem amin dagiti naikabil mo.',
 'cannotchangeemail' => 'Dagiti pakabilangan nga e-surat a pagtaengan ket saan a mabaliwan ditoy a wiki.',
+'emaildisabled' => 'Daytoy a pagsaaadan ket saan a makaipatuod kadagiti e-surat.',
 'accountcreated' => 'Naaramiden ti pakabilangan',
 'accountcreatedtext' => 'Naaramiden ti pakabilangan a pagaramat ni $1.',
 'createaccount-title' => 'Panagaramid iti pakabilangan para iti {{SITENAME}}',
@@ -708,7 +709,9 @@ Ti naudi a listaan ti panaka-serra ket adda dita baba tapno mausar a reperensia:
 Annawid a .css ken .js dagiti titulo ket agususar ti napababa a letra, a kas dagiti {{ns:user}}:Foo/vector.css saan ket a {{ns:user}}:Foo/Vector.css.",
 'updated' => '(Napabaro)',
 'note' => "'''Paammo:'''",
-'previewnote' => "'''Maysa laeng a pagpadas daytoy; dagiti sinukatam ket saan pay a naidulin!'''",
+'previewnote' => "'''Laglagipem a daytoy ket panagipadas laeng.'''
+Dagiti sinukatam ket saan pay a naidulin!",
+'continue-editing' => 'Agtultuloy nga agurnos',
 'previewconflict' => 'Daytoy a panagpadas ket agiparang ti testo dita ngato a panagurnos a lugar a kasla agparang no kayatmo nga idulin.',
 'session_fail_preview' => "'''Pasensian a! Saan mi a maaramid ti panag-urnos gapu ngamin ta naawanan ti gimong ti data.'''
 Pangngaasi ta padasem manen.
@@ -724,6 +727,7 @@ Ti panag-urnos ket saan a naawat tapno mapawilan ti panakadadael ti testo ti pan
 Mapasamak daytoy no agus-usar ka ti saan a nasayaat a naibasta ti sapot a diamammo a proxy a panagserbi.",
 'edit_form_incomplete' => "'''Adda dagiti paset ti panag-urnos a kabuklan a saan a nakadanon dita server; kitkitaen nga dagiti pianag-urnos mo ket saan a naikkatan ken padasem manen.'''",
 'editing' => 'Ururnosen ti $1',
+'creating' => 'Agparpartuat ti $1',
 'editingsection' => 'Ururnosen ti $1 (paset)',
 'editingcomment' => 'Ururnosen ti $1 (baro a paset)',
 'editconflict' => 'Adda kasinnungat ti panag-urnos: $1',
@@ -791,6 +795,7 @@ Kasla met naikkaten.',
 'edit-no-change' => 'Ti inurnos mo ket saan a naikaskaso, ngamin ket awan ti nasukatan a testo.',
 'edit-already-exists' => 'Saan a makaaramid ti baro a panid.
 Adda met daytoyen.',
+'defaultmessagetext' => 'Naisigud a testo ti mensahe',
 
 # Parser/template warnings
 'expensive-parserfunction-warning' => "'''Ballaag:''' Daytoy a panid ket adu unay kadagiti nangina a parser nga opisio a pinagtawtawag.
@@ -950,8 +955,8 @@ Saan mo a mabalin a serrekan.',
 
 # Suppression log
 'suppressionlog' => 'Listaan ti nadepdepan',
-'suppressionlogtext' => 'Dita baba ket addaan dagiti listaan ti pinagikkat ken naserraan nga adda nagyanna a nailemmeng kadagiti administrador.
-Kitaen ti [[Special:BlockList|Listaan ti naserraan nga IP]] iti listaan ti agdama a kadagiti operasional a pinagparit ken panagserra',
+'suppressionlogtext' => 'Dita baba ket addaan dagiti listaan ti pinagikkat ken npanagserra a nairaman dagiti linaon a nailemmeng manipud kadagiti administrador.
+Kitaen ti [[Special:BlockList|Listaan ti lapden nga IP]] para iti listaan kadagiti agdama nga operasional a pinagparit ken panagserra.',
 
 # History merging
 'mergehistory' => 'Pagtiponen dagiti pakasaritaan ti pampanid',
@@ -1895,6 +1900,10 @@ Mapabassit mo ti pinagpakita no piliam ti kita ti listaan, ti nagan ti gar-arama
 'allpages-bad-ns' => 'Awan ti {{SITENAME}} iti nagan ti lugar a "$1".',
 'allpages-hide-redirects' => 'Ilemmeng dagiti baw-ing',
 
+# SpecialCachedPage
+'cachedspecial-viewing-cached-ttl' => 'Kitkitaenm ti naidulin a bersion iti daytoy a panid, nga addan ti kadaanan a $1.',
+'cachedspecial-refresh-now' => 'Kitaen ti kinaudian.',
+
 # Special:Categories
 'categories' => 'Dagiti kategoria',
 'categoriespagetext' => 'Dagiti sumaganad a {{PLURAL:$1|nagyan ti kategoria|dagiti nagyan ti kategoria}} pampanid wenno midia.
@@ -2342,8 +2351,8 @@ Ikkan ti nainaganan a rason dita baba (kas pagarigan, dakamaten ti maysa a panid
 'ipb-confirm' => 'Pasingkedan ti serra',
 'badipaddress' => 'Imbalido nga IP a pagtaengan',
 'blockipsuccesssub' => 'Balligi ti panangserra',
-'blockipsuccesstext' => '[[Special:Contributions/$1|$1]] ket naserraan.<br />
-Kitaen ti [[Special:BlockList|listaan ti IP a naserraan]] ta kitaen dagiti serra.',
+'blockipsuccesstext' => '[[Special:Contributions/$1|$1]] ket naserraanen.<br />
+Kitaen ti [[Special:BlockList|listaan ti lapden nga IP ]] tapno marepaso dagiti serra.',
 'ipb-blockingself' => 'Mangrugrugi ka nga agserra kenka! Sigurado nga kayatmo nga aramiden daytoy?',
 'ipb-confirmhideuser' => 'Mangrugrugi ka ti mangserra ti agar-aramat nga addaan ti napabalin na nga "ilemmeng ti agar-aramat". Iddeppen na ti nagan daytoy nga agar-aramat kadagiti amin a listaan ken dagiti naikabkabil ti listaan. Sigurado ka a kasta ti kayatmo?',
 'ipb-edit-dropdown' => 'Urnosen dagiti rason ti panagserra',
@@ -2396,9 +2405,9 @@ Ti listaan ti serra ket naikabil dita baba tapno mausar a reperensia:',
 Ti listaan ti napasardeng ket naikabil dita baba tapno mausar a reperensia:',
 'blocklogentry' => 'naserraan ni [[$1]] nga addaan ti oras ti panagpaso nga $2 $3',
 'reblock-logentry' => 'sinukatan ti panakaserra ni [[$1]] ti agtapos nga oras nga $2 $3',
-'blocklogtext' => 'Daytoy ket listaan ti gar-aramat kadagiti pinagserraken panaglukat ti serra
-Dagiti na-automatiko a panakaserra ti IP a pagtaengan ket saan a nailista.
-Kitaen ti [[Special:BlockList|Listaan ti serra ti IP]] ti listaan kadagiti agdama a naiparit a pagpataray ken dagiti serra.',
+'blocklogtext' => 'Daytoy ket listaan ti agar-aramat kadagiti pinagserra ken panaglukat ti serra
+Dagiti na-atomatiko a panakaserra ti IP a pagtaengan ket saan a nailista.
+Kitaen ti [[Special:BlockList|Listaan ti lapden nga IP]] para iti listaan kadagiti agdama a naiparit a pagpataray ken dagiti serra.',
 'unblocklogentry' => 'lukatan ti serra ni $1',
 'block-log-flags-anononly' => 'dagiti di am-ammo nga agar-aramat laeng',
 'block-log-flags-nocreate' => 'naisardeng ti pinagaramid iti pakabilangan',
@@ -3073,6 +3082,8 @@ Dagiti dadduma ket mailemmeng a kinasigud.
 'exif-planarconfiguration-1' => 'chunky format',
 'exif-planarconfiguration-2' => 'planar format',
 
+'exif-colorspace-65535' => 'Di-nakalibrar',
+
 'exif-componentsconfiguration-0' => 'awan',
 
 'exif-exposureprogram-0' => 'Saan a naipalpalawag',
@@ -3455,6 +3466,9 @@ Naka-awat ka kuman ti [{{SERVER}}{{SCRIPTPATH}}/COPYING kopia iti GNU Sapasap a 
 'version-software' => 'Naikabil a software',
 'version-software-product' => 'Produkto',
 'version-software-version' => 'Bersion',
+'version-entrypoints' => 'Paserrekan a puntos dagiti URL',
+'version-entrypoints-header-entrypoint' => 'Pagserrekan a puntos',
+'version-entrypoints-header-url' => 'URL',
 
 # Special:FilePath
 'filepath' => 'Dalanan ti papeles',
@@ -3643,5 +3657,16 @@ Nupay kasta, mau-sar mo ti nakabuklan dita baba. Ti komentario nga ited mo ket m
 'api-error-unknownerror' => 'Di amamo a biddut: "$1".',
 'api-error-uploaddisabled' => 'Nabaldado ti mangipapan iti daytoy a wiki.',
 'api-error-verification-error' => 'Dakes ngata daytoy a papeles, wenno addaan ti madi a pagpa-atiddog.',
+
+# Durations
+'duration-seconds' => '$1 {{PLURAL:$1|segundo|seg-segundo}}',
+'duration-minutes' => '$1 {{PLURAL:$1|minuto|min-minuto}}',
+'duration-hours' => '$1 {{PLURAL:$1|oras|or-oras}}',
+'duration-days' => '$1 {{PLURAL:$1|aldaw|al-aldaw}}',
+'duration-weeks' => '$1 {{PLURAL:$1|lawas|law-lawas}}',
+'duration-years' => '$1 {{PLURAL:$1|tawen|taw-tawen}}',
+'duration-decades' => '$1 {{PLURAL:$1|dekada|dek-dekada}}',
+'duration-centuries' => '$1 {{PLURAL:$1|siglo|sig-siglo}}',
+'duration-millennia' => '$1 {{PLURAL:$1|milenio|mil-milenio}}',
 
 );
