@@ -384,6 +384,17 @@ abstract class FileBackendStore extends FileBackend {
 		wfProfileIn( __METHOD__ . '-' . $this->name );
 		$status = Status::newGood();
 
+		// Recursive: first delete all empty subdirs recursively
+		if ( !empty( $params['recursive'] ) && !$this->directoriesAreVirtual() ) {
+			$subDirsRel = $this->getTopDirectoryList( array( 'dir' => $params['dir'] ) );
+			if ( $subDirsRel !== null ) { // no errors
+				foreach ( $subDirsRel as $subDirRel ) {
+					$subDir = $params['dir'] . "/{$subDirRel}"; // full path
+					$status->merge( $this->doClean( array( 'dir' => $subDir ) + $params ) );
+				}
+			}
+		}
+
 		list( $fullCont, $dir, $shard ) = $this->resolveStoragePath( $params['dir'] );
 		if ( $dir === null ) {
 			$status->fatal( 'backend-fail-invalidpath', $params['dir'] );
@@ -908,6 +919,15 @@ abstract class FileBackendStore extends FileBackend {
 	 * @return void
 	 */
 	protected function doClearCache( array $paths = null ) {}
+
+	/**
+	 * Is this a key/value store where directories are just virtual?
+	 * Virtual directories exists in so much as files exists that are
+	 * prefixed with the directory path followed by a forward slash.
+	 *
+	 * @return bool
+	 */
+	abstract protected function directoriesAreVirtual();
 
 	/**
 	 * Move a cache entry to the top (such as when accessed)

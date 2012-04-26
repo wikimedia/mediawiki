@@ -535,6 +535,14 @@ class FSFileBackend extends FileBackendStore {
 	}
 
 	/**
+	 * @see FileBackendStore::directoriesAreVirtual()
+	 * @return bool
+	 */
+	protected function directoriesAreVirtual() {
+		return false;
+	}
+
+	/**
 	 * Chmod a file, suppressing the warnings
 	 *
 	 * @param $path string Absolute file system path
