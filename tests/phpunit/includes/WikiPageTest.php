@@ -559,7 +559,8 @@ more stuff
 	*/
 
 	public function testDoRollback() {
-		global $wgUser;
+		$admin = new User();
+		$admin->setName("Admin");
 
 		$text = "one";
 		$page = $this->createPage( "WikiPageTest_testDoRollback", $text );
@@ -574,9 +575,9 @@ more stuff
 		$text .= "\n\nthree";
 		$page->doEditContent( ContentHandler::makeContent( $text, $page->getTitle() ), "adding section three", 0, false, $user2 );
 
-		$wgUser->addGroup( "sysop" ); #XXX: make the test user a sysop...
-		$token = $wgUser->getEditToken( array( $page->getTitle()->getPrefixedText(), $user2->getName() ), null );
-		$errors = $page->doRollback( $user2->getName(), "testing revert", $token, false, $details, $wgUser );
+		$admin->addGroup( "sysop" ); #XXX: make the test user a sysop...
+		$token = $admin->getEditToken( array( $page->getTitle()->getPrefixedText(), $user2->getName() ), null );
+		$errors = $page->doRollback( $user2->getName(), "testing revert", $token, false, $details, $admin );
 
 		if ( $errors ) {
 			$this->fail( "Rollback failed:\n" . print_r( $errors, true ) . ";\n" . print_r( $details, true ) );
@@ -742,8 +743,11 @@ more stuff
 	 * @dataProvider dataPreSaveTransform
 	 */
 	public function testPreSaveTransform( $text, $expected ) {
+		$user = new User();
+		$user->setName("127.0.0.1");
+
 		$page = $this->newPage( "WikiPageTest_testPreloadTransform" );
-		$text = $page->preSaveTransform( $text );
+		$text = $page->preSaveTransform( $text, $user );
 
 		$this->assertEquals( $expected, $text );
 	}
