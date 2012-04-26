@@ -771,6 +771,14 @@ class SwiftFileBackend extends FileBackendStore {
 	}
 
 	/**
+	 * @see FileBackendStore::directoriesAreVirtual()
+	 * @return bool
+	 */
+	protected function directoriesAreVirtual() {
+		return true;
+	}
+
+	/**
 	 * Get headers to send to Swift when reading a file based
 	 * on a FileBackend params array, e.g. that of getLocalCopy().
 	 * $params is currently only checked for a 'latest' flag.

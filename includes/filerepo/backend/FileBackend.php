@@ -383,7 +383,8 @@ abstract class FileBackend {
 	 * is that of an empty container, in which case it should be deleted.
 	 *
 	 * $params include:
-	 *     dir : storage directory
+	 *     dir       : storage directory
+	 *     recursive : recursively delete empty subdirectories first (@since 1.20)
 	 *
 	 * @param $params Array
 	 * @return Status
