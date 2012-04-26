@@ -131,7 +131,7 @@ abstract class ContentHandler {
 		}
 
 		// hook can determin default model
-		if ( !wfRunHooks( 'DefaultModelFor', array( $title, &$model ) ) ) { #FIXME: document new hook!
+		if ( !wfRunHooks( 'ContentHandlerDefaultModelFor', array( $title, &$model ) ) ) {
 			if ( !is_null( $model ) ) {
 				return $model;
 			}
@@ -224,7 +224,6 @@ abstract class ContentHandler {
 		if ( empty( $wgContentHandlers[$modelName] ) ) {
 			$handler = null;
 
-			// FIXME: document new hook
 			wfRunHooks( 'ContentHandlerForModelName', array( $modelName, &$handler ) );
 
 			if ( $handler ) { // NOTE: may be a string or an object, either is fine!

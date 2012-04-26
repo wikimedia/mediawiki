@@ -1443,7 +1443,7 @@ class EditPage {
 
 				// Run post-section-merge edit filter
 				if ( !wfRunHooks( 'EditFilterMerged', array( $this, $content->serialize( $this->content_format ), &$this->hookError, $this->summary ) )
-						|| !wfRunHooks( 'EditFilterMergedContent', array( $this, $content, &$this->hookError, $this->summary ) ) ) { #FIXME: document new hook
+						|| !wfRunHooks( 'EditFilterMergedContent', array( $this, $content, &$this->hookError, $this->summary ) ) ) {
 					# Error messages etc. could be handled within the hook...
 					$status->fatal( 'hookaborted' );
 					$status->value = self::AS_HOOK_ERROR;
@@ -2526,7 +2526,7 @@ HTML
 						$newContent = ContentHandler::makeContent( $newtext, $this->getTitle(), $newContent->getModelName() ); #XXX: handle parse errors ?
 		}
 
-		wfRunHooks( 'EditPageGetDiffContent', array( $this, &$newContent ) ); #FIXME: document new hook
+		wfRunHooks( 'EditPageGetDiffContent', array( $this, &$newContent ) );
 
 		$popts = ParserOptions::newFromUserAndLang( $wgUser, $wgContLang );
 		$newContent = $newContent->preSaveTransform( $this->mTitle, $wgUser, $popts );
@@ -2826,7 +2826,7 @@ HTML
 					$content = ContentHandler::makeContent( $toparse, $this->getTitle(), $this->content_model, $this->content_format );
 				}
 
-				wfRunHooks( 'EditPageGetPreviewContent', array( $this, &$content ) ); # FIXME: document new hook
+				wfRunHooks( 'EditPageGetPreviewContent', array( $this, &$content ) );
 
 				$parserOptions->enableLimitReport();
 

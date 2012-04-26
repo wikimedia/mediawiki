@@ -342,8 +342,8 @@ class Article extends Page {
 
 		$content = $this->fetchContentObject();
 
-		$this->mContent = ContentHandler::getContentText( $content ); #FIXME: get rid of mContent everywhere!
-		wfRunHooks( 'ArticleAfterFetchContent', array( &$this, &$this->mContent ) ); #BC cruft!
+		$this->mContent = ContentHandler::getContentText( $content ); #@todo: get rid of mContent everywhere!
+		wfRunHooks( 'ArticleAfterFetchContent', array( &$this, &$this->mContent ) ); #BC cruft! #XXX: can we deprecate that hook?
 
 		wfProfileOut( __METHOD__ );
 
@@ -409,7 +409,7 @@ class Article extends Page {
 		$this->mContentObject = $this->mRevision->getContent( Revision::FOR_THIS_USER ); // Loads if user is allowed
 		$this->mRevIdFetched = $this->mRevision->getId();
 
-		wfRunHooks( 'ArticleAfterFetchContentObject', array( &$this, &$this->mContentObject ) ); #FIXME: register new hook
+		wfRunHooks( 'ArticleAfterFetchContentObject', array( &$this, &$this->mContentObject ) );
 
 		wfProfileOut( __METHOD__ );
 
@@ -629,10 +629,10 @@ class Article extends Page {
 						wfDebug( __METHOD__ . ": showing CSS/JS source\n" );
 						$this->showCssOrJsPage();
 						$outputDone = true;
-					} elseif( !wfRunHooks( 'ArticleContentViewCustom', array( $this->fetchContentObject(), $this->getTitle(), $wgOut ) ) ) { #FIXME: document new hook!
+					} elseif( !wfRunHooks( 'ArticleContentViewCustom', array( $this->fetchContentObject(), $this->getTitle(), $wgOut ) ) ) {
 						# Allow extensions do their own custom view for certain pages
 						$outputDone = true;
-					} elseif( Hooks::isRegistered( 'ArticleViewCustom' ) && !wfRunHooks( 'ArticleViewCustom', array( $this->fetchContent(), $this->getTitle(), $wgOut ) ) ) { #FIXME: fetchContent() is deprecated! #FIXME: deprecate hook!
+					} elseif( Hooks::isRegistered( 'ArticleViewCustom' ) && !wfRunHooks( 'ArticleViewCustom', array( $this->fetchContent(), $this->getTitle(), $wgOut ) ) ) { #FIXME: fetchContent() is deprecated!
 						# Allow extensions do their own custom view for certain pages
 						$outputDone = true;
 					} else {
@@ -781,7 +781,7 @@ class Article extends Page {
 		}
 
 		// Give hooks a chance to customise the output
-		if ( !Hooks::isRegistered('ShowRawCssJs') || wfRunHooks( 'ShowRawCssJs', array( $this->fetchContent(), $this->getTitle(), $wgOut ) ) ) { #FIXME: fetchContent() is deprecated #FIXME: hook is deprecated
+		if ( !Hooks::isRegistered('ShowRawCssJs') || wfRunHooks( 'ShowRawCssJs', array( $this->fetchContent(), $this->getTitle(), $wgOut ) ) ) { #FIXME: fetchContent() is deprecated
 			$po = $this->mContentObject->getParserOutput( $this->getContext() );
 			$wgOut->addHTML( $po->getText() );
 		}

@@ -1162,7 +1162,7 @@ class WikiPage extends Page {
 	 * @return mixed string on success, false on failure
 	 * @deprecated since 1.WD: use ContentHandler::getUndoContent() instead.
 	 */
-	public function getUndoText( Revision $undo, Revision $undoafter = null ) { #FIXME: replace usages.
+	public function getUndoText( Revision $undo, Revision $undoafter = null ) {
 		wfDeprecated( __METHOD__, '1.WD' );
 
 		$this->loadLastEdit();
@@ -1194,7 +1194,7 @@ class WikiPage extends Page {
 	 *
 	 * @deprecated since 1.WD, use replaceSectionContent() instead
 	 */
-	public function replaceSection( $section, $text, $sectionTitle = '', $edittime = null ) { #FIXME: use replaceSectionContent() instead!
+	public function replaceSection( $section, $text, $sectionTitle = '', $edittime = null ) {
 		wfDeprecated( __METHOD__, '1.WD' );
 
 		$sectionContent = ContentHandler::makeContent( $text, $this->getTitle() ); #XXX: could make section title, but that's not required.
@@ -1315,7 +1315,7 @@ class WikiPage extends Page {
 	 *
 	 * @deprecated since 1.WD: use doEditContent() instead.
 	 */
-	public function doEdit( $text, $summary, $flags = 0, $baseRevId = false, $user = null ) { #FIXME: use doEditContent() instead
+	public function doEdit( $text, $summary, $flags = 0, $baseRevId = false, $user = null ) { #@todo: use doEditContent() instead
 		wfDeprecated( __METHOD__, '1.WD' );
 
 		$content = ContentHandler::makeContent( $text, $this->getTitle() );
@@ -1371,7 +1371,7 @@ class WikiPage extends Page {
 	 * @since 1.WD
 	 */
 	public function doEditContent( Content $content, $summary, $flags = 0, $baseRevId = false,
-								   User $user = null, $serialisation_format = null ) { #FIXME: use this
+								   User $user = null, $serialisation_format = null ) {
 		global $wgUser, $wgDBtransactions, $wgUseAutomaticEditSummaries;
 
 		# Low-level sanity check
@@ -1390,14 +1390,14 @@ class WikiPage extends Page {
 		$flags = $this->checkFlags( $flags );
 
 		# call legacy hook
-		$hook_ok = wfRunHooks( 'ArticleContentSave', array( &$this, &$user, &$content, &$summary, #FIXME: document new hook!
+		$hook_ok = wfRunHooks( 'ArticleContentSave', array( &$this, &$user, &$content, &$summary,
 			$flags & EDIT_MINOR, null, null, &$flags, &$status ) );
 
 		if ( $hook_ok && !empty( $wgHooks['ArticleSave'] ) ) { # avoid serialization overhead if the hook isn't present
 			$content_text = $content->serialize();
 			$txt = $content_text; # clone
 
-			$hook_ok = wfRunHooks( 'ArticleSave', array( &$this, &$user, &$txt, &$summary, #FIXME: deprecate legacy hook!
+			$hook_ok = wfRunHooks( 'ArticleSave', array( &$this, &$user, &$txt, &$summary,
 				$flags & EDIT_MINOR, null, null, &$flags, &$status ) );
 
 			if ( $txt !== $content_text ) {
@@ -1612,10 +1612,10 @@ class WikiPage extends Page {
 			# Update links, etc.
 			$this->doEditUpdates( $revision, $user, array( 'created' => true ) );
 
-			wfRunHooks( 'ArticleInsertComplete', array( &$this, &$user, $serialized, $summary, #FIXME: deprecate legacy hook
+			wfRunHooks( 'ArticleInsertComplete', array( &$this, &$user, $serialized, $summary,
 				$flags & EDIT_MINOR, null, null, &$flags, $revision ) );
 
-			wfRunHooks( 'ArticleContentInsertComplete', array( &$this, &$user, $content, $summary, #FIXME: document new hook
+			wfRunHooks( 'ArticleContentInsertComplete', array( &$this, &$user, $content, $summary,
 				$flags & EDIT_MINOR, null, null, &$flags, $revision ) );
 		}
 
@@ -1627,10 +1627,10 @@ class WikiPage extends Page {
 		// Return the new revision (or null) to the caller
 		$status->value['revision'] = $revision;
 
-		wfRunHooks( 'ArticleSaveComplete', array( &$this, &$user, $serialized, $summary,  #FIXME: deprecate legacy hook
+		wfRunHooks( 'ArticleSaveComplete', array( &$this, &$user, $serialized, $summary,
 			$flags & EDIT_MINOR, null, null, &$flags, $revision, &$status, $baseRevId ) );
 
-		wfRunHooks( 'ArticleContentSaveComplete', array( &$this, &$user, $content, $summary, #FIXME: document new hook
+		wfRunHooks( 'ArticleContentSaveComplete', array( &$this, &$user, $content, $summary,
 			$flags & EDIT_MINOR, null, null, &$flags, $revision, &$status, $baseRevId ) );
 
 		# Promote user to any groups they meet the criteria for
@@ -1663,8 +1663,9 @@ class WikiPage extends Page {
 	 *
 	 * @deprecated in 1.WD: use prepareContentForEdit instead.
 	 */
-	public function prepareTextForEdit( $text, $revid = null, User $user = null ) {  #FIXME: use prepareContentForEdit() instead #XXX: who uses this?!
-		#TODO: log use of deprecated function
+	public function prepareTextForEdit( $text, $revid = null, User $user = null ) {
+		wfDeprecated( __METHOD__, '1.WD' );
+
 		$content = ContentHandler::makeContent( $text, $this->getTitle() );
 		return $this->prepareContentForEdit( $content, $revid , $user );
 	}
@@ -1682,7 +1683,7 @@ class WikiPage extends Page {
 	 *
 	 * @since 1.WD
 	 */
-	public function prepareContentForEdit( Content $content, $revid = null, User $user = null, $serialization_format = null ) { #FIXME: use this #XXX: really public?!
+	public function prepareContentForEdit( Content $content, $revid = null, User $user = null, $serialization_format = null ) {
 		global $wgParser, $wgContLang, $wgUser;
 		$user = is_null( $user ) ? $wgUser : $user;
 		// @TODO fixme: check $user->getId() here???
