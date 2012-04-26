@@ -34,6 +34,16 @@ class ApiQueryAllUsers extends ApiQueryBase {
 		parent::__construct( $query, $moduleName, 'au' );
 	}
 
+	/**
+	 * This function converts the user name to a canonical form
+	 * which is stored in the database.
+	 * @param String $name
+	 * @return String
+	 */
+	private function getCanonicalUserName( $name ) {
+		return str_replace( '_', ' ', $name );
+	}
+
 	public function execute() {
 		$db = $this->getDB();
 		$params = $this->extractRequestParams();
@@ -57,8 +67,8 @@ class ApiQueryAllUsers extends ApiQueryBase {
 		$useIndex = true;
 
 		$dir = ( $params['dir'] == 'descending' ? 'older' : 'newer' );
-		$from = is_null( $params['from'] ) ? null : $this->keyToTitle( $params['from'] );
-		$to = is_null( $params['to'] ) ? null : $this->keyToTitle( $params['to'] );
+		$from = is_null( $params['from'] ) ? null : $this->getCanonicalUserName( $params['from'] );
+		$to = is_null( $params['to'] ) ? null : $this->getCanonicalUserName( $params['to'] );
 
 		# MySQL doesn't seem to use 'equality propagation' here, so like the
 		# ActiveUsers special page, we have to use rc_user_text for some cases.
@@ -68,7 +78,7 @@ class ApiQueryAllUsers extends ApiQueryBase {
 
 		if ( !is_null( $params['prefix'] ) ) {
 			$this->addWhere( $userFieldToSort .
-				$db->buildLike( $this->keyToTitle( $params['prefix'] ), $db->anyString() ) );
+				$db->buildLike( $this->getCanonicalUserName( $params['prefix'] ), $db->anyString() ) );
 		}
 
 		if ( !is_null( $params['rights'] ) ) {
