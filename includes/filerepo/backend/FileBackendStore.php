@@ -24,10 +24,10 @@ abstract class FileBackendStore extends FileBackend {
 
 	/** @var Array Map of paths to small (RAM/disk) cache items */
 	protected $cache = array(); // (storage path => key => value)
-	protected $maxCacheSize = 100; // integer; max paths with entries
+	protected $maxCacheSize = 300; // integer; max paths with entries
 	/** @var Array Map of paths to large (RAM/disk) cache items */
 	protected $expensiveCache = array(); // (storage path => key => value)
-	protected $maxExpensiveCacheSize = 10; // integer; max paths with entries
+	protected $maxExpensiveCacheSize = 5; // integer; max paths with entries
 
 	/** @var Array Map of container names to sharding settings */
 	protected $shardViaHashLevels = array(); // (container name => config array)
