@@ -22,21 +22,29 @@ class RevisionTest extends MediaWikiTestCase {
 			$GLOBALS[$var] = $data;
 		}
 
-		global $wgExtraNamespaces, $wgNamespaceContentModels, $wgContentHandlers;
+		global $wgExtraNamespaces, $wgNamespaceContentModels, $wgContentHandlers, $wgContLang;
 		$wgExtraNamespaces[ 12312 ] = 'Dummy';
 		$wgExtraNamespaces[ 12313 ] = 'Dummy_talk';
 
 		$wgNamespaceContentModels[ 12312 ] = 'DUMMY';
 		$wgContentHandlers[ 'DUMMY' ] = 'DummyContentHandlerForTesting';
 
+		MWNamespace::getCanonicalNamespaces( true ); # reset namespace cache
+		$wgContLang->resetNamespaces(); # reset namespace cache
+
 		global $wgContentHandlerTextFallback;
 		$wgContentHandlerTextFallback = 'ignore';
 	}
 
 	function tearDown() {
+		global $wgContLang;
+
 		foreach ( $this->saveGlobals as $var => $data ) {
 			$GLOBALS[$var] = $data;
 		}
+
+		MWNamespace::getCanonicalNamespaces( true ); # reset namespace cache
+		$wgContLang->resetNamespaces(); # reset namespace cache
 	}
 
 	function testGetRevisionText() {

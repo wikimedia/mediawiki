@@ -3,21 +3,27 @@
 class TitleMethodsTest extends MediaWikiTestCase {
 
     public function setup() {
-        global $wgExtraNamespaces, $wgNamespaceContentModels;
+        global $wgExtraNamespaces, $wgNamespaceContentModels, $wgContLang;
 
         $wgExtraNamespaces[ 12302 ] = 'TEST-JS';
         $wgExtraNamespaces[ 12303 ] = 'TEST-JS_TALK';
 
         $wgNamespaceContentModels[ 12302 ] = CONTENT_MODEL_JAVASCRIPT;
+
+	    MWNamespace::getCanonicalNamespaces( true ); # reset namespace cache
+	    $wgContLang->resetNamespaces(); # reset namespace cache
     }
 
     public function teardown() {
-        global $wgExtraNamespaces, $wgNamespaceContentModels;
+        global $wgExtraNamespaces, $wgNamespaceContentModels, $wgContLang;
 
         unset( $wgExtraNamespaces[ 12302 ] );
         unset( $wgExtraNamespaces[ 12303 ] );
 
         unset( $wgNamespaceContentModels[ 12302 ] );
+
+	    MWNamespace::getCanonicalNamespaces( true ); # reset namespace cache
+	    $wgContLang->resetNamespaces(); # reset namespace cache
     }
 
 	public function dataEquals() {

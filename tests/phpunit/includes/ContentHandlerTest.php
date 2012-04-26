@@ -2,6 +2,32 @@
 
 class ContentHandlerTest extends MediaWikiTestCase {
 
+	public function setup() {
+		global $wgExtraNamespaces, $wgNamespaceContentModels, $wgContentHandlers, $wgContLang;
+
+		$wgExtraNamespaces[ 12312 ] = 'Dummy';
+		$wgExtraNamespaces[ 12313 ] = 'Dummy_talk';
+
+		$wgNamespaceContentModels[ 12312 ] = 'DUMMY';
+		$wgContentHandlers[ 'DUMMY' ] = 'DummyContentHandlerForTesting';
+
+		MWNamespace::getCanonicalNamespaces( true ); # reset namespace cache
+		$wgContLang->resetNamespaces(); # reset namespace cache
+	}
+
+	public function teardown() {
+		global $wgExtraNamespaces, $wgNamespaceContentModels, $wgContentHandlers, $wgContLang;
+
+		unset( $wgExtraNamespaces[ 12312 ] );
+		unset( $wgExtraNamespaces[ 12313 ] );
+
+		unset( $wgNamespaceContentModels[ 12312 ] );
+		unset( $wgContentHandlers[ 'DUMMY' ] );
+
+		MWNamespace::getCanonicalNamespaces( true ); # reset namespace cache
+		$wgContLang->resetNamespaces(); # reset namespace cache
+	}
+
 	public function dataGetDefaultModelFor() {
 		return array(
 			array( 'Foo', CONTENT_MODEL_WIKITEXT ),
@@ -142,26 +168,6 @@ class ContentHandlerTest extends MediaWikiTestCase {
 
 	}
 
-
-	public function setup() {
-		global $wgExtraNamespaces, $wgNamespaceContentModels, $wgContentHandlers;
-
-		$wgExtraNamespaces[ 12312 ] = 'Dummy';
-		$wgExtraNamespaces[ 12313 ] = 'Dummy_talk';
-
-		$wgNamespaceContentModels[ 12312 ] = 'DUMMY';
-		$wgContentHandlers[ 'DUMMY' ] = 'DummyContentHandlerForTesting';
-	}
-
-	public function teardown() {
-		global $wgExtraNamespaces, $wgNamespaceContentModels, $wgContentHandlers;
-
-		unset( $wgExtraNamespaces[ 12312 ] );
-		unset( $wgExtraNamespaces[ 12313 ] );
-
-		unset( $wgNamespaceContentModels[ 12312 ] );
-		unset( $wgContentHandlers[ 'DUMMY' ] );
-	}
 
 }
 
