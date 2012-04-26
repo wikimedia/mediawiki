@@ -48,7 +48,7 @@ class GenderCache {
 			$username = $username->getName();
 		}
 
-		$username = strtr( $username, '_', ' ' );
+		$username = self::normalizeUsername( $username );
 		if ( !isset( $this->cache[$username] ) ) {
 
 			if ( $this->misses >= $this->missLimit && $wgUser->getName() !== $username ) {
@@ -60,11 +60,7 @@ class GenderCache {
 
 			} else {
 				$this->misses++;
-				if ( !User::isValidUserName( $username ) ) {
-					$this->cache[$username] = $this->getDefault();
-				} else {
-					$this->doQuery( $username, $caller );
-				}
+				$this->doQuery( $username, $caller );
 			}
 
 		}
@@ -86,7 +82,6 @@ class GenderCache {
 		foreach ( $data as $ns => $pagenames ) {
 			if ( !MWNamespace::hasGenderDistinction( $ns ) ) continue;
 			foreach ( array_keys( $pagenames ) as $username ) {
-				if ( isset( $this->cache[$username] ) ) continue;
 				$users[$username] = true;
 			}
 		}
@@ -102,26 +97,28 @@ class GenderCache {
 	public function doQuery( $users, $caller = '' ) {
 		$default = $this->getDefault();
 
-		foreach ( (array) $users as $index => $value ) {
-			$name = strtr( $value, '_', ' ' );
-			if ( isset( $this->cache[$name] ) ) {
-				// Skip users whose gender setting we already know
-				unset( $users[$index] );
-			} else {
-				$users[$index] = $name;
+		$usersToCheck = array();
+		foreach ( (array) $users as $value ) {
+			$name = self::normalizeUsername( $value );
+			// Skip users whose gender setting we already know
+			if ( !isset( $this->cache[$name] ) ) {
 				// For existing users, this value will be overwritten by the correct value
 				$this->cache[$name] = $default;
+				// query only for valid names, which can be in the database
+				if( User::isValidUserName( $name ) ) {
+					$usersToCheck[] = $name;
+				}
 			}
 		}
 
-		if ( count( $users ) === 0 ) {
+		if ( count( $usersToCheck ) === 0 ) {
 			return;
 		}
 
 		$dbr = wfGetDB( DB_SLAVE );
 		$table = array( 'user', 'user_properties' );
 		$fields = array( 'user_name', 'up_value' );
-		$conds = array( 'user_name' => $users );
+		$conds = array( 'user_name' => $usersToCheck );
 		$joins = array( 'user_properties' =>
 			array( 'LEFT JOIN', array( 'user_id = up_user', 'up_property' => 'gender' ) ) );
 
@@ -129,11 +126,20 @@ class GenderCache {
 		if ( strval( $caller ) !== '' ) {
 			$comment .= "/$caller";
 		}
-		$res = $dbr->select( $table, $fields, $conds, $comment, $joins, $joins );
+		$res = $dbr->select( $table, $fields, $conds, $comment, array(), $joins );
 
 		foreach ( $res as $row ) {
 			$this->cache[$row->user_name] = $row->up_value ? $row->up_value : $default;
 		}
 	}
 
+	private static function normalizeUsername( $username ) {
+		// Strip off subpages
+		$indexSlash = strpos( $username, '/' );
+		if ( $indexSlash !== false ) {
+			$username = substr( $username, 0, $indexSlash );
+		}
+		// normalize underscore/spaces
+		return strtr( $username, '_', ' ' );
+	}
 }
