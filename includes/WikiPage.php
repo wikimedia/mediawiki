@@ -52,6 +52,15 @@ class WikiPage extends Page {
 	/**@}}*/
 
 	/**
+	 * @var string|false; source of the data used to set the state of this object:
+	 * - false: not loaded
+	 * - "fromdb": from a slave DB
+	 * - "fromdbmaster": from the master DB
+	 * - "forupdate": from the master DB using SELECT FOR UPDATE
+	 */
+	protected $mDataLoadedFrom = false;
+
+	/**
 	 * @var Title
 	 */
 	protected $mRedirectTarget = null;
@@ -117,16 +126,18 @@ class WikiPage extends Page {
 	 * Constructor from a page id
 	 *
 	 * @param $id Int article ID to load
+	 * @param $from string: "fromdb" to select from a slave database or
+	 *        "fromdbmaster" to select from the master database
 	 *
 	 * @return WikiPage|null
 	 */
-	public static function newFromID( $id ) {
-		$dbr = wfGetDB( DB_SLAVE );
-		$row = $dbr->selectRow( 'page', self::selectFields(), array( 'page_id' => $id ), __METHOD__ );
+	public static function newFromID( $id, $from = 'fromdb' ) {
+		$db = wfGetDB( $from === 'fromdbmaster' ? DB_MASTER : DB_SLAVE );
+		$row = $db->selectRow( 'page', self::selectFields(), array( 'page_id' => $id ), __METHOD__ );
 		if ( !$row ) {
 			return null;
 		}
-		return self::newFromRow( $row );
+		return self::newFromRow( $row, $from );
 	}
 
 	/**
@@ -135,11 +146,15 @@ class WikiPage extends Page {
 	 * @since 1.20
 	 * @param $row object: database row containing at least fields returned
 	 *        by selectFields().
+	 * @param $from string: source of $data:
+	 *        - "fromdb": from a slave DB
+	 *        - "fromdbmaster": from the master DB
+	 *        - "forupdate": from the master DB using SELECT FOR UPDATE
 	 * @return WikiPage
 	 */
-	public static function newFromRow( $row ) {
+	public static function newFromRow( $row, $from = 'fromdb' ) {
 		$page = self::factory( Title::newFromRow( $row ) );
-		$page->loadFromRow( $row );
+		$page->loadFromRow( $row, $from );
 		return $page;
 	}
 
@@ -170,6 +185,7 @@ class WikiPage extends Page {
 	 */
 	public function clear() {
 		$this->mDataLoaded = false;
+		$this->mDataLoadedFrom = false;
 
 		$this->mCounter = null;
 		$this->mRedirectTarget = null; # Title object if set
@@ -207,14 +223,15 @@ class WikiPage extends Page {
 	 * Fetch a page record with the given conditions
 	 * @param $dbr DatabaseBase object
 	 * @param $conditions Array
+	 * @param $options Array
 	 * @return mixed Database result resource, or false on failure
 	 */
-	protected function pageData( $dbr, $conditions ) {
+	protected function pageData( $dbr, $conditions, $options = array() ) {
 		$fields = self::selectFields();
 
 		wfRunHooks( 'ArticlePageDataBefore', array( &$this, &$fields ) );
 
-		$row = $dbr->selectRow( 'page', $fields, $conditions, __METHOD__ );
+		$row = $dbr->selectRow( 'page', $fields, $conditions, __METHOD__, $options );
 
 		wfRunHooks( 'ArticlePageDataAfter', array( &$this, &$row ) );
 
@@ -227,12 +244,13 @@ class WikiPage extends Page {
 	 *
 	 * @param $dbr DatabaseBase object
 	 * @param $title Title object
+	 * @param $options Array
 	 * @return mixed Database result resource, or false on failure
 	 */
-	public function pageDataFromTitle( $dbr, $title ) {
+	public function pageDataFromTitle( $dbr, $title, $options = array() ) {
 		return $this->pageData( $dbr, array(
 			'page_namespace' => $title->getNamespace(),
-			'page_title'     => $title->getDBkey() ) );
+			'page_title'     => $title->getDBkey() ), $options );
 	}
 
 	/**
@@ -240,10 +258,11 @@ class WikiPage extends Page {
 	 *
 	 * @param $dbr DatabaseBase
 	 * @param $id Integer
+	 * @param $options Array
 	 * @return mixed Database result resource, or false on failure
 	 */
-	public function pageDataFromId( $dbr, $id ) {
-		return $this->pageData( $dbr, array( 'page_id' => $id ) );
+	public function pageDataFromId( $dbr, $id, $options = array() ) {
+		return $this->pageData( $dbr, array( 'page_id' => $id ), $options );
 	}
 
 	/**
@@ -251,27 +270,47 @@ class WikiPage extends Page {
 	 * some source.
 	 *
 	 * @param $data Object|String One of the following:
-	 *		A DB query result object or...
-	 *		"fromdb" to get from a slave DB or...
-	 *		"fromdbmaster" to get from the master DB
+	 *        - A DB query result object
+	 *        - "fromdb" to get from a slave DB
+	 *        - "fromdbmaster" to get from the master DB
+	 *        - "forupdate" to get from the master DB using SELECT FOR UPDATE
+	 *
 	 * @return void
 	 */
 	public function loadPageData( $data = 'fromdb' ) {
-		if ( $data === 'fromdbmaster' ) {
+		if ( $this->mDataLoadedFrom !== false && ( $this->mDataLoadedFrom === $data
+			|| ( $data === 'fromdbmaster' && $this->mDataLoadedFrom == 'forupdate' )
+			|| ( $data === 'fromdb' && ( $this->mDataLoadedFrom == 'fromdbmaster'
+				|| $this->mDataLoadedFrom == 'forupdate' ) ) ) )
+		{
+			// We already have the data from the correct location, no need to load it twice.
+			return;
+		}
+
+		if ( $data === 'forupdate' ) {
+			$from = $data;
+			$data = $this->pageDataFromTitle( wfGetDB( DB_MASTER ), $this->mTitle, array( 'FOR UPDATE' ) );
+		} elseif ( $data === 'fromdbmaster' ) {
+			$from = $data;
 			$data = $this->pageDataFromTitle( wfGetDB( DB_MASTER ), $this->mTitle );
 		} elseif ( $data === 'fromdb' ) { // slave
+			$from = $data;
 			$data = $this->pageDataFromTitle( wfGetDB( DB_SLAVE ), $this->mTitle );
 			# Use a "last rev inserted" timestamp key to dimish the issue of slave lag.
 			# Note that DB also stores the master position in the session and checks it.
 			$touched = $this->getCachedLastEditTime();
 			if ( $touched ) { // key set
 				if ( !$data || $touched > wfTimestamp( TS_MW, $data->page_touched ) ) {
+					$from = 'fromdbmaster';
 					$data = $this->pageDataFromTitle( wfGetDB( DB_MASTER ), $this->mTitle );
 				}
 			}
+		} else {
+			// No idea from where the caller got this data, assume slave database.
+			$from = 'fromdb';
 		}
 
-		$this->loadFromRow( $data );
+		$this->loadFromRow( $data, $from );
 	}
 
 	/**
@@ -280,8 +319,12 @@ class WikiPage extends Page {
 	 * @since 1.20
 	 * @param $data object: database row containing at least fields returned
 	 *        by selectFields()
+	 * @param $from string: source of $data:
+	 *        - "fromdb": from a slave DB
+	 *        - "fromdbmaster": from the master DB
+	 *        - "forupdate": from the master DB using SELECT FOR UPDATE
 	 */
-	public function loadFromRow( $data ) {
+	public function loadFromRow( $data, $from ) {
 		$lc = LinkCache::singleton();
 
 		if ( $data ) {
@@ -303,6 +346,7 @@ class WikiPage extends Page {
 		}
 
 		$this->mDataLoaded = true;
+		$this->mDataLoadedFrom = $from;
 	}
 
 	/**
@@ -1282,7 +1326,9 @@ class WikiPage extends Page {
 		$user = is_null( $user ) ? $wgUser : $user;
 		$status = Status::newGood( array() );
 
-		# Load $this->mTitle->getArticleID() and $this->mLatest if it's not already
+		// Load the data from the master database if needed.
+		// The caller may already loaded it from the master or even loaded it using
+		// SELECT FOR UPDATE, so do not override that using clear().
 		$this->loadPageData( 'fromdbmaster' );
 
 		$flags = $this->checkFlags( $flags );
@@ -1984,19 +2030,24 @@ class WikiPage extends Page {
 		$reason, $suppress = false, $id = 0, $commit = true, &$error = '', User $user = null
 	) {
 		global $wgUser;
-		$user = is_null( $user ) ? $wgUser : $user;
 
 		wfDebug( __METHOD__ . "\n" );
 
+		if ( $this->mTitle->getDBkey() === '' ) {
+			return WikiPage::DELETE_NO_PAGE;
+		}
+
+		$user = is_null( $user ) ? $wgUser : $user;
 		if ( ! wfRunHooks( 'ArticleDelete', array( &$this, &$user, &$reason, &$error ) ) ) {
 			return WikiPage::DELETE_HOOK_ABORTED;
 		}
-		$dbw = wfGetDB( DB_MASTER );
-		$t = $this->mTitle->getDBkey();
-		$id = $id ? $id : $this->mTitle->getArticleID( Title::GAID_FOR_UPDATE );
 
-		if ( $t === '' || $id == 0 ) {
-			return WikiPage::DELETE_NO_PAGE;
+		if ( $id == 0 ) {
+			$this->loadPageData( 'forupdate' );
+			$id = $this->getID();
+			if ( $id == 0 ) {
+				return WikiPage::DELETE_NO_PAGE;
+			}
 		}
 
 		// Bitfields to further suppress the content
@@ -2011,6 +2062,7 @@ class WikiPage extends Page {
 			$bitfield = 'rev_deleted';
 		}
 
+		$dbw = wfGetDB( DB_MASTER );
 		$dbw->begin( __METHOD__ );
 		// For now, shunt the revision data into the archive table.
 		// Text is *not* removed from the text table; bulk storage
