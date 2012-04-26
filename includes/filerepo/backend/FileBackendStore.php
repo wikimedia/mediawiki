@@ -711,7 +711,7 @@ abstract class FileBackendStore extends FileBackend {
 
 	/**
 	 * @see FileBackend::getDirectoryList()
-	 * @return Array|null|Traversable
+	 * @return Traversable|Array|null Returns null on failure
 	 */
 	final public function getDirectoryList( array $params ) {
 		list( $fullCont, $dir, $shard ) = $this->resolveStoragePath( $params['dir'] );
@@ -738,13 +738,13 @@ abstract class FileBackendStore extends FileBackend {
 	 * @param $container string Resolved container name
 	 * @param $dir string Resolved path relative to container
 	 * @param $params Array
-	 * @return Traversable|Array|null
+	 * @return Traversable|Array|null Returns null on failure
 	 */
 	abstract public function getDirectoryListInternal( $container, $dir, array $params );
 
 	/**
 	 * @see FileBackend::getFileList()
-	 * @return Array|null|Traversable
+	 * @return Traversable|Array|null Returns null on failure
 	 */
 	final public function getFileList( array $params ) {
 		list( $fullCont, $dir, $shard ) = $this->resolveStoragePath( $params['dir'] );
@@ -771,7 +771,7 @@ abstract class FileBackendStore extends FileBackend {
 	 * @param $container string Resolved container name
 	 * @param $dir string Resolved path relative to container
 	 * @param $params Array
-	 * @return Traversable|Array|null
+	 * @return Traversable|Array|null Returns null on failure
 	 */
 	abstract public function getFileListInternal( $container, $dir, array $params );
 
@@ -933,6 +933,7 @@ abstract class FileBackendStore extends FileBackend {
 	 * Move a cache entry to the top (such as when accessed)
 	 *
 	 * @param $path string Storage path
+	 * @return void
 	 */
 	protected function pingCache( $path ) {
 		if ( isset( $this->cache[$path] ) ) {
@@ -958,6 +959,7 @@ abstract class FileBackendStore extends FileBackend {
 	 * Move a cache entry to the top (such as when accessed)
 	 *
 	 * @param $path string Storage path
+	 * @return void
 	 */
 	protected function pingExpensiveCache( $path ) {
 		if ( isset( $this->expensiveCache[$path] ) ) {
@@ -1358,7 +1360,7 @@ abstract class FileBackendStoreShardListIterator implements Iterator {
 	 * @return bool
 	 */
 	public function valid() {
-		if ( $this->iter == null ) {
+		if ( $this->iter === null ) {
 			return false; // some failure?
 		} elseif ( is_array( $this->iter ) ) {
 			return ( current( $this->iter ) !== false ); // no paths can have this value
