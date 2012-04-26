@@ -1665,7 +1665,6 @@ class WikiPage extends Page {
 	 */
 	public function prepareTextForEdit( $text, $revid = null, User $user = null ) {
 		wfDeprecated( __METHOD__, '1.WD' );
-
 		$content = ContentHandler::makeContent( $text, $this->getTitle() );
 		return $this->prepareContentForEdit( $content, $revid , $user );
 	}
