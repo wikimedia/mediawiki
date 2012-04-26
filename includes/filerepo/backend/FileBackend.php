@@ -383,7 +383,8 @@ abstract class FileBackend {
 	 * is that of an empty container, in which case it should be deleted.
 	 *
 	 * $params include:
-	 *     dir : storage directory
+	 *     dir       : storage directory
+	 *     recursive : recursively delete empty subdirectories first (@since 1.20)
 	 *
 	 * @param $params Array
 	 * @return Status
@@ -392,7 +393,20 @@ abstract class FileBackend {
 		if ( $this->isReadOnly() ) {
 			return Status::newFatal( 'backend-fail-readonly', $this->name, $this->readOnly );
 		}
-		return $this->doClean( $params );
+		$status = Status::newGood();
+		// Recursive: first delete all empty subdirs recursively
+		if ( !empty( $params['recursive'] ) ) {
+			$subDirsRel = $this->getTopDirectoryList( array( 'dir' => $params['dir'] ) );
+			if ( $subDirsRel !== null ) { // no errors
+				foreach ( $subDirsRel as $subDirRel ) {
+					$subDir = $params['dir'] . "/{$subDirRel}"; // full path
+					$status->merge( $this->clean( array( 'dir' => $subDir ) + $params ) );
+				}
+			}
+		}
+		// Resursive & non-recursive: delete this dir if empty
+		$status->merge( $this->doClean( $params ) );
+		return $status;
 	}
 
 	/**

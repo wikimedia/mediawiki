@@ -1022,6 +1022,58 @@ class FileBackendTest extends MediaWikiTestCase {
 		}
 	}
 
+	public function testRecursiveClean() {
+		$this->backend = $this->singleBackend;
+		$this->doTestRecursiveClean();
+		$this->tearDownFiles();
+
+		$this->backend = $this->multiBackend;
+		$this->doTestRecursiveClean();
+		$this->tearDownFiles();
+	}
+
+	function doTestRecursiveClean() {
+		$backendName = $this->backendClass();
+
+		$base = $this->baseStorePath();
+		$dirs = array(
+			"$base/unittest-cont1/a",
+			"$base/unittest-cont1/a/b",
+			"$base/unittest-cont1/a/b/c",
+			"$base/unittest-cont1/a/b/c/d0",
+			"$base/unittest-cont1/a/b/c/d1",
+			"$base/unittest-cont1/a/b/c/d2",
+			"$base/unittest-cont1/a/b/c/d0/1",
+			"$base/unittest-cont1/a/b/c/d0/2",
+			"$base/unittest-cont1/a/b/c/d1/3",
+			"$base/unittest-cont1/a/b/c/d1/4",
+			"$base/unittest-cont1/a/b/c/d2/5",
+			"$base/unittest-cont1/a/b/c/d2/6"
+		);
+		foreach ( $dirs as $dir ) {
+			$status = $this->prepare( array( 'dir' => $dir ) );
+			$this->assertEquals( array(), $status->errors,
+				"Preparing dir $dir succeeded without warnings ($backendName)." );
+		}
+
+		if ( $this->backend instanceof FSFileBackend ) {
+			foreach ( $dirs as $dir ) {
+				$this->assertEquals( true, $this->backend->directoryExists( array( 'dir' => $dir ) ),
+					"Dir $dir exists ($backendName)." );
+			}
+		}
+
+		$status = $this->backend->clean(
+			array( 'dir' => "$base/unittest-cont1", 'recursive' => 1 ) );
+		$this->assertEquals( array(), $status->errors,
+			"Recursive cleaning of dir $dir succeeded without warnings ($backendName)." );
+
+		foreach ( $dirs as $dir ) {
+			$this->assertEquals( false, $this->backend->directoryExists( array( 'dir' => $dir ) ),
+				"Dir $dir no longer exists ($backendName)." );
+		}
+	}
+
 	// @TODO: testSecure
 
 	public function testDoOperations() {
