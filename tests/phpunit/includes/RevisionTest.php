@@ -198,7 +198,7 @@ class RevisionTest extends MediaWikiTestCase {
 
 	function dataGetContentFormat() {
 		return array(
-			array( 'hello world', 'Hello', null, null, 'application/x-wiki' ),
+			array( 'hello world', 'Hello', null, null, 'text/x-wiki' ),
 			array( 'hello world', 'Hello', CONTENT_MODEL_CSS, null, 'text/css' ),
 			array( 'hello world', 'User:hello/there.css', null, null, 'text/css' ),
 			array( serialize('hello world'), 'Dummy:Hello', null, null, 'dummy' ),
