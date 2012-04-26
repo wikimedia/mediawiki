@@ -489,20 +489,6 @@ class WikiPage extends Page {
 		return $this->getText( Revision::RAW );
 	}
 
-    /**
-     * Get the content of the current revision. No side-effects...
-     *
-     * @return Contet|false The text of the current revision
-     *
-     * @since 1.WD
-     */
-    protected function getNativeData() { #FIXME: examine all uses carefully! caller must be aware of content model!
-        $content = $this->getContent( Revision::RAW );
-        if ( !$content ) return null;
-
-        return $content->getNativeData();
-    }
-
 	/**
 	 * @return string MW timestamp of last article revision
 	 */
@@ -985,7 +971,7 @@ class WikiPage extends Page {
 
 		if ( $this->mTitle->getNamespace() == NS_MEDIAWIKI ) {
 			if ( $this->mTitle->exists() ) {
-				$text = $this->getNativeData(); #FIXME: may not be a string. check Content model!
+				$text = ContentHandler::getContentText( $this->getContent() );
 			} else {
 				$text = false;
 			}
