@@ -32,9 +32,9 @@ production.
 * (bug 35303) Proxy and DNS blacklist blocking works again
 * (bug 35294) jquery.byteLimit shouldn't set element specific variables outside
   the "return this.each" loop.
-* (bug 22555) Remove or skip strip markers from tag hooks like &lt;nowiki&gt; in 
+* (bug 22555) Remove or skip strip markers from tag hooks like &lt;nowiki&gt; in
   core parser functions which operate on strings, such as padleft.
-* (bug 18295) Don't expose strip markers when a tag appears inside a link 
+* (bug 18295) Don't expose strip markers when a tag appears inside a link
   inside a heading.
 * (bug 34907) Fixed exposure of tokens through load.php that could have facilitated
   CSRF attacks
@@ -132,7 +132,7 @@ production.
 * Extensions can use the 'Language::getMessagesFileName' hook to define new
   languages using messages files outside of core.
 * (bug 32512) Add 'Associated namespace' checkbox to Special:Contributions.
-* Added $wgSend404Code, true by default, which can be set to false to send a 
+* Added $wgSend404Code, true by default, which can be set to false to send a
   200 status code instead of 404 for nonexistent articles.
 * (bug 33447) Link to the broken image tracking category from Special:Wantedfiles.
 * (bug 27724) Add timestamp to job queue.
@@ -247,7 +247,7 @@ production.
   cssText after DOM insertion.
 * (bug 30711) When adding a new section to a page with section=new, the text is
   now always added to the current version of the page.
-* (bug 31719) Fix uploads of SVGs exported by Adobe Illustrator by expanding 
+* (bug 31719) Fix uploads of SVGs exported by Adobe Illustrator by expanding
   XML entities correctly.
 * (bug 30914) Embeddable ResourceLoader modules (user.options, user.tokens)
   should be loaded in <head> for proper dependency resolution.
@@ -292,7 +292,7 @@ production.
 * (bug 29753) mw.util.tooltipAccessKeyPrefix should be alt-shift for Chrome
    on Windows
 * (bug 12262) Indents and lists are now aligned
-* (bug 34972) An error occurred while changing your watchlist settings for 
+* (bug 34972) An error occurred while changing your watchlist settings for
   [[Special:WhatLinksHere/Example]]
 
 === API changes in 1.19 ===

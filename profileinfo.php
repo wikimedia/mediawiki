@@ -274,11 +274,11 @@ function getEscapedProfileUrl( $_filter = false, $_sort = false, $_expand = fals
 		$_expand = $expand;
 
 	return htmlspecialchars(
-		'?' . 
+		'?' .
 		wfArrayToCGI( array(
 			'filter' => $_filter ? $_filter : $filter,
 			'sort' => $_sort ? $_sort : $sort,
-			'expand' => implode( ',', array_keys( $_expand ) ) 
+			'expand' => implode( ',', array_keys( $_expand ) )
 		) )
 	);
 }

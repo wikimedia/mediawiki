@@ -1,1 +1,1 @@
-<?php require './opensearch_desc.php'; 
+<?php require './opensearch_desc.php';
