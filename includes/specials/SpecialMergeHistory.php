@@ -90,7 +90,8 @@ class SpecialMergeHistory extends SpecialPage {
 		$this->outputHeader();
 
 		if( $this->mTargetID && $this->mDestID && $this->mAction == 'submit' && $this->mMerge ) {
-			return $this->merge();
+			$this->merge();
+			return;
 		}
 
 		if ( !$this->mSubmitted ) {

@@ -174,7 +174,8 @@ class SpecialSearch extends SpecialPage {
 		$t = Title::newFromText( $term );
 		# If the string cannot be used to create a title
 		if( is_null( $t ) ) {
-			return $this->showResults( $term );
+			$this->showResults( $term );
+			return;
 		}
 		# If there's an exact or very near match, jump right there.
 		$t = SearchEngine::getNearMatch( $term );
@@ -201,7 +202,7 @@ class SpecialSearch extends SpecialPage {
 				return;
 			}
 		}
-		return $this->showResults( $term );
+		$this->showResults( $term );
 	}
 
 	/**
