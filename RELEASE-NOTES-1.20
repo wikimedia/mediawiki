@@ -80,7 +80,7 @@ production.
 * (bug 31236) "Next" and "Previous" buttons are shown incorrectly in
   an RTL environment.
 * (bug 35680) jQuery upgraded to 1.7.2.
-* (bug 35681) jQuery UI upgraded to 1.8.18.
+* jQuery UI upgraded to 1.8.19.
 * (bug 35705) QUnit upgraded from 1.2.0 to 1.5.0
 * (bug 35749) Updated maintenance/checkSyntax.php to use Git instead of
   Subversion when invoked with the --modified option.
