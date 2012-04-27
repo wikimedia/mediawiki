@@ -51,13 +51,13 @@ class ChangesFeed {
 	 * @param $rows ResultWrapper object with rows in recentchanges table
 	 * @param $lastmod Integer: timestamp of the last item in the recentchanges table (only used for the cache key)
 	 * @param $opts FormOptions as in SpecialRecentChanges::getDefaultOptions()
-	 * @return null or true
+	 * @return null|bool True or null
 	 */
 	public function execute( $feed, $rows, $lastmod, $opts ) {
 		global $wgLang, $wgRenderHashAppend;
 
 		if ( !FeedUtils::checkFeedOutput( $this->format ) ) {
-			return;
+			return null;
 		}
 
 		$optionsHash = md5( serialize( $opts->getAllValues() ) ) . $wgRenderHashAppend;
