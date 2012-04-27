@@ -86,6 +86,7 @@ abstract class FileBackendStore extends FileBackend {
 		} else {
 			$status = $this->doCreateInternal( $params );
 			$this->clearCache( array( $params['dst'] ) );
+			$this->deleteFileCache( $params['dst'] ); // persistent cache
 		}
 		wfProfileOut( __METHOD__ . '-' . $this->name );
 		wfProfileOut( __METHOD__ );
@@ -117,6 +118,7 @@ abstract class FileBackendStore extends FileBackend {
 		} else {
 			$status = $this->doStoreInternal( $params );
 			$this->clearCache( array( $params['dst'] ) );
+			$this->deleteFileCache( $params['dst'] ); // persistent cache
 		}
 		wfProfileOut( __METHOD__ . '-' . $this->name );
 		wfProfileOut( __METHOD__ );
@@ -145,6 +147,7 @@ abstract class FileBackendStore extends FileBackend {
 		wfProfileIn( __METHOD__ . '-' . $this->name );
 		$status = $this->doCopyInternal( $params );
 		$this->clearCache( array( $params['dst'] ) );
+		$this->deleteFileCache( $params['dst'] ); // persistent cache
 		wfProfileOut( __METHOD__ . '-' . $this->name );
 		wfProfileOut( __METHOD__ );
 		return $status;
@@ -171,6 +174,7 @@ abstract class FileBackendStore extends FileBackend {
 		wfProfileIn( __METHOD__ . '-' . $this->name );
 		$status = $this->doDeleteInternal( $params );
 		$this->clearCache( array( $params['src'] ) );
+		$this->deleteFileCache( $params['src'] ); // persistent cache
 		wfProfileOut( __METHOD__ . '-' . $this->name );
 		wfProfileOut( __METHOD__ );
 		return $status;
@@ -198,6 +202,8 @@ abstract class FileBackendStore extends FileBackend {
 		wfProfileIn( __METHOD__ . '-' . $this->name );
 		$status = $this->doMoveInternal( $params );
 		$this->clearCache( array( $params['src'], $params['dst'] ) );
+		$this->deleteFileCache( $params['src'] ); // persistent cache
+		$this->deleteFileCache( $params['dst'] ); // persistent cache
 		wfProfileOut( __METHOD__ . '-' . $this->name );
 		wfProfileOut( __METHOD__ );
 		return $status;
@@ -489,7 +495,10 @@ abstract class FileBackendStore extends FileBackend {
 			wfProfileOut( __METHOD__ );
 			return false; // invalid storage path
 		}
-		$latest = !empty( $params['latest'] );
+		$latest = !empty( $params['latest'] ); // use latest data?
+		if ( !isset( $this->cache[$path]['stat'] ) ) {
+			$this->primeFileCache( array( $path ) ); // check persistent cache
+		}
 		if ( isset( $this->cache[$path]['stat'] ) ) {
 			// If we want the latest data, check that this cached
 			// value was in fact fetched with the latest available data.
@@ -506,9 +515,10 @@ abstract class FileBackendStore extends FileBackend {
 		wfProfileOut( __METHOD__ . '-miss-' . $this->name );
 		wfProfileOut( __METHOD__ . '-miss' );
 		if ( is_array( $stat ) ) { // don't cache negatives
+			$stat['latest'] = $latest;
 			$this->trimCache(); // limit memory
 			$this->cache[$path]['stat'] = $stat;
-			$this->cache[$path]['stat']['latest'] = $latest;
+			$this->setFileCache( $path, $stat ); // update persistent cache
 		}
 		wfProfileOut( __METHOD__ . '-' . $this->name );
 		wfProfileOut( __METHOD__ );
@@ -875,7 +885,8 @@ abstract class FileBackendStore extends FileBackend {
 		// Clear any file cache entries (after locks acquired)
 		$this->clearCache();
 
-		// Load from the persistent container cache
+		// Load from the persistent file and container caches
+		$this->primeFileCache( $performOps );
 		$this->primeContainerCache( $performOps );
 
 		// Actually attempt the operation batch...
@@ -1199,7 +1210,7 @@ abstract class FileBackendStore extends FileBackend {
 	 * @return void
 	 */
 	final protected function setContainerCache( $container, $val ) {
-		$this->memCache->set( $this->containerCacheKey( $container ), $val, 7*86400 );
+		$this->memCache->set( $this->containerCacheKey( $container ), $val, 14*86400 );
 	}
 
 	/**
@@ -1209,17 +1220,24 @@ abstract class FileBackendStore extends FileBackend {
 	 * @return void
 	 */
 	final protected function deleteContainerCache( $container ) {
-		$this->memCache->delete( $this->containerCacheKey( $container ) );
+		for ( $attempts=1; $attempts <= 3; $attempts++ ) {
+			if ( $this->memCache->delete( $this->containerCacheKey( $container ) ) ) {
+				return; // done!
+			}
+		}
+		trigger_error( "Unable to delete stat cache for container $container." );
 	}
 
 	/**
 	 * Do a batch lookup from cache for container stats for all containers
 	 * used in a list of container names, storage paths, or FileOp objects.
 	 *
-	 * @param $items Array List of storage paths or FileOps
+	 * @param $items Array
 	 * @return void
 	 */
 	final protected function primeContainerCache( array $items ) {
+		wfProfileIn( __METHOD__ );
+		wfProfileIn( __METHOD__ . '-' . $this->name );
 		$paths = array(); // list of storage paths
 		$contNames = array(); // (cache key => resolved container name)
 		// Get all the paths/containers from the items...
@@ -1250,6 +1268,8 @@ abstract class FileBackendStore extends FileBackend {
 
 		// Populate the container process cache for the backend...
 		$this->doPrimeContainerCache( array_filter( $contInfo, 'is_array' ) );
+		wfProfileOut( __METHOD__ . '-' . $this->name );
+		wfProfileOut( __METHOD__ );
 	}
 
 	/**
@@ -1261,6 +1281,82 @@ abstract class FileBackendStore extends FileBackend {
 	 * @return void
 	 */
 	protected function doPrimeContainerCache( array $containerInfo ) {}
+
+	/**
+	 * Get the cache key for a file path
+	 *
+	 * @param $path Storage path
+	 * @return string
+	 */
+	private function fileCacheKey( $path ) {
+		return wfMemcKey( 'backend', $this->getName(), 'file', sha1( $path ) );
+	}
+
+	/**
+	 * Set the cached stat info for a file path
+	 *
+	 * @param $path Storage path
+	 * @param $val mixed Information to cache
+	 * @return void
+	 */
+	final protected function setFileCache( $path, $val ) {
+		$this->memCache->set( $this->fileCacheKey( $path ), $val, 7*86400 );
+	}
+
+	/**
+	 * Delete the cached stat info for a file path
+	 *
+	 * @param $path Storage path
+	 * @return void
+	 */
+	final protected function deleteFileCache( $path ) {
+		for ( $attempts=1; $attempts <= 3; $attempts++ ) {
+			if ( $this->memCache->delete( $this->fileCacheKey( $path ) ) ) {
+				return; // done!
+			}
+		}
+		trigger_error( "Unable to delete stat cache for file $path." );
+	}
+
+	/**
+	 * Do a batch lookup from cache for file stats for all paths
+	 * used in a list of storage paths or FileOp objects.
+	 *
+	 * @param $items Array List of storage paths or FileOps
+	 * @return void
+	 */
+	final protected function primeFileCache( array $items ) {
+		wfProfileIn( __METHOD__ );
+		wfProfileIn( __METHOD__ . '-' . $this->name );
+		$paths = array(); // list of storage paths
+		$pathNames = array(); // (cache key => storage path)
+		// Get all the paths/containers from the items...
+		foreach ( $items as $item ) {
+			if ( $item instanceof FileOp ) {
+				$paths = array_merge( $paths, $item->storagePathsRead() );
+				$paths = array_merge( $paths, $item->storagePathsChanged() );
+			} elseif ( self::isStoragePath( $item ) ) {
+				$paths[] = $item;
+			}
+		}
+		// Get all the corresponding cache keys for paths...
+		foreach ( $paths as $path ) {
+			list( $cont, $rel, $s ) = $this->resolveStoragePath( $path );
+			if ( $rel !== null ) { // valid path for this backend
+				$pathNames[$this->fileCacheKey( $path )] = $path;
+			}
+		}
+		// Get all cache entries for these container cache keys...
+		$values = $this->memCache->getBatch( array_keys( $pathNames ) );
+		foreach ( $values as $cacheKey => $val ) {
+			if ( is_array( $val ) ) {
+				$this->trimCache(); // limit memory
+				$this->cache[$pathNames[$cacheKey]]['stat'] = $val;
+			}
+		}
+		wfProfileOut( __METHOD__ . '-' . $this->name );
+		wfProfileOut( __METHOD__ );
+	}
 }
 
 /**
