@@ -1256,6 +1256,7 @@ Temporary password: $2',
 'changeemail-oldemail' => 'Current e-mail address:',
 'changeemail-newemail' => 'New e-mail address:',
 'changeemail-none'     => '(none)',
+'changeemail-password' => 'Your {{SITENAME}} password:',
 'changeemail-submit'   => 'Change e-mail',
 'changeemail-cancel'   => 'Cancel',
 
