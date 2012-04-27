@@ -554,6 +554,7 @@ $wgMessageStructure = array(
 		'changeemail-oldemail',
 		'changeemail-newemail',
 		'changeemail-none',
+		'changeemail-password',
 		'changeemail-submit',
 		'changeemail-cancel',
 	),

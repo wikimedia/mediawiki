@@ -871,7 +871,7 @@ $2 will be the temporary password given by the system.",
 'changeemail-oldemail' => 'Label for e-mail address field in [[Special:ChangeEmail]].',
 'changeemail-newemail' => 'Label for e-mail address field in [[Special:ChangeEmail]].',
 'changeemail-none' => "Probably appears in 'Current E-mail address' field when no address held, in [[Special:ChangeEmail]].
-
+'changeemail-password' => 'Password for changing Email address in [[Special:ChangeEmail]]',
 {{Identical|None}}",
 'changeemail-submit' => 'Submit button on [[Special:ChangeEmail]]',
 'changeemail-cancel' => 'Cancel button on [[Special:ChangeEmail]]
