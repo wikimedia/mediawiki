@@ -889,6 +889,7 @@ Parameters:
 'changeemail-none' => "Probably appears in 'Current E-mail address' field when no address held, in [[Special:ChangeEmail]].
 
 {{Identical|None}}",
+'changeemail-password' => 'Label for password field in [[Special:ChangeEmail]].',
 'changeemail-submit' => 'Submit button on [[Special:ChangeEmail]]',
 'changeemail-cancel' => 'Cancel button on [[Special:ChangeEmail]]
 
