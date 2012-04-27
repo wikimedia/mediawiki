@@ -42,6 +42,7 @@
  * @author PhiLiP
  * @author Shinjiman
  * @author Shizhao
+ * @author Simon Shek
  * @author Supaiku
  * @author Tommyang
  * @author Waihorace
@@ -1658,7 +1659,7 @@ $1',
 'upload-too-many-redirects' => '在网址中有太多重新定向',
 'upload-unknown-size' => '未知大小',
 'upload-http-error' => '发生HTTP错误：$1',
-'upload-copy-upload-invalid-domain' => '不能从该域名下载文件。',
+'upload-copy-upload-invalid-domain' => '不能从该域名上载文件副本。',
 
 # File backend
 'backend-fail-stream' => '无法流传送文件$1。',
@@ -1802,7 +1803,8 @@ $1',
 请参阅在[$2 文件描述页面]以了解其相关信息。',
 'sharedupload-desc-here' => '该文件来自于$1，它可能在其它计划项目中被应用。
 它在[$2 文件描述页面]那边上的描述于下面显示。',
-'sharedupload-desc-edit' => '此文件是从 $1 和可能由其他维基项目使用。 ！N ！也许您想在其[ $2 文件描述页面]编辑说明。',
+'sharedupload-desc-edit' => '该文件来自$1，它可能在其它计划项目中被使用。
+或许您可以在其[$2 文件描述页面]上编辑说明。',
 'sharedupload-desc-create' => '此文件是从 $1 和可能由其他维基项目使用。 ！N ！也许您想在其[ $2 文件描述页面]编辑说明。',
 'filepage-nofile' => '不存在此名称的文件。',
 'filepage-nofile-link' => '不存在此名称的文件，但您可以[$1 上传它]。',

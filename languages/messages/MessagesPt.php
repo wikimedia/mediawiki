@@ -695,6 +695,9 @@ $2',
 'ns-specialprotected' => 'Não é possível editar páginas especiais',
 'titleprotected' => 'Este título foi protegido contra criação por [[User:$1|$1]].
 A justificação foi "\'\'$2\'\'".',
+'filereadonlyerror' => 'Não é possível modificar o ficheiro "$1" porque o repositório de ficheiros "$2" está em modo de leitura.
+
+O administrador que efetuou o bloqueio deu a seguinte explicação: "$3".',
 
 # Virus scanner
 'virus-badscanner' => "Má configuração: antivírus desconhecido: ''$1''",
@@ -991,6 +994,7 @@ Este ainda não foi gravado!",
 'note' => "'''Nota:'''",
 'previewnote' => "'''Lembre-se que esta é apenas uma antevisão do resultado.'''
 As modificações ainda não foram gravadas!",
+'continue-editing' => 'Continuar a editar',
 'previewconflict' => 'Esta antevisão do resultado apresenta o texto da caixa de edição acima tal como este aparecerá se escolher gravá-lo.',
 'session_fail_preview' => "'''Não foi possível processar a edição devido à perda dos dados da sua sessão.
 Tente novamente, por favor.
@@ -1856,10 +1860,20 @@ Caso o problema persista, contacte um [[Special:ListUsers/sysop|administrador]].
 'backend-fail-internal' => 'Ocorreu um erro desconhecido no servidor de armazenamento "$1".',
 'backend-fail-contenttype' => 'Não foi possível determinar o tipo de conteúdo do ficheiro para armazenar em " $1 ".',
 
+# File journal errors
+'filejournal-fail-dbconnect' => 'Não foi possível ligar à base de dados de registos no "backend" de armazenamento "$1".',
+'filejournal-fail-dbquery' => 'Não foi possível atualizar a base de dados de registos do "backend" de armazenamento "$1".',
+
 # Lock manager
 'lockmanager-notlocked' => 'Não foi possível desbloquear " $1 "; não se encontra bloqueado.',
 'lockmanager-fail-closelock' => 'Não foi possível encerrar a referência de bloqueio para "$1".',
 'lockmanager-fail-deletelock' => 'Não foi possível eliminar a referência de bloqueio para "$1".',
+'lockmanager-fail-acquirelock' => 'Não foi possível adquirir bloqueio para "$1".',
+'lockmanager-fail-openlock' => 'Não foi possível abrir ficheiro de bloqueio para "$1".',
+'lockmanager-fail-releaselock' => 'Não foi possível libertar bloqueio para "$1".',
+'lockmanager-fail-db-bucket' => 'Não foi possível contactar bases de dados de bloqueio suficientes no "bucket" $1.',
+'lockmanager-fail-db-release' => 'Não foi possível libertar bloqueios na base de dados $1.',
+'lockmanager-fail-svr-release' => 'Não foi possível libertar bloqueios no servidor $1.',
 
 # ZipDirectoryReader
 'zip-file-open-error' => 'Foi encontrado um erro ao abrir o ficheiro ZIP para verificação.',
@@ -1877,6 +1891,7 @@ A sua segurança não pode ser devidamente verificada.',
 'uploadstash-badtoken' => 'Não foi possível executar essa operação, talvez porque as suas credenciais de edição expiraram. Tente novamente.',
 'uploadstash-errclear' => 'Não foi possível apagar os ficheiros.',
 'uploadstash-refresh' => 'Actualizar a lista de ficheiros',
+'invalid-chunk-offset' => 'Deslocamento de fragmento inválido',
 
 # img_auth script messages
 'img-auth-accessdenied' => 'Acesso negado',
@@ -1966,6 +1981,10 @@ Encontra-se disponível uma [[Special:WhatLinksHere/$2|lista completa]].',
 Consulte a [$2 página de descrição do ficheiro] para mais informações, por favor.',
 'sharedupload-desc-here' => 'Este ficheiro provém de $1 e pode ser usado por outros projectos.
 A descrição na [$2 página de descrição] é mostrada abaixo.',
+'sharedupload-desc-edit' => 'Este ficheiro provém de $1 e pode ser utilizado por outros projetos.
+Talvez você pretenda editar a descrição na sua [$2 página de descrição de ficheiro] lá.',
+'sharedupload-desc-create' => 'Este ficheiro provém de $1 e pode ser utilizado por outros projetos.
+Talvez você pretenda editar a descrição na sua [$2 página de descrição de ficheiro] lá.',
 'filepage-nofile' => 'Não existe nenhum ficheiro com este nome.',
 'filepage-nofile-link' => 'Não existe nenhum ficheiro com este nome, mas pode [$1 carregá-lo].',
 'uploadnewversion-linktext' => 'Carregar uma nova versão deste ficheiro',
@@ -2176,6 +2195,9 @@ Pode reduzir a lista escolhendo um tipo de registo, um nome de utilizador ou um 
 Talvez contenha um ou mais caracteres que não podem ser usados nos títulos.',
 'allpages-bad-ns' => 'A {{SITENAME}} não possui o espaço nominal "$1".',
 'allpages-hide-redirects' => 'Ocultar redirecionamentos',
+
+# SpecialCachedPage
+'cachedspecial-refresh-now' => 'Ver mais recente.',
 
 # Special:Categories
 'categories' => 'Categorias',
@@ -3775,6 +3797,9 @@ Em conjunto com este programa deve ter recebido [{{SERVER}}{{SCRIPTPATH}}/COPYIN
 'version-software' => 'Software instalado',
 'version-software-product' => 'Produto',
 'version-software-version' => 'Versão',
+'version-entrypoints' => 'URLs de ponto de entrada',
+'version-entrypoints-header-entrypoint' => 'Ponto de entrada',
+'version-entrypoints-header-url' => 'URL',
 
 # Special:FilePath
 'filepath' => 'Endereço de ficheiro',

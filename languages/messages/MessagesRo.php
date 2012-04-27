@@ -994,7 +994,7 @@ Modificarea a fost respinsă pentru a preveni deformarea textului paginii.
 Acest fapt se poate întâmpla atunci când folosești un serviciu proxy anonim.'''",
 'edit_form_incomplete' => "'''Unele părți ale formularului de modificare nu au ajuns la server; verificați dacă modificările dumneavoastră sunt intacte și reîncercați.'''",
 'editing' => 'modificare $1',
-'creating' => 'Se creează $1',
+'creating' => 'Crearea paginii $1',
 'editingsection' => 'modificare $1 (secțiune)',
 'editingcomment' => 'Modificare $1 (secțiune nouă)',
 'editconflict' => 'Conflict de modificare: $1',

@@ -34,6 +34,7 @@
  * @author Philip
  * @author Shinjiman
  * @author Shizhao
+ * @author Simon Shek
  * @author Skjackey tse
  * @author Waihorace
  * @author Wmr89502270
@@ -591,6 +592,8 @@ $2',
 'customjsprotected' => '你並無權限去編輯此JavaScript頁面，因為他包含了另一位用戶的個人設定。',
 'ns-specialprotected' => '特殊頁面是不可以編輯的。',
 'titleprotected' => "這個標題已經被[[User:$1|$1]]保護以防止建立。理由是''$2''。",
+'filereadonlyerror' => '無法修改文件" $1 "因為文件庫" $2 "處於唯讀模式。 ！
+管理員鎖定它的解釋是：" $3 "。',
 
 # Virus scanner
 'virus-badscanner' => "損壞設定: 未知的病毒掃瞄器: ''$1''",
@@ -675,6 +678,7 @@ $2',
 'emailconfirmlink' => '確認您的郵箱地址',
 'invalidemailaddress' => '郵箱地址格式不正確，請輸入正確的郵箱位址或清空該輸入框。',
 'cannotchangeemail' => '本wiki不允許對賬戶的電郵地址進行更改。',
+'emaildisabled' => '此網站不能發送電子郵件。',
 'accountcreated' => '已建立賬戶',
 'accountcreatedtext' => '$1的賬戶已經被建立。',
 'createaccount-title' => '在{{SITENAME}}中建立新賬戶',
@@ -865,6 +869,7 @@ $2
 'updated' => '（已更新）',
 'note' => "'''注意:'''",
 'previewnote' => "'''請記住這只是預覽，內容尚未儲存！'''",
+'continue-editing' => '繼續編輯',
 'previewconflict' => '這個預覽顯示了上面文字編輯區中的內容。它將在{{GENDER:|你|妳|你}}選擇保存後出現。',
 'session_fail_preview' => "'''很抱歉！由於部份資料遺失，我們無法處理您的編輯。'''
 請再試一次。
@@ -1642,6 +1647,7 @@ $1',
 'upload-too-many-redirects' => '在網址中有太多重新定向',
 'upload-unknown-size' => '未知的大小',
 'upload-http-error' => '已發生一個HTTP錯誤：$1',
+'upload-copy-upload-invalid-domain' => '不能從該域名上載檔𣗈副本。',
 
 # File backend
 'backend-fail-stream' => '無法流傳送文件$1。',
@@ -1660,12 +1666,17 @@ $1',
 'backend-fail-closetemp' => '無法創建臨時文件。',
 'backend-fail-read' => '找不到文件“$1”。',
 'backend-fail-create' => '找不到「$1」檔案。',
+'backend-fail-maxsize' => '無法創建檔𣗈$1​​，因為它大於$2字節。',
 'backend-fail-readonly' => '「$1」儲存後端目前是唯讀模式，因為：「$2」',
-'backend-fail-synced' => '文件"$1"在內部後端是不一致的區域。',
-'backend-fail-connect' => '無法連結至檔案後方“$1”。',
-'backend-fail-internal' => '檔案後方“$1”發生了一個未知錯誤。',
+'backend-fail-synced' => '文件"$1"在內部存儲後端是不一致的區域。',
+'backend-fail-connect' => '無法連結至存儲後方“$1”。',
+'backend-fail-internal' => '存儲後方“$1”發生了一個未知錯誤。',
 'backend-fail-contenttype' => '無法確定檔案的內容類型以存儲於“$1”。',
-'backend-fail-batchsize' => '鑒於一批後端 $1 檔 {{PLURAL:$1| operation|operations}} ；限制是 $2   {{PLURAL:$2| operation|operations}}。',
+'backend-fail-batchsize' => '存儲後端被給予了$1次檔𣗈 {{PLURAL:$1|操作|操作}} ；限制是$2次{{PLURAL:$2|操作|操作}}。',
+
+# File journal errors
+'filejournal-fail-dbconnect' => '無法連接到後端存儲的日誌資料庫" $1 "。',
+'filejournal-fail-dbquery' => '無法更新後端存儲的日誌資料庫" $1 "。',
 
 # Lock manager
 'lockmanager-notlocked' => '無法解鎖「$1」；它沒有被鎖定。',
@@ -1698,7 +1709,10 @@ $1',
 
 # img_auth script messages
 'img-auth-accessdenied' => '拒絕存取',
-'img-auth-nopathinfo' => 'PATH_INFO缺失。您的服務器尚未設置傳送該信息。它可能是基於CGI的，因而不支持img_auth。[https://www.mediawiki.org/wiki/Manual:Image_Authorization 參見圖片認證。]',
+'img-auth-nopathinfo' => 'PATH_INFO缺失。
+您的服務器尚未設置傳送該信息。
+它可能是基於CGI的，因而不支持img_auth。
+請參見 https://www.mediawiki.org/wiki/Manual:Image_Authorization',
 'img-auth-notindir' => '所請求的路徑不在已經設定的上載目錄。',
 'img-auth-badtitle' => '不能夠由"$1"建立一個有效標題。',
 'img-auth-nologinnWL' => '您而家並未登入，"$1"不在白名單上。',
@@ -1780,6 +1794,10 @@ $1',
 請參閱在[$2 檔案描述頁面]以了解其相關資訊。',
 'sharedupload-desc-here' => '該檔案來自於$1，它可能在其它計劃項目中被應用。
 它在[$2 檔案描述頁面]那邊上的描述於下面顯示。',
+'sharedupload-desc-edit' => '該檔案來自$1，它可能在其它計劃項目中被使用。
+或許您可以在其[$2 檔𣗈描述頁面]上編輯說明。',
+'sharedupload-desc-create' => '該檔案來自$1，它可能在其它計劃項目中被使用。
+或許您可以在那邊的[$2 檔𣗈描述頁面]上編輯其說明。',
 'filepage-nofile' => '不存在此名稱的檔案。',
 'filepage-nofile-link' => '不存在此名稱的檔案，但您可以[$1 上傳它]。',
 'uploadnewversion-linktext' => '上傳該檔案的新版本',
@@ -1994,6 +2012,12 @@ Template:消除歧義',
 'allpagesprefix' => '顯示具有此前綴（名字空間）的頁面:',
 'allpagesbadtitle' => '給定的頁面標題是非法的，或者具有一個內部語言或內部 wiki 的前綴。它可能包含一個或更多的不能用於標題的字元。',
 'allpages-bad-ns' => '在{{SITENAME}}中沒有一個叫做"$1"的名字空間。',
+'allpages-hide-redirects' => '隱藏重定向頁',
+
+# SpecialCachedPage
+'cachedspecial-viewing-cached-ttl' => '你正在瀏覽本頁的緩存版本，至多可能存在$1的延遲。',
+'cachedspecial-viewing-cached-ts' => '您正在閱讀此頁的緩存版本，這可能不是完整的版本。',
+'cachedspecial-refresh-now' => '查看最新。',
 
 # Special:Categories
 'categories' => '頁面分類',
@@ -2430,8 +2454,8 @@ $1',
 'ipb-confirm' => '確認封禁',
 'badipaddress' => '無效IP地址',
 'blockipsuccesssub' => '查封成功',
-'blockipsuccesstext' => '[[Special:Contributions/$1|$1]]已經被查封。
-<br />參看[[Special:BlockList|被封IP地址列表]]以覆審查封。',
+'blockipsuccesstext' => '[[Special:Contributions/$1|$1]]已經被查封。<br />
+參看[[Special:BlockList|被封IP地址列表]]以覆審查封。',
 'ipb-blockingself' => '你要封禁自己！確認要這樣做嗎？',
 'ipb-confirmhideuser' => '你要封禁用戶並隱藏其用戶名，這會隱藏在所有列表及日誌中涉及此用戶之用戶名。你確定要這樣做嗎？',
 'ipb-edit-dropdown' => '編輯查封原因',
@@ -2834,6 +2858,11 @@ $1被封禁的理由是“$2”',
 'vector.css' => '/* 此處的 CSS 將影響使用 Vector 面板的用戶 */',
 'print.css' => '/* 此處的 CSS 將影響打印輸出 */',
 'handheld.css' => '/* 此處的 CSS 將影響在 $wgHandheldStyle 設定手提裝置面板 */',
+'noscript.css' => '/* 此處的 CSS 將影響沒有啓用 JavaScript 的用戶 */',
+'group-autoconfirmed.css' => '/* 此處的 CSS 將只會影響自動確認用戶 */',
+'group-bot.css' => '/* 此處的 CSS 將只會影響機器人 */',
+'group-sysop.css' => '/* 此處的 CSS 將只會影響管理員 */',
+'group-bureaucrat.css' => '/* 此處的 CSS 將只會影響行政員 */',
 
 # Scripts
 'common.js' => '/* 此處的JavaScript將載入於所有用戶每一個頁面。 */',
@@ -2975,13 +3004,19 @@ To disable showing a particular link, set it to 'disable', e.g.
 'variantname-zh-sg' => 'disable',
 Variants for Chinese language
 */
-'variantname-zh-hans' => '簡體',
-'variantname-zh-hant' => '繁體',
+'variantname-zh-hans' => '‪中文(简体)',
+'variantname-zh-hant' => '‪中文(繁體)',
 'variantname-zh-cn' => '大陸簡體',
 'variantname-zh-tw' => '台灣正體',
 'variantname-zh-hk' => '香港繁體',
+'variantname-zh-mo' => '澳門繁體',
 'variantname-zh-sg' => '新加坡簡體',
+'variantname-zh-my' => '马来西亚简体',
 'variantname-zh' => '不轉換',
+
+# Variants for Gan language
+'variantname-gan-hans' => '‪中文(简体)',
+'variantname-gan-hant' => '‪中文(繁體)',
 
 # Metadata
 'metadata' => '元數據',
@@ -3591,6 +3626,8 @@ MediaWiki是基於使用目的而加以發佈，然而不負任何擔保責任�
 'version-software' => '已經安裝的軟件',
 'version-software-product' => '產品',
 'version-software-version' => '版本',
+'version-entrypoints' => '入口點URL',
+'version-entrypoints-header-entrypoint' => '入口點',
 'version-entrypoints-header-url' => 'URL',
 
 # Special:FilePath

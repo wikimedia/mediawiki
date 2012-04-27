@@ -765,6 +765,7 @@ Les páxines personalizaes .css y .js usen un títulu en minúscules, p. ex. {{n
 'note' => "'''Nota:'''",
 'previewnote' => "'''Alcuerdate de qu'esto ye sólo una vista previa.'''
 ¡Los cambios entá nun se guardaron!",
+'continue-editing' => 'Siguir editando',
 'previewconflict' => "Esta vista previa amuesa'l testu del área d'edición d'arriba tal como apaecerá si escueyes guardar.",
 'session_fail_preview' => "'''¡Sentímoslo muncho! Nun se pudo procesar la to edición porque hebo una perda de datos de la sesión.
 Inténtalo otra vuelta. Si nun se t'arregla, intenta salir y volver a rexistrate.'''",

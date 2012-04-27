@@ -1098,7 +1098,7 @@ El registro de borrado y traslados para esta página están provistos aquí por 
 El registro de borrados y traslados para la página están provistos debajo como referencia.',
 'log-fulllog' => 'Ver el registro completo',
 'edit-hook-aborted' => 'Edición cancelada por la extensión.
-No dió explicaciones.',
+No se aportaron explicaciones.',
 'edit-gone-missing' => 'No se pudo actualizar la página.
 Parece que ha sido borrada.',
 'edit-conflict' => 'Conflicto de edición.',
