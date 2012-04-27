@@ -33,7 +33,7 @@ class mcTest extends Maintenance {
 	}
 
 	public function execute() {
-		global $wgMemCachedServers;
+		global $wgMemCachedServers, $wgMemCachedTimeout;
 
 		$iterations = $this->getOption( 'i', 100 );
 		if ( $this->hasArg() ) {
@@ -42,7 +42,10 @@ class mcTest extends Maintenance {
 
 		foreach ( $wgMemCachedServers as $server ) {
 			$this->output( $server . " ", $server );
-			$mcc = new MemCachedClientforWiki( array( 'persistant' => true ) );
+			$mcc = new MemCachedClientforWiki( array(
+				'persistant' => true,
+				'timeout' => $wgMemCachedTimeout
+			) );
 			$mcc->set_servers( array( $server ) );
 			$set = 0;
 			$incr = 0;
