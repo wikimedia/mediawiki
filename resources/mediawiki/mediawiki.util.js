@@ -47,8 +47,12 @@
 			} else if ( profile.platform !== 'win'
 				&& profile.name === 'safari'
 				&& profile.layoutVersion > 526 ) {
-				util.tooltipAccessKeyPrefix = 'ctrl-alt-';
-
+				util.tooltipAccessKeyPrefix = 'ctrl-option-';
+			// Firefox 14+ on Mac
+			} else if ( profile.platform === 'mac'
+				&& profile.name === 'firefox'
+				&& profile.versionNumber >= 14 ) {
+				util.tooltipAccessKeyPrefix = 'ctrl-option-';
 			// Safari/Konqueror on any platform, or any browser on Mac
 			// (but not Safari on Windows)
 			} else if ( !( profile.platform === 'win' && profile.name === 'safari' )
