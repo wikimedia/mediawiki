@@ -683,6 +683,24 @@ abstract class FileBackend {
 	}
 
 	/**
+	 * Get an array of scoped locks needed for a batch of file operations.
+	 *
+	 * Normally, FileBackend::doOperations() handles locking, unless
+	 * the 'nonLocking' param is passed in. This function is useful if you
+	 * want the files to be locked for a broader scope than just when the
+	 * files are changing. For example, if you need to update DB metadata,
+	 * you may want to keep the files locked until finished.
+	 *
+	 * @see FileBackend::doOperations()
+	 *
+	 * @param $ops Array List of file operations to FileBackend::doOperations()
+	 * @param $status Status Status to update on lock/unlock
+	 * @return Array List of ScopedFileLocks or null values
+	 * @since 1.20
+	 */
+	abstract public function getScopedLocksForOps( array $ops, Status $status );
+
+	/**
 	 * Get the root storage path of this backend.
 	 * All container paths are "subdirectories" of this path.
 	 *

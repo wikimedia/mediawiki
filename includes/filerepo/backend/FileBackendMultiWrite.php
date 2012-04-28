@@ -434,4 +434,20 @@ class FileBackendMultiWrite extends FileBackend {
 			$backend->clearCache( $realPaths );
 		}
 	}
+
+	/**
+	 * @see FileBackend::getScopedLocksForOps()
+	 */
+	public function getScopedLocksForOps( array $ops, Status $status ) {
+		$fileOps = $this->backends[$this->masterIndex]->getOperationsInternal( $ops );
+		// Get the paths to lock from the master backend
+		$paths = $this->backends[$this->masterIndex]->getPathsToLockForOpsInternal( $fileOps );
+		// Get the paths under the proxy backend's name
+		$paths['sh'] = $this->unsubstPaths( $paths['sh'] );
+		$paths['ex'] = $this->unsubstPaths( $paths['ex'] );
+		return array(
+			$this->getScopedFileLocks( $paths['sh'], LockManager::LOCK_UW, $status ),
+			$this->getScopedFileLocks( $paths['ex'], LockManager::LOCK_EX, $status )
+		);
+	}
 }
