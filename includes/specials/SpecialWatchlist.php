@@ -262,7 +262,14 @@ class SpecialWatchlist extends SpecialPage {
 		$tables = array( 'recentchanges', 'watchlist' );
 		$fields = array( $dbr->tableName( 'recentchanges' ) . '.*' );
 		$join_conds = array(
-			'watchlist' => array('INNER JOIN',"wl_user='{$user->getId()}' AND wl_namespace=rc_namespace AND wl_title=rc_title"),
+			'watchlist' => array(
+				'INNER JOIN',
+				array(
+					'wl_user' => $user->getId(),
+					'wl_namespace=rc_namespace',
+					'wl_title=rc_title'
+				),
+			),
 		);
 		$options = array( 'ORDER BY' => 'rc_timestamp DESC' );
 		if( $wgShowUpdatedMarker ) {
