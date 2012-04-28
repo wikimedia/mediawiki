@@ -7,6 +7,7 @@
 class GenderCacheTest extends MediaWikiLangTestCase {
 
 	function setUp() {
+		global $wgDefaultUserOptions;
 		parent::setUp();
 		//ensure the correct default gender
 		$wgDefaultUserOptions['gender'] = 'unknown';
