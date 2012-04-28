@@ -231,7 +231,8 @@ upgrade PHP if you have not done so prior to upgrading MediaWiki.
 * (bug 34313) MediaWiki API intro message about "HTML format" should mention
   the format parameter.
 * (bug 32384) Allow descending order for list=watchlistraw.
-* (bug 31883) Limit of bkusers of list=blocks and titles of action=query is not documented in API help.
+* (bug 31883) Limit of bkusers of list=blocks and titles of action=query is
+  not documented in API help.
 * (bug 32492) API now allows editing using pageid.
 * (bug 32497) API now allows changing of protection level using pageid.
 * (bug 32498) API now allows comparing pages using pageids.
@@ -260,8 +261,9 @@ upgrade PHP if you have not done so prior to upgrading MediaWiki.
 * Watchlist notification timestamp may be queried by page and may be updated via the API.
 * (bug 38904) prop=revisions&rvstart=... no longer blows up when continuing.
 * (bug 39032) ApiQuery generates help in constructor.
-* (bug 11142) Improve file extension blacklist error reporting in API upload
-* (bug 39635) PostgreSQL LOCK IN SHARE MODE option is a syntax error
+* (bug 11142) Improve file extension blacklist error reporting in API upload.
+* (bug 39635) PostgreSQL LOCK IN SHARE MODE option is a syntax error.
+* (bug 36329) Accesskey tooltips for Firefox 14 on Mac should use "ctrl-option-" prefix.
 
 === Languages updated in 1.20 ===
 
