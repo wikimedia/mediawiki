@@ -471,14 +471,14 @@ class ApiEditPage extends ApiBase {
 			'sectiontitle' => 'The title for a new section',
 			'text' => 'Page content',
 			'token' => array( 'Edit token. You can get one of these through prop=info.',
-						'The token should always be sent as the last parameter, or at least, after the text parameter'
+						"The token should always be sent as the last parameter, or at least, after the {$p}text parameter"
 			),
-			'summary' => 'Edit summary. Also section title when section=new',
+			'summary' => "Edit summary. Also section title when {$p}section=new and {$p}sectiontitle is not set",
 			'minor' => 'Minor edit',
 			'notminor' => 'Non-minor edit',
 			'bot' => 'Mark this edit as bot',
 			'basetimestamp' => array( 'Timestamp of the base revision (obtained through prop=revisions&rvprop=timestamp).',
-						'Used to detect edit conflicts; leave unset to ignore conflicts.'
+						'Used to detect edit conflicts; leave unset to ignore conflicts'
 			),
 			'starttimestamp' => array( 'Timestamp when you obtained the edit token.',
 						'Used to detect edit conflicts; leave unset to ignore conflicts'
@@ -492,7 +492,8 @@ class ApiEditPage extends ApiBase {
 			'md5' => array(	"The MD5 hash of the {$p}text parameter, or the {$p}prependtext and {$p}appendtext parameters concatenated.",
 					'If set, the edit won\'t be done unless the hash is correct' ),
 			'prependtext' => "Add this text to the beginning of the page. Overrides {$p}text",
-			'appendtext' => "Add this text to the end of the page. Overrides {$p}text",
+			'appendtext' => array( "Add this text to the end of the page. Overrides {$p}text.",
+						"Use {$p}section=new to append a new section" ),
 			'undo' => "Undo this revision. Overrides {$p}text, {$p}prependtext and {$p}appendtext",
 			'undoafter' => 'Undo all revisions from undo to this one. If not set, just undo one revision',
 			'redirect' => 'Automatically resolve redirects',
