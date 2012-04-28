@@ -17,8 +17,6 @@ class LockManagerGroup {
 	protected $managers = array();
 
 	protected function __construct() {}
-	protected function __clone() {}
-
 	/**
 	 * @return LockManagerGroup
 	 */

@@ -139,8 +139,6 @@ class ScopedLock {
 		$this->type = $type;
 	}
 
-	protected function __clone() {}
-
 	/**
 	 * Get a ScopedLock object representing a lock on resource paths.
 	 * Any locks are released once this object goes out of scope.
