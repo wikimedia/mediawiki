@@ -21,7 +21,6 @@ class FileBackendGroup {
 	protected $backends = array();
 
 	protected function __construct() {}
-	protected function __clone() {}
 
 	/**
 	 * @return FileBackendGroup
