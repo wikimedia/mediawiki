@@ -369,7 +369,7 @@ class ApiQueryBacklinks extends ApiQueryGeneratorBase {
 		if ( !is_null( $this->params['continue'] ) ) {
 			$this->parseContinueParam();
 		} else {
-			$this->rootTitle = $this->getTitleOrPageId( $this->params );
+			$this->rootTitle = $this->getTitleOrPageId( $this->params )->getTitle();
 		}
 
 		// only image titles are allowed for the root in imageinfo mode

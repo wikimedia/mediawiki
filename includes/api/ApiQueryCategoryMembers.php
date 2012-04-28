@@ -54,7 +54,7 @@ class ApiQueryCategoryMembers extends ApiQueryGeneratorBase {
 	private function run( $resultPageSet = null ) {
 		$params = $this->extractRequestParams();
 
-		$categoryTitle = $this->getTitleOrPageId( $params );
+		$categoryTitle = $this->getTitleOrPageId( $params )->getTitle();
 		if ( $categoryTitle->getNamespace() != NS_CATEGORY ) {
 			$this->dieUsage( 'The category name you entered is not valid', 'invalidcategory' );
 		}
