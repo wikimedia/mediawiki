@@ -328,6 +328,9 @@ class ApiParse extends ApiBase {
 			// Try the parser cache first
 			// getParserOutput will save to Parser cache if able
 			$pout = $page->getParserOutput( $popts );
+			if ( !$pout ) {
+				$this->dieUsage( "There is no revision ID {$page->getLatest()}", 'missingrev' );
+			}
 			if ( $getWikitext ) {
 				$this->text = $page->getRawText();
 			}
