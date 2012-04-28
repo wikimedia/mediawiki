@@ -94,8 +94,8 @@ require( RUN_MAINTENANCE_IF_MAIN );
 require_once( 'PHPUnit/Runner/Version.php' );
 
 if( PHPUnit_Runner_Version::id() !== '@package_version@'
-   && version_compare( PHPUnit_Runner_Version::id(), '3.5.0', '<' ) ) {
-	die( 'PHPUnit 3.5 or later required, you have ' . PHPUnit_Runner_Version::id() . ".\n" );
+   && version_compare( PHPUnit_Runner_Version::id(), '3.6.7', '<' ) ) {
+	die( 'PHPUnit 3.6.7 or later required, you have ' . PHPUnit_Runner_Version::id() . ".\n" );
 }
 require_once( 'PHPUnit/Autoload.php' );
 
