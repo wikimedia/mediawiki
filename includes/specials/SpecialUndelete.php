@@ -112,12 +112,22 @@ class PageArchive {
 	 * @return ResultWrapper
 	 */
 	function listRevisions() {
+		global $wgContentHandlerNoDB;
+
 		$dbr = wfGetDB( DB_SLAVE );
+
+		$fields = array(
+			'ar_minor_edit', 'ar_timestamp', 'ar_user', 'ar_user_text',
+			'ar_comment', 'ar_len', 'ar_deleted', 'ar_rev_id', 'ar_sha1',
+		);
+
+		if ( !$wgContentHandlerNoDB ) {
+			$fields[] = 'ar_content_format';
+			$fields[] = 'ar_content_model';
+		}
+
 		$res = $dbr->select( 'archive',
-			array(
-				'ar_minor_edit', 'ar_timestamp', 'ar_user', 'ar_user_text',
-				'ar_comment', 'ar_len', 'ar_deleted', 'ar_rev_id', 'ar_sha1'
-			),
+			$fields,
 			array( 'ar_namespace' => $this->title->getNamespace(),
 				   'ar_title' => $this->title->getDBkey() ),
 			'PageArchive::listRevisions',
@@ -174,22 +184,32 @@ class PageArchive {
 	 * @return Revision
 	 */
 	function getRevision( $timestamp ) {
+		global $wgContentHandlerNoDB;
+
 		$dbr = wfGetDB( DB_SLAVE );
+
+		$fields = array(
+			'ar_rev_id',
+			'ar_text',
+			'ar_comment',
+			'ar_user',
+			'ar_user_text',
+			'ar_timestamp',
+			'ar_minor_edit',
+			'ar_flags',
+			'ar_text_id',
+			'ar_deleted',
+			'ar_len',
+			'ar_sha1',
+		);
+
+		if ( !$wgContentHandlerNoDB ) {
+			$fields[] = 'ar_content_format';
+			$fields[] = 'ar_content_model';
+		}
+
 		$row = $dbr->selectRow( 'archive',
-			array(
-				'ar_rev_id',
-				'ar_text',
-				'ar_comment',
-				'ar_user',
-				'ar_user_text',
-				'ar_timestamp',
-				'ar_minor_edit',
-				'ar_flags',
-				'ar_text_id',
-				'ar_deleted',
-				'ar_len',
-				'ar_sha1',
-			),
+			$fields,
 			array( 'ar_namespace' => $this->title->getNamespace(),
 					'ar_title' => $this->title->getDBkey(),
 					'ar_timestamp' => $dbr->timestamp( $timestamp ) ),
@@ -392,6 +412,8 @@ class PageArchive {
 	 * @return Mixed: number of revisions restored or false on failure
 	 */
 	private function undeleteRevisions( $timestamps, $unsuppress = false, $comment = '' ) {
+		global $wgContentHandlerNoDB;
+
 		if ( wfReadOnly() ) {
 			return false;
 		}
@@ -445,24 +467,31 @@ class PageArchive {
 			$oldones = "ar_timestamp IN ( {$oldts} )";
 		}
 
+		$fields = array(
+			'ar_rev_id',
+			'ar_text',
+			'ar_comment',
+			'ar_user',
+			'ar_user_text',
+			'ar_timestamp',
+			'ar_minor_edit',
+			'ar_flags',
+			'ar_text_id',
+			'ar_deleted',
+			'ar_page_id',
+			'ar_len',
+			'ar_sha1');
+
+		if ( !$wgContentHandlerNoDB ) {
+			$fields[] = 'ar_content_format';
+			$fields[] = 'ar_content_model';
+		}
+
 		/**
 		 * Select each archived revision...
 		 */
 		$result = $dbw->select( 'archive',
-			/* fields */ array(
-				'ar_rev_id',
-				'ar_text',
-				'ar_comment',
-				'ar_user',
-				'ar_user_text',
-				'ar_timestamp',
-				'ar_minor_edit',
-				'ar_flags',
-				'ar_text_id',
-				'ar_deleted',
-				'ar_page_id',
-				'ar_len',
-				'ar_sha1' ),
+			$fields,
 			/* WHERE */ array(
 				'ar_namespace' => $this->title->getNamespace(),
 				'ar_title'     => $this->title->getDBkey(),
