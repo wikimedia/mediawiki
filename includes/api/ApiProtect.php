@@ -192,8 +192,6 @@ class ApiProtect extends ApiBase {
 		return array_merge( parent::getPossibleErrors(),
 			$this->getTitleOrPageIdErrorMessage(),
 			array(
-				array( 'invalidtitle', 'title' ),
-				array( 'nosuchpageid', 'pageid' ),
 				array( 'toofewexpiries', 'noofexpiries', 'noofprotections' ),
 				array( 'create-titleexists' ),
 				array( 'missingtitle-createonly' ),

@@ -374,7 +374,6 @@ class ApiQueryCategoryMembers extends ApiQueryGeneratorBase {
 			array(
 				array( 'code' => 'invalidcategory', 'info' => 'The category name you entered is not valid' ),
 				array( 'code' => 'badcontinue', 'info' => 'Invalid continue param. You should pass the original value returned by the previous query' ),
-				array( 'nosuchpageid', 'pageid' ),
 			)
 		);
 	}
