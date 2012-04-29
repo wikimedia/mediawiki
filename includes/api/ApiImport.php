@@ -186,8 +186,16 @@ class ApiImportReporter extends ImportReporter {
 	function reportPage( $title, $origTitle, $revisionCount, $successCount, $pageInfo ) {
 		// Add a result entry
 		$r = array();
-		ApiQueryBase::addTitleInfo( $r, $title );
-		$r['revisions'] = intval( $successCount );
+
+		if ( $title === null ) {
+			# Invalid or non-importable title
+			$r['title'] = $pageInfo['title'];
+			$r['invalid'] = '';
+		} else {
+			ApiQueryBase::addTitleInfo( $r, $title );
+			$r['revisions'] = intval( $successCount );
+		}
+
 		$this->mResultArr[] = $r;
 
 		// Piggyback on the parent to do the logging
