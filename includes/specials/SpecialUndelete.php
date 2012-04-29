@@ -116,7 +116,8 @@ class PageArchive {
 		$res = $dbr->select( 'archive',
 			array(
 				'ar_minor_edit', 'ar_timestamp', 'ar_user', 'ar_user_text',
-				'ar_comment', 'ar_len', 'ar_deleted', 'ar_rev_id', 'ar_sha1'
+				'ar_comment', 'ar_len', 'ar_deleted', 'ar_rev_id', 'ar_sha1',
+				'ar_content_format', 'ar_content_model'
 			),
 			array( 'ar_namespace' => $this->title->getNamespace(),
 				   'ar_title' => $this->title->getDBkey() ),
@@ -189,6 +190,8 @@ class PageArchive {
 				'ar_deleted',
 				'ar_len',
 				'ar_sha1',
+				'ar_content_format',
+				'ar_content_model',
 			),
 			array( 'ar_namespace' => $this->title->getNamespace(),
 					'ar_title' => $this->title->getDBkey(),
@@ -462,7 +465,9 @@ class PageArchive {
 				'ar_deleted',
 				'ar_page_id',
 				'ar_len',
-				'ar_sha1' ),
+				'ar_sha1',
+				'ar_content_format',
+				'ar_content_model' ),
 			/* WHERE */ array(
 				'ar_namespace' => $this->title->getNamespace(),
 				'ar_title'     => $this->title->getDBkey(),
