@@ -723,8 +723,14 @@ abstract class ApiBase extends ContextSource {
 	/**
 	 * @return array
 	 */
-	public function getTitleOrPageIdErrorMessage( ) {
-		return $this->getRequireOnlyOneParameterErrorMessages( array( 'title', 'pageid' ) );
+	public function getTitleOrPageIdErrorMessage() {
+		return array_merge(
+			$this->getRequireOnlyOneParameterErrorMessages( array( 'title', 'pageid' ) ),
+			array(
+				array( 'invalidtitle', 'title' ),
+				array( 'nosuchpageid', 'pageid' ),
+			)
+		);
 	}
 
 	/**

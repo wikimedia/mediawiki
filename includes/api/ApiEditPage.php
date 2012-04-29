@@ -371,9 +371,7 @@ class ApiEditPage extends ApiBase {
 		return array_merge( parent::getPossibleErrors(),
 			$this->getTitleOrPageIdErrorMessage(),
 			array(
-				array( 'nosuchpageid', 'pageid' ),
 				array( 'missingtext' ),
-				array( 'invalidtitle', 'title' ),
 				array( 'createonly-exists' ),
 				array( 'nocreate-missing' ),
 				array( 'nosuchrevid', 'undo' ),

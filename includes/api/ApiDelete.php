@@ -230,8 +230,6 @@ class ApiDelete extends ApiBase {
 		return array_merge( parent::getPossibleErrors(),
 			$this->getTitleOrPageIdErrorMessage(),
 			array(
-				array( 'invalidtitle', 'title' ),
-				array( 'nosuchpageid', 'pageid' ),
 				array( 'notanarticle' ),
 				array( 'hookaborted', 'error' ),
 				array( 'delete-toobig', 'limit' ),
