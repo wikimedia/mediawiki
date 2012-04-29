@@ -989,7 +989,8 @@ La lasta protokolero estas jene montrata por via referenco:',
 Rememoru ke individuaj .css-aj kaj .js-aj paĝoj uzas minusklan titolon, ekz. {{ns:user}}:Foo/vector.css kontraŭe al {{ns:user}}:Foo/Vector.css.",
 'updated' => '(Ŝanĝo registrita)',
 'note' => "'''Noto:'''",
-'previewnote' => "'''Memoru, ke ĉi tio estas nur antaŭrigardo kaj ankoraŭ ne konservita!'''",
+'previewnote' => "'''Memoru, ke ĉi tio estas nur antaŭrigardo.''' 
+Viaj ŝanĝoj ne ankoraŭ estas konservitaj!",
 'previewconflict' => 'La jena antaŭrigardo montras la tekston el la supra tekstujo,
 kiel ĝi aperos se vi elektos konservi la paĝon.',
 'session_fail_preview' => "'''Ni ne povas procezi vian redakton pro perdo de seancaj datenoj.
@@ -1006,6 +1007,7 @@ La redakto estis malpermesita por preventi koruptado de la teksto de la paĝo.
 Ĉi tiel malofte okazas kiam vi uzas fuŝan TTT-an anoniman prokurilon.'''",
 'edit_form_incomplete' => "'''Kelkaj partoj de la redaktada formo ne atingis la servilon; rekontrolu ke via redakto estas ĝusta kaj reprovu.'''",
 'editing' => 'Redaktado de $1',
+'creating' => 'Kreado de $1',
 'editingsection' => 'Redaktante $1 (sekcion)',
 'editingcomment' => 'Redaktante $1 (nova sekcio)',
 'editconflict' => 'Redakta konflikto: $1',

@@ -859,6 +859,10 @@ Estos parámetros s'omitieron.",
 'parser-template-loop-warning' => 'Hai una rueda de plantíes: [[$1]]',
 'parser-template-recursion-depth-warning' => 'Se pasó la llende de fondura recursiva de les plantíes ($1)',
 'language-converter-depth-warning' => 'Se pasó la llende de fondura del convertidor de llingües ($1)',
+'node-count-exceeded-category' => 'Páxines onde se pasó la cuenta de nodios',
+'node-count-exceeded-warning' => 'La páxina pasó la cuenta de nodios',
+'expansion-depth-exceeded-category' => "Páxines onde se pasó la fondura d'espansión",
+'expansion-depth-exceeded-warning' => "La páxina pasó la fondura d'espansión",
 
 # "Undo" feature
 'undo-success' => "La edición se pue esfacer.

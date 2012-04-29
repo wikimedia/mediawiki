@@ -1135,6 +1135,10 @@ $2
 'parser-template-loop-warning' => 'נמצאה תבנית הקוראת לעצמה: [[$1]]',
 'parser-template-recursion-depth-warning' => 'עומק התבניות המוכללות זו בזו עבר את המגבלה ($1)',
 'language-converter-depth-warning' => 'עומק ממיר השפה עבר את המגבלה ($1)',
+'node-count-exceeded-category' => 'דפים שבהם מספר הצמתים גדול מדי',
+'node-count-exceeded-warning' => 'מספר הצמתים בדף גדול מדי',
+'expansion-depth-exceeded-category' => 'דפים שבהם עומק ההרחבה גדול מדי',
+'expansion-depth-exceeded-warning' => 'עומק ההרחבה בדף גדול מדי',
 
 # "Undo" feature
 'undo-success' => 'ניתן לבטל את העריכה. אנא בִדקו את השוואת הגרסאות למטה כדי לוודא שזה מה שאתם רוצים לעשות, ואז שמרו את השינויים למטה כדי לבצע את ביטול העריכה.',

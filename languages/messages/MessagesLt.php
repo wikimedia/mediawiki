@@ -848,6 +848,7 @@ Prašome pamėginti vėl. Jei tai nepadeda, pamėginkite atsijungti ir prisijung
 'token_suffix_mismatch' => "'''Jūsų pakeitimas buvo atmestas, nes jūsų naršyklė iškraipė skyrybos ženklus keitimo žymėje. Keitimas buvo atmestas norint apsaugoti puslapio tekstą nuo sugadinimo. Taip kartais būna, kai jūs naudojate anoniminį tarpinio serverio paslaugą.'''",
 'edit_form_incomplete' => "'''Kai redaguoti formos dalys nepasiekė serverio; du kartus patikrinti, kad jūsų pakeitimai yra nesugadintos ir bandykite dar kartą.'''",
 'editing' => 'Taisomas $1',
+'creating' => 'Kuriama $1',
 'editingsection' => 'Taisomas $1 (skyrelis)',
 'editingcomment' => 'Taisomas $1 (komentaras)',
 'editconflict' => 'Išpręskite konfliktą: $1',
@@ -1071,7 +1072,7 @@ Prašome patikrinti sąrašus.',
 # Suppression log
 'suppressionlog' => 'Trynimo istorija',
 'suppressionlogtext' => 'Žemiau yra trynimų ir blokavimų sąrašas, įtraukiant turinį, paslėptą nuo administratorių.
-Žiūrėkite [[Special:BlockList|IP blokavimų sąrašą]], kad rastumėte dabar veikiančius draudimus ir blokavimus.',
+Žiūrėkite [[Special:BlockList|blokavimų sąrašą]], kad rastumėte dabar veikiančius draudimus ir blokavimus.',
 
 # History merging
 'mergehistory' => 'Sujungti puslapių istorijas',
@@ -2471,7 +2472,7 @@ Pateikiamas paskutinis blokavimo istorijos įrašas.',
 'reblock-logentry' => 'pakeisti [[$1]] blokavimo nustatymai, naujas blokavimo laikas – $2 $3',
 'blocklogtext' => 'Čia yra naudotojų blokavimo ir atblokavimo sąrašas.
 Automatiškai blokuoti IP adresai neišvardinti.
-Jei norite pamatyti dabar blokuojamus adresus, žiūrėkite [[Special:BlockList|IP blokavimų sąrašą]].',
+Jei norite pamatyti dabar blokuojamus adresus, žiūrėkite [[Special:BlockList|blokavimų sąrašą]].',
 'unblocklogentry' => 'atblokavo $1',
 'block-log-flags-anononly' => 'tik anoniminiai naudotojai',
 'block-log-flags-nocreate' => 'paskyrų kūrimas išjungtas',

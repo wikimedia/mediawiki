@@ -985,6 +985,7 @@ Den har inte sparats än!'''",
 'note' => "'''Obs!'''",
 'previewnote' => "'''Kom ihåg att detta bara är en förhandsvisning.'''
 Dina ändringar har ännu inte sparats!",
+'continue-editing' => 'Fortsätt redigera',
 'previewconflict' => 'Den här förhandsvisningen är resultatet av den
 redigerbara texten ovanför,
 så som det kommer att se ut om du väljer att spara.',
@@ -1081,6 +1082,8 @@ Dessa parametrar har uteslutits.',
 'parser-template-loop-warning' => 'Mall-loop upptäckt: [[$1]]',
 'parser-template-recursion-depth-warning' => 'Gräns för mallrekursionsdjup överskriden ($1)',
 'language-converter-depth-warning' => 'Gräns för språkkonverteringsdjup överskriden ($1)',
+'node-count-exceeded-category' => 'Sidor där antal nodar har överskrids',
+'node-count-exceeded-warning' => 'Sidan har överskridit antalet nodar',
 
 # "Undo" feature
 'undo-success' => 'Redigeringen kan göras ogjord.

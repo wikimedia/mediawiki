@@ -3313,7 +3313,7 @@ Póstþjónninn skilaði: $1',
 'confirmemail_success' => 'Netfang þitt hefur verið staðfest. Þú getur nú [[Special:UserLogin|skráð þig inn]] og vafrað um wiki-kerfið.',
 'confirmemail_loggedin' => 'Netfang þitt hefur verið staðfest.',
 'confirmemail_error' => 'Eitthvað fór úrskeiðis við vistun staðfestingarinnar.',
-'confirmemail_subject' => '{{SITENAME}} netfangs-staðfesting',
+'confirmemail_subject' => 'Staðfesting netfangs á {{SITENAME}}',
 'confirmemail_body' => 'Einhver, sennilega þú, með vistfangið $1 hefur skráð sig á {{SITENAME}} undir notandanafninu „$2“ og gefið upp þetta netfang.
 
 Til að staðfesta að það hafi verið þú sem skráðir þig undir þessu nafni, og til þess að virkja póstsendingar í gegnum {{SITENAME}}, skaltu opna þennan tengil í vafranum þínum:

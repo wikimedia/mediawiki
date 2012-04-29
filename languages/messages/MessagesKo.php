@@ -953,6 +953,7 @@ $1, 또는 [[{{MediaWiki:Grouppage-sysop}}|다른 관리자]]에게 차단에 �
 'updated' => '(바뀜)',
 'note' => "'''주의:'''",
 'previewnote' => "'''이 화면은 미리 보기입니다'''. 편집한 내용은 아직 저장되지 않았습니다!",
+'continue-editing' => '계속 편집하기',
 'previewconflict' => '이 미리 보기는 저장할 때의 모습, 즉 위쪽 편집창의 문서를 반영합니다.',
 'session_fail_preview' => "'''세션 데이터가 없어져 편집을 저장하지 못했습니다.
 다시 시도해도 되지 않으면 [[Special:UserLogout|로그아웃]]한 다음 다시 로그인해 보십시오.'''",
@@ -2128,6 +2129,10 @@ URL이 맞고 해당 웹사이트가 작동하는지 확인해주세요.',
 'allpages-bad-ns' => '{{SITENAME}}에서는 ‘$1’ 이름공간을 사용하지 않습니다.',
 'allpages-hide-redirects' => '넘겨주기 숨기기',
 
+# SpecialCachedPage
+'cachedspecial-viewing-cached-ttl' => '지금 이 문서의 캐시된 버전을 보고 있습니다. 이 버전은 최대 $1만큼 지난 버전일 가능성이 있습니다.',
+'cachedspecial-refresh-now' => '최신 버전 보기.',
+
 # Special:Categories
 'categories' => '분류',
 'categoriespagetext' => '{{PLURAL:$1}}문서나 자료를 담고 있는 분류 목록입니다.
@@ -2561,7 +2566,8 @@ $1',
 'ipb-confirm' => '차단 확인',
 'badipaddress' => '잘못된 IP 주소',
 'blockipsuccesssub' => '차단 완료',
-'blockipsuccesstext' => '[[Special:Contributions/$1|$1]] 사용자가 차단되었습니다. 차단된 사용자 목록은 [[Special:BlockList|여기]]에서 볼 수 있습니다.',
+'blockipsuccesstext' => '[[Special:Contributions/$1|$1]] 사용자가 차단되었습니다.<br />
+차단된 사용자 목록은 [[Special:BlockList|여기]]에서 볼 수 있습니다.',
 'ipb-blockingself' => '자기 자신을 차단하려고 합니다. 정말로 실행할까요?',
 'ipb-confirmhideuser' => '당신은 사용자를 차단하면서 "계정 숨기기" 설정을 선택했습니다. 이로써 모든 기록에서 이 사용자의 계정 이름을 숨기게 됩니다. 정말로 계정을 숨기시겠습니까?',
 'ipb-edit-dropdown' => '차단 이유 목록 편집하기',

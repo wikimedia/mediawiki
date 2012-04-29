@@ -1927,7 +1927,7 @@ Poida que queira editar a descrición da [$2 páxina de descrición do ficheiro]
 'filedelete-otherreason' => 'Outro motivo:',
 'filedelete-reason-otherlist' => 'Outro motivo',
 'filedelete-reason-dropdown' => '*Motivos frecuentes para borrar
-** Violación dos dereitos de autor
+** Violación dos dereitos de autoría
 ** Ficheiro duplicado',
 'filedelete-edit-reasonlist' => 'Editar os motivos de borrado',
 'filedelete-maintenance' => 'Os borrados e restauracións de ficheiros están desactivados temporalmente durante o mantemento.',
@@ -2315,8 +2315,8 @@ No $2 pode ver unha lista cos borrados máis recentes.',
 'deleteotherreason' => 'Outro motivo:',
 'deletereasonotherlist' => 'Outro motivo',
 'deletereason-dropdown' => '*Motivos frecuentes para borrar
-** Solicitado polo autor
-** Violación dos dereitos de autor
+** Solicitado pola persoa que o creou
+** Violación dos dereitos de autoría
 ** Vandalismo',
 'delete-edit-reasonlist' => 'Editar os motivos de borrado',
 'delete-toobig' => 'Esta páxina conta cun historial longo, de máis {{PLURAL:$1|dunha revisión|de $1 revisións}}.
@@ -3724,6 +3724,8 @@ Debería recibir [{{SERVER}}{{SCRIPTPATH}}/COPYING unha copia da licenza públic
 'version-entrypoints' => 'Enderezos URL de punto de entrada',
 'version-entrypoints-header-entrypoint' => 'Punto de entrada',
 'version-entrypoints-header-url' => 'URL',
+'version-entrypoints-articlepath' => '[https://www.mediawiki.org/wiki/Manual:$wgArticlePath Ruta do artigo]',
+'version-entrypoints-scriptpath' => '[https://www.mediawiki.org/wiki/Manual:$wgScriptPath Ruta da escritura]',
 
 # Special:FilePath
 'filepath' => 'Ruta do ficheiro',

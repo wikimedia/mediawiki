@@ -1141,6 +1141,10 @@ Sie darf nicht mehr als $2 {{PLURAL:$2|Aufruf|Aufrufe}} haben, es {{PLURAL:$1|is
 'parser-template-loop-warning' => 'Vorlagenschleife entdeckt: [[$1]]',
 'parser-template-recursion-depth-warning' => 'Vorlagenrekursionstiefengrenze überschritten ($1)',
 'language-converter-depth-warning' => 'Sprachkonvertertiefenlimit überschritten ($1)',
+'node-count-exceeded-category' => 'Seiten, die die Knotenpunktanzahl überschritten haben',
+'node-count-exceeded-warning' => 'Die Seite hat die Knotenpunktanzahl überschritten.',
+'expansion-depth-exceeded-category' => 'Seiten, die die Expansionstiefe überschritten haben',
+'expansion-depth-exceeded-warning' => 'Die Seite hat die Expansionstiefe überschritten.',
 
 # "Undo" feature
 'undo-success' => 'Die Bearbeitung kann rückgängig gemacht werden.
@@ -1174,7 +1178,7 @@ Grund der Sperre: ''$2''",
 * ({{int:cur}}) = Unterschied zur aktuellen Version, ({{int:last}}) = Unterschied zur vorherigen Version
 * Uhrzeit/Datum = Version zu dieser Zeit, Benutzername/IP-Adresse des Bearbeiters, {{int:minoreditletter}} = Kleine Änderung',
 'history-fieldset-title' => 'In der Versionsgeschichte suchen',
-'history-show-deleted' => 'nur gelöschte Versionen',
+'history-show-deleted' => 'Nur gelöschte Versionen zeigen',
 'histfirst' => 'Älteste',
 'histlast' => 'Neueste',
 'historysize' => '({{PLURAL:$1|1 Byte|$1 Bytes}})',

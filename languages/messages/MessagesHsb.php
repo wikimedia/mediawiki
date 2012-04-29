@@ -896,6 +896,10 @@ Dyrbjała mjenje hač $2 {{PLURAL:$2|wołanje|wołanjej|wołanja|wołanjow}} mě
 'parser-template-loop-warning' => 'Předłohowa sekla wotkryta: [[$1]]',
 'parser-template-recursion-depth-warning' => 'Limit za rekursijnu hłubokosć předłohi překročeny ($1)',
 'language-converter-depth-warning' => 'Limit hłubokosće rěčneho konwertera překročena ($1)',
+'node-count-exceeded-category' => 'Strony, hdźež ličba sukow je překročena',
+'node-count-exceeded-warning' => 'Strona je ličbu sukow překročiła',
+'expansion-depth-exceeded-category' => 'Strony, hdźež ekspansiska hłubokosć je překročena',
+'expansion-depth-exceeded-warning' => 'Strona je ekspansisku hłubokosć překročił',
 
 # "Undo" feature
 'undo-success' => 'Wersija je so wuspěšnje wotstroniła. Prošu přepruwuj deleka w přirunanskim napohledźe, hač twoja změna bu přewzata a klikń potom na „Składować”, zo by změnu składował.',
