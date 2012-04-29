@@ -253,3 +253,11 @@ define( 'PROTO_RELATIVE', '//' );
 define( 'PROTO_CURRENT', null );
 define( 'PROTO_CANONICAL', 1 );
 define( 'PROTO_INTERNAL', 2 );
+
+/**
+ * Content model names, used by Content and ContentHandler
+ */
+define('CONTENT_MODEL_WIKITEXT', 'wikitext');
+define('CONTENT_MODEL_JAVASCRIPT', 'javascript');
+define('CONTENT_MODEL_CSS', 'css');
+define('CONTENT_MODEL_TEXT', 'text');
