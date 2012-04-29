@@ -1585,6 +1585,7 @@ Ce 'u probbleme angore jè presende, condatte 'n'[[Special:ListUsers/sysop|ammin
 'backend-fail-closetemp' => 'Non ge pozze achiudere file temboranèe.',
 'backend-fail-read' => "Non ge pozze leggere 'u file $1.",
 'backend-fail-create' => "Non ge pozze ccrejà 'u file $1.",
+'backend-fail-readonly' => 'L\'archivije de rete "$1" jè pe stu mumende in sole letture. \'U mutive ha state: "$2"',
 'backend-fail-connect' => 'Non ge pozze connettere \'a memorie de rrete "$1".',
 
 # Lock manager
@@ -2697,6 +2698,7 @@ Reggistrele sus a 'u combiuter tune e carechele aqquà.",
 'javascripttest-disabled' => "Sta funzione non g'à state abbilitate sus a sta Uicchi.",
 'javascripttest-title' => 'Stoche a esegue $1 test',
 'javascripttest-pagetext-noframework' => 'Sta pàgene jè riservate pe le esecuziune de le test de Javascript.',
+'javascripttest-pagetext-unknownframework' => 'Ambiende de teste scanusciute "$1".',
 'javascripttest-pagetext-frameworks' => 'Pe piacere scacchie une de le seguende ambiende de test: $1',
 
 # Tooltip help for the actions
@@ -3910,6 +3912,7 @@ Ce nò, tu puè ausà 'u module facile aqquà sotte. 'U commende tune avène agg
 'duration-seconds' => '{{PLURAL:$1|seconde|seconde}}',
 'duration-minutes' => '{{PLURAL:$1|minute|minute}}',
 'duration-hours' => '{{PLURAL: $1|ore|ore}}',
+'duration-days' => '$1 {{PLURAL:$1|sciurne|sciurne}}',
 'duration-weeks' => '{{PLURAL: $1|sumàne|sumàne}}',
 'duration-years' => '{{PLURAL: $1|anne|anne}}',
 'duration-decades' => '$1 {{PLURAL:$1|decade|decade}}',

@@ -739,7 +739,7 @@ Google hmangin i lo zawng hrih thei ang.
 'prefs-personal' => 'Hmangtu chanchin tawi',
 'prefs-rc' => 'Tihdanglam thar',
 'prefs-watchlist' => 'Ralvèn',
-'prefs-watchlist-days' => 'Ralvèna ni tihlang tùr chin:',
+'prefs-watchlist-days' => 'Ralvèna ni tihlan tùr chin:',
 'prefs-watchlist-days-max' => 'A rei berah ni $1 {{PLURAL:$1||}}',
 'prefs-watchlist-edits' => 'Ralvèn pawhseia tihdanglam zât tihlan tùr tam ber:',
 'prefs-watchlist-edits-max' => 'A tam ber: 1000',

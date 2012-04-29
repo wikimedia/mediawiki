@@ -37,11 +37,6 @@ class EditPage {
 	const AS_HOOK_ERROR                = 210;
 
 	/**
-	 * Status: The filter function set in $wgFilterCallback returned true (= block it)
-	 */
-	const AS_FILTERING                 = 211;
-
-	/**
 	 * Status: A hook function returned an error
 	 */
 	const AS_HOOK_ERROR_EXPECTED       = 212;
@@ -868,7 +863,7 @@ class EditPage {
 
 							# If we just undid one rev, use an autosummary
 							$firstrev = $oldrev->getNext();
-							if ( $firstrev->getId() == $undo ) {
+							if ( $firstrev && $firstrev->getId() == $undo ) {
 								$undoSummary = wfMsgForContent( 'undo-summary', $undo, $undorev->getUserText() );
 								if ( $this->summary === '' ) {
 									$this->summary = $undoSummary;
@@ -1090,7 +1085,6 @@ class EditPage {
 				return true;
 
 			case self::AS_HOOK_ERROR:
-			case self::AS_FILTERING:
 				return false;
 
 			case self::AS_PARSE_ERROR:
@@ -1167,8 +1161,7 @@ class EditPage {
 	 * AS_CONTENT_TOO_BIG and AS_BLOCKED_PAGE_FOR_USER. All that stuff needs to be cleaned up some time.
 	 */
 	function internalAttemptSave( &$result, $bot = false ) {
-		global $wgFilterCallback, $wgUser, $wgRequest, $wgParser;
-		global $wgMaxArticleSize;
+		global $wgUser, $wgRequest, $wgParser, $wgMaxArticleSize;
 
 		$status = Status::newGood();
 
@@ -1210,13 +1203,6 @@ class EditPage {
 			wfDebugLog( 'SpamRegex', "$ip spam regex hit [[$pdbk]]: \"$match\"" );
 			$status->fatal( 'spamprotectionmatch', $match );
 			$status->value = self::AS_SPAM_ERROR;
-			wfProfileOut( __METHOD__ . '-checks' );
-			wfProfileOut( __METHOD__ );
-			return $status;
-		}
-		if ( $wgFilterCallback && is_callable( $wgFilterCallback ) && $wgFilterCallback( $this->mTitle, $this->textbox1, $this->section, $this->hookError, $this->summary ) ) {
-			# Error messages or other handling should be performed by the filter function
-			$status->setResult( false, self::AS_FILTERING );
 			wfProfileOut( __METHOD__ . '-checks' );
 			wfProfileOut( __METHOD__ );
 			return $status;
@@ -2073,7 +2059,7 @@ class EditPage {
 
 		# Optional notices on a per-namespace and per-page basis
 		$editnotice_ns = 'editnotice-' . $this->mTitle->getNamespace();
-		$editnotice_ns_message = wfMessage( $editnotice_ns )->inContentLanguage();
+		$editnotice_ns_message = wfMessage( $editnotice_ns );
 		if ( $editnotice_ns_message->exists() ) {
 			$wgOut->addWikiText( $editnotice_ns_message->plain() );
 		}
@@ -2082,7 +2068,7 @@ class EditPage {
 			$editnotice_base = $editnotice_ns;
 			while ( count( $parts ) > 0 ) {
 				$editnotice_base .= '-' . array_shift( $parts );
-				$editnotice_base_msg = wfMessage( $editnotice_base )->inContentLanguage();
+				$editnotice_base_msg = wfMessage( $editnotice_base );
 				if ( $editnotice_base_msg->exists() ) {
 					$wgOut->addWikiText( $editnotice_base_msg->plain() );
 				}
@@ -2090,7 +2076,7 @@ class EditPage {
 		} else {
 			# Even if there are no subpages in namespace, we still don't want / in MW ns.
 			$editnoticeText = $editnotice_ns . '-' . str_replace( '/', '-', $this->mTitle->getDBkey() );
-			$editnoticeMsg = wfMessage( $editnoticeText )->inContentLanguage();
+			$editnoticeMsg = wfMessage( $editnoticeText );
 			if ( $editnoticeMsg->exists() ) {
 				$wgOut->addWikiText( $editnoticeMsg->plain() );
 			}

@@ -958,10 +958,18 @@ class PPFrame_DOM implements PPFrame {
 		}
 
 		if ( ++$this->parser->mPPNodeCount > $this->parser->mOptions->getMaxPPNodeCount() ) {
+			$this->parser->limitationWarn( 'node-count-exceeded',
+				$this->parser->mPPNodeCount,
+				$this->parser->mOptions->getMaxPPNodeCount()
+			);
 			return '<span class="error">Node-count limit exceeded</span>';
 		}
 
 		if ( $expansionDepth > $this->parser->mOptions->getMaxPPExpandDepth() ) {
+			$this->parser->limitationWarn( 'expansion-depth-exceeded',
+				$expansionDepth,
+				$this->parser->mOptions->getMaxPPExpandDepth()
+			);
 			return '<span class="error">Expansion depth limit exceeded</span>';
 		}
 		wfProfileIn( __METHOD__ );

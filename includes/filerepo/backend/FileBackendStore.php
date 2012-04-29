@@ -19,17 +19,30 @@
  * @since 1.19
  */
 abstract class FileBackendStore extends FileBackend {
+	/** @var BagOStuff */
+	protected $memCache;
+
 	/** @var Array Map of paths to small (RAM/disk) cache items */
 	protected $cache = array(); // (storage path => key => value)
-	protected $maxCacheSize = 100; // integer; max paths with entries
+	protected $maxCacheSize = 300; // integer; max paths with entries
 	/** @var Array Map of paths to large (RAM/disk) cache items */
 	protected $expensiveCache = array(); // (storage path => key => value)
-	protected $maxExpensiveCacheSize = 10; // integer; max paths with entries
+	protected $maxExpensiveCacheSize = 5; // integer; max paths with entries
 
 	/** @var Array Map of container names to sharding settings */
 	protected $shardViaHashLevels = array(); // (container name => config array)
 
 	protected $maxFileSize = 4294967296; // integer bytes (4GiB)
+
+	/**
+	 * @see FileBackend::__construct()
+	 *
+	 * @param $config Array
+	 */
+	public function __construct( array $config ) {
+		parent::__construct( $config );
+		$this->memCache = new EmptyBagOStuff(); // disabled by default
+	}
 
 	/**
 	 * Get the maximum allowable file size given backend
@@ -73,6 +86,7 @@ abstract class FileBackendStore extends FileBackend {
 		} else {
 			$status = $this->doCreateInternal( $params );
 			$this->clearCache( array( $params['dst'] ) );
+			$this->deleteFileCache( $params['dst'] ); // persistent cache
 		}
 		wfProfileOut( __METHOD__ . '-' . $this->name );
 		wfProfileOut( __METHOD__ );
@@ -104,6 +118,7 @@ abstract class FileBackendStore extends FileBackend {
 		} else {
 			$status = $this->doStoreInternal( $params );
 			$this->clearCache( array( $params['dst'] ) );
+			$this->deleteFileCache( $params['dst'] ); // persistent cache
 		}
 		wfProfileOut( __METHOD__ . '-' . $this->name );
 		wfProfileOut( __METHOD__ );
@@ -132,6 +147,7 @@ abstract class FileBackendStore extends FileBackend {
 		wfProfileIn( __METHOD__ . '-' . $this->name );
 		$status = $this->doCopyInternal( $params );
 		$this->clearCache( array( $params['dst'] ) );
+		$this->deleteFileCache( $params['dst'] ); // persistent cache
 		wfProfileOut( __METHOD__ . '-' . $this->name );
 		wfProfileOut( __METHOD__ );
 		return $status;
@@ -158,6 +174,7 @@ abstract class FileBackendStore extends FileBackend {
 		wfProfileIn( __METHOD__ . '-' . $this->name );
 		$status = $this->doDeleteInternal( $params );
 		$this->clearCache( array( $params['src'] ) );
+		$this->deleteFileCache( $params['src'] ); // persistent cache
 		wfProfileOut( __METHOD__ . '-' . $this->name );
 		wfProfileOut( __METHOD__ );
 		return $status;
@@ -185,6 +202,8 @@ abstract class FileBackendStore extends FileBackend {
 		wfProfileIn( __METHOD__ . '-' . $this->name );
 		$status = $this->doMoveInternal( $params );
 		$this->clearCache( array( $params['src'], $params['dst'] ) );
+		$this->deleteFileCache( $params['src'] ); // persistent cache
+		$this->deleteFileCache( $params['dst'] ); // persistent cache
 		wfProfileOut( __METHOD__ . '-' . $this->name );
 		wfProfileOut( __METHOD__ );
 		return $status;
@@ -371,6 +390,17 @@ abstract class FileBackendStore extends FileBackend {
 		wfProfileIn( __METHOD__ . '-' . $this->name );
 		$status = Status::newGood();
 
+		// Recursive: first delete all empty subdirs recursively
+		if ( !empty( $params['recursive'] ) && !$this->directoriesAreVirtual() ) {
+			$subDirsRel = $this->getTopDirectoryList( array( 'dir' => $params['dir'] ) );
+			if ( $subDirsRel !== null ) { // no errors
+				foreach ( $subDirsRel as $subDirRel ) {
+					$subDir = $params['dir'] . "/{$subDirRel}"; // full path
+					$status->merge( $this->doClean( array( 'dir' => $subDir ) + $params ) );
+				}
+			}
+		}
+
 		list( $fullCont, $dir, $shard ) = $this->resolveStoragePath( $params['dir'] );
 		if ( $dir === null ) {
 			$status->fatal( 'backend-fail-invalidpath', $params['dir'] );
@@ -390,11 +420,13 @@ abstract class FileBackendStore extends FileBackend {
 
 		if ( $shard !== null ) { // confined to a single container/shard
 			$status->merge( $this->doCleanInternal( $fullCont, $dir, $params ) );
+			$this->deleteContainerCache( $fullCont ); // purge cache
 		} else { // directory is on several shards
 			wfDebug( __METHOD__ . ": iterating over all container shards.\n" );
 			list( $b, $shortCont, $r ) = self::splitStoragePath( $params['dir'] );
 			foreach ( $this->getContainerSuffixes( $shortCont ) as $suffix ) {
 				$status->merge( $this->doCleanInternal( "{$fullCont}{$suffix}", $dir, $params ) );
+				$this->deleteContainerCache( "{$fullCont}{$suffix}" ); // purge cache
 			}
 		}
 
@@ -463,7 +495,10 @@ abstract class FileBackendStore extends FileBackend {
 			wfProfileOut( __METHOD__ );
 			return false; // invalid storage path
 		}
-		$latest = !empty( $params['latest'] );
+		$latest = !empty( $params['latest'] ); // use latest data?
+		if ( !isset( $this->cache[$path]['stat'] ) ) {
+			$this->primeFileCache( array( $path ) ); // check persistent cache
+		}
 		if ( isset( $this->cache[$path]['stat'] ) ) {
 			// If we want the latest data, check that this cached
 			// value was in fact fetched with the latest available data.
@@ -480,9 +515,10 @@ abstract class FileBackendStore extends FileBackend {
 		wfProfileOut( __METHOD__ . '-miss-' . $this->name );
 		wfProfileOut( __METHOD__ . '-miss' );
 		if ( is_array( $stat ) ) { // don't cache negatives
+			$stat['latest'] = $latest;
 			$this->trimCache(); // limit memory
 			$this->cache[$path]['stat'] = $stat;
-			$this->cache[$path]['stat']['latest'] = $latest;
+			$this->setFileCache( $path, $stat ); // update persistent cache
 		}
 		wfProfileOut( __METHOD__ . '-' . $this->name );
 		wfProfileOut( __METHOD__ );
@@ -646,8 +682,79 @@ abstract class FileBackendStore extends FileBackend {
 	}
 
 	/**
-	 * @copydoc FileBackend::getFileList()
-	 * @return Array|null|Traversable
+	 * @see FileBackend::directoryExists()
+	 * @return bool|null
+	 */
+	final public function directoryExists( array $params ) {
+		list( $fullCont, $dir, $shard ) = $this->resolveStoragePath( $params['dir'] );
+		if ( $dir === null ) {
+			return false; // invalid storage path
+		}
+		if ( $shard !== null ) { // confined to a single container/shard
+			return $this->doDirectoryExists( $fullCont, $dir, $params );
+		} else { // directory is on several shards
+			wfDebug( __METHOD__ . ": iterating over all container shards.\n" );
+			list( $b, $shortCont, $r ) = self::splitStoragePath( $params['dir'] );
+			$res = false; // response
+			foreach ( $this->getContainerSuffixes( $shortCont ) as $suffix ) {
+				$exists = $this->doDirectoryExists( "{$fullCont}{$suffix}", $dir, $params );
+				if ( $exists ) {
+					$res = true;
+					break; // found one!
+				} elseif ( $exists === null ) { // error?
+					$res = null; // if we don't find anything, it is indeterminate
+				}
+			}
+			return $res;
+		}
+	}
+
+	/**
+	 * @see FileBackendStore::directoryExists()
+	 *
+	 * @param $container string Resolved container name
+	 * @param $dir string Resolved path relative to container
+	 * @param $params Array
+	 * @return bool|null
+	 */
+	abstract protected function doDirectoryExists( $container, $dir, array $params );
+
+	/**
+	 * @see FileBackend::getDirectoryList()
+	 * @return Traversable|Array|null Returns null on failure
+	 */
+	final public function getDirectoryList( array $params ) {
+		list( $fullCont, $dir, $shard ) = $this->resolveStoragePath( $params['dir'] );
+		if ( $dir === null ) { // invalid storage path
+			return null;
+		}
+		if ( $shard !== null ) {
+			// File listing is confined to a single container/shard
+			return $this->getDirectoryListInternal( $fullCont, $dir, $params );
+		} else {
+			wfDebug( __METHOD__ . ": iterating over all container shards.\n" );
+			// File listing spans multiple containers/shards
+			list( $b, $shortCont, $r ) = self::splitStoragePath( $params['dir'] );
+			return new FileBackendStoreShardDirIterator( $this,
+				$fullCont, $dir, $this->getContainerSuffixes( $shortCont ), $params );
+		}
+	}
+
+	/**
+	 * Do not call this function from places outside FileBackend
+	 *
+	 * @see FileBackendStore::getDirectoryList()
+	 *
+	 * @param $container string Resolved container name
+	 * @param $dir string Resolved path relative to container
+	 * @param $params Array
+	 * @return Traversable|Array|null Returns null on failure
+	 */
+	abstract public function getDirectoryListInternal( $container, $dir, array $params );
+
+	/**
+	 * @see FileBackend::getFileList()
+	 * @return Traversable|Array|null Returns null on failure
 	 */
 	final public function getFileList( array $params ) {
 		list( $fullCont, $dir, $shard ) = $this->resolveStoragePath( $params['dir'] );
@@ -661,7 +768,7 @@ abstract class FileBackendStore extends FileBackend {
 			wfDebug( __METHOD__ . ": iterating over all container shards.\n" );
 			// File listing spans multiple containers/shards
 			list( $b, $shortCont, $r ) = self::splitStoragePath( $params['dir'] );
-			return new FileBackendStoreShardListIterator( $this,
+			return new FileBackendStoreShardFileIterator( $this,
 				$fullCont, $dir, $this->getContainerSuffixes( $shortCont ), $params );
 		}
 	}
@@ -674,7 +781,7 @@ abstract class FileBackendStore extends FileBackend {
 	 * @param $container string Resolved container name
 	 * @param $dir string Resolved path relative to container
 	 * @param $params Array
-	 * @return Traversable|Array|null
+	 * @return Traversable|Array|null Returns null on failure
 	 */
 	abstract public function getFileListInternal( $container, $dir, array $params );
 
@@ -775,8 +882,12 @@ abstract class FileBackendStore extends FileBackend {
 			}
 		}
 
-		// Clear any cache entries (after locks acquired)
+		// Clear any file cache entries (after locks acquired)
 		$this->clearCache();
+
+		// Load from the persistent file and container caches
+		$this->primeFileCache( $performOps );
+		$this->primeContainerCache( $performOps );
 
 		// Actually attempt the operation batch...
 		$subStatus = FileOp::attemptBatch( $performOps, $opts, $this->fileJournal );
@@ -821,9 +932,19 @@ abstract class FileBackendStore extends FileBackend {
 	protected function doClearCache( array $paths = null ) {}
 
 	/**
+	 * Is this a key/value store where directories are just virtual?
+	 * Virtual directories exists in so much as files exists that are
+	 * prefixed with the directory path followed by a forward slash.
+	 *
+	 * @return bool
+	 */
+	abstract protected function directoriesAreVirtual();
+
+	/**
 	 * Move a cache entry to the top (such as when accessed)
 	 *
 	 * @param $path string Storage path
+	 * @return void
 	 */
 	protected function pingCache( $path ) {
 		if ( isset( $this->cache[$path] ) ) {
@@ -849,6 +970,7 @@ abstract class FileBackendStore extends FileBackend {
 	 * Move a cache entry to the top (such as when accessed)
 	 *
 	 * @param $path string Storage path
+	 * @return void
 	 */
 	protected function pingExpensiveCache( $path ) {
 		if ( isset( $this->expensiveCache[$path] ) ) {
@@ -978,6 +1100,19 @@ abstract class FileBackendStore extends FileBackend {
 	}
 
 	/**
+	 * Check if a storage path maps to a single shard.
+	 * Container dirs like "a", where the container shards on "x/xy",
+	 * can reside on several shards. Such paths are tricky to handle.
+	 *
+	 * @param $storagePath string Storage path
+	 * @return bool
+	 */
+	final public function isSingleShardPathInternal( $storagePath ) {
+		list( $c, $r, $shard ) = $this->resolveStoragePath( $storagePath );
+		return ( $shard !== null );
+	}
+
+	/**
 	 * Get the sharding config for a container.
 	 * If greater than 0, then all file storage paths within
 	 * the container are required to be hashed accordingly.
@@ -1056,28 +1191,197 @@ abstract class FileBackendStore extends FileBackend {
 	protected function resolveContainerPath( $container, $relStoragePath ) {
 		return $relStoragePath;
 	}
+
+	/**
+	 * Get the cache key for a container
+	 *
+	 * @param $container Resolved container name
+	 * @return string
+	 */
+	private function containerCacheKey( $container ) {
+		return wfMemcKey( 'backend', $this->getName(), 'container', $container );
+	}
+
+	/**
+	 * Set the cached info for a container
+	 *
+	 * @param $container Resolved container name
+	 * @param $val mixed Information to cache
+	 * @return void
+	 */
+	final protected function setContainerCache( $container, $val ) {
+		$this->memCache->set( $this->containerCacheKey( $container ), $val, 14*86400 );
+	}
+
+	/**
+	 * Delete the cached info for a container
+	 *
+	 * @param $container Resolved container name
+	 * @return void
+	 */
+	final protected function deleteContainerCache( $container ) {
+		for ( $attempts=1; $attempts <= 3; $attempts++ ) {
+			if ( $this->memCache->delete( $this->containerCacheKey( $container ) ) ) {
+				return; // done!
+			}
+		}
+		trigger_error( "Unable to delete stat cache for container $container." );
+	}
+
+	/**
+	 * Do a batch lookup from cache for container stats for all containers
+	 * used in a list of container names, storage paths, or FileOp objects.
+	 *
+	 * @param $items Array
+	 * @return void
+	 */
+	final protected function primeContainerCache( array $items ) {
+		wfProfileIn( __METHOD__ );
+		wfProfileIn( __METHOD__ . '-' . $this->name );
+		$paths = array(); // list of storage paths
+		$contNames = array(); // (cache key => resolved container name)
+		// Get all the paths/containers from the items...
+		foreach ( $items as $item ) {
+			if ( $item instanceof FileOp ) {
+				$paths = array_merge( $paths, $item->storagePathsRead() );
+				$paths = array_merge( $paths, $item->storagePathsChanged() );
+			} elseif ( self::isStoragePath( $item ) ) {
+				$paths[] = $item;
+			} elseif ( is_string( $item ) ) { // full container name
+				$contNames[$this->containerCacheKey( $item )] = $item;
+			}
+		}
+		// Get all the corresponding cache keys for paths...
+		foreach ( $paths as $path ) {
+			list( $fullCont, $r, $s ) = $this->resolveStoragePath( $path );
+			if ( $fullCont !== null ) { // valid path for this backend
+				$contNames[$this->containerCacheKey( $fullCont )] = $fullCont;
+			}
+		}
+
+		$contInfo = array(); // (resolved container name => cache value)
+		// Get all cache entries for these container cache keys...
+		$values = $this->memCache->getBatch( array_keys( $contNames ) );
+		foreach ( $values as $cacheKey => $val ) {
+			$contInfo[$contNames[$cacheKey]] = $val;
+		}
+
+		// Populate the container process cache for the backend...
+		$this->doPrimeContainerCache( array_filter( $contInfo, 'is_array' ) );
+		wfProfileOut( __METHOD__ . '-' . $this->name );
+		wfProfileOut( __METHOD__ );
+	}
+
+	/**
+	 * Fill the backend-specific process cache given an array of
+	 * resolved container names and their corresponding cached info.
+	 * Only containers that actually exist should appear in the map.
+	 *
+	 * @param $containerInfo Array Map of resolved container names to cached info
+	 * @return void
+	 */
+	protected function doPrimeContainerCache( array $containerInfo ) {}
+
+	/**
+	 * Get the cache key for a file path
+	 *
+	 * @param $path Storage path
+	 * @return string
+	 */
+	private function fileCacheKey( $path ) {
+		return wfMemcKey( 'backend', $this->getName(), 'file', sha1( $path ) );
+	}
+
+	/**
+	 * Set the cached stat info for a file path
+	 *
+	 * @param $path Storage path
+	 * @param $val mixed Information to cache
+	 * @return void
+	 */
+	final protected function setFileCache( $path, $val ) {
+		$this->memCache->set( $this->fileCacheKey( $path ), $val, 7*86400 );
+	}
+
+	/**
+	 * Delete the cached stat info for a file path
+	 *
+	 * @param $path Storage path
+	 * @return void
+	 */
+	final protected function deleteFileCache( $path ) {
+		for ( $attempts=1; $attempts <= 3; $attempts++ ) {
+			if ( $this->memCache->delete( $this->fileCacheKey( $path ) ) ) {
+				return; // done!
+			}
+		}
+		trigger_error( "Unable to delete stat cache for file $path." );
+	}
+
+	/**
+	 * Do a batch lookup from cache for file stats for all paths
+	 * used in a list of storage paths or FileOp objects.
+	 *
+	 * @param $items Array List of storage paths or FileOps
+	 * @return void
+	 */
+	final protected function primeFileCache( array $items ) {
+		wfProfileIn( __METHOD__ );
+		wfProfileIn( __METHOD__ . '-' . $this->name );
+		$paths = array(); // list of storage paths
+		$pathNames = array(); // (cache key => storage path)
+		// Get all the paths/containers from the items...
+		foreach ( $items as $item ) {
+			if ( $item instanceof FileOp ) {
+				$paths = array_merge( $paths, $item->storagePathsRead() );
+				$paths = array_merge( $paths, $item->storagePathsChanged() );
+			} elseif ( self::isStoragePath( $item ) ) {
+				$paths[] = $item;
+			}
+		}
+		// Get all the corresponding cache keys for paths...
+		foreach ( $paths as $path ) {
+			list( $cont, $rel, $s ) = $this->resolveStoragePath( $path );
+			if ( $rel !== null ) { // valid path for this backend
+				$pathNames[$this->fileCacheKey( $path )] = $path;
+			}
+		}
+		// Get all cache entries for these container cache keys...
+		$values = $this->memCache->getBatch( array_keys( $pathNames ) );
+		foreach ( $values as $cacheKey => $val ) {
+			if ( is_array( $val ) ) {
+				$this->trimCache(); // limit memory
+				$this->cache[$pathNames[$cacheKey]]['stat'] = $val;
+			}
+		}
+		wfProfileOut( __METHOD__ . '-' . $this->name );
+		wfProfileOut( __METHOD__ );
+	}
 }
 
 /**
- * FileBackendStore helper function to handle file listings that span container shards.
+ * FileBackendStore helper function to handle listings that span container shards.
  * Do not use this class from places outside of FileBackendStore.
  *
  * @ingroup FileBackend
  */
-class FileBackendStoreShardListIterator implements Iterator {
-	/* @var FileBackendStore */
+abstract class FileBackendStoreShardListIterator implements Iterator {
+	/** @var FileBackendStore */
 	protected $backend;
-	/* @var Array */
+	/** @var Array */
 	protected $params;
-	/* @var Array */
+	/** @var Array */
 	protected $shardSuffixes;
-	protected $container; // string
-	protected $directory; // string
+	protected $container; // string; full container name
+	protected $directory; // string; resolved relative path
 
-	/* @var Traversable */
+	/** @var Traversable */
 	protected $iter;
 	protected $curShard = 0; // integer
 	protected $pos = 0; // integer
+
+	/** @var Array */
+	protected $multiShardPaths = array(); // (rel path => 1)
 
 	/**
 	 * @param $backend FileBackendStore
@@ -1127,6 +1431,8 @@ class FileBackendStoreShardListIterator implements Iterator {
 		} else {
 			$this->iter->next();
 		}
+		// Filter out items that we already listed
+		$this->filterViaNext();
 		// Find the next non-empty shard if no elements are left
 		$this->nextShardIteratorIfNotValid();
 	}
@@ -1139,6 +1445,8 @@ class FileBackendStoreShardListIterator implements Iterator {
 		$this->pos = 0;
 		$this->curShard = 0;
 		$this->setIteratorFromCurrentShard();
+		// Filter out items that we already listed
+		$this->filterViaNext();
 		// Find the next non-empty shard if this one has no elements
 		$this->nextShardIteratorIfNotValid();
 	}
@@ -1148,12 +1456,31 @@ class FileBackendStoreShardListIterator implements Iterator {
 	 * @return bool
 	 */
 	public function valid() {
-		if ( $this->iter == null ) {
+		if ( $this->iter === null ) {
 			return false; // some failure?
 		} elseif ( is_array( $this->iter ) ) {
 			return ( current( $this->iter ) !== false ); // no paths can have this value
 		} else {
 			return $this->iter->valid();
+		}
+	}
+
+	/**
+	 * Filter out duplicate items by advancing to the next ones
+	 */
+	protected function filterViaNext() {
+		while ( $this->iter->valid() ) {
+			$rel = $this->iter->current(); // path relative to given directory
+			$path = $this->params['dir'] . "/{$rel}"; // full storage path
+			if ( !$this->backend->isSingleShardPathInternal( $path ) ) {
+				// Don't keep listing paths that are on multiple shards
+				if ( isset( $this->multiShardPaths[$rel] ) ) {
+					$this->iter->next(); // we already listed this path
+				} else {
+					$this->multiShardPaths[$rel] = 1;
+					break;
+				}
+			}
 		}
 	}
 
@@ -1176,7 +1503,35 @@ class FileBackendStoreShardListIterator implements Iterator {
 	 */
 	protected function setIteratorFromCurrentShard() {
 		$suffix = $this->shardSuffixes[$this->curShard];
-		$this->iter = $this->backend->getFileListInternal(
+		$this->iter = $this->listFromShard(
 			"{$this->container}{$suffix}", $this->directory, $this->params );
+	}
+
+	/**
+	 * Get the list for a given container shard
+	 *
+	 * @param $container string Resolved container name
+	 * @param $dir string Resolved path relative to container
+	 * @param $params Array
+	 * @return Traversable|Array|null
+	 */
+	abstract protected function listFromShard( $container, $dir, array $params );
+}
+
+/**
+ * Iterator for listing directories
+ */
+class FileBackendStoreShardDirIterator extends FileBackendStoreShardListIterator {
+	protected function listFromShard( $container, $dir, array $params ) {
+		return $this->backend->getDirectoryListInternal( $container, $dir, $params );
+	}
+}
+
+/**
+ * Iterator for listing regular files
+ */
+class FileBackendStoreShardFileIterator extends FileBackendStoreShardListIterator {
+	protected function listFromShard( $container, $dir, array $params ) {
+		return $this->backend->getFileListInternal( $container, $dir, $params );
 	}
 }

@@ -1,7 +1,7 @@
-/*
- * jQuery UI Sortable 1.8.18
+/*!
+ * jQuery UI Sortable 1.8.19
  *
- * Copyright 2011, AUTHORS.txt (http://jqueryui.com/about)
+ * Copyright 2012, AUTHORS.txt (http://jqueryui.com/about)
  * Dual licensed under the MIT or GPL Version 2 licenses.
  * http://jquery.org/license
  *
@@ -661,7 +661,7 @@ $.widget("ui.sortable", $.ui.mouse, {
 
 					var el = $(document.createElement(self.currentItem[0].nodeName))
 						.addClass(className || self.currentItem[0].className+" ui-sortable-placeholder")
-						.removeClass("ui-sortable-helper")[0];
+						.removeClass("ui-sortable-helper").html("&nbsp;")[0];
 
 					if(!className)
 						el.style.visibility = "hidden";
@@ -1075,7 +1075,7 @@ $.widget("ui.sortable", $.ui.mouse, {
 });
 
 $.extend($.ui.sortable, {
-	version: "1.8.18"
+	version: "@VERSION"
 });
 
 })(jQuery);

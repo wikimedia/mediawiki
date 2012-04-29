@@ -979,6 +979,7 @@ Paginile .css și .js specifice utilizatorilor au titluri care încep cu literă
 'note' => "'''Notă:'''",
 'previewnote' => "'''Țineți cont că aceasta este doar o previzualizare.'''
 Modificările dumneavoastră nu au fost încă salvate!",
+'continue-editing' => 'Continuare editare',
 'previewconflict' => 'Această pre-vizualizare reflectă textul din caseta de sus, respectiv felul în care va arăta articolul dacă alegeți să-l salvați acum.',
 'session_fail_preview' => "'''Ne pare rău! Nu am putut procesa modificarea dumneavoastră din cauza pierderii datelor sesiunii.
 Vă rugăm să încercați din nou.
@@ -993,7 +994,7 @@ Modificarea a fost respinsă pentru a preveni deformarea textului paginii.
 Acest fapt se poate întâmpla atunci când folosești un serviciu proxy anonim.'''",
 'edit_form_incomplete' => "'''Unele părți ale formularului de modificare nu au ajuns la server; verificați dacă modificările dumneavoastră sunt intacte și reîncercați.'''",
 'editing' => 'modificare $1',
-'creating' => 'Se creează $1',
+'creating' => 'Crearea paginii $1',
 'editingsection' => 'modificare $1 (secțiune)',
 'editingcomment' => 'Modificare $1 (secțiune nouă)',
 'editconflict' => 'Conflict de modificare: $1',

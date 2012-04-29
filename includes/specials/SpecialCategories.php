@@ -59,16 +59,12 @@ class SpecialCategories extends SpecialPage {
  * @ingroup SpecialPage Pager
  */
 class CategoryPager extends AlphabeticPager {
-	private $conds = array( 'cat_pages > 0' );
-
 	function __construct( IContextSource $context, $from ) {
 		parent::__construct( $context );
 		$from = str_replace( ' ', '_', $from );
 		if( $from !== '' ) {
 			$from = Title::capitalize( $from, NS_CATEGORY );
-			$dbr = wfGetDB( DB_SLAVE );
-			$this->conds[] = 'cat_title >= ' . $dbr->addQuotes( $from );
-			$this->setOffset( '' );
+			$this->mOffset = $from;
 		}
 	}
 
@@ -76,7 +72,7 @@ class CategoryPager extends AlphabeticPager {
 		return array(
 			'tables' => array( 'category' ),
 			'fields' => array( 'cat_title','cat_pages' ),
-			'conds' => $this->conds,
+			'conds' => array( 'cat_pages > 0' ),
 			'options' => array( 'USE INDEX' => 'cat_title' ),
 		);
 	}

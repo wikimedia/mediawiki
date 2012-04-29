@@ -1022,6 +1022,58 @@ class FileBackendTest extends MediaWikiTestCase {
 		}
 	}
 
+	public function testRecursiveClean() {
+		$this->backend = $this->singleBackend;
+		$this->doTestRecursiveClean();
+		$this->tearDownFiles();
+
+		$this->backend = $this->multiBackend;
+		$this->doTestRecursiveClean();
+		$this->tearDownFiles();
+	}
+
+	function doTestRecursiveClean() {
+		$backendName = $this->backendClass();
+
+		$base = $this->baseStorePath();
+		$dirs = array(
+			"$base/unittest-cont1/a",
+			"$base/unittest-cont1/a/b",
+			"$base/unittest-cont1/a/b/c",
+			"$base/unittest-cont1/a/b/c/d0",
+			"$base/unittest-cont1/a/b/c/d1",
+			"$base/unittest-cont1/a/b/c/d2",
+			"$base/unittest-cont1/a/b/c/d0/1",
+			"$base/unittest-cont1/a/b/c/d0/2",
+			"$base/unittest-cont1/a/b/c/d1/3",
+			"$base/unittest-cont1/a/b/c/d1/4",
+			"$base/unittest-cont1/a/b/c/d2/5",
+			"$base/unittest-cont1/a/b/c/d2/6"
+		);
+		foreach ( $dirs as $dir ) {
+			$status = $this->prepare( array( 'dir' => $dir ) );
+			$this->assertEquals( array(), $status->errors,
+				"Preparing dir $dir succeeded without warnings ($backendName)." );
+		}
+
+		if ( $this->backend instanceof FSFileBackend ) {
+			foreach ( $dirs as $dir ) {
+				$this->assertEquals( true, $this->backend->directoryExists( array( 'dir' => $dir ) ),
+					"Dir $dir exists ($backendName)." );
+			}
+		}
+
+		$status = $this->backend->clean(
+			array( 'dir' => "$base/unittest-cont1", 'recursive' => 1 ) );
+		$this->assertEquals( array(), $status->errors,
+			"Recursive cleaning of dir $dir succeeded without warnings ($backendName)." );
+
+		foreach ( $dirs as $dir ) {
+			$this->assertEquals( false, $this->backend->directoryExists( array( 'dir' => $dir ) ),
+				"Dir $dir no longer exists ($backendName)." );
+		}
+	}
+
 	// @TODO: testSecure
 
 	public function testDoOperations() {
@@ -1307,11 +1359,207 @@ class FileBackendTest extends MediaWikiTestCase {
 
 		$this->assertEquals( $expected, $list, "Correct file listing ($backendName), second iteration." );
 
+		// Expected listing (top files only)
+		$expected = array(
+			"test1.txt",
+			"test2.txt",
+			"test3.txt",
+			"test4.txt",
+			"test5.txt"
+		);
+		sort( $expected );
+
+		// Actual listing (top files only)
+		$list = array();
+		$iter = $this->backend->getTopFileList( array( 'dir' => "$base/unittest-cont1/subdir2/subdir" ) );
+		foreach ( $iter as $file ) {
+			$list[] = $file;
+		}
+		sort( $list );
+
+		$this->assertEquals( $expected, $list, "Correct top file listing ($backendName)." );
+
 		foreach ( $files as $file ) { // clean up
 			$this->backend->doOperation( array( 'op' => 'delete', 'src' => $file ) );
 		}
 
 		$iter = $this->backend->getFileList( array( 'dir' => "$base/unittest-cont1/not/exists" ) );
+		foreach ( $iter as $iter ) {} // no errors
+	}
+
+	public function testGetDirectoryList() {
+		$this->backend = $this->singleBackend;
+		$this->tearDownFiles();
+		$this->doTestGetDirectoryList();
+		$this->tearDownFiles();
+
+		$this->backend = $this->multiBackend;
+		$this->tearDownFiles();
+		$this->doTestGetDirectoryList();
+		$this->tearDownFiles();
+	}
+
+	private function doTestGetDirectoryList() {
+		$backendName = $this->backendClass();
+
+		$base = $this->baseStorePath();
+		$files = array(
+			"$base/unittest-cont1/test1.txt",
+			"$base/unittest-cont1/test2.txt",
+			"$base/unittest-cont1/test3.txt",
+			"$base/unittest-cont1/subdir1/test1.txt",
+			"$base/unittest-cont1/subdir1/test2.txt",
+			"$base/unittest-cont1/subdir2/test3.txt",
+			"$base/unittest-cont1/subdir2/test4.txt",
+			"$base/unittest-cont1/subdir2/subdir/test1.txt",
+			"$base/unittest-cont1/subdir3/subdir/test2.txt",
+			"$base/unittest-cont1/subdir4/subdir/test3.txt",
+			"$base/unittest-cont1/subdir4/subdir/test4.txt",
+			"$base/unittest-cont1/subdir4/subdir/test5.txt",
+			"$base/unittest-cont1/subdir4/subdir/sub/test0.txt",
+			"$base/unittest-cont1/subdir4/subdir/sub/120-px-file.txt",
+		);
+
+		// Add the files
+		$ops = array();
+		foreach ( $files as $file ) {
+			$this->prepare( array( 'dir' => dirname( $file ) ) );
+			$ops[] = array( 'op' => 'create', 'content' => 'xxy', 'dst' => $file );
+		}
+		$status = $this->backend->doOperations( $ops );
+		$this->assertEquals( array(), $status->errors,
+			"Creation of files succeeded ($backendName)." );
+		$this->assertEquals( true, $status->isOK(),
+			"Creation of files succeeded with OK status ($backendName)." );
+
+		// Expected listing
+		$expected = array(
+			"subdir1",
+			"subdir2",
+			"subdir3",
+			"subdir4",
+		);
+		sort( $expected );
+
+		$this->assertEquals( true,
+			$this->backend->directoryExists( array( 'dir' => "$base/unittest-cont1/subdir1" ) ),
+			"Directory exists in ($backendName)." );
+		$this->assertEquals( true,
+			$this->backend->directoryExists( array( 'dir' => "$base/unittest-cont1/subdir2/subdir" ) ),
+			"Directory exists in ($backendName)." );
+		$this->assertEquals( false,
+			$this->backend->directoryExists( array( 'dir' => "$base/unittest-cont1/subdir2/test1.txt" ) ),
+			"Directory does not exists in ($backendName)." );
+
+		// Actual listing (no trailing slash)
+		$list = array();
+		$iter = $this->backend->getTopDirectoryList( array( 'dir' => "$base/unittest-cont1" ) );
+		foreach ( $iter as $file ) {
+			$list[] = $file;
+		}
+		sort( $list );
+
+		$this->assertEquals( $expected, $list, "Correct top dir listing ($backendName)." );
+
+		// Actual listing (with trailing slash)
+		$list = array();
+		$iter = $this->backend->getTopDirectoryList( array( 'dir' => "$base/unittest-cont1/" ) );
+		foreach ( $iter as $file ) {
+			$list[] = $file;
+		}
+		sort( $list );
+
+		$this->assertEquals( $expected, $list, "Correct top dir listing ($backendName)." );
+
+		// Expected listing
+		$expected = array(
+			"subdir",
+		);
+		sort( $expected );
+
+		// Actual listing (no trailing slash)
+		$list = array();
+		$iter = $this->backend->getTopDirectoryList( array( 'dir' => "$base/unittest-cont1/subdir2" ) );
+		foreach ( $iter as $file ) {
+			$list[] = $file;
+		}
+		sort( $list );
+
+		$this->assertEquals( $expected, $list, "Correct top dir listing ($backendName)." );
+
+		// Actual listing (with trailing slash)
+		$list = array();
+		$iter = $this->backend->getTopDirectoryList( array( 'dir' => "$base/unittest-cont1/subdir2/" ) );
+		foreach ( $iter as $file ) {
+			$list[] = $file;
+		}
+		sort( $list );
+
+		$this->assertEquals( $expected, $list, "Correct top dir listing ($backendName)." );
+
+		// Actual listing (using iterator second time)
+		$list = array();
+		foreach ( $iter as $file ) {
+			$list[] = $file;
+		}
+		sort( $list );
+
+		$this->assertEquals( $expected, $list, "Correct top dir listing ($backendName), second iteration." );
+
+		// Expected listing (recursive)
+		$expected = array(
+			"subdir1",
+			"subdir2",
+			"subdir3",
+			"subdir4",
+			"subdir2/subdir",
+			"subdir3/subdir",
+			"subdir4/subdir",
+			"subdir4/subdir/sub",
+		);
+		sort( $expected );
+
+		// Actual listing (recursive)
+		$list = array();
+		$iter = $this->backend->getDirectoryList( array( 'dir' => "$base/unittest-cont1/" ) );
+		foreach ( $iter as $file ) {
+			$list[] = $file;
+		}
+		sort( $list );
+
+		$this->assertEquals( $expected, $list, "Correct dir listing ($backendName)." );
+
+		// Expected listing (recursive)
+		$expected = array(
+			"subdir",
+			"subdir/sub",
+		);
+		sort( $expected );
+
+		// Actual listing (recursive)
+		$list = array();
+		$iter = $this->backend->getDirectoryList( array( 'dir' => "$base/unittest-cont1/subdir4" ) );
+		foreach ( $iter as $file ) {
+			$list[] = $file;
+		}
+		sort( $list );
+
+		$this->assertEquals( $expected, $list, "Correct dir listing ($backendName)." );
+
+		// Actual listing (recursive, second time)
+		$list = array();
+		foreach ( $iter as $file ) {
+			$list[] = $file;
+		}
+		sort( $list );
+
+		$this->assertEquals( $expected, $list, "Correct dir listing ($backendName)." );
+
+		foreach ( $files as $file ) { // clean up
+			$this->backend->doOperation( array( 'op' => 'delete', 'src' => $file ) );
+		}
+
+		$iter = $this->backend->getDirectoryList( array( 'dir' => "$base/unittest-cont1/not/exists" ) );
 		foreach ( $iter as $iter ) {} // no errors
 	}
 

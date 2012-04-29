@@ -24,7 +24,7 @@ class SwiftFileBackend extends FileBackendStore {
 	protected $auth; // Swift authentication handler
 	protected $authTTL; // integer seconds
 	protected $swiftAnonUser; // string; username to handle unauthenticated requests
-	protected $maxContCacheSize = 100; // integer; max containers with entries
+	protected $maxContCacheSize = 300; // integer; max containers with entries
 
 	/** @var CF_Connection */
 	protected $conn; // Swift connection handle
@@ -57,13 +57,15 @@ class SwiftFileBackend extends FileBackendStore {
 		// Optional settings
 		$this->authTTL = isset( $config['swiftAuthTTL'] )
 			? $config['swiftAuthTTL']
-			: 120; // some sane number
+			: 5 * 60; // some sane number
 		$this->swiftAnonUser = isset( $config['swiftAnonUser'] )
 			? $config['swiftAnonUser']
 			: '';
 		$this->shardViaHashLevels = isset( $config['shardViaHashLevels'] )
 			? $config['shardViaHashLevels']
 			: '';
+		// Cache container info to mask latency
+		$this->memCache = wfGetMainCache();
 	}
 
 	/**
@@ -536,11 +538,38 @@ class SwiftFileBackend extends FileBackendStore {
 	}
 
 	/**
+	 * @see FileBackendStore::doDirectoryExists()
+	 * @return bool|null
+	 */
+	protected function doDirectoryExists( $fullCont, $dir, array $params ) {
+		try {
+			$container = $this->getContainer( $fullCont );
+			$prefix = ( $dir == '' ) ? null : "{$dir}/";
+			return ( count( $container->list_objects( 1, null, $prefix ) ) > 0 );
+		} catch ( NoSuchContainerException $e ) {
+			return false;
+		} catch ( InvalidResponseException $e ) {
+		} catch ( Exception $e ) { // some other exception?
+			$this->logException( $e, __METHOD__, array( 'cont' => $fullCont, 'dir' => $dir ) );
+		}
+
+		return null; // error
+	}
+
+	/**
+	 * @see FileBackendStore::getDirectoryListInternal()
+	 * @return SwiftFileBackendDirList
+	 */
+	public function getDirectoryListInternal( $fullCont, $dir, array $params ) {
+		return new SwiftFileBackendDirList( $this, $fullCont, $dir, $params );
+	}
+
+	/**
 	 * @see FileBackendStore::getFileListInternal()
 	 * @return SwiftFileBackendFileList
 	 */
 	public function getFileListInternal( $fullCont, $dir, array $params ) {
-		return new SwiftFileBackendFileList( $this, $fullCont, $dir );
+		return new SwiftFileBackendFileList( $this, $fullCont, $dir, $params );
 	}
 
 	/**
@@ -548,17 +577,96 @@ class SwiftFileBackend extends FileBackendStore {
 	 *
 	 * @param $fullCont string Resolved container name
 	 * @param $dir string Resolved storage directory with no trailing slash
-	 * @param $after string Storage path of file to list items after
+	 * @param $after string|null Storage path of file to list items after
 	 * @param $limit integer Max number of items to list
-	 * @return Array
+	 * @param $params Array Includes flag for 'topOnly'
+	 * @return Array List of relative paths of dirs directly under $dir
 	 */
-	public function getFileListPageInternal( $fullCont, $dir, $after, $limit ) {
+	public function getDirListPageInternal( $fullCont, $dir, &$after, $limit, array $params ) {
+		$dirs = array();
+
+		try {
+			$container = $this->getContainer( $fullCont );
+			$prefix = ( $dir == '' ) ? null : "{$dir}/";
+			// Non-recursive: only list dirs right under $dir
+			if ( !empty( $params['topOnly'] ) ) {
+				$objects = $container->list_objects( $limit, $after, $prefix, null, '/' );
+				foreach ( $objects as $object ) { // files and dirs
+					if ( substr( $object, -1 ) === '/' ) {
+						$dirs[] = $object; // directories end in '/'
+					}
+					$after = $object; // update last item
+				}
+			// Recursive: list all dirs under $dir and its subdirs
+			} else {
+				// Get directory from last item of prior page
+				$lastDir = $this->getParentDir( $after ); // must be first page
+				$objects = $container->list_objects( $limit, $after, $prefix );
+				foreach ( $objects as $object ) { // files
+					$objectDir = $this->getParentDir( $object ); // directory of object
+					if ( $objectDir !== false ) { // file has a parent dir
+						// Swift stores paths in UTF-8, using binary sorting.
+						// See function "create_container_table" in common/db.py.
+						// If a directory is not "greater" than the last one,
+						// then it was already listed by the calling iterator.
+						if ( $objectDir > $lastDir ) {
+							$pDir = $objectDir;
+							do { // add dir and all its parent dirs
+								$dirs[] = "{$pDir}/";
+								$pDir = $this->getParentDir( $pDir );
+							} while ( $pDir !== false // sanity
+								&& $pDir > $lastDir // not done already
+								&& strlen( $pDir ) > strlen( $dir ) // within $dir
+							);
+						}
+						$lastDir = $objectDir;
+					}
+					$after = $object; // update last item
+				}
+			}
+		} catch ( NoSuchContainerException $e ) {
+		} catch ( InvalidResponseException $e ) {
+		} catch ( Exception $e ) { // some other exception?
+			$this->logException( $e, __METHOD__, array( 'cont' => $fullCont, 'dir' => $dir ) );
+		}
+
+		return $dirs;
+	}
+
+	protected function getParentDir( $path ) {
+		return ( strpos( $path, '/' ) !== false ) ? dirname( $path ) : false;
+	}
+
+	/**
+	 * Do not call this function outside of SwiftFileBackendFileList
+	 *
+	 * @param $fullCont string Resolved container name
+	 * @param $dir string Resolved storage directory with no trailing slash
+	 * @param $after string|null Storage path of file to list items after
+	 * @param $limit integer Max number of items to list
+	 * @param $params Array Includes flag for 'topOnly'
+	 * @return Array List of relative paths of files under $dir
+	 */
+	public function getFileListPageInternal( $fullCont, $dir, &$after, $limit, array $params ) {
 		$files = array();
 
 		try {
 			$container = $this->getContainer( $fullCont );
 			$prefix = ( $dir == '' ) ? null : "{$dir}/";
-			$files = $container->list_objects( $limit, $after, $prefix );
+			// Non-recursive: only list files right under $dir
+			if ( !empty( $params['topOnly'] ) ) { // files and dirs
+				$objects = $container->list_objects( $limit, $after, $prefix, null, '/' );
+				foreach ( $objects as $object ) {
+					if ( substr( $object, -1 ) !== '/' ) {
+						$files[] = $object; // directories end in '/'
+					}
+				}
+			// Recursive: list all files under $dir and its subdirs
+			} else { // files
+				$files = $container->list_objects( $limit, $after, $prefix );
+			}
+			$after = end( $files ); // update last item
+			reset( $files ); // reset pointer
 		} catch ( NoSuchContainerException $e ) {
 		} catch ( InvalidResponseException $e ) {
 		} catch ( Exception $e ) { // some other exception?
@@ -665,6 +773,14 @@ class SwiftFileBackend extends FileBackendStore {
 	}
 
 	/**
+	 * @see FileBackendStore::directoriesAreVirtual()
+	 * @return bool
+	 */
+	protected function directoriesAreVirtual() {
+		return true;
+	}
+
+	/**
 	 * Get headers to send to Swift when reading a file based
 	 * on a FileBackend params array, e.g. that of getLocalCopy().
 	 * $params is currently only checked for a 'latest' flag.
@@ -750,23 +866,30 @@ class SwiftFileBackend extends FileBackendStore {
 	 * Use $reCache if the file count or byte count is needed.
 	 *
 	 * @param $container string Container name
-	 * @param $reCache bool Refresh the process cache
+	 * @param $bypassCache bool Bypass all caches and load from Swift
 	 * @return CF_Container
+	 * @throws InvalidResponseException
 	 */
-	protected function getContainer( $container, $reCache = false ) {
+	protected function getContainer( $container, $bypassCache = false ) {
 		$conn = $this->getConnection(); // Swift proxy connection
-		if ( $reCache ) {
-			unset( $this->connContainers[$container] ); // purge cache
+		if ( $bypassCache ) { // purge cache
+			unset( $this->connContainers[$container] );
+		} elseif ( !isset( $this->connContainers[$container] ) ) {
+			$this->primeContainerCache( array( $container ) ); // check persistent cache
 		}
 		if ( !isset( $this->connContainers[$container] ) ) {
 			$contObj = $conn->get_container( $container );
 			// NoSuchContainerException not thrown: container must exist
 			if ( count( $this->connContainers ) >= $this->maxContCacheSize ) { // trim cache?
 				reset( $this->connContainers );
-				$key = key( $this->connContainers );
-				unset( $this->connContainers[$key] );
+				unset( $this->connContainers[key( $this->connContainers )] );
 			}
 			$this->connContainers[$container] = $contObj; // cache it
+			if ( !$bypassCache ) {
+				$this->setContainerCache( $container, // update persistent cache
+					array( 'bytes' => $contObj->bytes_used, 'count' => $contObj->object_count )
+				);
+			}
 		}
 		return $this->connContainers[$container];
 	}
@@ -776,6 +899,7 @@ class SwiftFileBackend extends FileBackendStore {
 	 *
 	 * @param $container string Container name
 	 * @return CF_Container
+	 * @throws InvalidResponseException
 	 */
 	protected function createContainer( $container ) {
 		$conn = $this->getConnection(); // Swift proxy connection
@@ -789,11 +913,34 @@ class SwiftFileBackend extends FileBackendStore {
 	 *
 	 * @param $container string Container name
 	 * @return void
+	 * @throws InvalidResponseException
 	 */
 	protected function deleteContainer( $container ) {
 		$conn = $this->getConnection(); // Swift proxy connection
 		$conn->delete_container( $container );
 		unset( $this->connContainers[$container] ); // purge cache
+	}
+
+	/**
+	 * @see FileBackendStore::doPrimeContainerCache()
+	 * @return void
+	 */
+	protected function doPrimeContainerCache( array $containerInfo ) {
+		try {
+			$conn = $this->getConnection(); // Swift proxy connection
+			foreach ( $containerInfo as $container => $info ) {
+				$this->connContainers[$container] = new CF_Container(
+					$conn->cfs_auth,
+					$conn->cfs_http,
+					$container,
+					$info['count'],
+					$info['bytes']
+				);
+			}
+		} catch ( InvalidResponseException $e ) {
+		} catch ( Exception $e ) { // some other exception?
+			$this->logException( $e, __METHOD__, array() );
+		}
 	}
 
 	/**
@@ -816,22 +963,24 @@ class SwiftFileBackend extends FileBackendStore {
 }
 
 /**
- * SwiftFileBackend helper class to page through object listings.
+ * SwiftFileBackend helper class to page through listings.
  * Swift also has a listing limit of 10,000 objects for sanity.
  * Do not use this class from places outside SwiftFileBackend.
  *
  * @ingroup FileBackend
  */
-class SwiftFileBackendFileList implements Iterator {
+abstract class SwiftFileBackendList implements Iterator {
 	/** @var Array */
 	protected $bufferIter = array();
 	protected $bufferAfter = null; // string; list items *after* this path
 	protected $pos = 0; // integer
+	/** @var Array */
+	protected $params = array();
 
 	/** @var SwiftFileBackend */
 	protected $backend;
-	protected $container; //
-	protected $dir; // string storage directory
+	protected $container; // string; container name
+	protected $dir; // string; storage directory
 	protected $suffixStart; // integer
 
 	const PAGE_SIZE = 5000; // file listing buffer size
@@ -840,8 +989,9 @@ class SwiftFileBackendFileList implements Iterator {
 	 * @param $backend SwiftFileBackend
 	 * @param $fullCont string Resolved container name
 	 * @param $dir string Resolved directory relative to container
+	 * @param $params Array
 	 */
-	public function __construct( SwiftFileBackend $backend, $fullCont, $dir ) {
+	public function __construct( SwiftFileBackend $backend, $fullCont, $dir, array $params ) {
 		$this->backend = $backend;
 		$this->container = $fullCont;
 		$this->dir = $dir;
@@ -853,14 +1003,7 @@ class SwiftFileBackendFileList implements Iterator {
 		} else { // dir within container
 			$this->suffixStart = strlen( $this->dir ) + 1; // size of "path/to/dir/"
 		}
-	}
-
-	/**
-	 * @see Iterator::current()
-	 * @return string|bool String or false
-	 */
-	public function current() {
-		return substr( current( $this->bufferIter ), $this->suffixStart );
+		$this->params = $params;
 	}
 
 	/**
@@ -882,10 +1025,9 @@ class SwiftFileBackendFileList implements Iterator {
 		// Check if there are no files left in this page and
 		// advance to the next page if this page was not empty.
 		if ( !$this->valid() && count( $this->bufferIter ) ) {
-			$this->bufferAfter = end( $this->bufferIter );
-			$this->bufferIter = $this->backend->getFileListPageInternal(
-				$this->container, $this->dir, $this->bufferAfter, self::PAGE_SIZE
-			);
+			$this->bufferIter = $this->pageFromList(
+				$this->container, $this->dir, $this->bufferAfter, self::PAGE_SIZE, $this->params
+			); // updates $this->bufferAfter
 		}
 	}
 
@@ -896,9 +1038,9 @@ class SwiftFileBackendFileList implements Iterator {
 	public function rewind() {
 		$this->pos = 0;
 		$this->bufferAfter = null;
-		$this->bufferIter = $this->backend->getFileListPageInternal(
-			$this->container, $this->dir, $this->bufferAfter, self::PAGE_SIZE
-		);
+		$this->bufferIter = $this->pageFromList(
+			$this->container, $this->dir, $this->bufferAfter, self::PAGE_SIZE, $this->params
+		); // updates $this->bufferAfter
 	}
 
 	/**
@@ -906,6 +1048,64 @@ class SwiftFileBackendFileList implements Iterator {
 	 * @return bool
 	 */
 	public function valid() {
-		return ( current( $this->bufferIter ) !== false ); // no paths can have this value
+		if ( $this->bufferIter === null ) {
+			return false; // some failure?
+		} else {
+			return ( current( $this->bufferIter ) !== false ); // no paths can have this value
+		}
+	}
+
+	/**
+	 * Get the given list portion (page)
+	 *
+	 * @param $container string Resolved container name
+	 * @param $dir string Resolved path relative to container
+	 * @param $after string|null
+	 * @param $limit integer
+	 * @param $params Array
+	 * @return Traversable|Array|null Returns null on failure
+	 */
+	abstract protected function pageFromList( $container, $dir, &$after, $limit, array $params );
+}
+
+/**
+ * Iterator for listing directories
+ */
+class SwiftFileBackendDirList extends SwiftFileBackendList {
+	/**
+	 * @see Iterator::current()
+	 * @return string|bool String (relative path) or false
+	 */
+	public function current() {
+		return substr( current( $this->bufferIter ), $this->suffixStart, -1 );
+	}
+
+	/**
+	 * @see SwiftFileBackendList::pageFromList()
+	 * @return Array|null
+	 */
+	protected function pageFromList( $container, $dir, &$after, $limit, array $params ) {
+		return $this->backend->getDirListPageInternal( $container, $dir, $after, $limit, $params );
+	}
+}
+
+/**
+ * Iterator for listing regular files
+ */
+class SwiftFileBackendFileList extends SwiftFileBackendList {
+	/**
+	 * @see Iterator::current()
+	 * @return string|bool String (relative path) or false
+	 */
+	public function current() {
+		return substr( current( $this->bufferIter ), $this->suffixStart );
+	}
+
+	/**
+	 * @see SwiftFileBackendList::pageFromList()
+	 * @return Array|null
+	 */
+	protected function pageFromList( $container, $dir, &$after, $limit, array $params ) {
+		return $this->backend->getFileListPageInternal( $container, $dir, $after, $limit, $params );
 	}
 }

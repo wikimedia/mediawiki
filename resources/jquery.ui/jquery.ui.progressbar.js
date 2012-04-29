@@ -1,7 +1,7 @@
-/*
- * jQuery UI Progressbar 1.8.18
+/*!
+ * jQuery UI Progressbar 1.8.19
  *
- * Copyright 2011, AUTHORS.txt (http://jqueryui.com/about)
+ * Copyright 2012, AUTHORS.txt (http://jqueryui.com/about)
  * Dual licensed under the MIT or GPL Version 2 licenses.
  * http://jquery.org/license
  *
@@ -103,7 +103,7 @@ $.widget( "ui.progressbar", {
 });
 
 $.extend( $.ui.progressbar, {
-	version: "1.8.18"
+	version: "@VERSION"
 });
 
 })( jQuery );

@@ -600,8 +600,8 @@ $2',
 'nologin' => "איר האט נישט קיין קאנטע? '''$1'''.",
 'nologinlink' => 'באשאפֿט א קאנטע',
 'createaccount' => 'באשאפֿט א נייע קאנטע',
-'gotaccount' => "האסט שוין א קאנטע? '''$1'''.",
-'gotaccountlink' => 'אריינלאגירן',
+'gotaccount' => "האסטו שוין א קאנטע? '''$1'''.",
+'gotaccountlink' => 'אַרײַנלאגירן',
 'userlogin-resetlink' => 'פארגעסן אײַערע אַרײַנלאָגירן פרטים?',
 'createaccountmail' => 'דורך ע-פאסט',
 'createaccountreason' => 'אורזאַך:',
@@ -3471,5 +3471,15 @@ $5
 'api-error-unknownerror' => 'אומבאַקאַנט טעות: " $1 "',
 'api-error-uploaddisabled' => 'ארויפֿלאָדן איז אומאַקטיווירט אויף דער וויקי',
 'api-error-verification-error' => 'די טעקע איז מעגלעך פֿארדארבן, אדער האט א פֿאַלשע ענדונג.',
+
+# Durations
+'duration-seconds' => '$1 {{PLURAL:$1|סעקונדע|סעקונדעס}}',
+'duration-minutes' => '$1 {{PLURAL:$1|מינוט|מינוט}}',
+'duration-hours' => "$1 {{PLURAL:$1|שעה|שעה'ן}}",
+'duration-days' => '$1 {{PLURAL:$1|טאג|טעג}}',
+'duration-weeks' => '$1 {{PLURAL:$1|וואך|וואכן}}',
+'duration-years' => '$1 {{PLURAL:$1|יאר|יאר}}',
+'duration-decades' => '$1 {{PLURAL:$1|צענדליקער|צענדליקערס}}',
+'duration-centuries' => '$1 {{PLURAL:$1|יארהונדערט|יארהונדערטער}}',
 
 );

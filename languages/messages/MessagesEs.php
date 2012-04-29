@@ -41,6 +41,7 @@
  * @author Hercule
  * @author Icvav
  * @author Imre
+ * @author Invadinado
  * @author Jatrobat
  * @author Jens Liebenau
  * @author Jurock
@@ -365,15 +366,15 @@ $messages = array(
 'tog-previewontop' => 'Mostrar previsualización antes del cuadro de edición',
 'tog-previewonfirst' => 'Mostrar previsualización en la primera edición',
 'tog-nocache' => 'Desactivar la caché de páginas del navegador',
-'tog-enotifwatchlistpages' => 'Enviarme un correo electrónico cuando una página en mi lista de seguimiento sea modificada',
-'tog-enotifusertalkpages' => 'Enviarme un correo electrónico cuando mi página de discusión sea modificada',
+'tog-enotifwatchlistpages' => 'Enviarme un correo electrónico cuando se modifique una página en mi lista de seguimiento',
+'tog-enotifusertalkpages' => 'Enviarme un correo electrónico cuando se modifique mi página de discusión',
 'tog-enotifminoredits' => 'Notificarme también los cambios menores de páginas',
 'tog-enotifrevealaddr' => 'Revelar mi dirección de correo electrónico en los correos de notificación',
 'tog-shownumberswatching' => 'Mostrar el número de usuarios que la vigilan',
 'tog-oldsig' => 'Firma actual:',
 'tog-fancysig' => 'Tratar firma como wikitexto (sin un enlace automático)',
-'tog-externaleditor' => 'Utilizar editor externo por defecto (sólo para expertos pues necesitas ajustes especiales en tu ordenador. [//www.mediawiki.org/wiki/Manual:External_editors Más información.])',
-'tog-externaldiff' => 'Utilizar diff externo por defecto (sólo para expertos pues necesitas ajustes especiales en tu ordenador. [//www.mediawiki.org/wiki/Manual:External_editors Más información.])',
+'tog-externaleditor' => 'Utilizar editor externo por defecto (sólo para expertos, pues necesitas ajustes especiales en tu ordenador; [//www.mediawiki.org/wiki/Manual:External_editors más información])',
+'tog-externaldiff' => 'Utilizar diff externo por defecto (sólo para expertos, pues necesitas ajustes especiales en tu ordenador; [//www.mediawiki.org/wiki/Manual:External_editors más información])',
 'tog-showjumplinks' => 'Habilitar enlaces de accesibilidad «saltar a»',
 'tog-uselivepreview' => 'Usar live preview (JavaScript) (Experimental)',
 'tog-forceeditsummary' => 'Alertar al grabar sin resumen de edición.',
@@ -461,7 +462,7 @@ $messages = array(
 'category-empty' => "''La categoría no contiene actualmente ningún artículo o archivo multimedia.''",
 'hidden-categories' => '{{PLURAL:$1|Categoría escondida|Categorías escondidas}}',
 'hidden-category-category' => 'Categorías ocultas',
-'category-subcat-count' => '{{PLURAL:$2|Esta categoría comprende solamente la siguiente categoría.|Esta categoría incluye {{PLURAL:$1|la siguiente categorías|las siguientes $1 subcategorías}}, de un total de $2.}}',
+'category-subcat-count' => '{{PLURAL:$2|Esta categoría solo contiene la siguiente subcategoría.|Esta categoría contiene {{PLURAL:$1|la siguiente subcategoría|las siguientes $1 subcategorías}}, de un total de $2.}}',
 'category-subcat-count-limited' => 'Esta categoría contiene {{PLURAL:$1|la siguiente subcategoría|las siguientes $1 subcategorías}}.',
 'category-article-count' => '{{PLURAL:$2|Esta categoría incluye solamente la siguiente página.|{{PLURAL:$1|La siguiente página página pertenece|Las siguientes $1 páginas pertenecen}} a esta categoría, de un total de $2.}}',
 'category-article-count-limited' => '{{PLURAL:$1|La siguiente página pertenece|Las siguientes $1 páginas pertenecen}} a esta categoría.',
@@ -469,12 +470,12 @@ $messages = array(
 'category-file-count-limited' => '{{PLURAL:$1|El siguiente fichero pertenece|Los siguientes $1 ficheros pertenecen}} a esta categoría.',
 'listingcontinuesabbrev' => 'cont.',
 'index-category' => 'Páginas indexadas',
-'noindex-category' => 'Páginas no indizadas',
+'noindex-category' => 'Páginas no indexadas',
 'broken-file-category' => 'Páginas con enlaces rotos a archivos',
 
 'about' => 'Acerca de',
 'article' => 'Artículo',
-'newwindow' => '(Se abre en una ventana nueva)',
+'newwindow' => '(se abre en una ventana nueva)',
 'cancel' => 'Cancelar',
 'moredotdotdot' => 'Más...',
 'mypage' => 'Mi página',
@@ -834,7 +835,7 @@ Puedes ignorar este mensaje si esta cuenta fue creada por error.',
 'login-throttled' => 'Has intentado demasiadas veces iniciar sesión. Por favor espera antes de intentarlo nuevamente.',
 'login-abort-generic' => 'Tu inicio de sesión no fue exitoso - Cancelado',
 'loginlanguagelabel' => 'Idioma: $1',
-'suspicious-userlogout' => 'Tu solicitud de desconexión ha sido denegada debido a que parece que ésta ha sido enviada desde un navegador defectuoso o un proxy caché.',
+'suspicious-userlogout' => 'Tu solicitud de desconexión ha sido denegada, pues parece haber sido enviada desde un navegador defectuoso o un proxy caché.',
 
 # E-mail sending
 'php-mail-error-unknown' => 'Error desconocido en la función mail() de PHP',
@@ -942,7 +943,7 @@ Contraseña temporal: $2',
 Tu dirección IP se almacenará en el historial de ediciones de la página.",
 'anonpreviewwarning' => "''No has iniciado sesión con una cuenta de usuario. Al guardar los cambios se almacenará tu dirección IP en el historial de edición de la página.''",
 'missingsummary' => "'''Atención:''' No has escrito un resumen de edición. Si haces clic nuevamente en «{{int:savearticle}}» tu edición se grabará sin él.",
-'missingcommenttext' => 'Por favor introduce texto debajo.',
+'missingcommenttext' => 'Por favor, introduce un texto debajo.',
 'missingcommentheader' => "'''Recordatorio:''' No has escrito un título para este comentario. Si haces clic nuevamente en \"{{int:savearticle}}\" tu edición se grabará sin él.",
 'summary-preview' => 'Previsualización del resumen:',
 'subject-preview' => 'Previsualización del tema/título:',
@@ -1026,6 +1027,7 @@ La última entrada del registro de bloqueos se proporciona debajo para mayor ref
 'note' => "'''Nota:'''",
 'previewnote' => "'''¡Recuerda que esto es solo una previsualización.'''
 ¡Tus cambios aún no se ha guardado!",
+'continue-editing' => 'Continuar editando',
 'previewconflict' => 'Esta previsualización refleja el texto en el área de edición superior como aparecerá una vez guardados los cambios.',
 'session_fail_preview' => "'''Lo sentimos, no pudimos procesar la edición debido a una pérdida de los datos de sesión.'''
 Por favor, inténtalo de nuevo.
@@ -1096,7 +1098,7 @@ El registro de borrado y traslados para esta página están provistos aquí por 
 El registro de borrados y traslados para la página están provistos debajo como referencia.',
 'log-fulllog' => 'Ver el registro completo',
 'edit-hook-aborted' => 'Edición cancelada por la extensión.
-No dió explicaciones.',
+No se aportaron explicaciones.',
 'edit-gone-missing' => 'No se pudo actualizar la página.
 Parece que ha sido borrada.',
 'edit-conflict' => 'Conflicto de edición.',

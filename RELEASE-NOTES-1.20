@@ -44,6 +44,8 @@ production.
   $wgDebugLogFile['memcached'] to some filepath.
 * (bug 35685) api.php URL and other entry point URLs are now listed on
   Special:Version
+* Edit notices can now be translated.
+* (bug 22887) Add warning and tracking category for preprocessor errors
 
 === Bug fixes in 1.20 ===
 * (bug 30245) Use the correct way to construct a log page title.
@@ -78,7 +80,7 @@ production.
 * (bug 31236) "Next" and "Previous" buttons are shown incorrectly in
   an RTL environment.
 * (bug 35680) jQuery upgraded to 1.7.2.
-* (bug 35681) jQuery UI upgraded to 1.8.18.
+* jQuery UI upgraded to 1.8.19.
 * (bug 35705) QUnit upgraded from 1.2.0 to 1.5.0
 * (bug 35749) Updated maintenance/checkSyntax.php to use Git instead of
   Subversion when invoked with the --modified option.
@@ -88,6 +90,7 @@ production.
 * (bug 33564) transwiki import sometimes result in invalid title.
 * (bug 35572) Blocks appear to succeed even if query fails due to wrong DB structure
 * (bug 31757) Add a word-separator between help-messages in HTMLForm
+* (bug 30410) Removed deprecated $wgFilterCallback and the 'filtered' API error.
 
 === API changes in 1.20 ===
 * (bug 34316) Add ability to retrieve maximum upload size from MediaWiki API.

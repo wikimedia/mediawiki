@@ -991,6 +991,7 @@ Stoga je uređivanje odbačeno da se spriječi uništavanje teksta stranice.
 To se ponekad događa kad rabite neispravan web-baziran anonimni posrednik (proxy).",
 'edit_form_incomplete' => "'''Neki dijelovi obrasca za uređivanja nisu dostigli do poslužitelja; provjerite jesu li izmjene netaknute i pokušajte ponovno.'''",
 'editing' => 'Uređujete $1',
+'creating' => 'Stvori $1',
 'editingsection' => 'Uređujete $1 (odlomak)',
 'editingcomment' => 'Uređujete $1 (novi odlomak)',
 'editconflict' => 'Istovremeno uređivanje: $1',

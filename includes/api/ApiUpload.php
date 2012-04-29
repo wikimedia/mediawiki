@@ -173,7 +173,7 @@ class ApiUpload extends ApiBase {
 	 */
 	private function getChunkResult(){
 		$result = array();
-		
+
 		$result['result'] = 'Continue';
 		$request = $this->getMain()->getRequest();
 		$chunkPath = $request->getFileTempname( 'chunk' );
@@ -185,7 +185,7 @@ class ApiUpload extends ApiBase {
 										$this->mParams['offset']);
 			if ( !$status->isGood() ) {
 				$this->dieUsage( $status->getWikiText(), 'stashfailed' );
-				return ;
+				return array();
 			}
 
 			// Check we added the last chunk: 
@@ -194,7 +194,7 @@ class ApiUpload extends ApiBase {
 
 				if ( !$status->isGood() ) {
 					$this->dieUsage( $status->getWikiText(), 'stashfailed' );
-					return ;
+					return array();
 				}
 
 				// We have a new filekey for the fully concatenated file.

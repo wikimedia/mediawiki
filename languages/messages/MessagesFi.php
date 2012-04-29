@@ -689,6 +689,9 @@ $2',
 'customjsprotected' => 'Sinulla ei ole oikeutta muuttaa tätä JavaScript-sivua, koska se sisältää toisen käyttäjän henkilökohtaisia asetuksia.',
 'ns-specialprotected' => 'Toimintosivuja ei voi muokata.',
 'titleprotected' => "Käyttäjä [[User:$1|$1]] on asettanut tämän sivun luontikieltoon: ''$2''.",
+'filereadonlyerror' => 'Tiedostoa "$1" ei voi muuttaa, koska jaettu mediavarasto "$2" on "vain luku" -tilassa.
+
+Lukituksen asettanut ylläpitäjä on antanut seuraavan syyn toimenpiteelle: "$3".',
 
 # Virus scanner
 'virus-badscanner' => "Virheellinen asetus: Tuntematon virustutka: ''$1''",
@@ -765,6 +768,7 @@ Tästä johtuen tästä IP-osoitteesta ei voi tällä hetkellä luoda uusia tunn
 'emailconfirmlink' => 'Varmenna sähköpostiosoite',
 'invalidemailaddress' => 'Sähköpostiosoitetta ei voida hyväksyä, koska se ei ole oikeassa muodossa. Ole hyvä ja anna oikea sähköpostiosoite tai jätä kenttä tyhjäksi.',
 'cannotchangeemail' => 'Tunnuksien sähköpostiosoitteita ei voi muuttaa tässä wikissä.',
+'emaildisabled' => 'Tältä sivustolta ei voi lähettää sähköpostia.',
 'accountcreated' => 'Käyttäjätunnus luotiin',
 'accountcreatedtext' => 'Käyttäjän $1 käyttäjätunnus luotiin.',
 'createaccount-title' => 'Tunnuksen luominen {{GRAMMAR:illative|{{SITENAME}}}}',
@@ -961,7 +965,8 @@ Alla on viimeisin estolokin tapahtuma:',
 'userinvalidcssjstitle' => "'''Varoitus:''' Tyyliä nimeltä ”$1” ei ole olemassa. Muista, että käyttäjän määrittelemät .css- ja .js-sivut alkavat pienellä alkukirjaimella, esim. {{ns:user}}:Matti Meikäläinen/vector.css eikä {{ns:user}}:Matti Meikäläinen/Vector.css.",
 'updated' => '(Päivitetty)',
 'note' => "'''Huomautus:'''",
-'previewnote' => "'''Tämä on vasta sivun esikatselu. Sivua ei ole vielä tallennettu!'''",
+'previewnote' => "'''Tämä on vasta sivun esikatselu. Tekemiäsi muokkauksia ei ole vielä tallennettu!'''",
+'continue-editing' => 'Jatka muokkaamista',
 'previewconflict' => 'Tämä esikatselu näyttää miltä muokkausalueella oleva teksti näyttää tallennettuna.',
 'session_fail_preview' => "'''Muokkaustasi ei voitu tallentaa, koska istuntosi tiedot ovat kadonneet.''' Yritä uudelleen. Jos ongelma ei katoa, yritä [[Special:UserLogout|kirjautua ulos]] ja takaisin sisään.",
 'session_fail_preview_html' => "'''Muokkaustasi ei voitu tallentaa, koska istuntosi tiedot ovat kadonneet.'''
@@ -972,6 +977,7 @@ Yritä uudelleen. Jos ongelma ei katoa, yritä [[Special:UserLogout|kirjautua ul
 'token_suffix_mismatch' => "'''Muokkauksesi on hylätty, koska asiakasohjelmasi ei osaa käsitellä välimerkkejä muokkaustarkisteessa. Syynä voi olla viallinen välityspalvelin.'''",
 'edit_form_incomplete' => "'''Osa muokkauslomakkeesta ei saavuttanut palvelinta. Tarkista, että muokkauksesi ovat vahingoittumattomia ja yritä uudelleen.'''",
 'editing' => 'Muokataan sivua $1',
+'creating' => 'Sivun $1 luonti',
 'editingsection' => 'Muokataan osiota sivusta $1',
 'editingcomment' => 'Muokataan uutta osiota sivulla $1',
 'editconflict' => 'Päällekkäinen muokkaus: $1',
@@ -987,7 +993,7 @@ Sinun täytyy yhdistää muutoksesi olemassa olevaan tekstiin.
 'yourdiff' => 'Eroavaisuudet',
 'copyrightwarning' => "'''Muutoksesi astuvat voimaan välittömästi.''' Kaikki {{GRAMMAR:illative|{{SITENAME}}}} tehtävät tuotokset katsotaan julkaistuksi $2 -lisenssin mukaisesti ($1). Jos et halua, että kirjoitustasi muokataan armottomasti ja uudelleenkäytetään vapaasti, älä tallenna kirjoitustasi. Tallentamalla muutoksesi lupaat, että kirjoitit tekstisi itse, tai kopioit sen jostain vapaasta lähteestä. '''ÄLÄ KÄYTÄ TEKIJÄNOIKEUDEN ALAISTA MATERIAALIA ILMAN LUPAA!'''",
 'copyrightwarning2' => "Huomaa, että kuka tahansa voi muokata, muuttaa ja poistaa kaikkia sivustolle tekemiäsi lisäyksiä ja muutoksia. Muokkaamalla sivustoa luovutat sivuston käyttäjille tämän oikeuden ja takaat, että lisäämäsi aineisto on joko itse kirjoittamaasi tai peräisin jostain vapaasta lähteestä. Lisätietoja sivulla $1. '''TEKIJÄNOIKEUDEN ALAISEN MATERIAALIN KÄYTTÄMINEN ILMAN LUPAA ON EHDOTTOMASTI KIELLETTYÄ!'''",
-'longpageerror' => "'''Sivun koko on $1 binäärikilotavua. Sivua ei voida tallentaa, koska enimmäiskoko on $2 binäärikilotavua.'''",
+'longpageerror' => "'''Virhe: Lähettämäsi tekstin pituus on {{PLURAL:$1|kilotavu|$1 kilotavua}}. Tekstiä ei voida tallentaa, koska se on pitempi kuin sallittu enimmäispituus {{PLURAL:$2|yksi kilotavu|$2 kilotavua}}.'''",
 'readonlywarning' => "'''Varoitus: Tietokanta on lukittu huoltoa varten, joten et pysty tallentamaan muokkauksiasi juuri nyt.'''
 Saattaa olla paras leikata ja liimata tekstisi omaan tekstitiedostoosi ja tallentaa se tänne myöhemmin.
 
@@ -1026,6 +1032,7 @@ Se on ilmeisesti poistettu.',
 'edit-no-change' => 'Muokkauksesi sivuutettiin, koska tekstiin ei tehty mitään muutoksia.',
 'edit-already-exists' => 'Uuden sivun luominen ei onnistunut.
 Se on jo olemassa.',
+'defaultmessagetext' => 'Viestin oletusteksti',
 
 # Parser/template warnings
 'expensive-parserfunction-warning' => 'Tällä sivulla on liian monta hitaiden laajennusfunktioiden kutsua.
@@ -1177,8 +1184,8 @@ Sinulla ei ole oikeutta siihen.',
 
 # Suppression log
 'suppressionlog' => 'Häivytysloki',
-'suppressionlogtext' => 'Alla on lista uusimmista poistoista ja muokkausestoista, jotka sisältävät ylläpitäjiltä piilotettua materiaalia.
-[[Special:BlockList|Muokkausestolistassa]] on tämänhetkiset muokkausestot.',
+'suppressionlogtext' => 'Alla on luettelo poistoista ja muokkausestoista, jotka sisältävät ylläpitäjiltä piilotettua materiaalia.
+[[Special:BlockList|Estolistassa]] on lueteltu voimassa olevat muokkauskiellot ja muokkausestot.',
 
 # History merging
 'mergehistory' => 'Yhdistä muutoshistoriat',
@@ -1240,7 +1247,7 @@ Uuden ja vanhan sivun muutoksien pitää muodostaa jatkumo – ne eivät saa men
 
 $1 {{int:pipe-separator}} $2',
 'searchmenu-legend' => 'Hakuasetukset',
-'searchmenu-exists' => "'''Sivu [[:$1]] löytyy tästä wikistä.'''",
+'searchmenu-exists' => "'''Tässä wikissä on sivu nimellä [[:$1]].'''",
 'searchmenu-new' => "'''Luo sivu ''[[:$1]]'' tähän wikiin.'''",
 'searchhelp-url' => 'Help:Sisällys',
 'searchmenu-prefix' => '[[Special:PrefixIndex/$1|Selaa sivuja tällä etuliitteellä]]',
@@ -1598,6 +1605,7 @@ Tässä satunnaisesti tuotettu arvo, jota voit käyttää: $1',
 'newsectionsummary' => '/* $1 */ uusi osio',
 'rc-enhanced-expand' => 'Näytä yksityiskohdat (JavaScript)',
 'rc-enhanced-hide' => 'Piilota yksityiskohdat',
+'rc-old-title' => 'alun perin luotu nimellä "$1"',
 
 # Recent changes linked
 'recentchangeslinked' => 'Linkitettyjen sivujen muutokset',
@@ -1762,6 +1770,7 @@ $1',
 'backend-fail-closetemp' => 'Väliaikaista tiedostoa ei voitu sulkea.',
 'backend-fail-read' => 'Tiedostoa $1 ei voitu lukea.',
 'backend-fail-create' => 'Tiedostoa $1 ei voitu luoda.',
+'backend-fail-connect' => 'Varastojärjestelmään "$1" ei saada yhteyttä.',
 
 # Lock manager
 'lockmanager-notlocked' => 'Kohteen $1 lukitusta ei voitu poistaa, koska se ei ole lukittu.',
@@ -1879,6 +1888,10 @@ Seuraava lista näyttää {{PLURAL:$1|ensimmäisen linkittävän sivun|$1 ensimm
 Katso [$2 tiedoston kuvaussivulta] lisätietoja.',
 'sharedupload-desc-here' => 'Tämä tiedosto on jaettu kohteesta $1 ja muut projektit saattavat käyttää sitä.
 Tiedot [$2 tiedoston kuvaussivulta] näkyvät alla.',
+'sharedupload-desc-edit' => 'Tämä tiedosto on jaettu kohteesta $1 ja muut projektit saattavat käyttää sitä. 
+Voit tarvittaessa muokata [$2 tiedoston kuvaussivua] kohteessa.',
+'sharedupload-desc-create' => 'Tämä tiedosto on jaettu kohteesta $1 ja muut projektit saattavat käyttää sitä. 
+Voit tarvittaessa muokata [$2 tiedoston kuvaussivua] kohteessa.',
 'filepage-nofile' => 'Tämän nimistä tiedostoa ei ole olemassa.',
 'filepage-nofile-link' => 'Tämän nimistä tiedostoa ei ole olemassa, mutta voit [$1 tallentaa sen].',
 'uploadnewversion-linktext' => 'Tallenna uusi versio tästä tiedostosta',
@@ -2008,6 +2021,8 @@ Jokaisella rivillä on linkit ensimmäiseen ja toiseen ohjaukseen sekä toisen o
 'wantedpages' => 'Halutut sivut',
 'wantedpages-badtitle' => 'Virheellinen otsikko tuloksissa: $1',
 'wantedfiles' => 'Halutut tiedostot',
+'wantedfiletext-cat' => 'Seuraavia tiedostoja käytetään, mutta niitä ei ole olemassa. Ulkopuolissa mediavarastoissa olevat tiedostot voivat näkyä tällä listalla, vaikka ne ovat olemassa. Tällaiset väärät merkinnät on <del>yliviivattu</del>. Lisäksi sellaiset sivut, joihin on sisällytetty tiedostoja, jotka eivät ole olemassa, on luetteloitu [[:$1|täällä]].',
+'wantedfiletext-nocat' => 'Seuraavia tiedostoja käytetään, mutta niitä ei ole olemassa. Ulkopuolissa mediavarastoissa olevat tiedostot voivat näkyä tällä listalla, vaikka ne ovat olemassa. Tällaiset väärät merkinnät on <del>yliviivattu</del.>',
 'wantedtemplates' => 'Halutut mallineet',
 'mostlinked' => 'Viitatuimmat sivut',
 'mostlinkedcategories' => 'Viitatuimmat luokat',
@@ -2085,6 +2100,12 @@ Voit rajoittaa listaa valitsemalla lokityypin, käyttäjän tai sivun johon muut
 'allpagesprefix' => 'Katkaisuhaku',
 'allpagesbadtitle' => 'Annettu otsikko oli kelvoton tai siinä oli wikien välinen etuliite.',
 'allpages-bad-ns' => '{{GRAMMAR:inessive|{{SITENAME}}}} ei ole nimiavaruutta ”$1”.',
+'allpages-hide-redirects' => 'Piilota ohjaussivut',
+
+# SpecialCachedPage
+'cachedspecial-viewing-cached-ttl' => 'Katselet arkistoitua versiota tästä sivusta, joka voi olla jopa $1 vanha.',
+'cachedspecial-viewing-cached-ts' => 'Katselet arkistoitua versiota tästä sivusta, joka ei välttämättä ole sivun viimeisin versio.',
+'cachedspecial-refresh-now' => 'Näytä uusin versio.',
 
 # Special:Categories
 'categories' => 'Luokat',
@@ -2392,7 +2413,7 @@ Voit palauttaa versiota valikoivasti valitsemalla vain niiden versioiden valinta
 'undeletedrevisions' => '{{PLURAL:$1|Yksi versio|$1 versiota}} palautettiin',
 'undeletedrevisions-files' => '{{PLURAL:$1|Yksi versio|$1 versiota}} ja {{PLURAL:$2|yksi tiedosto|$2 tiedostoa}} palautettiin',
 'undeletedfiles' => '{{PLURAL:$1|1 tiedosto|$1 tiedostoa}} palautettiin',
-'cannotundelete' => 'Palauttaminen epäonnistui.',
+'cannotundelete' => 'Palauttaminen epäonnistui; joku muu on voinut jo palauttaa sivun.',
 'undeletedpage' => "'''$1 on palautettu.'''
 
 [[Special:Log/delete|Poistolokista]] löydät listan viimeisimmistä poistoista ja palautuksista.",
@@ -2505,7 +2526,7 @@ Alla on viimeisin estolokin tapahtuma:',
 'badipaddress' => 'IP-osoite on väärin muotoiltu.',
 'blockipsuccesssub' => 'Esto onnistui',
 'blockipsuccesstext' => 'Käyttäjä tai IP-osoite [[Special:Contributions/$1|$1]] on estetty.<br />
-Nykyiset estot löytyvät [[Special:BlockList|estolistalta]].',
+Voimassa olevat estot näkyvät [[Special:BlockList|estolistasta]].',
 'ipb-blockingself' => 'Olet estämässä itseäsi. Oletko varma, että haluat tehdä niin?',
 'ipb-confirmhideuser' => 'Olet estämässä käyttäjää ”piilota käyttäjä” -toiminnon kanssa.  Tämä piilottaa käyttäjän nimen kaikissa luetteloissa ja lokitapahtumissa.  Oletko varma, että haluat tehdä näin?',
 'ipb-edit-dropdown' => 'Muokkaa estosyitä',
@@ -2558,7 +2579,7 @@ Alla on ote estolokista.',
 Alla on ote häivytyslokista.',
 'blocklogentry' => 'esti käyttäjän tai IP-osoitteen [[$1]]. Eston kesto $2 $3',
 'reblock-logentry' => 'muutti käyttäjän tai IP-osoitteen [[$1]] eston asetuksia. Eston kesto $2 $3',
-'blocklogtext' => 'Tämä on loki muokkausestoista ja niiden purkamisista. Automaattisesti estettyjä IP-osoitteita ei kirjata. Tutustu [[Special:BlockList|estolistaan]] nähdäksesi listan tällä hetkellä voimassa olevista estoista.',
+'blocklogtext' => 'Tämä on loki muokkausestoista ja niiden purkamisista. Automaattisesti estettyjä IP-osoitteita ei kirjata. Tutustu [[Special:BlockList|estolistaan]] nähdäksesi luettelon tällä hetkellä voimassa olevista estoista.',
 'unblocklogentry' => 'poisti käyttäjältä $1 muokkauseston',
 'block-log-flags-anononly' => 'vain kirjautumattomat käyttäjät estetty',
 'block-log-flags-nocreate' => 'tunnusten luonti estetty',
@@ -2797,7 +2818,7 @@ Tallenna tiedot koneellesi ja tuo ne tällä sivulla.',
 
 # JavaScriptTest
 'javascripttest' => 'JavaScriptin testaus',
-'javascripttest-disabled' => 'Tämä toiminto ei ole käytössä.',
+'javascripttest-disabled' => 'Tämä toiminto ei ole käytössä tässä wikissä.',
 'javascripttest-title' => 'Suoritetaan $1-testejä.',
 'javascripttest-pagetext-noframework' => 'Tämä sivu on varattu JavaScript-testien suorittamiseen.',
 'javascripttest-pagetext-unknownframework' => 'Tuntematon testausalusta $1.',
@@ -3637,6 +3658,9 @@ Sinun olisi pitänyt saada [{{SERVER}}{{SCRIPTPATH}}/COPYING kopio GNU General P
 'version-software' => 'Asennettu ohjelmisto',
 'version-software-product' => 'Tuote',
 'version-software-version' => 'Versio',
+'version-entrypoints' => 'Aloituskohtien URL-osoitteet',
+'version-entrypoints-header-entrypoint' => 'Aloituskohta',
+'version-entrypoints-header-url' => 'URL',
 
 # Special:FilePath
 'filepath' => 'Tiedoston osoite',
@@ -3795,6 +3819,7 @@ Muussa tapauksessa voit käyttää alla olevaa helpompaa lomaketta. Kommenttisi 
 'api-error-duplicate-archive-popup-title' => 'Tiedostolla on {{PLURAL:$1|poistettu kaksoiskappale|poistettuja kaksoiskappaleita}}',
 'api-error-duplicate-popup-title' => 'Tiedoston {{PLURAL:$1|kaksoiskappale|kaksoiskappaleet}}',
 'api-error-empty-file' => 'Määrittämäsi tiedosto on tyhjä.',
+'api-error-emptypage' => 'Ei ole sallittua luoda uutta, tyhjää sivua.',
 'api-error-fetchfileerror' => 'Sisäinen virhe: jotakin meni pieleen tiedoston haussa.',
 'api-error-file-too-large' => 'Määrittämäsi tiedosto on liian iso.',
 'api-error-filename-tooshort' => 'Tiedoston nimi on liian lyhyt.',
@@ -3822,5 +3847,16 @@ Muussa tapauksessa voit käyttää alla olevaa helpompaa lomaketta. Kommenttisi 
 'api-error-unknownerror' => 'Tuntematon virhe: $1.',
 'api-error-uploaddisabled' => 'Tiedostojen tallentaminen ei ole käytössä.',
 'api-error-verification-error' => 'Tiedosto voi olla vioittunut, tai sillä saattaa olla väärä tiedostopääte.',
+
+# Durations
+'duration-seconds' => '$1 {{PLURAL:$1|sekunti|sekuntia}}',
+'duration-minutes' => '$1 {{PLURAL:$1|minuutti|minuuttia}}',
+'duration-hours' => '$1 {{PLURAL:$1|tunti|tuntia}}',
+'duration-days' => '$1 {{PLURAL:$1|päivä|päivää}}',
+'duration-weeks' => '$1 {{PLURAL:$1|viikko|viikkoa}}',
+'duration-years' => '$1 {{PLURAL:$1|vuosi|vuotta}}',
+'duration-decades' => '$1 {{PLURAL:$1|vuosikymmen|vuosikymmentä}}',
+'duration-centuries' => '$1 {{PLURAL:$1|vuosisata|vuosisataa}}',
+'duration-millennia' => '$1 {{PLURAL:$1|vuosituhat|vuosituhatta}}',
 
 );

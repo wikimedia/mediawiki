@@ -991,6 +991,7 @@ a szerkesztési tokenben. A szerkesztés azért lett visszautasítva, hogy megel
 Ez a probléma akkor fordulhat elő, ha hibás, web-alapú proxyszolgáltatást használsz.'''",
 'edit_form_incomplete' => "'''A szerkesztési űrlap egyes részei nem érkeztek meg a szerverre; ellenőrizd újra, hogy a szerkesztés sértetlen-e, majd próbáld újra.'''",
 'editing' => '$1 szerkesztése',
+'creating' => '$1 létrehozása',
 'editingsection' => '$1 szerkesztése (szakasz)',
 'editingcomment' => '$1 szerkesztése (új szakasz)',
 'editconflict' => 'Szerkesztési ütközés: $1',

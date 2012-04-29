@@ -338,9 +338,10 @@ class MWMemcached {
 			$this->_debugprint( sprintf( "MemCache: delete %s (%s)\n", $key, $res ) );
 		}
 
-		if ( $res == "DELETED" ) {
+		if ( $res == "DELETED" || $res == "NOT_FOUND" ) {
 			return true;
 		}
+
 		return false;
 	}
 

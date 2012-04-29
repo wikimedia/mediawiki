@@ -55,7 +55,7 @@ class ApiEmailUser extends ApiBase {
 			'Subject' => $params['subject'],
 			'CCMe' => $params['ccme'],
 		);
-		$retval = SpecialEmailUser::submit( $data );
+		$retval = SpecialEmailUser::submit( $data, $this->getContext() );
 
 		if ( $retval instanceof Status ) {
 			// SpecialEmailUser sometimes returns a status

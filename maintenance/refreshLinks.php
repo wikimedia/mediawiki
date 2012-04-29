@@ -174,10 +174,10 @@ class RefreshLinks extends Maintenance {
 	 * @param $id int The page_id of the redirect
 	 */
 	private function fixRedirect( $id ) {
-		$title = Title::newFromID( $id );
+		$page = WikiPage::newFromID( $id );
 		$dbw = wfGetDB( DB_MASTER );
 
-		if ( is_null( $title ) ) {
+		if ( $page === null ) {
 			// This page doesn't exist (any more)
 			// Delete any redirect table entry for it
 			$dbw->delete( 'redirect', array( 'rd_from' => $id ),
@@ -185,11 +185,10 @@ class RefreshLinks extends Maintenance {
 			return;
 		}
 
-		$page = WikiPage::factory( $title );
 		$rt = $page->getRedirectTarget();
 
 		if ( $rt === null ) {
-			// $title is not a redirect
+			// The page is not a redirect
 			// Delete any redirect table entry for it
 			$dbw->delete( 'redirect', array( 'rd_from' => $id ),
 				__METHOD__ );
@@ -203,32 +202,30 @@ class RefreshLinks extends Maintenance {
 	public static function fixLinksFromArticle( $id ) {
 		global $wgParser, $wgContLang;
 
-		$title = Title::newFromID( $id );
-		$dbw = wfGetDB( DB_MASTER );
+		$page = WikiPage::newFromID( $id );
 
 		LinkCache::singleton()->clear();
 
-		if ( is_null( $title ) ) {
+		if ( $page === null ) {
 			return;
 		}
 
-		$revision = Revision::newFromTitle( $title );
-		if ( !$revision ) {
+		$content = $page->getContent( REVISION::RAW );
+		if ( null === false ) {
 			return;
 		}
 
+		$dbw = wfGetDB( DB_MASTER );
 		$dbw->begin( __METHOD__ );
 
 		$options = ParserOptions::newFromUserAndLang( new User, $wgContLang );
-		$parserOutput = $wgParser->parse( $revision->getText(), $title, $options, true, true, $revision->getId() );
+		$context = RequestContext::getMain();
 
-        $updates = $parserOutput->getSecondaryDataUpdates( $title, false );
-        SecondaryDataUpdate::runUpdates( $updates );
+		$parserOutput = $content->getParserOutput( $context, $page->getLatest(), $options, false );
 
-        $dbw->commit();
-        // TODO: We don't know what happens here.
-		$update = new LinksUpdate( $title, $parserOutput, false );
-		$update->doUpdate();
+		$updates = $parserOutput->getSecondaryDataUpdates( $page->getTitle(), false );
+		SecondaryDataUpdate::runUpdates( $updates );
+
 		$dbw->commit( __METHOD__ );
 	}
 

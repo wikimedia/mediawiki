@@ -176,8 +176,9 @@ abstract class FileBackend {
 	 *                         contents as the new contents to be written there.
 	 *
 	 * $opts is an associative of boolean flags, including:
-	 * 'force'               : Errors that would normally cause a rollback do not.
-	 *                         The remaining operations are still attempted if any fail.
+	 * 'force'               : Operation precondition errors no longer trigger an abort.
+	 *                         Any remaining operations are still attempted. Unexpected
+	 *                         failures may still cause remaning operations to be aborted.
 	 * 'nonLocking'          : No locks are acquired for the operations.
 	 *                         This can increase performance for non-critical writes.
 	 *                         This has no effect unless the 'force' flag is set.
@@ -315,8 +316,8 @@ abstract class FileBackend {
 	 * otherwise safe from modification from other processes. Normally,
 	 * the file will be a new temp file, which should be adequate.
 	 * $params include:
-	 *     srcs          : ordered source storage paths (e.g. chunk1, chunk2, ...)
-	 *     dst           : file system path to 0-byte temp file
+	 *     srcs : ordered source storage paths (e.g. chunk1, chunk2, ...)
+	 *     dst  : file system path to 0-byte temp file
 	 *
 	 * @param $params Array Operation parameters
 	 * @return Status
@@ -383,7 +384,8 @@ abstract class FileBackend {
 	 * is that of an empty container, in which case it should be deleted.
 	 *
 	 * $params include:
-	 *     dir : storage directory
+	 *     dir       : storage directory
+	 *     recursive : recursively delete empty subdirectories first (@since 1.20)
 	 *
 	 * @param $params Array
 	 * @return Status
@@ -546,21 +548,88 @@ abstract class FileBackend {
 	abstract public function getLocalCopy( array $params );
 
 	/**
-	 * Get an iterator to list out all stored files under a storage directory.
+	 * Check if a directory exists at a given storage path.
+	 * Backends using key/value stores will check if the path is a
+	 * virtual directory, meaning there are files under the given directory.
+	 *
+	 * Storage backends with eventual consistency might return stale data.
+	 *
+	 * $params include:
+	 *     dir : storage directory
+	 *
+	 * @return bool|null Returns null on failure
+	 * @since 1.20
+	 */
+	abstract public function directoryExists( array $params );
+
+	/**
+	 * Get an iterator to list *all* directories under a storage directory.
+	 * If the directory is of the form "mwstore://backend/container",
+	 * then all directories in the container should be listed.
+	 * If the directory is of form "mwstore://backend/container/dir",
+	 * then all directories directly under that directory should be listed.
+	 * Results should be storage directories relative to the given directory.
+	 *
+	 * Storage backends with eventual consistency might return stale data.
+	 *
+	 * $params include:
+	 *     dir     : storage directory
+	 *     topOnly : only return direct child dirs of the directory
+	 *
+	 * @return Traversable|Array|null Returns null on failure
+	 * @since 1.20
+	 */
+	abstract public function getDirectoryList( array $params );
+
+	/**
+	 * Same as FileBackend::getDirectoryList() except only lists
+	 * directories that are immediately under the given directory.
+	 *
+	 * Storage backends with eventual consistency might return stale data.
+	 *
+	 * $params include:
+	 *     dir : storage directory
+	 *
+	 * @return Traversable|Array|null Returns null on failure
+	 * @since 1.20
+	 */
+	final public function getTopDirectoryList( array $params ) {
+		return $this->getDirectoryList( array( 'topOnly' => true ) + $params );
+	}
+
+	/**
+	 * Get an iterator to list *all* stored files under a storage directory.
 	 * If the directory is of the form "mwstore://backend/container",
 	 * then all files in the container should be listed.
 	 * If the directory is of form "mwstore://backend/container/dir",
-	 * then all files under that container directory should be listed.
+	 * then all files under that directory should be listed.
 	 * Results should be storage paths relative to the given directory.
 	 *
 	 * Storage backends with eventual consistency might return stale data.
 	 *
 	 * $params include:
-	 *     dir : storage path directory
+	 *     dir     : storage directory
+	 *     topOnly : only return direct child files of the directory (@since 1.20)
 	 *
 	 * @return Traversable|Array|null Returns null on failure
 	 */
 	abstract public function getFileList( array $params );
+
+	/**
+	 * Same as FileBackend::getFileList() except only lists
+	 * files that are immediately under the given directory.
+	 *
+	 * Storage backends with eventual consistency might return stale data.
+	 *
+	 * $params include:
+	 *     dir : storage directory
+	 *
+	 * @return Traversable|Array|null Returns null on failure
+	 * @since 1.20
+	 */
+	final public function getTopFileList( array $params ) {
+		return $this->getFileList( array( 'topOnly' => true ) + $params );
+	}
 
 	/**
 	 * Invalidate any in-process file existence and property cache.
@@ -708,6 +777,7 @@ abstract class FileBackend {
 	 *
 	 * @param $path string
 	 * @return bool
+	 * @since 1.20
 	 */
 	final public static function isPathTraversalFree( $path ) {
 		return ( self::normalizeContainerPath( $path ) !== null );

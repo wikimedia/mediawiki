@@ -195,7 +195,7 @@ class LinkBatch {
 		}
 
 		$genderCache = GenderCache::singleton();
-		$genderCache->dolinkBatch( $this->data, $this->caller );
+		$genderCache->doLinkBatch( $this->data, $this->caller );
 		return true;
 	}
 

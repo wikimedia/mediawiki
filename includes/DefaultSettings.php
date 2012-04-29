@@ -3826,21 +3826,6 @@ $wgSpamRegex = array();
 $wgSummarySpamRegex = array();
 
 /**
- * Similarly you can get a function to do the job. The function will be given
- * the following args:
- *   - a Title object for the article the edit is made on
- *   - the text submitted in the textarea (wpTextbox1)
- *   - the section number.
- * The return should be boolean indicating whether the edit matched some evilness:
- *  - true : block it
- *  - false : let it through
- *
- * @deprecated since 1.17 Use hooks. See SpamBlacklist extension.
- * @var $wgFilterCallback bool|string|Closure
- */
-$wgFilterCallback = false;
-
-/**
  * Whether to use DNS blacklists in $wgDnsBlacklistUrls to check for open proxies
  * @since 1.16
  */

@@ -699,6 +699,35 @@ abstract class ApiBase extends ContextSource {
 	}
 
 	/**
+	 * @param $params array
+	 * @return Title
+	 */
+	public function getTitleOrPageId( $params ) {
+		$this->requireOnlyOneParameter( $params, 'title', 'pageid' );
+
+		$titleObj = null;
+		if ( isset( $params['title'] ) ) {
+			$titleObj = Title::newFromText( $params['title'] );
+			if ( !$titleObj ) {
+				$this->dieUsageMsg( array( 'invalidtitle', $params['title'] ) );
+			}
+		} elseif ( isset( $params['pageid'] ) ) {
+			$titleObj = Title::newFromID( $params['pageid'] );
+			if ( !$titleObj ) {
+				$this->dieUsageMsg( array( 'nosuchpageid', $params['pageid'] ) );
+			}
+		}
+		return $titleObj;
+	}
+
+	/**
+	 * @return array
+	 */
+	public function getTitleOrPageIdErrorMessage( ) {
+		return $this->getRequireOnlyOneParameterErrorMessages( array( 'title', 'pageid' ) );
+	}
+
+	/**
 	 * Callback function used in requireOnlyOneParameter to check whether reequired parameters are set
 	 *
 	 * @param  $x object Parameter to check is not null/false
@@ -1215,7 +1244,6 @@ abstract class ApiBase extends ContextSource {
 		'noimageredirect-anon' => array( 'code' => 'noimageredirect-anon', 'info' => "Anonymous users can't create image redirects" ),
 		'noimageredirect-logged' => array( 'code' => 'noimageredirect', 'info' => "You don't have permission to create image redirects" ),
 		'spamdetected' => array( 'code' => 'spamdetected', 'info' => "Your edit was refused because it contained a spam fragment: \"\$1\"" ),
-		'filtered' => array( 'code' => 'filtered', 'info' => "The filter callback function refused your edit" ),
 		'contenttoobig' => array( 'code' => 'contenttoobig', 'info' => "The content you supplied exceeds the article size limit of \$1 kilobytes" ),
 		'noedit-anon' => array( 'code' => 'noedit-anon', 'info' => "Anonymous users can't edit pages" ),
 		'noedit' => array( 'code' => 'noedit', 'info' => "You don't have permission to edit pages" ),

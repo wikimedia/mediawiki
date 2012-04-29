@@ -87,7 +87,8 @@ class ImagePage extends Article {
 		$diffOnly = $wgRequest->getBool( 'diffonly', $wgUser->getOption( 'diffonly' ) );
 
 		if ( $this->getTitle()->getNamespace() != NS_FILE || ( isset( $diff ) && $diffOnly ) ) {
-			return parent::view();
+			parent::view();
+			return;
 		}
 
 		$this->loadFile();
@@ -97,7 +98,8 @@ class ImagePage extends Article {
 				// mTitle is the same as the redirect target so ask Article
 				// to perform the redirect for us.
 				$wgRequest->setVal( 'diffonly', 'true' );
-				return parent::view();
+				parent::view();
+				return;
 			} else {
 				// mTitle is not the same as the redirect target so it is
 				// probably the redirect page itself. Fake the redirect symbol

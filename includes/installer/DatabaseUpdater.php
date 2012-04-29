@@ -230,6 +230,7 @@ abstract class DatabaseUpdater {
 	 * @since 1.20
 	 *
 	 * @param $tableName string
+	 * @return bool
 	 */
 	public function tableExists( $tableName ) {
 		return ( $this->db->tableExists( $tableName, __METHOD__ ) );

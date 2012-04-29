@@ -835,6 +835,7 @@ Denkt drun datt eegen .css an .js Säiten e kleng geschriwwenen Titel benotzen, 
 'note' => "'''Notiz:'''",
 'previewnote' => "'''Denkt drun datt dëst nëmmen eng net gespäichert Versioun ass.'''
 Är Ännerunge sinn nach net gespäichert!",
+'continue-editing' => 'Weider änneren',
 'previewconflict' => 'Dir gesitt an dem ieweschten Textfeld wéi den Text ausgesi wäert, wann Dir späichert.',
 'session_fail_preview' => "'''Är Ännerung konnt net gespäichert gi well d'Date vun Ärer Sessioun verluergaange sinn.
 Versicht et w.e.g. nach eng Kéier.
@@ -1903,6 +1904,7 @@ An all Rei sti Linken zur éischter an zweeter Viruleedung, souwéi d\'Zil vun d
 'wantedpages' => 'Gewënschte Säiten',
 'wantedpages-badtitle' => 'Net valabelen Titel am Resultat: $1',
 'wantedfiles' => 'Gewënschte Fichieren',
+'wantedfiletext-cat' => 'Dës Fichiere gi benotzt awer et gëtt se net. Fichiere aus frieme Repositorie kënnen hei gewise ginn och wann et se gëtt. All esou falsch Positiver ginn <del>duerchgestrach</del>. Zousätzlech gi Säiten an deene Fichieren dra sinn déi et net gëtt op [[:$1]] gewisen.',
 'wantedtemplates' => 'Gewënschte Schablounen',
 'mostlinked' => 'Dacks verlinkte Säiten',
 'mostlinkedcategories' => 'Dacks benotzte Kategorien',

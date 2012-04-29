@@ -804,6 +804,7 @@ Móžeš [[Special:Search/{{PAGENAME}}|tutón titul strony]] na druhich stronach
 'note' => "'''Kedźbu:'''",
 'previewnote' => "'''Wobmysl, zo to je jenož přehlad.'''
 Twoje změny hišće njejsu składowane!",
+'continue-editing' => 'Dale wobdźěłać',
 'previewconflict' => 'Tutón přehlad zwobraznja tekst w hornim tekstowym polu,  kaž so zjewi, jeli jón składuješ.',
 'session_fail_preview' => "'''Njemóžachmy twoju změnu předźěłać, dokelž su so posedźenske daty zhubili.'''
 Spytaj prošu hišće raz.

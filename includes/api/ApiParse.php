@@ -328,6 +328,9 @@ class ApiParse extends ApiBase {
 			// Try the parser cache first
 			// getParserOutput will save to Parser cache if able
 			$pout = $page->getParserOutput( $popts );
+			if ( !$pout ) {
+				$this->dieUsage( "There is no revision ID {$page->getLatest()}", 'missingrev' );
+			}
 			if ( $getWikitext ) {
                 $this->content = $page->getContent( Revision::RAW ); #FIXME: use $this->content everywhere
 				$this->text = ContentHandler::getContentText( $this->content ); #FIXME: serialize, get format from params; or use object structure in result?

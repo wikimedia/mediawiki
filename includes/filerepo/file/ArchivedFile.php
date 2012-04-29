@@ -143,7 +143,7 @@ class ArchivedFile {
 				array( 'ORDER BY' => 'fa_timestamp DESC' ) );
 			if ( $res == false || $dbr->numRows( $res ) == 0 ) {
 			// this revision does not exist?
-				return;
+				return null;
 			}
 			$ret = $dbr->resultObject( $res );
 			$row = $ret->fetchObject();
