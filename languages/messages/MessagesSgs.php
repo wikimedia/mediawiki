@@ -583,6 +583,7 @@ Prašuom pamiegintė vielēk. Jei šėtā napaded, pamieginkėt atsėjongtė ėr
 ''Kadaogi šėtom pruojekte grīnasės HTML īr ijongts, parveiza īr pasliepta kāp atsargoma prėimonė priš JavaScript atakas.''
 '''Jei tā teisiets keitėma bandīms, prašuom pamiegint viel. Jei šėtā napaded, pamieginkėt atsėjongtė ėr prėsėjongtė atgal.'''",
 'editing' => 'Taisuoms straipsnis - $1',
+'creating' => 'Dėrbama $1',
 'editingsection' => 'Taisuoms $1 (skėrsnelis)',
 'editingcomment' => 'Taisuoms $1 (naus skīrius)',
 'editconflict' => 'Ėšpreskėt kuonflėkta: $1',

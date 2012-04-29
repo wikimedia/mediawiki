@@ -167,7 +167,7 @@ $messages = array(
 'qbpageoptions' => 'Ena pele',
 'qbpageinfo' => 'Gıre',
 'qbmyoptions' => 'Pelê mı',
-'qbspecialpages' => 'Pelê Mêniye',
+'qbspecialpages' => 'Peley xısusi',
 'faq' => 'PZP (Persê ke zehf persiyenê)',
 'faqpage' => 'Project: PZP',
 
@@ -200,7 +200,7 @@ $messages = array(
 'history_short' => 'Tarix',
 'updatedmarker' => 'cıkewtena mına peyêne ra dıme biyo rocane',
 'printableversion' => 'Asayışê çapkerdışi',
-'permalink' => 'Gıreyo jûqere',
+'permalink' => 'Gıreyo daimi',
 'print' => 'Çap ke',
 'view' => 'Bıvêne',
 'edit' => 'Bıvurne',
@@ -401,7 +401,7 @@ Perse: $2',
 'cascadeprotected' => 'No pel de vurnayiş qedexe biyo, çunke şıma tuşa "kademeyın" aqtif kerdo u no {{PLURAL:$1|pelo|pelo}} pawıteyo de xebıtyeno:
 $2',
 'namespaceprotected' => "No '''$1''' ca de icazetê şıma çino şıma pel rêz keri.",
-'ns-specialprotected' => 'Pelê mêniye nênê vurnayış.',
+'ns-specialprotected' => 'Peley xısusi nênê vurnayış.',
 'titleprotected' => 'Eno [[User:$1|$1]] zerreyê ena peli nişeno vuriye.
 Sebeb: "\'\'$2\'\'".',
 
@@ -2084,7 +2084,7 @@ $1',
 'blanknamespace' => '(Ser)',
 
 # Contributions
-'contributions' => 'İştiraqê karberi',
+'contributions' => 'İştirakê karberi',
 'contributions-title' => '$1 de iştırakê karberi',
 'mycontris' => 'İştırakê mı',
 'contribsub2' => 'Semedê $1 ($2)',
@@ -2381,7 +2381,7 @@ ma vaci: qey pelê "[[{{MediaWiki:Mainpage}}]]i " [[{{#Special:Export}}/{{MediaW
 'export-pagelinks' => 'behsê xorıniya pelê pêrabesteyani:',
 
 # Namespace 8 related
-'allmessages' => 'Mesajanê sistemi',
+'allmessages' => 'Mesacê sistemi',
 'allmessagesname' => 'Name',
 'allmessagesdefault' => 'nuşteyo orjinal',
 'allmessagescurrent' => 'nuşte yo ke şuxuliyeno',
@@ -2649,7 +2649,7 @@ Yew rêze de gırêyo sıfteyın gani gırêyo de dosya xırabıne bo.
 Na rêze de her gırêyo bin zey istisna vêniyeno, yanê pelê ke dosya beno ke sero rêzbiyaye asena.',
 
 # Metadata
-'metadata' => 'Metadata',
+'metadata' => 'Melumato serên',
 'metadata-help' => 'Ena dosya dı zafyer informasyoni esto. Belki ena dosya yew kamareyo dijital ya zi skaner ra vıraziyo.
 Eg ena dosya, kondisyonê orcinali ra bıvuriya, belki detayanê hemi nıeseno.',
 'metadata-expand' => 'Extended detayan bımoc',
@@ -3244,7 +3244,7 @@ Resımi be tam asayış mocniyayê, tipê dosyaê bini be programê cıyo elaqed
 'fileduplicatesearch-noresults' => 'Ebe namey "$1" ra dosya nêdiyayê.',
 
 # Special:SpecialPages
-'specialpages' => 'Pelê mêniye',
+'specialpages' => 'Peley xısusi',
 'specialpages-note' => '----
 * Xısusi pelaya normal
 * <span class="mw-specialpagerestricted">Xısusi peleyê keı rê ray nê deyaya.</span>

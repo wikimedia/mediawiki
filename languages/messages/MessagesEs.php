@@ -1121,6 +1121,10 @@ Ese o esos parámetros han sido omitidos.',
 'parser-template-loop-warning' => 'Detectado bucle de plantilla: [[$1]]',
 'parser-template-recursion-depth-warning' => 'Se ha excedido el límite de recursión de plantillas ($1)',
 'language-converter-depth-warning' => 'El límite de profundidad del convertidor de idioma ha excedido ($1)',
+'node-count-exceeded-category' => 'Páginas donde se supera el número de nodos',
+'node-count-exceeded-warning' => 'Página que ha superado el número de nodos',
+'expansion-depth-exceeded-category' => 'Páginas donde se supera la profundidad de expansión',
+'expansion-depth-exceeded-warning' => 'Página que ha superado la profundidad de expansión',
 
 # "Undo" feature
 'undo-success' => 'La edición puede deshacerse. Antes de deshacer la edición, comprueba la siguiente comparación para verificar que realmente es lo que quieres hacer, y entonces guarda los cambios para así deshacer la edición.',

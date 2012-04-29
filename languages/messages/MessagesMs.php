@@ -953,6 +953,10 @@ Argumen-argumen ini telah ditinggalkan.',
 'parser-template-loop-warning' => 'Gelung templat dikesan: [[$1]]',
 'parser-template-recursion-depth-warning' => 'Had pengulangan templat dilebihi ($1)',
 'language-converter-depth-warning' => 'Had kedalaman penukar bahasa dilepasi ($1)',
+'node-count-exceeded-category' => 'Laman yang melebihi had kiraan nod',
+'node-count-exceeded-warning' => 'Laman terlebih kiraan nod',
+'expansion-depth-exceeded-category' => 'Laman yang melebihi had kedalaman peluasan',
+'expansion-depth-exceeded-warning' => 'Laman terlebih dalam peluasan',
 
 # "Undo" feature
 'undo-success' => 'Suntingan ini boleh dibatalkan. Sila semak perbandingan di bawah untuk mengesahkan bahawa anda betul-betul mahu melakukan tindakan ini, kemudian simpan perubahan tersebut.',

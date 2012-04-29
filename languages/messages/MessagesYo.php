@@ -2466,6 +2466,7 @@ kò le yípò ojúewé padà sí ara rẹ̀.',
 
 # Export
 'export' => 'Ìkójáde àwọn ojúewé',
+'exportall' => 'Ìkójáde gbogbo àwọn ojúewé',
 'export-submit' => 'Kósíta',
 'export-addcattext' => 'Àfikún àwọn ojúewé láti inú ẹ̀ka:',
 'export-addcat' => 'Ìròpọ̀',

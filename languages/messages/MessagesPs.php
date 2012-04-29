@@ -750,7 +750,8 @@ $1',
 '''تر اوسه پورې دا نه دی خوندي شوی!'''",
 'updated' => '(تازه)',
 'note' => "'''يادونه:'''",
-'previewnote' => "'''دا يواځې مخليدنه ده، تاسې چې کوم بدلونونه ترسره کړي، لا تر اوسه پورې نه دي خوندي شوي!'''",
+'previewnote' => "'''هېر مو نه شي چې دا يواځې يوه مخليدنه ده.'''
+ستاسې لخوا ترسره شوي بدلونونه لا تر اوسه پورې نه دي خوندي شوي!!",
 'editing' => 'د $1 سمونه',
 'editingsection' => 'سمونه $1 (برخه)',
 'editingcomment' => 'د $1 سمون (نوې برخه)',
@@ -1279,7 +1280,10 @@ $1',
 'upload-http-error' => 'د HTTP يوه ستونزه رامېنځ ته شوې: $1',
 
 # File backend
+'backend-fail-delete' => 'د "$1" دوتنه ړنګه نه شوه.',
 'backend-fail-alreadyexists' => 'د $1 دوتنه له پخوا نه شته.',
+'backend-fail-read' => 'د "$1" دوتنه نه شي لوستل کېدای.',
+'backend-fail-create' => 'د "$1" دوتنه نه شي جوړېدای.',
 
 # ZipDirectoryReader
 'zip-wrong-format' => 'ځانګړې شوې دوتنه يوه ZIP دوتنه نه وه.',
@@ -1823,8 +1827,8 @@ $UNWATCHURL  نه ليدنه وکړۍ
 'ipb-confirm' => 'د بنديز تاييد',
 'badipaddress' => 'ناسمه IP پته',
 'blockipsuccesssub' => 'بنديز په برياليتوب سره ولګېده',
-'blockipsuccesstext' => 'د [[Special:Contributions/$1|$1]] مخه نيول شوې.
-<br />د مخنيول شويو خلکو د کتنې لپاره، د [[Special:BlockList|مخنيول شويو IP لړليک]] وګورۍ.',
+'blockipsuccesstext' => 'په [[Special:Contributions/$1|$1]] بنديز لګېدلی.<br />
+د بنديزونو د څارلو لپاره [[Special:BlockList|بنديز لړليک]] وګورۍ.',
 'ipb-edit-dropdown' => 'د بنديز سببونه سمول',
 'ipb-unblock-addr' => 'له $1 بنديز ليرې کول',
 'ipb-unblock' => 'له يوه کارن-نوم يا IP پتې بنديز ليري کول',
@@ -1973,6 +1977,9 @@ $UNWATCHURL  نه ليدنه وکړۍ
 # Import log
 'importlogpage' => 'د واردولو يادښت',
 
+# JavaScriptTest
+'javascripttest' => 'د جاوا سکرېپټ آزمېښت',
+
 # Tooltip help for the actions
 'tooltip-pt-userpage' => 'ستاسې کارن مخ',
 'tooltip-pt-mytalk' => 'ستاسې د خبرواترو مخ',
@@ -2030,6 +2037,7 @@ $UNWATCHURL  نه ليدنه وکړۍ
 'tooltip-diff' => 'دا هغه بدلونونه چې تاسې په متن کې ترسره کړي، ښکاره کوي. [alt-v]',
 'tooltip-compareselectedversions' => 'د همدې مخ د دوو ټاکل شويو بڼو تر مېنځ توپيرونه وګورۍ.',
 'tooltip-watch' => 'دا مخ ستاسې کتنلړ کې ورګډوي [alt-w]',
+'tooltip-upload' => 'د پورته کولو پيل',
 'tooltip-rollback' => 'په همدې مخ کې "په شابېول" د وروستني ونډوال سمون (سمونونه) په يوه کلېک په څټ ورګرځوي.',
 'tooltip-undo' => '"ناکړ" همدا سمون پر شا ګرځوي او د سمون کړکۍ د مخکتنې په بڼه پرانيزي.
 دا کړنه د لنډيز په برخه کې د سمونونو د سببونو د ورګډولو آسانتيا برابروي.',
@@ -2085,6 +2093,7 @@ $UNWATCHURL  نه ليدنه وکړۍ
 'svg-long-desc' => 'SVG دوتنه، نومېنلي $1 × $2 پېکسل، د دوتنې کچه: $3',
 'show-big-image' => 'بشپړ بېلن نښې',
 'file-info-gif-frames' => '$1 {{PLURAL:$1|چوکاټ|چوکاټونه}}',
+'file-info-png-repeat' => '$1 {{PLURAL:$1|ځل|ځله}} وغږېده',
 'file-info-png-frames' => '$1 {{PLURAL:$1|چوکاټ|چوکاټونه}}',
 
 # Special:NewFiles
@@ -2145,6 +2154,7 @@ $UNWATCHURL  نه ليدنه وکړۍ
 'exif-model' => 'د کامرې ماډل',
 'exif-software' => 'کارېدلې ساوترۍ',
 'exif-artist' => 'ليکوال',
+'exif-copyright' => 'د رښتو خاوند',
 'exif-colorspace' => 'رنګ تشيال',
 'exif-pixelydimension' => 'د انځور سور',
 'exif-pixelxdimension' => 'د انځور جګوالی',
@@ -2174,19 +2184,26 @@ $UNWATCHURL  نه ليدنه وکړۍ
 'exif-objectname' => 'لنډ سرليک',
 'exif-headline' => 'سرليک',
 'exif-source' => 'سرچينه',
-'exif-contact' => 'د اړيکې مالومات',
+'exif-contact' => 'د اړيکو مالومات',
 'exif-writer' => 'ليکوال',
 'exif-languagecode' => 'ژبه',
 'exif-iimcategory' => 'وېشنيزه',
 'exif-datetimeexpires' => 'مه يې کاروۍ وروسته له',
+'exif-datetimereleased' => 'خپرېدلی په',
 'exif-identifier' => 'پېژندنه',
 'exif-lens' => 'کارېدلې لېنز',
 'exif-serialnumber' => 'د کامرې پرله پسې شمېره',
 'exif-cameraownername' => 'د کامرې خاوند',
 'exif-label' => 'نښکه',
+'exif-copyrighted' => 'د رښتو دريځ',
+'exif-copyrightowner' => 'د رښتو خاوند',
+'exif-usageterms' => 'د کارولو شرايط',
 'exif-pngfilecomment' => 'د PNG دوتنې تبصره',
 'exif-disclaimer' => 'ردادعاليک',
 'exif-giffilecomment' => 'د GIF دوتنې تبصره',
+
+'exif-copyrighted-true' => 'په رښتو سمبال',
+'exif-copyrighted-false' => 'ټولګړی شپول',
 
 'exif-unknowndate' => 'نامالومه نېټه',
 
@@ -2207,6 +2224,7 @@ $UNWATCHURL  نه ليدنه وکړۍ
 'exif-lightsource-1' => 'د ورځې رڼا',
 'exif-lightsource-4' => 'فلش',
 'exif-lightsource-9' => 'ښه هوا',
+'exif-lightsource-10' => 'ورېځ پوښلې هوا',
 'exif-lightsource-11' => 'سيوری',
 'exif-lightsource-255' => 'د رڼا بله سرچينه',
 
@@ -2403,6 +2421,9 @@ $5
 'iranian-calendar-m11' => 'سلواغه',
 'iranian-calendar-m12' => 'کب',
 
+# Signatures
+'signature' => '[[{{ns:user}}:$1|$2]] ([[{{ns:user_talk}}:$1|خبرې اترې]])',
+
 # Special:Version
 'version' => 'بڼه',
 'version-extensions' => 'لګېدلي شاتاړي',
@@ -2517,6 +2538,7 @@ $5
 'feedback-close' => 'ترسره شو',
 
 # API errors
+'api-error-duplicate-popup-title' => 'غبرګونې {{PLURAL:$1|دوتنه|دوتنې}}.',
 'api-error-empty-file' => 'کومه دوتنه چې تاسې دلته سپارلې هغه تشه ده.',
 'api-error-file-too-large' => 'کومه دوتنه چې تاسې دلته سپارلې ډېره لويه ده.',
 'api-error-filename-tooshort' => 'د دوتنې نوم ډېر لنډ دی.',
@@ -2525,5 +2547,16 @@ $5
 'api-error-unknown-code' => 'ناڅرګنده تېروتنه: "$1"',
 'api-error-unknown-warning' => 'ناڅرګنده ګواښنه: "$1".',
 'api-error-unknownerror' => 'ناڅرګنده تېروتنه: "$1".',
+
+# Durations
+'duration-seconds' => '$1 {{PLURAL:$1|ثانيه|ثانيې}}',
+'duration-minutes' => '$1 {{PLURAL:$1|دقيقه|دقيقې}}',
+'duration-hours' => '$1 {{PLURAL:$1|ساعت|ساعتونه}}',
+'duration-days' => '$1 {{PLURAL:$1|ورځ|ورځې}}',
+'duration-weeks' => '$1 {{PLURAL:$1|اونۍ|اونۍ}}',
+'duration-years' => '$1 {{PLURAL:$1|کال|کالونه}}',
+'duration-decades' => '$1 {{PLURAL:$1|لسيزه|لسيزې}}',
+'duration-centuries' => '$1 {{PLURAL:$1|پېړۍ|پېړۍ}}',
+'duration-millennia' => '$1 {{PLURAL:$1|زرمه|زرمې}}',
 
 );

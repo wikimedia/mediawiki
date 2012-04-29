@@ -1055,6 +1055,10 @@ Những giá trị này sẽ bị bỏ đi.',
 'parser-template-loop-warning' => 'Phát hiện bản mẫu lặp vòng: [[$1]]',
 'parser-template-recursion-depth-warning' => 'Bản mẫu đã vượt quá giới hạn về độ sâu đệ quy ($1)',
 'language-converter-depth-warning' => 'Đã vượt quá giới hạn độ sâu của bộ chuyển đổi ngôn ngữ ($1)',
+'node-count-exceeded-category' => 'Những trang có số nốt vượt quá giới hạn cho phép',
+'node-count-exceeded-warning' => 'Trang có nhiều nốt quá',
+'expansion-depth-exceeded-category' => 'Những trang có độ sâu bung bản mẫu vượt quá giới hạn cho phép',
+'expansion-depth-exceeded-warning' => 'Trang bung bản mẫu sâu quá',
 
 # "Undo" feature
 'undo-success' => 'Các sửa đổi có thể được lùi lại. Xin hãy kiểm tra phần so sánh bên dưới để xác nhận lại những gì bạn muốn làm, sau đó lưu thay đổi ở dưới để hoàn tất việc lùi lại sửa đổi.',

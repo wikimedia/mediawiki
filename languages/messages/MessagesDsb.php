@@ -895,6 +895,10 @@ Njesmějo daś wěcej nježli $2 {{PLURAL:$2|wołanja|wołanjowu|wołanjow|woła
 'parser-template-loop-warning' => 'Pśedłogowa šlejfa namakana: [[$1]]',
 'parser-template-recursion-depth-warning' => 'Limit rekursijneje dłymi pśedłogi pśekšocony ($1)',
 'language-converter-depth-warning' => 'Limit dłymokosći rěcnego konwertera pśekšocony ($1)',
+'node-count-exceeded-category' => 'Boki, źož licba sukow jo pśekšocona',
+'node-count-exceeded-warning' => 'Bok jo licbu sukow pśekšocył',
+'expansion-depth-exceeded-category' => 'Boki, źož ekspansiska dłymokosć jo pśekšocona',
+'expansion-depth-exceeded-warning' => 'Bok jo ekspansisku dłymokosć pśekšocył',
 
 # "Undo" feature
 'undo-success' => 'Wobźěłanje móžo se wótpóraś. Pšosym pśeglěduj dołojcne pśirownowanje aby se wěsty był, až to wót wěrnosći coš, a pón składuj změny, aby se wobźěłanje doskóńcnje wótpórało.',

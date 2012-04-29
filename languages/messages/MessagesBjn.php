@@ -723,7 +723,7 @@ Log blukir pahabisannya tasadia di bawah ini gasan rujukan:',
 Inatakan bahwasa saragam  tungkaran-tungkaran .css wan .js mamuruk aksara halus, cuntuh {{ns:user}}:Foo/vector.css sawagai tandingan {{ns:user}}:Foo/Vector.css.",
 'updated' => '(Dihanyarakan)',
 'note' => "'''Catatan:'''",
-'previewnote' => "'''Ingatakanlah bahwasa ini titilikan haja nang balum disimpan!'''",
+'previewnote' => "'''Ingatakanlah bahwasa ngini titilikan haja''' Parubahan Pian nang baluman disimpan!",
 'previewconflict' => 'Titilikan ini mancarminakan naskah dalam naskah wilayah atas babakan sawagai mana ini akan mancungul amun disimpan.',
 'session_fail_preview' => "'''Ampun! Kami kada kawa manarusakan babakan Pian karana kahilangan sési data.'''
 Cubai pang sa'asa pulang.
@@ -739,6 +739,7 @@ Babakan ini kada ditarima hagan mancagah kasalahan pada naskah tungkaran.
 Nangini ambahanu tajadi amun Pian mamuruk sabuah layanan proxy buggy bapandal web kada bangaran.",
 'edit_form_incomplete' => "'''Babarapa hagian matan purmulir babakan kada sampai server; pariksa pulang apakah babakan Pian tatap utuh wan cubai lagi.'''",
 'editing' => 'Mambabak $1',
+'creating' => 'Ma-ulah $1',
 'editingsection' => 'Mambabak $1 (hagian)',
 'editingcomment' => 'Mambabak $1 (hagian hanyar)',
 'editconflict' => 'Babakan bacakut: $1',
@@ -761,7 +762,7 @@ Pian jua bajanji ka kami amun Pian manulis ini saurangan, atawa manjumput ini ma
 Amun Pian kada hakun tulisan Pian dibabak kada baumpat lalu, lalu ai kada usah manyumbang di sia.<br />
 Pian jua bajanji ka kami amun Pian manulis ini saurangan, atawa manjumput ini matan sabuah asal mula ampun umum atawa nang samacam asal mula bibas (lihati $1 gasan rarincian).
 '''Jangan kirimkan gawian bahak cipta kada baijin!'''",
-'longpageerror' => "'''Kasalahan: Naskah nang Pian kirim panjangnya $1 kilubita, nangapa tapanjang pada pamanjangnya nang kawa $2 kilubita.'''
+'longpageerror' => "'''Kasalahan: Naskah nang Pian kirim panjangnya {{PLURAL:$1|asa kilubita|$1 kilubita}}, nangapa tapanjang pada pamanjangnya nang kawa {{PLURAL:$2|asa kilubita|$2 kilubita}}.'''
 Nangini kada kawa disimpan.",
 'readonlywarning' => "'''Paringatan: Basis data sudah tasunduk gasan diharagu, jadinya Pian kada kawa manyimpan babakab Pian parhatan ini.'''
 Pian kawa amun handak cut-n-paste naskah ka sabuah barakas naskah wan simpan ini gasan kaina.
@@ -804,6 +805,7 @@ Ini cungul pinanya sudah tahapus.',
 'edit-no-change' => 'Babakan Pian diabaiakan, karana kadada parubahan diulah ka naskah ini.',
 'edit-already-exists' => 'Kada kawa maulah sabuah tungkaran hanyar.
 Nangini sudah ada.',
+'defaultmessagetext' => 'Naskah baku pasan',
 
 # Parser/template warnings
 'expensive-parserfunction-warning' => "'''Paringatan:''' Tungkaran ini mangandung kabanyakan pungsi parser kiauan.
@@ -961,7 +963,7 @@ Muhun pariksa lolog.',
 
 # Suppression log
 'suppressionlog' => 'Log panikinan',
-'suppressionlogtext' => 'Nang di bawah adalah sabuah daptar matan pahahapusan wan Pamblublukiran tamasuk isi tasungkup matan papambakal. Lihati [[Special:IPBlockList|Daptar IP diblukir]] gasan daptar matan uprasi tahanyar tatangatan wan blublukir.',
+'suppressionlogtext' => 'Nang di bawah adalah sabuah daptar matan pahahapusan wan Pamblublukiran tamasuk isi tasungkup matan papambakal. Lihati [[Special:BlockList|Daptar diblukir]] gasan daptar matan uprasi tahanyar tatangatan wan blublukir.',
 
 # History merging
 'mergehistory' => 'Gabungakan hahalam tungkaran',
@@ -2335,7 +2337,7 @@ Isi sabuah alasan khas di bawah (gasan cuntuh, manulisakan tutungkaran nang suah
 'badipaddress' => 'Alamat IP kada sah',
 'blockipsuccesssub' => 'Pamblukiran ruhui',
 'blockipsuccesstext' => '[[Special:Contributions/$1|$1]] sudah diblukir.<br />
-Janaki [[Special:BlockList|daptar IP dibluk]] hagan maniring-pulang blukir.',
+Janaki [[Special:BlockList|daptar dibluk]] hagan maniring-pulang blukir.',
 'ipb-blockingself' => 'Pian pasal mamblukir Pian surang! Bujurkah Pian mahandaki ngitu?',
 'ipb-confirmhideuser' => 'Pian pasal mamblukir saurang pamuruk awan "sungkupakan pamuruk" di-kawa-akan. Ngini akan manikin/kadada ngaran pamuruk dalam samunyaan daptar wan log masukan. Pian yakin kah handak manggawi ngitu?',
 'ipb-edit-dropdown' => 'Aalasan pamblukiran babakan',
@@ -2390,7 +2392,7 @@ Log panikinan disadiakan di bawah gasan rujukan:',
 'reblock-logentry' => 'setelan blukir diubah gasan [[$1]] awan sabuah wayah kadaluarsa $2 $3',
 'blocklogtext' => 'Ngini adalah log matan blukir wan lapas-blukir pamuruk.
 Blukir alamat IP utumatis kada didaptar.
-Janaki [[Special:BlockList|daptar IP diblukir]] gasan daptar oparasi diikat wan diblukir tadamini.',
+Janaki [[Special:BlockList|daptar diblukir]] gasan daptar oparasi diikat wan diblukir tadamini.',
 'unblocklogentry' => 'Mahilangakan blukir "$1"',
 'block-log-flags-anononly' => 'papamuruk kada bangaran haja',
 'block-log-flags-nocreate' => 'Paulahan akun dipajahakan',
@@ -2786,7 +2788,7 @@ Manarusakan ngini, kawa manyarang sistem Pian.",
 'svg-long-desc' => 'Barakas SVG, nominal $1 × $2 piksel, basar barakas: $3',
 'show-big-image' => 'Ukuran hibak',
 'show-big-image-preview' => 'Takaran tilikan ngini: $1.',
-'show-big-image-other' => 'Resolusi lain: $1.',
+'show-big-image-other' => '{{PLURAL:$2|Risulusi|Risulusi}} lain: $1.',
 'show-big-image-size' => '$1 × $2 piksal',
 'file-info-gif-looped' => 'mambulat',
 'file-info-gif-frames' => '$1 {{PLURAL:$1|pigura|pipigura}}',

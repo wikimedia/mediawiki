@@ -726,6 +726,7 @@ Arrecuerdete ca jndr'à le file personalizzete .css e .js s'ause scrivere le tit
 'note' => "'''Vide Bbuene:'''",
 'previewnote' => "'''Arrecuerdete queste è sole 'n'andeprime.'''
 le cangiaminde non g'onne state angore reggistrate!",
+'continue-editing' => "Condinue 'u cangiamende",
 'previewconflict' => "Sta andeprime fece vedè 'u teste ca ste jndr'à 'u teste de l'area de sus cumme avène fore ce tu decide cu reggistre.",
 'session_fail_preview' => "'''Ne dispiace! Non ge putime processà 'u cangiamende tue purcè s'a perse 'a sessione de le date.
 Pe piacere pruève 'n'otra vote.
@@ -3887,6 +3888,7 @@ Ce nò, tu puè ausà 'u module facile aqquà sotte. 'U commende tune avène agg
 'api-error-filename-tooshort' => "'U nome d'u file jè troppe curte.",
 'api-error-filetype-banned' => 'Stu tipe de file jè vietate.',
 'api-error-filetype-missing' => "'U file jè senze 'n'estenzione.",
+'api-error-hookaborted' => "'U cangiamende ca tu stè pruève a ffà ha state inderrotte da 'n'estenzione.",
 'api-error-http' => "Errore inderne: Non ge se riesce a collegà a 'u server",
 'api-error-illegal-filename' => "'U nome d'u file non g'è permesse.",
 'api-error-invalid-file-key' => "Errore inderne: 'U file non ge se iacchie jndr'à memorie temboranèe.",

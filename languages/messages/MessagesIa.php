@@ -943,6 +943,10 @@ Iste parametros ha essite omittite.",
 'parser-template-loop-warning' => 'Recursion infinite detegite in patrono: [[$1]]',
 'parser-template-recursion-depth-warning' => 'Limite de recursion del patrono excedite ($1)',
 'language-converter-depth-warning' => 'Limite de profunditate del conversor de lingua excedite ($1)',
+'node-count-exceeded-category' => 'Paginas in que le numero de nodos excede le limite',
+'node-count-exceeded-warning' => 'Le numero de nodos in iste pagina excede le limite',
+'expansion-depth-exceeded-category' => 'Paginas in que le profunditate de expansion excede le limite',
+'expansion-depth-exceeded-warning' => 'Le profunditate de expansion in iste pagina excede le limite',
 
 # "Undo" feature
 'undo-success' => 'Le modification pote esser disfacite.
