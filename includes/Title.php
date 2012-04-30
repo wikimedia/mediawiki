@@ -272,16 +272,16 @@ class Title {
 				$this->mRedirect = (bool)$row->page_is_redirect;
 			if ( isset( $row->page_latest ) )
 				$this->mLatestID = (int)$row->page_latest; # FIXME: whene3ver page_latest is updated, also update page_content_model
-            if ( isset( $row->page_content_model ) )
-                $this->mContentModelName = $row->page_content_model;
-            else
-                $this->mContentModelName = null; # initialized lazily in getContentModelName()
+			if ( isset( $row->page_content_model ) )
+				$this->mContentModelName = $row->page_content_model;
+			else
+				$this->mContentModelName = null; # initialized lazily in getContentModelName()
 		} else { // page not found
 			$this->mArticleID = 0;
 			$this->mLength = 0;
 			$this->mRedirect = false;
 			$this->mLatestID = 0;
-            $this->mContentModelName = null; # initialized lazily in getContentModelName()
+			$this->mContentModelName = null; # initialized lazily in getContentModelName()
 		}
 	}
 
@@ -307,7 +307,7 @@ class Title {
 		$t->mArticleID = ( $ns >= 0 ) ? -1 : 0;
 		$t->mUrlform = wfUrlencode( $t->mDbkeyform );
 		$t->mTextform = str_replace( '_', ' ', $title );
-        $t->mContentModelName = null; # initialized lazily in getContentModelName()
+		$t->mContentModelName = null; # initialized lazily in getContentModelName()
 		return $t;
 	}
 
@@ -697,28 +697,28 @@ class Title {
 		return $this->mNamespace;
 	}
 
-    /**
-     * Get the page's content model name
-     *
-     * @return Integer: Namespace index
-     */
-    public function getContentModelName() {
-        if ( empty( $this->mContentModelName ) ) {
-            $this->mContentModelName = ContentHandler::getDefaultModelFor( $this );
-        }
+	/**
+	 * Get the page's content model name
+	 *
+	 * @return Integer: Namespace index
+	 */
+	public function getContentModelName() {
+		if ( empty( $this->mContentModelName ) ) {
+			$this->mContentModelName = ContentHandler::getDefaultModelFor( $this );
+		}
 
-        return $this->mContentModelName;
-    }
+		return $this->mContentModelName;
+	}
 
-    /**
-     * Conveniance method for checking a title's content model name
-     *
-     * @param $name
-     * @return true if $this->getContentModelName() == $name
-     */
-    public function hasContentModel( $name ) {
-        return $this->getContentModelName() == $name;
-    }
+	/**
+	 * Conveniance method for checking a title's content model name
+	 *
+	 * @param $name
+	 * @return true if $this->getContentModelName() == $name
+	 */
+	public function hasContentModel( $name ) {
+		return $this->getContentModelName() == $name;
+	}
 
 	/**
 	 * Get the namespace text
@@ -967,26 +967,26 @@ class Title {
 
 	/**
 	 * Could this page contain custom CSS or JavaScript for the global UI.
-     * This is generally true for pages in the MediaWiki namespace having CONTENT_MODEL_CSS
-     * or CONTENT_MODEL_JAVASCRIPT.
-     *
-     * This method does *not* return true for per-user JS/CSS. Use isCssJsSubpage() for that!
-     *
-     * Note that this method should not return true for pages that contain and show "inactive" CSS or JS.
+	 * This is generally true for pages in the MediaWiki namespace having CONTENT_MODEL_CSS
+	 * or CONTENT_MODEL_JAVASCRIPT.
+	 *
+	 * This method does *not* return true for per-user JS/CSS. Use isCssJsSubpage() for that!
+	 *
+	 * Note that this method should not return true for pages that contain and show "inactive" CSS or JS.
 	 *
 	 * @return Bool
 	 */
 	public function isCssOrJsPage() {
-        $isCssOrJsPage = NS_MEDIAWIKI == $this->mNamespace
-            && ( $this->hasContentModel( CONTENT_MODEL_CSS )
-                || $this->hasContentModel( CONTENT_MODEL_JAVASCRIPT ) );
+		$isCssOrJsPage = NS_MEDIAWIKI == $this->mNamespace
+			&& ( $this->hasContentModel( CONTENT_MODEL_CSS )
+				|| $this->hasContentModel( CONTENT_MODEL_JAVASCRIPT ) );
 
-        #NOTE: this hook is also called in ContentHandler::getDefaultModel. It's called here again to make sure
-        #      hook funktions can force this method to return true even outside the mediawiki namespace.
+		#NOTE: this hook is also called in ContentHandler::getDefaultModel. It's called here again to make sure
+		#      hook funktions can force this method to return true even outside the mediawiki namespace.
 
-        wfRunHooks( 'TitleIsCssOrJsPage', array( $this, &$isCssOrJsPage ) );
+		wfRunHooks( 'TitleIsCssOrJsPage', array( $this, &$isCssOrJsPage ) );
 
-        return $isCssOrJsPage;
+		return $isCssOrJsPage;
 	}
 
 	/**
@@ -995,8 +995,8 @@ class Title {
 	 */
 	public function isCssJsSubpage() {
 		return ( NS_USER == $this->mNamespace && $this->isSubpage()
-                && ( $this->hasContentModel( CONTENT_MODEL_CSS )
-                    || $this->hasContentModel( CONTENT_MODEL_JAVASCRIPT ) ) );
+				&& ( $this->hasContentModel( CONTENT_MODEL_CSS )
+					|| $this->hasContentModel( CONTENT_MODEL_JAVASCRIPT ) ) );
 	}
 
 	/**
@@ -1019,8 +1019,8 @@ class Title {
 	 * @return Bool
 	 */
 	public function isCssSubpage() {
-        return ( NS_USER == $this->mNamespace && $this->isSubpage()
-            && $this->hasContentModel( CONTENT_MODEL_CSS ) );
+		return ( NS_USER == $this->mNamespace && $this->isSubpage()
+			&& $this->hasContentModel( CONTENT_MODEL_CSS ) );
 	}
 
 	/**
@@ -1029,8 +1029,8 @@ class Title {
 	 * @return Bool
 	 */
 	public function isJsSubpage() {
-        return ( NS_USER == $this->mNamespace && $this->isSubpage()
-            && $this->hasContentModel( CONTENT_MODEL_JAVASCRIPT ) );
+		return ( NS_USER == $this->mNamespace && $this->isSubpage()
+			&& $this->hasContentModel( CONTENT_MODEL_JAVASCRIPT ) );
 	}
 
 	/**
