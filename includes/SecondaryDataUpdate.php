@@ -33,16 +33,85 @@ abstract class SecondaryDataUpdate implements DeferrableUpdate {
 	}
 
 	/**
-	 * Conveniance method, calls doUpdate() on every element in the array.
+	 * Begin an appropriate transaction, if any.
+	 * This default implementation does nothing.
+	 */
+	public function beginTransaction() {
+		//noop
+	}
+
+	/**
+	 * Commit the transaction started via beginTransaction, if any.
+	 * This default implementation does nothing.
+	 */
+	public function commitTransaction() {
+		//noop
+	}
+
+	/**
+	 * Abort / roll back the transaction started via beginTransaction, if any.
+	 * This default implementation does nothing.
+	 */
+	public function rollbackTransaction() {
+		//noop
+	}
+
+	/**
+	 * Conveniance method, calls doUpdate() on every SecondaryDataUpdate in the array.
+	 *
+	 * This methods supports transactions logic by first calling beginTransaction()
+	 * on all updates in the array, then calling doUpdate() on each, and, if all goes well,
+	 * then calling commitTransaction() on each update. If an error occurrs,
+	 * rollbackTransaction() will be called on any update object that had beginTranscation()
+	 * called but not yet commitTransaction().
+	 *
+	 * This allows for limited transactional logic across multiple baceknds for storing
+	 * secondary data.
 	 *
 	 * @static
-	 * @param $updates array
+	 * @param $updates array a list of SecondaryDataUpdate instances
 	 */
 	public static function runUpdates( $updates ) {
 		if ( empty( $updates ) ) return; # nothing to do
 
-		foreach ( $updates as $update ) {
-			$update->doUpdate();
+		$open_transactions = array();
+		$exception = null;
+
+		/**
+		 * @var $update SecondaryDataUpdate
+		 * @var $trans SecondaryDataUpdate
+		 */
+
+		try {
+			// begin transactions
+			foreach ( $updates as $update ) {
+				$update->beginTransaction();
+				$open_transactions[] = $update;
+			}
+
+			// do work
+			foreach ( $updates as $update ) {
+				$update->doUpdate();
+			}
+
+			// commit transactions
+			while ( count( $open_transactions ) > 0 ) {
+				$trans = array_pop( $open_transactions );
+				$trans->commitTransaction();
+			}
+		} catch ( Exception $ex ) {
+			$exception = $ex;
+			wfDebug( "Caught exception, will rethrow after rollback: " . $ex->getMessage() );
+		}
+
+		// rollback remaining transactions
+		while ( count( $open_transactions ) > 0 ) {
+			$trans = array_pop( $open_transactions );
+			$trans->rollbackTransaction();
+		}
+
+		if ( $exception ) {
+			throw $exception; // rethrow after cleanup
 		}
 	}
 

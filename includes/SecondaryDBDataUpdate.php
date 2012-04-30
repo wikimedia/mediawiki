@@ -26,16 +26,17 @@ abstract class SecondaryDBDataUpdate extends SecondaryDataUpdate {
 	 * @private
 	 */
 	var $mDb,            //!< Database connection reference
-		$mOptions;       //!< SELECT options to be used (array)
+		$mOptions,       //!< SELECT options to be used (array)
+		$mHasTransaction;//!< bool whether a transaction is open on this object (internal use only!)
 	/**@}}*/
 
 	/**
 	 * Constructor
-     **/
-    public function __construct( ) {
+	**/
+	public function __construct( ) {
 		global $wgAntiLockFlags;
 
-        parent::__construct( );
+		parent::__construct( );
 
 		if ( $wgAntiLockFlags & ALF_NO_LINK_LOCK ) {
 			$this->mOptions = array();
@@ -43,15 +44,49 @@ abstract class SecondaryDBDataUpdate extends SecondaryDataUpdate {
 			$this->mOptions = array( 'FOR UPDATE' );
 		}
 		$this->mDb = wfGetDB( DB_MASTER );
+		$this->mHasTransaction = false;
 	}
 
 	/**
-	 * Invalidate the cache of a list of pages from a single namespace
+	 * Begin a database transaction.
+	 *
+	 * Because nested transactions are not supportred by the Database class, this implementation
+	 * checked Database::trxLevel() and only opens a transaction if none is yet active.
+	 */
+	public function beginTransaction() {
+		// NOTE: nested transactions are not supported, only start a transaction if none is open
+		if ( $this->mDb->trxLevel() === 0 ) {
+			$this->mDb->begin( get_class( $this ) . '::beginTransaction'  );
+			$this->mHasTransaction = true;
+		}
+	}
+
+	/**
+	 * Commit the database transaction started via beginTransaction (if any).
+	 */
+	public function commitTransaction() {
+		if ( $this->mHasTransaction ) {
+			$this->mDb->commit( get_class( $this ) . '::commitTransaction' );
+		}
+	}
+
+	/**
+	 * Abort the database transaction started via beginTransaction (if any).
+	 */
+	public function abortTransaction() {
+		if ( $this->mHasTransaction ) {
+			$this->mDb->rollback( get_class( $this ) . '::abortTransaction' );
+		}
+	}
+
+	/**
+	 * Invalidate the cache of a list of pages from a single namespace.
+	 * This is intended for use by subclasses.
 	 *
 	 * @param $namespace Integer
 	 * @param $dbkeys Array
 	 */
-	public function invalidatePages( $namespace, $dbkeys ) {
+	protected function invalidatePages( $namespace, $dbkeys ) {
 		if ( !count( $dbkeys ) ) {
 			return;
 		}

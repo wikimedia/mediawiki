@@ -384,11 +384,16 @@ class WikiPage extends Page {
 		if ( $this->exists() ) {
 			# look at the revision's actual content model
 			$rev = $this->getRevision();
-			return $rev->getContentModelName();
-		} else {
-			# use the default model for this page
-			return $this->mTitle->getContentModelName();
+
+			if ( $rev !== null ) {
+				return $rev->getContentModelName();
+			} else {
+				wfWarn( "Page exists but has no revision!" );
+			}
 		}
+
+		# use the default model for this page
+		return $this->mTitle->getContentModelName();
 	}
 
 	/**
