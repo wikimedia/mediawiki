@@ -101,6 +101,7 @@ production.
 * (bug 32492) API now allows editing using pageid
 * (bug 32497) API now allows changing of protection level using pageid
 * (bug 32498) API now allows comparing pages using pageids
+* (bug 32381) Allow descending order for list=backlinks, list=embeddedin and list=imageusage
 
 === Languages updated in 1.20 ===
 
