@@ -173,6 +173,7 @@ upgrade PHP if you have not done so prior to upgrading MediaWiki.
 * (bug 32348) Allow descending order for list=alllinks
 * (bug 31777) Upload unknown error ``fileexists-forbidden''
 * (bug 32382) Allow descending order for list=iwbacklinks
+* (bug 32381) Allow descending order for list=backlinks, list=embeddedin and list=imageusage
 
 === Languages updated in 1.20 ===
 
