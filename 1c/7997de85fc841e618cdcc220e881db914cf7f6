@@ -1,0 +1,8 @@
+Change-Id: I1c7997de85fc841e618cdcc220e881db914cf7f6
+Code-Review+2: Catrope <roan.kattouw@gmail.com>
+Verified+1: jenkins-bot
+Submitted-by: Catrope <roan.kattouw@gmail.com>
+Submitted-at: Mon, 30 Apr 2012 19:26:54 +0000
+Reviewed-on: https://gerrit.wikimedia.org/r/6147
+Project: mediawiki/core
+Branch: refs/heads/master
