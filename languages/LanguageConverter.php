@@ -825,7 +825,12 @@ class LanguageConverter {
 		$this->mTables = false;
 		if ( $fromCache ) {
 			wfProfileIn( __METHOD__ . '-cache' );
-			$this->mTables = $wgLangConvMemc->get( $this->mCacheKey );
+			try {
+				$this->mTables = $wgLangConvMemc->get( $this->mCacheKey );
+			} catch( DBAccessError $e ) {
+				// If $wgLangConvMemc->get() fails, we still want to continue and try to get
+				// the tables the usual way.
+			}
 			wfProfileOut( __METHOD__ . '-cache' );
 		}
 		if ( !$this->mTables
