@@ -2805,8 +2805,10 @@ The e-mail address you entered in [[Special:Preferences|your user preferences]] 
 'addwatch'             => 'Add to watchlist',
 'addedwatchtext'       => "The page \"[[:\$1]]\" has been added to your [[Special:Watchlist|watchlist]].
 Future changes to this page and its associated talk page will be listed there, and the page will appear '''bolded''' in the [[Special:RecentChanges|list of recent changes]] to make it easier to pick out.",
+'addedwatchtext-short' => ' - The page "$1" has been added to your watchlist.',
 'removewatch'          => 'Remove from watchlist',
 'removedwatchtext'     => 'The page "[[:$1]]" has been removed from [[Special:Watchlist|your watchlist]].',
+'removedwatchtext-short' => ' - The page "$1" has been removed from watchlist.',
 'watch'                => 'Watch',
 'watchthispage'        => 'Watch this page',
 'unwatch'              => 'Unwatch',

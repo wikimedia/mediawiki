@@ -819,6 +819,17 @@ return array(
 		),
 		'dependencies' => array( 'mediawiki.libs.jpegmeta', 'mediawiki.util' ),
 	),
+	'mediawiki.special.unwatchedpages' => array(
+		'scripts' => 'resources/mediawiki.special/mediawiki.special.unwatchedpages.js',
+		'styles' => 'resources/mediawiki.special/mediawiki.special.unwatchedpages.css',
+		'messages' => array(
+			'watch',
+			'unwatch',
+			'removedwatchtext-short',
+			'addedwatchtext-short',
+		),
+		'dependencies' => array( 'mediawiki.util', 'mediawiki.api' ),
+	),
 	'mediawiki.special.javaScriptTest' => array(
 		'scripts' => 'resources/mediawiki.special/mediawiki.special.javaScriptTest.js',
 		'messages' => array_merge( Skin::getSkinNameMessages(), array(
