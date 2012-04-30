@@ -1141,7 +1141,7 @@ Sie darf nicht mehr als $2 {{PLURAL:$2|Aufruf|Aufrufe}} haben, es {{PLURAL:$1|is
 'parser-template-loop-warning' => 'Vorlagenschleife entdeckt: [[$1]]',
 'parser-template-recursion-depth-warning' => 'Vorlagenrekursionstiefengrenze überschritten ($1)',
 'language-converter-depth-warning' => 'Sprachkonvertertiefenlimit überschritten ($1)',
-'node-count-exceeded-category' => 'Seiten, die die Knotenpunktanzahl überschritten haben',
+'node-count-exceeded-category' => 'Seiten, die die Knotenanzahl überschritten haben',
 'node-count-exceeded-warning' => 'Die Seite hat die Knotenpunktanzahl überschritten.',
 'expansion-depth-exceeded-category' => 'Seiten, die die Expansionstiefe überschritten haben',
 'expansion-depth-exceeded-warning' => 'Die Seite hat die Expansionstiefe überschritten.',

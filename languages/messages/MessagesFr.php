@@ -1122,6 +1122,10 @@ Il devrait y avoir moins de $2 appel{{PLURAL:$2||s}}, alors qu’il y en a maint
 'parser-template-loop-warning' => 'Modèle en boucle détecté : [[$1]]',
 'parser-template-recursion-depth-warning' => 'Limite de profondeur des appels de modèles dépassée ($1)',
 'language-converter-depth-warning' => 'Limite de profondeur du convertisseur de langue dépassée ($1)',
+'node-count-exceeded-category' => 'Pages où nombre de nœuds est dépassé',
+'node-count-exceeded-warning' => 'Page dépassant le nombre de nœuds',
+'expansion-depth-exceeded-category' => "Pages où la profondeur d'expansion est dépassée",
+'expansion-depth-exceeded-warning' => "Page dépassant la profondeur d'expansion",
 
 # "Undo" feature
 'undo-success' => 'Cette modification va être défaite. Veuillez vérifier les modifications ci-dessous, puis publier si c’est bien ce que vous voulez faire.',

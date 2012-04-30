@@ -1150,6 +1150,10 @@ Deze parameters zijn weggelaten.',
 'parser-template-loop-warning' => 'Er is een kringloop in sjablonen geconstateerd: [[$1]]',
 'parser-template-recursion-depth-warning' => 'De recursiediepte voor sjablonen is overschreden ($1)',
 'language-converter-depth-warning' => 'De dieptelimiet voor de taalconvertor is overschreden ($1)',
+'node-count-exceeded-category' => "Pagina's waar het maximaal aantal nodes is overschreden",
+'node-count-exceeded-warning' => 'Op de pagina is het maximale aantal nodes overschreden',
+'expansion-depth-exceeded-category' => "Pagina's waar de expansiediepte is overschreden",
+'expansion-depth-exceeded-warning' => 'De pagina bevat te veel sjablonen',
 
 # "Undo" feature
 'undo-success' => 'Deze bewerking kan ongedaan gemaakt worden.

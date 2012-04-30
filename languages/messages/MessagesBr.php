@@ -850,6 +850,7 @@ Dindan emañ merket moned diwezhañ marilh ar stankadennoù, d'ho kelaouiñ :",
 'note' => "'''Notenn :'''",
 'previewnote' => "'''Diwallit mat, n'eus ken ur rakweled eus an destenn-mañ.'''
 N'eo ket bet enrollet ho kemmoù evit c'hoazh !",
+'continue-editing' => "Kenderc'hel da gemmañ",
 'previewconflict' => 'Gant ar rakweled e teu testenn ar bajenn war wel evel ma vo pa vo bet enrollet.',
 'session_fail_preview' => "'''Ho tigarez! N'eus ket bet tu da enrollañ ho kemmoù rak kollet eo bet roadennoù an dalc'h.'''
 Klaskit en-dro mar plij.
@@ -939,6 +940,10 @@ A-gostez eo bet lezet an arventenn-se.',
 'parser-template-loop-warning' => "Patrom e kelc'h detektet : [[$1]]",
 'parser-template-recursion-depth-warning' => 'Tizhet bevenn donder galvoù ar patromoù ($1)',
 'language-converter-depth-warning' => "Aet eur en tu all d'ar vevenn amdreiñ yezhoù ($1)",
+'node-count-exceeded-category' => "Pajennoù m'eur aet en tu all d'an niver a skoulmoù",
+'node-count-exceeded-warning' => "Pajenn a ya en tu all d'an niver a skoulmoù",
+'expansion-depth-exceeded-category' => "Pajennoù m'eur aet dreist d'an donder astenn",
+'expansion-depth-exceeded-warning' => "Pajenn a ya dreist d'an donder astenn",
 
 # "Undo" feature
 'undo-success' => "Gallout a reer disteurel ar c'hemmoù-mañ. Gwiriit, mar plij, gant ar geñveriadenn a-is evit bezañ sur eo an dra-se a fell deoc'h ober; goude-se enrollit ar c'hemmoù a-is a-benn echuiñ disteurel ar c'hemmoù.",
@@ -3770,7 +3775,7 @@ Diskouezet eo ar skeudennoù gant ur pizhder uhel, erounit a ra ar restroù all 
 'feedback-bugornote' => "Ma'z oc'h prest da zeskrivañ ur gudenn deknikel dre ar munud e c'hallit [\$1 kemenn un draen].
 A-hend-all e c'hallit ober gant ar furmskrid eeunaet dindan. Ouzhpennet e vo hoc'h evezhiadenn d'ar bajenn \"[\$3 \$2]\", a-gevret gant hoc'h anv implijer hag anv ar merdeer a rit gantañ.",
 'feedback-subject' => 'Danvez :',
-'feedback-message' => 'Kemennadenn:',
+'feedback-message' => 'Kemennadenn :',
 'feedback-cancel' => 'Nullañ',
 'feedback-submit' => 'Kas ho soñj',
 'feedback-adding' => "Oc'h ouzhpennañ ho soñj war ar bajenn...",

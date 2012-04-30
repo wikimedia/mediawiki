@@ -1199,7 +1199,7 @@ $3が示した理由は ''$2'' です。",
 'last' => '前',
 'page_first' => '先頭',
 'page_last' => '末尾',
-'histlegend' => "差分の選択：比較したい版のラジオボタンを選択し、エンターキーを押すか、下部のボタンを押します。<br />
+'histlegend' => "差分の選択：比較したい版のラジオボタンを選択し、Enterキーを押すか、下部のボタンを押します。<br />
 凡例：'''({{int:cur}})'''＝最新版との比較、'''({{int:last}})'''＝直前の版との比較、'''{{int:minoreditletter}}'''＝細部の編集",
 'history-fieldset-title' => '履歴の閲覧',
 'history-show-deleted' => '削除済みのみ',
@@ -1432,7 +1432,7 @@ $1",
 'qbsettings-fixedright' => '右端',
 'qbsettings-floatingleft' => 'ウィンドウの左上に固定',
 'qbsettings-floatingright' => 'ウィンドウの右上に固定',
-'qbsettings-directionality' => 'あなたの言語のスクリプトの方向に応じて固定',
+'qbsettings-directionality' => 'あなたの言語の文字体系の書字方向に応じて固定',
 
 # Preferences page
 'preferences' => '個人設定',
@@ -3864,7 +3864,7 @@ $5
 'colon-separator' => '：',
 'pipe-separator' => '&#32;|&#32;',
 'word-separator' => '',
-'parentheses' => '（$1）',
+'parentheses' => '($1)',
 
 # Multipage image navigation
 'imgmultipageprev' => '&larr;前ページ',

@@ -924,6 +924,7 @@ Ef þetta leysir ekki vandamálið, reyndu að [[Special:UserLogout|skrá þig �
 Þetta getur gerst þegar þú notar bilaðan vafra eða ónafngreinda vefsels þjónustu.",
 'edit_form_incomplete' => "'''Sumir hlutar breytingarinnar bárust ekki til vefþjónsins; athugaðu hvort breytingin þín er óbreytt og reyndu aftur.'''",
 'editing' => 'Breyti $1',
+'creating' => 'Skapa $1',
 'editingsection' => 'Breyti $1 (hluta)',
 'editingcomment' => 'Breyti $1 (nýr hluti)',
 'editconflict' => 'Breytingaárekstur: $1',

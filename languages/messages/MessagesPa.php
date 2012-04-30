@@ -976,6 +976,7 @@ to upload files.',
 
 'sp-contributions-newbies-sub' => 'ਨਵੇਂ ਅਕਾਊਂਟਾਂ ਲਈ',
 'sp-contributions-blocklog' => 'ਪਾਬੰਦੀ ਲਾਗ',
+'sp-contributions-uploads' => 'ਅਪਲੋਡ',
 'sp-contributions-logs' => 'ਲਾਗ',
 'sp-contributions-talk' => 'ਗੱਲਬਾਤ',
 'sp-contributions-search' => 'ਯੋਗਦਾਨ ਖੋਜੋ',

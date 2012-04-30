@@ -1078,6 +1078,8 @@ Acsete argumente au fost omise.',
 'parser-template-loop-warning' => 'Buclă de formate detectată: [[$1]]',
 'parser-template-recursion-depth-warning' => 'Limită de adâncime a recursiei depășită ($1)',
 'language-converter-depth-warning' => 'Limita adâncimii convertorului de limbă a fost depășită ($1)',
+'node-count-exceeded-category' => 'Pagini unde numărul de noduri este depășit',
+'node-count-exceeded-warning' => 'Pagina a depășit numărul de noduri',
 
 # "Undo" feature
 'undo-success' => 'Modificarea poate fi anulată. Verificați diferența de dedesupt și apoi salvați pentru a termina anularea modificării.',

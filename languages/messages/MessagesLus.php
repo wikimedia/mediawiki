@@ -571,6 +571,12 @@ I rawn atan a danbeh chhinchhiahna kan han tarlang a ni e:',
 'note' => "'''Hriat tùr:'''",
 'previewnote' => "'''Heihi endikna chauh a ni tih hrereng ang che.'''
 I tihdanglamna dahţhat a la ni lo!",
+'session_fail_preview_html' => "'''A pawi hlë mai! Ṭhutchhúng chanchin vawnna hloh avangin i siamṭhatna dahṭhat theih a ni lo.'''
+
+''{{SITENAME}}-in HTML hel a tihzalen avangin hë enlâwkna hi JavaScript beihna laka invèn fimkhur nan thup bo a ni.''
+
+'''Hei hi siamṭhat tumna dànzui pangngai a nih chuan khawngaihin dahṭhat tum nawn leh rawh.'''
+I la dahṭhat theih loh cheu chuan [[Special:UserLogout|chhuah phawt ]] a, luh nawn leh hmang tein han bei vêl chhin lä.",
 'editing' => '$1 i siam(ţha) mék',
 'editingsection' => '$1 (hlawm) i siam(ţha) mék',
 'editingcomment' => '$1 (hlawm thar) i siam(ţha) mék',
@@ -578,6 +584,8 @@ I tihdanglamna dahţhat a la ni lo!",
 'yourtext' => 'I thu tah hian:',
 'storedversion' => 'Ennawnna vawnţhat',
 'yourdiff' => 'Danglamnate',
+'protectedpagewarning' => "'''Vaukhanna: Hë phêk hi roreltute chauhvin an siamṭhat theihna tùrin vènhim a ni.'''
+I rawn atan ziaka chanchin dah hnuhnüng ber kan rawn chhawp chhuak e:",
 'semiprotectedpagewarning' => "'''Hriat tùr:''' He phêk hi hmangtu inziaklûtte chauhvin an tihdanglam theihna tùra vènhim a ni.
 I rawn tùrin siamm-danglamna chanchin ziaka kan dahţhat thar ber a hnuaiah khuan kan chhawp e:",
 'templatesused' => 'He phêka {{PLURAL:$1|siamsa hman|siamsa hmante}}',
@@ -1118,6 +1126,7 @@ Phêk hminga hman awih loh hawrawp a hmang palh a ni mai thei bawk.',
 'sp-deletedcontributions-contribs' => 'kutthawhnate',
 
 # Special:LinkSearch
+'linksearch-ns' => 'Hminghmun:',
 'linksearch-ok' => 'Zawng rawh',
 'linksearch-line' => '$1 hi $2 aţanga thlunzawm a ni',
 

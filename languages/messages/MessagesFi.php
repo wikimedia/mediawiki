@@ -2225,7 +2225,7 @@ Lisätietoa yksittäisistä käyttäjäoikeuksista saattaa löytyä [[{{MediaWik
 'watchnochange' => 'Valittuna ajanjaksona yhtäkään tarkkailemistasi sivuista ei muokattu.',
 'watchlist-details' => 'Tarkkailulistalla on {{PLURAL:$1|$1 sivu|$1 sivua}} keskustelusivuja mukaan laskematta.',
 'wlheader-enotif' => '* Sähköposti-ilmoitukset ovat käytössä.',
-'wlheader-showupdated' => "* Sivut, joita on muokattu viimeisen käyntisi jälkeen on '''lihavoitu'''.",
+'wlheader-showupdated' => "* Sivut, joita on muokattu viimeisen käyntisi jälkeen, on '''lihavoitu'''.",
 'watchmethod-recent' => 'tarkistetaan tuoreimpia muutoksia tarkkailluille sivuille',
 'watchmethod-list' => 'tarkistetaan tarkkailtujen sivujen tuoreimmat muutokset',
 'watchlistcontains' => 'Tarkkailulistallasi on {{PLURAL:$1|yksi sivu|$1 sivua}}.',

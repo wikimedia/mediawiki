@@ -74,8 +74,7 @@ $messages = array(
 'tog-shownumberswatching' => 'Antaal fon do beooboachtjende Benutsere anwiese',
 'tog-oldsig' => 'Foarbekiek fon ju aktuälle Signatuur:',
 'tog-fancysig' => 'Unnerskrift as Wikitext behonnelje (sunner automatiske Ferlinkenge)',
-'tog-externaleditor' => 'Externen Editor as Standoard benutsje (bloot foar Experte, der mouten spezielle Ienstaalengen ap dän oaine Computer moaked wäide.
-[//www.mediawiki.org/wiki/Manual:External_editors Moor Information hiertou.])',
+'tog-externaleditor' => 'Externen Editor as Standoard benutsje (bloot foar Experte, der mouten spezielle Ienstaalengen ap dän oaine Computer moaked wäide. [//www.mediawiki.org/wiki/Manual:External_editors Moor Information hiertou.])',
 'tog-externaldiff' => 'Extern Diff-Program as Standoard benutsje (bloot foar Experte, der mouten spezielle Ienstaalengen ap dän oaine Computer moaked wäide.
  [//www.mediawiki.org/wiki/Manual:External_editors Wiedere Informatione hiertou.])',
 'tog-showjumplinks' => '"Wikselje tou"-Links muugelk moakje',

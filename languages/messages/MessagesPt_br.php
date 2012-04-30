@@ -748,7 +748,7 @@ Por favor ative-os, depois autentique-se com o seu novo nome de usuário e a sua
 Certifique-se de que tem os cookies ativados, recarregue esta página e tente novamente.',
 'noname' => 'Você não colocou um nome de usuário válido.',
 'loginsuccesstitle' => 'Login bem sucedido',
-'loginsuccess' => "'''Agora você está autenticado ao wiki {{SITENAME}} como \"\$1\"'''.",
+'loginsuccess' => "'''Agora você está {{GENDER:autenticado|autenticada}} ao wiki {{SITENAME}} como \"\$1\"'''.",
 'nosuchuser' => 'Não existe nenhum usuário com o nome "$1".
 Os nomes de usuário são sensíveis à capitalização.
 Verifique a ortografia, ou [[Special:UserLogin/signup|crie uma nova conta]].',
@@ -980,6 +980,7 @@ O registro de bloqueio mais recente é fornecido abaixo, para referência:',
 'note' => "'''Nota:'''",
 'previewnote' => "'''Lembre-se de que isto é apenas uma previsão.'''
 Suas alterações ainda não foram salvas!",
+'continue-editing' => 'Continuar editando',
 'previewconflict' => 'Esta previsão reflete o texto que está na área de edição acima e como ele aparecerá se você escolher salvar.',
 'session_fail_preview' => "'''Pedimos desculpas, mas não foi possível processar a sua edição devido à perda de dados da sua sessão.
 Por favor tente novamente.
@@ -1959,6 +1960,10 @@ Uma [[Special:WhatLinksHere/$2|listagem completa]] está disponível.',
 Por favor veja a [$2 página de descrição do arquivo] para mais informações.',
 'sharedupload-desc-here' => 'Este arquivo é do $1 e pode ser utilizado por outros projetos.
 A descrição na sua [$2 página de descrição de arquivo] é exibida abaixo.',
+'sharedupload-desc-edit' => 'Este arquivo é do $1 e pode ser utilizado por outros projetos.
+Talvez você deseje editar a descrição na sua [$2 página de descrição de arquivo] por lá.',
+'sharedupload-desc-create' => 'Este arquivo é do $1 e pode ser utilizado por outros projetos.
+Talvez você deseje editar a descrição na sua [$2 página de descrição de arquivo] por lá.',
 'filepage-nofile' => 'Não existe nenhum arquivo com esse nome.',
 'filepage-nofile-link' => 'Não existe nenhum arquivo com este nome, mas você pode [$1 carregá-lo].',
 'uploadnewversion-linktext' => 'Enviar uma nova versão deste arquivo',
@@ -2089,6 +2094,8 @@ Entradas <del>riscadas</del> foram resolvidas.',
 'wantedpages' => 'Páginas pedidas',
 'wantedpages-badtitle' => 'Título inválido no conjunto de resultados: $1',
 'wantedfiles' => 'Arquivos pedidos',
+'wantedfiletext-cat' => 'Os seguintes arquivos são usados, mas não existem. Arquivos de repositórios externos podem acabar sendo listados apesar de existirem. Esses falsos positivos aparecerão <del>riscados</del>. As páginas que incluem arquivos inexistentes são listadas em [[:$1]].',
+'wantedfiletext-nocat' => 'Os seguintes arquivos são usados, mas não existem. Arquivos de repositórios externos podem acabar sendo listados apesar de existirem. Esses falsos positivos aparecerão <del>riscados</del>.',
 'wantedtemplates' => 'Predefinições pedidas',
 'mostlinked' => 'Páginas com mais afluentes',
 'mostlinkedcategories' => 'Categorias com mais membros',
@@ -2097,6 +2104,7 @@ Entradas <del>riscadas</del> foram resolvidas.',
 'mostimages' => 'Imagens com mais afluentes',
 'mostrevisions' => 'Páginas de conteúdo com mais revisões',
 'prefixindex' => 'Todas as páginas com prefixo',
+'prefixindex-namespace' => 'Todas as páginas com prefixo (espaço nominal $1)',
 'shortpages' => 'Páginas curtas',
 'longpages' => 'Páginas longas',
 'deadendpages' => 'Páginas sem saída',
@@ -2165,6 +2173,11 @@ Você pode diminuir a lista escolhendo um tipo de registro, um nome de usuário 
 'allpagesbadtitle' => 'O título de página fornecido encontrava-se inválido ou tinha um prefixo interlíngua ou inter-wiki. Ele poderá conter um ou mais caracteres que não podem ser utilizados em títulos.',
 'allpages-bad-ns' => '{{SITENAME}} não possui o espaço nominal "$1".',
 'allpages-hide-redirects' => 'Ocultar redirecionamentos',
+
+# SpecialCachedPage
+'cachedspecial-viewing-cached-ttl' => 'Você está visualizando uma versão de cache desta página que pode ser de $1 atrás.',
+'cachedspecial-viewing-cached-ts' => 'Você está visualizando uma versão de cache desta página que pode estar desatualizada.',
+'cachedspecial-refresh-now' => 'Ver a mais recente.',
 
 # Special:Categories
 'categories' => 'Categorias',
@@ -2602,8 +2615,8 @@ Isto só deve ser feito para prevenir vandalismo, e de acordo com a [[{{MediaWik
 'ipb-confirm' => 'Confirmar bloqueio',
 'badipaddress' => 'Endereço de IP inválido',
 'blockipsuccesssub' => 'Bloqueio bem sucedido',
-'blockipsuccesstext' => '[[Special:Contributions/$1|$1]] foi bloqueado.<br />
-Consulte a [[Special:BlockList|lista de IPs bloqueados]] para rever os bloqueios.',
+'blockipsuccesstext' => '[[Special:Contributions/$1|$1]] foi {{GENDER:$1|bloqueado|bloqueada}}.<br />
+Consulte a [[Special:BlockList|lista de bloqueios]].',
 'ipb-blockingself' => 'Você está prestes a bloquear-se a si próprio. Você tem a certeza de que pretende fazê-lo?',
 'ipb-confirmhideuser' => 'Você está prestes a bloquear um utilizador com "Ocultar nome de utilizador/IP" ativado. Isto irá suprimir o nome do usuário de todas as listas e entradas dos registos. Tem a certeza de que pretende fazê-lo?',
 'ipb-edit-dropdown' => 'Editar motivos de bloqueio',
@@ -2657,7 +2670,7 @@ O registro de supressão é fornecido abaixo para referência:',
 'reblock-logentry' => 'modificou parâmetros de bloqueio de [[$1]] $3. O bloqueio expira em $2.',
 'blocklogtext' => 'Este é um registro de ações de bloqueio e desbloqueio.
 Endereços IP sujeitos a bloqueio automático não são listados.
-Consulte a [[Special:BlockList|lista de IPs bloqueados]] para obter a lista de bloqueios e banimentos atualmente válidos.',
+Consulte a [[Special:BlockList|lista de bloqueios]] para obter a lista de bloqueios e banimentos em efeito neste momento.',
 'unblocklogentry' => 'desbloqueou $1',
 'block-log-flags-anononly' => 'apenas usuários anônimos',
 'block-log-flags-nocreate' => 'criação de contas desabilitada',
@@ -2843,6 +2856,8 @@ Acesse [//www.mediawiki.org/wiki/Localisation MediaWiki Localisation] e [//trans
 'thumbnail_error' => 'Erro ao criar miniatura: $1',
 'djvu_page_error' => 'página DjVu inacessível',
 'djvu_no_xml' => 'Não foi possível acessar o XML do arquivo DjVU',
+'thumbnail-temp-create' => 'Não foi possível criar o arquivo temporário de miniatura',
+'thumbnail-dest-create' => 'Não foi possível salvar a miniatura no destino',
 'thumbnail_invalid_params' => 'Parâmetros de miniatura inválidos',
 'thumbnail_dest_directory' => 'Não foi possível criar o diretório de destino',
 'thumbnail_image-type' => 'Tipo de imagem não suportado',
@@ -2889,6 +2904,9 @@ Salve o arquivo no seu computador e importe-o aqui.',
 'import-invalid-interwiki' => 'Não é possível importar do wiki especificado.',
 'import-error-edit' => 'A página "$1" não foi importada porque você não tem permissão para editá-la.',
 'import-error-create' => 'A página "$1" não foi importada porque você não tem permissão para criá-la.',
+'import-error-interwiki' => 'A página "$1" não pôde ser importada pois seu nome está reservado para um link interwik.',
+'import-error-special' => 'A página "$1" não pôde ser importada porque ela pertence a um espaço nominal especial que não suporta páginas.',
+'import-error-invalid' => 'A página "$1" não pôde ser importada por seu nome ser inválido.',
 
 # Import log
 'importlogpage' => 'Registro de importações',
@@ -2900,7 +2918,13 @@ Salve o arquivo no seu computador e importe-o aqui.',
 
 # JavaScriptTest
 'javascripttest' => 'Teste de JavaScript',
+'javascripttest-disabled' => 'Essa função não foi habilitada neste wiki.',
+'javascripttest-title' => 'Executando testes para $1',
 'javascripttest-pagetext-noframework' => 'Esta página é exclusiva para testes de JavaScript.',
+'javascripttest-pagetext-unknownframework' => 'A estrutura de testes "$1" é desconhecida.',
+'javascripttest-pagetext-frameworks' => 'Escolha uma das seguintes estruturas de teste: $1',
+'javascripttest-pagetext-skins' => 'Escolha o tema para executar os testes:',
+'javascripttest-qunit-intro' => 'Veja a [$1 documentação de testes] no mediawiki.org.',
 
 # Tooltip help for the actions
 'tooltip-pt-userpage' => 'Sua página de usuário',
@@ -3723,6 +3747,7 @@ Em conjunto com este programa deve ter recebido [{{SERVER}}{{SCRIPTPATH}}/COPYIN
 'version-software' => 'Software instalado',
 'version-software-product' => 'Produto',
 'version-software-version' => 'Versão',
+'version-entrypoints-header-url' => 'URL',
 
 # Special:FilePath
 'filepath' => 'Diretório do arquivo',
@@ -3857,6 +3882,8 @@ As imagens serão exibidas em sua resolução máxima, outros tipos de arquivos 
 'newuserlog-byemail' => 'senha enviada por correio-eletrônico',
 
 # Feedback
+'feedback-bugornote' => 'Se você está preparado para descrever detalhadamente um problema técnico, [$1 relate um bug].
+Caso contrário, você poderá usar o formulário simplificado a seguir. Seu comentário será adicionado à página "[$3 $2]", junto com o seu nome de usuário e o navegador que estiver usando neste momento.',
 'feedback-subject' => 'Assunto:',
 'feedback-message' => 'Mensagem:',
 'feedback-cancel' => 'Cancelar',
@@ -3865,7 +3892,10 @@ As imagens serão exibidas em sua resolução máxima, outros tipos de arquivos 
 'feedback-error1' => 'Erro: O resultado da API não foi reconhecido',
 'feedback-error2' => 'Erro: A edição falhou',
 'feedback-error3' => 'Erro: A API não responde',
+'feedback-thanks' => 'Obrigado! O seu comentário foi adicionado à página "[ $2  $1 ]".',
 'feedback-close' => 'Feito',
+'feedback-bugcheck' => 'Perfeito! Apenas verifique se não é um dos [$1 bugs já conhecidos].',
+'feedback-bugnew' => 'Eu verifiquei. Relatar um bug novo',
 
 # API errors
 'api-error-badaccess-groups' => 'Você não tem permissão para enviar arquivos para este wiki.',
@@ -3904,5 +3934,16 @@ As imagens serão exibidas em sua resolução máxima, outros tipos de arquivos 
 'api-error-unknownerror' => 'Erro desconhecido: "$1".',
 'api-error-uploaddisabled' => 'Este wiki está com o upload de arquivos desabilitado.',
 'api-error-verification-error' => 'Este arquivo pode estar corrompido ou ter a extensão errada.',
+
+# Durations
+'duration-seconds' => '$1 {{PLURAL:$1|segundo|segundos}}',
+'duration-minutes' => '$1 {{PLURAL:$1|minuto|minutos}}',
+'duration-hours' => '$1 {{PLURAL:$1|hora|horas}}',
+'duration-days' => '$1 {{PLURAL:$1|dia|dias}}',
+'duration-weeks' => '$1 {{PLURAL:$1|semana|semanas}}',
+'duration-years' => '$1 {{PLURAL:$1|ano|anos}}',
+'duration-decades' => '$1 {{PLURAL:$1|década|décadas}}',
+'duration-centuries' => '$1 {{PLURAL:$1|século|séculos}}',
+'duration-millennia' => '$1 {{PLURAL:$1|milênio|milênios}}',
 
 );

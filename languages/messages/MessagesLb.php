@@ -3533,6 +3533,8 @@ Dir misst eng [{{SERVER}}{{SCRIPTPATH}}/COPYING Kopie vun der GNU General Public
 'version-software' => 'Installéiert Software',
 'version-software-product' => 'Produkt',
 'version-software-version' => 'Versioun',
+'version-entrypoints' => 'URLe vun Agangspunkten',
+'version-entrypoints-header-entrypoint' => 'Agangspunkt',
 'version-entrypoints-header-url' => 'URL',
 
 # Special:FilePath
