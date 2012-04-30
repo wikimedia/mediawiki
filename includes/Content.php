@@ -476,22 +476,10 @@ class WikitextContent extends TextContent {
 
 	public function __construct( $text ) {
 		parent::__construct($text, CONTENT_MODEL_WIKITEXT);
-
-		$this->mDefaultParserOptions = null; #TODO: use per-class static member?!
 	}
 
 	protected function getHtml( ) {
 		throw new MWException( "getHtml() not implemented for wikitext. Use getParserOutput()->getText()." );
-	}
-
-	public function getDefaultParserOptions() {
-		global $wgUser, $wgContLang;
-
-		if ( !$this->mDefaultParserOptions ) { #TODO: use per-class static member?!
-			$this->mDefaultParserOptions = ParserOptions::newFromUserAndLang( $wgUser, $wgContLang );
-		}
-
-		return $this->mDefaultParserOptions;
 	}
 
 	/**
@@ -510,7 +498,7 @@ class WikitextContent extends TextContent {
 		global $wgParser;
 
 		if ( !$options ) {
-			$options = $this->getDefaultParserOptions();
+			$options = ParserOptions::newFromUserAndLang( $context->getUser(), $context->getLanguage() );
 		}
 
 		$po = $wgParser->parse( $this->mText, $context->getTitle(), $options, true, true, $revId );
@@ -594,13 +582,11 @@ class WikitextContent extends TextContent {
 	 *
 	 * @param Title $title
 	 * @param User $user
-	 * @param null|ParserOptions $popts
+	 * @param ParserOptions $popts
 	 * @return Content
 	 */
-	public function preSaveTransform( Title $title, User $user, ParserOptions $popts = null ) {
-		global $wgParser;
-
-		if ( $popts == null ) $popts = $this->getDefaultParserOptions();
+	public function preSaveTransform( Title $title, User $user, ParserOptions $popts ) {
+		global $wgParser, $wgConteLang;
 
 		$text = $this->getNativeData();
 		$pst = $wgParser->preSaveTransform( $text, $title, $user, $popts );
@@ -612,13 +598,11 @@ class WikitextContent extends TextContent {
 	 * Returns a Content object with preload transformations applied (or this object if no transformations apply).
 	 *
 	 * @param Title $title
-	 * @param null|ParserOptions $popts
+	 * @param ParserOptions $popts
 	 * @return Content
 	 */
-	public function preloadTransform( Title $title, ParserOptions $popts = null ) {
-		global $wgParser;
-
-		if ( $popts == null ) $popts = $this->getDefaultParserOptions();
+	public function preloadTransform( Title $title, ParserOptions $popts ) {
+		global $wgParser, $wgConteLang;
 
 		$text = $this->getNativeData();
 		$plt = $wgParser->getPreloadText( $text, $title, $popts );

@@ -563,7 +563,8 @@ more stuff
 		$admin->setName("Admin");
 
 		$text = "one";
-		$page = $this->createPage( "WikiPageTest_testDoRollback", $text );
+		$page = $this->newPage( "WikiPageTest_testDoRollback" );
+		$page->doEditContent( ContentHandler::makeContent( $text, $page->getTitle() ), "section one", EDIT_NEW, false, $admin );
 
 		$user1 = new User();
 		$user1->setName( "127.0.1.11" );

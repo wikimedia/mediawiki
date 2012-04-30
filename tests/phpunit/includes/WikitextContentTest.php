@@ -140,8 +140,11 @@ just a test"
 	 * @dataProvider dataPreSaveTransform
 	 */
 	public function testPreSaveTransform( $text, $expected ) {
+		global $wgUser, $wgContLang;
+		$options = ParserOptions::newFromUserAndLang( $wgUser, $wgContLang );
+
 		$content = $this->newContent( $text );
-		$content = $content->preSaveTransform( $this->context->getTitle(), $this->context->getUser() );
+		$content = $content->preSaveTransform( $this->context->getTitle(), $this->context->getUser(), $options );
 
 		$this->assertEquals( $expected, $content->getNativeData() );
 	}
@@ -161,8 +164,11 @@ just a test"
 	 * @dataProvider dataPreloadTransform
 	 */
 	public function testPreloadTransform( $text, $expected ) {
+		global $wgUser, $wgContLang;
+		$options = ParserOptions::newFromUserAndLang( $wgUser, $wgContLang );
+
 		$content = $this->newContent( $text );
-		$content = $content->preloadTransform( $this->context->getTitle() );
+		$content = $content->preloadTransform( $this->context->getTitle(), $options );
 
 		$this->assertEquals( $expected, $content->getNativeData() );
 	}
