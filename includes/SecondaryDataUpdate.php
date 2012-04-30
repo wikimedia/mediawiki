@@ -25,8 +25,8 @@ abstract class SecondaryDataUpdate {
 	/**
 	 * Constructor
 	 */
-    public function __construct( ) {
-        # noop
+	public function __construct( ) {
+		# noop
 	}
 
 	/**
@@ -34,18 +34,18 @@ abstract class SecondaryDataUpdate {
 	 */
 	public abstract function doUpdate();
 
-    /**
-     * Conveniance method, calls doUpdate() on every element in the array.
-     *
-     * @static
-     * @param $updates array
-     */
-    public static function runUpdates( $updates ) {
-        if ( empty( $updates ) ) return; # nothing to do
+	/**
+	 * Conveniance method, calls doUpdate() on every element in the array.
+	 *
+	 * @static
+	 * @param $updates array
+	 */
+	public static function runUpdates( $updates ) {
+		if ( empty( $updates ) ) return; # nothing to do
 
-        foreach ( $updates as $update ) {
-            $update->doUpdate();
-        }
-    }
+		foreach ( $updates as $update ) {
+			$update->doUpdate();
+		}
+	}
 
 }
