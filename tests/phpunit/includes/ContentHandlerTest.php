@@ -220,7 +220,7 @@ class DummyContentForTesting extends Content {
 		$this->data = $data;
 	}
 
-	public function serialize() {
+	public function serialize( $format = null ) {
 		return serialize( $this->data );
 	}
 
