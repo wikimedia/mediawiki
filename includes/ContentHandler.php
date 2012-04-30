@@ -655,6 +655,17 @@ abstract class ContentHandler {
 	public function isParserCacheSupported() {
 		return true;
 	}
+
+	/**
+	 * @param $page WikiPage the page that was deleted (note: $page->getId() must still return the old page ID!)
+	 *
+	 * @return array a list of SecondaryDataUpdate instances that will clean up the database ofter deletion.
+	 */
+	public function getDeletionUpdates( WikiPage $page ) {
+		return array(
+			new LinksDeletionUpdate( $page ),
+		);
+	}
 }
 
 

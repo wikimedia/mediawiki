@@ -51,7 +51,7 @@ class WikiPageTest extends MediaWikiTestCase {
 
 		$page = $this->newPage( $title );
 
-		$content = ContentHandler::makeContent( "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam "
+		$content = ContentHandler::makeContent( "[[Lorem ipsum]] dolor sit amet, consetetur sadipscing elitr, sed diam "
 		                                        . " nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat.",
 		                                        $title );
 
@@ -60,6 +60,8 @@ class WikiPageTest extends MediaWikiTestCase {
 		$this->assertTrue( $title->exists(), "Title object should indicate that the page now exists" );
 		$this->assertTrue( $page->exists(), "WikiPage object should indicate that the page now exists" );
 
+		$id = $page->getId();
+
 		# ------------------------
 		$page = new WikiPage( $title );
 
@@ -67,8 +69,8 @@ class WikiPageTest extends MediaWikiTestCase {
 		$this->assertTrue( $content->equals( $retrieved ), 'retrieved content doesn\'t equal original' );
 
 		# ------------------------
-		$content = ContentHandler::makeContent( "At vero eos et accusam et justo duo dolores et ea rebum. "
-		                                        . "Stet clita kasd gubergren, no sea takimata sanctus est.",
+		$content = ContentHandler::makeContent( "At vero eos et accusam et justo duo [[dolores]] et ea rebum. "
+		                                        . "Stet clita kasd [[gubergren]], no sea takimata sanctus est.",
 		                                        $title );
 
 		$page->doEditContent( $content, "testing 2" );
@@ -78,6 +80,14 @@ class WikiPageTest extends MediaWikiTestCase {
 
 		$retrieved = $page->getContent();
 		$this->assertTrue( $content->equals( $retrieved ), 'retrieved content doesn\'t equal original' );
+
+		# ------------------------
+		$dbr = wfGetDB( DB_SLAVE );
+		$res = $dbr->select( 'pagelinks', array( 'pl_from' => $id ) );
+		$n = $res->numRows();
+		$res->free();
+
+		$this->assertEquals( 2, $n, 'pagelinks should contain two links from the page' );
 	}
 
 	public function testDoEdit() {
@@ -85,13 +95,15 @@ class WikiPageTest extends MediaWikiTestCase {
 
 		$page = $this->newPage( $title );
 
-		$text = "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam "
+		$text = "[[Lorem ipsum]] dolor sit amet, consetetur sadipscing elitr, sed diam "
 		       . " nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat.";
 
 		$page->doEdit( $text, "testing 1" );
 
 		$this->assertTrue( $title->exists(), "Title object should indicate that the page now exists" );
 		$this->assertTrue( $page->exists(), "WikiPage object should indicate that the page now exists" );
+
+		$id = $page->getId();
 
 		# ------------------------
 		$page = new WikiPage( $title );
@@ -100,8 +112,8 @@ class WikiPageTest extends MediaWikiTestCase {
 		$this->assertEquals( $text, $retrieved, 'retrieved text doesn\'t equal original' );
 
 		# ------------------------
-		$text = "At vero eos et accusam et justo duo dolores et ea rebum. "
-		       . "Stet clita kasd gubergren, no sea takimata sanctus est.";
+		$text = "At vero eos et accusam et justo duo [[dolores]] et ea rebum. "
+		       . "Stet clita kasd [[gubergren]], no sea takimata sanctus est.";
 
 		$page->doEdit( $text, "testing 2" );
 
@@ -110,6 +122,14 @@ class WikiPageTest extends MediaWikiTestCase {
 
 		$retrieved = $page->getText();
 		$this->assertEquals( $text, $retrieved, 'retrieved text doesn\'t equal original' );
+
+		# ------------------------
+		$dbr = wfGetDB( DB_SLAVE );
+		$res = $dbr->select( 'pagelinks', array( 'pl_from' => $id ) );
+		$n = $res->numRows();
+		$res->free();
+
+		$this->assertEquals( 2, $n, 'pagelinks should contain two links from the page' );
 	}
 
 	public function testDoQuickEdit() {
@@ -139,17 +159,26 @@ class WikiPageTest extends MediaWikiTestCase {
 	}
 
 	public function testDoDeleteArticle() {
-		$page = $this->createPage( "WikiPageTest_testDoDeleteArticle", "original text" );
+		$page = $this->createPage( "WikiPageTest_testDoDeleteArticle", "[[original text]] foo" );
+		$id = $page->getId();
 
 		$page->doDeleteArticle( "testing deletion" );
 
-		$this->assertFalse( $page->exists() );
+		$this->assertFalse( $page->exists(), "WikiPage::exists should return false after page was deleted" );
 
-		$this->assertNull( $page->getContent() );
-		$this->assertFalse( $page->getText() );
+		$this->assertNull( $page->getContent(), "WikiPage::getContent should return null after page was deleted" );
+		$this->assertFalse( $page->getText(), "WikiPage::getText should return false after page was deleted" );
 
 		$t = Title::newFromText( $page->getTitle()->getPrefixedText() );
-		$this->assertFalse( $t->exists() );
+		$this->assertFalse( $t->exists(), "Title::exists should return false after page was deleted" );
+
+		# ------------------------
+		$dbr = wfGetDB( DB_SLAVE );
+		$res = $dbr->select( 'pagelinks', array( 'pl_from' => $id ) );
+		$n = $res->numRows();
+		$res->free();
+
+		$this->assertEquals( 0, $n, 'pagelinks should contain no more links from the page' );
 	}
 
 	public function testGetRevision() {

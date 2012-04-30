@@ -144,6 +144,7 @@ $wgAutoloadLocalClasses = array(
 	'Linker' => 'includes/Linker.php',
 	'LinkFilter' => 'includes/LinkFilter.php',
 	'LinksUpdate' => 'includes/LinksUpdate.php',
+	'LinksDeletionUpdate' => 'includes/LinksUpdate.php',
 	'LocalisationCache' => 'includes/LocalisationCache.php',
 	'LocalisationCache_BulkLoad' => 'includes/LocalisationCache.php',
 	'MagicWord' => 'includes/MagicWord.php',

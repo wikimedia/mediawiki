@@ -19,8 +19,11 @@
  *
  * Abstract base class for update jobs that do something with some secondary
  * data extracted from article.
+ *
+ * @todo: add support for transactions
+ *
  */
-abstract class SecondaryDataUpdate {
+abstract class SecondaryDataUpdate implements DeferrableUpdate {
 
 	/**
 	 * Constructor
@@ -28,11 +31,6 @@ abstract class SecondaryDataUpdate {
 	public function __construct( ) {
 		# noop
 	}
-
-	/**
-	 * Perform update.
-	 */
-	public abstract function doUpdate();
 
 	/**
 	 * Conveniance method, calls doUpdate() on every element in the array.
