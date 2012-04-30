@@ -2265,9 +2265,9 @@ class WikiPage extends Page {
 				'ar_len'        => 'rev_len',
 				'ar_page_id'    => 'page_id',
 				'ar_deleted'    => $bitfield,
-				'ar_sha1'       => 'rev_content_model',
-				'ar_content_format'       => 'rev_content_format',
-				'ar_content_format'       => 'rev_sha1'
+				'ar_sha1'       => 'rev_sha1',
+				'ar_content_model'       => 'rev_content_model',
+				'ar_content_format'      => 'rev_content_format',
 			), array(
 				'page_id' => $id,
 				'page_id = rev_page'
