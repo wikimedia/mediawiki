@@ -1275,6 +1275,17 @@ return array(
 			'jquery.throttle-debounce',
 		),
 	),
+	'mediawiki.special.unwatchedpages' => array(
+		'scripts' => 'resources/src/mediawiki.special/mediawiki.special.unwatchedPages.js',
+		'styles' => 'resources/src/mediawiki.special/mediawiki.special.unwatchedPages.css',
+		'messages' => array(
+			'watch',
+			'unwatch',
+			'removedwatchtext-short',
+			'addedwatchtext-short',
+		),
+		'dependencies' => array( 'mediawiki.api', 'mediawiki.notify' ),
+	),
 	'mediawiki.special.javaScriptTest' => array(
 		'scripts' => 'resources/src/mediawiki.special/mediawiki.special.javaScriptTest.js',
 		'messages' => array_merge( Skin::getSkinNameMessages(), array(
