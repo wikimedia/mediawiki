@@ -605,6 +605,12 @@ more stuff
 		$text .= "\n\nthree";
 		$page->doEditContent( ContentHandler::makeContent( $text, $page->getTitle() ), "adding section three", 0, false, $user2 );
 
+		# we are having issues with doRollback spuriously failing. apparently the last revision somehow goes missing
+		# or not committed under some circumstances. so, make sure the last revision has the right user name.
+		$page = new WikiPage( $page->getTitle() );
+		$this->assertEquals( '127.0.2.13', $page->getRevision()->getUserText() );
+
+		# now, try the actual rollback
 		$admin->addGroup( "sysop" ); #XXX: make the test user a sysop...
 		$token = $admin->getEditToken( array( $page->getTitle()->getPrefixedText(), $user2->getName() ), null );
 		$errors = $page->doRollback( $user2->getName(), "testing revert", $token, false, $details, $admin );
