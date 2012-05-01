@@ -98,6 +98,7 @@
  * @author Sborsody
  * @author Seb35
  * @author Sherbrooke
+ * @author Shirayuki
  * @author Shushruth
  * @author Siebrand
  * @author Singularity
@@ -732,7 +733,9 @@ $1 is a filename, I think.',
 'nocookieslogin' => "This message is displayed when someone tried to login, but the browser doesn't accept cookies.",
 'nocookiesfornew' => "This message is displayed when the user tried to create a new account, but it failed the cross-site request forgery (CSRF) check. It could be blocking an attack, but most likely, the browser isn't  accepting cookies.",
 'nocookiesforlogin' => "{{optional}}
-This message is displayed when someone tried to login and the CSRF failed (most likely, the browser doesn't accept cookies). Defaults to nocookieslogin",
+This message is displayed when someone tried to login and the CSRF failed (most likely, the browser doesn't accept cookies).
+
+Defaults to '''nocookieslogin''' ({{int:nocookieslogin}})",
 'loginsuccesstitle' => 'The title of the page saying that you are logged in. The content of the page is the message "[[MediaWiki:Loginsuccess/{{SUBPAGENAME}}]]".',
 'loginsuccess' => 'The content of the page saying that you are logged in. The title of the page is "[[MediaWiki:Loginsuccesstitle/{{SUBPAGENAME}}|{{int:loginsuccesstitle}}]]". $1 is the name of the logged in user.
 

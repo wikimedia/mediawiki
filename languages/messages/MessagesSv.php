@@ -1084,6 +1084,8 @@ Dessa parametrar har uteslutits.',
 'language-converter-depth-warning' => 'Gräns för språkkonverteringsdjup överskriden ($1)',
 'node-count-exceeded-category' => 'Sidor där antal nodar har överskrids',
 'node-count-exceeded-warning' => 'Sidan har överskridit antalet nodar',
+'expansion-depth-exceeded-category' => 'Sidor där expansionsdjupet överskrids',
+'expansion-depth-exceeded-warning' => 'Sidan överskrider expansionsdjupet',
 
 # "Undo" feature
 'undo-success' => 'Redigeringen kan göras ogjord.
@@ -3774,6 +3776,7 @@ Du bör ha fått [{{SERVER}}{{SCRIPTPATH}}/COPYING en kopia av GNU General Publi
 'version-software' => 'Installerad programvara',
 'version-software-product' => 'Produkt',
 'version-software-version' => 'Version',
+'version-entrypoints' => 'StartpunktsURLer',
 'version-entrypoints-header-entrypoint' => 'Ingångspunkt',
 'version-entrypoints-header-url' => 'URL',
 

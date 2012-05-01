@@ -3039,7 +3039,7 @@ Slědujuce wótkaze w tej samej smužce se za wuwześa naglědaju, w kótarychž
 'exif-gpsdestdistance' => 'Distanca k celowemu městnu',
 'exif-gpsprocessingmethod' => 'Mě metody pśeźěłanja GPS',
 'exif-gpsareainformation' => 'Mě wobcerka GPS',
-'exif-gpsdatestamp' => 'Datum GPS',
+'exif-gpsdatestamp' => 'GPS-datum',
 'exif-gpsdifferential' => 'Diferencialna korektura GPS',
 'exif-jpegfilecomment' => 'Komentar JPEG-dataje',
 'exif-keywords' => 'Klucowe słowa',

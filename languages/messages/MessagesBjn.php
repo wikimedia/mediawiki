@@ -688,8 +688,8 @@ Pinanya ini sudah diugahakan atawa dihapus parhatan Pian maniringi tungkaran nan
 Katasunduk gasan pamakai hanyar nangini kawa diubah pintang tungkaran ''[[Special:ChangePassword|ubah katasunduk]]'' wayah babuat log.",
 'newarticle' => '(Hanyar)',
 'newarticletext' => "Pian maumpati sabuah tautan ka tungkaran nang baluman ada lagi. Gasan maulah tungkaran, mulai ja mangatik pada kutak di bawah (lihati [[{{MediaWiki:Helppage}}|tungkaran patulung]] gasan panjalasan labih). Amun Pian ka sia cagaran tasalah, klik picikan '''back''' di panjalajah web Pian.",
-'anontalkpagetext' => "----''Ini adalah tungkaran pamandiran gasan pamuruk kada bangaran nang baluman maulah akun pulang, atawa  kada mamuruknya. Kami tapaksa mamuruk numurik alamat IP hagan maminanduinya.
-Alamat IP nangkaini kawaai dipuruk ulih babarapa pamuruk.
+'anontalkpagetext' => "----''Ngini adalah tungkaran pamandiran gasan pamakai kada bangaran nang baluman ma-ulah akun pulang, atawa  kada mamakainya. Kami tapaksa mamakai numurik alamat IP hagan maminanduinya.
+Alamat IP nangkaini kawaai dipuruk ulih babarapa pamakai.
 Amun Pian adalah pamuruk kada bangaran wan marasa kumin nang kada pas ta ka Pian, muhun [[Special:UserLogin/signup|ulah sabuah akun]] or [[Special:UserLogin|babuat log]] hagan mahindari kabingungan awan pamuruk kada bangaran lain kaina.",
 'noarticletext' => 'Parhatan ini kadada naskah di tungkaran ini.
 Pian kawa [[Special:Search/{{PAGENAME}}|manggagai gasan judul ini]] pintang tungkaran lain,
@@ -963,7 +963,7 @@ Muhun pariksa lolog.',
 
 # Suppression log
 'suppressionlog' => 'Log panikinan',
-'suppressionlogtext' => 'Nang di bawah adalah sabuah daptar matan pahahapusan wan Pamblublukiran tamasuk isi tasungkup matan papambakal. Lihati [[Special:BlockList|Daptar diblukir]] gasan daptar matan uprasi tahanyar tatangatan wan blublukir.',
+'suppressionlogtext' => 'Nang di bawah adalah sabuting daptar matan pahapusan wan pamblukiran tamasuk isi tasungkup matan pambakal. Lihati [[Special:BlockList|Daptar diblukir]] gasan daptar matan uprasi tahanyar tatangatan wan blukir.',
 
 # History merging
 'mergehistory' => 'Gabungakan hahalam tungkaran',
@@ -2077,7 +2077,7 @@ kitihan-bulik wan pangganian labih jauh:
 'historywarning' => "'''Paringatan:''' Tungkaran nang Pian pasal hagan hapus baisi sabuah halam sakitar $1 {{PLURAL:$1|ralatan|raralatan}}:",
 'confirmdeletetext' => 'Pian handak mahapus sabuah tungkaran awan samunyaan halamnya.
 Muhun mamastiakan amun Pian handak manggawi ini, bahwasa Pian paham akibatnya, wan apa nang Pian gawi ini sasuai awan [[{{MediaWiki:Policy-url}}|kabijakan {{SITENAME}}]].',
-'actioncomplete' => 'Pangulahan tuntung',
+'actioncomplete' => 'Pa-ulahan tuntung',
 'actionfailed' => 'Palakuan luput',
 'deletedtext' => '"$1" sudah tahapus. Lihati $2 sabuah rakaman gasan nang hanyar ni tahapus.',
 'dellogpage' => 'Log pahapusan',
@@ -2336,7 +2336,7 @@ Isi sabuah alasan khas di bawah (gasan cuntuh, manulisakan tutungkaran nang suah
 'ipb-confirm' => 'Yakinakan blukir',
 'badipaddress' => 'Alamat IP kada sah',
 'blockipsuccesssub' => 'Pamblukiran ruhui',
-'blockipsuccesstext' => '[[Special:Contributions/$1|$1]] sudah diblukir.<br />
+'blockipsuccesstext' => '[[Special:Contributions/$1|$1]] hudah diblukir.<br />
 Janaki [[Special:BlockList|daptar dibluk]] hagan maniring-pulang blukir.',
 'ipb-blockingself' => 'Pian pasal mamblukir Pian surang! Bujurkah Pian mahandaki ngitu?',
 'ipb-confirmhideuser' => 'Pian pasal mamblukir saurang pamuruk awan "sungkupakan pamuruk" di-kawa-akan. Ngini akan manikin/kadada ngaran pamuruk dalam samunyaan daptar wan log masukan. Pian yakin kah handak manggawi ngitu?',
@@ -2391,8 +2391,8 @@ Log panikinan disadiakan di bawah gasan rujukan:',
 'blocklogentry' => 'mamblukir [[$1]] sampai wayah $2 $3',
 'reblock-logentry' => 'setelan blukir diubah gasan [[$1]] awan sabuah wayah kadaluarsa $2 $3',
 'blocklogtext' => 'Ngini adalah log matan blukir wan lapas-blukir pamuruk.
-Blukir alamat IP utumatis kada didaptar.
-Janaki [[Special:BlockList|daptar diblukir]] gasan daptar oparasi diikat wan diblukir tadamini.',
+Blukir alamat IP utumatis kada tadaptar.
+Janaki [[Special:BlockList|daptar diblukir]] gasan daptar uprasi dibabat wan pamblukiran pahanyarnya.',
 'unblocklogentry' => 'Mahilangakan blukir "$1"',
 'block-log-flags-anononly' => 'papamuruk kada bangaran haja',
 'block-log-flags-nocreate' => 'Paulahan akun dipajahakan',
@@ -2641,7 +2641,7 @@ Muhun cubai pulang.',
 'import-logentry-interwiki-detail' => '$1 {{PLURAL:$1|ralatan|raralatan}} matan $2',
 
 # Tooltip help for the actions
-'tooltip-pt-userpage' => 'Tungkaran pamuruk Pian',
+'tooltip-pt-userpage' => 'Tungkaran pamakai Pian',
 'tooltip-pt-anonuserpage' => 'Tungkaran pamuruk matan alamat IP Pian mambabak sawagai',
 'tooltip-pt-mytalk' => 'Tungkaran pamandiran Pian',
 'tooltip-pt-anontalk' => 'Pamandiran pasal bababakan matan alamat IP ngini',
@@ -3562,9 +3562,9 @@ Situs ngini mangalami kangalihan teknik.',
 'logentry-move-move_redir-noredirect' => '$1 diugah tungkaran $3 ka $4 lung sabuah paugahan awan-kada maninggalakan sabuah paugahan',
 'logentry-patrol-patrol' => "$1 diciri'i ralatan $4 matan tungkaran $3 taawasi",
 'logentry-patrol-patrol-auto' => "$1 utumatis diciri'i ralatan $4 matan tungkaran $3 taawasi",
-'logentry-newusers-newusers' => '$1 diulah sabuah akun pamuruk',
-'logentry-newusers-create' => '$1 diulah sabuah akun pamuruk',
-'logentry-newusers-create2' => '$1 diulah sabuah akun pamuruk $3',
+'logentry-newusers-newusers' => '$1 ma-ulah sabuting akun pamakai',
+'logentry-newusers-create' => '$1 ma-ulah sabuting akun pamakai',
+'logentry-newusers-create2' => '$1 ma-ulah sabuting akun pamakai $3',
 'logentry-newusers-autocreate' => 'Akun $1 utumatis diulah',
 'newuserlog-byemail' => 'Katasunduk dikirimakan lung suril.',
 

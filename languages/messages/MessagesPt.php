@@ -1093,6 +1093,10 @@ Estes argumentos foram omitidos.',
 'parser-template-loop-warning' => 'Ciclo de predefinições detectado: [[$1]]',
 'parser-template-recursion-depth-warning' => 'Foi excedido o limite da profundidade de recursividade nas predefinições ($1)',
 'language-converter-depth-warning' => 'O limite de profundidade do conversor de línguas excedeu a ($1)',
+'node-count-exceeded-category' => 'Páginas em que o total de nós é excedido',
+'node-count-exceeded-warning' => 'A página excedeu o total de nós',
+'expansion-depth-exceeded-category' => 'Páginas em que a profundidade de expansão é excedida',
+'expansion-depth-exceeded-warning' => 'A página excedeu a profundidade de expansão',
 
 # "Undo" feature
 'undo-success' => 'É possível desfazer a edição.
