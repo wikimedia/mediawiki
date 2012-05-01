@@ -346,3 +346,6 @@
 [submodule "extensions/FlaggedRevs"]
 	path = extensions/FlaggedRevs
 	url = ssh://gerrit.wikimedia.org:29418/mediawiki/extensions/FlaggedRevs.git
+[submodule "extensions/TranslationNotifications"]
+	path = extensions/TranslationNotifications
+	url = ssh://gerrit.wikimedia.org:29418/mediawiki/extensions/TranslationNotifications.git
