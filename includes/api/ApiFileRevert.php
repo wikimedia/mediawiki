@@ -133,7 +133,7 @@ class ApiFileRevert extends ApiBase {
 
 	public function getParamDescription() {
 		$params = array(
-			'filename' => 'Target filename',
+			'filename' => 'Target filename without the File: prefix',
 			'token' => 'Edit token. You can get one of these through prop=info',
 			'comment' => 'Upload comment',
 			'archivename' => 'Archive name of the revision to revert to',
