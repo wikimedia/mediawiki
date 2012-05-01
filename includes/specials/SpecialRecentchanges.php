@@ -633,14 +633,18 @@ class SpecialRecentChanges extends IncludableSpecialPage {
 	 */
 	function setTopText( FormOptions $opts ) {
 		global $wgContLang;
-		$this->getOutput()->addWikiText(
-			Html::rawElement( 'p',
-				array( 'lang' => $wgContLang->getCode(), 'dir' => $wgContLang->getDir() ),
-				"\n" . $this->msg( 'recentchangestext' )->inContentLanguage()->plain() . "\n"
-			), 
-			/* $lineStart */ false,
-			/* $interface */ false
-		);
+
+		$message = $this->msg( 'recentchangestext' )->inContentLanguage();
+		if ( $message->exists() ) {
+			$this->getOutput()->addWikiText(
+				Html::rawElement( 'p',
+					array( 'lang' => $wgContLang->getCode(), 'dir' => $wgContLang->getDir() ),
+					"\n" . $message->plain() . "\n"
+				),
+				/* $lineStart */ false,
+				/* $interface */ false
+			);
+		}
 	}
 
 	/**
