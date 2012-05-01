@@ -116,6 +116,7 @@ class SpecialWatchlist extends SpecialPage {
 		/* bool  */ 'hideOwn'   => (int)$user->getBoolOption( 'watchlisthideown' ),
 		/* ?     */ 'namespace' => 'all',
 		/* ?     */ 'invert'    => false,
+		/* bool  */ 'associated' => false,
 		);
 		$this->customFilters = array();
 		wfRunHooks( 'SpecialWatchlistFilters', array( $this, &$this->customFilters ) );
@@ -148,13 +149,20 @@ class SpecialWatchlist extends SpecialPage {
 
 		# Get namespace value, if supplied, and prepare a WHERE fragment
 		$nameSpace = $request->getIntOrNull( 'namespace' );
-		$invert = $request->getIntOrNull( 'invert' );
+		$invert = $request->getBool( 'invert' );
+		$associated = $request->getBool( 'associated' );
 		if ( !is_null( $nameSpace ) ) {
+			$eq_op = $invert ? '!=' : '=';
+			$bool_op = $invert ? 'AND' : 'OR';
 			$nameSpace = intval( $nameSpace ); // paranioa
-			if ( $invert ) {
-				$nameSpaceClause = "rc_namespace != $nameSpace";
+			if ( !$associated ) {
+				$nameSpaceClause = "rc_namespace $eq_op $nameSpace";
 			} else {
-				$nameSpaceClause = "rc_namespace = $nameSpace";
+				$associatedNS = MWNamespace::getAssociated( $nameSpace );
+				$nameSpaceClause =
+					"rc_namespace $eq_op $nameSpace " .
+					$bool_op .
+					" rc_namespace $eq_op $associatedNS";
 			}
 		} else {
 			$nameSpace = '';
@@ -162,6 +170,7 @@ class SpecialWatchlist extends SpecialPage {
 		}
 		$values['namespace'] = $nameSpace;
 		$values['invert'] = $invert;
+		$values['associated'] = $associated;
 
 		if( is_null( $values['days'] ) || !is_numeric( $values['days'] ) ) {
 			$big = 1000; /* The magical big */
@@ -345,7 +354,20 @@ class SpecialWatchlist extends SpecialPage {
 				'class' => 'namespaceselector',
 			)
 		) . '&#160;';
-		$form .= Xml::checkLabel( $this->msg( 'invert' )->text(), 'invert', 'nsinvert', $invert ) . '&#160;';
+		$form .= Xml::checkLabel(
+			$this->msg( 'invert' )->text(),
+			'invert',
+			'nsinvert',
+			$invert,
+			array( 'title' => $this->msg( 'tooltip-invert' )->text() )
+		) . '&#160;';
+		$form .= Xml::checkLabel(
+			$this->msg( 'namespace_association' )->text(),
+			'associated',
+			'associated',
+			$associated,
+			array( 'title' => $this->msg( 'tooltip-namespace_association' )->text() )
+		) . '&#160;';
 		$form .= Xml::submitButton( $this->msg( 'allpagessubmit' )->text() ) . '</p>';
 		$form .= Html::hidden( 'days', $values['days'] );
 		foreach ( $filters as $key => $msg ) {

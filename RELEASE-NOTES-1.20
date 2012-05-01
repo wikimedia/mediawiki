@@ -46,6 +46,7 @@ production.
   Special:Version
 * Edit notices can now be translated.
 * (bug 22887) Add warning and tracking category for preprocessor errors
+* (bug 31704) Allow selection of associated namespace on the watchlist
 
 === Bug fixes in 1.20 ===
 * (bug 30245) Use the correct way to construct a log page title.
