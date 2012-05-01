@@ -861,8 +861,7 @@ div#footer {
 	-webkit-transition: left 250ms;
 	-o-transition: left 250ms;
 }
-div#mw-panel div.portal div.body,
-div#mw-panel div.portal h5 {
+#mw-panel {
 	transition: padding-left 250ms;
 	-moz-transition: padding-left 250ms;
 	-webkit-transition: padding-left 250ms;
