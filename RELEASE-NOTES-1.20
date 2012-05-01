@@ -102,6 +102,7 @@ production.
 * (bug 32492) API now allows editing using pageid
 * (bug 32497) API now allows changing of protection level using pageid
 * (bug 32498) API now allows comparing pages using pageids
+* (bug 30975) API import of pages with invalid characters in this wiki leads to Fatal Error
 
 === Languages updated in 1.20 ===
 
