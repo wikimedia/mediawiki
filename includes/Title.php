@@ -83,6 +83,7 @@ class Title {
 	var $mRedirect = null;            // /< Is the article at this title a redirect?
 	var $mNotificationTimestamp = array(); // /< Associative array of user ID -> timestamp/false
 	var $mBacklinkCache = null;       // /< Cache of links to this title
+	var $mHasSubpage;                 // /< Whether a page has any subpages
 	// @}
 
 
@@ -119,7 +120,8 @@ class Title {
 	 *   fied by a prefix.  If you want to force a specific namespace even if
 	 *   $text might begin with a namespace prefix, use makeTitle() or
 	 *   makeTitleSafe().
-	 * @return Title, or null on an error.
+	 * @throws MWException
+	 * @return Title|null - Title or null on an error.
 	 */
 	public static function newFromText( $text, $defaultNamespace = NS_MAIN ) {
 		if ( is_object( $text ) ) {
@@ -858,6 +860,7 @@ class Title {
 	 * This is MUCH simpler than individually testing for equivilance
 	 * against both NS_USER and NS_USER_TALK, and is also forward compatible.
 	 * @since 1.19
+	 * @param $ns int
 	 * @return bool
 	 */
 	public function hasSubjectNamespace( $ns ) {
@@ -1222,6 +1225,8 @@ class Title {
 	 * andthe wfArrayToCGI moved to getLocalURL();
 	 *
 	 * @since 1.19 (r105919)
+	 * @param $query
+	 * @param $query2 bool
 	 * @return String
 	 */
 	private static function fixUrlQueryArgs( $query, $query2 = false ) {
@@ -1404,6 +1409,8 @@ class Title {
 	 * See getLocalURL for the arguments.
 	 *
 	 * @see self::getLocalURL
+	 * @param $query string
+	 * @param $query2 bool|string
 	 * @return String the URL
 	 */
 	public function escapeLocalURL( $query = '', $query2 = false ) {
@@ -2468,8 +2475,9 @@ class Title {
 	/**
 	 * Get the expiry time for the restriction against a given action
 	 *
+	 * @param $action
 	 * @return String|Bool 14-char timestamp, or 'infinity' if the page is protected forever
-	 * 	or not protected at all, or false if the action is not recognised.
+	 *     or not protected at all, or false if the action is not recognised.
 	 */
 	public function getRestrictionExpiry( $action ) {
 		if ( !$this->mRestrictionsLoaded ) {
@@ -4467,7 +4475,7 @@ class Title {
 	 * $wgLang (such as special pages, which are in the user language).
 	 *
 	 * @since 1.18
-	 * @return object Language
+	 * @return Language
 	 */
 	public function getPageLanguage() {
 		global $wgLang;

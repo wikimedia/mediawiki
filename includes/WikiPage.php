@@ -1718,7 +1718,7 @@ class WikiPage extends Page {
 	 * @param &$cascade Integer. Set to false if cascading protection isn't allowed.
 	 * @param $expiry Array: per restriction type expiration
 	 * @param $user User The user updating the restrictions
-	 * @return bool true on success
+	 * @return Status
 	 */
 	public function doUpdateRestrictions( array $limit, array $expiry, &$cascade, $reason, User $user ) {
 		global $wgContLang;
