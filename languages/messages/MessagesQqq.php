@@ -1751,7 +1751,7 @@ This action allows editing of all of the "user rights", not just the rights of t
 
 {{Identical|Recent changes}}',
 'recentchanges-legend' => 'Legend of the fieldset of [[Special:RecentChanges]]',
-'recentchangestext' => 'Text in recent changes',
+'recentchanges-summary' => 'Summary of [[Special:RecentChanges]].',
 'recentchanges-label-newpage' => 'Tooltip for {{msg-mw|newpageletter}}',
 'recentchanges-label-minor' => 'Tooltip for {{msg-mw|newpageletter}}',
 'recentchanges-label-bot' => 'Tooltip for {{msg-mw|boteditletter}}',
