@@ -986,24 +986,100 @@ abstract class UploadBase {
 	 * @todo Replace this with a whitelist filter!
 	 */
 	public function checkSvgScriptCallback( $element, $attribs ) {
-		$stripped = $this->stripXmlNamespace( $element );
+		$strippedElement = $this->stripXmlNamespace( $element );
 
-		if( $stripped == 'script' ) {
+		/*
+		 * check for elements that can contain javascript
+		 */
+		if( $strippedElement == 'script' ) {
 			wfDebug( __METHOD__ . ": Found script element '$element' in uploaded file.\n" );
+			return true;
+		}
+
+		# e.g., <svg xmlns="http://www.w3.org/2000/svg"> <handler xmlns:ev="http://www.w3.org/2001/xml-events" ev:event="load">alert(1)</handler> </svg>
+		if( $strippedElement == 'handler' ) {
+			wfDebug( __METHOD__ . ": Found scriptable element '$element' in uploaded file.\n" );
+			return true;
+		}
+
+		# SVG reported in Feb '12 that used xml:stylesheet to generate javascript block
+		if( $strippedElement == 'stylesheet' ) {
+			wfDebug( __METHOD__ . ": Found scriptable element '$element' in uploaded file.\n" );
 			return true;
 		}
 
 		foreach( $attribs as $attrib => $value ) {
 			$stripped = $this->stripXmlNamespace( $attrib );
+			$value = strtolower($value);
+
 			if( substr( $stripped, 0, 2 ) == 'on' ) {
-				wfDebug( __METHOD__ . ": Found script attribute '$attrib'='value' in uploaded file.\n" );
+				wfDebug( __METHOD__ . ": Found event-handler attribute '$attrib'='$value' in uploaded file.\n" );
 				return true;
 			}
+
+			# href with javascript target
 			if( $stripped == 'href' && strpos( strtolower( $value ), 'javascript:' ) !== false ) {
-				wfDebug( __METHOD__ . ": Found script href attribute '$attrib'='$value' in uploaded file.\n" );
+				wfDebug( __METHOD__ . ": Found script in href attribute '$attrib'='$value' in uploaded file.\n" );
 				return true;
 			}
+
+			# href with embeded svg as target
+			if( $stripped == 'href' && preg_match( '!data:[^,]*image/svg[^,]*,!sim', $value ) ) {
+				wfDebug( __METHOD__ . ": Found href to embedded svg \"<$strippedElement '$attrib'='$value'...\" in uploaded file.\n" );
+				return true;
+			}
+
+			# href with embeded (text/xml) svg as target
+			if( $stripped == 'href' && preg_match( '!data:[^,]*text/xml[^,]*,!sim', $value ) ) {
+				wfDebug( __METHOD__ . ": Found href to embedded svg \"<$strippedElement '$attrib'='$value'...\" in uploaded file.\n" );
+				return true;
+			}
+
+			# use set/animate to add event-handler attribute to parent
+			if( ( $strippedElement == 'set' || $strippedElement == 'animate' ) && $stripped == 'attributename' && substr( $value, 0, 2 ) == 'on' ) {
+				wfDebug( __METHOD__ . ": Found svg setting event-handler attribute with \"<$strippedElement $stripped='$value'...\" in uploaded file.\n" );
+				return true;
+			}
+
+			# use set to add href attribute to parent element
+			if( $strippedElement == 'set' && $stripped == 'attributename' && strpos( $value, 'href' ) !== false ) {
+				wfDebug( __METHOD__ . ": Found svg setting href attibute '$value' in uploaded file.\n" );
+				return true;
+			}
+
+			# use set to add a remote / data / script target to an element
+			if( $strippedElement == 'set' && $stripped == 'to' &&  preg_match( '!(http|https|data|script):!sim', $value ) ) {
+				wfDebug( __METHOD__ . ": Found svg setting attibute to '$value' in uploaded file.\n" );
+				return true;
+			}
+
+
+			# use handler attribute with remote / data / script 
+			if( $stripped == 'handler' &&  preg_match( '!(http|https|data|script):!sim', $value ) ) {
+				wfDebug( __METHOD__ . ": Found svg setting handler with remote/data/script '$attrib'='$value' in uploaded file.\n" );
+				return true;
+			}
+
+			# use CSS styles to bring in remote code
+			# catch url("http:..., url('http:..., url(http:..., but not url("#..., url('#..., url(#....
+			if( $stripped == 'style' && preg_match_all( '!((?:font|clip-path|fill|filter|marker|marker-end|marker-mid|marker-start|mask|stroke)\s*:\s*url\s*\(\s*["\']?\s*[^#]+.*?\))!sim', $value, $matches ) ) {
+				foreach ($matches[1] as $match) {
+					if (!preg_match( '!(?:font|clip-path|fill|filter|marker|marker-end|marker-mid|marker-start|mask|stroke)\s*:\s*url\s*\(\s*(#|\'#|"#)!sim', $match ) ) {
+						wfDebug( __METHOD__ . ": Found svg setting a style with remote url '$attrib'='$value' in uploaded file.\n" );
+						return true;
+					}
+				}
+			}
+
+			# image filters can pull in url, which could be svg that executes scripts
+			if( $strippedElement == 'image' && $stripped == 'filter' && preg_match( '!url\s*\(!sim', $value ) ) {
+				wfDebug( __METHOD__ . ": Found image filter with url: \"<$strippedElement $stripped='$value'...\" in uploaded file.\n" );
+				return true;
+			}
+
 		}
+
+		return false; //No scripts detected
 	}
 
 	private function stripXmlNamespace( $name ) {
