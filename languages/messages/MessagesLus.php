@@ -134,7 +134,7 @@ $messages = array(
 'category-article-count' => "{{PLURAL:$2|He pawl hian hemi phêk chauh hi a nei. | Hê'ng phek {{PLURAL:$1||$1-te}} hi he pawlah hian a awm, avaia $2 zingah.}}",
 'category-article-count-limited' => '{{PLURAL: $1 |$1He|$1 Heng}} phekte hi hë pawl, i en mékah hian a awm.',
 'category-file-count' => '{{PLURAL:$2|He pawl hian hë taksa chauh hi a kengtel.|{{PLURAL:$1|He taksa $1 |Heng taksa $1-te}} hi he pawlah hian a awm, a vaia $2 zingah}}',
-'category-file-count-limited' => '{{PLURAL:$1|He taksa (file)|$1Heng taksate}} hi hemi pawl, i en mékah hian a awm.',
+'category-file-count-limited' => '{{PLURAL:$1|He taksa|$1Heng taksate}} hi hemi pawl, i en mékah hian a awm.',
 'listingcontinuesabbrev' => 'chhunz.',
 'index-category' => 'Phêk tarlante',
 'noindex-category' => 'Phêk tarlan lohte',
@@ -483,6 +483,7 @@ I thurûk i thlâk hlawhtling tawh a nih loh pawhin thurûk lailâwk i dil a ni 
 'passwordreset' => 'Thurûk ziakţha rawh',
 'passwordreset-legend' => 'Thurûk ziakţha rawh',
 'passwordreset-username' => 'Hmangtu hming:',
+'passwordreset-domain' => 'Huamchin:',
 'passwordreset-email' => 'E-chenhmun:',
 'passwordreset-emailtitle' => '{{SITENAME}}-a siangchan chanchin kim',
 'passwordreset-emailelement' => 'Hmangtuhming: $1
@@ -969,9 +970,11 @@ Hmangtuten e-lehkha an thawn chein i e-chenhmun hrilh an ni chuang lo vang.',
 'boteditletter' => 'k',
 'rc-enhanced-expand' => 'Tilang kim rawh (JavaScript a ngai)',
 'rc-enhanced-hide' => 'Thup ţhenna',
+'rc-old-title' => 'Atìra "&1" tih hming pú-a siam.',
 
 # Recent changes linked
 'recentchangeslinked' => 'Tihdanglam anpuite',
+'recentchangeslinked-feed' => 'Tihdanglam anpuite',
 'recentchangeslinked-toolbox' => 'Tihdanglam anpuite',
 'recentchangeslinked-title' => '"$1" kaihhnawih tihdanglamnate',
 'recentchangeslinked-noresult' => 'I hun thlan chhungah hian a phek zawmpui tihdanglam pakhat mah a awm lo.',
@@ -990,6 +993,9 @@ Hmangtuten e-lehkha an thawn chein i e-chenhmun hrilh an ni chuang lo vang.',
 'upload_directory_missing' => 'Hlankai bawmpui ($1)  a awm lo va, Rangserverin a siam thei lo bawl.',
 'upload_directory_read_only' => 'Hlankai bawmpui ($1) hi Rangserver in a ziak thei lo.',
 'uploaderror' => 'Hlankai sual',
+'upload-recreate-warning' => "'''Vaukhànna: Hemi hming pu taksa hi sawn tawh emaw paih tawh a ni.'''
+
+I ràwnah paihna leh sawnna chhinchhiahna thuziak kan rawn chhawpchhuak e:",
 'upload-permitted' => 'Taksa phal chiho: $1.',
 'upload-preferred' => 'Taksa duh deuh bîk: $1.',
 'upload-prohibited' => 'Taksa khap: $1.',
@@ -1036,7 +1042,7 @@ A hming thlâk la bei ţha leh rawh.',
 'listfiles_count' => 'Chhuah',
 
 # File description page
-'file-anchor-link' => 'Taksa (file)',
+'file-anchor-link' => 'Taksa',
 'filehist' => 'A chanchin enna',
 'filehist-help' => 'A hunlaia a lan dan en tùrin a hun/ni-ah hmet rawh.',
 'filehist-deleteall' => 'a vaiin nuaibo rawh',

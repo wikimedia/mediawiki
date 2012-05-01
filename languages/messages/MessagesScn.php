@@ -731,6 +731,7 @@ Siddu sî n’utenti anònimu e riteni ca li cummenti prisenti nta sta pàggina 
 '''Siddu chistu è nu tintativu liggìttimu di canciamentu, arriprova. Siddu lu prubbrema pirsisti, si pò pruvari a [[Special:UserLogout|sculligàrisi]] e effittuari n'accessu novu.'''",
 'token_suffix_mismatch' => "'''Lu canciamentu nun fu sarvatu pirchì lu client ammustrau di gèstiri 'n modu sbagghiatu li caràttiri di puntiggiatura nta lu token assuciatu a iddu. P'evitari na curruzzioni pussìbbili dô testu dâ pàggina, fu rifiutatu tuttu lu canciamentu. Sta situazzioni pò virificàrisi, certi voti, quannu s'adòpiranu arcuni sirvizza di proxy anònimi via web chi prisèntanu bug.'''",
 'editing' => 'Canciu di la vuci "$1"',
+'creating' => 'Stai criannu $1',
 'editingsection' => 'Canciamentu di $1 (sezzioni)',
 'editingcomment' => 'Canciu di $1 (nova sizzioni)',
 'editconflict' => "Cunflittu d'edizzioni supra $1",

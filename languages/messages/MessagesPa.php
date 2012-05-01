@@ -149,6 +149,7 @@ $messages = array(
 'category-subcat-count' => '{{ਕੁਲ   $2 ਸ਼੍ਰੇਣੀਆਂ ਵਿਚੌਂ , PLURAL:$2|ਇਸ ਸ਼੍ਰੇਣੀ ਵਿਚ ਸਿਰਫ਼ ਹੇਠ ਲਿਖੀ ਸ਼੍ਰੇਣੀ ਹੈ|ਇਸ ਸ਼੍ਰੇਣੀ ਵਿਚ ਨਿਮਿਨਲਿਖਿਤ {{PLURAL:$1|ਉਪ ਸ਼੍ਰੇਣੀ ਹੈ|$1ਉਪਸ਼੍ਰੇਣੀਆਂ ਹਨ}}  }}',
 'category-article-count' => '{{ ਕੁਲ $2 ਲੇਖਾਂ ਵਿਚੌਂ , PLURAL:$2| ਇਸ ਸ਼੍ਰੇਣੀ ਵਿਚ ਸਿਰਫ਼  ਨਿਮਨਲਿਖਿਤ  {{PLURAL:$1|ਲੇਖ ਹੈ|$1 ਲੇਖ ਹਨ}}, }}',
 'listingcontinuesabbrev' => 'ਅਗੇ.',
+'noindex-category' => 'ਕ੍ਰਮਸੂਚੀ ਰਹਿਤ ਸਫ਼ੇ',
 
 'about' => 'ਇਸ ਬਾਰੇ',
 'article' => 'ਸਮੱਗਰੀ ਪੇਜ',
@@ -479,7 +480,7 @@ $1 ਘੰਟੇ ਵਿੱਚ। ਨੁਕਸਾਨ ਤੋਂ ਬਚਣ ਲਈ, $
 'yourtext' => 'ਤੁਹਾਡਾ ਟੈਕਸਟ',
 'storedversion' => 'ਸੰਭਾਲਿਆ ਵਰਜਨ',
 'yourdiff' => 'ਅੰਤਰ',
-'templatesused' => 'ਇਸ ਪੇਜ ਉੱਤੇ ਟੈਪਲੇਟ ਵਰਤਿਆ ਜਾਂਦਾ ਹੈ:',
+'templatesused' => 'ਇਸ ਸਫੇ ਤੇ ਪ੍ਰ੍ਯੋਗਿਤ {{PLURAL:$1|ਫਰਮਾ|ਫਰਮੇ}}:',
 'templatesusedpreview' => "{{PLURAL:$1|ਟੈਪਲੇਟ|ਟੈਪਲੇਟ}} ਇਹ ਝਲਕ 'ਚ ਵਰਤੇ ਜਾਂਦੇ ਹਨ:",
 'templatesusedsection' => 'ਇਹ ਸ਼ੈਕਸ਼ਨ ਵਿੱਚ ਟੈਪਲੇਟ ਵਰਤਿਆ ਜਾਂਦਾ ਹੈ:',
 'template-protected' => '(ਸੁਰੱਖਿਅਤ)',
@@ -490,6 +491,8 @@ $1 ਘੰਟੇ ਵਿੱਚ। ਨੁਕਸਾਨ ਤੋਂ ਬਚਣ ਲਈ, $
 # Parser/template warnings
 'post-expand-template-inclusion-warning' => "'''ਖ਼ਬਰਦਾਰ: ਸੰਚੇ ਦਾ ਅਕਾਰ ਬਹੁਤ ਵੱਡਾ ਹੈ।ਕੁਝ ਸੰਚੇ ਛੁਟ ਜਾਣਗੇ।",
 'post-expand-template-inclusion-category' => 'ਉਹ ਪੰਨੇ ਜਿਥੇ ਸੰਚਿਆਂ ਦਾ ਅਕਾਰ ਨਿਣਮਿਤ ਹੱਦ ਤੌਂ ਵੱਧ ਹੈ।',
+'post-expand-template-argument-warning' => "'''ਖ਼ਬਰਦਾਰ'''ਇਸ ਸਫ਼ੇ ਤੇ ਕਿਸੇ ਫ਼ਰਮੇ ਵਿਚ ਘੱਟੋ ਘੱਟ ਇਕ ਸਁਘਟਕ ਐਸਾ ਹੈ ਜਿਸ ਦਾ ਵਿਸਤ੍ਰਿਤ ਰੂਪ ਬਹੁਤ ਵੱਡਾ ਹੈ।ਐਸੇ ਸਁਘਟਕਾਂ ਨੂਁ ਛੱਡ ਦਿੱਤਾ ਗਿਆ ਹੈ।",
+'post-expand-template-argument-category' => 'ਐਸੇ ਸਫ਼ੇ ਜਿਨ੍ਹਾਂ ਵਿਚ ਫ਼ਰਮੇ ਦੇ ਸਁਘਟਕ ਛੁੱਟ ਗਏ ਹਨ ।',
 
 # Account creation failure
 'cantcreateaccounttitle' => 'ਅਕਾਊਂਟ ਬਣਾਇਆ ਨਹੀਂ ਜਾ ਸਕਦਾ',
@@ -508,6 +511,7 @@ $1 ਘੰਟੇ ਵਿੱਚ। ਨੁਕਸਾਨ ਤੋਂ ਬਚਣ ਲਈ, $
 'last' => 'ਆਖਰੀ',
 'page_first' => 'ਪਹਿਲਾਂ',
 'page_last' => 'ਆਖਰੀ',
+'history-fieldset-title' => 'ਇਤਿਹਾਸ ਤੇ ਇਕ ਨਜ਼ਰ ਮਾਰੋ ।',
 'history-show-deleted' => 'ਕੇਵਲ ਮਿਟਾਏ ਗਏ',
 'histfirst' => 'ਸਭ ਤੋਂ ਪਹਿਲਾਂ',
 'histlast' => 'ਸਭ ਤੋਂ ਨਵਾਂ',
@@ -706,6 +710,7 @@ $1 ਘੰਟੇ ਵਿੱਚ। ਨੁਕਸਾਨ ਤੋਂ ਬਚਣ ਲਈ, $
 'recentchangeslinked-feed' => 'ਸਬੰਧਿਤ ਬਦਲਾਅ',
 'recentchangeslinked-toolbox' => 'ਸਬੰਧਿਤ ਬਦਲਾਅ',
 'recentchangeslinked-title' => '"$1" ਨਾਲ ਸੰਬੰਧਿਤ ਬਦਲਾਅ',
+'recentchangeslinked-noresult' => 'ਜੁੜੇ ਹੋਏ ਸਫਿਆਂ ਤੇ ,ਦਿੱਤੇ ਸਮੇਂ ਵਿਚ ਕੁਝ ਨਹੀਂ ਬਦਲਿਆ ।',
 'recentchangeslinked-summary' => 'ਇਹ ਸੂਚੀ ਊਨ੍ਹਾਂ ਪੰਨਿਆਂ ,ਜੋ ਇਕ ਖਾਸ ਪੰਨੇ ਨਾਲ ਸੰਬੰਧਿਤ ਹਨ, (ਯਾ ਕਿਸੇ ਖਾਸ ਸ਼੍ਰੇਣੀ ਦੇ ਮੈਂਬਰਾਂ) ਦੇ ਹਾਲ ਵਿਚ ਹੋਏ ਬਦਲਾਵਾਂ ਨੂੰ ਦਰਸ਼ਾਂਦੀ ਹੈ [[Special:Watchlist|ਤੁਹਾਡੀ ਦ੍ਰਿਸ਼ਟੀ ਗੋਚਰ ਸੂਚੀ]] ਵਿਚ ਮੌਜੂਦ ਪੰਨੇ ਮੋਟੇ ਅਖਰਾਂ ਵਿਚ ਦਿਖਾਈ ਦੇਣਗੇ।',
 'recentchangeslinked-page' => 'ਸਫ਼ਾ ਨਾਂ:',
 'recentchangeslinked-to' => 'ਇਸ ਦੇ ਬਦਲੇ ਇਸ ਪੰਨੇ ਨਾਲ ਜੁੜੇ ਪੰਨਿਆਂ ਵਿਚ ਹੋਏ ਬਦਲਾਅ ਦਿਖਾਓ',
@@ -996,6 +1001,7 @@ to upload files.',
 'whatlinkshere-next' => '{{PLURAL:$1|ਅਗਲਾ|ਅਗਲੇ $1}}',
 'whatlinkshere-links' => '← ਲਿੰਕ',
 'whatlinkshere-hideredirs' => '$1 ਗੈਰਸਿਧਾ',
+'whatlinkshere-hidetrans' => '$1 ਇੱਥੇ ਕੀ ਕੀ ਜੁੜਦਾ ਹੈ।',
 'whatlinkshere-hidelinks' => '$1 ਲਿੰਕ',
 'whatlinkshere-hideimages' => '$1 ਸੰਬੰਧਿਤ ਚਿਤਰ',
 'whatlinkshere-filters' => 'ਫਿਲਟਰ',
@@ -1064,6 +1070,7 @@ to upload files.',
 # Thumbnails
 'thumbnail-more' => 'ਫੈਲਾਓ',
 'filemissing' => 'ਫਾਇਲ ਗੁੰਮ ਹੈ',
+'thumbnail_error' => 'ਅਁਗੂਠਾ ਝਲਕ ਬਨਾਉਣ ਵਿਚ ਗਲਤੀ ਹੋਈ ਹੈ : $1',
 
 # Special:Import
 'import' => 'ਪੇਜ ਇੰਪੋਰਟ ਕਰੋ',
