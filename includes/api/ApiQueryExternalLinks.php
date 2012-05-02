@@ -133,6 +133,14 @@ class ApiQueryExternalLinks extends ApiQueryBase {
 		);
 	}
 
+	public function getResultProperties() {
+		return array(
+			'' => array(
+				'*' => 'string'
+			)
+		);
+	}
+
 	public function getDescription() {
 		return 'Returns all external urls (not interwikies) from the given page(s)';
 	}

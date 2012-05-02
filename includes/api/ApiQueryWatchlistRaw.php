@@ -192,6 +192,21 @@ class ApiQueryWatchlistRaw extends ApiQueryGeneratorBase {
 		);
 	}
 
+	public function getResultProperties() {
+		return array(
+			'' => array(
+				'ns' => 'namespace',
+				'title' => 'string'
+			),
+			'changed' => array(
+				'changed' => array(
+					ApiBase::PROP_TYPE => 'timestamp',
+					ApiBase::PROP_NULLABLE => true
+				)
+			)
+		);
+	}
+
 	public function getDescription() {
 		return "Get all pages on the logged in user's watchlist";
 	}
