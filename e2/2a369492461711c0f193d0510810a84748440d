@@ -1,0 +1,9 @@
+Code-Review+1: Eloquence <erik@wikimedia.org>
+Verified+1: jenkins-bot
+Code-Review+2: Kaldari <rkaldari@wikimedia.org>
+Verified+1: Kaldari <rkaldari@wikimedia.org>
+Submitted-by: Kaldari <rkaldari@wikimedia.org>
+Submitted-at: Wed, 02 May 2012 01:24:30 +0000
+Reviewed-on: https://gerrit.wikimedia.org/r/6316
+Project: mediawiki/core
+Branch: refs/heads/master
