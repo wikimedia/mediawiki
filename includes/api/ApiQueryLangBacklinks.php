@@ -62,7 +62,7 @@ class ApiQueryLangBacklinks extends ApiQueryGeneratorBase {
 			}
 
 			$prefix = $this->getDB()->strencode( $cont[0] );
-			$title = $this->getDB()->strencode( $this->titleToKey( $cont[1] ) );
+			$title = $this->getDB()->strencode( $cont[1] );
 			$from = intval( $cont[2] );
 			$this->addWhere(
 				"ll_lang > '$prefix' OR " .
