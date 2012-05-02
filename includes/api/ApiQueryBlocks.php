@@ -324,6 +324,60 @@ class ApiQueryBlocks extends ApiQueryBase {
 		);
 	}
 
+	public function getResultProperties() {
+		return array(
+			'id' => array(
+				'id' => 'integer'
+			),
+			'user' => array(
+				'user' => array(
+					ApiBase::PROP_TYPE => 'string',
+					ApiBase::PROP_NULLABLE => true
+				)
+			),
+			'userid' => array(
+				'userid' => array(
+					ApiBase::PROP_TYPE => 'integer',
+					ApiBase::PROP_NULLABLE => true
+				)
+			),
+			'by' => array(
+				'by' => 'string'
+			),
+			'byid' => array(
+				'byid' => 'integer'
+			),
+			'timestamp' => array(
+				'timestamp' => 'timestamp'
+			),
+			'expiry' => array(
+				'expiry' => 'timestamp'
+			),
+			'reason' => array(
+				'reason' => 'string'
+			),
+			'range' => array(
+				'rangestart' => array(
+					ApiBase::PROP_TYPE => 'string',
+					ApiBase::PROP_NULLABLE => true
+				),
+				'rangeend' => array(
+					ApiBase::PROP_TYPE => 'string',
+					ApiBase::PROP_NULLABLE => true
+				)
+			),
+			'flags' => array(
+				'automatic' => 'boolean',
+				'anononly' => 'boolean',
+				'nocreate' => 'boolean',
+				'autoblock' => 'boolean',
+				'noemail' => 'boolean',
+				'hidden' => 'boolean',
+				'allowusertalk' => 'boolean'
+			)
+		);
+	}
+
 	public function getDescription() {
 		return 'List all blocked users and IP addresses';
 	}
