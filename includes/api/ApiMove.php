@@ -224,6 +224,33 @@ class ApiMove extends ApiBase {
 		);
 	}
 
+	public function getResultProperties() {
+		return array(
+			ApiBase::PROP_ROOT => array(
+				'from' => array(
+					ApiBase::PROP_TYPE => 'string',
+					ApiBase::PROP_NULLABLE => false
+				),
+				'to' => array(
+					ApiBase::PROP_TYPE => 'string',
+					ApiBase::PROP_NULLABLE => false
+				),
+				'reason' => array(
+					ApiBase::PROP_TYPE => 'string',
+					ApiBase::PROP_NULLABLE => false
+				),
+				'redirectcreated' => array(
+					ApiBase::PROP_TYPE => 'boolean',
+					ApiBase::PROP_NULLABLE => false
+				),
+				'talkfrom' => 'string',
+				'talkto' => 'string',
+				'talkmove-error-code' => 'string',
+				'talkmove-error-info' => 'string'
+			)
+		);
+	}
+
 	public function getDescription() {
 		return 'Move a page';
 	}

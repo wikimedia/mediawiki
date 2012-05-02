@@ -114,6 +114,17 @@ class ApiUnblock extends ApiBase {
 		);
 	}
 
+	public function getResultProperties() {
+		return array(
+			ApiBase::PROP_ROOT => array(
+				'unblocktoken' => 'string',
+				'id' => 'integer',
+				'user' => 'string',
+				'reason' => 'string'
+			)
+		);
+	}
+
 	public function getDescription() {
 		return 'Unblock a user';
 	}

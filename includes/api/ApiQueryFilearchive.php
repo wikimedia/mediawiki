@@ -267,6 +267,64 @@ class ApiQueryFilearchive extends ApiQueryBase {
 		);
 	}
 
+	public function getResultProperties() {
+		return array(
+			'' => array(
+				'name' => 'string',
+				'ns' => 'namespace',
+				'title' => 'string',
+				'filehidden' => 'boolean',
+				'commenthidden' => 'boolean',
+				'userhidden' => 'boolean',
+				'suppressed' => 'boolean'
+			),
+			'sha1' => array(
+				'sha1' => 'string'
+			),
+			'timestamp' => array(
+				'timestamp' => 'timestamp'
+			),
+			'user' => array(
+				'userid' => 'integer',
+				'user' => 'string'
+			),
+			'size' => array(
+				'size' => 'integer',
+				'pagecount' => array(
+					ApiBase::PROP_TYPE => 'integer',
+					ApiBase::PROP_NULLABLE => true
+				),
+				'height' => 'integer',
+				'width' => 'integer'
+			),
+			'dimensions' => array(
+				'size' => 'integer',
+				'pagecount' => array(
+					ApiBase::PROP_TYPE => 'integer',
+					ApiBase::PROP_NULLABLE => true
+				),
+				'height' => 'integer',
+				'width' => 'integer'
+			),
+			'description' => array(
+				'description' => 'string'
+			),
+			'parseddescription' => array(
+				'description' => 'string',
+				'parseddescription' => 'string'
+			),
+			'metadata' => array(
+				'metadata' => 'string'
+			),
+			'bitdepth' => array(
+				'bitdepth' => 'integer'
+			),
+			'mime' => array(
+				'mime' => 'string'
+			)
+		);
+	}
+
 	public function getDescription() {
 		return 'Enumerate all deleted files sequentially';
 	}

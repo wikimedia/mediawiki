@@ -116,6 +116,37 @@ class ApiRollback extends ApiBase {
 		);
 	}
 
+	public function getResultProperties() {
+		return array(
+			ApiBase::PROP_ROOT => array(
+				'title' => array(
+					ApiBase::PROP_TYPE => 'string',
+					ApiBase::PROP_NULLABLE => false
+				),
+				'pageid' => array(
+					ApiBase::PROP_TYPE => 'integer',
+					ApiBase::PROP_NULLABLE => false
+				),
+				'summary' => array(
+					ApiBase::PROP_TYPE => 'string',
+					ApiBase::PROP_NULLABLE => false
+				),
+				'revid' => array(
+					ApiBase::PROP_TYPE => 'integer',
+					ApiBase::PROP_NULLABLE => false
+				),
+				'old_revid' => array(
+					ApiBase::PROP_TYPE => 'integer',
+					ApiBase::PROP_NULLABLE => false
+				),
+				'last_revid' => array(
+					ApiBase::PROP_TYPE => 'integer',
+					ApiBase::PROP_NULLABLE => false
+				)
+			)
+		);
+	}
+
 	public function getDescription() {
 		return array(
 			'Undo the last edit to the page. If the last user who edited the page made multiple edits in a row,',

@@ -56,6 +56,10 @@ abstract class ApiBase extends ContextSource {
 	/// @since 1.17
 	const PARAM_RANGE_ENFORCE = 9; // Boolean, if MIN/MAX are set, enforce (die) these? Only applies if TYPE='integer' Use with extreme caution
 
+	const PROP_ROOT = 'root'; // Name of property group that is on the root element of the result, i.e. not part of a list
+	const PROP_TYPE = 0; // Type of the property, uses same format as PARAM_TYPE
+	const PROP_NULLABLE = 1; // Boolean, is the property nullable? Defaults to true for root properties and false for others
+
 	const LIMIT_BIG1 = 500; // Fast query, std user limit
 	const LIMIT_BIG2 = 5000; // Fast query, bot/sysop limit
 	const LIMIT_SML1 = 50; // Slow query, std user limit
@@ -570,6 +574,37 @@ abstract class ApiBase extends ContextSource {
 		$desc = $this->getParamDescription();
 		wfRunHooks( 'APIGetParamDescription', array( &$this, &$desc ) );
 		return $desc;
+	}
+
+	/**
+	 * Returns an array of possible properties in the result.
+	 * Don't call this functon directly: use getFinalResultProperties() to
+	 * allow hooks to modify descriptions as needed.
+	 * @return array|bool False on no properties
+	 */
+	protected function getResultProperties() {
+		return false;
+	}
+
+	/**
+	 * Get final possible result properties, after hooks have had a chance to tweak it as
+	 * needed.
+	 *
+	 * @return array
+	 */
+	public function getFinalResultProperties() {
+		$properties = $this->getResultProperties();
+		wfRunHooks( 'APIGetResultProperties', array( &$this, &$properties ) );
+		return $properties;
+	}
+
+	protected static function addTokenProperties( &$props, $tokenFunctions ) {
+		foreach ( array_keys( $tokenFunctions ) as $token ) {
+			$props[''][$token . 'token'] = array(
+				ApiBase::PROP_TYPE => 'string',
+				ApiBase::PROP_NULLABLE => true
+			);
+		}
 	}
 
 	/**

@@ -84,6 +84,23 @@ class ApiTokens extends ApiBase {
 		);
 	}
 
+	public function getResultProperties() {
+		return array(
+			ApiBase::PROP_ROOT => array(
+				'patroltoken' => 'string',
+				'edittoken' => 'string',
+				'deletetoken' => 'string',
+				'protecttoken' => 'string',
+				'movetoken' => 'string',
+				'blocktoken' => 'string',
+				'unblocktoken' => 'string',
+				'emailtoken' => 'string',
+				'importtoken' => 'string',
+				'watchtoken' => 'string'
+			)
+		);
+	}
+
 	public function getParamDescription() {
 		return array(
 			'type' => 'Type of token(s) to request'

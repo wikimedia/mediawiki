@@ -80,6 +80,25 @@ class ApiPatrol extends ApiBase {
 		);
 	}
 
+	public function getResultProperties() {
+		return array(
+			ApiBase::PROP_ROOT => array(
+				'rcid' => array(
+					ApiBase::PROP_TYPE => 'integer',
+					ApiBase::PROP_NULLABLE => false
+				),
+				'ns' => array(
+					ApiBase::PROP_TYPE => 'namespace',
+					ApiBase::PROP_NULLABLE => false
+				),
+				'title' => array(
+					ApiBase::PROP_TYPE => 'string',
+					ApiBase::PROP_NULLABLE => false
+				)
+			)
+		);
+	}
+
 	public function getDescription() {
 		return 'Patrol a page or revision';
 	}

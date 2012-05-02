@@ -104,6 +104,7 @@ production.
 * (bug 32498) API now allows comparing pages using pageids
 * (bug 30975) API import of pages with invalid characters in this wiki leads to Fatal Error
 * (bug 30488) API now allows listing of backlinks/embeddedin/imageusage per pageid
+* The paraminfo module now also contains result properties for most modules
 
 === Languages updated in 1.20 ===
 

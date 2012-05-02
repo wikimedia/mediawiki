@@ -181,6 +181,40 @@ class ApiLogin extends ApiBase {
 		);
 	}
 
+	public function getResultProperties() {
+		return array(
+			ApiBase::PROP_ROOT => array(
+				'result' => array(
+					ApiBase::PROP_TYPE => array(
+						'Success',
+						'NeedToken',
+						'WrongToken',
+						'NoName',
+						'Illegal',
+						'WrongPluginPass',
+						'NotExists',
+						'WrongPass',
+						'EmptyPass',
+						'CreateBlocked',
+						'Throttled',
+						'Blocked',
+						'Aborted'
+					),
+					ApiBase::PROP_NULLABLE => false
+				),
+				'lguserid' => 'integer',
+				'lgusername' => 'string',
+				'lgtoken' => 'string',
+				'cookieprefix' => 'string',
+				'sessionid' => 'string',
+				'token' => 'string',
+				'details' => 'string',
+				'wait' => 'integer',
+				'reason' => 'string'
+			)
+		);
+	}
+
 	public function getDescription() {
 		return array(
 			'Log in and get the authentication tokens. ',
