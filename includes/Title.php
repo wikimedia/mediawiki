@@ -3919,7 +3919,7 @@ class Title {
 	 */
 	public function getPreviousRevisionID( $revId, $flags = 0 ) {
 		$db = ( $flags & self::GAID_FOR_UPDATE ) ? wfGetDB( DB_MASTER ) : wfGetDB( DB_SLAVE );
-		return $db->selectField( 'revision', 'rev_id',
+		$revId = $db->selectField( 'revision', 'rev_id',
 			array(
 				'rev_page' => $this->getArticleID( $flags ),
 				'rev_id < ' . intval( $revId )
@@ -3927,6 +3927,12 @@ class Title {
 			__METHOD__,
 			array( 'ORDER BY' => 'rev_id DESC' )
 		);
+
+		if ( $revId === false ) {
+			return false;
+		} else {
+			return intval( $revId );
+		}
 	}
 
 	/**
@@ -3938,7 +3944,7 @@ class Title {
 	 */
 	public function getNextRevisionID( $revId, $flags = 0 ) {
 		$db = ( $flags & self::GAID_FOR_UPDATE ) ? wfGetDB( DB_MASTER ) : wfGetDB( DB_SLAVE );
-		return $db->selectField( 'revision', 'rev_id',
+		$revId = $db->selectField( 'revision', 'rev_id',
 			array(
 				'rev_page' => $this->getArticleID( $flags ),
 				'rev_id > ' . intval( $revId )
@@ -3946,6 +3952,12 @@ class Title {
 			__METHOD__,
 			array( 'ORDER BY' => 'rev_id' )
 		);
+
+		if ( $revId === false ) {
+			return false;
+		} else {
+			return intval( $revId );
+		}
 	}
 
 	/**
