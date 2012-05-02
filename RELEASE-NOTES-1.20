@@ -113,6 +113,7 @@ upgrade PHP if you have not done so prior to upgrading MediaWiki.
 * (bug 34927) Output media_type for list=filearchive
 * (bug 28814) add properties to output of action=parse
 * (bug 33224) add variants of content language to meta=siteinfo
+* The paraminfo module now also contains result properties for most modules
 
 === Languages updated in 1.20 ===
 

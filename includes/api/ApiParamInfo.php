@@ -251,6 +251,56 @@ class ApiParamInfo extends ApiBase {
 		}
 		$result->setIndexedTagName( $retval['parameters'], 'param' );
 
+		$props = $obj->getFinalResultProperties();
+		$listResult = null;
+		if ( $props !== FALSE ) {
+			$retval['props'] = array();
+
+			foreach ( $props as $prop => $properties ) {
+				$propResult = array();
+				if ( $prop == ApiBase::PROP_LIST ) {
+					$listResult = $properties;
+					continue;
+				}
+				if ( $prop != ApiBase::PROP_ROOT )
+					$propResult['name'] = $prop;
+				$propResult['properties'] = array();
+
+				foreach ( $properties as $name => $p ) {
+					$propertyResult = array();
+
+					$propertyResult['name'] = $name;
+
+					if ( !is_array( $p ) )
+						$p = array( ApiBase::PROP_TYPE => $p );
+
+					$propertyResult['type'] = $p[ApiBase::PROP_TYPE];
+
+					if ( is_array( $propertyResult['type'] ) ) {
+						$propertyResult['type'] = array_values( $propertyResult['type'] );
+						$result->setIndexedTagName( $propertyResult['type'], 't' );
+					}
+
+					$nullable = null;
+					if ( isset( $p[ApiBase::PROP_NULLABLE] ) )
+						$nullable = $p[ApiBase::PROP_NULLABLE];
+
+					if ( $nullable === TRUE )
+						$propertyResult['nullable'] = '';
+
+					$propResult['properties'][] = $propertyResult;
+				}
+
+				$result->setIndexedTagName( $propResult['properties'], 'property' );
+				$retval['props'][] = $propResult;
+			}
+
+			if ( $listResult === TRUE || ( $listResult !== FALSE && $obj instanceof ApiQueryBase ) )
+				$retval['listresult'] = '';
+
+			$result->setIndexedTagName( $retval['props'], 'prop' );
+		}
+
 		// Errors
 		$retval['errors'] = $this->parseErrors( $obj->getPossibleErrors() );
 		$result->setIndexedTagName( $retval['errors'], 'error' );

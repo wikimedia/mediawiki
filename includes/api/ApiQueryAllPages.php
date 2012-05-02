@@ -296,6 +296,16 @@ class ApiQueryAllPages extends ApiQueryGeneratorBase {
 		);
 	}
 
+	public function getResultProperties() {
+		return array(
+			'' => array(
+				'pageid' => 'integer',
+				'ns' => 'namespace',
+				'title' => 'string'
+			)
+		);
+	}
+
 	public function getDescription() {
 		return 'Enumerate all pages sequentially in a given namespace';
 	}

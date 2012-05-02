@@ -174,6 +174,15 @@ class ApiQueryImages extends ApiQueryGeneratorBase {
 		);
 	}
 
+	public function getResultProperties() {
+		return array(
+			'' => array(
+				'ns' => 'namespace',
+				'title' => 'string'
+			)
+		);
+	}
+
 	public function getDescription() {
 		return 'Returns all images contained on the given page(s)';
 	}
