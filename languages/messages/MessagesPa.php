@@ -898,6 +898,7 @@ to upload files.',
 # Watchlist
 'watchlist' => 'ਮੇਰੀ ਵਾਚ-ਲਿਸਟ',
 'mywatchlist' => 'ਮੇਰੀ ਵਾਚ-ਲਿਸਟ',
+'watchlistfor2' => '$1 $2 ਲਈ',
 'watchnologin' => 'ਲਾਗਇਨ ਨਹੀਂ',
 'watch' => 'ਵਾਚ',
 'watchthispage' => 'ਇਹ ਪੇਜ ਵਾਚ ਕਰੋ',

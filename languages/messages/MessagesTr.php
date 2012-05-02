@@ -2116,6 +2116,7 @@ Günlük tipini, kullanıcı adını (büyük-küçük harf duyarlı), ya da etk
 'allpagesprefix' => 'Buraya yazdığınız harflerle başlayan sayfaları listeleyin:',
 'allpagesbadtitle' => 'Girilen sayfa ismi diller arası bağlantı ya da vikiler arası bağlantı içerdiğinden geçerli değil. Başlıklarda kullanılması yasak olan bir ya da daha çok karakter içeriyor olabilir.',
 'allpages-bad-ns' => '{{SITENAME}} sitesinde "$1" ad alanı yok.',
+'allpages-hide-redirects' => 'Yönlendirmeleri gizle',
 
 # Special:Categories
 'categories' => 'Kategoriler',

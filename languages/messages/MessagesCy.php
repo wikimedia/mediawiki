@@ -776,6 +776,7 @@ Cofiwch bod y tudalennau .css a .js yn defnyddio llythrennau bach, e.e. {{ns:use
 'updated' => '(Diweddariad)',
 'note' => "'''Dalier sylw:'''",
 'previewnote' => "'''Cofiwch taw rhagolwg yw hwn.''' Nid yw eich gwaith wedi ei roi ar gadw eto!",
+'continue-editing' => 'Parhau i olygu',
 'previewconflict' => "Mae'r rhagolwg hwn yn dangos y testun yn yr ardal golygu uchaf, fel ag y byddai'n ymddangos petaech yn rhoi'r dudalen ar gadw.",
 'session_fail_preview' => "'''Ymddiheurwn! Methwyd prosesu eich golygiad gan fod rhan o ddata'r sesiwn wedi'i golli. Ceisiwch eto.
 Os digwydd yr un peth eto, ceisiwch [[Special:UserLogout|allgofnodi]] ac yna mewngofnodi eto.'''",
@@ -1944,6 +1945,9 @@ Sylwer bod llythrennau mawr neu fach o bwys i'r chwiliad.",
 'allpagesbadtitle' => 'Roedd y darpar deitl yn annilys oherwydd bod ynddo naill ai:<p> - rhagddodiad rhyngwici neu ryngieithol, neu </p>- nod neu nodau na ellir eu defnyddio mewn teitlau.',
 'allpages-bad-ns' => 'Nid oes gan {{SITENAME}} barth o\'r enw "$1".',
 'allpages-hide-redirects' => 'Cuddio tudalennau ailgyfeirio',
+
+# SpecialCachedPage
+'cachedspecial-refresh-now' => 'Gweld y diwygiad diweddaraf.',
 
 # Special:Categories
 'categories' => 'Categorïau',
@@ -3690,6 +3694,7 @@ Dangosir delweddau ar eu maint llawn, dechreuir ffeiliau o fathau eraill yn unio
 'duration-weeks' => '$1 {{PLURAL:$1|wythnos}}',
 'duration-years' => '$1 {{PLURAL:$1|mlynedd|mlynedd|flynedd|mlynedd|mlynedd|mlynedd}}',
 'duration-decades' => '$1 {{PLURAL:$1|degawd|degawd|ddegawd|degawd|degawd|degawd}}',
-'duration-centuries' => '$1 {{PLURAL:$1|canrif|canrif|ganrif|chanrif|chanrif|canrif}}',
+'duration-centuries' => '$1 {{PLURAL:$1|canmlwydd|ganmlwydd|ganmlwydd|canmlwydd|chanmlwydd|canmlwydd}}',
+'duration-millennia' => '$1 {{PLURAL:$1|milflwydd|filflwydd|filflwydd|milflwydd|milflwydd|milflwydd}}',
 
 );

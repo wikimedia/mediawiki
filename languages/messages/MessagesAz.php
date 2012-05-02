@@ -681,6 +681,7 @@ Bloklama qeydlərinin sonuncusu aşağıda göstərilmişdir:',
 'previewconflict' => 'Bu sınaq göstərişidir və yaddaşda saxlayacağınız təqdirdə mətnin redaktə səhifəsinin yuxarı hissəsində nəticənin necə olacağını göstərir.',
 'session_fail_preview' => "'''Üzr istəyirik! Sizin redaktəniz saxlanılmadı. Serverdə identifikasiyanızla bağlı problemlər yaranmışdır. Lütfən bir daha təkrar edin. Problem həll olunmazsa hesabınızdan çıxın və yenidən daxil olun.'''",
 'editing' => 'Redaktə $1',
+'creating' => 'Qurulur $1',
 'editingsection' => 'Redaktə $1 (bölmə)',
 'editingcomment' => 'Redaktə et $1 (yeni bölmə)',
 'editconflict' => 'Eyni vaxtda redaktə: $1',
@@ -1606,6 +1607,7 @@ Qeyd növü, istifadəçi adı və ya təsir edilmiş səhifəni seçməklə dah
 'allpagesnext' => 'Sonrakı',
 'allpagessubmit' => 'Seç',
 'allpagesprefix' => 'Bu prefiksli səhifələri göstər:',
+'allpages-hide-redirects' => 'Yönləndirmələri gizlət',
 
 # Special:Categories
 'categories' => 'Kateqoriyalar',
@@ -2888,6 +2890,7 @@ Variants for Chinese language
 'version-poweredby-others' => 'digərləri',
 'version-software-product' => 'Məhsul',
 'version-software-version' => 'Versiya',
+'version-entrypoints-header-url' => 'URL',
 
 # Special:FilePath
 'filepath' => 'Fayl yolu',
@@ -2994,5 +2997,16 @@ Bu saytda texniki problemlər var.',
 'api-error-unknown-warning' => 'Naməlum xəbərdarlıq: "$1".',
 'api-error-unknownerror' => 'Naməlum xəta: "$1".',
 'api-error-uploaddisabled' => 'Bu vikidə fayl yükləmə mümkün deyil.',
+
+# Durations
+'duration-seconds' => '$1 {{PLURAL:$1|saniyə|saniyə}}',
+'duration-minutes' => '$1 {{PLURAL:$1|dəqiqə|dəqiqə}}',
+'duration-hours' => '$1 {{PLURAL:$1|saat|saat}}',
+'duration-days' => '$1 {{PLURAL:$1|gün|gün}}',
+'duration-weeks' => '$1 {{PLURAL:$1|həftə|həftə}}',
+'duration-years' => '$1 {{PLURAL:$1|il|il}}',
+'duration-decades' => '$1 {{PLURAL:$1|onillik|onillik}}',
+'duration-centuries' => '$1 {{PLURAL:$1|əsr|əsr}}',
+'duration-millennia' => '$1 {{PLURAL:$1|minillik|minillik}}',
 
 );

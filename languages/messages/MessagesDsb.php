@@ -7,6 +7,7 @@
  * @ingroup Language
  * @file
  *
+ * @author Dbc334
  * @author Derbeth
  * @author Dunak
  * @author Dundak
@@ -1167,7 +1168,7 @@ Zaruc, až historija wersijow nastawka jo njepśetergnjona.',
 'prefs-skin' => 'Šat',
 'skin-preview' => 'Pśeglěd',
 'datedefault' => 'Standard',
-'prefs-beta' => 'Betafunkcije',
+'prefs-beta' => 'Preizkusne funkcije',
 'prefs-datetime' => 'Datum a cas',
 'prefs-labs' => 'Laborowe funkcije',
 'prefs-personal' => 'Wužywarski profil',
@@ -1709,7 +1710,7 @@ Za optimalnu wěstotu img_auth.php jo znjemóžnjony.',
 'upload-curl-error28-text' => 'Bok pśedłujko njejo wótegronił. Kontrolěruj, lic jo bok online, pócakaj wokognuśe a wopytaj pón hyšći raz. Móžo byś zmysłapołne, w drugem casu hyšći raz proběrowaś.',
 
 'license' => 'Licenca:',
-'license-header' => 'Licencowanje',
+'license-header' => 'Licencěrowanje',
 'nolicense' => 'Nic njejo wuzwólone.',
 'license-nopreview' => '(Pśeglěd njejo móžny.)',
 'upload_source_url' => ' (płaśeca, zjawnje pśistupna URL)',

@@ -1115,6 +1115,10 @@ Tyto argumenty byly vynechány.',
 'parser-template-loop-warning' => 'Nalezena smyčka šablon: [[$1]]',
 'parser-template-recursion-depth-warning' => 'Překročen limit hloubky rekurzivního vkládání šablon ($1)',
 'language-converter-depth-warning' => 'Překročen limit vnoření u jazykové konverze ($1)',
+'node-count-exceeded-category' => 'Stránky překračující počet uzlů',
+'node-count-exceeded-warning' => 'Stránka překročila počet uzlů',
+'expansion-depth-exceeded-category' => 'Stránky překračující hloubku expanze',
+'expansion-depth-exceeded-warning' => 'Stránka překročila hloubku expanze',
 
 # "Undo" feature
 'undo-success' => 'Editace může být zrušena. Zkontrolujte a pak potvrďte změny zobrazené níže.',

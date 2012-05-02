@@ -7,6 +7,7 @@
  * @ingroup Language
  * @file
  *
+ * @author Alunardon90
  * @author BrokenArrow
  * @author Candalua
  * @author Frigotoni
@@ -177,10 +178,10 @@ $messages = array(
 'tog-enotifminoredits' => 'Avìseme par e-mail anca par i canbiamenti picenini',
 'tog-enotifrevealaddr' => 'Fà védar el me indirisso e-mail in tei messagi de aviso',
 'tog-shownumberswatching' => 'Mostra el numaro de utenti che i ga ła pajina en oservasion',
-'tog-oldsig' => 'Anteprima de la firma:',
+'tog-oldsig' => 'Anteprima de ła firma:',
 'tog-fancysig' => 'Interpreta i comandi wiki in te la firma (sensa colegamento automatego)',
-'tog-externaleditor' => "Dopara par default on editor de testo esterno (soło par utenti esperti, el richiede l'uso de impostasion particołari sol proprio computer)",
-'tog-externaldiff' => "Dopara par default on programa de diff esterno (soło par utenti esperti, el richiede l'uso de impostasion particołari sol proprio computer)",
+'tog-externaleditor' => "Dopara par default un editor de testo esterno (soło par utenti esperti. Richiede l'uxo de inpostasion particołari sol proprio computer)",
+'tog-externaldiff' => "Dopara par default un programa de diff esterno (soło par utenti esperti. Richiede l'uxo de inpostasion particołari sol proprio computer)",
 'tog-showjumplinks' => 'Ativa i cołegamenti acesibiłi "va a"',
 'tog-uselivepreview' => 'Ativa ła funsion "Line preview" (el richiede JavaScript; sperimentałe)',
 'tog-forceeditsummary' => "Chiedi conferma se l'ozeto de ła modifega el xé vodo",
@@ -305,7 +306,7 @@ $messages = array(
 'vector-action-move' => 'Sposta',
 'vector-action-protect' => 'Protezi',
 'vector-action-undelete' => 'Recupera',
-'vector-action-unprotect' => 'Sbloca',
+'vector-action-unprotect' => 'Canbia ła protesion',
 'vector-simplesearch-preference' => "Intaca i sugerimenti di ricerca avansadi (solo par l'interfacia Vector)",
 'vector-view-create' => 'Crea',
 'vector-view-edit' => 'Canbia',
@@ -338,11 +339,12 @@ $messages = array(
 'delete' => 'Scansela',
 'deletethispage' => 'Scansela sta pagina',
 'undelete_short' => 'Recupera {{PLURAL:$1|na revision|$1 revision}}',
+'viewdeleted_short' => 'Vedi {{PLURAL:$1|na modifega cancełà|$1 modifeghe cancełade}}',
 'protect' => 'Protezi',
 'protect_change' => 'canbia',
 'protectthispage' => 'Protezi sta pagina',
-'unprotect' => 'Sbloca',
-'unprotectthispage' => 'Cava ła protesion a sta pajina',
+'unprotect' => 'Canbia ła protesion',
+'unprotectthispage' => 'Canbia ła protesion de sta pajina',
 'newpage' => 'Pagina nova',
 'talkpage' => 'Pagina de discussion',
 'talkpagelinktext' => 'Discussion',
@@ -421,6 +423,8 @@ $1',
 'toc' => 'Indice',
 'showtoc' => 'mostra',
 'hidetoc' => 'scondi',
+'collapsible-collapse' => 'Conprimi',
+'collapsible-expand' => 'Espandi',
 'thisisdeleted' => 'Varda o ripristina $1?',
 'viewdeleted' => 'Varda $1?',
 'restorelink' => '{{PLURAL:$1|un canbiamento scanselà|$1 canbiamenti scanselà}}',
@@ -432,6 +436,8 @@ $1',
 'page-rss-feed' => 'Feed RSS par "$1"',
 'page-atom-feed' => 'Feed Atom par "$1"',
 'red-link-title' => '$1 (sta pagina no la ghe xe)',
+'sort-descending' => 'Ordinamento decresente',
+'sort-ascending' => 'Ordinamento cresente',
 
 # Short words for each namespace, by default used in the namespace tab in monobook
 'nstab-main' => 'Voxe',
@@ -499,10 +505,11 @@ Se prega de dìrghelo a un [[Special:ListUsers/sysop|aministradore]] indicando l
 'badarticleerror' => 'Operasion no consentia par sta pajina.',
 'cannotdelete' => 'No xè sta posibiłe scansełare el file "$1".
 Podaria esare sta zà scansełà da qualcun altro.',
+'cannotdelete-title' => 'Inposibiłe ełiminare ła pajina "$1"',
 'badtitle' => 'Titoło mia justo',
 'badtitletext' => "El titoło de ła pajina richiesta xè vodo, erà o con carateri no amesi opure el deriva da n'erore ne i cołegamenti tra siti wiki diversi o version en łengue diverse de ło steso sito.",
-'perfcached' => 'Sti dati qua no i vien mia azornà in tenpo reale, ma solo na olta ogni tanto. A maximum of {{PLURAL:$1|one result is|$1 results are}} available in the cache.',
-'perfcachedts' => "Sti dati qua i xe stà azornà l'ultima olta el $1. A maximum of {{PLURAL:$4|one result is|$4 results are}} available in the cache.",
+'perfcached' => 'Sti dati vien tiradi fora da na copia "cache" del database e łi podarìa no esare ajornadi. Inte ła cache xe {{PLURAL:$1|disponibiłe un rixultado|xe disponibiłi $1 rixultadi}}.',
+'perfcachedts' => "Sti dati cua xe stà ajornadi l'ultima volta el $1. Inte ła cache xe disponibiłe al masimo {{PLURAL:$4|on rexultado|$4 rexultadi}}.",
 'querypage-no-updates' => "L'azornamento periodico de sta pagina el xe sospeso. 
 I dati che ghè qua drento no i xe azornà.",
 'wrong_wfQuery_params' => 'Erore ne i parametri invià a ła funsion wfQuery()<br />
@@ -527,6 +534,9 @@ $2',
 'ns-specialprotected' => 'No xè posibiłe modifegare łe pajine spesałi.',
 'titleprotected' => 'Ła creasion de na pajina con sto titoło xè sta blocà da [[User:$1|$1]].
 Ła modivasion xè ła seguente: "$2".',
+'filereadonlyerror' => 'No xe stà posibiłe modifegare el file "$1" parché el repository de file "$2" xe in modałità de soła letura.
+
+L\'aministradore che ło ga blocà ga fornìo sta spiegasion: "$3".',
 
 # Virus scanner
 'virus-badscanner' => 'Erore de configurasion: antivirus sconossuo: "$1"',
@@ -566,8 +576,8 @@ Te poli sistemarte come te vol le to [[Special:Preferences|prefarense de {{SITEN
 'createaccountmail' => 'Par e-mail',
 'createaccountreason' => 'Motivassion:',
 'badretype' => 'Le do password le xe difarenti.',
-'userexists' => 'Sto nome utente se lo gà zà tolto qualchedun altro.
-Tòtene uno difarente.',
+'userexists' => 'El nome utente inserido vien xa doparà da cualchedun altro.
+Prova co un nome utente difarente.',
 'loginerror' => "Erore ne l'aceso",
 'createaccounterror' => "No se pole crear l'utente: $1",
 'nocookiesnew' => "Ła rejistrasion xè sta conpletà, ma no xè sta posibiłe asedare a {{SITENAME}} parché i cookie i xè disativai. Riprovare l'aceso con el nome utente e ła password pena creai dopo aver ativà i cookie nel proprio browser.",
@@ -609,6 +619,8 @@ Par piaser, fà subito un login \'pena che la te riva.',
 'emailconfirmlink' => 'Conferma el to indirizo de e-mail',
 'invalidemailaddress' => "L'indirisso email no'l pode èssar acetà parché el gà un formato mìa valido.
 Inserissi un indirisso valido o svoda la casèła.",
+'cannotchangeemail' => "I indirisi de posta ełetronega de l'account no połe esare canbiadi inte sto projeto wiki.",
+'emaildisabled' => 'Sto sito no połe spedire mesaji de posta ełetronega.',
 'accountcreated' => 'Acesso creà',
 'accountcreatedtext' => "Xè stà creà un acesso par l'utente $1.",
 'createaccount-title' => 'Creazion de un acesso a {{SITENAME}}',
@@ -619,8 +631,13 @@ Se l\'acesso el xe stà creà par sbaglio, se pol ignorar sto messagio.',
 'usernamehasherror' => "El nome utente no'l pode contegner caràteri hash",
 'login-throttled' => 'Te ghè fato massa tentativi de autenticarte.
 Spèta un tocheto prima de proàr da novo.',
+'login-abort-generic' => 'El to login no xe riusido - Anułà.',
 'loginlanguagelabel' => 'Lengua: $1',
 'suspicious-userlogout' => 'Ła to richiesta de disconesion xè sta negà parché e a senbra invià da on browser non funsionante o on proxy de caching.',
+
+# E-mail sending
+'php-mail-error-unknown' => "Erore sconosudo nte'l funsionamento deła posta ełetronega PHP",
+'user-mail-no-addy' => 'Te ghe provà spedire un mesajo de posta ełetronega sensa un indiriso.',
 
 # Change password dialog
 'resetpass' => 'Cànbia la password',
@@ -639,6 +656,27 @@ Spèta un tocheto prima de proàr da novo.',
 'resetpass-wrong-oldpass' => 'Password corente o tenporanea mia valida.
 Forse te ghè zà canbià la to password o te ghè domandà na password tenporanea nova.',
 'resetpass-temp-password' => 'Password tenporanea:',
+
+# Special:PasswordReset
+'passwordreset' => 'Rinposta ła password',
+'passwordreset-text' => 'Conpleta sto moduło par riçevare i detaji del to account via posta ełetronega.',
+'passwordreset-legend' => 'Rinposta ła password',
+'passwordreset-disabled' => 'Ła rinpostasion deła password xe stà dixabiłità so sto projeto wiki.',
+'passwordreset-pretext' => '{{PLURAL:$1|| Inserisi una dełe porsion de dati cua soto}}',
+'passwordreset-username' => 'Nome utente:',
+'passwordreset-domain' => 'Dominio',
+'passwordreset-capture' => 'Vixuałixare el contenuto del mesajo de posta ełetronega?',
+'passwordreset-capture-help' => "Se se sełesiona sta caxeła, l'indiriso de posta ełetronega (co' ła password tenporanea) ve vegnarà mostrà anca a voialtri oltre che esare invià a 'l utente.",
+'passwordreset-email' => 'Indiriso de posta ełetronega',
+'passwordreset-emailtitle' => "Detaji de l'account so {{SITENAME}}",
+'passwordreset-emailtext-ip' => "Cualcheduni (probabilmente ti, co indiriso IP $1) ga richiesto l'invio de na nova password par l'aceso a {{SITENAME}} ($4). {{PLURAL:$3|L'utente asocià|I utenti asociadi}} a sto indiriso de posta ełetronega łi xe:
+
+$2
+
+{{PLURAL:$3|Sta password tenporanea ła scadarà|Ste password tenporanee łe scadarà}} dopo {{PLURAL:$5|un dì|$5 dì}}.
+Sarìa mejo acedare e deçidare na nova password sùito. 
+
+Se no te si stà ti a fare ła richiesta, o se te te ghe ricordà ła password originałe e no te vołi pi canbiarla, te połi ignorare sto mesajo e continuar doparare ła to password vecia.",
 
 # Edit page toolbar
 'bold_sample' => 'Testo in grosso',
@@ -750,7 +788,7 @@ Le modifiche no le xe gnancora stà salvà!'''",
 'userinvalidcssjstitle' => "'''Ocio:'''  No ghe xe nissuna skin con nome \"\$1\". Nota che le pagine par i .css e .js personalizà le gà l'iniziale del titolo minuscola, par esenpio {{ns:user}}:Esenpio/vector.css e no {{ns:user}}:Esenpio/Vector.css.",
 'updated' => '(Agiornà)',
 'note' => "'''Nota:'''",
-'previewnote' => "'''Sta qua la xe solo n'anteprima; i canbiamenti a la pagina NO i xe gnancora stà salvà!'''",
+'previewnote' => "Sta cua ła xe soło n'anteprima; i canbiamenti a ła pajina NO i xe gnancora stà salvài!",
 'previewconflict' => 'Sta anteprima la corisponde al testo ne la casèla de edizion de sora, e la fa védar come vegnarà fora la pagina se te machi "Salva la pagina" in sto momento.',
 'session_fail_preview' => "No xè stà possibiłe salvar le to modifiche parché i dati de la session i xè andai persi.
 Par piaser, riproa da novo.

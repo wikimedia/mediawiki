@@ -13,6 +13,7 @@
  * @author Kaganer
  * @author Reedy
  * @author Roustammr
+ * @author Sagan
  * @author Timming
  * @author Рустам Нурыев
  * @author ҒатаУлла
@@ -304,6 +305,7 @@ $1',
 'versionrequiredtext' => 'Был бит менән эшләү өсөн MediaWiki-ның $1 версияһы кәрәк. [[Special:Version|Ҡулланылған версия тураһында мәғлүмәт битен]] ҡара.',
 
 'ok' => 'Тамам',
+'pagetitle' => '{{SITENAME}} проектынан',
 'retrievedfrom' => 'Сығанағы — «$1»',
 'youhavenewmessages' => 'Яңы $1 бар ($2).',
 'newmessageslink' => 'яңы хәбәр',

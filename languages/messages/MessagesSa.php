@@ -19,6 +19,7 @@
  * @author Mahitgar
  * @author Naveen Sankar
  * @author Omnipaedista
+ * @author Shantanoo
  * @author Shijualex
  * @author Shubha
  * @author Vibhijain
@@ -1073,7 +1074,7 @@ $2
 'notitlematches' => 'न कस्यापि पृष्ठस्य शीर्षकम् अस्य समम्।',
 'notextmatches' => 'न कस्यापि पृष्ठस्य पाठः अस्य सममस्ति',
 'prevn' => 'प्राक्तनानि {{PLURAL:$1|$1}}',
-'nextn' => 'अग्रिमाणि{{PLURAL:$1|$1}}',
+'nextn' => 'अग्रिमाणि {{PLURAL:$1|$1}}',
 'prevn-title' => 'प्राक्तन-{{PLURAL:$1|फलितम्| फलितानि}}',
 'nextn-title' => 'प्राक्तन-{{PLURAL:$1|फलितम्| फलितानि}}',
 'shown-title' => 'प्रत्येकस्मिन् पृष्ठे $1 {{PLURAL:$1|फलितम्|फलितानि}} दर्श्यताम्',
