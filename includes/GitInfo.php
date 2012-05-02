@@ -70,7 +70,7 @@ class GitInfo {
 		if ( preg_match( "/ref: (.*)/", $HEAD, $m ) ) {
 			return rtrim( $m[1] );
 		} else {
-			return $HEAD;
+			return rtrim( $HEAD );
 		}
 	}
 
