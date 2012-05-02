@@ -232,6 +232,21 @@ class ApiQueryExtLinksUsage extends ApiQueryGeneratorBase {
 		return $desc;
 	}
 
+	public function getResultProperties() {
+		return array(
+			'ids' => array(
+				'pageid' => 'integer'
+			),
+			'title' => array(
+				'ns' => 'namespace',
+				'title' => 'string'
+			),
+			'url' => array(
+				'url' => 'string'
+			)
+		);
+	}
+
 	public function getDescription() {
 		return 'Enumerate pages that contain a given URL';
 	}

@@ -418,6 +418,76 @@ class ApiQueryWatchlist extends ApiQueryGeneratorBase {
 		);
 	}
 
+	public function getResultProperties() {
+		global $wgLogTypes;
+		return array(
+			'ids' => array(
+				'pageid' => 'integer',
+				'revid' => 'integer',
+				'old_revid' => 'integer'
+			),
+			'title' => array(
+				'ns' => 'namespace',
+				'title' => 'string'
+			),
+			'user' => array(
+				'user' => 'string',
+				'anon' => 'boolean'
+			),
+			'userid' => array(
+				'userid' => 'integer',
+				'anon' => 'boolean'
+			),
+			'flags' => array(
+				'new' => 'boolean',
+				'minor' => 'boolean',
+				'bot' => 'boolean'
+			),
+			'patrol' => array(
+				'patrolled' => 'boolean'
+			),
+			'timestamp' => array(
+				'timestamp' => 'timestamp'
+			),
+			'sizes' => array(
+				'oldlen' => 'integer',
+				'newlen' => 'integer'
+			),
+			'notificationtimestamp' => array(
+				'notificationtimestamp' => array(
+					ApiBase::PROP_TYPE => 'timestamp',
+					ApiBase::PROP_NULLABLE => true
+				)
+			),
+			'comment' => array(
+				'comment' => array(
+					ApiBase::PROP_TYPE => 'string',
+					ApiBase::PROP_NULLABLE => true
+				)
+			),
+			'parsedcomment' => array(
+				'parsedcomment' => array(
+					ApiBase::PROP_TYPE => 'string',
+					ApiBase::PROP_NULLABLE => true
+				)
+			),
+			'loginfo' => array(
+				'logid' => array(
+					ApiBase::PROP_TYPE => 'integer',
+					ApiBase::PROP_NULLABLE => true
+				),
+				'logtype' => array(
+					ApiBase::PROP_TYPE => $wgLogTypes,
+					ApiBase::PROP_NULLABLE => true
+				),
+				'logaction' => array(
+					ApiBase::PROP_TYPE => 'string',
+					ApiBase::PROP_NULLABLE => true
+				)
+			)
+		);
+	}
+
 	public function getDescription() {
 		return "Get all recent changes to pages in the logged in user's watchlist";
 	}

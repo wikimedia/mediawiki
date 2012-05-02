@@ -195,6 +195,23 @@ class ApiQueryLangBacklinks extends ApiQueryGeneratorBase {
 		);
 	}
 
+	public function getResultProperties() {
+		return array(
+			'' => array(
+				'pageid' => 'integer',
+				'ns' => 'namespace',
+				'title' => 'string',
+				'redirect' => 'boolean'
+			),
+			'lllang' => array(
+				'lllang' => 'string'
+			),
+			'lltitle' => array(
+				'lltitle' => 'string'
+			)
+		);
+	}
+
 	public function getDescription() {
 		return array( 'Find all pages that link to the given language link.',
 			'Can be used to find all links with a language code, or',

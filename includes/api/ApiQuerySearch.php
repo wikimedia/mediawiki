@@ -280,6 +280,63 @@ class ApiQuerySearch extends ApiQueryGeneratorBase {
 		);
 	}
 
+	public function getResultProperties() {
+		return array(
+			'' => array(
+				'ns' => 'namespace',
+				'title' => 'string'
+			),
+			'snippet' => array(
+				'snippet' => 'string'
+			),
+			'size' => array(
+				'size' => 'integer'
+			),
+			'wordcount' => array(
+				'wordcount' => 'integer'
+			),
+			'timestamp' => array(
+				'timestamp' => 'timestamp'
+			),
+			'score' => array(
+				'score' => array(
+					ApiBase::PROP_TYPE => 'string',
+					ApiBase::PROP_NULLABLE => true
+				)
+			),
+			'titlesnippet' => array(
+				'titlesnippet' => 'string'
+			),
+			'redirecttitle' => array(
+				'redirecttitle' => array(
+					ApiBase::PROP_TYPE => 'string',
+					ApiBase::PROP_NULLABLE => true
+				)
+			),
+			'redirectsnippet' => array(
+				'redirectsnippet' => array(
+					ApiBase::PROP_TYPE => 'string',
+					ApiBase::PROP_NULLABLE => true
+				)
+			),
+			'sectiontitle' => array(
+				'sectiontitle' => array(
+					ApiBase::PROP_TYPE => 'string',
+					ApiBase::PROP_NULLABLE => true
+				)
+			),
+			'sectionsnippet' => array(
+				'sectionsnippet' => array(
+					ApiBase::PROP_TYPE => 'string',
+					ApiBase::PROP_NULLABLE => true
+				)
+			),
+			'hasrelated' => array(
+				'hasrelated' => 'boolean'
+			)
+		);
+	}
+
 	public function getDescription() {
 		return 'Perform a full text search';
 	}
