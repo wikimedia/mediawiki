@@ -349,3 +349,6 @@
 [submodule "extensions/TranslationNotifications"]
 	path = extensions/TranslationNotifications
 	url = ssh://gerrit.wikimedia.org:29418/mediawiki/extensions/TranslationNotifications.git
+[submodule "extensions/PageTriage"]
+	path = extensions/PageTriage
+	url = ssh://gerrit.wikimedia.org:29418/mediawiki/extensions/PageTriage.git
