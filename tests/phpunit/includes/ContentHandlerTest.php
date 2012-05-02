@@ -2,7 +2,7 @@
 
 class ContentHandlerTest extends MediaWikiTestCase {
 
-	public function setup() {
+	public function setUp() {
 		global $wgExtraNamespaces, $wgNamespaceContentModels, $wgContentHandlers, $wgContLang;
 
 		$wgExtraNamespaces[ 12312 ] = 'Dummy';
@@ -15,7 +15,7 @@ class ContentHandlerTest extends MediaWikiTestCase {
 		$wgContLang->resetNamespaces(); # reset namespace cache
 	}
 
-	public function teardown() {
+	public function tearDown() {
 		global $wgExtraNamespaces, $wgNamespaceContentModels, $wgContentHandlers, $wgContLang;
 
 		unset( $wgExtraNamespaces[ 12312 ] );
@@ -272,7 +272,7 @@ class DummyContentForTesting extends Content {
 	 */
 	public function getSize()
 	{
-		return 23;
+		return strlen( $this->data );
 	}
 
 	/**

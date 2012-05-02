@@ -117,6 +117,8 @@ class Revision {
 	 * @return Revision
 	 */
 	public static function newFromArchiveRow( $row, $overrides = array() ) {
+		global $wgContentHandlerUseDB;
+
 		$attribs = $overrides + array(
 			'page'       => isset( $row->ar_page_id ) ? $row->ar_page_id : null,
 			'id'         => isset( $row->ar_rev_id ) ? $row->ar_rev_id : null,
@@ -132,6 +134,12 @@ class Revision {
 			'content_model' => isset( $row->ar_content_model ) ? $row->ar_content_model : null,
 			'content_format'  => isset( $row->ar_content_format ) ? $row->ar_content_format : null,
 		);
+
+		if ( !$wgContentHandlerUseDB ) {
+			unset( $attribs['content_model'] );
+			unset( $attribs['content_format'] );
+		}
+
 		if ( isset( $row->ar_text ) && !$row->ar_text_id ) {
 			// Pre-1.5 ar_text row
 			$attribs['text'] = self::getRevisionText( $row, 'ar_' );
@@ -330,7 +338,9 @@ class Revision {
 	 * @return array
 	 */
 	public static function selectFields() {
-		return array(
+		global $wgContentHandlerUseDB;
+
+		$fields = array(
 			'rev_id',
 			'rev_page',
 			'rev_text_id',
@@ -343,9 +353,14 @@ class Revision {
 			'rev_len',
 			'rev_parent_id',
 			'rev_sha1',
-			'rev_content_format',
-			'rev_content_model'
 		);
+
+		if ( $wgContentHandlerUseDB ) {
+			$fields[] = 'rev_content_format';
+			$fields[] = 'rev_content_model';
+		}
+
+		return $fields;
 	}
 
 	/**
@@ -499,22 +514,32 @@ class Revision {
 				$this->mContentHandler = null;
 
 				$this->mText = $handler->serializeContent( $row['content'], $this->getContentFormat() );
+			} elseif ( !is_null( $this->mText ) ) {
+				$handler = $this->getContentHandler();
+				$this->mContent = $handler->unserializeContent( $this->mText );
 			}
 
 			$this->mTitle     = null; # Load on demand if needed
-			$this->mCurrent   = false;
+			$this->mCurrent   = false; #XXX: really? we are about to create a revision. it will usually then be the current one.
+
 			# If we still have no length, see it we have the text to figure it out
 			if ( !$this->mSize ) {
-				#XXX: my be inconsistent with the notion of "size" use for the present content model
-				$this->mSize = is_null( $this->mText ) ? null : strlen( $this->mText );
+				if ( !is_null( $this->mContent ) ) {
+					$this->mSize = $this->mContent->getSize();
+				} else {
+					#XXX: my be inconsistent with the notion of "size" use for the present content model
+					#NOTE: should never happen if we have either text or content object!
+					$this->mSize = is_null( $this->mText ) ? null : strlen( $this->mText );
+				}
 			}
+
 			# Same for sha1
 			if ( $this->mSha1 === null ) {
 				$this->mSha1 = is_null( $this->mText ) ? null : self::base36Sha1( $this->mText );
 			}
 
 			$this->getContentModelName(); # force lazy init
-			$this->getContentFormat();      # force lazy init
+			$this->getContentFormat();    # force lazy init
 		} else {
 			throw new MWException( 'Revision constructor passed invalid row format.' );
 		}
@@ -781,7 +806,7 @@ class Revision {
 	 * @param $user User object to check for, only if FOR_THIS_USER is passed
 	 *              to the $audience parameter
 	 * @return String
-	 * @deprectaed in 1.WD, use getContent() instead
+	 * @deprecated in 1.WD, use getContent() instead
 	 */
 	public function getText( $audience = self::FOR_PUBLIC, User $user = null ) { #FIXME: deprecated, replace usage! #FIXME: used a LOT!
 		wfDeprecated( __METHOD__, '1.WD' );
@@ -873,7 +898,7 @@ class Revision {
 	}
 
 	/**
-	 * @return ContentHandlert
+	 * @return ContentHandler
 	 */
 	public function getContentHandler() {
 		if ( !$this->mContentHandler ) {
@@ -1068,7 +1093,7 @@ class Revision {
 	 * @return Integer
 	 */
 	public function insertOn( $dbw ) {
-		global $wgDefaultExternalStore;
+		global $wgDefaultExternalStore, $wgContentHandlerUseDB;
 
 		wfProfileIn( __METHOD__ );
 
@@ -1125,9 +1150,12 @@ class Revision {
 			'rev_sha1'       => is_null( $this->mSha1 )
 				? Revision::base36Sha1( $this->mText )
 				: $this->mSha1,
-			'rev_content_model'       => $this->getContentModelName(),
-			'rev_content_format'        => $this->getContentFormat(),
 		);
+
+		if ( $wgContentHandlerUseDB ) {
+			$row[ 'rev_content_model' ] = $this->getContentModelName();
+			$row[ 'rev_content_format' ] = $this->getContentFormat();
+		}
 
 		$dbw->insert( 'revision', $row, __METHOD__ );
 
@@ -1223,12 +1251,20 @@ class Revision {
 	 * @return Revision|null on error
 	 */
 	public static function newNullRevision( $dbw, $pageId, $summary, $minor ) {
+		global $wgContentHandlerUseDB;
+
 		wfProfileIn( __METHOD__ );
+
+		$fields = array( 'page_latest', 'rev_text_id', 'rev_len', 'rev_sha1' );
+
+		if ( $wgContentHandlerUseDB ) {
+			$fields[] = 'rev_content_model';
+			$fields[] = 'rev_content_format';
+		}
 
 		$current = $dbw->selectRow(
 			array( 'page', 'revision' ),
-			array( 'page_latest', 'rev_text_id', 'rev_len', 'rev_sha1',
-					'rev_content_model', 'rev_content_format' ),
+			$fields,
 			array(
 				'page_id' => $pageId,
 				'page_latest=rev_id',
@@ -1236,7 +1272,7 @@ class Revision {
 			__METHOD__ );
 
 		if( $current ) {
-			$revision = new Revision( array(
+			$row = array(
 				'page'       => $pageId,
 				'comment'    => $summary,
 				'minor_edit' => $minor,
@@ -1244,9 +1280,14 @@ class Revision {
 				'parent_id'  => $current->page_latest,
 				'len'        => $current->rev_len,
 				'sha1'       => $current->rev_sha1,
-				'content_model'  => $current->rev_content_model,
-				'content_format'   => $current->rev_content_format
-				) );
+			);
+
+			if ( $wgContentHandlerUseDB ) {
+				$row[ 'content_model' ] = $current->rev_content_model;
+				$row[ 'content_format' ] = $current->rev_content_format;
+			}
+
+			$revision = new Revision( $row );
 		} else {
 			$revision = null;
 		}

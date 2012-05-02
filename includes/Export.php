@@ -594,11 +594,11 @@ class XmlDumpWriter {
 			$out .= "      " . Xml::elementClean( 'comment', null, strval( $row->rev_comment ) ) . "\n";
 		}
 
-		if ( $row->rev_content_model ) {
+		if ( isset( $row->rev_content_model ) && !is_null( $row->rev_content_model )  ) {
 			$out .= "      " . Xml::element('model', null, strval( $row->rev_content_model ) ) . "\n";
 		}
 
-		if ( $row->rev_content_format ) {
+		if ( isset( $row->rev_content_format ) && !is_null( $row->rev_content_format ) ) {
 			$out .= "      " . Xml::element('format', null, strval( $row->rev_content_format ) ) . "\n";
 		}
 

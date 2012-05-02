@@ -275,7 +275,65 @@ class RevisionTest extends MediaWikiTestCase {
 		$this->assertEquals( $expectedText, $rev->getRawText( $audience ) );
 	}
 
-	// @todo: set up testing environment with database to tgest loading and inserting revisions
+
+	public function dataGetSize( ) {
+		return array(
+			array( "hello world.", null, 12 ),
+			array( serialize( "hello world." ), "DUMMY", 12 ),
+		);
+	}
+
+	/**
+	 * @covers Revision::getSize
+	 * @dataProvider dataGetSize
+	 */
+	public function testGetSize( $text, $model, $expected_size )
+	{
+		$rev = $this->newTestRevision( $text, 'RevisionTest_testGetSize', $model );
+		$this->assertEquals( $expected_size, $rev->getSize() );
+	}
+
+	public function dataGetSha1( ) {
+		return array(
+			array( "hello world.", null, Revision::base36Sha1( "hello world." ) ),
+			array( serialize( "hello world." ), "DUMMY", Revision::base36Sha1( serialize( "hello world." ) ) ),
+		);
+	}
+
+	/**
+	 * @covers Revision::getSha1
+	 * @dataProvider dataGetSha1
+	 */
+	public function testGetSha1( $text, $model, $expected_hash )
+	{
+		$rev = $this->newTestRevision( $text, 'RevisionTest_testGetSha1', $model );
+		$this->assertEquals( $expected_hash, $rev->getSha1() );
+	}
+
+	public function testConstructWithText() {
+		$rev = new Revision( array(
+		                          'text' => 'hello world.',
+		                          'content_model' => CONTENT_MODEL_JAVASCRIPT
+		                     ));
+
+		$this->assertNotNull( $rev->getText(), 'no content text' );
+		$this->assertNotNull( $rev->getContent(), 'no content object available' );
+		$this->assertEquals( CONTENT_MODEL_JAVASCRIPT, $rev->getContent()->getModelName() );
+		$this->assertEquals( CONTENT_MODEL_JAVASCRIPT, $rev->getContentModelName() );
+	}
+
+	public function testConstructWithContent() {
+		$title = Title::newFromText( 'RevisionTest_testConstructWithContent' );
+
+		$rev = new Revision( array(
+		                          'content' => ContentHandler::makeContent( 'hello world.', $title, CONTENT_MODEL_JAVASCRIPT ),
+		                     ));
+
+		$this->assertNotNull( $rev->getText(), 'no content text' );
+		$this->assertNotNull( $rev->getContent(), 'no content object available' );
+		$this->assertEquals( CONTENT_MODEL_JAVASCRIPT, $rev->getContent()->getModelName() );
+		$this->assertEquals( CONTENT_MODEL_JAVASCRIPT, $rev->getContentModelName() );
+	}
 
 }
 

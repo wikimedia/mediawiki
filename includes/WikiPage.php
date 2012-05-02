@@ -202,7 +202,9 @@ class WikiPage extends Page {
 	 * @return array
 	 */
 	public static function selectFields() {
-		return array(
+		global $wgContentHandlerUseDB;
+
+		$fields = array(
 			'page_id',
 			'page_namespace',
 			'page_title',
@@ -214,8 +216,13 @@ class WikiPage extends Page {
 			'page_touched',
 			'page_latest',
 			'page_len',
-			'page_content_model',
 		);
+
+		if ( $wgContentHandlerUseDB ) {
+			$fields[] = 'page_content_model';
+		}
+
+		return $fields;
 	}
 
 	/**
@@ -1067,6 +1074,8 @@ class WikiPage extends Page {
 	 * @private
 	 */
 	public function updateRevisionOn( $dbw, $revision, $lastRevision = null, $lastRevIsRedirect = null ) {
+		global $wgContentHandlerUseDB;
+
 		wfProfileIn( __METHOD__ );
 
 		$content = $revision->getContent();
@@ -1081,15 +1090,20 @@ class WikiPage extends Page {
 		}
 
 		$now = wfTimestampNow();
+		$row = array( /* SET */
+			'page_latest'      => $revision->getId(),
+			'page_touched'     => $dbw->timestamp( $now ),
+			'page_is_new'      => ( $lastRevision === 0 ) ? 1 : 0,
+			'page_is_redirect' => $rt !== null ? 1 : 0,
+			'page_len'         => $len,
+		);
+
+		if ( $wgContentHandlerUseDB ) {
+			$row[ 'page_content_model' ] = $revision->getContentModelName();
+		}
+
 		$dbw->update( 'page',
-			array( /* SET */
-				'page_latest'      => $revision->getId(),
-				'page_touched'     => $dbw->timestamp( $now ),
-				'page_is_new'      => ( $lastRevision === 0 ) ? 1 : 0,
-				'page_is_redirect' => $rt !== null ? 1 : 0,
-				'page_len'         => $len,
-				'page_content_model' => $revision->getContentModelName(),
-			),
+			$row,
 			$conditions,
 			__METHOD__ );
 
@@ -2209,7 +2223,7 @@ class WikiPage extends Page {
 	public function doDeleteArticleReal(
 		$reason, $suppress = false, $id = 0, $commit = true, &$error = '', User $user = null
 	) {
-		global $wgUser;
+		global $wgUser, $wgContentHandlerUseDB;
 		$user = is_null( $user ) ? $wgUser : $user;
 
 		wfDebug( __METHOD__ . "\n" );
@@ -2248,27 +2262,34 @@ class WikiPage extends Page {
 		//
 		// In the future, we may keep revisions and mark them with
 		// the rev_deleted field, which is reserved for this purpose.
+
+		$row = array(
+			'ar_namespace'  => 'page_namespace',
+			'ar_title'      => 'page_title',
+			'ar_comment'    => 'rev_comment',
+			'ar_user'       => 'rev_user',
+			'ar_user_text'  => 'rev_user_text',
+			'ar_timestamp'  => 'rev_timestamp',
+			'ar_minor_edit' => 'rev_minor_edit',
+			'ar_rev_id'     => 'rev_id',
+			'ar_parent_id'  => 'rev_parent_id',
+			'ar_text_id'    => 'rev_text_id',
+			'ar_text'       => '\'\'', // Be explicit to appease
+			'ar_flags'      => '\'\'', // MySQL's "strict mode"...
+			'ar_len'        => 'rev_len',
+			'ar_page_id'    => 'page_id',
+			'ar_deleted'    => $bitfield,
+			'ar_sha1'       => 'rev_sha1',
+		);
+
+		if ( $wgContentHandlerUseDB ) {
+			$row[ 'ar_content_model' ] = 'rev_content_model';
+			$row[ 'ar_content_format' ] = 'rev_content_format';
+		}
+
 		$dbw->insertSelect( 'archive', array( 'page', 'revision' ),
+			$row,
 			array(
-				'ar_namespace'  => 'page_namespace',
-				'ar_title'      => 'page_title',
-				'ar_comment'    => 'rev_comment',
-				'ar_user'       => 'rev_user',
-				'ar_user_text'  => 'rev_user_text',
-				'ar_timestamp'  => 'rev_timestamp',
-				'ar_minor_edit' => 'rev_minor_edit',
-				'ar_rev_id'     => 'rev_id',
-				'ar_parent_id'  => 'rev_parent_id',
-				'ar_text_id'    => 'rev_text_id',
-				'ar_text'       => '\'\'', // Be explicit to appease
-				'ar_flags'      => '\'\'', // MySQL's "strict mode"...
-				'ar_len'        => 'rev_len',
-				'ar_page_id'    => 'page_id',
-				'ar_deleted'    => $bitfield,
-				'ar_sha1'       => 'rev_sha1',
-				'ar_content_model'       => 'rev_content_model',
-				'ar_content_format'      => 'rev_content_format',
-			), array(
 				'page_id' => $id,
 				'page_id = rev_page'
 			), __METHOD__

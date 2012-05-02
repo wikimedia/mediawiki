@@ -5819,6 +5819,15 @@ $wgNamespaceContentModels = array();
 $wgContentHandlerTextFallback = 'ignore';
 
 /**
+ * Compatibility switch for running ContentHandler code withoput a schema update.
+ * Set to false to disable use of the database fields introduced by the ContentHandler facility.
+ *
+ * @deprecated this is only here to allow code deployment without a database schema update on large sites.
+ *             get rid of it in the next version.
+ */
+$wgContentHandlerUseDB = true;
+
+/**
  * For really cool vim folding this needs to be at the end:
  * vim: foldmarker=@{,@} foldmethod=marker
  * @}

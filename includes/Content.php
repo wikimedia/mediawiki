@@ -319,7 +319,7 @@ abstract class Content {
 	 * @param null|ParserOptions $popts
 	 * @return Content
 	 */
-	public function preSaveTransform( Title $title, User $user, ParserOptions $popts = null ) {
+	public function preSaveTransform( Title $title, User $user, ParserOptions $popts ) {
 		return $this;
 	}
 
@@ -341,7 +341,7 @@ abstract class Content {
 	 * @param null|ParserOptions $popts
 	 * @return Content
 	 */
-	public function preloadTransform( Title $title, ParserOptions $popts = null ) {
+	public function preloadTransform( Title $title, ParserOptions $popts ) {
 		return $this;
 	}
 
