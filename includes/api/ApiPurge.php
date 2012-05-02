@@ -135,6 +135,34 @@ class ApiPurge extends ApiBase {
 		);
 	}
 
+	public function getResultProperties() {
+		return array(
+			ApiBase::PROP_LIST => true,
+			'' => array(
+				'ns' => array(
+					ApiBase::PROP_TYPE => 'namespace',
+					ApiBase::PROP_NULLABLE => true
+				),
+				'title' => array(
+					ApiBase::PROP_TYPE => 'string',
+					ApiBase::PROP_NULLABLE => true
+				),
+				'pageid' => array(
+					ApiBase::PROP_TYPE => 'integer',
+					ApiBase::PROP_NULLABLE => true
+				),
+				'revid' => array(
+					ApiBase::PROP_TYPE => 'integer',
+					ApiBase::PROP_NULLABLE => true
+				),
+				'invalid' => 'boolean',
+				'missing' => 'boolean',
+				'purged' => 'boolean',
+				'linkupdate' => 'boolean'
+			)
+		);
+	}
+
 	public function getDescription() {
 		return array( 'Purge the cache for the given titles.',
 			'Requires a POST request if the user is not logged in.'

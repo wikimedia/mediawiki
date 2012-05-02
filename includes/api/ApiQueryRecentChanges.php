@@ -629,6 +629,97 @@ class ApiQueryRecentChanges extends ApiQueryGeneratorBase {
 		);
 	}
 
+	public function getResultProperties() {
+		global $wgLogTypes;
+		$props = array(
+			'' => array(
+				'type' => array(
+					ApiBase::PROP_TYPE => array(
+						'edit',
+						'new',
+						'move',
+						'log',
+						'move over redirect'
+					)
+				)
+			),
+			'title' => array(
+				'ns' => 'namespace',
+				'title' => 'string',
+				'new_ns' => array(
+					ApiBase::PROP_TYPE => 'namespace',
+					Apibase::PROP_NULLABLE => true
+				),
+				'new_title' => array(
+					ApiBase::PROP_TYPE => 'string',
+					Apibase::PROP_NULLABLE => true
+				)
+			),
+			'ids' => array(
+				'rcid' => 'integer',
+				'pageid' => 'integer',
+				'revid' => 'integer',
+				'old_revid' => 'integer'
+			),
+			'user' => array(
+				'user' => 'string',
+				'anon' => 'boolean'
+			),
+			'userid' => array(
+				'userid' => 'integer',
+				'anon' => 'boolean'
+			),
+			'flags' => array(
+				'bot' => 'boolean',
+				'new' => 'boolean',
+				'minor' => 'boolean'
+			),
+			'sizes' => array(
+				'oldlen' => 'integer',
+				'newlen' => 'integer'
+			),
+			'timestamp' => array(
+				'timestamp' => 'timestamp'
+			),
+			'comment' => array(
+				'comment' => array(
+					ApiBase::PROP_TYPE => 'string',
+					Apibase::PROP_NULLABLE => true
+				)
+			),
+			'parsedcomment' => array(
+				'parsedcomment' => array(
+					ApiBase::PROP_TYPE => 'string',
+					Apibase::PROP_NULLABLE => true
+				)
+			),
+			'redirect' => array(
+				'redirect' => 'boolean'
+			),
+			'patrolled' => array(
+				'patrolled' => 'boolean'
+			),
+			'loginfo' => array(
+				'logid' => array(
+					ApiBase::PROP_TYPE => 'integer',
+					Apibase::PROP_NULLABLE => true
+				),
+				'logtype' => array(
+					ApiBase::PROP_TYPE => $wgLogTypes,
+					Apibase::PROP_NULLABLE => true
+				),
+				'logaction' => array(
+					ApiBase::PROP_TYPE => 'string',
+					Apibase::PROP_NULLABLE => true
+				)
+			)
+		);
+
+		self::addTokenProperties( $props, $this->getTokenFunctions() );
+
+		return $props;
+	}
+
 	public function getDescription() {
 		return 'Enumerate recent changes';
 	}

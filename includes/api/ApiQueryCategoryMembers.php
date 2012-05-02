@@ -364,6 +364,36 @@ class ApiQueryCategoryMembers extends ApiQueryGeneratorBase {
 		return $desc;
 	}
 
+	public function getResultProperties() {
+		return array(
+			'ids' => array(
+				'pageid' => 'integer'
+			),
+			'title' => array(
+				'ns' => 'namespace',
+				'title' => 'string'
+			),
+			'sortkey' => array(
+				'sortkey' => 'string'
+			),
+			'sortkeyprefix' => array(
+				'sortkeyprefix' => 'string'
+			),
+			'type' => array(
+				'type' => array(
+					ApiBase::PROP_TYPE => array(
+						'page',
+						'subcat',
+						'file'
+					)
+				)
+			),
+			'timestamp' => array(
+				'timestamp' => 'timestamp'
+			)
+		);
+	}
+
 	public function getDescription() {
 		return 'List all pages in a given category';
 	}
