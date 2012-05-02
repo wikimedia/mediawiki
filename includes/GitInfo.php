@@ -83,7 +83,7 @@ class GitInfo {
 
 		// If detached HEAD may be a SHA1
 		if ( self::isSHA1( $HEAD ) ) {
-			return $HEAD;
+			return rtrim( $HEAD );
 		}
 
 		// If not a SHA1 it may be a ref:
