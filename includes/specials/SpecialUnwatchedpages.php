@@ -65,12 +65,10 @@ class UnwatchedpagesPage extends QueryPage {
 	 */
 	public function execute( $par ) {
 		$out = $this->getOutput();
-		$out->addModules( array(
-			'mediawiki.special.unwatchedpages'
-		) );
+		$out->addModules('mediawiki.special.unwatchedpages');
 		parent::execute($par);
 	}
-	
+
 	/**
 	 * @param $skin Skin
 	 * @param $result
@@ -87,12 +85,12 @@ class UnwatchedpagesPage extends QueryPage {
 			htmlspecialchars( $text )
 		);
 		$token = WatchAction::getWatchToken( $nt, $this->getUser() );
-		$wlink = '<span class="mw-watchLink">'.Linker::linkKnown(
+		$wlink = Linker::linkKnown(
 			$nt,
 			$this->msg( 'watch' )->escaped(),
-			array(),
+			array('class' => 'mw-watchLink'),
 			array( 'action' => 'watch', 'token' => $token )
-		).'</span>';
+		);
 
 		return $this->getLanguage()->specialList( $plink, $wlink );
 	}

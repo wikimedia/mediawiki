@@ -822,8 +822,8 @@ return array(
 	'mediawiki.special.unwatchedpages' => array(
 		'scripts' => 'resources/mediawiki.special/mediawiki.special.unwatchedpages.js',
 		'styles' => 'resources/mediawiki.special/mediawiki.special.unwatchedpages.css',
-		'messages' => array('watch','unwatch'),
-		'dependencies' => array( 'mediawiki.util','mediawiki.api' ),
+		'messages' => array('watch', 'unwatch'),
+		'dependencies' => array( 'mediawiki.util', 'mediawiki.api' ),
 	),
 	'mediawiki.special.javaScriptTest' => array(
 		'scripts' => 'resources/mediawiki.special/mediawiki.special.javaScriptTest.js',
