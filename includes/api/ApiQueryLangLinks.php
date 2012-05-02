@@ -70,8 +70,8 @@ class ApiQueryLangLinks extends ApiQueryBase {
 			);
 		}
 
-	    $dir = ( $params['dir'] == 'descending' ? ' DESC' : '' );
-	    if ( isset( $params['lang'] ) ) {
+			$dir = ( $params['dir'] == 'descending' ? ' DESC' : '' );
+			if ( isset( $params['lang'] ) ) {
 			$this->addWhereFld( 'll_lang', $params['lang'] );
 			if ( isset( $params['title'] ) ) {
 				$this->addWhereFld( 'll_title', $params['title'] );

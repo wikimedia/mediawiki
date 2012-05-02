@@ -61,10 +61,10 @@ class ApiQueryUsers extends ApiQueryBase {
 		return $this->tokenFunctions;
 	}
 
-	 /**
-	  * @param $user User
-	  * @return String
-	  */
+	/**
+	 * @param $user User
+	 * @return String
+	 */
 	public static function getUserrightsToken( $user ) {
 		global $wgUser;
 		// Since the permissions check for userrights is non-trivial,

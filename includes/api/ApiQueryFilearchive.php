@@ -263,7 +263,7 @@ class ApiQueryFilearchive extends ApiQueryBase {
 				' mime              - Adds MIME of the image',
 				' metadata          - Lists EXIF metadata for the version of the image',
 				' bitdepth          - Adds the bit depth of the version',
-            ),
+			),
 		);
 	}
 
