@@ -346,3 +346,6 @@
 [submodule "extensions/PrefSwitch"]
 	path = extensions/PrefSwitch
 	url = ssh://gerrit.wikimedia.org:29418/mediawiki/extensions/PrefSwitch.git
+[submodule "extensions/PageTriage"]
+	path = extensions/PageTriage
+	url = ssh://gerrit.wikimedia.org:29418/mediawiki/extensions/PageTriage.git
