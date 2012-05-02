@@ -186,6 +186,11 @@ abstract class Job {
 		$namespace = $row->job_namespace;
 		$dbkey = $row->job_title;
 		$title = Title::makeTitleSafe( $namespace, $dbkey );
+
+		if ( is_null( $title ) ) {
+			return false;
+		}
+
 		$job = Job::factory( $row->job_cmd, $title, Job::extractBlob( $row->job_params ), $row->job_id );
 
 		// Remove any duplicates it may have later in the queue
@@ -204,7 +209,7 @@ abstract class Job {
 	 * @param $id Int: Job identifier
 	 * @return Job
 	 */
-	static function factory( $command, $title, $params = false, $id = 0 ) {
+	static function factory( $command, Title $title, $params = false, $id = 0 ) {
 		global $wgJobClasses;
 		if( isset( $wgJobClasses[$command] ) ) {
 			$class = $wgJobClasses[$command];
