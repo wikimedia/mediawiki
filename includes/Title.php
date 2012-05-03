@@ -4318,9 +4318,10 @@ class Title {
 		$dbr = wfGetDB( DB_SLAVE );
 		$this->mNotificationTimestamp[$uid] = $dbr->selectField( 'watchlist',
 			'wl_notificationtimestamp',
-			array( 'wl_namespace' => $this->getNamespace(),
+			array(
+				'wl_user' => $user->getId(),
+				'wl_namespace' => $this->getNamespace(),
 				'wl_title' => $this->getDBkey(),
-				'wl_user' => $user->getId()
 			),
 			__METHOD__
 		);
