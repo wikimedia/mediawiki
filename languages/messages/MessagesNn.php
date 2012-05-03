@@ -918,6 +918,7 @@ Det siste elementet i blokkeringsloggen er oppgjeve nedanfor:',
 'note' => "'''Merk:'''",
 'previewnote' => "'''Hugsa at dette berre er ei førehandsvising.'''
 Endringane dine er ikkje lagra enno!",
+'continue-editing' => 'Endra vidare',
 'previewconflict' => 'Dette er ei førehandsvising av teksten i endringsboksen over, slik han vil sjå ut om du lagrar han',
 'session_fail_preview' => "'''Orsak! Endringa di kunne ikkje lagrast. Ver venleg og prøv ein gong til. Dersom det framleis ikkje går, prøv å logge deg ut og inn att.'''",
 'session_fail_preview_html' => "'''Beklagar! Endringa di kunne ikkje lagrast.'''
@@ -1983,8 +1984,8 @@ Merk at andre internettsider kan ha direkte lenkjer til filer, og difor kan file
 # Special:AllPages
 'allpages' => 'Alle sider',
 'alphaindexline' => '$1 til $2',
-'nextpage' => 'Neste side ($1)',
-'prevpage' => 'Førre side ($1)',
+'nextpage' => 'Neste sida ($1)',
+'prevpage' => 'Førre sida ($1)',
 'allpagesfrom' => 'Vis sider frå:',
 'allpagesto' => 'Vis sider til og med:',
 'allarticles' => 'Alle sider',
@@ -3336,16 +3337,16 @@ Du må stadfeste at du verkeleg vil nyopprette denne sida.",
 'confirm-unwatch-top' => 'Fjern denne sida frå overvakingslista di?',
 
 # Multipage image navigation
-'imgmultipageprev' => '← førre side',
-'imgmultipagenext' => 'neste side →',
+'imgmultipageprev' => '← førre sida',
+'imgmultipagenext' => 'neste sida →',
 'imgmultigo' => 'Gå!',
 'imgmultigoto' => 'Gå til sida $1',
 
 # Table pager
 'ascending_abbrev' => 'stigande',
 'descending_abbrev' => 'synkande',
-'table_pager_next' => 'Neste side',
-'table_pager_prev' => 'Førre side',
+'table_pager_next' => 'Neste sida',
+'table_pager_prev' => 'Førre sida',
 'table_pager_first' => 'Fyrste side',
 'table_pager_last' => 'Siste side',
 'table_pager_limit' => 'Vis $1 element per side',

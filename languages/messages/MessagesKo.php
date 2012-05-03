@@ -8,6 +8,7 @@
  * @file
  *
  * @author Albamhandae
+ * @author Altostratus
  * @author Chanhee
  * @author Chulki Lee
  * @author Cwt96
@@ -1044,6 +1045,10 @@ $2개 보다 적게 써야 하지만 지금은 $1개를 쓰고 있습니다.",
 'parser-template-loop-warning' => '재귀적인 틀이 발견되었습니다: [[$1]]',
 'parser-template-recursion-depth-warning' => '틀 반복 횟수 제한을 초과함($1)',
 'language-converter-depth-warning' => '언어 변환기 실행 제한 초과($1)',
+'node-count-exceeded-category' => '페이지가 노드 횟수를 초과하였습니다.',
+'node-count-exceeded-warning' => '페이지가 노드 수를 초과하였습니다.',
+'expansion-depth-exceeded-category' => '페이지가 확장 깊이를 초과하였습니다.',
+'expansion-depth-exceeded-warning' => '페이지가 확장 깊이를 초과하였습니다',
 
 # "Undo" feature
 'undo-success' => '이 편집을 되돌리려면 아래의 변경되는 사항을 확인한 후 저장해주세요.',
@@ -2131,6 +2136,7 @@ URL이 맞고 해당 웹사이트가 작동하는지 확인해주세요.',
 
 # SpecialCachedPage
 'cachedspecial-viewing-cached-ttl' => '지금 이 문서의 캐시된 버전을 보고 있습니다. 이 버전은 최대 $1만큼 지난 버전일 가능성이 있습니다.',
+'cachedspecial-viewing-cached-ts' => '현재 이 페이지는 캐시 처리된 버전으로 현재 문서 상태를 반영하지 않을 수도 있습니다.',
 'cachedspecial-refresh-now' => '최신 버전 보기.',
 
 # Special:Categories
@@ -2618,7 +2624,7 @@ $1 사용자가 차단된 이유는 다음과 같습니다: "$2"',
 'blocklog-showsuppresslog' => '이 사용자는 과거에 차단된 적이 있으며, 그 기록이 숨겨져 있습니다. 해당 사용자의 차단 기록은 다음과 같습니다.',
 'blocklogentry' => '[[$1]] 사용자를 $2 차단함 $3',
 'reblock-logentry' => '[[$1]] 사용자의 차단 기간을 $2(으)로 변경 $3',
-'blocklogtext' => '이 목록은 사용자 차단/차단 해제 기록입니다. 자동으로 차단된 IP 주소는 여기에 나오지 않습니다. [[Special:BlockList|여기]]에서 현재 차단된 사용자 목록을 볼 수 있습니다.',
+'blocklogtext' => '이 목록은 사용자 차단/차단 해제 기록입니다. 자동으로 차단된 IP 주소는 여기에 나오지 않습니다. [[특수기능:차단된사용자|여기]]에서 현재 차단된 사용자 목록을 볼 수 있습니다.',
 'unblocklogentry' => '$1을 차단 해제했습니다.',
 'block-log-flags-anononly' => 'IP만 막음',
 'block-log-flags-nocreate' => '계정 생성 막음',
@@ -3700,6 +3706,8 @@ $5
 'version-software' => '설치된 프로그램',
 'version-software-product' => '제품',
 'version-software-version' => '버전',
+'version-entrypoints' => 'URL 진입점',
+'version-entrypoints-header-entrypoint' => '진입점',
 'version-entrypoints-header-url' => 'URL',
 
 # Special:FilePath

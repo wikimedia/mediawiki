@@ -981,7 +981,7 @@ $2',
 'resetpass-temp-password' => 'كلمة سر مؤقتة:',
 
 # Special:PasswordReset
-'passwordreset' => 'تمت إعادة ضبط كلمة السر',
+'passwordreset' => 'إعادة ضبط كلمة السر',
 'passwordreset-text' => 'أكمل هذا النموذج لتتلقى بريدا إلكترونيا يذكر بتفاصيل حسابك.',
 'passwordreset-legend' => 'إعادة تعيين كلمة السر',
 'passwordreset-disabled' => 'عُطّلت إعادة تعيين كلمة السر على هذه الويكي.',

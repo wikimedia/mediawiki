@@ -1863,6 +1863,7 @@ Caso o problema persista, contacte um [[Special:ListUsers/sysop|administrador]].
 'backend-fail-connect' => 'Não foi possível estabelecer ligação com o servidor de armazenamento "$1".',
 'backend-fail-internal' => 'Ocorreu um erro desconhecido no servidor de armazenamento "$1".',
 'backend-fail-contenttype' => 'Não foi possível determinar o tipo de conteúdo do ficheiro para armazenar em " $1 ".',
+'backend-fail-batchsize' => 'Foi fornecido um bloco de $1 {{PLURAL:$1|operação|operações}} sobre ficheiros ao servidor backend de armazenamento; o limite é de $2 {{PLURAL:$2|operação|operações}}.',
 
 # File journal errors
 'filejournal-fail-dbconnect' => 'Não foi possível ligar à base de dados de registos no "backend" de armazenamento "$1".',
@@ -2121,6 +2122,8 @@ Agora redirecciona para [[$2]].',
 'wantedpages' => 'Páginas desejadas',
 'wantedpages-badtitle' => 'Título inválido no conjunto de resultados: $1',
 'wantedfiles' => 'Ficheiros desejados',
+'wantedfiletext-cat' => 'Os seguintes ficheiros são usados, mas não existem. Ficheiros de repositórios externos podem ser listados apesar de existirem. Tais falsos positivos aparecerão <del>riscados</del>. Adicionalmente, páginas que incorporam ficheiros que não existem estão listadas em [[:$1]].',
+'wantedfiletext-nocat' => 'Os seguintes ficheiros são usados, mas não existem. Ficheiros de repositórios externos podem ser listados apesar de existirem. Tais falsos positivos aparecerão <del>riscados</del>.',
 'wantedtemplates' => 'Predefinições desejadas',
 'mostlinked' => 'Páginas com mais afluentes',
 'mostlinkedcategories' => 'Categorias com mais membros',
@@ -2201,6 +2204,8 @@ Talvez contenha um ou mais caracteres que não podem ser usados nos títulos.',
 'allpages-hide-redirects' => 'Ocultar redirecionamentos',
 
 # SpecialCachedPage
+'cachedspecial-viewing-cached-ttl' => 'Você está a visualizar uma versão desta página em cache que tem uma antiguidade máxima de $1.',
+'cachedspecial-viewing-cached-ts' => 'Você está a visualizar uma versão desta página em cache que pode não refletir totalmente a situação atual.',
 'cachedspecial-refresh-now' => 'Ver mais recente.',
 
 # Special:Categories
@@ -2963,6 +2968,7 @@ Não há um directório temporário.',
 'javascripttest-pagetext-frameworks' => 'Escolha, por favor, uma das seguintes estruturas de teste: $1',
 'javascripttest-pagetext-skins' => 'Escolher um tema para executar os testes com:',
 'javascripttest-qunit-intro' => 'Consulte a [ $1 documentação de testes] no mediawiki.org.',
+'javascripttest-qunit-heading' => 'Pacote de ferramentas de teste de JavaScript QUnit do MediaWiki',
 
 # Tooltip help for the actions
 'tooltip-pt-userpage' => 'A sua página de utilizador',

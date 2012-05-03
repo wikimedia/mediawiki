@@ -3320,8 +3320,8 @@ satır ê ke pê ney # # destpêkenê zey mışore/mıjore muamele vineno.
 'htmlform-selectorother-other' => 'Bin',
 
 # New logging system
-'logentry-delete-delete' => "$1'i Pelaya $3'i besternê",
-'logentry-delete-restore' => "$1'i pelaya $3'i peyd grot",
+'logentry-delete-delete' => "Karber $1' pelay $3' besternê",
+'logentry-delete-restore' => "Karber $1' pelay $3' peyser grot",
 'logentry-suppress-delete' => '$1  $3 rê pıloxneyê',
 'revdelete-content-hid' => 'nusno nımte',
 'revdelete-summary-hid' => 'Vurnayışi nımtey niyê',
@@ -3331,7 +3331,7 @@ satır ê ke pê ney # # destpêkenê zey mışore/mıjore muamele vineno.
 'revdelete-uname-unhid' => 'Namey karberi ne nımteyo',
 'revdelete-restricted' => 'verger (vergırewtış) ê ke qey xızmkaran biye',
 'revdelete-unrestricted' => 'verger (ver gırewtış) ê ke qey xızmkaran diyê wera (wedariyê)',
-'logentry-move-move' => "$1'i pelaya $3'i berd $4",
+'logentry-move-move' => "Karber $1' pelay $3' berd $4",
 'logentry-move-move-noredirect' => "$1'i pelay $3 raçarnayış neker dı u berd $4",
 'logentry-newusers-newusers' => '$1 deye namey karberi vıraziya',
 'logentry-newusers-create' => '$1 deye namey karberi vıraziya',

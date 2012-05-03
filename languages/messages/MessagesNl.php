@@ -377,8 +377,8 @@ $messages = array(
 'tog-fancysig' => 'Als wikitekst behandelen (zonder automatische verwijzing)',
 'tog-externaleditor' => 'Standaard een externe tekstbewerker gebruiken (alleen voor experts - voor deze functie zijn speciale instellingen nodig. [//www.mediawiki.org/wiki/Manual:External_editors Meer informatie]).',
 'tog-externaldiff' => 'Standaard een extern vergelijkingsprogramma gebruiken (alleen voor experts - voor deze functie zijn speciale instellingen nodig. [//www.mediawiki.org/wiki/Manual:External_editors Meer informatie]).',
-'tog-showjumplinks' => '“ga naar”-toegankelijkheidsverwijzingen inschakelen',
-'tog-uselivepreview' => '“live voorvertoning” gebruiken (vereist JavaScript – experimenteel)',
+'tog-showjumplinks' => '"ga naar"-toegankelijkheidsverwijzingen inschakelen',
+'tog-uselivepreview' => '"live voorvertoning" gebruiken (vereist JavaScript – experimenteel)',
 'tog-forceeditsummary' => 'Een melding geven bij een lege bewerkingssamenvatting',
 'tog-watchlisthideown' => 'Eigen bewerkingen op mijn volglijst verbergen',
 'tog-watchlisthidebots' => 'Botbewerkingen op mijn volglijst verbergen',
@@ -458,9 +458,9 @@ $messages = array(
 
 # Categories related messages
 'pagecategories' => '{{PLURAL:$1|Categorie|Categorieën}}',
-'category_header' => 'Pagina’s in categorie “$1”',
+'category_header' => 'Pagina’s in categorie "$1"',
 'subcategories' => 'Ondercategorieën',
-'category-media-header' => 'Media in categorie “$1”',
+'category-media-header' => 'Media in categorie "$1"',
 'category-empty' => "''Deze categorie bevat geen pagina’s of media.''",
 'hidden-categories' => 'Verborgen {{PLURAL:$1|categorie|categorieën}}',
 'hidden-category-category' => 'Verborgen categorieën',
@@ -631,8 +631,8 @@ Meer informatie is beschikbaar op de pagina [[Special:Version|softwareversie]].'
 'feed-unavailable' => 'Syndicatiefeeds zijn niet beschikbaar',
 'site-rss-feed' => '$1 RSS-feed',
 'site-atom-feed' => '$1 Atom-feed',
-'page-rss-feed' => '“$1” RSS-feed',
-'page-atom-feed' => '“$1” Atom-feed',
+'page-rss-feed' => '"$1" RSS-feed',
+'page-atom-feed' => '"$1" Atom-feed',
 'red-link-title' => '$1 (de pagina bestaat niet)',
 'sort-descending' => 'Aflopend sorteren',
 'sort-ascending' => 'Oplopend sorteren',
@@ -666,13 +666,13 @@ Een lijst met bestaande speciale pagina’s staat op [[Special:SpecialPages|{{in
 Mogelijk zit er een fout in de software.
 Het laatste verzoek aan de database was:
 <blockquote><tt>$1</tt></blockquote>
-vanuit de functie “<tt>$2</tt>”.
-De database gaf de volgende foutmelding “<tt>$3: $4</tt>”.',
+vanuit de functie "<tt>$2</tt>".
+De database gaf de volgende foutmelding "<tt>$3: $4</tt>".',
 'dberrortextcl' => 'Er is een syntaxisfout in het databaseverzoek opgetreden.
 Het laatste verzoek aan de database was:
-“$1”
-vanuit de functie “$2”.
-De database gaf de volgende foutmelding: “$3: $4”',
+"$1"
+vanuit de functie "$2".
+De database gaf de volgende foutmelding: "$3: $4"',
 'laggedslavemode' => "'''Waarschuwing:''' in deze pagina zijn recente wijzigingen mogelijk nog niet verwerkt.",
 'readonly' => 'Database geblokkeerd',
 'enterlockreason' => 'Geef een reden op voor de blokkade en geef op wanneer die waarschijnlijk wordt opgeheven',
@@ -695,7 +695,7 @@ Maak hiervan melding bij een [[Special:ListUsers/sysop|beheerder]] van {{SITENAM
 'filecopyerror' => 'Bestand "$1" kon niet naar "$2" gekopieerd worden.',
 'filerenameerror' => '"$1" kon niet hernoemd worden naar "$2".',
 'filedeleteerror' => 'Bestand "$1" kon niet verwijderd worden.',
-'directorycreateerror' => 'Map “$1” kon niet aangemaakt worden.',
+'directorycreateerror' => 'De map "$1" kon niet aangemaakt worden.',
 'filenotfound' => 'Bestand "$1" kon niet gevonden worden.',
 'fileexistserror' => 'Schrijven naar bestand "$1" onmogelijk: het bestand bestaat al.',
 'unexpected' => 'Onverwachte waarde: "$1"="$2".',
@@ -3823,8 +3823,8 @@ Bevestig dat u de pagina opnieuw wilt aanmaken.',
 'livepreview-ready' => 'Bezig met laden… Klaar!',
 'livepreview-failed' => 'Live voorvertoning mislukt!
 Probeer de normale voorvertoning.',
-'livepreview-error' => 'Verbinden mislukt: $1 “$2”.
-Probeer normale voorvertoning.',
+'livepreview-error' => 'Verbinden mislukt: $1 "$2".
+Probeer normale voorvertoning te gebruiken.',
 
 # Friendlier slave lag warnings
 'lag-warn-normal' => 'Wijzigingen in de afgelopen {{PLURAL:$1|seconde|$1 seconden}} worden misschien niet weergegeven in deze lijst.',

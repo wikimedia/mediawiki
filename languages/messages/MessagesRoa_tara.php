@@ -1588,6 +1588,7 @@ Ce 'u probbleme angore jè presende, condatte 'n'[[Special:ListUsers/sysop|ammin
 'backend-fail-create' => "Non ge pozze ccrejà 'u file $1.",
 'backend-fail-readonly' => 'L\'archivije de rete "$1" jè pe stu mumende in sole letture. \'U mutive ha state: "$2"',
 'backend-fail-connect' => 'Non ge pozze connettere \'a memorie de rrete "$1".',
+'backend-fail-internal' => "'N'errore scanusciute s'à verificate jndr'à l'archivije de rrete \"\$1\".",
 
 # Lock manager
 'lockmanager-notlocked' => 'Non ge pozze sbloccà "$1"; jidde non g\'è bloccate.',
@@ -2701,6 +2702,7 @@ Reggistrele sus a 'u combiuter tune e carechele aqquà.",
 'javascripttest-pagetext-noframework' => 'Sta pàgene jè riservate pe le esecuziune de le test de Javascript.',
 'javascripttest-pagetext-unknownframework' => 'Ambiende de teste scanusciute "$1".',
 'javascripttest-pagetext-frameworks' => 'Pe piacere scacchie une de le seguende ambiende de test: $1',
+'javascripttest-qunit-heading' => 'Ambiende de test MediaUicchi JavaScript QUnit',
 
 # Tooltip help for the actions
 'tooltip-pt-userpage' => "'A pàgene utende meje",

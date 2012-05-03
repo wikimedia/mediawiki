@@ -713,6 +713,7 @@ $2
 'note' => "'''Иҫкәрмә:'''",
 'previewnote' => "'''Ҡарап сығыу өлгөһө, әлегә үҙгәрештәр яҙҙырылмаған!'''
 Һеҙҙең үҙгәртеүҙәр әле яҙылмаған!",
+'continue-editing' => 'Мөхәррирләүҙе дауам итергә',
 'previewconflict' => 'Әлеге алдан ҡарау, мөхәррирләү тәҙрәһенең өҫтөндә, һаҡланғандан һуң текстың нисек күренәсәген күрһәтә.',
 'session_fail_preview' => "'''Ҡыҙғанысҡа ҡаршы, һеҙҙең ултырыш идентификаторығыҙ юғалды. Һөҙөмтәлә үҙгәртеүҙәрегеҙ ҡабул ителмәйәсәк.
 Зинһар, тағы бер тапҡыр ҡабатлағыҙ.
@@ -791,6 +792,7 @@ $2
 'edit-no-change' => 'Текста үҙгәртеүҙер булмау сәбәпле үҙгәртеүегеҙгә иғтибар ителмәне.',
 'edit-already-exists' => 'Яңы бит яһап булмай.
 Ул былай ҙа бар.',
+'defaultmessagetext' => 'Алдан билдәләнгән яҙма',
 
 # Parser/template warnings
 'expensive-parserfunction-warning' => "'''Иғтибар:''' был биттә хәтерҙе күп ҡулланыусы функциялар ныҡ күп.
@@ -1547,6 +1549,10 @@ $1',
 'backend-fail-internal' => '$1 һаҡлағысында билдәһеҙ хата килеп сыҡты',
 'backend-fail-contenttype' => 'Файлды $1 адресына һаҡлар өсөн уның эстәлеге төрөн билдәләп булманы.',
 
+# File journal errors
+'filejournal-fail-dbconnect' => '"$1" мәғлүмәт базаһы журналына тоташып булманы.',
+'filejournal-fail-dbquery' => '«$1» мәғлүмәт базаһын һаҡлағын журналды яңыртып булманы.',
+
 # Lock manager
 'lockmanager-notlocked' => '" $1 " асҡысының биген сисеп булмай; ул бикле түгел.',
 'lockmanager-fail-closelock' => '"$1" асҡысының бикләү файлын ябып булманы.',
@@ -1878,6 +1884,9 @@ $1',
 Исемдә тыйылған символдар булыуы ла мөмкин.',
 'allpages-bad-ns' => '{{SITENAME}} проектында "$1" исемдәр арауығы юҡ.',
 'allpages-hide-redirects' => 'Йүнәлтеүҙәрҙе йәшерергә',
+
+# SpecialCachedPage
+'cachedspecial-refresh-now' => 'Һуңғы версияны ҡарарға',
 
 # Special:Categories
 'categories' => 'Категориялар',
@@ -2622,6 +2631,8 @@ $1 ҡатнашыусыһын бикләү сәбәбе: "$2"',
 'import-invalid-interwiki' => 'Күрһәтелгән вики проекттан тейәү мөмкин түгел.',
 'import-error-edit' => '«$1» битен импортлап булманы, сөнки һеҙгә ул битте мөхәррирләү тыйылған.',
 'import-error-create' => '«$1» битен импортлап булманы, сөнки һеҙгә ул битте яһау тыйылған.',
+'import-error-interwiki' => '«$1» бите импортҡа сығарылманы, сөнки уның исеме тышҡы һылианма  (интервики)өсөн резервланған.',
+'import-error-special' => ' «$1» бите импортҡа сығарылманы, сөнки ул биттәр яһау мөмкин булмаған исемдәр арауығына ҡарай.',
 'import-error-invalid' => '"$1" бите яраҡһыҙ исеме өсөн импортланманы.',
 
 # Import log
@@ -2640,7 +2651,9 @@ JavaScript тикшереү',
 'javascripttest-pagetext-noframework' => 'Был бит JavaScript тикшеренеүҙәре үткәреү өсөн  резервланған.',
 'javascripttest-pagetext-unknownframework' => 'Билдәһеҙ тикшеренеүҙәр мөхитнамәһе "$1".',
 'javascripttest-pagetext-frameworks' => 'Зинһар өсөн киләһе тикшеренеүҙәр мөхитнамәһенең береһен һайлап алығыҙ: $1',
+'javascripttest-pagetext-skins' => 'Һынауҙы башлау өсөн тышса һыйлағыҙ.',
 'javascripttest-qunit-intro' => 'mediawiki.org адресы буйынса ҡарағыҙ [$1 тест үткәреү документацияһы].',
+'javascripttest-qunit-heading' => 'MediaWiki JavaScript QUnit өсөн һынауҙар йыйлмаһы.',
 
 # Tooltip help for the actions
 'tooltip-pt-userpage' => 'Ҡулланыусы битегеҙ',
@@ -2703,6 +2716,7 @@ JavaScript тикшереү',
 'tooltip-diff' => 'Сығанаҡ текстҡа ҡарата эшләгән үҙгәртеүҙәрҙе күрһәтергә.',
 'tooltip-compareselectedversions' => 'Был биттең һайланған ике өлгөһө араһындағы айырманы ҡарарға',
 'tooltip-watch' => 'Битте күҙәтеү исемлегемә өҫтәргә',
+'tooltip-watchlistedit-normal-submit' => 'Биттәрҙе юйырға',
 'tooltip-watchlistedit-raw-submit' => 'Күҙәтеү исемлеген яңыртырға',
 'tooltip-recreate' => 'Битте юйылған булыуына ҡарамаҫтан тергеҙергә',
 'tooltip-upload' => 'Күсерә башларға',
@@ -3443,6 +3457,9 @@ MediaWiki файҙалы булыр, тигән өмөттә, ләкин БЕР 
 'version-software' => 'Ҡуйылған программалар',
 'version-software-product' => 'Продукт',
 'version-software-version' => 'Өлгөһө',
+'version-entrypoints' => 'Инеш өсөн URL адрестар',
+'version-entrypoints-header-entrypoint' => 'Инеш урыны',
+'version-entrypoints-header-url' => 'URL',
 
 # Special:FilePath
 'filepath' => 'Файлға юл',
@@ -3595,23 +3612,52 @@ MediaWiki файҙалы булыр, тигән өмөттә, ләкин БЕР 
 'feedback-bugnew' => 'Тикшерҙем. Яңы хата тураһында белдерергә',
 
 # API errors
+'api-error-badaccess-groups' => 'Һеҙгә был викиға файлдар күсереү рөхсәт ителмәй',
+'api-error-badtoken' => 'Эске хата: дөрөҫ булмаған токен',
+'api-error-copyuploaddisabled' => 'Был серверҙа URL адрес буйынса йөкләү өҙөлгән',
+'api-error-duplicate' => 'Бындай эстәлекле {{PLURAL:$1|[$2 файл]}}  бар.',
+'api-error-duplicate-archive' => 'Сайтта бындай эстәлекле {{PLURAL:$1|[$2 башҡа файл]}} бар ине инде, ләкин {{PLURAL:$1|ул юйылды|улар юйылды}}',
+'api-error-duplicate-archive-popup-title' => 'Элек юйылған {{PLURAL:$1|файлдың|файлдарҙың}} дубликаты',
 'api-error-duplicate-popup-title' => '{{PLURAL:$1|файлы|файлдары}} дубликаты.',
 'api-error-empty-file' => 'Һеҙ ебәргән файл буш.',
 'api-error-emptypage' => 'Яңы буш биттәр яһау тыйыла.',
+'api-error-fetchfileerror' => 'Эске хата: файлды күсергән ваҡытта хата китте',
 'api-error-file-too-large' => 'Һеҙ ебәргән файл үтә ҙур.',
 'api-error-filename-tooshort' => 'Файл исеме бик ҡыҫҡа.',
 'api-error-filetype-banned' => 'Был файл төрө тыйылған.',
+'api-error-filetype-missing' => 'Был файлдың ҡушымтаһы юҡ',
+'api-error-hookaborted' => 'Һеҙ эшләргә теләгән үҙгәртеүҙәр ҡушымтаны тикшереүсе тарафынан өҙөлдө',
 'api-error-http' => 'Эске хата: серверға бәйләнеп булмай.',
 'api-error-illegal-filename' => 'Рөхсәт ителмәгән файл исеме.',
+'api-error-internal-error' => 'Эске хата: һеҙ викиға йөкләгәнде тикшергән ваҡытта хата китте',
+'api-error-invalid-file-key' => 'Эске хата: ваҡытлыса һаҡлағыста файл табылманы',
+'api-error-missingparam' => 'Эске хата: мөрәжәғеттең параматрҙары юҡ.',
+'api-error-missingresult' => 'Эске хата: күсереү уңышлы булыуын билдәләп булманы.',
 'api-error-mustbeloggedin' => 'Файлдарҙы йөкмәтеү өсөн һеҙ сисемаға танышырға тейешһегеҙ.',
+'api-error-mustbeposted' => 'Эске хата: мөрәжәғәт HTTP POST адресын талап итә.',
+'api-error-noimageinfo' => 'Йөкләү уңышлы тамамланды, әммә сервер файл тураһында бер ниндәйҙә мәғлүмәт бирмәне.',
 'api-error-nomodule' => 'Эске хата: тейәү модуле көйләнмәгән.',
 'api-error-ok-but-empty' => 'Эске хата: серверҙан яуап юҡ.',
 'api-error-overwrite' => 'Булған файлды алыштырыу рөхсәт ителмәй.',
+'api-error-stashfailed' => 'Эске хата: сервер ваҡытлыса файлды һаҡлай алманы.',
 'api-error-timeout' => 'Көтөлгән ваҡыт эсендә сервер яуып бирмәне.',
 'api-error-unclassified' => 'Билдәһеҙ хата барлыҡҡа килде.',
 'api-error-unknown-code' => 'Билдәһеҙ хата: «$1»',
+'api-error-unknown-error' => 'Эске хата: файлды йөкләгәндә ниндәйҙер хата китте.',
 'api-error-unknown-warning' => 'Билдәһеҙ белдереү: "$1".',
 'api-error-unknownerror' => 'Билдәһеҙ хата: «$1»',
 'api-error-uploaddisabled' => 'Был викила файл тейәү мөмкинлеге ябылған.',
+'api-error-verification-error' => 'Был файл боҙолған, йәки дөрөҫ булмаған ҡушымтаһы бар.',
+
+# Durations
+'duration-seconds' => 'секунд',
+'duration-minutes' => 'минут',
+'duration-hours' => 'сәғәт',
+'duration-days' => 'көн',
+'duration-weeks' => 'аҙна',
+'duration-years' => 'йыл',
+'duration-decades' => 'декада',
+'duration-centuries' => 'быуат',
+'duration-millennia' => 'меңйыллыҡ',
 
 );
