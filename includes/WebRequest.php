@@ -708,6 +708,20 @@ class WebRequest {
 	}
 
 	/**
+	 * Removes a query variable
+	 *
+	 * @param $key String The name of the query variable to remove
+	 * @return String The updated query string
+	 */
+	public function removeQueryValue( $key ) {
+		$newquery = $this->getQueryValues();
+		unset( $newquery['title'] );
+		unset( $newquery[$key] );
+		$query = wfArrayToCGI( $newquery );
+		return $query;
+	}
+
+	/**
 	 * Check for limit and offset parameters on the input, and return sensible
 	 * defaults if not given. The limit must be positive and is capped at 5000.
 	 * Offset must be positive but is not capped.
