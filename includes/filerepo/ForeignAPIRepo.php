@@ -87,6 +87,10 @@ class ForeignAPIRepo extends FileRepo {
 				# same repo.
 				$results[$k] = false;
 				unset( $files[$k] );
+			} elseif ( FileBackend::isStoragePath( $f ) ) {
+				$results[$k] = false;
+				unset( $files[$k] );
+				wfWarn( "Got mwstore:// path '$f'." );
 			}
 		}
 
@@ -203,6 +207,9 @@ class ForeignAPIRepo extends FileRepo {
 	 */
 	function getThumbUrlFromCache( $name, $width, $height, $params="" ) {
 		global $wgMemc;
+		// We can't check the local cache using FileRepo functions because
+		// we override this. We have to use FileBackend directly instead.
+		$backend = $this->getBackend(); // convenience
 
 		if ( !$this->canCacheThumbs() ) {
 			$result = null; // can't pass "null" by reference, but it's ok as default value
@@ -243,9 +250,11 @@ class ForeignAPIRepo extends FileRepo {
 		$localFilename = $localPath . "/" . $fileName;
 		$localUrl =  $this->getZoneUrl( 'thumb' ) . "/" . $this->getHashPath( $name ) . rawurlencode( $name ) . "/" . rawurlencode( $fileName );
 
-		if( $this->fileExists( $localFilename ) && isset( $metadata['timestamp'] ) ) {
+		if( $backend->fileExists( array( 'src' => $localFilename ) )
+			&& isset( $metadata['timestamp'] ) )
+		{
 			wfDebug( __METHOD__ . " Thumbnail was already downloaded before\n" );
-			$modified = $this->getFileTimestamp( $localFilename );
+			$modified = $backend->getFileTimestamp( array( 'src' => $localFilename ) );
 			$remoteModified = strtotime( $metadata['timestamp'] );
 			$current = time();
 			$diff = abs( $modified - $current );
@@ -264,15 +273,13 @@ class ForeignAPIRepo extends FileRepo {
 		}
 
 		# @todo FIXME: Delete old thumbs that aren't being used. Maintenance script?
-		wfSuppressWarnings();
-		$backend = $this->getBackend();
+		$backend->prepare( array( 'dir' => dirname( $localFilename ) ) );
 		$op = array( 'op' => 'create', 'dst' => $localFilename, 'content' => $thumb );
 		if( !$backend->doOperation( $op )->isOK() ) {
 			wfRestoreWarnings();
 			wfDebug( __METHOD__ . " could not write to thumb path\n" );
 			return $foreignUrl;
 		}
-		wfRestoreWarnings();
 		$knownThumbUrls[$sizekey] = $localUrl;
 		$wgMemc->set( $key, $knownThumbUrls, $this->apiThumbCacheExpiry );
 		wfDebug( __METHOD__ . " got local thumb $localUrl, saving to cache \n" );

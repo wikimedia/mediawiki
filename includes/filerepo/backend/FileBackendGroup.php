@@ -35,7 +35,7 @@ class FileBackendGroup {
 
 	/**
 	 * Destroy the singleton instance
-	 * 
+	 *
 	 * @return void
 	 */
 	public static function destroySingleton() {
@@ -44,7 +44,7 @@ class FileBackendGroup {
 
 	/**
 	 * Register file backends from the global variables
-	 * 
+	 *
 	 * @return void
 	 */
 	protected function initFromGlobals() {
