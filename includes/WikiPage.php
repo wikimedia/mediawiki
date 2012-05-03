@@ -1597,9 +1597,9 @@ class WikiPage extends Page {
 			$parserCache->save( $editInfo->output, $this, $editInfo->popts );
 		}
 
-		# Update the links tables
-		$u = new LinksUpdate( $this->mTitle, $editInfo->output );
-		$u->doUpdate();
+		# Update the links tables and other secondary data
+		$updates = $editInfo->output->getSecondaryDataUpdates( $this->mTitle );
+		DataUpdate::runUpdates( $updates );
 
 		wfRunHooks( 'ArticleEditUpdates', array( &$this, &$editInfo, $options['changed'] ) );
 
@@ -2055,7 +2055,21 @@ class WikiPage extends Page {
 			return WikiPage::DELETE_NO_REVISIONS;
 		}
 
-		$this->doDeleteUpdates( $id );
+		# update site status
+		DeferredUpdates::addUpdate( new SiteStatsUpdate( 0, 1, - (int)$this->isCountable(), -1 ) );
+
+		# remove secondary indexes, etc
+		$updates = $this->getDeletionUpdates( );
+		DataUpdate::runUpdates( $updates );
+
+		# Clear caches
+		WikiPage::onArticleDelete( $this->mTitle );
+
+		# Reset this object
+		$this->clear();
+
+		# Clear the cached article id so the interface doesn't act like we exist
+		$this->mTitle->resetArticleID( 0 );
 
 		# Log the deletion, if the page was suppressed, log it at Oversight instead
 		$logtype = $suppress ? 'suppress' : 'delete';
@@ -2073,68 +2087,6 @@ class WikiPage extends Page {
 
 		wfRunHooks( 'ArticleDeleteComplete', array( &$this, &$user, $reason, $id ) );
 		return WikiPage::DELETE_SUCCESS;
-	}
-
-	/**
-	 * Do some database updates after deletion
-	 *
-	 * @param $id Int: page_id value of the page being deleted
-	 */
-	public function doDeleteUpdates( $id ) {
-		DeferredUpdates::addUpdate( new SiteStatsUpdate( 0, 1, - (int)$this->isCountable(), -1 ) );
-
-		$dbw = wfGetDB( DB_MASTER );
-
-		# Delete restrictions for it
-		$dbw->delete( 'page_restrictions', array ( 'pr_page' => $id ), __METHOD__ );
-
-		# Fix category table counts
-		$cats = array();
-		$res = $dbw->select( 'categorylinks', 'cl_to', array( 'cl_from' => $id ), __METHOD__ );
-
-		foreach ( $res as $row ) {
-			$cats [] = $row->cl_to;
-		}
-
-		$this->updateCategoryCounts( array(), $cats );
-
-		# If using cascading deletes, we can skip some explicit deletes
-		if ( !$dbw->cascadingDeletes() ) {
-			$dbw->delete( 'revision', array( 'rev_page' => $id ), __METHOD__ );
-
-			# Delete outgoing links
-			$dbw->delete( 'pagelinks', array( 'pl_from' => $id ), __METHOD__ );
-			$dbw->delete( 'imagelinks', array( 'il_from' => $id ), __METHOD__ );
-			$dbw->delete( 'categorylinks', array( 'cl_from' => $id ), __METHOD__ );
-			$dbw->delete( 'templatelinks', array( 'tl_from' => $id ), __METHOD__ );
-			$dbw->delete( 'externallinks', array( 'el_from' => $id ), __METHOD__ );
-			$dbw->delete( 'langlinks', array( 'll_from' => $id ), __METHOD__ );
-			$dbw->delete( 'iwlinks', array( 'iwl_from' => $id ), __METHOD__ );
-			$dbw->delete( 'redirect', array( 'rd_from' => $id ), __METHOD__ );
-			$dbw->delete( 'page_props', array( 'pp_page' => $id ), __METHOD__ );
-		}
-
-		# If using cleanup triggers, we can skip some manual deletes
-		if ( !$dbw->cleanupTriggers() ) {
-			# Clean up recentchanges entries...
-			$dbw->delete( 'recentchanges',
-				array( 'rc_type != ' . RC_LOG,
-					'rc_namespace' => $this->mTitle->getNamespace(),
-					'rc_title' => $this->mTitle->getDBkey() ),
-				__METHOD__ );
-			$dbw->delete( 'recentchanges',
-				array( 'rc_type != ' . RC_LOG, 'rc_cur_id' => $id ),
-				__METHOD__ );
-		}
-
-		# Clear caches
-		self::onArticleDelete( $this->mTitle );
-
-		# Reset this object
-		$this->clear();
-
-		# Clear the cached article id so the interface doesn't act like we exist
-		$this->mTitle->resetArticleID( 0 );
 	}
 
 	/**
@@ -2705,6 +2657,7 @@ class WikiPage extends Page {
 
 		if ( count( $templates_diff ) > 0 ) {
 			# Whee, link updates time.
+			# Note: we are only interested in links here. We don't need to get other DataUpdate items from the parser output.
 			$u = new LinksUpdate( $this->mTitle, $parserOutput, false );
 			$u->doUpdate();
 		}
@@ -2832,6 +2785,16 @@ class WikiPage extends Page {
 		wfDeprecated( __METHOD__, '1.18' );
 		global $wgUser;
 		return $this->isParserCacheUsed( ParserOptions::newFromUser( $wgUser ), $oldid );
+	}
+
+	public function getDeletionUpdates() {
+		$updates = array(
+			new LinksDeletionUpdate( $this ),
+		);
+
+		//@todo: make a hook to add update objects
+		//NOTE: deletion updates will be determined by the ContentHandler in the future
+		return $updates;
 	}
 }
 
