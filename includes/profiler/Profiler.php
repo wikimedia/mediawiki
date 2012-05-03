@@ -114,6 +114,16 @@ class Profiler {
 		return false;
 	}
 
+	/**
+	 * Return whether this profiler stores data
+	 *
+	 * @see Profiler::logData()
+	 * @return Boolean
+	 */
+	public function isPersistent() {
+		return true;
+	}
+
 	public function setProfileID( $id ) {
 		$this->mProfileID = $id;
 	}
@@ -479,7 +489,7 @@ class Profiler {
 		}
 		wfProfileOut( '-overhead-total' );
 	}
-	
+
 	/**
 	 * Counts the number of profiled function calls sitting under
 	 * the given point in the call graph. Not the most efficient algo.
@@ -549,7 +559,7 @@ class Profiler {
 			$rc = $dbw->affectedRows();
 			if ( $rc == 0 ) {
 				$dbw->insert('profiling', array ('pf_name' => $name, 'pf_count' => $eventCount,
-					'pf_time' => $timeSum, 'pf_memory' => $memorySum, 'pf_server' => $pfhost ), 
+					'pf_time' => $timeSum, 'pf_memory' => $memorySum, 'pf_server' => $pfhost ),
 					__METHOD__, array ('IGNORE'));
 			}
 			// When we upgrade to mysql 4.1, the insert+update

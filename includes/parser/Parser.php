@@ -724,8 +724,8 @@ class Parser {
 	}
 
 	/**
-	 * Get the target language for the content being parsed. This is usually the 
-	 * language that the content is in. 
+	 * Get the target language for the content being parsed. This is usually the
+	 * language that the content is in.
 	 */
 	function getTargetLanguage() {
 		$target = $this->mOptions->getTargetLanguage();
@@ -1271,7 +1271,7 @@ class Parser {
 		$text = $this->maybeMakeExternalImage( $url );
 		if ( $text === false ) {
 			# Not an image, make a link
-			$text = Linker::makeExternalLink( $url, 
+			$text = Linker::makeExternalLink( $url,
 				$this->getConverterLanguage()->markNoConversion($url), true, 'free',
 				$this->getExternalLinkAttribs( $url ) );
 			# Register it in the output object...
@@ -1752,7 +1752,7 @@ class Parser {
 		}
 
 		if ( $this->getConverterLanguage()->hasVariants() ) {
-			$selflink = $this->getConverterLanguage()->autoConvertToAllVariants( 
+			$selflink = $this->getConverterLanguage()->autoConvertToAllVariants(
 				$this->mTitle->getPrefixedText() );
 		} else {
 			$selflink = array( $this->mTitle->getPrefixedText() );
@@ -3266,8 +3266,11 @@ class Parser {
 
 		# Load from database
 		if ( !$found && $title ) {
-			$titleProfileIn = __METHOD__ . "-title-" . $title->getDBKey();
-			wfProfileIn( $titleProfileIn ); // template in
+			if ( !Profiler::instance()->isPersistent() ) {
+				# Too many unique items can kill profiling DBs/collectors
+				$titleProfileIn = __METHOD__ . "-title-" . $title->getDBKey();
+				wfProfileIn( $titleProfileIn ); // template in
+			}
 			wfProfileIn( __METHOD__ . '-loadtpl' );
 			if ( !$title->isExternal() ) {
 				if ( $title->isSpecialPage()

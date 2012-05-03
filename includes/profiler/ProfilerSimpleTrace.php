@@ -61,7 +61,7 @@ class ProfilerSimpleTrace extends ProfilerSimple {
 					str_repeat(" ", count( $this->mWorkStack ) + 1 ) . " < " . $functionname . "\n";
 		}
 	}
-	
+
 	function memoryDiff() {
 		$diff = memory_get_usage() - $this->memory;
 		$this->memory = memory_get_usage();

@@ -30,6 +30,9 @@ class ProfilerStub extends Profiler {
 	public function isStub() {
 		return true;
 	}
+	public function isPersistent() {
+		return false;
+	}
 	public function profileIn( $fn ) {}
 	public function profileOut( $fn ) {}
 	public function getOutput() {}
