@@ -27,6 +27,10 @@
  * @ingroup Profiler
  */
 class ProfilerSimpleUDP extends ProfilerSimple {
+	public function isPersistent() {
+		return true;
+	}
+
 	public function logData() {
 		global $wgUDPProfilerHost, $wgUDPProfilerPort;
 

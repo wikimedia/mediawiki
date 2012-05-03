@@ -42,6 +42,10 @@ class ProfilerSimpleText extends ProfilerSimple {
 		parent::__construct( $profileConfig );
 	}
 
+	public function isPersistent() {
+		return false;
+	}
+
 	public function logData() {
 		if ( $this->mTemplated ) {
 			$this->close();

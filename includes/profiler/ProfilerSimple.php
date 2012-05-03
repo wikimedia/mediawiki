@@ -32,6 +32,11 @@ class ProfilerSimple extends Profiler {
 	var $zeroEntry = array('cpu'=> 0.0, 'cpu_sq' => 0.0, 'real' => 0.0, 'real_sq' => 0.0, 'count' => 0);
 	var $errorEntry;
 
+	public function isPersistent() {
+		/* Implement in output subclasses */
+		return false;
+	}
+
 	protected function addInitialStack() {
 		$this->errorEntry = $this->zeroEntry;
 		$this->errorEntry['count'] = 1;

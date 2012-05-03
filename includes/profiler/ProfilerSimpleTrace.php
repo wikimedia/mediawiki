@@ -30,6 +30,10 @@ class ProfilerSimpleTrace extends ProfilerSimple {
 	var $trace = "Beginning trace: \n";
 	var $memory = 0;
 
+	public function isPersistent() {
+		return false;
+	}
+
 	function profileIn( $functionname ) {
 		parent::profileIn( $functionname );
 		$this->trace .= "         " . sprintf("%6.1f",$this->memoryDiff()) .
@@ -61,7 +65,7 @@ class ProfilerSimpleTrace extends ProfilerSimple {
 					str_repeat(" ", count( $this->mWorkStack ) + 1 ) . " < " . $functionname . "\n";
 		}
 	}
-	
+
 	function memoryDiff() {
 		$diff = memory_get_usage() - $this->memory;
 		$this->memory = memory_get_usage();
