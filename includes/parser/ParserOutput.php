@@ -143,6 +143,7 @@ class ParserOutput extends CacheTime {
 		$mTimestamp;                  # Timestamp of the revision
 	private $mIndexPolicy = '';       # 'index' or 'noindex'?  Any other value will result in no change.
 	private $mAccessedOptions = array(); # List of ParserOptions (stored in the keys)
+        private $mSecondaryDataUpdates = array(); # List of instances of SecondaryDataObject(), used to cause some information extracted from the page in a custom place.
 
 	const EDITSECTION_REGEX = '#<(?:mw:)?editsection page="(.*?)" section="(.*?)"(?:/>|>(.*?)(</(?:mw:)?editsection>))#';
 
@@ -448,5 +449,41 @@ class ParserOutput extends CacheTime {
 	  */
 	 function recordOption( $option ) {
 		 $this->mAccessedOptions[$option] = true;
+	 }
+
+    /**
+     * Adds an update job to the output. Any update jobs added to the output will eventually bexecuted in order to
+     * store any secondary information extracted from the page's content.
+     *
+     * @param SecondaryDataUpdate $update
+     */
+    public function addSecondaryDataUpdate( SecondaryDataUpdate $update ) {
+        $this->mSecondaryDataUpdates[] = $update;
+    }
+
+    /**
+     * Returns any SecondaryDataUpdate jobs to be executed in order to store secondary information
+     * extracted from the page's content, includingt a LinksUpdate object for all links stopred in
+     * this ParserOutput object.
+     *
+     * @param $title Title of the page we're updating. If not given, a title object will be created based on $this->getTitleText()
+     * @param $recursive Boolean: queue jobs for recursive updates?
+     *
+     * @return array an array of instances of SecondaryDataUpdate
+     */
+    public function getSecondaryDataUpdates( Title $title = null, $recursive = true ) {
+        if ( empty( $title ) ) {
+            $title = Title::newFromText( $this->getTitleText() );
+        }
+
+        $linksUpdate = new LinksUpdate( $title, $this, $recursive );
+
+        if ( empty( $this->mSecondaryDataUpdates ) ) {
+            return array( $linksUpdate );
+        } else {
+            $updates = array_merge( $this->mSecondaryDataUpdates, array( $linksUpdate ) );
+        }
+
+        return $updates;
 	 }
 }

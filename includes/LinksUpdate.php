@@ -19,7 +19,7 @@
  *
  * @todo document (e.g. one-sentence top-level class description).
  */
-class LinksUpdate {
+class LinksUpdate extends SecondaryDBDataUpdate {
 
 	/**@{{
 	 * @private
@@ -47,16 +47,15 @@ class LinksUpdate {
 	 * @param $recursive Boolean: queue jobs for recursive updates?
 	 */
 	function __construct( $title, $parserOutput, $recursive = true ) {
-		global $wgAntiLockFlags;
+		parent::__construct( );
 
-		if ( $wgAntiLockFlags & ALF_NO_LINK_LOCK ) {
-			$this->mOptions = array();
-		} else {
-			$this->mOptions = array( 'FOR UPDATE' );
+		if ( !is_object( $title ) ) {
+			throw new MWException( "The calling convention to LinksUpdate::LinksUpdate() has changed. " .
+				"Please see Article::editUpdates() for an invocation example.\n" );
 		}
 		$this->mDb = wfGetDB( DB_MASTER );
 
-		if ( !is_object( $title ) ) {
+		if ( !is_object( $parserOutput ) ) {
 			throw new MWException( "The calling convention to LinksUpdate::__construct() has changed. " .
 				"Please see WikiPage::doEditUpdates() for an invocation example.\n" );
 		}
@@ -846,6 +845,81 @@ class LinksUpdate {
 					$update->doUpdate();
 				}
 			}
+		}
+	}
+}
+
+/**
+ * Update object handling the cleanup of links tables after a page was deleted.
+ **/
+class LinksDeletionUpdate extends SecondaryDBDataUpdate {
+
+	/**@{{
+	 * @private
+	 */
+	var $mWikiPage;     //!< WikiPage the wikipage that was deleted
+	/**@}}*/
+
+	/**
+	 * Constructor
+	 *
+	 * @param $title Title of the page we're updating
+	 * @param $parserOutput ParserOutput: output from a full parse of this page
+	 * @param $recursive Boolean: queue jobs for recursive updates?
+	 */
+	function __construct( WikiPage $page ) {
+		parent::__construct( );
+
+		$this->mPage = $page;
+	}
+
+	/**
+	 * Do some database updates after deletion
+	 */
+	public function doUpdate() {
+		$title = $this->mPage->getTitle();
+		$id = $this->mPage->getId();
+
+		# Delete restrictions for it
+		$this->mDb->delete( 'page_restrictions', array ( 'pr_page' => $id ), __METHOD__ );
+
+		# Fix category table counts
+		$cats = array();
+		$res = $this->mDb->select( 'categorylinks', 'cl_to', array( 'cl_from' => $id ), __METHOD__ );
+
+		foreach ( $res as $row ) {
+			$cats [] = $row->cl_to;
+		}
+
+		$this->mPage->updateCategoryCounts( array(), $cats );
+
+		# If using cascading deletes, we can skip some explicit deletes
+		if ( !$this->mDb->cascadingDeletes() ) {
+			$this->mDb->delete( 'revision', array( 'rev_page' => $id ), __METHOD__ );
+
+			# Delete outgoing links
+			$this->mDb->delete( 'pagelinks', array( 'pl_from' => $id ), __METHOD__ );
+			$this->mDb->delete( 'imagelinks', array( 'il_from' => $id ), __METHOD__ );
+			$this->mDb->delete( 'categorylinks', array( 'cl_from' => $id ), __METHOD__ );
+			$this->mDb->delete( 'templatelinks', array( 'tl_from' => $id ), __METHOD__ );
+			$this->mDb->delete( 'externallinks', array( 'el_from' => $id ), __METHOD__ );
+			$this->mDb->delete( 'langlinks', array( 'll_from' => $id ), __METHOD__ );
+			$this->mDb->delete( 'iwlinks', array( 'iwl_from' => $id ), __METHOD__ );
+			$this->mDb->delete( 'redirect', array( 'rd_from' => $id ), __METHOD__ );
+			$this->mDb->delete( 'page_props', array( 'pp_page' => $id ), __METHOD__ );
+		}
+
+		# If using cleanup triggers, we can skip some manual deletes
+		if ( !$this->mDb->cleanupTriggers() ) {
+			# Clean up recentchanges entries...
+			$this->mDb->delete( 'recentchanges',
+			              array( 'rc_type != ' . RC_LOG,
+			                   'rc_namespace' => $title->getNamespace(),
+			                   'rc_title' => $title->getDBkey() ),
+			              __METHOD__ );
+			$this->mDb->delete( 'recentchanges',
+			              array( 'rc_type != ' . RC_LOG, 'rc_cur_id' => $id ),
+			              __METHOD__ );
 		}
 	}
 }
