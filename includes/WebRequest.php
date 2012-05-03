@@ -708,6 +708,23 @@ class WebRequest {
 	}
 
 	/**
+	 * Removes a query variable
+	 *
+	 * @param $key String The name of the query variable to remove
+	 * @param $onlyquery Bool: whether to only return the query string and not
+	 *                   the complete URL
+	 * @return String
+	 */
+	public function removeQueryValue( $key, $onlyquery = false ) {
+		global $wgTitle;
+		$newquery = $this->getQueryValues();
+		unset( $newquery['title'] );
+		if ( isset( $newquery[$key] )) unset( $newquery[$key] );
+		$query = wfArrayToCGI( $newquery );
+		return $onlyquery ? $query : $wgTitle->getLocalURL( $query );
+	}
+
+	/**
 	 * Check for limit and offset parameters on the input, and return sensible
 	 * defaults if not given. The limit must be positive and is capped at 5000.
 	 * Offset must be positive but is not capped.
