@@ -462,9 +462,12 @@ class Parser {
 				array_values( $tidyregs ),
 				$text );
 		}
-		global $wgExpensiveParserFunctionLimit;
-		if ( $this->mExpensiveFunctionCount > $wgExpensiveParserFunctionLimit ) {
-			$this->limitationWarn( 'expensive-parserfunction', $this->mExpensiveFunctionCount, $wgExpensiveParserFunctionLimit );
+
+		if ( $this->mExpensiveFunctionCount > $this->mOptions->getExpensiveParserFunctionLimit() ) {
+			$this->limitationWarn( 'expensive-parserfunction',
+				$this->mExpensiveFunctionCount,
+				$this->mOptions->getExpensiveParserFunctionLimit()
+			);
 		}
 
 		wfRunHooks( 'ParserAfterTidy', array( &$this, &$text ) );
@@ -472,7 +475,7 @@ class Parser {
 		# Information on include size limits, for the benefit of users who try to skirt them
 		if ( $this->mOptions->getEnableLimitReport() ) {
 			$max = $this->mOptions->getMaxIncludeSize();
-			$PFreport = "Expensive parser function count: {$this->mExpensiveFunctionCount}/$wgExpensiveParserFunctionLimit\n";
+			$PFreport = "Expensive parser function count: {$this->mExpensiveFunctionCount}/{$this->mOptions->getExpensiveParserFunctionLimit()}\n";
 			$limitReport =
 				"NewPP limit report\n" .
 				"Preprocessor node count: {$this->mPPNodeCount}/{$this->mOptions->getMaxPPNodeCount()}\n" .
@@ -3828,12 +3831,8 @@ class Parser {
 	 * @return Boolean: false if the limit has been exceeded
 	 */
 	function incrementExpensiveFunctionCount() {
-		global $wgExpensiveParserFunctionLimit;
 		$this->mExpensiveFunctionCount++;
-		if ( $this->mExpensiveFunctionCount <= $wgExpensiveParserFunctionLimit ) {
-			return true;
-		}
-		return false;
+		return $this->mExpensiveFunctionCount <= $this->mOptions->getExpensiveParserFunctionLimit();
 	}
 
 	/**
