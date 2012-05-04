@@ -1,5 +1,7 @@
 <?php
 /**
+ * Minification of CSS stylesheets.
+ *
  * Copyright 2010 Wikimedia Foundation
  *
  * Licensed under the Apache License, Version 2.0 (the "License"); you may
@@ -12,18 +14,18 @@
  * under the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS
  * OF ANY KIND, either express or implied. See the License for the
  * specific language governing permissions and limitations under the License.
- */
-
-/**
- * Transforms CSS data
- *
- * This class provides minification, URL remapping, URL extracting, and data-URL embedding.
  *
  * @file
  * @version 0.1.1 -- 2010-09-11
  * @author Trevor Parscal <tparscal@wikimedia.org>
  * @copyright Copyright 2010 Wikimedia Foundation
  * @license http://www.apache.org/licenses/LICENSE-2.0
+ */
+
+/**
+ * Transforms CSS data
+ *
+ * This class provides minification, URL remapping, URL extracting, and data-URL embedding.
  */
 class CSSMin {
 
