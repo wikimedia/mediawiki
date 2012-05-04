@@ -277,12 +277,14 @@ CREATE TABLE ipblocks (
   ipb_range_end         TEXT,
   ipb_deleted           SMALLINT     NOT NULL  DEFAULT 0,
   ipb_block_email       SMALLINT     NOT NULL  DEFAULT 0,
-  ipb_allow_usertalk    SMALLINT     NOT NULL  DEFAULT 0
+  ipb_allow_usertalk    SMALLINT     NOT NULL  DEFAULT 0,
+  ipb_parent_block_id             INTEGER          NULL  REFERENCES ipblocks(ipb_id) ON DELETE SET NULL DEFERRABLE INITIALLY DEFERRED
 
 );
 CREATE UNIQUE INDEX ipb_address_unique ON ipblocks (ipb_address,ipb_user,ipb_auto,ipb_anon_only);
 CREATE INDEX ipb_user    ON ipblocks (ipb_user);
 CREATE INDEX ipb_range   ON ipblocks (ipb_range_start,ipb_range_end);
+CREATE INDEX ipb_parent_block_id   ON ipblocks (ipb_parent_block_id);
 
 
 CREATE TABLE image (
