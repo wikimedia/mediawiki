@@ -38,7 +38,7 @@
 define( 'MW_API', true );
 
 // Bail if PHP is too low
-if ( !function_exists( 'version_compare' ) || version_compare( phpversion(), '5.2.3' ) < 0 ) {
+if ( !function_exists( 'version_compare' ) || version_compare( phpversion(), '5.3.2' ) < 0 ) {
 	require( dirname( __FILE__ ) . '/includes/PHPVersionError.php' );
 	wfPHPVersionError( 'api.php' );
 }
