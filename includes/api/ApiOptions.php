@@ -109,7 +109,7 @@ class ApiOptions extends ApiBase {
 
 	public function getParamDescription() {
 		return array(
-			'token' => 'An options token previously obtained through the meta=userinfo',
+			'token' => 'An options token previously obtained through the action=tokens',
 			'reset' => 'Resets all preferences to the site defaults',
 			'change' => 'Pipe-separated list of changes, formatted name=value (e.g. skin=vector), value cannot contain pipe characters',
 			'optionname' => 'A name of a option which should have an optionvalue set',
@@ -134,6 +134,10 @@ class ApiOptions extends ApiBase {
 
 	public function getTokenSalt() {
 		return '';
+	}
+	
+	public function getHelpUrls() {
+		return 'https://www.mediawiki.org/wiki/API:Options';
 	}
 
 	public function getExamples() {

@@ -66,12 +66,17 @@ class ApiTokens extends ApiBase {
 		$names = array( 'edit', 'delete', 'protect', 'move', 'block', 'unblock',
 			'email', 'import', 'watch' );
 		foreach ( $names as $name ) {
-			$types[$name] = 'ApiQUeryInfo::get' . ucfirst( $name ) . 'Token';
+			$types[$name] = 'ApiQueryInfo::get' . ucfirst( $name ) . 'Token';
 		}
+		$types['options'] = array( $this, 'getOptionsToken' );
 		wfRunHooks( 'ApiTokensGetTokenTypes', array( &$types ) );
 		ksort( $types );
 		wfProfileOut( __METHOD__ );
 		return $types;
+	}
+	
+	protected function getOptionsToken() {
+		return $this->getUser()->getEditToken( '', $this->getMain()->getRequest() );
 	}
 
 	public function getAllowedParams() {
