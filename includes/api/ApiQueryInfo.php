@@ -228,6 +228,21 @@ class ApiQueryInfo extends ApiQueryBase {
 		return $cachedWatchToken;
 	}
 
+	public static function getOptionsToken( $pageid, $title ) {
+		global $wgUser;
+		if ( !$wgUser->isLoggedIn() ) {
+			return false;
+		}
+
+		static $cachedOptionsToken = null;
+		if ( !is_null( $cachedOptionsToken ) ) {
+			return $cachedOptionsToken;
+		}
+
+		$cachedOptionsToken = $wgUser->getEditToken();
+		return $cachedOptionsToken;
+	}
+
 	public function execute() {
 		$this->params = $this->extractRequestParams();
 		if ( !is_null( $this->params['prop'] ) ) {
