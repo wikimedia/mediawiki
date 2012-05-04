@@ -1080,8 +1080,6 @@ class Block {
 	 * @return array( User|String, Block::TYPE_ constant )
 	 */
 	public static function parseTarget( $target ) {
-		$target = trim( $target );
-
 		# We may have been through this before
 		if( $target instanceof User ){
 			if( IP::isValid( $target->getName() ) ){
@@ -1092,6 +1090,8 @@ class Block {
 		} elseif( $target === null ){
 			return array( null, null );
 		}
+
+		$target = trim( $target );
 
 		if ( IP::isValid( $target ) ) {
 			# We can still create a User if it's an IP address, but we need to turn
