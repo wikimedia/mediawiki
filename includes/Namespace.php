@@ -354,4 +354,16 @@ class MWNamespace {
 		return $index == NS_USER || $index == NS_USER_TALK;
 	}
 
+	/**
+	 * It is possible to use pages from this namespace as template?
+	 *
+	 * @param $index int Index to check
+	 * @return bool
+	 * @since 1.20
+	 */
+	public static function isNonincludableNamespace( $index ) {
+		global $wgNonincludableNamespaces;
+		return $wgNonincludableNamespaces && in_array( $index, $wgNonincludableNamespaces );
+	}
+
 }
