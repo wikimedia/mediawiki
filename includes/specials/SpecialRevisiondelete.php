@@ -295,7 +295,7 @@ class SpecialRevisionDelete extends UnlistedSpecialPage {
 				Xml::openElement( 'form', array(
 					'method' => 'POST',
 					'action' => $this->getTitle()->getLocalUrl(
-						'target=' . urlencode( $oimage->getName() ) .
+						'target=' . urlencode( $this->targetObj->getPrefixedText() ) .
 						'&file=' . urlencode( $archiveName ) .
 						'&token=' . urlencode( $user->getEditToken( $archiveName ) ) )
 					)
