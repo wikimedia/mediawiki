@@ -189,7 +189,7 @@ test( 'mw.loader.implement', function () {
 			isJsExecuted = true;
 
 			equal( mw.loader.getState( 'test.implement' ), 'loaded', 'module state is "loaded" while implement() is executing javascript' );
-			
+
 			$element = $( '<div class="mw-test-loaderimplement">Foo bar</div>' ).appendTo( '#qunit-fixture' );
 
 			// @broken: equal( $element.css( 'text-align' ),'center', 'CSS stylesheet was applied in time. ("text-align: center")' );
@@ -200,7 +200,7 @@ test( 'mw.loader.implement', function () {
 			// @broken: equal( $element.css( 'float' ), 'right', 'CSS stylesheet was applied in time via @import (bug 34669). ("float: right")' );
 
 			equal( mw.msg( 'test-foobar' ), 'Hello Foobar, $1!', 'Messages are loaded in time' );
-		
+
 		},
 		{
 			"all": "@import url('"
@@ -222,6 +222,124 @@ test( 'mw.loader.implement', function () {
 	mw.loader.load( 'test.implement' );
 
 });
+
+test( 'mw.loader erroneous indirect dependency', function() {
+	expect( 3 );
+	mw.loader.register( [
+		['test.module1', '0'],
+		['test.module2', '0', ['test.module1']],
+		['test.module3', '0', ['test.module2']]
+	] );
+	mw.loader.implement( 'test.module1', function() { throw new Error( 'expected' ); }, {}, {} );
+	strictEqual( mw.loader.getState( 'test.module1' ), 'error', 'Expected "error" state for test.module1' );
+	strictEqual( mw.loader.getState( 'test.module2' ), 'error', 'Expected "error" state for test.module2' );
+	strictEqual( mw.loader.getState( 'test.module3' ), 'error', 'Expected "error" state for test.module3' );
+} );
+
+test( 'mw.loader out-of-order implementation', function() {
+	expect( 9 );
+	mw.loader.register( [
+		['test.module4', '0'],
+		['test.module5', '0', ['test.module4']],
+		['test.module6', '0', ['test.module5']]
+	] );
+	mw.loader.implement( 'test.module4', function() {}, {}, {} );
+	strictEqual( mw.loader.getState( 'test.module4' ), 'ready', 'Expected "ready" state for test.module4' );
+	strictEqual( mw.loader.getState( 'test.module5' ), 'registered', 'Expected "registered" state for test.module5' );
+	strictEqual( mw.loader.getState( 'test.module6' ), 'registered', 'Expected "registered" state for test.module6' );
+	mw.loader.implement( 'test.module6', function() {}, {}, {} );
+	strictEqual( mw.loader.getState( 'test.module4' ), 'ready', 'Expected "ready" state for test.module4' );
+	strictEqual( mw.loader.getState( 'test.module5' ), 'registered', 'Expected "registered" state for test.module5' );
+	strictEqual( mw.loader.getState( 'test.module6' ), 'loaded', 'Expected "loaded" state for test.module6' );
+	mw.loader.implement( 'test.module5', function() {}, {}, {} );
+	strictEqual( mw.loader.getState( 'test.module4' ), 'ready', 'Expected "ready" state for test.module4' );
+	strictEqual( mw.loader.getState( 'test.module5' ), 'ready', 'Expected "ready" state for test.module5' );
+	strictEqual( mw.loader.getState( 'test.module6' ), 'ready', 'Expected "ready" state for test.module6' );
+} );
+
+test( 'mw.loader missing dependency', function() {
+	expect( 13 );
+	mw.loader.register( [
+		['test.module7', '0'],
+		['test.module8', '0', ['test.module7']],
+		['test.module9', '0', ['test.module8']]
+	] );
+	mw.loader.implement( 'test.module8', function() {}, {}, {} );
+	strictEqual( mw.loader.getState( 'test.module7' ), 'registered', 'Expected "registered" state for test.module7' );
+	strictEqual( mw.loader.getState( 'test.module8' ), 'loaded', 'Expected "loaded" state for test.module8' );
+	strictEqual( mw.loader.getState( 'test.module9' ), 'registered', 'Expected "registered" state for test.module9' );
+	mw.loader.state( 'test.module7', 'missing' );
+	strictEqual( mw.loader.getState( 'test.module7' ), 'missing', 'Expected "missing" state for test.module7' );
+	strictEqual( mw.loader.getState( 'test.module8' ), 'error', 'Expected "error" state for test.module8' );
+	strictEqual( mw.loader.getState( 'test.module9' ), 'error', 'Expected "error" state for test.module9' );
+	mw.loader.implement( 'test.module9', function() {}, {}, {} );
+	strictEqual( mw.loader.getState( 'test.module7' ), 'missing', 'Expected "missing" state for test.module7' );
+	strictEqual( mw.loader.getState( 'test.module8' ), 'error', 'Expected "error" state for test.module8' );
+	strictEqual( mw.loader.getState( 'test.module9' ), 'error', 'Expected "error" state for test.module9' );
+	mw.loader.using(
+		['test.module7'],
+		function() {
+			ok( false, "Success fired despite missing dependency" );
+			ok( true , "QUnit expected() count dummy" );
+		},
+		function( e, dependencies ) {
+			strictEqual( $.isArray( dependencies ), true, 'Expected array of dependencies' );
+			strictEqual( dependencies[0], 'test.module7', 'Error callback called with module test.module7' );
+		}
+	);
+	mw.loader.using(
+		['test.module9'],
+		function() {
+			ok( false, "Success fired despite missing dependency" );
+			ok( true , "QUnit expected() count dummy" );
+		},
+		function( e, dependencies ) {
+			strictEqual( $.isArray( dependencies ), true, 'Expected array of dependencies' );
+			strictEqual( dependencies.length, 3, 'Error callback called with all three modules as dependencies' );
+		}
+	);
+} );
+
+test( 'mw.loader real missing dependency', function() {
+	expect( 6 );
+
+	mw.loader.addSource(
+		'test',
+		{'loadScript' : QUnit.fixurl( mw.config.get( 'wgScriptPath' ) + '/tests/qunit/data/testloader.php' )}
+	);
+	mw.loader.register( [
+		['test.missing', '0', [], null, 'test'], ['test.missing2', '0', [], null, 'test'],
+		['test.use_missing', '0', ['test.missing'], null, 'test'],
+		['test.use_missing2', '0', ['test.missing2'], null, 'test']
+	] );
+
+	stop();
+	// Asynch ahead
+
+	mw.loader.load( ['test.use_missing'] );
+
+	function verifyModuleStates() {
+		strictEqual( mw.loader.getState( 'test.missing' ), 'missing', 'Module "test.missing" must have state "missing"' );
+		strictEqual( mw.loader.getState( 'test.missing2' ), 'missing', 'Module "test.missing2" must have state "missing"' );
+		strictEqual( mw.loader.getState( 'test.use_missing' ), 'error', 'Module "test.use_missing" must have state "error"' );
+		strictEqual( mw.loader.getState( 'test.use_missing2' ), 'error', 'Module "test.use_missing2" must have state "error"' );
+	}
+
+	mw.loader.using( ['test.use_missing2'],
+		function() {
+			start();
+			ok( false, "Success called wrongly." );
+			ok( true , "QUnit expected() count dummy" );
+			verifyModuleStates();
+		},
+		function( e, dependencies ) {
+			start();
+			ok( true, "Error handler called correctly." );
+			deepEqual( dependencies, ['test.missing2'], "Dependencies correct." );
+			verifyModuleStates();
+		}
+	);
+} );
 
 test( 'mw.loader bug29107' , function () {
 	expect(2);
