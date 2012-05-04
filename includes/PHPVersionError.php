@@ -17,9 +17,9 @@
  * version are hardcoded here
  */
 function wfPHPVersionError( $type ){
-	$mwVersion = '1.19';
+	$mwVersion = '1.20';
 	$phpVersion = PHP_VERSION;
-	$message = "MediaWiki $mwVersion requires at least PHP version 5.2.3, you are using PHP $phpVersion.";
+	$message = "MediaWiki $mwVersion requires at least PHP version 5.3.2, you are using PHP $phpVersion.";
 	if( $type == 'index.php' ) {
 		$encLogo = htmlspecialchars(
 			str_replace( '//', '/', pathinfo( $_SERVER['SCRIPT_NAME'], PATHINFO_DIRNAME ) . '/'
