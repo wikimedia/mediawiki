@@ -1333,7 +1333,7 @@ Assurez-vous que cette opération conservera la continuité de l’historique de
 'searchhelp-url' => 'Help:Accueil',
 'searchmenu-prefix' => '[[Special:PrefixIndex/$1|Rechercher les pages commençant par ce préfixe]]',
 'searchprofile-articles' => 'Pages de contenu',
-'searchprofile-project' => 'Pages d’aide et du projet',
+'searchprofile-project' => 'Pages d’aide et de projet',
 'searchprofile-images' => 'Multimédia',
 'searchprofile-everything' => 'Tout',
 'searchprofile-advanced' => 'Recherche avancée',

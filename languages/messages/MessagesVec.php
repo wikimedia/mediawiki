@@ -677,6 +677,30 @@ $2
 Sarìa mejo acedare e deçidare na nova password sùito. 
 
 Se no te si stà ti a fare ła richiesta, o se te te ghe ricordà ła password originałe e no te vołi pi canbiarla, te połi ignorare sto mesajo e continuar doparare ła to password vecia.",
+'passwordreset-emailtext-user' => "El utente $1 da {{SITENAME}} (probabilmente ti steso) ga richiesto l'invio dei to detaji del profiło par {{SITENAME}} ($4). {{PLURAL:$3|El profiło utente asocià|I profiłi utenti asociadi}} a sto indiriso de posta ełetronega łi xe:
+
+$2
+
+{{PLURAL:$3|Sta password tenporanea ła scadarà|Ste password tenporanee łe scadarà}} dopo {{PLURAL:$5|un dì|$5 dì}}.
+Sarìa mejo acedare e deçidare na nova password sùito. 
+
+Se no te si stà ti a fare ła richiesta, o se te te ghe ricordà ła password originałe e no te vołi pi canbiarla, te połi ignorare sto mesajo e continuar doparare ła to password vecia.",
+'passwordreset-emailelement' => 'Nome utente: $1
+Password tenporanea: $2',
+'passwordreset-emailsent' => 'Xe stà invià on promemoria via posta eletronega.',
+'passwordreset-emailsent-capture' => 'Xe stà invià un promemoria via posta eletronega: el contegù xe riportà cuà de seguito.',
+'passwordreset-emailerror-capture' => "Xe stà generà el promemoria riportà cuà de seguito. L'invio al utente no xe riusido: $1",
+
+# Special:ChangeEmail
+'changeemail' => 'Canbia indiriso de posta ełetronega',
+'changeemail-header' => 'Canbia el indiriso de posta ełetronega del account',
+'changeemail-text' => 'Conpleta sto moduło par canbiare el to indiriso de posta ełetronega. Sarà necesario inserire ła password par confermare ła modifega.',
+'changeemail-no-info' => "Te ghe da aver efetuà l'aceso par acedare a sta pajina diretamente.",
+'changeemail-oldemail' => 'Indiriso de posta ełetronega atuałe:',
+'changeemail-newemail' => 'Novo indiriso de posta ełetronega:',
+'changeemail-none' => '(nisun)',
+'changeemail-submit' => 'Canbia indiriso de posta ełetronega',
+'changeemail-cancel' => 'Anuła',
 
 # Edit page toolbar
 'bold_sample' => 'Testo in grosso',
@@ -777,7 +801,12 @@ o <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} 
 'userpage-userdoesnotexist-view' => 'L\'utensa "$1" no la xe gnancora registrà.',
 'blocked-notice-logextract' => "Sto utente xè atualmente blocà.
 L'ultimo ełemento del rejistro de i blochi xè riportà de seguito par informasion:",
-'clearyourcache' => "'''Ocio: dopo aver salvà, te ghè da netar la cache del to browser par védar i canbiamenti.''' Par '''Mozilla / Firefox / Safari:''' tien macà el boton de le majuscole e schiza \"Ricarica\", o senò maca ''Ctrl-F5'' o ''Ctrl-R'' (''Command-R'' se te ghè el Mac); par '''Konqueror:''' schiza \"Ricarica\" o maca ''F5;'' par '''Opera:''' néta la cache in ''Strumenti → Preferenze;'' par '''Internet Explorer:''' tien macà ''Ctrl'' fin che te schizi ''Ricarica'', o maca ''Ctrl-F5.''",
+'clearyourcache' => "Ocio: dopo aver salvà, połe darse che te gabi da netare ła cache del to browser par védar i canbiamenti.
+*Par '''Firefox / Safari:''' tien macà el boton de łe majuscołe e schicia \"Recarga\", o senò maca ''Ctrl-F5'' o ''Ctrl-R'' (''⌘-R'' se te ghè el Mac)
+*Par '''Google Chrome''':schicia ''Ctrl-Shift-R'' (''⌘-Shift-R'' co' un Mac)
+*Par '''Internet Explorer''': tien schicià el boton \"Ctrl\" fin che te schici '''Recarga''', senò schicia '''Ctrl+F5'''
+*Par '''Konqueror''': schicia \"Recarga\" o maca ''F5'';
+*Par '''Opera:''' néta la cache in ''Strumenti → Preferense;''",
 'usercssyoucanpreview' => "'''Sugerimento:''' se consiglia de doparar el boton \"{{int:showpreview}} par proàr i novi CSS prima de salvarli.",
 'userjsyoucanpreview' => "'''Sugerimento:''' se consiglia de doparar el boton \"{{int:showpreview}}\" par proàr i novi JavaScript prima de salvarli.",
 'usercsspreview' => "'''Sta qua la xe solo n'anteprima del proprio CSS personal.
@@ -789,6 +818,7 @@ Le modifiche no le xe gnancora stà salvà!'''",
 'updated' => '(Agiornà)',
 'note' => "'''Nota:'''",
 'previewnote' => "Sta cua ła xe soło n'anteprima; i canbiamenti a ła pajina NO i xe gnancora stà salvài!",
+'continue-editing' => 'Continua modifegare',
 'previewconflict' => 'Sta anteprima la corisponde al testo ne la casèla de edizion de sora, e la fa védar come vegnarà fora la pagina se te machi "Salva la pagina" in sto momento.',
 'session_fail_preview' => "No xè stà possibiłe salvar le to modifiche parché i dati de la session i xè andai persi.
 Par piaser, riproa da novo.
@@ -800,7 +830,9 @@ Se no funsiona gnancora, proa a [[Special:UserLogout|scołegarte]] e a cołegart
 '''Se te stè fasendo na modifica legìtima, par piaser próa de novo.
 Se no funsiona gnancora, te pol proár a [[Special:UserLogout|scolegarte]] e efetuar da novo l'acesso.'''",
 'token_suffix_mismatch' => "'''La modifica no la xe mìa stà salvà parché el client el gà mostrà de gestir in maniera sbaglià i caràteri de puntegiatura nel token associà a la stessa. Par evitar na possibile coruzion del testo de la pagina, xe stà rifiutà l'intera modifica. Sta situazion la pode verificarse, a olte, quando vien doparà serti servizi de proxy anonimi via web che presenta dei bug.'''",
+'edit_form_incomplete' => "' ' Alcune parte del moduło de modifega no łe xe rivade al server; controłare che łe modifeghe sìe intate e riprovare. ' '",
 'editing' => 'Canbia $1',
+'creating' => 'Te si drio creare $1',
 'editingsection' => 'Canbia $1 (sezion)',
 'editingcomment' => 'Modifica de $1 (sezion nova)',
 'editconflict' => 'Conflito de edizion: $1',
@@ -821,8 +853,8 @@ Cargando el testo te dichiari inoltre, soto la to responsabilità, che el testo 
 Se no te voli che i to scriti i vegna modificà sensa pietà, alora no sta inserirli qua.<br />
 Sapi che te stè prometendo che te stè inserendo un testo scrito de to pugno, o copià da na fonte de publico dominio o similarmente lìbara (varda $1 par i detagli).
 '''NO STA INSERIR OPERE PROTETE DA COPYRIGHT SENSA PERMESSO!'''",
-'longpageerror' => "'''ERROR: The text you have submitted is $1 kilobytes
-long, which is longer than the maximum of $2 kilobytes. It cannot be saved.'''",
+'longpageerror' => "'''Erore: el testo invià xe grando {{PLURAL:$1|1|$1}} kilobyte, che xe de pì deła dimension masima consentìa de {{PLURAL:$2|1|$2}} kilobyte.'''
+El testo no połe esare salvà.",
 'readonlywarning' => "'''OCIO: El database el xe stà blocà par manutenzion, quindi no se pol salvar le modifiche in sto momento.
 Par no pèrdarle, te pol copiar tuto quel che te ghè inserìo fin desso ne la casela de modifica, incolarlo in un programa de elaborazion de testi e salvarlo, intanto che te speti che i sbloca el database.'''
 
@@ -860,6 +892,7 @@ Pararìa che la sìpia stà scancelà.',
 'edit-no-change' => 'La to modifica la xe stà ignorà, parché no ti gà canbià gnente nel testo.',
 'edit-already-exists' => 'No se pol crear na pagina nova.
 La esiste de zà.',
+'defaultmessagetext' => 'Testo predefinìo',
 
 # Parser/template warnings
 'expensive-parserfunction-warning' => 'Ocio: Sta pagina la contien dele chiamate de funzion al parser massa onerose.
@@ -875,6 +908,7 @@ Sti argomenti i xe stà omessi.",
 'parser-template-loop-warning' => 'Xe stà catà un ciclo in tel modèl: [[$1]]',
 'parser-template-recursion-depth-warning' => 'Xe stà rajunto el limite màssimo de ricorsion in tel modèl ($1)',
 'language-converter-depth-warning' => 'Limite de profondità del convertidor de lengua superà ($1)',
+'node-count-exceeded-category' => 'Pajine ndove che el node-count supera el limite',
 
 # "Undo" feature
 'undo-success' => 'Sta modifica la pode èssar anulà. Verifica el confronto presentà de seguito par èssar sicuro che el contenuto el sia come te lo voli e quindi salva le modifiche par conpletar la procedura de anulamento.',
@@ -926,29 +960,27 @@ Legenda: '''({{int:cur}})''' = difarense co l'ultima version, '''({{int:last}})'
 'rev-deleted-user-contribs' => '[nome utente o indirisso IP cavà - modifica sconta dai contributi]',
 'rev-deleted-text-permission' => "Sta version de la pagina la xe stà '''scancelà'''.
 Varda el [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} registro de scancelazion] par ulteriori detagli.",
-'rev-deleted-text-unhide' => "Sta version de la pàxena la xe sta '''scancelà'''.
-Varda el [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} registro de scancelassion] par ulteriori detagli.
-Ai aministradori xe ancora consentìo [$1 vardar sta version] se i vole.",
-'rev-suppressed-text-unhide' => "Sta version de la pagina la xe stà '''cavà'''.
-Varda el [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} registro de rimozion] par ulteriori detagli.
-I aministratori i pode ancora [$1 vardar sta versione] se i vole.",
+'rev-deleted-text-unhide' => "Sta version de la pajina ła xe stà '''scancełà'''.
+Controłare el [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} rejistro dełe scancełasion] par ulteriori detaji.
+Ai aministradori ghe xe uncora consentìo [$1 vardar sta version] se i vołe.",
+'rev-suppressed-text-unhide' => "Sta version de ła pagina la xe stà ''rimosa'''.
+Controłare el [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} rejistro dełe rimosion] par ulteriori detaji.
+I aministradori połe uncora [$1 vardar sta version] se i vołe.",
 'rev-deleted-text-view' => "Sta version de la pagina la xe stà '''scancelà'''.
-El testo el pode èssar visualizà soltanto dai aministradori del sito.
-Varda el [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} registro de scancelazion] par ulteriori detagli.",
-'rev-suppressed-text-view' => "Sta version de la pagina la xe stà '''cavà'''.
-Solo i aministratori i pole ancora védarla.
-Varda el [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} registro de rimozion] par ulteriori detagli.",
+I aministradori połe uncora vixuałixarla. Controłare el [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} rejistro dełe scancełasion] par ulteriori detaji.",
+'rev-suppressed-text-view' => "Sta version de ła pajina xe stà '''rimosa'''.
+I aministradori i połe uncora vedarla; controłare el [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} rejistro dełe rimosion] par ulteriori detaji.",
 'rev-deleted-no-diff' => "No te pode vardar sta difarensa parché una de le revision la xe stà '''scancelà'''.
 Varda el [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} registro de scancelassion] par savérghene piessè.",
 'rev-suppressed-no-diff' => "No te pol védar sta difarensa, parché una de le revision la xe stà '''scancelà'''.",
-'rev-deleted-unhide-diff' => "Una dele revision de sta difarensa la xe stà '''scancelà'''.
-Consulta el [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} registro de scancelassion] par ulteriori detagli.
-I aministradori i pode ancora [$1 vardar sta difarensa] se i vole.",
-'rev-suppressed-unhide-diff' => "Una dele revision de sta difarensa la xe stà '''sopressa'''.
-Consulta el [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} registro de sopression] par ulteriori detagli.
-I aministradori i pode ancora [$1 vardar sta difarensa] se i vole.",
-'rev-deleted-diff-view' => "Una dele revision de sta difarensa la xe stà '''scancelà'''.
-Come aministrador, te pol vardar el [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} registro de scancelassion] par ulteriori detagli.",
+'rev-deleted-unhide-diff' => "Una dełe revixion de sto confronto fra version xe stà '''scancełà'''.
+Controłare el [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} rejistro dełe scancełasion] par ulteriori detaji.
+Ai aministradori ghe xe uncora consentìo [$1 vixualixare el confronto] se i vołe.",
+'rev-suppressed-unhide-diff' => "Una dełe revixion de sto confronto de version xe stà '''sopresa'''.
+Controła el [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} rejistro dełe sopresion] par ulteriori detaji.
+I aministradori i połe uncora [$1 vixualixare el confronto] se i vołe.",
+'rev-deleted-diff-view' => "Una dełe revixion de sto confronto de version ła xe stà '''scancelà'''.
+Te połi uncora vixuałixare sto confronto; controłare el [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} rejistro dełe scancełasion] par ulteriori detaji.",
 'rev-suppressed-diff-view' => "Una dele revision de sta difarensa la xe stà '''sopressa'''.
 Come aminitrador, te pol vardar el [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} registro de sopression] par ulteriori detagli.",
 'rev-delundel' => 'mostra/scondi',

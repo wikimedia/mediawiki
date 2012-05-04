@@ -3645,6 +3645,7 @@ Questo programma deve essere distribuito assieme ad [{{SERVER}}{{SCRIPTPATH}}/CO
 'version-software' => 'Software installato',
 'version-software-product' => 'Prodotto',
 'version-software-version' => 'Versione',
+'version-entrypoints' => 'URL di accesso',
 
 # Special:FilePath
 'filepath' => 'Percorso di un file',

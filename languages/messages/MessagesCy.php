@@ -1947,6 +1947,7 @@ Sylwer bod llythrennau mawr neu fach o bwys i'r chwiliad.",
 'allpages-hide-redirects' => 'Cuddio tudalennau ailgyfeirio',
 
 # SpecialCachedPage
+'cachedspecial-viewing-cached-ttl' => "Rydych yn edrych ar fersiwn o'r dudalen a roddwyd ar gadw mewn celc hyd at $1 yn ôl.",
 'cachedspecial-refresh-now' => 'Gweld y diwygiad diweddaraf.',
 
 # Special:Categories

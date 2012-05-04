@@ -826,6 +826,7 @@ Ste argumende onne state luete.",
 'parser-template-loop-warning' => "Amme acchiete 'nu cicle de template: [[$1]]",
 'parser-template-recursion-depth-warning' => "Ha state supranete 'u limite di ricorsione de le template ($1)",
 'language-converter-depth-warning' => "'U convertitore de lènghe ha subranate 'u limite de profonnetà ($1)",
+'expansion-depth-exceeded-category' => "Pàggene addò 'a profonnetà de l'espanzione jè supranate",
 
 # "Undo" feature
 'undo-success' => "'U cangiamende pò essere annullate.
@@ -3886,6 +3887,7 @@ Ce nò, tu puè ausà 'u module facile aqquà sotte. 'U commende tune avène agg
 'api-error-duplicate-popup-title' => 'Dupleche {{PLURAL:$1|file|file}}',
 'api-error-empty-file' => "'U file ca tu è confermate ere vacande.",
 'api-error-emptypage' => 'Quanne se ne ccreje une, le pàggene vacande non ge sò permesse.',
+'api-error-fetchfileerror' => "Errore inderne: Quacchecose ha sciute stuèrte quanne ste analizzave 'u file.",
 'api-error-file-too-large' => "'U file ca tu è confermate jè troppe granne.",
 'api-error-filename-tooshort' => "'U nome d'u file jè troppe curte.",
 'api-error-filetype-banned' => 'Stu tipe de file jè vietate.',

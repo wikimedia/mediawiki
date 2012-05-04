@@ -2135,6 +2135,7 @@ A napló típusának, a szerkesztő nevének (kis- és nagybetűérzékeny), vag
 'allpagesprefix' => 'Lapok listázása, amik ezzel az előtaggal kezdődnek:',
 'allpagesbadtitle' => 'A megadott lapnév nyelvközi vagy wikiközi előtagot tartalmazott, vagy érvénytelen volt. Talán olyan karakter van benne, amit nem lehet lapnevekben használni.',
 'allpages-bad-ns' => 'A(z) {{SITENAME}} webhelyen nincs "$1" névtér.',
+'allpages-hide-redirects' => 'Átirányítások elrejtése',
 
 # Special:Categories
 'categories' => 'Kategóriák',

@@ -284,7 +284,7 @@ $messages = array(
 'site-atom-feed' => '$1 Atom Медээ Агымы',
 'page-rss-feed' => '«$1» RSS Медээ Агымы',
 'page-atom-feed' => '«$1» Atom Медээ Агымы',
-'red-link-title' => '$1 (арынны чок)',
+'red-link-title' => '$1 (арны чок)',
 
 # Short words for each namespace, by default used in the namespace tab in monobook
 'nstab-main' => 'Арын',
