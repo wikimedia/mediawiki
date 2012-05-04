@@ -181,13 +181,12 @@ class Title {
 	 * @return Title the new object, or NULL on an error
 	 */
 	public static function newFromURL( $url ) {
-		global $wgLegalTitleChars;
 		$t = new Title();
 
 		# For compatibility with old buggy URLs. "+" is usually not valid in titles,
 		# but some URLs used it as a space replacement and they still come
 		# from some external search tools.
-		if ( strpos( $wgLegalTitleChars, '+' ) === false ) {
+		if ( strpos( self::legalChars(), '+' ) === false ) {
 			$url = str_replace( '+', ' ', $url );
 		}
 

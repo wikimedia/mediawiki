@@ -4394,8 +4394,7 @@ class Parser {
 		) );
 
 		# Context links: [[|name]] and [[name (context)|]]
-		global $wgLegalTitleChars;
-		$tc = "[$wgLegalTitleChars]";
+		$tc = '[' . Title::legalChars() . ']';
 		$nc = '[ _0-9A-Za-z\x80-\xff-]'; # Namespaces can use non-ascii!
 
 		$p1 = "/\[\[(:?$nc+:|:|)($tc+?)( ?\\($tc+\\))\\|]]/";		# [[ns:page (context)|]]
