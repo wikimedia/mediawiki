@@ -175,7 +175,12 @@ class FSFileBackend extends FileBackendStore {
 		}
 
 		$ok = copy( $params['src'], $dest );
-		if ( !$ok ) {
+		// In some cases (at least over NFS), copy() returns true when it fails.
+		if ( !$ok || ( filesize( $params['src'] ) !== filesize( $dest ) ) ) {
+			if ( $ok ) { // PHP bug
+				unlink( $dest ); // remove broken file
+				trigger_error( __METHOD__ . ": copy() failed but returned true." );
+			}
 			$status->fatal( 'backend-fail-store', $params['src'], $params['dst'] );
 			return $status;
 		}
@@ -218,7 +223,12 @@ class FSFileBackend extends FileBackendStore {
 		}
 
 		$ok = copy( $source, $dest );
-		if ( !$ok ) {
+		// In some cases (at least over NFS), copy() returns true when it fails.
+		if ( !$ok || ( filesize( $source ) !== filesize( $dest ) ) ) {
+			if ( $ok ) { // PHP bug
+				unlink( $dest ); // remove broken file
+				trigger_error( __METHOD__ . ": copy() failed but returned true." );
+			}
 			$status->fatal( 'backend-fail-copy', $params['src'], $params['dst'] );
 			return $status;
 		}
