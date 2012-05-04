@@ -132,6 +132,23 @@ class HTMLForm extends ContextSource {
 	protected $mSubSectionBeforeFields = true;
 
 	/**
+	 * Format in which to display form. For viable options,
+	 * @see $availableDisplayFormats
+	 * @var String
+	 */
+	protected $displayFormat = 'table';
+
+	/**
+	 * Available formats in which to display the form
+	 * @var Array
+	 */
+	protected $availableDisplayFormats = array(
+		'table',
+		'div',
+		'raw',
+	);
+
+	/**
 	 * Build a new HTMLForm from an array of field attributes
 	 * @param $descriptor Array of Field constructs, as described above
 	 * @param $context IContextSource available since 1.18, will become compulsory in 1.18.
@@ -187,6 +204,26 @@ class HTMLForm extends ContextSource {
 		}
 
 		$this->mFieldTree = $loadedDescriptor;
+	}
+
+	/**
+	 * Set format in which to display the form
+	 * @param $format String the name of the format to use, must be one of
+	 *		$this->availableDisplayFormats
+	 */
+	public function setDisplayFormat( $format ) {
+		if ( !in_array( $format, $this->availableDisplayFormats ) ) {
+			throw new Exception ( 'Display format must be one of ' . print_r( $this->availableDisplayFormats, true ) );
+		}
+		$this->displayFormat = $format;
+	}
+
+	/**
+	 * Getter for displayFormat
+	 * @return String
+	 */
+	public function getDisplayFormat() {
+		return $this->displayFormat;
 	}
 
 	/**
@@ -762,7 +799,29 @@ class HTMLForm extends ContextSource {
 	 * @param $fieldsetIDPrefix string ID prefix for the <fieldset> tag of each subsection, ignored if empty
 	 * @return String
 	 */
-	function displaySection( $fields, $sectionName = '', $fieldsetIDPrefix = '' ) {
+	public function displaySection( $fields, $sectionName = '', $fieldsetIDPrefix = '' ) {
+		$displayFormat = $this->getDisplayFormat();
+		switch ( $displayFormat ) {
+			case 'table':
+				return $this->displaySectionTable( $fields, $sectionName, $fieldsetIDPrefix );
+				break;
+			case 'div':
+				return $this->displaySectionDiv( $fields, $sectionName, $fieldsetIDPrefix );
+				break;
+			case 'raw':
+				return $this->displaySectionRaw( $fields, $sectionName, $fieldsetIDPrefix );
+				break;
+		}
+	}
+
+	/**
+	 * TODO: Document
+	 * @param $fields array[]|HTMLFormField[] array of fields (either arrays or objects)
+	 * @param $sectionName string ID attribute of the <table> tag for this section, ignored if empty
+	 * @param $fieldsetIDPrefix string ID prefix for the <fieldset> tag of each subsection, ignored if empty
+	 * @return String
+	 */
+	protected function displaySectionTable( $fields, $sectionName = '', $fieldsetIDPrefix = '' ) {
 		$tableHtml = '';
 		$subsectionHtml = '';
 		$hasLeftColumn = false;
@@ -788,7 +847,7 @@ class HTMLForm extends ContextSource {
 				}
 				$attributes = array();
 				if ( $fieldsetIDPrefix ) {
-					$attributes['id'] = Sanitizer::escapeId( "$fieldsetIDPrefix$key" );
+					$attributes['id'] = "$fieldsetIDPrefix$key";
 				}
 				$subsectionHtml .= Xml::fieldset( $legend, $section, $attributes ) . "\n";
 			}
@@ -805,7 +864,7 @@ class HTMLForm extends ContextSource {
 		);
 
 		if ( $sectionName ) {
-			$attribs['id'] = Sanitizer::escapeId( "mw-htmlform-$sectionName" );
+			$attribs['id'] = "mw-htmlform-$sectionName";
 		}
 
 		$tableHtml = Html::rawElement( 'table', $attribs,
@@ -815,6 +874,118 @@ class HTMLForm extends ContextSource {
 			return $subsectionHtml . "\n" . $tableHtml;
 		} else {
 			return $tableHtml . "\n" . $subsectionHtml;
+		}
+	}
+
+	/**
+	 * Render the form using (mostly) raw form elements
+	 * @see displaySectionTable()
+	 * @param $fields array[]|HTMLFormField[] array of fields (either arrays or objects)
+	 * @param $sectionName string ID attribute of the <table> tag for this section, ignored if empty
+	 * @param $fieldsetIDPrefix string ID prefix for the <fieldset> tag of each subsection, ignored if empty
+	 * @return String
+	 */
+	protected function displaySectionRaw( $fields, $sectionName, $fieldsetIDPrefix ) {
+		$rawHtml = '';
+		$subsectionHtml = '';
+		$hasLabel = false;
+
+		foreach ( $fields as $key => $value ) {
+			if ( is_object( $value ) ) {
+
+				$v = empty( $value->mParams['nodata'] )
+					? $this->mFieldData[$key]
+					: $value->getDefault();
+				$rawHtml .= $value->getRaw( $v, $value );
+
+				if ( $value->getLabel() != '&#160;' ) {
+					$hasLabel = true;
+				}
+			} elseif ( is_array( $value ) ) {
+				$section = $this->displaySection( $value, $key );
+				$legend = $this->getLegend( $key );
+				if ( isset( $this->mSectionHeaders[$key] ) ) {
+					$section = $this->mSectionHeaders[$key] . $section;
+				}
+				if ( isset( $this->mSectionFooters[$key] ) ) {
+					$section .= $this->mSectionFooters[$key];
+				}
+				$attributes = array();
+				if ( $fieldsetIDPrefix ) {
+					$attributes['id'] = "$fieldsetIDPrefix$key";
+				}
+				$subsectionHtml .= Xml::fieldset( $legend, $section, $attributes ) . "\n";
+			}
+		}
+
+		if ( $this->mSubSectionBeforeFields ) {
+			return $subsectionHtml . "\n" . $rawHtml;
+		} else {
+			return $rawHtml . "\n" . $subsectionHtml;
+		}
+	}
+
+	/**
+	 * Render the form with elements wrapped in divs
+	 * @see displaySectionTable()
+	 * @param $fields array[]|HTMLFormField[] array of fields (either arrays or objects)
+	 * @param $sectionName string ID attribute of the <table> tag for this section, ignored if empty
+	 * @param $fieldsetIDPrefix string ID prefix for the <fieldset> tag of each subsection, ignored if empty
+	 * @return String
+	 */
+	protected function displaySectionDiv( $fields, $sectionName = '', $fieldsetIDPrefix = '' ) {
+		$divHtml = '';
+		$subsectionHtml = '';
+		$hasLabel = false;
+
+		foreach ( $fields as $key => $value ) {
+			if ( is_object( $value ) ) {
+
+				$v = empty( $value->mParams['nodata'] )
+					? $this->mFieldData[$key]
+					: $value->getDefault();
+				$divHtml .= $value->getDiv( $v, $value );
+
+				if ( $value->getLabel() != '&#160;' ) {
+					$hasLabel = true;
+				}
+			} elseif ( is_array( $value ) ) {
+				$section = $this->displaySection( $value, $key );
+				$legend = $this->getLegend( $key );
+				if ( isset( $this->mSectionHeaders[$key] ) ) {
+					$section = $this->mSectionHeaders[$key] . $section;
+				}
+				if ( isset( $this->mSectionFooters[$key] ) ) {
+					$section .= $this->mSectionFooters[$key];
+				}
+				$attributes = array();
+				if ( $fieldsetIDPrefix ) {
+					$attributes['id'] = Sanitizer::escapeId( "$fieldsetIDPrefix$key" );
+				}
+				$subsectionHtml .= Xml::fieldset( $legend, $section, $attributes ) . "\n";
+			}
+		}
+
+		$classes = array();
+
+		if ( !$hasLabel ) { // Avoid strange spacing when no labels exist
+			$classes[] = 'mw-htmlform-nolabel';
+		}
+
+		$attribs = array(
+			'class' => implode( ' ', $classes ),
+		);
+
+		if ( $sectionName ) {
+			$attribs['id'] = "mw-htmlform-$sectionName";
+		}
+
+		$divHtml = HTML::rawElement( 'div', $attribs, "\n$divHtml\n" );
+
+		if ( $this->mSubSectionBeforeFields ) {
+			return $subsectionHtml . "\n" . $divHtml;
+		} else {
+			return $divHtml . "\n" . $subsectionHtml;
 		}
 	}
 
@@ -1039,6 +1210,7 @@ abstract class HTMLFormField {
 	/**
 	 * Get the complete table row for the input, including help text,
 	 * labels, and whatever.
+	 * @TODO refactor
 	 * @param $value String the value to set the input to.
 	 * @return String complete HTML table row.
 	 */
@@ -1116,6 +1288,140 @@ abstract class HTMLFormField {
 				$helptext
 			);
 			$row = Html::rawElement( 'tr', array(), $row );
+			$html .= "$row\n";
+		}
+
+		return $html;
+	}
+
+	/**
+	 * Get the complete div for the input, including help text,
+	 * labels, and whatever.
+	 * @TODO refactor
+	 * @see getTableRow()
+	 * @param $value String the value to set the input to.
+	 * @return String complete HTML table row.
+	 */
+	public function getDiv( $value ) {
+		# Check for invalid data.
+
+		$errors = $this->validate( $value, $this->mParent->mFieldData );
+
+		$cellAttributes = array();
+
+		if ( $errors === true || ( !$this->mParent->getRequest()->wasPosted() && ( $this->mParent->getMethod() == 'post' ) ) ) {
+			$errors = '';
+			$errorClass = '';
+		} else {
+			$errors = self::formatErrors( $errors );
+			$errorClass = 'mw-htmlform-invalid-input';
+		}
+
+		$label = $this->getLabelHtml( $cellAttributes );
+		$field = Html::rawElement(
+			'div',
+			array( 'class' => 'mw-input' ) + $cellAttributes,
+			$this->getInputHTML( $value ) . "\n$errors"
+		);
+
+		$fieldType = get_class( $this );
+
+		$html = Html::rawElement( 'div',
+			array( 'class' => "mw-htmlform-field-$fieldType {$this->mClass} $errorClass" ),
+			$label . $field );
+
+		$helptext = null;
+
+		if ( isset( $this->mParams['help-message'] ) ) {
+			$this->mParams['help-messages'] = array( $this->mParams['help-message'] );
+		}
+
+		if ( isset( $this->mParams['help-messages'] ) ) {
+			foreach ( $this->mParams['help-messages'] as $name ) {
+				$helpMessage = (array)$name;
+				$msg = wfMessage( array_shift( $helpMessage ), $helpMessage );
+
+				if ( $msg->exists() ) {
+					$helptext .= $msg->parse(); // Append message
+				}
+			}
+		}
+		elseif ( isset( $this->mParams['help'] ) ) {
+			$helptext = $this->mParams['help'];
+		}
+
+		if ( !is_null( $helptext ) ) {
+			$row = Html::rawElement(
+				'div',
+				array( 'colspan' => 2, 'class' => 'htmlform-tip' ),
+				$helptext
+			);
+			$row = Html::rawElement( 'div', array(), $row );
+			$html .= "$row\n";
+		}
+
+		return $html;
+	}
+
+	/**
+	 * Get the complete raw fields for the input, including help text,
+	 * labels, and whatever.
+	 * @TODO refactor
+	 * @see getTableRow()
+	 * @param $value String the value to set the input to.
+	 * @return String complete HTML table row.
+	 */
+	public function getRaw( $value ) {
+		# Check for invalid data.
+		$html = '';
+		$errors = $this->validate( $value, $this->mParent->mFieldData );
+
+		$cellAttributes = array();
+
+		if ( $errors === true || ( !$this->mParent->getRequest()->wasPosted() && ( $this->mParent->getMethod() == 'post' ) ) ) {
+			$errors = '';
+			$errorClass = '';
+		} else {
+			$errors = self::formatErrors( $errors );
+			$errorClass = 'mw-htmlform-invalid-input';
+		}
+
+		$label = $this->getLabelHtml( $cellAttributes );
+		$field = $this->getInputHTML( $value );
+
+		$fieldType = get_class( $this );
+
+		$html .= "\n$errors";
+		$html .= $label;
+		$html .= $field;
+
+		$helptext = null;
+
+		if ( isset( $this->mParams['help-message'] ) ) {
+			$this->mParams['help-messages'] = array( $this->mParams['help-message'] );
+		}
+
+		if ( isset( $this->mParams['help-messages'] ) ) {
+			foreach ( $this->mParams['help-messages'] as $name ) {
+				$helpMessage = (array)$name;
+				$msg = wfMessage( array_shift( $helpMessage ), $helpMessage );
+
+				if ( $msg->exists() ) {
+					$helptext .= $msg->parse(); // Append message
+				}
+			}
+		}
+		elseif ( isset( $this->mParams['help'] ) ) {
+			$helptext = $this->mParams['help'];
+		}
+
+		if ( !is_null( $helptext ) ) {
+			$row = Html::rawElement(
+				'div',
+				array( 'colspan' => 2, 'class' => 'htmlform-tip' ),
+				$helptext
+			);
+			$row = Html::rawElement( 'div', array(), $row );
 			$html .= "$row\n";
 		}
 
@@ -1941,22 +2247,38 @@ class HTMLRadioField extends HTMLFormField {
  * An information field (text blob), not a proper input.
  */
 class HTMLInfoField extends HTMLFormField {
-	function __construct( $info ) {
+	public function __construct( $info ) {
 		$info['nodata'] = true;
 
 		parent::__construct( $info );
 	}
 
-	function getInputHTML( $value ) {
+	public function getInputHTML( $value ) {
 		return !empty( $this->mParams['raw'] ) ? $value : htmlspecialchars( $value );
 	}
 
-	function getTableRow( $value ) {
+	public function getTableRow( $value ) {
 		if ( !empty( $this->mParams['rawrow'] ) ) {
 			return $value;
 		}
 
 		return parent::getTableRow( $value );
+	}
+
+	public function getDiv( $value ) {
+		if ( !empty( $this->mParams['rawrow'] ) ) {
+			return $value;
+		}
+
+		return parent::getDiv( $value );
+	}
+
+	public function getRaw( $value ) {
+		if ( !empty( $this->mParams['rawrow'] ) ) {
+			return $value;
+		}
+
+		return parent::getRaw( $value );
 	}
 
 	protected function needsLabel() {
@@ -1988,6 +2310,14 @@ class HTMLHiddenField extends HTMLFormField {
 		return '';
 	}
 
+	public function getDiv( $value ) {
+		return $this->getTableRow( $value );
+	}
+
+	public function getRaw( $value ) {
+		return $this->getTableRow( $value );
+	}
+
 	public function getInputHTML( $value ) { return ''; }
 }
 
@@ -1997,12 +2327,12 @@ class HTMLHiddenField extends HTMLFormField {
  */
 class HTMLSubmitField extends HTMLFormField {
 
-	function __construct( $info ) {
+	public function __construct( $info ) {
 		$info['nodata'] = true;
 		parent::__construct( $info );
 	}
 
-	function getInputHTML( $value ) {
+	public function getInputHTML( $value ) {
 		return Xml::submitButton(
 			$value,
 			array(
@@ -2034,6 +2364,24 @@ class HTMLEditTools extends HTMLFormField {
 	}
 
 	public function getTableRow( $value ) {
+		$msg = $this->formatMsg();
+
+		return '<tr><td></td><td class="mw-input">'
+			. '<div class="mw-editTools">'
+			. $msg->parseAsBlock()
+			. "</div></td></tr>\n";
+	}
+
+	public function getDiv( $value ) {
+		$msg = $this->formatMsg();
+		return '<div class="mw-editTools">' . $msg->parseAsBlock() . '</div>';
+	}
+
+	public function getRaw( $value ) {
+		return $this->getDiv( $value );
+	}
+
+	protected function formatMsg() {
 		if ( empty( $this->mParams['message'] ) ) {
 			$msg = wfMessage( 'edittools' );
 		} else {
@@ -2043,11 +2391,6 @@ class HTMLEditTools extends HTMLFormField {
 			}
 		}
 		$msg->inContentLanguage();
-
-
-		return '<tr><td></td><td class="mw-input">'
-			. '<div class="mw-editTools">'
-			. $msg->parseAsBlock()
-			. "</div></td></tr>\n";
+		return $msg;
 	}
 }
