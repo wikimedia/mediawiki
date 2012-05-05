@@ -368,7 +368,7 @@ function wfUrlencode( $s ) {
  * @param $prefix String
  * @return String
  */
-function wfArrayToCGI( $array1, $array2 = null, $prefix = '' ) {
+function wfArrayToCgi( $array1, $array2 = null, $prefix = '' ) {
 	if ( !is_null( $array2 ) ) {
 		$array1 = $array1 + $array2;
 	}
@@ -387,7 +387,7 @@ function wfArrayToCGI( $array1, $array2 = null, $prefix = '' ) {
 				foreach ( $value as $k => $v ) {
 					$cgi .= $firstTime ? '' : '&';
 					if ( is_array( $v ) ) {
-						$cgi .= wfArrayToCGI( $v, null, $key . "[$k]" );
+						$cgi .= wfArrayToCgi( $v, null, $key . "[$k]" );
 					} else {
 						$cgi .= urlencode( $key . "[$k]" ) . '=' . urlencode( $v );
 					}
@@ -405,7 +405,7 @@ function wfArrayToCGI( $array1, $array2 = null, $prefix = '' ) {
 }
 
 /**
- * This is the logical opposite of wfArrayToCGI(): it accepts a query string as
+ * This is the logical opposite of wfArrayToCgi(): it accepts a query string as
  * its argument and returns the same string in array form.  This allows compa-
  * tibility with legacy functions that accept raw query strings instead of nice
  * arrays.  Of course, keys and values are urldecode()d.
@@ -462,7 +462,7 @@ function wfCgiToArray( $query ) {
  */
 function wfAppendQuery( $url, $query ) {
 	if ( is_array( $query ) ) {
-		$query = wfArrayToCGI( $query );
+		$query = wfArrayToCgi( $query );
 	}
 	if( $query != '' ) {
 		if( false === strpos( $url, '?' ) ) {
