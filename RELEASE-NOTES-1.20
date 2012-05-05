@@ -10,8 +10,8 @@ THIS IS NOT A RELEASE YET
 MediaWiki 1.20 is an alpha-quality branch and is not recommended for use in
 production.
 
-=== PHP 5.3 now required ==
-Since 1.20, the lowest supported version of MediaWiki is now 5.3.2. Please
+=== PHP 5.3 now required ===
+Since 1.20, the lowest supported version of PHP is now 5.3.2. Please
 upgrade PHP if you have not done so prior to upgrading MediaWiki.
 
 === Configuration changes in 1.20 ===
