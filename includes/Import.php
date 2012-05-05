@@ -690,6 +690,7 @@ class WikiImporter {
 		switch( $name ) {
 		case "id":
 		case "title":
+		case "ns":
 		case "redirect":
 		case "restrictions":
 			$this->appendfield = $name;
@@ -862,6 +863,7 @@ class WikiImporter {
 		case "comment":
 		case "minor":
 		case "text":
+		case "sha1":
 			$this->appendfield = $name;
 			xml_set_element_handler( $parser, "in_nothing", "out_append" );
 			xml_set_character_data_handler( $parser, "char_append" );
