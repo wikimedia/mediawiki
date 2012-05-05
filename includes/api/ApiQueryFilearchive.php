@@ -56,6 +56,7 @@ class ApiQueryFilearchive extends ApiQueryBase {
 		$fld_dimensions = isset( $prop['dimensions'] );
 		$fld_description = isset( $prop['description'] ) || isset( $prop['parseddescription'] );
 		$fld_mime = isset( $prop['mime'] );
+		$fld_mediatype = isset( $prop['mediatype'] );
 		$fld_metadata = isset( $prop['metadata'] );
 		$fld_bitdepth = isset( $prop['bitdepth'] );
 
@@ -68,6 +69,7 @@ class ApiQueryFilearchive extends ApiQueryBase {
 		$this->addFieldsIf( array( 'fa_height', 'fa_width', 'fa_size' ), $fld_dimensions || $fld_size );
 		$this->addFieldsIf( 'fa_description', $fld_description );
 		$this->addFieldsIf( array( 'fa_major_mime', 'fa_minor_mime' ), $fld_mime );
+		$this->addFieldsIf( 'fa_media_type', $fld_mediatype );
 		$this->addFieldsIf( 'fa_metadata', $fld_metadata );
 		$this->addFieldsIf( 'fa_bits', $fld_bitdepth );
 
@@ -165,6 +167,9 @@ class ApiQueryFilearchive extends ApiQueryBase {
 						$row->fa_description, $title );
 				}
 			}
+			if ( $fld_mediatype ) {
+				$file['mediatype'] = $row->fa_media_type;
+			}
 			if ( $fld_metadata ) {
 				$file['metadata'] = $row->fa_metadata
 						? ApiQueryImageInfo::processMetaData( unserialize( $row->fa_metadata ), $result )
@@ -235,6 +240,7 @@ class ApiQueryFilearchive extends ApiQueryBase {
 					'description',
 					'parseddescription',
 					'mime',
+					'mediatype',
 					'metadata',
 					'bitdepth'
 				),
@@ -261,6 +267,7 @@ class ApiQueryFilearchive extends ApiQueryBase {
 				' description       - Adds description the image version',
 				' parseddescription - Parse the description on the version',
 				' mime              - Adds MIME of the image',
+				' mediatype         - Adds the media type of the image',
 				' metadata          - Lists EXIF metadata for the version of the image',
 				' bitdepth          - Adds the bit depth of the version',
 			),
