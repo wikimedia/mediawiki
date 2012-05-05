@@ -142,6 +142,15 @@ class ApiQuerySiteinfo extends ApiQueryBase {
 		$data['fallback'] = $fallbacks;
 		$this->getResult()->setIndexedTagName( $data['fallback'], 'lang' );
 
+		if( $wgContLang->hasVariants() ) {
+			$variants = array();
+			foreach( $wgContLang->getVariants() as $code ) {
+				$variants[] = array( 'code' => $code );
+			}
+			$data['variants'] = $variants;
+			$this->getResult()->setIndexedTagName( $data['variants'], 'lang' );
+		}
+
 		if ( $wgContLang->isRTL() ) {
 			$data['rtl'] = '';
 		}
