@@ -989,6 +989,9 @@ class PPFrame_DOM implements PPFrame {
 		}
 		wfProfileIn( __METHOD__ );
 		++$expansionDepth;
+		if ( $expansionDepth > $this->parser->mHighestExpansionDepth ) {
+			$this->parser->mHighestExpansionDepth = $expansionDepth;
+		}
 
 		if ( $root instanceof PPNode_DOM ) {
 			$root = $root->node;

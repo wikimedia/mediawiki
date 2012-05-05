@@ -944,6 +944,9 @@ class PPFrame_Hash implements PPFrame {
 			return '<span class="error">Expansion depth limit exceeded</span>';
 		}
 		++$expansionDepth;
+		if ( $expansionDepth > $this->parser->mHighestExpansionDepth ) {
+			$this->parser->mHighestExpansionDepth = $expansionDepth;
+		}
 
 		$outStack = array( '', '' );
 		$iteratorStack = array( false, $root );

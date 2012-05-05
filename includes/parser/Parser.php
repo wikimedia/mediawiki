@@ -161,7 +161,7 @@ class Parser {
 	var $mLinkHolders;
 
 	var $mLinkID;
-	var $mIncludeSizes, $mPPNodeCount, $mDefaultSort;
+	var $mIncludeSizes, $mPPNodeCount, $mHighestExpansionDepth, $mDefaultSort;
 	var $mTplExpandCache; # empty-frame expansion cache
 	var $mTplRedirCache, $mTplDomCache, $mHeadings, $mDoubleUnderscores;
 	var $mExpensiveFunctionCount; # number of expensive parser function calls
@@ -304,6 +304,7 @@ class Parser {
 			'arg' => 0,
 		);
 		$this->mPPNodeCount = 0;
+		$this->mHighestExpansionDepth = 0;
 		$this->mDefaultSort = false;
 		$this->mHeadings = array();
 		$this->mDoubleUnderscores = array();
@@ -478,6 +479,7 @@ class Parser {
 				"Preprocessor node count: {$this->mPPNodeCount}/{$this->mOptions->getMaxPPNodeCount()}\n" .
 				"Post-expand include size: {$this->mIncludeSizes['post-expand']}/$max bytes\n" .
 				"Template argument size: {$this->mIncludeSizes['arg']}/$max bytes\n".
+				"Highest expansion depth: {$this->mHighestExpansionDepth}/{$this->mOptions->getMaxPPExpandDepth()}\n".
 				$PFreport;
 			wfRunHooks( 'ParserLimitReport', array( $this, &$limitReport ) );
 			$text .= "\n<!-- \n$limitReport-->\n";
