@@ -3537,6 +3537,16 @@ class User {
 	 */
 	public static function getGroupPermissions( $groups ) {
 		global $wgGroupPermissions, $wgRevokePermissions;
+		//Temporary backward compatibility for deprecated (since 1.20) $wgRevokePermissions
+		if( isset( $wgRevokePermissions ) ) {
+			foreach( $wgRevokePermissions as $group => $perms ) {
+				foreach( $perms as $role => $value ) {
+					if( $value == true ) {
+						$wgGroupPermissions[$group][$role] = -1;
+					}
+				}
+			}
+		}
 		$rights = array();
 		// grant every granted permission first
 		foreach( $groups as $group ) {
@@ -3545,12 +3555,19 @@ class User {
 					// array_filter removes empty items
 					array_keys( array_filter( $wgGroupPermissions[$group] ) ) );
 			}
+			//gather the revoked permissions, marked with -1
+			$RevokedGroups[$group] = array();
+			foreach($wgGroupPermissions[$group] as $key => $value) {
+				if($value === -1) {
+					$RevokedGroups[$group][$key] = true;
+				}
+			}
 		}
 		// now revoke the revoked permissions
 		foreach( $groups as $group ) {
-			if( isset( $wgRevokePermissions[$group] ) ) {
+			if( isset( $RevokedGroups[$group] ) ) {
 				$rights = array_diff( $rights,
-					array_keys( array_filter( $wgRevokePermissions[$group] ) ) );
+					array_keys( array_filter( $RevokedGroups[$group] ) ) );
 			}
 		}
 		return array_unique( $rights );
@@ -3566,7 +3583,7 @@ class User {
 		global $wgGroupPermissions;
 		$allowedGroups = array();
 		foreach ( $wgGroupPermissions as $group => $rights ) {
-			if ( isset( $rights[$role] ) && $rights[$role] ) {
+			if ( isset( $rights[$role] ) && $rights[$role] && $rights[$role] !== -1 ) {
 				$allowedGroups[] = $group;
 			}
 		}
@@ -3603,9 +3620,9 @@ class User {
 	 * @return Array of internal group names
 	 */
 	public static function getAllGroups() {
-		global $wgGroupPermissions, $wgRevokePermissions;
+		global $wgGroupPermissions;
 		return array_diff(
-			array_merge( array_keys( $wgGroupPermissions ), array_keys( $wgRevokePermissions ) ),
+			array_merge( array_keys( $wgGroupPermissions ) ),
 			self::getImplicitGroups()
 		);
 	}

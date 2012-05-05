@@ -7,7 +7,7 @@ define( 'NS_UNITTEST_TALK', 5601 );
  * @group Database
  */
 class UserTest extends MediaWikiTestCase {
-	protected $savedGroupPermissions, $savedRevokedPermissions;
+	protected $savedGroupPermissions;
 
 	/**
 	 * @var User
@@ -18,13 +18,12 @@ class UserTest extends MediaWikiTestCase {
 		parent::setUp();
 
 		$this->savedGroupPermissions = $GLOBALS['wgGroupPermissions'];
-		$this->savedRevokedPermissions = $GLOBALS['wgRevokePermissions'];
 
 		$this->setUpPermissionGlobals();
 		$this->setUpUser();
 	}
 	private function setUpPermissionGlobals() {
-		global $wgGroupPermissions, $wgRevokePermissions;
+		global $wgGroupPermissions;
 
 		# Data for regular $wgGroupPermissions test
 		$wgGroupPermissions['unittesters'] = array(
@@ -38,10 +37,6 @@ class UserTest extends MediaWikiTestCase {
 			'writetest' => true,
 			'modifytest' => true,
 		);
-		# Data for regular $wgRevokePermissions test
-		$wgRevokePermissions['formertesters'] = array(
-			'runtest' => true,
-		);
 	}
 	private function setUpUser() {
 		$this->user = new User;
@@ -52,7 +47,6 @@ class UserTest extends MediaWikiTestCase {
 		parent::tearDown();
 
 		$GLOBALS['wgGroupPermissions'] = $this->savedGroupPermissions;
-		$GLOBALS['wgRevokePermissions'] = $this->savedRevokedPermissions;
 	}
 
 	public function testGroupPermissions() {
@@ -66,13 +60,6 @@ class UserTest extends MediaWikiTestCase {
 		$this->assertContains( 'runtest', $rights );
 		$this->assertContains( 'writetest', $rights );
 		$this->assertContains( 'modifytest', $rights );
-		$this->assertNotContains( 'nukeworld', $rights );
-	}
-	public function testRevokePermissions() {
-		$rights = User::getGroupPermissions( array( 'unittesters', 'formertesters' ) );
-		$this->assertNotContains( 'runtest', $rights );
-		$this->assertNotContains( 'writetest', $rights );
-		$this->assertNotContains( 'modifytest', $rights );
 		$this->assertNotContains( 'nukeworld', $rights );
 	}
 

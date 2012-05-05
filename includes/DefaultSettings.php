@@ -3615,6 +3615,7 @@ $wgGroupPermissions['bureaucrat']['noratelimit'] = true;
  *
  * Improperly setting this could mean that your users will be unable to perform
  * certain essential tasks, so use at your own risk!
+ * @deprecated since 1.20; use $wgGroupPermissions['somegroup']['somerole'] = -1 instead
  */
 $wgRevokePermissions = array();
 
