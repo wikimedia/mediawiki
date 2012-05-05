@@ -671,7 +671,7 @@ abstract class QueryPage extends SpecialPage {
 		if ( !isset( $row->title ) ) {
 			return null;
 		}
-		$title = Title::MakeTitle( intval( $row->namespace ), $row->title );
+		$title = Title::makeTitle( intval( $row->namespace ), $row->title );
 		if ( $title ) {
 			$date = isset( $row->timestamp ) ? $row->timestamp : '';
 			$comments = '';

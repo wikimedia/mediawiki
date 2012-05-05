@@ -432,7 +432,7 @@ class SpecialNewpages extends IncludableSpecialPage {
 	}
 
 	protected function feedItem( $row ) {
-		$title = Title::MakeTitle( intval( $row->rc_namespace ), $row->rc_title );
+		$title = Title::makeTitle( intval( $row->rc_namespace ), $row->rc_title );
 		if( $title ) {
 			$date = $row->rc_timestamp;
 			$comments = $title->getTalkPage()->getFullURL();
