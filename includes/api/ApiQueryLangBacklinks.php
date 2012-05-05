@@ -89,10 +89,17 @@ class ApiQueryLangBacklinks extends ApiQueryGeneratorBase {
 				$this->addWhereFld( 'll_title', $params['title'] );
 				$this->addOption( 'ORDER BY', 'll_from' );
 			} else {
-				$this->addOption( 'ORDER BY', 'll_title, ll_from' );
+				$this->addOption( 'ORDER BY', array(
+					'll_title',
+					'll_from'
+				));
 			}
 		} else {
-			$this->addOption( 'ORDER BY', 'll_lang, ll_title, ll_from' );
+			$this->addOption( 'ORDER BY', array(
+				'll_lang',
+				'll_title',
+				'll_from'
+			));
 		}
 
 		$this->addOption( 'LIMIT', $params['limit'] + 1 );

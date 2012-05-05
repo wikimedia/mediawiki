@@ -89,10 +89,17 @@ class ApiQueryIWBacklinks extends ApiQueryGeneratorBase {
 				$this->addWhereFld( 'iwl_title', $params['title'] );
 				$this->addOption( 'ORDER BY', 'iwl_from' );
 			} else {
-				$this->addOption( 'ORDER BY', 'iwl_title, iwl_from' );
+				$this->addOption( 'ORDER BY', array(
+					'iwl_title',
+					'iwl_from'
+				));
 			}
 		} else {
-			$this->addOption( 'ORDER BY', 'iwl_prefix, iwl_title, iwl_from' );
+			$this->addOption( 'ORDER BY', array(
+				'iwl_prefix',
+				'iwl_title',
+				'iwl_from'
+			));
 		}
 
 		$this->addOption( 'LIMIT', $params['limit'] + 1 );

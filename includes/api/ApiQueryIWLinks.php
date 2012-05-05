@@ -76,26 +76,26 @@ class ApiQueryIWLinks extends ApiQueryBase {
 			);
 		}
 
-		$dir = ( $params['dir'] == 'descending' ? ' DESC' : '' );
+		$sort = ( $params['dir'] == 'descending' ? ' DESC' : '' );
 		if ( isset( $params['prefix'] ) ) {
 			$this->addWhereFld( 'iwl_prefix', $params['prefix'] );
 			if ( isset( $params['title'] ) ) {
 				$this->addWhereFld( 'iwl_title', $params['title'] );
-				$this->addOption( 'ORDER BY', 'iwl_from' . $dir );
+				$this->addOption( 'ORDER BY', 'iwl_from' . $sort );
 			} else {
 				$this->addOption( 'ORDER BY', array(
-						'iwl_title' . $dir,
-						'iwl_from' . $dir
+						'iwl_title' . $sort,
+						'iwl_from' . $sort
 				));
 			}
 		} else {
 			// Don't order by iwl_from if it's constant in the WHERE clause
 			if ( count( $this->getPageSet()->getGoodTitles() ) == 1 ) {
-				$this->addOption( 'ORDER BY', 'iwl_prefix' . $dir );
+				$this->addOption( 'ORDER BY', 'iwl_prefix' . $sort );
 			} else {
 				$this->addOption( 'ORDER BY', array (
-						'iwl_from' . $dir,
-						'iwl_prefix' . $dir
+						'iwl_from' . $sort,
+						'iwl_prefix' . $sort
 				));
 			}
 		}

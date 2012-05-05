@@ -90,7 +90,10 @@ class ApiQueryWatchlistRaw extends ApiQueryGeneratorBase {
 		if ( count( $params['namespace'] ) == 1 ) {
 			$this->addOption( 'ORDER BY', 'wl_title' . $sort );
 		} else {
-			$this->addOption( 'ORDER BY', 'wl_namespace' . $sort . ', wl_title' . $sort );
+			$this->addOption( 'ORDER BY', array(
+				'wl_namespace' . $sort,
+				'wl_title' . $sort
+			));
 		}
 		$this->addOption( 'LIMIT', $params['limit'] + 1 );
 		$res = $this->select( __METHOD__ );
