@@ -152,13 +152,14 @@ class ApiQueryContributions extends ApiQueryBase {
 				$this->dieUsage( 'Invalid continue param. You should pass the original ' .
 					'value returned by the previous query', '_badcontinue' );
 			}
-			$encUser = $this->getDB()->strencode( $continue[0] );
-			$encTS = wfTimestamp( TS_MW, $continue[1] );
+			$db = $this->getDB();
+			$encUser = $db->addQuotes( $continue[0] );
+			$encTS = $db->addQuotes( $db->timestamp( $continue[1] ) );
 			$op = ( $this->params['dir'] == 'older' ? '<' : '>' );
 			$this->addWhere(
-				"rev_user_text $op '$encUser' OR " .
-				"(rev_user_text = '$encUser' AND " .
-				"rev_timestamp $op= '$encTS')"
+				"rev_user_text $op $encUser OR " .
+				"(rev_user_text = $encUser AND " .
+				"rev_timestamp $op= $encTS)"
 			);
 		}
 

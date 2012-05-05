@@ -322,9 +322,9 @@ class ApiQueryRevisions extends ApiQueryBase {
 				$pageid = intval( $cont[0] );
 				$revid = intval( $cont[1] );
 				$this->addWhere(
-					"rev_page > '$pageid' OR " .
-					"(rev_page = '$pageid' AND " .
-					"rev_id >= '$revid')"
+					"rev_page > $pageid OR " .
+					"(rev_page = $pageid AND " .
+					"rev_id >= $revid)"
 				);
 			}
 			$this->addOption( 'ORDER BY', 'rev_page, rev_id' );

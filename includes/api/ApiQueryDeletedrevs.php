@@ -163,15 +163,16 @@ class ApiQueryDeletedrevs extends ApiQueryBase {
 			if ( count( $cont ) != 3 ) {
 				$this->dieUsage( 'Invalid continue param. You should pass the original value returned by the previous query', 'badcontinue' );
 			}
+			$db = $this->getDB();
 			$ns = intval( $cont[0] );
-			$title = $this->getDB()->strencode( $this->titleToKey( $cont[1] ) );
-			$ts = $this->getDB()->strencode( $cont[2] );
+			$title = $db->addQuotes( $this->titleToKey( $cont[1] ) );
+			$ts = $db->addQuotes( $db->timestamp( $cont[2] ) );
 			$op = ( $dir == 'newer' ? '>' : '<' );
 			$this->addWhere( "ar_namespace $op $ns OR " .
 					"(ar_namespace = $ns AND " .
-					"(ar_title $op '$title' OR " .
-					"(ar_title = '$title' AND " .
-					"ar_timestamp $op= '$ts')))" );
+					"(ar_title $op $title OR " .
+					"(ar_title = $title AND " .
+					"ar_timestamp $op= $ts)))" );
 		}
 
 		$this->addOption( 'LIMIT', $limit + 1 );

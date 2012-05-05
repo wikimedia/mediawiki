@@ -195,18 +195,18 @@ class ApiQueryBacklinks extends ApiQueryGeneratorBase {
 
 		if ( !is_null( $this->redirID ) ) {
 			$first = $this->redirTitles[0];
-			$title = $db->strencode( $first->getDBkey() );
+			$title = $db->addQuotes( $first->getDBkey() );
 			$ns = $first->getNamespace();
 			$from = $this->redirID;
 			if ( $this->hasNS ) {
 				$this->addWhere( "{$this->bl_ns} > $ns OR " .
 						"({$this->bl_ns} = $ns AND " .
-						"({$this->bl_title} > '$title' OR " .
-						"({$this->bl_title} = '$title' AND " .
+						"({$this->bl_title} > $title OR " .
+						"({$this->bl_title} = $title AND " .
 						"{$this->bl_from} >= $from)))" );
 			} else {
-				$this->addWhere( "{$this->bl_title} > '$title' OR " .
-						"({$this->bl_title} = '$title' AND " .
+				$this->addWhere( "{$this->bl_title} > $title OR " .
+						"({$this->bl_title} = $title AND " .
 						"{$this->bl_from} >= $from)" );
 			}
 		}

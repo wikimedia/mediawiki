@@ -80,11 +80,11 @@ class ApiQueryAllLinks extends ApiQueryGeneratorBase {
 			if ( count( $arr ) != 2 ) {
 				$this->dieUsage( 'Invalid continue parameter', 'badcontinue' );
 			}
-			$from = $this->getDB()->strencode( $this->titleToKey( $arr[0] ) );
+			$from = $db->addQuotes( $this->titleToKey( $arr[0] ) );
 			$id = intval( $arr[1] );
 			$this->addWhere(
-				"pl_title > '$from' OR " .
-				"(pl_title = '$from' AND " .
+				"pl_title > $from OR " .
+				"(pl_title = $from AND " .
 				"pl_from > $id)"
 			);
 		}
