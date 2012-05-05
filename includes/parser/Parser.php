@@ -3071,7 +3071,7 @@ class Parser {
 	 * @private
 	 */
 	function braceSubstitution( $piece, $frame ) {
-		global $wgNonincludableNamespaces, $wgContLang;
+		global $wgContLang;
 		wfProfileIn( __METHOD__ );
 		wfProfileIn( __METHOD__.'-setup' );
 
@@ -3304,7 +3304,7 @@ class Parser {
 						$isHTML = true;
 						$this->disableCache();
 					}
-				} elseif ( $wgNonincludableNamespaces && in_array( $title->getNamespace(), $wgNonincludableNamespaces ) ) {
+				} elseif ( MWNamespace::isNonincludableNamespace( $title->getNamespace() ) ) {
 					$found = false; # access denied
 					wfDebug( __METHOD__.": template inclusion denied for " . $title->getPrefixedDBkey() );
 				} else {
