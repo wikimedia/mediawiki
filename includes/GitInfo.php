@@ -187,20 +187,10 @@ class GitInfo {
 	 * @return array
 	 */
 	protected static function getViewers() {
+		global $wgGitRepositoryViewers;
+
 		if( self::$viewers === false ) {
-
-			// Map of repo URLs to viewer URLs.
-			//
-			// Key is a pattern passed to preg_match() and preg_replace(),
-			// without the delimiters (which are #) and must match the whole URL.
-			// The value is the replacement for the key (it can contain $1, etc.)
-			// %h will be replaced by the short SHA-1 (7 first chars) and %H by the
-			// full SHA-1 of the HEAD revision.
-			self::$viewers = array(
-				'https://gerrit.wikimedia.org/r/p/(.*)' => 'https://gerrit.wikimedia.org/r/gitweb?p=$1;h=%H',
-				'ssh://(?:[a-z0-9_]+@)?gerrit.wikimedia.org:29418/(.*)' => 'https://gerrit.wikimedia.org/r/gitweb?p=$1;h=%H',
-			);
-
+			self::$viewers = $wgGitRepositoryViewers;
 			wfRunHooks( 'GitViewers', array( &self::$viewers ) );
 		}
 
