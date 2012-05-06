@@ -30,7 +30,7 @@ $originalDir = getcwd();
 $optionsWithArgs = array( 'pagelist', 'start', 'end', 'revstart', 'revend');
 
 require_once( dirname( __FILE__ ) . '/commandLine.inc' );
-require_once( 'backup.inc' );
+require_once( dirname( __FILE__ ) . '/backup.inc' );
 
 $dumper = new BackupDumper( $argv );
 
