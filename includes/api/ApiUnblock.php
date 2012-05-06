@@ -98,7 +98,10 @@ class ApiUnblock extends ApiBase {
 			),
 			'user' => null,
 			'token' => null,
-			'gettoken' => false,
+			'gettoken' => array(
+				ApiBase::PARAM_DFLT => false,
+				ApiBase::PARAM_DEPRECATED => true,
+			),
 			'reason' => null,
 		);
 	}
@@ -108,7 +111,7 @@ class ApiUnblock extends ApiBase {
 		return array(
 			'id' => "ID of the block you want to unblock (obtained through list=blocks). Cannot be used together with {$p}user",
 			'user' => "Username, IP address or IP range you want to unblock. Cannot be used together with {$p}id",
-			'token' => "An unblock token previously obtained through the gettoken parameter or {$p}prop=info",
+			'token' => "An unblock token previously obtained through prop=info",
 			'gettoken' => 'If set, an unblock token will be returned, and no other action will be taken',
 			'reason' => 'Reason for unblock (optional)',
 		);
