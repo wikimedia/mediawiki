@@ -585,6 +585,55 @@ class WikiPage extends Page {
 	 *      Revision::FOR_PUBLIC       to be displayed to all users
 	 *      Revision::FOR_THIS_USER    to be displayed to $wgUser
 	 *      Revision::RAW              get the text regardless of permissions
+	 * @return int user ID for the user that created the page
+	 */
+	public function getCreator( $audience = Revision::FOR_PUBLIC ) {
+		wfProfileIn( __METHOD__ );
+
+		// Try using the slave database first, then try the master
+		$continue = 2;
+		$db = wfGetDB( DB_SLAVE );
+
+		while ( $continue ) {
+			$res = $db->select(
+				array( 'page', 'revision' ),
+				array( 'rev_user' ),
+				array(
+					'page_namespace' => $this->mTitle->getNamespace(),
+					'page_title' => $this->mTitle->getDBkey(),
+					'rev_page = page_id'
+				),
+				__METHOD__,
+				array(
+					'ORDER BY' => 'rev_timestamp ASC',
+					'LIMIT' => 1
+				)
+			);
+
+			if ( !$res ) {
+				wfProfileOut( __METHOD__ );
+				return -1;
+			}
+
+			$row = $db->fetchObject( $res );
+
+			if ( $row ) {
+				$continue = 0;
+			} else {
+				$db = wfGetDB( DB_MASTER );
+				$continue--;
+			}
+		}
+
+		wfProfileOut( __METHOD__ );
+		return $row->rev_user;
+	}
+
+	/**
+	 * @param $audience Integer: one of:
+	 *      Revision::FOR_PUBLIC       to be displayed to all users
+	 *      Revision::FOR_THIS_USER    to be displayed to $wgUser
+	 *      Revision::RAW              get the text regardless of permissions
 	 * @return string username of the user that made the last article revision
 	 */
 	public function getUserText( $audience = Revision::FOR_PUBLIC ) {
