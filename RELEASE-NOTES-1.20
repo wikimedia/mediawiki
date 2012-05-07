@@ -54,6 +54,8 @@ upgrade PHP if you have not done so prior to upgrading MediaWiki.
 * (bug 22887) Add warning and tracking category for preprocessor errors
 * (bug 31704) Allow selection of associated namespace on the watchlist
 * (bug 5445) Now remove autoblocks when a user is unblocked.
+* Added $wgLogExceptionBacktrace, on by default, to allow logging of exception
+  backtraces.
 
 === Bug fixes in 1.20 ===
 * (bug 30245) Use the correct way to construct a log page title.
