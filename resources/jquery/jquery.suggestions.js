@@ -103,7 +103,7 @@ $.suggestions = {
 			// Wait for the browser to update the value
 			setTimeout( function() {
 				// Render special
-				$special = context.data.$container.find( '.suggestions-special' );
+				var $special = context.data.$container.find( '.suggestions-special' );
 				context.config.special.render.call( $special, context.data.$textbox.val() );
 			}, 1 );
 		}
@@ -311,7 +311,7 @@ $.suggestions = {
 			case 13:
 				context.data.$container.hide();
 				preventDefault = wasVisible;
-				selected = context.data.$container.find( '.suggestions-result-current' );
+				var selected = context.data.$container.find( '.suggestions-result-current' );
 				if ( selected.length === 0 || context.data.selectedWithMouse ) {
 					// if nothing is selected OR if something was selected with the mouse,
 					// cancel any current requests and submit the form
