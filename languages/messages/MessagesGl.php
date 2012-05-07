@@ -1013,6 +1013,10 @@ Estes argumentos foron omitidos.",
 'parser-template-loop-warning' => 'Detectouse un modelo en bucle: [[$1]]',
 'parser-template-recursion-depth-warning' => 'Excedeuse o límite da profundidade do recurso do modelo ($1)',
 'language-converter-depth-warning' => 'Excedeuse o límite de profundidade do convertedor de lingua ($1)',
+'node-count-exceeded-category' => 'Páxinas nas que se supera o número de nodos',
+'node-count-exceeded-warning' => 'Páxina que supera o número de nodos',
+'expansion-depth-exceeded-category' => 'Páxinas nas que se supera a profundidade de expansión',
+'expansion-depth-exceeded-warning' => 'Páxina que supera a profundidade de expansión',
 
 # "Undo" feature
 'undo-success' => 'A edición pódese desfacer.

@@ -4428,7 +4428,8 @@ This is being used in [[Special:Version]], preceeding the subversion revision nu
 'version-software-product' => 'Shown in [[Special:Version]]',
 'version-software-version' => '{{Identical|Version}}',
 'version-entrypoints' => 'Header on [[Special:Version]] above a table that lists the URLs of various entry points in this MediaWiki installation. Entry points are the "places" where the wiki\'s content and information can be accessed in various ways, for instance the standard index.php which shows normal pages, histories etc.',
-'version-entrypoints-header-entrypoint' => 'Header for the first column in the entry points table on [[Special:Version]].',
+'version-entrypoints-header-entrypoint' => 'Header for the first column in the entry points table on [[Special:Version]].
+See also {{msg-mw|Version-entrypoints}}',
 'version-entrypoints-header-url' => 'Header for the second column in the entry points table on [[Special:Version]].',
 'version-entrypoints-articlepath' => 'A short description of the article path entry point. Links to the mediawiki.org documentation page for $wgArticlePath.',
 'version-entrypoints-scriptpath' => 'A short description of the script path entry point. Links to the mediawiki.org documentation page for $wgScriptPath.',

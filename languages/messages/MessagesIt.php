@@ -1012,6 +1012,10 @@ Alcuni template non verranno inclusi.",
 'parser-template-loop-warning' => 'Rilevato loop del template: [[$1]]',
 'parser-template-recursion-depth-warning' => 'È stato raggiunto il limite di ricorsione nel template ($1)',
 'language-converter-depth-warning' => 'Limite di profondità del convertitore di lingua superato ($1)',
+'node-count-exceeded-category' => 'Pagine dove viene superato il numero di nodi',
+'node-count-exceeded-warning' => 'Questa pagina ha superato il numero di nodi',
+'expansion-depth-exceeded-category' => 'Pagine dove viene superata la profondità di espansione',
+'expansion-depth-exceeded-warning' => 'Questa pagina ha superato la profondità di espansione',
 
 # "Undo" feature
 'undo-success' => 'Questa modifica può essere annullata. Verificare il confronto presentato di seguito per accertarsi che il contenuto corrisponda a quanto desiderato e quindi salvare le modifiche per completare la procedura di annullamento.',
@@ -3646,6 +3650,8 @@ Questo programma deve essere distribuito assieme ad [{{SERVER}}{{SCRIPTPATH}}/CO
 'version-software-product' => 'Prodotto',
 'version-software-version' => 'Versione',
 'version-entrypoints' => 'URL di accesso',
+'version-entrypoints-header-entrypoint' => 'Punti di accesso',
+'version-entrypoints-header-url' => 'URL',
 
 # Special:FilePath
 'filepath' => 'Percorso di un file',

@@ -2414,7 +2414,7 @@ Potvrdite svoju nameru, da razumete posledice i da ovo radite u skladu s [[{{Med
 Pogledajte ''$2'' za više detalja.",
 'dellogpage' => 'Dnevnik brisanja',
 'dellogpagetext' => 'Ispod je spisak poslednjih brisanja.',
-'deletionlog' => 'istorija brisanja',
+'deletionlog' => 'Dnevnik brisanja',
 'reverted' => 'Vraćeno na raniju izmenu',
 'deletecomment' => 'Razlog:',
 'deleteotherreason' => 'Drugi/dodatni razlog:',

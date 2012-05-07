@@ -22,6 +22,7 @@
  * @author Claymore
  * @author Comp1089
  * @author DCamer
+ * @author Daniyar
  * @author Dim Grits
  * @author Don Alessandro
  * @author Eleferen
@@ -780,7 +781,7 @@ $2',
 'invalidemailaddress' => 'Адрес электронной почты не может быть принят, так как он не соответствует формату.
 Пожалуйста, введите корректный адрес или оставьте поле пустым.',
 'cannotchangeemail' => 'Адреса электронной почты этой учётной записи не могут быть изменены в этой вики.',
-'emaildisabled' => 'Этот сайт не может отправлять сообщения электронной почты.',
+'emaildisabled' => 'Бұл сайт э-поштаның хабарламасын жібере алмайды.',
 'accountcreated' => 'Учётная запись создана',
 'accountcreatedtext' => 'Создана учётная запись участника $1.',
 'createaccount-title' => '{{SITENAME}}: создание учётной записи',

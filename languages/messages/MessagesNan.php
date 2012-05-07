@@ -359,7 +359,7 @@ Che it-poaⁿ sī in-ūi koè-sî ê cheng-chha ia̍h sī le̍k-sú liân-kiat �
 Nā m̄-sī hit chióng chêng-hêng, lí khó-lêng tú tio̍h nńg-thé ê chhò-ngō͘. Chhiáⁿ pò hō͘ chi̍t ūi [[Special:ListUsers/sysop|koán-lí-goân]], ūi liân-kiat hiâ khì lâu thong-ti .',
 'missingarticle-rev' => '（修訂本#: $1）',
 'missingarticle-diff' => '(精差：$1, $2)',
-'readonly_lag' => '資料庫已經自動鎖牢咧，從屬資料庫伺服器當咧更新綴到主伺服器',
+'readonly_lag' => '佇附屬資料庫伺服器對主伺服器來更新的時陣，資料庫就已經自動鎖牢咧。',
 'internalerror' => 'Loē-pō͘ ê chhò-ngō͘',
 'internalerror_info' => 'Loē-pō͘ ê chhò-ngō͘: $1',
 'fileappenderrorread' => 'Ka-ji̍p(append) ê sî bô-hoat-tō͘ thak "$1".',
@@ -689,6 +689,7 @@ Kháu-chō ê sin bi̍t-bé thang tī teng-ji̍p liáu tī ''[[Special:ChangePas
 'note' => "'''Chù-ì:'''",
 'previewnote' => "'''Thê-chhéⁿ lí, che chí-sī  hō͘ lí sian khoàⁿ chi̍t-ē.'''
 Lí kái--ê iáu-bōe pó-chûn--khí-lâi !",
+'continue-editing' => '繼續編輯',
 'previewconflict' => '這个先看覓會反應你文字編輯區的內容，顯示佇面頂。佇你保存了就會公開。',
 'session_fail_preview' => "'''Pháiⁿ-sè! Gún chiām-sî bô hoat-tō͘ chhú-lí lí ê pian-chi̍p (goân-in: \"phàng-kiàn sú-iōng kî-kan ê chu-liāu\"). Lô-hoân têng chhì khoàⁿ-māi. Ká-sú iû-goân bô-hāu, ē-sái teng-chhut koh-chài teng-ji̍p hoān-sè tō ē-tit kái-koat.'''",
 'session_fail_preview_html' => "'''歹勢！因為phàng見資料，阮無法度處理你的編輯。'''
