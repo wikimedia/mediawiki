@@ -910,13 +910,14 @@ class Article extends Page {
 	public function showPatrolFooter() {
 		$request = $this->getContext()->getRequest();
 		$outputPage = $this->getContext()->getOutput();
+		$user = $this->getContext()->getUser();
 		$rcid = $request->getVal( 'rcid' );
 
 		if ( !$rcid || !$this->getTitle()->quickUserCan( 'patrol' ) ) {
 			return;
 		}
 
-		$token = $request->getUser()->getEditToken( $rcid );
+		$token = $user->getEditToken( $rcid );
 		$outputPage->preventClickjacking();
 
 		$outputPage->addHTML(
