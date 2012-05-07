@@ -28,6 +28,7 @@
  * @author MF-Warburg
  * @author Malafaya
  * @author Omnipaedista
+ * @author Protnet
  * @author Reedy
  * @author Remember the dot
  * @author Sinopeus
@@ -2086,6 +2087,7 @@ $1',
 'mostimages' => 'Περισσότερο χρησιμοποιούμενα αρχεία',
 'mostrevisions' => 'Άρθρα με τις περισσότερες αναθεωρήσεις',
 'prefixindex' => 'Όλες οι σελίδες με πρόθεμα',
+'prefixindex-namespace' => 'Όλες οι σελίδες με πρόθεμα (περιοχής  $1)',
 'shortpages' => 'Σύντομες σελίδες',
 'longpages' => 'Εκτενείς σελίδες',
 'deadendpages' => 'Αδιέξοδες σελίδες',
@@ -2123,6 +2125,7 @@ $1',
 # Book sources
 'booksources' => 'Πηγές βιβλίων',
 'booksources-search-legend' => 'Αναζήτηση για πηγές βιβλίων',
+'booksources-isbn' => 'ISBN:',
 'booksources-go' => 'Πήγαινε',
 'booksources-text' => 'Παρακάτω είναι μια λίστα συνδέσμων σε άλλους ιστοτόπους οι οποίοι πωλούν νέα και μεταχειρισμένα βιβλία, και μπορεί επίσης να έχουν περισσότερες πληροφορίες για βιβλία για τα οποία ψάχνετε:',
 'booksources-invalid-isbn' => 'Το δοσμένο ISBN δεν φαίνεται να είναι έγκυρο· ελέγξτε για λάθη κατά την αντιγραφή από την αρχική πηγή.',
@@ -2155,6 +2158,8 @@ $1',
 'allpages-hide-redirects' => 'Απόκρυψη ανακατευθύνσεων',
 
 # SpecialCachedPage
+'cachedspecial-viewing-cached-ttl' => 'Βλέπετε μια προσωρινά αποθηκευμένη έκδοση αυτής της σελίδας, που μπορεί να είναι μέχρι και $1 παλιά.',
+'cachedspecial-viewing-cached-ts' => 'Βλέπετε μια προσωρινά αποθηκευμένη έκδοση αυτής της σελίδας, που μπορεί να μην είναι εντελώς πραγματική.',
 'cachedspecial-refresh-now' => 'Προβολή τελευταίας.',
 
 # Special:Categories
@@ -2901,6 +2906,13 @@ $1',
 # JavaScriptTest
 'javascripttest' => 'Δοκιμή JavaScript',
 'javascripttest-disabled' => 'Αυτή η λειτουργία έχει απενεργοποιηθεί.',
+'javascripttest-title' => 'Εκτελούνται  $1  δοκιμές',
+'javascripttest-pagetext-noframework' => 'Αυτή η σελίδα είναι δεσμευμένη για την εκτέλεση δοκιμών σε JavaScript.',
+'javascripttest-pagetext-unknownframework' => 'Άγνωστο πλαίσιο δοκιμών " $1 ".',
+'javascripttest-pagetext-frameworks' => 'Παρακαλώ επιλέξτε ένα από τα ακόλουθα πλαίσια δοκιμών: $1',
+'javascripttest-pagetext-skins' => 'Επιλέξτε ένα skin για να εκτελέσετε δοκιμές με αυτό:',
+'javascripttest-qunit-intro' => 'Ανατρέξτε στην ενότητα [ $1 τεκμηρίωση δοκιμών] στο mediawiki.org.',
+'javascripttest-qunit-heading' => 'Σουίτα δοκιμών JavaScript QUnit του MediaWiki',
 
 # Tooltip help for the actions
 'tooltip-pt-userpage' => 'Η σελίδα χρήστη σας',
@@ -3708,13 +3720,13 @@ $5
 'version-hook-subscribedby' => 'Υπογεγραμμένο από',
 'version-version' => '(Έκδοση $1)',
 'version-license' => 'Άδεια χρήσης',
-'version-poweredby-credits' => "Αυτό το βίκι τροφοδοτείται από '''[//www.mediawiki.org/ MediaWiki]''', πνευματική ιδιοκτησία © 2001-$1 $2.",
+'version-poweredby-credits' => "Αυτό το βίκι λειτουργεί χάρις στο '''[//www.mediawiki.org/ MediaWiki]''', πνευματική ιδιοκτησία © 2001-$1 $2.",
 'version-poweredby-others' => 'άλλοι',
-'version-license-info' => "To Το MediaWiki είναι ελεύθερο λογισμικό. Μπορείτε να το αναδιανέμετε ή / και να το τροποποιήσετε υπό τους όρους της GNU General Public License όπως αυτή εκδόθηκε από το Free Software Foundation.Είτε η δεύτερη έκδοση της άδειας, είτε (κατ' επιλογή σας) οποιδήποτε επόμενη έκδοση.
-Ο
-Το MediaWiki διανέμεται με την ελπίδα ότι θα είναι χρήσιμο, αλλά ΧΩΡΙΣ ΚΑΜΙΑ ΕΓΓΥΗΣΗ.Ούτε καν την σιωπηρή εγγύση της  ΕΜΠΟΡΕΥΣΙΜΟΤΗΤΑΣ ή της ΚΑΤΑΛΛΗΛΟΤΗΤΑΣ ΓΙΑ ΕΝΑ PARTICULAR ΣΚΟΠΟ.Όπως δείτε την GNU General Public License για περισσότερες λεπτομέρειες.
+'version-license-info' => "Το MediaWiki είναι ελεύθερο λογισμικό. Μπορείτε να το αναδιανείμετε ή/και να το τροποποιήσετε υπό τους όρους της άδειας GNU General Public License όπως αυτή εκδόθηκε από το Free Software Foundation· είτε της δεύτερης έκδοσης της άδειας, είτε (κατ' επιλογή σας) οποιασδήποτε επόμενης έκδοσης.
 
- Θα πρέπει να έχετε λάβει [((SERVER)) ((SCRIPTPATH)) / COPYING ένα αντίγραφο της GNU General Public License] μαζί με αυτό το πρόγραμμα.Αν όχι, γράψτε προς το Free Software Foundation, Inc, 51 Franklin Street, πέμπτο όροφο , Boston, MA 02110-1301, USA ή [//www.gnu.org/licenses/old-licenses/gpl-2.0.html διαβάστε το online].",
+Το MediaWiki διανέμεται με την ελπίδα ότι θα είναι χρήσιμο, αλλά ΧΩΡΙΣ ΚΑΜΙΑ ΕΓΓΥΗΣΗ· ούτε καν την σιωπηρή εγγύηση ΕΜΠΟΡΕΥΣΙΜΟΤΗΤΑΣ ή ΚΑΤΑΛΛΗΛΟΤΗΤΑΣ ΓΙΑ ΕΝΑ ΣΥΓΚΕΚΡΙΜΕΝΟ ΣΚΟΠΟ. Βλ. GNU General Public License για περισσότερες λεπτομέρειες.
+
+Θα πρέπει να έχετε λάβει [{{SERVER}}{{SCRIPTPATH}}/COPYING ένα αντίγραφο της GNU General Public License] μαζί με αυτό το πρόγραμμα· αν όχι, στείλτε ένα γράμμα στο Free Software Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA ή [//www.gnu.org/licenses/old-licenses/gpl-2.0.html διαβάστε το διαδικτυακά].",
 'version-software' => 'Εγκατεστημένο λογισμικό',
 'version-software-product' => 'Προϊόν',
 'version-software-version' => 'Έκδοση',
@@ -3827,6 +3839,9 @@ $5
 'revdelete-content-hid' => 'το περιεχόμενο αποκρύφθηκε',
 'revdelete-summary-hid' => 'Η σύνοψη επεξεργασίας αποκρύφθηκε',
 'revdelete-uname-hid' => 'Το όνομα χρήστη αποκρύφθηκε',
+'revdelete-content-unhid' => 'το περιεχόμενο έπαψε να είναι κρυφό',
+'revdelete-summary-unhid' => 'η σύνοψη επεξεργασίας έπαψε να είναι κρυφή',
+'revdelete-uname-unhid' => 'το όνομα χρήστη έπαψε να είναι κρυφό',
 'revdelete-restricted' => 'εφάρμοσε περιορισμούς στους sysops',
 'revdelete-unrestricted' => 'αφαίρεσε περιορισμούς στους sysops',
 'logentry-move-move' => '{{GENDER:$1|Ο|Η}} $1 μετακίνησε τη σελίδα $3 στη $4',
@@ -3842,6 +3857,8 @@ $5
 'newuserlog-byemail' => 'ο κωδικός έχει σταλεί μέσω ηλεκτρονικού μηνύματος',
 
 # Feedback
+'feedback-bugornote' => 'Εάν είστε έτοιμοι να περιγράψετε ένα τεχνικό πρόβλημα λεπτομερώς παρακαλώ [ $1  κάντε μια αναφορά σφάλματος].
+Διαφορετικά, μπορείτε να χρησιμοποιήσετε την παρακάτω απλή φόρμα. Το σχόλιό σας θα προστεθεί στη σελίδα "[ $3  $2 ]", μαζί με το όνομα χρήστη σας και ποιο πρόγραμμα περιήγησης χρησιμοποιείτε.',
 'feedback-subject' => 'Θέμα:',
 'feedback-message' => 'Μήνυμα:',
 'feedback-cancel' => 'Ακύρωση',
@@ -3852,6 +3869,7 @@ $5
 'feedback-error3' => 'Σφάλμα: Καμία απάντηση από το API',
 'feedback-thanks' => 'Ευχαριστούμε! Τα σχόλιά σας έχουν καταχωρηθεί στη σελίδα "[$2 $1]".',
 'feedback-close' => 'Ολοκληρώθηκε',
+'feedback-bugcheck' => 'Ωραία! Ελέγξτε μόνο ότι δεν είναι ήδη ένα από τα [ $1  γνωστά σφάλματα].',
 'feedback-bugnew' => 'Έλεγξα. Αναφέρετε ένα νέο σφάλμα',
 
 # API errors

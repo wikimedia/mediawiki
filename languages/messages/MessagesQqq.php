@@ -1028,8 +1028,8 @@ When templates are expanded, there is a size limit for the number of bytes yield
 
 * <tt>$1</tt> is the value of the node-count limit
 * <tt>$2</tt> is the value of the max node-count limit',
-'expansion-depth-exceeded-category' => 'This message is used as a category name for a [[mw:Help:Tracking categories|tracking category]] where pages are placed automatically if the expansion depth of the preprocessor exceeds the limit.',
-'expansion-depth-exceeded-warning' => 'Error message shown when a page exceeded the expansion depth limit of the preprocessor
+'expansion-depth-exceeded-category' => 'This message is used as a category name for a [[mw:Help:Tracking categories|tracking category]] where pages are placed automatically if the [http://meta.wikimedia.org/wiki/Help:Expansion_depth expansion depth] of the preprocessor exceeds the limit.',
+'expansion-depth-exceeded-warning' => 'Error message shown when a page exceeded the [http://meta.wikimedia.org/wiki/Help:Expansion_depth expansion depth limit] of the preprocessor
 
 * <tt>$1</tt> is the value of the depth limit
 * <tt>$2</tt> is the value of the max depth limit',

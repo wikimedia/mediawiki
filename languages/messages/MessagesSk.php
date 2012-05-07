@@ -409,7 +409,7 @@ $messages = array(
 'listingcontinuesabbrev' => 'pokrač.',
 'index-category' => 'Indexované stránky',
 'noindex-category' => 'neindexované stránky',
-'broken-file-category' => 'Stránky s poškodenými odkazmi súbor',
+'broken-file-category' => 'Stránky s odkazom na neexistujúci súbor',
 
 'about' => 'Projekt',
 'article' => 'Stránka s obsahom',
@@ -964,6 +964,7 @@ Dolu je pre informáciu posledná položka zo záznamu blokovaní:',
 'note' => "'''Poznámka: '''",
 'previewnote' => "'''Nezabudnite, toto je iba náhľad stránky, ktorú upravujete.
 Zmeny ešte nie sú uložené!'''",
+'continue-editing' => 'Pokračovať v úpravách',
 'previewconflict' => 'Tento náhľad upravenej stránky zobrazuje text z horného poľa s textom tak, ako sa zobrazí potom, keď ju uložíte.',
 'session_fail_preview' => "'''Prepáčte, nemohli sme spracovať váš príspevok kvôli strate údajov relácie.
 Skúste to prosím ešte raz.
@@ -1058,6 +1059,10 @@ Tieto argumenty boli vynechané.',
 'parser-template-loop-warning' => 'Zistená slučka v šablónach: [[$1]]',
 'parser-template-recursion-depth-warning' => 'Bol prekročený limit rekurzie šablón ($1)',
 'language-converter-depth-warning' => 'Bolo prekročené obmedzenie hĺbky ($1) jazykového konvertora',
+'node-count-exceeded-category' => 'Stránky s priveľkým počtom uzlov',
+'node-count-exceeded-warning' => 'Stránka prekročila povolený počet uzlov',
+'expansion-depth-exceeded-category' => 'Stránky s priveľkou hĺbkou expanzie',
+'expansion-depth-exceeded-warning' => 'Stránka prekročila povolenú hĺbku expanzie',
 
 # "Undo" feature
 'undo-success' => 'Úpravu je možné vrátiť. Prosím skontrolujte tento rozdiel, čím overíte, že táto úprava je tá, ktorú chcete, a následne uložte zmeny, čím ukončíte vrátenie.',
@@ -3737,6 +3742,9 @@ Spolu s týmto programom by ste obdržať [{{SERVER}}{{SCRIPTPATH}}/COPYING kóp
 'version-software' => 'Nainštalovaný softvér',
 'version-software-product' => 'Produkt',
 'version-software-version' => 'Verzia',
+'version-entrypoints' => 'URL vstupných bodov',
+'version-entrypoints-header-entrypoint' => 'Vstupný bod',
+'version-entrypoints-header-url' => 'URL',
 
 # Special:FilePath
 'filepath' => 'Cesta k súboru',

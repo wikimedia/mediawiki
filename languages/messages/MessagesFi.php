@@ -2240,7 +2240,7 @@ Lisätietoa yksittäisistä käyttäjäoikeuksista saattaa löytyä [[{{MediaWik
 'watcherrortext' => 'Sivun ”$1” tarkkailulista-asetusten muutoksissa tapahtui virhe.',
 
 'enotif_mailer' => '{{GRAMMAR:genitive|{{SITENAME}}}} sivu on muuttunut -ilmoitus',
-'enotif_reset' => 'Merkitse kaikki sivut katsotuiksi',
+'enotif_reset' => 'Merkitse kaikki sivut kerralla nähdyiksi',
 'enotif_newpagetext' => 'Tämä on uusi sivu.',
 'enotif_impersonal_salutation' => '{{SITENAME}}-käyttäjä',
 'changed' => 'muuttanut sivua',
