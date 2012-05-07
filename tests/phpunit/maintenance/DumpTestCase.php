@@ -74,7 +74,7 @@ abstract class DumpTestCase extends MediaWikiTestCase {
 	 *
 	 * Clears $wgUser, and reports errors from addDBData to PHPUnit
 	 */
-	function setUp() {
+	protected function setUp() {
 		global $wgUser;
 
 		parent::setUp();
@@ -87,6 +87,30 @@ abstract class DumpTestCase extends MediaWikiTestCase {
 
 		$wgUser = new User();
 	}
+
+	/**
+	 * Checks for test output consisting only of lines containing ETA announcements
+	 */
+	function expectETAOutput() {
+		// Newer PHPUnits require assertion about the output using PHPUnit's own
+		// expectOutput[...] functions. However, the PHPUnit shipped prediactes
+		// do not allow to check /each/ line of the output using /readable/ REs.
+		// So we ...
+		//
+		// 1. ... add a dummy output checking to make PHPUnit not complain
+		//    about unchecked test output
+		$this->expectOutputRegex( '//' );
+
+		// 2. Do the real output checking on our own.
+		$lines = explode( "\n", $this->getActualOutput() );
+		$this->assertGreaterThan( 1, count( $lines ), "Minimal lines of produced output" );
+		$this->assertEquals( '', array_pop( $lines ), "Output ends in LF" );
+		$timestamp_re = "[0-9]{4}-[01][0-9]-[0-3][0-9] [0-2][0-9]:[0-5][0-9]:[0-6][0-9]";
+		foreach ( $lines as $line ) {
+			$this->assertRegExp( "/$timestamp_re: .* \(ID [0-9]+\) [0-9]* pages .*, [0-9]* revs .*, ETA/", $line );
+		}
+	}
+
 
 	/**
 	 * Step the current XML reader until node end of given name is found.
