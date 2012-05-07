@@ -474,6 +474,44 @@ class WikiPage extends Page {
 	}
 
 	/**
+	 * Get the ID of the oldest revision
+	 * @return integer rev_id of oldest revision
+	 */
+	public function getOldestRevision() {
+		wfProfileIn( __METHOD__ );
+
+		// Try using the slave database first, then try the master
+		$continue = 2;
+		$db = wfGetDB( DB_SLAVE );
+
+		while ( $continue ) {
+			$row = $db->selectRow(
+				array( 'page', 'revision' ),
+				array( 'rev_id' ),
+				array(
+					'page_namespace' => $this->mTitle->getNamespace(),
+					'page_title' => $this->mTitle->getDBkey(),
+					'rev_page = page_id'
+				),
+				__METHOD__,
+				array(
+					'ORDER BY' => 'rev_timestamp ASC'
+				)
+			);
+
+			if ( $row ) {
+				$continue = 0;
+			} else {
+				$db = wfGetDB( DB_MASTER );
+				$continue--;
+			}
+		}
+
+		wfProfileOut( __METHOD__ );
+		return $row->rev_id;
+	}
+
+	/**
 	 * Loads everything except the text
 	 * This isn't necessary for all uses, so it's only done if needed.
 	 */
@@ -575,6 +613,22 @@ class WikiPage extends Page {
 		$this->loadLastEdit();
 		if ( $this->mLastRevision ) {
 			return $this->mLastRevision->getUser( $audience );
+		} else {
+			return -1;
+		}
+	}
+
+	/**
+	 * @param $audience Integer: one of:
+	 *      Revision::FOR_PUBLIC       to be displayed to all users
+	 *      Revision::FOR_THIS_USER    to be displayed to $wgUser
+	 *      Revision::RAW              get the text regardless of permissions
+	 * @return int user ID for the user that created the page (0 for anon IPs)
+	 */
+	public function getCreator( $audience = Revision::FOR_PUBLIC ) {
+		$revision = Revision::newFromPageId( $this->getId(), $this->getOldestRevision() );
+		if ( $revision ) {
+			return $revision->getUser( $audience );
 		} else {
 			return -1;
 		}
