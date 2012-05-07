@@ -1177,8 +1177,10 @@ class DumpFilter {
 
 	/**
 	 * @var DumpOutput
+	 * FIXME will need to be made protected whenever legacy code
+	 * is updated.
 	 */
-	protected $sink;
+	public $sink;
 
 	/**
 	 * @var bool
