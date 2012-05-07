@@ -123,9 +123,10 @@ MediaWiki supports over 350 languages. Many localisations are updated
 regularly. Below only new and removed languages are listed, as well as
 changes to languages because of Bugzilla reports.
 
+* Mizo (lus) added.
+* Santali (sat) added.
 * (bug 34192) Namespace gender aliases for Albanian languages (sq & aln).
 * (bug 35541) Namespace gender aliases for Croatian (hr).
-* Mizo (lus) added.
 * (bug 36012) Space in $separatorTransformTable should be non-breaking in
   Portuguese, Esperanto and Udmurt.
 

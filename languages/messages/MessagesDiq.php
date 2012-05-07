@@ -396,7 +396,7 @@ Perse: $2',
 'protectedpagetext' => 'No pel qey nêvuriyayiş hao (nao) pawyeno.',
 'viewsourcetext' => 'To şikinay çımey na pele bıvêne u kopya kerê:',
 'protectedinterface' => 'No pel qey software nuştey hezır keno u ın semed ra şuxulyayişê no pel qedexe biyo.',
-'editinginterface' => "'''DİQET:''' Şıma pelê software vurneni.[//translatewiki.net/wiki/Main_Page?setlang=tr translatewiki.net] bıxebıtne, proceyê MediaWiki bigere diqet.",
+'editinginterface' => "'''DİQET:''' Şıma pelê software vurneni.[//translatewiki.net/wiki/Main_Page?setlang=diq translatewiki.net] bıxebıtne, proceyê MediaWiki bigere diqet.",
 'sqlhidden' => '(SQL pers kerdışê nımıte)',
 'cascadeprotected' => 'No pel de vurnayiş qedexe biyo, çunke şıma tuşa "kademeyın" aqtif kerdo u no {{PLURAL:$1|pelo|pelo}} pawıteyo de xebıtyeno:
 $2',
@@ -646,7 +646,9 @@ Kerem ke, tı ke wazenay na pele bafernê/bıvurnê, qontrol ke.',
 'userpage-userdoesnotexist-view' => 'Hesabê karberi "$1" qeyd nêbiyo.',
 'blocked-notice-logextract' => 'No karber/na karbere emanet blokekerdeyo/blokekediya.
 Cıkewtışo tewr peyêno ke bloke biyo, cêr seba referansi belikerdeyo:',
-'clearyourcache' => "'''Not:''' Bahde sazkerdışi, gani hafızayê cı gerayoğ pak bıbo: '''Mozilla / Firefox / Safari:''' ''Shift'' ri gıştê şıma ser nayi pel newe ra bar kere yana zi ''Ctrl-Shift-R'' bıkere u (qey Apple Mac ''Cmd-Shift-R'');, '''IE:''' ''Ctrl-F5'', '''Konqueror:''' tena tuşê pelaya newi ra bar kere cı sernê.",
+'clearyourcache' => "'''Not:''' Bahde sazkerdışi, gani hafızayê cı gerayoğ pak bıbo.
+*'''Mozilla / Firefox / Safari:''' ''Shift'' ri gıştê şıma ser nayi pel newe ra bar kere yana zi ''Ctrl-Shift-R'' bıkere u (qey Apple Mac ''Cmd-Shift-R'');,
+*'''IE:''' ''Ctrl-F5'', '''Konqueror:''' tena tuşê pelaya newi ra bar kere cı sernê.",
 'usercssyoucanpreview' => "'''Yardim:''' Ser \"{{int:showpreview}}\" sima eskeni CSSe newe test bikeri.",
 'userjsyoucanpreview' => "'''Yardim:''' Ser \"{{int:showpreview}}\" sima eskeni CSSe newe test bikeri.",
 'usercsspreview' => "'''şıma tena verqaydê dosyayê CSS vineni.''' '''Dosyayê Karberi CSS hema qayd nebiyo!'''",
@@ -2653,7 +2655,7 @@ Na rêze de her gırêyo bin zey istisna vêniyeno, yanê pelê ke dosya beno ke
 'metadata-help' => 'Ena dosya dı zafyer informasyoni esto. Belki ena dosya yew kamareyo dijital ya zi skaner ra vıraziyo.
 Eg ena dosya, kondisyonê orcinali ra bıvuriya, belki detayanê hemi nıeseno.',
 'metadata-expand' => 'Detayan bımocne',
-'metadata-collapse' => 'extended details bınım',
+'metadata-collapse' => 'melumati bınımne',
 'metadata-fields' => 'Resımê meydanê metadataê ke na pele de benê lista, pela resımmocnaene de ke tabloê metadata gına waro, gureniyenê.
 Ê bini zey sayekerdoğan nımiyenê.
 * make
@@ -3358,5 +3360,15 @@ satır ê ke pê ney # # destpêkenê zey mışore/mıjore muamele vineno.
 'api-error-unknown-code' => "$1'dı jew xeta vıciye",
 'api-error-unknown-warning' => "$1'dı ikazo xırab:",
 'api-error-unknownerror' => "$1'dı jew xeta vıciye",
+
+# Durations
+'duration-seconds' => '$1 {{PLURAL:$1|saniye|saniyeyan}}',
+'duration-minutes' => '$1 {{PLURAL:$1|dakika|dakikayan}} vernî de',
+'duration-hours' => '($1 {{PLURAL:$1|seet|seetan}})',
+'duration-days' => '($1 {{PLURAL:$1|roc|rocan}})',
+'duration-weeks' => '$1 {{PLURAL: $1|hefte|heftey}}',
+'duration-years' => '$1 {{PLURAL:$1|serre|serran}} vernî de',
+'duration-centuries' => '$1 {{PLURAL:$1|seserre|seserri}}',
+'duration-millennia' => '$1 {{PLURAL:$1|milenyum|milenyumi}}',
 
 );

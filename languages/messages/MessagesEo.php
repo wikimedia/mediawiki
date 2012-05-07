@@ -534,9 +534,9 @@ $messages = array(
 'jumpto' => 'Iri al:',
 'jumptonavigation' => 'navigado',
 'jumptosearch' => 'serĉi',
-'view-pool-error' => 'Bedaŭrinde la serviloj estas tro uzata ĉi-momente.
+'view-pool-error' => 'Bedaŭrinde la serviloj estas tro uzataj ĉi-momente.
 Tro da uzantoj provas vidi ĉi tiun paĝon.
-Bonvolu atendi iom antaŭ vi provas atingi ĝin denove.
+Bonvolu atendi iom antaŭ provi atingi ĝin denove.
 
 $1',
 'pool-timeout' => 'Tempolimo atingis atendante ŝlosadon',

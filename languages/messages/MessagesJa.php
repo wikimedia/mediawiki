@@ -1450,7 +1450,7 @@ $1",
 'prefs-personal' => '利用者情報',
 'prefs-rc' => '最近の更新',
 'prefs-watchlist' => 'ウォッチリスト',
-'prefs-watchlist-days' => 'ウォッチリストの表示件数：',
+'prefs-watchlist-days' => 'ウォッチリストの表示日数：',
 'prefs-watchlist-days-max' => '最大 $1 {{PLURAL:$1|日間}}',
 'prefs-watchlist-edits' => '拡張ウォッチリストの表示件数：',
 'prefs-watchlist-edits-max' => '最大数：1000',
@@ -2958,7 +2958,7 @@ hideuser権限を持っていないため、この利用者のブロックを閲
 'export-addnstext' => '名前空間からページを追加：',
 'export-addns' => '追加',
 'export-download' => 'ファイルとして保存',
-'export-templates' => 'テンプレートも含める',
+'export-templates' => 'テンプレートを含める',
 'export-pagelinks' => '以下の階層までのリンク先ページを含める：',
 
 # Namespace 8 related

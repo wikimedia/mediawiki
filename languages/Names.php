@@ -293,6 +293,7 @@
 	'rw' => 'Kinyarwanda',	# Kinyarwanda, should possibly be Kinyarwandi
 	'sa' => 'संस्कृतम्',	# Sanskrit
 	'sah' => 'Саха тыла', # Sakha
+	'sat' => 'Santali',	# Santali
 	'sc' => 'Sardu',		# Sardinian
 	'scn' => 'Sicilianu',	# Sicilian
 	'sco' => 'Scots',       # Scots
