@@ -15,6 +15,8 @@
  * @ingroup Exception
  */
 class MWException extends Exception {
+	var $logId;
+
 	/**
 	 * Should the exception use $wgOut to output the error ?
 	 * @return bool
@@ -110,9 +112,14 @@ class MWException extends Exception {
 				'</p><p>Backtrace:</p><p>' . nl2br( htmlspecialchars( $this->getTraceAsString() ) ) .
 				"</p>\n";
 		} else {
-			return "<p>Set <b><tt>\$wgShowExceptionDetails = true;</tt></b> " .
+			return 
+				"<div class=\"errorbox\">" .
+				'[' . $this->getLogId() . '] ' .
+				gmdate( 'Y-m-d H:i:s' ) . 
+				": Fatal exception of type " . get_class( $this ) . "</div>\n" .
+				"<!-- Set \$wgShowExceptionDetails = true; " .
 				"at the bottom of LocalSettings.php to show detailed " .
-				"debugging information.</p>";
+				"debugging information. -->";
 		}
 	}
 
@@ -141,6 +148,13 @@ class MWException extends Exception {
 		return $this->msg( 'internalerror', "Internal error" );
 	}
 
+	function getLogId() {
+		if ( $this->logId === null ) {
+			$this->logId = wfRandomString( 8 );
+		}
+		return $this->logId;
+	}
+
 	/**
 	 * Return the requested URL and point to file and line number from which the
 	 * exception occured
@@ -150,6 +164,7 @@ class MWException extends Exception {
 	function getLogMessage() {
 		global $wgRequest;
 
+		$id = $this->getLogId();
 		$file = $this->getFile();
 		$line = $this->getLine();
 		$message = $this->getMessage();
@@ -163,7 +178,7 @@ class MWException extends Exception {
 			$url = '[no req]';
 		}
 
-		return "$url   Exception from line $line of $file: $message";
+		return "[$id] $url   Exception from line $line of $file: $message";
 	}
 
 	/** Output the exception report using HTML */
@@ -197,10 +212,15 @@ class MWException extends Exception {
 	 * It will be either HTML or plain text based on isCommandLine().
 	 */
 	function report() {
+		global $wgLogExceptionBacktrace;
 		$log = $this->getLogMessage();
 
 		if ( $log ) {
-			wfDebugLog( 'exception', $log );
+			if ( $wgLogExceptionBacktrace ) {
+				wfDebugLog( 'exception', $log . "\n" . $this->getTraceAsString() . "\n" );
+			} else {
+				wfDebugLog( 'exception', $log );
+			}
 		}
 
 		if ( defined( 'MW_API' ) ) {

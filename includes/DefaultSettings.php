@@ -4160,6 +4160,11 @@ $wgShowExceptionDetails = false;
 $wgShowDBErrorBacktrace = false;
 
 /**
+ * If true, send the exception backtrace to the error log
+ */
+$wgLogExceptionBacktrace = true;
+
+/**
  * Expose backend server host names through the API and various HTML comments
  */
 $wgShowHostnames = false;
