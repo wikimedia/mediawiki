@@ -205,7 +205,7 @@ class FileBackendTest extends MediaWikiTestCase {
 		$this->tearDownFiles();
 	}
 
-	function doTestStore( $op ) {
+	private function doTestStore( $op ) {
 		$backendName = $this->backendClass();
 
 		$source = $op['src'];
@@ -287,7 +287,7 @@ class FileBackendTest extends MediaWikiTestCase {
 		$this->tearDownFiles();
 	}
 
-	function doTestCopy( $op ) {
+	private function doTestCopy( $op ) {
 		$backendName = $this->backendClass();
 
 		$source = $op['src'];
@@ -668,7 +668,7 @@ class FileBackendTest extends MediaWikiTestCase {
 		$this->tearDownFiles();
 	}
 
-	public function doTestConcatenate( $params, $srcs, $srcsContent, $alreadyExists, $okStatus ) {
+	private function doTestConcatenate( $params, $srcs, $srcsContent, $alreadyExists, $okStatus ) {
 		$backendName = $this->backendClass();
 
 		$expContent = '';
@@ -857,7 +857,7 @@ class FileBackendTest extends MediaWikiTestCase {
 		$this->tearDownFiles();
 	}
 
-	public function doTestGetFileContents( $source, $content ) {
+	private function doTestGetFileContents( $source, $content ) {
 		$backendName = $this->backendClass();
 
 		$this->prepare( array( 'dir' => dirname( $source ) ) );
@@ -902,7 +902,7 @@ class FileBackendTest extends MediaWikiTestCase {
 		$this->tearDownFiles();
 	}
 
-	public function doTestGetLocalCopy( $source, $content ) {
+	private function doTestGetLocalCopy( $source, $content ) {
 		$backendName = $this->backendClass();
 
 		$this->prepare( array( 'dir' => dirname( $source ) ) );
@@ -996,7 +996,7 @@ class FileBackendTest extends MediaWikiTestCase {
 		);
 	}
 
-	function doTestPrepareAndClean( $path, $isOK ) {
+	private function doTestPrepareAndClean( $path, $isOK ) {
 		$backendName = $this->backendClass();
 
 		$status = $this->prepare( array( 'dir' => dirname( $path ) ) );
@@ -1100,7 +1100,7 @@ class FileBackendTest extends MediaWikiTestCase {
 		// @TODO: test some cases where the ops should fail
 	}
 
-	function doTestDoOperations() {
+	private function doTestDoOperations() {
 		$base = $this->baseStorePath();
 
 		$fileA = "$base/unittest-cont1/a/b/fileA.txt";
@@ -1117,6 +1117,7 @@ class FileBackendTest extends MediaWikiTestCase {
 		$this->backend->create( array( 'dst' => $fileB, 'content' => $fileBContents ) );
 		$this->prepare( array( 'dir' => dirname( $fileC ) ) );
 		$this->backend->create( array( 'dst' => $fileC, 'content' => $fileCContents ) );
+		$this->prepare( array( 'dir' => dirname( $fileD ) ) );
 
 		$status = $this->backend->doOperations( array(
 			array( 'op' => 'copy', 'src' => $fileA, 'dst' => $fileC, 'overwrite' => 1 ),
@@ -1172,7 +1173,7 @@ class FileBackendTest extends MediaWikiTestCase {
 			"Correct file SHA-1 of $fileC" );
 	}
 
-	function doTestDoOperationsFailing() {
+	private function doTestDoOperationsFailing() {
 		$base = $this->baseStorePath();
 
 		$fileA = "$base/unittest-cont2/a/b/fileA.txt";
@@ -1563,6 +1564,64 @@ class FileBackendTest extends MediaWikiTestCase {
 		foreach ( $iter as $iter ) {} // no errors
 	}
 
+	public function testLockCalls() {
+		$this->backend = $this->singleBackend;
+		$this->doTestLockCalls();
+	}
+
+	private function doTestLockCalls() {
+		$backendName = $this->backendClass();
+
+		for ( $i=0; $i<50; $i++ ) {
+			$paths = array(
+				"test1.txt",
+				"test2.txt",
+				"test3.txt",
+				"subdir1",
+				"subdir1", // duplicate
+				"subdir1/test1.txt",
+				"subdir1/test2.txt",
+				"subdir2",
+				"subdir2", // duplicate
+				"subdir2/test3.txt",
+				"subdir2/test4.txt",
+				"subdir2/subdir",
+				"subdir2/subdir/test1.txt",
+				"subdir2/subdir/test2.txt",
+				"subdir2/subdir/test3.txt",
+				"subdir2/subdir/test4.txt",
+				"subdir2/subdir/test5.txt",
+				"subdir2/subdir/sub",
+				"subdir2/subdir/sub/test0.txt",
+				"subdir2/subdir/sub/120-px-file.txt",
+			);
+
+			$status = $this->backend->lockFiles( $paths, LockManager::LOCK_EX );
+			$this->assertEquals( array(), $status->errors,
+				"Locking of files succeeded ($backendName)." );
+			$this->assertEquals( true, $status->isOK(),
+				"Locking of files succeeded with OK status ($backendName)." );
+
+			$status = $this->backend->lockFiles( $paths, LockManager::LOCK_SH );
+			$this->assertEquals( array(), $status->errors,
+				"Locking of files succeeded ($backendName)." );
+			$this->assertEquals( true, $status->isOK(),
+				"Locking of files succeeded with OK status ($backendName)." );
+
+			$status = $this->backend->unlockFiles( $paths, LockManager::LOCK_SH );
+			$this->assertEquals( array(), $status->errors,
+				"Locking of files succeeded ($backendName)." );
+			$this->assertEquals( true, $status->isOK(),
+				"Locking of files succeeded with OK status ($backendName)." );
+
+			$status = $this->backend->unlockFiles( $paths, LockManager::LOCK_EX );
+			$this->assertEquals( array(), $status->errors,
+				"Locking of files succeeded ($backendName)." );
+			$this->assertEquals( true, $status->isOK(),
+				"Locking of files succeeded with OK status ($backendName)." );
+		}
+	}
+
 	// test helper wrapper for backend prepare() function
 	private function prepare( array $params ) {
 		$this->dirsToPrune[] = $params['dir'];
@@ -1588,7 +1647,8 @@ class FileBackendTest extends MediaWikiTestCase {
 		$iter = $this->backend->getFileList( array( 'dir' => "$base/$container" ) );
 		if ( $iter ) {
 			foreach ( $iter as $file ) {
-				$this->backend->delete( array( 'src' => "$base/$container/$file" ), array( 'force' => 1 ) );
+				$this->backend->delete( array( 'src' => "$base/$container/$file" ),
+					array( 'force' => 1, 'nonLocking' => 1 ) );
 			}
 		}
 	}
