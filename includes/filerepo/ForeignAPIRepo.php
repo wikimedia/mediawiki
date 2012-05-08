@@ -130,8 +130,8 @@ class ForeignAPIRepo extends FileRepo {
 
 		$query = array_merge( $query,
 			array(
-				'format' => 'json',
-				'action' => 'query',
+				'format'    => 'json',
+				'action'    => 'query',
 				'redirects' => 'true'
 			) );
 		if ( $this->mApiBase ) {
