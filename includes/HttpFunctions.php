@@ -896,7 +896,7 @@ class PhpHttpRequest extends MWHttpRequest {
 			return $this->status;
 		}
 
-		// If everything went OK, or we recieved some error code
+		// If everything went OK, or we received some error code
 		// get the response body content.
 		if ( $this->status->isOK()
 				|| (int)$this->respStatus >= 300) {
