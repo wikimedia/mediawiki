@@ -430,7 +430,7 @@ class ApiQueryImageInfo extends ApiQueryBase {
 	 * @param $img File
 	 * @return string
 	 */
-	private function getContinueStr( $img ) {
+	protected function getContinueStr( $img ) {
 		return $img->getOriginalTitle()->getText() .
 			'|' .  $img->getTimestamp();
 	}
