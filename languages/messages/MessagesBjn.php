@@ -3433,6 +3433,7 @@ Pian saharusnya [{{SERVER}}{{SCRIPTPATH}}/COPYING sabuah salinan Lisansi Publik 
 'version-software' => 'Parangkat lunak tapasang',
 'version-software-product' => 'Produk',
 'version-software-version' => 'Virsi',
+'version-entrypoints-header-url' => 'URL',
 
 # Special:FilePath
 'filepath' => 'Wadah barakas',

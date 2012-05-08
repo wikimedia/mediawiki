@@ -58,6 +58,7 @@
  * @author Una giornata uggiosa '94
  * @author Vajotwo
  * @author Valepert
+ * @author Ximo17
  * @author Xpensive
  * @author ZioNicco
  * @author לערי ריינהארט
@@ -1804,6 +1805,7 @@ Per una sicurezza ottimale, img_auth.php è disattivato.',
 'http-curl-error' => "Errore durante il recupero dell'URL: $1",
 'http-host-unreachable' => 'URL non raggiungibile.',
 'http-bad-status' => "C'è stato un problema durante la richiesta HTTP: $1 $2",
+'http-truncated-body' => 'Il corpo della richiesta è stato solo parzialmente accolto.',
 
 # Some likely curl errors. More could be added from <http://curl.haxx.se/libcurl/c/libcurl-errors.html>
 'upload-curl-error6' => 'URL non raggiungibile',
@@ -3652,6 +3654,8 @@ Questo programma deve essere distribuito assieme ad [{{SERVER}}{{SCRIPTPATH}}/CO
 'version-entrypoints' => 'URL di accesso',
 'version-entrypoints-header-entrypoint' => 'Punti di accesso',
 'version-entrypoints-header-url' => 'URL',
+'version-entrypoints-articlepath' => '[https://www.mediawiki.org/wiki/Manual:$wgArticlePath Percorso voci]',
+'version-entrypoints-scriptpath' => '[https://www.mediawiki.org/wiki/Manual:$wgScriptPath Percorso script]',
 
 # Special:FilePath
 'filepath' => 'Percorso di un file',

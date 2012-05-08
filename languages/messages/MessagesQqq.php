@@ -2023,7 +2023,7 @@ Siebrand think this has to do with allowing MediaWiki to fetch remote URLs, and 
 
 If \'scheme\' is difficult to translate, then you could use \'prefix\' instead.',
 'http-bad-status' => '$1 is an HTTP error code (e.g. 404), $2 is the HTTP error message (e.g. File Not Found)',
-'http-truncated-body'   => 'Seems the connection closed prematurely. The HTTP response contained a Content-length greated than the received body.',
+'http-truncated-body' => 'This is a standard HTTP error message. → Seems the connection closed prematurely. The HTTP response contained a content-length greater than the received body.',
 
 'license' => 'This appears in the upload form for the license drop-down. The header in the file description page is now at {{msg-mw|License-header}}.',
 'nolicense' => '{{Identical|None selected}}',

@@ -574,6 +574,8 @@ Podani razlog je bil »''$2''«.",
 'filereadonlyerror' => 'Ne morem spremeniti datoteke »$1«, ker je skladišče datotek »$2« v načinu, ki dovoljuje samo branje.
 
 Administrator, ki ga je zaklenil, je podal naslednje pojasnilo: »$3«.',
+'invalidtitle-knownnamespace' => 'Neveljaven naslov z imenskim prostorom »$2« in besedilom »$3«',
+'invalidtitle-unknownnamespace' => 'Neveljaven naslov z neznano številko imenskega prostora $1 in besedilom »$2«',
 
 # Virus scanner
 'virus-badscanner' => "Slaba konfiguracija: neznani virus skener: ''$1''",
@@ -1798,6 +1800,7 @@ Za optimalno varnost je img_auth.php onemogočen.',
 'http-curl-error' => 'Napaka pri doseganju URL: $1',
 'http-host-unreachable' => 'Ni mogoče doseči URL.',
 'http-bad-status' => 'Med zahtevo HTTP je prišlo do težave: $1 $2',
+'http-truncated-body' => 'Prejeli smo samo del telesa zahteve.',
 
 # Some likely curl errors. More could be added from <http://curl.haxx.se/libcurl/c/libcurl-errors.html>
 'upload-curl-error6' => 'Ni možno doseči URL',

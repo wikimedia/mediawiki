@@ -768,6 +768,8 @@ Die Sperre wurde durch [[User:$1|$1]] mit der Begründung ''„$2“'' eingerich
 'filereadonlyerror' => 'Die Datei „$1“ kann nicht verändert werden, da auf das Dateirepositorium „$2“ nur Lesezugriff möglich ist.
 
 Der Administrator, der den Schreibzugriff sperrte, gab folgenden Grund an: „$3“.',
+'invalidtitle-knownnamespace' => 'Ungültiger Titel mit Namensraum „$2“ und Text „$3“',
+'invalidtitle-unknownnamespace' => 'Ungültiger Titel mit unbekannter Namensraumnummer $1 und Text „$2“',
 
 # Virus scanner
 'virus-badscanner' => "Fehlerhafte Konfiguration: unbekannter Virenscanner: ''$1''",
@@ -1954,6 +1956,7 @@ Aus Sicherheitsgründen ist img_auth.php deaktiviert.',
 'http-curl-error' => 'Fehler beim Abruf der URL: $1',
 'http-host-unreachable' => 'URL konnte nicht erreicht werden.',
 'http-bad-status' => 'Während der HTTP-Anfrage ist ein Fehler aufgetreten: $1 $2',
+'http-truncated-body' => 'Der Inhalt der Anforderung wurde nicht vollständig empfangen.',
 
 # Some likely curl errors. More could be added from <http://curl.haxx.se/libcurl/c/libcurl-errors.html>
 'upload-curl-error6' => 'URL ist nicht erreichbar',

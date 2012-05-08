@@ -539,7 +539,7 @@ Tro da uzantoj provas vidi ĉi tiun paĝon.
 Bonvolu atendi iom antaŭ provi atingi ĝin denove.
 
 $1',
-'pool-timeout' => 'Tempolimo atingis atendante ŝlosadon',
+'pool-timeout' => 'Tempolimo atingita dum atendo de ŝlosado',
 'pool-queuefull' => 'Atendovico de servilaro estas plena.',
 'pool-errorunknown' => 'Nekonata eraro',
 

@@ -1928,13 +1928,14 @@ Pour une sécurité optimale, img_auth.php est désactivé.',
 
 # HTTP errors
 'http-invalid-url' => 'URL incorrecte : $1',
-'http-invalid-scheme' => 'Les URLs avec le schéma « $1 » ne sont pas supportées',
+'http-invalid-scheme' => 'Les URL avec le schéma « $1 » ne sont pas supportées.',
 'http-request-error' => 'Erreur inconnue lors de l’envoi de la requête.',
 'http-read-error' => 'Erreur de lecture HTTP.',
 'http-timed-out' => 'La requête HTTP a expiré.',
 'http-curl-error' => 'Erreur lors de la récupération de l’URL : $1',
 'http-host-unreachable' => 'Impossible d’atteindre l’URL.',
 'http-bad-status' => 'Il y a eu un problème lors de la requête HTTP : $1 $2',
+'http-truncated-body' => 'Le corps de la requête n’a été reçu que partiellement.',
 
 # Some likely curl errors. More could be added from <http://curl.haxx.se/libcurl/c/libcurl-errors.html>
 'upload-curl-error6' => 'URL injoignable',
@@ -3837,7 +3838,7 @@ Vous devriez avoir reçu [{{SERVER}}{{SCRIPTPATH}}/COPYING une copie de la Licen
 'version-software' => 'Logiciels installés',
 'version-software-product' => 'Produit',
 'version-software-version' => 'Version',
-'version-entrypoints' => "URLs de point d'entrée",
+'version-entrypoints' => 'URL de point d’entrée',
 'version-entrypoints-header-entrypoint' => "Point d'entrée",
 'version-entrypoints-header-url' => 'URL',
 'version-entrypoints-articlepath' => '[https://www.mediawiki.org/wiki/Manual:$wgArticlePath Chemin d\'article]',
@@ -3887,7 +3888,7 @@ Les images sont montrées dans leur pleine résolution, les autres fichiers sont
 # External image whitelist
 'external_image_whitelist' => ' #Laisser cette ligne exactement telle quelle.<pre>
 #Indiquer les fragments d’expressions rationnelles (juste la partie indiquée entre les //) ci-dessous.
-#Ils correspondront avec les URLs des images externes.
+#Ils correspondront avec les URL des images externes.
 #Celles qui correspondent s’afficheront comme des images, sinon seul un lien vers l’image sera affiché.
 #Les lignes commençant par un # seront considérées comme des commentaires.
 #Cette liste n’est pas sensible à la casse.

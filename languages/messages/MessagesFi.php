@@ -977,7 +977,7 @@ Yritä uudelleen. Jos ongelma ei katoa, yritä [[Special:UserLogout|kirjautua ul
 'token_suffix_mismatch' => "'''Muokkauksesi on hylätty, koska asiakasohjelmasi ei osaa käsitellä välimerkkejä muokkaustarkisteessa. Syynä voi olla viallinen välityspalvelin.'''",
 'edit_form_incomplete' => "'''Osa muokkauslomakkeesta ei saavuttanut palvelinta. Tarkista, että muokkauksesi ovat vahingoittumattomia ja yritä uudelleen.'''",
 'editing' => 'Muokataan sivua $1',
-'creating' => 'Sivun $1 luonti',
+'creating' => 'Luodaan sivu $1',
 'editingsection' => 'Muokataan osiota sivusta $1',
 'editingcomment' => 'Muokataan uutta osiota sivulla $1',
 'editconflict' => 'Päällekkäinen muokkaus: $1',

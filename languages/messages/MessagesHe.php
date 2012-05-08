@@ -1956,6 +1956,7 @@ $1',
 'http-curl-error' => 'שגיאה בקבלת כתובת ה־URL‏: $1',
 'http-host-unreachable' => 'לא ניתן להגיע לכתובת ה־URL.',
 'http-bad-status' => 'הייתה בעיה בשליחת בקשת ה־HTTP‏: $1 $2',
+'http-truncated-body' => 'גוף הבקשה התקבל רק באופן חלקי.',
 
 # Some likely curl errors. More could be added from <http://curl.haxx.se/libcurl/c/libcurl-errors.html>
 'upload-curl-error6' => 'לא ניתן להגיע ל־URL',
