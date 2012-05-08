@@ -361,7 +361,7 @@ class ApiMain extends ApiBase {
 			$this->executeAction();
 		} catch ( Exception $e ) {
 			// Log it
-			if ( $e instanceof MWException ) {
+			if ( !( $e instanceof UsageException ) ) {
 				wfDebugLog( 'exception', $e->getLogMessage() );
 			}
 
