@@ -119,8 +119,8 @@ class ApiQueryFilearchive extends ApiQueryBase {
 
 		$limit = $params['limit'];
 		$this->addOption( 'LIMIT', $limit + 1 );
-		$this->addOption( 'ORDER BY', 'fa_name' .
-						( $params['dir'] == 'descending' ? ' DESC' : '' ) );
+		$sort = ( $params['dir'] == 'descending' ? ' DESC' : '' );
+		$this->addOption( 'ORDER BY', 'fa_name' . $sort );
 
 		$res = $this->select( __METHOD__ );
 
