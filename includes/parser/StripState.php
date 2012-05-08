@@ -31,6 +31,10 @@ class StripState {
 	protected $regex;
 
 	protected $tempType, $tempMergePrefix;
+	protected $circularRefGuard;
+	protected $recursionLevel = 0;
+
+	const UNSTRIP_RECURSION_LIMIT = 20;
 
 	/**
 	 * @param $prefix string
@@ -42,6 +46,7 @@ class StripState {
 			'general' => array()
 		);
 		$this->regex = "/{$this->prefix}([^\x7f]+)" . Parser::MARKER_SUFFIX . '/';
+		$this->circularRefGuard = array();
 	}
 
 	/**
@@ -113,12 +118,10 @@ class StripState {
 		}
 
 		wfProfileIn( __METHOD__ );
+		$oldType = $this->tempType;
 		$this->tempType = $type;
-		do {
-			$oldText = $text;
-			$text = preg_replace_callback( $this->regex, array( $this, 'unstripCallback' ), $text );
-		} while ( $text !== $oldText );
-		$this->tempType = null;
+		$text = preg_replace_callback( $this->regex, array( $this, 'unstripCallback' ), $text );
+		$this->tempType = $oldType;
 		wfProfileOut( __METHOD__ );
 		return $text;
 	}
@@ -128,8 +131,22 @@ class StripState {
 	 * @return array
 	 */
 	protected function unstripCallback( $m ) {
-		if ( isset( $this->data[$this->tempType][$m[1]] ) ) {
-			return $this->data[$this->tempType][$m[1]];
+		$marker = $m[1];
+		if ( isset( $this->data[$this->tempType][$marker] ) ) {
+			if ( isset( $this->circularRefGuard[$marker] ) ) {
+				return '<span class="error">' . wfMsgForContent( 'parser-unstrip-loop-warning' ) . '</span>';
+			}
+			if ( $this->recursionLevel >= self::UNSTRIP_RECURSION_LIMIT ) {
+				return '<span class="error">' . 
+					wfMsgForContent( 'parser-unstrip-recursion-limit', self::UNSTRIP_RECURSION_LIMIT ) . 
+					'</span>';
+			}
+			$this->circularRefGuard[$marker] = true;
+			$this->recursionLevel++;
+			$ret = $this->unstripType( $this->tempType, $this->data[$this->tempType][$marker] );
+			$this->recursionLevel--;
+			unset( $this->circularRefGuard[$marker] );
+			return $ret;
 		} else {
 			return $m[0];
 		}

@@ -1484,6 +1484,8 @@ These arguments have been omitted.",
 'node-count-exceeded-warning'             => 'Page exceeded the node-count',
 'expansion-depth-exceeded-category'       => 'Pages where expansion depth is exceeded',
 'expansion-depth-exceeded-warning'        => 'Page exceeded the expansion depth',
+'parser-unstrip-loop-warning'             => 'Unstrip loop detected',
+'parser-unstrip-recursion-limit'          => 'Unstrip recursion limit exceeded ($1)',
 
 # "Undo" feature
 'undo-success' => 'The edit can be undone.
