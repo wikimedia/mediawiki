@@ -3365,7 +3365,7 @@ class User {
 	 * @return String New token URL
 	 */
 	private function invalidationTokenUrl( $token ) {
-		return $this->getTokenUrl( 'Invalidateemail', $token );
+		return $this->getTokenUrl( 'InvalidateEmail', $token );
 	}
 
 	/**
