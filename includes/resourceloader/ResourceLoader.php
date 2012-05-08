@@ -601,7 +601,7 @@ class ResourceLoader {
 	/**
 	 * Send out code for a response from file cache if possible
 	 *
-	 * @param $fileCache ObjectFileCache: Cache object for this request URL
+	 * @param $fileCache ResourceFileCache: Cache object for this request URL
 	 * @param $context ResourceLoaderContext: Context in which to generate a response
 	 * @return bool If this found a cache file and handled the response
 	 */
