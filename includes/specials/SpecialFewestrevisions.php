@@ -75,7 +75,8 @@ class FewestrevisionsPage extends QueryPage {
 
 		$nt = Title::makeTitleSafe( $result->namespace, $result->title );
 		if( !$nt ) {
-			return '<!-- bad title -->';
+			return Html::element( 'span', array( 'class' => 'mw-invalidtitle' ),
+				Linker::getInvalidTitleDescription( $this->getContext(), $result->namespace, $result->title ) );
 		}
 
 		$text = htmlspecialchars( $wgContLang->convert( $nt->getPrefixedText() ) );
