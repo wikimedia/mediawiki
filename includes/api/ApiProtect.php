@@ -37,8 +37,8 @@ class ApiProtect extends ApiBase {
 		global $wgRestrictionLevels;
 		$params = $this->extractRequestParams();
 
-		$titleObj = $this->getTitleOrPageId( $params );
-		$pageObj = WikiPage::factory( $titleObj );
+		$pageObj = $this->getTitleOrPageId( $params, 'fromdbmaster' );
+		$titleObj = $pageObj->getTitle();
 
 		$errors = $titleObj->getUserPermissionsErrors( 'protect', $this->getUser() );
 		if ( $errors ) {
