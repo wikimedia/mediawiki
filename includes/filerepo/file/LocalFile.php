@@ -1246,19 +1246,18 @@ class LocalFile extends File {
 		}
 
 		wfDebugLog( 'imagemove', "Got request to move {$this->name} to " . $target->getText() );
-		$this->lock(); // begin
-
 		$batch = new LocalFileMoveBatch( $this, $target );
+
+		$this->lock(); // begin
 		$batch->addCurrent();
 		$batch->addOlds();
-
 		$status = $batch->execute();
+		$this->unlock(); // done
+
 		wfDebugLog( 'imagemove', "Finished moving {$this->name}" );
 
 		$this->purgeEverything();
-		$this->unlock(); // done
-
-		if ( $status->isOk() ) {
+		if ( $status->isOK() ) {
 			// Now switch the object
 			$this->title = $target;
 			// Force regeneration of the name and hashpath
@@ -1288,30 +1287,32 @@ class LocalFile extends File {
 			return $this->readOnlyFatalStatus();
 		}
 
-		$this->lock(); // begin
-
-		$batch = new LocalFileDeleteBatch( $this, $reason, $suppress );
-		$batch->addCurrent();
-
-		# Get old version relative paths
 		$dbw = $this->repo->getMasterDB();
+		$batch = new LocalFileDeleteBatch( $this, $reason, $suppress );
+		$archiveNames = array();
+
+		$this->lock(); // begin
+		$batch->addCurrent();
+		# Get old version relative paths
 		$result = $dbw->select( 'oldimage',
 			array( 'oi_archive_name' ),
 			array( 'oi_name' => $this->getName() ) );
 		foreach ( $result as $row ) {
 			$batch->addOld( $row->oi_archive_name );
-			$this->purgeOldThumbnails( $row->oi_archive_name );
+			$archiveNames[] = $row->oi_archive_name;
 		}
 		$status = $batch->execute();
-
 		if ( $status->isOK() ) {
 			// Update site_stats
 			$site_stats = $dbw->tableName( 'site_stats' );
 			$dbw->query( "UPDATE $site_stats SET ss_images=ss_images-1", __METHOD__ );
-			$this->purgeEverything();
 		}
-
 		$this->unlock(); // done
+
+		$this->purgeEverything();
+		foreach ( $archiveNames as $archiveName ) {
+			$this->purgeOldThumbnails( $archiveName );
+		}
 
 		return $status;
 	}
@@ -1368,25 +1369,21 @@ class LocalFile extends File {
 			return $this->readOnlyFatalStatus();
 		}
 
-		$this->lock(); // begin
-
 		$batch = new LocalFileRestoreBatch( $this, $unsuppress );
 
+		$this->lock(); // begin
 		if ( !$versions ) {
 			$batch->addAll();
 		} else {
 			$batch->addIds( $versions );
 		}
-
 		$status = $batch->execute();
-
 		if ( $status->isGood() ) {
 			$cleanupStatus = $batch->cleanup();
 			$cleanupStatus->successCount = 0;
 			$cleanupStatus->failCount = 0;
 			$status->merge( $cleanupStatus );
 		}
-
 		$this->unlock(); // done
 
 		return $status;
@@ -2186,7 +2183,7 @@ class LocalFileRestoreBatch {
 class LocalFileMoveBatch {
 
 	/**
-	 * @var File
+	 * @var LocalFile
 	 */
 	var $file;
 
@@ -2281,17 +2278,17 @@ class LocalFileMoveBatch {
 			return $statusMove;
 		}
 
-		$this->db->begin( __METHOD__ );
+		$this->file->lock(); // begin
 		$statusDb = $this->doDBUpdates();
 		wfDebugLog( 'imagemove', "Renamed {$this->file->getName()} in database: {$statusDb->successCount} successes, {$statusDb->failCount} failures" );
 		if ( !$statusDb->isGood() ) {
-			$this->db->rollback( __METHOD__ );
+			$this->file->unlockAndRollback();
 			// Something went wrong with the DB updates, so remove the target files
 			$this->cleanupTarget( $triplets );
 			$statusDb->ok = false;
 			return $statusDb;
 		}
-		$this->db->commit( __METHOD__ );
+		$this->file->unlock(); // done
 
 		// Everything went ok, remove the source files
 		$this->cleanupSource( $triplets );
