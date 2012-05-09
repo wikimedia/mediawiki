@@ -64,7 +64,8 @@ class CategoryPager extends AlphabeticPager {
 		$from = str_replace( ' ', '_', $from );
 		if( $from !== '' ) {
 			$from = Title::capitalize( $from, NS_CATEGORY );
-			$this->mOffset = $from;
+			$this->setOffset( $from );
+			$this->setIncludeOffset( true );
 		}
 	}
 

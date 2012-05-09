@@ -100,6 +100,11 @@ abstract class IndexPager extends ContextSource implements Pager {
 	protected $mLastShown, $mFirstShown, $mPastTheEndIndex, $mDefaultQuery, $mNavigationBar;
 
 	/**
+	 * Whether to include the offset in the query
+	 */
+	protected $mIncludeOffset = false;
+
+	/**
 	 * Result object for the query. Warning: seek before use.
 	 *
 	 * @var ResultWrapper
@@ -209,6 +214,17 @@ abstract class IndexPager extends ContextSource implements Pager {
 	}
 
 	/**
+	 * Set whether a row matching exactly the offset should be also included
+	 * in the result or not. By default this is not the case, but when the
+	 * offset is user-supplied this might be wanted.
+	 *
+	 * @param $include bool
+	 */
+	public function setIncludeOffset( $include ) {
+		$this->mIncludeOffset = $include;
+	}
+
+	/**
 	 * Extract some useful data from the result object for use by
 	 * the navigation bar, put it into $this
 	 *
@@ -295,14 +311,14 @@ abstract class IndexPager extends ContextSource implements Pager {
 		$sortColumns = array_merge( array( $this->mIndexField ), $this->mExtraSortFields );
 		if ( $descending ) {
 			$options['ORDER BY'] = implode( ',', $sortColumns );
-			$operator = '>';
+			$operator = $this->mIncludeOffset ? '>=' : '>';
 		} else {
 			$orderBy = array();
 			foreach ( $sortColumns as $col ) {
 				$orderBy[] = $col . ' DESC';
 			}
 			$options['ORDER BY'] = implode( ',', $orderBy );
-			$operator = '<';
+			$operator = $this->mIncludeOffset ? '<=' : '<';
 		}
 		if ( $offset != '' ) {
 			$conds[] = $this->mIndexField . $operator . $this->mDb->addQuotes( $offset );
