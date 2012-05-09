@@ -223,15 +223,37 @@ class SiteStats {
  * Class for handling updates to the site_stats table
  */
 class SiteStatsUpdate implements DeferrableUpdate {
+	protected $views = 0;
+	protected $edits = 0;
+	protected $pages = 0;
+	protected $goodPages = 0;
+	protected $users = 0;
+	protected $images = 0;
 
-	var $mViews, $mEdits, $mGood, $mPages, $mUsers;
-
+	// @TODO: deprecate this
 	function __construct( $views, $edits, $good, $pages = 0, $users = 0 ) {
-		$this->mViews = $views;
-		$this->mEdits = $edits;
-		$this->mGood = $good;
-		$this->mPages = $pages;
-		$this->mUsers = $users;
+		$this->views = $views;
+		$this->edits = $edits;
+		$this->goodPages = $good;
+		$this->pages = $pages;
+		$this->users = $users;
+	}
+
+	/**
+	 * @param $deltas Array
+	 * @return SiteStatsUpdate
+	 */
+	public static function factory( array $deltas ) {
+		$update = new self( 0, 0, 0 );
+
+		$fields = array( 'views', 'edits', 'pages', 'goodPages', 'users', 'images' );
+		foreach ( $fields as $field ) {
+			if ( isset( $deltas[$field] ) && $deltas[$field] ) {
+				$update->$field = $deltas[$field];
+			}
+		}
+
+		return $update;
 	}
 
 	/**
@@ -252,16 +274,17 @@ class SiteStatsUpdate implements DeferrableUpdate {
 		}
 	}
 
-	function doUpdate() {
+	public function doUpdate() {
 		$dbw = wfGetDB( DB_MASTER );
 
 		$updates = '';
 
-		$this->appendUpdate( $updates, 'ss_total_views', $this->mViews );
-		$this->appendUpdate( $updates, 'ss_total_edits', $this->mEdits );
-		$this->appendUpdate( $updates, 'ss_good_articles', $this->mGood );
-		$this->appendUpdate( $updates, 'ss_total_pages', $this->mPages );
-		$this->appendUpdate( $updates, 'ss_users', $this->mUsers );
+		$this->appendUpdate( $updates, 'ss_total_views', $this->views );
+		$this->appendUpdate( $updates, 'ss_total_edits', $this->edits );
+		$this->appendUpdate( $updates, 'ss_good_articles', $this->goodPages );
+		$this->appendUpdate( $updates, 'ss_total_pages', $this->pages );
+		$this->appendUpdate( $updates, 'ss_users', $this->users );
+		$this->appendUpdate( $updates, 'ss_images', $this->images );
 
 		if ( $updates ) {
 			$site_stats = $dbw->tableName( 'site_stats' );

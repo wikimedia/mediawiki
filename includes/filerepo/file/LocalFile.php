@@ -1094,16 +1094,8 @@ class LocalFile extends File {
 				__METHOD__
 			);
 		} else {
-			# This is a new file
-			# Update the image count
-			$dbw->begin( __METHOD__ );
-			$dbw->update(
-				'site_stats',
-				array( 'ss_images = ss_images+1' ),
-				'*',
-				__METHOD__
-			);
-			$dbw->commit( __METHOD__ );
+			# This is a new file, so update the image count
+			DeferredUpdates::addUpdate( SiteStatsUpdate::factory( array( 'images' => 1 ) ) );
 		}
 
 		$descTitle = $this->getTitle();
@@ -1297,13 +1289,11 @@ class LocalFile extends File {
 		# Get old version relative paths
 		$archiveNames = $batch->addOlds();
 		$status = $batch->execute();
-		if ( $status->isOK() ) {
-			// Update site_stats
-			$dbw = $this->repo->getMasterDB();
-			$site_stats = $dbw->tableName( 'site_stats' );
-			$dbw->query( "UPDATE $site_stats SET ss_images=ss_images-1", __METHOD__ );
-		}
 		$this->unlock(); // done
+
+		if ( $status->isOK() ) {
+			DeferredUpdates::addUpdate( SiteStatsUpdate::factory( array( 'images' => -1 ) ) );
+		}
 
 		$this->purgeEverything();
 		foreach ( $archiveNames as $archiveName ) {
@@ -2080,9 +2070,7 @@ class LocalFileRestoreBatch {
 			if ( !$exists ) {
 				wfDebug( __METHOD__ . " restored {$status->successCount} items, creating a new current\n" );
 
-				// Update site_stats
-				$site_stats = $dbw->tableName( 'site_stats' );
-				$dbw->query( "UPDATE $site_stats SET ss_images=ss_images+1", __METHOD__ );
+				DeferredUpdates::addUpdate( SiteStatsUpdate::factory( array( 'images' => 1 ) ) );
 
 				$this->file->purgeEverything();
 			} else {
