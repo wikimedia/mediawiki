@@ -481,9 +481,19 @@ var mw = ( function ( $, undefined ) {
 			}
 
 			/**
-			 * Recursively resolves dependencies and detects circular references
+			 * Resolves dependencies and detects circular references.
+			 *
+			 * @param module String Name of the top-level module whose dependencies shall be
+			 *   resolved and sorted.
+			 * @param resolved Array Returns a topological sort of the given module and its
+			 *   dependencies, such that later modules depend on earlier modules. The array
+			 *   contains the module names. If the array contains already some module names,
+			 *   this function appends its result to the pre-existing array.
+			 * @param unresolved Object [optional] Hash used to track the current dependency
+			 *   chain; used to report loops in the dependency graph.
+			 * @throws Error if any unregistered module or a dependency loop is encountered
 			 */
-			function recurse( module, resolved, unresolved ) {
+			function sortDependencies( module, resolved, unresolved ) {
 				var n, deps, len;
 
 				if ( registry[module] === undefined ) {
@@ -497,12 +507,20 @@ var mw = ( function ( $, undefined ) {
 						registry[module].dependencies = [registry[module].dependencies];
 					}
 				}
+				if ( $.inArray( module, resolved ) !== -1 ) {
+					// Module already resolved; nothing to do.
+					return;
+				}
+				// unresolved is optional, supply it if not passed in
+				if ( !unresolved ) {
+					unresolved = {};
+				}
 				// Tracks down dependencies
 				deps = registry[module].dependencies;
 				len = deps.length;
 				for ( n = 0; n < len; n += 1 ) {
 					if ( $.inArray( deps[n], resolved ) === -1 ) {
-						if ( $.inArray( deps[n], unresolved ) !== -1 ) {
+						if ( unresolved[deps[n]] ) {
 							throw new Error(
 								'Circular reference detected: ' + module +
 								' -> ' + deps[n]
@@ -510,40 +528,37 @@ var mw = ( function ( $, undefined ) {
 						}
 
 						// Add to unresolved
-						unresolved[unresolved.length] = module;
-						recurse( deps[n], resolved, unresolved );
-						// module is at the end of unresolved
-						unresolved.pop();
+						unresolved[module] = true;
+						sortDependencies( deps[n], resolved, unresolved );
+						delete unresolved[module];
 					}
 				}
 				resolved[resolved.length] = module;
 			}
 
 			/**
-			 * Gets a list of module names that a module depends on in their proper dependency order
+			 * Gets a list of module names that a module depends on in their proper dependency
+			 * order.
 			 *
 			 * @param module string module name or array of string module names
 			 * @return list of dependencies, including 'module'.
 			 * @throws Error if circular reference is detected
 			 */
 			function resolve( module ) {
-				var modules, m, deps, n, resolved;
+				var m, resolved;
 
 				// Allow calling with an array of module names
 				if ( $.isArray( module ) ) {
-					modules = [];
+					resolved = [];
 					for ( m = 0; m < module.length; m += 1 ) {
-						deps = resolve( module[m] );
-						for ( n = 0; n < deps.length; n += 1 ) {
-							modules[modules.length] = deps[n];
-						}
+						sortDependencies( module[m], resolved );
 					}
-					return modules;
+					return resolved;
 				}
 
 				if ( typeof module === 'string' ) {
 					resolved = [];
-					recurse( module, resolved, [] );
+					sortDependencies( module, resolved );
 					return resolved;
 				}
 
@@ -598,57 +613,107 @@ var mw = ( function ( $, undefined ) {
 			}
 
 			/**
-			 * Automatically executes jobs and modules which are pending with satistifed dependencies.
+			 * Determine whether all dependencies are in state 'ready', which means we may
+			 * execute the module or job now.
 			 *
-			 * This is used when dependencies are satisfied, such as when a module is executed.
+			 * @param dependencies Array dependencies (module names) to be checked.
+			 *
+			 * @return Boolean true if all dependencies are in state 'ready', false otherwise
+			 */
+			function allReady( dependencies ) {
+				return filter( 'ready', dependencies ).length === dependencies.length;
+			}
+
+			/**
+			 * Log a message to window.console, if possible. Useful to force logging of some
+			 * errors that are otherwise hard to detect, even if mw.log is not available. (I.e.,
+			 * this logs also if not in debug mode.)
+			 *
+			 * @param msg String text for the log entry
+			 * @param e   Error [optional] to also log.
+			 */
+			function log( msg, e ) {
+				if ( window.console && typeof window.console.log === 'function' ) {
+					console.log( msg );
+					if ( e ) {
+						console.log( e );
+					}
+				}
+			}
+
+			/**
+			 * A module has entered state 'ready', 'error', or 'missing'. Automatically update pending jobs
+			 * and modules that depend upon this module. if the given module failed, propagate the 'error'
+			 * state up the dependency tree; otherwise, execute all jobs/modules that now have all their
+			 * dependencies satisfied. On jobs depending on a failed module, run the error callback, if any.
+			 *
+			 * @param module String name of module that entered one of the states 'ready', 'error', or 'missing'.
 			 */
 			function handlePending( module ) {
-				var j, r;
+				var j, job, hasErrors, m, stateChange;
 
-				try {
-					// Run jobs whose dependencies have just been met
-					for ( j = 0; j < jobs.length; j += 1 ) {
-						if ( compare(
-							filter( 'ready', jobs[j].dependencies ),
-							jobs[j].dependencies ) )
-						{
-							var callback = jobs[j].ready;
-							jobs.splice( j, 1 );
-							j -= 1;
-							if ( $.isFunction( callback ) ) {
-								callback();
+				// Modules.
+				if ( $.inArray( registry[module].state, ['error', 'missing'] ) !== -1 ) {
+					// If the current module failed, mark all dependent modules also as failed.
+					// Iterate until steady-state to propagate the error state upwards in the
+					// dependency tree.
+					do {
+						stateChange = false;
+						for ( m in registry ) {
+							if ( $.inArray( registry[m].state, ['error', 'missing'] ) === -1 ) {
+								if ( filter( ['error', 'missing'], registry[m].dependencies ).length > 0 ) {
+									registry[m].state = 'error';
+									stateChange = true;
+								}
+							}
+						}
+					} while ( stateChange );
+				}
+
+				// Execute all jobs whose dependencies are either all satisfied or contain at least one failed module.
+				for ( j = 0; j < jobs.length; j += 1 ) {
+					hasErrors = filter( ['error', 'missing'], jobs[j].dependencies ).length > 0;
+					if ( hasErrors || allReady( jobs[j].dependencies ) ) {
+						// All dependencies satisfied, or some have errors
+						job = jobs[j];
+						jobs.splice( j, 1 );
+						j -= 1;
+						try {
+							if ( hasErrors ) {
+								throw new Error ("Module " + module + " failed.");
+							} else {
+								if ( $.isFunction( job.ready ) ) {
+									job.ready();
+								}
+							}
+						} catch ( e ) {
+							if ( $.isFunction( job.error ) ) {
+								try {
+									job.error( e, [module] );
+								} catch ( ex ) {
+									// A user-defined operation raised an exception. Swallow to protect
+									// our state machine!
+									log( 'mw.loader::handlePending> Exception thrown by job.error()', ex );
+								}
 							}
 						}
 					}
-					// Execute modules whose dependencies have just been met
-					for ( r in registry ) {
-						if ( registry[r].state === 'loaded' ) {
-							if ( compare(
-								filter( ['ready'], registry[r].dependencies ),
-								registry[r].dependencies ) )
-							{
-								execute( r );
-							}
+				}
+
+				if ( registry[module].state === 'ready' ) {
+					// The current module became 'ready'. Recursively execute all dependent modules that are loaded
+					// and now have all dependencies satisfied.
+					for ( m in registry ) {
+						if ( registry[m].state === 'loaded' && allReady( registry[m].dependencies ) ) {
+							execute( m );
 						}
 					}
-				} catch ( e ) {
-					// Run error callbacks of jobs affected by this condition
-					for ( j = 0; j < jobs.length; j += 1 ) {
-						if ( $.inArray( module, jobs[j].dependencies ) !== -1 ) {
-							if ( $.isFunction( jobs[j].error ) ) {
-								jobs[j].error( e, module );
-							}
-							jobs.splice( j, 1 );
-							j -= 1;
-						}
-					}
-					throw e;
 				}
 			}
 
 			/**
 			 * Adds a script tag to the DOM, either using document.write or low-level DOM manipulation,
-			 * depending on whether document-ready has occured yet and whether we are in async mode.
+			 * depending on whether document-ready has occurred yet and whether we are in async mode.
 			 *
 			 * @param src String: URL to script, will be used as the src attribute in the script tag
 			 * @param callback Function: Optional callback which will be run when the script is done
@@ -725,7 +790,7 @@ var mw = ( function ( $, undefined ) {
 			 *
 			 * @param module string module name to execute
 			 */
-			function execute( module, callback ) {
+			function execute( module ) {
 				var style, media, i, script, markModuleReady, nestedAddScript;
 
 				if ( registry[module] === undefined ) {
@@ -766,9 +831,6 @@ var mw = ( function ( $, undefined ) {
 					markModuleReady = function() {
 						registry[module].state = 'ready';
 						handlePending( module );
-						if ( $.isFunction( callback ) ) {
-							callback();
-						}
 					};
 					nestedAddScript = function ( arr, callback, async, i ) {
 						// Recursively call addScript() in its own callback
@@ -794,11 +856,9 @@ var mw = ( function ( $, undefined ) {
 				} catch ( e ) {
 					// This needs to NOT use mw.log because these errors are common in production mode
 					// and not in debug mode, such as when a symbol that should be global isn't exported
-					if ( window.console && typeof window.console.log === 'function' ) {
-						console.log( 'mw.loader::execute> Exception thrown by ' + module + ': ' + e.message );
-						console.log( e );
-					}
+					log('mw.loader::execute> Exception thrown by ' + module + ': ' + e.message, e);
 					registry[module].state = 'error';
+					handlePending( module );
 				}
 			}
 
@@ -1157,18 +1217,16 @@ var mw = ( function ( $, undefined ) {
 					if ( registry[module] !== undefined && registry[module].script !== undefined ) {
 						throw new Error( 'module already implemented: ' + module );
 					}
-					// Mark module as loaded
-					registry[module].state = 'loaded';
 					// Attach components
 					registry[module].script = script;
 					registry[module].style = style;
 					registry[module].messages = msgs;
-					// Execute or queue callback
-					if ( compare(
-						filter( ['ready'], registry[module].dependencies ),
-						registry[module].dependencies ) )
-					{
-						execute( module );
+					// The module may already have been marked as erroneous
+					if ( $.inArray( registry[module].state, ['error', 'missing'] ) === -1 ) {
+						registry[module].state = 'loaded';
+						if ( allReady( registry[module].dependencies ) ) {
+							execute( module );
+						}
 					}
 				},
 
@@ -1192,21 +1250,19 @@ var mw = ( function ( $, undefined ) {
 					}
 					// Resolve entire dependency map
 					dependencies = resolve( dependencies );
-					// If all dependencies are met, execute ready immediately
-					if ( compare( filter( ['ready'], dependencies ), dependencies ) ) {
+					if ( allReady( dependencies ) ) {
+						// Run ready immediately
 						if ( $.isFunction( ready ) ) {
 							ready();
 						}
-					}
-					// If any dependencies have errors execute error immediately
-					else if ( filter( ['error'], dependencies ).length ) {
+					} else if ( filter( ['error', 'missing'], dependencies ).length ) {
+						// Execute error immediately if any dependencies have errors
 						if ( $.isFunction( error ) ) {
-							error( new Error( 'one or more dependencies have state "error"' ),
+							error( new Error( 'one or more dependencies have state "error" or "missing"' ),
 								dependencies );
 						}
-					}
-					// Since some dependencies are not yet ready, queue up a request
-					else {
+					} else {
+						// Not all dependencies are ready: queue up a request
 						request( dependencies, ready, error );
 					}
 				},
@@ -1225,7 +1281,7 @@ var mw = ( function ( $, undefined ) {
 				 *  be assumed if loading a URL, and false will be assumed otherwise.
 				 */
 				load: function ( modules, type, async ) {
-					var filtered, m;
+					var filtered, m, module;
 
 					// Validate input
 					if ( typeof modules !== 'object' && typeof modules !== 'string' ) {
@@ -1264,24 +1320,29 @@ var mw = ( function ( $, undefined ) {
 					// an array of unrelated modules, whereas the modules passed to
 					// using() are related and must all be loaded.
 					for ( filtered = [], m = 0; m < modules.length; m += 1 ) {
-						if ( registry[modules[m]] !== undefined ) {
-							filtered[filtered.length] = modules[m];
+						module = registry[modules[m]];
+						if ( module !== undefined ) {
+							if ( $.inArray( module.state, ['error', 'missing'] ) === -1 ) {
+								filtered[filtered.length] = modules[m];
+							}
 						}
 					}
 
+					if (filtered.length === 0) {
+						return;
+					}
 					// Resolve entire dependency map
 					filtered = resolve( filtered );
-					// If all modules are ready, nothing dependency be done
-					if ( compare( filter( ['ready'], filtered ), filtered ) ) {
+					// If all modules are ready, nothing to be done
+					if ( allReady( filtered ) ) {
 						return;
 					}
-					// If any modules have errors
-					if ( filter( ['error'], filtered ).length ) {
+					// If any modules have errors: also quit.
+					if ( filter( ['error', 'missing'], filtered ).length ) {
 						return;
 					}
-					// Since some modules are not yet ready, queue up a request
+					// Since some modules are not yet ready, queue up a request.
 					request( filtered, null, null, async );
-					return;
 				},
 
 				/**
@@ -1302,7 +1363,8 @@ var mw = ( function ( $, undefined ) {
 					if ( registry[module] === undefined ) {
 						mw.loader.register( module );
 					}
-					if ( state === 'ready' && registry[module].state !== state) {
+					if ( $.inArray(state, ['ready', 'error', 'missing']) !== -1
+						&& registry[module].state !== state ) {
 						// Make sure pending modules depending on this one get executed if their
 						// dependencies are now fulfilled!
 						registry[module].state = state;
