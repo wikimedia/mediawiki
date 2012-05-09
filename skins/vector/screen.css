@@ -652,7 +652,7 @@ div#footer #footer-places li {
 	padding-left: 0.5em;
 	padding-right: 0.5em;
 }
-#preferences td.htmlform-tip {
+.htmlform-tip {
 	font-size: x-small;
 	padding: .2em 2em;
 	color: #666666;
