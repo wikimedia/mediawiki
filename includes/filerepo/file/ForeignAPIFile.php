@@ -54,9 +54,9 @@ class ForeignAPIFile extends File {
 	 */
 	static function newFromTitle( Title $title, $repo ) {
 		$data = $repo->fetchImageQuery( array(
-			'titles' => 'File:' . $title->getDBKey(),
-			'iiprop' => self::getProps(),
-			'prop'   => 'imageinfo',
+			'titles'            => 'File:' . $title->getDBKey(),
+			'iiprop'            => self::getProps(),
+			'prop'              => 'imageinfo',
 			'iimetadataversion' => MediaHandler::getMetadataVersion()
 		) );
 
