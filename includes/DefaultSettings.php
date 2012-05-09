@@ -1873,12 +1873,12 @@ $wgMaxSquidPurgeTitles = 400;
  * Routing configuration for HTCP multicast purging. Add elements here to
  * enable HTCP and determine which purges are sent where. If set to an empty
  * array, HTCP is disabled.
- * 
+ *
  * Each key in this array is a regular expression to match against the purged
  * URL, or an empty string to match all URLs. The purged URL is matched against
  * the regexes in the order specified, and the first rule whose regex matches
  * is used.
- * 
+ *
  * Example configuration to send purges for upload.wikimedia.org to one
  * multicast group and all other purges to another:
  * $wgHTCPMulticastRouting = array(
@@ -1891,7 +1891,7 @@ $wgMaxSquidPurgeTitles = 400;
  *                 'port' => 4827,
  *         ),
  * );
- * 
+ *
  * @see $wgHTCPMulticastTTL
  */
 $wgHTCPMulticastRouting = array();
@@ -1901,12 +1901,12 @@ $wgHTCPMulticastRouting = array();
  *
  * Note that MediaWiki uses the old non-RFC compliant HTCP format, which was
  * present in the earliest Squid implementations of the protocol.
- * 
+ *
  * This setting is DEPRECATED in favor of $wgHTCPMulticastRouting , and kept
  * for backwards compatibility only. If $wgHTCPMulticastRouting is set, this
  * setting is ignored. If $wgHTCPMulticastRouting is not set and this setting
  * is, it is used to populate $wgHTCPMulticastRouting.
- * 
+ *
  * @deprecated in favor of $wgHTCPMulticastRouting
  */
 $wgHTCPMulticastAddress = false;
@@ -4226,6 +4226,14 @@ $wgAggregateStatsID = false;
  * Does not work if pages are cached (for example with squid).
  */
 $wgDisableCounters = false;
+
+/**
+ * Set this to an integer to only do synchronous site_stats updates
+ * one every *this many* updates. The other requests go into pending
+ * delta values in $wgMemc. Make sure that $wgMemc is a global cache.
+ * If set to -1, updates *only* go to $wgMemc (useful for daemons).
+ */
+$wgSiteStatsAsyncFactor = false;
 
 /**
  * Parser test suite files to be run by parserTests.php when no specific
