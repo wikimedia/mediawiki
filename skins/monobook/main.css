@@ -83,7 +83,7 @@ input.historysubmit {
 	margin-left: 1.6em;
 }
 
-pre {
+pre, .mw-code {
 	line-height: 1.1em;
 }
 
