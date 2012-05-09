@@ -57,6 +57,9 @@ class FileBackendMultiWrite extends FileBackend {
 	 *                     FileBackendStore class, but with these additional settings:
 	 *                         'class'         : The name of the backend class
 	 *                         'isMultiMaster' : This must be set for one backend.
+	 *                         'template:      : If given a backend name, this will use
+	 *                                           the config of that backend as a template.
+	 *                                           Values specified here take precedence.
 	 *     'syncChecks'  : Integer bitfield of internal backend sync checks to perform.
 	 *                     Possible bits include self::CHECK_SIZE and self::CHECK_TIME.
 	 *                     The checks are done before allowing any file operations.
@@ -68,6 +71,11 @@ class FileBackendMultiWrite extends FileBackend {
 		// Construct backends here rather than via registration
 		// to keep these backends hidden from outside the proxy.
 		foreach ( $config['backends'] as $index => $config ) {
+			if ( isset( $config['template'] ) ) {
+				// Config is just a modified version of a registered backend's.
+				// This should only be used when that config is used only be this backend.
+				$config = $config + FileBackendGroup::singleton()->config( $config['template'] );
+			}
 			$name = $config['name'];
 			if ( isset( $namesUsed[$name] ) ) { // don't break FileOp predicates
 				throw new MWException( "Two or more backends defined with the name $name." );
