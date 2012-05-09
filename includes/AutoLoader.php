@@ -56,6 +56,7 @@ $wgAutoloadLocalClasses = array(
 	'DeferredUpdates' => 'includes/DeferredUpdates.php',
 	'DeprecatedGlobal' => 'includes/DeprecatedGlobal.php',
 	'DerivativeRequest' => 'includes/WebRequest.php',
+	'DeviceDetection' => 'includes/DeviceDetection.php',
 	'DiffHistoryBlob' => 'includes/HistoryBlob.php',
 
 	'DoubleReplacer' => 'includes/StringUtils.php',
