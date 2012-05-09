@@ -694,6 +694,8 @@ $wgMessageStructure = array(
 		'node-count-exceeded-warning',
 		'expansion-depth-exceeded-category',
 		'expansion-depth-exceeded-warning',
+		'parser-unstrip-loop-warning',
+		'parser-unstrip-recursion-limit',
 	),
 	'undo' => array(
 		'undo-success',
