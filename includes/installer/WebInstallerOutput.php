@@ -116,9 +116,15 @@ class WebInstallerOutput {
 		// by '../skins/$skinName/images/', where $skinName is what appears
 		// before the last '/' in each of the strings.
 		$cssFileNames = array(
-			"common/shared.css",
-			"vector/screen.css",
-			"common/config.css",
+
+			// Basically the "skins.vector" ResourceLoader module styles
+			'common/commonElements.css',
+			'common/commonContent.css',
+			'common/commonInterface.css',
+			'vector/screen.css',
+
+			// mw-config specific
+			'common/config.css',
 		);
 
 		$css = '';
