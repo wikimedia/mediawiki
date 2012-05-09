@@ -1235,13 +1235,16 @@ class LocalFile extends File {
 
 		$this->lock(); // begin
 		$batch->addCurrent();
-		$batch->addOlds();
+		$archiveNames = $batch->addOlds();
 		$status = $batch->execute();
 		$this->unlock(); // done
 
 		wfDebugLog( 'imagemove', "Finished moving {$this->name}" );
 
 		$this->purgeEverything();
+		foreach ( $archiveNames as $archiveName ) {
+			$this->purgeOldThumbnails( $archiveName );
+		}
 		if ( $status->isOK() ) {
 			// Now switch the object
 			$this->title = $target;
@@ -1272,23 +1275,16 @@ class LocalFile extends File {
 			return $this->readOnlyFatalStatus();
 		}
 
-		$dbw = $this->repo->getMasterDB();
 		$batch = new LocalFileDeleteBatch( $this, $reason, $suppress );
-		$archiveNames = array();
 
 		$this->lock(); // begin
 		$batch->addCurrent();
 		# Get old version relative paths
-		$result = $dbw->select( 'oldimage',
-			array( 'oi_archive_name' ),
-			array( 'oi_name' => $this->getName() ) );
-		foreach ( $result as $row ) {
-			$batch->addOld( $row->oi_archive_name );
-			$archiveNames[] = $row->oi_archive_name;
-		}
+		$archiveNames = $batch->addOlds();
 		$status = $batch->execute();
 		if ( $status->isOK() ) {
 			// Update site_stats
+			$dbw = $this->repo->getMasterDB();
 			$site_stats = $dbw->tableName( 'site_stats' );
 			$dbw->query( "UPDATE $site_stats SET ss_images=ss_images-1", __METHOD__ );
 		}
@@ -1321,15 +1317,14 @@ class LocalFile extends File {
 			return $this->readOnlyFatalStatus();
 		}
 
-		$this->lock(); // begin
-
 		$batch = new LocalFileDeleteBatch( $this, $reason, $suppress );
-		$batch->addOld( $archiveName );
-		$this->purgeOldThumbnails( $archiveName );
-		$status = $batch->execute();
 
+		$this->lock(); // begin
+		$batch->addOld( $archiveName );
+		$status = $batch->execute();
 		$this->unlock(); // done
 
+		$this->purgeOldThumbnails( $archiveName );
 		if ( $status->isOK() ) {
 			$this->purgeDescription();
 			$this->purgeHistory();
@@ -1519,6 +1514,28 @@ class LocalFileDeleteBatch {
 	function addOld( $oldName ) {
 		$this->srcRels[$oldName] = $this->file->getArchiveRel( $oldName );
 		$this->archiveUrls[] = $this->file->getArchiveUrl( $oldName );
+	}
+
+	/**
+	 * Add the old versions of the image to the batch
+	 * @return Array List of archive names from old versions
+	 */
+	function addOlds() {
+		$archiveNames = array();
+
+		$dbw = $this->file->repo->getMasterDB();
+		$result = $dbw->select( 'oldimage',
+			array( 'oi_archive_name' ),
+			array( 'oi_name' => $this->file->getName() ),
+			__METHOD__
+		);
+
+		foreach ( $result as $row ) {
+			$this->addOld( $row->oi_archive_name );
+			$archiveNames[] = $row->oi_archive_name;
+		}
+
+		return $archiveNames;
 	}
 
 	function getOldRels() {
@@ -1760,17 +1777,6 @@ class LocalFileDeleteBatch {
 			$this->file->unlockAndRollback();
 			wfProfileOut( __METHOD__ );
 			return $this->status;
-		}
-
-		// Purge squid
-		if ( $wgUseSquid ) {
-			$urls = array();
-
-			foreach ( $this->srcRels as $srcRel ) {
-				$urlRel = str_replace( '%2F', '/', rawurlencode( $srcRel ) );
-				$urls[] = $this->file->repo->getZoneUrl( 'public' ) . '/' . $urlRel;
-			}
-			SquidUpdate::purge( $urls );
 		}
 
 		// Delete image/oldimage rows
@@ -2200,11 +2206,13 @@ class LocalFileMoveBatch {
 
 	/**
 	 * Add the old versions of the image to the batch
+	 * @return Array List of archive names from old versions
 	 */
 	function addOlds() {
 		$archiveBase = 'archive';
 		$this->olds = array();
 		$this->oldCount = 0;
+		$archiveNames = array();
 
 		$result = $this->db->select( 'oldimage',
 			array( 'oi_archive_name', 'oi_deleted' ),
@@ -2213,6 +2221,7 @@ class LocalFileMoveBatch {
 		);
 
 		foreach ( $result as $row ) {
+			$archiveNames[] = $row->oi_archive_name;
 			$oldName = $row->oi_archive_name;
 			$bits = explode( '!', $oldName, 2 );
 
@@ -2240,6 +2249,8 @@ class LocalFileMoveBatch {
 				"{$archiveBase}/{$this->newHash}{$timestamp}!{$this->newName}"
 			);
 		}
+
+		return $archiveNames;
 	}
 
 	/**
@@ -2249,8 +2260,8 @@ class LocalFileMoveBatch {
 	function execute() {
 		$repo = $this->file->repo;
 		$status = $repo->newGood();
-		$triplets = $this->getMoveTriplets();
 
+		$triplets = $this->getMoveTriplets();
 		$triplets = $this->removeNonexistentFiles( $triplets );
 
 		// Copy the files into their new location
