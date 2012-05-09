@@ -256,43 +256,62 @@ class SiteStatsUpdate implements DeferrableUpdate {
 		return $update;
 	}
 
-	/**
-	 * @param $sql
-	 * @param $field
-	 * @param $delta
-	 */
-	function appendUpdate( &$sql, $field, $delta ) {
-		if ( $delta ) {
-			if ( $sql ) {
-				$sql .= ',';
-			}
-			if ( $delta < 0 ) {
-				$sql .= "$field=$field-1";
-			} else {
-				$sql .= "$field=$field+1";
-			}
-		}
-	}
-
 	public function doUpdate() {
-		$dbw = wfGetDB( DB_MASTER );
+		global $wgSiteStatsAsyncFactor;
 
-		$updates = '';
+		$rate = $wgSiteStatsAsyncFactor; // convenience
+		// If $wgMiserMode, only do sync DB updates 1 every $rate times.
+		// The other times, just update "pending delta" values in memcached.
+		if ( $rate && ( $rate < 0 || mt_rand( 0, $rate - 1 ) != 0 ) ) {
+			$this->incrPending( 'ss_total_views', $this->views );
+			$this->incrPending( 'ss_total_edits', $this->edits );
+			$this->incrPending( 'ss_good_articles', $this->goodPages );
+			$this->incrPending( 'ss_total_pages', $this->pages );
+			$this->incrPending( 'ss_users', $this->users );
+			$this->incrPending( 'ss_images', $this->images );
+		} else {
+			$dbw = wfGetDB( DB_MASTER );
 
-		$this->appendUpdate( $updates, 'ss_total_views', $this->views );
-		$this->appendUpdate( $updates, 'ss_total_edits', $this->edits );
-		$this->appendUpdate( $updates, 'ss_good_articles', $this->goodPages );
-		$this->appendUpdate( $updates, 'ss_total_pages', $this->pages );
-		$this->appendUpdate( $updates, 'ss_users', $this->users );
-		$this->appendUpdate( $updates, 'ss_images', $this->images );
-
-		if ( $updates ) {
-			$site_stats = $dbw->tableName( 'site_stats' );
-			$sql = "UPDATE $site_stats SET $updates";
-
-			# Need a separate transaction because this a global lock
+			// Need a separate transaction because this a global lock
 			$dbw->begin( __METHOD__ );
-			$dbw->query( $sql, __METHOD__ );
+
+			if ( $wgSiteStatsAsyncFactor ) {
+				// Lock the table so we don't have double DB/memcached updates
+				$dbw->select( 'site_stats', '1', array(), __METHOD__, array( 'FOR UPDATE' ) );
+				// Piggy-back the async deltas onto those of this stats update....
+				$this->views     += ( $oViews = $this->getPending( 'ss_total_views' ) );
+				$this->edits     += ( $oEdits = $this->getPending( 'ss_total_edits' ) );
+				$this->goodPages += ( $oGoodPages = $this->getPending( 'ss_good_articles' ) );
+				$this->pages     += ( $oPages = $this->getPending( 'ss_total_pages' ) );
+				$this->users     += ( $oUsers = $this->getPending( 'ss_users' ) );
+				$this->images    += ( $oImages = $this->getPending( 'ss_images' ) );
+			}
+
+			// Build up an SQL query of deltas and apply them...
+			$updates = '';
+			$this->appendUpdate( $updates, 'ss_total_views', $this->views );
+			$this->appendUpdate( $updates, 'ss_total_edits', $this->edits );
+			$this->appendUpdate( $updates, 'ss_good_articles', $this->goodPages );
+			$this->appendUpdate( $updates, 'ss_total_pages', $this->pages );
+			$this->appendUpdate( $updates, 'ss_users', $this->users );
+			$this->appendUpdate( $updates, 'ss_images', $this->images );
+			if ( $updates != '' ) {
+				$dbw->update( 'site_stats', array( $updates ), array(), __METHOD__ );
+			}
+
+			if ( $wgSiteStatsAsyncFactor ) {
+				// Decrement the async deltas now that we applied them...
+				// We must do this whether we had to update the DB or not,
+				// as the async deltas could have negated the given deltas.
+				$this->incrPending( 'ss_total_views', -$oViews );
+				$this->incrPending( 'ss_total_edits', -$oEdits );
+				$this->incrPending( 'ss_good_articles', -$oGoodPages );
+				$this->incrPending( 'ss_total_pages', -$oPages );
+				$this->incrPending( 'ss_users', -$oUsers );
+				$this->incrPending( 'ss_images', -$oImages );
+			}
+
+			// Apply the updates and unlock the table
 			$dbw->commit( __METHOD__ );
 		}
 	}
@@ -324,6 +343,56 @@ class SiteStatsUpdate implements DeferrableUpdate {
 			__METHOD__
 		);
 		return $activeUsers;
+	}
+
+	/**
+	 * @param $sql
+	 * @param $field
+	 * @param $delta
+	 */
+	protected function appendUpdate( &$sql, $field, $delta ) {
+		if ( $delta ) {
+			if ( $sql ) {
+				$sql .= ',';
+			}
+			if ( $delta < 0 ) {
+				$sql .= "$field=$field-1";
+			} else {
+				$sql .= "$field=$field+1";
+			}
+		}
+	}
+
+	/**
+	 * @param $type string
+	 * @param $delta integer
+	 * @return void
+	 */
+	protected function incrPending( $type, $delta ) {
+		global $wgMemc;
+
+		if ( $delta ) { // $delta can be negative or positive
+			$key = $this->getTypeCacheKey( $type );
+			if ( !$wgMemc->incr( $key, $delta ) ) { // not there?
+				if ( !$wgMemc->add( $key, $delta ) ) { // race?
+					$wgMemc->incr( $key, $delta );
+				}
+			}
+		}
+	}
+
+	/**
+	 * @param $type string
+	 * @return $delta integer
+	 */
+	protected function getPending( $type ) {
+		global $wgMemc;
+
+		return (int)$wgMemc->get( $this->getTypeCacheKey( $type ) );
+	}
+
+	private function getTypeCacheKey( $type ) {
+		return wfMemcKey( 'sitestatsupdate', 'pendingdelta', $type );
 	}
 }
 
