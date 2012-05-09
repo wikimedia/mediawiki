@@ -176,6 +176,8 @@ upgrade PHP if you have not done so prior to upgrading MediaWiki.
 * (bug 38093) Gender of changed user groups missing in Special:Log/rights
 * (bug 35893) Special:Block needs to load mediawiki.special.block.js.
 * (bug 37331) ResourceLoader modules sometimes execute twice in Firefox
+* (bug 25095) Special:Categories should also include the first relevant item
+  when "from" is filled.
 
 === API changes in 1.20 ===
 * (bug 34316) Add ability to retrieve maximum upload size from MediaWiki API.
