@@ -583,6 +583,8 @@ Pertanyaan: $2',
 'filereadonlyerror' => 'Fail "$1" tidak dapat diubah suai kerana repositori fail "$2" berada dalam ragam baca sahaja.
 
 Pentadbir yang menguncinya memberikan penjelasan yang berikut: "$3".',
+'invalidtitle-knownnamespace' => 'Tajuk tidak sah dengan ruang nama "$2" dan teks "$3"',
+'invalidtitle-unknownnamespace' => 'Tajuk tidak sah dengan nombor ruang nama tidak dikenali $1 dan teks "$2"',
 
 # Virus scanner
 'virus-badscanner' => "Konfigurasi rosak: pengimbas virus yang tidak diketahui: ''$1''",
@@ -1764,6 +1766,7 @@ Untuk keselamatan optimum, img_auth.php telah dilumpuhkan.',
 'http-curl-error' => 'Ralat mendapatkan URL: $1',
 'http-host-unreachable' => 'URL tidak dapat dicapai.',
 'http-bad-status' => 'Berlaku masalah ketika permintaan HTTP: $1 $2',
+'http-truncated-body' => 'Jasad permohonan diterima separa-separa sahaja.',
 
 # Some likely curl errors. More could be added from <http://curl.haxx.se/libcurl/c/libcurl-errors.html>
 'upload-curl-error6' => 'URL tidak dapat dicapai',

@@ -703,6 +703,8 @@ Den uppgivna anledningen är "\'\'$2\'\'".',
 'filereadonlyerror' => 'Det går inte att ändra filen "$1", eftersom fildatabasen "$2" är i skrivskyddat läge.
 
 Den administratören som låste den gav denna anledning: "\'\'$3\'\'".',
+'invalidtitle-knownnamespace' => 'Ogiltig titel med namnrymden "$2" och texten "$3"',
+'invalidtitle-unknownnamespace' => 'Ogiltig titel med okänt namnrymdsnummer $1 och texten "$2"',
 
 # Virus scanner
 'virus-badscanner' => "Dålig konfigurering: okänd virusskanner: ''$1''",

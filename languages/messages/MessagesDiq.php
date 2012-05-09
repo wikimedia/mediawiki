@@ -59,7 +59,7 @@ $messages = array(
 'tog-watchlisthideminor' => 'Vurnayışanê qıckekan lista mına seyrkerdışi de bınımne',
 'tog-watchlisthideliu' => 'Lista seyrkerdışi ra vurnayışanê karberanê cıkewteyan bınımne',
 'tog-watchlisthideanons' => 'Lista seyrkerdışi ra vurnayışanê karberanê anoniman bınımne',
-'tog-watchlisthidepatrolled' => 'Lista seyrkerdışi ra vurnayışanê qontrolkerdeyan bınımne',
+'tog-watchlisthidepatrolled' => 'Lista seyrkerdışi ra vurnayışanê qontrol kerdeyan bınımne',
 'tog-ccmeonemails' => 'E-posteyanê ke ez karberanê binan rê rışenan, mı rê kopya inan bırışe',
 'tog-diffonly' => 'Qıyasê versiyonan de tek ferqan bımocne, pela butıne nê',
 'tog-showhiddencats' => 'Kategoriyanê dızdine bımocne',
@@ -2603,7 +2603,7 @@ $1',
 
 # Browsing diffs
 'previousdiff' => '← Vurnayışê kıhanyer',
-'nextdiff' => 'Vurnayışo newêr →',
+'nextdiff' => 'Vurnayışo peyên →',
 
 # Media information
 'mediawarning' => "'''Teme''': Na dosya de belkia kodê xırabıni estê.
@@ -3117,8 +3117,8 @@ kodê tesdiqi heta ıney tarixi $4 meqbul o.',
 
 # Delete conflict
 'deletedwhileediting' => "'''Teme''': Ena pele  verniyê ti de eseteriyaya!",
-'confirmrecreate' => "Karberê [[User:$1|$1]]î ([[User talk:$1|talk]]), verniyê vurnayîşê ti ra ena pele wedarno, sebeb: ''$2''
-Ma rica keno konfirme bike ke ti raştî wazeno eno pel bivirazo.",
+'confirmrecreate' => "Karberê [[User:$1|$1]]î ([[User talk:$1|mesac]]), verniyê vurnayîşê ti ra ena pele wedarno, sebeb: ''$2''
+Ma rica keno tesdiq bike ke ti raştî wazeno eno pel bivirazo.",
 'recreate' => 'Reyna viraz',
 
 # action=purge

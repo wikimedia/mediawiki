@@ -692,6 +692,8 @@ Motivul invocat este ''$2''.",
 'filereadonlyerror' => 'Imposibil de modificat fișierul „$1”, deoarece depozitul de fișiere „$2” este în modul „doar citire”.
 
 Administratorul care a efectuat blocarea a furnizat explicația: „$3”.',
+'invalidtitle-knownnamespace' => 'Titlu invalid cu spațiul de nume „$2” și textul „$3”',
+'invalidtitle-unknownnamespace' => 'Titlu invalid cu numărul spațiului de nume $1 necunoscut și textul „$2”',
 
 # Virus scanner
 'virus-badscanner' => "Configurație greșită: scaner de virus necunoscut: ''$1''",
@@ -1871,6 +1873,7 @@ Pentru securitate optimă, img_auth.php este dezactivat.',
 'http-curl-error' => 'Eroare la preluarea adresei URL: $1',
 'http-host-unreachable' => 'Adresa URL nu a putut fi accesată.',
 'http-bad-status' => 'A apărut o problemă în timpul solicitării HTTP: $1 $2',
+'http-truncated-body' => 'Corpul cererii a fost recepționat doar parțial.',
 
 # Some likely curl errors. More could be added from <http://curl.haxx.se/libcurl/c/libcurl-errors.html>
 'upload-curl-error6' => 'Nu pot găsi adresa URL',

@@ -749,6 +749,8 @@ Le motif avancé est « ''$2'' ».",
 'filereadonlyerror' => 'Impossible de modifier le fichier « $1 » parce que le répertoire de fichiers « $2 » est en lecture seule.
 
 L’administrateur qui l’a verrouillé a fourni ce motif: « $3 ».',
+'invalidtitle-knownnamespace' => 'Titre invalide avec l\'espace de noms "$2" et le libellé "$3"',
+'invalidtitle-unknownnamespace' => 'Titre invalide avec un numéro d\'espace de nommage $1 inconnu et le libellé "$2"',
 
 # Virus scanner
 'virus-badscanner' => "Mauvaise configuration : scanneur de virus inconnu : ''$1''",

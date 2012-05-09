@@ -677,6 +677,8 @@ Lý do được cung cấp là ''$2''.",
 'filereadonlyerror' => 'Không thể sửa đổi tập tin “$1” vì kho tập tin “$2” đang ở chế độ chỉ-đọc.
 
 Bảo quản viên khóa nó đưa lý do là: “$3”.',
+'invalidtitle-knownnamespace' => 'Tựa trang không hợp lệ có không gian tên “$2” và văn bản “$3”',
+'invalidtitle-unknownnamespace' => 'Tựa trang không hợp lệ có không gian tên số $1 không rõ và văn bản “$2”',
 
 # Virus scanner
 'virus-badscanner' => "Cấu hình sau: không nhận ra bộ quét virus: ''$1''",
@@ -1059,6 +1061,8 @@ Những giá trị này sẽ bị bỏ đi.',
 'node-count-exceeded-warning' => 'Trang có nhiều nốt quá',
 'expansion-depth-exceeded-category' => 'Những trang có độ sâu bung bản mẫu vượt quá giới hạn cho phép',
 'expansion-depth-exceeded-warning' => 'Trang bung bản mẫu sâu quá',
+'parser-unstrip-loop-warning' => 'Vòng lặp unstrip',
+'parser-unstrip-recursion-limit' => 'Đã vượt quá giới hạn về độ sâu đệ quy unstrip ($1)',
 
 # "Undo" feature
 'undo-success' => 'Các sửa đổi có thể được lùi lại. Xin hãy kiểm tra phần so sánh bên dưới để xác nhận lại những gì bạn muốn làm, sau đó lưu thay đổi ở dưới để hoàn tất việc lùi lại sửa đổi.',

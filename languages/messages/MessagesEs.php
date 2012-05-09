@@ -730,6 +730,8 @@ $2',
 El motivo dado fue: "\'\'$2\'\'".',
 'filereadonlyerror' => 'No se puede modificar el archivo "$1" porque el repositorio de archivos "$2" está en modo de sólo lectura.
 El administrador que lo ha bloqueado ofrece esta explicación: "$3".',
+'invalidtitle-knownnamespace' => 'Título no válido con el espacio de nombres "$2" y el texto "$3"',
+'invalidtitle-unknownnamespace' => 'Título no válido con número de espacio de nombres desconocido  $1  y el texto "$2"',
 
 # Virus scanner
 'virus-badscanner' => "Error de configuración: Antivirus desconocido: ''$1''",
@@ -1125,6 +1127,8 @@ Ese o esos parámetros han sido omitidos.',
 'node-count-exceeded-warning' => 'Página que ha superado el número de nodos',
 'expansion-depth-exceeded-category' => 'Páginas donde se supera la profundidad de expansión',
 'expansion-depth-exceeded-warning' => 'Página que ha superado la profundidad de expansión',
+'parser-unstrip-loop-warning' => 'Se ha detectado un bucle "unstrip"',
+'parser-unstrip-recursion-limit' => 'Se ha superado el límite de recursión de "unstrip" ($1)',
 
 # "Undo" feature
 'undo-success' => 'La edición puede deshacerse. Antes de deshacer la edición, comprueba la siguiente comparación para verificar que realmente es lo que quieres hacer, y entonces guarda los cambios para así deshacer la edición.',
@@ -1920,6 +1924,7 @@ Para óptima seguridad, img_auth.php está desactivado.',
 'http-curl-error' => 'Error al recuperar el URL: $1',
 'http-host-unreachable' => 'No fue posible acceder a la URL.',
 'http-bad-status' => 'Ha habido un problema durante la solicitud HTTP: $1 $2',
+'http-truncated-body' => 'El cuerpo solicitado sólo fue recibido parcialmente.',
 
 # Some likely curl errors. More could be added from <http://curl.haxx.se/libcurl/c/libcurl-errors.html>
 'upload-curl-error6' => 'No se pudo alcanzar la URL',

@@ -92,6 +92,7 @@
  * @author Rancher
  * @author Raymond
  * @author Robby
+ * @author Rotemliss
  * @author Ryan Schmidt
  * @author SPQRobin
  * @author Sanbec
@@ -1040,7 +1041,7 @@ When templates are expanded, there is a size limit for the number of bytes yield
 
 * <tt>$1</tt> is the value of the depth limit
 * <tt>$2</tt> is the value of the max depth limit',
-'parser-unstrip-loop-warning' => 'This error is shown when a parser extension tag such as <pre> includes a reference to itself in its own output.
+'parser-unstrip-loop-warning' => 'This error is shown when a parser extension tag such as &lt;pre> includes a reference to itself in its own output.
 The reference must be to the exact same invocation of the tag at the same location in the source, merely writing &lt;pre>&lt;pre>&lt;/pre>&lt;/pre> will not do it.
 This is usually impossible and unlikely to happen by accident, so translation is not essential.',
 'parser-unstrip-recursion-limit' => 'This message is shown when the recursion limit for nested parser extension tags is exceeded.

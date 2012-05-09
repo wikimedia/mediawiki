@@ -648,6 +648,8 @@ La motivazione è la seguente: ''$2''.",
 'filereadonlyerror' => 'Non è stato possibile modificare il file "$1" poiché il repository di file "$2" è in modalità di sola lettura.
 
 L\'amministratore che lo ha bloccato ha fornito questa motivazione: "$3".',
+'invalidtitle-knownnamespace' => 'Titolo non valido con namespace "$2" e testo "$3"',
+'invalidtitle-unknownnamespace' => 'Titolo non valido con namespace sconosciuto "$1" e testo "$2"',
 
 # Virus scanner
 'virus-badscanner' => "Errore di configurazione: antivirus sconosciuto: ''$1''",
@@ -1805,7 +1807,7 @@ Per una sicurezza ottimale, img_auth.php è disattivato.',
 'http-curl-error' => "Errore durante il recupero dell'URL: $1",
 'http-host-unreachable' => 'URL non raggiungibile.',
 'http-bad-status' => "C'è stato un problema durante la richiesta HTTP: $1 $2",
-'http-truncated-body' => 'Il corpo della richiesta è stato solo parzialmente accolto.',
+'http-truncated-body' => 'Il corpo della richiesta è stato ricevuto solo parzialmente.',
 
 # Some likely curl errors. More could be added from <http://curl.haxx.se/libcurl/c/libcurl-errors.html>
 'upload-curl-error6' => 'URL non raggiungibile',

@@ -572,6 +572,8 @@ $2',
 'filereadonlyerror' => 'Ude af stand til at redigere filen "$1", fordi fildatabasen "$2" er skrivebeskyttet.
 
 Administratoren, som skrivebeskyttede den, gav følgende begrundelse: "$3".',
+'invalidtitle-knownnamespace' => 'Ugyldig titel med navnerummet "$2" og teksten "$3"',
+'invalidtitle-unknownnamespace' => 'Ugyldig titel med ukendt navnerum nummer $1 og tekst "$2"',
 
 # Virus scanner
 'virus-badscanner' => "Konfigurationsfejl: ukendt virus-scanner: ''$1''",
@@ -948,6 +950,8 @@ Der bør være færre end {{PLURAL:$2|$2 kald}}, lige nu er der {{PLURAL:$1|$1 k
 'parser-template-loop-warning' => 'Skabelonløkke fundet: [[$1]]',
 'parser-template-recursion-depth-warning' => 'En skabelon er rekursivt inkluderet for mange gange ($1)',
 'language-converter-depth-warning' => 'Dybdegrænse for sprogkonvertering overskredet ($1)',
+'expansion-depth-exceeded-category' => 'Sider, der overskrider ekspansionsdybden',
+'expansion-depth-exceeded-warning' => 'Siden overskred ekspansionsdybden',
 
 # "Undo" feature
 'undo-success' => 'Redigeringen kan fjernes.
@@ -3550,6 +3554,9 @@ Du skulle have modtaget [{{SERVER}}{{SCRIPTPATH}}/COPYING en kopi af GNU General
 'version-software' => 'Installeret software',
 'version-software-product' => 'Produkt',
 'version-software-version' => 'Version',
+'version-entrypoints' => 'URL-adresser til indgangspunkter',
+'version-entrypoints-header-entrypoint' => 'Indgangspunkt',
+'version-entrypoints-header-url' => 'URL',
 
 # Special:FilePath
 'filepath' => 'Filsti',
