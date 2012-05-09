@@ -700,9 +700,9 @@ class Language {
 	 *		Use null for autonyms (native names)
 	 * @param $include string:
 	 *		'all' all available languages
-	 *		'mw' only if the language is defined in MediaWiki or wgExtraLanguageNames
+	 *		'mw' only if the language is defined in MediaWiki or wgExtraLanguageNames (default)
 	 *		'mwfile' only if the language is in 'mw' *and* has a message file
-	 * @return array|bool: language code => language name, false if $include is wrong
+	 * @return array: language code => language name
 	 * @since 1.20
 	 */
 	public static function fetchLanguageNames( $inLanguage = null, $include = 'mw' ) {
@@ -740,9 +740,7 @@ class Language {
 			$returnMw[$coreCode] = $names[$coreCode];
 		}
 
-		if( $include === 'mw' ) {
-			return $returnMw;
-		} elseif( $include === 'mwfile' ) {
+		if( $include === 'mwfile' ) {
 			$namesMwFile = array();
 			# We do this using a foreach over the codes instead of a directory
 			# loop so that messages files in extensions will work correctly.
@@ -753,7 +751,8 @@ class Language {
 			}
 			return $namesMwFile;
 		}
-		return false;
+		# 'mw' option; default if it's not one of the other two options (all/mwfile)
+		return $returnMW;
 	}
 
 	/**
