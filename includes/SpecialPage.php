@@ -1137,16 +1137,53 @@ class SpecialCreateAccount extends SpecialRedirectToSpecial {
  */
 
 /**
+ * Superclass for any RedirectSpecialPage which redirects the user
+ * to a particular article (as opposed to user contributions, logs, etc.)
+ * @ingroup SpecialPage
+ */
+abstract class RedirectSpecialArticle extends RedirectSpecialPage {
+	function __construct( $name ) {
+		parent::__construct( $name );
+		$redirectParams = array(
+			'action',
+			'redirect', 'rdfrom',
+			# Options for preloaded edits
+			'preload', 'editintro', 'preloadtitle', 'summary',
+			# Options for overriding user settings
+			'preview', 'internaledit', 'externaledit', 'mode',
+			# Options for history/diffs
+			'section', 'oldid', 'diff', 'dir',
+			'limit', 'offset', 'feed',
+			# Misc options
+			'redlink', 'debug',
+			# Options for action=raw; missing ctype can break JS or CSS in some browsers
+			'ctype', 'maxage', 'smaxage',
+		);
+
+		/*
+		This hook allows extensions which add GET parameters
+		like FlaggedRevs to retain those parameters when
+		redirecting using special pages. Use like this:
+
+		$wgHooks['RedirectSpecialArticleRedirectParams'][] =
+			'MyExtensionHooks::onRedirectSpecialArticleRedirectParams';
+		public static function onRedirectSpecialArticleRedirectParams( &$redirectParams ) {
+			$redirectParams[] = 'stable';
+			return true;
+		}
+		*/
+		wfRunHooks( "RedirectSpecialArticleRedirectParams", array(&$redirectParams) );
+		$this->mAllowedRedirectParams = $redirectParams;
+	}
+}
+
+/**
  * Shortcut to construct a special page pointing to current user user's page.
  * @ingroup SpecialPage
  */
-class SpecialMypage extends RedirectSpecialPage {
+class SpecialMypage extends RedirectSpecialArticle {
 	function __construct() {
 		parent::__construct( 'Mypage' );
-		$this->mAllowedRedirectParams = array( 'action', 'preload', 'preloadtitle', 'editintro',
-			'section', 'oldid', 'diff', 'dir',
-			// Options for action=raw; missing ctype can break JS or CSS in some browsers
-			'ctype', 'maxage', 'smaxage' );
 	}
 
 	function getRedirect( $subpage ) {
@@ -1162,11 +1199,9 @@ class SpecialMypage extends RedirectSpecialPage {
  * Shortcut to construct a special page pointing to current user talk page.
  * @ingroup SpecialPage
  */
-class SpecialMytalk extends RedirectSpecialPage {
+class SpecialMytalk extends RedirectSpecialArticle {
 	function __construct() {
 		parent::__construct( 'Mytalk' );
-		$this->mAllowedRedirectParams = array( 'action', 'preload', 'preloadtitle', 'editintro',
-			'section', 'oldid', 'diff', 'dir' );
 	}
 
 	function getRedirect( $subpage ) {
