@@ -990,6 +990,10 @@ var mw = ( function ( $, undefined ) {
 							}
 
 							currReqBase = $.extend( { 'version': formatVersionNumber( maxVersion ) }, reqBase );
+							// For user modules append a user name to the request.
+							if ( group === "user" && mw.config.get( 'wgUserName' ) !== null ) {
+								currReqBase.user = mw.config.get( 'wgUserName' );
+							}
 							currReqBaseLength = $.param( currReqBase ).length;
 							async = true;
 							// We may need to split up the request to honor the query string length limit,
