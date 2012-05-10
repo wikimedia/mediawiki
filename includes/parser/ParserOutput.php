@@ -472,18 +472,13 @@ class ParserOutput extends CacheTime {
      * @return array an array of instances of SecondaryDataUpdate
      */
     public function getSecondaryDataUpdates( Title $title = null, $recursive = true ) {
-        if ( empty( $title ) ) {
+        if ( is_null( $title ) ) {
             $title = Title::newFromText( $this->getTitleText() );
         }
 
-        $linksUpdate = new LinksUpdate( $title, $this, $recursive );
-
-        if ( empty( $this->mSecondaryDataUpdates ) ) {
-            return array( $linksUpdate );
-        } else {
-            $updates = array_merge( $this->mSecondaryDataUpdates, array( $linksUpdate ) );
-        }
-
-        return $updates;
+        return array_merge(
+			$this->mSecondaryDataUpdates,
+			array( new LinksUpdate( $title, $this, $recursive ) )
+		);
     }
 }
