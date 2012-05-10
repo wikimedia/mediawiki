@@ -123,7 +123,7 @@ END_STRING
  * Implements functions related to mime types such as detection and mapping to
  * file extension.
  *
- * Instances of this class are stateles, there only needs to be one global instance
+ * Instances of this class are stateless, there only needs to be one global instance
  * of MimeMagic. Please use MimeMagic::singleton() to get that instance.
  */
 class MimeMagic {
@@ -214,8 +214,6 @@ class MimeMagic {
 			if ( $i === false ) {
 				continue;
 			}
-
-			#print "processing MIME line $s<br>";
 
 			$mime = substr( $s, 0, $i );
 			$ext = trim( substr($s, $i+1 ) );
