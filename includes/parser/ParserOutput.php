@@ -141,9 +141,27 @@ class ParserOutput extends CacheTime {
 		$mProperties = array(),       # Name/value pairs to be cached in the DB
 		$mTOCHTML = '',               # HTML of the TOC
 		$mTimestamp;                  # Timestamp of the revision
-	    private $mIndexPolicy = '';       # 'index' or 'noindex'?  Any other value will result in no change.
-	    private $mAccessedOptions = array(); # List of ParserOptions (stored in the keys)
-        private $mSecondaryDataUpdates = array(); # List of instances of SecondaryDataObject(), used to cause some information extracted from the page in a custom place.
+
+	/**
+	 * 'index' or 'noindex'?  Any other value will result in no change.
+	 * 
+	 * @var string
+	 */
+	protected $mIndexPolicy = '';
+
+	/**
+	 * List of ParserOptions (stored in the keys)
+	 *
+	 * @var array
+	 */
+	protected $mAccessedOptions = array();
+
+	/**
+	 * List of instances of SecondaryDataObject(), used to cause some information extracted from the page in a custom place.
+	 * @since WD.1
+	 * @var array of SecondaryDataObject
+	 */
+	protected $mSecondaryDataUpdates = array();
 
 	const EDITSECTION_REGEX = '#<(?:mw:)?editsection page="(.*?)" section="(.*?)"(?:/>|>(.*?)(</(?:mw:)?editsection>))#';
 
