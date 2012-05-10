@@ -328,9 +328,11 @@ $wgImgAuthPublicTest = true;
  *   - zones            Associative array of zone names that each map to an array with:
  *                          container : backend container name the zone is in
  *                          directory : root path within container for the zone
- *                      Zones default to using <repo name>-<zone> as the
- *                      container name and the container root as the zone directory.
- *   - url              Base public URL
+ *                          url       : base URL to the root of the zone
+ *                      Zones default to using <repo name>-<zone name> as the container name
+ *                      and default to using the container root as the zone's root directory.
+ *                      Nesting of zone locations within other zones should be avoided.
+ *   - url              Public zone URL. The 'zones' settings take precedence.
  *   - hashLevels       The number of directory levels for hash-based division of files
  *   - thumbScriptUrl   The URL for thumb.php (optional, not recommended)
  *   - transformVia404  Whether to skip media file transformation on parse and rely on a 404

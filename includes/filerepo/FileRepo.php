@@ -64,7 +64,7 @@ class FileRepo {
 	 * @param $info array|null
 	 * @throws MWException
 	 */
-	function __construct( array $info = null ) {
+	public function __construct( array $info = null ) {
 		// Verify required settings presence
 		if(
 			$info === null
@@ -118,11 +118,11 @@ class FileRepo {
 			: array();
 		// Give defaults for the basic zones...
 		foreach ( array( 'public', 'thumb', 'temp', 'deleted' ) as $zone ) {
-			if ( !isset( $this->zones[$zone] ) ) {
-				$this->zones[$zone] = array(
-					'container' => "{$this->name}-{$zone}",
-					'directory' => '' // container root
-				);
+			if ( !isset( $this->zones[$zone]['container'] ) ) {
+				$this->zones[$zone]['container'] = "{$this->name}-{$zone}";
+			}
+			if ( !isset( $this->zones[$zone]['directory'] ) ) {
+				$this->zones[$zone]['directory'] = '';
 			}
 		}
 	}
@@ -209,6 +209,11 @@ class FileRepo {
 	 * @return String or false
 	 */
 	public function getZoneUrl( $zone ) {
+		if ( isset( $this->zones[$zone]['url'] )
+			&& in_array( $zone, array( 'public', 'temp', 'thumb' ) ) )
+		{
+			return $this->zones[$zone]['url']; // custom URL
+		}
 		switch ( $zone ) {
 			case 'public':
 				return $this->url;
@@ -449,10 +454,11 @@ class FileRepo {
 	/**
 	 * Get the public root URL of the repository
 	 *
+	 * @deprecated since 1.20
 	 * @return string
 	 */
 	public function getRootUrl() {
-		return $this->url;
+		return $this->getZoneUrl( 'public' );
 	}
 
 	/**
