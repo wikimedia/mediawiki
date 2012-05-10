@@ -39,7 +39,7 @@ class LocalRepo extends FileRepo {
 	/**
 	 * @throws MWException
 	 * @param $row
-	 * @return File
+	 * @return LocalFile
 	 */
 	function newFileFromRow( $row ) {
 		if ( isset( $row->img_name ) ) {
@@ -148,7 +148,7 @@ class LocalRepo extends FileRepo {
 	public static function getHashFromKey( $key ) {
 		return strtok( $key, '.' );
 	}
-	
+
 	/**
 	 * Checks if there is a redirect named as $title
 	 *
@@ -197,7 +197,6 @@ class LocalRepo extends FileRepo {
 			return false;
 		}
 	}
-
 
 	/**
 	 * Function link Title::getArticleID().
