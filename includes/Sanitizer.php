@@ -1,6 +1,6 @@
 <?php
 /**
- * XHTML sanitizer for MediaWiki
+ * XHTML sanitizer for %MediaWiki.
  *
  * Copyright © 2002-2005 Brion Vibber <brion@pobox.com> et al
  * http://www.mediawiki.org/
