@@ -345,11 +345,9 @@ class ApiEditPage extends ApiBase {
 				$this->dieUsageMsg( $errors[0] ); // TODO: Add new errors to message map
 				break;
 			default:
-				if ( is_string( $status->value ) && strlen( $status->value ) ) {
-					$this->dieUsage( "An unknown return value was returned by Editpage. The code returned was \"{$status->value}\"" , $status->value );
-				} else {
-					$this->dieUsageMsg( array( 'unknownerror', $status->value ) );
-				}
+				// We don't recognize $status->value. The only way that can happen
+				// is if an extension hook aborted from inside ArticleSave.
+				$this->dieUsageMsg( $status->getErrorsArray() );
 		}
 		$apiResult->addValue( null, $this->getModuleName(), $r );
 	}
