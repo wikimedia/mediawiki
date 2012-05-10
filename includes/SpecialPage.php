@@ -1137,16 +1137,99 @@ class SpecialCreateAccount extends SpecialRedirectToSpecial {
  */
 
 /**
+ * Superclass for any RedirectSpecialPage which redirects the user
+ * to a particular article (as opposed to user contributions, logs, etc.).
+ *
+ * Various parameter redirection can be used:
+ *
+ * - useskin, uselang, printable: to alter the appearance of the resulting page
+ *
+ * - redirect: allows viewing one's user page or talk page even if it is a
+ * redirect.
+ *
+ * - rdfrom: allows redirecting to one's user page or talk page from an
+ * external wiki with the "Redirect from..." notice.
+ *
+ * - limit, offset: Useful for linking to history of one's own user page or
+ * user talk page. For example, this would be a link to "the last edit to your
+ * user talk page in the year 2010":
+ * http://en.wikipedia.org/w/index.php?title=Special:MyPage&offset=20110000000000&limit=1&action=history
+ *
+ * - feed: would allow linking to the current user's RSS feed for their user
+ * talk page:
+ * http://en.wikipedia.org/w/index.php?title=Special:MyTalk&action=history&feed=rss
+ *
+ * - preloadtitle: Came up in an actual use case for me, in which I wanted to
+ * have a link that would leave a new comment on a talk page with a default
+ * section title.
+ *
+ * - summary : Could be used to provide a default edit summary for a preloaded
+ * edit to one's own user page or talk page.
+ *
+ * - preview: Allows showing/hiding preview on first edit regardless of user
+ * preference, useful for preloaded edits where you know preview wouldn't be
+ * useful.
+ *
+ * - internaledit, externaledit, mode: Would allow forcing the use of the
+ * internal/external editor, e.g. to force the internal editor for short/simple
+ * preloaded edits.
+ *
+ * - redlink: Affects the message the user sees if their talk page/user talk
+ * page does not currently exist. Avoids confusion for newbies with no user
+ * pages over why they got a "permission error" following this link:
+ * http://en.wikipedia.org/w/index.php?title=Special:MyPage&redlink=1
+ *
+ * - debug: use case not entirely clear. See bug 35060.
+ *
+ * @par Hook extension:
+ * Extensions can add to the redirect parameters list by using the hook
+ * RedirectSpecialArticleRedirectParams
+ *
+ * This hook allows extensions which add GET parameters like FlaggedRevs to 
+ * retain those parameters when redirecting using special pages.
+ *
+ * @par Hook extension example:
+ * @code
+ *	$wgHooks['RedirectSpecialArticleRedirectParams'][] =
+ *		'MyExtensionHooks::onRedirectSpecialArticleRedirectParams';
+ *	public static function onRedirectSpecialArticleRedirectParams( &$redirectParams ) {
+ *		$redirectParams[] = 'stable';
+ *		return true;
+ *	}
+ * @endcode
+ * @ingroup SpecialPage
+ */
+abstract class RedirectSpecialArticle extends RedirectSpecialPage {
+	function __construct( $name ) {
+		parent::__construct( $name );
+		$redirectParams = array(
+			'action',
+			'redirect', 'rdfrom',
+			# Options for preloaded edits
+			'preload', 'editintro', 'preloadtitle', 'summary',
+			# Options for overriding user settings
+			'preview', 'internaledit', 'externaledit', 'mode',
+			# Options for history/diffs
+			'section', 'oldid', 'diff', 'dir',
+			'limit', 'offset', 'feed',
+			# Misc options
+			'redlink', 'debug',
+			# Options for action=raw; missing ctype can break JS or CSS in some browsers
+			'ctype', 'maxage', 'smaxage',
+		);
+
+		wfRunHooks( "RedirectSpecialArticleRedirectParams", array(&$redirectParams) );
+		$this->mAllowedRedirectParams = $redirectParams;
+	}
+}
+
+/**
  * Shortcut to construct a special page pointing to current user user's page.
  * @ingroup SpecialPage
  */
-class SpecialMypage extends RedirectSpecialPage {
+class SpecialMypage extends RedirectSpecialArticle {
 	function __construct() {
 		parent::__construct( 'Mypage' );
-		$this->mAllowedRedirectParams = array( 'action', 'preload', 'preloadtitle', 'editintro',
-			'section', 'oldid', 'diff', 'dir',
-			// Options for action=raw; missing ctype can break JS or CSS in some browsers
-			'ctype', 'maxage', 'smaxage' );
 	}
 
 	function getRedirect( $subpage ) {
@@ -1162,11 +1245,9 @@ class SpecialMypage extends RedirectSpecialPage {
  * Shortcut to construct a special page pointing to current user talk page.
  * @ingroup SpecialPage
  */
-class SpecialMytalk extends RedirectSpecialPage {
+class SpecialMytalk extends RedirectSpecialArticle {
 	function __construct() {
 		parent::__construct( 'Mytalk' );
-		$this->mAllowedRedirectParams = array( 'action', 'preload', 'preloadtitle', 'editintro',
-			'section', 'oldid', 'diff', 'dir' );
 	}
 
 	function getRedirect( $subpage ) {

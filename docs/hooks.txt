@@ -1626,6 +1626,10 @@ $out: OutputPage object
 'RecentChange_save': called at the end of RecentChange::save()
 $recentChange: RecentChange object
 
+'RedirectSpecialArticleRedirectParams': let you inject or alter redirection
+parameters.
+&$redirectParams: An array of allowed parameters names when redirecting.
+
 'RequestContextCreateSkin': Called when RequestContext::getSkin creates a skin instance.
 Can be used by an extension override what skin is used in certain contexts.
 IContextSource $context: The RequestContext the skin is being created for.
