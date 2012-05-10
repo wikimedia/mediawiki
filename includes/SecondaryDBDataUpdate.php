@@ -19,6 +19,8 @@
  *
  * Abstract base class for update jobs that put some secondary data extracted
  * from article content into the database.
+ *
+ * @since WD.1
  */
 abstract class SecondaryDBDataUpdate extends SecondaryDataUpdate {
 
@@ -52,6 +54,8 @@ abstract class SecondaryDBDataUpdate extends SecondaryDataUpdate {
 	 *
 	 * Because nested transactions are not supportred by the Database class, this implementation
 	 * checked Database::trxLevel() and only opens a transaction if none is yet active.
+	 *
+	 * @since WD.1
 	 */
 	public function beginTransaction() {
 		// NOTE: nested transactions are not supported, only start a transaction if none is open
@@ -63,6 +67,8 @@ abstract class SecondaryDBDataUpdate extends SecondaryDataUpdate {
 
 	/**
 	 * Commit the database transaction started via beginTransaction (if any).
+	 *
+	 * @since WD.1
 	 */
 	public function commitTransaction() {
 		if ( $this->mHasTransaction ) {
@@ -72,6 +78,8 @@ abstract class SecondaryDBDataUpdate extends SecondaryDataUpdate {
 
 	/**
 	 * Abort the database transaction started via beginTransaction (if any).
+	 *
+	 * @since WD.1
 	 */
 	public function abortTransaction() {
 		if ( $this->mHasTransaction ) {
@@ -82,6 +90,8 @@ abstract class SecondaryDBDataUpdate extends SecondaryDataUpdate {
 	/**
 	 * Invalidate the cache of a list of pages from a single namespace.
 	 * This is intended for use by subclasses.
+	 *
+	 * @since WD.1
 	 *
 	 * @param $namespace Integer
 	 * @param $dbkeys Array

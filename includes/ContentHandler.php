@@ -40,6 +40,8 @@ abstract class ContentHandler {
 	 * * If $wgContentHandlerTextFallback is 'ignore' and $content is not a TextContent object, this method returns null.
 	 * * otherwise, the behaviour is undefined.
 	 *
+	 * @since WD.1
+	 *
 	 * @static
 	 * @param Content|null $content
 	 * @return null|string the textual form of $content, if available
@@ -72,6 +74,8 @@ abstract class ContentHandler {
 	 *
 	 * $text will be deserialized into a Content object of the model specified by $modelName (or,
 	 * if that is not given, $title->getContentModelName()) using the given format.
+	 *
+	 * @since WD.1
 	 *
 	 * @static
 	 * @param string $text the textual represenation, will be unserialized to create the Content object
@@ -109,6 +113,8 @@ abstract class ContentHandler {
 	 * If none of the above applies, the wikitext model is used.
 	 *
 	 * Note: this is used by, and may thus not use, Title::getContentModelName()
+	 *
+	 * @since WD.1
 	 *
 	 * @static
 	 * @param Title $title
@@ -178,6 +184,8 @@ abstract class ContentHandler {
 	/**
 	 * returns the appropriate ContentHandler singleton for the given title
 	 *
+	 * @since WD.1
+	 *
 	 * @static
 	 * @param Title $title
 	 * @return ContentHandler
@@ -189,6 +197,8 @@ abstract class ContentHandler {
 
 	/**
 	 * returns the appropriate ContentHandler singleton for the given Content object
+	 *
+	 * @since WD.1
 	 *
 	 * @static
 	 * @param Content $content
@@ -212,6 +222,8 @@ abstract class ContentHandler {
 	 *
 	 * If no ContentHandler is defined for the desired $modelName, the ContentHandler may be provided by the
 	 * a ContentHandlerForModelName hook. if no Contenthandler can be determined, an MWException is raised.
+	 *
+	 * @since WD.1
 	 *
 	 * @static
 	 * @param $modelName String the name of the content model for which to get a handler. Use CONTENT_MODEL_XXX constants.
@@ -259,6 +271,8 @@ abstract class ContentHandler {
 	/**
 	 * Serializes Content object of the type supported by this ContentHandler.
 	 *
+	 * @since WD.1
+	 *
 	 * @abstract
 	 * @param Content $content the Content object to serialize
 	 * @param null $format the desired serialization format
@@ -268,6 +282,8 @@ abstract class ContentHandler {
 
 	/**
 	 * Unserializes a Content object of the type supported by this ContentHandler.
+	 *
+	 * @since WD.1
 	 *
 	 * @abstract
 	 * @param $blob String serialized form of the content
@@ -279,6 +295,8 @@ abstract class ContentHandler {
 	/**
 	 * Creates an empty Content object of the type supported by this ContentHandler.
 	 *
+	 * @since WD.1
+	 *
 	 * @return Content
 	 */
 	public abstract function makeEmptyContent();
@@ -286,6 +304,8 @@ abstract class ContentHandler {
 	/**
 	 * Returns the model name that identifies the content model this ContentHandler can handle.
 	 * Use with the CONTENT_MODEL_XXX constants.
+	 *
+	 * @since WD.1
 	 *
 	 * @return String the model name
 	 */
@@ -295,6 +315,8 @@ abstract class ContentHandler {
 
 	/**
 	 * Throws an MWException if $modelName is not the content model handeled by this ContentHandler.
+	 *
+	 * @since WD.1
 	 *
 	 * @param String $modelName the model name to check
 	 */
@@ -308,6 +330,8 @@ abstract class ContentHandler {
 	 * Returns a list of serialization formats supported by the serializeContent() and unserializeContent() methods of
 	 * this ContentHandler.
 	 *
+	 * @since WD.1
+	 *
 	 * @return array of serialization formats as MIME type like strings
 	 */
 	public function getSupportedFormats() {
@@ -319,6 +343,8 @@ abstract class ContentHandler {
 	 *
 	 * This default implementation will return the first element of the array of formats
 	 * that was passed to the constructor.
+	 *
+	 * @since WD.1
 	 *
 	 * @return String the name of the default serialiozation format as a MIME type
 	 */
@@ -332,6 +358,8 @@ abstract class ContentHandler {
 	 *
 	 * Note that if $format is null, this method always returns true, because null
 	 * means "use the default format".
+	 *
+	 * @since WD.1
 	 *
 	 * @param String $format the serialization format to check
 	 * @return bool
@@ -363,6 +391,8 @@ abstract class ContentHandler {
 	 * (and only when) $wgActions[$action] === true. This allows subclasses
 	 * to override the default action handlers.
 	 *
+	 * @since WD.1
+	 *
 	 * @return Array
 	 */
 	public function getActionOverrides() {
@@ -374,6 +404,8 @@ abstract class ContentHandler {
 	 *
 	 * NOTE: does *not* do special handling for Image and Category pages!
 	 *       Use Article::newFromTitle() for that!
+	 *
+	 * @since WD.1
 	 *
 	 * @param Title $title
 	 * @return Article
@@ -390,6 +422,8 @@ abstract class ContentHandler {
 	/**
 	 * Return an EditPage object suitable for editing the given object
 	 *
+	 * @since WD.1
+	 *
 	 * @param Article $article
 	 * @return EditPage
 	 */
@@ -402,6 +436,8 @@ abstract class ContentHandler {
 
 	/**
 	 * Return an ExternalEdit object suitable for editing the given object
+	 *
+	 * @since WD.1
 	 *
 	 * @param IContextSource $context
 	 * @return ExternalEdit
@@ -416,6 +452,8 @@ abstract class ContentHandler {
 
 	/**
 	 * Factory
+	 * @since WD.1
+	 *
 	 * @param $context IContextSource context to use, anything else will be ignored
 	 * @param $old Integer old ID we want to show and diff with.
 	 * @param $new String either 'prev' or 'next'.
@@ -438,7 +476,7 @@ abstract class ContentHandler {
 	/**
 	 * Returns the name of the diff engine to use.
 	 *
-	 * @since 0.1
+	 * @since WD.1
 	 *
 	 * @return string
 	 */
@@ -452,6 +490,8 @@ abstract class ContentHandler {
 	 *
 	 * This default implementation always returns false.
 	 *
+	 * @since WD.1
+	 *
 	 * @param $oldContent String
 	 * @param $myContent String
 	 * @param $yourContent String
@@ -463,6 +503,8 @@ abstract class ContentHandler {
 
 	/**
 	 * Return an applicable autosummary if one exists for the given edit.
+	 *
+	 * @since WD.1
 	 *
 	 * @param $oldContent Content|null: the previous text of the page.
 	 * @param $newContent Content|null: The submitted text of the page.
@@ -525,6 +567,8 @@ abstract class ContentHandler {
 
 	/**
 	 * Auto-generates a deletion reason
+	 *
+	 * @since WD.1
 	 *
 	 * @param $title Title: the page's title
 	 * @param &$hasHistory Boolean: whether the page has a history
@@ -621,9 +665,13 @@ abstract class ContentHandler {
 	 * Get the Content object that needs to be saved in order to undo all revisions
 	 * between $undo and $undoafter. Revisions must belong to the same page,
 	 * must exist and must not be deleted
+	 *
+	 * @since WD.1
+	 *
 	 * @param $current Revision the current text
 	 * @param $undo Revision the revision to undo
 	 * @param $undoafter Revision Must be an earlier revision than $undo
+	 *
 	 * @return mixed string on success, false on failure
 	 */
 	public function getUndoContent( Revision $current, Revision $undo, Revision $undoafter ) {
@@ -650,6 +698,8 @@ abstract class ContentHandler {
 	 * Returns true for content models that support caching using the ParserCache mechanism.
 	 * See WikiPage::isParserCacheUser().
 	 *
+	 * @since WD.1
+	 *
 	 * @return bool
 	 */
 	public function isParserCacheSupported() {
@@ -657,6 +707,8 @@ abstract class ContentHandler {
 	}
 
 	/**
+	 * @since WD.1
+	 *
 	 * @param $page WikiPage the page that was deleted (note: $page->getId() must still return the old page ID!)
 	 *
 	 * @return array a list of SecondaryDataUpdate instances that will clean up the database ofter deletion.
@@ -668,7 +720,9 @@ abstract class ContentHandler {
 	}
 }
 
-
+/**
+ * @since WD.1
+ */
 abstract class TextContentHandler extends ContentHandler {
 
 	public function __construct( $modelName, $formats ) {
@@ -720,6 +774,10 @@ abstract class TextContentHandler extends ContentHandler {
 
 
 }
+
+/**
+ * @since WD.1
+ */
 class WikitextContentHandler extends TextContentHandler {
 
 	public function __construct( $modelName = CONTENT_MODEL_WIKITEXT ) {
@@ -741,6 +799,9 @@ class WikitextContentHandler extends TextContentHandler {
 
 #XXX: make ScriptContentHandler base class with plugin interface for syntax highlighting?
 
+/**
+ * @since WD.1
+ */
 class JavaScriptContentHandler extends TextContentHandler {
 
 	public function __construct( $modelName = CONTENT_MODEL_WIKITEXT ) {
@@ -758,6 +819,9 @@ class JavaScriptContentHandler extends TextContentHandler {
 	}
 }
 
+/**
+ * @since WD.1
+ */
 class CssContentHandler extends TextContentHandler {
 
 	public function __construct( $modelName = CONTENT_MODEL_WIKITEXT ) {

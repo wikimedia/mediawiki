@@ -455,6 +455,8 @@ class ParserOutput extends CacheTime {
      * Adds an update job to the output. Any update jobs added to the output will eventually bexecuted in order to
      * store any secondary information extracted from the page's content.
      *
+	 * @since WD.1
+	 *
      * @param SecondaryDataUpdate $update
      */
     public function addSecondaryDataUpdate( SecondaryDataUpdate $update ) {
@@ -466,6 +468,8 @@ class ParserOutput extends CacheTime {
      * extracted from the page's content, includingt a LinksUpdate object for all links stopred in
      * this ParserOutput object.
      *
+	 * @since WD.1
+	 *
      * @param $title Title of the page we're updating. If not given, a title object will be created based on $this->getTitleText()
      * @param $recursive Boolean: queue jobs for recursive updates?
      *

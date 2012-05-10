@@ -17,12 +17,16 @@ abstract class Content {
 	protected $model_name;
 
 	/**
+	 * @since WD.1
+	 *
 	 * @return String a string representing the content in a way useful for building a full text search index.
 	 *         If no useful representation exists, this method returns an empty string.
 	 */
 	public abstract function getTextForSearchIndex( );
 
 	/**
+	 * @since WD.1
+	 *
 	 * @return String the wikitext to include when another page includes this  content, or false if the content is not
 	 *         includable in a wikitext page.
 	 *
@@ -34,6 +38,8 @@ abstract class Content {
 	/**
 	 * Returns a textual representation of the content suitable for use in edit summaries and log messages.
 	 *
+	 * @since WD.1
+	 *
 	 * @param int $maxlength maximum length of the summary text
 	 * @return String the summary text
 	 */
@@ -42,6 +48,8 @@ abstract class Content {
 	/**
 	 * Returns native represenation of the data. Interpretation depends on the data model used,
 	 * as given by getDataModel().
+	 *
+	 * @since WD.1
 	 *
 	 * @return mixed the native representation of the content. Could be a string, a nested array
 	 *         structure, an object, a binary blob... anything, really.
@@ -68,6 +76,8 @@ abstract class Content {
 	 * Returns the name of the content model used by this content objects.
 	 * Corresponds to the CONTENT_MODEL_XXX constants.
 	 *
+	 * @since WD.1
+	 *
 	 * @return String the model name
 	 */
 	public function getModelName() {
@@ -92,6 +102,8 @@ abstract class Content {
 	 *
 	 * Shorthand for ContentHandler::getForContent( $this )
 	 *
+	 * @since WD.1
+	 *
 	 * @return ContentHandler
 	 */
 	public function getContentHandler() {
@@ -104,6 +116,8 @@ abstract class Content {
 	 *
 	 * Shorthand for $this->getContentHandler()->getDefaultFormat()
 	 *
+	 * @since WD.1
+	 *
 	 * @return ContentHandler
 	 */
 	public function getDefaultFormat() {
@@ -115,6 +129,8 @@ abstract class Content {
 	 * for the content model model this Content object uses.
 	 *
 	 * Shorthand for $this->getContentHandler()->getSupportedFormats()
+	 *
+	 * @since WD.1
 	 *
 	 * @return array of supported serialization formats
 	 */
@@ -130,6 +146,8 @@ abstract class Content {
 	 * default serialization.
 	 *
 	 * Shorthand for $this->getContentHandler()->isSupportedFormat( $format )
+	 *
+	 * @since WD.1
 	 *
 	 * @param String $format the format to check
 	 * @return bool whether the format is supported
@@ -159,6 +177,8 @@ abstract class Content {
 	 *
 	 * Shorthand for $this->getContentHandler()->serializeContent( $this, $format )
 	 *
+	 * @since WD.1
+	 *
 	 * @param null|String $format the desired serialization format (or null for the default format).
 	 * @return String serialized form of this Content object
 	 */
@@ -168,6 +188,8 @@ abstract class Content {
 
 	/**
 	 * Returns true if this Content object represents empty content.
+	 *
+	 * @since WD.1
 	 *
 	 * @return bool whether this Content object is empty
 	 */
@@ -188,6 +210,8 @@ abstract class Content {
 	 *
 	 * * $a->equals( $b ) <=> $b->equals( $b )
 	 * * $a->equals( $b ) &&  $b->equals( $c ) ==> $a->equals( $c )
+	 *
+	 * @since WD.1
 	 *
 	 * @param Content $that the Content object to compare to
 	 * @return bool true if this Content object is euqual to $that, false otherwise.
@@ -220,6 +244,8 @@ abstract class Content {
 	 * return $this. That is,  $copy === $original may be true, but only for imutable content
 	 * objects.
 	 *
+	 * @since WD.1
+	 *
 	 * @return Content. A copy of this object
 	 */
 	public abstract function copy( );
@@ -227,6 +253,8 @@ abstract class Content {
 	/**
 	 * Returns true if this content is countable as a "real" wiki page, provided
 	 * that it's also in a countable location (e.g. a current revision in the main namespace).
+	 *
+	 * @since WD.1
 	 *
 	 * @param $hasLinks Bool: if it is known whether this content contains links, provide this information here,
 	 *                        to avoid redundant parsing to find out.
@@ -242,6 +270,8 @@ abstract class Content {
 	 *        the result of calling getText() on the ParserOutput object returned by
 	 *        this method is undefined.
 	 *
+	 * @since WD.1
+	 *
 	 * @return ParserOutput
 	 */
 	public abstract function getParserOutput( IContextSource $context, $revId = null, ParserOptions $options = NULL, $generateHtml = true );
@@ -251,6 +281,8 @@ abstract class Content {
 	 * array of Titles, or null if this content doesn't represent a redirect.
 	 * The last element in the array is the final destination after all redirects
 	 * have been resolved (up to $wgMaxRedirects times).
+	 *
+	 * @since WD.1
 	 *
 	 * @return Array of Titles, with the destination last
 	 */
@@ -264,6 +296,8 @@ abstract class Content {
 	 * This will only return the immediate redirect target, useful for
 	 * the redirect table and other checks that don't need full recursion.
 	 *
+	 * @since WD.1
+	 *
 	 * @return Title: The corresponding Title
 	 */
 	public function getRedirectTarget() {
@@ -276,20 +310,29 @@ abstract class Content {
 	 * This will recurse down $wgMaxRedirects times or until a non-redirect target is hit
 	 * in order to provide (hopefully) the Title of the final destination instead of another redirect.
 	 *
+	 * @since WD.1
+	 *
 	 * @return Title
 	 */
 	public function getUltimateRedirectTarget() {
 		return null;
 	}
 
+	/**
+	 * @since WD.1
+	 *
+	 * @return bool
+	 */
 	public function isRedirect() {
-		return $this->getRedirectTarget() != null;
+		return $this->getRedirectTarget() !== null;
 	}
 
 	/**
 	 * Returns the section with the given id.
 	 *
 	 * The default implementation returns null.
+	 *
+	 * @since WD.1
 	 *
 	 * @param String $sectionId the section's id, given as a numeric string. The id "0" retrieves the section before
 	 *          the first heading, "1" the text between the first heading (inluded) and the second heading (excluded), etc.
@@ -302,6 +345,8 @@ abstract class Content {
 	/**
 	 * Replaces a section of the content and returns a Content object with the section replaced.
 	 *
+	 * @since WD.1
+	 *
 	 * @param $section empty/null/false or a section number (0, 1, 2, T1, T2...), or "new"
 	 * @param $with Content: new content of the section
 	 * @param $sectionTitle String: new section's subject, only if $section is 'new'
@@ -313,6 +358,8 @@ abstract class Content {
 
 	/**
 	 * Returns a Content object with pre-save transformations applied (or this object if no transformations apply).
+	 *
+	 * @since WD.1
 	 *
 	 * @param Title $title
 	 * @param User $user
@@ -327,6 +374,8 @@ abstract class Content {
 	 * Returns a new WikitextContent object with the given section heading prepended, if supported.
 	 * The default implementation just returns this Content object unmodified, ignoring the section header.
 	 *
+	 * @since WD.1
+	 *
 	 * @param $header String
 	 * @return Content
 	 */
@@ -336,6 +385,8 @@ abstract class Content {
 
 	/**
 	 * Returns a Content object with preload transformations applied (or this object if no transformations apply).
+	 *
+	 * @since WD.1
 	 *
 	 * @param Title $title
 	 * @param null|ParserOptions $popts
@@ -367,6 +418,8 @@ abstract class Content {
  * Content object implementation for representing flat text.
  *
  * TextContent instances are imutable
+ *
+ * @since WD.1
  */
 abstract class TextContent extends Content {
 
@@ -472,6 +525,9 @@ abstract class TextContent extends Content {
 
 }
 
+/**
+ * @since WD.1
+ */
 class WikitextContent extends TextContent {
 
 	public function __construct( $text ) {
@@ -677,6 +733,9 @@ class WikitextContent extends TextContent {
 
 }
 
+/**
+ * @since WD.1
+ */
 class MessageContent extends TextContent {
 	public function __construct( $msg_key, $params = null, $options = null ) {
 		parent::__construct(null, CONTENT_MODEL_WIKITEXT); #XXX: messages may be wikitext, html or plain text! and maybe even something else entirely.
@@ -718,7 +777,9 @@ class MessageContent extends TextContent {
 
 }
 
-
+/**
+ * @since WD.1
+ */
 class JavaScriptContent extends TextContent {
 	public function __construct( $text ) {
 		parent::__construct($text, CONTENT_MODEL_JAVASCRIPT);
@@ -735,6 +796,9 @@ class JavaScriptContent extends TextContent {
 
 }
 
+/**
+ * @since WD.1
+ */
 class CssContent extends TextContent {
 	public function __construct( $text ) {
 		parent::__construct($text, CONTENT_MODEL_CSS);
