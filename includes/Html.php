@@ -755,7 +755,7 @@ class Html {
 		// Convert $options to HTML and filter out namespaces below 0
 		$optionsHtml = array();
 		foreach ( $options as $nsId => $nsName ) {
-			if ( $nsId < NS_MAIN || in_array( $nsId, $params['exclude'] ) ) {
+			if ( !MWNamespace::isMovable( $nsId ) || in_array( $nsId, $params['exclude'] ) ) {
 				continue;
 			}
 			if ( $nsId === 0 ) {
