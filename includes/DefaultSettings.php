@@ -310,9 +310,13 @@ $wgImgAuthPublicTest = true;
  *   - zones            Associative array of zone names that each map to an array with:
  *                          container : backend container name the zone is in
  *                          directory : root path within container for the zone
- *                      Zones default to using <repo name>-<zone> as the
- *                      container name and the container root as the zone directory.
- *   - url              Base public URL
+ *                          url       : base URL to the root of the zone
+ *                      Zones default to using <repo name>-<zone name> as the container name
+ *                      and default to using the container root as the zone's root directory.
+ *                      Nesting of zone locations within other zones should be avoided.
+ *   - url              Public zone URL. The 'zones' settings take precedence.
+ *                      New wikis should ignore this setting and use 'baseUrl' instead.
+ *   - baseUrl          The parent URL of zone URLs. The 'zones' settings take precedence.
  *   - hashLevels       The number of directory levels for hash-based division of files
  *   - thumbScriptUrl   The URL for thumb.php (optional, not recommended)
  *   - transformVia404  Whether to skip media file transformation on parse and rely on a 404
@@ -1873,12 +1877,12 @@ $wgMaxSquidPurgeTitles = 400;
  * Routing configuration for HTCP multicast purging. Add elements here to
  * enable HTCP and determine which purges are sent where. If set to an empty
  * array, HTCP is disabled.
- * 
+ *
  * Each key in this array is a regular expression to match against the purged
  * URL, or an empty string to match all URLs. The purged URL is matched against
  * the regexes in the order specified, and the first rule whose regex matches
  * is used.
- * 
+ *
  * Example configuration to send purges for upload.wikimedia.org to one
  * multicast group and all other purges to another:
  * $wgHTCPMulticastRouting = array(
@@ -1891,7 +1895,7 @@ $wgMaxSquidPurgeTitles = 400;
  *                 'port' => 4827,
  *         ),
  * );
- * 
+ *
  * @see $wgHTCPMulticastTTL
  */
 $wgHTCPMulticastRouting = array();
@@ -1901,12 +1905,12 @@ $wgHTCPMulticastRouting = array();
  *
  * Note that MediaWiki uses the old non-RFC compliant HTCP format, which was
  * present in the earliest Squid implementations of the protocol.
- * 
+ *
  * This setting is DEPRECATED in favor of $wgHTCPMulticastRouting , and kept
  * for backwards compatibility only. If $wgHTCPMulticastRouting is set, this
  * setting is ignored. If $wgHTCPMulticastRouting is not set and this setting
  * is, it is used to populate $wgHTCPMulticastRouting.
- * 
+ *
  * @deprecated in favor of $wgHTCPMulticastRouting
  */
 $wgHTCPMulticastAddress = false;

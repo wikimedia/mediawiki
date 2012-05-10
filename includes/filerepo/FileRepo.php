@@ -44,6 +44,7 @@ class FileRepo {
 	protected $backend;
 	/** @var Array Map of zones to config */
 	protected $zones = array();
+	protected $urlIsRoot; // boolean
 
 	var $thumbScriptUrl, $transformVia404;
 	var $descBaseUrl, $scriptDirUrl, $scriptExtension, $articleUrl;
@@ -60,7 +61,7 @@ class FileRepo {
 	var $oldFileFactory = false;
 	var $fileFactoryKey = false, $oldFileFactoryKey = false;
 
-	function __construct( array $info = null ) {
+	public function __construct( array $info = null ) {
 		// Verify required settings presence
 		if(
 			$info === null
@@ -94,9 +95,15 @@ class FileRepo {
 		$this->initialCapital = isset( $info['initialCapital'] )
 			? $info['initialCapital']
 			: MWNamespace::isCapitalized( NS_FILE );
-		$this->url = isset( $info['url'] )
-			? $info['url']
-			: false; // a subclass may set the URL (e.g. ForeignAPIRepo)
+		if ( isset( $info['baseUrl'] ) ) { // new way
+			$this->url = $info['baseUrl'];
+			$this->urlIsRoot = true; // non-legacy
+		} else { // old way
+			$this->url = isset( $info['url'] )
+				? $info['url']
+				: false; // a subclass may set the URL (e.g. ForeignAPIRepo)
+			$this->urlIsRoot = false; // legacy
+		}
 		if ( isset( $info['thumbUrl'] ) ) {
 			$this->thumbUrl = $info['thumbUrl'];
 		} else {
@@ -114,11 +121,11 @@ class FileRepo {
 			: array();
 		// Give defaults for the basic zones...
 		foreach ( array( 'public', 'thumb', 'temp', 'deleted' ) as $zone ) {
-			if ( !isset( $this->zones[$zone] ) ) {
-				$this->zones[$zone] = array(
-					'container' => "{$this->name}-{$zone}",
-					'directory' => '' // container root
-				);
+			if ( !isset( $this->zones[$zone]['container'] ) ) {
+				$this->zones[$zone]['container'] = "{$this->name}-{$zone}";
+			}
+			if ( !isset( $this->zones[$zone]['directory'] ) ) {
+				$this->zones[$zone]['directory'] = '';
 			}
 		}
 	}
@@ -204,9 +211,14 @@ class FileRepo {
 	 * @return String or false
 	 */
 	public function getZoneUrl( $zone ) {
+		if ( isset( $this->zones[$zone]['url'] )
+			&& in_array( $zone, array( 'public', 'temp', 'thumb' ) ) )
+		{
+			return $this->zones[$zone]['url']; // custom URL
+		}
 		switch ( $zone ) {
 			case 'public':
-				return $this->url;
+				return $this->urlIsRoot ? "{$this->url}/public" : $this->url;
 			case 'temp':
 				return "{$this->url}/temp";
 			case 'deleted':
@@ -442,10 +454,11 @@ class FileRepo {
 	/**
 	 * Get the public root URL of the repository
 	 *
+	 * @deprecated since 1.20
 	 * @return string
 	 */
 	public function getRootUrl() {
-		return $this->url;
+		return $this->getZoneUrl( 'public' );
 	}
 
 	/**
