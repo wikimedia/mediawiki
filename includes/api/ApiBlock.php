@@ -103,9 +103,11 @@ class ApiBlock extends ApiBase {
 			$res['expiry'] = $block->mExpiry == wfGetDB( DB_SLAVE )->getInfinity()
 				? 'infinite'
 				: wfTimestamp( TS_ISO_8601, $block->mExpiry );
+			$res['id'] = $block->getId();
 		} else {
 			# should be unreachable
 			$res['expiry'] = '';
+			$res['id'] = '';
 		}
 
 		$res['reason'] = $params['reason'];

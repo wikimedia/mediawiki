@@ -63,7 +63,10 @@ class ApiQueryUserInfo extends ApiQueryBase {
 
 		if ( isset( $this->prop['blockinfo'] ) ) {
 			if ( $user->isBlocked() ) {
-				$vals['blockedby'] = User::whoIs( $user->blockedBy() );
+				$block = $user->getBlock();
+				$vals['blockid'] = $block->getId();
+				$vals['blockedby'] = $block->getByName();
+				$vals['blockedbyid'] = $block->getBy();
 				$vals['blockreason'] = $user->blockedFor();
 			}
 		}
