@@ -37,7 +37,7 @@ class ResourceLoaderUserModule extends ResourceLoaderWikiModule {
 	protected function getPages( ResourceLoaderContext $context ) {
 		$username = $context->getUser();
 
-		if ( !$username ) {
+		if ( $username === null ) {
 			return array();
 		}
 

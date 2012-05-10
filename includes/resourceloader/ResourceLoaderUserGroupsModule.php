@@ -36,7 +36,7 @@ class ResourceLoaderUserGroupsModule extends ResourceLoaderWikiModule {
 		global $wgUser;
 
 		$userName = $context->getUser();
-		if ( !$userName ) {
+		if ( $userName === null ) {
 			return array();
 		}
 
