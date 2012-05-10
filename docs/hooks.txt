@@ -1626,6 +1626,11 @@ $out: OutputPage object
 'RecentChange_save': called at the end of RecentChange::save()
 $recentChange: RecentChange object
 
+'RedirectSpecialArticleRedirectParams': lets you alter the set of
+parameter names such as "oldid" that are preserved when using
+redirecting special pages such as Special:MyPage and Special:MyTalk.
+&$redirectParams: An array of parameters preserved by redirecting special pages.
+
 'RequestContextCreateSkin': Called when RequestContext::getSkin creates a skin instance.
 Can be used by an extension override what skin is used in certain contexts.
 IContextSource $context: The RequestContext the skin is being created for.
