@@ -105,14 +105,17 @@ $messages = array(
 'pagecategories' => '{{PLURAL:$1|Ntlawa|intlawa}}',
 'category_header' => 'Matluka eka ntlawa wa "$1"',
 'subcategories' => 'Mintlawa-ntsongo',
+'category-media-header' => 'Matluka ya xifaniso kumbe mpfumawulo eka ntlawa wa "$1"',
 'category-empty' => "''Ntlawa lowu eka nkarhi wa sweswi, wuhava matluka kumbe swifaniso.''",
 'hidden-categories' => '{{PLURAL:$1|Ntlawa lowu tumbetiweke|Mintlawa leyi tumbetiweke}}',
 'category-subcat-count' => '{{PLURAL:$2|Ntlawa lowu wukhome mintlawa-ntsongo leyi landzelaka.|Ntlawa lowu wuni  {{PLURAL:$1|ntlwa-ntsongo|$1 wa mintlaw-ntsongo}}, eka $2 wa mintlawa-ntsongo.}}',
 'category-article-count' => '{{PLURAL:$2|Ntlawa lowu wukhome matluka lamalandzelaka ntsena.| {{PLURAL:$1|Tluka leri ri le|$1 matluka lawa male}} ndzeni ka ntlawa lowu, eka $2 wamintlawa.}}',
+'category-file-count' => '{{PLURAL:$2|Ntlawa lowu wukhome matluka lamalandzelaka ntsena.| {{PLURAL:$1|Tluka leri ri le|$1 matluka lawa male}} ndzeni ka ntlawa lowu, eka $2 wamintlawa.}}',
 'listingcontinuesabbrev' => 'Mahlwe.',
 'noindex-category' => 'Matluka lama kayivelaka xikombandlela xa tinhlokomhaka',
 
 'about' => 'Timhaka hi',
+'article' => 'Matluka lama tsariweke',
 'newwindow' => '(Yi pfula e ndhzawini yintswa)',
 'cancel' => 'Thsika',
 'moredotdotdot' => "Swin'wana...",
@@ -164,6 +167,7 @@ $messages = array(
 'create-this-page' => 'Tumbuluxa tluka leri',
 'delete' => 'Sula',
 'deletethispage' => 'Sula tluka leri',
+'viewdeleted_short' => 'Vona {{PLURAL:$1|ndzulamiso lowu suriweke|$1 mindzulamiso leyi suriweke}}',
 'protect' => 'Sirhelela',
 'protect_change' => 'Cinca',
 'protectthispage' => 'Sirhelela tluka leri',
@@ -176,6 +180,7 @@ $messages = array(
 'toolbox' => 'Bokisi ra switirhisiwa',
 'otherlanguages' => "Hi ti ndzimi tin'wana",
 'redirectedfrom' => '(Ritlerisewe kusuka e $1)',
+'redirectpagesub' => 'Tluka ro kongomisa',
 'lastmodifiedat' => 'Tluka leri rihetelele ku lulamisiwa hi $1, nkarhi kuri $2.',
 'jumpto' => 'Tlulela eka:',
 'jumptonavigation' => 'Xikomba-ndlela',
@@ -314,6 +319,7 @@ Query: $2',
 'remembermypassword' => 'Tsundzuka ku nghena eka Khompuyuta leyi (kufikela eka $1 {{PLURAL:$1|siku|masiku}})',
 'login' => 'Pfula u nghena',
 'nav-login-createaccount' => 'Pfula unghena / Tumbuluxa akhawunti',
+'loginprompt' => 'U fanele ku pfumelela swipfuneti leswaku u pfula unghena eka {{SITENAME}}.',
 'userlogin' => 'Pfula unghena / Tumbuluxa akhawunti',
 'logout' => 'Pfala u famba',
 'userlogout' => 'Pfala u famba',
@@ -323,6 +329,7 @@ Query: $2',
 'gotaccount' => 'Xna una akhawunti hi khale? $1.',
 'gotaccountlink' => 'Pfula unghena',
 'userlogin-resetlink' => 'Xana u rivele vuxokoxoko bya wena byo pfula unghena?',
+'mailmypassword' => 'Rhumela vito-mpfungulo lerintwsa',
 'loginlanguagelabel' => 'Ririmi: $1',
 
 # Edit page toolbar
@@ -335,6 +342,7 @@ Query: $2',
 'extlink_sample' => 'http://www.example.com khwekerisa nhlokomhaka',
 'extlink_tip' => 'Xikhwekerisi xa tluka ralehandle ka wiki leyi (tsundzuka xi rhangi xa http:// )',
 'headline_sample' => 'tsala ra nhlokomhaka',
+'headline_tip' => 'Nhloko mhaka ya xiyenge xa 2',
 'nowiki_sample' => 'Hoxa xivulwa lexi nga sasekisiwangiki mavonele laha',
 'nowiki_tip' => 'bakanya kuxongisa marito ka wiki',
 'image_tip' => 'Fayili leyi angarhiweke',
@@ -352,6 +360,7 @@ Query: $2',
 'showdiff' => 'Komba ku cinca',
 'anoneditwarning' => "'''Watsundzuxiwa:''' awu pfulanga unghena eka wiki leyi.
 Adirese ya khompuyuta ya wena ya IP yita tsariwa eka matimu ya ku lulamisiwa ka tluka leri.",
+'newarticle' => '(yintswa)',
 'newarticletext' => "Ulandzele xikhwekerisi lexi kombaka tluka leringasi tsariwaka.
 Leswaku u tumbuluxa tluka leri, tsala eka bokisi leringa e hansi (Nkambe unga ye eka [[{{MediaWiki:Helppage}}|tluka ra mpfuno]] kukuma vuxokoxoko lebyi engetelekeke).
 Loko ufike eka tluka leri hixihoxo, thlava bhatheni leyinge '''thlelela'''.",
@@ -365,6 +374,7 @@ kumbe u <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAME
 'previewnote' => "'''Lowu i ndzinganiso ntsena;
 kucinca a ku sihlayisiwa!'''",
 'editing' => 'Ulekululamiseni ka $1',
+'editingsection' => 'Ndzulamiso wa $1 (Xiyenge)',
 'copyrightwarning' => "Xiya leswaku minyikelo hinkwayo e ka {{SITENAME}} yi tekiwa yitshuxiwe e hansi ka $2 (Vona $1 ku kuma vuxokoxoko).
 loko unga tsakeli leswaku vutsari bya wena byi lulamisiwa no aviwa handle ko tweriwa vusiwana, unga tsari laha.<br />
 U hi tshembisa nakambe leswaku hi wena mutsari wa leswi nyikeriwaka laha, kumbe leswi u swinyikelaka u swi tekile e xihloveni xa lerivaleni kumbe laha kunga na mpfumelelo wa mani na mani.
@@ -372,7 +382,12 @@ U hi tshembisa nakambe leswaku hi wena mutsari wa leswi nyikeriwaka laha, kumbe 
 'templatesused' => '{{PLURAL:$1|Xivumbiwa ntirho lexi|Swivumbiwa ntirho leswi}} tirhisiweke eka tluka leri:',
 'template-protected' => '(Ri sirheleriwile)',
 'template-semiprotected' => '(lisirheleriwile switsanana)',
+'hiddencategories' => 'Tluka leri i nandza wa {{PLURAL:$1|ntlwa lowu tumbetiweke|$1 mintlawa leyi tumbetiweke}}:',
 'permissionserrorstext-withaction' => 'Awupfumeleriwanga ku $2, hikwalaho ka {{PLURAL:$1|wa xivangelo|wa swivangelo}}:',
+'recreate-moveddeleted-warn' => "'''Tivonele: utumbuluxa tluka leri raha ku suriwa kungarikhale.'''
+
+Nhlahluvisisa loko swifanerile ku ya emahlweni u lulamisa tluka leri.
+Matimu yo sula no susa ma kombila laha ehansi ku ku pfuna:",
 'moveddeleted-notice' => 'Tluka leri ri suriwile.
 nhula ya minxaxamelo leyi kombaka ku suriwa na ku susiwa ka tluka leri ya kombiwa laha ehansi.',
 
@@ -388,6 +403,7 @@ Swi hlamuseri leswi swi susiwile eka tluka leri.",
 'viewpagelogs' => 'Vona nghula ya minxaxamelo ya tluka leri',
 'currentrev-asof' => 'Mindzulamiso ya sweswinyana ya $1',
 'revisionasof' => 'Ndzulamiso kusukela hi $1',
+'revision-info' => 'Mindzulamiso ku sukela hi $1 leyi endliweke hi $2',
 'previousrevision' => '← Ndzulamiso wakhale',
 'nextrevision' => 'Ndzulamiso wa sweswinyana →',
 'currentrevisionlink' => 'Ndzulamiso wasweswinyana',
@@ -418,6 +434,7 @@ Swihlamuseri: '''({{int:sweswi}})''' = kuhambana na ndzulamiso wa sweswinyana, '
 
 # Diffs
 'history-title' => 'Matimu ya mindulamiso ya "$1"',
+'difference' => '(Kuhambana exikarhi ka mindzulamiso)',
 'lineno' => 'Ntila $1:',
 'compareselectedversions' => 'Hambaniisa exikarhi ka mindzulamiso leyi langiweke',
 'editundo' => 'Thlerisela',
@@ -431,6 +448,7 @@ Swihlamuseri: '''({{int:sweswi}})''' = kuhambana na ndzulamiso wa sweswinyana, '
 'prevn-title' => '$1 {{PLURAL:$1|nkutlunya lo wu|minkutlunya leyi}} hundzeke',
 'nextn-title' => '$1 {{PLURAL:$1|nkutlunya lowu|minkutlunya leyi}} landzelaka',
 'shown-title' => "Komba $1 {{PLURAL:$1|mbuyelo|mimbuyelo}} eka tluka rin'wana na ri n'wana",
+'viewprevnext' => 'Vona ($1 {{int:pipe-separator}} $2) ($3)',
 'searchmenu-exists' => "'''Tluka leri vuriwaka \"[[:\$1]]\" ikhale ririkona eka wiki leyi.'''",
 'searchmenu-new' => "'''Tumbuluxa tluka ra \"[[:\$1]]\" eka wiki leyi!'''",
 'searchhelp-url' => 'Help:Leswinga ndzeni',
@@ -445,6 +463,7 @@ Swihlamuseri: '''({{int:sweswi}})''' = kuhambana na ndzulamiso wa sweswinyana, '
 'searchprofile-everything-tooltip' => 'Lavalava eka matsalwa hinkwawo  (kuhlanganisa na matluka ya mbulavulo)',
 'searchprofile-advanced-tooltip' => 'Lavalava eka swisivela mavito leswi tolovelekeke',
 'search-result-size' => '$1 ({{PLURAL:$2|1 viti|$2 maviti}})',
+'search-result-category-size' => '{{PLURAL:$1|nandza|$1 wa malandza}} ({{PLURAL:$2|ntlawa-ntsongo|$2 wa mintlawa-ntsongo}}, {{PLURAL:$3|fayili|$3 wa tifayili}})',
 'search-redirect' => '(nkongomiso kusaka e $1)',
 'search-section' => '(Xiyenge $1)',
 'search-suggest' => 'Xana uvula: $1',
@@ -466,6 +485,7 @@ Swihlamuseri: '''({{int:sweswi}})''' = kuhambana na ndzulamiso wa sweswinyana, '
 'saveprefs' => 'Hlayisa',
 'resetprefs' => 'sula kucinca lokungahlayisiwangiki',
 'prefs-editing' => 'Kululamisa',
+'youremail' => 'E-mail:',
 'yourrealname' => 'Vito ra ntiyiso:',
 'yourlanguage' => 'Ririmi:',
 'prefs-help-email' => 'Adiresi ya e-mail ayibohi, kambe yita laveka leswaku u cinca ritompfungulo ra wena, loko swiendleka leswaku u ri rivala.',
@@ -485,10 +505,14 @@ Adiresi ya wena ya e-mail yitunberile loko van'wana va bula na wena.",
 'nchanges' => '$1 {{PLURAL:$1|wa ndzulamiso|wa mindzulamiso}}',
 'recentchanges' => 'Ku cinca ka sweswi-nyana',
 'recentchanges-legend' => 'Tindlela to langutisa ku cinca ka sweswinyana',
+'recentchangestext' => 'Landzelela mindzulamiso ya sweswinyana ya wiki leyi eka tluka leri.',
+'recentchanges-feed-description' => 'Landzelela mindzulamiso ya sweswinyana eka wiki leyi hi xiphameri-hungu lexi.',
 'recentchanges-label-newpage' => 'Ndzulamiso lowu wu tumbuluxe tluka rintswa',
 'recentchanges-label-minor' => 'Lowu i ndzulamiso wu tsongo',
 'recentchanges-label-bot' => 'Ndzulamiso lowu wu endliwe hi rhobhoto',
 'recentchanges-label-unpatrolled' => 'Ndzulamiso lowu awusi languteriwa',
+'rcnote' => "Lha hansi ku kombiwa {{PLURAL:$1|ku cinca|''$1''' wa mindzulamiso}} endzeni ka  {{PLURAL:$2|siku|'''$2''' wa masiku}} lamahundzeke, hi $5, $4.",
+'rcnotefrom' => "Laha hansi kuxaxametiwe ku cinca kusukela hi '''$2''' (kuya ka '''$1''').",
 'rclistfrom' => 'Komba mindzilamiso leyintswa kusukela eka $1',
 'rcshowhideminor' => '$1 wa mindzulamiso leyi ntsanana',
 'rcshowhidebots' => '$1 wati rhobhoto',
@@ -558,15 +582,22 @@ Nhlamuselo ya yona leyi nge ndzeni ka [$2 tluka ro hlamusela] hi yona leyi kombi
 # Statistics
 'statistics' => 'Mintsengo',
 
+'disambiguationspage' => 'Template:Hambanisa marito',
+
 # Miscellaneous special pages
 'nbytes' => '$1 {{PLURAL:$1|wa bayiti|wa tibayit}}',
 'nmembers' => '$1 {{PLURAL:$1|museketeri| wa vaseketeri}}',
+'prefixindex' => 'Matluka hinkwawo lama sungulaka hi',
+'usercreated' => '{{GENDER:$3|u tumbuluxe}} hi siku ra $1 hinkarhi wa $2',
 'newpages' => 'Matluka mantswa',
 'move' => 'Yi sa kunwana',
 'movethispage' => 'Yisa tluka leri ndhzawini yinwana',
+'pager-newer-n' => '{{PLURAL:$1|xa khale|$1 swa khale}}',
+'pager-older-n' => '{{PLURAL:$1|ra khale|$1 ya khale}}',
 
 # Book sources
 'booksources' => 'Swihlovo swatibuku',
+'booksources-search-legend' => 'Lavalava swihlovo swa tibuku',
 'booksources-go' => 'Nghena',
 
 # Special:Log
@@ -586,6 +617,9 @@ Nhlamuselo ya yona leyi nge ndzeni ka [$2 tluka ro hlamusela] hi yona leyi kombi
 'linksearch-ok' => 'Lava',
 'linksearch-line' => '$1 yi khwekerisiwe kusuka eka $2',
 
+# Special:Log/newusers
+'newuserlogpage' => 'Nghula ya nxaxamelo wa ku tumbuluxiwa ka vatirhisi',
+
 # Special:ListGroupRights
 'listgrouprights-members' => '(nxaxamelo wa valandzeri)',
 
@@ -595,10 +629,13 @@ Nhlamuselo ya yona leyi nge ndzeni ka [$2 tluka ro hlamusela] hi yona leyi kombi
 # Watchlist
 'watchlist' => 'Leswi ndziswilanguteke',
 'mywatchlist' => 'Leswi ndziswilanguteke',
+'watchlistfor2' => 'Swa $1 $2',
 'watch' => 'Languta',
 'watchthispage' => 'Languta tluka leri',
 'unwatch' => 'Ungalanguti',
+'watchlist-details' => '{{PLURAL:$1|$1 tluka|$1 wa matluka}} eka nxaxamelo wa leswi uswilanguteke, kungasi hlayiwa matluka yu mbulavulo.',
 'wlshowlast' => 'Komba $1 wati awara  $2 wa masiku kumbe $3',
+'watchlist-options' => 'Minhlawulo ya nxaxamelo wa leswilangutiweke',
 
 # Displayed when you click the "watch" button and it is in the process of watching
 'watching' => 'Ulangutile...',
@@ -627,6 +664,7 @@ Nhlamuselo ya yona leyi nge ndzeni ka [$2 tluka ro hlamusela] hi yona leyi kombi
 
 # Contributions
 'contributions' => 'Minyikelo ya mutirhisi',
+'contributions-title' => 'Minyikelo ya vutirhisi ya $1',
 'mycontris' => 'Minyikelo ya mina',
 'contribsub2' => 'For $1 ($2)',
 'nocontribs' => 'Ku hava ku cinca loku kumiweke eka xiyenge lexi.',
@@ -636,8 +674,13 @@ Nhlamuselo ya yona leyi nge ndzeni ka [$2 tluka ro hlamusela] hi yona leyi kombi
 
 'sp-contributions-newbies' => 'Komba minyikela ya ti akhawunti tintswa ntsena',
 'sp-contributions-newbies-sub' => 'Eka ti akhawunti ti ntswa',
+'sp-contributions-blocklog' => 'Ngula ya nxaxamelo wa kusivela',
+'sp-contributions-uploads' => 'Nxaxamelo wa ku nghenisa',
+'sp-contributions-logs' => 'Nghula ya nxaxamelo',
 'sp-contributions-talk' => 'Mbulavulo',
 'sp-contributions-search' => 'Lava minyikelo',
+'sp-contributions-username' => 'Hoxa Direse ya IP kumbe vito ra mutirhisi:',
+'sp-contributions-toponly' => 'Komba ntsena mindzulamiso leyi yinga haku endliwa sweswinyana',
 'sp-contributions-submit' => 'Lava',
 
 # What links here
@@ -645,12 +688,15 @@ Nhlamuselo ya yona leyi nge ndzeni ka [$2 tluka ro hlamusela] hi yona leyi kombi
 'whatlinkshere-title' => 'Matluka lama khwekelaka eka $1',
 'whatlinkshere-page' => 'Tluka:',
 'linkshere' => "Matluka lama landzelaka makhwekela eka '''[[:$1]]''':",
+'nolinkshere' => "Kuhava matluka lama khwekelaka eka  '''[[:$1]]'''.",
 'isredirect' => 'Tluka ro kongomisa',
+'istemplate' => 'Swisivela ndhzawu',
 'isimage' => 'Xikhwekerisi xa fayili',
 'whatlinkshere-prev' => '{{PLURAL:$1|leri hundzeka| $1 lama hundzeke}}',
 'whatlinkshere-next' => '{{PLURAL:$1|lowu landzelaka| $1 leyi landzelaka}}',
 'whatlinkshere-links' => '← Swikhwekerisi',
 'whatlinkshere-hideredirs' => '$1 ya matluka yo thlerisela',
+'whatlinkshere-hidetrans' => '$1 wa swisivela ndhzawu',
 'whatlinkshere-hidelinks' => '$1 wa swikhwekeri',
 'whatlinkshere-hideimages' => '$1 swikhwekerisi saw xifaniso',
 'whatlinkshere-filters' => 'Tinhlelo',
@@ -663,9 +709,11 @@ Nhlamuselo ya yona leyi nge ndzeni ka [$2 tluka ro hlamusela] hi yona leyi kombi
 'change-blocklink' => 'Cinca xirhapa',
 'contribslink' => 'Minyikelo',
 'blocklogpage' => 'Ngula ya nxaxamelo wa kusiverwa ka vatirhisi',
+'blocklogentry' => 'Nsivelo wa mutirhisi  [[$1]] wu hela hi $2 $3',
 'block-log-flags-nocreate' => 'Kupfula akhawunti swa arisiwa',
 
 # Move page
+'movelogpage' => 'Nghula ya nxaxamelo waku susiwa',
 'revertmove' => 'thlerisela',
 
 # Export
@@ -713,6 +761,7 @@ Unga vona xit\\holvo xa rona',
 'tooltip-t-recentchangeslinked' => 'Kucinca kasweswinyana ka matluka la ma thlavinyetiweke eka tluka leri',
 'tooltip-feed-atom' => 'Vuhaxi bya Atom bya tluka leri',
 'tooltip-t-contributions' => 'Nxaxamelo wa minyikelo ya mutirhisi loyi',
+'tooltip-t-emailuser' => 'Rhumela mutirhisa loyi e-mail',
 'tooltip-t-upload' => 'Khandziyisa tifayili',
 'tooltip-t-specialpages' => 'Nxaxamelo wa matluka yo hlawuleka',
 'tooltip-t-print' => 'Gangliso wa tluka leri',
@@ -735,11 +784,13 @@ Unga vona xit\\holvo xa rona',
 'tooltip-summary' => 'Tsala nkomiso',
 
 # Browsing diffs
+'previousdiff' => '← Ndzulamiso wakhale',
 'nextdiff' => 'Ndzulamiso lowu ntswa →',
 
 # Media information
 'file-info-size' => '$1 × $2 ku anama na leha hi ti phikisele, Vukulu bya fayili: $3, muxaka waMIME: $4',
 'file-nohires' => 'Xifaniso lexi axikuriseki kuhundza laha.',
+'svg-long-desc' => 'Fayili ya SVG, vukulu lebyi ringaneke $1 × $2 hi ti phikisele, vukulu bya fayili: $3',
 'show-big-image' => 'kuleha na ku anama hixitalo',
 
 # Bad image list
@@ -750,6 +801,7 @@ Xithlavinyeti xo sungula eka ntila i xithlavinyeta fayili leyi onhiweke.
 Swithlavinyeti leswi engetelekeke eka ntila lowu fanaka swilangutiwa swiri swihambukisi, hileswaku matluka lawa fiyili yinga kumekaka kona endzeni.',
 
 # Metadata
+'metadata' => 'Nghula ya vuxokoxoko',
 'metadata-help' => 'Fayili leyi yi khome vuxokoxoko lebyi engetelekeke, swingaendleka yi hoxiwile kusuka eka Khemera kumbe muchini wo gandlisa lowu tirhisiweke ku yi tumbuluxa.
 Loko fayili yi antswisiwile kusukela eka matshamelo ya yona yo sungula, vuxokoxoko bya yona byinga va byi cincile.',
 'metadata-fields' => "Vuxokoxoko bya xifaniso lexi nga eka hungu leri byi ta kombiwa eka tluka leri kombaka xifaniso lexi loko tafula ra nxaxamela wa vuxokoxoko ri pfariwa.
@@ -773,11 +825,13 @@ Lebyi n'wana vuxokoxoko bya finiso byitumbetiwile.
 'edit-externally-help' => '(Vona [//www.mediawiki.org/wiki/Manual:External_editors swiletelo swo sungurisa] leswaku ukuma vuxokoxoko lebyi engetelekeke)',
 
 # 'all' in various places, this might be different for inflected languages
+'watchlistall2' => 'Hinkwawo',
 'namespacesall' => 'Hinkwawo',
 'monthsall' => 'hikwato',
 
 # Watchlist editing tools
 'watchlisttools-view' => 'Vona kucinca loku yelanaka',
+'watchlisttools-edit' => 'Langutisa naswona u lulamisa nxaxamelo wa leswilangutiweke',
 'watchlisttools-raw' => 'Lulamisa nxaxamelo-mbisi wa leswilangutiweke',
 
 # Core parser functions
@@ -785,6 +839,16 @@ Lebyi n'wana vuxokoxoko bya finiso byitumbetiwile.
 
 # Special:SpecialPages
 'specialpages' => 'Matluka yo hlawuleka',
+
+# External image whitelist
+'external_image_whitelist' => ' #Tshika ntila lowu wunga cinciwanga<pre>
+#Hoxa hlamuselo lowu tolovelekeke (xiphemu lexi nga exikarhi ka //) laha hansi
+#Swita hlanganisiwa na  tiURL to swifaniso swa le handle (leswi khwekerisiweke)
+#Leswi yelanaka swi ta kombiwa swiri swifaniso, lokoswingaritano kuta kombiwa ntsena swikhwekerisi swa xifaniso 
+#Mintila leyi sungulaka # yivona kuri ma vonele/nlhamulo
+#Xi lava marito lama xaxametiweke hi marito-nkulu na lama tsongo
+
+#hoxa swiphemu hinkwaswo swa regex ehenhla ka ntilalowu. Tshika ntila lowu wuri leswi wunga xiswona</pre>',
 
 # Special:Tags
 'tag-filter' => 'Xihluti xa [[Special:Tags|Xi angi]]:',

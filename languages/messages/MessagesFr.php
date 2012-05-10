@@ -749,8 +749,8 @@ Le motif avancé est « ''$2'' ».",
 'filereadonlyerror' => 'Impossible de modifier le fichier « $1 » parce que le répertoire de fichiers « $2 » est en lecture seule.
 
 L’administrateur qui l’a verrouillé a fourni ce motif: « $3 ».',
-'invalidtitle-knownnamespace' => 'Titre invalide avec l\'espace de noms "$2" et le libellé "$3"',
-'invalidtitle-unknownnamespace' => 'Titre invalide avec un numéro d\'espace de nommage $1 inconnu et le libellé "$2"',
+'invalidtitle-knownnamespace' => 'Titre invalide avec l’espace de noms « $2 » et l’intitulé « $3 »',
+'invalidtitle-unknownnamespace' => 'Titre invalide avec le numéro d’espace de noms $1 et l’intitulé « $2 » inconnus',
 
 # Virus scanner
 'virus-badscanner' => "Mauvaise configuration : scanneur de virus inconnu : ''$1''",
@@ -1128,6 +1128,8 @@ Il devrait y avoir moins de $2 appel{{PLURAL:$2||s}}, alors qu’il y en a maint
 'node-count-exceeded-warning' => 'Page dépassant le nombre de nœuds',
 'expansion-depth-exceeded-category' => "Pages où la profondeur d'expansion est dépassée",
 'expansion-depth-exceeded-warning' => "Page dépassant la profondeur d'expansion",
+'parser-unstrip-loop-warning' => 'Boucle non démontable détectée',
+'parser-unstrip-recursion-limit' => 'Limite de récursion non démontable dépassée ($1)',
 
 # "Undo" feature
 'undo-success' => 'Cette modification va être défaite. Veuillez vérifier les modifications ci-dessous, puis publier si c’est bien ce que vous voulez faire.',

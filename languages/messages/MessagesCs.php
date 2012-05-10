@@ -740,6 +740,8 @@ $2',
 'filereadonlyerror' => "Nelze změnit soubor „$1“, protože úložiště souborů „$2“ je momentálně pouze pro čtení.
 
 Správce serveru, který úložiště zamkl, poskytl toto zdůvodnění: „''$3''“.",
+'invalidtitle-knownnamespace' => 'Neplatný název se jmenným prostorem „$2“ a textem „$3“',
+'invalidtitle-unknownnamespace' => 'Neplatný název s neznámým číslem jmenného prostoru $1 a textem „$2“',
 
 # Virus scanner
 'virus-badscanner' => "Špatná konfigurace: neznámý antivirový program: ''$1''",
@@ -1119,6 +1121,8 @@ Tyto argumenty byly vynechány.',
 'node-count-exceeded-warning' => 'Stránka překročila počet uzlů',
 'expansion-depth-exceeded-category' => 'Stránky překračující hloubku expanze',
 'expansion-depth-exceeded-warning' => 'Stránka překročila hloubku expanze',
+'parser-unstrip-loop-warning' => 'Detekováno zacyklení unstrip',
+'parser-unstrip-recursion-limit' => 'Překročen limit rekurze unstrip ($1)',
 
 # "Undo" feature
 'undo-success' => 'Editace může být zrušena. Zkontrolujte a pak potvrďte změny zobrazené níže.',
@@ -1921,6 +1925,7 @@ Z bezpečnostních důvodů je img_auth.php vypnuto.',
 'http-curl-error' => 'Chyba při čtení z URL: $1',
 'http-host-unreachable' => 'Nepodařilo se kontaktovat URL',
 'http-bad-status' => 'Při provádění HTTP požadavku nastal problém: $1 $2',
+'http-truncated-body' => 'Přijaté tělo požadavku bylo neúplné.',
 
 # Some likely curl errors. More could be added from <http://curl.haxx.se/libcurl/c/libcurl-errors.html>
 'upload-curl-error6' => 'Z URL nelze číst',

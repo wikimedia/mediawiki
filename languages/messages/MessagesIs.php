@@ -910,6 +910,7 @@ Síðasta færsla notandans úr bönnunarskrá er sýnd hér fyrir neðan til sk
 'updated' => '(Uppfært)',
 'note' => "'''Athugið:'''",
 'previewnote' => "'''Það sem sést hér er aðeins forskoðun og hefur ekki enn verið vistað!'''",
+'continue-editing' => 'Halda áfram að breyta',
 'previewconflict' => 'Þessi forskoðun endurspeglar textann í efra breytingarsvæði eins og hann myndi líta út ef þú vistar.',
 'session_fail_preview' => "'''Því miður! Gat ekki unnið úr breytingum þínum vegna týndra lotugagna.
 Vinsamlegast reyndu aftur síðar. Ef það virkar ekki heldur skaltu reyna að skrá þig út og inn á ný.'''",

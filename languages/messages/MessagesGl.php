@@ -612,6 +612,8 @@ O motivo achegado é ''$2''.",
 'filereadonlyerror' => 'Non se puido modificar o ficheiro "$1" porque o repositorio "$2" está en modo de só lectura.
 
 O administrador que bloqueou o repositorio achegou este motivo: "$3".',
+'invalidtitle-knownnamespace' => 'Título inválido co espazo de nomes "$2" e o texto "$3"',
+'invalidtitle-unknownnamespace' => 'Título inválido cun número de espazo de nomes, $1, descoñecido e o texto "$2"',
 
 # Virus scanner
 'virus-badscanner' => "Configuración errónea: escáner de virus descoñecido: ''$1''",
@@ -1835,6 +1837,7 @@ Para unha seguridade óptima, img_auth.php está desactivado.',
 'http-curl-error' => 'Ocorreu un erro ao acceder ao URL: $1',
 'http-host-unreachable' => 'Non se puido acceder ao URL.',
 'http-bad-status' => 'Houbo un problema durante a solicitude HTTP: $1 $2',
+'http-truncated-body' => 'O corpo de solicitude recibiuse parcialmente.',
 
 # Some likely curl errors. More could be added from <http://curl.haxx.se/libcurl/c/libcurl-errors.html>
 'upload-curl-error6' => 'Non se logrou acceder a ese URL',

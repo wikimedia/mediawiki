@@ -1124,12 +1124,14 @@ $2
 Таквите аргументи ќе бидат изземени при парсирањето.",
 'post-expand-template-argument-category' => 'Страници кои содржат изземени аргументи на шаблони',
 'parser-template-loop-warning' => 'Пронајдена е јамка во шаблонот: [[$1]]',
-'parser-template-recursion-depth-warning' => 'Ограничувањето на рекурзивната длабочина надмината во шаблонот ($1)',
-'language-converter-depth-warning' => 'Надмината е границата на длабочината  на јазичниот претворач ($1)',
+'parser-template-recursion-depth-warning' => 'Пречекорена е границата на длабочината на рекурзијата во шаблонот ($1)',
+'language-converter-depth-warning' => 'Пречекорена е границата на длабочината на јазичниот претворач ($1)',
 'node-count-exceeded-category' => 'Страници каде е надминат бројот на јазли',
 'node-count-exceeded-warning' => 'Страницата го надмина бројот на јазли',
-'expansion-depth-exceeded-category' => 'Страници каде е надмината длабочината на проширувањето',
+'expansion-depth-exceeded-category' => 'Страници каде е пречекорена длабочината на проширувањето',
 'expansion-depth-exceeded-warning' => 'Страницата ја надмина длабочината на проширувањето',
+'parser-unstrip-loop-warning' => 'Утврдена е јамка',
+'parser-unstrip-recursion-limit' => 'Пречекорена е границата на рекурзија ($1)',
 
 # "Undo" feature
 'undo-success' => 'Уредувањето може да се откаже.

@@ -1366,7 +1366,7 @@ Te riçevaree un mesacc cun deent un ligamm specjal; ti duvaree clicaa sül liga
 'watchlisttools-raw' => 'Mudifega la lista in furmaa test',
 
 # Signatures
-'signature' => '[[{{ns:user}}:$1|$2]] ([[{{ns:user_talk}}:$1|ciciaràde]])',
+'signature' => '[[{{ns:user}}:$1|$2]] ([[{{ns:user_talk}}:$1|ciciarade]])',
 
 # Special:Version
 'version' => 'Versiun',

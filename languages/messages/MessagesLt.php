@@ -562,6 +562,8 @@ $2',
 'ns-specialprotected' => 'Specialieji puslapiai negali būti redaguojami.',
 'titleprotected' => "[[User:$1|$1]] apsaugojo šį pavadinimą nuo sukūrimo.
 Nurodyta priežastis yra ''$2''.",
+'filereadonlyerror' => 'Neįmanoma pakeisti failo " $1 " nes failų saugykla " $2 " yra nustatyta tik skaitymo režimu.
+Ją užrakinęs administratorius pateikė šį paaiškinimą: " $3 ".',
 
 # Virus scanner
 'virus-badscanner' => "Neleistina konfigūracija: nežinomas virusų skeneris: ''$1''",
@@ -654,6 +656,7 @@ nebus siunčiami nei vienai žemiau išvardintai paslaugai.',
 'invalidemailaddress' => 'El. pašto adresas negali būti priimtas, nes atrodo, kad jis nėra teisingo formato.
 Prašome įvesti gerai suformuotą adresą arba palikite tą laukelį tuščią.',
 'cannotchangeemail' => 'Paskyros e-mail adresas šiame viki negali būti keičiamas.',
+'emaildisabled' => 'Ši svetainė negali siųsti elektroninių laiškų.',
 'accountcreated' => 'Paskyra sukurta',
 'accountcreatedtext' => 'Naudotojo paskyra $1 buvo sukurta.',
 'createaccount-title' => '{{SITENAME}} paskyros kūrimas',
@@ -837,6 +840,7 @@ Jūs galite [[Special:Search/{{PAGENAME}}|ieškoti šio puslapio pavadinimo]] ki
 'updated' => '(Atnaujinta)',
 'note' => "'''Pastaba:'''",
 'previewnote' => "''Nepamirškite, kad tai tik peržiūra, pakeitimai dar nėra išsaugoti!'''",
+'continue-editing' => 'Tęsti redagavimą',
 'previewconflict' => 'Ši peržiūra parodo tekstą iš viršutiniojo teksto redagavimo lauko taip, kaip jis bus rodomas, jei pasirinksite išsaugoti.',
 'session_fail_preview' => "'''Atsiprašome! Mes negalime vykdyti jūsų keitimo dėl sesijos duomenų praradimo.
 Prašome pamėginti vėl. Jei tai nepadeda, pamėginkite atsijungti ir prisijungti atgal.'''",
@@ -912,6 +916,7 @@ Greičiausiai jis yra ištrintas.',
 'edit-no-change' => 'Jūsų keitimas buvo ignoruotas kadangi nebuvo atlikta jokių teksto pakeitimų.',
 'edit-already-exists' => 'Negalima sukurti naujo puslapio.
 Jis jau egzistuoja.',
+'defaultmessagetext' => 'Numatytasis pranešimo tekstas',
 
 # Parser/template warnings
 'expensive-parserfunction-warning' => 'Įspėjimas: Šiame puslapyje yra per daug užtrunkančių analizatoriaus funkcijų šaukinių.
@@ -1495,6 +1500,7 @@ teisės",
 'newsectionsummary' => '/* $1 */ naujas skyrius',
 'rc-enhanced-expand' => 'Rodyti detales (reikia JavaScript)',
 'rc-enhanced-hide' => 'Slėpti detales',
+'rc-old-title' => 'iš pradžių sukurtas kaip " $1 "',
 
 # Recent changes linked
 'recentchangeslinked' => 'Susiję keitimai',
@@ -1653,6 +1659,7 @@ Prašome susisiekti su [[Special:ListUsers/sysop|sistemos administratoriumi]].',
 'backend-fail-closetemp' => 'Negalima uždaryti laikino failo.',
 'backend-fail-read' => 'Negalima nuskaityti failo $1.',
 'backend-fail-create' => 'Negalima sukurti failo $1.',
+'backend-fail-maxsize' => 'Failo $1 sukurti nepavyko nes jis didesnis nei {{PLURAL:$2|vienas baitas|$2 baitai|$2 baitų}}.',
 'backend-fail-readonly' => 'Galutinė saugykla "$1" dabar yra skirta tik skaitymui. Buvo nurodyta priežastis: "$2"',
 'backend-fail-synced' => 'Failas "$1", esantis vidinėje galutinėje saugykloje, yra pažymėtas kaip nepilnas.',
 'backend-fail-connect' => 'Negalima prisijungti prie galutinės saugyklos "$1".',
@@ -1979,6 +1986,12 @@ Galima sumažinti rezultatų skaičių patikslinant veiksmo rūšį, naudotoją 
 'allpagesprefix' => 'Rodyti puslapiu su priedėliu:',
 'allpagesbadtitle' => 'Duotas puslapio pavadinimas yra neteisingas arba turi tarpkalbininį arba tarpprojektinį priedėlį. Jame yra vienas ar keli simboliai, kurių negalima naudoti pavadinimuose.',
 'allpages-bad-ns' => '{{SITENAME}} neturi „$1“ vardų srities.',
+'allpages-hide-redirects' => 'Slėpti peradresavimus',
+
+# SpecialCachedPage
+'cachedspecial-viewing-cached-ttl' => 'Jūs matote kompiuterio atmintyje išsaugotą puslapio versiją, kuri gali būti $1 senumo.',
+'cachedspecial-viewing-cached-ts' => 'Jūs matote kompiuterio atmintyje išsaugotą puslapio versiją, kuri gali neatitikti naujausios versijos.',
+'cachedspecial-refresh-now' => 'Peržiūrėti naujausius.',
 
 # Special:Categories
 'categories' => 'Kategorijos',
@@ -3564,6 +3577,7 @@ Jūs turėjote gauti [{{SERVER}}{{SCRIPTPATH}}/COPYING GNU General Public Licens
 'version-software' => 'Įdiegta programinė įranga',
 'version-software-product' => 'Produktas',
 'version-software-version' => 'Versija',
+'version-entrypoints-header-url' => 'URL',
 
 # Special:FilePath
 'filepath' => 'Failo kelias',
@@ -3694,6 +3708,7 @@ Paveikslėliai yra rodomi pilna raiška, kiti failų tipai paleidžiami tiesiogi
 'feedback-submit' => 'Siųsti Atsiliepimą',
 'feedback-adding' => 'Pridedamas atsiliepimas į puslapį ...',
 'feedback-error2' => 'Klaida: Redagavimas nepavyko',
+'feedback-close' => 'Atlikta',
 
 # API errors
 'api-error-badaccess-groups' => 'Jums neleidžiama įkelti failus į šią wiki.',
@@ -3714,6 +3729,19 @@ Paveikslėliai yra rodomi pilna raiška, kiti failų tipai paleidžiami tiesiogi
 'api-error-unknown-code' => 'Nežinoma klaida: " $1 "',
 'api-error-unknown-error' => 'Vidinė klaida: kažkas nutiko bandant įkelti failą.',
 'api-error-unknown-warning' => 'Nežinomas įspėjimas: $1',
+'api-error-unknownerror' => 'Nežinoma klaida: " $1 "',
 'api-error-uploaddisabled' => 'Įkėlimas išjungtas šioje wiki.',
+'api-error-verification-error' => 'Šis failas gali būti sugadintas arba turi neteisingą papildinį.',
+
+# Durations
+'duration-seconds' => '$1 {{PLURAL:$1|sekundė|sekundės|sekundžių}}',
+'duration-minutes' => '$1 {{PLURAL:$1|minutė|minutės|minučių}}',
+'duration-hours' => '$1 {{PLURAL:$1|valanda|valandos|valandų}}',
+'duration-days' => '$1 {{PLURAL:$1|diena|dienos|dienų}}',
+'duration-weeks' => '$1 {{PLURAL:$1|savaitė|savaitės|savaičių}}',
+'duration-years' => '$1 {{PLURAL:$1|metai|metai|metų}}',
+'duration-decades' => '$1 {{PLURAL:$1|dešimtmetis|dešimtmečiai|dešimtmečių}}',
+'duration-centuries' => '$1 {{PLURAL:$1|amžius|amžiai|amžių}}',
+'duration-millennia' => '$1 {{PLURAL:$1|tūkstantmetis|tūkstantmečiai|tūkstantmečių}}',
 
 );

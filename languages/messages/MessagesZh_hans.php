@@ -639,6 +639,8 @@ $2',
 'filereadonlyerror' => '无法修改文件“$1”，因为文件库“$2”处于只读模式。 
 
 管理员对锁定它给出的解释是：“$3”。',
+'invalidtitle-knownnamespace' => '使用名字空间“$2”和文本“$3”的无效标题',
+'invalidtitle-unknownnamespace' => '使用未知名字空间编号$1和文本“$2”的无效标题',
 
 # Virus scanner
 'virus-badscanner' => "错误的配置：未知的病毒扫描程序：''$1''",
@@ -979,6 +981,8 @@ $2
 'parser-template-loop-warning' => '检查到模板循环：[[$1]]',
 'parser-template-recursion-depth-warning' => '模板递归深度越限（$1）',
 'language-converter-depth-warning' => '字词转换器深度越限（$1）',
+'node-count-exceeded-category' => '页面的节点数超出限制',
+'node-count-exceeded-warning' => '页面超出了节点数',
 
 # "Undo" feature
 'undo-success' => '此编辑可以被撤销。请检查以下比较以核实这正是您想做的，然后保存以下更改完成撤销编辑。',
@@ -1744,6 +1748,7 @@ $1',
 'http-curl-error' => '撷取URL时出错：$1',
 'http-host-unreachable' => '无法到达URL。',
 'http-bad-status' => '进行HTTP请求时出现问题：$1 $2',
+'http-truncated-body' => '只收到部分请求的正文。',
 
 # Some likely curl errors. More could be added from <http://curl.haxx.se/libcurl/c/libcurl-errors.html>
 'upload-curl-error6' => '无法访问URL',
@@ -2018,6 +2023,7 @@ $1',
 
 # SpecialCachedPage
 'cachedspecial-viewing-cached-ttl' => '你正在浏览本页的缓存版本，至多可能存在 $1 的延迟。',
+'cachedspecial-viewing-cached-ts' => '您正浏览此页的缓存版本，不一定是最新的完整版本。',
 'cachedspecial-refresh-now' => '查看最新的。',
 
 # Special:Categories
@@ -3600,6 +3606,8 @@ MediaWiki是基于使用目的而加以发布，然而不负任何担保责任�
 'version-software' => '已安装的软件',
 'version-software-product' => '产品',
 'version-software-version' => '版本',
+'version-entrypoints' => '入口点 URL',
+'version-entrypoints-header-entrypoint' => '入口点',
 'version-entrypoints-header-url' => 'URL',
 
 # Special:FilePath

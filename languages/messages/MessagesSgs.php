@@ -576,6 +576,7 @@ Tamsta galėt [[Special:Search/{{PAGENAME}}|ėiškuotė šėta poslapė pavadėn
 'updated' => '(Atnaujėnta)',
 'note' => "'''Pastebiejims:'''",
 'previewnote' => "'''Nepamėrškėt, kū tas tėktās pervaiza, pakeitėmā da nier ėšsauguotė!'''",
+'continue-editing' => 'Dėrbtė tuoliau',
 'previewconflict' => 'Šėta parvaiza paruod teksta ėš vėršotinėjė teksta redagavėma lauka tēp, kāp ans bus ruodoms, jei pasirinksėt anū ėšsauguotė.',
 'session_fail_preview' => "'''Atsiprašuom! Mes nagalėm vīkdītė Tamstas keitėma diel sesėjės doumenū praradima.
 Prašuom pamiegintė vielēk. Jei šėtā napaded, pamieginkėt atsėjongtė ėr prėsėjongtė atgal.'''",

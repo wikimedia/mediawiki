@@ -976,6 +976,8 @@ Naslednji argumenti so bili izpuščeni.",
 'node-count-exceeded-warning' => 'Stran je prekoračila število vozlišč',
 'expansion-depth-exceeded-category' => 'Strani s prekoračeno globino razširitve',
 'expansion-depth-exceeded-warning' => 'Stran je prekoračila globino razširitve',
+'parser-unstrip-loop-warning' => 'Zaznal sem odvezano zanko',
+'parser-unstrip-recursion-limit' => 'Presežena je omejitev odvezane rekurzije ($1)',
 
 # "Undo" feature
 'undo-success' => 'Urejanje ste razveljavili. Prosim, potrdite in nato shranite spodnje spremembe.',

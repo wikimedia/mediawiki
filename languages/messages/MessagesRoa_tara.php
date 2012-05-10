@@ -1590,6 +1590,7 @@ Ce 'u probbleme angore jè presende, condatte 'n'[[Special:ListUsers/sysop|ammin
 'backend-fail-readonly' => 'L\'archivije de rete "$1" jè pe stu mumende in sole letture. \'U mutive ha state: "$2"',
 'backend-fail-connect' => 'Non ge pozze connettere \'a memorie de rrete "$1".',
 'backend-fail-internal' => "'N'errore scanusciute s'à verificate jndr'à l'archivije de rrete \"\$1\".",
+'backend-fail-contenttype' => 'Non ge pozze capìe \'u tipe de condenute d\'u file da reggistrà sus a "$1".',
 
 # Lock manager
 'lockmanager-notlocked' => 'Non ge pozze sbloccà "$1"; jidde non g\'è bloccate.',

@@ -542,6 +542,8 @@ Wótpšašanje: $2',
 'filereadonlyerror' => 'Njejo móžno dataju "$1" změniś, dokulaž datajowy repozitorium "$2" jo jano cytajobny.
 
 Administrator, kenž jo jen zastajił, jo toś tu pśicynu pódał: "$3".',
+'invalidtitle-knownnamespace' => 'Njepłaśiwy titel z mjenjowym rumom "$2" a tekstom "$3"',
+'invalidtitle-unknownnamespace' => 'Njepłaśiwy titel z njeznatym mjenjowym rumom $1 a tekstom "$2"',
 
 # Virus scanner
 'virus-badscanner' => "Špatna konfiguracija: njeznaty wirusowy scanner: ''$1''",
@@ -1702,6 +1704,7 @@ Za optimalnu wěstotu img_auth.php jo znjemóžnjony.',
 'http-curl-error' => 'Zmólka pśi wótwółowanju URL: $1',
 'http-host-unreachable' => 'URL njejo był pśistupny.',
 'http-bad-status' => 'Wob cas HTTP-napšašowanje jo problem był: $1 $2',
+'http-truncated-body' => 'Wopśimjeśe napšašowanja jo se jano pó źělach pśiwzeło.',
 
 # Some likely curl errors. More could be added from <http://curl.haxx.se/libcurl/c/libcurl-errors.html>
 'upload-curl-error6' => 'URL njejo pśistupna.',

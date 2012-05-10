@@ -2333,6 +2333,7 @@ $1',
 'allpagesbadtitle' => 'العنوان المقترح للصفحة غير مقبول أو يضم لغات أخرى أو سابقة إنترويكي.
 يمكن أن يتضمن حروفا لا يمكن استعمالها للعناوين.',
 'allpages-bad-ns' => '{{SITENAME}} لا يوجد بها نطاق "$1".',
+'allpages-hide-redirects' => 'أخفِ التحويلات',
 
 # Special:Categories
 'categories' => 'تصنيفات',
@@ -4041,6 +4042,7 @@ $5
 'version-software' => 'البرنامج المثبت',
 'version-software-product' => 'المنتج',
 'version-software-version' => 'النسخة',
+'version-entrypoints-header-url' => 'المسار',
 
 # Special:FilePath
 'filepath' => 'مسار ملف',
@@ -4224,5 +4226,16 @@ $5
 'api-error-unknownerror' => 'خطأ غير معروف : " $1 "',
 'api-error-uploaddisabled' => 'تم تعطيل تحميل على هذا الويكي.',
 'api-error-verification-error' => 'هذا الملف قد يكون معطوباً أو يحتوي على ملحق غير صحيح.',
+
+# Durations
+'duration-seconds' => '{{PLURAL:$1|أقل من ثانية|ثانية واحدة|ثانيتان|$1 ثوانٍ|$1 ثانية}}',
+'duration-minutes' => '{{PLURAL:$1|أقل من دقيقة|دقيقة واحدة|دقيقتان|$1 دقائق|$1 دقيقة}}',
+'duration-hours' => '({{PLURAL:$1||ساعة واحد|ساعتان|$1 ساعات|$1 ساعة}})',
+'duration-days' => '{{PLURAL:$1||يوم واحد|يومان|$1 أيام|$1 يومًا|$1 يوم}}',
+'duration-weeks' => '{{PLURAL:$1||أسبوع واحد|أسبوعان|$1 أسابيع|$1 أسبوعًا|$1 أسبوع}}',
+'duration-years' => '{{PLURAL: $1||سنة واحدة|سنتان|$1 سنين|$1 سنة}}',
+'duration-decades' => '{{PLURAL: $1||عقد واحد|عقدان|$1 عقود|$1 عقدًا|$1 عقد}}',
+'duration-centuries' => '{{PLURAL: $1||قرن واحد|قرنان|$1 قرون|$1 قرنًا|$1 قرن}}',
+'duration-millennia' => '{{PLURAL: $1||ألفية واحدة|ألفيتان|$1 ألفيات|$1 ألفية}}',
 
 );

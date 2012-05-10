@@ -741,7 +741,7 @@ De gegeven reden is ''$2''.",
 
 De opgegeven reden is "\'\'$3\'\'".',
 'invalidtitle-knownnamespace' => 'Ongeldige titel met naamruimte "$2" en tekst "$3"',
-'invalidtitle-unknownnamespace' => 'Ongeldige titel met onbekende naamruimtenummer $1 en tekst "$2"',
+'invalidtitle-unknownnamespace' => 'Ongeldige titel met onbekend naamruimtenummer $1 en tekst "$2"',
 
 # Virus scanner
 'virus-badscanner' => "Onjuiste configuratie: onbekende virusscanner: ''$1''.",

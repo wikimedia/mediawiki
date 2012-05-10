@@ -1147,6 +1147,8 @@ Sie darf nicht mehr als $2 {{PLURAL:$2|Aufruf|Aufrufe}} haben, es {{PLURAL:$1|is
 'node-count-exceeded-warning' => 'Die Seite hat die Knotenpunktanzahl überschritten.',
 'expansion-depth-exceeded-category' => 'Seiten, die die Expansionstiefe überschritten haben',
 'expansion-depth-exceeded-warning' => 'Die Seite hat die Expansionstiefe überschritten.',
+'parser-unstrip-loop-warning' => 'Zirkelbezug festgestellt',
+'parser-unstrip-recursion-limit' => 'Rekursionsgrenze beim Auflösen überschritten ($1)',
 
 # "Undo" feature
 'undo-success' => 'Die Bearbeitung kann rückgängig gemacht werden.

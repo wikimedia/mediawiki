@@ -949,6 +949,8 @@ Iste parametros ha essite omittite.",
 'node-count-exceeded-warning' => 'Le numero de nodos in iste pagina excede le limite',
 'expansion-depth-exceeded-category' => 'Paginas in que le profunditate de expansion excede le limite',
 'expansion-depth-exceeded-warning' => 'Le profunditate de expansion in iste pagina excede le limite',
+'parser-unstrip-loop-warning' => 'Bucla de "unstrip" detegite',
+'parser-unstrip-recursion-limit' => 'Limite de recursion de "unstrip" excedite ($1)',
 
 # "Undo" feature
 'undo-success' => 'Le modification pote esser disfacite.

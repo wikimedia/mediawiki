@@ -698,6 +698,8 @@ A justificação foi "\'\'$2\'\'".',
 'filereadonlyerror' => 'Não é possível modificar o ficheiro "$1" porque o repositório de ficheiros "$2" está em modo de leitura.
 
 O administrador que efetuou o bloqueio deu a seguinte explicação: "$3".',
+'invalidtitle-knownnamespace' => 'Título inválido com o espaço nominal "$2" e texto "$3"',
+'invalidtitle-unknownnamespace' => 'Título inválido com número de espaço nominal $1 desconhecido e texto "$2"',
 
 # Virus scanner
 'virus-badscanner' => "Má configuração: antivírus desconhecido: ''$1''",
@@ -1097,6 +1099,8 @@ Estes argumentos foram omitidos.',
 'node-count-exceeded-warning' => 'A página excedeu o total de nós',
 'expansion-depth-exceeded-category' => 'Páginas em que a profundidade de expansão é excedida',
 'expansion-depth-exceeded-warning' => 'A página excedeu a profundidade de expansão',
+'parser-unstrip-loop-warning' => 'Detectado loop unstrip',
+'parser-unstrip-recursion-limit' => 'Limite de recursão do unstrip excedido ($1)',
 
 # "Undo" feature
 'undo-success' => 'É possível desfazer a edição.
@@ -1926,6 +1930,7 @@ Para optimizar a segurança, o img_auth.php está impossibilitado de executar.',
 'http-curl-error' => 'Ocorreu um erro ao aceder à URL: $1',
 'http-host-unreachable' => 'Não foi possível aceder à URL',
 'http-bad-status' => 'Ocorreu um problema durante o pedido HTTP: $1 $2',
+'http-truncated-body' => 'O corpo da solicitação foi recebido apenas parcialmente.',
 
 # Some likely curl errors. More could be added from <http://curl.haxx.se/libcurl/c/libcurl-errors.html>
 'upload-curl-error6' => 'Não foi possível aceder à URL',

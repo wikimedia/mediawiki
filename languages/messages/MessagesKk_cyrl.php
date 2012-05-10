@@ -500,7 +500,7 @@ $messages = array(
 'mypage' => 'Жеке бетім',
 'mytalk' => 'Талқылауым',
 'anontalk' => 'IP талқылауы',
-'navigation' => 'Навигация',
+'navigation' => 'Бағыттау',
 'and' => '&#32;және',
 
 # Cologne Blue skin
