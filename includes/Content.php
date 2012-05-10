@@ -14,7 +14,7 @@ abstract class Content {
 	 *
 	 * @var String $model_name
 	 */
-	protected $model_name;
+	protected $modelName;
 
 	/**
 	 * @since WD.1
@@ -68,8 +68,8 @@ abstract class Content {
 	/**
 	 * @param $model_name
 	 */
-	public function __construct( $model_name = null ) {
-		$this->model_name = $model_name;
+	public function __construct( $modelName = null ) {
+		$this->modelName = $modelName;
 	}
 
 	/**
@@ -81,18 +81,18 @@ abstract class Content {
 	 * @return String the model name
 	 */
 	public function getModelName() {
-		return $this->model_name;
+		return $this->modelName;
 	}
 
 	/**
 	 * Throws an MWException if $model_name is not the name of the content model
 	 * supported by this Content object.
 	 *
-	 * @param String $model_name the model to check
+	 * @param String $modelName the model to check
 	 */
-	protected function checkModelName( $model_name ) {
-		if ( $model_name !== $this->model_name ) {
-			throw new MWException( "Bad content model: expected " . $this->model_name . " but got found " . $model_name );
+	protected function checkModelName( $modelName ) {
+		if ( $modelName !== $this->modelName ) {
+			throw new MWException( "Bad content model: expected " . $this->modelName . " but got found " . $modelName );
 		}
 	}
 
