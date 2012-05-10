@@ -8,14 +8,12 @@ button.ui-button-icon-only { width: 2.4em; } /* button elements seem to need a l
 button.ui-button-icons-only { width: 3.7em; } 
 
 /*button text element */
-.ui-button .ui-button-text { display: block; line-height: 1.4em;  }
+.ui-button .ui-button-text { display: block; line-height: 1.4;  }
 .ui-button-text-only .ui-button-text { padding: 0.3em 1em 0.25em 1em; }
 .ui-button-icon-only .ui-button-text, .ui-button-icons-only .ui-button-text { padding: 0.3em; text-indent: -9999999px; }
 .ui-button-text-icon-primary .ui-button-text, .ui-button-text-icons .ui-button-text { padding: 0.3em 1em 0.25em 2.1em; }
 .ui-button-text-icon-secondary .ui-button-text, .ui-button-text-icons .ui-button-text { padding: 0.3em 2.1em 0.25em 1em; }
 .ui-button-text-icons .ui-button-text { padding-left: 2.1em; padding-right: 2.1em; }
-/* for older versions of jQuery UI */
-.ui-button-text-icon .ui-button-text { padding: 0.3em 1em 0.3em 2.1em; }
 
 /* no icon support for input elements, provide padding by default */
 input.ui-button { padding: 0.3em 1em; }
@@ -33,73 +31,79 @@ input.ui-button { padding: 0.3em 1em; }
 /* workarounds */
 button.ui-button::-moz-focus-inner { border: 0; padding: 0; } /* reset extra padding in Firefox */
 
-body .ui-button {
-	-moz-border-radius: 4px;
-	-webkit-border-radius: 4px;
-	border-radius: 4px;
-	margin: 0.5em 0 0.5em 0.4em !important;
-	border: 1px solid #a6a6a6 !important;
+.ui-button {
+	margin: 0.5em 0 0.5em 0.4em;
+	border: 1px solid #a6a6a6;
 	/* @embed */
-	background: #f2f2f2 url(images/button-off.png) repeat-x scroll 50% 100% !important;
+	background: #f2f2f2 url(images/button-off.png) repeat-x scroll 50% 100%;
 	cursor: pointer;
 	font-size: 1em;
 	line-height: 1.4em;
 	width: auto;
 	overflow: visible;
 }
-body .ui-button:hover {
+
+/* Corner radius */
+/* This is normally handled in jquery.ui.theme.css, but in our case, the corner
+   styling of our buttons doesn't match our default widget corner styling */
+.ui-button.ui-corner-all, .ui-button.ui-corner-top, .ui-button.ui-corner-left, .ui-button.ui-corner-tl { -moz-border-radius-topleft: 4px; -webkit-border-top-left-radius: 4px; border-top-left-radius: 4px; }
+.ui-button.ui-corner-all, .ui-button.ui-corner-top, .ui-button.ui-corner-right, .ui-button.ui-corner-tr { -moz-border-radius-topright: 4px; -webkit-border-top-right-radius: 4px; border-top-right-radius: 4px; }
+.ui-button.ui-corner-all, .ui-button.ui-corner-bottom, .ui-button.ui-corner-left, .ui-button.ui-corner-bl { -moz-border-radius-bottomleft: 4px; -webkit-border-bottom-left-radius: 4px; border-bottom-left-radius: 4px; }
+.ui-button.ui-corner-all, .ui-button.ui-corner-bottom, .ui-button.ui-corner-right, .ui-button.ui-corner-br { -moz-border-radius-bottomright: 4px; -webkit-border-bottom-right-radius: 4px; border-bottom-right-radius: 4px; }
+
+.ui-button:hover {
 	border-color: #6e7273;
 	/* @embed */
-	background: #e1e1e1 url(images/button-over.png) repeat-x scroll 50% 100% !important;
+	background: #e1e1e1 url(images/button-over.png) repeat-x scroll 50% 100%;
 }
-body .ui-button:active,
-body .ui-button:focus {
+.ui-button:active,
+.ui-button:focus {
 	border-color: #707271;
 	/* @embed */
-	background: #bfbfbf url(images/button-down.png) repeat-x scroll 50% 100% !important;
+	background: #bfbfbf url(images/button-down.png) repeat-x scroll 50% 100%;
 }
-body .ui-button.disabled {
+.ui-button.disabled {
 	color: #7f7f7f;
 	border-color: #cccccc;
 	/* @embed */
-	background: #f2f2f2 url(images/button-disabled.png) repeat-x scroll 50% 100% !important;	
+	background: #f2f2f2 url(images/button-disabled.png) repeat-x scroll 50% 100%;	
 }
 /* Disables the annoying dashed border Firefox puts on active buttons */
-body button.ui-button::-moz-focus-inner { 
+button.ui-button::-moz-focus-inner { 
 	border: 0; 
 }
 /* Give large buttons some extra padding */
-body .ui-button-large {
+.ui-button-large {
 	padding: 5px;
 }
 /* Use white icons for colored buttons */
 .ui-button-green .ui-icon, .ui-button-blue .ui-icon, .ui-button-red .ui-icon, .ui-button-orange .ui-icon {
 	/* @embed */
-	background-image: url(images/ui-icons_ffffff_256x240.png) !important;
+	background-image: url(images/ui-icons_ffffff_256x240.png);
 }
 
 /* Green buttons */
 
-body .ui-button.ui-button-green {
-	color: white !important;
-	border-color: #97af7e !important;
+.ui-button.ui-button-green {
+	color: white;
+	border-color: #97af7e;
 	/* @embed */
-	background: #3cb677 url(images/button-green.png) repeat-x scroll 50% 100% !important;
+	background: #3cb677 url(images/button-green.png) repeat-x scroll 50% 100%;
 }
-body .ui-button.ui-button-green:hover {
-	border-color: #778e61 !important;
+.ui-button.ui-button-green:hover {
+	border-color: #778e61;
 	/* @embed */
-	background: #339b65 url(images/button-green-hover.png) repeat-x scroll 50% 100% !important;
+	background: #339b65 url(images/button-green-hover.png) repeat-x scroll 50% 100%;
 }
-body .ui-button.ui-button-green.ui-button-large {
+.ui-button.ui-button-green.ui-button-large {
 	/* @embed */
-	background: #3cb677 url(images/button-green-large.png) repeat-x scroll 50% 100% !important;
+	background: #3cb677 url(images/button-green-large.png) repeat-x scroll 50% 100%;
 }
-body .ui-button.ui-button-green.ui-button-large:hover {
+.ui-button.ui-button-green.ui-button-large:hover {
 	/* @embed */
-	background: #339b65 url(images/button-green-hover-large.png) repeat-x scroll 50% 100% !important;
+	background: #339b65 url(images/button-green-hover-large.png) repeat-x scroll 50% 100%;
 }
-body .ui-button.ui-button-green.disabled {
+.ui-button.ui-button-green.disabled {
 	filter:alpha(opacity=50);
 	-moz-opacity:0.50;
 	-khtml-opacity: 0.50;
@@ -108,26 +112,26 @@ body .ui-button.ui-button-green.disabled {
 
 /* Blue buttons */
 
-body .ui-button.ui-button-blue {
-	color: white !important;
-	border-color: #628acb !important;
+.ui-button.ui-button-blue {
+	color: white;
+	border-color: #628acb;
 	/* @embed */
-	background: #3365ba url(images/button-blue.png) repeat-x scroll 50% 100% !important;
+	background: #3365ba url(images/button-blue.png) repeat-x scroll 50% 100%;
 }
-body .ui-button.ui-button-blue:hover {
-	border-color: #5375ad !important;
+.ui-button.ui-button-blue:hover {
+	border-color: #5375ad;
 	/* @embed */
-	background: #2b569e url(images/button-blue-hover.png) repeat-x scroll 50% 100% !important;
+	background: #2b569e url(images/button-blue-hover.png) repeat-x scroll 50% 100%;
 }
-body .ui-button.ui-button-blue.ui-button-large {
+.ui-button.ui-button-blue.ui-button-large {
 	/* @embed */
-	background: #3365ba url(images/button-blue-large.png) repeat-x scroll 50% 100% !important;
+	background: #3365ba url(images/button-blue-large.png) repeat-x scroll 50% 100%;
 }
-body .ui-button.ui-button-blue.ui-button-large:hover {
+.ui-button.ui-button-blue.ui-button-large:hover {
 	/* @embed */
-	background: #2b569e url(images/button-blue-hover-large.png) repeat-x scroll 50% 100% !important;
+	background: #2b569e url(images/button-blue-hover-large.png) repeat-x scroll 50% 100%;
 }
-body .ui-button.ui-button-blue.disabled {
+.ui-button.ui-button-blue.disabled {
 	filter:alpha(opacity=50);
 	-moz-opacity:0.50;
 	-khtml-opacity: 0.50;
@@ -136,26 +140,26 @@ body .ui-button.ui-button-blue.disabled {
 
 /* Red buttons */
 
-body .ui-button.ui-button-red {
-	color: white !important;
-	border-color: #af977e !important;
+.ui-button.ui-button-red {
+	color: white;
+	border-color: #af977e;
 	/* @embed */
-	background: #cb0000 url(images/button-red.png) repeat-x scroll 50% 100% !important;
+	background: #cb0000 url(images/button-red.png) repeat-x scroll 50% 100%;
 }
-body .ui-button.ui-button-red:hover {
-	border-color: #8e7761 !important;
+.ui-button.ui-button-red:hover {
+	border-color: #8e7761;
 	/* @embed */
-	background: #ad0000 url(images/button-red-hover.png) repeat-x scroll 50% 100% !important;
+	background: #ad0000 url(images/button-red-hover.png) repeat-x scroll 50% 100%;
 }
-body .ui-button.ui-button-red.ui-button-large {
+.ui-button.ui-button-red.ui-button-large {
 	/* @embed */
-	background: #cb0000 url(images/button-red.png) repeat-x scroll 50% 100% !important;
+	background: #cb0000 url(images/button-red.png) repeat-x scroll 50% 100%;
 }
-body .ui-button.ui-button-red.ui-button-large:hover {
+.ui-button.ui-button-red.ui-button-large:hover {
 	/* @embed */
-	background: #ad0000 url(images/button-red-hover.png) repeat-x scroll 50% 100% !important;
+	background: #ad0000 url(images/button-red-hover.png) repeat-x scroll 50% 100%;
 }
-body .ui-button.ui-button-red.disabled {
+.ui-button.ui-button-red.disabled {
 	filter:alpha(opacity=50);
 	-moz-opacity:0.50;
 	-khtml-opacity: 0.50;
@@ -164,26 +168,26 @@ body .ui-button.ui-button-red.disabled {
 
 /* Orange buttons */
 
-body .ui-button.ui-button-orange {
-	color: white !important;
-	border-color: #f3a863 !important;
+.ui-button.ui-button-orange {
+	color: white;
+	border-color: #f3a863;
 	/* @embed */
-	background: #f07f14 url(images/button-orange.png) repeat-x scroll 50% 100% !important;
+	background: #f07f14 url(images/button-orange.png) repeat-x scroll 50% 100%;
 }
-body .ui-button.ui-button-orange:hover {
-	border-color: #ce9055 !important;
+.ui-button.ui-button-orange:hover {
+	border-color: #ce9055;
 	/* @embed */
-	background: #cc6c11 url(images/button-orange-hover.png) repeat-x scroll 50% 100% !important;
+	background: #cc6c11 url(images/button-orange-hover.png) repeat-x scroll 50% 100%;
 }
-body .ui-button.ui-button-orange.ui-button-large {
+.ui-button.ui-button-orange.ui-button-large {
 	/* @embed */
-	background: #f07f14 url(images/button-orange-large.png) repeat-x scroll 50% 100% !important;
+	background: #f07f14 url(images/button-orange-large.png) repeat-x scroll 50% 100%;
 }
-body .ui-button.ui-button-orange.ui-button-large:hover {
+.ui-button.ui-button-orange.ui-button-large:hover {
 	/* @embed */
-	background: #cc6c11 url(images/button-orange-hover-large.png) repeat-x scroll 50% 100% !important;
+	background: #cc6c11 url(images/button-orange-hover-large.png) repeat-x scroll 50% 100%;
 }
-body .ui-button.ui-button-orange.disabled {
+.ui-button.ui-button-orange.disabled {
 	filter:alpha(opacity=50);
 	-moz-opacity:0.50;
 	-khtml-opacity: 0.50;
