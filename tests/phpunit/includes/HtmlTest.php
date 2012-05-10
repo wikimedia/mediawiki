@@ -304,7 +304,6 @@ class HtmlTest extends MediaWikiTestCase {
 '<option value="9">MediaWiki talk</option>' . "\n" .
 '<option value="10">Template</option>' . "\n" .
 '<option value="11">Template talk</option>' . "\n" .
-'<option value="14">Category</option>' . "\n" .
 '<option value="15">Category talk</option>' . "\n" .
 '</select>',
 			Html::namespaceSelector(
