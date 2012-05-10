@@ -210,15 +210,18 @@ class Xml {
 	 * @param string $selected The language code of the selected language
 	 * @param boolean $customisedOnly If true only languages which have some content are listed
 	 * @param string $inLanguage The ISO code of the language to display the select list in (optional)
+	 * @param array $overrideAttrs Override the attributes of the select tag
+	 * @param string $msg Label message key
 	 * @return array containing 2 items: label HTML and select list HTML
 	 */
-	public static function languageSelector( $selected, $customisedOnly = true, $inLanguage = null ) {
+	public static function languageSelector( $selected, $customisedOnly = true, $inLanguage = null, $overrideAttrs = array(), $msg = 'yourlanguage' ) {
 		global $wgLanguageCode;
 
-		$languages = Language::fetchLanguageNames( $inLanguage, $customisedOnly ? 'mwfile' : 'mw' );
+		$include = $customisedOnly ? 'mwfile' : 'mw';
+		$languages = Language::fetchLanguageNames( $inLanguage, $include );
 
-		// Make sure the site language is in the list; a custom language code might not have a
-		// defined name...
+		// Make sure the site language is in the list;
+		// a custom language code might not have a defined name...
 		if( !array_key_exists( $wgLanguageCode, $languages ) ) {
 			$languages[$wgLanguageCode] = $wgLanguageCode;
 		}
@@ -228,7 +231,7 @@ class Xml {
 		/**
 		 * If a bogus value is set, default to the content language.
 		 * Otherwise, no default is selected and the user ends up
-		 * with an Afrikaans interface since it's first in the list.
+		 * with Afrikaans since it's first in the list.
 		 */
 		$selected = isset( $languages[$selected] ) ? $selected : $wgLanguageCode;
 		$options = "\n";
@@ -236,12 +239,12 @@ class Xml {
 			$options .= Xml::option( "$code - $name", $code, ($code == $selected) ) . "\n";
 		}
 
+		$attrs = array( 'id' => 'wpUserLanguage', 'name' => 'wpUserLanguage' );
+		$attrs = array_merge( $attrs, $overrideAttrs );
+
 		return array(
-			Xml::label( wfMsg('yourlanguage'), 'wpUserLanguage' ),
-			Xml::tags( 'select',
-				array( 'id' => 'wpUserLanguage', 'name' => 'wpUserLanguage' ),
-				$options
-			)
+			Xml::label( wfMessage( $msg )->text(), $attrs['id'] ),
+			Xml::tags( 'select', $attrs, $options )
 		);
 
 	}
