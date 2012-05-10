@@ -286,14 +286,13 @@ class SiteStatsUpdate implements DeferrableUpdate {
 			$this->doUpdatePendingDeltas();
 		} else {
 			$dbw = wfGetDB( DB_MASTER );
-			// Need a separate transaction because this a global lock
-			$dbw->begin( __METHOD__ );
 
 			$lockKey = wfMemcKey( 'site_stats' ); // prepend wiki ID
 			if ( $rate ) {
 				// Lock the table so we don't have double DB/memcached updates
-				if ( !$dbw->lock( $lockKey, __METHOD__, 1 ) ) {
-					$dbw->commit( __METHOD__ );
+				if ( !$dbw->lockIsFree( $lockKey, __METHOD__ )
+					|| !$dbw->lock( $lockKey, __METHOD__, 1 ) // 1 sec timeout
+				) {
 					$this->doUpdatePendingDeltas();
 					return;
 				}
@@ -306,6 +305,9 @@ class SiteStatsUpdate implements DeferrableUpdate {
 				$this->users    += ( $pd['ss_users']['+'] - $pd['ss_users']['-'] );
 				$this->images   += ( $pd['ss_images']['+'] - $pd['ss_images']['-'] );
 			}
+
+			// Need a separate transaction because this a global lock
+			$dbw->begin( __METHOD__ );
 
 			// Build up an SQL query of deltas and apply them...
 			$updates = '';

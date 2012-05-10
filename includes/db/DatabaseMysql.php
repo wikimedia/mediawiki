@@ -687,6 +687,21 @@ class DatabaseMysql extends DatabaseBase {
 	}
 
 	/**
+	 * Check to see if a named lock is available. This is non-blocking.
+	 *
+	 * @param $lockName String: name of lock to poll
+	 * @param $method String: name of method calling us
+	 * @return Boolean
+	 * @since 1.20
+	 */
+	public function lockIsFree( $lockName, $method ) {
+		$lockName = $this->addQuotes( $lockName );
+		$result = $this->query( "SELECT IS_FREE_LOCK($lockName) AS lockstatus", $method );
+		$row = $this->fetchObject( $result );
+		return ( $row->lockstatus == 1 );
+	}
+
+	/**
 	 * @param $lockName string
 	 * @param $method string
 	 * @param $timeout int
@@ -715,7 +730,7 @@ class DatabaseMysql extends DatabaseBase {
 		$lockName = $this->addQuotes( $lockName );
 		$result = $this->query( "SELECT RELEASE_LOCK($lockName) as lockstatus", $method );
 		$row = $this->fetchObject( $result );
-		return $row->lockstatus;
+		return ( $row->lockstatus == 1 );
 	}
 
 	/**

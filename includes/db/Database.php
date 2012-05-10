@@ -3365,6 +3365,18 @@ abstract class DatabaseBase implements DatabaseType {
 	}
 
 	/**
+	 * Check to see if a named lock is available. This is non-blocking.
+	 *
+	 * @param $lockName String: name of lock to poll
+	 * @param $method String: name of method calling us
+	 * @return Boolean
+	 * @since 1.20
+	 */
+	public function lockIsFree( $lockName, $method ) {
+		return true;
+	}
+
+	/**
 	 * Acquire a named lock
 	 *
 	 * Abstracted from Filestore::lock() so child classes can implement for
