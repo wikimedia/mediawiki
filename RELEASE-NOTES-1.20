@@ -23,6 +23,8 @@ upgrade PHP if you have not done so prior to upgrading MediaWiki.
 
 === New features in 1.20 ===
 * Added TitleIsAlwaysKnown hook which gets called when determining if a page exists.
+* Added NamespaceIsMovable hook which gets called when determining if pages in a
+  certain namespace can be moved.
 * (bug 32341) Add upload by URL domain limitation.
 * &useskin=default will now always display the default skin. Useful for users with a
   preference for the non-default skin to look at something using the default skin.
