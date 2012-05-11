@@ -4152,6 +4152,22 @@ $wgLogExceptionBacktrace = true;
 $wgShowHostnames = false;
 
 /**
+ * Expose backend server instance name set by $wgInstanceName.
+ * Boolean
+ * @see wfInstanceName()
+ * @see $wgInstanceName
+ */
+$wgShowInstanceName = false;
+
+/**
+ * An instance name, complement to the hostname.
+ * String
+ * @see wfInstanceName()
+ * @see $wgShowInstanceName
+ */
+$wgInstanceName = '';
+
+/**
  * If set to true MediaWiki will throw notices for some possible error
  * conditions and for deprecated functions.
  */
