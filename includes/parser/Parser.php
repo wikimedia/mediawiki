@@ -3309,7 +3309,7 @@ class Parser {
 						$isHTML = true;
 						$this->disableCache();
 					}
-				} elseif ( MWNamespace::isNonincludableNamespace( $title->getNamespace() ) ) {
+				} elseif ( MWNamespace::isNonincludable( $title->getNamespace() ) ) {
 					$found = false; # access denied
 					wfDebug( __METHOD__.": template inclusion denied for " . $title->getPrefixedDBkey() );
 				} else {
