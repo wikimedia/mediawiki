@@ -247,6 +247,17 @@ abstract class ResourceLoaderModule {
 	}
 
 	/**
+	 * Whether this module's JS expects to work without the client-side ResourceLoader module.
+	 * Returning true from this function will prevent mw.loader.state() call from being
+	 * appended to the bottom of the script.
+	 *
+	 * @return bool
+	 */
+	public function isRaw() {
+		return false;
+	}
+
+	/**
 	 * Get the loader JS for this module, if set.
 	 *
 	 * @return Mixed: JavaScript loader code as a string or boolean false if no custom loader set
