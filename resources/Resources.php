@@ -60,6 +60,7 @@ return array(
 		'localBasePath' => $GLOBALS['wgStyleDirectory'],
 	),
 	'skins.vector' => array(
+		// Keep in sync with WebInstallerOutput::getCSS()
 		'styles' => array(
 			'common/commonElements.css' => array( 'media' => 'screen' ),
 			'common/commonContent.css' => array( 'media' => 'screen' ),
