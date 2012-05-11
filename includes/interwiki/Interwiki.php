@@ -181,7 +181,7 @@ class Interwiki {
 
 		$db = wfGetDB( DB_SLAVE );
 
-		$row = $db->fetchRow( $db->select( 'interwiki', '*', array( 'iw_prefix' => $prefix ),
+		$row = $db->fetchRow( $db->select( 'interwiki', self::selectFields(), array( 'iw_prefix' => $prefix ),
 			__METHOD__ ) );
 		$iw = Interwiki::loadFromArray( $row );
 		if ( $iw ) {
@@ -305,7 +305,7 @@ class Interwiki {
 		}
 
 		$res = $db->select( 'interwiki',
-			array( 'iw_prefix', 'iw_url', 'iw_api', 'iw_wikiid', 'iw_local', 'iw_trans' ),
+			self::selectFields(),
 			$where, __METHOD__, array( 'ORDER BY' => 'iw_prefix' )
 		);
 		$retval = array();
@@ -405,5 +405,21 @@ class Interwiki {
 	public function getDescription() {
 		$msg = wfMessage( 'interwiki-desc-' . $this->mPrefix )->inContentLanguage();
 		return !$msg->exists() ? '' : $msg;
+	}
+
+	/**
+	 * Return the list of interwiki fields that should be selected to create
+	 * a new interwiki object.
+	 * @return array
+	 */
+	public static function selectFields() {
+		return array(
+			'iw_prefix',
+			'iw_url',
+			'iw_api',
+			'iw_wikiid',
+			'iw_local',
+			'iw_trans'
+		);
 	}
 }
