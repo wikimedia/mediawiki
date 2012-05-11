@@ -826,7 +826,9 @@ Ste argumende onne state luete.",
 'parser-template-loop-warning' => "Amme acchiete 'nu cicle de template: [[$1]]",
 'parser-template-recursion-depth-warning' => "Ha state supranete 'u limite di ricorsione de le template ($1)",
 'language-converter-depth-warning' => "'U convertitore de lènghe ha subranate 'u limite de profonnetà ($1)",
+'node-count-exceeded-category' => "Pàggene addò 'u cunde de le node ha sbunnate",
 'expansion-depth-exceeded-category' => "Pàggene addò 'a profonnetà de l'espanzione jè supranate",
+'expansion-depth-exceeded-warning' => "Pàggene ca sbonnane 'a profonnetà de espanzione",
 
 # "Undo" feature
 'undo-success' => "'U cangiamende pò essere annullate.
@@ -1007,7 +1009,6 @@ Vide Bbuene ca ausanne le collegaminde de navigazzione sta culonne avène azzera
 
 # Diffs
 'history-title' => 'Liste de le versiune de "$1"',
-'difference' => "(Differenze 'mbrà versiune)",
 'difference-multipage' => "(Differenze 'mbrà le pàggene)",
 'lineno' => 'Linea $1:',
 'compareselectedversions' => 'Combronde le versiune selezionete',
@@ -2704,6 +2705,7 @@ Reggistrele sus a 'u combiuter tune e carechele aqquà.",
 'javascripttest-pagetext-noframework' => 'Sta pàgene jè riservate pe le esecuziune de le test de Javascript.',
 'javascripttest-pagetext-unknownframework' => 'Ambiende de teste scanusciute "$1".',
 'javascripttest-pagetext-frameworks' => 'Pe piacere scacchie une de le seguende ambiende de test: $1',
+'javascripttest-qunit-intro' => "Vide 'a [$1 documendazione d'u test] sus a mediawiki.org.",
 'javascripttest-qunit-heading' => 'Ambiende de test MediaUicchi JavaScript QUnit',
 
 # Tooltip help for the actions

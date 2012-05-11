@@ -1056,7 +1056,6 @@ Seh to, dat de Versionsgeschicht vun’n Artikel vun de Historie her bi de Reeg 
 
 # Diffs
 'history-title' => 'Versionshistorie vun „$1“',
-'difference' => '(Ünnerscheed twischen de Versionen)',
 'lineno' => 'Reeg $1:',
 'compareselectedversions' => 'Ünnerscheed twischen den utwählten Versionen wiesen',
 'showhideselectedversions' => 'Utwählt Versionen wiesen/versteken',

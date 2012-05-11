@@ -34,6 +34,7 @@
  * @author Mirzali
  * @author Mskyrider
  * @author Myildirim2007
+ * @author Reedy
  * @author Runningfridgesrule
  * @author Srhat
  * @author Stultiwikia
@@ -580,7 +581,7 @@ $1',
 'ok' => 'TAMAM',
 'pagetitle-view-mainpage' => '{{SITENAME}}',
 'retrievedfrom' => '"$1" adresinden alındı.',
-'youhavenewmessages' => 'Yeni <u>$1</u> var. ($2)',
+'youhavenewmessages' => 'Yeni $1 var ($2).',
 'newmessageslink' => 'mesajınız',
 'newmessagesdifflink' => 'son değişiklik',
 'youhavenewmessagesmulti' => "$1'de yeni mesajınız var.",
@@ -1254,7 +1255,6 @@ Gezinti bağlantılarının bu sütunu sıfırlayacağını unutmayın.',
 
 # Diffs
 'history-title' => '"$1" sayfasının geçmişi',
-'difference' => '(Sürümler arası farklar)',
 'difference-multipage' => '(Sayfalar arasındaki fark)',
 'lineno' => '$1. satır:',
 'compareselectedversions' => 'Seçilen sürümleri karşılaştır',

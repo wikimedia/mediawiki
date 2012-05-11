@@ -1078,7 +1078,6 @@ Zaruc, až historija wersijow nastawka jo njepśetergnjona.',
 
 # Diffs
 'history-title' => 'Stawizny wersijow boka „$1“',
-'difference' => '(rozdźěle mjazy wersijoma/wersijami)',
 'difference-multipage' => '(Rozdźěl mjazy bokami)',
 'lineno' => 'Rědka $1:',
 'compareselectedversions' => 'Wuzwólonej wersiji pśirownaś',

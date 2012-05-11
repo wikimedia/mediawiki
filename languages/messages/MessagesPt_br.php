@@ -1254,7 +1254,6 @@ Certifique-se de que tal alteração manterá a continuidade das ações.',
 
 # Diffs
 'history-title' => 'Histórico de edições de "$1"',
-'difference' => '(Diferença entre revisões)',
 'difference-multipage' => '(Diferenças entre páginas)',
 'lineno' => 'Linha $1:',
 'compareselectedversions' => 'Compare as versões selecionadas',

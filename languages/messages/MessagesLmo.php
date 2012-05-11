@@ -592,7 +592,6 @@ Per infurmazion, varda ind el [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGE
 
 # Diffs
 'history-title' => 'Cronolugia di mudifegh de "$1"',
-'difference' => '(Diferenz intra i revisión)',
 'lineno' => 'Riga $1:',
 'compareselectedversions' => 'Compara i versión seleziunaa',
 'editundo' => "turna a 'me che l'era",

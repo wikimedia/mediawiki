@@ -850,6 +850,7 @@ Per més detalls, la darrera entrada del registre es mostra a continuació:",
 'note' => "'''Nota:'''",
 'previewnote' => "'''Recorda que això és només una previsualització.'''
 Els vostres canvis encara no s'han desat!",
+'continue-editing' => "Continua l'edició",
 'previewconflict' => "Aquesta previsualització reflecteix, a l'àrea
 d'edició superior, el text tal i com apareixerà si trieu desar-lo.",
 'session_fail_preview' => "'''No s'ha pogut processar la vostra modificació a causa d'una pèrdua de dades de la sessió.
@@ -1122,7 +1123,6 @@ Assegureu-vos que aquest canvi mantindrà la continuïtat històrica de la pàgi
 
 # Diffs
 'history-title' => 'Historial de versions de «$1»',
-'difference' => '(Diferència entre revisions)',
 'difference-multipage' => '(Diferència entre pàgines)',
 'lineno' => 'Línia $1:',
 'compareselectedversions' => 'Compara les versions seleccionades',
@@ -2006,6 +2006,11 @@ Podeu reduir l'extensió seleccionant el tipus de registre, el nom d'usuari real
 'allpagesbadtitle' => "El títol de la pàgina que heu inserit no és vàlid o conté un prefix d'enllaç amb un altre projecte. També pot passar que contingui un o més caràcters que no es puguin fer servir en títols de pàgina.",
 'allpages-bad-ns' => "El projecte {{SITENAME}} no disposa de l'espai de noms «$1».",
 'allpages-hide-redirects' => 'Amaga les redireccions',
+
+# SpecialCachedPage
+'cachedspecial-viewing-cached-ttl' => 'Esteu veient una versió a la memòria cau de la pàgina, que pot tenir fins a $1.',
+'cachedspecial-viewing-cached-ts' => 'Esteu veient una versió a la memòria cau de la pàgina, que podria no ser completament actual.',
+'cachedspecial-refresh-now' => 'Mostra la darrera.',
 
 # Special:Categories
 'categories' => 'Categories',
@@ -3576,6 +3581,9 @@ Amb aquest programa heu d'haver rebut [{{SERVER}}{{SCRIPTPATH}}/COPYING una còp
 'version-software' => 'Programari instaŀlat',
 'version-software-product' => 'Producte',
 'version-software-version' => 'Versió',
+'version-entrypoints' => "URL de punts d'entrada",
+'version-entrypoints-header-entrypoint' => "Punt d'entrada",
+'version-entrypoints-header-url' => 'URL',
 
 # Special:FilePath
 'filepath' => 'Camí del fitxer',
@@ -3763,5 +3771,16 @@ Altrament, podeu fer servir un senzill formulari a continuació. El vostre comen
 'api-error-unknownerror' => 'Error desconegut: «$1».',
 'api-error-uploaddisabled' => 'Estan desactivades les càrregues en aquest wiki',
 'api-error-verification-error' => 'Aquest fitxer pot estar danyat, o tenir una extensió incorrecta.',
+
+# Durations
+'duration-seconds' => '$1 {{PLURAL:$1|segon|segons}}',
+'duration-minutes' => '$1 {{PLURAL:$1|minut|minuts}}',
+'duration-hours' => '$1 {{PLURAL:$1|hora|hores}}',
+'duration-days' => '$1 {{PLURAL:$1|dia|dies}}',
+'duration-weeks' => '$1 {{PLURAL:$1|setmana|setmanes}}',
+'duration-years' => '$1 {{PLURAL:$1|any|anys}}',
+'duration-decades' => '$1 {{PLURAL:$1|dècada|dècades}}',
+'duration-centuries' => '$1 {{PLURAL:$1|segle|segles}}',
+'duration-millennia' => '$1 {{PLURAL:$1|mil·leni|mil·lenis}}',
 
 );

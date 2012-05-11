@@ -1239,7 +1239,6 @@ Uistite sa, že táto zmena zachová historickú kontinuitu zmien stránky.',
 
 # Diffs
 'history-title' => 'História revízií „$1“',
-'difference' => '(Rozdiel medzi revíziami)',
 'difference-multipage' => '(Rozdiel medzi stránkami)',
 'lineno' => 'Riadok $1:',
 'compareselectedversions' => 'Porovnať označené verzie',

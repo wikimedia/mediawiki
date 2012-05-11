@@ -188,7 +188,7 @@ $messages = array(
 'namespaces' => 'Cayê namey',
 'variants' => 'Varyanti',
 
-'errorpagetitle' => 'Xeta',
+'errorpagetitle' => 'Xırab',
 'returnto' => 'Peyser şo $1.',
 'tagline' => '{{SITENAME}} ra',
 'help' => 'Peşti',
@@ -298,7 +298,7 @@ $1',
 'toc' => 'Tedeestey',
 'showtoc' => 'bımocne',
 'hidetoc' => 'bınımne',
-'collapsible-collapse' => 'Kılmever ke',
+'collapsible-collapse' => 'Kılm ke',
 'collapsible-expand' => 'Hera ke',
 'thisisdeleted' => 'Bıvêne ya zi $1 peyser bia?',
 'viewdeleted' => '$1 bıvêne?',
@@ -325,7 +325,7 @@ $1',
 'nstab-mediawiki' => 'Mesac',
 'nstab-template' => 'Şablon',
 'nstab-help' => 'Pela peşti',
-'nstab-category' => 'Kategoriye',
+'nstab-category' => 'Kategori',
 
 # Main script and global functions
 'nosuchaction' => 'Fealiyeto wınasi çıniyo',
@@ -338,7 +338,7 @@ Keyepelê {{SITENAME}} eşkeno xeta eşkera bıkero.',
 Seba lista pelanê xasanê vêrdeyan kerem ke: [[Special:SpecialPages|{{int:specialpages}}]].',
 
 # General errors
-'error' => 'Xeta',
+'error' => 'Xırab',
 'databaseerror' => 'Xeta serveri',
 'dberrortext' => 'Rêzê vateyê database de xeta bı.
 No xeta belka software ra yo.
@@ -550,7 +550,7 @@ Parola vêrdiye: $2',
 'changeemail-newemail' => 'E-postay şımayê newe:',
 'changeemail-none' => '(Çıno)',
 'changeemail-submit' => 'E-postay xo bıvurne',
-'changeemail-cancel' => 'Bıterqne',
+'changeemail-cancel' => 'Bıterkne',
 
 # Edit page toolbar
 'bold_sample' => 'Çapo qalınd',
@@ -922,7 +922,6 @@ no vurnayişo ke şıma keni kontrol bıkere yew pelo kehen nêbo.',
 
 # Diffs
 'history-title' => 'Tarixê revizyoniyê "$1"',
-'difference' => '(Ferqê revizyonan)',
 'difference-multipage' => '(Ferqê pelan)',
 'lineno' => 'Rêza $1i:',
 'compareselectedversions' => 'Verziyonan kontrol bıke',
@@ -992,13 +991,13 @@ Pe verbendi ''all:'', vaceyê xo bıvurni ki contenti hemi cıgeyro (pelanê mı
 'powersearch-field' => 'Seba cı seyr ke',
 'powersearch-togglelabel' => 'Qontrol ke:',
 'powersearch-toggleall' => 'Pêro',
-'powersearch-togglenone' => 'Çıniyo',
+'powersearch-togglenone' => 'Çıno',
 'search-external' => 'Cıgeyrayışê teberi',
 'searchdisabled' => '{{SITENAME}} no keyepel de cıgerayiş muweqqet bıryayo. no benatê de şıma pê Google eşkeni zerreyê {{SITENAME}} de cıgerayiş bıkeri.',
 
 # Quickbar
 'qbsettings' => 'Çûwo pêt',
-'qbsettings-none' => 'Çıniyo',
+'qbsettings-none' => 'Çıno',
 'qbsettings-fixedleft' => 'Rêcaene çhep',
 'qbsettings-fixedright' => 'Rêcaene raşt',
 'qbsettings-floatingleft' => 'rêcaene çhep',
@@ -1764,7 +1763,7 @@ hem zi bıewnê [[Special:WantedCategories|kategori yê ke waziyeni]].',
 'linksearch' => 'Gıreyê teberi cı geyrê',
 'linksearch-pat' => 'bıgêr motif:',
 'linksearch-ns' => 'Cayênameyî:',
-'linksearch-ok' => 'Bigêre',
+'linksearch-ok' => 'Cı geyre',
 'linksearch-text' => 'joker ê zey "*.wikipedia.org"i karneno.<br />
 qaydeyê destek biyayeyi: <tt>$1</tt>',
 'linksearch-line' => '$1, $2 ra link biya',
@@ -2190,7 +2189,7 @@ Cıkewtışo tewr peyêno ke bloke biyo, cêr seba referansi belikerdeyo:',
 'blocklist-expiry' => 'Wahdey qedyayışi',
 'blocklist-by' => 'hizmetdarê blokê',
 'blocklist-reason' => 'Sebeb:',
-'ipblocklist-submit' => 'Bigêre',
+'ipblocklist-submit' => 'Cı geyre',
 'ipblocklist-localblock' => 'blokê mehelli',
 'ipblocklist-otherblocks' => '{{PLURAL:$1|blokê|blokê}} bini',
 'infiniteblock' => 'ebedî',
@@ -2395,11 +2394,11 @@ eke şıma qayili paşt bıdi mahalli kerdışê wikimedyayi, kerem kerê pelê 
 'allmessages-filter-legend' => 'Filitre',
 'allmessages-filter' => 'goreyê xususi kerdışi re filtre bıker',
 'allmessages-filter-unmodified' => 'Nivurnaye',
-'allmessages-filter-all' => 'Heme/pêro',
+'allmessages-filter-all' => 'Pêro',
 'allmessages-filter-modified' => 'Vurnaye',
 'allmessages-prefix' => 'pê prefiks filtre bıker',
 'allmessages-language' => 'Ziwan:',
-'allmessages-filter-submit' => 'Şi',
+'allmessages-filter-submit' => 'Şo',
 
 # Thumbnails
 'thumbnail-more' => 'Gırd ke',
@@ -2675,7 +2674,7 @@ Eg ena dosya, kondisyonê orcinali ra bıvuriya, belki detayanê hemi nıeseno.'
 * gpsaltitude',
 
 # EXIF tags
-'exif-imagewidth' => 'Verini',
+'exif-imagewidth' => 'Herayey',
 'exif-imagelength' => 'Dergi',
 'exif-bitspersample' => 'yew parçe de biti',
 'exif-compression' => 'Planê kompresyoni',
@@ -2803,7 +2802,7 @@ Eg ena dosya, kondisyonê orcinali ra bıvuriya, belki detayanê hemi nıeseno.'
 'exif-urgency' => 'Aciliyet',
 'exif-fixtureidentifier' => 'Namey fiksturi',
 'exif-writer' => 'Nuştekar',
-'exif-languagecode' => 'Zuwan',
+'exif-languagecode' => 'Zıwan',
 'exif-iimversion' => 'Verqaydê IIM',
 'exif-iimcategory' => 'Kategori',
 'exif-datetimeexpires' => 'No peyra mekarênê',
@@ -3031,7 +3030,7 @@ Eg ena dosya, kondisyonê orcinali ra bıvuriya, belki detayanê hemi nıeseno.'
 'exif-iimcategory-wea' => 'Hewa',
 
 'exif-urgency-normal' => 'Normal ($1)',
-'exif-urgency-low' => '($1) Qemiyo',
+'exif-urgency-low' => '($1) Kemiyo',
 'exif-urgency-high' => '( $1 ) Vêşiyo',
 'exif-urgency-other' => 'Sıftê  şınasiya karberi ($1)',
 
@@ -3136,7 +3135,7 @@ Ma rica keno tesdiq bike ke ti raştî wazeno eno pel bivirazo.",
 'imgmultipageprev' => '← peleyê verin',
 'imgmultipagenext' => 'pela badê cû →',
 'imgmultigo' => 'Şı!',
-'imgmultigoto' => 'Şi pel $1',
+'imgmultigoto' => 'Şo pela da $1',
 
 # Table pager
 'ascending_abbrev' => 'berz',
@@ -3147,7 +3146,7 @@ Ma rica keno tesdiq bike ke ti raştî wazeno eno pel bivirazo.",
 'table_pager_last' => 'Pela peyêne',
 'table_pager_limit' => 'Jû pele de $1 unsuran bımocne',
 'table_pager_limit_label' => 'Her pele ra xacetan',
-'table_pager_limit_submit' => 'Şi',
+'table_pager_limit_submit' => 'Şo',
 'table_pager_empty' => 'Netice çini yo',
 
 # Auto-summaries

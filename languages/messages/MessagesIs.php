@@ -1121,7 +1121,6 @@ Sjáðu til þess að þessi breyting sameini breytingarskrárnar samfellt.',
 
 # Diffs
 'history-title' => 'Breytingaskrá fyrir "$1"',
-'difference' => '(Munur milli útgáfa)',
 'difference-multipage' => '(Munur á milli síðna)',
 'lineno' => 'Lína $1:',
 'compareselectedversions' => 'Bera saman valdar útgáfur',

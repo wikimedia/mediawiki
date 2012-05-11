@@ -991,6 +991,7 @@ Rememoru ke individuaj .css-aj kaj .js-aj paĝoj uzas minusklan titolon, ekz. {{
 'note' => "'''Noto:'''",
 'previewnote' => "'''Memoru, ke ĉi tio estas nur antaŭrigardo.''' 
 Viaj ŝanĝoj ne ankoraŭ estas konservitaj!",
+'continue-editing' => 'Redaktu plu',
 'previewconflict' => 'La jena antaŭrigardo montras la tekston el la supra tekstujo,
 kiel ĝi aperos se vi elektos konservi la paĝon.',
 'session_fail_preview' => "'''Ni ne povas procezi vian redakton pro perdo de seancaj datenoj.
@@ -1086,6 +1087,10 @@ Iuj ŝablonoj ne estos inkluzivitaj.',
 'parser-template-loop-warning' => 'Rekursiva ŝablono estis trovita: [[$1]]',
 'parser-template-recursion-depth-warning' => 'Limo de ŝablona profundeco pligrandiĝis ($1)',
 'language-converter-depth-warning' => 'Profundo de lingvo-konvertilo preterpasis limon ($1)',
+'node-count-exceeded-category' => 'Paĝoj kie la nombro da nodoj estis preterpasita',
+'node-count-exceeded-warning' => 'Paĝo preterpasis la nombron da nodoj.',
+'expansion-depth-exceeded-category' => 'Paĝoj en kiuj la ekpansiprofundo estis preterpasita.',
+'expansion-depth-exceeded-warning' => 'Paĝo preterpasis la ekpansiprofundon.',
 
 # "Undo" feature
 'undo-success' => 'La redakto estas malfarebla.
@@ -1263,7 +1268,6 @@ Certigu ke ĉi tiu ŝanĝo tenos kontinuecon de la historia paĝo.',
 
 # Diffs
 'history-title' => 'Redakto-historio de "$1"',
-'difference' => '(Malsamoj inter versioj)',
 'difference-multipage' => '(Diferenco inter paĝoj)',
 'lineno' => 'Linio $1:',
 'compareselectedversions' => 'Kompari la elektitajn versiojn',

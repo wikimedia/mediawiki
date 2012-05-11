@@ -1111,7 +1111,6 @@ Prašome patikrinti sąrašus.',
 
 # Diffs
 'history-title' => '„$1“ versijų istorija',
-'difference' => '(Skirtumai tarp versijų)',
 'difference-multipage' => '(Skirtumai tarp puslapių)',
 'lineno' => 'Eilutė $1:',
 'compareselectedversions' => 'Palyginti pasirinktas versijas',

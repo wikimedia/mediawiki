@@ -959,6 +959,8 @@ Argumen-argumen ini telah ditinggalkan.',
 'node-count-exceeded-warning' => 'Laman terlebih kiraan nod',
 'expansion-depth-exceeded-category' => 'Laman yang melebihi had kedalaman peluasan',
 'expansion-depth-exceeded-warning' => 'Laman terlebih dalam peluasan',
+'parser-unstrip-loop-warning' => 'Gelung unstrip dikesan',
+'parser-unstrip-recursion-limit' => 'Had rekursi unstrip dilampaui ($1)',
 
 # "Undo" feature
 'undo-success' => 'Suntingan ini boleh dibatalkan. Sila semak perbandingan di bawah untuk mengesahkan bahawa anda betul-betul mahu melakukan tindakan ini, kemudian simpan perubahan tersebut.',
@@ -1138,7 +1140,6 @@ Sila pastikan bahawa perubahan ini akan mengekalkan kesinambungan sejarah laman.
 
 # Diffs
 'history-title' => 'Sejarah semakan bagi "$1"',
-'difference' => '(Perbezaan antara semakan)',
 'difference-multipage' => '(Perbezaan antara laman)',
 'lineno' => 'Baris $1:',
 'compareselectedversions' => 'Bandingkan versi-versi yang dipilih',

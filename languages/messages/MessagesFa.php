@@ -520,7 +520,7 @@ $messages = array(
 'february-gen' => 'فوریهٔ',
 'march-gen' => 'مارس',
 'april-gen' => 'آوریل',
-'may-gen' => 'مه',
+'may-gen' => 'مهٔ',
 'june-gen' => 'ژوئن',
 'july-gen' => 'ژوئیهٔ',
 'august-gen' => 'اوت',
@@ -1406,7 +1406,6 @@ $1",
 
 # Diffs
 'history-title' => 'تاریخچهٔ ویرایش‌های «$1»',
-'difference' => '(تفاوت بین نسخه‌ها)',
 'difference-multipage' => '(تفاوت بین صفحه‌ها)',
 'lineno' => 'سطر $1:',
 'compareselectedversions' => 'مقایسهٔ نسخه‌های انتخاب‌شده',

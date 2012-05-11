@@ -1218,7 +1218,6 @@ Uuden ja vanhan sivun muutoksien pitää muodostaa jatkumo – ne eivät saa men
 
 # Diffs
 'history-title' => 'Sivun $1 muutoshistoria',
-'difference' => 'Versioiden väliset erot',
 'difference-multipage' => '(Sivujen välinen eroavaisuus)',
 'lineno' => 'Rivi $1:',
 'compareselectedversions' => 'Vertaile valittuja versioita',

@@ -976,7 +976,8 @@ A blokkolási napló legutóbbi ide vonatkozó bejegyzése a következő:',
 'userinvalidcssjstitle' => "'''Figyelem:''' Nincs „$1” nevű felület. A felületekhez tartozó .css/.js oldalak kisbetűvel kezdődnek, például ''{{ns:user}}:Gipsz Jakab/vector.css'' és nem ''{{ns:user}}:Gipsz Jakab/Vector.css''.",
 'updated' => '(frissítve)',
 'note' => "'''Megjegyzés:'''",
-'previewnote' => "'''Ne feledd, hogy ez csak előnézet, a változtatásaid még nincsenek elmentve!'''",
+'previewnote' => "'''Ne feledd, hogy ez csak egy előnézet.''' A változtatásaid még nincsenek elmentve!",
+'continue-editing' => 'Szerkesztés folytatása',
 'previewconflict' => 'Ez az előnézet a felső szerkesztődobozban levő szöveg mentés utáni megfelelőjét mutatja.',
 'session_fail_preview' => "'''Az elveszett munkamenetadatok miatt sajnos nem tudtuk feldolgozni a szerkesztésedet.
 Kérjük próbálkozz újra!
@@ -1242,7 +1243,6 @@ Győződj meg róla, hogy a laptörténet folytonossága megmarad.',
 
 # Diffs
 'history-title' => 'A(z) „$1” laptörténete',
-'difference' => '(Változatok közti eltérés)',
 'difference-multipage' => '(Lapok közti eltérés)',
 'lineno' => '$1. sor:',
 'compareselectedversions' => 'Kiválasztott változatok összehasonlítása',
