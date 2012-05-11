@@ -132,8 +132,10 @@ class ObjectCache {
 
 	/**
 	 * Factory function that creates a memcached client object.
-	 * The idea of this is that it might eventually detect and automatically
-	 * support the PECL extension, assuming someone can get it to compile.
+	 *
+	 * This always uses the PHP client, since the PECL client has a different 
+	 * hashing scheme and a different interpretation of the flags bitfield, so 
+	 * switching between the two clients randomly would be disasterous.
 	 *
 	 * @param $params array
 	 *
