@@ -4187,6 +4187,13 @@ $wgLogExceptionBacktrace = true;
 $wgShowHostnames = false;
 
 /**
+ * Override server hostname detection with a hardcoded value.
+ * Should be a string, default false.
+ * @since 1.20
+ */
+$wgOverrideHostname = false;
+
+/**
  * If set to true MediaWiki will throw notices for some possible error
  * conditions and for deprecated functions.
  */

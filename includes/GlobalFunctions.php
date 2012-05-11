@@ -1758,6 +1758,15 @@ function wfDebugDieBacktrace( $msg = '' ) {
 function wfHostname() {
 	static $host;
 	if ( is_null( $host ) ) {
+
+		# Hostname overriding
+		global $wgOverrideHostname;
+		if( $wgOverrideHostname !== false ) {
+			# Set static and skip any detection
+			$host = $wgOverrideHostname;
+			return $host;
+		}
+
 		if ( function_exists( 'posix_uname' ) ) {
 			// This function not present on Windows
 			$uname = posix_uname();
