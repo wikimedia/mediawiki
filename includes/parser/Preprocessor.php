@@ -46,7 +46,7 @@ interface Preprocessor {
 	 *
 	 * @return PPFrame
 	 */
-	function newCustomFrame( $args );
+	function newCustomFrame( array $args );
 
 	/**
 	 * Create a new custom node for programmatic use of parameter replacement as used in some extensions
@@ -63,7 +63,7 @@ interface Preprocessor {
 	 *
 	 * @return PPNode
 	 */
-	function preprocessToObj( $text, $flags = 0 );
+	function preprocessToObj( string $text, int $flags = 0 );
 }
 
 /**

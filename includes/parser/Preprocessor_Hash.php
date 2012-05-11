@@ -47,10 +47,10 @@ class Preprocessor_Hash implements Preprocessor {
 	}
 
 	/**
-	 * @param $args
+	 * @param $args array
 	 * @return PPCustomFrame_Hash
 	 */
-	function newCustomFrame( $args ) {
+	function newCustomFrame( array $args ) {
 		return new PPCustomFrame_Hash( $this, $args );
 	}
 
@@ -107,7 +107,7 @@ class Preprocessor_Hash implements Preprocessor {
 	 *
 	 * @return PPNode_Hash_Tree
 	 */
-	function preprocessToObj( $text, $flags = 0 ) {
+	function preprocessToObj( string $text, int $flags = 0 ) {
 		wfProfileIn( __METHOD__ );
 
 		// Check cache.
