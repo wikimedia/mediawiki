@@ -61,7 +61,7 @@ class SkinVector extends SkinTemplate {
 	 * @param $out OutputPage object
 	 * @param &$bodyAttrs Array of attributes that will be set on the body element
 	 */
-	function addToBodyAttributes( OutputPage $out, &$bodyAttrs ) {
+	function addToBodyAttributes( $out, &$bodyAttrs ) {
 		if ( isset( $bodyAttrs['class'] ) && strlen( $bodyAttrs['class'] ) > 0 ) {
 			$bodyAttrs['class'] .= ' ' . implode( ' ', static::$bodyClasses );
 		} else {
