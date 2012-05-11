@@ -56,7 +56,7 @@ class Preprocessor_DOM implements Preprocessor {
 	}
 
 	/**
-	 * @param $args
+	 * @param $args array
 	 * @return PPCustomFrame_DOM
 	 */
 	function newCustomFrame( $args ) {
@@ -128,7 +128,7 @@ class Preprocessor_DOM implements Preprocessor {
 	 *
 	 * @return PPNode_DOM
 	 */
-	function preprocessToObj( $text, $flags = 0 ) {
+	function preprocessToObj( string $text, int $flags = 0 ) {
 		wfProfileIn( __METHOD__ );
 		global $wgMemc, $wgPreprocessorCacheThreshold;
 
