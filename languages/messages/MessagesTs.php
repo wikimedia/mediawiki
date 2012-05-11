@@ -313,6 +313,13 @@ Query: $2',
 'viewsource' => 'Vona tsalwa-tumbuluxa',
 
 # Login and logout pages
+'logouttext' => "'''Uhumile eka wiki leyi.'''
+
+Ungaya emahlweni utirhisa {{SITENAME}} handle ko tipaluxa, kumbe unga [[Special:UserLogin|pfula unghena nakambe]] tani hi mutirhisa un'wana kumbe kumbe hivuxokoxoko bya wena.
+Tsundzuka leswaku matluka man'wana mangaha komba onge upfule unghena eka wiki, loko ungasi sula tluka rakhompuyuta leri tsundzukaka matluka lawa uma vhakeleke.",
+'welcomecreation' => '== Hoyohoyo, eka Wena $1 ! ==
+Akhawunti yawena yitumbuluxiwile.
+Unda rivali ku cinca [[Special:Preferences|{{SITENAME}} minhlawulo ya wena]].',
 'yourname' => 'Vito ra vutirhisi',
 'yourpassword' => 'Vito-mpfungulo:',
 'yourpasswordagain' => 'Thlela u hoxa ritompfungulo ra wena:',
@@ -329,6 +336,7 @@ Query: $2',
 'gotaccount' => 'Xna una akhawunti hi khale? $1.',
 'gotaccountlink' => 'Pfula unghena',
 'userlogin-resetlink' => 'Xana u rivele vuxokoxoko bya wena byo pfula unghena?',
+'loginsuccess' => "'''Ule ndzeni ka {{SITENAME}} tani hi \"\$1\".'''",
 'mailmypassword' => 'Rhumela vito-mpfungulo lerintwsa',
 'loginlanguagelabel' => 'Ririmi: $1',
 
@@ -434,7 +442,6 @@ Swihlamuseri: '''({{int:sweswi}})''' = kuhambana na ndzulamiso wa sweswinyana, '
 
 # Diffs
 'history-title' => 'Matimu ya mindulamiso ya "$1"',
-'difference' => '(Kuhambana exikarhi ka mindzulamiso)',
 'lineno' => 'Ntila $1:',
 'compareselectedversions' => 'Hambaniisa exikarhi ka mindzulamiso leyi langiweke',
 'editundo' => 'Thlerisela',
@@ -497,9 +504,19 @@ Adiresi ya wena ya e-mail yitunberile loko van'wana va bula na wena.",
 'right-edit' => 'Lulamisa ma tluka',
 'right-createpage' => 'Tumbuluxa matluka (mangariki eka matluka ya mbulavulo)',
 'right-createtalk' => 'Tumbuluxa matluka ya mbulavulo',
+'right-move' => "Yisa matluka lawa kun'wana",
+'right-move-subpages' => "yisa matluka lawa na matluka-ntsongo ya wona, kun'wana",
+'right-delete' => 'Sula matluka lawa',
 
 # Associated actions - in the sentence "You do not have permission to X"
+'action-read' => 'hlaya tluka leri',
 'action-edit' => 'Lulamisa tluka leri',
+'action-createpage' => 'tumuluxa matluka',
+'action-createtalk' => 'tumbuluxa matluka ya mbulavulo',
+'action-createaccount' => 'tumbuluxa akhawunti ya mutirhisi loyi',
+'action-minoredit' => 'funga ndzulamiso lowu wulri lowintsanana',
+'action-move' => 'Yisa tluka leri ndhzawini yinwana',
+'action-move-subpages' => "Yisa tlukaleri na matluka-nstongo ya rona, endzawini yinw'ana",
 
 # Recent changes
 'nchanges' => '$1 {{PLURAL:$1|wa ndzulamiso|wa mindzulamiso}}',

@@ -12,6 +12,7 @@
  * @author Flrn
  * @author Hanberke
  * @author Kaganer
+ * @author Reedy
  * @author Runningfridgesrule
  * @author The Evil IP address
  */
@@ -298,7 +299,7 @@ Bu sahypany ulanmak üçin MediaWikiniň $1 wersiýasy talap edilýär. [[Specia
 
 'ok' => 'OK',
 'retrievedfrom' => '"$1" adresinden alyndy.',
-'youhavenewmessages' => 'Size <u>$1</u> bar. ($2)',
+'youhavenewmessages' => 'Size $1 bar. ($2)',
 'newmessageslink' => 'täze habarlaşyk',
 'newmessagesdifflink' => 'soňky üýtgeşme',
 'youhavenewmessagesmulti' => 'Size $1-de täze habarlaşyk bar.',
@@ -679,10 +680,10 @@ Sahypalary howpsuz ýagdaýda rdaktirlemegiňiz şeýle aýlawly ýol bar: ASCII
 'editingold' => "'''Duýdyryş: Sahypanyň möwriti geçen bir wersiýasyny redaktirleýärsiňiz.
 Eger ony ýazdyraýsaňyz, onda şu wersiýadan bäri edilen ähli özgerdişler ýok bolar.'''",
 'yourdiff' => 'Aratapawutlar',
-'copyrightwarning' => "'''Üns beriň:''' {{SITENAME}} saýtyna edilen ähli goşantlar <i>$2</i> ygtyýarnamasyna laýyklykdadyr (jikme-jiklikler üçin serediň:  $1).
+'copyrightwarning' => "'''Üns beriň:''' {{SITENAME}} saýtyna edilen ähli goşantlar $2 ygtyýarnamasyna laýyklykdadyr (jikme-jiklikler üçin serediň:  $1).
 Eden goşandyňyzyň başga ulanyjylar tarapyndan gypynç etmezden redaktirlenmegini ýa-da erkin hem-de çäklendirilmedik tertipde başga ýerlere paýlanmagyny islemeýän bolsaňyz, goşant etmäň.<br />
 Mundan hem başga, siz bu ýere goşant goşmak bilen bu goşandyň özüňiz tarapyndan ýazylandygyna, ýa-da jemgyýetçilige açyk bir çeşmeden ýa-da başga bir erkin çeşmeden göçürilip alnandygyna güwä geçýärsiňiz.<br />
-'''<center>AWTORLYK HUKUGY BOÝUNÇA GORALÝAN HIÇ BIR IŞI BU ÝERE BIRUGSAT GOŞMAŇ!</center>'''",
+'''AWTORLYK HUKUGY BOÝUNÇA GORALÝAN HIÇ BIR IŞI BU ÝERE BIRUGSAT GOŞMAŇ!'''",
 'copyrightwarning2' => "Üns beriň,  {{SITENAME}} saýtyna edilen ähli goşantlaryň başga ulanyjylar tarapyndan redaktirlenmegi, düzedilmegi ýa-da aýyrylmagy mümkindir.
 Eger-de işiňiziň gypynç etmezden redaktirlenmegini islemeýän bolsaňyz, onda ony goşant etmäň.<br />
 Şeýle-de, siz ony özüňiziň ýazandygyňyza ýa-da jemgyýetçilige açyk bir çeşmeden ýa-da bolmasa şoňa meňzeş bir erkin çeşmeden göçürip alandygyňyza güwä geçýärsiňiz (jikme-jiklikler üçin serediň: $1).
@@ -925,7 +926,6 @@ Nawigasiýa çykgytlaryny ulanmaklygyň bu sütüni başky ýagdaýyna getirjekd
 
 # Diffs
 'history-title' => '"$1" sahypasynyň geçmişi',
-'difference' => '(Wersiýalaryň aratapawudy)',
 'difference-multipage' => '(Sahypalaryň arasyndaky tapawut)',
 'lineno' => 'Setir $1:',
 'compareselectedversions' => 'Saýlanan wersiýalary deňeşdir',

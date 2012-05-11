@@ -704,7 +704,6 @@ Kėtė admėnėstratuorē šėtom pruojekte vėsdar galės pasėiktė pasliepta 
 
 # Diffs
 'history-title' => 'Poslapė „$1“ istuorėjė',
-'difference' => '(Skėrtomā terp versėju)',
 'lineno' => 'Eilotė $1:',
 'compareselectedversions' => 'Palīgintė pasėrinktas versėjės',
 'editundo' => 'atšauktė',

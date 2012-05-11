@@ -1308,7 +1308,6 @@ Nota que usar los enlaces de navegación borrará las selecciones de esta column
 
 # Diffs
 'history-title' => 'Historial de revisiones para «$1»',
-'difference' => '(Diferencias entre revisiones)',
 'difference-multipage' => '(Diferencia entre las páginas)',
 'lineno' => 'Línea $1:',
 'compareselectedversions' => 'Comparar versiones seleccionadas',
@@ -3900,7 +3899,7 @@ Este sitio está experimentando dificultades técnicas.',
 'logentry-delete-revision' => '$1 modificó la visibilidad de {{PLURAL:$5|una edición|$5 ediciones}} en la página $3: $4',
 'logentry-delete-event-legacy' => '$1 modificó la visibilidad de los eventos del registro en $3',
 'logentry-delete-revision-legacy' => '$1 modificó la visibilidad de las ediciones en la página $3',
-'logentry-suppress-delete' => '$1 borró la página $3',
+'logentry-suppress-delete' => '$1 borró (restricciones para administradores aplicadas) la página $3',
 'logentry-suppress-event' => '$1 modificó secretamente la visibilidad de {{PLURAL:$5|un evento del registro|$5 eventos del registro}} en $3: $4',
 'logentry-suppress-revision' => '$1 modificó secretamente la visibilidad de {{PLURAL:$5|una edición|$5 ediciones}} en la página $3: $4',
 'logentry-suppress-event-legacy' => '$1 modificó secretamente la visibilidad de los eventos del registro en $3',

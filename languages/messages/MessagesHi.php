@@ -1046,7 +1046,6 @@ $1",
 
 # Diffs
 'history-title' => '"$1" का अवतरण इतिहास',
-'difference' => '(अवतरणों में अंतर)',
 'difference-multipage' => '(पृष्ठों के बीच अन्तर)',
 'lineno' => 'पंक्ति $1:',
 'compareselectedversions' => 'चुने हुए अवतरणों की तुलना करें',

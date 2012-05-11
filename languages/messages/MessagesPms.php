@@ -974,7 +974,6 @@ Ch'a varda mach che a-i ven-a nen fòra un rabel ant la continuità stòrica.",
 
 # Diffs
 'history-title' => 'Cronologìa dle modìfiche ëd "$1"',
-'difference' => '(Diferense antra revision)',
 'difference-multipage' => '(Diferense tra pàgine)',
 'lineno' => 'Riga $1:',
 'compareselectedversions' => 'Paragon-a le version selessionà',

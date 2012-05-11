@@ -998,7 +998,6 @@ Catatan bahwasa mamuruk tautan napigasi akan mambulikakan setelan kolum ngini.',
 
 # Diffs
 'history-title' => "Ralatan halam matan ''$1''",
-'difference' => '(Nang balain antar ralatan)',
 'difference-multipage' => '(Nang balain antar tungkaran-tungkaran)',
 'lineno' => 'Baris $1:',
 'compareselectedversions' => 'Tandingakan ralatan nang dipilih',

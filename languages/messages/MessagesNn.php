@@ -1140,7 +1140,7 @@ Sjekk gjerne loggføringa.',
 ** Brot på opphavsrettar
 ** Ikkje høveleg personleg informasjon
 ** Mogleg falskt sladder',
-'revdelete-otherreason' => 'Annan årsak, eller tilleggsårsak:',
+'revdelete-otherreason' => 'Anna årsak, eller tilleggsårsak:',
 'revdelete-reasonotherlist' => 'Annan grunn',
 'revdelete-edit-reasonlist' => 'Endre grunnar til sletting',
 'revdelete-offender' => 'Forfattar av denne versjonen:',
@@ -1181,7 +1181,6 @@ Pass på at den nye sida også har innhald frå den innfletta sida.',
 
 # Diffs
 'history-title' => 'Historikken til «$1»',
-'difference' => '(Skilnad mellom versjonar)',
 'difference-multipage' => '(Skilnad mellom sider)',
 'lineno' => 'Line $1:',
 'compareselectedversions' => 'Samanlikn valde versjonar',
@@ -2245,8 +2244,8 @@ Her er dei noverande innstillingane for sida '''$1''':",
 'protect-othertime' => 'Anna tid:',
 'protect-othertime-op' => 'anna tid',
 'protect-existing-expiry' => 'Gjeldande utløpstid: $3 $2',
-'protect-otherreason' => 'Annan/ytterlegare årsak:',
-'protect-otherreason-op' => 'Annan årsak',
+'protect-otherreason' => 'Anna/ytterlegare årsak:',
+'protect-otherreason-op' => 'Anna årsak',
 'protect-dropdown' => '*Vanlege verneårsaker
 ** Gjenteke hærverk
 ** Gjenteke spam

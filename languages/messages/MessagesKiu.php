@@ -679,7 +679,6 @@ Eke şertê ilawekerdey ke niyê ro, idarekerê bini {{SITENAME}} de nêşikinê
 
 # Diffs
 'history-title' => 'Viartê pelga "$1"ine',
-'difference' => 'Ferqê wertê vurnaisu',
 'lineno' => 'Rêza $1i:',
 'compareselectedversions' => 'Varyantunê weçinıtun têver sane',
 'editundo' => 'peyser bia',

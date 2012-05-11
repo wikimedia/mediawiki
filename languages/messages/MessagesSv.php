@@ -1267,7 +1267,6 @@ Se till att sidhistorikens kontinuitet behålls när du sammanfogar historik.',
 
 # Diffs
 'history-title' => 'Versionshistorik för "$1"',
-'difference' => '(Skillnad mellan versioner)',
 'difference-multipage' => '(Skillnad mellan sidor)',
 'lineno' => 'Rad $1:',
 'compareselectedversions' => 'Jämför angivna versioner',

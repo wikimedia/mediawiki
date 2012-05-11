@@ -1349,7 +1349,6 @@ $1",
 
 # Diffs
 'history-title' => '「$1」の変更履歴',
-'difference' => '（版間での差分）',
 'difference-multipage' => '（ページ間の差分）',
 'lineno' => '$1行：',
 'compareselectedversions' => '選択した版同士を比較',

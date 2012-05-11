@@ -965,7 +965,6 @@ $1",
 
 # Diffs
 'history-title' => '"$1" এর সংশোধনের ইতিহাস',
-'difference' => '(সংস্করণগুলোর মধ্যে পার্থক্য)',
 'difference-multipage' => 'পাতাগুলোর মধ্যে পার্থক্য',
 'lineno' => '$1 নং লাইন:',
 'compareselectedversions' => 'নির্বাচিত সংস্করণগুলো তুলনা করো',

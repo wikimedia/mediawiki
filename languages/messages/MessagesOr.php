@@ -1220,7 +1220,6 @@ $1",
 
 # Diffs
 'history-title' => '"$1" ପାଇଁ ସଙ୍କଳନ ଇତିହାସ',
-'difference' => '(ସଙ୍କଳନ ଭିତରେ ଥିବା ତଫାତ)',
 'difference-multipage' => '(ପୃଷ୍ଠା ଭିତରେ ଥିବା ତଫାତ)‌',
 'lineno' => '$1 କ ଧାଡ଼ି:',
 'compareselectedversions' => 'ବଛାହୋଇଥିବା ସଙ୍କଳନ ଗୁଡ଼ିକୁ ତଉଲିବେ',
