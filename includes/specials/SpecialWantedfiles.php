@@ -39,7 +39,7 @@ class WantedFilesPage extends WantedQueryPage {
 		# Specifically setting to use "Wanted Files" (NS_MAIN) as title, so as to get what
 		# category would be used on main namespace pages, for those tricky wikipedia
 		# admins who like to do {{#ifeq:{{NAMESPACE}}|foo|bar|....}}.
-		$catMessage = wfMessage( 'broken-file-category' )
+		$catMessage = $this->msg( 'broken-file-category' )
 			->title( Title::newFromText( "Wanted Files", NS_MAIN ) )
 			->inContentLanguage();
 		

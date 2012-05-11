@@ -87,13 +87,11 @@ class SpecialLockdb extends FormSpecialPage {
 		}
 		fwrite( $fp, $data['Reason'] );
 		$timestamp = wfTimestampNow();
-		fwrite( $fp, "\n<p>" . wfMsgExt(
-			'lockedbyandtime',
-			array( 'content', 'parsemag' ),
+		fwrite( $fp, "\n<p>" . $this->msg( 'lockedbyandtime',
 			$this->getUser()->getName(),
-			$wgContLang->date( $timestamp ),
-			$wgContLang->time( $timestamp )
-		) . "</p>\n" );
+			$wgContLang->date( $timestamp, false, false ),
+			$wgContLang->time( $timestamp, false, false )
+		)->inContentLanguage()->text() . "</p>\n" );
 		fclose( $fp );
 
 		return Status::newGood();
