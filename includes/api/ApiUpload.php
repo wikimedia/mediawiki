@@ -117,25 +117,25 @@ class ApiUpload extends ApiBase {
 	 */
 	private function getContextResult(){
 		$warnings = $this->getApiWarnings();
-		if ( $warnings ) {
+		if ( $warnings && !$this->mParams['ignorewarnings'] ) {
 			// Get warnings formated in result array format
 			return $this->getWarningsResult( $warnings );
 		} elseif ( $this->mParams['chunk'] ) {
 			// Add chunk, and get result
-			return $this->getChunkResult();
+			return $this->getChunkResult( $warnings );
 		} elseif ( $this->mParams['stash'] ) {
 			// Stash the file and get stash result
-			return $this->getStashResult();
+			return $this->getStashResult( $warnings );
 		}
 		// This is the most common case -- a normal upload with no warnings
 		// performUpload will return a formatted properly for the API with status
-		return $this->performUpload();
+		return $this->performUpload( $warnings );
 	}
 	/**
 	 * Get Stash Result, throws an expetion if the file could not be stashed.
 	 * @return array
 	 */
-	private function getStashResult(){
+	private function getStashResult( $warnings ){
 		$result = array ();
 		// Some uploads can request they be stashed, so as not to publish them immediately.
 		// In this case, a failure to stash ought to be fatal
@@ -143,6 +143,7 @@ class ApiUpload extends ApiBase {
 			$result['result'] = 'Success';
 			$result['filekey'] = $this->performStash();
 			$result['sessionkey'] = $result['filekey']; // backwards compatibility
+			$result['warnings'] = $warnings;
 		} catch ( MWException $e ) {
 			$this->dieUsage( $e->getMessage(), 'stashfailed' );
 		}
@@ -171,10 +172,11 @@ class ApiUpload extends ApiBase {
 	 * Get the result of a chunk upload.
 	 * @return array
 	 */
-	private function getChunkResult(){
+	private function getChunkResult( $warnings ){
 		$result = array();
 
 		$result['result'] = 'Continue';
+		$result['warnings'] = $warnings;
 		$request = $this->getMain()->getRequest();
 		$chunkPath = $request->getFileTempname( 'chunk' );
 		$chunkSize = $request->getUpload( 'chunk' )->getSize();
@@ -453,9 +455,8 @@ class ApiUpload extends ApiBase {
 	protected function getApiWarnings() {
 		$warnings = array();
 
-		if ( !$this->mParams['ignorewarnings'] ) {
-			$warnings = $this->mUpload->checkWarnings();
-		}
+		$warnings = $this->mUpload->checkWarnings();
+
 		return $this->transformWarnings( $warnings );
 	}
 
@@ -490,7 +491,7 @@ class ApiUpload extends ApiBase {
 	 *
 	 * @return array
 	 */
-	protected function performUpload() {
+	protected function performUpload( $warnings ) {
 		// Use comment as initial page text by default
 		if ( is_null( $this->mParams['text'] ) ) {
 			$this->mParams['text'] = $this->mParams['comment'];
@@ -529,6 +530,7 @@ class ApiUpload extends ApiBase {
 
 		$result['result'] = 'Success';
 		$result['filename'] = $file->getName();
+		$result['warnings'] = $warnings;
 
 		return $result;
 	}
