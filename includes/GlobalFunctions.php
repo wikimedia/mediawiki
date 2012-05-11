@@ -1768,13 +1768,29 @@ function wfHostname() {
  * @return string
  */
 function wfReportTime() {
-	global $wgRequestTime, $wgShowHostnames;
+	global $wgRequestTime, $wgShowHostnames, $wgShowInstanceName, $wgInstanceName;
 
 	$elapsed = microtime( true ) - $wgRequestTime;
 
-	return $wgShowHostnames
-		? sprintf( '<!-- Served by %s in %01.3f secs. -->', wfHostname(), $elapsed )
-		: sprintf( '<!-- Served in %01.3f secs. -->', $elapsed );
+	$ret = '<!-- Served';
+
+	if( $wgShowHostnames || $wgShowInstanceName ) {
+		$ret .= ' by ';
+	}
+	if( $wgShowHostnames ) {
+		$ret .= wfHostname();
+	}
+	if( $wgShowInstanceName && $wgInstanceName ) {
+		if( $wgShowHostnames ) {
+			$ret .= " ($wgInstanceName)";
+		} else {
+			$ret .= $wgInstanceName;
+		}
+	}
+
+	$ret .= sprintf( ' in %01.3f secs. -->', $elapsed );
+
+	return $ret;
 }
 
 /**
