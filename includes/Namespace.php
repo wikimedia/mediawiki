@@ -361,7 +361,7 @@ class MWNamespace {
 	 * @param $index int Index to check
 	 * @return bool
 	 */
-	public static function isNonincludableNamespace( $index ) {
+	public static function isNonincludable( $index ) {
 		global $wgNonincludableNamespaces;
 		return $wgNonincludableNamespaces && in_array( $index, $wgNonincludableNamespaces );
 	}

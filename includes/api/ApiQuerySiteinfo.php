@@ -216,7 +216,7 @@ class ApiQuerySiteinfo extends ApiQueryBase {
 				$data[$ns]['content'] = '';
 			}
 
-			if ( MWNamespace::isNonincludableNamespace( $ns ) ) {
+			if ( MWNamespace::isNonincludable( $ns ) ) {
 				$data[$ns]['nonincludable'] = '';
 			}
 		}
