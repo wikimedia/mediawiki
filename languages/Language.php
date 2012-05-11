@@ -734,9 +734,8 @@ class Language {
 		$mwNames = $wgExtraLanguageNames + $coreLanguageNames;
 		foreach ( $mwNames as $mwCode => $mwName ) {
 			# - Prefer own MediaWiki native name when not using the hook
-			#	TODO: prefer it always to make it consistent, but casing is different in CLDR
 			# - For other names just add if not added through the hook
-			if ( ( $mwCode === $inLanguage && !$inLanguage ) || !isset( $names[$mwCode] ) ) {
+			if ( $mwCode === $inLanguage || !isset( $names[$mwCode] ) ) {
 				$names[$mwCode] = $mwName;
 			}
 		}
