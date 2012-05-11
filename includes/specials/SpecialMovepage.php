@@ -246,6 +246,14 @@ class MovePageForm extends UnlistedSpecialPage {
 		// Byte limit (not string length limit) for wpReason and wpNewTitleMain
 		// is enforced in the mediawiki.special.movePage module
 
+		$immovableNamespaces = array();
+
+		foreach ( array_keys( $this->getLanguage()->getNamespaces() ) as $nsId ) {
+			if ( !MWNamespace::isMovable( $nsId ) ) {
+				$immovableNamespaces[] = $nsId;
+			}
+		}
+
 		$out->addHTML(
 			 Xml::openElement( 'form', array( 'method' => 'post', 'action' => $this->getTitle()->getLocalURL( 'action=submit' ), 'id' => 'movepage' ) ) .
 			 Xml::openElement( 'fieldset' ) .
@@ -265,7 +273,10 @@ class MovePageForm extends UnlistedSpecialPage {
 				"</td>
 				<td class='mw-input'>" .
 					Html::namespaceSelector(
-						array( 'selected' => $newTitle->getNamespace() ),
+						array(
+							'selected' => $newTitle->getNamespace(),
+							'exclude' => $immovableNamespaces
+						),
 						array( 'name' => 'wpNewTitleNs', 'id' => 'wpNewTitleNs' )
 					) .
 					Xml::input( 'wpNewTitleMain', 60, $wgContLang->recodeForEdit( $newTitle->getText() ), array(
