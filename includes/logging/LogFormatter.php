@@ -727,4 +727,12 @@ class NewUsersLogFormatter extends LogFormatter {
 		}
 		return parent::getComment();
 	}
+
+	public function getPreloadTitles() {
+		if ( $this->entry->getSubtype() === 'create2' ) {
+			//add the user talk to LinkBatch for the userLink
+			return array( Title::makeTitle( NS_USER_TALK, $this->entry->getTarget()->getText() ) );
+		}
+		return array();
+	}
 }
