@@ -1768,13 +1768,51 @@ function wfHostname() {
  * @return string
  */
 function wfReportTime() {
-	global $wgRequestTime, $wgShowHostnames;
+	global $wgRequestTime, $wgShowHostnames, $wgShowInstanceName;
 
 	$elapsed = microtime( true ) - $wgRequestTime;
 
-	return $wgShowHostnames
-		? sprintf( '<!-- Served by %s in %01.3f secs. -->', wfHostname(), $elapsed )
-		: sprintf( '<!-- Served in %01.3f secs. -->', $elapsed );
+	$ret = '<!-- Served';
+
+	if( $wgShowHostnames || $wgShowInstanceName ) {
+		$ret .= ' by ';
+	}
+	if( $wgShowHostnames ) {
+		$ret .= wfHostname();
+	}
+	if( $wgShowInstanceName ) {
+		if( $wgShowHostname ) {
+			$ret .= '(' . wfInstanceName() . ')';
+		} else {
+			$ret .= wfInstanceName();
+		}
+	}
+
+	$ret .= sprintf( ' in %01.3f secs. -->', $elapsed );
+
+	return $ret;
+}
+
+/**
+ * Wrapper to find out an instance name based on environnement variable.
+ * Strips out any unwanted characters to only keep alphannumerics.
+ * @see $wgShowInstanceName
+ * @return string
+ */
+function wfInstanceName() {
+	global $wgShowInstanceName;
+
+	if( !$wgShowInstanceName ) {
+		return false;
+	} elseif( $wgShowInstanceName === true ) {
+		$envvar = 'INSTANCENAME';
+	} else {
+		$envvar = $wgShowInstanceName;
+	}
+
+	return
+		preg_replace( '/[^a-zA-Z0-9-_]/', '', getenv( $envvar ) );
+
 }
 
 /**

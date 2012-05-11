@@ -4152,6 +4152,17 @@ $wgLogExceptionBacktrace = true;
 $wgShowHostnames = false;
 
 /**
+ * Expose backend server instance name contained in that env variable.
+ * Only alphanumerics are kept from the env variable content.
+ * Configuration is:
+ *  false : default value, does not show anything
+ *  true  : enable feature, will get name from INSTANCENAME env variable
+ *  'string' : enable feature, get instance name from 'string' env variable
+ * @see wfInstanceName()
+ */
+$wgShowInstanceName = false;
+
+/**
  * If set to true MediaWiki will throw notices for some possible error
  * conditions and for deprecated functions.
  */
