@@ -224,6 +224,13 @@ class ApiQueryRevisions extends ApiQueryBase {
 			}
 		}
 
+		// need user information
+		if ( $this->fld_user || $this->fld_userid ) {
+			$this->addTables( 'user' );
+			$this->addJoinConds( array( 'user' => Revision::userJoinCond() ) );
+			$this->addFields( Revision::selectUserFields() );
+		}
+
 		// Bug 24166 - API error when using rvprop=tags
 		$this->addTables( 'revision' );
 
