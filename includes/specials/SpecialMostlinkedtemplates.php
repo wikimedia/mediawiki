@@ -68,7 +68,7 @@ class MostlinkedTemplatesPage extends QueryPage {
 					'tl_title AS title',
 					'COUNT(*) AS value' ),
 			'conds' => array ( 'tl_namespace' => NS_TEMPLATE ),
-			'options' => array( 'GROUP BY' => 'tl_namespace, tl_title' )
+			'options' => array( 'GROUP BY' => array( 'tl_namespace', 'tl_title' ) )
 		);
 	}
 

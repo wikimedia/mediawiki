@@ -376,7 +376,7 @@ abstract class QueryPage extends SpecialPage {
 			$options = isset( $query['options'] ) ? (array)$query['options'] : array();
 			$join_conds = isset( $query['join_conds'] ) ? (array)$query['join_conds'] : array();
 			if ( count( $order ) ) {
-				$options['ORDER BY'] = implode( ', ', $order );
+				$options['ORDER BY'] = $order;
 			}
 			if ( $limit !== false ) {
 				$options['LIMIT'] = intval( $limit );

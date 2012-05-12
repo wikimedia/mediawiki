@@ -156,9 +156,8 @@ class ImageListPager extends TablePager {
 			if( $dbr->implicitGroupby() ) {
 				$options = array( 'GROUP BY' => 'img_name' );
 			} else {
-				$columnlist = implode( ',',
-					preg_grep( '/^img/', array_keys( $this->getFieldNames() ) ) );
-				$options = array( 'GROUP BY' => "img_user, $columnlist" );
+				$columnlist = preg_grep( '/^img/', array_keys( $this->getFieldNames() ) );
+				$options = array( 'GROUP BY' => array_merge( array( 'img_user' ), $columnlist ) );
 			}
 			$join_conds = array( 'oldimage' => array( 'LEFT JOIN', 'oi_name = img_name' ) );
 		}

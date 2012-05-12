@@ -46,7 +46,7 @@ class MostcategoriesPage extends QueryPage {
 					'COUNT(*) AS value' ),
 			'conds' => array ( 'page_namespace' => MWNamespace::getContentNamespaces() ),
 			'options' => array ( 'HAVING' => 'COUNT(*) > 1',
-				'GROUP BY' => 'page_namespace, page_title' ),
+				'GROUP BY' => array( 'page_namespace', 'page_title' ) ),
 			'join_conds' => array ( 'page' => array ( 'LEFT JOIN',
 					'page_id = cl_from' ) )
 		);
