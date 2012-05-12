@@ -112,6 +112,28 @@ class GenderCache {
 	}
 
 	/**
+	 * Wrapper for doQuery that processes a title or string array.
+	 *
+	 * @param $titles
+	 * @param $caller
+	 */
+	public function doTitlesArray( $titles, $caller = '' ) {
+		$users = array();
+		foreach ( $titles as $title ) {
+			$titleObj = is_string( $title ) ? Title::newFromText( $title ) : $title;
+			if ( !$titleObj ) {
+				continue;
+			}
+			if ( !MWNamespace::hasGenderDistinction( $titleObj->getNamespace() ) ) {
+				continue;
+			}
+			$users[] = $titleObj->getText();
+		}
+
+		$this->doQuery( $users, $caller );
+	}
+
+	/**
 	 * Preloads genders for given list of users.
 	 * @param $users List|String: usernames
 	 * @param $caller String: the calling method
