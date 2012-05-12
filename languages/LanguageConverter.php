@@ -166,13 +166,17 @@ class LanguageConverter {
 
 	/**
 	 * Get default variant.
-	 * This function would not be affected by user's settings or headers
+	 * This function would not be affected by user's settings
 	 * @return String: the default variant code
 	 */
 	public function getDefaultVariant() {
 		global $wgDefaultLanguageVariant;
 
 		$req = $this->getURLVariant();
+
+		if ( !$req ) {
+			$req = $this->getHeaderVariant();
+		}
 
 		if ( $wgDefaultLanguageVariant && !$req ) {
 			$req = $this->validateVariant( $wgDefaultLanguageVariant );

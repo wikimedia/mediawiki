@@ -1214,9 +1214,8 @@ class User {
 
 		$defOpt = $wgDefaultUserOptions;
 		# default language setting
-		$variant = $wgContLang->getDefaultVariant();
-		$defOpt['variant'] = $variant;
-		$defOpt['language'] = $variant;
+		$defOpt['variant'] = $wgContLang->getCode();
+		$defOpt['language'] = $wgContLang->getCode();
 		foreach( SearchEngine::searchableNamespaces() as $nsnum => $nsname ) {
 			$defOpt['searchNs'.$nsnum] = !empty( $wgNamespacesToBeSearchedDefault[$nsnum] );
 		}
@@ -3999,11 +3998,27 @@ class User {
 	 * @todo document
 	 */
 	protected function loadOptions() {
+		global $wgContLang;
+
 		$this->load();
-		if ( $this->mOptionsLoaded || !$this->getId() )
+
+		if ( $this->mOptionsLoaded ) {
 			return;
+		}
 
 		$this->mOptions = self::getDefaultOptions();
+
+		if ( !$this->getId() ) {
+			// For unlogged-in users, load language/variant options from request.
+			// There's no need to do it for logged-in users: they can set preferences,
+			// and handling of page content is done by $pageLang->getPreferredVariant() and such,
+			// so don't override user's choice (especially when the user chooses site default).
+			$variant = $wgContLang->getDefaultVariant();
+			$this->mOptions['variant'] = $variant;
+			$this->mOptions['language'] = $variant;
+			$this->mOptionsLoaded = true;
+			return;
+		}
 
 		// Maybe load from the object
 		if ( !is_null( $this->mOptionOverrides ) ) {
