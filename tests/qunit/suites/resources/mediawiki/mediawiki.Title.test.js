@@ -55,7 +55,7 @@ var config = {
 	"wgCaseSensitiveNamespaces": []
 };
 
-module( 'mediawiki.Title', QUnit.newMwEnvironment( config ) );
+module( 'mediawiki.Title', QUnit.newMwEnvironment({ config: config }) );
 
 test( '-- Initial check', function () {
 	expect(1);

@@ -56,7 +56,10 @@ upgrade PHP if you have not done so prior to upgrading MediaWiki.
 * (bug 5445) Now remove autoblocks when a user is unblocked.
 * Added $wgLogExceptionBacktrace, on by default, to allow logging of exception
   backtraces.
-* Added device detection for determining device capabilities
+* Added device detection for determining device capabilities.
+* QUnit.newMwEnvironment now supports passing a custom setup and/or teardown function.
+  Arguments signature has changed. First arguments is now an options object of which
+  'config' can be a property. Previously 'config' itself was the first and only argument.
 
 === Bug fixes in 1.20 ===
 * (bug 30245) Use the correct way to construct a log page title.
