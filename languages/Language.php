@@ -3577,8 +3577,8 @@ class Language {
 	/**
 	 * @return string
 	 */
-	public function getDefaultVariant() {
-		return $this->mConverter->getDefaultVariant();
+	public function getDefaultVariant( $header = false ) {
+		return $this->mConverter->getDefaultVariant( $header );
 	}
 
 	/**
