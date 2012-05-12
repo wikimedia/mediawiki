@@ -81,7 +81,7 @@ class LanguageFi extends Language {
 			'monday' => 'maanantai',
 			'tuesday' => 'tiistai',
 			'wednesday' => 'keskiviikko',
-			'thurday' => 'torstai',
+			'thursday' => 'torstai',
 			'friday' => 'perjantai',
 			'saturday' => 'lauantai',
 			'sunday' => 'sunnuntai',
