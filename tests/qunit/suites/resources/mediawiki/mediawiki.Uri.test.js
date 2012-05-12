@@ -3,10 +3,11 @@ module( 'mediawiki.Uri', QUnit.newMwEnvironment() );
 test( '-- Initial check', function () {
 	expect( 2 );
 
-	// Ensure we have a generic URI parser if not running in a browser
-	if ( !mw.Uri ) {
-		mw.Uri = mw.UriRelative( 'http://example.com/' );
-	}
+	// Ensure we have a generic mw.Uri constructor. By default mediawiki.uri,
+	// will use the currrent window ocation as base. But for testing we need
+	// to have a generic one, so that it doens't return false negatives if
+	// we run the test suite from an https server.
+	mw.Uri = mw.UriRelative( 'http://example.org/w/index.php' );
 
 	ok( mw.UriRelative, 'mw.UriRelative defined' );
 	ok( mw.Uri, 'mw.Uri defined' );
