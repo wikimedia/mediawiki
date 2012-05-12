@@ -552,7 +552,6 @@ Nyoë pat nakeuh log seunampôh nibak ôn nyoë:",
 
 # Diffs
 'history-title' => 'Riwayat geunantoë nibak "$1"',
-'difference' => '(Bida antara geunantoë)',
 'lineno' => 'Baréh $1:',
 'compareselectedversions' => 'Peubandéng curak teupiléh',
 'editundo' => 'peubateuë',

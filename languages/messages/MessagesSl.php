@@ -1157,6 +1157,8 @@ Upoštevajte, da bo uporaba navigacijskih gumbov ponastavila ta stolpec.',
 
 # Diffs
 'history-title' => 'Zgodovina strani »$1«',
+'difference-title' => 'Razlika med redakcijama »$1«',
+'difference-title-multipage' => 'Razlika med stranema »$1« in »$2«',
 'difference-multipage' => '(Razlika med stranmi)',
 'lineno' => 'Vrstica $1:',
 'compareselectedversions' => 'Primerjaj izbrani redakciji',

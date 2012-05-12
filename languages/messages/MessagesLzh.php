@@ -857,7 +857,6 @@ $1",
 
 # Diffs
 'history-title' => '$1之誌',
-'difference' => '（辨異）',
 'difference-multipage' => '（辨頁）',
 'lineno' => '列$1：',
 'compareselectedversions' => '辨二擇',

@@ -803,7 +803,6 @@ Titulus: '''({{int:cur}})''' = dissimilis ab emendatione novissima,
 
 # Diffs
 'history-title' => 'Historia paginae "$1"',
-'difference' => '(Dissimilitudo inter emendationes)',
 'lineno' => 'Linea $1:',
 'compareselectedversions' => 'Conferre emendationes selectas',
 'showhideselectedversions' => 'Monstrare/celare emendationes selectas',

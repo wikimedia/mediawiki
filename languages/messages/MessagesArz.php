@@ -1171,7 +1171,6 @@ $1",
 
 # Diffs
 'history-title' => 'تاريخ تعديل "$1"',
-'difference' => '(الفرق بين النسخ)',
 'lineno' => 'سطر $1:',
 'compareselectedversions' => 'قارن بين النسختين المختارتين',
 'showhideselectedversions' => 'عرض/تخبية المراجعات المختاره.',

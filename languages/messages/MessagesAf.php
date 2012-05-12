@@ -1150,7 +1150,6 @@ Let op dat die gebruik van navigasieskakels hierdie kolom se waardes sal herstel
 
 # Diffs
 'history-title' => 'Weergawegeskiedenis van "$1"',
-'difference' => '(Verskil tussen weergawes)',
 'difference-multipage' => '(Verskil tussen bladsye)',
 'lineno' => 'Lyn $1:',
 'compareselectedversions' => 'Vergelyk gekose weergawes',

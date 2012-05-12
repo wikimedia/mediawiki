@@ -556,7 +556,6 @@ Administrator, chtëren jã zablokòwôł, pòdôł przëczënã: $1",
 
 # Diffs
 'history-title' => 'Historëjô wersëji dlô "$1"',
-'difference' => '(różnice midzë wersëjama)',
 'lineno' => 'Lëniô $1:',
 'compareselectedversions' => 'Przërównôj wëbróné wersëje',
 'editundo' => 'doprowadzë nazôd',

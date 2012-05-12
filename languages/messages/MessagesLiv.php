@@ -307,7 +307,6 @@ Legend: '''({{int:cur}})''' = vaiţīd līdzinţõmizõks lǟndz redaktsijõks,,
 
 # Diffs
 'history-title' => 'Līed "$1" mõitõkst istōrij',
-'difference' => '(Vaiţīd redaktsijõd vail)',
 'lineno' => 'Rīnda $1:',
 'compareselectedversions' => 'Līdzinţ vēļdõt redaktsijḑi',
 'editundo' => 'kištānt jarā',

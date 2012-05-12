@@ -553,7 +553,6 @@ $messages = array(
 
 # Diffs
 'history-title' => '"$1" ಪುಟೊತ ಆವೃತ್ತಿ ಇತಿಹಾಸ',
-'difference' => '(ಆವೃತ್ತಿಲೆದ ನಡುತ ವ್ಯತ್ಯಾಸ)',
 'lineno' => '$1 ನೇ ಸಾಲ್:',
 'compareselectedversions' => 'ಆಯ್ಕೆ ಮಲ್ತಿನ ಆವೃತ್ತಿಲೆನ್ ಹೊಂದಾಣಿಕೆ ಮಲ್ತ್ ತೂಲೆ',
 'editundo' => 'ದುಂಬುದಲೆಕ',

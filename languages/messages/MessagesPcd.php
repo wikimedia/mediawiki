@@ -437,7 +437,6 @@ Léginde : ({{MediaWiki:Cur}}) = différinches aveuc el vérchon à ch'momint-ch
 
 # Diffs
 'history-title' => 'Histoère des cangemints éd "$1"',
-'difference' => '(Diférinche intre chés érvisions)',
 'lineno' => 'Line $1:',
 'compareselectedversions' => 'Compérer chés couésies contérbuchons',
 'editundo' => "n'poin foaire",

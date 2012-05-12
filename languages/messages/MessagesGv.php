@@ -561,7 +561,6 @@ Ogher: '''({{int:cur}})''' = anchaslyssyn rish y lhieggan t'ayn nish,
 
 # Diffs
 'history-title' => 'Shennaghys aavriwnys dy "$1"',
-'difference' => '(Anchaslys eddyr aavriwnyssyn)',
 'lineno' => 'Linney $1:',
 'compareselectedversions' => 'Cosoylaghey ny lhiegganyn reiht',
 'editundo' => 'rassey',

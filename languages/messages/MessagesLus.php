@@ -663,7 +663,6 @@ Lamtawi hmante: '''({{int:cur}})'''= ennawnna thar ber nena danglamna, '''({{int
 
 # Diffs
 'history-title' => '"$1" ennawnna chanchin',
-'difference' => '(Ennawnnate danglamna)',
 'lineno' => 'Tlar $1:',
 'compareselectedversions' => 'Ennawnna i thlan tâkte khi khaikhin rawh le',
 'editundo' => 'tihletna',

@@ -802,7 +802,6 @@ $2',
 
 # Diffs
 'history-title' => '"$1" ಪುಟದ ಬದಲಾವಣೆಗಳ ಇತಿಹಾಸ',
-'difference' => '(ಆವೃತ್ತಿಗಳ ನಡುವಿನ ವ್ಯತ್ಯಾಸ)',
 'lineno' => '$1 ನೇ ಸಾಲು:',
 'compareselectedversions' => 'ಆಯ್ಕೆ ಮಾಡಿದ ಆವೃತ್ತಿಗಳನ್ನು ಹೊಂದಾಣಿಕೆ ಮಾಡಿ ನೋಡಿ',
 'showhideselectedversions' => 'ಆಯ್ದ ಆವೃತ್ತಿಗಳನ್ನು ತೋರಿಸು/ಅಡಗಿಸು',

@@ -1336,6 +1336,8 @@ Let op dat het gebruiken van de navigatieverwijzingen deze kolom opnieuw instelt
 
 # Diffs
 'history-title' => 'Geschiedenis van "$1"',
+'difference-title' => 'Verschil tussen versies van "$1"',
+'difference-title-multipage' => 'Verschil tussen pagina\'s "$1" en "$2"',
 'difference-multipage' => "(Verschil tussen pagina's)",
 'lineno' => 'Regel $1:',
 'compareselectedversions' => 'Geselecteerde versies vergelijken',

@@ -998,7 +998,7 @@ Pratayang ini belum disimpan!'''",
 'userinvalidcssjstitle' => "'''Peringatan:''' Kulit \"\$1\" tidak ditemukan. Harap diingat bahwa halaman .css dan .js menggunakan huruf kecil, contoh {{ns:user}}:Foo/vector.css dan bukannya {{ns:user}}:Foo/Vector.css.",
 'updated' => '(Diperbarui)',
 'note' => "'''Catatan:'''",
-'previewnote' => "'''Ingatlah bahwa ini hanyalah pratayang.'''
+'previewnote' => "'''Ingatlah bahwa ini hanya pratayang.'''
 Perubahan Anda belum disimpan!",
 'continue-editing' => 'Lanjutkan penyuntingan',
 'previewconflict' => 'Pratayang ini mencerminkan teks pada bagian atas kotak suntingan teks sebagaimana akan terlihat bila Anda menyimpannya.',

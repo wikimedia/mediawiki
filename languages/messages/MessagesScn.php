@@ -951,7 +951,6 @@ S'havi accirtari ca la cuntinuità storica di la pàggina nun veni altirata.",
 
 # Diffs
 'history-title' => 'Crunoluggìa dî canciamenti di "$1"',
-'difference' => '(Diffirenzi tra li rivisioni)',
 'lineno' => 'Lìnia $1:',
 'compareselectedversions' => 'Fari lu paraguni',
 'showhideselectedversions' => 'Ammustra/ammuccia virsioni silizziunati',

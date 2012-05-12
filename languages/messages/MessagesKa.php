@@ -1109,7 +1109,6 @@ $1",
 
 # Diffs
 'history-title' => 'ცვლილებათა ისტორია სტატიაში „$1“',
-'difference' => '(სხვაობა ვერსიებს შორის)',
 'difference-multipage' => '(განსხვავება გვერდებს შორის)',
 'lineno' => 'ხაზი $1:',
 'compareselectedversions' => 'არჩეული ვერსიების შედარება',

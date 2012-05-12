@@ -1287,7 +1287,6 @@ Notâd bien que l’usâjo des lims de navigacion tornerat inicialisar cela colo
 
 # Diffs
 'history-title' => 'Historico de les vèrsions de « $1 »',
-'difference' => '(Difèrences entre les vèrsions)',
 'difference-multipage' => '(Difèrences entre les pâges)',
 'lineno' => 'Legne $1 :',
 'compareselectedversions' => 'Comparar les vèrsions chouèsies',

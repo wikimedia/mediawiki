@@ -693,7 +693,6 @@ $2',
 
 # Diffs
 'history-title' => '"$1" фарсы фæлтæрты истори',
-'difference' => '(Дыууæ фæлтæры ’хсæн хъауджы)',
 'lineno' => 'Рæнхъ $1:',
 'compareselectedversions' => 'Абарын æвзæрст фæлтæртæ',
 'editundo' => 'раивын',

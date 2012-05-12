@@ -836,7 +836,6 @@ Gatèkna, angger nganggo pranala navigasi kuwe bakalan nge-reset kolom kiye.',
 
 # Diffs
 'history-title' => 'Sajarah revisi sekang "$1"',
-'difference' => '(Prabédan antarrevisi)',
 'difference-multipage' => '(Prabedan antarkaca)',
 'lineno' => 'Baris $1:',
 'compareselectedversions' => 'Bandingna revisi kapilih',

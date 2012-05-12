@@ -469,7 +469,6 @@ $messages = array(
 
 # Diffs
 'history-title' => 'ປະຫວັດການດັດແກ້ ຂອງ "$1"',
-'difference' => '(ສ່ວນຕ່າງລະຫວ່າງແຕ່ລະສະບັບ)',
 'lineno' => 'ແຖວ $1:',
 'compareselectedversions' => 'ສົມທຽບ ລະຫວ່າງ ສະບັບເລືອກ',
 'editundo' => 'ກັບຄືນ',

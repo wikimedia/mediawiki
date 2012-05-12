@@ -1104,7 +1104,6 @@ $1",
 
 # Diffs
 'history-title' => '$1 битенең үзгәртү тарихы',
-'difference' => '(Юрамалар арасында аерма)',
 'lineno' => '$1 юл:',
 'compareselectedversions' => 'Сайланган юрамаларны чагыштыру',
 'showhideselectedversions' => 'Сайланган юрамаларны күрсәтү/яшерү',

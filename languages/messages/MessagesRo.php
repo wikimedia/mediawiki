@@ -1259,6 +1259,8 @@ Folosirea linkurilor de navigare va reseta această coloană.',
 
 # Diffs
 'history-title' => 'Istoricul versiunilor pentru „$1”',
+'difference-title' => 'Diferență între versiunile paginii „$1”',
+'difference-title-multipage' => 'Diferență între paginile „$1” și „$2”',
 'difference-multipage' => '(Diferență între pagini)',
 'lineno' => 'Linia $1:',
 'compareselectedversions' => 'Compară versiunile marcate',

@@ -1262,7 +1262,6 @@ Donn de Version makeere bes wohen (inklusive) dat övverdraare wäde sull. Donn 
 
 # Diffs
 'history-title' => 'Liss met Versione vun „$1“',
-'difference' => '(Ungerscheid zwesche de Versione)',
 'difference-multipage' => '(Ongerscheide zwesche Sigge)',
 'lineno' => 'Reih $1:',
 'compareselectedversions' => 'Dun de markeete Version verjliche',

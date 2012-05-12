@@ -973,6 +973,7 @@ to upload files.',
 
 # Contributions
 'contributions' => 'ਯੂਜ਼ਰ ਯੋਗਦਾਨ',
+'contributions-title' => '$੧ ਦਾ ਯੋਗਦਾਨ',
 'mycontris' => 'ਮੇਰਾ ਯੋਗਦਾਨ',
 'contribsub2' => '$1 ($2) ਲਈ',
 'uctop' => '(ਉੱਤੇ)',

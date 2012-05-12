@@ -882,7 +882,6 @@ $1",
 
 # Diffs
 'history-title' => '"$1" versiju hronoloģija',
-'difference' => '(Atšķirības starp versijām)',
 'difference-multipage' => '(Atšķirības starp lapām)',
 'lineno' => '$1. rindiņa:',
 'compareselectedversions' => 'Salīdzināt izvēlētās versijas',

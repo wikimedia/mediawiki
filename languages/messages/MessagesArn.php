@@ -377,7 +377,6 @@ Rulpakünuy feychi kangelkülelu dungu.",
 
 # Diffs
 'history-title' => 'Kuyfi malün "$1" mew',
-'difference' => '(Trürümün epu malün engu)',
 'lineno' => 'Wif $1:',
 'compareselectedversions' => 'Trürümün dullinngelu malün',
 'editundo' => 'wüñoeltun',

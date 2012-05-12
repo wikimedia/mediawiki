@@ -1034,7 +1034,6 @@ Asegure-se que iste cambio no trencará a continidat de l'historial d'a pachina.
 
 # Diffs
 'history-title' => 'Historial de versions de "$1"',
-'difference' => '(Esferencias entre versions)',
 'difference-multipage' => '(Diferencia entre pachinas)',
 'lineno' => 'Linia $1:',
 'compareselectedversions' => 'Confrontar as versions trigatas',

@@ -538,7 +538,6 @@ folcliċum āgnunge oþþe ȝelīċum frēom horde (sēo $1 for āscungum).
 
 # Diffs
 'history-title' => 'Ednīƿunge stǣr for "$1"',
-'difference' => '(Scēadung betwēonan hweorfungum)',
 'lineno' => 'Līne $1:',
 'compareselectedversions' => 'Corena fadunga metan',
 'editundo' => 'undōn',

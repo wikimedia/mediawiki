@@ -974,7 +974,6 @@ Hon kann ikki fjalast.',
 
 # Diffs
 'history-title' => 'Versjónssøgan hjá "$1"',
-'difference' => '(Munur millum endurskoðanir)',
 'difference-multipage' => '(Munur millum síður)',
 'lineno' => 'Linja $1:',
 'compareselectedversions' => 'Bera saman valdar útgávur',

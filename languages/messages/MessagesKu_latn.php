@@ -768,7 +768,6 @@ Sedema qedexekirina $3 ev e: ''$2''",
 
 # Diffs
 'history-title' => 'Dîroka versyonên "$1"',
-'difference' => '(Ciyawaziya nav guhertoyan)',
 'difference-multipage' => '(Cudahî di navbera rûpelan de)',
 'lineno' => 'Rêz $1:',
 'compareselectedversions' => 'Guhertoyan bide ber hev',

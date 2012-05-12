@@ -698,7 +698,6 @@ Hinumdomi nga ang paggamit sa mga sumpay sa nabigasyon mo-reset sa column.',
 
 # Diffs
 'history-title' => 'Kaagi sa rebisyon sa "$1"',
-'difference' => '(Kalainan sa mga rebisyon)',
 'lineno' => 'Linya $1:',
 'compareselectedversions' => 'Ikompara ang piniling mga bersiyon',
 'editundo' => 'i-way bili',

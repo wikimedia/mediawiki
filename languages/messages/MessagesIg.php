@@ -691,7 +691,6 @@ Okwu ụmà: '''({{int:cur}})''' = gbánwe na nké orü mbu, '''({{int:last}})''
 
 # Diffs
 'history-title' => 'Ákíkó mbu màkà orü nọr na élú "$1"',
-'difference' => '(Ihe dị íche na orü ndi á)',
 'lineno' => 'Ahiri $1:',
 'compareselectedversions' => 'Sikwụ orü áká dị',
 'editundo' => 'emekwàlà',

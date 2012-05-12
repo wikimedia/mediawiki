@@ -555,7 +555,6 @@ Indi pag-ilakip ang pila ka mga suleras.',
 
 # Diffs
 'history-title' => 'Kasaysayan sang pagbag-o sang "$1"',
-'difference' => '(Ginkala-in sang mga rebisyon)',
 'lineno' => 'Linya $1:',
 'compareselectedversions' => 'I-kumpara ang pinili-an nga mga rebisyon',
 'editundo' => 'ibalik',

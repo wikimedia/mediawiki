@@ -1238,7 +1238,6 @@ Korištenje navigacionih linkova će resetovati ovaj stupac.',
 
 # Diffs
 'history-title' => 'Historija izmjena stranice "$1"',
-'difference' => '(Razlika između revizija)',
 'difference-multipage' => '(Razlika između stranica)',
 'lineno' => 'Linija $1:',
 'compareselectedversions' => 'Uporedite označene verzije',

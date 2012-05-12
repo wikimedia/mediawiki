@@ -689,7 +689,6 @@ Itminon hosil kuned, ki in taƣjir davomnokiji ta'rixiji sahifaro nigoh dorad.",
 
 # Diffs
 'history-title' => 'Ta\'rixcai viroişhoi "$1"',
-'difference' => '(Farqijati bajni nusxaho)',
 'lineno' => 'Satri $1:',
 'compareselectedversions' => 'Nusxahoi intixobşudaro muqoisa kuned',
 'editundo' => 'botil',

@@ -539,7 +539,6 @@ Legenda: (atu) = defrénças de la berson atual,
 
 # Diffs
 'history-title' => 'Stórico de eidiçones de "$1"',
-'difference' => '(Defréncias antre rebisones)',
 'lineno' => 'Lhinha $1:',
 'compareselectedversions' => 'Cumparar las bersones marcadas',
 'showhideselectedversions' => 'Amostrar/ocultar bersones selecionadas',

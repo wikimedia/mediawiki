@@ -695,7 +695,8 @@ For informasjoon füliet di leeste üttooch üt dåt benjüterspär-logbök:',
 'userinvalidcssjstitle' => "''Woorschauing:''' Skin \"\$1\"jeeft dåt ai. Betånk, dåt brükerspetsiifische .css- än .js-side ma en latj bökstääw önjfånge mönje, ålsü biispelswise ''{{ns:user}}:Münsterkjarl/vector.css'' önj stää foon ''{{ns:user}}:Münsterkjarl/Vector.css''.",
 'updated' => '(Änred)',
 'note' => "'''Påås aw:'''",
-'previewnote' => "'''Dåtheer as bloot en forlök, jü sid wörd nuch ai spikred!'''",
+'previewnote' => "'''Heer könst dü sä, hü det sidj wurd skal.'''
+Det sidj as oober noch ei seekert!",
 'previewconflict' => 'Dideer forbekiik jeeft di inhålt foon dåt boowerst takstfälj wider. Sü wårt jü sid ütsiinj, wan dü nü spiikerst.',
 'session_fail_preview' => "'''Din werk küd ei ufseekert wurd, diar as wat skiaf gingen.'''
 Fersjük det man noch ans an trak do üüb ''Sid spiikre''.
@@ -926,7 +927,7 @@ Dü heest deeraw nåån tugraawe.',
 # Suppression log
 'suppressionlog' => 'Oversight-logbök',
 'suppressionlogtext' => 'Detheer as det logbuk faan oversighter aktsjuunen.
-Luke bi [[Special:BlockList|List faan speret IP-adresen an brükernöömer]] för aktuel informatsjuunen.',
+Luke bi [[Special:BlockList|List faan speret IP-adresen an brükernöömer]] för aktuel sperangen.',
 
 # History merging
 'mergehistory' => 'Fersjoonshistoorie feriine',
@@ -961,7 +962,6 @@ A nawigatsjuun links saat ales weder turag üüb di ual stant.',
 
 # Diffs
 'history-title' => 'Färsjoonshistoori foon "$1"',
-'difference' => '(Ferschääl twasche Färsjoone)',
 'difference-multipage' => '(Ferschääl twasche side)',
 'lineno' => 'Ra $1:',
 'compareselectedversions' => 'Wäälde färsjoone ferglike',

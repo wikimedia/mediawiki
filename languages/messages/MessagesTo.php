@@ -425,7 +425,6 @@ Ko e ʻuhinga loka ko e $1 ia.",
 'revertmerge' => 'Vete ʻa e fakataha',
 
 # Diffs
-'difference' => '(Kehekehe he ongo paaki)',
 'lineno' => 'Laini hono $1:',
 'compareselectedversions' => 'Fakatatau ongo paaki fili',
 'editundo' => 'vete',

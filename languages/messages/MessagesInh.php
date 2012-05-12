@@ -481,7 +481,6 @@ $messages = array(
 
 # Diffs
 'history-title' => '"$1" хувцамий искар',
-'difference' => '(Доржамашкахь юкъера къоастамаш)',
 'lineno' => 'МугI $1:',
 'compareselectedversions' => 'Хьаржа доржамаша тарона тIа хьажа',
 'editundo' => 'юхавала/яла',

@@ -999,7 +999,6 @@ $1",
 
 # Diffs
 'history-title' => 'Гісторыя версій "$1"',
-'difference' => '(Розніца між версіямі)',
 'difference-multipage' => '(Розніца паміж старонкамі)',
 'lineno' => 'Радок $1:',
 'compareselectedversions' => 'Параўнаць азначаныя версіі',

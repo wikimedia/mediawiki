@@ -458,7 +458,6 @@ Kay (kaykunachu) kachashkakunaka cunkashkami kashka.",
 
 # Diffs
 'history-title' => '"$1" pankapa killkaykunapa wiñay kawsay',
-'difference' => '(imashpa shikan shikanmi kan)',
 'lineno' => '$1 aspi',
 'compareselectedversions' => 'Kay akllashka pankakunaka imashpa mana shinami kapan willana',
 'editundo' => 'Kutichina',

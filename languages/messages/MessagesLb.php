@@ -1102,7 +1102,8 @@ Denkt w.e.g drunn datt d'Navigatiounslinken d'Wiel vun de Versiounen nees zréck
 
 # Diffs
 'history-title' => 'Versiounshistorique vun „$1“',
-'difference' => '(Ennerscheed tëscht Versiounen)',
+'difference-title' => 'Ënnerscheed tëschent de Versioune vun "$1"',
+'difference-title-multipage' => 'Ënnerscheed tëschent de Säiten "$1" a(n) "$2"',
 'difference-multipage' => '(Ënnerscheed tëschent Säiten)',
 'lineno' => 'Linn $1:',
 'compareselectedversions' => 'Ausgewielte Versioune vergläichen',
@@ -1985,6 +1986,8 @@ Dir kënnt d'Siche limitéieren wann Dir e Log-Typ, e Benotzernumm (case-senisit
 'allpages-hide-redirects' => 'Viruleedunge verstoppen',
 
 # SpecialCachedPage
+'cachedspecial-viewing-cached-ttl' => 'Dir gesitt eng Versioun aus dem Tëschespäicher (cache) vun dëser Säit, déi bis zu $1 al ka sinn.',
+'cachedspecial-viewing-cached-ts' => 'Dir gesitt eng Versioun vun dëser Säit aus dem Tëschespäicher (cache), déi eventuell net méi aktuell ass.',
 'cachedspecial-refresh-now' => 'Déi rezentst weisen.',
 
 # Special:Categories

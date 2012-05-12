@@ -1019,6 +1019,8 @@ Alcuni template non verranno inclusi.",
 'node-count-exceeded-warning' => 'Questa pagina ha superato il numero di nodi',
 'expansion-depth-exceeded-category' => 'Pagine dove viene superata la profondità di espansione',
 'expansion-depth-exceeded-warning' => 'Questa pagina ha superato la profondità di espansione',
+'parser-unstrip-loop-warning' => 'Rilevato ciclo di Unstrip',
+'parser-unstrip-recursion-limit' => 'Superati i limiti di ricorsione di Unstrip ($1)',
 
 # "Undo" feature
 'undo-success' => 'Questa modifica può essere annullata. Verificare il confronto presentato di seguito per accertarsi che il contenuto corrisponda a quanto desiderato e quindi salvare le modifiche per completare la procedura di annullamento.',
@@ -1189,6 +1191,8 @@ Vedi l'[[Special:BlockList|elenco dei blocchi]] per l'elenco dei bandi e dei blo
 
 # Diffs
 'history-title' => 'Cronologia delle modifiche di "$1"',
+'difference-title' => 'Differenza tra le revisioni di " $1 "',
+'difference-title-multipage' => 'Differenza tra le pagine " $1 "e" $2 "',
 'difference-multipage' => '(Differenze fra le pagine)',
 'lineno' => 'Riga $1:',
 'compareselectedversions' => 'Confronta le versioni selezionate',

@@ -638,7 +638,6 @@ Surskriburo: '''({{int:cur}})''' = diferi kun l'aktuala versiono,
 
 # Diffs
 'history-title' => 'Versionaro di "$1"',
-'difference' => '(Diferi inter versioni)',
 'lineno' => 'Lineo $1:',
 'compareselectedversions' => 'Komparar selektita versioni',
 'editundo' => 'des-facez',

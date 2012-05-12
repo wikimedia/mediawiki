@@ -909,7 +909,6 @@ $1",
 
 # Diffs
 'history-title' => 'Ṫ-Ṫariĥ dyal lé-vérsyon dyal "$1"',
-'difference' => '(Ferq mabin lé-vérsyon)',
 'difference-multipage' => '(l-fṛq bin ṣ-ṣfaḫi)',
 'lineno' => 'Ṣter $1:',
 'compareselectedversions' => 'Qaren lé-versyon li meĝzolin',

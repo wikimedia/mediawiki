@@ -581,7 +581,6 @@ $messages = array(
 
 # Diffs
 'history-title' => 'Ιστορικόν εκδοσίων για τη σελίδαν "$1"',
-'difference' => '(Διαφορά μεταξύ τη μορφίων)',
 'lineno' => 'Γραμμή $1:',
 'compareselectedversions' => 'Γαρσουλαεύτε...',
 'editundo' => 'αναίρεση',

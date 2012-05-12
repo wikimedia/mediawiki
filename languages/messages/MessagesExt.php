@@ -752,7 +752,6 @@ Asigurati e qu'esti chambu mantenga la continuiá el estorial la páhina.",
 
 # Diffs
 'history-title' => 'Estorial de revisionis de "$1"',
-'difference' => '(Deferéncias entri las revisionis)',
 'lineno' => 'Línia $1:',
 'compareselectedversions' => 'Comparal velsionis aseñalás',
 'editundo' => 'esjazel',

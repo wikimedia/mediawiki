@@ -892,7 +892,6 @@ $1',
 
 # Diffs
 'history-title' => 'د "$1" د پېښليک بڼه',
-'difference' => '(د بڼو تر مېنځ توپير)',
 'difference-multipage' => '(د مخونو تر مېنځ توپير)',
 'lineno' => '$1 کرښه:',
 'compareselectedversions' => 'ټاکلې بڼې سره پرتلل',

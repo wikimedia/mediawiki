@@ -542,7 +542,6 @@ fetola tshenolo',
 
 # Diffs
 'history-title' => 'Histori ya diphetogo tša "$1"',
-'difference' => '(Phapang magareng ga dipoeletšo)',
 'lineno' => 'Mothalo $1:',
 'compareselectedversions' => 'Bapetša diphapang tšeo di kgethilwego',
 'editundo' => 'dirolla',

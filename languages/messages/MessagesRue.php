@@ -969,7 +969,6 @@ $1",
 
 # Diffs
 'history-title' => 'Історія змін сторінкы «$1»',
-'difference' => '(роздїл міджі ревізіями)',
 'difference-multipage' => '(Роздїлы міджі сторінками)',
 'lineno' => 'Рядок $1:',
 'compareselectedversions' => 'Порівнати выбраны верзії',

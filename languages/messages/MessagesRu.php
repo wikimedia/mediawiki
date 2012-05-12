@@ -63,6 +63,7 @@
  * @author VasilievVV
  * @author Ytsukeng Fyvaprol
  * @author Александр Сигачёв
+ * @author Гусейн
  * @author ОйЛ
  * @author לערי ריינהארט
  * @author გიორგიმელა
@@ -1271,6 +1272,8 @@ $1",
 
 # Diffs
 'history-title' => '$1 — история изменений',
+'difference-title' => 'Разница между пересмотров " $1 "',
+'difference-title-multipage' => 'Разница между страницами " $1 «и» $2 "',
 'difference-multipage' => '(Различия между страницами)',
 'lineno' => 'Строка $1:',
 'compareselectedversions' => 'Сравнить выбранные версии',

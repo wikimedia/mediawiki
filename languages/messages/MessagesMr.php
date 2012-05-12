@@ -1217,7 +1217,6 @@ $1",
 
 # Diffs
 'history-title' => '"$1" चा संपादन इतिहास',
-'difference' => '(आवर्तनांमधील फरक)',
 'difference-multipage' => '(पानांमधील फरक)',
 'lineno' => 'ओळ $1:',
 'compareselectedversions' => 'निवडलेल्या आवृत्त्यांमधील बदल पहा',

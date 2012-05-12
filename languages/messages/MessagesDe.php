@@ -1324,6 +1324,8 @@ Stelle sicher, dass die Versionsgeschichte einer Seite historisch korrekt ist.',
 
 # Diffs
 'history-title' => 'Versionsgeschichte von „$1“',
+'difference-title' => 'Unterschied zwischen den Versionen von „$1“',
+'difference-title-multipage' => 'Unterschied zwischen den Seiten „$1“ und „$2“',
 'difference-multipage' => '(Unterschied zwischen Seiten)',
 'lineno' => 'Zeile $1:',
 'compareselectedversions' => 'Gewählte Versionen vergleichen',

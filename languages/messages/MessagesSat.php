@@ -250,6 +250,7 @@ Daya katet́ noa do nonde [[Special:ListUsers/sysop|administrator]],  ṭhen l�
 'missingarticle-diff' => 'pharak',
 'internalerror' => 'Bhitri reaḱ bhul',
 'internalerror_info' => 'Bhitri reaḱ bhul:',
+'filedeleteerror' => '1 sakam do baṅ get́ giḍiḱ lena',
 'badarticleerror' => 'Noa sakamre kạmiko do baṅ puraolena.',
 'cannotdelete' => 'Nao sakam se rẽt do baṅ get giḍilena.
 Noa do pasec eṭaḱ hoṛ hotete lahare get giḍi akana.',

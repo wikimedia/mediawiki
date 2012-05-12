@@ -1308,6 +1308,8 @@ Nota que usar los enlaces de navegación borrará las selecciones de esta column
 
 # Diffs
 'history-title' => 'Historial de revisiones para «$1»',
+'difference-title' => 'Diferencia entre revisiones de «$1»',
+'difference-title-multipage' => 'Diferencia entre las páginas «$1» y «$2»',
 'difference-multipage' => '(Diferencia entre las páginas)',
 'lineno' => 'Línea $1:',
 'compareselectedversions' => 'Comparar versiones seleccionadas',

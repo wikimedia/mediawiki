@@ -897,7 +897,6 @@ Tink derom it brûken fan de navigaasjeferwizings dy kolom op'e nij ynstelt.",
 
 # Diffs
 'history-title' => 'Sideskiednis fan "$1"',
-'difference' => '(Ferskil tusken ferzjes)',
 'lineno' => 'Rigel $1:',
 'compareselectedversions' => 'Ferlykje selektearre ferzjes',
 'showhideselectedversions' => 'Oantikke ferzjes wol/net sjen litte',

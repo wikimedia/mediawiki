@@ -617,7 +617,6 @@ Cosas de ammentare: '''({{int:cur}})''' = diferèntzias cun sa versione currente
 
 # Diffs
 'history-title' => 'Istòria de is revisiones de "$1"',
-'difference' => '(Diferèntzias intre revisiones)',
 'lineno' => 'Lìnia $1:',
 'compareselectedversions' => 'Cumpara versiones scioberadas',
 'editundo' => 'annudda',

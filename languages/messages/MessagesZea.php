@@ -792,7 +792,6 @@ Zurg da je bie deêze wiezigieng de heschiedenisdeurloôpendeid van de pagina be
 
 # Diffs
 'history-title' => 'Heschiedenisse van "$1"',
-'difference' => '(Verschil tussen bewerkiengen)',
 'lineno' => 'Rehel $1:',
 'compareselectedversions' => 'Anevienkte versies verhelieken',
 'editundo' => 'onedaene maeken',

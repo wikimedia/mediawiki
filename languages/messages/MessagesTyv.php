@@ -492,7 +492,6 @@ The password for this new account can be changed on the ''[[Special:ChangePasswo
 
 # Diffs
 'history-title' => '«$1» деп арынның үндүрери төөгүзү',
-'difference' => '(Үндүрерилер аранда ылгал)',
 'lineno' => 'Одуруг $1:',
 'compareselectedversions' => 'Шилип алган хевирлери деңнээри',
 'editundo' => 'чөрчүүрү',

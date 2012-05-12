@@ -655,7 +655,6 @@ Inedbalen wiyaḍ deg wiki-yagi zemren ad ẓren imuren i yettwafren u zemren a 
 
 # Diffs
 'history-title' => 'Amazray n allasen n "$1"',
-'difference' => '(Imgerraden ger tisiwal)',
 'lineno' => 'Ajerriḍ $1:',
 'compareselectedversions' => 'Ẓer imgerraden ger tisiwal i textareḍ',
 'editundo' => 'ssefsu',

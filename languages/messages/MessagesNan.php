@@ -50,6 +50,7 @@ $messages = array(
 'tog-watchlisthideown' => 'Kàm-sī-toaⁿ bián hián-sī goá ê pian-chi̍p',
 'tog-watchlisthidebots' => 'Kàm-sī-toaⁿ bián hián-sī ki-khì pian-chi̍p',
 'tog-watchlisthideminor' => 'Kàm-sī-toaⁿ bián hián-sī sió siu-kái',
+'tog-ccmeonemails' => 'Kià hō͘ pa̍t-lâng ê email sūn-soà kià copy hō͘ goá',
 'tog-diffonly' => 'Diff ē-pêng bián hián-sī ia̍h ê loē-iông',
 
 'underline-always' => 'Tiāⁿ-tio̍h',
@@ -631,13 +632,18 @@ Chia ū chit ia̍h ê san-tû kì-lo̍k hō͘ lí chham-khó:",
 'allowemail' => 'Ún-chún pa̍t-ê iōng-chiá kià email kòe-lâi',
 'defaultns' => 'Tī chiah ê miâ-khong-kan chhiau-chhōe:',
 'prefs-files' => 'Tóng-àn',
+'youremail' => 'Lí ê email:',
 'yourrealname' => 'Lí ê chin miâ:',
 'yourlanguage' => 'Kài-bīn gú-giân:',
+'yournick' => 'Lí ê sió-miâ (chhiam-miâ iōng):',
 'prefs-help-email' => 'Tiān-chú-phoe ê chū-chí m̄-sī it-tēng ài, m̄-koh tī lí bē-kì bi̍t-bé beh tîng siat-tīng tō ài.',
 'prefs-help-email-others' => 'Lí ē-sái thàu--koè lí ê ia̍h , thó-lūn-ia̍h ê liân kiat hō͘ lâng ēng e-mail kah lí liân-lo̍k.
 Tī pat-lâng liân-lo̍k lí ê sî-chūn bē kā e-mail tsū-tsí siá chhut--lâi.',
 
 'grouppage-sysop' => '{{ns:project}}:Hêng-chèng jîn-oân',
+
+# User rights log
+'rightslogtext' => 'Chit-ê log lia̍t-chhut kái-piàn iōng-chiá koân-lī ê tōng-chok.',
 
 # Associated actions - in the sentence "You do not have permission to X"
 'action-edit' => 'Siu-kái chit ia̍h',
@@ -682,6 +688,7 @@ Tī pat-lâng liân-lo̍k lí ê sî-chūn bē kā e-mail tsū-tsí siá chhut--
 'uploadedfiles' => 'Tóng-àn í-keng sàng chiūⁿ-bāng',
 'ignorewarning' => 'Mài chhap kéng-kò, kā tóng-àn pó-chûn khí lâi.',
 'ignorewarnings' => 'Mài chhap kéng-kò',
+'badfilename' => 'Iáⁿ-siōng ê miâ í-keng kái chò "$1".',
 'uploadwarning' => 'Upload kéng-kò',
 'savefile' => 'Pó-chûn tóng-àn',
 'uploadedimage' => 'thoân "[[$1]]" chiūⁿ-bāng',
@@ -757,6 +764,7 @@ Template:Khu-pia̍t-ia̍h',
 'nbytes' => '$1 {{PLURAL:$1|jī-goân|jī-goân}}',
 'ncategories' => '$1 {{PLURAL:$1|ê lūi-pia̍t |ê lūi-pia̍t}}',
 'nlinks' => '$1 {{PLURAL:$1|ê|ê}} liân-kiat',
+'nmembers' => '$1 ê sêng-oân',
 'nrevisions' => '$1 {{PLURAL:$1|ê|ê}} siu-tēng-pún',
 'lonelypages' => 'Ko·-ia̍h',
 'uncategorizedpages' => 'Bô lūi-pia̍t ê ia̍h',
@@ -780,6 +788,7 @@ Template:Khu-pia̍t-ia̍h',
 'deadendpagestext' => 'Ē-kha ê ia̍h bô liân kàu wiki lāi-té ê kî-thaⁿ ia̍h.',
 'protectedpages' => 'Siū pó-hō͘ ê ia̍h',
 'protectedpagestext' => 'Ē-kha ê ia̍h siū pó-hō͘, bē-tit soá-ūi ia̍h pian-chi̍p',
+'listusers' => 'Iōng-chiá lia̍t-toaⁿ',
 'newpages' => 'Sin ia̍h',
 'newpages-username' => 'Iōng-chiá miâ-chheng:',
 'ancientpages' => 'Kó·-ia̍h',
@@ -793,7 +802,9 @@ Chhiáⁿ chù-ì: kî-thaⁿ ê bāng-chām ū khó-lêng iōng URL ti̍t-chiap
 'booksources' => 'Tô͘-su chu-liāu',
 
 # Special:Log
+'specialloguserlabel' => 'Iōng-chiá:',
 'speciallogtitlelabel' => 'Bo̍k-piau (sû-tiâu ia̍h iōng-chiá) :',
+'logempty' => 'Log lāi-bīn bô sio-tùi ê hāng-bo̍k.',
 
 # Special:AllPages
 'allpages' => 'Só·-ū ê ia̍h',
@@ -870,6 +881,7 @@ Lí ê [[Special:Preferences|siat-tēng]] ê tiān-chú-phe tē-chí ē chhut-hi
 'actioncomplete' => 'Chip-hêng sêng-kong',
 'deletedtext' => '"$1" í-keng thâi tiāu. Tùi $2 khoàⁿ-ē-tio̍h chòe-kīn thâi ê kì-lo̍k.',
 'dellogpagetext' => 'Í-hā lia̍t chhut chòe-kīn thâi tiāu ê hāng-bo̍k.',
+'deletecomment' => 'Lí-iû:',
 
 # Rollback
 'rollback' => 'Kā siu-kái ká tńg khì',
@@ -1086,6 +1098,7 @@ Lí ē-sái khoàⁿ i ê goân-sú-bé.',
 
 # E-mail address confirmation
 'confirmemail' => 'Khak-jīn e-mail chū-chí',
+'confirmemail_text' => 'Sú-iōng e-mail kong-lêng chìn-chêng tio̍h seng khak-jīn lí ê e-mail chū-chí ū-hāu. Chhi̍h ē-pêng hit-ê liú-á thang kià 1 tiuⁿ khak-jīn phoe hō· lí. Hit tiuⁿ phoe lāi-bīn ū 1 ê te̍k-sû liân-kiat. Chhiáⁿ iōng liû-lám-khì khui lâi khoàⁿ, án-ne tō ē-tit khak-jīn lí ê chū-chí ū-hāu.',
 'confirmemail_send' => 'Kià khak-jīn phoe',
 'confirmemail_sent' => 'Khak-jīn phoe kià chhut-khì ah.',
 'confirmemail_invalid' => 'Bô-hāu ê khak-jīn pian-bé. Pian-bé khó-lêng í-keng kòe-kî.',

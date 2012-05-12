@@ -1175,7 +1175,6 @@ $1",
 
 # Diffs
 'history-title' => 'Преглед на историята на „$1“',
-'difference' => '(Разлики между версиите)',
 'difference-multipage' => '(Разлики между страниците)',
 'lineno' => 'Ред $1:',
 'compareselectedversions' => 'Сравнение на избраните версии',

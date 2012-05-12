@@ -483,7 +483,6 @@ $messages = array(
 
 # Diffs
 'history-title' => '$1лан тӱрлык эртымгорно',
-'difference' => '(Тӱрлык-влакын ойыртемышт)',
 'lineno' => '$1 корно:',
 'compareselectedversions' => 'Ойырымо версий-влакым таҥастараш',
 'editundo' => 'чараш',

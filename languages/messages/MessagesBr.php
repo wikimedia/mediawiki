@@ -1119,7 +1119,6 @@ Gwiriit ne vo ket torret red istor ar bajenn gant ar c'hemm-mañ.",
 
 # Diffs
 'history-title' => 'Istor stummoù disheñvel "$1"',
-'difference' => "(Diforc'hioù etre ar stummoù)",
 'difference-multipage' => "(diforc'h etre ar pajennoù)",
 'lineno' => 'Linenn $1:',
 'compareselectedversions' => 'Keñveriañ ar stummoù diuzet',

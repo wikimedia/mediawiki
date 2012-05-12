@@ -428,7 +428,6 @@ La arcivo de sutraes per esta paje es asi per conveni:",
 
 # Diffs
 'history-title' => 'Istoria de cambias de "$1"',
-'difference' => '(Difere entre cambias)',
 'lineno' => 'Linia $1:',
 'compareselectedversions' => 'Compare varias elejeda',
 'editundo' => 'desfa',

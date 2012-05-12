@@ -453,7 +453,6 @@ E ʻoluʻolu, e hōʻoia i ka hoʻokūkū ʻana i lalo, a laila, e mālama i nā
 'revertmerge' => 'Mai hoʻokuʻi pū',
 
 # Diffs
-'difference' => '(Ka ʻokoʻa ma waena o nā hoʻololi)',
 'lineno' => 'Laina $1:',
 'editundo' => 'hoʻihoʻi mai',
 

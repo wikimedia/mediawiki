@@ -1081,7 +1081,6 @@ Assicùrete che la continuità storica de la pagina no la vegna alterà.',
 
 # Diffs
 'history-title' => "Storia dei canbiamenti de ''$1''",
-'difference' => '(Difarense fra le version)',
 'difference-multipage' => '(Difarensa tra le pagine)',
 'lineno' => 'Riga $1:',
 'compareselectedversions' => 'Confronta le version segnàe',
