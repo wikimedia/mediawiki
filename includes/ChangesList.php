@@ -192,6 +192,7 @@ class ChangesList extends ContextSource {
 		$this->rcCacheIndex = 0;
 		$this->lastdate = '';
 		$this->rclistOpen = false;
+		$this->getOutput()->addModuleStyles( 'mediawiki.special.changeslist' );
 		return '';
 	}
 
@@ -369,10 +370,8 @@ class ChangesList extends ContextSource {
 		if( $this->isDeleted($rc,Revision::DELETED_TEXT) ) {
 			$articlelink = '<span class="history-deleted">' . $articlelink . '</span>';
 		}
-		# Bolden pages watched by this user
-		if( $watched ) {
-			$articlelink = "<strong class=\"mw-watched\">{$articlelink}</strong>";
-		}
+		# To allow for boldening pages watched by this user
+		$articlelink = "<span class=\"mw-title\">{$articlelink}</span>";
 		# RTL/LTR marker
 		$articlelink .= $this->getLanguage()->getDirMark();
 
@@ -587,6 +586,10 @@ class OldChangesList extends ChangesList {
 				$classes[] = 'mw-line-even';
 			}
 		}
+
+		// Indicate watched status on the line to allow for more
+		// comprehensive styling.
+		$classes[] = $watched ? 'mw-changeslist-line-watched' : 'mw-changeslist-line-not-watched';
 
 		// Moved pages (very very old, not supported anymore)
 		if( $rc->mAttribs['rc_type'] == RC_MOVE || $rc->mAttribs['rc_type'] == RC_MOVE_OVER_REDIRECT ) {
@@ -837,14 +840,16 @@ class EnhancedChangesList extends ChangesList {
 		wfProfileIn( __METHOD__ );
 
 		# Add the namespace and title of the block as part of the class
+		$classes = array( 'mw-collapsible', 'mw-collapsed', 'mw-enhanced-rc' );
 		if ( $block[0]->mAttribs['rc_log_type'] ) {
 			# Log entry
-			$classes = 'mw-collapsible mw-collapsed mw-enhanced-rc ' . Sanitizer::escapeClass( 'mw-changeslist-log-'
+			$classes[] = Sanitizer::escapeClass( 'mw-changeslist-log-'
 					. $block[0]->mAttribs['rc_log_type'] . '-' . $block[0]->mAttribs['rc_title'] );
 		} else {
-			$classes = 'mw-collapsible mw-collapsed mw-enhanced-rc ' . Sanitizer::escapeClass( 'mw-changeslist-ns'
+			$classes[] = Sanitizer::escapeClass( 'mw-changeslist-ns'
 					. $block[0]->mAttribs['rc_namespace'] . '-' . $block[0]->mAttribs['rc_title'] );
 		}
+		$classes[] = $block[0]->watched ? 'mw-changeslist-line-watched' : 'mw-changeslist-line-not-watched';
 		$r = Html::openElement( 'table', array( 'class' => $classes ) ) .
 			Html::openElement( 'tr' );
 
@@ -1148,14 +1153,16 @@ class EnhancedChangesList extends ChangesList {
 
 		$type = $rcObj->mAttribs['rc_type'];
 		$logType = $rcObj->mAttribs['rc_log_type'];
+		$classes = array( 'mw-enhanced-rc' );
 		if( $logType ) {
 			# Log entry
-			$classes = 'mw-enhanced-rc ' . Sanitizer::escapeClass( 'mw-changeslist-log-'
+			$classes[] = Sanitizer::escapeClass( 'mw-changeslist-log-'
 					. $logType . '-' . $rcObj->mAttribs['rc_title'] );
 		} else {
-			$classes = 'mw-enhanced-rc ' . Sanitizer::escapeClass( 'mw-changeslist-ns' .
+			$classes[] = Sanitizer::escapeClass( 'mw-changeslist-ns' .
 					$rcObj->mAttribs['rc_namespace'] . '-' . $rcObj->mAttribs['rc_title'] );
 		}
+		$classes[] = $rcObj->watched ? 'mw-changeslist-line-watched' : 'mw-changeslist-line-not-watched';
 		$r = Html::openElement( 'table', array( 'class' => $classes ) ) .
 			Html::openElement( 'tr' );
 

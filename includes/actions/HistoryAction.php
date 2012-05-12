@@ -635,6 +635,7 @@ class HistoryPager extends ReverseChronologicalPager {
 
 		if ( $notificationtimestamp && ( $row->rev_timestamp >= $notificationtimestamp ) ) {
 			$s2 .= ' <span class="updatedmarker">' .  $this->msg( 'updatedmarker' )->escaped() . '</span>';
+			$classes[] = 'mw-history-line-updated';
 		}
 
 		$tools = array();

@@ -78,6 +78,10 @@ upgrade PHP if you have not done so prior to upgrading MediaWiki.
   Will be null on previewing a page being created.
 * (bug 37627) UserNotLoggedIn() exception to show a generic error page whenever
   a user is not logged in.
+* Watched status in changes lists are no longer indicated by <strong></strong>
+  tags with class "mw-watched". Instead, each line now has a class
+  "mw-changeslist-line-watched" or "mw-changeslist-line-not-watched", and the
+  title itself is surrounded by <span></span> tags with class "mw-title".
 
 === Bug fixes in 1.20 ===
 * (bug 30245) Use the correct way to construct a log page title.
