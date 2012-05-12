@@ -70,6 +70,8 @@ class ApiQueryQueryPage extends ApiQueryGeneratorBase {
 	 * @param $resultPageSet ApiPageSet
 	 */
 	public function run( $resultPageSet = null ) {
+		global $wgQueryCacheLimit;
+
 		$params = $this->extractRequestParams();
 		$result = $this->getResult();
 
@@ -88,6 +90,7 @@ class ApiQueryQueryPage extends ApiQueryGeneratorBase {
 				if ( $ts ) {
 					$r['cachedtimestamp'] = wfTimestamp( TS_ISO_8601, $ts );
 				}
+				$r['maxresults'] = $wgQueryCacheLimit;
 			}
 		}
 		$result->addValue( array( 'query' ), $this->getModuleName(), $r );
