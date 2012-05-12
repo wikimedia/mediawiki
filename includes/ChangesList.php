@@ -541,6 +541,12 @@ class OldChangesList extends ChangesList {
 			}
 		}
 
+		// Indicate watched status on the line to allow for more
+		// comprehensive styling.
+		if( $watched ) {
+			$classes[] = 'mw-watched';
+		}
+
 		// Moved pages (very very old, not supported anymore)
 		if( $rc->mAttribs['rc_type'] == RC_MOVE || $rc->mAttribs['rc_type'] == RC_MOVE_OVER_REDIRECT ) {
 		// Log entries
@@ -798,6 +804,9 @@ class EnhancedChangesList extends ChangesList {
 		} else {
 			$classes = 'mw-collapsible mw-collapsed mw-enhanced-rc ' . Sanitizer::escapeClass( 'mw-changeslist-ns'
 					. $block[0]->mAttribs['rc_namespace'] . '-' . $block[0]->mAttribs['rc_title'] );
+		}
+		if( $block[0]->watched ) {
+			$classes .= ' mw-watched';
 		}
 		$r = Html::openElement( 'table', array( 'class' => $classes ) ) .
 			Html::openElement( 'tr' );
@@ -1106,6 +1115,9 @@ class EnhancedChangesList extends ChangesList {
 		} else {
 			$classes = 'mw-enhanced-rc ' . Sanitizer::escapeClass( 'mw-changeslist-ns' .
 					$rcObj->mAttribs['rc_namespace'] . '-' . $rcObj->mAttribs['rc_title'] );
+		}
+		if( $rcObj->watched ) {
+			$classes .= ' mw-watched';
 		}
 		$r = Html::openElement( 'table', array( 'class' => $classes ) ) .
 			Html::openElement( 'tr' );
