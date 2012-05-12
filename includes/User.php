@@ -1210,11 +1210,11 @@ class User {
 	 * @return Array of String options
 	 */
 	public static function getDefaultOptions() {
-		global $wgNamespacesToBeSearchedDefault, $wgDefaultUserOptions, $wgContLang, $wgDefaultSkin;
+		global $wgNamespacesToBeSearchedDefault, $wgDefaultUserOptions, $wgContLang, $wgDefaultSkin, $wgUser;
 
 		$defOpt = $wgDefaultUserOptions;
 		# default language setting
-		$variant = $wgContLang->getDefaultVariant();
+		$variant = $wgContLang->getDefaultVariant( !$wgUser->isLoggedIn() );
 		$defOpt['variant'] = $variant;
 		$defOpt['language'] = $variant;
 		foreach( SearchEngine::searchableNamespaces() as $nsnum => $nsname ) {

@@ -142,7 +142,7 @@ class LanguageConverter {
 	public function getPreferredVariant() {
 		global $wgDefaultLanguageVariant, $wgUser;
 
-		$req = $this->getURLVariant();
+		$req = $this->getURLVariant( !$wgUser->isLoggedIn() );
 
 		if ( $wgUser->isLoggedIn() && !$req ) {
 			$req = $this->getUserVariant();
@@ -166,13 +166,18 @@ class LanguageConverter {
 
 	/**
 	 * Get default variant.
-	 * This function would not be affected by user's settings or headers
+	 * This function would not be affected by user's settings
+	 * @param $header Boolean: whether headers should be checked
 	 * @return String: the default variant code
 	 */
-	public function getDefaultVariant() {
+	public function getDefaultVariant( $header = false ) {
 		global $wgDefaultLanguageVariant;
 
 		$req = $this->getURLVariant();
+
+		if ( $header && !$req ) {
+			$req = $this->getHeaderVariant();
+		}
 
 		if ( $wgDefaultLanguageVariant && !$req ) {
 			$req = $this->validateVariant( $wgDefaultLanguageVariant );
