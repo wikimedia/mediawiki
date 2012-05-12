@@ -1214,7 +1214,7 @@ class User {
 
 		$defOpt = $wgDefaultUserOptions;
 		# default language setting
-		$variant = $wgContLang->getDefaultVariant();
+		$variant = $wgContLang->getDefaultVariant( true );
 		$defOpt['variant'] = $variant;
 		$defOpt['language'] = $variant;
 		foreach( SearchEngine::searchableNamespaces() as $nsnum => $nsname ) {
