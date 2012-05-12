@@ -57,3 +57,7 @@ table.mw-enhanced-rc td.mw-enhanced-rc-nested {
 	/* @embed */
 	background: url(images/arrow-expanded.png) no-repeat left center;
 }
+
+.mw-changeslist-line-watched .mw-title {
+	font-weight: bold;
+}
