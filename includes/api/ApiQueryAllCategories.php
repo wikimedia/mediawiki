@@ -112,7 +112,7 @@ class ApiQueryAllCategories extends ApiQueryGeneratorBase {
 			// Normalize titles
 			$titleObj = Title::makeTitle( NS_CATEGORY, $row->cat_title );
 			if ( !is_null( $resultPageSet ) ) {
-				$pages[] = $titleObj->getPrefixedText();
+				$pages[] = $titleObj;
 			} else {
 				$item = array();
 				$result->setContent( $item, $titleObj->getText() );
