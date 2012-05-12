@@ -1534,12 +1534,14 @@ Used in [[Special:Preferences]], tab "Watchlist". The display options refer to:
 'userrights-groupsmember' => 'Used when editing user groups in [[Special:Userrights]]. The messsage is followed by a list of group names.
 
 Parameters:
-* $1 - optional, for PLURAL use, the number of items in the list following the message. Avoid PLURAL, if your language can do without.',
+* $1 - optional, for PLURAL use, the number of items in the list following the message. Avoid PLURAL, if your language can do without.
+* $2 - optional, a username that can be used for GENDER.',
 'userrights-groupsmember-auto' => 'Used when editing user groups in [[Special:Userrights]]. The messsage is followed by a list of group names.
 "Implicit" is for groups that the user was automatically added to (such as "autoconfirmed"); cf. {{msg-mw|userrights-groupsmember}}
 
 Parameters:
-* $1 - optional, for PLURAL use, the number of items in the list following the message. Please avoid PLURAL, if your language can do without.',
+* $1 - optional, for PLURAL use, the number of items in the list following the message. Please avoid PLURAL, if your language can do without.
+* $2 - optional, a username that can be used for GENDER.',
 'userrights-groups-help' => 'Instructions displayed on [[Special:UserRights]]. Parameters:
 * $1 is a username - optional, can be used for GENDER',
 'userrights-reason' => 'Text beside log field when editing user groups
