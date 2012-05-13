@@ -3636,7 +3636,7 @@ Weitere werden standardmäßig nicht angezeigt.
 'confirmemail_pending' => 'Es wurde dir bereits ein Bestätigungscode per E-Mail zugeschickt.
 Wenn du dein Benutzerkonto erst vor kurzem erstellt hast, warte bitte noch ein paar Minuten auf die E-Mail, bevor du einen neuen Code anforderst.',
 'confirmemail_send' => 'Bestätigungscode zuschicken',
-'confirmemail_sent' => 'Bestätigungs-E-Mail wurde verschickt.',
+'confirmemail_sent' => 'Die Bestätigungs-E-Mail wurde verschickt.',
 'confirmemail_oncreate' => 'Ein Bestätigungs-Code wurde an deine E-Mail-Adresse gesandt. Dieser Code wird für die Anmeldung nicht benötigt, jedoch wird er zur Aktivierung der E-Mail-Funktionen innerhalb des Wikis gebraucht.',
 'confirmemail_sendfailed' => '{{SITENAME}} konnte die Bestätigungs-E-Mail nicht an dich versenden.
 Bitte prüfe die E-Mail-Adresse auf ungültige Zeichen.

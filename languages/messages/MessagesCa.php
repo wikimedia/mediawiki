@@ -572,6 +572,8 @@ $2",
 Els seus motius han estat: «''$2''».",
 'filereadonlyerror' => 'No s\'ha pogut modificar el fitxer «$1» perquè el repositori de fitxers "$2" està en mode només de lectura.
 L\'administrador que l\'ha bloquejat ha donat aquesta explicació: "$3".',
+'invalidtitle-knownnamespace' => "El títol amb l'espai de noms «$2» i text «$3» no és vàlid",
+'invalidtitle-unknownnamespace' => "El títol amb l'espai de noms desconegut de número «$1» i text «$3» no és vàlid",
 
 # Virus scanner
 'virus-badscanner' => "Mala configuració: antivirus desconegut: ''$1''",
@@ -1123,6 +1125,8 @@ Assegureu-vos que aquest canvi mantindrà la continuïtat històrica de la pàgi
 
 # Diffs
 'history-title' => 'Historial de versions de «$1»',
+'difference-title' => 'Diferència entre les revisions de «$1»',
+'difference-title-multipage' => 'Diferència entre les pàgines «$1» i «$2»',
 'difference-multipage' => '(Diferència entre pàgines)',
 'lineno' => 'Línia $1:',
 'compareselectedversions' => 'Compara les versions seleccionades',
@@ -1733,6 +1737,7 @@ Per seguretat, img_auth.php està desactivat.",
 'http-curl-error' => "Error en recuperar l'URL: $1",
 'http-host-unreachable' => "No s'ha pogut accedir a l'URL.",
 'http-bad-status' => 'Hi ha hagut un problema durant la petició HTTP: $1 $2',
+'http-truncated-body' => "El cos de la sol·licitud només s'ha rebut parcialment.",
 
 # Some likely curl errors. More could be added from <http://curl.haxx.se/libcurl/c/libcurl-errors.html>
 'upload-curl-error6' => "No s'ha pogut accedir a l'URL",

@@ -407,9 +407,8 @@ $2',
 'ns-specialprotected' => 'Spetsjåålside koone ai beårbed wårde.',
 'titleprotected' => 'En sid ma dideer noome koon ai önjläid wårde.
 Jü späre wörd döör [[User:$1|$1]] ma grün "$2" inruchted.',
-'filereadonlyerror' => "Det datei „$1“ koon ei feranert wurd, auer uun det fertiaknis „$2“ bluat leesen wurd koon.
-
-Di grünj as „''$3''“.",
+'filereadonlyerror' => 'Det datei „$1“ koon ei feranert wurd, auer uun det fertiaknis „$2“ bluas leesen wurd koon.
+Di grünj faan di administraator as: „$3“.',
 
 # Virus scanner
 'virus-badscanner' => "Hiinje konfigurasjoon: ünbekånde fiirusscanner: ''$1''",

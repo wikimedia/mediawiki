@@ -1132,6 +1132,8 @@ Nota que le uso del ligamines de navigation causara le perdita de tote cambios i
 
 # Diffs
 'history-title' => 'Historia de versiones de "$1"',
+'difference-title' => 'Differentia inter versiones de "$1"',
+'difference-title-multipage' => 'Differentia inter paginas "$1" e "$2"',
 'difference-multipage' => '(Differentia inter paginas)',
 'lineno' => 'Linea $1:',
 'compareselectedversions' => 'Comparar versiones seligite',

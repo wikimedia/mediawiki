@@ -983,6 +983,7 @@ $2
 'language-converter-depth-warning' => '字词转换器深度越限（$1）',
 'node-count-exceeded-category' => '页面的节点数超出限制',
 'node-count-exceeded-warning' => '页面超出了节点数',
+'expansion-depth-exceeded-category' => '扩展深度超出限制的页面',
 
 # "Undo" feature
 'undo-success' => '此编辑可以被撤销。请检查以下比较以核实这正是您想做的，然后保存以下更改完成撤销编辑。',

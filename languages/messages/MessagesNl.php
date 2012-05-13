@@ -1156,6 +1156,8 @@ Deze parameters zijn weggelaten.',
 'node-count-exceeded-warning' => 'Op de pagina is het maximale aantal nodes overschreden',
 'expansion-depth-exceeded-category' => "Pagina's waar de expansiediepte is overschreden",
 'expansion-depth-exceeded-warning' => 'De pagina bevat te veel sjablonen',
+'parser-unstrip-loop-warning' => 'Er is een "unstrip"-lus gedetecteerd',
+'parser-unstrip-recursion-limit' => 'De recursielimiet ($1) voor "unstrip" is overschreden',
 
 # "Undo" feature
 'undo-success' => 'Deze bewerking kan ongedaan gemaakt worden.

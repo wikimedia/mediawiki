@@ -967,7 +967,7 @@ $2
 'language-converter-depth-warning' => '已超過字詞轉換器深度限制（$1）',
 'node-count-exceeded-category' => '頁面的節點數超出限制',
 'node-count-exceeded-warning' => '頁面超出節點數',
-'expansion-depth-exceeded-category' => '頁面的擴展深度超出限制',
+'expansion-depth-exceeded-category' => '擴展深度超出限制的頁面',
 'expansion-depth-exceeded-warning' => '頁面超出擴展深度',
 
 # "Undo" feature

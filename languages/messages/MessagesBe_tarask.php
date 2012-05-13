@@ -1206,6 +1206,8 @@ $1",
 
 # Diffs
 'history-title' => 'Гісторыя зьменаў старонкі «$1»',
+'difference-title' => 'Розьніца паміж вэрсіямі «$1»',
+'difference-title-multipage' => 'Розьніца паміж старонкамі «$1» і «$2»',
 'difference-multipage' => '(Розьніца паміж старонкамі)',
 'lineno' => 'Радок $1:',
 'compareselectedversions' => 'Параўнаць выбраныя вэрсіі',

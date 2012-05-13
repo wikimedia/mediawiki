@@ -902,6 +902,8 @@ Njesmějo daś wěcej nježli $2 {{PLURAL:$2|wołanja|wołanjowu|wołanjow|woła
 'node-count-exceeded-warning' => 'Bok jo licbu sukow pśekšocył',
 'expansion-depth-exceeded-category' => 'Boki, źož ekspansiska dłymokosć jo pśekšocona',
 'expansion-depth-exceeded-warning' => 'Bok jo ekspansisku dłymokosć pśekšocył',
+'parser-unstrip-loop-warning' => 'Njeskóńcna kokula namakana',
+'parser-unstrip-recursion-limit' => 'Rekursiska granica pśekšocona ($1)',
 
 # "Undo" feature
 'undo-success' => 'Wobźěłanje móžo se wótpóraś. Pšosym pśeglěduj dołojcne pśirownowanje aby se wěsty był, až to wót wěrnosći coš, a pón składuj změny, aby se wobźěłanje doskóńcnje wótpórało.',
@@ -1078,6 +1080,8 @@ Zaruc, až historija wersijow nastawka jo njepśetergnjona.',
 
 # Diffs
 'history-title' => 'Stawizny wersijow boka „$1“',
+'difference-title' => 'Rozdźěl mjazy wersijami "$1"',
+'difference-title-multipage' => 'Rozdźěl mjazy bokami "$1" a "$2"',
 'difference-multipage' => '(Rozdźěl mjazy bokami)',
 'lineno' => 'Rědka $1:',
 'compareselectedversions' => 'Wuzwólonej wersiji pśirownaś',
