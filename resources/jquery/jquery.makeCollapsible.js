@@ -200,17 +200,31 @@ $.fn.makeCollapsible = function() {
 				return;
 			},
 			// Toggles customcollapsible
-			toggleLinkCustom = function( $that, e, $collapsible ) {
+			toggleLinkCustom = function( $that, e, $collapsible, $customTogglers ) {
+				var instantHide = true;
 				// For the initial state call of customtogglers there is no event passed
 				if (e) {
 					e.preventDefault();
-				e.stopPropagation();
+					e.stopPropagation();
+					$collapsible.toggleClass( 'mw-collapsed' );
+					instantHide = false;
 				}
-				// Get current state and toggle to the opposite
-				var action = $collapsible.hasClass( 'mw-collapsed' ) ? 'expand' : 'collapse';
-				$collapsible.toggleClass( 'mw-collapsed' );
-				toggleElement( $collapsible, action, $that );
 
+				// It's expanded right now
+				if ( $collapsible.hasClass( 'mw-collapsed' ) ) {
+					// Change text to "Show"
+					$customTogglers.find( '.mw-customtoggletext' ).text( expandtext );
+					// Collapse element
+					toggleElement( $collapsible, 'collapse', $that, instantHide );
+
+				// It's collapsed right now
+				} else {
+					// Change text to "Hide"
+					$customTogglers.find( '.mw-customtoggletext' ).text( collapsetext );
+					// Expand element
+					toggleElement( $collapsible, 'expand', $that, instantHide );
+				}
+				return;
 			};
 
 		// Use custom text or default ?
@@ -243,25 +257,49 @@ $.fn.makeCollapsible = function() {
 		// Check if this element has a custom position for the toggle link
 		// (ie. outside the container or deeper inside the tree)
 		// Then: Locate the custom toggle link(s) and bind them
-		if ( ( $that.attr( 'id' ) || '' ).indexOf( 'mw-customcollapsible-' ) === 0 ) {
+		if ( ( $that.attr( 'id' ) || '' ).indexOf( 'mw-customcollapsible-' ) === 0
+			|| $that.hasClass( 'mw-customcollapsiblechildren' ) ) {
 
-			var thatId = $that.attr( 'id' ),
-				$customTogglers = $( '.' + thatId.replace( 'mw-customcollapsible', 'mw-customtoggle' ) );
-			mw.log( _fn + 'Found custom collapsible: #' + thatId );
+			var $customTogglers = $();
+
+			// Custom toggle link specified by id/class name match
+			if ( ( $that.attr( 'id' ) || '' ).indexOf( 'mw-customcollapsible-' ) === 0 ) {
+				var thatId = $that.attr( 'id' );
+				$customTogglers = $customTogglers.add(
+					'.' + thatId.replace( 'mw-customcollapsible', 'mw-customtoggle' ) );
+				mw.log( _fn + 'Found custom collapsible: #' + thatId );
+			}
+
+			// Custom toggle link specified by children with a certain class
+			if ( $that.hasClass( 'mw-customcollapsiblechildren' ) ) {
+				$customTogglers = $customTogglers.add(
+					$that.find( '.mw-customtoggle' )
+						.not( $that.find( '.mw-collapsible' ).find( '.mw-customtoggle' ) )
+				);
+				mw.log( _fn + 'Found custom collapsible: <children>' );
+			}
 
 			// Double check that there is actually a customtoggle link
 			if ( $customTogglers.length ) {
 				$customTogglers.bind( 'click.mw-collapse', function( e ) {
-					toggleLinkCustom( $(this), e, $that );
+					toggleLinkCustom( $(this), e, $that, $customTogglers );
+				} );
+
+				// For users using keyboard navigation
+				$customTogglers.attr( 'tabindex', '0' ).bind( 'keydown.mw-collapse', function( e ) {
+					if ( e.which === 13 ) { // Enter key
+						toggleLinkCustom( $(this), e, $that, $customTogglers );
+					}
 				} );
 			} else {
-				mw.log( _fn + '#' + thatId + ': Missing toggler!' );
+				mw.log( _fn + 'mw-customcollapsible: Missing toggler!' );
 			}
 
 			// Initial state
 			if ( $that.hasClass( 'mw-collapsed' ) ) {
-				$that.removeClass( 'mw-collapsed' );
-				toggleLinkCustom( $customTogglers, null, $that );
+				toggleLinkCustom( $customTogglers, null, $that, $customTogglers );
+			} else {
+				$customTogglers.find( '.mw-customtoggletext' ).text( collapsetext );
 			}
 
 		// If this is not a custom case, do the default:
@@ -326,7 +364,8 @@ $.fn.makeCollapsible = function() {
 		}
 
 		// Initial state (only for those that are not custom)
-		if ( $that.hasClass( 'mw-collapsed' ) && ( $that.attr( 'id' ) || '').indexOf( 'mw-customcollapsible-' ) !== 0 ) {
+		if ( $that.hasClass( 'mw-collapsed' ) && !$that.hasClass( 'mw-customcollapsiblechildren' )
+			&& ( $that.attr( 'id' ) || '').indexOf( 'mw-customcollapsible-' ) !== 0 ) {
 			$that.removeClass( 'mw-collapsed' );
 			// The collapsible element could have multiple togglers
 			// To toggle the initial state only click one of them (ie. the first one, eq(0) )
