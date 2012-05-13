@@ -105,7 +105,7 @@ class LogPage {
 		} elseif( $this->sendToUDP ) {
 			# Don't send private logs to UDP
 			if( isset( $wgLogRestrictions[$this->type] ) && $wgLogRestrictions[$this->type] != '*' ) {
-				return true;
+				return $newId;
 			}
 
 			# Notify external application via UDP.
