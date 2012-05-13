@@ -1,5 +1,8 @@
 <?php
 
+/**
+ * @group ContentHandler
+ */
 class WikitextContentTest extends MediaWikiTestCase {
 
 	public function setup() {
@@ -369,16 +372,16 @@ just a test"
 
 	# =================================================================================================================
 
-	public function getModelName() {
+	public function testGetModel() {
 		$content = $this->newContent( "hello world." );
 
-		$this->assertEquals( CONTENT_MODEL_WIKITEXT, $content->getModelName() );
+		$this->assertEquals( CONTENT_MODEL_WIKITEXT, $content->getModel() );
 	}
 
-	public function getContentHandler() {
+	public function testGetContentHandler() {
 		$content = $this->newContent( "hello world." );
 
-		$this->assertEquals( CONTENT_MODEL_WIKITEXT, $content->getContentHandler()->getModelName() );
+		$this->assertEquals( CONTENT_MODEL_WIKITEXT, $content->getContentHandler()->getModelID() );
 	}
 
 	public function dataIsEmpty( ) {

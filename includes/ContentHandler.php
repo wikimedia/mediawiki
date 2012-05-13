@@ -57,7 +57,7 @@ abstract class ContentHandler {
 		}
 
 		if ( $wgContentHandlerTextFallback == 'fail' ) {
-			throw new MWException( "Attempt to get text from Content with model " . $content->getModelName() );
+			throw new MWException( "Attempt to get text from Content with model " . $content->getModel() );
 		}
 
 		if ( $wgContentHandlerTextFallback == 'serialize' ) {
@@ -70,25 +70,25 @@ abstract class ContentHandler {
 	/**
 	 * Conveniance function for creating a Content object from a given textual representation.
 	 *
-	 * $text will be deserialized into a Content object of the model specified by $modelName (or,
-	 * if that is not given, $title->getContentModelName()) using the given format.
+	 * $text will be deserialized into a Content object of the model specified by $modelId (or,
+	 * if that is not given, $title->getContentModel()) using the given format.
 	 *
 	 * @static
 	 * @param string $text the textual represenation, will be unserialized to create the Content object
 	 * @param Title $title the title of the page this text belongs to, required as a context for deserialization
-	 * @param null|String $modelName the model to deserialize to. If not provided, $title->getContentModelName() is used.
+	 * @param null|String $modelId the model to deserialize to. If not provided, $title->getContentModel() is used.
 	 * @param null|String $format the format to use for deserialization. If not given, the model's default format is used.
 	 *
 	 * @return Content a Content object representing $text
 	 * @throw MWException if $model or $format is not supported or if $text can not be unserialized using $format.
 	 */
-	public static function makeContent( $text, Title $title, $modelName = null, $format = null ) {
+	public static function makeContent( $text, Title $title, $modelId = null, $format = null ) {
 
-		if ( is_null( $modelName ) ) {
-			$modelName = $title->getContentModelName();
+		if ( is_null( $modelId ) ) {
+			$modelId = $title->getContentModel();
 		}
 
-		$handler = ContentHandler::getForModelName( $modelName );
+		$handler = ContentHandler::getForModelID( $modelId );
 		return $handler->unserializeContent( $text, $format );
 	}
 
@@ -96,7 +96,7 @@ abstract class ContentHandler {
 	 * Returns the name of the default content model to be used for the page with the given title.
 	 *
 	 * Note: There should rarely be need to call this method directly.
-	 * To determine the actual content model for a given page, use Title::getContentModelName().
+	 * To determine the actual content model for a given page, use Title::getContentModel().
 	 *
 	 * Which model is to be used per default for the page is determined based on several factors:
 	 * * The global setting $wgNamespaceContentModels specifies a content model per namespace.
@@ -108,7 +108,7 @@ abstract class ContentHandler {
 	 *
 	 * If none of the above applies, the wikitext model is used.
 	 *
-	 * Note: this is used by, and may thus not use, Title::getContentModelName()
+	 * Note: this is used by, and may thus not use, Title::getContentModel()
 	 *
 	 * @static
 	 * @param Title $title
@@ -117,8 +117,8 @@ abstract class ContentHandler {
 	public static function getDefaultModelFor( Title $title ) {
 		global $wgNamespaceContentModels;
 
-		// NOTE: this method must not rely on $title->getContentModelName() directly or indirectly,
-		//       because it is used to initialized the mContentModelName memebr.
+		// NOTE: this method must not rely on $title->getContentModel() directly or indirectly,
+		//       because it is used to initialized the mContentModel memebr.
 
 		$ns = $title->getNamespace();
 
@@ -183,8 +183,8 @@ abstract class ContentHandler {
 	 * @return ContentHandler
 	 */
 	public static function getForTitle( Title $title ) {
-		$modelName = $title->getContentModelName();
-		return ContentHandler::getForModelName( $modelName );
+		$modelId = $title->getContentModel();
+		return ContentHandler::getForModelID( $modelId );
 	}
 
 	/**
@@ -195,12 +195,12 @@ abstract class ContentHandler {
 	 * @return ContentHandler
 	 */
 	public static function getForContent( Content $content ) {
-		$modelName = $content->getModelName();
-		return ContentHandler::getForModelName( $modelName );
+		$modelId = $content->getModel();
+		return ContentHandler::getForModelID( $modelId );
 	}
 
 	/**
-	 * returns the ContentHandler singleton for the given model name. Use the CONTENT_MODEL_XXX constants to
+	 * returns the ContentHandler singleton for the given model id. Use the CONTENT_MODEL_XXX constants to
 	 * identify the desired content model.
 	 *
 	 * ContentHandler singletons are take from the global $wgContentHandlers array. Keys in that array are
@@ -210,48 +210,120 @@ abstract class ContentHandler {
 	 * If a class name in encountered when looking up the singleton for a given model name, the class is
 	 * instantiated and the class name is replaced by te resulting singleton in $wgContentHandlers.
 	 *
-	 * If no ContentHandler is defined for the desired $modelName, the ContentHandler may be provided by the
-	 * a ContentHandlerForModelName hook. if no Contenthandler can be determined, an MWException is raised.
+	 * If no ContentHandler is defined for the desired $modelId, the ContentHandler may be provided by the
+	 * a ContentHandlerForModelID hook. if no Contenthandler can be determined, an MWException is raised.
 	 *
 	 * @static
-	 * @param $modelName String the name of the content model for which to get a handler. Use CONTENT_MODEL_XXX constants.
-	 * @return ContentHandler the ContentHandler singleton for handling the model given by $modelName
-	 * @throws MWException if no handler is known for $modelName.
+	 * @param $modelId int the id of the content model for which to get a handler. Use CONTENT_MODEL_XXX constants.
+	 * @return ContentHandler the ContentHandler singleton for handling the model given by $modelId
+	 * @throws MWException if no handler is known for $modelId.
 	 */
-	public static function getForModelName( $modelName ) {
+	public static function getForModelID( $modelId ) {
 		global $wgContentHandlers;
 
-		if ( empty( $wgContentHandlers[$modelName] ) ) {
+		if ( empty( $wgContentHandlers[$modelId] ) ) {
 			$handler = null;
 
-			wfRunHooks( 'ContentHandlerForModelName', array( $modelName, &$handler ) );
+			wfRunHooks( 'ContentHandlerForModelID', array( $modelId, &$handler ) );
 
 			if ( $handler ) { // NOTE: may be a string or an object, either is fine!
-				$wgContentHandlers[$modelName] = $handler;
+				$wgContentHandlers[$modelId] = $handler;
 			} else {
-				throw new MWException( "No handler for model $modelName registered in \$wgContentHandlers" );
+				throw new MWException( "No handler for model #$modelId registered in \$wgContentHandlers" );
 			}
 		}
 
-		if ( is_string( $wgContentHandlers[$modelName] ) ) {
-			$class = $wgContentHandlers[$modelName];
-			$wgContentHandlers[$modelName] = new $class( $modelName );
+		if ( is_string( $wgContentHandlers[$modelId] ) ) {
+			$class = $wgContentHandlers[$modelId];
+			$wgContentHandlers[$modelId] = new $class( $modelId );
 		}
 
-		return $wgContentHandlers[$modelName];
+		return $wgContentHandlers[$modelId];
+	}
+
+	/**
+	 * Returns the appropriate mime type for a given content format,
+	 * or null if no mime type is known for this format.
+	 *
+	 * Mime types can be registered in the global array $wgContentFormatMimeTypes.
+	 *
+	 * @static
+	 * @param int $id the content format id, as given by a CONTENT_FORMAT_XXX constant
+	 *        or returned by Revision::getContentFormat().
+	 *
+	 * @return String|null the content format's mime type.
+	 */
+	public static function getContentFormatMimeType( $id ) {
+		global $wgContentFormatMimeTypes;
+
+		if ( !isset( $wgContentFormatMimeTypes[ $id ] ) ) {
+			return null;
+		}
+
+		return $wgContentFormatMimeTypes[ $id ];
+	}
+
+	/**
+	 * Returns the content format if for a given mime type,
+	 * or null if no format id if known for this mime type.
+	 *
+	 * Mime types can be registered in the global array $wgContentFormatMimeTypes.
+	 *
+	 * @static
+	 * @param String $mime the mime type
+	 *
+	 * @return int|null the format id, as defined by a CONTENT_FORMAT_XXX constant
+	 */
+	public static function getContentFormatID( $mime ) {
+		global $wgContentFormatMimeTypes;
+
+		static $format_ids = null;
+
+		if ( $format_ids === null ) {
+			$format_ids = array_flip( $wgContentFormatMimeTypes );
+		}
+
+		if ( !isset( $format_ids[ $mime ] ) ) {
+			return null;
+		}
+
+		return $format_ids[ $mime ];
+	}
+
+	/**
+	 * Returns the localized name for a given content model,
+	 * or null of no mime type is known.
+	 *
+	 * Model names are localized using system messages. Message keys
+	 * have the form conent-model-$id.
+	 *
+	 * @static
+	 * @param int $id the content model id, as given by a CONTENT_MODEL_XXX constant
+	 *        or returned by Revision::getContentModel().
+	 *
+	 * @return String|null the content format's mime type.
+	 */
+	public static function getContentModelName( $id ) {
+		$key = "content-model-$id";
+
+		if ( wfEmptyMsg( $key ) ) return null;
+		else return wfMsg( $key );
 	}
 
 	// ----------------------------------------------------------------------------------------------------------
 
+	protected $mModelID;
+	protected $mSupportedFormats;
+
 	/**
-	 * Constructor, initializing the ContentHandler instance with it's model name and a list of supported formats.
+	 * Constructor, initializing the ContentHandler instance with it's model id and a list of supported formats.
 	 * Values for the parameters are typically provided as literals by subclasses' constructors.
 	 *
-	 * @param String $modelName (use CONTENT_MODEL_XXX constants).
+	 * @param int $modelId (use CONTENT_MODEL_XXX constants).
 	 * @param array $formats list for supported serialization formats (typically as MIME types)
 	 */
-	public function __construct( $modelName, $formats ) {
-		$this->mModelName = $modelName;
+	public function __construct( $modelId, $formats ) {
+		$this->mModelID = $modelId;
 		$this->mSupportedFormats = $formats;
 	}
 
@@ -284,23 +356,27 @@ abstract class ContentHandler {
 	public abstract function makeEmptyContent();
 
 	/**
-	 * Returns the model name that identifies the content model this ContentHandler can handle.
+	 * Returns the model id that identifies the content model this ContentHandler can handle.
 	 * Use with the CONTENT_MODEL_XXX constants.
 	 *
-	 * @return String the model name
+	 * @return int the model id
 	 */
-	public function getModelName() {
-		return $this->mModelName;
+	public function getModelID() {
+		return $this->mModelID;
 	}
 
 	/**
-	 * Throws an MWException if $modelName is not the content model handeled by this ContentHandler.
+	 * Throws an MWException if $model_id is not the id of the content model
+	 * supported by this ContentHandler.
 	 *
-	 * @param String $modelName the model name to check
+	 * @param int $model_id the model to check
 	 */
-	protected function checkModelName( $modelName ) {
-		if ( $modelName !== $this->mModelName ) {
-			throw new MWException( "Bad content model: expected " . $this->mModelName . " but got found " . $modelName );
+	protected function checkModelID( $model_id ) {
+		if ( $model_id !== $this->mModelID ) {
+			$model_name = ContentHandler::getContentModelName( $model_id );
+			$own_model_name = ContentHandler::getContentModelName( $this->mModelID );
+
+			throw new MWException( "Bad content model: expected {$this->mModelID} ($own_model_name) but got found $model_id ($model_name)." );
 		}
 	}
 
@@ -353,7 +429,7 @@ abstract class ContentHandler {
 	 */
 	protected function checkFormat( $format ) {
 		if ( !$this->isSupportedFormat( $format ) ) {
-			throw new MWException( "Format $format is not supported for content model " . $this->getModelName() );
+			throw new MWException( "Format $format is not supported for content model " . $this->getModelID() );
 		}
 	}
 
@@ -381,7 +457,7 @@ abstract class ContentHandler {
 	 * @todo Article really defines the view of the content... rename this method to createViewPage ?
 	 */
 	public function createArticle( Title $title ) {
-		$this->checkModelName( $title->getContentModelName() );
+		$this->checkModelID( $title->getContentModel() );
 
 		$article = new Article($title);
 		return $article;
@@ -394,7 +470,7 @@ abstract class ContentHandler {
 	 * @return EditPage
 	 */
 	public function createEditPage( Article $article ) {
-		$this->checkModelName( $article->getContentModelName() );
+		$this->checkModelID( $article->getPage()->getContentModel() );
 
 		$editPage = new EditPage( $article );
 		return $editPage;
@@ -408,7 +484,7 @@ abstract class ContentHandler {
 	 * @todo does anyone or anythign actually use the external edit facility? Can we just deprecate and ignore it?
 	 */
 	public function createExternalEdit( IContextSource $context ) {
-		$this->checkModelName( $context->getTitle()->getContentModelName() );
+		$this->checkModelID( $context->getTitle()->getContentModel() );
 
 		$externalEdit = new ExternalEdit( $context );
 		return $externalEdit;
@@ -428,7 +504,7 @@ abstract class ContentHandler {
 	public function createDifferenceEngine( IContextSource $context, $old = 0, $new = 0, $rcid = 0, #FIMXE: use everywhere!
 										 $refreshCache = false, $unhide = false ) {
 
-		$this->checkModelName( $context->getTitle()->getContentModelName() );
+		$this->checkModelID( $context->getTitle()->getContentModel() );
 
 		$diffEngineClass = $this->getDiffEngineClass();
 
@@ -671,8 +747,8 @@ abstract class ContentHandler {
 
 abstract class TextContentHandler extends ContentHandler {
 
-	public function __construct( $modelName, $formats ) {
-		parent::__construct( $modelName, $formats );
+	public function __construct( $modelId, $formats ) {
+		parent::__construct( $modelId, $formats );
 	}
 
 	public function serializeContent( Content $content, $format = null ) {
@@ -694,9 +770,9 @@ abstract class TextContentHandler extends ContentHandler {
 	 * @return Content|Bool
 	 */
 	public function merge3( Content $oldContent, Content $myContent, Content $yourContent ) {
-		$this->checkModelName( $oldContent->getModelName() );
-		$this->checkModelName( $myContent->getModelName() );
-		$this->checkModelName( $yourContent->getModelName() );
+		$this->checkModelID( $oldContent->getModel() );
+		$this->checkModelID( $myContent->getModel() );
+		$this->checkModelID( $yourContent->getModel() );
 
 		$format = $this->getDefaultFormat();
 
@@ -722,8 +798,8 @@ abstract class TextContentHandler extends ContentHandler {
 }
 class WikitextContentHandler extends TextContentHandler {
 
-	public function __construct( $modelName = CONTENT_MODEL_WIKITEXT ) {
-		parent::__construct( $modelName, array( 'text/x-wiki' ) );
+	public function __construct( $modelId = CONTENT_MODEL_WIKITEXT ) {
+		parent::__construct( $modelId, array( CONTENT_FORMAT_WIKITEXT ) );
 	}
 
 	public function unserializeContent( $text, $format = null ) {
@@ -743,8 +819,8 @@ class WikitextContentHandler extends TextContentHandler {
 
 class JavaScriptContentHandler extends TextContentHandler {
 
-	public function __construct( $modelName = CONTENT_MODEL_WIKITEXT ) {
-		parent::__construct( $modelName, array( 'text/javascript' ) ); #XXX: or use $wgJsMimeType? this is for internal storage, not HTTP...
+	public function __construct( $modelId = CONTENT_MODEL_JAVASCRIPT ) {
+		parent::__construct( $modelId, array( CONTENT_FORMAT_JAVASCRIPT ) );
 	}
 
 	public function unserializeContent( $text, $format = null ) {
@@ -760,8 +836,8 @@ class JavaScriptContentHandler extends TextContentHandler {
 
 class CssContentHandler extends TextContentHandler {
 
-	public function __construct( $modelName = CONTENT_MODEL_WIKITEXT ) {
-		parent::__construct( $modelName, array( 'text/css' ) );
+	public function __construct( $modelId = CONTENT_MODEL_CSS ) {
+		parent::__construct( $modelId, array( CONTENT_FORMAT_CSS ) );
 	}
 
 	public function unserializeContent( $text, $format = null ) {

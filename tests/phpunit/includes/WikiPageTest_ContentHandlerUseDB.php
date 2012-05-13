@@ -1,7 +1,7 @@
 <?php
 
 /**
- *
+ * @group ContentHandler
  * @group Database
  * ^--- important, causes temporary tables to be used instead of the real database
  */
@@ -40,14 +40,14 @@ class WikiPageTest_ContentHandlerUseDB extends WikiPageTest {
 		parent::tearDown();
 	}
 
-	public function testGetContentModelName() {
-		$page = $this->createPage( "WikiPageTest_testGetContentModelName", "some text", CONTENT_MODEL_JAVASCRIPT );
+	public function testGetContentModel() {
+		$page = $this->createPage( "WikiPageTest_testGetContentModel", "some text", CONTENT_MODEL_JAVASCRIPT );
 
 		$page = new WikiPage( $page->getTitle() );
 
 		// NOTE: since the content model is not recorded in the database,
 		//       we expect to get the default, namely CONTENT_MODEL_WIKITEXT
-		$this->assertEquals( CONTENT_MODEL_WIKITEXT, $page->getContentModelName() );
+		$this->assertEquals( CONTENT_MODEL_WIKITEXT, $page->getContentModel() );
 	}
 
 	public function testGetContentHandler() {

@@ -161,14 +161,14 @@ class WikiPage extends Page {
 	/**
 	 * Returns the ContentHandler instance to be used to deal with the content of this WikiPage.
 	 *
-	 * Shorthand for ContentHandler::getForModelName( $this->getContentModelName() );
+	 * Shorthand for ContentHandler::getForModelID( $this->getContentModel() );
 	 *
 	 * @return ContentHandler
 	 *
 	 * @since 1.WD
 	 */
 	public function getContentHandler() {
-		return ContentHandler::getForModelName( $this->getContentModelName() );
+		return ContentHandler::getForModelID( $this->getContentModel() );
 	}
 
 	/**
@@ -380,27 +380,29 @@ class WikiPage extends Page {
 	}
 
 	/**
-	 * Returns the page's content model name. Will use the revisions actual content model if the page exists,
+	 * Returns the page's content model id (see the CONTENT_MODEL_XXX constants).
+	 *
+	 * Will use the revisions actual content model if the page exists,
 	 * and the page's default if the page doesn't exist yet.
 	 *
 	 * @return int
 	 *
 	 * @since 1.WD
 	 */
-	public function getContentModelName() {
+	public function getContentModel() {
 		if ( $this->exists() ) {
 			# look at the revision's actual content model
 			$rev = $this->getRevision();
 
 			if ( $rev !== null ) {
-				return $rev->getContentModelName();
+				return $rev->getContentModel();
 			} else {
 				wfWarn( "Page exists but has no revision!" );
 			}
 		}
 
 		# use the default model for this page
-		return $this->mTitle->getContentModelName();
+		return $this->mTitle->getContentModel();
 	}
 
 	/**
@@ -1099,7 +1101,7 @@ class WikiPage extends Page {
 		);
 
 		if ( $wgContentHandlerUseDB ) {
-			$row[ 'page_content_model' ] = $revision->getContentModelName();
+			$row[ 'page_content_model' ] = $revision->getContentModel();
 		}
 
 		$dbw->update( 'page',
@@ -1518,7 +1520,7 @@ class WikiPage extends Page {
 				'user'       => $user->getId(),
 				'user_text'  => $user->getName(),
 				'timestamp'  => $now,
-				'content_model' => $content->getModelName(),
+				'content_model' => $content->getModel(),
 				'content_format' => $serialisation_format,
 			) );
 
@@ -1625,7 +1627,7 @@ class WikiPage extends Page {
 				'user'       => $user->getId(),
 				'user_text'  => $user->getName(),
 				'timestamp'  => $now,
-				'content_model' => $content->getModelName(),
+				'content_model' => $content->getModel(),
 				'content_format' => $serialisation_format,
 			) );
 			$revisionId = $revision->insertOn( $dbw );
@@ -2661,7 +2663,7 @@ class WikiPage extends Page {
 
 		wfDeprecated( __METHOD__, '1.WD' );
 
-		$handler = ContentHandler::getForModelName( CONTENT_MODEL_WIKITEXT );
+		$handler = ContentHandler::getForModelID( CONTENT_MODEL_WIKITEXT );
 		$oldContent = is_null( $oldtext ) ? null : $handler->unserializeContent( $oldtext );
 		$newContent = is_null( $newtext ) ? null : $handler->unserializeContent( $newtext );
 
@@ -3064,9 +3066,9 @@ class PoolWorkArticleView extends PoolCounterWork {
 	 */
 	function __construct( Page $page, ParserOptions $parserOptions, $revid, $useParserCache, $content = null, IContextSource $context = null ) {
 		if ( is_string($content) ) { #BC: old style call
-			$modelName = $page->getRevision()->getContentModelName();
+			$modelId = $page->getRevision()->getContentModel();
 			$format = $page->getRevision()->getContentFormat();
-			$content = ContentHandler::makeContent( $content, $page->getTitle(), $modelName, $format );
+			$content = ContentHandler::makeContent( $content, $page->getTitle(), $modelId, $format );
 		}
 
 		if ( is_null( $context ) ) {

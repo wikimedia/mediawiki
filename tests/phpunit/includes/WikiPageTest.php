@@ -1,5 +1,6 @@
 <?php
 /**
+* @group ContentHandler
 * @group Database
 * ^--- important, causes temporary tables to be used instead of the real database
 **/
@@ -235,11 +236,11 @@ class WikiPageTest extends MediaWikiTestCase {
 		$this->assertEquals( "some text", $text );
 	}
 
-	public function testGetContentModelName() {
-		$page = $this->createPage( "WikiPageTest_testGetContentModelName", "some text", CONTENT_MODEL_JAVASCRIPT );
+	public function testGetContentModel() {
+		$page = $this->createPage( "WikiPageTest_testGetContentModel", "some text", CONTENT_MODEL_JAVASCRIPT );
 
 		$page = new WikiPage( $page->getTitle() );
-		$this->assertEquals( CONTENT_MODEL_JAVASCRIPT, $page->getContentModelName() );
+		$this->assertEquals( CONTENT_MODEL_JAVASCRIPT, $page->getContentModel() );
 	}
 
 	public function testGetContentHandler() {
@@ -536,7 +537,7 @@ more stuff
 	public function testReplaceSectionContent( $title, $text, $section, $with, $sectionTitle, $expected ) {
 		$page = $this->createPage( $title, $text );
 
-		$content = ContentHandler::makeContent( $with, $page->getTitle(), $page->getContentModelName() );
+		$content = ContentHandler::makeContent( $with, $page->getTitle(), $page->getContentModel() );
 		$c = $page->replaceSectionContent( $section, $content, $sectionTitle );
 
 		$this->assertEquals( $expected, is_null( $c ) ? null : trim( $c->getNativeData() ) );
@@ -773,7 +774,7 @@ more stuff
 			if ( !empty( $edit[1] ) ) $user->setName( $edit[1] );
 			else $user = $wgUser;
 
-			$content = ContentHandler::makeContent( $edit[0], $page->getTitle(), $page->getContentModelName() );
+			$content = ContentHandler::makeContent( $edit[0], $page->getTitle(), $page->getContentModel() );
 
 			$page->doEditContent( $content, "test edit $c", $c < 2 ? EDIT_NEW : 0, false, $user );
 

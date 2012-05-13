@@ -1,5 +1,8 @@
 <?php
 
+/**
+ * @group ContentHandler
+ */
 class TitleMethodsTest extends MediaWikiTestCase {
 
 	public function setup() {
@@ -100,7 +103,7 @@ class TitleMethodsTest extends MediaWikiTestCase {
 	}
 
 
-	public function dataGetContentModelName() {
+	public function dataGetContentModel() {
 		return array(
 			array( 'Foo', CONTENT_MODEL_WIKITEXT ),
 			array( 'Foo.js', CONTENT_MODEL_WIKITEXT ),
@@ -126,19 +129,19 @@ class TitleMethodsTest extends MediaWikiTestCase {
 	}
 
 	/**
-	 * @dataProvider dataGetContentModelName
+	 * @dataProvider dataGetContentModel
 	 */
-	public function testGetContentModelName( $title, $expectedModelName ) {
+	public function testGetContentModel( $title, $expectedModelId ) {
 		$title = Title::newFromText( $title );
-		$this->assertEquals( $expectedModelName, $title->getContentModelName() );
+		$this->assertEquals( $expectedModelId, $title->getContentModel() );
 	}
 
 	/**
-	 * @dataProvider dataGetContentModelName
+	 * @dataProvider dataGetContentModel
 	 */
-	public function testHasContentModel( $title, $expectedModelName ) {
+	public function testHasContentModel( $title, $expectedModelId ) {
 		$title = Title::newFromText( $title );
-		$this->assertTrue( $title->hasContentModel( $expectedModelName ) );
+		$this->assertTrue( $title->hasContentModel( $expectedModelId ) );
 	}
 
 	public function dataIsCssOrJsPage() {

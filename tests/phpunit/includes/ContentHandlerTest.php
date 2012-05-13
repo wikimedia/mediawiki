@@ -1,5 +1,8 @@
 <?php
 
+/**
+ * @group ContentHandler
+ */
 class ContentHandlerTest extends MediaWikiTestCase {
 
 	public function setUp() {
@@ -8,8 +11,8 @@ class ContentHandlerTest extends MediaWikiTestCase {
 		$wgExtraNamespaces[ 12312 ] = 'Dummy';
 		$wgExtraNamespaces[ 12313 ] = 'Dummy_talk';
 
-		$wgNamespaceContentModels[ 12312 ] = 'DUMMY';
-		$wgContentHandlers[ 'DUMMY' ] = 'DummyContentHandlerForTesting';
+		$wgNamespaceContentModels[ 12312 ] = 999999;
+		$wgContentHandlers[ 999999 ] = 'DummyContentHandlerForTesting';
 
 		MWNamespace::getCanonicalNamespaces( true ); # reset namespace cache
 		$wgContLang->resetNamespaces(); # reset namespace cache
@@ -22,7 +25,7 @@ class ContentHandlerTest extends MediaWikiTestCase {
 		unset( $wgExtraNamespaces[ 12313 ] );
 
 		unset( $wgNamespaceContentModels[ 12312 ] );
-		unset( $wgContentHandlers[ 'DUMMY' ] );
+		unset( $wgContentHandlers[ 999999 ] );
 
 		MWNamespace::getCanonicalNamespaces( true ); # reset namespace cache
 		$wgContLang->resetNamespaces(); # reset namespace cache
@@ -51,9 +54,9 @@ class ContentHandlerTest extends MediaWikiTestCase {
 	/**
 	 * @dataProvider dataGetDefaultModelFor
 	 */
-	public function testGetDefaultModelFor( $title, $expectedModelName ) {
+	public function testGetDefaultModelFor( $title, $expectedModelId ) {
 		$title = Title::newFromText( $title );
-		$this->assertEquals( $expectedModelName, ContentHandler::getDefaultModelFor( $title ) );
+		$this->assertEquals( $expectedModelId, ContentHandler::getDefaultModelFor( $title ) );
 	}
 	/**
 	 * @dataProvider dataGetDefaultModelFor
@@ -61,7 +64,79 @@ class ContentHandlerTest extends MediaWikiTestCase {
 	public function testGetForTitle( $title, $expectedContentModel ) {
 		$title = Title::newFromText( $title );
 		$handler = ContentHandler::getForTitle( $title );
-		$this->assertEquals( $expectedContentModel, $handler->getModelName() );
+		$this->assertEquals( $expectedContentModel, $handler->getModelID() );
+	}
+
+	public function dataGetContentFormatMimeType( ) {
+		return array(
+			array( 0, null ),
+			array( null, null ),
+			array( 99887766, null ),
+
+			array( CONTENT_FORMAT_WIKITEXT, 'text/x-wiki' ),
+			array( CONTENT_FORMAT_JAVASCRIPT, 'text/javascript' ),
+			array( CONTENT_FORMAT_CSS, 'text/css' ),
+			array( CONTENT_FORMAT_JSON, 'application/json' ),
+			array( CONTENT_FORMAT_XML, 'application/xml' ),
+			array( CONTENT_FORMAT_SERIALIZED, 'application/vnd.php.serialized' ),
+		);
+	}
+
+	/**
+	 * @dataProvider dataGetContentFormatMimeType
+	 */
+	public function testGetContentFormatMimeType( $id, $expectedMime ) {
+		$mime = ContentHandler::getContentFormatMimeType( $id );
+
+		$this->assertEquals( $expectedMime, $mime );
+	}
+
+	public function dataGetContentFormatID( ) {
+		return array(
+			array( '', null ),
+			array( 'foo', null ),
+			array( null, null ),
+
+			array( 'text/x-wiki', CONTENT_FORMAT_WIKITEXT ),
+			array( 'text/javascript', CONTENT_FORMAT_JAVASCRIPT ),
+			array( 'text/css', CONTENT_FORMAT_CSS ),
+			array( 'application/json', CONTENT_FORMAT_JSON ),
+			array( 'application/xml', CONTENT_FORMAT_XML ),
+			array( 'application/vnd.php.serialized', CONTENT_FORMAT_SERIALIZED ),
+		);
+	}
+
+	/**
+	 * @dataProvider dataGetContentFormatID
+	 */
+	public function testGetContentFormatID( $mime, $expectedId ) {
+		$id = ContentHandler::getContentFormatID( $mime );
+
+		$this->assertEquals( $expectedId, $id );
+	}
+
+	public function dataGetContentModelName() {
+		return array(
+			array( 0, null ),
+			array( null, null ),
+			array( 99887766, null ),
+
+			array( CONTENT_MODEL_JAVASCRIPT, '/javascript/i' ), //XXX: depends on content language
+		);
+	}
+
+	/**
+	 * @dataProvider dataGetContentModelName
+	 */
+	public function testGetContentModelName( $id, $expected ) {
+		$name = ContentHandler::getContentModelName( $id );
+
+		if ( $expected === null ) {
+			$this->assertNull( $name, "content model name for #$id was expected to be null" );
+		} else {
+			$this->assertNotNull( $name, "no name found for content model #$id" );
+			$this->assertTrue( preg_match( $expected, $name ) > 0 , "content model name for #$id did not match pattern $expected" );
+		}
 	}
 
 	public function testGetContentText_Null( ) {
@@ -124,45 +199,45 @@ class ContentHandlerTest extends MediaWikiTestCase {
 		$this->assertNull( $text );
 	}
 
-	#public static function makeContent( $text, Title $title, $modelName = null, $format = null )
+	#public static function makeContent( $text, Title $title, $modelId = null, $format = null )
 
 	public function dataMakeContent() {
 		return array(
 			array( 'hallo', 'Test', null, null, CONTENT_MODEL_WIKITEXT, 'hallo', false ),
 			array( 'hallo', 'MediaWiki:Test.js', null, null, CONTENT_MODEL_JAVASCRIPT, 'hallo', false ),
-			array( serialize('hallo'), 'Dummy:Test', null, null, 'DUMMY', 'hallo', false ),
+			array( serialize('hallo'), 'Dummy:Test', null, null, 999999, 'hallo', false ),
 
-			array( 'hallo', 'Test', null, 'text/x-wiki', CONTENT_MODEL_WIKITEXT, 'hallo', false ),
-			array( 'hallo', 'MediaWiki:Test.js', null, 'text/javascript', CONTENT_MODEL_JAVASCRIPT, 'hallo', false ),
-			array( serialize('hallo'), 'Dummy:Test', null, 'dummy', 'DUMMY', 'hallo', false ),
+			array( 'hallo', 'Test', null, CONTENT_FORMAT_WIKITEXT, CONTENT_MODEL_WIKITEXT, 'hallo', false ),
+			array( 'hallo', 'MediaWiki:Test.js', null, CONTENT_FORMAT_JAVASCRIPT, CONTENT_MODEL_JAVASCRIPT, 'hallo', false ),
+			array( serialize('hallo'), 'Dummy:Test', null, 999999, 999999, 'hallo', false ),
 
 			array( 'hallo', 'Test', CONTENT_MODEL_CSS, null, CONTENT_MODEL_CSS, 'hallo', false ),
 			array( 'hallo', 'MediaWiki:Test.js', CONTENT_MODEL_CSS, null, CONTENT_MODEL_CSS, 'hallo', false ),
 			array( serialize('hallo'), 'Dummy:Test', CONTENT_MODEL_CSS, null, CONTENT_MODEL_CSS, serialize('hallo'), false ),
 
-			array( 'hallo', 'Test', CONTENT_MODEL_WIKITEXT, 'dummy', null, null, true ),
-			array( 'hallo', 'MediaWiki:Test.js', CONTENT_MODEL_CSS, 'dummy', null, null, true ),
-			array( 'hallo', 'Dummy:Test', CONTENT_MODEL_JAVASCRIPT, 'dummy', null, null, true ),
+			array( 'hallo', 'Test', CONTENT_MODEL_WIKITEXT, 999999, null, null, true ),
+			array( 'hallo', 'MediaWiki:Test.js', CONTENT_MODEL_CSS, 999999, null, null, true ),
+			array( 'hallo', 'Dummy:Test', CONTENT_MODEL_JAVASCRIPT, 999999, null, null, true ),
 		);
 	}
 
 	/**
 	 * @dataProvider dataMakeContent
 	 */
-	public function testMakeContent( $data, $title, $modelName, $format, $expectedModelName, $expectedNativeData, $shouldFail ) {
+	public function testMakeContent( $data, $title, $modelId, $format, $expectedModelId, $expectedNativeData, $shouldFail ) {
 		global $wgExtraNamespaces, $wgNamespaceContentModels, $wgContentHandlers;
 
 		$title = Title::newFromText( $title );
 
 		try {
-			$content = ContentHandler::makeContent( $data, $title, $modelName, $format );
+			$content = ContentHandler::makeContent( $data, $title, $modelId, $format );
 
 			if ( $shouldFail ) $this->fail( "ContentHandler::makeContent should have failed!" );
 
-			$this->assertEquals( $expectedModelName, $content->getModelName(), 'bad model name' );
+			$this->assertEquals( $expectedModelId, $content->getModel(), 'bad model id' );
 			$this->assertEquals( $expectedNativeData, $content->getNativeData(), 'bads native data' );
 		} catch ( MWException $ex ) {
-			if ( !$shouldFail ) $this->fail( "ContentHandler::makeContent failed unexpectedly!" );
+			if ( !$shouldFail ) $this->fail( "ContentHandler::makeContent failed unexpectedly: " . $ex->getMessage() );
 			else $this->assertTrue( true ); // dummy, so we don't get the "test did not perform any assertions" message.
 		}
 
@@ -174,7 +249,7 @@ class ContentHandlerTest extends MediaWikiTestCase {
 class DummyContentHandlerForTesting extends ContentHandler {
 
 	public function __construct( $dataModel ) {
-		parent::__construct( $dataModel, array('dummy') );
+		parent::__construct( $dataModel, array( 999999 ) );
 	}
 
 	/**
@@ -215,7 +290,7 @@ class DummyContentHandlerForTesting extends ContentHandler {
 class DummyContentForTesting extends Content {
 
 	public function __construct( $data ) {
-		parent::__construct( "DUMMY" );
+		parent::__construct( 999999 );
 
 		$this->data = $data;
 	}
@@ -280,7 +355,7 @@ class DummyContentForTesting extends Content {
 	 * if $copy = $original->copy()
 	 *
 	 * * get_class($original) === get_class($copy)
-	 * * $original->getModelName() === $copy->getModelName()
+	 * * $original->getModel() === $copy->getModel()
 	 * * $original->equals( $copy )
 	 *
 	 * If and only if the Content object is imutable, the copy() method can and should

@@ -1,5 +1,8 @@
 <?php
 
+/**
+ * @group ContentHandler
+ */
 class RevisionTest extends MediaWikiTestCase {
 	var $saveGlobals = array();
 
@@ -26,8 +29,8 @@ class RevisionTest extends MediaWikiTestCase {
 		$wgExtraNamespaces[ 12312 ] = 'Dummy';
 		$wgExtraNamespaces[ 12313 ] = 'Dummy_talk';
 
-		$wgNamespaceContentModels[ 12312 ] = 'DUMMY';
-		$wgContentHandlers[ 'DUMMY' ] = 'DummyContentHandlerForTesting';
+		$wgNamespaceContentModels[ 12312 ] = 999999;
+		$wgContentHandlers[ 999999 ] = 'DummyContentHandlerForTesting';
 
 		MWNamespace::getCanonicalNamespaces( true ); # reset namespace cache
 		$wgContLang->resetNamespaces(); # reset namespace cache
@@ -183,7 +186,7 @@ class RevisionTest extends MediaWikiTestCase {
 		return array(
 			array( 'hello world', 'Hello', null, null, CONTENT_MODEL_WIKITEXT ),
 			array( 'hello world', 'User:hello/there.css', null, null, CONTENT_MODEL_CSS ),
-			array( serialize('hello world'), 'Dummy:Hello', null, null, 'DUMMY' ),
+			array( serialize('hello world'), 'Dummy:Hello', null, null, 999999 ),
 		);
 	}
 
@@ -193,15 +196,15 @@ class RevisionTest extends MediaWikiTestCase {
 	function testGetContentModel( $text, $title, $model, $format, $expectedModel ) {
 		$rev = $this->newTestRevision( $text, $title, $model, $format );
 
-		$this->assertEquals( $expectedModel, $rev->getContentModelName() );
+		$this->assertEquals( $expectedModel, $rev->getContentModel() );
 	}
 
 	function dataGetContentFormat() {
 		return array(
-			array( 'hello world', 'Hello', null, null, 'text/x-wiki' ),
-			array( 'hello world', 'Hello', CONTENT_MODEL_CSS, null, 'text/css' ),
-			array( 'hello world', 'User:hello/there.css', null, null, 'text/css' ),
-			array( serialize('hello world'), 'Dummy:Hello', null, null, 'dummy' ),
+			array( 'hello world', 'Hello', null, null, CONTENT_FORMAT_WIKITEXT ),
+			array( 'hello world', 'Hello', CONTENT_MODEL_CSS, null, CONTENT_FORMAT_CSS ),
+			array( 'hello world', 'User:hello/there.css', null, null, CONTENT_FORMAT_CSS ),
+			array( serialize('hello world'), 'Dummy:Hello', null, null, 999999 ),
 		);
 	}
 
@@ -234,7 +237,7 @@ class RevisionTest extends MediaWikiTestCase {
 	function dataGetContent() {
 		return array(
 			array( 'hello world', 'Hello', null, null, Revision::FOR_PUBLIC, 'hello world' ),
-			array( serialize('hello world'), 'Hello', 'DUMMY', null, Revision::FOR_PUBLIC, serialize('hello world') ),
+			array( serialize('hello world'), 'Hello', 999999, null, Revision::FOR_PUBLIC, serialize('hello world') ),
 			array( serialize('hello world'), 'Dummy:Hello', null, null, Revision::FOR_PUBLIC, serialize('hello world') ),
 		);
 	}
@@ -252,7 +255,7 @@ class RevisionTest extends MediaWikiTestCase {
 	function dataGetText() {
 		return array(
 			array( 'hello world', 'Hello', null, null, Revision::FOR_PUBLIC, 'hello world' ),
-			array( serialize('hello world'), 'Hello', 'DUMMY', null, Revision::FOR_PUBLIC, null ),
+			array( serialize('hello world'), 'Hello', 999999, null, Revision::FOR_PUBLIC, null ),
 			array( serialize('hello world'), 'Dummy:Hello', null, null, Revision::FOR_PUBLIC, null ),
 		);
 	}
@@ -279,7 +282,7 @@ class RevisionTest extends MediaWikiTestCase {
 	public function dataGetSize( ) {
 		return array(
 			array( "hello world.", null, 12 ),
-			array( serialize( "hello world." ), "DUMMY", 12 ),
+			array( serialize( "hello world." ), 999999, 12 ),
 		);
 	}
 
@@ -296,7 +299,7 @@ class RevisionTest extends MediaWikiTestCase {
 	public function dataGetSha1( ) {
 		return array(
 			array( "hello world.", null, Revision::base36Sha1( "hello world." ) ),
-			array( serialize( "hello world." ), "DUMMY", Revision::base36Sha1( serialize( "hello world." ) ) ),
+			array( serialize( "hello world." ), 999999, Revision::base36Sha1( serialize( "hello world." ) ) ),
 		);
 	}
 
@@ -318,8 +321,8 @@ class RevisionTest extends MediaWikiTestCase {
 
 		$this->assertNotNull( $rev->getText(), 'no content text' );
 		$this->assertNotNull( $rev->getContent(), 'no content object available' );
-		$this->assertEquals( CONTENT_MODEL_JAVASCRIPT, $rev->getContent()->getModelName() );
-		$this->assertEquals( CONTENT_MODEL_JAVASCRIPT, $rev->getContentModelName() );
+		$this->assertEquals( CONTENT_MODEL_JAVASCRIPT, $rev->getContent()->getModel() );
+		$this->assertEquals( CONTENT_MODEL_JAVASCRIPT, $rev->getContentModel() );
 	}
 
 	public function testConstructWithContent() {
@@ -331,8 +334,8 @@ class RevisionTest extends MediaWikiTestCase {
 
 		$this->assertNotNull( $rev->getText(), 'no content text' );
 		$this->assertNotNull( $rev->getContent(), 'no content object available' );
-		$this->assertEquals( CONTENT_MODEL_JAVASCRIPT, $rev->getContent()->getModelName() );
-		$this->assertEquals( CONTENT_MODEL_JAVASCRIPT, $rev->getContentModelName() );
+		$this->assertEquals( CONTENT_MODEL_JAVASCRIPT, $rev->getContent()->getModel() );
+		$this->assertEquals( CONTENT_MODEL_JAVASCRIPT, $rev->getContentModel() );
 	}
 
 }

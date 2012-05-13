@@ -3,6 +3,7 @@
 /**
  * Test class for Revision storage.
  *
+ * @group ContentHandler
  * @group Database
  * ^--- important, causes temporary tables to be used instead of the real database
  */
@@ -76,7 +77,7 @@ class RevisionStorageTest extends PHPUnit_Framework_TestCase {
 		$this->assertEquals( $orig->getPage(), $rev->getPage() );
 		$this->assertEquals( $orig->getTimestamp(), $rev->getTimestamp() );
 		$this->assertEquals( $orig->getUser(), $rev->getUser() );
-		$this->assertEquals( $orig->getContentModelName(), $rev->getContentModelName() );
+		$this->assertEquals( $orig->getContentModel(), $rev->getContentModel() );
 		$this->assertEquals( $orig->getContentFormat(), $rev->getContentFormat() );
 		$this->assertEquals( $orig->getSha1(), $rev->getSha1() );
 	}
@@ -251,14 +252,14 @@ class RevisionStorageTest extends PHPUnit_Framework_TestCase {
 	}
 
 	/**
-	 * @covers Revision::getContentModelName
+	 * @covers Revision::getContentModel
 	 */
-	public function testGetContentModelName()
+	public function testGetContentModel()
 	{
 		$orig = $this->makeRevision( array( 'text' => 'hello hello.', 'content_model' => CONTENT_MODEL_JAVASCRIPT ) );
 		$rev = Revision::newFromId( $orig->getId() );
 
-		$this->assertEquals( CONTENT_MODEL_JAVASCRIPT, $rev->getContentModelName() );
+		$this->assertEquals( CONTENT_MODEL_JAVASCRIPT, $rev->getContentModel() );
 	}
 
 	/**
@@ -266,10 +267,10 @@ class RevisionStorageTest extends PHPUnit_Framework_TestCase {
 	 */
 	public function testGetContentFormat()
 	{
-		$orig = $this->makeRevision( array( 'text' => 'hello hello.', 'content_model' => CONTENT_MODEL_JAVASCRIPT, 'content_format' => 'text/javascript' ) );
+		$orig = $this->makeRevision( array( 'text' => 'hello hello.', 'content_model' => CONTENT_MODEL_JAVASCRIPT, 'content_format' => CONTENT_FORMAT_JAVASCRIPT ) );
 		$rev = Revision::newFromId( $orig->getId() );
 
-		$this->assertEquals( 'text/javascript', $rev->getContentFormat() );
+		$this->assertEquals( CONTENT_FORMAT_JAVASCRIPT, $rev->getContentFormat() );
 	}
 
 	/**
