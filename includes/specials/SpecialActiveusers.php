@@ -76,6 +76,7 @@ class ActiveUsersPager extends UsersPager {
 		$this->groups = array();
 		if ( $this->opts->getValue( 'hidebots' ) == 1 ) {
 			$this->groups['bot'] = true;
+			$this->groups['Global_bot'] = true;
 		}
 		if ( $this->opts->getValue( 'hidesysops' ) == 1 ) {
 			$this->groups['sysop'] = true;
