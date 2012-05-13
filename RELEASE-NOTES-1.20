@@ -130,6 +130,8 @@ upgrade PHP if you have not done so prior to upgrading MediaWiki.
 * (bug 37708) mw.Uri.clone() should make a deep copy.
 * (bug 38024) ResourceLoader should not create empty stylesheets for modules
   that don't have stylesheets.
+* (bug 36812) Special:ActiveUsers "Hide bots" should hide users from any group
+  having the "bot" user right, instead of just the default "bot" user group.
 
 === API changes in 1.20 ===
 * (bug 34316) Add ability to retrieve maximum upload size from MediaWiki API.
