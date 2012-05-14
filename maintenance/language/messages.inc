@@ -2628,6 +2628,7 @@ $wgMessageStructure = array(
 		'spambot_username',
 		'spam_reverting',
 		'spam_blanking',
+		'spam_deleting',
 	),
 	'info' => array(
 		'pageinfo-title',
