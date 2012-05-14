@@ -595,11 +595,13 @@ class XmlDumpWriter {
 		}
 
 		if ( isset( $row->rev_content_model ) && !is_null( $row->rev_content_model )  ) {
-			$out .= "      " . Xml::element('model', null, strval( $row->rev_content_model ) ) . "\n";
+			$name = ContentHandler::getContentModelName( $row->rev_content_model );
+			$out .= "      " . Xml::element('model', array( 'name' => $name ), strval( $row->rev_content_model ) ) . "\n";
 		}
 
 		if ( isset( $row->rev_content_format ) && !is_null( $row->rev_content_format ) ) {
-			$out .= "      " . Xml::element('format', null, strval( $row->rev_content_format ) ) . "\n";
+			$mime = ContentHandler::getContentFormatMimeType( $row->rev_content_format );
+			$out .= "      " . Xml::element('format', array( 'mime' => $mime ), strval( $row->rev_content_format ) ) . "\n";
 		}
 
 		$text = '';

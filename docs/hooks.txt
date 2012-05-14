@@ -739,7 +739,7 @@ for a given title. May be used to assign a different model for that title.
 $title: the Title in question
 &$model: the model name. Use with CONTENT_MODEL_XXX constants.
 
-'ContentHandlerForModelName': Called when a ContentHandler is requested for a given
+'ContentHandlerForModelID': Called when a ContentHandler is requested for a given
 cointent model name, but no entry for that model exists in $wgContentHandlers.
 $modeName: the requested content model name
 &$handler: set this to a ContentHandler object, if desired.

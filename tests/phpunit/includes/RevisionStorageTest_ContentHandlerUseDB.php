@@ -1,7 +1,7 @@
 <?php
 
 /**
- *
+ * @group ContentHandler
  * @group Database
  * ^--- important, causes temporary tables to be used instead of the real database
  */
@@ -57,16 +57,16 @@ class RevisionTest_ContentHandlerUseDB extends RevisionStorageTest {
 	}
 
 	/**
-	 * @covers Revision::getContentModelName
+	 * @covers Revision::getContentModel
 	 */
-	public function testGetContentModelName()
+	public function testGetContentModel()
 	{
 		$orig = $this->makeRevision( array( 'text' => 'hello hello.', 'content_model' => CONTENT_MODEL_JAVASCRIPT ) );
 		$rev = Revision::newFromId( $orig->getId() );
 
 		//NOTE: database fields for the content_model are disabled, so the model name is not retained.
 		//      We expect to get the default here instead of what was suppleid when creating the revision.
-		$this->assertEquals( CONTENT_MODEL_WIKITEXT, $rev->getContentModelName() );
+		$this->assertEquals( CONTENT_MODEL_WIKITEXT, $rev->getContentModel() );
 	}
 
 

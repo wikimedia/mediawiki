@@ -230,9 +230,9 @@ class EditPage {
 		$this->mArticle = $article;
 		$this->mTitle = $article->getTitle();
 
-		$this->content_model = $this->mTitle->getContentModelName();
+		$this->content_model = $this->mTitle->getContentModel();
 
-		$handler = ContentHandler::getForModelName( $this->content_model );
+		$handler = ContentHandler::getForModelID( $this->content_model );
 		$this->content_format = $handler->getDefaultFormat(); #NOTE: should be overridden by format of actual revision
 	}
 
@@ -713,7 +713,7 @@ class EditPage {
 		$this->nosummary = $request->getBool( 'nosummary' );
 
 		$content_handler = ContentHandler::getForTitle( $this->mTitle );
-		$this->content_model = $request->getText( 'model', $content_handler->getModelName() ); #may be overridden by revision
+		$this->content_model = $request->getText( 'model', $content_handler->getModelID() ); #may be overridden by revision
 		$this->content_format = $request->getText( 'format', $content_handler->getDefaultFormat() ); #may be overridden by revision
 
 		#TODO: check if the desired model is allowed in this namespace, and if a transition from the page's current model to the new model is allowed
@@ -916,8 +916,8 @@ class EditPage {
 		}
 		$revision = $this->mArticle->getRevisionFetched();
 		if ( $revision === null ) {
-			if ( !$this->content_model ) $this->content_model = $this->getTitle()->getContentModelName();
-			$handler = ContentHandler::getForModelName( $this->content_model );
+			if ( !$this->content_model ) $this->content_model = $this->getTitle()->getContentModel();
+			$handler = ContentHandler::getForModelID( $this->content_model );
 
 			return $handler->makeEmptyContent();
 		}
@@ -938,13 +938,13 @@ class EditPage {
 		$content = $rev ? $rev->getContent( Revision::RAW ) : null;
 
 		if ( $content  === false || $content === null ) {
-			if ( !$this->content_model ) $this->content_model = $this->getTitle()->getContentModelName();
-			$handler = ContentHandler::getForModelName( $this->content_model );
+			if ( !$this->content_model ) $this->content_model = $this->getTitle()->getContentModel();
+			$handler = ContentHandler::getForModelID( $this->content_model );
 
 			return $handler->makeEmptyContent();
 		} else {
 			#FIXME: nasty side-effect!
-			$this->content_model = $rev->getContentModelName();
+			$this->content_model = $rev->getContentModel();
 			$this->content_format = $rev->getContentFormat();
 
 			return $content;
@@ -1657,7 +1657,7 @@ class EditPage {
 		}
 		$currentContent = $currentRevision->getContent();
 
-		$handler = ContentHandler::getForModelName( $baseContent->getModelName() );
+		$handler = ContentHandler::getForModelID( $baseContent->getModel() );
 
 		$result = $handler->merge3( $baseContent, $editContent, $currentContent );
 
@@ -2509,7 +2509,7 @@ HTML
 
 		if ( $newtext != $newtext_orig ) {
 						#if the hook changed the text, create a new Content object accordingly.
-						$newContent = ContentHandler::makeContent( $newtext, $this->getTitle(), $newContent->getModelName() ); #XXX: handle parse errors ?
+						$newContent = ContentHandler::makeContent( $newtext, $this->getTitle(), $newContent->getModel() ); #XXX: handle parse errors ?
 		}
 
 		wfRunHooks( 'EditPageGetDiffContent', array( $this, &$newContent ) );
@@ -2616,7 +2616,7 @@ HTML
 			$content1 = ContentHandler::makeContent( $this->textbox1, $this->getTitle(), $this->content_model, $this->content_format ); #XXX: handle parse errors?
 			$content2 = ContentHandler::makeContent( $this->textbox2, $this->getTitle(), $this->content_model, $this->content_format ); #XXX: handle parse errors?
 
-			$handler = ContentHandler::getForModelName( $this->content_model );
+			$handler = ContentHandler::getForModelID( $this->content_model );
 			$de = $handler->createDifferenceEngine( $this->mArticle->getContext() );
 			$de->setContent( $content2, $content1 );
 			$de->showDiff( wfMsgExt( 'yourtext', 'parseinline' ), wfMsg( 'storedversion' ) );
@@ -2772,9 +2772,9 @@ HTML
 					$level = false;
 				}
 
-				if ( $content->getModelName() == CONTENT_MODEL_CSS ) {
+				if ( $content->getModel() == CONTENT_MODEL_CSS ) {
 					$format = 'css';
-				} elseif ( $content->getModelName() == CONTENT_MODEL_JAVASCRIPT ) {
+				} elseif ( $content->getModel() == CONTENT_MODEL_JAVASCRIPT ) {
 					$format = 'js';
 				} else {
 					$format = false;

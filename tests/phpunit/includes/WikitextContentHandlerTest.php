@@ -1,5 +1,8 @@
 <?php
 
+/**
+ * @group ContentHandler
+ */
 class WikitextContentHandlerTest extends MediaWikiTestCase {
 
 	/**
@@ -8,7 +11,7 @@ class WikitextContentHandlerTest extends MediaWikiTestCase {
 	var $handler;
 
 	public function setup() {
-		$this->handler = ContentHandler::getForModelName( CONTENT_MODEL_WIKITEXT );
+		$this->handler = ContentHandler::getForModelID( CONTENT_MODEL_WIKITEXT );
 	}
 
 	public function teardown() {
@@ -18,7 +21,7 @@ class WikitextContentHandlerTest extends MediaWikiTestCase {
 		$content = new WikitextContent( 'hello world' );
 
 		$this->assertEquals( 'hello world', $this->handler->serializeContent( $content ) );
-		$this->assertEquals( 'hello world', $this->handler->serializeContent( $content, 'text/x-wiki' ) );
+		$this->assertEquals( 'hello world', $this->handler->serializeContent( $content, CONTENT_FORMAT_WIKITEXT ) );
 
 		try {
 			$this->handler->serializeContent( $content, 'dummy/foo' );
@@ -32,7 +35,7 @@ class WikitextContentHandlerTest extends MediaWikiTestCase {
 		$content = $this->handler->unserializeContent( 'hello world' );
 		$this->assertEquals( 'hello world', $content->getNativeData() );
 
-		$content = $this->handler->unserializeContent( 'hello world', 'text/x-wiki' );
+		$content = $this->handler->unserializeContent( 'hello world', CONTENT_FORMAT_WIKITEXT );
 		$this->assertEquals( 'hello world', $content->getNativeData() );
 
 		try {
@@ -53,8 +56,8 @@ class WikitextContentHandlerTest extends MediaWikiTestCase {
 	public function dataIsSupportedFormat( ) {
 		return array(
 			array( null, true ),
-			array( 'text/x-wiki', true ),
-			array( 'dummy/foo', false ),
+			array( CONTENT_FORMAT_WIKITEXT, true ),
+			array( 99887766, false ),
 		);
 	}
 

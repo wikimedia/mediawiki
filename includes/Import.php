@@ -1179,18 +1179,18 @@ class WikiRevision {
 	}
 
 	/**
-	 * @return string
+	 * @return int
 	 */
 	function getModel() {
 		if ( is_null( $this->model ) ) {
-			$this->model = $this->getTitle()->getContentModelName();
+			$this->model = $this->getTitle()->getContentModel();
 		}
 
 		return $this->model;
 	}
 
 	/**
-	 * @return string
+	 * @return int
 	 */
 	function getFormat() {
 		if ( is_null( $this->model ) ) {

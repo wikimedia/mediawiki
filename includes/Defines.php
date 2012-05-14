@@ -244,7 +244,7 @@ define( 'APCOND_BLOCKED', 8 );
 define( 'APCOND_ISBOT', 9 );
 /**@}*/
 
-/**
+/** @{
  * Protocol constants for wfExpandUrl()
  */
 define( 'PROTO_HTTP', 'http://' );
@@ -253,12 +253,40 @@ define( 'PROTO_RELATIVE', '//' );
 define( 'PROTO_CURRENT', null );
 define( 'PROTO_CANONICAL', 1 );
 define( 'PROTO_INTERNAL', 2 );
+/**@}*/
 
-/**
- * Content model names, used by Content and ContentHandler
+/**@{
+ * Content model ids, used by Content and ContentHandler
+ *
+ * Extensions that define their own content models shall use IDs
+ * larger than 100 and register the ids they use at
+ * <http://mediawiki.org/ContentHandler/registry>
+ * to avoid conflicts with other extensions.
  */
-define('CONTENT_MODEL_WIKITEXT', 'wikitext');
-define('CONTENT_MODEL_JAVASCRIPT', 'javascript');
-define('CONTENT_MODEL_CSS', 'css');
-define('CONTENT_MODEL_TEXT', 'text');
+define( 'CONTENT_MODEL_WIKITEXT', 1 );
+define( 'CONTENT_MODEL_JAVASCRIPT', 2 );
+define( 'CONTENT_MODEL_CSS', 3 );
+define( 'CONTENT_MODEL_TEXT', 4 );
+/**@}*/
+
+/**@{
+ * Content format ids, used by Content and ContentHandler.
+ * Use ContentHander::getFormatMimeType() to get the associated mime type.
+ * Register mime types in $wgContentFormatMimeTypes.
+ *
+ * Extensions that define their own content formats shall use IDs
+ * larger than 100 and register the ids they use at
+ * <http://mediawiki.org/ContentHandler/registry>
+ * to avoid conflicts with other extensions.
+ */
+define( 'CONTENT_FORMAT_WIKITEXT', 1 ); // wikitext
+define( 'CONTENT_FORMAT_JAVASCRIPT', 2 ); // for js pages
+define( 'CONTENT_FORMAT_CSS', 3 );  // for css pages
+define( 'CONTENT_FORMAT_TEXT', 4 ); // for future use, e.g. with some plain-html messages.
+define( 'CONTENT_FORMAT_HTML', 5 ); // for future use, e.g. with some plain-html messages.
+define( 'CONTENT_FORMAT_SERIALIZED', 11 ); // for future use with the api, and for use by extensions
+define( 'CONTENT_FORMAT_JSON', 12 ); // for future use with the api, and for use by extensions
+define( 'CONTENT_FORMAT_XML', 13 ); // for future use with the api, and for use by extensions
+/**@}*/
+
 

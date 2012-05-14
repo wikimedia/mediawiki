@@ -20,7 +20,7 @@ class Revision {
 	protected $mTextRow;
 	protected $mTitle;
 	protected $mCurrent;
-	protected $mContentModelName;
+	protected $mContentModel;
 	protected $mContentFormat;
 	protected $mContent;
 	protected $mContentHandler;
@@ -440,15 +440,15 @@ class Revision {
 			}
 
 			if( !isset( $row->rev_content_model ) || is_null( $row->rev_content_model ) ) {
-				$this->mContentModelName = null; # determine on demand if needed
+				$this->mContentModel = null; # determine on demand if needed
 			} else {
-				$this->mContentModelName = strval( $row->rev_content_model );
+				$this->mContentModel = intval( $row->rev_content_model );
 			}
 
 			if( !isset( $row->rev_content_format ) || is_null( $row->rev_content_format ) ) {
 				$this->mContentFormat = null; # determine on demand if needed
 			} else {
-				$this->mContentFormat = strval( $row->rev_content_format );
+				$this->mContentFormat = intval( $row->rev_content_format );
 			}
 
 			// Lazy extraction...
@@ -479,7 +479,7 @@ class Revision {
 					throw new MWException( "Text already stored in external store (id {$row['text_id']}), can't serialize content object" );
 				}
 
-				$row['content_model'] = $row['content']->getModelName();
+				$row['content_model'] = $row['content']->getModel();
 				# note: mContentFormat is initializes later accordingly
 				# note: content is serialized later in this method!
 				# also set text to null?
@@ -497,20 +497,20 @@ class Revision {
 			$this->mParentId  = isset( $row['parent_id']  ) ? intval( $row['parent_id']  ) : null;
 			$this->mSha1      = isset( $row['sha1']  )      ? strval( $row['sha1']  )      : null;
 
-			$this->mContentModelName = isset( $row['content_model']  )  ? strval( $row['content_model'] )  : null;
-			$this->mContentFormat    = isset( $row['content_format']  ) ? strval( $row['content_format'] ) : null;
+			$this->mContentModel = isset( $row['content_model']  )  ? intval( $row['content_model'] )  : null;
+			$this->mContentFormat    = isset( $row['content_format']  ) ? intval( $row['content_format'] ) : null;
 
 			// Enforce spacing trimming on supplied text
 			$this->mComment   = isset( $row['comment']    ) ?  trim( strval( $row['comment'] ) ) : null;
 			$this->mText      = isset( $row['text']       ) ? rtrim( strval( $row['text']    ) ) : null;
 			$this->mTextRow   = null;
 
-			# if we have a content object, override mText and mContentModelName
+			# if we have a content object, override mText and mContentModel
 			if ( !empty( $row['content'] ) ) {
 				$handler = $this->getContentHandler();
 				$this->mContent = $row['content'];
 
-				$this->mContentModelName = $this->mContent->getModelName();
+				$this->mContentModel = $this->mContent->getModel();
 				$this->mContentHandler = null;
 
 				$this->mText = $handler->serializeContent( $row['content'], $this->getContentFormat() );
@@ -538,7 +538,7 @@ class Revision {
 				$this->mSha1 = is_null( $this->mText ) ? null : self::base36Sha1( $this->mText );
 			}
 
-			$this->getContentModelName(); # force lazy init
+			$this->getContentModel(); # force lazy init
 			$this->getContentFormat();    # force lazy init
 		} else {
 			throw new MWException( 'Revision constructor passed invalid row format.' );
@@ -879,31 +879,54 @@ class Revision {
 		return $this->mContent;
 	}
 
-	public function getContentModelName() {
-		if ( !$this->mContentModelName ) {
+	/**
+	 * Returns the content model for this revision.
+	 *
+	 * If no content model was stored in the database, $this->getTitle()->getContentModel() is
+	 * used to determine the content model to use. If no title is know, CONTENT_MODEL_WIKITEXT
+	 * is used as a last resort.
+	 *
+	 * @return int the content model id associated with this revision, see the CONTENT_MODEL_XXX constants.
+	 **/
+	public function getContentModel() {
+		if ( !$this->mContentModel ) {
 			$title = $this->getTitle();
-			$this->mContentModelName = ( $title ? $title->getContentModelName() : CONTENT_MODEL_WIKITEXT );
+			$this->mContentModel = ( $title ? $title->getContentModel() : CONTENT_MODEL_WIKITEXT );
+
+			assert( !empty( $this->mContentModel ) );
 		}
 
-		return $this->mContentModelName;
+		return $this->mContentModel;
 	}
 
+	/**
+	 * Returns the content format for this revision.
+	 *
+	 * If no content format was stored in the database, the default format for this
+	 * revision's content model is returned.
+	 *
+	 * @return int the content format id associated with this revision, see the CONTENT_FORMAT_XXX constants.
+	 **/
 	public function getContentFormat() {
 		if ( !$this->mContentFormat ) {
 			$handler = $this->getContentHandler();
 			$this->mContentFormat = $handler->getDefaultFormat();
+
+			assert( !empty( $this->mContentFormat ) );
 		}
 
 		return $this->mContentFormat;
 	}
 
 	/**
+	 * Returns the content handler appropriate for this revision's content model.
+	 *
 	 * @return ContentHandler
 	 */
 	public function getContentHandler() {
 		if ( !$this->mContentHandler ) {
-			$model = $this->getContentModelName();
-			$this->mContentHandler = ContentHandler::getForModelName( $model );
+			$model = $this->getContentModel();
+			$this->mContentHandler = ContentHandler::getForModelID( $model );
 
 			assert( $this->mContentHandler->isSupportedFormat( $this->getContentFormat() ) );
 		}
@@ -1153,7 +1176,7 @@ class Revision {
 		);
 
 		if ( $wgContentHandlerUseDB ) {
-			$row[ 'rev_content_model' ] = $this->getContentModelName();
+			$row[ 'rev_content_model' ] = $this->getContentModel();
 			$row[ 'rev_content_format' ] = $this->getContentFormat();
 		}
 

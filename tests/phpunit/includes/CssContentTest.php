@@ -1,5 +1,8 @@
 <?php
 
+/**
+ * @group ContentHandler
+ */
 class CssContentTest extends JavascriptContentTest {
 
 	public function newContent( $text ) {
@@ -17,16 +20,16 @@ class CssContentTest extends JavascriptContentTest {
 
 	# =================================================================================================================
 
-	public function getModelName() {
+	public function testGetModel() {
 		$content = $this->newContent( "hello world." );
 
-		$this->assertEquals( CONTENT_MODEL_JAVASCRIPT, $content->getModelName() );
+		$this->assertEquals( CONTENT_MODEL_CSS, $content->getModel() );
 	}
 
-	public function getContentHandler() {
+	public function testGetContentHandler() {
 		$content = $this->newContent( "hello world." );
 
-		$this->assertEquals( CONTENT_MODEL_JAVASCRIPT, $content->getContentHandler()->getModelName() );
+		$this->assertEquals( CONTENT_MODEL_CSS, $content->getContentHandler()->getModelID() );
 	}
 
 	public function dataEquals( ) {

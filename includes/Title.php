@@ -63,6 +63,7 @@ class Title {
 	var $mFragment;                   // /< Title fragment (i.e. the bit after the #)
 	var $mArticleID = -1;             // /< Article ID, fetched from the link cache on demand
 	var $mLatestID = false;           // /< ID of most recent revision
+	var $mContentModel = false;       // /< ID of the page's content model, i.e. one of the CONTENT_MODEL_XXX constants
 	private $mEstimateRevisions;      // /< Estimated number of revisions; null of not loaded
 	var $mRestrictions = array();     // /< Array of groups allowed to edit this article
 	var $mOldRestrictions = false;
@@ -273,15 +274,15 @@ class Title {
 			if ( isset( $row->page_latest ) )
 				$this->mLatestID = (int)$row->page_latest; # FIXME: whene3ver page_latest is updated, also update page_content_model
 			if ( isset( $row->page_content_model ) )
-				$this->mContentModelName = $row->page_content_model;
+				$this->mContentModel = $row->page_content_model;
 			else
-				$this->mContentModelName = null; # initialized lazily in getContentModelName()
+				$this->mContentModel = null; # initialized lazily in getContentModel()
 		} else { // page not found
 			$this->mArticleID = 0;
 			$this->mLength = 0;
 			$this->mRedirect = false;
 			$this->mLatestID = 0;
-			$this->mContentModelName = null; # initialized lazily in getContentModelName()
+			$this->mContentModel = null; # initialized lazily in getContentModel()
 		}
 	}
 
@@ -307,7 +308,7 @@ class Title {
 		$t->mArticleID = ( $ns >= 0 ) ? -1 : 0;
 		$t->mUrlform = wfUrlencode( $t->mDbkeyform );
 		$t->mTextform = str_replace( '_', ' ', $title );
-		$t->mContentModelName = null; # initialized lazily in getContentModelName()
+		$t->mContentModel = null; # initialized lazily in getContentModel()
 		return $t;
 	}
 
@@ -698,26 +699,27 @@ class Title {
 	}
 
 	/**
-	 * Get the page's content model name
+	 * Get the page's content model id, see the CONTENT_MODEL_XXX constants.
 	 *
-	 * @return Integer: Namespace index
+	 * @return Integer: Content model id
 	 */
-	public function getContentModelName() {
-		if ( empty( $this->mContentModelName ) ) {
-			$this->mContentModelName = ContentHandler::getDefaultModelFor( $this );
+	public function getContentModel() {
+		if ( empty( $this->mContentModel ) ) {
+			$this->mContentModel = ContentHandler::getDefaultModelFor( $this );
 		}
 
-		return $this->mContentModelName;
+		assert( !empty( $this->mContentModel ) );
+		return $this->mContentModel;
 	}
 
 	/**
 	 * Conveniance method for checking a title's content model name
 	 *
-	 * @param $name
-	 * @return true if $this->getContentModelName() == $name
+	 * @param int $id
+	 * @return true if $this->getContentModel() == $id
 	 */
-	public function hasContentModel( $name ) {
-		return $this->getContentModelName() == $name;
+	public function hasContentModel( $id ) {
+		return $this->getContentModel() == $id;
 	}
 
 	/**

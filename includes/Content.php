@@ -12,9 +12,9 @@ abstract class Content {
 	 * Name of the content model this Content object represents.
 	 * Use with CONTENT_MODEL_XXX constants
 	 *
-	 * @var String $model_name
+	 * @var String $model_id
 	 */
-	protected $modelName;
+	protected $model_id;
 
 	/**
 	 * @since WD.1
@@ -66,33 +66,36 @@ abstract class Content {
 	public abstract function getSize( );
 
 	/**
-	 * @param $model_name
+	 * @param int $model_id
 	 */
-	public function __construct( $modelName = null ) {
-		$this->modelName = $modelName;
+	public function __construct( $model_id = null ) {
+		$this->model_id = $model_id;
 	}
 
 	/**
-	 * Returns the name of the content model used by this content objects.
+	 * Returns the id of the content model used by this content objects.
 	 * Corresponds to the CONTENT_MODEL_XXX constants.
 	 *
 	 * @since WD.1
 	 *
-	 * @return String the model name
+	 * @return int the model id
 	 */
-	public function getModelName() {
-		return $this->modelName;
+	public function getModel() {
+		return $this->model_id;
 	}
 
 	/**
-	 * Throws an MWException if $model_name is not the name of the content model
+	 * Throws an MWException if $model_id is not the id of the content model
 	 * supported by this Content object.
 	 *
-	 * @param String $modelName the model to check
+	 * @param int $model_id the model to check
 	 */
-	protected function checkModelName( $modelName ) {
-		if ( $modelName !== $this->modelName ) {
-			throw new MWException( "Bad content model: expected " . $this->modelName . " but got found " . $modelName );
+	protected function checkModelID( $model_id ) {
+		if ( $model_id !== $this->model_id ) {
+			$model_name = ContentHandler::getContentModelName( $model_id );
+			$own_model_name = ContentHandler::getContentModelName( $this->model_id );
+
+			throw new MWException( "Bad content model: expected {$this->model_id} ($own_model_name) but got found $model_id ($model_name)." );
 		}
 	}
 
@@ -168,7 +171,7 @@ abstract class Content {
 	 */
 	protected function checkFormat( $format ) {
 		if ( !$this->isSupportedFormat( $format ) ) {
-			throw new MWException( "Format $format is not supported for content model " . $this->getModelName() );
+			throw new MWException( "Format $format is not supported for content model " . $this->getModel() );
 		}
 	}
 
@@ -227,7 +230,7 @@ abstract class Content {
 	 *
 	 * Will returns false if $that is null.
 	 * Will return true if $that === $this.
-	 * Will return false if $that->getModleName() != $this->getModelName().
+	 * Will return false if $that->getModleName() != $this->getModel().
 	 * Will return false if $that->getNativeData() is not equal to $this->getNativeData(),
 	 * where the meaning of "equal" depends on the actual data model.
 	 *
@@ -250,7 +253,7 @@ abstract class Content {
 			return true;
 		}
 
-		if ( $that->getModelName() !== $this->getModelName() ) {
+		if ( $that->getModel() !== $this->getModel() ) {
 			return false;
 		}
 
@@ -262,7 +265,7 @@ abstract class Content {
 	 * if $copy = $original->copy()
 	 *
 	 * * get_class($original) === get_class($copy)
-	 * * $original->getModelName() === $copy->getModelName()
+	 * * $original->getModel() === $copy->getModel()
 	 * * $original->equals( $copy )
 	 *
 	 * If and only if the Content object is imutable, the copy() method can and should
@@ -448,8 +451,8 @@ abstract class Content {
  */
 abstract class TextContent extends Content {
 
-	public function __construct( $text, $model_name = null ) {
-		parent::__construct( $model_name );
+	public function __construct( $text, $model_id = null ) {
+		parent::__construct( $model_id );
 
 		$this->mText = $text;
 	}
@@ -613,11 +616,15 @@ class WikitextContent extends TextContent {
 	public function replaceSection( $section, Content $with, $sectionTitle = '' ) {
 		wfProfileIn( __METHOD__ );
 
-		$myModelName = $this->getModelName();
-		$sectionModelName = $with->getModelName();
+		$myModelId = $this->getModel();
+		$sectionModelId = $with->getModel();
 
-		if ( $sectionModelName != $myModelName  ) {
-			throw new MWException( "Incompatible content model for section: document uses $myModelName, section uses $sectionModelName." );
+		if ( $sectionModelId != $myModelId  ) {
+			$myModelName = ContentHandler::getContentModelName( $myModelId );
+			$sectionModelName = ContentHandler::getContentModelName( $sectionModelId );
+
+			throw new MWException( "Incompatible content model for section: document uses $myModelId ($myModelName), "
+								. "section uses $sectionModelId ($sectionModelName)." );
 		}
 
 		$oldtext = $this->getNativeData();
