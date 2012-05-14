@@ -24,7 +24,7 @@
 
 /**
  * FileBackend helper class for representing operations.
- * Do naot use this class from places outside FileBackend.
+ * Do not use this class from places outside FileBackend.
  *
  * Methods called from FileOpBatch::attempt() should avoid throwing
  * exceptions at all costs. FileOp objects should be lightweight in order
