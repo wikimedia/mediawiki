@@ -668,6 +668,8 @@ Udaný dôvod: ''$2''.",
 'filereadonlyerror' => 'Nebolo možné modifikovať súbor „$1“, pretože úložisko „$2“ je momentálne v režime len na čítanie.
 
 Správca, ktorý ho zamkol ponúkol toto vysvetlenie: „$3“.',
+'invalidtitle-knownnamespace' => 'Neplatný názov s menným priestorom „$2“ a textom „$3“',
+'invalidtitle-unknownnamespace' => 'Neplatný názov s neznámym číslom menného priestoru „$1“ a textom „$2“',
 
 # Virus scanner
 'virus-badscanner' => "Chybná konfigurácia: neznámy antivírus: ''$1''",
@@ -1063,6 +1065,8 @@ Tieto argumenty boli vynechané.',
 'node-count-exceeded-warning' => 'Stránka prekročila povolený počet uzlov',
 'expansion-depth-exceeded-category' => 'Stránky s priveľkou hĺbkou expanzie',
 'expansion-depth-exceeded-warning' => 'Stránka prekročila povolenú hĺbku expanzie',
+'parser-unstrip-loop-warning' => 'Zistené zacyklenie volania rozširovacej značky',
+'parser-unstrip-recursion-limit' => 'Prektočený limit rekurzie volania rozširovacej značky ($1)',
 
 # "Undo" feature
 'undo-success' => 'Úpravu je možné vrátiť. Prosím skontrolujte tento rozdiel, čím overíte, že táto úprava je tá, ktorú chcete, a následne uložte zmeny, čím ukončíte vrátenie.',
@@ -1239,6 +1243,8 @@ Uistite sa, že táto zmena zachová historickú kontinuitu zmien stránky.',
 
 # Diffs
 'history-title' => 'História revízií „$1“',
+'difference-title' => 'Rozdiel medzi revíziami „$1“',
+'difference-title-multipage' => 'Rozdiel medzi stránkami „$1“ a „$2“',
 'difference-multipage' => '(Rozdiel medzi stránkami)',
 'lineno' => 'Riadok $1:',
 'compareselectedversions' => 'Porovnať označené verzie',
@@ -1868,6 +1874,7 @@ Aby bolo zabezpečenie optimálne, img_auth.php je vypnutý.',
 'http-curl-error' => 'Chyba pri sťahovaní URL: $1',
 'http-host-unreachable' => 'URL nie je dostupný',
 'http-bad-status' => 'Počas požiadavky HTTP nastal problém: $1 $2',
+'http-truncated-body' => 'Telo požiadavky bolo prijaté iba čiastočne.',
 
 # Some likely curl errors. More could be added from <http://curl.haxx.se/libcurl/c/libcurl-errors.html>
 'upload-curl-error6' => 'Nedostupný URL',
@@ -2989,6 +2996,11 @@ Umožnuje do zhrnutia pridanie dôvodu.',
 'vector.css' => '/* Tu umiestnené CSS bude ovplyvňovať používateľov štýlu Vector */',
 'print.css' => '/* Tu umiestnené CSS bude ovplyvňovať tlačový výstup */',
 'handheld.css' => '/* Tu umiestnené CSS bude ovplyvňovať prenosné zariadenia vychádzajúceho zo štýlu nastaveného v $wgHandheldStyle */',
+'noscript.css' => '/* Tu umiestnené CSS bude ovplyvňovať používateľov s vypnutým JavaScriptom */',
+'group-autoconfirmed.css' => '/* Tu umiestnené CSS bude ovplyvňovať iba používateľov s overenou emailovou adresou */',
+'group-bot.css' => '/* Tu umiestnené CSS bude ovplyvňovať iba robotov */',
+'group-sysop.css' => '/* Tu umiestnené CSS bude ovplyvňovať iba správcov */',
+'group-bureaucrat.css' => '/* Tu umiestnené CSS bude ovplyvňovať iba byrokratov */',
 
 # Scripts
 'common.js' => '/* Tu uvedený JavaScript sa nahrá všetkým používateľom pri každom nahraní stránky. */',
@@ -3001,6 +3013,10 @@ Umožnuje do zhrnutia pridanie dôvodu.',
 'simple.js' => '/* Tu sa nachádzajúci JavaScript sa načíta používateľom vzhľadu Jednoduchý */',
 'modern.js' => '/* Tu sa nachádzajúci JavaScript sa načíta používateľom vzhľadu Moderný */',
 'vector.js' => '/* Tu sa nachádzajúci JavaScript sa načíta používateľom vzhľadu Vector */',
+'group-autoconfirmed.js' => '/* Tu sa nachádzajúci JavaScript sa načíta používateľom s potvrdenou emailovou adresou */',
+'group-bot.js' => '/* Tu sa nachádzajúci JavaScript sa načíta len robotom */',
+'group-sysop.js' => '/* Tu sa nachádzajúci JavaScript sa načíta len správcom */',
+'group-bureaucrat.js' => '/* Tu sa nachádzajúci JavaScript sa načíta len byrokratom */',
 
 # Metadata
 'notacceptable' => 'Wiki server nedokáže poskytovať dáta vo formáte, v akom ich váš klient vie čítať.',
@@ -3048,6 +3064,7 @@ Pravdepodobne to spôsobil odkaz na externú internetovú lokalitu, ktorá sa na
 'skinname-chick' => 'Kuriatko',
 'skinname-simple' => 'Jednoduchý',
 'skinname-modern' => 'Moderný',
+'skinname-vector' => 'Vector',
 
 # Patrolling
 'markaspatrolleddiff' => 'Označiť ako stráženú',

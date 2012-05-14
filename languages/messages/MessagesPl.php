@@ -21,6 +21,7 @@
  * @author Kaganer
  * @author Lajsikonik
  * @author Lampak
+ * @author Lazowik
  * @author Leinad
  * @author Maikking
  * @author Marcin Łukasz Kiejzik
@@ -1247,6 +1248,8 @@ Użycie linków nawigacyjnych kasuje wybór w kolumnie.',
 
 # Diffs
 'history-title' => 'Historia edycji „$1”',
+'difference-title' => 'Różnica pomiędzy wersjami strony "$1"',
+'difference-title-multipage' => 'Różnica pomiędzy stronami "$1" i "$2"',
 'difference-multipage' => '(Różnica między stronami)',
 'lineno' => 'Linia $1:',
 'compareselectedversions' => 'porównaj wybrane wersje',

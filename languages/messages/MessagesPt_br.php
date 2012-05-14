@@ -2670,7 +2670,7 @@ O registro de bloqueio é fornecido abaixo, para referência:',
 'blocklog-showsuppresslog' => 'O usuário foi bloqueado e ocultado anteriormente.
 O registro de supressão é fornecido abaixo para referência:',
 'blocklogentry' => 'bloqueou "[[$1]]" por $2. $3',
-'reblock-logentry' => 'modificou parâmetros de bloqueio de [[$1]] $3. O bloqueio expira em $2.',
+'reblock-logentry' => 'modificou parâmetros de bloqueio de [[$1]] com expiração em $2. $3',
 'blocklogtext' => 'Este é um registro de ações de bloqueio e desbloqueio.
 Endereços IP sujeitos a bloqueio automático não são listados.
 Consulte a [[Special:BlockList|lista de bloqueios]] para obter a lista de bloqueios e banimentos em efeito neste momento.',
