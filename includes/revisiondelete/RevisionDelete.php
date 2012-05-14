@@ -216,7 +216,8 @@ class RevDel_RevisionItem extends RevDel_Item {
 	 * @return string
 	 */
 	protected function getRevisionLink() {
-		$date = $this->list->getLanguage()->timeanddate( $this->revision->getTimestamp(), true );
+		$date = $this->list->getLanguage()->userTimeAndDate(
+			$this->revision->getTimestamp(), $this->list->getUser() );
 		if ( $this->isDeleted() && !$this->canViewContent() ) {
 			return $date;
 		}
@@ -238,12 +239,12 @@ class RevDel_RevisionItem extends RevDel_Item {
 	 */
 	protected function getDiffLink() {
 		if ( $this->isDeleted() && !$this->canViewContent() ) {
-			return wfMsgHtml('diff');
+			return $this->list->msg( 'diff' )->escaped();
 		} else {
 			return
 				Linker::link(
 					$this->list->title,
-					wfMsgHtml('diff'),
+					$this->list->msg( 'diff' )->escaped(),
 					array(),
 					array(
 						'diff' => $this->revision->getId(),
@@ -364,7 +365,8 @@ class RevDel_ArchiveItem extends RevDel_RevisionItem {
 
 	protected function getRevisionLink() {
 		$undelete = SpecialPage::getTitleFor( 'Undelete' );
-		$date = $this->list->getLanguage()->timeanddate( $this->revision->getTimestamp(), true );
+		$date = $this->list->getLanguage()->userTimeAndDate(
+			$this->revision->getTimestamp(), $this->list->getUser() );
 		if ( $this->isDeleted() && !$this->canViewContent() ) {
 			return $date;
 		}
@@ -377,10 +379,10 @@ class RevDel_ArchiveItem extends RevDel_RevisionItem {
 
 	protected function getDiffLink() {
 		if ( $this->isDeleted() && !$this->canViewContent() ) {
-			return wfMsgHtml( 'diff' );
+			return $this->list->msg( 'diff' )->escaped();
 		}
 		$undelete = SpecialPage::getTitleFor( 'Undelete' );
-		return Linker::link( $undelete, wfMsgHtml('diff'), array(),
+		return Linker::link( $undelete, $this->list->msg( 'diff' )->escaped(), array(),
 			array(
 				'target' => $this->list->title->getPrefixedText(),
 				'diff' => 'prev',
@@ -596,7 +598,8 @@ class RevDel_FileItem extends RevDel_Item {
 	 * @return string
 	 */
 	protected function getLink() {
-		$date = $this->list->getLanguage()->timeanddate( $this->file->getTimestamp(), true  );
+		$date = $this->list->getLanguage()->userTimeAndDate(
+			$this->file->getTimestamp(), $this->list->getUser() );
 		if ( $this->isDeleted() ) {
 			# Hidden files...
 			if ( !$this->canViewContent() ) {
@@ -629,7 +632,7 @@ class RevDel_FileItem extends RevDel_Item {
 			$link = Linker::userLink( $this->file->user, $this->file->user_text ) .
 				Linker::userToolLinks( $this->file->user, $this->file->user_text );
 		} else {
-			$link = wfMsgHtml( 'rev-deleted-user' );
+			$link = $this->list->msg( 'rev-deleted-user' )->escaped();
 		}
 		if( $this->file->isDeleted( Revision::DELETED_USER ) ) {
 			return '<span class="history-deleted">' . $link . '</span>';
@@ -647,7 +650,7 @@ class RevDel_FileItem extends RevDel_Item {
 		if( $this->file->userCan( File::DELETED_COMMENT, $this->list->getUser() ) ) {
 			$block = Linker::commentBlock( $this->file->description );
 		} else {
-			$block = ' ' . wfMsgHtml( 'rev-deleted-comment' );
+			$block = ' ' . $this->list->msg( 'rev-deleted-comment' )->escaped();
 		}
 		if( $this->file->isDeleted( File::DELETED_COMMENT ) ) {
 			return "<span class=\"history-deleted\">$block</span>";
@@ -657,14 +660,9 @@ class RevDel_FileItem extends RevDel_Item {
 
 	public function getHTML() {
 		$data =
-			wfMsg(
-				'widthheight',
-				$this->list->getLanguage()->formatNum( $this->file->getWidth() ),
-				$this->list->getLanguage()->formatNum( $this->file->getHeight() )
-			) .
-			' (' .
-			wfMsgExt( 'nbytes', 'parsemag', $this->list->getLanguage()->formatNum( $this->file->getSize() ) ) .
-			')';
+			$this->list->msg( 'widthheight' )->numParams(
+				$this->file->getWidth(), $this->file->getHeight() )->text() .
+			' (' . $this->list->msg( 'nbytes' )->numParams( $this->file->getSize() )->text() . ')';
 
 		return '<li>' . $this->getLink() . ' ' . $this->getUserTools() . ' ' .
 			$data . ' ' . $this->getComment(). '</li>';
@@ -747,7 +745,8 @@ class RevDel_ArchivedFileItem extends RevDel_FileItem {
 	}
 
 	protected function getLink() {
-		$date = $this->list->getLanguage()->timeanddate( $this->file->getTimestamp(), true  );
+		$date = $this->list->getLanguage()->userTimeAndDate(
+			$this->file->getTimestamp(), $this->list->getUser() );
 		$undelete = SpecialPage::getTitleFor( 'Undelete' );
 		$key = $this->file->getKey();
 		# Hidden files...
@@ -872,15 +871,17 @@ class RevDel_LogItem extends RevDel_Item {
 	}
 
 	public function getHTML() {
-		$date = htmlspecialchars( $this->list->getLanguage()->timeanddate( $this->row->log_timestamp ) );
+		$date = htmlspecialchars( $this->list->getLanguage()->userTimeAndDate(
+			$this->row->log_timestamp, $this->list->getUser() ) );
 		$title = Title::makeTitle( $this->row->log_namespace, $this->row->log_title );
 		$formatter = LogFormatter::newFromRow( $this->row );
+		$formatter->setContext( $this->list->getContext() );
 		$formatter->setAudience( LogFormatter::FOR_THIS_USER );
 
 		// Log link for this page
 		$loglink = Linker::link(
 			SpecialPage::getTitleFor( 'Log' ),
-			wfMsgHtml( 'log' ),
+			$this->list->msg( 'log' )->escaped(),
 			array(),
 			array( 'page' => $title->getPrefixedText() )
 		);
