@@ -2866,7 +2866,7 @@ class Title {
 	 *
 	 * - This is called from WikiPage::doEdit() and WikiPage::insertOn() to allow
 	 * loading of the new page_id. It's also called from
-	 * WikiPage::doDeleteArticle()
+	 * WikiPage::doDeleteArticleReal()
 	 *
 	 * @param $newid Int the new Article ID
 	 */
