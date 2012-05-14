@@ -68,6 +68,8 @@ upgrade PHP if you have not done so prior to upgrading MediaWiki.
 * (bug 4220) the XML dump format schema now have unique identity constraints
   for page and revision identifiers. Patch by Elvis Stansvik.
 * (bug 35705) QUnit upgraded from 1.2.0 to 1.7.0
+* cleanupSpam.php now can delete spam pages if --delete was specified instead of blanking
+  them.
 
 === Bug fixes in 1.20 ===
 * (bug 30245) Use the correct way to construct a log page title.
