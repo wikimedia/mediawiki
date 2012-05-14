@@ -811,7 +811,6 @@ Sha'rtli belgiler: (ha'z.) = ha'zirgi nusqasi menen parqı,
 
 # Diffs
 'history-title' => '"$1" betinin\' nusqa tariyxı',
-'difference' => "(Nusqalar arasındag'ı ayırmashılıq)",
 'lineno' => 'Qatar No $1:',
 'compareselectedversions' => "Saylang'an nusqalardı salıstırıw",
 'editundo' => 'qaytar',

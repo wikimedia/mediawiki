@@ -75,7 +75,7 @@ $messages = array(
 'tog-enotifminoredits' => 'ለአነስተኛ የገጽ እርማቶችም ኤመልዕክት ይላክልኝ',
 'tog-enotifrevealaddr' => 'ኤመልዕክት አድራሻዬን በማሳወቂያ መልዕክቶች ውስጥ አሳይ',
 'tog-shownumberswatching' => 'የሚከታተሉ ተጠቃሚዎችን ቁጥር አሳይ',
-'tog-oldsig' => ' የቀድሞው ፊርማ ቅደመ እይታ',
+'tog-oldsig' => 'የቀድሞው ፊርማ ቅደመ እይታ',
 'tog-fancysig' => 'ጥሬ ፊርማ (ያለራስገዝ ማያያዣ)',
 'tog-externaleditor' => 'በቀዳሚነት ውጪያዊ አራሚን ተጠቀም',
 'tog-externaldiff' => 'በቀዳሚነት የውጭ ልዩነት-ማሳያን ተጠቀም',
@@ -696,7 +696,6 @@ $1ን ወይም ማንም ሌላ [[{{MediaWiki:Grouppage-sysop}}|መጋቢ]] ስ
 
 # Diffs
 'history-title' => 'የ«$1» እትሞች ታሪክ',
-'difference' => '(በ2ቱ እትሞቹ ዘንድ ያለው ልዩነት)',
 'lineno' => 'መስመር፡ $1፦',
 'compareselectedversions' => 'የተመረጡትን እትሞች ለማነፃፀር',
 'editundo' => 'ለውጡ ይገለበጥ',

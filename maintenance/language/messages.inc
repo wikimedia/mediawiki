@@ -408,7 +408,9 @@ $wgMessageStructure = array(
 		'customjsprotected',
 		'ns-specialprotected',
 		'titleprotected',
-		'filereadonlyerror'
+		'filereadonlyerror',
+		'invalidtitle-knownnamespace',
+		'invalidtitle-unknownnamespace',
 	),
 	'virus' => array(
 		'virus-badscanner',
@@ -692,6 +694,8 @@ $wgMessageStructure = array(
 		'node-count-exceeded-warning',
 		'expansion-depth-exceeded-category',
 		'expansion-depth-exceeded-warning',
+		'parser-unstrip-loop-warning',
+		'parser-unstrip-recursion-limit',
 	),
 	'undo' => array(
 		'undo-success',
@@ -838,7 +842,8 @@ $wgMessageStructure = array(
 	),
 	'diffs' => array(
 		'history-title',
-		'difference',
+		'difference-title',
+		'difference-title-multipage',
 		'difference-multipage',
 		'lineno',
 		'compareselectedversions',
@@ -1445,6 +1450,7 @@ $wgMessageStructure = array(
 		'http-curl-error',
 		'http-host-unreachable',
 		'http-bad-status',
+		'http-truncated-body',
 	),
 
 	'upload-curl-errors' => array(

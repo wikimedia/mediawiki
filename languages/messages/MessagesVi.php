@@ -677,6 +677,8 @@ Lý do được cung cấp là ''$2''.",
 'filereadonlyerror' => 'Không thể sửa đổi tập tin “$1” vì kho tập tin “$2” đang ở chế độ chỉ-đọc.
 
 Bảo quản viên khóa nó đưa lý do là: “$3”.',
+'invalidtitle-knownnamespace' => 'Tựa trang không hợp lệ có không gian tên “$2” và văn bản “$3”',
+'invalidtitle-unknownnamespace' => 'Tựa trang không hợp lệ có không gian tên số $1 không rõ và văn bản “$2”',
 
 # Virus scanner
 'virus-badscanner' => "Cấu hình sau: không nhận ra bộ quét virus: ''$1''",
@@ -1055,6 +1057,12 @@ Những giá trị này sẽ bị bỏ đi.',
 'parser-template-loop-warning' => 'Phát hiện bản mẫu lặp vòng: [[$1]]',
 'parser-template-recursion-depth-warning' => 'Bản mẫu đã vượt quá giới hạn về độ sâu đệ quy ($1)',
 'language-converter-depth-warning' => 'Đã vượt quá giới hạn độ sâu của bộ chuyển đổi ngôn ngữ ($1)',
+'node-count-exceeded-category' => 'Những trang có số nốt vượt quá giới hạn cho phép',
+'node-count-exceeded-warning' => 'Trang có nhiều nốt quá',
+'expansion-depth-exceeded-category' => 'Những trang có độ sâu bung bản mẫu vượt quá giới hạn cho phép',
+'expansion-depth-exceeded-warning' => 'Trang bung bản mẫu sâu quá',
+'parser-unstrip-loop-warning' => 'Vòng lặp unstrip',
+'parser-unstrip-recursion-limit' => 'Đã vượt quá giới hạn về độ sâu đệ quy unstrip ($1)',
 
 # "Undo" feature
 'undo-success' => 'Các sửa đổi có thể được lùi lại. Xin hãy kiểm tra phần so sánh bên dưới để xác nhận lại những gì bạn muốn làm, sau đó lưu thay đổi ở dưới để hoàn tất việc lùi lại sửa đổi.',
@@ -1232,7 +1240,6 @@ Xin hãy bảo đảm giữ vững tính liên tục của lịch sử trang.',
 
 # Diffs
 'history-title' => 'Lịch sử sửa đổi của “$1”',
-'difference' => '(Khác biệt giữa các bản)',
 'difference-multipage' => '(Khác biệt giữa các trang)',
 'lineno' => 'Dòng $1:',
 'compareselectedversions' => 'So sánh các bản đã chọn',
@@ -1866,6 +1873,7 @@ Vì lý do bảo mật, img_auth.php đã bị tắt.',
 'http-curl-error' => 'Có lỗi khi truy xuất URL: $1',
 'http-host-unreachable' => 'Không thể truy cập URL',
 'http-bad-status' => 'Có vấn đề khi yêu cầu HTTP: $1 $2',
+'http-truncated-body' => 'Chỉ nhận được một phần của thân yêu cầu.',
 
 # Some likely curl errors. More could be added from <http://curl.haxx.se/libcurl/c/libcurl-errors.html>
 'upload-curl-error6' => 'Không thể truy cập URL',
@@ -3962,14 +3970,14 @@ Các hình ảnh được hiển thị ở kích thước tối đa, còn các l
 'revdelete-uname-unhid' => 'đã hiện tên người dùng',
 'revdelete-restricted' => 'đã áp dụng hạn chế cho bảo quản viên',
 'revdelete-unrestricted' => 'đã gỡ bỏ hạn chế cho bảo quản viên',
-'logentry-move-move' => '$1 đã đổi trang $3 thành $4',
-'logentry-move-move-noredirect' => '$1 đã đổi trang $3 thành $4 mà không để lại một trang đổi hướng',
-'logentry-move-move_redir' => '$1 đã đổi trang $3 thành $4 qua trang đổi hướng',
-'logentry-move-move_redir-noredirect' => '$1 đã đổi trang $3 thành $4 qua trang đổi hướng mà không để lại một trang đổi hướng',
+'logentry-move-move' => '$1 đã đổi $3 thành $4',
+'logentry-move-move-noredirect' => '$1 đã đổi $3 thành $4 (đã tắt đổi hướng)',
+'logentry-move-move_redir' => '$1 đã đổi $3 thành $4 qua đổi hướng',
+'logentry-move-move_redir-noredirect' => '$1 đã đổi $3 thành $4 qua đổi hướng (đã tắt đổi hướng)',
 'logentry-patrol-patrol' => '$1 đã đánh dấu tuần tra phiên bản $4 của trang $3',
 'logentry-patrol-patrol-auto' => '$1 đã tự động đánh dấu tuần tra phiên bản $4 của trang $3',
-'logentry-newusers-newusers' => '$1 đã mở một tài khoản người dùng',
-'logentry-newusers-create' => '$1 đã mở một tài khoản người dùng',
+'logentry-newusers-newusers' => '$1 đã mở tài khoản mới',
+'logentry-newusers-create' => '$1 đã mở tài khoản mới',
 'logentry-newusers-create2' => '$1 đã mở tài khoản người dùng $3',
 'logentry-newusers-autocreate' => 'Tài khoản $1 đã được mở tự động',
 'newuserlog-byemail' => 'gửi mật khẩu qua thư điện tử',

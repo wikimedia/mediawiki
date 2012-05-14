@@ -1,6 +1,9 @@
 <?php
 
 /**
+ * @group medium
+ * ^---- causes phpunit to use a higher timeout threshold
+ * 
  * @group FileRepo
  * @group FileBackend
  */
@@ -35,6 +38,7 @@ class FileBackendTest extends MediaWikiTestCase {
 			$this->singleBackend = new FSFileBackend( array(
 				'name'        => 'localtesting',
 				'lockManager' => 'fsLockManager',
+				#'parallelize' => 'implicit',
 				'containerPaths' => array(
 					'unittest-cont1' => "{$tmpPrefix}-localtesting-cont1",
 					'unittest-cont2' => "{$tmpPrefix}-localtesting-cont2" )
@@ -43,6 +47,7 @@ class FileBackendTest extends MediaWikiTestCase {
 		$this->multiBackend = new FileBackendMultiWrite( array(
 			'name'        => 'localtesting',
 			'lockManager' => 'fsLockManager',
+			'parallelize' => 'implicit',
 			'backends'    => array(
 				array(
 					'name'          => 'localmutlitesting1',
@@ -205,7 +210,7 @@ class FileBackendTest extends MediaWikiTestCase {
 		$this->tearDownFiles();
 	}
 
-	function doTestStore( $op ) {
+	private function doTestStore( $op ) {
 		$backendName = $this->backendClass();
 
 		$source = $op['src'];
@@ -220,9 +225,9 @@ class FileBackendTest extends MediaWikiTestCase {
 
 		$status = $this->backend->doOperation( $op );
 
-		$this->assertEquals( array(), $status->errors,
+		$this->assertGoodStatus( $status,
 			"Store from $source to $dest succeeded without warnings ($backendName)." );
-		$this->assertEquals( array(), $status->errors,
+		$this->assertEquals( true, $status->isOK(),
 			"Store from $source to $dest succeeded ($backendName)." );
 		$this->assertEquals( array( 0 => true ), $status->success,
 			"Store from $source to $dest has proper 'success' field in Status ($backendName)." );
@@ -287,7 +292,7 @@ class FileBackendTest extends MediaWikiTestCase {
 		$this->tearDownFiles();
 	}
 
-	function doTestCopy( $op ) {
+	private function doTestCopy( $op ) {
 		$backendName = $this->backendClass();
 
 		$source = $op['src'];
@@ -297,7 +302,7 @@ class FileBackendTest extends MediaWikiTestCase {
 
 		$status = $this->backend->doOperation(
 			array( 'op' => 'create', 'content' => 'blahblah', 'dst' => $source ) );
-		$this->assertEquals( array(), $status->errors,
+		$this->assertGoodStatus( $status,
 			"Creation of file at $source succeeded ($backendName)." );
 
 		if ( isset( $op['overwrite'] ) || isset( $op['overwriteSame'] ) ) {
@@ -306,7 +311,7 @@ class FileBackendTest extends MediaWikiTestCase {
 
 		$status = $this->backend->doOperation( $op );
 
-		$this->assertEquals( array(), $status->errors,
+		$this->assertGoodStatus( $status,
 			"Copy from $source to $dest succeeded without warnings ($backendName)." );
 		$this->assertEquals( true, $status->isOK(),
 			"Copy from $source to $dest succeeded ($backendName)." );
@@ -385,7 +390,7 @@ class FileBackendTest extends MediaWikiTestCase {
 
 		$status = $this->backend->doOperation(
 			array( 'op' => 'create', 'content' => 'blahblah', 'dst' => $source ) );
-		$this->assertEquals( array(), $status->errors,
+		$this->assertGoodStatus( $status,
 			"Creation of file at $source succeeded ($backendName)." );
 
 		if ( isset( $op['overwrite'] ) || isset( $op['overwriteSame'] ) ) {
@@ -393,7 +398,7 @@ class FileBackendTest extends MediaWikiTestCase {
 		}
 
 		$status = $this->backend->doOperation( $op );
-		$this->assertEquals( array(), $status->errors,
+		$this->assertGoodStatus( $status,
 			"Move from $source to $dest succeeded without warnings ($backendName)." );
 		$this->assertEquals( true, $status->isOK(),
 			"Move from $source to $dest succeeded ($backendName)." );
@@ -473,13 +478,13 @@ class FileBackendTest extends MediaWikiTestCase {
 		if ( $withSource ) {
 			$status = $this->backend->doOperation(
 				array( 'op' => 'create', 'content' => 'blahblah', 'dst' => $source ) );
-			$this->assertEquals( array(), $status->errors,
+			$this->assertGoodStatus( $status,
 				"Creation of file at $source succeeded ($backendName)." );
 		}
 
 		$status = $this->backend->doOperation( $op );
 		if ( $okStatus ) {
-			$this->assertEquals( array(), $status->errors,
+			$this->assertGoodStatus( $status,
 				"Deletion of file at $source succeeded without warnings ($backendName)." );
 			$this->assertEquals( true, $status->isOK(),
 				"Deletion of file at $source succeeded ($backendName)." );
@@ -555,13 +560,13 @@ class FileBackendTest extends MediaWikiTestCase {
 		if ( $alreadyExists ) {
 			$status = $this->backend->doOperation(
 				array( 'op' => 'create', 'content' => $oldText, 'dst' => $dest ) );
-			$this->assertEquals( array(), $status->errors,
+			$this->assertGoodStatus( $status,
 				"Creation of file at $dest succeeded ($backendName)." );
 		}
 
 		$status = $this->backend->doOperation( $op );
 		if ( $okStatus ) {
-			$this->assertEquals( array(), $status->errors,
+			$this->assertGoodStatus( $status,
 				"Creation of file at $dest succeeded without warnings ($backendName)." );
 			$this->assertEquals( true, $status->isOK(),
 				"Creation of file at $dest succeeded ($backendName)." );
@@ -668,7 +673,7 @@ class FileBackendTest extends MediaWikiTestCase {
 		$this->tearDownFiles();
 	}
 
-	public function doTestConcatenate( $params, $srcs, $srcsContent, $alreadyExists, $okStatus ) {
+	private function doTestConcatenate( $params, $srcs, $srcsContent, $alreadyExists, $okStatus ) {
 		$backendName = $this->backendClass();
 
 		$expContent = '';
@@ -685,7 +690,7 @@ class FileBackendTest extends MediaWikiTestCase {
 		}
 		$status = $this->backend->doOperations( $ops );
 
-		$this->assertEquals( array(), $status->errors,
+		$this->assertGoodStatus( $status,
 			"Creation of source files succeeded ($backendName)." );
 
 		$dest = $params['dst'];
@@ -702,7 +707,7 @@ class FileBackendTest extends MediaWikiTestCase {
 		// Combine the files into one
 		$status = $this->backend->concatenate( $params );
 		if ( $okStatus ) {
-			$this->assertEquals( array(), $status->errors,
+			$this->assertGoodStatus( $status,
 				"Creation of concat file at $dest succeeded without warnings ($backendName)." );
 			$this->assertEquals( true, $status->isOK(),
 				"Creation of concat file at $dest succeeded ($backendName)." );
@@ -802,7 +807,7 @@ class FileBackendTest extends MediaWikiTestCase {
 		if ( $alreadyExists ) {
 			$this->prepare( array( 'dir' => dirname( $path ) ) );
 			$status = $this->backend->create( array( 'dst' => $path, 'content' => $content ) );
-			$this->assertEquals( array(), $status->errors,
+			$this->assertGoodStatus( $status,
 				"Creation of file at $path succeeded ($backendName)." );
 
 			$size = $this->backend->getFileSize( array( 'src' => $path ) );
@@ -857,14 +862,14 @@ class FileBackendTest extends MediaWikiTestCase {
 		$this->tearDownFiles();
 	}
 
-	public function doTestGetFileContents( $source, $content ) {
+	private function doTestGetFileContents( $source, $content ) {
 		$backendName = $this->backendClass();
 
 		$this->prepare( array( 'dir' => dirname( $source ) ) );
 
 		$status = $this->backend->doOperation(
 			array( 'op' => 'create', 'content' => $content, 'dst' => $source ) );
-		$this->assertEquals( array(), $status->errors,
+		$this->assertGoodStatus( $status,
 			"Creation of file at $source succeeded ($backendName)." );
 		$this->assertEquals( true, $status->isOK(),
 			"Creation of file at $source succeeded with OK status ($backendName)." );
@@ -902,14 +907,14 @@ class FileBackendTest extends MediaWikiTestCase {
 		$this->tearDownFiles();
 	}
 
-	public function doTestGetLocalCopy( $source, $content ) {
+	private function doTestGetLocalCopy( $source, $content ) {
 		$backendName = $this->backendClass();
 
 		$this->prepare( array( 'dir' => dirname( $source ) ) );
 
 		$status = $this->backend->doOperation(
 			array( 'op' => 'create', 'content' => $content, 'dst' => $source ) );
-		$this->assertEquals( array(), $status->errors,
+		$this->assertGoodStatus( $status,
 			"Creation of file at $source succeeded ($backendName)." );
 
 		$tmpFile = $this->backend->getLocalCopy( array( 'src' => $source ) );
@@ -952,7 +957,7 @@ class FileBackendTest extends MediaWikiTestCase {
 
 		$status = $this->backend->doOperation(
 			array( 'op' => 'create', 'content' => $content, 'dst' => $source ) );
-		$this->assertEquals( array(), $status->errors,
+		$this->assertGoodStatus( $status,
 			"Creation of file at $source succeeded ($backendName)." );
 
 		$tmpFile = $this->backend->getLocalReference( array( 'src' => $source ) );
@@ -996,12 +1001,12 @@ class FileBackendTest extends MediaWikiTestCase {
 		);
 	}
 
-	function doTestPrepareAndClean( $path, $isOK ) {
+	private function doTestPrepareAndClean( $path, $isOK ) {
 		$backendName = $this->backendClass();
 
 		$status = $this->prepare( array( 'dir' => dirname( $path ) ) );
 		if ( $isOK ) {
-			$this->assertEquals( array(), $status->errors,
+			$this->assertGoodStatus( $status,
 				"Preparing dir $path succeeded without warnings ($backendName)." );
 			$this->assertEquals( true, $status->isOK(),
 				"Preparing dir $path succeeded ($backendName)." );
@@ -1012,7 +1017,7 @@ class FileBackendTest extends MediaWikiTestCase {
 
 		$status = $this->backend->clean( array( 'dir' => dirname( $path ) ) );
 		if ( $isOK ) {
-			$this->assertEquals( array(), $status->errors,
+			$this->assertGoodStatus( $status,
 				"Cleaning dir $path succeeded without warnings ($backendName)." );
 			$this->assertEquals( true, $status->isOK(),
 				"Cleaning dir $path succeeded ($backendName)." );
@@ -1052,7 +1057,7 @@ class FileBackendTest extends MediaWikiTestCase {
 		);
 		foreach ( $dirs as $dir ) {
 			$status = $this->prepare( array( 'dir' => $dir ) );
-			$this->assertEquals( array(), $status->errors,
+			$this->assertGoodStatus( $status,
 				"Preparing dir $dir succeeded without warnings ($backendName)." );
 		}
 
@@ -1065,7 +1070,7 @@ class FileBackendTest extends MediaWikiTestCase {
 
 		$status = $this->backend->clean(
 			array( 'dir' => "$base/unittest-cont1", 'recursive' => 1 ) );
-		$this->assertEquals( array(), $status->errors,
+		$this->assertGoodStatus( $status,
 			"Recursive cleaning of dir $dir succeeded without warnings ($backendName)." );
 
 		foreach ( $dirs as $dir ) {
@@ -1089,6 +1094,16 @@ class FileBackendTest extends MediaWikiTestCase {
 
 		$this->backend = $this->singleBackend;
 		$this->tearDownFiles();
+		$this->doTestDoOperations2();
+		$this->tearDownFiles();
+
+		$this->backend = $this->multiBackend;
+		$this->tearDownFiles();
+		$this->doTestDoOperations2();
+		$this->tearDownFiles();
+
+		$this->backend = $this->singleBackend;
+		$this->tearDownFiles();
 		$this->doTestDoOperationsFailing();
 		$this->tearDownFiles();
 
@@ -1096,11 +1111,9 @@ class FileBackendTest extends MediaWikiTestCase {
 		$this->tearDownFiles();
 		$this->doTestDoOperationsFailing();
 		$this->tearDownFiles();
-
-		// @TODO: test some cases where the ops should fail
 	}
 
-	function doTestDoOperations() {
+	private function doTestDoOperations() {
 		$base = $this->baseStorePath();
 
 		$fileA = "$base/unittest-cont1/a/b/fileA.txt";
@@ -1117,6 +1130,7 @@ class FileBackendTest extends MediaWikiTestCase {
 		$this->backend->create( array( 'dst' => $fileB, 'content' => $fileBContents ) );
 		$this->prepare( array( 'dir' => dirname( $fileC ) ) );
 		$this->backend->create( array( 'dst' => $fileC, 'content' => $fileCContents ) );
+		$this->prepare( array( 'dir' => dirname( $fileD ) ) );
 
 		$status = $this->backend->doOperations( array(
 			array( 'op' => 'copy', 'src' => $fileA, 'dst' => $fileC, 'overwrite' => 1 ),
@@ -1147,9 +1161,96 @@ class FileBackendTest extends MediaWikiTestCase {
 			// Does nothing
 		) );
 
-		$this->assertEquals( array(), $status->errors, "Operation batch succeeded" );
+		$this->assertGoodStatus( $status, "Operation batch succeeded" );
 		$this->assertEquals( true, $status->isOK(), "Operation batch succeeded" );
 		$this->assertEquals( 13, count( $status->success ),
+			"Operation batch has correct success array" );
+
+		$this->assertEquals( false, $this->backend->fileExists( array( 'src' => $fileA ) ),
+			"File does not exist at $fileA" );
+		$this->assertEquals( false, $this->backend->fileExists( array( 'src' => $fileB ) ),
+			"File does not exist at $fileB" );
+		$this->assertEquals( false, $this->backend->fileExists( array( 'src' => $fileD ) ),
+			"File does not exist at $fileD" );
+
+		$this->assertEquals( true, $this->backend->fileExists( array( 'src' => $fileC ) ),
+			"File exists at $fileC" );
+		$this->assertEquals( $fileBContents,
+			$this->backend->getFileContents( array( 'src' => $fileC ) ),
+			"Correct file contents of $fileC" );
+		$this->assertEquals( strlen( $fileBContents ),
+			$this->backend->getFileSize( array( 'src' => $fileC ) ),
+			"Correct file size of $fileC" );
+		$this->assertEquals( wfBaseConvert( sha1( $fileBContents ), 16, 36, 31 ),
+			$this->backend->getFileSha1Base36( array( 'src' => $fileC ) ),
+			"Correct file SHA-1 of $fileC" );
+	}
+
+	// concurrency orientated
+	function doTestDoOperations2() {
+		$base = $this->baseStorePath();
+
+		$fileAContents = '3tqtmoeatmn4wg4qe-mg3qt3 tq';
+		$fileBContents = 'g-jmq3gpqgt3qtg q3GT ';
+		$fileCContents = 'eigna[ogmewt 3qt g3qg flew[ag';
+
+		$tmpNameA = TempFSFile::factory( "unittests_", 'txt' )->getPath();
+		file_put_contents( $tmpNameA, $fileAContents );
+		$tmpNameB = TempFSFile::factory( "unittests_", 'txt' )->getPath();
+		file_put_contents( $tmpNameB, $fileBContents );
+		$tmpNameC = TempFSFile::factory( "unittests_", 'txt' )->getPath();
+		file_put_contents( $tmpNameC, $fileCContents );
+
+		$this->filesToPrune[] = $tmpNameA; # avoid file leaking
+		$this->filesToPrune[] = $tmpNameB; # avoid file leaking
+		$this->filesToPrune[] = $tmpNameC; # avoid file leaking
+
+		$fileA = "$base/unittest-cont1/a/b/fileA.txt";
+		$fileB = "$base/unittest-cont1/a/b/fileB.txt";
+		$fileC = "$base/unittest-cont1/a/b/fileC.txt";
+		$fileD = "$base/unittest-cont1/a/b/fileD.txt";
+
+		$this->prepare( array( 'dir' => dirname( $fileA ) ) );
+		$this->backend->create( array( 'dst' => $fileA, 'content' => $fileAContents ) );
+		$this->prepare( array( 'dir' => dirname( $fileB ) ) );
+		$this->prepare( array( 'dir' => dirname( $fileC ) ) );
+		$this->prepare( array( 'dir' => dirname( $fileD ) ) );
+
+		$status = $this->backend->doOperations( array(
+			array( 'op' => 'store', 'src' => $tmpNameA, 'dst' => $fileA, 'overwriteSame' => 1 ),
+			array( 'op' => 'store', 'src' => $tmpNameB, 'dst' => $fileB, 'overwrite' => 1 ),
+			array( 'op' => 'store', 'src' => $tmpNameC, 'dst' => $fileC, 'overwrite' => 1 ),
+			array( 'op' => 'copy', 'src' => $fileA, 'dst' => $fileC, 'overwrite' => 1 ),
+			// Now: A:<A>, B:<B>, C:<A>, D:<empty> (file:<orginal contents>)
+			array( 'op' => 'copy', 'src' => $fileC, 'dst' => $fileA, 'overwriteSame' => 1 ),
+			// Now: A:<A>, B:<B>, C:<A>, D:<empty>
+			array( 'op' => 'move', 'src' => $fileC, 'dst' => $fileD, 'overwrite' => 1 ),
+			// Now: A:<A>, B:<B>, C:<empty>, D:<A>
+			array( 'op' => 'move', 'src' => $fileB, 'dst' => $fileC ),
+			// Now: A:<A>, B:<empty>, C:<B>, D:<A>
+			array( 'op' => 'move', 'src' => $fileD, 'dst' => $fileA, 'overwriteSame' => 1 ),
+			// Now: A:<A>, B:<empty>, C:<B>, D:<empty>
+			array( 'op' => 'move', 'src' => $fileC, 'dst' => $fileA, 'overwrite' => 1 ),
+			// Now: A:<B>, B:<empty>, C:<empty>, D:<empty>
+			array( 'op' => 'copy', 'src' => $fileA, 'dst' => $fileC ),
+			// Now: A:<B>, B:<empty>, C:<B>, D:<empty>
+			array( 'op' => 'move', 'src' => $fileA, 'dst' => $fileC, 'overwriteSame' => 1 ),
+			// Now: A:<empty>, B:<empty>, C:<B>, D:<empty>
+			array( 'op' => 'copy', 'src' => $fileC, 'dst' => $fileC, 'overwrite' => 1 ),
+			// Does nothing
+			array( 'op' => 'copy', 'src' => $fileC, 'dst' => $fileC, 'overwriteSame' => 1 ),
+			// Does nothing
+			array( 'op' => 'move', 'src' => $fileC, 'dst' => $fileC, 'overwrite' => 1 ),
+			// Does nothing
+			array( 'op' => 'move', 'src' => $fileC, 'dst' => $fileC, 'overwriteSame' => 1 ),
+			// Does nothing
+			array( 'op' => 'null' ),
+			// Does nothing
+		) );
+
+		$this->assertGoodStatus( $status, "Operation batch succeeded" );
+		$this->assertEquals( true, $status->isOK(), "Operation batch succeeded" );
+		$this->assertEquals( 16, count( $status->success ),
 			"Operation batch has correct success array" );
 
 		$this->assertEquals( false, $this->backend->fileExists( array( 'src' => $fileA ) ),
@@ -1274,7 +1375,7 @@ class FileBackendTest extends MediaWikiTestCase {
 			$ops[] = array( 'op' => 'create', 'content' => 'xxy', 'dst' => $file );
 		}
 		$status = $this->backend->doOperations( $ops );
-		$this->assertEquals( array(), $status->errors,
+		$this->assertGoodStatus( $status,
 			"Creation of files succeeded ($backendName)." );
 		$this->assertEquals( true, $status->isOK(),
 			"Creation of files succeeded with OK status ($backendName)." );
@@ -1427,7 +1528,7 @@ class FileBackendTest extends MediaWikiTestCase {
 			$ops[] = array( 'op' => 'create', 'content' => 'xxy', 'dst' => $file );
 		}
 		$status = $this->backend->doOperations( $ops );
-		$this->assertEquals( array(), $status->errors,
+		$this->assertGoodStatus( $status,
 			"Creation of files succeeded ($backendName)." );
 		$this->assertEquals( true, $status->isOK(),
 			"Creation of files succeeded with OK status ($backendName)." );
@@ -1563,6 +1664,64 @@ class FileBackendTest extends MediaWikiTestCase {
 		foreach ( $iter as $iter ) {} // no errors
 	}
 
+	public function testLockCalls() {
+		$this->backend = $this->singleBackend;
+		$this->doTestLockCalls();
+	}
+
+	private function doTestLockCalls() {
+		$backendName = $this->backendClass();
+
+		for ( $i=0; $i<50; $i++ ) {
+			$paths = array(
+				"test1.txt",
+				"test2.txt",
+				"test3.txt",
+				"subdir1",
+				"subdir1", // duplicate
+				"subdir1/test1.txt",
+				"subdir1/test2.txt",
+				"subdir2",
+				"subdir2", // duplicate
+				"subdir2/test3.txt",
+				"subdir2/test4.txt",
+				"subdir2/subdir",
+				"subdir2/subdir/test1.txt",
+				"subdir2/subdir/test2.txt",
+				"subdir2/subdir/test3.txt",
+				"subdir2/subdir/test4.txt",
+				"subdir2/subdir/test5.txt",
+				"subdir2/subdir/sub",
+				"subdir2/subdir/sub/test0.txt",
+				"subdir2/subdir/sub/120-px-file.txt",
+			);
+
+			$status = $this->backend->lockFiles( $paths, LockManager::LOCK_EX );
+			$this->assertEquals( array(), $status->errors,
+				"Locking of files succeeded ($backendName)." );
+			$this->assertEquals( true, $status->isOK(),
+				"Locking of files succeeded with OK status ($backendName)." );
+
+			$status = $this->backend->lockFiles( $paths, LockManager::LOCK_SH );
+			$this->assertEquals( array(), $status->errors,
+				"Locking of files succeeded ($backendName)." );
+			$this->assertEquals( true, $status->isOK(),
+				"Locking of files succeeded with OK status ($backendName)." );
+
+			$status = $this->backend->unlockFiles( $paths, LockManager::LOCK_SH );
+			$this->assertEquals( array(), $status->errors,
+				"Locking of files succeeded ($backendName)." );
+			$this->assertEquals( true, $status->isOK(),
+				"Locking of files succeeded with OK status ($backendName)." );
+
+			$status = $this->backend->unlockFiles( $paths, LockManager::LOCK_EX );
+			$this->assertEquals( array(), $status->errors,
+				"Locking of files succeeded ($backendName)." );
+			$this->assertEquals( true, $status->isOK(),
+				"Locking of files succeeded with OK status ($backendName)." );
+		}
+	}
+
 	// test helper wrapper for backend prepare() function
 	private function prepare( array $params ) {
 		$this->dirsToPrune[] = $params['dir'];
@@ -1588,17 +1747,18 @@ class FileBackendTest extends MediaWikiTestCase {
 		$iter = $this->backend->getFileList( array( 'dir' => "$base/$container" ) );
 		if ( $iter ) {
 			foreach ( $iter as $file ) {
-				$this->backend->delete( array( 'src' => "$base/$container/$file" ), array( 'force' => 1 ) );
+				$this->backend->delete( array( 'src' => "$base/$container/$file" ),
+					array( 'force' => 1, 'nonLocking' => 1 ) );
 			}
 		}
 	}
 
 	private function recursiveClean( $dir ) {
-		do {
-			if ( !$this->backend->clean( array( 'dir' => $dir ) )->isOK() ) {
-				break;
-			}
-		} while ( $dir = FileBackend::parentStoragePath( $dir ) );
+		$this->backend->clean( array( 'dir' => $dir, 'recursive' => 1 ) );
+	}
+
+	function assertGoodStatus( $status, $msg ) {
+		$this->assertEquals( print_r( array(), 1 ), print_r( $status->errors, 1 ), $msg );
 	}
 
 	function tearDown() {

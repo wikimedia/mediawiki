@@ -105,7 +105,10 @@ class ApiQueryAllLinks extends ApiQueryGeneratorBase {
 		$this->addOption( 'LIMIT', $limit + 1 );
 
 		if ( !$params['unique'] ) {
-			$this->addOption( 'ORDER BY', 'pl_title, pl_from' );
+			$this->addOption( 'ORDER BY', array(
+				'pl_title',
+				'pl_from'
+			));
 		}
 
 		$res = $this->select( __METHOD__ );

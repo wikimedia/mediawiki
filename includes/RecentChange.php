@@ -1,5 +1,25 @@
 <?php
-
+/**
+ * Utility class for creating and accessing recent change entries.
+ *
+ * This program is free software; you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation; either version 2 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License along
+ * with this program; if not, write to the Free Software Foundation, Inc.,
+ * 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
+ * http://www.gnu.org/copyleft/gpl.html
+ *
+ * @file
+ */
+ 
 /**
  * Utility class for creating new RC entries
  *
@@ -658,7 +678,9 @@ class RecentChange {
 			$wgCanonicalServer, $wgScript;
 
 		if( $this->mAttribs['rc_type'] == RC_LOG ) {
-			$titleObj = SpecialPage::getTitleFor( 'Log', $this->mAttribs['rc_log_type'] );
+			// Don't use SpecialPage::getTitleFor, backwards compatibility with
+			// IRC API which expects "Log".
+			$titleObj = Title::newFromText( 'Log/' . $this->mAttribs['rc_log_type'], NS_SPECIAL );
 		} else {
 			$titleObj =& $this->getTitle();
 		}

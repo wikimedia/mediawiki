@@ -185,7 +185,7 @@ class ApiQueryContributions extends ApiQueryBase {
 		if ( !is_null( $show ) ) {
 			$show = array_flip( $show );
 			if ( ( isset( $show['minor'] ) && isset( $show['!minor'] ) )
-			   		|| ( isset( $show['patrolled'] ) && isset( $show['!patrolled'] ) ) ) {
+					|| ( isset( $show['patrolled'] ) && isset( $show['!patrolled'] ) ) ) {
 				$this->dieUsageMsg( 'show' );
 			}
 

@@ -1,5 +1,7 @@
 <?php
 /**
+ * Representation a title within %MediaWiki.
+ *
  * See title.txt
  *
  * This program is free software; you can redistribute it and/or modify
@@ -84,6 +86,7 @@ class Title {
 	var $mRedirect = null;            // /< Is the article at this title a redirect?
 	var $mNotificationTimestamp = array(); // /< Associative array of user ID -> timestamp/false
 	var $mBacklinkCache = null;       // /< Cache of links to this title
+	var $mHasSubpage;                 // /< Whether a page has any subpages
 	// @}
 
 
@@ -120,7 +123,8 @@ class Title {
 	 *   fied by a prefix.  If you want to force a specific namespace even if
 	 *   $text might begin with a namespace prefix, use makeTitle() or
 	 *   makeTitleSafe().
-	 * @return Title, or null on an error.
+	 * @throws MWException
+	 * @return Title|null - Title or null on an error.
 	 */
 	public static function newFromText( $text, $defaultNamespace = NS_MAIN ) {
 		if ( is_object( $text ) ) {
@@ -180,13 +184,12 @@ class Title {
 	 * @return Title the new object, or NULL on an error
 	 */
 	public static function newFromURL( $url ) {
-		global $wgLegalTitleChars;
 		$t = new Title();
 
 		# For compatibility with old buggy URLs. "+" is usually not valid in titles,
 		# but some URLs used it as a space replacement and they still come
 		# from some external search tools.
-		if ( strpos( $wgLegalTitleChars, '+' ) === false ) {
+		if ( strpos( self::legalChars(), '+' ) === false ) {
 			$url = str_replace( '+', ' ', $url );
 		}
 
@@ -889,6 +892,7 @@ class Title {
 	 * This is MUCH simpler than individually testing for equivilance
 	 * against both NS_USER and NS_USER_TALK, and is also forward compatible.
 	 * @since 1.19
+	 * @param $ns int
 	 * @return bool
 	 */
 	public function hasSubjectNamespace( $ns ) {
@@ -1266,6 +1270,8 @@ class Title {
 	 * andthe wfArrayToCGI moved to getLocalURL();
 	 *
 	 * @since 1.19 (r105919)
+	 * @param $query
+	 * @param $query2 bool
 	 * @return String
 	 */
 	private static function fixUrlQueryArgs( $query, $query2 = false ) {
@@ -1448,6 +1454,8 @@ class Title {
 	 * See getLocalURL for the arguments.
 	 *
 	 * @see self::getLocalURL
+	 * @param $query string
+	 * @param $query2 bool|string
 	 * @return String the URL
 	 */
 	public function escapeLocalURL( $query = '', $query2 = false ) {
@@ -2512,8 +2520,9 @@ class Title {
 	/**
 	 * Get the expiry time for the restriction against a given action
 	 *
+	 * @param $action
 	 * @return String|Bool 14-char timestamp, or 'infinity' if the page is protected forever
-	 * 	or not protected at all, or false if the action is not recognised.
+	 *     or not protected at all, or false if the action is not recognised.
 	 */
 	public function getRestrictionExpiry( $action ) {
 		if ( !$this->mRestrictionsLoaded ) {
@@ -3955,7 +3964,7 @@ class Title {
 	 */
 	public function getPreviousRevisionID( $revId, $flags = 0 ) {
 		$db = ( $flags & self::GAID_FOR_UPDATE ) ? wfGetDB( DB_MASTER ) : wfGetDB( DB_SLAVE );
-		return $db->selectField( 'revision', 'rev_id',
+		$revId = $db->selectField( 'revision', 'rev_id',
 			array(
 				'rev_page' => $this->getArticleID( $flags ),
 				'rev_id < ' . intval( $revId )
@@ -3963,6 +3972,12 @@ class Title {
 			__METHOD__,
 			array( 'ORDER BY' => 'rev_id DESC' )
 		);
+
+		if ( $revId === false ) {
+			return false;
+		} else {
+			return intval( $revId );
+		}
 	}
 
 	/**
@@ -3974,7 +3989,7 @@ class Title {
 	 */
 	public function getNextRevisionID( $revId, $flags = 0 ) {
 		$db = ( $flags & self::GAID_FOR_UPDATE ) ? wfGetDB( DB_MASTER ) : wfGetDB( DB_SLAVE );
-		return $db->selectField( 'revision', 'rev_id',
+		$revId = $db->selectField( 'revision', 'rev_id',
 			array(
 				'rev_page' => $this->getArticleID( $flags ),
 				'rev_id > ' . intval( $revId )
@@ -3982,6 +3997,12 @@ class Title {
 			__METHOD__,
 			array( 'ORDER BY' => 'rev_id' )
 		);
+
+		if ( $revId === false ) {
+			return false;
+		} else {
+			return intval( $revId );
+		}
 	}
 
 	/**
@@ -4354,9 +4375,10 @@ class Title {
 		$dbr = wfGetDB( DB_SLAVE );
 		$this->mNotificationTimestamp[$uid] = $dbr->selectField( 'watchlist',
 			'wl_notificationtimestamp',
-			array( 'wl_namespace' => $this->getNamespace(),
+			array(
+				'wl_user' => $user->getId(),
+				'wl_namespace' => $this->getNamespace(),
 				'wl_title' => $this->getDBkey(),
-				'wl_user' => $user->getId()
 			),
 			__METHOD__
 		);
@@ -4511,7 +4533,7 @@ class Title {
 	 * $wgLang (such as special pages, which are in the user language).
 	 *
 	 * @since 1.18
-	 * @return object Language
+	 * @return Language
 	 */
 	public function getPageLanguage() {
 		global $wgLang;

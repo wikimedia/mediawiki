@@ -8,6 +8,23 @@
  */
 
 /**
+ * Base class for all file backends.
+ *
+ * This program is free software; you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation; either version 2 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License along
+ * with this program; if not, write to the Free Software Foundation, Inc.,
+ * 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
+ * http://www.gnu.org/copyleft/gpl.html
+ *
  * @file
  * @ingroup FileBackend
  * @author Aaron Schulz
@@ -43,6 +60,9 @@ abstract class FileBackend {
 	protected $name; // string; unique backend name
 	protected $wikiId; // string; unique wiki name
 	protected $readOnly; // string; read-only explanation message
+	protected $parallelize; // string; when to do operations in parallel
+	protected $concurrency; // integer; how many operations can be done in parallel
+
 	/** @var LockManager */
 	protected $lockManager;
 	/** @var FileJournal */
@@ -63,6 +83,9 @@ abstract class FileBackend {
 	 *                     Journals simply log changes to files stored in the backend.
 	 *     'readOnly'    : Write operations are disallowed if this is a non-empty string.
 	 *                     It should be an explanation for the backend being read-only.
+	 *     'parallelize' : When to do file operations in parallel (when possible).
+	 *                     Allowed values are "implicit", "explicit" and "off".
+	 *     'concurrency' : How many file operations can be done in parallel.
 	 *
 	 * @param $config Array
 	 */
@@ -83,6 +106,12 @@ abstract class FileBackend {
 		$this->readOnly = isset( $config['readOnly'] )
 			? (string)$config['readOnly']
 			: '';
+		$this->parallelize = isset( $config['parallelize'] )
+			? (string)$config['parallelize']
+			: 'off';
+		$this->concurrency = isset( $config['concurrency'] )
+			? (int)$config['concurrency']
+			: 50;
 	}
 
 	/**
@@ -187,6 +216,7 @@ abstract class FileBackend {
 	 *                         This has no effect unless the 'force' flag is set.
 	 * 'nonJournaled'        : Don't log this operation batch in the file journal.
 	 *                         This limits the ability of recovery scripts.
+	 * 'parallelize'         : Try to do operations in parallel when possible.
 	 *
 	 * Remarks on locking:
 	 * File system paths given to operations should refer to files that are
@@ -211,6 +241,16 @@ abstract class FileBackend {
 		if ( empty( $opts['force'] ) ) { // sanity
 			unset( $opts['nonLocking'] );
 			unset( $opts['allowStale'] );
+		}
+		$opts['concurrency'] = 1; // off
+		if ( $this->parallelize === 'implicit' ) {
+			if ( !isset( $opts['parallelize'] ) || $opts['parallelize'] ) {
+				$opts['concurrency'] = $this->concurrency;
+			}
+		} elseif ( $this->parallelize === 'explicit' ) {
+			if ( !empty( $opts['parallelize'] ) ) {
+				$opts['concurrency'] = $this->concurrency;
+			}
 		}
 		return $this->doOperationsInternal( $ops, $opts );
 	}

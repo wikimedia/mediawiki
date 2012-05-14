@@ -371,7 +371,9 @@ CREATE TABLE ipblocks (
   ipb_range_end         VARCHAR(1024),
   ipb_deleted           SMALLINT NOT NULL DEFAULT 0,
   ipb_block_email       SMALLINT NOT NULL DEFAULT 0,
-  ipb_allow_usertalk    SMALLINT NOT NULL DEFAULT 0
+  ipb_allow_usertalk    SMALLINT NOT NULL DEFAULT 0,
+  ipb_parent_block_id             INTEGER DEFAULT NULL
+  -- REFERENCES ipblocks(ipb_id) ON DELETE SET NULL
 
 );
 CREATE INDEX ipb_address

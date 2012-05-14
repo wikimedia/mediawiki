@@ -763,7 +763,6 @@ Cunsulthà lu [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} rigi
 
 # Diffs
 'history-title' => 'Cronologia di li mudìfigghi di "$1"',
-'difference' => '(Diffarènzia i li ribisioni)',
 'lineno' => 'Riga $1:',
 'compareselectedversions' => 'Cunfronta li versioni sciubaraddi',
 'editundo' => 'annulla',

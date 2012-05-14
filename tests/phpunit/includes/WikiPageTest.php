@@ -9,6 +9,27 @@ class WikiPageTest extends MediaWikiTestCase {
 
 	var $pages_to_delete;
 
+	function  __construct( $name = null, array $data = array(), $dataName = '' ) {
+		parent::__construct( $name, $data, $dataName );
+
+		$this->tablesUsed = array_merge ( $this->tablesUsed,
+		                                  array( 'page',
+		                                       'revision',
+		                                       'text',
+
+		                                       'recentchanges',
+		                                       'logging',
+
+		                                       'page_props',
+		                                       'pagelinks',
+		                                       'categorylinks',
+		                                       'langlinks',
+		                                       'externallinks',
+		                                       'imagelinks',
+		                                       'templatelinks',
+		                                       'iwlinks' ) );
+	}
+	
 	public function setUp() {
 		$this->pages_to_delete = array();
 	}
@@ -90,7 +111,7 @@ class WikiPageTest extends MediaWikiTestCase {
 
 		$this->assertEquals( 2, $n, 'pagelinks should contain two links from the page' );
 	}
-
+	
 	public function testDoEdit() {
 		$title = Title::newFromText( "WikiPageTest_testDoEdit" );
 
@@ -158,7 +179,7 @@ class WikiPageTest extends MediaWikiTestCase {
 		$page = new WikiPage( $page->getTitle() );
 		$this->assertTrue( $content->equals( $page->getContent() ) );
 	}
-
+	
 	public function testDoDeleteArticle() {
 		$page = $this->createPage( "WikiPageTest_testDoDeleteArticle", "[[original text]] foo" );
 		$id = $page->getId();
@@ -166,7 +187,6 @@ class WikiPageTest extends MediaWikiTestCase {
 		$page->doDeleteArticle( "testing deletion" );
 
 		$this->assertFalse( $page->exists(), "WikiPage::exists should return false after page was deleted" );
-
 		$this->assertNull( $page->getContent(), "WikiPage::getContent should return null after page was deleted" );
 		$this->assertFalse( $page->getText(), "WikiPage::getText should return false after page was deleted" );
 
@@ -311,7 +331,7 @@ class WikiPageTest extends MediaWikiTestCase {
 		# sanity check, because this test seems to fail for no reason for some people.
 		$c = $page->getContent();
 		$this->assertEquals( 'WikitextContent', get_class( $c ) );
-
+		
 		# now, test the actual redirect
 		$t = $page->getRedirectTarget();
 		$this->assertEquals( $target, is_null( $t ) ? null : $t->getPrefixedText() );
@@ -542,7 +562,7 @@ more stuff
 
 		$this->assertEquals( $expected, is_null( $c ) ? null : trim( $c->getNativeData() ) );
 	}
-
+	
 	/* @FIXME: fix this!
 	public function testGetUndoText() {
 		global $wgDiff3;
@@ -595,11 +615,9 @@ more stuff
 	*/
 
 	/**
-	 * @group broken
-	 *
-	 * ^--- marked as broken, because it fails in jenkins, though it passes locally for everyone. or so it seems.
+	 * @todo FIXME: this is a better rollback test than the one below, but it keeps failing in jenkins for some reason.
 	 */
-	public function testDoRollback() {
+	public function broken_testDoRollback() {
 		$admin = new User();
 		$admin->setName("Admin");
 
@@ -646,6 +664,38 @@ more stuff
 		$page = new WikiPage( $page->getTitle() );
 		$this->assertEquals( $rev2->getSha1(), $page->getRevision()->getSha1(), "rollback did not revert to the correct revision" );
 		$this->assertEquals( "one\n\ntwo", $page->getContent()->getNativeData() );
+	}
+
+	/**
+	 * @todo FIXME: the above rollback test is better, but it keeps failing in jenkins for some reason.
+	 */
+	public function testDoRollback() {
+		$admin = new User();
+		$admin->setName("Admin");
+
+		$text = "one";
+		$page = $this->newPage( "WikiPageTest_testDoRollback" );
+		$page->doEditContent( ContentHandler::makeContent( $text, $page->getTitle() ), "section one", EDIT_NEW, false, $admin );
+		$rev1 = $page->getRevision();
+
+		$user1 = new User();
+		$user1->setName( "127.0.1.11" );
+		$text .= "\n\ntwo";
+		$page = new WikiPage( $page->getTitle() );
+		$page->doEditContent( ContentHandler::makeContent( $text, $page->getTitle() ), "adding section two", 0, false, $user1 );
+
+		# now, try the rollback
+		$admin->addGroup( "sysop" ); #XXX: make the test user a sysop...
+		$token = $admin->getEditToken( array( $page->getTitle()->getPrefixedText(), $user1->getName() ), null );
+		$errors = $page->doRollback( $user1->getName(), "testing revert", $token, false, $details, $admin );
+
+		if ( $errors ) {
+			$this->fail( "Rollback failed:\n" . print_r( $errors, true ) . ";\n" . print_r( $details, true ) );
+		}
+
+		$page = new WikiPage( $page->getTitle() );
+		$this->assertEquals( $rev1->getSha1(), $page->getRevision()->getSha1(), "rollback did not revert to the correct revision" );
+		$this->assertEquals( "one", $page->getContent()->getNativeData() );
 	}
 
 	public function dataGetAutosummary( ) {

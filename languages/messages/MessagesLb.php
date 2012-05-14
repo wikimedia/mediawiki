@@ -552,6 +552,8 @@ $2',
 'customjsprotected' => "Dir hutt net d'Recht dës JavaScript-Säit z'änneren, well dorop déi perséinlech Astellunge vun engem anere Benotzer gespäichert sinn.",
 'ns-specialprotected' => 'Spezialsäite kënnen net verännert ginn.',
 'titleprotected' => "Eng Säit mat dësem Numm kann net ugeluecht ginn. Dës Spär gouf vum [[User:$1|$1]] gemaach deen als Grond ''$2'' uginn huet.",
+'invalidtitle-knownnamespace' => 'Net valabelen Titel mam Nummraum "$2" a mam Text "$3"',
+'invalidtitle-unknownnamespace' => 'Net valabelen Titel mat der onbekannter Nummraum-Zuel $1 a mam Text "$2"',
 
 # Virus scanner
 'virus-badscanner' => "Schlecht Configuratioun: onbekannte  Virescanner: ''$1''",
@@ -1102,7 +1104,8 @@ Denkt w.e.g drunn datt d'Navigatiounslinken d'Wiel vun de Versiounen nees zréck
 
 # Diffs
 'history-title' => 'Versiounshistorique vun „$1“',
-'difference' => '(Ennerscheed tëscht Versiounen)',
+'difference-title' => 'Ënnerscheed tëschent de Versioune vun "$1"',
+'difference-title-multipage' => 'Ënnerscheed tëschent de Säiten "$1" a(n) "$2"',
 'difference-multipage' => '(Ënnerscheed tëschent Säiten)',
 'lineno' => 'Linn $1:',
 'compareselectedversions' => 'Ausgewielte Versioune vergläichen',
@@ -1652,6 +1655,7 @@ Wann de Problem weider besteet, dann un de [[Special:ListUsers/sysop|Administrat
 'backend-fail-closetemp' => 'Den temporäre Fichier konnt net zougemaach ginn.',
 'backend-fail-read' => 'De Fichier $1 konnt net geliest ginn.',
 'backend-fail-create' => 'De Fichier $1 konnt net ugeluecht ginn.',
+'backend-fail-maxsize' => 'De Fichier $1 konnt net generéiert gi well e méi grouss ass wéi {{PLURAL:$2|ee Byte|$2 Byten}}.',
 'backend-fail-readonly' => 'De Späicher-Backend "$1" kann elo nëmme geliest ginn (read-only). De Grond deen ugi gouf war: "$2"',
 
 # Lock manager
@@ -1984,6 +1988,8 @@ Dir kënnt d'Siche limitéieren wann Dir e Log-Typ, e Benotzernumm (case-senisit
 'allpages-hide-redirects' => 'Viruleedunge verstoppen',
 
 # SpecialCachedPage
+'cachedspecial-viewing-cached-ttl' => 'Dir gesitt eng Versioun aus dem Tëschespäicher (cache) vun dëser Säit, déi bis zu $1 al ka sinn.',
+'cachedspecial-viewing-cached-ts' => 'Dir gesitt eng Versioun vun dëser Säit aus dem Tëschespäicher (cache), déi eventuell net méi aktuell ass.',
 'cachedspecial-refresh-now' => 'Déi rezentst weisen.',
 
 # Special:Categories
@@ -3532,6 +3538,8 @@ Dir misst eng [{{SERVER}}{{SCRIPTPATH}}/COPYING Kopie vun der GNU General Public
 'version-software' => 'Installéiert Software',
 'version-software-product' => 'Produkt',
 'version-software-version' => 'Versioun',
+'version-entrypoints' => 'URLe vun Agangspunkten',
+'version-entrypoints-header-entrypoint' => 'Agangspunkt',
 'version-entrypoints-header-url' => 'URL',
 
 # Special:FilePath

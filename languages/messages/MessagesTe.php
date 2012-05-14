@@ -1060,7 +1060,6 @@ $1",
 
 # Diffs
 'history-title' => '"$1" కూర్పుల చరితం',
-'difference' => '(సంచికల మధ్య తేడా)',
 'difference-multipage' => '(పేజీల మధ్య తేడా)',
 'lineno' => 'పంక్తి $1:',
 'compareselectedversions' => 'ఎంచుకున్న సంచికలను పోల్చిచూడు',

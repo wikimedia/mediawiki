@@ -1031,7 +1031,6 @@ Tazama [[Special:BlockList|orodha ya uzuio wa IP]] kuona orodha ya zuio zilizopo
 
 # Diffs
 'history-title' => 'Historia ya mapitio ya "$1"',
-'difference' => '(Tofauti baina ya mapitio)',
 'difference-multipage' => '(Tofauti kati ya kurasa)',
 'lineno' => 'Mstari $1:',
 'compareselectedversions' => 'Linganisha mapitio mawili uliyochagua',

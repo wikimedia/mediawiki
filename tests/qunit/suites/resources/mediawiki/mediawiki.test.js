@@ -15,15 +15,16 @@ test( '-- Initial check', function() {
 });
 
 test( 'mw.Map', function() {
+	var arry, conf, funky, globalConf, nummy, someValues;
 	expect(17);
 
 	ok( mw.Map, 'mw.Map defined' );
 
-	var	conf = new mw.Map(),
-		// Dummy variables
-		funky = function() {},
-		arry = [],
-		nummy = 7;
+	conf = new mw.Map();
+	// Dummy variables
+	funky = function () {};
+	arry = [];
+	nummy = 7;
 
 	// Tests for input validation
 	strictEqual( conf.get( 'inexistantKey' ), null, 'Map.get returns null if selection was a string and the key was not found' );
@@ -36,7 +37,7 @@ test( 'mw.Map', function() {
 	strictEqual( conf.get( funky ), null, 'Map.get ruturns null if selection was invalid (Function)' );
 
 	// Multiple values at once
-	var someValues = {
+	someValues = {
 		'foo': 'bar',
 		'lorem': 'ipsum',
 		'MediaWiki': true
@@ -62,7 +63,7 @@ test( 'mw.Map', function() {
 
 	ok( false === 'globalMapChecker' in window, 'new mw.Map did not store its values in the global window object by default' );
 
-	var globalConf = new mw.Map( true );
+	globalConf = new mw.Map( true );
 	globalConf.set( 'anotherGlobalMapChecker', 'Hello' );
 
 	ok( 'anotherGlobalMapChecker' in window, 'new mw.Map( true ) did store its values in the global window object' );
@@ -80,13 +81,14 @@ test( 'mw.config', function() {
 });
 
 test( 'mw.message & mw.messages', function() {
+	var goodbye, hello, pluralMessage;
 	expect(20);
 
 	ok( mw.messages, 'messages defined' );
 	ok( mw.messages instanceof mw.Map, 'mw.messages instance of mw.Map' );
 	ok( mw.messages.set( 'hello', 'Hello <b>awesome</b> world' ), 'mw.messages.set: Register' );
 
-	var hello = mw.message( 'hello' );
+	hello = mw.message( 'hello' );
 
 	equal( hello.format, 'plain', 'Message property "format" defaults to "plain"' );
 	strictEqual( hello.map, mw.messages, 'Message property "map" defaults to the global instance in mw.messages' );
@@ -110,7 +112,7 @@ test( 'mw.message & mw.messages', function() {
 
 	strictEqual( hello.exists(), true, 'Message.exists returns true for existing messages' );
 
-	var goodbye = mw.message( 'goodbye' );
+	goodbye = mw.message( 'goodbye' );
 	strictEqual( goodbye.exists(), false, 'Message.exists returns false for nonexistent messages' );
 
 	equal( goodbye.plain(), '<goodbye>', 'Message.toString returns plain <key> if format is "plain" and key does not exist' );
@@ -118,7 +120,7 @@ test( 'mw.message & mw.messages', function() {
 	equal( goodbye.escaped(), '&lt;goodbye&gt;', 'Message.toString returns properly escaped &lt;key&gt; if format is "escaped" and key does not exist' );
 
 	ok( mw.messages.set( 'pluraltestmsg', 'There {{PLURAL:$1|is|are}} $1 {{PLURAL:$1|result|results}}' ), 'mw.messages.set: Register' );
-	var pluralMessage = mw.message( 'pluraltestmsg' , 6 );
+	pluralMessage = mw.message( 'pluraltestmsg' , 6 );
 	equal( pluralMessage.plain(), 'There are 6 results', 'plural get resolved when format is plain' );
 	equal( pluralMessage.parse(), 'There are 6 results', 'plural get resolved when format is parse' );
 
@@ -144,9 +146,8 @@ test( 'mw.msg', function() {
 });
 
 test( 'mw.loader', function() {
-	expect(2);
-
 	var isAwesomeDone;
+	expect(2);
 
 	// Async ahead
 	stop();
@@ -173,46 +174,83 @@ test( 'mw.loader', function() {
 });
 
 test( 'mw.loader.implement', function () {
-	expect(5 - 2);
-
-	var isJsExecuted, $element;
+	var isJsExecuted, $element, styleTestUrl;
+	expect(5);
 
 	// Async ahead
 	stop();
 
+	styleTestUrl = QUnit.fixurl(
+		mw.config.get( 'wgScriptPath' )
+		+ '/tests/qunit/data/styleTest.css.php?'
+		+ $.param({
+			selector: '.mw-test-loaderimplement',
+			prop: 'float',
+			val: 'right'
+		})
+	);
+
 	mw.loader.implement(
 		'test.implement',
 		function () {
-			start();
+			var styleTestTimeout, styleTestStart, styleTestSince;
 
 			strictEqual( isJsExecuted, undefined, 'javascript not executed multiple times' );
 			isJsExecuted = true;
 
 			equal( mw.loader.getState( 'test.implement' ), 'loaded', 'module state is "loaded" while implement() is executing javascript' );
-			
+
 			$element = $( '<div class="mw-test-loaderimplement">Foo bar</div>' ).appendTo( '#qunit-fixture' );
 
-			// @broken: equal( $element.css( 'text-align' ),'center', 'CSS stylesheet was applied in time. ("text-align: center")' );
+			equal( mw.msg( 'test-foobar' ), 'Hello Foobar, $1!', 'Messages are loaded before javascript execution' );
 
-			// Marked broken due to a bug in qunit/index.html, via Special:JavaScriptTest/qunit it works fine
+			// The @import test. This is, in a way, also an open bug for ResourceLoader
+			// ("execute js after styles are loaded"), but browsers don't offer a way to
+			// get a callback from when a stylesheet is loaded (that is, including any
+			// @import rules inside).
+			// To work around this, we'll have a little time loop to check if the styles
+			// apply.
+			// Note: This test originally used new Image() and onerror to get a callback
+			// when the url is loaded, but that is fragile since it doesn't monitor the
+			// same request as the css @import, and Safari 4 has issues with
+			// onerror/onload not being fired at all in weird cases like this.
 
-			// CSS @import is easily broken when concatenating stylesheets (bug 34669)
-			// @broken: equal( $element.css( 'float' ), 'right', 'CSS stylesheet was applied in time via @import (bug 34669). ("float: right")' );
+			styleTestTimeout = QUnit.config.testTimeout || 5000; // milliseconds
 
-			equal( mw.msg( 'test-foobar' ), 'Hello Foobar, $1!', 'Messages are loaded in time' );
-		
+			function isCssImportApplied() {
+				return $element.css( 'float' ) === 'right';
+			}
+
+			function styleTestLoop() {
+				styleTestSince = new Date().getTime() - styleTestStart;
+				// If it is passing or if we timed out, run the real test and stop the loop
+				if ( isCssImportApplied() || styleTestSince > styleTestTimeout ) {
+					equal( $element.css( 'float' ), 'right',
+						'CSS stylesheet via @import was applied (after ' + styleTestSince + 'ms) (bug 34669). ("float: right")'
+					);
+
+					equal( $element.css( 'text-align' ),'center',
+						'CSS styles after the @import are working ("text-align: center")'
+					);
+
+					// Async done
+					start();
+
+					return;
+				}
+				// Otherwise, keep polling
+				setTimeout( styleTestLoop, 100 );
+			}
+
+			// Start the loop
+			styleTestStart = new Date().getTime();
+			styleTestLoop();
 		},
 		{
 			"all": "@import url('"
-				+ QUnit.fixurl( mw.config.get( 'wgScriptPath' )
-				+ '/tests/qunit/data/styleTest.css.php?'
-				+ $.param({
-					selector: '.mw-test-loaderimplement',
-					prop: 'float',
-					val: 'right'
-				}) )
+				+ styleTestUrl
 				+ "');\n"
-				+ '.mw-test-loaderimplement  { text-align: center; }'
+				+ '.mw-test-loaderimplement { text-align: center; }'
 		},
 		{
 			"test-foobar": "Hello Foobar, $1!"
@@ -222,6 +260,129 @@ test( 'mw.loader.implement', function () {
 	mw.loader.load( 'test.implement' );
 
 });
+
+test( 'mw.loader erroneous indirect dependency', function() {
+	expect( 3 );
+	mw.loader.register( [
+		['test.module1', '0'],
+		['test.module2', '0', ['test.module1']],
+		['test.module3', '0', ['test.module2']]
+	] );
+	mw.loader.implement( 'test.module1', function() { throw new Error( 'expected' ); }, {}, {} );
+	strictEqual( mw.loader.getState( 'test.module1' ), 'error', 'Expected "error" state for test.module1' );
+	strictEqual( mw.loader.getState( 'test.module2' ), 'error', 'Expected "error" state for test.module2' );
+	strictEqual( mw.loader.getState( 'test.module3' ), 'error', 'Expected "error" state for test.module3' );
+} );
+
+test( 'mw.loader out-of-order implementation', function() {
+	expect( 9 );
+	mw.loader.register( [
+		['test.module4', '0'],
+		['test.module5', '0', ['test.module4']],
+		['test.module6', '0', ['test.module5']]
+	] );
+	mw.loader.implement( 'test.module4', function() {}, {}, {} );
+	strictEqual( mw.loader.getState( 'test.module4' ), 'ready', 'Expected "ready" state for test.module4' );
+	strictEqual( mw.loader.getState( 'test.module5' ), 'registered', 'Expected "registered" state for test.module5' );
+	strictEqual( mw.loader.getState( 'test.module6' ), 'registered', 'Expected "registered" state for test.module6' );
+	mw.loader.implement( 'test.module6', function() {}, {}, {} );
+	strictEqual( mw.loader.getState( 'test.module4' ), 'ready', 'Expected "ready" state for test.module4' );
+	strictEqual( mw.loader.getState( 'test.module5' ), 'registered', 'Expected "registered" state for test.module5' );
+	strictEqual( mw.loader.getState( 'test.module6' ), 'loaded', 'Expected "loaded" state for test.module6' );
+	mw.loader.implement( 'test.module5', function() {}, {}, {} );
+	strictEqual( mw.loader.getState( 'test.module4' ), 'ready', 'Expected "ready" state for test.module4' );
+	strictEqual( mw.loader.getState( 'test.module5' ), 'ready', 'Expected "ready" state for test.module5' );
+	strictEqual( mw.loader.getState( 'test.module6' ), 'ready', 'Expected "ready" state for test.module6' );
+} );
+
+test( 'mw.loader missing dependency', function() {
+	expect( 13 );
+	mw.loader.register( [
+		['test.module7', '0'],
+		['test.module8', '0', ['test.module7']],
+		['test.module9', '0', ['test.module8']]
+	] );
+	mw.loader.implement( 'test.module8', function() {}, {}, {} );
+	strictEqual( mw.loader.getState( 'test.module7' ), 'registered', 'Expected "registered" state for test.module7' );
+	strictEqual( mw.loader.getState( 'test.module8' ), 'loaded', 'Expected "loaded" state for test.module8' );
+	strictEqual( mw.loader.getState( 'test.module9' ), 'registered', 'Expected "registered" state for test.module9' );
+	mw.loader.state( 'test.module7', 'missing' );
+	strictEqual( mw.loader.getState( 'test.module7' ), 'missing', 'Expected "missing" state for test.module7' );
+	strictEqual( mw.loader.getState( 'test.module8' ), 'error', 'Expected "error" state for test.module8' );
+	strictEqual( mw.loader.getState( 'test.module9' ), 'error', 'Expected "error" state for test.module9' );
+	mw.loader.implement( 'test.module9', function() {}, {}, {} );
+	strictEqual( mw.loader.getState( 'test.module7' ), 'missing', 'Expected "missing" state for test.module7' );
+	strictEqual( mw.loader.getState( 'test.module8' ), 'error', 'Expected "error" state for test.module8' );
+	strictEqual( mw.loader.getState( 'test.module9' ), 'error', 'Expected "error" state for test.module9' );
+	mw.loader.using(
+		['test.module7'],
+		function() {
+			ok( false, "Success fired despite missing dependency" );
+			ok( true , "QUnit expected() count dummy" );
+		},
+		function( e, dependencies ) {
+			strictEqual( $.isArray( dependencies ), true, 'Expected array of dependencies' );
+			deepEqual( dependencies, ['test.module7'], 'Error callback called with module test.module7' );
+		}
+	);
+	mw.loader.using(
+		['test.module9'],
+		function() {
+			ok( false, "Success fired despite missing dependency" );
+			ok( true , "QUnit expected() count dummy" );
+		},
+		function( e, dependencies ) {
+			strictEqual( $.isArray( dependencies ), true, 'Expected array of dependencies' );
+			dependencies.sort();
+			deepEqual(
+				dependencies,
+				['test.module7', 'test.module8', 'test.module9'],
+				'Error callback called with all three modules as dependencies'
+			);
+		}
+	);
+} );
+
+test( 'mw.loader real missing dependency', function() {
+	expect( 6 );
+
+	mw.loader.addSource(
+		'test',
+		{'loadScript' : QUnit.fixurl( mw.config.get( 'wgScriptPath' ) + '/tests/qunit/data/testloader.php' )}
+	);
+	mw.loader.register( [
+		['test.missing', '0', [], null, 'test'], ['test.missing2', '0', [], null, 'test'],
+		['test.use_missing', '0', ['test.missing'], null, 'test'],
+		['test.use_missing2', '0', ['test.missing2'], null, 'test']
+	] );
+
+	stop();
+	// Asynch ahead
+
+	mw.loader.load( ['test.use_missing'] );
+
+	function verifyModuleStates() {
+		strictEqual( mw.loader.getState( 'test.missing' ), 'missing', 'Module "test.missing" must have state "missing"' );
+		strictEqual( mw.loader.getState( 'test.missing2' ), 'missing', 'Module "test.missing2" must have state "missing"' );
+		strictEqual( mw.loader.getState( 'test.use_missing' ), 'error', 'Module "test.use_missing" must have state "error"' );
+		strictEqual( mw.loader.getState( 'test.use_missing2' ), 'error', 'Module "test.use_missing2" must have state "error"' );
+	}
+
+	mw.loader.using( ['test.use_missing2'],
+		function() {
+			start();
+			ok( false, "Success called wrongly." );
+			ok( true , "QUnit expected() count dummy" );
+			verifyModuleStates();
+		},
+		function( e, dependencies ) {
+			start();
+			ok( true, "Error handler called correctly." );
+			deepEqual( dependencies, ['test.missing2'], "Dependencies correct." );
+			verifyModuleStates();
+		}
+	);
+} );
 
 test( 'mw.loader bug29107' , function () {
 	expect(2);

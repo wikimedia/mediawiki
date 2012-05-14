@@ -803,7 +803,6 @@ oba ku gano agali ku lupapula luno.<br />
 
 # Diffs
 'history-title' => 'Empandika eza "$1"',
-'difference' => "(Enjawulo mu mpandika ez'olupapula)",
 'lineno' => 'Lunyiriri namba $1:',
 'compareselectedversions' => 'Gerageranya likooda zenonze',
 'editundo' => 'julula enkyukakyuka',

@@ -153,7 +153,7 @@ class ApiQueryAllPages extends ApiQueryGeneratorBase {
 			$this->addOption( 'STRAIGHT_JOIN' );
 			// We have to GROUP BY all selected fields to stop
 			// PostgreSQL from whining
-			$this->addOption( 'GROUP BY', implode( ', ', $selectFields ) );
+			$this->addOption( 'GROUP BY', $selectFields );
 			$forceNameTitleIndex = false;
 		}
 

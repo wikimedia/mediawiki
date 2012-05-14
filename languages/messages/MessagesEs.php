@@ -730,6 +730,8 @@ $2',
 El motivo dado fue: "\'\'$2\'\'".',
 'filereadonlyerror' => 'No se puede modificar el archivo "$1" porque el repositorio de archivos "$2" está en modo de sólo lectura.
 El administrador que lo ha bloqueado ofrece esta explicación: "$3".',
+'invalidtitle-knownnamespace' => 'Título no válido con el espacio de nombres "$2" y el texto "$3"',
+'invalidtitle-unknownnamespace' => 'Título no válido con número de espacio de nombres desconocido  $1  y el texto "$2"',
 
 # Virus scanner
 'virus-badscanner' => "Error de configuración: Antivirus desconocido: ''$1''",
@@ -1121,6 +1123,12 @@ Ese o esos parámetros han sido omitidos.',
 'parser-template-loop-warning' => 'Detectado bucle de plantilla: [[$1]]',
 'parser-template-recursion-depth-warning' => 'Se ha excedido el límite de recursión de plantillas ($1)',
 'language-converter-depth-warning' => 'El límite de profundidad del convertidor de idioma ha excedido ($1)',
+'node-count-exceeded-category' => 'Páginas donde se supera el número de nodos',
+'node-count-exceeded-warning' => 'Página que ha superado el número de nodos',
+'expansion-depth-exceeded-category' => 'Páginas donde se supera la profundidad de expansión',
+'expansion-depth-exceeded-warning' => 'Página que ha superado la profundidad de expansión',
+'parser-unstrip-loop-warning' => 'Se ha detectado un bucle "unstrip"',
+'parser-unstrip-recursion-limit' => 'Se ha superado el límite de recursión de "unstrip" ($1)',
 
 # "Undo" feature
 'undo-success' => 'La edición puede deshacerse. Antes de deshacer la edición, comprueba la siguiente comparación para verificar que realmente es lo que quieres hacer, y entonces guarda los cambios para así deshacer la edición.',
@@ -1300,7 +1308,8 @@ Nota que usar los enlaces de navegación borrará las selecciones de esta column
 
 # Diffs
 'history-title' => 'Historial de revisiones para «$1»',
-'difference' => '(Diferencias entre revisiones)',
+'difference-title' => 'Diferencia entre revisiones de «$1»',
+'difference-title-multipage' => 'Diferencia entre las páginas «$1» y «$2»',
 'difference-multipage' => '(Diferencia entre las páginas)',
 'lineno' => 'Línea $1:',
 'compareselectedversions' => 'Comparar versiones seleccionadas',
@@ -1512,9 +1521,9 @@ Tu dirección de correo no se revela cuando otros usuarios te contactan.',
 'saveusergroups' => 'Guardar grupos de usuarios',
 'userrights-groupsmember' => 'Miembro de:',
 'userrights-groupsmember-auto' => 'Miembro implícito de:',
-'userrights-groups-help' => 'Puedes modificar los grupos a los que pertenece este usuario:
-* Un recuadro marcado significa que el usuario está en ese grupo.
-* Un recuadro no marcado significa que el usuario no está en ese grupo.
+'userrights-groups-help' => 'Puedes modificar los grupos a los que pertenece {{GENDER:$1|este usuario|esta usuaria}}:
+* Un recuadro marcado significa que {{GENDER:$1|el usuario|la usuaria}} está en ese grupo.
+* Un recuadro no marcado significa que {{GENDER:$1|el usuario|la usuaria}} no está en ese grupo.
 * Un * indica que no podrás retirar el grupo una vez que lo concedas, o viceversa.',
 'userrights-reason' => 'Motivo:',
 'userrights-no-interwiki' => 'No tienes permiso para editar los grupos a los que pertenece un usuario en otros wikis.',
@@ -1916,6 +1925,7 @@ Para óptima seguridad, img_auth.php está desactivado.',
 'http-curl-error' => 'Error al recuperar el URL: $1',
 'http-host-unreachable' => 'No fue posible acceder a la URL.',
 'http-bad-status' => 'Ha habido un problema durante la solicitud HTTP: $1 $2',
+'http-truncated-body' => 'El cuerpo solicitado sólo fue recibido parcialmente.',
 
 # Some likely curl errors. More could be added from <http://curl.haxx.se/libcurl/c/libcurl-errors.html>
 'upload-curl-error6' => 'No se pudo alcanzar la URL',
@@ -3891,7 +3901,7 @@ Este sitio está experimentando dificultades técnicas.',
 'logentry-delete-revision' => '$1 modificó la visibilidad de {{PLURAL:$5|una edición|$5 ediciones}} en la página $3: $4',
 'logentry-delete-event-legacy' => '$1 modificó la visibilidad de los eventos del registro en $3',
 'logentry-delete-revision-legacy' => '$1 modificó la visibilidad de las ediciones en la página $3',
-'logentry-suppress-delete' => '$1 borró la página $3',
+'logentry-suppress-delete' => '$1 borró (restricciones para administradores aplicadas) la página $3',
 'logentry-suppress-event' => '$1 modificó secretamente la visibilidad de {{PLURAL:$5|un evento del registro|$5 eventos del registro}} en $3: $4',
 'logentry-suppress-revision' => '$1 modificó secretamente la visibilidad de {{PLURAL:$5|una edición|$5 ediciones}} en la página $3: $4',
 'logentry-suppress-event-legacy' => '$1 modificó secretamente la visibilidad de los eventos del registro en $3',

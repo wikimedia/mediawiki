@@ -1279,7 +1279,6 @@ Korišćenje navigacionih veza će poništiti ovu kolonu.',
 
 # Diffs
 'history-title' => 'Istorija izmena za „$1“',
-'difference' => '(razlike između izmena)',
 'difference-multipage' => '(razlike između stranica)',
 'lineno' => 'Red $1:',
 'compareselectedversions' => 'Uporedi izabrane izmene',
@@ -2414,7 +2413,7 @@ Potvrdite svoju nameru, da razumete posledice i da ovo radite u skladu s [[{{Med
 Pogledajte ''$2'' za više detalja.",
 'dellogpage' => 'Dnevnik brisanja',
 'dellogpagetext' => 'Ispod je spisak poslednjih brisanja.',
-'deletionlog' => 'istorija brisanja',
+'deletionlog' => 'Dnevnik brisanja',
 'reverted' => 'Vraćeno na raniju izmenu',
 'deletecomment' => 'Razlog:',
 'deleteotherreason' => 'Drugi/dodatni razlog:',

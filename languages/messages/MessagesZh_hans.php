@@ -457,7 +457,7 @@ $messages = array(
 'protectthispage' => '保护本页',
 'unprotect' => '更改保护',
 'unprotectthispage' => '更改本页面的保护',
-'newpage' => '最新页面',
+'newpage' => '新页面',
 'talkpage' => '讨论本页',
 'talkpagelinktext' => '讨论',
 'specialpage' => '特殊页面',
@@ -639,6 +639,8 @@ $2',
 'filereadonlyerror' => '无法修改文件“$1”，因为文件库“$2”处于只读模式。 
 
 管理员对锁定它给出的解释是：“$3”。',
+'invalidtitle-knownnamespace' => '使用名字空间“$2”和文本“$3”的无效标题',
+'invalidtitle-unknownnamespace' => '使用未知名字空间编号$1和文本“$2”的无效标题',
 
 # Virus scanner
 'virus-badscanner' => "错误的配置：未知的病毒扫描程序：''$1''",
@@ -979,6 +981,9 @@ $2
 'parser-template-loop-warning' => '检查到模板循环：[[$1]]',
 'parser-template-recursion-depth-warning' => '模板递归深度越限（$1）',
 'language-converter-depth-warning' => '字词转换器深度越限（$1）',
+'node-count-exceeded-category' => '页面的节点数超出限制',
+'node-count-exceeded-warning' => '页面超出了节点数',
+'expansion-depth-exceeded-category' => '扩展深度超出限制的页面',
 
 # "Undo" feature
 'undo-success' => '此编辑可以被撤销。请检查以下比较以核实这正是您想做的，然后保存以下更改完成撤销编辑。',
@@ -1137,7 +1142,6 @@ $1",
 
 # Diffs
 'history-title' => '“$1”的版本历史',
-'difference' => '（版本间的差异）',
 'difference-multipage' => '（页面间的差异）',
 'lineno' => '第$1行：',
 'compareselectedversions' => '对比选择的版本',
@@ -1159,8 +1163,8 @@ $1",
 'notextmatches' => '没有页面内容匹配',
 'prevn' => '前$1个',
 'nextn' => '后$1个',
-'prevn-title' => '前$1项结果',
-'nextn-title' => '后$1项结果',
+'prevn-title' => '前$1个结果',
+'nextn-title' => '后$1个结果',
 'shown-title' => '每页显示$1项结果',
 'viewprevnext' => '查看（$1{{int:pipe-separator}}$2）（$3）',
 'searchmenu-legend' => '搜索选项',
@@ -1236,7 +1240,7 @@ $1",
 'prefs-rc' => '最近更改',
 'prefs-watchlist' => '监视列表',
 'prefs-watchlist-days' => '监视列表中显示的天数：',
-'prefs-watchlist-days-max' => '最多$1{{PLURAL:$1|天}}',
+'prefs-watchlist-days-max' => '最多$1天',
 'prefs-watchlist-edits' => '扩展监视列表中显示的最大更改数：',
 'prefs-watchlist-edits-max' => '最大数量：1000',
 'prefs-watchlist-token' => '监视列表权标：',
@@ -1744,6 +1748,7 @@ $1',
 'http-curl-error' => '撷取URL时出错：$1',
 'http-host-unreachable' => '无法到达URL。',
 'http-bad-status' => '进行HTTP请求时出现问题：$1 $2',
+'http-truncated-body' => '只收到部分请求的正文。',
 
 # Some likely curl errors. More could be added from <http://curl.haxx.se/libcurl/c/libcurl-errors.html>
 'upload-curl-error6' => '无法访问URL',
@@ -1963,7 +1968,7 @@ $1',
 'listusers-creationsort' => '按建立日期排序',
 'usereditcount' => '$1次编辑',
 'usercreated' => '$1 $2{{GENDER:$3|创建}}',
-'newpages' => '最新页面',
+'newpages' => '新页面',
 'newpages-username' => '用户名：',
 'ancientpages' => '最早页面',
 'move' => '移动',
@@ -2018,6 +2023,7 @@ $1',
 
 # SpecialCachedPage
 'cachedspecial-viewing-cached-ttl' => '你正在浏览本页的缓存版本，至多可能存在 $1 的延迟。',
+'cachedspecial-viewing-cached-ts' => '您正浏览此页的缓存版本，不一定是最新的完整版本。',
 'cachedspecial-refresh-now' => '查看最新的。',
 
 # Special:Categories
@@ -3600,6 +3606,8 @@ MediaWiki是基于使用目的而加以发布，然而不负任何担保责任�
 'version-software' => '已安装的软件',
 'version-software-product' => '产品',
 'version-software-version' => '版本',
+'version-entrypoints' => '入口点 URL',
+'version-entrypoints-header-entrypoint' => '入口点',
 'version-entrypoints-header-url' => 'URL',
 
 # Special:FilePath

@@ -566,7 +566,6 @@ $1',
 
 # Diffs
 'history-title' => '$1 — сольлһна тууҗ',
-'difference' => '(Йилһән)',
 'lineno' => '$1 мөр:',
 'compareselectedversions' => 'Суңһсн янзс әдлцүлх',
 'editundo' => 'уга кех',

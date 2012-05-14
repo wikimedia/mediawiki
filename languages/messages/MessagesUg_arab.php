@@ -1005,7 +1005,6 @@ $1",
 
 # Diffs
 'history-title' => '"$1" نىڭ ئۆزگەرتىش خاتىرىسى',
-'difference' => '(تۈزەتكەن نەشرىلىرىنىڭ پەرقى)',
 'difference-multipage' => '(بەتلەر ئارىسىدىكى پەرق)',
 'lineno' => '$1 -قۇر:',
 'compareselectedversions' => 'تاللانغان نەشرىنى سېلىشتۇر',

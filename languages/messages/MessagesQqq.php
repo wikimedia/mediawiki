@@ -92,12 +92,14 @@
  * @author Rancher
  * @author Raymond
  * @author Robby
+ * @author Rotemliss
  * @author Ryan Schmidt
  * @author SPQRobin
  * @author Sanbec
  * @author Sborsody
  * @author Seb35
  * @author Sherbrooke
+ * @author Shirayuki
  * @author Shushruth
  * @author Siebrand
  * @author Singularity
@@ -554,7 +556,7 @@ The format is: "{{int:youhavenewmessagesmulti| [[MediaWiki:Newmessageslink/{{SUB
 
 {{Identical|View source}}',
 'editsectionhint' => "Tool tip shown when hovering the mouse over the link to '[{{MediaWiki:Editsection}}]' a section. Example: Edit section: Heading name",
-'toc' => 'Ini adalah judul "Daftar isi" yang terlihat pada halaman yang memiliki lebih dari 3 bagian
+'toc' => 'This is the title of the table of contents displayed in pages with more than 3 sections
 
 {{Identical|Contents}}',
 'showtoc' => 'This is the link used to show the table of contents
@@ -682,6 +684,13 @@ $1 is a filename, I think.',
 'editinginterface' => "A message shown when editing pages in the namespace MediaWiki:. In the [http://translatewiki.net/wiki/Main_Page?setlang=en URL], '''change \"setlang=en\" to your own language code.'''",
 'ns-specialprotected' => 'Error message displayed when trying to edit a page in the Special namespace',
 'titleprotected' => 'Use $1 for GENDER.',
+'invalidtitle-knownnamespace' => 'Displayed when an invalid title was encountered (generally in a list), but the namespace number is known to exist.
+* $1 is the namespace number
+* $2 is the namespace name in content language or {{msg-mw|blanknamespace}} for the main namespace
+* $3 is the part of the title after the namespace (e.g. SomeName for the page User:SomeName)',
+'invalidtitle-unknownnamespace' => 'Displayed when an invalid title was encountered (generally in a list) and the namespace number is unknown.
+* $1 is the namespace number
+* $2 is the part of the title after the namespace (e.g. SomeName for the page User:SomeName)',
 
 # Login and logout pages
 'logouttext' => 'Log out message',
@@ -732,7 +741,9 @@ $1 is a filename, I think.',
 'nocookieslogin' => "This message is displayed when someone tried to login, but the browser doesn't accept cookies.",
 'nocookiesfornew' => "This message is displayed when the user tried to create a new account, but it failed the cross-site request forgery (CSRF) check. It could be blocking an attack, but most likely, the browser isn't  accepting cookies.",
 'nocookiesforlogin' => "{{optional}}
-This message is displayed when someone tried to login and the CSRF failed (most likely, the browser doesn't accept cookies). Defaults to nocookieslogin",
+This message is displayed when someone tried to login and the CSRF failed (most likely, the browser doesn't accept cookies).
+
+Defaults to '''nocookieslogin''' ({{int:nocookieslogin}})",
 'loginsuccesstitle' => 'The title of the page saying that you are logged in. The content of the page is the message "[[MediaWiki:Loginsuccess/{{SUBPAGENAME}}]]".',
 'loginsuccess' => 'The content of the page saying that you are logged in. The title of the page is "[[MediaWiki:Loginsuccesstitle/{{SUBPAGENAME}}|{{int:loginsuccesstitle}}]]". $1 is the name of the logged in user.
 
@@ -1020,6 +1031,23 @@ When templates are expanded, there is a size limit for the number of bytes yield
 'language-converter-depth-warning' => 'Error message shown when a page uses too deeply nested language conversion syntax
 
 * <tt>$1</tt> is the value of the depth limit',
+'node-count-exceeded-category' => 'This message is used as a category name for a [[mw:Help:Tracking categories|tracking category]] where pages are placed automatically if the node-count of the preprocessor exceeds the limit.',
+'node-count-exceeded-warning' => 'Error message shown when a page exceeded the node-count limit of the preprocessor
+
+* <tt>$1</tt> is the value of the node-count limit
+* <tt>$2</tt> is the value of the max node-count limit',
+'expansion-depth-exceeded-category' => 'This message is used as a category name for a [[mw:Help:Tracking categories|tracking category]] where pages are placed automatically if the [http://meta.wikimedia.org/wiki/Help:Expansion_depth expansion depth] of the preprocessor exceeds the limit.',
+'expansion-depth-exceeded-warning' => 'Error message shown when a page exceeded the [http://meta.wikimedia.org/wiki/Help:Expansion_depth expansion depth limit] of the preprocessor
+
+* <tt>$1</tt> is the value of the depth limit
+* <tt>$2</tt> is the value of the max depth limit',
+'parser-unstrip-loop-warning' => 'This error is shown when a parser extension tag such as &lt;pre> includes a reference to itself in its own output.
+The reference must be to the exact same invocation of the tag at the same location in the source, merely writing &lt;pre>&lt;pre>&lt;/pre>&lt;/pre> will not do it.
+This is usually impossible and unlikely to happen by accident, so translation is not essential.',
+'parser-unstrip-recursion-limit' => 'This message is shown when the recursion limit for nested parser extension tags is exceeded.
+This warning may be encountered due to input text like &lt;ref>&lt;ref>&lt;ref>...&lt;/ref>&lt;/ref>&lt;/ref>.
+
+* <tt>$1</tt> is the depth limit',
 
 # "Undo" feature
 'undo-success' => 'Text on special page to confirm edit revert. You arrive on this page by clicking on the "undo" link on a revision history special page.
@@ -1227,7 +1255,8 @@ Please note that the parameters in a log entry will appear in the log only in th
 
 # Diffs
 'history-title' => 'Displayed as page title when you click on the "history" tab. The parameter $1 is the normal page title.',
-'difference' => 'Displayed under the title when viewing the difference between two or more edits.',
+'difference-title' => 'Displayed as page title when viewing the difference between two edits of the same page. The parameter $1 is the page title of the two revisions.',
+'difference-title-multipage' => 'Displayed as page title when viewing the difference between two edits of different pages. The parameter $1 is the page title of the old revision and $2 is the page title of the new revision.',
 'difference-multipage' => 'Displayed under the title when viewing the difference between two or more pages.
 See also {{msg-mw|difference}}.',
 'lineno' => 'Message used when comparing different versions of a page (diff). $1 is a line number.',
@@ -2003,6 +2032,7 @@ Siebrand think this has to do with allowing MediaWiki to fetch remote URLs, and 
 
 If \'scheme\' is difficult to translate, then you could use \'prefix\' instead.',
 'http-bad-status' => '$1 is an HTTP error code (e.g. 404), $2 is the HTTP error message (e.g. File Not Found)',
+'http-truncated-body' => 'This is a standard HTTP error message. → Seems the connection closed prematurely. The HTTP response contained a content-length greater than the received body.',
 
 'license' => 'This appears in the upload form for the license drop-down. The header in the file description page is now at {{msg-mw|License-header}}.',
 'nolicense' => '{{Identical|None selected}}',
@@ -4414,8 +4444,9 @@ This is being used in [[Special:Version]], preceeding the subversion revision nu
 'version-license-info' => '[[wikipedia:GNU GPL|GNU GPL]] notice shown at [[Special:Version]]. See //www.gnu.org/licenses/old-licenses/gpl-2.0-translations.html for available translations.',
 'version-software-product' => 'Shown in [[Special:Version]]',
 'version-software-version' => '{{Identical|Version}}',
-'version-entrypoints' => 'Header on [[Special:Version]] above a table that lists the URLs of various entry points in this MediaWiki installation.',
-'version-entrypoints-header-entrypoint' => 'Header for the first column in the entry points table on [[Special:Version]].',
+'version-entrypoints' => 'Header on [[Special:Version]] above a table that lists the URLs of various entry points in this MediaWiki installation. Entry points are the "places" where the wiki\'s content and information can be accessed in various ways, for instance the standard index.php which shows normal pages, histories etc.',
+'version-entrypoints-header-entrypoint' => 'Header for the first column in the entry points table on [[Special:Version]].
+See also {{msg-mw|Version-entrypoints}}',
 'version-entrypoints-header-url' => 'Header for the second column in the entry points table on [[Special:Version]].',
 'version-entrypoints-articlepath' => 'A short description of the article path entry point. Links to the mediawiki.org documentation page for $wgArticlePath.',
 'version-entrypoints-scriptpath' => 'A short description of the script path entry point. Links to the mediawiki.org documentation page for $wgScriptPath.',

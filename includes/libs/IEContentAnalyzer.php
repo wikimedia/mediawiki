@@ -1,4 +1,10 @@
 <?php
+/**
+ * Simulation of Microsoft Internet Explorer's MIME type detection algorithm.
+ *
+ * @file
+ * @todo Define the exact license of this file.
+ */
 
 /**
  * This class simulates Microsoft Internet Explorer's terribly broken and

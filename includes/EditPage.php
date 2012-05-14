@@ -1284,9 +1284,10 @@ class EditPage {
 
 		wfProfileOut( __METHOD__ . '-checks' );
 
-		# If article is new, insert it.
-		$aid = $this->mTitle->getArticleID( Title::GAID_FOR_UPDATE );
-		$new = ( $aid == 0 );
+		// Use SELECT FOR UPDATE here to avoid transaction collision in
+		// WikiPage::updateRevisionOn() and ending in the self::AS_END case.
+		$this->mArticle->loadPageData( 'forupdate' );
+		$new = !$this->mArticle->exists();
 
 		try {
 			if ( $new ) {

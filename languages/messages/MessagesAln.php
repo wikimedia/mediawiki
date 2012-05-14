@@ -885,7 +885,6 @@ Kini kujdes se përdorimi i lidhjeve të shfletimit do të ndryshojë përzgjedh
 
 # Diffs
 'history-title' => 'Historiku i redaktimeve për "$1"',
-'difference' => '(Dallimet midis verzioneve)',
 'lineno' => 'Rreshti $1:',
 'compareselectedversions' => 'Krahasoni versionet e zgjedhme',
 'editundo' => 'ktheje',

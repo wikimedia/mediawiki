@@ -649,7 +649,6 @@ Details stehen im [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} 
 
 # Diffs
 'history-title' => 'Versiónsgschicht voh „$1“',
-'difference' => '(Unterschiad zwischen dé Versiónen)',
 'lineno' => 'Zeiln $1:',
 'compareselectedversions' => 'Gwöde Versionen vagleichen',
 'editundo' => 'ryckgängig',

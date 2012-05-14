@@ -1069,7 +1069,6 @@ Añğartpa: bağıttaw siltemelerin qoldanğanda bul bağan qaýta qoýıladı.'
 
 # Diffs
 'history-title' => '«$1» — tüzetw tarïxı',
-'difference' => '(Tüzetwler arasındağı aýırmaşılıq)',
 'lineno' => 'Jol nömiri $1:',
 'compareselectedversions' => 'Bölektengen nusqalardı salıstırw',
 'editundo' => 'joqqa şığarw',

@@ -1242,7 +1242,6 @@ Kiek de logboeken nao.',
 
 # Diffs
 'history-title' => 'Geschiedenisse van "$1"',
-'difference' => '(Verschil tussen bewarkingen)',
 'difference-multipage' => "(Verschil tussen pagina's)",
 'lineno' => 'Regel $1:',
 'compareselectedversions' => 'Vergeliek de ekeuzen versies',

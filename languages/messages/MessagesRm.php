@@ -934,7 +934,6 @@ Fa stim che navigar cun agid da las coalliziuns reinizialisescha tia tscherna.',
 
 # Diffs
 'history-title' => 'Cronica da versiuns da "$1"',
-'difference' => '(differenza tranter versiuns)',
 'difference-multipage' => '(Differenzas tranter las paginas)',
 'lineno' => 'Lingia $1:',
 'compareselectedversions' => 'cumparegliar las versiuns selecziunadas',

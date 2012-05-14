@@ -61,10 +61,10 @@ class ApiQueryUsers extends ApiQueryBase {
 		return $this->tokenFunctions;
 	}
 
-	 /**
-	  * @param $user User
-	  * @return String
-	  */
+	/**
+	 * @param $user User
+	 * @return String
+	 */
 	public static function getUserrightsToken( $user ) {
 		global $wgUser;
 		// Since the permissions check for userrights is non-trivial,
@@ -165,7 +165,9 @@ class ApiQueryUsers extends ApiQueryBase {
 					$data[$name]['hidden'] = '';
 				}
 				if ( isset( $this->prop['blockinfo'] ) && !is_null( $row->ipb_by_text ) ) {
+					$data[$name]['blockid'] = $row->ipb_id;
 					$data[$name]['blockedby'] = $row->ipb_by_text;
+					$data[$name]['blockedbyid'] = $row->ipb_by;
 					$data[$name]['blockreason'] = $row->ipb_reason;
 					$data[$name]['blockexpiry'] = $row->ipb_expiry;
 				}

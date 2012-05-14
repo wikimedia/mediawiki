@@ -726,6 +726,7 @@ Arrecuerdete ca jndr'à le file personalizzete .css e .js s'ause scrivere le tit
 'note' => "'''Vide Bbuene:'''",
 'previewnote' => "'''Arrecuerdete queste è sole 'n'andeprime.'''
 le cangiaminde non g'onne state angore reggistrate!",
+'continue-editing' => "Condinue 'u cangiamende",
 'previewconflict' => "Sta andeprime fece vedè 'u teste ca ste jndr'à 'u teste de l'area de sus cumme avène fore ce tu decide cu reggistre.",
 'session_fail_preview' => "'''Ne dispiace! Non ge putime processà 'u cangiamende tue purcè s'a perse 'a sessione de le date.
 Pe piacere pruève 'n'otra vote.
@@ -825,6 +826,9 @@ Ste argumende onne state luete.",
 'parser-template-loop-warning' => "Amme acchiete 'nu cicle de template: [[$1]]",
 'parser-template-recursion-depth-warning' => "Ha state supranete 'u limite di ricorsione de le template ($1)",
 'language-converter-depth-warning' => "'U convertitore de lènghe ha subranate 'u limite de profonnetà ($1)",
+'node-count-exceeded-category' => "Pàggene addò 'u cunde de le node ha sbunnate",
+'expansion-depth-exceeded-category' => "Pàggene addò 'a profonnetà de l'espanzione jè supranate",
+'expansion-depth-exceeded-warning' => "Pàggene ca sbonnane 'a profonnetà de espanzione",
 
 # "Undo" feature
 'undo-success' => "'U cangiamende pò essere annullate.
@@ -1005,7 +1009,6 @@ Vide Bbuene ca ausanne le collegaminde de navigazzione sta culonne avène azzera
 
 # Diffs
 'history-title' => 'Liste de le versiune de "$1"',
-'difference' => "(Differenze 'mbrà versiune)",
 'difference-multipage' => "(Differenze 'mbrà le pàggene)",
 'lineno' => 'Linea $1:',
 'compareselectedversions' => 'Combronde le versiune selezionete',
@@ -1587,6 +1590,8 @@ Ce 'u probbleme angore jè presende, condatte 'n'[[Special:ListUsers/sysop|ammin
 'backend-fail-create' => "Non ge pozze ccrejà 'u file $1.",
 'backend-fail-readonly' => 'L\'archivije de rete "$1" jè pe stu mumende in sole letture. \'U mutive ha state: "$2"',
 'backend-fail-connect' => 'Non ge pozze connettere \'a memorie de rrete "$1".',
+'backend-fail-internal' => "'N'errore scanusciute s'à verificate jndr'à l'archivije de rrete \"\$1\".",
+'backend-fail-contenttype' => 'Non ge pozze capìe \'u tipe de condenute d\'u file da reggistrà sus a "$1".',
 
 # Lock manager
 'lockmanager-notlocked' => 'Non ge pozze sbloccà "$1"; jidde non g\'è bloccate.',
@@ -2700,6 +2705,8 @@ Reggistrele sus a 'u combiuter tune e carechele aqquà.",
 'javascripttest-pagetext-noframework' => 'Sta pàgene jè riservate pe le esecuziune de le test de Javascript.',
 'javascripttest-pagetext-unknownframework' => 'Ambiende de teste scanusciute "$1".',
 'javascripttest-pagetext-frameworks' => 'Pe piacere scacchie une de le seguende ambiende de test: $1',
+'javascripttest-qunit-intro' => "Vide 'a [$1 documendazione d'u test] sus a mediawiki.org.",
+'javascripttest-qunit-heading' => 'Ambiende de test MediaUicchi JavaScript QUnit',
 
 # Tooltip help for the actions
 'tooltip-pt-userpage' => "'A pàgene utende meje",
@@ -3883,10 +3890,12 @@ Ce nò, tu puè ausà 'u module facile aqquà sotte. 'U commende tune avène agg
 'api-error-duplicate-popup-title' => 'Dupleche {{PLURAL:$1|file|file}}',
 'api-error-empty-file' => "'U file ca tu è confermate ere vacande.",
 'api-error-emptypage' => 'Quanne se ne ccreje une, le pàggene vacande non ge sò permesse.',
+'api-error-fetchfileerror' => "Errore inderne: Quacchecose ha sciute stuèrte quanne ste analizzave 'u file.",
 'api-error-file-too-large' => "'U file ca tu è confermate jè troppe granne.",
 'api-error-filename-tooshort' => "'U nome d'u file jè troppe curte.",
 'api-error-filetype-banned' => 'Stu tipe de file jè vietate.',
 'api-error-filetype-missing' => "'U file jè senze 'n'estenzione.",
+'api-error-hookaborted' => "'U cangiamende ca tu stè pruève a ffà ha state inderrotte da 'n'estenzione.",
 'api-error-http' => "Errore inderne: Non ge se riesce a collegà a 'u server",
 'api-error-illegal-filename' => "'U nome d'u file non g'è permesse.",
 'api-error-invalid-file-key' => "Errore inderne: 'U file non ge se iacchie jndr'à memorie temboranèe.",

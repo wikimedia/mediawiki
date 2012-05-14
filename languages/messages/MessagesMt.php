@@ -1201,7 +1201,6 @@ Nota li l-użu tal-links tan-navigazzjoni jagħmel reset tal-kolonna.",
 
 # Diffs
 'history-title' => 'Kronoloġija tal-modifiki ta\' "$1"',
-'difference' => '(Differenzi bejn ir-reviżjonijiet)',
 'difference-multipage' => '(Differenzi bejn il-paġni)',
 'lineno' => 'Linja $1:',
 'compareselectedversions' => 'Qabbel il-verżjonijiet magħżula',

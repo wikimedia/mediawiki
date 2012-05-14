@@ -692,6 +692,8 @@ Motivul invocat este ''$2''.",
 'filereadonlyerror' => 'Imposibil de modificat fișierul „$1”, deoarece depozitul de fișiere „$2” este în modul „doar citire”.
 
 Administratorul care a efectuat blocarea a furnizat explicația: „$3”.',
+'invalidtitle-knownnamespace' => 'Titlu invalid cu spațiul de nume „$2” și textul „$3”',
+'invalidtitle-unknownnamespace' => 'Titlu invalid cu numărul spațiului de nume $1 necunoscut și textul „$2”',
 
 # Virus scanner
 'virus-badscanner' => "Configurație greșită: scaner de virus necunoscut: ''$1''",
@@ -1078,6 +1080,8 @@ Acsete argumente au fost omise.',
 'parser-template-loop-warning' => 'Buclă de formate detectată: [[$1]]',
 'parser-template-recursion-depth-warning' => 'Limită de adâncime a recursiei depășită ($1)',
 'language-converter-depth-warning' => 'Limita adâncimii convertorului de limbă a fost depășită ($1)',
+'node-count-exceeded-category' => 'Pagini unde numărul de noduri este depășit',
+'node-count-exceeded-warning' => 'Pagina a depășit numărul de noduri',
 
 # "Undo" feature
 'undo-success' => 'Modificarea poate fi anulată. Verificați diferența de dedesupt și apoi salvați pentru a termina anularea modificării.',
@@ -1255,7 +1259,8 @@ Folosirea linkurilor de navigare va reseta această coloană.',
 
 # Diffs
 'history-title' => 'Istoricul versiunilor pentru „$1”',
-'difference' => '(Diferența dintre versiuni)',
+'difference-title' => 'Diferență între versiunile paginii „$1”',
+'difference-title-multipage' => 'Diferență între paginile „$1” și „$2”',
 'difference-multipage' => '(Diferență între pagini)',
 'lineno' => 'Linia $1:',
 'compareselectedversions' => 'Compară versiunile marcate',
@@ -1869,6 +1874,7 @@ Pentru securitate optimă, img_auth.php este dezactivat.',
 'http-curl-error' => 'Eroare la preluarea adresei URL: $1',
 'http-host-unreachable' => 'Adresa URL nu a putut fi accesată.',
 'http-bad-status' => 'A apărut o problemă în timpul solicitării HTTP: $1 $2',
+'http-truncated-body' => 'Corpul cererii a fost recepționat doar parțial.',
 
 # Some likely curl errors. More could be added from <http://curl.haxx.se/libcurl/c/libcurl-errors.html>
 'upload-curl-error6' => 'Nu pot găsi adresa URL',

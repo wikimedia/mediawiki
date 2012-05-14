@@ -54,7 +54,7 @@ class ApiQueryCategoryMembers extends ApiQueryGeneratorBase {
 	private function run( $resultPageSet = null ) {
 		$params = $this->extractRequestParams();
 
-		$categoryTitle = $this->getTitleOrPageId( $params );
+		$categoryTitle = $this->getTitleOrPageId( $params )->getTitle();
 		if ( $categoryTitle->getNamespace() != NS_CATEGORY ) {
 			$this->dieUsage( 'The category name you entered is not valid', 'invalidcategory' );
 		}
@@ -349,7 +349,7 @@ class ApiQueryCategoryMembers extends ApiQueryGeneratorBase {
 			'endsortkey' => "Sortkey to end listing at. Must be given in binary format. Can only be used with {$p}sort=sortkey",
 			'startsortkeyprefix' => "Sortkey prefix to start listing from. Can only be used with {$p}sort=sortkey. Overrides {$p}startsortkey",
 			'endsortkeyprefix' => "Sortkey prefix to end listing BEFORE (not at, if this value occurs it will not be included!). Can only be used with {$p}sort=sortkey. Overrides {$p}endsortkey",
-			'continue' => 'For large categories, give the value retured from previous query',
+			'continue' => 'For large categories, give the value returned from previous query',
 			'limit' => 'The maximum number of pages to return.',
 		);
 
@@ -374,7 +374,6 @@ class ApiQueryCategoryMembers extends ApiQueryGeneratorBase {
 			array(
 				array( 'code' => 'invalidcategory', 'info' => 'The category name you entered is not valid' ),
 				array( 'code' => 'badcontinue', 'info' => 'Invalid continue param. You should pass the original value returned by the previous query' ),
-				array( 'nosuchpageid', 'pageid' ),
 			)
 		);
 	}

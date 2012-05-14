@@ -49,6 +49,15 @@ class WikiExporter {
 	const TEXT = 0;
 	const STUB = 1;
 
+	var $buffer;
+
+	var $text;
+
+	/**
+	 * @var DumpOutput
+	 */
+	var $sink;
+
 	/**
 	 * If using WikiExporter::STREAM to stream a large amount of data,
 	 * provide a database connection which is not managed by
@@ -145,6 +154,10 @@ class WikiExporter {
 			' AND page_title=' . $this->db->addQuotes( $title->getDBkey() ) );
 	}
 
+	/**
+	 * @param $name string
+	 * @throws MWException
+	 */
 	public function pageByName( $name ) {
 		$title = Title::newFromText( $name );
 		if ( is_null( $title ) ) {
@@ -154,6 +167,9 @@ class WikiExporter {
 		}
 	}
 
+	/**
+	 * @param $names array
+	 */
 	public function pagesByName( $names ) {
 		foreach ( $names as $name ) {
 			$this->pageByName( $name );
@@ -164,6 +180,10 @@ class WikiExporter {
 		$this->dumpFrom( '' );
 	}
 
+	/**
+	 * @param $start int
+	 * @param $end int
+	 */
 	public function logsByRange( $start, $end ) {
 		$condition = 'log_id >= ' . intval( $start );
 		if ( $end ) {
@@ -172,9 +192,13 @@ class WikiExporter {
 		$this->dumpFrom( $condition );
 	}
 
-	# Generates the distinct list of authors of an article
-	# Not called by default (depends on $this->list_authors)
-	# Can be set by Special:Export when not exporting whole history
+	/**
+	 * Generates the distinct list of authors of an article
+	 * Not called by default (depends on $this->list_authors)
+	 * Can be set by Special:Export when not exporting whole history
+	 *
+	 * @param $cond
+	 */
 	protected function do_list_authors( $cond ) {
 		wfProfileIn( __METHOD__ );
 		$this->author_list = "<contributors>";
@@ -205,6 +229,11 @@ class WikiExporter {
 		wfProfileOut( __METHOD__ );
 	}
 
+	/**
+	 * @param $cond string
+	 * @throws MWException
+	 * @throws Exception
+	 */
 	protected function dumpFrom( $cond = '' ) {
 		wfProfileIn( __METHOD__ );
 		# For logging dumps...
@@ -419,6 +448,9 @@ class WikiExporter {
 		}
 	}
 
+	/**
+	 * @param $resultset array
+	 */
 	protected function outputLogStream( $resultset ) {
 		foreach ( $resultset as $row ) {
 			$output = $this->writer->writeLogItem( $row );
@@ -464,6 +496,9 @@ class XmlDumpWriter {
 			$this->siteInfo();
 	}
 
+	/**
+	 * @return string
+	 */
 	function siteInfo() {
 		$info = array(
 			$this->sitename(),
@@ -476,20 +511,32 @@ class XmlDumpWriter {
 			"\n  </siteinfo>\n";
 	}
 
+	/**
+	 * @return string
+	 */
 	function sitename() {
 		global $wgSitename;
 		return Xml::element( 'sitename', array(), $wgSitename );
 	}
 
+	/**
+	 * @return string
+	 */
 	function generator() {
 		global $wgVersion;
 		return Xml::element( 'generator', array(), "MediaWiki $wgVersion" );
 	}
 
+	/**
+	 * @return string
+	 */
 	function homelink() {
 		return Xml::element( 'base', array(), Title::newMainPage()->getCanonicalUrl() );
 	}
 
+	/**
+	 * @return string
+	 */
 	function caseSetting() {
 		global $wgCapitalLinks;
 		// "case-insensitive" option is reserved for future
@@ -497,6 +544,9 @@ class XmlDumpWriter {
 		return Xml::element( 'case', array(), $sensitivity );
 	}
 
+	/**
+	 * @return string
+	 */
 	function namespaces() {
 		global $wgContLang;
 		$spaces = "<namespaces>\n";
@@ -591,7 +641,7 @@ class XmlDumpWriter {
 		if ( $row->rev_deleted & Revision::DELETED_COMMENT ) {
 			$out .= "      " . Xml::element( 'comment', array( 'deleted' => 'deleted' ) ) . "\n";
 		} elseif ( $row->rev_comment != '' ) {
-			$out .= "      " . Xml::elementClean( 'comment', null, strval( $row->rev_comment ) ) . "\n";
+			$out .= "      " . Xml::elementClean( 'comment', array(), strval( $row->rev_comment ) ) . "\n";
 		}
 
 		if ( isset( $row->rev_content_model ) && !is_null( $row->rev_content_model )  ) {
@@ -681,11 +731,20 @@ class XmlDumpWriter {
 		return $out;
 	}
 
+	/**
+	 * @param $timestamp string
+	 * @return string
+	 */
 	function writeTimestamp( $timestamp ) {
 		$ts = wfTimestamp( TS_ISO_8601, $timestamp );
 		return "      " . Xml::element( 'timestamp', null, $ts ) . "\n";
 	}
 
+	/**
+	 * @param $id
+	 * @param $text string
+	 * @return string
+	 */
 	function writeContributor( $id, $text ) {
 		$out = "      <contributor>\n";
 		if ( $id || !IP::isValid( $text ) ) {
@@ -700,6 +759,8 @@ class XmlDumpWriter {
 
 	/**
 	 * Warning! This data is potentially inconsistent. :(
+	 * @param $row
+	 * @param $dumpContents bool
 	 * @return string
 	 */
 	function writeUploads( $row, $dumpContents = false ) {
@@ -784,32 +845,55 @@ class XmlDumpWriter {
  * @ingroup Dump
  */
 class DumpOutput {
+
+	/**
+	 * @param $string string
+	 */
 	function writeOpenStream( $string ) {
 		$this->write( $string );
 	}
 
+	/**
+	 * @param $string string
+	 */
 	function writeCloseStream( $string ) {
 		$this->write( $string );
 	}
 
+	/**
+	 * @param $page
+	 * @param $string string
+	 */
 	function writeOpenPage( $page, $string ) {
 		$this->write( $string );
 	}
 
+	/**
+	 * @param $string string
+	 */
 	function writeClosePage( $string ) {
 		$this->write( $string );
 	}
 
+	/**
+	 * @param $rev
+	 * @param $string string
+	 */
 	function writeRevision( $rev, $string ) {
 		$this->write( $string );
 	}
 
+	/**
+	 * @param $rev
+	 * @param $string string
+	 */
 	function writeLogItem( $rev, $string ) {
 		$this->write( $string );
 	}
 
 	/**
 	 * Override to write to a different stream type.
+	 * @param $string string
 	 * @return bool
 	 */
 	function write( $string ) {
@@ -855,11 +939,17 @@ class DumpOutput {
 class DumpFileOutput extends DumpOutput {
 	protected $handle = false, $filename;
 
+	/**
+	 * @param $file
+	 */
 	function __construct( $file ) {
 		$this->handle = fopen( $file, "wt" );
 		$this->filename = $file;
 	}
 
+	/**
+	 * @param $string string
+	 */
 	function writeCloseStream( $string ) {
 		parent::writeCloseStream( $string );
 		if ( $this->handle ) {
@@ -868,20 +958,35 @@ class DumpFileOutput extends DumpOutput {
 		}
 	}
 
+	/**
+	 * @param $string string
+	 */
 	function write( $string ) {
 		fputs( $this->handle, $string );
 	}
 
+	/**
+	 * @param $newname
+	 */
 	function closeRenameAndReopen( $newname ) {
 		$this->closeAndRename( $newname, true );
 	}
 
+	/**
+	 * @param $newname
+	 * @throws MWException
+	 */
 	function renameOrException( $newname ) {
 			if (! rename( $this->filename, $newname ) ) {
 				throw new MWException( __METHOD__ . ": rename of file {$this->filename} to $newname failed\n" );
 			}
 	}
 
+	/**
+	 * @param $newname array
+	 * @return mixed
+	 * @throws MWException
+	 */
 	function checkRenameArgCount( $newname ) {
 		if ( is_array( $newname ) ) {
 			if ( count( $newname ) > 1 ) {
@@ -893,6 +998,10 @@ class DumpFileOutput extends DumpOutput {
 		return $newname;
 	}
 
+	/**
+	 * @param $newname mixed
+	 * @param $open bool
+	 */
 	function closeAndRename( $newname, $open = false ) {
 		$newname = $this->checkRenameArgCount( $newname );
 		if ( $newname ) {
@@ -907,6 +1016,9 @@ class DumpFileOutput extends DumpOutput {
 		}
 	}
 
+	/**
+	 * @return string|null
+	 */
 	function getFilenames() {
 		return $this->filename;
 	}
@@ -922,6 +1034,10 @@ class DumpPipeOutput extends DumpFileOutput {
 	protected $command, $filename;
 	protected $procOpenResource = false;
 
+	/**
+	 * @param $command
+	 * @param $file null
+	 */
 	function __construct( $command, $file = null ) {
 		if ( !is_null( $file ) ) {
 			$command .=  " > " . wfEscapeShellArg( $file );
@@ -932,6 +1048,9 @@ class DumpPipeOutput extends DumpFileOutput {
 		$this->filename = $file;
 	}
 
+	/**
+	 * @param $string string
+	 */
 	function writeCloseStream( $string ) {
 		parent::writeCloseStream( $string );
 		if ( $this->procOpenResource ) {
@@ -940,6 +1059,9 @@ class DumpPipeOutput extends DumpFileOutput {
 		}
 	}
 
+	/**
+	 * @param $command
+	 */
 	function startCommand( $command ) {
 		$spec = array(
 			0 => array( "pipe", "r" ),
@@ -949,10 +1071,17 @@ class DumpPipeOutput extends DumpFileOutput {
 		$this->handle = $pipes[0];
 	}
 
+	/**
+	 * @param mixed $newname
+	 */
 	function closeRenameAndReopen( $newname ) {
 		$this->closeAndRename( $newname, true );
 	}
 
+	/**
+	 * @param $newname mixed
+	 * @param $open bool
+	 */
 	function closeAndRename( $newname, $open = false ) {
 		$newname = $this->checkRenameArgCount( $newname );
 		if ( $newname ) {
@@ -980,6 +1109,10 @@ class DumpPipeOutput extends DumpFileOutput {
  * @ingroup Dump
  */
 class DumpGZipOutput extends DumpPipeOutput {
+
+	/**
+	 * @param $file string
+	 */
 	function __construct( $file ) {
 		parent::__construct( "gzip", $file );
 	}
@@ -990,6 +1123,10 @@ class DumpGZipOutput extends DumpPipeOutput {
  * @ingroup Dump
  */
 class DumpBZip2Output extends DumpPipeOutput {
+
+	/**
+	 * @param $file string
+	 */
 	function __construct( $file ) {
 		parent::__construct( "bzip2", $file );
 	}
@@ -1000,12 +1137,20 @@ class DumpBZip2Output extends DumpPipeOutput {
  * @ingroup Dump
  */
 class Dump7ZipOutput extends DumpPipeOutput {
+
+	/**
+	 * @param $file string
+	 */
 	function __construct( $file ) {
 		$command = $this->setup7zCommand( $file );
 		parent::__construct( $command );
 		$this->filename = $file;
 	}
 
+	/**
+	 * @param $file string
+	 * @return string
+	 */
 	function setup7zCommand( $file ) {
 		$command = "7za a -bd -si " . wfEscapeShellArg( $file );
 		// Suppress annoying useless crap from p7zip
@@ -1014,6 +1159,10 @@ class Dump7ZipOutput extends DumpPipeOutput {
 		return( $command );
 	}
 
+	/**
+	 * @param $newname string
+	 * @param $open bool
+	 */
 	function closeAndRename( $newname, $open = false ) {
 		$newname = $this->checkRenameArgCount( $newname );
 		if ( $newname ) {
@@ -1028,8 +1177,6 @@ class Dump7ZipOutput extends DumpPipeOutput {
 	}
 }
 
-
-
 /**
  * Dump output filter class.
  * This just does output filtering and streaming; XML formatting is done
@@ -1037,18 +1184,44 @@ class Dump7ZipOutput extends DumpPipeOutput {
  * @ingroup Dump
  */
 class DumpFilter {
+
+	/**
+	 * @var DumpOutput
+	 * FIXME will need to be made protected whenever legacy code
+	 * is updated.
+	 */
+	public $sink;
+
+	/**
+	 * @var bool
+	 */
+	protected $sendingThisPage;
+
+	/**
+	 * @param $sink DumpOutput
+	 */
 	function __construct( &$sink ) {
 		$this->sink =& $sink;
 	}
 
+	/**
+	 * @param $string string
+	 */
 	function writeOpenStream( $string ) {
 		$this->sink->writeOpenStream( $string );
 	}
 
+	/**
+	 * @param $string string
+	 */
 	function writeCloseStream( $string ) {
 		$this->sink->writeCloseStream( $string );
 	}
 
+	/**
+	 * @param $page
+	 * @param $string string
+	 */
 	function writeOpenPage( $page, $string ) {
 		$this->sendingThisPage = $this->pass( $page, $string );
 		if ( $this->sendingThisPage ) {
@@ -1056,6 +1229,9 @@ class DumpFilter {
 		}
 	}
 
+	/**
+	 * @param $string string
+	 */
 	function writeClosePage( $string ) {
 		if ( $this->sendingThisPage ) {
 			$this->sink->writeClosePage( $string );
@@ -1063,30 +1239,49 @@ class DumpFilter {
 		}
 	}
 
+	/**
+	 * @param $rev
+	 * @param $string string
+	 */
 	function writeRevision( $rev, $string ) {
 		if ( $this->sendingThisPage ) {
 			$this->sink->writeRevision( $rev, $string );
 		}
 	}
 
+	/**
+	 * @param $rev
+	 * @param $string string
+	 */
 	function writeLogItem( $rev, $string ) {
 		$this->sink->writeRevision( $rev, $string );
 	}
 
+	/**
+	 * @param $newname string
+	 */
 	function closeRenameAndReopen( $newname ) {
 		$this->sink->closeRenameAndReopen( $newname );
 	}
 
+	/**
+	 * @param $newname string
+	 * @param $open bool
+	 */
 	function closeAndRename( $newname, $open = false ) {
 		$this->sink->closeAndRename( $newname, $open );
 	}
 
+	/**
+	 * @return array
+	 */
 	function getFilenames() {
 		return $this->sink->getFilenames();
 	}
 
 	/**
 	 * Override for page-based filter types.
+	 * @param $page
 	 * @return bool
 	 */
 	function pass( $page ) {
@@ -1099,6 +1294,11 @@ class DumpFilter {
  * @ingroup Dump
  */
 class DumpNotalkFilter extends DumpFilter {
+
+	/**
+	 * @param $page
+	 * @return bool
+	 */
 	function pass( $page ) {
 		return !MWNamespace::isTalk( $page->page_namespace );
 	}
@@ -1112,6 +1312,10 @@ class DumpNamespaceFilter extends DumpFilter {
 	var $invert = false;
 	var $namespaces = array();
 
+	/**
+	 * @param $sink DumpOutput
+	 * @param $param
+	 */
 	function __construct( &$sink, $param ) {
 		parent::__construct( $sink );
 
@@ -1154,6 +1358,10 @@ class DumpNamespaceFilter extends DumpFilter {
 		}
 	}
 
+	/**
+	 * @param $page
+	 * @return bool
+	 */
 	function pass( $page ) {
 		$match = isset( $this->namespaces[$page->page_namespace] );
 		return $this->invert xor $match;
@@ -1168,11 +1376,18 @@ class DumpNamespaceFilter extends DumpFilter {
 class DumpLatestFilter extends DumpFilter {
 	var $page, $pageString, $rev, $revString;
 
+	/**
+	 * @param $page
+	 * @param $string string
+	 */
 	function writeOpenPage( $page, $string ) {
 		$this->page = $page;
 		$this->pageString = $string;
 	}
 
+	/**
+	 * @param $string string
+	 */
 	function writeClosePage( $string ) {
 		if ( $this->rev ) {
 			$this->sink->writeOpenPage( $this->page, $this->pageString );
@@ -1185,6 +1400,10 @@ class DumpLatestFilter extends DumpFilter {
 		$this->pageString = null;
 	}
 
+	/**
+	 * @param $rev
+	 * @param $string string
+	 */
 	function writeRevision( $rev, $string ) {
 		if ( $rev->rev_id == $this->page->page_latest ) {
 			$this->rev = $rev;
@@ -1198,51 +1417,82 @@ class DumpLatestFilter extends DumpFilter {
  * @ingroup Dump
  */
 class DumpMultiWriter {
+
+	/**
+	 * @param $sinks
+	 */
 	function __construct( $sinks ) {
 		$this->sinks = $sinks;
 		$this->count = count( $sinks );
 	}
 
+	/**
+	 * @param $string string
+	 */
 	function writeOpenStream( $string ) {
 		for ( $i = 0; $i < $this->count; $i++ ) {
 			$this->sinks[$i]->writeOpenStream( $string );
 		}
 	}
 
+	/**
+	 * @param $string string
+	 */
 	function writeCloseStream( $string ) {
 		for ( $i = 0; $i < $this->count; $i++ ) {
 			$this->sinks[$i]->writeCloseStream( $string );
 		}
 	}
 
+	/**
+	 * @param $page
+	 * @param $string string
+	 */
 	function writeOpenPage( $page, $string ) {
 		for ( $i = 0; $i < $this->count; $i++ ) {
 			$this->sinks[$i]->writeOpenPage( $page, $string );
 		}
 	}
 
+	/**
+	 * @param $string
+	 */
 	function writeClosePage( $string ) {
 		for ( $i = 0; $i < $this->count; $i++ ) {
 			$this->sinks[$i]->writeClosePage( $string );
 		}
 	}
 
+	/**
+	 * @param $rev
+	 * @param $string
+	 */
 	function writeRevision( $rev, $string ) {
 		for ( $i = 0; $i < $this->count; $i++ ) {
 			$this->sinks[$i]->writeRevision( $rev, $string );
 		}
 	}
 
+	/**
+	 * @param $newnames
+	 */
 	function closeRenameAndReopen( $newnames ) {
 		$this->closeAndRename( $newnames, true );
 	}
 
+	/**
+	 * @param $newnames array
+	 * @param bool $open
+	 */
 	function closeAndRename( $newnames, $open = false ) {
 		for ( $i = 0; $i < $this->count; $i++ ) {
 			$this->sinks[$i]->closeAndRename( $newnames[$i], $open );
 		}
 	}
 
+	/**
+	 * @return array
+	 */
 	function getFilenames() {
 		$filenames = array();
 		for ( $i = 0; $i < $this->count; $i++ ) {
@@ -1253,6 +1503,10 @@ class DumpMultiWriter {
 
 }
 
+/**
+ * @param $string string
+ * @return string
+ */
 function xmlsafe( $string ) {
 	wfProfileIn( __FUNCTION__ );
 

@@ -77,7 +77,8 @@ class ApiQueryAllCategories extends ApiQueryGeneratorBase {
 		}
 
 		$this->addOption( 'LIMIT', $params['limit'] + 1 );
-		$this->addOption( 'ORDER BY', 'cat_title' . ( $params['dir'] == 'descending' ? ' DESC' : '' ) );
+		$sort = ( $params['dir'] == 'descending' ? ' DESC' : '' );
+		$this->addOption( 'ORDER BY', 'cat_title' . $sort );
 
 		$prop = array_flip( $params['prop'] );
 		$this->addFieldsIf( array( 'cat_pages', 'cat_subcats', 'cat_files' ), isset( $prop['size'] ) );
@@ -111,7 +112,7 @@ class ApiQueryAllCategories extends ApiQueryGeneratorBase {
 			// Normalize titles
 			$titleObj = Title::makeTitle( NS_CATEGORY, $row->cat_title );
 			if ( !is_null( $resultPageSet ) ) {
-				$pages[] = $titleObj->getPrefixedText();
+				$pages[] = $titleObj;
 			} else {
 				$item = array();
 				$result->setContent( $item, $titleObj->getText() );

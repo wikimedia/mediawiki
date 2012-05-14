@@ -8,6 +8,7 @@ class PreferencesTest extends MediaWikiTestCase {
 
 	function __construct() {
 		parent::__construct();
+		global $wgEnableEmail;
 
 		$this->users['noemail'] = new User;
 
@@ -23,6 +24,9 @@ class PreferencesTest extends MediaWikiTestCase {
 
 		$this->context = new RequestContext;
 		$this->context->setTitle( Title::newFromText('PreferencesTest') );
+
+		//some tests depends on email setting
+		$wgEnableEmail = true;
 	}
 
 	/**

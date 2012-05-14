@@ -576,6 +576,7 @@ Tamsta galėt [[Special:Search/{{PAGENAME}}|ėiškuotė šėta poslapė pavadėn
 'updated' => '(Atnaujėnta)',
 'note' => "'''Pastebiejims:'''",
 'previewnote' => "'''Nepamėrškėt, kū tas tėktās pervaiza, pakeitėmā da nier ėšsauguotė!'''",
+'continue-editing' => 'Dėrbtė tuoliau',
 'previewconflict' => 'Šėta parvaiza paruod teksta ėš vėršotinėjė teksta redagavėma lauka tēp, kāp ans bus ruodoms, jei pasirinksėt anū ėšsauguotė.',
 'session_fail_preview' => "'''Atsiprašuom! Mes nagalėm vīkdītė Tamstas keitėma diel sesėjės doumenū praradima.
 Prašuom pamiegintė vielēk. Jei šėtā napaded, pamieginkėt atsėjongtė ėr prėsėjongtė atgal.'''",
@@ -583,6 +584,7 @@ Prašuom pamiegintė vielēk. Jei šėtā napaded, pamieginkėt atsėjongtė ėr
 ''Kadaogi šėtom pruojekte grīnasės HTML īr ijongts, parveiza īr pasliepta kāp atsargoma prėimonė priš JavaScript atakas.''
 '''Jei tā teisiets keitėma bandīms, prašuom pamiegint viel. Jei šėtā napaded, pamieginkėt atsėjongtė ėr prėsėjongtė atgal.'''",
 'editing' => 'Taisuoms straipsnis - $1',
+'creating' => 'Dėrbama $1',
 'editingsection' => 'Taisuoms $1 (skėrsnelis)',
 'editingcomment' => 'Taisuoms $1 (naus skīrius)',
 'editconflict' => 'Ėšpreskėt kuonflėkta: $1',
@@ -702,7 +704,6 @@ Kėtė admėnėstratuorē šėtom pruojekte vėsdar galės pasėiktė pasliepta 
 
 # Diffs
 'history-title' => 'Poslapė „$1“ istuorėjė',
-'difference' => '(Skėrtomā terp versėju)',
 'lineno' => 'Eilotė $1:',
 'compareselectedversions' => 'Palīgintė pasėrinktas versėjės',
 'editundo' => 'atšauktė',

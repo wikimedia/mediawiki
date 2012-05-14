@@ -644,7 +644,6 @@ Leyenda: '''({{int:cur}})''' = kaibhan ha giuurhii nga pag-bag-o, '''({{int:last
 
 # Diffs
 'history-title' => "Kaagi han pagbag-o han ''$1''",
-'difference' => '(Kaibhan han kabutngaan han mga pagliwat)',
 'lineno' => 'Bagis $1:',
 'compareselectedversions' => 'Igkumpara an mga pinili nga pagbabag-o',
 'editundo' => 'Igpawara an ginbuhat',

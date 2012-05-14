@@ -102,7 +102,6 @@ class TitleMethodsTest extends MediaWikiTestCase {
 		$this->assertEquals( $expectedBool, $title->hasSubjectNamespace( $ns ) );
 	}
 
-
 	public function dataGetContentModel() {
 		return array(
 			array( 'Foo', CONTENT_MODEL_WIKITEXT ),

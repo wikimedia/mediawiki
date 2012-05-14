@@ -9347,6 +9347,15 @@ File:foobar.jpg|caption|alt=galleryalt|link=" onclick="alert('malicious javascri
 
 !! end
 
+!!test
+Language parser function
+!! input
+{{#language:ar}}
+!! result
+<p>العربية
+</p>
+!! end
+
 TODO:
 more images
 more tables

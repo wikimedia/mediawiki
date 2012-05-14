@@ -534,6 +534,8 @@ Le motivo specificate es ''$2''.",
 'filereadonlyerror' => 'Impossibile modificar le file "$1" perque le deposito de files "$2" es in modo de lectura sol.
 
 Le administrator qui lo blocava offereva iste explication: "$3".',
+'invalidtitle-knownnamespace' => 'Titulo invalide con spatio de nomines "$2" e texto "$3"',
+'invalidtitle-unknownnamespace' => 'Titulo invalide con spatio de nomines incognite $1 e texto "$2"',
 
 # Virus scanner
 'virus-badscanner' => "Configuration incorrecte: programma antivirus non cognoscite: ''$1''",
@@ -943,6 +945,12 @@ Iste parametros ha essite omittite.",
 'parser-template-loop-warning' => 'Recursion infinite detegite in patrono: [[$1]]',
 'parser-template-recursion-depth-warning' => 'Limite de recursion del patrono excedite ($1)',
 'language-converter-depth-warning' => 'Limite de profunditate del conversor de lingua excedite ($1)',
+'node-count-exceeded-category' => 'Paginas in que le numero de nodos excede le limite',
+'node-count-exceeded-warning' => 'Le numero de nodos in iste pagina excede le limite',
+'expansion-depth-exceeded-category' => 'Paginas in que le profunditate de expansion excede le limite',
+'expansion-depth-exceeded-warning' => 'Le profunditate de expansion in iste pagina excede le limite',
+'parser-unstrip-loop-warning' => 'Bucla de "unstrip" detegite',
+'parser-unstrip-recursion-limit' => 'Limite de recursion de "unstrip" excedite ($1)',
 
 # "Undo" feature
 'undo-success' => 'Le modification pote esser disfacite.
@@ -1124,7 +1132,8 @@ Nota que le uso del ligamines de navigation causara le perdita de tote cambios i
 
 # Diffs
 'history-title' => 'Historia de versiones de "$1"',
-'difference' => '(Differentia inter versiones)',
+'difference-title' => 'Differentia inter versiones de "$1"',
+'difference-title-multipage' => 'Differentia inter paginas "$1" e "$2"',
 'difference-multipage' => '(Differentia inter paginas)',
 'lineno' => 'Linea $1:',
 'compareselectedversions' => 'Comparar versiones seligite',
@@ -1766,6 +1775,7 @@ Pro securitate optimal, img_auth.php es disactivate.',
 'http-curl-error' => 'Error al obtener datos del URL: $1',
 'http-host-unreachable' => 'Non poteva acceder al URL',
 'http-bad-status' => 'Un problema occurreva durante le requesta HTTP: $1 $2',
+'http-truncated-body' => 'Le corpore del requesta ha essite solo partialmente recipite.',
 
 # Some likely curl errors. More could be added from <http://curl.haxx.se/libcurl/c/libcurl-errors.html>
 'upload-curl-error6' => 'Non poteva acceder al URL',

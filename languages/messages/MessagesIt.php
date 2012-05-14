@@ -58,6 +58,7 @@
  * @author Una giornata uggiosa '94
  * @author Vajotwo
  * @author Valepert
+ * @author Ximo17
  * @author Xpensive
  * @author ZioNicco
  * @author לערי ריינהארט
@@ -647,6 +648,8 @@ La motivazione è la seguente: ''$2''.",
 'filereadonlyerror' => 'Non è stato possibile modificare il file "$1" poiché il repository di file "$2" è in modalità di sola lettura.
 
 L\'amministratore che lo ha bloccato ha fornito questa motivazione: "$3".',
+'invalidtitle-knownnamespace' => 'Titolo non valido con namespace "$2" e testo "$3"',
+'invalidtitle-unknownnamespace' => 'Titolo non valido con namespace sconosciuto "$1" e testo "$2"',
 
 # Virus scanner
 'virus-badscanner' => "Errore di configurazione: antivirus sconosciuto: ''$1''",
@@ -1012,6 +1015,12 @@ Alcuni template non verranno inclusi.",
 'parser-template-loop-warning' => 'Rilevato loop del template: [[$1]]',
 'parser-template-recursion-depth-warning' => 'È stato raggiunto il limite di ricorsione nel template ($1)',
 'language-converter-depth-warning' => 'Limite di profondità del convertitore di lingua superato ($1)',
+'node-count-exceeded-category' => 'Pagine dove viene superato il numero di nodi',
+'node-count-exceeded-warning' => 'Questa pagina ha superato il numero di nodi',
+'expansion-depth-exceeded-category' => 'Pagine dove viene superata la profondità di espansione',
+'expansion-depth-exceeded-warning' => 'Questa pagina ha superato la profondità di espansione',
+'parser-unstrip-loop-warning' => 'Rilevato ciclo di Unstrip',
+'parser-unstrip-recursion-limit' => 'Superati i limiti di ricorsione di Unstrip ($1)',
 
 # "Undo" feature
 'undo-success' => 'Questa modifica può essere annullata. Verificare il confronto presentato di seguito per accertarsi che il contenuto corrisponda a quanto desiderato e quindi salvare le modifiche per completare la procedura di annullamento.',
@@ -1182,7 +1191,8 @@ Vedi l'[[Special:BlockList|elenco dei blocchi]] per l'elenco dei bandi e dei blo
 
 # Diffs
 'history-title' => 'Cronologia delle modifiche di "$1"',
-'difference' => '(Differenze fra le revisioni)',
+'difference-title' => 'Differenza tra le revisioni di " $1 "',
+'difference-title-multipage' => 'Differenza tra le pagine " $1 "e" $2 "',
 'difference-multipage' => '(Differenze fra le pagine)',
 'lineno' => 'Riga $1:',
 'compareselectedversions' => 'Confronta le versioni selezionate',
@@ -1800,6 +1810,7 @@ Per una sicurezza ottimale, img_auth.php è disattivato.',
 'http-curl-error' => "Errore durante il recupero dell'URL: $1",
 'http-host-unreachable' => 'URL non raggiungibile.',
 'http-bad-status' => "C'è stato un problema durante la richiesta HTTP: $1 $2",
+'http-truncated-body' => 'Il corpo della richiesta è stato ricevuto solo parzialmente.',
 
 # Some likely curl errors. More could be added from <http://curl.haxx.se/libcurl/c/libcurl-errors.html>
 'upload-curl-error6' => 'URL non raggiungibile',
@@ -3645,6 +3656,11 @@ Questo programma deve essere distribuito assieme ad [{{SERVER}}{{SCRIPTPATH}}/CO
 'version-software' => 'Software installato',
 'version-software-product' => 'Prodotto',
 'version-software-version' => 'Versione',
+'version-entrypoints' => 'URL di accesso',
+'version-entrypoints-header-entrypoint' => 'Punti di accesso',
+'version-entrypoints-header-url' => 'URL',
+'version-entrypoints-articlepath' => '[https://www.mediawiki.org/wiki/Manual:$wgArticlePath Percorso voci]',
+'version-entrypoints-scriptpath' => '[https://www.mediawiki.org/wiki/Manual:$wgScriptPath Percorso script]',
 
 # Special:FilePath
 'filepath' => 'Percorso di un file',

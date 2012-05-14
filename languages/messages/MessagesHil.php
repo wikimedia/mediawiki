@@ -986,7 +986,6 @@ Tandai nga ang paggamit sang mga link sa pagnabigar magaliwat sining hilera.',
 
 # Diffs
 'history-title' => 'Rebisyon sang historya sa "$1"',
-'difference' => '(Naglain sa tunga sang mga rebisyon)',
 'difference-multipage' => '(Kinala-in sang mga panid)',
 'lineno' => 'Linya $1:',
 'compareselectedversions' => 'I-kompara ang pinilian nga mga rebisyon',

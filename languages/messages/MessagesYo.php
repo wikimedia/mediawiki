@@ -1009,7 +1009,6 @@ Kò ṣe é bòmọ́lẹ̀.',
 
 # Diffs
 'history-title' => 'Ìtàn àtúnyẹ̀wò fún "$1"',
-'difference' => '(Ìyàtọ̀ láàrin àwọn àtúnyẹ́wò)',
 'difference-multipage' => '(Ìyàtọ̀ láàrin àwọn ojúewé)',
 'lineno' => 'Ìlà $1:',
 'compareselectedversions' => 'Ìfiwéra àwọn àtúnṣe ìṣàyàn',
@@ -2466,6 +2465,7 @@ kò le yípò ojúewé padà sí ara rẹ̀.',
 
 # Export
 'export' => 'Ìkójáde àwọn ojúewé',
+'exportall' => 'Ìkójáde gbogbo àwọn ojúewé',
 'export-submit' => 'Kósíta',
 'export-addcattext' => 'Àfikún àwọn ojúewé láti inú ẹ̀ka:',
 'export-addcat' => 'Ìròpọ̀',

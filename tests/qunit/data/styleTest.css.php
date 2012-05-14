@@ -42,10 +42,14 @@ $params = array_map( 'cssfilter', $_GET );
 $selector = isset( $params['selector'] ) ? $params['selector'] : '.mw-test-example';
 $property = isset( $params['prop'] ) ? $params['prop'] : 'float';
 $value = isset( $params['val'] ) ? $params['val'] : 'right';
+$wait = isset( $params['wait'] ) ? (int)$params['wait'] : 0; // seconds
+
+sleep( $wait );
 
 $css =  "
 /**
- * Generated: " . gmdate( 'r' ) .  "
+ * Generated " . gmdate( 'r' ) .  ".
+ * Waited {$wait}s.
  */
 
 $selector {

@@ -11,11 +11,8 @@ div#footer {
 	margin-left: 11em;
 	padding: 1.25em;
 }
-div#mw-panel div.portal div.body {
+#mw-panel {
 	padding-left: 0.5em;
-}
-div#mw-panel div.portal h5 {
-	padding-left: 2.25em;
 }
 #p-search {
 	margin-right: 1em;

@@ -652,7 +652,7 @@ div#footer #footer-places li {
 	padding-left: 0.5em;
 	padding-right: 0.5em;
 }
-#preferences td.htmlform-tip {
+.htmlform-tip {
 	font-size: x-small;
 	padding: .2em 2em;
 	color: #666666;
@@ -683,7 +683,7 @@ ul {
 	list-style-image: url(images/bullet-icon.png);
 }
 
-pre {
+pre, .mw-code {
 	line-height: 1.3em;
 }
 
@@ -847,40 +847,39 @@ div.vectorTabs ul {
 
 /* Animate between standard and high definition layouts */
 
-div#content,
-div#footer {
+body.vector-animateLayout div#content,
+body.vector-animateLayout div#footer {
 	transition: margin-left 250ms, padding 250ms;
 	-moz-transition: margin-left 250ms, padding 250ms;
 	-webkit-transition: margin-left 250ms, padding 250ms;
 	-o-transition: margin-left 250ms, padding 250ms;
 }
-#p-logo,
-#left-navigation {
+body.vector-animateLayout #p-logo,
+body.vector-animateLayout #left-navigation {
 	transition: left 250ms;
 	-moz-transition: left 250ms;
 	-webkit-transition: left 250ms;
 	-o-transition: left 250ms;
 }
-div#mw-panel div.portal div.body,
-div#mw-panel div.portal h5 {
+body.vector-animateLayout #mw-panel {
 	transition: padding-left 250ms;
 	-moz-transition: padding-left 250ms;
 	-webkit-transition: padding-left 250ms;
 	-o-transition: padding-left 250ms;
 }
-#p-search {
+body.vector-animateLayout #p-search {
 	transition: margin-right 250ms;
 	-moz-transition: margin-right 250ms;
 	-webkit-transition: margin-right 250ms;
 	-o-transition: margin-right 250ms;
 }
-#p-personal {
+body.vector-animateLayout #p-personal {
 	transition: right 250ms;
 	-moz-transition: right 250ms;
 	-webkit-transition: right 250ms;
 	-o-transition: right 250ms;
 }
-#mw-head-base {
+body.vector-animateLayout #mw-head-base {
 	transition: margin-left 250ms;
 	-moz-transition: margin-left 250ms;
 	-webkit-transition: margin-left 250ms;

@@ -776,7 +776,6 @@ $1",
 
 # Diffs
 'history-title' => 'Αἱ πρότεραι ἐκδόσεις τῆς δέλτου "$1"',
-'difference' => '(Τὰ μεταβεβλημένα)',
 'difference-multipage' => '(Διαφορὰ μεταξὺ δέλτων)',
 'lineno' => 'Γραμμή $1:',
 'compareselectedversions' => 'Συγκρίνειν τὰς ἐπειλεγμένας δέλτους',

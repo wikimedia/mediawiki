@@ -89,10 +89,17 @@ class ApiQueryIWBacklinks extends ApiQueryGeneratorBase {
 				$this->addWhereFld( 'iwl_title', $params['title'] );
 				$this->addOption( 'ORDER BY', 'iwl_from' );
 			} else {
-				$this->addOption( 'ORDER BY', 'iwl_title, iwl_from' );
+				$this->addOption( 'ORDER BY', array(
+					'iwl_title',
+					'iwl_from'
+				));
 			}
 		} else {
-			$this->addOption( 'ORDER BY', 'iwl_prefix, iwl_title, iwl_from' );
+			$this->addOption( 'ORDER BY', array(
+				'iwl_prefix',
+				'iwl_title',
+				'iwl_from'
+			));
 		}
 
 		$this->addOption( 'LIMIT', $params['limit'] + 1 );
@@ -205,7 +212,7 @@ class ApiQueryIWBacklinks extends ApiQueryGeneratorBase {
 	public function getExamples() {
 		return array(
 			'api.php?action=query&list=iwbacklinks&iwbltitle=Test&iwblprefix=wikibooks',
-			'api.php?action=query&generator=iwbacklinks&giwbltitle=Test&iwblprefix=wikibooks&prop=info'
+			'api.php?action=query&generator=iwbacklinks&giwbltitle=Test&giwblprefix=wikibooks&prop=info'
 		);
 	}
 

@@ -724,7 +724,6 @@ $2',
 
 # Diffs
 'history-title' => '历史版本𠮶 "$1"',
-'difference' => '（修改之间差异）',
 'lineno' => '第$1行:',
 'compareselectedversions' => '比较拣正𠮶版本',
 'editundo' => '还原',

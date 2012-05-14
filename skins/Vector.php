@@ -18,6 +18,8 @@ if( !defined( 'MEDIAWIKI' ) ) {
  */
 class SkinVector extends SkinTemplate {
 
+	protected static $bodyClasses = array( 'vector-animateLayout' );
+
 	var $skinname = 'vector', $stylename = 'vector',
 		$template = 'VectorTemplate', $useHeadElement = true;
 
@@ -51,6 +53,20 @@ class SkinVector extends SkinTemplate {
 	function setupSkinUserCss( OutputPage $out ){
 		parent::setupSkinUserCss( $out );
 		$out->addModuleStyles( 'skins.vector' );
+	}
+
+	/**
+	 * Adds classes to the body element.
+	 * 
+	 * @param $out OutputPage object
+	 * @param &$bodyAttrs Array of attributes that will be set on the body element
+	 */
+	function addToBodyAttributes( $out, &$bodyAttrs ) {
+		if ( isset( $bodyAttrs['class'] ) && strlen( $bodyAttrs['class'] ) > 0 ) {
+			$bodyAttrs['class'] .= ' ' . implode( ' ', static::$bodyClasses );
+		} else {
+			$bodyAttrs['class'] = implode( ' ', static::$bodyClasses );
+		}
 	}
 }
 
@@ -134,9 +150,7 @@ class VectorTemplate extends BaseTemplate {
 			<!-- /sitenotice -->
 			<?php endif; ?>
 			<!-- firstHeading -->
-			<h1 id="firstHeading" class="firstHeading">
-				<span dir="auto"><?php $this->html( 'title' ) ?></span>
-			</h1>
+			<h1 id="firstHeading" class="firstHeading"><span dir="auto"><?php $this->html( 'title' ) ?></span></h1>
 			<!-- /firstHeading -->
 			<!-- bodyContent -->
 			<div id="bodyContent">

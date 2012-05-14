@@ -1206,7 +1206,6 @@ $1",
 
 # Diffs
 'history-title' => 'ប្រវត្តិកំណែប្រែនានានៃ "$1"',
-'difference' => '(ប្រៀបធៀបកំណែនានា)',
 'difference-multipage' => '(ភាពខុសគ្នារវាងទំព័រនានា)',
 'lineno' => 'បន្ទាត់ទី$1៖',
 'compareselectedversions' => 'ប្រៀបធៀប​កំណែដែលបាន​ជ្រើសយក',

@@ -20,6 +20,7 @@
  * @author Goktr001
  * @author Hanberke
  * @author Hcagri
+ * @author Ijon
  * @author Incelemeelemani
  * @author Joseph
  * @author Kaganer
@@ -33,6 +34,7 @@
  * @author Mirzali
  * @author Mskyrider
  * @author Myildirim2007
+ * @author Reedy
  * @author Runningfridgesrule
  * @author Srhat
  * @author Stultiwikia
@@ -579,7 +581,7 @@ $1',
 'ok' => 'TAMAM',
 'pagetitle-view-mainpage' => '{{SITENAME}}',
 'retrievedfrom' => '"$1" adresinden alındı.',
-'youhavenewmessages' => 'Yeni <u>$1</u> var. ($2)',
+'youhavenewmessages' => 'Yeni $1 var ($2).',
 'newmessageslink' => 'mesajınız',
 'newmessagesdifflink' => 'son değişiklik',
 'youhavenewmessagesmulti' => "$1'de yeni mesajınız var.",
@@ -1253,7 +1255,6 @@ Gezinti bağlantılarının bu sütunu sıfırlayacağını unutmayın.',
 
 # Diffs
 'history-title' => '"$1" sayfasının geçmişi',
-'difference' => '(Sürümler arası farklar)',
 'difference-multipage' => '(Sayfalar arasındaki fark)',
 'lineno' => '$1. satır:',
 'compareselectedversions' => 'Seçilen sürümleri karşılaştır',
@@ -2116,6 +2117,7 @@ Günlük tipini, kullanıcı adını (büyük-küçük harf duyarlı), ya da etk
 'allpagesprefix' => 'Buraya yazdığınız harflerle başlayan sayfaları listeleyin:',
 'allpagesbadtitle' => 'Girilen sayfa ismi diller arası bağlantı ya da vikiler arası bağlantı içerdiğinden geçerli değil. Başlıklarda kullanılması yasak olan bir ya da daha çok karakter içeriyor olabilir.',
 'allpages-bad-ns' => '{{SITENAME}} sitesinde "$1" ad alanı yok.',
+'allpages-hide-redirects' => 'Yönlendirmeleri gizle',
 
 # Special:Categories
 'categories' => 'Kategoriler',
@@ -2274,8 +2276,8 @@ $NEWPAGE
 Değişikliği yapan kullanıcının açıklaması: $PAGESUMMARY $PAGEMINOREDIT
 
 Sayfayı değiştiren kullanıcıya erişim bilgileri:
-e-posta: $PAGEEDITOR_EMAIL
-viki: $PAGEEDITOR_WIKI
+E-posta: $PAGEEDITOR_EMAIL
+Viki: $PAGEEDITOR_WIKI
 
 Bahsi geçen sayfayı ziyaret edinceye kadar sayfayla ilgili başka değişiklik bildirimi gönderilmeyecektir. İzleme listenizdeki tüm sayfalar bildirim durumlarını sıfırlayabilirsiniz.
 

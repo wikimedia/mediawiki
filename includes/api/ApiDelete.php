@@ -46,13 +46,12 @@ class ApiDelete extends ApiBase {
 	public function execute() {
 		$params = $this->extractRequestParams();
 
-		$titleObj = $this->getTitleOrPageId( $params );
-		$pageObj = WikiPage::factory( $titleObj );
-		$pageObj->loadPageData( 'fromdbmaster' );
+		$pageObj = $this->getTitleOrPageId( $params, 'fromdbmaster' );
 		if ( !$pageObj->exists() ) {
 			$this->dieUsageMsg( 'notanarticle' );
 		}
 
+		$titleObj = $pageObj->getTitle();
 		$reason = ( isset( $params['reason'] ) ? $params['reason'] : null );
 		$user = $this->getUser();
 
@@ -230,8 +229,6 @@ class ApiDelete extends ApiBase {
 		return array_merge( parent::getPossibleErrors(),
 			$this->getTitleOrPageIdErrorMessage(),
 			array(
-				array( 'invalidtitle', 'title' ),
-				array( 'nosuchpageid', 'pageid' ),
 				array( 'notanarticle' ),
 				array( 'hookaborted', 'error' ),
 				array( 'delete-toobig', 'limit' ),

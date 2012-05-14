@@ -1223,7 +1223,6 @@ Navigeerimislinkide kasutamine tühistab redaktsioonide valiku.',
 
 # Diffs
 'history-title' => 'Lehekülje "$1" muudatuste ajalugu',
-'difference' => '(Erinevused redaktsioonide vahel)',
 'difference-multipage' => '(Lehekülgede erinevus)',
 'lineno' => 'Rida $1:',
 'compareselectedversions' => 'Võrdle valitud redaktsioone',
@@ -3336,11 +3335,11 @@ Kui faili on rakendustarkvaraga töödeldud, võib osa andmeid olla muudetud võ
 'exif-flash-return-0' => 'ei ole välgu peegeldumist tuvastavat funktsiooni',
 'exif-flash-return-2' => 'välgu peegeldust ei tuvastatud',
 'exif-flash-return-3' => 'tuvastati välgu peegeldus',
-'exif-flash-mode-1' => 'sund välk',
+'exif-flash-mode-1' => 'sundvälk',
 'exif-flash-mode-2' => 'välk keelatud',
 'exif-flash-mode-3' => 'automaatne töörežiim',
 'exif-flash-function-1' => 'Välgu funktsiooni ei ole',
-'exif-flash-redeye-1' => 'Punasilmsust vähendav reziim',
+'exif-flash-redeye-1' => 'punasilmsust vähendav režiim',
 
 'exif-focalplaneresolutionunit-2' => 'toll',
 
@@ -3430,6 +3429,9 @@ Kui faili on rakendustarkvaraga töödeldud, võib osa andmeid olla muudetud võ
 # Pseudotags used for GPSTrackRef, GPSImgDirectionRef and GPSDestBearingRef
 'exif-gpsdirection-t' => 'Tegelik suund',
 'exif-gpsdirection-m' => 'Magneetiline suund',
+
+'exif-ycbcrpositioning-1' => 'Keskele asetatud',
+'exif-ycbcrpositioning-2' => 'Kõrvuti asetatud',
 
 'exif-dc-contributor' => 'Asjaosalised',
 'exif-dc-coverage' => 'Teabevahendi ruumiline või ajaline ulatus',

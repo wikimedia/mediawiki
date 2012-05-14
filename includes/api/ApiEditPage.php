@@ -48,7 +48,8 @@ class ApiEditPage extends ApiBase {
 			$this->dieUsageMsg( 'missingtext' );
 		}
 
-		$titleObj = $this->getTitleOrPageId( $params );
+		$pageObj = $this->getTitleOrPageId( $params );
+		$titleObj = $pageObj->getTitle();
 		if ( $titleObj->isExternal() ) {
 			$this->dieUsageMsg( array( 'invalidtitle', $params['title'] ) );
 		}
@@ -375,9 +376,7 @@ class ApiEditPage extends ApiBase {
 		return array_merge( parent::getPossibleErrors(),
 			$this->getTitleOrPageIdErrorMessage(),
 			array(
-				array( 'nosuchpageid', 'pageid' ),
 				array( 'missingtext' ),
-				array( 'invalidtitle', 'title' ),
 				array( 'createonly-exists' ),
 				array( 'nocreate-missing' ),
 				array( 'nosuchrevid', 'undo' ),

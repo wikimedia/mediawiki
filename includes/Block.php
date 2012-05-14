@@ -28,7 +28,8 @@ class Block {
 
 		$mBlockEmail,
 		$mDisableUsertalk,
-		$mCreateAccount;
+		$mCreateAccount,
+		$mParentBlockId;
 
 	/// @var User|String
 	protected $target;
@@ -368,6 +369,7 @@ class Block {
 		$this->mAuto = $row->ipb_auto;
 		$this->mHideName = $row->ipb_deleted;
 		$this->mId = $row->ipb_id;
+		$this->mParentBlockId = $row->ipb_parent_block_id;
 
 		// I wish I didn't have to do this
 		$db = wfGetDB( DB_SLAVE );
@@ -411,6 +413,7 @@ class Block {
 		}
 
 		$dbw = wfGetDB( DB_MASTER );
+		$dbw->delete( 'ipblocks', array( 'ipb_parent_block_id' => $this->getId() ), __METHOD__ );
 		$dbw->delete( 'ipblocks', array( 'ipb_id' => $this->getId() ), __METHOD__ );
 
 		return $dbw->affectedRows() > 0;
@@ -508,7 +511,8 @@ class Block {
 			'ipb_range_end'        => $this->getRangeEnd(),
 			'ipb_deleted'	       => intval( $this->mHideName ), // typecast required for SQLite
 			'ipb_block_email'      => $this->prevents( 'sendemail' ),
-			'ipb_allow_usertalk'   => !$this->prevents( 'editownusertalk' )
+			'ipb_allow_usertalk'   => !$this->prevents( 'editownusertalk' ),
+			'ipb_parent_block_id'            => $this->mParentBlockId
 		);
 
 		return $a;
@@ -666,6 +670,7 @@ class Block {
 		# Continue suppressing the name if needed
 		$autoblock->mHideName = $this->mHideName;
 		$autoblock->prevents( 'editownusertalk', $this->prevents( 'editownusertalk' ) );
+		$autoblock->mParentBlockId = $this->mId;
 
 		if ( $this->mExpiry == 'infinity' ) {
 			# Original block was indefinite, start an autoblock now
@@ -1075,8 +1080,6 @@ class Block {
 	 * @return array( User|String, Block::TYPE_ constant )
 	 */
 	public static function parseTarget( $target ) {
-		$target = trim( $target );
-
 		# We may have been through this before
 		if( $target instanceof User ){
 			if( IP::isValid( $target->getName() ) ){
@@ -1087,6 +1090,8 @@ class Block {
 		} elseif( $target === null ){
 			return array( null, null );
 		}
+
+		$target = trim( $target );
 
 		if ( IP::isValid( $target ) ) {
 			# We can still create a User if it's an IP address, but we need to turn

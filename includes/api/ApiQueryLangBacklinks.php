@@ -89,10 +89,17 @@ class ApiQueryLangBacklinks extends ApiQueryGeneratorBase {
 				$this->addWhereFld( 'll_title', $params['title'] );
 				$this->addOption( 'ORDER BY', 'll_from' );
 			} else {
-				$this->addOption( 'ORDER BY', 'll_title, ll_from' );
+				$this->addOption( 'ORDER BY', array(
+					'll_title',
+					'll_from'
+				));
 			}
 		} else {
-			$this->addOption( 'ORDER BY', 'll_lang, ll_title, ll_from' );
+			$this->addOption( 'ORDER BY', array(
+				'll_lang',
+				'll_title',
+				'll_from'
+			));
 		}
 
 		$this->addOption( 'LIMIT', $params['limit'] + 1 );
@@ -205,7 +212,7 @@ class ApiQueryLangBacklinks extends ApiQueryGeneratorBase {
 	public function getExamples() {
 		return array(
 			'api.php?action=query&list=langbacklinks&lbltitle=Test&lbllang=fr',
-			'api.php?action=query&generator=langbacklinks&glbltitle=Test&lbllang=fr&prop=info'
+			'api.php?action=query&generator=langbacklinks&glbltitle=Test&glbllang=fr&prop=info'
 		);
 	}
 

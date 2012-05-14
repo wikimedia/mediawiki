@@ -534,12 +534,12 @@ $messages = array(
 'jumpto' => 'Iri al:',
 'jumptonavigation' => 'navigado',
 'jumptosearch' => 'serĉi',
-'view-pool-error' => 'Bedaŭrinde la serviloj estas tro uzata ĉi-momente.
+'view-pool-error' => 'Bedaŭrinde la serviloj estas tro uzataj ĉi-momente.
 Tro da uzantoj provas vidi ĉi tiun paĝon.
-Bonvolu atendi iom antaŭ vi provas atingi ĝin denove.
+Bonvolu atendi iom antaŭ provi atingi ĝin denove.
 
 $1',
-'pool-timeout' => 'Tempolimo atingis atendante ŝlosadon',
+'pool-timeout' => 'Tempolimo atingita dum atendo de ŝlosado',
 'pool-queuefull' => 'Atendovico de servilaro estas plena.',
 'pool-errorunknown' => 'Nekonata eraro',
 
@@ -989,7 +989,9 @@ La lasta protokolero estas jene montrata por via referenco:',
 Rememoru ke individuaj .css-aj kaj .js-aj paĝoj uzas minusklan titolon, ekz. {{ns:user}}:Foo/vector.css kontraŭe al {{ns:user}}:Foo/Vector.css.",
 'updated' => '(Ŝanĝo registrita)',
 'note' => "'''Noto:'''",
-'previewnote' => "'''Memoru, ke ĉi tio estas nur antaŭrigardo kaj ankoraŭ ne konservita!'''",
+'previewnote' => "'''Memoru, ke ĉi tio estas nur antaŭrigardo.''' 
+Viaj ŝanĝoj ne ankoraŭ estas konservitaj!",
+'continue-editing' => 'Redaktu plu',
 'previewconflict' => 'La jena antaŭrigardo montras la tekston el la supra tekstujo,
 kiel ĝi aperos se vi elektos konservi la paĝon.',
 'session_fail_preview' => "'''Ni ne povas procezi vian redakton pro perdo de seancaj datenoj.
@@ -1006,6 +1008,7 @@ La redakto estis malpermesita por preventi koruptado de la teksto de la paĝo.
 Ĉi tiel malofte okazas kiam vi uzas fuŝan TTT-an anoniman prokurilon.'''",
 'edit_form_incomplete' => "'''Kelkaj partoj de la redaktada formo ne atingis la servilon; rekontrolu ke via redakto estas ĝusta kaj reprovu.'''",
 'editing' => 'Redaktado de $1',
+'creating' => 'Kreado de $1',
 'editingsection' => 'Redaktante $1 (sekcion)',
 'editingcomment' => 'Redaktante $1 (nova sekcio)',
 'editconflict' => 'Redakta konflikto: $1',
@@ -1084,6 +1087,10 @@ Iuj ŝablonoj ne estos inkluzivitaj.',
 'parser-template-loop-warning' => 'Rekursiva ŝablono estis trovita: [[$1]]',
 'parser-template-recursion-depth-warning' => 'Limo de ŝablona profundeco pligrandiĝis ($1)',
 'language-converter-depth-warning' => 'Profundo de lingvo-konvertilo preterpasis limon ($1)',
+'node-count-exceeded-category' => 'Paĝoj kie la nombro da nodoj estis preterpasita',
+'node-count-exceeded-warning' => 'Paĝo preterpasis la nombron da nodoj.',
+'expansion-depth-exceeded-category' => 'Paĝoj en kiuj la ekpansiprofundo estis preterpasita.',
+'expansion-depth-exceeded-warning' => 'Paĝo preterpasis la ekpansiprofundon.',
 
 # "Undo" feature
 'undo-success' => 'La redakto estas malfarebla.
@@ -1261,7 +1268,6 @@ Certigu ke ĉi tiu ŝanĝo tenos kontinuecon de la historia paĝo.',
 
 # Diffs
 'history-title' => 'Redakto-historio de "$1"',
-'difference' => '(Malsamoj inter versioj)',
 'difference-multipage' => '(Diferenco inter paĝoj)',
 'lineno' => 'Linio $1:',
 'compareselectedversions' => 'Kompari la elektitajn versiojn',

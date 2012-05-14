@@ -480,7 +480,8 @@ Tu puodes [[Special:Search/{{PAGENAME}}|percurar pul títalo desta páigina]] no
 <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} percurar ls registros que téngan a ber],
 ó [{{fullurl:{{FULLPAGENAME}}|action=edit}} eiditar esta páigina]</span>.',
 'note' => "'''Abiso:'''",
-'previewnote' => "'''Esto ye solo ua amostra; las altaraçones inda nun fúrun grabadas!'''",
+'previewnote' => "'''Lhembra-te qu'esto ye solo ua amostra.'''
+Las altaraçones inda nun fúrun grabadas!",
 'editing' => 'A eiditar $1',
 'editingsection' => 'A eiditar $1 (cacho)',
 'yourtext' => 'L tou testo',
@@ -538,7 +539,6 @@ Legenda: (atu) = defrénças de la berson atual,
 
 # Diffs
 'history-title' => 'Stórico de eidiçones de "$1"',
-'difference' => '(Defréncias antre rebisones)',
 'lineno' => 'Lhinha $1:',
 'compareselectedversions' => 'Cumparar las bersones marcadas',
 'showhideselectedversions' => 'Amostrar/ocultar bersones selecionadas',

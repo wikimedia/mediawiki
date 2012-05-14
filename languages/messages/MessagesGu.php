@@ -312,9 +312,9 @@ $messages = array(
 'vector-simplesearch-preference' => 'શોધ સંબંધી વિશિષ્ઠ સુઝાવના પર્યાયને સક્રીય  કરો (Vector skin only)',
 'vector-view-create' => 'બનાવો',
 'vector-view-edit' => 'ફેરફાર કરો',
-'vector-view-history' => 'ઈતિહાસ જુઓ',
+'vector-view-history' => 'ઇતિહાસ જુઓ',
 'vector-view-view' => 'વાંચો',
-'vector-view-viewsource' => 'સ્ત્રોત જુઓ',
+'vector-view-viewsource' => 'સ્રોત જુઓ',
 'actions' => 'ક્રિયાઓ',
 'namespaces' => 'નામાવકાશો',
 'variants' => 'ભિન્ન રૂપો',
@@ -523,13 +523,13 @@ $1',
 'wrong_wfQuery_params' => 'wfQuery() માટે અયોગ્ય વિકલ્પો<br />
 Function: $1<br />
 Query: $2',
-'viewsource' => 'સ્ત્રોત જુઓ',
-'viewsource-title' => '$1 માટે સ્ત્રોત જુવઑ',
+'viewsource' => 'સ્રોત જુઓ',
+'viewsource-title' => '$1 માટે સ્રોત જુઓ',
 'actionthrottled' => 'અકાળે અટાકાવી દીધેલી ક્રિયા',
 'actionthrottledtext' => 'સ્પામ નિયંત્રણ તકેદારી રૂપે આ ક્રિયા અમુક મર્યાદામાં જ કરી શકો છો, અને તમે તે મર્યાદા વટાવી દીધી છે. કૃપા કરી થોડાક સમય પછી ફરી પ્રયત્ન કરો.',
 'protectedpagetext' => 'ફેરફારો થતાં રોકવા માટે આ પાનું સુરક્ષિત કરવામાં આવ્યું છે.',
-'viewsourcetext' => 'આપ આ પાનાનો મૂળ સ્ત્રોત નિહાળી શકો છો અને તેની નકલ (copy) પણ કરી શકો છો:',
-'viewyourtext' => "તમે જોવા અને''સ્ત્રોત નકલ કરી શકો છો  પર તમારા સંપાદનો'''આ પાનાં નઆ",
+'viewsourcetext' => 'આપ આ પાનાનો મૂળ સ્રોત નિહાળી શકો છો અને તેની નકલ (copy) પણ કરી શકો છો:',
+'viewyourtext' => "આપ આ પાનાનાં '''આપનાં સંપાદનો'''નો મૂળ સ્રોત નિહાળી શકો છો અને તેની નકલ (copy) પણ કરી શકો છો:",
 'protectedinterface' => 'આ પાનું સોફ્ટવેર માટે ઇન્ટરફેઇસ ટેક્સટ આપે છે, અને તેને દુરુપયોગ રોકવા માટે સ્થગિત કર્યું છે.',
 'editinginterface' => "'''ચેતવણી:''' તમે જે પાનામાં ફેરફાર કરી રહ્યા છો તે પાનું સોફ્ટવેર માટે ઇન્ટરફેસ ટેક્સટ પુરી પાડે છે.
 અહીંનો બદલાવ બીજા સભ્યોના ઇન્ટરફેસનાં દેખાવ ઉપર અસરકર્તા બનશે.
@@ -1088,10 +1088,10 @@ $1",
 
 # History merging
 'mergehistory' => 'પાનાનાં ઇતિહાસોનું વિલીનીકરણ',
-'mergehistory-header' => 'આ પાનું તમને સ્ત્રોત પાનાનો ઈતિહાસ નવા પાનામાં વિલિન કરવા માં મદદ કરે છે.
+'mergehistory-header' => 'આ પાનું તમને સ્રોત પાનાનો ઈતિહાસ નવા પાનામાં વિલિન કરવા માં મદદ કરે છે.
 એ વાતનું ધ્યાન રાખશો કે ઇતિહાસ પાનાની સળંગતા જળવાઇ રહે.',
 'mergehistory-box' => 'બે પાનાના ફેરફાર વિલિન કરો',
-'mergehistory-from' => 'સ્ત્રોત પાનું',
+'mergehistory-from' => 'સ્રોત પાનું',
 'mergehistory-into' => 'લક્ષ્ય પાનું',
 'mergehistory-list' => 'વિલિનીકરણશીલ ફેરફારનો ઈતિહાસ',
 'mergehistory-merge' => '[[:$1]] દ્વારા કરેલ ફેરફારો [[:$2]] માંવિલિન કરી શકાયા.
@@ -1102,13 +1102,13 @@ $1",
 'mergehistory-empty' => 'પુનરાવર્તન સાચવી ન શકાયા',
 'mergehistory-success' => '[[:$1]] ના $3 {{PLURAL:$3|ફેરફાર |ફેરફારો}} ને સફળતા પૂર્વક  [[:$2]] માં વિલિનાકરાયા.',
 'mergehistory-fail' => 'ઇતિહાસ પાના વિલિન ન કરી શકાયા, પાના અને સમય સંબંધી વિકલ્પો ચકાસો.',
-'mergehistory-no-source' => 'સ્ત્રોત પાનું $1 ઉપલબ્ધ નથી.',
+'mergehistory-no-source' => 'સ્રોત પાનું $1 ઉપલબ્ધ નથી.',
 'mergehistory-no-destination' => 'લક્ષ્ય પાનું $1 અસ્તિત્વમાં નથી',
-'mergehistory-invalid-source' => 'સ્ત્રોત પાનું વૈધ શીર્ષક હોવું જ જોઈએ',
+'mergehistory-invalid-source' => 'સ્રોત પાનું વૈધ શીર્ષક હોવું જ જોઈએ.',
 'mergehistory-invalid-destination' => 'લક્ષ્ય પાનું એક  વૈધ શીર્ષક હોવું જોઇએ',
 'mergehistory-autocomment' => ' [[:$1]] ને [[:$2]] માં વિલિન કર્યું',
 'mergehistory-comment' => '[[:$1]] ને [[:$2]]: $3  માં વિલિન કર્યું',
-'mergehistory-same-destination' => 'સ્ત્રોત અને લક્ષ્ય પાના એકાસમાન ના હોઈ શકે',
+'mergehistory-same-destination' => 'સ્રોત અને લક્ષ્ય પાના એક સમાન ના હોઈ શકે',
 'mergehistory-reason' => 'કારણ:',
 
 # Merge log
@@ -1119,7 +1119,6 @@ $1",
 
 # Diffs
 'history-title' => '"$1"ના ફેરફારોનો ઇતિહાસ',
-'difference' => '(પુનરાવર્તનો વચ્ચેનો તફાવત)',
 'difference-multipage' => '(પાનાઓ વચ્ચેનો ફેરફાર)',
 'lineno' => 'લીટી $1:',
 'compareselectedversions' => 'પસંદ કરેલા સરખાવો',
@@ -1383,7 +1382,7 @@ HTML નાકું ચકાસો',
 'right-move-subpages' => 'પાનાઓને તેમના ઉપ પાના સાથે ખસેડો.',
 'right-move-rootuserpages' => 'મૂળ સભ્ય પાના હટાવો',
 'right-movefile' => 'ફાઈલો હટાવો',
-'right-suppressredirect' => 'પાના હટાવતી વખતના સમયે સ્ત્રોત પાનામાંથી દિશા નિર્દેશ વર્જીત',
+'right-suppressredirect' => 'પાના હટાવતી વખતના સમયે સ્રોત પાનામાંથી દિશા નિર્દેશ વર્જીત',
 'right-upload' => 'ફાઇલ ચડાવો',
 'right-reupload' => 'વિહરમાન ફાઇલ પર પુનર્લેખન કરો',
 'right-reupload-own' => 'સભ્ય દ્વારા જાતે ચઢાવેલી તાઇલ પર પુનર્લેખન કરો',
@@ -1554,7 +1553,7 @@ HTML નાકું ચકાસો',
 'fileuploadsummary' => 'સારાંશ:',
 'filereuploadsummary' => 'ફાઈલ ફેરફારો',
 'filestatus' => 'પ્રકાશનાધિકાર સ્થિતિ',
-'filesource' => 'સ્ત્રોત:',
+'filesource' => 'સ્રોત:',
 'uploadedfiles' => 'ફાઇલ ચડાવો',
 'ignorewarning' => 'ચેતવણીને અવગણી ને પણ ફાઇલ સાચવો',
 'ignorewarnings' => 'કોઇ પણ ચેતવણી અવગણો',
@@ -1630,9 +1629,9 @@ HTML નાકું ચકાસો',
 વિવરણ : $1',
 'uploadjava' => 'આ ફાઇલ એ ZIP ફાઈલ છે જે Java .class ધરાવે છે.
 Java ફાઇલ ચડાવવાની પરવાનગી નથી, કેમકે તેઓ સુરક્ષા તપાસને અવગણી નાખવાની ક્ષમતા ધરાવે છે.',
-'upload-source' => 'સ્ત્રોત ફાઇલ',
-'sourcefilename' => 'સ્ત્રોત ફાઇલ નામ',
-'sourceurl' => 'સ્ત્રોત  URL:',
+'upload-source' => 'સ્રોત ફાઇલ',
+'sourcefilename' => 'સ્રોત ફાઇલ નામ:',
+'sourceurl' => 'સ્રોત  URL:',
 'destfilename' => 'લક્ષ્ય ફાઇલ નામ',
 'upload-maxfilesize' => 'મહત્તમ ફાઈલ કદ : $1',
 'upload-description' => 'ફાઇલ માહિતી',
@@ -1987,12 +1986,12 @@ https://www.mediawiki.org/wiki/Manual:Image_Authorization. જુઓ',
 'querypage-disabled' => 'કાર્યક્ષમતાના કારણે આ ખાસ પાનું નિષ્ક્રિ કરાયું છે.',
 
 # Book sources
-'booksources' => 'પુસ્તક સ્ત્રોત',
-'booksources-search-legend' => 'પુસ્તક સ્ત્રોત શોધો',
+'booksources' => 'પુસ્તક સ્રોત',
+'booksources-search-legend' => 'પુસ્તક સ્રોત શોધો',
 'booksources-isbn' => 'આઇએસબીએન:',
 'booksources-go' => 'જાઓ',
 'booksources-text' => 'નીચે દર્શાવેલ યાદી એ કડીઓ બતાવે છે જેઓ નવા અને જૂના પુસ્તકો  વેચે છે , અને તમે માંગેલ વસ્તુ સંબંધિ વધુ મહિતી પણ ધરાવી શકે છે.',
-'booksources-invalid-isbn' => 'આપેલ ISBN વૈધ નથી લાગતો. મૂળ સ્ત્રોત થે ચકાસીને ભૂલ શોધી ખરી માહિતી આપો.',
+'booksources-invalid-isbn' => 'આપેલ ISBN વૈધ નથી લાગતો; મૂળ સ્રોતને ચકાસી, ભૂલ શોધી, ખરી માહિતી આપો.',
 
 # Special:Log
 'specialloguserlabel' => 'અભિનય:',
@@ -2661,7 +2660,7 @@ To perform a selective restoration, check the boxes corresponding to the revisio
 શું તમે આને હટાવીને સ્થળાંતર કરવાનો માર્ગ મોકળો કરવા માંગો છો?',
 'delete_and_move_confirm' => 'હા, આ પાનું હટાવો',
 'delete_and_move_reason' => 'હટાવવાનું કામ આગળ વધાવવા ભૂંસી દેવાયુ "[[$1]]"',
-'selfmove' => 'સ્ત્રોત ને લક્ષ્ય શીર્ષકો સમાન છે.
+'selfmove' => 'સ્રોત ને લક્ષ્ય શીર્ષકો સમાન છે;
 પાના ને તેવા જ નામ ધરાવતા પાના પર પુનઃ સ્થાપન નહીં કરી શકાય.',
 'immobile-source-namespace' => '"$1" નામાસ્થળમાં પાના ન ખસેડી શાકાયા',
 'immobile-target-namespace' => '"$1" નામાસ્થળમાં પાના ન ખસેડી શાકાયા',
@@ -2742,27 +2741,27 @@ To perform a selective restoration, check the boxes corresponding to the revisio
 'import-interwiki-text' => 'આયાત કરવાના વિકિ અને પાનાનું શીર્ષક પસંદ કરો.
 ફેરફરની તારીખ અને લેખકો વિષે ની માહિતી સચવાશે.
 આંતર વિકિ આયાત આદિ [[Special:Log/import|import log]] માં અંકિત થાય છે.',
-'import-interwiki-source' => 'સ્ત્રોત વિકિ/પાનું',
+'import-interwiki-source' => 'સ્રોત વિકિ/પાનું:',
 'import-interwiki-history' => 'આ પાના બધા ઐતિહાસીક ફેરફારોની નકલ કરો',
 'import-interwiki-templates' => 'બધા ઢાંચા શામિલ કરો',
 'import-interwiki-submit' => 'આયાત કરો',
 'import-interwiki-namespace' => 'લક્ષ્ય નામ સ્થળ',
 'import-upload-filename' => 'ફાઇલ નામ',
 'import-comment' => 'ટિપ્પણી:',
-'importtext' => 'કૃપયા [[Special:Export|export utility]] વાપરી વિકિ સ્ત્રોત પરથી ફાઇલ નિકાસ કરો.
-તેને તમારા સંગણક પર સાચવો અને અહીં ચડાવો.',
+'importtext' => 'કૃપયા [[Special:Export|export utility]] વાપરી વિકિ સ્રોત પરથી ફાઇલ નિકાસ કરો.
+તેને તમારા કૉમ્પ્યુટર પર સાચવો અને અહીં ચડાવો.',
 'importstart' => 'આયાત કામ જારી છે....',
 'import-revision-count' => '$1 {{PLURAL:$1|પુનરાવર્તન|પુનરાવર્તનો}}',
 'importnopages' => 'આયાત કરવા માટે કોઇ પાનું નથી!',
 'imported-log-entries' => 'આયાતી $1 {{PLURAL:$1|log entry|log entries}}.',
 'importfailed' => 'આયાત નિષ્ફળ: <nowiki>$1</nowiki>',
-'importunknownsource' => 'અજ્ઞાત આયાતી સ્ત્રોત પ્રકાર',
+'importunknownsource' => 'અજ્ઞાત આયાતી સ્રોત પ્રકાર',
 'importcantopen' => 'આયાતી ફાઈલ નાખોલી શકાઈ',
 'importbadinterwiki' => 'ખરાબ આંતરીકા વિકિ કડી',
 'importnotext' => 'ખાલી કે શબ્દ વિહીન',
 'importsuccess' => 'આયાત સંપૂર્ણ',
 'importhistoryconflict' => 'એક બીજાથી વિસંગત ફેરફારો અસ્તિત્વ ધરાવે છે ( કદાક આ પાનું પહેલાં આયાત કરાયું હોય)',
-'importnosources' => 'કોઇ પણ આંતર વિકિ સ્ત્રોત જણાવાયા નથી અને સીધા ઇતિહાસ ફાઇલ ચડાવવા પર રોક લાગેલી છે.',
+'importnosources' => 'કોઇ પણ આંતર વિકિ સ્રોત જણાવાયા નથી અને સીધા ઇતિહાસ ફાઇલ ચડાવવા પર રોક લાગેલી છે.',
 'importnofile' => 'કોઇ પણ આયાતી ફાઇલ ન ચડાવી શકાઇ',
 'importuploaderrorsize' => 'આયાતી ફાઇલ ચડાવવાનું અસફળ
 મંજૂર કદ કરતા આ ફાઈલાનું કદ મોટું છે.',
@@ -2817,7 +2816,7 @@ To perform a selective restoration, check the boxes corresponding to the revisio
 'tooltip-ca-talk' => 'અનુક્રમણિકાનાં પાના વિષે ચર્ચા',
 'tooltip-ca-edit' => "આપ આ પાનામાં ફેરફાર કરી શકો છો, કાર્ય સુરક્ષિત કરતાં પહેલાં 'ઝલક' બટન ઉપર ક્લિક કરીને જોઇ લેશો",
 'tooltip-ca-addsection' => 'ચર્ચાનો નવો મુદ્દો ઉમેરો.',
-'tooltip-ca-viewsource' => 'આ પાનુ સંરક્ષિત છે, તમે તેનો સ્ત્રોત જોઇ શકો છો',
+'tooltip-ca-viewsource' => 'આ પાનુ સંરક્ષિત છે, તમે તેનો સ્રોત જોઇ શકો છો',
 'tooltip-ca-history' => 'આ પાનાનાં અગાઉનાં ફેરફારો',
 'tooltip-ca-protect' => 'આ પાનું સુરક્ષિત કરો',
 'tooltip-ca-unprotect' => 'આ પાનું રક્ષણ બદલો',
@@ -3064,7 +3063,7 @@ To perform a selective restoration, check the boxes corresponding to the revisio
 'exif-maxaperturevalue' => 'મહત્તમ ભૂમિ છીદ્ર',
 'exif-subjectdistance' => 'વસ્તુનું અંતર',
 'exif-meteringmode' => 'મીટરીંગ ઢબ',
-'exif-lightsource' => 'પ્રકાશા સ્ત્રોત',
+'exif-lightsource' => 'પ્રકાશ સ્રોત',
 'exif-flash' => 'જબકારો (ફ્લેશ)',
 'exif-focallength' => 'કાંચનું કેન્દ્રીય લંબાઇ (ફોકલ લેંથ)',
 'exif-subjectarea' => 'વિષ્યવસ્તુ  ક્ષેત્ર',
@@ -3075,7 +3074,7 @@ To perform a selective restoration, check the boxes corresponding to the revisio
 'exif-subjectlocation' => 'વસ્તુનું સ્થાન',
 'exif-exposureindex' => 'પ્રકાશાગમ અનુક્ર્મ',
 'exif-sensingmethod' => 'સંવેદનાની રીત',
-'exif-filesource' => 'ફાઇલ સ્ત્રોત',
+'exif-filesource' => 'ફાઇલ સ્રોત',
 'exif-scenetype' => 'દ્રશ્ય પ્રકાર',
 'exif-customrendered' => 'સ્થાનીય ચિત્ર પ્રક્રિયા',
 'exif-exposuremode' => 'પ્રકાશાગમ પ્રકાર',
@@ -3138,8 +3137,8 @@ To perform a selective restoration, check the boxes corresponding to the revisio
 'exif-objectname' => 'લઘુ શીર્ષક',
 'exif-specialinstructions' => 'ખાસ સૂચનાઓ',
 'exif-headline' => 'મથાળું',
-'exif-credit' => 'ઋણ સ્વીકાર/સ્ત્રોત',
-'exif-source' => 'સ્ત્રોત',
+'exif-credit' => 'ઋણ સ્વીકાર/સ્રોત',
+'exif-source' => 'સ્રોત',
 'exif-editstatus' => 'ચિત્ર સંપાદનની સ્થિતી',
 'exif-urgency' => 'તાત્કાલિકતા',
 'exif-fixtureidentifier' => 'સાધન નામ',
@@ -3250,7 +3249,7 @@ To perform a selective restoration, check the boxes corresponding to the revisio
 'exif-lightsource-18' => 'પ્રમાણભૂત પ્રકાશ B',
 'exif-lightsource-19' => 'પ્રમાણભૂત પ્રકાશ C',
 'exif-lightsource-24' => 'ISO સ્ટુડીયો ટંગસ્ટન',
-'exif-lightsource-255' => 'પ્રકાશના અન્ય સ્ત્રોત',
+'exif-lightsource-255' => 'અન્ય પ્રકાશ સ્રોત',
 
 # Flash modes
 'exif-flash-fired-0' => 'પ્રકાશ ઝબકારો ન થયો',
@@ -3367,7 +3366,7 @@ To perform a selective restoration, check the boxes corresponding to the revisio
 'exif-dc-publisher' => 'પ્રકાશક',
 'exif-dc-relation' => 'સંબધિત માધ્યમ',
 'exif-dc-rights' => 'હક્કો',
-'exif-dc-source' => 'સ્ત્રોત માધ્યમ',
+'exif-dc-source' => 'સ્રોત માધ્યમ',
 'exif-dc-type' => 'માધ્યમનો પ્રકાર',
 
 'exif-rating-rejected' => 'નામંજૂર',
@@ -3726,8 +3725,8 @@ $5
 'newuserlog-byemail' => 'ગુપ્ત સંજ્ઞા ઇ-મેલ દ્વારા મોકલાઇ છે.',
 
 # Feedback
-'feedback-bugornote' => 'જો તમને તકનીકી પ્રોબ્લેમને વર્ણન કરવા માંગતા હોય તો  [$1 report a bug] એ બગ અહીં નોંધાવો.
-અન્યથા, તમે નેચે આપેલ સરળ ફોર્મ વાંચી શકો છો. તમારી ટિપ્પણી "[$3 $2]" પાના કરવા માટે, તમારા સભ્ય નામ અને બ્રાઉઝર પ્રકાર વાપફો છો તેની માહિતી આપો.',
+'feedback-bugornote' => 'જો તમે તકનીકી સમસ્યા વર્ણવવા માંગતા હોય તો  કૃપયા [$1 report a bug] એ બગ અહીં નોંધાવો.
+અન્યથા, તમે નીચે આપેલ સરળ ફોર્મ વાપરી શકો છો. તમારા સભ્ય નામ અને કયું બ્રાઉઝર વાપરો છો તેની માહિતી સાથે, તમારી ટિપ્પણીનો "[$3 $2]" પાનામાં સમાવેશ કરાશે.',
 'feedback-subject' => 'વિષય:',
 'feedback-message' => 'સંદેશ',
 'feedback-cancel' => 'રદ કરો',
@@ -3778,5 +3777,12 @@ $5
 'api-error-unknownerror' => 'અજ્ઞાત ક્ષતિ: "$1".',
 'api-error-uploaddisabled' => 'આ વીકી પર અપલોડ નિષ્ક્રિય કરવામાં આવેલ છે',
 'api-error-verification-error' => 'ફાઈલ યાતો ખરાબ થઈ ગઈ છે યાતો તેનું ઍક્સટેન્શન (વિસ્તરક) ખોટો છે.',
+
+# Durations
+'duration-seconds' => '$1 {{PLURAL:$1|સેકંડ|સેકંડ}}',
+'duration-minutes' => '$1 {{PLURAL:$1|મિનિટ|મિનિટો}}',
+'duration-hours' => '$1 {{PLURAL:$1|કલાક|કલાકો}}',
+'duration-days' => '$1 {{PLURAL:$1|દિવસ|દિવસો}}',
+'duration-years' => '$1 {{PLURAL:$1|વર્ષ|વર્ષો}}',
 
 );

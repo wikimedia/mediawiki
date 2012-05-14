@@ -977,7 +977,7 @@ Yritä uudelleen. Jos ongelma ei katoa, yritä [[Special:UserLogout|kirjautua ul
 'token_suffix_mismatch' => "'''Muokkauksesi on hylätty, koska asiakasohjelmasi ei osaa käsitellä välimerkkejä muokkaustarkisteessa. Syynä voi olla viallinen välityspalvelin.'''",
 'edit_form_incomplete' => "'''Osa muokkauslomakkeesta ei saavuttanut palvelinta. Tarkista, että muokkauksesi ovat vahingoittumattomia ja yritä uudelleen.'''",
 'editing' => 'Muokataan sivua $1',
-'creating' => 'Sivun $1 luonti',
+'creating' => 'Luodaan sivu $1',
 'editingsection' => 'Muokataan osiota sivusta $1',
 'editingcomment' => 'Muokataan uutta osiota sivulla $1',
 'editconflict' => 'Päällekkäinen muokkaus: $1',
@@ -1218,7 +1218,6 @@ Uuden ja vanhan sivun muutoksien pitää muodostaa jatkumo – ne eivät saa men
 
 # Diffs
 'history-title' => 'Sivun $1 muutoshistoria',
-'difference' => 'Versioiden väliset erot',
 'difference-multipage' => '(Sivujen välinen eroavaisuus)',
 'lineno' => 'Rivi $1:',
 'compareselectedversions' => 'Vertaile valittuja versioita',
@@ -2225,7 +2224,7 @@ Lisätietoa yksittäisistä käyttäjäoikeuksista saattaa löytyä [[{{MediaWik
 'watchnochange' => 'Valittuna ajanjaksona yhtäkään tarkkailemistasi sivuista ei muokattu.',
 'watchlist-details' => 'Tarkkailulistalla on {{PLURAL:$1|$1 sivu|$1 sivua}} keskustelusivuja mukaan laskematta.',
 'wlheader-enotif' => '* Sähköposti-ilmoitukset ovat käytössä.',
-'wlheader-showupdated' => "* Sivut, joita on muokattu viimeisen käyntisi jälkeen on '''lihavoitu'''.",
+'wlheader-showupdated' => "* Sivut, joita on muokattu viimeisen käyntisi jälkeen, on '''lihavoitu'''.",
 'watchmethod-recent' => 'tarkistetaan tuoreimpia muutoksia tarkkailluille sivuille',
 'watchmethod-list' => 'tarkistetaan tarkkailtujen sivujen tuoreimmat muutokset',
 'watchlistcontains' => 'Tarkkailulistallasi on {{PLURAL:$1|yksi sivu|$1 sivua}}.',
@@ -2240,7 +2239,7 @@ Lisätietoa yksittäisistä käyttäjäoikeuksista saattaa löytyä [[{{MediaWik
 'watcherrortext' => 'Sivun ”$1” tarkkailulista-asetusten muutoksissa tapahtui virhe.',
 
 'enotif_mailer' => '{{GRAMMAR:genitive|{{SITENAME}}}} sivu on muuttunut -ilmoitus',
-'enotif_reset' => 'Merkitse kaikki sivut katsotuiksi',
+'enotif_reset' => 'Merkitse kaikki sivut kerralla nähdyiksi',
 'enotif_newpagetext' => 'Tämä on uusi sivu.',
 'enotif_impersonal_salutation' => '{{SITENAME}}-käyttäjä',
 'changed' => 'muuttanut sivua',

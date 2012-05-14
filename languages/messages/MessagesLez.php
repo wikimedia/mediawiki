@@ -513,7 +513,6 @@ $messages = array(
 
 # Diffs
 'history-title' => '$1  -  масакIавилерин тарих',
-'difference' => '(Жуьрейрин арада тафаватар)',
 'lineno' => 'ЦIар $1:',
 'compareselectedversions' => 'Хкягъай жуьреяр гекъигун',
 'editundo' => 'Гьич авун',

@@ -967,7 +967,6 @@ $3 द्वारा देल कारण अछि ''$2''",
 
 # Diffs
 'history-title' => '"$1" क संशोधन इतिहास',
-'difference' => '(नव संशोधन सभक बीच अन्तर)',
 'difference-multipage' => '(पन्ना सभक बीचमे अन्तर)',
 'lineno' => 'पंक्त्ति $1:',
 'compareselectedversions' => 'चयन कएल संशोधन सभक तुलना करू',

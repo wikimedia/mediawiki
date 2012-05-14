@@ -584,7 +584,6 @@ Leggenda: (corr) = differense co-a verscion corrente, (prec) = differense co-a v
 
 # Diffs
 'history-title' => 'Stöia de revixoìn de "$1"',
-'difference' => '(Differense fra e revixoîn)',
 'lineno' => 'Linia $1:',
 'compareselectedversions' => 'Confronta e verscioîn selessionæ',
 'editundo' => 'Anùlla',

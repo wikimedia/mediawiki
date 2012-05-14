@@ -736,7 +736,6 @@ An ibang mga administrador sa ining wiki pwede pang maghiling kan mga nakatagong
 
 # Diffs
 'history-title' => 'Uusipón nin pagpakarháy kan "$1"',
-'difference' => '(Kaibhán kan mga pagpakarháy)',
 'lineno' => 'Taytáy $1:',
 'compareselectedversions' => 'Ikomparar an mga piniling bersyon',
 'editundo' => 'isulít',

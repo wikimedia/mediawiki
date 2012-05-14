@@ -612,6 +612,8 @@ O motivo achegado é ''$2''.",
 'filereadonlyerror' => 'Non se puido modificar o ficheiro "$1" porque o repositorio "$2" está en modo de só lectura.
 
 O administrador que bloqueou o repositorio achegou este motivo: "$3".',
+'invalidtitle-knownnamespace' => 'Título inválido co espazo de nomes "$2" e o texto "$3"',
+'invalidtitle-unknownnamespace' => 'Título inválido cun número de espazo de nomes, $1, descoñecido e o texto "$2"',
 
 # Virus scanner
 'virus-badscanner' => "Configuración errónea: escáner de virus descoñecido: ''$1''",
@@ -1013,6 +1015,10 @@ Estes argumentos foron omitidos.",
 'parser-template-loop-warning' => 'Detectouse un modelo en bucle: [[$1]]',
 'parser-template-recursion-depth-warning' => 'Excedeuse o límite da profundidade do recurso do modelo ($1)',
 'language-converter-depth-warning' => 'Excedeuse o límite de profundidade do convertedor de lingua ($1)',
+'node-count-exceeded-category' => 'Páxinas nas que se supera o número de nodos',
+'node-count-exceeded-warning' => 'Páxina que supera o número de nodos',
+'expansion-depth-exceeded-category' => 'Páxinas nas que se supera a profundidade de expansión',
+'expansion-depth-exceeded-warning' => 'Páxina que supera a profundidade de expansión',
 
 # "Undo" feature
 'undo-success' => 'A edición pódese desfacer.
@@ -1190,7 +1196,6 @@ Asegúrese de que esta modificación da páxina mantén a continuidade históric
 
 # Diffs
 'history-title' => 'Historial de revisións de "$1"',
-'difference' => '(Diferenzas entre revisións)',
 'difference-multipage' => '(Diferenzas entre páxinas)',
 'lineno' => 'Liña $1:',
 'compareselectedversions' => 'Comparar as versións seleccionadas',
@@ -1831,6 +1836,7 @@ Para unha seguridade óptima, img_auth.php está desactivado.',
 'http-curl-error' => 'Ocorreu un erro ao acceder ao URL: $1',
 'http-host-unreachable' => 'Non se puido acceder ao URL.',
 'http-bad-status' => 'Houbo un problema durante a solicitude HTTP: $1 $2',
+'http-truncated-body' => 'O corpo de solicitude recibiuse parcialmente.',
 
 # Some likely curl errors. More could be added from <http://curl.haxx.se/libcurl/c/libcurl-errors.html>
 'upload-curl-error6' => 'Non se logrou acceder a ese URL',
@@ -1927,7 +1933,7 @@ Poida que queira editar a descrición da [$2 páxina de descrición do ficheiro]
 'filedelete-otherreason' => 'Outro motivo:',
 'filedelete-reason-otherlist' => 'Outro motivo',
 'filedelete-reason-dropdown' => '*Motivos frecuentes para borrar
-** Violación dos dereitos de autor
+** Violación dos dereitos de autoría
 ** Ficheiro duplicado',
 'filedelete-edit-reasonlist' => 'Editar os motivos de borrado',
 'filedelete-maintenance' => 'Os borrados e restauracións de ficheiros están desactivados temporalmente durante o mantemento.',
@@ -2315,8 +2321,8 @@ No $2 pode ver unha lista cos borrados máis recentes.',
 'deleteotherreason' => 'Outro motivo:',
 'deletereasonotherlist' => 'Outro motivo',
 'deletereason-dropdown' => '*Motivos frecuentes para borrar
-** Solicitado polo autor
-** Violación dos dereitos de autor
+** Solicitado pola persoa que o creou
+** Violación dos dereitos de autoría
 ** Vandalismo',
 'delete-edit-reasonlist' => 'Editar os motivos de borrado',
 'delete-toobig' => 'Esta páxina conta cun historial longo, de máis {{PLURAL:$1|dunha revisión|de $1 revisións}}.
@@ -3724,6 +3730,8 @@ Debería recibir [{{SERVER}}{{SCRIPTPATH}}/COPYING unha copia da licenza públic
 'version-entrypoints' => 'Enderezos URL de punto de entrada',
 'version-entrypoints-header-entrypoint' => 'Punto de entrada',
 'version-entrypoints-header-url' => 'URL',
+'version-entrypoints-articlepath' => '[https://www.mediawiki.org/wiki/Manual:$wgArticlePath Ruta do artigo]',
+'version-entrypoints-scriptpath' => '[https://www.mediawiki.org/wiki/Manual:$wgScriptPath Ruta da escritura]',
 
 # Special:FilePath
 'filepath' => 'Ruta do ficheiro',

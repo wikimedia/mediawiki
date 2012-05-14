@@ -1099,7 +1099,6 @@ $1",
 
 # Diffs
 'history-title' => '"$1"嘅修訂歷史',
-'difference' => '（修訂之間嘅差異）',
 'difference-multipage' => '（版之間嘅差異）',
 'lineno' => '第$1行：',
 'compareselectedversions' => '比較被選嘅修訂',

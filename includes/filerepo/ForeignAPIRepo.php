@@ -2,6 +2,21 @@
 /**
  * Foreign repository accessible through api.php requests.
  *
+ * This program is free software; you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation; either version 2 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License along
+ * with this program; if not, write to the Free Software Foundation, Inc.,
+ * 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
+ * http://www.gnu.org/copyleft/gpl.html
+ *
  * @file
  * @ingroup FileRepo
  */
@@ -87,6 +102,10 @@ class ForeignAPIRepo extends FileRepo {
 				# same repo.
 				$results[$k] = false;
 				unset( $files[$k] );
+			} elseif ( FileBackend::isStoragePath( $f ) ) {
+				$results[$k] = false;
+				unset( $files[$k] );
+				wfWarn( "Got mwstore:// path '$f'." );
 			}
 		}
 
@@ -111,8 +130,8 @@ class ForeignAPIRepo extends FileRepo {
 
 		$query = array_merge( $query,
 			array(
-				'format' => 'json',
-				'action' => 'query',
+				'format'    => 'json',
+				'action'    => 'query',
 				'redirects' => 'true'
 			) );
 		if ( $this->mApiBase ) {
@@ -203,6 +222,9 @@ class ForeignAPIRepo extends FileRepo {
 	 */
 	function getThumbUrlFromCache( $name, $width, $height, $params="" ) {
 		global $wgMemc;
+		// We can't check the local cache using FileRepo functions because
+		// we override fileExistsBatch(). We have to use the FileBackend directly.
+		$backend = $this->getBackend(); // convenience
 
 		if ( !$this->canCacheThumbs() ) {
 			$result = null; // can't pass "null" by reference, but it's ok as default value
@@ -243,9 +265,11 @@ class ForeignAPIRepo extends FileRepo {
 		$localFilename = $localPath . "/" . $fileName;
 		$localUrl =  $this->getZoneUrl( 'thumb' ) . "/" . $this->getHashPath( $name ) . rawurlencode( $name ) . "/" . rawurlencode( $fileName );
 
-		if( $this->fileExists( $localFilename ) && isset( $metadata['timestamp'] ) ) {
+		if( $backend->fileExists( array( 'src' => $localFilename ) )
+			&& isset( $metadata['timestamp'] ) )
+		{
 			wfDebug( __METHOD__ . " Thumbnail was already downloaded before\n" );
-			$modified = $this->getFileTimestamp( $localFilename );
+			$modified = $backend->getFileTimestamp( array( 'src' => $localFilename ) );
 			$remoteModified = strtotime( $metadata['timestamp'] );
 			$current = time();
 			$diff = abs( $modified - $current );
@@ -264,15 +288,13 @@ class ForeignAPIRepo extends FileRepo {
 		}
 
 		# @todo FIXME: Delete old thumbs that aren't being used. Maintenance script?
-		wfSuppressWarnings();
-		$backend = $this->getBackend();
+		$backend->prepare( array( 'dir' => dirname( $localFilename ) ) );
 		$op = array( 'op' => 'create', 'dst' => $localFilename, 'content' => $thumb );
 		if( !$backend->doOperation( $op )->isOK() ) {
 			wfRestoreWarnings();
 			wfDebug( __METHOD__ . " could not write to thumb path\n" );
 			return $foreignUrl;
 		}
-		wfRestoreWarnings();
 		$knownThumbUrls[$sizekey] = $localUrl;
 		$wgMemc->set( $key, $knownThumbUrls, $this->apiThumbCacheExpiry );
 		wfDebug( __METHOD__ . " got local thumb $localUrl, saving to cache \n" );

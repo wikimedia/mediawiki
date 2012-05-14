@@ -776,6 +776,7 @@ Cofiwch bod y tudalennau .css a .js yn defnyddio llythrennau bach, e.e. {{ns:use
 'updated' => '(Diweddariad)',
 'note' => "'''Dalier sylw:'''",
 'previewnote' => "'''Cofiwch taw rhagolwg yw hwn.''' Nid yw eich gwaith wedi ei roi ar gadw eto!",
+'continue-editing' => 'Parhau i olygu',
 'previewconflict' => "Mae'r rhagolwg hwn yn dangos y testun yn yr ardal golygu uchaf, fel ag y byddai'n ymddangos petaech yn rhoi'r dudalen ar gadw.",
 'session_fail_preview' => "'''Ymddiheurwn! Methwyd prosesu eich golygiad gan fod rhan o ddata'r sesiwn wedi'i golli. Ceisiwch eto.
 Os digwydd yr un peth eto, ceisiwch [[Special:UserLogout|allgofnodi]] ac yna mewngofnodi eto.'''",
@@ -869,6 +870,10 @@ Cafodd yr argiau hyn eu hepgor.",
 'parser-template-loop-warning' => 'Daethpwyd o hyd i ddolen yn y nodyn: [[$1]]',
 'parser-template-recursion-depth-warning' => 'Wedi mynd dros ben y terfyn ar ddyfnder dychweliad nodiadau ($1)',
 'language-converter-depth-warning' => "Wedi mynd tu hwnt i'r terfyn dyfnder ($1) ar y cyfnewidydd iaith.",
+'node-count-exceeded-category' => 'Tudalennau lle mae nifer y nodau yn ormod',
+'node-count-exceeded-warning' => 'Mae nifer y nodau yn y dudalen yn ormod',
+'expansion-depth-exceeded-category' => "Tudalennau â dyfnder ehangu tu hwnt i'r terfyn",
+'expansion-depth-exceeded-warning' => "Mae dyfnder ehangu'r dudalen y tu hwnt i'r terfyn",
 
 # "Undo" feature
 'undo-success' => "Gellir dadwneud y golygiad. Byddwch gystal â gwirio'r gymhariaeth isod i sicrhau mai dyma sydd arnoch eisiau gwneud, ac yna rhowch y newidiadau ar gadw i gwblhau'r gwaith o ddadwneud y golygiad.",
@@ -1045,7 +1050,6 @@ Pan yn gwneud hyn dylid sicrhau nad yw dilyniant hanes tudalennau yn cael ei ddi
 
 # Diffs
 'history-title' => "Hanes golygu '$1'",
-'difference' => '(Gwahaniaethau rhwng diwygiadau)',
 'difference-multipage' => '(Y gwahaniaeth rhwng y tudalennau)',
 'lineno' => 'Llinell $1:',
 'compareselectedversions' => 'Cymharer y fersiynau dewisedig',
@@ -1944,6 +1948,11 @@ Sylwer bod llythrennau mawr neu fach o bwys i'r chwiliad.",
 'allpagesbadtitle' => 'Roedd y darpar deitl yn annilys oherwydd bod ynddo naill ai:<p> - rhagddodiad rhyngwici neu ryngieithol, neu </p>- nod neu nodau na ellir eu defnyddio mewn teitlau.',
 'allpages-bad-ns' => 'Nid oes gan {{SITENAME}} barth o\'r enw "$1".',
 'allpages-hide-redirects' => 'Cuddio tudalennau ailgyfeirio',
+
+# SpecialCachedPage
+'cachedspecial-viewing-cached-ttl' => "Rydych yn edrych ar fersiwn o'r dudalen a roddwyd ar gadw mewn celc hyd at $1 yn ôl.",
+'cachedspecial-viewing-cached-ts' => "Rydych yn edrych ar fersiwn o'r dudalen a roddwyd ar gadw mewn celc. Gall fod yn wahanol i'r fersiwn cyfoes.",
+'cachedspecial-refresh-now' => 'Gweld y diwygiad diweddaraf.',
 
 # Special:Categories
 'categories' => 'Categorïau',
@@ -3494,6 +3503,8 @@ Dylech fod wedi derbyn [{{SERVER}}{{SCRIPTPATH}}/COPYING gopi o GNU General Publ
 'version-software' => 'Meddalwedd gosodedig',
 'version-software-product' => 'Cynnyrch',
 'version-software-version' => 'Fersiwn',
+'version-entrypoints' => 'URLs y mannau cyflwyno',
+'version-entrypoints-header-entrypoint' => 'Man cyflwyno',
 'version-entrypoints-header-url' => 'URL',
 
 # Special:FilePath
@@ -3690,6 +3701,7 @@ Dangosir delweddau ar eu maint llawn, dechreuir ffeiliau o fathau eraill yn unio
 'duration-weeks' => '$1 {{PLURAL:$1|wythnos}}',
 'duration-years' => '$1 {{PLURAL:$1|mlynedd|mlynedd|flynedd|mlynedd|mlynedd|mlynedd}}',
 'duration-decades' => '$1 {{PLURAL:$1|degawd|degawd|ddegawd|degawd|degawd|degawd}}',
-'duration-centuries' => '$1 {{PLURAL:$1|canrif|canrif|ganrif|chanrif|chanrif|canrif}}',
+'duration-centuries' => '$1 {{PLURAL:$1|canmlwydd|ganmlwydd|ganmlwydd|canmlwydd|chanmlwydd|canmlwydd}}',
+'duration-millennia' => '$1 {{PLURAL:$1|milflwydd|filflwydd|filflwydd|milflwydd|milflwydd|milflwydd}}',
 
 );

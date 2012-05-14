@@ -1174,7 +1174,6 @@ Asseguratz-vos qu'aqueste cambiament pòsca conservar la continuitat de l'istori
 
 # Diffs
 'history-title' => 'Istoric de las versions de « $1 »',
-'difference' => '(Diferéncias entre las versions)',
 'difference-multipage' => '(Diferéncias entre las paginas)',
 'lineno' => 'Linha $1 :',
 'compareselectedversions' => 'Comparar las versions seleccionadas',

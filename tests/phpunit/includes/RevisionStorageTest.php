@@ -7,9 +7,30 @@
  * @group Database
  * ^--- important, causes temporary tables to be used instead of the real database
  */
-class RevisionStorageTest extends PHPUnit_Framework_TestCase {
+class RevisionStorageTest extends MediaWikiTestCase {
 
 	var $the_page;
+
+	function  __construct( $name = null, array $data = array(), $dataName = '' ) {
+		parent::__construct( $name, $data, $dataName );
+
+		$this->tablesUsed = array_merge( $this->tablesUsed,
+		                                 array( 'page',
+		                                      'revision',
+		                                      'text',
+
+		                                      'recentchanges',
+		                                      'logging',
+
+		                                      'page_props',
+		                                      'pagelinks',
+		                                      'categorylinks',
+		                                      'langlinks',
+		                                      'externallinks',
+		                                      'imagelinks',
+		                                      'templatelinks',
+		                                      'iwlinks' ) );
+	}
 
 	public function setUp() {
 		global $wgExtraNamespaces, $wgNamespaceContentModels, $wgContentHandlers, $wgContLang;
@@ -350,4 +371,3 @@ class RevisionStorageTest extends PHPUnit_Framework_TestCase {
 		$this->assertEquals( 'some testing text', $rev->getContent()->getNativeData() );
 	}
 }
-?>

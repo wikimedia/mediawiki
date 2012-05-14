@@ -979,7 +979,6 @@ $1",
 
 # Diffs
 'history-title' => '"$1"-н засварын түүх',
-'difference' => '(Засварууд хоорондын ялгаа)',
 'difference-multipage' => '(Хуудсууд хоорондын ялгаа)',
 'lineno' => '$1-р мөр:',
 'compareselectedversions' => 'Сонгосон хувилбаруудыг харьцуулах',

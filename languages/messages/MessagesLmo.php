@@ -592,7 +592,6 @@ Per infurmazion, varda ind el [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGE
 
 # Diffs
 'history-title' => 'Cronolugia di mudifegh de "$1"',
-'difference' => '(Diferenz intra i revisión)',
 'lineno' => 'Riga $1:',
 'compareselectedversions' => 'Compara i versión seleziunaa',
 'editundo' => "turna a 'me che l'era",
@@ -1366,7 +1365,7 @@ Te riçevaree un mesacc cun deent un ligamm specjal; ti duvaree clicaa sül liga
 'watchlisttools-raw' => 'Mudifega la lista in furmaa test',
 
 # Signatures
-'signature' => '[[{{ns:user}}:$1|$2]] ([[{{ns:user_talk}}:$1|ciciaràde]])',
+'signature' => '[[{{ns:user}}:$1|$2]] ([[{{ns:user_talk}}:$1|ciciarade]])',
 
 # Special:Version
 'version' => 'Versiun',

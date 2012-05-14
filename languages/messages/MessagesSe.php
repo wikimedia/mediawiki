@@ -459,7 +459,6 @@ Eará bajasdoallit sáhtet lohkat čihkojuvvon sisdoalu ja máhcahit dan.",
 'deletedhist' => 'Šluhtejuvvon veršuvnnaid historjá',
 
 # Diffs
-'difference' => 'Veršuvnnaid erohusat',
 'lineno' => 'Gurgadas $1:',
 'compareselectedversions' => 'Veardde válljejuvvon veršuvnnaid',
 'editundo' => 'šluhtte',

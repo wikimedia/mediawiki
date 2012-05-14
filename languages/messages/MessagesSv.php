@@ -703,6 +703,8 @@ Den uppgivna anledningen är "\'\'$2\'\'".',
 'filereadonlyerror' => 'Det går inte att ändra filen "$1", eftersom fildatabasen "$2" är i skrivskyddat läge.
 
 Den administratören som låste den gav denna anledning: "\'\'$3\'\'".',
+'invalidtitle-knownnamespace' => 'Ogiltig titel med namnrymden "$2" och texten "$3"',
+'invalidtitle-unknownnamespace' => 'Ogiltig titel med okänt namnrymdsnummer $1 och texten "$2"',
 
 # Virus scanner
 'virus-badscanner' => "Dålig konfigurering: okänd virusskanner: ''$1''",
@@ -985,6 +987,7 @@ Den har inte sparats än!'''",
 'note' => "'''Obs!'''",
 'previewnote' => "'''Kom ihåg att detta bara är en förhandsvisning.'''
 Dina ändringar har ännu inte sparats!",
+'continue-editing' => 'Fortsätt redigera',
 'previewconflict' => 'Den här förhandsvisningen är resultatet av den
 redigerbara texten ovanför,
 så som det kommer att se ut om du väljer att spara.',
@@ -1081,6 +1084,10 @@ Dessa parametrar har uteslutits.',
 'parser-template-loop-warning' => 'Mall-loop upptäckt: [[$1]]',
 'parser-template-recursion-depth-warning' => 'Gräns för mallrekursionsdjup överskriden ($1)',
 'language-converter-depth-warning' => 'Gräns för språkkonverteringsdjup överskriden ($1)',
+'node-count-exceeded-category' => 'Sidor där antal nodar har överskrids',
+'node-count-exceeded-warning' => 'Sidan har överskridit antalet nodar',
+'expansion-depth-exceeded-category' => 'Sidor där expansionsdjupet överskrids',
+'expansion-depth-exceeded-warning' => 'Sidan överskrider expansionsdjupet',
 
 # "Undo" feature
 'undo-success' => 'Redigeringen kan göras ogjord.
@@ -1260,7 +1267,8 @@ Se till att sidhistorikens kontinuitet behålls när du sammanfogar historik.',
 
 # Diffs
 'history-title' => 'Versionshistorik för "$1"',
-'difference' => '(Skillnad mellan versioner)',
+'difference-title' => 'Skillnader mellan revideringar av "$1"',
+'difference-title-multipage' => 'Skillnader mellan sidorna "$1" och "$2"',
 'difference-multipage' => '(Skillnad mellan sidor)',
 'lineno' => 'Rad $1:',
 'compareselectedversions' => 'Jämför angivna versioner',
@@ -3771,6 +3779,7 @@ Du bör ha fått [{{SERVER}}{{SCRIPTPATH}}/COPYING en kopia av GNU General Publi
 'version-software' => 'Installerad programvara',
 'version-software-product' => 'Produkt',
 'version-software-version' => 'Version',
+'version-entrypoints' => 'StartpunktsURLer',
 'version-entrypoints-header-entrypoint' => 'Ingångspunkt',
 'version-entrypoints-header-url' => 'URL',
 

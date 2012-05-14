@@ -768,6 +768,8 @@ Die Sperre wurde durch [[User:$1|$1]] mit der Begründung ''„$2“'' eingerich
 'filereadonlyerror' => 'Die Datei „$1“ kann nicht verändert werden, da auf das Dateirepositorium „$2“ nur Lesezugriff möglich ist.
 
 Der Administrator, der den Schreibzugriff sperrte, gab folgenden Grund an: „$3“.',
+'invalidtitle-knownnamespace' => 'Ungültiger Titel mit Namensraum „$2“ und Text „$3“',
+'invalidtitle-unknownnamespace' => 'Ungültiger Titel mit unbekannter Namensraumnummer $1 und Text „$2“',
 
 # Virus scanner
 'virus-badscanner' => "Fehlerhafte Konfiguration: unbekannter Virenscanner: ''$1''",
@@ -1141,6 +1143,12 @@ Sie darf nicht mehr als $2 {{PLURAL:$2|Aufruf|Aufrufe}} haben, es {{PLURAL:$1|is
 'parser-template-loop-warning' => 'Vorlagenschleife entdeckt: [[$1]]',
 'parser-template-recursion-depth-warning' => 'Vorlagenrekursionstiefengrenze überschritten ($1)',
 'language-converter-depth-warning' => 'Sprachkonvertertiefenlimit überschritten ($1)',
+'node-count-exceeded-category' => 'Seiten, die die Knotenanzahl überschritten haben',
+'node-count-exceeded-warning' => 'Die Seite hat die Knotenpunktanzahl überschritten.',
+'expansion-depth-exceeded-category' => 'Seiten, die die Expansionstiefe überschritten haben',
+'expansion-depth-exceeded-warning' => 'Die Seite hat die Expansionstiefe überschritten.',
+'parser-unstrip-loop-warning' => 'Zirkelbezug festgestellt',
+'parser-unstrip-recursion-limit' => 'Rekursionsgrenze beim Auflösen überschritten ($1)',
 
 # "Undo" feature
 'undo-success' => 'Die Bearbeitung kann rückgängig gemacht werden.
@@ -1174,7 +1182,7 @@ Grund der Sperre: ''$2''",
 * ({{int:cur}}) = Unterschied zur aktuellen Version, ({{int:last}}) = Unterschied zur vorherigen Version
 * Uhrzeit/Datum = Version zu dieser Zeit, Benutzername/IP-Adresse des Bearbeiters, {{int:minoreditletter}} = Kleine Änderung',
 'history-fieldset-title' => 'In der Versionsgeschichte suchen',
-'history-show-deleted' => 'nur gelöschte Versionen',
+'history-show-deleted' => 'Nur gelöschte Versionen zeigen',
 'histfirst' => 'Älteste',
 'histlast' => 'Neueste',
 'historysize' => '({{PLURAL:$1|1 Byte|$1 Bytes}})',
@@ -1316,7 +1324,8 @@ Stelle sicher, dass die Versionsgeschichte einer Seite historisch korrekt ist.',
 
 # Diffs
 'history-title' => 'Versionsgeschichte von „$1“',
-'difference' => '(Unterschied zwischen Versionen)',
+'difference-title' => 'Unterschied zwischen den Versionen von „$1“',
+'difference-title-multipage' => 'Unterschied zwischen den Seiten „$1“ und „$2“',
 'difference-multipage' => '(Unterschied zwischen Seiten)',
 'lineno' => 'Zeile $1:',
 'compareselectedversions' => 'Gewählte Versionen vergleichen',
@@ -1950,6 +1959,7 @@ Aus Sicherheitsgründen ist img_auth.php deaktiviert.',
 'http-curl-error' => 'Fehler beim Abruf der URL: $1',
 'http-host-unreachable' => 'URL konnte nicht erreicht werden.',
 'http-bad-status' => 'Während der HTTP-Anfrage ist ein Fehler aufgetreten: $1 $2',
+'http-truncated-body' => 'Der Inhalt der Anforderung wurde nicht vollständig empfangen.',
 
 # Some likely curl errors. More could be added from <http://curl.haxx.se/libcurl/c/libcurl-errors.html>
 'upload-curl-error6' => 'URL ist nicht erreichbar',
@@ -3626,7 +3636,7 @@ Weitere werden standardmäßig nicht angezeigt.
 'confirmemail_pending' => 'Es wurde dir bereits ein Bestätigungscode per E-Mail zugeschickt.
 Wenn du dein Benutzerkonto erst vor kurzem erstellt hast, warte bitte noch ein paar Minuten auf die E-Mail, bevor du einen neuen Code anforderst.',
 'confirmemail_send' => 'Bestätigungscode zuschicken',
-'confirmemail_sent' => 'Bestätigungs-E-Mail wurde verschickt.',
+'confirmemail_sent' => 'Die Bestätigungs-E-Mail wurde verschickt.',
 'confirmemail_oncreate' => 'Ein Bestätigungs-Code wurde an deine E-Mail-Adresse gesandt. Dieser Code wird für die Anmeldung nicht benötigt, jedoch wird er zur Aktivierung der E-Mail-Funktionen innerhalb des Wikis gebraucht.',
 'confirmemail_sendfailed' => '{{SITENAME}} konnte die Bestätigungs-E-Mail nicht an dich versenden.
 Bitte prüfe die E-Mail-Adresse auf ungültige Zeichen.

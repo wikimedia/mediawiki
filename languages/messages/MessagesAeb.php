@@ -431,7 +431,6 @@ $1',
 
 # Diffs
 'history-title' => 'تاريخ مراجعة "$1"',
-'difference' => '(الفرق بين المراجعتين)',
 'lineno' => 'سطر $1:',
 'compareselectedversions' => 'قارن بين النسختين المختارتين',
 'editundo' => 'تراجع',

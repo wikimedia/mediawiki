@@ -1059,7 +1059,6 @@ Stell sicher, ass d Versionsgschicht vun eme Artikel historisch korrekt isch.',
 
 # Diffs
 'history-title' => 'Versionsgschicht vo „$1“',
-'difference' => '(Unterschide zwüsche Versione)',
 'difference-multipage' => '(Unterschid zwische Syte)',
 'lineno' => 'Zyle $1:',
 'compareselectedversions' => 'Usgwählti Versione verglyche',

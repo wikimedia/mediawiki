@@ -317,7 +317,6 @@ $messages = array(
 
 # Diffs
 'history-title' => '$1 вильмöтан история',
-'difference' => '(Неöткодьыс версияэз коласын)',
 'difference-multipage' => 'Неöткодьыс листбоккез коласын',
 'lineno' => 'Визёк $1:',
 'compareselectedversions' => 'Ордчаöтны бöрйöм версияэз',

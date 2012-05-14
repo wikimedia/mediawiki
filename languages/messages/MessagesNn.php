@@ -918,6 +918,7 @@ Det siste elementet i blokkeringsloggen er oppgjeve nedanfor:',
 'note' => "'''Merk:'''",
 'previewnote' => "'''Hugsa at dette berre er ei førehandsvising.'''
 Endringane dine er ikkje lagra enno!",
+'continue-editing' => 'Endra vidare',
 'previewconflict' => 'Dette er ei førehandsvising av teksten i endringsboksen over, slik han vil sjå ut om du lagrar han',
 'session_fail_preview' => "'''Orsak! Endringa di kunne ikkje lagrast. Ver venleg og prøv ein gong til. Dersom det framleis ikkje går, prøv å logge deg ut og inn att.'''",
 'session_fail_preview_html' => "'''Beklagar! Endringa di kunne ikkje lagrast.'''
@@ -1119,7 +1120,7 @@ $1",
 'logdelete-success' => "'''Visinga av loggoppføringar er endra.'''",
 'logdelete-failure' => "'''Korleis loggen skal vera synleg kunne ikkje verta stilt inn:'''
 $1",
-'revdel-restore' => 'endra synlegheita',
+'revdel-restore' => 'endra synlegdomen',
 'revdel-restore-deleted' => 'sletta versjonar',
 'revdel-restore-visible' => 'synlege versjonar',
 'pagehist' => 'Sidehistorikk',
@@ -1139,7 +1140,7 @@ Sjekk gjerne loggføringa.',
 ** Brot på opphavsrettar
 ** Ikkje høveleg personleg informasjon
 ** Mogleg falskt sladder',
-'revdelete-otherreason' => 'Annan årsak, eller tilleggsårsak:',
+'revdelete-otherreason' => 'Anna årsak, eller tilleggsårsak:',
 'revdelete-reasonotherlist' => 'Annan grunn',
 'revdelete-edit-reasonlist' => 'Endre grunnar til sletting',
 'revdelete-offender' => 'Forfattar av denne versjonen:',
@@ -1147,7 +1148,7 @@ Sjekk gjerne loggføringa.',
 # Suppression log
 'suppressionlog' => 'Logg over historikkfjerningar',
 'suppressionlogtext' => 'Under er ei liste over slettingar og blokkeringar som er gøymde frå administratorane.
-Sjå [[Special:IPBlockList|blokkeringslista]] for oversikta over gjeldande blokkeringar.',
+Sjå [[Special:BlockList|blokkeringslista]] for oversikta over gjeldande blokkeringar.',
 
 # History merging
 'mergehistory' => 'Flett sidehistorikkar',
@@ -1180,7 +1181,6 @@ Pass på at den nye sida også har innhald frå den innfletta sida.',
 
 # Diffs
 'history-title' => 'Historikken til «$1»',
-'difference' => '(Skilnad mellom versjonar)',
 'difference-multipage' => '(Skilnad mellom sider)',
 'lineno' => 'Line $1:',
 'compareselectedversions' => 'Samanlikn valde versjonar',
@@ -1983,8 +1983,8 @@ Merk at andre internettsider kan ha direkte lenkjer til filer, og difor kan file
 # Special:AllPages
 'allpages' => 'Alle sider',
 'alphaindexline' => '$1 til $2',
-'nextpage' => 'Neste side ($1)',
-'prevpage' => 'Førre side ($1)',
+'nextpage' => 'Neste sida ($1)',
+'prevpage' => 'Førre sida ($1)',
 'allpagesfrom' => 'Vis sider frå:',
 'allpagesto' => 'Vis sider til og med:',
 'allarticles' => 'Alle sider',
@@ -2244,8 +2244,8 @@ Her er dei noverande innstillingane for sida '''$1''':",
 'protect-othertime' => 'Anna tid:',
 'protect-othertime-op' => 'anna tid',
 'protect-existing-expiry' => 'Gjeldande utløpstid: $3 $2',
-'protect-otherreason' => 'Annan/ytterlegare årsak:',
-'protect-otherreason-op' => 'Annan årsak',
+'protect-otherreason' => 'Anna/ytterlegare årsak:',
+'protect-otherreason-op' => 'Anna årsak',
 'protect-dropdown' => '*Vanlege verneårsaker
 ** Gjenteke hærverk
 ** Gjenteke spam
@@ -3336,16 +3336,16 @@ Du må stadfeste at du verkeleg vil nyopprette denne sida.",
 'confirm-unwatch-top' => 'Fjern denne sida frå overvakingslista di?',
 
 # Multipage image navigation
-'imgmultipageprev' => '← førre side',
-'imgmultipagenext' => 'neste side →',
+'imgmultipageprev' => '← førre sida',
+'imgmultipagenext' => 'neste sida →',
 'imgmultigo' => 'Gå!',
 'imgmultigoto' => 'Gå til sida $1',
 
 # Table pager
 'ascending_abbrev' => 'stigande',
 'descending_abbrev' => 'synkande',
-'table_pager_next' => 'Neste side',
-'table_pager_prev' => 'Førre side',
+'table_pager_next' => 'Neste sida',
+'table_pager_prev' => 'Førre sida',
 'table_pager_first' => 'Fyrste side',
 'table_pager_last' => 'Siste side',
 'table_pager_limit' => 'Vis $1 element per side',
@@ -3527,8 +3527,17 @@ Skriv inn filnamnet utan «{{ns:file}}:»-prefikset.',
 # New logging system
 'logentry-delete-delete' => '$1 sletta sida $3',
 'logentry-delete-restore' => '$1 attoppretta sida $3',
+'logentry-delete-event' => '$1 endra synlegdomen av {{PLURAL:$5|éi loggoppføring|$5 loggoppføringar}} på $3: $4',
+'logentry-delete-revision' => '$1 endra synlegdomen av {{PLURAL:$5|éin versjon|$5 versjonar}} på sida $3: $4',
+'logentry-delete-event-legacy' => '$1 endra synlegdomen av loggoppføringar på $3',
+'logentry-delete-revision-legacy' => '$1 endra synlegdomen av versjonar på sida $3',
+'logentry-suppress-delete' => '$1 gøymde sida $3',
 'revdelete-content-hid' => 'innhald gøymt',
 'revdelete-summary-hid' => 'endringsamandrag gøymt',
+'revdelete-uname-hid' => 'brukarnamn gøymt',
+'revdelete-content-unhid' => 'innhald gjort synleg',
+'revdelete-summary-unhid' => 'endringssamandrag gjort synleg',
+'revdelete-uname-unhid' => 'brukarnamn gjort synleg',
 'revdelete-restricted' => 'la til avgrensingar for administratorar',
 'revdelete-unrestricted' => 'fjerna avgrensingar for administratorar',
 'logentry-move-move' => '$1 flytte sida $3 til $4',

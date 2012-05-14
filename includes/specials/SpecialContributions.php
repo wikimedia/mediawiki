@@ -54,6 +54,9 @@ class SpecialContributions extends SpecialPage {
 		if ( $request->getVal( 'contribs' ) == 'newbie' ) {
 			$target = 'newbies';
 			$this->opts['contribs'] = 'newbie';
+		} elseif ( $par === 'newbies' ) { // b/c for WMF
+			$target = 'newbies';
+			$this->opts['contribs'] = 'newbie';
 		} else {
 			$this->opts['contribs'] = 'user';
 		}
@@ -654,7 +657,7 @@ class ContribsPager extends ReverseChronologicalPager {
 			} else {
 				$condition['rev_user_text'] = $this->target;
 				$index = 'usertext_timestamp';
-			} 
+			}
 		}
 		if ( $this->deletedOnly ) {
 			$condition[] = "rev_deleted != '0'";

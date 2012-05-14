@@ -15,11 +15,11 @@
 $messages = array(
 # User preference toggles
 'tog-underline' => 'Линки жинтоно ријә быкәш:',
-'tog-justify' => 'Мәтни бә сәһифә кәно бәрабәр быкә.',
+'tog-justify' => 'Мәтни бә сәһифә кәно бәробәр быкә.',
 'tog-hideminor' => 'Охоминә дәгишонәдә гәдә дәгишон нишо мәдә.',
-'tog-hidepatrolled' => 'Јохләмиш быә дәјишиклијон нышу мәдә.',
+'tog-hidepatrolled' => 'Нујә дәгишон сијоһијәдә дәвинә кардә быә дәгишон нишо мәкә.',
 'tog-newpageshidepatrolled' => 'Нијони огәтеј ноғо доә быә сәһифон бә тожә сәһифон сијоһиәдә',
-'tog-usenewrc' => 'Охоминә дәйишиклийон тәкмил версијә',
+'tog-usenewrc' => 'Охоминә дәгишон ән чокә сијоһи око дој (гәрәке JavaScript)',
 'tog-numberheadings' => 'Автоматик башлығон нумрәләмиш быкә',
 'tog-showtoc' => 'Мындәриҹоти сијоһи нишо быдә (3 сәрловһәсә веј быә сәһифон)',
 'tog-watchcreations' => 'Зијод кардеј чымы офәјә быә сәһифон бә ноғо доә сијоһи',
@@ -32,7 +32,7 @@ $messages = array(
 'monday' => 'Дышанбә',
 'tuesday' => 'Сешанбә',
 'wednesday' => 'Чошанбә',
-'thursday' => 'Әјнә шәв',
+'thursday' => 'Ҹымә шәв',
 'friday' => 'Әjнә',
 'saturday' => 'Шанбә',
 'sun' => 'Иша',
@@ -87,12 +87,12 @@ $messages = array(
 'category-empty' => "''Ын категоријә бы дәғиғәдә тәјлије.''",
 'hidden-categories' => '{{PLURAL:$1|Нијони категоријә|Нијони категоријон}}',
 'hidden-category-category' => 'Нијони категоријон',
-'category-subcat-count' => '{{PLURAL:$2|Ым катеријә әнчәх жинтонә жинә категоријонку ибарәте.|Ҹәми $2 категоријонку {{PLURAL:$1|жинә категоријә|$1 жинә категоријә}} нишо доә быә.}}',
+'category-subcat-count' => '{{PLURAL:$2|Ым категоријә әнчәх жинтонә жинә категоријонку ибарәте.|Ҹәми $2 категоријонку {{PLURAL:$1|жинә категоријә|$1 жинә категоријә}} нишо доә быә.}}',
 'category-article-count' => '{{PLURAL:$2|Бы категоријәдә әнҹәх иглә сәһифәје.|Ҹәми $2 сәһифонку нишо доә быә {{PLURAL:$1|сәһифә|$1 сәһифә}} бы категоријәдә.}}',
 'category-article-count-limited' => 'Ын категоријәдә {{PLURAL:$1|$1 сәһифә|}} һесте.',
 'category-file-count' => '{{PLURAL:$2|Бы категоријәдә әнҹәх иглә фајле.|Ҹәми $2 фајлонку нишо доә быә {{PLURAL:$1|фајл|$1 фајл}} бы категоријәдә.}}',
 'category-file-count-limited' => 'Ын категоријәдә  {{PLURAL:$1|$1 фајл}} һесте.',
-'listingcontinuesabbrev' => '(дәвом карде)',
+'listingcontinuesabbrev' => '(дәвом)',
 'index-category' => 'Индекс быә сәһифон.',
 'noindex-category' => 'Индекс нибыә саһифон',
 
@@ -200,8 +200,8 @@ $messages = array(
 'edithelp' => 'Арајиш бо редактә кардеј',
 'edithelppage' => 'Help:Арајиш бо сәрост кардеј',
 'helppage' => 'Help:Мындәриҹот',
-'mainpage' => 'Јолә сәһифә',
-'mainpage-description' => 'Јолә сәһифә',
+'mainpage' => 'Әсосә сәһифә',
+'mainpage-description' => 'Әсосә сәһифә',
 'policy-url' => 'Project:Ғајдон',
 'portal' => 'Ҹәмјәт',
 'portal-url' => 'Project:Ҹәмјәти портал',
@@ -225,6 +225,8 @@ $messages = array(
 'toc' => 'Мындәриҹот',
 'showtoc' => 'нишо дој',
 'hidetoc' => 'нијо кардеј',
+'collapsible-collapse' => 'Бурмә кардеј',
+'collapsible-expand' => 'Һовуж кардеј',
 'thisisdeleted' => 'Дијә кардеј јаанки бәрпо кардеј $1?',
 'viewdeleted' => 'Дијә кардеј $1?',
 'restorelink' => '{{PLURAL:$1|иглә рәдд кардә быә дәгиши|$1 рәдд кардә быә дәгишон}}',
@@ -255,6 +257,7 @@ $messages = array(
 'internalerror_info' => 'Дахили хәта: $1',
 'fileappenderrorread' => 'Әлавон гејд карде быәдә"$1" һанде ныбе.',
 'formerror' => 'Хәта: Че формә мәлумотон әкс карде ғерри мумкуне.',
+'cannotdelete-title' => 'Сәһифә әбыни рәдд кардеј "$1"',
 'badtitle' => 'Роныдоә ном',
 'badtitletext' => 'Ахтар кардә быә сәһифә ном сәһве, тәјлије, јаанки сәрост доә быәнин мијонзывонон ја мијонвики номон.
 Бе бәзне ки кали рәмзон сәрловһәдә око дој әбыни.',
@@ -299,7 +302,9 @@ $messages = array(
 # Special:ChangeEmail
 'changeemail' => 'Е-номә унвони дәгиш кардеј',
 'changeemail-newemail' => 'Е-номә тожә унвон:',
+'changeemail-none' => '(ни)',
 'changeemail-submit' => 'Е-номә дәгиш кардеј',
+'changeemail-cancel' => 'Ләғв карде',
 
 # Edit page toolbar
 'bold_sample' => 'Нимәтындә шрифт',
@@ -409,7 +414,6 @@ $messages = array(
 
 # Diffs
 'history-title' => 'Дәгишон тарых "$1"',
-'difference' => '(Рәвојәтон мијонәдә фәрғ)',
 'lineno' => 'Сәтыр $1:',
 'compareselectedversions' => 'Сәчын кардә быә рәвојәтон мығојисә кардеј.',
 'editundo' => 'ләғв кардеј',
@@ -446,7 +450,7 @@ $messages = array(
 'showingresultsheader' => "{{PLURAL:$5|Нәтиҹә'''$1''' из '''$3'''|Нәтиҹон '''$1 — $2''' чы '''$3'''}} бо '''$4'''",
 'search-nonefound' => 'Бә шымә хәбәсә ујғун омә сәкыштә пәјдо ныбе.',
 'powersearch-field' => 'Нәве',
-'powersearch-toggleall' => 'Һаммај',
+'powersearch-toggleall' => 'Һәммәј',
 
 # Preferences page
 'preferences' => 'Чичсә печыније',
@@ -705,9 +709,9 @@ $messages = array(
 'tooltip-search' => 'Нәве {{SITENAME}}',
 'tooltip-search-go' => 'Гирәм һесте дырыст бәнә бы номи сәһифә бәврә дәвардеј',
 'tooltip-search-fulltext' => 'Сәһифон пәјдо кардеј де ын мәтни',
-'tooltip-p-logo' => 'Дәвардеј бә јолә сәһифә',
-'tooltip-n-mainpage' => 'Дәвардеј бә јолә сәһифә',
-'tooltip-n-mainpage-description' => 'Дәвардеј бә јолә сәһифә',
+'tooltip-p-logo' => 'Дәвардеј бә әсосә сәһифә',
+'tooltip-n-mainpage' => 'Дәвардеј бә әсосә сәһифә',
+'tooltip-n-mainpage-description' => 'Дәвардеј бә әсосә сәһифә',
 'tooltip-n-portal' => 'Нахшә барәдә, чич шымә базнејон  ыјо кардеј, конҹо чич һесте',
 'tooltip-n-currentevents' => 'Есәтнә һодисон сијоһи',
 'tooltip-n-recentchanges' => 'Охонә дәгишон сијоһи',

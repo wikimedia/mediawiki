@@ -700,31 +700,49 @@ abstract class ApiBase extends ContextSource {
 
 	/**
 	 * @param $params array
-	 * @return Title
+	 * @param $load bool|string Whether load the object's state from the database:
+	 *        - false: don't load (if the pageid is given, it will still be loaded)
+	 *        - 'fromdb': load from a slave database
+	 *        - 'fromdbmaster': load from the master database
+	 * @return WikiPage
 	 */
-	public function getTitleOrPageId( $params ) {
+	public function getTitleOrPageId( $params, $load = false ) {
 		$this->requireOnlyOneParameter( $params, 'title', 'pageid' );
 
-		$titleObj = null;
+		$pageObj = null;
 		if ( isset( $params['title'] ) ) {
 			$titleObj = Title::newFromText( $params['title'] );
 			if ( !$titleObj ) {
 				$this->dieUsageMsg( array( 'invalidtitle', $params['title'] ) );
 			}
+			$pageObj = WikiPage::factory( $titleObj );
+			if ( $load !== false ) {
+				$pageObj->loadPageData( $load );
+			}
 		} elseif ( isset( $params['pageid'] ) ) {
-			$titleObj = Title::newFromID( $params['pageid'] );
-			if ( !$titleObj ) {
+			if ( $load === false ) {
+				$load = 'fromdb';
+			}
+			$pageObj = WikiPage::newFromID( $params['pageid'], $load );
+			if ( !$pageObj ) {
 				$this->dieUsageMsg( array( 'nosuchpageid', $params['pageid'] ) );
 			}
 		}
-		return $titleObj;
+
+		return $pageObj;
 	}
 
 	/**
 	 * @return array
 	 */
-	public function getTitleOrPageIdErrorMessage( ) {
-		return $this->getRequireOnlyOneParameterErrorMessages( array( 'title', 'pageid' ) );
+	public function getTitleOrPageIdErrorMessage() {
+		return array_merge(
+			$this->getRequireOnlyOneParameterErrorMessages( array( 'title', 'pageid' ) ),
+			array(
+				array( 'invalidtitle', 'title' ),
+				array( 'nosuchpageid', 'pageid' ),
+			)
+		);
 	}
 
 	/**

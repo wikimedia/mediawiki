@@ -97,7 +97,7 @@ $magicWords = array(
 
 $messages = array(
 # User preference toggles
-'tog-underline' => 'ܪܫܘܡ ܣܪܛܐ ܬܚܝܬ ܐܣܘܪܐ:',
+'tog-underline' => 'ܪܫܘܡ ܣܪܛܐ ܬܚܝܬ ܐܣܪܐ:',
 'tog-justify' => 'ܫܘܐ ܦܬܓܡ̈ܐ',
 'tog-hideminor' => 'ܛܫܝ ܫܘܚܠܦ̈ܐ ܙܥܘܪ̈ܐ ܒܫܘܚܠܦ̈ܐ ܚܕ̈ܬܐ',
 'tog-editondblclick' => 'ܫܚܠܦ ܦܐܬ̈ܐ ܬܪ ܢܩܪܐ ܙܘܓܢܝܐ (ܣܢܝܩ ܠ JavaScript)',
@@ -459,16 +459,20 @@ $1',
 'loginreqlink' => 'ܥܘܠ',
 'accmailtitle' => 'ܡܠܬܐ ܕܥܠܠܐ ܫܕܪܬ',
 'newarticle' => '(ܚܕܬܐ)',
+'newarticletext' => "ܐܬܬ ܒܬܪ ܐܣܪܐ ܕܕܦܐ ܕܠܐ ܐܬܬܣܝܡ ܥܕܡܫ.
+ܠܣܘܝܡܐ ܕܕܦܐ ܗܢܐ, ܫܪܝ ܠܟܬܒܬܐ ܒܣܢܕܘܩܐ ܠܬܚܬ (ܚܙܝ [[{{MediaWiki:Helppage}}|ܕܦܐ ܕܥܘܕܪܢܐ]] ܠܐܚܪܢܐ ܝܕ̈ܥܬܐ).
+ܐܢ ܐܬܬ ܠܗܪܟܐ ܦܘܕܐܝܬ, ܕܘܫ ܠܦܪܡܝܬܐ ܕ '''ܠܒܣܬܪ back''' ܒܡܦܐܬܢܐ ܕܝܠܟ.",
 'updated' => '(ܐܬܚܕܬ)',
 'note' => "'''ܡܥܝܪܢܘܬܐ:'''",
 'previewnote' => "'''ܕܟܪ ܕܗܢܘ ܚܝܪܐ ܩܕܡܝܐ ܒܠܚܘܕ'''.
 ܫܘܚܠܦ̈ܐ ܕܝܠܟ ܠܐ ܐܬܠܒܟܘ ܥܕܡܐ ܠܗܫܐ!",
 'editing' => 'ܫܚܠܦܬܐ ܕ $1',
+'creating' => 'ܣܘܝܡܐ ܕ $1',
 'editingsection' => 'ܫܚܠܦܬܐ ܕ $1 (ܡܢܬܐ)',
 'editingcomment' => 'ܫܚܠܦܬܐ ܕ $1 (ܡܢܬܐ ܚܕܬܐ)',
 'yourtext' => 'ܟܬܒܬܐ ܕܝܠܟ',
-'editingold' => "'''ܙܘܗܪܐ: ܫܚܠܦ ܐܢܬ ܬܢܝܬܐ ܥܬܝܩܬܐ ܕܦܐܬܐ ܗܕܐ.'''
-ܐܢ ܠܒܟ ܐܢܬ ܦܐܬܐ ܗܕܐ, ܟܠ ܫܘܚܠܦܐ ܕܥܒܕ ܒܬܪ ܟܢ ܐܬܛܠܩܬ.",
+'editingold' => "'''ܙܘܗܪܐ: ܫܚܠܦ ܐܢܬ ܬܢܝܬܐ ܥܬܝܩܬܐ ܕܕܦܐ ܗܢܐ.'''
+ܐܢ ܠܒܟ ܐܢܬ ܕܦܐ ܗܢܐ, ܟܠ ܫܘ̈ܚܠܦܐ ܕܐܬܥܒܕܘ ܒܬܪ ܗܕܐ ܬܢܝܬܐ ܢܬܛܠܩܘܢ.",
 'yourdiff' => 'ܦܪ̈ܝܫܘܝܬܐ',
 'templatesused' => '{{PLURAL:$1|ܩܠܒܐ|ܩܠܒ̈ܐ}} ܒܦܐܬܐ ܗܕܐ:',
 'template-protected' => '(ܢܛܝܪܐ)',
@@ -556,7 +560,6 @@ $1',
 
 # Diffs
 'history-title' => 'ܬܫܥܝܬܐ ܕܬܢܝܬܐ ܕ "$1"',
-'difference' => '(ܦܪܝܫܘܬܐ ܒܝܬ ܬܢܝܬ̈ܐ)',
 'lineno' => 'ܣܪܛܐ $1:',
 'compareselectedversions' => 'ܦܚܘܡ ܒܝܬ ܬܪܝܢ ܬܢܝܬ̈ܐ ܓܒܝܬ̈ܐ',
 'showhideselectedversions' => 'ܚܘܝ/ܛܫܝ ܬܢܝܬ̈ܐ ܓܒܝܬ̈ܐ',
@@ -776,8 +779,8 @@ $1',
 'recentchanges' => 'ܫܘܚܠܦ̈ܐ ܚܕ̈ܬܐ',
 'recentchanges-legend' => 'ܓܒܝܬ̈ܐ ܕܫܘܚܠܦ̈ܐ ܚܕ̈ܬܐ',
 'recentchangestext' => 'ܥܩܒ ܫܘܚܠܦ̈ܐ ܚܕܬ ܡܢ ܟܠ ܕܘܝܩܝ ܒܦܐܬܐ ܗܕܐ.',
-'recentchanges-label-newpage' => 'ܫܘܚܠܦܐ ܗܢܐ ܒܪܐ ܦܐܬܐ ܚܕܬܐ',
-'recentchanges-label-minor' => 'ܗܢܐ ܗܘ ܫܘܚܠܦܐ ܙܥܘܪܐ',
+'recentchanges-label-newpage' => 'ܫܘܚܠܦܐ ܗܢܐ ܐܬܬܣܝܡ ܕܦܐ ܚܕܬܐ',
+'recentchanges-label-minor' => 'ܗܢܘ ܫܘܚܠܦܐ ܙܥܘܪܐ',
 'recentchanges-label-bot' => 'ܒܘܬ (bot) ܥܒܕ ܗܢܐ ܫܘܚܠܦܐ',
 'rclistfrom' => 'ܚܘܝ ܫܘܚܠܦ̈ܐ ܚܕ̈ܬܐ ܡܢ $1',
 'rcshowhideminor' => '$1 ܫܘܚܠܦ̈ܐ ܙܥܘܪ̈ܐ',

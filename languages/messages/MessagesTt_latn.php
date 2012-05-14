@@ -886,7 +886,6 @@ Sez idaräçe bulu säbäple, [$1 yäşerelgän yuramanı qarıy alasız]",
 
 # Diffs
 'history-title' => '$1 biteneñ üzgärtü tarixı',
-'difference' => '(Yuramalar arasında ayırma)',
 'lineno' => '$1 yul:',
 'compareselectedversions' => 'Saylanğan yuramalarnı çağıştıru',
 'showhideselectedversions' => 'Saylanğan yuramalarnı kürsätü/yäşerü',

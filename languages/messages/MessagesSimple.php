@@ -6,15 +6,6 @@
  *
  * @ingroup Language
  * @file
- *
- * @author Hydra
  */
 
 $fallback = 'en';
-
-$messages = array(
-# Vector skin
-'vector-view-create' => 'Start',
-'vector-view-edit'   => 'Change',
-
-);

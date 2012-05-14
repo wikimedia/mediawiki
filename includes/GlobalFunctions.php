@@ -368,7 +368,7 @@ function wfUrlencode( $s ) {
  * @param $prefix String
  * @return String
  */
-function wfArrayToCGI( $array1, $array2 = null, $prefix = '' ) {
+function wfArrayToCgi( $array1, $array2 = null, $prefix = '' ) {
 	if ( !is_null( $array2 ) ) {
 		$array1 = $array1 + $array2;
 	}
@@ -387,7 +387,7 @@ function wfArrayToCGI( $array1, $array2 = null, $prefix = '' ) {
 				foreach ( $value as $k => $v ) {
 					$cgi .= $firstTime ? '' : '&';
 					if ( is_array( $v ) ) {
-						$cgi .= wfArrayToCGI( $v, null, $key . "[$k]" );
+						$cgi .= wfArrayToCgi( $v, null, $key . "[$k]" );
 					} else {
 						$cgi .= urlencode( $key . "[$k]" ) . '=' . urlencode( $v );
 					}
@@ -405,7 +405,7 @@ function wfArrayToCGI( $array1, $array2 = null, $prefix = '' ) {
 }
 
 /**
- * This is the logical opposite of wfArrayToCGI(): it accepts a query string as
+ * This is the logical opposite of wfArrayToCgi(): it accepts a query string as
  * its argument and returns the same string in array form.  This allows compa-
  * tibility with legacy functions that accept raw query strings instead of nice
  * arrays.  Of course, keys and values are urldecode()d.
@@ -462,7 +462,7 @@ function wfCgiToArray( $query ) {
  */
 function wfAppendQuery( $url, $query ) {
 	if ( is_array( $query ) ) {
-		$query = wfArrayToCGI( $query );
+		$query = wfArrayToCgi( $query );
 	}
 	if( $query != '' ) {
 		if( false === strpos( $url, '?' ) ) {
@@ -2761,9 +2761,7 @@ function wfDl( $extension, $fileName = null ) {
 
 	$canDl = false;
 	$sapi = php_sapi_name();
-	if( version_compare( PHP_VERSION, '5.3.0', '<' ) ||
-		$sapi == 'cli' || $sapi == 'cgi' || $sapi == 'embed' )
-	{
+	if( $sapi == 'cli' || $sapi == 'cgi' || $sapi == 'embed' ) {
 		$canDl = ( function_exists( 'dl' ) && is_callable( 'dl' )
 		&& wfIniGetBool( 'enable_dl' ) && !wfIniGetBool( 'safe_mode' ) );
 	}
@@ -2901,16 +2899,7 @@ function wfShellExec( $cmd, &$retval = null, $environ = array() ) {
 	}
 	$cmd = $envcmd . $cmd;
 
-	if ( wfIsWindows() ) {
-		if ( version_compare( PHP_VERSION, '5.3.0', '<' ) && /* Fixed in 5.3.0 :) */
-			( version_compare( PHP_VERSION, '5.2.1', '>=' ) || php_uname( 's' ) == 'Windows NT' ) )
-		{
-			# Hack to work around PHP's flawed invocation of cmd.exe
-			# http://news.php.net/php.internals/21796
-			# Windows 9x doesn't accept any kind of quotes
-			$cmd = '"' . $cmd . '"';
-		}
-	} elseif ( php_uname( 's' ) == 'Linux' ) {
+	if ( php_uname( 's' ) == 'Linux' ) {
 		$time = intval( $wgMaxShellTime );
 		$mem = intval( $wgMaxShellMemory );
 		$filesize = intval( $wgMaxShellFileSize );

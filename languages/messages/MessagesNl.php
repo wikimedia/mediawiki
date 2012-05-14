@@ -377,8 +377,8 @@ $messages = array(
 'tog-fancysig' => 'Als wikitekst behandelen (zonder automatische verwijzing)',
 'tog-externaleditor' => 'Standaard een externe tekstbewerker gebruiken (alleen voor experts - voor deze functie zijn speciale instellingen nodig. [//www.mediawiki.org/wiki/Manual:External_editors Meer informatie]).',
 'tog-externaldiff' => 'Standaard een extern vergelijkingsprogramma gebruiken (alleen voor experts - voor deze functie zijn speciale instellingen nodig. [//www.mediawiki.org/wiki/Manual:External_editors Meer informatie]).',
-'tog-showjumplinks' => '“ga naar”-toegankelijkheidsverwijzingen inschakelen',
-'tog-uselivepreview' => '“live voorvertoning” gebruiken (vereist JavaScript – experimenteel)',
+'tog-showjumplinks' => '"ga naar"-toegankelijkheidsverwijzingen inschakelen',
+'tog-uselivepreview' => '"live voorvertoning" gebruiken (vereist JavaScript – experimenteel)',
 'tog-forceeditsummary' => 'Een melding geven bij een lege bewerkingssamenvatting',
 'tog-watchlisthideown' => 'Eigen bewerkingen op mijn volglijst verbergen',
 'tog-watchlisthidebots' => 'Botbewerkingen op mijn volglijst verbergen',
@@ -458,9 +458,9 @@ $messages = array(
 
 # Categories related messages
 'pagecategories' => '{{PLURAL:$1|Categorie|Categorieën}}',
-'category_header' => 'Pagina’s in categorie “$1”',
+'category_header' => 'Pagina’s in categorie "$1"',
 'subcategories' => 'Ondercategorieën',
-'category-media-header' => 'Media in categorie “$1”',
+'category-media-header' => 'Media in categorie "$1"',
 'category-empty' => "''Deze categorie bevat geen pagina’s of media.''",
 'hidden-categories' => 'Verborgen {{PLURAL:$1|categorie|categorieën}}',
 'hidden-category-category' => 'Verborgen categorieën',
@@ -631,8 +631,8 @@ Meer informatie is beschikbaar op de pagina [[Special:Version|softwareversie]].'
 'feed-unavailable' => 'Syndicatiefeeds zijn niet beschikbaar',
 'site-rss-feed' => '$1 RSS-feed',
 'site-atom-feed' => '$1 Atom-feed',
-'page-rss-feed' => '“$1” RSS-feed',
-'page-atom-feed' => '“$1” Atom-feed',
+'page-rss-feed' => '"$1" RSS-feed',
+'page-atom-feed' => '"$1" Atom-feed',
 'red-link-title' => '$1 (de pagina bestaat niet)',
 'sort-descending' => 'Aflopend sorteren',
 'sort-ascending' => 'Oplopend sorteren',
@@ -666,13 +666,13 @@ Een lijst met bestaande speciale pagina’s staat op [[Special:SpecialPages|{{in
 Mogelijk zit er een fout in de software.
 Het laatste verzoek aan de database was:
 <blockquote><tt>$1</tt></blockquote>
-vanuit de functie “<tt>$2</tt>”.
-De database gaf de volgende foutmelding “<tt>$3: $4</tt>”.',
+vanuit de functie "<tt>$2</tt>".
+De database gaf de volgende foutmelding "<tt>$3: $4</tt>".',
 'dberrortextcl' => 'Er is een syntaxisfout in het databaseverzoek opgetreden.
 Het laatste verzoek aan de database was:
-“$1”
-vanuit de functie “$2”.
-De database gaf de volgende foutmelding: “$3: $4”',
+"$1"
+vanuit de functie "$2".
+De database gaf de volgende foutmelding: "$3: $4"',
 'laggedslavemode' => "'''Waarschuwing:''' in deze pagina zijn recente wijzigingen mogelijk nog niet verwerkt.",
 'readonly' => 'Database geblokkeerd',
 'enterlockreason' => 'Geef een reden op voor de blokkade en geef op wanneer die waarschijnlijk wordt opgeheven',
@@ -695,7 +695,7 @@ Maak hiervan melding bij een [[Special:ListUsers/sysop|beheerder]] van {{SITENAM
 'filecopyerror' => 'Bestand "$1" kon niet naar "$2" gekopieerd worden.',
 'filerenameerror' => '"$1" kon niet hernoemd worden naar "$2".',
 'filedeleteerror' => 'Bestand "$1" kon niet verwijderd worden.',
-'directorycreateerror' => 'Map “$1” kon niet aangemaakt worden.',
+'directorycreateerror' => 'De map "$1" kon niet aangemaakt worden.',
 'filenotfound' => 'Bestand "$1" kon niet gevonden worden.',
 'fileexistserror' => 'Schrijven naar bestand "$1" onmogelijk: het bestand bestaat al.',
 'unexpected' => 'Onverwachte waarde: "$1"="$2".',
@@ -740,6 +740,8 @@ De gegeven reden is ''$2''.",
 'filereadonlyerror' => 'Het was niet mogelijk het bestand "$1" aan te passen omdat de bestandsrepository "$2" op dit moment alleen-lezen is.
 
 De opgegeven reden is "\'\'$3\'\'".',
+'invalidtitle-knownnamespace' => 'Ongeldige titel met naamruimte "$2" en tekst "$3"',
+'invalidtitle-unknownnamespace' => 'Ongeldige titel met onbekend naamruimtenummer $1 en tekst "$2"',
 
 # Virus scanner
 'virus-badscanner' => "Onjuiste configuratie: onbekende virusscanner: ''$1''.",
@@ -1150,6 +1152,12 @@ Deze parameters zijn weggelaten.',
 'parser-template-loop-warning' => 'Er is een kringloop in sjablonen geconstateerd: [[$1]]',
 'parser-template-recursion-depth-warning' => 'De recursiediepte voor sjablonen is overschreden ($1)',
 'language-converter-depth-warning' => 'De dieptelimiet voor de taalconvertor is overschreden ($1)',
+'node-count-exceeded-category' => "Pagina's waar het maximaal aantal nodes is overschreden",
+'node-count-exceeded-warning' => 'Op de pagina is het maximale aantal nodes overschreden',
+'expansion-depth-exceeded-category' => "Pagina's waar de expansiediepte is overschreden",
+'expansion-depth-exceeded-warning' => 'De pagina bevat te veel sjablonen',
+'parser-unstrip-loop-warning' => 'Er is een "unstrip"-lus gedetecteerd',
+'parser-unstrip-recursion-limit' => 'De recursielimiet ($1) voor "unstrip" is overschreden',
 
 # "Undo" feature
 'undo-success' => 'Deze bewerking kan ongedaan gemaakt worden.
@@ -1330,7 +1338,8 @@ Let op dat het gebruiken van de navigatieverwijzingen deze kolom opnieuw instelt
 
 # Diffs
 'history-title' => 'Geschiedenis van "$1"',
-'difference' => '(Verschil tussen bewerkingen)',
+'difference-title' => 'Verschil tussen versies van "$1"',
+'difference-title-multipage' => 'Verschil tussen pagina\'s "$1" en "$2"',
 'difference-multipage' => "(Verschil tussen pagina's)",
 'lineno' => 'Regel $1:',
 'compareselectedversions' => 'Geselecteerde versies vergelijken',
@@ -1794,7 +1803,7 @@ Aangewezen {{PLURAL:\$3|bestandstype is|bestandstypes zijn}} \$2.",
 'filetype-banned' => 'Het bestand dat u probeerde te uploaden was van een niet toegelaten bestandstype.',
 'verification-error' => 'De verificatie van het bestand dat u probeerde te uploaden is mislukt.',
 'hookaborted' => 'De wijziging die u probeerde te maken is afgebroken door een uitbreidingshook.',
-'illegal-filename' => 'Deze bestandsnaam is niet toegelaten.',
+'illegal-filename' => 'Deze bestandsnaam is niet toegestaan.',
 'overwrite' => 'Het overschrijven van een bestand bestand is niet toegestaan.',
 'unknown-error' => 'Er is een onbekende fout opgetreden.',
 'tmp-create-error' => 'Het was niet mogelijk een tijdelijk bestand aan te maken.',
@@ -1982,6 +1991,7 @@ Om beveiligingsreden is img_auth.php uitgeschakeld.',
 'http-curl-error' => 'Fout bij het ophalen van URL: $1',
 'http-host-unreachable' => 'De URL is niet bereikbaar.',
 'http-bad-status' => 'Er is een probleem opgetreden bij het HTTP-verzoek: $1 $2',
+'http-truncated-body' => 'De inhoud van het verzoek is slechts gedeeltelijk ontvangen.',
 
 # Some likely curl errors. More could be added from <http://curl.haxx.se/libcurl/c/libcurl-errors.html>
 'upload-curl-error6' => 'Kon de URL niet bereiken',
@@ -3819,8 +3829,8 @@ Bevestig dat u de pagina opnieuw wilt aanmaken.',
 'livepreview-ready' => 'Bezig met laden… Klaar!',
 'livepreview-failed' => 'Live voorvertoning mislukt!
 Probeer de normale voorvertoning.',
-'livepreview-error' => 'Verbinden mislukt: $1 “$2”.
-Probeer normale voorvertoning.',
+'livepreview-error' => 'Verbinden mislukt: $1 "$2".
+Probeer normale voorvertoning te gebruiken.',
 
 # Friendlier slave lag warnings
 'lag-warn-normal' => 'Wijzigingen in de afgelopen {{PLURAL:$1|seconde|$1 seconden}} worden misschien niet weergegeven in deze lijst.',

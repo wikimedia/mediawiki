@@ -369,14 +369,7 @@ class ApiQueryBacklinks extends ApiQueryGeneratorBase {
 		if ( !is_null( $this->params['continue'] ) ) {
 			$this->parseContinueParam();
 		} else {
-			if ( $this->params['title'] !== '' ) {
-				$title = Title::newFromText( $this->params['title'] );
-				if ( !$title ) {
-					$this->dieUsageMsg( array( 'invalidtitle', $this->params['title'] ) );
-				} else {
-					$this->rootTitle = $title;
-				}
-			}
+			$this->rootTitle = $this->getTitleOrPageId( $this->params )->getTitle();
 		}
 
 		// only image titles are allowed for the root in imageinfo mode
@@ -436,7 +429,9 @@ class ApiQueryBacklinks extends ApiQueryGeneratorBase {
 		$retval = array(
 			'title' => array(
 				ApiBase::PARAM_TYPE => 'string',
-				ApiBase::PARAM_REQUIRED => true
+			),
+			'pageid' => array(
+				ApiBase::PARAM_TYPE => 'integer',
 			),
 			'continue' => null,
 			'namespace' => array(
@@ -468,7 +463,8 @@ class ApiQueryBacklinks extends ApiQueryGeneratorBase {
 
 	public function getParamDescription() {
 		$retval = array(
-			'title' => 'Title to search',
+			'title' => "Title to search. Cannot be used together with {$this->bl_code}pageid",
+			'pageid' => "Pageid to search. Cannot be used together with {$this->bl_code}title",
 			'continue' => 'When more results are available, use this to continue',
 			'namespace' => 'The namespace to enumerate',
 		);
@@ -499,11 +495,13 @@ class ApiQueryBacklinks extends ApiQueryGeneratorBase {
 	}
 
 	public function getPossibleErrors() {
-		return array_merge( parent::getPossibleErrors(), array(
-			array( 'invalidtitle', 'title' ),
-			array( 'code' => 'bad_image_title', 'info' => "The title for {$this->getModuleName()} query must be an image" ),
-			array( 'code' => '_badcontinue', 'info' => 'Invalid continue param. You should pass the original value returned by the previous query' ),
-		) );
+		return array_merge( parent::getPossibleErrors(),
+			$this->getTitleOrPageIdErrorMessage(),
+			array(
+				array( 'code' => 'bad_image_title', 'info' => "The title for {$this->getModuleName()} query must be an image" ),
+				array( 'code' => '_badcontinue', 'info' => 'Invalid continue param. You should pass the original value returned by the previous query' ),
+			)
+		);
 	}
 
 	public function getExamples() {

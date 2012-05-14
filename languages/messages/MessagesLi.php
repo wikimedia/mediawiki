@@ -1083,7 +1083,6 @@ Wees zeker det deze wieziging de gesjiedenisdoorloupendheid van de pagina zal be
 
 # Diffs
 'history-title' => 'Gesjiedenis van "$1"',
-'difference' => '(Versjil tösje bewirkinge)',
 'difference-multipage' => '(Versjil tösje paazjes)',
 'lineno' => 'Tekslien $1:',
 'compareselectedversions' => 'Vergeliek geselecteerde versies',
@@ -2865,7 +2864,7 @@ $1",
 
 # Media information
 'mediawarning' => "'''Waorsjuwing''': Dit bestandj kin 'n anger kood höbbe, door 't te doorveure in dien systeem kin 't gecompromeerde dinger oplevere.",
-'imagemaxsize' => "Meximale aafbeildjingsaafmaeting:<b r/>''(veur besjrievingspaasj)''",
+'imagemaxsize' => "Meximale aafbeildjingsaafmaeting:<br/>''(veur besjrievingspaasj)''",
 'thumbsize' => 'Gruutde vanne thumbnail:',
 'widthheightpage' => "$1 × $2, $3 {{PLURAL:$3|pazjena|pazjena's}}",
 'file-info' => 'bestandsgruutde: $1, MIME-type: $2',

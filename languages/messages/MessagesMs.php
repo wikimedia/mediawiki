@@ -583,6 +583,8 @@ Pertanyaan: $2',
 'filereadonlyerror' => 'Fail "$1" tidak dapat diubah suai kerana repositori fail "$2" berada dalam ragam baca sahaja.
 
 Pentadbir yang menguncinya memberikan penjelasan yang berikut: "$3".',
+'invalidtitle-knownnamespace' => 'Tajuk tidak sah dengan ruang nama "$2" dan teks "$3"',
+'invalidtitle-unknownnamespace' => 'Tajuk tidak sah dengan nombor ruang nama tidak dikenali $1 dan teks "$2"',
 
 # Virus scanner
 'virus-badscanner' => "Konfigurasi rosak: pengimbas virus yang tidak diketahui: ''$1''",
@@ -953,6 +955,12 @@ Argumen-argumen ini telah ditinggalkan.',
 'parser-template-loop-warning' => 'Gelung templat dikesan: [[$1]]',
 'parser-template-recursion-depth-warning' => 'Had pengulangan templat dilebihi ($1)',
 'language-converter-depth-warning' => 'Had kedalaman penukar bahasa dilepasi ($1)',
+'node-count-exceeded-category' => 'Laman yang melebihi had kiraan nod',
+'node-count-exceeded-warning' => 'Laman terlebih kiraan nod',
+'expansion-depth-exceeded-category' => 'Laman yang melebihi had kedalaman peluasan',
+'expansion-depth-exceeded-warning' => 'Laman terlebih dalam peluasan',
+'parser-unstrip-loop-warning' => 'Gelung unstrip dikesan',
+'parser-unstrip-recursion-limit' => 'Had rekursi unstrip dilampaui ($1)',
 
 # "Undo" feature
 'undo-success' => 'Suntingan ini boleh dibatalkan. Sila semak perbandingan di bawah untuk mengesahkan bahawa anda betul-betul mahu melakukan tindakan ini, kemudian simpan perubahan tersebut.',
@@ -1132,7 +1140,8 @@ Sila pastikan bahawa perubahan ini akan mengekalkan kesinambungan sejarah laman.
 
 # Diffs
 'history-title' => 'Sejarah semakan bagi "$1"',
-'difference' => '(Perbezaan antara semakan)',
+'difference-title' => 'Perbezaan antara semakan-semakan "$1"',
+'difference-title-multipage' => 'Perbezaan antara laman "$1" dan "$2"',
 'difference-multipage' => '(Perbezaan antara laman)',
 'lineno' => 'Baris $1:',
 'compareselectedversions' => 'Bandingkan versi-versi yang dipilih',
@@ -1760,6 +1769,7 @@ Untuk keselamatan optimum, img_auth.php telah dilumpuhkan.',
 'http-curl-error' => 'Ralat mendapatkan URL: $1',
 'http-host-unreachable' => 'URL tidak dapat dicapai.',
 'http-bad-status' => 'Berlaku masalah ketika permintaan HTTP: $1 $2',
+'http-truncated-body' => 'Jasad permohonan diterima separa-separa sahaja.',
 
 # Some likely curl errors. More could be added from <http://curl.haxx.se/libcurl/c/libcurl-errors.html>
 'upload-curl-error6' => 'URL tidak dapat dicapai',

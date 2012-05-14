@@ -591,7 +591,6 @@ MySQL جوابِ خطاء پرائے "$3: $4"',
 
 # Diffs
 'history-title' => 'تاریخچہ "$1"',
-'difference' => '(اصلاحاتہ فرق)',
 'lineno' => 'لکیر $1:',
 'compareselectedversions' => 'منتخب متـنو موازنہ',
 'editundo' => 'استرجع',

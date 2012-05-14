@@ -974,6 +974,7 @@ Strony użytkownika zawierające CSS i JavaScript powinny zaczynać się małą 
 'note' => "'''Uwaga:'''",
 'previewnote' => "'''To jest tylko podgląd'''
 Zmiany nie zostały jeszcze zapisane!",
+'continue-editing' => 'Kontynuuj edycję',
 'previewconflict' => 'Podgląd odnosi się do tekstu z górnego pola edycji. Tak będzie wyglądać strona, jeśli zdecydujesz się ją zapisać.',
 'session_fail_preview' => "'''Uwaga! Serwer nie może przetworzyć tej edycji z powodu utraty danych sesji.
 Spróbuj jeszcze raz.
@@ -1211,7 +1212,7 @@ Proszę sprawdzić rejestr operacji.',
 # Suppression log
 'suppressionlog' => 'Rejestr utajniania',
 'suppressionlogtext' => 'Poniżej znajduje się lista usunięć i blokad utajnionych przed administratorami.
-Zobacz [[Special:BlockList|rejestr blokowania adresów IP]], jeśli chcesz sprawdzić aktualne zakazy i blokady.',
+Zobacz [[Special:BlockList|rejestr blokad]], jeśli chcesz sprawdzić aktualne zakazy i blokady.',
 
 # History merging
 'mergehistory' => 'Scalanie historii stron',
@@ -1246,7 +1247,6 @@ Użycie linków nawigacyjnych kasuje wybór w kolumnie.',
 
 # Diffs
 'history-title' => 'Historia edycji „$1”',
-'difference' => '(Różnice między wersjami)',
 'difference-multipage' => '(Różnica między stronami)',
 'lineno' => 'Linia $1:',
 'compareselectedversions' => 'porównaj wybrane wersje',
@@ -2603,8 +2603,8 @@ Podaj powód (np. umieszczając nazwy stron, na których dopuszczono się wandal
 'ipb-confirm' => 'Potwierdzam blokadę',
 'badipaddress' => 'Niepoprawny adres IP',
 'blockipsuccesssub' => 'Zablokowanie powiodło się',
-'blockipsuccesstext' => '{{GENDER:$1|Użytkownik|Użytkowniczka}} [[Special:Contributions/$1|$1]] {{GENDER:$1|został zablokowany|została zablokowana}}.<br />
-Przejdź do [[Special:BlockList|listy zablokowanych adresów IP]], by przejrzeć blokady.',
+'blockipsuccesstext' => '[[Special:Contributions/$1|$1]] {{GENDER:$1|został zablokowany|została zablokowana}}.<br />
+Przejdź do [[Special:BlockList|listy blokad]], by przejrzeć blokady.',
 'ipb-blockingself' => 'Usiłujesz zablokować siebie samego! Czy na pewno chcesz to zrobić?',
 'ipb-confirmhideuser' => 'Zamierzasz zablokować użytkownika z włączoną opcją „ukryj użytkownika”. Spowoduje to pominięcie nazwy użytkownika we wszystkich listach i rejestrach. Czy na pewno chcesz to zrobić?',
 'ipb-edit-dropdown' => 'Edytuj listę przyczyn blokady',
@@ -3814,6 +3814,7 @@ Powinieneś otrzymać [{{SERVER}}{{SCRIPTPATH}}/COPYING kopię licencji GNU Gene
 'version-software' => 'Zainstalowane oprogramowanie',
 'version-software-product' => 'Nazwa',
 'version-software-version' => 'Wersja',
+'version-entrypoints-header-url' => 'URL',
 
 # Special:FilePath
 'filepath' => 'Ścieżka do pliku',

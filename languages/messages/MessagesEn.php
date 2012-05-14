@@ -1040,6 +1040,8 @@ The reason given is "\'\'$2\'\'".',
 'filereadonlyerror'    => 'Unable to modify the file "$1" because the file repository "$2" is in read-only mode.
 
 The administrator who locked it offered this explanation: "$3".',
+'invalidtitle-knownnamespace'   => 'Invalid title with namespace "$2" and text "$3"',
+'invalidtitle-unknownnamespace' => 'Invalid title with unknown namespace number $1 and text "$2"',
 
 # Virus scanner
 'virus-badscanner'     => "Bad configuration: Unknown virus scanner: ''$1''",
@@ -1483,6 +1485,8 @@ These arguments have been omitted.",
 'node-count-exceeded-warning'             => 'Page exceeded the node-count',
 'expansion-depth-exceeded-category'       => 'Pages where expansion depth is exceeded',
 'expansion-depth-exceeded-warning'        => 'Page exceeded the expansion depth',
+'parser-unstrip-loop-warning'             => 'Unstrip loop detected',
+'parser-unstrip-recursion-limit'          => 'Unstrip recursion limit exceeded ($1)',
 
 # "Undo" feature
 'undo-success' => 'The edit can be undone.
@@ -1666,15 +1670,16 @@ Note that using the navigation links will reset this column.',
 'mergelogpagetext'   => 'Below is a list of the most recent merges of one page history into another.',
 
 # Diffs
-'history-title'            => 'Revision history of "$1"',
-'difference'               => '(Difference between revisions)',
-'difference-multipage'     => '(Difference between pages)',
-'lineno'                   => 'Line $1:',
-'compareselectedversions'  => 'Compare selected revisions',
-'showhideselectedversions' => 'Show/hide selected revisions',
-'editundo'                 => 'undo',
-'diff-multi'               => '({{PLURAL:$1|One intermediate revision|$1 intermediate revisions}} by {{PLURAL:$2|one user|$2 users}} not shown)',
-'diff-multi-manyusers'     => '({{PLURAL:$1|One intermediate revision|$1 intermediate revisions}} by more than $2 {{PLURAL:$2|user|users}} not shown)',
+'history-title'              => 'Revision history of "$1"',
+'difference-title'           => 'Difference between revisions of "$1"',
+'difference-title-multipage' => 'Difference between pages "$1" and "$2"',
+'difference-multipage'       => '(Difference between pages)',
+'lineno'                     => 'Line $1:',
+'compareselectedversions'    => 'Compare selected revisions',
+'showhideselectedversions'   => 'Show/hide selected revisions',
+'editundo'                   => 'undo',
+'diff-multi'                 => '({{PLURAL:$1|One intermediate revision|$1 intermediate revisions}} by {{PLURAL:$2|one user|$2 users}} not shown)',
+'diff-multi-manyusers'       => '({{PLURAL:$1|One intermediate revision|$1 intermediate revisions}} by more than $2 {{PLURAL:$2|user|users}} not shown)',
 
 # Search results
 'search-summary'                   => '', # do not translate or duplicate this message to other languages
@@ -2348,6 +2353,7 @@ For optimal security, img_auth.php is disabled.',
 'http-curl-error'       => 'Error fetching URL: $1',
 'http-host-unreachable' => 'Could not reach URL.',
 'http-bad-status'       => 'There was a problem during the HTTP request: $1 $2',
+'http-truncated-body'   => 'The request body was only partially received.',
 
 # Some likely curl errors. More could be added from <http://curl.haxx.se/libcurl/c/libcurl-errors.html>
 'upload-curl-error6'       => 'Could not reach URL',

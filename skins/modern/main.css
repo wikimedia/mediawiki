@@ -811,7 +811,7 @@ span.subpages {
 	display: block;
 }
 
-pre {
+pre, .mw-code {
 	border: solid 1px #3c78b5;
 	padding: 0.4em;
 	background-color: #f0f0f0;

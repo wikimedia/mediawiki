@@ -593,7 +593,6 @@ Les ôtes manaedjeus so ç' wiki ci pôront todi vey li contnou catchî eyet l' 
 'mergehistory-reason' => 'Råjhon:',
 
 # Diffs
-'difference' => '(Diferinces inte les modêyes)',
 'lineno' => 'Roye $1:',
 'compareselectedversions' => 'Comparer les modêyes tchoezeyes',
 'editundo' => 'disfé',

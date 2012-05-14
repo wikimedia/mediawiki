@@ -515,16 +515,9 @@ class LogEventsList {
 				$canHide = $wgUser->isAllowed( 'deleterevision' );
 				// If event was hidden from sysops
 				if( !self::userCan( $row, LogPage::DELETED_RESTRICTED ) ) {
-					$del = Linker::revDeleteLinkDisabled( $canHide );
+					$del = Xml::check( 'deleterevisions', false, array( 'disabled' => 'disabled' ) );
 				} else {
-					$target = SpecialPage::getTitleFor( 'Log', $row->log_type );
-					$query = array(
-						'target' => $target->getPrefixedDBkey(),
-						'type'   => 'logging',
-						'ids'    => $row->log_id,
-					);
-					$del = Linker::revDeleteLink( $query,
-						self::isDeleted( $row, LogPage::DELETED_RESTRICTED ), $canHide );
+					$del = Xml::check( 'showhiderevisions', false, array( 'name' => 'ids[' . $row->log_id . ']' ) );
 				}
 			}
 		}

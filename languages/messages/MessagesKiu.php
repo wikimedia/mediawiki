@@ -391,9 +391,9 @@ Kerem kerê, deqêna oncia bıcerrebnê.",
 'protectedpagetext' => 'Na pele vurnaisu rê qapan biya.',
 'viewsourcetext' => 'Sıma şikinê çımê na pele bıvênê u kopya kerê:',
 'protectedinterface' => "Na pele ''software'' rê meqalunê caunê bırnau dana, u qapana ke suıstımalu rê engel bo.",
-'editinginterface' => "'''Teme:''' Sıma hao jü pela ke serba ''software'' meqalunê caunê bırnau dana, vurnenê.
+'editinginterface' => "'''Teme:''' Sıma hao jü pela ke serba nustê meqalunê caunê bırnau dana, vurnenê.
 Vurnaisê na pele karberunê binu rê serpela karberi kena ke bıasno.
-Serba çarnais, yardımê [//translatewiki.net/wiki/Main_Page?setlang=kiu translatewiki.net]yê procê dos-kerdene rê diqet kerê.",
+Serba çarnaişi, yardımê [//translatewiki.net/wiki/Main_Page?setlang=kiu translatewiki.net]i ra procêdoskerdene rê diqet kerê.",
 'sqlhidden' => '(Persê SQLi nımıteo)',
 'cascadeprotected' => 'Na pele esterıtene ra sıtar biya, çıke na zerrê {{PLURAL:$1|pela ke|pelunê ke}} dera/derê be "cascading" opsiyoni kılit biya, $2 de bena ra.',
 'namespaceprotected' => "'''$1''' ''namespace'' de desturê sıma be vurnaisê pelu çino.",
@@ -679,7 +679,6 @@ Eke şertê ilawekerdey ke niyê ro, idarekerê bini {{SITENAME}} de nêşikinê
 
 # Diffs
 'history-title' => 'Viartê pelga "$1"ine',
-'difference' => 'Ferqê wertê vurnaisu',
 'lineno' => 'Rêza $1i:',
 'compareselectedversions' => 'Varyantunê weçinıtun têver sane',
 'editundo' => 'peyser bia',

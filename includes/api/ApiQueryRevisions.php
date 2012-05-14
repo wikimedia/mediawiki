@@ -327,7 +327,10 @@ class ApiQueryRevisions extends ApiQueryBase {
 					"rev_id >= '$revid')"
 				);
 			}
-			$this->addOption( 'ORDER BY', 'rev_page, rev_id' );
+			$this->addOption( 'ORDER BY', array(
+				'rev_page',
+				'rev_id'
+			));
 
 			// assumption testing -- we should never get more then $pageCount rows.
 			$limit = $pageCount;

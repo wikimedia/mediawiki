@@ -981,7 +981,7 @@ $2',
 'resetpass-temp-password' => 'كلمة سر مؤقتة:',
 
 # Special:PasswordReset
-'passwordreset' => 'تمت إعادة ضبط كلمة السر',
+'passwordreset' => 'إعادة ضبط كلمة السر',
 'passwordreset-text' => 'أكمل هذا النموذج لتتلقى بريدا إلكترونيا يذكر بتفاصيل حسابك.',
 'passwordreset-legend' => 'إعادة تعيين كلمة السر',
 'passwordreset-disabled' => 'عُطّلت إعادة تعيين كلمة السر على هذه الويكي.',
@@ -1144,6 +1144,7 @@ $2
 'note' => "'''ملاحظة:'''",
 'previewnote' => "'''تذكر أن هذه مجرد معاينة أولية.'''
 لم تحفظ تغييراتك إلى الآن!",
+'continue-editing' => 'أكمل التحرير',
 'previewconflict' => 'هذا العرض يوضح النص الموجود في صندوق التحرير العلوي والذي سيظهر إذا اخترت الحفظ.',
 'session_fail_preview' => "'''عذرا! لم نتمكن من حفظ التعديلات التي قمت بها نتيجة لضياع بيانات هذه الجلسة.
 من فضلك حاول مرة أخرى.
@@ -1423,7 +1424,6 @@ $1",
 
 # Diffs
 'history-title' => 'تاريخ مراجعة "$1"',
-'difference' => '(الفرق بين المراجعتين)',
 'difference-multipage' => '(الفرق بين الصفحتين)',
 'lineno' => 'سطر $1:',
 'compareselectedversions' => 'قارن بين النسختين المختارتين',
@@ -1592,6 +1592,7 @@ $1",
 'yourrealname' => 'الاسم الحقيقي:',
 'yourlanguage' => 'اللغة:',
 'yourvariant' => 'لهجة المحتوى:',
+'prefs-help-variant' => 'عرض لهجتك المفضلة أو إملاؤها في صفحات المحتوى لهذا الويكي.',
 'yournick' => 'التوقيع:',
 'prefs-help-signature' => 'يجب أن توقع تعليقات صفحات النقاش باستخدام "<nowiki>~~~~</nowiki>" الذي سيحول إلى توقيعك مع طابع زمني.',
 'badsig' => 'توقيع خام غير صحيح؛ تحقق من وسوم HTML.',
@@ -1766,6 +1767,7 @@ $1",
 'action-suppressionlog' => 'رؤية هذا السجل الخاص',
 'action-block' => 'منع هذا المستخدم من التعديل',
 'action-protect' => 'تغيير مستويات الحماية لهذه الصفحة',
+'action-rollback' => 'استرجاع تعديلات آخر مستخدم عدل صفحة معينة سريعا',
 'action-import' => 'استيراد هذه الصفحة من ويكي آخر',
 'action-importupload' => 'استيراد هذه الصفحة من ملف مرفوع',
 'action-patrol' => 'التعليم على تعديلات الآخرين كمراجعة',
@@ -1810,6 +1812,7 @@ $1",
 'newsectionsummary' => '/* $1 */ قسم جديد',
 'rc-enhanced-expand' => 'عرض التفاصيل (يتطلب جافاسكريبت)',
 'rc-enhanced-hide' => 'أخفِ التفاصيل',
+'rc-old-title' => 'تم إنشاؤها أصلا ك"$1"',
 
 # Recent changes linked
 'recentchangeslinked' => 'تغييرات ذات علاقة',
@@ -1974,11 +1977,32 @@ $1',
 'upload-http-error' => 'صودف خطأ HTTP: $1',
 
 # File backend
+'backend-fail-stream' => 'لا يمكن عرض الملف $1.',
+'backend-fail-backup' => 'لا يمكن صنع نسخة أحتياطية للملف $1.',
 'backend-fail-notexists' => 'الملف $1 غير موجود.',
+'backend-fail-notsame' => 'يوجد بالفعل ملف غير متطابق في $1.',
+'backend-fail-invalidpath' => '$1 ليس مسارا صالحا للتخزين.',
+'backend-fail-delete' => 'لم يمكن حذف الملف $1.',
+'backend-fail-alreadyexists' => 'الملف $1 موجود بالفعل.',
+'backend-fail-store' => 'لا يمكن تخزين الملف $1 في $2 .',
 'backend-fail-copy' => 'لا يمكن نسخ الملف  $1  إلى  $2 .',
+'backend-fail-move' => 'تعذر نقل ملف $1 إلى $2 .',
 'backend-fail-opentemp' => 'تعذّر فتح ملف مؤقت.',
 'backend-fail-writetemp' => 'تعذّرت كتابة ملف مؤقت.',
 'backend-fail-closetemp' => 'تعذّر إغلاق ملف مؤقت.',
+'backend-fail-read' => 'لا يمكن قراءة الملف $1.',
+'backend-fail-create' => 'تعذر إنشاء الملف $1.',
+
+# Lock manager
+'lockmanager-notlocked' => 'تعذر فتح "$1"، الملف غير مغلق.',
+'lockmanager-fail-closelock' => 'تعذر إغلاق ملف التأمين "$1".',
+'lockmanager-fail-deletelock' => 'تعذر حذف ملف التأمين "$1".',
+'lockmanager-fail-acquirelock' => 'لا يمكن الحصول على تأمين لـ "$1".',
+'lockmanager-fail-openlock' => 'تعذر إغلاق ملف التأمين "$1".',
+'lockmanager-fail-releaselock' => 'تعذر تحرير التأمين لـ "$1"..',
+'lockmanager-fail-db-bucket' => 'تعذر الإتصال بعدد كافي من قواعد تأمين البيانات في الحزمة $1.',
+'lockmanager-fail-db-release' => 'تعذر تحرير الأقفال في  قاعدة البيانات $1.',
+'lockmanager-fail-svr-release' => 'تعذر تحرير الأقفال على الخادم $1.',
 
 # ZipDirectoryReader
 'zip-file-open-error' => 'صودف خطأ أثناء فتح الملف لفحوصات ZIP.',
@@ -1996,6 +2020,7 @@ $1',
 'uploadstash-badtoken' => 'لم ينجح أداء ذلك العمل، ربما لأن وثائق تفويض التحرير الخاصة بك منتهية الصلاحية. حاول مرة أخرى.',
 'uploadstash-errclear' => 'لم تنجح عملية مسح الملفات.',
 'uploadstash-refresh' => 'تحديث قائمة الملفات',
+'invalid-chunk-offset' => 'قطعة أوفست غير صالحة',
 
 # img_auth script messages
 'img-auth-accessdenied' => 'رفض الوصول',
@@ -2088,6 +2113,10 @@ $1',
 من فضلك انظر [$2 صفحة وصف الملف] لمزيد من المعلومات.',
 'sharedupload-desc-here' => 'هذا الملف من $1 ويمكن استخدامه بواسطة المشاريع الأخرى.
 الوصف على [$2 صفحة وصف الملف] هناك معروض بالأسفل.',
+'sharedupload-desc-edit' => 'هذا ملف من $1 وقد يكون مستخدما في مشاريع أخرى.
+يمكن لك أن تعدل وصف الملف في [$2  صفحته] هناك.',
+'sharedupload-desc-create' => 'هذا ملف من $1 وقد يكون مستخدما في مشاريع أخرى.
+يمكن لك أن تعدل وصف الملف في [$2  صفحته] هناك.',
 'filepage-nofile' => 'لا ملف موجود بهذا الاسم.',
 'filepage-nofile-link' => 'لا يوجد ملف بهذا الاسم، لكن يمكنك [$1 رفعه].',
 'uploadnewversion-linktext' => 'ارفع نسخة جديدة من هذا الملف',
@@ -2223,6 +2252,8 @@ $1',
 'wantedpages' => 'صفحات مطلوبة',
 'wantedpages-badtitle' => 'عنوان غير صحيح في مجموعة النتائج: $1',
 'wantedfiles' => 'ملفات مطلوبة',
+'wantedfiletext-cat' => 'الملفات التالية مستعملة ولكن لا وجود لها. يمكن سرد ملفات من مستودعات خارجية بالرغم من وجودها. سيتم <del>محو</del> أي أيجابيات كاذبة. بالإضافة، أي صفحات تتضمن الملفات الغير موجودة تم سردها في [[:$1]].',
+'wantedfiletext-nocat' => 'الملفات التالية مستعملة ولكن  غير متوفرة. يمكن سرد ملفات من مستودعات خارجية بالرغم من وجودها. سيتم <del>محو</del> أي أيجابيات كاذبة.',
 'wantedtemplates' => 'قوالب مطلوبة',
 'mostlinked' => 'أكثر الصفحات وصلا',
 'mostlinkedcategories' => 'أكثر التصنيفات ارتباطا',
@@ -2231,6 +2262,7 @@ $1',
 'mostimages' => 'أكثر الملفات ارتباطا',
 'mostrevisions' => 'أكثر الصفحات تعديلا',
 'prefixindex' => 'كل الصفحات بالبادئة',
+'prefixindex-namespace' => 'كل الصفحات مع بادئة ($1 مساحة الأسم)',
 'shortpages' => 'صفحات قصيرة',
 'longpages' => 'صفحات طويلة',
 'deadendpages' => 'صفحات نهاية مسدودة',
@@ -2300,6 +2332,7 @@ $1',
 'allpagesbadtitle' => 'العنوان المقترح للصفحة غير مقبول أو يضم لغات أخرى أو سابقة إنترويكي.
 يمكن أن يتضمن حروفا لا يمكن استعمالها للعناوين.',
 'allpages-bad-ns' => '{{SITENAME}} لا يوجد بها نطاق "$1".',
+'allpages-hide-redirects' => 'أخفِ التحويلات',
 
 # Special:Categories
 'categories' => 'تصنيفات',
@@ -2540,6 +2573,8 @@ $UNWATCHURL
 'protect-title' => 'ضبط مستوى الحماية ل"$1"',
 'protect-title-notallowed' => 'عرض مستوى الحماية ل "$1"',
 'prot_1movedto2' => 'نُقلت [[$1]] إلى [[$2]]',
+'protect-badnamespace-title' => 'مساحة إسم غير محمية',
+'protect-badnamespace-text' => 'لا يمكن حماية الصفحات الموجودة في مساحة الإسم',
 'protect-legend' => 'تأكيد الحماية',
 'protectcomment' => 'السبب:',
 'protectexpiry' => 'تنتهي في:',
@@ -2641,6 +2676,7 @@ $UNWATCHURL
 'undelete-cleanup-error' => 'خطأ حذف ملف أرشيف غير مستخدم "$1".',
 'undelete-missing-filearchive' => 'غير قادر على استرجاع ملف الأرشيف رقم $1 لأنه ليس في قاعدة البيانات.
 ربما يكون قد تم استرجاعه.',
+'undelete-error' => 'وقع خطأ عند إلغاء حذف الصفحة',
 'undelete-error-short' => 'خطأ استرجاع ملف: $1',
 'undelete-error-long' => 'حدثت أخطاء أثناء استرجاع الملف:
 
@@ -2961,6 +2997,7 @@ $1',
 'exportcuronly' => 'ضمن المراجعة الحالية فقط، وليس التاريخ الكامل',
 'exportnohistory' => "----
 ملاحظة:''' تصدير التاريخ الكامل للصفحات من خلال هذه الاستمارة تم تعطيله لأسباب تتعلق بالأداء'''",
+'exportlistauthors' => 'أضف قائمة كاملة بالمساهمين لكل صفحة',
 'export-submit' => 'صدر',
 'export-addcattext' => 'أضف صفحات من تصنيف:',
 'export-addcat' => 'أضف',
@@ -2993,6 +3030,8 @@ $1',
 'thumbnail_error' => 'خطأ في إنشاء صورة مصغرة: $1',
 'djvu_page_error' => 'صفحة DjVu خارج النطاق',
 'djvu_no_xml' => 'لا يمكن جلب XML لملف DjVu',
+'thumbnail-temp-create' => 'تعذر إنشاء ملف الصورة المصغرة المؤقت',
+'thumbnail-dest-create' => 'تعذر حفظ الصورة المصغرة للوجهة',
 'thumbnail_invalid_params' => 'محددات التصغير غير صحيحة',
 'thumbnail_dest_directory' => 'غير قادر على إنشاء المجلد الهدف',
 'thumbnail_image-type' => 'نوع الصورة غير مدعوم',
@@ -4002,6 +4041,7 @@ $5
 'version-software' => 'البرنامج المثبت',
 'version-software-product' => 'المنتج',
 'version-software-version' => 'النسخة',
+'version-entrypoints-header-url' => 'المسار',
 
 # Special:FilePath
 'filepath' => 'مسار ملف',
@@ -4185,5 +4225,16 @@ $5
 'api-error-unknownerror' => 'خطأ غير معروف : " $1 "',
 'api-error-uploaddisabled' => 'تم تعطيل تحميل على هذا الويكي.',
 'api-error-verification-error' => 'هذا الملف قد يكون معطوباً أو يحتوي على ملحق غير صحيح.',
+
+# Durations
+'duration-seconds' => '{{PLURAL:$1|أقل من ثانية|ثانية واحدة|ثانيتان|$1 ثوانٍ|$1 ثانية}}',
+'duration-minutes' => '{{PLURAL:$1|أقل من دقيقة|دقيقة واحدة|دقيقتان|$1 دقائق|$1 دقيقة}}',
+'duration-hours' => '({{PLURAL:$1||ساعة واحد|ساعتان|$1 ساعات|$1 ساعة}})',
+'duration-days' => '{{PLURAL:$1||يوم واحد|يومان|$1 أيام|$1 يومًا|$1 يوم}}',
+'duration-weeks' => '{{PLURAL:$1||أسبوع واحد|أسبوعان|$1 أسابيع|$1 أسبوعًا|$1 أسبوع}}',
+'duration-years' => '{{PLURAL: $1||سنة واحدة|سنتان|$1 سنين|$1 سنة}}',
+'duration-decades' => '{{PLURAL: $1||عقد واحد|عقدان|$1 عقود|$1 عقدًا|$1 عقد}}',
+'duration-centuries' => '{{PLURAL: $1||قرن واحد|قرنان|$1 قرون|$1 قرنًا|$1 قرن}}',
+'duration-millennia' => '{{PLURAL: $1||ألفية واحدة|ألفيتان|$1 ألفيات|$1 ألفية}}',
 
 );

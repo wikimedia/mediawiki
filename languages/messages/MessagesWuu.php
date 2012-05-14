@@ -837,7 +837,6 @@ $1",
 
 # Diffs
 'history-title' => '“$1”个修订历史',
-'difference' => '（修订版本间差异）',
 'lineno' => '第$1行：',
 'compareselectedversions' => '比较选中个版本',
 'showhideselectedversions' => '显示／囥脱选定修订版本',

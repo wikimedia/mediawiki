@@ -70,12 +70,13 @@ return array(
 		'localBasePath' => $GLOBALS['wgStyleDirectory'],
 	),
 	'skins.vector' => array(
+		// Keep in sync with WebInstallerOutput::getCSS()
 		'styles' => array(
 			'common/commonElements.css' => array( 'media' => 'screen' ),
 			'common/commonContent.css' => array( 'media' => 'screen' ),
 			'common/commonInterface.css' => array( 'media' => 'screen' ),
 			'vector/screen.css' => array( 'media' => 'screen' ),
-			'vector/screen-hd.css' => array( 'media' => 'screen and (min-width: 900px)' ),
+			'vector/screen-hd.css' => array( 'media' => 'screen and (min-width: 982px)' ),
 		),
 		'scripts' => 'vector/vector.js',
 		'remoteBasePath' => $GLOBALS['wgStylePath'],
@@ -633,7 +634,6 @@ return array(
 	),
 	'mediawiki.action.history' => array(
 		'scripts' => 'resources/mediawiki.action/mediawiki.action.history.js',
-		'dependencies' => 'jquery.ui.button',
 		'group' => 'mediawiki.action.history',
 	),
 	'mediawiki.action.history.diff' => array(

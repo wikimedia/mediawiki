@@ -1149,7 +1149,6 @@ $3 santiôna{{PLURAL:}} natsonika tamin'ny [[:$2]]",
 
 # Diffs
 'history-title' => "Tantara ny endrik'i « $1 »",
-'difference' => "(Fahasamihafan'ny pejy)",
 'difference-multipage' => "(Fahasamihafan'ny pejy)",
 'lineno' => 'Andalana $1:',
 'compareselectedversions' => 'Ampitahao ireo version voafidy',
@@ -3170,6 +3169,8 @@ Aseho amin'ny tena habeny ny sary aseho, ny hafa dia alefa miaraka amin'ny rindr
 'htmlform-selectorother-other' => 'Hafa',
 
 # New logging system
+'logentry-delete-delete' => "nofafan'i $1 ny pejy $3",
+'logentry-suppress-delete' => "nofafan'i $1 ny pejy $3",
 'revdelete-restricted' => "nametraka fanerena ho an'ny mpandrindra",
 'revdelete-unrestricted' => "fanerena nesorina tamin'ny mpandrindra",
 'newuserlog-byemail' => 'tenimiafina nalefa imailaka',

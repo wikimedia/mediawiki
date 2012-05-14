@@ -698,6 +698,8 @@ A justificação foi "\'\'$2\'\'".',
 'filereadonlyerror' => 'Não é possível modificar o ficheiro "$1" porque o repositório de ficheiros "$2" está em modo de leitura.
 
 O administrador que efetuou o bloqueio deu a seguinte explicação: "$3".',
+'invalidtitle-knownnamespace' => 'Título inválido com o espaço nominal "$2" e texto "$3"',
+'invalidtitle-unknownnamespace' => 'Título inválido com número de espaço nominal $1 desconhecido e texto "$2"',
 
 # Virus scanner
 'virus-badscanner' => "Má configuração: antivírus desconhecido: ''$1''",
@@ -1093,6 +1095,12 @@ Estes argumentos foram omitidos.',
 'parser-template-loop-warning' => 'Ciclo de predefinições detectado: [[$1]]',
 'parser-template-recursion-depth-warning' => 'Foi excedido o limite da profundidade de recursividade nas predefinições ($1)',
 'language-converter-depth-warning' => 'O limite de profundidade do conversor de línguas excedeu a ($1)',
+'node-count-exceeded-category' => 'Páginas em que o total de nós é excedido',
+'node-count-exceeded-warning' => 'A página excedeu o total de nós',
+'expansion-depth-exceeded-category' => 'Páginas em que a profundidade de expansão é excedida',
+'expansion-depth-exceeded-warning' => 'A página excedeu a profundidade de expansão',
+'parser-unstrip-loop-warning' => 'Detectado loop unstrip',
+'parser-unstrip-recursion-limit' => 'Limite de recursão do unstrip excedido ($1)',
 
 # "Undo" feature
 'undo-success' => 'É possível desfazer a edição.
@@ -1277,7 +1285,6 @@ Note que, se usar os links de navegação, os botões de opção voltarão aos v
 
 # Diffs
 'history-title' => 'Histórico de edições de "$1"',
-'difference' => '(Diferença entre edições)',
 'difference-multipage' => '(Diferenças entre páginas)',
 'lineno' => 'Linha $1:',
 'compareselectedversions' => 'Comparar as versões seleccionadas',
@@ -1859,6 +1866,7 @@ Caso o problema persista, contacte um [[Special:ListUsers/sysop|administrador]].
 'backend-fail-connect' => 'Não foi possível estabelecer ligação com o servidor de armazenamento "$1".',
 'backend-fail-internal' => 'Ocorreu um erro desconhecido no servidor de armazenamento "$1".',
 'backend-fail-contenttype' => 'Não foi possível determinar o tipo de conteúdo do ficheiro para armazenar em " $1 ".',
+'backend-fail-batchsize' => 'Foi fornecido um bloco de $1 {{PLURAL:$1|operação|operações}} sobre ficheiros ao servidor backend de armazenamento; o limite é de $2 {{PLURAL:$2|operação|operações}}.',
 
 # File journal errors
 'filejournal-fail-dbconnect' => 'Não foi possível ligar à base de dados de registos no "backend" de armazenamento "$1".',
@@ -1921,6 +1929,7 @@ Para optimizar a segurança, o img_auth.php está impossibilitado de executar.',
 'http-curl-error' => 'Ocorreu um erro ao aceder à URL: $1',
 'http-host-unreachable' => 'Não foi possível aceder à URL',
 'http-bad-status' => 'Ocorreu um problema durante o pedido HTTP: $1 $2',
+'http-truncated-body' => 'O corpo da solicitação foi recebido apenas parcialmente.',
 
 # Some likely curl errors. More could be added from <http://curl.haxx.se/libcurl/c/libcurl-errors.html>
 'upload-curl-error6' => 'Não foi possível aceder à URL',
@@ -2117,6 +2126,8 @@ Agora redirecciona para [[$2]].',
 'wantedpages' => 'Páginas desejadas',
 'wantedpages-badtitle' => 'Título inválido no conjunto de resultados: $1',
 'wantedfiles' => 'Ficheiros desejados',
+'wantedfiletext-cat' => 'Os seguintes ficheiros são usados, mas não existem. Ficheiros de repositórios externos podem ser listados apesar de existirem. Tais falsos positivos aparecerão <del>riscados</del>. Adicionalmente, páginas que incorporam ficheiros que não existem estão listadas em [[:$1]].',
+'wantedfiletext-nocat' => 'Os seguintes ficheiros são usados, mas não existem. Ficheiros de repositórios externos podem ser listados apesar de existirem. Tais falsos positivos aparecerão <del>riscados</del>.',
 'wantedtemplates' => 'Predefinições desejadas',
 'mostlinked' => 'Páginas com mais afluentes',
 'mostlinkedcategories' => 'Categorias com mais membros',
@@ -2197,6 +2208,8 @@ Talvez contenha um ou mais caracteres que não podem ser usados nos títulos.',
 'allpages-hide-redirects' => 'Ocultar redirecionamentos',
 
 # SpecialCachedPage
+'cachedspecial-viewing-cached-ttl' => 'Você está a visualizar uma versão desta página em cache que tem uma antiguidade máxima de $1.',
+'cachedspecial-viewing-cached-ts' => 'Você está a visualizar uma versão desta página em cache que pode não refletir totalmente a situação atual.',
 'cachedspecial-refresh-now' => 'Ver mais recente.',
 
 # Special:Categories
@@ -2959,6 +2972,7 @@ Não há um directório temporário.',
 'javascripttest-pagetext-frameworks' => 'Escolha, por favor, uma das seguintes estruturas de teste: $1',
 'javascripttest-pagetext-skins' => 'Escolher um tema para executar os testes com:',
 'javascripttest-qunit-intro' => 'Consulte a [ $1 documentação de testes] no mediawiki.org.',
+'javascripttest-qunit-heading' => 'Pacote de ferramentas de teste de JavaScript QUnit do MediaWiki',
 
 # Tooltip help for the actions
 'tooltip-pt-userpage' => 'A sua página de utilizador',

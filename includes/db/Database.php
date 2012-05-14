@@ -798,7 +798,7 @@ abstract class DatabaseBase implements DatabaseType {
 	 * @return bool
 	 */
 	function isWriteQuery( $sql ) {
-		return !preg_match( '/^(?:SELECT|BEGIN|ROLLBACK|COMMIT|SET|SHOW|\(SELECT)\b/i', $sql );
+		return !preg_match( '/^(?:SELECT|BEGIN|ROLLBACK|COMMIT|SET|SHOW|EXPLAIN|\(SELECT)\b/i', $sql );
 	}
 
 	/**
@@ -1475,6 +1475,7 @@ abstract class DatabaseBase implements DatabaseType {
 	function selectRow( $table, $vars, $conds, $fname = 'DatabaseBase::selectRow',
 		$options = array(), $join_conds = array() )
 	{
+		$options = (array)$options;
 		$options['LIMIT'] = 1;
 		$res = $this->select( $table, $vars, $conds, $fname, $options, $join_conds );
 
@@ -3361,6 +3362,18 @@ abstract class DatabaseBase implements DatabaseType {
 	 */
 	function buildConcat( $stringList ) {
 		return 'CONCAT(' . implode( ',', $stringList ) . ')';
+	}
+
+	/**
+	 * Check to see if a named lock is available. This is non-blocking.
+	 *
+	 * @param $lockName String: name of lock to poll
+	 * @param $method String: name of method calling us
+	 * @return Boolean
+	 * @since 1.20
+	 */
+	public function lockIsFree( $lockName, $method ) {
+		return true;
 	}
 
 	/**

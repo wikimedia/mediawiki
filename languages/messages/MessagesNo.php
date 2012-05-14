@@ -921,7 +921,6 @@ Forsikre deg om at denne endringen vil opprettholde historisk sidekontinuitet.',
 
 # Diffs
 'history-title' => 'Revisjonshistorikk for «$1»',
-'difference' => '(Forskjell mellom revisjoner)',
 'difference-multipage' => '(Forskjell mellom sider)',
 'lineno' => 'Linje $1:',
 'compareselectedversions' => 'Sammenlign valgte revisjoner',

@@ -883,7 +883,6 @@ Kontrololös, va votükam at okipon fovöfi padajenotema.',
 
 # Diffs
 'history-title' => 'Revidajenotem pada: "$1"',
-'difference' => '(Dif vü revids)',
 'difference-multipage' => '(Dif vü pads)',
 'lineno' => 'Lien $1:',
 'compareselectedversions' => 'Leigodolöd fomamis pevälöl',

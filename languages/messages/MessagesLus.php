@@ -134,7 +134,7 @@ $messages = array(
 'category-article-count' => "{{PLURAL:$2|He pawl hian hemi phêk chauh hi a nei. | Hê'ng phek {{PLURAL:$1||$1-te}} hi he pawlah hian a awm, avaia $2 zingah.}}",
 'category-article-count-limited' => '{{PLURAL: $1 |$1He|$1 Heng}} phekte hi hë pawl, i en mékah hian a awm.',
 'category-file-count' => '{{PLURAL:$2|He pawl hian hë taksa chauh hi a kengtel.|{{PLURAL:$1|He taksa $1 |Heng taksa $1-te}} hi he pawlah hian a awm, a vaia $2 zingah}}',
-'category-file-count-limited' => '{{PLURAL:$1|He taksa (file)|$1Heng taksate}} hi hemi pawl, i en mékah hian a awm.',
+'category-file-count-limited' => '{{PLURAL:$1|He taksa|$1Heng taksate}} hi hemi pawl, i en mékah hian a awm.',
 'listingcontinuesabbrev' => 'chhunz.',
 'index-category' => 'Phêk tarlante',
 'noindex-category' => 'Phêk tarlan lohte',
@@ -483,6 +483,7 @@ I thurûk i thlâk hlawhtling tawh a nih loh pawhin thurûk lailâwk i dil a ni 
 'passwordreset' => 'Thurûk ziakţha rawh',
 'passwordreset-legend' => 'Thurûk ziakţha rawh',
 'passwordreset-username' => 'Hmangtu hming:',
+'passwordreset-domain' => 'Huamchin:',
 'passwordreset-email' => 'E-chenhmun:',
 'passwordreset-emailtitle' => '{{SITENAME}}-a siangchan chanchin kim',
 'passwordreset-emailelement' => 'Hmangtuhming: $1
@@ -571,6 +572,12 @@ I rawn atan a danbeh chhinchhiahna kan han tarlang a ni e:',
 'note' => "'''Hriat tùr:'''",
 'previewnote' => "'''Heihi endikna chauh a ni tih hrereng ang che.'''
 I tihdanglamna dahţhat a la ni lo!",
+'session_fail_preview_html' => "'''A pawi hlë mai! Ṭhutchhúng chanchin vawnna hloh avangin i siamṭhatna dahṭhat theih a ni lo.'''
+
+''{{SITENAME}}-in HTML hel a tihzalen avangin hë enlâwkna hi JavaScript beihna laka invèn fimkhur nan thup bo a ni.''
+
+'''Hei hi siamṭhat tumna dànzui pangngai a nih chuan khawngaihin dahṭhat tum nawn leh rawh.'''
+I la dahṭhat theih loh cheu chuan [[Special:UserLogout|chhuah phawt ]] a, luh nawn leh hmang tein han bei vêl chhin lä.",
 'editing' => '$1 i siam(ţha) mék',
 'editingsection' => '$1 (hlawm) i siam(ţha) mék',
 'editingcomment' => '$1 (hlawm thar) i siam(ţha) mék',
@@ -578,6 +585,8 @@ I tihdanglamna dahţhat a la ni lo!",
 'yourtext' => 'I thu tah hian:',
 'storedversion' => 'Ennawnna vawnţhat',
 'yourdiff' => 'Danglamnate',
+'protectedpagewarning' => "'''Vaukhanna: Hë phêk hi roreltute chauhvin an siamṭhat theihna tùrin vènhim a ni.'''
+I rawn atan ziaka chanchin dah hnuhnüng ber kan rawn chhawp chhuak e:",
 'semiprotectedpagewarning' => "'''Hriat tùr:''' He phêk hi hmangtu inziaklûtte chauhvin an tihdanglam theihna tùra vènhim a ni.
 I rawn tùrin siamm-danglamna chanchin ziaka kan dahţhat thar ber a hnuaiah khuan kan chhawp e:",
 'templatesused' => 'He phêka {{PLURAL:$1|siamsa hman|siamsa hmante}}',
@@ -654,7 +663,6 @@ Lamtawi hmante: '''({{int:cur}})'''= ennawnna thar ber nena danglamna, '''({{int
 
 # Diffs
 'history-title' => '"$1" ennawnna chanchin',
-'difference' => '(Ennawnnate danglamna)',
 'lineno' => 'Tlar $1:',
 'compareselectedversions' => 'Ennawnna i thlan tâkte khi khaikhin rawh le',
 'editundo' => 'tihletna',
@@ -961,9 +969,11 @@ Hmangtuten e-lehkha an thawn chein i e-chenhmun hrilh an ni chuang lo vang.',
 'boteditletter' => 'k',
 'rc-enhanced-expand' => 'Tilang kim rawh (JavaScript a ngai)',
 'rc-enhanced-hide' => 'Thup ţhenna',
+'rc-old-title' => 'Atìra "&1" tih hming pú-a siam.',
 
 # Recent changes linked
 'recentchangeslinked' => 'Tihdanglam anpuite',
+'recentchangeslinked-feed' => 'Tihdanglam anpuite',
 'recentchangeslinked-toolbox' => 'Tihdanglam anpuite',
 'recentchangeslinked-title' => '"$1" kaihhnawih tihdanglamnate',
 'recentchangeslinked-noresult' => 'I hun thlan chhungah hian a phek zawmpui tihdanglam pakhat mah a awm lo.',
@@ -982,6 +992,9 @@ Hmangtuten e-lehkha an thawn chein i e-chenhmun hrilh an ni chuang lo vang.',
 'upload_directory_missing' => 'Hlankai bawmpui ($1)  a awm lo va, Rangserverin a siam thei lo bawl.',
 'upload_directory_read_only' => 'Hlankai bawmpui ($1) hi Rangserver in a ziak thei lo.',
 'uploaderror' => 'Hlankai sual',
+'upload-recreate-warning' => "'''Vaukhànna: Hemi hming pu taksa hi sawn tawh emaw paih tawh a ni.'''
+
+I ràwnah paihna leh sawnna chhinchhiahna thuziak kan rawn chhawpchhuak e:",
 'upload-permitted' => 'Taksa phal chiho: $1.',
 'upload-preferred' => 'Taksa duh deuh bîk: $1.',
 'upload-prohibited' => 'Taksa khap: $1.',
@@ -1028,7 +1041,7 @@ A hming thlâk la bei ţha leh rawh.',
 'listfiles_count' => 'Chhuah',
 
 # File description page
-'file-anchor-link' => 'Taksa (file)',
+'file-anchor-link' => 'Taksa',
 'filehist' => 'A chanchin enna',
 'filehist-help' => 'A hunlaia a lan dan en tùrin a hun/ni-ah hmet rawh.',
 'filehist-deleteall' => 'a vaiin nuaibo rawh',
@@ -1118,6 +1131,7 @@ Phêk hminga hman awih loh hawrawp a hmang palh a ni mai thei bawk.',
 'sp-deletedcontributions-contribs' => 'kutthawhnate',
 
 # Special:LinkSearch
+'linksearch-ns' => 'Hminghmun:',
 'linksearch-ok' => 'Zawng rawh',
 'linksearch-line' => '$1 hi $2 aţanga thlunzawm a ni',
 

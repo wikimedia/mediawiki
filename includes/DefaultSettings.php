@@ -1907,12 +1907,12 @@ $wgMaxSquidPurgeTitles = 400;
  * Routing configuration for HTCP multicast purging. Add elements here to
  * enable HTCP and determine which purges are sent where. If set to an empty
  * array, HTCP is disabled.
- * 
+ *
  * Each key in this array is a regular expression to match against the purged
  * URL, or an empty string to match all URLs. The purged URL is matched against
  * the regexes in the order specified, and the first rule whose regex matches
  * is used.
- * 
+ *
  * Example configuration to send purges for upload.wikimedia.org to one
  * multicast group and all other purges to another:
  * $wgHTCPMulticastRouting = array(
@@ -1925,7 +1925,7 @@ $wgMaxSquidPurgeTitles = 400;
  *                 'port' => 4827,
  *         ),
  * );
- * 
+ *
  * @see $wgHTCPMulticastTTL
  */
 $wgHTCPMulticastRouting = array();
@@ -1935,12 +1935,12 @@ $wgHTCPMulticastRouting = array();
  *
  * Note that MediaWiki uses the old non-RFC compliant HTCP format, which was
  * present in the earliest Squid implementations of the protocol.
- * 
+ *
  * This setting is DEPRECATED in favor of $wgHTCPMulticastRouting , and kept
  * for backwards compatibility only. If $wgHTCPMulticastRouting is set, this
  * setting is ignored. If $wgHTCPMulticastRouting is not set and this setting
  * is, it is used to populate $wgHTCPMulticastRouting.
- * 
+ *
  * @deprecated in favor of $wgHTCPMulticastRouting
  */
 $wgHTCPMulticastAddress = false;
@@ -4176,6 +4176,11 @@ $wgShowExceptionDetails = false;
 $wgShowDBErrorBacktrace = false;
 
 /**
+ * If true, send the exception backtrace to the error log
+ */
+$wgLogExceptionBacktrace = true;
+
+/**
  * Expose backend server host names through the API and various HTML comments
  */
 $wgShowHostnames = false;
@@ -4255,6 +4260,14 @@ $wgAggregateStatsID = false;
  * Does not work if pages are cached (for example with squid).
  */
 $wgDisableCounters = false;
+
+/**
+ * Set this to an integer to only do synchronous site_stats updates
+ * one every *this many* updates. The other requests go into pending
+ * delta values in $wgMemc. Make sure that $wgMemc is a global cache.
+ * If set to -1, updates *only* go to $wgMemc (useful for daemons).
+ */
+$wgSiteStatsAsyncFactor = false;
 
 /**
  * Parser test suite files to be run by parserTests.php when no specific
@@ -4595,6 +4608,20 @@ $wgReadOnlyFile = false;
  * delete the old key from LocalSettings.php.
  */
 $wgUpgradeKey = false;
+
+/**
+ * Map GIT repository URLs to viewer URLs to provide links in Special:Version
+ *
+ * Key is a pattern passed to preg_match() and preg_replace(),
+ * without the delimiters (which are #) and must match the whole URL.
+ * The value is the replacement for the key (it can contain $1, etc.)
+ * %h will be replaced by the short SHA-1 (7 first chars) and %H by the
+ * full SHA-1 of the HEAD revision.
+ */
+$wgGitRepositoryViewers = array(
+    'https://gerrit.wikimedia.org/r/p/(.*)' => 'https://gerrit.wikimedia.org/r/gitweb?p=$1;h=%H',
+    'ssh://(?:[a-z0-9_]+@)?gerrit.wikimedia.org:29418/(.*)' => 'https://gerrit.wikimedia.org/r/gitweb?p=$1;h=%H',
+);
 
 /** @} */ # End of maintenance }
 

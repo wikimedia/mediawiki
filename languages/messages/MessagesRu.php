@@ -22,6 +22,7 @@
  * @author Claymore
  * @author Comp1089
  * @author DCamer
+ * @author Daniyar
  * @author Dim Grits
  * @author Don Alessandro
  * @author Eleferen
@@ -54,6 +55,7 @@
  * @author Putnik
  * @author Rave
  * @author Rubin
+ * @author Sagan
  * @author Sk
  * @author TarzanASG
  * @author Temuri rajavi
@@ -61,6 +63,7 @@
  * @author VasilievVV
  * @author Ytsukeng Fyvaprol
  * @author Александр Сигачёв
+ * @author Гусейн
  * @author ОйЛ
  * @author לערי ריינהארט
  * @author გიორგიმელა
@@ -688,6 +691,8 @@ $2',
 'filereadonlyerror' => "Не удаётся изменить файл «$1», так как хранилище «$2» находится в режиме «только для чтения».
 
 Установивший этот режим администратор оставил следующее разъяснение: «''$3''».",
+'invalidtitle-knownnamespace' => 'Недопустимый заголовок с пространством имен «$2» и текстом «$3»',
+'invalidtitle-unknownnamespace' => 'Недопустимый заголовок с неизвестным номером пространства $1 и текстом «$2»',
 
 # Virus scanner
 'virus-badscanner' => "Ошибка настройки. Неизвестный сканер вирусов: ''$1''",
@@ -1085,6 +1090,12 @@ $2
 'parser-template-loop-warning' => 'Обнаружена петля в шаблонах: [[$1]]',
 'parser-template-recursion-depth-warning' => 'Превышен предел глубины рекурсии шаблона ($1)',
 'language-converter-depth-warning' => 'Превышен предел глубины преобразователя языков ($1)',
+'node-count-exceeded-category' => 'Странице, на которых превышено число узлов',
+'node-count-exceeded-warning' => 'На странице превышено число узлов',
+'expansion-depth-exceeded-category' => 'Страницы с превышением глубины раскрытия',
+'expansion-depth-exceeded-warning' => 'На странице превышен предел вложенности',
+'parser-unstrip-loop-warning' => 'Обнаружен незакрытый pre',
+'parser-unstrip-recursion-limit' => 'Превышен предел рекурсии ($1)',
 
 # "Undo" feature
 'undo-success' => 'Правка может быть отменена. Пожалуйста, просмотрите сравнение версий, чтобы убедиться, что это именно те изменения, которые вас интересуют, и нажмите «Записать страницу», чтобы изменения вступили в силу.',
@@ -1261,7 +1272,8 @@ $1",
 
 # Diffs
 'history-title' => '$1 — история изменений',
-'difference' => '(Различия между версиями)',
+'difference-title' => 'Разница между пересмотров " $1 "',
+'difference-title-multipage' => 'Разница между страницами " $1 «и» $2 "',
 'difference-multipage' => '(Различия между страницами)',
 'lineno' => 'Строка $1:',
 'compareselectedversions' => 'Сравнить выбранные версии',
@@ -1894,6 +1906,7 @@ $1',
 'http-curl-error' => 'Ошибка обращения к URL: $1',
 'http-host-unreachable' => 'Невозможно обратиться по указанному URL.',
 'http-bad-status' => 'Во время обработки HTTP-запроса обнаружена проблема: $1 $2',
+'http-truncated-body' => 'Тело запроса было получено лишь частично.',
 
 # Some likely curl errors. More could be added from <http://curl.haxx.se/libcurl/c/libcurl-errors.html>
 'upload-curl-error6' => 'Невозможно обратить по указанному адресу.',

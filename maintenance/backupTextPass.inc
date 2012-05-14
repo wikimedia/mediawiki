@@ -24,6 +24,7 @@
  * @ingroup Maintenance
  */
 
+require_once( dirname( __FILE__ ) . '/backup.inc' );
 
 /**
  * @ingroup Maintenance
@@ -430,7 +431,8 @@ class TextPassDumper extends BackupDumper {
 				if ( $text === false && isset( $this->prefetch ) && $prefetchNotTried ) {
 					$prefetchNotTried = false;
 					$tryIsPrefetch = true;
-					$text = $this->prefetch->prefetch( $this->thisPage, $this->thisRev );
+					$text = $this->prefetch->prefetch( intval( $this->thisPage ),
+						intval( $this->thisRev ) );
 					if ( $text === null ) {
 						$text = false;
 					}

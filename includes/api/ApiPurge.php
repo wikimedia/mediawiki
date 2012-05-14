@@ -89,6 +89,7 @@ class ApiPurge extends ApiBase {
 					global $wgParser, $wgEnableParserCache;
 
 					$popts = ParserOptions::newFromContext( $this->getContext() );
+					$popts->setTidy( true );
 					$p_result = $wgParser->parse( $page->getRawText(), $title, $popts,
 						true, true, $page->getLatest() ); #FIXME: content!
 

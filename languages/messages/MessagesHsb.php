@@ -538,6 +538,8 @@ Podata přičina je \'\'"$2"\'\'.',
 'filereadonlyerror' => 'Njeje móžno dataju "$1" změnić, dokelž datajowy repozitorij "$2" je jenož čitajomny.
 
 Administrator, kiž je jón zawrěł, je tule přičinu podał: "$3".',
+'invalidtitle-knownnamespace' => 'Njepłaćiwy titul z mjenowym rumom "$2" a tekstom "$3"',
+'invalidtitle-unknownnamespace' => 'Njepłaćiwy titul z njeznatym mjenowym rumom $1 a tekstom "$2"',
 
 # Virus scanner
 'virus-badscanner' => "Špatna konfiguracija: Njeznaty wirusowy skener: ''$1''",
@@ -896,6 +898,12 @@ Dyrbjała mjenje hač $2 {{PLURAL:$2|wołanje|wołanjej|wołanja|wołanjow}} mě
 'parser-template-loop-warning' => 'Předłohowa sekla wotkryta: [[$1]]',
 'parser-template-recursion-depth-warning' => 'Limit za rekursijnu hłubokosć předłohi překročeny ($1)',
 'language-converter-depth-warning' => 'Limit hłubokosće rěčneho konwertera překročena ($1)',
+'node-count-exceeded-category' => 'Strony, hdźež ličba sukow je překročena',
+'node-count-exceeded-warning' => 'Strona je ličbu sukow překročiła',
+'expansion-depth-exceeded-category' => 'Strony, hdźež ekspansiska hłubokosć je překročena',
+'expansion-depth-exceeded-warning' => 'Strona je ekspansisku hłubokosć překročił',
+'parser-unstrip-loop-warning' => 'Njeskónčna sekla namakana',
+'parser-unstrip-recursion-limit' => 'Rekursiska hranica překročena ($1)',
 
 # "Undo" feature
 'undo-success' => 'Wersija je so wuspěšnje wotstroniła. Prošu přepruwuj deleka w přirunanskim napohledźe, hač twoja změna bu přewzata a klikń potom na „Składować”, zo by změnu składował.',
@@ -1070,7 +1078,8 @@ Zawěsć, zo tuta změna stawiznisku kontinuitu strony wobchowuje.',
 
 # Diffs
 'history-title' => 'Stawizny wersijow strony „$1“',
-'difference' => '(rozdźěl mjez wersijomaj)',
+'difference-title' => 'Rozdźěl mjez wersijemi "$1"',
+'difference-title-multipage' => 'Rozdźěl mjez stronami "$1" a "$2"',
 'difference-multipage' => '(Rozdźěl mjez stronami)',
 'lineno' => 'Rjadka $1:',
 'compareselectedversions' => 'Wubranej wersiji přirunać',
@@ -1701,6 +1710,7 @@ Za optimalnu wěstotu je img_auth.php znjemóžnjeny.',
 'http-curl-error' => 'Zmylk při wołanju URL: $1',
 'http-host-unreachable' => 'URL njeda so docpěć.',
 'http-bad-status' => 'Problem je za HTTP-naprašowanje wustupił: $1 $2',
+'http-truncated-body' => 'Wobsah naprašowanja je so jenož zdźěla přijał.',
 
 # Some likely curl errors. More could be added from <http://curl.haxx.se/libcurl/c/libcurl-errors.html>
 'upload-curl-error6' => 'URL docpějomny njeje.',

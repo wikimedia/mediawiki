@@ -7,6 +7,7 @@
  * @ingroup Language
  * @file
  *
+ * @author Dbc334
  * @author Derbeth
  * @author Dunak
  * @author Dundak
@@ -541,6 +542,8 @@ Wótpšašanje: $2',
 'filereadonlyerror' => 'Njejo móžno dataju "$1" změniś, dokulaž datajowy repozitorium "$2" jo jano cytajobny.
 
 Administrator, kenž jo jen zastajił, jo toś tu pśicynu pódał: "$3".',
+'invalidtitle-knownnamespace' => 'Njepłaśiwy titel z mjenjowym rumom "$2" a tekstom "$3"',
+'invalidtitle-unknownnamespace' => 'Njepłaśiwy titel z njeznatym mjenjowym rumom $1 a tekstom "$2"',
 
 # Virus scanner
 'virus-badscanner' => "Špatna konfiguracija: njeznaty wirusowy scanner: ''$1''",
@@ -895,6 +898,12 @@ Njesmějo daś wěcej nježli $2 {{PLURAL:$2|wołanja|wołanjowu|wołanjow|woła
 'parser-template-loop-warning' => 'Pśedłogowa šlejfa namakana: [[$1]]',
 'parser-template-recursion-depth-warning' => 'Limit rekursijneje dłymi pśedłogi pśekšocony ($1)',
 'language-converter-depth-warning' => 'Limit dłymokosći rěcnego konwertera pśekšocony ($1)',
+'node-count-exceeded-category' => 'Boki, źož licba sukow jo pśekšocona',
+'node-count-exceeded-warning' => 'Bok jo licbu sukow pśekšocył',
+'expansion-depth-exceeded-category' => 'Boki, źož ekspansiska dłymokosć jo pśekšocona',
+'expansion-depth-exceeded-warning' => 'Bok jo ekspansisku dłymokosć pśekšocył',
+'parser-unstrip-loop-warning' => 'Njeskóńcna kokula namakana',
+'parser-unstrip-recursion-limit' => 'Rekursiska granica pśekšocona ($1)',
 
 # "Undo" feature
 'undo-success' => 'Wobźěłanje móžo se wótpóraś. Pšosym pśeglěduj dołojcne pśirownowanje aby se wěsty był, až to wót wěrnosći coš, a pón składuj změny, aby se wobźěłanje doskóńcnje wótpórało.',
@@ -1071,7 +1080,8 @@ Zaruc, až historija wersijow nastawka jo njepśetergnjona.',
 
 # Diffs
 'history-title' => 'Stawizny wersijow boka „$1“',
-'difference' => '(rozdźěle mjazy wersijoma/wersijami)',
+'difference-title' => 'Rozdźěl mjazy wersijami "$1"',
+'difference-title-multipage' => 'Rozdźěl mjazy bokami "$1" a "$2"',
 'difference-multipage' => '(Rozdźěl mjazy bokami)',
 'lineno' => 'Rědka $1:',
 'compareselectedversions' => 'Wuzwólonej wersiji pśirownaś',
@@ -1163,7 +1173,7 @@ Zaruc, až historija wersijow nastawka jo njepśetergnjona.',
 'prefs-skin' => 'Šat',
 'skin-preview' => 'Pśeglěd',
 'datedefault' => 'Standard',
-'prefs-beta' => 'Betafunkcije',
+'prefs-beta' => 'Preizkusne funkcije',
 'prefs-datetime' => 'Datum a cas',
 'prefs-labs' => 'Laborowe funkcije',
 'prefs-personal' => 'Wužywarski profil',
@@ -1697,6 +1707,7 @@ Za optimalnu wěstotu img_auth.php jo znjemóžnjony.',
 'http-curl-error' => 'Zmólka pśi wótwółowanju URL: $1',
 'http-host-unreachable' => 'URL njejo był pśistupny.',
 'http-bad-status' => 'Wob cas HTTP-napšašowanje jo problem był: $1 $2',
+'http-truncated-body' => 'Wopśimjeśe napšašowanja jo se jano pó źělach pśiwzeło.',
 
 # Some likely curl errors. More could be added from <http://curl.haxx.se/libcurl/c/libcurl-errors.html>
 'upload-curl-error6' => 'URL njejo pśistupna.',
@@ -1705,7 +1716,7 @@ Za optimalnu wěstotu img_auth.php jo znjemóžnjony.',
 'upload-curl-error28-text' => 'Bok pśedłujko njejo wótegronił. Kontrolěruj, lic jo bok online, pócakaj wokognuśe a wopytaj pón hyšći raz. Móžo byś zmysłapołne, w drugem casu hyšći raz proběrowaś.',
 
 'license' => 'Licenca:',
-'license-header' => 'Licencowanje',
+'license-header' => 'Licencěrowanje',
 'nolicense' => 'Nic njejo wuzwólone.',
 'license-nopreview' => '(Pśeglěd njejo móžny.)',
 'upload_source_url' => ' (płaśeca, zjawnje pśistupna URL)',
@@ -3035,7 +3046,7 @@ Slědujuce wótkaze w tej samej smužce se za wuwześa naglědaju, w kótarychž
 'exif-gpsdestdistance' => 'Distanca k celowemu městnu',
 'exif-gpsprocessingmethod' => 'Mě metody pśeźěłanja GPS',
 'exif-gpsareainformation' => 'Mě wobcerka GPS',
-'exif-gpsdatestamp' => 'Datum GPS',
+'exif-gpsdatestamp' => 'GPS-datum',
 'exif-gpsdifferential' => 'Diferencialna korektura GPS',
 'exif-jpegfilecomment' => 'Komentar JPEG-dataje',
 'exif-keywords' => 'Klucowe słowa',

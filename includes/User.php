@@ -1283,7 +1283,7 @@ class User {
 		}
 
 		# User/IP blocking
-		$block = Block::newFromTarget( $this->getName(), $ip, !$bFromSlave );
+		$block = Block::newFromTarget( $this, $ip, !$bFromSlave );
 
 		# Proxy blocking
 		if ( !$block instanceof Block && $ip !== null && !$this->isAllowed( 'proxyunbannable' )
@@ -2281,7 +2281,10 @@ class User {
 	 * Reset all options to the site defaults
 	 */
 	public function resetOptions() {
+		$this->load();
+
 		$this->mOptions = self::getDefaultOptions();
+		$this->mOptionsLoaded = true;
 	}
 
 	/**
@@ -3362,7 +3365,7 @@ class User {
 	 * @return String New token URL
 	 */
 	private function invalidationTokenUrl( $token ) {
-		return $this->getTokenUrl( 'Invalidateemail', $token );
+		return $this->getTokenUrl( 'InvalidateEmail', $token );
 	}
 
 	/**

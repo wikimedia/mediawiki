@@ -745,6 +745,8 @@ $2',
 'filereadonlyerror' => 'לא ניתן לשנות את הקובץ "$1" כיוון שמאגר הקבצים "$2" במצב קריאה בלבד.
 
 מנהל המערכת שנעל את המאגר סיפק את ההסבר הבא: "\'\'\'$3\'\'\'".',
+'invalidtitle-knownnamespace' => 'כותרת בלתי־תקינה עם מרחב השם "$2" ושם דף "$3"',
+'invalidtitle-unknownnamespace' => 'כותרת בלתי־תקינה עם מרחב שם בלתי־ידוע מספר $1 ושם דף "$2"',
 
 # Virus scanner
 'virus-badscanner' => "הגדרות שגויות: סורק הווירוסים אינו ידוע: ''$1''",
@@ -1135,6 +1137,12 @@ $2
 'parser-template-loop-warning' => 'נמצאה תבנית הקוראת לעצמה: [[$1]]',
 'parser-template-recursion-depth-warning' => 'עומק התבניות המוכללות זו בזו עבר את המגבלה ($1)',
 'language-converter-depth-warning' => 'עומק ממיר השפה עבר את המגבלה ($1)',
+'node-count-exceeded-category' => 'דפים שבהם מספר הצמתים גדול מדי',
+'node-count-exceeded-warning' => 'מספר הצמתים בדף גדול מדי',
+'expansion-depth-exceeded-category' => 'דפים שבהם עומק ההרחבה גדול מדי',
+'expansion-depth-exceeded-warning' => 'עומק ההרחבה בדף גדול מדי',
+'parser-unstrip-loop-warning' => 'נמצאה לולאה בפריסה',
+'parser-unstrip-recursion-limit' => 'עומק הרקורסיה של הפריסה עבר את המגבלה ($1)',
 
 # "Undo" feature
 'undo-success' => 'ניתן לבטל את העריכה. אנא בִדקו את השוואת הגרסאות למטה כדי לוודא שזה מה שאתם רוצים לעשות, ואז שמרו את השינויים למטה כדי לבצע את ביטול העריכה.',
@@ -1312,7 +1320,8 @@ $1",
 
 # Diffs
 'history-title' => 'היסטוריית הגרסאות של $1',
-'difference' => '(הבדלים בין גרסאות)',
+'difference-title' => 'הבדלים בין גרסאות של "$1"',
+'difference-title-multipage' => 'הבדלים בין הדפים $1 ו{{GRAMMAR:תחילית|$2}}',
 'difference-multipage' => '(הבדלים בין דפים)',
 'lineno' => 'שורה $1:',
 'compareselectedversions' => 'השוואת הגרסאות שנבחרו',
@@ -1952,6 +1961,7 @@ $1',
 'http-curl-error' => 'שגיאה בקבלת כתובת ה־URL‏: $1',
 'http-host-unreachable' => 'לא ניתן להגיע לכתובת ה־URL.',
 'http-bad-status' => 'הייתה בעיה בשליחת בקשת ה־HTTP‏: $1 $2',
+'http-truncated-body' => 'גוף הבקשה התקבל רק באופן חלקי.',
 
 # Some likely curl errors. More could be added from <http://curl.haxx.se/libcurl/c/libcurl-errors.html>
 'upload-curl-error6' => 'לא ניתן להגיע ל־URL',

@@ -990,7 +990,6 @@ Usaren ti radio a buton a tukol ti pinagtipon iti laeng pinagbaliw a naaramid id
 
 # Diffs
 'history-title' => 'Pakasaritaan ti pannakabalbaliw ti "$1"',
-'difference' => '(Nagdudumaan iti baeten dagiti pannakabalbaliw)',
 'difference-multipage' => '(Paggiddiatan dagiti panid)',
 'lineno' => 'Linia $1:',
 'compareselectedversions' => 'Paggidiaten dagiti pinili a binaliwan',

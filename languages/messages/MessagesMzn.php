@@ -10,6 +10,7 @@
  * @author Ali1986
  * @author Ebraminio
  * @author Firuz
+ * @author Mehdi
  * @author Mjbmr
  * @author Parthava (on mzn.wikipedia.org)
  * @author Spacebirdy
@@ -243,7 +244,10 @@ $messages = array(
 'category-empty' => 'ای رج ره ده‌له ئه‌سا هیچی دأنیه',
 'hidden-categories' => '{{PLURAL:$1|خف رج|خف رجون}}',
 'hidden-category-category' => 'خف رجون',
+'category-subcat-count' => '{{PLURAL:$2|اینتا رج همینتا زیر رج ره داینه.|{{PLURAL:$1|اینتا زیررج|اینتا $1 زیررج}} اینتا رج ره {{PLURAL:$1|داینه|دایننه}}؛ اینتا رج در کل حاوی $2 زیررج هسه.}}',
+'category-subcat-count-limited' => 'اینتا رج {{PLURAL:$1|اتا زیر رج|$1 زبررج}} ره شامل بونه.',
 'category-article-count' => '{{PLURAL:$2|این رج همینتا صفحه ره دانّه.|ای  {{PLURAL:$1صفحه|صفحه|$1 ئون}}، $2 جه اینجه دَرنه.}}',
+'category-article-count-limited' => '{{PLURAL:$1|صفحهٔ|$1 صفحهٔ}} که این بن درنه اینتا رج دله قرار هایتنه.',
 'listingcontinuesabbrev' => '(دمباله)',
 'index-category' => 'صفحه‌ئون نمایه بَیی',
 'noindex-category' => 'صفحه‌ئون نمایه نَیی',

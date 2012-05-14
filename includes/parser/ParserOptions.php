@@ -1,6 +1,21 @@
 <?php
 /**
- * \brief Options for the PHP parser
+ * Options for the PHP parser
+ *
+ * This program is free software; you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation; either version 2 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License along
+ * with this program; if not, write to the Free Software Foundation, Inc.,
+ * 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
+ * http://www.gnu.org/copyleft/gpl.html
  *
  * @file
  * @ingroup Parser
@@ -89,6 +104,11 @@ class ParserOptions {
 	 * Maximum recursion depth for templates within templates
 	 */
 	var $mMaxTemplateDepth;
+	
+	/**
+	 * Maximum number of calls per parse to expensive parser functions
+	 */
+	var $mExpensiveParserFunctionLimit;
 	
 	/**
 	 * Remove HTML comments. ONLY APPLIES TO PREPROCESS OPERATIONS
@@ -201,6 +221,8 @@ class ParserOptions {
 	function getMaxPPNodeCount()                { return $this->mMaxPPNodeCount; }
 	function getMaxPPExpandDepth()              { return $this->mMaxPPExpandDepth; }
 	function getMaxTemplateDepth()              { return $this->mMaxTemplateDepth; }
+	/* @since 1.20 */
+	function getExpensiveParserFunctionLimit()  { return $this->mExpensiveParserFunctionLimit; }
 	function getRemoveComments()                { return $this->mRemoveComments; }
 	function getTemplateCallback()              { return $this->mTemplateCallback; }
 	function getEnableLimitReport()             { return $this->mEnableLimitReport; }
@@ -286,6 +308,8 @@ class ParserOptions {
 	function setMaxIncludeSize( $x )            { return wfSetVar( $this->mMaxIncludeSize, $x ); }
 	function setMaxPPNodeCount( $x )            { return wfSetVar( $this->mMaxPPNodeCount, $x ); }
 	function setMaxTemplateDepth( $x )          { return wfSetVar( $this->mMaxTemplateDepth, $x ); }
+	/* @since 1.20 */
+	function setExpensiveParserFunctionLimit( $x ) { return wfSetVar( $this->mExpensiveParserFunctionLimit, $x ); }
 	function setRemoveComments( $x )            { return wfSetVar( $this->mRemoveComments, $x ); }
 	function setTemplateCallback( $x )          { return wfSetVar( $this->mTemplateCallback, $x ); }
 	function enableLimitReport( $x = true )     { return wfSetVar( $this->mEnableLimitReport, $x ); }
@@ -380,7 +404,7 @@ class ParserOptions {
 		global $wgUseDynamicDates, $wgInterwikiMagic, $wgAllowExternalImages,
 			$wgAllowExternalImagesFrom, $wgEnableImageWhitelist, $wgAllowSpecialInclusion,
 			$wgMaxArticleSize, $wgMaxPPNodeCount, $wgMaxTemplateDepth, $wgMaxPPExpandDepth,
-			$wgCleanSignatures, $wgExternalLinkTarget;
+			$wgCleanSignatures, $wgExternalLinkTarget, $wgExpensiveParserFunctionLimit;
 
 		wfProfileIn( __METHOD__ );
 
@@ -394,6 +418,7 @@ class ParserOptions {
 		$this->mMaxPPNodeCount = $wgMaxPPNodeCount;
 		$this->mMaxPPExpandDepth = $wgMaxPPExpandDepth;
 		$this->mMaxTemplateDepth = $wgMaxTemplateDepth;
+		$this->mExpensiveParserFunctionLimit = $wgExpensiveParserFunctionLimit;
 		$this->mCleanSignatures = $wgCleanSignatures;
 		$this->mExternalLinkTarget = $wgExternalLinkTarget;
 
