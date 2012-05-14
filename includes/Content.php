@@ -201,6 +201,31 @@ abstract class Content {
 	}
 
 	/**
+	 * Returns if the content is valid.
+	 * It needs to be valid before it can be saved.
+	 *
+	 * @since WD.1
+	 *
+	 * @return boolean
+	 */
+	public function isValid() {
+		// TODO
+		return true;
+	}
+
+	/**
+	 * Diff the content object with what is currently stored in the database.
+	 * If it is not currently stored, it will be diffed with an empty object.
+	 *
+	 * @since WD.diff
+	 *
+	 * @return ContentDiff
+	 */
+	public function diffToDatabase() {
+		// TODO
+	}
+
+	/**
 	 * Returns true if this Content objects is conceptually equivalent to the given Content object.
 	 *
 	 * Will returns false if $that is null.
