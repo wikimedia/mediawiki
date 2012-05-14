@@ -141,9 +141,27 @@ class ParserOutput extends CacheTime {
 		$mProperties = array(),       # Name/value pairs to be cached in the DB
 		$mTOCHTML = '',               # HTML of the TOC
 		$mTimestamp;                  # Timestamp of the revision
-	    private $mIndexPolicy = '';       # 'index' or 'noindex'?  Any other value will result in no change.
-	    private $mAccessedOptions = array(); # List of ParserOptions (stored in the keys)
-        private $mSecondaryDataUpdates = array(); # List of instances of SecondaryDataObject(), used to cause some information extracted from the page in a custom place.
+
+	/**
+	 * 'index' or 'noindex'?  Any other value will result in no change.
+	 * 
+	 * @var string
+	 */
+	protected $mIndexPolicy = '';
+
+	/**
+	 * List of ParserOptions (stored in the keys)
+	 *
+	 * @var array
+	 */
+	protected $mAccessedOptions = array();
+
+	/**
+	 * List of instances of SecondaryDataObject(), used to cause some information extracted from the page in a custom place.
+	 * @since WD.1
+	 * @var array of SecondaryDataObject
+	 */
+	protected $mSecondaryDataUpdates = array();
 
 	const EDITSECTION_REGEX = '#<(?:mw:)?editsection page="(.*?)" section="(.*?)"(?:/>|>(.*?)(</(?:mw:)?editsection>))#';
 
@@ -455,6 +473,8 @@ class ParserOutput extends CacheTime {
      * Adds an update job to the output. Any update jobs added to the output will eventually bexecuted in order to
      * store any secondary information extracted from the page's content.
      *
+	 * @since WD.1
+	 *
      * @param SecondaryDataUpdate $update
      */
     public function addSecondaryDataUpdate( SecondaryDataUpdate $update ) {
@@ -466,24 +486,21 @@ class ParserOutput extends CacheTime {
      * extracted from the page's content, includingt a LinksUpdate object for all links stopred in
      * this ParserOutput object.
      *
+	 * @since WD.1
+	 *
      * @param $title Title of the page we're updating. If not given, a title object will be created based on $this->getTitleText()
      * @param $recursive Boolean: queue jobs for recursive updates?
      *
      * @return array an array of instances of SecondaryDataUpdate
      */
     public function getSecondaryDataUpdates( Title $title = null, $recursive = true ) {
-        if ( empty( $title ) ) {
+        if ( is_null( $title ) ) {
             $title = Title::newFromText( $this->getTitleText() );
         }
 
-        $linksUpdate = new LinksUpdate( $title, $this, $recursive );
-
-        if ( empty( $this->mSecondaryDataUpdates ) ) {
-            return array( $linksUpdate );
-        } else {
-            $updates = array_merge( $this->mSecondaryDataUpdates, array( $linksUpdate ) );
-        }
-
-        return $updates;
+        return array_merge(
+			$this->mSecondaryDataUpdates,
+			array( new LinksUpdate( $title, $this, $recursive ) )
+		);
     }
 }

@@ -22,6 +22,7 @@
  *
  * @todo: add support for transactions
  *
+ * @since WD.1
  */
 abstract class SecondaryDataUpdate implements DeferrableUpdate {
 
@@ -35,6 +36,8 @@ abstract class SecondaryDataUpdate implements DeferrableUpdate {
 	/**
 	 * Begin an appropriate transaction, if any.
 	 * This default implementation does nothing.
+	 *
+	 * @since WD.1
 	 */
 	public function beginTransaction() {
 		//noop
@@ -43,6 +46,8 @@ abstract class SecondaryDataUpdate implements DeferrableUpdate {
 	/**
 	 * Commit the transaction started via beginTransaction, if any.
 	 * This default implementation does nothing.
+	 *
+	 * @since WD.1
 	 */
 	public function commitTransaction() {
 		//noop
@@ -51,6 +56,8 @@ abstract class SecondaryDataUpdate implements DeferrableUpdate {
 	/**
 	 * Abort / roll back the transaction started via beginTransaction, if any.
 	 * This default implementation does nothing.
+	 *
+	 * @since WD.1
 	 */
 	public function rollbackTransaction() {
 		//noop
@@ -67,6 +74,8 @@ abstract class SecondaryDataUpdate implements DeferrableUpdate {
 	 *
 	 * This allows for limited transactional logic across multiple baceknds for storing
 	 * secondary data.
+	 *
+	 * @since WD.1
 	 *
 	 * @static
 	 * @param $updates array a list of SecondaryDataUpdate instances
