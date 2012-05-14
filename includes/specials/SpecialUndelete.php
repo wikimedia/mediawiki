@@ -97,8 +97,8 @@ class PageArchive {
 				$condition,
 				__METHOD__,
 				array(
-					'GROUP BY' => 'ar_namespace,ar_title',
-					'ORDER BY' => 'ar_namespace,ar_title',
+					'GROUP BY' => array( 'ar_namespace', 'ar_title' ),
+					'ORDER BY' => array( 'ar_namespace', 'ar_title' ),
 					'LIMIT' => 100,
 				)
 			)

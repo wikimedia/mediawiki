@@ -277,7 +277,7 @@ class SpecialEditWatchlist extends UnlistedSpecialPage {
 			array( 'wl_namespace',  'wl_title' ),
 			array( 'wl_user' => $this->getUser()->getId() ),
 			__METHOD__,
-			array( 'ORDER BY' => 'wl_namespace, wl_title' )
+			array( 'ORDER BY' => array( 'wl_namespace', 'wl_title' ) )
 		);
 
 		$lb = new LinkBatch();
