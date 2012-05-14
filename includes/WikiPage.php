@@ -1525,6 +1525,11 @@ class WikiPage extends Page {
 			$changed = !$content->equals( $old_content );
 
 			if ( $changed ) {
+				// TODO: validate!
+				if ( $content->isValid() ) {
+
+				}
+
 				$dbw->begin( __METHOD__ );
 				$revisionId = $revision->insertOn( $dbw );
 
@@ -1586,9 +1591,17 @@ class WikiPage extends Page {
 				return $status;
 			}
 
+			// TODO: create content diff to pass to update objects that might need it
+
 			# Update links tables, site stats, etc.
-			$this->doEditUpdates( $revision, $user, array( 'changed' => $changed,
-				'oldcountable' => $oldcountable ) );
+			$this->doEditUpdates(
+				$revision,
+				$user,
+				array(
+					'changed' => $changed,
+					'oldcountable' => $oldcountable
+				)
+			);
 
 			if ( !$changed ) {
 				$status->warning( 'edit-no-change' );
