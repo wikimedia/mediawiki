@@ -56,7 +56,7 @@ class Preprocessor_DOM implements Preprocessor {
 	}
 
 	/**
-	 * @param $args
+	 * @param $args array
 	 * @return PPCustomFrame_DOM
 	 */
 	function newCustomFrame( $args ) {
