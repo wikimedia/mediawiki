@@ -733,7 +733,7 @@ abstract class ContentHandler {
 		return $reason;
 	}
 
-	#@TODO: getSecondaryUpdatesForDeletion( Content ) returns an array of SecondaryDataUpdate objects
+	#@TODO: getSecondaryUpdatesForDeletion( Content ) returns an array of DataUpdate objects
 	#... or do that in the Content class?
 
 	/**
@@ -786,7 +786,7 @@ abstract class ContentHandler {
 	 *
 	 * @param $page WikiPage the page that was deleted (note: $page->getId() must still return the old page ID!)
 	 *
-	 * @return array a list of SecondaryDataUpdate instances that will clean up the database ofter deletion.
+	 * @return array a list of DataUpdate instances that will clean up the database ofter deletion.
 	 */
 	public function getDeletionUpdates( WikiPage $page ) {
 		return array(

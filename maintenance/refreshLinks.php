@@ -224,7 +224,7 @@ class RefreshLinks extends Maintenance {
 		$parserOutput = $content->getParserOutput( $context, $page->getLatest(), $options, false );
 
 		$updates = $parserOutput->getSecondaryDataUpdates( $page->getTitle(), false );
-		SecondaryDataUpdate::runUpdates( $updates );
+		DataUpdate::runUpdates( $updates );
 
 		$dbw->commit( __METHOD__ );
 	}
