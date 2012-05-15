@@ -462,7 +462,7 @@ class HttpError extends MWException {
 		$this->content = $content;
 	}
 
-	public function reportHTML() {
+	public function report() {
 		$httpMessage = HttpStatus::getMessage( $this->httpCode );
 
 		header( "Status: {$this->httpCode} {$httpMessage}" );
