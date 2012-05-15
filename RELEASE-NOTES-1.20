@@ -62,6 +62,7 @@ upgrade PHP if you have not done so prior to upgrading MediaWiki.
 * QUnit.newMwEnvironment now supports passing a custom setup and/or teardown function.
   Arguments signature has changed. First arguments is now an options object of which
   'config' can be a property. Previously 'config' itself was the first and only argument.
+* New getCreator and getOldestRevision methods added to WikiPage class
 
 === Bug fixes in 1.20 ===
 * (bug 30245) Use the correct way to construct a log page title.
