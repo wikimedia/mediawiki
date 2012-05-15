@@ -2703,7 +2703,7 @@ Consulte a [[Special:BlockList|lista de bloqueios]] para rever os bloqueios.',
 O registo de bloqueios é fornecido abaixo para referência:',
 'blocklog-showsuppresslog' => 'Este utilizador foi bloqueado e ocultado anteriomente.
 O registo de supressão é fornecido abaixo para referência:',
-'blocklogentry' => 'bloqueou "[[$1]]" $3. O bloqueio expira em $2.',
+'blocklogentry' => 'bloqueou "[[$1]]" por $2. $3',
 'reblock-logentry' => 'modificou parâmetros de bloqueio de [[$1]] com expiração em $2. $3',
 'blocklogtext' => 'Este é um registo de ações de bloqueio e desbloqueio.
 Endereços IP sujeitos a bloqueio automático não estão listados.

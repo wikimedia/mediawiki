@@ -1537,9 +1537,9 @@ Dies kann nicht mehr rückgängig gemacht werden.',
 'saveusergroups' => 'Gruppenzugehörigkeit ändern',
 'userrights-groupsmember' => 'Mitglied von:',
 'userrights-groupsmember-auto' => 'Automatisch Mitglied von:',
-'userrights-groups-help' => 'Du kannst die Gruppenzugehörigkeit dieses Benutzers ändern:
-* Ein markiertes Kästchen bedeutet, dass der Benutzer Mitglied dieser Gruppe ist.
-* Ein nichtmarkiertes Kästchen bedeutet, dass der Benutzer nicht Mitglied dieser Gruppe ist.
+'userrights-groups-help' => 'Du kannst die Gruppenzugehörigkeit {{GENDER:$1|dieses Benutzers|dieser Benutzerin}} ändern:
+* Ein markiertes Kästchen bedeutet, dass {{GENDER:$1|der Benutzer|die Benutzerin}} Mitglied dieser Gruppe ist.
+* Ein nichtmarkiertes Kästchen bedeutet, dass {{GENDER:$1|der Benutzer|die Benutzerin}} nicht Mitglied dieser Gruppe ist.
 * Ein * bedeutet, dass du das Benutzerrecht nach Erteilung nicht wieder zurücknehmen kannst (oder umgekehrt).',
 'userrights-reason' => 'Grund:',
 'userrights-no-interwiki' => 'Du hast nicht die erforderliche Berechtigung, um Benutzerrechte in anderen Wikis ändern zu können.',

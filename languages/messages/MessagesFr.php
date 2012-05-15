@@ -70,6 +70,7 @@
  * @author Yumeki
  * @author Zebulon84
  * @author Zetud
+ * @author Zolo
  * @author Горан Анђелковић
  * @author לערי ריינהארט
  */
@@ -1520,7 +1521,7 @@ Elle ne doit pas dépasser $1 caractère{{PLURAL:$1||s}}.',
 'userrights-groupsmember-auto' => 'Membre implicite de :',
 'userrights-groups-help' => 'Vous pouvez modifier les groupes auxquels appartient cet utilisateur:
 * Une case cochée signifie que l’utilisateur se trouve dans ce groupe.
-* Une case non cochée signifie qu’il ne s’y trouve pas.
+* Une case non cochée signifie qu’{{GENDER:$1|il|elle}} ne s’y trouve pas.
 * Un astérisque (*) indique que vous ne pouvez pas retirer ce groupe une fois que vous l’avez ajouté, ou vice-versa.',
 'userrights-reason' => 'Motif :',
 'userrights-no-interwiki' => 'Vous n’avez pas la permission de modifier des droits d’utilisateurs sur d’autres wikis.',
@@ -1949,7 +1950,7 @@ Pour une sécurité optimale, img_auth.php est désactivé.',
 'upload-curl-error28-text' => 'Le site a mis trop longtemps à répondre. Vérifiez que le site est en ligne, attendez un peu et réessayez. Vous pouvez aussi réessayer à une heure de moindre affluence.',
 
 'license' => 'Licence',
-'license-header' => 'Publié sous licence(s)',
+'license-header' => "Conditions d'utilisation",
 'nolicense' => 'Aucune licence sélectionnée',
 'license-nopreview' => '(Prévisualisation non disponible)',
 'upload_source_url' => ' (une URL valide et accessible publiquement)',

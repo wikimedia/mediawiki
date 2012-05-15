@@ -1012,7 +1012,7 @@ Dir kënnt dësen Ënnerscheed gesinn; Detailer fannt Dir am [{{fullurl:{{#Speci
 'revdelete-no-file' => 'De Fichier deen ugi war gëtt et net.',
 'revdelete-show-file-confirm' => 'Sidd Dir sécher datt Dir déi geläschte Versioun vum Fichier "<nowiki>$1</nowiki>" vum $2 ëm $3 gesi wëllt?',
 'revdelete-show-file-submit' => 'Jo',
-'revdelete-selected' => "'''{{PLURAL:$2|Gewielte Versioun|Gewielte Versioune}} vu(n) '''$1''' :'''",
+'revdelete-selected' => "'''{{PLURAL:$2|Gewielt Versioun|Gewielt Versioune}} vu(n) '''$1''' :'''",
 'logdelete-selected' => "'''Ausgewielten {{PLURAL:$1|Evenement|Evenementer}} aus dem Logbuch:'''",
 'revdelete-text' => "'''Geläschte Versiounen oder aner geläschte Bestanddeeler sinn net méi ëffentlech zougänglech, si stinn awer weiderhin an der Versiounsgeschicht vun der Säit.'''
 Aner {{SITENAME}}-Administrateure kënnen de geläschten Inhalt oder aner geläschte Bestanddeeler weiderhi gesinn a restauréieren, et sief, et gouf festgeluecht, datt déi Limitatioune vum Accès och fir Administrateure gëllen.",
@@ -1033,7 +1033,7 @@ Aner {{SITENAME}}-Administrateure kënnen de geläschten Inhalt oder aner geläs
 'revdelete-suppress' => 'Grond vum Läschen och fir Administrateure verstoppt',
 'revdelete-unsuppress' => 'Limitatiounen fir restauréiert Versiounen ophiewen',
 'revdelete-log' => 'Grond:',
-'revdelete-submit' => 'Op déi gewielte {{PLURAL:$1|Versioun|Versiounen}} uwenden',
+'revdelete-submit' => 'Op déi gewielt {{PLURAL:$1|Versioun|Versiounen}} uwenden',
 'revdelete-success' => "'''Sichtbarkeet vun de Versioune gouf aktualiséiert.''''",
 'revdelete-failure' => "'''Sichtbarkeet vun der Versioun konnt net aktualiséiert ginn:'''
 $1",
@@ -2881,7 +2881,7 @@ Dëst warscheinlech duerch en externe Link den op der schwaarzer Lëscht (blackl
 'markaspatrolleddiff' => 'Als nogekuckt markéieren',
 'markaspatrolledtext' => 'Dës Säit als nogekuckt markéieren',
 'markedaspatrolled' => 'ass als nogekuckt markéiert',
-'markedaspatrolledtext' => 'Déi gewielte Versioun vu(n) [[:$1]] gouf als nogekuckt markéiert.',
+'markedaspatrolledtext' => 'Déi gewielt Versioun vu(n) [[:$1]] gouf als nogekuckt markéiert.',
 'rcpatroldisabled' => 'Rezent Ännerungskontroll ausgeschalt.',
 'rcpatroldisabledtext' => "D'Kontroll vun de leschten Ännerungen ass elo ausgeschalt.",
 'markedaspatrollederror' => 'Kann net als "nogekuckt" markéiert ginn.',

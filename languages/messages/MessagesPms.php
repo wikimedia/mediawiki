@@ -2491,9 +2491,9 @@ Che as sërna, për piasì, un nòm diferent për st'artìcol.",
 'movelogpagetext' => 'Ambelessì sota a-i é na lista ëd tute le pàgine che a son ëstàite tramudà.',
 'movesubpage' => '{{PLURAL:$1|Sot-pàgina|Sot-pàgine}}',
 'movesubpagetext' => "Costa pàgina-sì a l'ha $1 {{PLURAL:$1|sot-pàgina|sot-pàgine}} smonùe sì-sota.",
-'movenosubpage' => "Sta pàgina-sì a l'ha pa ëd sotpàgine.",
+'movenosubpage' => "Sta pàgina-sì a l'ha gnun-e sot-pàgine.",
 'movereason' => 'Rason:',
-'revertmove' => "buta torna coma a l'era",
+'revertmove' => "buté torna coma a l'era",
 'delete_and_move' => 'Scancela e tramuda',
 'delete_and_move_text' => '==A fa da manca dë scancelé==
 

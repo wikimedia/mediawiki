@@ -594,6 +594,8 @@ $2',
 'titleprotected' => "這個標題已經被[[User:$1|$1]]保護以防止建立。理由是''$2''。",
 'filereadonlyerror' => '無法修改文件" $1 "因為文件庫" $2 "處於唯讀模式。 ！
 管理員鎖定它的解釋是：" $3 "。',
+'invalidtitle-knownnamespace' => '使用名字空間“$2”和文本“$3”的無效標題',
+'invalidtitle-unknownnamespace' => '使用未知名字空間編號$1和文本“$2”的無效標題',
 
 # Virus scanner
 'virus-badscanner' => "損壞設定: 未知的病毒掃瞄器: ''$1''",
@@ -1128,6 +1130,8 @@ $1",
 
 # Diffs
 'history-title' => '「$1」的修訂歷史',
+'difference-title' => '"$1"修訂版本之間的差異',
+'difference-title-multipage' => '"$1"和"$2"頁面之間的差異',
 'difference-multipage' => '（頁面間的差異）',
 'lineno' => '第$1行：',
 'compareselectedversions' => '比較選定的修訂版本',
@@ -1738,6 +1742,7 @@ $1',
 'http-curl-error' => '擷取URL時出錯：$1',
 'http-host-unreachable' => '無法到達URL。',
 'http-bad-status' => '進行HTTP請求時出現問題：$1 $2',
+'http-truncated-body' => '只收到部分請求的正文。',
 
 # Some likely curl errors. More could be added from <http://curl.haxx.se/libcurl/c/libcurl-errors.html>
 'upload-curl-error6' => '無法訪問 URL',

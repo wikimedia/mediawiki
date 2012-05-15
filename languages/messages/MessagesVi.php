@@ -978,7 +978,7 @@ sửa đổi. Việc hủy bỏ này nhằm tránh nội dung trang bị hỏng.
 Điều này thường xảy ra khi bạn sử dụng một dịch vụ proxy vô danh trên web có vấn đề.'''",
 'edit_form_incomplete' => "'''Một số phần của biểu mẫu sửa đổi không tới được máy chủ. Hãy kiểm tra rằng các sửa đổi của bạn còn nguyên và thử lại.'''",
 'editing' => 'Sửa đổi $1',
-'creating' => 'Đang tạo $1',
+'creating' => 'Tạo $1',
 'editingsection' => 'Sửa đổi $1 (đề mục)',
 'editingcomment' => 'Sửa đổi $1 (đề mục mới)',
 'editconflict' => 'Sửa đổi mâu thuẫn: $1',

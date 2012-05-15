@@ -3649,14 +3649,14 @@ MediaWiki файҙалы булыр, тигән өмөттә, ләкин БЕР 
 'api-error-verification-error' => 'Был файл боҙолған, йәки дөрөҫ булмаған ҡушымтаһы бар.',
 
 # Durations
-'duration-seconds' => 'секунд',
+'duration-seconds' => '$1 {{PLURAL:$1|секунд|секунд}}',
 'duration-minutes' => 'минут',
 'duration-hours' => 'сәғәт',
 'duration-days' => 'көн',
-'duration-weeks' => 'аҙна',
-'duration-years' => 'йыл',
-'duration-decades' => 'декада',
-'duration-centuries' => 'быуат',
-'duration-millennia' => 'меңйыллыҡ',
+'duration-weeks' => '$1 {{PLURAL:$1|аҙна|аҙналар|аҙна}}',
+'duration-years' => '$1 {{PLURAL:$1|йыл|йылдар}}',
+'duration-decades' => '$1 {{PLURAL:$1|ун көнлөк|ун көнлөктәр}}',
+'duration-centuries' => '$1 {{PLURAL:$1|быуат|быуаттар}}',
+'duration-millennia' => '$1 {{PLURAL:$1|меңйыллыҡ|меңйыллыҡтар}}',
 
 );
