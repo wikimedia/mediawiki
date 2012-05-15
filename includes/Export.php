@@ -338,7 +338,7 @@ class WikiExporter {
 			} elseif ( $this->history & WikiExporter::RANGE ) {
 				# Dump of revisions within a specified range
 				$join['revision'] = array( 'INNER JOIN', 'page_id=rev_page' );
-				$opts['ORDER BY'] = 'rev_page ASC, rev_id ASC';
+				$opts['ORDER BY'] = array( 'rev_page ASC', 'rev_id ASC' );
 			} else {
 				# Uknown history specification parameter?
 				wfProfileOut( __METHOD__ );

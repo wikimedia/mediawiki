@@ -19,18 +19,13 @@
  *
  * Abstract base class for update jobs that put some secondary data extracted
  * from article content into the database.
- *
- * @since WD.1
  */
-abstract class SecondaryDBDataUpdate extends SecondaryDataUpdate {
+abstract class SqlDataUpdate extends DataUpdate {
 
-	/**@{{
-	 * @private
-	 */
-	var $mDb,            //!< Database connection reference
-		$mOptions,       //!< SELECT options to be used (array)
-		$mHasTransaction;//!< bool whether a transaction is open on this object (internal use only!)
-	/**@}}*/
+	protected $mDb;            //!< Database connection reference
+	protected $mOptions;       //!< SELECT options to be used (array)
+
+	private   $mHasTransaction; //!< bool whether a transaction is open on this object (internal use only!)
 
 	/**
 	 * Constructor
@@ -45,6 +40,8 @@ abstract class SecondaryDBDataUpdate extends SecondaryDataUpdate {
 		} else {
 			$this->mOptions = array( 'FOR UPDATE' );
 		}
+
+		// @todo: get connection only when it's needed? make sure that doesn't break anything, especially transactions!
 		$this->mDb = wfGetDB( DB_MASTER );
 		$this->mHasTransaction = false;
 	}
@@ -53,9 +50,7 @@ abstract class SecondaryDBDataUpdate extends SecondaryDataUpdate {
 	 * Begin a database transaction.
 	 *
 	 * Because nested transactions are not supportred by the Database class, this implementation
-	 * checked Database::trxLevel() and only opens a transaction if none is yet active.
-	 *
-	 * @since WD.1
+	 * checkes Database::trxLevel() and only opens a transaction if none is yet active.
 	 */
 	public function beginTransaction() {
 		// NOTE: nested transactions are not supported, only start a transaction if none is open
@@ -67,8 +62,6 @@ abstract class SecondaryDBDataUpdate extends SecondaryDataUpdate {
 
 	/**
 	 * Commit the database transaction started via beginTransaction (if any).
-	 *
-	 * @since WD.1
 	 */
 	public function commitTransaction() {
 		if ( $this->mHasTransaction ) {
@@ -78,8 +71,6 @@ abstract class SecondaryDBDataUpdate extends SecondaryDataUpdate {
 
 	/**
 	 * Abort the database transaction started via beginTransaction (if any).
-	 *
-	 * @since WD.1
 	 */
 	public function abortTransaction() {
 		if ( $this->mHasTransaction ) {
@@ -91,12 +82,10 @@ abstract class SecondaryDBDataUpdate extends SecondaryDataUpdate {
 	 * Invalidate the cache of a list of pages from a single namespace.
 	 * This is intended for use by subclasses.
 	 *
-	 * @since WD.1
-	 *
 	 * @param $namespace Integer
 	 * @param $dbkeys Array
 	 */
-	protected function invalidatePages( $namespace, $dbkeys ) {
+	protected function invalidatePages( $namespace, Array $dbkeys ) {
 		if ( !count( $dbkeys ) ) {
 			return;
 		}
@@ -111,7 +100,7 @@ abstract class SecondaryDBDataUpdate extends SecondaryDataUpdate {
 		$res = $this->mDb->select( 'page', array( 'page_id' ),
 			array(
 				'page_namespace' => $namespace,
-				'page_title IN (' . $this->mDb->makeList( $dbkeys ) . ')',
+				'page_title' => $dbkeys,
 				'page_touched < ' . $this->mDb->addQuotes( $now )
 			), __METHOD__
 		);
@@ -129,7 +118,7 @@ abstract class SecondaryDBDataUpdate extends SecondaryDataUpdate {
 		 */
 		$this->mDb->update( 'page', array( 'page_touched' => $now ),
 			array(
-				'page_id IN (' . $this->mDb->makeList( $ids ) . ')',
+				'page_id' => $ids,
 				'page_touched < ' . $this->mDb->addQuotes( $now )
 			), __METHOD__
 		);

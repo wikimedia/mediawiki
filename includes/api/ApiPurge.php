@@ -94,8 +94,8 @@ class ApiPurge extends ApiBase {
 						true, true, $page->getLatest() ); #FIXME: content!
 
 					# Update the links tables
-                    $updates = $p_result->getSecondaryDataUpdates( $title );
-                    SecondaryDataUpdate::runUpdates( $updates );
+					$updates = $p_result->getSecondaryDataUpdates( $title );
+					DataUpdate::runUpdates( $updates );
 
 					$r['linkupdate'] = '';
 

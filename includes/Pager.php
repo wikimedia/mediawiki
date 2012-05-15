@@ -313,14 +313,14 @@ abstract class IndexPager extends ContextSource implements Pager {
 		$join_conds = isset( $info['join_conds'] ) ? $info['join_conds'] : array();
 		$sortColumns = array_merge( array( $this->mIndexField ), $this->mExtraSortFields );
 		if ( $descending ) {
-			$options['ORDER BY'] = implode( ',', $sortColumns );
+			$options['ORDER BY'] = $sortColumns;
 			$operator = '>';
 		} else {
 			$orderBy = array();
 			foreach ( $sortColumns as $col ) {
 				$orderBy[] = $col . ' DESC';
 			}
-			$options['ORDER BY'] = implode( ',', $orderBy );
+			$options['ORDER BY'] = $orderBy;
 			$operator = '<';
 		}
 		if ( $offset != '' ) {

@@ -1087,9 +1087,9 @@ Iuj ŝablonoj ne estos inkluzivitaj.',
 'parser-template-loop-warning' => 'Rekursiva ŝablono estis trovita: [[$1]]',
 'parser-template-recursion-depth-warning' => 'Limo de ŝablona profundeco pligrandiĝis ($1)',
 'language-converter-depth-warning' => 'Profundo de lingvo-konvertilo preterpasis limon ($1)',
-'node-count-exceeded-category' => 'Paĝoj kie la nombro da nodoj estis preterpasita',
+'node-count-exceeded-category' => 'Paĝoj kie la nombro da nodoj estas preterpasita',
 'node-count-exceeded-warning' => 'Paĝo preterpasis la nombron da nodoj.',
-'expansion-depth-exceeded-category' => 'Paĝoj en kiuj la ekpansiprofundo estis preterpasita.',
+'expansion-depth-exceeded-category' => 'Paĝoj en kiuj la ekpansiprofundo estas preterpasita',
 'expansion-depth-exceeded-warning' => 'Paĝo preterpasis la ekpansiprofundon.',
 
 # "Undo" feature

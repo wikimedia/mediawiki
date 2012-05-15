@@ -1992,7 +1992,7 @@ class WikiPage extends Page {
 
 		# Update the links tables and other secondary data
 		$updates = $editInfo->output->getSecondaryDataUpdates( $this->mTitle );
-		SecondaryDataUpdate::runUpdates( $updates );
+		DataUpdate::runUpdates( $updates );
 
 		wfRunHooks( 'ArticleEditUpdates', array( &$this, &$editInfo, $options['changed'] ) );
 
@@ -2493,9 +2493,8 @@ class WikiPage extends Page {
 		DeferredUpdates::addUpdate( new SiteStatsUpdate( 0, 1, - (int)$this->isCountable(), -1 ) );
 
 		# remove secondary indexes, etc
-		$handler = $this->getContentHandler();
-		$updates = $handler->getDeletionUpdates( $this );
-		SecondaryDataUpdate::runUpdates( $updates );
+		$updates = $this->getDeletionUpdates( );
+		DataUpdate::runUpdates( $updates );
 
 		# Clear caches
 		WikiPage::onArticleDelete( $this->mTitle );
@@ -3064,7 +3063,7 @@ class WikiPage extends Page {
 
 		if ( count( $templates_diff ) > 0 ) {
 			# Whee, link updates time.
-			# Note: we are only interested in links here. We don't need to get other SecondaryDataUpdate items from the parser output.
+			# Note: we are only interested in links here. We don't need to get other DataUpdate items from the parser output.
 			$u = new LinksUpdate( $this->mTitle, $parserOutput, false );
 			$u->doUpdate();
 		}
@@ -3192,6 +3191,16 @@ class WikiPage extends Page {
 		wfDeprecated( __METHOD__, '1.18' );
 		global $wgUser;
 		return $this->isParserCacheUsed( ParserOptions::newFromUser( $wgUser ), $oldid );
+	}
+
+	public function getDeletionUpdates() {
+		$updates = array(
+			new LinksDeletionUpdate( $this ),
+		);
+
+		//@todo: make a hook to add update objects
+		//NOTE: deletion updates will be determined by the ContentHandler in the future
+		return $updates;
 	}
 }
 

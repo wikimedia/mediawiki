@@ -1524,7 +1524,7 @@ Tu dirección de correo no se revela cuando otros usuarios te contactan.',
 'userrights-groups-help' => 'Puedes modificar los grupos a los que pertenece {{GENDER:$1|este usuario|esta usuaria}}:
 * Un recuadro marcado significa que {{GENDER:$1|el usuario|la usuaria}} está en ese grupo.
 * Un recuadro no marcado significa que {{GENDER:$1|el usuario|la usuaria}} no está en ese grupo.
-* Un * indica que no podrás retirar el grupo una vez que lo concedas, o viceversa.',
+* Un * indica que no podrás eliminar el grupo una vez que lo agregues, o viceversa.',
 'userrights-reason' => 'Motivo:',
 'userrights-no-interwiki' => 'No tienes permiso para editar los grupos a los que pertenece un usuario en otros wikis.',
 'userrights-nodatabase' => 'La base de datos $1 no existe o no es local.',

@@ -155,25 +155,13 @@ class ParserOutput extends CacheTime {
 		$mProperties = array(),       # Name/value pairs to be cached in the DB
 		$mTOCHTML = '',               # HTML of the TOC
 		$mTimestamp;                  # Timestamp of the revision
+		private $mIndexPolicy = '';       # 'index' or 'noindex'?  Any other value will result in no change.
+		private $mAccessedOptions = array(); # List of ParserOptions (stored in the keys)
 
 	/**
-	 * 'index' or 'noindex'?  Any other value will result in no change.
-	 * 
-	 * @var string
-	 */
-	protected $mIndexPolicy = '';
-
-	/**
-	 * List of ParserOptions (stored in the keys)
-	 *
-	 * @var array
-	 */
-	protected $mAccessedOptions = array();
-
-	/**
-	 * List of instances of SecondaryDataObject(), used to cause some information extracted from the page in a custom place.
+	 * List of instances of DataUpdate(), used to cause some information extracted from the page in a custom place.
 	 * @since WD.1
-	 * @var array of SecondaryDataObject
+	 * @var array of DataUpdate
 	 */
 	protected $mSecondaryDataUpdates = array();
 
@@ -483,38 +471,39 @@ class ParserOutput extends CacheTime {
 		 $this->mAccessedOptions[$option] = true;
 	 }
 
-    /**
-     * Adds an update job to the output. Any update jobs added to the output will eventually bexecuted in order to
-     * store any secondary information extracted from the page's content.
-     *
-	 * @since WD.1
+	/**
+	 * Adds an update job to the output. Any update jobs added to the output will eventually bexecuted in order to
+	 * store any secondary information extracted from the page's content.
 	 *
-     * @param SecondaryDataUpdate $update
-     */
-    public function addSecondaryDataUpdate( SecondaryDataUpdate $update ) {
-        $this->mSecondaryDataUpdates[] = $update;
-    }
+	 * @param StorageUpdate $update
+	 */
+	public function addSecondaryDataUpdate( DataUpdate $update ) {
+		$this->mSecondaryDataUpdates[] = $update;
+	}
 
-    /**
-     * Returns any SecondaryDataUpdate jobs to be executed in order to store secondary information
-     * extracted from the page's content, includingt a LinksUpdate object for all links stopred in
-     * this ParserOutput object.
-     *
-	 * @since WD.1
+	/**
+	 * Returns any DataUpdate jobs to be executed in order to store secondary information
+	 * extracted from the page's content, including a LinksUpdate object for all links stored in
+	 * this ParserOutput object.
 	 *
-     * @param $title Title of the page we're updating. If not given, a title object will be created based on $this->getTitleText()
-     * @param $recursive Boolean: queue jobs for recursive updates?
-     *
-     * @return array an array of instances of SecondaryDataUpdate
-     */
-    public function getSecondaryDataUpdates( Title $title = null, $recursive = true ) {
-        if ( is_null( $title ) ) {
-            $title = Title::newFromText( $this->getTitleText() );
-        }
+	 * @param $title Title of the page we're updating. If not given, a title object will be created based on $this->getTitleText()
+	 * @param $recursive Boolean: queue jobs for recursive updates?
+	 *
+	 * @return Array. An array of instances of DataUpdate
+	 */
+	public function getSecondaryDataUpdates( Title $title = null, $recursive = true ) {
+		if ( !$title ) {
+			$title = Title::newFromText( $this->getTitleText() );
+		}
 
-        return array_merge(
-			$this->mSecondaryDataUpdates,
-			array( new LinksUpdate( $title, $this, $recursive ) )
-		);
-    }
+		$linksUpdate = new LinksUpdate( $title, $this, $recursive );
+
+		if ( !$this->mSecondaryDataUpdates ) {
+			return array( $linksUpdate );
+		} else {
+			$updates = array_merge( $this->mSecondaryDataUpdates, array( $linksUpdate ) );
+		}
+
+		return $updates;
+	 }
 }

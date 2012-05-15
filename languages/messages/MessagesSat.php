@@ -10,6 +10,7 @@
  * @author Albinus
  * @author David Baskey
  * @author Ghonokuashabaskey
+ * @author Joseph Mardy
  * @author Nipon087
  * @author Salvator
  * @author Samar88
@@ -19,6 +20,7 @@
 $messages = array(
 # User preference toggles
 'tog-hideminor' => 'Nitaḱ bodolaḱre huḍiṅ kạmi danaṅme',
+'tog-extendwatchlist' => 'Khạli nitoḱ bodolko do baṅ, joto bodolkodo ńeloḱ tạlikare phaylaomẽ.',
 'tog-showtoc' => 'Ṭibilre menaḱako ńel ( sakamkore 3 khon jạti hedlayenko)',
 'tog-watchcreations' => 'Sakamko songe  Ińaḱ ńelok tạlikare benao',
 'tog-watchdefault' => 'Sakam tońgey me Iń do ińaḱ ńeloḱ tạlikare joṛaokeda',
@@ -220,9 +222,10 @@ $messages = array(
 'hidetoc' => 'uku, Danaṅ',
 'collapsible-collapse' => 'Murchạo caba',
 'collapsible-expand' => 'Phaylao',
-'thisisdeleted' => 'N̕el se doho ruạṛ',
+'thisisdeleted' => 'Ńel se nãwã aroe hoyuka?',
 'viewdeleted' => '$1 Ńelme',
 'feedlinks' => 'Jom oco',
+'site-rss-feed' => 'RSS jom oco',
 'site-atom-feed' => ' $1 Jom oco',
 'page-atom-feed' => '"$1" khon khudri jom',
 'red-link-title' => '$1 (niạ sakamdo bạnuḱa)',

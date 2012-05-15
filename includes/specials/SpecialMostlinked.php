@@ -47,8 +47,8 @@ class MostlinkedPage extends QueryPage {
 					'COUNT(*) AS value',
 					'page_namespace' ),
 			'options' => array ( 'HAVING' => 'COUNT(*) > 1',
-				'GROUP BY' => 'pl_namespace, pl_title, '.
-						'page_namespace' ),
+				'GROUP BY' => array( 'pl_namespace', 'pl_title',
+						'page_namespace' ) ),
 			'join_conds' => array ( 'page' => array ( 'LEFT JOIN',
 					array ( 'page_namespace = pl_namespace',
 						'page_title = pl_title' ) ) )

@@ -47,7 +47,7 @@ class Preprocessor_Hash implements Preprocessor {
 	}
 
 	/**
-	 * @param $args
+	 * @param $args array
 	 * @return PPCustomFrame_Hash
 	 */
 	function newCustomFrame( $args ) {

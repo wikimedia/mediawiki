@@ -853,7 +853,7 @@ Password temporanea: $2',
 'summary-preview' => "Anteprima dell'oggetto:",
 'subject-preview' => 'Anteprima oggetto/intestazione:',
 'blockedtitle' => 'Utente bloccato.',
-'blockedtext' => "'''Questo nome utente o indirizzo IP sono stati bloccati.'''
+'blockedtext' => "'''Il tuo nome utente o indirizzo IP è stato bloccato.'''
 
 Il blocco è stato imposto da $1. La motivazione del blocco è la seguente: ''$2''
 
@@ -1191,8 +1191,8 @@ Vedi l'[[Special:BlockList|elenco dei blocchi]] per l'elenco dei bandi e dei blo
 
 # Diffs
 'history-title' => 'Cronologia delle modifiche di "$1"',
-'difference-title' => 'Differenza tra le revisioni di " $1 "',
-'difference-title-multipage' => 'Differenza tra le pagine " $1 "e" $2 "',
+'difference-title' => 'Differenza tra le versioni di "$1"',
+'difference-title-multipage' => 'Differenza tra le pagine "$1" e "$2"',
 'difference-multipage' => '(Differenze fra le pagine)',
 'lineno' => 'Riga $1:',
 'compareselectedversions' => 'Confronta le versioni selezionate',

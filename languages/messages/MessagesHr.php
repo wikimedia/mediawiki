@@ -977,6 +977,7 @@ Posljednja stavka evidencije blokiranja navedena je niže kao napomena:',
 'updated' => '(Ažurirano)',
 'note' => "'''Napomena:'''",
 'previewnote' => "'''Ne zaboravite da je ovo samo pregled kako će stranica izgledati i da stranica još nije snimljena!'''",
+'continue-editing' => 'Nastavi uređivati',
 'previewconflict' => 'Ovaj pregled odražava stanje u gornjem polju za unos koje će biti sačuvano
 ako pritisnete "Sačuvaj stranicu".',
 'session_fail_preview' => "'''Ispričavamo se! Nismo mogli obraditi Vašu izmjenu zbog gubitka podataka o prijavi.

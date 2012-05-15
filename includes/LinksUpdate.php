@@ -25,14 +25,13 @@
  *
  * @todo document (e.g. one-sentence top-level class description).
  */
-class LinksUpdate extends SecondaryDBDataUpdate {
+class LinksUpdate extends SqlDataUpdate {
 
-	/**@{{
-	 * @private
-	 */
-	var $mId,            //!< Page ID of the article linked from
+	// @todo: make members protected, but make sure extensions don't break
+
+	public $mId,         //!< Page ID of the article linked from
 		$mTitle,         //!< Title object of the article linked from
-		$mParserOutput,  //!< Whether to queue jobs for recursive update
+		$mParserOutput,  //!< Parser output
 		$mLinks,         //!< Map of title strings to IDs for the links in the document
 		$mImages,        //!< DB keys of the images used, in the array key only
 		$mTemplates,     //!< Map of title strings to IDs for the template references, including broken ones
@@ -41,7 +40,6 @@ class LinksUpdate extends SecondaryDBDataUpdate {
 		$mInterlangs,    //!< Map of language codes to titles
 		$mProperties,    //!< Map of arbitrary name to value
 		$mRecursive;     //!< Whether to queue jobs for recursive updates
-	/**@}}*/
 
 	/**
 	 * Constructor
@@ -53,12 +51,12 @@ class LinksUpdate extends SecondaryDBDataUpdate {
 	function __construct( $title, $parserOutput, $recursive = true ) {
 		parent::__construct( );
 
-		if ( !is_object( $title ) ) {
+		if ( !( $title instanceof Title ) ) {
 			throw new MWException( "The calling convention to LinksUpdate::LinksUpdate() has changed. " .
 				"Please see Article::editUpdates() for an invocation example.\n" );
 		}
 
-		if ( !is_object( $parserOutput ) ) {
+		if ( !( $parserOutput instanceof ParserOutput ) ) {
 			throw new MWException( "The calling convention to LinksUpdate::__construct() has changed. " .
 				"Please see WikiPage::doEditUpdates() for an invocation example.\n" );
 		}
@@ -812,13 +810,9 @@ class LinksUpdate extends SecondaryDBDataUpdate {
 /**
  * Update object handling the cleanup of links tables after a page was deleted.
  **/
-class LinksDeletionUpdate extends SecondaryDBDataUpdate {
+class LinksDeletionUpdate extends SqlDataUpdate {
 
-	/**@{{
-	 * @private
-	 */
-	var $mWikiPage;     //!< WikiPage the wikipage that was deleted
-	/**@}}*/
+	protected $mPage;     //!< WikiPage the wikipage that was deleted
 
 	/**
 	 * Constructor
@@ -873,13 +867,13 @@ class LinksDeletionUpdate extends SecondaryDBDataUpdate {
 		if ( !$this->mDb->cleanupTriggers() ) {
 			# Clean up recentchanges entries...
 			$this->mDb->delete( 'recentchanges',
-			              array( 'rc_type != ' . RC_LOG,
-			                   'rc_namespace' => $title->getNamespace(),
-			                   'rc_title' => $title->getDBkey() ),
-			              __METHOD__ );
+				array( 'rc_type != ' . RC_LOG,
+					'rc_namespace' => $title->getNamespace(),
+					'rc_title' => $title->getDBkey() ),
+				__METHOD__ );
 			$this->mDb->delete( 'recentchanges',
-			              array( 'rc_type != ' . RC_LOG, 'rc_cur_id' => $id ),
-			              __METHOD__ );
+				array( 'rc_type != ' . RC_LOG, 'rc_cur_id' => $id ),
+				__METHOD__ );
 		}
 	}
 }

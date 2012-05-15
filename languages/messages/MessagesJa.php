@@ -1035,9 +1035,9 @@ $1または他の[[{{MediaWiki:Grouppage-sysop}}|管理者]]にこの件につ�
 IP アドレスは複数の利用者で共有されている場合があります。
 もし、あなたが匿名利用者であり、自分に関係のないコメントが寄せられている考えられる場合は、[[Special:UserLogin/signup|アカウントを作成する]]か[[Special:UserLogin|ログインして]]他の匿名利用者と間違えられないようにしてください。''",
 'noarticletext' => '現在このページには内容がありません。
-他のページ内で[[Special:Search/{{PAGENAME}}|このページ名を検索する]]か、
+他のページ内で[[Special:Search/{{PAGENAME}}|このページ名を検索]]するか、
 <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} 関連する記録を検索]するか、
-あるいは、[{{fullurl:{{FULLPAGENAME}}|action=edit}} このページを編集]</span>できます。',
+[{{fullurl:{{FULLPAGENAME}}|action=edit}} このページを編集]</span>することができます。',
 'noarticletext-nopermission' => '現在このページには内容がありません。他のページに含まれる[[Special:Search/{{PAGENAME}}|このページ名を検索する]]か、もしくは<span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} 関連記録を検索する]</span>ことができます。',
 'userpage-userdoesnotexist' => '「$1」という利用者アカウントは登録されていません。
 このページの作成/編集が適切かどうか確認してください。',
@@ -2389,7 +2389,7 @@ contenttype/subtypeの形式で指定してください（例：<tt>image/jpeg</
 'mywatchlist' => 'ウォッチリスト',
 'watchlistfor2' => '利用者: $1 $2',
 'nowatchlist' => 'ウォッチリストに項目がありません。',
-'watchlistanontext' => 'ウォッチリストに入っている項目を表示または編集するには、$1してください。',
+'watchlistanontext' => 'ウォッチリストにある項目を閲覧または編集するには、$1してください。',
 'watchnologin' => 'ログインしていません',
 'watchnologintext' => 'ウォッチリストを変更するためには、[[Special:UserLogin|ログイン]]している必要があります。',
 'addwatch' => 'ウォッチリストに追加',
@@ -3090,9 +3090,9 @@ MediaWiki 全般のローカライズ（地域化）に貢献したい場合は�
 'tooltip-n-mainpage' => 'メインページに移動',
 'tooltip-n-mainpage-description' => 'メインページに移動する',
 'tooltip-n-portal' => 'このプロジェクトについて、できること、情報を入手する場所',
-'tooltip-n-currentevents' => '最近の出来事について予備知識を得る',
+'tooltip-n-currentevents' => '最近の出来事の背景を知る',
 'tooltip-n-recentchanges' => 'このウィキにおける最近の更新の一覧',
-'tooltip-n-randompage' => '無作為に抽出されたページの読み込み',
+'tooltip-n-randompage' => '無作為に選ばれたページを読み込む',
 'tooltip-n-help' => '情報を得る場所',
 'tooltip-t-whatlinkshere' => 'ここにリンクしている全ウィキページの一覧',
 'tooltip-t-recentchangeslinked' => 'このページからリンクしているページの最近の更新',

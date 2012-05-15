@@ -19,12 +19,8 @@
  *
  * Abstract base class for update jobs that do something with some secondary
  * data extracted from article.
- *
- * @todo: add support for transactions
- *
- * @since WD.1
  */
-abstract class SecondaryDataUpdate implements DeferrableUpdate {
+abstract class DataUpdate implements DeferrableUpdate {
 
 	/**
 	 * Constructor
@@ -36,8 +32,6 @@ abstract class SecondaryDataUpdate implements DeferrableUpdate {
 	/**
 	 * Begin an appropriate transaction, if any.
 	 * This default implementation does nothing.
-	 *
-	 * @since WD.1
 	 */
 	public function beginTransaction() {
 		//noop
@@ -46,8 +40,6 @@ abstract class SecondaryDataUpdate implements DeferrableUpdate {
 	/**
 	 * Commit the transaction started via beginTransaction, if any.
 	 * This default implementation does nothing.
-	 *
-	 * @since WD.1
 	 */
 	public function commitTransaction() {
 		//noop
@@ -56,15 +48,13 @@ abstract class SecondaryDataUpdate implements DeferrableUpdate {
 	/**
 	 * Abort / roll back the transaction started via beginTransaction, if any.
 	 * This default implementation does nothing.
-	 *
-	 * @since WD.1
 	 */
 	public function rollbackTransaction() {
 		//noop
 	}
 
 	/**
-	 * Conveniance method, calls doUpdate() on every SecondaryDataUpdate in the array.
+	 * Convenience method, calls doUpdate() on every DataUpdate in the array.
 	 *
 	 * This methods supports transactions logic by first calling beginTransaction()
 	 * on all updates in the array, then calling doUpdate() on each, and, if all goes well,
@@ -72,13 +62,11 @@ abstract class SecondaryDataUpdate implements DeferrableUpdate {
 	 * rollbackTransaction() will be called on any update object that had beginTranscation()
 	 * called but not yet commitTransaction().
 	 *
-	 * This allows for limited transactional logic across multiple baceknds for storing
+	 * This allows for limited transactional logic across multiple backends for storing
 	 * secondary data.
 	 *
-	 * @since WD.1
-	 *
 	 * @static
-	 * @param $updates array a list of SecondaryDataUpdate instances
+	 * @param $updates array a list of DataUpdate instances
 	 */
 	public static function runUpdates( $updates ) {
 		if ( empty( $updates ) ) return; # nothing to do
@@ -87,8 +75,8 @@ abstract class SecondaryDataUpdate implements DeferrableUpdate {
 		$exception = null;
 
 		/**
-		 * @var $update SecondaryDataUpdate
-		 * @var $trans SecondaryDataUpdate
+		 * @var $update StorageUpdate
+		 * @var $trans StorageUpdate
 		 */
 
 		try {

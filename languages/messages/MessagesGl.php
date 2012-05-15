@@ -1013,12 +1013,14 @@ Algúns modelos non se incluirán.",
 Estes argumentos foron omitidos.",
 'post-expand-template-argument-category' => 'Páxinas que conteñen argumentos de modelo omitidos',
 'parser-template-loop-warning' => 'Detectouse un modelo en bucle: [[$1]]',
-'parser-template-recursion-depth-warning' => 'Excedeuse o límite da profundidade do recurso do modelo ($1)',
+'parser-template-recursion-depth-warning' => 'Excedeuse o límite de profundidade de recursión do modelo ($1)',
 'language-converter-depth-warning' => 'Excedeuse o límite de profundidade do convertedor de lingua ($1)',
 'node-count-exceeded-category' => 'Páxinas nas que se supera o número de nodos',
 'node-count-exceeded-warning' => 'Páxina que supera o número de nodos',
 'expansion-depth-exceeded-category' => 'Páxinas nas que se supera a profundidade de expansión',
 'expansion-depth-exceeded-warning' => 'Páxina que supera a profundidade de expansión',
+'parser-unstrip-loop-warning' => 'Detectouse un bucle inamovible',
+'parser-unstrip-recursion-limit' => 'Excedeuse o límite de recursión inamovible ($1)',
 
 # "Undo" feature
 'undo-success' => 'A edición pódese desfacer.
@@ -1196,6 +1198,8 @@ Asegúrese de que esta modificación da páxina mantén a continuidade históric
 
 # Diffs
 'history-title' => 'Historial de revisións de "$1"',
+'difference-title' => 'Diferenzas entre revisións de "$1"',
+'difference-title-multipage' => 'Diferenzas entre as páxinas "$1" e "$2"',
 'difference-multipage' => '(Diferenzas entre páxinas)',
 'lineno' => 'Liña $1:',
 'compareselectedversions' => 'Comparar as versións seleccionadas',
