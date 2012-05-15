@@ -496,7 +496,9 @@ abstract class ContentHandler {
 	}
 
 	/**
-	 * Return an EditPage object suitable for editing the given object
+	 * Return an EditPage object suitable for editing the given object.
+	 * This default  implementation always fails with an MWException, because there is no
+	 * generic edit page implementation suitable for all content models.
 	 *
 	 * @since WD.1
 	 *
@@ -504,10 +506,7 @@ abstract class ContentHandler {
 	 * @return EditPage
 	 */
 	public function createEditPage( Article $article ) {
-		$this->checkModelID( $article->getPage()->getContentModel() );
-
-		$editPage = new EditPage( $article );
-		return $editPage;
+		throw new MWException( "ContentHandler class " . get_classs( $this ) . " does not provide an EditPage." );
 	}
 
 	/**
@@ -805,9 +804,31 @@ abstract class TextContentHandler extends ContentHandler {
 		parent::__construct( $modelId, $formats );
 	}
 
+	/**
+	 * Returns the content's text as-is.
+	 *
+	 * @param Content $content
+	 * @param String|null $format
+	 * @return mixed
+	 */
 	public function serializeContent( Content $content, $format = null ) {
 		$this->checkFormat( $format );
 		return $content->getNativeData();
+	}
+
+	/**
+	 * Return an EditPage object for editing the given object
+	 *
+	 * @since WD.1
+	 *
+	 * @param Article $article
+	 * @return EditPage
+	 */
+	public function createEditPage( Article $article ) {
+		$this->checkModelID( $article->getPage()->getContentModel() );
+
+		$editPage = new EditPage( $article );
+		return $editPage;
 	}
 
 	/**
