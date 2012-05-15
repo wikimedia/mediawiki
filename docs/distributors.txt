@@ -106,6 +106,7 @@ intelligently:
   mail().
 
 == Updates ==
+
 The correct way for updating a wiki is to update the files and then run from 
 command line the maintenance/update.php script (with appropriate parameters if
 files were moved). It will perform all the needed steps to update the database 
