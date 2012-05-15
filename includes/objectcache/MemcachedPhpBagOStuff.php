@@ -60,7 +60,7 @@ class MemcachedPhpBagOStuff extends MemcachedBagOStuff {
 	 * @param $keys Array
 	 * @return Array
 	 */
-	public function getBatch( array $keys ) {
+	public function getMulti( array $keys ) {
 		$callback = array( $this, 'encodeKey' );
 		return $this->client->get_multi( array_map( $callback, $keys ) );
 	}

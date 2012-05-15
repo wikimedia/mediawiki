@@ -139,11 +139,11 @@ class SqlBagOStuff extends BagOStuff {
 	}
 
 	public function get( $key ) {
-		$values = $this->getBatch( array( $key ) );
+		$values = $this->getMulti( array( $key ) );
 		return $values[$key];
 	}
 
-	public function getBatch( array $keys ) {
+	public function getMulti( array $keys ) {
 		$values = array(); // array of (key => value)
 
 		$keysByTableName = array();
