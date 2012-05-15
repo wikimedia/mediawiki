@@ -1287,7 +1287,7 @@ class User {
 
 		# Proxy blocking
 		if ( !$block instanceof Block && $ip !== null && !$this->isAllowed( 'proxyunbannable' )
-			&& !in_array( $ip, $wgProxyWhitelist ) ) 
+			&& !in_array( $ip, $wgProxyWhitelist ) )
 		{
 			# Local list
 			if ( self::isLocallyBlockedProxy( $ip ) ) {
@@ -1926,10 +1926,19 @@ class User {
 			$this->mTouched = self::newTouchedTimestamp();
 
 			$dbw = wfGetDB( DB_MASTER );
-			$dbw->update( 'user',
-				array( 'user_touched' => $dbw->timestamp( $this->mTouched ) ),
-				array( 'user_id' => $this->mId ),
-				__METHOD__ );
+
+			// Prevent contention slams by checking user_touched first
+			$now = $dbw->timestamp( $this->mTouched );
+			$needsPurge = $dbw->selectField( 'user', '1',
+				array( 'user_id' => $this->mId, 'user_touched < ' . $dbw->addQuotes( $now ) )
+			);
+			if ( $needsPurge ) {
+				$dbw->update( 'user',
+					array( 'user_touched' => $now ),
+					array( 'user_id' => $this->mId, 'user_touched < ' . $dbw->addQuotes( $now ) ),
+					__METHOD__
+				);
+			}
 
 			$this->clearSharedCache();
 		}
@@ -3014,7 +3023,7 @@ class User {
 	 */
 	public function getPageRenderingHash() {
 		wfDeprecated( __METHOD__, '1.17' );
-		
+
 		global $wgUseDynamicDates, $wgRenderHashAppend, $wgLang, $wgContLang;
 		if( $this->mHash ){
 			return $this->mHash;
