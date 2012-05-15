@@ -44,7 +44,7 @@
 	'bm' => 'Bamanankan',	# Bambara
 	'bn' => 'বাংলা',	# Bengali
 	'bo' => 'བོད་ཡིག',	# Tibetan
-	'bpy' => 'ইমার ঠার/বিষ্ণুপ্রিয়া মণিপুরী',	# Bishnupriya Manipuri
+	'bpy' => 'বিষ্ণুপ্রিয়া মণিপুরী',	# Bishnupriya Manipuri
 	'bqi' => 'بختياري',	# Bakthiari
 	'br' => 'Brezhoneg',	# Breton
 	'brh' => 'Bráhuí',	# Brahui
