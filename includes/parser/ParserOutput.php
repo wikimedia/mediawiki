@@ -157,7 +157,7 @@ class ParserOutput extends CacheTime {
 		$mTimestamp;                  # Timestamp of the revision
 		private $mIndexPolicy = '';       # 'index' or 'noindex'?  Any other value will result in no change.
 		private $mAccessedOptions = array(); # List of ParserOptions (stored in the keys)
-		private $mSecondaryDataUpdates = array(); # List of instances of SecondaryDataObject(), used to cause some information extracted from the page in a custom place.
+		private $mSecondaryDataUpdates = array(); # List of instances of DataUpdate, used to cause some information extracted from the page in a custom place.
 
 	const EDITSECTION_REGEX = '#<(?:mw:)?editsection page="(.*?)" section="(.*?)"(?:/>|>(.*?)(</(?:mw:)?editsection>))#';
 
