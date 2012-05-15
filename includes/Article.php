@@ -628,10 +628,10 @@ class Article extends Page {
 						wfDebug( __METHOD__ . ": showing CSS/JS source\n" );
 						$this->showCssOrJsPage();
 						$outputDone = true;
-					} elseif( !wfRunHooks( 'ArticleContentViewCustom', array( $this->fetchContentObject(), $this->getTitle(), $wgOut ) ) ) {
+					} elseif( !wfRunHooks( 'ArticleContentViewCustom', array( $this->fetchContentObject(), $this->getTitle(), $outputPage ) ) ) {
 						# Allow extensions do their own custom view for certain pages
 						$outputDone = true;
-					} elseif( Hooks::isRegistered( 'ArticleViewCustom' ) && !wfRunHooks( 'ArticleViewCustom', array( $this->fetchContent(), $this->getTitle(), $wgOut ) ) ) { #FIXME: fetchContent() is deprecated!
+					} elseif( Hooks::isRegistered( 'ArticleViewCustom' ) && !wfRunHooks( 'ArticleViewCustom', array( $this->fetchContent(), $this->getTitle(), $outputPage ) ) ) { #FIXME: fetchContent() is deprecated!
 						# Allow extensions do their own custom view for certain pages
 						$outputDone = true;
 					} else {
@@ -643,7 +643,7 @@ class Article extends Page {
 							$outputPage->addHTML( $this->viewRedirect( $rt ) );
 							# Parse just to get categories, displaytitle, etc.
 							$this->mParserOutput = $content->getParserOutput( $this->getContext(), $oldid, $parserOptions, false );
-							$wgOut->addParserOutputNoText( $this->mParserOutput );
+							$outputPage->addParserOutputNoText( $this->mParserOutput );
 							$outputDone = true;
 						}
 					}
