@@ -209,12 +209,14 @@ class MWNamespace {
 	 * Returns array of all defined namespaces with their canonical
 	 * (English) names.
 	 *
+	 * @param bool $rebuild rebuild namespace list (default = false). Used for testing.
+	 *
 	 * @return array
 	 * @since 1.17
 	 */
-	public static function getCanonicalNamespaces() {
+	public static function getCanonicalNamespaces( $rebuild = false ) {
 		static $namespaces = null;
-		if ( $namespaces === null ) {
+		if ( $namespaces === null || $rebuild ) {
 			global $wgExtraNamespaces, $wgCanonicalNamespaceNames;
 			$namespaces = array( NS_MAIN => '' ) + $wgCanonicalNamespaceNames;
 			if ( is_array( $wgExtraNamespaces ) ) {

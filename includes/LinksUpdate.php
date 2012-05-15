@@ -39,8 +39,6 @@ class LinksUpdate extends SqlDataUpdate {
 		$mCategories,    //!< Map of category names to sort keys
 		$mInterlangs,    //!< Map of language codes to titles
 		$mProperties,    //!< Map of arbitrary name to value
-		$mDb,            //!< Database connection reference
-		$mOptions,       //!< SELECT options to be used (array)
 		$mRecursive;     //!< Whether to queue jobs for recursive updates
 
 	/**

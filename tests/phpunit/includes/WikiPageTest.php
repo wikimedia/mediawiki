@@ -1,5 +1,6 @@
 <?php
 /**
+* @group ContentHandler
 * @group Database
 * ^--- important, causes temporary tables to be used instead of the real database
 **/
@@ -28,7 +29,7 @@ class WikiPageTest extends MediaWikiTestCase {
 		                                       'templatelinks',
 		                                       'iwlinks' ) );
 	}
-
+	
 	public function setUp() {
 		$this->pages_to_delete = array();
 	}
@@ -61,11 +62,56 @@ class WikiPageTest extends MediaWikiTestCase {
 		if ( is_string( $page ) ) $page = Title::newFromText( $page );
 		if ( $page instanceof Title ) $page = $this->newPage( $page );
 
-		$page->doEdit( $text, "testing", EDIT_NEW );
+		$content = ContentHandler::makeContent( $text, $page->getTitle(), $model );
+		$page->doEditContent( $content, "testing", EDIT_NEW );
 
 		return $page;
 	}
 
+	public function testDoEditContent() {
+		$title = Title::newFromText( "WikiPageTest_testDoEditContent" );
+
+		$page = $this->newPage( $title );
+
+		$content = ContentHandler::makeContent( "[[Lorem ipsum]] dolor sit amet, consetetur sadipscing elitr, sed diam "
+		                                        . " nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat.",
+		                                        $title );
+
+		$page->doEditContent( $content, "testing 1" );
+
+		$this->assertTrue( $title->exists(), "Title object should indicate that the page now exists" );
+		$this->assertTrue( $page->exists(), "WikiPage object should indicate that the page now exists" );
+
+		$id = $page->getId();
+
+		# ------------------------
+		$page = new WikiPage( $title );
+
+		$retrieved = $page->getContent();
+		$this->assertTrue( $content->equals( $retrieved ), 'retrieved content doesn\'t equal original' );
+
+		# ------------------------
+		$content = ContentHandler::makeContent( "At vero eos et accusam et justo duo [[dolores]] et ea rebum. "
+		                                        . "Stet clita kasd [[gubergren]], no sea takimata sanctus est.",
+		                                        $title );
+
+		$page->doEditContent( $content, "testing 2" );
+
+		# ------------------------
+		$page = new WikiPage( $title );
+
+		$retrieved = $page->getContent();
+		$this->assertTrue( $content->equals( $retrieved ), 'retrieved content doesn\'t equal original' );
+
+		# ------------------------
+		$dbr = wfGetDB( DB_SLAVE );
+		$res = $dbr->select( 'pagelinks', '*', array( 'pl_from' => $id ) );
+		$n = $res->numRows();
+		$res->free();
+
+		$this->assertEquals( 2, $n, 'pagelinks should contain two links from the page' );
+	}
+	
 	public function testDoEdit() {
 		$title = Title::newFromText( "WikiPageTest_testDoEdit" );
 
@@ -121,6 +167,19 @@ class WikiPageTest extends MediaWikiTestCase {
 		$this->assertEquals( $text, $page->getText() );
 	}
 
+	public function testDoQuickEditContent() {
+		global $wgUser;
+
+		$page = $this->createPage( "WikiPageTest_testDoQuickEditContent", "original text" );
+
+		$content = ContentHandler::makeContent( "quick text", $page->getTitle() );
+		$page->doQuickEditContent( $content, $wgUser, "testing q" );
+
+		# ---------------------
+		$page = new WikiPage( $page->getTitle() );
+		$this->assertTrue( $content->equals( $page->getContent() ) );
+	}
+	
 	public function testDoDeleteArticle() {
 		$page = $this->createPage( "WikiPageTest_testDoDeleteArticle", "[[original text]] foo" );
 		$id = $page->getId();
@@ -128,6 +187,7 @@ class WikiPageTest extends MediaWikiTestCase {
 		$page->doDeleteArticle( "testing deletion" );
 
 		$this->assertFalse( $page->exists(), "WikiPage::exists should return false after page was deleted" );
+		$this->assertNull( $page->getContent(), "WikiPage::getContent should return null after page was deleted" );
 		$this->assertFalse( $page->getText(), "WikiPage::getText should return false after page was deleted" );
 
 		$t = Title::newFromText( $page->getTitle()->getPrefixedText() );
@@ -154,7 +214,20 @@ class WikiPageTest extends MediaWikiTestCase {
 		$rev = $page->getRevision();
 
 		$this->assertEquals( $page->getLatest(), $rev->getId() );
-		$this->assertEquals( "some text", $rev->getText() );
+		$this->assertEquals( "some text", $rev->getContent()->getNativeData() );
+	}
+
+	public function testGetContent() {
+		$page = $this->newPage( "WikiPageTest_testGetContent" );
+
+		$content = $page->getContent();
+		$this->assertNull( $content );
+
+		# -----------------
+		$this->createPage( $page, "some text" );
+
+		$content = $page->getContent();
+		$this->assertEquals( "some text", $content->getNativeData() );
 	}
 
 	public function testGetText() {
@@ -183,7 +256,20 @@ class WikiPageTest extends MediaWikiTestCase {
 		$this->assertEquals( "some text", $text );
 	}
 
-	
+	public function testGetContentModel() {
+		$page = $this->createPage( "WikiPageTest_testGetContentModel", "some text", CONTENT_MODEL_JAVASCRIPT );
+
+		$page = new WikiPage( $page->getTitle() );
+		$this->assertEquals( CONTENT_MODEL_JAVASCRIPT, $page->getContentModel() );
+	}
+
+	public function testGetContentHandler() {
+		$page = $this->createPage( "WikiPageTest_testGetContentHandler", "some text", CONTENT_MODEL_JAVASCRIPT );
+
+		$page = new WikiPage( $page->getTitle() );
+		$this->assertEquals( 'JavaScriptContentHandler', get_class( $page->getContentHandler() ) );
+	}
+
 	public function testExists() {
 		$page = $this->newPage( "WikiPageTest_testExists" );
 		$this->assertFalse( $page->exists() );
@@ -242,6 +328,10 @@ class WikiPageTest extends MediaWikiTestCase {
 	public function testGetRedirectTarget( $title, $text, $target ) {
 		$page = $this->createPage( $title, $text );
 
+		# sanity check, because this test seems to fail for no reason for some people.
+		$c = $page->getContent();
+		$this->assertEquals( 'WikitextContent', get_class( $c ) );
+		
 		# now, test the actual redirect
 		$t = $page->getRedirectTarget();
 		$this->assertEquals( $target, is_null( $t ) ? null : $t->getPrefixedText() );
@@ -358,7 +448,7 @@ class WikiPageTest extends MediaWikiTestCase {
 		$wgArticleCountMethod = $mode;
 
 		$page = $this->createPage( $title, $text );
-		$editInfo = $page->prepareTextForEdit( $page->getText() );
+		$editInfo = $page->prepareContentForEdit( $page->getContent() );
 
 		$v = $page->isCountable();
 		$w = $page->isCountable( $editInfo );
@@ -461,6 +551,18 @@ more stuff
 		$this->assertEquals( $expected, $text );
 	}
 
+	/**
+	 * @dataProvider dataReplaceSection
+	 */
+	public function testReplaceSectionContent( $title, $text, $section, $with, $sectionTitle, $expected ) {
+		$page = $this->createPage( $title, $text );
+
+		$content = ContentHandler::makeContent( $with, $page->getTitle(), $page->getContentModel() );
+		$c = $page->replaceSectionContent( $section, $content, $sectionTitle );
+
+		$this->assertEquals( $expected, is_null( $c ) ? null : trim( $c->getNativeData() ) );
+	}
+	
 	/* @FIXME: fix this!
 	public function testGetUndoText() {
 		global $wgDiff3;
@@ -521,19 +623,19 @@ more stuff
 
 		$text = "one";
 		$page = $this->newPage( "WikiPageTest_testDoRollback" );
-		$page->doEdit( $text, "section one", EDIT_NEW, false, $admin );
+		$page->doEditContent( ContentHandler::makeContent( $text, $page->getTitle() ), "section one", EDIT_NEW, false, $admin );
 
 		$user1 = new User();
 		$user1->setName( "127.0.1.11" );
 		$text .= "\n\ntwo";
 		$page = new WikiPage( $page->getTitle() );
-		$page->doEdit( $text, "adding section two", 0, false, $user1 );
+		$page->doEditContent( ContentHandler::makeContent( $text, $page->getTitle() ), "adding section two", 0, false, $user1 );
 
 		$user2 = new User();
 		$user2->setName( "127.0.2.13" );
 		$text .= "\n\nthree";
 		$page = new WikiPage( $page->getTitle() );
-		$page->doEdit( $text, "adding section three", 0, false, $user2 );
+		$page->doEditContent( ContentHandler::makeContent( $text, $page->getTitle() ), "adding section three", 0, false, $user2 );
 
 		# we are having issues with doRollback spuriously failing. apparently the last revision somehow goes missing
 		# or not committed under some circumstances. so, make sure the last revision has the right user name.
@@ -561,7 +663,7 @@ more stuff
 
 		$page = new WikiPage( $page->getTitle() );
 		$this->assertEquals( $rev2->getSha1(), $page->getRevision()->getSha1(), "rollback did not revert to the correct revision" );
-		$this->assertEquals( "one\n\ntwo", $page->getText() );
+		$this->assertEquals( "one\n\ntwo", $page->getContent()->getNativeData() );
 	}
 
 	/**
@@ -573,14 +675,14 @@ more stuff
 
 		$text = "one";
 		$page = $this->newPage( "WikiPageTest_testDoRollback" );
-		$page->doEdit( $text, "section one", EDIT_NEW, false, $admin );
+		$page->doEditContent( ContentHandler::makeContent( $text, $page->getTitle() ), "section one", EDIT_NEW, false, $admin );
 		$rev1 = $page->getRevision();
 
 		$user1 = new User();
 		$user1->setName( "127.0.1.11" );
 		$text .= "\n\ntwo";
 		$page = new WikiPage( $page->getTitle() );
-		$page->doEdit( $text, "adding section two", 0, false, $user1 );
+		$page->doEditContent( ContentHandler::makeContent( $text, $page->getTitle() ), "adding section two", 0, false, $user1 );
 
 		# now, try the rollback
 		$admin->addGroup( "sysop" ); #XXX: make the test user a sysop...
@@ -593,7 +695,7 @@ more stuff
 
 		$page = new WikiPage( $page->getTitle() );
 		$this->assertEquals( $rev1->getSha1(), $page->getRevision()->getSha1(), "rollback did not revert to the correct revision" );
-		$this->assertEquals( "one", $page->getText() );
+		$this->assertEquals( "one", $page->getContent()->getNativeData() );
 	}
 
 	public function dataGetAutosummary( ) {
@@ -722,7 +824,9 @@ more stuff
 			if ( !empty( $edit[1] ) ) $user->setName( $edit[1] );
 			else $user = $wgUser;
 
-			$page->doEdit( $edit[0], "test edit $c", $c < 2 ? EDIT_NEW : 0, false, $user );
+			$content = ContentHandler::makeContent( $edit[0], $page->getTitle(), $page->getContentModel() );
+
+			$page->doEditContent( $content, "test edit $c", $c < 2 ? EDIT_NEW : 0, false, $user );
 
 			$c += 1;
 		}

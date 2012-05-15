@@ -210,8 +210,8 @@ class RefreshLinks extends Maintenance {
 			return;
 		}
 
-		$text = $page->getRawText();
-		if ( $text === false ) {
+		$content = $page->getContent( REVISION::RAW );
+		if ( null === false ) {
 			return;
 		}
 
@@ -219,9 +219,12 @@ class RefreshLinks extends Maintenance {
 		$dbw->begin( __METHOD__ );
 
 		$options = ParserOptions::newFromUserAndLang( new User, $wgContLang );
-		$parserOutput = $wgParser->parse( $text, $page->getTitle(), $options, true, true, $page->getLatest() );
-		$update = new LinksUpdate( $page->getTitle(), $parserOutput, false );
-		$update->doUpdate();
+		$context = RequestContext::getMain();
+
+		$parserOutput = $content->getParserOutput( $context, $page->getLatest(), $options, false );
+
+		$updates = $parserOutput->getSecondaryDataUpdates( $page->getTitle(), false );
+		SecondaryDataUpdate::runUpdates( $updates );
 
 		$dbw->commit( __METHOD__ );
 	}
