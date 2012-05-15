@@ -277,7 +277,7 @@ class Title {
 			if ( isset( $row->page_latest ) )
 				$this->mLatestID = (int)$row->page_latest; # FIXME: whene3ver page_latest is updated, also update page_content_model
 			if ( isset( $row->page_content_model ) )
-				$this->mContentModel = $row->page_content_model;
+				$this->mContentModel = intval( $row->page_content_model );
 			else
 				$this->mContentModel = null; # initialized lazily in getContentModel()
 		} else { // page not found
