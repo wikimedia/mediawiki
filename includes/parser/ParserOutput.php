@@ -44,7 +44,7 @@ class CacheTime {
 	 */
 	function setCacheTime( $t )          { return wfSetVar( $this->mCacheTime, $t ); }
 
-	/**abstract
+	/**
 	 * Sets the number of seconds after which this object should expire.
 	 * This value is used with the ParserCache.
 	 * If called with a value greater than the value provided at any previous call,
@@ -157,13 +157,7 @@ class ParserOutput extends CacheTime {
 		$mTimestamp;                  # Timestamp of the revision
 		private $mIndexPolicy = '';       # 'index' or 'noindex'?  Any other value will result in no change.
 		private $mAccessedOptions = array(); # List of ParserOptions (stored in the keys)
-
-	/**
-	 * List of instances of DataUpdate(), used to cause some information extracted from the page in a custom place.
-	 * @since WD.1
-	 * @var array of DataUpdate
-	 */
-	protected $mSecondaryDataUpdates = array();
+		private $mSecondaryDataUpdates = array(); # List of instances of DataUpdate, used to cause some information extracted from the page in a custom place.
 
 	const EDITSECTION_REGEX = '#<(?:mw:)?editsection page="(.*?)" section="(.*?)"(?:/>|>(.*?)(</(?:mw:)?editsection>))#';
 
