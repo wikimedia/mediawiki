@@ -1288,12 +1288,9 @@ abstract class FileBackendStore extends FileBackend {
 	 * @return void
 	 */
 	final protected function deleteContainerCache( $container ) {
-		for ( $attempts=1; $attempts <= 3; $attempts++ ) {
-			if ( $this->memCache->delete( $this->containerCacheKey( $container ) ) ) {
-				return; // done!
-			}
+		if ( !$this->memCache->delete( $this->containerCacheKey( $container ) ) ) {
+			trigger_error( "Unable to delete stat cache for container $container." );
 		}
-		trigger_error( "Unable to delete stat cache for container $container." );
 	}
 
 	/**
@@ -1380,12 +1377,9 @@ abstract class FileBackendStore extends FileBackend {
 	 * @return void
 	 */
 	final protected function deleteFileCache( $path ) {
-		for ( $attempts=1; $attempts <= 3; $attempts++ ) {
-			if ( $this->memCache->delete( $this->fileCacheKey( $path ) ) ) {
-				return; // done!
-			}
+		if ( !$this->memCache->delete( $this->fileCacheKey( $path ) ) ) {
+			trigger_error( "Unable to delete stat cache for file $path." );
 		}
-		trigger_error( "Unable to delete stat cache for file $path." );
 	}
 
 	/**
