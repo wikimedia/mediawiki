@@ -262,6 +262,18 @@ $wgAutoloadLocalClasses = array(
 	'ZhClient' => 'includes/ZhClient.php',
 	'ZipDirectoryReader' => 'includes/ZipDirectoryReader.php',
 
+    # content handler
+    'Content' => 'includes/Content.php',
+    'ContentHandler' => 'includes/ContentHandler.php',
+    'CssContent' => 'includes/Content.php',
+    'CssContentHandler' => 'includes/ContentHandler.php',
+    'JavaScriptContent' => 'includes/Content.php',
+    'JavaScriptContentHandler' => 'includes/ContentHandler.php',
+    'MessageContent' => 'includes/Content.php',
+    'TextContent' => 'includes/Content.php',
+    'WikitextContent' => 'includes/Content.php',
+    'WikitextContentHandler' => 'includes/ContentHandler.php',
+
 	# includes/actions
 	'CachedAction' => 'includes/actions/CachedAction.php',
 	'CreditsAction' => 'includes/actions/CreditsAction.php',
@@ -977,6 +989,14 @@ $wgAutoloadLocalClasses = array(
 	'DbTestRecorder' => 'tests/testHelpers.inc',
 	'TestFileIterator' => 'tests/testHelpers.inc',
 	'TestRecorder' => 'tests/testHelpers.inc',
+
+	# tests/phpunit
+	'RevisionStorageTest' => 'tests/phpunit/includes/RevisionStorageTest.php',
+	'WikiPageTest' => 'tests/phpunit/includes/WikiPageTest.php',
+	'WikitextContentTest' => 'tests/phpunit/includes/WikitextContentTest.php',
+	'JavascriptContentTest' => 'tests/phpunit/includes/JavascriptContentTest.php',
+	'DummyContentHandlerForTesting' => 'tests/phpunit/includes/ContentHandlerTest.php',
+	'DummyContentForTesting' => 'tests/phpunit/includes/ContentHandlerTest.php',
 
 	# tests/parser
 	'ParserTest' => 'tests/parser/parserTest.inc',
