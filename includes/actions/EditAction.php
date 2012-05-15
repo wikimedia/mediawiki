@@ -40,6 +40,11 @@ class EditAction extends FormlessAction {
 		$context = $this->getContext();
 
 		if ( wfRunHooks( 'CustomEditor', array( $page, $user ) ) ) {
+			if ( ( $page->getContent() instanceof TextContentHandler ) ) {
+				$modelName = ContentHandler::getContentModelName( $page->getContentModel() );
+				throw new MWException( "Can't use default editor for non-text content. ContentHandler for $modelName apparently does not provide an action handler for the edit action." );
+			}
+
 			if ( ExternalEdit::useExternalEngine( $context, 'edit' )
 				&& $this->getName() == 'edit' && !$request->getVal( 'section' )
 				&& !$request->getVal( 'oldid' ) )

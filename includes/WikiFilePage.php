@@ -41,7 +41,9 @@ class WikiFilePage extends WikiPage {
 	}
 
 	public function getActionOverrides() {
-		return array( 'revert' => 'RevertFileAction' );
+		$overrides = parent::getActionOverrides();
+		$overrides[ 'revert' ] = 'RevertFileAction';
+		return $overrides;
 	}
 
 	/**

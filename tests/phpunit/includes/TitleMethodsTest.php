@@ -1,7 +1,34 @@
 <?php
 
+/**
+ * @group ContentHandler
+ */
 class TitleMethodsTest extends MediaWikiTestCase {
 
+	public function setup() {
+		global $wgExtraNamespaces, $wgNamespaceContentModels, $wgContLang;
+
+		$wgExtraNamespaces[ 12302 ] = 'TEST-JS';
+		$wgExtraNamespaces[ 12303 ] = 'TEST-JS_TALK';
+
+		$wgNamespaceContentModels[ 12302 ] = CONTENT_MODEL_JAVASCRIPT;
+
+		MWNamespace::getCanonicalNamespaces( true ); # reset namespace cache
+		$wgContLang->resetNamespaces(); # reset namespace cache
+	}
+
+	public function teardown() {
+		global $wgExtraNamespaces, $wgNamespaceContentModels, $wgContLang;
+
+		unset( $wgExtraNamespaces[ 12302 ] );
+		unset( $wgExtraNamespaces[ 12303 ] );
+
+		unset( $wgNamespaceContentModels[ 12302 ] );
+
+		MWNamespace::getCanonicalNamespaces( true ); # reset namespace cache
+		$wgContLang->resetNamespaces(); # reset namespace cache
+	}
+	
 	public function dataEquals() {
 		return array(
 			array( 'Main Page', 'Main Page', true ),
@@ -75,6 +102,47 @@ class TitleMethodsTest extends MediaWikiTestCase {
 		$this->assertEquals( $expectedBool, $title->hasSubjectNamespace( $ns ) );
 	}
 
+	public function dataGetContentModel() {
+		return array(
+			array( 'Foo', CONTENT_MODEL_WIKITEXT ),
+			array( 'Foo.js', CONTENT_MODEL_WIKITEXT ),
+			array( 'Foo/bar.js', CONTENT_MODEL_WIKITEXT ),
+			array( 'User:Foo', CONTENT_MODEL_WIKITEXT ),
+			array( 'User:Foo.js', CONTENT_MODEL_WIKITEXT ),
+			array( 'User:Foo/bar.js', CONTENT_MODEL_JAVASCRIPT ),
+			array( 'User:Foo/bar.css', CONTENT_MODEL_CSS ),
+			array( 'User talk:Foo/bar.css', CONTENT_MODEL_WIKITEXT ),
+			array( 'User:Foo/bar.js.xxx', CONTENT_MODEL_WIKITEXT ),
+			array( 'User:Foo/bar.xxx', CONTENT_MODEL_WIKITEXT ),
+			array( 'MediaWiki:Foo.js', CONTENT_MODEL_JAVASCRIPT ),
+			array( 'MediaWiki:Foo.css', CONTENT_MODEL_CSS ),
+			array( 'MediaWiki:Foo/bar.css', CONTENT_MODEL_CSS ),
+			array( 'MediaWiki:Foo.JS', CONTENT_MODEL_WIKITEXT ),
+			array( 'MediaWiki:Foo.CSS', CONTENT_MODEL_WIKITEXT ),
+			array( 'MediaWiki:Foo.css.xxx', CONTENT_MODEL_WIKITEXT ),
+			array( 'TEST-JS:Foo', CONTENT_MODEL_JAVASCRIPT ),
+			array( 'TEST-JS:Foo.js', CONTENT_MODEL_JAVASCRIPT ),
+			array( 'TEST-JS:Foo/bar.js', CONTENT_MODEL_JAVASCRIPT ),
+			array( 'TEST-JS_TALK:Foo.js', CONTENT_MODEL_WIKITEXT ),
+		);
+	}
+
+	/**
+	 * @dataProvider dataGetContentModel
+	 */
+	public function testGetContentModel( $title, $expectedModelId ) {
+		$title = Title::newFromText( $title );
+		$this->assertEquals( $expectedModelId, $title->getContentModel() );
+	}
+
+	/**
+	 * @dataProvider dataGetContentModel
+	 */
+	public function testHasContentModel( $title, $expectedModelId ) {
+		$title = Title::newFromText( $title );
+		$this->assertTrue( $title->hasContentModel( $expectedModelId ) );
+	}
+
 	public function dataIsCssOrJsPage() {
 		return array(
 			array( 'Foo', false ),
@@ -92,6 +160,8 @@ class TitleMethodsTest extends MediaWikiTestCase {
 			array( 'MediaWiki:Foo.JS', false ),
 			array( 'MediaWiki:Foo.CSS', false ),
 			array( 'MediaWiki:Foo.css.xxx', false ),
+			array( 'TEST-JS:Foo', false ),
+			array( 'TEST-JS:Foo.js', false ),
 		);
 	}
 
@@ -119,6 +189,8 @@ class TitleMethodsTest extends MediaWikiTestCase {
 			array( 'MediaWiki:Foo.js', false ),
 			array( 'User:Foo/bar.JS', false ),
 			array( 'User:Foo/bar.CSS', false ),
+			array( 'TEST-JS:Foo', false ),
+			array( 'TEST-JS:Foo.js', false ),
 		);
 	}
 
@@ -187,6 +259,9 @@ class TitleMethodsTest extends MediaWikiTestCase {
 			array( 'MediaWiki:Foo/bar.css', false ),
 			array( 'User:Foo/bar.JS', true ),
 			array( 'User:Foo/bar.CSS', true ),
+			array( 'TEST-JS:Foo', false ),
+			array( 'TEST-JS:Foo.js', false ),
+			array( 'TEST-JS_TALK:Foo.js', true ),
 		);
 	}
 
