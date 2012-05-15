@@ -3194,12 +3194,9 @@ class WikiPage extends Page {
 	}
 
 	public function getDeletionUpdates() {
-		$updates = array(
-			new LinksDeletionUpdate( $this ),
-		);
+		$updates = $this->getContentHandler()->getDeletionUpdates( $this );
 
-		//@todo: make a hook to add update objects
-		//NOTE: deletion updates will be determined by the ContentHandler in the future
+		wfRunHooks( 'WikiPageDeletionUpdates', array( $this, &$updates ) );
 		return $updates;
 	}
 }
