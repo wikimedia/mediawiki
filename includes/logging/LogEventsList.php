@@ -509,15 +509,28 @@ class LogEventsList {
 			return '';
 		}
 		$del = '';
-		// Don't show useless link to people who cannot hide revisions
+		// Don't show useless checkbox to people who cannot hide revisions
 		if( $wgUser->isAllowed( 'deletedhistory' ) ) {
 			if( $row->log_deleted || $wgUser->isAllowed( 'deleterevision' ) ) {
 				$canHide = $wgUser->isAllowed( 'deleterevision' );
-				// If event was hidden from sysops
-				if( !self::userCan( $row, LogPage::DELETED_RESTRICTED ) ) {
-					$del = Xml::check( 'deleterevisions', false, array( 'disabled' => 'disabled' ) );
-				} else {
-					$del = Xml::check( 'showhiderevisions', false, array( 'name' => 'ids[' . $row->log_id . ']' ) );
+				$pagename = explode( "/", (string) $this->getContext()->getTitle() ); // Break the page name up
+				if ( SpecialPage::getTitleFor( 'Log' ) == $pagename[0] ) { // Only show checkboxes where there are forms for them (Special:Log).
+					if( !self::userCan( $row, LogPage::DELETED_RESTRICTED ) ) { // If event was hidden from sysops
+						$del = Xml::check( 'deleterevisions', false, array( 'disabled' => 'disabled' ) );
+					} else {
+						$del = Xml::check( 'showhiderevisions', false, array( 'name' => 'ids[' . $row->log_id . ']' ) );
+					}
+				} else { // Otherwise, just show links.
+					if( !self::userCan( $row, LogPage::DELETED_RESTRICTED ) ) { // If event was hidden from sysops
+						$del = Linker::revDeleteLinkDisabled( $canHide );
+					} else {
+						$query = array(
+							'target' => SpecialPage::getTitleFor( 'Log', $row->log_type )->getPrefixedDBkey(),
+							'type'   => 'logging',
+							'ids'    => $row->log_id,
+						);
+						$del = Linker::revDeleteLink( $query, self::isDeleted( $row, LogPage::DELETED_RESTRICTED ), $canHide );
+					}
 				}
 			}
 		}
