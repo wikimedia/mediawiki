@@ -58,8 +58,8 @@ class MemcachedPeclBagOStuff extends MemcachedBagOStuff {
 				$this->client->setOption( Memcached::OPT_SERIALIZER, Memcached::SERIALIZER_PHP );
 				break;
 			case 'igbinary':
-				if ( !extension_loaded( 'igbinary' ) ) {
-					throw new MWException( __CLASS__.': the igbinary extension is not loaded ' . 
+				if ( !Memcached::HAVE_IGBINARY ) {
+					throw new MWException( __CLASS__.': the igbinary extension is not available ' . 
 						'but igbinary serialization was requested.' );
 				}
 				$this->client->setOption( Memcached::OPT_SERIALIZER, Memcached::SERIALIZER_IGBINARY );
@@ -100,7 +100,13 @@ class MemcachedPeclBagOStuff extends MemcachedBagOStuff {
 	 */
 	public function delete( $key, $time = 0 ) {
 		$this->debugLog( "delete($key)" );
-		return $this->checkResult( $key, parent::delete( $key, $time ) );
+		$result = parent::delete( $key, $time );
+		if ( $result === false && $this->client->getResultCode() === Memcached::RES_NOTFOUND ) {
+			// "Not found" is counted as success in our interface
+			return true;
+		} else {
+			return $this->checkResult( $result );
+		}
 	}
 
 	/**
