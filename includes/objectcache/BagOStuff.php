@@ -87,7 +87,7 @@ abstract class BagOStuff {
 	 * Delete an item.
 	 * @param $key string
 	 * @param $time int Amount of time to delay the operation (mostly memcached-specific)
-	 * @return bool success
+	 * @return bool True if the item was deleted or not found, false on failure
 	 */
 	abstract public function delete( $key, $time = 0 );
 
