@@ -439,6 +439,10 @@ h1, h2, h3, h4, h5, h6 {
 	padding-right: 18px;
 }
 
+#mw-content-text {
+	position: relative;
+}
+
 #mw_content a.external[href $=".ogg"], #mw_content a.external[href $=".OGG"],
 #mw_content a.external[href $=".mid"], #mw_content a.external[href $=".MID"],
 #mw_content a.external[href $=".midi"], #mw_content a.external[href $=".MIDI"],
@@ -886,4 +890,9 @@ html > body.rtl div#mw_contentholder ul {
 /* @noflip */
 html > body.rtl div#mw_contentholder ul#filetoc {
 	display: block;
+}
+
+.skin-modern #coordinates {
+	right: 3em;
+	top: -1.4em;
 }
