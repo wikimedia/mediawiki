@@ -272,10 +272,61 @@ class MWDebug {
 			return '';
 		}
 
-		global $wgVersion, $wgRequestTime;
 		MWDebug::log( 'MWDebug output complete' );
+		$debugInfo = self::getDebugInfo( $context );
+
+		// Cannot use OutputPage::addJsConfigVars because those are already outputted
+		// by the time this method is called.
+		$html = Html::inlineScript(
+			ResourceLoader::makeLoaderConditionalScript(
+				ResourceLoader::makeConfigSetScript( array( 'debugInfo' => $debugInfo ) )
+			)
+		);
+
+		return $html;
+	}
+
+	/**
+	 * Append the debug info to given ApiResult
+	 *
+	 * @param $context IContextSource
+	 * @param $result ApiResult
+	 */
+	public static function appendDebugInfoToApiResult( IContextSource $context, ApiResult $result ) {
+		if ( !self::$enabled ) {
+			return;
+		}
+
+		MWDebug::log( 'MWDebug output complete' );
+		$debugInfo = self::getDebugInfo( $context );
+
+		$result->setIndexedTagName( $debugInfo, 'debuginfo' );
+		$result->setIndexedTagName( $debugInfo['log'], 'line' );
+		foreach( $debugInfo['debugLog'] as $index => $debugLogText ) {
+			$vals = array();
+			ApiResult::setContent( $vals, $debugLogText );
+			$debugInfo['debugLog'][$index] = $vals; //replace
+		}
+		$result->setIndexedTagName( $debugInfo['debugLog'], 'msg' );
+		$result->setIndexedTagName( $debugInfo['queries'], 'query' );
+		$result->setIndexedTagName( $debugInfo['includes'], 'queries' );
+		$result->addValue( array(), 'debuginfo', $debugInfo );
+	}
+
+	/**
+	 * Returns the HTML to add to the page for the toolbar
+	 *
+	 * @param $context IContextSource
+	 * @return array
+	 */
+	public static function getDebugInfo( IContextSource $context ) {
+		if ( !self::$enabled ) {
+			return array();
+		}
+
+		global $wgVersion, $wgRequestTime;
 		$request = $context->getRequest();
-		$debugInfo = array(
+		return array(
 			'mwVersion' => $wgVersion,
 			'phpVersion' => PHP_VERSION,
 			'gitRevision' => GitInfo::headSHA1(),
@@ -295,15 +346,5 @@ class MWDebug {
 			'memoryPeak' => $context->getLanguage()->formatSize( memory_get_peak_usage() ),
 			'includes' => self::getFilesIncluded( $context ),
 		);
-
-		// Cannot use OutputPage::addJsConfigVars because those are already outputted
-		// by the time this method is called.
-		$html = Html::inlineScript(
-			ResourceLoader::makeLoaderConditionalScript(
-				ResourceLoader::makeConfigSetScript( array( 'debugInfo' => $debugInfo ) )
-			)
-		);
-
-		return $html;
 	}
 }
