@@ -96,7 +96,7 @@ class ImagePage extends Article {
 	 * Include body text only; none of the image extras
 	 */
 	public function render() {
-		$this->getContext()->setArticleBodyOnly( true );
+		$this->getContext()->getOutput()->setArticleBodyOnly( true );
 		parent::view();
 	}
 
