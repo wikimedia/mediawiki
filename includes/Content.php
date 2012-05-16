@@ -302,7 +302,32 @@ abstract class Content {
 	 *
 	 * @return ParserOutput
 	 */
-	public abstract function getParserOutput( IContextSource $context, $revId = null, ParserOptions $options = NULL, $generateHtml = true );
+	public abstract function getParserOutput( IContextSource $context, $revId = null, ParserOptions $options = null, $generateHtml = true );
+
+	/**
+	 * Returns a list of DataUpdate objects for recording information about this Content in some secondary
+	 * data store. If the optional second argument, $old, is given, the updates may model only the changes that
+	 * need to be made to replace information about the old content with infomration about the new content.
+	 *
+	 * This default implementation calls $this->getParserOutput( $context, null, null, false ), and then
+	 * calls getSecondaryDataUpdates( $context->getTitle(), $recursive ) on the resulting ParserOutput object.
+	 *
+	 * Subclasses may implement this to determine the necessary updates more efficiently, or make use of information
+	 * about the old content.
+	 *
+	 * @param IContextSource $context the content for determining the necessary updates
+	 * @param Content|null $old a Content object representing the previous content, i.e. the content being
+	 *                     replaced by this Content object.
+	 * @param bool $recursive whether to include recursive updates (default: false).
+	 *
+	 * @return Array. A list of DataUpdate objects for putting information about this content object somewhere.
+	 *
+	 * @since WD.1
+	 */
+	public function getSecondaryDataUpdates( IContextSource $context, Content $old = null, $recursive = false ) {
+		$po = $this->getParserOutput( $context, null, null, false );
+		return $po->getSecondaryDataUpdates( $context->getTitle(), $recursive );
+	}
 
 	/**
 	 * Construct the redirect destination from this content and return an

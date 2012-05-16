@@ -218,12 +218,9 @@ class RefreshLinks extends Maintenance {
 		$dbw = wfGetDB( DB_MASTER );
 		$dbw->begin( __METHOD__ );
 
-		$options = ParserOptions::newFromUserAndLang( new User, $wgContLang );
 		$context = RequestContext::getMain();
 
-		$parserOutput = $content->getParserOutput( $context, $page->getLatest(), $options, false );
-
-		$updates = $parserOutput->getSecondaryDataUpdates( $page->getTitle(), false );
+		$updates = $content->getSecondaryDataUpdates( $context );
 		DataUpdate::runUpdates( $updates );
 
 		$dbw->commit( __METHOD__ );

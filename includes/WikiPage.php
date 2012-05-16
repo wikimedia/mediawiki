@@ -1938,6 +1938,7 @@ class WikiPage extends Page {
 		$context = RequestContext::getMain();
 		$context->setTitle( $this->mTitle );
 		$edit->output = $edit->pstContent->getParserOutput( $context, $revid, $edit->popts );
+		$edit->updates = $edit->pstContent->getSecondaryDataUpdate( $context );
 
 		$edit->newContent = $content;
 		$edit->oldContent = $this->getContent( Revision::RAW );
@@ -1991,7 +1992,7 @@ class WikiPage extends Page {
 		}
 
 		# Update the links tables and other secondary data
-		$updates = $editInfo->output->getSecondaryDataUpdates( $this->mTitle );
+		$updates = $editInfo->updates;
 		DataUpdate::runUpdates( $updates );
 
 		wfRunHooks( 'ArticleEditUpdates', array( &$this, &$editInfo, $options['changed'] ) );
