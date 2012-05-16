@@ -56,7 +56,7 @@ class ApiProtect extends ApiBase {
 		}
 
 		$restrictionTypes = $titleObj->getRestrictionTypes();
-		$dbr = wfGetDB( DB_SLAVE );
+		$db = $this->getDB();
 
 		$protections = array();
 		$expiryarray = array();
@@ -80,7 +80,7 @@ class ApiProtect extends ApiBase {
 			}
 
 			if ( in_array( $expiry[$i], array( 'infinite', 'indefinite', 'never' ) ) ) {
-				$expiryarray[$p[0]] = $dbr->getInfinity();
+				$expiryarray[$p[0]] = $db->getInfinity();
 			} else {
 				$exp = strtotime( $expiry[$i] );
 				if ( $exp < 0 || !$exp ) {
@@ -94,7 +94,7 @@ class ApiProtect extends ApiBase {
 				$expiryarray[$p[0]] = $exp;
 			}
 			$resultProtections[] = array( $p[0] => $protections[$p[0]],
-					'expiry' => ( $expiryarray[$p[0]] == $dbr->getInfinity() ?
+					'expiry' => ( $expiryarray[$p[0]] == $db->getInfinity() ?
 								'infinite' :
 								wfTimestamp( TS_ISO_8601, $expiryarray[$p[0]] ) ) );
 		}

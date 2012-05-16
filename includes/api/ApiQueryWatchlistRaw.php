@@ -76,12 +76,12 @@ class ApiQueryWatchlistRaw extends ApiQueryGeneratorBase {
 					"original value returned by the previous query", "_badcontinue" );
 			}
 			$ns = intval( $cont[0] );
-			$title = $this->getDB()->strencode( $this->titleToKey( $cont[1] ) );
+			$title = $this->getDB()->addQuotes( $this->titleToKey( $cont[1] ) );
 			$op = $params['dir'] == 'ascending' ? '>' : '<';
 			$this->addWhere(
-				"wl_namespace $op '$ns' OR " .
-				"(wl_namespace = '$ns' AND " .
-				"wl_title $op= '$title')"
+				"wl_namespace $op $ns OR " .
+				"(wl_namespace = $ns AND " .
+				"wl_title $op= $title)"
 			);
 		}
 

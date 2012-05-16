@@ -76,16 +76,16 @@ class ApiQueryAllLinks extends ApiQueryGeneratorBase {
 			$this->dieUsage( 'alcontinue and alfrom cannot be used together', 'params' );
 		}
 		if ( !is_null( $params['continue'] ) ) {
-			$arr = explode( '|', $params['continue'] );
-			if ( count( $arr ) != 2 ) {
+			$continueArr = explode( '|', $params['continue'] );
+			if ( count( $continueArr ) != 2 ) {
 				$this->dieUsage( 'Invalid continue parameter', 'badcontinue' );
 			}
-			$from = $this->getDB()->strencode( $this->titleToKey( $arr[0] ) );
-			$id = intval( $arr[1] );
+			$continueTitle = $db->addQuotes( $this->titleToKey( $continueArr[0] ) );
+			$continueFrom = intval( $continueArr[1] );
 			$this->addWhere(
-				"pl_title > '$from' OR " .
-				"(pl_title = '$from' AND " .
-				"pl_from > $id)"
+				"pl_title > $continueTitle OR " .
+				"(pl_title = $continueTitle AND " .
+				"pl_from > $continueFrom)"
 			);
 		}
 
