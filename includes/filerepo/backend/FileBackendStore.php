@@ -258,6 +258,17 @@ abstract class FileBackendStore extends FileBackend {
 	}
 
 	/**
+	 * No-op file operation that does nothing.
+	 * Do not call this function from places outside FileBackend and FileOp.
+	 *
+	 * @param $params Array
+	 * @return Status
+	 */
+	final public function nullInternal( array $params ) {
+		return Status::newGood();
+	}
+
+	/**
 	 * @see FileBackend::concatenate()
 	 * @return Status
 	 */
@@ -819,22 +830,6 @@ abstract class FileBackendStore extends FileBackend {
 	abstract public function getFileListInternal( $container, $dir, array $params );
 
 	/**
-	 * Get the list of supported operations and their corresponding FileOp classes.
-	 *
-	 * @return Array
-	 */
-	protected function supportedOperations() {
-		return array(
-			'store'       => 'StoreFileOp',
-			'copy'        => 'CopyFileOp',
-			'move'        => 'MoveFileOp',
-			'delete'      => 'DeleteFileOp',
-			'create'      => 'CreateFileOp',
-			'null'        => 'NullFileOp'
-		);
-	}
-
-	/**
 	 * Return a list of FileOp objects from a list of operations.
 	 * Do not call this function from places outside FileBackend.
 	 *
@@ -846,7 +841,14 @@ abstract class FileBackendStore extends FileBackend {
 	 * @throws MWException
 	 */
 	final public function getOperationsInternal( array $ops ) {
-		$supportedOps = $this->supportedOperations();
+		$supportedOps = array(
+			'store'       => 'StoreFileOp',
+			'copy'        => 'CopyFileOp',
+			'move'        => 'MoveFileOp',
+			'delete'      => 'DeleteFileOp',
+			'create'      => 'CreateFileOp',
+			'null'        => 'NullFileOp'
+		);
 
 		$performOps = array(); // array of FileOp objects
 		// Build up ordered array of FileOps...
@@ -931,6 +933,58 @@ abstract class FileBackendStore extends FileBackend {
 
 		wfProfileOut( __METHOD__ . '-' . $this->name );
 		wfProfileOut( __METHOD__ );
+		return $status;
+	}
+
+	/**
+	 * @see FileBackend::doQuickOperationsInternal()
+	 * @return Status
+	 */
+	final protected function doQuickOperationsInternal( array $ops ) {
+		$status = Status::newGood();
+
+		$async = $this->parallelize;
+		$maxConcurrency = $this->concurrency; // throttle
+
+		$statuses = array(); // array of (index => Status)
+		$fileOpHandles = array(); // list of (index => handle) arrays
+		$curFileOpHandles = array(); // current handle batch
+		// Perform the sync-only ops and build up op handles for the async ops...
+		foreach ( $ops as $index => $params ) {
+			$method = $params['op'] . 'Internal'; // e.g. "storeInternal"
+			if ( !MWInit::methodExists( __CLASS__, $method ) ) {
+				throw new MWException( "Operation '{$params['op']}' is not supported." );
+			}
+			$subStatus = $this->$method( array( 'async' => $async ) + $params );
+			if ( $subStatus->value instanceof FileBackendStoreOpHandle ) {
+				if ( count( $curFileOpHandles ) >= $maxConcurrency ) { // async
+					$fileOpHandles[] = $curFileOpHandles; // push this batch
+					$curFileOpHandles = array();
+				}
+				$curFileOpHandles[$index] = $subStatus->value; // keep index
+			} else { // error or completed
+				$statuses[$index] = $subStatus; // keep index
+			}
+		}
+		if ( count( $curFileOpHandles ) ) {
+			$fileOpHandles[] = $curFileOpHandles; // last batch
+		}
+		// Do all the async ops that can be done concurrently...
+		foreach ( $fileOpHandles as $fileHandleBatch ) {
+			$statuses = $statuses + $this->executeOpHandlesInternal( $fileHandleBatch );
+		}
+		// Marshall and merge all the responses...
+		foreach ( $statuses as $index => $subStatus ) {
+			$status->merge( $subStatus );
+			if ( $subStatus->isOK() ) {
+				$status->success[$index] = true;
+				++$status->successCount;
+			} else {
+				$status->success[$index] = false;
+				++$status->failCount;
+			}
+		}
+
 		return $status;
 	}
 
@@ -1263,7 +1317,7 @@ abstract class FileBackendStore extends FileBackend {
 	/**
 	 * Get the cache key for a container
 	 *
-	 * @param $container Resolved container name
+	 * @param $container string Resolved container name
 	 * @return string
 	 */
 	private function containerCacheKey( $container ) {
@@ -1273,7 +1327,7 @@ abstract class FileBackendStore extends FileBackend {
 	/**
 	 * Set the cached info for a container
 	 *
-	 * @param $container Resolved container name
+	 * @param $container string Resolved container name
 	 * @param $val mixed Information to cache
 	 * @return void
 	 */
@@ -1284,7 +1338,7 @@ abstract class FileBackendStore extends FileBackend {
 	/**
 	 * Delete the cached info for a container
 	 *
-	 * @param $container Resolved container name
+	 * @param $containers string Resolved container name
 	 * @return void
 	 */
 	final protected function deleteContainerCache( $container ) {
@@ -1352,7 +1406,7 @@ abstract class FileBackendStore extends FileBackend {
 	/**
 	 * Get the cache key for a file path
 	 *
-	 * @param $path Storage path
+	 * @param $path string Storage path
 	 * @return string
 	 */
 	private function fileCacheKey( $path ) {
@@ -1362,7 +1416,7 @@ abstract class FileBackendStore extends FileBackend {
 	/**
 	 * Set the cached stat info for a file path
 	 *
-	 * @param $path Storage path
+	 * @param $path string Storage path
 	 * @param $val mixed Information to cache
 	 * @return void
 	 */
@@ -1373,7 +1427,7 @@ abstract class FileBackendStore extends FileBackend {
 	/**
 	 * Delete the cached stat info for a file path
 	 *
-	 * @param $path Storage path
+	 * @param $path string Storage path
 	 * @return void
 	 */
 	final protected function deleteFileCache( $path ) {
