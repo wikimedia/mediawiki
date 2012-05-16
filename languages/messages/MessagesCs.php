@@ -1300,6 +1300,8 @@ Ujistěte se, že tato změna udrží souvislost a posloupnost verzí v historii
 
 # Diffs
 'history-title' => 'Historie verzí stránky „$1“',
+'difference-title' => 'Porovnání verzí stránky „$1“',
+'difference-title-multipage' => 'Porovnání stránek „$1“ a „$2“',
 'difference-multipage' => '(Rozdíly mezi stránkami)',
 'lineno' => 'Řádka $1:',
 'compareselectedversions' => 'Porovnat vybrané verze',

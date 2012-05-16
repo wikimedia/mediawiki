@@ -42,6 +42,7 @@
  * @author Ouda
  * @author Oxydo
  * @author Rami.Awad
+ * @author Reedy
  * @author Riadismet
  * @author Samer
  * @author Sami Lab
@@ -2924,7 +2925,7 @@ $1',
 
 وفي هذه الحالات، يجب عليك نقل أو دمج محتويات الصفحة يدويا، إذا رغب في ذلك.",
 'movearticle' => 'انقل الصفحة:',
-'moveuserpage-warning' => "'''تحذير: أنت على وشك نقل صفحة مستخدم. من فضلك لاحظ أن الصفحة وحدها سوف تنقل وأن المستخدم <u>لن</u> يعاد تسميته.'''",
+'moveuserpage-warning' => "'''تحذير: أنت على وشك نقل صفحة مستخدم. من فضلك لاحظ أن الصفحة وحدها سوف تنقل وأن المستخدم لن يعاد تسميته.'''",
 'movenologin' => 'غير مسجل',
 'movenologintext' => 'يجب أن تكون مستخدما مسجلا وأن تقوم [[Special:UserLogin|بالدخول]] لكي تنقل صفحة.',
 'movenotallowed' => 'أنت لا تمتلك الصلاحية لنقل الصفحات.',

@@ -44,6 +44,7 @@
  * @author Purodha
  * @author Raimond Spekking (Raymond) <raimond.spekking@gmail.com> since January 2007
  * @author Red Baron
+ * @author Reedy
  * @author Remember the dot
  * @author Revolus
  * @author Rillke
@@ -1502,7 +1503,7 @@ Dies kann nicht mehr rückgängig gemacht werden.',
 'gender-unknown' => 'Nicht angegeben',
 'gender-male' => 'Männlich',
 'gender-female' => 'Weiblich',
-'prefs-help-gender' => 'Optional: Wird unter anderem von der Software für die geschlechtsspezifische Anrede genutzt. Diese Information ist <u>öffentlich</u>.',
+'prefs-help-gender' => 'Optional: Wird unter anderem von der Software für die geschlechtsspezifische Anrede genutzt. Diese Information ist öffentlich.',
 'email' => 'E-Mail',
 'prefs-help-realname' => 'Optional. Damit kann dein bürgerlicher Name deinen Beiträgen zugeordnet werden.',
 'prefs-help-email' => 'Die Angabe einer E-Mail-Adresse ist optional, ermöglicht aber die Zusendung eines Ersatzpasswortes, sofern du dein Passwort vergessen hast.',

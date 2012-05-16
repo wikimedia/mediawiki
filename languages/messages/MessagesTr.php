@@ -36,6 +36,7 @@
  * @author Myildirim2007
  * @author Reedy
  * @author Runningfridgesrule
+ * @author Sadrettin
  * @author Srhat
  * @author Stultiwikia
  * @author Suelnur
@@ -987,6 +988,7 @@ Son engelleme günlüğü girdisi referans için aşağıda sağlanmıştır:',
 'note' => "'''Not: '''",
 'previewnote' => "'''Bunun yalnızca bir ön izleme olduğunu unutmayın.'''
 Yaptığınız değişiklikler henüz kaydedilmedi!",
+'continue-editing' => 'Düzenlemeye devam et',
 'previewconflict' => 'Bu önizleme metin düzenleme kutucuğunun üstünde, maddenin eğer değişikliklerinizi kaydetmeyi seçerseniz nasıl görüneceğini yansıtır.',
 'session_fail_preview' => 'Özür dileriz. Oturum açılması ile ilgili veri kaybından kaynaklı değişikliğinizi kaydedemedik. Lütfen tekrar deneyiniz. Eğer bu yöntem işe yaramazsa oturumu kapatıp tekrar sisteme geri giriş yapınız.',
 'session_fail_preview_html' => "'''Üzgünüz! Oturum verisinin kaybolmasından dolayı düzenlemenizi işleme geçiremeyeceğiz.'''
@@ -3234,6 +3236,8 @@ Diğerleri varsayılan olarak gizlenecektir.
 'exif-subjectnewscode' => 'Konu kodu',
 'exif-event' => 'Adı geçen olay',
 'exif-personinimage' => 'Adı geçen kişi',
+'exif-originalimageheight' => 'Resmin kırpılmadan önceki yükseliği',
+'exif-originalimagewidth' => 'Resmin kırpılmadan önceki genişliği',
 
 # EXIF attributes
 'exif-compression-1' => 'Sıkıştırılmamış',
@@ -3821,6 +3825,7 @@ Resimler tam çözünürlükte görüntülenir, diğer dosya tipleri ilgili prog
 'api-error-mustbeposted' => 'İç hata: İstek HTTP POST gerektiriyor.',
 'api-error-nomodule' => 'İç hata: Yükleme modülü ayarı yapılmadı.',
 'api-error-ok-but-empty' => 'İç hata: Sunucu yanıt vermiyor.',
+'api-error-overwrite' => 'Varolan dosyanın üzerine yazmaya izin verilmiyor.',
 'api-error-stashfailed' => 'İç hata: Sunucu, geçici dosyaları kaybetti.',
 'api-error-unclassified' => 'Bilinmeyen bir hata oluştu.',
 'api-error-unknown-code' => 'Bilinmeyen hata: "$1"',
@@ -3828,5 +3833,6 @@ Resimler tam çözünürlükte görüntülenir, diğer dosya tipleri ilgili prog
 'api-error-unknown-warning' => 'Bilinmeyen uyarı: $1',
 'api-error-unknownerror' => 'Bilinmeyen hata: "$1".',
 'api-error-uploaddisabled' => 'Yükleme bu vikide devre dışı bırakılmıştır.',
+'api-error-verification-error' => 'Dosya bozuk veya yanlış uzantıya sahip olabilir.',
 
 );

@@ -2494,10 +2494,10 @@ Che as sërna, për piasì, un nòm diferent për st'artìcol.",
 'movenosubpage' => "Sta pàgina-sì a l'ha gnun-e sot-pàgine.",
 'movereason' => 'Rason:',
 'revertmove' => "buté torna coma a l'era",
-'delete_and_move' => 'Scancela e tramuda',
-'delete_and_move_text' => '==A fa da manca dë scancelé==
+'delete_and_move' => 'Scancelé e tramudé',
+'delete_and_move_text' => "==A fa da manca dë scancelé==
 
-L\'artìcol ëd destinassion "[[:$1]]" a-i é già. Veul-lo scancelelo për avej ëd pòst për tramudé l\'àutr?',
+L'artìcol ëd destinassion «[[:$1]]» a-i é già. Veul-lo scancelelo për avèj ëd pòst për tramudé l'àutr?",
 'delete_and_move_confirm' => 'É, scancela la pàgina',
 'delete_and_move_reason' => 'Scancelà për liberé ël pòst për tramudé "[[$1]]"',
 'selfmove' => "Tìtol neuv e tìtol vej a resto midem antra lor; as peul pa tramudesse na pàgina butand-la andoa che a l'é già.",

@@ -10,6 +10,7 @@
  * @author Bombola
  * @author Dato deutschland
  * @author Dawid Deutschland
+ * @author Erdemaslancan
  * @author Ibero-kolxi
  * @author Reedy
  * @author The Evil IP address
@@ -112,7 +113,10 @@ $messages = array(
 
 # Vector skin
 'vector-action-delete' => 'Jili',
+'vector-action-protect' => 'İçvi',
+'vector-view-create' => 'dokʼidi',
 'vector-view-edit' => 'Doktiri',
+'variants' => "Variant'epe",
 
 'errorpagetitle' => 'Çilata',
 'returnto' => '$1 butʼkʼaşa goikti.',
@@ -327,6 +331,7 @@ Oxo3ʼonapape: (a3ʼineri) = a3ʼineri versiyoni kʼala na ren farkʼi,
 'search-interwiki-more' => '(çkva)',
 'search-mwsuggest-enabled' => 'okʼvandupete',
 'search-mwsuggest-disabled' => 'okʼvandu varen',
+'searchall' => 'mteli',
 'nonefound' => "'''Notʼi''': Xvala, namtini svacoxope maartani oqʼopinot igoren.
 Ogoruşi dudis '''all:''' pʼrefiksi okʼatute doloçʼareli na ren iri şeyi (oğarğaluşi butʼkʼape, şablonepe, doçkva şeyepeti iqʼvasen) mgori varna pʼrefiksi oqʼopinot na igoren svacoxo ixmarit.",
 'powersearch' => 'Mordineri ogoru',
@@ -405,7 +410,10 @@ Ogoruşi dudis '''all:''' pʼrefiksi okʼatute doloçʼareli na ren iri şeyi (o
 'uploadlogpage' => 'Dosya oncğonu kʼayitʼepe',
 'uploadedimage' => 'Siteşa na incğonen resimi: "[[$1]]"',
 
+'license-header' => 'Lisans',
+
 # File description page
+'file-anchor-link' => 'Dosya',
 'filehist' => 'Dosyaşi tarixi',
 'filehist-help' => 'Dosyaşi tarixi oz*iru şeni Ndğa/Ora burme-muşis na renan tarixepes o3ʼkʼedi.',
 'filehist-deleteall' => 'mteli jili',
@@ -549,6 +557,7 @@ Am butʼkʼaşi oçvuşi sinori gaktirinen; ama am oktiroba, kʼademoni oçvalu�
 
 'sp-contributions-newbies' => 'Xvala ağani maxmarepeşi meşvelape ko3ʼiri',
 'sp-contributions-blocklog' => 'Bloğiş kʼayitʼi',
+'sp-contributions-talk' => 'Mesaji',
 'sp-contributions-search' => 'Meşvelape mgori',
 'sp-contributions-username' => 'IP varna maxmare:',
 'sp-contributions-submit' => 'Mgori',
@@ -615,6 +624,9 @@ Mu iqʼven başka coxo doçʼari.',
 
 # Export
 'export' => 'Butʼkʼa ikʼayitʼi',
+
+# Namespace 8 related
+'allmessagesname' => 'Coxo',
 
 # Thumbnails
 'thumbnail-more' => 'Didi qʼvi',

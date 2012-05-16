@@ -3067,6 +3067,10 @@ $1',
 'exif-gpslongitude-e' => 'מזרח לענג',
 'exif-gpslongitude-w' => 'מערב לענג',
 
+# Pseudotags used for GPSAltitudeRef
+'exif-gpsaltitude-above-sealevel' => '$1 {{PLURAL:$1|ngמעטער|מעטער}} איבערן ים־שפיגלl',
+'exif-gpsaltitude-below-sealevel' => '$1 {{PLURAL:$1|מעטער|מעטער}} אונטערן ים־שפיגל',
+
 # Pseudotags used for GPSSpeedRef
 'exif-gpsspeed-k' => 'ק"מ אין א שעה',
 'exif-gpsspeed-m' => 'מייל פער שעה',
@@ -3311,6 +3315,7 @@ $5
 'version-software' => 'אינסטאַלירט ווייכוואַרג',
 'version-software-product' => 'פראדוקט',
 'version-software-version' => 'ווערסיע',
+'version-entrypoints-header-url' => 'URL',
 
 # Special:FilePath
 'filepath' => 'טעקע שטעג',

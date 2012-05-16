@@ -2210,7 +2210,7 @@ $2 نے آخری ریوین تک واپس کیتا۔',
 'undelete-error-short' => 'فاغل واپس کرن چ غلطی: $1',
 'undelete-error-long' => 'فائل واپس کرن  لگیاں غلطیاں ہوئیاں:
 $1',
-'undelete-show-file-confirm' => 'تساں نوں کیا پک اے جے تسیں فائل "<نوکی>$1</نوکی>" دی مٹائی ریوین  $2 توں $3 تک ویکھنا چاندے او؟',
+'undelete-show-file-confirm' => 'تساں نوں کیا پک اے جے تسیں فائل "<nowiki>$1</nowiki>" دی مٹائی ریوین  $2 توں $3 تک ویکھنا چاندے او؟',
 'undelete-show-file-submit' => 'ہاں جی',
 
 # Namespace form on various pages
@@ -2577,7 +2577,7 @@ $1',
 'import-revision-count' => '$1 {{PLURAL:$1|ریوین}}',
 'importnopages' => 'لانے آسطے کوئی صفحہ نئیں۔',
 'imported-log-entries' => '{{PLURAL:$1|لاگ انٹریلاگ انٹریاں}}!!لیاندی گئی $1 {{PLURAL:$1|لاگ انٹری}}.',
-'importfailed' => 'لیانا فیل: <نوکی>$1</نوکی>',
+'importfailed' => 'لیانا فیل: <nowiki>$1</nowiki>',
 'importunknownsource' => 'انجان لیان سورس ٹائپ',
 'importcantopen' => 'لیاندی گئی فائل نئیں کھولی جاسکی',
 'importbadinterwiki' => 'پیڑا انٹروکی لنک',
