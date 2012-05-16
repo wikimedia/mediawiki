@@ -2555,7 +2555,10 @@ class Title {
 					$this->mRestrictions['edit'] = explode( ',', trim( $temp[0] ) );
 					$this->mRestrictions['move'] = explode( ',', trim( $temp[0] ) );
 				} else {
-					$this->mRestrictions[$temp[0]] = explode( ',', trim( $temp[1] ) );
+					$restriction = trim( $temp[1] );
+					if( $restriction != '' ) { //some old entries are empty
+						$this->mRestrictions[$temp[0]] = explode( ',', $restriction );
+					}
 				}
 			}
 
