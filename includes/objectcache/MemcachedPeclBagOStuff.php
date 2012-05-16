@@ -192,8 +192,8 @@ class MemcachedPeclBagOStuff extends MemcachedBagOStuff {
 	 * @param $keys Array
 	 * @return Array
 	 */
-	public function getBatch( array $keys ) {
-		$this->debugLog( 'getBatch(' . implode( ', ', $keys ) . ')' );
+	public function getMulti( array $keys ) {
+		$this->debugLog( 'getMulti(' . implode( ', ', $keys ) . ')' );
 		$callback = array( $this, 'encodeKey' );
 		$result = $this->client->getMulti( array_map( $callback, $keys ) );
 		return $this->checkResult( false, $result );

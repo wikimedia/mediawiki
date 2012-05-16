@@ -66,7 +66,7 @@ abstract class BagOStuff {
 	 * @param $keys Array List of strings
 	 * @return Array
 	 */
-	public function getBatch( array $keys ) {
+	public function getMulti( array $keys ) {
 		$res = array();
 		foreach ( $keys as $key ) {
 			$res[$key] = $this->get( $key );
