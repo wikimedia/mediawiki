@@ -27,6 +27,8 @@
  * to explicitly call MWDebug::init() to enabled them.
  *
  * @todo Profiler support
+ *
+ * @since 1.19
  */
 class MWDebug {
 
@@ -69,6 +71,8 @@ class MWDebug {
 	/**
 	 * Enabled the debugger and load resource module.
 	 * This is called by Setup.php when $wgDebugToolbar is true.
+	 *
+	 * @since 1.19
 	 */
 	public static function init() {
 		self::$enabled = true;
@@ -78,6 +82,7 @@ class MWDebug {
 	 * Add ResourceLoader modules to the OutputPage object if debugging is
 	 * enabled.
 	 *
+	 * @since 1.19
 	 * @param $out OutputPage
 	 */
 	public static function addModules( OutputPage $out ) {
@@ -91,6 +96,7 @@ class MWDebug {
 	 *
 	 * @todo Add support for passing objects
 	 *
+	 * @since 1.19
 	 * @param $str string
 	 */
 	public static function log( $str ) {
@@ -107,6 +113,7 @@ class MWDebug {
 
 	/**
 	 * Returns internal log array
+	 * @since 1.19
 	 * @return array
 	 */
 	public static function getLog() {
@@ -115,6 +122,7 @@ class MWDebug {
 
 	/**
 	 * Clears internal log array and deprecation tracking
+	 * @since 1.19
 	 */
 	public static function clearLog() {
 		self::$log = array();
@@ -124,6 +132,7 @@ class MWDebug {
 	/**
 	 * Adds a warning entry to the log
 	 *
+	 * @since 1.19
 	 * @param $msg
 	 * @param int $callerOffset
 	 * @return mixed
@@ -153,6 +162,7 @@ class MWDebug {
 	/**
 	 * Adds a depreciation entry to the log, along with a backtrace
 	 *
+	 * @since 1.19
 	 * @param $function
 	 * @param $version
 	 * @param $component
@@ -192,6 +202,7 @@ class MWDebug {
 	 * This is a method to pass messages from wfDebug to the pretty debugger.
 	 * Do NOT use this method, use MWDebug::log or wfDebug()
 	 *
+	 * @since 1.19
 	 * @param $str string
 	 */
 	public static function debugMsg( $str ) {
@@ -205,6 +216,7 @@ class MWDebug {
 	/**
 	 * Begins profiling on a database query
 	 *
+	 * @since 1.19
 	 * @param $sql string
 	 * @param $function string
 	 * @param $isMaster bool
@@ -230,6 +242,7 @@ class MWDebug {
 	/**
 	 * Calculates how long a query took.
 	 *
+	 * @since 1.19
 	 * @param $id int
 	 */
 	public static function queryTime( $id ) {
@@ -264,6 +277,7 @@ class MWDebug {
 	/**
 	 * Returns the HTML to add to the page for the toolbar
 	 *
+	 * @since 1.19
 	 * @param $context IContextSource
 	 * @return string
 	 */
