@@ -351,6 +351,77 @@ abstract class FileBackend {
 	}
 
 	/**
+	 * Perform a set of independent file operations on some files.
+	 *
+	 * This does no locking, nor journaling, and possibly no stat calls.
+	 * Any destination files that already exist will be overwritten.
+	 * This should *only* be used on non-original files, like cache files.
+	 *
+	 * Supported operations and their parameters:
+	 * a) Create a new file in storage with the contents of a string
+	 *     array(
+	 *         'op'                  => 'create',
+	 *         'dst'                 => <storage path>,
+	 *         'content'             => <string of new file contents>
+	 *     )
+	 * b) Copy a file system file into storage
+	 *     array(
+	 *         'op'                  => 'store',
+	 *         'src'                 => <file system path>,
+	 *         'dst'                 => <storage path>
+	 *     )
+	 * c) Copy a file within storage
+	 *     array(
+	 *         'op'                  => 'copy',
+	 *         'src'                 => <storage path>,
+	 *         'dst'                 => <storage path>
+	 *     )
+	 * d) Move a file within storage
+	 *     array(
+	 *         'op'                  => 'move',
+	 *         'src'                 => <storage path>,
+	 *         'dst'                 => <storage path>
+	 *     )
+	 * e) Delete a file within storage
+	 *     array(
+	 *         'op'                  => 'delete',
+	 *         'src'                 => <storage path>,
+	 *         'ignoreMissingSource' => <boolean>
+	 *     )
+	 * f) Do nothing (no-op)
+	 *     array(
+	 *         'op'                  => 'null',
+	 *     )
+	 *
+	 * Boolean flags for operations (operation-specific):
+	 * 'ignoreMissingSource' : The operation will simply succeed and do
+	 *                         nothing if the source file does not exist.
+	 *
+	 * Return value:
+	 * This returns a Status, which contains all warnings and fatals that occured
+	 * during the operation. The 'failCount', 'successCount', and 'success' members
+	 * will reflect each operation attempted for the given files. The status will be
+	 * considered "OK" as long as no fatal errors occured.
+	 *
+	 * @param $ops Array Set of operations to execute
+	 * @return Status
+	 */
+	final public function doQuickOperations( array $ops ) {
+		if ( $this->isReadOnly() ) {
+			return Status::newFatal( 'backend-fail-readonly', $this->name, $this->readOnly );
+		}
+		foreach ( $ops as &$op ) {
+			$op['overwrite'] = true; // avoids RTTs in key/value stores
+		}
+		return $this->doQuickOperationsInternal( $ops );
+	}
+
+	/**
+	 * @see FileBackend::doQuickOperations()
+	 */
+	abstract protected function doQuickOperationsInternal( array $ops );
+
+	/**
 	 * Concatenate a list of storage files into a single file system file.
 	 * The target path should refer to a file that is already locked or
 	 * otherwise safe from modification from other processes. Normally,
