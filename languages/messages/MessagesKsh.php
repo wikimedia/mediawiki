@@ -575,7 +575,7 @@ wat en Üvverschrefte nit erlaub es.
 Et künnt ussinn, wie ene InterWikiLink,
 dat jeiht ävver nit.
 Muss De repareere.',
-'perfcached' => 'Di Daate heh noh kumme usem Zweschespeicher (<l lang="en">cache</i>) un künnte nit mieh janz de allerneuste sin.
+'perfcached' => 'Di Daate heh noh kumme usem Zweschespeicher (cache) un künnte nit mieh janz de allerneuste sin.
 {{PLURAL:$1|Bloß ein Antwoot es|Nit mieh wi $1 Antwoote sin|Kein Antwoot es}} doh faßjehallde un ze han.',
 'perfcachedts' => 'De Daate heenoh kumme usem Zweschespeicher (Cache) un woodte aam $2 öm $3 opjenumme. Se künnte nit janz de allerneuste sin.
 {{PLURAL:$4|Bloß ein Antwoot es|Nit mieh wi $4 Antwoote sind|Kein Antwoot es}} doh ze han.',

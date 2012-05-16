@@ -13,6 +13,7 @@
  * @author Kandar
  * @author Meursault2004
  * @author Mssetiadi
+ * @author Reedy
  * @author Urhixidur
  * @author לערי ריינהארט
  */
@@ -717,7 +718,7 @@ Alesanana ''\$2''.
 * Sasaran nudipeungpeuk : \$7
 
 Anjeun bisa nepungan \$1 atawa salasahiji [[{{MediaWiki:Grouppage-sysop}}|kuncén]] séjén pikeun nyawalakeun hal ieu.
-'''<u>Catet</u>''': yén anjeun teu bisa maké fungsi \"surélékan pamaké ieu\" mun anjeun teu ngadaptarkeun alamat surélék nu sah kana [[Special:Preferences|préferénsi pamaké]] anjeun.
+'''Catet''': yén anjeun teu bisa maké fungsi \"surélékan pamaké ieu\" mun anjeun teu ngadaptarkeun alamat surélék nu sah kana [[Special:Preferences|préferénsi pamaké]] anjeun.
 
 Alamat IP anjeun \$3 jeung ID na #\$5.
 Lampirkeun informasi ieu dina unggal ''query'' anjeun.",
