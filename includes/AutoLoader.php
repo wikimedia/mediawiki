@@ -613,6 +613,8 @@ $wgAutoloadLocalClasses = array(
 	'JavaScriptMinifier' => 'includes/libs/JavaScriptMinifier.php',
 	'JSMinPlus' => 'includes/libs/jsminplus.php',
 	'JSParser' => 'includes/libs/jsminplus.php',
+	'HTMLPurifier' => 'includes/libs/HTMLPurifier.php',
+	'HTMLPurifier_Config' => 'includes/libs/HTMLPurifier.php',
 
 	# includes/logging
 	'DatabaseLogEntry' => 'includes/logging/LogEntry.php',
