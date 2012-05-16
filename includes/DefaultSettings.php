@@ -5819,6 +5819,13 @@ $wgDBtestuser = ''; //db user that has permission to create and drop the test da
 $wgDBtestpassword = '';
 
 /**
+ * Use HTMLPurifier from your PHP include path, instead of the version in include/libs/.
+ * HTMLPurifier is available from Ubuntu (php-htmlpurifier), openSUSE (php5-pear-htmlpurifier),
+ * directly from PEAR, etc.
+ */
+$wgUseBuiltinHTMLPurifier = false;
+
+/**
  * For really cool vim folding this needs to be at the end:
  * vim: foldmarker=@{,@} foldmethod=marker
  * @}
