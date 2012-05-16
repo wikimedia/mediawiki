@@ -913,3 +913,7 @@ div.mw-lag-warn-high {
 .tipsy {
 	font-size: 127%;
 }
+
+.skin-monobook #coordinates {
+	right: 1em;
+}
