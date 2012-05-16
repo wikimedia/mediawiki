@@ -612,7 +612,8 @@ class SwiftFileBackend extends FileBackendStore {
 		$status = Status::newGood();
 		$scopeLockS = $this->getScopedFileLocks( array( $path ), LockManager::LOCK_UW, $status );
 		if ( $status->isOK() ) {
-			$tmpFile = $this->getLocalCopy( array( 'src' => $path, 'latest' => 1 ) );
+			# Do not stat the file in getLocalCopy() to avoid infinite loops
+			$tmpFile = $this->getLocalCopy( array( 'src' => $path, 'latest' => 1, 'nostat' => 1 ) );
 			if ( $tmpFile ) {
 				$hash = $tmpFile->getSha1Base36();
 				if ( $hash !== false ) {
@@ -848,7 +849,8 @@ class SwiftFileBackend extends FileBackendStore {
 			return null;
 		}
 
-		if ( !$this->fileExists( $params ) ) {
+		# Check the recursion guard to avoid loops when filling metadata
+		if ( empty( $params['nostat'] ) && !$this->fileExists( $params ) ) {
 			return null;
 		}
 
