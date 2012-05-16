@@ -1,0 +1,3 @@
+[submodule "extensions/RandomRootPage"]
+	path = extensions/RandomRootPage
+	url = ssh://gerrit.wikimedia.org:29418/mediawiki/extensions/RandomRootPage.git
