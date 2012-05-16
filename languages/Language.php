@@ -2718,12 +2718,26 @@ class Language {
 	}
 
 	/**
-	 * An arrow, depending on the language direction
+	 * An arrow, depending on the language direction.
 	 *
+	 * @param $direction String: the direction of the arrow: forwards (default), backwards, left, right, up, down.
 	 * @return string
 	 */
-	function getArrow() {
-		return $this->isRTL() ? '←' : '→';
+	function getArrow( $direction = 'forwards' ) {
+		switch ( $direction ) {
+		case 'forwards':
+			return $this->isRTL() ? '←' : '→';
+		case 'backwards':
+			return $this->isRTL() ? '→' : '←';
+		case 'left':
+			return '←';
+		case 'right':
+			return '→';
+		case 'up':
+			return '↑';
+		case 'down':
+			return '↓';
+		}
 	}
 
 	/**
