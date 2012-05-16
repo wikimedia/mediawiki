@@ -2718,12 +2718,22 @@ class Language {
 	}
 
 	/**
-	 * An arrow, depending on the language direction
+	 * An arrow, depending on the language direction.
+	 * For the other direction use getBackwardArrow().
 	 *
 	 * @return string
 	 */
 	function getArrow() {
 		return $this->isRTL() ? '←' : '→';
+	}
+
+	/**
+	 * A backward arrow, depending on the language direction
+	 *
+	 * @return string
+	 */
+	function getBackwardArrow() {
+		return $this->isRTL() ? '→' : '←';
 	}
 
 	/**
