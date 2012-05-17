@@ -286,8 +286,7 @@ abstract class FileBackend {
 	 * @return Status
 	 */
 	final public function create( array $params, array $opts = array() ) {
-		$params['op'] = 'create';
-		return $this->doOperation( $params, $opts );
+		return $this->doOperation( array( 'op' => 'create' ) + $params, $opts );
 	}
 
 	/**
@@ -301,8 +300,7 @@ abstract class FileBackend {
 	 * @return Status
 	 */
 	final public function store( array $params, array $opts = array() ) {
-		$params['op'] = 'store';
-		return $this->doOperation( $params, $opts );
+		return $this->doOperation( array( 'op' => 'store' ) + $params, $opts );
 	}
 
 	/**
@@ -316,8 +314,7 @@ abstract class FileBackend {
 	 * @return Status
 	 */
 	final public function copy( array $params, array $opts = array() ) {
-		$params['op'] = 'copy';
-		return $this->doOperation( $params, $opts );
+		return $this->doOperation( array( 'op' => 'copy' ) + $params, $opts );
 	}
 
 	/**
@@ -331,8 +328,7 @@ abstract class FileBackend {
 	 * @return Status
 	 */
 	final public function move( array $params, array $opts = array() ) {
-		$params['op'] = 'move';
-		return $this->doOperation( $params, $opts );
+		return $this->doOperation( array( 'op' => 'move' ) + $params, $opts );
 	}
 
 	/**
@@ -346,8 +342,7 @@ abstract class FileBackend {
 	 * @return Status
 	 */
 	final public function delete( array $params, array $opts = array() ) {
-		$params['op'] = 'delete';
-		return $this->doOperation( $params, $opts );
+		return $this->doOperation( array( 'op' => 'delete' ) + $params, $opts );
 	}
 
 	/**

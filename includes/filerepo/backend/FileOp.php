@@ -450,10 +450,13 @@ class StoreFileOp extends FileOp {
 			return $status;
 		// Check if the source file is too big
 		} elseif ( filesize( $this->params['src'] ) > $this->backend->maxFileSizeInternal() ) {
+			$status->fatal( 'backend-fail-maxsize',
+				$this->params['dst'], $this->backend->maxFileSizeInternal() );
 			$status->fatal( 'backend-fail-store', $this->params['src'], $this->params['dst'] );
 			return $status;
 		// Check if a file can be placed at the destination
 		} elseif ( !$this->backend->isPathUsableInternal( $this->params['dst'] ) ) {
+			$status->fatal( 'backend-fail-usable', $this->params['dst'] );
 			$status->fatal( 'backend-fail-store', $this->params['src'], $this->params['dst'] );
 			return $status;
 		}
@@ -507,10 +510,13 @@ class CreateFileOp extends FileOp {
 		$status = Status::newGood();
 		// Check if the source data is too big
 		if ( strlen( $this->getParam( 'content' ) ) > $this->backend->maxFileSizeInternal() ) {
+			$status->fatal( 'backend-fail-maxsize',
+				$this->params['dst'], $this->backend->maxFileSizeInternal() );
 			$status->fatal( 'backend-fail-create', $this->params['dst'] );
 			return $status;
 		// Check if a file can be placed at the destination
 		} elseif ( !$this->backend->isPathUsableInternal( $this->params['dst'] ) ) {
+			$status->fatal( 'backend-fail-usable', $this->params['dst'] );
 			$status->fatal( 'backend-fail-create', $this->params['dst'] );
 			return $status;
 		}
@@ -562,6 +568,7 @@ class CopyFileOp extends FileOp {
 			return $status;
 		// Check if a file can be placed at the destination
 		} elseif ( !$this->backend->isPathUsableInternal( $this->params['dst'] ) ) {
+			$status->fatal( 'backend-fail-usable', $this->params['dst'] );
 			$status->fatal( 'backend-fail-copy', $this->params['src'], $this->params['dst'] );
 			return $status;
 		}
@@ -616,6 +623,7 @@ class MoveFileOp extends FileOp {
 			return $status;
 		// Check if a file can be placed at the destination
 		} elseif ( !$this->backend->isPathUsableInternal( $this->params['dst'] ) ) {
+			$status->fatal( 'backend-fail-usable', $this->params['dst'] );
 			$status->fatal( 'backend-fail-move', $this->params['src'], $this->params['dst'] );
 			return $status;
 		}

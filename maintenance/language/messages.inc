@@ -1388,7 +1388,8 @@ $wgMessageStructure = array(
 		'backend-fail-connect',
 		'backend-fail-internal',
 		'backend-fail-contenttype',
-		'backend-fail-batchsize'
+		'backend-fail-batchsize',
+		'backend-fail-usable'
 	),
 
 	'filejournal-errors' => array(

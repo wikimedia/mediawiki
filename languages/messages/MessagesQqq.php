@@ -1966,6 +1966,8 @@ Extensions making use of it:
 Parameters:
 * $1 is the number of operations attempted at once in this case.
 * $2 is the maximum number of operations that can be attempted at once.',
+'backend-fail-usable' => 'Parameters:
+* $1 is a file path',
 
 # File journal errors
 'filejournal-fail-dbconnect' => 'Parameters:

@@ -137,7 +137,8 @@ abstract class FileBackendStore extends FileBackend {
 		wfProfileIn( __METHOD__ );
 		wfProfileIn( __METHOD__ . '-' . $this->name );
 		if ( filesize( $params['src'] ) > $this->maxFileSizeInternal() ) {
-			$status = Status::newFatal( 'backend-fail-store', $params['dst'] );
+			$status = Status::newFatal( 'backend-fail-maxsize',
+				$params['dst'], $this->maxFileSizeInternal() );
 		} else {
 			$status = $this->doStoreInternal( $params );
 			$this->clearCache( array( $params['dst'] ) );
