@@ -47,6 +47,7 @@ class SwiftFileBackend extends FileBackendStore {
 	protected $conn; // Swift connection handle
 	protected $connStarted = 0; // integer UNIX timestamp
 	protected $connContainers = array(); // container object cache
+	protected $connException; // CloudFiles exception
 
 	/**
 	 * @see FileBackendStore::__construct()
@@ -966,11 +967,11 @@ class SwiftFileBackend extends FileBackendStore {
 	 * Get a connection to the Swift proxy
 	 *
 	 * @return CF_Connection|bool False on failure
-	 * @throws InvalidResponseException
+	 * @throws CloudFilesException
 	 */
 	protected function getConnection() {
-		if ( $this->conn === false ) {
-			throw new InvalidResponseException; // failed last attempt
+		if ( $this->connException instanceof Exception ) {
+			throw $this->connException; // failed last attempt
 		}
 		// Session keys expire after a while, so we renew them periodically
 		if ( $this->conn && ( time() - $this->connStarted ) > $this->authTTL ) {
@@ -978,20 +979,17 @@ class SwiftFileBackend extends FileBackendStore {
 			$this->conn = null;
 		}
 		// Authenticate with proxy and get a session key...
-		if ( $this->conn === null ) {
+		if ( !$this->conn ) {
+			$this->connStarted = 0;
 			$this->connContainers = array();
 			try {
 				$this->auth->authenticate();
 				$this->conn = new CF_Connection( $this->auth );
 				$this->connStarted = time();
-			} catch ( AuthenticationException $e ) {
-				$this->conn = false; // don't keep re-trying
-			} catch ( InvalidResponseException $e ) {
-				$this->conn = false; // don't keep re-trying
+			} catch ( CloudFilesException $e ) {
+				$this->connException = $e; // don't keep re-trying
+				throw $e; // throw it back
 			}
-		}
-		if ( !$this->conn ) {
-			throw new InvalidResponseException; // auth/connection problem
 		}
 		return $this->conn;
 	}
@@ -1010,8 +1008,7 @@ class SwiftFileBackend extends FileBackendStore {
 	 * @param $container string Container name
 	 * @param $bypassCache bool Bypass all caches and load from Swift
 	 * @return CF_Container
-	 * @throws NoSuchContainerException
-	 * @throws InvalidResponseException
+	 * @throws CloudFilesException
 	 */
 	protected function getContainer( $container, $bypassCache = false ) {
 		$conn = $this->getConnection(); // Swift proxy connection
