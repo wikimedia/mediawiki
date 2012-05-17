@@ -43,7 +43,7 @@ abstract class FileJournal {
 	 * Construct a new instance from configuration.
 	 * $config includes:
 	 *     'ttlDays' : days to keep log entries around (false means "forever")
-	 * 
+	 *
 	 * @param $config Array
 	 */
 	protected function __construct( array $config ) {
@@ -52,7 +52,7 @@ abstract class FileJournal {
 
 	/**
 	 * Create an appropriate FileJournal object from config
-	 * 
+	 *
 	 * @param $config Array
 	 * @param $backend string A registered file backend name
 	 * @return FileJournal
@@ -69,7 +69,7 @@ abstract class FileJournal {
 
 	/**
 	 * Get a statistically unique ID string
-	 * 
+	 *
 	 * @return string <9 char TS_MW timestamp in base 36><22 random base 36 chars>
 	 */
 	final public function getTimestampedUUID() {
@@ -88,7 +88,7 @@ abstract class FileJournal {
 	 *     path    : The storage path of the file
 	 *     newSha1 : The final base 36 SHA-1 of the file
 	 * Note that 'false' should be used as the SHA-1 for non-existing files.
-	 * 
+	 *
 	 * @param $entries Array List of file operations (each an array of parameters)
 	 * @param $batchId string UUID string that identifies the operation batch
 	 * @return Status
@@ -102,7 +102,7 @@ abstract class FileJournal {
 
 	/**
 	 * @see FileJournal::logChangeBatch()
-	 * 
+	 *
 	 * @param $entries Array List of file operations (each an array of parameters)
 	 * @param $batchId string UUID string that identifies the operation batch
 	 * @return Status
@@ -110,9 +110,46 @@ abstract class FileJournal {
 	abstract protected function doLogChangeBatch( array $entries, $batchId );
 
 	/**
+	 * Get an array of file change log entries.
+	 * A starting change ID and/or limit can be specified.
+	 *
+	 * The result as a list of associative arrays, each having:
+	 *     id         : unique, monotonic, ID for this change
+	 *     batch_uuid : UUID for an operation batch
+	 *     backend    : the backend name
+	 *     op         : primitive operation (create,update,delete)
+	 *     path       : affected storage path
+	 *     path_sha1  : base 36 sha1 of the affected storage path
+	 *     timestamp  : TS_MW timestamp of the batch change
+
+	 * Also, $next is updated to the ID of the next entry.
+	 *
+	 * @param $start integer Starting change ID or null
+	 * @param $limit integer Maximum number of items to return
+	 * @param &$next string
+	 * @return Array
+	 */
+	final public function getChangeEntries( $start = null, $limit = 0, &$next = null ) {
+		$entries = $this->doGetChangeEntries( $start, $limit ? $limit + 1 : 0 );
+		if ( $limit && count( $entries ) > $limit ) {
+			$last = array_pop( $entries ); // remove the extra entry
+			$next = $last['id']; // update for next call
+		} else {
+			$next = null; // end of list
+		}
+		return $entries;
+	}
+
+	/**
+	 * @see FileJournal::getChangeEntries()
+	 * @return Array
+	 */
+	abstract protected function doGetChangeEntries( $start, $limit );
+
+	/**
 	 * Purge any old log entries
-	 * 
-	 * @return Status 
+	 *
+	 * @return Status
 	 */
 	final public function purgeOldLogs() {
 		return $this->doPurgeOldLogs();
@@ -132,10 +169,18 @@ abstract class FileJournal {
 class NullFileJournal extends FileJournal {
 	/**
 	 * @see FileJournal::logChangeBatch()
-	 * @return Status 
+	 * @return Status
 	 */
 	protected function doLogChangeBatch( array $entries, $batchId ) {
 		return Status::newGood();
+	}
+
+	/**
+	 * @see FileJournal::doGetChangeEntries()
+	 * @return Array
+	 */
+	protected function doGetChangeEntries( $start, $limit ) {
+		return array();
 	}
 
 	/**
