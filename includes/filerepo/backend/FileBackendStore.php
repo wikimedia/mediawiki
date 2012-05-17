@@ -943,6 +943,8 @@ abstract class FileBackendStore extends FileBackend {
 	 * @throws MWException
 	 */
 	final protected function doQuickOperationsInternal( array $ops ) {
+		wfProfileIn( __METHOD__ );
+		wfProfileIn( __METHOD__ . '-' . $this->name );
 		$status = Status::newGood();
 
 		$async = $this->parallelize;
@@ -955,6 +957,8 @@ abstract class FileBackendStore extends FileBackend {
 		foreach ( $ops as $index => $params ) {
 			$method = $params['op'] . 'Internal'; // e.g. "storeInternal"
 			if ( !MWInit::methodExists( __CLASS__, $method ) ) {
+				wfProfileOut( __METHOD__ . '-' . $this->name );
+				wfProfileOut( __METHOD__ );
 				throw new MWException( "Operation '{$params['op']}' is not supported." );
 			}
 			$subStatus = $this->$method( array( 'async' => $async ) + $params );
@@ -987,6 +991,8 @@ abstract class FileBackendStore extends FileBackend {
 			}
 		}
 
+		wfProfileOut( __METHOD__ . '-' . $this->name );
+		wfProfileOut( __METHOD__ );
 		return $status;
 	}
 
