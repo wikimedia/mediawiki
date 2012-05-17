@@ -947,7 +947,7 @@ abstract class FileBackendStore extends FileBackend {
 		wfProfileIn( __METHOD__ . '-' . $this->name );
 		$status = Status::newGood();
 
-		$async = $this->parallelize;
+		$async = ( $this->parallelize === 'implicit' );
 		$maxConcurrency = $this->concurrency; // throttle
 
 		$statuses = array(); // array of (index => Status)
