@@ -299,6 +299,24 @@ class FileBackendMultiWrite extends FileBackend {
 	}
 
 	/**
+	 * @see FileBackend::doQuickOperationsInternal()
+	 * @return Status
+	 */
+	public function doQuickOperationsInternal( array $ops ) {
+		// Do the operations on the master backend; setting Status fields...
+		$realOps = $this->substOpBatchPaths( $ops, $this->backends[$this->masterIndex] );
+		$status = $this->backends[$this->masterIndex]->doQuickOperations( $realOps );
+		// Propagate the operations to the clone backends...
+		foreach ( $this->backends as $index => $backend ) {
+			if ( $index !== $this->masterIndex ) { // not done already
+				$realOps = $this->substOpBatchPaths( $ops, $backend );
+				$status->merge( $backend->doQuickOperations( $realOps ) );
+			}
+		}
+		return $status;
+	}
+
+	/**
 	 * @see FileBackend::doPrepare()
 	 * @return Status
 	 */
