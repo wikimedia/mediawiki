@@ -103,7 +103,9 @@ abstract class FileBackend {
 			? $config['lockManager']
 			: LockManagerGroup::singleton()->get( $config['lockManager'] );
 		$this->fileJournal = isset( $config['fileJournal'] )
-			? FileJournal::factory( $config['fileJournal'], $this->name )
+			? ( ( $config['fileJournal'] instanceof FileJournal )
+				? $config['fileJournal']
+				: FileJournal::factory( $config['fileJournal'], $this->name ) )
 			: FileJournal::factory( array( 'class' => 'NullFileJournal' ), $this->name );
 		$this->readOnly = isset( $config['readOnly'] )
 			? (string)$config['readOnly']

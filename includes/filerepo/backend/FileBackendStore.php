@@ -966,7 +966,7 @@ abstract class FileBackendStore extends FileBackend {
 	 * @see FileBackend::doOperationsInternal()
 	 * @return Status
 	 */
-	protected function doOperationsInternal( array $ops, array $opts ) {
+	final protected function doOperationsInternal( array $ops, array $opts ) {
 		wfProfileIn( __METHOD__ );
 		wfProfileIn( __METHOD__ . '-' . $this->name );
 		$status = Status::newGood();

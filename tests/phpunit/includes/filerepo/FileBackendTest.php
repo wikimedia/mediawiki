@@ -243,6 +243,8 @@ class FileBackendTest extends MediaWikiTestCase {
 		$props2 = $this->backend->getFileProps( array( 'src' => $dest ) );
 		$this->assertEquals( $props1, $props2,
 			"Source and destination have the same props ($backendName)." );
+
+		$this->assertBackendPathsConsistent( array( $dest ) );
 	}
 
 	public function provider_testStore() {
@@ -330,6 +332,8 @@ class FileBackendTest extends MediaWikiTestCase {
 		$props2 = $this->backend->getFileProps( array( 'src' => $dest ) );
 		$this->assertEquals( $props1, $props2,
 			"Source and destination have the same props ($backendName)." );
+
+		$this->assertBackendPathsConsistent( array( $source, $dest ) );
 	}
 
 	public function provider_testCopy() {
@@ -419,6 +423,8 @@ class FileBackendTest extends MediaWikiTestCase {
 			"Source file does not exist accourding to props ($backendName)." );
 		$this->assertEquals( true, $props2['fileExists'],
 			"Destination file exists accourding to props ($backendName)." );
+
+		$this->assertBackendPathsConsistent( array( $source, $dest ) );
 	}
 
 	public function provider_testMove() {
@@ -504,6 +510,8 @@ class FileBackendTest extends MediaWikiTestCase {
 		$props1 = $this->backend->getFileProps( array( 'src' => $source ) );
 		$this->assertFalse( $props1['fileExists'],
 			"Source file $source does not exist according to props ($backendName)." );
+
+		$this->assertBackendPathsConsistent( array( $source ) );
 	}
 
 	public function provider_testDelete() {
@@ -595,6 +603,8 @@ class FileBackendTest extends MediaWikiTestCase {
 				$this->backend->getFileSize( array( 'src' => $dest ) ),
 				"Destination file $dest has original size according to props ($backendName)." );
 		}
+
+		$this->assertBackendPathsConsistent( array( $dest ) );
 	}
 
 	/**
@@ -1820,6 +1830,13 @@ class FileBackendTest extends MediaWikiTestCase {
 			}
 		}
 		$this->backend->clean( array( 'dir' => "$base/$container", 'recursive' => 1 ) );
+	}
+
+	function assertBackendPathsConsistent( array $paths ) {
+		if ( $this->backend instanceof FileBackendMultiWrite ) {
+			$status = $this->backend->consistencyCheck( $paths );
+			$this->assertGoodStatus( $status, "Files synced: " . implode( ',', $paths ) );
+		}
 	}
 
 	function assertGoodStatus( $status, $msg ) {
