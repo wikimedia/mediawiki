@@ -899,27 +899,7 @@ class SpecialSearch extends SpecialPage {
 			) .
 			Xml::element( 'legend', null, $this->msg('powersearch-legend' )->text() ) .
 			Xml::tags( 'h4', null, $this->msg( 'powersearch-ns' )->parse() ) .
-			Xml::tags(
-				'div',
-				array( 'id' => 'mw-search-togglebox' ),
-				Xml::label( $this->msg( 'powersearch-togglelabel' )->text(), 'mw-search-togglelabel' ) .
-					Xml::element(
-						'input',
-						array(
-							'type'=>'button',
-							'id' => 'mw-search-toggleall',
-							'value' => $this->msg( 'powersearch-toggleall' )->text()
-						)
-					) .
-					Xml::element(
-						'input',
-						array(
-							'type'=>'button',
-							'id' => 'mw-search-togglenone',
-							'value' => $this->msg( 'powersearch-togglenone' )->text()
-						)
-					)
-			) .
+			Html::element( 'div', array( 'id' => 'mw-search-togglebox' ) ) .
 			Xml::element( 'div', array( 'class' => 'divider' ), '', false ) .
 			implode( Xml::element( 'div', array( 'class' => 'divider' ), '', false ), $showSections ) .
 			$hidden .
