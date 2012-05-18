@@ -3390,10 +3390,8 @@ class Parser {
 		}
 
 		# Replace raw HTML by a placeholder
-		# Add a blank line preceding, to prevent it from mucking up
-		# immediately preceding headings
 		if ( $isHTML ) {
-			$text = "\n\n" . $this->insertStripItem( $text );
+			$text = $this->insertStripItem( $text );
 		} elseif ( $nowiki && ( $this->ot['html'] || $this->ot['pre'] ) ) {
 			# Escape nowiki-style return values
 			$text = wfEscapeWikiText( $text );
