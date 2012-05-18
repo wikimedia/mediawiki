@@ -250,6 +250,8 @@ class Language {
 			$type = gettype( $code );
 			if( $type === 'object' ) {
 				$addmsg = " of class " . get_class( $code );
+			} else {
+				$addmsg = '';
 			}
 			throw new MWException( __METHOD__ . " must be passed a string, $type given$addmsg" );
 		}
