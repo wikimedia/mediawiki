@@ -32,7 +32,8 @@ class FSFile {
 	/**
 	 * Sets up the file object
 	 *
-	 * @param String $path Path to temporary file on local disk
+	 * @param $path string Path to temporary file on local disk
+	 * @throws MWException
 	 */
 	public function __construct( $path ) {
 		if ( FileBackend::isStoragePath( $path ) ) {
@@ -169,6 +170,7 @@ class FSFile {
 	/**
 	 * Exract image size information
 	 *
+	 * @param $gis array
 	 * @return Array
 	 */
 	protected function extractImageSizeInfo( array $gis ) {

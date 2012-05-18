@@ -33,7 +33,7 @@ class DBFileJournal extends FileJournal {
 	 * Construct a new instance from configuration.
 	 * $config includes:
 	 *     'wiki' : wiki name to use for LoadBalancer
-	 *
+	 * 
 	 * @param $config Array
 	 */
 	protected function __construct( array $config ) {
@@ -44,18 +44,18 @@ class DBFileJournal extends FileJournal {
 
 	/**
 	 * @see FileJournal::logChangeBatch()
+	 * @param $entries array
+	 * @param $batchId string
 	 * @return Status
 	 */
 	protected function doLogChangeBatch( array $entries, $batchId ) {
 		$status = Status::newGood();
 
-		try {
-			$dbw = $this->getMasterDB();
-		} catch ( DBError $e ) {
+		$dbw = $this->getMasterDB();
+		if ( !$dbw ) {
 			$status->fatal( 'filejournal-fail-dbconnect', $this->backend );
 			return $status;
 		}
-
 		$now = wfTimestamp( TS_UNIX );
 
 		$data = array();
@@ -84,38 +84,8 @@ class DBFileJournal extends FileJournal {
 	}
 
 	/**
-	 * @see FileJournal::doGetChangeEntries()
-	 * @return Array
-	 * @throws DBError
-	 */
-	protected function doGetChangeEntries( $start, $limit ) {
-		$dbw = $this->getMasterDB();
-
-		$res = $dbw->select( 'filejournal', '*',
-			array(
-				'fj_backend' => $this->backend,
-				'fj_id >= ' . $dbw->addQuotes( (int)$start ) ), // $start may be 0
-			__METHOD__,
-			array_merge( array( 'ORDER BY' => 'fj_id ASC' ),
-				$limit ? array( 'LIMIT' => $limit ) : array() )
-		);
-
-		$entries = array();
-		foreach ( $res as $row ) {
-			$item = array();
-			foreach ( (array)$row as $key => $value ) {
-				$item[substr( $key, 3 )] = $value; // "fj_op" => "op"
-			}
-			$entries[] = $item;
-		}
-
-		return $entries;
-	}
-
-	/**
 	 * @see FileJournal::purgeOldLogs()
 	 * @return Status
-	 * @throws DBError
 	 */
 	protected function doPurgeOldLogs() {
 		$status = Status::newGood();
@@ -124,26 +94,38 @@ class DBFileJournal extends FileJournal {
 		}
 
 		$dbw = $this->getMasterDB();
+		if ( !$dbw ) {
+			$status->fatal( 'filejournal-fail-dbconnect', $this->backend );
+			return $status;
+		}
 		$dbCutoff = $dbw->timestamp( time() - 86400 * $this->ttlDays );
 
-		$dbw->begin();
-		$dbw->delete( 'filejournal',
-			array( 'fj_timestamp < ' . $dbw->addQuotes( $dbCutoff ) ),
-			__METHOD__
-		);
-		$dbw->commit();
+		try {
+			$dbw->begin();
+			$dbw->delete( 'filejournal',
+				array( 'fj_timestamp < ' . $dbw->addQuotes( $dbCutoff ) ),
+				__METHOD__
+			);
+			$dbw->commit();
+		} catch ( DBError $e ) {
+			$status->fatal( 'filejournal-fail-dbquery', $this->backend );
+			return $status;
+		}
 
 		return $status;
 	}
 
 	/**
 	 * Get a master connection to the logging DB
-	 *
-	 * @return DatabaseBase
-	 * @throws DBError
+	 * 
+	 * @return DatabaseBase|null 
 	 */
 	protected function getMasterDB() {
-		$lb = wfGetLBFactory()->newMainLB();
-		return $lb->getConnection( DB_MASTER, array(), $this->wiki );
+		try {
+			$lb = wfGetLBFactory()->newMainLB();
+			return $lb->getConnection( DB_MASTER, array(), $this->wiki );
+		} catch ( DBConnectionError $e ) {
+			return null;
+		}
 	}
 }
