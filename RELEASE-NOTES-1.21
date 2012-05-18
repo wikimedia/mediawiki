@@ -84,6 +84,7 @@ production.
 * (bug 36053) Log in "returnto" feature forgets query parameters if no
   title parameter was specified.
 * (bug 42410) API action=edit now returns correct timestamp for the new edit.
+* (bug 14901) Email notification mistakes log action for new page creation.
 
 === API changes in 1.21 ===
 * prop=revisions can now report the contentmodel and contentformat, see docs/contenthandler.txt.
