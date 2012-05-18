@@ -395,7 +395,7 @@ class UserMailer {
  */
 class EmailNotification {
 	protected $subject, $body, $replyto, $from;
-	protected $timestamp, $summary, $minorEdit, $oldid, $composed_common;
+	protected $timestamp, $summary, $minorEdit, $oldid, $composed_common, $pageStatus;
 	protected $mailTargets = array();
 
 	/**
@@ -420,8 +420,9 @@ class EmailNotification {
 	 * @param $summary
 	 * @param $minorEdit
 	 * @param $oldid (default: false)
+	 * @param $pageStatus (default: 'changed')
 	 */
-	public function notifyOnPageChange( $editor, $title, $timestamp, $summary, $minorEdit, $oldid = false ) {
+	public function notifyOnPageChange( $editor, $title, $timestamp, $summary, $minorEdit, $oldid = false, $pageStatus = 'changed' ) {
 		global $wgEnotifUseJobQ, $wgEnotifWatchlist, $wgShowUpdatedMarker, $wgEnotifMinorEdits,
 			$wgUsersNotifiedOnAllChanges, $wgEnotifUserTalk;
 
@@ -488,12 +489,13 @@ class EmailNotification {
 				'summary' => $summary,
 				'minorEdit' => $minorEdit,
 				'oldid' => $oldid,
-				'watchers' => $watchers
+				'watchers' => $watchers,
+				'pageStatus' => $pageStatus
 			);
 			$job = new EnotifNotifyJob( $title, $params );
 			$job->insert();
 		} else {
-			$this->actuallyNotifyOnPageChange( $editor, $title, $timestamp, $summary, $minorEdit, $oldid, $watchers );
+			$this->actuallyNotifyOnPageChange( $editor, $title, $timestamp, $summary, $minorEdit, $oldid, $watchers, $pageStatus );
 		}
 	}
 
@@ -511,7 +513,8 @@ class EmailNotification {
 	 * @param $oldid int Revision ID
 	 * @param $watchers array of user IDs
 	 */
-	public function actuallyNotifyOnPageChange( $editor, $title, $timestamp, $summary, $minorEdit, $oldid, $watchers ) {
+	public function actuallyNotifyOnPageChange( $editor, $title, $timestamp, $summary, $minorEdit,
+		$oldid, $watchers, $pageStatus = 'changed' ) {
 		# we use $wgPasswordSender as sender's address
 		global $wgEnotifWatchlist;
 		global $wgEnotifMinorEdits, $wgEnotifUserTalk;
@@ -531,6 +534,14 @@ class EmailNotification {
 		$this->oldid = $oldid;
 		$this->editor = $editor;
 		$this->composed_common = false;
+		$this->pageStatus = $pageStatus;
+
+		$formattedPageStatus = array( 'deleted', 'created', 'moved', 'restored', 'changed' );
+
+		wfRunHooks( 'UpdateUserMailerFormattedPageStatus', array( &$formattedPageStatus ) );
+		if ( !in_array( $this->pageStatus, $formattedPageStatus ) ) {
+			throw new MWException( 'Not a valid page status!' );
+		}
 
 		$userTalkId = false;
 
@@ -620,26 +631,27 @@ class EmailNotification {
 
 		$keys = array();
 		$postTransformKeys = array();
+		$pageTitleUrl = $this->title->getCanonicalUrl();
+		$pageTitle = $this->title->getPrefixedText();
 
 		if ( $this->oldid ) {
 			// Always show a link to the diff which triggered the mail. See bug 32210.
-			$keys['$NEWPAGE'] = wfMessage( 'enotif_lastdiff',
+			$keys['$NEWPAGE'] = "\n\n" . wfMessage( 'enotif_lastdiff',
 				$this->title->getCanonicalUrl( 'diff=next&oldid=' . $this->oldid ) )
 				->inContentLanguage()->text();
+
 			if ( !$wgEnotifImpersonal ) {
 				// For personal mail, also show a link to the diff of all changes
 				// since last visited.
-				$keys['$NEWPAGE'] .= " \n" . wfMessage( 'enotif_lastvisited',
+				$keys['$NEWPAGE'] .= "\n\n" .  wfMessage( 'enotif_lastvisited',
 					$this->title->getCanonicalUrl( 'diff=0&oldid=' . $this->oldid ) )
 					->inContentLanguage()->text();
 			}
 			$keys['$OLDID']   = $this->oldid;
-			$keys['$CHANGEDORCREATED'] = wfMessage( 'changed' )->inContentLanguage()->text();
 		} else {
-			$keys['$NEWPAGE'] = wfMessage( 'enotif_newpagetext' )->inContentLanguage()->text();
 			# clear $OLDID placeholder in the message template
 			$keys['$OLDID']   = '';
-			$keys['$CHANGEDORCREATED'] = wfMessage( 'created' )->inContentLanguage()->text();
+			$keys['$NEWPAGE'] = '';
 		}
 
 		$keys['$PAGETITLE'] = $this->title->getPrefixedText();
@@ -653,6 +665,7 @@ class EmailNotification {
 			$keys['$PAGEEDITOR'] = wfMessage( 'enotif_anon_editor', $this->editor->getName() )
 				->inContentLanguage()->text();
 			$keys['$PAGEEDITOR_EMAIL'] = wfMessage( 'noemailtitle' )->inContentLanguage()->text();
+
 		} else {
 			$keys['$PAGEEDITOR'] = $wgEnotifUseRealName ? $this->editor->getRealName() : $this->editor->getName();
 			$emailPage = SpecialPage::getSafeTitleFor( 'Emailuser', $this->editor->getName() );
@@ -665,11 +678,11 @@ class EmailNotification {
 		$postTransformKeys['$PAGESUMMARY'] = $this->summary == '' ? ' - ' : $this->summary;
 
 		# Now build message's subject and body
+		$this->subject = wfMessage( 'enotif_subject_' . $this->pageStatus )->inContentLanguage()->
+							params( $pageTitle, $keys['$PAGEEDITOR'] )->escaped();
 
-		$subject = wfMessage( 'enotif_subject' )->inContentLanguage()->plain();
-		$subject = strtr( $subject, $keys );
-		$subject = MessageCache::singleton()->transform( $subject, false, null, $this->title );
-		$this->subject = strtr( $subject, $postTransformKeys );
+		$keys['$PAGEINTRO'] = wfMessage( 'enotif_body_intro_' . $this->pageStatus )->inContentLanguage()->
+							params( $pageTitle, $keys['$PAGEEDITOR'], $pageTitleUrl )->escaped();
 
 		$body = wfMessage( 'enotif_body' )->inContentLanguage()->plain();
 		$body = strtr( $body, $keys );

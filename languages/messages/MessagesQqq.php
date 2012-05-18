@@ -2688,17 +2688,29 @@ Similar to {{msg-mw|rcnote}} which is used on [[Special:RecentChanges]].
 
 'enotif_reset' => "This should be translated as \"Mark all pages '''as''' visited\".",
 'enotif_newpagetext' => 'Part of text of a notification e-mail sent when a watched page has been created. See [[File:Screenshot_MediaWiki_e-mail_notifier.PNG|150px|right]]',
-'changed' => 'Possible value for $CHANGEDORCREATED in {{msg|enotif_subject}} and {{msg|enotif_body}}.',
-'created' => 'Possible value for $CHANGEDORCREATED in {{msg|enotif_subject}} and {{msg|enotif_body}}.',
-'enotif_subject' => '$CHANGEDORCREATED can be one of {{msg|changed}} and {{msg|created}}. Can also be {{msg-mw|blog-added}} or {{msg-mw|blog-edited}} from Wikia.',
+
+'enotif_subject_deleted' => 'Email notification subject for deleted pages, $1 is page title, $2 is page editor.',
+'enotif_subject_created' => 'Email notification subject for new pages, $1 is page title, $2 is page editor.',
+'enotif_subject_moved' => 'Email notification subject for pages that get moved, $1 is page title, $2 is page editor.',
+'enotif_subject_restored' => 'Email notification subject for pages that get restored, $1 is page title, $2 is page editor.',
+'enotif_subject_changed' => 'Email notification subject for pages that get changed, $1 is page title, $2 is page editor.',
+
+'enotif_body_intro_deleted'        =>  'Email notification body intro text for deleted pages, $1 is the page title, $2 is the page editor, $3 is page url.',
+'enotif_body_intro_created'        =>  'Email notification body intro text for new pages, $1 is the page title, $2 is the page editor, $3 is page url.',
+'enotif_body_intro_moved'          =>  'Email notification body intro for pages that get moved, $1 is the page title, $2 is the page editor, $3 is page url.',
+'enotif_body_intro_restored'       =>  'Email notification body intro tfor pages that get restored, $1 is the page title, $2 is the page editor, $3 is page url.',
+'enotif_body_intro_changed'        =>  'Email notification body intro for pages that get changed, $1 is the page title, $2 is the page editor, $3 is page url.',
+
 'enotif_lastvisited' => '$1 is a URL address.',
 'enotif_lastdiff' => 'E-mail notification text to the latest page differences. Parameters:
 * $1 is a link to a diff, shown as a plain link.',
 'enotif_anon_editor' => 'User name in an e-mail notification when referring to an anonymous user. Parameters:
 * $1 is the anonymous user name (i.e. an IP address).',
-'enotif_body' => 'Text of a notification e-mail sent when a watched page has been edited or deleted.[[File:Screenshot_MediaWiki_e-mail_notifier.PNG|150px|right]]
 
-* <tt>$CHANGEDORCREATED</tt> can be one of {{msg-mw|changed}}, {{msg-mw|created}}, or {{msg-mw|deleted}}. Can also be {{msg-mw|blog-added}} or {{msg-mw|blog-edited}} from Wikia.',
+'enotif_body'        => 'Text of a notification e-mail sent when a watched page has been created, edited, deleted, moved or restored. [[File:Screenshot_MediaWiki_e-mail_notifier.PNG|150px|right]]
+
+$PAGETITLE_URL is the full URL for the page acted on. $PAGEINTRO has the possible values of {{msg|enotif_body_intro_deleted}}, {{msg|enotif_body_intro_created}}, {{msg|enotif_body_intro_moved}}, {{msg|enotif_body_intro_restored}}, {{msg|enotif_body_intro_changed}}
+$NEWPAGE has the possible values of {{msg|enotif_newpagetext}}, {{msg|enotif_lastvisited}}, or {{msg|enotif_lastdiff}}',
 
 # Delete
 'confirm' => 'Submit button text for protection confirmation
