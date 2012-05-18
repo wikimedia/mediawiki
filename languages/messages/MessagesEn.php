@@ -2869,22 +2869,28 @@ Future changes to this page and its associated talk page will be listed there, a
 'unwatching'     => 'Unwatching...',
 'watcherrortext' => 'An error occurred while changing your watchlist settings for "$1".',
 
-'enotif_mailer'                => '{{SITENAME}} notification mailer',
-'enotif_reset'                 => 'Mark all pages visited',
-'enotif_newpagetext'           => 'This is a new page.',
-'enotif_impersonal_salutation' => '{{SITENAME}} user',
-'changed'                      => 'changed',
-'created'                      => 'created',
-'enotif_subject'               => '{{SITENAME}} page $PAGETITLE has been $CHANGEDORCREATED by $PAGEEDITOR',
-'enotif_lastvisited'           => 'See $1 for all changes since your last visit.',
-'enotif_lastdiff'              => 'See $1 to view this change.',
-'enotif_anon_editor'           => 'anonymous user $1',
+'enotif_mailer'                    => '{{SITENAME}} notification mailer',
+'enotif_reset'                     => 'Mark all pages visited',
+'enotif_impersonal_salutation'     => '{{SITENAME}} user',
+
+'enotif_subject_deleted'           => '{{SITENAME}} page $1 has been deleted by {{gender:$2|$2}}',
+'enotif_subject_created'           => '{{SITENAME}} page $1 has been created by {{gender:$2|$2}}',
+'enotif_subject_moved'             => '{{SITENAME}} page $1 has been moved by {{gender:$2|$2}}',
+'enotif_subject_restored'          => '{{SITENAME}} page $1 has been restored by {{gender:$2|$2}}',
+'enotif_subject_changed'           => '{{SITENAME}} page $1 has been changed by {{gender:$2|$2}}',
+'enotif_body_intro_deleted'        =>  'The {{SITENAME}} page $1 has been deleted on $PAGEEDITDATE by {{gender:$2|$2}}, see $3 for the current revision.',
+'enotif_body_intro_created'        =>  'The {{SITENAME}} page $1 has been created on $PAGEEDITDATE by {{gender:$2|$2}}, see $3 for the current revision.',
+'enotif_body_intro_moved'          =>  'The {{SITENAME}} page $1 has been moved on $PAGEEDITDATE by {{gender:$2|$2}}, see $3 for the current revision.',
+'enotif_body_intro_restored'       =>  'The {{SITENAME}} page $1 has been restored on $PAGEEDITDATE by {{gender:$2|$2}}, see $3 for the current revision.',
+'enotif_body_intro_changed'        =>  'The {{SITENAME}} page $1 has been changed on $PAGEEDITDATE by {{gender:$2|$2}}, see $3 for the current revision.',
+
+'enotif_lastvisited'               => 'See $1 for all changes since your last visit.',
+'enotif_lastdiff'                  => 'See $1 to view this change.',
+'enotif_anon_editor'               => 'anonymous user $1',
+
 'enotif_body'                  => 'Dear $WATCHINGUSERNAME,
 
-
-The {{SITENAME}} page $PAGETITLE has been $CHANGEDORCREATED on $PAGEEDITDATE by $PAGEEDITOR, see $PAGETITLE_URL for the current revision.
-
-$NEWPAGE
+$PAGEINTRO $NEWPAGE
 
 Editor\'s summary: $PAGESUMMARY $PAGEMINOREDIT
 
@@ -2892,8 +2898,7 @@ Contact the editor:
 mail: $PAGEEDITOR_EMAIL
 wiki: $PAGEEDITOR_WIKI
 
-There will be no other notifications in case of further changes unless you visit this page.
-You could also reset the notification flags for all your watched pages on your watchlist.
+There will be no other notifications in case of further changes unless you visit this page. You could also reset the notification flags for all your watched pages on your watchlist.
 
 			 Your friendly {{SITENAME}} notification system
 
