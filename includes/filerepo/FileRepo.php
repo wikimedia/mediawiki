@@ -852,14 +852,11 @@ class FileRepo {
 			$operations[] = array(
 				'op'        => 'store',
 				'src'       => $src,
-				'dst'       => $this->resolveToStoragePath( $dst ),
-				'overwrite' => true
+				'dst'       => $this->resolveToStoragePath( $dst )
 			);
 			$this->backend->prepare( array( 'dir' => dirname( $dst ) ) );
 		}
-		$status->merge( $this->backend->doOperations( $operations,
-			array( 'force' => 1, 'nonLocking' => 1, 'allowStale' => 1, 'nonJournaled' => 1 )
-		) );
+		$status->merge( $this->backend->doQuickOperations( $operations ) );
 
 		return $status;
 	}
@@ -882,9 +879,7 @@ class FileRepo {
 				'ignoreMissingSource' => true
 			);
 		}
-		$status->merge( $this->backend->doOperations( $operations,
-			array( 'force' => 1, 'nonLocking' => 1, 'allowStale' => 1, 'nonJournaled' => 1 )
-		) );
+		$status->merge( $this->backend->doQuickOperations( $operations ) );
 
 		return $status;
 	}
