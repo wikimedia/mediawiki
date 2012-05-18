@@ -973,10 +973,6 @@ class SwiftFileBackend extends FileBackendStore {
 			$statuses[$index] = $status;
 		}
 
-		foreach ( $fileOpHandles as $fileOpHandle ) {
-			$fileOpHandle->closeResources();
-		}
-
 		return $statuses;
 	}
 

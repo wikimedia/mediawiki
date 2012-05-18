@@ -1016,6 +1016,9 @@ abstract class FileBackendStore extends FileBackend {
 			}
 		}
 		$res = $this->doExecuteOpHandlesInternal( $fileOpHandles );
+		foreach ( $fileOpHandles as $fileOpHandle ) {
+			$fileOpHandle->closeResources();
+		}
 		wfProfileOut( __METHOD__ . '-' . $this->name );
 		wfProfileOut( __METHOD__ );
 		return $res;
