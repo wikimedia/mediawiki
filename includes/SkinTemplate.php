@@ -294,7 +294,11 @@ class SkinTemplate extends Skin {
 		$tpl->set( 'specialpageattributes', '' ); # obsolete
 
 		if ( $userlang !== $wgContLang->getHtmlCode() || $userdir !== $wgContLang->getDir() ) {
-			$attrs = " lang='$userlang' dir='$userdir'";
+			$escUserlang = htmlspecialchars( $userlang );
+			$escUserdir = htmlspecialchars( $userdir );
+			// Attributes must be in double quotes because htmlspecialchars() doesn't
+			// escape single quotes
+			$attrs = " lang=\"$escUserlang\" dir=\"$escUserdir\"";
 			$tpl->set( 'userlangattributes', $attrs );
 		}
 
