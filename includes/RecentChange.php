@@ -55,6 +55,7 @@
  *  lang            the interwiki prefix, automatically set in save()
  *  oldSize         text size before the change
  *  newSize         text size after the change
+ *  pageStatus      status of the page: created, deleted, moved, restored, changed (for enotify text)
  *
  * temporary:       not stored in the database
  *      notificationtimestamp
@@ -249,7 +250,8 @@ class RecentChange {
 				$this->mAttribs['rc_timestamp'],
 				$this->mAttribs['rc_comment'],
 				$this->mAttribs['rc_minor'],
-				$this->mAttribs['rc_last_oldid'] );
+				$this->mAttribs['rc_last_oldid'],
+				$this->mExtra['pageStatus'] );
 		}
 	}
 
@@ -436,6 +438,7 @@ class RecentChange {
 			'lastTimestamp' => $lastTimestamp,
 			'oldSize'       => $oldSize,
 			'newSize'       => $newSize,
+			'pageStatus'   => 'changed'
 		);
 		$rc->save();
 		return $rc;
@@ -493,7 +496,8 @@ class RecentChange {
 			'prefixedDBkey' => $title->getPrefixedDBkey(),
 			'lastTimestamp' => 0,
 			'oldSize' => 0,
-			'newSize' => $size
+			'newSize' => $size,
+			'pageStatus' => 'created'
 		);
 		$rc->save();
 		return $rc;
@@ -547,6 +551,28 @@ class RecentChange {
 		$type, $action, $target, $logComment, $params, $newId=0, $actionCommentIRC='' ) {
 		global $wgRequest;
 
+		## Get pageStatus for enotify
+		switch ( $action ) {
+			case 'delete':
+				$pageStatus = 'deleted';
+				break;
+			case 'move':
+			case 'move_redir':
+				$pageStatus = 'moved';
+				break;
+			case 'restore':
+				$pageStatus = 'restored';
+				break;
+			case 'create':
+			case 'upload':
+				$pageStatus = 'created';
+				break;
+			case 'overwrite':
+			default:
+				$pageStatus = 'changed';
+				break;
+		}
+
 		$rc = new RecentChange;
 		$rc->mAttribs = array(
 			'rc_timestamp'  => $timestamp,
@@ -580,6 +606,7 @@ class RecentChange {
 			'prefixedDBkey' => $title->getPrefixedDBkey(),
 			'lastTimestamp' => 0,
 			'actionComment' => $actionComment, // the comment appended to the action, passed from LogPage
+			'pageStatus'   => $pageStatus,
 			'actionCommentIRC' => $actionCommentIRC
 		);
 		return $rc;
