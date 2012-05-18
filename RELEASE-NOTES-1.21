@@ -28,6 +28,7 @@ production.
   recentchanges table.
 * (bug 32951) Do not register internal externals with absolute protocol,
   when server has relative protocol.
+* (bug 14901) Email notification mistakes log action for new page creation.
 
 === API changes in 1.21 ===
 * prop=revisions can now report the contentmodel and contentformat, see docs/contenthandler.txt
