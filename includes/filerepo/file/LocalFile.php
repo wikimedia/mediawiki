@@ -632,6 +632,9 @@ class LocalFile extends File {
 
 	/**
 	 * Fix thumbnail files from 1.4 or before, with extreme prejudice
+	 * @TODO: do we still care about this? Perhaps a maintenance script
+	 *        can be made instead. Enabling this code results in a serious
+	 *        RTT regression for wikis without 404 handling.
 	 */
 	function migrateThumbFile( $thumbName ) {
 		$thumbDir = $this->getThumbPath();
@@ -654,10 +657,12 @@ class LocalFile extends File {
 		}
 		*/
 
+		/*
 		if ( $this->repo->fileExists( $thumbDir ) ) {
 			// Delete file where directory should be
 			$this->repo->cleanupBatch( array( $thumbDir ) );
 		}
+		*/
 	}
 
 	/** getHandler inherited */

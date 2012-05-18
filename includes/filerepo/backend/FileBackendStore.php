@@ -564,6 +564,8 @@ abstract class FileBackendStore extends FileBackend {
 			$this->trimCache(); // limit memory
 			$this->cache[$path]['stat'] = $stat;
 			$this->setFileCache( $path, $stat ); // update persistent cache
+		} else {
+			wfDebug( __METHOD__ . ": File $path does not exist.\n" );
 		}
 		wfProfileOut( __METHOD__ . '-' . $this->name );
 		wfProfileOut( __METHOD__ );
