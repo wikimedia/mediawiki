@@ -2614,17 +2614,24 @@ Similar to {{msg-mw|rcnote}} which is used on [[Special:RecentChanges]].
 
 'enotif_reset' => "This should be translated as \"Mark all pages '''as''' visited\".",
 'enotif_newpagetext' => 'Part of text of a notification e-mail sent when a watched page has been created. See [[File:Screenshot_MediaWiki_e-mail_notifier.PNG|150px|right]]',
-'changed' => 'Possible value for $CHANGEDORCREATED in {{msg|enotif_subject}} and {{msg|enotif_body}}.',
-'created' => 'Possible value for $CHANGEDORCREATED in {{msg|enotif_subject}} and {{msg|enotif_body}}.',
-'enotif_subject' => '$CHANGEDORCREATED can be one of {{msg|changed}} and {{msg|created}}. Can also be {{msg-mw|blog-added}} or {{msg-mw|blog-edited}} from Wikia.',
+
+'enotif-changedorcreated-changed'  => 'Possible value for $CHANGEDORCREATED in {{msg|enotif_subject}} and {{msg|enotif_body}}.',
+'enotif-changedorcreated-created'  => 'Possible value for $CHANGEDORCREATED in {{msg|enotif_subject}} and {{msg|enotif_body}}.',
+'enotif-changedorcreated-deleted'  => 'Possible value for $CHANGEDORCREATED in {{msg|enotif_subject}} and {{msg|enotif_body}}.',
+'enotif-changedorcreated-moved'    => 'Possible value for $CHANGEDORCREATED in {{msg|enotif_subject}} and {{msg|enotif_body}}.',
+'enotif-changedorcreated-restored' => 'Possible value for $CHANGEDORCREATED in {{msg|enotif_subject}} and {{msg|enotif_body}}.',
+'enotif_subject'     => '$CHANGEDORCREATED can be one of {{msg-mw|changed}}, {{msg-mw|created}}, {{msg-mw|moved}}, {{msg-mw|restored}} or {{msg-mw|deleted}}. Can also be {{msg-mw|blog-added}} or {{msg-mw|blog-edited}} from Wikia.',
+
 'enotif_lastvisited' => '$1 is a URL address.',
 'enotif_lastdiff' => 'E-mail notification text to the latest page differences. Parameters:
 * $1 is a link to a diff, shown as a plain link.',
 'enotif_anon_editor' => 'User name in an e-mail notification when referring to an anonymous user. Parameters:
 * $1 is the anonymous user name (i.e. an IP address).',
-'enotif_body' => 'Text of a notification e-mail sent when a watched page has been edited or deleted.[[File:Screenshot_MediaWiki_e-mail_notifier.PNG|150px|right]]
 
-* <tt>$CHANGEDORCREATED</tt> can be one of {{msg-mw|changed}}, {{msg-mw|created}}, or {{msg-mw|deleted}}. Can also be {{msg-mw|blog-added}} or {{msg-mw|blog-edited}} from Wikia.',
+'enotif_body'        => 'Text of a notification e-mail sent when a watched page has been created, edited, deleted, moved or restored. [[File:Screenshot_MediaWiki_e-mail_notifier.PNG|150px|right]]
+
+$PAGETITLE_URL is the full URL for the page acted on.  $NEWPAGE has the possible values of {{msg|enotif_newpagetext}}, {{msg|enotif_lastvisited}}, or {{msg|enotif_lastdiff}}
+<tt>$CHANGEDORCREATED</tt> can be one of {{msg-mw|changed}}, {{msg-mw|created}}, {{msg-mw|moved}}, {{msg-mw|restored}} or {{msg-mw|deleted}}. Can also be {{msg-mw|blog-added}} or {{msg-mw|blog-edited}} from Wikia.',
 
 # Delete
 'confirm' => 'Submit button text for protection confirmation
