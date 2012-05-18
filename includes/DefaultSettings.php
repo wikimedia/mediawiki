@@ -1298,6 +1298,7 @@ $wgSharedTables = array( 'user', 'user_properties' );
  *                  - DBO_TRX -- wrap entire request in a transaction
  *                  - DBO_IGNORE -- ignore errors (not useful in LocalSettings.php)
  *                  - DBO_NOBUFFER -- turn off buffering (not useful in LocalSettings.php)
+ *                  - DBO_PERSISTENT -- enables persistent database connections
  *
  *   - max lag:     (optional) Maximum replication lag before a slave will taken out of rotation
  *   - max threads: (optional) Maximum number of running threads
