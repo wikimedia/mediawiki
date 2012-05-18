@@ -2056,6 +2056,9 @@ $page: WikiPage object to be removed
 $user: user that watched
 $page: WikiPage object that was watched
 
+'UpdateUserMailerFormattedPageStatus': before notification email gets sent
+$formattedPageStatus: list of valid page status
+
 'UploadForm:initial': before the upload form is generated
 $form: UploadForm object
 You might set the member-variables $uploadFormTextTop and
