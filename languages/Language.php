@@ -245,6 +245,15 @@ class Language {
 	 * @return bool
 	 */
 	public static function isValidBuiltInCode( $code ) {
+
+		if( !is_string($code) ) {
+			$type = gettype( $code );
+			if( $type === 'object' ) {
+				$addmsg = " of class " . get_class( $code );
+			}
+			throw new MWException( __METHOD__ . " must be passed a string, $type given$addmsg" );
+		}
+
 		return preg_match( '/^[a-z0-9-]+$/i', $code );
 	}
 
