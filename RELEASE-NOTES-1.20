@@ -110,6 +110,7 @@ upgrade PHP if you have not done so prior to upgrading MediaWiki.
 * (bug 30410) Removed deprecated $wgFilterCallback and the 'filtered' API error.
 * (bug 32604) Some messages needs escaping of wikitext inside username
 * (bug 36537) Rename wfArrayToCGI to wfArrayToCgi for consistency with wfCgiToArray.
+* (Bug 14901) Email notification mistakes log action for new page creation
 
 === API changes in 1.20 ===
 * (bug 34316) Add ability to retrieve maximum upload size from MediaWiki API.
