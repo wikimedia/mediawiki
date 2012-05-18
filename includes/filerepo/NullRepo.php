@@ -26,6 +26,10 @@
  * @ingroup FileRepo
  */
 class NullRepo extends FileRepo {
+
+	/**
+	 * @param $info array|null
+	 */
 	function __construct( $info ) {}
 
 	protected function assertWritableRepo() {

@@ -31,6 +31,11 @@
  * @deprecated since 1.19
  */
 class FSRepo extends FileRepo {
+
+	/**
+	 * @param $info array
+	 * @throws MWException
+	 */
 	function __construct( array $info ) {
 		if ( !isset( $info['backend'] ) ) {
 			// B/C settings...

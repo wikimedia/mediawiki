@@ -62,6 +62,8 @@ class FSLockManager extends LockManager {
 
 	/**
 	 * @see LockManager::doLock()
+	 * @param $paths array
+	 * @param $type int
 	 * @return Status
 	 */
 	protected function doLock( array $paths, $type ) {
@@ -84,6 +86,8 @@ class FSLockManager extends LockManager {
 
 	/**
 	 * @see LockManager::doUnlock()
+	 * @param $paths array
+	 * @param $type int
 	 * @return Status
 	 */
 	protected function doUnlock( array $paths, $type ) {
@@ -190,6 +194,11 @@ class FSLockManager extends LockManager {
 		return $status;
 	}
 
+	/**
+	 * @param $path string
+	 * @param $handlesToClose array
+	 * @return Status
+	 */
 	private function closeLockHandles( $path, array $handlesToClose ) {
 		$status = Status::newGood();
 		foreach ( $handlesToClose as $handle ) {
@@ -203,6 +212,10 @@ class FSLockManager extends LockManager {
 		return $status;
 	}
 
+	/**
+	 * @param $path string
+	 * @return Status
+	 */
 	private function pruneKeyLockFiles( $path ) {
 		$status = Status::newGood();
 		if ( !count( $this->locksHeld[$path] ) ) {

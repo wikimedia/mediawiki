@@ -36,6 +36,9 @@ class ForeignDBRepo extends LocalRepo {
 	var $fileFactory = array( 'ForeignDBFile', 'newFromTitle' );
 	var $fileFromRowFactory = array( 'ForeignDBFile', 'newFromRow' );
 
+	/**
+	 * @param $info array|null
+	 */
 	function __construct( $info ) {
 		parent::__construct( $info );
 		$this->dbType = $info['dbType'];
@@ -48,6 +51,9 @@ class ForeignDBRepo extends LocalRepo {
 		$this->hasSharedCache = $info['hasSharedCache'];
 	}
 
+	/**
+	 * @return DatabaseBase
+	 */
 	function getMasterDB() {
 		if ( !isset( $this->dbConn ) ) {
 			$this->dbConn = DatabaseBase::factory( $this->dbType,
@@ -64,10 +70,16 @@ class ForeignDBRepo extends LocalRepo {
 		return $this->dbConn;
 	}
 
+	/**
+	 * @return DatabaseBase
+	 */
 	function getSlaveDB() {
 		return $this->getMasterDB();
 	}
 
+	/**
+	 * @return bool
+	 */
 	function hasSharedCache() {
 		return $this->hasSharedCache;
 	}

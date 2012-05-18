@@ -109,6 +109,8 @@ abstract class File {
 	 */
 	protected $url, $extension, $name, $path, $hashPath, $pageCount, $transformScript;
 
+	protected $redirectTitle;
+
 	/**
 	 * @var bool
 	 */
@@ -143,6 +145,7 @@ abstract class File {
 	 *
 	 * @param $title Title|string
 	 * @param $exception string|bool Use 'exception' to throw an error on bad titles
+	 * @throws MWException
 	 * @return Title|null
 	 */
 	static function normalizeTitle( $title, $exception = false ) {
@@ -1017,7 +1020,7 @@ abstract class File {
 	 *
 	 * @return array
 	 */
-	function getHistory($limit = null, $start = null, $end = null, $inc=true) {
+	function getHistory( $limit = null, $start = null, $end = null, $inc=true ) {
 		return array();
 	}
 

@@ -78,6 +78,8 @@ class FSFileBackend extends FileBackendStore {
 
 	/**
 	 * @see FileBackendStore::resolveContainerPath()
+	 * @param $container string
+	 * @param $relStoragePath string
 	 * @return null|string
 	 */
 	protected function resolveContainerPath( $container, $relStoragePath ) {
@@ -745,6 +747,9 @@ class FSFileBackend extends FileBackendStore {
 		return array_pop( $this->hadWarningErrors ); // pop from stack
 	}
 
+	/**
+	 * @return bool
+	 */
 	private function handleWarning() {
 		$this->hadWarningErrors[count( $this->hadWarningErrors ) - 1] = true;
 		return true; // suppress from PHP handler
@@ -758,6 +763,13 @@ class FSFileOpHandle extends FileBackendStoreOpHandle {
 	public $cmd; // string; shell command
 	public $chmodPath; // string; file to chmod
 
+	/**
+	 * @param $backend
+	 * @param $params array
+	 * @param $call
+	 * @param $cmd
+	 * @param $chmodPath null
+	 */
 	public function __construct( $backend, array $params, $call, $cmd, $chmodPath = null ) {
 		$this->backend = $backend;
 		$this->params = $params;
@@ -784,6 +796,7 @@ abstract class FSFileBackendList implements Iterator {
 
 	/**
 	 * @param $dir string file system directory
+	 * @param $params array
 	 */
 	public function __construct( $dir, array $params ) {
 		$dir = realpath( $dir ); // normalize
