@@ -195,6 +195,8 @@ class ScopedLock {
 class NullLockManager extends LockManager {
 	/**
 	 * @see LockManager::doLock()
+	 * @param $paths array
+	 * @param $type int
 	 * @return Status
 	 */
 	protected function doLock( array $paths, $type ) {
@@ -203,6 +205,8 @@ class NullLockManager extends LockManager {
 
 	/**
 	 * @see LockManager::doUnlock()
+	 * @param $paths array
+	 * @param $type int
 	 * @return Status
 	 */
 	protected function doUnlock( array $paths, $type ) {

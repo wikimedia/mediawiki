@@ -88,6 +88,7 @@ abstract class FileBackend {
 	 *     'concurrency' : How many file operations can be done in parallel.
 	 *
 	 * @param $config Array
+	 * @throws MWException
 	 */
 	public function __construct( array $config ) {
 		$this->name = $config['name'];
@@ -663,6 +664,7 @@ abstract class FileBackend {
 	 * $params include:
 	 *     dir : storage directory
 	 *
+	 * @param $params array
 	 * @return bool|null Returns null on failure
 	 * @since 1.20
 	 */
@@ -682,6 +684,7 @@ abstract class FileBackend {
 	 *     dir     : storage directory
 	 *     topOnly : only return direct child dirs of the directory
 	 *
+	 * @param $params array
 	 * @return Traversable|Array|null Returns null on failure
 	 * @since 1.20
 	 */
@@ -696,6 +699,7 @@ abstract class FileBackend {
 	 * $params include:
 	 *     dir : storage directory
 	 *
+	 * @param $params array
 	 * @return Traversable|Array|null Returns null on failure
 	 * @since 1.20
 	 */
@@ -717,6 +721,7 @@ abstract class FileBackend {
 	 *     dir     : storage directory
 	 *     topOnly : only return direct child files of the directory (@since 1.20)
 	 *
+	 * @param $params array
 	 * @return Traversable|Array|null Returns null on failure
 	 */
 	abstract public function getFileList( array $params );
@@ -730,6 +735,7 @@ abstract class FileBackend {
 	 * $params include:
 	 *     dir : storage directory
 	 *
+	 * @param $params array
 	 * @return Traversable|Array|null Returns null on failure
 	 * @since 1.20
 	 */

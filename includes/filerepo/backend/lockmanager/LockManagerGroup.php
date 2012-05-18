@@ -39,6 +39,7 @@ class LockManagerGroup {
 	protected $managers = array();
 
 	protected function __construct() {}
+
 	/**
 	 * @return LockManagerGroup
 	 */

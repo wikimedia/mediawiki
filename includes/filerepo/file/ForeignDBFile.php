@@ -54,23 +54,52 @@ class ForeignDBFile extends LocalFile {
 		return $file;
 	}
 
+	/**
+	 * @param $srcPath String
+	 * @param $flags int
+	 * @throws MWException
+	 */
 	function publish( $srcPath, $flags = 0 ) {
 		$this->readOnlyError();
 	}
 
+	/**
+	 * @param $oldver
+	 * @param $desc string
+	 * @param $license string
+	 * @param $copyStatus string
+	 * @param $source string
+	 * @param $watch bool
+	 * @param $timestamp bool|string
+	 * @throws MWException
+	 */
 	function recordUpload( $oldver, $desc, $license = '', $copyStatus = '', $source = '',
 		$watch = false, $timestamp = false ) {
 		$this->readOnlyError();
 	}
 
+	/**
+	 * @param $versions array
+	 * @param $unsuppress bool
+	 * @throws MWException
+	 */
 	function restore( $versions = array(), $unsuppress = false ) {
 		$this->readOnlyError();
 	}
 
+	/**
+	 * @param $reason string
+	 * @param $suppress bool
+	 * @throws MWException
+	 */
 	function delete( $reason, $suppress = false ) {
 		$this->readOnlyError();
 	}
 
+	/**
+	 * @param $target Title
+	 * @throws MWException
+	 */
 	function move( $target ) {
 		$this->readOnlyError();
 	}
