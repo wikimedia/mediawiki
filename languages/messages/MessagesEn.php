@@ -2842,22 +2842,24 @@ Future changes to this page and its associated talk page will be listed there, a
 'unwatching'     => 'Unwatching...',
 'watcherrortext' => 'An error occurred while changing your watchlist settings for "$1".',
 
-'enotif_mailer'                => '{{SITENAME}} notification mailer',
-'enotif_reset'                 => 'Mark all pages visited',
-'enotif_newpagetext'           => 'This is a new page.',
-'enotif_impersonal_salutation' => '{{SITENAME}} user',
-'changed'                      => 'changed',
-'created'                      => 'created',
-'enotif_subject'               => '{{SITENAME}} page $PAGETITLE has been $CHANGEDORCREATED by $PAGEEDITOR',
-'enotif_lastvisited'           => 'See $1 for all changes since your last visit.',
-'enotif_lastdiff'              => 'See $1 to view this change.',
-'enotif_anon_editor'           => 'anonymous user $1',
+'enotif_mailer'                    => '{{SITENAME}} notification mailer',
+'enotif_reset'                     => 'Mark all pages visited',
+'enotif_newpagetext'               => 'This is a new page.',
+'enotif_impersonal_salutation'     => '{{SITENAME}} user',
+'enotif-changedorcreated-deleted'  => 'deleted',
+'enotif-changedorcreated-created'  => 'created',
+'enotif-changedorcreated-moved'    => 'moved',
+'enotif-changedorcreated-restored' => 'restored',
+'enotif-changedorcreated-changed'  => 'changed',
+'enotif_subject'                   => '{{SITENAME}} page $PAGETITLE has been $CHANGEDORCREATED by $PAGEEDITOR',
+'enotif_lastvisited'               => 'See $1 for all changes since your last visit.',
+'enotif_lastdiff'                  => 'See $1 to view this change.',
+'enotif_anon_editor'               => 'anonymous user $1',
+
 'enotif_body'                  => 'Dear $WATCHINGUSERNAME,
 
 
-The {{SITENAME}} page $PAGETITLE has been $CHANGEDORCREATED on $PAGEEDITDATE by $PAGEEDITOR, see $PAGETITLE_URL for the current revision.
-
-$NEWPAGE
+The {{SITENAME}} page $PAGETITLE has been $CHANGEDORCREATED on $PAGEEDITDATE by $PAGEEDITOR, see $PAGETITLE_URL for the current revision. $NEWPAGE
 
 Editor\'s summary: $PAGESUMMARY $PAGEMINOREDIT
 
@@ -2865,8 +2867,7 @@ Contact the editor:
 mail: $PAGEEDITOR_EMAIL
 wiki: $PAGEEDITOR_WIKI
 
-There will be no other notifications in case of further changes unless you visit this page.
-You could also reset the notification flags for all your watched pages on your watchlist.
+There will be no other notifications in case of further changes unless you visit this page. You could also reset the notification flags for all your watched pages on your watchlist.
 
 			 Your friendly {{SITENAME}} notification system
 
