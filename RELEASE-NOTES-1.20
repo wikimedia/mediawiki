@@ -115,6 +115,7 @@ upgrade PHP if you have not done so prior to upgrading MediaWiki.
 * (bug 25946) The message on the top of Special:RecentChanges is now displayed
   in user language instead of content language
 * (bug 35264) Wrong type used for <ns> in export.xsd
+* (bug 14901) Email notification mistakes log action for new page creation
 
 === API changes in 1.20 ===
 * (bug 34316) Add ability to retrieve maximum upload size from MediaWiki API.
