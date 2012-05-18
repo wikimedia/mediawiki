@@ -3677,6 +3677,9 @@ class Language {
 	/**
 	 * Get the RFC 3066 code for this language object
 	 *
+	 * NOTE: The return value of this function is NOT HTML-safe and must be escaped with
+	 * htmlspecialchars() or similar
+	 *
 	 * @return string
 	 */
 	public function getCode() {
@@ -3686,6 +3689,10 @@ class Language {
 	/**
 	 * Get the code in Bcp47 format which we can use
 	 * inside of html lang="" tags.
+	 *
+	 * NOTE: The return value of this function is NOT HTML-safe and must be escaped with
+	 * htmlspecialchars() or similar.
+	 *
 	 * @since 1.19
 	 * @return string
 	 */
