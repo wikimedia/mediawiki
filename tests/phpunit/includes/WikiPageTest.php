@@ -142,6 +142,21 @@ class WikiPageTest extends MediaWikiTestCase {
 		$this->assertEquals( 0, $n, 'pagelinks should contain no more links from the page' );
 	}
 
+	public function testDoDeleteUpdates() {
+		$page = $this->createPage( "WikiPageTest_testDoDeleteArticle", "[[original text]] foo" );
+		$id = $page->getId();
+
+		$page->doDeleteUpdates( $id );
+
+		# ------------------------
+		$dbr = wfGetDB( DB_SLAVE );
+		$res = $dbr->select( 'pagelinks', '*', array( 'pl_from' => $id ) );
+		$n = $res->numRows();
+		$res->free();
+
+		$this->assertEquals( 0, $n, 'pagelinks should contain no more links from the page' );
+	}
+
 	public function testGetRevision() {
 		$page = $this->newPage( "WikiPageTest_testGetRevision" );
 

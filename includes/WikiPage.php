@@ -2225,21 +2225,7 @@ class WikiPage extends Page {
 			return WikiPage::DELETE_NO_REVISIONS;
 		}
 
-		# update site status
-		DeferredUpdates::addUpdate( new SiteStatsUpdate( 0, 1, - (int)$this->isCountable(), -1 ) );
-
-		# remove secondary indexes, etc
-		$updates = $this->getDeletionUpdates( );
-		DataUpdate::runUpdates( $updates );
-
-		# Clear caches
-		WikiPage::onArticleDelete( $this->mTitle );
-
-		# Reset this object
-		$this->clear();
-
-		# Clear the cached article id so the interface doesn't act like we exist
-		$this->mTitle->resetArticleID( 0 );
+		$this->doDeleteUpdates( $id );
 
 		# Log the deletion, if the page was suppressed, log it at Oversight instead
 		$logtype = $suppress ? 'suppress' : 'delete';
@@ -2257,6 +2243,29 @@ class WikiPage extends Page {
 
 		wfRunHooks( 'ArticleDeleteComplete', array( &$this, &$user, $reason, $id ) );
 		return WikiPage::DELETE_SUCCESS;
+	}
+
+	/**
+	 * Do some database updates after deletion
+	 *
+	 * @param $id Int: page_id value of the page being deleted (B/C, currently unused)
+	 */
+	public function doDeleteUpdates( $id ) {
+		# update site status
+		DeferredUpdates::addUpdate( new SiteStatsUpdate( 0, 1, - (int)$this->isCountable(), -1 ) );
+
+		# remove secondary indexes, etc
+		$updates = $this->getDeletionUpdates( );
+		DataUpdate::runUpdates( $updates );
+
+		# Clear caches
+		WikiPage::onArticleDelete( $this->mTitle );
+
+		# Reset this object
+		$this->clear();
+
+		# Clear the cached article id so the interface doesn't act like we exist
+		$this->mTitle->resetArticleID( 0 );
 	}
 
 	/**
