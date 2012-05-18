@@ -438,10 +438,18 @@ abstract class FileOp {
  *     overwriteSame : override any existing file at destination
  */
 class StoreFileOp extends FileOp {
+
+	/**
+	 * @return array
+	 */
 	protected function allowedParams() {
 		return array( array( 'src', 'dst' ), array( 'overwrite', 'overwriteSame' ) );
 	}
 
+	/**
+	 * @param $predicates array
+	 * @return Status
+	 */
 	protected function doPrecheck( array &$predicates ) {
 		$status = Status::newGood();
 		// Check if the source file exists on the file system
@@ -450,13 +458,10 @@ class StoreFileOp extends FileOp {
 			return $status;
 		// Check if the source file is too big
 		} elseif ( filesize( $this->params['src'] ) > $this->backend->maxFileSizeInternal() ) {
-			$status->fatal( 'backend-fail-maxsize',
-				$this->params['dst'], $this->backend->maxFileSizeInternal() );
 			$status->fatal( 'backend-fail-store', $this->params['src'], $this->params['dst'] );
 			return $status;
 		// Check if a file can be placed at the destination
 		} elseif ( !$this->backend->isPathUsableInternal( $this->params['dst'] ) ) {
-			$status->fatal( 'backend-fail-usable', $this->params['dst'] );
 			$status->fatal( 'backend-fail-store', $this->params['src'], $this->params['dst'] );
 			return $status;
 		}
@@ -470,6 +475,9 @@ class StoreFileOp extends FileOp {
 		return $status; // safe to call attempt()
 	}
 
+	/**
+	 * @return Status
+	 */
 	protected function doAttempt() {
 		// Store the file at the destination
 		if ( !$this->destSameAsSource ) {
@@ -478,6 +486,9 @@ class StoreFileOp extends FileOp {
 		return Status::newGood();
 	}
 
+	/**
+	 * @return bool|string
+	 */
 	protected function getSourceSha1Base36() {
 		wfSuppressWarnings();
 		$hash = sha1_file( $this->params['src'] );
@@ -488,6 +499,9 @@ class StoreFileOp extends FileOp {
 		return $hash;
 	}
 
+	/**
+	 * @return array
+	 */
 	protected function doStoragePathsChanged() {
 		return array( $this->params['dst'] );
 	}
@@ -502,21 +516,25 @@ class StoreFileOp extends FileOp {
  *     overwriteSame : override any existing file at destination
  */
 class CreateFileOp extends FileOp {
+	/**
+	 * @return array
+	 */
 	protected function allowedParams() {
 		return array( array( 'content', 'dst' ), array( 'overwrite', 'overwriteSame' ) );
 	}
 
+	/**
+	 * @param $predicates array
+	 * @return Status
+	 */
 	protected function doPrecheck( array &$predicates ) {
 		$status = Status::newGood();
 		// Check if the source data is too big
 		if ( strlen( $this->getParam( 'content' ) ) > $this->backend->maxFileSizeInternal() ) {
-			$status->fatal( 'backend-fail-maxsize',
-				$this->params['dst'], $this->backend->maxFileSizeInternal() );
 			$status->fatal( 'backend-fail-create', $this->params['dst'] );
 			return $status;
 		// Check if a file can be placed at the destination
 		} elseif ( !$this->backend->isPathUsableInternal( $this->params['dst'] ) ) {
-			$status->fatal( 'backend-fail-usable', $this->params['dst'] );
 			$status->fatal( 'backend-fail-create', $this->params['dst'] );
 			return $status;
 		}
@@ -530,6 +548,9 @@ class CreateFileOp extends FileOp {
 		return $status; // safe to call attempt()
 	}
 
+	/**
+	 * @return Status
+	 */
 	protected function doAttempt() {
 		if ( !$this->destSameAsSource ) {
 			// Create the file at the destination
@@ -538,10 +559,16 @@ class CreateFileOp extends FileOp {
 		return Status::newGood();
 	}
 
+	/**
+	 * @return bool|String
+	 */
 	protected function getSourceSha1Base36() {
 		return wfBaseConvert( sha1( $this->params['content'] ), 16, 36, 31 );
 	}
 
+	/**
+	 * @return array
+	 */
 	protected function doStoragePathsChanged() {
 		return array( $this->params['dst'] );
 	}
@@ -556,10 +583,18 @@ class CreateFileOp extends FileOp {
  *     overwriteSame : override any existing file at destination
  */
 class CopyFileOp extends FileOp {
+
+	/**
+	 * @return array
+	 */
 	protected function allowedParams() {
 		return array( array( 'src', 'dst' ), array( 'overwrite', 'overwriteSame' ) );
 	}
 
+	/**
+	 * @param $predicates array
+	 * @return Status
+	 */
 	protected function doPrecheck( array &$predicates ) {
 		$status = Status::newGood();
 		// Check if the source file exists
@@ -568,7 +603,6 @@ class CopyFileOp extends FileOp {
 			return $status;
 		// Check if a file can be placed at the destination
 		} elseif ( !$this->backend->isPathUsableInternal( $this->params['dst'] ) ) {
-			$status->fatal( 'backend-fail-usable', $this->params['dst'] );
 			$status->fatal( 'backend-fail-copy', $this->params['src'], $this->params['dst'] );
 			return $status;
 		}
@@ -582,6 +616,9 @@ class CopyFileOp extends FileOp {
 		return $status; // safe to call attempt()
 	}
 
+	/**
+	 * @return Status
+	 */
 	protected function doAttempt() {
 		// Do nothing if the src/dst paths are the same
 		if ( $this->params['src'] !== $this->params['dst'] ) {
@@ -593,10 +630,16 @@ class CopyFileOp extends FileOp {
 		return Status::newGood();
 	}
 
+	/**
+	 * @return array
+	 */
 	protected function doStoragePathsRead() {
 		return array( $this->params['src'] );
 	}
 
+	/**
+	 * @return array
+	 */
 	protected function doStoragePathsChanged() {
 		return array( $this->params['dst'] );
 	}
@@ -611,10 +654,17 @@ class CopyFileOp extends FileOp {
  *     overwriteSame : override any existing file at destination
  */
 class MoveFileOp extends FileOp {
+	/**
+	 * @return array
+	 */
 	protected function allowedParams() {
 		return array( array( 'src', 'dst' ), array( 'overwrite', 'overwriteSame' ) );
 	}
 
+	/**
+	 * @param $predicates array
+	 * @return Status
+	 */
 	protected function doPrecheck( array &$predicates ) {
 		$status = Status::newGood();
 		// Check if the source file exists
@@ -623,7 +673,6 @@ class MoveFileOp extends FileOp {
 			return $status;
 		// Check if a file can be placed at the destination
 		} elseif ( !$this->backend->isPathUsableInternal( $this->params['dst'] ) ) {
-			$status->fatal( 'backend-fail-usable', $this->params['dst'] );
 			$status->fatal( 'backend-fail-move', $this->params['src'], $this->params['dst'] );
 			return $status;
 		}
@@ -639,6 +688,9 @@ class MoveFileOp extends FileOp {
 		return $status; // safe to call attempt()
 	}
 
+	/**
+	 * @return Status
+	 */
 	protected function doAttempt() {
 		// Do nothing if the src/dst paths are the same
 		if ( $this->params['src'] !== $this->params['dst'] ) {
@@ -654,10 +706,16 @@ class MoveFileOp extends FileOp {
 		return Status::newGood();
 	}
 
+	/**
+	 * @return array
+	 */
 	protected function doStoragePathsRead() {
 		return array( $this->params['src'] );
 	}
 
+	/**
+	 * @return array
+	 */
 	protected function doStoragePathsChanged() {
 		return array( $this->params['src'], $this->params['dst'] );
 	}
@@ -670,12 +728,19 @@ class MoveFileOp extends FileOp {
  *     ignoreMissingSource : don't return an error if the file does not exist
  */
 class DeleteFileOp extends FileOp {
+	/**
+	 * @return array
+	 */
 	protected function allowedParams() {
 		return array( array( 'src' ), array( 'ignoreMissingSource' ) );
 	}
 
 	protected $needsDelete = true;
 
+	/**
+	 * @param array $predicates
+	 * @return Status
+	 */
 	protected function doPrecheck( array &$predicates ) {
 		$status = Status::newGood();
 		// Check if the source file exists
@@ -692,6 +757,9 @@ class DeleteFileOp extends FileOp {
 		return $status; // safe to call attempt()
 	}
 
+	/**
+	 * @return Status
+	 */
 	protected function doAttempt() {
 		if ( $this->needsDelete ) {
 			// Delete the source file
@@ -700,6 +768,9 @@ class DeleteFileOp extends FileOp {
 		return Status::newGood();
 	}
 
+	/**
+	 * @return array
+	 */
 	protected function doStoragePathsChanged() {
 		return array( $this->params['src'] );
 	}
