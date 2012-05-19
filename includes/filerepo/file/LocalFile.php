@@ -675,8 +675,6 @@ class LocalFile extends File {
 	 * @return array first element is the base dir, then files in that base dir.
 	 */
 	function getThumbnails( $archiveName = false ) {
-		$this->load();
-
 		if ( $archiveName ) {
 			$dir = $this->getArchiveThumbPath( $archiveName );
 		} else {
@@ -741,6 +739,8 @@ class LocalFile extends File {
 	 */
 	function purgeOldThumbnails( $archiveName ) {
 		global $wgUseSquid;
+		wfProfileIn( __METHOD__ );
+
 		// Get a list of old thumbnails and URLs
 		$files = $this->getThumbnails( $archiveName );
 		$dir = array_shift( $files );
@@ -757,6 +757,8 @@ class LocalFile extends File {
 			}
 			SquidUpdate::purge( $urls );
 		}
+
+		wfProfileOut( __METHOD__ );
 	}
 
 	/**
@@ -764,6 +766,7 @@ class LocalFile extends File {
 	 */
 	function purgeThumbnails( $options = array() ) {
 		global $wgUseSquid;
+		wfProfileIn( __METHOD__ );
 
 		// Delete thumbnails
 		$files = $this->getThumbnails();
@@ -790,6 +793,8 @@ class LocalFile extends File {
 			}
 			SquidUpdate::purge( $urls );
 		}
+
+		wfProfileOut( __METHOD__ );
 	}
 
 	/**
@@ -1024,6 +1029,8 @@ class LocalFile extends File {
 	function recordUpload2(
 		$oldver, $comment, $pageText, $props = false, $timestamp = false, $user = null
 	) {
+		wfProfileIn( __METHOD__ );
+
 		if ( is_null( $user ) ) {
 			global $wgUser;
 			$user = $wgUser;
@@ -1033,7 +1040,9 @@ class LocalFile extends File {
 		$dbw->begin( __METHOD__ );
 
 		if ( !$props ) {
+			wfProfileIn( __METHOD__ . '-getProps' );
 			$props = $this->repo->getFileProps( $this->getVirtualUrl() );
+			wfProfileOut( __METHOD__ . -'getProps' );
 		}
 
 		if ( $timestamp === false ) {
@@ -1047,7 +1056,9 @@ class LocalFile extends File {
 		$this->setProps( $props );
 
 		# Delete thumbnails
+		wfProfileIn( __METHOD__ . '-purge' );
 		$this->purgeThumbnails();
+		wfProfileOut( __METHOD__ . '-purge' );
 
 		# The file is already on its final location, remove it from the squid cache
 		SquidUpdate::purge( array( $this->getURL() ) );
@@ -1055,6 +1066,7 @@ class LocalFile extends File {
 		# Fail now if the file isn't there
 		if ( !$this->fileExists ) {
 			wfDebug( __METHOD__ . ": File " . $this->getRel() . " went missing!\n" );
+			wfProfileOut( __METHOD__ );
 			return false;
 		}
 
@@ -1083,7 +1095,6 @@ class LocalFile extends File {
 			__METHOD__,
 			'IGNORE'
 		);
-
 		if ( $dbw->affectedRows() == 0 ) {
 			# (bug 34993) Note: $oldver can be empty here, if the previous
 			# version of the file was broken. Allow registration of the new
@@ -1149,6 +1160,7 @@ class LocalFile extends File {
 		$action = $reupload ? 'overwrite' : 'upload';
 		$log->addEntry( $action, $descTitle, $comment, array(), $user );
 
+		wfProfileIn( __METHOD__ . '-edit' );
 		if ( $descTitle->exists() ) {
 			# Create a null revision
 			$latest = $descTitle->getLatestRevID();
@@ -1173,6 +1185,7 @@ class LocalFile extends File {
 			# Squid and file cache for the description page are purged by doEdit.
 			$wikiPage->doEdit( $pageText, $comment, EDIT_NEW | EDIT_SUPPRESS_RC, false, $user );
 		}
+		wfProfileOut( __METHOD__ . '-edit' );
 
 		# Commit the transaction now, in case something goes wrong later
 		# The most important thing is that files don't get lost, especially archives
@@ -1185,7 +1198,9 @@ class LocalFile extends File {
 		$this->saveToCache();
 
 		# Hooks, hooks, the magic of hooks...
+		wfProfileIn( __METHOD__ . '-hooks' );
 		wfRunHooks( 'FileUpload', array( $this, $reupload, $descTitle->exists() ) );
+		wfProfileOut( __METHOD__ . '-hooks' );
 
 		# Invalidate cache for all pages using this file
 		$update = new HTMLCacheUpdate( $this->getTitle(), 'imagelinks' );
@@ -1199,6 +1214,7 @@ class LocalFile extends File {
 			$update->doUpdate();
 		}
 
+		wfProfileOut( __METHOD__ );
 		return true;
 	}
 
