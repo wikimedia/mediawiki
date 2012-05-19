@@ -949,6 +949,7 @@ abstract class FileBackendStore extends FileBackend {
 		wfProfileIn( __METHOD__ . '-' . $this->name );
 		$status = Status::newGood();
 
+		$supportedOps = array( 'create', 'store', 'copy', 'move', 'delete', 'null' );
 		$async = ( $this->parallelize === 'implicit' );
 		$maxConcurrency = $this->concurrency; // throttle
 
@@ -957,12 +958,12 @@ abstract class FileBackendStore extends FileBackend {
 		$curFileOpHandles = array(); // current handle batch
 		// Perform the sync-only ops and build up op handles for the async ops...
 		foreach ( $ops as $index => $params ) {
-			$method = $params['op'] . 'Internal'; // e.g. "storeInternal"
-			if ( !MWInit::methodExists( __CLASS__, $method ) ) {
+			if ( !in_array( $params['op'], $supportedOps ) ) {
 				wfProfileOut( __METHOD__ . '-' . $this->name );
 				wfProfileOut( __METHOD__ );
 				throw new MWException( "Operation '{$params['op']}' is not supported." );
 			}
+			$method = $params['op'] . 'Internal'; // e.g. "storeInternal"
 			$subStatus = $this->$method( array( 'async' => $async ) + $params );
 			if ( $subStatus->value instanceof FileBackendStoreOpHandle ) { // async
 				if ( count( $curFileOpHandles ) >= $maxConcurrency ) {
