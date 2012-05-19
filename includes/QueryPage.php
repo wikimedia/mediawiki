@@ -499,7 +499,7 @@ abstract class QueryPage extends SpecialPage {
 					$updateddate = $lang->userDate( $ts, $user );
 					$updatedtime = $lang->userTime( $ts, $user );
 					$out->addMeta( 'Data-Cache-Time', $ts );
-					$out->addInlineScript( "var dataCacheTime = '$ts';" );
+					$out->addJsConfigVars( 'dataCacheTime', $ts );
 					$out->addWikiMsg( 'perfcachedts', $updated, $updateddate, $updatedtime, $maxResults );
 				} else {
 					$out->addWikiMsg( 'perfcached', $maxResults );
