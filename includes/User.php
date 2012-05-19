@@ -468,8 +468,7 @@ class User {
 	 * @return String|bool The corresponding username
 	 */
 	public static function whoIs( $id ) {
-		$dbr = wfGetDB( DB_SLAVE );
-		return $dbr->selectField( 'user', 'user_name', array( 'user_id' => $id ), __METHOD__ );
+		return UserCache::singleton()->getProp( $id, 'name' );
 	}
 
 	/**
@@ -479,8 +478,7 @@ class User {
 	 * @return String|bool The corresponding user's real name
 	 */
 	public static function whoIsReal( $id ) {
-		$dbr = wfGetDB( DB_SLAVE );
-		return $dbr->selectField( 'user', 'user_real_name', array( 'user_id' => $id ), __METHOD__ );
+		return UserCache::singleton()->getProp( $id, 'real_name' );
 	}
 
 	/**
