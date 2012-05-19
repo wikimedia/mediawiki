@@ -3951,8 +3951,8 @@ class Parser {
 	function formatHeadings( $text, $origText, $isMain=true ) {
 		global $wgMaxTocLevel, $wgHtml5, $wgExperimentalHtmlIds;
 
-		# Inhibit editsection links if requested in the page
-		if ( isset( $this->mDoubleUnderscores['noeditsection'] ) ) {
+		# Inhibit editsection links if we're on a special page or it has been requested in the page
+		if ( $this->getTitle()->isSpecialPage() || isset( $this->mDoubleUnderscores['noeditsection'] ) ) {
 			$maybeShowEditLink = $showEditLink = false;
 		} else {
 			$maybeShowEditLink = true; /* Actual presence will depend on ParserOptions option */
