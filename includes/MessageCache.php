@@ -113,6 +113,7 @@ class MessageCache {
 	function getParserOptions() {
 		if ( !$this->mParserOptions ) {
 			$this->mParserOptions = new ParserOptions;
+			$this->mParserOptions->setEditSection( false );
 		}
 		return $this->mParserOptions;
 	}
