@@ -59,6 +59,8 @@ class SpecialNewpages extends IncludableSpecialPage {
 		$opts->add( 'username', '' );
 		$opts->add( 'feed', '' );
 		$opts->add( 'tagfilter', '' );
+		$opts->add( 'sizetype', 'max' );
+		$opts->add( 'size', 0 );
 
 		$this->customFilters = array();
 		wfRunHooks( 'SpecialNewPagesFilters', array( $this, &$this->customFilters ) );
@@ -213,7 +215,9 @@ class SpecialNewpages extends IncludableSpecialPage {
 		$namespace = $this->opts->consumeValue( 'namespace' );
 		$username = $this->opts->consumeValue( 'username' );
 		$tagFilterVal = $this->opts->consumeValue( 'tagfilter' );
-
+		$sizeType = $this->opts->consumeValue( 'sizetype' );
+		$size = $this->opts->consumeValue( 'size' );
+		$max = $sizeType === 'max';
 		// Check username input validity
 		$ut = Title::makeTitleSafe( NS_USER, $username );
 		$userText = $ut ? $ut->getText() : '';
@@ -268,6 +272,14 @@ class SpecialNewpages extends IncludableSpecialPage {
 					Xml::input( 'username', 30, $userText, array( 'id' => 'mw-np-username' ) ) .
 				'</td>
 			</tr>' : '' ) .
+			'<tr><td>'.
+			Xml::radioLabel( wfMsg('minimum-size'), 'sizetype', 'min', 'wpmin' , !$max ).
+			'&#160;' .'</td><td>'.
+			Xml::radioLabel( wfMsg('maximum-size'), 'sizetype', 'max', 'wpmax', $max ) .
+			'&#160;' .
+			Xml::input( 'size', 9, $size, array( 'id' => 'wpsize' ) ) .
+			'&#160;' .
+			Xml::label( wfMsg('pagesize'), 'wpsize' ).'</td></tr>'.
 			'<tr> <td></td>
 				<td class="mw-submit">' .
 					Xml::submitButton( $this->msg( 'allpagessubmit' )->text() ) .
@@ -495,6 +507,14 @@ class NewPagesPager extends ReverseChronologicalPager {
 
 		$username = $this->opts->getValue( 'username' );
 		$user = Title::makeTitleSafe( NS_USER, $username );
+		$size = $this->opts->getValue( 'size' );
+		$sizeType = $this->opts->getValue( 'sizetype' );
+		$max = $sizeType === 'max' ? 'max' : 'min';
+		if($size!=0 && $size < 0 && $is_int($size)){
+			$conds[] = 'page_len <=' . $size;
+		} else {
+			$conds[] = 'page_len >=' . $size;
+		}
 
 		if( $namespace !== false ) {
 			$conds['rc_namespace'] = $namespace;
