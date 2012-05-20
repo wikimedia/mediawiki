@@ -154,9 +154,9 @@ class ApiQueryAllUsers extends ApiQueryBase {
 
 			$this->addFields( 'COUNT(*) AS recentedits' );
 
-			$this->addWhere( "rc_log_type IS NULL OR rc_log_type != 'newusers'" );
+			$this->addWhere( 'rc_log_type IS NULL OR rc_log_type != ' . $db->addQuotes( 'newusers' ) );
 			$timestamp = $db->timestamp( wfTimestamp( TS_UNIX ) - $wgActiveUserDays*24*3600 );
-			$this->addWhere( "rc_timestamp >= {$db->addQuotes( $timestamp )}" );
+			$this->addWhere( 'rc_timestamp >= ' . $db->addQuotes( $timestamp ) );
 
 			$this->addOption( 'GROUP BY', $userFieldToSort );
 		}
