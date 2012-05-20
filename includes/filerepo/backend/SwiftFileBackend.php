@@ -741,9 +741,12 @@ class SwiftFileBackend extends FileBackendStore {
 	 * @return Array List of relative paths of dirs directly under $dir
 	 */
 	public function getDirListPageInternal( $fullCont, $dir, &$after, $limit, array $params ) {
+		$dirs = array();
+		if ( $after === INF ) {
+			return $dirs; // nothing more
+		}
 		wfProfileIn( __METHOD__ . '-' . $this->name );
 
-		$dirs = array();
 		try {
 			$container = $this->getContainer( $fullCont );
 			$prefix = ( $dir == '' ) ? null : "{$dir}/";
@@ -754,7 +757,6 @@ class SwiftFileBackend extends FileBackendStore {
 					if ( substr( $object, -1 ) === '/' ) {
 						$dirs[] = $object; // directories end in '/'
 					}
-					$after = $object; // update last item
 				}
 			// Recursive: list all dirs under $dir and its subdirs
 			} else {
@@ -780,8 +782,12 @@ class SwiftFileBackend extends FileBackendStore {
 						}
 						$lastDir = $objectDir;
 					}
-					$after = $object; // update last item
 				}
+			}
+			if ( count( $objects ) < $limit ) {
+				$after = INF; // avoid a second RTT
+			} else {
+				$after = end( $objects ); // update last item
 			}
 		} catch ( NoSuchContainerException $e ) {
 		} catch ( CloudFilesException $e ) { // some other exception?
@@ -808,9 +814,12 @@ class SwiftFileBackend extends FileBackendStore {
 	 * @return Array List of relative paths of files under $dir
 	 */
 	public function getFileListPageInternal( $fullCont, $dir, &$after, $limit, array $params ) {
+		$files = array();
+		if ( $after === INF ) {
+			return $files; // nothing more
+		}
 		wfProfileIn( __METHOD__ . '-' . $this->name );
 
-		$files = array();
 		try {
 			$container = $this->getContainer( $fullCont );
 			$prefix = ( $dir == '' ) ? null : "{$dir}/";
@@ -824,10 +833,14 @@ class SwiftFileBackend extends FileBackendStore {
 				}
 			// Recursive: list all files under $dir and its subdirs
 			} else { // files
-				$files = $container->list_objects( $limit, $after, $prefix );
+				$objects = $container->list_objects( $limit, $after, $prefix );
+				$files = $objects;
 			}
-			$after = end( $files ); // update last item
-			reset( $files ); // reset pointer
+			if ( count( $objects ) < $limit ) {
+				$after = INF; // avoid a second RTT
+			} else {
+				$after = end( $objects ); // update last item
+			}
 		} catch ( NoSuchContainerException $e ) {
 		} catch ( CloudFilesException $e ) { // some other exception?
 			$this->handleException( $e, null, __METHOD__,
