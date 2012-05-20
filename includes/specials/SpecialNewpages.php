@@ -26,6 +26,7 @@
  *
  * @ingroup SpecialPage
  */
+
 class SpecialNewpages extends IncludableSpecialPage {
 
 	// Stored objects
@@ -59,6 +60,8 @@ class SpecialNewpages extends IncludableSpecialPage {
 		$opts->add( 'username', '' );
 		$opts->add( 'feed', '' );
 		$opts->add( 'tagfilter', '' );
+		$opts->add('sizetype','max');
+		$opts->add('size',0);
 
 		$this->customFilters = array();
 		wfRunHooks( 'SpecialNewPagesFilters', array( $this, &$this->customFilters ) );
@@ -143,9 +146,7 @@ class SpecialNewpages extends IncludableSpecialPage {
 				return $this->feed( $feedType );
 			}
 
-			$allValues = $this->opts->getAllValues();
-			unset( $allValues['feed'] );
-			$out->setFeedAppendQuery( wfArrayToCGI( $allValues ) );
+			$out->setFeedAppendQuery( wfArrayToCGI( $this->opts->getAllValues() ) );
 		}
 
 		$pager = new NewPagesPager( $this, $this->opts );
@@ -167,7 +168,7 @@ class SpecialNewpages extends IncludableSpecialPage {
 		global $wgGroupPermissions;
 
 		// show/hide links
-		$showhide = array( $this->msg( 'show' )->escaped(), $this->msg( 'hide' )->escaped() );
+		$showhide = array( wfMsgHtml( 'show' ), wfMsgHtml( 'hide' ) );
 
 		// Option value -> message mapping
 		$filters = array(
@@ -199,7 +200,7 @@ class SpecialNewpages extends IncludableSpecialPage {
 			$link = Linker::link( $self, $showhide[$onoff], array(),
 					array( $key => $onoff ) + $changed
 			);
-			$links[$key] = $this->msg( $msg )->rawParams( $link )->escaped();
+			$links[$key] = wfMsgHtml( $msg, $link );
 		}
 
 		return $this->getLanguage()->pipeList( $links );
@@ -213,7 +214,9 @@ class SpecialNewpages extends IncludableSpecialPage {
 		$namespace = $this->opts->consumeValue( 'namespace' );
 		$username = $this->opts->consumeValue( 'username' );
 		$tagFilterVal = $this->opts->consumeValue( 'tagfilter' );
-
+		$sizeType=$this->opts->consumeValue('sizetype');
+		$size=$this->opts->consumeValue('size');
+		$max = $sizeType === 'max';
 		// Check username input validity
 		$ut = Title::makeTitleSafe( NS_USER, $username );
 		$userText = $ut ? $ut->getText() : '';
@@ -232,11 +235,11 @@ class SpecialNewpages extends IncludableSpecialPage {
 
 		$form = Xml::openElement( 'form', array( 'action' => $wgScript ) ) .
 			Html::hidden( 'title', $this->getTitle()->getPrefixedDBkey() ) .
-			Xml::fieldset( $this->msg( 'newpages' )->text() ) .
+			Xml::fieldset( wfMsg( 'newpages' ) ) .
 			Xml::openElement( 'table', array( 'id' => 'mw-newpages-table' ) ) .
 			'<tr>
 				<td class="mw-label">' .
-					Xml::label( $this->msg( 'namespace' )->text(), 'namespace' ) .
+					Xml::label( wfMsg( 'namespace' ), 'namespace' ) .
 				'</td>
 				<td class="mw-input">' .
 					Html::namespaceSelector(
@@ -262,15 +265,22 @@ class SpecialNewpages extends IncludableSpecialPage {
 			( $wgEnableNewpagesUserFilter ?
 			'<tr>
 				<td class="mw-label">' .
-					Xml::label( $this->msg( 'newpages-username' )->text(), 'mw-np-username' ) .
+					Xml::label( wfMsg( 'newpages-username' ), 'mw-np-username' ) .
 				'</td>
 				<td class="mw-input">' .
 					Xml::input( 'username', 30, $userText, array( 'id' => 'mw-np-username' ) ) .
 				'</td>
-			</tr>' : '' ) .
+			</tr>' : '' ) .'<tr><td>'.
+					Xml::radioLabel( wfMsg('minimum-size'), 'sizetype', 'min', 'wpmin', !$max ) .
+			'&#160;' .'</td><td>'.
+			Xml::radioLabel( wfMsg('maximum-size'), 'sizetype', 'max', 'wpmax', $max ) .
+			'&#160;' .
+			Xml::input( 'size', 9, $size, array( 'id' => 'wpsize' ) ) .
+			'&#160;' .
+			Xml::label( wfMsg('pagesize'), 'wpsize' ).'</td></tr>'.
 			'<tr> <td></td>
 				<td class="mw-submit">' .
-					Xml::submitButton( $this->msg( 'allpagessubmit' )->text() ) .
+					Xml::submitButton( wfMsg( 'allpagessubmit' ) ) .
 				'</td>
 			</tr>' .
 			'<tr>
@@ -310,7 +320,7 @@ class SpecialNewpages extends IncludableSpecialPage {
 
 		$title = Title::newFromRow( $result );
 		$spanTime = Html::element( 'span', array( 'class' => 'mw-newpages-time' ),
-			$lang->userTimeAndDate( $result->rc_timestamp, $this->getUser() )
+			$lang->timeanddate( $result->rc_timestamp, true )
 		);
 		$time = Linker::linkKnown(
 			$title,
@@ -335,12 +345,11 @@ class SpecialNewpages extends IncludableSpecialPage {
 		);
 		$histLink = Linker::linkKnown(
 			$title,
-			$this->msg( 'hist' )->escaped(),
+			wfMsgHtml( 'hist' ),
 			array(),
 			array( 'action' => 'history' )
 		);
-		$hist = Html::rawElement( 'span', array( 'class' => 'mw-newpages-history' ),
-			$this->msg( 'parentheses' )->rawParams( $histLink )->escaped() );
+		$hist = Html::rawElement( 'span', array( 'class' => 'mw-newpages-history' ), wfMsg( 'parentheses', $histLink ) );
 
 		$length = Html::element( 'span', array( 'class' => 'mw-newpages-length' ),
 				'[' . $this->msg( 'nbytes' )->numParams( $result->length )->text() . ']'
@@ -372,7 +381,7 @@ class SpecialNewpages extends IncludableSpecialPage {
 		$oldTitleText = '';
 		$oldTitle = Title::makeTitle( $result->rc_namespace, $result->rc_title );
 		if ( !$title->equals( $oldTitle ) ) {
-			$oldTitleText = $this->msg( 'rc-old-title' )->params( $oldTitle->getPrefixedText() )->escaped();
+			$oldTitleText = wfMessage( 'rc-old-title' )->params( $oldTitle->getPrefixedText() )->escaped();	
 		}
 
 		return "<li{$css}>{$time} {$dm}{$plink} {$hist} {$dm}{$length} {$dm}{$ulink} {$comment} {$tagDisplay} {$oldTitleText}</li>\n";
@@ -408,7 +417,7 @@ class SpecialNewpages extends IncludableSpecialPage {
 
 		$feed = new $wgFeedClasses[$type](
 			$this->feedTitle(),
-			$this->msg( 'tagline' )->text(),
+			wfMsgExt( 'tagline', 'parsemag' ),
 			$this->getTitle()->getFullUrl()
 		);
 
@@ -432,7 +441,7 @@ class SpecialNewpages extends IncludableSpecialPage {
 	}
 
 	protected function feedItem( $row ) {
-		$title = Title::makeTitle( intval( $row->rc_namespace ), $row->rc_title );
+		$title = Title::MakeTitle( intval( $row->rc_namespace ), $row->rc_title );
 		if( $title ) {
 			$date = $row->rc_timestamp;
 			$comments = $title->getTalkPage()->getFullURL();
@@ -457,8 +466,7 @@ class SpecialNewpages extends IncludableSpecialPage {
 	protected function feedItemDesc( $row ) {
 		$revision = Revision::newFromId( $row->rev_id );
 		if( $revision ) {
-			return '<p>' . htmlspecialchars( $revision->getUserText() ) .
-				$this->msg( 'colon-separator' )->inContentLanguage()->escaped() .
+			return '<p>' . htmlspecialchars( $revision->getUserText() ) . wfMsgForContent( 'colon-separator' ) .
 				htmlspecialchars( FeedItem::stripComment( $revision->getComment() ) ) .
 				"</p>\n<hr />\n<div>" .
 				nl2br( htmlspecialchars( $revision->getText() ) ) . "</div>";
@@ -495,7 +503,20 @@ class NewPagesPager extends ReverseChronologicalPager {
 
 		$username = $this->opts->getValue( 'username' );
 		$user = Title::makeTitleSafe( NS_USER, $username );
-
+		$size=$this->opts->getValue('size');
+		$sizeType=$this->opts->getValue('sizetype');
+		$max=$sizeType==='max'?'max':'min';
+		if($size!=0)
+		{
+			if($max==='max')
+			{
+				$conds[]='page_len<='.$size;
+			}
+			else 
+			{
+				$conds[]='page_len>='. $size;
+			}
+		}
 		if( $namespace !== false ) {
 			$conds['rc_namespace'] = $namespace;
 			$rcIndexes = array( 'new_name_timestamp' );
@@ -584,3 +605,4 @@ class NewPagesPager extends ReverseChronologicalPager {
 		return '</ul>';
 	}
 }
+

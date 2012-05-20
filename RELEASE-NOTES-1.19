@@ -160,6 +160,7 @@ release and submitting bug reports.
 * Special:MovePage now has a dropdown menu for namespaces.
 * (bug 34420) Special:Version now shows git HEAD sha1 when available.
 * (bug 33952) Refactor mw.toolbar to allow dynamic additions at any time.
+* (bug 10817) Filtering Special:Newpages by page size
 
 === Bug fixes in 1.19 ===
 * $wgUploadNavigationUrl should be used for file redlinks if.
