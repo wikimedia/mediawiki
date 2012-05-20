@@ -292,7 +292,7 @@ class ForeignAPIRepo extends FileRepo {
 		$op = array( 'op' => 'create', 'dst' => $localFilename, 'content' => $thumb );
 		if( !$backend->doOperation( $op )->isOK() ) {
 			wfRestoreWarnings();
-			wfDebug( __METHOD__ . " could not write to thumb path\n" );
+			wfDebug( __METHOD__ . " could not write to thumb path '$localFilename'\n" );
 			return $foreignUrl;
 		}
 		$knownThumbUrls[$sizekey] = $localUrl;
