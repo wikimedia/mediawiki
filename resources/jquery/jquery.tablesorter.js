@@ -413,16 +413,15 @@
 
 	function buildDateTable() {
 		var regex = [];
-		ts.monthNames = [
-			[],
-			[]
-		];
+		ts.monthNames = {};
 
 		for ( var i = 1; i < 13; i++ ) {
-			ts.monthNames[0][i] = mw.config.get( 'wgMonthNames' )[i].toLowerCase();
-			ts.monthNames[1][i] = mw.config.get( 'wgMonthNamesShort' )[i].toLowerCase().replace( '.', '' );
-			regex.push( $.escapeRE( ts.monthNames[0][i] ) );
-			regex.push( $.escapeRE( ts.monthNames[1][i] ) );
+			var name = mw.config.get( 'wgMonthNames' )[i].toLowerCase();
+			ts.monthNames[name] = i;
+			regex.push( $.escapeRE( name ) );
+			name = mw.config.get( 'wgMonthNamesShort' )[i].toLowerCase().replace( '.', '' );
+			ts.monthNames[name] = i;
+			regex.push( $.escapeRE( name ) );
 		}
 
 		// Build piped string
@@ -430,13 +429,13 @@
 
 		// Build RegEx
 		// Any date formated with . , ' - or /
-		ts.dateRegex[0] = new RegExp( /^\s*\d{1,2}[\,\.\-\/'\s]{1,2}\d{1,2}[\,\.\-\/'\s]{1,2}\d{2,4}\s*?/i);
+		ts.dateRegex[0] = new RegExp( /^\s*(\d{1,2})[\,\.\-\/'\s]{1,2}(\d{1,2})[\,\.\-\/'\s]{1,2}(\d{2,4})\s*?/i);
 
 		// Written Month name, dmy
-		ts.dateRegex[1] = new RegExp( '^\\s*\\d{1,2}[\\,\\.\\-\\/\'\\s]*(' + regex + ')' + '[\\,\\.\\-\\/\'\\s]*\\d{2,4}\\s*$', 'i' );
+		ts.dateRegex[1] = new RegExp( '^\\s*(\\d{1,2})[\\,\\.\\-\\/\'\\s]*(' + regex + ')' + '[\\,\\.\\-\\/\'\\s]*(\\d{2,4})\\s*$', 'i' );
 
 		// Written Month name, mdy
-		ts.dateRegex[2] = new RegExp( '^\\s*(' + regex + ')' + '[\\,\\.\\-\\/\'\\s]*\\d{1,2}[\\,\\.\\-\\/\'\\s]*\\d{2,4}\\s*$', 'i' );
+		ts.dateRegex[2] = new RegExp( '^\\s*(' + regex + ')' + '[\\,\\.\\-\\/\'\\s]*(\\d{1,2})[\\,\\.\\-\\/\'\\s]*(\\d{2,4})\\s*$', 'i' );
 
 	}
 
@@ -529,7 +528,7 @@
 			},
 
 			dateRegex: [],
-			monthNames: [],
+			monthNames: {},
 
 			/**
 			 * @param $tables {jQuery}
@@ -837,49 +836,41 @@
 		format: function( s, table ) {
 			s = $.trim( s.toLowerCase() );
 
-			for ( var i = 1, j = 0; i < 13 && j < 2; i++ ) {
-				s = s.replace( ts.monthNames[j][i], i );
-				if ( i == 12 ) {
-					j++;
-					i = 0;
+			var match;
+			if ( ( match = s.match( ts.dateRegex[0] ) ) !== null ) {
+				if ( mw.config.get( 'wgDefaultDateFormat' ) == 'mdy' || mw.config.get( 'wgContentLanguage' ) == 'en' ) {
+					s = [ match[3], match[1], match[2] ];
+				} else if ( mw.config.get( 'wgDefaultDateFormat' ) == 'dmy' ) {
+					s = [ match[3], match[2], match[1] ];
 				}
+			} else if ( ( match = s.match( ts.dateRegex[1] ) ) !== null ) {
+				s = [ match[3], '' + ts.monthNames[match[2]], match[1] ];
+			} else if ( ( match = s.match( ts.dateRegex[2] ) ) !== null ) {
+				s = [ match[3], '' + ts.monthNames[match[1]], match[2] ];
+			} else {
+				// Should never get here
+				return '99999999';
 			}
-
-			s = s.replace( /[\-\.\,' ]/g, '/' );
-
-			// Replace double slashes
-			s = s.replace( /\/\//g, '/' );
-			s = s.replace( /\/\//g, '/' );
-			s = s.split( '/' );
 
 			// Pad Month and Day
-			if ( s[0] && s[0].length == 1 ) {
-				s[0] = '0' + s[0];
-			}
-			if ( s[1] && s[1].length == 1 ) {
+			if ( s[1].length == 1 ) {
 				s[1] = '0' + s[1];
 			}
-			var y;
+			if ( s[2].length == 1 ) {
+				s[2] = '0' + s[2];
+			}
 
-			if ( !s[2] ) {
-				// Fix yearless dates
-				s[2] = 2000;
-			} else if ( ( y = parseInt( s[2], 10) ) < 100 ) {
+			var y;
+			if ( ( y = parseInt( s[0], 10) ) < 100 ) {
 				// Guestimate years without centuries
 				if ( y < 30 ) {
-					s[2] = 2000 + y;
+					s[0] = 2000 + y;
 				} else {
-					s[2] = 1900 + y;
+					s[0] = 1900 + y;
 				}
 			}
-			// Resort array depending on preferences
-			if ( mw.config.get( 'wgDefaultDateFormat' ) == 'mdy' || mw.config.get( 'wgContentLanguage' ) == 'en' ) {
-				s.push( s.shift() );
-				s.push( s.shift() );
-			} else if ( mw.config.get( 'wgDefaultDateFormat' ) == 'dmy' ) {
-				var d = s.shift();
-				s.push( s.shift() );
-				s.push(d);
+			while ( s[0].length < 4 ) {
+				s[0] = '0' + s[0];
 			}
 			return parseInt( s.join( '' ), 10 );
 		},

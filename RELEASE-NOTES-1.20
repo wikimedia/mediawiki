@@ -141,6 +141,9 @@ upgrade PHP if you have not done so prior to upgrading MediaWiki.
 * (bug 35082) mw.util.addPortletLink incorrectly adds link to mutiple <ul> tags.
 * (bug 36495) Sanitizer::fixDeprecatedAttributes should convert "align"
   attribute to margin or float instead of text-align (for non-table-cells).
+* (bug 36991) jquery.tablesorter should extract date sort format from date
+  string instead of global config. Dates like "April 1 2012" and "1 April 2012"
+  now sort correctly regardless of the content language's DefaultDateFormat.
 
 === API changes in 1.20 ===
 * (bug 34316) Add ability to retrieve maximum upload size from MediaWiki API.
