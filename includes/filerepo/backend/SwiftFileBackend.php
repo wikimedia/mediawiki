@@ -742,6 +742,9 @@ class SwiftFileBackend extends FileBackendStore {
 	 */
 	public function getDirListPageInternal( $fullCont, $dir, &$after, $limit, array $params ) {
 		$dirs = array();
+		if ( $after === INF ) {
+			return $dirs; // nothing more
+		}
 
 		try {
 			$container = $this->getContainer( $fullCont );
@@ -753,7 +756,6 @@ class SwiftFileBackend extends FileBackendStore {
 					if ( substr( $object, -1 ) === '/' ) {
 						$dirs[] = $object; // directories end in '/'
 					}
-					$after = $object; // update last item
 				}
 			// Recursive: list all dirs under $dir and its subdirs
 			} else {
@@ -779,8 +781,12 @@ class SwiftFileBackend extends FileBackendStore {
 						}
 						$lastDir = $objectDir;
 					}
-					$after = $object; // update last item
 				}
+			}
+			if ( count( $objects ) < $limit ) {
+				$after = INF; // avoid a second RTT
+			} else {
+				$after = end( $objects ); // update last item
 			}
 		} catch ( NoSuchContainerException $e ) {
 		} catch ( CloudFilesException $e ) { // some other exception?
@@ -807,6 +813,9 @@ class SwiftFileBackend extends FileBackendStore {
 	 */
 	public function getFileListPageInternal( $fullCont, $dir, &$after, $limit, array $params ) {
 		$files = array();
+		if ( $after === INF ) {
+			return $files; // nothing more
+		}
 
 		try {
 			$container = $this->getContainer( $fullCont );
@@ -821,10 +830,14 @@ class SwiftFileBackend extends FileBackendStore {
 				}
 			// Recursive: list all files under $dir and its subdirs
 			} else { // files
-				$files = $container->list_objects( $limit, $after, $prefix );
+				$objects = $container->list_objects( $limit, $after, $prefix );
+				$files = $objects;
 			}
-			$after = end( $files ); // update last item
-			reset( $files ); // reset pointer
+			if ( count( $objects ) < $limit ) {
+				$after = INF; // avoid a second RTT
+			} else {
+				$after = end( $objects ); // update last item
+			}
 		} catch ( NoSuchContainerException $e ) {
 		} catch ( CloudFilesException $e ) { // some other exception?
 			$this->handleException( $e, null, __METHOD__,

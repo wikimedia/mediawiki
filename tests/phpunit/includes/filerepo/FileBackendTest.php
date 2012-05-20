@@ -850,7 +850,7 @@ class FileBackendTest extends MediaWikiTestCase {
 
 		if ( $alreadyExists ) {
 			$this->prepare( array( 'dir' => dirname( $path ) ) );
-			$status = $this->backend->create( array( 'dst' => $path, 'content' => $content ) );
+			$status = $this->create( array( 'dst' => $path, 'content' => $content ) );
 			$this->assertGoodStatus( $status,
 				"Creation of file at $path succeeded ($backendName)." );
 
@@ -860,14 +860,14 @@ class FileBackendTest extends MediaWikiTestCase {
 
 			$this->assertEquals( strlen( $content ), $size,
 				"Correct file size of '$path'" );
-			$this->assertTrue( abs( time() - wfTimestamp( TS_UNIX, $time ) ) < 5,
+			$this->assertTrue( abs( time() - wfTimestamp( TS_UNIX, $time ) ) < 10,
 				"Correct file timestamp of '$path'" );
 
 			$size = $stat['size'];
 			$time = $stat['mtime'];
 			$this->assertEquals( strlen( $content ), $size,
 				"Correct file size of '$path'" );
-			$this->assertTrue( abs( time() - wfTimestamp( TS_UNIX, $time ) ) < 5,
+			$this->assertTrue( abs( time() - wfTimestamp( TS_UNIX, $time ) ) < 10,
 				"Correct file timestamp of '$path'" );
 		} else {
 			$size = $this->backend->getFileSize( array( 'src' => $path ) );
@@ -999,8 +999,7 @@ class FileBackendTest extends MediaWikiTestCase {
 
 		$this->prepare( array( 'dir' => dirname( $source ) ) );
 
-		$status = $this->backend->doOperation(
-			array( 'op' => 'create', 'content' => $content, 'dst' => $source ) );
+		$status = $this->create( array( 'content' => $content, 'dst' => $source ) );
 		$this->assertGoodStatus( $status,
 			"Creation of file at $source succeeded ($backendName)." );
 
@@ -1169,11 +1168,11 @@ class FileBackendTest extends MediaWikiTestCase {
 		$fileD = "$base/unittest-cont1/a/b/fileD.txt";
 
 		$this->prepare( array( 'dir' => dirname( $fileA ) ) );
-		$this->backend->create( array( 'dst' => $fileA, 'content' => $fileAContents ) );
+		$this->create( array( 'dst' => $fileA, 'content' => $fileAContents ) );
 		$this->prepare( array( 'dir' => dirname( $fileB ) ) );
-		$this->backend->create( array( 'dst' => $fileB, 'content' => $fileBContents ) );
+		$this->create( array( 'dst' => $fileB, 'content' => $fileBContents ) );
 		$this->prepare( array( 'dir' => dirname( $fileC ) ) );
-		$this->backend->create( array( 'dst' => $fileC, 'content' => $fileCContents ) );
+		$this->create( array( 'dst' => $fileC, 'content' => $fileCContents ) );
 		$this->prepare( array( 'dir' => dirname( $fileD ) ) );
 
 		$status = $this->backend->doOperations( array(
@@ -1255,7 +1254,7 @@ class FileBackendTest extends MediaWikiTestCase {
 		$fileD = "$base/unittest-cont1/a/b/fileD.txt";
 
 		$this->prepare( array( 'dir' => dirname( $fileA ) ) );
-		$this->backend->create( array( 'dst' => $fileA, 'content' => $fileAContents ) );
+		$this->create( array( 'dst' => $fileA, 'content' => $fileAContents ) );
 		$this->prepare( array( 'dir' => dirname( $fileB ) ) );
 		$this->prepare( array( 'dir' => dirname( $fileC ) ) );
 		$this->prepare( array( 'dir' => dirname( $fileD ) ) );
@@ -1329,11 +1328,11 @@ class FileBackendTest extends MediaWikiTestCase {
 		$fileD = "$base/unittest-cont2/a/b/fileD.txt";
 
 		$this->prepare( array( 'dir' => dirname( $fileA ) ) );
-		$this->backend->create( array( 'dst' => $fileA, 'content' => $fileAContents ) );
+		$this->create( array( 'dst' => $fileA, 'content' => $fileAContents ) );
 		$this->prepare( array( 'dir' => dirname( $fileB ) ) );
-		$this->backend->create( array( 'dst' => $fileB, 'content' => $fileBContents ) );
+		$this->create( array( 'dst' => $fileB, 'content' => $fileBContents ) );
 		$this->prepare( array( 'dir' => dirname( $fileC ) ) );
-		$this->backend->create( array( 'dst' => $fileC, 'content' => $fileCContents ) );
+		$this->create( array( 'dst' => $fileC, 'content' => $fileCContents ) );
 
 		$status = $this->backend->doOperations( array(
 			array( 'op' => 'copy', 'src' => $fileA, 'dst' => $fileC, 'overwrite' => 1 ),
@@ -1418,7 +1417,7 @@ class FileBackendTest extends MediaWikiTestCase {
 			$this->prepare( array( 'dir' => dirname( $file ) ) );
 			$ops[] = array( 'op' => 'create', 'content' => 'xxy', 'dst' => $file );
 		}
-		$status = $this->backend->doOperations( $ops );
+		$status = $this->backend->doQuickOperations( $ops );
 		$this->assertGoodStatus( $status,
 			"Creation of files succeeded ($backendName)." );
 		$this->assertEquals( true, $status->isOK(),
@@ -1571,7 +1570,7 @@ class FileBackendTest extends MediaWikiTestCase {
 			$this->prepare( array( 'dir' => dirname( $file ) ) );
 			$ops[] = array( 'op' => 'create', 'content' => 'xxy', 'dst' => $file );
 		}
-		$status = $this->backend->doOperations( $ops );
+		$status = $this->backend->doQuickOperations( $ops );
 		$this->assertGoodStatus( $status,
 			"Creation of files succeeded ($backendName)." );
 		$this->assertEquals( true, $status->isOK(),
@@ -1769,6 +1768,12 @@ class FileBackendTest extends MediaWikiTestCase {
 	// test helper wrapper for backend prepare() function
 	private function prepare( array $params ) {
 		return $this->backend->prepare( $params );
+	}
+
+	// test helper wrapper for backend prepare() function
+	private function create( array $params ) {
+		$params['op'] = 'create';
+		return $this->backend->doQuickOperations( array( $params ) );
 	}
 
 	function tearDownFiles() {
