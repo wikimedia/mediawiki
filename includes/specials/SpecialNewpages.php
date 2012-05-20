@@ -59,6 +59,8 @@ class SpecialNewpages extends IncludableSpecialPage {
 		$opts->add( 'feed', '' );
 		$opts->add( 'tagfilter', '' );
 		$opts->add( 'invert', false );
+		$opts->add( 'sizetype', 'max' );
+		$opts->add( 'size', 0 );
 
 		$this->customFilters = array();
 		wfRunHooks( 'SpecialNewPagesFilters', array( $this, &$this->customFilters ) );
@@ -216,6 +218,9 @@ class SpecialNewpages extends IncludableSpecialPage {
 		$tagFilterVal = $this->opts->consumeValue( 'tagfilter' );
 		$nsinvert = $this->opts->consumeValue( 'invert' );
 
+		$sizeType = $this->opts->consumeValue( 'sizetype' );
+		$size = $this->opts->consumeValue( 'size' );
+		$max = $sizeType === 'max';
 		// Check username input validity
 		$ut = Title::makeTitleSafe( NS_USER, $username );
 		$userText = $ut ? $ut->getText() : '';
@@ -277,6 +282,14 @@ class SpecialNewpages extends IncludableSpecialPage {
 					Xml::input( 'username', 30, $userText, array( 'id' => 'mw-np-username' ) ) .
 					'</td>
 			</tr>' : '' ) .
+			'<tr><td>'.
+			Xml::radioLabel( wfMsg('minimum-size'), 'sizetype', 'min', 'wpmin' , !$max ).
+			'&#160;' .'</td><td>'.
+			Xml::radioLabel( wfMsg('maximum-size'), 'sizetype', 'max', 'wpmax', $max ) .
+			'&#160;' .
+			Xml::input( 'size', 9, $size, array( 'id' => 'wpsize' ) ) .
+			'&#160;' .
+			Xml::label( wfMsg('pagesize'), 'wpsize' ).'</td></tr>'.
 			'<tr> <td></td>
 				<td class="mw-submit">' .
 			Xml::submitButton( $this->msg( 'allpagessubmit' )->text() ) .
@@ -523,6 +536,13 @@ class NewPagesPager extends ReverseChronologicalPager {
 
 		$username = $this->opts->getValue( 'username' );
 		$user = Title::makeTitleSafe( NS_USER, $username );
+		$size = $this->opts->getValue( 'size' );
+		$sizeType = $this->opts->getValue( 'sizetype' );
+		if( $size > 0 && $sizeType === 'max' ) {
+			$conds[] = 'page_len <=' . $size;
+		} else if( $size > 0 ) {
+			$conds[] = 'page_len >=' . $size;
+		}
 
 		if ( $namespace !== false ) {
 			if ( $this->opts->getValue( 'invert' ) ) {
