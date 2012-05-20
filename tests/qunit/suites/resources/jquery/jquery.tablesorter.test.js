@@ -549,4 +549,54 @@ test( 'bug 32888 - Tables inside a tableheader cell', function() {
 	);
 });
 
+var correctDateSorting1 = [
+	['01 January 2010'],
+	['05 February 2010'],
+	['16 January 2010'],
+];
+
+var correctDateSortingSorted1 = [
+	['01 January 2010'],
+	['16 January 2010'],
+	['05 February 2010'],
+];
+
+tableTest(
+	'Correct date sorting I',
+	['date'],
+	correctDateSorting1,
+	correctDateSortingSorted1,
+	function( $table ) {
+		mw.config.set( 'wgDefaultDateFormat', 'mdy' );
+
+		$table.tablesorter();
+		$table.find( '.headerSort:eq(0)' ).click();
+	}
+);
+
+var correctDateSorting2 = [
+	['January 01 2010'],
+	['February 05 2010'],
+	['January 16 2010'],
+];
+
+var correctDateSortingSorted2 = [
+	['January 01 2010'],
+	['January 16 2010'],
+	['February 05 2010'],
+];
+
+tableTest(
+	'Correct date sorting II',
+	['date'],
+	correctDateSorting2,
+	correctDateSortingSorted2,
+	function( $table ) {
+		mw.config.set( 'wgDefaultDateFormat', 'dmy' );
+
+		$table.tablesorter();
+		$table.find( '.headerSort:eq(0)' ).click();
+	}
+);
+
 })( jQuery );
