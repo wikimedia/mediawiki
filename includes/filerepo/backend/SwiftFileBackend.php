@@ -741,8 +741,9 @@ class SwiftFileBackend extends FileBackendStore {
 	 * @return Array List of relative paths of dirs directly under $dir
 	 */
 	public function getDirListPageInternal( $fullCont, $dir, &$after, $limit, array $params ) {
-		$dirs = array();
+		wfProfileIn( __METHOD__ . '-' . $this->name );
 
+		$dirs = array();
 		try {
 			$container = $this->getContainer( $fullCont );
 			$prefix = ( $dir == '' ) ? null : "{$dir}/";
@@ -788,6 +789,7 @@ class SwiftFileBackend extends FileBackendStore {
 				array( 'cont' => $fullCont, 'dir' => $dir ) );
 		}
 
+		wfProfileOut( __METHOD__ . '-' . $this->name );
 		return $dirs;
 	}
 
@@ -806,8 +808,9 @@ class SwiftFileBackend extends FileBackendStore {
 	 * @return Array List of relative paths of files under $dir
 	 */
 	public function getFileListPageInternal( $fullCont, $dir, &$after, $limit, array $params ) {
-		$files = array();
+		wfProfileIn( __METHOD__ . '-' . $this->name );
 
+		$files = array();
 		try {
 			$container = $this->getContainer( $fullCont );
 			$prefix = ( $dir == '' ) ? null : "{$dir}/";
@@ -831,6 +834,7 @@ class SwiftFileBackend extends FileBackendStore {
 				array( 'cont' => $fullCont, 'dir' => $dir ) );
 		}
 
+		wfProfileOut( __METHOD__ . '-' . $this->name );
 		return $files;
 	}
 
