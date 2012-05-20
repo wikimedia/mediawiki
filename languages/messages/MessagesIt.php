@@ -927,7 +927,7 @@ Le tue modifiche NON sono ancora state salvate!",
 'previewconflict' => 'L\'anteprima corrisponde al testo presente nella casella di modifica superiore e rappresenta la pagina come apparirà se si sceglie di premere "Salva la pagina" in questo momento.',
 'session_fail_preview' => "'''Non è stato possibile elaborare la modifica perché sono andati persi i dati relativi alla sessione.
 Riprovare.
-Se il problema persiste, si può provare a [[Special:UserLogout|scollegarsi]] ed effettuare un nuovo accesso.'''",
+Se il problema persiste, si può tentare di [[Special:UserLogout|scollegarsi]] ed effettuare un nuovo accesso.'''",
 'session_fail_preview_html' => "'''Non è stato possibile elaborare la modifica perché sono andati persi i dati relativi alla sessione.'''
 
 ''Poiché in {{SITENAME}} è abilitato l'uso di HTML senza limitazioni, l'anteprima non viene visualizzata; si tratta di una misura di sicurezza contro gli attacchi JavaScript.''
@@ -1740,14 +1740,15 @@ $1',
 'backend-fail-writetemp' => 'Impossibile creare il file temporaneo.',
 'backend-fail-closetemp' => 'Impossibile chiudere il file temporaneo.',
 'backend-fail-read' => 'Impossibile leggere il file  $1 .',
-'backend-fail-create' => 'Impossibile creare il file  $1 .',
-'backend-fail-maxsize' => 'Impossibile creare il file $1 perché è più grande di {{PLURAL:$2|un|$2}} byte.',
+'backend-fail-create' => 'Impossibile creare il file  $1.',
+'backend-fail-maxsize' => 'Impossibile creare il file $1 perché è più grande di{{PLURAL:$2|un byte|$2 bytes}}.',
 'backend-fail-readonly' => 'Il backend "$1" è attualmente di sola lettura. La ragione indicata è: "$2"',
 'backend-fail-synced' => 'Il file "$1" è in uno stato non coerente nei backend di memoria interna.',
 'backend-fail-connect' => 'Impossibile connettersi al backend di memoria "$1".',
 'backend-fail-internal' => 'Si è verificato un errore sconosciuto nel backend di memoria "$1".',
 'backend-fail-contenttype' => 'Impossibile determinare la tipologia del file da archiviare in "$1".',
 'backend-fail-batchsize' => 'Il backend di memoria ha programmato una serie di $1 {{PLURAL:$1|operazione|operazioni}} su file; il limite è di $2 {{PLURAL:$2|operazione|operazioni}}.',
+'backend-fail-usable' => 'Impossibile scrivere il file $1 a causa di autorizzazione insufficienti o directory/recipienti mancanti.',
 
 # File journal errors
 'filejournal-fail-dbconnect' => 'Impossibile connettersi al database journal per l\'archiviazione back-end "$1".',

@@ -670,6 +670,8 @@ $2',
 'filereadonlyerror' => 'Faili "$1" ei saa muuta, sest hoidla "$2" on kirjutuskaitstud.
 
 Administraator lukustas selle järgmisel põhjusel: "$3".',
+'invalidtitle-knownnamespace' => 'Vigane pealkiri nimeruumis "$2" tekstiga "$3"',
+'invalidtitle-unknownnamespace' => 'Vigane pealkiri nimeruuminumbriga $1 ja tekstiga "$2"',
 
 # Virus scanner
 'virus-badscanner' => "Viga konfiguratsioonis: tundmatu viirusetõrje: ''$1''",
@@ -1223,6 +1225,8 @@ Navigeerimislinkide kasutamine tühistab redaktsioonide valiku.',
 
 # Diffs
 'history-title' => 'Lehekülje "$1" muudatuste ajalugu',
+'difference-title' => 'Erinevus lehekülje "$1" redaktsioonide vahel',
+'difference-title-multipage' => 'Erinevus lehekülgede "$1" ja "$2" vahel',
 'difference-multipage' => '(Lehekülgede erinevus)',
 'lineno' => 'Rida $1:',
 'compareselectedversions' => 'Võrdle valitud redaktsioone',
@@ -1779,9 +1783,10 @@ Kui probleem ei kao, võta ühendust [[Special:ListUsers/sysop|administraatoriga
 'backend-fail-writetemp' => 'Ajutist faili ei saa kirjutada.',
 'backend-fail-closetemp' => 'Ajutist faili ei saa sulgeda.',
 'backend-fail-read' => 'Faili $1 ei saa lugeda.',
-'backend-fail-create' => 'Faili $1 ei saa luua.',
-'backend-fail-maxsize' => 'Faili $1 ei saa luua, sest see on {{PLURAL:$2|ühest baidist|$2 baidist}} suurem.',
+'backend-fail-create' => 'Faili $1 ei saa kirjutada.',
+'backend-fail-maxsize' => 'Faili $1 ei saa kirjutada, sest see on {{PLURAL:$2|ühest baidist|$2 baidist}} suurem.',
 'backend-fail-contenttype' => 'Faili, mida soovitakse talletada asukohas "$1", sisutüüpi saanud kindlaks teha.',
+'backend-fail-usable' => 'Faili $1 ei saa ebapiisavate õiguste või puuduvate kataloogide/konteinerite tõttu kirjutada.',
 
 # Lock manager
 'lockmanager-notlocked' => 'Rada "$1" ei saa lukust lahti teha, sest see pole lukus.',
@@ -1928,7 +1933,7 @@ Võib-olla tahad redigeerida selle faili [$2 sealset kirjelduslehekülge].',
 'filedelete-otherreason' => 'Muu või täiendav põhjus:',
 'filedelete-reason-otherlist' => 'Muu põhjus',
 'filedelete-reason-dropdown' => '*Harilikud kustutamise põhjused
-** Autoriõiguste rikkumine
+** Autoriõiguse rikkumine
 ** Duplikaat',
 'filedelete-edit-reasonlist' => 'Redigeeri kustutamise põhjuseid',
 'filedelete-maintenance' => 'Failide kustutamine ja taastamine on hoolduse ajaks keelatud.',

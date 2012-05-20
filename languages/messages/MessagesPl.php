@@ -679,6 +679,8 @@ Uzasadnienie blokady: ''$2''.",
 'filereadonlyerror' => 'Nie można zmodyfikować pliku "$1" ponieważ repozytorium plików "$2" jest w trybie tylko do odczytu.
 
 Administrator blokujący go podał następujący powód "\'\'$3\'\'".',
+'invalidtitle-knownnamespace' => 'Nieprawidłowa nazwa w obszarze nazw "$2" o treści "$3"',
+'invalidtitle-unknownnamespace' => 'Nieprawidłowa nazwa z nieznaną liczbą przestrzeni nazw  $1  o treści "$2"',
 
 # Virus scanner
 'virus-badscanner' => "Zła konfiguracja – nieznany skaner antywirusowy ''$1''",
@@ -1072,6 +1074,8 @@ Argument ten będzie pominięty.',
 'parser-template-loop-warning' => 'Wykryto pętlę w szablonie [[$1]]',
 'parser-template-recursion-depth-warning' => 'Przekroczno limit głębokości rekurencji szablonu ($1)',
 'language-converter-depth-warning' => 'Przekroczono ograniczenie ($1) głębokości zagnieżdżenia konwersji językowej',
+'node-count-exceeded-category' => 'Strony, gdzie przekroczono liczbę węzłów',
+'node-count-exceeded-warning' => 'Strona przekroczyła liczbę węzłów',
 
 # "Undo" feature
 'undo-success' => 'Edycja może zostać wycofana. Porównaj ukazane poniżej różnice między wersjami, a następnie zapisz zmiany.',
@@ -1820,13 +1824,14 @@ Jeśli problem będzie się powtarzał, skontaktuj się z [[Special:ListUsers/sy
 'backend-fail-closetemp' => 'Nie można zamknąć pliku tymczasowego.',
 'backend-fail-read' => 'Nie można odczytać pliku $1.',
 'backend-fail-create' => 'Nie można utworzyć pliku $1.',
-'backend-fail-maxsize' => 'Nie udało utworzyć pliku $1 ponieważ jest on większy niż {{PLURAL:$2|$2 bajt| $2 bajty| $2 bajtów}}.',
+'backend-fail-maxsize' => 'Nie udało zapisać pliku $1 ponieważ jest on większy niż {{PLURAL:$2|jeden bajt| $2 bajty| $2 bajtów}}.',
 'backend-fail-readonly' => 'Interfejs magazynowania "$1" jest obecnie tylko do odczytu. Powód: "$2"',
 'backend-fail-synced' => 'Plik "$1" jest w niespójnym stanie w ramach wewnętrznych funkcji magazynowania',
 'backend-fail-connect' => 'Nie można nawiązać połączenia do wewnętrznych funkcji magazynowania "$1".',
 'backend-fail-internal' => 'Wystąpił nieznany błąd w wewnętrznych funkcjach magazynowania "$1".',
 'backend-fail-contenttype' => 'Nie można określić typ zawartości pliku do przechowywania w "$1".',
 'backend-fail-batchsize' => 'Wewnętrzne funkcje magazynowania otrzymały $1 {{PLURAL:$1|operację|operacje|operacji}} na pliku; limit wynosi $2 {{PLURAL:$2| operacja|operacje|operacji}}.',
+'backend-fail-usable' => 'Nie można zapisać pliku $1 ze względu na niewystarczające uprawnienia lub brak katalogów/kontenerów.',
 
 # File journal errors
 'filejournal-fail-dbconnect' => 'Nie można połączyć się z bazą danych dziennika dla backendu magazynowania "$1".',
@@ -1888,6 +1893,7 @@ Ponieważ ta wiki została skonfigurowana jako publiczna dla zapewnienia optymal
 'http-curl-error' => 'Błąd pobierania z adresu $1',
 'http-host-unreachable' => 'Adres jest nieosiągalny.',
 'http-bad-status' => 'Wystąpił problem z realizacją żądania HTTP $1 $2',
+'http-truncated-body' => 'Treść żądania została odebrana tylko częściowo.',
 
 # Some likely curl errors. More could be added from <http://curl.haxx.se/libcurl/c/libcurl-errors.html>
 'upload-curl-error6' => 'Adres URL jest nieosiągalny',
@@ -1949,6 +1955,10 @@ Dostępna jest też [[Special:WhatLinksHere/$2|pełna lista]].',
 Więcej informacji odnajdziesz na [$2 stronie opisu pliku].',
 'sharedupload-desc-here' => 'Ten plik znajduje się na $1 i może być używany w innych projektach.
 Poniżej znajdują się informacje ze [$2 strony opisu] tego pliku.',
+'sharedupload-desc-edit' => 'Plik ten pochodzi z $1 i może być wykorzystany w innych projektach.
+Być może zechcesz zmienić opis na tej [$2 stronie opisu pliku].',
+'sharedupload-desc-create' => 'Plik ten pochodzi z $1 i może być wykorzystany w innych projektach.
+Być może zechcesz zmienić opis na tej [$2 stronie opisu pliku].',
 'filepage-nofile' => 'Plik o tej nazwie nie istnieje.',
 'filepage-nofile-link' => 'Plik o tej nazwie nie istnieje, ale możesz go [$1 przesłać].',
 'uploadnewversion-linktext' => 'Załaduj nowszą wersję tego pliku',
@@ -3817,6 +3827,8 @@ Powinieneś otrzymać [{{SERVER}}{{SCRIPTPATH}}/COPYING kopię licencji GNU Gene
 'version-software' => 'Zainstalowane oprogramowanie',
 'version-software-product' => 'Nazwa',
 'version-software-version' => 'Wersja',
+'version-entrypoints' => 'Adres URL punktu wejścia',
+'version-entrypoints-header-entrypoint' => 'Punkt wejścia',
 'version-entrypoints-header-url' => 'URL',
 
 # Special:FilePath

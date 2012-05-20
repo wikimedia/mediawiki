@@ -272,7 +272,7 @@ $messages = array(
 'unprotectthispage' => 'Parastina vê rûpelê rake',
 'newpage' => 'Rûpela nû',
 'talkpage' => 'Vê rûpelê gotûbêj bike',
-'talkpagelinktext' => 'Nîqaş',
+'talkpagelinktext' => 'gotûbêj',
 'specialpage' => 'Rûpela taybet',
 'personaltools' => 'Amûrên kesane',
 'postcomment' => 'Beşeke nû',
@@ -576,6 +576,7 @@ Eger account\'a bikarhêneran şaşî hate çêkirin, guhdare vê peyamê meke.'
 'showlivepreview' => 'Pêşdîtina zindî',
 'showdiff' => 'Guherandinê nîşan bide',
 'anoneditwarning' => "'''Hişyarî:''' Tu netêketî yî! Navnîşana IP'ya te wê di dîroka guherandina vê rûpelê de bê tomarkirin.",
+'anonpreviewwarning' => "''Tu ne têketî yî. Tomarkirin wê navnîşana IP'ya te di dîroka guhertinan de nîşan bide.''",
 'missingsummary' => "<span style=\"color:#990000;\">'''Zanibe:'''</span> Te nivîsekî kurt ji bo guherandinê ra nenivîsand. Eger tu niha carekî din li Tomar xê, guherandinê te vê nivîsekî kurt yê were tomarkirin.",
 'missingcommenttext' => 'Ji kerema xwe kurteya naverokê li jêr binivisîne.',
 'missingcommentheader' => "<span style=\"color:#990000;\">'''Zanibe:'''</span> Te sernavek nenivîsandiye. Heke tu niha carekî din li ser ''tomar bike'' bitikînî, ev guherandina vê sernavê wê were tomarkirin.",
@@ -643,6 +644,7 @@ Astengkirina dawî bi referansa li jêr hatiye piştrastkirin:',
 'previewnote' => "'''Ji bîr neke ku ev bi tenê çavdêriyek e, ev rûpel hîn nehatiye tomarkirin!'''",
 'continue-editing' => 'Guhertinê bidomîne',
 'editing' => 'Biguherîne: "$1"',
+'creating' => '$1 tê çêkirin',
 'editingsection' => 'Tê guherandin: $1 (beş)',
 'editingcomment' => '$1 (şîrove) tê guherandin.',
 'editconflict' => 'Têkçûna guherandinan: $1',
@@ -1759,7 +1761,7 @@ Rûpela "[[:$1]]" berê heye. Tu rast dixazê wê jêbibê ji bo navguherandinê
 # Tooltip help for the actions
 'tooltip-pt-userpage' => 'Rûpela min',
 'tooltip-pt-anonuserpage' => 'The user page for the ip you',
-'tooltip-pt-mytalk' => 'Rûpela min a gotûbêjê',
+'tooltip-pt-mytalk' => 'Gotûbêja min',
 'tooltip-pt-preferences' => 'Tercîhên min',
 'tooltip-pt-watchlist' => 'The list of pages you',
 'tooltip-pt-mycontris' => 'Lîsteya beşdariyên min',
@@ -2038,7 +2040,7 @@ Xêra xwe zanibe ku tu bi rastî dixwazê vê rûpelê dîsa çêkê",
 'watchlisttools-edit' => 'Lîsteya şopandinê bibîne û biguherîne',
 
 # Signatures
-'signature' => '[[{{ns:user}}:$1|$2]] ([[{{ns:user_talk}}:$1|nîqaş]])',
+'signature' => '[[{{ns:user}}:$1|$2]] ([[{{ns:user_talk}}:$1|gotûbêj]])',
 
 # Special:Version
 'version' => 'Versiyon',

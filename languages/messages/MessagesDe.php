@@ -740,8 +740,9 @@ Möglicherweise wurde sie bereits von jemand anderem gelöscht.',
 'badtitle' => 'Ungültiger Titel',
 'badtitletext' => 'Der Titel der angeforderten Seite ist ungültig, leer oder ein ungültiger Sprachlink von einem anderen Wiki.',
 'perfcached' => 'Die folgenden Daten stammen aus dem Cache und sind möglicherweise nicht aktuell. Maximal {{PLURAL:$1|ein Ergebnis ist|$1 Ergebnisse sind}} im Cache verfügbar.',
-'perfcachedts' => 'Diese Daten stammen aus dem Cache. Der Zeitpunkt der letzten Aktualisierung: $1. Maximal {{PLURAL:$4|ein Ergebnis ist|$4 Ergebnisse sind}} im Cache verfügbar.',
-'querypage-no-updates' => "'''Die Aktualisierungsfunktion dieser Seite ist zurzeit deaktiviert. Die Daten werden bis auf Weiteres nicht erneuert.'''",
+'perfcachedts' => 'Diese Daten stammen aus dem Cache. Der Zeitpunkt der letzten Aktualisierung: $2, $3 Uhr. Maximal {{PLURAL:$4|ein Ergebnis ist|$4 Ergebnisse sind}} im Cache verfügbar.',
+'querypage-no-updates' => 'Die Aktualisierungsfunktion dieser Seite ist zurzeit deaktiviert.
+Die Daten werden bis auf Weiteres nicht erneuert.',
 'wrong_wfQuery_params' => 'Falsche Parameter für wfQuery()<br />
 Funktion: $1<br />
 Abfrage: $2',
@@ -1832,7 +1833,7 @@ Das Hochladen von Java-Dateien ist nicht gestattet, da sie die Umgehung von Sich
 'destfilename' => 'Zielname:',
 'upload-maxfilesize' => 'Maximale Dateigröße: $1',
 'upload-description' => 'Dateibeschreibung',
-'upload-options' => 'Hochlade-Optionen',
+'upload-options' => 'Hochladeoptionen',
 'watchthisupload' => 'Diese Datei beobachten',
 'filewasdeleted' => 'Eine Datei mit diesem Namen wurde schon einmal hochgeladen und zwischenzeitlich wieder gelöscht. Bitte prüfe zuerst den Eintrag im $1, bevor du die Datei wirklich speicherst.',
 'filename-bad-prefix' => "Der Dateiname beginnt mit '''„$1“'''. Dies ist im allgemeinen der von einer Digitalkamera vorgegebene Dateiname und daher nicht sehr aussagekräftig.
@@ -1890,14 +1891,15 @@ Wenn das Problem weiter besteht, informiere einen [[Special:ListUsers/sysop|Syst
 'backend-fail-writetemp' => 'Die temporäre Datei konnte nicht geschrieben werden.',
 'backend-fail-closetemp' => 'Die temporäre Datei konnte nicht geschlossen werden.',
 'backend-fail-read' => 'Die Datei $1 konnte nicht gelesen werden.',
-'backend-fail-create' => 'Die Datei $1 konnte nicht erstellt werden.',
-'backend-fail-maxsize' => 'Die Datei $1 konnte nicht erstellt werden, da sie größer als {{PLURAL:$2|ein Byte|$2 Byte}} ist.',
+'backend-fail-create' => 'Die Datei $1 konnte nicht gespeichert werden.',
+'backend-fail-maxsize' => 'Die Datei $1 konnte nicht gespeichert werden, da sie größer als {{PLURAL:$2|ein Byte|$2 Byte}} ist.',
 'backend-fail-readonly' => 'Das Speicher-Backend „$1“ befindet sich derzeit im Lesemodus. Der angegebene Grund lautet: „$2“',
 'backend-fail-synced' => 'Die Datei „$1“ befindet sich, innerhalb des internen Speicher-Backends, in einem inkonsistenten Zustand.',
 'backend-fail-connect' => 'Es konnte keine Verbindung zum Speicher-Backend „$1“ hergestellt werden.',
 'backend-fail-internal' => 'Im Speicher-Backend „$1“ ist ein unbekannter Fehler aufgetreten.',
 'backend-fail-contenttype' => 'Der Inhaltstyp, der im Pfad „$1“ zu speichernden Datei, konnte nicht bestimmt werden.',
 'backend-fail-batchsize' => 'Eine Stapelverarbeitungsdatei, die {{PLURAL:$1|eine Operation|$1 Operationen}} enthält, wurde an das Speicher-Backend gesandt. Die Begrenzung liegt allerdings bei {{PLURAL:$2|einer Operation|$2 Operationen}}.',
+'backend-fail-usable' => 'Die Datei $1 konnte, entweder aufgrund eines nicht vorhandenen Verzeichnisses oder aufgrund unzureichender Berechtigungen, nicht gespeichert werden.',
 
 # File journal errors
 'filejournal-fail-dbconnect' => 'Es konnte keine Verbindung zur Journaldatenbank des Speicher-Backends „$1“ hergestellt werden.',

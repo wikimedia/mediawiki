@@ -1278,6 +1278,8 @@ $3 մասնակիցը տվել է հետևյալ պատճառը. ''$2''",
 
 # Associated actions - in the sentence "You do not have permission to X"
 'action-edit' => 'խմբագրել այս էջը',
+'action-upload' => 'Բեռնել այս ֆայլը',
+'action-upload_by_url' => 'Բեռնել այս ֆայլը URL-ից',
 'action-delete' => 'Ջնջել այս էջը',
 'action-deleterevision' => 'Ջնջել այս փոփոխությունը',
 'action-deletedhistory' => 'Դիտել այս էջի ջնջված պատմությունը',

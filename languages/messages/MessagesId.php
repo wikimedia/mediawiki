@@ -1078,6 +1078,7 @@ Halaman kemungkinan telah dihapus.',
 'edit-no-change' => 'Suntingan diabaikan, karena Anda tidak melakukan perubahan atas teks.',
 'edit-already-exists' => 'Tidak dapat membuat halaman baru
 karena telah ada.',
+'defaultmessagetext' => 'Teks baku',
 
 # Parser/template warnings
 'expensive-parserfunction-warning' => 'Peringatan: Halaman ini mengandung terlalu banyak panggilan fungsi parser.
@@ -1267,6 +1268,8 @@ Pastikan bahwa perubahan ini tetap mempertahankan kontinuitas versi terdahulu ha
 
 # Diffs
 'history-title' => 'Riwayat revisi dari "$1"',
+'difference-title' => 'Perbedaan antarrevisi "$1"',
+'difference-title-multipage' => 'Perbedaan antara halaman "$1" dan "$2"',
 'difference-multipage' => '(Perbedaan antarhalaman)',
 'lineno' => 'Baris $1:',
 'compareselectedversions' => 'Bandingkan versi terpilih',

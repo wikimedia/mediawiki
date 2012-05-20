@@ -1716,7 +1716,7 @@ As daar steeds probleme is, kontak 'n [[Special:ListUsers/sysop|administrateur]]
 'backend-fail-writetemp' => 'Kon nie na tydelike lêer skryf nie.',
 'backend-fail-closetemp' => 'Kon nie tydelike lêer sluit nie.',
 'backend-fail-read' => 'Kon nie lêer $1 lees nie.',
-'backend-fail-create' => 'Kon nie lêer $1 skep nie.',
+'backend-fail-create' => 'Kon nie lêer $1 uitskryf nie.',
 
 # ZipDirectoryReader
 'zip-file-open-error' => "'n Fout het voorgekom met die opening van die lêer vir ZIP toetsing.",
@@ -2794,7 +2794,7 @@ Die lêer is slegs gedeeltelik opgelaai.',
 
 # JavaScriptTest
 'javascripttest' => 'JavaScript toetsing',
-'javascripttest-disabled' => 'Die funksie is gedeaktiveer.',
+'javascripttest-disabled' => 'Die funksie is nie op hierdie wiki geaktiveer nie.',
 'javascripttest-title' => 'Voer toetse uit vir $1',
 
 # Tooltip help for the actions
@@ -3597,6 +3597,9 @@ Saam met die program moes u \'n [{{SERVER}}{{SCRIPTPATH}}/COPYING kopie van van 
 'version-software' => 'Geïnstalleerde sagteware',
 'version-software-product' => 'Produk',
 'version-software-version' => 'Weergawe',
+'version-entrypoints' => "URL's vir ingange",
+'version-entrypoints-header-entrypoint' => 'Ingang',
+'version-entrypoints-header-url' => 'URL',
 
 # Special:FilePath
 'filepath' => 'Lêerpad',
@@ -3779,5 +3782,16 @@ Beelde word in hulle volle resolusie gewys. Ander lêertipes word direk met hull
 'api-error-unknownerror' => 'Onbekende fout: "$1"',
 'api-error-uploaddisabled' => 'Oplaai is afgeskakel op hierdie wiki.',
 'api-error-verification-error' => 'Hierdie lêer kan beskadig of het die verkeerde uitbreiding.',
+
+# Durations
+'duration-seconds' => '$1 {{PLURAL:$1|sekonde|sekondes}}',
+'duration-minutes' => '$1 {{PLURAL:$1|minuut|minute}}',
+'duration-hours' => '$1 {{PLURAL:$1|uur|ure}}',
+'duration-days' => '$1 {{PLURAL:$1|dag|dae}}',
+'duration-weeks' => '$1 {{PLURAL:$1|week|weke}}',
+'duration-years' => '$1 {{PLURAL:$1|jaar|jare}}',
+'duration-decades' => '$1 {{PLURAL:$1|dekade|dekades}}',
+'duration-centuries' => '$1 {{PLURAL:$1|eeu|eeue}}',
+'duration-millennia' => '$1 {{PLURAL:$1|millennium|millennia}}',
 
 );

@@ -1733,14 +1733,15 @@ Prosimo, preverite veljavnost in dostopnost naslova URL ter poskusite ponovno.
 'backend-fail-writetemp' => 'Ne morem pisati v začasno datoteko.',
 'backend-fail-closetemp' => 'Ne morem zapreti začasne datoteke.',
 'backend-fail-read' => 'Ne morem brati datoteke $1.',
-'backend-fail-create' => 'Ne morem ustvariti datoteke $1.',
-'backend-fail-maxsize' => 'Ne morem ustvariti datoteke $1, kjer je večja od {{PLURAL:$2|$2 bajta|$2 bajtov}}.',
+'backend-fail-create' => 'Ne morem zapisati datoteke $1.',
+'backend-fail-maxsize' => 'Ne morem zapisati datoteke $1, ker je večja od $2 {{PLURAL:$2|bajta|bajtov}}.',
 'backend-fail-readonly' => 'Skladiščno zaledje »$1« je trenutno označeno samo za branje. Podan razlog je: »$2«',
 'backend-fail-synced' => 'Datoteka »$1« je v neskladnem stanju z notranjimi skladiščnimi zaledji',
 'backend-fail-connect' => 'Ne morem se povezati s skladiščnim zaledjem »$1«.',
 'backend-fail-internal' => 'V skladiščnem zaledju »$1« je prišlo do neznane napake.',
 'backend-fail-contenttype' => 'Ne morem določiti vrsto vsebine datoteke za shranjevanje pri »$1«.',
 'backend-fail-batchsize' => 'Skladiščnemu zaledju je dana vrsta $1 {{PLURAL:$1|datotečne operacije|datotečnih operacij}}; omejitev {{PLURAL:$2|je $2 operacija|sta $2 operaciji|so $2 operacije|je $2 operacij}}.',
+'backend-fail-usable' => 'Ne morem zapisati datoteke $1 zaradi nezadostnih dovoljenj ali manjkajočega imenika/vsebnika.',
 
 # File journal errors
 'filejournal-fail-dbconnect' => 'Ne morem se povezati z listovno zbirko podatkov za skladiščno zaledje »$1«.',

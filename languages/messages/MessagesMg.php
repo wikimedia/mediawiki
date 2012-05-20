@@ -896,6 +896,7 @@ Nilaina io tsy fanekena io mba tsy hikatso ilay pejy.
 Misy io olana io rehefa mamppiasa serveur mandataire tsy manana anarana sy manan-olana eo amin'ny tranonkala ianao.",
 'edit_form_incomplete' => "'''Misy tsy tonga tany amin'ny lohamilina ny singan'ity pejy fenoina ity. Azonao ampiana ny mpandika hafa amin'ny famoronana ny fanazavana ity pejy ity.",
 'editing' => "Manova an'i $1",
+'creating' => "Famoronana an'i $1",
 'editingsection' => 'Fanovana $1 (fizarana)',
 'editingcomment' => 'Fanovana $1 (fizarana vaovao)',
 'editconflict' => 'Fanovana mifandona : $1',

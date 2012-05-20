@@ -984,6 +984,9 @@ $2
 'node-count-exceeded-category' => '页面的节点数超出限制',
 'node-count-exceeded-warning' => '页面超出了节点数',
 'expansion-depth-exceeded-category' => '扩展深度超出限制的页面',
+'expansion-depth-exceeded-warning' => '页面超过了扩展深度',
+'parser-unstrip-loop-warning' => '检测到回圈',
+'parser-unstrip-recursion-limit' => '递归超过限制 ($1)',
 
 # "Undo" feature
 'undo-success' => '此编辑可以被撤销。请检查以下比较以核实这正是您想做的，然后保存以下更改完成撤销编辑。',
@@ -1142,6 +1145,8 @@ $1",
 
 # Diffs
 'history-title' => '“$1”的版本历史',
+'difference-title' => '"$1"不同修订版本之间的差异',
+'difference-title-multipage' => '页面"$1"与"$2"之间的差异',
 'difference-multipage' => '（页面间的差异）',
 'lineno' => '第$1行：',
 'compareselectedversions' => '对比选择的版本',
@@ -2094,9 +2099,9 @@ $1',
 'emailuser' => '电邮联系',
 'emailpage' => '电邮联系',
 'emailpagetext' => '您可以用下面的表格去寄一封电邮给这位用户。
-您在[[Special:Preferences|您参数设置]]中所输入的电子邮箱地址将出现在邮件"发件人"一栏中，这样该用户就可以回复您。',
+您在[[Special:Preferences|您的参数设置]]中所输入的电子邮箱地址将出现在邮件“发件人”一栏中，这样该用户就可以回复您。',
 'usermailererror' => 'Mail 对象返回错误：',
-'defemailsubject' => "{{SITENAME}} 来自用户''$1''的电子邮件",
+'defemailsubject' => '{{SITENAME}}来自用户“$1”的电子邮件',
 'usermaildisabled' => '用户电邮已停用',
 'usermaildisabledtext' => '您不可以发送电邮到这个wiki上的其他用户',
 'noemailtitle' => '无电子邮件地址',

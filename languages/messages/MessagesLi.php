@@ -819,6 +819,7 @@ Lèt op: dien eige .css- en .js-pagina's beginne mèt  'ne klein lètter, beveur
 'updated' => '(Biegewèrk)',
 'note' => "'''Opmirking:'''",
 'previewnote' => "'''Lèt op: dit is 'n controlepagina; dien teks is nog neet opgesjlage!'''",
+'continue-editing' => 'Gank dórch mit bewirke',
 'previewconflict' => "Dees versie toent wie de tèks in 't bôvesjte vèld oet git zeen es e zouws opsjlaon.",
 'session_fail_preview' => "'''Sorry! Dien bewerking is neet verwerkt omdat sessiegegevens verlaore zeen gegaon.
 Probeer 't opnieuw. Als 't dan nog neet lukt, meldt dich dan aaf en weer aan.'''",
@@ -1083,6 +1084,8 @@ Wees zeker det deze wieziging de gesjiedenisdoorloupendheid van de pagina zal be
 
 # Diffs
 'history-title' => 'Gesjiedenis van "$1"',
+'difference-title' => 'Versjèl tösje versies van "$1"',
+'difference-title-multipage' => 'Versjèl tösje pagina\'s "$1" en "$2"',
 'difference-multipage' => '(Versjil tösje paazjes)',
 'lineno' => 'Tekslien $1:',
 'compareselectedversions' => 'Vergeliek geselecteerde versies',
@@ -2864,7 +2867,7 @@ $1",
 
 # Media information
 'mediawarning' => "'''Waorsjuwing''': Dit bestandj kin 'n anger kood höbbe, door 't te doorveure in dien systeem kin 't gecompromeerde dinger oplevere.",
-'imagemaxsize' => "Meximale aafbeildjingsaafmaeting:<br/>''(veur besjrievingspaasj)''",
+'imagemaxsize' => "Meximaal aafbeildjingsaafmaeting:<br />''(veur besjrievingspaasj)''",
 'thumbsize' => 'Gruutde vanne thumbnail:',
 'widthheightpage' => "$1 × $2, $3 {{PLURAL:$3|pazjena|pazjena's}}",
 'file-info' => 'bestandsgruutde: $1, MIME-type: $2',

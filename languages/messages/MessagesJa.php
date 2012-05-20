@@ -1170,6 +1170,8 @@ IP アドレスは複数の利用者で共有されている場合がありま�
 'node-count-exceeded-warning' => 'ページがノード数の制限を超えました',
 'expansion-depth-exceeded-category' => '展開の深さ制限を超えたページ',
 'expansion-depth-exceeded-warning' => 'ページが展開の深さ制限を超えました',
+'parser-unstrip-loop-warning' => 'Unstrip のループが検出されました',
+'parser-unstrip-recursion-limit' => 'Unstrip の再帰（$1）が上限を超えました',
 
 # "Undo" feature
 'undo-success' => 'この編集を取り消せます。
@@ -1349,6 +1351,8 @@ $1",
 
 # Diffs
 'history-title' => '「$1」の変更履歴',
+'difference-title' => '「$1」の版間の差分',
+'difference-title-multipage' => 'ページ「$1」と「$2」間の差分',
 'difference-multipage' => '（ページ間の差分）',
 'lineno' => '$1行：',
 'compareselectedversions' => '選択した版同士を比較',

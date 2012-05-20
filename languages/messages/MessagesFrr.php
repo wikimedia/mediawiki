@@ -281,6 +281,7 @@ Sii jü [[Special:Version|Färsjoonssid]]',
 'ok' => 'OK',
 'pagetitle' => '$1 – {{SITENAME}}',
 'pagetitle-view-mainpage' => '{{SITENAME}}',
+'backlinksubtitle' => '← $1',
 'retrievedfrom' => 'Foon „$1“',
 'youhavenewmessages' => 'Dü hääst $1 aw din diskusjoonssid ($2).',
 'newmessageslink' => 'naie tisinge',
@@ -1049,7 +1050,10 @@ A nawigatsjuun links saat ales weder turag üüb di ual stant.',
 'prefs-watchlist-edits-max' => 'Ai mör as 1000',
 'prefs-misc' => 'Dit än dat',
 'prefs-resetpass' => 'Pååsuurd änre',
+'prefs-changeemail' => 'Feranere det E-Mail-adres',
 'saveprefs' => 'Önjstalinge sääkere',
+'searchresultshead' => 'Sjük',
+'recentchangesdays-max' => 'Ei muar üs {{PLURAL:$1|ään dai|$1 daar}}',
 'localtime' => 'lokaal tid',
 'timezoneregion-africa' => 'Afrikaa',
 'timezoneregion-america' => 'Ameerikaa',
@@ -1287,15 +1291,28 @@ Wan dü jü sid wider foon din eefterkiikliste wächhååle mååst, klik aw jü
 
 # Delete
 'deletepage' => 'Sid tunintemååge',
+'exblank' => 'sidj wiar leesag',
+'delete-confirm' => 'Strik "$1"',
 'delete-legend' => 'Strike',
+'historywarning' => "'''Paase üüb:''' Det sidj, wat dü strik wel, hää amanbi $1 {{PLURAL:$1|wersjuun|wersjuunen}}:",
 'confirmdeletetext' => 'Dü bast deerbai, en sid ma åle tuhiirende ålere färsjoone tuninte tu måågen. Bestääsie hål deertu, dåt dü de foon da konsekwänse bewust bast, än dåt dü önj oueriinjstiming ma da [[{{MediaWiki:Policy-url}}|ruchtliinjen]] hoonelst.',
 'actioncomplete' => 'Aksjoon beånd',
 'actionfailed' => 'Diar ging wat skiaf',
 'deletedtext' => '„$1“ wörd tunintemååged. In e $2 fanst dü en list foon da tuleest tunintemåågede side.',
 'dellogpage' => 'Tunintemååg-Logbök',
+'dellogpagetext' => 'Diar stun a leetst stregen sidjen an datein.',
+'deletionlog' => "logbuk faan't striken",
+'reverted' => 'Tu en ual wersjuun turagsaat',
 'deletecomment' => 'Grün:',
 'deleteotherreason' => 'Ouderen/tubaikaamenden grün:',
 'deletereasonotherlist' => 'Ouderen grün',
+'deletereason-dropdown' => "*Algemian grünjer för't striken
+** Di skriiwer wul det so
+** Copyright as ei beaachtet
+** Wandaalen onerwais",
+'delete-edit-reasonlist' => "Grünjer för't striken bewerke",
+'delete-toobig' => 'Detdiar sidj hää muar üs $1 {{PLURAL:$1|wersjuun|wersjuunen}} . Sok sidjen kön ei so gau stregen wurd, ööders san a servers plaat.',
+'delete-warning-toobig' => "Detdiar sidj hää muar üs $1 {{PLURAL:$1|wersjuun|wersjuunen}} . Det striken koon komer maage bi't dootenbeenk.",
 
 # Rollback
 'rollbacklink' => 'tubäägseete',
@@ -1304,6 +1321,7 @@ Wan dü jü sid wider foon din eefterkiikliste wächhååle mååst, klik aw jü
 'protectlogpage' => 'Sideschütse-logbök',
 'protectedarticle' => 'schütsed „[[$1]]“',
 'modifiedarticleprotection' => 'änred e schüts for "[[$1]]"',
+'prot_1movedto2' => 'hää „[[$1]]“ efter „[[$2]]“ fersköwen',
 'protectcomment' => 'Grün:',
 'protectexpiry' => 'Spärduur:',
 'protect_expiry_invalid' => 'Jü önjjääwen duur as üngülti.',
@@ -1321,10 +1339,68 @@ Wan dü jü sid wider foon din eefterkiikliste wächhååle mååst, klik aw jü
 'protect-cantedit' => 'Dü koost jü späre foon jüheer sid ai änre, deer dü niinj beruchtiging tu beårben foon jü sid hääst.',
 'restriction-type' => 'Schütsstatus',
 'restriction-level' => 'Schütshöögde',
+'minimum-size' => 'Minimaal grate:',
+'maximum-size' => 'Maksimaal grate:',
+'pagesize' => '(bytes)',
+
+# Restrictions (nouns)
+'restriction-edit' => 'Bewerke',
+'restriction-move' => 'Fersküüw',
+'restriction-create' => 'Maage',
+'restriction-upload' => 'Huuchsjüür',
+
+# Restriction levels
+'restriction-level-sysop' => 'seekerd (bluas för administratooren)',
+'restriction-level-autoconfirmed' => 'hualew seekerd (bluas för gudkäänd brükern)',
+'restriction-level-all' => 'aaltumaal',
 
 # Undelete
+'undelete' => 'Stregen sidjen uunwise',
+'undeletepage' => 'Stregen sidjen uunwise an weder iinstel',
+'undeletepagetitle' => "'''Detdiar wiset a stregen wersjuunen faan [[:$1|$1]]'''.",
+'viewdeletedpage' => 'Stregen sidjen uunwise',
+'undeletepagetext' => "{{PLURAL:$1|Detdiar sidj as stregen wurden, oober koon|Jodiar $1 sidjen san stregen wurden, oober kön}} faan administratooren weder iinsteld wurd, wan jo noch uun't archiif san.",
+'undelete-fieldset-title' => 'Weder iinstel',
+'undeleteextrahelp' => '* Am det sidj mä aal jo wersjuunen weder iintustelen, sjük nian enkelt wersjuun ütj, du en grünj uun an trak do üüb „{{int:undeletebtn}}“.*
+* Am en was wersjuun weder iintustelen, sjük det wersjuun ütj, du en grünj uun an trak do üüb „{{int:undeletebtn}}“.',
+'undeleterevisions' => '{{PLURAL:$1|1 wersjuun|$1 wersjuunen}} archiwiaret',
+'undeletehistory' => 'Wan dü detdiar sidj weder iinstelst, wurd uk jo ual wersjuunen weder iinsteld. 
+Wan sant det striken en nei sidj mä di salew nööm iinsteld wurden as, wurd jo ual wersjuunen bi det nei sidj mä iinwerket.',
+'undeleterevdel' => 'Det weder iinstelen woort ei maaget, wan det leetst wersjuun ferstäächt as.
+Wan det so as, skal det leetst wersjuun iarst weder üüb normool steld wurd.',
+'undeletehistorynoadmin' => 'Detdiar sidj as stregen wurden.
+Oner könst dü sä, hoker det maaget hää an huaram.
+Di tekst faan det stregen sidj fu bluas administratooren uunwiset.',
+'undelete-revision' => 'Stregen wersjuun faan $1 (di $4 am a klook $5 ), $3:',
+'undeleterevision-missing' => 'Mä detdiar wersjuun stemet wat ei. Ferlicht as di link ferkiard of det wersjuun as ei muar diar.',
+'undelete-nodiff' => 'Nian föörgunger wersjuun diar.',
+'undeletebtn' => 'Weder iinstel',
 'undeletelink' => 'wise/widermååge',
 'undeleteviewlink' => 'Uunluke',
+'undeletereset' => 'Turag saat',
+'undeleteinvert' => 'Ütjwool amdrei',
+'undeletecomment' => 'Grünj:',
+'undeletedrevisions' => '{{PLURAL:$1|1 wersjuun|$1 wersjuunen}} weder iinsteld',
+'undeletedrevisions-files' => '{{PLURAL:$1|1 wersjuun|$1 wersjuunen}} an {{PLURAL:$2|1 datei|$2 datein}} weder iinsteld',
+'undeletedfiles' => '{{PLURAL:$1|1 datei|$1 datein }} weder iinsteld',
+'cannotundelete' => 'Weder iinstelen hää ei loket; ferlicht hää hoker ööders det al weder iinsteld.',
+'undeletedpage' => "'''„$1“''' as weder iinsteld wurden.
+Uun't [[Special:Log/delete|logbuk faan stregen sidjen]] stun a stregen an weder iinsteld sidjen.",
+'undelete-header' => "Luke uun't [[Special:Log/delete|logbuk för stregen sidjen]] efter stregen sidjen faan a leetst tidj.",
+'undelete-search-title' => 'Sjük stregen sidjen',
+'undelete-search-box' => 'Sjük stregen sidjen',
+'undelete-search-prefix' => 'Sjük sidjen, diar began mä:',
+'undelete-search-submit' => 'Sjük',
+'undelete-no-results' => "Uun't archiif wiar nian paasen sidjen.",
+'undelete-filename-mismatch' => 'Det wersjuun faan $1 koon ei weder iinsteld wurd. Di dateinööm paaset ei.',
+'undelete-bad-store-key' => "Det dateiwersjuun faan $1 koon ei weder iinsteld wurd. Det datei wiar al föör't striken ei muar diar.",
+'undelete-error' => "Bi't weder iinstelen faan det sidj as wat skiaf gingen.",
+'undelete-error-short' => "Bi't weder iinstelen faan det datei $1 as wat skiaf gingen.",
+'undelete-error-long' => "Bi't weder iinstelen faan en datei as wat skiaf gingen:
+
+$1",
+'undelete-show-file-confirm' => 'Wel dü würelk det stregen wersjuun faan det datei „<nowiki>$1</nowiki>“ faan di $2, am a klook $3 uunluke?',
+'undelete-show-file-submit' => 'Ja',
 
 # Namespace form on various pages
 'namespace' => 'Noomerüm:',
@@ -1371,6 +1447,7 @@ Wan dü jü sid wider foon din eefterkiikliste wächhååle mååst, klik aw jü
 # Block/unblock
 'blockip' => 'IP-adräs/brüker späre',
 'ipboptions' => '2 stüne:2 hours,1 däi:1 day,3 deege:3 days,1 wääg:1 week,2 wääge:2 weeks,1 moune:1 month,3 moune:3 months,6 moune:6 months,1 iir:1 year,suner iinje:infinite',
+'unblocked-id' => 'Sperang $1 as apheewen',
 'blocklist' => 'Spärd brükere',
 'ipblocklist' => 'Spärd brükere',
 'ipblocklist-legend' => 'Spärd brükere fine',
@@ -1384,9 +1461,9 @@ Wan dü jü sid wider foon din eefterkiikliste wächhååle mååst, klik aw jü
 'blocklogpage' => 'Brükerspär-logbök',
 'blocklogentry' => 'spärd „[[$1]]“ for di tidrüm: $2 $3',
 'reblock-logentry' => 'änerd jü spär for „[[$1]]“ for di tidrüm: $2 $3',
-'blocklogtext' => 'Dåtdeer as dåt logbök ouer späringe än önjtspäringe foon brükere än IP-adräse.
-Automatisch spärd IP-adräse wårde ai footed.
-Sii jü [[Special:BlockList|list foon da spärd IP-adräse än brükernoome]] for ål da aktive späre.',
+'blocklogtext' => "Detdiar as det logbuk auer sperangen an apheewen sperangen faan brükernöömer an IP-adresen.
+Automaatisk sperd IP-adresen wurd ei uunwiset.
+Luke bi't [[Special:BlockList|sperlist]] för aal jo aktuel speren.",
 'unblocklogentry' => 'heet jü späre foon „$1“ aphääwen',
 'block-log-flags-anononly' => 'bloot anonyme',
 'block-log-flags-nocreate' => 'Måågen foon brükerkonte spärd',
@@ -1434,6 +1511,9 @@ Hål di '''naie''' tiitel uner '''muul''' önjdreege, deeruner jü ambenååming
 'talkexists' => 'Jü sid seelew wörd erfolchrik ferschääwen, ouers jü deertu hiirende diskusjoonssid ai, deer ål iinj ma di nai tiitel bestoont. Glik hål da önjhålte foon hönj ouf.',
 'movedto' => 'ferschääwen eefter',
 'movetalk' => 'Jü diskusjoonssid maferschüwe, wan möölik',
+'movepage-page-moved' => 'Det sidj $1 as efter $2 fersköwen wurden.',
+'movepage-page-unmoved' => 'Det sidj $1 küd ei efter $2 fersköwen wurd.',
+'movepage-max-pages' => 'Diar kön ei muar üs {{PLURAL:$1|sidj|sidjen}} fersköwen wurd. Muar sidjen kön ei automaatisk fersköwen wurd.',
 'movelogpage' => 'Ferschüwingslogbök',
 'movereason' => 'Begrüning:',
 'revertmove' => 'tubääg ferschüwe',
@@ -1602,5 +1682,9 @@ Deeraw föliende sidelinke önj dåtseelwi ra definiire ütnååme, önj di kont
 'revdelete-uname-unhid' => 'brükernoome frijääwen',
 'revdelete-restricted' => 'gränse jüle uk for administratoore',
 'revdelete-unrestricted' => 'gränse for administratoore wächnümen',
+'logentry-move-move' => '$1 hää det sidj $3 efter $4 fersköwen.',
+'logentry-move-move-noredirect' => '$1 hää det sidj $3 efter $4 saner widjerfeerang fersköwen.',
+'logentry-move-move_redir' => '$1 hää det sidj $3 efter $4 fersköwen an diarbi en widjerfeerang auerskrewen.',
+'logentry-move-move_redir-noredirect' => '$1 hää det sidj $3 efter $4 fersköwen an diarbi en widjerfeerang auerskrewen saner salew en widjerfeerang uuntuleien.',
 
 );

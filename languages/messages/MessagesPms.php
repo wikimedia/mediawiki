@@ -3658,4 +3658,15 @@ Dësnò, a peule dovré ël formlari semplificà sì-sota. Sò coment a sarà gi
 'api-error-uploaddisabled' => "Ël cariagi a l'é disabilità su sta wiki.",
 'api-error-verification-error' => "Cost archivi a peul esse danegià, o avèj l'estension sbalià.",
 
+# Durations
+'duration-seconds' => '$1 {{PLURAL:$1|second|second}}',
+'duration-minutes' => '$1 {{PLURAL:$1|minuta|minute}}',
+'duration-hours' => '$1 {{PLURAL:$1|ora|ore}}',
+'duration-days' => '$1 {{PLURAL:$1|di|di}}',
+'duration-weeks' => '$1 {{PLURAL:$1|sman-a|sman-e}}',
+'duration-years' => '$1 {{PLURAL:$1|ann|agn}}',
+'duration-decades' => '$1 {{PLURAL:$1|décad|décad}}',
+'duration-centuries' => '$1 {{PLURAL:$1|sécol|sécoj}}',
+'duration-millennia' => '$1 {{PLURAL:$1|mileni|mileni}}',
+
 );

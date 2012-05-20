@@ -503,6 +503,7 @@ Rhoddwyd y rheswm hwn - ''$2''.",
 'filereadonlyerror' => 'Nid oes modd newid y ffeil "$1" oherwydd nad oes modd gwneud dim heblaw darllen storfa\'r ffeil yn "$2" yn unig.
 
 Y rheswm a roddwyd gan y gweinyddwr a roddodd y ffeil dan glo yw "\'\'$3\'\'".',
+'invalidtitle-knownnamespace' => 'Teitl annilys o\'r enw "$3" yn y parth "$2"',
 
 # Virus scanner
 'virus-badscanner' => "Cyfluniad gwael: sganiwr firysau anhysbys: ''$1''",
@@ -924,7 +925,7 @@ Gallwch [[Special:Search|chwilio'r]] wici am dudalennau eraill perthnasol.",
 'rev-deleted-comment' => '(dilëwyd crynodeb y golygiad)',
 'rev-deleted-user' => '(enw defnyddiwr wedi ei ddiddymu)',
 'rev-deleted-event' => '(tynnwyd gweithred y lòg)',
-'rev-deleted-user-contribs' => '[tynnwyd enw defnyddiwr neu gyfeiriad IP i ffwrdd - ni ddangosir y golygiad ar y rhestr cyfraniadau]',
+'rev-deleted-user-contribs' => '[tynnwyd enw defnyddiwr neu gyfeiriad IP i ffwrdd - ni ddangosir y golygiad ar y rhestr gyfraniadau]',
 'rev-deleted-text-permission' => "'''Dilëwyd''' y diwygiad hwn o'r dudalen.
 Mae manylion ar gael yn y [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} lòg dileuon].",
 'rev-deleted-text-unhide' => "Cafodd y diwygiad hwn o'r dudalen ei '''ddileu'''.
@@ -1050,6 +1051,8 @@ Pan yn gwneud hyn dylid sicrhau nad yw dilyniant hanes tudalennau yn cael ei ddi
 
 # Diffs
 'history-title' => "Hanes golygu '$1'",
+'difference-title' => 'Y gwahaniaeth rhwng diwygiadau o "$1"',
+'difference-title-multipage' => 'Y gwahaniaeth rhwng y tudalennau "$1" a "$2"',
 'difference-multipage' => '(Y gwahaniaeth rhwng y tudalennau)',
 'lineno' => 'Llinell $1:',
 'compareselectedversions' => 'Cymharer y fersiynau dewisedig',
@@ -1721,8 +1724,8 @@ Pan hidlir y rhestr yn ôl defnyddiwr, yr unig rhai a ddangosir o blith y ffeili
 'filehist-missing' => 'Y ffeil yn eisiau',
 'imagelinks' => 'Defnydd y ffeil',
 'linkstoimage' => "Mae'r {{PLURAL:$1|tudalen|dudalen|tudalennau|tudalennau|tudalennau|tudalennau}} isod yn cysylltu i'r ddelwedd hon:",
-'linkstoimage-more' => "Mae rhagor na $1 {{PLURAL:$1|tudalen yn|dudalen yn|dudalen yn|o dudalennau'n|o dudalennau'n|o dudalennau'n}} cysylltu at y ffeil hon.
-Mae'r rhestr canlynol yn dangos y {{PLURAL:$1|$1 cysylltiad cyntaf}} at y ffeil hon yn unig. Mae [[Special:WhatLinksHere/$2|rhestr lawn]] ar gael.",
+'linkstoimage-more' => "Mae mwy na $1 {{PLURAL:$1|tudalen yn|dudalen yn|dudalen yn|o dudalennau'n|o dudalennau'n|o dudalennau'n}} cysylltu at y ffeil hon.
+Mae'r rhestr ganlynol yn dangos y {{PLURAL:$1|$1 cysylltiad cyntaf}} at y ffeil hon yn unig. Mae [[Special:WhatLinksHere/$2|rhestr lawn]] ar gael.",
 'nolinkstoimage' => 'Nid oes cyswllt ar unrhyw dudalen yn arwain at y ffeil hon.',
 'morelinkstoimage' => 'Gweld [[Special:WhatLinksHere/$1|rhagor o gysylltiadau]] at y ffeil hon.',
 'linkstoimage-redirect' => "$1 (tudalen ffeil sy'n ailgyfeirio) $2",
@@ -2804,7 +2807,7 @@ Gellir ychwanegu rheswm dros y dadwneud yn y crynodeb.',
 # Spam protection
 'spamprotectiontitle' => 'Hidlydd amddiffyn rhag sbam',
 'spamprotectiontext' => 'Ataliwyd y dudalen rhag ei rhoi ar gadw gan yr hidlydd sbam.
-Achos hyn yn fwy na thebyg yw presenoldeb cysylltiad i wefan ar y rhestr gwaharddedig.',
+Achos hyn yn fwy na thebyg yw presenoldeb cysylltiad i wefan ar y rhestr waharddedig.',
 'spamprotectionmatch' => "Dyma'r testun gyneuodd ein hidlydd amddiffyn rhag sbam: $1",
 'spambot_username' => 'Teclyn clirio sbam MediaWiki',
 'spam_reverting' => "Yn troi nôl i'r diwygiad diweddaraf sydd ddim yn cynnwys cysylltiadau i $1",
@@ -2882,7 +2885,7 @@ Mae'n bosib y bydd eich cyfrifiadur yn cael ei danseilio wrth ddefnyddio'r ffeil
 
 # Special:NewFiles
 'newimages' => 'Oriel y ffeiliau newydd',
-'imagelisttext' => "Isod mae rhestr {{PLURAL:$1|gwag o ffeiliau|o '''$1''' ffeil|o '''$1''' ffeil wedi'u trefnu $2|o '''$1''' ffeil wedi'u trefnu $2|o '''$1''' o ffeiliau wedi'u trefnu $2|o '''$1''' o ffeiliau wedi'u trefnu $2|}}.",
+'imagelisttext' => "Isod mae rhestr {{PLURAL:$1|wag o ffeiliau|o '''$1''' ffeil|o '''$1''' ffeil wedi'u trefnu $2|o '''$1''' ffeil wedi'u trefnu $2|o '''$1''' o ffeiliau wedi'u trefnu $2|o '''$1''' o ffeiliau wedi'u trefnu $2|}}.",
 'newimages-summary' => "Mae'r dudalen arbennig hon yn dangos y ffeiliau a uwchlwythwyd yn ddiweddar.",
 'newimages-legend' => 'Hidlo',
 'newimages-label' => "Enw'r ffeil (neu ran ohono):",

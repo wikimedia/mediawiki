@@ -703,6 +703,8 @@ Navedeni razlog: ''$2''.",
 'filereadonlyerror' => 'Ne mogu da izmenim datoteku „$1“ jer je riznica „$2“ u režimu za čitanje.
 
 Administrator koji ju je zaključao ponudio je sledeće objašnjenje: „$3“.',
+'invalidtitle-knownnamespace' => 'Neispravan naslov s imenskim prostorom „$2“ i tekstom „$3“',
+'invalidtitle-unknownnamespace' => 'Neispravan naslov s imenskim prostorom br. $1 i tekstom „$2“',
 
 # Virus scanner
 'virus-badscanner' => "Neispravna postavka: nepoznati skener za viruse: ''$1''",
@@ -1001,6 +1003,7 @@ Prilagođene stranice CSS i javaskript počinju malim slovom, npr. {{ns:user}}:F
 'note' => "'''Napomena:'''",
 'previewnote' => "'''Imajte u vidu da je ovo samo pregled.'''
 Vaše izmene još nisu sačuvane!",
+'continue-editing' => 'Nastavi uređivanje',
 'previewconflict' => 'Ovaj pregled oslikava kako će tekst u tekstualnom okviru izgledati.',
 'session_fail_preview' => "'''Nismo mogli da obradimo vašu izmenu zbog gubitka podataka sesije.'''
 Pokušajte ponovo.
@@ -1099,6 +1102,12 @@ Ovakve argumente bi trebalo izbegavati.",
 'parser-template-loop-warning' => 'Otkrivena je petlja šablona: [[$1]]',
 'parser-template-recursion-depth-warning' => 'Dubina uključivanja šablona je prekoračena ($1)',
 'language-converter-depth-warning' => 'Prekoračena je granica dubine jezičkog pretvarača ($1)',
+'node-count-exceeded-category' => 'Stranice u kojima je prekoračen broj čvorova',
+'node-count-exceeded-warning' => 'Stranica u kojoj je prekoračen broj čvorova',
+'expansion-depth-exceeded-category' => 'Stranice u kojima je prekoračena dubina proširenja',
+'expansion-depth-exceeded-warning' => 'Stranica u kojoj je prekoračena dubina proširenja',
+'parser-unstrip-loop-warning' => 'Utvrđena je petlja',
+'parser-unstrip-recursion-limit' => 'Prekoračeno je ograničenje rekurzije ($1)',
 
 # "Undo" feature
 'undo-success' => 'Izmena se može vratiti.
@@ -1244,7 +1253,7 @@ Pogledajte istoriju.',
 
 # Suppression log
 'suppressionlog' => 'Istorija sakrivanja',
-'suppressionlogtext' => 'Ispod se nalazi spisak brisanja i blokiranja koji uključuje sadržaj sakriven od administratora. Pogledajte [[Special:BlockList|spisak blokiranih IP adresa]] za pregled važećih zabrana i blokiranja.',
+'suppressionlogtext' => 'Ispod se nalazi spisak brisanja i blokiranja koji uključuje sadržaj sakriven od administratora. Tekuće zabrane i blokiranja možete naći [[Special:BlockList|ovde]].',
 
 # History merging
 'mergehistory' => 'Spoji istorije stranica',
@@ -1279,6 +1288,8 @@ Korišćenje navigacionih veza će poništiti ovu kolonu.',
 
 # Diffs
 'history-title' => 'Istorija izmena za „$1“',
+'difference-title' => 'Razlika između izmena stranice „$1“',
+'difference-title-multipage' => 'Razlika između stranica „$1“ i „$2“',
 'difference-multipage' => '(razlike između stranica)',
 'lineno' => 'Red $1:',
 'compareselectedversions' => 'Uporedi izabrane izmene',
@@ -1931,6 +1942,7 @@ Radi sigurnosti, img_auth.php je onemogućen.',
 'http-curl-error' => 'Greška pri otvaranju adrese: $1',
 'http-host-unreachable' => 'Ne mogu da pristupim adresi.',
 'http-bad-status' => 'Došlo je do problema tokom zahteva HTTP: $1 $2',
+'http-truncated-body' => 'Sadržaj zahteva nije primljen u celosti.',
 
 # Some likely curl errors. More could be added from <http://curl.haxx.se/libcurl/c/libcurl-errors.html>
 'upload-curl-error6' => 'Ne mogu da pristupim adresi',
@@ -2214,6 +2226,11 @@ Možete suziti prikaz odabirući vrstu istorije, korisničkog imena ili tražene
 Možda sadrži znakove koji se ne mogu koristiti u naslovima.',
 'allpages-bad-ns' => '{{SITENAME}} nema imenski prostor „$1“.',
 'allpages-hide-redirects' => 'Sakrij preusmerenja',
+
+# SpecialCachedPage
+'cachedspecial-viewing-cached-ttl' => 'Gledate keširanu verziju ove stranice, koja može biti stara i do $1.',
+'cachedspecial-viewing-cached-ts' => 'Gledate keširanu verziju ove stranice, koja može da se razlikuje od trenutne.',
+'cachedspecial-refresh-now' => 'Pogledaj najnoviju.',
 
 # Special:Categories
 'categories' => 'Kategorije',
@@ -2664,7 +2681,7 @@ Izaberite konkretan razlog ispod (primer: navođenje konkretnih stranica koje su
 'badipaddress' => 'Neispravna IP adresa',
 'blockipsuccesssub' => 'Blokiranje je uspelo',
 'blockipsuccesstext' => '[[Special:Contributions/$1|$1]] je {{GENDER:$1|blokiran|blokirana|blokiran}}.<br />
-Pogledajte [[Special:BlockList|spisak blokiranih IP adresa]] za pregled blokiranja.',
+Blokiranja možete da pogledate [[Special:BlockList|ovde]].',
 'ipb-blockingself' => 'Ovom radnjom ćete blokirati sebe! Jeste li sigurni da to želite?',
 'ipb-confirmhideuser' => 'Upravo ćete blokirati korisnika s uključenom mogućnošću „sakrij korisnika“. Ovim će korisničko ime biti sakriveno u svim spiskovima i izveštajima. Želite li to da uradite?',
 'ipb-edit-dropdown' => 'Uredi razloge blokiranja',
@@ -2719,7 +2736,7 @@ Istorija sakrivanja se nalazi ispod:',
 'reblock-logentry' => '{{GENDER:|je promenio|je promenila|je promenio}} podešavanja za blokiranje {{GENDER:$1|korisnika|korisnice|korisnika}} [[$1]] s rokom isteka od $2 ($3)',
 'blocklogtext' => 'Ovo je dnevnik blokiranja i deblokiranja korisnika.
 Automatski blokirane IP adrese nisu navedene.
-Pogledajte [[Special:BlockList|spisak blokiranih IP adresa]].',
+Tekuće zabrane i blokiranja možete naći [[Special:BlockList|ovde]].',
 'unblocklogentry' => '{{GENDER:|je deblokirao|je deblokirala|je deblokirao}} „$1“',
 'block-log-flags-anononly' => 'samo anonimni korisnici',
 'block-log-flags-nocreate' => 'onemogućeno otvaranje naloga',
@@ -4011,6 +4028,9 @@ Trebalo bi da ste primili [{{SERVER}}{{SCRIPTPATH}}/COPYING primerak GNU-ove op�
 'version-software' => 'Instalirani softver',
 'version-software-product' => 'Proizvod',
 'version-software-version' => 'Verzija',
+'version-entrypoints' => 'Adrese ulazne tačke',
+'version-entrypoints-header-entrypoint' => 'Ulazna tačka',
+'version-entrypoints-header-url' => 'Adresa',
 
 # Special:FilePath
 'filepath' => 'Putanja datoteke',
@@ -4198,5 +4218,16 @@ U suprotnom, poslužite se jednostavnim obrascem ispod. Vaš komentar će stajat
 'api-error-unknownerror' => 'Nepoznata greška: „$1“.',
 'api-error-uploaddisabled' => 'Otpremanje je onemogućeno na ovom vikiju.',
 'api-error-verification-error' => 'Datoteka je oštećena ili ima neispravan nastavak.',
+
+# Durations
+'duration-seconds' => '$1 {{PLURAL:$1|sekund|sekunde|sekundi}}',
+'duration-minutes' => '$1 {{PLURAL:$1|minut|minuta|minuta}}',
+'duration-hours' => '$1 {{PLURAL:$1|sat|sata|sati}}',
+'duration-days' => '$1 {{PLURAL:$1|dan|dana|dana}}',
+'duration-weeks' => '$1 {{PLURAL:$1|nedelja|nedelje|nedelja}}',
+'duration-years' => '$1 {{PLURAL:$1|godina|godine|godina}}',
+'duration-decades' => '$1 {{PLURAL:$1|decenija|decenije|decenija}}',
+'duration-centuries' => '$1 {{PLURAL:$1|vek|veka|vekova}}',
+'duration-millennia' => '$1 {{PLURAL:$1|milenijum|milenijuma|milenijuma}}',
 
 );

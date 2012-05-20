@@ -329,7 +329,7 @@ $messages = array(
 'february' => 'ଫେବୃଆରୀ',
 'march' => 'ମାର୍ଚ୍ଚ',
 'april' => 'ଅପ୍ରେଲ',
-'may_long' => 'ମେ',
+'may_long' => 'ମଇ',
 'june' => 'ଜୁନ',
 'july' => 'ଜୁଲାଇ',
 'august' => 'ଅଗଷ୍ଟ',
@@ -341,7 +341,7 @@ $messages = array(
 'february-gen' => 'ଫେବୃଆରୀ',
 'march-gen' => 'ମାର୍ଚ୍ଚ',
 'april-gen' => 'ଅପ୍ରେଲ',
-'may-gen' => 'ମେ',
+'may-gen' => 'ମଇ',
 'june-gen' => 'ଜୁନ',
 'july-gen' => 'ଜୁଲାଇ',
 'august-gen' => 'ଅଗଷ୍ଟ',
@@ -353,7 +353,7 @@ $messages = array(
 'feb' => 'ଫେବୃଆରୀ',
 'mar' => 'ମାର୍ଚ୍ଚ',
 'apr' => 'ଅପ୍ରେଲ',
-'may' => 'ମେ',
+'may' => 'ମଇ',
 'jun' => 'ଜୁନ',
 'jul' => 'ଜୁଲାଇ',
 'aug' => 'ଅଗଷ୍ଟ',
@@ -1536,7 +1536,7 @@ HTML ଟାଗ ପରଖିନିଅନ୍ତୁ ।',
 
 # User rights log
 'rightslog' => 'ସଭ୍ୟଙ୍କ ଅଧିକାରର ଲଗ',
-'rightslogtext' => 'ସଭ୍ୟଙ୍କ ଅଧିକାରର ବଦଳର ଏହା ଏକ ଇତିହାସ ।',
+'rightslogtext' => 'ସଭ୍ୟଙ୍କ ଅଧିକାର ବଦଳର ଏହା ଏକ ଇତିହାସ ।',
 'rightslogentry' => '$1 ପାଇଁ ଗୋଠ ସଭ୍ୟପଦର ଅବସ୍ଥା $2 ରୁ $3କୁ ବଦଳାଇଦିଆଗଲା',
 'rightslogentry-autopromote' => '$2 ରୁ $3କୁ ଆପେଆପେ ଉନ୍ନୀତ କରାଗଲା',
 'rightsnone' => '(କିଛି ନାହିଁ)',
@@ -3633,7 +3633,7 @@ $5
 'watchlisttools-raw' => 'ଫାଙ୍କା ଦେଖଣା ତାଲିକାଟିର ସମ୍ପାଦନା କରିବେ',
 
 # Signatures
-'signature' => '[[{{ns:user}}:$1|$2]] ([[{{ns:user_talk}}:$1|ଆଲୋଚନା]])',
+'signature' => '[[{{ns:user}}:$1|$2]] ([[{{ns:user_talk}}:$1|ମୋ ଆଲୋଚନା]])',
 
 # Core parser functions
 'unknown_extension_tag' => 'ଅଜଣା ଏକ୍ସଟେନସନ ଚିହ୍ନ "$1"',

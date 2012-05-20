@@ -1763,7 +1763,14 @@ A bak zawng chu thuhrûk sa vek a ni ang.
 #Tbchb zawng zawng hemi tlar chungah hian dah tùr. He tlar hi a nih ang ngai ngaia hnutchhiah tùr </pre>',
 
 # Special:Tags
-'tag-filter' => '[[Special:Tags|Tag]] thlitfimna:',
+'tag-filter' => '[[Special:Tags|Sawirelh]] thlitfimna:',
+'tag-filter-submit' => 'Thlitfimna',
+'tags-title' => 'Sawirelh',
+'tags-tag' => 'Sawirelh hming',
+'tags-display-header' => 'Tihdanglam tlarna-a landàn',
+'tags-description-header' => 'Awmze sawifiahna kimchang',
+'tags-hitcount-header' => 'Tihdanglam sawirelhte',
+'tags-edit' => 'siamṭhatna',
 
 # New logging system
 'logentry-move-move' => '$3 tih phêk kha $4-ah $1 hian a thlâk.',

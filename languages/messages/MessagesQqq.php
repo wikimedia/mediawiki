@@ -101,6 +101,7 @@
  * @author Sherbrooke
  * @author Shirayuki
  * @author Shushruth
+ * @author Siddhartha Ghai
  * @author Siebrand
  * @author Singularity
  * @author Sionnach
@@ -1967,7 +1968,7 @@ Parameters:
 * $1 is the number of operations attempted at once in this case.
 * $2 is the maximum number of operations that can be attempted at once.',
 'backend-fail-usable' => 'Parameters:
-* $1 is a file path',
+* $1 is the file name, including the path, formatted for the storage backend used',
 
 # File journal errors
 'filejournal-fail-dbconnect' => 'Parameters:
@@ -3060,6 +3061,7 @@ Parameters:
 
 {{Identical|Reason}}',
 'revertmove' => '{{Identical|Revert}}',
+'delete_and_move' => 'Button text on the move page when the target page already exists.',
 'delete_and_move_text' => 'Used when moving a page, but the destination page already exists and needs deletion. This message is to confirm that you really want to delete the page. See also {{msg|delete and move confirm}}.',
 'delete_and_move_confirm' => 'Used when moving a page, but the destination page already exists and needs deletion. This message is for a checkbox to confirm that you really want to delete the page. See also {{msg|delete and move text}}.',
 'delete_and_move_reason' => 'Shown as reason in content language in the deletion log. Parameter:

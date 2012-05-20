@@ -452,7 +452,7 @@ $2، $1',
 'readonly' => 'پایگاه داده زلفن بزه‎بیّه',
 'enterlockreason' => 'دلیلی زلفین بزوئن وسّه بارین، که حاوی تقریبی از زمونی بائه که زلفین بَیته وانه',
 'missingarticle-rev' => '(نسخهٔ شماره: $1)',
-'missingarticle-diff' => '(فرق و فـَسِل: $1، $2)',
+'missingarticle-diff' => '(فرق: $1، $2)',
 'readonly_lag' => 'پایگاه داده به طور خودکار زلفین بزه‌بیّه تا پشتیبون ِنسخه‌ئون با اصلی نسخه هماهنگ بواشِن',
 'internalerror' => 'خطای دله‌یی',
 'internalerror_info' => 'خطای دله‌یی: $1',
@@ -541,7 +541,7 @@ $2، $1',
 # Edit pages
 'summary' => 'گوزارش کار:',
 'subject' => 'موضوع یا عنوان:',
-'minoredit' => 'اینتا اتّا پـچیک دچی‌یه هسته',
+'minoredit' => 'اینتا ویرایش خله جزئی بیه',
 'watchthis' => 'این صفحه ره دمبال هـاکاردن',
 'savearticle' => 'جادکتن ِصفحه',
 'preview' => 'پیش نمایش',
@@ -569,6 +569,7 @@ $2، $1',
  شِمه دگاردسته‌ئون جانـَکِته که و‌نه، ونه اِسا ذخیره‌بیّـِن دوکمه ره بَزنین!',
 'editing' => 'دچی‌ین => $1',
 'editingsection' => 'دچی‌ین $1 (تیکه)',
+'editingcomment' => '$1 دچی‌ین(نو تیکه)',
 'yourtext' => 'شمه بنویشته',
 'copyrightwarning' => 'خـاهش بونه شمه یاد دواشه که همه چیزایی که {{SITENAME}} دله وانه، تحت $2 حیساب وونه. (ویشتر بخوندستن وسه $1 ره هارشین)<br />
 اگه نخانّی شمه بنویشته‌ئون اینجه دس بزه یا ات نفر دیگه شمه بنویشته ره کوپی نکانه، اصلأ شه بنویشته ره اینجه نی‌یلین.',
@@ -600,6 +601,9 @@ $2، $1',
 # Revision deletion
 'rev-delundel' => 'نشون هدائن/فرو بوردن',
 'revdel-restore' => 'دیاری تغییر هدائن',
+
+# History merging
+'mergehistory' => 'صفحه‌ئون تاریخچه ره اتا هاکردن',
 
 # Merge log
 'revertmerge' => 'سِوا هاکردن',
@@ -670,6 +674,10 @@ $2، $1',
 
 # Recent changes
 'recentchanges' => 'تازه دگاردسته‌ئون',
+'recentchanges-legend' => 'تازه دگاردسته‌ئون گوزینه‌ها',
+'recentchanges-label-newpage' => 'اینتا ویرایش اته نو صفحه ایجاد هاکرده',
+'recentchanges-label-minor' => 'اینتا ویرایش خله جزئی بیه',
+'recentchanges-label-bot' => 'اینتا ویرایش‌ره اته ربات انجام هدائه',
 'rcnote' => "اینجه {{PLURAL:$1|دگاردسته‌یی|'''$1''' دگاردسته‌ئونی}} که $4، $5 جه، '''$2''' روز پیش‌تر دچی‎یه بینه ره اشنّی",
 'rclistfrom' => 'نِمایش تازه‌دگاردسته‌ئون با شروع از $1',
 'rcshowhideminor' => 'پچیک دچی‌یه‌ئون $1',
@@ -677,15 +685,16 @@ $2، $1',
 'rcshowhideliu' => 'ثبت‌نوم هاکرده کارورون $1',
 'rcshowhideanons' => 'ناشناس ِکارورون $1',
 'rcshowhidepatr' => 'گشت‌بخارد ِدچی‌یه‌ئون $1',
-'rcshowhidemine' => 'منه دچی‌یه‌ئون $1',
+'rcshowhidemine' => 'مه دچی‌یه‌ئون $1',
 'rclinks' => 'نـِشون هـِدائن  $1 پایانی دَچی‌‌یه‌ئون، $2 اِسـا روز ره دلـه؛ $3',
-'diff' => 'فرق و فـَسِل',
+'diff' => 'فرق',
 'hist' => 'تاریخچه',
-'hide' => 'فـِرو بوردن',
+'hide' => 'پنهون هاکن',
 'show' => 'نـِشـون هـاده',
-'minoreditletter' => 'خورد',
+'minoreditletter' => 'جز',
 'newpageletter' => 'نو',
 'boteditletter' => 'ربات',
+'newsectionsummary' => '/* $1 */ نو تیکه',
 
 # Recent changes linked
 'recentchangeslinked' => 'واری دأچیـه‌ن‌ئون',
@@ -793,6 +802,7 @@ $2، $1',
 'wlheader-enotif' => '*تونی ایمیل جه مطلع بواشین.',
 'wlheader-showupdated' => "*صفحه‌ئونی که بعد از آخرین سربزوئنتون عوض بینه '''پر رنگ''' نشون هدائه بیّه.",
 'wlnote' => "ایجه {{PLURAL:$1|پایانی دأچیه‌ن|پایانی '''$1''' دأچیه‌ن‌ئونی}} هأسه که ای $2 ساعت ده‌له دأکه‌ته.",
+'watchlist-options' => 'دمبال هاکردن گوزینه‌ها',
 
 # Displayed when you click the "watch" button and it is in the process of watching
 'watching' => 'ده‌مـبـال هـه‌کـارده‌ن...',
@@ -826,6 +836,7 @@ $2، $1',
 
 # Namespace form on various pages
 'namespace' => 'نوم‌جا:',
+'invert' => 'برعکس انتخاب هاکن',
 'blanknamespace' => '(مـار)',
 
 # Contributions

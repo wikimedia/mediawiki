@@ -971,6 +971,8 @@ $2
 'node-count-exceeded-warning' => '頁面超出節點數',
 'expansion-depth-exceeded-category' => '擴展深度超出限制的頁面',
 'expansion-depth-exceeded-warning' => '頁面超出擴展深度',
+'parser-unstrip-loop-warning' => '檢測到迴圈',
+'parser-unstrip-recursion-limit' => '遞歸超過限制 ($1)',
 
 # "Undo" feature
 'undo-success' => '該編輯可以被撤銷。請檢查以下對比以核實這正是您想做的，然後儲存以下更改以完成撤銷編輯。',
@@ -2097,9 +2099,9 @@ Template:消除歧義',
 'emailuser' => 'E-mail該用戶',
 'emailpage' => 'E-mail用戶',
 'emailpagetext' => '您可以用下面的表格去寄一封電郵給這位用戶。
-您在[[Special:Preferences|您參數設置]]中所輸入的e-mail地址將出現在郵件「發件人」一欄中，這樣該用戶就可以回覆您。',
+您在[[Special:Preferences|您的參數設置]]中所輸入的電子郵件地址將出現在郵件「發件人」一欄中，這樣該用戶就可以回覆您。',
 'usermailererror' => '目標郵件地址返回錯誤：',
-'defemailsubject' => '{{SITENAME}}用戶 $1 發送電子郵件',
+'defemailsubject' => '{{SITENAME}}來自用戶“$1”的電子郵件',
 'usermaildisabled' => '用戶電郵已停用',
 'usermaildisabledtext' => '您不可以發送電郵到這個wiki上的其他用戶',
 'noemailtitle' => '無e-mail地址',

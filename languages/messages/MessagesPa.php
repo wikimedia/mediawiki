@@ -487,6 +487,11 @@ $1 ਘੰਟੇ ਵਿੱਚ। ਨੁਕਸਾਨ ਤੋਂ ਬਚਣ ਲਈ, $
 'template-semiprotected' => '(ਅਰਧ-ਸੁਰੱਖਿਅਤ)',
 'permissionserrors' => 'ਅਧਿਕਾਰ ਗਲਤੀਆਂ',
 'permissionserrorstext' => 'ਤੁਹਾਨੂੰ ਇੰਝ ਕਰਨ ਦੇ ਅਧਿਕਾਰ ਨਹੀਂ ਹਨ। ਹੇਠ ਦਿੱਤੇ {{PLURAL:$1|ਕਾਰਨ|ਕਾਰਨ}} ਨੇ:',
+'recreate-moveddeleted-warn' => "'''ਖ਼ਬਰਦਾਰ: ਤੁਸੀਂ ਐਸ ਪੰਨਾ ਰਚ ਰਹੇ ਹੋ ਜਿਸ ਨੂੰ ਪਹਿਲੇ ਹਟਾਇਆ ਜਾ ਚੁੱਕ ਹੈ।'''
+ਖਿਆਲ ਕਰੋ ਕਿ ਕੀ ਇਸ ਪੰਨੇ ਦਾ ਕਾਇਮ ਰਹਿਣਾ ਠੀਕ ਹੈ।
+ਇਸ ਪੰਨੇ ਨੂੰ ਹਟਾਉਣ ਯਾ ਜਘ੍ਹਾ ਬਦਲੀ ਦਾ ਚਿੱਠਾ ਹੇਠਾਂ ਦਿੱਤਾ ਹੈ।",
+'moveddeleted-notice' => 'ਇਹ ਪੰਨਾ ਹਟਾ ਦਿੱਤਾ ਗਿਆ ਹੈ।
+ਪੰਨੇ ਦੇ ਹਟਾਣ ਯਾ ਜਗ੍ਹਾ ਬਦਲੀ ਦਾ ਚਿੱਠਾ,ਹਵਾਲੇ ਲਈ ਹੇਠ ਦਿੱਤਾ ਹੈ।',
 
 # Parser/template warnings
 'post-expand-template-inclusion-warning' => "'''ਖ਼ਬਰਦਾਰ: ਸੰਚੇ ਦਾ ਅਕਾਰ ਬਹੁਤ ਵੱਡਾ ਹੈ।ਕੁਝ ਸੰਚੇ ਛੁਟ ਜਾਣਗੇ।",
@@ -681,6 +686,7 @@ $1 ਘੰਟੇ ਵਿੱਚ। ਨੁਕਸਾਨ ਤੋਂ ਬਚਣ ਲਈ, $
 'recentchanges' => 'ਤਾਜ਼ਾ ਬਦਲਾਅ',
 'recentchanges-legend' => 'ਤਾਜ਼ਾ ਬਦਲਾਅ ਚੋਣਾਂ',
 'recentchangestext' => 'ਇਸ ਵਿਕੀ ਪਰ ਹਾਲ ਵਿਚ ਹੋਏ ਬਦਲਾਅਦੇਖੇ ਜਾ ਸਕਦੇ ਹਨ।',
+'recentchanges-feed-description' => 'ਇਸ ਵਿਕੀ ਪਰ ਹਾਲ ਵਿਚ ਹੋਏ ਬਦਲਾਅ ਇਸ ਫ਼ੀਡ ਵਿਚ ਦੇਖੇ ਜਾ ਸਕਦੇ ਹਨ।',
 'recentchanges-label-newpage' => 'ਇਹ ਸੋਧ ਨੇ ਨਵਾਂ ਸਫ਼ਾ ਬਣਾਇਆ ਹੈ',
 'recentchanges-label-minor' => 'ਇਹ ਛੋਟੀ ਸੋਧ ਹੈ',
 'recentchanges-label-bot' => 'ਇਹ ਸੋਧ ਨੂੰ ਬੋਟ ਵਲੋਂ ਕੀਤਾ ਗਿਆ ਹੈ',
@@ -833,6 +839,7 @@ to upload files.',
 'prefixindex' => 'ਇਸ ਅਗੇਤਰ ਵਾਲੇ ਸਾਰੇ ਪੰਨੇ',
 'shortpages' => 'ਛੋਟੇ ਪੇਜ',
 'listusers' => 'ਯੂਜ਼ਰ ਲਿਸਟ',
+'usercreated' => ' $1 ਨੂੰ $2 ਵਜੇ {{GENDER:$3|ਮੈਂਬਰ ਨੇ ਰਚਿਆ}}',
 'newpages' => 'ਨਵੇਂ ਪੇਜ',
 'newpages-username' => 'ਯੂਜ਼ਰ ਨਾਂ:',
 'ancientpages' => 'ਸਭ ਤੋਂ ਪੁਰਾਣੇ ਪੇਜ',
@@ -874,6 +881,9 @@ to upload files.',
 # Special:ListUsers
 'listusers-submit' => 'ਵੇਖੋ',
 'listusers-noresult' => 'ਕੋਈ ਯੂਜ਼ਰ ਨਹੀਂ ਲੱਭਿਆ।',
+
+# Special:Log/newusers
+'newuserlogpage' => 'ਮੈਂਬਰ ਖਾਤਾ ਉਸਾਰੀ ਚਿੱਠਾ',
 
 # Special:ListGroupRights
 'listgrouprights-group' => 'ਗਰੁੱਪ',
@@ -973,7 +983,7 @@ to upload files.',
 
 # Contributions
 'contributions' => 'ਯੂਜ਼ਰ ਯੋਗਦਾਨ',
-'contributions-title' => '$੧ ਦਾ ਯੋਗਦਾਨ',
+'contributions-title' => '$੧ ਦੀ ਰਚਨਾ',
 'mycontris' => 'ਮੇਰਾ ਯੋਗਦਾਨ',
 'contribsub2' => '$1 ($2) ਲਈ',
 'uctop' => '(ਉੱਤੇ)',
@@ -987,6 +997,7 @@ to upload files.',
 'sp-contributions-talk' => 'ਗੱਲਬਾਤ',
 'sp-contributions-search' => 'ਯੋਗਦਾਨ ਖੋਜੋ',
 'sp-contributions-username' => 'IP ਐਡਰੈੱਸ ਜਾਂ ਯੂਜ਼ਰ ਨਾਂ:',
+'sp-contributions-toponly' => 'ਕੇਵਲ ਉਹੀ ਸੰਪਾਦਨ ਦਿਖਾਓ ਜੋ ਨਵੀਨਤਮ ਸੋਧਾਂ ਹਨ।',
 'sp-contributions-submit' => 'ਖੋਜ',
 
 # What links here
