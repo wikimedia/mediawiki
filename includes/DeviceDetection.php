@@ -1,6 +1,6 @@
 <?php
 /**
- * Device detection class
+ * Mobile device detection code
  *
  * Copyright © 2011 Patrick Reilly
  * http://www.mediawiki.org/
@@ -24,282 +24,276 @@
  */
 
 /**
+ * Base for classes describing devices and their capabilities
+ * @since 1.20
+ */
+interface IDeviceProperties {
+	/**
+	 * @return string: 'html' or 'wml'
+	 */
+	function format();
+
+	/**
+	 * @return bool
+	 */
+	function supportsJavaScript();
+
+	/**
+	 * @return bool
+	 */
+	function supportsJQuery();
+
+	/**
+	 * @return bool
+	 */
+	function disableZoom();
+}
+
+/**
+ * @since 1.20
+ */
+interface IDeviceDetector {
+	/**
+	 * @param $userAgent
+	 * @param string $acceptHeader
+	 * @return IDeviceProperties
+	 */
+	function detectDeviceProperties( $userAgent, $acceptHeader = '' );
+
+	/**
+	 * @param $deviceName
+	 * @return IDeviceProperties
+	 */
+	function getDeviceProperties( $deviceName );
+
+	/**
+	 * @param $userAgent string
+	 * @param $acceptHeader string
+	 * @return string
+	 */
+	function detectDeviceName( $userAgent, $acceptHeader = '' );
+}
+
+/**
+ * MediaWiki's default IDeviceProperties implementation
+ */
+final class DeviceProperties implements IDeviceProperties {
+	private $device;
+
+	public function __construct( array $deviceCapabilities ) {
+		$this->device = $deviceCapabilities;
+	}
+
+	/**
+	 * @return string
+	 */
+	function format() {
+		return $this->device['view_format'];
+	}
+
+	/**
+	 * @return bool
+	 */
+	function supportsJavaScript() {
+		return $this->device['supports_javascript'];
+	}
+
+	/**
+	 * @return bool
+	 */
+	function supportsJQuery() {
+		return $this->device['supports_jquery'];
+	}
+
+	/**
+	 * @return bool
+	 */
+	function disableZoom() {
+		return $this->device['disable_zoom'];
+	}
+}
+
+/**
  * Provides abstraction for a device.
  * A device can select which format a request should receive and
  * may be extended to provide access to particular device functionality.
  * @since 1.20
  */
-class DeviceDetection {
+class DeviceDetection implements IDeviceDetector {
 
-	/**
-	 * @return array
-	 */
-	public function getAvailableFormats() {
-		$formats = array (
+	private static $formats = array (
 			'html' => array (
 				'view_format' => 'html',
-				'search_bar' => 'default',
-				'footmenu' => 'default',
-				'with_layout' => 'application',
 				'css_file_name' => 'default',
 				'supports_javascript' => false,
 				'supports_jquery' => false,
 				'disable_zoom' => true,
-				'parser' => 'html',
-				'disable_links' => true,
 			),
 			'capable' => array (
 				'view_format' => 'html',
-				'search_bar' => 'default',
-				'footmenu' => 'default',
-				'with_layout' => 'application',
 				'css_file_name' => 'default',
 				'supports_javascript' => true,
 				'supports_jquery' => true,
 				'disable_zoom' => true,
-				'parser' => 'html',
-				'disable_links' => true,
 			),
 			'webkit' => array (
 				'view_format' => 'html',
-				'search_bar' => 'webkit',
-				'footmenu' => 'default',
-				'with_layout' => 'application',
 				'css_file_name' => 'webkit',
 				'supports_javascript' => true,
 				'supports_jquery' => true,
 				'disable_zoom' => false,
-				'parser' => 'html',
-				'disable_links' => true,
 			),
 			'ie' => array (
 				'view_format' => 'html',
-				'search_bar' => 'default',
-				'footmenu' => 'default',
-				'with_layout' => 'application',
 				'css_file_name' => 'default',
 				'supports_javascript' => true,
 				'supports_jquery' => true,
 				'disable_zoom' => false,
-				'parser' => 'html',
-				'disable_links' => true,
 			),
 			'android' => array (
 				'view_format' => 'html',
-				'search_bar' => 'default',
-				'footmenu' => 'default',
-				'with_layout' => 'application',
 				'css_file_name' => 'android',
 				'supports_javascript' => true,
 				'supports_jquery' => true,
 				'disable_zoom' => false,
-				'parser' => 'html',
-				'disable_links' => true,
 			),
 			'iphone' => array (
 				'view_format' => 'html',
-				'search_bar' => 'webkit',
-				'footmenu' => 'default',
-				'with_layout' => 'application',
 				'css_file_name' => 'iphone',
 				'supports_javascript' => true,
 				'supports_jquery' => true,
 				'disable_zoom' => false,
-				'parser' => 'html',
-				'disable_links' => true,
 			),
 			'iphone2' => array (
 				'view_format' => 'html',
-				'search_bar' => 'default',
-				'footmenu' => 'default',
-				'with_layout' => 'application',
 				'css_file_name' => 'iphone2',
 				'supports_javascript' => true,
 				'supports_jquery' => true,
 				'disable_zoom' => true,
-				'parser' => 'html',
-				'disable_links' => true,
 			),
 			'native_iphone' => array (
 				'view_format' => 'html',
-				'search_bar' => false,
-				'footmenu' => 'default',
-				'with_layout' => 'application',
 				'css_file_name' => 'default',
 				'supports_javascript' => true,
 				'supports_jquery' => true,
 				'disable_zoom' => false,
-				'parser' => 'html',
-				'disable_links' => false,
 			),
 			'palm_pre' => array (
 				'view_format' => 'html',
-				'search_bar' => 'default',
-				'footmenu' => 'default',
-				'with_layout' => 'application',
 				'css_file_name' => 'palm_pre',
 				'supports_javascript' => true,
 				'supports_jquery' => false,
 				'disable_zoom' => true,
-				'parser' => 'html',
-				'disable_links' => true,
 			),
 			'kindle' => array (
 				'view_format' => 'html',
-				'search_bar' => 'kindle',
-				'footmenu' => 'default',
-				'with_layout' => 'application',
 				'css_file_name' => 'kindle',
 				'supports_javascript' => false,
 				'supports_jquery' => false,
 				'disable_zoom' => true,
-				'parser' => 'html',
-				'disable_links' => true,
 			),
 			'kindle2' => array (
 				'view_format' => 'html',
-				'search_bar' => 'kindle',
-				'footmenu' => 'default',
-				'with_layout' => 'application',
 				'css_file_name' => 'kindle',
 				'supports_javascript' => false,
 				'supports_jquery' => false,
 				'disable_zoom' => true,
-				'parser' => 'html',
-				'disable_links' => true,
 			),
 			'blackberry' => array (
 				'view_format' => 'html',
-				'search_bar' => 'default',
-				'footmenu' => 'default',
-				'with_layout' => 'application',
 				'css_file_name' => 'blackberry',
 				'supports_javascript' => true,
 				'supports_jquery' => false,
 				'disable_zoom' => true,
-				'parser' => 'html',
-				'disable_links' => true,
 			),
 			'blackberry-lt5' => array (
 				'view_format' => 'html',
-				'search_bar' => 'default',
-				'footmenu' => 'default',
-				'with_layout' => 'application',
 				'css_file_name' => 'blackberry',
 				'supports_javascript' => false,
 				'supports_jquery' => false,
 				'disable_zoom' => true,
-				'parser' => 'html',
-				'disable_links' => true,
 			),
 			'netfront' => array (
 				'view_format' => 'html',
-				'search_bar' => 'simple',
-				'footmenu' => 'simple',
-				'with_layout' => 'application',
 				'css_file_name' => 'simple',
 				'supports_javascript' => false,
 				'supports_jquery' => false,
 				'disable_zoom' => true,
-				'parser' => 'html',
-				'disable_links' => true,
 			),
 			'wap2' => array (
 				'view_format' => 'html',
-				'search_bar' => 'simple',
-				'footmenu' => 'simple',
-				'with_layout' => 'application',
 				'css_file_name' => 'simple',
 				'supports_javascript' => false,
 				'supports_jquery' => false,
 				'disable_zoom' => true,
-				'parser' => 'html',
-				'disable_links' => true,
 			),
 			'psp' => array (
 				'view_format' => 'html',
-				'search_bar' => 'simple',
-				'footmenu' => 'simple',
-				'with_layout' => 'application',
 				'css_file_name' => 'psp',
 				'supports_javascript' => false,
 				'supports_jquery' => false,
 				'disable_zoom' => true,
-				'parser' => 'html',
-				'disable_links' => true,
 			),
 			'ps3' => array (
 				'view_format' => 'html',
-				'search_bar' => 'simple',
-				'footmenu' => 'simple',
-				'with_layout' => 'application',
 				'css_file_name' => 'simple',
 				'supports_javascript' => false,
 				'supports_jquery' => false,
 				'disable_zoom' => true,
-				'parser' => 'html',
-				'disable_links' => true,
 			),
 			'wii' => array (
 				'view_format' => 'html',
-				'search_bar' => 'wii',
-				'footmenu' => 'default',
-				'with_layout' => 'application',
 				'css_file_name' => 'wii',
 				'supports_javascript' => true,
 				'supports_jquery' => true,
 				'disable_zoom' => true,
-				'parser' => 'html',
-				'disable_links' => true,
 			),
 			'operamini' => array (
 				'view_format' => 'html',
-				'search_bar' => 'simple',
-				'footmenu' => 'simple',
-				'with_layout' => 'application',
 				'css_file_name' => 'operamini',
 				'supports_javascript' => false,
 				'supports_jquery' => false,
 				'disable_zoom' => true,
-				'parser' => 'html',
-				'disable_links' => true,
 			),
 			'operamobile' => array (
 				'view_format' => 'html',
-				'search_bar' => 'simple',
-				'footmenu' => 'simple',
-				'with_layout' => 'application',
 				'css_file_name' => 'operamobile',
 				'supports_javascript' => true,
 				'supports_jquery' => true,
 				'disable_zoom' => true,
-				'parser' => 'html',
-				'disable_links' => true,
 			),
 			'nokia' => array (
 				'view_format' => 'html',
-				'search_bar' => 'webkit',
-				'footmenu' => 'default',
-				'with_layout' => 'application',
 				'css_file_name' => 'nokia',
 				'supports_javascript' => true,
 				'supports_jquery' => false,
 				'disable_zoom' => true,
-				'parser' => 'html',
-				'disable_links' => true,
 			),
 			'wml' => array (
 				'view_format' => 'wml',
-				'search_bar' => 'wml',
+				'css_file_name' => null,
 				'supports_javascript' => false,
 				'supports_jquery' => false,
-				'parser' => 'wml',
+				'disable_zoom' => true,
 			),
 		);
-		return $formats;
+
+	/**
+	 * Returns an instance of detection class, overridable by extensions
+	 * @return IDeviceDetector
+	 */
+	public static function factory() {
+		global $wgDeviceDetectionClass;
+
+		static $instance = null;
+		if ( !$instance ) {
+			$instance = new $wgDeviceDetectionClass();
+		}
+		return $instance;
 	}
 
 	/**
+	 * @deprecated: Deprecated, will be removed once detectDeviceProperties() will be deployed everywhere on WMF
 	 * @param $userAgent
 	 * @param string $acceptHeader
 	 * @return array
@@ -310,12 +304,50 @@ class DeviceDetection {
 	}
 
 	/**
+	 * @param $userAgent
+	 * @param string $acceptHeader
+	 * @return IDeviceProperties
+	 */
+	public function detectDeviceProperties( $userAgent, $acceptHeader = '' ) {
+		$formatName = $this->detectDeviceName( $userAgent, $acceptHeader );
+		return $this->getDeviceProperties( $formatName );
+	}
+
+	/**
+	 * @deprecated: Deprecated, will be removed once detectDeviceProperties() will be deployed everywhere on WMF
 	 * @param $formatName
 	 * @return array
 	 */
 	public function getDevice( $formatName ) {
-		$format = $this->getAvailableFormats();
-		return ( isset( $format[$formatName] ) ) ? $format[$formatName] : array();
+		return ( isset( self::$formats[$formatName] ) ) ? self::$formats[$formatName] : array();
+	}
+
+	/**
+	 * @param $deviceName
+	 * @return IDeviceProperties
+	 */
+	public function getDeviceProperties( $deviceName ) {
+		if ( isset( self::$formats[$deviceName] ) ) {
+			return new DeviceProperties( self::$formats[$deviceName] );
+		} else {
+			return new DeviceProperties( array(
+				'view_format' => 'html',
+				'css_file_name' => 'default',
+				'supports_javascript' => true,
+				'supports_jquery' => true,
+				'disable_zoom' => true,
+			) );
+		}
+	}
+
+	/**
+	 * @deprecated: Renamed to detectDeviceName()
+	 * @param $userAgent string
+	 * @param $acceptHeader string
+	 * @return string
+	 */
+	public function detectFormatName( $userAgent, $acceptHeader = '' ) {
+		return $this->detectDeviceName( $userAgent, $acceptHeader );
 	}
 
 	/**
@@ -323,99 +355,101 @@ class DeviceDetection {
 	 * @param $acceptHeader string
 	 * @return string
 	 */
-	public function detectFormatName( $userAgent, $acceptHeader = '' ) {
-		$formatName = '';
+	public function detectDeviceName( $userAgent, $acceptHeader = '' ) {
+		wfProfileIn( __METHOD__ );
 
+		$deviceName = '';
 		if ( preg_match( '/Android/', $userAgent ) ) {
-			$formatName = 'android';
+			$deviceName = 'android';
 			if ( strpos( $userAgent, 'Opera Mini' ) !== false ) {
-				$formatName = 'operamini';
+				$deviceName = 'operamini';
 			}
 		} else if ( preg_match( '/MSIE 9.0/', $userAgent ) ||
 				preg_match( '/MSIE 8.0/', $userAgent ) ) {
-			$formatName = 'ie';
+			$deviceName = 'ie';
 		} else if( preg_match( '/MSIE/', $userAgent ) ) {
-			$formatName = 'html';
+			$deviceName = 'html';
 		} else if ( strpos( $userAgent, 'Opera Mobi' ) !== false ) {
-			$formatName = 'operamobile';
+			$deviceName = 'operamobile';
 		} elseif ( preg_match( '/iPad.* Safari/', $userAgent ) ) {
-			$formatName = 'iphone';
+			$deviceName = 'iphone';
 		} elseif ( preg_match( '/iPhone.* Safari/', $userAgent ) ) {
 			if ( strpos( $userAgent, 'iPhone OS 2' ) !== false ) {
-				$formatName = 'iphone2';
+				$deviceName = 'iphone2';
 			} else {
-				$formatName = 'iphone';
+				$deviceName = 'iphone';
 			}
 		} elseif ( preg_match( '/iPhone/', $userAgent ) ) {
 			if ( strpos( $userAgent, 'Opera' ) !== false ) {
-				$formatName = 'operamini';
+				$deviceName = 'operamini';
 			} else {
-				$formatName = 'native_iphone';
+				$deviceName = 'native_iphone';
 			}
 		} elseif ( preg_match( '/WebKit/', $userAgent ) ) {
 			if ( preg_match( '/Series60/', $userAgent ) ) {
-				$formatName = 'nokia';
+				$deviceName = 'nokia';
 			} elseif ( preg_match( '/webOS/', $userAgent ) ) {
-				$formatName = 'palm_pre';
+				$deviceName = 'palm_pre';
 			} else {
-				$formatName = 'webkit';
+				$deviceName = 'webkit';
 			}
 		} elseif ( preg_match( '/Opera/', $userAgent ) ) {
 			if ( strpos( $userAgent, 'Nintendo Wii' ) !== false ) {
-				$formatName = 'wii';
+				$deviceName = 'wii';
 			} elseif ( strpos( $userAgent, 'Opera Mini' ) !== false ) {
-				$formatName = 'operamini';
+				$deviceName = 'operamini';
 			} elseif ( strpos( $userAgent, 'Opera Mobi' ) !== false ) {
-				$formatName = 'iphone';
+				$deviceName = 'iphone';
 			} else {
-				$formatName = 'webkit';
+				$deviceName = 'webkit';
 			}
 		} elseif ( preg_match( '/Kindle\/1.0/', $userAgent ) ) {
-			$formatName = 'kindle';
+			$deviceName = 'kindle';
 		} elseif ( preg_match( '/Kindle\/2.0/', $userAgent ) ) {
-			$formatName = 'kindle2';
+			$deviceName = 'kindle2';
 		} elseif ( preg_match( '/Firefox/', $userAgent ) ) {
-			$formatName = 'capable';
+			$deviceName = 'capable';
 		} elseif ( preg_match( '/NetFront/', $userAgent ) ) {
-			$formatName = 'netfront';
+			$deviceName = 'netfront';
 		} elseif ( preg_match( '/SEMC-Browser/', $userAgent ) ) {
-			$formatName = 'wap2';
+			$deviceName = 'wap2';
 		} elseif ( preg_match( '/Series60/', $userAgent ) ) {
-			$formatName = 'wap2';
+			$deviceName = 'wap2';
 		} elseif ( preg_match( '/PlayStation Portable/', $userAgent ) ) {
-			$formatName = 'psp';
+			$deviceName = 'psp';
 		} elseif ( preg_match( '/PLAYSTATION 3/', $userAgent ) ) {
-			$formatName = 'ps3';
+			$deviceName = 'ps3';
 		} elseif ( preg_match( '/SAMSUNG/', $userAgent ) ) {
-			$formatName = 'capable';
+			$deviceName = 'capable';
 		} elseif ( preg_match( '/BlackBerry/', $userAgent ) ) {
 			if( preg_match( '/BlackBerry[^\/]*\/[1-4]\./', $userAgent ) ) {
-				$formatName = 'blackberry-lt5';
+				$deviceName = 'blackberry-lt5';
 			} else {
-				$formatName = 'blackberry';
+				$deviceName = 'blackberry';
 			}
 		}
 
-		if ( $formatName === '' ) {
+		if ( $deviceName === '' ) {
 			if ( strpos( $acceptHeader, 'application/vnd.wap.xhtml+xml' ) !== false ) {
 				// Should be wap2
-				$formatName = 'html';
+				$deviceName = 'html';
 			} elseif ( strpos( $acceptHeader, 'vnd.wap.wml' ) !== false ) {
-				$formatName = 'wml';
+				$deviceName = 'wml';
 			} else {
-				$formatName = 'html';
+				$deviceName = 'html';
 			}
 		}
-		return $formatName;
+		wfProfileOut( __METHOD__ );
+		return $deviceName;
 	}
 
 	/**
 	 * @return array: List of all device-specific stylesheets
 	 */
 	public function getCssFiles() {
-		$devices = $this->getAvailableFormats();
 		$files = array();
-		foreach ( $devices as $dev ) {
+
+		foreach ( self::$formats as $dev ) {
 			if ( isset( $dev['css_file_name'] ) ) {
 				$files[] = $dev['css_file_name'];
 			}
