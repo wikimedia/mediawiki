@@ -568,9 +568,16 @@ abstract class FileBackend {
 	 * This will create any required containers and parent directories.
 	 * Backends using key/value stores only need to create the container.
 	 *
-	 * @param $params Array
+	 * The 'noAccess' and 'noListing' parameters works the same as in secure(),
+	 * except they are only applied *if* the directory/container had to be created.
+	 * These flags should always be set for directories that have private files.
+	 *
 	 * $params include:
-	 *   - dir : storage directory
+	 *     dir       : storage directory
+	 *     noAccess  : try to deny file access (@since 1.20)
+	 *     noListing : try to deny file listing (@since 1.20)
+	 *
+	 * @param $params Array
 	 * @return Status
 	 */
 	final public function prepare( array $params ) {
@@ -588,8 +595,8 @@ abstract class FileBackend {
 	/**
 	 * Take measures to block web access to a storage directory and
 	 * the container it belongs to. FS backends might add .htaccess
-	 * files whereas key/value store backends might restrict container
-	 * access to the auth user that represents end-users in web request.
+	 * files whereas key/value store backends might revoke container
+	 * access to the storage user representing end-users in web requests.
 	 * This is not guaranteed to actually do anything.
 	 *
 	 * @param $params Array
@@ -603,17 +610,41 @@ abstract class FileBackend {
 		if ( $this->isReadOnly() ) {
 			return Status::newFatal( 'backend-fail-readonly', $this->name, $this->readOnly );
 		}
-		$status = $this->doPrepare( $params ); // dir must exist to restrict it
-		if ( $status->isOK() ) {
-			$status->merge( $this->doSecure( $params ) );
-		}
-		return $status;
+		return $this->doSecure( $params );
 	}
 
 	/**
 	 * @see FileBackend::secure()
 	 */
 	abstract protected function doSecure( array $params );
+
+	/**
+	 * Remove measures to block web access to a storage directory and
+	 * the container it belongs to. FS backends might remove .htaccess
+	 * files whereas key/value store backends might grant container
+	 * access to the storage user representing end-users in web requests.
+	 * This essentially can undo the result of secure() calls.
+	 *
+	 * $params include:
+	 *     dir     : storage directory
+	 *     access  : try to allow file access
+	 *     listing : try to allow file listing
+	 *
+	 * @param $params Array
+	 * @return Status
+	 * @since 1.20
+	 */
+	final public function publish( array $params ) {
+		if ( $this->isReadOnly() ) {
+			return Status::newFatal( 'backend-fail-readonly', $this->name, $this->readOnly );
+		}
+		return $this->doPublish( $params );
+	}
+
+	/**
+	 * @see FileBackend::publish()
+	 */
+	abstract protected function doPublish( array $params );
 
 	/**
 	 * Delete a storage directory if it is empty.
