@@ -1483,7 +1483,7 @@ Hvis du vælger at oplyse dit navn, vil det blive brugt til at tilskrive dig dit
 'nchanges' => '$1 {{PLURAL:$1|ændring|ændringer}}',
 'recentchanges' => 'Seneste ændringer',
 'recentchanges-legend' => 'Indstillinger for seneste ændringer',
-'recentchangestext' => "På denne side kan du følge de seneste ændringer på '''{{SITENAME}}'''.",
+'recentchanges-summary' => "På denne side kan du følge de seneste ændringer på '''{{SITENAME}}'''.",
 'recentchanges-feed-description' => 'Med dette feed kan du følge de seneste ændringer på {{SITENAME}}.',
 'recentchanges-label-newpage' => 'Denne redigering oprettede en ny side',
 'recentchanges-label-minor' => 'Dette er en mindre ændring',

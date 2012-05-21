@@ -1654,7 +1654,7 @@ Ako izaberete da ga unesete, ono će biti korišćeno za pripisivanje vašeg rad
 'nchanges' => '$1 {{PLURAL:$1|izmena|izmene|izmena}}',
 'recentchanges' => 'Skorašnje izmene',
 'recentchanges-legend' => 'Postavke skorašnjih izmena',
-'recentchangestext' => 'Pratite skorašnje izmene na ovoj stranici.',
+'recentchanges-summary' => 'Ovde pratite najskorije izmene na vikiju.',
 'recentchanges-feed-description' => 'Pratite skorašnje izmene uz pomoć ovog dovoda.',
 'recentchanges-label-newpage' => 'Nova stranica',
 'recentchanges-label-minor' => 'Manja izmena',

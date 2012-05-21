@@ -1436,7 +1436,7 @@ Smě mjenje hač $1 {{PLURAL:$1|znamješko|znamješce|znamješka|znamješkow}} d
 'nchanges' => '$1 {{PLURAL:$1|změna|změnje|změny|změnow}}',
 'recentchanges' => 'Aktualne změny',
 'recentchanges-legend' => 'Opcije aktualnych změnow',
-'recentchangestext' => 'Na tutej stronje móžeš najaktualniše změny w {{GRAMMAR:lokatiw|{{SITENAME}}}} wobkedźbować.',
+'recentchanges-summary' => 'Na tutej stronje móžeš najaktualniše změny w {{GRAMMAR:lokatiw|{{SITENAME}}}} wobkedźbować.',
 'recentchanges-feed-description' => 'Slěduj najaktualniše změny {{GRAMMAR:genitiw|{{SITENAME}}}} w tutym kanalu.',
 'recentchanges-label-newpage' => 'Tuta změna je nowu stronu wutworiła',
 'recentchanges-label-minor' => 'To je snadna změna',

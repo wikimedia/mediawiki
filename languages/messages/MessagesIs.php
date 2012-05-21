@@ -1479,7 +1479,7 @@ Tölvupóstfang þitt er ekki gefið upp þegar aðrir notendur hafa samband vi�
 'nchanges' => '$1 {{PLURAL:$1|breyting|breytingar}}',
 'recentchanges' => 'Nýlegar breytingar',
 'recentchanges-legend' => 'Stillingar nýlegra breytinga',
-'recentchangestext' => 'Hér geturðu fylgst með nýjustu breytingunum.',
+'recentchanges-summary' => 'Hér geturðu fylgst með nýjustu breytingunum.',
 'recentchanges-feed-description' => 'Hér er hægt að fylgjast með nýlegum breytingum á {{SITENAME}}.',
 'recentchanges-label-newpage' => 'Þessi breyting skapaði nýja síðu',
 'recentchanges-label-minor' => 'Þetta er minniháttar breyting',

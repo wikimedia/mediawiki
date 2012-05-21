@@ -1612,7 +1612,7 @@ Jeśli zdecydujesz się je podać, zostaną użyte, by udokumentować Twoje auto
 'nchanges' => '$1 {{PLURAL:$1|zmiana|zmiany|zmian}}',
 'recentchanges' => 'Ostatnie zmiany',
 'recentchanges-legend' => 'Opcje ostatnich zmian',
-'recentchangestext' => 'Ta strona przedstawia historię ostatnich zmian w tej wiki.',
+'recentchanges-summary' => 'Ta strona przedstawia historię ostatnich zmian w tej wiki.',
 'recentchanges-feed-description' => 'Obserwuj najświeższe zmiany w tej wiki.',
 'recentchanges-label-newpage' => 'W tej edycji utworzono nową stronę',
 'recentchanges-label-minor' => 'To jest drobna zmiana',

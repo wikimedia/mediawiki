@@ -16,6 +16,7 @@
  * @author Namik
  * @author Nemo bis
  * @author Reedy
+ * @author Soul Train
  */
 
 $fallback = 'ru';
@@ -27,7 +28,7 @@ $messages = array(
 'tog-hideminor' => 'Мукьвара хьайи дегишвилера авай гъвечIи дуьзар хъувунар чуьнуьхун',
 'tog-hidepatrolled' => 'Мукьвара хьайи дегишвилера авай къаравулвал авунвай дуьзар хъувунар чуьнуьхун',
 'tog-newpageshidepatrolled' => 'ЦIийи ччинрин сиягьда къаравулвал авунвай ччинар чуьнуьхун',
-'tog-extendwatchlist' => 'Чlехи сиягь килигунин, кутазвай вири дегишунар, амма са эхирбур туш',
+'tog-extendwatchlist' => 'ЧӀехи сиягь килигунин, кутазвай вири дегишунар, амма са эхирбур туш',
 'tog-usenewrc' => 'ЦIийи дегишвилерин сиягь кардик кутун (JavaScript герекзава)',
 'tog-numberheadings' => 'КЬилин цIарариз автоматдаказ номерар эцигун',
 'tog-showtoolbar' => 'Дуьзар хъувунин алатрин кьвати къалура (JavaScript)',
@@ -72,11 +73,11 @@ $messages = array(
 'thu' => 'Xем',
 'fri' => 'Жум',
 'sat' => 'Киш',
-'january' => 'Суьл',
-'february' => 'Чила',
-'march' => 'ТIул',
-'april' => 'Вил',
-'may_long' => 'мукал',
+'january' => 'гьер',
+'february' => 'эхен',
+'march' => 'ибне',
+'april' => 'нава',
+'may_long' => 'тӀул',
 'june' => 'Кьамуг',
 'july' => 'БаскIум',
 'august' => 'Нава',
@@ -88,7 +89,7 @@ $messages = array(
 'february-gen' => 'Эхем',
 'march-gen' => 'Ибне',
 'april-gen' => 'Нава',
-'may-gen' => 'ТӀул',
+'may-gen' => 'тӀул',
 'june-gen' => 'Къамуг',
 'july-gen' => 'Чиле',
 'august-gen' => 'Пахун',
@@ -100,7 +101,7 @@ $messages = array(
 'feb' => 'Эхе',
 'mar' => 'Ибн',
 'apr' => 'Нав',
-'may' => 'Тlул',
+'may' => 'тӀул',
 'jun' => 'Къа',
 'jul' => 'Чил',
 'aug' => 'Пахун',
@@ -711,7 +712,7 @@ $messages = array(
 'nchanges' => '$1 {{PLURAL:$1|масакIавал|масакIавилер}}',
 'recentchanges' => 'Mукьвара хьайи масакIавилер',
 'recentchanges-legend' => 'Цlийи масакIавилерин низамарунар',
-'recentchangestext' => 'Викида хьанвай эхиримжи масакIавилер и ччина гуьзетун',
+'recentchanges-summary' => 'Викида хьанвай эхиримжи масакIавилер и ччина гуьзетун',
 'recentchanges-feed-description' => 'И хвала викида хьанвай эхиримжи масакIавилер гуьзетун',
 'recentchanges-label-newpage' => 'И дуьзар хъувун  цlийи ччин туькlуьрна',
 'recentchanges-label-minor' => 'Им гъвечlи дуьзар хъувун я',

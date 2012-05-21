@@ -474,7 +474,7 @@ IP дарегиңиз бул барактын оңдоо тарыхына жаз
 'nchanges' => '$1 {{PLURAL:$1|өзгөрүү|өзгөрүү}}',
 'recentchanges' => 'Соңку өзгөрүүлөр',
 'recentchanges-legend' => 'Соңку өзгөртүүлөрдүн ырастоолору',
-'recentchangestext' => 'Уикидеги соңку өзгөрүүлөрдү ушул барактан көзөмөлдө.',
+'recentchanges-summary' => 'Уикидеги соңку өзгөрүүлөрдү ушул барактан көзөмөлдө.',
 'recentchanges-feed-description' => 'Ушул агымдагы уикидеги соңку өзгөрүүлөрдү көзөмөлдө.',
 'recentchanges-label-newpage' => 'Бул оңдоо жаңы баракты ачты',
 'recentchanges-label-minor' => 'Бул майда оңдоо',

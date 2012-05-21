@@ -1619,7 +1619,7 @@ Dacă decideți furnizarea sa, acesta va fi folosit pentru a vă atribui munca.'
 'nchanges' => '$1 {{PLURAL:$1|modificare|modificări|de modificări}}',
 'recentchanges' => 'Schimbări recente',
 'recentchanges-legend' => 'Opțiuni schimbări recente',
-'recentchangestext' => 'Urmăriți în această pagină cele mai recente modificări de pe site.',
+'recentchanges-summary' => 'Schimbări recente ... (Log)',
 'recentchanges-feed-description' => 'Urmărește cele mai recente schimbări folosind acest flux.',
 'recentchanges-label-newpage' => 'Această modificare a creat o pagină nouă',
 'recentchanges-label-minor' => 'Aceasta este o modificare minoră',
@@ -1813,8 +1813,8 @@ Dacă problema persistă, contactați un [[Special:ListUsers/sysop|administrator
 'backend-fail-writetemp' => 'Imposibil de scris în fișierul temporar.',
 'backend-fail-closetemp' => 'Imposibil de închis fișierul temporar.',
 'backend-fail-read' => 'Imposibil de citit fișierul $1.',
-'backend-fail-create' => 'Imposibil de creat fișierul $1.',
-'backend-fail-maxsize' => 'Nu s-a putut crea fișierul $1 pentru că acesta este mai mare de {{PLURAL:$2|un octet|$2 octeți|$2 de octeți}}.',
+'backend-fail-create' => 'Imposibil de scris fișierul $1.',
+'backend-fail-maxsize' => 'Nu s-a putut scrie fișierul $1 pentru că acesta este mai mare de {{PLURAL:$2|un octet|$2 octeți|$2 de octeți}}.',
 'backend-fail-contenttype' => 'Nu s-a putut determina tipul de conținut al fișierului de stocat la „$1”.',
 
 # Lock manager

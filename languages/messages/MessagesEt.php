@@ -1587,7 +1587,7 @@ See ei tohi olla pikem kui $1 {{PLURAL:$1|sümbol|sümbolit}}.',
 'nchanges' => '$1 {{PLURAL:$1|muudatus|muudatust}}',
 'recentchanges' => 'Viimased muudatused',
 'recentchanges-legend' => 'Viimaste muudatuste seaded',
-'recentchangestext' => 'Jälgi sellel leheküljel viimaseid muudatusi.',
+'recentchanges-summary' => 'Jälgi sellel leheküljel viimaseid muudatusi.',
 'recentchanges-feed-description' => 'Jälgi vikisse tehtud viimaseid muudatusi.',
 'recentchanges-label-newpage' => 'See muudatus lõi uue lehekülje',
 'recentchanges-label-minor' => 'See on pisiparandus',
@@ -3277,7 +3277,7 @@ Kui faili on rakendustarkvaraga töödeldud, võib osa andmeid olla muudetud võ
 # EXIF attributes
 'exif-compression-1' => 'Pakkimata',
 
-'exif-copyrighted-true' => 'Autoriõigustega kaitstud',
+'exif-copyrighted-true' => 'Kaitstud',
 'exif-copyrighted-false' => 'Avalikus omandis',
 
 'exif-unknowndate' => 'Kuupäev teadmata',

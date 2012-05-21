@@ -12,6 +12,7 @@
  * @author Erdal Ronahi
  * @author Ferhengvan
  * @author George Animal
+ * @author Ghybu
  * @author Gomada
  * @author Kaganer
  * @author Krinkle
@@ -211,7 +212,7 @@ $messages = array(
 'cancel' => 'Betalkirin',
 'moredotdotdot' => 'Bêhtir...',
 'mypage' => 'Rûpela min',
-'mytalk' => 'Rûpela gotûbêja min',
+'mytalk' => 'Gotûbêja min',
 'anontalk' => "Gotûbêj ji bo vê IP'ê",
 'navigation' => 'Navîgasyon',
 'and' => '&#32;û',
@@ -663,6 +664,8 @@ Heke tu qeyd bikî, hemû guhertinên piştî vê revîzyonê winda dibin.
 Tu soz didî ku te ev bi xwe nivîsand an jî ji çavkaniyekê azad an geliyane ''(public domain)'' girt.
 '''BERHEMÊN MAFÊN WAN PARASTÎ (©) BÊ DESTÛR NEWEŞÎNE!'''",
 'protectedpagewarning' => "'''Hişyarî:  Ev rûpel tê parastin. Bi tenê bikarhênerên ku xwediyên mafên \"koordînatoriyê\" ne, dikarin vê rûpelê biguherînin.'''",
+'semiprotectedpagewarning' => "'''Hişyarî:''' Ev rûpel tê parastin, lewma bes bikarhênerên tomarkirî dikarin vê biguherînin.
+Guhertina herî dawî bi referansa li jêr hatiye piştrastkirin:",
 'templatesused' => 'Şablon di van rûpelan da tê bikaranîn',
 'templatesusedpreview' => 'Şablon yê di vê pêşdîtinê da tên bikaranîn:',
 'templatesusedsection' => 'Şablon yê di vê perçê da tên bikaranîn:',
@@ -679,7 +682,7 @@ Tu soz didî ku te ev bi xwe nivîsand an jî ji çavkaniyekê azad an geliyane 
 Zanibe ku nuhçêkirinê vê rûpelê hêja ye ya na.
 Înformasyon li ser jêbirinê vê rûpelê li vir e:",
 'moveddeleted-notice' => 'Ev rûpel hatiye jêbirin.
-The deletion and move log for the page are provided below for reference.',
+Sedema jêbirina rûpelê bi referansa li jêr hatiye piştrastkirin.',
 'log-fulllog' => 'Tevahiya wê bibîne',
 'edit-conflict' => 'Têkçûna guherandinan.',
 'edit-no-change' => 'Guherandina te nehate hesibandin, ji ber ku guherandinên nivîsê tune bûn.',
@@ -794,11 +797,12 @@ Sedema qedexekirina $3 ev e: ''$2''",
 'nextn-title' => '$1 {{PLURAL:$1|encama|encamên}} pêştir',
 'viewprevnext' => '($1 {{int:pipe-separator}} $2) ($3).',
 'searchmenu-legend' => 'Vebijartinên lêgerrînê',
+'searchmenu-exists' => "'''Rûpeleke bi navê \"[[:\$1]]\" li ser vê wîkiyê heye.'''",
 'searchmenu-new' => 'Rûpela "[[:$1]]" li ser vê derê çêke!',
 'searchhelp-url' => 'Help:Alîkarî',
 'searchprofile-articles' => 'Rûpelên naverokê',
 'searchprofile-project' => 'Rûpelên alîkariyê û projeyê',
-'searchprofile-images' => 'Multimedia',
+'searchprofile-images' => 'Multîmedya',
 'searchprofile-everything' => 'Her tişt',
 'searchprofile-advanced' => 'Pêşketî',
 'searchprofile-articles-tooltip' => 'Di $1 da lêbigere',
@@ -819,10 +823,11 @@ Sedema qedexekirina $3 ev e: ''$2''",
 'searchall' => 'hemû',
 'showingresults' => "{{PLURAL:$1|Encamek|'''$1''' encam}}, bi #'''$2''' dest pê dike.",
 'showingresultsnum' => "{{PLURAL:$3|'''1'''|'''$3'''}} encam, bi #<b>$2</b> dest pê dike.",
+'showingresultsheader' => "{{PLURAL:$5|Encam '''$1''' ên '''$3'''|Encam '''$1 - $2''' ên '''$3'''}} ji bo '''$4'''",
 'search-nonefound' => 'Ti rûpelên wek ya daxwazkirî nînin.',
 'powersearch' => 'Lê bigere',
 'powersearch-legend' => 'Lê bigere',
-'powersearch-ns' => "Di namespace'an da lêbigere:",
+'powersearch-ns' => 'Di valahiya navan de lêbigere:',
 'powersearch-redir' => "Lîsteya redirect'an",
 'powersearch-field' => 'Bigere li',
 'powersearch-togglelabel' => 'Kontrol bike:',
@@ -1145,6 +1150,8 @@ Xêra xwe navekî din bibîne.",
 'linkstoimage' => 'Di van rûpelan de lînkek ji vî wêneyî re heye:',
 'nolinkstoimage' => 'Rûpelekî ku ji vî wêneyî re girêdankê çêdike nîne.',
 'linkstoimage-redirect' => '$1 (beralîkirina pelê) $2',
+'sharedupload-desc-here' => 'Ev pel ji $1 û dibe ku ji aliyê projeyên din ve jî hatibe bikaranîn.
+Agahdariya li ser [$2 rûpela danasîna pelê] li jêr tê nîşandan.',
 'uploadnewversion-linktext' => 'Versyonekî nû yê vê datayê barbike',
 'shared-repo-from' => 'ji $1',
 
@@ -1200,7 +1207,7 @@ Xêra xwe navekî din bibîne.",
 'statistics-header-hooks' => 'Statîstîkên din',
 'statistics-articles' => 'Rûpelên naverokê',
 'statistics-pages' => 'Rûpel',
-'statistics-pages-desc' => 'Hemû rûpelên di vê wîkiyê de, bi hemû rûpelên nîqaş, beralîkirin, hwd.',
+'statistics-pages-desc' => 'Hemû rûpelên di vê wîkiyê de, bi hemû rûpelên gotûbêj, beralîkirin, hwd.',
 'statistics-files' => 'Wêneyên barkirî',
 'statistics-views-total' => 'Hemû nîşandan',
 'statistics-users' => '[[Special:ListUsers|Bikarhênerên tomarkirî]]',
@@ -1548,7 +1555,7 @@ Ji bo jêbirinan û çêkirinên nuh ra, xêra xwe di [[Special:Log/delete|reşa
 'sp-contributions-deleted' => 'Guherandinên bikarhênerekî yê jêbirî',
 'sp-contributions-uploads' => 'yên barkirî',
 'sp-contributions-logs' => 'têketin',
-'sp-contributions-talk' => 'nîqaş',
+'sp-contributions-talk' => 'gotûbêj',
 'sp-contributions-userrights' => 'Îdarekirina mafên bikarhêneran',
 'sp-contributions-search' => 'Li beşdariyan bigere',
 'sp-contributions-username' => 'Adresê IP ya navî bikarhêner:',
@@ -1704,7 +1711,7 @@ da bikarî navê wê rûpelê biguherînî.',
 'articleexists' => 'Rûpela bi vî navî heye, an navê ku te hilbijart derbas nabe. Navekî din hilbijêre.',
 'cantmove-titleprotected' => 'Tu nikanê vê rûpelê bervê vê cihê bigerînê ji ber ku sernava nuh tê parastin ji bo çêkirinê',
 'movedto' => 'bû',
-'movetalk' => "Rûpela '''gotûbêj'''a wê jî bigerîne, eger gengaz be.",
+'movetalk' => "Heke gengaz be, rûpela '''gotûbêj'''a wê jî bigerîne.",
 'movepage-page-exists' => 'Rûpela $1 berê heye û ew nikane otomatîk were jêbirin.',
 'movepage-page-moved' => 'Rûpela $1 çû cihê $2.',
 'movepage-page-unmoved' => 'Rûpela $1 nikanî çûba ciha $2.',
@@ -1834,7 +1841,7 @@ Rûpela "[[:$1]]" berê heye. Tu rast dixazê wê jêbibê ji bo navguherandinê
 'pageinfo-header-watchlist' => 'Lîsteya şopandinê',
 'pageinfo-header-views' => 'Dîtin',
 'pageinfo-subjectpage' => 'Rûpel',
-'pageinfo-talkpage' => 'Rûpela nîqaşê',
+'pageinfo-talkpage' => 'Rûpela gotûbêjê',
 'pageinfo-watchers' => 'Hejmara kesên dişopînin',
 'pageinfo-edits' => 'Hejmara guherandinan',
 'pageinfo-views' => 'Hejmara dîtinê',
@@ -1990,9 +1997,9 @@ Lê eger ev *ne* tu bû, li lînkê netikîne. Ev e-nameya di rojê $4 da netê 
 
 # Delete conflict
 'deletedwhileediting' => 'Hîşyar: Piştî te guherandinê xwe dest pê kir ev rûpela hate jêbirin!',
-'confirmrecreate' => "Bikarhêner [[User:$1|$1]] ([[User talk:$1|nîqaş]]) vê rûpelê jêbir, piştî te destpêkir bi guherandinê. Sedemê jêbirinê ev bû:
+'confirmrecreate' => "Piştî te dest bi guherandinê kir, bikarhêner [[User:$1|$1]] ([[User talk:$1|gotûbêj]]) ev rûpel jê bir. Sedema jêbirinê ev bû:
 : ''$2''
-Xêra xwe zanibe ku tu bi rastî dixwazê vê rûpelê dîsa çêkê",
+Ji kerema xwe zanibe ku tu bi rastî dixwazî vê rûpelê dîsa çêkî",
 'recreate' => 'Dîsa çêke',
 
 # action=purge

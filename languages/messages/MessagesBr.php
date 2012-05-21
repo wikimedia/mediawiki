@@ -1475,7 +1475,7 @@ Ma skrivit anezhañ e vo implijet evit lakaat war wel ar pezh a vo bet degaset g
 'nchanges' => '$1 {{PLURAL:$1|kemm|kemm}}',
 'recentchanges' => 'Kemmoù diwezhañ',
 'recentchanges-legend' => "Dibarzhioù ar c'hemmoù diwezhañ",
-'recentchangestext' => "Dre ar bajenn-mañ e c'hallit heuliañ ar c'hemmoù diwezhañ bet degaset d'ar wiki.",
+'recentchanges-summary' => "Dre ar bajenn-mañ e c'hallit heuliañ ar c'hemmoù diwezhañ bet degaset d'ar wiki.",
 'recentchanges-feed-description' => "Heuilhit ar c'hemmoù diwezhañ er wiki el lusk-mañ.",
 'recentchanges-label-newpage' => "Gant ar c'hemm-mañ e vo krouet ur bajenn nevez.",
 'recentchanges-label-minor' => "Ur c'hemm dister eo hemañ",

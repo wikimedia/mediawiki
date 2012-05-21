@@ -1520,7 +1520,7 @@ Ko vas drugi uporabniki kontaktirajo, jim vašega e-poštnega naslova ne bomo ra
 'nchanges' => '$1 {{PLURAL:$1|sprememba|spremembi|spremembe|sprememb|sprememb}}',
 'recentchanges' => 'Zadnje spremembe',
 'recentchanges-legend' => 'Možnosti zadnjih sprememb',
-'recentchangestext' => 'Na tej strani lahko spremljajte najnedavnejše spremembe wikija.',
+'recentchanges-summary' => 'Na tej strani lahko spremljajte najnedavnejše spremembe wikija.',
 'recentchanges-feed-description' => 'Spremljajte najnovejše spremembe wikija prek tega vira.',
 'recentchanges-label-newpage' => 'S tem urejanjem je bila ustvarjena nova stran',
 'recentchanges-label-minor' => 'Manjše urejanje',

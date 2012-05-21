@@ -1627,7 +1627,7 @@ Om du väljer att ange ditt riktiga namn, kommer det att användas för att till
 'nchanges' => '$1 {{PLURAL:$1|ändring|ändringar}}',
 'recentchanges' => 'Senaste ändringarna',
 'recentchanges-legend' => 'Alternativ för senaste ändringarna',
-'recentchangestext' => 'Följ de senaste ändringarna i wikin på denna sida.',
+'recentchanges-summary' => 'Följ de senaste ändringarna i wikin på denna sida.',
 'recentchanges-feed-description' => 'Följ de senaste ändringarna i wikin genom den här matningen.',
 'recentchanges-label-newpage' => 'Denna redigering skapade en ny sida',
 'recentchanges-label-minor' => 'Detta är en mindre ändring',

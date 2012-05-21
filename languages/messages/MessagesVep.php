@@ -1249,7 +1249,7 @@ Ku tö kirjutat sen, nece nimi kävutadas, miše ozutada lehtpolen toižetajad.'
 'nchanges' => '$1 {{PLURAL:$1|toižetuz|toižetust}}',
 'recentchanges' => 'Tantoižed toižetused',
 'recentchanges-legend' => 'Tantoižiden toižetusiden järgendused',
-'recentchangestext' => 'Necil lehtpolil om tantoižid toižetusid {{SITENAME}}-saital.',
+'recentchanges-summary' => 'Necil lehtpolil om tantoižid toižetusid {{SITENAME}}-saital.',
 'recentchanges-feed-description' => "Kacelta jäl'gmäižid toižetusid wikiš neciš valus.",
 'recentchanges-label-newpage' => 'Nece redakcii sädi uden lehtpolen',
 'recentchanges-label-minor' => 'Nece redakcii om penikaine',

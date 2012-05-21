@@ -171,7 +171,7 @@ $messages = array(
 # Vector skin
 'vector-action-addsection' => 'Asol katha joṛaome',
 'vector-action-delete' => 'Giḍi',
-'vector-action-move' => 'Ocok',
+'vector-action-move' => 'Ocoḱ́',
 'vector-action-protect' => 'Bańcao',
 'vector-action-undelete' => 'Bań getgiḍi',
 'vector-action-unprotect' => 'Bodol rukhiyạ',
@@ -337,16 +337,21 @@ Joto khon mucạt́ database query do tahẽkana noṅka:
 "<tt>$2</tt>" bhitrire tahẽna.
 Database okaṭaḱ vule em akada:"<tt>$3: $4</tt>".',
 'laggedslavemode' => "'''Sontoroḱme:''' sakamre do nahaḱ nãwãnaḱko paseć bạnuḱa.",
-'missing-article' => '"$1" $2 noa ńutumanaḱ sakhiyaxt sakamre olakanaḱ do bań ṅamoka.
-Noa hoy renaḱ karon do hoyoḱkana cabak tạrik pharak se noare joṛao sakam do get giḍi akana.
-Judi noa do karon bań hoylen khan, noa do am sopṭoyer re kạtictem ńam daṛeyaḱa.
+'readonly' => 'Ḍaṭabes do talagea',
+'enterlockreason' => 'Cạbie reaḱ karon do cet́kana ma lạimẽ, Saõte tinre tala cạbim jhija ona okte hõ lạimẽ',
+'missing-article' => '"$1" $2 noa ńutumanaḱ sakhiyạ̣t sakamre olakanaḱ do bań ṅamoka.
+Noa hoy renaḱ karon do hoyoḱkana cabak tạrik pharak se noare joṛao sakam do get́ giḍi akana.
+Judi noa do karon bań hoylen khan, noa do am sopṭoyer re kạtićtem ńam daṛeyaḱa.
 Daya katet́ noa do nonde [[Special:ListUsers/sysop|administrator]],  ṭhen lạime, URL hotete.',
 'missingarticle-rev' => '(Nãwã aro#: $1)',
 'missingarticle-diff' => '(Pharak: $1, $2)',
 'internalerror' => 'Bhitri reaḱ bhul',
 'internalerror_info' => 'Bhitri reaḱ vul: $1',
+'fileappenderrorread' => 'Jońṛao oktere "$1" baṅ paṛhaolena.',
+'fileappenderror' => '"$1" do "$2" saõte joṛao baṅ ganoḱ kana.',
 'filedeleteerror' => '$1 sakam do baṅ get́ giḍiḱ lena',
 'directorycreateerror' => '"$1" dayrekṭori do baṅ tearlena.',
+'formerror' => 'Vul: forom do baṅ jimạlena.',
 'badarticleerror' => 'Noa sakamre kạmiko do baṅ puraolena.',
 'cannotdelete' => '$1 sakam se rẽt do baṅ get giḍilena.
 Pasec eṭaḱ hoṛ noa do lahareko get giḍi akada.',
@@ -494,7 +499,7 @@ Amaḱ IP ṭhikana do noa sakam sompadon jạṛre rekorḍoḱa.",
 'anonpreviewwarning' => '"Am do bhitri bam bolo akana. Noa sakamre amaḱ kạmiko jạre IP ṭhiikạ̣nare rukhiyạ ḱa."',
 'newarticle' => '(Nãwa)',
 'newarticletext' => "Am do oka mitṭen joṛaoem pańja akada, onaṭak do bạnuḱa.
-Ona sakam tear lạgit́te, latar reaḱ baksore ol ehoṕmẽ (arhõ jạsti baḍae lạgit́te [[{{mediaWiki:Helppage}} goṛo sakam]] pańjaemẽ.
+Ona sakam tear lạgit́te, latar reaḱ baksore ol ehoṕmẽ (arhõ jạsti baḍae lạgit́te [[{{mediaWiki:Helppage}}help page]] pańjaemẽ).
 Am do judi nonḍe vulkatem heć akan khan, tobe amaḱ sendrakore '''back''' baṭon linmẽ.",
 'noarticletext' => 'Nitoḱ noa sakamre do ol bạnuḱa.
 
@@ -538,7 +543,7 @@ Onate noa ạrgumenṭkodo bạgi giḍi hoena.",
 # History pages
 'viewpagelogs' => 'Noa sakam reaḱ cạbi udukme',
 'currentrev-asof' => 'Mucạt nãwã aroy',
-'revisionasof' => 'Nãwã aro sakam 1',
+'revisionasof' => 'Nãwã aro sakam $1 leka',
 'revision-info' => 'Ńel/pańja ruạṛ $1 khon $2',
 'previousrevision' => 'Pạhilaḱ paṛhao ruạṛ',
 'nextrevision' => "nãwate n'el ruar",
@@ -599,7 +604,7 @@ Unuduḱ: '''({{int:cur}})''' = nahaḱ nãwã aroeko saõte tulạo, '''({{int:
 'searchprofile-articles' => 'Menaḱaḱ sakamko',
 'searchprofile-project' => 'Go̠ṛo ar Project sakam',
 'searchprofile-images' => 'Multimedia',
-'searchprofile-everything' => 'Sanamak koge',
+'searchprofile-everything' => 'Sanamaḱ koge',
 'searchprofile-advanced' => 'Sompadon',
 'searchprofile-articles-tooltip' => '$1 re ñelme',
 'searchprofile-project-tooltip' => '$1 re sẽndraeme',
@@ -681,13 +686,13 @@ Amaḱ e-mail ṭhikạna do bań cabaḱa tinre onko do ko beohara',
 'nchanges' => '$1 {{PLURAL:$1 bodol bodolko}}',
 'recentchanges' => 'Nãwã bo̠do̠lko',
 'recentchanges-legend' => 'Nahaḱ bodol teaḱko',
-'recentchangestext' => 'Noa sakamre wiki reaḱ joto khon nãwã bodolko paṅjaṅjaymẽ.',
+'recentchanges-summary' => 'Noa sakamre wiki reaḱ joto khon nãwã bodolko paṅjaṅjaymẽ.',
 'recentchanges-feed-description' => 'Noa feedre wiki reaḱ joto khon nãwã bodolko paṅjaymẽ',
 'recentchanges-label-newpage' => 'Noa sompadon do nãwã mint́ṭen sakame tearkeda',
 'recentchanges-label-minor' => 'Noado hudiń mạchi sompadonkana',
 'recentchanges-label-bot' => 'Noa sompadon do bot darate purauena',
 'recentchanges-label-unpatrolled' => 'Noa sompadon do ńit́ hạbić baṅ ńel ńamakana',
-'rcnote' => "Latar reaḱ {{PLURAL:\$1 dinre '''\$2''' dinre}} hoyena {{PLURAL:\$!1'''1'''\$1}}gan bodol latare uduḱena ((okare nitaḱ okte ar somoy do \$5, \$4).",
+'rcnote' => "Latar reaḱ {{PLURAL:$2 dinre '''$2''' dinre}} hoyena {{PLURAL:$1 '''1''' '''$1'''}}gan bodol latare uduḱena ((okare nitaḱ okte ar tạrikh do $5, $4).",
 'rcnotefrom' => '$2 habić bodolak ko do latare ńeloḱkana',
 'rclistfrom' => 'Nãwã  bodolko uduḱme $1 khon ehoṕkate',
 'rcshowhideminor' => '$1 kaṭic culuń tońge',
@@ -964,13 +969,13 @@ Noa reaḱ pasnao katha [$2 rẽt pasnao sakam] latare emena',
 'import-upload-filename' => 'Rẽt ńutum',
 
 # Tooltip help for the actions
-'tooltip-pt-userpage' => 'Amak bebohar sakam',
-'tooltip-pt-mytalk' => 'Amaḱ katha ro̠ṛrenaḱ́ pata',
+'tooltip-pt-userpage' => 'Amaḱ́ bebo̠harić sakam',
+'tooltip-pt-mytalk' => 'Amaḱ katha ro̠ṛrenaḱ́ sakam',
 'tooltip-pt-preferences' => 'Amaḱ Kusíyaḱ',
 'tooltip-pt-watchlist' => 'Mit́ṭen tạlika okaṭak am do nãwã aroy lạgitem ńeleḱkan',
 'tooltip-pt-mycontris' => 'Amaḱ kạmi reaḱ tạlika',
 'tooltip-pt-login' => 'Am do log in lagit́ metao am kana; menkhan noa do jarur bań kana',
-'tooltip-pt-logout' => 'Onḍńme',
+'tooltip-pt-logout' => 'O̠nḍo̠ńme',
 'tooltip-ca-talk' => 'Galmãrao bhitri renaḱ sakam lạgit́',
 'tooltip-ca-edit' => 'Noa sakam em edit daṛeaḱ. Daya kateć save laha re preview batton bebohar me.',
 'tooltip-ca-addsection' => 'Nãwã sekson sạrdi',
