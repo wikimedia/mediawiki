@@ -443,7 +443,7 @@ class LinkHolderArray {
 		$output = $this->parent->getOutput();
 		$linkCache = LinkCache::singleton();
 		$threshold = $this->parent->getOptions()->getStubThreshold();
-		$titlesToBeConverted = '';
+		$titlesToBeConverted = array();
 		$titlesAttrs = array();
 
 		// Concatenate titles to a single string, thus we only need auto convert the
@@ -453,7 +453,7 @@ class LinkHolderArray {
 			foreach ( $entries as $index => $entry ) {
 				$pdbk = $entry['pdbk'];
 				// we only deal with new links (in its first query)
-				if ( !isset( $colours[$pdbk] ) ) {
+				if ( !isset( $colours[$pdbk] ) || $colours[$pdbk] === 'new' ) {
 					$title = $entry['title'];
 					$titleText = $title->getText();
 					$titlesAttrs[] = array(
@@ -463,13 +463,15 @@ class LinkHolderArray {
 					);
 					// separate titles with \0 because it would never appears
 					// in a valid title
-					$titlesToBeConverted .= $titleText . "\0";
+					$titlesToBeConverted[] = $titleText;
 				}
 			}
 		}
 
 		// Now do the conversion and explode string to text of titles
-		$titlesAllVariants = $wgContLang->autoConvertToAllVariants( $titlesToBeConverted );
+		$titlesAllVariants = $wgContLang->autoConvertToAllVariants(
+			implode( "\0", $titlesToBeConverted )
+		);
 		$allVariantsName = array_keys( $titlesAllVariants );
 		foreach ( $titlesAllVariants as &$titlesVariant ) {
 			$titlesVariant = explode( "\0", $titlesVariant );
@@ -537,7 +539,7 @@ class LinkHolderArray {
 					$entry =& $this->internals[$ns][$index];
 					$pdbk = $entry['pdbk'];
 
-					if(!isset($colours[$pdbk])){
+					if ( !isset( $colours[$pdbk] ) || $colours[$pdbk] === 'new' ) {
 						// found link in some of the variants, replace the link holder data
 						$entry['title'] = $variantTitle;
 						$entry['pdbk'] = $varPdbk;
