@@ -1030,7 +1030,6 @@ abstract class FileBackendStore extends FileBackend {
 	/**
 	 * @see FileBackendStore::executeOpHandlesInternal()
 	 * @return Array List of corresponding Status objects
-	 * @throws MWException
 	 */
 	protected function doExecuteOpHandlesInternal( array $fileOpHandles ) {
 		foreach ( $fileOpHandles as $fileOpHandle ) { // OK if empty
@@ -1206,7 +1205,7 @@ abstract class FileBackendStore extends FileBackend {
 	 * Any empty suffix means the container is not sharded.
 	 *
 	 * @param $container string Container name
-	 * @param $relStoragePath string Storage path relative to the container
+	 * @param $relPath string Storage path relative to the container
 	 * @return string|null Returns null if shard could not be determined
 	 */
 	final protected function getContainerShard( $container, $relPath ) {
@@ -1345,7 +1344,6 @@ abstract class FileBackendStore extends FileBackend {
 	 *
 	 * @param $container string Resolved container name
 	 * @param $val mixed Information to cache
-	 * @return void
 	 */
 	final protected function setContainerCache( $container, $val ) {
 		$this->memCache->set( $this->containerCacheKey( $container ), $val, 14*86400 );
@@ -1354,8 +1352,7 @@ abstract class FileBackendStore extends FileBackend {
 	/**
 	 * Delete the cached info for a container
 	 *
-	 * @param $containers string Resolved container name
-	 * @return void
+	 * @param $container string Resolved container name
 	 */
 	final protected function deleteContainerCache( $container ) {
 		if ( !$this->memCache->delete( $this->containerCacheKey( $container ) ) ) {
@@ -1434,7 +1431,6 @@ abstract class FileBackendStore extends FileBackend {
 	 *
 	 * @param $path string Storage path
 	 * @param $val mixed Information to cache
-	 * @return void
 	 */
 	final protected function setFileCache( $path, $val ) {
 		$this->memCache->set( $this->fileCacheKey( $path ), $val, 7*86400 );
@@ -1444,7 +1440,6 @@ abstract class FileBackendStore extends FileBackend {
 	 * Delete the cached stat info for a file path
 	 *
 	 * @param $path string Storage path
-	 * @return void
 	 */
 	final protected function deleteFileCache( $path ) {
 		if ( !$this->memCache->delete( $this->fileCacheKey( $path ) ) ) {
@@ -1686,6 +1681,12 @@ abstract class FileBackendStoreShardListIterator implements Iterator {
  * Iterator for listing directories
  */
 class FileBackendStoreShardDirIterator extends FileBackendStoreShardListIterator {
+	/**
+	 * @param string $container
+	 * @param string $dir
+	 * @param array $params
+	 * @return Array|null|Traversable
+	 */
 	protected function listFromShard( $container, $dir, array $params ) {
 		return $this->backend->getDirectoryListInternal( $container, $dir, $params );
 	}
@@ -1695,6 +1696,12 @@ class FileBackendStoreShardDirIterator extends FileBackendStoreShardListIterator
  * Iterator for listing regular files
  */
 class FileBackendStoreShardFileIterator extends FileBackendStoreShardListIterator {
+	/**
+	 * @param string $container
+	 * @param string $dir
+	 * @param array $params
+	 * @return Array|null|Traversable
+	 */
 	protected function listFromShard( $container, $dir, array $params ) {
 		return $this->backend->getFileListInternal( $container, $dir, $params );
 	}

@@ -60,6 +60,10 @@ class FileRepo {
 	var $oldFileFactory = false;
 	var $fileFactoryKey = false, $oldFileFactoryKey = false;
 
+	/**
+	 * @param $info array|null
+	 * @throws MWException
+	 */
 	function __construct( array $info = null ) {
 		// Verify required settings presence
 		if(
@@ -146,6 +150,7 @@ class FileRepo {
 	 * Check if a single zone or list of zones is defined for usage
 	 *
 	 * @param $doZones Array Only do a particular zones
+	 * @throws MWException
 	 * @return Status
 	 */
 	protected function initZones( $doZones = array() ) {
@@ -186,7 +191,7 @@ class FileRepo {
 	 * The suffix, if supplied, is considered to be unencoded, and will be
 	 * URL-encoded before being returned.
 	 *
-	 * @param $suffix string
+	 * @param $suffix string|bool
 	 * @return string
 	 */
 	public function getVirtualUrl( $suffix = false ) {
@@ -223,6 +228,7 @@ class FileRepo {
 	 * Use this function wisely.
 	 *
 	 * @param $url string
+	 * @throws MWException
 	 * @return string
 	 */
 	public function resolveVirtualUrl( $url ) {
@@ -433,6 +439,7 @@ class FileRepo {
 	 * SHA-1 content hash.
 	 *
 	 * STUB
+	 * @param $hash
 	 * @return array
 	 */
 	public function findBySha1( $hash ) {
@@ -684,6 +691,7 @@ class FileRepo {
 	 *     self::OVERWRITE_SAME    Overwrite the file if the destination exists and has the
 	 *                             same contents as the source
 	 *     self::SKIP_LOCKING      Skip any file locking when doing the store
+	 * @throws MWException
 	 * @return FileRepoStatus
 	 */
 	public function storeBatch( array $triplets, $flags = 0 ) {
@@ -762,7 +770,7 @@ class FileRepo {
 	 * Each file can be a (zone, rel) pair, virtual url, storage path.
 	 * It will try to delete each file, but ignores any errors that may occur.
 	 *
-	 * @param $pairs array List of files to delete
+	 * @param $files array List of files to delete
 	 * @param $flags Integer: bitwise combination of the following flags:
 	 *     self::SKIP_LOCKING      Skip any file locking when doing the deletions
 	 * @return FileRepoStatus
@@ -841,7 +849,7 @@ class FileRepo {
 	 * This function can be used to write to otherwise read-only foreign repos.
 	 * This is intended for copying generated thumbnails into the repo.
 	 *
-	 * @param $src Array List of tuples (file system path, virtual URL or storage path)
+	 * @param $pairs Array List of tuples (file system path, virtual URL or storage path)
 	 * @return FileRepoStatus
 	 */
 	public function quickImportBatch( array $pairs ) {
@@ -866,7 +874,7 @@ class FileRepo {
 	 * This function can be used to write to otherwise read-only foreign repos.
 	 * This does no locking nor journaling and is intended for purging thumbnails.
 	 *
-	 * @param $path Array List of virtual URLs or storage paths
+	 * @param $paths Array List of virtual URLs or storage paths
 	 * @return FileRepoStatus
 	 */
 	public function quickPurgeBatch( array $paths ) {
@@ -1008,6 +1016,7 @@ class FileRepo {
 	 * @param $triplets Array: (source, dest, archive) triplets as per publish()
 	 * @param $flags Integer: bitfield, may be FileRepo::DELETE_SOURCE to indicate
 	 *        that the source files should be deleted if possible
+	 * @throws MWException
 	 * @return FileRepoStatus
 	 */
 	public function publishBatch( array $triplets, $flags = 0 ) {
@@ -1183,6 +1192,7 @@ class FileRepo {
 	 *        is a two-element array containing the source file path relative to the
 	 *        public root in the first element, and the archive file path relative
 	 *        to the deleted zone root in the second element.
+	 * @throws MWException
 	 * @return FileRepoStatus
 	 */
 	public function deleteBatch( array $sourceDestPairs ) {
@@ -1252,6 +1262,7 @@ class FileRepo {
 	 * Get a relative path for a deletion archive key,
 	 * e.g. s/z/a/ for sza251lrxrc1jad41h5mgilp8nysje52.jpg
 	 *
+	 * @param $key string
 	 * @return string
 	 */
 	public function getDeletedHashPath( $key ) {
@@ -1455,6 +1466,7 @@ class FileRepo {
 	/**
 	 * Create a new good result
 	 *
+	 * @param $value null|string
 	 * @return FileRepoStatus
 	 */
 	public function newGood( $value = null ) {

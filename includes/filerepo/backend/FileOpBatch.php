@@ -186,7 +186,7 @@ class FileOpBatch {
 	 * within any given sub-batch do not depend on each other.
 	 * This will abort remaining ops on failure.
 	 *
-	 * @param $performOps Array
+	 * @param $pPerformOps Array
 	 * @param $status Status
 	 * @return bool Success
 	 */
@@ -219,7 +219,7 @@ class FileOpBatch {
 			}
 			// Try to do all the operations concurrently...
 			$statuses = $statuses + $backend->executeOpHandlesInternal( $opHandles );
-			// Marshall and merge all the responses...
+			// Marshall and merge all the responses (blocking)...
 			foreach ( $performOpsBatch as $i => $fileOp ) {
 				if ( !$fileOp->failed() ) { // failed => already has Status
 					$subStatus = $statuses[$i];

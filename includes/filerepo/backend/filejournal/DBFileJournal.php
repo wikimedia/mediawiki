@@ -33,7 +33,7 @@ class DBFileJournal extends FileJournal {
 	 * Construct a new instance from configuration.
 	 * $config includes:
 	 *     'wiki' : wiki name to use for LoadBalancer
-	 *
+	 * 
 	 * @param $config Array
 	 */
 	protected function __construct( array $config ) {

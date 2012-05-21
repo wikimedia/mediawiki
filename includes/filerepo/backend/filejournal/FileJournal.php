@@ -43,7 +43,7 @@ abstract class FileJournal {
 	 * Construct a new instance from configuration.
 	 * $config includes:
 	 *     'ttlDays' : days to keep log entries around (false means "forever")
-	 *
+	 * 
 	 * @param $config Array
 	 */
 	protected function __construct( array $config ) {
@@ -55,6 +55,7 @@ abstract class FileJournal {
 	 *
 	 * @param $config Array
 	 * @param $backend string A registered file backend name
+	 * @throws MWException
 	 * @return FileJournal
 	 */
 	final public static function factory( array $config, $backend ) {
@@ -69,7 +70,7 @@ abstract class FileJournal {
 
 	/**
 	 * Get a statistically unique ID string
-	 *
+	 * 
 	 * @return string <9 char TS_MW timestamp in base 36><22 random base 36 chars>
 	 */
 	final public function getTimestampedUUID() {
@@ -88,7 +89,7 @@ abstract class FileJournal {
 	 *     path    : The storage path of the file
 	 *     newSha1 : The final base 36 SHA-1 of the file
 	 * Note that 'false' should be used as the SHA-1 for non-existing files.
-	 *
+	 * 
 	 * @param $entries Array List of file operations (each an array of parameters)
 	 * @param $batchId string UUID string that identifies the operation batch
 	 * @return Status
@@ -102,7 +103,7 @@ abstract class FileJournal {
 
 	/**
 	 * @see FileJournal::logChangeBatch()
-	 *
+	 * 
 	 * @param $entries Array List of file operations (each an array of parameters)
 	 * @param $batchId string UUID string that identifies the operation batch
 	 * @return Status
@@ -169,6 +170,8 @@ abstract class FileJournal {
 class NullFileJournal extends FileJournal {
 	/**
 	 * @see FileJournal::logChangeBatch()
+	 * @param $entries array
+	 * @param $batchId string
 	 * @return Status
 	 */
 	protected function doLogChangeBatch( array $entries, $batchId ) {
