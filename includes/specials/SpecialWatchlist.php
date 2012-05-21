@@ -95,8 +95,6 @@ class SpecialWatchlist extends SpecialPage {
 			$request->wasPosted() )
 		{
 			$user->clearAllNotifications();
-			$output->redirect( $this->getTitle()->getFullUrl() );
-			return;
 		}
 
 		$nitems = $this->countItems();
@@ -264,6 +262,12 @@ class SpecialWatchlist extends SpecialPage {
 					$this->msg( 'wlheader-showupdated' )->parse() . ' ' .
 					Xml::submitButton( $this->msg( 'enotif_reset' )->text(), array( 'name' => 'dummy' ) ) .
 					Html::hidden( 'reset', 'all' ) .
+					$form .= Html::hidden( 'days', $values['days'] );
+					foreach ( $filters as $key => $msg ) {
+						if ( $values[$key] ) {
+							$form .= Html::hidden( $key, 1 );
+						}
+					}
 					Xml::closeElement( 'form' );
 		}
 		$form .= '<hr />';
