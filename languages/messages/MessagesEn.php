@@ -2352,7 +2352,6 @@ For optimal security, img_auth.php is disabled.',
 'http-curl-error'       => 'Error fetching URL: $1',
 'http-host-unreachable' => 'Could not reach URL.',
 'http-bad-status'       => 'There was a problem during the HTTP request: $1 $2',
-'http-truncated-body'   => 'The request body was only partially received.',
 
 # Some likely curl errors. More could be added from <http://curl.haxx.se/libcurl/c/libcurl-errors.html>
 'upload-curl-error6'       => 'Could not reach URL',
