@@ -344,6 +344,20 @@ class FileBackendMultiWrite extends FileBackend {
 	}
 
 	/**
+	 * @see FileBackend::doPublish()
+	 * @param $params array
+	 * @return Status
+	 */
+	protected function doPublish( array $params ) {
+		$status = Status::newGood();
+		foreach ( $this->backends as $backend ) {
+			$realParams = $this->substOpPaths( $params, $backend );
+			$status->merge( $backend->doPublish( $realParams ) );
+		}
+		return $status;
+	}
+
+	/**
 	 * @see FileBackend::doClean()
 	 * @param $params array
 	 * @return Status

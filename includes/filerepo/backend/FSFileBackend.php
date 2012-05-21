@@ -474,12 +474,17 @@ class FSFileBackend extends FileBackendStore {
 		list( $b, $shortCont, $r ) = FileBackend::splitStoragePath( $params['dir'] );
 		$contRoot = $this->containerFSRoot( $shortCont, $fullCont ); // must be valid
 		$dir = ( $dirRel != '' ) ? "{$contRoot}/{$dirRel}" : $contRoot;
+		$existed = is_dir( $dir ); // already there?
 		if ( !wfMkdirParents( $dir ) ) { // make directory and its parents
-			$status->fatal( 'directorycreateerror', $params['dir'] );
+			$status->fatal( 'directorycreateerror', $params['dir'] ); // fails on races
 		} elseif ( !is_writable( $dir ) ) {
 			$status->fatal( 'directoryreadonlyerror', $params['dir'] );
 		} elseif ( !is_readable( $dir ) ) {
 			$status->fatal( 'directorynotreadableerror', $params['dir'] );
+		}
+		if ( is_dir( $dir ) && !$existed ) {
+			// Respect any 'noAccess' or 'noListing' flags...
+			$status->merge( $this->doSecureInternal( $fullCont, $dirRel, $params ) );
 		}
 		return $status;
 	}
@@ -495,21 +500,48 @@ class FSFileBackend extends FileBackendStore {
 		$dir = ( $dirRel != '' ) ? "{$contRoot}/{$dirRel}" : $contRoot;
 		// Seed new directories with a blank index.html, to prevent crawling...
 		if ( !empty( $params['noListing'] ) && !file_exists( "{$dir}/index.html" ) ) {
-			$bytes = file_put_contents( "{$dir}/index.html", '' );
-			if ( !$bytes ) {
+			$bytes = file_put_contents( "{$dir}/index.html", $this->indexHtmlPrivate() );
+			if ( $bytes === false ) {
 				$status->fatal( 'backend-fail-create', $params['dir'] . '/index.html' );
 				return $status;
 			}
 		}
 		// Add a .htaccess file to the root of the container...
-		if ( !empty( $params['noAccess'] ) ) {
-			if ( !file_exists( "{$contRoot}/.htaccess" ) ) {
-				$bytes = file_put_contents( "{$contRoot}/.htaccess", "Deny from all\n" );
-				if ( !$bytes ) {
-					$storeDir = "mwstore://{$this->name}/{$shortCont}";
-					$status->fatal( 'backend-fail-create', "{$storeDir}/.htaccess" );
-					return $status;
-				}
+		if ( !empty( $params['noAccess'] ) && !file_exists( "{$contRoot}/.htaccess" ) ) {
+			$bytes = file_put_contents( "{$contRoot}/.htaccess", $this->htaccessPrivate() );
+			if ( $bytes === false ) {
+				$storeDir = "mwstore://{$this->name}/{$shortCont}";
+				$status->fatal( 'backend-fail-create', "{$storeDir}/.htaccess" );
+				return $status;
+			}
+		}
+		return $status;
+	}
+
+	/**
+	 * @see FileBackendStore::doPublishInternal()
+	 * @return Status
+	 */
+	protected function doPublishInternal( $fullCont, $dirRel, array $params ) {
+		$status = Status::newGood();
+		list( $b, $shortCont, $r ) = FileBackend::splitStoragePath( $params['dir'] );
+		$contRoot = $this->containerFSRoot( $shortCont, $fullCont ); // must be valid
+		$dir = ( $dirRel != '' ) ? "{$contRoot}/{$dirRel}" : $contRoot;
+		// Unseed new directories with a blank index.html, to allow crawling...
+		if ( !empty( $params['listing'] ) && is_file( "{$dir}/index.html" ) ) {
+			$exists = ( file_get_contents( "{$dir}/index.html" ) === $this->indexHtmlPrivate() );
+			if ( $exists && !unlink( "{$dir}/index.html" ) ) { // reverse secure()
+				$status->fatal( 'backend-fail-delete', $params['dir'] . '/index.html' );
+				return $status;
+			}
+		}
+		// Remove the .htaccess file from the root of the container...
+		if ( !empty( $params['access'] ) && is_file( "{$contRoot}/.htaccess" ) ) {
+			$exists = ( file_get_contents( "{$contRoot}/.htaccess" ) === $this->htaccessPrivate() );
+			if ( $exists && !unlink( "{$contRoot}/.htaccess" ) ) { // reverse secure()
+				$storeDir = "mwstore://{$this->name}/{$shortCont}";
+				$status->fatal( 'backend-fail-delete', "{$storeDir}/.htaccess" );
+				return $status;
 			}
 		}
 		return $status;
@@ -714,6 +746,24 @@ class FSFileBackend extends FileBackendStore {
 		wfRestoreWarnings();
 
 		return $ok;
+	}
+
+	/**
+	 * Return the text of an index.html file to hide directory listings
+	 *
+	 * @return string
+	 */
+	protected function indexHtmlPrivate() {
+		return '';
+	}
+
+	/**
+	 * Return the text of a .htaccess file to make a directory private
+	 *
+	 * @return string
+	 */
+	protected function htaccessPrivate() {
+		return "Deny from all\n";
 	}
 
 	/**

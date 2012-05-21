@@ -427,6 +427,46 @@ abstract class FileBackendStore extends FileBackend {
 	}
 
 	/**
+	 * @see FileBackend::doPublish()
+	 * @return Status
+	 */
+	final protected function doPublish( array $params ) {
+		wfProfileIn( __METHOD__ );
+		wfProfileIn( __METHOD__ . '-' . $this->name );
+		$status = Status::newGood();
+
+		list( $fullCont, $dir, $shard ) = $this->resolveStoragePath( $params['dir'] );
+		if ( $dir === null ) {
+			$status->fatal( 'backend-fail-invalidpath', $params['dir'] );
+			wfProfileOut( __METHOD__ . '-' . $this->name );
+			wfProfileOut( __METHOD__ );
+			return $status; // invalid storage path
+		}
+
+		if ( $shard !== null ) { // confined to a single container/shard
+			$status->merge( $this->doPublishInternal( $fullCont, $dir, $params ) );
+		} else { // directory is on several shards
+			wfDebug( __METHOD__ . ": iterating over all container shards.\n" );
+			list( $b, $shortCont, $r ) = self::splitStoragePath( $params['dir'] );
+			foreach ( $this->getContainerSuffixes( $shortCont ) as $suffix ) {
+				$status->merge( $this->doPublishInternal( "{$fullCont}{$suffix}", $dir, $params ) );
+			}
+		}
+
+		wfProfileOut( __METHOD__ . '-' . $this->name );
+		wfProfileOut( __METHOD__ );
+		return $status;
+	}
+
+	/**
+	 * @see FileBackendStore::doPublish()
+	 * @return Status
+	 */
+	protected function doPublishInternal( $container, $dir, array $params ) {
+		return Status::newGood();
+	}
+
+	/**
 	 * @see FileBackend::doClean()
 	 * @return Status
 	 */
