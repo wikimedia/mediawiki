@@ -524,13 +524,12 @@ class SwiftFileBackend extends FileBackendStore {
 		// (b) Create container as needed
 		try {
 			$contObj = $this->createContainer( $fullCont );
-			// Make container public to end-users...
-			if ( $this->swiftAnonUser != '' ) {
-				$status->merge( $this->setContainerAccess(
-					$contObj,
-					array( $this->auth->username, $this->swiftAnonUser ), // read
-					array( $this->auth->username ) // write
-				) );
+			if ( !empty( $params['noAccess'] ) ) {
+				// Make container private to end-users...
+				$status->merge( $this->doSecureInternal( $fullCont, $dir, $params ) );
+			} else {
+				// Make container public to end-users...
+				$status->merge( $this->doPublishInternal( $fullCont, $dir, $params ) );
 			}
 			if ( $this->swiftUseCDN ) { // Rackspace style CDN
 				$contObj->make_public( $this->swiftCDNExpiry );
@@ -551,6 +550,9 @@ class SwiftFileBackend extends FileBackendStore {
 	 */
 	protected function doSecureInternal( $fullCont, $dir, array $params ) {
 		$status = Status::newGood();
+		if ( empty( $params['noAccess'] ) ) {
+			return $status; // nothing to do
+		}
 
 		// Restrict container from end-users...
 		try {
@@ -560,18 +562,49 @@ class SwiftFileBackend extends FileBackendStore {
 			// NoSuchContainerException not thrown: container must exist
 
 			// Make container private to end-users...
-			if ( $this->swiftAnonUser != '' && !isset( $contObj->mw_wasSecured ) ) {
+			if ( $this->swiftAnonUser != '' ) {
 				$status->merge( $this->setContainerAccess(
 					$contObj,
 					array( $this->auth->username ), // read
 					array( $this->auth->username ) // write
 				) );
-				// @TODO: when php-cloudfiles supports container
-				// metadata, we can make use of that to avoid RTTs
-				$contObj->mw_wasSecured = true; // avoid useless RTTs
 			}
 			if ( $this->swiftUseCDN && $contObj->is_public() ) { // Rackspace style CDN
 				$contObj->make_private();
+			}
+		} catch ( CDNNotEnabledException $e ) {
+			// CDN not enabled; nothing to see here
+		} catch ( CloudFilesException $e ) { // some other exception?
+			$this->handleException( $e, $status, __METHOD__, $params );
+		}
+
+		return $status;
+	}
+
+	/**
+	 * @see FileBackendStore::doPublishInternal()
+	 * @return Status
+	 */
+	protected function doPublishInternal( $fullCont, $dir, array $params ) {
+		$status = Status::newGood();
+
+		// Unrestrict container from end-users...
+		try {
+			// doPrepareInternal() should have been called,
+			// so the Swift container should already exist...
+			$contObj = $this->getContainer( $fullCont ); // normally a cache hit
+			// NoSuchContainerException not thrown: container must exist
+
+			// Make container public to end-users...
+			if ( $this->swiftAnonUser != '' ) {
+				$status->merge( $this->setContainerAccess(
+					$contObj,
+					array( $this->auth->username, $this->swiftAnonUser ), // read
+					array( $this->auth->username, $this->swiftAnonUser ) // write
+				) );
+			}
+			if ( $this->swiftUseCDN && !$contObj->is_public() ) { // Rackspace style CDN
+				$contObj->make_public();
 			}
 		} catch ( CDNNotEnabledException $e ) {
 			// CDN not enabled; nothing to see here
