@@ -8812,6 +8812,29 @@ language=sr cat
 !! end
 
 
+!! article
+Category:分类
+!! text
+blah
+!! endarticle
+
+!! article
+Category:分類
+!! text
+blah
+!! endarticle
+
+!! test
+Don't convert blue categorylinks to another variant (bug 33210)
+!! options
+language=zh cat
+!! input
+[[A]][[Category:分类]]
+!! result
+<a href="/wiki/Category:%E5%88%86%E7%B1%BB" title="Category:分类">分类</a>
+!! end
+
+
 !! test
 Stripping -{}- tags (language variants)
 !! options
