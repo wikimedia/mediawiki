@@ -66,7 +66,7 @@ class ApiQueryIWLinks extends ApiQueryBase {
 			$db = $this->getDB();
 			$iwlfrom = intval( $cont[0] );
 			$iwlprefix = $db->addQuotes( $cont[1] );
-			$iwltitle = $db->addQuotes( $this->titleToKey( $cont[2] ) );
+			$iwltitle = $db->addQuotes( $cont[2] );
 			$this->addWhere(
 				"iwl_from $op $iwlfrom OR " .
 				"(iwl_from = $iwlfrom AND " .
