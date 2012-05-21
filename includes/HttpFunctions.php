@@ -778,10 +778,9 @@ class CurlHttpRequest extends MWHttpRequest {
 		$this->parseHeader();
 		$this->setStatus();
 
-		if ( isset( $this->respHeaders['content-length'] ) ) {
-			if ( strlen( $this->content ) < $this->getResponseHeader( 'content-length' ) ) {
-				$this->status->fatal( 'http-truncated-body' );
-			}
+		if ( !$this->headersOnly && isset( $this->respHeaders['content-length'] ) &&
+			( strlen( $this->content ) < $this->getResponseHeader( 'content-length' ) ) ) {
+			$this->status->fatal( 'http-truncated-body' );
 		}
 
 		return $this->status;
