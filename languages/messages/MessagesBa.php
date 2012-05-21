@@ -17,6 +17,7 @@
  * @author Timming
  * @author Рустам Нурыев
  * @author ҒатаУлла
+ * @author Ҡамыр Батыр
  */
 
 $fallback = 'ru';
@@ -1344,7 +1345,7 @@ $1",
 'nchanges' => '$1 {{PLURAL:$1|үҙгәртеү|үҙгәртеү}}',
 'recentchanges' => 'Һуңғы үҙгәртеүҙәр',
 'recentchanges-legend' => 'Һуңғы үҙгәртеүҙәр көйләүҙәре',
-'recentchangestext' => '{{grammar:genitive|{{SITENAME}}}}. биттәрендә индерелгән һуңғы үҙгәртеүҙәр исемлеге',
+'recentchanges-summary' => '{{grammar:genitive|{{SITENAME}}}}. биттәрендә индерелгән һуңғы үҙгәртеүҙәр исемлеге',
 'recentchanges-feed-description' => 'Был таҫмалағы һуңғы үҙгәртеүҙәрҙе күҙәтеп барырға',
 'recentchanges-label-newpage' => 'Был үҙгәртеү яңы бит яһаны',
 'recentchanges-label-minor' => 'Был әҙ үҙгәреш',
@@ -1541,7 +1542,7 @@ $1',
 'backend-fail-writetemp' => 'Ваҡытлы файлға яҙып булмай.',
 'backend-fail-closetemp' => 'Ваҡытлы файлды ябып булмай.',
 'backend-fail-read' => '«$1» файлын уҡып булмай.',
-'backend-fail-create' => '«$1» файлын яһап булмай.',
+'backend-fail-create' => '«$1» файлын яҙып булмай.',
 'backend-fail-readonly' => '$1 һаҡлағысы әлегә уҡыу өсөн генә асыҡ. Сәбәбе: $2',
 'backend-fail-synced' => '$1 файлы эске һаҡлағыста ярашһыҙ хәлдә тора.',
 'backend-fail-connect' => '"$1" һаҡлағысы менән бәйләнеш яһап булманы.',

@@ -1498,7 +1498,7 @@ Tsy haseho ny adiresy imailakao rehefa manoratra any aminao ny mpikambana hafa."
 'nchanges' => '{{PLURAL:$1|fanovana|fanovana}} $1',
 'recentchanges' => 'Fanovana farany',
 'recentchanges-legend' => 'Safidy ny fanovàna farany',
-'recentchangestext' => "Jereo eto amin'ity pejy ity izay vao niova vao haingana teto amin'ity wiki ity.",
+'recentchanges-summary' => "Jereo eto amin'ity pejy ity izay vao niova vao haingana teto amin'ity wiki ity.",
 'recentchanges-feed-description' => "Arao ny fanovàna farany amin'ity wiki ity anaty topa",
 'recentchanges-label-newpage' => 'Namorona pejy vaovao io fanovana io',
 'recentchanges-label-minor' => 'Kely fotsiny ity fanovana ity',

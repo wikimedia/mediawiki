@@ -1629,7 +1629,7 @@ Ene zohfällesch ußjewörfelte Schlößel, dää De nämme künnß, wöhr: <cod
 'nchanges' => '{{PLURAL:$1|Ein Änderung|$1 Änderunge|Kein Änderung}}',
 'recentchanges' => 'Neuste Änderunge',
 'recentchanges-legend' => 'Enstellunge',
-'recentchangestext' => 'Op dä Sigg hee sin de neuste Änderunge am Wiki opjeliss.',
+'recentchanges-summary' => 'Op dä Sigg hee sin de neuste Änderunge am Wiki opjeliss.',
 'recentchanges-feed-description' => 'Op dämm Abonnomang-Kannal (<i lang="en">Feed</i>) kannze de {{int:recentchanges}} aam Wiki en Laif un en Färve metloore.',
 'recentchanges-label-newpage' => 'Heh di Sigg es neu dobei jekumme met dä Änderung',
 'recentchanges-label-minor' => 'Heh dat es en Mini-Änderung',

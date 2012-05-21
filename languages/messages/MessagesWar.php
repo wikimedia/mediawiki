@@ -798,7 +798,7 @@ An imo e-mail address in diri makikit-an kun an iba nga mga gumaramit in makonta
 'nchanges' => '$1 {{PLURAL:$1|pagbag-o|mga pagbabag-o}}',
 'recentchanges' => 'Mga kabag-ohan',
 'recentchanges-legend' => 'Mga pirilion han mga lab-as nga pagbag-o',
-'recentchangestext' => 'Nasubay han pinakalab-as nga pagbag-o ha wiki dinhi nga pakli.',
+'recentchanges-summary' => 'Nasubay han pinakalab-as nga pagbag-o ha wiki dinhi nga pakli.',
 'recentchanges-feed-description' => 'Panultol han pinakalab-as nga pagbabag-o ha wiki dinhi nga panubong.',
 'recentchanges-label-newpage' => 'Ini nga pagliwat hin naghimo hin bag-o nga pakli',
 'recentchanges-label-minor' => 'Gutiay ini nga pagliwat',

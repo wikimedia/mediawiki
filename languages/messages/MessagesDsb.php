@@ -1436,7 +1436,7 @@ Móžoš toś ten bok wužywaś, aby slědk stajił swóje nastajenja na standar
 'nchanges' => '$1 {{PLURAL:$1|změna|změnje|změny}}',
 'recentchanges' => 'Aktualne změny',
 'recentchanges-legend' => 'Opcije aktualnych změnow',
-'recentchangestext' => "How móžoš slědne změny we '''{{GRAMMAR:lokatiw|{{SITENAME}}}}''' slědowaś.",
+'recentchanges-summary' => "How móžoš slědne změny we '''{{GRAMMAR:lokatiw|{{SITENAME}}}}''' slědowaś.",
 'recentchanges-feed-description' => 'Slěduj z toś tym zapódaśim nejaktualnjejše změny we {{GRAMMAR:lokatiw|{{SITENAME}}}}.',
 'recentchanges-label-newpage' => 'Toś ta změna jo nowy bok napórała.',
 'recentchanges-label-minor' => 'To jo snadna změna',

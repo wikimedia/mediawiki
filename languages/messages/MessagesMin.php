@@ -850,7 +850,7 @@ Alamaik surek elektronik awak ang tu indak kan katahuan dek urang lain nan mangh
 'nchanges' => '$1 {{PLURAL:$1|parubahan|parubahan}}',
 'recentchanges' => 'Parubahan baru',
 'recentchanges-legend' => 'Pilihan parubahan baru',
-'recentchangestext' => 'Manjajak parubahan terbaru dalam wiki di laman ko.',
+'recentchanges-summary' => 'Manjajak parubahan terbaru dalam wiki di laman ko.',
 'recentchanges-feed-description' => 'Temukan parubahan baru dalam umpan wiki ko',
 'recentchanges-label-newpage' => 'Suntiang ko mambuek laman baru',
 'recentchanges-label-minor' => 'Iko di suntiang saketek',

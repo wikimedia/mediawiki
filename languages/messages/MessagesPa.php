@@ -685,7 +685,7 @@ $1 ਘੰਟੇ ਵਿੱਚ। ਨੁਕਸਾਨ ਤੋਂ ਬਚਣ ਲਈ, $
 # Recent changes
 'recentchanges' => 'ਤਾਜ਼ਾ ਬਦਲਾਅ',
 'recentchanges-legend' => 'ਤਾਜ਼ਾ ਬਦਲਾਅ ਚੋਣਾਂ',
-'recentchangestext' => 'ਇਸ ਵਿਕੀ ਪਰ ਹਾਲ ਵਿਚ ਹੋਏ ਬਦਲਾਅਦੇਖੇ ਜਾ ਸਕਦੇ ਹਨ।',
+'recentchanges-summary' => 'ਇਸ ਵਿਕੀ ਪਰ ਹਾਲ ਵਿਚ ਹੋਏ ਬਦਲਾਅਦੇਖੇ ਜਾ ਸਕਦੇ ਹਨ।',
 'recentchanges-feed-description' => 'ਇਸ ਵਿਕੀ ਪਰ ਹਾਲ ਵਿਚ ਹੋਏ ਬਦਲਾਅ ਇਸ ਫ਼ੀਡ ਵਿਚ ਦੇਖੇ ਜਾ ਸਕਦੇ ਹਨ।',
 'recentchanges-label-newpage' => 'ਇਹ ਸੋਧ ਨੇ ਨਵਾਂ ਸਫ਼ਾ ਬਣਾਇਆ ਹੈ',
 'recentchanges-label-minor' => 'ਇਹ ਛੋਟੀ ਸੋਧ ਹੈ',

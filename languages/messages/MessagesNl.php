@@ -1703,7 +1703,7 @@ Als u deze opgeeft, kan deze naam gebruikt worden om u erkenning te geven voor u
 'nchanges' => '$1 {{PLURAL:$1|bewerking|bewerkingen}}',
 'recentchanges' => 'Recente wijzigingen',
 'recentchanges-legend' => 'Opties voor recente wijzigingen',
-'recentchangestext' => 'Op deze pagina kunt u de recente wijzigingen in deze wiki bekijken.',
+'recentchanges-summary' => 'Op deze pagina kunt u de recentste wijzigingen in deze wiki bekijken.',
 'recentchanges-feed-description' => 'Met deze feed kunt u de recentste wijzigingen in deze wiki bekijken.',
 'recentchanges-label-newpage' => 'Met deze bewerking is een nieuwe pagina aangemaakt',
 'recentchanges-label-minor' => 'Dit is een kleine bewerking',

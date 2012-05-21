@@ -1353,7 +1353,7 @@ Ti e-surat a pagtaengam ket saan nga maipakita kadagiti agar-aramat nga agkontak
 'nchanges' => '$1 {{PLURAL:$1|sinukatan|dagiti sinukatan}}',
 'recentchanges' => 'Kaudian a balbaliw',
 'recentchanges-legend' => 'Pagpilian kadagiti kaudian a balbaliw',
-'recentchangestext' => 'Bantayan daytoy a panid dagiti kaudian a panakabalbaliw ti wiki.',
+'recentchanges-summary' => 'Bantayan iti daytoy a panid dagiti kauudian a panakabalbaliw ti wiki.',
 'recentchanges-feed-description' => 'Siputen dagiti kakaudian a panamalbaliw iti wiki iti daytoy a pakan.',
 'recentchanges-label-newpage' => 'Daytoy nga inurnos ket nakaaramid ti baro a panid',
 'recentchanges-label-minor' => 'Bassit a panag-urnos laeng daytoy',

@@ -1049,7 +1049,7 @@ IP-тешкстэть — $3, саймас совавтоманть ID-сь — 
 'nchanges' => '$1 {{PLURAL:$1|полавтнема|полавтнемат}}',
 'recentchanges' => 'Чыяконь полавтнемат-лиякстомтомат',
 'recentchanges-legend' => 'Улконь полавтнематнень аравтнемаст',
-'recentchangestext' => '',
+'recentchanges-summary' => '',
 'recentchanges-feed-description' => 'Мельга ваннынк кода ульнесть витьнемат-петнемат wiki-сэ те максовксонть.',
 'recentchanges-label-newpage' => 'Те витнемась-петнемась од лопа тейсь',
 'recentchanges-label-minor' => 'Те а покшкэ витнемась-петнемась',
