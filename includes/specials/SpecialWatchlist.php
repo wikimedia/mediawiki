@@ -91,14 +91,6 @@ class SpecialWatchlist extends SpecialPage {
 			return;
 		}
 
-		if( ( $wgEnotifWatchlist || $wgShowUpdatedMarker ) && $request->getVal( 'reset' ) &&
-			$request->wasPosted() )
-		{
-			$user->clearAllNotifications();
-			$output->redirect( $this->getTitle()->getFullUrl() );
-			return;
-		}
-
 		$nitems = $this->countItems();
 		if ( $nitems == 0 ) {
 			$output->addWikiMsg( 'nowatchlist' );
@@ -190,6 +182,18 @@ class SpecialWatchlist extends SpecialPage {
 			wfAppendToArrayIfNotDefault( $name, $values[$name], $defaults, $nondefaults );
 		}
 
+		if( ( $wgEnotifWatchlist || $wgShowUpdatedMarker ) && $request->getVal( 'reset' ) &&
+			$request->wasPosted() )
+		{
+			$user->clearAllNotifications();
+			$urlParams = '?';
+			foreach ( $nondefaults as $key => $value ) {
+				$urlParams .= $key . '=' . $value . '&';
+			}
+			$output->redirect( $this->getTitle()->getFullUrl() . $urlParams );
+ 			return;
+		}
+
 		$dbr = wfGetDB( DB_SLAVE, 'watchlist' );
 
 		# Possible where conditions
@@ -263,8 +267,11 @@ class SpecialWatchlist extends SpecialPage {
 						'id' => 'mw-watchlist-resetbutton' ) ) .
 					$this->msg( 'wlheader-showupdated' )->parse() . ' ' .
 					Xml::submitButton( $this->msg( 'enotif_reset' )->text(), array( 'name' => 'dummy' ) ) .
-					Html::hidden( 'reset', 'all' ) .
-					Xml::closeElement( 'form' );
+					Html::hidden( 'reset', 'all' );
+					foreach ( $nondefaults as $key => $value ) {
+						$form .= Html::hidden( $key, $value );
+					}
+					$form .= Xml::closeElement( 'form' );
 		}
 		$form .= '<hr />';
 
