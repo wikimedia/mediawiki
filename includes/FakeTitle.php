@@ -107,8 +107,6 @@ class FakeTitle extends Title {
 	function moveNoAuth( &$nt ) { $this->error(); }
 	function isValidMoveOperation( &$nt, $auth = true, $reason = '' ) { $this->error(); }
 	function moveTo( &$nt, $auth = true, $reason = '', $createRedirect = true ) { $this->error(); }
-	function moveOverExistingRedirect( &$nt, $reason = '', $createRedirect = true ) { $this->error(); }
-	function moveToNewTitle( &$nt, $reason = '', $createRedirect = true ) { $this->error(); }
 	function moveSubpages( $nt, $auth = true, $reason = '', $createRedirect = true ) { $this->error(); }
 	function isSingleRevRedirect() { $this->error(); }
 	function isValidMoveTarget( $nt ) { $this->error(); }
