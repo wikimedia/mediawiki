@@ -1,0 +1,8 @@
+Change-Id: I4c1382edf3dc26b996f375c562310fda7389d68f
+Code-Review+2: preilly <preilly@wikimedia.org>
+Verified+1: preilly <preilly@wikimedia.org>
+Submitted-by: preilly <preilly@wikimedia.org>
+Submitted-at: Mon, 21 May 2012 23:09:32 +0000
+Reviewed-on: https://gerrit.wikimedia.org/r/8425
+Project: mediawiki/core
+Branch: refs/heads/wmf/1.20wmf2
