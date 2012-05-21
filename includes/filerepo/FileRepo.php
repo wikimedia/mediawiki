@@ -165,18 +165,6 @@ class FileRepo {
 	}
 
 	/**
-	 * Take all available measures to prevent web accessibility of new deleted
-	 * directories, in case the user has not configured offline storage
-	 *
-	 * @param $dir string
-	 * @return void
-	 */
-	protected function initDeletedDir( $dir ) {
-		$this->backend->secure( // prevent web access & dir listings
-			array( 'dir' => $dir, 'noAccess' => true, 'noListing' => true ) );
-	}
-
-	/**
 	 * Determine if a string is an mwrepo:// URL
 	 *
 	 * @param $url string
@@ -726,12 +714,8 @@ class FileRepo {
 			$dstPath = "$root/$dstRel";
 			$dstDir  = dirname( $dstPath );
 			// Create destination directories for this triplet
-			if ( !$backend->prepare( array( 'dir' => $dstDir ) )->isOK() ) {
+			if ( !$this->initDirectory( $dstDir )->isOK() ) {
 				return $this->newFatal( 'directorycreateerror', $dstDir );
-			}
-
-			if ( $dstZone == 'deleted' ) {
-				$this->initDeletedDir( $dstDir );
 			}
 
 			// Resolve source to a storage path if virtual
@@ -863,12 +847,13 @@ class FileRepo {
 		$operations = array();
 		foreach ( $pairs as $pair ) {
 			list ( $src, $dst ) = $pair;
+			$dst = $this->resolveToStoragePath( $dst );
 			$operations[] = array(
 				'op'        => 'store',
 				'src'       => $src,
-				'dst'       => $this->resolveToStoragePath( $dst )
+				'dst'       => $dst
 			);
-			$this->backend->prepare( array( 'dir' => dirname( $dst ) ) );
+			$status->merge( $this->initDirectory( dirname( $dst ) ) );
 		}
 		$status->merge( $this->backend->doQuickOperations( $operations ) );
 
@@ -1058,10 +1043,10 @@ class FileRepo {
 			$dstDir = dirname( $dstPath );
 			$archiveDir = dirname( $archivePath );
 			// Abort immediately on directory creation errors since they're likely to be repetitive
-			if ( !$backend->prepare( array( 'dir' => $dstDir ) )->isOK() ) {
+			if ( !$this->initDirectory( $dstDir )->isOK() ) {
 				return $this->newFatal( 'directorycreateerror', $dstDir );
 			}
-			if ( !$backend->prepare( array( 'dir' => $archiveDir ) )->isOK() ) {
+			if ( !$this->initDirectory($archiveDir )->isOK() ) {
 				return $this->newFatal( 'directorycreateerror', $archiveDir );
 			}
 
@@ -1124,6 +1109,27 @@ class FileRepo {
 		}
 
 		return $status;
+	}
+
+	/**
+	 * Creates a directory with the appropriate zone permissions.
+	 * Callers are responsible for doing read-only and "writable repo" checks.
+	 *
+	 * @param $dir string Virtual URL (or storage path) of directory to clean
+	 * @return Status
+	 */
+	protected function initDirectory( $dir ) {
+		$path = $this->resolveToStoragePath( $dir );
+		list( $b, $container, $r ) = FileBackend::splitStoragePath( $path );
+
+		$params = array( 'dir' => $path );
+		if ( $container === $this->zones['deleted']['container'] ) {
+			# Take all available measures to prevent web accessibility of new deleted
+			# directories, in case the user has not configured offline storage
+			$params = array( 'noAccess' => true, 'noListing' => true ) + $params;
+		}
+
+		return $this->backend->prepare( $params );
 	}
 
 	/**
@@ -1231,10 +1237,9 @@ class FileRepo {
 			$archiveDir = dirname( $archivePath ); // does not touch FS
 
 			// Create destination directories
-			if ( !$backend->prepare( array( 'dir' => $archiveDir ) )->isOK() ) {
+			if ( !$this->initDirectory( $archiveDir )->isOK() ) {
 				return $this->newFatal( 'directorycreateerror', $archiveDir );
 			}
-			$this->initDeletedDir( $archiveDir );
 
 			$operations[] = array(
 				'op'            => 'move',
