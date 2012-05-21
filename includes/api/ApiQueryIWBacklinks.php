@@ -63,7 +63,7 @@ class ApiQueryIWBacklinks extends ApiQueryGeneratorBase {
 
 			$db = $this->getDB();
 			$prefix = $db->addQuotes( $cont[0] );
-			$title = $db->addQuotes( $this->titleToKey( $cont[1] ) );
+			$title = $db->addQuotes( $cont[1] );
 			$from = intval( $cont[2] );
 			$this->addWhere(
 				"iwl_prefix > $prefix OR " .

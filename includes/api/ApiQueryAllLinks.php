@@ -77,16 +77,24 @@ class ApiQueryAllLinks extends ApiQueryGeneratorBase {
 		}
 		if ( !is_null( $params['continue'] ) ) {
 			$continueArr = explode( '|', $params['continue'] );
-			if ( count( $continueArr ) != 2 ) {
-				$this->dieUsage( 'Invalid continue parameter', 'badcontinue' );
+			if ( $params['unique'] ) {
+				if ( count( $continueArr ) != 1 ) {
+					$this->dieUsage( 'Invalid continue parameter', 'badcontinue' );
+				}
+				$continueTitle = $db->addQuotes( $continueArr[0] );
+				$this->addWhere( "pl_title >= $continueTitle" );
+			} else {
+				if ( count( $continueArr ) != 2 ) {
+					$this->dieUsage( 'Invalid continue parameter', 'badcontinue' );
+				}
+				$continueTitle = $db->addQuotes( $continueArr[0] );
+				$continueFrom = intval( $continueArr[1] );
+				$this->addWhere(
+					"pl_title > $continueTitle OR " .
+					"(pl_title = $continueTitle AND " .
+					"pl_from >= $continueFrom)"
+				);
 			}
-			$continueTitle = $db->addQuotes( $this->titleToKey( $continueArr[0] ) );
-			$continueFrom = intval( $continueArr[1] );
-			$this->addWhere(
-				"pl_title > $continueTitle OR " .
-				"(pl_title = $continueTitle AND " .
-				"pl_from > $continueFrom)"
-			);
 		}
 
 		$from = ( is_null( $params['from'] ) ? null : $this->titlePartToKey( $params['from'] ) );
@@ -119,11 +127,10 @@ class ApiQueryAllLinks extends ApiQueryGeneratorBase {
 		foreach ( $res as $row ) {
 			if ( ++ $count > $limit ) {
 				// We've reached the one extra which shows that there are additional pages to be had. Stop here...
-				// TODO: Security issue - if the user has no right to view next title, it will still be shown
 				if ( $params['unique'] ) {
-					$this->setContinueEnumParameter( 'from', $this->keyToTitle( $row->pl_title ) );
+					$this->setContinueEnumParameter( 'continue', $row->pl_title );
 				} else {
-					$this->setContinueEnumParameter( 'continue', $this->keyToTitle( $row->pl_title ) . "|" . $row->pl_from );
+					$this->setContinueEnumParameter( 'continue', $row->pl_title . "|" . $row->pl_from );
 				}
 				break;
 			}
@@ -140,9 +147,9 @@ class ApiQueryAllLinks extends ApiQueryGeneratorBase {
 				$fit = $result->addValue( array( 'query', $this->getModuleName() ), null, $vals );
 				if ( !$fit ) {
 					if ( $params['unique'] ) {
-						$this->setContinueEnumParameter( 'from', $this->keyToTitle( $row->pl_title ) );
+						$this->setContinueEnumParameter( 'continue', $row->pl_title );
 					} else {
-						$this->setContinueEnumParameter( 'continue', $this->keyToTitle( $row->pl_title ) . "|" . $row->pl_from );
+						$this->setContinueEnumParameter( 'continue', $row->pl_title . "|" . $row->pl_from );
 					}
 					break;
 				}
