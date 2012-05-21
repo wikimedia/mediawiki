@@ -43,10 +43,14 @@ class ResourceLoaderLanguageDataModule extends ResourceLoaderModule {
 	 */
 	public function getScript( ResourceLoaderContext $context ) {
 		global $wgContLang;
-
-		return Xml::encodeJsCall( 'mw.language.setData', array(
-			$wgContLang->getCode(),
-			array( 'grammarForms' => $this->getSiteLangGrammarForms() )
+		return Xml::encodeJsCall( 'mw.config.set', array(
+			'languagedata',
+			 array(
+				$wgContLang->getCode() =>
+				array(
+					'grammarForms' => $this->getSiteLangGrammarForms(),
+				)
+			)
 		) );
 	}
 
@@ -72,10 +76,4 @@ class ResourceLoaderLanguageDataModule extends ResourceLoaderModule {
 		return $timestamp;
 	}
 
-	/**
-	 * @return array
-	 */
-	public function getDependencies() {
-		return array( 'mediawiki.language' );
-	}
 }

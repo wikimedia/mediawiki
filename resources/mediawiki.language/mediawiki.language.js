@@ -21,7 +21,7 @@ var language = {
 	 *     var grammarForms = mw.language.getData( 'nl', 'grammarForms' );
 	 * </code>
 	 */
-	data: {},
+	data: mw.config.get( 'languagedata' ),
 
 	/**
 	 * Convenience method for retreiving language data by language code and data key,
@@ -33,8 +33,8 @@ var language = {
 	 */
 	getData: function ( langCode, dataKey ) {
 		var langData = language.data;
-		if ( langData[langCode] instanceof mw.Map ) {
-			return langData[langCode].get( dataKey );
+		if ( langData[langCode] ) {
+			return langData[langCode][dataKey];
 		}
 		return undefined;
 	},
@@ -48,10 +48,10 @@ var language = {
 	 */
 	setData: function ( langCode, dataKey, value ) {
 		var langData = language.data;
-		if ( !( langData[langCode] instanceof mw.Map ) ) {
-			langData[langCode] = new mw.Map();
+		if ( !( langData[langCode] ) ) {
+			langData[langCode] = [];
 		}
-		langData[langCode].set( dataKey, value );
+		langData[langCode][dataKey]= value ;
 	},
 	/**
 	 * Process the PLURAL template substitution
