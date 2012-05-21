@@ -111,6 +111,8 @@ class ResourceLoaderFileModule extends ResourceLoaderModule {
 	protected $position = 'bottom';
 	/** Boolean: Link to raw files in debug mode */
 	protected $debugRaw = true;
+	/** Boolean: Whether mw.loader.state() call should be omitted */
+	protected $raw = false;
 	/**
 	 * Array: Cache for mtime
 	 * @par Usage:
@@ -240,6 +242,7 @@ class ResourceLoaderFileModule extends ResourceLoaderModule {
 					break;
 				// Single booleans
 				case 'debugRaw':
+				case 'raw':
 					$this->{$member} = (bool) $option;
 					break;
 			}
@@ -365,6 +368,13 @@ class ResourceLoaderFileModule extends ResourceLoaderModule {
 	 */
 	public function getDependencies() {
 		return $this->dependencies;
+	}
+
+	/**
+	 * @return bool
+	 */
+	public function isRaw() {
+		return $this->raw;
 	}
 
 	/**

@@ -174,6 +174,13 @@ class ResourceLoaderStartUpModule extends ResourceLoaderModule {
 	/* Methods */
 
 	/**
+	 * @return bool
+	 */
+	public function isRaw() {
+		return true;
+	}
+
+	/**
 	 * @param $context ResourceLoaderContext
 	 * @return string
 	 */
