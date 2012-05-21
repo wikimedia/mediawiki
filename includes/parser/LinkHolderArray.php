@@ -497,14 +497,18 @@ class LinkHolderArray {
 		// process categories, check if a category exists in some variant
 		$categoryMap = array(); // maps $category_variant => $category (dbkeys)
 		$varCategories = array(); // category replacements oldDBkey => newDBkey
-		foreach( $output->getCategoryLinks() as $category ){
+		foreach ( $output->getCategoryLinks() as $category ) {
+			$categoryTitle = Title::makeTitleSafe( NS_CATEGORY, $category );
+			$linkBatch->addObj( $categoryTitle );
 			$variants = $wgContLang->autoConvertToAllVariants( $category );
-			foreach($variants as $variant){
-				if($variant != $category){
-					$variantTitle = Title::newFromDBkey( Title::makeName(NS_CATEGORY,$variant) );
-					if(is_null($variantTitle)) continue;
+			foreach ( $variants as $variant ) {
+				if ( $variant !== $category ) {
+					$variantTitle = Title::makeTitleSafe( NS_CATEGORY, $variant );
+					if ( is_null( $variantTitle ) ) {
+						continue;
+					}
 					$linkBatch->addObj( $variantTitle );
-					$categoryMap[$variant] = $category;
+					$categoryMap[$variant] = array( $category, $categoryTitle );
 				}
 			}
 		}
@@ -556,10 +560,11 @@ class LinkHolderArray {
 				}
 
 				// check if the object is a variant of a category
-				if(isset($categoryMap[$vardbk])){
-					$oldkey = $categoryMap[$vardbk];
-					if($oldkey != $vardbk)
-						$varCategories[$oldkey]=$vardbk;
+				if ( isset( $categoryMap[$vardbk] ) ) {
+					list( $oldkey, $oldtitle ) = $categoryMap[$vardbk];
+					if ( !isset( $varCategories[$oldkey] ) && !$oldtitle->exists() ) {
+						$varCategories[$oldkey] = $vardbk;
+					}
 				}
 			}
 			wfRunHooks( 'GetLinkColours', array( $linkcolour_ids, &$colours ) );
