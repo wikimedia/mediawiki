@@ -1,15 +1,6 @@
 <?php
 /**
- * @defgroup Actions Action done on pages
- */
-
-/**
- * Actions are things which can be done to pages (edit, delete, rollback, etc).  They
- * are distinct from Special Pages because an action must apply to exactly one page.
- *
- * To add an action in an extension, create a subclass of Action, and add the key to
- * $wgActions.  There is also the deprecated UnknownAction hook
- *
+ * Base classes for actions done on pages.
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -26,6 +17,18 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA
  *
  * @file
+ */
+
+/**
+ * @defgroup Actions Action done on pages
+ */
+
+/**
+ * Actions are things which can be done to pages (edit, delete, rollback, etc).  They
+ * are distinct from Special Pages because an action must apply to exactly one page.
+ *
+ * To add an action in an extension, create a subclass of Action, and add the key to
+ * $wgActions.  There is also the deprecated UnknownAction hook
  */
 abstract class Action {
 
