@@ -355,3 +355,6 @@
 [submodule "extensions/RandomRootPage"]
 	path = extensions/RandomRootPage
 	url = ssh://gerrit.wikimedia.org:29418/mediawiki/extensions/RandomRootPage.git
+[submodule "extensions/Interwiki"]
+	path = extensions/Interwiki
+	url = ssh://gerrit.wikimedia.org:29418/mediawiki/extensions/Interwiki.git
