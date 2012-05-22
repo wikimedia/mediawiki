@@ -16,6 +16,10 @@
  * @author לערי ריינהארט
  */
 
+$specialPageAliases = array(
+	'Recentchanges'             => array( 'Varas_rievdadusat' ),
+);
+
 $linkTrail = '/^(:?[a-zàáâçčʒǯđðéèêëǧǥȟíìîïıǩŋñóòôõßšŧúùûýÿüžþæøåäö]+)(.*)$/sDu';
 
 $messages = array(

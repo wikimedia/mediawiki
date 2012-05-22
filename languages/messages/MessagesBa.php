@@ -41,6 +41,10 @@ $namespaceNames = array(
 	NS_CATEGORY_TALK    => 'Категория_б-са_фекер_алышыу',
 );
 
+$specialPageAliases = array(
+	'Activeusers'               => array( 'ӘүҙемҠатнашыусылар', 'АктивҠатнашыусылар' ),
+);
+
 // Remove Russian aliases
 $namespaceGenderAliases = array();
 

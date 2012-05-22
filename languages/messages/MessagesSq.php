@@ -63,6 +63,7 @@ $namespaceGenderAliases = array(
 );
 
 $specialPageAliases = array(
+	'Activeusers'               => array( 'PërdoruesitAktivë' ),
 	'Allmessages'               => array( 'TëgjithaMesazhet' ),
 	'Allpages'                  => array( 'TëgjithaFaqet' ),
 	'Ancientpages'              => array( 'FaqetAntike' ),
@@ -71,7 +72,9 @@ $specialPageAliases = array(
 	'Blockme'                   => array( 'BllokomMua' ),
 	'Booksources'               => array( 'BurimeteLibrave' ),
 	'Categories'                => array( 'Kategori' ),
+	'ChangeEmail'               => array( 'NdryshoEmail' ),
 	'ChangePassword'            => array( 'NdryshoFjalëkalimin' ),
+	'ComparePages'              => array( 'KrahasoFaqet' ),
 	'Confirmemail'              => array( 'KonfirmoEmail' ),
 	'Contributions'             => array( 'Kontributet' ),
 	'CreateAccount'             => array( 'HapLlogari' ),

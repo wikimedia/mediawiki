@@ -122,6 +122,7 @@ $specialPageAliases = array(
 	'Filepath'                  => array( 'ПатДоПодатотека' ),
 	'Import'                    => array( 'Увоз' ),
 	'Invalidateemail'           => array( 'ПогрешнаЕпошта' ),
+	'JavaScriptTest'            => array( 'ПробаНаJavaСкрипта' ),
 	'BlockList'                 => array( 'СписокНаБлокираниIP' ),
 	'LinkSearch'                => array( 'ПребарајВрска' ),
 	'Listadmins'                => array( 'СписокНаАдминистратори' ),
@@ -190,7 +191,7 @@ $specialPageAliases = array(
 	'Wantedtemplates'           => array( 'ПотребниШаблони' ),
 	'Watchlist'                 => array( 'СписокНаНабљудувања' ),
 	'Whatlinkshere'             => array( 'ШтоВодиОвде' ),
-	'Withoutinterwiki'          => array( 'БезИнтервики' ),
+	'Withoutinterwiki'          => array( 'БезМеѓувики' ),
 );
 
 $magicWords = array(

@@ -18,6 +18,21 @@
  * @author Xoser
  */
 
+$specialPageAliases = array(
+	'Activeusers'               => array( 'Karbereaktiv' ),
+	'Allmessages'               => array( 'MesaciPero' ),
+	'Categories'                => array( 'Kategoriy' ),
+	'Longpages'                 => array( 'PeleDergi' ),
+	'Mycontributions'           => array( 'İştırakeMe' ),
+	'Recentchanges'             => array( 'VurnayışePeyeni' ),
+	'Specialpages'              => array( 'PeleyXısusi' ),
+	'Statistics'                => array( 'İstatistiki' ),
+	'Tags'                      => array( 'Etiketi' ),
+	'Upload'                    => array( 'Barke' ),
+	'Version'                   => array( 'Versiyon' ),
+	'Watchlist'                 => array( 'Listeyseyri' ),
+);
+
 $messages = array(
 # User preference toggles
 'tog-underline' => 'Bınê gırey de xete bance:',

@@ -69,22 +69,6 @@
  * @author გიორგიმელა
  */
 
-/**
- * Изменения сделанные в этом файле будут потеряны при обновлении MediaWiki.
- *
- * Если необходимо внести изменения в перевод отдельных строк интерфейса,
- * сделайте это посредством редактирования страниц вида «MediaWiki:*».
- * Их список можно найти на странице «Special:Allmessages».
- */
-
-$separatorTransformTable = array(
-	',' => "\xc2\xa0", # nbsp
-	'.' => ','
-);
-
-$fallback8bitEncoding = 'windows-1251';
-$linkPrefixExtension = false;
-
 $namespaceNames = array(
 	NS_MEDIA            => 'Медиа',
 	NS_SPECIAL          => 'Служебная',
@@ -114,32 +98,88 @@ $namespaceGenderAliases = array(
 	NS_USER_TALK => array( 'male' => 'Обсуждение_участника', 'female' => 'Обсуждение_участницы' ),
 );
 
-$dateFormats = array(
-	'mdy time' => 'H:i',
-	'mdy date' => 'xg j, Y',
-	'mdy both' => 'H:i, xg j, Y',
-
-	'dmy time' => 'H:i',
-	'dmy date' => 'j xg Y',
-	'dmy both' => 'H:i, j xg Y',
-
-	'ymd time' => 'H:i',
-	'ymd date' => 'Y xg j',
-	'ymd both' => 'H:i, Y xg j',
-
-	'ISO 8601 time' => 'xnH:xni:xns',
-	'ISO 8601 date' => 'xnY-xnm-xnd',
-	'ISO 8601 both' => 'xnY-xnm-xnd"T"xnH:xni:xns',
-
-);
-
-$bookstoreList = array(
-	'Поиск по библиотекам «Сигла»' => 'http://www.sigla.ru/results.jsp?f=7&t=3&v0=$1',
-	'Findbook.ru' => 'http://findbook.ru/search/d0?ptype=4&pvalue=$1',
-	'Яндекс.Маркет' => 'http://market.yandex.ru/search.xml?text=$1',
-	'ОЗОН' => 'http://www.ozon.ru/?context=advsearch_book&isbn=$1',
-	'Books.Ru' => 'http://www.books.ru/shop/search?query=$1',
-	'Amazon.com' => 'http://www.amazon.com/exec/obidos/ISBN=$1'
+$specialPageAliases = array(
+	'Activeusers'               => array( 'Активные_участники' ),
+	'Allmessages'               => array( 'Системные_сообщения' ),
+	'Allpages'                  => array( 'Все_страницы' ),
+	'Blankpage'                 => array( 'Пустая_страница' ),
+	'Block'                     => array( 'Заблокировать' ),
+	'Blockme'                   => array( 'Заблокируй_меня' ),
+	'Booksources'               => array( 'Источники_книг' ),
+	'BrokenRedirects'           => array( 'Разорванные_перенаправления' ),
+	'Categories'                => array( 'Категории' ),
+	'ChangeEmail'               => array( 'Сменить_e-mail' ),
+	'ChangePassword'            => array( 'Сменить_пароль' ),
+	'ComparePages'              => array( 'Сравнение_страниц' ),
+	'Confirmemail'              => array( 'Подтвердить_e-mail' ),
+	'Contributions'             => array( 'Вклад' ),
+	'CreateAccount'             => array( 'Создать_учётную_запись', 'Создать_пользователя', 'Зарегистрироваться' ),
+	'Deadendpages'              => array( 'Тупиковые_страницы' ),
+	'DeletedContributions'      => array( 'Удалённый_вклад' ),
+	'Disambiguations'           => array( 'Неоднозначные_ссылки' ),
+	'DoubleRedirects'           => array( 'Двойные_перенаправления' ),
+	'EditWatchlist'             => array( 'Править_список_наблюдения' ),
+	'Emailuser'                 => array( 'Письмо', 'Письмо_участнику', 'Отправить_письмо' ),
+	'Export'                    => array( 'Экспорт', 'Выгрузка' ),
+	'FileDuplicateSearch'       => array( 'Поиск_дубликатов_файлов' ),
+	'Filepath'                  => array( 'Путь_к_файлу' ),
+	'Import'                    => array( 'Импорт' ),
+	'BlockList'                 => array( 'Список_блокировок', 'Блокировки' ),
+	'LinkSearch'                => array( 'Поиск_ссылок' ),
+	'Listadmins'                => array( 'Список_администраторов' ),
+	'Listbots'                  => array( 'Список_ботов' ),
+	'Listfiles'                 => array( 'Список_файлов', 'Список_изображений' ),
+	'Listgrouprights'           => array( 'Список_прав_групп', 'Права_групп_участников' ),
+	'Listredirects'             => array( 'Список_перенаправлений' ),
+	'Listusers'                 => array( 'Список_участников' ),
+	'Lockdb'                    => array( 'Заблокировать_БД', 'Заблокировать_базу_данных' ),
+	'Log'                       => array( 'Журналы', 'Журнал' ),
+	'Lonelypages'               => array( 'Изолированные_страницы' ),
+	'Longpages'                 => array( 'Длинные_страницы' ),
+	'MergeHistory'              => array( 'Объединение_истории' ),
+	'MIMEsearch'                => array( 'Поиск_по_MIME' ),
+	'Mostimages'                => array( 'Самые_используемые_файлы' ),
+	'Movepage'                  => array( 'Переименовать_страницу', 'Переименование', 'Переименовать' ),
+	'Mycontributions'           => array( 'Мой_вклад' ),
+	'Mypage'                    => array( 'Моя_страница' ),
+	'Mytalk'                    => array( 'Моё_обсуждение' ),
+	'Myuploads'                 => array( 'Мои_загрузки' ),
+	'Newimages'                 => array( 'Новые_файлы' ),
+	'Newpages'                  => array( 'Новые_страницы' ),
+	'PasswordReset'             => array( 'Сброс_пароля' ),
+	'PermanentLink'             => array( 'Постоянная_ссылка' ),
+	'Popularpages'              => array( 'Популярные_страницы' ),
+	'Preferences'               => array( 'Настройки' ),
+	'Protectedpages'            => array( 'Защищённые_страницы' ),
+	'Protectedtitles'           => array( 'Защищённые_названия' ),
+	'Randompage'                => array( 'Случаная_страница', 'Случайная' ),
+	'Recentchanges'             => array( 'Свежие_правки' ),
+	'Recentchangeslinked'       => array( 'Связанные_правки' ),
+	'Search'                    => array( 'Поиск' ),
+	'Shortpages'                => array( 'Короткие_страницы' ),
+	'Specialpages'              => array( 'Спецстраницы' ),
+	'Statistics'                => array( 'Статистика' ),
+	'Tags'                      => array( 'Метки' ),
+	'Unblock'                   => array( 'Разблокировка' ),
+	'Uncategorizedcategories'   => array( 'Некатегоризованные_категории' ),
+	'Uncategorizedimages'       => array( 'Некатегоризованные_файлы' ),
+	'Uncategorizedpages'        => array( 'Некатегоризованные_страницы' ),
+	'Uncategorizedtemplates'    => array( 'Некатегоризованные_шаблоны' ),
+	'Unusedcategories'          => array( 'Неиспользуемые_категории' ),
+	'Unusedimages'              => array( 'Неиспользуемые_файлы' ),
+	'Unusedtemplates'           => array( 'Неиспользуемые_шаблоны' ),
+	'Upload'                    => array( 'Загрузка' ),
+	'UploadStash'               => array( 'Скрытная_загрузка' ),
+	'Userlogin'                 => array( 'Вход', 'Авторизация' ),
+	'Userlogout'                => array( 'Выход', 'Завершение_сеанса' ),
+	'Userrights'                => array( 'Управление_правами' ),
+	'Version'                   => array( 'Версия' ),
+	'Wantedcategories'          => array( 'Требуемые_категории' ),
+	'Wantedfiles'               => array( 'Требуемые_файлы' ),
+	'Wantedpages'               => array( 'Требуемые_страницы' ),
+	'Wantedtemplates'           => array( 'Требуемые_шаблоны' ),
+	'Watchlist'                 => array( 'Список_наблюдения' ),
+	'Whatlinkshere'             => array( 'Ссылки_сюда' ),
 );
 
 $magicWords = array(
@@ -292,6 +332,51 @@ $magicWords = array(
 	'url_wiki'                => array( '0', 'ВИКИ', 'WIKI' ),
 	'url_query'               => array( '0', 'ЗАПРОС', 'QUERY' ),
 );
+
+
+$dateFormats = array(
+	'mdy time' => 'H:i',
+	'mdy date' => 'xg j, Y',
+	'mdy both' => 'H:i, xg j, Y',
+
+	'dmy time' => 'H:i',
+	'dmy date' => 'j xg Y',
+	'dmy both' => 'H:i, j xg Y',
+
+	'ymd time' => 'H:i',
+	'ymd date' => 'Y xg j',
+	'ymd both' => 'H:i, Y xg j',
+
+	'ISO 8601 time' => 'xnH:xni:xns',
+	'ISO 8601 date' => 'xnY-xnm-xnd',
+	'ISO 8601 both' => 'xnY-xnm-xnd"T"xnH:xni:xns',
+
+);
+
+$bookstoreList = array(
+	'Поиск по библиотекам «Сигла»' => 'http://www.sigla.ru/results.jsp?f=7&t=3&v0=$1',
+	'Findbook.ru' => 'http://findbook.ru/search/d0?ptype=4&pvalue=$1',
+	'Яндекс.Маркет' => 'http://market.yandex.ru/search.xml?text=$1',
+	'ОЗОН' => 'http://www.ozon.ru/?context=advsearch_book&isbn=$1',
+	'Books.Ru' => 'http://www.books.ru/shop/search?query=$1',
+	'Amazon.com' => 'http://www.amazon.com/exec/obidos/ISBN=$1'
+);
+
+/**
+ * Изменения сделанные в этом файле будут потеряны при обновлении MediaWiki.
+ *
+ * Если необходимо внести изменения в перевод отдельных строк интерфейса,
+ * сделайте это посредством редактирования страниц вида «MediaWiki:*».
+ * Их список можно найти на странице «Special:Allmessages».
+ */
+
+$separatorTransformTable = array(
+	',' => "\xc2\xa0", # nbsp
+	'.' => ','
+);
+
+$fallback8bitEncoding = 'windows-1251';
+$linkPrefixExtension = false;
 
 $imageFiles = array(
 	'button-bold'   => 'cyrl/button_bold.png',
