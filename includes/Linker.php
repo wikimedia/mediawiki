@@ -988,6 +988,9 @@ class Linker {
 	public static function userLink( $userId, $userName, $altUserName = false ) {
 		if ( $userId == 0 ) {
 			$page = SpecialPage::getTitleFor( 'Contributions', $userName );
+			if ( $altUserName === false ) {
+				$altUserName = IP::prettifyIP( $userName );
+			}
 		} else {
 			$page = Title::makeTitle( NS_USER, $userName );
 		}
