@@ -13,6 +13,25 @@
  * @author Гусейн
  */
 
+$namespaceNames = array(
+	NS_MEDIA            => 'Medja',
+	NS_SPECIAL          => 'Xususi',
+	NS_TALK             => 'Nopegət',
+	NS_USER             => 'Okoədə',
+	NS_USER_TALK        => 'Okoədəj_nopegət',
+	NS_PROJECT_TALK     => '$1_Nopegətəti',
+	NS_FILE             => 'Fajl',
+	NS_FILE_TALK        => 'Fajli_nopegət',
+	NS_MEDIAWIKI        => 'MediaWiki',
+	NS_MEDIAWIKI_TALK   => 'MediaWiki_nopegət',
+	NS_TEMPLATE         => 'Numunə',
+	NS_TEMPLATE_TALK    => 'Numunə_nopegət',
+	NS_HELP             => 'Koməg',
+	NS_HELP_TALK        => 'Koməgi_nopegət',
+	NS_CATEGORY         => 'Tispir',
+	NS_CATEGORY_TALK    => 'Tispiron_nopegət',
+);
+
 $messages = array(
 # User preference toggles
 'tog-underline' => 'Линки жинтоно ријә быкәш:',

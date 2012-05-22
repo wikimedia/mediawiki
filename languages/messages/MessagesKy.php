@@ -13,6 +13,20 @@
  * @author Ztimur
  */
 
+$namespaceNames = array(
+	NS_MEDIA            => 'Медиа',
+	NS_SPECIAL          => 'Атайын',
+	NS_TALK             => 'Баарлашуу',
+	NS_USER             => 'Колдонуучу',
+	NS_USER_TALK        => 'Колдонуучунун_баарлашуулары',
+	NS_PROJECT_TALK     => '$1_баарлашуу',
+	NS_FILE             => 'Файл',
+	NS_MEDIAWIKI        => 'MediaWiki',
+	NS_TEMPLATE         => 'Калып',
+	NS_HELP             => 'Жардам',
+	NS_CATEGORY         => 'Категория',
+);
+
 $messages = array(
 # User preference toggles
 'tog-underline' => 'Шилтемелердин алдын сызуу:',

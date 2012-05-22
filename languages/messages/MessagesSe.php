@@ -16,6 +16,25 @@
  * @author לערי ריינהארט
  */
 
+$namespaceNames = array(
+	NS_MEDIA            => 'Media',
+	NS_SPECIAL          => 'Doaimmat',
+	NS_TALK             => 'Ságastallan',
+	NS_USER             => 'Geavaheaddji',
+	NS_USER_TALK        => 'Geavaheaddjeságastallan',
+	NS_PROJECT_TALK     => '$1-ságastallan',
+	NS_FILE             => 'Fiila',
+	NS_FILE_TALK        => 'Fiilaságastallan',
+	NS_MEDIAWIKI        => 'MediaWiki',
+	NS_MEDIAWIKI_TALK   => 'MediaWiki-ságastallan',
+	NS_TEMPLATE         => 'Málle',
+	NS_TEMPLATE_TALK    => 'Málleságastallan',
+	NS_HELP             => 'Veahkki',
+	NS_HELP_TALK        => 'Veahkkeságastallan',
+	NS_CATEGORY         => 'Kategoriija',
+	NS_CATEGORY_TALK    => 'Kategoriijaságastallan',
+);
+
 $specialPageAliases = array(
 	'Recentchanges'             => array( 'Varas_rievdadusat' ),
 );

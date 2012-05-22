@@ -18,6 +18,25 @@
  * @author Xoser
  */
 
+$namespaceNames = array(
+	NS_MEDIA            => 'Medya',
+	NS_SPECIAL          => 'Xısusi',
+	NS_TALK             => 'Werênayış',
+	NS_USER             => 'Karber',
+	NS_USER_TALK        => 'Karber_mesac',
+	NS_PROJECT_TALK     => '$1_werênayış',
+	NS_FILE             => 'Dosya',
+	NS_FILE_TALK        => 'Dosya_werênayış',
+	NS_MEDIAWIKI        => 'MediaWiki',
+	NS_MEDIAWIKI_TALK   => 'MediaWiki_werênayış',
+	NS_TEMPLATE         => 'Şablon',
+	NS_TEMPLATE_TALK    => 'Şablon_werênayış',
+	NS_HELP             => 'Desteg',
+	NS_HELP_TALK        => 'Desteg_werênayış',
+	NS_CATEGORY         => 'Kategori',
+	NS_CATEGORY_TALK    => 'Kategori_werênayış',
+);
+
 $specialPageAliases = array(
 	'Activeusers'               => array( 'Karbereaktiv' ),
 	'Allmessages'               => array( 'MesaciPero' ),
