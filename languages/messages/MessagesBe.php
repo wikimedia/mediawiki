@@ -49,7 +49,7 @@ $namespaceNames = array(
 	NS_TALK             => 'Размовы',
 	NS_USER             => 'Удзельнік',
 	NS_USER_TALK        => 'Размовы_з_удзельнікам',
-	NS_PROJECT_TALK     => '$1_размовы',
+	NS_PROJECT_TALK     => 'Размовы_пра_{{GRAMMAR:вінавальны|$1}}',
 	NS_FILE             => 'Выява',
 	NS_FILE_TALK        => 'Размовы_пра_выяву',
 	NS_MEDIAWIKI        => 'MediaWiki',
@@ -60,6 +60,10 @@ $namespaceNames = array(
 	NS_HELP_TALK        => 'Размовы_пра_даведку',
 	NS_CATEGORY         => 'Катэгорыя',
 	NS_CATEGORY_TALK    => 'Размовы_пра_катэгорыю',
+);
+
+$namespaceAliases = array(
+	'$1_размовы' => NS_PROJECT_TALK,
 );
 
 $magicWords = array(
