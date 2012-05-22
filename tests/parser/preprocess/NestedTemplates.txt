@@ -1,0 +1,97 @@
+{{vorlage}}
+
+{{{argument}}}
+
+Nach [[:meta:Help:Expansion#XML parse tree]]
+{{{{vorlagenname}}}}
+{{ {{vorlagenname}}}}
+{{{{vorlagenname}} }}
+{{{{vorlagenname}}erweiterung}}
+
+{{{{{vorlagenname}}}}}
+{{{ {{vorlagenname}}}}}
+{{ {{{vorlagenname}}}}}
+{{{{{vorlagenname}} }}}
+{{{{{vorlagenname}}} }}
+
+nur etwas erweitert
+{{{{{{vorlagenname}}}}}}
+{{{ {{{vorlagenname}}}}}}
+{{{{{{vorlagenname}}} }}}
+{{ {{{{vorlagenname}}}}}}
+{{{{ {{vorlagenname}}}}}}
+{{ {{ {{vorlagenname}}}}}}
+{{{{ {{vorlagenname}}} }}}
+{{{{{{vorlagenname}}}} }}
+{{{{{{vorlagenname}} }}}}
+{{ {{{{vorlagenname}} }}}}
+{{{ {{{vorlagenname}} }}}}
+
+{{{{{{{ }}}}}}}
+
+{{{{{{{{ }}}}}}}}
+{{{{{{{{ }} }}}}}}
+{{{{{{{{ }}} }}}}}
+{{{{{{{{ }}}} }}}}
+{{{{{{{{ }}}}} }}}
+{{{{{{{{ }}}}}} }}
+{{{{{{{{ }} }} }}}}
+{{{{{{{{ }} }}}} }}
+{{{{{{{{ }}}} }} }}
+{{{{{{{{ }}} }}} }}
+{{{{{{{{ }}} }} }}}
+{{{{{{{{ }} }}} }}}
+{{{{{{{{ }} }} }} }}
+<<<<<<< HEAD
+<<<<<<< HEAD
+
+=======
+>>>>>>> 636f986... (bug 27936) Improve parser handling of nested braces.
+=======
+
+>>>>>>> f3005fa... (bug 27936) Correct a few mistakes in the parser test.
+{{vorlage}}
+
+{{{argument}}}
+
+Nach [[:meta:Help:Expansion#XML parse tree]]
+{{{{vorlagenname}}}}
+{{ {{vorlagenname}}}}
+{{{{vorlagenname}} }}
+{{{{vorlagenname}}erweiterung}}
+
+{{{{{vorlagenname}}}}}
+{{{ {{vorlagenname}}}}}
+{{ {{{vorlagenname}}}}}
+{{{{{vorlagenname}} }}}
+{{{{{vorlagenname}}} }}
+
+nur etwas erweitert
+{{{{{{vorlagenname}}}}}}
+{{{ {{{vorlagenname}}}}}}
+{{{{{{vorlagenname}}} }}}
+{{ {{{{vorlagenname}}}}}}
+{{{{ {{vorlagenname}}}}}}
+{{ {{ {{vorlagenname}}}}}}
+{{{{ {{vorlagenname}}} }}}
+{{{{{{vorlagenname}}}} }}
+{{{{{{vorlagenname}} }}}}
+{{ {{{{vorlagenname}} }}}}
+{{{ {{{vorlagenname}} }}}}
+
+{{{{{{{ }}}}}}}
+
+{{{{{{{{ }}}}}}}}
+{{{{{{{{ }} }}}}}}
+{{{{{{{{ }}} }}}}}
+{{{{{{{{ }}}} }}}}
+{{{{{{{{ }}}}} }}}
+{{{{{{{{ }}}}}} }}
+{{{{{{{{ }} }} }}}}
+{{{{{{{{ }} }}}} }}
+{{{{{{{{ }}}} }} }}
+{{{{{{{{ }}} }}} }}
+{{{{{{{{ }}} }} }}}
+{{{{{{{{ }} }}} }}}
+{{{{{{{{ }} }} }} }}
+
