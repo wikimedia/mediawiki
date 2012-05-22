@@ -888,7 +888,7 @@ class PPFrame_Hash implements PPFrame {
 	 *
 	 * @return PPTemplateFrame_Hash
 	 */
-	function newChild( $args = false, $title = false ) {
+	function newChild( $args = false, $title = false, $indexOffset = 0 ) {
 		$namedArgs = array();
 		$numberedArgs = array();
 		if ( $title === false ) {
@@ -904,8 +904,9 @@ class PPFrame_Hash implements PPFrame {
 				$bits = $arg->splitArg();
 				if ( $bits['index'] !== '' ) {
 					// Numbered parameter
-					$numberedArgs[$bits['index']] = $bits['value'];
-					unset( $namedArgs[$bits['index']] );
+					$index = $bits['index'] - $indexOffset;
+					$numberedArgs[$index] = $bits['value'];
+					unset( $namedArgs[$index] );
 				} else {
 					// Named parameter
 					$name = trim( $this->expand( $bits['name'], PPFrame::STRIP_COMMENTS ) );
@@ -1495,6 +1496,10 @@ class PPCustomFrame_Hash extends PPFrame_Hash {
 			return false;
 		}
 		return $this->args[$index];
+	}
+
+	function getArguments() {
+		return $this->args;
 	}
 }
 
