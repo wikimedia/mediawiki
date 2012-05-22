@@ -134,6 +134,7 @@ MediaWiki supports over 350 languages. Many localisations are updated
 regularly. Below only new and removed languages are listed, as well as
 changes to languages because of Bugzilla reports.
 
+* Tornedalen Finnish (fit) added.
 * Mizo (lus) added.
 * Santali (sat) added.
 * (bug 34192) Namespace gender aliases for Albanian languages (sq & aln).
