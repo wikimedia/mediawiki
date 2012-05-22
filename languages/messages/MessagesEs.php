@@ -1926,7 +1926,6 @@ Para óptima seguridad, img_auth.php está desactivado.',
 'http-curl-error' => 'Error al recuperar el URL: $1',
 'http-host-unreachable' => 'No fue posible acceder a la URL.',
 'http-bad-status' => 'Ha habido un problema durante la solicitud HTTP: $1 $2',
-'http-truncated-body' => 'El cuerpo solicitado sólo fue recibido parcialmente.',
 
 # Some likely curl errors. More could be added from <http://curl.haxx.se/libcurl/c/libcurl-errors.html>
 'upload-curl-error6' => 'No se pudo alcanzar la URL',

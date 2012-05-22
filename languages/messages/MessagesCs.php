@@ -1927,7 +1927,6 @@ Z bezpečnostních důvodů je img_auth.php vypnuto.',
 'http-curl-error' => 'Chyba při čtení z URL: $1',
 'http-host-unreachable' => 'Nepodařilo se kontaktovat URL',
 'http-bad-status' => 'Při provádění HTTP požadavku nastal problém: $1 $2',
-'http-truncated-body' => 'Přijaté tělo požadavku bylo neúplné.',
 
 # Some likely curl errors. More could be added from <http://curl.haxx.se/libcurl/c/libcurl-errors.html>
 'upload-curl-error6' => 'Z URL nelze číst',

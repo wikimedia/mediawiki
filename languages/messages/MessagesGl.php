@@ -1778,6 +1778,7 @@ Se o problema persiste, póñase en contacto cun [[Special:ListUsers/sysop|admin
 'backend-fail-internal' => 'Houbo un erro descoñecido no sistema de almacenamento "$1".',
 'backend-fail-contenttype' => 'Non se puido determinar o tipo de contido do ficheiro a almacenar en "$1".',
 'backend-fail-batchsize' => 'O sistema de almacenamento recibiu un feixe de $1 {{PLURAL:$1|operación|operacións}} de ficheiro; o límite está en $2 {{PLURAL:$2|operación|operacións}}.',
+'backend-fail-usable' => 'Non se puido escribir o ficheiro "$1" debido a que os permisos son insuficientes ou faltan os directorios/contenedores.',
 
 # File journal errors
 'filejournal-fail-dbconnect' => 'Non se pode conectar coa base de datos do rexistro do sistema de almacenamento "$1".',
@@ -1840,7 +1841,6 @@ Para unha seguridade óptima, img_auth.php está desactivado.',
 'http-curl-error' => 'Ocorreu un erro ao acceder ao URL: $1',
 'http-host-unreachable' => 'Non se puido acceder ao URL.',
 'http-bad-status' => 'Houbo un problema durante a solicitude HTTP: $1 $2',
-'http-truncated-body' => 'O corpo de solicitude recibiuse parcialmente.',
 
 # Some likely curl errors. More could be added from <http://curl.haxx.se/libcurl/c/libcurl-errors.html>
 'upload-curl-error6' => 'Non se logrou acceder a ese URL',

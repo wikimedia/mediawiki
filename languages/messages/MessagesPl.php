@@ -1893,7 +1893,6 @@ Ponieważ ta wiki została skonfigurowana jako publiczna dla zapewnienia optymal
 'http-curl-error' => 'Błąd pobierania z adresu $1',
 'http-host-unreachable' => 'Adres jest nieosiągalny.',
 'http-bad-status' => 'Wystąpił problem z realizacją żądania HTTP $1 $2',
-'http-truncated-body' => 'Treść żądania została odebrana tylko częściowo.',
 
 # Some likely curl errors. More could be added from <http://curl.haxx.se/libcurl/c/libcurl-errors.html>
 'upload-curl-error6' => 'Adres URL jest nieosiągalny',

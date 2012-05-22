@@ -1962,7 +1962,6 @@ Aus Sicherheitsgründen ist img_auth.php deaktiviert.',
 'http-curl-error' => 'Fehler beim Abruf der URL: $1',
 'http-host-unreachable' => 'URL konnte nicht erreicht werden.',
 'http-bad-status' => 'Während der HTTP-Anfrage ist ein Fehler aufgetreten: $1 $2',
-'http-truncated-body' => 'Der Inhalt der Anforderung wurde nicht vollständig empfangen.',
 
 # Some likely curl errors. More could be added from <http://curl.haxx.se/libcurl/c/libcurl-errors.html>
 'upload-curl-error6' => 'URL ist nicht erreichbar',
@@ -3757,7 +3756,7 @@ Bitte bestätige, dass du diese Seite wirklich neu erstellen möchten.",
 'size-gigabytes' => '$1 GB',
 
 # Live preview
-'livepreview-loading' => 'Am Laden …',
+'livepreview-loading' => 'Lade …',
 'livepreview-ready' => 'Laden … Fertig!',
 'livepreview-failed' => 'Die sofortige Vorschau ist nicht möglich!
 Bitte die normale Vorschau nutzen.',

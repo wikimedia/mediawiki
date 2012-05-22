@@ -1992,7 +1992,6 @@ Om beveiligingsreden is img_auth.php uitgeschakeld.',
 'http-curl-error' => 'Fout bij het ophalen van URL: $1',
 'http-host-unreachable' => 'De URL is niet bereikbaar.',
 'http-bad-status' => 'Er is een probleem opgetreden bij het HTTP-verzoek: $1 $2',
-'http-truncated-body' => 'De inhoud van het verzoek is slechts gedeeltelijk ontvangen.',
 
 # Some likely curl errors. More could be added from <http://curl.haxx.se/libcurl/c/libcurl-errors.html>
 'upload-curl-error6' => 'Kon de URL niet bereiken',

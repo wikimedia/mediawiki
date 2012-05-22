@@ -2037,7 +2037,6 @@ $1',
 'http-curl-error' => 'Грешка при отварању адресе: $1',
 'http-host-unreachable' => 'Не могу да приступим адреси.',
 'http-bad-status' => 'Дошло је до проблема током захтева HTTP: $1 $2',
-'http-truncated-body' => 'Садржај захтева није примљен у целости.',
 
 # Some likely curl errors. More could be added from <http://curl.haxx.se/libcurl/c/libcurl-errors.html>
 'upload-curl-error6' => 'Не могу да приступим адреси',
