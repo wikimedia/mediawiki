@@ -22,16 +22,16 @@
  */
 
 $namespaceNames = array(
-	NS_MEDIA            => 'Medija',
+	NS_MEDIA            => 'Medij',
 	NS_SPECIAL          => 'Posebno',
 	NS_TALK             => 'Razgovor',
 	NS_USER             => 'Korisnik',
 	NS_USER_TALK        => 'Razgovor_sa_korisnikom',
 	NS_PROJECT_TALK     => 'Razgovor_o_$1',
-	NS_FILE             => 'Slika',
-	NS_FILE_TALK        => 'Razgovor_o_slici',
-	NS_MEDIAWIKI        => 'MedijaViki',
-	NS_MEDIAWIKI_TALK   => 'Razgovor_o_MedijaVikiju',
+	NS_FILE             => 'Datoteka',
+	NS_FILE_TALK        => 'Razgovor_o_datoteci',
+	NS_MEDIAWIKI        => 'Medijaviki',
+	NS_MEDIAWIKI_TALK   => 'Razgovor_o_Medijavikiju',
 	NS_TEMPLATE         => 'Šablon',
 	NS_TEMPLATE_TALK    => 'Razgovor_o_šablonu',
 	NS_HELP             => 'Pomoć',
@@ -58,6 +58,10 @@ $namespaceAliases = array(
 	'Разговор_о_помоћи'       => NS_HELP_TALK,
 	'Категорија'              => NS_CATEGORY,
 	'Разговор_о_категорији'   => NS_CATEGORY_TALK,
+
+	'Medija'                  => NS_MEDIA,
+	'Slika'                   => NS_FILE,
+	'Razgovor_o_slici'        => NS_FILE_TALK,
 );
 
 $extraUserToggles = array(
