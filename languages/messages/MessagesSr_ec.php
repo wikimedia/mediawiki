@@ -29,7 +29,7 @@
  */
 
 $namespaceNames = array(
-	NS_MEDIA            => 'Медија',
+	NS_MEDIA            => 'Медиј',
 	NS_SPECIAL          => 'Посебно',
 	NS_TALK             => 'Разговор',
 	NS_USER             => 'Корисник',
@@ -66,6 +66,7 @@ $namespaceAliases = array(
 	'Kategorija'              => NS_CATEGORY,
 	'Razgovor_o_kategoriji'   => NS_CATEGORY_TALK,
 
+	'Медија'                  => NS_MEDIA,
 	'Слика'                   => NS_FILE,
 	'Разговор_о_слици'        => NS_FILE_TALK,
 	'МедијаВики'              => NS_MEDIAWIKI,
