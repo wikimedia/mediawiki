@@ -42,6 +42,7 @@ class SwiftFileBackend extends FileBackendStore {
 	protected $authTTL; // integer seconds
 	protected $swiftAnonUser; // string; username to handle unauthenticated requests
 	protected $swiftUseCDN; // boolean; whether CloudFiles CDN is enabled
+	protected $swiftCDNTTL; // integer; how long to keep objects in the CDN
 	protected $maxContCacheSize = 300; // integer; max containers with entries
 
 	/** @var CF_Connection */
@@ -58,7 +59,10 @@ class SwiftFileBackend extends FileBackendStore {
 	 *    swiftKey           : Swift authentication key for the above user
 	 *    swiftAuthTTL       : Swift authentication TTL (seconds)
 	 *    swiftAnonUser      : Swift user used for end-user requests (account:username)
-	 *    swiftUseCDN        : Whether a Cloud Files Content Delivery Network is set up
+	 *    swiftUseCDN        : Whether a Rackspace/Akamai Content Delivery Network is set up
+	 *    swiftCDNTTL        : How long (in seconds) to store content in the CDN.
+	 *                         If files may likely change, this should probably not exceed
+	 *                         a few days. For example, deletions may take this long to apply.
 	 *    shardViaHashLevels : Map of container names to sharding config with:
 	 *                         'base'   : base of hash characters, 16 or 36
 	 *                         'levels' : the number of hash levels (and digits)
@@ -90,6 +94,9 @@ class SwiftFileBackend extends FileBackendStore {
 		$this->swiftUseCDN = isset( $config['swiftUseCDN'] )
 			? $config['swiftUseCDN']
 			: false;
+		$this->swiftCDNTTL = isset( $config['swiftCDNTTL'] )
+			? $config['swiftCDNTTL']
+			: 3600; // 1 hour
 		// Cache container info to mask latency
 		$this->memCache = wfGetMainCache();
 	}
@@ -161,6 +168,7 @@ class SwiftFileBackend extends FileBackendStore {
 
 		// (c) Actually create the object
 		try {
+			$cdnOverwrite = $this->changeIsCDNOverwite( $params['dst'] );
 			// Create a fresh CF_Object with no fields preloaded.
 			// We don't want to preserve headers, metadata, and such.
 			$obj = new CF_Object( $dContObj, $dstRel, false, false ); // skip HEAD
@@ -174,10 +182,14 @@ class SwiftFileBackend extends FileBackendStore {
 			if ( !empty( $params['async'] ) ) { // deferred
 				$handle = $obj->write_async( $params['content'] );
 				$status->value = new SwiftFileOpHandle( $this, $params, 'Create', $handle );
-				$status->value->affectedObjects[] = $obj;
+				if ( $cdnOverwrite ) {
+					$status->value->purgableObjects[] = $obj;
+				}
 			} else { // actually write the object in Swift
 				$obj->write( $params['content'] );
-				$this->purgeCDNCache( array( $obj ) );
+				if ( $cdnOverwrite ) {
+					$this->purgeCDNCache( array( $obj ) );
+				}
 			}
 		} catch ( CDNNotEnabledException $e ) {
 			// CDN not enabled; nothing to see here
@@ -241,6 +253,7 @@ class SwiftFileBackend extends FileBackendStore {
 
 		// (c) Actually store the object
 		try {
+			$cdnOverwrite = $this->changeIsCDNOverwite( $params['dst'] );
 			// Create a fresh CF_Object with no fields preloaded.
 			// We don't want to preserve headers, metadata, and such.
 			$obj = new CF_Object( $dContObj, $dstRel, false, false ); // skip HEAD
@@ -260,11 +273,15 @@ class SwiftFileBackend extends FileBackendStore {
 					$handle = $obj->write_async( $fp, filesize( $params['src'] ), true );
 					$status->value = new SwiftFileOpHandle( $this, $params, 'Store', $handle );
 					$status->value->resourcesToClose[] = $fp;
-					$status->value->affectedObjects[] = $obj;
+					if ( $cdnOverwrite ) {
+						$status->value->purgableObjects[] = $obj;
+					}
 				}
 			} else { // actually write the object in Swift
 				$obj->load_from_filename( $params['src'], true ); // calls $obj->write()
-				$this->purgeCDNCache( array( $obj ) );
+				if ( $cdnOverwrite ) {
+					$this->purgeCDNCache( array( $obj ) );
+				}
 			}
 		} catch ( CDNNotEnabledException $e ) {
 			// CDN not enabled; nothing to see here
@@ -331,14 +348,19 @@ class SwiftFileBackend extends FileBackendStore {
 
 		// (b) Actually copy the file to the destination
 		try {
+			$cdnOverwrite = $this->changeIsCDNOverwite( $params['dst'] );
 			$dstObj = new CF_Object( $dContObj, $dstRel, false, false ); // skip HEAD
 			if ( !empty( $params['async'] ) ) { // deferred
 				$handle = $sContObj->copy_object_to_async( $srcRel, $dContObj, $dstRel );
 				$status->value = new SwiftFileOpHandle( $this, $params, 'Copy', $handle );
-				$status->value->affectedObjects[] = $dstObj;
+				if ( $cdnOverwrite ) {
+					$status->value->purgableObjects[] = $dstObj;
+				}
 			} else { // actually write the object in Swift
 				$sContObj->copy_object_to( $srcRel, $dContObj, $dstRel );
-				$this->purgeCDNCache( array( $dstObj ) );
+				if ( $cdnOverwrite ) {
+					$this->purgeCDNCache( array( $dstObj ) );
+				}
 			}
 		} catch ( CDNNotEnabledException $e ) {
 			// CDN not enabled; nothing to see here
@@ -401,16 +423,20 @@ class SwiftFileBackend extends FileBackendStore {
 
 		// (b) Actually move the file to the destination
 		try {
+			$cdnOverwrite = $this->changeIsCDNOverwite( $params['dst'] );
 			$srcObj = new CF_Object( $sContObj, $srcRel, false, false ); // skip HEAD
 			$dstObj = new CF_Object( $dContObj, $dstRel, false, false ); // skip HEAD
 			if ( !empty( $params['async'] ) ) { // deferred
 				$handle = $sContObj->move_object_to_async( $srcRel, $dContObj, $dstRel );
 				$status->value = new SwiftFileOpHandle( $this, $params, 'Move', $handle );
-				$status->value->affectedObjects[] = $srcObj;
-				$status->value->affectedObjects[] = $dstObj;
+				if ( $cdnOverwrite ) {
+					$status->value->purgableObjects[] = $dstObj;
+				}
 			} else { // actually write the object in Swift
 				$sContObj->move_object_to( $srcRel, $dContObj, $dstRel );
-				$this->purgeCDNCache( array( $srcObj, $dstObj ) );
+				if ( $cdnOverwrite ) {
+					$this->purgeCDNCache( array( $dstObj ) );
+				}
 			}
 		} catch ( CDNNotEnabledException $e ) {
 			// CDN not enabled; nothing to see here
@@ -453,10 +479,8 @@ class SwiftFileBackend extends FileBackendStore {
 			if ( !empty( $params['async'] ) ) { // deferred
 				$handle = $sContObj->delete_object_async( $srcRel );
 				$status->value = new SwiftFileOpHandle( $this, $params, 'Delete', $handle );
-				$status->value->affectedObjects[] = $srcObj;
 			} else { // actually write the object in Swift
 				$sContObj->delete_object( $srcRel );
-				$this->purgeCDNCache( array( $srcObj ) );
 			}
 		} catch ( CDNNotEnabledException $e ) {
 			// CDN not enabled; nothing to see here
@@ -519,7 +543,7 @@ class SwiftFileBackend extends FileBackendStore {
 				) );
 			}
 			if ( $this->swiftUseCDN ) { // Rackspace style CDN
-				$contObj->make_public();
+				$contObj->make_public( $this->swiftCDNTTL );
 			}
 		} catch ( CDNNotEnabledException $e ) {
 			// CDN not enabled; nothing to see here
@@ -969,7 +993,7 @@ class SwiftFileBackend extends FileBackendStore {
 			try { // catch exceptions; update status
 				$function = '_getResponse' . $fileOpHandles[$index]->call;
 				$this->$function( $cfOp, $status, $fileOpHandles[$index]->params );
-				$this->purgeCDNCache( $fileOpHandles[$index]->affectedObjects );
+				$this->purgeCDNCache( $fileOpHandles[$index]->purgableObjects );
 			} catch ( CloudFilesException $e ) { // some other exception?
 				$this->handleException( $e, $status,
 					__CLASS__ . ":$function", $fileOpHandles[$index]->params );
@@ -1002,6 +1026,20 @@ class SwiftFileBackend extends FileBackendStore {
 		$req->setHeader( 'X-Container-Write', implode( ',', $writeGrps ) );
 
 		return $req->execute(); // should return 204
+	}
+
+	/**
+	 * Check if a change to the file at a path may require replacing
+	 * an older version of the file at the CDN. We have to avoid sending
+	 * purge requests per https://github.com/rackspace/php-cloudfiles/issues/37.
+	 * The most important cases to purge are for overwrites of existing files.
+	 * We want users to see their own changes after they make them.
+	 *
+	 * @param $path string Storage path
+	 * @return bool
+	 */
+	protected function changeIsCDNOverwite( $path ) {
+		return ( $this->swiftUseCDN && $this->fileExists( array( 'src' => $path ) ) );
 	}
 
 	/**
@@ -1179,7 +1217,7 @@ class SwiftFileOpHandle extends FileBackendStoreOpHandle {
 	/** @var CF_Async_Op */
 	public $cfOp;
 	/** @var Array */
-	public $affectedObjects = array();
+	public $purgableObjects = array();
 
 	public function __construct( $backend, array $params, $call, CF_Async_Op $cfOp ) {
 		$this->backend = $backend;
