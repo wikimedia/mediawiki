@@ -173,6 +173,7 @@ $magicWords = array(
 	'raw'                     => array( '0', 'רוי:', 'ללא עיבוד:', 'RAW:' ),
 	'displaytitle'            => array( '1', 'ווייזן_קעפל', 'כותרת תצוגה', 'DISPLAYTITLE' ),
 	'language'                => array( '0', '#שפראך:', '#שפה:', '#LANGUAGE:' ),
+	'special'                 => array( '0', 'באזונדער', 'מיוחד', 'special' ),
 	'defaultsort'             => array( '1', 'גרונטסארטיר:', 'מיון רגיל:', 'DEFAULTSORT:', 'DEFAULTSORTKEY:', 'DEFAULTCATEGORYSORT:' ),
 	'hiddencat'               => array( '1', '__באהאלטענע_קאטעגאריע__', '__באהאלטענע_קאט__', '__קטגוריה_מוסתרת__', '__HIDDENCAT__' ),
 	'pagesize'                => array( '1', 'בלאטגרייס', 'גודל דף', 'PAGESIZE' ),

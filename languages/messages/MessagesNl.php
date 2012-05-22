@@ -176,7 +176,6 @@ $magicWords = array(
 	'localurl'                => array( '0', 'LOKALEURL', 'LOCALURL:' ),
 	'localurle'               => array( '0', 'LOKALEURLE', 'LOCALURLE:' ),
 	'articlepath'             => array( '0', 'ARTIKELPAD', 'ARTICLEPATH' ),
-	'pageid'                  => array( '0', 'PAGINAID', 'PAGEID' ),
 	'servername'              => array( '0', 'SERVERNAAM', 'SERVERNAME' ),
 	'scriptpath'              => array( '0', 'SCRIPTPAD', 'SCRIPTPATH' ),
 	'stylepath'               => array( '0', 'STIJLPAD', 'STYLEPATH' ),

@@ -146,6 +146,7 @@ $magicWords = array(
 	'contentlanguage'         => array( '1', 'LIMBACONTINUT', 'CONTENTLANGUAGE', 'CONTENTLANG' ),
 	'pagesinnamespace'        => array( '1', 'PANIGIINSPATIULDENUME:', 'PAGINIINSN:', 'PAGESINNAMESPACE:', 'PAGESINNS:' ),
 	'numberofadmins'          => array( '1', 'NUMARADMINI', 'NUMBEROFADMINS' ),
+	'formatnum'               => array( '0', 'FORMATNR', 'FORMATNUM' ),
 	'defaultsort'             => array( '1', 'SORTAREIMPLICITA:', 'CHEIESORTAREIMPLICITA:', 'CATEGORIESORTAREIMPLICITA:', 'DEFAULTSORT:', 'DEFAULTSORTKEY:', 'DEFAULTCATEGORYSORT:' ),
 	'filepath'                => array( '0', 'CALEAFISIERULUI:', 'FILEPATH:' ),
 	'tag'                     => array( '0', 'eticheta', 'tag' ),

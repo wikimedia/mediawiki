@@ -33,6 +33,16 @@ $specialPageAliases = array(
 	'Watchlist'                 => array( 'Listeyseyri' ),
 );
 
+$magicWords = array(
+	'redirect'                => array( '0', '#HETENAYIŞ', '#REDIRECT' ),
+	'nogallery'               => array( '0', '#GALERİÇINO', '__NOGALLERY__' ),
+	'msg'                     => array( '0', 'MSC', 'MSG:' ),
+	'language'                => array( '0', '#ZIWAN', '#LANGUAGE:' ),
+	'special'                 => array( '0', 'xısusi', 'special' ),
+	'speciale'                => array( '0', 'xısusiye', 'speciale' ),
+	'tag'                     => array( '0', 'etiket', 'tag' ),
+);
+
 $messages = array(
 # User preference toggles
 'tog-underline' => 'Bınê gırey de xete bance:',

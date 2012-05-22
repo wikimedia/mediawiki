@@ -264,6 +264,7 @@ $magicWords = array(
 	'staticredirect'          => array( '1', '__REDIRECTIONSTATIQUE__', '__STATICREDIRECT__' ),
 	'protectionlevel'         => array( '1', 'NIVEAUDEPROTECTION', 'PROTECTIONLEVEL' ),
 	'url_path'                => array( '0', 'CHEMIN', 'PATH' ),
+	'url_query'               => array( '0', 'QUESTION', 'QUERY' ),
 );
 
 $specialPageAliases = array(

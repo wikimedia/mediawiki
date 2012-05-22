@@ -135,9 +135,13 @@ $magicWords = array(
 	'img_thumbnail'           => array( '1', 'მინიატიურა', 'მინი', 'მინიასლი', 'ცეროდენა', 'thumbnail', 'thumb' ),
 	'img_right'               => array( '1', 'მარჯვნივ', 'right' ),
 	'img_left'                => array( '1', 'მარცხნივ', 'left' ),
+	'img_none'                => array( '1', 'არა', 'none' ),
 	'img_width'               => array( '1', '$1პქ', '$1px' ),
-	'img_center'              => array( '1', 'ცენტრი', 'center', 'centre' ),
+	'img_center'              => array( '1', 'ცენტრი', 'ცენტრში', 'center', 'centre' ),
 	'img_border'              => array( '1', 'საზღვარი', 'border' ),
+	'img_top'                 => array( '1', 'ზედა', 'top' ),
+	'img_middle'              => array( '1', 'შუა', 'middle' ),
+	'img_bottom'              => array( '1', 'ქვედა', 'bottom' ),
 	'special'                 => array( '0', 'სპეციალური', 'special' ),
 );
 

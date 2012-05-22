@@ -265,7 +265,7 @@ $dateFormats = array(
 );
 
 $magicWords = array(
-	'redirect'                => array( '0', '#تغییرمسیر', '#REDIRECT' ),
+	'redirect'                => array( '0', '#تغییر_مسیر', '#تغییرمسیر', '#تغییرمسیر', '#REDIRECT' ),
 	'notoc'                   => array( '0', '__بی‌فهرست__', '__NOTOC__' ),
 	'nogallery'               => array( '0', '__بی‌نگارخانه__', '__NOGALLERY__' ),
 	'forcetoc'                => array( '0', '__بافهرست__', '__FORCETOC__' ),
@@ -305,6 +305,7 @@ $magicWords = array(
 	'pagenamee'               => array( '1', 'نام‌صفحه‌کد', 'نام_صفحه_کد', 'PAGENAMEE' ),
 	'namespace'               => array( '1', 'فضای‌نام', 'فضای_نام', 'NAMESPACE' ),
 	'namespacee'              => array( '1', 'فضای‌نام‌کد', 'فضای_نام_کد', 'NAMESPACEE' ),
+	'namespacenumber'         => array( '1', 'شماره_فضای_نام', 'شماره‌فضای‌نام', 'NAMESPACENUMBER' ),
 	'talkspace'               => array( '1', 'فضای‌بحث', 'فضای_بحث', 'TALKSPACE' ),
 	'talkspacee'              => array( '1', 'فضای‌بحث‌کد', 'فضای_بحث_کد', 'TALKSPACEE' ),
 	'subjectspace'            => array( '1', 'فضای‌موضوع', 'فضای‌مقاله', 'فضای_موضوع', 'فضای_مقاله', 'SUBJECTSPACE', 'ARTICLESPACE' ),
@@ -375,6 +376,7 @@ $magicWords = array(
 	'plural'                  => array( '0', 'جمع:', 'PLURAL:' ),
 	'fullurl'                 => array( '0', 'نشانی‌کامل:', 'نشانی_کامل:', 'FULLURL:' ),
 	'fullurle'                => array( '0', 'نشانی‌کامل‌کد:', 'نشانی_کامل_کد:', 'FULLURLE:' ),
+	'canonicalurl'            => array( '0', 'نشانی_استاندارد:', 'نشانی‌استاندارد:', 'CANONICALURL:' ),
 	'lcfirst'                 => array( '0', 'ابتداکوچک:', 'ابتدا_کوچک:', 'LCFIRST:' ),
 	'ucfirst'                 => array( '0', 'ابتدابزرگ:', 'ابتدا_بزرگ:', 'UCFIRST:' ),
 	'lc'                      => array( '0', 'ک:', 'LC:' ),
@@ -413,8 +415,8 @@ $magicWords = array(
 	'url_path'                => array( '0', 'مسیر', 'PATH' ),
 	'url_wiki'                => array( '0', 'ویکی', 'WIKI' ),
 	'url_query'               => array( '0', 'دستور', 'QUERY' ),
-	'defaultsort_noerror'     => array( '0', 'بدون‌خطا', 'noerror' ),
-	'defaultsort_noreplace'   => array( '0', 'جایگزین‌نکن', 'noreplace' ),
+	'defaultsort_noerror'     => array( '0', 'بدون‌خطا', 'بدون_خطا', 'noerror' ),
+	'defaultsort_noreplace'   => array( '0', 'جایگزین‌نکن', 'جایگزین_نکن', 'noreplace' ),
 );
 
 # Harakat are intentionally not included in the linkTrail. Their addition should

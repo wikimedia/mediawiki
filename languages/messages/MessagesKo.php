@@ -242,6 +242,7 @@ $magicWords = array(
 	'nse'                     => array( '0', '이름E:', '이름공간E:', 'NSE:' ),
 	'localurl'                => array( '0', '지역주소:', 'LOCALURL:' ),
 	'localurle'               => array( '0', '지역주소E:', 'LOCALURLE:' ),
+	'articlepath'             => array( '0', '항목경로', '기사경로', 'ARTICLEPATH' ),
 	'server'                  => array( '0', '서버', 'SERVER' ),
 	'servername'              => array( '0', '서버이름', 'SERVERNAME' ),
 	'scriptpath'              => array( '0', '스크립트경로', 'SCRIPTPATH' ),

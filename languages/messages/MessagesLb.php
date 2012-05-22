@@ -148,6 +148,7 @@ $specialPageAliases = array(
 
 $magicWords = array(
 	'redirect'                => array( '0', '#VIRULEEDUNG', '#WEITERLEITUNG', '#REDIRECT' ),
+	'numberofpages'           => array( '1', 'Säitenzuel', 'SEITENANZAHL', 'NUMBEROFPAGES' ),
 	'numberofarticles'        => array( '1', 'Artikelen', 'ARTIKELANZAHL', 'NUMBEROFARTICLES' ),
 	'numberoffiles'           => array( '1', 'Fichieren', 'DATEIANZAHL', 'NUMBEROFFILES' ),
 	'numberofusers'           => array( '1', 'Benotzerzuel', 'BENUTZERANZAHL', 'NUMBEROFUSERS' ),
@@ -156,18 +157,21 @@ $magicWords = array(
 	'namespace'               => array( '1', 'Nummraum', 'NAMENSRAUM', 'NAMESPACE' ),
 	'subjectspace'            => array( '1', 'Haaptnummraum', 'HAUPTNAMENSRAUM', 'SUBJECTSPACE', 'ARTICLESPACE' ),
 	'subjectpagename'         => array( '1', 'Haaptsäit', 'HAUPTSEITE', 'SUBJECTPAGENAME', 'ARTICLEPAGENAME' ),
+	'img_thumbnail'           => array( '1', 'Miniatur', 'miniatur', 'thumbnail', 'thumb' ),
 	'img_right'               => array( '1', 'riets', 'rechts', 'right' ),
 	'img_left'                => array( '1', 'lénks', 'links', 'left' ),
 	'img_none'                => array( '1', 'ouni', 'ohne', 'none' ),
 	'img_center'              => array( '1', 'zentréiert', 'zentriert', 'center', 'centre' ),
 	'img_framed'              => array( '1', 'gerummt', 'gerahmt', 'framed', 'enframed', 'frame' ),
 	'img_frameless'           => array( '1', 'net_gerummt', 'rahmenlos', 'frameless' ),
+	'img_page'                => array( '1', 'Säit=$1', 'Säit_$1', 'seite=$1', 'seite $1', 'page=$1', 'page $1' ),
 	'img_border'              => array( '1', 'bord', 'rand', 'border' ),
+	'img_top'                 => array( '1', 'uewen', 'top' ),
 	'grammar'                 => array( '0', 'GRAMMAIRE', 'GRAMMATIK:', 'GRAMMAR:' ),
 	'plural'                  => array( '0', 'PLURAL', 'PLURAL:' ),
 	'formatnum'               => array( '0', 'ZUELEFORMAT', 'ZAHLENFORMAT', 'FORMATNUM' ),
 	'special'                 => array( '0', 'spezial', 'special' ),
-	'hiddencat'               => array( '1', '__VERSTOPPTE_KATEGORIE__', '__VERSTECKTE_KATEGORIE__', '__WARTUNGSKATEGORIE__', '__HIDDENCAT__' ),
+	'hiddencat'               => array( '1', '__VERSTOPPT_KATEGORIE__', '__VERSTECKTE_KATEGORIE__', '__WARTUNGSKATEGORIE__', '__HIDDENCAT__' ),
 );
 
 $messages = array(

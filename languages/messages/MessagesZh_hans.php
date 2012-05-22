@@ -222,6 +222,7 @@ $magicWords = array(
 	'currentday'              => array( '1', '今天', 'CURRENTDAY' ),
 	'currentday2'             => array( '1', '今天2', 'CURRENTDAY2' ),
 	'currentyear'             => array( '1', '今年', 'CURRENTYEAR' ),
+	'currenttime'             => array( '1', '此时', '当前时间', 'CURRENTTIME' ),
 	'numberofpages'           => array( '1', '页数', 'NUMBEROFPAGES' ),
 	'numberofarticles'        => array( '1', '条目数', 'NUMBEROFARTICLES' ),
 	'numberoffiles'           => array( '1', '文件数', 'NUMBEROFFILES' ),
@@ -230,6 +231,11 @@ $magicWords = array(
 	'numberofedits'           => array( '1', '编辑数', 'NUMBEROFEDITS' ),
 	'numberofviews'           => array( '1', '访问数', 'NUMBEROFVIEWS' ),
 	'pagename'                => array( '1', '页名', 'PAGENAME' ),
+	'fullpagename'            => array( '1', '全页名', 'FULLPAGENAME' ),
+	'newsectionlink'          => array( '1', '_新段落链接_', '__NEWSECTIONLINK__' ),
+	'nonewsectionlink'        => array( '1', '_无新段落链接_', '__NONEWSECTIONLINK__' ),
+	'language'                => array( '0', '#语言:', '#LANGUAGE:' ),
+	'pagesize'                => array( '1', '页面大小', 'PAGESIZE' ),
 );
 
 $linkTrail = '/^()(.*)$/sD';

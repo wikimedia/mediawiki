@@ -221,6 +221,7 @@ $magicWords = array(
 	'pagenamee'               => array( '1', 'താളിന്റെപേര്‌സമഗ്രം', 'PAGENAMEE' ),
 	'namespace'               => array( '1', 'നാമമേഖല', 'NAMESPACE' ),
 	'namespacee'              => array( '1', 'നാമമേഖലസമഗ്രം', 'NAMESPACEE' ),
+	'namespacenumber'         => array( '1', 'നാമമേഖലാസംഖ്യ', 'NAMESPACENUMBER' ),
 	'talkspace'               => array( '1', 'സംവാദമേഖല', 'TALKSPACE' ),
 	'talkspacee'              => array( '1', 'സംവാദമേഖലസമഗ്രം', 'TALKSPACEE' ),
 	'subjectspace'            => array( '1', 'വിഷയമേഖല', 'ലേഖനമേഖല', 'SUBJECTSPACE', 'ARTICLESPACE' ),
@@ -319,6 +320,8 @@ $magicWords = array(
 	'url_path'                => array( '0', 'പഥം', 'PATH' ),
 	'url_wiki'                => array( '0', 'വിക്കി', 'WIKI' ),
 	'url_query'               => array( '0', 'ക്വറി', 'QUERY' ),
+	'defaultsort_noerror'     => array( '0', 'പിഴവില്ല', 'noerror' ),
+	'defaultsort_noreplace'   => array( '0', 'മാറ്റേണ്ടതില്ല', 'noreplace' ),
 );
 
 $digitGroupingPattern = "##,##,###";
