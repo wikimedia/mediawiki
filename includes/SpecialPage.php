@@ -626,7 +626,7 @@ class SpecialPage {
 		} else {
 			$msg = $summaryMessageKey;
 		}
-		if ( !$this->msg( $msg )->isBlank() && !$this->including() ) {
+		if ( !$this->msg( $msg )->isDisabled() && !$this->including() ) {
 			$this->getOutput()->wrapWikiMsg(
 				"<div class='mw-specialpage-summary'>\n$1\n</div>", $msg );
 		}
