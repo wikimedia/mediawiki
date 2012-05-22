@@ -42,9 +42,8 @@ nur etwas erweitert
 <tplarg lineStart="1"><title><template><title><tplarg><title> </title></tplarg> </title></template> </title></tplarg>
 <tplarg lineStart="1"><title><tplarg><title><template><title> </title></template> </title></tplarg> </title></tplarg>
 <template lineStart="1"><title><template><title><template><title><template><title> </title></template> </title></template> </title></template> </title></template>
-</root>
 
-<root><template lineStart="1"><title>vorlage</title></template>
+<template lineStart="1"><title>vorlage</title></template>
 
 <tplarg lineStart="1"><title>argument</title></tplarg>
 
