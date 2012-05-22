@@ -162,7 +162,7 @@ $namespaceNames = array(
 	NS_TALK             => 'Абмеркаваньне',
 	NS_USER             => 'Удзельнік',
 	NS_USER_TALK        => 'Гутаркі_ўдзельніка',
-	NS_PROJECT_TALK     => 'Абмеркаваньне_$1',
+	NS_PROJECT_TALK     => 'Абмеркаваньне_{{GRAMMAR:родны|$1}}',
 	NS_FILE             => 'Файл',
 	NS_FILE_TALK        => 'Абмеркаваньне_файла',
 	NS_MEDIAWIKI        => 'MediaWiki',
@@ -178,6 +178,7 @@ $namespaceNames = array(
 $namespaceAliases = array(
 	'Удзельніца' => NS_USER,
 	'Гутаркі ўдзельніцы' => NS_USER_TALK,
+	'Абмеркаваньне_$1' => NS_PROJECT_TALK,
 	'Выява' => NS_FILE,
 	'Абмеркаваньне выявы' => NS_FILE_TALK,
 );
