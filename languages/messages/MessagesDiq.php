@@ -484,7 +484,7 @@ Parola her {{PLURAL:$1|yew seete|$1 seete}} de yew rey erşawiyena.',
 'mailerror' => 'Erşawıtışe xetayê e-posta: $1',
 'acct_creation_throttle_hit' => 'Yew ten IP adresê şıma xebıtnayo u kewto no wiki, roco peyin de {{PLURAL:$1|1 hesab|$1 hesab}} vıraşto.
 xulasa ney kesê ke IP adresê şıma xebıtneni hini nêeşkeni ney ra zêdêr hesab akeri.',
-'emailauthenticated' => 'E-posta şıma ney tarixi de $2 $3 tarihinde tesdiq biyo.',
+'emailauthenticated' => "Adresê E-posta da şıma '''$2''' seate $3 dı kerdo araşt.",
 'emailnotauthenticated' => 'No format de nuştışê e-postayi qebul nêbeno.
 Yew formato meqbul de adresê e-posta bınuse ya zi veng bıverde.',
 'noemailprefs' => 'Hesab biyo a.',
@@ -1005,7 +1005,7 @@ Pe verbendi ''all:'', vaceyê xo bıvurni ki contenti hemi cıgeyro (pelanê mı
 
 # Preferences page
 'preferences' => 'Tercihi',
-'mypreferences' => 'Tercihê mı',
+'mypreferences' => 'Tercihi',
 'prefs-edits' => 'Amarê vurnayışan:',
 'prefsnologin' => 'Şıma cıkewtış nêvıraşto',
 'prefsnologintext' => 'Şıma gani be <span class="plainlinks">[{{fullurl:{{#Special:UserLogin}}|returnto=$1}} cikewte]</span> ke tercihanê karberi xo eyar bıkerê.',
@@ -1030,9 +1030,9 @@ Pe verbendi ''all:'', vaceyê xo bıvurni ki contenti hemi cıgeyro (pelanê mı
 'prefs-setemail' => 'E-posta adresiyê xo saz kerê',
 'prefs-email' => 'Tercihê e-maili',
 'prefs-rendering' => 'Asayış',
-'saveprefs' => 'Qeyd ke',
+'saveprefs' => 'Star ke',
 'resetprefs' => 'Vurnayışê ke qeyd nêbiy, pak ke',
-'restoreprefs' => 'Eyaranê standardan pêroine peyser bia',
+'restoreprefs' => 'Sazanê standardan pêron newe dere barke',
 'prefs-editing' => 'Cay pela nustısi',
 'prefs-edit-boxsize' => 'Ebatê pencereyê vurnayîşî.',
 'rows' => 'Xeti:',
@@ -1077,14 +1077,14 @@ Etıya şıma rê yew kılito raştameo ke şıma şenê bıgurenê/bıxebetnê:
 'prefs-common-css-js' => 'CSS/JavaScript pê şablonanê peran de pay biya:',
 'prefs-reset-intro' => 'ena pele de şıma tercihanê xo şenê bıçarnê be tercihanê keyepelê ke verê coy eyar biy.
 Na game tepeya nêerziyena.',
-'prefs-emailconfirm-label' => 'Konfirmasyonê e-maili',
+'prefs-emailconfirm-label' => 'Tesdiqiya E-posta:',
 'prefs-textboxsize' => 'Ebatê pencerey vurnayışi',
 'youremail' => 'E-Mail (mecbur niyo) *:',
 'username' => 'Namey karberi:',
 'uid' => 'Namey karberi:',
-'prefs-memberingroups' => 'Ezayê {{PLURAL:$1|grup|grupan}}:',
+'prefs-memberingroups' => 'Ezayê {{PLURAL:$1|grub|grubi}}:',
 'prefs-registration' => 'Wextê qeydbiyayışi',
-'yourrealname' => 'Nameyo raştıkên:',
+'yourrealname' => 'Nameyo raştay',
 'yourlanguage' => 'Zıwan:',
 'yourvariant' => 'Varyante miyandê zuwani:',
 'yournick' => 'imza:',
@@ -1093,7 +1093,7 @@ Na game tepeya nêerziyena.',
 Etiketê HTMLî kontrol bike.',
 'badsiglength' => 'İmzayê şıma zaf dergo.
 $1 gani bınê no {{PLURAL:$1|karakter|karakter}}de bıbo.',
-'yourgender' => 'Cınsiyetê to:',
+'yourgender' => 'Neri makey:',
 'gender-unknown' => 'Cınsiyet nêvato',
 'gender-male' => 'cıwamêrd',
 'gender-female' => 'Cenıke',
@@ -1720,7 +1720,7 @@ Xo vira mekerê ke, sıteyê webiê bini şenê direkt ebe URLi yew dosya ra gı
 # Special:Log
 'specialloguserlabel' => 'Weskedar:',
 'speciallogtitlelabel' => 'Menzil (sernuşte yana karber):',
-'log' => 'Logan',
+'log' => 'Qeydi',
 'all-logs-page' => 'Loganê umum yê hemî',
 'alllogstext' => 'qey {{SITENAME}}i mocnayişê heme rocaneyani.
 tipa rocaneyi, nameyê karberi (herfa pil u qıci re hessas a), ya zi peli (reyna hessasiyê herfa pil u qıciyi) bıweçine u esayiş qıc kerê.',
@@ -1843,7 +1843,7 @@ qey heqê şexsi de [[{{MediaWiki:Listgrouprights-helppage}}|hema malumato ziyed
 
 # Watchlist
 'watchlist' => 'lista mına seyr-kerdışi',
-'mywatchlist' => 'Lista mına seyrkerdışi',
+'mywatchlist' => 'Listey seyri',
 'watchlistfor2' => 'Semedê $1 ($2)',
 'nowatchlist' => 'listeya temaşa kerdıişê şıma de yew madde zi çina.',
 'watchlistanontext' => 'qey vurnayişê maddeya listeya temaşakerdişi $1.',
@@ -2090,7 +2090,7 @@ $1',
 # Contributions
 'contributions' => 'İştirakê karberi',
 'contributions-title' => '$1 de iştırakê karberi',
-'mycontris' => 'İştırakê mı',
+'mycontris' => 'İştıraxê mı',
 'contribsub2' => 'Semedê $1 ($2)',
 'nocontribs' => 'Ena kriteriya de vurnayîş çini yo.',
 'uctop' => '(ser)',

@@ -181,7 +181,7 @@ $messages = array(
 
 'errorpagetitle' => 'Dik lo',
 'returnto' => '$1 phekah kir leh rawh.',
-'tagline' => '{{SITENAME}} aţangin',
+'tagline' => '{{SITENAME}} aṭangin',
 'help' => 'Ṭanpuina',
 'search' => 'Zawnna',
 'searchbutton' => 'Zawng rawh le',
@@ -1369,6 +1369,12 @@ Hetah hian [[Special:UnusedCategories|pawl hman lohho]] pholan tel a ni lo.
 'wlshowlast' => 'Darkar $1 kalta-a tihdanglam tilang rawh , ni $2 kalta-a tihdanglam tilang rawh, $3 tilang rawh',
 'watchlist-options' => 'Ralvèn duhdàn',
 
+'enotif_impersonal_salutation' => '{{SITENAME}} hmangtu',
+'changed' => 'tihdanglam a ni ta',
+'created' => 'siam a ni ta',
+'enotif_subject' => '{{SITENAME}} phêk $PAGETITLE tih hi $CHANGEDORCREATED,  $PAGEEDITOR bultum a ni.',
+'enotif_lastvisited' => 'I tlawh hnuhnùn ber hnu lama tihdanglam zawng zawng en i duh chuan $1 en rawh.',
+'enotif_lastdiff' => 'Hë tihdanglamna hi en tùrin $1 thlír rawh.',
 'enotif_anon_editor' => 'hmangtu hriat loh $1',
 
 # Delete
@@ -1376,18 +1382,102 @@ Hetah hian [[Special:UnusedCategories|pawl hman lohho]] pholan tel a ni lo.
 'confirm' => 'Tihchianna',
 'excontent' => 'kentel: "$1"',
 'excontentauthor' => 'kentel: "$1" (kutthawhtu awm chhun "[[Special:Contributions/$2|$2]])',
+'exbeforeblank' => 'tihruah hmaa a thufùn: $1',
+'exblank' => 'phêk ruak a ni',
+'delete-confirm' => '"$1" paihbona',
+'delete-legend' => 'Nuaibona',
+'historywarning' => "'''Vàukhànna:''' I nuaibo tum phêk hian khawih danglam vawi $1{{PLURAL:$1||}} vêl zet a lo tâwk tawh.",
+'confirmdeletetext' => 'Phêk pakhat leh a chanchin-ziak zawng zawng i nuaibo vek dawn mék a ni.
+Hei hi i tih tum rëng a ni a, a hnuleh i hre chiang a, [[{{MediaWiki:Policy-url}}|rèlphung]] dàn zúl i zui ngèi a ni tih finfiah phawt rawh le.',
 'actioncomplete' => 'A zo ta',
 'actionfailed' => 'A tlawlh',
+'deletedtext' => '"$1" nuaibo a ni ta.
+Tün hnäia nuaibo thar chhinchhiahna $2-ah i en thei ang.',
 'dellogpage' => 'Nuaibo chhinchhiahna',
+'dellogpagetext' => 'A hnuaiah hian tün hnaia nuaibo tharho kan rawn chhawp chhuak e.',
+'deletionlog' => 'nuaibo chhinchhiahna',
+'reverted' => 'Awmphung hluiah dah lêt a ni',
+'deletecomment' => 'Chhan:',
+'deleteotherreason' => 'Chhan dang:',
+'deletereasonotherlist' => 'Chhan dang',
+'deletereason-dropdown' => '*Nuaibo chhan hluar zualte
+**Phêk siamtu ngenna
+**Lâkchhàwn phalphung bawhpelhna
+**Inchirhthehna',
+'delete-edit-reasonlist' => 'Nuaibo chhan siamṭhatna',
+'delete-toobig' => 'Hë phêk hian siam danglam a tâwk ngun mangkhèng, vawi $1 {{PLURAL:$1||}} chüang zet.
+Hetiang phêk nuaibo hi hrêk deuh hlek a ni, tum loh puia {{SITENAME}} tihchingpen däl tùrin.',
+'delete-warning-toobig' => 'Hë phêk hian tihdanglam a lo tâwk nasa tawh mangkhèng, vawi $1 {{PLURAL:$1||}} chüang zet.
+Hemi nuaibo hian {{SITENAME}} hriatna-khawlpui hnathawh a tisukuk palh thei; 
+fimkhur zui hräm ang che.',
 
 # Rollback
+'rollback' => 'Siamṭhatna sûtna',
+'rollback_short' => 'Sûtlêtna',
 'rollbacklink' => 'sûtlêtna',
+'rollbackfailed' => 'Sûtlêt a tlawlh',
+'cantrollback' => 'Siamṭhatna a sûtlêt theih loh;
+a siamṭhatu hnuhnüng ber hi hë phêk tawktu awm chhun a la ni tlat.',
+'editcomment' => "Siamṭhatna kaihtawi: \"''\$1''\".",
+'rollback-success' => '$1-in siamṭhana a sûtlêt a;
+$2-in a awmphung ngäiah a dahlêt leh.',
+
+# Edit tokens
+'sessionfailure-title' => 'Hun hman tlawlh!',
 
 # Protect
 'protectlogpage' => 'Venhim chhinchhiahna',
 'protectedarticle' => 'venhim: "[[$1]]"',
+'modifiedarticleprotection' => '"[[$1]]" vènhimphung a thlâk',
+'unprotectedarticle' => '"[[$1]]" laka vènhimna a nuaibo',
+'movedarticleprotection' => 'vènhimna herremphung "[[$2]]" aṭang "[[$1]]"-ah a sawn',
+'protect-title' => '"$1" vènhimphung thlâkna',
+'protect-title-notallowed' => '"$1" vènhimphung thlìrna',
+'prot_1movedto2' => '[[$1]] kha [[$2]]-ah sawn a ni',
+'protect-badnamespace-title' => 'Hminghmun vènhim theih loh',
+'protect-badnamespace-text' => 'Hë hminghmuna phêkte hi vènhim theih a ni lo.',
+'protect-legend' => 'Vènhim tihchianna',
+'protectcomment' => 'Chhan:',
+'protectexpiry' => 'Tàwp hun:',
+'protect_expiry_invalid' => 'A tàwp hun i sawi kha a hman theih loh.',
+'protect_expiry_old' => 'A tàwp hun i thlan kha a thleng tawh!',
+'protect-unchain-permissions' => 'Vènhimna duhthlan dang chhuah zalenna',
+'protect-expiring' => '$1 (UTC) thleng',
+'protect-expiring-local' => '$1 thleng',
+'protect-expiry-indefinite' => 'tiamchin awm lo',
+'protect-cascade' => 'Hë phêka ziahhnanho pawh vénghim vek rawh (vènhim inkhaidiat)',
+'protect-cantedit' => 'Hë phêk vènhimphung hi i thlâk thei lo, siamṭhat phalna i neih loh vàng a ni.',
+'protect-othertime' => 'Hun dang:',
+'protect-othertime-op' => 'hun dang',
+'protect-existing-expiry' => 'Tàwphun awm sa: $3, $2',
+'protect-otherreason' => 'Chhan dang:',
+'protect-otherreason-op' => 'Chhan dang',
+'protect-dropdown' => '*Vènhim chhan lär zualte
+**Inchirhthehna hlüar lutuk
+**Infakmawina hleihlûak
+**Siamṭhat inchuhna pawi tham
+̆**Phêk tlawh nasat',
+'protect-edit-reasonlist' => 'Vènhim chhan siamṭhatna',
+'protect-expiry-options' => 'darkar 1:1 hour, ni 1:1 day, kar 1:1 week, kar 2:2 weeks, thla 1:1 month, thla 3:3 months, thla 6:6 months, kum 1:1 year, tiam chin awm lo:infinite',
+'restriction-type' => 'Phalna:',
+'restriction-level' => 'Hrêkphung:',
+'minimum-size' => 'Têtzáwng tiamchin',
+'maximum-size' => 'Lenzáwng bituk:',
+'pagesize' => '(bait)',
+
+# Restrictions (nouns)
+'restriction-edit' => 'Siamṭhatna',
+'restriction-move' => 'Sawnna',
+'restriction-create' => 'Siamna',
+'restriction-upload' => 'Hlànkàina',
+
+# Restriction levels
+'restriction-level-sysop' => 'vènhim pumhlùm',
+'restriction-level-autoconfirmed' => 'hualna',
+'restriction-level-all' => 'a enga pawh',
 
 # Undelete
+'undelete' => 'Phêk nuaibo tawhho thlìrna',
 'undeletelink' => 'enna/ngaiawhtirna',
 'undeleteviewlink' => 'enna',
 'undelete-search-submit' => 'Zawnna',
@@ -1444,6 +1534,7 @@ Hetah hian [[Special:UnusedCategories|pawl hman lohho]] pholan tel a ni lo.
 'ipbreasonotherlist' => 'Chhan dang',
 'ipbsubmit' => 'Hmangtu dangbet rawh',
 'ipboptions' => 'darkar 2:2 hours, ni 1:1 day, ni 3:3 days, kar 1:1 week, kar 2:2 weeks, thla 1:1 month, thla 3:3 months, thla 6:6 months, kum 1:1 year, tiam chin awm lo:infinite',
+'ipb-blockingself' => 'Nangmah leh nangmah i indäl dáwn! I duh chiah maw?',
 'ipblocklist' => 'Hmangtu danbeh-ho',
 'ipblocklist-legend' => 'Hmangtu danbeh zawng rawh',
 'blocklink' => 'danbehna',

@@ -1908,7 +1908,6 @@ $1',
 'http-curl-error' => 'Ошибка обращения к URL: $1',
 'http-host-unreachable' => 'Невозможно обратиться по указанному URL.',
 'http-bad-status' => 'Во время обработки HTTP-запроса обнаружена проблема: $1 $2',
-'http-truncated-body' => 'Тело запроса было получено лишь частично.',
 
 # Some likely curl errors. More could be added from <http://curl.haxx.se/libcurl/c/libcurl-errors.html>
 'upload-curl-error6' => 'Невозможно обратить по указанному адресу.',

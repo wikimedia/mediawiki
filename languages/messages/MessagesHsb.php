@@ -1710,7 +1710,6 @@ Za optimalnu wěstotu je img_auth.php znjemóžnjeny.',
 'http-curl-error' => 'Zmylk při wołanju URL: $1',
 'http-host-unreachable' => 'URL njeda so docpěć.',
 'http-bad-status' => 'Problem je za HTTP-naprašowanje wustupił: $1 $2',
-'http-truncated-body' => 'Wobsah naprašowanja je so jenož zdźěla přijał.',
 
 # Some likely curl errors. More could be added from <http://curl.haxx.se/libcurl/c/libcurl-errors.html>
 'upload-curl-error6' => 'URL docpějomny njeje.',

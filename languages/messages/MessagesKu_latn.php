@@ -1999,7 +1999,7 @@ Lê eger ev *ne* tu bû, li lînkê netikîne. Ev e-nameya di rojê $4 da netê 
 'deletedwhileediting' => 'Hîşyar: Piştî te guherandinê xwe dest pê kir ev rûpela hate jêbirin!',
 'confirmrecreate' => "Piştî te dest bi guherandinê kir, bikarhêner [[User:$1|$1]] ([[User talk:$1|gotûbêj]]) ev rûpel jê bir. Sedema jêbirinê ev bû:
 : ''$2''
-Ji kerema xwe zanibe ku tu bi rastî dixwazî vê rûpelê dîsa çêkî",
+Ji kerema xwe zanibe ku tu bi rastî dixwazî vê rûpelê dîsa çêkî.",
 'recreate' => 'Dîsa çêke',
 
 # action=purge

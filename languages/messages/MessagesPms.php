@@ -2498,8 +2498,8 @@ Che as sërna, për piasì, un nòm diferent për st'artìcol.",
 'delete_and_move_text' => "==A fa da manca dë scancelé==
 
 L'artìcol ëd destinassion «[[:$1]]» a-i é già. Veul-lo scancelelo për avèj ëd pòst për tramudé l'àutr?",
-'delete_and_move_confirm' => 'É, scancela la pàgina',
-'delete_and_move_reason' => 'Scancelà për liberé ël pòst për tramudé "[[$1]]"',
+'delete_and_move_confirm' => 'É, scancelé la pàgina',
+'delete_and_move_reason' => 'Scancelà për liberé ël pòst për tramudé «[[$1]]»',
 'selfmove' => "Tìtol neuv e tìtol vej a resto midem antra lor; as peul pa tramudesse na pàgina butand-la andoa che a l'é già.",
 'immobile-source-namespace' => 'As peul pa tramudé ëd pàgine ant ël namespace "$1"',
 'immobile-target-namespace' => 'As peul pa tramudé ëd pàgine ant ël namespace "$1"',
@@ -3665,8 +3665,8 @@ Dësnò, a peule dovré ël formlari semplificà sì-sota. Sò coment a sarà gi
 'duration-days' => '$1 {{PLURAL:$1|di|di}}',
 'duration-weeks' => '$1 {{PLURAL:$1|sman-a|sman-e}}',
 'duration-years' => '$1 {{PLURAL:$1|ann|agn}}',
-'duration-decades' => '$1 {{PLURAL:$1|décad|décad}}',
+'duration-decades' => "$1 {{PLURAL:$1|desen-a d'agn|desen-e d'agn}}",
 'duration-centuries' => '$1 {{PLURAL:$1|sécol|sécoj}}',
-'duration-millennia' => '$1 {{PLURAL:$1|mileni|mileni}}',
+'duration-millennia' => '$1 {{PLURAL:$1|milenari|milenari}}',
 
 );

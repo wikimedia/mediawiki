@@ -1874,7 +1874,6 @@ Aby bolo zabezpečenie optimálne, img_auth.php je vypnutý.',
 'http-curl-error' => 'Chyba pri sťahovaní URL: $1',
 'http-host-unreachable' => 'URL nie je dostupný',
 'http-bad-status' => 'Počas požiadavky HTTP nastal problém: $1 $2',
-'http-truncated-body' => 'Telo požiadavky bolo prijaté iba čiastočne.',
 
 # Some likely curl errors. More could be added from <http://curl.haxx.se/libcurl/c/libcurl-errors.html>
 'upload-curl-error6' => 'Nedostupný URL',

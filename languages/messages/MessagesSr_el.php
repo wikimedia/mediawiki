@@ -1942,7 +1942,6 @@ Radi sigurnosti, img_auth.php je onemogućen.',
 'http-curl-error' => 'Greška pri otvaranju adrese: $1',
 'http-host-unreachable' => 'Ne mogu da pristupim adresi.',
 'http-bad-status' => 'Došlo je do problema tokom zahteva HTTP: $1 $2',
-'http-truncated-body' => 'Sadržaj zahteva nije primljen u celosti.',
 
 # Some likely curl errors. More could be added from <http://curl.haxx.se/libcurl/c/libcurl-errors.html>
 'upload-curl-error6' => 'Ne mogu da pristupim adresi',

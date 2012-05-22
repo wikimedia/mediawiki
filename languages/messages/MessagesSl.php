@@ -1804,7 +1804,6 @@ Za optimalno varnost je img_auth.php onemogočen.',
 'http-curl-error' => 'Napaka pri doseganju URL: $1',
 'http-host-unreachable' => 'Ni mogoče doseči URL.',
 'http-bad-status' => 'Med zahtevo HTTP je prišlo do težave: $1 $2',
-'http-truncated-body' => 'Prejeli smo samo del telesa zahteve.',
 
 # Some likely curl errors. More could be added from <http://curl.haxx.se/libcurl/c/libcurl-errors.html>
 'upload-curl-error6' => 'Ni možno doseči URL',

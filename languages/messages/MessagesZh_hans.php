@@ -1753,7 +1753,6 @@ $1',
 'http-curl-error' => '撷取URL时出错：$1',
 'http-host-unreachable' => '无法到达URL。',
 'http-bad-status' => '进行HTTP请求时出现问题：$1 $2',
-'http-truncated-body' => '只收到部分请求的正文。',
 
 # Some likely curl errors. More could be added from <http://curl.haxx.se/libcurl/c/libcurl-errors.html>
 'upload-curl-error6' => '无法访问URL',

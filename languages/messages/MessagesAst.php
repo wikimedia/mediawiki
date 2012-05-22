@@ -1688,7 +1688,6 @@ Pa una meyor seguridá, img_auth.php ta desactiváu.",
 'http-curl-error' => 'Error al baxar la URL: $1',
 'http-host-unreachable' => 'Nun se pudo acceder a la URL.',
 'http-bad-status' => 'Hebo un problema demientres la llamada HTTP: $1 $2',
-'http-truncated-body' => 'El cuerpu solicitáu recibióse namái parcialmente.',
 
 # Some likely curl errors. More could be added from <http://curl.haxx.se/libcurl/c/libcurl-errors.html>
 'upload-curl-error6' => 'Nun se pudo acceder a la URL',

@@ -1876,7 +1876,6 @@ Vì lý do bảo mật, img_auth.php đã bị tắt.',
 'http-curl-error' => 'Có lỗi khi truy xuất URL: $1',
 'http-host-unreachable' => 'Không thể truy cập URL',
 'http-bad-status' => 'Có vấn đề khi yêu cầu HTTP: $1 $2',
-'http-truncated-body' => 'Chỉ nhận được một phần của thân yêu cầu.',
 
 # Some likely curl errors. More could be added from <http://curl.haxx.se/libcurl/c/libcurl-errors.html>
 'upload-curl-error6' => 'Không thể truy cập URL',

@@ -1776,7 +1776,6 @@ Pro securitate optimal, img_auth.php es disactivate.',
 'http-curl-error' => 'Error al obtener datos del URL: $1',
 'http-host-unreachable' => 'Non poteva acceder al URL',
 'http-bad-status' => 'Un problema occurreva durante le requesta HTTP: $1 $2',
-'http-truncated-body' => 'Le corpore del requesta ha essite solo partialmente recipite.',
 
 # Some likely curl errors. More could be added from <http://curl.haxx.se/libcurl/c/libcurl-errors.html>
 'upload-curl-error6' => 'Non poteva acceder al URL',

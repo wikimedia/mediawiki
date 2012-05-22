@@ -1737,7 +1737,6 @@ Per seguretat, img_auth.php està desactivat.",
 'http-curl-error' => "Error en recuperar l'URL: $1",
 'http-host-unreachable' => "No s'ha pogut accedir a l'URL.",
 'http-bad-status' => 'Hi ha hagut un problema durant la petició HTTP: $1 $2',
-'http-truncated-body' => "El cos de la sol·licitud només s'ha rebut parcialment.",
 
 # Some likely curl errors. More could be added from <http://curl.haxx.se/libcurl/c/libcurl-errors.html>
 'upload-curl-error6' => "No s'ha pogut accedir a l'URL",

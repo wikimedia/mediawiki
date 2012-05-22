@@ -1874,7 +1874,6 @@ Pentru securitate optimă, img_auth.php este dezactivat.',
 'http-curl-error' => 'Eroare la preluarea adresei URL: $1',
 'http-host-unreachable' => 'Adresa URL nu a putut fi accesată.',
 'http-bad-status' => 'A apărut o problemă în timpul solicitării HTTP: $1 $2',
-'http-truncated-body' => 'Corpul cererii a fost recepționat doar parțial.',
 
 # Some likely curl errors. More could be added from <http://curl.haxx.se/libcurl/c/libcurl-errors.html>
 'upload-curl-error6' => 'Nu pot găsi adresa URL',

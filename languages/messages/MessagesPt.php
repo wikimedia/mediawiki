@@ -1929,7 +1929,6 @@ Para optimizar a segurança, o img_auth.php está impossibilitado de executar.',
 'http-curl-error' => 'Ocorreu um erro ao aceder à URL: $1',
 'http-host-unreachable' => 'Não foi possível aceder à URL',
 'http-bad-status' => 'Ocorreu um problema durante o pedido HTTP: $1 $2',
-'http-truncated-body' => 'O corpo da solicitação foi recebido apenas parcialmente.',
 
 # Some likely curl errors. More could be added from <http://curl.haxx.se/libcurl/c/libcurl-errors.html>
 'upload-curl-error6' => 'Não foi possível aceder à URL',
