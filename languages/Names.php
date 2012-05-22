@@ -96,6 +96,7 @@
 	'fa' => 'فارسی',	# Persian
 	'ff' => 'Fulfulde',		# Fulfulde, Maasina
 	'fi' => 'Suomi',		# Finnish
+	'fit' => 'Meänkieli', # Tornedalen Finnish
 	'fiu-vro' => 'Võro',    # Võro (deprecated code, 'vro' in ISO 639-3 since 2009-01-16)
 	'fj' => 'Na Vosa Vakaviti',	# Fijian
 	'fo' => 'Føroyskt',	# Faroese
