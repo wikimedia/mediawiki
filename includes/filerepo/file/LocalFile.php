@@ -1055,14 +1055,6 @@ class LocalFile extends File {
 		$props['timestamp'] = wfTimestamp( TS_MW, $timestamp ); // DB -> TS_MW
 		$this->setProps( $props );
 
-		# Delete thumbnails
-		wfProfileIn( __METHOD__ . '-purge' );
-		$this->purgeThumbnails();
-		wfProfileOut( __METHOD__ . '-purge' );
-
-		# The file is already on its final location, remove it from the squid cache
-		SquidUpdate::purge( array( $this->getURL() ) );
-
 		# Fail now if the file isn't there
 		if ( !$this->fileExists ) {
 			wfDebug( __METHOD__ . ": File " . $this->getRel() . " went missing!\n" );
@@ -1196,6 +1188,16 @@ class LocalFile extends File {
 		# in case of a rollback there is an usable file from memcached
 		# which in fact doesn't really exist (bug 24978)
 		$this->saveToCache();
+
+		if ( $reupload ) {
+			# Delete old thumbnails
+			wfProfileIn( __METHOD__ . '-purge' );
+			$this->purgeThumbnails();
+			wfProfileOut( __METHOD__ . '-purge' );
+
+			# Remove the old file from the squid cache
+			SquidUpdate::purge( array( $this->getURL() ) );
+		}
 
 		# Hooks, hooks, the magic of hooks...
 		wfProfileIn( __METHOD__ . '-hooks' );
