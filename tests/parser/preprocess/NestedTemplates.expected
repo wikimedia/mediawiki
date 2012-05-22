@@ -1,0 +1,90 @@
+<root><template><title>vorlage</title></template>
+
+<tplarg lineStart="1"><title>argument</title></tplarg>
+
+Nach [[:meta:Help:Expansion#XML parse tree]]
+{<tplarg><title>vorlagenname</title></tplarg>}
+<template lineStart="1"><title> <template><title>vorlagenname</title></template></title></template>
+<template lineStart="1"><title><template><title>vorlagenname</title></template> </title></template>
+<template lineStart="1"><title><template><title>vorlagenname</title></template>erweiterung</title></template>
+
+<template lineStart="1"><title><tplarg><title>vorlagenname</title></tplarg></title></template>
+<tplarg lineStart="1"><title> <template><title>vorlagenname</title></template></title></tplarg>
+<template lineStart="1"><title> <tplarg><title>vorlagenname</title></tplarg></title></template>
+<tplarg lineStart="1"><title><template><title>vorlagenname</title></template> </title></tplarg>
+<template lineStart="1"><title><tplarg><title>vorlagenname</title></tplarg> </title></template>
+
+nur etwas erweitert
+<tplarg lineStart="1"><title><tplarg><title>vorlagenname</title></tplarg></title></tplarg>
+<tplarg lineStart="1"><title> <tplarg><title>vorlagenname</title></tplarg></title></tplarg>
+<tplarg lineStart="1"><title><tplarg><title>vorlagenname</title></tplarg> </title></tplarg>
+<template lineStart="1"><title> {<tplarg><title>vorlagenname</title></tplarg></title></template>}
+{<tplarg><title> <template><title>vorlagenname</title></template></title></tplarg>}
+<template lineStart="1"><title> <template><title> <template><title>vorlagenname</title></template></title></template></title></template>
+{<tplarg><title> <template><title>vorlagenname</title></template>} </title></tplarg>
+{<template><title><tplarg><title>vorlagenname</title></tplarg>} </title></template>
+{<tplarg><title><template><title>vorlagenname</title></template> </title></tplarg>}
+<template lineStart="1"><title> <template><title><template><title>vorlagenname</title></template> </title></template></title></template>
+<tplarg lineStart="1"><title> {<template><title>vorlagenname</title></template> </title></tplarg>}
+
+{<tplarg><title><tplarg><title> </title></tplarg></title></tplarg>}
+
+<template lineStart="1"><title><tplarg><title><tplarg><title> </title></tplarg></title></tplarg></title></template>
+<tplarg lineStart="1"><title><tplarg><title><template><title> </title></template> </title></tplarg></title></tplarg>
+<template lineStart="1"><title><tplarg><title><tplarg><title> </title></tplarg> </title></tplarg></title></template>
+{{<tplarg><title><tplarg><title> </title></tplarg>} </title></tplarg>}
+<tplarg lineStart="1"><title><template><title><tplarg><title> </title></tplarg></title></template> </title></tplarg>
+<template lineStart="1"><title><tplarg><title><tplarg><title> </title></tplarg></title></tplarg> </title></template>
+{<tplarg><title><template><title><template><title> </title></template> </title></template> </title></tplarg>}
+{<template><title><tplarg><title><template><title> </title></template> </title></tplarg>} </title></template>
+{<template><title><template><title><tplarg><title> </title></tplarg>} </title></template> </title></template>
+<template lineStart="1"><title><tplarg><title><tplarg><title> </title></tplarg> </title></tplarg> </title></template>
+<tplarg lineStart="1"><title><template><title><tplarg><title> </title></tplarg> </title></template> </title></tplarg>
+<tplarg lineStart="1"><title><tplarg><title><template><title> </title></template> </title></tplarg> </title></tplarg>
+<template lineStart="1"><title><template><title><template><title><template><title> </title></template> </title></template> </title></template> </title></template>
+
+<template lineStart="1"><title>vorlage</title></template>
+
+<tplarg lineStart="1"><title>argument</title></tplarg>
+
+Nach [[:meta:Help:Expansion#XML parse tree]]
+{<tplarg><title>vorlagenname</title></tplarg>}
+<template lineStart="1"><title> <template><title>vorlagenname</title></template></title></template>
+<template lineStart="1"><title><template><title>vorlagenname</title></template> </title></template>
+<template lineStart="1"><title><template><title>vorlagenname</title></template>erweiterung</title></template>
+
+<template lineStart="1"><title><tplarg><title>vorlagenname</title></tplarg></title></template>
+<tplarg lineStart="1"><title> <template><title>vorlagenname</title></template></title></tplarg>
+<template lineStart="1"><title> <tplarg><title>vorlagenname</title></tplarg></title></template>
+<tplarg lineStart="1"><title><template><title>vorlagenname</title></template> </title></tplarg>
+<template lineStart="1"><title><tplarg><title>vorlagenname</title></tplarg> </title></template>
+
+nur etwas erweitert
+<tplarg lineStart="1"><title><tplarg><title>vorlagenname</title></tplarg></title></tplarg>
+<tplarg lineStart="1"><title> <tplarg><title>vorlagenname</title></tplarg></title></tplarg>
+<tplarg lineStart="1"><title><tplarg><title>vorlagenname</title></tplarg> </title></tplarg>
+<template lineStart="1"><title> {<tplarg><title>vorlagenname</title></tplarg></title></template>}
+{<tplarg><title> <template><title>vorlagenname</title></template></title></tplarg>}
+<template lineStart="1"><title> <template><title> <template><title>vorlagenname</title></template></title></template></title></template>
+{<tplarg><title> <template><title>vorlagenname</title></template>} </title></tplarg>
+{<template><title><tplarg><title>vorlagenname</title></tplarg>} </title></template>
+{<tplarg><title><template><title>vorlagenname</title></template> </title></tplarg>}
+<template lineStart="1"><title> <template><title><template><title>vorlagenname</title></template> </title></template></title></template>
+<tplarg lineStart="1"><title> {<template><title>vorlagenname</title></template> </title></tplarg>}
+
+{<tplarg><title><tplarg><title> </title></tplarg></title></tplarg>}
+
+<template lineStart="1"><title><tplarg><title><tplarg><title> </title></tplarg></title></tplarg></title></template>
+<tplarg lineStart="1"><title><tplarg><title><template><title> </title></template> </title></tplarg></title></tplarg>
+<template lineStart="1"><title><tplarg><title><tplarg><title> </title></tplarg> </title></tplarg></title></template>
+{{<tplarg><title><tplarg><title> </title></tplarg>} </title></tplarg>}
+<tplarg lineStart="1"><title><template><title><tplarg><title> </title></tplarg></title></template> </title></tplarg>
+<template lineStart="1"><title><tplarg><title><tplarg><title> </title></tplarg></title></tplarg> </title></template>
+{<tplarg><title><template><title><template><title> </title></template> </title></template> </title></tplarg>}
+{<template><title><tplarg><title><template><title> </title></template> </title></tplarg>} </title></template>
+{<template><title><template><title><tplarg><title> </title></tplarg>} </title></template> </title></template>
+<template lineStart="1"><title><tplarg><title><tplarg><title> </title></tplarg> </title></tplarg> </title></template>
+<tplarg lineStart="1"><title><template><title><tplarg><title> </title></tplarg> </title></template> </title></tplarg>
+<tplarg lineStart="1"><title><tplarg><title><template><title> </title></template> </title></tplarg> </title></tplarg>
+<template lineStart="1"><title><template><title><template><title><template><title> </title></template> </title></template> </title></template> </title></template>
+</root>

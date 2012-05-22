@@ -641,19 +641,13 @@ class Preprocessor_Hash implements Preprocessor {
 					$piece->parts = array( new PPDPart_Hash );
 					$piece->count -= $matchingCount;
 					# do we still qualify for any callback with remaining count?
-					$names = $rules[$piece->open]['names'];
-					$skippedBraces = 0;
-					$enclosingAccum =& $accum;
-					while ( $piece->count ) {
-						if ( array_key_exists( $piece->count, $names ) ) {
-							$stack->push( $piece );
-							$accum =& $stack->getAccum();
-							break;
-						}
-						--$piece->count;
-						$skippedBraces ++;
+					$min = $rules[$piece->open]['min'];
+					if ( $piece->count >= $min ) {
+						$stack->push( $piece );
+						$accum =& $stack->getAccum();
+					} else {
+						$accum .= str_repeat( $piece->open, $piece->count );
 					}
-					$enclosingAccum->addLiteral( str_repeat( $piece->open, $skippedBraces ) );
 				}
 
 				extract( $stack->getFlags() );
