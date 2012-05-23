@@ -20,10 +20,6 @@
  * @file
  */
 
-if ( !defined( 'MEDIAWIKI' ) ) {
-	die( 1 );
-}
-
 require_once dirname( __FILE__ ) . '/Services_JSON.php';
 
 /**

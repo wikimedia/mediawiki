@@ -22,8 +22,6 @@
  * @author Roan Kattouw
  */
 
-defined( 'MEDIAWIKI' ) || die( 1 );
-
 /**
  * Abstraction for resource loader modules which pull from wiki pages
  *

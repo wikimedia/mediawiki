@@ -20,10 +20,6 @@
  * @file
  */
 
-if ( !defined( 'MEDIAWIKI' ) ) {
-	die( 1 );
-}
-
 /**
  * This class should be covered by a general architecture document which does
  * not exist as of January 2011.  This is one of the Core classes and should

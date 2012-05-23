@@ -21,9 +21,6 @@
  * @ingroup SpecialPage
  */
 
-if (!defined('MEDIAWIKI'))
-	die;
-
 /**
  * A special page that lists tags for edits
  *
