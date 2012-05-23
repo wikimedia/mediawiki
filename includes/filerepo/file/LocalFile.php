@@ -440,6 +440,7 @@ class LocalFile extends File {
 
 		$dbw->update( 'image',
 			array(
+				'img_size'       => $this->size, // sanity
 				'img_width'      => $this->width,
 				'img_height'     => $this->height,
 				'img_bits'       => $this->bits,
