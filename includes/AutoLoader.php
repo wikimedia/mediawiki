@@ -441,6 +441,7 @@ $wgAutoloadLocalClasses = array(
 	'DatabaseSqlite' => 'includes/db/DatabaseSqlite.php',
 	'DatabaseSqliteStandalone' => 'includes/db/DatabaseSqlite.php',
 	'DatabaseType' => 'includes/db/Database.php',
+	'DBAO' => 'includes/db/DBAO.php',
 	'DBConnectionError' => 'includes/db/DatabaseError.php',
 	'DBError' => 'includes/db/DatabaseError.php',
 	'DBObject' => 'includes/db/DatabaseUtility.php',

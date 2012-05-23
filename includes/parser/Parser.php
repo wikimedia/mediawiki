@@ -3531,7 +3531,7 @@ class Parser {
 			# Get the revision
 			$rev = $id
 				? Revision::newFromId( $id )
-				: Revision::newFromTitle( $title );
+				: Revision::newFromTitle( $title, false, Revision::AVOID_MASTER );
 			$rev_id = $rev ? $rev->getId() : 0;
 			# If there is no current revision, there is no page
 			if ( $id === false && !$rev ) {
