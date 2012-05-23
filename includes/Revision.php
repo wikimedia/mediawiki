@@ -52,6 +52,8 @@ class Revision {
 	const FOR_THIS_USER = 2;
 	const RAW = 3;
 
+	const AVOID_MASTER = 1; // avoiding querying the master DB
+
 	/**
 	 * Load a page revision from a given revision ID number.
 	 * Returns null if no such revision can be found.
@@ -68,11 +70,15 @@ class Revision {
 	 * that's attached to a given title. If not attached
 	 * to that title, will return null.
 	 *
+	 * $flags include:
+	 *      Revision::AVOID_MASTER : Avoid master queries; data may be stale
+	 *
 	 * @param $title Title
 	 * @param $id Integer (optional)
+	 * @param $flags Integer Bitfield (optional)
 	 * @return Revision or null
 	 */
-	public static function newFromTitle( $title, $id = 0 ) {
+	public static function newFromTitle( $title, $id = 0, $flags = 0 ) {
 		$conds = array(
 			'page_namespace' => $title->getNamespace(),
 			'page_title' 	 => $title->getDBkey()
@@ -80,7 +86,7 @@ class Revision {
 		if ( $id ) {
 			// Use the specified ID
 			$conds['rev_id'] = $id;
-		} elseif ( wfGetLB()->getServerCount() > 1 ) {
+		} elseif ( !( $flags & self::AVOID_MASTER ) && wfGetLB()->getServerCount() > 1 ) {
 			// Get the latest revision ID from the master
 			$dbw = wfGetDB( DB_MASTER );
 			$latest = $dbw->selectField( 'page', 'page_latest', $conds, __METHOD__ );
@@ -100,15 +106,19 @@ class Revision {
 	 * that's attached to a given page ID.
 	 * Returns null if no such revision can be found.
 	 *
+	 * $flags include:
+	 *      Revision::AVOID_MASTER : Avoid master queries; data may be stale
+	 *
 	 * @param $revId Integer
 	 * @param $pageId Integer (optional)
+	 * @param $flags Integer Bitfield (optional)
 	 * @return Revision or null
 	 */
-	public static function newFromPageId( $pageId, $revId = 0 ) {
+	public static function newFromPageId( $pageId, $revId = 0, $flags = 0 ) {
 		$conds = array( 'page_id' => $pageId );
 		if ( $revId ) {
 			$conds['rev_id'] = $revId;
-		} elseif ( wfGetLB()->getServerCount() > 1 ) {
+		} elseif ( !( $flags & self::AVOID_MASTER ) && wfGetLB()->getServerCount() > 1 ) {
 			// Get the latest revision ID from the master
 			$dbw = wfGetDB( DB_MASTER );
 			$latest = $dbw->selectField( 'page', 'page_latest', $conds, __METHOD__ );
