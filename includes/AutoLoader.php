@@ -427,6 +427,9 @@ $wgAutoloadLocalClasses = array(
 	'IContextSource' => 'includes/context/IContextSource.php',
 	'RequestContext' => 'includes/context/RequestContext.php',
 
+	# includes/dao
+	'IDBAccessObject' => 'includes/dao/IDBAccessObject.php',
+
 	# includes/db
 	'Blob' => 'includes/db/DatabaseUtility.php',
 	'ChronologyProtector' => 'includes/db/LBFactory.php',
