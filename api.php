@@ -1,9 +1,16 @@
 <?php
-
 /**
- * API for MediaWiki 1.8+
+ * This file is the entry point for all API queries.
  *
- * Copyright (C) 2006 Yuri Astrakhan <Firstname><Lastname>@gmail.com
+ * It begins by checking whether the API is enabled on this wiki; if not,
+ * it informs the user that s/he should set $wgEnableAPI to true and exits.
+ * Otherwise, it constructs a new ApiMain using the parameter passed to it
+ * as an argument in the URL ('?action=') and with write-enabled set to the
+ * value of $wgEnableWriteAPI as specified in LocalSettings.php.
+ * It then invokes "execute()" on the ApiMain object instance, which
+ * produces output in the format sepecified in the URL.
+ *
+ * Copyright © 2006 Yuri Astrakhan <Firstname><Lastname>@gmail.com
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -21,17 +28,6 @@
  * http://www.gnu.org/copyleft/gpl.html
  *
  * @file
- */
-
-/**
- * This file is the entry point for all API queries. It begins by checking
- * whether the API is enabled on this wiki; if not, it informs the user that
- * s/he should set $wgEnableAPI to true and exits. Otherwise, it constructs
- * a new ApiMain using the parameter passed to it as an argument in the URL
- * ('?action=') and with write-enabled set to the value of $wgEnableWriteAPI
- * as specified in LocalSettings.php. It then invokes "execute()" on the
- * ApiMain object instance, which produces output in the format sepecified
- * in the URL.
  */
 
 // So extensions (and other code) can check whether they're running in API mode
