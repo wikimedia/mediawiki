@@ -214,16 +214,13 @@ abstract class Content {
 	}
 
 	/**
-	 * Diff the content object with what is currently stored in the database.
-	 * If it is not currently stored, it will be diffed with an empty object.
+	 * Diff this content object with another content object..
 	 *
 	 * @since WD.diff
 	 *
-	 * @return ContentDiff
+	 * @return DiffResult
 	 */
-	public function diffToDatabase() {
-		// TODO
-	}
+	public abstract function diff( Content $that );
 
 	/**
 	 * Returns true if this Content objects is conceptually equivalent to the given Content object.
@@ -575,6 +572,38 @@ abstract class TextContent extends Content {
 	}
 
 	protected abstract function getHtml( );
+
+	/**
+	 * Diff this content object with another content object..
+	 *
+	 * @since WD.diff
+	 *
+	 * @param Content $that the other content object to compare this content object to
+	 * @param Language $lang the language object to use for text segmentation. If not given, $wgContentLang is used.
+	 *
+	 * @return DiffResult a diff representing the changes that would have to be made to this content object
+	 *         to make it equal to $that.
+	 */
+	public function diff( Content $that, Language $lang = null ) {
+		global $wgContLang;
+
+		$this->checkModelID( $that->getModel() );
+
+		#@todo: could implement this in DifferenceEngine and just delegate here?
+
+		if ( !$lang ) $lang = $wgContLang;
+
+		$otext = $this->getNativeData();
+		$ntext = $this->getNativeData();
+
+		# Note: Use native PHP diff, external engines don't give us abstract output
+		$ota = explode( "\n", $wgContLang->segmentForDiff( $otext ) );
+		$nta = explode( "\n", $wgContLang->segmentForDiff( $ntext ) );
+
+		$diffs = new Diff( $ota, $nta );
+		return $diff;
+	}
+
 
 }
 

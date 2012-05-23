@@ -751,9 +751,6 @@ class DiffResult {
 	/**
 	 * Get the closing set of lines.
 	 *
-	 * This reconstructs the $to_lines parameter passed to the
-	 * constructor.
-	 *
 	 * @return array The sequence of strings.
 	 */
 	function closing() {
