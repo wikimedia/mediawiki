@@ -48,12 +48,14 @@ $namespaceNames = array(
 );
 
 $namespaceAliases = array(
-        # Aliases for Latin script namespaces
+	# Aliases for Latin script namespaces
 	"Medija"                  => NS_MEDIA,
 	"Posebno"                 => NS_SPECIAL,
 	"Razgovor"                => NS_TALK,
 	"Korisnik"                => NS_USER,
+	'Korisnica'               => NS_USER,
 	"Razgovor_sa_korisnikom"  => NS_USER_TALK,
+	'Razgovor_sa_korisnicom'  => NS_USER_TALK,
 	"Razgovor_o_$1"           => NS_PROJECT_TALK,
 	"Slika"                   => NS_FILE,
 	"Razgovor_o_slici"        => NS_FILE_TALK,
@@ -73,6 +75,10 @@ $namespaceAliases = array(
 	'Разговор_о_МедијаВикију' => NS_MEDIAWIKI_TALK,
 );
 
+$namespaceGenderAliases = array(
+	NS_USER      => array( 'male' => 'Корисник', 'female' => 'Корисница' ),
+	NS_USER_TALK => array( 'male' => 'Разговор_са_корисником', 'female' => 'Разговор_са_корисницом' ),
+);
 
 $extraUserToggles = array(
 	'nolangconversion',
@@ -2960,7 +2966,7 @@ $1',
 'delete_and_move' => 'Обриши и премести',
 'delete_and_move_text' => '== Потребно брисање ==
 
-Одредишна страница „[[:$1]]“ већ постоји. 
+Одредишна страница „[[:$1]]“ већ постоји.
 Желите ли да је обришете да бисте ослободили место за преусмерење?',
 'delete_and_move_confirm' => 'Да, обриши страницу',
 'delete_and_move_reason' => 'Обрисано да се ослободи место за премештање из „[[$1]]“',

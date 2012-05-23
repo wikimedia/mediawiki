@@ -46,7 +46,9 @@ $namespaceAliases = array(
 	"Посебно"                 => NS_SPECIAL,
 	"Разговор"                => NS_TALK,
 	"Корисник"                => NS_USER,
+	'Корисница'               => NS_USER,
 	"Разговор_са_корисником"  => NS_USER_TALK,
+	'Разговор_са_корисницом'  => NS_USER_TALK,
 	"Разговор_о_$1"           => NS_PROJECT_TALK,
 	"Слика"                   => NS_FILE,
 	"Разговор_о_слици"        => NS_FILE_TALK,
@@ -62,6 +64,11 @@ $namespaceAliases = array(
 	'Medija'                  => NS_MEDIA,
 	'Slika'                   => NS_FILE,
 	'Razgovor_o_slici'        => NS_FILE_TALK,
+);
+
+$namespaceGenderAliases = array(
+	NS_USER      => array( 'male' => 'Korisnik', 'female' => 'Korisnica' ),
+	NS_USER_TALK => array( 'male' => 'Razgovor_sa_korisnikom', 'female' => 'Razgovor_sa_korisnicom' ),
 );
 
 $extraUserToggles = array(
@@ -2868,7 +2875,7 @@ Ručno ih spojite.'''",
 'delete_and_move' => 'Obriši i premesti',
 'delete_and_move_text' => '== Potrebno brisanje ==
 
-Odredišna stranica „[[:$1]]“ već postoji. 
+Odredišna stranica „[[:$1]]“ već postoji.
 Želite li da je obrišete da biste oslobodili mesto za preusmerenje?',
 'delete_and_move_confirm' => 'Da, obriši stranicu',
 'delete_and_move_reason' => 'Obrisano da se oslobodi mesto za premeštanje iz „[[$1]]“',
