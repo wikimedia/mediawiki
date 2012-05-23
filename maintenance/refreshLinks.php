@@ -220,7 +220,7 @@ class RefreshLinks extends Maintenance {
 
 		$context = RequestContext::getMain();
 
-		$updates = $content->getSecondaryDataUpdates( $context );
+		$updates = $parserOutput->getSecondaryDataUpdates( $page->getTitle(), false );
 		DataUpdate::runUpdates( $updates );
 
 		$dbw->commit( __METHOD__ );

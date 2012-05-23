@@ -32,6 +32,8 @@ class WikiPageTest extends MediaWikiTestCase {
 	
 	public function setUp() {
 		$this->pages_to_delete = array();
+
+		LinkCache::singleton()->clear(); # avoid cached redirect status, etc
 	}
 
 	public function tearDown() {
@@ -48,6 +50,10 @@ class WikiPageTest extends MediaWikiTestCase {
 		}
 	}
 
+	/**
+	 * @param Title $title
+	 * @return WikiPage
+	 */
 	protected function newPage( $title ) {
 		if ( is_string( $title ) ) $title = Title::newFromText( $title );
 
@@ -58,9 +64,23 @@ class WikiPageTest extends MediaWikiTestCase {
 		return $p;
 	}
 
+
+	/**
+	 * @param String|Title|WikiPage $page
+	 * @param String $text
+	 * @param int $model
+	 *
+	 * @return WikiPage
+	 */
 	protected function createPage( $page, $text, $model = null ) {
 		if ( is_string( $page ) ) $page = Title::newFromText( $page );
-		if ( $page instanceof Title ) $page = $this->newPage( $page );
+
+		if ( $page instanceof Title ) {
+			$title = $page;
+			$page = $this->newPage( $page );
+		} else {
+			$title = null;
+		}
 
 		$content = ContentHandler::makeContent( $text, $page->getTitle(), $model );
 		$page->doEditContent( $content, "testing", EDIT_NEW );
@@ -77,12 +97,22 @@ class WikiPageTest extends MediaWikiTestCase {
 		                                        . " nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat.",
 		                                        $title );
 
-		$page->doEditContent( $content, "testing 1" );
+		$page->doEditContent( $content, "[[testing]] 1" );
 
+		$this->assertTrue( $title->getArticleID() > 0, "Title object should have new page id" );
+		$this->assertTrue( $page->getId() > 0, "WikiPage should have new page id" );
 		$this->assertTrue( $title->exists(), "Title object should indicate that the page now exists" );
 		$this->assertTrue( $page->exists(), "WikiPage object should indicate that the page now exists" );
 
 		$id = $page->getId();
+
+		# ------------------------
+		$dbr = wfGetDB( DB_SLAVE );
+		$res = $dbr->select( 'pagelinks', '*', array( 'pl_from' => $id ) );
+		$n = $res->numRows();
+		$res->free();
+
+		$this->assertEquals( 1, $n, 'pagelinks should contain one link from the page' );
 
 		# ------------------------
 		$page = new WikiPage( $title );
@@ -120,12 +150,22 @@ class WikiPageTest extends MediaWikiTestCase {
 		$text = "[[Lorem ipsum]] dolor sit amet, consetetur sadipscing elitr, sed diam "
 		       . " nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat.";
 
-		$page->doEdit( $text, "testing 1" );
+		$page->doEdit( $text, "[[testing]] 1" );
 
+		$this->assertTrue( $title->getArticleID() > 0, "Title object should have new page id" );
+		$this->assertTrue( $page->getId() > 0, "WikiPage should have new page id" );
 		$this->assertTrue( $title->exists(), "Title object should indicate that the page now exists" );
 		$this->assertTrue( $page->exists(), "WikiPage object should indicate that the page now exists" );
 
 		$id = $page->getId();
+
+		# ------------------------
+		$dbr = wfGetDB( DB_SLAVE );
+		$res = $dbr->select( 'pagelinks', '*', array( 'pl_from' => $id ) );
+		$n = $res->numRows();
+		$res->free();
+
+		$this->assertEquals( 1, $n, 'pagelinks should contain one link from the page' );
 
 		# ------------------------
 		$page = new WikiPage( $title );
@@ -186,6 +226,8 @@ class WikiPageTest extends MediaWikiTestCase {
 
 		$page->doDeleteArticle( "testing deletion" );
 
+		$this->assertFalse( $page->getTitle()->getArticleID() > 0, "Title object should now have page id 0" );
+		$this->assertFalse( $page->getId() > 0, "WikiPage should now have page id 0" );
 		$this->assertFalse( $page->exists(), "WikiPage::exists should return false after page was deleted" );
 		$this->assertNull( $page->getContent(), "WikiPage::getContent should return null after page was deleted" );
 		$this->assertFalse( $page->getText(), "WikiPage::getText should return false after page was deleted" );
@@ -444,15 +486,19 @@ class WikiPageTest extends MediaWikiTestCase {
 	public function testIsCountable( $title, $text, $mode, $expected ) {
 		global $wgArticleCountMethod;
 
-		$old = $wgArticleCountMethod;
+		$oldArticleCountMethod = $wgArticleCountMethod;
 		$wgArticleCountMethod = $mode;
 
 		$page = $this->createPage( $title, $text );
+		$hasLinks = wfGetDB( DB_SLAVE )->selectField( 'pagelinks', 1,
+					array( 'pl_from' => $page->getId() ), __METHOD__ );
+
 		$editInfo = $page->prepareContentForEdit( $page->getContent() );
 
 		$v = $page->isCountable();
 		$w = $page->isCountable( $editInfo );
-		$wgArticleCountMethod = $old;
+
+		$wgArticleCountMethod = $oldArticleCountMethod;
 
 		$this->assertEquals( $expected, $v, "isCountable( null ) returned unexpected value " . var_export( $v, true )
 		                                    . " instead of " . var_export( $expected, true ) . " in mode `$mode` for text \"$text\"" );

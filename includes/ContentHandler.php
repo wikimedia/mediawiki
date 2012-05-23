@@ -476,56 +476,6 @@ abstract class ContentHandler {
 	}
 
 	/**
-	 * Return an Article object suitable for viewing the given object
-	 *
-	 * NOTE: does *not* do special handling for Image and Category pages!
-	 *       Use Article::newFromTitle() for that!
-	 *
-	 * @since WD.1
-	 *
-	 * @param Title $title
-	 * @return Article
-	 * @todo Article is being refactored into an action class, keep track of that
-	 * @todo Article really defines the view of the content... rename this method to createViewPage ?
-	 */
-	public function createArticle( Title $title ) {
-		$this->checkModelID( $title->getContentModel() );
-
-		$article = new Article($title);
-		return $article;
-	}
-
-	/**
-	 * Return an EditPage object suitable for editing the given object.
-	 * This default  implementation always fails with an MWException, because there is no
-	 * generic edit page implementation suitable for all content models.
-	 *
-	 * @since WD.1
-	 *
-	 * @param Article $article
-	 * @return EditPage
-	 */
-	public function createEditPage( Article $article ) {
-		throw new MWException( "ContentHandler class " . get_classs( $this ) . " does not provide an EditPage." );
-	}
-
-	/**
-	 * Return an ExternalEdit object suitable for editing the given object
-	 *
-	 * @since WD.1
-	 *
-	 * @param IContextSource $context
-	 * @return ExternalEdit
-	 * @todo does anyone or anythign actually use the external edit facility? Can we just deprecate and ignore it?
-	 */
-	public function createExternalEdit( IContextSource $context ) {
-		$this->checkModelID( $context->getTitle()->getContentModel() );
-
-		$externalEdit = new ExternalEdit( $context );
-		return $externalEdit;
-	}
-
-	/**
 	 * Factory
 	 * @since WD.1
 	 *
@@ -814,21 +764,6 @@ abstract class TextContentHandler extends ContentHandler {
 	public function serializeContent( Content $content, $format = null ) {
 		$this->checkFormat( $format );
 		return $content->getNativeData();
-	}
-
-	/**
-	 * Return an EditPage object for editing the given object
-	 *
-	 * @since WD.1
-	 *
-	 * @param Article $article
-	 * @return EditPage
-	 */
-	public function createEditPage( Article $article ) {
-		$this->checkModelID( $article->getPage()->getContentModel() );
-
-		$editPage = new EditPage( $article );
-		return $editPage;
 	}
 
 	/**

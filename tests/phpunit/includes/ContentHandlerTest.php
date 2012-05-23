@@ -383,7 +383,7 @@ class DummyContentForTesting extends Content {
 	}
 
 	/**
-	 * @param IContextSource $context
+	 * @param Title $title
 	 * @param null $revId
 	 * @param null|ParserOptions $options
 	 * @param Boolean $generateHtml whether to generate Html (default: true). If false,
@@ -392,7 +392,7 @@ class DummyContentForTesting extends Content {
 	 *
 	 * @return ParserOutput
 	 */
-	public function getParserOutput( IContextSource $context, $revId = null, ParserOptions $options = NULL, $generateHtml = true )
+	public function getParserOutput( Title $title, $revId = null, ParserOptions $options = NULL, $generateHtml = true )
 	{
 		return new ParserOutput( $this->data );
 	}

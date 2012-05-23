@@ -63,6 +63,7 @@ class LinksUpdate extends SqlDataUpdate {
 
 		$this->mTitle = $title;
 		$this->mId = $title->getArticleID();
+		assert( $this->mId > 0 );
 
 		$this->mParserOutput = $parserOutput;
 

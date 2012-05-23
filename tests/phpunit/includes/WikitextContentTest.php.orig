@@ -27,10 +27,27 @@ class WikitextContentTest extends MediaWikiTestCase {
 	public function testGetParserOutput( $text, $expectedHtml ) {
 		$content = $this->newContent( $text );
 
-		$po = $content->getParserOutput( $this->context->getTitle() );
+		$po = $content->getParserOutput( $this->context );
 
 		$this->assertEquals( $expectedHtml, $po->getText() );
-		return $po;
+	}
+
+	public function dataGetSecondaryDataUpdates() {
+		return array(
+			// @todo: more...?
+		);
+	}
+
+	/**
+	 * @dataProvider dataGetParserOutput
+	 */
+	public function testGetSecondaryDataUpdates( $text, $expectedLinks ) {
+		$content = $this->newContent( "hello [[world]]\n" );
+
+		$updates = $content->getSecondaryDataUpdates( $this->context );
+
+		$this->assertEquals( 1, count( $updates ) );
+		$this->assertEquals( "LinksUpdate", get_class( $updates[0] ) );
 	}
 
 	static $sections =
@@ -304,7 +321,7 @@ just a test"
 
 		$content = $this->newContent( $text );
 
-		$v = $content->isCountable( $hasLinks, $this->context->getTitle() );
+		$v = $content->isCountable( $hasLinks, $this->context );
 		$wgArticleCountMethod = $old;
 
 		$this->assertEquals( $expected, $v, "isCountable() returned unexpected value " . var_export( $v, true )

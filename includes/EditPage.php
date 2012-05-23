@@ -2821,7 +2821,7 @@ HTML
 				$content = $content->preSaveTransform( $this->mTitle, $wgUser, $parserOptions );
 
 				// TODO: might be a saner way to get a meaningfull context here?
-				$parserOutput = $content->getParserOutput( $this->getArticle()->getContext(), null, $parserOptions );
+				$parserOutput = $content->getParserOutput( $this->getArticle()->getTitle(), null, $parserOptions );
 
 				$previewHTML = $parserOutput->getText();
 				$this->mParserOutput = $parserOutput;

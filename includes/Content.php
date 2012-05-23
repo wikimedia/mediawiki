@@ -291,7 +291,7 @@ abstract class Content {
 	public abstract function isCountable( $hasLinks = null ) ;
 
 	/**
-	 * @param IContextSource $context
+	 * @param Title $title
 	 * @param null $revId
 	 * @param null|ParserOptions $options
 	 * @param Boolean $generateHtml whether to generate Html (default: true). If false,
@@ -302,20 +302,20 @@ abstract class Content {
 	 *
 	 * @return ParserOutput
 	 */
-	public abstract function getParserOutput( IContextSource $context, $revId = null, ParserOptions $options = null, $generateHtml = true );
+	public abstract function getParserOutput( Title $title, $revId = null, ParserOptions $options = null, $generateHtml = true );
 
 	/**
 	 * Returns a list of DataUpdate objects for recording information about this Content in some secondary
 	 * data store. If the optional second argument, $old, is given, the updates may model only the changes that
 	 * need to be made to replace information about the old content with infomration about the new content.
 	 *
-	 * This default implementation calls $this->getParserOutput( $context, null, null, false ), and then
-	 * calls getSecondaryDataUpdates( $context->getTitle(), $recursive ) on the resulting ParserOutput object.
+	 * This default implementation calls $this->getParserOutput( $title, null, null, false ), and then
+	 * calls getSecondaryDataUpdates( $title, $recursive ) on the resulting ParserOutput object.
 	 *
 	 * Subclasses may implement this to determine the necessary updates more efficiently, or make use of information
 	 * about the old content.
 	 *
-	 * @param IContextSource $context the content for determining the necessary updates
+	 * @param Title $title the context for determining the necessary updates
 	 * @param Content|null $old a Content object representing the previous content, i.e. the content being
 	 *                     replaced by this Content object.
 	 * @param bool $recursive whether to include recursive updates (default: false).
@@ -324,9 +324,9 @@ abstract class Content {
 	 *
 	 * @since WD.1
 	 */
-	public function getSecondaryDataUpdates( IContextSource $context, Content $old = null, $recursive = false ) {
-		$po = $this->getParserOutput( $context, null, null, false );
-		return $po->getSecondaryDataUpdates( $context->getTitle(), $recursive );
+	public function getSecondaryDataUpdates( Title $title, Content $old = null, $recursive = false ) {
+		$po = $this->getParserOutput( $title, null, null, false );
+		return $po->getSecondaryDataUpdates( $title, $recursive );
 	}
 
 	/**
@@ -563,7 +563,7 @@ abstract class TextContent extends Content {
 	 *
 	 * @return ParserOutput representing the HTML form of the text
 	 */
-	public function getParserOutput( IContextSource $context, $revId = null, ParserOptions $options = null, $generateHtml = true ) {
+	public function getParserOutput( Title $title, $revId = null, ParserOptions $options = null, $generateHtml = true ) {
 		# generic implementation, relying on $this->getHtml()
 
 		if ( $generateHtml ) $html = $this->getHtml( $options );
@@ -603,14 +603,14 @@ class WikitextContent extends TextContent {
 	 *
 	 * @return ParserOutput representing the HTML form of the text
 	 */
-	public function getParserOutput( IContextSource $context, $revId = null, ParserOptions $options = null, $generateHtml = true ) {
+	public function getParserOutput( Title $title, $revId = null, ParserOptions $options = null, $generateHtml = true ) {
 		global $wgParser;
 
 		if ( !$options ) {
-			$options = ParserOptions::newFromUserAndLang( $context->getUser(), $context->getLanguage() );
+			$options = new ParserOptions();
 		}
 
-		$po = $wgParser->parse( $this->mText, $context->getTitle(), $options, true, true, $revId );
+		$po = $wgParser->parse( $this->mText, $title, $options, true, true, $revId );
 
 		return $po;
 	}
@@ -748,7 +748,7 @@ class WikitextContent extends TextContent {
 	 *
 	 * @return bool true if the content is countable
 	 */
-	public function isCountable( $hasLinks = null, IContextSource $context = null ) {
+	public function isCountable( $hasLinks = null, Title $title = null ) {
 		global $wgArticleCountMethod, $wgRequest;
 
 		if ( $this->isRedirect( ) ) {
@@ -764,12 +764,12 @@ class WikitextContent extends TextContent {
 				return strpos( $text,  ',' ) !== false;
 			case 'link':
 				if ( $hasLinks === null ) { # not known, find out
-					if ( !$context ) { # make dummy context
-						//XXX: caller of this method often knows the title, but not a context...
-						$context = new RequestContext( $wgRequest );
+					if ( !$title ) {
+						$context = RequestContext::getMain();
+						$title = $context->getTitle();
 					}
 
-					$po = $this->getParserOutput( $context, null, null, false );
+					$po = $this->getParserOutput( $title, null, null, false );
 					$links = $po->getLinks();
 					$hasLinks = !empty( $links );
 				}

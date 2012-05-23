@@ -1093,11 +1093,10 @@ class WikiPage extends Page {
 	 * @param $parserOptions ParserOptions to use for the parse operation
 	 * @param $oldid Revision ID to get the text from, passing null or 0 will
 	 *               get the current revision (default value)
-	 * @param $context IContextSource context for parsing
 	 *
 	 * @return ParserOutput or false if the revision was not found
 	 */
-	public function getParserOutput( ParserOptions $parserOptions, $oldid = null, IContextSource $context = null ) {
+	public function getParserOutput( ParserOptions $parserOptions, $oldid = null ) {
 		wfProfileIn( __METHOD__ );
 
 		$useParserCache = $this->isParserCacheUsed( $parserOptions, $oldid );
@@ -1118,7 +1117,7 @@ class WikiPage extends Page {
 			$oldid = $this->getLatest();
 		}
 
-		$pool = new PoolWorkArticleView( $this, $parserOptions, $oldid, $useParserCache, null, $context );
+		$pool = new PoolWorkArticleView( $this, $parserOptions, $oldid, $useParserCache, null );
 		$pool->execute();
 
 		wfProfileOut( __METHOD__ );
@@ -1934,11 +1933,7 @@ class WikiPage extends Page {
 
 		$edit->popts = $this->makeParserOptions( 'canonical' );
 
-		// TODO: is there no better way to obtain a context here?
-		$context = RequestContext::getMain();
-		$context->setTitle( $this->mTitle );
-		$edit->output = $edit->pstContent->getParserOutput( $context, $revid, $edit->popts );
-		$edit->updates = $edit->pstContent->getSecondaryDataUpdate( $context );
+		$edit->output = $edit->pstContent->getParserOutput( $this->mTitle, $revid, $edit->popts );
 
 		$edit->newContent = $content;
 		$edit->oldContent = $this->getContent( Revision::RAW );
@@ -1992,7 +1987,7 @@ class WikiPage extends Page {
 		}
 
 		# Update the links tables and other secondary data
-		$updates = $editInfo->updates;
+		$updates = $editInfo->output->getSecondaryDataUpdates( $this->getTitle() );
 		DataUpdate::runUpdates( $updates );
 
 		wfRunHooks( 'ArticleEditUpdates', array( &$this, &$editInfo, $options['changed'] ) );
@@ -3225,9 +3220,9 @@ class PoolWorkArticleView extends PoolCounterWork {
 	private $parserOptions;
 
 	/**
-	 * @var string|null
+	 * @var Content|null
 	 */
-	private $text;
+	private $content = null;
 
 	/**
 	 * @var ParserOutput|bool
@@ -3252,23 +3247,16 @@ class PoolWorkArticleView extends PoolCounterWork {
 	 * @param $useParserCache Boolean: whether to use the parser cache
 	 * @param $parserOptions parserOptions to use for the parse operation
 	 * @param $content Content|String: content to parse or null to load it; may also be given as a wikitext string, for BC
-	 * @param $context IContextSource context for parsing
 	 */
-	function __construct( Page $page, ParserOptions $parserOptions, $revid, $useParserCache, $content = null, IContextSource $context = null ) {
+	function __construct( Page $page, ParserOptions $parserOptions, $revid, $useParserCache, $content = null ) {
 		if ( is_string($content) ) { #BC: old style call
 			$modelId = $page->getRevision()->getContentModel();
 			$format = $page->getRevision()->getContentFormat();
 			$content = ContentHandler::makeContent( $content, $page->getTitle(), $modelId, $format );
 		}
 
-		if ( is_null( $context ) ) {
-			$context = RequestContext::getMain();
-			#XXX: clone and then set title?
-		}
-
 		$this->page = $page;
 		$this->revid = $revid;
-		$this->context = $context;
 		$this->cacheable = $useParserCache;
 		$this->parserOptions = $parserOptions;
 		$this->content = $content;
@@ -3327,7 +3315,7 @@ class PoolWorkArticleView extends PoolCounterWork {
 
 		$time = - microtime( true );
 		// TODO: page might not have this method? Hard to tell what page is supposed to be here...
-		$this->parserOutput = $content->getParserOutput( $this->context, $this->revid, $this->parserOptions );
+		$this->parserOutput = $content->getParserOutput( $this->page->getTitle(), $this->revid, $this->parserOptions );
 		$time += microtime( true );
 
 		# Timing hack

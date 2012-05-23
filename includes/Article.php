@@ -119,14 +119,13 @@ class Article extends Page {
 		if ( !$page ) {
 			switch( $title->getNamespace() ) {
 				case NS_FILE:
-					$page = new ImagePage( $title ); #FIXME: teach ImagePage to use ContentHandler
+					$page = new ImagePage( $title );
 					break;
 				case NS_CATEGORY:
-					$page = new CategoryPage( $title ); #FIXME: teach ImagePage to use ContentHandler
+					$page = new CategoryPage( $title );
 					break;
 				default:
-					$handler = ContentHandler::getForTitle( $title );
-					$page = $handler->createArticle( $title );
+					$page = new Article( $title );
 			}
 		}
 		$page->setContext( $context );
@@ -642,7 +641,7 @@ class Article extends Page {
 							# Viewing a redirect page (e.g. with parameter redirect=no)
 							$outputPage->addHTML( $this->viewRedirect( $rt ) );
 							# Parse just to get categories, displaytitle, etc.
-							$this->mParserOutput = $content->getParserOutput( $this->getContext(), $oldid, $parserOptions, false );
+							$this->mParserOutput = $content->getParserOutput( $this->getTitle(), $oldid, $parserOptions, false );
 							$outputPage->addParserOutputNoText( $this->mParserOutput );
 							$outputDone = true;
 						}
@@ -780,7 +779,7 @@ class Article extends Page {
 
 		// Give hooks a chance to customise the output
 		if ( !Hooks::isRegistered('ShowRawCssJs') || wfRunHooks( 'ShowRawCssJs', array( $this->fetchContent(), $this->getTitle(), $wgOut ) ) ) { #FIXME: fetchContent() is deprecated
-			$po = $this->mContentObject->getParserOutput( $this->getContext() );
+			$po = $this->mContentObject->getParserOutput( $this->getTitle() );
 			$wgOut->addHTML( $po->getText() );
 		}
 	}
