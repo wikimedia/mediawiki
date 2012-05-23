@@ -201,15 +201,16 @@ abstract class Content {
 	}
 
 	/**
-	 * Returns if the content is valid.
+	 * Returns if the content is valid. This is intended for local validity checks, not considering global consistency.
 	 * It needs to be valid before it can be saved.
+	 *
+	 * This default implementation always returns true.
 	 *
 	 * @since WD.1
 	 *
 	 * @return boolean
 	 */
 	public function isValid() {
-		// TODO
 		return true;
 	}
 

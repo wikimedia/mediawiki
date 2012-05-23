@@ -462,6 +462,22 @@ abstract class ContentHandler {
 	}
 
 	/**
+	 * Returns if the content is consistent with the database, that is if saving it to the database would not violate any
+	 * global constraints.
+	 *
+	 * Content needs to be valid using this method before it can be saved.
+	 *
+	 * This default implementation always returns true.
+	 *
+	 * @since WD.1
+	 *
+	 * @return boolean
+	 */
+	public function isConsistentWithDatabase( Content $content ) {
+		return true;
+	}
+
+	/**
 	 * Returns overrides for action handlers.
 	 * Classes listed here will be used instead of the default one when
 	 * (and only when) $wgActions[$action] === true. This allows subclasses
