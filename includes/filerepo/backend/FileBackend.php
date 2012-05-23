@@ -418,6 +418,84 @@ abstract class FileBackend {
 	abstract protected function doQuickOperationsInternal( array $ops );
 
 	/**
+	 * Same as doQuickOperations() except it takes a single operation.
+	 * If you are doing a batch of operations, then use that function instead.
+	 *
+	 * @see FileBackend::doQuickOperations()
+	 *
+	 * @param $op Array Operation
+	 * @return Status
+	 */
+	final public function doQuickOperation( array $op ) {
+		return $this->doQuickOperations( array( $op ) );
+	}
+
+	/**
+	 * Performs a single quick create operation.
+	 * This sets $params['op'] to 'create' and passes it to doQuickOperation().
+	 *
+	 * @see FileBackend::doQuickOperation()
+	 *
+	 * @param $params Array Operation parameters
+	 * @return Status
+	 */
+	final public function quickCreate( array $params ) {
+		return $this->doQuickOperation( array( 'op' => 'create' ) + $params );
+	}
+
+	/**
+	 * Performs a single quick store operation.
+	 * This sets $params['op'] to 'store' and passes it to doQuickOperation().
+	 *
+	 * @see FileBackend::doQuickOperation()
+	 *
+	 * @param $params Array Operation parameters
+	 * @return Status
+	 */
+	final public function quickStore( array $params ) {
+		return $this->doQuickOperation( array( 'op' => 'store' ) + $params );
+	}
+
+	/**
+	 * Performs a single quick copy operation.
+	 * This sets $params['op'] to 'copy' and passes it to doQuickOperation().
+	 *
+	 * @see FileBackend::doQuickOperation()
+	 *
+	 * @param $params Array Operation parameters
+	 * @return Status
+	 */
+	final public function quickCopy( array $params ) {
+		return $this->doQuickOperation( array( 'op' => 'copy' ) + $params );
+	}
+
+	/**
+	 * Performs a single quick move operation.
+	 * This sets $params['op'] to 'move' and passes it to doQuickOperation().
+	 *
+	 * @see FileBackend::doQuickOperation()
+	 *
+	 * @param $params Array Operation parameters
+	 * @return Status
+	 */
+	final public function quickMove( array $params ) {
+		return $this->doQuickOperation( array( 'op' => 'move' ) + $params );
+	}
+
+	/**
+	 * Performs a single quick delete operation.
+	 * This sets $params['op'] to 'delete' and passes it to doQuickOperation().
+	 *
+	 * @see FileBackend::doQuickOperation()
+	 *
+	 * @param $params Array Operation parameters
+	 * @return Status
+	 */
+	final public function quickDelete( array $params ) {
+		return $this->doQuickOperation( array( 'op' => 'delete' ) + $params );
+	}
+
+	/**
 	 * Concatenate a list of storage files into a single file system file.
 	 * The target path should refer to a file that is already locked or
 	 * otherwise safe from modification from other processes. Normally,
