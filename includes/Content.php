@@ -215,15 +215,6 @@ abstract class Content {
 	}
 
 	/**
-	 * Diff this content object with another content object..
-	 *
-	 * @since WD.diff
-	 *
-	 * @return DiffResult
-	 */
-	public abstract function diff( Content $that );
-
-	/**
 	 * Returns true if this Content objects is conceptually equivalent to the given Content object.
 	 *
 	 * Will returns false if $that is null.
