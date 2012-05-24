@@ -43,7 +43,8 @@ class ShortPagesPage extends QueryPage {
 			'fields' => array ( 'page_namespace AS namespace',
 					'page_title AS title',
 					'page_len AS value' ),
-			'conds' => array ( 'page_namespace' => NS_MAIN,
+			'conds' => array ( 'page_namespace' =>
+					MWNamespace::getContentNamespaces(),
 					'page_is_redirect' => 0 ),
 			'options' => array ( 'USE INDEX' => 'page_redirect_namespace_len' )
 		);
