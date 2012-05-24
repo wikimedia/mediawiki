@@ -3514,15 +3514,15 @@ pst
 [[Bar:Article（context）|]]
 [[:Bar:Article（context）|]]
 [[|Article（context）]]
-[[Bar:X （Y） Z|]]
-[[:Bar:X （Y） Z|]]
+[[Bar:X（Y）Z|]]
+[[:Bar:X（Y）Z|]]
 !! result
 [[Article（context）|Article]]
 [[Bar:Article（context）|Article]]
 [[:Bar:Article（context）|Article]]
 [[Article（context）]]
-[[Bar:X （Y） Z|X （Y） Z]]
-[[:Bar:X （Y） Z|X （Y） Z]]
+[[Bar:X（Y）Z|X（Y）Z]]
+[[:Bar:X（Y）Z|X（Y）Z]]
 !! end
 
 !! test
@@ -3563,6 +3563,26 @@ pst
 [[Article(context)]]
 [[Bar:X(Y)Z|X(Y)Z]]
 [[:Bar:X(Y)Z|X(Y)Z]]
+!! end
+
+!! test
+pre-save transform: context links ("pipe trick") with commas (bug 21660)
+!! options
+pst
+!! input
+[[Article (context), context|]]
+[[Article (context)，context|]]
+[[Bar:Article (context), context|]]
+[[Bar:Article (context)，context|]]
+[[:Bar:Article (context), context|]]
+[[:Bar:Article (context)，context|]]
+!! result
+[[Article (context), context|Article]]
+[[Article (context)，context|Article]]
+[[Bar:Article (context), context|Article]]
+[[Bar:Article (context)，context|Article]]
+[[:Bar:Article (context), context|Article]]
+[[:Bar:Article (context)，context|Article]]
 !! end
 
 !! test
@@ -9348,6 +9368,56 @@ Language parser function
 !! result
 <p>العربية
 </p>
+!! end
+
+!! test
+Pipe trick in gallery
+!! options
+pst
+!! input
+<gallery>
+image1.png |
+image2.gif|||||
+
+image3|
+image4    |300px| centre
+ image5.svg| http://///////
+[[x (y)|]]]]
+* image6
+</gallery>
+!! result
+<gallery>
+image1.png |
+image2.gif|||||
+
+image3|
+image4    |300px| centre
+ image5.svg| http://///////
+[[x (y)|x]]]]
+* image6
+</gallery>
+!! end
+
+!! test
+Pipe trick in gallery (with options)
+!! options
+pst
+!! input
+<gallery widths='70px' heights='40px' perrow='2' caption='Foo [[Main Page (yes)|]]' >
+File:Nonexistant.jpg|caption
+File:Nonexistant.jpg
+image:foobar.jpg|some '''caption''' [[Main Page (not)|]]
+image:foobar.jpg
+image:foobar.jpg|Blabla|alt=This is a foo-bar.|blabla.
+</gallery>
+!! result
+<gallery widths='70px' heights='40px' perrow='2' caption='Foo [[Main Page (yes)|Main Page]]' >
+File:Nonexistant.jpg|caption
+File:Nonexistant.jpg
+image:foobar.jpg|some '''caption''' [[Main Page (not)|Main Page]]
+image:foobar.jpg
+image:foobar.jpg|Blabla|alt=This is a foo-bar.|blabla.
+</gallery>
 !! end
 
 TODO:
