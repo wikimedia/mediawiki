@@ -111,6 +111,7 @@ class Parser {
 
 	# Flags for preprocessToDom
 	const PTD_FOR_INCLUSION = 1;
+	const PTD_FOR_PSTETAGS = 2;
 
 	# Allowed values for $this->mOutputType
 	# Parameter to startExternalParse().
@@ -152,6 +153,7 @@ class Parser {
 	public $mImageParamsMagicArray = [];
 	public $mMarkerIndex = 0;
 	public $mFirstCall = true;
+	private $preSaveTransformableExtensionTags = [];
 
 	# Initialised by initialiseVariables()
 
@@ -990,7 +992,16 @@ class Parser {
 	 * @return array
 	 */
 	public function getStripList() {
-		return $this->mStripList;
+		$res = $this->mStripList;
+		if ( $this->ot['wiki'] && count( $this->preSaveTransformableExtensionTags ) ) {
+			// If PST-able extension tags are defined, don't strip them
+			foreach ( $this->mStripList as $key => $tag ) {
+				if ( isset( $this->preSaveTransformableExtensionTags[$tag] ) ) {
+					unset( $res[$key] );
+				}
+			}
+		}
+		return $res;
 	}
 
 	/**
@@ -3346,7 +3357,14 @@ class Parser {
 			$frame = $this->getPreprocessor()->newCustomFrame( $frame );
 		}
 
-		$dom = $this->preprocessToDom( $text );
+		if ( $this->ot['wiki'] && count( $this->preSaveTransformableExtensionTags ) ) {
+			// when pre-save transformable tags are defined, add flag to avoid breaking
+			// the preprocessor cache (since $this->getStripList() is altered)
+			$dom = $this->preprocessToDom( $text, self::PTD_FOR_PSTETAGS );
+		} else {
+			$dom = $this->preprocessToDom( $text );
+		}
+
 		$flags = $argsOnly ? PPFrame::NO_TEMPLATES : 0;
 		$text = $frame->expand( $dom, $flags );
 
@@ -5112,18 +5130,26 @@ class Parser {
 	 *
 	 * @param string $tag The tag to use, e.g. 'hook' for "<hook>"
 	 * @param callable $callback The callback function (and object) to use for the tag
+	 * @param array $options Options to use, such as 'preSaveTrans' to perform pre-save
+	 * transformations on the entire content inside the tag
 	 * @throws MWException
 	 * @return callable|null The old value of the mTagHooks array associated with the hook
 	 */
-	public function setHook( $tag, $callback ) {
+	public function setHook( $tag, $callback, $options = [] ) {
 		$tag = strtolower( $tag );
 		if ( preg_match( '/[<>\r\n]/', $tag, $m ) ) {
 			throw new MWException( "Invalid character {$m[0]} in setHook('$tag', ...) call" );
 		}
 		$oldVal = isset( $this->mTagHooks[$tag] ) ? $this->mTagHooks[$tag] : null;
 		$this->mTagHooks[$tag] = $callback;
+
 		if ( !in_array( $tag, $this->mStripList ) ) {
 			$this->mStripList[] = $tag;
+			if ( isset( $options['preSaveTrans'] ) && $options['preSaveTrans'] === true ) {
+				if ( !isset( $this->preSaveTransformableExtensionTags[$tag] ) ) {
+					$this->preSaveTransformableExtensionTags[$tag] = '';
+				}
+			}
 		}
 
 		return $oldVal;
@@ -5164,6 +5190,7 @@ class Parser {
 		$this->mTagHooks = [];
 		$this->mFunctionTagHooks = [];
 		$this->mStripList = $this->mDefaultStripList;
+		$this->preSaveTransformableExtensionTags = [];
 	}
 
 	/**
