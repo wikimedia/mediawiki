@@ -333,6 +333,9 @@ class HTMLForm extends ContextSource {
 		}
 
 		$callback = $this->mSubmitCallback;
+		if ( !is_callable( $callback ) ) {
+			throw new MWException( 'HTMLForm: no submit callback provided. Use setSubmitCallback() to set one.' );
+		}
 
 		$data = $this->filterDataForSubmit( $this->mFieldData );
 
