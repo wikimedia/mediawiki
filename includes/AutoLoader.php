@@ -1027,6 +1027,14 @@ class AutoLoader {
 	static function autoload( $className ) {
 		global $wgAutoloadClasses, $wgAutoloadLocalClasses;
 
+		# Workaround for PHP bug <https://bugs.php.net/bug.php?id=49143> (5.3.2. is broken, it's fixed in 5.3.6).
+		# Strip leading backslashes from class names. When namespaces are used, leading backslashes are used to indicate
+		# the top-level namespace, e.g. \foo\Bar. When used like this in the code, the leading backslash isn't passed to
+		# the auto-loader ($className would be 'foo\Bar'). However, if a class is accessed using a string instead of a
+		# class literal (e.g. $class = '\foo\Bar'; new $class()), then some versions of PHP do not strip the leading
+		# backlash in this case, causing autoloading to fail.
+		$className = preg_replace( '/^\\\\/', '', $className );
+
 		if ( isset( $wgAutoloadLocalClasses[$className] ) ) {
 			$filename = $wgAutoloadLocalClasses[$className];
 		} elseif ( isset( $wgAutoloadClasses[$className] ) ) {
