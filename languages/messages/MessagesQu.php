@@ -526,7 +526,7 @@ $1",
 'versionrequired' => "$1 nisqa MediaWiki llamk'apusqatam muchunki kay p'anqata llamk'achinaykipaq",
 'versionrequiredtext' => "$1 nisqa MediaWiki llamk'apusqatam muchunki kay p'anqata llamk'achinaykipaq. Astawan willasunaykipaqqa, [[Special:Version]] nisqapi qhaway",
 
-'ok' => 'OK',
+'ok' => 'Arí niy',
 'retrievedfrom' => '"$1" p\'anqamanta chaskisqa (Qhichwa / Quechua)',
 'youhavenewmessages' => '$1 qhawanayki kachkan ($2).',
 'newmessageslink' => 'Musuq willaymi',
@@ -650,6 +650,8 @@ $2",
 'filereadonlyerror' => 'Manam atinichu "$1" sutiyuq willañiqita hukchayta, "$2" sutiyuq willañiqi churamuna ñawirillanapaq kachkaptinmi.
 
 Amachaq kamachiqqa kayrayku amachani nispa nirqanmi: "$3".',
+'invalidtitle-knownnamespace' => '"$2" sutisuyu, "$3" qillqasqayuq mana allin kaq qillqa suti',
+'invalidtitle-unknownnamespace' => 'Mana riqsisqa $1 kaq sutisuyu yupay, "$2" qillqasqayuq mana allin kaq qillqa suti',
 
 # Virus scanner
 'virus-badscanner' => "Manam allintachu churapusqa: mana riqsisqa añaw maskaq: ''$1''",
@@ -1012,6 +1014,8 @@ Chay niykunaqa manam chaninchasqachu.",
 'node-count-exceeded-warning' => "P'anqaqa watasqakunata nisyu yupayniyuqmi",
 'expansion-depth-exceeded-category' => "Nisyu mast'ariy ukhu kaqniyuq p'anqakuna",
 'expansion-depth-exceeded-warning' => "P'anqaqa nisyu mast'ariy ukhu kaqniyuqmi",
+'parser-unstrip-loop-warning' => 'Muyupayaq siqum tarisqa',
+'parser-unstrip-recursion-limit' => 'Nisyu kuti muyupayay siqum ($1)',
 
 # "Undo" feature
 'undo-success' => 'Rurasqata kutichiyta atinkim. Manaraq kutichispaykiqa, kay qatiq wakichayta qhawariy rikunaykipaq chiqapta munasqaykichu manallachu, chaymantataq waqaychay kutichinapaq.',
@@ -1187,6 +1191,8 @@ Takyachikuy kay hukchayqa allin wiñay kawsay ñiqita ama waqllichunchu chaylla.
 
 # Diffs
 'history-title' => '"$1" p\'anqata hukchasqakunap wiñay kawsaynin',
+'difference-title' => '$1: Musuqchasqapura wakin kaynin',
+'difference-title-multipage' => '$1, $2: Willañiqipura wakin kaynin',
 'difference-multipage' => "(P'anqakunaqa manam kaqllachu)",
 'lineno' => "Siq'i $1:",
 'compareselectedversions' => "Akllasqa llamk'apusqakunata wakichay",
@@ -1721,14 +1727,15 @@ $1',
 'backend-fail-writetemp' => "Manam atinichu mit'alla willañiqiman qillqayta.",
 'backend-fail-closetemp' => "Manam atinichu mit'alla willañiqita wichq'ayta.",
 'backend-fail-read' => 'Manam atinichu $1 sutiyuq willañiqita ñawiriyta.',
-'backend-fail-create' => 'Manam atinichu $1 sutiyuq willañiqita kamariyta.',
-'backend-fail-maxsize' => 'Manam atinichu $1 sutiyuq willañiqita kamariyta, {{PLURAL:$2|huk bytemanta|$2 bytemanta}} aswan hatun kaptinmi.',
+'backend-fail-create' => 'Manam atinichu $1 sutiyuq willañiqita qillqayta.',
+'backend-fail-maxsize' => 'Manam atinichu $1 sutiyuq willañiqita qillqayta, {{PLURAL:$2|huk bytemanta|$2 bytemanta}} aswan hatun kaptinmi.',
 'backend-fail-readonly' => '"$1" sutiyuq willañiqi hallch\'ana sirwiqqa ñawirinallapaqmi kachkan, kayrayku: "$2"',
 'backend-fail-synced' => '"$1" sutiyuq willañiqiqa manam sinchichu kachkan ukhupi willañiqi hallch\'ana sirwiqkunapi',
 'backend-fail-connect' => 'Manam atinichu "$1" sutiyuq willañiqi hallch\'ana sirwiqwan t\'inkinakuyta.',
 'backend-fail-internal' => '"$1" sutiyuq willañiqi hallch\'ana sirwiqpi mana riqsisqa pantasqam tukurqan.',
 'backend-fail-contenttype' => 'Manam atinichu "$1" nisqapi hallch\'ana willañiqip samiqninpa layanta yuqanchayta.',
 'backend-fail-batchsize' => "Willañiqi hallch'ana sirwiqmanqa $1 willañiqi {{PLURAL:$1|ruranayuq|ruranayuq}} tawqam qusqa; saywataq $2 {{PLURAL:$1|ruranam|ruranam}}.",
+'backend-fail-usable' => 'Manam atinichu $1 sutiyuq willañiqita qillqayta, mana aypalla saqillaykuna icha mana churanakuna/qullqakuna kaptinmi.',
 
 # File journal errors
 'filejournal-fail-dbconnect' => "Manam atinichu \"\$1\" sutiyuq willañiqi hallch'ana sirwiqpaq p'unchawnintin hallch'awan t'inkiyta.",

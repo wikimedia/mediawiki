@@ -1210,7 +1210,7 @@ Ellenőrizd a naplókat.',
 
 # Suppression log
 'suppressionlog' => 'Adatvédelmibiztos-napló',
-'suppressionlogtext' => 'Lenn látható az adminisztrátorok elől legutóbb elrejtett törlések és blokkok listája. Lásd a [[Special:BlockList|blokkolt IP-címek listája]] lapot a jelenleg érvényben lévő kitiltásokhoz és blokkokhoz.',
+'suppressionlogtext' => 'Lenn látható az adminisztrátorok elől legutóbb elrejtett törlések és blokkok listája. Lásd a [[Special:BlockList|blokkok listája]] lapot a jelenleg érvényben lévő kitiltásokhoz és blokkokhoz.',
 
 # History merging
 'mergehistory' => 'Laptörténetek egyesítése',
@@ -1243,6 +1243,7 @@ Győződj meg róla, hogy a laptörténet folytonossága megmarad.',
 
 # Diffs
 'history-title' => 'A(z) „$1” laptörténete',
+'difference-title' => '„$1” változatai közötti eltérés',
 'difference-multipage' => '(Lapok közti eltérés)',
 'lineno' => '$1. sor:',
 'compareselectedversions' => 'Kiválasztott változatok összehasonlítása',
@@ -1800,7 +1801,7 @@ Kérjük, hogy lépj kapcsolatba egy  [[Special:ListUsers/sysop|adminisztrátorr
 'backend-fail-writetemp' => 'Nem lehet írni az ideiglenes fájlba.',
 'backend-fail-closetemp' => 'Nem lehet lezárni az ideiglenes fájlt.',
 'backend-fail-read' => 'Nem sikerült olvasni ebből a fájlból: $1.',
-'backend-fail-create' => 'Nem sikerült létrehozni ezt a fájlt: $1.',
+'backend-fail-create' => 'Nem sikerült írni ebbe a fájlba: $1.',
 'backend-fail-readonly' => 'A(z) „$1” tárolórendszer jelenleg csak olvasható. Ennek oka a következő: „$2”',
 'backend-fail-synced' => 'A(z) „$1” fájl inkonzisztens állapotban van a tárolórendszerek között',
 'backend-fail-connect' => 'Nem sikerült csatlakozni a(z) „$1” tárolórendszerhez.',
@@ -2627,7 +2628,7 @@ Add meg a blokkolás okát is (például idézd a blokkolandó személy által v
 'blocklog-showsuppresslog' => 'Ez a felhasználó korábban blokkot kapott, és a naplóbejegyzés el lett rejtve. Az elrejtési napló alább látható tájékoztatásként:',
 'blocklogentry' => '„[[$1]]” blokkolva $2 $3 időtartamra',
 'reblock-logentry' => 'megváltoztatta [[$1]] blokkjának beállításait, a blokk lejárta: $2 $3',
-'blocklogtext' => 'Ez a felhasználókra helyezett blokkoknak és azok feloldásának listája. Az IP-autoblokkok nem szerepelnek a listában. Lásd még [[Special:BlockList|a jelenleg életben lévő blokkok listáját]].',
+'blocklogtext' => 'Ez a felhasználókra helyezett blokkoknak és azok feloldásának listája. Az automatikus blokkolt IP címek nem szerepelnek a listában. Lásd még [[Special:BlockList|a jelenleg életben lévő blokkok listáját]].',
 'unblocklogentry' => '„$1” blokkolása feloldva',
 'block-log-flags-anononly' => 'csak anonok',
 'block-log-flags-nocreate' => 'nem hozhat létre új fiókot',

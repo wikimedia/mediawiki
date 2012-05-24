@@ -848,6 +848,9 @@ $2',
 'ns-specialprotected' => 'الصفحات الخاصة لا يمكن تعديلها.',
 'titleprotected' => "{{GENDER:$1|حمى|حمت}} [[User:$1|$1]] هذا العنوان من الإنشاء.
 السبب المعطى هو ''$2''.",
+'filereadonlyerror' => 'تعذر تعديل الملف "$1" لأن مستودع الملف "$2" في وضع القراءة فقط. 
+
+المدير الذي قام بغلقه قدم التفسير التالي: "$3".',
 'invalidtitle-knownnamespace' => 'عنوان غير صالح في النطاق «$2» مع نص «$3»',
 'invalidtitle-unknownnamespace' => 'عنوان غير صالح ذو نطاق غير معروف رقم $1 ونص «$2»',
 
@@ -1249,6 +1252,7 @@ $2
 'parser-template-recursion-depth-warning' => 'تم تجاوز حد عمق فرد القوالب ($1)',
 'language-converter-depth-warning' => 'تم تخطي حد عمق محول اللغة ($1)',
 'node-count-exceeded-category' => 'الصفحات التي حدث فيها تجاوز تعداد العقد',
+'node-count-exceeded-warning' => 'تجاوزت هذه الصفحة تعداد العقد',
 'expansion-depth-exceeded-category' => 'الصفحات التي حدث فيها تجاوز عمق التوسيع',
 'expansion-depth-exceeded-warning' => 'الصفحة تجاوزت عمق التوسيع',
 
@@ -1819,6 +1823,7 @@ $1",
 'number_of_watching_users_pageview' => '[{{PLURAL:$1|لا مستخدمون يراقبون|مستخدم واحد يراقب|مستخدمان يراقبان|$1 مستخدمين يراقبون|$1 مستخدما يراقب|$1 مستخدم يراقب}}]',
 'rc_categories' => 'حصر لتصنيفات (مفرقة برمز "|")',
 'rc_categories_any' => 'أي',
+'rc-change-size-new' => '$1 {{PLURAL:$1|بايت|بايت}} بعد التغيير',
 'newsectionsummary' => '/* $1 */ قسم جديد',
 'rc-enhanced-expand' => 'عرض التفاصيل (يتطلب جافاسكريبت)',
 'rc-enhanced-hide' => 'أخفِ التفاصيل',
@@ -2003,7 +2008,19 @@ $1',
 'backend-fail-writetemp' => 'تعذّرت كتابة ملف مؤقت.',
 'backend-fail-closetemp' => 'تعذّر إغلاق ملف مؤقت.',
 'backend-fail-read' => 'لا يمكن قراءة الملف $1.',
-'backend-fail-create' => 'تعذر إنشاء الملف $1.',
+'backend-fail-create' => 'تعذر كتابة الملف $1.',
+'backend-fail-maxsize' => 'تعذر كتابة الملف $1 لأنه أكبر من  {{PLURAL:$2|بايت واحد|$2 بايت}}.',
+'backend-fail-readonly' => 'خلفية التخزين "$1" في وضعية القراءة فقط حاليا. السبب في ذلك هو: "$2"',
+'backend-fail-synced' => 'الملف "$1" في حالة غير متناسقة ضمن خلفية التخزين الداخلية',
+'backend-fail-connect' => 'تعذر ربط الإتصال بخلفية التخزين "$1".',
+'backend-fail-internal' => 'وقع خطأ غير معروف في خلفية التخزين "$1".',
+'backend-fail-contenttype' => 'تعذر تحديد نوع محتوى الملف الذي تريد تخزينه في "$1".',
+'backend-fail-batchsize' => 'أعطت خلفية التخزين دفعة $1 ملف {{PLURAL:$1|عملية|عمليات}}; الحد الأقصى هو $2 {{PLURAL:$2|عملية|عمليات}}.',
+'backend-fail-usable' => 'تعذر كتابة الملف $1 لنقص في التراخيص أو فقدان الدلائل/الحاويات.',
+
+# File journal errors
+'filejournal-fail-dbconnect' => 'تعذر ربط الإتصال بقاعدة بيانات خلفية التخزين "$1".',
+'filejournal-fail-dbquery' => 'تعذر تحديث قاعدة بيانات خلفية تخزين "$1".',
 
 # Lock manager
 'lockmanager-notlocked' => 'تعذر فتح "$1"، الملف غير مغلق.',
@@ -3098,6 +3115,9 @@ $1',
 'import-invalid-interwiki' => 'لم يمكن الاستيراد من الويكي المحدد.',
 'import-error-edit' => 'الصفحة "$1" لم يتم استيرادها لأنه لا يمكن لك تحريرها.',
 'import-error-create' => 'الصفحة "$1" لم يتم استيرادها لأنه لا يمكن لك استحداثها أصلا.',
+'import-error-interwiki' => 'تعذر أستيراد الصفحة "$1" بسبب أن إسمها محجوز للربط الخارجي (interwiki).',
+'import-error-special' => 'تعذر أستيراد الصفحة "$1" لأنها تنتمي إلى مساحة إسم خاصة تمنع الصفحات.',
+'import-error-invalid' => 'تعذر أستيراد الصفحة "$1" بسبب أن إسمها غير صحيح.',
 
 # Import log
 'importlogpage' => 'سجل الاستيراد',
@@ -3110,6 +3130,13 @@ $1',
 # JavaScriptTest
 'javascripttest' => 'اختبار جافاسكربت',
 'javascripttest-disabled' => 'هذه الخاصية معطلة.',
+'javascripttest-title' => 'تشغيل أختبارات $1',
+'javascripttest-pagetext-noframework' => 'هذه الصفحة محجوزة لإجراء أختبارات الجافا سكريبت.',
+'javascripttest-pagetext-unknownframework' => 'إطار اختبار غير معروف "$1".',
+'javascripttest-pagetext-frameworks' => 'الرجاء اختيار أحد أطر الاختبارات التالية: $1',
+'javascripttest-pagetext-skins' => 'قم باختيار الواجهة لإجراء الإحتبارات بها:',
+'javascripttest-qunit-intro' => 'راجع [$1 وثيقة الإختبار] على mediawiki.org.',
+'javascripttest-qunit-heading' => 'جناح أختبار MediaWiki JavaScript QUnit',
 
 # Tooltip help for the actions
 'tooltip-pt-userpage' => 'صفحة المستخدم الخاصة بك',
@@ -4059,6 +4086,8 @@ $5
 'version-software' => 'البرنامج المثبت',
 'version-software-product' => 'المنتج',
 'version-software-version' => 'النسخة',
+'version-entrypoints' => 'نقطة دخول روابط المواقع',
+'version-entrypoints-header-entrypoint' => 'تقطة دخول',
 'version-entrypoints-header-url' => 'المسار',
 
 # Special:FilePath
@@ -4186,6 +4215,8 @@ $5
 'logentry-move-move-noredirect' => 'نقل $1 صفحة $3 إلى $4 دون ترك تحويلة',
 'logentry-move-move_redir' => 'نقل $1 صفحة $3 إلى التحويلة $4',
 'logentry-move-move_redir-noredirect' => 'نقل $1 صفحة $3 إلى التحويلة $4 دون ترك تحويلة',
+'logentry-patrol-patrol' => '$1 مراجعة معلمة $4 للصفحة $3 تم معاينتها',
+'logentry-patrol-patrol-auto' => '$1 مراجعة معلمة تلقائيا $4 للصفحة $3 تم مراجعتها',
 'logentry-newusers-newusers' => 'أنشأ $1 حساب مستخدم',
 'logentry-newusers-create' => 'أنشأ $1 حساب مستخدم',
 'logentry-newusers-create2' => 'أنشأ $1 حساب المستخدم $3',
@@ -4193,6 +4224,8 @@ $5
 'newuserlog-byemail' => 'كلمة السر تم إرسالها بواسطة البريد الإلكتروني',
 
 # Feedback
+'feedback-bugornote' => 'إن كنت مستعدا لشرح  مشكلة تقنية بالتفصيل، رجاءا [$1 قدم تقريرا بالخلل].
+بخلاف ذلك، يمكنك أستخدام الطريقة الأسهل أسفله، سيتم إضافة تعليقك للصفحة "[$3 $2]"، بالإضافة إلى اسم المستخدم و نوع المتصفح الذي تستخدمه حاليا.',
 'feedback-subject' => 'الموضوع:',
 'feedback-message' => 'الرسالة:',
 'feedback-cancel' => 'ألغِ',

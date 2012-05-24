@@ -1564,7 +1564,7 @@ Tí ìṣòro náà ò bá jáwọ́, ẹ bẹ [[Special:ListUsers/sysop|olùmó
 'backend-fail-writetemp' => 'Kò le kọ sínú fáìlì onígbàdíẹ̀.',
 'backend-fail-closetemp' => 'Kò le de fáìlì onígbàdíẹ̀.',
 'backend-fail-read' => 'Kò le ka fáìlì "$1".',
-'backend-fail-create' => 'Kò le dá fáìlì "$1".',
+'backend-fail-create' => 'Kò le kọ fáìlì $1.',
 
 # Lock manager
 'lockmanager-notlocked' => 'Kò le sí àgádágodo "$1" sílẹ̀; kò jẹ́ dídè.',

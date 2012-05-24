@@ -66,7 +66,7 @@ $messages = array(
 'thursday' => 'Хемис',
 'friday' => 'Жуьмя',
 'saturday' => 'Киш',
-'sun' => 'Гья',
+'sun' => 'Гьяд',
 'mon' => 'Исл',
 'tue' => 'Сал',
 'wed' => 'Aрб',
@@ -85,18 +85,18 @@ $messages = array(
 'october' => 'Баскlум',
 'november' => 'Цlехуьл',
 'december' => 'Фандукl',
-'january-gen' => 'Гьер',
-'february-gen' => 'Эхем',
-'march-gen' => 'Ибне',
-'april-gen' => 'Нава',
-'may-gen' => 'тӀул',
-'june-gen' => 'Къамуг',
-'july-gen' => 'Чиле',
-'august-gen' => 'Пахун',
-'september-gen' => 'Мара',
-'october-gen' => 'БаскӀум',
-'november-gen' => 'ЦӀехуьл',
-'december-gen' => 'ФaндукӀ',
+'january-gen' => 'Гьер (январь)',
+'february-gen' => 'Эхен (февраль)',
+'march-gen' => 'Ибне (март)',
+'april-gen' => 'Нава (апрель)',
+'may-gen' => 'ТӀул (май)',
+'june-gen' => 'Кьамуг (июнь)',
+'july-gen' => 'Чиле (июль)',
+'august-gen' => 'Пахун (август)',
+'september-gen' => 'Мара (сентябрь)',
+'october-gen' => 'БаскӀум (октябрь)',
+'november-gen' => 'ЦӀехуьл (ноябрь)',
+'december-gen' => 'ФундукӀ (декабрь)',
 'jan' => 'Гье',
 'feb' => 'Эхе',
 'mar' => 'Ибн',
@@ -781,7 +781,7 @@ $messages = array(
 # img_auth script messages
 'img-auth-accessdenied' => 'Гьахьун къадагъа авунва',
 
-'license' => 'Лицензиа авун:',
+'license' => 'Лицензиярун',
 'license-header' => 'Лицинзиярун',
 'nolicense' => 'ЗатIни хкягънавач',
 'license-nopreview' => '(Сифтедин килигун авайд ттуш)',
@@ -903,7 +903,7 @@ $messages = array(
 'allpagessubmit' => 'ЭлячIун',
 
 # Special:Categories
-'categories' => 'Тlаб',
+'categories' => 'Категорияр',
 
 # Special:LinkSearch
 'linksearch' => 'КЪецепатан элячIунар жугъурун',
@@ -1128,7 +1128,7 @@ $messages = array(
 'import-token-mismatch' => 'Сеансдин  ганайбур квахьнава. Тавакъу ийида, мадни алахъун ая.',
 
 # Tooltip help for the actions
-'tooltip-pt-userpage' => 'Куь ишлемишзавайдин ччин',
+'tooltip-pt-userpage' => 'Куь (уртахдин) ччин',
 'tooltip-pt-mytalk' => 'Куь веревирдрин ччин',
 'tooltip-pt-preferences' => 'Куь низамарунар',
 'tooltip-pt-watchlist' => 'Куьне гуьзетзавай ччинрин сиягь',

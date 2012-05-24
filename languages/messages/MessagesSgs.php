@@ -704,6 +704,8 @@ Kėtė admėnėstratuorē šėtom pruojekte vėsdar galės pasėiktė pasliepta 
 
 # Diffs
 'history-title' => 'Poslapė „$1“ istuorėjė',
+'difference-title' => '$1: Skėrtoms terp redakcėju',
+'difference-title-multipage' => '$1 ė $2: Skėrtoms terp poslapiu',
 'lineno' => 'Eilotė $1:',
 'compareselectedversions' => 'Palīgintė pasėrinktas versėjės',
 'editundo' => 'atšauktė',
@@ -897,7 +899,7 @@ Ana gal sodarītė ne daugiau kāp $1 {{PLURAL:$1|sėmbuolis|sėmbuolē|sėmbuol
 'nchanges' => '$1 {{PLURAL:$1|pakeitėms|pakeitėmā|pakeitėmu}}',
 'recentchanges' => 'Vielībė̅jė pakeitėmā',
 'recentchanges-legend' => 'Vielībuju pakeitėmu pasėrinkėmā',
-'recentchangestext' => 'Tamė poslapī īr patīs vielībė̅ jė paketėmā tom pruojėktė.',
+'recentchanges-summary' => 'Tamė poslapī īr patīs vielībė̅ jė paketėmā tom pruojėktė.',
 'recentchanges-feed-description' => 'Keravuokėt patius vielībiausius pakeitėmus pruojektō tamė šaltėnī.',
 'recentchanges-label-newpage' => 'Šėto keitėmo sukurts naus poslapis',
 'recentchanges-label-minor' => 'Tas īr mažos pataisīms',

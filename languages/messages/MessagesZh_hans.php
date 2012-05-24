@@ -1153,7 +1153,7 @@ $1",
 
 # Diffs
 'history-title' => '“$1”的版本历史',
-'difference-title' => '"$1"不同修订版本之间的差异',
+'difference-title' => '$1：修订版本之间的差异',
 'difference-title-multipage' => '页面"$1"与"$2"之间的差异',
 'difference-multipage' => '（页面间的差异）',
 'lineno' => '第$1行：',
