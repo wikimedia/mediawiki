@@ -325,10 +325,15 @@ class Article extends Page {
 	 * Get text of an article from database
 	 * Does *NOT* follow redirects.
 	 *
+	 * @protected
+	 * @note this is really internal functionality that should really NOT be used by other functions. For accessing
+	 *       article content, use the WikiPage class, especially WikiBase::getContent(). However, a lot of legacy code
+	 *       uses this method to retrieve page text from the database, so the function has to remain public for now.
+	 *
 	 * @return mixed string containing article contents, or false if null
-	 * @deprecated in 1.WD, use getContentObject() instead
+	 * @deprecated in 1.WD, use WikiPage::getContent() instead
 	 */
-	protected function fetchContent() { #BC cruft!
+	function fetchContent() { #BC cruft!
 		wfDeprecated( __METHOD__, '1.WD' );
 
 		if ( $this->mContentLoaded && $this->mContent ) {
@@ -352,6 +357,8 @@ class Article extends Page {
 	 * Get text content object
 	 * Does *NOT* follow redirects.
 	 * TODO: when is this null?
+	 *
+	 * @note code that wants to retrieve page content from the database should use WikiPage::getContent().
 	 *
 	 * @return Content|null
 	 *
