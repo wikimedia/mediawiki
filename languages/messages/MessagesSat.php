@@ -273,7 +273,7 @@ $1',
 'badaccess-groups' => 'Am do oka kạmim menjoṅkan ona do khạli {{PLURAL:$2 rạsiạkore noa rạsiạreaḱ mit́ṭenre}} mitṭen beoharić sompadon daṛeyaḱa: $1.',
 
 'versionrequired' => 'Meḍiawiki reaḱ $1 nãwã aroe jạruṛa',
-'versionrequiredtext' => 'Noa sakam do beohar lạgit́te meḍiawikire $1 nãwã araoe jạruṛa. [[Special:Version version page]] ńelmẽ.',
+'versionrequiredtext' => 'Noa sakam do beohar lạgit́te meḍiawikire $1 nambar nãwã araoe jạruṛa. [[Special:Version nãwã aroe sakam]] ńelmẽ.',
 
 'ok' => 'Ṭhik gea',
 'retrievedfrom' => '"$1" khon ñam ạgui',
@@ -324,8 +324,8 @@ $1',
 Am do paseć mit́ṭen vul joṛaoem emakada se URL oltem vul akada.
 Noa do noṅkanaḱ menkana je {{SITENAME}} sayeṭre beoharen sofṭower re mit́ṭen vul menaḱa.',
 'nosuchspecialpage' => 'Noṅkanaḱ asokay sakam do banuḱa',
-'nospecialpagetext' => '<strong> am do mit́ṭen ạnlekate baṅkan asokae sakamem koe akada.</strong>
-[[Special:SpecialPages {{int:specialpages}}]] re ạn lekate asokaete sakamkore mit́ṭen tạlikam ńama.',
+'nospecialpagetext' => '<strong>Am do mit́ṭen beạn asokae sakamem koe akada.</strong>
+[[Special:SpecialPages {{int:specialpages}}]]-re ạnte asokae sakamkore mit́ṭen tạlikam ńama.',
 
 # General errors
 'error' => 'bhul',
@@ -395,9 +395,9 @@ $2',
 'virus-unknownscanner' => 'Baṅ urum anṭvayras:',
 
 # Login and logout pages
-'welcomecreation' => '== Johar, $1!==
+'welcomecreation' => 'Johar, $1!
 Amaḱ ekaunṭ do tearena.
-Menkhan do amaḱ [[Special:Preferance {{SITENAME}} pạsindko]] thir dohoe lạgit́te alom hiṛińa.',
+Menkhan amaḱ [[Special:Preferance {{SITENAME}} pạsindko]] thir dohoe lạgit́te alom hiṛińa.',
 'yourname' => 'Beoboharicaḱ ńutum',
 'yourpassword' => 'Uku namber',
 'yourpasswordagain' => 'Arhõ oku namber olme',
@@ -570,6 +570,8 @@ or <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}}
 'userpage-userdoesnotexist-view' => 'Beoharićaḱ "$1" ekaunṭ do baṅ resṭire akana.',
 'blocked-notice-logextract' => 'Nui beoharić do nitoḱe esetgea.
 Refarens lạgit́te nahaḱ boloḱ do latare em hoena:',
+'updated' => '(Halot ruaṛ)',
+'note' => "'''Noṭ:'''",
 'previewnote' => "'''kheyalmẽ, noa do eken ńeloḱ lạgit.'''
 Amaḱ bodolaḱ kodo nit habićte bań rukhíạakana!",
 'continue-editing' => 'Toṅge calaḱkana',
@@ -577,18 +579,29 @@ Amaḱ bodolaḱ kodo nit habićte bań rukhíạakana!",
 'creating' => 'Benao',
 'editingsection' => 'Joṛao $1 (hạṭiń)',
 'editingcomment' => 'Joṛao',
+'editconflict' => 'Sompadon reaḱ bene bạiri: $1',
 'yourtext' => 'Amaḱ ol',
+'storedversion' => 'Rukhiyạ nãwã aroe',
+'nonunicodebrowser' => "'''Sontoro: Amaḱ sendra reaḱ eunikoḍ-gate sompok baṅ kana. Am do je lekate apod baṅ hoe kate noam sompadon daṛeaḱ, ona lạgit́ somadhan menaḱa: baṅaski karecṭarko do heskaḍesimal koḍ hisạbte udug hoyoḱa.'''",
 'yourdiff' => 'Farak',
 'templatesused' => 'Noa sakamre beoharen {{PLURAL:$1 ṭempeleṭ ṭempeleṭko}}:',
 'template-protected' => 'Rukhiạ',
 'template-semiprotected' => '(Kạṭic-rukhiyạ)',
 'hiddencategories' => 'Noa sakam do {{PLURAL:$1 1 ukuakan bhag $1 uku akan bhagkorenaḱ}} gaõtarenge:',
+'nocreate-loggedin' => 'Nãwã sakam tear lạgit́te am do ạidạri em baṅ hoeakana.',
+'sectioneditnotsupported-title' => 'Pahaṭa sompadona do bae hataoeda',
+'sectioneditnotsupported-text' => 'Noa sompadona sakamre pahaṭa sompadona do bae hataoeda',
+'permissionserrors' => 'Ạidạri vulko',
+'permissionserrorstext' => 'Noa kạmi amaḱ ạidạri do banuḱa, {{PLURAL:$1 gan karon reaḱ gan karon reaḱ}} lạgit:',
 'permissionserrorstext-withaction' => 'Amaḱ $2 kạmire ạydạri do bạnuḱa, Ona reaḱ {{PLURAL:$1 Karon/ Karonko}}:',
 'recreate-moveddeleted-warn' => "'''Sontorokme: am do arhõ doṛhate sakamem teyareda oka do sedayre get giḍiyen.
 Am do gunạnme cet́ noa joṛao kạmi am lạgit́te ganoḱ ase bań.
 Noa get ar tala ocok sakam nonḍe em hoyena dhok lagit́te.",
 'moveddeleted-notice' => 'Noa sakam do get giḍiyakana.
 Get ar ocoḱ giḍi sakam do latarre emakan reference lạgit em hoena.',
+'log-fulllog' => 'Joto cạbi udugmẽ',
+'edit-hook-aborted' => 'Huk hotete joto sompadonko bạgi hoeakana.
+Noa reaḱ jahan katha do bạnuḱa.',
 
 # Parser/template warnings
 'post-expand-template-inclusion-warning' => '"Sontoroḱme" Noa format do lạṭu geya.
@@ -844,7 +857,7 @@ Noa reaḱ pasnao katha [$2 rẽt pasnao sakam] latare emena',
 'shortpages' => 'Huḍiń sakamko',
 'longpages' => 'Jiliń sakamko',
 'listusers' => 'beoharićaḱ tạlika',
-'usercreated' => '{{GENDER: $3 | benawakan}} $1 tarikre $2 okte',
+'usercreated' => '{{JẠT: $3 | benawakan}} $1 tarikre $2 okte',
 'newpages' => 'Nãwa Patako',
 'newpages-username' => 'Beoharićaḱ ńutum:',
 'ancientpages' => 'Mare sakamko',

@@ -1015,6 +1015,7 @@ $5
 # Auto-summaries
 'autosumm-blank' => 'صفحه ره اسپه هاکرده',
 'autosumm-replace' => "صفحه ره اینتا جه عوض هاکرد: '$1'",
+'autoredircomment' => 'به [[$1]] مسیر ره تغییر هدائه',
 
 # Special:Version
 'version-specialpages' => 'شا صفحه‌ئون',
@@ -1024,6 +1025,7 @@ $5
 'specialpages-group-maintenance' => 'چله‌بندی صفحه‌ئون',
 
 # New logging system
+'logentry-move-move_redir-noredirect' => '$1 ، $3 ره بدون اینکه مسیر تغییری درس بوه به $4 که مسیر تغییر بیه منتقل هاکرده',
 'logentry-newusers-newusers' => '$1  بساتن اتا حساب کاروری',
 'logentry-newusers-create' => '$1  بساتن اتا حساب کاروری',
 

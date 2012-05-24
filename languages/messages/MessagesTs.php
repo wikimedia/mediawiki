@@ -174,6 +174,7 @@ $messages = array(
 'printableversion' => 'Vona Ngangliso',
 'permalink' => 'Xithlavinyeti xa nkarhi hinkwawo',
 'print' => 'Gandlisa',
+'view' => 'Langutisa',
 'edit' => 'Lulamisa',
 'create' => 'Tumbuluxa',
 'editthispage' => 'Lulamisa Tluka leri',
@@ -193,6 +194,7 @@ $messages = array(
 'specialpage' => 'Tluka ro hlawuleka',
 'personaltools' => "Switirhisi swa n'wini",
 'postcomment' => 'Xiyenge xintswa',
+'articlepage' => 'Langutisa tluka ra matsalwa',
 'talk' => 'Mbulavuriswano',
 'views' => 'Kulanguteka',
 'toolbox' => 'Bokisi ra switirhisiwa',
@@ -208,6 +210,7 @@ $messages = array(
 'redirectedfrom' => '(Ritlerisewe kusuka e $1)',
 'redirectpagesub' => 'Tluka ro kongomisa',
 'lastmodifiedat' => 'Tluka leri rihetelele ku lulamisiwa hi $1, nkarhi kuri $2.',
+'viewcount' => "Tluka leri ri vhakeriwe {{PLURAL:$1|kan'we|makhambi ya $1}}.",
 'protectedpage' => 'Tluka leri sirheleriweke',
 'jumpto' => 'Tlulela eka:',
 'jumptonavigation' => 'Xikomba-ndlela',
@@ -217,7 +220,8 @@ $messages = array(
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
 'aboutsite' => 'ta {{SITENAME}}',
 'aboutpage' => 'Project:ta',
-'copyrightpage' => '{{ns:project}}:Mpfumelelo wo ringisa',
+'copyright' => 'Matsalwa makumeka ehansi ka $1.',
+'copyrightpage' => '{{ns:project}}:Swisivela ku encenyeta',
 'currentevents' => 'Leswi endlekaka sweswi',
 'currentevents-url' => 'Project:Leswi endlekaka sweswi',
 'disclaimers' => 'Swi alanandzu',
@@ -269,6 +273,8 @@ See [[Special:Version|version page]].',
 'page-rss-feed' => '"$1" RSS Feed',
 'page-atom-feed' => '"$1" Atom Feed',
 'red-link-title' => '$1 (Tluka leri, arisi tsariwa)',
+'sort-descending' => 'Xaxameta kuya ehansi',
+'sort-ascending' => 'Xaxameta kuya ehenhla',
 
 # Short words for each namespace, by default used in the namespace tab in monobook
 'nstab-main' => 'Tluka',
@@ -346,6 +352,22 @@ Data here will not presently be refreshed.',
 Function: $1<br />
 Query: $2',
 'viewsource' => 'Vona tsalwa-tumbuluxa',
+'viewsource-title' => 'vona xihlovo xa $1',
+'protectedpagetext' => 'Tluka leri riserheleriwile kusivele ndzulamiso.',
+'viewsourcetext' => 'Unga langutisa naswona u kopa xihlovo xa tluka leri.',
+'viewyourtext' => 'Unga langutisa naswona ukopa xihlovo xa "mindzulamiso yawena" eka tluka leri.',
+'protectedinterface' => 'Tluka leri rina xihlanganisi xa software, naswona risirheleriwile kusivela kuthyakisiwa.',
+'editinginterface' => "'''Tivonele:''' ulekululamiseni tlika leri tirhisiwaka ku komba matsalwa yo hlanganisa ya software.
+Kucinca eka tluka leri kunga onha kulanguteka ka matluka eka vatirhisi van'wana.
+Leswaku uvona kuhundzuluxa langutisa [//translatewiki.net/wiki/Main_Page?setlang=en translatewiki.net], Phurojeki yo hundzuluxa tindzimi ya MediaWiki.",
+'cascadeprotected' => 'Tluka leri risirheleriwile eka mindzulamiso, hikwalaho kaleswi rikatsiweke eka {{PLURAL:$1|tluka, leri|matluka, lama}} sirheleriweke nswona mangana nhlawulo wo "katsakanya" lowu hlawuriweke:
+$2',
+'namespaceprotected' => "Uhava mfumelelo wo lulamisa matluka eka maviti-vundzawu bya '''$1'''.",
+'customcssprotected' => "Uhava mpfumelelo wo ulamisa tluka leri ra CSS, hikuva rina minhlawulo ya mutirhisi un'wana.",
+'customjsprotected' => "Uhava mpfumelelo wolulamisa tluka-xirhumiwa xa Java, hiuva ringava rikhome minhlawulo yamutirhisi un'wana.",
+'ns-specialprotected' => 'Matluka yohlawuleka amalulamisiwi.',
+'titleprotected' => 'Nhlokomhaka leyi yisirheleriwile ekutumbuluxiwa hi [[User:$1|$1]].
+Hikwlaho ka xivangelo xa "\'\'$2\'\'".',
 
 # Login and logout pages
 'logouttext' => "'''Uhumile eka wiki leyi.'''
@@ -366,6 +388,7 @@ Unda rivali ku cinca [[Special:Preferences|{{SITENAME}} minhlawulo ya wena]].',
 'userloginnocreate' => 'Pfula unghena',
 'logout' => 'Pfala u famba',
 'userlogout' => 'Pfala u famba',
+'notloggedin' => 'A wusipfula unghena',
 'nologin' => 'Xana upfumala akhawunti? $1.',
 'nologinlink' => 'Tumbuluxa akhawunti',
 'createaccount' => 'Tumbuluxa akhawunti',

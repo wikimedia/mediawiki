@@ -579,7 +579,7 @@ Els seus motius han estat: «''$2''».",
 'filereadonlyerror' => 'No s\'ha pogut modificar el fitxer «$1» perquè el repositori de fitxers "$2" està en mode només de lectura.
 L\'administrador que l\'ha bloquejat ha donat aquesta explicació: "$3".',
 'invalidtitle-knownnamespace' => "El títol amb l'espai de noms «$2» i text «$3» no és vàlid",
-'invalidtitle-unknownnamespace' => "El títol amb l'espai de noms desconegut de número «$1» i text «$3» no és vàlid",
+'invalidtitle-unknownnamespace' => 'Títol no vàlid amb espai de noms desconegut de número «$1» i text «$2»',
 
 # Virus scanner
 'virus-badscanner' => "Mala configuració: antivirus desconegut: ''$1''",
@@ -954,6 +954,12 @@ Se n'han omès els arguments.",
 'parser-template-loop-warning' => "S'ha detectat un bucle de plantilla: [[$1]]",
 'parser-template-recursion-depth-warning' => "S'ha excedit el límit de recursivitat de plantilles ($1)",
 'language-converter-depth-warning' => "El límit de la profunditat del conversor d'idiomes ha excedit ($1)",
+'node-count-exceeded-category' => "Pàgines on s'ha excedit el recompte de nodes",
+'node-count-exceeded-warning' => 'La pàgina ha excedit el recompte de nodes',
+'expansion-depth-exceeded-category' => "Pàgines on s'ha excedit la profunditat d'expansió",
+'expansion-depth-exceeded-warning' => "La pàgina ha excedit la profunditat d'expansió",
+'parser-unstrip-loop-warning' => "S'ha detectat un bucle no desmuntable",
+'parser-unstrip-recursion-limit' => "S'ha excedit el límit ($1) de recursivitat no desmuntable",
 
 # "Undo" feature
 'undo-success' => "Pot desfer-se la modificació. Si us plau, reviseu la comparació de sota per a assegurar-vos que és el que voleu fer; llavors deseu els canvis per a finalitzar la desfeta de l'edició.",
@@ -1675,13 +1681,14 @@ $1',
 'backend-fail-closetemp' => "No s'ha pogut tancar el fitxer temporal.",
 'backend-fail-read' => "No s'ha pogut llegir el fitxer $1.",
 'backend-fail-create' => "No s'ha pogut crear el fitxer $1.",
-'backend-fail-maxsize' => "No s'ha pogut crear el fitxer $1 perquè és més gran que {{PLURAL:$2|un byte|$2 bytes}}.",
+'backend-fail-maxsize' => "No s'ha pogut escriure el fitxer $1 perquè és més gran que {{PLURAL:$2|un byte|$2 bytes}}.",
 'backend-fail-readonly' => "El rerefons d'emmagatzemament «$1» actualment només és de lectura. Es va donar el motiu: «$2»",
 'backend-fail-synced' => "El fitxer «$1» es troba en un estat inconsistent amb els rerefons d'emmagatzemament interns.",
 'backend-fail-connect' => "No s'ha pogut connectar al fitxer de rerefons d'emmagatzemament «$1».",
 'backend-fail-internal' => "S'ha produït un error desconegut en el fitxer de rerefons d'emmagatzemament «$1».",
 'backend-fail-contenttype' => 'No es pot determinar el tipus de contingut del fitxer per emmagatzemar a «$1».',
 'backend-fail-batchsize' => "El rerefons d'emmagatzemament ha rebut un lot {{PLURAL:$1|d'$1 operació|de $1 operacions}} de fitxer; el límit és $2 {{PLURAL:$2|operació|operacions}}.",
+'backend-fail-usable' => "No s'ha pogut escriure el fitxer $1 a causa de permisos insuficients o perquè hi manquen directoris/contenidors.",
 
 # File journal errors
 'filejournal-fail-dbconnect' => 'No es pot connectar amb la base de dades per emmagatzemar el backend "$1".',

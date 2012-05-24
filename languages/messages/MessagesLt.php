@@ -564,6 +564,8 @@ $2',
 Nurodyta priežastis yra ''$2''.",
 'filereadonlyerror' => 'Neįmanoma pakeisti failo " $1 " nes failų saugykla " $2 " yra nustatyta tik skaitymo režimu.
 Ją užrakinęs administratorius pateikė šį paaiškinimą: " $3 ".',
+'invalidtitle-knownnamespace' => 'Klaidingas pavadinimas vardų erdvėje "$2" ir tekstu "$3"',
+'invalidtitle-unknownnamespace' => 'Klaidingas pavadinimas nežinomoje vardų erdvėje numeriu $1 ir tekstu "$2"',
 
 # Virus scanner
 'virus-badscanner' => "Neleistina konfigūracija: nežinomas virusų skeneris: ''$1''",
@@ -1111,6 +1113,8 @@ Prašome patikrinti sąrašus.',
 
 # Diffs
 'history-title' => '„$1“ versijų istorija',
+'difference-title' => '$1: Skirtumas tarp redakcijų',
+'difference-title-multipage' => '$1 ir $2: Skirtumas tarp puslapių',
 'difference-multipage' => '(Skirtumai tarp puslapių)',
 'lineno' => 'Eilutė $1:',
 'compareselectedversions' => 'Palyginti pasirinktas versijas',

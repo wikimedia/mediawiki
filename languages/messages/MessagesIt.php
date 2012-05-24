@@ -2565,7 +2565,7 @@ Sei sicuro di voler continuare?',
 'unblocklink' => 'sblocca',
 'change-blocklink' => 'cambia blocco',
 'contribslink' => 'contributi',
-'emaillink' => 'invia e-mail',
+'emaillink' => 'invia email',
 'autoblocker' => 'Bloccato automaticamente perché l\'indirizzo IP è condiviso con l\'utente "[[User:$1|$1]]".
 Il blocco dell\'utente $1 è stato imposto per il seguente motivo: "$2".',
 'blocklogpage' => 'Blocchi',

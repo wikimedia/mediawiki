@@ -2346,7 +2346,7 @@ $1 is a page title",
 'nopagetitle' => 'Used as title of [[Special:MovePage]], when the oldtitle does not exist.
 
 The text is {{msg-mw|nopagetext}}.',
-'nopagetext' => 'Used as text of [[Special:MovePage]], when the oldtitle does not exist.
+'nopagetext' => 'Used as text on special pages like [[Special:MovePage]] (when the oldtitle does not exist) or [[Special:PermaLink]].
 
 The title is {{msg-mw|nopagetitle}}.',
 'pager-newer-n' => "This is part of the navigation message on the top and bottom of Special pages which are lists of things in date order, e.g. the User's contributions page. It is passed as the second argument of {{msg-mw|Viewprevnext}}. $1 is the number of items shown per page.",

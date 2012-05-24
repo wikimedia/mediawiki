@@ -1034,11 +1034,17 @@ $3 մասնակիցը տվել է հետևյալ պատճառը. ''$2''",
 'revdelete-edit-reasonlist' => 'Խմբագրել ջնջման պատճառների ցանկը',
 'revdelete-offender' => 'Էջի տարբերակի հեղինակ՝',
 
+# History merging
+'mergehistory-reason' => 'Պատճառ.',
+
 # Merge log
 'revertmerge' => 'Անջատել',
 
 # Diffs
 'history-title' => '«$1» էջի փոփոխումների պատմություն',
+'difference-title' => '$1: Խմագրումների տարբերություն',
+'difference-title-multipage' => '$1 և $2: Խմբագրումների տարբերություն',
+'difference-multipage' => '(Էջերի տարերություն)',
 'lineno' => 'Տող  $1.',
 'compareselectedversions' => 'Համեմատել ընտրած տարբերակները',
 'showhideselectedversions' => 'Ցուցադրել/թաքցնել ընտրված խմբագրումները',

@@ -17,6 +17,7 @@
  * @author Jafeluv
  * @author Kaganer
  * @author Kulmalukko
+ * @author Linnea
  * @author Mobe
  * @author Nedergard
  * @author Nike
@@ -692,6 +693,8 @@ $2',
 'filereadonlyerror' => 'Tiedostoa "$1" ei voi muuttaa, koska jaettu mediavarasto "$2" on "vain luku" -tilassa.
 
 Lukituksen asettanut ylläpitäjä on antanut seuraavan syyn toimenpiteelle: "$3".',
+'invalidtitle-knownnamespace' => 'Virheellinen nimike nimitilaan "$2" ja teksti "$3"',
+'invalidtitle-unknownnamespace' => 'Virheellinen nimi tuntemattomassa nimitilassa $1 ja tekstissä $2',
 
 # Virus scanner
 'virus-badscanner' => "Virheellinen asetus: Tuntematon virustutka: ''$1''",
@@ -1047,6 +1050,10 @@ Nämä muuttujat on jätetty käsittelemättä.",
 'parser-template-loop-warning' => 'Mallinesilmukka havaittu: [[$1]]',
 'parser-template-recursion-depth-warning' => 'Mallineen rekursioraja ylittyi ($1)',
 'language-converter-depth-warning' => 'Kielimuuntimen syvyysraja ylittyi ($1)',
+'node-count-exceeded-category' => 'Sivut, joissa solmumäärä on ylitetty',
+'node-count-exceeded-warning' => 'Sivu ylitti solmumäärän',
+'expansion-depth-exceeded-category' => 'Sivut, joissa laajentamissyvyys on ylitetty',
+'expansion-depth-exceeded-warning' => 'Sivu ylitti laajentamissyvyyden.',
 
 # "Undo" feature
 'undo-success' => 'Kumoaminen onnistui. Valitse <em>tallenna</em> toteuttaaksesi muutokset.',
@@ -1218,6 +1225,8 @@ Uuden ja vanhan sivun muutoksien pitää muodostaa jatkumo – ne eivät saa men
 
 # Diffs
 'history-title' => 'Sivun $1 muutoshistoria',
+'difference-title' => 'Ero sivun "$1" versioiden välillä',
+'difference-title-multipage' => 'Erot sivujen "$1" ja "$2" välillä',
 'difference-multipage' => '(Sivujen välinen eroavaisuus)',
 'lineno' => 'Rivi $1:',
 'compareselectedversions' => 'Vertaile valittuja versioita',
@@ -1751,6 +1760,7 @@ $1',
 'upload-too-many-redirects' => 'URL sisälsi liian monta ohjausta',
 'upload-unknown-size' => 'Tuntematon koko',
 'upload-http-error' => 'HTTP-virhe: $1',
+'upload-copy-upload-invalid-domain' => 'Tallennukset eivät ole käytettävissä tästä verkko-osoitteesta.',
 
 # File backend
 'backend-fail-stream' => 'Tiedoston $1 virtauttaminen epäonnistui.',
@@ -1769,7 +1779,10 @@ $1',
 'backend-fail-closetemp' => 'Väliaikaista tiedostoa ei voitu sulkea.',
 'backend-fail-read' => 'Tiedostoa $1 ei voitu lukea.',
 'backend-fail-create' => 'Tiedostoa $1 ei voitu luoda.',
+'backend-fail-maxsize' => 'Tiedostoa $1 ei voitu luoda, koska se on suurempi kuin {{PLURAL:$2|yksi tavu|$2 tavua}}.',
 'backend-fail-connect' => 'Varastojärjestelmään "$1" ei saada yhteyttä.',
+'backend-fail-contenttype' => 'Tiedostoa ei voitu tallentaa kohteeseen $1, koska tiedostomuotoa ei voitu määrittää.',
+'backend-fail-usable' => 'Ei voitu luoda tiedostoa $1, koska käyttöoikeudet eivät riittäneet tai hakemisto puuttuu.',
 
 # Lock manager
 'lockmanager-notlocked' => 'Kohteen $1 lukitusta ei voitu poistaa, koska se ei ole lukittu.',
@@ -2806,6 +2819,9 @@ Tallenna tiedot koneellesi ja tuo ne tällä sivulla.',
 'import-invalid-interwiki' => 'Määritellystä wikistä ei voi tuoda.',
 'import-error-edit' => 'Sivua $1 ei tuotu, koska sinulla ei ole oikeutta muokata sitä.',
 'import-error-create' => 'Sivua $1 ei tuotu, koska sinulla ei ole oikeutta luoda sitä.',
+'import-error-interwiki' => 'Sivua $1 ei voitu tuoda, koska sen nimi on varattu ulkoisen linkittämisen (interwiki).',
+'import-error-special' => 'Sivua $1 ei tuoda, koska se kuuluu nimitilaan, joka ei salli sivuja.',
+'import-error-invalid' => 'Sivua $1 ei tuoda, koska sen nimi ei kelpaa.',
 
 # Import log
 'importlogpage' => 'Tuontiloki',
