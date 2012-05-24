@@ -11,7 +11,7 @@
 		 timeoutForSmallTests="2"
 		 timeoutForMediumTests="10"
 		 timeoutForLargeTests="60"
-         strict="true"
+         strict="false"
 		 verbose="true">
 	<testsuites>
 		<testsuite name="includes">
