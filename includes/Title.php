@@ -2817,7 +2817,10 @@ class Title {
 			return $this->mRedirect = false;
 		}
 		$linkCache = LinkCache::singleton();
-		$this->mRedirect = (bool)$linkCache->getGoodLinkFieldObj( $this, 'redirect' );
+		$cached = $linkCache->getGoodLinkFieldObj( $this, 'redirect' );
+		assert( $cached !== null ); # assert the assumption that the cache actually knows about this title
+
+		$this->mRedirect = (bool)$cached;
 
 		return $this->mRedirect;
 	}
