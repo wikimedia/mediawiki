@@ -158,7 +158,11 @@ class PopulateRevisionSha1 extends LoggedUpdateMaintenance {
 	 */
 	protected function upgradeLegacyArchiveRow( $row ) {
 		$db = $this->getDB( DB_MASTER );
-		$rev = Revision::newFromArchiveRow( $row );
+		try {
+			$rev = Revision::newFromArchiveRow( $row );
+		} catch ( MWException $e ) {
+			return false; // bug 22624?
+		}
 		$text = $rev->getRawText();
 		if ( !is_string( $text ) ) {
 			# This should not happen, but sometimes does (bug 20757)
