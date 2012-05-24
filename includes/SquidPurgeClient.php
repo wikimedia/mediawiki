@@ -225,29 +225,40 @@ class SquidPurgeClient {
 	 */
 	public function doReads() {
 		$socket = $this->getSocket();
-		if ( !$socket ) {
-			return;
-		}
 
-		$buf = '';
-		wfSuppressWarnings();
-		$bytesRead = socket_recv( $socket, $buf, self::BUFFER_SIZE, 0 );
-		wfRestoreWarnings();
-		if ( $bytesRead === false ) {
-			$error = socket_last_error( $socket );
-			if ( $error != self::EAGAIN && $error != self::EINTR ) {
-				$this->log( 'read error: ' . socket_strerror( $error ) );
-				$this->markDown();
+		while ($socket){
+			$buf = '';
+			wfSuppressWarnings();
+			$bytesRead = socket_recv( $socket, $buf, self::BUFFER_SIZE, 0 );
+			wfRestoreWarnings();
+			if ( $bytesRead === false ) {
+				$error = socket_last_error( $socket );
+				if ( $error != self::EAGAIN && $error != self::EINTR ) {
+					$this->log( 'read error: ' . socket_strerror( $error ) );
+					$this->markDown();
+					return;
+				}
+			} elseif ( $bytesRead === 0 ) {
+				// Assume EOF
+				$this->close();
+				$this->nextRequest();
 				return;
 			}
-		} elseif ( $bytesRead === 0 ) {
-			// Assume EOF
-			$this->close();
-			return;
-		}
 
-		$this->readBuffer .= $buf;
-		while ( $this->socket && $this->processReadBuffer() === 'continue' );
+			$this->readBuffer .= $buf;
+
+			if (!$this->socket){
+				break;
+			}
+
+			do {
+				$bufferState = $this->processReadBuffer();
+			} while ($bufferState == 'continue');
+
+			if ($bufferState != 'get_next'){
+				break;
+			}
+		}
 	}
 
 	/**
@@ -276,17 +287,16 @@ class SquidPurgeClient {
 				if ( $this->bodyRemaining > strlen( $this->readBuffer ) ) {
 					$this->bodyRemaining -= strlen( $this->readBuffer );
 					$this->readBuffer = '';
-					return 'done';
+					return 'get_next';
 				} else {
-					$this->readBuffer = substr( $this->readBuffer, $this->bodyRemaining );
-					$this->bodyRemaining = 0;
+					$this->readBuffer = '';
 					$this->nextRequest();
-					return 'continue';
+					return 'done';
 				}
 			} else {
-				// No content length, read all data to EOF
+				// No content length, need to read all data to EOF
 				$this->readBuffer = '';
-				return 'done';
+				return 'get_next';
 			}
 		default:
 			throw new MWException( __METHOD__.': unexpected state' );
@@ -321,6 +331,9 @@ class SquidPurgeClient {
 			$this->bodyRemaining = intval( $m[1] );
 		} elseif ( $line === '' ) {
 			$this->readState = 'body';
+		}  elseif (preg_match( '/^Connection: close/i', $line ) ) {
+			$this->readState = 'body';
+			$this->bodyRemaining = null;
 		}
 	}
 
@@ -372,14 +385,14 @@ class SquidPurgeClientPool {
 		$startTime = microtime( true );
 		while ( !$done ) {
 			$readSockets = $writeSockets = array();
-			foreach ( $this->clients as $clientIndex => $client ) {
+			foreach ( $this->clients as $client ) {
 				$sockets = $client->getReadSocketsForSelect();
-				foreach ( $sockets as $i => $socket ) {
-					$readSockets["$clientIndex/$i"] = $socket;
+				foreach ( $sockets as $socket ) {
+					$readSockets[] = $socket;
 				}
 				$sockets = $client->getWriteSocketsForSelect();
-				foreach ( $sockets as $i => $socket ) {
-					$writeSockets["$clientIndex/$i"] = $socket;
+				foreach ( $sockets as $socket ) {
+					$writeSockets[] = $socket;
 				}
 			}
 			if ( !count( $readSockets ) && !count( $writeSockets ) ) {
@@ -404,15 +417,21 @@ class SquidPurgeClientPool {
 				continue;
 			}
 
-			foreach ( $readSockets as $key => $socket ) {
-				list( $clientIndex, ) = explode( '/', $key );
-				$client = $this->clients[$clientIndex];
-				$client->doReads();
+			foreach ( $readSockets as $socket ) {
+				foreach ( $this->clients as $client ) {
+					if ($client->socket === $socket){
+						$client->doReads();
+						break;
+					}
+				}				
 			}
-			foreach ( $writeSockets as $key => $socket ) {
-				list( $clientIndex, ) = explode( '/', $key );
-				$client = $this->clients[$clientIndex];
-				$client->doWrites();
+			foreach ( $writeSockets as $socket ) {
+				foreach ( $this->clients as $client ) {
+					if ($client->socket === $socket){
+						$client->doWrites();
+						break;
+					}
+				}
 			}
 
 			$done = true;
