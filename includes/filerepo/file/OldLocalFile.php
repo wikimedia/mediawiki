@@ -94,7 +94,7 @@ class OldLocalFile extends LocalFile {
 			return false;
 		}
 	}
-	
+
 	/**
 	 * Fields in the oldimage table
 	 * @return array
@@ -229,14 +229,15 @@ class OldLocalFile extends LocalFile {
 		wfDebug(__METHOD__.': upgrading '.$this->archive_name." to the current schema\n");
 		$dbw->update( 'oldimage',
 			array(
-				'oi_width' => $this->width,
-				'oi_height' => $this->height,
-				'oi_bits' => $this->bits,
+				'oi_size'       => $this->size, // sanity
+				'oi_width'      => $this->width,
+				'oi_height'     => $this->height,
+				'oi_bits'       => $this->bits,
 				'oi_media_type' => $this->media_type,
 				'oi_major_mime' => $major,
 				'oi_minor_mime' => $minor,
-				'oi_metadata' => $this->metadata,
-				'oi_sha1' => $this->sha1,
+				'oi_metadata'   => $this->metadata,
+				'oi_sha1'       => $this->sha1,
 			), array(
 				'oi_name' => $this->getName(),
 				'oi_archive_name' => $this->archive_name ),
@@ -292,20 +293,20 @@ class OldLocalFile extends LocalFile {
 	 */
 	function uploadOld( $srcPath, $archiveName, $timestamp, $comment, $user, $flags = 0 ) {
 		$this->lock();
-		
+
 		$dstRel = 'archive/' . $this->getHashPath() . $archiveName;
 		$status = $this->publishTo( $srcPath, $dstRel,
 			$flags & File::DELETE_SOURCE ? FileRepo::DELETE_SOURCE : 0
 		);
-		
+
 		if ( $status->isGood() ) {
 			if ( !$this->recordOldUpload( $srcPath, $archiveName, $timestamp, $comment, $user ) ) {
 				$status->fatal( 'filenotfound', $srcPath );
 			}
 		}
-		
+
 		$this->unlock();
-		
+
 		return $status;
 	}
 
