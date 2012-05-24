@@ -34,7 +34,7 @@ class CoreTagHooks {
 		global $wgRawHtml;
 		$parser->setHook( 'pre', array( __CLASS__, 'pre' ) );
 		$parser->setHook( 'nowiki', array( __CLASS__, 'nowiki' ) );
-		$parser->setHook( 'gallery', array( __CLASS__, 'gallery' ) );
+		$parser->setHook( 'gallery', array( __CLASS__, 'gallery' ) , array('preSaveTrans' => true) );
 		if ( $wgRawHtml ) {
 			$parser->setHook( 'html', array( __CLASS__, 'html' ) );
 		}

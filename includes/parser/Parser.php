@@ -123,6 +123,7 @@ class Parser {
 	var $mFunctionTagHooks = array();
 	var $mStripList  = array();
 	var $mDefaultStripList  = array();
+	var $mPstAcceptableXmlTags = array();
 	var $mVarCache = array();
 	var $mImageParams = array();
 	var $mImageParamsMagicArray = array();
@@ -196,6 +197,11 @@ class Parser {
 	 * @var string
 	 */
 	var $mUniqPrefix;
+
+	/**
+	 * @var string
+	 */
+	var $mDuringPreSaveTransform = false;
 
 	/**
 	 * Constructor
@@ -867,7 +873,11 @@ class Parser {
 	 * @return array
 	 */
 	function getStripList() {
-		return $this->mStripList;
+		if ( $this->mDuringPreSaveTransform ) {
+			return $this->mStripList;
+		} else {
+			return array_merge($this->mStripList, $this->mPstAcceptableXmlTags);
+		}
 	}
 
 	/**
@@ -4322,6 +4332,8 @@ class Parser {
 	public function preSaveTransform( $text, Title $title, User $user, ParserOptions $options, $clearState = true ) {
 		$this->startParse( $title, $options, self::OT_WIKI, $clearState );
 		$this->setUser( $user );
+		
+		$this->mDuringPreSaveTransform = true;
 
 		$pairs = array(
 			"\r\n" => "\n",
@@ -4333,6 +4345,8 @@ class Parser {
 		$text = $this->mStripState->unstripBoth( $text );
 
 		$this->setUser( null ); #Reset
+		
+		$this->mDuringPreSaveTransform = false;
 
 		return $text;
 	}
@@ -4627,16 +4641,21 @@ class Parser {
 	 * @param $callback Mixed: the callback function (and object) to use for the tag
 	 * @return Mixed|null The old value of the mTagHooks array associated with the hook
 	 */
-	public function setHook( $tag, $callback ) {
+	public function setHook( $tag, $callback, $options = array() ) {
 		$tag = strtolower( $tag );
 		if ( preg_match( '/[<>\r\n]/', $tag, $m ) ) {
 			throw new MWException( "Invalid character {$m[0]} in setHook('$tag', ...) call" );
 		}
 		$oldVal = isset( $this->mTagHooks[$tag] ) ? $this->mTagHooks[$tag] : null;
 		$this->mTagHooks[$tag] = $callback;
-		if ( !in_array( $tag, $this->mStripList ) ) {
-			$this->mStripList[] = $tag;
-		}
+		
+		if ( isset($options['preSaveTrans']) && $options['preSaveTrans'] === true ) {
+			if ( !in_array( $tag, $this->mPstAcceptableXmlTags ) ) {
+				$this->mPstAcceptableXmlTags[] = $tag;
+			}
+		} elseif ( !in_array( $tag, $this->mStripList ) ) {
+				$this->mStripList[] = $tag;
+		} 
 
 		return $oldVal;
 	}
@@ -4675,6 +4694,8 @@ class Parser {
 		$this->mTagHooks = array();
 		$this->mFunctionTagHooks = array();
 		$this->mStripList = $this->mDefaultStripList;
+		$this->mPstAcceptableXmlTags = array();
+		$this->mDuringPreSaveTransform = false;
 	}
 
 	/**
