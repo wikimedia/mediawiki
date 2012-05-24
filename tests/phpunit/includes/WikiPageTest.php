@@ -4,7 +4,7 @@
 * ^--- important, causes temporary tables to be used instead of the real database
 **/
 
-class WikiPageTest extends MediaWikiTestCase {
+class WikiPageTest extends MediaWikiLangTestCase {
 
 	var $pages_to_delete;
 
@@ -30,6 +30,7 @@ class WikiPageTest extends MediaWikiTestCase {
 	}
 
 	public function setUp() {
+		parent::setUp();
 		$this->pages_to_delete = array();
 	}
 
@@ -45,6 +46,7 @@ class WikiPageTest extends MediaWikiTestCase {
 				// fail silently
 			}
 		}
+		parent::tearDown();
 	}
 
 	protected function newPage( $title ) {
