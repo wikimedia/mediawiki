@@ -1077,9 +1077,9 @@ Zawěsć, zo tuta změna stawiznisku kontinuitu strony wobchowuje.',
 'mergelogpagetext' => 'Deleka je lisćina najaktualnišich zjednoćenjow stawiznow dweju stronow.',
 
 # Diffs
-'history-title' => 'Stawizny wersijow strony „$1“',
-'difference-title' => 'Rozdźěl mjez wersijemi "$1"',
-'difference-title-multipage' => 'Rozdźěl mjez stronami "$1" a "$2"',
+'history-title' => '$1: Wersijowe stawizny',
+'difference-title' => '$1: Rozdźěl mjez wersijemi',
+'difference-title-multipage' => '$1 a $2: Rozdźěl mjez stronami',
 'difference-multipage' => '(Rozdźěl mjez stronami)',
 'lineno' => 'Rjadka $1:',
 'compareselectedversions' => 'Wubranej wersiji přirunać',

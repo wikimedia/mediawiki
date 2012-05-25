@@ -1192,9 +1192,9 @@ Vedi l'[[Special:BlockList|elenco dei blocchi]] per l'elenco dei bandi e dei blo
 'mergelogpagetext' => 'Di seguito sono elencate le ultime operazioni di unione della cronologia di due pagine.',
 
 # Diffs
-'history-title' => 'Cronologia delle modifiche di "$1"',
-'difference-title' => 'Differenza tra le versioni di "$1"',
-'difference-title-multipage' => 'Differenza tra le pagine "$1" e "$2"',
+'history-title' => '$1: cronologia delle modifiche',
+'difference-title' => '$1: differenze tra le versioni',
+'difference-title-multipage' => '$1 e $2: differenze tra le pagine',
 'difference-multipage' => '(Differenze fra le pagine)',
 'lineno' => 'Riga $1:',
 'compareselectedversions' => 'Confronta le versioni selezionate',

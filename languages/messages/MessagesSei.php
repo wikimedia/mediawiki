@@ -670,7 +670,7 @@ Informacion: (curt) = quiíxde vercion currentua,
 # Recent changes
 'nchanges' => '$1 {{PLURAL:$1|quiix|quíix}}',
 'recentchanges' => 'Camjöx cmaa',
-'recentchangestext' => 'Caitom camjöx cmaa quiíx zode Wiki zo jan páhina iti.',
+'recentchanges-summary' => 'Caitom camjöx cmaa quiíx zode Wiki zo jan páhina iti.',
 'recentchanges-feed-description' => 'Caitom camjöx cmaa quiíx zode Wiki zo jan fiiyt iti.',
 'rcnote' => "!-cmaa coccebj {{PLURAL:$1|'''1''' quiixde|'''$1''' hunquiíxde}} {{PLURAL:$2|'''1''' hunzaah|'''$2''' hunixaáp}} zo iti, $3 'de.",
 'rcnotefrom' => "!-cmaa coccebj quiíx zode '''$2''' (plusöxiti '''$1''' visi).",

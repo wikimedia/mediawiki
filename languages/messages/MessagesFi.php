@@ -2052,7 +2052,7 @@ Jokaisella rivillä on linkit ensimmäiseen ja toiseen ohjaukseen sekä toisen o
 'protectedpages-indef' => 'Vain ikuisesti suojatut',
 'protectedpages-cascade' => 'Vain laajennetusti suojatut',
 'protectedpagestext' => 'Seuraavat sivut ovat suojattuja siirtämiseltä tai muutoksilta',
-'protectedpagesempty' => 'Ei suojattu sivuja.',
+'protectedpagesempty' => 'Mitään sivuja ei ole tällä hetkellä suojattu näillä asetuksilla.',
 'protectedtitles' => 'Suojatut sivunimet',
 'protectedtitlestext' => 'Seuraavien sivujen luonti on estetty.',
 'protectedtitlesempty' => 'Ei suojattuja sivunimiä näillä hakuehdoilla.',

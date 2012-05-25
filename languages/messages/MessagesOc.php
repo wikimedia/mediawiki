@@ -1527,7 +1527,7 @@ Tanben podètz causir de permetre a d’autres de vos contactar per vòstra pagi
 'nchanges' => '$1 {{PLURAL:$1|cambiament|cambiaments}}',
 'recentchanges' => 'Darrièrs cambiaments',
 'recentchanges-legend' => 'Opcions dels darrièrs cambiaments',
-'recentchangestext' => 'Vaquí sus aquesta pagina, los darrièrs cambiaments de {{SITENAME}}.',
+'recentchanges-summary' => 'Vaquí sus aquesta pagina, los darrièrs cambiaments de {{SITENAME}}.',
 'recentchanges-feed-description' => "Seguissètz los darrièrs cambiaments d'aqueste wiki dins un flux.",
 'recentchanges-label-newpage' => 'Aquesta modificacion a creat una pagina novèla',
 'recentchanges-label-minor' => 'Aqueste cambiament es menor',

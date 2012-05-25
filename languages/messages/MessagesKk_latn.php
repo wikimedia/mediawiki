@@ -1287,7 +1287,7 @@ Eger bunı jetistirwdi tañdasañız, bul tüzetwiñizdiñ awtorlığın anıqta
 # Recent changes
 'nchanges' => '$1 özgeris',
 'recentchanges' => 'Jwıqtağı özgerister',
-'recentchangestext' => 'Bul bette osı wïkïdegi bolğan jwıqtağı özgerister baýqaladı.',
+'recentchanges-summary' => 'Bul bette osı wïkïdegi bolğan jwıqtağı özgerister baýqaladı.',
 'recentchanges-feed-description' => 'Bul arnamenen wïkïdegi eñ soñğı özgerister qadağalanadı.',
 'rcnote' => "$3 kezine deýin — tömende soñğı {{PLURAL:$2|kündegi|'''$2''' kündegi}}, soñğı '''$1''' özgeris körsetiledi.",
 'rcnotefrom' => "'''$2''' kezinen beri — tömende '''$1''' jetkenşe deýin özgerister körsetiledi.",

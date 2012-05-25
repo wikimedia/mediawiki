@@ -543,6 +543,8 @@ De gegaeve ree is ''$2''.",
 'filereadonlyerror' => '\'t Waar neet meugelik óm \'t bestandj "$1" aan te passe went de bestandjsrepositoir "$2" steit noe op allein-laeze.
 
 d\'n Opgegaeve raej vanne sloetendje admin waar "\'\'$3\'\'".',
+'invalidtitle-knownnamespace' => 'Óngèljige titel mit naamruumdje "$2" en teks "$3"',
+'invalidtitle-unknownnamespace' => 'Óngèljige titel mit ónbekèndj naamruumdenómmer $1 en teks "$2"',
 
 # Virus scanner
 'virus-badscanner' => "Slechte configuratie: onbekenge virusscanner: ''$1''",
@@ -906,6 +908,12 @@ Dees parameters zeen eweggelaote.",
 'parser-template-loop-warning' => "D'r is 'ne krinkloup in sjablone geconstateerd: [[$1]]",
 'parser-template-recursion-depth-warning' => 'De recursiedeepte veur sjablone is euversjrede ($1)',
 'language-converter-depth-warning' => 'De deepdjelimiet veure spraokómzètter is euversjreje ($1)',
+'node-count-exceeded-category' => "Pagina's wo 't maximaal aantal nodes te väöl is",
+'node-count-exceeded-warning' => "Oppe paasj is 't maximaal aantal nodes te väöl",
+'expansion-depth-exceeded-category' => "Pagina's wo de expansiedeepdje te väöl is",
+'expansion-depth-exceeded-warning' => 'De paasj haet te väöl sjablone',
+'parser-unstrip-loop-warning' => 'Unstriplus gevónje',
+'parser-unstrip-recursion-limit' => 'Unstriprecursielimiet te väöl ($1)',
 
 # "Undo" feature
 'undo-success' => "Hiej onger stuit de teks wo in de verangering ongedaon gemaak is. Controleer veur 't opslaon of 't resultaot gewins is.",
@@ -1083,9 +1091,9 @@ Wees zeker det deze wieziging de gesjiedenisdoorloupendheid van de pagina zal be
 'mergelogpagetext' => "Hiejonger zuut geer 'ne lies van recente samevoeginge van 'ne paginagesjiedenis nao 'ne angere.",
 
 # Diffs
-'history-title' => 'Gesjiedenis van "$1"',
-'difference-title' => 'Versjèl tösje versies van "$1"',
-'difference-title-multipage' => 'Versjèl tösje pagina\'s "$1" en "$2"',
+'history-title' => '$1: bewèrkingseuverzich',
+'difference-title' => '$1 versjèl tösje versies',
+'difference-title-multipage' => "$1 en $2: versjèl tösje pagina's",
 'difference-multipage' => '(Versjil tösje paazjes)',
 'lineno' => 'Tekslien $1:',
 'compareselectedversions' => 'Vergeliek geselecteerde versies',
@@ -1637,14 +1645,15 @@ Gank trök nao t [[Special:Upload/stash/$1|uploadformuleer]] om dit perbleem te 
 'backend-fail-writetemp' => "'t Waes neet mäögelik nao 'n tiedelik besjtand te sjrieve.",
 'backend-fail-closetemp' => "'t Waes neet mäögelik 'n tiedelik besjtand te sjlete.",
 'backend-fail-read' => 'Kós bestjand $1 neet laeze.',
-'backend-fail-create' => 'Kós bestjand $1 neet aanmake.',
-'backend-fail-maxsize' => "'t Waar neet meugelik 't bestandj $1 aan te make went 't is grótter es {{PLURAL:$2|eine byte|$2 byte}}.",
+'backend-fail-create' => 'Kós bestandj $1 neet sjrieve.',
+'backend-fail-maxsize' => "'t Waar neet meugelik 't bestandj $1 te besjrieve went 't is grótter es {{PLURAL:$2|eine byte|$2 byte}}.",
 'backend-fail-readonly' => 'Vannen opslaag "$1" kin op dit memènt allein gelaeze waere. De opgegaeve raeje is: "$2"',
 'backend-fail-synced' => '\'t Bestandj "$1" bevindj zich in \'nen ónsamehangendje toestandj inne intern opslaagbackends.',
 'backend-fail-connect' => 'Kós de bestandjsbackend neet verbinje mitte opslaagbackend "$1".',
 'backend-fail-internal' => '\'n Ónbekèndje fout is ópgetaoje innen opslaagbackend "$1".',
 'backend-fail-contenttype' => 'Kós \'t inhawdtype van \'t bestnadj óm es "$1" op te slaon neet bepaole.',
 'backend-fail-batchsize' => 'Reiks van $1 {{PLURAL:$1|bestandjsoperatie|bestandjsoperaties}} in de opslaagbackend; de limiet is $2 {{PLURAL:$2|operatie|operaties}}.',
+'backend-fail-usable' => "Kós 't bestandj $1 neet besjraeve vanwaenge te mèn rèchte of aafwaezige mappe/kóntaeners.",
 
 # File journal errors
 'filejournal-fail-dbconnect' => 'Kós neet verbinje mit de journaaldatabase veur de opslaagbackend "$1".',

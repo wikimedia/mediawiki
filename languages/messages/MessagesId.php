@@ -1279,7 +1279,7 @@ Pastikan bahwa perubahan ini tetap mempertahankan kontinuitas versi terdahulu ha
 
 # Diffs
 'history-title' => 'Riwayat revisi dari "$1"',
-'difference-title' => 'Perbedaan antarrevisi "$1"',
+'difference-title' => '$1: Perbedaan revisi',
 'difference-title-multipage' => 'Perbedaan antara halaman "$1" dan "$2"',
 'difference-multipage' => '(Perbedaan antarhalaman)',
 'lineno' => 'Baris $1:',

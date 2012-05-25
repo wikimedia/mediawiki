@@ -740,7 +740,7 @@ Las búsquedas producen más o munco a buscar biervos comunes como «la» o «de
 'nchanges' => '$1 {{PLURAL:$1|trocamiento|trocamientos}}',
 'recentchanges' => 'Trocamientos freskos',
 'recentchanges-legend' => 'Opciones encima de los trocamientos frescos',
-'recentchangestext' => 'Perseguid en esta hoja, los trocamientos de alcabo realizados en la Viki.',
+'recentchanges-summary' => 'Perseguid en esta hoja, los trocamientos de alcabo realizados en la Viki.',
 'recentchanges-feed-description' => 'Perseguir los trocamientos más nuevos en el viki en este feed.',
 'recentchanges-label-minor' => 'Esta es un trocamiento chiquitico',
 'rcnote' => "Debaxo {{PLURAL:$1|ay '''1''' trocamiento realizado|están los dal cabo '''$1''' trocamientos realizados}} en  {{PLURAL:$2|el dal cabo día|los dal cabo '''$2''' días}}, hasta el $4, $5.",

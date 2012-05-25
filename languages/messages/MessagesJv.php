@@ -1201,7 +1201,7 @@ Panjenengan uga bisa milih supaya wong liya ngubungi panjenengan liwat jeneng pa
 'nchanges' => '$1 {{PLURAL:$1|pangowahan|owah-owahan}}',
 'recentchanges' => 'Owah-owahan',
 'recentchanges-legend' => 'Pilihan owah-owahan pungkasan',
-'recentchangestext' => 'Runutna owah-owahan pungkasan ing wiki iki ing kaca iki.',
+'recentchanges-summary' => 'Runutna owah-owahan pungkasan ing wiki iki ing kaca iki.',
 'recentchanges-feed-description' => "Urutna owah-owahan anyar ing wiki ing ''feed'' iki.",
 'recentchanges-label-newpage' => 'Suntingan iki gawé kaca anyar',
 'recentchanges-label-minor' => 'Iki suntingan sithik',

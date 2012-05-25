@@ -24,6 +24,7 @@
  * @author Kaganer
  * @author Klutzy
  * @author Kwj2772
+ * @author Mintz0223
  * @author Pi.C.Noizecehx
  * @author PuzzletChung
  * @author TheAlpha for knowledge
@@ -1798,14 +1799,15 @@ $1',
 'backend-fail-writetemp' => '임시 파일을 쓸 수 없습니다.',
 'backend-fail-closetemp' => '임시 파일을 닫을 수 없습니다.',
 'backend-fail-read' => '$1 파일을 읽을 수 없습니다.',
-'backend-fail-create' => '$1 파일을 쓸 수 없습니다.',
-'backend-fail-maxsize' => '$2{{PLURAL:$2|바이트}}보다 커서 $1 파일을 생성하지 못했습니다.',
+'backend-fail-create' => '$1 파일을 저장하지 못했습니다.',
+'backend-fail-maxsize' => '$2{{PLURAL:$2|바이트}}보다 커서 $1 파일을 저장하지 못했습니다.',
 'backend-fail-readonly' => '‘$1’ 저장 백엔드가 읽기 전용입니다. 자세한 이유는 다음과 같습니다: “$2”',
 'backend-fail-synced' => '파일 "$1"은 내부 저장 백엔드에 불안정한 상태로 있습니다.',
 'backend-fail-connect' => "'$1' 저장 백엔드에 접속하지 못했습니다.",
 'backend-fail-internal' => '"$1" 저장 백엔드에 알 수 없는 오류가 발생했습니다.',
 'backend-fail-contenttype' => '"$1"에 저장하기 위한 파일의 내용 유형을 판별하지 못했습니다.',
 'backend-fail-batchsize' => '저장 백엔드에서 $1개의 파일 {{PLURAL:$1|작업}}이 쌓여 있습니다; 한계는 $2개입니다.',
+'backend-fail-usable' => '파일 저장 권한이 없거나 저장 위치가 빠졌기 때문에 $1 파일을 저장할 수 없습니다.',
 
 # File journal errors
 'filejournal-fail-dbconnect' => '저장소 백엔드 ‘$1’에 대한 저널 데이터베이스에 연결할 수 없습니다.',

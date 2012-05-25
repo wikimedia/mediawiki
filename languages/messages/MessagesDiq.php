@@ -965,7 +965,7 @@ no vurnayişo ke şıma keni kontrol bıkere yew pelo kehen nêbo.',
 'mergelogpagetext' => 'Cêr de jû liste esta ke mocnena ra, raya tewr peyêne kamci pela tarixi be a bine ra şanawa pê.',
 
 # Diffs
-'history-title' => 'Tarixê revizyoniyê "$1"',
+'history-title' => 'Rewizyonê $1:',
 'difference-multipage' => '(Ferqê pelan)',
 'lineno' => 'Rêza $1i:',
 'compareselectedversions' => 'Verziyonan kontrol bıke',
@@ -1490,12 +1490,13 @@ Eke problem dewam kerd [[Special:ListUsers/sysop|serkari]] de irtibat kewe.',
 'backend-fail-backup' => '$1 nê wendeyê',
 'backend-fail-notexists' => '$1 name dı dosya çına.',
 'backend-fail-delete' => '$1 nê besterneyê',
+'backend-fail-alreadyexists' => "Dosyay $1'ya nêwanêna",
 'backend-fail-store' => '$1 ra $2 berdışo nê wanêno',
 'backend-fail-copy' => '$1 ra $2 kopya kerdışena dosyayo nêbeno',
 'backend-fail-move' => '$1 ra $2 berdışo nê wanêno',
 'backend-fail-opentemp' => 'Teferruatê dosyayo nêwanêno',
 'backend-fail-read' => 'Na "$1" dosya nê wanêna',
-'backend-fail-create' => '$1 nê vırazêna',
+'backend-fail-create' => 'Dosyay $1 nê vırazıyê',
 
 # Special:UploadStash
 'uploadstash' => 'Nımıtışê barkerdışi',
@@ -1620,6 +1621,7 @@ listeya ke ha ver a têna na {{PLURAL:$1|dosyaya ewwili|dosyaya $1 ewwili}} mocn
 ** Çift/dosyaya kopyayın',
 'filedelete-edit-reasonlist' => 'Sebebê esterayîşî bivurne',
 'filedelete-maintenance' => 'Esterayîş u resterasyonê dosyayî wextê texmirî de nibenê.',
+'filedelete-maintenance-title' => 'Dosyaya nêbesterneyêna',
 
 # MIME search
 'mimesearch' => 'MIME bigêre',
@@ -1781,7 +1783,7 @@ tipa rocaneyi, nameyê karberi (herfa pil u qıci re hessas a), ya zi peli (reyn
 'allarticles' => 'Peli pêro',
 'allinnamespace' => 'Pelanê hemî ($1 cayênameyî)',
 'allnotinnamespace' => 'Pelanê hemî ($1 cayênameyî de niyo)',
-'allpagesprev' => 'Eveli',
+'allpagesprev' => 'Verêni',
 'allpagesnext' => 'ver şo',
 'allpagessubmit' => 'Şo',
 'allpagesprefix' => 'herfê ke şıma tiya de nuşti, pê ney herfan pelê ke destpêkenê liste ker:',

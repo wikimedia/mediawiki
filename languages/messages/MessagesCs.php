@@ -1299,9 +1299,9 @@ Ujistěte se, že tato změna udrží souvislost a posloupnost verzí v historii
 'mergelogpagetext' => 'Níže je seznam nejnovějších sloučení historie jedné stránky s jinou.',
 
 # Diffs
-'history-title' => 'Historie verzí stránky „$1“',
-'difference-title' => 'Porovnání verzí stránky „$1“',
-'difference-title-multipage' => 'Porovnání stránek „$1“ a „$2“',
+'history-title' => '$1: Historie verzí',
+'difference-title' => '$1: Porovnání verzí',
+'difference-title-multipage' => '$1 a $2: Porovnání stránek',
 'difference-multipage' => '(Rozdíly mezi stránkami)',
 'lineno' => 'Řádka $1:',
 'compareselectedversions' => 'Porovnat vybrané verze',

@@ -657,7 +657,7 @@ Gwrewgh assaya rag-gorra agas govyn gans ''all:'' rag hwilas en pub teller (a-ba
 'nchanges' => '$1 {{PLURAL:$1|chanj|chanj}}',
 'recentchanges' => 'Chanjyow a-dhiwedhes',
 'recentchanges-legend' => 'Etholyow an chanjyow a-dhiwedhes',
-'recentchangestext' => "War'n folen-ma y hellowgh hwi sewya an chanjyow diwettha eus gwres dhe'n wiki.",
+'recentchanges-summary' => "Sewya an chanjyow diwettha eus dhe'n wiki war'n folen-ma.",
 'recentchanges-feed-description' => "Sewya an chanjyow diwettha dhe'n wiki e'n feed-ma.",
 'recentchanges-label-newpage' => 'An chanj-ma a wrug gwruthyl folen nowyth',
 'recentchanges-label-minor' => 'Chanj bian yw hebma',

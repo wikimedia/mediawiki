@@ -658,7 +658,7 @@ Unuduḱ: '''({{int:cur}})''' = nahaḱ nãwã aroeko saõte tulạo, '''({{int:
 'revertmerge' => 'bań mit́',
 
 # Diffs
-'history-title' => '"$1" noa jạṛ nãwã aroy',
+'history-title' => '"$1": Jạṛ nãwã aroe',
 'lineno' => 'Sạr $1:',
 'compareselectedversions' => 'Noa barea nãwã bachawanaḱ talare tolonayme',
 'editundo' => 'ruạṛ',

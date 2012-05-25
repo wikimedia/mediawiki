@@ -796,7 +796,7 @@ Chan fhaicear an seòladh fhèin nuair a chuireas cuideigin post-dealain thugad.
 'nchanges' => '{{PLURAL:$1|mhùthadh|mhùthadh|mhùthadh|mhùthadh|mùthaidhean|mùthadh}}',
 'recentchanges' => 'Mùthaidhean ùra',
 'recentchanges-legend' => 'Roghainnean nam mùthaidhean ùra',
-'recentchangestext' => 'Cum sùil air na mùthaidhean as ùire a nithear air an uici air an duilleag seo.',
+'recentchanges-summary' => 'Cum sùil air na mùthaidhean as ùire a nithear air an uici air an duilleag seo.',
 'recentchanges-feed-description' => 'Cum sùil air na mùthaidhean as ùire a nithear air an uici seo san inbhir seo.',
 'recentchanges-label-newpage' => 'Chruthaich thu duilleag ùr leis a sin',
 'recentchanges-label-minor' => 'Seo mùthadh beag',
