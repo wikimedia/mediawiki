@@ -1544,7 +1544,7 @@ class HTMLTextField extends HTMLFormField {
 			}
 		}
 
-		foreach ( array( 'required', 'autofocus', 'multiple', 'readonly' ) as $param ) {
+		foreach ( array( 'required', 'autofocus', 'readonly' ) as $param ) {
 			if ( isset( $this->mParams[$param] ) ) {
 				$attribs[$param] = '';
 			}
@@ -1835,7 +1835,6 @@ class HTMLSelectOrOtherField extends HTMLTextField {
 				HTMLFormField::flattenOptions( $this->mParams['options'] )
 			);
 		}
-
 		$selected = $valInSelect ? $value : 'other';
 
 		$opts = self::forceToStringRecursive( $this->mParams['options'] );
@@ -1892,9 +1891,62 @@ class HTMLSelectOrOtherField extends HTMLTextField {
 }
 
 /**
- * Multi-select field
+ * Multi-select field.
+ *
+ * Uses either:
+ *  - multiple html input elements (default)
+ *  - a select list with 'multiple' attribute and a set of options instead of
+ *  select field.
+ *
+ * To activate the later behavior, the option 'usecheckboxes' can be set to
+ * false or to a number stating how many options have to be available till
+ * switching behavior.
+ *
+ * @since ??.?, option 'usecheckboxes' available since 1.20
  */
 class HTMLMultiSelectField extends HTMLFormField {
+
+	/**
+	 * Whether the form is using checkboxes or a multi-select field for
+	 * representation.
+	 * @var bool
+	 */
+	private $useCheckboxes;
+
+	/**
+	 * @see HTMLFormField::__construct
+	 */
+	function __construct( $params ) {
+		parent::__construct( $params );
+
+		$this->useCheckboxes = isset( $this->mParams['usecheckboxes'] )
+			? $this->mParams['usecheckboxes']
+			: true; // fallback, use checkboxes
+
+		if( !is_bool( $this->useCheckboxes ) ) {
+			// keep using checkboxes if the total number of options is below or
+			// equal to the number the 'usecheckboxes' is set to.
+			$this->useCheckboxes = count( $this->mParams['options'] ) <= $this->useCheckboxes;
+		}
+	}
+
+	/**
+	 * Whether to uses checkboxes when displaying multi select.
+	 *
+	 * If this returns false, a select element with 'multiple' attribute set is
+	 * used to represent the multi select.
+	 *
+	 * To activate the later mode, the option 'usecheckboxes' in the options
+	 * given to the constructor must be set to true or to a number lower than
+	 * the actual number of available options.
+	 *
+	 * @since 1.20
+	 *
+	 * @return bool
+	 */
+	function isUsingCheckboxes() {
+		return $this->useCheckboxes;
+	}
 
 	function validate( $value, $alldata ) {
 		$p = parent::validate( $value, $alldata );
@@ -1922,6 +1974,21 @@ class HTMLMultiSelectField extends HTMLFormField {
 	function getInputHTML( $value ) {
 		$html = $this->formatOptions( $this->mParams['options'], $value );
 
+		if( !$this->isUsingCheckboxes() ) {
+			// height of the element, not higher than 15 for now, could be
+			// configurable as well.
+			$size = min( count( $this->mParams['options'] ), 15 );
+
+			$html = Html::rawElement( 'select',
+				array(
+					'multiple' => 'multiple',
+					'size'     => $size,
+					'name'     => $this->mName . '[]'
+				),
+				$html
+			);
+		}
+
 		return $html;
 	}
 
@@ -1936,18 +2003,37 @@ class HTMLMultiSelectField extends HTMLFormField {
 
 		foreach ( $options as $label => $info ) {
 			if ( is_array( $info ) ) {
+				// group within
 				$html .= Html::rawElement( 'h1', array(), $label ) . "\n";
 				$html .= $this->formatOptions( $info, $value );
 			} else {
+				$checked = in_array( $info, $value, true );
 				$thisAttribs = array( 'id' => "{$this->mID}-$info", 'value' => $info );
+				$optionClass = array( 'class' => 'mw-htmlform-flatlist-item' );
 
-				$checkbox = Xml::check(
-					$this->mName . '[]',
-					in_array( $info, $value, true ),
-					$attribs + $thisAttribs );
-				$checkbox .= '&#160;' . Html::rawElement( 'label', array( 'for' => "{$this->mID}-$info" ), $label );
+				if( $this->isUsingCheckboxes() ) {
+					// use checkboxes for selectable options
+					$checkbox = Xml::check(
+						$this->mName . '[]',
+						$checked,
+						$attribs + $thisAttribs
+					);
+					$checkbox .= '&#160;';
+					$checkbox .=Html::rawElement( 'label',
+						array( 'for' => "{$this->mID}-$info" ),
+						$label
+					);
 
-				$html .= ' ' . Html::rawElement( 'div', array( 'class' => 'mw-htmlform-flatlist-item' ), $checkbox );
+					$html .= ' ' . Html::rawElement( 'div', $optionClass, $checkbox );
+				} else {
+					// use <options/> element for each selectable option
+					$html .= Xml::option(
+						$label,
+						$info,
+						$checked,
+						$attribs + $thisAttribs + $optionClass
+					);
+				}
 			}
 		}
 
@@ -2082,7 +2168,7 @@ class HTMLSelectAndOtherField extends HTMLSelectField {
 			$textAttribs['class'] = $this->mClass;
 		}
 
-		foreach ( array( 'required', 'autofocus', 'multiple', 'disabled' ) as $param ) {
+		foreach ( array( 'required', 'autofocus', 'disabled' ) as $param ) {
 			if ( isset( $this->mParams[$param] ) ) {
 				$textAttribs[$param] = '';
 			}
