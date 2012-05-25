@@ -198,6 +198,33 @@ class DBABagOStuff extends BagOStuff {
 		return $ret;
 	}
 
+	function incr( $key, $step = 1 ) {
+		wfProfileIn( __METHOD__ );
+
+		$handle = $this->getWriter();
+
+		if ( !$handle ) {
+			wfProfileOut( __METHOD__ );
+			return false;
+		}
+
+		list( $value, $expiry ) = $this->decode( dba_fetch( $key, $handle ) );
+		if ( $expiry < time() ) {
+			$value = 0;
+			$expiry = 0;
+		}
+		$value += $step;
+		$blob = $this->encode( $value, $expiry );
+
+		$ret = dba_replace( $key, $blob, $handle );
+
+		dba_close( $handle );
+
+		wfProfileOut( __METHOD__ );
+
+		return $value;
+	}
+
 	function keys() {
 		$reader = $this->getReader();
 		$k1 = dba_firstkey( $reader );
