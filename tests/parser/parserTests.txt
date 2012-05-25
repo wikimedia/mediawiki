@@ -640,6 +640,17 @@ Definition and unordered list using wiki syntax nested in unordered list using h
 
 !! end
 
+!! test
+Definition list with empty definition and following paragraph
+!! input
+; term:
+Paragraph text
+!! result
+<dl><dt> term</dt><dd>
+</dd></dl>
+<p>Paragraph text
+</p>
+!! end
 
 ###
 ### External links
