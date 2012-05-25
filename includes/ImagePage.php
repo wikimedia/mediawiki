@@ -346,18 +346,30 @@ class ImagePage extends Article {
 						# Note that $height <= $maxHeight now, but might not be identical
 						# because of rounding.
 					}
-					$msgbig  = wfMsgHtml( 'show-big-image' );
+					$msgbig = wfMsgHtml( 'show-big-image' );
+					if ( $this->displayImg->getRepo()->canTransformVia404() ) {
+						$thumbSizes = $wgImageLimits;
+					} else {
+						# Creating thumb links triggers thumbnail generation.
+						# Just generate the thumb for the current users prefs.
+						$thumbOption = $user->getOption( 'thumbsize' );
+						$thumbSizes = array( isset( $wgImageLimits[$thumbOption] )
+							? $wgImageLimits[$thumbOption]
+							: $wgImageLimits[User::getDefaultOption( 'thumbsize' )] );
+					}
+					# Generate thumbnails or thumbnail links as needed...
 					$otherSizes = array();
-					foreach ( $wgImageLimits as $size ) {
-						if ( $size[0] < $width_orig && $size[1] < $height_orig &&
-								$size[0] != $width && $size[1] != $height ) {
+					foreach ( $thumbSizes as $size ) {
+						if ( $size[0] < $width_orig && $size[1] < $height_orig
+							&& $size[0] != $width && $size[1] != $height )
+						{
 							$otherSizes[] = $this->makeSizeLink( $params, $size[0], $size[1] );
 						}
 					}
 					$msgsmall = wfMessage( 'show-big-image-preview' )->
 						rawParams( $this->makeSizeLink( $params, $width, $height ) )->
 						parse();
-					if ( count( $otherSizes ) && $this->displayImg->getRepo()->canTransformVia404() ) {
+					if ( count( $otherSizes ) ) {
 						$msgsmall .= ' ' .
 						Html::rawElement( 'span', array( 'class' => 'mw-filepage-other-resolutions' ),
 							wfMessage( 'show-big-image-other' )->rawParams( $lang->pipeList( $otherSizes ) )->
