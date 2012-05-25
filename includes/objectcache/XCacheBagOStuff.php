@@ -38,7 +38,11 @@ class XCacheBagOStuff extends BagOStuff {
 		$val = xcache_get( $key );
 
 		if ( is_string( $val ) ) {
-			$val = unserialize( $val );
+			if ( ctype_digit( $val ) ) {
+				$val = intval( $val );
+			} else {
+				$val = unserialize( $val );
+			}
 		}
 
 		return $val;
@@ -53,7 +57,11 @@ class XCacheBagOStuff extends BagOStuff {
 	 * @return bool
 	 */
 	public function set( $key, $value, $expire = 0 ) {
-		xcache_set( $key, serialize( $value ), $expire );
+		if ( !$this->isInteger( $value ) ) {
+			$value = serialize( $value );
+		}
+
+		xcache_set( $key, $value, $expire );
 		return true;
 	}
 
@@ -68,5 +76,12 @@ class XCacheBagOStuff extends BagOStuff {
 		xcache_unset( $key );
 		return true;
 	}
-}
 
+	public function incr( $key, $value = 1 ) {
+		return xcache_inc( $key, $value );
+	}
+
+	public function decr( $key, $value = 1 ) {
+		return xcache_dec( $key, $value );
+	}
+}

@@ -27,7 +27,6 @@
  * @ingroup Cache
  */
 class APCBagOStuff extends BagOStuff {
-
 	/**
 	 * @param $key string
 	 * @return mixed
@@ -36,7 +35,11 @@ class APCBagOStuff extends BagOStuff {
 		$val = apc_fetch( $key );
 
 		if ( is_string( $val ) ) {
-			$val = unserialize( $val );
+			if ( ctype_digit( $val ) ) {
+				$val = intval( $val );
+			} else {
+				$val = unserialize( $val );
+			}
 		}
 
 		return $val;
@@ -49,7 +52,11 @@ class APCBagOStuff extends BagOStuff {
 	 * @return bool
 	 */
 	public function set( $key, $value, $exptime = 0 ) {
-		apc_store( $key, serialize( $value ), $exptime );
+		if ( !$this->isInteger( $value ) ) {
+			$value = serialize( $value );
+		}
+
+		apc_store( $key, $value, $exptime );
 
 		return true;
 	}
@@ -63,6 +70,14 @@ class APCBagOStuff extends BagOStuff {
 		apc_delete( $key );
 
 		return true;
+	}
+
+	public function incr( $key, $value = 1 ) {
+		return apc_inc( $key, $value, $success );
+	}
+
+	public function decr( $key, $value = 1 ) {
+		return apc_dec( $key, $value, $success );
 	}
 
 	/**
@@ -80,4 +95,3 @@ class APCBagOStuff extends BagOStuff {
 		return $keys;
 	}
 }
-

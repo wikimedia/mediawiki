@@ -164,10 +164,11 @@ abstract class BagOStuff {
 	}
 
 	/**
+	 * Increase stored value of $key by $value while preserving its TTL
 	 * @param $key String: Key to increase
 	 * @param $value Integer: Value to add to $key (Default 1)
 	 * @return null if lock is not possible else $key value increased by $value
-	 * @return bool success
+	 * @return integer
 	 */
 	public function incr( $key, $value = 1 ) {
 		if ( !$this->lock( $key ) ) {
@@ -186,9 +187,10 @@ abstract class BagOStuff {
 	}
 
 	/**
+	 * Decrease stored value of $key by $value while preserving its TTL
 	 * @param $key String
 	 * @param $value Integer
-	 * @return bool success
+	 * @return integer
 	 */
 	public function decr( $key, $value = 1 ) {
 		return $this->incr( $key, - $value );
@@ -215,5 +217,15 @@ abstract class BagOStuff {
 		} else {
 			return $exptime;
 		}
+	}
+
+	/**
+	 * Check if a value is an integer
+	 *
+	 * @param $value mixed
+	 * @return bool
+	 */
+	protected function isInteger( $value ) {
+		return ( is_int( $value ) || ctype_digit( $value ) );
 	}
 }
