@@ -241,22 +241,30 @@ class SpecialEditWatchlist extends UnlistedSpecialPage {
 		$dbr = wfGetDB( DB_MASTER );
 		$res = $dbr->select(
 			'watchlist',
-			'*',
 			array(
+				'wl_namespace', 'wl_title'
+			), array(
 				'wl_user' => $this->getUser()->getId(),
 			),
 			__METHOD__
 		);
 		if( $res->numRows() > 0 ) {
+			$titles = array();
 			foreach ( $res as $row ) {
 				$title = Title::makeTitleSafe( $row->wl_namespace, $row->wl_title );
 				if ( $this->checkTitle( $title, $row->wl_namespace, $row->wl_title )
 					&& !$title->isTalkPage()
 				) {
-					$list[] = $title->getPrefixedText();
+					$titles[] = $title;
 				}
 			}
 			$res->free();
+
+			GenderCache::singleton()->doTitlesArray( $titles );
+
+			foreach( $titles as $title ) {
+				$list[] = $title->getPrefixedText();
+			}
 		}
 		$this->cleanupWatchlist();
 		return $list;
@@ -322,15 +330,16 @@ class SpecialEditWatchlist extends UnlistedSpecialPage {
 	 */
 	private function cleanupWatchlist() {
 		$dbw = wfGetDB( DB_MASTER );
+		$user = $this->getUser();
 		foreach ( $this->badItems as $row ) {
 			list( $title, $namespace, $dbKey ) = $row;
-			wfDebug( "User {$this->getUser()} has broken watchlist item ns($namespace):$dbKey, "
+			wfDebug( "User {$user->getName()} has broken watchlist item ns($namespace):$dbKey, "
 				. ( $title ? 'cleaning up' : 'deleting' ) . ".\n"
 			);
 
 			$dbw->delete( 'watchlist',
 				array(
-					'wl_user' => $this->getUser()->getId(),
+					'wl_user' => $user->getId(),
 					'wl_namespace' => $namespace,
 					'wl_title' => $dbKey,
 				),
@@ -339,7 +348,7 @@ class SpecialEditWatchlist extends UnlistedSpecialPage {
 
 			// Can't just do an UPDATE instead of DELETE/INSERT due to unique index
 			if ( $title ) {
-				$this->getUser()->addWatch( $title );
+				$user->addWatch( $title );
 			}
 		}
 	}
