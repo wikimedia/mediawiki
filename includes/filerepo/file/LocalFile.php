@@ -1467,9 +1467,17 @@ class LocalFile extends File {
 	/**
 	 * @return string
 	 */
-	function getDescription() {
+	function getDescription( $audience = self::FOR_PUBLIC, User $user = null ) {
 		$this->load();
-		return $this->description;
+		if ( $audience == self::FOR_PUBLIC && $this->isDeleted( self::DELETED_COMMENT ) ) {
+			return '';
+		} elseif ( $audience == self::FOR_THIS_USER
+			&& !$this->userCan( self::DELETED_COMMENT, $user ) )
+		{
+			return '';
+		} else {
+			return $this->description;
+		}
 	}
 
 	/**
