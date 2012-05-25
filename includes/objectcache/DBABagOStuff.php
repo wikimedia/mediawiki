@@ -45,8 +45,7 @@ class DBABagOStuff extends BagOStuff {
 			$params['dir'] = wfTempDir();
 		}
 
-		$this->mFile = $params['dir']."/mw-cache-" . wfWikiID();
-		$this->mFile .= '.db';
+		$this->mFile = $params['dir'] . '/mw-cache-' . wfWikiID() . '.db';
 		wfDebug( __CLASS__ . ": using cache file {$this->mFile}\n" );
 		$this->mHandler = $wgDBAhandler;
 	}
@@ -58,7 +57,7 @@ class DBABagOStuff extends BagOStuff {
 	 *
 	 * @return string
 	 */
-	function encode( $value, $expiry ) {
+	protected function encode( $value, $expiry ) {
 		# Convert to absolute time
 		$expiry = $this->convertExpiry( $expiry );
 
@@ -69,7 +68,7 @@ class DBABagOStuff extends BagOStuff {
 	 * @param $blob string
 	 * @return array list containing value first and expiry second
 	 */
-	function decode( $blob ) {
+	protected function decode( $blob ) {
 		if ( !is_string( $blob ) ) {
 			return array( null, 0 );
 		} else {
@@ -83,7 +82,7 @@ class DBABagOStuff extends BagOStuff {
 	/**
 	 * @return resource
 	 */
-	function getReader() {
+	protected function getReader() {
 		if ( file_exists( $this->mFile ) ) {
 			$handle = dba_open( $this->mFile, 'rl', $this->mHandler );
 		} else {
@@ -100,7 +99,7 @@ class DBABagOStuff extends BagOStuff {
 	/**
 	 * @return resource
 	 */
-	function getWriter() {
+	protected function getWriter() {
 		$handle = dba_open( $this->mFile, 'cl', $this->mHandler );
 
 		if ( !$handle ) {
@@ -114,7 +113,7 @@ class DBABagOStuff extends BagOStuff {
 	 * @param $key string
 	 * @return mixed|null|string
 	 */
-	function get( $key ) {
+	public function get( $key ) {
 		wfProfileIn( __METHOD__ );
 		wfDebug( __METHOD__ . "($key)\n" );
 
@@ -149,7 +148,7 @@ class DBABagOStuff extends BagOStuff {
 	 * @param $exptime int
 	 * @return bool
 	 */
-	function set( $key, $value, $exptime = 0 ) {
+	public function set( $key, $value, $exptime = 0 ) {
 		wfProfileIn( __METHOD__ );
 		wfDebug( __METHOD__ . "($key)\n" );
 
@@ -173,7 +172,7 @@ class DBABagOStuff extends BagOStuff {
 	 * @param $time int
 	 * @return bool
 	 */
-	function delete( $key, $time = 0 ) {
+	public function delete( $key, $time = 0 ) {
 		wfProfileIn( __METHOD__ );
 		wfDebug( __METHOD__ . "($key)\n" );
 
@@ -196,7 +195,7 @@ class DBABagOStuff extends BagOStuff {
 	 * @param $exptime int
 	 * @return bool
 	 */
-	function add( $key, $value, $exptime = 0 ) {
+	public function add( $key, $value, $exptime = 0 ) {
 		wfProfileIn( __METHOD__ );
 
 		$blob = $this->encode( $value, $exptime );
@@ -214,7 +213,7 @@ class DBABagOStuff extends BagOStuff {
 		if ( !$ret ) {
 			list( $value, $expiry ) = $this->decode( dba_fetch( $key, $handle ) );
 
-			if ( $expiry < time() ) {
+			if ( $expiry && $expiry < time() ) {
 				# Yes expired, delete and try again
 				dba_delete( $key, $handle );
 				$ret = dba_insert( $key, $blob, $handle );
@@ -229,8 +228,43 @@ class DBABagOStuff extends BagOStuff {
 	}
 
 	/**
-	 * @return Array
+	 * @param $key string
+	 * @param $step integer
+	 * @return integer|bool
 	 */
+	public function incr( $key, $step = 1 ) {
+		wfProfileIn( __METHOD__ );
+
+		$handle = $this->getWriter();
+
+		if ( !$handle ) {
+			wfProfileOut( __METHOD__ );
+			return false;
+		}
+
+		list( $value, $expiry ) = $this->decode( dba_fetch( $key, $handle ) );
+		if ( !is_null( $value ) ) {
+			if ( $expiry && $expiry < time() ) {
+				# Key is expired, delete it
+				dba_delete( $key, $handle );
+				wfDebug( __METHOD__ . ": $key expired\n" );
+				$value = null;
+			} else {
+				$value += $step;
+				$blob = $this->encode( $value, $expiry );
+
+				$ret = dba_replace( $key, $blob, $handle );
+				$value = $ret ? $value : null;
+			}
+		}
+
+		dba_close( $handle );
+
+		wfProfileOut( __METHOD__ );
+
+		return is_null( $value ) ? false : (int)$value;
+	}
+
 	function keys() {
 		$reader = $this->getReader();
 		$k1 = dba_firstkey( $reader );
@@ -250,4 +284,3 @@ class DBABagOStuff extends BagOStuff {
 		return $result;
 	}
 }
-
