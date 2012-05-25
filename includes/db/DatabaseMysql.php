@@ -55,10 +55,11 @@ class DatabaseMysql extends DatabaseBase {
 	 * @param $user string
 	 * @param $password string
 	 * @param $dbName string
+	 * @param $port int
 	 * @return bool
 	 * @throws DBConnectionError
 	 */
-	function open( $server, $user, $password, $dbName ) {
+	function open( $server, $user, $password, $dbName, $port ) {
 		global $wgAllDBsAreLocalhost;
 		wfProfileIn( __METHOD__ );
 
@@ -79,6 +80,7 @@ class DatabaseMysql extends DatabaseBase {
 		}
 		$this->close();
 		$this->mServer = $server;
+		$this->mPort = $port;
 		$this->mUser = $user;
 		$this->mPassword = $password;
 		$this->mDBname = $dbName;
@@ -473,7 +475,7 @@ class DatabaseMysql extends DatabaseBase {
 		mysql_close( $this->mConn );
 		$this->mOpened = false;
 		$this->mConn = false;
-		$this->open( $this->mServer, $this->mUser, $this->mPassword, $this->mDBname );
+		$this->open( $this->mServer, $this->mUser, $this->mPassword, $this->mDBname, $this->mPort );
 		return true;
 	}
 

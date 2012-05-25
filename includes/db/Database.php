@@ -53,10 +53,11 @@ interface DatabaseType {
 	 * @param $user String: database user name
 	 * @param $password String: database user password
 	 * @param $dbName String: database name
+	 * @param $port String: database port
 	 * @return bool
 	 * @throws DBConnectionError
 	 */
-	function open( $server, $user, $password, $dbName );
+	function open( $server, $user, $password, $dbName, $port );
 
 	/**
 	 * Fetch the next row from the given result object, in object form.
@@ -606,10 +607,11 @@ abstract class DatabaseBase implements DatabaseType {
 	 * @param $user String: database user name
 	 * @param $password String: database user password
 	 * @param $dbName String: database name
+         * @param $port String: database port
 	 * @param $flags
 	 * @param $tablePrefix String: database table prefixes. By default use the prefix gave in LocalSettings.php
 	 */
-	function __construct( $server = false, $user = false, $password = false, $dbName = false,
+	function __construct( $server = false, $user = false, $password = false, $dbName = false, $port = false,
 		$flags = 0, $tablePrefix = 'get from global'
 	) {
 		global $wgDBprefix, $wgCommandLineMode, $wgDebugDBTransactions;
@@ -638,7 +640,7 @@ abstract class DatabaseBase implements DatabaseType {
 		}
 
 		if ( $user ) {
-			$this->open( $server, $user, $password, $dbName );
+			$this->open( $server, $user, $password, $dbName, $port );
 		}
 	}
 

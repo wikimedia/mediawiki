@@ -498,7 +498,7 @@ class DatabaseIbm_db2 extends DatabaseBase {
 	 * @param $dbName String: database name
 	 * @return DatabaseBase a fresh connection
 	 */
-	public function open( $server, $user, $password, $dbName ) {
+	public function open( $server, $user, $password, $dbName, $port ) {
 		wfProfileIn( __METHOD__ );
 
 		# Load IBM DB2 driver if missing

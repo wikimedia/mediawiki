@@ -327,20 +327,17 @@ class DatabasePostgres extends DatabaseBase {
 	 * Usually aborts on failure
 	 * @return DatabaseBase|null
 	 */
-	function open( $server, $user, $password, $dbName ) {
+	function open( $server, $user, $password, $dbName, $port ) {
 		# Test for Postgres support, to avoid suppressed fatal error
 		if ( !function_exists( 'pg_connect' ) ) {
 			throw new DBConnectionError( $this, "Postgres functions missing, have you compiled PHP with the --with-pgsql option?\n (Note: if you recently installed PHP, you may need to restart your webserver and database)\n" );
 		}
-
-		global $wgDBport;
 
 		if ( !strlen( $user ) ) { # e.g. the class is being loaded
 			return;
 		}
 
 		$this->mServer = $server;
-		$port = $wgDBport;
 		$this->mUser = $user;
 		$this->mPassword = $password;
 		$this->mDBname = $dbName;
@@ -353,9 +350,13 @@ class DatabasePostgres extends DatabaseBase {
 		if ( $server != false && $server != '' ) {
 			$connectVars['host'] = $server;
 		}
-		if ( $port != false && $port != '' ) {
-			$connectVars['port'] = $port;
+		if ( $port !== false ) {
+			$this->mPort = $port; 
+		} else { 
+			global $wgDBport;
+			$this->mPort = $wgDBport; 
 		}
+		$connectVars['port'] = $this->mPort;
 		$this->connectString = $this->makeConnectionString( $connectVars, PGSQL_CONNECT_FORCE_NEW );
 		$this->close();
 		$this->installErrorHandler();
@@ -396,7 +397,7 @@ class DatabasePostgres extends DatabaseBase {
 	 */
 	function selectDB( $db ) {
 		if ( $this->mDBname !== $db ) {
-			return (bool)$this->open( $this->mServer, $this->mUser, $this->mPassword, $db );
+			return (bool)$this->open( $this->mServer, $this->mUser, $this->mPassword, $db, $this->mPort );
 		} else {
 			return true;
 		}

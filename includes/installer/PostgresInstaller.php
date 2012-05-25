@@ -128,16 +128,18 @@ class PostgresInstaller extends DatabaseInstaller {
 	 * @param $user string User name
 	 * @param $password string Password
 	 * @param $dbName string Database name
+	 * @param $port int Database name
 	 * @return Status
 	 */
-	protected function openConnectionWithParams( $user, $password, $dbName ) {
+	protected function openConnectionWithParams( $user, $password, $dbName, $port ) {
 		$status = Status::newGood();
 		try {
 			$db = new DatabasePostgres(
 				$this->getVar( 'wgDBserver' ),
 				$user,
 				$password,
-				$dbName);
+				$dbName,
+                $port);
 			$status->value = $db;
 		} catch ( DBConnectionError $e ) {
 			$status->fatal( 'config-connection-error', $e->getMessage() );
@@ -198,12 +200,14 @@ class PostgresInstaller extends DatabaseInstaller {
 			case 'create-db':
 				return $this->openConnectionToAnyDB(
 					$this->getVar( '_InstallUser' ),
-					$this->getVar( '_InstallPassword' ) );
+					$this->getVar( '_InstallPassword' ),
+					$this->getVar( 'wgDBport' ) );
 			case 'create-schema':
 				return $this->openConnectionWithParams(
 					$this->getVar( '_InstallUser' ),
 					$this->getVar( '_InstallPassword' ),
-					$this->getVar( 'wgDBname' ) );
+					$this->getVar( 'wgDBname' ),
+					$this->getVar( 'wgDBport' ) );
 			case 'create-tables':
 				$status = $this->openPgConnection( 'create-schema' );
 				if ( $status->isOK() ) {
@@ -220,7 +224,7 @@ class PostgresInstaller extends DatabaseInstaller {
 		}
 	}
 
-	public function openConnectionToAnyDB( $user, $password ) {
+	public function openConnectionToAnyDB( $user, $password, $port ) {
 		$dbs = array(
 			'template1',
 			'postgres',
@@ -236,7 +240,8 @@ class PostgresInstaller extends DatabaseInstaller {
 					$this->getVar( 'wgDBserver' ),
 					$user,
 					$password,
-					$db );
+					$db,
+					$port);
 			} catch ( DBConnectionError $error ) {
 				$conn = false;
 				$status->fatal( 'config-pg-test-error', $db,
@@ -341,7 +346,9 @@ class PostgresInstaller extends DatabaseInstaller {
 		// Existing web account. Test the connection.
 		$status = $this->openConnectionToAnyDB(
 			$this->getVar( 'wgDBuser' ),
-			$this->getVar( 'wgDBpassword' ) );
+			$this->getVar( 'wgDBpassword' ),
+			$this->getVar( 'wgDBport' ) );
+
 		if ( !$status->isOK() ) {
 			return $status;
 		}

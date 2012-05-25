@@ -83,10 +83,11 @@ class DatabaseSqlite extends DatabaseBase {
 	 * @param $user
 	 * @param $pass
 	 * @param $dbName
+	 * @param $port
 	 *
 	 * @return PDO
 	 */
-	function open( $server, $user, $pass, $dbName ) {
+	function open( $server, $user, $pass, $dbName, $port ) {
 		global $wgSQLiteDataDir;
 
 		$fileName = self::generateFileName( $wgSQLiteDataDir, $dbName );

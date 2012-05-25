@@ -243,7 +243,7 @@ class DatabaseOracle extends DatabaseBase {
 	 * Usually aborts on failure
 	 * @return DatabaseBase|null
 	 */
-	function open( $server, $user, $password, $dbName ) {
+	function open( $server, $user, $password, $dbName, $port ) {
 		if ( !function_exists( 'oci_connect' ) ) {
 			throw new DBConnectionError( $this, "Oracle functions missing, have you compiled PHP with the --with-oci8 option?\n (Note: if you recently installed PHP, you may need to restart your webserver and database)\n" );
 		}
