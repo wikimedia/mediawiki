@@ -161,6 +161,7 @@ abstract class BagOStuff {
 	}
 
 	/**
+	 * Increase stored value of $key by $value while preserving its TTL
 	 * @param $key String: Key to increase
 	 * @param $value Integer: Value to add to $key (Default 1)
 	 * @return null if lock is not possible else $key value increased by $value
@@ -183,6 +184,7 @@ abstract class BagOStuff {
 	}
 
 	/**
+	 * Decrease stored value of $key by $value while preserving its TTL
 	 * @param $key String
 	 * @param $value Integer
 	 * @return bool success
