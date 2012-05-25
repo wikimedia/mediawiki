@@ -107,7 +107,7 @@ class ApiQueryUsers extends ApiQueryBase {
 
 		if ( count( $goodNames ) ) {
 			$this->addTables( 'user' );
-			$this->addFields( '*' );
+			$this->addFields( User::selectFields() );
 			$this->addWhereFld( 'user_name', $goodNames );
 
 			if ( isset( $this->prop['groups'] ) || isset( $this->prop['rights'] ) ) {
