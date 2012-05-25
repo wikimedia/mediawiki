@@ -330,7 +330,7 @@ abstract class ORMTable implements IORMTable {
 			$this->getName(),
 			$this->getPrefixedValues( $conditions ),
 			$functionName
-		);
+		) !== false; // DatabaseBase::delete does not always return true for success as documented...
 	}
 	
 	/**
@@ -437,7 +437,7 @@ abstract class ORMTable implements IORMTable {
 			$this->getPrefixedValues( $values ),
 			$this->getPrefixedValues( $conditions ),
 			__METHOD__
-		);
+		) !== false; // DatabaseBase::update does not always return true for success as documented...
 	}
 
 	/**
