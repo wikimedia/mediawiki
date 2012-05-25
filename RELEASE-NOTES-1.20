@@ -63,6 +63,8 @@ upgrade PHP if you have not done so prior to upgrading MediaWiki.
   Arguments signature has changed. First arguments is now an options object of which
   'config' can be a property. Previously 'config' itself was the first and only argument.
 * New getCreator and getOldestRevision methods added to WikiPage class
+* (bug 4220) the XML dump format schema now have unique identity constraints
+  for page and revision identifiers. Patch by Elvis Stansvik.
 
 === Bug fixes in 1.20 ===
 * (bug 30245) Use the correct way to construct a log page title.
