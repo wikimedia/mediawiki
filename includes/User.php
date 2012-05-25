@@ -1028,7 +1028,7 @@ class User {
 		}
 
 		$dbr = wfGetDB( DB_MASTER );
-		$s = $dbr->selectRow( 'user', '*', array( 'user_id' => $this->mId ), __METHOD__ );
+		$s = $dbr->selectRow( 'user', self::selectFields(), array( 'user_id' => $this->mId ), __METHOD__ );
 
 		wfRunHooks( 'UserLoadFromDatabase', array( $this, &$s ) );
 
@@ -4018,7 +4018,7 @@ class User {
 
 			$res = $dbr->select(
 				'user_properties',
-				'*',
+				array( 'up_property', 'up_value' ),
 				array( 'up_user' => $this->getId() ),
 				__METHOD__
 			);
@@ -4141,4 +4141,29 @@ class User {
 
 		return $ret;
 	}
+	
+	/**
+	 * Return the list of user fields that should be selected to create
+	 * a new user object.
+	 * @return array
+	 */
+	public static function selectFields() {
+		return array(
+			'user_id',
+			'user_name',
+			'user_real_name',
+			'user_password',
+			'user_newpassword',
+			'user_newpass_time',
+			'user_email',
+			'user_touched',
+			'user_token',
+			'user_email_authenticated',
+			'user_email_token',
+			'user_email_token_expires',
+			'user_registration',
+			'user_editcount',
+		);
+	}
+
 }
