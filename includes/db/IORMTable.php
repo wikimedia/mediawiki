@@ -1,6 +1,6 @@
 <?php
 /**
- * Abstract base class for representing a single database table.
+ * Interface for objects representing a single database table.
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -19,40 +19,54 @@
  *
  * @since 1.20
  *
- * @file ORMTable.php
+ * @file
  * @ingroup ORM
  *
  * @licence GNU GPL v2 or later
  * @author Jeroen De Dauw < jeroendedauw@gmail.com >
  */
 
-abstract class ORMTable implements IORMTable {
+interface IORMTable {
 
 	/**
-	 * Gets the db field prefix.
+	 * Returns the name of the database table objects of this type are stored in.
 	 *
 	 * @since 1.20
 	 *
 	 * @return string
 	 */
-	protected abstract function getFieldPrefix();
+	public function getName();
 
 	/**
-	 * Cache for instances, used by the singleton method.
+	 * Returns the name of a IORMRow implementing class that
+	 * represents single rows in this table.
 	 *
 	 * @since 1.20
-	 * @var array of DBTable
+	 *
+	 * @return string
 	 */
-	protected static $instanceCache = array();
+	public function getRowClass();
 
 	/**
-	 * The database connection to use for read operations.
-	 * Can be changed via @see setReadDb.
+	 * Returns an array with the fields and their types this object contains.
+	 * This corresponds directly to the fields in the database, without prefix.
+	 *
+	 * field name => type
+	 *
+	 * Allowed types:
+	 * * id
+	 * * str
+	 * * int
+	 * * float
+	 * * bool
+	 * * array
+	 * * blob
 	 *
 	 * @since 1.20
-	 * @var integer DB_ enum
+	 *
+	 * @return array
 	 */
-	protected $readDb = DB_SLAVE;
+	public function getFields();
 
 	/**
 	 * Returns a list of default field values.
@@ -62,9 +76,7 @@ abstract class ORMTable implements IORMTable {
 	 *
 	 * @return array
 	 */
-	public function getDefaults() {
-		return array();
-	}
+	public function getDefaults();
 
 	/**
 	 * Returns a list of the summary fields.
@@ -75,9 +87,7 @@ abstract class ORMTable implements IORMTable {
 	 *
 	 * @return array
 	 */
-	public function getSummaryFields() {
-		return array();
-	}
+	public function getSummaryFields();
 
 	/**
 	 * Selects the the specified fields of the records matching the provided
@@ -93,9 +103,7 @@ abstract class ORMTable implements IORMTable {
 	 * @return ORMResult
 	 */
 	public function select( $fields = null, array $conditions = array(),
-							array $options = array(), $functionName  = null ) {
-		return new ORMResult( $this, $this->rawSelect( $fields, $conditions, $options, $functionName ) );
-	}
+							array $options = array(), $functionName  = null );
 
 	/**
 	 * Selects the the specified fields of the records matching the provided
@@ -111,17 +119,7 @@ abstract class ORMTable implements IORMTable {
 	 * @return array of self
 	 */
 	public function selectObjects( $fields = null, array $conditions = array(),
-								   array $options = array(), $functionName  = null ) {
-		$result = $this->selectFields( $fields, $conditions, $options, false, $functionName );
-
-		$objects = array();
-
-		foreach ( $result as $record ) {
-			$objects[] = $this->newFromArray( $record );
-		}
-
-		return $objects;
-	}
+								   array $options = array(), $functionName  = null );
 
 	/**
 	 * Do the actual select.
@@ -136,22 +134,7 @@ abstract class ORMTable implements IORMTable {
 	 * @return ResultWrapper
 	 */
 	public function rawSelect( $fields = null, array $conditions = array(),
-							   array $options = array(), $functionName  = null ) {
-		if ( is_null( $fields ) ) {
-			$fields = array_keys( $this->getFields() );
-		}
-		else {
-			$fields = (array)$fields;
-		}
-
-		return wfGetDB( $this->getReadDb() )->select(
-			$this->getName(),
-			$this->getPrefixedFields( $fields ),
-			$this->getPrefixedValues( $conditions ),
-			is_null( $functionName ) ? __METHOD__ : $functionName,
-			$options
-		);
-	}
+							   array $options = array(), $functionName  = null );
 
 	/**
 	 * Selects the the specified fields of the records matching the provided
@@ -176,32 +159,7 @@ abstract class ORMTable implements IORMTable {
 	 * @return array of array
 	 */
 	public function selectFields( $fields = null, array $conditions = array(),
-								  array $options = array(), $collapse = true, $functionName  = null ) {
-		$objects = array();
-
-		$result = $this->rawSelect( $fields, $conditions, $options, $functionName );
-
-		foreach ( $result as $record ) {
-			$objects[] = $this->getFieldsFromDBResult( $record );
-		}
-
-		if ( $collapse ) {
-			if ( count( $fields ) === 1 ) {
-				$objects = array_map( 'array_shift', $objects );
-			}
-			elseif ( count( $fields ) === 2 ) {
-				$o = array();
-
-				foreach ( $objects as $object ) {
-					$o[array_shift( $object )] = array_shift( $object );
-				}
-
-				$objects = $o;
-			}
-		}
-
-		return $objects;
-	}
+								  array $options = array(), $collapse = true, $functionName  = null );
 
 	/**
 	 * Selects the the specified fields of the first matching record.
@@ -217,13 +175,7 @@ abstract class ORMTable implements IORMTable {
 	 * @return IORMRow|bool False on failure
 	 */
 	public function selectRow( $fields = null, array $conditions = array(),
-							   array $options = array(), $functionName = null ) {
-		$options['LIMIT'] = 1;
-
-		$objects = $this->select( $fields, $conditions, $options, $functionName );
-
-		return $objects->isEmpty() ? false : $objects->current();
-	}
+							   array $options = array(), $functionName = null );
 
 	/**
 	 * Selects the the specified fields of the records matching the provided
@@ -239,24 +191,14 @@ abstract class ORMTable implements IORMTable {
 	 * @return ResultWrapper
 	 */
 	public function rawSelectRow( array $fields, array $conditions = array(),
-								  array $options = array(), $functionName = null ) {
-		$dbr = wfGetDB( $this->getReadDb() );
-
-		return $dbr->selectRow(
-			$this->getName(),
-			$fields,
-			$conditions,
-			is_null( $functionName ) ? __METHOD__ : $functionName,
-			$options
-		);
-	}
+								  array $options = array(), $functionName = null );
 
 	/**
 	 * Selects the the specified fields of the first record matching the provided
 	 * conditions and returns it as an associative array, or false when nothing matches.
 	 * This method makes use of selectFields and expects the same parameters and
 	 * returns the same results (if there are any, if there are none, this method returns false).
-	 * @see ORMTable::selectFields
+	 * @see IORMTable::selectFields
 	 *
 	 * @since 1.20
 	 *
@@ -269,13 +211,7 @@ abstract class ORMTable implements IORMTable {
 	 * @return mixed|array|bool False on failure
 	 */
 	public function selectFieldsRow( $fields = null, array $conditions = array(),
-									 array $options = array(), $collapse = true, $functionName = null ) {
-		$options['LIMIT'] = 1;
-
-		$objects = $this->selectFields( $fields, $conditions, $options, $collapse, $functionName );
-
-		return empty( $objects ) ? false : $objects[0];
-	}
+									 array $options = array(), $collapse = true, $functionName = null );
 
 	/**
 	 * Returns if there is at least one record matching the provided conditions.
@@ -287,9 +223,7 @@ abstract class ORMTable implements IORMTable {
 	 *
 	 * @return boolean
 	 */
-	public function has( array $conditions = array() ) {
-		return $this->selectRow( array( 'id' ), $conditions ) !== false;
-	}
+	public function has( array $conditions = array() );
 
 	/**
 	 * Returns the amount of matching records.
@@ -305,15 +239,7 @@ abstract class ORMTable implements IORMTable {
 	 *
 	 * @return integer
 	 */
-	public function count( array $conditions = array(), array $options = array() ) {
-		$res = $this->rawSelectRow(
-			array( 'COUNT(*) AS rowcount' ),
-			$this->getPrefixedValues( $conditions ),
-			$options
-		);
-
-		return $res->rowcount;
-	}
+	public function count( array $conditions = array(), array $options = array() );
 
 	/**
 	 * Removes the object from the database.
@@ -325,14 +251,8 @@ abstract class ORMTable implements IORMTable {
 	 *
 	 * @return boolean Success indicator
 	 */
-	public function delete( array $conditions, $functionName = null ) {
-		return wfGetDB( DB_MASTER )->delete(
-			$this->getName(),
-			$this->getPrefixedValues( $conditions ),
-			$functionName
-		);
-	}
-	
+	public function delete( array $conditions, $functionName = null );
+
 	/**
 	 * Get API parameters for the fields supported by this object.
 	 *
@@ -343,44 +263,7 @@ abstract class ORMTable implements IORMTable {
 	 *
 	 * @return array
 	 */
-	public function getAPIParams( $requireParams = false, $setDefaults = false ) {
-		$typeMap = array(
-			'id' => 'integer',
-			'int' => 'integer',
-			'float' => 'NULL',
-			'str' => 'string',
-			'bool' => 'integer',
-			'array' => 'string',
-			'blob' => 'string',
-		);
-
-		$params = array();
-		$defaults = $this->getDefaults();
-
-		foreach ( $this->getFields() as $field => $type ) {
-			if ( $field == 'id' ) {
-				continue;
-			}
-
-			$hasDefault = array_key_exists( $field, $defaults );
-
-			$params[$field] = array(
-				ApiBase::PARAM_TYPE => $typeMap[$type],
-				ApiBase::PARAM_REQUIRED => $requireParams && !$hasDefault
-			);
-
-			if ( $type == 'array' ) {
-				$params[$field][ApiBase::PARAM_ISMULTI] = true;
-			}
-
-			if ( $setDefaults && $hasDefault ) {
-				$default = is_array( $defaults[$field] ) ? implode( '|', $defaults[$field] ) : $defaults[$field];
-				$params[$field][ApiBase::PARAM_DFLT] = $default;
-			}
-		}
-
-		return $params;
-	}
+	public function getAPIParams( $requireParams = false, $setDefaults = false );
 
 	/**
 	 * Returns an array with the fields and their descriptions.
@@ -391,9 +274,7 @@ abstract class ORMTable implements IORMTable {
 	 *
 	 * @return array
 	 */
-	public function getFieldDescriptions() {
-		return array();
-	}
+	public function getFieldDescriptions();
 
 	/**
 	 * Get the database type used for read operations.
@@ -402,9 +283,7 @@ abstract class ORMTable implements IORMTable {
 	 *
 	 * @return integer DB_ enum
 	 */
-	public function getReadDb() {
-		return $this->readDb;
-	}
+	public function getReadDb();
 
 	/**
 	 * Set the database type to use for read operations.
@@ -413,9 +292,7 @@ abstract class ORMTable implements IORMTable {
 	 *
 	 * @since 1.20
 	 */
-	public function setReadDb( $db ) {
-		$this->readDb = $db;
-	}
+	public function setReadDb( $db );
 
 	/**
 	 * Update the records matching the provided conditions by
@@ -429,16 +306,7 @@ abstract class ORMTable implements IORMTable {
 	 *
 	 * @return boolean Success indicator
 	 */
-	public function update( array $values, array $conditions = array() ) {
-		$dbw = wfGetDB( DB_MASTER );
-
-		return $dbw->update(
-			$this->getName(),
-			$this->getPrefixedValues( $values ),
-			$this->getPrefixedValues( $conditions ),
-			__METHOD__
-		);
-	}
+	public function update( array $values, array $conditions = array() );
 
 	/**
 	 * Computes the values of the summary fields of the objects matching the provided conditions.
@@ -448,17 +316,7 @@ abstract class ORMTable implements IORMTable {
 	 * @param array|string|null $summaryFields
 	 * @param array $conditions
 	 */
-	public function updateSummaryFields( $summaryFields = null, array $conditions = array() ) {
-		$this->setReadDb( DB_MASTER );
-
-		foreach ( $this->select( null, $conditions ) as /* IORMRow */ $item ) {
-			$item->loadSummaryFields( $summaryFields );
-			$item->setSummaryMode( true );
-			$item->save();
-		}
-
-		$this->setReadDb( DB_SLAVE );
-	}
+	public function updateSummaryFields( $summaryFields = null, array $conditions = array() );
 
 	/**
 	 * Takes in an associative array with field names as keys and
@@ -471,28 +329,7 @@ abstract class ORMTable implements IORMTable {
 	 *
 	 * @return array
 	 */
-	public function getPrefixedValues( array $values ) {
-		$prefixedValues = array();
-
-		foreach ( $values as $field => $value ) {
-			if ( is_integer( $field ) ) {
-				if ( is_array( $value ) ) {
-					$field = $value[0];
-					$value = $value[1];
-				}
-				else {
-					$value = explode( ' ', $value, 2 );
-					$value[0] = $this->getPrefixedField( $value[0] );
-					$prefixedValues[] = implode( ' ', $value );
-					continue;
-				}
-			}
-
-			$prefixedValues[$this->getPrefixedField( $field )] = $value;
-		}
-
-		return $prefixedValues;
-	}
+	public function getPrefixedValues( array $values );
 
 	/**
 	 * Takes in a field or array of fields and returns an
@@ -504,13 +341,7 @@ abstract class ORMTable implements IORMTable {
 	 *
 	 * @return array
 	 */
-	public function getPrefixedFields( array $fields ) {
-		foreach ( $fields as &$field ) {
-			$field = $this->getPrefixedField( $field );
-		}
-
-		return $fields;
-	}
+	public function getPrefixedFields( array $fields );
 
 	/**
 	 * Takes in a field and returns an it's prefixed version, ready for db usage.
@@ -521,9 +352,7 @@ abstract class ORMTable implements IORMTable {
 	 *
 	 * @return string
 	 */
-	public function getPrefixedField( $field ) {
-		return $this->getFieldPrefix() . $field;
-	}
+	public function getPrefixedField( $field );
 
 	/**
 	 * Takes an array of field names with prefix and returns the unprefixed equivalent.
@@ -534,9 +363,7 @@ abstract class ORMTable implements IORMTable {
 	 *
 	 * @return array
 	 */
-	public function unprefixFieldNames( array $fieldNames ) {
-		return array_map( array( $this, 'unprefixFieldName' ), $fieldNames );
-	}
+	public function unprefixFieldNames( array $fieldNames );
 
 	/**
 	 * Takes a field name with prefix and returns the unprefixed equivalent.
@@ -547,9 +374,7 @@ abstract class ORMTable implements IORMTable {
 	 *
 	 * @return string
 	 */
-	public function unprefixFieldName( $fieldName ) {
-		return substr( $fieldName, strlen( $this->getFieldPrefix() ) );
-	}
+	public function unprefixFieldName( $fieldName );
 
 	/**
 	 * Get an instance of this class.
@@ -558,45 +383,7 @@ abstract class ORMTable implements IORMTable {
 	 *
 	 * @return IORMTable
 	 */
-	public static function singleton() {
-		$class = function_exists( 'get_called_class' ) ? get_called_class() : self::get_called_class();
-
-		if ( !array_key_exists( $class, self::$instanceCache ) ) {
-			self::$instanceCache[$class] = new $class;
-		}
-
-		return self::$instanceCache[$class];
-	}
-
-	/**
-	 * Compatibility fallback function so the singleton method works on PHP < 5.3.
-	 * Code borrowed from http://www.php.net/manual/en/function.get-called-class.php#107445
-	 *
-	 * @since 1.20
-	 *
-	 * @return string
-	 */
-	protected static function get_called_class() {
-		$bt = debug_backtrace();
-		$l = count($bt) - 1;
-		$matches = array();
-		while(empty($matches) && $l > -1){
-			$lines = file($bt[$l]['file']);
-			$callerLine = $lines[$bt[$l]['line']-1];
-			preg_match('/([a-zA-Z0-9\_]+)::'.$bt[$l--]['function'].'/',
-				$callerLine,
-				$matches);
-		}
-		if (!isset($matches[1])) $matches[1]=NULL; //for notices
-		if ($matches[1] == 'self') {
-			$line = $bt[$l]['line']-1;
-			while ($line > 0 && strpos($lines[$line], 'class') === false) {
-				$line--;
-			}
-			preg_match('/class[\s]+(.+?)[\s]+/si', $lines[$line], $matches);
-		}
-		return $matches[1];
-	}
+	public static function singleton();
 
 	/**
 	 * Get an array with fields from a database result,
@@ -609,13 +396,7 @@ abstract class ORMTable implements IORMTable {
 	 *
 	 * @return array
 	 */
-	public function getFieldsFromDBResult( stdClass $result ) {
-		$result = (array)$result;
-		return array_combine(
-			$this->unprefixFieldNames( array_keys( $result ) ),
-			array_values( $result )
-		);
-	}
+	public function getFieldsFromDBResult( stdClass $result );
 
 	/**
 	 * Get a new instance of the class from a database result.
@@ -626,9 +407,7 @@ abstract class ORMTable implements IORMTable {
 	 *
 	 * @return IORMRow
 	 */
-	public function newFromDBResult( stdClass $result ) {
-		return $this->newFromArray( $this->getFieldsFromDBResult( $result ) );
-	}
+	public function newFromDBResult( stdClass $result );
 
 	/**
 	 * Get a new instance of the class from an array.
@@ -640,10 +419,7 @@ abstract class ORMTable implements IORMTable {
 	 *
 	 * @return IORMRow
 	 */
-	public function newFromArray( array $data, $loadDefaults = false ) {
-		$class = $this->getRowClass();
-		return new $class( $this, $data, $loadDefaults );
-	}
+	public function newFromArray( array $data, $loadDefaults = false );
 
 	/**
 	 * Return the names of the fields.
@@ -652,9 +428,7 @@ abstract class ORMTable implements IORMTable {
 	 *
 	 * @return array
 	 */
-	public function getFieldNames() {
-		return array_keys( $this->getFields() );
-	}
+	public function getFieldNames();
 
 	/**
 	 * Gets if the object can take a certain field.
@@ -665,8 +439,6 @@ abstract class ORMTable implements IORMTable {
 	 *
 	 * @return boolean
 	 */
-	public function canHaveField( $name ) {
-		return array_key_exists( $name, $this->getFields() );
-	}
+	public function canHaveField( $name );
 
 }
