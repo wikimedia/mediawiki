@@ -458,8 +458,7 @@ class Xml {
 	 * @param $attribs array: optional additional HTML attributes
 	 * @return string HTML
 	 */
-	public static function option( $text, $value=null, $selected = false,
-			$attribs = array() ) {
+	public static function option( $text, $value=null, $selected = false, $attribs = array() ) {
 		if( !is_null( $value ) ) {
 			$attribs['value'] = $value;
 		}
