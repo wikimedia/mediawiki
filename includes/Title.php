@@ -209,7 +209,15 @@ class Title {
 	 */
 	public static function newFromID( $id, $flags = 0 ) {
 		$db = ( $flags & self::GAID_FOR_UPDATE ) ? wfGetDB( DB_MASTER ) : wfGetDB( DB_SLAVE );
-		$row = $db->selectRow( 'page', '*', array( 'page_id' => $id ), __METHOD__ );
+		$row = $db->selectRow(
+			'page',
+			array(
+				'page_namespace', 'page_title', 'page_id',
+				'page_len', 'page_is_redirect', 'page_latest',
+			),
+			array( 'page_id' => $id ),
+			__METHOD__
+		);
 		if ( $row !== false ) {
 			$title = Title::newFromRow( $row );
 		} else {
@@ -3970,7 +3978,7 @@ class Title {
 		$pageId = $this->getArticleID( $flags );
 		if ( $pageId ) {
 			$db = ( $flags & self::GAID_FOR_UPDATE ) ? wfGetDB( DB_MASTER ) : wfGetDB( DB_SLAVE );
-			$row = $db->selectRow( 'revision', '*',
+			$row = $db->selectRow( 'revision', Revision::selectFields(),
 				array( 'rev_page' => $pageId ),
 				__METHOD__,
 				array( 'ORDER BY' => 'rev_timestamp ASC', 'LIMIT' => 1 )
