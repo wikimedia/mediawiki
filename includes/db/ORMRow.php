@@ -353,7 +353,8 @@ abstract class ORMRow implements IORMRow {
 			is_null( $functionName ) ? __METHOD__ : $functionName
 		);
 
-		return $success;
+		// DatabaseBase::update does not always return true for success as documented...
+		return $success !== false;
 	}
 
 	/**
@@ -381,18 +382,21 @@ abstract class ORMRow implements IORMRow {
 	protected function insert( $functionName = null, array $options = null ) {
 		$dbw = wfGetDB( DB_MASTER );
 
-		$result = $dbw->insert(
+		$success = $dbw->insert(
 			$this->table->getName(),
 			$this->getWriteValues(),
 			is_null( $functionName ) ? __METHOD__ : $functionName,
 			is_null( $options ) ? array( 'IGNORE' ) : $options
 		);
 
-		if ( $result ) {
+		// DatabaseBase::insert does not always return true for success as documented...
+		$success = $success !== false;
+
+		if ( $success ) {
 			$this->setField( 'id', $dbw->insertId() );
 		}
 
-		return $result;
+		return $success;
 	}
 
 	/**
@@ -406,6 +410,9 @@ abstract class ORMRow implements IORMRow {
 		$this->beforeRemove();
 
 		$success = $this->table->delete( array( 'id' => $this->getId() ) );
+
+		// DatabaseBase::delete does not always return true for success as documented...
+		$success = $success !== false;
 
 		if ( $success ) {
 			$this->onRemoved();
