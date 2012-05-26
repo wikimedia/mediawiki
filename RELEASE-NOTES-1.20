@@ -114,6 +114,8 @@ upgrade PHP if you have not done so prior to upgrading MediaWiki.
 * (bug 36537) Rename wfArrayToCGI to wfArrayToCgi for consistency with wfCgiToArray.
 * (bug 25946) The message on the top of Special:RecentChanges is now displayed
   in user language instead of content language
+* (bug 24985) Use $wgTmpDirectory as the default temp directory so that people who
+  don't have access to /tmp can specify an alternative.
 
 === API changes in 1.20 ===
 * (bug 34316) Add ability to retrieve maximum upload size from MediaWiki API.
