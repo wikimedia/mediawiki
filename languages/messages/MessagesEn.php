@@ -1669,9 +1669,9 @@ Note that using the navigation links will reset this column.',
 'mergelogpagetext'   => 'Below is a list of the most recent merges of one page history into another.',
 
 # Diffs
-'history-title'              => '$1: Revision history',
-'difference-title'           => '$1: Difference between revisions',
-'difference-title-multipage' => '$1 and $2: Difference between pages',
+'history-title'              => 'Revision history of "$1"',
+'difference-title'           => 'Difference between revisions of "$1"',
+'difference-title-multipage' => 'Difference between pages "$1" and "$2"',
 'difference-multipage'       => '(Difference between pages)',
 'lineno'                     => 'Line $1:',
 'compareselectedversions'    => 'Compare selected revisions',
