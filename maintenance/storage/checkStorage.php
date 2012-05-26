@@ -388,7 +388,8 @@ class CheckStorage {
 	}
 
 	function restoreText( $revIds, $xml ) {
-		global $wgTmpDirectory, $wgDBname;
+		global $wgDBname;
+		$tmpDir = wfTempDir();
 
 		if ( !count( $revIds ) ) {
 			return;
@@ -396,8 +397,8 @@ class CheckStorage {
 
 		print "Restoring text from XML backup...\n";
 
-		$revFileName = "$wgTmpDirectory/broken-revlist-$wgDBname";
-		$filteredXmlFileName = "$wgTmpDirectory/filtered-$wgDBname.xml";
+		$revFileName = "$tmpDir/broken-revlist-$wgDBname";
+		$filteredXmlFileName = "$tmpDir/filtered-$wgDBname.xml";
 
 		// Write revision list
 		if ( !file_put_contents( $revFileName, implode( "\n", $revIds ) ) ) {
@@ -481,4 +482,3 @@ class CheckStorage {
 		$this->errors['fixed'][$id] = true;
 	}
 }
-
