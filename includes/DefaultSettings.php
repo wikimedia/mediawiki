@@ -240,7 +240,16 @@ $wgAppleTouchIcon = false;
  * The local filesystem path to a temporary directory. This is not required to
  * be web accessible.
  *
- * Will default to "{$wgUploadDirectory}/tmp" in Setup.php
+ * When this setting is set to false, its value will be set through a call
+ * to wfTempDir(). See that methods implementation for the actul detection
+ * logic.
+ *
+ * Developers should use the global function wfTempDir() instead of this
+ * variable.
+ *
+ * @see wfTempDir()
+ * @note Default modified to false in v1.20
+ *
  */
 $wgTmpDirectory = false;
 

@@ -2610,11 +2610,10 @@ function swap( &$x, &$y ) {
 }
 
 /**
- * Tries to get the system directory for temporary files. The TMPDIR, TMP, and
- * TEMP environment variables are then checked in sequence, and if none are set
- * try sys_get_temp_dir() for PHP >= 5.2.1. All else fails, return /tmp for Unix
- * or C:\Windows\Temp for Windows and hope for the best.
- * It is common to call it with tempnam().
+ * Tries to get the system directory for temporary files. First
+ * $wgTmpDirectory is checked, and then the TMPDIR, TMP, and TEMP
+ * environment variables are then checked in sequence, and if none are
+ * set try sys_get_temp_dir().
  *
  * NOTE: When possible, use instead the tmpfile() function to create
  * temporary files to avoid race conditions on file creation, etc.
@@ -2622,8 +2621,15 @@ function swap( &$x, &$y ) {
  * @return String
  */
 function wfTempDir() {
-	foreach( array( 'TMPDIR', 'TMP', 'TEMP' ) as $var ) {
-		$tmp = getenv( $var );
+	global $wgTmpDirectory;
+
+	if ( $wgTmpDirectory !== false ) {
+		return $wgTmpDirectory;
+	}
+
+	$tmpDir = array_map( "getenv", array( 'TMPDIR', 'TMP', 'TEMP' ) );
+
+	foreach( $tmpDir as $tmp ) {
 		if( $tmp && file_exists( $tmp ) && is_dir( $tmp ) && is_writable( $tmp ) ) {
 			return $tmp;
 		}
