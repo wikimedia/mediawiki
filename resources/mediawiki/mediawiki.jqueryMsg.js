@@ -27,13 +27,10 @@
 		return function( args ) {
 			var key = args[0];
 			var argsArray = $.isArray( args[1] ) ? args[1] : $.makeArray( args ).slice( 1 ); 
-			var escapedArgsArray = $.map( argsArray, function( arg ) { 
-				return typeof arg === 'string' ? mw.html.escape( arg ) : arg;
-			} );
 			try {
-				return parser.parse( key, escapedArgsArray );
+				return parser.parse( key, argsArray );
 			} catch ( e ) {
-				return $( '<span></span>' ).append( key + ': ' + e.message );
+				return $( '<span>' ).append( key + ': ' + e.message );
 			}
 		};
 	}
@@ -139,9 +136,9 @@
 		},
 
 		/**
-	 	 * Fetch the message string associated with a key, return parsed structure. Memoized.
+		 * Fetch the message string associated with a key, return parsed structure. Memoized.
 		 * Note that we pass '[' + key + ']' back for a missing message here. 
-	 	 * @param {String} key
+		 * @param {String} key
 		 * @return {String|Array} string of '[key]' if message missing, simple string if possible, array of arrays if needs parsing
 		 */
 		getAst: function( key ) {
@@ -280,8 +277,8 @@
 
 
 			var regularLiteral = makeRegexParser( /^[^{}[\]$\\]/ );
- 			var regularLiteralWithoutBar = makeRegexParser(/^[^{}[\]$\\|]/);
- 			var regularLiteralWithoutSpace = makeRegexParser(/^[^{}[\]$\s]/);
+			var regularLiteralWithoutBar = makeRegexParser(/^[^{}[\]$\\|]/);
+			var regularLiteralWithoutSpace = makeRegexParser(/^[^{}[\]$\s]/);
 
 			var backslash = makeStringParser( "\\" );
 			var anyCharacter = makeRegexParser( /^./ );
@@ -360,6 +357,22 @@
 					 result = [ 'LINK', parsedResult[1], parsedResult[3] ];
 				}
 				return result;
+			}
+
+			// this is the same as the above extlink, except that the url is being passed on as a parameter
+			function extLinkParam() {
+				var result = sequence( [
+					openExtlink,
+					dollar,
+					digits,
+					whitespace,
+					expression,
+					closeExtlink
+				] );
+				if ( result === null ) {
+					return null;
+				}
+				return [ 'LINKPARAM', parseInt( result[2], 10 ) - 1, result[4] ];
 			}
 
 			var openLink = makeStringParser( '[[' );
@@ -455,16 +468,18 @@
 			}
 
 			var nonWhitespaceExpression = choice( [
-				template,        
+				template,
 				link,
+				extLinkParam,
 				extlink,
 				replacement,
 				literalWithoutSpace
 			] );
 
 			var paramExpression = choice( [
-				template,        
+				template,
 				link,
+				extLinkParam,
 				extlink,
 				replacement,
 				literalWithoutBar
@@ -473,6 +488,7 @@
 			var expression = choice( [ 
 				template,
 				link,
+				extLinkParam,
 				extlink,
 				replacement,
 				literal 
@@ -588,7 +604,7 @@
 		},
 
 		/**
-		 * Return replacement of correct index, or string if unavailable.
+		 * Return escaped replacement of correct index, or string if unavailable.
 		 * Note that we expect the parsed parameter to be zero-based. i.e. $1 should have become [ 0 ].
 		 * if the specified parameter is not found return the same string
 		 * (e.g. "$99" -> parameter 98 -> not found -> return "$99" )
@@ -598,7 +614,7 @@
 		 */
 		replace: function( nodes, replacements ) {
 			var index = parseInt( nodes[0], 10 );
-			return index < replacements.length ? replacements[index] : '$' + ( index + 1 ); 
+			return index < replacements.length ? mw.html.escape( String( replacements[index] ) ) : '$' + ( index + 1 );
 		},
 
 		/** 
@@ -634,6 +650,26 @@
 			}
 			$el.append( contents );	
 			return $el;
+		},
+
+		/**
+		 * This is basically use a combination of replace + link (link with parameter
+		 * as url), but we don't want to run the regular replace here-on: inserting a
+		 * url as href-attribute of a link will automatically escape it already, so
+		 * we don't want replace to (manually) escape it as well.
+		 * TODO throw error if nodes.length > 1 ?
+		 * @param {Array} of one element, integer, n >= 0
+		 * @return {String} replacement
+		 */
+		linkparam: function( nodes, replacements ) {
+			var replacement,
+				index = parseInt( nodes[0], 10 );
+			if ( index < replacements.length) {
+				replacement = replacements[index];
+			} else {
+				replacement = '$' + ( index + 1 );
+			}
+			return this.link( [ replacement, nodes[1] ] );
 		},
 
 		/**
