@@ -629,7 +629,17 @@
 				if ( typeof arg === 'function' ) {
 					$el.click( arg ).attr( 'href', '#' );
 				} else {
-					$el.attr( 'href', arg.toString() );
+					// to prevent double-escape (XML entities will automatically be escaped when adding them as
+					// attributes in an HTML element), let's clean existing XML entities
+					arg = arg
+						.toString()
+						.replace(/&lt;/g, '<')
+						.replace(/&gt;/g, '>')
+						.replace(/&#039;/g, '\'')
+						.replace(/&quot;/g, '"')
+						.replace(/&amp;/g, '&');
+
+					$el.attr( 'href', arg );
 				}
 			}
 			$el.append( contents );	
