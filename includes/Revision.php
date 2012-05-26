@@ -554,15 +554,17 @@ class Revision {
 		if( isset( $this->mTitle ) ) {
 			return $this->mTitle;
 		}
-		$dbr = wfGetDB( DB_SLAVE );
-		$row = $dbr->selectRow(
-			array( 'page', 'revision' ),
-			self::selectPageFields(),
-			array( 'page_id=rev_page',
-				   'rev_id' => $this->mId ),
-			__METHOD__ );
-		if ( $row ) {
-			$this->mTitle = Title::newFromRow( $row );
+		if( !is_null( $this->mId ) ) { //rev_id is defined as NOT NULL
+			$dbr = wfGetDB( DB_SLAVE );
+			$row = $dbr->selectRow(
+				array( 'page', 'revision' ),
+				self::selectPageFields(),
+				array( 'page_id=rev_page',
+					   'rev_id' => $this->mId ),
+				__METHOD__ );
+			if ( $row ) {
+				$this->mTitle = Title::newFromRow( $row );
+			}
 		}
 		return $this->mTitle;
 	}
