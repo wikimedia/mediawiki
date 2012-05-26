@@ -2625,7 +2625,12 @@ function swap( &$x, &$y ) {
  * @return String
  */
 function wfTempDir() {
-	foreach( array( 'TMPDIR', 'TMP', 'TEMP' ) as $var ) {
+	global $wgTmpDirectory;
+
+	$tmpDir = array_map( "getenv", array( 'TMPDIR', 'TMP', 'TEMP' ) );
+	array_unshift( $wgTmpDirectory, $tmpDir );
+
+	foreach( $tmpDir as $var ) {
 		$tmp = getenv( $var );
 		if( $tmp && file_exists( $tmp ) && is_dir( $tmp ) && is_writable( $tmp ) ) {
 			return $tmp;
