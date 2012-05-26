@@ -948,6 +948,7 @@ $wgMessageStructure = array(
 		'prefs-beta',
 		'prefs-datetime',
 		'prefs-labs',
+		'prefs-user-pages',
 		'prefs-personal',
 		'prefs-rc',
 		'prefs-watchlist',
