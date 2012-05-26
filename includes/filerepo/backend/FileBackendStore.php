@@ -532,14 +532,12 @@ abstract class FileBackendStore extends FileBackend {
 	 * @return bool
 	 */
 	final public function getFileStat( array $params ) {
-		wfProfileIn( __METHOD__ );
-		wfProfileIn( __METHOD__ . '-' . $this->name );
 		$path = self::normalizeStoragePath( $params['src'] );
 		if ( $path === null ) {
-			wfProfileOut( __METHOD__ . '-' . $this->name );
-			wfProfileOut( __METHOD__ );
 			return false; // invalid storage path
 		}
+		wfProfileIn( __METHOD__ );
+		wfProfileIn( __METHOD__ . '-' . $this->name );
 		$latest = !empty( $params['latest'] ); // use latest data?
 		if ( !isset( $this->cache[$path]['stat'] ) ) {
 			$this->primeFileCache( array( $path ) ); // check persistent cache
@@ -603,14 +601,22 @@ abstract class FileBackendStore extends FileBackend {
 	 * @return bool|string
 	 */
 	final public function getFileSha1Base36( array $params ) {
+		$path = self::normalizeStoragePath( $params['src'] );
+		if ( $path === null ) {
+			return false; // invalid storage path
+		}
 		wfProfileIn( __METHOD__ );
 		wfProfileIn( __METHOD__ . '-' . $this->name );
-		$path = $params['src'];
+		$latest = !empty( $params['latest'] ); // use latest data?
 		if ( isset( $this->cache[$path]['sha1'] ) ) {
-			$this->pingCache( $path ); // LRU
-			wfProfileOut( __METHOD__ . '-' . $this->name );
-			wfProfileOut( __METHOD__ );
-			return $this->cache[$path]['sha1'];
+			// If we want the latest data, check that this cached
+			// value was in fact fetched with the latest available data.
+			if ( !$latest || $this->cache[$path]['sha1']['latest'] ) {
+				$this->pingCache( $path ); // LRU
+				wfProfileOut( __METHOD__ . '-' . $this->name );
+				wfProfileOut( __METHOD__ );
+				return $this->cache[$path]['sha1']['hash'];
+			}
 		}
 		wfProfileIn( __METHOD__ . '-miss' );
 		wfProfileIn( __METHOD__ . '-miss-' . $this->name );
@@ -619,7 +625,7 @@ abstract class FileBackendStore extends FileBackend {
 		wfProfileOut( __METHOD__ . '-miss' );
 		if ( $hash ) { // don't cache negatives
 			$this->trimCache(); // limit memory
-			$this->cache[$path]['sha1'] = $hash;
+			$this->cache[$path]['sha1'] = array( 'hash' => $hash, 'latest' => $latest );
 		}
 		wfProfileOut( __METHOD__ . '-' . $this->name );
 		wfProfileOut( __METHOD__ );
@@ -628,7 +634,7 @@ abstract class FileBackendStore extends FileBackend {
 
 	/**
 	 * @see FileBackendStore::getFileSha1Base36()
-	 * @return bool
+	 * @return bool|string
 	 */
 	protected function doGetFileSha1Base36( array $params ) {
 		$fsFile = $this->getLocalReference( $params );
@@ -658,19 +664,28 @@ abstract class FileBackendStore extends FileBackend {
 	 * @return TempFSFile|null
 	 */
 	public function getLocalReference( array $params ) {
+		$path = self::normalizeStoragePath( $params['src'] );
+		if ( $path === null ) {
+			return null; // invalid storage path
+		}
 		wfProfileIn( __METHOD__ );
 		wfProfileIn( __METHOD__ . '-' . $this->name );
-		$path = $params['src'];
+		$latest = !empty( $params['latest'] ); // use latest data?
 		if ( isset( $this->expensiveCache[$path]['localRef'] ) ) {
-			$this->pingExpensiveCache( $path );
-			wfProfileOut( __METHOD__ . '-' . $this->name );
-			wfProfileOut( __METHOD__ );
-			return $this->expensiveCache[$path]['localRef'];
+			// If we want the latest data, check that this cached
+			// value was in fact fetched with the latest available data.
+			if ( !$latest || $this->expensiveCache[$path]['localRef']['latest'] ) {
+				$this->pingExpensiveCache( $path );
+				wfProfileOut( __METHOD__ . '-' . $this->name );
+				wfProfileOut( __METHOD__ );
+				return $this->expensiveCache[$path]['localRef']['object'];
+			}
 		}
 		$tmpFile = $this->getLocalCopy( $params );
 		if ( $tmpFile ) { // don't cache negatives
 			$this->trimExpensiveCache(); // limit memory
-			$this->expensiveCache[$path]['localRef'] = $tmpFile;
+			$this->expensiveCache[$path]['localRef'] =
+				array( 'object' => $tmpFile, 'latest' => $latest );
 		}
 		wfProfileOut( __METHOD__ . '-' . $this->name );
 		wfProfileOut( __METHOD__ );

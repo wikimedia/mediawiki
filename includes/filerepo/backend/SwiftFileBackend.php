@@ -628,6 +628,10 @@ class SwiftFileBackend extends FileBackendStore {
 				'size'  => $srcObj->content_length,
 				'sha1'  => $srcObj->metadata['Sha1base36']
 			);
+			// Fill cache for getFileSha1Base36() to avoid misleading "-miss" profiling
+			$this->trimCache(); // limit memory
+			$this->cache[self::normalizeStoragePath( $params['src'] )]['sha1'] =
+				array( 'hash' => $stat['sha1'], 'latest' => !empty( $params['latest'] ) );
 		} catch ( NoSuchContainerException $e ) {
 		} catch ( NoSuchObjectException $e ) {
 		} catch ( CloudFilesException $e ) { // some other exception?
