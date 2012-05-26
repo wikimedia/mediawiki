@@ -2625,11 +2625,7 @@ function wfTempDir() {
 			return $tmp;
 		}
 	}
-	if( function_exists( 'sys_get_temp_dir' ) ) {
-		return sys_get_temp_dir();
-	}
-	# Usual defaults
-	return wfIsWindows() ? 'C:\Windows\Temp' : '/tmp';
+	return sys_get_temp_dir();
 }
 
 /**
