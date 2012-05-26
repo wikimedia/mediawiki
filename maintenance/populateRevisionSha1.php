@@ -132,12 +132,15 @@ class PopulateRevisionSha1 extends LoggedUpdateMaintenance {
 	 */
 	protected function upgradeRow( $row, $table, $idCol, $prefix ) {
 		$db = $this->getDB( DB_MASTER );
-		if ( $table === 'archive' ) {
-			$rev = Revision::newFromArchiveRow( $row );
-		} else {
-			$rev = new Revision( $row );
+		try {
+			$rev = ( $table === 'archive' )
+				? Revision::newFromArchiveRow( $row )
+				: new Revision( $row );
+			$text = $rev->getRawText();
+		} catch ( MWException $e ) {
+			$this->output( "Text of revision with {$idCol}={$row->$idCol} unavailable!\n" );
+			return false; // bug 22624?
 		}
-		$text = $rev->getRawText();
 		if ( !is_string( $text ) ) {
 			# This should not happen, but sometimes does (bug 20757)
 			$this->output( "Text of revision with {$idCol}={$row->$idCol} unavailable!\n" );
@@ -161,6 +164,7 @@ class PopulateRevisionSha1 extends LoggedUpdateMaintenance {
 		try {
 			$rev = Revision::newFromArchiveRow( $row );
 		} catch ( MWException $e ) {
+			$this->output( "Text of revision with timestamp {$row->ar_timestamp} unavailable!\n" );
 			return false; // bug 22624?
 		}
 		$text = $rev->getRawText();
