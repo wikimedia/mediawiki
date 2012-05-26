@@ -1255,9 +1255,9 @@ Please note that the parameters in a log entry will appear in the log only in th
 'mergelogpagetext' => 'Description of the [http://translatewiki.net/w/i.php?title=Special%3ALog&type=merge&user=&page=&year=&month=-1 merge log], on the log. The associated [[Special:MergeHistory|Merge]] special page is not enabled by default.',
 
 # Diffs
-'history-title' => 'Displayed as page title when you click on the "history" tab. The parameter $1 is the normal page title. It should appear in the beginning, so it will be visible in a browser tab.',
-'difference-title' => 'Displayed as page title when viewing the difference between two edits of the same page. The parameter $1 is the page title of the two revisions. It should appear in the beginning, so it will be visible in a browser tab.',
-'difference-title-multipage' => 'Displayed as page title when viewing the difference between two edits of different pages. The parameter $1 is the page title of the old revision and $2 is the page title of the new revision. They should appear in the beginning, so they will be visible in a browser tab.',
+'history-title' => 'Displayed as page title when you click on the "history" tab. The parameter $1 is the normal page title.',
+'difference-title' => 'Displayed as page title when viewing the difference between two edits of the same page. The parameter $1 is the page title of the two revisions.',
+'difference-title-multipage' => 'Displayed as page title when viewing the difference between two edits of different pages. The parameter $1 is the page title of the old revision and $2 is the page title of the new revision.',
 'difference-multipage' => 'Displayed under the title when viewing the difference between two or more pages.
 See also {{msg-mw|difference}}.',
 'lineno' => 'Message used when comparing different versions of a page (diff). $1 is a line number.',
