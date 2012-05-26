@@ -28,7 +28,7 @@
  * for systems that don't have it.
  *
  * On construction you can pass array( 'dir' => '/some/path' ); as a parameter
- * to override the default DBA files directory (wgTmpDirectory).
+ * to override the default DBA files directory (wfTempDir()).
  *
  * @ingroup Cache
  */
@@ -39,8 +39,7 @@ class DBABagOStuff extends BagOStuff {
 		global $wgDBAhandler;
 
 		if ( !isset( $params['dir'] ) ) {
-			global $wgTmpDirectory;
-			$params['dir'] = $wgTmpDirectory;
+			$params['dir'] = wfTempDir();
 		}
 
 		$this->mFile = $params['dir']."/mw-cache-" . wfWikiID();
