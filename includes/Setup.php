@@ -77,9 +77,7 @@ if ( $wgLogo === false ) $wgLogo = "$wgStylePath/common/images/wiki.png";
 
 if ( $wgUploadPath === false ) $wgUploadPath = "$wgScriptPath/images";
 if ( $wgUploadDirectory === false ) $wgUploadDirectory = "$IP/images";
-
-if ( $wgTmpDirectory === false ) $wgTmpDirectory = "{$wgUploadDirectory}/tmp";
-
+if ( $wgTmpDirectory === false ) $wgTmpDirectory = wfTempDir();
 if ( $wgReadOnlyFile === false ) $wgReadOnlyFile = "{$wgUploadDirectory}/lock_yBgMBwiR";
 if ( $wgFileCacheDirectory === false ) $wgFileCacheDirectory = "{$wgUploadDirectory}/cache";
 if ( $wgDeletedDirectory === false ) $wgDeletedDirectory = "{$wgUploadDirectory}/deleted";

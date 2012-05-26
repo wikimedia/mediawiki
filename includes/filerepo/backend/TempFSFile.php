@@ -23,7 +23,7 @@
 
 /**
  * This class is used to hold the location and do limited manipulation
- * of files stored temporarily (usually this will be $wgTmpDirectory)
+ * of files stored temporarily (this will be whatever wfTempDir() returns)
  *
  * @ingroup FileBackend
  */
