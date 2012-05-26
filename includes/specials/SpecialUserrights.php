@@ -270,8 +270,9 @@ class UserrightsPage extends SpecialPage {
 		}
 
 		$groups = $user->getGroups();
+		$autoGroups = Autopromote::getAutopromoteGroups( $user );
 
-		$this->showEditUserGroupsForm( $user, $groups );
+		$this->showEditUserGroupsForm( $user, $groups, $autoGroups );
 
 		// This isn't really ideal logging behavior, but let's not hide the
 		// interwiki logs if we're using them as is.
@@ -407,17 +408,28 @@ class UserrightsPage extends SpecialPage {
 	 * @param $user      User or UserRightsProxy you're editing
 	 * @param $groups    Array:  Array of groups the user is in
 	 */
-	protected function showEditUserGroupsForm( $user, $groups ) {
+	protected function showEditUserGroupsForm( $user, $groups, $autoGroups ) {
+		//Preload all group pages of this user
+		$linkBatch = new LinkBatch();
+		foreach ( array_merge( $groups, $autoGroups ) as $group ) {
+			$groupPage = User::getGroupPage( $group );
+			if( $groupPage ) {
+				$linkBatch->addObj( $groupPage );
+			}
+		}
+		//for Linker::userToolLinks
+		$linkBatch->addObj( $user->getUserPage() );
+		$linkBatch->addObj( $user->getTalkPage() );
+		$linkBatch->execute();
+
 		$list = array();
 		foreach( $groups as $group ) {
 			$list[] = self::buildGroupLink( $group );
 		}
 
 		$autolist = array();
-		if ( $user instanceof User ) {
-			foreach( Autopromote::getAutopromoteGroups( $user ) as $group ) {
-				$autolist[] = self::buildGroupLink( $group );
-			}
+		foreach( $autoGroups as $group ) {
+			$autolist[] = self::buildGroupLink( $group );
 		}
 
 		$grouplist = '';

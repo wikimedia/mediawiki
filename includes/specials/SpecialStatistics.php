@@ -183,13 +183,20 @@ class SpecialStatistics extends SpecialPage {
 	}
 
 	private function getGroupStats() {
-		global $wgGroupPermissions, $wgImplicitGroups;
-		$text = '';
-		foreach( $wgGroupPermissions as $group => $permissions ) {
-			# Skip generic * and implicit groups
-			if ( in_array( $group, $wgImplicitGroups ) || $group == '*' ) {
-				continue;
+		$allGroups = User::getAllGroups();
+
+		# Preload all group pages
+		$linkBatch = new LinkBatch();
+		foreach ( $allGroups as $group ) {
+			$groupPage = User::getGroupPage( $group );
+			if( $groupPage ) {
+				$linkBatch->addObj( $groupPage );
 			}
+		}
+		$linkBatch->execute();
+
+		$text = '';
+		foreach( $allGroups as $group ) {
 			$groupname = htmlspecialchars( $group );
 			$msg = $this->msg( 'group-' . $groupname );
 			if ( $msg->isBlank() ) {
