@@ -1009,9 +1009,9 @@ Vide Bbuene ca ausanne le collegaminde de navigazzione sta culonne avène azzera
 'mergelogpagetext' => "Stte stè 'na liste de le cchiù recende scuagghiaminde de le cunde de le vosce jndr'à 'n'otre.",
 
 # Diffs
-'history-title' => 'Liste de le versiune de "$1"',
-'difference-title' => 'Differenze \'mbrà revisiune de "$1"',
-'difference-title-multipage' => 'Differenze \'mbrà le pàggene "$1" e "$2"',
+'history-title' => '$1: Cunde de le revisiune',
+'difference-title' => "$1: Differenze 'mbrà revisiune",
+'difference-title-multipage' => "$1 e $2: Differenze 'mbrà le pàggene",
 'difference-multipage' => "(Differenze 'mbrà le pàggene)",
 'lineno' => 'Linea $1:',
 'compareselectedversions' => 'Combronde le versiune selezionete',

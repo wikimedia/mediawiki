@@ -9,6 +9,7 @@
  *
  * @author AidaBishkek
  * @author Aidabishkek
+ * @author Amire80
  * @author Muratjumashev
  * @author Ztimur
  */
@@ -351,7 +352,7 @@ IP дарегиңиз бул барактын оңдоо тарыхына жаз
 'noarticletext' => "Азыр бул баракта текст жок.
 Сиз [[Special:Search/{{PAGENAME}}|ушул аталыш менен баракты изде]] башка барактарда 
 <span class=\"plainlinks\">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} тийиштүү жазууларды таба аласыз],
-же '''[{{fullurl:{{FULLPAGENAME}}|action=edit}} ошондой аталыш менен барак ача аласыз].'''</span>.",
+же '''[{{fullurl:{{FULLPAGENAME}}|action=edit}} ошондой аталыш менен барак ача аласыз]'''</span>.",
 'noarticletext-nopermission' => 'Азыр бул баракта текст жок.
 Сиз башка барактардан [[Special:Search/{{PAGENAME}}|ушул аталыш менен баракты издөө]] салып,
 же <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} тийиштүү жазууларды таба аласыз]</span>.',

@@ -1125,9 +1125,9 @@ $1",
 'mergelogpagetext' => 'ქვემოთ წარმოდგენილია ამ გვერდის ბოლო გაერთიანებათა სია',
 
 # Diffs
-'history-title' => 'ცვლილებათა ისტორია სტატიაში „$1“',
-'difference-title' => 'განსხვავება გადახედვებს შორის " $1 "',
-'difference-title-multipage' => 'განსხვავება „$1“ და „$2“ გვერდებს შორის',
+'history-title' => '$1: ცვლილებათა ისტორია',
+'difference-title' => '$1: განსხვავება გადახედვებს შორის',
+'difference-title-multipage' => '$1 და $2: განსხვავება გვერდებს შორის',
 'difference-multipage' => '(განსხვავება გვერდებს შორის)',
 'lineno' => 'ხაზი $1:',
 'compareselectedversions' => 'არჩეული ვერსიების შედარება',

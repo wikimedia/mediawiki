@@ -739,7 +739,7 @@ Pröa a giuntagh denanz a la tò ricerca ''all:'' per cercà in tücc i namespac
 'nchanges' => '$1 {{PLURAL:$1|mudifega|mudifegh}}',
 'recentchanges' => 'Cambiament recent',
 'recentchanges-legend' => 'Upzión ültem mudifegh',
-'recentchangestext' => "In quela pagina chì a gh'è i cambiament püssee recent al cuntegnüü del sit.",
+'recentchanges-summary' => "In quela pagina chì a gh'è i cambiament püssee recent al cuntegnüü del sit.",
 'recentchanges-feed-description' => "Quel feed chì 'l mustra i mudifegh püssee recent ai cuntegnüü de la wiki.",
 'recentchanges-label-newpage' => "Quela mudifega chì l'ha creaa una pagina növa",
 'recentchanges-label-minor' => "Quela chì l'è una mudifega piscinina.",

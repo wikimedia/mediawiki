@@ -15,6 +15,7 @@
  * @author Mxn
  * @author Neoneurone
  * @author Nguyễn Thanh Quang
+ * @author Prenn
  * @author Thaisk
  * @author Thanhtai2009
  * @author Tmct
@@ -3279,7 +3280,7 @@ Những thông tin khác mặc định sẽ được ẩn đi.
 'exif-scenetype' => 'Loại cảnh',
 'exif-customrendered' => 'Sửa hình thủ công',
 'exif-exposuremode' => 'Chế độ phơi sáng',
-'exif-whitebalance' => 'Độ sáng trắng',
+'exif-whitebalance' => 'Cân bằng trắng',
 'exif-digitalzoomratio' => 'Tỷ lệ phóng lớn kỹ thuật số',
 'exif-focallengthin35mmfilm' => 'Tiêu cự trong phim 35 mm',
 'exif-scenecapturetype' => 'Kiểu chụp cảnh',

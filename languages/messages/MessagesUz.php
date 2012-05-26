@@ -419,7 +419,7 @@ Bu yerda: (joriy) = hozirgi koʻrinish bilan farq,
 
 # Recent changes
 'recentchanges' => 'Yangi o‘zgartirishlar',
-'recentchangestext' => 'Ushbu sahifada siz eng so‘nggi o‘zgartirishlarni ko‘rishingiz mumkin.',
+'recentchanges-summary' => "Bu sahifada siz oxirgi o'zgartirishlarni ko'rishingiz mumkin.",
 'rcnote' => "Quyida $5, $4ga koʻra oxirgi {{PLURAL:$2|kun|'''$2''' kun}} davomida sodir boʻlgan {{PLURAL:$1|'''1''' oʻzgartirish|'''$1''' oʻzgartirishlar}} koʻrsatilgan.",
 'rclistfrom' => "$1dan boshlab yangi o'zgartirishlarni ko'rsat.",
 'rcshowhideminor' => 'Kichik tahrirlarni $1',

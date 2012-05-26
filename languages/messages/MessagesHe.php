@@ -1320,7 +1320,7 @@ $1",
 # Diffs
 'history-title' => 'היסטוריית הגרסאות של $1',
 'difference-title' => '$1: הבדלים בין גרסאות',
-'difference-title-multipage' => 'הבדלים בין הדפים $1 ו{{GRAMMAR:תחילית|$2}}',
+'difference-title-multipage' => '$1 ו{{GRAMMAR:תחילית|$2}}: הבדלים בין הדפים',
 'difference-multipage' => '(הבדלים בין דפים)',
 'lineno' => 'שורה $1:',
 'compareselectedversions' => 'השוואת הגרסאות שנבחרו',

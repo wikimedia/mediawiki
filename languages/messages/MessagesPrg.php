@@ -1092,7 +1092,7 @@ Tū mazzi dīgi etrīnktun dātun kitēimans drāugautwei sen tin pra tērpautaj
 'nchanges' => '$1 {{PLURAL:$1|kitawīdinsna|kitawīdinsnas}}',
 'recentchanges' => 'Panzdaumas kitawīdinsnas',
 'recentchanges-legend' => 'Panzdauman kitawīdinsnan mazīngiskwas',
-'recentchangestext' => 'Šin pāusan waidinna listin stēisan panzdauman kitawīdinsnan en šissei wiki.',
+'recentchanges-summary' => 'Šin pāusan waidinna listin stēisan panzdauman kitawīdinsnan en šissei wiki.',
 'recentchanges-feed-description' => 'Nadirēis ukanāunaisins kitawīdisnans en šissei wiki.',
 'recentchanges-label-newpage' => 'Šis redigīsenis ast teīkuns nāunan pāusan',
 'recentchanges-label-minor' => 'Sta ast malks redigīsenis',

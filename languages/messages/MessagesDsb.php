@@ -1079,9 +1079,9 @@ Zaruc, až historija wersijow nastawka jo njepśetergnjona.',
 'mergelogpagetext' => 'Dołojce jo lisćina nejnowejšych zjadnośenjow historije boka z drugej.',
 
 # Diffs
-'history-title' => 'Stawizny wersijow boka „$1“',
-'difference-title' => 'Rozdźěl mjazy wersijami "$1"',
-'difference-title-multipage' => 'Rozdźěl mjazy bokami "$1" a "$2"',
+'history-title' => '$1: Wersijowe stawizny',
+'difference-title' => '$1: Rozdźěl mjazy wersijami',
+'difference-title-multipage' => '$1 a $2: Rozdźěl mjazy bokami',
 'difference-multipage' => '(Rozdźěl mjazy bokami)',
 'lineno' => 'Rědka $1:',
 'compareselectedversions' => 'Wuzwólonej wersiji pśirownaś',

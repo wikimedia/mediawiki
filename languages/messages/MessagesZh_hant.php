@@ -1064,7 +1064,7 @@ $2
 'revdelete-hide-comment' => '隱藏編輯摘要',
 'revdelete-hide-user' => '隱藏編輯者的用戶名/IP地址',
 'revdelete-hide-restricted' => '同時廢止由操作員以及其他用戶的資料',
-'revdelete-radio-same' => '(勿更改)',
+'revdelete-radio-same' => '（不要更改）',
 'revdelete-radio-set' => '是',
 'revdelete-radio-unset' => '否',
 'revdelete-suppress' => '同時廢止由操作員以及其他用戶的資料',

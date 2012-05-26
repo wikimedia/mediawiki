@@ -1156,9 +1156,9 @@ Upoštevajte, da bo uporaba navigacijskih gumbov ponastavila ta stolpec.',
 'mergelogpagetext' => 'Prikazan je seznam nedavnih združevanj zgodovin strani.',
 
 # Diffs
-'history-title' => 'Zgodovina strani »$1«',
-'difference-title' => 'Razlika med redakcijama »$1«',
-'difference-title-multipage' => 'Razlika med stranema »$1« in »$2«',
+'history-title' => '$1: Zgodovina strani',
+'difference-title' => '$1: Razlika med redakcijama',
+'difference-title-multipage' => '$1 in $2: Razlika med stranema',
 'difference-multipage' => '(Razlika med stranmi)',
 'lineno' => 'Vrstica $1:',
 'compareselectedversions' => 'Primerjaj izbrani redakciji',

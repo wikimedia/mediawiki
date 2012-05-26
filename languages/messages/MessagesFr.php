@@ -1306,7 +1306,7 @@ Assurez-vous que cette opération conservera la continuité de l’historique de
 'mergelogpagetext' => 'Voici la liste des fusions de l’historique d’une page dans celui d’une autre les plus récentes.',
 
 # Diffs
-'history-title' => 'Historique des versions de «&nbsp;$1&nbsp;»',
+'history-title' => '$1 : Historique des versions',
 'difference-title' => 'Différence entre des versions de « $1 »',
 'difference-title-multipage' => 'Différence entre les pages « $1 » et « $2 »',
 'difference-multipage' => '(Différence entre les pages)',

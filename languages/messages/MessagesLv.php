@@ -667,7 +667,7 @@ Pēdējais bloķēšanas reģistra ieraksts ir apskatāms zemāk:',
 '''Tas vēl nav saglabāts!'''",
 'updated' => '(Atjaunots)',
 'note' => "'''Piezīme: '''",
-'previewnote' => "'''Atceries, ka šis ir tikai pirmskats un vēl nav saglabāts!'''",
+'previewnote' => "'''Atceries, ka šis ir tikai pirmskats un teksts vēl nav saglabāts!'''",
 'session_fail_preview' => "'''Neizdevās apstrādāt tavas izmaiņas, jo tika pazaudēti sesijas dati.
 Lūdzu mēģini vēlreiz.
 Ja tas joprojām nedarbojas, mēģini [[Special:UserLogout|izlogoties ārā]] un ielogoties no jauna.'''",
