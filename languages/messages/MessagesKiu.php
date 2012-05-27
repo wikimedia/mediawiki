@@ -710,7 +710,7 @@ Eke şertê ilawekerdey ke niyê ro, idarekerê bini {{SITENAME}} de nêşikinê
 'searchprofile-images-tooltip' => 'Dosya bıfeteliye',
 'searchprofile-everything-tooltip' => 'Zerreki pêro sae ke (pelunê hurênaişi daxıl)',
 'searchprofile-advanced-tooltip' => 'Caunê namunê xısusiu de cıfeteliye',
-'search-result-size' => '$1 ({{PLURAL:$2|1 çekuye|$2 çekuy}})',
+'search-result-size' => '$1 ({{PLURAL:$2|1 kelime|$2 kelimey}})',
 'search-result-category-size' => '{{PLURAL:$1|1 eza|$1 ezey}} ({{PLURAL:$2|1 kategoriya bınêne|$2 kategoriyê bınêni}}, {{PLURAL:$3|1 dosya|$3 dosyey}})',
 'search-redirect' => '(hetêcıraberdene $1)',
 'search-section' => '(qısımo $1)',

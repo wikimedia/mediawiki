@@ -1351,8 +1351,8 @@ $1",
 
 # Diffs
 'history-title' => '「$1」の変更履歴',
-'difference-title' => '「$1」の版間の差分',
-'difference-title-multipage' => 'ページ「$1」と「$2」間の差分',
+'difference-title' => '$1：版間の差分',
+'difference-title-multipage' => '$1 と $2：ページ間の差分',
 'difference-multipage' => '（ページ間の差分）',
 'lineno' => '$1行：',
 'compareselectedversions' => '選択した版同士を比較',

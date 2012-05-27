@@ -1218,9 +1218,9 @@ $1",
 'mergelogpagetext' => "Нижче наведений список останніх об'єднань історій сторінок.",
 
 # Diffs
-'history-title' => 'Історія змін сторінки «$1»',
-'difference-title' => 'Відмінності між версіями «$1»',
-'difference-title-multipage' => 'Відмінності між сторінками «$1» і «$2»',
+'history-title' => '$1: Історія змін',
+'difference-title' => '$1: Відмінності між версіями',
+'difference-title-multipage' => '$1 і $2: Відмінності між сторінками',
 'difference-multipage' => '(Різниця між сторінками)',
 'lineno' => 'Рядок $1:',
 'compareselectedversions' => 'Порівняти вибрані версії',

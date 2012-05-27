@@ -540,7 +540,7 @@ Nit lạgit oku nambar:',
 'subject' => 'Bisoy/Bohoḱ katha:',
 'minoredit' => 'Noa do hudiń joṛao kami',
 'watchthis' => 'Noa sakam ńelme',
-'savearticle' => 'Sakam sebhme',
+'savearticle' => 'Sakam dohoeme',
 'preview' => 'Ńel, Unuduḱ',
 'showpreview' => 'Unuduḱ',
 'showlivepreview' => 'Jewet uduk',
@@ -548,6 +548,9 @@ Nit lạgit oku nambar:',
 'anoneditwarning' => "'''Sabdhan:''' amdo begor logkatem bolowakana.
 Amaḱ IP ṭhikana do noa sakam sompadon jạṛre rekorḍoḱa.",
 'anonpreviewwarning' => '"Am do bhitri bam bolo akana. Noa sakamre amaḱ kạmiko jạre IP ṭhiikạ̣nare rukhiyạ ḱa."',
+'summary-preview' => 'Guṭ katha unuduḱ:',
+'subject-preview' => 'Babot/Guṭkatha unuduḱ:',
+'blockedtitle' => 'Beoharić doe eset ocoakana.',
 'loginreqlink' => 'Bhitri boloḱ',
 'loginreqpagetext' => 'Eṭagaḱ sakamko ńel lạgit́te do am $1 hoyoḱ jạruṛtama.',
 'accmailtitle' => 'Uku nambar do kulena.',
@@ -602,6 +605,13 @@ Get ar ocoḱ giḍi sakam do latarre emakan reference lạgit em hoena.',
 'log-fulllog' => 'Joto cạbi udugmẽ',
 'edit-hook-aborted' => 'Huk hotete joto sompadonko bạgi hoeakana.
 Noa reaḱ jahan katha do bạnuḱa.',
+'edit-gone-missing' => 'Sakam do baṅ halot ruạṛlena.
+Pasecc: sakam do ocoǵ hoeakana.',
+'edit-conflict' => 'Sompadon reṭepeṭe.',
+'edit-no-change' => 'Amaḱ sompadon do baṅ hataolena, Cedaḱ je olre jahan bodol bạnuḱa.',
+'edit-already-exists' => 'Nãwã sakam baṅ tear lena.
+Sakam do laha khon menaḱgea.',
+'defaultmessagetext' => 'Sedae olko',
 
 # Parser/template warnings
 'post-expand-template-inclusion-warning' => '"Sontoroḱme" Noa format do lạṭu geya.
@@ -616,6 +626,8 @@ Onate noa ạrgumenṭkodo bạgi giḍi hoena.",
 
 # History pages
 'viewpagelogs' => 'Noa sakam reaḱ cạbi udukme',
+'nohistory' => 'Noa sakam re do jahan sompadon reaḱ jạṛ bạnuḱa.',
+'currentrev' => 'Mucạt nãwã aroe',
 'currentrev-asof' => 'Mucạt nãwã aroy',
 'revisionasof' => 'Nãwã aro sakam $1 leka',
 'revision-info' => 'Ńel/pańja ruạṛ $1 khon $2',
@@ -633,20 +645,29 @@ Unuduḱ: '''({{int:cur}})''' = nahaḱ nãwã aroeko saõte tulạo, '''({{int:
 'history-show-deleted' => 'khạli get giḍiyaḱ koge',
 'histfirst' => "adi laha-ak'",
 'histlast' => 'Nahak',
+'historysize' => '({{PLURAL:$1 1 bayeṭ $1 bayeṭko}})',
 'historyempty' => '(banuḱa)',
 
 # Revision feed
 'history-feed-title' => 'Jạṛ nãwã aroy',
+'history-feed-description' => 'Noa wikire noa sakam reaḱ nãwã aroe jạṛ',
 'history-feed-item-nocomment' => 're',
 
 # Revision deletion
+'rev-deleted-comment' => '(Sompadon reaḱ guṭ katha do ocoǵ hoena)',
 'rev-deleted-user' => '(laṛcaṛić ńutum ocoḱena)',
+'rev-deleted-event' => '(Log kạmi do ocog hoena)',
+'rev-deleted-user-contribs' => '[Beoharićaḱ ńutum se IP ṭhikạna do ocog hoena - kạmi khon sompadon do uku hoe akana]',
 'rev-delundel' => 'ńeloḱ/danaṅ',
 'rev-showdeleted' => 'Uduḱme',
 'revisiondelete' => 'Get giḍi/nãwã aro baṅ getgiḍi',
 'revdelete-show-file-submit' => 'Hẽ',
+'revdelete-hide-text' => 'Nãwã aroe olko ukuemẽ',
+'revdelete-hide-image' => 'Rẽt reaḱ babotko ukue mẽ',
+'revdelete-hide-name' => 'Kạmi ar bejha ukue mẽ',
 'revdelete-radio-same' => '(alom bodola)',
 'revdelete-radio-set' => 'Hẽ',
+'revdelete-radio-unset' => 'Baṅ',
 'revdel-restore' => 'Judạ lekate ńel',
 'revdel-restore-deleted' => 'giḍikaḱ ńel ruạṛ',
 'revdel-restore-visible' => 'Ńeloḱ leka paṛhao ruạṛ',
@@ -1147,7 +1168,7 @@ jeleń',
 'exif-artist' => 'Onoliạ',
 
 # External editor support
-'edit-externally' => 'Noa rẽt tońge joṛao lạ̣gitte bahre reaḱ koejoń  beoharme',
+'edit-externally' => 'Noa rẽt tońge joṛao lạgitte bahre reaḱ koejoń  beoharme',
 'edit-externally-help' => '(Nonḍe ńelme [//www.mediawiki.org/wiki/Manual:External_editors setup instructions] bạṛtite baḍay lạgit)',
 
 # 'all' in various places, this might be different for inflected languages

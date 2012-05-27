@@ -2669,7 +2669,7 @@ Izaberite konkretan razlog ispod (primer: navođenje konkretnih stranica koje su
 ** Neprihvatljivo korisničko ime',
 'ipb-hardblock' => 'Zabrani prijavljenim korisnicima da uređuju s ove IP adrese',
 'ipbcreateaccount' => 'Onemogući otvaranje naloga',
-'ipbemailban' => 'Zabrani članu slanje e-poruka',
+'ipbemailban' => 'Zabrani korisniku slanje e-poruka',
 'ipbenableautoblock' => 'Automatski blokiraj poslednju IP adresu ovog korisnika i sve daljnje adrese s kojih pokuša da uređuje',
 'ipbsubmit' => 'Blokiraj ovog korisnika',
 'ipbother' => 'Drugo vreme:',

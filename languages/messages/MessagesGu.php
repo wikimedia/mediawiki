@@ -2016,7 +2016,7 @@ https://www.mediawiki.org/wiki/Manual:Image_Authorization. જુઓ',
 'allpagesprev' => 'પહેલાનું',
 'allpagesnext' => 'પછીનું',
 'allpagessubmit' => 'જાઓ',
-'allpagesprefix' => 'પૂર્વર્ગ ધરાવતા પાના શોધો',
+'allpagesprefix' => 'ઉપસર્ગ ધરાવતા પાનાં શોધો',
 'allpagesbadtitle' => 'આપનું ઈચ્છિત શીર્ષક અમાન્ય છે, ખાલી છે, અથવાતો અયોગ્ય રીતે આંતર-ભાષિય કે આંતર-વિકિ સાથે જોડાયેલું શીર્ષક છે.
 શક્ય છે કે તેમાં એક કે વધુ એવા અક્ષર કે ચિહ્નો છે કે જે પાનાનાં શીર્ષક માટે અવૈધ છે.',
 'allpages-bad-ns' => '{{SITENAME}} ને નામસ્થળ  "$1" નથી.',
@@ -2717,7 +2717,7 @@ To perform a selective restoration, check the boxes corresponding to the revisio
 'allmessages-filter-unmodified' => 'અસંપાદિત',
 'allmessages-filter-all' => 'બધા',
 'allmessages-filter-modified' => 'સુધારીત',
-'allmessages-prefix' => 'પૂર્વર્ગ દ્વારા ચાળો',
+'allmessages-prefix' => 'ઉપસર્ગ દ્વારા અલગ તારવો',
 'allmessages-language' => 'ભાષા:',
 'allmessages-filter-submit' => 'કરો',
 

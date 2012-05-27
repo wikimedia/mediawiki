@@ -1136,9 +1136,9 @@ Assegureu-vos que aquest canvi mantindrà la continuïtat històrica de la pàgi
 'mergelogpagetext' => "A sota hi ha una llista de les fusions més recents d'una pàgina d'historial en una altra.",
 
 # Diffs
-'history-title' => 'Historial de versions de «$1»',
-'difference-title' => 'Diferència entre les revisions de «$1»',
-'difference-title-multipage' => 'Diferència entre les pàgines «$1» i «$2»',
+'history-title' => '$1: Historial de revisions',
+'difference-title' => '$1: Diferència entre les revisions',
+'difference-title-multipage' => '$1 i $2: Diferència entre les pàgines',
 'difference-multipage' => '(Diferència entre pàgines)',
 'lineno' => 'Línia $1:',
 'compareselectedversions' => 'Compara les versions seleccionades',
@@ -1233,6 +1233,7 @@ Assegureu-vos que aquest canvi mantindrà la continuïtat històrica de la pàgi
 'prefs-beta' => 'Característiques beta',
 'prefs-datetime' => 'Data i hora',
 'prefs-labs' => 'Característiques de laboratori',
+'prefs-user-pages' => "Pàgines d'usuari",
 'prefs-personal' => "Perfil d'usuari",
 'prefs-rc' => 'Canvis recents',
 'prefs-watchlist' => 'Llista de seguiment',

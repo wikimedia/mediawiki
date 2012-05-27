@@ -1255,6 +1255,7 @@ Upoštevajte, da so njihovi podatki vsebine {{GRAMMAR:rodilnik|{{SITENAME}}}} mo
 'prefs-beta' => 'Betafunkcije',
 'prefs-datetime' => 'Datum in čas',
 'prefs-labs' => 'Funkcije laboratorija',
+'prefs-user-pages' => 'Uporabniške strani',
 'prefs-personal' => 'Podatki o uporabniku',
 'prefs-rc' => 'Zadnje spremembe',
 'prefs-watchlist' => 'Spisek nadzorov',

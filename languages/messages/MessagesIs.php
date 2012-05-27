@@ -1143,7 +1143,7 @@ Sjáðu til þess að þessi breyting sameini breytingarskrárnar samfellt.',
 'mergelogpagetext' => 'Þetta er skrá yfir síðustu sameiningar einnar síðu við aðra.',
 
 # Diffs
-'history-title' => 'Breytingaskrá fyrir "$1"',
+'history-title' => '$1: Breytingaskrá',
 'difference-title' => '$1: Munur á milli útgáfa',
 'difference-title-multipage' => '$1 og $2: Munur á milli síðna',
 'difference-multipage' => '(Munur á milli síðna)',
