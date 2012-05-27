@@ -1802,6 +1802,7 @@ Kérjük, hogy lépj kapcsolatba egy  [[Special:ListUsers/sysop|adminisztrátorr
 'backend-fail-closetemp' => 'Nem lehet lezárni az ideiglenes fájlt.',
 'backend-fail-read' => 'Nem sikerült olvasni ebből a fájlból: $1.',
 'backend-fail-create' => 'Nem sikerült írni ebbe a fájlba: $1.',
+'backend-fail-maxsize' => 'Nem lehet írni ezt a fájlt: $1, mert a mérete nagyobb, mint $2 bájt.',
 'backend-fail-readonly' => 'A(z) „$1” tárolórendszer jelenleg csak olvasható. Ennek oka a következő: „$2”',
 'backend-fail-synced' => 'A(z) „$1” fájl inkonzisztens állapotban van a tárolórendszerek között',
 'backend-fail-connect' => 'Nem sikerült csatlakozni a(z) „$1” tárolórendszerhez.',
@@ -2137,6 +2138,11 @@ A napló típusának, a szerkesztő nevének (kis- és nagybetűérzékeny), vag
 'allpagesbadtitle' => 'A megadott lapnév nyelvközi vagy wikiközi előtagot tartalmazott, vagy érvénytelen volt. Talán olyan karakter van benne, amit nem lehet lapnevekben használni.',
 'allpages-bad-ns' => 'A(z) {{SITENAME}} webhelyen nincs "$1" névtér.',
 'allpages-hide-redirects' => 'Átirányítások elrejtése',
+
+# SpecialCachedPage
+'cachedspecial-viewing-cached-ttl' => 'A lap tárolt változatát látod, aminek utolsó frissítése ennyi ideje volt:  $1',
+'cachedspecial-viewing-cached-ts' => 'Az oldal tárolt változatát látod, ami eltérhet az aktuálistól.',
+'cachedspecial-refresh-now' => 'A legfrissebb változat mutatása.',
 
 # Special:Categories
 'categories' => 'Kategóriák',
@@ -3733,6 +3739,7 @@ A MediaWikit abban a reményben terjesztjük, hogy hasznos lesz, de GARANCIA NÉ
 'version-software' => 'Telepített szoftverek',
 'version-software-product' => 'Termék',
 'version-software-version' => 'Verzió',
+'version-entrypoints-header-url' => 'URL',
 
 # Special:FilePath
 'filepath' => 'Fájlelérés',
@@ -3918,5 +3925,13 @@ A képek teljes méretben jelennek meg, más fájltípusok közvetlenül a hozz�
 'api-error-unknownerror' => 'Ismeretlen hiba: „$1”.',
 'api-error-uploaddisabled' => 'A feltöltés le van tiltva ezen a wikin.',
 'api-error-verification-error' => 'A fájl feltehetőleg sérült, vagy hibás a kiterjesztése.',
+
+# Durations
+'duration-seconds' => '{{PLURAL: $1|másodperc|másodperc}}',
+'duration-minutes' => '{{PLURAL: $1|perc|perc}}',
+'duration-hours' => '({{PLURAL:$1|egy|$1}} óra)',
+'duration-days' => '({{PLURAL:$1|egy|$1}} nap)',
+'duration-weeks' => '{{PLURAL: $1|hét|hét}}',
+'duration-years' => '{{PLURAL: $1|év|év}}',
 
 );

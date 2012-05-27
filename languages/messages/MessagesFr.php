@@ -66,6 +66,7 @@
  * @author Tpt
  * @author Urhixidur
  * @author Verdy p
+ * @author WikiEoFrEn
  * @author Wyz
  * @author Yumeki
  * @author Zebulon84
@@ -1307,8 +1308,8 @@ Assurez-vous que cette opération conservera la continuité de l’historique de
 
 # Diffs
 'history-title' => '$1 : Historique des versions',
-'difference-title' => 'Différence entre des versions de « $1 »',
-'difference-title-multipage' => 'Différence entre les pages « $1 » et « $2 »',
+'difference-title' => '$1: Différence entre versions',
+'difference-title-multipage' => 'Différences entre les pages « $1 » et « $2 »',
 'difference-multipage' => '(Différence entre les pages)',
 'lineno' => 'Ligne $1 :',
 'compareselectedversions' => 'Comparer les versions sélectionnées',
@@ -1404,6 +1405,7 @@ Essayez en utilisant le préfixe ''all:'' pour rechercher dans tout le contenu (
 'prefs-beta' => 'Fonctionnalités bêta',
 'prefs-datetime' => 'Date et heure',
 'prefs-labs' => 'Fonctionnalités « labs »',
+'prefs-user-pages' => 'Pages utilisateur',
 'prefs-personal' => 'Informations personnelles',
 'prefs-rc' => 'Modifications récentes',
 'prefs-watchlist' => 'Liste de suivi',

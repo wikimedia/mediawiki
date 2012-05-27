@@ -1554,10 +1554,10 @@ Tatizo likiendelea, uwasiliane na [[Special:ListUsers/sysop|mkabidhi]].',
 # ZipDirectoryReader
 'zip-file-open-error' => 'Ilitokea hitilafu wakati wa kufungua faili kwa ajili ya ukaguzi wa ZIP.',
 'zip-wrong-format' => 'Faili lililotajwa si faili la ZIP.',
-'zip-bad' => 'Faili ZIP hili limevurugika ama halisomeka.
-Haliwezi kugakuliwa ili kukinga usalama.',
-'zip-unsupported' => 'Faili ZIP hili linatumia bidhaa pepe ya ZIP zisizoeleweka na MediaWiki.
-Haliwezi kugakuliwa ili kukinga usalama.',
+'zip-bad' => 'Faili hili la ZIP limevurugika ama haliwezikusomeka.
+Haliwezi kukaguliwa vilivyo kwa sababu za kiusalama.',
+'zip-unsupported' => 'Faili hili la ZIP ambalo linatumia vipengele ambavyo haviungwi mkono na MediaWiki.
+Haliwezi kukaguliwa vilivyo kwa sababu za kiusalama.',
 
 # Special:UploadStash
 'uploadstash-refresh' => 'Zimua orodha ya mafaili',
@@ -1719,14 +1719,14 @@ Kumbuka kuhakikisha kwamba hakuna viungo vingine vinavyoelekea kigezo fulani kab
 'statistics-edits' => 'Kurasa zilizohaririwa tangu {{SITENAME}} ilivyoanzishwa',
 'statistics-edits-average' => 'Wastani wa uhariri kwa kurasa',
 'statistics-views-total' => 'Jumla ya mitazamaji',
-'statistics-views-total-desc' => 'Ziara za kurasa zisizopatikana na kurasa maalum hazihesabiwi',
+'statistics-views-total-desc' => 'Tazamo za kurasa zisizokuwepo na kurasa maalumu ambazo hazijaorodheshwa.',
 'statistics-views-peredit' => 'Mitazamaji kwa haririo',
 'statistics-users' => '[[Special:ListUsers|Watumiaji]] waliojisajiri',
 'statistics-users-active' => 'Watumiaji wanaofanya kazi',
 'statistics-users-active-desc' => 'Watumiaji waliofanya kazi katika siku {{PLURAL:$1|iliyopita|$1 zilizopita}}',
 'statistics-mostpopular' => 'Kurasa zinazotazamwa sana',
 
-'disambiguations' => 'Kurasa za kuainisha maneno',
+'disambiguations' => 'Kurasa zinazoungana na kurasa za uanishaji',
 'disambiguationspage' => 'Template:Maana',
 'disambiguations-text' => "Kurasa zinazofuata zina viungo vinavyoelekea '''kurasa ya kutofautishana maana'''.
 Ni afadhali kiungo kiende makala inayostahili moja kwa moja.<br />
@@ -1736,8 +1736,8 @@ Kurasa za kutofautishana maana ni zile zinazotumia kigezo kinachoorodheshwa kati
 'doubleredirectstext' => 'Ukurasa huu unaorodhesha kurasa zinazoelekeza kurasa zingine za kuelekeza.
 Katika kila mstari kuna viungo vinavyokwenda katika kurasa za kuelekeza zote mbili, pamoja na ukurasa wa mwishilio mwa elekezo la pili. Ukurasa huu wa mwishilio huwa ni ukurasa unaostahili kuelekezwa kutoka kwa ukurasa wa kuelekeza wa kwanza. Vitu <del>vilivyokatwa kwa mstari</del> vimeshatatuliwa.',
 'double-redirect-fixed-move' => '[[$1]] umehamishwa.
-Sasa unaelekeza [[$2]].',
-'double-redirect-fixed-maintenance' => 'Elekezo maradufu inarekebishwa toka [[$1]] kwenda [[$2]].',
+Sasa unaelekeza kwa [[$2]].',
+'double-redirect-fixed-maintenance' => 'Elekezo maradufu inarekebishwa kutoka [[$1]] kwenda [[$2]].',
 'double-redirect-fixer' => 'Boti ya kurekebisha maelekezo',
 
 'brokenredirects' => 'Maelekezo yenye hitilafu',

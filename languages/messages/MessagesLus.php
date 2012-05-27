@@ -185,8 +185,8 @@ $messages = array(
 'help' => 'Ṭanpuina',
 'search' => 'Zawnna',
 'searchbutton' => 'Zawng rawh le',
-'go' => 'Kal rawh le',
-'searcharticle' => 'Kal rawh le',
+'go' => 'Khai le',
+'searcharticle' => 'Khai le',
 'history' => 'Phêk chanchin',
 'history_short' => 'Chanchin',
 'updatedmarker' => 'ka tlawh hnuhnun ber hnua tihdanglam',
@@ -1246,7 +1246,7 @@ Taksa sawifiahna hi i siamṭha duh a nih chuan  [$2 taksa sawifiahna phêk] a�
 # Book sources
 'booksources' => 'Lehkhabu rawnte',
 'booksources-search-legend' => 'Lehkhabu hnar zingah zawng rawh',
-'booksources-go' => 'Kal rawh le',
+'booksources-go' => 'Khai le',
 
 # Special:Log
 'specialloguserlabel' => 'Buatsaihtu:',
@@ -1267,7 +1267,7 @@ Taksa sawifiahna hi i siamṭha duh a nih chuan  [$2 taksa sawifiahna phêk] a�
 'allnotinnamespace' => 'Phêk zawng zawng (hminghmun $1-a awm lo)',
 'allpagesprev' => 'Hma',
 'allpagesnext' => 'Dawt',
-'allpagessubmit' => 'Kal rawh le',
+'allpagessubmit' => 'Khai le',
 'allpagesprefix' => 'Hemi thuhmabeta neih zawng hi pholang rawh:',
 'allpagesbadtitle' => 'Phêk hming dik lo emaw ţawng dang/wiki dang thuhmabet a hmang palh a nih hmel.
 Phêk hminga hman awih loh hawrawp a hmang palh a ni mai thei bawk.',
@@ -1593,7 +1593,7 @@ Amah leh amah inluahlantir a theih loh.',
 'allmessagesname' => 'Thuthawn hming',
 'allmessagesdefault' => 'Thuthawn tùr ziahsa',
 'allmessages-language' => 'Ţawng:',
-'allmessages-filter-submit' => 'Kal rawh le',
+'allmessages-filter-submit' => 'Khai le',
 
 # Thumbnails
 'thumbnail-more' => 'Tihlenna',
@@ -1816,7 +1816,7 @@ A bak zawng chu thuhrûk sa vek a ni ang.
 'confirm-unwatch-button' => 'Aw le',
 
 # Multipage image navigation
-'imgmultigo' => 'Kal rawh le!',
+'imgmultigo' => 'Khai le!',
 'imgmultigoto' => 'Phêk $1-ah kal rawh',
 
 # Table pager

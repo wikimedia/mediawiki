@@ -15,6 +15,7 @@
  * @author Migraghvi
  * @author Namik
  * @author Nemo bis
+ * @author Ole Yves
  * @author Reedy
  * @author Soul Train
  */
@@ -710,7 +711,7 @@ $messages = array(
 
 # Recent changes
 'nchanges' => '$1 {{PLURAL:$1|масакIавал|масакIавилер}}',
-'recentchanges' => 'Mукьвара хьайи масакIавилер',
+'recentchanges' => 'Mукьвара хьайи масакӀавилер',
 'recentchanges-legend' => 'Цlийи масакIавилерин низамарунар',
 'recentchanges-summary' => 'Викида хьанвай эхиримжи масакIавилер и ччина гуьзетун',
 'recentchanges-feed-description' => 'И хвала викида хьанвай эхиримжи масакIавилер гуьзетун',

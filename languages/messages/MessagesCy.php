@@ -1050,7 +1050,7 @@ Pan yn gwneud hyn dylid sicrhau nad yw dilyniant hanes tudalennau yn cael ei ddi
 'mergelogpagetext' => "Fe ddilyn rhestr o'r achosion diweddaraf o hanes tudalen yn cael ei gyfuno a hanes tudalen arall.",
 
 # Diffs
-'history-title' => "Hanes golygu '$1'",
+'history-title' => '$1: hanes golygu',
 'difference-title' => 'Y gwahaniaeth rhwng diwygiadau o "$1"',
 'difference-title-multipage' => 'Y gwahaniaeth rhwng y tudalennau "$1" a "$2"',
 'difference-multipage' => '(Y gwahaniaeth rhwng y tudalennau)',
@@ -1604,7 +1604,7 @@ Os yw'r broblem yn parhau, cysylltwch â [[Special:ListUsers/sysop|gweinyddwr]].
 'backend-fail-writetemp' => "Wedi methu ysgrifennu i'r ffeil dros dro.",
 'backend-fail-closetemp' => "Wedi methu cau'r ffeil dros dro.",
 'backend-fail-read' => 'Wedi methu darllen y ffeil $1.',
-'backend-fail-create' => "Wedi methu creu'r ffeil $1.",
+'backend-fail-create' => "Wedi methu ysgrifennu'r ffeil $1.",
 'backend-fail-maxsize' => "Ni ellid cynhyrchu'r ffeil $1 oherwydd ei bod yn fwy na{{PLURAL:$2||g un beit| $2 feit| $2 beit| $2 beit| $2 beit}}.",
 'backend-fail-readonly' => 'Ar hyn o bryd gellir darllen y storfa "$1" yn unig. Y rheswm dros hyn yw: "\'\'$2\'\'"',
 'backend-fail-synced' => 'Mae\'r ffeil "$1" mewn cyflwr anghyson oddi mewn i\'r storfeydd tu ôl i\'r llenni.',

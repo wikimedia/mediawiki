@@ -695,6 +695,8 @@ $2',
 'filereadonlyerror' => '‘$2’ 파일 저장소가 읽기 전용이기 때문에 ‘$1’ 파일을 변경할 수 없습니다.
 
 저장소 관리자가 파일 저장소를 잠근 이유에 대해 "\'\'$3\'\'"이라는 설명을 남겼습니다.',
+'invalidtitle-knownnamespace' => '제목 오류: 이름공간 "$2"와 텍스트 "$3"',
+'invalidtitle-unknownnamespace' => '제목 오류: 알 수 없는 이름공간 번호 "$1"과, 텍스트 "$2"',
 
 # Virus scanner
 'virus-badscanner' => "잘못된 설정: 알 수 없는 바이러스 검사기: ''$1''",
@@ -1235,9 +1237,9 @@ $1",
 'mergelogpagetext' => '다음은 한 문서의 역사를 다른 문서의 역사와 합친 최근 기록입니다.',
 
 # Diffs
-'history-title' => '‘$1’ 문서의 변경 내력',
-'difference-title' => '$1 문서의 차이점 보기',
-'difference-title-multipage' => '$1 과 $2 의 페이지 차이 보기',
+'history-title' => '"$1"  문서의 변경 내력',
+'difference-title' => '"$1"의 두 판 사이의 차이',
+'difference-title-multipage' => '문서 "$1"과 "$2" 간의 차이',
 'difference-multipage' => '(문서간의 차이)',
 'lineno' => '$1번째 줄:',
 'compareselectedversions' => '선택된 판들을 비교하기',
@@ -1332,6 +1334,7 @@ $1",
 'prefs-beta' => '베타 기능',
 'prefs-datetime' => '날짜와 시각',
 'prefs-labs' => '실험 중인 기능',
+'prefs-user-pages' => '사용자 문서',
 'prefs-personal' => '사용자 정보',
 'prefs-rc' => '최근 바뀜',
 'prefs-watchlist' => '주시문서 목록',

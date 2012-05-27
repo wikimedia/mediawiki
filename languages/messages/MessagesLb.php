@@ -1110,9 +1110,9 @@ Denkt w.e.g drunn datt d'Navigatiounslinken d'Wiel vun de Versiounen nees zréck
 'mergelogpagetext' => 'Lëscht vun de rezenten Zesummeféierunge vu Versiounsgeschichten.',
 
 # Diffs
-'history-title' => 'Versiounshistorique vun „$1“',
-'difference-title' => 'Ënnerscheed tëschent de Versioune vun "$1"',
-'difference-title-multipage' => 'Ënnerscheed tëschent de Säiten "$1" a(n) "$2"',
+'history-title' => '$1: Historique vun de Versiounen',
+'difference-title' => '$1: Ënnerscheed tëschent de Versiounen',
+'difference-title-multipage' => '$1 a(n) $2: Ënnerscheed tëschent de Säiten',
 'difference-multipage' => '(Ënnerscheed tëschent Säiten)',
 'lineno' => 'Linn $1:',
 'compareselectedversions' => 'Ausgewielte Versioune vergläichen',
@@ -1207,6 +1207,7 @@ Denkt w.e.g drunn datt d'Navigatiounslinken d'Wiel vun de Versiounen nees zréck
 'prefs-beta' => 'Beta-Fonctiounen',
 'prefs-datetime' => 'Datum an Auerzäit',
 'prefs-labs' => '"Labs"-Fonctiounen',
+'prefs-user-pages' => 'Benotzersäiten',
 'prefs-personal' => 'Benotzerprofil',
 'prefs-rc' => 'Rezent Ännerungen',
 'prefs-watchlist' => 'Iwwerwaachungslëscht',

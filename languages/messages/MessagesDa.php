@@ -1125,7 +1125,7 @@ Vær opmæksom på at bevare kontinuiteten i sidehistorikken.
 'mergelogpagetext' => 'Nedenfor vises en liste med de nyeste sammenfletninger af en sides historik i en anden.',
 
 # Diffs
-'history-title' => 'Versionshistorik for "$1"',
+'history-title' => '$1: Versionshistorik',
 'difference-title' => 'Forskel mellem versioner af "$1"',
 'difference-title-multipage' => '$1 og $2: Forskellen på siderne',
 'difference-multipage' => '(Forskel mellem sider)',

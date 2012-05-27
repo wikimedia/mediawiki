@@ -1131,9 +1131,9 @@ Nota que le uso del ligamines de navigation causara le perdita de tote cambios i
 'mergelogpagetext' => 'Infra es un lista del fusiones le plus recente de un historia de pagina in un altere.',
 
 # Diffs
-'history-title' => 'Historia de versiones de "$1"',
-'difference-title' => 'Differentia inter versiones de "$1"',
-'difference-title-multipage' => 'Differentia inter paginas "$1" e "$2"',
+'history-title' => '$1: Historia de versiones',
+'difference-title' => '$1: Differentia inter versiones',
+'difference-title-multipage' => '$1 e $2: Differentia inter paginas',
 'difference-multipage' => '(Differentia inter paginas)',
 'lineno' => 'Linea $1:',
 'compareselectedversions' => 'Comparar versiones seligite',

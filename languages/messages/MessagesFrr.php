@@ -960,7 +960,7 @@ A nawigatsjuun links saat ales weder turag üüb di ual stant.',
 'mergelogpagetext' => 'Dåtheer as dåt logbök foon da feriinde färsjoonshistoorie.',
 
 # Diffs
-'history-title' => 'Färsjoonshistoori foon "$1"',
+'history-title' => '$1: Ferluup faan a wersjuunen',
 'difference-multipage' => '(Ferschääl twasche side)',
 'lineno' => 'Ra $1:',
 'compareselectedversions' => 'Wäälde färsjoone ferglike',
