@@ -176,6 +176,12 @@ class Preferences {
 
 		# Get groups to which the user belongs
 		$userEffectiveGroups = $user->getEffectiveGroups();
+
+		//Preload all group pages of this user
+		$linkBatch = new LinkBatch();
+		User::fillLinkBatchWithGroupPages( $linkBatch, $userEffectiveGroups );
+		$linkBatch->execute();
+
 		$userGroups = $userMembers = array();
 		foreach ( $userEffectiveGroups as $ueg ) {
 			if ( $ueg == '*' ) {

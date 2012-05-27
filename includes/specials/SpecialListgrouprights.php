@@ -69,6 +69,11 @@ class SpecialListGroupRights extends SpecialPage {
 		) );
 		asort( $allGroups );
 
+		# Preload all group pages
+		$linkBatch = new LinkBatch();
+		User::fillLinkBatchWithGroupPages( $linkBatch, $allGroups );
+		$linkBatch->execute();
+
 		foreach ( $allGroups as $group ) {
 			$permissions = isset( $wgGroupPermissions[$group] )
 				? $wgGroupPermissions[$group]

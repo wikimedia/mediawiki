@@ -177,6 +177,8 @@ class UsersPager extends AlphabeticPager {
 
 	function doBatchLookups() {
 		$batch = new LinkBatch();
+		# Preload all group pages, maybe to much
+		User::fillLinkBatchWithGroupPages( $batch, User::getAllGroups() );
 		# Give some pointers to make user links
 		foreach ( $this->mResult as $row ) {
 			$batch->add( NS_USER, $row->user_name );

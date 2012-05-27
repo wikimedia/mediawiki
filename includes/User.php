@@ -3664,6 +3664,21 @@ class User {
 	}
 
 	/**
+	 * Will add all group pages for the given groups to the given LinkBatch
+	 *
+	 * @param $linkBatch LinkBatch
+	 * @param $groups Array
+	 */
+	 public static function fillLinkBatchWithGroupPages( $linkBatch, $groups ) {
+		foreach ( $groups as $group ) {
+			$groupPage = User::getGroupPage( $group );
+			if( $groupPage ) {
+				$linkBatch->addObj( $groupPage );
+			}
+		}
+	}
+
+	/**
 	 * Create a link to the group in HTML, if available;
 	 * else return the group name.
 	 *
