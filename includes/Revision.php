@@ -1120,7 +1120,8 @@ class Revision {
 
 		$current = $dbw->selectRow(
 			array( 'page', 'revision' ),
-			array( 'page_latest', 'rev_text_id', 'rev_len', 'rev_sha1' ),
+			array( 'page_latest', 'page_namespace', 'page_title',
+				'rev_text_id', 'rev_len', 'rev_sha1' ),
 			array(
 				'page_id' => $pageId,
 				'page_latest=rev_id',
@@ -1137,6 +1138,7 @@ class Revision {
 				'len'        => $current->rev_len,
 				'sha1'       => $current->rev_sha1
 				) );
+			$revision->setTitle( Title::makeTitle( $current->page_namespace, $current->page_title ) );
 		} else {
 			$revision = null;
 		}
