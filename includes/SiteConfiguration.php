@@ -21,7 +21,98 @@
  */
 
 /**
- * This is a class used to hold configuration settings, particularly for multi-wiki sites.
+ * This is a class for holding configuration settings, particularly for
+ * multi-wiki sites.
+ *
+ * A basic synopsis:
+ *
+ * Consider a wikifarm having three sites: two production sites, one in English
+ * and one in German, and one testing site. You can assign them easy-to-remember
+ * identifiers - ISO 639 codes 'en' and 'de' for language wikis, and 'beta' for
+ * the testing wiki.
+ *
+ * You would thus initialize the site configuration by specifying the wiki
+ * identifiers:
+ *
+ * @code
+ * $conf = new SiteConfiguration;
+ * $conf->wikis = array( 'de', 'en', 'beta' );
+ * @endcode
+ *
+ * When configuring the MediaWiki global settings (the $wg variables),
+ * the identifiers will be available to specify settings on a per wiki basis.
+ *
+ * @code
+ * $conf->settings = array(
+ *	'wgSomeSetting' => array(
+ *
+ *		# production:
+ *		'de'     => false,
+ *		'en'     => false,
+ *
+ *		# test:
+ *		'beta    => true,
+ *	),
+ * );
+ * @endcode
+ *
+ * With three wikis, that is easy to manage. But what about a farm with
+ * hundreds of wikis? Site configuration provides a special keyword named
+ * 'default' which is the value used when a wiki is not found. Hence
+ * the above code could be written:
+ *
+ * @code
+ * $conf->settings = array(
+ *	'wgSomeSetting' => array(
+ *
+ *		'default' => false,
+ *
+ *		# Enable feature on test
+ *		'beta'    => true,
+ *	),
+ * );
+ * @endcode
+ *
+ *
+ * Since settings can contain arrays, site configuration provides a way
+ * to merge an array with the default. This is very useful to avoid
+ * repeating settings again and again while still maintaining specific changes
+ * on a per wiki basis.
+ *
+ * @code
+ * $conf->settings = array(
+ *	'wgMergeSetting' = array(
+ *		# Value that will be shared among all wikis:
+ *		'default' => array(  NS_USER => true ),
+ *
+ *		# Leading '+' means merging the array of value with the defaults
+ *		'+beta' => array( NS_HELP => true ),
+ *	),
+ * );
+ *
+ * # Get configuration for the German site:
+ * $conf->get( 'wgMergeSetting', 'de' );
+ * // --> array( NS_USER => true );
+ *
+ * # Get configuration for the testing site:
+ * $conf->get( 'wgMergeSetting', 'beta' );
+ * // --> array( NS_USER => true, NS_HELP => true );
+ * @endcode
+ *
+ * Finally, to load all configuration settings, extract them in global context:
+ *
+ * @code
+ * # Name / identifier of the wiki as set in $conf->wikis
+ * $wikiID = 'beta';
+ * $globals = $conf->getAll( $wikiID );
+ * extract( $globals );
+ * @endcode
+ *
+ * TODO: give examples for,
+ * suffixes:
+ * $conf->suffixes = array( 'wiki' );
+ * localVHosts
+ * callbacks!
  */
 class SiteConfiguration {
 
