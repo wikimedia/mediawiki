@@ -1729,7 +1729,6 @@ class LocalFileDeleteBatch {
 	 * @return FileRepoStatus
 	 */
 	function execute() {
-		global $wgUseSquid;
 		wfProfileIn( __METHOD__ );
 
 		$this->file->lock();
