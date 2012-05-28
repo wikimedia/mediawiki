@@ -724,6 +724,11 @@ return array(
 			'uk' => 'resources/mediawiki.language/languages/uk.js',
 			'wa' => 'resources/mediawiki.language/languages/wa.js',
 		),
+		'dependencies' => array( 'mediawiki.language.data' ),
+	),
+
+	'mediawiki.language.init' => array(
+		'scripts' => 'resources/mediawiki.language/mediawiki.language.init.js'
 	),
 
 	'mediawiki.jqueryMsg' => array(
