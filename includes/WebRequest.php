@@ -985,6 +985,7 @@ HTML;
 	 *                                                appearing time in the header in ascending order.
 	 * May contain the "language" '*', which applies to languages other than those explicitly listed.
 	 * This is aligned with rfc2616 section 14.4
+	 * Preference for earlier languages appears in rfc3282 as an extension to HTTP/1.1.
 	 */
 	public function getAcceptLang() {
 		// Modified version of code found at http://www.thefutureoftheweb.com/blog/use-accept-language-header
@@ -1008,22 +1009,24 @@ HTML;
 		$langcodes = $lang_parse[1];
 		$qvalues = $lang_parse[4];
 		$indices = range( 0, count( $lang_parse[1] ) - 1 );
+
 		// Set default q factor to 1
 		foreach ( $indices as $index ) {
 			if ( $qvalues[$index] === '' ) {
 				$qvalues[$index] = 1;
 			} elseif ( $qvalues[$index] == 0 ) {
-				$langcodes[$index] = '';
+				unset( $langcodes[$index] );
+				unset( $qvalues[$index] );
+				unset( $indices[$index] );
 			}
 		}
 
-		// Sort list
+		// Sort list. First by $qvalues, then by order. Reorder $langcodes the same way
 		array_multisort( $qvalues, SORT_DESC, SORT_NUMERIC, $indices, $langcodes );
+
 		// Create a list like "en" => 0.8
 		$langs = array_combine( $langcodes, $qvalues );
-		if ( isset( $langs[''] ) ) {
-			unset( $langs[''] );
-		}
+
 		return $langs;
 	}
 
