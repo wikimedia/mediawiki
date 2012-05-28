@@ -1,0 +1,8 @@
+Change-Id: I246a7dd6b98e938a6b6ab0d749b3013b22a448a3
+Verified+1: jenkins-bot
+Code-Review+2: Nikerabbit <niklas.laxstrom@gmail.com>
+Submitted-by: Nikerabbit <niklas.laxstrom@gmail.com>
+Submitted-at: Mon, 28 May 2012 13:34:12 +0000
+Reviewed-on: https://gerrit.wikimedia.org/r/9122
+Project: mediawiki/core
+Branch: refs/heads/master
