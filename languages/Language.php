@@ -19,7 +19,9 @@ if ( !defined( 'MEDIAWIKI' ) ) {
 global $wgLanguageNames;
 require_once( dirname( __FILE__ ) . '/Names.php' );
 
-mb_internal_encoding( 'UTF-8' );
+if ( function_exists( 'mb_strtoupper' ) ) {
+	mb_internal_encoding( 'UTF-8' );
+}
 
 /**
  * a fake language converter
@@ -2154,8 +2156,35 @@ class Language {
 	 * @param $matches array
 	 * @return string
 	 */
+	function ucCallback( $matches ) {
+		list( $wikiUpperChars ) = self::getCaseMaps();
+		return strtr( $matches[1], $wikiUpperChars );
+	}
+
+	/**
+	 * @param $matches array
+	 * @return string
+	 */
+	function lcCallback( $matches ) {
+		list( , $wikiLowerChars ) = self::getCaseMaps();
+		return strtr( $matches[1], $wikiLowerChars );
+	}
+
+	/**
+	 * @param $matches array
+	 * @return string
+	 */
 	function ucwordsCallbackMB( $matches ) {
 		return mb_strtoupper( $matches[0] );
+	}
+
+	/**
+	 * @param $matches array
+	 * @return string
+	 */
+	function ucwordsCallbackWiki( $matches ) {
+		list( $wikiUpperChars ) = self::getCaseMaps();
+		return strtr( $matches[0], $wikiUpperChars );
 	}
 
 	/**
@@ -2186,14 +2215,27 @@ class Language {
 	 * @return string
 	 */
 	function uc( $str, $first = false ) {
-		if ( $first ) {
-			if ( $this->isMultibyte( $str ) ) {
-				return mb_strtoupper( mb_substr( $str, 0, 1 ) ) . mb_substr( $str, 1 );
+		if ( function_exists( 'mb_strtoupper' ) ) {
+			if ( $first ) {
+				if ( $this->isMultibyte( $str ) ) {
+					return mb_strtoupper( mb_substr( $str, 0, 1 ) ) . mb_substr( $str, 1 );
+				} else {
+					return ucfirst( $str );
+				}
 			} else {
-				return ucfirst( $str );
+				return $this->isMultibyte( $str ) ? mb_strtoupper( $str ) : strtoupper( $str );
 			}
 		} else {
-			return $this->isMultibyte( $str ) ? mb_strtoupper( $str ) : strtoupper( $str );
+			if ( $this->isMultibyte( $str ) ) {
+				$x = $first ? '^' : '';
+				return preg_replace_callback(
+					"/$x([a-z]|[\\xc0-\\xff][\\x80-\\xbf]*)/",
+					array( $this, 'ucCallback' ),
+					$str
+				);
+			} else {
+				return $first ? ucfirst( $str ) : strtoupper( $str );
+			}
 		}
 	}
 
@@ -2221,14 +2263,27 @@ class Language {
 	 * @return mixed|string
 	 */
 	function lc( $str, $first = false ) {
-		if ( $first ) {
-			if ( $this->isMultibyte( $str ) ) {
-				return mb_strtolower( mb_substr( $str, 0, 1 ) ) . mb_substr( $str, 1 );
+		if ( function_exists( 'mb_strtolower' ) ) {
+			if ( $first ) {
+				if ( $this->isMultibyte( $str ) ) {
+					return mb_strtolower( mb_substr( $str, 0, 1 ) ) . mb_substr( $str, 1 );
+				} else {
+					return strtolower( substr( $str, 0, 1 ) ) . substr( $str, 1 );
+				}
 			} else {
-				return strtolower( substr( $str, 0, 1 ) ) . substr( $str, 1 );
+				return $this->isMultibyte( $str ) ? mb_strtolower( $str ) : strtolower( $str );
 			}
 		} else {
-			return $this->isMultibyte( $str ) ? mb_strtolower( $str ) : strtolower( $str );
+			if ( $this->isMultibyte( $str ) ) {
+				$x = $first ? '^' : '';
+				return preg_replace_callback(
+					"/$x([A-Z]|[\\xc0-\\xff][\\x80-\\xbf]*)/",
+					array( $this, 'lcCallback' ),
+					$str
+				);
+			} else {
+				return $first ? strtolower( substr( $str, 0, 1 ) ) . substr( $str, 1 ) : strtolower( $str );
+			}
 		}
 	}
 
@@ -2252,11 +2307,19 @@ class Language {
 			$replaceRegexp = "/^([a-z]|[\\xc0-\\xff][\\x80-\\xbf]*)| ([a-z]|[\\xc0-\\xff][\\x80-\\xbf]*)/";
 
 			// function to use to capitalize a single char
-			return preg_replace_callback(
-				$replaceRegexp,
-				array( $this, 'ucwordsCallbackMB' ),
-				$str
-			);
+			if ( function_exists( 'mb_strtoupper' ) ) {
+				return preg_replace_callback(
+					$replaceRegexp,
+					array( $this, 'ucwordsCallbackMB' ),
+					$str
+				);
+			} else {
+				return preg_replace_callback(
+					$replaceRegexp,
+					array( $this, 'ucwordsCallbackWiki' ),
+					$str
+				);
+			}
 		} else {
 			return ucwords( strtolower( $str ) );
 		}
@@ -2278,11 +2341,19 @@ class Language {
 			// find first letter after word break
 			$replaceRegexp = "/^([a-z]|[\\xc0-\\xff][\\x80-\\xbf]*)|$breaks([a-z]|[\\xc0-\\xff][\\x80-\\xbf]*)/";
 
-			return preg_replace_callback(
-				$replaceRegexp,
-				array( $this, 'ucwordbreaksCallbackMB' ),
-				$str
-			);
+			if ( function_exists( 'mb_strtoupper' ) ) {
+				return preg_replace_callback(
+					$replaceRegexp,
+					array( $this, 'ucwordbreaksCallbackMB' ),
+					$str
+				);
+			} else {
+				return preg_replace_callback(
+					$replaceRegexp,
+					array( $this, 'ucwordsCallbackWiki' ),
+					$str
+				);
+			}
 		} else {
 			return preg_replace_callback(
 				'/\b([\w\x80-\xff]+)\b/',
