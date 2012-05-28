@@ -1131,7 +1131,7 @@ $1",
 'mergelogpagetext' => '以下是一個最近由一個頁面的修訂歷史合併到另一個頁面的列表。',
 
 # Diffs
-'history-title' => '$1: 修訂歷史',
+'history-title' => '$1：修訂歷史',
 'difference-title' => '$1：修訂版本之間的差異',
 'difference-title-multipage' => '"$1"和"$2": 頁面之間的差異',
 'difference-multipage' => '（頁面間的差異）',

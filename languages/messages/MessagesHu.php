@@ -784,6 +784,7 @@ A visszaélések elkerülése végett {{PLURAL:$1|egy|$1}} óránként csak egy 
 'emailconfirmlink' => 'E-mail cím megerősítése',
 'invalidemailaddress' => 'A megadott e-mail cím érvénytelen formátumú. Kérlek, adj meg egy érvényes e-mail címet vagy hagyd üresen azt a mezőt.',
 'cannotchangeemail' => 'Ezen a wikin nem módosítható a fiókhoz tartozó e-mail cím.',
+'emaildisabled' => 'Ezen az oldalon nem lehet küldeni e-mailek.',
 'accountcreated' => 'Felhasználói fiók létrehozva',
 'accountcreatedtext' => '$1 felhasználói fiókja sikeresen létrejött.',
 'createaccount-title' => 'Új {{SITENAME}}-azonosító létrehozása',
@@ -1056,6 +1057,7 @@ Nem lett magyarázat csatolva.',
 'edit-no-change' => 'A szerkesztésed figyelmen kívül lett hagyva, mivel nem változtattál a lap szövegén.',
 'edit-already-exists' => 'Az új lap nem készíthető el.
 Már létezik.',
+'defaultmessagetext' => 'Alapértelmezett szöveg',
 
 # Parser/template warnings
 'expensive-parserfunction-warning' => 'Figyelem: ezen a lapon túl sok erőforrásigényes elemzőfüggvény-hívás található.
@@ -1338,6 +1340,7 @@ Győződj meg róla, hogy a laptörténet folytonossága megmarad.',
 'prefs-beta' => 'Béta funkciók',
 'prefs-datetime' => 'Dátum és idő',
 'prefs-labs' => 'Kísérleti funkciók',
+'prefs-user-pages' => 'Felhasználói lapok',
 'prefs-personal' => 'Felhasználói adatok',
 'prefs-rc' => 'Friss változtatások',
 'prefs-watchlist' => 'Figyelőlista',
@@ -3739,6 +3742,8 @@ A MediaWikit abban a reményben terjesztjük, hogy hasznos lesz, de GARANCIA NÉ
 'version-software' => 'Telepített szoftverek',
 'version-software-product' => 'Termék',
 'version-software-version' => 'Verzió',
+'version-entrypoints' => 'Belépési pont URL-címek',
+'version-entrypoints-header-entrypoint' => 'Belépési pont',
 'version-entrypoints-header-url' => 'URL',
 
 # Special:FilePath
@@ -3929,9 +3934,12 @@ A képek teljes méretben jelennek meg, más fájltípusok közvetlenül a hozz�
 # Durations
 'duration-seconds' => '{{PLURAL: $1|másodperc|másodperc}}',
 'duration-minutes' => '{{PLURAL: $1|perc|perc}}',
-'duration-hours' => '({{PLURAL:$1|egy|$1}} óra)',
-'duration-days' => '({{PLURAL:$1|egy|$1}} nap)',
+'duration-hours' => '{{PLURAL:$1|egy|$1}} óra',
+'duration-days' => '{{PLURAL:$1|egy|$1}} nap',
 'duration-weeks' => '{{PLURAL: $1|hét|hét}}',
 'duration-years' => '{{PLURAL: $1|év|év}}',
+'duration-decades' => '{{PLURAL:$1|egy|$1}} évtized',
+'duration-centuries' => '{{PLURAL:$1|egy|$1}} évszázad',
+'duration-millennia' => '{{PLURAL:$1|egy|$1}} évezred',
 
 );

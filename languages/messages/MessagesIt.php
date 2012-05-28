@@ -1289,6 +1289,7 @@ Vedi l'[[Special:BlockList|elenco dei blocchi]] per l'elenco dei bandi e dei blo
 'prefs-beta' => 'Funzionalità beta',
 'prefs-datetime' => 'Data e ora',
 'prefs-labs' => 'Funzionalità dei laboratori',
+'prefs-user-pages' => 'Pagine utente',
 'prefs-personal' => 'Profilo utente',
 'prefs-rc' => 'Ultime modifiche',
 'prefs-watchlist' => 'Osservati speciali',

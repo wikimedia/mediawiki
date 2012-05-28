@@ -1127,7 +1127,7 @@ Vær opmæksom på at bevare kontinuiteten i sidehistorikken.
 # Diffs
 'history-title' => '$1: Versionshistorik',
 'difference-title' => 'Forskel mellem versioner af "$1"',
-'difference-title-multipage' => '$1 og $2: Forskellen på siderne',
+'difference-title-multipage' => 'Forskel mellem siderne "$1" og "$2"',
 'difference-multipage' => '(Forskel mellem sider)',
 'lineno' => 'Linje $1:',
 'compareselectedversions' => 'Sammenlign valgte versioner',
@@ -1223,6 +1223,7 @@ Du kan prøve at bruge \"all:\" som præfiks for at søge i alt indhold (inkl. d
 'prefs-beta' => 'Betafunktioner',
 'prefs-datetime' => 'Dato og klokkeslæt',
 'prefs-labs' => 'Testfunktioner',
+'prefs-user-pages' => 'Brugerside',
 'prefs-personal' => 'Brugerdata',
 'prefs-rc' => 'Seneste ændringer',
 'prefs-watchlist' => 'Overvågningsliste',

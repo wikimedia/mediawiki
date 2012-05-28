@@ -566,7 +566,7 @@ $1',
 'revertmerge' => 'ܒܛܘܠ ܚܒܛܐ',
 
 # Diffs
-'history-title' => 'ܬܫܥܝܬܐ ܕܬܢܝܬܐ ܕ "$1"',
+'history-title' => '"$1": ܬܫܥܝܬܐ ܕܬܢܝܬܐ',
 'lineno' => 'ܣܪܛܐ $1:',
 'compareselectedversions' => 'ܦܚܘܡ ܒܝܬ ܬܪܝܢ ܬܢܝܬ̈ܐ ܓܒܝܬ̈ܐ',
 'showhideselectedversions' => 'ܚܘܝ/ܛܫܝ ܬܢܝܬ̈ܐ ܓܒܝܬ̈ܐ',

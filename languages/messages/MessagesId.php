@@ -1377,6 +1377,7 @@ Perlu diingat bahwa indeks Google untuk konten {{SITENAME}} mungkin belum mencak
 'prefs-beta' => 'Fitur Beta',
 'prefs-datetime' => 'Tanggal dan waktu',
 'prefs-labs' => 'Fitur Labs',
+'prefs-user-pages' => 'Halaman pengguna',
 'prefs-personal' => 'Profil',
 'prefs-rc' => 'Perubahan terbaru',
 'prefs-watchlist' => 'Pemantauan',

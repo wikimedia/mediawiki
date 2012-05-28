@@ -1308,7 +1308,7 @@ Assurez-vous que cette opération conservera la continuité de l’historique de
 
 # Diffs
 'history-title' => '$1 : Historique des versions',
-'difference-title' => '$1: Différence entre versions',
+'difference-title' => '$1 : Différence entre versions',
 'difference-title-multipage' => 'Différences entre les pages « $1 » et « $2 »',
 'difference-multipage' => '(Différence entre les pages)',
 'lineno' => 'Ligne $1 :',

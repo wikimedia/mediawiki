@@ -24,6 +24,7 @@
  * @author Candalua
  * @author Capmo
  * @author Cerealito
+ * @author Ciencia Al Poder
  * @author Clerc
  * @author Crazymadlover
  * @author Cvmontuy
@@ -1820,6 +1821,20 @@ No se permite subir archivos Java, porque pueden causar que se puedan saltar res
 'filename-bad-prefix' => "El nombre del archivo que estás subiendo comienza por '''«$1»''', un nombre nada descriptivo de su contenido. Es un típico nombre de los que asignan automáticamente las cámaras digitales.
 
 Por favor, elige un nombre más descriptivo.",
+'filename-prefix-blacklist' => ' #<!-- deja esta línea exactamente como está --> <pre>
+# La sintaxis de esta página es la siguiente:
+#   * Todo texto que se encuentre después del carácter "#" hasta el final de la línea se tratará como un comentario y será ignorado
+#   * Cualquier línea que no esté en blanco será interpretada como un prefijo típico en nombres de archivo que suelen asignar automáticamente las cámaras digitales
+CIMG # Casio
+DSC_ # Nikon
+DSCF # Fuji
+DSCN # Nikon
+DUW # algunos teléfonos móviles / celulares
+IMG # genérico
+JD # Jenoptik
+MGP # Pentax
+PICT # misc.
+ #</pre> <!-- deja esta línea exactamente como está -->',
 'upload-success-subj' => 'Subida con éxito',
 'upload-success-msg' => 'Tu carga de [$2] fue exitosa. Está disponible aquí: [[:{{ns:file}}:$1]]',
 'upload-failure-subj' => 'Problema en la carga',
@@ -1997,6 +2012,7 @@ Tal vez desee editar la descripción de su [$2 página de descripción del archi
 'uploadnewversion-linktext' => 'Subir una nueva versión de este archivo',
 'shared-repo-from' => 'de $1',
 'shared-repo' => 'un repositorio compartido',
+'filepage.css' => '/* Los estilos CSS colocados aquí se incluirán en las páginas de descripción de archivos, incluso en los wikis externos que incluyan estas páginas */',
 
 # File reversion
 'filerevert' => 'Revertir $1',
@@ -3043,6 +3059,11 @@ Permite añadir una razón al resumen de edición.',
 'vector.css' => '/* Los estilos CSS colocados aquí se aplicarán para todos los usuarios que usen la piel Vector */',
 'print.css' => '/* Los estilos CSS colocados aquí afectarán la impresión */',
 'handheld.css' => '/* Los estilos CSS colocados aquí afectarán a los dispositivos móviles basados en las pieles configuradas en $wgHandheldStyle */',
+'noscript.css' => '/* Los estilos CSS colocados aquí se aplicarán a los usuarios que hayan desactivado el JavaScript en su navegador */',
+'group-autoconfirmed.css' => '/* Los estilos CSS colocados aquí se aplicarán para todos los usuarios del grupo Usuarios autoconfirmados */',
+'group-bot.css' => '/* Los estilos CSS colocados aquí se aplicarán para todos los usuarios del grupo Bots */',
+'group-sysop.css' => '/* Los estilos CSS colocados aquí se aplicarán para todos los usuarios del grupo Administradores */',
+'group-bureaucrat.css' => '/* Los estilos CSS colocados aquí se aplicarán para todos los usuarios del grupo Burócratas */',
 
 # Scripts
 'common.js' => '/* Cualquier código JavaScript escrito aquí se cargará para todos los usuarios en cada carga de página */',
@@ -3055,6 +3076,10 @@ Permite añadir una razón al resumen de edición.',
 'simple.js' => '/* Cualquier código JavaScript escrito aquí se cargará para todos los usuarios que usen la piel Simple */',
 'modern.js' => '/* Cualquier código JavaScript escrito aquí se cargará para todos los usuarios que usen la piel Moderna */',
 'vector.js' => '/* Cualquier código JavaScript escrito aquí se cargará para todos los usuarios que usen la piel Vector */',
+'group-autoconfirmed.js' => '/* Cualquier código JavaScript escrito aquí se cargará para todos los usuarios del grupo Usuarios autoconfirmados */',
+'group-bot.js' => '/* Cualquier código JavaScript escrito aquí se cargará para todos los usuarios del grupo Bots */',
+'group-sysop.js' => '/* Cualquier código JavaScript escrito aquí se cargará para todos los usuarios del grupo Administradores */',
+'group-bureaucrat.js' => '/* Cualquier código JavaScript escrito aquí se cargará para todos los usuarios del grupo Burócratas */',
 
 # Metadata
 'notacceptable' => 'El servidor wiki no puede proveer los datos en un formato que su cliente (navegador) pueda entender.',
@@ -3140,6 +3165,7 @@ $1',
 Ejecutarlo podría comprometer la seguridad de su equipo.",
 'imagemaxsize' => "Límite de tamaño de imagen:<br />''(para páginas de descripción de archivo)''",
 'thumbsize' => 'Tamaño de las vistas en miniatura:',
+'widthheight' => '$1 × $2',
 'widthheightpage' => '$1 × $2, $3 {{PLURAL:|página|páginas}}',
 'file-info' => 'tamaño de archivo: $1; tipo MIME: $2',
 'file-info-size' => '$1 × $2 píxeles; tamaño de archivo: $3; tipo MIME: $4',
@@ -3169,8 +3195,10 @@ Ejecutarlo podría comprometer la seguridad de su equipo.",
 'sp-newimages-showfrom' => 'Mostrar nuevas imágenes empezando por $2, $1',
 
 # Video information, used by Language::formatTimePeriod() to format lengths in the above messages
+'seconds-abbrev' => '$1s',
 'minutes-abbrev' => '$1m',
 'hours-abbrev' => '$1h',
+'days-abbrev' => '$1d',
 'seconds' => '{{PLURAL:$1|un segundo|$1 segundos}}',
 'minutes' => '{{PLURAL:$1|un minuto|$1 minutos}}',
 'hours' => '{{PLURAL:$1|una hora|$1 horas}}',

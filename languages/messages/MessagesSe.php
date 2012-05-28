@@ -7,6 +7,7 @@
  * @ingroup Language
  * @file
  *
+ * @author Gálaniitoluodda
  * @author Jeblad
  * @author Kaganer
  * @author Laila
@@ -315,7 +316,7 @@ Du geavaheaddjidovddaldat lea dál anus.
 'login' => 'Čálligoađe sisa',
 'nav-login-createaccount' => 'Daga ođđa geavaheaddjidovddaldaga dahje čálligoađe sisa',
 'loginprompt' => 'Sisačállimii dárbbašuvvojit geavssat (cookies).',
-'userlogin' => 'Daga ođđa geavaheaddjidovddaldaga dahje čálligoađe sisa',
+'userlogin' => 'Logge sisa dahje ráhkat dovddaldaga',
 'logout' => 'Čálligoađe olggos',
 'userlogout' => 'Čálligoađe olggos',
 'notloggedin' => 'It leat čálligoahttan sisa',
@@ -498,6 +499,7 @@ Eará bajasdoallit sáhtet lohkat čihkojuvvon sisdoalu ja máhcahit dan.",
 
 # Search results
 'searchresults' => 'Ohcama bohtosat',
+'searchresults-title' => 'Ohcanbohtosat: "$1"',
 'searchsubtitle' => 'Ohcan tearpmain [[:$1]]',
 'searchsubtitleinvalid' => 'Ohcan tearpmain $1',
 'notitlematches' => 'Ohcansátni ii dihtton ovttasge bájilčállagis',
@@ -507,6 +509,9 @@ Eará bajasdoallit sáhtet lohkat čihkojuvvon sisdoalu ja máhcahit dan.",
 
 $1 {{int:pipe-separator}} $2',
 'searchhelp-url' => 'Help:Rávvagat',
+'searchprofile-articles' => 'Sisdoallosiiddut',
+'searchprofile-project' => 'Veahkke- ja prošeaktasiiddut',
+'searchprofile-everything' => 'Buot',
 'searchprofile-advanced' => 'Viiddiduvvon',
 'showingresults' => "{{PLURAL:$1|'''Okta''' boađus|'''$1''' bohtosa}} bohtosa'''$2''' rájes.",
 'showingresultsnum' => "Vuolábealde {{PLURAL:$3|lea '''okta''' ohcanboađus|leat '''$3''' ohcanbohtosa}} '''$2.''' bohtosa rájes.",
@@ -1001,6 +1006,7 @@ Siiddus $2 lea listu maŋimus sihkomiin.',
 'contributions' => 'Geavaheaddji rievdadusat',
 'contributions-title' => 'Geavaheaddji $1 rievdadusat',
 'mycontris' => 'Rievdadusat',
+'uctop' => '(ođđaseamos)',
 'month' => 'Mánotbadji',
 'year' => 'Jahki',
 
@@ -1056,6 +1062,7 @@ Siiddus $2 lea listu maŋimus sihkomiin.',
 'ipb-edit-dropdown' => 'Rievdat sivaid',
 'ipb-unblock-addr' => 'Sihko geavaheaddji $1 estema',
 'ipb-unblock' => 'Sihko geavaheaddji dahje IP-čujuhusa rievdadaneasttu',
+'ipblocklist' => 'Listu cakkojuvvon IP-adreassain ja geavaheddjiin',
 'ipblocklist-submit' => 'Oza',
 'infiniteblock' => 'bissovaččat',
 'expiringblock' => 'boarásnuvvá $1 $2',
@@ -1080,6 +1087,7 @@ Siiddus $2 lea listu maŋimus sihkomiin.',
 'move-watch' => 'Čuovo dán siiddu',
 'movepagebtn' => 'Sirdde siiddu',
 'pagemovedsub' => 'Sirdin lihkosmuvai',
+'talkexists' => "'''Siiddu sirdin iešalddes lihkosmuvai, earret siiddu ságastallansiiddu sirdin daningo ođđa bájilčálas lea jo ságastallansiidu. Leage buorre ja sirdde ságastallamiid manuálalažžat.'''",
 'movedto' => 'Sirdojuvvun ođđa bájilčállagin',
 'movetalk' => 'Sirdde maid ságastallansiiddu.',
 'movelogpage' => 'Sirdinlogga',
@@ -1100,6 +1108,7 @@ Siiddus $2 lea listu maŋimus sihkomiin.',
 'allmessagescurrent' => 'Dálá teaksta',
 
 # Thumbnails
+'thumbnail-more' => 'Stuorit',
 'filemissing' => 'Fiila váilo',
 
 # Special:Import
@@ -1183,6 +1192,7 @@ Siiddus $2 lea listu maŋimus sihkomiin.',
 'nextdiff' => 'Čuovvovaš rievdadus →',
 
 # Media information
+'thumbsize' => 'Thumbnail sturrodat:',
 'widthheightpage' => '$1 × $2, $3 siiddut',
 
 # Special:NewFiles

@@ -1760,7 +1760,7 @@ $1',
 'upload-too-many-redirects' => 'URL sisälsi liian monta ohjausta',
 'upload-unknown-size' => 'Tuntematon koko',
 'upload-http-error' => 'HTTP-virhe: $1',
-'upload-copy-upload-invalid-domain' => 'Tallennukset eivät ole käytettävissä tästä verkko-osoitteesta.',
+'upload-copy-upload-invalid-domain' => 'Tiedostojen tallentamista tästä verkko-osoitteesta ei ole sallittu.',
 
 # File backend
 'backend-fail-stream' => 'Tiedoston $1 virtauttaminen epäonnistui.',
