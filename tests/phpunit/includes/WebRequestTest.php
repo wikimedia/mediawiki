@@ -1,14 +1,22 @@
 <?php
 
 class WebRequestTest extends MediaWikiTestCase {
+	static $oldServer;
+
+	function setUp() {
+		self::$oldServer = $_SERVER;
+	}
+
+	function tearDown() {
+		$_SERVER = self::$oldServer;
+	}
+
 	/**
 	 * @dataProvider provideDetectServer
 	 */
 	function testDetectServer( $expected, $input, $description ) {
-		$oldServer = $_SERVER;
 		$_SERVER = $input;
 		$result = WebRequest::detectServer();
-		$_SERVER = $oldServer;
 		$this->assertEquals( $expected, $result, $description );
 	}
 
@@ -91,13 +99,11 @@ class WebRequestTest extends MediaWikiTestCase {
 	 */
 	function testGetIP( $expected, $input, $squid, $private, $description ) {
 		global $wgSquidServersNoPurge, $wgUsePrivateIPs;
-		$oldServer = $_SERVER;
 		$_SERVER = $input;
 		$wgSquidServersNoPurge = $squid;
 		$wgUsePrivateIPs = $private;
 		$request = new WebRequest();
 		$result = $request->getIP();
-		$_SERVER = $oldServer;
 		$this->assertEquals( $expected, $result, $description );
 	}
 
