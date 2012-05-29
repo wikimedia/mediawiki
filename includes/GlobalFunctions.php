@@ -1596,11 +1596,20 @@ function wfMsgReplaceArgs( $message, $args ) {
 	# Some messages are split with explode("\n", $msg)
 	$message = str_replace( "\r", '', $message );
 
+	if ( count( $args ) && is_array( $args[0] ) ) {
+		$args = array_values( $args[0] );
+	}
+
+	# Replace $* with a list of parameters, primarily for &uselang=qqx.
+	if ( count( $args ) ) {
+		$paramlist = ': $' . implode( ', $', range( 1, count( $args ) ) );
+	} else {
+		$paramlist = '';
+	}
+	$message = str_replace( '$*', $paramlist, $message );
+
 	// Replace arguments
 	if ( count( $args ) ) {
-		if ( is_array( $args[0] ) ) {
-			$args = array_values( $args[0] );
-		}
 		$replacementKeys = array();
 		foreach( $args as $n => $param ) {
 			$replacementKeys['$' . ( $n + 1 )] = $param;
