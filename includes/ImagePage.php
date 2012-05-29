@@ -1038,7 +1038,9 @@ class ImageHistoryList extends ContextSource {
 		$row .= '<td>';
 		if ( $iscur ) {
 			$row .= wfMsgHtml( 'filehist-current' );
-		} elseif ( $local && $user->isLoggedIn() && $this->title->userCan( 'edit' ) ) {
+		} elseif ( $local && $this->title->quickUserCan( 'edit' )
+			&& $this->title->quickUserCan( 'upload' )
+		) {
 			if ( $file->isDeleted( File::DELETED_FILE ) ) {
 				$row .= wfMsgHtml( 'filehist-revert' );
 			} else {
