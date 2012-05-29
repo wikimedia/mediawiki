@@ -530,11 +530,7 @@ class WikiPage extends Page {
 		}
 
 		wfProfileOut( __METHOD__ );
-		if ( $row ) {
-			return Revision::newFromRow( $row );
-		} else {
-			return null;
-		}
+		return $row ? Revision::newFromRow( $row ) : null;
 	}
 
 	/**
