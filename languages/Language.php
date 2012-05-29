@@ -713,28 +713,41 @@ class Language {
 	 * @since 1.20
 	 */
 	public static function fetchLanguageNames( $inLanguage = null, $include = 'mw' ) {
-		global $wgExtraLanguageNames;
+		global $wgExtraLanguageNames, $wgMemc;
 		static $coreLanguageNames;
 
-		if ( $coreLanguageNames === null ) {
-			include( MWInit::compiledPath( 'languages/Names.php' ) );
-		}
+		$memcKeyAll = wfMemcKey( 'languagenamesall', $inLanguage ? $inLanguage : 'native' );
+		$memcKeyMw = wfMemcKey( 'languagenamesmw', $inLanguage ? $inLanguage : 'native' );
+
+		$memcDataAll = $wgMemc->get( $memcKeyAll );
+		$memcDataMw = $wgMemc->get( $memcKeyMw );
 
 		$names = array();
 
-		if( $inLanguage ) {
-			# TODO: also include when $inLanguage is null, when this code is more efficient
-			wfRunHooks( 'LanguageGetTranslatedLanguageNames', array( &$names, $inLanguage ) );
-		}
-
-		$mwNames = $wgExtraLanguageNames + $coreLanguageNames;
-		foreach ( $mwNames as $mwCode => $mwName ) {
-			# - Prefer own MediaWiki native name when not using the hook
-			#	TODO: prefer it always to make it consistent, but casing is different in CLDR
-			# - For other names just add if not added through the hook
-			if ( ( $mwCode === $inLanguage && !$inLanguage ) || !isset( $names[$mwCode] ) ) {
-				$names[$mwCode] = $mwName;
+		if( $memcDataAll != '' && $memcDataMw != '' ) {
+			$names = $memcDataAll;
+			$mwNames = $memcDataMw;
+		} else {
+			if ( $coreLanguageNames === null ) {
+				include( MWInit::compiledPath( 'languages/Names.php' ) );
 			}
+
+			if( $inLanguage ) {
+				# TODO: also include when $inLanguage is null, when this code is more efficient
+				wfRunHooks( 'LanguageGetTranslatedLanguageNames', array( &$names, $inLanguage ) );
+			}
+
+			$mwNames = $wgExtraLanguageNames + $coreLanguageNames;
+			foreach ( $mwNames as $mwCode => $mwName ) {
+				# - Prefer own MediaWiki native name when not using the hook
+				#	TODO: prefer it always to make it consistent, but casing is different in CLDR
+				# - For other names just add if not added through the hook
+				if ( ( $mwCode === $inLanguage && !$inLanguage ) || !isset( $names[$mwCode] ) ) {
+					$names[$mwCode] = $mwName;
+				}
+			}
+			$wgMemc->set( $memcKeyAll, $names, 60 * 60 * 5 );
+			$wgMemc->set( $memcKeyMw, $mwNames, 60 * 60 * 5 );
 		}
 
 		if ( $include === 'all' ) {
