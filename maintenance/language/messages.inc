@@ -3321,6 +3321,7 @@ $wgMessageStructure = array(
 		'ellipsis',
 		'percent',
 		'parentheses',
+		'brackets',
 	),
 	'imgmulti' => array(
 		'imgmultipageprev',

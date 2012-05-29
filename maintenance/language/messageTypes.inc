@@ -452,6 +452,7 @@ $wgOptionalMessages = array(
 	'ellipsis',
 	'percent',
 	'parentheses',
+	'brackets',
 	'autocomment-prefix',
 	'listgrouprights-right-display',
 	'listgrouprights-right-revoked',
