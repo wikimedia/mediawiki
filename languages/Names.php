@@ -109,8 +109,8 @@
 	'ga' => 'Gaeilge',		# Irish
 	'gag' => 'Gagauz',		# Gagauz
 	'gan' => '贛語',		# Gan (multiple scripts - defaults to Traditional)
-	'gan-hans' => "\xE2\x80\xAA赣语(简体)\xE2\x80\xAC",	# Gan (Simplified Han)
-	'gan-hant' => "\xE2\x80\xAA贛語(繁體)\xE2\x80\xAC",	# Gan (Traditional Han)
+	'gan-hans' => "\xE2\x80\xAA赣语（简体）\xE2\x80\xAC",	# Gan (Simplified Han)
+	'gan-hant' => "\xE2\x80\xAA贛語（繁體）\xE2\x80\xAC",	# Gan (Traditional Han)
 	'gd' => 'Gàidhlig',	# Scots Gaelic
 	'gl' => 'Galego',		# Galician
 	'glk' => 'گیلکی',	# Gilaki
@@ -384,15 +384,15 @@
 	'zea' => 'Zeêuws',	# Zeeuws/Zeaws
 	'zh' => '中文',						# (Zhōng Wén) - Chinese
 	'zh-classical' => '文言',			# Classical Chinese/Literary Chinese -- (see bug 8217)
-	'zh-cn' => "\xE2\x80\xAA中文(中国大陆)\xE2\x80\xAC",	# Chinese (PRC)
-	'zh-hans' => "\xE2\x80\xAA中文(简体)\xE2\x80\xAC",	# Mandarin Chinese (Simplified Chinese script) (cmn-hans)
-	'zh-hant' => "\xE2\x80\xAA中文(繁體)\xE2\x80\xAC",	# Mandarin Chinese (Traditional Chinese script) (cmn-hant)
-	'zh-hk' => "\xE2\x80\xAA中文(香港)\xE2\x80\xAC",	# Chinese (Hong Kong)
+	'zh-cn' => "\xE2\x80\xAA中文（中国大陆）\xE2\x80\xAC",	# Chinese (PRC)
+	'zh-hans' => "\xE2\x80\xAA中文（简体）\xE2\x80\xAC",	# Mandarin Chinese (Simplified Chinese script) (cmn-hans)
+	'zh-hant' => "\xE2\x80\xAA中文（繁體）\xE2\x80\xAC",	# Mandarin Chinese (Traditional Chinese script) (cmn-hant)
+	'zh-hk' => "\xE2\x80\xAA中文（香港）\xE2\x80\xAC",	# Chinese (Hong Kong)
 	'zh-min-nan' => 'Bân-lâm-gú',				# Min-nan -- (see bug 8217)
-	'zh-mo' => "\xE2\x80\xAA中文(澳門)\xE2\x80\xAC",	# Chinese (Macau)
-	'zh-my' => "\xE2\x80\xAA中文(马来西亚)\xE2\x80\xAC",	# Chinese (Malaysia)
-	'zh-sg' => "\xE2\x80\xAA中文(新加坡)\xE2\x80\xAC",	# Chinese (Singapore)
-	'zh-tw' => "\xE2\x80\xAA中文(台灣)\xE2\x80\xAC",	# Chinese (Taiwan)
+	'zh-mo' => "\xE2\x80\xAA中文（澳門）\xE2\x80\xAC",	# Chinese (Macau)
+	'zh-my' => "\xE2\x80\xAA中文（马来西亚）\xE2\x80\xAC",	# Chinese (Malaysia)
+	'zh-sg' => "\xE2\x80\xAA中文（新加坡）\xE2\x80\xAC",	# Chinese (Singapore)
+	'zh-tw' => "\xE2\x80\xAA中文（台灣）\xE2\x80\xAC",	# Chinese (Taiwan)
 	'zh-yue' => '粵語',					# Cantonese -- (see bug 8217)
 	'zu' => 'isiZulu'		# Zulu
 );
