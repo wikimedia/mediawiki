@@ -199,6 +199,7 @@ abstract class Job {
 		$title = Title::makeTitleSafe( $namespace, $dbkey );
 
 		if ( is_null( $title ) ) {
+			wfProfileOut( __METHOD__ );
 			return false;
 		}
 
