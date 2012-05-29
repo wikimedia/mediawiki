@@ -1099,7 +1099,10 @@ class ImageHistoryList extends ContextSource {
 		// Image dimensions + size
 		$row .= '<td>';
 		$row .= htmlspecialchars( $file->getDimensionsString() );
-		$row .= ' <span style="white-space: nowrap;">(' . Linker::formatSize( $file->getSize() ) . ')</span>';
+		$row .= $this->getContext()->msg( 'word-separator' )->plain();
+		$row .= '<span style="white-space: nowrap;">';
+		$row .= $this->getContext()->msg( 'parentheses' )->rawParams( Linker::formatSize( $file->getSize() ) )->plain();
+		$row .= '</span>';
 		$row .= '</td>';
 
 		// Uploading user
