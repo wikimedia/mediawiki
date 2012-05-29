@@ -616,7 +616,7 @@ $2',
 Ástæðan sem gefin var ''$2''.",
 'filereadonlyerror' => 'Ekki var hægt að breyta skránni "$1" því skráin í skráarsafninu "$2" er engöngu hægt að lesa.
 
-Ástæðan fyrir þessu er "\'\'$3\'\'".',
+Möppudýrið sem læsti skránni gaf þessa ástæðu: "\'\'$3\'\'".',
 
 # Virus scanner
 'virus-badscanner' => "Slæm stilling: óþekktur veiruskannari: ''$1''",
@@ -1083,6 +1083,13 @@ Frekari upplýsingar eru í [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGE
 'revdelete-show-file-submit' => 'Já',
 'revdelete-selected' => "'''{{PLURAL:$2|Valin breyting|Valdar breytingar}} fyrir [[:$1]]:'''",
 'logdelete-selected' => "'''{{PLURAL:$1|Valin aðgerð|Valdar aðgerðir}}:'''",
+'revdelete-text' => "'''Eyddar útgáfur og breytingar munu birtast áfram í breytingarskrá síðunnar og í aðgerðarskrám, en hluti upplýsingana verða falin almenningi.'''
+Önnur möppudýr á {{SITENAME}} hafa aðgang að földu upplýsingunum og geta endurvakið upplýsingarnar í gegnum sama viðmót, nema sérstakar takmarkanir séu virkar.",
+'revdelete-confirm' => 'Vinsamlegast staðfestu að þú viljir gera þetta, að þú skiljir afleiðingarnar og að þú sért að gera þetta í samræmi við  [[{{MediaWiki:Policy-url}}]].',
+'revdelete-suppress-text' => "Bælingu á '''eingöngu''' að nota í eftirfarandi tilfellum:
+* Mögulegar ærumleiðandi upplýsingar
+* Óviðeigandi persónulegar upplýsingar
+*: ''heimilisfang, símanúmer, kennitala, osfrv.''",
 'revdelete-legend' => 'Setja sjáanlegar hamlanir',
 'revdelete-hide-text' => 'Fela breytingatexta',
 'revdelete-hide-image' => 'Fela efni skráar',
@@ -1094,6 +1101,7 @@ Frekari upplýsingar eru í [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGE
 'revdelete-radio-set' => 'Já',
 'revdelete-radio-unset' => 'Nei',
 'revdelete-suppress' => 'Dylja gögn frá stjórnendum og öðrum',
+'revdelete-unsuppress' => 'Fjarlægja takmarkanir á endurvöktum breytingum',
 'revdelete-log' => 'Ástæða:',
 'revdelete-submit' => 'Setja á {{PLURAL:$1|valda breytingu|valdar breytingar}}',
 'revdel-restore' => 'Breyta sýn',
@@ -1101,7 +1109,22 @@ Frekari upplýsingar eru í [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGE
 'revdel-restore-visible' => 'sýnilegar breytingar',
 'pagehist' => 'Breytingaskrá',
 'deletedhist' => 'Eyðingaskrá',
+'revdelete-hide-current' => 'Mistókst að fela breytingu frá $1 $2: Þetta er núverandi útgáfa síðunnar.
+Ekki er hægt að fela hana.',
+'revdelete-show-no-access' => 'Mistókst að sýna breytingu frá $1 $2: Þessi breyting hefur verið merkt sem "takmörkuð".
+Þú hefur ekki aðgang að henni.',
+'revdelete-no-change' => "'''Viðvörun:''' Breytingin frá $1 $2 hefur þegar umbeðnar sýnileika stillingar.",
+'revdelete-only-restricted' => 'Mistókst að fela breytingu frá $1 $2: Þú getur ekki falið breytingu fyrir möppudýrum án þess að velja eina af hinum sýnileika stillingunum.',
+'revdelete-reason-dropdown' => '*Algengar eyðingarástæður
+** Höfundarréttarbrot
+** Óviðeigandi persónuuplýsingar
+** Mögulega ærumleiðandi upplýsingar',
+'revdelete-otherreason' => 'Aðrar/fleiri ástæður:',
+'revdelete-reasonotherlist' => 'Önnur ástæða',
 'revdelete-edit-reasonlist' => 'Eyðingarástæður',
+
+# Suppression log
+'suppressionlog' => 'Bælingarskrá',
 
 # History merging
 'mergehistory' => 'Sameina breytingaskrár',
@@ -1120,7 +1143,9 @@ Sjáðu til þess að þessi breyting sameini breytingarskrárnar samfellt.',
 'mergelogpagetext' => 'Þetta er skrá yfir síðustu sameiningar einnar síðu við aðra.',
 
 # Diffs
-'history-title' => 'Breytingaskrá fyrir "$1"',
+'history-title' => '$1: Breytingaskrá',
+'difference-title' => '$1: Munur á milli útgáfa',
+'difference-title-multipage' => '$1 og $2: Munur á milli síðna',
 'difference-multipage' => '(Munur á milli síðna)',
 'lineno' => 'Lína $1:',
 'compareselectedversions' => 'Bera saman valdar útgáfur',
@@ -1240,7 +1265,7 @@ Athugaðu að skrár þeirra yfir {{SITENAME}}-efni kunna að vera úreltar.',
 'columns' => 'Dálkar',
 'searchresultshead' => 'Leit',
 'resultsperpage' => 'Niðurstöður á síðu',
-'stub-threshold' => 'Þröskuldur fyrir sniði <a href="#" class="stub">stubbatengla</a> (bæt):',
+'stub-threshold' => 'Þröskuldur fyrir <a href="#" class="stub">stubbatengla</a> (bæt):',
 'stub-threshold-disabled' => 'Óvirkt',
 'recentchangesdays' => 'Fjöldi daga sem nýlegar breytingar ná yfir:',
 'recentchangesdays-max' => '(hámark $1 {{PLURAL:$1|dag|daga}})',
@@ -1479,7 +1504,7 @@ Tölvupóstfang þitt er ekki gefið upp þegar aðrir notendur hafa samband vi�
 'nchanges' => '$1 {{PLURAL:$1|breyting|breytingar}}',
 'recentchanges' => 'Nýlegar breytingar',
 'recentchanges-legend' => 'Stillingar nýlegra breytinga',
-'recentchangestext' => 'Hér geturðu fylgst með nýjustu breytingunum.',
+'recentchanges-summary' => 'Hér geturðu fylgst með nýjustu breytingunum.',
 'recentchanges-feed-description' => 'Hér er hægt að fylgjast með nýlegum breytingum á {{SITENAME}}.',
 'recentchanges-label-newpage' => 'Þessi breyting skapaði nýja síðu',
 'recentchanges-label-minor' => 'Þetta er minniháttar breyting',
@@ -3649,5 +3674,15 @@ Ef ekki, þá getur þú notað einfalt eyðublað hér fyrir neðan. Athugasemd
 'api-error-unknown-warning' => 'Óþekkt viðvörun: $1',
 'api-error-uploaddisabled' => 'Ekki er leyft að hlaða inn á þessum wiki.',
 'api-error-verification-error' => 'Þessi skrá gæti verið skemmd, eða með vitlausa skráarendingu.',
+
+# Durations
+'duration-seconds' => '$1 {{PLURAL:$1|sekúnda|sekúndur}}',
+'duration-minutes' => '$1 {{PLURAL:$1|mínúta|mínútur}}',
+'duration-hours' => '$1 {{PLURAL:$1|klukkustund|klukkustundir}}',
+'duration-days' => '$1 {{PLURAL:$1|dagur|dagar}}',
+'duration-weeks' => '$1 {{PLURAL:$1|vika|vikur}}',
+'duration-years' => '$1 {{PLURAL:$1|ár|ár}}',
+'duration-decades' => '$1 {{PLURAL:$1|áratugur|áratugir}}',
+'duration-centuries' => '$1 {{PLURAL:$1|öld|aldir}}',
 
 );

@@ -1,5 +1,26 @@
 <?php
-
+/**
+ * Object caching using memcached.
+ *
+ * This program is free software; you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation; either version 2 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License along
+ * with this program; if not, write to the Free Software Foundation, Inc.,
+ * 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
+ * http://www.gnu.org/copyleft/gpl.html
+ *
+ * @file
+ * @ingroup Cache
+ */
+ 
 /**
  * A wrapper class for the PECL memcached client
  * 
@@ -58,8 +79,8 @@ class MemcachedPeclBagOStuff extends MemcachedBagOStuff {
 				$this->client->setOption( Memcached::OPT_SERIALIZER, Memcached::SERIALIZER_PHP );
 				break;
 			case 'igbinary':
-				if ( !extension_loaded( 'igbinary' ) ) {
-					throw new MWException( __CLASS__.': the igbinary extension is not loaded ' . 
+				if ( !Memcached::HAVE_IGBINARY ) {
+					throw new MWException( __CLASS__.': the igbinary extension is not available ' . 
 						'but igbinary serialization was requested.' );
 				}
 				$this->client->setOption( Memcached::OPT_SERIALIZER, Memcached::SERIALIZER_IGBINARY );
@@ -100,7 +121,13 @@ class MemcachedPeclBagOStuff extends MemcachedBagOStuff {
 	 */
 	public function delete( $key, $time = 0 ) {
 		$this->debugLog( "delete($key)" );
-		return $this->checkResult( $key, parent::delete( $key, $time ) );
+		$result = parent::delete( $key, $time );
+		if ( $result === false && $this->client->getResultCode() === Memcached::RES_NOTFOUND ) {
+			// "Not found" is counted as success in our interface
+			return true;
+		} else {
+			return $this->checkResult( $key, $result );
+		}
 	}
 
 	/**
@@ -186,8 +213,8 @@ class MemcachedPeclBagOStuff extends MemcachedBagOStuff {
 	 * @param $keys Array
 	 * @return Array
 	 */
-	public function getBatch( array $keys ) {
-		$this->debugLog( 'getBatch(' . implode( ', ', $keys ) . ')' );
+	public function getMulti( array $keys ) {
+		$this->debugLog( 'getMulti(' . implode( ', ', $keys ) . ')' );
 		$callback = array( $this, 'encodeKey' );
 		$result = $this->client->getMulti( array_map( $callback, $keys ) );
 		return $this->checkResult( false, $result );

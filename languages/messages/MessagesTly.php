@@ -7,10 +7,30 @@
  * @ingroup Language
  * @file
  *
+ * @author Erdemaslancan
  * @author Ganbarzada
  * @author Tuzkozbir
  * @author Гусейн
  */
+
+$namespaceNames = array(
+	NS_MEDIA            => 'Medja',
+	NS_SPECIAL          => 'Xususi',
+	NS_TALK             => 'Nopegət',
+	NS_USER             => 'Okoədə',
+	NS_USER_TALK        => 'Okoədəj_nopegət',
+	NS_PROJECT_TALK     => '$1_Nopegətəti',
+	NS_FILE             => 'Fajl',
+	NS_FILE_TALK        => 'Fajli_nopegət',
+	NS_MEDIAWIKI        => 'MediaWiki',
+	NS_MEDIAWIKI_TALK   => 'MediaWiki_nopegət',
+	NS_TEMPLATE         => 'Numunə',
+	NS_TEMPLATE_TALK    => 'Numunə_nopegət',
+	NS_HELP             => 'Koməg',
+	NS_HELP_TALK        => 'Koməgi_nopegət',
+	NS_CATEGORY         => 'Tispir',
+	NS_CATEGORY_TALK    => 'Tispiron_nopegət',
+);
 
 $messages = array(
 # User preference toggles
@@ -23,8 +43,12 @@ $messages = array(
 'tog-numberheadings' => 'Автоматик башлығон нумрәләмиш быкә',
 'tog-showtoc' => 'Мындәриҹоти сијоһи нишо быдә (3 сәрловһәсә веј быә сәһифон)',
 'tog-watchcreations' => 'Зијод кардеј чымы офәјә быә сәһифон бә ноғо доә сијоһи',
+'tog-watchdefault' => 'Зијод кардеј демы дәгиш кардә быә сәһифон бә ноғо доә сијоһи',
+'tog-watchmoves' => 'Зијод кардеј ном дәгиш кардә быә сәһифон бә ноғо доә сијоһи',
+'tog-watchdeletion' => 'Зијод кардеј сәһифон комон аз рәдд кардәме бә ноғо доә сијоһи',
 'tog-enotifwatchlistpages' => 'Ноғо доә сијоһиәдә сәһифон кејнә дәгиш бәбен бәмы е-номә бывығанд',
 'tog-watchlisthideown' => 'Чымы дәгишон ноғо доә сијһиәдә нијо кардеј',
+'tog-watchlisthidebots' => 'Нијо кардеј ботон дәгишон ноғо доә сијоһиәдә',
 'tog-watchlisthideminor' => 'Нијо кардеј гәдә дәгишон ноғо доә сијоһиәдә',
 
 # Dates
@@ -181,6 +205,7 @@ $messages = array(
 'viewtalkpage' => 'Мызокирә дијә кардеј',
 'otherlanguages' => 'Ҹо зывононәдә',
 'redirectedfrom' => '($1 чыјо унвон дәгиш кардә быә)',
+'redirectpagesub' => 'Увони дәгиш кардә сәһифәје',
 'lastmodifiedat' => 'Ын сәһифә охонә кәрә дәгиш беј: $2, $1.',
 'protectedpage' => 'Мыдофијә кардә быә сәһифә',
 'jumpto' => 'Дәвардеј бә:',
@@ -413,7 +438,7 @@ $messages = array(
 'revertmerge' => 'Бахш кардеј',
 
 # Diffs
-'history-title' => 'Дәгишон тарых "$1"',
+'history-title' => '$1: Дәгишон тарых',
 'lineno' => 'Сәтыр $1:',
 'compareselectedversions' => 'Сәчын кардә быә рәвојәтон мығојисә кардеј.',
 'editundo' => 'ләғв кардеј',
@@ -484,7 +509,7 @@ $messages = array(
 'nchanges' => '$1 {{PLURAL:$1|дәгиши|дәгишон}}',
 'recentchanges' => 'Ән нујә дәгишон',
 'recentchanges-legend' => 'Ән нујә дәгишон печыније',
-'recentchangestext' => 'Тәмшо быкән бы сәһифәдә че вики охоминә дәгишон нишо доә быән.',
+'recentchanges-summary' => 'Тәмшо быкән бы сәһифәдә че вики охоминә дәгишон нишо доә быән.',
 'recentchanges-feed-description' => 'Ым каналәдә быә охонә дәгишон дығғәтәдә огәт.',
 'recentchanges-label-newpage' => 'Де ым дәгиши тожә сәһифә сохтә бе',
 'recentchanges-label-minor' => 'Ым гадә дәгишије',
@@ -619,6 +644,8 @@ $messages = array(
 # Undelete
 'undeletelink' => 'чәшику дәвонијеј/бәрпо кардеј',
 'undeleteviewlink' => 'тәмшо кардеј',
+'undelete-search-submit' => 'Нәве',
+'undelete-show-file-submit' => 'Бәле',
 
 # Namespace form on various pages
 'namespace' => 'Номон мәкон:',
@@ -743,6 +770,11 @@ $messages = array(
 'tooltip-undo' => 'Дәғандә дәгиши рәдд кардеј ијән "сыфтәнә нишо дој" окардеј, де ләғви сәбәби нышон дој имкони.',
 'tooltip-summary' => 'Кыртә тәсвир бынывыштән',
 
+# Info page
+'pageinfo-header-edits' => 'Сәрост кардеј',
+'pageinfo-header-views' => 'Тәмшо',
+'pageinfo-subjectpage' => 'Сәһифә',
+
 # Browsing diffs
 'previousdiff' => '← Навынәни дәгиши',
 'nextdiff' => 'Думотоно шә дәгиши →',
@@ -752,6 +784,9 @@ $messages = array(
 'file-nohires' => 'Ән барзә рәвојәт ни.',
 'svg-long-desc' => 'SVG фајл, номинәләдә $1 × $2 пиксел, фајли памјә: $3',
 'show-big-image' => 'Тикәјән јолә кејфијјәтинә шикил',
+
+# Special:NewFiles
+'ilsubmit' => 'Нәве',
 
 # Bad image list
 'bad_image_list' => 'Формат бәпе быбу жыго:
@@ -779,6 +814,10 @@ $messages = array(
 * gpslongitude
 * gpsaltitude',
 
+'exif-gaincontrol-0' => 'Ни',
+
+'exif-saturation-0' => 'Ади',
+
 # External editor support
 'edit-externally' => 'Редактә кардеј ым фајли де заһири програм',
 'edit-externally-help' => '(Бо мыффәссәлә мәлумотон бә [//www.mediawiki.org/wiki/Manual:External_editors дәрсәвон бо сохтәј] дијә быкан)',
@@ -795,6 +834,16 @@ $messages = array(
 
 # Core parser functions
 'duplicate-defaultsort' => '\'\'\'Дыггәт:\'\'\' Еһтимал кардә быә "$2" классификасијә ачари нафконә "$1" классификасијә ачари етиборсоз кардә',
+
+# Special:Version
+'version-entrypoints-header-url' => 'URL',
+
+# Special:FilePath
+'filepath-page' => 'Фајл:',
+'filepath-submit' => 'Давард',
+
+# Special:FileDuplicateSearch
+'fileduplicatesearch-submit' => 'Нәве',
 
 # Special:SpecialPages
 'specialpages' => 'Хысусиә сәһифон',

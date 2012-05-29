@@ -13,6 +13,7 @@
  * @author Kandar
  * @author Meursault2004
  * @author Mssetiadi
+ * @author Reedy
  * @author Urhixidur
  * @author לערי ריינהארט
  */
@@ -717,7 +718,7 @@ Alesanana ''\$2''.
 * Sasaran nudipeungpeuk : \$7
 
 Anjeun bisa nepungan \$1 atawa salasahiji [[{{MediaWiki:Grouppage-sysop}}|kuncén]] séjén pikeun nyawalakeun hal ieu.
-'''<u>Catet</u>''': yén anjeun teu bisa maké fungsi \"surélékan pamaké ieu\" mun anjeun teu ngadaptarkeun alamat surélék nu sah kana [[Special:Preferences|préferénsi pamaké]] anjeun.
+'''Catet''': yén anjeun teu bisa maké fungsi \"surélékan pamaké ieu\" mun anjeun teu ngadaptarkeun alamat surélék nu sah kana [[Special:Preferences|préferénsi pamaké]] anjeun.
 
 Alamat IP anjeun \$3 jeung ID na #\$5.
 Lampirkeun informasi ieu dina unggal ''query'' anjeun.",
@@ -779,7 +780,7 @@ Pikeun rujukan, éntri log panungtung dipidangkeun di handap:',
 'userinvalidcssjstitle' => "'''Awas''': kulit \"\$1\" mah teu aya. Sing émut yén kaca .css jeung .js mah migunakeun aksara leutik dina judulna, contona baé {{ns:user}}:Foo/vector.css lawan {{ns:user}}:Foo/Vector.css.",
 'updated' => '(Geus diropéa)',
 'note' => "'''Catetan:'''",
-'previewnote' => "'''Inget yén ieu ukur pramidang, can disimpen!'''
+'previewnote' => "'''Inget yén ieu ukur pratayang, can disimpen.'''
 Éditan anjeun can disimpen!",
 'previewconflict' => 'Sawangan ieu mangrupa eunteung pikeun téks na rohangan ngédit sakumaha bakal katémbong mun ku anjeun disimpen.',
 'session_fail_preview' => "'''Punten! Kami teu bisa ngolah éditan anjeun alatan leungitna data rintakan. Mangga cobian deui. Mun tetep teu bisa, cobi kaluar log lajeng lebet deui.'''",
@@ -1363,7 +1364,7 @@ Mun geus anggeus teu bisa dibolaykeun.',
 'nchanges' => '$1 {{PLURAL:$1|parobahan|parobahan}}',
 'recentchanges' => 'Anyar robah',
 'recentchanges-legend' => 'Pilihan parobahan anyar',
-'recentchangestext' => 'Lacak parobahan ka wiki panganyarna na kaca ieu.',
+'recentchanges-summary' => 'Lacak parobahan ka wiki panganyarna na kaca ieu.',
 'recentchanges-feed-description' => 'Manggihan parobahan panganyarna dina wiki di asupan ieu.',
 'recentchanges-label-newpage' => 'Ieu parobahan bakal ngahasillkeun kaca anyar',
 'recentchanges-label-minor' => 'Ieu éditan minor',

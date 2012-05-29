@@ -784,6 +784,7 @@ A visszaélések elkerülése végett {{PLURAL:$1|egy|$1}} óránként csak egy 
 'emailconfirmlink' => 'E-mail cím megerősítése',
 'invalidemailaddress' => 'A megadott e-mail cím érvénytelen formátumú. Kérlek, adj meg egy érvényes e-mail címet vagy hagyd üresen azt a mezőt.',
 'cannotchangeemail' => 'Ezen a wikin nem módosítható a fiókhoz tartozó e-mail cím.',
+'emaildisabled' => 'Ezen az oldalon nem lehet küldeni e-mailek.',
 'accountcreated' => 'Felhasználói fiók létrehozva',
 'accountcreatedtext' => '$1 felhasználói fiókja sikeresen létrejött.',
 'createaccount-title' => 'Új {{SITENAME}}-azonosító létrehozása',
@@ -1056,6 +1057,7 @@ Nem lett magyarázat csatolva.',
 'edit-no-change' => 'A szerkesztésed figyelmen kívül lett hagyva, mivel nem változtattál a lap szövegén.',
 'edit-already-exists' => 'Az új lap nem készíthető el.
 Már létezik.',
+'defaultmessagetext' => 'Alapértelmezett szöveg',
 
 # Parser/template warnings
 'expensive-parserfunction-warning' => 'Figyelem: ezen a lapon túl sok erőforrásigényes elemzőfüggvény-hívás található.
@@ -1210,7 +1212,7 @@ Ellenőrizd a naplókat.',
 
 # Suppression log
 'suppressionlog' => 'Adatvédelmibiztos-napló',
-'suppressionlogtext' => 'Lenn látható az adminisztrátorok elől legutóbb elrejtett törlések és blokkok listája. Lásd a [[Special:BlockList|blokkolt IP-címek listája]] lapot a jelenleg érvényben lévő kitiltásokhoz és blokkokhoz.',
+'suppressionlogtext' => 'Lenn látható az adminisztrátorok elől legutóbb elrejtett törlések és blokkok listája. Lásd a [[Special:BlockList|blokkok listája]] lapot a jelenleg érvényben lévő kitiltásokhoz és blokkokhoz.',
 
 # History merging
 'mergehistory' => 'Laptörténetek egyesítése',
@@ -1243,6 +1245,7 @@ Győződj meg róla, hogy a laptörténet folytonossága megmarad.',
 
 # Diffs
 'history-title' => 'A(z) „$1” laptörténete',
+'difference-title' => '„$1” változatai közötti eltérés',
 'difference-multipage' => '(Lapok közti eltérés)',
 'lineno' => '$1. sor:',
 'compareselectedversions' => 'Kiválasztott változatok összehasonlítása',
@@ -1337,6 +1340,7 @@ Győződj meg róla, hogy a laptörténet folytonossága megmarad.',
 'prefs-beta' => 'Béta funkciók',
 'prefs-datetime' => 'Dátum és idő',
 'prefs-labs' => 'Kísérleti funkciók',
+'prefs-user-pages' => 'Felhasználói lapok',
 'prefs-personal' => 'Felhasználói adatok',
 'prefs-rc' => 'Friss változtatások',
 'prefs-watchlist' => 'Figyelőlista',
@@ -1597,7 +1601,7 @@ A műveletet nem lehet visszavonni.',
 'nchanges' => '{{PLURAL:$1|egy|$1}} változtatás',
 'recentchanges' => 'Friss változtatások',
 'recentchanges-legend' => 'A friss változások beállításai',
-'recentchangestext' => 'Ezen a lapon a wikiben történt legutóbbi változásokat lehet nyomonkövetni.',
+'recentchanges-summary' => 'Ezen a lapon a wikiben történt legutóbbi fejleményeket lehet nyomon követni.',
 'recentchanges-feed-description' => 'Kövesd a wiki friss változtatásait ezzel a hírcsatornával.',
 'recentchanges-label-newpage' => 'Ezzel a szerkesztéssel egy új lap jött létre',
 'recentchanges-label-minor' => 'Ez egy apró szerkesztés',
@@ -1800,7 +1804,8 @@ Kérjük, hogy lépj kapcsolatba egy  [[Special:ListUsers/sysop|adminisztrátorr
 'backend-fail-writetemp' => 'Nem lehet írni az ideiglenes fájlba.',
 'backend-fail-closetemp' => 'Nem lehet lezárni az ideiglenes fájlt.',
 'backend-fail-read' => 'Nem sikerült olvasni ebből a fájlból: $1.',
-'backend-fail-create' => 'Nem sikerült létrehozni ezt a fájlt: $1.',
+'backend-fail-create' => 'Nem sikerült írni ebbe a fájlba: $1.',
+'backend-fail-maxsize' => 'Nem lehet írni ezt a fájlt: $1, mert a mérete nagyobb, mint $2 bájt.',
 'backend-fail-readonly' => 'A(z) „$1” tárolórendszer jelenleg csak olvasható. Ennek oka a következő: „$2”',
 'backend-fail-synced' => 'A(z) „$1” fájl inkonzisztens állapotban van a tárolórendszerek között',
 'backend-fail-connect' => 'Nem sikerült csatlakozni a(z) „$1” tárolórendszerhez.',
@@ -2136,6 +2141,11 @@ A napló típusának, a szerkesztő nevének (kis- és nagybetűérzékeny), vag
 'allpagesbadtitle' => 'A megadott lapnév nyelvközi vagy wikiközi előtagot tartalmazott, vagy érvénytelen volt. Talán olyan karakter van benne, amit nem lehet lapnevekben használni.',
 'allpages-bad-ns' => 'A(z) {{SITENAME}} webhelyen nincs "$1" névtér.',
 'allpages-hide-redirects' => 'Átirányítások elrejtése',
+
+# SpecialCachedPage
+'cachedspecial-viewing-cached-ttl' => 'A lap tárolt változatát látod, aminek utolsó frissítése ennyi ideje volt:  $1',
+'cachedspecial-viewing-cached-ts' => 'Az oldal tárolt változatát látod, ami eltérhet az aktuálistól.',
+'cachedspecial-refresh-now' => 'A legfrissebb változat mutatása.',
 
 # Special:Categories
 'categories' => 'Kategóriák',
@@ -2627,7 +2637,7 @@ Add meg a blokkolás okát is (például idézd a blokkolandó személy által v
 'blocklog-showsuppresslog' => 'Ez a felhasználó korábban blokkot kapott, és a naplóbejegyzés el lett rejtve. Az elrejtési napló alább látható tájékoztatásként:',
 'blocklogentry' => '„[[$1]]” blokkolva $2 $3 időtartamra',
 'reblock-logentry' => 'megváltoztatta [[$1]] blokkjának beállításait, a blokk lejárta: $2 $3',
-'blocklogtext' => 'Ez a felhasználókra helyezett blokkoknak és azok feloldásának listája. Az IP-autoblokkok nem szerepelnek a listában. Lásd még [[Special:BlockList|a jelenleg életben lévő blokkok listáját]].',
+'blocklogtext' => 'Ez a felhasználókra helyezett blokkoknak és azok feloldásának listája. Az automatikus blokkolt IP címek nem szerepelnek a listában. Lásd még [[Special:BlockList|a jelenleg életben lévő blokkok listáját]].',
 'unblocklogentry' => '„$1” blokkolása feloldva',
 'block-log-flags-anononly' => 'csak anonok',
 'block-log-flags-nocreate' => 'nem hozhat létre új fiókot',
@@ -3191,15 +3201,15 @@ míg a többi elem a táblázat összecsukása után alapértelmezett esetben re
 'exif-subsectimedigitized' => 'DateTimeDigitized almásodpercek',
 'exif-exposuretime' => 'Expozíciós idő',
 'exif-exposuretime-format' => '$1 mp. ($2)',
-'exif-fnumber' => 'F szám',
+'exif-fnumber' => 'Rekesznyílás',
 'exif-exposureprogram' => 'Expozíciós program',
 'exif-spectralsensitivity' => 'Színkép érzékenysége',
-'exif-isospeedratings' => 'ISO érzékenység minősítése',
+'exif-isospeedratings' => 'ISO érzékenység értéke',
 'exif-shutterspeedvalue' => 'APEX zársebesség',
 'exif-aperturevalue' => 'APEX lencsenyílás',
 'exif-brightnessvalue' => 'APEX fényerő',
-'exif-exposurebiasvalue' => 'Expozíciós dőltség',
-'exif-maxaperturevalue' => 'Legnagyobb földi lencsenyílás',
+'exif-exposurebiasvalue' => 'Expozíciós eltolás',
+'exif-maxaperturevalue' => 'Legnagyobb rekesznyílás',
 'exif-subjectdistance' => 'Tárgy távolsága',
 'exif-meteringmode' => 'Fénymérési mód',
 'exif-lightsource' => 'Fényforrás',
@@ -3397,7 +3407,7 @@ míg a többi elem a táblázat összecsukása után alapértelmezett esetben re
 'exif-flash-return-2' => 'strobe return light nincs érzékelve',
 'exif-flash-return-3' => 'strobe return light érzékelve',
 'exif-flash-mode-1' => 'Kötelező vaku',
-'exif-flash-mode-2' => 'Kötelező vakuelnyomás',
+'exif-flash-mode-2' => 'Kötelező vakukikapcsolás',
 'exif-flash-mode-3' => 'automatikus mód',
 'exif-flash-function-1' => 'Nincs vakufunkció',
 'exif-flash-redeye-1' => 'Vörös szem eltávolító mód',
@@ -3732,6 +3742,9 @@ A MediaWikit abban a reményben terjesztjük, hogy hasznos lesz, de GARANCIA NÉ
 'version-software' => 'Telepített szoftverek',
 'version-software-product' => 'Termék',
 'version-software-version' => 'Verzió',
+'version-entrypoints' => 'Belépési pont URL-címek',
+'version-entrypoints-header-entrypoint' => 'Belépési pont',
+'version-entrypoints-header-url' => 'URL',
 
 # Special:FilePath
 'filepath' => 'Fájlelérés',
@@ -3917,5 +3930,16 @@ A képek teljes méretben jelennek meg, más fájltípusok közvetlenül a hozz�
 'api-error-unknownerror' => 'Ismeretlen hiba: „$1”.',
 'api-error-uploaddisabled' => 'A feltöltés le van tiltva ezen a wikin.',
 'api-error-verification-error' => 'A fájl feltehetőleg sérült, vagy hibás a kiterjesztése.',
+
+# Durations
+'duration-seconds' => '{{PLURAL: $1|másodperc|másodperc}}',
+'duration-minutes' => '{{PLURAL: $1|perc|perc}}',
+'duration-hours' => '{{PLURAL:$1|egy|$1}} óra',
+'duration-days' => '{{PLURAL:$1|egy|$1}} nap',
+'duration-weeks' => '{{PLURAL: $1|hét|hét}}',
+'duration-years' => '{{PLURAL: $1|év|év}}',
+'duration-decades' => '{{PLURAL:$1|egy|$1}} évtized',
+'duration-centuries' => '{{PLURAL:$1|egy|$1}} évszázad',
+'duration-millennia' => '{{PLURAL:$1|egy|$1}} évezred',
 
 );

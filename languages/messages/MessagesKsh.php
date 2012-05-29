@@ -575,7 +575,7 @@ wat en Üvverschrefte nit erlaub es.
 Et künnt ussinn, wie ene InterWikiLink,
 dat jeiht ävver nit.
 Muss De repareere.',
-'perfcached' => 'Di Daate heh noh kumme usem Zweschespeicher (<l lang="en">cache</i>) un künnte nit mieh janz de allerneuste sin.
+'perfcached' => 'Di Daate heh noh kumme usem Zweschespeicher (cache) un künnte nit mieh janz de allerneuste sin.
 {{PLURAL:$1|Bloß ein Antwoot es|Nit mieh wi $1 Antwoote sin|Kein Antwoot es}} doh faßjehallde un ze han.',
 'perfcachedts' => 'De Daate heenoh kumme usem Zweschespeicher (Cache) un woodte aam $2 öm $3 opjenumme. Se künnte nit janz de allerneuste sin.
 {{PLURAL:$4|Bloß ein Antwoot es|Nit mieh wi $4 Antwoote sind|Kein Antwoot es}} doh ze han.',
@@ -984,7 +984,7 @@ denk dran, dat ene Metmaacher eije Dateie för et Ussinn han kann, un dat die me
 aanfange dun, alsu etwa: {{ns:user}}:Name/vector.css, un {{ns:user}}:Name/vector.js heiße.',
 'updated' => '(Aanjepack)',
 'note' => "'''Opjepass:'''",
-'previewnote' => "'''Heh kütt nor de Vör-Aansich - Ding Änderunge sin noch nit jesechert!'''",
+'previewnote' => "'''Heh kütt nor de Vör-Aansich — Ding Änderunge sin noch nit jesechert!'''",
 'previewconflict' => 'Heh die Vör-Aansich zeich dä Enhald vum bovvere Texfeld.
 Esu wööd dä Atikkel ussinn, wann De n jetz avspeichere däts.',
 'session_fail_preview' => "'''Schad: Ding Änderunge kunnte mer su nix met aanfange.
@@ -1261,7 +1261,7 @@ Donn de Version makeere bes wohen (inklusive) dat övverdraare wäde sull. Donn 
 'mergelogpagetext' => 'Dat hee is dat Logboch fun de zesammejelaate Versione fun Sigge',
 
 # Diffs
-'history-title' => 'Liss met Versione vun „$1“',
+'history-title' => 'Älder Versione vun dä Sigg „$1“',
 'difference-multipage' => '(Ongerscheide zwesche Sigge)',
 'lineno' => 'Reih $1:',
 'compareselectedversions' => 'Dun de markeete Version verjliche',
@@ -1629,7 +1629,7 @@ Ene zohfällesch ußjewörfelte Schlößel, dää De nämme künnß, wöhr: <cod
 'nchanges' => '{{PLURAL:$1|Ein Änderung|$1 Änderunge|Kein Änderung}}',
 'recentchanges' => 'Neuste Änderunge',
 'recentchanges-legend' => 'Enstellunge',
-'recentchangestext' => 'Op dä Sigg hee sin de neuste Änderunge am Wiki opjeliss.',
+'recentchanges-summary' => 'Op dä Sigg hee sin de neuste Änderunge am Wiki opjeliss.',
 'recentchanges-feed-description' => 'Op dämm Abonnomang-Kannal (<i lang="en">Feed</i>) kannze de {{int:recentchanges}} aam Wiki en Laif un en Färve metloore.',
 'recentchanges-label-newpage' => 'Heh di Sigg es neu dobei jekumme met dä Änderung',
 'recentchanges-label-minor' => 'Heh dat es en Mini-Änderung',
@@ -2660,8 +2660,9 @@ Drag bei „Aanlass“ ene möchlichs jenaue Jrund en, wöröm dat Sperre passee
 'badipaddress' => 'Wat De do jeschrevve häs, dat es kein öntlije IP-Adress.',
 'blockipsuccesssub' => 'De IP-Adress es jetz jesperrt',
 'blockipsuccesstext' => '[[Special:Contributions/$1|$1]] es jetz jesperrt.
-Luur op [[Special:BlockList|de Liss met jesperrte IP_Adresse]] wann de ne Üvverbleck üvver de Sperre han wells,
-un och wann De se ändere wells.',
+<br />
+Luur op [[Special:BlockList|{{int:ipblocklist}}]] wann de ene Övverbleck övver de Sperre han wells,
+un och, wann De se ändere wells.',
 'ipb-blockingself' => 'Do bes om Wääsch, Desh sellver ze sperre. Wells De dat?',
 'ipb-confirmhideuser' => 'Do bes om bäßte Wääsch ene Metaacher ze sperre met „Vershteishe“ ußjewählt.
 Domet weed dä Name vun däm Metmaacher uß alle Leßte un Logbööscher eruß jelohße.
@@ -2713,8 +2714,8 @@ Wells De dat?',
 'blocklog-showsuppresslog' => 'Heh dä Metmaacher es ald fröjer jeshperrt un vershtoche woode. Dat Logbooch vum Metmaacher-Vershteishe onge künnt doh jät mieh zoh saare.',
 'blocklogentry' => 'hät „[[$1]]“ fö de Zick vun $2 jesperrt. $3',
 'reblock-logentry' => 'hät di Sperr för dä „[[$1]]“ met dä Duuer fun $2 $3 jeändert',
-'blocklogtext' => 'Heh es dat Logboch för et Metmaacher Sperre un Freijevve.
-Automatich jesperrte IP-Adresse sin nit heh, ävver en de [[Special:BlockList|{{int:ipblocklist}}]] ze finge.',
+'blocklogtext' => 'Heh es et Logboch övver et Metmaacher-Sperre un -Freijevve vun Hand.
+Automattesch jesperrte <i lang="en>IP</i>-Addräße sin nit heh, ävver en de [[Special:BlockList|{{int:ipblocklist}}]] ze fenge.',
 'unblocklogentry' => 'Metmaacher „$1“ freijejovve',
 'block-log-flags-anononly' => 'nor de namelose Metmaacher sperre',
 'block-log-flags-nocreate' => 'neu Metmaacher aanlääje es verbodde',

@@ -30,7 +30,7 @@ if ( !defined( 'MEDIAWIKI' ) ) {
 /**
  * Compatibility functions
  *
- * We support PHP 5.2.3 and up.
+ * We support PHP 5.3.2 and up.
  * Re-implementations of newer functions or functions in non-standard
  * PHP extensions may be included here.
  */
@@ -2198,13 +2198,7 @@ function wfResetOutputBuffers( $resetGzipEncoding = true ) {
 			if( $status['name'] == 'ob_gzhandler' ) {
 				// Reset the 'Content-Encoding' field set by this handler
 				// so we can start fresh.
-				if ( function_exists( 'header_remove' ) ) {
-					// Available since PHP 5.3.0
-					header_remove( 'Content-Encoding' );
-				} else {
-					// We need to provide a valid content-coding. See bug 28069
-					header( 'Content-Encoding: identity' );
-				}
+				header_remove( 'Content-Encoding' );
 				break;
 			}
 		}

@@ -1175,7 +1175,7 @@ Jéemala bindaale ''all'' ngir seet ci biir ëmbit gépp (boolewaale ci xëti wa
 'nchanges' => '$1 {{PLURAL:$1|coppite|ciy coppite}}',
 'recentchanges' => 'Coppite yu mujj',
 'recentchanges-legend' => 'tànneefi coppite yu mujj',
-'recentchangestext' => 'Toppal ci wii xët coppite yu mujj ci {{SITENAME}}.',
+'recentchanges-summary' => 'Toppal ci wii xët coppite yu mujj ci {{SITENAME}}.',
 'recentchanges-feed-description' => 'Toppal coppite yu mujj yu bii wiki.',
 'recentchanges-label-newpage' => 'Coppite gi sos na xët wu bees',
 'recentchanges-label-minor' => 'Coppite gu néewal la',

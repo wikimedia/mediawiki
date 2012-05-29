@@ -103,10 +103,15 @@ class ApiQueryBlocks extends ApiQueryBase {
 			}
 			$prefix = substr( $lower, 0, 4 );
 
+			# Fairly hard to make a malicious SQL statement out of hex characters,
+			# but it is good practice to add quotes
+			$lower = $db->addQuotes( $lower );
+			$upper = $db->addQuotes( $upper );
+
 			$this->addWhere( array(
 				'ipb_range_start' . $db->buildLike( $prefix, $db->anyString() ),
-				"ipb_range_start <= '$lower'",
-				"ipb_range_end >= '$upper'",
+				'ipb_range_start <= ' . $lower,
+				'ipb_range_end >= ' . $upper,
 				'ipb_auto' => 0
 			) );
 		}

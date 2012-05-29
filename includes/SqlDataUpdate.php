@@ -1,6 +1,7 @@
 <?php
 /**
- * See docs/deferred.txt
+ * Base code for update jobs that put some secondary data extracted
+ * from article content into the database.
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -17,6 +18,10 @@
  * 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
  * http://www.gnu.org/copyleft/gpl.html
  *
+ * @file
+ */
+
+/**
  * Abstract base class for update jobs that put some secondary data extracted
  * from article content into the database.
  */

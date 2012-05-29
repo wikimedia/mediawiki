@@ -102,7 +102,8 @@ class PopulateRevisionSha1 extends LoggedUpdateMaintenance {
 	protected function doSha1LegacyUpdates() {
 		$count = 0;
 		$db = $this->getDB( DB_MASTER );
-		$res = $db->select( 'archive', '*', array( 'ar_rev_id IS NULL' ), __METHOD__ );
+		$res = $db->select( 'archive', '*',
+			array( 'ar_rev_id IS NULL', 'ar_sha1' => '' ), __METHOD__ );
 
 		$updateSize = 0;
 		$db->begin( __METHOD__ );
@@ -145,7 +146,7 @@ class PopulateRevisionSha1 extends LoggedUpdateMaintenance {
 			$db->update( $table,
 				array( "{$prefix}_sha1" => Revision::base36Sha1( $text ) ),
 				array( $idCol => $row->$idCol ),
-				__METHOD__ 
+				__METHOD__
 			);
 			return true;
 		}
@@ -157,7 +158,11 @@ class PopulateRevisionSha1 extends LoggedUpdateMaintenance {
 	 */
 	protected function upgradeLegacyArchiveRow( $row ) {
 		$db = $this->getDB( DB_MASTER );
-		$rev = Revision::newFromArchiveRow( $row );
+		try {
+			$rev = Revision::newFromArchiveRow( $row );
+		} catch ( MWException $e ) {
+			return false; // bug 22624?
+		}
 		$text = $rev->getRawText();
 		if ( !is_string( $text ) ) {
 			# This should not happen, but sometimes does (bug 20757)
@@ -174,7 +179,7 @@ class PopulateRevisionSha1 extends LoggedUpdateMaintenance {
 					'ar_timestamp' => $row->ar_timestamp,
 					'ar_len'       => $row->ar_len // extra sanity
 				),
-				__METHOD__ 
+				__METHOD__
 			);
 			return true;
 		}

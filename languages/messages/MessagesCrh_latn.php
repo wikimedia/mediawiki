@@ -1038,7 +1038,7 @@ Eger bildirseñiz, saifelerdeki deñişmelerni kimniñ yapqanını köstermek i�
 'nchanges' => '$1 {{PLURAL:$1|deñişme|deñişme}}',
 'recentchanges' => 'Soñki deñişmeler',
 'recentchanges-legend' => 'Soñki deñişmeler sazlamaları',
-'recentchangestext' => 'Yapılğan eñ soñki deñişmelerni bu saifede körip olasıñız.',
+'recentchanges-summary' => 'Yapılğan eñ soñki deñişikliklerni bu saifede körip olasıñız.',
 'recentchanges-feed-description' => 'Bu lenta vastasınen vikide soñki deñişmelerni közet.',
 'recentchanges-label-newpage' => 'Bu deñişme yañı bir saife yarattı',
 'recentchanges-label-minor' => 'Bu, kiçik bir deñişme',

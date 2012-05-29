@@ -14,6 +14,25 @@
  * @author לערי ריינהארט
  */
 
+$namespaceNames = array(
+	NS_MEDIA            => 'Midia',
+	NS_SPECIAL          => 'Espesial',
+	NS_TALK             => 'Tungtungan',
+	NS_USER             => 'Agar-aramat',
+	NS_USER_TALK        => 'Agar-aramat_tungtungan',
+	NS_PROJECT_TALK     => '$1_tungtungan',
+	NS_FILE             => 'Papeles',
+	NS_FILE_TALK        => 'Papeles_tungtungan',
+	NS_MEDIAWIKI        => 'MediaWiki',
+	NS_MEDIAWIKI_TALK   => 'MediaWiki_tungtungan',
+	NS_TEMPLATE         => 'Plantilia',
+	NS_TEMPLATE_TALK    => 'Plantilia_tungtungan',
+	NS_HELP             => 'Tulong',
+	NS_HELP_TALK        => 'Tulong_tungtungan',
+	NS_CATEGORY         => 'Kategoria',
+	NS_CATEGORY_TALK    => 'Kategoria_tungtungan',
+);
+
 $messages = array(
 # User preference toggles
 'tog-underline' => 'Pinag-ugisan ti silpo:',
@@ -1353,7 +1372,7 @@ Ti e-surat a pagtaengam ket saan nga maipakita kadagiti agar-aramat nga agkontak
 'nchanges' => '$1 {{PLURAL:$1|sinukatan|dagiti sinukatan}}',
 'recentchanges' => 'Kaudian a balbaliw',
 'recentchanges-legend' => 'Pagpilian kadagiti kaudian a balbaliw',
-'recentchangestext' => 'Bantayan daytoy a panid dagiti kaudian a panakabalbaliw ti wiki.',
+'recentchanges-summary' => 'Bantayan iti daytoy a panid dagiti kauudian a panakabalbaliw ti wiki.',
 'recentchanges-feed-description' => 'Siputen dagiti kakaudian a panamalbaliw iti wiki iti daytoy a pakan.',
 'recentchanges-label-newpage' => 'Daytoy nga inurnos ket nakaaramid ti baro a panid',
 'recentchanges-label-minor' => 'Bassit a panag-urnos laeng daytoy',

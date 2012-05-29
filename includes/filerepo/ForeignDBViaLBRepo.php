@@ -31,6 +31,9 @@ class ForeignDBViaLBRepo extends LocalRepo {
 	var $fileFactory = array( 'ForeignDBFile', 'newFromTitle' );
 	var $fileFromRowFactory = array( 'ForeignDBFile', 'newFromRow' );
 
+	/**
+	 * @param $info array|null
+	 */
 	function __construct( $info ) {
 		parent::__construct( $info );
 		$this->wiki = $info['wiki'];
@@ -38,10 +41,16 @@ class ForeignDBViaLBRepo extends LocalRepo {
 		$this->hasSharedCache = $info['hasSharedCache'];
 	}
 
+	/**
+	 * @return DatabaseBase
+	 */
 	function getMasterDB() {
 		return wfGetDB( DB_MASTER, array(), $this->wiki );
 	}
 
+	/**
+	 * @return DatabaseBase
+	 */
 	function getSlaveDB() {
 		return wfGetDB( DB_SLAVE, array(), $this->wiki );
 	}

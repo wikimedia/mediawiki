@@ -167,7 +167,7 @@ $specialPageAliases = array(
 	'Newimages'                 => array( '新着ファイル', '新しいファイルの一覧', '新着画像展示室' ),
 	'Newpages'                  => array( '新しいページ', '新規項目' ),
 	'PasswordReset'             => array( 'パスワード再設定', 'パスワードの再設定', 'パスワードのリセット', 'パスワードリセット' ),
-	'PermanentLink'             => array( '固定リンク' ),
+	'PermanentLink'             => array( '固定リンク', 'パーマリンク' ),
 	'Popularpages'              => array( '人気ページ' ),
 	'Preferences'               => array( '個人設定', 'オプション' ),
 	'Prefixindex'               => array( '前方一致ページ一覧', '始点指定ページ一覧' ),
@@ -189,7 +189,7 @@ $specialPageAliases = array(
 	'Uncategorizedimages'       => array( 'カテゴリ未導入のファイル' ),
 	'Uncategorizedpages'        => array( 'カテゴリ未導入のページ' ),
 	'Uncategorizedtemplates'    => array( 'カテゴリ未導入のテンプレート' ),
-	'Undelete'                  => array( '復帰' ),
+	'Undelete'                  => array( '復元', '復帰' ),
 	'Unlockdb'                  => array( 'データベースロック解除', 'データベース解除' ),
 	'Unusedcategories'          => array( '使われていないカテゴリ', '未使用カテゴリ' ),
 	'Unusedimages'              => array( '使われていないファイル', '未使用ファイル', '未使用画像' ),
@@ -580,7 +580,7 @@ $messages = array(
 'otherlanguages' => '他の言語',
 'redirectedfrom' => '（$1から転送）',
 'redirectpagesub' => 'リダイレクトページ',
-'lastmodifiedat' => 'このページの最終更新は $1 $2 に行われました。',
+'lastmodifiedat' => 'このページが最後に更新されたのは $1 $2 です。',
 'viewcount' => 'このページは {{PLURAL:$1|$1 回}}アクセスされました。',
 'protectedpage' => '保護されたページ',
 'jumpto' => '移動：',
@@ -696,9 +696,9 @@ URL を間違って入力したか、正しくないリンクをたどった可�
 'readonlytext' => 'データベースは現在、新しいページの追加や編集を受け付けない「ロック状態」になっています。これはおそらくデータベースの定期メンテナンスのためで、メンテナンス終了後は正常な状態に復帰します。
 
 データベースをロックした管理者による説明は以下の通りです：$1',
-'missing-article' => 'ページ「$1」$2の本文がデータベース内で見つかりませんでした。
+'missing-article' => '求められたページ「$1」$2 の本文がデータベース内で見つかりませんでした。
 
-ページの削除された版への古い差分表示や固定リンクをたどった時にこのようなことになります。
+通常、削除されたページの版への古い差分表示や固定リンクをたどった時に、このようなことが起こります。
 
 それ以外の操作でこのメッセージが表示された場合、ソフトウェアのバグである可能性があります。
 [[Special:ListUsers/sysop|管理者]]までそのURLを添えてお知らせください。',
@@ -1124,7 +1124,7 @@ IP アドレスは複数の利用者で共有されている場合がありま�
 'templatesusedsection' => 'この節で使用されている{{PLURAL:$1|テンプレート}}：',
 'template-protected' => '（保護）',
 'template-semiprotected' => '（半保護）',
-'hiddencategories' => 'このページは$1隠しカテゴリに属しています：',
+'hiddencategories' => 'このページは$1個の隠しカテゴリに属しています：',
 'edittools' => '<!-- ここに書いたテキストは編集及びアップロードのフォームの下に表示されます。 -->',
 'nocreatetitle' => 'ページの作成が制限されています',
 'nocreatetext' => '{{SITENAME}}ではページの新規作成を制限しています。
@@ -1160,8 +1160,8 @@ IP アドレスは複数の利用者で共有されている場合がありま�
 'post-expand-template-inclusion-warning' => "'''警告：'''テンプレートの読み込みサイズが大き過ぎます。
 いくつかのテンプレートは読み込まれません。",
 'post-expand-template-inclusion-category' => 'テンプレート読み込みサイズが制限値を越えているページ',
-'post-expand-template-argument-warning' => "'''警告：'''このページには、展開後のサイズが大きすぎる値を渡したテンプレートが1つ以上含まれています。
-これらの値は省略されました。",
+'post-expand-template-argument-warning' => "'''警告：'''このページには、展開後のサイズが大きすぎる引数を渡したテンプレートが1つ以上含まれています。
+これらの引数は省略されました。",
 'post-expand-template-argument-category' => '省略されたテンプレート引数を含むページ',
 'parser-template-loop-warning' => 'テンプレートのループが検出されました：[[$1]]',
 'parser-template-recursion-depth-warning' => 'テンプレートの再帰の深さ（$1）が上限を超えました',
@@ -1170,6 +1170,8 @@ IP アドレスは複数の利用者で共有されている場合がありま�
 'node-count-exceeded-warning' => 'ページがノード数の制限を超えました',
 'expansion-depth-exceeded-category' => '展開の深さ制限を超えたページ',
 'expansion-depth-exceeded-warning' => 'ページが展開の深さ制限を超えました',
+'parser-unstrip-loop-warning' => 'Unstrip のループが検出されました',
+'parser-unstrip-recursion-limit' => 'Unstrip の再帰（$1）が上限を超えました',
 
 # "Undo" feature
 'undo-success' => 'この編集を取り消せます。
@@ -1349,6 +1351,8 @@ $1",
 
 # Diffs
 'history-title' => '「$1」の変更履歴',
+'difference-title' => '$1：版間の差分',
+'difference-title-multipage' => '$1 と $2：ページ間の差分',
 'difference-multipage' => '（ページ間の差分）',
 'lineno' => '$1行：',
 'compareselectedversions' => '選択した版同士を比較',
@@ -1710,7 +1714,7 @@ HTMLタグを見直してください。',
 'nchanges' => '$1回の変更',
 'recentchanges' => '最近の更新',
 'recentchanges-legend' => '最近の更新のオプション',
-'recentchangestext' => 'このウィキにおける最近の更新はこのページから確認できます。',
+'recentchanges-summary' => 'このページで最近の更新を確認できます。',
 'recentchanges-feed-description' => 'このフィードでそのウィキへの最近の更新を追跡。',
 'recentchanges-label-newpage' => 'この編集で新しいページが作成されました',
 'recentchanges-label-minor' => 'これは細部の編集です',
@@ -1725,7 +1729,7 @@ HTMLタグを見直してください。',
 'rcshowhideanons' => '匿名利用者を$1',
 'rcshowhidepatr' => '巡回された編集を$1',
 'rcshowhidemine' => '自分の編集を$1',
-'rclinks' => '最近$2日間の$1件分を表示<br />$3',
+'rclinks' => '最近$2日間の更新$1件以内を表示<br />$3',
 'diff' => '差分',
 'hist' => '履歴',
 'hide' => '非表示',
@@ -1928,8 +1932,8 @@ $1',
 'backend-fail-writetemp' => '一時ファイルに書き込めませんでした。',
 'backend-fail-closetemp' => '一時ファイルを閉じることができませんでした。',
 'backend-fail-read' => 'ファイル $1 を読み込めませんでした。',
-'backend-fail-create' => 'ファイル $1 を作成できませんでした。',
-'backend-fail-maxsize' => '{{PLURAL:$2|$2 バイト}}よりも大きいため、ファイル「$1」を作成できませんでした。',
+'backend-fail-create' => 'ファイル $1 に書き込めませんでした。',
+'backend-fail-maxsize' => '{{PLURAL:$2|$2 バイト}}よりも大きいため、ファイル「$1」に書き込めませんでした。',
 'backend-fail-readonly' => 'ストレージバックエンド「$1」は現在読み取り専用です。理由:「$2」',
 'backend-fail-synced' => 'ファイル「$1」は、ストレージバックエンド内部において不一致の状態にあります。',
 'backend-fail-connect' => 'ストレージバックエンドに接続できませんでした。「$1」',
@@ -2509,7 +2513,7 @@ $UNWATCHURL
 'revertpage' => '[[Special:Contributions/$2|$2]]（[[User talk:$2|トーク]]）による編集を[[User:$1|$1]]による直前の版へ差し戻しました',
 'revertpage-nouser' => '（利用者名削除）による編集を[[User:$1|$1]]による最新版へ差し戻しました',
 'rollback-success' => '$1による編集を差し戻しました。
-$2による最後の版へ変更されました。',
+$2による直前の版へ変更されました。',
 
 # Edit tokens
 'sessionfailure-title' => 'セッションの失敗',
@@ -3119,7 +3123,7 @@ MediaWiki 全般のローカライズ（地域化）に貢献したい場合は�
 'tooltip-preview' => '変更をプレビューで確認できます。保存前に使用してください！',
 'tooltip-diff' => '文章中で変更した箇所を表示',
 'tooltip-compareselectedversions' => '選択された二つの版の差分を表示します。',
-'tooltip-watch' => 'このページをウォッチリストへ追加します',
+'tooltip-watch' => 'このページをウォッチリストに追加する',
 'tooltip-watchlistedit-normal-submit' => 'タイトルを削除',
 'tooltip-watchlistedit-raw-submit' => 'ウォッチリストを更新',
 'tooltip-recreate' => '削除されていても、ページを再作成する',
@@ -3931,7 +3935,7 @@ $5
 'watchlistedit-raw-removed' => '$1件のページ名が除去されました：',
 
 # Watchlist editing tools
-'watchlisttools-view' => '関連する変更の表示',
+'watchlisttools-view' => '関連する変更を閲覧',
 'watchlisttools-edit' => 'ウォッチリストの閲覧と編集',
 'watchlisttools-raw' => 'ウォッチリストをそのまま編集',
 

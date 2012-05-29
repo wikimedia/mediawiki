@@ -716,6 +716,9 @@ class ApiMain extends ApiBase {
 		$module->profileOut();
 
 		if ( !$this->mInternalMode ) {
+			//append Debug information
+			MWDebug::appendDebugInfoToApiResult( $this->getContext(), $this->getResult() );
+
 			// Print result data
 			$this->printResult( false );
 		}

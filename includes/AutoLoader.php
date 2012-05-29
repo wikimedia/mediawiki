@@ -2,6 +2,21 @@
 /**
  * This defines autoloading handler for whole MediaWiki framework
  *
+ * This program is free software; you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation; either version 2 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License along
+ * with this program; if not, write to the Free Software Foundation, Inc.,
+ * 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
+ * http://www.gnu.org/copyleft/gpl.html
+ *
  * @file
  */
 
@@ -57,6 +72,7 @@ $wgAutoloadLocalClasses = array(
 	'DeprecatedGlobal' => 'includes/DeprecatedGlobal.php',
 	'DerivativeRequest' => 'includes/WebRequest.php',
 	'DeviceDetection' => 'includes/DeviceDetection.php',
+	'DeviceProperties' => 'includes/DeviceDetection.php',
 	'DiffHistoryBlob' => 'includes/HistoryBlob.php',
 	'DoubleReplacer' => 'includes/StringUtils.php',
 	'DummyLinker' => 'includes/Linker.php',
@@ -122,6 +138,8 @@ $wgAutoloadLocalClasses = array(
 	'HttpRequest' => 'includes/HttpFunctions.old.php',
 	'ICacheHelper' => 'includes/CacheHelper.php',
 	'IcuCollation' => 'includes/Collation.php',
+	'IDeviceProperties' => 'includes/DeviceDetection.php',
+	'IDeviceDetector' => 'includes/DeviceDetection.php',
 	'IdentityCollation' => 'includes/Collation.php',
 	'ImageGallery' => 'includes/ImageGallery.php',
 	'ImageHistoryList' => 'includes/ImagePage.php',
@@ -1077,6 +1095,7 @@ class AutoLoader {
 	 * Sanitizer that have define()s outside of their class definition. Of course
 	 * this wouldn't be necessary if everything in MediaWiki was class-based. Sigh.
 	 *
+	 * @param $class string
 	 * @return Boolean Return the results of class_exists() so we know if we were successful
 	 */
 	static function loadClass( $class ) {

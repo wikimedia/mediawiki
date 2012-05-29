@@ -15,6 +15,25 @@
  * @author לערי ריינהארט
  */
 
+$namespaceNames = array(
+	NS_MEDIA            => 'Meadhan',
+	NS_SPECIAL          => 'Sònraichte',
+	NS_TALK             => 'Deasbaireachd',
+	NS_USER             => 'Cleachdaiche',
+	NS_USER_TALK        => 'Deasbaireachd_a\'_chleachdaiche',
+	NS_PROJECT_TALK     => 'An_deasbaireachd_aig_$1',
+	NS_FILE             => 'Faidhle',
+	NS_FILE_TALK        => 'Deasbaireachd_an_fhaidhle',
+	NS_MEDIAWIKI        => 'MediaWiki',
+	NS_MEDIAWIKI_TALK   => 'Deasbaireachd_MediaWiki',
+	NS_TEMPLATE         => 'Teamplaid',
+	NS_TEMPLATE_TALK    => 'Deasbaireachd_na_teamplaid',
+	NS_HELP             => 'Cobhair',
+	NS_HELP_TALK        => 'Deasbaireachd_na_cobharach',
+	NS_CATEGORY         => 'Roinn-seòrsa',
+	NS_CATEGORY_TALK    => 'Deasbaireachd_na_roinn-seòrsa',
+);
+
 $messages = array(
 # User preference toggles
 'tog-underline' => 'Fo-loidhneadh nan ceanglaichean:',
@@ -777,7 +796,7 @@ Chan fhaicear an seòladh fhèin nuair a chuireas cuideigin post-dealain thugad.
 'nchanges' => '{{PLURAL:$1|mhùthadh|mhùthadh|mhùthadh|mhùthadh|mùthaidhean|mùthadh}}',
 'recentchanges' => 'Mùthaidhean ùra',
 'recentchanges-legend' => 'Roghainnean nam mùthaidhean ùra',
-'recentchangestext' => 'Cum sùil air na mùthaidhean as ùire a nithear air an uici air an duilleag seo.',
+'recentchanges-summary' => 'Cum sùil air na mùthaidhean as ùire a nithear air an uici air an duilleag seo.',
 'recentchanges-feed-description' => 'Cum sùil air na mùthaidhean as ùire a nithear air an uici seo san inbhir seo.',
 'recentchanges-label-newpage' => 'Chruthaich thu duilleag ùr leis a sin',
 'recentchanges-label-minor' => 'Seo mùthadh beag',

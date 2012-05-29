@@ -1363,7 +1363,7 @@ Tí ẹ bá fisílẹ̀ a ó lòó láti tóka iṣẹ́ yín fún yín.',
 'nchanges' => '{{PLURAL:$1|àtúnṣe|àwọn àtúnṣe}} $1',
 'recentchanges' => 'Àwọn àtúnṣe tuntun',
 'recentchanges-legend' => 'Àwọn àṣàyàn fún àtúnṣe tuntun',
-'recentchangestext' => 'Ẹ tẹ̀ lé àwọn àtúnṣe tuntun sí wiki lórí ojúewé yìí.',
+'recentchanges-summary' => 'Ẹ tẹ̀ lé àwọn àtúnṣe tuntun sí wiki lórí ojúewé yìí.',
 'recentchanges-feed-description' => 'Ẹ tẹ̀ lé àwọn àtúnṣe àìpẹ́ ọjọ́ sí wiki nínú àkótán feed yìí.',
 'recentchanges-label-newpage' => 'Àtúnṣe yìí dá ojúewé tuntun',
 'recentchanges-label-minor' => 'Àtùnṣe kékeré nìyí',
@@ -1564,7 +1564,7 @@ Tí ìṣòro náà ò bá jáwọ́, ẹ bẹ [[Special:ListUsers/sysop|olùmó
 'backend-fail-writetemp' => 'Kò le kọ sínú fáìlì onígbàdíẹ̀.',
 'backend-fail-closetemp' => 'Kò le de fáìlì onígbàdíẹ̀.',
 'backend-fail-read' => 'Kò le ka fáìlì "$1".',
-'backend-fail-create' => 'Kò le dá fáìlì "$1".',
+'backend-fail-create' => 'Kò le kọ fáìlì $1.',
 
 # Lock manager
 'lockmanager-notlocked' => 'Kò le sí àgádágodo "$1" sílẹ̀; kò jẹ́ dídè.',

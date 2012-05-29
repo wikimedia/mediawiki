@@ -215,7 +215,8 @@ class ApiFormatXml extends ApiFormatBase {
 	public function getParamDescription() {
 		return array(
 			'xmldoublequote' => 'If specified, double quotes all attributes and content',
-			'xslt' => 'If specified, adds <xslt> as stylesheet',
+			'xslt' => 'If specified, adds <xslt> as stylesheet. This should be a wiki page '
+				. 'in the MediaWiki namespace whose page name ends with ".xsl"',
 			'includexmlnamespace' => 'If specified, adds an XML namespace'
 		);
 	}

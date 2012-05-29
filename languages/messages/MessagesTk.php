@@ -148,7 +148,7 @@ $messages = array(
 'dec' => 'dek',
 
 # Categories related messages
-'pagecategories' => 'Sahypanyň {{PLURAL:$1|kategoriýasy|kategoriýalary}}',
+'pagecategories' => '{{PLURAL:$1|Kategoriýa|Kategoriýalar}}',
 'category_header' => '"$1" kategoriýasyndaky sahypalar',
 'subcategories' => 'Kiçi kategoriýalar',
 'category-media-header' => '"$1" kategoriýasyndaky multimediýa faýllary',
@@ -1270,7 +1270,7 @@ $1 {{PLURAL:$1|simwoldan|simwoldan}} köp bolmaly däl.',
 'nchanges' => '$1 {{PLURAL:$1|üýtgeşme|üýtgeşme}}',
 'recentchanges' => 'Soňky üýtgeşmeler',
 'recentchanges-legend' => 'Soňky üýtgeşmeleriň opsiýalary',
-'recentchangestext' => 'Wikidäki iň soňky üýtgeşmeleri şu sahypadan yzarlaň.',
+'recentchanges-summary' => 'Wikidäki iň soňky üýtgeşmeleri şu sahypadan yzarlaň.',
 'recentchanges-feed-description' => 'Bu lentadaky wikide edilen iň soňky üýtgeşmeleri yzarlaň.',
 'recentchanges-label-newpage' => 'Bu özgerdiş täze bir sahypa döretdi',
 'recentchanges-label-minor' => 'Bu bir ujypsyzja özgerdiş',

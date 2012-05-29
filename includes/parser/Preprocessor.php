@@ -78,15 +78,19 @@ interface PPFrame {
 
 	const RECOVER_ORIG = 27; // = 1|2|8|16 no constant expression support in PHP yet
 
+	/** This constant exists when $indexOffset is supported in newChild() */
+	const SUPPORTS_INDEX_OFFSET = 1;
+
 	/**
 	 * Create a child frame
 	 *
 	 * @param $args array
 	 * @param $title Title
+	 * @param $indexOffset A number subtracted from the index attributes of the arguments
 	 *
 	 * @return PPFrame
 	 */
-	function newChild( $args = false, $title = false );
+	function newChild( $args = false, $title = false, $indexOffset = 0 );
 
 	/**
 	 * Expand a document tree node

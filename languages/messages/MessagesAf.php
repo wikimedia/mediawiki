@@ -594,6 +594,8 @@ Probeer asseblief weer oor 'n paar minute.",
 'ns-specialprotected' => 'Spesiale bladsye kan nie geredigeer word nie.',
 'titleprotected' => "Hierdie titel is beskerm teen skepping deur [[User:$1|$1]].
 Die rede gegee is ''$2''.",
+'invalidtitle-knownnamespace' => 'Ongeldige titel met naamruimte "$2" en teks "$3"',
+'invalidtitle-unknownnamespace' => 'Ongeldige titel met onbekende naamruimtenummer $1 en teks "$2"',
 
 # Virus scanner
 'virus-badscanner' => "Slegte konfigurasie: onbekende virusskandeerder: ''$1''",
@@ -682,6 +684,7 @@ Om misbruik te voorkom, word slegs een wagwoordwenk per {{PLURAL:$1|uur|$1 ure}}
 'invalidemailaddress' => "Die e-posadres is nie aanvaar nie, aangesien dit 'n ongeldige formaat blyk te hê.
 Voer asseblief 'n geldige e-posadres in, of laat die veld leeg.",
 'cannotchangeemail' => "Die e-posadres vir 'n gebruiker kan nie op hierdie wiki gewysig word nie.",
+'emaildisabled' => 'Hierdie webwerf kan nie e-poste stuur nie.',
 'accountcreated' => 'Rekening geskep',
 'accountcreatedtext' => 'Die rekening vir gebruiker $1 is geskep.',
 'createaccount-title' => 'Rekeningskepping vir {{SITENAME}}',
@@ -1150,6 +1153,8 @@ Let op dat die gebruik van navigasieskakels hierdie kolom se waardes sal herstel
 
 # Diffs
 'history-title' => 'Weergawegeskiedenis van "$1"',
+'difference-title' => '$1: verskil tussen weergawes',
+'difference-title-multipage' => '$1 en $2: verskil tussen bladsye',
 'difference-multipage' => '(Verskil tussen bladsye)',
 'lineno' => 'Lyn $1:',
 'compareselectedversions' => 'Vergelyk gekose weergawes',
@@ -1246,6 +1251,7 @@ U kan ook 'n naamruimte as voorvoegsel gebruik.",
 'prefs-beta' => 'Beta-funksies',
 'prefs-datetime' => 'Datum en tyd',
 'prefs-labs' => 'Labs-funksies',
+'prefs-user-pages' => 'Gebruikersbladsye',
 'prefs-personal' => 'Gebruikersdata',
 'prefs-rc' => 'Onlangse wysigings',
 'prefs-watchlist' => 'Dophoulys',
@@ -1509,7 +1515,7 @@ Die inligting is vir ander gebruikers sigbaar.',
 'nchanges' => '$1 {{PLURAL:$1|wysiging|wysigings}}',
 'recentchanges' => 'Onlangse wysigings',
 'recentchanges-legend' => 'Opsies vir onlangse wysigings',
-'recentchangestext' => 'Volg die mees onlangse wysigings aan die wiki op die bladsy.',
+'recentchanges-summary' => 'Volg die mees onlangse wysigings aan die wiki op die bladsy.',
 'recentchanges-feed-description' => 'Spoor die mees onlangse wysigings op die wiki na in die voer.',
 'recentchanges-label-newpage' => "Met die wysiging is 'n nuwe bladsy geskep",
 'recentchanges-label-minor' => "Hierdie is 'n klein wysiging",
@@ -1716,7 +1722,7 @@ As daar steeds probleme is, kontak 'n [[Special:ListUsers/sysop|administrateur]]
 'backend-fail-writetemp' => 'Kon nie na tydelike lêer skryf nie.',
 'backend-fail-closetemp' => 'Kon nie tydelike lêer sluit nie.',
 'backend-fail-read' => 'Kon nie lêer $1 lees nie.',
-'backend-fail-create' => 'Kon nie lêer $1 skep nie.',
+'backend-fail-create' => 'Kon nie lêer $1 uitskryf nie.',
 
 # ZipDirectoryReader
 'zip-file-open-error' => "'n Fout het voorgekom met die opening van die lêer vir ZIP toetsing.",
@@ -2794,7 +2800,7 @@ Die lêer is slegs gedeeltelik opgelaai.',
 
 # JavaScriptTest
 'javascripttest' => 'JavaScript toetsing',
-'javascripttest-disabled' => 'Die funksie is gedeaktiveer.',
+'javascripttest-disabled' => 'Die funksie is nie op hierdie wiki geaktiveer nie.',
 'javascripttest-title' => 'Voer toetse uit vir $1',
 
 # Tooltip help for the actions
@@ -3597,6 +3603,9 @@ Saam met die program moes u \'n [{{SERVER}}{{SCRIPTPATH}}/COPYING kopie van van 
 'version-software' => 'Geïnstalleerde sagteware',
 'version-software-product' => 'Produk',
 'version-software-version' => 'Weergawe',
+'version-entrypoints' => "URL's vir ingange",
+'version-entrypoints-header-entrypoint' => 'Ingang',
+'version-entrypoints-header-url' => 'URL',
 
 # Special:FilePath
 'filepath' => 'Lêerpad',
@@ -3779,5 +3788,16 @@ Beelde word in hulle volle resolusie gewys. Ander lêertipes word direk met hull
 'api-error-unknownerror' => 'Onbekende fout: "$1"',
 'api-error-uploaddisabled' => 'Oplaai is afgeskakel op hierdie wiki.',
 'api-error-verification-error' => 'Hierdie lêer kan beskadig of het die verkeerde uitbreiding.',
+
+# Durations
+'duration-seconds' => '$1 {{PLURAL:$1|sekonde|sekondes}}',
+'duration-minutes' => '$1 {{PLURAL:$1|minuut|minute}}',
+'duration-hours' => '$1 {{PLURAL:$1|uur|ure}}',
+'duration-days' => '$1 {{PLURAL:$1|dag|dae}}',
+'duration-weeks' => '$1 {{PLURAL:$1|week|weke}}',
+'duration-years' => '$1 {{PLURAL:$1|jaar|jare}}',
+'duration-decades' => '$1 {{PLURAL:$1|dekade|dekades}}',
+'duration-centuries' => '$1 {{PLURAL:$1|eeu|eeue}}',
+'duration-millennia' => '$1 {{PLURAL:$1|millennium|millennia}}',
 
 );

@@ -1,6 +1,22 @@
 <?php
 /**
- * File for articles
+ * User interface for page actions.
+ *
+ * This program is free software; you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation; either version 2 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License along
+ * with this program; if not, write to the Free Software Foundation, Inc.,
+ * 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
+ * http://www.gnu.org/copyleft/gpl.html
+ *
  * @file
  */
 
@@ -9,7 +25,7 @@
  *
  * This maintains WikiPage functions for backwards compatibility.
  *
- * @TODO: move and rewrite code to an Action class
+ * @todo move and rewrite code to an Action class
  *
  * See design.txt for an overview.
  * Note: edit user interface and cache support functions have been
@@ -23,49 +39,76 @@ class Article extends Page {
 	 */
 
 	/**
-	 * @var IContextSource
+	 * The context this Article is executed in
+	 * @var IContextSource $mContext
 	 */
 	protected $mContext;
 
 	/**
-	 * @var WikiPage
+	 * The WikiPage object of this instance
+	 * @var WikiPage $mPage
 	 */
 	protected $mPage;
 
 	/**
-	 * @var ParserOptions: ParserOptions object for $wgUser articles
+	 * ParserOptions object for $wgUser articles
+	 * @var ParserOptions $mParserOptions
 	 */
 	public $mParserOptions;
 
+	/**
+	 * Text of the revision we are working on
+	 * @var string $mContent
+	 */
 	var $mContent;                    // !< #BC cruft
 
 	/**
+	 * Content of the revision we are working on
 	 * @var Content
 	 * @since 1.WD
 	 */
-	var $mContentObject;
+	var $mContentObject;              // !<
 
+	/**
+	 * Is the content ($mContent) already loaded?
+	 * @var bool $mContentLoaded
+	 */
 	var $mContentLoaded = false;      // !<
+
+	/**
+	 * The oldid of the article that is to be shown, 0 for the
+	 * current revision
+	 * @var int|null $mOldId
+	 */
 	var $mOldId;                      // !<
 
 	/**
-	 * @var Title
+	 * Title from which we were redirected here
+	 * @var Title $mRedirectedFrom
 	 */
 	var $mRedirectedFrom = null;
 
 	/**
-	 * @var mixed: boolean false or URL string
+	 * URL to redirect to or false if none
+	 * @var string|false $mRedirectUrl
 	 */
 	var $mRedirectUrl = false;        // !<
+
+	/**
+	 * Revision ID of revision we are working on
+	 * @var int $mRevIdFetched
+	 */
 	var $mRevIdFetched = 0;           // !<
 
 	/**
-	 * @var Revision
+	 * Revision we are working on
+	 * @var Revision $mRevision
 	 */
 	var $mRevision = null;
 
 	/**
-	 * @var ParserOutput
+	 * ParserOutput object
+	 * @var ParserOutput $mParserOutput
 	 */
 	var $mParserOutput;
 
@@ -870,7 +913,7 @@ class Article extends Page {
 	 * merging of several policies using array_merge().
 	 * @param $policy Mixed, returns empty array on null/false/'', transparent
 	 *            to already-converted arrays, converts String.
-	 * @return Array: 'index' => <indexpolicy>, 'follow' => <followpolicy>
+	 * @return Array: 'index' => \<indexpolicy\>, 'follow' => \<followpolicy\>
 	 */
 	public static function formatRobotPolicy( $policy ) {
 		if ( is_array( $policy ) ) {
@@ -1723,6 +1766,7 @@ class Article extends Page {
 	/**
 	 * Handle action=purge
 	 * @deprecated since 1.19
+	 * @return Action|bool|null false if the action is disabled, null if it is not recognised
 	 */
 	public function purge() {
 		return Action::factory( 'purge', $this )->show();

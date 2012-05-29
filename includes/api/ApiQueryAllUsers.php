@@ -154,9 +154,9 @@ class ApiQueryAllUsers extends ApiQueryBase {
 
 			$this->addFields( 'COUNT(*) AS recentedits' );
 
-			$this->addWhere( "rc_log_type IS NULL OR rc_log_type != 'newusers'" );
+			$this->addWhere( 'rc_log_type IS NULL OR rc_log_type != ' . $db->addQuotes( 'newusers' ) );
 			$timestamp = $db->timestamp( wfTimestamp( TS_UNIX ) - $wgActiveUserDays*24*3600 );
-			$this->addWhere( "rc_timestamp >= {$db->addQuotes( $timestamp )}" );
+			$this->addWhere( 'rc_timestamp >= ' . $db->addQuotes( $timestamp ) );
 
 			$this->addOption( 'GROUP BY', $userFieldToSort );
 		}
@@ -361,7 +361,7 @@ class ApiQueryAllUsers extends ApiQueryBase {
 			'dir' => 'Direction to sort in',
 			'group' => 'Limit users to given group name(s)',
 			'excludegroup' => 'Exclude users in given group name(s)',
-			'rights' => 'Limit users to given right(s)',
+			'rights' => 'Limit users to given right(s) (does not include rights granted by implicit or auto-promoted groups like *, user, or autoconfirmed)',
 			'prop' => array(
 				'What pieces of information to include.',
 				' blockinfo      - Adds the information about a current block on the user',

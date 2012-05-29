@@ -245,6 +245,17 @@ class Language {
 	 * @return bool
 	 */
 	public static function isValidBuiltInCode( $code ) {
+
+		if( !is_string($code) ) {
+			$type = gettype( $code );
+			if( $type === 'object' ) {
+				$addmsg = " of class " . get_class( $code );
+			} else {
+				$addmsg = '';
+			}
+			throw new MWException( __METHOD__ . " must be passed a string, $type given$addmsg" );
+		}
+
 		return preg_match( '/^[a-z0-9-]+$/i', $code );
 	}
 
@@ -710,9 +721,9 @@ class Language {
 	 *		Use null for autonyms (native names)
 	 * @param $include string:
 	 *		'all' all available languages
-	 *		'mw' only if the language is defined in MediaWiki or wgExtraLanguageNames
+	 *		'mw' only if the language is defined in MediaWiki or wgExtraLanguageNames (default)
 	 *		'mwfile' only if the language is in 'mw' *and* has a message file
-	 * @return array|bool: language code => language name, false if $include is wrong
+	 * @return array: language code => language name
 	 * @since 1.20
 	 */
 	public static function fetchLanguageNames( $inLanguage = null, $include = 'mw' ) {
@@ -750,9 +761,7 @@ class Language {
 			$returnMw[$coreCode] = $names[$coreCode];
 		}
 
-		if( $include === 'mw' ) {
-			return $returnMw;
-		} elseif( $include === 'mwfile' ) {
+		if( $include === 'mwfile' ) {
 			$namesMwFile = array();
 			# We do this using a foreach over the codes instead of a directory
 			# loop so that messages files in extensions will work correctly.
@@ -763,7 +772,8 @@ class Language {
 			}
 			return $namesMwFile;
 		}
-		return false;
+		# 'mw' option; default if it's not one of the other two options (all/mwfile)
+		return $returnMw;
 	}
 
 	/**
@@ -2718,12 +2728,26 @@ class Language {
 	}
 
 	/**
-	 * An arrow, depending on the language direction
+	 * An arrow, depending on the language direction.
 	 *
+	 * @param $direction String: the direction of the arrow: forwards (default), backwards, left, right, up, down.
 	 * @return string
 	 */
-	function getArrow() {
-		return $this->isRTL() ? '←' : '→';
+	function getArrow( $direction = 'forwards' ) {
+		switch ( $direction ) {
+		case 'forwards':
+			return $this->isRTL() ? '←' : '→';
+		case 'backwards':
+			return $this->isRTL() ? '→' : '←';
+		case 'left':
+			return '←';
+		case 'right':
+			return '→';
+		case 'up':
+			return '↑';
+		case 'down':
+			return '↓';
+		}
 	}
 
 	/**

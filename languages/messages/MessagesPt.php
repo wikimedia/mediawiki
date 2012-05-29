@@ -1645,7 +1645,7 @@ Esta informação será pública.',
 'nchanges' => '$1 {{PLURAL:$1|alteração|alterações}}',
 'recentchanges' => 'Mudanças recentes',
 'recentchanges-legend' => 'Opções das mudanças recentes',
-'recentchangestext' => 'Acompanhe nesta página as mudanças mais recentes da wiki.',
+'recentchanges-summary' => 'Acompanhe nesta página as mudanças mais recentes da wiki.',
 'recentchanges-feed-description' => "Acompanhe neste ''feed'' as mudanças mais recentes da wiki.",
 'recentchanges-label-newpage' => 'Esta edição criou uma página nova',
 'recentchanges-label-minor' => 'Esta é uma edição menor',
@@ -1929,7 +1929,6 @@ Para optimizar a segurança, o img_auth.php está impossibilitado de executar.',
 'http-curl-error' => 'Ocorreu um erro ao aceder à URL: $1',
 'http-host-unreachable' => 'Não foi possível aceder à URL',
 'http-bad-status' => 'Ocorreu um problema durante o pedido HTTP: $1 $2',
-'http-truncated-body' => 'O corpo da solicitação foi recebido apenas parcialmente.',
 
 # Some likely curl errors. More could be added from <http://curl.haxx.se/libcurl/c/libcurl-errors.html>
 'upload-curl-error6' => 'Não foi possível aceder à URL',
@@ -2703,7 +2702,7 @@ Consulte a [[Special:BlockList|lista de bloqueios]] para rever os bloqueios.',
 O registo de bloqueios é fornecido abaixo para referência:',
 'blocklog-showsuppresslog' => 'Este utilizador foi bloqueado e ocultado anteriomente.
 O registo de supressão é fornecido abaixo para referência:',
-'blocklogentry' => 'bloqueou "[[$1]]" $3. O bloqueio expira em $2.',
+'blocklogentry' => 'bloqueou "[[$1]]" por $2. $3',
 'reblock-logentry' => 'modificou parâmetros de bloqueio de [[$1]] com expiração em $2. $3',
 'blocklogtext' => 'Este é um registo de ações de bloqueio e desbloqueio.
 Endereços IP sujeitos a bloqueio automático não estão listados.

@@ -744,7 +744,7 @@ $3 keltirilgen sebebi: ''$2''",
 'last' => 'aqır.',
 'page_first' => 'birinshi',
 'page_last' => "aqırg'ı",
-'histlegend' => "Tu'sindirme: salıstırajaq nusqaların'ızdı saylan' ha'mde <Enter> knopkasın yamasa to'mendegi knopkani basın'.<br />
+'histlegend' => "Tu'sindirme: salıstırajaq nusqaların'ızdı saylan' ha'mde Enter knopkasın yamasa to'mendegi knopkani basın'.<br />
 Sha'rtli belgiler: (ha'z.) = ha'zirgi nusqasi menen parqı,
 (aqır.) = aldıng'ı nusqasi menen parqı, k = kishi o'zgeris",
 'history-fieldset-title' => 'Tariyxınan izlew',
@@ -1065,7 +1065,7 @@ Barlıq mag'lıwmat tu'rin (sonın' ishinde sa'wbet betlerdi, shablonlardı h.t.
 'nchanges' => "{{PLURAL:$1|1 o'zgeris|$1 o'zgeris}}",
 'recentchanges' => "Aqırg'ı o'zgerisler",
 'recentchanges-legend' => "Aqırg'ı o'zgerisler sazlawları",
-'recentchangestext' => "Bul bette usı wikidegi ha'zirgi o'zgerisler baqlanadı.",
+'recentchanges-summary' => "Bul bette usı wikidegi ha'zirgi o'zgerisler baqlanadı.",
 'recentchanges-feed-description' => "Wikidin' usı ag'ımındag'ı en' aqırg'ı o'zgerislerin baqlaw.",
 'recentchanges-label-newpage' => "Bul o'zgeris arqalı taza bet jaratıldı",
 'recentchanges-label-minor' => "Bul kishi o'zgeris",

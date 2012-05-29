@@ -8,6 +8,7 @@
  * @file
  *
  * @author Amire80
+ * @author Reedy
  * @author Sapral Mikail
  * @author Tagir
  */
@@ -625,7 +626,7 @@ $messages = array(
 'nchanges' => '$1 {{PLURAL:$1|хувцам|хувцамаш}}',
 'recentchanges' => 'Керда хувцамаш',
 'recentchanges-legend' => 'Керда хувцамий оттамаш',
-'recentchangestext' => 'КIалхагIа лоарамий доаламе тIехьара оагIувний хувцамаш дIаязадаь да{{grammar:genitive|{{SITENAME}}}}.',
+'recentchanges-summary' => 'КIалхагIа лоарамий доаламе тIехьара оагIувний хувцамаш дIаязадаь да{{grammar:genitive|{{SITENAME}}}}.',
 'recentchanges-feed-description' => 'Укх ларамца тIехьара викихувцамашт теркам бе.',
 'recentchanges-label-newpage' => 'Укх хувцамаца керда оагIув даь хиннад',
 'recentchanges-label-minor' => 'ЗIамига хувцам я',
@@ -1134,7 +1135,7 @@ $messages = array(
 #Укх # тамагIалгаца дIадувлаш дола мугIанаш, оалам мо лоархаш да.
 #МугIанаш яздaтакха каьда да
 
-#Каст-каста оаламаш укх мугIа лакхе дIаязаде. Из мугI ший долаш тайпара дита<pre>',
+#Каст-каста оаламаш укх мугIа лакхе дIаязаде. Из мугI ший долаш тайпара дита</pre>',
 
 # Special:Tags
 'tag-filter' => '[[Special:Tags|Йоазоний]] цIенаярг:',

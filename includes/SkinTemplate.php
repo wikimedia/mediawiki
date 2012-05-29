@@ -20,10 +20,6 @@
  * @file
  */
 
-if ( !defined( 'MEDIAWIKI' ) ) {
-	die( 1 );
-}
-
 /**
  * Wrapper object for MediaWiki's localization functions,
  * to be passed to the template engine.

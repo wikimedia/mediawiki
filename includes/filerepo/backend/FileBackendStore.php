@@ -137,7 +137,8 @@ abstract class FileBackendStore extends FileBackend {
 		wfProfileIn( __METHOD__ );
 		wfProfileIn( __METHOD__ . '-' . $this->name );
 		if ( filesize( $params['src'] ) > $this->maxFileSizeInternal() ) {
-			$status = Status::newFatal( 'backend-fail-store', $params['dst'] );
+			$status = Status::newFatal( 'backend-fail-maxsize',
+				$params['dst'], $this->maxFileSizeInternal() );
 		} else {
 			$status = $this->doStoreInternal( $params );
 			$this->clearCache( array( $params['dst'] ) );
@@ -255,6 +256,17 @@ abstract class FileBackendStore extends FileBackend {
 			$status->setResult( true, $status->value ); // ignore delete() errors
 		}
 		return $status;
+	}
+
+	/**
+	 * No-op file operation that does nothing.
+	 * Do not call this function from places outside FileBackend and FileOp.
+	 *
+	 * @param $params Array
+	 * @return Status
+	 */
+	final public function nullInternal( array $params ) {
+		return Status::newGood();
 	}
 
 	/**
@@ -552,6 +564,8 @@ abstract class FileBackendStore extends FileBackend {
 			$this->trimCache(); // limit memory
 			$this->cache[$path]['stat'] = $stat;
 			$this->setFileCache( $path, $stat ); // update persistent cache
+		} else {
+			wfDebug( __METHOD__ . ": File $path does not exist.\n" );
 		}
 		wfProfileOut( __METHOD__ . '-' . $this->name );
 		wfProfileOut( __METHOD__ );
@@ -819,22 +833,6 @@ abstract class FileBackendStore extends FileBackend {
 	abstract public function getFileListInternal( $container, $dir, array $params );
 
 	/**
-	 * Get the list of supported operations and their corresponding FileOp classes.
-	 *
-	 * @return Array
-	 */
-	protected function supportedOperations() {
-		return array(
-			'store'       => 'StoreFileOp',
-			'copy'        => 'CopyFileOp',
-			'move'        => 'MoveFileOp',
-			'delete'      => 'DeleteFileOp',
-			'create'      => 'CreateFileOp',
-			'null'        => 'NullFileOp'
-		);
-	}
-
-	/**
 	 * Return a list of FileOp objects from a list of operations.
 	 * Do not call this function from places outside FileBackend.
 	 *
@@ -846,7 +844,14 @@ abstract class FileBackendStore extends FileBackend {
 	 * @throws MWException
 	 */
 	final public function getOperationsInternal( array $ops ) {
-		$supportedOps = $this->supportedOperations();
+		$supportedOps = array(
+			'store'       => 'StoreFileOp',
+			'copy'        => 'CopyFileOp',
+			'move'        => 'MoveFileOp',
+			'delete'      => 'DeleteFileOp',
+			'create'      => 'CreateFileOp',
+			'null'        => 'NullFileOp'
+		);
 
 		$performOps = array(); // array of FileOp objects
 		// Build up ordered array of FileOps...
@@ -887,6 +892,18 @@ abstract class FileBackendStore extends FileBackend {
 		$paths['sh'] = array_merge( $paths['sh'], array_map( 'dirname', $paths['ex'] ) );
 
 		return $paths;
+	}
+
+	/**
+	 * @see FileBackend::getScopedLocksForOps()
+	 * @return Array
+	 */
+	public function getScopedLocksForOps( array $ops, Status $status ) {
+		$paths = $this->getPathsToLockForOpsInternal( $this->getOperationsInternal( $ops ) );
+		return array(
+			$this->getScopedFileLocks( $paths['sh'], LockManager::LOCK_UW, $status ),
+			$this->getScopedFileLocks( $paths['ex'], LockManager::LOCK_EX, $status )
+		);
 	}
 
 	/**
@@ -935,12 +952,73 @@ abstract class FileBackendStore extends FileBackend {
 	}
 
 	/**
+	 * @see FileBackend::doQuickOperationsInternal()
+	 * @return Status
+	 * @throws MWException
+	 */
+	final protected function doQuickOperationsInternal( array $ops ) {
+		wfProfileIn( __METHOD__ );
+		wfProfileIn( __METHOD__ . '-' . $this->name );
+		$status = Status::newGood();
+
+		$supportedOps = array( 'create', 'store', 'copy', 'move', 'delete', 'null' );
+		$async = ( $this->parallelize === 'implicit' );
+		$maxConcurrency = $this->concurrency; // throttle
+
+		$statuses = array(); // array of (index => Status)
+		$fileOpHandles = array(); // list of (index => handle) arrays
+		$curFileOpHandles = array(); // current handle batch
+		// Perform the sync-only ops and build up op handles for the async ops...
+		foreach ( $ops as $index => $params ) {
+			if ( !in_array( $params['op'], $supportedOps ) ) {
+				wfProfileOut( __METHOD__ . '-' . $this->name );
+				wfProfileOut( __METHOD__ );
+				throw new MWException( "Operation '{$params['op']}' is not supported." );
+			}
+			$method = $params['op'] . 'Internal'; // e.g. "storeInternal"
+			$subStatus = $this->$method( array( 'async' => $async ) + $params );
+			if ( $subStatus->value instanceof FileBackendStoreOpHandle ) { // async
+				if ( count( $curFileOpHandles ) >= $maxConcurrency ) {
+					$fileOpHandles[] = $curFileOpHandles; // push this batch
+					$curFileOpHandles = array();
+				}
+				$curFileOpHandles[$index] = $subStatus->value; // keep index
+			} else { // error or completed
+				$statuses[$index] = $subStatus; // keep index
+			}
+		}
+		if ( count( $curFileOpHandles ) ) {
+			$fileOpHandles[] = $curFileOpHandles; // last batch
+		}
+		// Do all the async ops that can be done concurrently...
+		foreach ( $fileOpHandles as $fileHandleBatch ) {
+			$statuses = $statuses + $this->executeOpHandlesInternal( $fileHandleBatch );
+		}
+		// Marshall and merge all the responses...
+		foreach ( $statuses as $index => $subStatus ) {
+			$status->merge( $subStatus );
+			if ( $subStatus->isOK() ) {
+				$status->success[$index] = true;
+				++$status->successCount;
+			} else {
+				$status->success[$index] = false;
+				++$status->failCount;
+			}
+		}
+
+		wfProfileOut( __METHOD__ . '-' . $this->name );
+		wfProfileOut( __METHOD__ );
+		return $status;
+	}
+
+	/**
 	 * Execute a list of FileBackendStoreOpHandle handles in parallel.
 	 * The resulting Status object fields will correspond
 	 * to the order in which the handles where given.
 	 *
 	 * @param $handles Array List of FileBackendStoreOpHandle objects
 	 * @return Array Map of Status objects
+	 * @throws MWException
 	 */
 	final public function executeOpHandlesInternal( array $fileOpHandles ) {
 		wfProfileIn( __METHOD__ );
@@ -953,6 +1031,9 @@ abstract class FileBackendStore extends FileBackend {
 			}
 		}
 		$res = $this->doExecuteOpHandlesInternal( $fileOpHandles );
+		foreach ( $fileOpHandles as $fileOpHandle ) {
+			$fileOpHandle->closeResources();
+		}
 		wfProfileOut( __METHOD__ . '-' . $this->name );
 		wfProfileOut( __METHOD__ );
 		return $res;
@@ -1136,7 +1217,7 @@ abstract class FileBackendStore extends FileBackend {
 	 * Any empty suffix means the container is not sharded.
 	 *
 	 * @param $container string Container name
-	 * @param $relStoragePath string Storage path relative to the container
+	 * @param $relPath string Storage path relative to the container
 	 * @return string|null Returns null if shard could not be determined
 	 */
 	final protected function getContainerShard( $container, $relPath ) {
@@ -1263,7 +1344,7 @@ abstract class FileBackendStore extends FileBackend {
 	/**
 	 * Get the cache key for a container
 	 *
-	 * @param $container Resolved container name
+	 * @param $container string Resolved container name
 	 * @return string
 	 */
 	private function containerCacheKey( $container ) {
@@ -1273,9 +1354,8 @@ abstract class FileBackendStore extends FileBackend {
 	/**
 	 * Set the cached info for a container
 	 *
-	 * @param $container Resolved container name
+	 * @param $container string Resolved container name
 	 * @param $val mixed Information to cache
-	 * @return void
 	 */
 	final protected function setContainerCache( $container, $val ) {
 		$this->memCache->set( $this->containerCacheKey( $container ), $val, 14*86400 );
@@ -1284,8 +1364,7 @@ abstract class FileBackendStore extends FileBackend {
 	/**
 	 * Delete the cached info for a container
 	 *
-	 * @param $container Resolved container name
-	 * @return void
+	 * @param $container string Resolved container name
 	 */
 	final protected function deleteContainerCache( $container ) {
 		if ( !$this->memCache->delete( $this->containerCacheKey( $container ) ) ) {
@@ -1327,7 +1406,7 @@ abstract class FileBackendStore extends FileBackend {
 
 		$contInfo = array(); // (resolved container name => cache value)
 		// Get all cache entries for these container cache keys...
-		$values = $this->memCache->getBatch( array_keys( $contNames ) );
+		$values = $this->memCache->getMulti( array_keys( $contNames ) );
 		foreach ( $values as $cacheKey => $val ) {
 			$contInfo[$contNames[$cacheKey]] = $val;
 		}
@@ -1352,7 +1431,7 @@ abstract class FileBackendStore extends FileBackend {
 	/**
 	 * Get the cache key for a file path
 	 *
-	 * @param $path Storage path
+	 * @param $path string Storage path
 	 * @return string
 	 */
 	private function fileCacheKey( $path ) {
@@ -1362,9 +1441,8 @@ abstract class FileBackendStore extends FileBackend {
 	/**
 	 * Set the cached stat info for a file path
 	 *
-	 * @param $path Storage path
+	 * @param $path string Storage path
 	 * @param $val mixed Information to cache
-	 * @return void
 	 */
 	final protected function setFileCache( $path, $val ) {
 		$this->memCache->set( $this->fileCacheKey( $path ), $val, 7*86400 );
@@ -1373,8 +1451,7 @@ abstract class FileBackendStore extends FileBackend {
 	/**
 	 * Delete the cached stat info for a file path
 	 *
-	 * @param $path Storage path
-	 * @return void
+	 * @param $path string Storage path
 	 */
 	final protected function deleteFileCache( $path ) {
 		if ( !$this->memCache->delete( $this->fileCacheKey( $path ) ) ) {
@@ -1412,7 +1489,7 @@ abstract class FileBackendStore extends FileBackend {
 			}
 		}
 		// Get all cache entries for these container cache keys...
-		$values = $this->memCache->getBatch( array_keys( $pathNames ) );
+		$values = $this->memCache->getMulti( array_keys( $pathNames ) );
 		foreach ( $values as $cacheKey => $val ) {
 			if ( is_array( $val ) ) {
 				$this->trimCache(); // limit memory
@@ -1616,6 +1693,12 @@ abstract class FileBackendStoreShardListIterator implements Iterator {
  * Iterator for listing directories
  */
 class FileBackendStoreShardDirIterator extends FileBackendStoreShardListIterator {
+	/**
+	 * @param string $container
+	 * @param string $dir
+	 * @param array $params
+	 * @return Array|null|Traversable
+	 */
 	protected function listFromShard( $container, $dir, array $params ) {
 		return $this->backend->getDirectoryListInternal( $container, $dir, $params );
 	}
@@ -1625,6 +1708,12 @@ class FileBackendStoreShardDirIterator extends FileBackendStoreShardListIterator
  * Iterator for listing regular files
  */
 class FileBackendStoreShardFileIterator extends FileBackendStoreShardListIterator {
+	/**
+	 * @param string $container
+	 * @param string $dir
+	 * @param array $params
+	 * @return Array|null|Traversable
+	 */
 	protected function listFromShard( $container, $dir, array $params ) {
 		return $this->backend->getFileListInternal( $container, $dir, $params );
 	}

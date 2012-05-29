@@ -20,7 +20,6 @@
  * @file
  * @author Roan Kattouw
  * @author Trevor Parscal
- *
  */
 
 // Bail if PHP is too low

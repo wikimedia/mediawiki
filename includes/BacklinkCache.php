@@ -1,7 +1,28 @@
 <?php
 /**
- * File for BacklinkCache class
+ * Class for fetching backlink lists, approximate backlink counts and
+ * partitions.
+ *
+ * This program is free software; you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation; either version 2 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License along
+ * with this program; if not, write to the Free Software Foundation, Inc.,
+ * 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
+ * http://www.gnu.org/copyleft/gpl.html
+ *
  * @file
+ * @author Tim Starling
+ * @copyright © 2009, Tim Starling, Domas Mituzas
+ * @copyright © 2010, Max Sem
+ * @copyright © 2011, Antoine Musso
  */
 
 /**
@@ -18,11 +39,6 @@
  * Introduced by r47317
  *
  * @internal documentation reviewed on 18 Mar 2011 by hashar
- *
- * @author Tim Starling
- * @copyright © 2009, Tim Starling, Domas Mituzas
- * @copyright © 2010, Max Sem
- * @copyright © 2011, Antoine Musso
  */
 class BacklinkCache {
 

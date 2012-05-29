@@ -20,9 +20,6 @@
  * @file
  */
 
-if ( ! defined( 'MEDIAWIKI' ) )
-	die( 1 );
-
 /**
  * Image gallery
  *

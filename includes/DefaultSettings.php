@@ -1,6 +1,7 @@
 <?php
 /**
- * @file
+ * Default values for configuration settings.
+ *
  *
  *                 NEVER EDIT THIS FILE
  *
@@ -15,6 +16,23 @@
  *
  * Documentation is in the source and on:
  * http://www.mediawiki.org/wiki/Manual:Configuration_settings
+ *
+ * This program is free software; you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation; either version 2 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License along
+ * with this program; if not, write to the Free Software Foundation, Inc.,
+ * 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
+ * http://www.gnu.org/copyleft/gpl.html
+ *
+ * @file
  */
 
 /**
@@ -310,9 +328,11 @@ $wgImgAuthPublicTest = true;
  *   - zones            Associative array of zone names that each map to an array with:
  *                          container : backend container name the zone is in
  *                          directory : root path within container for the zone
- *                      Zones default to using <repo name>-<zone> as the
- *                      container name and the container root as the zone directory.
- *   - url              Base public URL
+ *                          url       : base URL to the root of the zone
+ *                      Zones default to using <repo name>-<zone name> as the container name
+ *                      and default to using the container root as the zone's root directory.
+ *                      Nesting of zone locations within other zones should be avoided.
+ *   - url              Public zone URL. The 'zones' settings take precedence.
  *   - hashLevels       The number of directory levels for hash-based division of files
  *   - thumbScriptUrl   The URL for thumb.php (optional, not recommended)
  *   - transformVia404  Whether to skip media file transformation on parse and rely on a 404
@@ -1332,6 +1352,7 @@ $wgSharedTables = array( 'user', 'user_properties' );
  *                  - DBO_TRX -- wrap entire request in a transaction
  *                  - DBO_IGNORE -- ignore errors (not useful in LocalSettings.php)
  *                  - DBO_NOBUFFER -- turn off buffering (not useful in LocalSettings.php)
+ *                  - DBO_PERSISTENT -- enables persistent database connections
  *
  *   - max lag:     (optional) Maximum replication lag before a slave will taken out of rotation
  *   - max threads: (optional) Maximum number of running threads
@@ -5774,6 +5795,19 @@ $wgCompiledFiles = array();
 
 /** @} */ # End of HipHop compilation }
 
+
+/************************************************************************//**
+ * @name   Mobile support
+ * @{
+ */
+
+/**
+ * Name of the class used for mobile device detection, must be inherited from
+ * IDeviceDetector.
+ */
+$wgDeviceDetectionClass = 'DeviceDetection';
+
+/** @} */ # End of Mobile support }
 
 /************************************************************************//**
  * @name   Miscellaneous

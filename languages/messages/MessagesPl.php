@@ -679,6 +679,8 @@ Uzasadnienie blokady: ''$2''.",
 'filereadonlyerror' => 'Nie można zmodyfikować pliku "$1" ponieważ repozytorium plików "$2" jest w trybie tylko do odczytu.
 
 Administrator blokujący go podał następujący powód "\'\'$3\'\'".',
+'invalidtitle-knownnamespace' => 'Nieprawidłowa nazwa w obszarze nazw "$2" o treści "$3"',
+'invalidtitle-unknownnamespace' => 'Nieprawidłowa nazwa z nieznaną liczbą przestrzeni nazw  $1  o treści "$2"',
 
 # Virus scanner
 'virus-badscanner' => "Zła konfiguracja – nieznany skaner antywirusowy ''$1''",
@@ -1072,6 +1074,12 @@ Argument ten będzie pominięty.',
 'parser-template-loop-warning' => 'Wykryto pętlę w szablonie [[$1]]',
 'parser-template-recursion-depth-warning' => 'Przekroczno limit głębokości rekurencji szablonu ($1)',
 'language-converter-depth-warning' => 'Przekroczono ograniczenie ($1) głębokości zagnieżdżenia konwersji językowej',
+'node-count-exceeded-category' => 'Strony, gdzie przekroczono liczbę węzłów',
+'node-count-exceeded-warning' => 'Strona przekroczyła liczbę węzłów',
+'expansion-depth-exceeded-category' => 'Strony z przekroczoną głębokością rozbudowy',
+'expansion-depth-exceeded-warning' => 'Strona przekroczyła głębokość rozbudowy',
+'parser-unstrip-loop-warning' => 'Wykryto nieskończoną pętlę',
+'parser-unstrip-recursion-limit' => 'Przekroczono maksymalną głębokość zagnieżdżania ($1)',
 
 # "Undo" feature
 'undo-success' => 'Edycja może zostać wycofana. Porównaj ukazane poniżej różnice między wersjami, a następnie zapisz zmiany.',
@@ -1247,8 +1255,8 @@ Użycie linków nawigacyjnych kasuje wybór w kolumnie.',
 'mergelogpagetext' => 'Poniżej znajduje się lista ostatnich scaleń historii zmian stron.',
 
 # Diffs
-'history-title' => 'Historia edycji „$1”',
-'difference-title' => 'Różnica pomiędzy wersjami strony "$1"',
+'history-title' => '$1: Historia wersji',
+'difference-title' => '$1: Różnice pomiędzy wersjami',
 'difference-title-multipage' => 'Różnica pomiędzy stronami "$1" i "$2"',
 'difference-multipage' => '(Różnica między stronami)',
 'lineno' => 'Linia $1:',
@@ -1346,6 +1354,7 @@ Jednak informacje o treści {{GRAMMAR:D.lp|{{SITENAME}}}} mogą być w Google ni
 'prefs-beta' => 'Funkcje testowe',
 'prefs-datetime' => 'Data i czas',
 'prefs-labs' => 'Funkcje doświadczalne',
+'prefs-user-pages' => 'Strony użytkowników',
 'prefs-personal' => 'Dane użytkownika',
 'prefs-rc' => 'Ostatnie zmiany',
 'prefs-watchlist' => 'Obserwowane',
@@ -1608,7 +1617,7 @@ Jeśli zdecydujesz się je podać, zostaną użyte, by udokumentować Twoje auto
 'nchanges' => '$1 {{PLURAL:$1|zmiana|zmiany|zmian}}',
 'recentchanges' => 'Ostatnie zmiany',
 'recentchanges-legend' => 'Opcje ostatnich zmian',
-'recentchangestext' => 'Ta strona przedstawia historię ostatnich zmian w tej wiki.',
+'recentchanges-summary' => 'Ta strona przedstawia historię ostatnich zmian w tej wiki.',
 'recentchanges-feed-description' => 'Obserwuj najświeższe zmiany w tej wiki.',
 'recentchanges-label-newpage' => 'W tej edycji utworzono nową stronę',
 'recentchanges-label-minor' => 'To jest drobna zmiana',
@@ -1820,13 +1829,14 @@ Jeśli problem będzie się powtarzał, skontaktuj się z [[Special:ListUsers/sy
 'backend-fail-closetemp' => 'Nie można zamknąć pliku tymczasowego.',
 'backend-fail-read' => 'Nie można odczytać pliku $1.',
 'backend-fail-create' => 'Nie można utworzyć pliku $1.',
-'backend-fail-maxsize' => 'Nie udało utworzyć pliku $1 ponieważ jest on większy niż {{PLURAL:$2|$2 bajt| $2 bajty| $2 bajtów}}.',
+'backend-fail-maxsize' => 'Nie udało zapisać pliku $1 ponieważ jest on większy niż {{PLURAL:$2|jeden bajt| $2 bajty| $2 bajtów}}.',
 'backend-fail-readonly' => 'Interfejs magazynowania "$1" jest obecnie tylko do odczytu. Powód: "$2"',
 'backend-fail-synced' => 'Plik "$1" jest w niespójnym stanie w ramach wewnętrznych funkcji magazynowania',
 'backend-fail-connect' => 'Nie można nawiązać połączenia do wewnętrznych funkcji magazynowania "$1".',
 'backend-fail-internal' => 'Wystąpił nieznany błąd w wewnętrznych funkcjach magazynowania "$1".',
 'backend-fail-contenttype' => 'Nie można określić typ zawartości pliku do przechowywania w "$1".',
 'backend-fail-batchsize' => 'Wewnętrzne funkcje magazynowania otrzymały $1 {{PLURAL:$1|operację|operacje|operacji}} na pliku; limit wynosi $2 {{PLURAL:$2| operacja|operacje|operacji}}.',
+'backend-fail-usable' => 'Nie można zapisać pliku $1 ze względu na niewystarczające uprawnienia lub brak katalogów/kontenerów.',
 
 # File journal errors
 'filejournal-fail-dbconnect' => 'Nie można połączyć się z bazą danych dziennika dla backendu magazynowania "$1".',
@@ -1949,6 +1959,10 @@ Dostępna jest też [[Special:WhatLinksHere/$2|pełna lista]].',
 Więcej informacji odnajdziesz na [$2 stronie opisu pliku].',
 'sharedupload-desc-here' => 'Ten plik znajduje się na $1 i może być używany w innych projektach.
 Poniżej znajdują się informacje ze [$2 strony opisu] tego pliku.',
+'sharedupload-desc-edit' => 'Plik ten pochodzi z $1 i może być wykorzystany w innych projektach.
+Być może zechcesz zmienić opis na tej [$2 stronie opisu pliku].',
+'sharedupload-desc-create' => 'Plik ten pochodzi z $1 i może być wykorzystany w innych projektach.
+Być może zechcesz zmienić opis na tej [$2 stronie opisu pliku].',
 'filepage-nofile' => 'Plik o tej nazwie nie istnieje.',
 'filepage-nofile-link' => 'Plik o tej nazwie nie istnieje, ale możesz go [$1 przesłać].',
 'uploadnewversion-linktext' => 'Załaduj nowszą wersję tego pliku',
@@ -3817,6 +3831,8 @@ Powinieneś otrzymać [{{SERVER}}{{SCRIPTPATH}}/COPYING kopię licencji GNU Gene
 'version-software' => 'Zainstalowane oprogramowanie',
 'version-software-product' => 'Nazwa',
 'version-software-version' => 'Wersja',
+'version-entrypoints' => 'Adres URL punktu wejścia',
+'version-entrypoints-header-entrypoint' => 'Punkt wejścia',
 'version-entrypoints-header-url' => 'URL',
 
 # Special:FilePath

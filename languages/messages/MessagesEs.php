@@ -24,6 +24,7 @@
  * @author Candalua
  * @author Capmo
  * @author Cerealito
+ * @author Ciencia Al Poder
  * @author Clerc
  * @author Crazymadlover
  * @author Cvmontuy
@@ -220,25 +221,25 @@ $magicWords = array(
 	'currentmonth'            => array( '1', 'MESACTUAL', 'MESACTUAL2', 'CURRENTMONTH', 'CURRENTMONTH2' ),
 	'currentmonth1'           => array( '1', 'MESACTUAL1', 'CURRENTMONTH1' ),
 	'currentmonthname'        => array( '1', 'MESACTUALCOMPLETO', 'NOMBREMESACTUAL', 'CURRENTMONTHNAME' ),
-	'currentmonthnamegen'     => array( '1', 'MESACTUALGENITIVO', 'CURRENTMONTHNAMEGEN', 'GENERADORNOMBREMESACTUAL' ),
-	'currentmonthabbrev'      => array( '1', 'MESACTUALABREVIADO', 'CURRENTMONTHABBREV', 'ABREVIACIONNOMBREMESACTUAL' ),
+	'currentmonthnamegen'     => array( '1', 'MESACTUALGENITIVO', 'CURRENTMONTHNAMEGEN' ),
+	'currentmonthabbrev'      => array( '1', 'MESACTUALABREVIADO', 'CURRENTMONTHABBREV' ),
 	'currentday'              => array( '1', 'DÍAACTUAL', 'DIAACTUAL', 'DÍA_ACTUAL', 'DIA_ACTUAL', 'CURRENTDAY' ),
 	'currentday2'             => array( '1', 'DÍAACTUAL2', 'DIAACTUAL2', 'DÍA_ACTUAL2', 'DIA_ACTUAL2', 'CURRENTDAY2' ),
 	'currentdayname'          => array( '1', 'NOMBREDÍAACTUAL', 'NOMBREDIAACTUAL', 'CURRENTDAYNAME' ),
 	'currentyear'             => array( '1', 'AÑOACTUAL', 'AÑO_ACTUAL', 'CURRENTYEAR' ),
 	'currenttime'             => array( '1', 'HORA_MINUTOS_ACTUAL', 'HORAMINUTOSACTUAL', 'TIEMPOACTUAL', 'CURRENTTIME' ),
-	'currenthour'             => array( '1', 'HORAACTUAL', 'HORA_ACTUAL', 'CURRENTHOUR', 'HORA_MINUTOS_ACTUAL' ),
+	'currenthour'             => array( '1', 'HORAACTUAL', 'HORA_ACTUAL', 'CURRENTHOUR' ),
 	'localmonth'              => array( '1', 'MESLOCAL', 'MESLOCAL2', 'LOCALMONTH', 'LOCALMONTH2' ),
 	'localmonth1'             => array( '1', 'MESLOCAL1', 'LOCALMONTH1' ),
 	'localmonthname'          => array( '1', 'MESLOCALCOMPLETO', 'NOMBREMESLOCAL', 'LOCALMONTHNAME' ),
-	'localmonthnamegen'       => array( '1', 'MESLOCALGENITIVO', 'LOCALMONTHNAMEGEN', 'GENERADORNOMBREMESLOCAL' ),
-	'localmonthabbrev'        => array( '1', 'MESLOCALABREVIADO', 'LOCALMONTHABBREV', 'ABREVIACIONMESLOCAL' ),
+	'localmonthnamegen'       => array( '1', 'MESLOCALGENITIVO', 'LOCALMONTHNAMEGEN' ),
+	'localmonthabbrev'        => array( '1', 'MESLOCALABREVIADO', 'LOCALMONTHABBREV' ),
 	'localday'                => array( '1', 'DÍALOCAL', 'DIALOCAL', 'LOCALDAY' ),
 	'localday2'               => array( '1', 'DIALOCAL2', 'DÍALOCAL2', 'LOCALDAY2' ),
 	'localdayname'            => array( '1', 'NOMBREDIALOCAL', 'NOMBREDÍALOCAL', 'LOCALDAYNAME' ),
 	'localyear'               => array( '1', 'AÑOLOCAL', 'LOCALYEAR' ),
-	'localtime'               => array( '1', 'HORAMINUTOSLOCAL', 'TIEMPOLOCAL', 'LOCALTIME', 'HORALOCAL' ),
-	'localhour'               => array( '1', 'HORALOCAL', 'LOCALHOUR', 'HORAMINUTOSLOCAL' ),
+	'localtime'               => array( '1', 'HORAMINUTOSLOCAL', 'TIEMPOLOCAL', 'LOCALTIME' ),
+	'localhour'               => array( '1', 'HORALOCAL', 'LOCALHOUR' ),
 	'numberofpages'           => array( '1', 'NÚMERODEPÁGINAS', 'NUMERODEPAGINAS', 'NUMBEROFPAGES' ),
 	'numberofarticles'        => array( '1', 'NÚMERODEARTÍCULOS', 'NUMERODEARTICULOS', 'NUMBEROFARTICLES' ),
 	'numberoffiles'           => array( '1', 'NÚMERODEARCHIVOS', 'NUMERODEARCHIVOS', 'NUMBEROFFILES' ),
@@ -273,10 +274,10 @@ $magicWords = array(
 	'img_center'              => array( '1', 'centro', 'centrado', 'centrada', 'centrar', 'center', 'centre' ),
 	'img_framed'              => array( '1', 'marco', 'enmarcado', 'enmarcada', 'framed', 'enframed', 'frame' ),
 	'img_frameless'           => array( '1', 'sinmarco', 'sin_enmarcar', 'sinenmarcar', 'frameless' ),
-	'img_page'                => array( '1', 'pagina=$1', 'página=$1', 'pagina_$1', 'página $1', 'page=$1', 'page $1' ),
+	'img_page'                => array( '1', 'pagina=$1', 'página=$1', 'pagina_$1', 'página_$1', 'page=$1', 'page $1' ),
 	'img_border'              => array( '1', 'borde', 'border' ),
 	'img_link'                => array( '1', 'vínculo=$1', 'vinculo=$1', 'enlace=$1', 'link=$1' ),
-	'sitename'                => array( '1', 'NOMBREDELSITIO', 'SITENAME', 'NOMBREDESITIO' ),
+	'sitename'                => array( '1', 'NOMBREDELSITIO', 'SITENAME' ),
 	'ns'                      => array( '0', 'EN:', 'NS:' ),
 	'localurl'                => array( '0', 'URLLOCAL', 'LOCALURL:' ),
 	'localurle'               => array( '0', 'URLLOCALC:', 'LOCALURLE:' ),
@@ -1406,6 +1407,7 @@ Mientras tanto puedes buscar mediante Google, pero ten en cuenta que sus índice
 'prefs-beta' => 'Características de prueba',
 'prefs-datetime' => 'Fecha y hora',
 'prefs-labs' => 'Características de los laboratorios',
+'prefs-user-pages' => 'Páginas de usuario',
 'prefs-personal' => 'Perfil de usuario',
 'prefs-rc' => 'Cambios recientes',
 'prefs-watchlist' => 'Seguimiento',
@@ -1666,7 +1668,7 @@ Tu dirección de correo no se revela cuando otros usuarios te contactan.',
 'nchanges' => '$1 {{PLURAL:$1|cambio|cambios}}',
 'recentchanges' => 'Cambios recientes',
 'recentchanges-legend' => 'Opciones sobre cambios recientes',
-'recentchangestext' => 'Realiza un seguimiento de los cambios más recientes en el wiki en esta página.',
+'recentchanges-summary' => 'Sigue los cambios más recientes de la wiki en esta página.',
 'recentchanges-feed-description' => 'Realiza un seguimiento de los cambios más recientes en el wiki en este canal.',
 'recentchanges-label-newpage' => 'Esta edición creó una nueva página',
 'recentchanges-label-minor' => 'Esta es una edición menor',
@@ -1709,7 +1711,7 @@ Tu dirección de correo no se revela cuando otros usuarios te contactan.',
 'recentchangeslinked-to' => 'Muestra los cambios recientes en lugar de la página indicada',
 
 # Upload
-'upload' => 'Subir archivo',
+'upload' => 'Subir un archivo',
 'uploadbtn' => 'Subir un archivo',
 'reuploaddesc' => 'Regresar al formulario para subir.',
 'upload-tryagain' => 'Envíe la descripción del archivo modificado',
@@ -1819,6 +1821,20 @@ No se permite subir archivos Java, porque pueden causar que se puedan saltar res
 'filename-bad-prefix' => "El nombre del archivo que estás subiendo comienza por '''«$1»''', un nombre nada descriptivo de su contenido. Es un típico nombre de los que asignan automáticamente las cámaras digitales.
 
 Por favor, elige un nombre más descriptivo.",
+'filename-prefix-blacklist' => ' #<!-- deja esta línea exactamente como está --> <pre>
+# La sintaxis de esta página es la siguiente:
+#   * Todo texto que se encuentre después del carácter "#" hasta el final de la línea se tratará como un comentario y será ignorado
+#   * Cualquier línea que no esté en blanco será interpretada como un prefijo típico en nombres de archivo que suelen asignar automáticamente las cámaras digitales
+CIMG # Casio
+DSC_ # Nikon
+DSCF # Fuji
+DSCN # Nikon
+DUW # algunos teléfonos móviles / celulares
+IMG # genérico
+JD # Jenoptik
+MGP # Pentax
+PICT # misc.
+ #</pre> <!-- deja esta línea exactamente como está -->',
 'upload-success-subj' => 'Subida con éxito',
 'upload-success-msg' => 'Tu carga de [$2] fue exitosa. Está disponible aquí: [[:{{ns:file}}:$1]]',
 'upload-failure-subj' => 'Problema en la carga',
@@ -1855,14 +1871,15 @@ $1',
 'backend-fail-writetemp' => 'No se pudo escribir en el archivo temporal.',
 'backend-fail-closetemp' => 'No se pudo cerrar el archivo temporal.',
 'backend-fail-read' => 'No se pudo leer el archivo «$1».',
-'backend-fail-create' => 'No se pudo crear el archivo «$1».',
-'backend-fail-maxsize' => 'No se pudo crear el archivo  $1  porque es mayor de {{PLURAL:$2|$2 bytes|$2 bytes}}.',
+'backend-fail-create' => 'No se pudo escribir el archivo $1.',
+'backend-fail-maxsize' => 'No se pudo escribir el archivo $1 porque es mayor de {{PLURAL:$2|un byte|$2 bytes}}.',
 'backend-fail-readonly' => 'El servidor (back-end) de almacenamiento "$1" está actualmente en estado de sólo lectura. La razón aducida fue: "$2"',
 'backend-fail-synced' => 'El archivo "$1" se encuentra en un estado incoherente dentro de los servidores (backends) de almacenamiento interno',
 'backend-fail-connect' => 'No se pudo conectar al servidor (backend) de almacenamiento "$1".',
 'backend-fail-internal' => 'Se ha producido un error desconocido en el servidor (backend) de almacenamiento "$1".',
 'backend-fail-contenttype' => 'No se pudo determinar el tipo de contenido del archivo a guardar en " $1 ".',
 'backend-fail-batchsize' => 'El servidor (back-end) de almacenamiento ha suministrado un lote de $1 {{PLURAL:$1|operación|operaciones}} de archivo; el límite es de $2 {{PLURAL:$2|operación|operaciones}}.',
+'backend-fail-usable' => 'No se pudo escribir el archivo $1 debido a permisos insuficientes o directorios/contenedores desaparecidos.',
 
 # File journal errors
 'filejournal-fail-dbconnect' => 'No se pudo conectar a la base de datos del registro del sistema de almacenamiento "$1".',
@@ -1925,7 +1942,6 @@ Para óptima seguridad, img_auth.php está desactivado.',
 'http-curl-error' => 'Error al recuperar el URL: $1',
 'http-host-unreachable' => 'No fue posible acceder a la URL.',
 'http-bad-status' => 'Ha habido un problema durante la solicitud HTTP: $1 $2',
-'http-truncated-body' => 'El cuerpo solicitado sólo fue recibido parcialmente.',
 
 # Some likely curl errors. More could be added from <http://curl.haxx.se/libcurl/c/libcurl-errors.html>
 'upload-curl-error6' => 'No se pudo alcanzar la URL',
@@ -1996,6 +2012,7 @@ Tal vez desee editar la descripción de su [$2 página de descripción del archi
 'uploadnewversion-linktext' => 'Subir una nueva versión de este archivo',
 'shared-repo-from' => 'de $1',
 'shared-repo' => 'un repositorio compartido',
+'filepage.css' => '/* Los estilos CSS colocados aquí se incluirán en las páginas de descripción de archivos, incluso en los wikis externos que incluyan estas páginas */',
 
 # File reversion
 'filerevert' => 'Revertir $1',
@@ -3042,6 +3059,11 @@ Permite añadir una razón al resumen de edición.',
 'vector.css' => '/* Los estilos CSS colocados aquí se aplicarán para todos los usuarios que usen la piel Vector */',
 'print.css' => '/* Los estilos CSS colocados aquí afectarán la impresión */',
 'handheld.css' => '/* Los estilos CSS colocados aquí afectarán a los dispositivos móviles basados en las pieles configuradas en $wgHandheldStyle */',
+'noscript.css' => '/* Los estilos CSS colocados aquí se aplicarán a los usuarios que hayan desactivado el JavaScript en su navegador */',
+'group-autoconfirmed.css' => '/* Los estilos CSS colocados aquí se aplicarán para todos los usuarios del grupo Usuarios autoconfirmados */',
+'group-bot.css' => '/* Los estilos CSS colocados aquí se aplicarán para todos los usuarios del grupo Bots */',
+'group-sysop.css' => '/* Los estilos CSS colocados aquí se aplicarán para todos los usuarios del grupo Administradores */',
+'group-bureaucrat.css' => '/* Los estilos CSS colocados aquí se aplicarán para todos los usuarios del grupo Burócratas */',
 
 # Scripts
 'common.js' => '/* Cualquier código JavaScript escrito aquí se cargará para todos los usuarios en cada carga de página */',
@@ -3054,6 +3076,10 @@ Permite añadir una razón al resumen de edición.',
 'simple.js' => '/* Cualquier código JavaScript escrito aquí se cargará para todos los usuarios que usen la piel Simple */',
 'modern.js' => '/* Cualquier código JavaScript escrito aquí se cargará para todos los usuarios que usen la piel Moderna */',
 'vector.js' => '/* Cualquier código JavaScript escrito aquí se cargará para todos los usuarios que usen la piel Vector */',
+'group-autoconfirmed.js' => '/* Cualquier código JavaScript escrito aquí se cargará para todos los usuarios del grupo Usuarios autoconfirmados */',
+'group-bot.js' => '/* Cualquier código JavaScript escrito aquí se cargará para todos los usuarios del grupo Bots */',
+'group-sysop.js' => '/* Cualquier código JavaScript escrito aquí se cargará para todos los usuarios del grupo Administradores */',
+'group-bureaucrat.js' => '/* Cualquier código JavaScript escrito aquí se cargará para todos los usuarios del grupo Burócratas */',
 
 # Metadata
 'notacceptable' => 'El servidor wiki no puede proveer los datos en un formato que su cliente (navegador) pueda entender.',
@@ -3139,6 +3165,7 @@ $1',
 Ejecutarlo podría comprometer la seguridad de su equipo.",
 'imagemaxsize' => "Límite de tamaño de imagen:<br />''(para páginas de descripción de archivo)''",
 'thumbsize' => 'Tamaño de las vistas en miniatura:',
+'widthheight' => '$1 × $2',
 'widthheightpage' => '$1 × $2, $3 {{PLURAL:|página|páginas}}',
 'file-info' => 'tamaño de archivo: $1; tipo MIME: $2',
 'file-info-size' => '$1 × $2 píxeles; tamaño de archivo: $3; tipo MIME: $4',
@@ -3168,8 +3195,10 @@ Ejecutarlo podría comprometer la seguridad de su equipo.",
 'sp-newimages-showfrom' => 'Mostrar nuevas imágenes empezando por $2, $1',
 
 # Video information, used by Language::formatTimePeriod() to format lengths in the above messages
+'seconds-abbrev' => '$1s',
 'minutes-abbrev' => '$1m',
 'hours-abbrev' => '$1h',
+'days-abbrev' => '$1d',
 'seconds' => '{{PLURAL:$1|un segundo|$1 segundos}}',
 'minutes' => '{{PLURAL:$1|un minuto|$1 minutos}}',
 'hours' => '{{PLURAL:$1|una hora|$1 horas}}',

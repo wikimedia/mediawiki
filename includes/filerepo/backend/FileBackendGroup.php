@@ -157,6 +157,21 @@ class FileBackendGroup {
 	}
 
 	/**
+	 * Get the config array for a backend object with a given name
+	 *
+	 * @param $name string
+	 * @return Array
+	 * @throws MWException
+	 */
+	public function config( $name ) {
+		if ( !isset( $this->backends[$name] ) ) {
+			throw new MWException( "No backend defined with the name `$name`." );
+		}
+		$class = $this->backends[$name]['class'];
+		return array( 'class' => $class ) + $this->backends[$name]['config'];
+	}
+
+	/**
 	 * Get an appropriate backend object from a storage path
 	 *
 	 * @param $storagePath string

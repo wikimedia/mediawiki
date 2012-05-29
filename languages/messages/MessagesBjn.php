@@ -11,6 +11,7 @@
  * @author Ezagren
  * @author J Subhi
  * @author Kaganer
+ * @author Riemogerz
  */
 
 $fallback = 'id';
@@ -50,6 +51,50 @@ $namespaceAliases = array(
 	'Pembicaraan_Bantuan'   => NS_HELP_TALK,
 	'Kategori'              => NS_CATEGORY,
 	'Pembicaraan_Kategori'  => NS_CATEGORY_TALK,
+);
+
+$specialPageAliases = array(
+	'Activeusers'               => array( 'Pamakai_aktip' ),
+	'Allmessages'               => array( 'Pasan_sistim' ),
+	'Allpages'                  => array( 'Daptar_tungkaran' ),
+	'Ancientpages'              => array( 'Tungkaran_lawas' ),
+	'Badtitle'                  => array( 'Judul_nang_buruk' ),
+	'Blankpage'                 => array( 'Tungkaran_kusung' ),
+	'Booksources'               => array( 'Sumbar_buku' ),
+	'Categories'                => array( 'Daptar_tumbung' ),
+	'ChangeEmail'               => array( 'Ganti_suril' ),
+	'ComparePages'              => array( 'Bandingakan_tungkaran' ),
+	'Confirmemail'              => array( 'Kunpirmasi_suril' ),
+	'Contributions'             => array( 'Kuntribusi_pamakai' ),
+	'CreateAccount'             => array( 'Ulah_akun' ),
+	'Deadendpages'              => array( 'Tungkaran_buntu' ),
+	'DeletedContributions'      => array( 'Kuntribusi_nang_dihapus' ),
+	'EditWatchlist'             => array( 'Babak_daptan_pantauan' ),
+	'Fewestrevisions'           => array( 'Parubahan_tasadikit' ),
+	'Filepath'                  => array( 'Lukasi_barakas' ),
+	'Listadmins'                => array( 'Daptar_pambakal' ),
+	'Listbots'                  => array( 'Daptar_bot' ),
+	'Listfiles'                 => array( 'Daptar_barakas' ),
+	'Listgrouprights'           => array( 'Daptar_hak_kalumpuk' ),
+	'Listredirects'             => array( 'Daptar_paalihan' ),
+	'Listusers'                 => array( 'Daptar_pamakai' ),
+	'Log'                       => array( 'Catatan' ),
+	'Longpages'                 => array( 'Tungkaran_panjang' ),
+	'Mostcategories'            => array( 'Tumbung_tabanyak' ),
+	'Mostlinked'                => array( 'Tungkaran_paling_dipakai' ),
+	'Mostlinkedcategories'      => array( 'Tumbung_paling_dipakai' ),
+	'Mostlinkedtemplates'       => array( 'Citakan_paling_dipakai' ),
+	'Mostrevisions'             => array( 'Paubahan_tabanyak' ),
+	'Movepage'                  => array( 'Pindahakan_tungkaran' ),
+	'Mycontributions'           => array( 'Kuntribusi_ulun' ),
+	'Mypage'                    => array( 'Tungkaran_ulun' ),
+	'Mytalk'                    => array( 'Pamandiran_ulun' ),
+	'Newimages'                 => array( 'Barakas_hanyar' ),
+	'Newpages'                  => array( 'Tungkaran_hanyar' ),
+	'Protectedpages'            => array( 'Tungkaran_nang_dilindungi' ),
+	'Protectedtitles'           => array( 'Judul_nang_dilindungi' ),
+	'Randompage'                => array( 'Tungkaran_babarang' ),
+	'Recentchanges'             => array( 'Paubahan_tahanyar' ),
 );
 
 $messages = array(
@@ -99,7 +144,7 @@ $messages = array(
 'tog-showhiddencats' => 'Tampaiakan tutumbung tasungkup',
 'tog-norollbackdiff' => 'Kada usah manampaiakan lainan imbah mambulikakan',
 
-'underline-always' => 'Salalu',
+'underline-always' => 'Tarus',
 'underline-never' => 'Kada suah',
 'underline-default' => 'Default Panjalajahan web',
 
@@ -111,18 +156,18 @@ $messages = array(
 'editfont-serif' => 'Tulisan Serif',
 
 # Dates
-'sunday' => 'Ahat',
+'sunday' => 'Ahad',
 'monday' => 'Sanayan',
 'tuesday' => 'Salasa',
 'wednesday' => 'Arba',
-'thursday' => 'Kemés',
+'thursday' => 'Kamis',
 'friday' => 'Jumahat',
 'saturday' => 'Saptu',
 'sun' => 'Aha',
 'mon' => 'San',
 'tue' => 'Sal',
 'wed' => 'Arb',
-'thu' => 'Kem',
+'thu' => 'Kam',
 'fri' => 'Jum',
 'sat' => 'Sap',
 'january' => 'Januari',
@@ -139,7 +184,7 @@ $messages = array(
 'december' => 'Disimbir',
 'january-gen' => 'Januari',
 'february-gen' => 'Pibuari',
-'march-gen' => 'Marat',
+'march-gen' => 'Marit',
 'april-gen' => 'April',
 'may-gen' => 'Mai',
 'june-gen' => 'Juni',
@@ -147,7 +192,7 @@ $messages = array(
 'august-gen' => 'Agustus',
 'september-gen' => 'Siptimbir',
 'october-gen' => 'Uktubir',
-'november-gen' => 'Nopember',
+'november-gen' => 'Nupimbir',
 'december-gen' => 'Disimbir',
 'jan' => 'Jan',
 'feb' => 'Pib',
@@ -437,6 +482,9 @@ Gasan tarjamahan, muhun puruk [//translatewiki.net/wiki/Main_Page?setlang=bjn tr
 'ns-specialprotected' => 'Tungkaran istimiwa kada kawa dibabak.',
 'titleprotected' => "Judul ngini dilindungi matan paulahan ulih [[User:$1|$1]].
 Alasan nang dibariakan adalah ''$2''.",
+'filereadonlyerror' => 'Kada kawa mamudipikasi data "$1" marga repositori data "$2" ada di modus read-only.
+
+Administrator nang takunci nintu manawarakan panjalasan: "$3".',
 
 # Virus scanner
 'virus-badscanner' => "Konpigurasi buruk: pamindai virus kada dipinandui: ''$1''",
@@ -528,6 +576,7 @@ Kadada suril nang akan dikirim maumpati pitur.',
 'invalidemailaddress' => 'Alamat suril ini kada kawa ditarima karana pormat kada sah.
 Muhun buati sabuting alamat suril nang bujur pormatnya atawa puangkan haja isian itu.',
 'cannotchangeemail' => 'Akun alamat suril kada kawa diganti pada wiki ngini.',
+'emaildisabled' => 'Situs naya kada kawa mangirim suril.',
 'accountcreated' => 'Akun diulah',
 'accountcreatedtext' => 'Akun pamakai gasan $1 sudah diulah.',
 'createaccount-title' => 'Paulahan akun gasan {{SITENAME}}',
@@ -724,6 +773,7 @@ Inatakan bahwasa saragam  tungkaran-tungkaran .css wan .js mamuruk aksara halus,
 'updated' => '(Dihanyarakan)',
 'note' => "'''Catatan:'''",
 'previewnote' => "'''Ingatakanlah bahwasa ngini titilikan haja''' Parubahan Pian nang baluman disimpan!",
+'continue-editing' => 'Lanjutakan mambabak',
 'previewconflict' => 'Titilikan ini mancarminakan naskah dalam naskah wilayah atas babakan sawagai mana ini akan mancungul amun disimpan.',
 'session_fail_preview' => "'''Ampun! Kami kada kawa manarusakan babakan Pian karana kahilangan sési data.'''
 Cubai pang sa'asa pulang.
@@ -820,6 +870,11 @@ Babarapa citakan akan kada taumpatakan.",
 'parser-template-loop-warning' => 'Citakan baulang takantup: [[$1]]',
 'parser-template-recursion-depth-warning' => 'Citakan batas kadalaman recursi limpuar ($1)',
 'language-converter-depth-warning' => 'Batas kadalaman pakonversi bahasa limpuar ($1)',
+'node-count-exceeded-category' => 'Tungkaran di mana node-count tarlalui',
+'node-count-exceeded-warning' => 'Tungkaran malabihi node-count',
+'expansion-depth-exceeded-category' => 'Tungkaran dimana kadalaman ikspansi talalui',
+'expansion-depth-exceeded-warning' => 'Tungkaran malabihi kadalaman ikspansi',
+'parser-unstrip-loop-warning' => 'Lingkaran unstrip taditiksi',
 
 # "Undo" feature
 'undo-success' => 'Babakan kawa diwalangi.
@@ -1354,24 +1409,24 @@ Amun Pian mamilih manyadiakan ini, ini akan dipuruk gasan paminanduan kulihan ga
 
 # Recent changes
 'nchanges' => '$1 {{PLURAL:$1|parubahan|parubahan}}',
-'recentchanges' => 'Parubahan tahanyar',
-'recentchanges-legend' => 'Pilihan parubahan tahanyar',
-'recentchangestext' => 'Jajak parubahan wiki pahanyarnya pada tungkaran ngini',
+'recentchanges' => 'Paubahan pahanyarnya',
+'recentchanges-legend' => 'Pilihan paubahan pahanyarnya',
+'recentchanges-summary' => 'Jajak parubahan wiki pahanyarnya pada tungkaran ngini',
 'recentchanges-feed-description' => 'Susuri parubahan pahanyarnya dalam wiki di kitihan ini',
 'recentchanges-label-newpage' => 'Babakan ngini maulah sabuah tungkaran hanyar',
 'recentchanges-label-minor' => 'Ngini adalah sabuah babakan sapalih',
 'recentchanges-label-bot' => 'Babakan ngini digawi ulih saikung bot',
 'recentchanges-label-unpatrolled' => "Babakan ngini baluman ta'awasi",
-'rcnote' => "Di bawah ni {{PLURAL:$1|'''1'''|'''$1'''}} parubahan tahanyar dalam {{PLURAL:$2|'''1''' hari|'''$2''' hari}} tauncit, sampai $4 pukul $5.",
+'rcnote' => "Di bawah ni {{PLURAL:$1|'''1'''|'''$1'''}} paubahan pahanyarnya dalam {{PLURAL:$2|'''1''' hari|'''$2''' hari}} tauncit, sampai $4 pukul $5.",
 'rcnotefrom' => "Di bawah ngini parubahan tumatan '''$2''' (ditampaiakan sampai '''$1''' parubahan)",
-'rclistfrom' => 'Tampaiakan parubahan tahanyar matan $1',
+'rclistfrom' => 'Tampaiakan paubahan pahanyarnya matan $1',
 'rcshowhideminor' => '$1 pambabakan sapalih',
 'rcshowhidebots' => '$1 bot',
 'rcshowhideliu' => '$1 pamakai nang babuat di log',
 'rcshowhideanons' => '$1 pamakai kada bangaran',
 'rcshowhidepatr' => "$1 babakan ta'awasi",
 'rcshowhidemine' => '$1 babakan ulun',
-'rclinks' => 'Tampaiakan $1 parubahan tahanyar dalam $2 hari tauncit<br />$3',
+'rclinks' => 'Tampaiakan $1 paubahan pahanyarnya dalam $2 hari tauncit<br />$3',
 'diff' => 'bida',
 'hist' => 'halam',
 'hide' => 'Sungkupakan',
@@ -1814,6 +1869,8 @@ Ngini wayah ini sudah diugahakan ka [[$2]].',
 'wantedpages' => 'Tutungkaran nang dihandaki',
 'wantedpages-badtitle' => 'Judul kada sah dalam setelan kulihan: $1',
 'wantedfiles' => 'Barakas nang dihandaki',
+'wantedfiletext-nocat' => 'Data-data naya dipakai tagal kada ada. Data matan ripusituri asing kawa tadaptar biar haja ada. Satiap 
+File-file berikut digunakan tapi tidak ada. File dari repositori asing dapat terdaftar meskipun ada. Any such false positives will be <del>manyarang</del>.',
 'wantedtemplates' => 'Citakan nang dihandaki',
 'mostlinked' => 'Tutungkaran tatuju tautan pambanyaknya',
 'mostlinkedcategories' => 'Tutumbung tatuju tautan pambanyaknya',
@@ -1891,6 +1948,10 @@ Pian kada mawatasi tiringan lawan mamilih sabuah macam log, ngaran-pamuruk (sans
 'allpagesbadtitle' => 'Judul tungkaran nang dibari kada sah atawa baisi sabuah awalan antar-bahasa atawa antar-wiki.
 Nangini bisa baisi satu atawa labih karaktir nang saharusnya kadada di judul.',
 'allpages-bad-ns' => '{{SITENAME}} kada baisi ngaran-kamar "$1".',
+'allpages-hide-redirects' => 'Sambunyiakan paalihan',
+
+# SpecialCachedPage
+'cachedspecial-refresh-now' => 'Itihi tahanyar.',
 
 # Special:Categories
 'categories' => 'Tutumbung',
@@ -2639,6 +2700,10 @@ Muhun cubai pulang.',
 'import-logentry-interwiki' => 'ditranswiki $1',
 'import-logentry-interwiki-detail' => '$1 {{PLURAL:$1|ralatan|raralatan}} matan $2',
 
+# JavaScriptTest
+'javascripttest' => 'Mantis JavaScript',
+'javascripttest-pagetext-skins' => 'Pilih kulit nang cagar Pian cubai:',
+
 # Tooltip help for the actions
 'tooltip-pt-userpage' => 'Tungkaran pamakai Pian',
 'tooltip-pt-anonuserpage' => 'Tungkaran pamuruk matan alamat IP Pian mambabak sawagai',
@@ -2670,11 +2735,11 @@ Muhun cubai pulang.',
 'tooltip-n-mainpage-description' => 'Ilangi Tungkaran Tatambaian',
 'tooltip-n-portal' => 'Pasal rangka-gawian, apa nang kawa pian gawi, di mana maugai sasuatu',
 'tooltip-n-currentevents' => 'Gagai panjalasan prihal paristiwa damini',
-'tooltip-n-recentchanges' => 'Daptar parubahan tahanyar dalam wiki',
+'tooltip-n-recentchanges' => 'Daptar paubahan pahanyarnya dalam wiki',
 'tooltip-n-randompage' => 'Tampaiakan sabuah babarang tungkaran',
 'tooltip-n-help' => 'Wadah maugai patulung',
 'tooltip-t-whatlinkshere' => 'Daptar samunyaan tungkaran wiki nang ada tautan ka sia',
-'tooltip-t-recentchangeslinked' => 'Parubahan tahanyar dalam tutungkaran tataut matan tungkaran ngini',
+'tooltip-t-recentchangeslinked' => 'Paubahan pahanyarnya dalam tutungkaran tataut matan tungkaran ngini',
 'tooltip-feed-rss' => 'Kitihan RSS gasan tungkaran ini',
 'tooltip-feed-atom' => 'Kitihan Atum gasan tungkaran ngini',
 'tooltip-t-contributions' => 'Sabuah daptar sumbangan pamakai ngini',
@@ -3583,5 +3648,23 @@ Salain ngitu, Pian kawa mamuruk prmulir nyaman di bawah ngini. Kumintar Pian aka
 'feedback-close' => 'Sudah',
 'feedback-bugcheck' => 'Harat! hanyar dipariksa bahwasa ngini lainan salah asa [$1 bug nang dipinandui].',
 'feedback-bugnew' => 'Ulun mamariksa. Malapurakan sabuah bug hanyar',
+
+# API errors
+'api-error-missingresult' => 'Kasalahan intarnal: kada kawa manantuakan napakah panyalinan tuntung.',
+'api-error-mustbeloggedin' => 'Pian harus babuat ka log gasan maunggah barakas.',
+'api-error-mustbeposted' => 'Ada bug di parangkat lamah naya; kada mamakai mituda HTTP nang bujur.',
+'api-error-noimageinfo' => 'Paunggahan tuntung, tagal paladen kada mambarii inpurmasi napa haja masalah barakas.',
+'api-error-nomodule' => 'Kasalahan intarnal: kada ada modul unggahan nang ditatapakan.',
+'api-error-ok-but-empty' => 'Kasalahan intarnal: kada ada tanggapan matan paladen.',
+'api-error-overwrite' => 'Kada dibariakan manindihi barakas nang sudah ada.',
+'api-error-stashfailed' => 'Kasalahan intarnal: server gagal manyimban barakas samantara.',
+'api-error-timeout' => 'Peladen kada marispun di waktu nang diharapakan',
+'api-error-unclassified' => 'Tajadi kasalahan nang kada dikatahui.',
+'api-error-unknown-code' => 'Kasalahan kada dipinandui: "$1".',
+'api-error-unknown-error' => 'Kasalahan intarnal: tajadi kasalahan pas mancuba maunggah barakas Pian.',
+'api-error-unknown-warning' => 'Paringatan kada dipinandui: "$1".',
+'api-error-unknownerror' => 'Kasalahan kada dipinandui: "$1".',
+'api-error-uploaddisabled' => 'Paunggahan dinunaktipakan di wiki naya.',
+'api-error-verification-error' => 'Barakas naya kira-kira rusak atawa baisi ikstinsi nang salah.',
 
 );

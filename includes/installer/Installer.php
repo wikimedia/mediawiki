@@ -1607,6 +1607,8 @@ abstract class Installer {
 
 		// Don't access the database
 		$GLOBALS['wgUseDatabaseMessages'] = false;
+		// Don't cache langconv tables
+		$GLOBALS['wgLanguageConverterCacheType'] = CACHE_NONE;
 		// Debug-friendly
 		$GLOBALS['wgShowExceptionDetails'] = true;
 		// Don't break forms

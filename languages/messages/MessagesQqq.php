@@ -8,6 +8,7 @@
  * @file
  *
  * @author *Surak*
+ * @author Abanima
  * @author Ahonc
  * @author Aleator
  * @author AlexSm
@@ -101,6 +102,7 @@
  * @author Sherbrooke
  * @author Shirayuki
  * @author Shushruth
+ * @author Siddhartha Ghai
  * @author Siebrand
  * @author Singularity
  * @author Sionnach
@@ -1392,6 +1394,7 @@ This is a search result (and I guess search engine) dependent messages. I do not
 'prefs-beta' => "Header of a subsection at [[Special:Preferences]], tab ''{{int:prefs-editing}}'', listing features that are in beta but mostly suitable for general use",
 'prefs-datetime' => '{{Identical|Date}}',
 'prefs-labs' => "Header of a subsection at [[Special:Preferences]], tab ''{{int:prefs-editing}}'', listing features that are experimental",
+'prefs-user-pages' => "Header of a subsection at [[Special:Preferences]], tab ''{{int:prefs-misc}}'', listing features that are related to user pages",
 'prefs-personal' => 'Title of a tab in [[Special:Preferences]].',
 'prefs-rc' => 'Used in user preferences.
 
@@ -1770,7 +1773,7 @@ This action allows editing of all of the "user rights", not just the rights of t
 
 {{Identical|Recent changes}}',
 'recentchanges-legend' => 'Legend of the fieldset of [[Special:RecentChanges]]',
-'recentchangestext' => 'Text in recent changes',
+'recentchanges-summary' => 'Summary of [[Special:RecentChanges]].',
 'recentchanges-label-newpage' => 'Tooltip for {{msg-mw|newpageletter}}',
 'recentchanges-label-minor' => 'Tooltip for {{msg-mw|newpageletter}}',
 'recentchanges-label-bot' => 'Tooltip for {{msg-mw|boteditletter}}',
@@ -1966,6 +1969,8 @@ Extensions making use of it:
 Parameters:
 * $1 is the number of operations attempted at once in this case.
 * $2 is the maximum number of operations that can be attempted at once.',
+'backend-fail-usable' => 'Parameters:
+* $1 is the file name, including the path, formatted for the storage backend used',
 
 # File journal errors
 'filejournal-fail-dbconnect' => 'Parameters:
@@ -2032,7 +2037,6 @@ Siebrand think this has to do with allowing MediaWiki to fetch remote URLs, and 
 
 If \'scheme\' is difficult to translate, then you could use \'prefix\' instead.',
 'http-bad-status' => '$1 is an HTTP error code (e.g. 404), $2 is the HTTP error message (e.g. File Not Found)',
-'http-truncated-body' => 'This is a standard HTTP error message. → Seems the connection closed prematurely. The HTTP response contained a content-length greater than the received body.',
 
 'license' => 'This appears in the upload form for the license drop-down. The header in the file description page is now at {{msg-mw|License-header}}.',
 'nolicense' => '{{Identical|None selected}}',
@@ -2343,7 +2347,7 @@ $1 is a page title",
 'nopagetitle' => 'Used as title of [[Special:MovePage]], when the oldtitle does not exist.
 
 The text is {{msg-mw|nopagetext}}.',
-'nopagetext' => 'Used as text of [[Special:MovePage]], when the oldtitle does not exist.
+'nopagetext' => 'Used as text on special pages like [[Special:MovePage]] (when the oldtitle does not exist) or [[Special:PermaLink]].
 
 The title is {{msg-mw|nopagetitle}}.',
 'pager-newer-n' => "This is part of the navigation message on the top and bottom of Special pages which are lists of things in date order, e.g. the User's contributions page. It is passed as the second argument of {{msg-mw|Viewprevnext}}. $1 is the number of items shown per page.",
@@ -3048,6 +3052,7 @@ See also {{msg-mw|Movepagetext-noredirectfixer|notext=1}}',
 'movetalk' => 'The text of the checkbox to watch the associated talk page to the page you are moving. This only appears when the talk page is not empty.',
 'move-subpages' => 'The text of an option on the special page [[Special:MovePage|MovePage]]. If this option is ticked, any subpages will be moved with the main page to a new title.',
 'move-talk-subpages' => 'The text of an option on the special page [[Special:MovePage|MovePage]]. If this option is ticked, any talk subpages will be moved with the talk page to a new title.',
+'movepage-max-pages' => 'PROBABLY (A GUESS): when moving a page, you can select an option of moving its subpages, but there is a maximum that can be moved automatically.',
 'movelogpage' => 'Title of [[Special:Log/move]]. Used as heading on that page, and in the dropdown menu on log pages.',
 'movelogpagetext' => "Text on the special page 'Move log'.",
 'movesubpage' => "This is a section header on [[Special:MovePage]], below is a list of subpages.
@@ -3058,6 +3063,7 @@ Parameters:
 
 {{Identical|Reason}}',
 'revertmove' => '{{Identical|Revert}}',
+'delete_and_move' => 'Button text on the move page when the target page already exists.',
 'delete_and_move_text' => 'Used when moving a page, but the destination page already exists and needs deletion. This message is to confirm that you really want to delete the page. See also {{msg|delete and move confirm}}.',
 'delete_and_move_confirm' => 'Used when moving a page, but the destination page already exists and needs deletion. This message is for a checkbox to confirm that you really want to delete the page. See also {{msg|delete and move text}}.',
 'delete_and_move_reason' => 'Shown as reason in content language in the deletion log. Parameter:
@@ -4021,6 +4027,7 @@ CW is an abbreviation for clockwise.',
 'exif-contrast-2' => '{{Identical|Hard}}',
 
 'exif-saturation-0' => '{{Identical|Normal}}',
+'exif-saturation-2' => 'Color saturation in picture EXIF data',
 
 'exif-sharpness-0' => '{{Identical|Normal}}',
 'exif-sharpness-1' => '{{Identical|Soft}}',

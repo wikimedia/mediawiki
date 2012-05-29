@@ -165,6 +165,10 @@ class RepoGroup {
 		return $image;
 	}
 
+	/**
+	 * @param $inputItems array
+	 * @return array
+	 */
 	function findFiles( $inputItems ) {
 		if ( !$this->reposInitialised ) {
 			$this->initialiseRepos();
@@ -196,6 +200,7 @@ class RepoGroup {
 
 	/**
 	 * Interface for FileRepo::checkRedirect()
+	 * @param $title Title
 	 * @return bool
 	 */
 	function checkRedirect( Title $title ) {
@@ -259,6 +264,7 @@ class RepoGroup {
 
 	/**
 	 * Get the repo instance with a given key.
+	 * @param $index string|int
 	 * @return bool|LocalRepo
 	 */
 	function getRepo( $index ) {
@@ -273,8 +279,10 @@ class RepoGroup {
 			return false;
 		}
 	}
+
 	/**
 	 * Get the repo instance by its name
+	 * @param $name string
 	 * @return bool
 	 */
 	function getRepoByName( $name ) {
@@ -282,8 +290,9 @@ class RepoGroup {
 			$this->initialiseRepos();
 		}
 		foreach ( $this->foreignRepos as $repo ) {
-			if ( $repo->name == $name)
+			if ( $repo->name == $name ) {
 				return $repo;
+			}
 		}
 		return false;
 	}
@@ -351,6 +360,7 @@ class RepoGroup {
 	/**
 	 * Split a virtual URL into repo, zone and rel parts
 	 * @param $url string
+	 * @throws MWException
 	 * @return array containing repo, zone and rel
 	 */
 	function splitVirtualUrl( $url ) {
@@ -365,6 +375,10 @@ class RepoGroup {
 		return $bits;
 	}
 
+	/**
+	 * @param $fileName string
+	 * @return array
+	 */
 	function getFileProps( $fileName ) {
 		if ( FileRepo::isVirtualUrl( $fileName ) ) {
 			list( $repoName, /* $zone */, /* $rel */ ) = $this->splitVirtualUrl( $fileName );

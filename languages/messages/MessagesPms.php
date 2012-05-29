@@ -424,6 +424,11 @@ Arcesta: $2',
 'ns-specialprotected' => 'As peulo nen modifichesse le pàgine dlë spassi nominal {{ns:special}}.',
 'titleprotected' => "La creassion ëd pàgine con ës tìtol-sì a l'é stàita proibìa da [[User:$1|$1]].
 Coma rason a l'ha butà: ''$2''.",
+'filereadonlyerror' => 'As peul pa modifichesse l\'archivi "$1" përchè ël depòsit d\'archivi "$2" a l\'é an sola letura.
+
+L\'aministrador ch\'a l\'ha blocalo a l\'ha lassà sta spiegassion: "$3".',
+'invalidtitle-knownnamespace' => 'Tìtol pa bon con spassi nominal "$2" e test "$3"',
+'invalidtitle-unknownnamespace' => 'Tìtol pa bon con spassi nominal sconossù nùmer $1 e test "$2"',
 
 # Virus scanner
 'virus-badscanner' => "Configurassion falà: antivìrus nen conossù: ''$1''",
@@ -515,6 +520,7 @@ Da qualsëssìa ëd coste funsion a sarà mandà gnun messagi fin che chiel (chi
 'invalidemailaddress' => "Costa adrëssa ëd pòsta eletrònica-sì as peul nen pijesse përchè a l'ha na forma nen bon-a.
 Për piasì che a buta n'adrëssa scrita giusta ò che a lassa ël camp veujd.",
 'cannotchangeemail' => "J'adrësse ëd pòsta eletrònica dij cont a peulo pa esse modificà ansima a costa wiki.",
+'emaildisabled' => 'Sto sit-sì a peul pa mandé e-mail.',
 'accountcreated' => 'Cont creà',
 'accountcreatedtext' => "Ël cont Utent për $1 a l'é stàit creà.",
 'createaccount-title' => 'Creassion ëd cont për {{SITENAME}}',
@@ -707,6 +713,7 @@ o <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} 
 'note' => "'''NÒTA:'''",
 'previewnote' => "'''Che a ten-a present che costa-sì a l'é mach na preuva.'''
 Ij sò cambi a son anco' pa stàit salvà!",
+'continue-editing' => 'Continua a modifiché',
 'previewconflict' => "Costa preuva a-j mostra ël test dl'artìcol ambelessì dzora. Se a sërn dë salvelo, a l'é parèj che a lo s-ciairëran ëdcò tuti j'àutri Utent.",
 'session_fail_preview' => "'''Darmagi! I l'oma pa podù processé soa modìfica per via che a son përdusse për la stra ij dat ëd session.
 Për piasì che a preuva n'àutra vira. Se a dovèissa mai torna riveje sossì, che a preuva a seurte dal sistema e peuj torna a rintré.'''",
@@ -720,6 +727,7 @@ ant ël quàder ëd modìfica. La rason che a l'é nen stàit acetà a l'é për
 test ch'a-i é già. Sossì dle vire a riva quand un a deuvra un programa proxy ëd coj un pòch dla Bajòna.'''",
 'edit_form_incomplete' => "'''Quàich part dël formolari ëd modìfica a l'é pa rivà al sërvent; contròla doe vire che toe modìfiche a-i sio anco' e preuva torna.'''",
 'editing' => 'Modìfica ëd $1',
+'creating' => 'Creé $1',
 'editingsection' => 'I soma dapress a modifiché $1 (session)',
 'editingcomment' => 'I soma dapress a modifiché $1 (neuva session)',
 'editconflict' => "Conflit d'edission: $1",
@@ -784,6 +792,7 @@ A smija che a sia stàita scancelà.',
 'edit-no-change' => "Toa modìfica a l'é stàita ignorà, përchè a l'é pa stàit fàit gnun cambiament al test.",
 'edit-already-exists' => 'As peul nen creesse la pàgina.
 A esist già.',
+'defaultmessagetext' => "Test che a-i sarìa se a-i fusso pa 'd modìfiche",
 
 # Parser/template warnings
 'expensive-parserfunction-warning' => "'''Atension:''' Costa pàgina a l'ha tròpe ciamà costose a le fonsions ëd parser.
@@ -799,6 +808,12 @@ Costi paràmeter a son stàit lassà fòra.",
 'parser-template-loop-warning' => 'Trovà na liassa dlë stamp: [[$1]]',
 'parser-template-recursion-depth-warning' => 'Passà ël lìmit ëd ricorsion dlë stamp ($1)',
 'language-converter-depth-warning' => 'Passà lìmit ëd profondità dël convertidor ëd lenghe ($1)',
+'node-count-exceeded-category' => "Pagine anté ël conteur ëd grop a l'é superà",
+'node-count-exceeded-warning' => "La pagina a l'ha superà ël conteur ëd grop",
+'expansion-depth-exceeded-category' => "Pagine anté la profondità d'espansion a l'é superà",
+'expansion-depth-exceeded-warning' => "La pagina a l'ha superà la profondità d'espansion",
+'parser-unstrip-loop-warning' => "Trovà un sicl d'unstrip",
+'parser-unstrip-recursion-limit' => "Superà ël lìmit ëd recursion d'unstrip: $1",
 
 # "Undo" feature
 'undo-success' => "Sta modìfica-sì as peul scancelesse. Për piasì, ch'a contròla ambelessì sota për esse sigur che a l'é pro lòn che a veul fé, e peuj ch'as salva lòn ch'a l'ha butà chiel/chila për finì dë scancelé la modìfica ch'a-i era.",
@@ -973,7 +988,9 @@ Ch'a varda mach che a-i ven-a nen fòra un rabel ant la continuità stòrica.",
 'mergelogpagetext' => "Ambelessì sota a-i é na lista dj'ùltime vire che la stòria ëd na pàgina a l'é stàita butà ansema a cola 'd n'àutra.",
 
 # Diffs
-'history-title' => 'Cronologìa dle modìfiche ëd "$1"',
+'history-title' => '$1: Cronologìa dle modìfiche',
+'difference-title' => '$1: Diferensa tra revision',
+'difference-title-multipage' => '$1 e $2: Diferensa tra pagine',
 'difference-multipage' => '(Diferense tra pàgine)',
 'lineno' => 'Riga $1:',
 'compareselectedversions' => 'Paragon-a le version selessionà',
@@ -1069,6 +1086,7 @@ Ch'a preuva a gionté dnans a soa arserca ël prefiss ''all:'' për sërché an 
 'prefs-beta' => 'Caraterìstiche dla Beta',
 'prefs-datetime' => 'Data e ora',
 'prefs-labs' => 'Caraterìstiche dël laboratòri',
+'prefs-user-pages' => 'Pàgine utent',
 'prefs-personal' => "Profil dl'utent",
 'prefs-rc' => 'Ùltime modìfiche',
 'prefs-watchlist' => 'Ròba che as ten sot euj',
@@ -1334,7 +1352,7 @@ Costa anformassion a sarà pùblica.",
 'nchanges' => '$1 {{PLURAL:$1|modìfica|modìfiche}}',
 'recentchanges' => 'Ùltime modìfiche',
 'recentchanges-legend' => "Opsion dj'ùltime modìfiche",
-'recentchangestext' => 'An costa pàgina as ten cont dle modìfiche pì recente a la wiki.',
+'recentchanges-summary' => 'An costa pàgina as ten cont dle modìfiche pì recente a la wiki.',
 'recentchanges-feed-description' => 'Trassé le modìfiche dla wiki pì davzin-e ant ël temp an cost fluss.',
 'recentchanges-label-newpage' => "Sta modìfica-sì a l'ha creà na neuva pàgina",
 'recentchanges-label-minor' => "Costa a l'é na modìfica cita",
@@ -1544,12 +1562,18 @@ Se a-i riva sossì n'àotra vira, ch'as buta an comunicassion con n'[[Special:Li
 'backend-fail-closetemp' => "As peul pa saresse l'archivi temporani.",
 'backend-fail-read' => "As peul pa les-se l'archivi $1.",
 'backend-fail-create' => "As peul pa creesse l'archivi $1.",
+'backend-fail-maxsize' => "As peul pa scrivse l'archivi $1 përchè a l'é pi gròss che {{PLURAL:$2|un byte|$2 byte}}.",
 'backend-fail-readonly' => "Ël dispositiv ëd memòria «$1» a l'é al moment an sola letura. La rason dàita a l'era: «$2»",
 'backend-fail-synced' => "L'archivi «$1» a l'é ant në stat incoerent andrinta ai dispositiv ëd memòria intern",
 'backend-fail-connect' => 'Impossìbil coleghesse al dispositiv ëd memòria «$1».',
 'backend-fail-internal' => "N'eror pa conossù a l'é rivaje ant ël dispositiv ëd memòria «$1».",
 'backend-fail-contenttype' => "As peul pa determinesse la sòrt ëd contnù dl'archivi da memorisé a «$1».",
 'backend-fail-batchsize' => "Ël dispositiv ëd memòria a l'ha dàit un total ëd $1 {{PLURAL:$1|operassion|operassion}} d'archivi; ël lìmit a l'é $2 {{PLURAL:$1|operassion|operassion}}.",
+'backend-fail-usable' => "As peul pa scrivse l'archivi $1 a motiv ëd pa basta përmess  ëd directory/container mancant.",
+
+# File journal errors
+'filejournal-fail-dbconnect' => 'As peul pa coleghesse al journal database për ël backend ëd memorisassion "$1".',
+'filejournal-fail-dbquery' => 'As peul pa mdifichesse ël journal database për ël backend ëd memorisassion "$1".',
 
 # Lock manager
 'lockmanager-notlocked' => "As peul pa dësblochesse «$1»; a l'é nen blocà.",
@@ -1667,6 +1691,10 @@ A l'é disponìbil na [[Special:WhatLinksHere/$2|lista completa]].",
 Për piasì, vëdde la [$2 pàgina ëd descrission ëd l'archivi] per d'àutre anformassion.",
 'sharedupload-desc-here' => "Cost archivi a riva da $1 e a peul esse dovrà da dj'àutri proget.
 La descrission an soa [$2 pàgina ëd dëscrission ëd l'archivi] a l'é smonùa sì-sota.",
+'sharedupload-desc-edit' => "St'archivi-sì a riva da $1 e a peul esse dovrà da autr proget. 
+A peul d'esse ch'it veule modifiché la descrission là an dzora soa [pagina ëd descrission dl'archivi $2]",
+'sharedupload-desc-create' => "St'archivi-sì a riva da $1 e a peul esse dovrà da autr proget. 
+A peul d'esse ch'it veule modifiché la descrission là an dzora soa [pagina ëd descrission dl'archivi $2]",
 'filepage-nofile' => 'A esist gnun archivi con ës nòm.',
 'filepage-nofile-link' => "N'archivi con sto nòm-sì a esist pa, ma a peul [$1 carielo].",
 'uploadnewversion-linktext' => "Carié na version neuva dë st'archivi-sì",
@@ -1878,6 +1906,12 @@ A peul arstrenze la visualisassion an selessionand la sòrt ëd registr, lë str
 'allpagesprefix' => "Smon-e le pàgine che a l'han ël prefiss:",
 'allpagesbadtitle' => "Ël tìtol che a l'ha daje a la pàgina a va nen bin, ò pura a l'ha andrinta un prefiss inter-lenga ò inter-wiki. A peul esse ëdcò che a l'abia andrinta dij caràter che as peulo nen dovresse ant ij tìtoj.",
 'allpages-bad-ns' => '{{SITENAME}} a l\'ha pa gnun ëspassi nominal "$1".',
+'allpages-hide-redirects' => 'Stërma le ridiression',
+
+# SpecialCachedPage
+'cachedspecial-viewing-cached-ttl' => 'I të stas vëddend na vërsion memorisà dë sta pagina, che a peul esse veja fin a $1.',
+'cachedspecial-viewing-cached-ts' => 'I të stas vëddend na vërsion memorisà dë sta pagina, che a peul esse nen completament atual.',
+'cachedspecial-refresh-now' => "Varda l'ùltima.",
 
 # Special:Categories
 'categories' => 'Categorìe',
@@ -2491,17 +2525,17 @@ Che as sërna, për piasì, un nòm diferent për st'artìcol.",
 'movelogpagetext' => 'Ambelessì sota a-i é na lista ëd tute le pàgine che a son ëstàite tramudà.',
 'movesubpage' => '{{PLURAL:$1|Sot-pàgina|Sot-pàgine}}',
 'movesubpagetext' => "Costa pàgina-sì a l'ha $1 {{PLURAL:$1|sot-pàgina|sot-pàgine}} smonùe sì-sota.",
-'movenosubpage' => "Sta pàgina-sì a l'ha pa ëd sotpàgine.",
+'movenosubpage' => "Sta pàgina-sì a l'ha gnun-e sot-pàgine.",
 'movereason' => 'Rason:',
-'revertmove' => "buta torna coma a l'era",
-'delete_and_move' => 'Scancela e tramuda',
-'delete_and_move_text' => '==A fa da manca dë scancelé==
+'revertmove' => "buté torna coma a l'era",
+'delete_and_move' => 'Scancelé e tramudé',
+'delete_and_move_text' => "==A fa da manca dë scancelé==
 
-L\'artìcol ëd destinassion "[[:$1]]" a-i é già. Veul-lo scancelelo për avej ëd pòst për tramudé l\'àutr?',
-'delete_and_move_confirm' => 'É, scancela la pàgina',
-'delete_and_move_reason' => 'Scancelà për liberé ël pòst për tramudé "[[$1]]"',
-'selfmove' => "Tìtol neuv e tìtol vej a resto midem antra lor; as peul pa tramudesse na pàgina butand-la andoa che a l'é già.",
-'immobile-source-namespace' => 'As peul pa tramudé ëd pàgine ant ël namespace "$1"',
+L'artìcol ëd destinassion «[[:$1]]» a-i é già. Veul-lo scancelelo për avèj ëd pòst për tramudé l'àutr?",
+'delete_and_move_confirm' => 'É, scancelé la pàgina',
+'delete_and_move_reason' => 'Scancelà për liberé ël pòst për tramudé «[[$1]]»',
+'selfmove' => "Tìtol neuv e tìtol vej a resto midem antra 'd lor; as peul pa tramudesse na pàgina butand-la andoa che a l'é già.",
+'immobile-source-namespace' => 'A peul pa tramudé le pàgine ant lë spassi nominal «$1»',
 'immobile-target-namespace' => 'As peul pa tramudé ëd pàgine ant ël namespace "$1"',
 'immobile-target-namespace-iw' => "Un colegament interwiki a l'é pa na destinassion vàlida për tramudé na pàgina.",
 'immobile-source-page' => 'Sta pàgina-sì as peul pa tramudesse.',
@@ -3470,6 +3504,9 @@ A dovrìa avèj arseivù [{{SERVER}}{{SCRIPTPATH}}/COPYING na còpia dla Licensa
 'version-software' => 'Programa anstalà',
 'version-software-product' => 'Prodot',
 'version-software-version' => 'Version',
+'version-entrypoints' => "Anliure ëd pont d'intrà",
+'version-entrypoints-header-entrypoint' => "Pont d'intrà",
+'version-entrypoints-header-url' => "Adrëssa an sl'aragnà",
 
 # Special:FilePath
 'filepath' => "Përcors d'archivi",
@@ -3657,5 +3694,16 @@ Dësnò, a peule dovré ël formlari semplificà sì-sota. Sò coment a sarà gi
 'api-error-unknownerror' => 'Eror sconossù: "$1".',
 'api-error-uploaddisabled' => "Ël cariagi a l'é disabilità su sta wiki.",
 'api-error-verification-error' => "Cost archivi a peul esse danegià, o avèj l'estension sbalià.",
+
+# Durations
+'duration-seconds' => '$1 {{PLURAL:$1|second|second}}',
+'duration-minutes' => '$1 {{PLURAL:$1|minuta|minute}}',
+'duration-hours' => '$1 {{PLURAL:$1|ora|ore}}',
+'duration-days' => '$1 {{PLURAL:$1|di|di}}',
+'duration-weeks' => '$1 {{PLURAL:$1|sman-a|sman-e}}',
+'duration-years' => '$1 {{PLURAL:$1|ann|agn}}',
+'duration-decades' => "$1 {{PLURAL:$1|desen-a d'agn|desen-e d'agn}}",
+'duration-centuries' => '$1 {{PLURAL:$1|sécol|sécoj}}',
+'duration-millennia' => '$1 {{PLURAL:$1|milenari|milenari}}',
 
 );

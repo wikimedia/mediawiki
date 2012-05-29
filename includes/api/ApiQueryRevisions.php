@@ -224,6 +224,13 @@ class ApiQueryRevisions extends ApiQueryBase {
 			}
 		}
 
+		// add user name, if needed
+		if ( $this->fld_user ) {
+			$this->addTables( 'user' );
+			$this->addJoinConds( array( 'user' => Revision::userJoinCond() ) );
+			$this->addFields( Revision::selectUserFields() );
+		}
+
 		// Bug 24166 - API error when using rvprop=tags
 		$this->addTables( 'revision' );
 
@@ -290,7 +297,7 @@ class ApiQueryRevisions extends ApiQueryBase {
 			$this->addWhereFld( 'rev_id', array_keys( $revs ) );
 
 			if ( !is_null( $params['continue'] ) ) {
-				$this->addWhere( "rev_id >= '" . intval( $params['continue'] ) . "'" );
+				$this->addWhere( 'rev_id >= ' . intval( $params['continue'] ) );
 			}
 			$this->addOption( 'ORDER BY', 'rev_id' );
 
@@ -322,9 +329,9 @@ class ApiQueryRevisions extends ApiQueryBase {
 				$pageid = intval( $cont[0] );
 				$revid = intval( $cont[1] );
 				$this->addWhere(
-					"rev_page > '$pageid' OR " .
-					"(rev_page = '$pageid' AND " .
-					"rev_id >= '$revid')"
+					"rev_page > $pageid OR " .
+					"(rev_page = $pageid AND " .
+					"rev_id >= $revid)"
 				);
 			}
 			$this->addOption( 'ORDER BY', array(

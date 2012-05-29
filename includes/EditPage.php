@@ -1,6 +1,22 @@
 <?php
 /**
- * Contains the EditPage class
+ * Page edition user interface.
+ *
+ * This program is free software; you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation; either version 2 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License along
+ * with this program; if not, write to the Free Software Foundation, Inc.,
+ * 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
+ * http://www.gnu.org/copyleft/gpl.html
+ *
  * @file
  */
 
@@ -1068,7 +1084,6 @@ class EditPage {
 		$bot = $wgUser->isAllowed( 'bot' ) && $this->bot;
 		$status = $this->internalAttemptSave( $resultDetails, $bot );
 		// FIXME: once the interface for internalAttemptSave() is made nicer, this should use the message in $status
-
 		if ( $status->value == self::AS_SUCCESS_UPDATE || $status->value == self::AS_SUCCESS_NEW_ARTICLE ) {
 			$this->didSave = true;
 		}
@@ -1144,6 +1159,14 @@ class EditPage {
 				$permission = $this->mTitle->isTalkPage() ? 'createtalk' : 'createpage';
 				throw new PermissionsError( $permission );
 
+			default:
+				// We don't recognize $status->value. The only way that can happen
+				// is if an extension hook aborted from inside ArticleSave.
+				// Render the status object into $this->hookError
+				// FIXME this sucks, we should just use the Status object throughout
+				$this->hookError = '<div class="error">' . $status->getWikitext() .
+					'</div>';
+				return true;
 		}
 		return false;
 	}
@@ -1545,8 +1568,17 @@ class EditPage {
 				wfProfileOut( __METHOD__ );
 				return $status;
 			} else {
-				$this->isConflict = true;
-				$doEditStatus->value = self::AS_END; // Destroys data doEdit() put in $status->value but who cares
+				// Failure from doEdit()
+				// Show the edit conflict page for certain recognized errors from doEdit(),
+				// but don't show it for errors from extension hooks
+				$errors = $doEditStatus->getErrorsArray();
+				if ( in_array( $errors[0][0], array( 'edit-gone-missing', 'edit-conflict',
+					'edit-already-exists' ) ) )
+				{
+					$this->isConflict = true;
+					// Destroys data doEdit() put in $status->value but who cares
+					$doEditStatus->value = self::AS_END;
+				}
 				wfProfileOut( __METHOD__ );
 				return $doEditStatus;
 			}

@@ -24,10 +24,6 @@
  * @defgroup Skins Skins
  */
 
-if ( !defined( 'MEDIAWIKI' ) ) {
-	die( 1 );
-}
-
 /**
  * The main skin class that provide methods and properties for all other skins.
  * This base class is also the "Standard" skin.

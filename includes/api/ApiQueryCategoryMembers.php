@@ -97,7 +97,7 @@ class ApiQueryCategoryMembers extends ApiQueryGeneratorBase {
 		$dir = in_array( $params['dir'], array( 'asc', 'ascending', 'newer' ) ) ? 'newer' : 'older';
 
 		if ( $params['sort'] == 'timestamp' ) {
-			$this->addWhereRange( 'cl_timestamp',
+			$this->addTimestampWhereRange( 'cl_timestamp',
 				$dir,
 				$params['start'],
 				$params['end'] );

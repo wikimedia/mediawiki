@@ -210,7 +210,15 @@ class Title {
 	 */
 	public static function newFromID( $id, $flags = 0 ) {
 		$db = ( $flags & self::GAID_FOR_UPDATE ) ? wfGetDB( DB_MASTER ) : wfGetDB( DB_SLAVE );
-		$row = $db->selectRow( 'page', '*', array( 'page_id' => $id ), __METHOD__ );
+		$row = $db->selectRow(
+			'page',
+			array(
+				'page_namespace', 'page_title', 'page_id',
+				'page_len', 'page_is_redirect', 'page_latest',
+			),
+			array( 'page_id' => $id ),
+			__METHOD__
+		);
 		if ( $row !== false ) {
 			$title = Title::newFromRow( $row );
 		} else {
@@ -2599,7 +2607,10 @@ class Title {
 					$this->mRestrictions['edit'] = explode( ',', trim( $temp[0] ) );
 					$this->mRestrictions['move'] = explode( ',', trim( $temp[0] ) );
 				} else {
-					$this->mRestrictions[$temp[0]] = explode( ',', trim( $temp[1] ) );
+					$restriction = trim( $temp[1] );
+					if( $restriction != '' ) { //some old entries are empty
+						$this->mRestrictions[$temp[0]] = explode( ',', $restriction );
+					}
 				}
 			}
 
@@ -3534,12 +3545,7 @@ class Title {
 		$protected = $this->isProtected();
 
 		// Do the actual move
-		$err = $this->moveToInternal( $nt, $reason, $createRedirect );
-		if ( is_array( $err ) ) {
-			# @todo FIXME: What about the File we have already moved?
-			$dbw->rollback( __METHOD__ );
-			return $err;
-		}
+		$this->moveToInternal( $nt, $reason, $createRedirect );
 
 		// Refresh the sortkey for this row.  Be careful to avoid resetting
 		// cl_timestamp, which may disturb time-based lists on some sites.
@@ -3615,6 +3621,7 @@ class Title {
 	 * @param $reason String The reason for the move
 	 * @param $createRedirect Bool Whether to leave a redirect at the old title.  Ignored
 	 *   if the user doesn't have the suppressredirect right
+	 * @throws MWException
 	 */
 	private function moveToInternal( &$nt, $reason = '', $createRedirect = true ) {
 		global $wgUser, $wgContLang;
@@ -4019,7 +4026,7 @@ class Title {
 		$pageId = $this->getArticleID( $flags );
 		if ( $pageId ) {
 			$db = ( $flags & self::GAID_FOR_UPDATE ) ? wfGetDB( DB_MASTER ) : wfGetDB( DB_SLAVE );
-			$row = $db->selectRow( 'revision', '*',
+			$row = $db->selectRow( 'revision', Revision::selectFields(),
 				array( 'rev_page' => $pageId ),
 				__METHOD__,
 				array( 'ORDER BY' => 'rev_timestamp ASC', 'LIMIT' => 1 )

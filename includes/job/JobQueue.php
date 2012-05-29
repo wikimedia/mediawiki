@@ -21,10 +21,6 @@
  * @defgroup JobQueue JobQueue
  */
 
-if ( !defined( 'MEDIAWIKI' ) ) {
-	die( "This file is part of MediaWiki, it is not a valid entry point\n" );
-}
-
 /**
  * Class to both describe a background job and handle jobs.
  *

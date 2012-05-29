@@ -1267,7 +1267,7 @@ Se till att sidhistorikens kontinuitet behålls när du sammanfogar historik.',
 
 # Diffs
 'history-title' => 'Versionshistorik för "$1"',
-'difference-title' => 'Skillnader mellan revideringar av "$1"',
+'difference-title' => 'Skillnad mellan versioner av "$1"',
 'difference-title-multipage' => 'Skillnader mellan sidorna "$1" och "$2"',
 'difference-multipage' => '(Skillnad mellan sidor)',
 'lineno' => 'Rad $1:',
@@ -1627,7 +1627,7 @@ Om du väljer att ange ditt riktiga namn, kommer det att användas för att till
 'nchanges' => '$1 {{PLURAL:$1|ändring|ändringar}}',
 'recentchanges' => 'Senaste ändringarna',
 'recentchanges-legend' => 'Alternativ för senaste ändringarna',
-'recentchangestext' => 'Följ de senaste ändringarna i wikin på denna sida.',
+'recentchanges-summary' => 'Följ de senaste ändringarna i wikin på denna sida.',
 'recentchanges-feed-description' => 'Följ de senaste ändringarna i wikin genom den här matningen.',
 'recentchanges-label-newpage' => 'Denna redigering skapade en ny sida',
 'recentchanges-label-minor' => 'Detta är en mindre ändring',

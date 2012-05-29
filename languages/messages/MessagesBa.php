@@ -17,6 +17,7 @@
  * @author Timming
  * @author Рустам Нурыев
  * @author ҒатаУлла
+ * @author Ҡамыр Батыр
  */
 
 $fallback = 'ru';
@@ -24,20 +25,36 @@ $fallback = 'ru';
 $namespaceNames = array(
 	NS_MEDIA            => 'Медиа',
 	NS_SPECIAL          => 'Ярҙамсы',
-	NS_TALK             => 'Фекер_алышыу',
+	NS_TALK             => 'Фекерләшеү',
 	NS_USER             => 'Ҡатнашыусы',
-	NS_USER_TALK        => 'Ҡатнашыусы_м-н_фекер_алышыу',
-	NS_PROJECT_TALK     => '$1_б-са_фекер_алышыу',
+	NS_USER_TALK        => 'Ҡатнашыусы_менән_һөйләшеү',
+	NS_PROJECT_TALK     => '$1_буйынса_фекерләшеү',
 	NS_FILE             => 'Рәсем',
-	NS_FILE_TALK        => 'Рәсем_б-са_фекер_алышыу',
+	NS_FILE_TALK        => 'Рәсем_буйынса_фекерләшеү',
 	NS_MEDIAWIKI        => 'MediaWiki',
-	NS_MEDIAWIKI_TALK   => 'MediaWiki_б-са_фекер_алышыу',
+	NS_MEDIAWIKI_TALK   => 'MediaWiki_буйынса_фекерләшеү',
 	NS_TEMPLATE         => 'Ҡалып',
-	NS_TEMPLATE_TALK    => 'Ҡалып_б-са_фекер_алышыу',
+	NS_TEMPLATE_TALK    => 'Ҡалып_буйынса_фекерләшеү',
 	NS_HELP             => 'Белешмә',
-	NS_HELP_TALK        => 'Белешмә_б-са_фекер_алышыу',
-	NS_CATEGORY         => 'Категория',
-	NS_CATEGORY_TALK    => 'Категория_б-са_фекер_алышыу',
+	NS_HELP_TALK        => 'Белешмә_буйынса_фекерләшеү',
+	NS_CATEGORY         => 'Төркөм',
+	NS_CATEGORY_TALK    => 'Төркөм_буйынса_фекерләшеү',
+);
+
+$namespaceAliases = array(
+	'Фекер_алышыу' => NS_TALK,
+	'Ҡатнашыусы_м-н_фекер_алышыу' => NS_USER_TALK,
+	'$1_б-са_фекер_алышыу' => NS_PROJECT_TALK,
+	'Рәсем_б-са_фекер_алышыу' => NS_FILE_TALK,
+	'MediaWiki_б-са_фекер_алышыу' => NS_MEDIAWIKI_TALK,
+	'Ҡалып_б-са_фекер_алышыу' => NS_TEMPLATE_TALK,
+	'Белешмә_б-са_фекер_алышыу' => NS_HELP_TALK,
+	'Категория' => NS_CATEGORY,
+	'Категория_б-са_фекер_алышыу' => NS_CATEGORY_TALK,
+);
+
+$specialPageAliases = array(
+	'Activeusers'               => array( 'ӘүҙемҠатнашыусылар', 'АктивҠатнашыусылар' ),
 );
 
 // Remove Russian aliases
@@ -1344,7 +1361,7 @@ $1",
 'nchanges' => '$1 {{PLURAL:$1|үҙгәртеү|үҙгәртеү}}',
 'recentchanges' => 'Һуңғы үҙгәртеүҙәр',
 'recentchanges-legend' => 'Һуңғы үҙгәртеүҙәр көйләүҙәре',
-'recentchangestext' => '{{grammar:genitive|{{SITENAME}}}}. биттәрендә индерелгән һуңғы үҙгәртеүҙәр исемлеге',
+'recentchanges-summary' => '{{grammar:genitive|{{SITENAME}}}}. биттәрендә индерелгән һуңғы үҙгәртеүҙәр исемлеге',
 'recentchanges-feed-description' => 'Был таҫмалағы һуңғы үҙгәртеүҙәрҙе күҙәтеп барырға',
 'recentchanges-label-newpage' => 'Был үҙгәртеү яңы бит яһаны',
 'recentchanges-label-minor' => 'Был әҙ үҙгәреш',
@@ -1541,7 +1558,7 @@ $1',
 'backend-fail-writetemp' => 'Ваҡытлы файлға яҙып булмай.',
 'backend-fail-closetemp' => 'Ваҡытлы файлды ябып булмай.',
 'backend-fail-read' => '«$1» файлын уҡып булмай.',
-'backend-fail-create' => '«$1» файлын яһап булмай.',
+'backend-fail-create' => '«$1» файлын яҙып булмай.',
 'backend-fail-readonly' => '$1 һаҡлағысы әлегә уҡыу өсөн генә асыҡ. Сәбәбе: $2',
 'backend-fail-synced' => '$1 файлы эске һаҡлағыста ярашһыҙ хәлдә тора.',
 'backend-fail-connect' => '"$1" һаҡлағысы менән бәйләнеш яһап булманы.',
@@ -3649,14 +3666,14 @@ MediaWiki файҙалы булыр, тигән өмөттә, ләкин БЕР 
 'api-error-verification-error' => 'Был файл боҙолған, йәки дөрөҫ булмаған ҡушымтаһы бар.',
 
 # Durations
-'duration-seconds' => 'секунд',
+'duration-seconds' => '$1 {{PLURAL:$1|секунд|секунд}}',
 'duration-minutes' => 'минут',
 'duration-hours' => 'сәғәт',
 'duration-days' => 'көн',
-'duration-weeks' => 'аҙна',
-'duration-years' => 'йыл',
-'duration-decades' => 'декада',
-'duration-centuries' => 'быуат',
-'duration-millennia' => 'меңйыллыҡ',
+'duration-weeks' => '$1 {{PLURAL:$1|аҙна|аҙналар|аҙна}}',
+'duration-years' => '$1 {{PLURAL:$1|йыл|йылдар}}',
+'duration-decades' => '$1 {{PLURAL:$1|ун көнлөк|ун көнлөктәр}}',
+'duration-centuries' => '$1 {{PLURAL:$1|быуат|быуаттар}}',
+'duration-millennia' => '$1 {{PLURAL:$1|меңйыллыҡ|меңйыллыҡтар}}',
 
 );

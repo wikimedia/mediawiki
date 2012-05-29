@@ -342,7 +342,7 @@ $messages = array(
 # Font style option in Special:Preferences
 'editfont-style' => 'Endre stilen for skrifttypen i området:',
 'editfont-default' => 'Nettlesar i utgangspunktet',
-'editfont-monospace' => 'Skrift med fast breidde',
+'editfont-monospace' => 'Skrift med fast breidd',
 'editfont-sansserif' => 'Skrifttype utan seriffar',
 'editfont-serif' => 'Skrifttype med seriffar',
 
@@ -1180,7 +1180,9 @@ Pass på at den nye sida også har innhald frå den innfletta sida.',
 'mergelogpagetext' => 'Nedanfor finn du ei liste over dei siste flettingane av ein sidehistorikk til ein annan.',
 
 # Diffs
-'history-title' => 'Historikken til «$1»',
+'history-title' => '$1: Versjonshistorikk',
+'difference-title' => '$1: Skilnad mellom versjonar',
+'difference-title-multipage' => '$1 og $2: Skilnad mellom sidene',
 'difference-multipage' => '(Skilnad mellom sider)',
 'lineno' => 'Line $1:',
 'compareselectedversions' => 'Samanlikn valde versjonar',
@@ -1535,7 +1537,7 @@ Dette kan ikke tilbakestillast.',
 'nchanges' => '{{PLURAL:$1|Éi endring|$1 endringar}}',
 'recentchanges' => 'Siste endringar',
 'recentchanges-legend' => 'Alternativ for siste endringar',
-'recentchangestext' => 'På denne sida ser du dei sist endra sidene i {{SITENAME}}.',
+'recentchanges-summary' => 'På denne sida ser du dei sist endra sidene i {{SITENAME}}.',
 'recentchanges-feed-description' => 'Fylg med på dei siste endringane på denne wikien med dette abonnementet.',
 'recentchanges-label-newpage' => 'Denne redigeringa oppretta ei ny side',
 'recentchanges-label-minor' => 'Dette er ei mindre endring',
@@ -1711,6 +1713,9 @@ $1',
 'upload-too-many-redirects' => 'URL-en inneheldt for mange omdirigeringar',
 'upload-unknown-size' => 'Ukjend storleik',
 'upload-http-error' => 'Ein HTTP-feil oppstod: $1',
+
+# File backend
+'backend-fail-delete' => 'Kunne ikkje sletta fila «$1».',
 
 # img_auth script messages
 'img-auth-accessdenied' => 'Tilgjenge avslått',
@@ -1936,7 +1941,7 @@ Skildringa frå [$2 filskildringssida] der er vist nedanfor.',
 'deadendpages' => 'Blindvegsider',
 'deadendpagestext' => 'Desse sidene har ikkje lenkjer til andre sider på {{SITENAME}}.',
 'protectedpages' => 'Verna sider',
-'protectedpages-indef' => 'Berre vern på ubestemt tid',
+'protectedpages-indef' => 'Berre vern på uavgrensa tid',
 'protectedpages-cascade' => 'Berre djupvern',
 'protectedpagestext' => 'Desse sidene er verna mot flytting og endring',
 'protectedpagesempty' => 'Ingen sider er verna på den valde måten akkurat no.',
@@ -1997,6 +2002,9 @@ Merk at andre internettsider kan ha direkte lenkjer til filer, og difor kan file
 'allpagesbadtitle' => 'Det oppgjevne sidenamnet var ugyldig eller hadde eit interwiki-prefiks. Det kan også ha hatt eitt eller fleire teikn som ikkje kan brukast i sidenamn.',
 'allpages-bad-ns' => '{{SITENAME}} har ikkje namnerommet «$1».',
 'allpages-hide-redirects' => 'Gøym omdirigeringar',
+
+# SpecialCachedPage
+'cachedspecial-refresh-now' => 'Sjå siste.',
 
 # Special:Categories
 'categories' => 'Kategoriar',
@@ -2219,6 +2227,7 @@ Sjå [[Special:ProtectedPages|lista over verna sider]] for lista over vern som n
 'unprotectedarticle' => 'fjerna vern av «[[$1]]»',
 'movedarticleprotection' => 'flytta verneinnstillingar frå «[[$2]]» til «[[$1]]»',
 'protect-title' => 'Vernar «$1»',
+'protect-title-notallowed' => 'Sjå vernenivået til «$1»',
 'prot_1movedto2' => '«[[$1]]» flytt til «[[$2]]»',
 'protect-legend' => 'Stadfest vern',
 'protectcomment' => 'Grunngjeving:',
@@ -2238,7 +2247,8 @@ Her er dei noverande innstillingane for sida '''$1''':",
 'protect-level-sysop' => 'Berre administratorar',
 'protect-summary-cascade' => 'djupvern',
 'protect-expiring' => 'endar $1 (UTC)',
-'protect-expiry-indefinite' => 'ubestemt',
+'protect-expiring-local' => 'endar $1',
+'protect-expiry-indefinite' => 'uavgrensa',
 'protect-cascade' => 'Vern alle sidene som er inkludert på denne sida (djupvern)',
 'protect-cantedit' => 'Du kan ikkje endre vernenivået på sida fordi du ikkje har tilgang til å endre henne.',
 'protect-othertime' => 'Anna tid:',
@@ -2303,6 +2313,7 @@ Innhaldet i dei sletta versjonane er berre tilgjengeleg for administratorar.',
 
 Sjå [[Special:Log/delete|sletteloggen]] for eit oversyn over sider som nyleg er sletta eller attoppretta.",
 'undelete-header' => 'Sjå [[Special:Log/delete|sletteloggen]] for dei sist sletta sidene.',
+'undelete-search-title' => 'Søk i sletta sider',
 'undelete-search-box' => 'Søk i sletta sider',
 'undelete-search-prefix' => 'Vis sider frå og med:',
 'undelete-search-submit' => 'Søk',
@@ -2748,6 +2759,7 @@ Vitja [//www.mediawiki.org/wiki/Localisation MediaWiki Localisation] og [//trans
 'tooltip-diff' => 'Vis skilnaden mellom din versjon og lagra versjon, utan å lagre.',
 'tooltip-compareselectedversions' => 'Sjå endringane mellom dei valde versjonane av denne sida.',
 'tooltip-watch' => 'Legg denne sida til i overvakingslista di [alt-w]',
+'tooltip-watchlistedit-raw-submit' => 'Oppdater overvakingslista',
 'tooltip-recreate' => 'Ved å trykkje på «Nyopprett» vert sida oppretta på nytt.',
 'tooltip-upload' => 'Start opplastinga',
 'tooltip-rollback' => '«Attenderull»-knappen attenderullar endringar på denne sida med eitt klikk til den førre utgåva av ein annan brukar',
@@ -3210,6 +3222,10 @@ Andre er gøymde som standard.
 'exif-gpslongitude-e' => 'Austleg lengdegrad',
 'exif-gpslongitude-w' => 'Vestleg lengdegrad',
 
+# Pseudotags used for GPSAltitudeRef
+'exif-gpsaltitude-above-sealevel' => '{{PLURAL:$1|Éin|$1}} meter over havet',
+'exif-gpsaltitude-below-sealevel' => '{{PLURAL:$1|Éin|$1}} meter under havet',
+
 'exif-gpsstatus-a' => 'Måling pågår',
 'exif-gpsstatus-v' => 'Målingsinteroperabilitet',
 
@@ -3559,6 +3575,8 @@ Skriv inn filnamnet utan «{{ns:file}}:»-prefikset.',
 'feedback-error1' => 'Feil: Ukjent resultat frå API',
 'feedback-error2' => 'Feil: Brigdinga gjekk ikkje',
 'feedback-error3' => 'Feil: Saknar svar frå API',
+'feedback-thanks' => 'Takk! Attendemeldinga di er lagd inn på sida «[$2 $1]».',
+'feedback-close' => 'Gjort',
 
 # API errors
 'api-error-badaccess-groups' => 'Du har ikkje løyve til å lasta opp filer til wikien.',

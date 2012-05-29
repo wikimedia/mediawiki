@@ -1298,7 +1298,8 @@ class Revision {
 
 		wfProfileIn( __METHOD__ );
 
-		$fields = array( 'page_latest', 'rev_text_id', 'rev_len', 'rev_sha1' );
+		$fields = array( 'page_latest', 'page_namespace', 'page_title',
+						'rev_text_id', 'rev_len', 'rev_sha1' );
 
 		if ( $wgContentHandlerUseDB ) {
 			$fields[] = 'rev_content_model';
@@ -1322,7 +1323,7 @@ class Revision {
 				'text_id'    => $current->rev_text_id,
 				'parent_id'  => $current->page_latest,
 				'len'        => $current->rev_len,
-				'sha1'       => $current->rev_sha1,
+				'sha1'       => $current->rev_sha1
 			);
 
 			if ( $wgContentHandlerUseDB ) {
@@ -1331,6 +1332,7 @@ class Revision {
 			}
 
 			$revision = new Revision( $row );
+			$revision->setTitle( Title::makeTitle( $current->page_namespace, $current->page_title ) );
 		} else {
 			$revision = null;
 		}

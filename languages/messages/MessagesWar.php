@@ -21,16 +21,22 @@ $namespaceNames = array(
 	NS_USER             => 'Gumaramit',
 	NS_USER_TALK        => 'Hiruhimangaw_hiton_gumaramit',
 	NS_PROJECT_TALK     => 'Hiruhimangraw_hiton_$1',
-	NS_FILE             => 'Fayl',
-	NS_FILE_TALK        => 'Hiruhimangraw_hiton_fayl',
-	NS_MEDIAWIKI        => 'MediaWiki',
-	NS_MEDIAWIKI_TALK   => 'Hiruhimangraw_hiton_MediaWiki',
+	NS_FILE             => 'Paypay',
+	NS_FILE_TALK        => 'Hiruhimangraw_hiton_paypay',
+	NS_MEDIAWIKI        => 'MedyaWiki',
+	NS_MEDIAWIKI_TALK   => 'Hiruhimangraw_hiton_MedyaWiki',
 	NS_TEMPLATE         => 'Batakan',
 	NS_TEMPLATE_TALK    => 'Hiruhimangraw_hiton_batakan',
 	NS_HELP             => 'Bulig',
 	NS_HELP_TALK        => 'Hiruhimangaw_hiton_bulig',
 	NS_CATEGORY         => 'Kaarangay',
 	NS_CATEGORY_TALK    => 'Hiruhimangraw_hiton_kaarangay',
+);
+
+$namespaceAliases = array(
+	'Fayl'                          => NS_FILE,
+	'Hiruhimangraw_hiton_fayl'      => NS_FILE_TALK,
+	'Hiruhimangraw_hiton_MediaWiki' => NS_MEDIAWIKI_TALK,
 );
 
 $specialPageAliases = array(
@@ -798,7 +804,7 @@ An imo e-mail address in diri makikit-an kun an iba nga mga gumaramit in makonta
 'nchanges' => '$1 {{PLURAL:$1|pagbag-o|mga pagbabag-o}}',
 'recentchanges' => 'Mga kabag-ohan',
 'recentchanges-legend' => 'Mga pirilion han mga lab-as nga pagbag-o',
-'recentchangestext' => 'Nasubay han pinakalab-as nga pagbag-o ha wiki dinhi nga pakli.',
+'recentchanges-summary' => 'Nasubay han pinakalab-as nga pagbag-o ha wiki dinhi nga pakli.',
 'recentchanges-feed-description' => 'Panultol han pinakalab-as nga pagbabag-o ha wiki dinhi nga panubong.',
 'recentchanges-label-newpage' => 'Ini nga pagliwat hin naghimo hin bag-o nga pakli',
 'recentchanges-label-minor' => 'Gutiay ini nga pagliwat',

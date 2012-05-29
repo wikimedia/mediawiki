@@ -66,10 +66,12 @@
  * @author Tpt
  * @author Urhixidur
  * @author Verdy p
+ * @author WikiEoFrEn
  * @author Wyz
  * @author Yumeki
  * @author Zebulon84
  * @author Zetud
+ * @author Zolo
  * @author Горан Анђелковић
  * @author לערי ריינהארט
  */
@@ -263,6 +265,7 @@ $magicWords = array(
 	'staticredirect'          => array( '1', '__REDIRECTIONSTATIQUE__', '__STATICREDIRECT__' ),
 	'protectionlevel'         => array( '1', 'NIVEAUDEPROTECTION', 'PROTECTIONLEVEL' ),
 	'url_path'                => array( '0', 'CHEMIN', 'PATH' ),
+	'url_query'               => array( '0', 'QUESTION', 'QUERY' ),
 );
 
 $specialPageAliases = array(
@@ -1304,9 +1307,9 @@ Assurez-vous que cette opération conservera la continuité de l’historique de
 'mergelogpagetext' => 'Voici la liste des fusions de l’historique d’une page dans celui d’une autre les plus récentes.',
 
 # Diffs
-'history-title' => 'Historique des versions de «&nbsp;$1&nbsp;»',
-'difference-title' => 'Différence entre des versions de « $1 »',
-'difference-title-multipage' => 'Différence entre les pages « $1 » et « $2 »',
+'history-title' => '$1 : Historique des versions',
+'difference-title' => '$1 : Différence entre versions',
+'difference-title-multipage' => 'Différences entre les pages « $1 » et « $2 »',
 'difference-multipage' => '(Différence entre les pages)',
 'lineno' => 'Ligne $1 :',
 'compareselectedversions' => 'Comparer les versions sélectionnées',
@@ -1402,6 +1405,7 @@ Essayez en utilisant le préfixe ''all:'' pour rechercher dans tout le contenu (
 'prefs-beta' => 'Fonctionnalités bêta',
 'prefs-datetime' => 'Date et heure',
 'prefs-labs' => 'Fonctionnalités « labs »',
+'prefs-user-pages' => 'Pages utilisateur',
 'prefs-personal' => 'Informations personnelles',
 'prefs-rc' => 'Modifications récentes',
 'prefs-watchlist' => 'Liste de suivi',
@@ -1520,7 +1524,7 @@ Elle ne doit pas dépasser $1 caractère{{PLURAL:$1||s}}.',
 'userrights-groupsmember-auto' => 'Membre implicite de :',
 'userrights-groups-help' => 'Vous pouvez modifier les groupes auxquels appartient cet utilisateur:
 * Une case cochée signifie que l’utilisateur se trouve dans ce groupe.
-* Une case non cochée signifie qu’il ne s’y trouve pas.
+* Une case non cochée signifie qu’{{GENDER:$1|il|elle}} ne s’y trouve pas.
 * Un astérisque (*) indique que vous ne pouvez pas retirer ce groupe une fois que vous l’avez ajouté, ou vice-versa.',
 'userrights-reason' => 'Motif :',
 'userrights-no-interwiki' => 'Vous n’avez pas la permission de modifier des droits d’utilisateurs sur d’autres wikis.',
@@ -1663,7 +1667,7 @@ Elle ne doit pas dépasser $1 caractère{{PLURAL:$1||s}}.',
 'nchanges' => '$1 modification{{PLURAL:$1||s}}',
 'recentchanges' => 'Modifications récentes',
 'recentchanges-legend' => 'Options des modifications récentes',
-'recentchangestext' => 'Piste les changements les plus récents du wiki sur cette page.',
+'recentchanges-summary' => 'Piste les changements les plus récents du wiki sur cette page.',
 'recentchanges-feed-description' => 'Suivre les dernières modifications de ce wiki dans un flux.',
 'recentchanges-label-newpage' => 'Cette modification a créé une nouvelle page',
 'recentchanges-label-minor' => 'Cette modification est mineure',
@@ -1870,14 +1874,15 @@ Si le problème persiste, contactez un [[Special:ListUsers/sysop|administrateur]
 'backend-fail-writetemp' => "Impossible d'écrire dans le fichier temporaire.",
 'backend-fail-closetemp' => 'Impossible de fermer le fichier temporaire.',
 'backend-fail-read' => 'Impossible de lire le fichier $1.',
-'backend-fail-create' => 'Impossible de créer le fichier $1.',
-'backend-fail-maxsize' => "Impossible de créer le fichier $1 parce qu'il est plus grand que  {{PLURAL:$2|$2 octet| $2 octets}}.",
+'backend-fail-create' => 'Impossible d’écrire le fichier $1.',
+'backend-fail-maxsize' => "Impossible d’écrire le fichier $1 parce qu'il est plus grand {{PLURAL:$2|qu'un octet|que $2 octets}}.",
 'backend-fail-readonly' => 'Le support de stockage "$1" est actuellement en lecture seule. La raison indiquée est: "$2"',
 'backend-fail-synced' => 'Le fichier "$1" est dans un état incohérent dans les supports de stockage internes',
 'backend-fail-connect' => 'Impossible de se connecter au support de stockage "$1".',
 'backend-fail-internal' => 'Une erreur inconnue s\'est produite dans le support de stockage "$1".',
 'backend-fail-contenttype' => 'Impossible de déterminer le type de contenu du fichier à stocker en "$1".',
 'backend-fail-batchsize' => 'Le support de stockage a fourni un lot de $1 {{PLURAL:$1|opération|opérations}} de fichier; la limite est $2 {{PLURAL:$2|opération|opérations}}.',
+'backend-fail-usable' => 'Impossible d’écrire le fichier $1 en raison de droits insuffisants ou répertoires/conteneurs manquants.',
 
 # File journal errors
 'filejournal-fail-dbconnect' => 'Impossible de se connecter à la base de données du journal pour le terminal de stockage "$1".',
@@ -1940,7 +1945,6 @@ Pour une sécurité optimale, img_auth.php est désactivé.',
 'http-curl-error' => 'Erreur lors de la récupération de l’URL : $1',
 'http-host-unreachable' => 'Impossible d’atteindre l’URL.',
 'http-bad-status' => 'Il y a eu un problème lors de la requête HTTP : $1 $2',
-'http-truncated-body' => 'Le corps de la requête n’a été reçu que partiellement.',
 
 # Some likely curl errors. More could be added from <http://curl.haxx.se/libcurl/c/libcurl-errors.html>
 'upload-curl-error6' => 'URL injoignable',
@@ -1949,7 +1953,7 @@ Pour une sécurité optimale, img_auth.php est désactivé.',
 'upload-curl-error28-text' => 'Le site a mis trop longtemps à répondre. Vérifiez que le site est en ligne, attendez un peu et réessayez. Vous pouvez aussi réessayer à une heure de moindre affluence.',
 
 'license' => 'Licence',
-'license-header' => 'Publié sous licence(s)',
+'license-header' => "Conditions d'utilisation",
 'nolicense' => 'Aucune licence sélectionnée',
 'license-nopreview' => '(Prévisualisation non disponible)',
 'upload_source_url' => ' (une URL valide et accessible publiquement)',

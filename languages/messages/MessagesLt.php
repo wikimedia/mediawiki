@@ -562,8 +562,11 @@ $2',
 'ns-specialprotected' => 'Specialieji puslapiai negali būti redaguojami.',
 'titleprotected' => "[[User:$1|$1]] apsaugojo šį pavadinimą nuo sukūrimo.
 Nurodyta priežastis yra ''$2''.",
-'filereadonlyerror' => 'Neįmanoma pakeisti failo " $1 " nes failų saugykla " $2 " yra nustatyta tik skaitymo režimu.
-Ją užrakinęs administratorius pateikė šį paaiškinimą: " $3 ".',
+'filereadonlyerror' => 'Neįmanoma pakeisti failo "$1" nes failų saugykla "$2" yra nustatyta tik skaitymo režimu.
+
+Ją užrakinęs administratorius pateikė šį paaiškinimą: "$3".',
+'invalidtitle-knownnamespace' => 'Klaidingas pavadinimas vardų erdvėje "$2" ir tekstu "$3"',
+'invalidtitle-unknownnamespace' => 'Klaidingas pavadinimas nežinomoje vardų erdvėje numeriu $1 ir tekstu "$2"',
 
 # Virus scanner
 'virus-badscanner' => "Neleistina konfigūracija: nežinomas virusų skeneris: ''$1''",
@@ -1111,6 +1114,8 @@ Prašome patikrinti sąrašus.',
 
 # Diffs
 'history-title' => '„$1“ versijų istorija',
+'difference-title' => '$1: Skirtumas tarp redakcijų',
+'difference-title-multipage' => '$1 ir $2: Skirtumas tarp puslapių',
 'difference-multipage' => '(Skirtumai tarp puslapių)',
 'lineno' => 'Eilutė $1:',
 'compareselectedversions' => 'Palyginti pasirinktas versijas',
@@ -1469,7 +1474,7 @@ teisės",
 'nchanges' => '$1 {{PLURAL:$1|pakeitimas|pakeitimai|pakeitimų}}',
 'recentchanges' => 'Naujausi keitimai',
 'recentchanges-legend' => 'Naujausių keitimų parinktys',
-'recentchangestext' => 'Šiame puslapyje yra patys naujausi pakeitimai šiame projekte.',
+'recentchanges-summary' => 'Šiame puslapyje yra patys naujausi pakeitimai šiame projekte.',
 'recentchanges-feed-description' => 'Sekite pačius naujausius projekto keitimus šiame šaltinyje.',
 'recentchanges-label-newpage' => 'Šiuo keitimu sukurtas naujas puslapis',
 'recentchanges-label-minor' => 'Tai smulkus pakeitimas',
@@ -3728,7 +3733,7 @@ Paveikslėliai yra rodomi pilna raiška, kiti failų tipai paleidžiami tiesiogi
 'api-error-unknown-code' => 'Nežinoma klaida: " $1 "',
 'api-error-unknown-error' => 'Vidinė klaida: kažkas nutiko bandant įkelti failą.',
 'api-error-unknown-warning' => 'Nežinomas įspėjimas: $1',
-'api-error-unknownerror' => 'Nežinoma klaida: " $1 "',
+'api-error-unknownerror' => 'Nežinoma klaida: "$1"',
 'api-error-uploaddisabled' => 'Įkėlimas išjungtas šioje wiki.',
 'api-error-verification-error' => 'Šis failas gali būti sugadintas arba turi neteisingą papildinį.',
 

@@ -61,14 +61,15 @@ class ApiQueryIWBacklinks extends ApiQueryGeneratorBase {
 					'original value returned by the previous query', '_badcontinue' );
 			}
 
-			$prefix = $this->getDB()->strencode( $cont[0] );
-			$title = $this->getDB()->strencode( $this->titleToKey( $cont[1] ) );
+			$db = $this->getDB();
+			$prefix = $db->addQuotes( $cont[0] );
+			$title = $db->addQuotes( $this->titleToKey( $cont[1] ) );
 			$from = intval( $cont[2] );
 			$this->addWhere(
-				"iwl_prefix > '$prefix' OR " .
-				"(iwl_prefix = '$prefix' AND " .
-				"(iwl_title > '$title' OR " .
-				"(iwl_title = '$title' AND " .
+				"iwl_prefix > $prefix OR " .
+				"(iwl_prefix = $prefix AND " .
+				"(iwl_title > $title OR " .
+				"(iwl_title = $title AND " .
 				"iwl_from >= $from)))"
 			);
 		}

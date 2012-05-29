@@ -24,6 +24,7 @@
  * @author Kaganer
  * @author Klutzy
  * @author Kwj2772
+ * @author Mintz0223
  * @author Pi.C.Noizecehx
  * @author PuzzletChung
  * @author TheAlpha for knowledge
@@ -31,6 +32,7 @@
  * @author Yknok29
  * @author לערי ריינהארט
  * @author 관인생략
+ * @author 아라
  */
 
 $namespaceNames = array(
@@ -64,12 +66,14 @@ $specialPageAliases = array(
 	'Allmessages'               => array( '모든메시지' ),
 	'Allpages'                  => array( '모든문서' ),
 	'Ancientpages'              => array( '오래된문서' ),
+	'Badtitle'                  => array( '잘못된이름', '인식불가이름', '잘못된제목', '인식불가제목' ),
 	'Blankpage'                 => array( '빈문서' ),
 	'Block'                     => array( '차단' ),
 	'Blockme'                   => array( '자가차단' ),
 	'Booksources'               => array( '책찾기' ),
 	'BrokenRedirects'           => array( '끊긴넘겨주기' ),
 	'Categories'                => array( '분류' ),
+	'ChangeEmail'               => array( '이메일변경', '이메일바꾸기' ),
 	'ChangePassword'            => array( '비밀번호변경', '비밀번호바꾸기' ),
 	'ComparePages'              => array( '문서비교' ),
 	'Confirmemail'              => array( '이메일인증' ),
@@ -79,6 +83,7 @@ $specialPageAliases = array(
 	'DeletedContributions'      => array( '삭제된기여' ),
 	'Disambiguations'           => array( '동음이의', '동음이의문서' ),
 	'DoubleRedirects'           => array( '이중넘겨주기' ),
+	'EditWatchlist'             => array( '주시문서목록편집' ),
 	'Emailuser'                 => array( '이메일보내기' ),
 	'Export'                    => array( '내보내기' ),
 	'Fewestrevisions'           => array( '역사짧은문서' ),
@@ -86,6 +91,7 @@ $specialPageAliases = array(
 	'Filepath'                  => array( '파일경로', '그림경로' ),
 	'Import'                    => array( '가져오기' ),
 	'Invalidateemail'           => array( '이메일인증취소', '이메일인증해제' ),
+	'JavaScriptTest'            => array( '자바스크립트시험' ),
 	'BlockList'                 => array( '차단된사용자', '차단목록' ),
 	'LinkSearch'                => array( '외부링크찾기', '외부링크검색' ),
 	'Listadmins'                => array( '관리자', '관리자목록' ),
@@ -114,6 +120,7 @@ $specialPageAliases = array(
 	'Newimages'                 => array( '새파일', '새그림' ),
 	'Newpages'                  => array( '새문서' ),
 	'PasswordReset'             => array( '암호변경' ),
+	'PermanentLink'             => array( '고유링크', '영구링크' ),
 	'Popularpages'              => array( '인기있는문서' ),
 	'Preferences'               => array( '환경설정' ),
 	'Prefixindex'               => array( '접두어찾기' ),
@@ -124,6 +131,7 @@ $specialPageAliases = array(
 	'Recentchanges'             => array( '최근바뀜' ),
 	'Recentchangeslinked'       => array( '링크최근바뀜' ),
 	'Revisiondelete'            => array( '특정판삭제' ),
+	'RevisionMove'              => array( '특정판이동' ),
 	'Search'                    => array( '찾기', '검색' ),
 	'Shortpages'                => array( '짧은문서' ),
 	'Specialpages'              => array( '특수문서', '특수기능' ),
@@ -141,6 +149,7 @@ $specialPageAliases = array(
 	'Unusedtemplates'           => array( '안쓰는틀' ),
 	'Unwatchedpages'            => array( '주시안되는문서' ),
 	'Upload'                    => array( '파일올리기', '그림올리기' ),
+	'UploadStash'               => array( '올린비공개파일' ),
 	'Userlogin'                 => array( '로그인' ),
 	'Userlogout'                => array( '로그아웃' ),
 	'Userrights'                => array( '권한조정' ),
@@ -235,6 +244,7 @@ $magicWords = array(
 	'nse'                     => array( '0', '이름E:', '이름공간E:', 'NSE:' ),
 	'localurl'                => array( '0', '지역주소:', 'LOCALURL:' ),
 	'localurle'               => array( '0', '지역주소E:', 'LOCALURLE:' ),
+	'articlepath'             => array( '0', '항목경로', '기사경로', 'ARTICLEPATH' ),
 	'server'                  => array( '0', '서버', 'SERVER' ),
 	'servername'              => array( '0', '서버이름', 'SERVERNAME' ),
 	'scriptpath'              => array( '0', '스크립트경로', 'SCRIPTPATH' ),
@@ -345,9 +355,11 @@ $messages = array(
 'tog-watchlisthideliu' => '주시문서 목록에서 로그인한 사용자의 편집을 숨기기',
 'tog-watchlisthideanons' => '주시문서 목록에서 비등록 사용자의 편집을 숨기기',
 'tog-watchlisthidepatrolled' => '주시문서 목록에서 검토된 편집을 숨기기',
+'tog-nolangconversion' => '변형 변환을 비활성화',
 'tog-ccmeonemails' => '이메일을 보낼 때 내 이메일로 복사본을 보내기',
 'tog-diffonly' => '편집 차이를 비교할 때 문서 내용을 보지 않기',
 'tog-showhiddencats' => '숨은 분류 보기',
+'tog-noconvertlink' => '링크 제목 변환을 비활성화',
 'tog-norollbackdiff' => '되돌리기 후 차이를 보이지 않기',
 
 'underline-always' => '항상',
@@ -686,6 +698,8 @@ $2',
 'filereadonlyerror' => '‘$2’ 파일 저장소가 읽기 전용이기 때문에 ‘$1’ 파일을 변경할 수 없습니다.
 
 저장소 관리자가 파일 저장소를 잠근 이유에 대해 "\'\'$3\'\'"이라는 설명을 남겼습니다.',
+'invalidtitle-knownnamespace' => '제목 오류: 이름공간 "$2"와 텍스트 "$3"',
+'invalidtitle-unknownnamespace' => '제목 오류: 알 수 없는 이름공간 번호 "$1"과, 텍스트 "$2"',
 
 # Virus scanner
 'virus-badscanner' => "잘못된 설정: 알 수 없는 바이러스 검사기: ''$1''",
@@ -791,6 +805,7 @@ $2',
 # Change password dialog
 'resetpass' => '비밀번호 바꾸기',
 'resetpass_announce' => '이메일로 받은 임시 비밀번호로 로그인했습니다. 로그인을 마치려면 새 비밀번호를 여기에서 설정해야 합니다:',
+'resetpass_text' => '<!-- 여기에 텍스트를 더하세요 -->',
 'resetpass_header' => '비밀번호 변경',
 'oldpassword' => '이전 비밀번호:',
 'newpassword' => '새 비밀번호:',
@@ -1049,6 +1064,8 @@ $2개 보다 적게 써야 하지만 지금은 $1개를 쓰고 있습니다.",
 'node-count-exceeded-warning' => '페이지가 노드 수를 초과하였습니다.',
 'expansion-depth-exceeded-category' => '페이지가 확장 깊이를 초과하였습니다.',
 'expansion-depth-exceeded-warning' => '페이지가 확장 깊이를 초과하였습니다',
+'parser-unstrip-loop-warning' => '스트립하지 않는 반복이 감지됨',
+'parser-unstrip-recursion-limit' => '스트립하지 않는 재귀 한도가 초과됨 ($1)',
 
 # "Undo" feature
 'undo-success' => '이 편집을 되돌리려면 아래의 변경되는 사항을 확인한 후 저장해주세요.',
@@ -1226,7 +1243,9 @@ $1",
 'mergelogpagetext' => '다음은 한 문서의 역사를 다른 문서의 역사와 합친 최근 기록입니다.',
 
 # Diffs
-'history-title' => '‘$1’ 문서의 변경 내력',
+'history-title' => '"$1"  문서의 변경 내력',
+'difference-title' => '"$1"의 두 판 사이의 차이',
+'difference-title-multipage' => '문서 "$1"과 "$2" 간의 차이',
 'difference-multipage' => '(문서간의 차이)',
 'lineno' => '$1번째 줄:',
 'compareselectedversions' => '선택된 판들을 비교하기',
@@ -1321,6 +1340,7 @@ $1",
 'prefs-beta' => '베타 기능',
 'prefs-datetime' => '날짜와 시각',
 'prefs-labs' => '실험 중인 기능',
+'prefs-user-pages' => '사용자 문서',
 'prefs-personal' => '사용자 정보',
 'prefs-rc' => '최근 바뀜',
 'prefs-watchlist' => '주시문서 목록',
@@ -1583,7 +1603,7 @@ $1",
 'nchanges' => '$1개 바뀜',
 'recentchanges' => '최근 바뀜',
 'recentchanges-legend' => '최근 바뀜 설정',
-'recentchangestext' => '위키의 최근 바뀜 내역이 나와 있습니다.',
+'recentchanges-summary' => '위키의 최근 바뀜 내역이 나와 있습니다.',
 'recentchanges-feed-description' => '위키의 최근 바뀜',
 'recentchanges-label-newpage' => '새로운 문서',
 'recentchanges-label-minor' => '사소한 편집',
@@ -1738,7 +1758,7 @@ $1",
 'filename-bad-prefix' => '올리려고 하는 파일 이름이 \'\'\'"$1"\'\'\'(으)로 시작합니다.
 "$1"은(는) 디지털 사진기가 자동으로 붙이는 의미없는 이름입니다.
 파일에 대해 알기 쉬운 이름을 골라주세요.',
-'filename-prefix-blacklist' => ' #<!-- 이 줄은 그대로 두십시오. --> <pre>
+'filename-prefix-blacklist' => ' #<!-- 이 줄은 그대로 두세요 --> <pre>
 # 문법은 다음과 같습니다:
 #   * "#"에서 그 줄의 끝까지는 코멘트입니다.
 #   * 비어 있지 않은 줄은 디지털 카메라에서 자동적으로 부여하는 파일 접두어입니다.
@@ -1751,7 +1771,7 @@ IMG # 일반
 JD # 제놉틱
 MGP # 펜탁스
 PICT # 기타
- #</pre> <!-- 이 줄은 그대로 두십시오. -->',
+ #</pre> <!-- 이 줄은 그대로 두세요 -->',
 'upload-success-subj' => '올리기 성공',
 'upload-success-msg' => '파일을 [$2]에서 성공적으로 올렸습니다. 당신이 올린 파일이 여기 있습니다: [[:{{ns:file}}:$1]]',
 'upload-failure-subj' => '올리기 실패',
@@ -1788,14 +1808,15 @@ $1',
 'backend-fail-writetemp' => '임시 파일을 쓸 수 없습니다.',
 'backend-fail-closetemp' => '임시 파일을 닫을 수 없습니다.',
 'backend-fail-read' => '$1 파일을 읽을 수 없습니다.',
-'backend-fail-create' => '$1 파일을 쓸 수 없습니다.',
-'backend-fail-maxsize' => '$2{{PLURAL:$2|바이트}}보다 커서 $1 파일을 생성하지 못했습니다.',
+'backend-fail-create' => '$1 파일을 저장하지 못했습니다.',
+'backend-fail-maxsize' => '$2{{PLURAL:$2|바이트}}보다 커서 $1 파일을 저장하지 못했습니다.',
 'backend-fail-readonly' => '‘$1’ 저장 백엔드가 읽기 전용입니다. 자세한 이유는 다음과 같습니다: “$2”',
 'backend-fail-synced' => '파일 "$1"은 내부 저장 백엔드에 불안정한 상태로 있습니다.',
 'backend-fail-connect' => "'$1' 저장 백엔드에 접속하지 못했습니다.",
 'backend-fail-internal' => '"$1" 저장 백엔드에 알 수 없는 오류가 발생했습니다.',
 'backend-fail-contenttype' => '"$1"에 저장하기 위한 파일의 내용 유형을 판별하지 못했습니다.',
 'backend-fail-batchsize' => '저장 백엔드에서 $1개의 파일 {{PLURAL:$1|작업}}이 쌓여 있습니다; 한계는 $2개입니다.',
+'backend-fail-usable' => '파일 저장 권한이 없거나 저장 위치가 빠졌기 때문에 $1 파일을 저장할 수 없습니다.',
 
 # File journal errors
 'filejournal-fail-dbconnect' => '저장소 백엔드 ‘$1’에 대한 저널 데이터베이스에 연결할 수 없습니다.',
@@ -1889,7 +1910,7 @@ URL이 맞고 해당 웹사이트가 작동하는지 확인해주세요.',
 'filehist' => '파일 역사',
 'filehist-help' => '날짜/시간 링크를 클릭하면 해당 시간의 파일을 볼 수 있습니다.',
 'filehist-deleteall' => '모두 삭제',
-'filehist-deleteone' => '지우기',
+'filehist-deleteone' => '삭제',
 'filehist-revert' => '되돌리기',
 'filehist-current' => '최신',
 'filehist-datetime' => '날짜/시간',
@@ -1925,6 +1946,7 @@ URL이 맞고 해당 웹사이트가 작동하는지 확인해주세요.',
 'shared-repo-from' => '($1)',
 'shared-repo' => '공용 저장소',
 'shared-repo-name-wikimediacommons' => '위키미디어 공용',
+'filepage.css' => '/* 이 CSS 설정은 파일 설명 페이지에 포함되며, 또한 해외 클라이언트 위키에 포함됩니다 */',
 
 # File reversion
 'filerevert' => '$1 되돌리기',
@@ -2185,7 +2207,7 @@ URL이 맞고 해당 웹사이트가 작동하는지 확인해주세요.',
 # Special:ListGroupRights
 'listgrouprights' => '사용자 권한 목록',
 'listgrouprights-summary' => '다음은 이 위키에서 설정된 사용자 권한 그룹의 목록입니다.
-각각의 권한에 대해서는 [[{{MediaWiki:Listgrouprights-helppage}}|이곳]]을 참조하십시오.',
+각각의 권한에 대해서는 [[{{MediaWiki:Listgrouprights-helppage}}|이곳]]을 참고하세요.',
 'listgrouprights-key' => '* <span class="listgrouprights-granted">부여된 권한</span>
 * <span class="listgrouprights-revoked">해제된 권한</span>',
 'listgrouprights-group' => '그룹',
@@ -2235,6 +2257,7 @@ URL이 맞고 해당 웹사이트가 작동하는지 확인해주세요.',
 # User Messenger
 'usermessage-summary' => '시스템 메시지 남기기',
 'usermessage-editor' => '시스템 메신저',
+'usermessage-template' => 'MediaWiki:UserMessage',
 
 # Watchlist
 'watchlist' => '주시문서 목록',
@@ -2513,6 +2536,7 @@ $1',
 'sp-contributions-username' => 'IP 주소 혹은 계정 이름:',
 'sp-contributions-toponly' => '최신판만 보기',
 'sp-contributions-submit' => '찾기',
+'sp-contributions-explain' => '',
 
 # What links here
 'whatlinkshere' => '여기를 가리키는 문서',
@@ -2966,15 +2990,38 @@ $1 사용자가 차단된 이유는 다음과 같습니다: "$2"',
 
 # Stylesheets
 'common.css' => '/** 이 CSS 설정은 모든 스킨에 동일하게 적용됩니다 */',
+'standard.css' => '/* 이 CSS 설정은 모든 표준 스킨에 적용됩니다 */',
+'nostalgia.css' => '/* 이 CSS 설정은 모든 노스텔지아 스킨에 적용됩니다 */',
+'cologneblue.css' => '/* 이 CSS 설정은 모든 쾰른 블루 스킨에 적용됩니다 */',
 'monobook.css' => '/* 이 CSS 설정은 모든 모노북 스킨에 적용됩니다 */',
+'myskin.css' => '/* 이 CSS 설정은 모든 마이스킨 스킨에 적용됩니다 */',
+'chick.css' => '/* 이 CSS 설정은 모든 치크 스킨에 적용됩니다 */',
+'simple.css' => '/* 이 CSS 설정은 모든 심플 스킨에 적용됩니다 */',
 'modern.css' => '/* 이 CSS 설정은 모든 모던 스킨에 적용됩니다 */',
 'vector.css' => '/* 이 CSS 설정은 모든 벡터 스킨에 적용됩니다 */',
-'print.css' => '/* 이 CSS 설정은 출력/인쇄 화면에 적용됩니다. */',
+'print.css' => '/* 이 CSS 설정은 출력/인쇄 화면에 적용됩니다 */',
+'handheld.css' => '/* 이 CSS 설정은 $wgHandheldStyle에 설정한 스킨을 기반으로 한 휴대 기기에 적용됩니다 */',
+'noscript.css' => '/* 이 CSS 설정은 자바스크립트를 비활성화한 사용자에 적용됩니다 */',
+'group-autoconfirmed.css' => '/* 이 CSS 설정은 자동 인증된 사용자에만 적용됩니다 */',
+'group-bot.css' => '/* 이 CSS 설정은 봇에만 적용됩니다 */',
+'group-sysop.css' => '/* 이 CSS 설정은 관리자에만 적용됩니다 */',
+'group-bureaucrat.css' => '/* 이 CSS 설정은 사무관에만 적용됩니다 */',
 
 # Scripts
 'common.js' => '/* 이 자바스크립트 설정은 모든 문서, 모든 사용자에게 적용됩니다. */',
-'monobook.js' => '/* 이 자바스크립트 설정은 모노북 스킨을 사용하는 사용자에게 적용됩니다. */',
-'vector.js' => '/* 이 자바스크립트 설정은 벡터 스킨을 사용하는 사용자에게 적용됩니다. */',
+'standard.js' => '/* 이 자바스크립트 설정은 표준 스킨을 사용하는 사용자에게 적용됩니다 */',
+'nostalgia.js' => '/* 이 자바스크립트 설정은 노스텔지아 스킨을 사용하는 사용자에게 적용됩니다 */',
+'cologneblue.js' => '/* 이 자바스크립트 설정은 쾰른 블루 스킨을 사용하는 사용자에게 적용됩니다 */',
+'monobook.js' => '/* 이 자바스크립트 설정은 모노북 스킨을 사용하는 사용자에게 적용됩니다 */',
+'myskin.js' => '/* 이 자바스크립트 설정은 마이스킨 스킨을 사용하는 사용자에게 적용됩니다 */',
+'chick.js' => '/* 이 자바스크립트 설정은 치크 스킨을 사용하는 사용자에게 적용됩니다 */',
+'simple.js' => '/* 이 자바스크립트 설정은 심플 스킨을 사용하는 사용자에게 적용됩니다 */',
+'modern.js' => '/* 이 자바스크립트 설정은 모던 스킨을 사용하는 사용자에게 적용됩니다 */',
+'vector.js' => '/* 이 자바스크립트 설정은 벡터 스킨을 사용하는 사용자에게 적용됩니다 */',
+'group-autoconfirmed.js' => '/* 이 자바스크립트 설정은 자동 인증된 사용자에만 적용됩니다 */',
+'group-bot.js' => '/* 이 자바스크립트 설정은 봇에만 적용됩니다 */',
+'group-sysop.js' => '/* 이 자바스크립트 설정은 관리자에만 적용됩니다 */',
+'group-bureaucrat.js' => '/* 이 자바스크립트 설정은 사무관에만 적용됩니다 */',
 
 # Metadata
 'notacceptable' => '클라이언트에서 인식 가능한 출력 포맷이 없습니다.',
@@ -3314,6 +3361,9 @@ Variants for Chinese language
 'exif-compression-2' => 'CCITT 그룹-3 1차원 수정 허프먼 반복 길이 부호화',
 'exif-compression-3' => 'CCITT 그룹-3 팩스 인코딩',
 'exif-compression-4' => 'CCITT 그룹-4 팩스 인코딩',
+'exif-compression-6' => 'JPEG (오래됨)',
+'exif-compression-8' => 'Deflate (Adobe;어도비)',
+'exif-compression-32773' => 'PackBits (매킨토시 RLE)',
 
 'exif-copyrighted-true' => '저작권의 보호를 받음',
 'exif-copyrighted-false' => '퍼블릭 도메인',
@@ -3631,7 +3681,7 @@ $5
 
 # Auto-summaries
 'autosumm-blank' => '문서를 비움',
-'autosumm-replace' => '문서 내용을 ‘$1’으로 교체',
+'autosumm-replace' => '문서 내용을 ‘$1’으로 바꿈',
 'autoredircomment' => '[[$1]] 문서로 넘겨주기',
 'autosumm-new' => '새 문서: $1',
 
@@ -3710,6 +3760,8 @@ $5
 'version-entrypoints' => 'URL 진입점',
 'version-entrypoints-header-entrypoint' => '진입점',
 'version-entrypoints-header-url' => 'URL',
+'version-entrypoints-articlepath' => '[https://www.mediawiki.org/wiki/Manual:$wgArticlePath 문서 경로]',
+'version-entrypoints-scriptpath' => '[https://www.mediawiki.org/wiki/Manual:$wgScriptPath 스크립트 경로]',
 
 # Special:FilePath
 'filepath' => '파일 경로',

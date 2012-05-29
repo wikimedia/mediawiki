@@ -113,6 +113,8 @@ class DBLockManager extends LockManager {
 
 	/**
 	 * @see LockManager::doLock()
+	 * @param $paths array
+	 * @param $type int
 	 * @return Status
 	 */
 	protected function doLock( array $paths, $type ) {
@@ -164,6 +166,8 @@ class DBLockManager extends LockManager {
 
 	/**
 	 * @see LockManager::doUnlock()
+	 * @param $paths array
+	 * @param $type int
 	 * @return Status
 	 */
 	protected function doUnlock( array $paths, $type ) {
@@ -438,11 +442,21 @@ class MySqlLockManager extends DBLockManager {
 		self::LOCK_EX => self::LOCK_EX
 	);
 
+	/**
+	 * @param $lockDb string
+	 * @param $db DatabaseBase
+	 */
 	protected function initConnection( $lockDb, DatabaseBase $db ) {
 		# Let this transaction see lock rows from other transactions
 		$db->query( "SET SESSION TRANSACTION ISOLATION LEVEL READ UNCOMMITTED;" );
 	}
 
+	/**
+	 * @param $lockDb string
+	 * @param $paths array
+	 * @param $type int
+	 * @return bool
+	 */
 	protected function doLockingQuery( $lockDb, array $paths, $type ) {
 		$db = $this->getConnection( $lockDb );
 		if ( !$db ) {

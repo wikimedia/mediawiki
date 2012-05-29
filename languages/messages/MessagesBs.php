@@ -638,8 +638,8 @@ Moguće je da ju je neko drugi već obrisao.',
 'cannotdelete-title' => 'Ne mogu izbrisati stranicu "$1"',
 'badtitle' => 'Loš naslov',
 'badtitletext' => 'Zahtjevani naslov stranice je bio neispravan, prazan ili neispravno povezan međujezički ili interviki naslov.',
-'perfcached' => 'Slijedeći podaci su keširani i možda neće biti u potpunosti ažurirani. A maximum of {{PLURAL:$1|one result is|$1 results are}} available in the cache.',
-'perfcachedts' => 'Slijedeći podaci se nalaze u memoriji i zadnji put su ažurirani $1. A maximum of {{PLURAL:$4|one result is|$4 results are}} available in the cache.',
+'perfcached' => 'Slijedeći podaci su keširani i možda neće biti u potpunosti ažurirani. Keš sadrži najviše {{PLURAL:$1|jedan rezultat|$1 rezultata}}.',
+'perfcachedts' => 'Slijedeći podaci se nalaze u memoriji i zadnji put su ažurirani $1. Keš sadrži najviše {{PLURAL:$4|jedan rezultat|$4 rezultata}}.',
 'querypage-no-updates' => 'Ažuriranje ove stranice je isključeno.
 Podaci koji se ovdje nalaze ne moraju biti aktuelni.',
 'wrong_wfQuery_params' => 'Netačni parametri za wfQuery()<br />
@@ -963,6 +963,7 @@ Ne zaboravite da imena stranica s .css i .js kodom počinju malim slovom, npr. {
 'note' => "'''Pažnja:'''",
 'previewnote' => "'''Ne zaboravite da je ovo samo pregled'''
 Izmjene stranice nisu još sačuvane!",
+'continue-editing' => 'Nastavi uređivati',
 'previewconflict' => 'Ovaj pregled reflektuje tekst u gornjem polju
 kako će izgledati ako pritisnete "Sačuvaj članak".',
 'session_fail_preview' => "'''Izvinjavamo se! Nismo mogli obraditi vašu izmjenu zbog gubitka podataka o prijavi. Molimo pokušajte ponovno. Ako i dalje ne bude radilo, pokušajte se [[Special:UserLogout|odjaviti]] i ponovno prijaviti.'''",
@@ -1594,7 +1595,7 @@ Ako izaberete da date ime, biće korišteno za pripisivanje za vaš rad.',
 'nchanges' => '$1 {{PLURAL:$1|promjena|promjene|promjena}}',
 'recentchanges' => 'Nedavne izmjene',
 'recentchanges-legend' => 'Postavke nedavnih izmjena',
-'recentchangestext' => 'Na ovoj stranici možete pratiti nedavne izmjene.',
+'recentchanges-summary' => 'Na ovoj stranici možete pratiti nedavne izmjene.',
 'recentchanges-feed-description' => 'Na ovoj stranici možete pratiti nedavne izmjene.',
 'recentchanges-label-newpage' => 'Ovom izmjenom se pravi nova stranica',
 'recentchanges-label-minor' => 'Ovo je mala izmjena',
@@ -2112,6 +2113,7 @@ Možete specificirati prikaz izabiranjem specifičnog spiska, korisničkog imena
 'allpagesbadtitle' => 'Dati naziv stranice je nepravilan ili ima međujezički ili interwiki prefiks.
 Možda sadrži jedan ili više znakova koji se ne mogu koristiti u naslovima.',
 'allpages-bad-ns' => '{{SITENAME}} nema imenski prostor "$1".',
+'allpages-hide-redirects' => 'Sakrij preusmjerenja',
 
 # Special:Categories
 'categories' => 'Kategorije',

@@ -100,7 +100,7 @@ class ApiBlock extends ApiBase {
 
 		$block = Block::newFromTarget( $target );
 		if( $block instanceof Block ){
-			$res['expiry'] = $block->mExpiry == wfGetDB( DB_SLAVE )->getInfinity()
+			$res['expiry'] = $block->mExpiry == $this->getDB()->getInfinity()
 				? 'infinite'
 				: wfTimestamp( TS_ISO_8601, $block->mExpiry );
 			$res['id'] = $block->getId();

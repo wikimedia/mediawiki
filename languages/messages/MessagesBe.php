@@ -49,7 +49,7 @@ $namespaceNames = array(
 	NS_TALK             => 'Размовы',
 	NS_USER             => 'Удзельнік',
 	NS_USER_TALK        => 'Размовы_з_удзельнікам',
-	NS_PROJECT_TALK     => '$1_размовы',
+	NS_PROJECT_TALK     => 'Размовы_пра_{{GRAMMAR:вінавальны|$1}}',
 	NS_FILE             => 'Выява',
 	NS_FILE_TALK        => 'Размовы_пра_выяву',
 	NS_MEDIAWIKI        => 'MediaWiki',
@@ -60,6 +60,10 @@ $namespaceNames = array(
 	NS_HELP_TALK        => 'Размовы_пра_даведку',
 	NS_CATEGORY         => 'Катэгорыя',
 	NS_CATEGORY_TALK    => 'Размовы_пра_катэгорыю',
+);
+
+$namespaceAliases = array(
+	'$1_размовы' => NS_PROJECT_TALK,
 );
 
 $magicWords = array(
@@ -1353,7 +1357,7 @@ $1",
 'nchanges' => '$1 {{PLURAL:$1|мена|менаў}}',
 'recentchanges' => 'Нядаўнія змяненні',
 'recentchanges-legend' => 'Магчымасці паказу',
-'recentchangestext' => 'Гэта апошнія мены на пляцоўцы {{SITENAME}}.',
+'recentchanges-summary' => 'Гэта апошнія мены на пляцоўцы {{SITENAME}}.',
 'recentchanges-feed-description' => 'Сачыць за найбольш актуальнымі змяненнямі ў віксе праз гэты струмень навін.',
 'recentchanges-label-newpage' => 'Гэтай праўкай была створана новая старонка',
 'recentchanges-label-minor' => 'Гэта дробная па значэнні праўка',

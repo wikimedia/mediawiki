@@ -5,7 +5,7 @@
 * ^--- important, causes temporary tables to be used instead of the real database
 **/
 
-class WikiPageTest extends MediaWikiTestCase {
+class WikiPageTest extends MediaWikiLangTestCase {
 
 	var $pages_to_delete;
 
@@ -31,6 +31,7 @@ class WikiPageTest extends MediaWikiTestCase {
 	}
 	
 	public function setUp() {
+		parent::setUp();
 		$this->pages_to_delete = array();
 
 		LinkCache::singleton()->clear(); # avoid cached redirect status, etc
@@ -48,6 +49,7 @@ class WikiPageTest extends MediaWikiTestCase {
 				// fail silently
 			}
 		}
+		parent::tearDown();
 	}
 
 	/**
@@ -234,6 +236,21 @@ class WikiPageTest extends MediaWikiTestCase {
 
 		$t = Title::newFromText( $page->getTitle()->getPrefixedText() );
 		$this->assertFalse( $t->exists(), "Title::exists should return false after page was deleted" );
+
+		# ------------------------
+		$dbr = wfGetDB( DB_SLAVE );
+		$res = $dbr->select( 'pagelinks', '*', array( 'pl_from' => $id ) );
+		$n = $res->numRows();
+		$res->free();
+
+		$this->assertEquals( 0, $n, 'pagelinks should contain no more links from the page' );
+	}
+
+	public function testDoDeleteUpdates() {
+		$page = $this->createPage( "WikiPageTest_testDoDeleteArticle", "[[original text]] foo" );
+		$id = $page->getId();
+
+		$page->doDeleteUpdates( $id );
 
 		# ------------------------
 		$dbr = wfGetDB( DB_SLAVE );

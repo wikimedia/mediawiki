@@ -68,6 +68,7 @@ $specialPageAliases = array(
 	'DeletedContributions'      => array( 'Kustutatud_kaastöö' ),
 	'Disambiguations'           => array( 'Täpsustusleheküljed' ),
 	'DoubleRedirects'           => array( 'Kahekordsed_ümbersuunamised' ),
+	'EditWatchlist'             => array( 'Jälgimisloendi_redigeerimine' ),
 	'Emailuser'                 => array( 'E-kirja_saatmine' ),
 	'Export'                    => array( 'Lehekülgede_eksport' ),
 	'Fewestrevisions'           => array( 'Vähim_muudatusi' ),
@@ -75,6 +76,7 @@ $specialPageAliases = array(
 	'Filepath'                  => array( 'Failitee' ),
 	'Import'                    => array( 'Lehekülgede_import' ),
 	'Invalidateemail'           => array( 'E-posti_kinnituse_tühistamine', 'Tühista_e-posti_kinnitus' ),
+	'JavaScriptTest'            => array( 'JavaScripti_katsetamine' ),
 	'BlockList'                 => array( 'Blokeerimisloend' ),
 	'LinkSearch'                => array( 'Välislinkide_otsimine', 'Otsi_välislinke' ),
 	'Listadmins'                => array( 'Ülemaloend' ),
@@ -99,6 +101,7 @@ $specialPageAliases = array(
 	'Mycontributions'           => array( 'Minu_kaastöö' ),
 	'Mypage'                    => array( 'Minu_lehekülg' ),
 	'Mytalk'                    => array( 'Minu_aruteluleht' ),
+	'Myuploads'                 => array( 'Minu_üleslaaditu' ),
 	'Newimages'                 => array( 'Uued_failid' ),
 	'Newpages'                  => array( 'Uued_leheküljed' ),
 	'PasswordReset'             => array( 'Parooli_lähtestamine' ),
@@ -117,6 +120,7 @@ $specialPageAliases = array(
 	'Specialpages'              => array( 'Erileheküljed' ),
 	'Statistics'                => array( 'Arvandmestik' ),
 	'Tags'                      => array( 'Märgised' ),
+	'Unblock'                   => array( 'Blokeerimise_eemaldamine' ),
 	'Uncategorizedcategories'   => array( 'Kategoriseerimata_kategooriad' ),
 	'Uncategorizedimages'       => array( 'Kategoriseerimata_failid' ),
 	'Uncategorizedpages'        => array( 'Kategoriseerimata_leheküljed' ),
@@ -128,6 +132,7 @@ $specialPageAliases = array(
 	'Unusedtemplates'           => array( 'Kasutamata_mallid' ),
 	'Unwatchedpages'            => array( 'Jälgimata_leheküljed' ),
 	'Upload'                    => array( 'Faili_üleslaadimine' ),
+	'UploadStash'               => array( 'Üleslaaditu_alghoidla' ),
 	'Userlogin'                 => array( 'Sisselogimine' ),
 	'Userlogout'                => array( 'Väljalogimine' ),
 	'Userrights'                => array( 'Kasutaja_õigused' ),
@@ -670,6 +675,8 @@ $2',
 'filereadonlyerror' => 'Faili "$1" ei saa muuta, sest hoidla "$2" on kirjutuskaitstud.
 
 Administraator lukustas selle järgmisel põhjusel: "$3".',
+'invalidtitle-knownnamespace' => 'Vigane pealkiri nimeruumis "$2" tekstiga "$3"',
+'invalidtitle-unknownnamespace' => 'Vigane pealkiri nimeruuminumbriga $1 ja tekstiga "$2"',
 
 # Virus scanner
 'virus-badscanner' => "Viga konfiguratsioonis: tundmatu viirusetõrje: ''$1''",
@@ -1223,6 +1230,8 @@ Navigeerimislinkide kasutamine tühistab redaktsioonide valiku.',
 
 # Diffs
 'history-title' => 'Lehekülje "$1" muudatuste ajalugu',
+'difference-title' => 'Erinevus lehekülje "$1" redaktsioonide vahel',
+'difference-title-multipage' => 'Erinevus lehekülgede "$1" ja "$2" vahel',
 'difference-multipage' => '(Lehekülgede erinevus)',
 'lineno' => 'Rida $1:',
 'compareselectedversions' => 'Võrdle valitud redaktsioone',
@@ -1583,7 +1592,7 @@ See ei tohi olla pikem kui $1 {{PLURAL:$1|sümbol|sümbolit}}.',
 'nchanges' => '$1 {{PLURAL:$1|muudatus|muudatust}}',
 'recentchanges' => 'Viimased muudatused',
 'recentchanges-legend' => 'Viimaste muudatuste seaded',
-'recentchangestext' => 'Jälgi sellel leheküljel viimaseid muudatusi.',
+'recentchanges-summary' => 'Jälgi sellel leheküljel viimaseid muudatusi.',
 'recentchanges-feed-description' => 'Jälgi vikisse tehtud viimaseid muudatusi.',
 'recentchanges-label-newpage' => 'See muudatus lõi uue lehekülje',
 'recentchanges-label-minor' => 'See on pisiparandus',
@@ -1779,9 +1788,10 @@ Kui probleem ei kao, võta ühendust [[Special:ListUsers/sysop|administraatoriga
 'backend-fail-writetemp' => 'Ajutist faili ei saa kirjutada.',
 'backend-fail-closetemp' => 'Ajutist faili ei saa sulgeda.',
 'backend-fail-read' => 'Faili $1 ei saa lugeda.',
-'backend-fail-create' => 'Faili $1 ei saa luua.',
-'backend-fail-maxsize' => 'Faili $1 ei saa luua, sest see on {{PLURAL:$2|ühest baidist|$2 baidist}} suurem.',
+'backend-fail-create' => 'Faili $1 ei saa kirjutada.',
+'backend-fail-maxsize' => 'Faili $1 ei saa kirjutada, sest see on {{PLURAL:$2|ühest baidist|$2 baidist}} suurem.',
 'backend-fail-contenttype' => 'Faili, mida soovitakse talletada asukohas "$1", sisutüüpi saanud kindlaks teha.',
+'backend-fail-usable' => 'Faili $1 ei saa ebapiisavate õiguste või puuduvate kataloogide/konteinerite tõttu kirjutada.',
 
 # Lock manager
 'lockmanager-notlocked' => 'Rada "$1" ei saa lukust lahti teha, sest see pole lukus.',
@@ -1928,7 +1938,7 @@ Võib-olla tahad redigeerida selle faili [$2 sealset kirjelduslehekülge].',
 'filedelete-otherreason' => 'Muu või täiendav põhjus:',
 'filedelete-reason-otherlist' => 'Muu põhjus',
 'filedelete-reason-dropdown' => '*Harilikud kustutamise põhjused
-** Autoriõiguste rikkumine
+** Autoriõiguse rikkumine
 ** Duplikaat',
 'filedelete-edit-reasonlist' => 'Redigeeri kustutamise põhjuseid',
 'filedelete-maintenance' => 'Failide kustutamine ja taastamine on hoolduse ajaks keelatud.',
@@ -3272,7 +3282,7 @@ Kui faili on rakendustarkvaraga töödeldud, võib osa andmeid olla muudetud võ
 # EXIF attributes
 'exif-compression-1' => 'Pakkimata',
 
-'exif-copyrighted-true' => 'Autoriõigustega kaitstud',
+'exif-copyrighted-true' => 'Kaitstud',
 'exif-copyrighted-false' => 'Avalikus omandis',
 
 'exif-unknowndate' => 'Kuupäev teadmata',

@@ -51,11 +51,16 @@ $specialPageAliases = array(
 	'CreateAccount'             => array( 'ܒܪܝ_ܚܘܫܒܢܐ' ),
 	'DeletedContributions'      => array( 'ܫܘܬܦܘܝܬ̈ܐ_ܫܝܦܬ̈ܐ' ),
 	'Filepath'                  => array( 'ܫܒܝܠܐ_ܕܦܐܬܐ' ),
-	'Log'                       => array( 'ܣܓܠ̈ܐ' ),
+	'Log'                       => array( 'ܣܓܠܐ', 'ܣܓܠ̈ܐ' ),
+	'Lonelypages'               => array( 'ܦܐܬܬ̈ܐ_ܝܬܡܬ̈ܐ' ),
 	'Longpages'                 => array( 'ܦܐܬܬ̈ܐ_ܐܪ̈ܝܟܬܐ' ),
 	'Movepage'                  => array( 'ܫܢܝ_ܦܐܬܐ' ),
 	'Mycontributions'           => array( 'ܫܘܬܦܘܝܬ̈ܝ' ),
+	'Mypage'                    => array( 'ܦܐܬܐ_ܕܝܠܝ' ),
+	'Mytalk'                    => array( 'ܡܡܠܠܐ_ܕܝܠܝ' ),
+	'Newimages'                 => array( 'ܠܦܦ̈ܐ_ܚܕ̈ܬܐ', 'ܨܘܪ̈ܬܐ_ܚܕ̈ܬܬܐ' ),
 	'Newpages'                  => array( 'ܦܐܬܬ̈ܐ_ܚܕ̈ܬܬܐ' ),
+	'PermanentLink'             => array( 'ܐܣܘܪܐ_ܦܝܘܫܐ' ),
 	'Preferences'               => array( 'ܓܒܝܬ̈ܐ' ),
 	'Protectedpages'            => array( 'ܦܐܬܬ̈ܐ_ܢܛܝܪ̈ܬܐ' ),
 	'Protectedtitles'           => array( 'ܟܘܢܝ̈ܐ_ܢܛܝܪ̈ܐ' ),
@@ -275,9 +280,9 @@ $messages = array(
 'jumpto' => 'ܫܘܪ ܠ:',
 'jumptonavigation' => 'ܐܠܦܪܘܬܐ',
 'jumptosearch' => 'ܒܨܝܐ',
-'view-pool-error' => 'ܬܘܝܚܐ، ܚܕܡ̈ܐ ܗܘܐ ܓܗ̈ܝܐ ܗܫܐܝܬ
-ܣܓܝ ܡܦܠܚܢ̈ܐ ܩܫܕܘܪܐ ܠܡܛܐ ܠܗܢܐ ܦܐܬܐ
-ܦܝܣܐ ܡܢܟ ܣܟܝ ܩܠܝܠ ܡܢ ܩܕܡ ܕܓܪܒܬ ܠܡܛܝܐ ܠܐܗܐ ܦܐܬܐ ܬܢܝܢܘܬ.
+'view-pool-error' => 'ܬܘܝܚܐ، ܬܫܡܫܬ̈ܐ ܐܢܘܢ ܠܐ̈ܝܐ ܗܫܐܝܬ
+ܣܓܝ ܡܦܠܚܢ̈ܐ ܢܣܝܢ ܠܚܙܝܐ ܕܗܢܐ ܕܦܐ
+ܦܝܣܐ ܡܢܟ ܣܟܝ ܩܠܝܠ ܡܢ ܩܕܡ ܕܬܢܣܐ ܠܡܛܝܐ ܠܗܢܐ ܕܦܐ ܙܒܢܬܐ ܐܚܪܬܐ.
 
 $1',
 'pool-timeout' => 'ܫܠܡ ܥܕܢܐ ܣܒܪܬܐ ܠܚܠܩܐ',
@@ -358,9 +363,9 @@ $1',
 'actionthrottled' => 'ܠܐ ܡܬܡܨܝܢܬܐ ܐܝܬܝܗܝ ܠܡܥܒܕ ܝܬܝܪ ܡܢ ܗܢܐ ܥܒܕܐ',
 'viewsourcetext' => 'ܡܨܐ ܐܢܬ ܕܢܚܙܐ ܘܢܣܚܐ ܠܡܒܘ̈ܥܐ ܕܗܕܐ ܦܐܬܐ:',
 'protectedinterface' => 'ܗܕܐ ܦܐܬܐ ܡܘܬܪܐ ܟܬܝܒܬܐ ܕܦܐܬܐ ܠܚܘܪܙܐ, ܘܐܝܬܝܗܝ ܢܛܪܬܐ ܠܡܘܢܥ ܚܘܒܠܐ.',
-'editinginterface' => "''ܙܘܗܪܐ:''' ܐܢܬ ܥܒܕܬ ܫܚܠܦܬܐ ܒܦܐܬܐ ܡܬܦܠܚܬ ܠܡܘܬܘܪ̈ܐ ܦܐܬܘܬ̈ܐ ܟܬܝܒ̈ܐ ܠܚܘܪܙܐ.
-ܟܠ ܫܘܚܠܦܐ ܒܐܗܐ ܦܐܬܐ ܒܕ ܥܒܕ ܟܪ ܥܠ ܡܚܙܝܬܐ ܦܐܬܐ ܕܡܦܠܚܢܐ ܠܡܦܠܚܢ̈ܐ ܐܚܪ̈ܝܢܐ.
-ܠܬܘܪ̈ܓܡܐ، ܡܦܠܚ ܬܪܡܝܬܐ ܬܘܪܓܡܐ ܕܡܝܕܝܐܘܝܩܝ [//translatewiki.net/wiki/Main_Page?setlang=ar translatewiki.net].",
+'editinginterface' => "'''ܙܘܗܪܐ:''' ܐܢܬ ܫܚܠܦܬ ܕܦܐ ܕܡܬܦܠܚ ܒܚܙܝܐ ܟܬܝܒܝܐ ܕܚܘܪܙܐ.
+ܟܠ ܫܘܚܠܦܐ ܒܗܢܐ ܕܦܐ ܢܗܘܐ ܠܗ ܡܥܒܕܢܘܬܐ ܥܠ ܐܣܟܡܐ ܕܕܦܐ ܕܡܦܠܚܢܐ ܕܡܦܠܚܢ̈ܐ ܐܚܪ̈ܢܐ.
+ܠܬܘܪ̈ܓܡܐ، ܐܦܠܚ ܬܪܡܝܬܐ ܕܬܘܪܓܡܐ ܕܡܝܕܝܐܘܝܩܝ [//translatewiki.net/wiki/Main_Page?setlang=ar translatewiki.net].",
 'sqlhidden' => '(ܒܘܬܬܐ SQL ܛܫܝܐ)',
 'namespaceprotected' => "ܠܝܬ ܠܟ ܦܣܣܐ ܠܫܚܠܦܬܐ ܕܦܐܬܬ̈ܐ ܒܚܩܠܐ ܕ'''$1'''.",
 
@@ -369,7 +374,7 @@ $1',
 
 ܡܨܐ ܐܢܬ ܕܐܬܚܫܚ {{SITENAME}} ܐܝܟ ܡܦܠܚܢܐ ܠܐ ܝܕܝܥܐ ܐܘ ܡܨܐ ܐܢܬ ܕ[[Special:UserLogin|ܬܥܘܠ]] ܒܚܘܫܒܢܐ ܥܝܢܗ ܐܘ ܐܝܟ ܡܦܠܚܢܐ ܐܚܪܢܐ.
 
-ܚܕ ܟܡܐ ܡܢ ܦܐܬܬ̈ܐ ܡܬܚܙܝܢ ܐܝܟ ܕܗܘ ܐܢܬ ܥܠܝܠܐ ܥܕܡܐ ܕܐܣܦܩܬ ܠܦܐܬܬ̈ܐ ܠܒܝܟ̈ܐ ܕܡܦܐܬܢܐ ܕܝܠܟ",
+ܚܕ ܟܡܐ ܡܢ ܕ̈ܦܐ ܡܬܚܙܝܢ ܐܝܟ ܕܗܘ ܐܢܬ ܥܠܝܠܐ ܥܕܡܐ ܕܐܣܦܩܬ ܠܕ̈ܦܐ ܠܒܝܟ̈ܐ ܕܡܦܐܬܢܐ ܕܝܠܟ",
 'welcomecreation' => '== ܒܫܝܢܐ, $1! ==
 ܐܬܒܪܝ ܚܘܫܒܢܟ.
 ܠܐ ܢܫܐ ܐܢܬ ܠܫܚܠܦܬܐ ܕ[[Special:Preferences|ܓܒܝܬ̈ܐ ܒ {{SITENAME}}]].',
@@ -466,11 +471,13 @@ $1',
 'note' => "'''ܡܥܝܪܢܘܬܐ:'''",
 'previewnote' => "'''ܕܟܪ ܕܗܢܘ ܚܝܪܐ ܩܕܡܝܐ ܒܠܚܘܕ'''.
 ܫܘܚܠܦ̈ܐ ܕܝܠܟ ܠܐ ܐܬܠܒܟܘ ܥܕܡܐ ܠܗܫܐ!",
+'continue-editing' => 'ܐܓܡܪ ܠܫܘܚܠܦܐ',
 'editing' => 'ܫܚܠܦܬܐ ܕ $1',
 'creating' => 'ܣܘܝܡܐ ܕ $1',
 'editingsection' => 'ܫܚܠܦܬܐ ܕ $1 (ܡܢܬܐ)',
 'editingcomment' => 'ܫܚܠܦܬܐ ܕ $1 (ܡܢܬܐ ܚܕܬܐ)',
 'yourtext' => 'ܟܬܒܬܐ ܕܝܠܟ',
+'storedversion' => 'ܬܢܝܬ̈ܐ ܐܣܝܢ̈ܐ',
 'editingold' => "'''ܙܘܗܪܐ: ܫܚܠܦ ܐܢܬ ܬܢܝܬܐ ܥܬܝܩܬܐ ܕܕܦܐ ܗܢܐ.'''
 ܐܢ ܠܒܟ ܐܢܬ ܕܦܐ ܗܢܐ, ܟܠ ܫܘ̈ܚܠܦܐ ܕܐܬܥܒܕܘ ܒܬܪ ܗܕܐ ܬܢܝܬܐ ܢܬܛܠܩܘܢ.",
 'yourdiff' => 'ܦܪ̈ܝܫܘܝܬܐ',
@@ -559,7 +566,7 @@ $1',
 'revertmerge' => 'ܒܛܘܠ ܚܒܛܐ',
 
 # Diffs
-'history-title' => 'ܬܫܥܝܬܐ ܕܬܢܝܬܐ ܕ "$1"',
+'history-title' => '"$1": ܬܫܥܝܬܐ ܕܬܢܝܬܐ',
 'lineno' => 'ܣܪܛܐ $1:',
 'compareselectedversions' => 'ܦܚܘܡ ܒܝܬ ܬܪܝܢ ܬܢܝܬ̈ܐ ܓܒܝܬ̈ܐ',
 'showhideselectedversions' => 'ܚܘܝ/ܛܫܝ ܬܢܝܬ̈ܐ ܓܒܝܬ̈ܐ',
@@ -778,7 +785,7 @@ $1',
 'nchanges' => '$1 {{PLURAL:$1|ܫܘܚܠܦܐ|ܫܘܚܠܦ̈ܐ}}',
 'recentchanges' => 'ܫܘܚܠܦ̈ܐ ܚܕ̈ܬܐ',
 'recentchanges-legend' => 'ܓܒܝܬ̈ܐ ܕܫܘܚܠܦ̈ܐ ܚܕ̈ܬܐ',
-'recentchangestext' => 'ܥܩܒ ܫܘܚܠܦ̈ܐ ܚܕܬ ܡܢ ܟܠ ܕܘܝܩܝ ܒܦܐܬܐ ܗܕܐ.',
+'recentchanges-summary' => 'ܥܩܒ ܫܘܚܠܦ̈ܐ ܚܕܬ ܡܢ ܟܠ ܕܘܝܩܝ ܒܦܐܬܐ ܗܕܐ.',
 'recentchanges-label-newpage' => 'ܫܘܚܠܦܐ ܗܢܐ ܐܬܬܣܝܡ ܕܦܐ ܚܕܬܐ',
 'recentchanges-label-minor' => 'ܗܢܘ ܫܘܚܠܦܐ ܙܥܘܪܐ',
 'recentchanges-label-bot' => 'ܒܘܬ (bot) ܥܒܕ ܗܢܐ ܫܘܚܠܦܐ',

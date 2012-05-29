@@ -51,6 +51,9 @@ class ForeignAPIRepo extends FileRepo {
 	protected $mQueryCache = array();
 	protected $mFileExists = array();
 
+	/**
+	 * @param $info array|null
+	 */
 	function __construct( $info ) {
 		global $wgLocalFileRepo;
 		parent::__construct( $info );
@@ -81,6 +84,8 @@ class ForeignAPIRepo extends FileRepo {
 	 * Per docs in FileRepo, this needs to return false if we don't support versioned
 	 * files. Well, we don't.
 	 *
+	 * @param $title Title
+	 * @param $time string|bool
 	 * @return File
 	 */
 	function newFile( $title, $time = false ) {
@@ -90,6 +95,10 @@ class ForeignAPIRepo extends FileRepo {
 		return parent::newFile( $title, $time );
 	}
 
+	/**
+	 * @param $files array
+	 * @return array
+	 */
 	function fileExistsBatch( array $files ) {
 		$results = array();
 		foreach ( $files as $k => $f ) {
@@ -121,10 +130,18 @@ class ForeignAPIRepo extends FileRepo {
 		return $results;
 	}
 
+	/**
+	 * @param $virtualUrl string
+	 * @return bool
+	 */
 	function getFileProps( $virtualUrl ) {
 		return false;
 	}
 
+	/**
+	 * @param $query array
+	 * @return string
+	 */
 	function fetchImageQuery( $query ) {
 		global $wgMemc;
 
@@ -160,6 +177,10 @@ class ForeignAPIRepo extends FileRepo {
 		return FormatJson::decode( $this->mQueryCache[$url], true );
 	}
 
+	/**
+	 * @param $data array
+	 * @return bool|array
+	 */
 	function getImageInfo( $data ) {
 		if( $data && isset( $data['query']['pages'] ) ) {
 			foreach( $data['query']['pages'] as $info ) {
@@ -171,6 +192,10 @@ class ForeignAPIRepo extends FileRepo {
 		return false;
 	}
 
+	/**
+	 * @param $hash string
+	 * @return array
+	 */
 	function findBySha1( $hash ) {
 		$results = $this->fetchImageQuery( array(
 										'aisha1base36' => $hash,
@@ -189,6 +214,14 @@ class ForeignAPIRepo extends FileRepo {
 		return $ret;
 	}
 
+	/**
+	 * @param $name string
+	 * @param $width int
+	 * @param $height int
+	 * @param $result null
+	 * @param $otherParams string
+	 * @return bool
+	 */
 	function getThumbUrl( $name, $width = -1, $height = -1, &$result = null, $otherParams = '' ) {
 		$data = $this->fetchImageQuery( array(
 			'titles' => 'File:' . $name,
@@ -217,10 +250,10 @@ class ForeignAPIRepo extends FileRepo {
 	 * @param $name String is a dbkey form of a title
 	 * @param $width
 	 * @param $height
-	 * @param String $param Other rendering parameters (page number, etc) from handler's makeParamString.
+	 * @param String $params Other rendering parameters (page number, etc) from handler's makeParamString.
 	 * @return bool|string
 	 */
-	function getThumbUrlFromCache( $name, $width, $height, $params="" ) {
+	function getThumbUrlFromCache( $name, $width, $height, $params = "" ) {
 		global $wgMemc;
 		// We can't check the local cache using FileRepo functions because
 		// we override fileExistsBatch(). We have to use the FileBackend directly.
@@ -292,7 +325,7 @@ class ForeignAPIRepo extends FileRepo {
 		$op = array( 'op' => 'create', 'dst' => $localFilename, 'content' => $thumb );
 		if( !$backend->doOperation( $op )->isOK() ) {
 			wfRestoreWarnings();
-			wfDebug( __METHOD__ . " could not write to thumb path\n" );
+			wfDebug( __METHOD__ . " could not write to thumb path '$localFilename'\n" );
 			return $foreignUrl;
 		}
 		$knownThumbUrls[$sizekey] = $localUrl;
@@ -303,6 +336,7 @@ class ForeignAPIRepo extends FileRepo {
 
 	/**
 	 * @see FileRepo::getZoneUrl()
+	 * @param $zone String
 	 * @return String
 	 */
 	function getZoneUrl( $zone ) {
@@ -318,6 +352,7 @@ class ForeignAPIRepo extends FileRepo {
 
 	/**
 	 * Get the local directory corresponding to one of the basic zones
+	 * @param $zone string
 	 * @return bool|null|string
 	 */
 	function getZonePath( $zone ) {
@@ -347,6 +382,9 @@ class ForeignAPIRepo extends FileRepo {
 	/**
 	 * Like a Http:get request, but with custom User-Agent.
 	 * @see Http:get
+	 * @param $url string
+	 * @param $timeout string
+	 * @param $options array
 	 * @return bool|String
 	 */
 	public static function httpGet( $url, $timeout = 'default', $options = array() ) {
@@ -371,10 +409,17 @@ class ForeignAPIRepo extends FileRepo {
 		}
 	}
 
+	/**
+	 * @param $callback Array|string
+	 * @throws MWException
+	 */
 	function enumFiles( $callback ) {
 		throw new MWException( 'enumFiles is not supported by ' . get_class( $this ) );
 	}
 
+	/**
+	 * @throws MWException
+	 */
 	protected function assertWritableRepo() {
 		throw new MWException( get_class( $this ) . ': write operations are not supported.' );
 	}

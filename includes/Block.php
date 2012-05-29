@@ -126,15 +126,40 @@ class Block {
 		$dbr = wfGetDB( DB_SLAVE );
 		$res = $dbr->selectRow(
 			'ipblocks',
-			'*',
+			self::selectFields(),
 			array( 'ipb_id' => $id ),
 			__METHOD__
 		);
 		if ( $res ) {
-			return Block::newFromRow( $res );
+			return self::newFromRow( $res );
 		} else {
 			return null;
 		}
+	}
+
+	/**
+	 * Return the list of ipblocks fields that should be selected to create
+	 * a new block.
+	 * @return array
+	 */
+	public static function selectFields() {
+		return array(
+			'ipb_id',
+			'ipb_address',
+			'ipb_by',
+			'ipb_by_text',
+			'ipb_reason',
+			'ipb_timestamp',
+			'ipb_auto',
+			'ipb_anon_only',
+			'ipb_create_account',
+			'ipb_enable_autoblock',
+			'ipb_expiry',
+			'ipb_deleted',
+			'ipb_block_email',
+			'ipb_allow_usertalk',
+			'ipb_parent_block_id',
+		);
 	}
 
 	/**
@@ -247,7 +272,7 @@ class Block {
 			}
 		}
 
-		$res = $db->select( 'ipblocks', '*', $conds, __METHOD__ );
+		$res = $db->select( 'ipblocks', self::selectFields(), $conds, __METHOD__ );
 
 		# This result could contain a block on the user, a block on the IP, and a russian-doll
 		# set of rangeblocks.  We want to choose the most specific one, so keep a leader board.
@@ -260,7 +285,7 @@ class Block {
 		$bestBlockPreventsEdit = null;
 
 		foreach( $res as $row ){
-			$block = Block::newFromRow( $row );
+			$block = self::newFromRow( $row );
 
 			# Don't use expired blocks
 			if( $block->deleteIfExpired() ){

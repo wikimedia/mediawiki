@@ -1435,7 +1435,7 @@ Kung pipiliin mong ibigay ito, gagamitin ito para mabigyan ka ng pagkilala para 
 'nchanges' => '$1 {{PLURAL:$1|pagbabago|mga pagbabago}}',
 'recentchanges' => 'Kamakailang pagbabago',
 'recentchanges-legend' => 'Mga pagpipilian para sa kamakailang mga pagbabago',
-'recentchangestext' => 'Subaybayan ang mga pinakahuling pagbabago sa wiki sa pahinang ito.',
+'recentchanges-summary' => 'Subaybayan ang mga pinakahuling pagbabago sa wiki sa pahinang ito.',
 'recentchanges-feed-description' => 'Sundan ang pinakahuling mga pagbabago sa wiki sa pamamagitan ng feed na ito.',
 'recentchanges-label-newpage' => 'Lumikha ng isang bagong pahina ang pagbabagong ito',
 'recentchanges-label-minor' => 'Isa itong munting pagbabago',

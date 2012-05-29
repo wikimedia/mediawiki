@@ -78,10 +78,10 @@ $specialPageAliases = array(
 	'Booksources'               => array( 'منابع_کتاب' ),
 	'BrokenRedirects'           => array( 'تغییرمسیرهای_خراب' ),
 	'Categories'                => array( 'رده‌ها' ),
-	'ChangeEmail'               => array( 'تغییر_پست_الکترونیکی' ),
+	'ChangeEmail'               => array( 'تغییر_رایانامه', 'تغییر_پست_الکترونیکی' ),
 	'ChangePassword'            => array( 'از_نو_کردن_گذرواژه' ),
 	'ComparePages'              => array( 'مقایسه_صفحات' ),
-	'Confirmemail'              => array( 'تایید_پست_الکترونیکی' ),
+	'Confirmemail'              => array( 'تایید_رایانامه', 'تایید_پست_الکترونیکی' ),
 	'Contributions'             => array( 'مشارکت‌ها' ),
 	'CreateAccount'             => array( 'ایجاد_حساب_کاربری' ),
 	'Deadendpages'              => array( 'صفحه‌های_بن‌بست' ),
@@ -95,7 +95,7 @@ $specialPageAliases = array(
 	'FileDuplicateSearch'       => array( 'جستجوی_پرونده_تکراری' ),
 	'Filepath'                  => array( 'مسیر_پرونده' ),
 	'Import'                    => array( 'درون_ریزی_صفحه' ),
-	'Invalidateemail'           => array( 'باطل_کردن_پست_الکترونیکی' ),
+	'Invalidateemail'           => array( 'باطل_کردن_رایانامه', 'باطل_کردن_پست_الکترونیکی' ),
 	'BlockList'                 => array( 'فهرست_بستن_نشانی_آی‌پی' ),
 	'LinkSearch'                => array( 'جستجوی_پیوند' ),
 	'Listadmins'                => array( 'فهرست_مدیران' ),
@@ -265,7 +265,7 @@ $dateFormats = array(
 );
 
 $magicWords = array(
-	'redirect'                => array( '0', '#تغییرمسیر', '#REDIRECT' ),
+	'redirect'                => array( '0', '#تغییر_مسیر', '#تغییرمسیر', '#تغییرمسیر', '#REDIRECT' ),
 	'notoc'                   => array( '0', '__بی‌فهرست__', '__NOTOC__' ),
 	'nogallery'               => array( '0', '__بی‌نگارخانه__', '__NOGALLERY__' ),
 	'forcetoc'                => array( '0', '__بافهرست__', '__FORCETOC__' ),
@@ -305,6 +305,7 @@ $magicWords = array(
 	'pagenamee'               => array( '1', 'نام‌صفحه‌کد', 'نام_صفحه_کد', 'PAGENAMEE' ),
 	'namespace'               => array( '1', 'فضای‌نام', 'فضای_نام', 'NAMESPACE' ),
 	'namespacee'              => array( '1', 'فضای‌نام‌کد', 'فضای_نام_کد', 'NAMESPACEE' ),
+	'namespacenumber'         => array( '1', 'شماره_فضای_نام', 'شماره‌فضای‌نام', 'NAMESPACENUMBER' ),
 	'talkspace'               => array( '1', 'فضای‌بحث', 'فضای_بحث', 'TALKSPACE' ),
 	'talkspacee'              => array( '1', 'فضای‌بحث‌کد', 'فضای_بحث_کد', 'TALKSPACEE' ),
 	'subjectspace'            => array( '1', 'فضای‌موضوع', 'فضای‌مقاله', 'فضای_موضوع', 'فضای_مقاله', 'SUBJECTSPACE', 'ARTICLESPACE' ),
@@ -375,6 +376,7 @@ $magicWords = array(
 	'plural'                  => array( '0', 'جمع:', 'PLURAL:' ),
 	'fullurl'                 => array( '0', 'نشانی‌کامل:', 'نشانی_کامل:', 'FULLURL:' ),
 	'fullurle'                => array( '0', 'نشانی‌کامل‌کد:', 'نشانی_کامل_کد:', 'FULLURLE:' ),
+	'canonicalurl'            => array( '0', 'نشانی_استاندارد:', 'نشانی‌استاندارد:', 'CANONICALURL:' ),
 	'lcfirst'                 => array( '0', 'ابتداکوچک:', 'ابتدا_کوچک:', 'LCFIRST:' ),
 	'ucfirst'                 => array( '0', 'ابتدابزرگ:', 'ابتدا_بزرگ:', 'UCFIRST:' ),
 	'lc'                      => array( '0', 'ک:', 'LC:' ),
@@ -413,8 +415,8 @@ $magicWords = array(
 	'url_path'                => array( '0', 'مسیر', 'PATH' ),
 	'url_wiki'                => array( '0', 'ویکی', 'WIKI' ),
 	'url_query'               => array( '0', 'دستور', 'QUERY' ),
-	'defaultsort_noerror'     => array( '0', 'بدون‌خطا', 'noerror' ),
-	'defaultsort_noreplace'   => array( '0', 'جایگزین‌نکن', 'noreplace' ),
+	'defaultsort_noerror'     => array( '0', 'بدون‌خطا', 'بدون_خطا', 'noerror' ),
+	'defaultsort_noreplace'   => array( '0', 'جایگزین‌نکن', 'جایگزین_نکن', 'noreplace' ),
 );
 
 # Harakat are intentionally not included in the linkTrail. Their addition should
@@ -828,6 +830,8 @@ $2',
 'filereadonlyerror' => "تغییر پرونده «$1» ممکن نیست چون مخزن پرونده «$2» در حالت فقط خواندنی قرار دارد.
 
 مدیری که آن را قفل کرده چنین توضیحی را ذکر کرده:  ''$3''.",
+'invalidtitle-knownnamespace' => 'عنوان نامعتبر با فضای نام «$2» و متن «$3»',
+'invalidtitle-unknownnamespace' => 'عنوان نامعتبر با فضای نام ناشناختهٔ شمارهٔ $1 و متن «$2»',
 
 # Virus scanner
 'virus-badscanner' => "پیکربندی بد: پویشگر ویروس ناشناخته: ''$1''",
@@ -1180,8 +1184,8 @@ $2
 'semiprotectedpagewarning' => "'''توجه:''' این صفحه قفل شده‌است تا تنها کاربران ثبت‌نام‌کرده قادر به ویرایش آن‌ باشند.
 آخرین موارد سیاهه در زیر آمده‌است:",
 'cascadeprotectedwarning' => "'''هشدار:''' این صفحه به علت قرارگرفتن در {{PLURAL:$1|صفحهٔ|صفحه‌های}} آبشاری-محافظت‌شدهٔ زیر قفل شده‌است تا فقط مدیران بتوانند ویرایشش کنند.",
-'titleprotectedwarning' => "'''هشدار: این صفحه قفل شده‌است به شکلی که برای ایجاد آن [[Special:ListGroupRights|اختیارات خاصی]] لازم است.'''
-ٱحرین موارد سیاهه در زیر آمده است:",
+'titleprotectedwarning' => "'''هشدار: این صفحه به شکلی قفل شده‌است که برای ایجاد آن [[Special:ListGroupRights|اختیارات خاصی]] لازم است.'''
+آخرین موارد سیاهه در زیر آمده است:",
 'templatesused' => '{{PLURAL:$1|الگوی|الگوهای}} به‌کاررفته در این صفحه:',
 'templatesusedpreview' => '{{PLURAL:$1|الگوی|الگوهای}} استفاده شده در این پیش‌نمایش:',
 'templatesusedsection' => '{{PLURAL:$1|الگوی|الگوهای}} استفاده شده در این بخش:',
@@ -1405,7 +1409,9 @@ $1",
 'mergelogpagetext' => 'در زیر سیاهه آخرین موارد ادغام تاریخچه یک صفحه در صفحه‌ای دیگر را می‌بینید.',
 
 # Diffs
-'history-title' => 'تاریخچهٔ ویرایش‌های «$1»',
+'history-title' => '$1: تاریخچهٔ ویرایش‌ها',
+'difference-title' => '$1: تفاوت بین نسخه‌ها',
+'difference-title-multipage' => '$1 و $2: تفاوت بین صفحه‌ها',
 'difference-multipage' => '(تفاوت بین صفحه‌ها)',
 'lineno' => 'سطر $1:',
 'compareselectedversions' => 'مقایسهٔ نسخه‌های انتخاب‌شده',
@@ -1768,7 +1774,7 @@ $1",
 'nchanges' => '$1 تغییر',
 'recentchanges' => 'تغییرات اخیر',
 'recentchanges-legend' => 'گزینه‌های تغییرات اخیر',
-'recentchangestext' => 'آخرین تغییرات ویکی را در این صفحه پی‌گیری کنید.',
+'recentchanges-summary' => 'آخرین تغییرات ویکی را در این صفحه پی‌گیری کنید.',
 'recentchanges-feed-description' => 'آخرین تغییرات ویکی را در این خوراک پی‌گیری کنید.',
 'recentchanges-label-newpage' => 'این ویرایش صفحه‌ای جدید ایجاد کرد',
 'recentchanges-label-minor' => 'این ویرایش جزئی‌است',
@@ -1971,8 +1977,8 @@ $1',
 'backend-fail-writetemp' => 'امکان نوشتن بر روی پروندهٔ موقتی وجود ندارد.',
 'backend-fail-closetemp' => 'نمی‌توان پروندهٔ موقتی را بست.',
 'backend-fail-read' => 'نمی‌توان پروندهٔ $1 را خواند.',
-'backend-fail-create' => 'نمی‌توان پروندهٔ $1 را ایجاد کرد.',
-'backend-fail-maxsize' => 'نمی‌توان پروندهٔ $1 را ایجاد کرد چون بزرگتر از {{PLURAL:$2|یک بایت|$2 بایت}} است.',
+'backend-fail-create' => 'نمی‌توان بر روی پروندهٔ $1 اطلاعات نوشت.',
+'backend-fail-maxsize' => 'نمی‌توان بر روی پروندهٔ $1 اطلاعات نوشت چون بزرگتر از {{PLURAL:$2|یک بایت|$2 بایت}} است.',
 'backend-fail-readonly' => 'پشتیبان «$1» درحال حاضر در وضیت فقط خواندنی است. دلیل ارائه شده چنین است: «$2»',
 'backend-fail-synced' => 'پرونده «$1» در پشتیبان‌های ذخیره داخلی در وضعیتی ناپایدار قرار دارد',
 'backend-fail-connect' => 'ارتباط با پشیبان ذخیره «$1» برقرار نشد.',
@@ -2099,6 +2105,10 @@ https://www.mediawiki.org/wiki/Manual:Image_Authorization را ببینید.',
 برای اطلاعات بیشتر لطفاً [$2 صفحهٔ توضیحات پرونده] را ببینید.',
 'sharedupload-desc-here' => 'این پرونده در $1 قرار دارد و ممکن است در پروژه‌های دیگر هم استفاده شود.
 توضیحات موجود در [$2 صفحهٔ توضیحات پرونده در آنجا]، در زیر نشان داده شده‌است.',
+'sharedupload-desc-edit' => 'این پرونده از $1 است و می‌تواند توسط پروژه‌های دیگر هم استفاده شود.
+اگر خواستید می‌توانید توضیحات پرونده را از [$2 صفحهٔ توضیحاتش] در آنجا ویرایش کنید.',
+'sharedupload-desc-create' => 'این پرونده از $1 است و می‌تواند توسط پروژه‌های دیگر هم استفاده شود.
+اگر خواستید می‌توانید توضیحات پرونده را از [$2 صفحهٔ توضیحاتش] در آنجا ویرایش کنید.',
 'filepage-nofile' => 'پرونده‌ای با این نام وجود ندارد.',
 'filepage-nofile-link' => 'پرونده‌ای با این نام وجود ندارد، اما شما می‌توانید آن را [$1 بارگذاری کنید].',
 'uploadnewversion-linktext' => 'بارگذاری نسخهٔ جدیدی از پرونده',

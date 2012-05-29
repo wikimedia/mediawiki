@@ -948,6 +948,7 @@ $wgMessageStructure = array(
 		'prefs-beta',
 		'prefs-datetime',
 		'prefs-labs',
+		'prefs-user-pages',
 		'prefs-personal',
 		'prefs-rc',
 		'prefs-watchlist',
@@ -1213,6 +1214,7 @@ $wgMessageStructure = array(
 		'recentchanges',
 		'recentchanges-url',
 		'recentchanges-legend',
+		'recentchanges-summary',
 		'recentchangestext',
 		'recentchanges-feed-description',
 		'recentchanges-label-newpage',
@@ -1388,7 +1390,8 @@ $wgMessageStructure = array(
 		'backend-fail-connect',
 		'backend-fail-internal',
 		'backend-fail-contenttype',
-		'backend-fail-batchsize'
+		'backend-fail-batchsize',
+		'backend-fail-usable'
 	),
 
 	'filejournal-errors' => array(
@@ -1450,7 +1453,6 @@ $wgMessageStructure = array(
 		'http-curl-error',
 		'http-host-unreachable',
 		'http-bad-status',
-		'http-truncated-body',
 	),
 
 	'upload-curl-errors' => array(

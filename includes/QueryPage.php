@@ -499,7 +499,7 @@ abstract class QueryPage extends SpecialPage {
 					$updateddate = $lang->userDate( $ts, $user );
 					$updatedtime = $lang->userTime( $ts, $user );
 					$out->addMeta( 'Data-Cache-Time', $ts );
-					$out->addInlineScript( "var dataCacheTime = '$ts';" );
+					$out->addJsConfigVars( 'dataCacheTime', $ts );
 					$out->addWikiMsg( 'perfcachedts', $updated, $updateddate, $updatedtime, $maxResults );
 				} else {
 					$out->addWikiMsg( 'perfcached', $maxResults );
@@ -508,7 +508,7 @@ abstract class QueryPage extends SpecialPage {
 				# If updates on this page have been disabled, let the user know
 				# that the data set won't be refreshed for now
 				if ( is_array( $wgDisableQueryPageUpdate ) && in_array( $this->getName(), $wgDisableQueryPageUpdate ) ) {
-					$out->addWikiMsg( 'querypage-no-updates' );
+					$out->wrapWikiMsg( "<div class=\"mw-querypage-no-updates\">\n$1\n</div>", 'querypage-no-updates' );
 				}
 			}
 		}

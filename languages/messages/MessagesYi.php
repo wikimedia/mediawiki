@@ -67,10 +67,12 @@ $specialPageAliases = array(
 	'BrokenRedirects'           => array( 'צעבראכענע_ווייטערפירונגען' ),
 	'Categories'                => array( 'קאטעגאריעס' ),
 	'ChangePassword'            => array( 'ענדערן_פאסווארט' ),
+	'ComparePages'              => array( 'פארגלייהן_בלעטער' ),
 	'Confirmemail'              => array( 'באשטעטיגן_ע-פאסט' ),
 	'Contributions'             => array( 'בײַשטײַערונגען' ),
 	'CreateAccount'             => array( 'שאפֿן_קאנטע' ),
 	'Deadendpages'              => array( 'בלעטער_אן_פארבינדונגען' ),
+	'DeletedContributions'      => array( 'אויסגעמעקעטע_בײַשטײַערונגען' ),
 	'Disambiguations'           => array( 'באדייטן' ),
 	'DoubleRedirects'           => array( 'פארטאפלטע_ווייטערפירונגען' ),
 	'Emailuser'                 => array( 'שיקן_אן_ע-פאסט_צום_באניצער' ),
@@ -83,6 +85,7 @@ $specialPageAliases = array(
 	'Listfiles'                 => array( 'בילדער' ),
 	'Listredirects'             => array( 'ווייטערפירונגען' ),
 	'Listusers'                 => array( 'ליסטע_פון_באניצערס' ),
+	'Lockdb'                    => array( 'פארשליסן_דאטנבאזע' ),
 	'Log'                       => array( 'לאגביכער' ),
 	'Lonelypages'               => array( 'פאר\'יתומ\'טע_בלעטער' ),
 	'Longpages'                 => array( 'לאנגע_בלעטער' ),
@@ -114,6 +117,7 @@ $specialPageAliases = array(
 	'Specialpages'              => array( 'באזונדערע_בלעטער' ),
 	'Statistics'                => array( 'סטאטיסטיק' ),
 	'Tags'                      => array( 'טאגן' ),
+	'Unblock'                   => array( 'אויפבלאקירן' ),
 	'Uncategorizedcategories'   => array( 'קאטעגאריעס_אן_קאטעגאריעס' ),
 	'Uncategorizedimages'       => array( 'בילדער_אן_קאטעגאריעס' ),
 	'Uncategorizedpages'        => array( 'בלעטער_אן_קאטעגאריעס' ),
@@ -169,6 +173,7 @@ $magicWords = array(
 	'raw'                     => array( '0', 'רוי:', 'ללא עיבוד:', 'RAW:' ),
 	'displaytitle'            => array( '1', 'ווייזן_קעפל', 'כותרת תצוגה', 'DISPLAYTITLE' ),
 	'language'                => array( '0', '#שפראך:', '#שפה:', '#LANGUAGE:' ),
+	'special'                 => array( '0', 'באזונדער', 'מיוחד', 'special' ),
 	'defaultsort'             => array( '1', 'גרונטסארטיר:', 'מיון רגיל:', 'DEFAULTSORT:', 'DEFAULTSORTKEY:', 'DEFAULTCATEGORYSORT:' ),
 	'hiddencat'               => array( '1', '__באהאלטענע_קאטעגאריע__', '__באהאלטענע_קאט__', '__קטגוריה_מוסתרת__', '__HIDDENCAT__' ),
 	'pagesize'                => array( '1', 'בלאטגרייס', 'גודל דף', 'PAGESIZE' ),
@@ -1137,6 +1142,8 @@ $1",
 
 # Diffs
 'history-title' => 'רעוויזיע היסטאריע פֿון $1',
+'difference-title' => 'אונטערשייד צווישן ווערסיעס פון "$1"',
+'difference-title-multipage' => 'אונטערשייד צווישן בלעטער "$1" און "$2"',
 'difference-multipage' => '(אונטערשייד צווישן בלעטער)',
 'lineno' => 'שורה $1:',
 'compareselectedversions' => 'פארגלייך סעלעקטירטע ווערסיעס',
@@ -1399,8 +1406,10 @@ $1",
 'right-reupload' => 'איבערשרײַבן עקסיסטירנדע טעקע',
 'right-reupload-own' => "איבערשרײַבן עקזיסטירנדע טעקעס וואָס מ'האט אַליין אַרויפֿגעלאָדן",
 'right-upload_by_url' => 'ארויפֿלאָדן טעקעס פֿון אַ URL',
+'right-purge' => 'ליידיקן דעם זייטל־זאפאס פאר א בלאט אן באשטעטיקונג',
 'right-autoconfirmed' => 'רעדאקטירן האלב-געשיצטע בלעטער',
 'right-bot' => 'באַהאַנדלונג ווי אַן אויטאמאַטישער פראצעס',
+'right-nominornewtalk' => 'מינערדיקע רעדאקטירונגען צו שמועס בלעטער זאלן נישט שאפן די "נייע מודעות" מעלדונג',
 'right-writeapi' => 'ניצן דעם שרײַבן API',
 'right-delete' => 'מעקן בלעטער',
 'right-bigdelete' => 'אויסמעקן בלעטער מיט לאַנגע היסטאריעס',
@@ -1483,7 +1492,7 @@ $1",
 'nchanges' => '{{PLURAL:$1|ענדערונג|$1 ענדערונגען}}',
 'recentchanges' => 'לעצטע ענדערונגען',
 'recentchanges-legend' => 'ברירות פאר לעצטע ענדערונגען',
-'recentchangestext' => 'גיי נאך די לעצטע ענדערונגען צו דער וויקי אויף דעם בלאט.',
+'recentchanges-summary' => 'גיי נאך די לעצטע ענדערונגען צו דער וויקי אויף דעם בלאט.',
 'recentchanges-feed-description' => 'גייט נאך די לעצטע ענדערונגען צו דער וויקי אין דעם בלאט.',
 'recentchanges-label-newpage' => 'די רעדאַקטירונג האט באשאפֿן א נײַעם בלאַט',
 'recentchanges-label-minor' => 'דאָס איז אַ מינערדיקע רעדאַקטירונג',
@@ -1535,6 +1544,9 @@ $1",
 'uploadnologintext' => 'איר מוזט זײַן [[Special:UserLogin| אַרײַנלאָָגירט]] כדי ארויפֿצולאָדן טעקעס',
 'upload_directory_read_only' => 'דער וועבסארווער קען נישט שרייבן צום ארויפלאדן ארכיוו "$1".',
 'uploaderror' => 'אַרויפֿלאָדן פֿעלער',
+'upload-recreate-warning' => "'''ווארענונג: א טעקע מיט דעם נאמען איז געווארן אויסגעמעקט אדער באוועגט.'''
+
+דאס אויסמעקן־ און באוועגן־לאגבוך פאר דעם בלאט זענען געוויזן דא:",
 'uploadtext' => "באניצט דעם פֿארעם אַרויפֿצולאָדן טעקעס.
 כדי צו זען אדער זוכן טעקעס וואס זענען שוין אַרויפֿגעלאָדן ווענדט זיך צו דער [[Special:FileList|ליסטע פֿון אַרויפֿגעלאָדענע טעקעס]]; (ווידער)אַרויפֿלאָדונגען ווערן אויך לאגירט אינעם  [[Special:Log/upload| אַרויפֿלאָדן לאג-בוך]], אויסמעקונגען אינעם [[Special:Log/delete|אויסמעקן לאג-בוך]].
 
@@ -1563,6 +1575,8 @@ $1",
 ביטע גיט דער טעקע א נײַעם נאמען און פּרובירט ארויפֿלאָדן נאכאַמאָל.',
 'filename-toolong' => 'טעקע נעמען קען נישט זײַן לענגער ווי 240 בייטן.',
 'badfilename' => 'טעקע נאמען איז געטוישט צו "$1".',
+'filetype-mime-mismatch' => 'טעקע סופֿיקס ".$1" שטימט נישט מיטן MIME טיפ פון דער טעקע($2).',
+'filetype-badmime' => 'טעקעס מיטן  MIME טיפ "$1" טאר מען נישט ארויפלאדן.',
 'filetype-missing' => 'די טעקע האט נישט קיין פארברייטערונג (למשל ".jpg").',
 'empty-file' => 'די טעקע וואָס איר האט אײַנגעגעבן איז ליידיג.',
 'file-too-large' => 'די טעקע וואָס איר האט אײַנגעגעבן איז צו גרויס.',
@@ -1629,6 +1643,7 @@ $1",
 'upload-http-error' => 'א HTTP גרײַז האט פאַסירט: $1',
 
 # File backend
+'backend-fail-stream' => 'קען נישט מאכן שטראמען טעקע $1.',
 'backend-fail-notexists' => 'נישט פֿאראן די טעקע $1.',
 'backend-fail-invalidpath' => '$1 איז נישט קיין גילטיקער שפייכלערן שטעג.',
 'backend-fail-delete' => 'קען נישט אויסמעקן טעקע $1.',
@@ -1661,6 +1676,7 @@ $1",
 
 # HTTP errors
 'http-invalid-url' => 'אומגילטיג URL: $1',
+'http-invalid-scheme' => 'URL אדרעסן מיט דער "$1" סכעמע ווערן נישט געשטיצט.',
 'http-request-error' => 'HTTP בקשה דורכגעפאלן צוליב אומבאוואוסטער פעלער.',
 'http-read-error' => 'HTTP לייענען גרײַז.',
 'http-timed-out' => 'HTTP בקשה אויסגעגאַנגען.',
@@ -1927,6 +1943,7 @@ $1",
 
 # SpecialCachedPage
 'cachedspecial-viewing-cached-ttl' => 'איר באקוקט א ווערסיע פון דעם בלאט פונעם זאפאס, וואס קען אבער זיין  פֿארעלטערט ביז $1.',
+'cachedspecial-refresh-now' => 'באקוקן די לעצטע.',
 
 # Special:Categories
 'categories' => 'קאַטעגאָריעס',
@@ -3067,6 +3084,10 @@ $1',
 'exif-gpslongitude-e' => 'מזרח לענג',
 'exif-gpslongitude-w' => 'מערב לענג',
 
+# Pseudotags used for GPSAltitudeRef
+'exif-gpsaltitude-above-sealevel' => '$1 {{PLURAL:$1|ngמעטער|מעטער}} איבערן ים־שפיגלl',
+'exif-gpsaltitude-below-sealevel' => '$1 {{PLURAL:$1|מעטער|מעטער}} אונטערן ים־שפיגל',
+
 # Pseudotags used for GPSSpeedRef
 'exif-gpsspeed-k' => 'ק"מ אין א שעה',
 'exif-gpsspeed-m' => 'מייל פער שעה',
@@ -3311,6 +3332,7 @@ $5
 'version-software' => 'אינסטאַלירט ווייכוואַרג',
 'version-software-product' => 'פראדוקט',
 'version-software-version' => 'ווערסיע',
+'version-entrypoints-header-url' => 'URL',
 
 # Special:FilePath
 'filepath' => 'טעקע שטעג',
