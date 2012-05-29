@@ -233,7 +233,7 @@ $messages = array(
 'disclaimerpage' => 'Project:Friijavuohta vástideamis',
 'edithelp' => 'Rievdadanrávvagat',
 'edithelppage' => 'Help:Mo rievdadit siidduid',
-'helppage' => 'Help:Rávvagat',
+'helppage' => 'Help:Sisdoallu',
 'mainpage' => 'Váldosiidu',
 'mainpage-description' => 'Váldosiidu',
 'portal' => 'Gáffestohpu',
@@ -263,7 +263,7 @@ $messages = array(
 'nstab-main' => 'Siidu',
 'nstab-user' => 'Geavaheaddjisiidu',
 'nstab-media' => 'Media',
-'nstab-special' => 'Doaibma',
+'nstab-special' => 'Erenomáš',
 'nstab-project' => 'Prošeaktasiidu',
 'nstab-image' => 'Fiila',
 'nstab-mediawiki' => 'Dieđáhus',
@@ -324,7 +324,7 @@ Du geavaheaddjidovddaldat lea dál anus.
 'nologinlink' => 'ráhkadit',
 'createaccount' => 'Ráhkat ođđa geavaheaddjidovddaldaga',
 'gotaccount' => "Jus dus lea jo geavaheaddjidovddaldat, sáhtát '''$1'''.",
-'gotaccountlink' => 'čálligoahtit sisa',
+'gotaccountlink' => 'Logge sisa',
 'createaccountmail' => 'e-poasttain',
 'badretype' => 'Suollemassánit maid čállet eai leat seammalaganat.',
 'userexists' => 'Geavaheaddjidovddaldat, man evttohit, lea jo anus. Leage buorre ja vállje nubbi geavaheaddjidovddaldaga.',
@@ -413,7 +413,7 @@ Du geavaheaddjidovddaldat lea dál anus.
 'nosuchsectiontitle' => 'Diekkár oassi ii gávdno',
 'nosuchsectiontext' => 'Isket rievdadit oasi, mii ii gávdno.',
 'loginreqtitle' => 'Sisačállin gáibiduvvo',
-'loginreqlink' => 'čálligoađe sisa',
+'loginreqlink' => 'logge sisa',
 'loginreqpagetext' => 'Don fertet $1, ovdalgo oainnat eará siidduid.',
 'accmailtitle' => 'Suollemassátni lea sáddejuvvon.',
 'accmailtext' => "geavaheaddji '''$1''' suollemassátni lea sáddejuvvon čujuhussii '''$2'''.",
@@ -425,6 +425,11 @@ Du geavaheaddjidovddaldat lea dál anus.
 'editing' => 'Rievdadit siiddu $1',
 'editingsection' => 'Rievdadit oasi siiddus $1',
 'editingcomment' => 'Rievdadit kommeanta siiddus $1',
+'explainconflict' => "Soames lea rievdadan dán siiddu dan maŋŋel go don leat álgan rievdadit dan.
+Bajit oasis oidno siiddu teaksta dálá hámis.
+Du rievdadusat oidnojit vuolit oasis.
+Don fertet dahkat du rievdadusaid dálá tekstii.
+'''Beare''' bajit oasi teaksta vurkejuvvo go deaddilat «{{int:savearticle}}».",
 'yourtext' => 'Iežat teaksta',
 'storedversion' => 'Vurkejuvvon veršuvdna',
 'yourdiff' => 'Erohusat',
@@ -741,7 +746,7 @@ $1 {{int:pipe-separator}} $2',
 'unwatchedpages' => 'Čuovvotkeahtes siiddut',
 
 # List redirects
-'listredirects' => 'Ođđasitstivremat',
+'listredirects' => 'Listu ođđasitstivremiin',
 
 # Unused templates
 'unusedtemplates' => 'Geavatkeahtes mállevuođut',
@@ -856,6 +861,14 @@ Also see [[Special:WantedCategories|wanted categories]].',
 # Special:ListUsers
 'listusers-submit' => 'Oza',
 'listusers-noresult' => 'Geavaheaddjit eai dihtton. Dárkis maid sierra bustávasturrodagat.',
+
+# Special:ActiveUsers
+'activeusers' => 'Listu aktiivvalaš geavaheddjiin',
+'activeusers-intro' => 'Dát lea listu geavaheddjiin, mat leat bargan juoidá maŋimus $1 {{PLURAL:$1|beaivvi|beaivvi}} siste.',
+'activeusers-count' => '$1 {{PLURAL:$1|rievdadus|rievdadusa}} maŋimus $3 beaivvi siste',
+'activeusers-from' => 'Čájet geavaheddjiid dán rájes:',
+'activeusers-hidebots' => 'Čiega bohtaid',
+'activeusers-hidesysops' => 'Čiega administráhtoriid',
 
 # E-mail user
 'mailnologin' => 'Sáddejeaddji čujuhus váilo',
@@ -1103,7 +1116,7 @@ Siiddus $2 lea listu maŋimus sihkomiin.',
 'export-download' => 'Vurke fiillan',
 
 # Namespace 8 related
-'allmessages' => 'Vuogádatdieđáhusat',
+'allmessages' => 'Buot systemasánit',
 'allmessagesname' => 'Namma',
 'allmessagescurrent' => 'Dálá teaksta',
 
@@ -1326,5 +1339,7 @@ Siiddus $2 lea listu maŋimus sihkomiin.',
 'logentry-delete-delete' => '$1 sihkui siiddu $3',
 'logentry-move-move' => '$1 sirddii siiddu $3 nammii $4',
 'logentry-move-move_redir-noredirect' => '$1 sirddii siiddu $3 nammii $4 iige ráhkadan ođđasitstivrema',
+'logentry-newusers-create' => '$1 ráhkadii dovddaldaga',
+'logentry-newusers-autocreate' => 'Dovddaldat $1 ráhkaduvvui automáhtalaččat',
 
 );

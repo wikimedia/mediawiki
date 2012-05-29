@@ -115,7 +115,7 @@ $messages = array(
 'pagecategories' => '{{PLURAL:$1|Категория|Категории}}',
 'category_header' => '"$1" категориядин ччинар',
 'subcategories' => 'агъакатегорияр',
-'category-media-header' => '"$1" категориядин медиа',
+'category-media-header' => '"$1" категоридин медиа',
 'category-empty' => "''Алай чIава и категория ичIи я.\"",
 'hidden-categories' => '{{PLURAL:$1|Чуьнуьхай категория |Чуьнуьхай категорияр }}',
 'hidden-category-category' => 'Чуьнуьхай категорияр',
@@ -640,7 +640,7 @@ $messages = array(
 'timezoneregion-pacific' => 'Секин чIехи гуьл',
 'prefs-files' => 'Шикил',
 'youremail' => 'Электрон почта:',
-'username' => 'Ишлемишчидин тӀвар',
+'username' => 'Уртахдин тӀвар',
 'uid' => 'Уртах тайин ийидайди:',
 'yourrealname' => 'Xалис тIвар:',
 'yourlanguage' => 'ЧIалар',
@@ -1130,7 +1130,7 @@ $messages = array(
 'import-token-mismatch' => 'Сеансдин  ганайбур квахьнава. Тавакъу ийида, мадни алахъун ая.',
 
 # Tooltip help for the actions
-'tooltip-pt-userpage' => 'Куь (уртахдин) ччин',
+'tooltip-pt-userpage' => 'Куьн (уртахдин) ччин',
 'tooltip-pt-mytalk' => 'Куь веревирдрин ччин',
 'tooltip-pt-preferences' => 'Куь низамарунар',
 'tooltip-pt-watchlist' => 'Куьне гуьзетзавай ччинрин сиягь',
@@ -1258,7 +1258,7 @@ Cиягьда авай анжах (* лишандихъ галаз эгечIза
 'limitall' => 'вири',
 
 # action=purge
-'confirm_purge_button' => 'ОК',
+'confirm_purge_button' => 'ЭХь',
 'confirm-purge-top' => 'И ччинин кэш алуддани?',
 
 # action=watch/unwatch
