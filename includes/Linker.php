@@ -1041,7 +1041,10 @@ class Linker {
 		wfRunHooks( 'UserToolLinksEdit', array( $userId, $userText, &$items ) );
 
 		if ( $items ) {
-			return ' <span class="mw-usertoollinks">' . wfMessage( 'parentheses' )->rawParams( $wgLang->pipeList( $items ) )->escaped() . '</span>';
+			return wfMessage( 'word-separator' )->plain()
+				. '<span class="mw-usertoollinks">'
+				. wfMessage( 'parentheses' )->rawParams( $wgLang->pipeList( $items ) )->escaped()
+				. '</span>';
 		} else {
 			return '';
 		}
@@ -1125,8 +1128,9 @@ class Linker {
 		} elseif ( $rev->userCan( Revision::DELETED_USER ) ) {
 			$userId = $rev->getUser( Revision::FOR_THIS_USER );
 			$userText = $rev->getUserText( Revision::FOR_THIS_USER );
-			$link = self::userLink( $userId, $userText ) .
-				' ' . self::userToolLinks( $userId, $userText );
+			$link = self::userLink( $userId, $userText )
+				. wfMessage( 'word-separator' )->plain()
+				. self::userToolLinks( $userId, $userText );
 		} else {
 			$link = wfMsgHtml( 'rev-deleted-user' );
 		}
