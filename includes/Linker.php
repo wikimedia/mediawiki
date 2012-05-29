@@ -1641,9 +1641,9 @@ class Linker {
 	 * @return string
 	 */
 	public static function generateRollback( $rev ) {
-		return '<span class="mw-rollback-link">['
-			. self::buildRollbackLink( $rev )
-			. ']</span>';
+		return '<span class="mw-rollback-link">'
+			. wfMessage( 'brackets' )->rawParams( self::buildRollbackLink( $rev ) )->plain()
+			. '</span>';
 	}
 
 	/**
