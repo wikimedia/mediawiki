@@ -1660,6 +1660,7 @@ Ene zohfällesch ußjewörfelte Schlößel, dää De nämme künnß, wöhr: <cod
 'newsectionsummary' => 'Neu Avschnet /* $1 */',
 'rc-enhanced-expand' => 'Einzelheite zeije (bruch JavaSkripp)',
 'rc-enhanced-hide' => 'Einzelheite versteiche',
+'rc-old-title' => 'ojinaal als „$1“ aanjelaat',
 
 # Recent changes linked
 'recentchangeslinked' => 'Änderunge aan Sigge, wo heh drop jelink es',
@@ -1855,7 +1856,8 @@ Wann et nit flupp, verzäll et enem [[Special:ListUsers/sysop|Wiki-Köbes]].',
 'backend-fail-writetemp' => 'Mer kunnte nit en de Zweschedattei schriive.',
 'backend-fail-closetemp' => 'Mer kunnte de Zweschedattei no zohmaache.',
 'backend-fail-read' => 'Mer kunnte di Dattei $1 nit lässe.',
-'backend-fail-create' => 'Mer kunnte di Dattei $1 nit aanlääje.',
+'backend-fail-create' => 'Mer kunnte di Dattei $1 nit schrieve.',
+'backend-fail-contenttype' => 'Mer kunnte de Zoot Enhalt nit eruß krijje, di en dä Dattei „$1“ faßjehallde wääde sull.',
 
 # Lock manager
 'lockmanager-notlocked' => 'Mer kunnte „$1“ nit freijävve. Ed es nit jeschpächt.',
@@ -2980,10 +2982,14 @@ Bes esu joot, un versök et noch ens.',
 'import-logentry-interwiki-detail' => '{{PLURAL:$1|ein Version|$1 Versione|kein Version}} vun „$2“',
 
 # JavaScriptTest
-'javascripttest-disabled' => 'Di Funxjon es ußjeschalldt.',
+'javascripttest' => ' JavaSkrepte ußprobeere.',
+'javascripttest-disabled' => 'Di Funxjon es en heh dämm Wiki ußjeschalldt.',
 'javascripttest-title' => 'De Prööfunge „$1“ loufe.',
+'javascripttest-pagetext-noframework' => 'Heh di Sigg es för JavaSkrepte ußzeprobeere.',
 'javascripttest-pagetext-unknownframework' => 'Dä Prööfrahme „$1“ es onbikannt.',
+'javascripttest-pagetext-frameworks' => 'Bes esu jood un söök eine vun dä Prööfömjävvonge us: $1',
 'javascripttest-pagetext-skins' => 'Sööke en Bovverfläsch udder et Ußsinn uß, öm di Prööfonge domet ze maache:',
+'javascripttest-qunit-intro' => 'Loor noh dä [$1 Dokemäntation övver et Prööfe] op mediawiki.org.',
 
 # Tooltip help for the actions
 'tooltip-pt-userpage' => 'Don Ding eije Metmaachersigg aanzeije',

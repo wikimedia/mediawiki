@@ -46,6 +46,7 @@
  * @author Raylton P. Sousa
  * @author Rodrigo Calanca Nishino
  * @author Sir Lestaty de Lioncourt
+ * @author TheGabrielZaum
  * @author Urhixidur
  * @author Vuln
  * @author Waldir
@@ -2642,7 +2643,7 @@ Consulte a [[Special:BlockList|lista de bloqueios]].',
 'blocklist-userblocks' => 'Esconder bloqueios de contas',
 'blocklist-tempblocks' => 'Esconder bloqueios temporários',
 'blocklist-addressblocks' => 'Esconder bloqueios de IP único',
-'blocklist-rangeblocks' => 'Ocultar blocos gama',
+'blocklist-rangeblocks' => 'Ocultar bloqueios de faixas',
 'blocklist-timestamp' => 'Data e hora',
 'blocklist-target' => 'Destinatário',
 'blocklist-expiry' => 'Expira',

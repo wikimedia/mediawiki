@@ -1,5 +1,5 @@
 <?php
-/** Simplified Chinese (‪中文(简体)‬)
+/** Simplified Chinese (‪中文（简体）‬)
  *
  * See MessagesQqq.php for message documentation incl. usage of parameters
  * To improve a translation please visit http://translatewiki.net
@@ -15,6 +15,7 @@
  * @author Chenxiaoqino
  * @author Chenzw
  * @author Chinalace
+ * @author Dimension
  * @author Dingyuang
  * @author Fantasticfears
  * @author Fengchao
@@ -1703,6 +1704,7 @@ $1',
 'backend-fail-internal' => '存储后端“$1”发生了一个未知错误。',
 'backend-fail-contenttype' => '无法判断文件的内容类型来储存于“$1”。',
 'backend-fail-batchsize' => '存储后端被给予了一批$1个文件{{PLURAL:$1|操作|操作}}；限值为$2个{{PLURAL:$2|操作|操作}}。',
+'backend-fail-usable' => '权限不足或缺少目录/贮存器，无法写入文件$1。',
 
 # File journal errors
 'filejournal-fail-dbconnect' => '无法连接到后端存储的日志数据库“$1”。',
@@ -2222,7 +2224,7 @@ $UNWATCHURL
 请确定您要进行此项操作，并且了解其后果，同时您的行为符合[[{{MediaWiki:Policy-url}}]]。',
 'actioncomplete' => '操作完成',
 'actionfailed' => '操作失败',
-'deletedtext' => '"$1"已经被删除。最近删除的记录请参见$2。',
+'deletedtext' => '“$1”已经被删除。最近删除的记录请参见$2。',
 'dellogpage' => '删除日志',
 'dellogpagetext' => '以下是最近的删除的列表。',
 'deletionlog' => '删除记录',
@@ -2444,7 +2446,7 @@ $1',
 ** 恐吓行为/骚扰
 ** 滥用多个账户
 ** 不能接受的用户名',
-'ipb-hardblock' => '防止已登录的用户从该 IP 地址编辑',
+'ipb-hardblock' => '防止已登录的用户从该IP地址编辑',
 'ipbcreateaccount' => '阻止创建新账号',
 'ipbemailban' => '阻止用户发送电邮',
 'ipbenableautoblock' => '自动封禁该用户最后使用的IP地址，以及他们随后试图用于编辑的所有IP地址',
@@ -3520,6 +3522,7 @@ $5
 
 # Separators for various lists, etc.
 'comma-separator' => '、',
+'colon-separator' => '：',
 'word-separator' => '',
 'parentheses' => '（$1）',
 

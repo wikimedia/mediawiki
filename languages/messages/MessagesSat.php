@@ -273,7 +273,7 @@ $1',
 'badaccess-groups' => 'Am do oka kạmim menjoṅkan ona do khạli {{PLURAL:$2 rạsiạkore noa rạsiạreaḱ mit́ṭenre}} mitṭen beoharić sompadon daṛeyaḱa: $1.',
 
 'versionrequired' => 'Meḍiawiki reaḱ $1 nãwã aroe jạruṛa',
-'versionrequiredtext' => 'Noa sakam do beohar lạgit́te meḍiawikire $1 nambar nãwã araoe jạruṛa. [[Special:Version nãwã aroe sakam]] ńelmẽ.',
+'versionrequiredtext' => 'Noa sakam beohar lạgit́te meḍiawikire $1 nambar nãwã araoe jạruṛa. [[Special:Version nãwã aro sakam]] ńelmẽ.',
 
 'ok' => 'Ṭhik gea',
 'retrievedfrom' => '"$1" khon ñam ạgui',
@@ -324,8 +324,8 @@ $1',
 Am do paseć mit́ṭen vul joṛaoem emakada se URL oltem vul akada.
 Noa do noṅkanaḱ menkana je {{SITENAME}} sayeṭre beoharen sofṭower re mit́ṭen vul menaḱa.',
 'nosuchspecialpage' => 'Noṅkanaḱ asokay sakam do banuḱa',
-'nospecialpagetext' => '<strong>Am do mit́ṭen beạn asokae sakamem koe akada.</strong>
-[[Special:SpecialPages {{int:specialpages}}]]-re ạnte asokae sakamkore mit́ṭen tạlikam ńama.',
+'nospecialpagetext' => '<strong>Am do mit́ṭen beạn asokae sakamem nehor akada.</strong>
+[[Special:SpecialPages {{int:specialpages}}]]-re ạn asokae sakamkore mit́ṭen tạlikam ńama.',
 
 # General errors
 'error' => 'bhul',
@@ -500,11 +500,11 @@ Nitoḱ do am bhitritem boloḱkana...',
 'passwordreset-capture-help' => 'Am do judi noa jacạy baksom lin lekhan, tobe nit lạgit́te em akan uku nambar são mit́ṭen e-mail ame uduḱama ar ona sãote beoharić ṭhen ona kuluḱa.',
 'passwordreset-email' => 'E-mail ṭhikạna:',
 'passwordreset-emailtitle' => '{{SITENAME}} sayeṭre beoharićaḱ purạo thutiko',
-'passwordreset-emailelement' => 'Beoharicaḱ ńutum:
-Nit lạgit oku nambar:',
+'passwordreset-emailelement' => 'Beoharićaḱ ńutum: $1
+Mit́ ghạṛi lạgit uku nambar: $2',
 'passwordreset-emailsent' => 'Mitṭen disạ ruaṛ e-mail do kulena.',
 'passwordreset-emailsent-capture' => 'Mit́ṭen disạ ruaṛaḱ e-mail dokulena, oka do latarre ńeloḱ kana.',
-'passwordreset-emailerror-capture' => 'Mit́ṭen disạ ruạṛ e-mail do hatoena, oka do latarre ńelok kana, menkhan beoharic ṭhen do baṇ seṭerlena.',
+'passwordreset-emailerror-capture' => 'Disạ ruạṛ oco lạgit́te mit́ṭen e-mail tear hoelena, oka do latarre udugoḱkana, menkhan $1 beoharić ṭhen  ṭhen baṅ kul hoe akana.',
 
 # Special:ChangeEmail
 'changeemail' => 'E-mail ṭhikạna do bodolme',
@@ -579,9 +579,9 @@ Refarens lạgit́te nahaḱ boloḱ do latare em hoena:',
 Amaḱ bodolaḱ kodo nit habićte bań rukhíạakana!",
 'continue-editing' => 'Toṅge calaḱkana',
 'editing' => 'Joṛao do purạena: $1',
-'creating' => 'Benao',
+'creating' => '$1 sakam doe tear akada',
 'editingsection' => 'Joṛao $1 (hạṭiń)',
-'editingcomment' => 'Joṛao',
+'editingcomment' => 'Sompadon akadae $1 (Nãwa pahaṭa)',
 'editconflict' => 'Sompadon reaḱ bene bạiri: $1',
 'yourtext' => 'Amaḱ ol',
 'storedversion' => 'Rukhiyạ nãwã aroe',

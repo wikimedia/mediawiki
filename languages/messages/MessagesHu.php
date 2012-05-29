@@ -2145,7 +2145,7 @@ A napló típusának, a szerkesztő nevének (kis- és nagybetűérzékeny), vag
 # SpecialCachedPage
 'cachedspecial-viewing-cached-ttl' => 'A lap tárolt változatát látod, aminek utolsó frissítése ennyi ideje volt:  $1',
 'cachedspecial-viewing-cached-ts' => 'Az oldal tárolt változatát látod, ami eltérhet az aktuálistól.',
-'cachedspecial-refresh-now' => 'A legfrissebb változat mutatása.',
+'cachedspecial-refresh-now' => 'A legfrissebb változat megjelenítése.',
 
 # Special:Categories
 'categories' => 'Kategóriák',
@@ -3933,11 +3933,11 @@ A képek teljes méretben jelennek meg, más fájltípusok közvetlenül a hozz�
 
 # Durations
 'duration-seconds' => '{{PLURAL: $1|másodperc|másodperc}}',
-'duration-minutes' => '{{PLURAL: $1|perc|perc}}',
+'duration-minutes' => '$1 {{PLURAL: $1|perc|perc}}',
 'duration-hours' => '{{PLURAL:$1|egy|$1}} óra',
 'duration-days' => '{{PLURAL:$1|egy|$1}} nap',
-'duration-weeks' => '{{PLURAL: $1|hét|hét}}',
-'duration-years' => '{{PLURAL: $1|év|év}}',
+'duration-weeks' => '$1 {{PLURAL:$1|hét|hét}}',
+'duration-years' => '{{PLURAL: $1|Egy év|$1 év}}',
 'duration-decades' => '{{PLURAL:$1|egy|$1}} évtized',
 'duration-centuries' => '{{PLURAL:$1|egy|$1}} évszázad',
 'duration-millennia' => '{{PLURAL:$1|egy|$1}} évezred',
