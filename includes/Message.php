@@ -410,6 +410,14 @@ class Message {
 			return '&lt;' . $key . '&gt;';
 		}
 
+		# Replace $* with a list of parameters, primarily for &uselang=qqx.
+		if ( count( $this->parameters ) ) {
+			$paramlist = ': $' . implode( ', $', range( 1, count( $this->parameters ) ) );
+		} else {
+			$paramlist = '';
+		}
+		$string = str_replace( '$*', $paramlist, $string );
+
 		# Replace parameters before text parsing
 		$string = $this->replaceParameters( $string, 'before' );
 
