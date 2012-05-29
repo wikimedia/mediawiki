@@ -39,6 +39,7 @@ class FakeConverter {
 	function convert( $t ) { return $t; }
 	function convertTo( $text, $variant ) { return $text; }
 	function convertTitle( $t ) { return $t->getPrefixedText(); }
+	function convertNamespace( $ns ) { return $this->mLang->getFormattedNsText( $ns ); }
 	function getVariants() { return array( $this->mLang->getCode() ); }
 	function getPreferredVariant() { return $this->mLang->getCode(); }
 	function getDefaultVariant() { return $this->mLang->getCode(); }
@@ -3507,6 +3508,16 @@ class Language {
 	 */
 	public function convertTitle( $title ) {
 		return $this->mConverter->convertTitle( $title );
+	}
+
+	/**
+	 * Convert a namespace index to a string in the preferred variant
+	 *
+	 * @param $ns int
+	 * @return string
+	 */
+	public function convertNamespace( $ns ) {
+		return $this->mConverter->convertNamespace( $ns );
 	}
 
 	/**

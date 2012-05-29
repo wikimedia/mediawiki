@@ -758,10 +758,12 @@ class Html {
 			if ( $nsId < NS_MAIN || in_array( $nsId, $params['exclude'] ) ) {
 				continue;
 			}
-			if ( $nsId === 0 ) {
+			if ( $nsId === NS_MAIN ) {
 				// For other namespaces use use the namespace prefix as label, but for
 				// main we don't use "" but the user message descripting it (e.g. "(Main)" or "(Article)")
 				$nsName = wfMsg( 'blanknamespace' );
+			} elseif ( is_int( $nsId ) ) {
+				$nsName = $wgContLang->convertNamespace( $nsId );
 			}
 			$optionsHtml[] = Html::element(
 				'option', array(
