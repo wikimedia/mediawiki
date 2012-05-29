@@ -528,24 +528,41 @@ class LanguageConverter {
 	public function convertTitle( $title ) {
 		$variant = $this->getPreferredVariant();
 		$index = $title->getNamespace();
-		if ( $index === NS_MAIN ) {
-			$text = '';
+		if ( $index !== NS_MAIN ) {
+			$text = $this->convertNamespace( $index ) . ':';
 		} else {
-			// first let's check if a message has given us a converted name
+			$text = '';
+		}
+		$text .= $this->translate( $title->getText(), $variant );
+		return $text;
+	}
+
+	/**
+	 * Get the namespace display name in the preferred variant.
+	 *
+	 * @param $index int namespace id
+	 * @return String: namespace name for display
+	 */
+	public function convertNamespace( $index ) {
+		$variant = $this->getPreferredVariant();
+		if ( $index === NS_MAIN ) {
+			return '';
+		} else {
+			// First check if a message gives a converted name in the target variant.
+			$nsConvMsg = wfMessage( 'conversion-ns' . $index )->inLanguage( $variant );
+			if ( $nsConvMsg->exists() ) {
+				return $nsConvMsg->plain();
+			}
+			// Then check if a message gives a converted name in content language
+			// which needs extra translation to the target variant.
 			$nsConvMsg = wfMessage( 'conversion-ns' . $index )->inContentLanguage();
 			if ( $nsConvMsg->exists() ) {
-				$text = $nsConvMsg->plain();
-			} else {
-				// the message does not exist, try retrieve it from the current
-				// variant's namespace names.
-				$langObj = $this->mLangObj->factory( $variant );
-				$text = $langObj->getFormattedNsText( $index );
+				return $this->translate( $nsConvMsg->plain(), $variant );
 			}
-			$text .= ':';
+			// No message exists, retrieve it from the target variant's namespace names.
+			$langObj = $this->mLangObj->factory( $variant );
+			return $langObj->getFormattedNsText( $index );
 		}
-		$text .= $title->getText();
-		$text = $this->translate( $text, $variant );
-		return $text;
 	}
 
 	/**
