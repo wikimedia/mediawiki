@@ -2825,7 +2825,13 @@ class Title {
 			return $this->mRedirect = false;
 		}
 		$linkCache = LinkCache::singleton();
-		$this->mRedirect = (bool)$linkCache->getGoodLinkFieldObj( $this, 'redirect' );
+		$cached = $linkCache->getGoodLinkFieldObj( $this, 'redirect' );
+
+		if ( $cached === null ) { # check the assumption that the cache actually knows about this title
+			throw new MWException( "LinkCache doesn't currently know about this title: " . $this->getPrefixedDBkey() );
+		}
+
+		$this->mRedirect = (bool)$cached;
 
 		return $this->mRedirect;
 	}
