@@ -2696,6 +2696,10 @@ This message was something like "unlock move protection" in the past.',
 'protect-text' => 'Intro of the protection interface. See [[meta:Protect]] for more information.',
 'protect-default' => '{{Identical|Default}}',
 'protect-fallback' => 'This message is used as an option in the protection form on wikis were extra protection levels have been configured.',
+'protect-summary-desc' => 'Used in edit summary for description of a protecting restriction.
+* $1 is action, taken from restriction-*
+* $2 is restriction, taken from protect-level-*
+* $3 is {{msg-mw|protect-expiring}} or {{msg-mw|protect-expiry-indefinite}}',
 'protect-summary-cascade' => 'Used in edit summary when cascade protecting a page.',
 'protect-expiring' => 'Used in page history, and in [[Special:Protectedtitles]], [[Special:Protectedpages]], and extension FlaggedRevs.
 * $1 is a date and time

@@ -1959,20 +1959,26 @@ class WikiPage extends Page {
 		foreach ( $limit as $action => $restrictions ) {
 			$encodedExpiry[$action] = $dbw->encodeExpiry( $expiry[$action] );
 			if ( $restrictions != '' ) {
-				$protectDescription .= $wgContLang->getDirMark() . "[$action=$restrictions] (";
+				$actionText = wfMessage( 'restriction-' . $action )->inContentLanguage()->text();
+				$restrictionsText = wfMessage( 'protect-level-' . $restrictions )->inContentLanguage()->text();
 				if ( $encodedExpiry[$action] != 'infinity' ) {
-					$protectDescription .= wfMsgForContent( 'protect-expiring',
+					$expiryText = wfMsgForContent( 'protect-expiring',
 						$wgContLang->timeanddate( $expiry[$action], false, false ) ,
 						$wgContLang->date( $expiry[$action], false, false ) ,
 						$wgContLang->time( $expiry[$action], false, false ) );
 				} else {
-					$protectDescription .= wfMsgForContent( 'protect-expiry-indefinite' );
+					$expiryText = wfMsgForContent( 'protect-expiry-indefinite' );
 				}
 
-				$protectDescription .= ') ';
+				if ( $protectDescription !== '' ) {
+					$protectDescription .= wfMessage( 'word-separator' )->inContentLanguage()->text();
+				}
+				$protectDescription .= $wgContLang->getDirMark();
+				$protectDescription .= wfMessage( 'protect-summary-desc' )
+					->params( $actionText, $restrictionsText, $expiryText )
+					->inContentLanguage()->text();
 			}
 		}
-		$protectDescription = trim( $protectDescription );
 
 		if ( $id ) { # Protection of existing page
 			if ( !wfRunHooks( 'ArticleProtect', array( &$this, &$user, $limit, $reason ) ) ) {
@@ -2012,10 +2018,14 @@ class WikiPage extends Page {
 				$editComment .= ": $reason";
 			}
 			if ( $protectDescription ) {
-				$editComment .= " ($protectDescription)";
+				$editComment .= wfMessage( 'word-separator' )->inContentLanguage()->text();
+				$editComment .= wfMessage( 'parentheses' )->params( $protectDescription )->inContentLanguage()->text();
 			}
 			if ( $cascade ) {
-				$editComment .= ' [' . wfMsgForContent( 'protect-summary-cascade' ) . ']';
+				$editComment .= wfMessage( 'word-separator' )->inContentLanguage()->text();
+				$editComment .= wfMessage( 'brackets' )->params(
+					wfMessage( 'protect-summary-cascade' )->inContentLanguage()->text()
+				)->inContentLanguage()->text();
 			}
 
 			# Insert a null revision
