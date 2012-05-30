@@ -727,7 +727,7 @@ abstract class Skin extends ContextSource {
 					$display .= $link;
 					$linkObj = Title::newFromText( $growinglink );
 
-					if ( is_object( $linkObj ) && $linkObj->exists() ) {
+					if ( is_object( $linkObj ) && $linkObj->isKnown() ) {
 						$getlink = Linker::linkKnown(
 							$linkObj,
 							htmlspecialchars( $display )
