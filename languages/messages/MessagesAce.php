@@ -261,6 +261,7 @@ $messages = array(
 'hidden-categories' => '{{PLURAL:$1|Kawan teusom|Kawan teusom}}',
 'category-subcat-count' => '{{PLURAL:$2|Kawan nyoë  cit na saboh yupkawan nyoë.|Kawan nyoë na {{PLURAL:$1|yupkawan|$1 yupkawan}} nyoë, dari ban dum $2.}}',
 'category-article-count' => '{{PLURAL:$2|Kawan nyoë cit na saboh ôn nyoë.|Kawan nyoë na  {{PLURAL:$1|ôn|$1 ôn }}, dari ban dum $2.}}',
+'category-file-count' => '{{PLURAL:$2|Kawan nyoe cit na beureukaih nyoe sagay.|{{PLURAL:$1|beureukaih|$1 beureukaih}} nyoe na lam kawan nyoe, nibak ban dum $2.}}',
 'listingcontinuesabbrev' => 'samb.',
 'noindex-category' => 'On nyang hana geuindex',
 
@@ -433,6 +434,7 @@ Nan Droeneuh ka teupeugot. Neuato laju [[Special:Preferences|peue nyang neugalak
 'createaccount' => 'Peudapeuta nan barô',
 'gotaccount' => "Ka lheuëh neudapeuta? '''$1'''.",
 'gotaccountlink' => 'Tamong',
+'userlogin-resetlink' => 'Tuwoe-neuh ngon teuneurang tamong Droeneuh?',
 'loginsuccesstitle' => 'Meuhasé tamong',
 'loginsuccess' => "'''Droëneuh  jinoë ka neutamong di {{SITENAME}} sibagoë \"\$1\".'''",
 'nosuchuser' => 'Hana ureuëng nguy ngön nan "$1".
@@ -601,6 +603,7 @@ Alasan-alasan nyan hana geupeureumeuen.",
 'searchprofile-everything-tooltip' => 'Mita ban dum ôn asoë (rôh ôn marit)',
 'searchprofile-advanced-tooltip' => 'Mita bak ruweueng nan meupat-pat',
 'search-result-size' => '$1 ({{PLURAL:$2|1 kata|$2 kata}})',
+'search-result-category-size' => '{{PLURAL:$1|1 anggeeta|$1 anggeeta}} ({{PLURAL:$2|1 aneuk kawan|$2 aneuk kawan}}, {{PLURAL:$3|1 beureukaih|$3 beureukaih}})',
 'search-redirect' => '(peuninah $1)',
 'search-section' => '(bagian $1)',
 'search-suggest' => 'Kadang meukeusud Droëneuh nakeuh: $1',
@@ -630,6 +633,9 @@ Alasan-alasan nyan hana geupeureumeuen.",
 'yourrealname' => 'Nan aseuli:',
 'prefs-help-realname' => '* Nan aseuli hana meucéh neupasoë.
 Meunyo neupasoë, euntreuk nan Droëneuh nyan geupeuleumah mangat jitupeuë soë nyang tuléh.',
+'prefs-help-email' => 'Alamat surat-e hana meuceh na, tapi geupeureulee keu peugot ulang lageuem, meunyo droeneuh tuwoe lageuem.',
+'prefs-help-email-others' => "Droeneuh jeuet cit neupileh neupubiyeue ureueng la'en geupeu'et surat keu droeneuh rot surat-e rot seunambat bak on ureueng nguy atawa on marit.
+Surat-e droeneuh h'an geupeugah keu ureueng nyan.",
 
 # Groups
 'group-sysop' => 'Ureuëng urôh',
@@ -770,6 +776,7 @@ Teuneurang bak [$2 on teuneurangjih] geupeuleumah di yup nyoe.",
 'deadendpages' => 'Ôn buntu',
 'protectedpages' => 'Ôn nyang geulindông',
 'listusers' => 'Dapeuta ureuëng nguy',
+'usercreated' => '{{GENDER:$3|Geupeugot}} bak $1 poh $2',
 'newpages' => 'Ôn barô',
 'ancientpages' => 'Teunuléh away',
 'move' => 'Peupinah',
@@ -901,6 +908,7 @@ Droëneuh jeuët neugantoë tingkat lindông keu ôn nyoë, tapi nyan hana peung
 'sp-contributions-talk' => 'marit',
 'sp-contributions-search' => 'Mita soë nyang tuléh',
 'sp-contributions-username' => 'Alamat IP atawa nan ureuëng nguy:',
+'sp-contributions-toponly' => 'Peuleumah geunantoe nyang baro mantong',
 'sp-contributions-submit' => 'Mita',
 
 # What links here
@@ -1089,6 +1097,9 @@ Data nyang la'én eunteuk teupeusom keudroë.
 'watchlisttools-view' => 'Peuleumah neuubah meuhubông',
 'watchlisttools-edit' => 'Peuleumah ngön andam dapeuta kaeunalön',
 'watchlisttools-raw' => 'Andam dapeuta keunalön meuntah',
+
+# Core parser functions
+'duplicate-defaultsort' => '\'\'\'Ingat:\'\'\' Gunci meuurot pukok "$2" jipeuhiro gunci meuurot pukok "$1" sigohlomjih.',
 
 # Special:Version
 'version' => 'Curak',

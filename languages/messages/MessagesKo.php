@@ -3362,9 +3362,9 @@ Variants for Chinese language
 'exif-compression-3' => 'CCITT 그룹-3 팩스 인코딩',
 'exif-compression-4' => 'CCITT 그룹-4 팩스 인코딩',
 'exif-compression-6' => 'JPEG (오래됨)',
-'exif-compression-8' => '수축 (Deflate) (Adobe)',
+'exif-compression-8' => '압축 (Adobe)',
 'exif-compression-32773' => 'PackBits (매킨토시 RLE)',
-'exif-compression-32946' => '수축 (Deflate) (PKZIP)',
+'exif-compression-32946' => '압축 (PKZIP)',
 
 'exif-copyrighted-true' => '저작권의 보호를 받음',
 'exif-copyrighted-false' => '퍼블릭 도메인',

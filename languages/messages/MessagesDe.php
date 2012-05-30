@@ -2518,9 +2518,10 @@ Siehe die [[Special:ProtectedPages|Liste der geschützten Seiten]] für alle akt
 'protect-existing-expiry' => 'Aktuelles Seitenschutzende: $2, $3 Uhr',
 'protect-otherreason' => 'Anderer/ergänzender Grund:',
 'protect-otherreason-op' => 'Anderer Grund',
-'protect-dropdown' => '*Allgemeine Schutzgründe
-** Weblink-Spam
-** Editwar
+'protect-dropdown' => '* Allgemeine Schutzgründe
+** Edit-War
+** Wiederkehrender Vandalismus
+** Wiederholtes Einstellen von Werbung
 ** Häufig eingebundene Vorlage
 ** Seite mit hoher Besucherzahl',
 'protect-edit-reasonlist' => 'Schutzgründe bearbeiten',
@@ -3219,7 +3220,7 @@ Durch das Herunterladen und Öffnen der Datei kann dein Computer beschädigt wer
 # Video information, used by Language::formatTimePeriod() to format lengths in the above messages
 'seconds' => '{{PLURAL:$1|$1 Sekunde|$1 Sekunden}}',
 'minutes' => '{{PLURAL:$1|$1 Minute|$1 Minuten}}',
-'hours' => '{{PLURAL:$1|$1 Stunde|$1 Stunden}}',
+'hours' => '{{PLURAL:$1|einer Stunde|$1 Stunden}}',
 'days' => '{{PLURAL:$1|$1 Tag|$1 Tage}}',
 'ago' => 'vor $1',
 

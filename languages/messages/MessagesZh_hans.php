@@ -677,7 +677,7 @@ $2',
 'logout' => '退出',
 'userlogout' => '退出',
 'notloggedin' => '未登录',
-'nologin' => '你还没有账户吗？$1。',
+'nologin' => '没有账户？$1。',
 'nologinlink' => '创建账户',
 'createaccount' => '创建账户',
 'gotaccount' => '已经拥有账户？请$1。',
@@ -697,7 +697,7 @@ $2',
 'loginsuccesstitle' => '登录成功',
 'loginsuccess' => "'''“$1”，欢迎登录{{SITENAME}}。'''",
 'nosuchuser' => '找不到用户“$1”。用户名是大小写敏感且区分繁简体的。请检查您的拼写，或者[[Special:UserLogin/signup|建立一个新账户]]。',
-'nosuchusershort' => '没有一个名为“$1”的用户。请检查您输入的文字是否有错误。',
+'nosuchusershort' => '没有名为“$1”的用户。请检查您输入的文字是否有错误。',
 'nouserspecified' => '你需要指定一个用户名。',
 'login-userblocked' => '该用户已被封禁，禁止登录。',
 'wrongpassword' => '您输入的密码错误，请再试一次。',
@@ -872,13 +872,14 @@ $2
 'accmailtext' => "'$1'的密码已经被发送到$2。",
 'newarticle' => '（新页面）',
 'newarticletext' => '您进入了一个尚未创建的页面。
-要创建该页面，请在下面的编辑框中输入内容（详情参见[[{{MediaWiki:Helppage}}|帮助]]）。
-如果您是不小心来到此页面，直接点击您浏览器中的“返回”按钮返回。',
+要创建该页面，请在下面的编辑框中输入内容（详情参见[[{{MediaWiki:Helppage}}|帮助页]]）。
+如果您误入此页，请点击浏览器中的“返回”按钮。',
 'anontalkpagetext' => "---- ''这是一个还未建立账户的匿名用户的讨论页, 因此我们只能用IP地址来与他或她联络。该IP地址可能由几名用户共享。如果您是一名匿名用户并认为此页上的评语与您无关，请[[Special:UserLogin/signup|创建新账户]]或[[Special:UserLogin|登录]]以避免在未来与其他匿名用户混淆。''",
 'noarticletext' => '本页面目前没有内容。你可以在其他页面中[[Special:Search/{{PAGENAME}}|搜索该页标题]]、<span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} 搜索相关日志]或[{{fullurl:{{FULLPAGENAME}}|action=edit}} 编辑本页面]。</span>',
 'noarticletext-nopermission' => '此页目前没有内容，您可以在其它页[[Special:Search/{{PAGENAME}}|搜索此页标题]]，
 或<span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} 搜索有关日志]</span>。',
-'userpage-userdoesnotexist' => '用户账户“<nowiki>$1</nowiki>”未曾创建。请在创建／编辑这个页面前先检查一下。',
+'userpage-userdoesnotexist' => '用户账户"$1"未注册。
+请在创建／编辑该页之前进行核对。',
 'userpage-userdoesnotexist-view' => '用户账户“$1”未曾创建。',
 'blocked-notice-logextract' => '这位用户目前已被封禁。以下提供最近的封禁日志以供参考：',
 'clearyourcache' => "'''注意：在保存以后，您必须绕过浏览器缓存才能看到所作出的改变。'''
@@ -909,8 +910,9 @@ $2
 ''由于{{SITENAME}}允许使用原始的 HTML，为了防范 JavaScript 攻击，预览已被隐藏。''
 
 '''如果这是一次合法的编辑，请重新进行尝试。'''如果还不行，请[[Special:UserLogout|退出]]并重新登录。",
-'token_suffix_mismatch' => "'''由于您用户端中的编辑令牌毁损了一些标点符号字元，为防止编辑的文字损坏，您的编辑已经被拒绝。'''
-这种情况通常出现于使用含有很多臭虫、以网络为主的匿名代理服务的时候。",
+'token_suffix_mismatch' => "'''由于您用户端中的编辑令牌毁损了一些标点符号字元，您的编辑已经被拒绝。'''
+此次编辑被拒绝以防止页面文本损坏。
+这种情况通常在您使用含有故障的网页式匿名代理服务的时候出现。",
 'edit_form_incomplete' => "'''编辑表单的某些部分没有到达服务器 ；请检查您的编辑内容是否完整并再试一次。'''",
 'editing' => '编辑“$1”',
 'creating' => '创建 $1',
@@ -966,7 +968,7 @@ $2
 你应该考虑继续编辑本页是否合适。这里提供本页的删除和移动记录以供参考：",
 'moveddeleted-notice' => '本页面已被删除。下面提供本页的删除和移动日志以供参考。',
 'log-fulllog' => '查看完整日志',
-'edit-hook-aborted' => '编辑被钩取消。
+'edit-hook-aborted' => '编辑被hook指令取消。
 无解释。',
 'edit-gone-missing' => '不能更新页面。
 它可能刚刚被删除。',

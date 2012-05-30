@@ -672,8 +672,12 @@ of <span class="plainlinks">in do touheerige [{{fullurl:{{#special:Log}}|page={{
 'userpage-userdoesnotexist-view' => 'Benutserkonto „$1“ bestoant nit.',
 'blocked-notice-logextract' => 'Dissen Benutser is apstuuns speerd.
 Foar Information foulget n aktuellen Iendraach uut dät Benutser-Logbouk:',
-'clearyourcache' => "'''Bemäärkenge: Ätter dät Fäästlääsen kon dät nöödich weese, dän Browser-Cache loostoumoakjen, uum do Annerengen sjo tou konnen.'''
-'''Mozilla / Firefox / Safari:''' hoold ''Shift'' deel un klik ''Reload,'' of tai ''Ctrl-F5'' of ''Ctrl-R'' (''Command-R'' ap n Mac); '''Konqueror: '''klik ''Reload'' of tai ''F5;'' '''Opera:''' moak dän cache loos in ''Tools → Preferences;'' '''Internet Explorer:''' hoold ''Ctrl'' deel un klik ''Refresh,'' of tai ''Ctrl-F5.''",
+'clearyourcache' => "'''Bemäärkenge: Ätter dät Fäästlääsen  dän Browser-Cache loosmoakje, uum do Annerengen sjo tou konnen.'''
+*'''Firefox / Safari:''' hoold ''Uumskalttaste'' deel un klik deerbie ''Aktualisierje'' of tai ''Strg+F5'' of ''Strg+R'' (''⌘+R'' ap n Mac)
+* '''Google Chrome:''' ''Uumskalttaste+Strg+R'' (''⌘+Uumskalttaste+R'' ap n Mac) taie
+* '''Internet Explorer:''' ''Strg+F5'' taie of ''Strg'' taie un tou glieke Tied ''Aktualisieren'' anklikke
+* '''Opera:''' ''Extras → Internetspuuren läskje … → Individuelle Uutwoal → Dän komplette Cache läskje''
+*'''Konqueror: '''klik ''Aktualisieren'' of tai ''F5;''",
 'usercssyoucanpreview' => "'''Tipp:''' Benutse dän  „{{int:showpreview}}“-Knoop, uum dien näi CSS foar dät Spiekerjen tou tästjen.",
 'userjsyoucanpreview' => "'''Tipp:''' Benutse dän „{{int:showpreview}}“-Knoop, uum dien näi JavaScript foar dät Spiekerjen tou tästjen.",
 'usercsspreview' => "== Foarbekiek fon dien Benutser-CSS ==
@@ -830,28 +834,30 @@ Legende: (Aktuäl) = Unnerskeed tou ju aktuälle Version,
 Naiere Angoawen toun Läskfoargong as uk ne Begründenge fiende sik in dät [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} Läsk-Logbouk].",
 'rev-deleted-text-unhide' => "Disse Version wuud '''läsked'''.
 Details stounde in dät [{{fullurl:{{#special:Log}}/delete|page={{FULLPAGENAMEE}}}} Läsk-Logbouk].
-As Administrator koast du noch [$1 ju Version bekiekje], wan du fääregunge moatest.",
+Du koast [$1 ju Version bekiekje], wan du fääregunge moatest.",
 'rev-suppressed-text-unhide' => "Disse Version wuud '''unnerdrukt'''.
 Details stounde in dät [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} Unnerdrukkengs-Logbouk].
-Du as Administrator koast [$1 disse Version bekiekje], wan du et wonskest.",
+Du koast [$1 disse Version bekiekje], wan du moatest.",
 'rev-deleted-text-view' => "Disse Version wuude '''läsked'''.
-As Administrator koast du ju wieders ienkiekje.
-Naiere Angoawen toun Läskfoargong as uk ne Begründenge fiende sik in dät [{{fullurl:{{#special:Log}}/delete|page={{FULLPAGENAMEE}}}} Läsk-Logbouk].",
+Du koast ju ienkiekje, wan du moatest.
+Naiere Angoawen fiende sik in dät [{{fullurl:{{#special:Log}}/delete|page={{FULLPAGENAMEE}}}} Läsk-Logbouk].",
 'rev-suppressed-text-view' => "Disse Version wuud '''unnerdrukt'''.
-Administratore konnen ju ienkiekje; Details stounde in dät [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} Unnerdrukkengs-Logbouk].",
+Du koast ju ienkiekje, wan du moatest. 
+Details stounde in dät [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} Unnerdrukkengs-Logbouk].",
 'rev-deleted-no-diff' => "Du koast dissen Unnerskeed nit betrachtje, deer een fon do Versione '''läsked''' wuude.
 Details stounde in dät [{{fullurl:{{#special:Log}}/delete|page={{FULLPAGENAMEE}}}} Läsk-Logbouk].",
 'rev-suppressed-no-diff' => "Du koast dissen Versionsunnerskeed nit betrachtje, deer een fon do Versione '''läsked''' wuud.",
 'rev-deleted-unhide-diff' => "Een fon do Versione fon dissen Unnerskeed wuud '''läsked'''.
 Details stounde in dät [{{fullurl:{{#special:Log}}/delete|page={{FULLPAGENAMEE}}}} Läsk-Logbouk].
-As Adminstrator koast du noch [$1 dissen Versionsunnerskeed bekiekje] wan du fääregunge wolt.",
+Du koast [$1 dissen Versionsunnerskeed bekiekje] wan du moatest.",
 'rev-suppressed-unhide-diff' => "Een fon do Versione fon dissen Unnerskeed wuud '''unnerdrukt'''.
 Details stounde in dät [{{fullurl:{{#special:Log}}/suppress|page={{FULLPAGENAMEE}}}} Unnerdrukkengs-Logbouk].
-As Adminstrator koast du noch [$1 dissen Versionsunnerskeed bekiekje] wan du fääregunge wolt.",
+Du koast [$1 dissen Versionsunnerskeed bekiekje] wan du wolt.",
 'rev-deleted-diff-view' => "Ne Version fon dissen Versionsunnerskeed wuud '''läsked'''.
-As Administrator koast du dissen Versionsunnerskeed sjo. Details fiende sik in dät [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} Läsk-Logbouk].",
+Du koast dissen Versionsunnerskeed bekiekje, wan du wolt. 
+Details fiende sik in dät [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} Läsk-Logbouk].",
 'rev-suppressed-diff-view' => "Een fon do Versione fon dissen Versionsunnerskeed wuud '''unnerdrukt'''.
-As Administrator koast du dissen Versionsunnerskeed sjo. Details fiende sik in dät [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} Unnerdrukkengs-Logbouk].",
+Du koast dissen Versionsunnerskeed bekiekje, wan du wolt. Details fiende sik in dät [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} Unnerdrukkengs-Logbouk].",
 'rev-delundel' => 'wiese/ferbierge',
 'rev-showdeleted' => 'wies',
 'revisiondelete' => 'Versione läskje/wier häärstaale',
@@ -919,7 +925,8 @@ Wröigje do Logbouke.',
 
 # Suppression log
 'suppressionlog' => 'Uursicht-Logbouk',
-'suppressionlogtext' => 'Dit is dät Logbouk fon do Uursicht-Aktione (Annerengen fon ju Sichtboarhaid fon Versione, Beorbaidengskommentare, Benutsernoomen un Benutserspeeren).',
+'suppressionlogtext' => 'Dit is dät Logbouk fon do Uursicht-Aktione (Annerengen fon ju Sichtboarhaid fon Versione, Beorbaidengskommentare, Benutsernoomen un Benutserspeeren).
+Sjuch ju [[Special:BlockList|Lieste fon speerde IP-Adressen un Benutsernoomen]] foar aktuelle Speeren.',
 
 # History merging
 'mergehistory' => 'Versionsgeskichten fereenigje',

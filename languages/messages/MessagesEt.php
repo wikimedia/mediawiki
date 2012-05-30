@@ -1330,6 +1330,7 @@ Pane tähele, et Google'is talletatud {{GRAMMAR:genitive|{{SITENAME}}}} sisu võ
 'prefs-beta' => 'Beetafunktsioonid',
 'prefs-datetime' => 'Kuupäev ja kellaaeg',
 'prefs-labs' => 'Katsefunktsioonid',
+'prefs-user-pages' => 'Kasutajaleheküljed',
 'prefs-personal' => 'Kasutaja andmed',
 'prefs-rc' => 'Viimased muudatused',
 'prefs-watchlist' => 'Jälgimisloend',
