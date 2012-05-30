@@ -94,7 +94,7 @@ class nextJobDB extends Maintenance {
 		$lb = wfGetLB( $dbName );
 		$db = $lb->getConnection( DB_MASTER, array(), $dbName );
 		if ( $type === false ) {
-			$conds = JobQueue::defaultQueueConditions( );
+			$conds = Job::defaultQueueConditions( );
 		} else {
 			$conds = array( 'job_cmd' => $type );
 		}
