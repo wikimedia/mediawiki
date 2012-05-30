@@ -328,6 +328,7 @@ abstract class Job {
 		global $wgJobTypesExcludedFromDefaultQueue;
 		$conditions = array();
 		if ( count( $wgJobTypesExcludedFromDefaultQueue ) > 0 ) {
+			$dbr = wfGetDB( DB_SLAVE );
 			foreach ( $wgJobTypesExcludedFromDefaultQueue as $cmdType ) {
 				$conditions[] = "job_cmd != " . $dbr->addQuotes( $cmdType );
 			}
