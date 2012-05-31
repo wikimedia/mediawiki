@@ -3101,7 +3101,7 @@ $1',
 'file-info-png-frames' => '{{PLURAL:$1|ഒരു ഫ്രെയിം|$1 ഫ്രെയിം}}',
 
 # Special:NewFiles
-'newimages' => 'പുതിയ പ്രമാണങ്ങളുടെ ഗാലറി',
+'newimages' => 'പുതിയ പ്രമാണങ്ങളുടെ ചിത്രശാല',
 'imagelisttext' => '$2 നൽകിയിട്ടുള്ള {{PLURAL:$1|പ്രമാണത്തിന്റെ|$1 പ്രമാണങ്ങളുടെ}} പട്ടിക താഴെ കാണാം.',
 'newimages-summary' => 'ചുരുക്കം',
 'newimages-legend' => 'അരിപ്പ',

@@ -3481,7 +3481,7 @@ Part of variable $1 in {{msg-mw|Ago}}
 *{{msg-mw|Days}}',
 
 # Bad image list
-'bad_image_list' => 'This is only message appears to guide administrators to add links with right format. This will not appear anywhere else in Mediawiki.',
+'bad_image_list' => 'This message only appears to guide administrators to add links with the right format. This will not appear anywhere else in MediaWiki.',
 
 /*
 Short names for language variants used for language conversion links.

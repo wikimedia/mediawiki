@@ -2544,8 +2544,8 @@ L'artìcol ëd destinassion «[[:$1]]» a-i é già. Veul-lo scancelelo për av�
 'nonfile-cannot-move-to-file' => "As peul nen tramudesse lòn ch'a l'é pa n'archivi a lë spassi nominal dj'archivi",
 'imagetypemismatch' => "La neuva estension ëd l'archivi a corispond pa a sò tipo",
 'imageinvalidfilename' => "Ël nòm ëd l'archivi bërsaj a l'é nen bon",
-'fix-double-redirects' => 'Modìfica minca rediression che a ponta al tìtol original',
-'move-leave-redirect' => 'Lassa na rediression',
+'fix-double-redirects' => 'Agiorné tute le ridiression che a ponto vers ël tìtol original',
+'move-leave-redirect' => 'Lassé na ridiression',
 'protectedpagemovewarning' => "'''Avis:''' Sta pàgina-sì a l'é stàita blocà parèj che mach utent con drit d'aministrator a peulo tramudela.
 L'ùltima vos dël registr a l'é smonùa sì-sota për arferiment:",
 'semiprotectedpagemovewarning' => "'''Nòta:''' Sta pàgina-sì a l'é stàita blocà parèj che mach j'utent argistrà a peulo tramudela.

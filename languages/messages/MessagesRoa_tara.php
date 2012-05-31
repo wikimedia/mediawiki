@@ -1109,6 +1109,7 @@ Però fa attenzione purcè l'indice lore sus a {{SITENAME}} ponne condenè pàgg
 'prefs-beta' => 'Funziune de Beta',
 'prefs-datetime' => 'Date e ore',
 'prefs-labs' => 'Funziune de Labs',
+'prefs-user-pages' => "Pàgene de l'utende",
 'prefs-personal' => "Profile de l'utende",
 'prefs-rc' => 'Cangiaminde recende',
 'prefs-watchlist' => 'Pàggene condrollete',

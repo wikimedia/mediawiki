@@ -276,7 +276,7 @@ $messages = array(
 'faqpage' => 'Project:FAQ',
 
 # Vector skin
-'vector-action-addsection' => 'ایضافه هکردن عونوان',
+'vector-action-addsection' => 'ترنه گپ بزوئن',
 'vector-action-delete' => 'پاک هاکردن',
 'vector-action-move' => 'دکش هاکردن',
 'vector-action-protect' => 'زلفن بزوئن',

@@ -1370,6 +1370,8 @@ Hetah hian [[Special:UnusedCategories|pawl hman lohho]] pholan tel a ni lo.
 'wlshowlast' => 'Darkar $1 kalta-a tihdanglam tilang rawh , ni $2 kalta-a tihdanglam tilang rawh, $3 tilang rawh',
 'watchlist-options' => 'Ralvèn duhdàn',
 
+'enotif_reset' => 'Phêk zawng zawng tlawh tawh vek angin chhinchhiah rawh.',
+'enotif_newpagetext' => 'Hei hi phêk thar a ni.',
 'enotif_impersonal_salutation' => '{{SITENAME}} hmangtu',
 'changed' => 'tihdanglam a ni ta',
 'created' => 'siam a ni ta',
@@ -1486,6 +1488,7 @@ $2-in a awmphung ngäiah a dahlêt leh.',
 # Namespace form on various pages
 'namespace' => 'Hminghmun:',
 'invert' => 'Thlan lêtna',
+'namespace_association' => 'Hminghmun kaihhnawih',
 'blanknamespace' => '(Phekpui)',
 
 # Contributions
@@ -1493,11 +1496,14 @@ $2-in a awmphung ngäiah a dahlêt leh.',
 'contributions-title' => '$1 kutthawhnate',
 'mycontris' => 'Ka kutthawhnate',
 'contribsub2' => '$1 tan ($2) .',
+'nocontribs' => 'I zawn mil tihdanglamna a awm miah lo a nih hmel.',
 'uctop' => '(chung)',
 'month' => 'Thla (leh a hmalam):',
 'year' => 'Kum (leh a hmalam):',
 
 'sp-contributions-newbies' => 'Siangchan tharte kut-thawhna chauh tilang rawh',
+'sp-contributions-newbies-sub' => 'Siangchan thar tán',
+'sp-contributions-newbies-title' => 'Siangchan thar tána hmangtu kutthawhnate',
 'sp-contributions-blocklog' => 'danbeh chhinchhiahna',
 'sp-contributions-uploads' => 'hlankaite',
 'sp-contributions-logs' => 'chanchin-ziak',
