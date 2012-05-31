@@ -3,7 +3,7 @@
 /**
  * Base TestCase for dumps
  */
-abstract class DumpTestCase extends MediaWikiTestCase {
+abstract class DumpTestCase extends MediaWikiLangTestCase {
 
 	/**
 	 * exception to be rethrown once in sound PHPUnit surrounding
@@ -72,7 +72,7 @@ abstract class DumpTestCase extends MediaWikiTestCase {
 	 *
 	 * Clears $wgUser, and reports errors from addDBData to PHPUnit
 	 */
-	protected function setUp() {
+	public function setUp() {
 		global $wgUser;
 
 		parent::setUp();

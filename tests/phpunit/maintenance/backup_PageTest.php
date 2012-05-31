@@ -65,7 +65,7 @@ class BackupDumperPageTest extends DumpTestCase {
 
 	}
 
-	protected function setUp() {
+	public function setUp() {
 		parent::setUp();
 
 		// Since we will restrict dumping by page ranges (to allow
