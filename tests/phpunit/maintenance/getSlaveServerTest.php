@@ -1,6 +1,6 @@
 <?php
-global $IP;
-require_once( "$IP/maintenance/getSlaveServer.php" );
+
+require_once dirname( __FILE__ ) . "/../../../maintenance/getSlaveServer.php";
 
 /**
  * Tests for getSlaveServer
