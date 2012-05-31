@@ -2274,13 +2274,18 @@ class User {
 	 * @param $val mixed New value to set
 	 */
 	public function setOption( $oname, $val ) {
+		$defaultUserOptions = self::getDefaultOptions();
+		//do not set unknown option
+		if( !isset( $defaultUserOptions[$oname] ) ) {
+			return;
+		}
+
 		$this->load();
 		$this->loadOptions();
 
 		// Explicitly NULL values should refer to defaults
-		global $wgDefaultUserOptions;
-		if( is_null( $val ) && isset( $wgDefaultUserOptions[$oname] ) ) {
-			$val = $wgDefaultUserOptions[$oname];
+		if( is_null( $val ) ) {
+			$val = $defaultUserOptions[$oname];
 		}
 
 		$this->mOptions[$oname] = $val;
