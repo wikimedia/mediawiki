@@ -500,8 +500,8 @@ Ravêri inan akerê, dıma be name u parola şımawa newiye cı kewê.',
 Şıma çerezi qapan kerdi.
 Ravêri inan akerê u reyna bıcerrebnê.',
 'noname' => 'Yew nameyo maqbul bınuse.',
-'loginsuccesstitle' => 'Hesab bıyo a.',
-'loginsuccess' => '{{SITENAME}} Na keyepel de pê no "$1" name şıma hesab kerdo a.',
+'loginsuccesstitle' => 'Hesab abıya',
+'loginsuccess' => "'''{{SITENAME}} dı name dê \"\$1\" şıma hesab akerdo.'''",
 'nosuchuser' => 'Ebe namey "$1"i yew karber çıniyo.
 Nuştışê namanê karberan de herfa pil u qıce rê diqet kerên.
 Nuştışê xo qonrol kerên, ya zi [[Special:UserLogin/signup|yew hesabo newe akerên]].',
@@ -993,7 +993,7 @@ no vurnayişo ke şıma keni kontrol bıkere yew pelo kehen nêbo.',
 'viewprevnext' => '($1 {{int:pipe-separator}} $2) ($3) bıvênên',
 'searchmenu-legend' => 'bıgeyre tercihan (sae bıke)',
 'searchmenu-exists' => "''Ena 'Wikipediya de ser \"[[:\$1]]\" yew pel esto'''",
-'searchmenu-new' => "''Na Wikipediya de pela \"[[:\$1]]\" vıraze!'''",
+'searchmenu-new' => "''Na Wiki de pelay \"[[:\$1]]\" vıraze!'''",
 'searchhelp-url' => 'Help:Tedeestey',
 'searchmenu-prefix' => '[[Special:PrefixIndex/$1|pê eno prefix ser pelan de bigêre]]',
 'searchprofile-articles' => 'Pelê tedeestey',
@@ -1637,7 +1637,7 @@ listeya ke ha ver a têna na {{PLURAL:$1|dosyaya ewwili|dosyaya $1 ewwili}} mocn
 'listredirects' => 'Listeyê redireksiyonî',
 
 # Unused templates
-'unusedtemplates' => 'Templateyanê nihebitiyeno',
+'unusedtemplates' => 'Şablonê ke nê xebtênê',
 'unusedtemplatestext' => 'no pel, {{ns:template}} pelê ke pelê binan de nêaseni, ninan keno.',
 'unusedtemplateswlh' => 'linkanê binî',
 
@@ -1669,11 +1669,11 @@ listeya ke ha ver a têna na {{PLURAL:$1|dosyaya ewwili|dosyaya $1 ewwili}} mocn
 'statistics-users-active-desc' => '{{PLURAL:$1|roco peyin de|$1 roco peyin de}} karber ê ke kar kerdê.',
 'statistics-mostpopular' => 'Pelayanê ke tewr zafî vînî biye',
 
-'disambiguations' => 'Pelayê ke maneyo bini rê grê danê',
+'disambiguations' => 'Pelayê ke maneyo bini rê gırey cı esto',
 'disambiguationspage' => 'Template:disambig',
 'disambiguations-text' => 'satıro ewwil de ke peli ca genî; gıreyê pelê ciya-manayi mocneni. İkinci sırada <br />tiya de [[MediaWiki:Disambiguationspage]] gani heme gıreyê şablonê ciya-manayan  re gıre bıdiyo',
 
-'doubleredirects' => 'redireksiyonê herdi',
+'doubleredirects' => 'Hetenayışê dıletıni',
 'doubleredirectstext' => 'no pel pelê ray motışani liste keno.
 gıreyê her satıri de gıreyi; raş motışê yewın u dıyıni esto.
 <del>serê ey nuşteyi</del> safi biye.',
@@ -1681,17 +1681,17 @@ gıreyê her satıri de gıreyi; raş motışê yewın u dıyıni esto.
 'double-redirect-fixed-maintenance' => 'raçarnayışo dıletê [[$1]] ra  pela da [[$2]] timarêno',
 'double-redirect-fixer' => 'Fixerî redirek bike',
 
-'brokenredirects' => 'Redireksiyonî ke hin nixebitiyeno',
+'brokenredirects' => 'Hetenayışê vengi',
 'brokenredirectstext' => 'Redireksiyonê ey ki pelanê hama çiniyeno ra link dano:',
 'brokenredirects-edit' => 'bıvurne',
 'brokenredirects-delete' => 'bıestere',
 
-'withoutinterwiki' => 'Pelî ke bê linkanê ziwanî',
+'withoutinterwiki' => 'Peleyê ke zıwanan de bina re gırey cı çınyo',
 'withoutinterwiki-summary' => 'Enê pelî ke versiyonê ziwanî binî ra link nidano.',
 'withoutinterwiki-legend' => 'Verole',
 'withoutinterwiki-submit' => 'Bımocne',
 
-'fewestrevisions' => 'Pelî de ke revizyonê tayî estê',
+'fewestrevisions' => 'Peleyê ke cı sero tewr tayn timaryayış vıraziyayo',
 
 # Miscellaneous special pages
 'nbytes' => '$1 {{PLURAL:$1|bayt|bayti}}',
@@ -1703,20 +1703,20 @@ gıreyê her satıri de gıreyi; raş motışê yewın u dıyıni esto.
 'nimagelinks' => '$1 {{PLURAL:$1|pelayan de|pelayan de}} gurweyêno',
 'ntransclusions' => '$1 {{PLURAL:$1|pelayan de|pelayan de}} gurweyêno',
 'specialpage-empty' => 'Ser ena report netice çini yo.',
-'lonelypages' => 'Pelî ke yetim mend',
+'lonelypages' => 'Peleyê ke cı rê gıre nêdeyayo',
 'lonelypagestext' => 'Ena pelî link nibiyê ya zi pelanê binî {{SITENAME}} de transclude biy.',
 'uncategorizedpages' => 'Pelayanê ke kategorî nibiye',
-'uncategorizedcategories' => 'Kategoriyanê ke kategorî nibiye',
-'uncategorizedimages' => 'Dosyayê ke kategorî nibiye',
-'uncategorizedtemplates' => 'Templateyê ke kategorî nibiye',
-'unusedcategories' => 'Kategoriyanê ke nihebitiyeno',
-'unusedimages' => 'Dosyayê ke nihebitiyeno',
+'uncategorizedcategories' => 'Kategoriyê ke bê kategorîyê',
+'uncategorizedimages' => 'Dosyayê ke bê kategorîyê',
+'uncategorizedtemplates' => 'Şablonê ke bê kategoriyê',
+'unusedcategories' => 'Kategoriyê ke nê xebtênê',
+'unusedimages' => 'Dosyeyê ke nê xebtênê',
 'popularpages' => 'Pelî ke populer o.',
-'wantedcategories' => 'Kategoriyî ke ganî estî bî.',
-'wantedpages' => 'Pelî ke ganî estî bî.',
+'wantedcategories' => 'Kategoriye ke waştênê',
+'wantedpages' => 'Peleye ke waştênê',
 'wantedpages-badtitle' => 'sernuşte meqbul niyo: $1',
-'wantedfiles' => 'Dosyayî ke ganî estî bî.',
-'wantedtemplates' => 'Templateyî ke ganî estî bî.',
+'wantedfiles' => 'Dosyeye ke waştênê',
+'wantedtemplates' => 'Şablonê ke waştênê',
 'mostlinked' => 'Pelî ke tewr zafî lînk bîy.',
 'mostlinkedcategories' => 'Kategorî ke tewr zafî lînk bîy.',
 'mostlinkedtemplates' => 'Şablonê ke tewr zafî pela re gıre bîye.',
@@ -1724,16 +1724,16 @@ gıreyê her satıri de gıreyi; raş motışê yewın u dıyıni esto.
 'mostimages' => 'Dosyayan ke tewr zaf link estê.',
 'mostrevisions' => 'Pelan ke tewr zaf revizyonî biyê.',
 'prefixindex' => 'Pelayanê hemi pe verbend',
-'shortpages' => 'Pelê kılmi',
-'longpages' => 'Pelê dergi',
+'shortpages' => 'Peleyê kılmeki',
+'longpages' => 'Peleyê dergeki',
 'deadendpages' => 'pelê ke pelê binan re gırey nêeşto',
 'deadendpagestext' => 'Ena pelan ke {{SITENAME}} de zerrî ey de link çini yo.',
-'protectedpages' => 'Pelan ke kilit biya.',
+'protectedpages' => 'Pelayê ke biyê star',
 'protectedpages-indef' => 'têna pawıteyê bêmuddeti',
 'protectedpages-cascade' => 'Kilit biyaye ke teyna cascadiye',
 'protectedpagestext' => 'pelê cêrınî pawiyenê',
 'protectedpagesempty' => 'pê ney parametreyan pelê pawiteyi çinî',
-'protectedtitles' => 'sernuşteyê pawıteyi',
+'protectedtitles' => 'Sernameyê ke starênê',
 'protectedtitlestext' => 'sernameyê cêrıni pawıte yî',
 'protectedtitlesempty' => 'pê ney parametreyan sernuşteyê pawite çinê',
 'listusers' => 'Lista karberan',
@@ -1743,7 +1743,7 @@ gıreyê her satıri de gıreyi; raş motışê yewın u dıyıni esto.
 'usercreated' => '$2 de $1 {{GENDER:$3|viraziya}}',
 'newpages' => 'Pelê newey',
 'newpages-username' => 'Namey Karberi:',
-'ancientpages' => 'Pelê kıhanêri',
+'ancientpages' => 'Wesiqeyê ke vurnayışê ciyê peyeni tewr kehani',
 'move' => 'bere',
 'movethispage' => 'Ena pele bere',
 'unusedimagestext' => 'Enê dosyey estê, feqet zerrey yew pele de wedardey niyê.
@@ -1775,14 +1775,14 @@ tipa rocaneyi, nameyê karberi (herfa pil u qıci re hessas a), ya zi peli (reyn
 'log-title-wildcard' => 'sername yê ke pê ney nuşteyi destkenêpê bıgêr.',
 
 # Special:AllPages
-'allpages' => 'Pelan hemi',
+'allpages' => 'Peli pêro',
 'alphaindexline' => '$1 ra $2ine',
 'nextpage' => 'Pela badê cû ($1)',
 'prevpage' => 'Pela verêne ($1)',
 'allpagesfrom' => 'Pelanê ke be ena herfe dest pêkenê bımocne',
 'allpagesto' => 'Pelanê ke be ena herfe qediyenê bımocne:',
 'allarticles' => 'Peli pêro',
-'allinnamespace' => 'Pelanê hemî ($1 cayênameyî)',
+'allinnamespace' => 'Peli pênro ( $1 cayênameyî)',
 'allnotinnamespace' => 'Pelanê hemî ($1 cayênameyî de niyo)',
 'allpagesprev' => 'Verêni',
 'allpagesnext' => 'ver şo',
@@ -1795,7 +1795,7 @@ tipa rocaneyi, nameyê karberi (herfa pil u qıci re hessas a), ya zi peli (reyn
 # Special:Categories
 'categories' => 'Kategoriy',
 'categoriespagetext' => '{{PLURAL:$1|kategoriyê|kategoriyê}} cêrıni de pel u media esto.
-[[Special:UnusedCategories|kategori yê ke nêşuxulyeni]] tiya de nêmociyeni.
+[[Special:UnusedCategories|kategoriyê ke nê xebtênê]] tiya de nêmociyeni.
 hem zi bıewnê [[Special:WantedCategories|kategori yê ke waziyeni]].',
 'categoriesfrom' => 'kategori yê ke pê ninan destpêkeno ramocın:',
 'special-categories-sort-count' => 'goreyê çendi rêz ker.',
@@ -3287,7 +3287,7 @@ enê programiya piya [{{SERVER}}{{SCRIPTPATH}}/COPYING jew kopyay lisans dê GNU
 'version-entrypoints-header-url' => 'GRE',
 
 # Special:FilePath
-'filepath' => 'Raherê dosyayi',
+'filepath' => 'Heruna dosyayer',
 'filepath-page' => 'Dosya:',
 'filepath-submit' => 'Şo',
 'filepath-summary' => 'Na pela xısusiye raya temame jû dosya rê ana.

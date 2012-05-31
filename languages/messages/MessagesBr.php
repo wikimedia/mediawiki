@@ -564,6 +564,8 @@ Setu amañ perak ''$2''.",
 'filereadonlyerror' => 'Dibosupl kemmañ ar restr "$1" abalamour m\'emañ ar c\'havlec\'h restroù "$2" e mod lenn nemetken.
 
 "\'\'$3\'\'" eo an abeg roet gant ar merour en deus prennet anezhi.',
+'invalidtitle-knownnamespace' => 'Titl direizh gant an esaouenn anv "$2" hag an destenn "$3"',
+'invalidtitle-unknownnamespace' => 'Titl direizh gant an niverenn esaouenn anv $1 hag an destenn "$2" dianav',
 
 # Virus scanner
 'virus-badscanner' => "Kefluniadur fall : skanner viruzoù dianav : ''$1''",
@@ -944,6 +946,8 @@ A-gostez eo bet lezet an arventenn-se.',
 'node-count-exceeded-warning' => "Pajenn a ya en tu all d'an niver a skoulmoù",
 'expansion-depth-exceeded-category' => "Pajennoù m'eur aet dreist d'an donder astenn",
 'expansion-depth-exceeded-warning' => "Pajenn a ya dreist d'an donder astenn",
+'parser-unstrip-loop-warning' => "Detektet ez eus bet ul lagadenn n'haller ket divontañ",
+'parser-unstrip-recursion-limit' => "Aet dreist d'ar vevenn rekurziñ n'haller ket divontañ : $1",
 
 # "Undo" feature
 'undo-success' => "Gallout a reer disteurel ar c'hemmoù-mañ. Gwiriit, mar plij, gant ar geñveriadenn a-is evit bezañ sur eo an dra-se a fell deoc'h ober; goude-se enrollit ar c'hemmoù a-is a-benn echuiñ disteurel ar c'hemmoù.",
@@ -1119,6 +1123,8 @@ Gwiriit ne vo ket torret red istor ar bajenn gant ar c'hemm-mañ.",
 
 # Diffs
 'history-title' => 'Istor stummoù disheñvel "$1"',
+'difference-title' => 'Diforc\'hioù etre adstummoù "$1"',
+'difference-title-multipage' => 'Diforc\'hioù etre ar pajennoù "$1" ha "$2"',
 'difference-multipage' => "(diforc'h etre ar pajennoù)",
 'lineno' => 'Linenn $1:',
 'compareselectedversions' => 'Keñveriañ ar stummoù diuzet',
@@ -1689,6 +1695,7 @@ Ma talc'h ar gudenn, kit e darempred gant [[Special:ListUsers/sysop|merourien ar
 'backend-fail-internal' => 'C\'hoarvezet ez eus ur fazi dianav e termenell stokañ ar restr "$1".',
 'backend-fail-contenttype' => 'Dibosupl termeniñ ar seurt danvez da enrollañ e "$1".',
 'backend-fail-batchsize' => 'Pourvezet he deus an dermenell stokañ ur pakad a $1 {{PLURAL:$1|oberiadenn|oberiadenn}}; sevel a ra ar vevenn da $2 {{PLURAL:$2|oberiadenn|oberiadenn}}.',
+'backend-fail-usable' => "Dibosupl skrivañ ar restr $1 rak re skort eo an aotreoù pe mankout a ra kavlec'hioù/endalc'herioù.",
 
 # File journal errors
 'filejournal-fail-dbconnect' => 'N\'eus ket bet gallet kevreañ ouzh diaz roadennoù ar marilh evit an dermenell stokañ "$1".',
@@ -2349,7 +2356,7 @@ Ma'z eus bet krouet ur bajenn nevez dezhi an hevelep anv abaoe an diverkadenn, e
 'undelete-revision' => 'Stumm diverket eus $1, (gwiriadenn eus $4 da $5) gant $3 :',
 'undeleterevision-missing' => "Stumm fall pe diank. Pe hoc'h eus heuliet ul liamm fall, pe eo bet diziverket ar stumm pe c'hoazh eo bet lamet diouzh an dielloù.",
 'undelete-nodiff' => "N'eus bet kavet stumm kent ebet.",
-'undeletebtn' => 'Diziverkañ!',
+'undeletebtn' => 'Assevel',
 'undeletelink' => 'gwelet/assevel',
 'undeleteviewlink' => 'gwelet',
 'undeletereset' => 'Adderaouekaat',

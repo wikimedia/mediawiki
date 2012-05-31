@@ -1152,7 +1152,7 @@ Let op dat die gebruik van navigasieskakels hierdie kolom se waardes sal herstel
 'mergelogpagetext' => "Hieronder is 'n lys van die mees onlangse versmeltings van een bladsy se geskiedenis na 'n ander.",
 
 # Diffs
-'history-title' => 'Weergawegeskiedenis van "$1"',
+'history-title' => '$1: weergawegeskiedenis',
 'difference-title' => '$1: verskil tussen weergawes',
 'difference-title-multipage' => '$1 en $2: verskil tussen bladsye',
 'difference-multipage' => '(Verskil tussen bladsye)',
