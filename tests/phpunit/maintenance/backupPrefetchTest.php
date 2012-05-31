@@ -1,6 +1,6 @@
 <?php
-global $IP;
-require_once( "$IP/maintenance/backupPrefetch.inc" );
+
+require_once dirname( __FILE__ ) . "/../../../maintenance/backupPrefetch.inc";
 
 /**
  * Tests for BaseDump

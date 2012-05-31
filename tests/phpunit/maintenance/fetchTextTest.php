@@ -1,7 +1,6 @@
 <?php
-global $IP;
-require_once( "$IP/maintenance/fetchText.php" );
 
+require_once dirname( __FILE__ ) . "/../../../maintenance/fetchText.php";
 
 /**
  * Mock for the input/output of FetchText
