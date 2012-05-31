@@ -314,12 +314,13 @@ abstract class DumpTestCase extends MediaWikiTestCase {
 
 		$this->assertTextNode( "comment", $summary );
 
+		$this->assertTextNode( "sha1", $text_sha1 );
+
 		$this->assertNodeStart( "text", false );
 		if ( $text_bytes !== false ) {
 			$this->assertEquals( $this->xml->getAttribute( "bytes" ), $text_bytes,
 				"Attribute 'bytes' of revision " . $id );
 		}
-
 
 		if ( $text === false ) {
 			// Testing for a stub
@@ -341,8 +342,6 @@ abstract class DumpTestCase extends MediaWikiTestCase {
 			$this->assertNodeEnd( "text" );
 			$this->skipWhitespace();
 		}
-
-		$this->assertTextNode( "sha1", $text_sha1 );
 
 		$this->assertNodeEnd( "revision" );
 		$this->skipWhitespace();
