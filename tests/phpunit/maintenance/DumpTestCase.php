@@ -1,6 +1,4 @@
 <?php
-global $IP;
-require_once( "$IP/maintenance/backup.inc" );
 
 /**
  * Base TestCase for dumps
