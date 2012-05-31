@@ -33,6 +33,7 @@ class MergeMessageFileList extends Maintenance {
 	function __construct() {
 		parent::__construct();
 		$this->addOption( 'list-file', 'A file containing a list of extension setup files, one per line.', true, true );
+		$this->addOption( 'extensions-dir', 'Path where extensions can be found.', false, true );
 		$this->addOption( 'output', 'Send output to this file (omit for stdout)', false, true );
 		$this->mDescription = 'Merge $wgExtensionMessagesFiles from various extensions to produce a ' .
 			'single array containing all message files.';
@@ -41,11 +42,36 @@ class MergeMessageFileList extends Maintenance {
 	public function execute() {
 		global $mmfl;
 
+		# Add setup files contained in file passed to --list-file
 		$lines = file( $this->getOption( 'list-file' ) );
 		if ( $lines === false ) {
 			$this->error( 'Unable to open list file.' );
 		}
 		$mmfl = array( 'setupFiles' => array_map( 'trim', $lines ) );
+
+		# Now find out files in a directory
+		$has_error = false;
+		if( $this->hasOption( 'extensions-dir' ) ) {
+			$extdir = $this->getOption( 'extensions-dir' );
+			$entries = scandir( $extdir );
+			foreach( $entries as $extname ) {
+				if( $extname == '.' || $extname == '..' || !is_dir( "$extdir/$extname" ) ) {
+					continue;
+				}
+				$extfile = "{$extdir}/{$extname}/{$extname}.php";
+				if( file_exists( $extfile ) ) {
+					$mmfl['setupFiles'][] = $extfile;
+				} else {
+					$has_error = true;
+					$this->error( "Extension {$extname} in {$extdir} lacks expected {$extname}.php" );
+				}
+			}
+		}
+
+		if( $has_error ) {
+			$this->error( "Some files are missing (see above). Giving up.", 1 );
+		}
+
 		if ( $this->hasOption( 'output' ) ) {
 			$mmfl['output'] = $this->getOption( 'output' );
 		}
