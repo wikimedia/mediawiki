@@ -65,6 +65,11 @@ class RequestContext implements IContextSource {
 	private $skin;
 
 	/**
+	 * @var String
+	 */
+	private $viewType;
+
+	/**
 	 * Set the WebRequest object
 	 *
 	 * @param $r WebRequest object
