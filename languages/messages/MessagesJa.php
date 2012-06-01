@@ -951,7 +951,7 @@ $2
 'link_sample' => 'リンクの名前',
 'link_tip' => '内部リンク',
 'extlink_sample' => 'http://www.example.com リンクの名前',
-'extlink_tip' => '外部リンク (http:// を忘れずにつけてください)',
+'extlink_tip' => '外部リンク（http:// を忘れずに付けてください）',
 'headline_sample' => '見出し文',
 'headline_tip' => '2段目の見出し',
 'nowiki_sample' => 'ここにマークアップを無効にするテキストを入力します',
@@ -3008,7 +3008,7 @@ MediaWiki 全般のローカライズ（地域化）に貢献したい場合は�
 'import-interwiki-templates' => 'すべてのテンプレートを含める',
 'import-interwiki-submit' => '取り込み',
 'import-interwiki-namespace' => '目的の名前空間：',
-'import-upload-filename' => 'ファイルの名前：',
+'import-upload-filename' => 'ファイル名：',
 'import-comment' => 'コメント：',
 'importtext' => '元のウィキで[[Special:Export|書き出し機能]]を使用してファイルに書き出してください。
 それをコンピューターに保存した後、こちらへアップロードしてください。',
@@ -3853,7 +3853,7 @@ $5
 'recreate' => '再作成する',
 
 # action=purge
-'confirm_purge_button' => 'はい',
+'confirm_purge_button' => 'OK',
 'confirm-purge-top' => 'ページのキャッシュを破棄します。よろしいですか？',
 'confirm-purge-bottom' => 'ページをパージすると、キャッシュが破棄され、強制的に最新の版が表示されます。',
 

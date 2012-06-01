@@ -1142,8 +1142,8 @@ Voit silti nähdä tämän muutoksen. Lisätietoja löytyy [{{fullurl:{{#Special
 'revdelete-show-file-submit' => 'Kyllä',
 'revdelete-selected' => "'''{{PLURAL:$2|Valittu versio|Valitut versiot}} sivusta '''$1:''''''",
 'logdelete-selected' => "'''{{PLURAL:$1|Valittu lokimerkintä|Valitut lokimerkinnät}}:'''",
-'revdelete-text' => "'''Poistetut versiot näkyvät sivun historiassa, mutta niiden sisältö ei ole julkisesti saatavilla.'''
-Muut ylläpitäjät {{GRAMMAR:inessive|{{SITENAME}}}} voivat silti lukea piilotetun sisällön ja he voivat palauttaa sen tämän käyttöliittymän kautta, ellei sitä ole rajoitettu.",
+'revdelete-text' => "'''Poistetut versiot ja lokitapahtumat näkyvät edelleen sivun historiassa ja lokeissa, mutta osa niiden sisällöstä ei ole julkisesti saatavilla.'''
+Muut ylläpitäjät {{GRAMMAR:inessive|{{SITENAME}}}} voivat silti tarkastella piilotettua sisältöä, ja he voivat palauttaa sen näkyviin tämän käyttöliittymän kautta, ellei tätä ole erikseen rajoitettu.",
 'revdelete-confirm' => 'Varmista, että haluat tehdä tämän – ymmärrät seuraukset ja teet tämän [[{{MediaWiki:Policy-url}}|käytäntöjen]] mukaisesti.',
 'revdelete-suppress-text' => "Häivytystä pitäisi käyttää '''vain''' seuraavissa tapauksissa:
 * Sopimattomat henkilötiedot

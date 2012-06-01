@@ -1808,8 +1808,7 @@ Um ein '''Bild''' in einer Seite zu verwenden, nutze einen Link in der folgenden
 'largefileserver' => 'Die Datei ist größer als die vom Server eingestellte Maximalgröße.',
 'emptyfile' => 'Die hochgeladene Datei ist leer. Der Grund kann ein Tippfehler im Dateinamen sein. Bitte kontrolliere, ob du die Datei wirklich hochladen willst.',
 'windows-nonascii-filename' => 'Dieses Wiki unterstützt keine Dateinamen die Sonderzeichen enthalten.',
-'fileexists' => "Eine Datei mit diesem Namen existiert bereits.
-Bitte prüfe '''<tt>[[:$1]]</tt>''', wenn du dir nicht sicher bist, ob du sie ändern willst.
+'fileexists' => "Eine Datei dieses Namens ist bereits vorhanden. Bitte prüfe '''<tt>[[:$1]]</tt>''', sofern du dir nicht sicher bist, ob du sie ändern möchtest.
 [[$1|thumb]]",
 'filepageexists' => "Eine Beschreibungsseite wurde bereits als '''<tt>[[:$1]]</tt>''' erstellt, es ist aber keine Datei mit diesem Namen vorhanden.
 Die eingegebene Beschreibung wird nicht auf die Beschreibungsseite übernommen.
