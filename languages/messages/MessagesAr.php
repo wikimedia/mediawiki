@@ -1255,6 +1255,7 @@ $2
 'node-count-exceeded-warning' => 'تجاوزت هذه الصفحة تعداد العقد',
 'expansion-depth-exceeded-category' => 'الصفحات التي حدث فيها تجاوز عمق التوسيع',
 'expansion-depth-exceeded-warning' => 'الصفحة تجاوزت عمق التوسيع',
+'parser-unstrip-loop-warning' => 'حلقة معراة تم الكشف عنها',
 
 # "Undo" feature
 'undo-success' => 'يمكن استرجاع التعديل.

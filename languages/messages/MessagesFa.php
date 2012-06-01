@@ -2331,7 +2331,7 @@ https://www.mediawiki.org/wiki/Manual:Image_Authorization را ببینید.',
 'allpages-hide-redirects' => 'پنهان‌کردن تغییرمسیرها',
 
 # SpecialCachedPage
-'cachedspecial-viewing-cached-ttl' => 'شما در حال مشاهدهٔ نسخه‌ای از این صفحه که در میانگیر قرار دارد هستید، و این نسخه ممکن است مال $1 قبل باشد.',
+'cachedspecial-viewing-cached-ttl' => 'شما در حال مشاهدهٔ نسخه‌ای از این صفحه که در میانگیر قرار دارد هستید که ممکن است برای $1 قبل باشد.',
 'cachedspecial-viewing-cached-ts' => 'شما در حال مشاهدهٔ نسخه‌ای از این صفحه که در میانگیر قرار دارد هستید، و این نسخه ممکن است کاملاً واقعی نباشد.',
 'cachedspecial-refresh-now' => 'مشاهده آخرین.',
 
