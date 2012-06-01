@@ -131,6 +131,7 @@ upgrade PHP if you have not done so prior to upgrading MediaWiki.
 * (bug 28814) add properties to output of action=parse
 * (bug 33224) add variants of content language to meta=siteinfo
 * (bug 36761) "Mark pages as visited" now submits previously established filter options
+* (bug 35980) list=deletedrevs now honors drdir correctly in "all" mode (mode #3)
 
 === Languages updated in 1.20 ===
 
