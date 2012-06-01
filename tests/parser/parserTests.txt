@@ -9366,6 +9366,17 @@ wgUseDynamicDates=true
 </p>
 !! end
 
+!! test
+formatdate parser function, with default format and with Dutch as page content language
+!! options
+title=[[MediaWiki:Edit/nl]]
+!! input
+{{#formatdate:2009-03-24|dmy}}
+!! result
+<p><span class="mw-formatted-date" title="2009-03-24">24 maart 2009</span>
+</p>
+!! end
+
 #
 #
 #
