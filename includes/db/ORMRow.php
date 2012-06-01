@@ -20,39 +20,16 @@
  * 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
  * http://www.gnu.org/copyleft/gpl.html
  *
- * These methods are likely candidates for overriding:
- * * getDefaults
- * * remove
- * * insert
- * * saveExisting
- * * loadSummaryFields
- * * getSummaryFields
- *
- * Main instance methods:
- * * getField(s)
- * * setField(s)
- * * save
- * * remove
- *
- * Main static methods:
- * * select
- * * update
- * * delete
- * * count
- * * has
- * * selectRow
- * * selectFields
- * * selectFieldsRow
- *
  * @since 1.20
  *
  * @file ORMRow.php
+ * @ingroup ORM
  *
  * @licence GNU GPL v2 or later
  * @author Jeroen De Dauw < jeroendedauw@gmail.com >
  */
 
-abstract class ORMRow {
+abstract class ORMRow implements IORMRow {
 
 	/**
 	 * The fields of the object.
@@ -95,11 +72,11 @@ abstract class ORMRow {
 	 *
 	 * @since 1.20
 	 *
-	 * @param ORMTable $table
+	 * @param IORMTable $table
 	 * @param array|null $fields
 	 * @param boolean $loadDefaults
 	 */
-	public function __construct( ORMTable $table, $fields = null, $loadDefaults = false ) {
+	public function __construct( IORMTable $table, $fields = null, $loadDefaults = false ) {
 		$this->table = $table;
 
 		if ( !is_array( $fields ) ) {
@@ -331,7 +308,7 @@ abstract class ORMRow {
 	/**
 	 * Load the default values, via getDefaults.
 	 *
-	 *  @since 1.20
+	 * @since 1.20
 	 *
 	 * @param boolean $override
 	 */
@@ -550,6 +527,7 @@ abstract class ORMRow {
 
 	/**
 	 * Add an amount (can be negative) to the specified field (needs to be numeric).
+	 * TODO: most off this stuff makes more sense in the table class
 	 *
 	 * @since 1.20
 	 *
@@ -637,14 +615,14 @@ abstract class ORMRow {
 	 *
 	 * @since 1.20
 	 *
-	 * @param ORMRow $object
+	 * @param IORMRow $object
 	 * @param boolean|array $excludeSummaryFields
 	 *  When set to true, summary field changes are ignored.
 	 *  Can also be an array of fields to ignore.
 	 *
 	 * @return boolean
 	 */
-	protected function fieldsChanged( ORMRow $object, $excludeSummaryFields = false ) {
+	protected function fieldsChanged( IORMRow $object, $excludeSummaryFields = false ) {
 		$exclusionFields = array();
 
 		if ( $excludeSummaryFields !== false ) {
@@ -663,11 +641,11 @@ abstract class ORMRow {
 	}
 
 	/**
-	 * Returns the table this ORMRow is a row in.
+	 * Returns the table this IORMRow is a row in.
 	 *
 	 * @since 1.20
 	 *
-	 * @return ORMTable
+	 * @return IORMTable
 	 */
 	public function getTable() {
 		return $this->table;
