@@ -129,7 +129,8 @@ class CoreParserFunctions {
 	 * @return mixed|string
 	 */
 	static function formatDate( $parser, $date, $defaultPref = null ) {
-		$df = DateFormatter::getInstance();
+		$lang = $parser->getFunctionLang();
+		$df = DateFormatter::getInstance( $lang );
 
 		$date = trim( $date );
 
