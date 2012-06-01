@@ -310,14 +310,16 @@ class RequestContext implements IContextSource {
 	public function getSkin() {
 		if ( $this->skin === null ) {
 			wfProfileIn( __METHOD__ . '-createskin' );
-			
+
 			$skin = null;
 			wfRunHooks( 'RequestContextCreateSkin', array( $this, &$skin ) );
 
 			// If the hook worked try to set a skin from it
+			// should we handle view-specific skin variants for these or
+			// rely on hook invocations to handle that?
 			if ( $skin instanceof Skin ) {
 				$this->skin = $skin;
-			} elseif ( is_string($skin) ) {
+			} elseif( is_string( $skin ) ) {
 				$this->skin = Skin::newFromKey( $skin );
 			}
 
@@ -331,10 +333,10 @@ class RequestContext implements IContextSource {
 					$userSkin = $this->getRequest()->getVal( 'useskin', $userSkin );
 				} else {
 					# if we're not allowing users to override, then use the default
-					global $wgDefaultSkin;
-					$userSkin = $wgDefaultSkin;
+					$userSkin = $this->getViewSpecificSkinDefault();
 				}
 
+				$userSkin = $this->getViewSpecificSkinKey( $userSkin );
 				$this->skin = Skin::newFromKey( $userSkin );
 			}
 
@@ -346,6 +348,31 @@ class RequestContext implements IContextSource {
 	}
 
 	/** Helpful methods **/
+
+	/**
+	 * Get a skin key for view-specific skins for current view, if it exists
+	 * @param $skin String
+	 * @return String
+	 */
+	public function getViewSpecificSkinKey( $skin ) {
+		if ( $skin instanceof Skin ) {
+			$skinName = $skin->getSkinName();
+			// determine skin key
+		}
+
+		// check for existence of view-type specific skin by key for this viewtype
+		// if it exists, return it, otherwise check for default, otherwise return $skin
+		return $skin;
+	}
+
+	/**
+	 * Get default view-specific skin for current view-type if it exists
+	 * @return String
+	 */
+	public function getViewSpecificSkinDefault() {
+		global $wgDefaultSkin, $wgDefaultViewSkins;
+		return $wgDefaultSkin;
+	}
 
 	/**
 	 * Get a Message object with context set
@@ -407,7 +434,7 @@ class RequestContext implements IContextSource {
 	}
 
 	public function setViewType( $viewType = null ) {
-		if ( !is_null( $viewType ) ) { // and in array valid view types?
+		if ( !is_null( $viewType ) ) { // and in array of valid view types?
 			$this->viewType = (string) $viewType;
 			return;
 		}
@@ -423,13 +450,10 @@ class RequestContext implements IContextSource {
 		$mobileContext = MobileContext::singleton();
 		if ( $mobileContext->shouldDisplayMobileView() ) {
 			$this->viewType = 'mobile';
-			$extMobileFrontend = new ExtMobileFrontend( $this );
-			$mobileSkin = SkinMobile::factory( $extMobileFrontend );
-			$this->setSkin( $mobileSkin );
 			return;
 		}
 
-		// provide hook for other view handling?
+		// provide hook for other view type handling
 	}
 }
 
