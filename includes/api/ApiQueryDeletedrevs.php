@@ -180,9 +180,10 @@ class ApiQueryDeletedrevs extends ApiQueryBase {
 			if ( $params['unique'] ) {
 				$this->addOption( 'GROUP BY', 'ar_title' );
 			} else {
+				$sort = ( $dir == 'newer' ? '' : ' DESC' );
 				$this->addOption( 'ORDER BY', array(
-					'ar_title',
-					'ar_timestamp'
+					'ar_title' . $sort,
+					'ar_timestamp' . $sort
 				));
 			}
 		} else {

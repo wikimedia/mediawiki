@@ -183,6 +183,7 @@ upgrade PHP if you have not done so prior to upgrading MediaWiki.
 * (bug 32383) Allow descending order for list=langbacklinks
 * API meta=siteinfo can now return the list of known variable IDs
 * (bug 30836) siteinfo prop=specialpagealiases will no longer return nonexistent special pages
+* (bug 35980) list=deletedrevs now honors drdir correctly in "all" mode (mode #3)
 
 === Languages updated in 1.20 ===
 
