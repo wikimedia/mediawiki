@@ -20,6 +20,7 @@
 
 	Version 0.7 adds a unique identity constraint for both page and
 	revision identifiers. See also bug 4220.
+	Fix type for <ns> from "positiveInteger" to "nonNegativeInteger" to allow 0
 
 	The canonical URL to the schema document is:
 	http://www.mediawiki.org/xml/export-0.7.xsd
@@ -121,7 +122,7 @@
 			<element name="title" type="string"/>
 
 			<!-- Namespace in canonical form -->
-			<element name="ns" type="positiveInteger"/>
+			<element name="ns" type="nonNegativeInteger"/>
 
 			<!-- optional page ID number -->
 			<element name="id" type="positiveInteger" minOccurs="0"/>
