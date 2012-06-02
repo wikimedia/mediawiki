@@ -288,6 +288,7 @@ $magicWords = array(
 	'localurl'               => array( 0,    'LOCALURL:'              ),
 	'localurle'              => array( 0,    'LOCALURLE:'             ),
 	'articlepath'            => array( 0,	 'ARTICLEPATH'            ),
+	'pageid'                 => array( 0,	 'PAGEID'                 ),
 	'server'                 => array( 0,    'SERVER'                 ),
 	'servername'             => array( 0,    'SERVERNAME'             ),
 	'scriptpath'             => array( 0,    'SCRIPTPATH'             ),
