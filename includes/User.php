@@ -4041,13 +4041,9 @@ class User {
 	protected function saveOptions() {
 		global $wgAllowPrefChange;
 
-		$extuser = ExternalUser::newFromUser( $this );
-
 		$this->loadOptions();
-		$dbw = wfGetDB( DB_MASTER );
 
-		$insert_rows = array();
-
+		// Not using getOptions(), to keep hidden preferences in database
 		$saveOptions = $this->mOptions;
 
 		// Allow hooks to abort, for instance to save to a global profile.
@@ -4056,13 +4052,17 @@ class User {
 			return;
 		}
 
+		$extuser = ExternalUser::newFromUser( $this );
+		$userId = $this->getId();
+		$insert_rows = array();
 		foreach( $saveOptions as $key => $value ) {
 			# Don't bother storing default values
-			if ( ( is_null( self::getDefaultOption( $key ) ) &&
-					!( $value === false || is_null($value) ) ) ||
-					$value != self::getDefaultOption( $key ) ) {
+			$defaultOption = self::getDefaultOption( $key );
+			if ( ( is_null( $defaultOption ) &&
+					!( $value === false || is_null( $value ) ) ) ||
+					$value != $defaultOption ) {
 				$insert_rows[] = array(
-						'up_user' => $this->getId(),
+						'up_user' => $userId,
 						'up_property' => $key,
 						'up_value' => $value,
 					);
@@ -4079,7 +4079,8 @@ class User {
 			}
 		}
 
-		$dbw->delete( 'user_properties', array( 'up_user' => $this->getId() ), __METHOD__ );
+		$dbw = wfGetDB( DB_MASTER );
+		$dbw->delete( 'user_properties', array( 'up_user' => $userId ), __METHOD__ );
 		$dbw->insert( 'user_properties', $insert_rows, __METHOD__ );
 	}
 
