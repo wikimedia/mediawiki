@@ -52,12 +52,12 @@ class LSLockManager extends LockManager {
 	/** @var Array Map Server connections (server name => resource) */
 	protected $conns = array();
 
-	protected $connTimeout; // float number of seconds
-	protected $session = ''; // random SHA-1 string
+	protected $connTimeout; // float; number of seconds
+	protected $session = ''; // string; random SHA-1 UUID
 
 	/**
 	 * Construct a new instance from configuration.
-	 * 
+	 *
 	 * $config paramaters include:
 	 *     'lockServers'  : Associative array of server names to configuration.
 	 *                      Configuration is an associative array that includes:
@@ -68,7 +68,7 @@ class LSLockManager extends LockManager {
 	 *                      each having an odd-numbered list of server names (peers) as values.
 	 *     'connTimeout'  : Lock server connection attempt timeout. [optional]
 	 *
-	 * @param Array $config 
+	 * @param Array $config
 	 */
 	public function __construct( array $config ) {
 		parent::__construct( $config );
@@ -247,8 +247,12 @@ class LSLockManager extends LockManager {
 		$quorum = floor( $votesLeft/2 + 1 ); // simple majority
 		// Get votes for each peer, in order, until we have enough...
 		foreach ( $this->srvsByBucket[$bucket] as $lockSrv ) {
+			// Check if the peer is up
+			if ( !$this->getConnection( $lockSrv ) ) {
+				--$votesLeft;
+				continue;
 			// Attempt to acquire the lock on this peer
-			if ( !$this->doLockingRequest( $lockSrv, $paths, $type ) ) {
+			} elseif ( !$this->doLockingRequest( $lockSrv, $paths, $type ) ) {
 				return 'cantacquire'; // vetoed; resource locked
 			}
 			++$yesVotes; // success for this peer
@@ -258,11 +262,10 @@ class LSLockManager extends LockManager {
 			--$votesLeft;
 			$votesNeeded = $quorum - $yesVotes;
 			if ( $votesNeeded > $votesLeft ) {
-				// In "trust cache" mode we don't have to meet the quorum
 				break; // short-circuit
 			}
 		}
-		// At this point, we must not have meet the quorum
+		// At this point, we must not have met the quorum
 		return 'srverrors'; // not enough votes to ensure correctness
 	}
 
@@ -270,7 +273,7 @@ class LSLockManager extends LockManager {
 	 * Get (or reuse) a connection to a lock server
 	 *
 	 * @param $lockSrv string
-	 * @return resource
+	 * @return resource|null
 	 */
 	protected function getConnection( $lockSrv ) {
 		if ( !isset( $this->conns[$lockSrv] ) ) {
