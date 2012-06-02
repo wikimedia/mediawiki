@@ -1,6 +1,6 @@
 <?php
 /**
- * Version of LockManager based on using lock daemon servers.
+ * Version of LockManager based on using memcached servers.
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -22,21 +22,20 @@
  */
 
 /**
- * Manage locks using a lock daemon server.
+ * Manage locks using memcached servers.
  *
- * Version of LockManager based on using lock daemon servers.
+ * Version of LockManager based on using memcached servers.
  * This is meant for multi-wiki systems that may share files.
  * All locks are non-blocking, which avoids deadlocks.
  *
  * All lock requests for a resource, identified by a hash string, will map
- * to one bucket. Each bucket maps to one or several peer servers, each
- * running LockServerDaemon.php, listening on a designated TCP port.
+ * to one bucket. Each bucket maps to one or several peer servers, each running memcached.
  * A majority of peers must agree for a lock to be acquired.
  *
  * @ingroup LockManager
- * @since 1.19
+ * @since 1.20
  */
-class LSLockManager extends LockManager {
+class MemcLockManager extends LockManager {
 	/** @var Array Mapping of lock types to the type actually used */
 	protected $lockTypeMap = array(
 		self::LOCK_SH => self::LOCK_SH,
@@ -44,44 +43,42 @@ class LSLockManager extends LockManager {
 		self::LOCK_EX => self::LOCK_EX
 	);
 
-	/** @var Array Map of server names to server config */
-	protected $lockServers; // (server name => server config array)
+	/** @var Array Map server names to MemcachedBagOStuff objects */
+	protected $bagOStuffs = array();
 	/** @var Array Map of bucket indexes to peer server lists */
 	protected $srvsByBucket; // (bucket index => (lsrv1, lsrv2, ...))
 
-	/** @var Array Map Server connections (server name => resource) */
-	protected $conns = array();
+	/** @var Array */
+	protected $serversUp; // (server name => bool)
 
-	protected $connTimeout; // float; number of seconds
+	protected $lockExpiry; // integer; maximum time locks can be held
 	protected $session = ''; // string; random SHA-1 UUID
 
 	/**
 	 * Construct a new instance from configuration.
 	 *
 	 * $config paramaters include:
-	 *     'lockServers'  : Associative array of server names to configuration.
-	 *                      Configuration is an associative array that includes:
-	 *                      'host'    - IP address/hostname
-	 *                      'port'    - TCP port
-	 *                      'authKey' - Secret string the lock server uses
+	 *     'lockServers'  : Associative array of server names to <IP>:<port> strings.
 	 *     'srvsByBucket' : Array of 1-16 consecutive integer keys, starting from 0,
 	 *                      each having an odd-numbered list of server names (peers) as values.
-	 *     'connTimeout'  : Lock server connection attempt timeout. [optional]
+	 *     'memcConfig'   : Configuration array for ObjectCache::newFromParams. [optional]
 	 *
 	 * @param Array $config
 	 */
 	public function __construct( array $config ) {
 		parent::__construct( $config );
 
-		$this->lockServers = $config['lockServers'];
 		// Sanitize srvsByBucket config to prevent PHP errors
 		$this->srvsByBucket = array_filter( $config['srvsByBucket'], 'is_array' );
 		$this->srvsByBucket = array_values( $this->srvsByBucket ); // consecutive
 
-		if ( isset( $config['connTimeout'] ) ) {
-			$this->connTimeout = $config['connTimeout'];
-		} else {
-			$this->connTimeout = 3; // use some sane amount
+		$memcConfig = isset( $config['memcConfig'] )
+			? $config['memcConfig']
+			: array( 'class' => 'MemcachedPhpBagOStuff' );
+
+		foreach ( $config['lockServers'] as $name => $address ) {
+			$params = array( 'servers' => array( $address ) ) + $memcConfig;
+			$this->bagOStuffs[$name] = ObjectCache::newFromParams( $params );
 		}
 
 		$this->session = '';
@@ -89,6 +86,9 @@ class LSLockManager extends LockManager {
 			$this->session .= mt_rand( 0, 2147483647 );
 		}
 		$this->session = wfBaseConvert( sha1( $this->session ), 16, 36, 31 );
+
+		$met = ini_get( 'max_execution_time' );
+		$this->lockExpiry = $met ? 2*(int)$met : 86400;
 	}
 
 	/**
@@ -155,6 +155,7 @@ class LSLockManager extends LockManager {
 	protected function doUnlock( array $paths, $type ) {
 		$status = Status::newGood();
 
+		$pathsToUnlock = array();
 		foreach ( $paths as $path ) {
 			if ( !isset( $this->locksHeld[$path] ) ) {
 				$status->warning( 'lockmanager-notlocked', $path );
@@ -162,8 +163,11 @@ class LSLockManager extends LockManager {
 				$status->warning( 'lockmanager-notlocked', $path );
 			} else {
 				--$this->locksHeld[$path][$type];
+				// Reference count the locks held and release locks when zero
 				if ( $this->locksHeld[$path][$type] <= 0 ) {
 					unset( $this->locksHeld[$path][$type] );
+					$bucket = $this->getBucketFromKey( $path );
+					$pathsToUnlock[$bucket][] = $path;
 				}
 				if ( !count( $this->locksHeld[$path] ) ) {
 					unset( $this->locksHeld[$path] ); // no SH or EX locks left for key
@@ -171,9 +175,8 @@ class LSLockManager extends LockManager {
 			}
 		}
 
-		// Reference count the locks held and release locks when zero
-		if ( !count( $this->locksHeld ) ) {
-			$status->merge( $this->releaseLocks() );
+		foreach ( $pathsToUnlock as $bucket => $paths ) {
+			$status->merge( $this->doUnlockingRequestAll( $bucket, $paths, $type ) );
 		}
 
 		return $status;
@@ -188,49 +191,50 @@ class LSLockManager extends LockManager {
 	 * @return bool Resources able to be locked
 	 */
 	protected function doLockingRequest( $lockSrv, array $paths, $type ) {
-		if ( $type == self::LOCK_SH ) { // reader locks
-			$type = 'SH';
-		} elseif ( $type == self::LOCK_EX ) { // writer locks
-			$type = 'EX';
-		} else {
+		if ( $type !== self::LOCK_SH && $type !== self::LOCK_EX ) {
 			return true; // ok...
 		}
 
-		// Send out the command and get the response...
-		$keys = array_unique( array_map( 'LockManager::sha1Base36', $paths ) );
-		$response = $this->sendCommand( $lockSrv, 'ACQUIRE', $type, $keys );
+		$now = time();
+		foreach ( $paths as $path ) {
+			$locksKey = $this->recordKeyForPath( $path ); // lock record
 
-		return ( $response === 'ACQUIRED' );
-	}
+			$memc = $this->bagOStuffs[$lockSrv];
+			if ( !$this->acquireMutex( $memc, $locksKey ) ) { // lock record
+				return false; // can't acquire record
+			}
+			$locksHeld = $memc->get( $locksKey );
+			if ( !is_array( $locksHeld ) ) {
+				$locksHeld = array( self::LOCK_SH => array(), self::LOCK_EX => array() ); // init
+			} else {
+				foreach ( $locksHeld[self::LOCK_EX] as $session => $expiry ) {
+					if ( $expiry < $now ) { // stale?
+						unset( $locksHeld[self::LOCK_EX][$session] );
+					} elseif ( $session !== $this->session ) {
+						$this->releaseMutex( $memc, $key ); // release record
+						return false;
+					}
+				}
+				if ( $type === self::LOCK_EX ) {
+					foreach ( $locksHeld[self::LOCK_SH] as $session => $expiry ) {
+						if ( $expiry < $now ) { // stale?
+							unset( $locksHeld[self::LOCK_SH][$session] );
+						} elseif ( $session !== $this->session ) {
+							$this->releaseMutex( $memc, $key ); // release record
+							return false;
+						}
+					}
+				}
+			}
+			$locksHeld[$type][$this->session] = $now + $this->lockExpiry;
+			$ok = $memc->set( $locksKey, $locksHeld );
+			$this->releaseMutex( $memc, $locksKey ); // release record
+			if ( !$ok ) {
+				return false;
+			}
+		}
 
-	/**
-	 * Send a command and get back the response
-	 *
-	 * @param $lockSrv string
-	 * @param $action string
-	 * @param $type string
-	 * @param $values Array
-	 * @return string|bool
-	 */
-	protected function sendCommand( $lockSrv, $action, $type, $values ) {
-		$conn = $this->getConnection( $lockSrv );
-		if ( !$conn ) {
-			return false; // no connection
-		}
-		$authKey = $this->lockServers[$lockSrv]['authKey'];
-		// Build of the command as a flat string...
-		$values = implode( '|', $values );
-		$key = sha1( $this->session . $action . $type . $values . $authKey );
-		// Send out the command...
-		if ( fwrite( $conn, "{$this->session}:$key:$action:$type:$values\n" ) === false ) {
-			return false;
-		}
-		// Get the response...
-		$response = fgets( $conn );
-		if ( $response === false ) {
-			return false;
-		}
-		return trim( $response );
+		return true;
 	}
 
 	/**
@@ -248,7 +252,8 @@ class LSLockManager extends LockManager {
 		// Get votes for each peer, in order, until we have enough...
 		foreach ( $this->srvsByBucket[$bucket] as $lockSrv ) {
 			// Check if the peer is up
-			if ( !$this->getConnection( $lockSrv ) ) {
+			if ( !$this->pingServer( $lockSrv ) ) {
+				trigger_error( __METHOD__ . ": Could not contact $lockSrv.", E_USER_WARNING );
 				continue;
 			// Attempt to acquire the lock on this peer
 			} elseif ( !$this->doLockingRequest( $lockSrv, $paths, $type ) ) {
@@ -261,6 +266,7 @@ class LSLockManager extends LockManager {
 			--$votesLeft;
 			$votesNeeded = $quorum - $yesVotes;
 			if ( $votesNeeded > $votesLeft ) {
+				// In "trust cache" mode we don't have to meet the quorum
 				break; // short-circuit
 			}
 		}
@@ -269,43 +275,107 @@ class LSLockManager extends LockManager {
 	}
 
 	/**
-	 * Get (or reuse) a connection to a lock server
+	 * Get a connection to a lock server and release locks on $paths
 	 *
 	 * @param $lockSrv string
-	 * @return resource
+	 * @param $paths Array
+	 * @param $type integer LockManager::LOCK_EX or LockManager::LOCK_SH
+	 * @return bool Resources able to be unlocked
 	 */
-	protected function getConnection( $lockSrv ) {
-		if ( !isset( $this->conns[$lockSrv] ) ) {
-			$cfg = $this->lockServers[$lockSrv];
-			wfSuppressWarnings();
-			$errno = $errstr = '';
-			$conn = fsockopen( $cfg['host'], $cfg['port'], $errno, $errstr, $this->connTimeout );
-			wfRestoreWarnings();
-			if ( $conn === false ) {
-				return null;
-			}
-			$sec = floor( $this->connTimeout );
-			$usec = floor( ( $this->connTimeout - floor( $this->connTimeout ) ) * 1e6 );
-			stream_set_timeout( $conn, $sec, $usec );
-			$this->conns[$lockSrv] = $conn;
+	protected function doUnlockingRequest( $lockSrv, array $paths, $type ) {
+		if ( $type !== self::LOCK_SH && $type !== self::LOCK_EX ) {
+			return true; // ok...
 		}
-		return $this->conns[$lockSrv];
+
+		foreach ( $paths as $path ) {
+			$locksKey = $this->recordKeyForPath( $path ); // lock record
+
+			$memc = $this->bagOStuffs[$lockSrv];
+			if ( !$this->acquireMutex( $memc, $locksKey ) ) { // lock record
+				return false; // can't acquire record
+			}
+			$locksHeld = $memc->get( $locksKey );
+			if ( is_array( $locksHeld ) && isset( $locksHeld[$type] ) ) {
+				unset( $locksHeld[$type][$this->session] );
+				$ok = $memc->set( $locksKey, $locksHeld );
+			} else {
+				$ok = true;
+			}
+			$this->releaseMutex( $memc, $locksKey ); // release record
+			if ( !$ok ) {
+				return false;
+			}
+		}
+
+		return true;
 	}
 
 	/**
-	 * Release all locks that this session is holding
+	 * Attempt to release locks with the peers for a bucket
 	 *
+	 * @param $bucket integer
+	 * @param $paths Array List of resource keys to lock
+	 * @param $type integer LockManager::LOCK_EX or LockManager::LOCK_SH
 	 * @return Status
 	 */
-	protected function releaseLocks() {
+	protected function doUnlockingRequestAll( $bucket, array $paths, $type ) {
 		$status = Status::newGood();
-		foreach ( $this->conns as $lockSrv => $conn ) {
-			$response = $this->sendCommand( $lockSrv, 'RELEASE_ALL', '', array() );
-			if ( $response !== 'RELEASED_ALL' ) {
+
+		foreach ( $this->srvsByBucket[$bucket] as $lockSrv ) {
+			// Attempt to release the lock on this peer
+			if ( !$this->doUnlockingRequest( $lockSrv, $paths, $type ) ) {
 				$status->fatal( 'lockmanager-fail-svr-release', $lockSrv );
 			}
 		}
+
 		return $status;
+	}
+
+	/**
+	 * Check if a server seems to be up
+	 *
+	 * @param $lockSrv string
+	 * @return bool
+	 */
+	protected function pingServer( $lockSrv ) {
+		if ( !isset( $this->serversUp[$lockSrv] ) ) {
+			$memc = $this->bagOStuffs[$lockSrv];
+			$this->serversUp[$lockSrv] = $memc->set( 'MemcLockManager:ping', 1, 1 );
+		}
+		return $this->serversUp[$lockSrv];
+	}
+
+	/**
+	 * @param $path string
+	 * @return string
+	 */
+	protected function recordKeyForPath( $path ) {
+		return "MemcLockManager:resourcelocks:" . LockManager::sha1Base36( $path );
+	}
+
+	/**
+	 * @param $memc MemcachedBagOStuff
+	 * @param $key string
+	 * @return bool
+	 */
+	protected function acquireMutex( MemcachedBagOStuff $memc, $key ) {
+		$attempts = 0;
+		$start = microtime( true );
+		while ( ( microtime( true ) - $start ) <= 6 && ++$attempts <= 25 ) {
+			if ( $memc->add( "$key:mutex", 1, 180 ) ) { // lock record
+				return true;
+			}
+		}
+		return false;
+	}
+
+	/**
+	 * @param $memc MemcachedBagOStuff
+	 * @param $key string
+	 * @return bool
+	 */
+	protected function releaseMutex( MemcachedBagOStuff $memc, $key ) {
+		return $memc->delete( "$key:mutex" );
 	}
 
 	/**
@@ -324,9 +394,11 @@ class LSLockManager extends LockManager {
 	 * Make sure remaining locks get cleared for sanity
 	 */
 	function __destruct() {
-		$this->releaseLocks();
-		foreach ( $this->conns as $conn ) {
-			fclose( $conn );
+		while ( count( $this->locksHeld ) ) {
+			foreach ( $this->locksHeld as $path => $locks ) {
+				$this->doUnlock( array( $path ), self::LOCK_EX );
+				$this->doUnlock( array( $path ), self::LOCK_SH );
+			}
 		}
 	}
 }
