@@ -65,6 +65,8 @@ upgrade PHP if you have not done so prior to upgrading MediaWiki.
 * New getCreator and getOldestRevision methods added to WikiPage class
 * (bug 4220) the XML dump format schema now have unique identity constraints
   for page and revision identifiers. Patch by Elvis Stansvik.
+* (bug 23427) New magic word {{PAGEID}} which gives the current page ID.
+  Will be '0' on previewing a page being created.
 
 === Bug fixes in 1.20 ===
 * (bug 30245) Use the correct way to construct a log page title.
