@@ -13,6 +13,9 @@ this version.
 Our thanks go to everyone who helped to improve MediaWiki by testing the beta
 release and submitting bug reports.
 
+=== Changes since 1.19.0 ===
+* (bug 36568) Fixed "Illegal string offset 'LIMIT'" warnings in updater
+
 === Changes since 1.19 beta 2 ===
 * Special:Watchlist no longer sets links to feed when the user is anonymous.
 * (bug 35961) Hash comparison should always be strict.

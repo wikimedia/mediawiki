@@ -1440,6 +1440,7 @@ abstract class DatabaseBase implements DatabaseType {
 	function selectRow( $table, $vars, $conds, $fname = 'DatabaseBase::selectRow',
 		$options = array(), $join_conds = array() )
 	{
+		$options = (array)$options;
 		$options['LIMIT'] = 1;
 		$res = $this->select( $table, $vars, $conds, $fname, $options, $join_conds );
 
