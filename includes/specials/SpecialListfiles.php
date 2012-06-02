@@ -210,7 +210,8 @@ class ImageListPager extends TablePager {
 						array( 'href' => wfLocalFile( $filePage )->getURL() ),
 						$imgfile
 					);
-					return "$link ($download)";
+					$download = wfMessage( 'parentheses' )->rawParams( $download );
+					return "$link $download";
 				} else {
 					return htmlspecialchars( $value );
 				}
