@@ -246,9 +246,6 @@ class MWException extends Exception {
 		} elseif ( self::isCommandLine() ) {
 			MWExceptionHandler::printError( $this->getText() );
 		} else {
-			header( "HTTP/1.1 500 MediaWiki exception" );
-			header( "Status: 500 MediaWiki exception", true );
-
 			$this->reportHTML();
 		}
 	}

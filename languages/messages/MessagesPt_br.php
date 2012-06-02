@@ -1,5 +1,5 @@
 <?php
-/** Brazilian Portuguese (português do Brasil)
+/** Brazilian Portuguese (Português do Brasil)
  *
  * See MessagesQqq.php for message documentation incl. usage of parameters
  * To improve a translation please visit http://translatewiki.net
@@ -46,7 +46,6 @@
  * @author Raylton P. Sousa
  * @author Rodrigo Calanca Nishino
  * @author Sir Lestaty de Lioncourt
- * @author TheGabrielZaum
  * @author Urhixidur
  * @author Vuln
  * @author Waldir
@@ -1838,8 +1837,8 @@ Caso o problema persista, procure um [[Special:ListUsers/sysop|administrador]].'
 'backend-fail-writetemp' => 'Não foi possível gravar no arquivo temporário.',
 'backend-fail-closetemp' => 'Não foi possível fechar o arquivo temporário.',
 'backend-fail-read' => 'Não foi possível ler o arquivo $1.',
-'backend-fail-create' => 'Não foi possível criar ou alterar o arquivo $1.',
-'backend-fail-maxsize' => 'Não foi possível criar ou alterar o arquivo $1 por ele ser maior que {{PLURAL:$2|1 byte|$2 bytes}}.',
+'backend-fail-create' => 'Não foi possível criar o arquivo $1.',
+'backend-fail-maxsize' => 'Não foi possível criar o arquivo $1 por ele ser maior que {{PLURAL:$2|1 byte|$2 bytes}}.',
 'backend-fail-readonly' => 'O servidor de armazenamento "$1" está atualmente no modo "somente leitura". A razão dada foi: "$2"',
 'backend-fail-synced' => 'O arquivo "$1" está em um estado inconsistente dentro do sistema de armazenamento interno',
 'backend-fail-connect' => 'Não foi possível se conectar com o servidor de armazenamento "$1".',
@@ -2643,7 +2642,7 @@ Consulte a [[Special:BlockList|lista de bloqueios]].',
 'blocklist-userblocks' => 'Esconder bloqueios de contas',
 'blocklist-tempblocks' => 'Esconder bloqueios temporários',
 'blocklist-addressblocks' => 'Esconder bloqueios de IP único',
-'blocklist-rangeblocks' => 'Ocultar bloqueios de faixas',
+'blocklist-rangeblocks' => 'Ocultar blocos gama',
 'blocklist-timestamp' => 'Data e hora',
 'blocklist-target' => 'Destinatário',
 'blocklist-expiry' => 'Expira',

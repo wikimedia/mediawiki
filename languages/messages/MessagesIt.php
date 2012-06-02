@@ -1,5 +1,5 @@
 <?php
-/** Italian (italiano)
+/** Italian (Italiano)
  *
  * See MessagesQqq.php for message documentation incl. usage of parameters
  * To improve a translation please visit http://translatewiki.net
@@ -1289,7 +1289,6 @@ Vedi l'[[Special:BlockList|elenco dei blocchi]] per l'elenco dei bandi e dei blo
 'prefs-beta' => 'Funzionalità beta',
 'prefs-datetime' => 'Data e ora',
 'prefs-labs' => 'Funzionalità dei laboratori',
-'prefs-user-pages' => 'Pagine utente',
 'prefs-personal' => 'Profilo utente',
 'prefs-rc' => 'Ultime modifiche',
 'prefs-watchlist' => 'Osservati speciali',
@@ -1369,7 +1368,7 @@ L'operazione non può essere annullata.",
 'gender-male' => 'Maschile',
 'gender-female' => 'Femminile',
 'prefs-help-gender' => "Opzionale: consente di adattare i messaggi del software in funzione del genere dell'utente. Questa informazione sarà pubblica.",
-'email' => 'Indirizzo email',
+'email' => 'Indirizzo e-mail',
 'prefs-help-realname' => "L'indicazione del proprio nome vero è opzionale; se si sceglie di inserirlo, verrà utilizzato per attribuire la paternità dei contenuti inviati.",
 'prefs-help-email' => "L'inserimento del proprio indirizzo e-mail è facoltativo, ma permette di ricevere la propria password qualora venisse dimenticata.",
 'prefs-help-email-others' => 'Puoi anche scegliere di lasciare che gli altri ti contattino via posta elettronica con un collegamento dalla tua pagina utente o di discussione.
@@ -2069,7 +2068,6 @@ Potrebbero essere presenti immagini che sono usate da altri siti con un collegam
 È possibile restringere i criteri di ricerca selezionando il tipo di registro, l'utente che ha eseguito l'azione, e/o la pagina interessata (entrambi i campi sono sensibili al maiuscolo/minuscolo).",
 'logempty' => 'Il registro non contiene elementi corrispondenti alla ricerca.',
 'log-title-wildcard' => 'Ricerca dei titoli che iniziano con',
-'showhideselectedlogentries' => 'Mostra/nascondi le voci di registro selezionate',
 
 # Special:AllPages
 'allpages' => 'Tutte le pagine',

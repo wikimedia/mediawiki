@@ -438,6 +438,7 @@ abstract class FileOp {
  *     overwriteSame : override any existing file at destination
  */
 class StoreFileOp extends FileOp {
+
 	/**
 	 * @return array
 	 */
@@ -578,6 +579,7 @@ class CreateFileOp extends FileOp {
  *     overwriteSame : override any existing file at destination
  */
 class CopyFileOp extends FileOp {
+
 	/**
 	 * @return array
 	 */

@@ -452,7 +452,6 @@ $wgOptionalMessages = array(
 	'ellipsis',
 	'percent',
 	'parentheses',
-	'brackets',
 	'autocomment-prefix',
 	'listgrouprights-right-display',
 	'listgrouprights-right-revoked',
@@ -471,9 +470,6 @@ $wgOptionalMessages = array(
 	'nocookiesforlogin',
 	'version-entrypoints-articlepath',
 	'version-entrypoints-scriptpath',
-	'mergehistory-revisionrow',
-	'categoryviewer-pagedlinks',
-	'undelete-revisionrow',
 );
 
 /** EXIF messages, which may be set as optional in several checks, but are generally mandatory */

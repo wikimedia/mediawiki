@@ -20,16 +20,39 @@
  * 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
  * http://www.gnu.org/copyleft/gpl.html
  *
+ * These methods are likely candidates for overriding:
+ * * getDefaults
+ * * remove
+ * * insert
+ * * saveExisting
+ * * loadSummaryFields
+ * * getSummaryFields
+ *
+ * Main instance methods:
+ * * getField(s)
+ * * setField(s)
+ * * save
+ * * remove
+ *
+ * Main static methods:
+ * * select
+ * * update
+ * * delete
+ * * count
+ * * has
+ * * selectRow
+ * * selectFields
+ * * selectFieldsRow
+ *
  * @since 1.20
  *
  * @file ORMRow.php
- * @ingroup ORM
  *
  * @licence GNU GPL v2 or later
  * @author Jeroen De Dauw < jeroendedauw@gmail.com >
  */
 
-abstract class ORMRow implements IORMRow {
+abstract class ORMRow {
 
 	/**
 	 * The fields of the object.
@@ -72,11 +95,11 @@ abstract class ORMRow implements IORMRow {
 	 *
 	 * @since 1.20
 	 *
-	 * @param IORMTable $table
+	 * @param ORMTable $table
 	 * @param array|null $fields
 	 * @param boolean $loadDefaults
 	 */
-	public function __construct( IORMTable $table, $fields = null, $loadDefaults = false ) {
+	public function __construct( ORMTable $table, $fields = null, $loadDefaults = false ) {
 		$this->table = $table;
 
 		if ( !is_array( $fields ) ) {
@@ -308,7 +331,7 @@ abstract class ORMRow implements IORMRow {
 	/**
 	 * Load the default values, via getDefaults.
 	 *
-	 * @since 1.20
+	 *  @since 1.20
 	 *
 	 * @param boolean $override
 	 */
@@ -353,8 +376,7 @@ abstract class ORMRow implements IORMRow {
 			is_null( $functionName ) ? __METHOD__ : $functionName
 		);
 
-		// DatabaseBase::update does not always return true for success as documented...
-		return $success !== false;
+		return $success;
 	}
 
 	/**
@@ -382,21 +404,18 @@ abstract class ORMRow implements IORMRow {
 	protected function insert( $functionName = null, array $options = null ) {
 		$dbw = wfGetDB( DB_MASTER );
 
-		$success = $dbw->insert(
+		$result = $dbw->insert(
 			$this->table->getName(),
 			$this->getWriteValues(),
 			is_null( $functionName ) ? __METHOD__ : $functionName,
 			is_null( $options ) ? array( 'IGNORE' ) : $options
 		);
 
-		// DatabaseBase::insert does not always return true for success as documented...
-		$success = $success !== false;
-
-		if ( $success ) {
+		if ( $result ) {
 			$this->setField( 'id', $dbw->insertId() );
 		}
 
-		return $success;
+		return $result;
 	}
 
 	/**
@@ -410,9 +429,6 @@ abstract class ORMRow implements IORMRow {
 		$this->beforeRemove();
 
 		$success = $this->table->delete( array( 'id' => $this->getId() ) );
-
-		// DatabaseBase::delete does not always return true for success as documented...
-		$success = $success !== false;
 
 		if ( $success ) {
 			$this->onRemoved();
@@ -534,7 +550,6 @@ abstract class ORMRow implements IORMRow {
 
 	/**
 	 * Add an amount (can be negative) to the specified field (needs to be numeric).
-	 * TODO: most off this stuff makes more sense in the table class
 	 *
 	 * @since 1.20
 	 *
@@ -622,14 +637,14 @@ abstract class ORMRow implements IORMRow {
 	 *
 	 * @since 1.20
 	 *
-	 * @param IORMRow $object
+	 * @param ORMRow $object
 	 * @param boolean|array $excludeSummaryFields
 	 *  When set to true, summary field changes are ignored.
 	 *  Can also be an array of fields to ignore.
 	 *
 	 * @return boolean
 	 */
-	protected function fieldsChanged( IORMRow $object, $excludeSummaryFields = false ) {
+	protected function fieldsChanged( ORMRow $object, $excludeSummaryFields = false ) {
 		$exclusionFields = array();
 
 		if ( $excludeSummaryFields !== false ) {
@@ -648,11 +663,11 @@ abstract class ORMRow implements IORMRow {
 	}
 
 	/**
-	 * Returns the table this IORMRow is a row in.
+	 * Returns the table this ORMRow is a row in.
 	 *
 	 * @since 1.20
 	 *
-	 * @return IORMTable
+	 * @return ORMTable
 	 */
 	public function getTable() {
 		return $this->table;

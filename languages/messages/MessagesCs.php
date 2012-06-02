@@ -1,5 +1,5 @@
 <?php
-/** Czech (česky)
+/** Czech (Česky)
  *
  * See MessagesQqq.php for message documentation incl. usage of parameters
  * To improve a translation please visit http://translatewiki.net
@@ -1397,7 +1397,6 @@ Pokud na začátek dotazu přidáte ''all:'', bude se hledat všude (včetně di
 'prefs-beta' => 'Funkce z betaverze',
 'prefs-datetime' => 'Datum a čas',
 'prefs-labs' => 'Funkce z Labs',
-'prefs-user-pages' => 'Uživatelské stránky',
 'prefs-personal' => 'Údaje o uživateli',
 'prefs-rc' => 'Poslední změny',
 'prefs-watchlist' => 'Sledované stránky',

@@ -1372,9 +1372,9 @@ class Article extends Page {
 			$this->doDelete( $reason, $suppress );
 
 			if ( $request->getCheck( 'wpWatch' ) && $user->isLoggedIn() ) {
-				WatchAction::doWatch( $title, $user );
+				$this->doWatch();
 			} elseif ( $title->userIsWatching() ) {
-				WatchAction::doUnwatch( $title, $user );
+				$this->doUnwatch();
 			}
 
 			return;

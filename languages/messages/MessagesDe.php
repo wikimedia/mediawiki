@@ -430,7 +430,7 @@ $messages = array(
 'tog-externaleditor' => 'Externen Editor standardmäßig nutzen (nur für Experten, erfordert spezielle Einstellungen auf dem eigenen Computer. [//www.mediawiki.org/wiki/Manual:External_editors Weitere Informationen hierzu.])',
 'tog-externaldiff' => 'Externes Programm standardmäßig für Versionsunterschiede nutzen (nur für Experten, erfordert spezielle Einstellungen auf dem eigenen Computer. [//www.mediawiki.org/wiki/Manual:External_editors Weitere Informationen hierzu.])',
 'tog-showjumplinks' => '„Wechseln zu“-Links aktivieren',
-'tog-uselivepreview' => 'Vorschau sofort anzeigen (benötigt JavaScript) (experimentell)',
+'tog-uselivepreview' => 'Sofortige Vorschau nutzen (benötigt JavaScript) (experimentell)',
 'tog-forceeditsummary' => 'Warnen, sofern beim Speichern die Zusammenfassung fehlt',
 'tog-watchlisthideown' => 'Eigene Bearbeitungen in der Beobachtungsliste ausblenden',
 'tog-watchlisthidebots' => 'Bearbeitungen durch Bots in der Beobachtungsliste ausblenden',
@@ -1184,7 +1184,7 @@ Grund der Sperre: ''$2''",
 
 # History pages
 'viewpagelogs' => 'Logbücher dieser Seite anzeigen',
-'nohistory' => 'Zu dieser Seite ist keine Versionsgeschichte vorhanden.',
+'nohistory' => 'Es gibt keine Versionsgeschichte für diese Seite.',
 'currentrev' => 'Aktuelle Version',
 'currentrev-asof' => 'Aktuelle Version vom $2, $3 Uhr',
 'revisionasof' => 'Version vom $2, $3 Uhr',
@@ -1439,14 +1439,13 @@ Stelle sicher, dass die Versionsgeschichte einer Seite historisch korrekt ist.',
 'prefs-beta' => 'Beta-Funktionen',
 'prefs-datetime' => 'Datum und Zeit',
 'prefs-labs' => 'Alpha-Funktionen',
-'prefs-user-pages' => 'Benutzerseiten',
 'prefs-personal' => 'Benutzerdaten',
 'prefs-rc' => 'Letzte Änderungen',
 'prefs-watchlist' => 'Beobachtungsliste',
-'prefs-watchlist-days' => 'Maximale Anzahl der einbezogenen Tage:',
+'prefs-watchlist-days' => 'Anzahl der Tage, die die Beobachtungsliste standardmäßig umfassen soll:',
 'prefs-watchlist-days-max' => 'Maximal {{PLURAL:$1|ein Tag|$1 Tage}}',
-'prefs-watchlist-edits' => 'Maximale Anzahl der einbezogenen Einträge:',
-'prefs-watchlist-edits-max' => 'Maximal 1.000 Einträge',
+'prefs-watchlist-edits' => 'Maximale Zahl der Einträge:',
+'prefs-watchlist-edits-max' => 'Maximale Anzahl: 1000',
 'prefs-watchlist-token' => 'Beobachtungslisten-Token:',
 'prefs-misc' => 'Verschiedenes',
 'prefs-resetpass' => 'Passwort ändern',
@@ -1808,7 +1807,8 @@ Um ein '''Bild''' in einer Seite zu verwenden, nutze einen Link in der folgenden
 'largefileserver' => 'Die Datei ist größer als die vom Server eingestellte Maximalgröße.',
 'emptyfile' => 'Die hochgeladene Datei ist leer. Der Grund kann ein Tippfehler im Dateinamen sein. Bitte kontrolliere, ob du die Datei wirklich hochladen willst.',
 'windows-nonascii-filename' => 'Dieses Wiki unterstützt keine Dateinamen die Sonderzeichen enthalten.',
-'fileexists' => "Eine Datei dieses Namens ist bereits vorhanden. Bitte prüfe '''<tt>[[:$1]]</tt>''', sofern du dir nicht sicher bist, ob du sie ändern möchtest.
+'fileexists' => "Eine Datei mit diesem Namen existiert bereits.
+Bitte prüfe '''<tt>[[:$1]]</tt>''', wenn du dir nicht sicher bist, ob du sie ändern willst.
 [[$1|thumb]]",
 'filepageexists' => "Eine Beschreibungsseite wurde bereits als '''<tt>[[:$1]]</tt>''' erstellt, es ist aber keine Datei mit diesem Namen vorhanden.
 Die eingegebene Beschreibung wird nicht auf die Beschreibungsseite übernommen.
@@ -2090,7 +2090,7 @@ Vielleicht möchtest du die Beschreibung auf der dortigen [$2 Dateibeschreibungs
 'listredirects' => 'Weiterleitungen',
 
 # Unused templates
-'unusedtemplates' => 'Verwaiste Vorlagen',
+'unusedtemplates' => 'Unbenutzte Vorlagen',
 'unusedtemplatestext' => 'Diese Seite listet alle Seiten im {{ns:template}}-Namensraum auf, die nicht in anderen Seiten eingebunden sind.
 Überprüfe andere Links zu den Vorlagen, bevor du diese löscht.',
 'unusedtemplateswlh' => 'Andere Links',
@@ -2167,8 +2167,8 @@ Jede Zeile enthält Links zur ersten und zweiten Weiterleitung sowie dem Ziel de
 'uncategorizedcategories' => 'Nicht kategorisierte Kategorien',
 'uncategorizedimages' => 'Nicht kategorisierte Dateien',
 'uncategorizedtemplates' => 'Nicht kategorisierte Vorlagen',
-'unusedcategories' => 'Verwaiste Kategorien',
-'unusedimages' => 'Verwaiste Dateien',
+'unusedcategories' => 'Unbenutzte Kategorien',
+'unusedimages' => 'Unbenutzte Dateien',
 'popularpages' => 'Beliebteste Seiten',
 'wantedcategories' => 'Gewünschte Kategorien',
 'wantedpages' => 'Gewünschte Seiten',
@@ -2235,7 +2235,6 @@ Bitte prüfe, ob sie korrekt von der Quelle übertragen wurde.',
 Die Ausgabe kann durch die Auswahl des Logbuchtyps, des Benutzers oder des Seitentitels eingeschränkt werden (Groß-/Kleinschreibung muss beachtet werden).',
 'logempty' => 'Keine passenden Einträge.',
 'log-title-wildcard' => 'Titel beginnt mit …',
-'showhideselectedlogentries' => 'Ausgewählte Logbucheinträge anzeigen/verstecken',
 
 # Special:AllPages
 'allpages' => 'Alle Seiten',
@@ -2263,7 +2262,7 @@ Die Ausgabe kann durch die Auswahl des Logbuchtyps, des Benutzers oder des Seite
 # Special:Categories
 'categories' => 'Kategorien',
 'categoriespagetext' => 'Folgende {{PLURAL:$1|Kategorie enthält|Kategorien enthalten}} Seiten oder Dateien.
-[[Special:UnusedCategories|Verwaiste Kategorien]] werden hier nicht aufgeführt.
+[[Special:UnusedCategories|Unbenutzte Kategorien]] werden hier nicht aufgeführt.
 Siehe auch die Liste der [[Special:WantedCategories|gewünschten Kategorien]].',
 'categoriesfrom' => 'Zeige Kategorien ab:',
 'special-categories-sort-count' => 'Sortierung nach Anzahl',
@@ -2518,10 +2517,9 @@ Siehe die [[Special:ProtectedPages|Liste der geschützten Seiten]] für alle akt
 'protect-existing-expiry' => 'Aktuelles Seitenschutzende: $2, $3 Uhr',
 'protect-otherreason' => 'Anderer/ergänzender Grund:',
 'protect-otherreason-op' => 'Anderer Grund',
-'protect-dropdown' => '* Allgemeine Schutzgründe
-** Edit-War
-** Wiederkehrender Vandalismus
-** Wiederholtes Einstellen von Werbung
+'protect-dropdown' => '*Allgemeine Schutzgründe
+** Weblink-Spam
+** Editwar
 ** Häufig eingebundene Vorlage
 ** Seite mit hoher Besucherzahl',
 'protect-edit-reasonlist' => 'Schutzgründe bearbeiten',
@@ -2996,7 +2994,7 @@ Diese auf dem lokalen Rechner speichern und danach hier hochladen.',
 'javascripttest-title' => '$1-Tests werden durchgeführt',
 'javascripttest-pagetext-noframework' => 'Diese Seite ist JavaSkript-Tests vorbehalten.',
 'javascripttest-pagetext-unknownframework' => 'Unbekanntes Framework „$1“.',
-'javascripttest-pagetext-frameworks' => 'Bitte wähle eine der folgenden Prüfumgebungen aus: $1',
+'javascripttest-pagetext-frameworks' => 'Bitte eines der folgenden Frameworks auswählen: $1',
 'javascripttest-pagetext-skins' => 'Wähle eine Benutzeroberfläche zur Durchführung der Tests aus:',
 'javascripttest-qunit-intro' => 'Siehe die [$1 Dokumentation zu Tests] auf mediawiki.org',
 'javascripttest-qunit-heading' => 'MediaWiki-JavaSkript-QUnit-Tester',
@@ -3220,7 +3218,7 @@ Durch das Herunterladen und Öffnen der Datei kann dein Computer beschädigt wer
 # Video information, used by Language::formatTimePeriod() to format lengths in the above messages
 'seconds' => '{{PLURAL:$1|$1 Sekunde|$1 Sekunden}}',
 'minutes' => '{{PLURAL:$1|$1 Minute|$1 Minuten}}',
-'hours' => '{{PLURAL:$1|einer Stunde|$1 Stunden}}',
+'hours' => '{{PLURAL:$1|$1 Stunde|$1 Stunden}}',
 'days' => '{{PLURAL:$1|$1 Tag|$1 Tage}}',
 'ago' => 'vor $1',
 
@@ -3777,8 +3775,8 @@ Bitte bestätige, dass du diese Seite wirklich neu erstellen möchten.",
 # Live preview
 'livepreview-loading' => 'Lade …',
 'livepreview-ready' => 'Laden … Fertig!',
-'livepreview-failed' => 'Die Vorschau kann nicht sofort angezeigt werden!
-Bitte nutze die reguläre Vorschau.',
+'livepreview-failed' => 'Die sofortige Vorschau ist nicht möglich!
+Bitte die normale Vorschau nutzen.',
 'livepreview-error' => 'Verbindung nicht möglich: $1 „$2“. Bitte die normale Vorschau benutzen.',
 
 # Friendlier slave lag warnings

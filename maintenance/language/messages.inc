@@ -157,7 +157,6 @@ $wgMessageStructure = array(
 		'index-category',
 		'noindex-category',
 		'broken-file-category',
-		'categoryviewer-pagedlinks',
 	),
 	'mainpage' => array(
 		'linkprefix',
@@ -833,8 +832,7 @@ $wgMessageStructure = array(
 		'mergehistory-autocomment',
 		'mergehistory-comment',
 		'mergehistory-same-destination',
-		'mergehistory-reason',
-		'mergehistory-revisionrow'
+		'mergehistory-reason'
 	),
 	'mergelog' => array(
 		'mergelog',
@@ -1750,7 +1748,6 @@ $wgMessageStructure = array(
 		'alllogstext',
 		'logempty',
 		'log-title-wildcard',
-		'showhideselectedlogentries',
 	),
 	'allpages' => array(
 		'allpages',
@@ -2068,7 +2065,6 @@ $wgMessageStructure = array(
 		'undelete-error-long',
 		'undelete-show-file-confirm',
 		'undelete-show-file-submit',
-		'undelete-revisionrow',
 	),
 	'nsform' => array(
 		'namespace',
@@ -3325,7 +3321,6 @@ $wgMessageStructure = array(
 		'ellipsis',
 		'percent',
 		'parentheses',
-		'brackets',
 	),
 	'imgmulti' => array(
 		'imgmultipageprev',

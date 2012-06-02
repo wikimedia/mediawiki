@@ -1,5 +1,5 @@
 <?php
-/** Basque (euskara)
+/** Basque (Euskara)
  *
  * See MessagesQqq.php for message documentation incl. usage of parameters
  * To improve a translation please visit http://translatewiki.net
@@ -753,8 +753,7 @@ Azken blokeoaren erregistroa ageri da behean, erreferentzia gisa:',
 'userinvalidcssjstitle' => "'''Oharra:''' Ez da \"\$1\" itxura existitzen. Kontuan izan .css eta .js fitxategi pertsonalizatuen izenak letra xehez idatzi behar direla; adibidez, {{ns:user}}:Adibide/vector.css, eta ez {{ns:user}}:Adibide/Vector.css.",
 'updated' => '(Eguneratua)',
 'note' => "'''Oharra:'''",
-'previewnote' => "'''Gogoratu hau aurrikuspen bat dela.'''
-Zure aldaketak ez dira oraindik gorde!",
+'previewnote' => "'''Gogoratu hau aurreikusketa bat dela, beraz gorde egin beharko duzu!'''",
 'previewconflict' => 'Aurreikuspenak aldaketen koadroan idatzitako testua erakusten du, gorde ondoren agertuko den bezala.',
 'session_fail_preview' => "'''Sentitzen dugu! Ezin izan da zure aldaketa prozesatu, saioko datu batzuen galera dela-eta. Mesedez, saiatu berriz. Arazoak jarraitzen badu, saiatu saioa amaitu eta berriz hasten.'''",
 'session_fail_preview_html' => "'''Sentitzen dugu! Ezin izan dugu zure aldaketa burutu, saio datu galera bat medio.'''
@@ -1017,7 +1016,7 @@ Kontura zaitez nabigazio loturek, zutabea ezabatu dezakela.',
 'mergelogpagetext' => 'Jarraian dagoen zerrendak orrialde baten historiatik beste batera egindako azken bateratzeak erakusten ditu.',
 
 # Diffs
-'history-title' => '"$1" orrialdearen historia berrikuspena',
+'history-title' => '"$1" orrialdearen historia laburpena',
 'difference-multipage' => '(Orrialdeen arteko ezberdintasunak)',
 'lineno' => '$1. lerroa:',
 'compareselectedversions' => 'Hautatutako bertsioak alderatu',
@@ -1600,8 +1599,6 @@ Ondorengo zerrendak fitxategira dauden {{PLURAL:$1|lehen lotura|lehen $1 loturak
 'linkstoimage-redirect' => '$1 (fitxategi birzuzenketa) $2',
 'duplicatesoffile' => 'Ondorengo fitxategi {{PLURAL:$1|hau beste honen berdina da|$1 hauek beste honen berdinak dira}} ([[Special:FileDuplicateSearch/$2|zehaztasun gehiago]]):',
 'sharedupload' => 'Elkarbanatutako fitxategi hau $1-(e)ko igoera bat da eta beste proiektuek ere erabil dezakete.',
-'sharedupload-desc-here' => 'Fitxategi hau $1-(e)koa da eta beste proeiktuetan erabilia izan liteke.
-Bere [$2 fitxategiaren deskribapen orrialdea] behean dago.',
 'filepage-nofile' => 'Izen horrekin ez dago fitxategirik.',
 'uploadnewversion-linktext' => 'Fitxategi honen bertsio berri bat igo',
 'shared-repo-from' => '$1-tik',

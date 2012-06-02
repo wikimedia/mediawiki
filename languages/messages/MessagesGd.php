@@ -696,7 +696,7 @@ Mìneachadh: '''({{int:cur}})''' = an diofar eadar e 's am mùthadh as ùire, ''
 'revertmerge' => 'Dì-aontaich',
 
 # Diffs
-'history-title' => 'Eachdraidh nam mùthaidhean aig "$1"',
+'history-title' => 'Eachdraidh nam mùthaidhean de "$1"',
 'lineno' => 'Loidhne $1:',
 'compareselectedversions' => 'Dèan coimeas eadar na mùthaidhean a thagh thu',
 'editundo' => 'neo-dhèan',

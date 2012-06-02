@@ -32,7 +32,6 @@
  * @author Yknok29
  * @author לערי ריינהארט
  * @author 관인생략
- * @author 아라
  */
 
 $namespaceNames = array(
@@ -355,11 +354,9 @@ $messages = array(
 'tog-watchlisthideliu' => '주시문서 목록에서 로그인한 사용자의 편집을 숨기기',
 'tog-watchlisthideanons' => '주시문서 목록에서 비등록 사용자의 편집을 숨기기',
 'tog-watchlisthidepatrolled' => '주시문서 목록에서 검토된 편집을 숨기기',
-'tog-nolangconversion' => '변형 변환을 비활성화',
 'tog-ccmeonemails' => '이메일을 보낼 때 내 이메일로 복사본을 보내기',
 'tog-diffonly' => '편집 차이를 비교할 때 문서 내용을 보지 않기',
 'tog-showhiddencats' => '숨은 분류 보기',
-'tog-noconvertlink' => '링크 제목 변환을 비활성화',
 'tog-norollbackdiff' => '되돌리기 후 차이를 보이지 않기',
 
 'underline-always' => '항상',
@@ -433,11 +430,11 @@ $messages = array(
 'category-empty' => '이 분류에 속하는 문서나 자료가 없습니다.',
 'hidden-categories' => '{{PLURAL:$1|숨은 분류}}',
 'hidden-category-category' => '숨은 분류',
-'category-subcat-count' => '{{PLURAL:$2|이 분류에는 하위 분류 1 개만이 속해 있습니다.|다음은 이 분류에 속하는 하위 분류 $2 개 가운데 $1 개입니다.}}',
+'category-subcat-count' => '다음은 이 분류에 속하는 하위 분류 {{PLURAL:$2|$1 개|$2 개 가운데 $1 개}} 입니다.',
 'category-subcat-count-limited' => '이 분류에 하위분류가 $1개 있습니다.',
-'category-article-count' => '{{PLURAL:$2|이 분류에는 문서 1 개만이 속해 있습니다.|다음은 이 분류에 속하는 문서 $2 개 가운데 $1 개입니다.}}',
+'category-article-count' => '다음은 이 분류에 속하는 문서 {{PLURAL:$2|$1 개|$2 개 가운데 $1 개}} 입니다.',
 'category-article-count-limited' => '이 분류에 문서가 $1개 있습니다.',
-'category-file-count' => '{{PLURAL:$2|이 분류에는 파일 1 개만이 속해 있습니다.|다음은 이 분류에 속하는 파일 $2 개 가운데 $1 개입니다.}}',
+'category-file-count' => '다음은 이 분류에 속하는 파일 {{PLURAL:$2|$1 개|$2 개 가운데 $1 개}} 입니다.',
 'category-file-count-limited' => '이 분류에 파일이 $1개 있습니다.',
 'listingcontinuesabbrev' => ' (계속)',
 'index-category' => '색인된 문서',
@@ -461,7 +458,7 @@ $messages = array(
 'qbedit' => '편집',
 'qbpageoptions' => '문서 기능',
 'qbpageinfo' => '문서 정보',
-'qbmyoptions' => '내 사용자 문서',
+'qbmyoptions' => '내 문서',
 'qbspecialpages' => '특수 문서',
 'faq' => '자주 묻는 질문',
 'faqpage' => 'Project:FAQ',
@@ -698,8 +695,6 @@ $2',
 'filereadonlyerror' => '‘$2’ 파일 저장소가 읽기 전용이기 때문에 ‘$1’ 파일을 변경할 수 없습니다.
 
 저장소 관리자가 파일 저장소를 잠근 이유에 대해 "\'\'$3\'\'"이라는 설명을 남겼습니다.',
-'invalidtitle-knownnamespace' => '제목 오류: 이름공간 "$2"와 텍스트 "$3"',
-'invalidtitle-unknownnamespace' => '제목 오류: 알 수 없는 이름공간 번호 "$1"과, 텍스트 "$2"',
 
 # Virus scanner
 'virus-badscanner' => "잘못된 설정: 알 수 없는 바이러스 검사기: ''$1''",
@@ -728,7 +723,7 @@ $2',
 'userloginnocreate' => '로그인',
 'logout' => '로그아웃',
 'userlogout' => '로그아웃',
-'notloggedin' => '로그인하지 않음',
+'notloggedin' => '로그인하고 있지 않음',
 'nologin' => '계정이 없나요? $1.',
 'nologinlink' => '계정을 만들 수 있습니다',
 'createaccount' => '계정 만들기',
@@ -805,7 +800,6 @@ $2',
 # Change password dialog
 'resetpass' => '비밀번호 바꾸기',
 'resetpass_announce' => '이메일로 받은 임시 비밀번호로 로그인했습니다. 로그인을 마치려면 새 비밀번호를 여기에서 설정해야 합니다:',
-'resetpass_text' => '<!-- 여기에 텍스트를 추가하세요 -->',
 'resetpass_header' => '비밀번호 변경',
 'oldpassword' => '이전 비밀번호:',
 'newpassword' => '새 비밀번호:',
@@ -1064,8 +1058,6 @@ $2개 보다 적게 써야 하지만 지금은 $1개를 쓰고 있습니다.",
 'node-count-exceeded-warning' => '페이지가 노드 수를 초과하였습니다.',
 'expansion-depth-exceeded-category' => '페이지가 확장 깊이를 초과하였습니다.',
 'expansion-depth-exceeded-warning' => '페이지가 확장 깊이를 초과하였습니다',
-'parser-unstrip-loop-warning' => '스트립하지 않는 반복이 감지됨',
-'parser-unstrip-recursion-limit' => '스트립하지 않는 재귀 한도가 초과됨 ($1)',
 
 # "Undo" feature
 'undo-success' => '이 편집을 되돌리려면 아래의 변경되는 사항을 확인한 후 저장해주세요.',
@@ -1243,9 +1235,9 @@ $1",
 'mergelogpagetext' => '다음은 한 문서의 역사를 다른 문서의 역사와 합친 최근 기록입니다.',
 
 # Diffs
-'history-title' => '"$1"  문서의 변경 내력',
-'difference-title' => '"$1"의 두 판 사이의 차이',
-'difference-title-multipage' => '문서 "$1"과 "$2" 간의 차이',
+'history-title' => '‘$1’ 문서의 변경 내력',
+'difference-title' => '$1 문서의 차이점 보기',
+'difference-title-multipage' => '$1 과 $2 의 페이지 차이 보기',
 'difference-multipage' => '(문서간의 차이)',
 'lineno' => '$1번째 줄:',
 'compareselectedversions' => '선택된 판들을 비교하기',
@@ -1340,7 +1332,6 @@ $1",
 'prefs-beta' => '베타 기능',
 'prefs-datetime' => '날짜와 시각',
 'prefs-labs' => '실험 중인 기능',
-'prefs-user-pages' => '사용자 문서',
 'prefs-personal' => '사용자 정보',
 'prefs-rc' => '최근 바뀜',
 'prefs-watchlist' => '주시문서 목록',
@@ -1553,7 +1544,7 @@ $1",
 'right-siteadmin' => '데이터베이스를 잠그거나 잠금 해제',
 'right-override-export-depth' => '5단계로 링크된 문서를 포함하여 문서를 내보내기',
 'right-sendemail' => '다른 사용자에게 이메일 보내기',
-'right-passwordreset' => '비밀번호 재설정 이메일을 보기',
+'right-passwordreset' => '암호 재설정 이메일을 보기',
 
 # User rights log
 'rightslog' => '사용자 권한 기록',
@@ -1653,8 +1644,8 @@ $1",
 'upload-tryagain' => '수정된 파일 설명을 저장',
 'uploadnologin' => '로그인하지 않음',
 'uploadnologintext' => '파일을 올리려면 [[Special:UserLogin|로그인]]해야 합니다.',
-'upload_directory_missing' => '파일 올리기용 디렉터리($1)가 없고 웹 서버가 생성하지 못했습니다.',
-'upload_directory_read_only' => '파일 저장 디렉터리($1)에 쓰기 권한이 없습니다.',
+'upload_directory_missing' => '파일 올리기용 디렉토리($1)가 없고 웹 서버가 생성하지 못했습니다.',
+'upload_directory_read_only' => '파일 저장 디렉토리($1)에 쓰기 권한이 없습니다.',
 'uploaderror' => '올리기 오류',
 'upload-recreate-warning' => "'''경고: 이 파일로 된 이름이 삭제되었거나 옮겨졌습니다.'''
 
@@ -1758,7 +1749,7 @@ $1",
 'filename-bad-prefix' => '올리려고 하는 파일 이름이 \'\'\'"$1"\'\'\'(으)로 시작합니다.
 "$1"은(는) 디지털 사진기가 자동으로 붙이는 의미없는 이름입니다.
 파일에 대해 알기 쉬운 이름을 골라주세요.',
-'filename-prefix-blacklist' => ' #<!-- 이 줄은 그대로 두십시오 --> <pre>
+'filename-prefix-blacklist' => ' #<!-- 이 줄은 그대로 두십시오. --> <pre>
 # 문법은 다음과 같습니다:
 #   * "#"에서 그 줄의 끝까지는 코멘트입니다.
 #   * 비어 있지 않은 줄은 디지털 카메라에서 자동적으로 부여하는 파일 접두어입니다.
@@ -1771,7 +1762,7 @@ IMG # 일반
 JD # 제놉틱
 MGP # 펜탁스
 PICT # 기타
- #</pre> <!-- 이 줄은 그대로 두십시오 -->',
+ #</pre> <!-- 이 줄은 그대로 두십시오. -->',
 'upload-success-subj' => '올리기 성공',
 'upload-success-msg' => '파일을 [$2]에서 성공적으로 올렸습니다. 당신이 올린 파일이 여기 있습니다: [[:{{ns:file}}:$1]]',
 'upload-failure-subj' => '올리기 실패',
@@ -1910,7 +1901,7 @@ URL이 맞고 해당 웹사이트가 작동하는지 확인해주세요.',
 'filehist' => '파일 역사',
 'filehist-help' => '날짜/시간 링크를 클릭하면 해당 시간의 파일을 볼 수 있습니다.',
 'filehist-deleteall' => '모두 삭제',
-'filehist-deleteone' => '삭제',
+'filehist-deleteone' => '지우기',
 'filehist-revert' => '되돌리기',
 'filehist-current' => '최신',
 'filehist-datetime' => '날짜/시간',
@@ -1946,7 +1937,6 @@ URL이 맞고 해당 웹사이트가 작동하는지 확인해주세요.',
 'shared-repo-from' => '($1)',
 'shared-repo' => '공용 저장소',
 'shared-repo-name-wikimediacommons' => '위키미디어 공용',
-'filepage.css' => '/* 이 CSS 설정은 파일 설명 페이지에 포함되며, 또한 해외 클라이언트 위키에 포함됩니다 */',
 
 # File reversion
 'filerevert' => '$1 되돌리기',
@@ -2139,7 +2129,7 @@ URL이 맞고 해당 웹사이트가 작동하는지 확인해주세요.',
 
 # Special:AllPages
 'allpages' => '모든 문서 목록',
-'alphaindexline' => '$1부터 $2까지',
+'alphaindexline' => '$1에서 $2까지',
 'nextpage' => '다음 문서 ($1)',
 'prevpage' => '이전 문서 ($1)',
 'allpagesfrom' => '다음으로 시작하는 문서 보기:',
@@ -2207,7 +2197,7 @@ URL이 맞고 해당 웹사이트가 작동하는지 확인해주세요.',
 # Special:ListGroupRights
 'listgrouprights' => '사용자 권한 목록',
 'listgrouprights-summary' => '다음은 이 위키에서 설정된 사용자 권한 그룹의 목록입니다.
-각각의 권한에 대해서는 [[{{MediaWiki:Listgrouprights-helppage}}|이곳]]을 참고하세요.',
+각각의 권한에 대해서는 [[{{MediaWiki:Listgrouprights-helppage}}|이곳]]을 참조하십시오.',
 'listgrouprights-key' => '* <span class="listgrouprights-granted">부여된 권한</span>
 * <span class="listgrouprights-revoked">해제된 권한</span>',
 'listgrouprights-group' => '그룹',
@@ -2257,7 +2247,6 @@ URL이 맞고 해당 웹사이트가 작동하는지 확인해주세요.',
 # User Messenger
 'usermessage-summary' => '시스템 메시지 남기기',
 'usermessage-editor' => '시스템 메신저',
-'usermessage-template' => 'MediaWiki:UserMessage',
 
 # Watchlist
 'watchlist' => '주시문서 목록',
@@ -2536,7 +2525,6 @@ $1',
 'sp-contributions-username' => 'IP 주소 혹은 계정 이름:',
 'sp-contributions-toponly' => '최신판만 보기',
 'sp-contributions-submit' => '찾기',
-'sp-contributions-explain' => '',
 
 # What links here
 'whatlinkshere' => '여기를 가리키는 문서',
@@ -2989,39 +2977,16 @@ $1 사용자가 차단된 이유는 다음과 같습니다: "$2"',
 'tooltip-summary' => '짧은 편집 요약을 적어주세요',
 
 # Stylesheets
-'common.css' => '/* 이 CSS 설정은 모든 스킨에 동일하게 적용됩니다 */',
-'standard.css' => '/* 이 CSS 설정은 모든 스탠다드 스킨에 적용됩니다 */',
-'nostalgia.css' => '/* 이 CSS 설정은 모든 노스텔지아 스킨에 적용됩니다 */',
-'cologneblue.css' => '/* 이 CSS 설정은 모든 쾰른 블루 스킨에 적용됩니다 */',
+'common.css' => '/** 이 CSS 설정은 모든 스킨에 동일하게 적용됩니다 */',
 'monobook.css' => '/* 이 CSS 설정은 모든 모노북 스킨에 적용됩니다 */',
-'myskin.css' => '/* 이 CSS 설정은 모든 마이스킨 스킨에 적용됩니다 */',
-'chick.css' => '/* 이 CSS 설정은 모든 치크 스킨에 적용됩니다 */',
-'simple.css' => '/* 이 CSS 설정은 모든 심플 스킨에 적용됩니다 */',
 'modern.css' => '/* 이 CSS 설정은 모든 모던 스킨에 적용됩니다 */',
 'vector.css' => '/* 이 CSS 설정은 모든 벡터 스킨에 적용됩니다 */',
-'print.css' => '/* 이 CSS 설정은 출력/인쇄 화면에 적용됩니다 */',
-'handheld.css' => '/* 이 CSS 설정은 $wgHandheldStyle에 설정한 스킨을 기반으로 한 휴대 기기에 적용됩니다 */',
-'noscript.css' => '/* 이 CSS 설정은 자바스크립트를 비활성화한 사용자에 적용됩니다 */',
-'group-autoconfirmed.css' => '/* 이 CSS 설정은 자동 인증된 사용자에만 적용됩니다 */',
-'group-bot.css' => '/* 이 CSS 설정은 봇에만 적용됩니다 */',
-'group-sysop.css' => '/* 이 CSS 설정은 관리자에만 적용됩니다 */',
-'group-bureaucrat.css' => '/* 이 CSS 설정은 사무관에만 적용됩니다 */',
+'print.css' => '/* 이 CSS 설정은 출력/인쇄 화면에 적용됩니다. */',
 
 # Scripts
 'common.js' => '/* 이 자바스크립트 설정은 모든 문서, 모든 사용자에게 적용됩니다. */',
-'standard.js' => '/* 이 자바스크립트 설정은 스탠다드 스킨을 사용하는 사용자에게 적용됩니다 */',
-'nostalgia.js' => '/* 이 자바스크립트 설정은 노스텔지아 스킨을 사용하는 사용자에게 적용됩니다 */',
-'cologneblue.js' => '/* 이 자바스크립트 설정은 쾰른 블루 스킨을 사용하는 사용자에게 적용됩니다 */',
-'monobook.js' => '/* 이 자바스크립트 설정은 모노북 스킨을 사용하는 사용자에게 적용됩니다 */',
-'myskin.js' => '/* 이 자바스크립트 설정은 마이스킨 스킨을 사용하는 사용자에게 적용됩니다 */',
-'chick.js' => '/* 이 자바스크립트 설정은 치크 스킨을 사용하는 사용자에게 적용됩니다 */',
-'simple.js' => '/* 이 자바스크립트 설정은 심플 스킨을 사용하는 사용자에게 적용됩니다 */',
-'modern.js' => '/* 이 자바스크립트 설정은 모던 스킨을 사용하는 사용자에게 적용됩니다 */',
-'vector.js' => '/* 이 자바스크립트 설정은 벡터 스킨을 사용하는 사용자에게 적용됩니다 */',
-'group-autoconfirmed.js' => '/* 이 자바스크립트 설정은 자동 인증된 사용자에만 적용됩니다 */',
-'group-bot.js' => '/* 이 자바스크립트 설정은 봇에만 적용됩니다 */',
-'group-sysop.js' => '/* 이 자바스크립트 설정은 관리자에만 적용됩니다 */',
-'group-bureaucrat.js' => '/* 이 자바스크립트 설정은 사무관에만 적용됩니다 */',
+'monobook.js' => '/* 이 자바스크립트 설정은 모노북 스킨을 사용하는 사용자에게 적용됩니다. */',
+'vector.js' => '/* 이 자바스크립트 설정은 벡터 스킨을 사용하는 사용자에게 적용됩니다. */',
 
 # Metadata
 'notacceptable' => '클라이언트에서 인식 가능한 출력 포맷이 없습니다.',
@@ -3361,10 +3326,6 @@ Variants for Chinese language
 'exif-compression-2' => 'CCITT 그룹-3 1차원 수정 허프먼 반복 길이 부호화',
 'exif-compression-3' => 'CCITT 그룹-3 팩스 인코딩',
 'exif-compression-4' => 'CCITT 그룹-4 팩스 인코딩',
-'exif-compression-6' => 'JPEG (오래됨)',
-'exif-compression-8' => '압축 (Adobe)',
-'exif-compression-32773' => 'PackBits (매킨토시 RLE)',
-'exif-compression-32946' => '압축 (PKZIP)',
 
 'exif-copyrighted-true' => '저작권의 보호를 받음',
 'exif-copyrighted-false' => '퍼블릭 도메인',
@@ -3682,7 +3643,7 @@ $5
 
 # Auto-summaries
 'autosumm-blank' => '문서를 비움',
-'autosumm-replace' => '문서 내용을 ‘$1’으로 바꿈',
+'autosumm-replace' => '문서 내용을 ‘$1’으로 교체',
 'autoredircomment' => '[[$1]] 문서로 넘겨주기',
 'autosumm-new' => '새 문서: $1',
 
@@ -3747,22 +3708,20 @@ $5
 'version-hook-name' => '훅 이름',
 'version-hook-subscribedby' => '훅이 사용된 위치',
 'version-version' => '(버전 $1)',
-'version-license' => '라이선스',
+'version-license' => '라이센스',
 'version-poweredby-credits' => "이 위키는 '''[//www.mediawiki.org/ MediaWiki]'''를 기반으로 작동합니다. Copyright © 2001-$1 $2.",
 'version-poweredby-others' => '그 외 다른 개발자',
-'version-license-info' => "미디어위키는 자유 소프트웨어입니다. 당신은 자유 소프트웨어 재단이 발표한 GNU 일반 공중 사용 허가서 버전 2나 그 이후 버전에 따라 이 파일을 재배포하거나 수정할 수 있습니다.
+'version-license-info' => '미디어위키는 자유 소프트웨어입니다. 당신은 자유 소프트웨어 재단이 발표한 GNU 일반 공중 사용 허가서 버전 2나 그 이후 버전에 따라 이 파일을 재배포하거나 수정할 수 있습니다.
 
-미디어위키가 유용하게 사용될 수 있기를 바라지만 '''상용으로 사용'''되거나 '''특정 목적에 맞을 것'''이라는 것을 '''보증하지 않습니다'''. 자세한 내용은 GNU 일반 공중 사용 허가서 전문을 참고하십시오.
+미디어위키가 유용하게 사용될 수 있기를 바라지만 상용으로 사용되거나 특정 목적에 맞을 것이라는 것을 보증하지 않습니다. 자세한 내용은 GNU 일반 공중 사용 허가서 전문을 참고하십시오.
 
-당신은 이 프로그램을 통해 [{{SERVER}}{{SCRIPTPATH}}/COPYING GNU 일반 공중 사용 허가서 전문]을 받았습니다; 그렇지 않다면, Free Software Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA로 편지를 보내주시거나 [//www.gnu.org/licenses/old-licenses/gpl-2.0.html 온라인으로 읽어보시기] 바랍니다.",
+당신은 이 프로그램을 통해 [{{SERVER}}{{SCRIPTPATH}}/COPYING GNU 일반 공중 사용 허가서 전문]을 받았습니다; 그렇지 않다면, Free Software Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA로 편지를 보내주시거나 [//www.gnu.org/licenses/old-licenses/gpl-2.0.html 온라인]으로 읽어보시기 바랍니다.',
 'version-software' => '설치된 프로그램',
 'version-software-product' => '제품',
 'version-software-version' => '버전',
 'version-entrypoints' => 'URL 진입점',
 'version-entrypoints-header-entrypoint' => '진입점',
 'version-entrypoints-header-url' => 'URL',
-'version-entrypoints-articlepath' => '[https://www.mediawiki.org/wiki/Manual:$wgArticlePath 문서 경로]',
-'version-entrypoints-scriptpath' => '[https://www.mediawiki.org/wiki/Manual:$wgScriptPath 스크립트 경로]',
 
 # Special:FilePath
 'filepath' => '파일 경로',
@@ -3789,7 +3748,7 @@ $5
 * <span class="mw-specialpagerestricted">제한된 특수 문서.</span>',
 'specialpages-group-maintenance' => '관리용 목록',
 'specialpages-group-other' => '다른 특수 문서',
-'specialpages-group-login' => '로그인 / 가입',
+'specialpages-group-login' => '로그인 / 등록',
 'specialpages-group-changes' => '최근 바뀜과 기록',
 'specialpages-group-media' => '파일 관리',
 'specialpages-group-users' => '사용자와 권한',
@@ -3872,8 +3831,8 @@ $5
 'logentry-delete-event-legacy' => '$1 사용자가 $3 문서 기록의 표시 설정을 변경하였습니다.',
 'logentry-delete-revision-legacy' => '$1 사용자가 $3 문서 편집의 표시 설정을 변경하였습니다.',
 'logentry-suppress-delete' => '$1 사용자가 $3 문서를 숨겼습니다.',
-'logentry-suppress-event' => '$1 사용자가 비공개적으로 $3의 {{PLURAL:$5|기록 $5개}}에 대해 표시 설정을 바꾸었습니다: $4',
-'logentry-suppress-revision' => '$1 사용자가 비공개적으로 $3 문서의 {{PLURAL:$5|판 $5개}}에 대해 표시 설정을 바꾸었습니다: $4',
+'logentry-suppress-event' => '$1 사용자가 비공개적으로 $3의 {{PLURAL:$5|$5개의 기록}}에 대해 표시 설정을 바꾸었습니다: $4',
+'logentry-suppress-revision' => '$1 사용자가 비공개적으로 $3 문서의 {{PLURAL:$5|$5개의 판}}에 대해 표시 설정을 바꾸었습니다: $4',
 'logentry-suppress-event-legacy' => '$1 사용자가 비공개적으로 $3의 항목에 대한 표시 설정을 바꾸었습니다.',
 'logentry-suppress-revision-legacy' => '$1 사용자가 비공개적으로 $3 문서의 특정 판에 대한 표시 설정을 바꾸었습니다.',
 'revdelete-content-hid' => '내용 숨겨짐',
@@ -3894,7 +3853,7 @@ $5
 'logentry-newusers-create' => '$1 사용자가 계정을 생성했습니다.',
 'logentry-newusers-create2' => '$1 사용자가 $3 계정을 생성했습니다.',
 'logentry-newusers-autocreate' => '$1 계정이 자동적으로 생성되었습니다.',
-'newuserlog-byemail' => '이메일로 보낸 비밀번호',
+'newuserlog-byemail' => '이메일로 보낸 암호',
 
 # Feedback
 'feedback-bugornote' => '기술적 문제를 구체적으로 설명할 준비가 되었다면 [$1 버그를 신고]해 주세요.
@@ -3909,8 +3868,8 @@ $5
 'feedback-error3' => '오류: API가 응답하지 않음',
 'feedback-thanks' => '감사합니다! ‘[$2 $1]’ 문서에 당신의 의견을 남겼습니다.',
 'feedback-close' => '완료',
-'feedback-bugcheck' => '감사합니다! 혹시 해당 사항이 [$1 기존의 버그 보고서]에 올라와 있는지 확인해주세요.',
-'feedback-bugnew' => '확인했습니다. 새로운 버그 보고서를 작성합니다.',
+'feedback-bugcheck' => '감사합니다! 혹시 해당 사항이 [$1 기존의 버그 리포트]에 올라와 있는지 확인해주세요.',
+'feedback-bugnew' => '확인했습니다. 새로운 버그 리포트를 작성합니다.',
 
 # API errors
 'api-error-badaccess-groups' => '당신은 이 위키에 파일을 올릴 권한이 없습니다.',

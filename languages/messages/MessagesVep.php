@@ -2397,7 +2397,7 @@ Voib olda, necil lehtpolel om kosketuz irdsaitale, kudamb om mustas nimikirjutes
 
 # Patrolling
 'markaspatrolleddiff' => 'Znamoita kut patruliruidud',
-'markaspatrolledtext' => "Znamoita nece lehtpol' kut patruliruidud",
+'markaspatrolledtext' => "Zmamoita nece lehtpol' kut patruliruidud",
 'markedaspatrolled' => 'Om znamoitud kut patruliruidud',
 'markedaspatrolledtext' => 'Valitud [[:$1]]-n versii om znamoitud kut patruliruidud.',
 'rcpatroldisabled' => "Jäl'gmäižiden toižetusiden patruliruind ei ole kävutamas",

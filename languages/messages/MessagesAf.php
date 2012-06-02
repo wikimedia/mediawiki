@@ -594,8 +594,6 @@ Probeer asseblief weer oor 'n paar minute.",
 'ns-specialprotected' => 'Spesiale bladsye kan nie geredigeer word nie.',
 'titleprotected' => "Hierdie titel is beskerm teen skepping deur [[User:$1|$1]].
 Die rede gegee is ''$2''.",
-'invalidtitle-knownnamespace' => 'Ongeldige titel met naamruimte "$2" en teks "$3"',
-'invalidtitle-unknownnamespace' => 'Ongeldige titel met onbekende naamruimtenummer $1 en teks "$2"',
 
 # Virus scanner
 'virus-badscanner' => "Slegte konfigurasie: onbekende virusskandeerder: ''$1''",
@@ -684,7 +682,6 @@ Om misbruik te voorkom, word slegs een wagwoordwenk per {{PLURAL:$1|uur|$1 ure}}
 'invalidemailaddress' => "Die e-posadres is nie aanvaar nie, aangesien dit 'n ongeldige formaat blyk te hê.
 Voer asseblief 'n geldige e-posadres in, of laat die veld leeg.",
 'cannotchangeemail' => "Die e-posadres vir 'n gebruiker kan nie op hierdie wiki gewysig word nie.",
-'emaildisabled' => 'Hierdie webwerf kan nie e-poste stuur nie.',
 'accountcreated' => 'Rekening geskep',
 'accountcreatedtext' => 'Die rekening vir gebruiker $1 is geskep.',
 'createaccount-title' => 'Rekeningskepping vir {{SITENAME}}',
@@ -1152,9 +1149,7 @@ Let op dat die gebruik van navigasieskakels hierdie kolom se waardes sal herstel
 'mergelogpagetext' => "Hieronder is 'n lys van die mees onlangse versmeltings van een bladsy se geskiedenis na 'n ander.",
 
 # Diffs
-'history-title' => '$1: weergawegeskiedenis',
-'difference-title' => '$1: verskil tussen weergawes',
-'difference-title-multipage' => '$1 en $2: verskil tussen bladsye',
+'history-title' => 'Weergawegeskiedenis van "$1"',
 'difference-multipage' => '(Verskil tussen bladsye)',
 'lineno' => 'Lyn $1:',
 'compareselectedversions' => 'Vergelyk gekose weergawes',
@@ -1251,7 +1246,6 @@ U kan ook 'n naamruimte as voorvoegsel gebruik.",
 'prefs-beta' => 'Beta-funksies',
 'prefs-datetime' => 'Datum en tyd',
 'prefs-labs' => 'Labs-funksies',
-'prefs-user-pages' => 'Gebruikersbladsye',
 'prefs-personal' => 'Gebruikersdata',
 'prefs-rc' => 'Onlangse wysigings',
 'prefs-watchlist' => 'Dophoulys',

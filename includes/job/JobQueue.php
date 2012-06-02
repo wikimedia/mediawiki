@@ -113,6 +113,7 @@ abstract class Job {
 	 * @return Job or false if there's no jobs
 	 */
 	static function pop( $offset = 0 ) {
+		global $wgJobTypesExcludedFromDefaultQueue;
 		wfProfileIn( __METHOD__ );
 
 		$dbr = wfGetDB( DB_SLAVE );
@@ -123,9 +124,12 @@ abstract class Job {
 			NB: If random fetch previously was used, offset
 				will always be ahead of few entries
 		*/
-
-		$conditions = self::defaultQueueConditions();
-
+		$conditions = array();
+		if ( count( $wgJobTypesExcludedFromDefaultQueue ) != 0 ) {
+			foreach ( $wgJobTypesExcludedFromDefaultQueue as $cmdType ) {
+				$conditions[] = "job_cmd != " . $dbr->addQuotes( $cmdType );
+			}
+		}
 		$offset = intval( $offset );
 		$options = array( 'ORDER BY' => 'job_id', 'USE INDEX' => 'PRIMARY' );
 
@@ -195,7 +199,6 @@ abstract class Job {
 		$title = Title::makeTitleSafe( $namespace, $dbkey );
 
 		if ( is_null( $title ) ) {
-			wfProfileOut( __METHOD__ );
 			return false;
 		}
 
@@ -313,27 +316,6 @@ abstract class Job {
 			$dbw->insert( 'job', $rows, __METHOD__, 'IGNORE' );
 		}
 		wfIncrStats( 'job-insert', count( $jobs ) );
-	}
-
-
-	/**
-	 * SQL conditions to apply on most JobQueue queries
-	 *
-	 * Whenever we exclude jobs types from the default queue, we want to make
-	 * sure that queries to the job queue actually ignore them.
-	 *
-	 * @return array SQL conditions suitable for Database:: methods
-	 */
-	static function defaultQueueConditions( ) {
-		global $wgJobTypesExcludedFromDefaultQueue;
-		$conditions = array();
-		if ( count( $wgJobTypesExcludedFromDefaultQueue ) > 0 ) {
-			$dbr = wfGetDB( DB_SLAVE );
-			foreach ( $wgJobTypesExcludedFromDefaultQueue as $cmdType ) {
-				$conditions[] = "job_cmd != " . $dbr->addQuotes( $cmdType );
-			}
-		}
-		return $conditions;
 	}
 
 	/*-------------------------------------------------------------------------

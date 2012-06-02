@@ -1175,7 +1175,6 @@ Spytaj swoje naprašowanje z prefiksom ''all:'' wužiwać, zo by wšón wobsah (
 'prefs-beta' => 'Betafunkcije',
 'prefs-datetime' => 'Datum a čas',
 'prefs-labs' => 'Laborowe funkcije',
-'prefs-user-pages' => 'Wužiwarske strony',
 'prefs-personal' => 'Wužiwarski profil',
 'prefs-rc' => 'Aktualne změny',
 'prefs-watchlist' => 'Wobkedźbowanki',

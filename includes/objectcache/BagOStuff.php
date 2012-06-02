@@ -61,6 +61,20 @@ abstract class BagOStuff {
 	abstract public function get( $key );
 
 	/**
+	 * Get an associative array containing the item for each of the given keys.
+	 * Each item will be false if it does not exist.
+	 * @param $keys Array List of strings
+	 * @return Array
+	 */
+	public function getMulti( array $keys ) {
+		$res = array();
+		foreach ( $keys as $key ) {
+			$res[$key] = $this->get( $key );
+		}
+		return $res;
+	}
+
+	/**
 	 * Set an item.
 	 * @param $key string
 	 * @param $value mixed
@@ -122,32 +136,16 @@ abstract class BagOStuff {
 	/* *** Emulated functions *** */
 
 	/**
-	 * Get an associative array containing the item for each of the keys that have items.
-	 * @param $keys Array List of strings
-	 * @return Array
-	 */
-	public function getMulti( array $keys ) {
-		$res = array();
-		foreach ( $keys as $key ) {
-			$val = $this->get( $key );
-			if ( $val !== false ) {
-				$res[$key] = $val;
-			}
-		}
-		return $res;
-	}
-
-	/**
 	 * @param $key string
 	 * @param $value mixed
 	 * @param $exptime integer
 	 * @return bool success
 	 */
 	public function add( $key, $value, $exptime = 0 ) {
-		if ( $this->get( $key ) === false ) {
+		if ( !$this->get( $key ) ) {
 			return $this->set( $key, $value, $exptime );
 		}
-		return false; // key already set
+		return true;
 	}
 
 	/**
@@ -159,7 +157,7 @@ abstract class BagOStuff {
 		if ( $this->get( $key ) !== false ) {
 			return $this->set( $key, $value, $exptime );
 		}
-		return false; // key not already set
+		return true;
 	}
 
 	/**

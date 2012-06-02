@@ -63,11 +63,6 @@ abstract class File {
 
 	const DELETE_SOURCE = 1;
 
-	// Audience options for File::getDescription()
-	const FOR_PUBLIC = 1;
-	const FOR_THIS_USER = 2;
-	const RAW = 3;
-
 	/**
 	 * Some member variables can be lazy-initialised using __get(). The
 	 * initialisation function for these variables is always a function named
@@ -1570,18 +1565,12 @@ abstract class File {
 	}
 
 	/**
-	 * Get description of file revision
+	 * Get discription of file revision
 	 * STUB
 	 *
-	 * @param $audience Integer: one of:
-	 *      File::FOR_PUBLIC       to be displayed to all users
-	 *      File::FOR_THIS_USER    to be displayed to the given user
-	 *      File::RAW              get the description regardless of permissions
-	 * @param $user User object to check for, only if FOR_THIS_USER is passed
-	 *              to the $audience parameter
 	 * @return string
 	 */
-	function getDescription( $audience = self::FOR_PUBLIC, User $user = null ) {
+	function getDescription() {
 		return null;
 	}
 

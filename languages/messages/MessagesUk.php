@@ -1,5 +1,5 @@
 <?php
-/** Ukrainian (українська)
+/** Ukrainian (Українська)
  *
  * See MessagesQqq.php for message documentation incl. usage of parameters
  * To improve a translation please visit http://translatewiki.net
@@ -488,7 +488,7 @@ $messages = array(
 Будь ласка, почекайте і повторіть спробу отримати доступ пізніше.
 
 $1',
-'pool-timeout' => 'Час очікування блокування вичерпано',
+'pool-timeout' => 'Час очыкування блокування вичерпано',
 'pool-queuefull' => 'Сервер запитів заповнений',
 'pool-errorunknown' => 'Невідома помилка',
 
@@ -680,7 +680,7 @@ $1',
 'notloggedin' => 'Ви не ввійшли до системи',
 'nologin' => "Ви ще не зареєструвались? '''$1'''.",
 'nologinlink' => 'Створіть обліковий запис',
-'createaccount' => 'Зареєструватися',
+'createaccount' => 'Створити',
 'gotaccount' => "Ви вже зареєстровані? '''$1'''.",
 'gotaccountlink' => 'Увійдіть',
 'userlogin-resetlink' => 'Забули дані, потрібні для входу?',
@@ -1218,9 +1218,9 @@ $1",
 'mergelogpagetext' => "Нижче наведений список останніх об'єднань історій сторінок.",
 
 # Diffs
-'history-title' => '$1: Історія змін',
-'difference-title' => '$1: Відмінності між версіями',
-'difference-title-multipage' => '$1 і $2: Відмінності між сторінками',
+'history-title' => 'Історія змін сторінки «$1»',
+'difference-title' => 'Відмінності між версіями «$1»',
+'difference-title-multipage' => 'Відмінності між сторінками «$1» і «$2»',
 'difference-multipage' => '(Різниця між сторінками)',
 'lineno' => 'Рядок $1:',
 'compareselectedversions' => 'Порівняти вибрані версії',

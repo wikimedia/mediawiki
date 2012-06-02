@@ -1,5 +1,5 @@
 <?php
-/** Slovenian (slovenščina)
+/** Slovenian (Slovenščina)
  *
  * See MessagesQqq.php for message documentation incl. usage of parameters
  * To improve a translation please visit http://translatewiki.net
@@ -1255,7 +1255,6 @@ Upoštevajte, da so njihovi podatki vsebine {{GRAMMAR:rodilnik|{{SITENAME}}}} mo
 'prefs-beta' => 'Betafunkcije',
 'prefs-datetime' => 'Datum in čas',
 'prefs-labs' => 'Funkcije laboratorija',
-'prefs-user-pages' => 'Uporabniške strani',
 'prefs-personal' => 'Podatki o uporabniku',
 'prefs-rc' => 'Zadnje spremembe',
 'prefs-watchlist' => 'Spisek nadzorov',
@@ -2066,7 +2065,6 @@ Prosimo, upoštevajte, da se lahko druge spletne strani povezujejo na datoteko z
 'alllogstext' => 'Združeno so prikazani dnevniki sprememb uporabniških pravic, preimenovanj uporabnikov, nalaganja predstavnostnih datotek, prestavljanja in zaščite strani, brisanja, registracij uporabnikov, sprememb položaja botov ter blokiranja in deblokiranja uporabnikov na strani {{SITENAME}}. Pogled lahko zožite z izbiro dnevnika, uporabniškega imena ali strani. Vedite, da polje »Uporabnik« razlikuje med malimi in velikimi črkami.',
 'logempty' => 'O tej strani ni v dnevniku ničesar.',
 'log-title-wildcard' => 'Iskanje po naslovih, začenši s tem besedilom',
-'showhideselectedlogentries' => 'Pokaži/skrij izbrane dnevniške vnose',
 
 # Special:AllPages
 'allpages' => 'Vse strani',

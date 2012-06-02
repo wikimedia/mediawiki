@@ -1,5 +1,5 @@
 <?php
-/** tarandíne (tarandíne)
+/** Tarandíne (Tarandíne)
  *
  * See MessagesQqq.php for message documentation incl. usage of parameters
  * To improve a translation please visit http://translatewiki.net
@@ -1109,7 +1109,6 @@ Però fa attenzione purcè l'indice lore sus a {{SITENAME}} ponne condenè pàgg
 'prefs-beta' => 'Funziune de Beta',
 'prefs-datetime' => 'Date e ore',
 'prefs-labs' => 'Funziune de Labs',
-'prefs-user-pages' => "Pàgene de l'utende",
 'prefs-personal' => "Profile de l'utende",
 'prefs-rc' => 'Cangiaminde recende',
 'prefs-watchlist' => 'Pàggene condrollete',
@@ -2694,7 +2693,6 @@ Reggistrele sus a 'u combiuter tune e carechele aqquà.",
 'import-error-edit' => 'Pàgene "$1" non g\' \'mbortate purcé tu non ge tìne le permesse pe cangiarle.',
 'import-error-create' => 'Pàgene "$1" non g\' \'mbortate purcé tu non ge tìne le permesse pe ccrejarle.',
 'import-error-interwiki' => 'Pagene "$1" non g\'ha state \'mbortate purcé \'u nome sue jè riservate pe collegaminde esterne (interuicchi).',
-'import-error-special' => "'A pagena \"\$1\" non g'ha state 'mbortate purcé apponde a 'nu namespace speciale ca non g'è permesse a le pàggene normale.",
 'import-error-invalid' => "'A pàgene \"\$1\" non g'ha state 'mbortate purcé 'u nome jè invalide.",
 
 # Import log

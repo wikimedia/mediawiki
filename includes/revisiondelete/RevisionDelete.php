@@ -260,14 +260,14 @@ class RevDel_RevisionItem extends RevDel_Item {
 	}
 
 	public function getHTML() {
-		$difflink = wfMessage( 'parentheses' )->rawParams( $this->getDiffLink() );
+		$difflink = $this->getDiffLink();
 		$revlink = $this->getRevisionLink();
 		$userlink = Linker::revUserLink( $this->revision );
 		$comment = Linker::revComment( $this->revision );
 		if ( $this->isDeleted() ) {
 			$revlink = "<span class=\"history-deleted\">$revlink</span>";
 		}
-		return "<li>$difflink $revlink $userlink $comment</li>";
+		return "<li>($difflink) $revlink $userlink $comment</li>";
 	}
 }
 
@@ -885,7 +885,6 @@ class RevDel_LogItem extends RevDel_Item {
 			array(),
 			array( 'page' => $title->getPrefixedText() )
 		);
-		$loglink = wfMessage( 'parentheses' )->rawParams( $loglink );
 		// User links and action text
 		$action = $formatter->getActionText();
 		// Comment
@@ -894,6 +893,6 @@ class RevDel_LogItem extends RevDel_Item {
 			$comment = '<span class="history-deleted">' . $comment . '</span>';
 		}
 
-		return "<li>$loglink $date $action $comment</li>";
+		return "<li>($loglink) $date $action $comment</li>";
 	}
 }

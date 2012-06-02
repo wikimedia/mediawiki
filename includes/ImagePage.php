@@ -990,7 +990,7 @@ class ImageHistoryList extends ContextSource {
 		$img = $iscur ? $file->getName() : $file->getArchiveName();
 		$userId = $file->getUser( 'id' );
 		$userText = $file->getUser( 'text' );
-		$description = $file->getDescription( File::FOR_THIS_USER, $user );
+		$description = $file->getDescription();
 
 		$local = $this->current->isLocal();
 		$row = $selected = '';
@@ -1038,9 +1038,7 @@ class ImageHistoryList extends ContextSource {
 		$row .= '<td>';
 		if ( $iscur ) {
 			$row .= wfMsgHtml( 'filehist-current' );
-		} elseif ( $local && $this->title->quickUserCan( 'edit' )
-			&& $this->title->quickUserCan( 'upload' )
-		) {
+		} elseif ( $local && $user->isLoggedIn() && $this->title->userCan( 'edit' ) ) {
 			if ( $file->isDeleted( File::DELETED_FILE ) ) {
 				$row .= wfMsgHtml( 'filehist-revert' );
 			} else {
@@ -1101,10 +1099,7 @@ class ImageHistoryList extends ContextSource {
 		// Image dimensions + size
 		$row .= '<td>';
 		$row .= htmlspecialchars( $file->getDimensionsString() );
-		$row .= $this->getContext()->msg( 'word-separator' )->plain();
-		$row .= '<span style="white-space: nowrap;">';
-		$row .= $this->getContext()->msg( 'parentheses' )->rawParams( Linker::formatSize( $file->getSize() ) )->plain();
-		$row .= '</span>';
+		$row .= ' <span style="white-space: nowrap;">(' . Linker::formatSize( $file->getSize() ) . ')</span>';
 		$row .= '</td>';
 
 		// Uploading user

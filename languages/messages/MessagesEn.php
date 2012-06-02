@@ -191,7 +191,6 @@ $bookstoreList = array(
  * Customisable syntax for wikitext and elsewhere.
  *
  * IDs must be valid identifiers, they cannot contain hyphens.
- * CASE is 0 to match all case variants, 1 for case-sensitive
  *
  * Note to translators:
  *   Please include the English words as synonyms.  This allows people
@@ -759,7 +758,6 @@ XHTML id names.
 'index-category'                 => 'Indexed pages',
 'noindex-category'               => 'Noindexed pages',
 'broken-file-category'           => 'Pages with broken file links',
-'categoryviewer-pagedlinks'      => '($1) ($2)',
 
 'linkprefix' => '/^(.*?)([a-zA-Z\\x80-\\xff]+)$/sD', # only translate this message to other languages if you have to change it
 
@@ -1663,7 +1661,6 @@ Note that using the navigation links will reset this column.',
 'mergehistory-comment'             => 'Merged [[:$1]] into [[:$2]]: $3',
 'mergehistory-same-destination'    => 'Source and destination pages cannot be the same',
 'mergehistory-reason'              => 'Reason:',
-'mergehistory-revisionrow'         => '$1 ($2) $3 . . $4 $5 $6',
 
 # Merge log
 'mergelog'           => 'Merge log',
@@ -2658,15 +2655,14 @@ Please note that other web sites may link to a file with a direct URL, and so ma
 'pubmedurl' => '//www.ncbi.nlm.nih.gov/pubmed/$1?dopt=Abstract', # do not translate or duplicate this message to other languages
 
 # Special:Log
-'specialloguserlabel'        => 'Performer:',
-'speciallogtitlelabel'       => 'Target (title or user):',
-'log'                        => 'Logs',
-'all-logs-page'              => 'All public logs',
-'alllogstext'                => 'Combined display of all available logs of {{SITENAME}}.
+'specialloguserlabel'  => 'Performer:',
+'speciallogtitlelabel' => 'Target (title or user):',
+'log'                  => 'Logs',
+'all-logs-page'        => 'All public logs',
+'alllogstext'          => 'Combined display of all available logs of {{SITENAME}}.
 You can narrow down the view by selecting a log type, the username (case-sensitive), or the affected page (also case-sensitive).',
-'logempty'                   => 'No matching items in log.',
-'log-title-wildcard'         => 'Search titles starting with this text',
-'showhideselectedlogentries' => 'Show/hide selected log entries',
+'logempty'             => 'No matching items in log.',
+'log-title-wildcard'   => 'Search titles starting with this text',
 
 # Special:AllPages
 'allpages'                => 'All pages',
@@ -3056,7 +3052,6 @@ It may have already been undeleted.',
 $1',
 'undelete-show-file-confirm'   => 'Are you sure you want to view the deleted revision of the file "<nowiki>$1</nowiki>" from $2 at $3?',
 'undelete-show-file-submit'    => 'Yes',
-'undelete-revisionrow'        => "$1 $2 $3 $4 . . $5 $6 $7",
 
 # Namespace form on various pages
 'namespace'                     => 'Namespace:',
@@ -4431,7 +4426,6 @@ Please confirm that you really want to recreate this page.",
 'ellipsis'            => '...', # only translate this message to other languages if you have to change it
 'percent'             => '$1%', # only translate this message to other languages if you have to change it
 'parentheses'         => '($1)', # only translate this message to other languages if you have to change it
-'brackets'            => '[$1]', # only translate this message to other languages if you have to change it
 
 # Multipage image navigation
 'imgmultipageprev' => '← previous page',

@@ -42,9 +42,6 @@ class SwiftFileBackend extends FileBackendStore {
 	protected $authTTL; // integer seconds
 	protected $swiftAnonUser; // string; username to handle unauthenticated requests
 	protected $swiftUseCDN; // boolean; whether CloudFiles CDN is enabled
-	protected $swiftCDNExpiry; // integer; how long to cache things in the CDN
-	protected $swiftCDNPurgable; // boolean; whether object CDN purging is enabled
-
 	protected $maxContCacheSize = 300; // integer; max containers with entries
 
 	/** @var CF_Connection */
@@ -62,11 +59,6 @@ class SwiftFileBackend extends FileBackendStore {
 	 *    swiftAuthTTL       : Swift authentication TTL (seconds)
 	 *    swiftAnonUser      : Swift user used for end-user requests (account:username)
 	 *    swiftUseCDN        : Whether a Cloud Files Content Delivery Network is set up
-	 *    swiftCDNExpiry     : How long (in seconds) to store content in the CDN.
-	 *                         If files may likely change, this should probably not exceed
-	 *                         a few days. For example, deletions may take this long to apply.
-	 *                         If object purging is enabled, however, this is not an issue.
-	 *    swiftCDNPurgable   : Whether object purge requests are allowed by the CDN.
 	 *    shardViaHashLevels : Map of container names to sharding config with:
 	 *                         'base'   : base of hash characters, 16 or 36
 	 *                         'levels' : the number of hash levels (and digits)
@@ -98,12 +90,6 @@ class SwiftFileBackend extends FileBackendStore {
 		$this->swiftUseCDN = isset( $config['swiftUseCDN'] )
 			? $config['swiftUseCDN']
 			: false;
-		$this->swiftCDNExpiry = isset( $config['swiftCDNExpiry'] )
-			? $config['swiftCDNExpiry']
-			: 3600; // hour
-		$this->swiftCDNPurgable = isset( $config['swiftCDNPurgable'] )
-			? $config['swiftCDNPurgable']
-			: true;
 		// Cache container info to mask latency
 		$this->memCache = wfGetMainCache();
 	}
@@ -533,7 +519,7 @@ class SwiftFileBackend extends FileBackendStore {
 				) );
 			}
 			if ( $this->swiftUseCDN ) { // Rackspace style CDN
-				$contObj->make_public( $this->swiftCDNExpiry );
+				$contObj->make_public();
 			}
 		} catch ( CDNNotEnabledException $e ) {
 			// CDN not enabled; nothing to see here
@@ -1032,14 +1018,13 @@ class SwiftFileBackend extends FileBackendStore {
 	}
 
 	/**
-	 * Purge the CDN cache of affected objects if CDN caching is enabled.
-	 * This is for Rackspace/Akamai CDNs.
+	 * Purge the CDN cache of affected objects if CDN caching is enabled
 	 *
 	 * @param $objects Array List of CF_Object items
 	 * @return void
 	 */
 	public function purgeCDNCache( array $objects ) {
-		if ( $this->swiftUseCDN && $this->swiftCDNPurgable ) {
+		if ( $this->swiftUseCDN ) { // Rackspace style CDN
 			foreach ( $objects as $object ) {
 				try {
 					$object->purge_from_cdn();
@@ -1129,7 +1114,7 @@ class SwiftFileBackend extends FileBackendStore {
 	 *
 	 * @param $container string Container name
 	 * @return CF_Container
-	 * @throws CloudFilesException
+	 * @throws InvalidResponseException
 	 */
 	protected function createContainer( $container ) {
 		$conn = $this->getConnection(); // Swift proxy connection
@@ -1143,12 +1128,12 @@ class SwiftFileBackend extends FileBackendStore {
 	 *
 	 * @param $container string Container name
 	 * @return void
-	 * @throws CloudFilesException
+	 * @throws InvalidResponseException
 	 */
 	protected function deleteContainer( $container ) {
 		$conn = $this->getConnection(); // Swift proxy connection
-		unset( $this->connContainers[$container] ); // purge cache
 		$conn->delete_container( $container );
+		unset( $this->connContainers[$container] ); // purge cache
 	}
 
 	/**

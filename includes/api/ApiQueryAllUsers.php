@@ -361,7 +361,7 @@ class ApiQueryAllUsers extends ApiQueryBase {
 			'dir' => 'Direction to sort in',
 			'group' => 'Limit users to given group name(s)',
 			'excludegroup' => 'Exclude users in given group name(s)',
-			'rights' => 'Limit users to given right(s) (does not include rights granted by implicit or auto-promoted groups like *, user, or autoconfirmed)',
+			'rights' => 'Limit users to given right(s)',
 			'prop' => array(
 				'What pieces of information to include.',
 				' blockinfo      - Adds the information about a current block on the user',

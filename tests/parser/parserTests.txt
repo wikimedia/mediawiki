@@ -2124,8 +2124,6 @@ Mixed list
 **#Number on level 3
 *#number level 2
 *Level 1
-*** Level 3
-#** Level 3, but ordered
 !! result
 <ul><li>Mixed list
 <ol><li> with numbers
@@ -2148,14 +2146,7 @@ Mixed list
 <ol><li>number level 2
 </li></ol>
 </li><li>Level 1
-<ul><li><ul><li> Level 3
 </li></ul>
-</li></ul>
-</li></ul>
-<ol><li><ul><li><ul><li> Level 3, but ordered
-</li></ul>
-</li></ul>
-</li></ol>
 
 !! end
 
@@ -2202,27 +2193,6 @@ List items from template
 </li></ul>
 
 !! end
-
-!! test
-List interrupted by empty line or heading
-!! input
-* foo
-
-** bar
-== A heading ==
-* Another list item
-!! result
-<ul><li> foo
-</li></ul>
-<ul><li><ul><li> bar
-</li></ul>
-</li></ul>
-<h2><span class="editsection">[<a href="/index.php?title=Parser_test&amp;action=edit&amp;section=1" title="Edit section: A heading">edit</a>]</span> <span class="mw-headline" id="A_heading"> A heading </span></h2>
-<ul><li> Another list item
-</li></ul>
-
-!!end
-
 
 ###
 ### Magic Words
@@ -9388,17 +9358,6 @@ Language parser function
 {{#language:ar}}
 !! result
 <p>العربية
-</p>
-!! end
-
-!!test
-Padleft and padright as substr
-!! input
-{{padleft:|3|abcde}}
-{{padright:|3|abcde}}
-!! result
-<p>abc
-abc
 </p>
 !! end
 

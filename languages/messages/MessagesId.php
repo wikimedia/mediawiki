@@ -1377,7 +1377,6 @@ Perlu diingat bahwa indeks Google untuk konten {{SITENAME}} mungkin belum mencak
 'prefs-beta' => 'Fitur Beta',
 'prefs-datetime' => 'Tanggal dan waktu',
 'prefs-labs' => 'Fitur Labs',
-'prefs-user-pages' => 'Halaman pengguna',
 'prefs-personal' => 'Profil',
 'prefs-rc' => 'Perubahan terbaru',
 'prefs-watchlist' => 'Pemantauan',
@@ -2147,7 +2146,7 @@ Harap perhatikan bahwa situs web lain mungkin memiliki pranala ke suatu berkas d
 
 # Special:Log
 'specialloguserlabel' => 'Pengguna:',
-'speciallogtitlelabel' => 'Target (judul atau pengguna):',
+'speciallogtitlelabel' => 'Taget (judul atau pengguna):',
 'log' => 'Log',
 'all-logs-page' => 'Semua log publik',
 'alllogstext' => 'Gabungan tampilan semua log yang tersedia di {{SITENAME}}.

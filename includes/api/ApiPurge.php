@@ -104,8 +104,7 @@ class ApiPurge extends ApiBase {
 						$pcache->save( $p_result, $page, $popts );
 					}
 				} else {
-					$error = $this->parseMsg( array( 'actionthrottledtext' ) );
-					$this->setWarning( $error['info'] );
+					$this->setWarning( $this->parseMsg( array( 'actionthrottledtext' ) ) );
 					$forceLinkUpdate = false;
 				}
 			}

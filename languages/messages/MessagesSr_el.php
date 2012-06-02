@@ -1,5 +1,5 @@
 <?php
-/** Serbian (Latin script) (‪srpski (latinica)‬)
+/** Serbian (Latin script) (‪Srpski (latinica)‬)
  *
  * See MessagesQqq.php for message documentation incl. usage of parameters
  * To improve a translation please visit http://translatewiki.net
@@ -2648,7 +2648,7 @@ Izveštaj o blokiranim korisnicima se nalazi ispod:',
 # Block/unblock
 'autoblockid' => 'Samoblokiranje #$1',
 'block' => 'Blokiraj korisnika',
-'unblock' => 'Odblokiraj korisnika',
+'unblock' => 'Deblokiraj korisnika',
 'blockip' => 'Blokiraj korisnika',
 'blockip-title' => 'Blokiranje korisnika',
 'blockip-legend' => 'Blokiraj korisnika',
@@ -2669,7 +2669,7 @@ Izaberite konkretan razlog ispod (primer: navođenje konkretnih stranica koje su
 ** Neprihvatljivo korisničko ime',
 'ipb-hardblock' => 'Zabrani prijavljenim korisnicima da uređuju s ove IP adrese',
 'ipbcreateaccount' => 'Onemogući otvaranje naloga',
-'ipbemailban' => 'Zabrani korisniku slanje e-poruka',
+'ipbemailban' => 'Zabrani članu slanje e-poruka',
 'ipbenableautoblock' => 'Automatski blokiraj poslednju IP adresu ovog korisnika i sve daljnje adrese s kojih pokuša da uređuje',
 'ipbsubmit' => 'Blokiraj ovog korisnika',
 'ipbother' => 'Drugo vreme:',
@@ -2688,11 +2688,11 @@ Blokiranja možete da pogledate [[Special:BlockList|ovde]].',
 'ipb-blockingself' => 'Ovom radnjom ćete blokirati sebe! Jeste li sigurni da to želite?',
 'ipb-confirmhideuser' => 'Upravo ćete blokirati korisnika s uključenom mogućnošću „sakrij korisnika“. Ovim će korisničko ime biti sakriveno u svim spiskovima i izveštajima. Želite li to da uradite?',
 'ipb-edit-dropdown' => 'Uredi razloge blokiranja',
-'ipb-unblock-addr' => 'Odblokiraj $1',
-'ipb-unblock' => 'Odblokiraj korisničko ime ili IP adresu',
+'ipb-unblock-addr' => 'Deblokiraj $1',
+'ipb-unblock' => 'Deblokiraj korisničko ime ili IP adresu',
 'ipb-blocklist' => 'Pogledaj postojeća blokiranja',
 'ipb-blocklist-contribs' => 'Doprinosi za $1',
-'unblockip' => 'Odblokiraj korisnika',
+'unblockip' => 'Deblokiraj korisnika',
 'unblockiptext' => 'Koristite obrazac ispod da biste vratili pravo pisanja blokiranoj IP adresi ili korisničkom imenu.',
 'ipusubmit' => 'Ukloni ovu blokadu',
 'unblocked' => '[[User:$1|$1]] je deblokiran',
@@ -2724,7 +2724,7 @@ Blokiranja možete da pogledate [[Special:BlockList|ovde]].',
 'ipblocklist-empty' => 'Spisak blokiranja je prazan.',
 'ipblocklist-no-results' => 'Tražena IP adresa ili korisničko ime nije blokirano.',
 'blocklink' => 'blokiraj',
-'unblocklink' => 'odblokiraj',
+'unblocklink' => 'deblokiraj',
 'change-blocklink' => 'promeni blokiranje',
 'contribslink' => 'doprinosi',
 'emaillink' => 'pošalji e-poruku',
@@ -2740,7 +2740,7 @@ Istorija sakrivanja se nalazi ispod:',
 'blocklogtext' => 'Ovo je dnevnik blokiranja i deblokiranja korisnika.
 Automatski blokirane IP adrese nisu navedene.
 Tekuće zabrane i blokiranja možete naći [[Special:BlockList|ovde]].',
-'unblocklogentry' => '{{GENDER:|je odblokirao|je odblokirala|je odblokirao}} „$1“',
+'unblocklogentry' => '{{GENDER:|je deblokirao|je deblokirala|je deblokirao}} „$1“',
 'block-log-flags-anononly' => 'samo anonimni korisnici',
 'block-log-flags-nocreate' => 'onemogućeno otvaranje naloga',
 'block-log-flags-noautoblock' => 'automatsko blokiranje je onemogućeno',

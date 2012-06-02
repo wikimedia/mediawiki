@@ -16,7 +16,6 @@
  * @author Mahir78
  * @author Mayooranathan
  * @author Naveen
- * @author Planemad
  * @author Shanmugamp7
  * @author Sodabottle
  * @author Sundar
@@ -2078,7 +2077,7 @@ $NEWPAGE
 
 # Protect
 'protectlogpage' => 'காப்புப் பதிகை',
-'protectlogtext' => '!!FUzZY!!பின்வருவது பக்க திறப்புக்களதும் பூட்டுக்களதும் பட்டியலாகும். தற்போது நடைமுறையிலுள்ள காக்கப்பட்டப் பக்கங்களைக் காண [[Special:ProtectedPages|காக்கப்பட்ட பக்கங்களின் பட்டியலைப்]] பார்க்கவும்.',
+'protectlogtext' => 'பின்வருவது பக்க திறப்புக்களதும் பூட்டுக்களதும் பட்டியலாகும். தற்போது நடைமுறையிலுள்ள காக்கப்பட்டப் பக்கங்களைக் காண [[Special:ProtectedPages|காக்கப்பட்ட பக்கங்களின் பட்டியலைப்]] பார்க்கவும்.',
 'protectedarticle' => '"[[$1]]" காக்கப்பட்டது',
 'modifiedarticleprotection' => '"[[$1]]" பக்கத்திற்கான காப்பின் அளவு மாற்றப்பட்டது',
 'unprotectedarticle' => '"[[$1]]" பக்கத்தின் காப்பு நீக்கப்பட்டது',

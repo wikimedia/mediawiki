@@ -371,7 +371,7 @@ class Preferences {
 
 			$emailAddress = $user->getEmail() ? htmlspecialchars( $user->getEmail() ) : '';
 			if ( $wgAuth->allowPropChange( 'emailaddress' ) ) {
-				$emailAddress .= $emailAddress == '' ? $link : ( ' ' . $context->msg( 'parentheses' )->rawParams( $link )->plain() );
+				$emailAddress .= $emailAddress == '' ? $link : " ($link)";
 			}
 
 

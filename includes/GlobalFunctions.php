@@ -1831,7 +1831,7 @@ function wfDebugBacktrace( $limit = 0 ) {
 	}
 
 	if ( $limit && version_compare( PHP_VERSION, '5.4.0', '>=' ) ) {
-		return array_slice( debug_backtrace( DEBUG_BACKTRACE_PROVIDE_OBJECT, $limit + 1 ), 1 );
+		return array_slice( debug_backtrace( DEBUG_BACKTRACE_PROVIDE_OBJECT, $limit ), 1 );
 	} else {
 		return array_slice( debug_backtrace(), 1 );
 	}
@@ -1890,15 +1890,12 @@ function wfBacktrace() {
 
 /**
  * Get the name of the function which called this function
- * wfGetCaller( 1 ) is the function with the wfGetCaller() call (ie. __FUNCTION__)
- * wfGetCaller( 2 ) [default] is the caller of the function running wfGetCaller()
- * wfGetCaller( 3 ) is the parent of that.
  *
  * @param $level Int
  * @return Bool|string
  */
 function wfGetCaller( $level = 2 ) {
-	$backtrace = wfDebugBacktrace( $level + 1 );
+	$backtrace = wfDebugBacktrace( $level );
 	if ( isset( $backtrace[$level] ) ) {
 		return wfFormatStackFrame( $backtrace[$level] );
 	} else {
@@ -2628,7 +2625,11 @@ function wfTempDir() {
 			return $tmp;
 		}
 	}
-	return sys_get_temp_dir();
+	if( function_exists( 'sys_get_temp_dir' ) ) {
+		return sys_get_temp_dir();
+	}
+	# Usual defaults
+	return wfIsWindows() ? 'C:\Windows\Temp' : '/tmp';
 }
 
 /**

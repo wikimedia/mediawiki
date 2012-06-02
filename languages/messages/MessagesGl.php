@@ -1298,7 +1298,6 @@ Note que os seus índices do contido de {{SITENAME}} poden estar desactualizados
 'prefs-beta' => 'Características en probas',
 'prefs-datetime' => 'Data e hora',
 'prefs-labs' => 'Características experimentais',
-'prefs-user-pages' => 'Páxinas de usuario',
 'prefs-personal' => 'Información do usuario',
 'prefs-rc' => 'Cambios recentes',
 'prefs-watchlist' => 'Lista de vixilancia',
@@ -1560,8 +1559,8 @@ Ha de ter menos {{PLURAL:$1|dun carácter|de $1 caracteres}}.',
 'nchanges' => '$1 {{PLURAL:$1|cambio|cambios}}',
 'recentchanges' => 'Cambios recentes',
 'recentchanges-legend' => 'Opcións dos cambios',
-'recentchanges-summary' => 'Nesta páxina pode seguir as modificacións máis recentes feitas no wiki.',
-'recentchanges-feed-description' => 'Nesta fonte de novas pode seguir as modificacións máis recentes feitas no wiki.',
+'recentchanges-summary' => 'Siga, nesta páxina, as modificacións máis recentes no wiki.',
+'recentchanges-feed-description' => 'Nesta fonte de novas pode seguir os cambios máis recentes no wiki.',
 'recentchanges-label-newpage' => 'Esta edición creou unha nova páxina',
 'recentchanges-label-minor' => 'Esta é unha edición pequena',
 'recentchanges-label-bot' => 'Esta edición foi realizada por un bot',
@@ -2103,7 +2102,6 @@ Por favor, teña en conta que outras páxinas web poden ligar cara a un ficheiro
 Pode precisar máis a vista seleccionando o tipo de rexistro, o nome do usuario ou o título da páxina afectada.',
 'logempty' => 'Non se atopou ningún elemento relacionado no rexistro.',
 'log-title-wildcard' => 'Procurar os títulos que comecen con este texto',
-'showhideselectedlogentries' => 'Mostrar/agochar as entradas do rexistro seleccionadas',
 
 # Special:AllPages
 'allpages' => 'Todas as páxinas',
@@ -3737,8 +3735,8 @@ Debería recibir [{{SERVER}}{{SCRIPTPATH}}/COPYING unha copia da licenza públic
 'version-entrypoints' => 'Enderezos URL de punto de entrada',
 'version-entrypoints-header-entrypoint' => 'Punto de entrada',
 'version-entrypoints-header-url' => 'URL',
-'version-entrypoints-articlepath' => '[https://www.mediawiki.org/wiki/Manual:$wgArticlePath Ruta dos artigos]',
-'version-entrypoints-scriptpath' => '[https://www.mediawiki.org/wiki/Manual:$wgScriptPath Ruta das escrituras]',
+'version-entrypoints-articlepath' => '[https://www.mediawiki.org/wiki/Manual:$wgArticlePath Ruta do artigo]',
+'version-entrypoints-scriptpath' => '[https://www.mediawiki.org/wiki/Manual:$wgScriptPath Ruta da escritura]',
 
 # Special:FilePath
 'filepath' => 'Ruta do ficheiro',

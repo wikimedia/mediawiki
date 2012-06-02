@@ -254,7 +254,7 @@ class SpecialEmailUser extends UnlistedSpecialPage {
 	 * or maybe even true on success if anything uses the EmailUser hook.
 	 */
 	public static function submit( array $data, IContextSource $context ) {
-		global $wgUserEmailUseReplyTo;
+		global $wgUser, $wgUserEmailUseReplyTo;
 
 		$target = self::getTarget( $data['Target'] );
 		if( !$target instanceof User ) {

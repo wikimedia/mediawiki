@@ -1,5 +1,5 @@
 <?php
-/** Lithuanian (lietuvių)
+/** Lithuanian (Lietuvių)
  *
  * See MessagesQqq.php for message documentation incl. usage of parameters
  * To improve a translation please visit http://translatewiki.net
@@ -562,9 +562,8 @@ $2',
 'ns-specialprotected' => 'Specialieji puslapiai negali būti redaguojami.',
 'titleprotected' => "[[User:$1|$1]] apsaugojo šį pavadinimą nuo sukūrimo.
 Nurodyta priežastis yra ''$2''.",
-'filereadonlyerror' => 'Neįmanoma pakeisti failo "$1" nes failų saugykla "$2" yra nustatyta tik skaitymo režimu.
-
-Ją užrakinęs administratorius pateikė šį paaiškinimą: "$3".',
+'filereadonlyerror' => 'Neįmanoma pakeisti failo " $1 " nes failų saugykla " $2 " yra nustatyta tik skaitymo režimu.
+Ją užrakinęs administratorius pateikė šį paaiškinimą: " $3 ".',
 'invalidtitle-knownnamespace' => 'Klaidingas pavadinimas vardų erdvėje "$2" ir tekstu "$3"',
 'invalidtitle-unknownnamespace' => 'Klaidingas pavadinimas nežinomoje vardų erdvėje numeriu $1 ir tekstu "$2"',
 
@@ -3733,7 +3732,7 @@ Paveikslėliai yra rodomi pilna raiška, kiti failų tipai paleidžiami tiesiogi
 'api-error-unknown-code' => 'Nežinoma klaida: " $1 "',
 'api-error-unknown-error' => 'Vidinė klaida: kažkas nutiko bandant įkelti failą.',
 'api-error-unknown-warning' => 'Nežinomas įspėjimas: $1',
-'api-error-unknownerror' => 'Nežinoma klaida: "$1"',
+'api-error-unknownerror' => 'Nežinoma klaida: " $1 "',
 'api-error-uploaddisabled' => 'Įkėlimas išjungtas šioje wiki.',
 'api-error-verification-error' => 'Šis failas gali būti sugadintas arba turi neteisingą papildinį.',
 

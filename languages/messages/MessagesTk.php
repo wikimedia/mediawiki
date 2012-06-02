@@ -148,7 +148,7 @@ $messages = array(
 'dec' => 'dek',
 
 # Categories related messages
-'pagecategories' => '{{PLURAL:$1|Kategoriýa|Kategoriýalar}}',
+'pagecategories' => 'Sahypanyň {{PLURAL:$1|kategoriýasy|kategoriýalary}}',
 'category_header' => '"$1" kategoriýasyndaky sahypalar',
 'subcategories' => 'Kiçi kategoriýalar',
 'category-media-header' => '"$1" kategoriýasyndaky multimediýa faýllary',

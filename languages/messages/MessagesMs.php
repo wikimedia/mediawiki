@@ -1237,7 +1237,6 @@ Cuba berikan awalan ''all:'' untuk mencari semua kandungan (termasuk laman perbi
 'prefs-beta' => 'Ciri-ciri beta',
 'prefs-datetime' => 'Tarikh dan waktu',
 'prefs-labs' => 'Ciri-ciri makmal',
-'prefs-user-pages' => 'Laman pengguna',
 'prefs-personal' => 'Profil',
 'prefs-rc' => 'Perubahan terkini',
 'prefs-watchlist' => 'Senarai pantau',

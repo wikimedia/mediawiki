@@ -1467,17 +1467,9 @@ class LocalFile extends File {
 	/**
 	 * @return string
 	 */
-	function getDescription( $audience = self::FOR_PUBLIC, User $user = null ) {
+	function getDescription() {
 		$this->load();
-		if ( $audience == self::FOR_PUBLIC && $this->isDeleted( self::DELETED_COMMENT ) ) {
-			return '';
-		} elseif ( $audience == self::FOR_THIS_USER
-			&& !$this->userCan( self::DELETED_COMMENT, $user ) )
-		{
-			return '';
-		} else {
-			return $this->description;
-		}
+		return $this->description;
 	}
 
 	/**
@@ -1814,6 +1806,7 @@ class LocalFileDeleteBatch {
 	 * @return FileRepoStatus
 	 */
 	function execute() {
+		global $wgUseSquid;
 		wfProfileIn( __METHOD__ );
 
 		$this->file->lock();
@@ -2378,32 +2371,25 @@ class LocalFileMoveBatch {
 		$triplets = $this->getMoveTriplets();
 		$triplets = $this->removeNonexistentFiles( $triplets );
 
-		$this->file->lock(); // begin
-		// Rename the file versions metadata in the DB.
-		// This implicitly locks the destination file, which avoids race conditions.
-		// If we moved the files from A -> C before DB updates, another process could
-		// move files from B -> C at this point, causing storeBatch() to fail and thus
-		// cleanupTarget() to trigger. It would delete the C files and cause data loss.
-		$statusDb = $this->doDBUpdates();
-		if ( !$statusDb->isGood() ) {
-			$this->file->unlockAndRollback();
-			$statusDb->ok = false;
-			return $statusDb;
-		}
-		wfDebugLog( 'imagemove', "Renamed {$this->file->getName()} in database: {$statusDb->successCount} successes, {$statusDb->failCount} failures" );
-
-		// Copy the files into their new location.
-		// If a prior process fataled copying or cleaning up files we tolerate any
-		// of the existing files if they are identical to the ones being stored.
-		$statusMove = $repo->storeBatch( $triplets, FileRepo::OVERWRITE_SAME );
+		// Copy the files into their new location
+		$statusMove = $repo->storeBatch( $triplets );
 		wfDebugLog( 'imagemove', "Moved files for {$this->file->getName()}: {$statusMove->successCount} successes, {$statusMove->failCount} failures" );
 		if ( !$statusMove->isGood() ) {
-			// Delete any files copied over (while the destination is still locked)
-			$this->cleanupTarget( $triplets );
-			$this->file->unlockAndRollback(); // unlocks the destination
 			wfDebugLog( 'imagemove', "Error in moving files: " . $statusMove->getWikiText() );
+			$this->cleanupTarget( $triplets );
 			$statusMove->ok = false;
 			return $statusMove;
+		}
+
+		$this->file->lock(); // begin
+		$statusDb = $this->doDBUpdates();
+		wfDebugLog( 'imagemove', "Renamed {$this->file->getName()} in database: {$statusDb->successCount} successes, {$statusDb->failCount} failures" );
+		if ( !$statusDb->isGood() ) {
+			$this->file->unlockAndRollback();
+			// Something went wrong with the DB updates, so remove the target files
+			$this->cleanupTarget( $triplets );
+			$statusDb->ok = false;
+			return $statusDb;
 		}
 		$this->file->unlock(); // done
 
@@ -2521,7 +2507,6 @@ class LocalFileMoveBatch {
 		// Create dest pairs from the triplets
 		$pairs = array();
 		foreach ( $triplets as $triplet ) {
-			// $triplet: (old source virtual URL, dst zone, dest rel)
 			$pairs[] = array( $triplet[1], $triplet[2] );
 		}
 

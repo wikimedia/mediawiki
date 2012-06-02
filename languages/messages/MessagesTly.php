@@ -438,7 +438,7 @@ $messages = array(
 'revertmerge' => 'Бахш кардеј',
 
 # Diffs
-'history-title' => '$1: Дәгишон тарых',
+'history-title' => 'Дәгишон тарых "$1"',
 'lineno' => 'Сәтыр $1:',
 'compareselectedversions' => 'Сәчын кардә быә рәвојәтон мығојисә кардеј.',
 'editundo' => 'ләғв кардеј',

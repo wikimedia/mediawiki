@@ -273,8 +273,7 @@ $1',
 'badaccess-groups' => 'Am do oka kạmim menjoṅkan ona do khạli {{PLURAL:$2 rạsiạkore noa rạsiạreaḱ mit́ṭenre}} mitṭen beoharić sompadon daṛeyaḱa: $1.',
 
 'versionrequired' => 'Meḍiawiki reaḱ $1 nãwã aroe jạruṛa',
-'versionrequiredtext' => 'Noa sakam beohar lạgit́te meḍiaWikire $1 nambar nãwã araoe jạruṛa.
-[[Special:Version nãwã aroe sakam]] ńelmẽ.',
+'versionrequiredtext' => 'Noa sakam do beohar lạgit́te meḍiawikire $1 nambar nãwã araoe jạruṛa. [[Special:Version nãwã aroe sakam]] ńelmẽ.',
 
 'ok' => 'Ṭhik gea',
 'retrievedfrom' => '"$1" khon ñam ạgui',
@@ -325,8 +324,8 @@ $1',
 Am do paseć mit́ṭen vul joṛaoem emakada se URL oltem vul akada.
 Noa do noṅkanaḱ menkana je {{SITENAME}} sayeṭre beoharen sofṭower re mit́ṭen vul menaḱa.',
 'nosuchspecialpage' => 'Noṅkanaḱ asokay sakam do banuḱa',
-'nospecialpagetext' => '<strong>Am do mit́ṭen beạn asokae sakamem nehor akada.</strong>
-[[Special:SpecialPages {{int:specialpages}}]]-re ạn asokae sakamkore mit́ṭen tạlikam ńama.',
+'nospecialpagetext' => '<strong>Am do mit́ṭen beạn asokae sakamem koe akada.</strong>
+[[Special:SpecialPages {{int:specialpages}}]]-re ạnte asokae sakamkore mit́ṭen tạlikam ńama.',
 
 # General errors
 'error' => 'bhul',
@@ -396,9 +395,9 @@ $2',
 'virus-unknownscanner' => 'Baṅ urum anṭvayras:',
 
 # Login and logout pages
-'welcomecreation' => '== Johar $1! ==
+'welcomecreation' => 'Johar, $1!
 Amaḱ ekaunṭ do tearena.
-Amaḱ [[Special:Preferance {{SITENAME}} pạsindko]] thir dohoe lạgit́te alom hiṛińa.',
+Menkhan amaḱ [[Special:Preferance {{SITENAME}} pạsindko]] thir dohoe lạgit́te alom hiṛińa.',
 'yourname' => 'Beoboharicaḱ ńutum',
 'yourpassword' => 'Uku namber',
 'yourpasswordagain' => 'Arhõ oku namber olme',
@@ -435,7 +434,7 @@ Ale do baḍae ocolem amaḱ kuki doe kạmikana, sakam do arhõ rakaṕ lạgit
 'noname' => 'Am do asol beoharićaḱ ńutum ṭhikte bam emakada.',
 'loginsuccesstitle' => 'Bhitri boloḱ do moctege puraoena',
 'loginsuccess' => '\'\'\'Am do nitge "$1" ńutumte {{SITENAME}} rem bolo akana.',
-'nosuchuser' => '"$1" ńutuman jahan beoharić bạnuea.
+'nosuchuser' => '"$1" ńutumte jahan beoharko bạnuḱkoa.
 Beoharićaḱ ńutum do bukṛogea.
 Amaḱ bananko ńelmẽ, se [[Special:Userlogin/signup nãwã mit́ṭen ekaunṭ tearmẽ]].',
 'nosuchusershort' => '"$1" ńutuman jahãe beoharko do banuḱkoa. Ńutum reaḱ banan biḍaomẽ.',
@@ -445,7 +444,7 @@ Amaḱ bananko ńelmẽ, se [[Special:Userlogin/signup nãwã mit́ṭen ekaun�
 Daya kate arhõ mitdhom kurumuṭuyme.',
 'wrongpasswordempty' => 'Em hoyen oku nambar do cetge banuḱa.
 Daya katet́ arhõ kurumuṭuyme.',
-'passwordtooshort' => 'Uku nambar do {{PLURAL:$1 1 horop reaḱ $1 horop reaḱ}} mudre hoyoḱ jạruṛa.',
+'passwordtooshort' => 'Oku nambar do kom katet́ hoyoḱ jạruṛa 6 olko mudre',
 'password-name-match' => 'Amaḱ oku nambar do amaḱ ńutum khon eṭaḱ hoyoḱ jạruṛtama.',
 'password-login-forbidden' => 'Noa laṛcaṛicaḱ ńutum ar oku nambar do ạnlekate baṅkana.',
 'mailmypassword' => 'E-mail reaḱ nãwã uko katha',
@@ -474,9 +473,6 @@ Arhõ kurumuṭue lahare dayakate thoṛagan tạṅgiemẽ.',
 'login-abort-generic' => 'Amaḱ bhitri boloḱ do baṅ hoylena - batena.',
 'loginlanguagelabel' => 'katha: $1',
 
-# E-mail sending
-'user-mail-no-addy' => 'Jahan e-mail ṭhikana bạgi kate e-mail kul kurumuṭu hoena.',
-
 # Change password dialog
 'resetpass' => 'Oku nambar bodol',
 'resetpass_header' => 'Ekaunṭ oku namber bodol',
@@ -504,11 +500,11 @@ Nitoḱ do am bhitritem boloḱkana...',
 'passwordreset-capture-help' => 'Am do judi noa jacạy baksom lin lekhan, tobe nit lạgit́te em akan uku nambar são mit́ṭen e-mail ame uduḱama ar ona sãote beoharić ṭhen ona kuluḱa.',
 'passwordreset-email' => 'E-mail ṭhikạna:',
 'passwordreset-emailtitle' => '{{SITENAME}} sayeṭre beoharićaḱ purạo thutiko',
-'passwordreset-emailelement' => 'Beoharićaḱ ńutum: $1
-Mit́ ghạṛi lạgit uku nambar: $2',
+'passwordreset-emailelement' => 'Beoharicaḱ ńutum:
+Nit lạgit oku nambar:',
 'passwordreset-emailsent' => 'Mitṭen disạ ruaṛ e-mail do kulena.',
 'passwordreset-emailsent-capture' => 'Mit́ṭen disạ ruaṛaḱ e-mail dokulena, oka do latarre ńeloḱ kana.',
-'passwordreset-emailerror-capture' => 'Disạ ruạṛ oco lạgit́te mit́ṭen e-mail tear hoelena, oka do latarre udugoḱkana, menkhan $1 beoharić ṭhen  ṭhen baṅ kul hoe akana.',
+'passwordreset-emailerror-capture' => 'Mit́ṭen disạ ruạṛ e-mail do hatoena, oka do latarre ńelok kana, menkhan beoharic ṭhen do baṇ seṭerlena.',
 
 # Special:ChangeEmail
 'changeemail' => 'E-mail ṭhikạna do bodolme',
@@ -544,7 +540,7 @@ Mit́ ghạṛi lạgit uku nambar: $2',
 'subject' => 'Bisoy/Bohoḱ katha:',
 'minoredit' => 'Noa do hudiń joṛao kami',
 'watchthis' => 'Noa sakam ńelme',
-'savearticle' => 'Sakam dohoeme',
+'savearticle' => 'Sakam sebhme',
 'preview' => 'Ńel, Unuduḱ',
 'showpreview' => 'Unuduḱ',
 'showlivepreview' => 'Jewet uduk',
@@ -552,14 +548,6 @@ Mit́ ghạṛi lạgit uku nambar: $2',
 'anoneditwarning' => "'''Sabdhan:''' amdo begor logkatem bolowakana.
 Amaḱ IP ṭhikana do noa sakam sompadon jạṛre rekorḍoḱa.",
 'anonpreviewwarning' => '"Am do bhitri bam bolo akana. Noa sakamre amaḱ kạmiko jạre IP ṭhiikạ̣nare rukhiyạ ḱa."',
-'missingcommenttext' => 'Daya kate amaḱ menaḱ katha latare olmẽ.',
-'summary-preview' => 'Guṭ katha unuduḱ:',
-'subject-preview' => 'Babot/Guṭkatha unuduḱ:',
-'blockedtitle' => 'Beoharić doe eset ocoakana.',
-'blockednoreason' => 'jahan babot baṅ em akana',
-'whitelistedittext' => 'Sakamre sompadon lạgit́te $1 em hoyoḱa.',
-'nosuchsectiontitle' => 'Pahaṭa bȧn ńamlena',
-'loginreqtitle' => 'Boloḱ jạruṛa',
 'loginreqlink' => 'Bhitri boloḱ',
 'loginreqpagetext' => 'Eṭagaḱ sakamko ńel lạgit́te do am $1 hoyoḱ jạruṛtama.',
 'accmailtitle' => 'Uku nambar do kulena.',
@@ -588,9 +576,9 @@ Refarens lạgit́te nahaḱ boloḱ do latare em hoena:',
 Amaḱ bodolaḱ kodo nit habićte bań rukhíạakana!",
 'continue-editing' => 'Toṅge calaḱkana',
 'editing' => 'Joṛao do purạena: $1',
-'creating' => '$1 sakam doe tear akada',
+'creating' => 'Benao',
 'editingsection' => 'Joṛao $1 (hạṭiń)',
-'editingcomment' => 'Sompadon akadae $1 (Nãwa pahaṭa)',
+'editingcomment' => 'Joṛao',
 'editconflict' => 'Sompadon reaḱ bene bạiri: $1',
 'yourtext' => 'Amaḱ ol',
 'storedversion' => 'Rukhiyạ nãwã aroe',
@@ -600,7 +588,6 @@ Amaḱ bodolaḱ kodo nit habićte bań rukhíạakana!",
 'template-protected' => 'Rukhiạ',
 'template-semiprotected' => '(Kạṭic-rukhiyạ)',
 'hiddencategories' => 'Noa sakam do {{PLURAL:$1 1 ukuakan bhag $1 uku akan bhagkorenaḱ}} gaõtarenge:',
-'nocreatetitle' => 'Sakam tear do akoṭgea',
 'nocreate-loggedin' => 'Nãwã sakam tear lạgit́te am do ạidạri em baṅ hoeakana.',
 'sectioneditnotsupported-title' => 'Pahaṭa sompadona do bae hataoeda',
 'sectioneditnotsupported-text' => 'Noa sompadona sakamre pahaṭa sompadona do bae hataoeda',
@@ -615,13 +602,6 @@ Get ar ocoḱ giḍi sakam do latarre emakan reference lạgit em hoena.',
 'log-fulllog' => 'Joto cạbi udugmẽ',
 'edit-hook-aborted' => 'Huk hotete joto sompadonko bạgi hoeakana.
 Noa reaḱ jahan katha do bạnuḱa.',
-'edit-gone-missing' => 'Sakam do baṅ halot ruạṛlena.
-Pasecc: sakam do ocoǵ hoeakana.',
-'edit-conflict' => 'Sompadon reṭepeṭe.',
-'edit-no-change' => 'Amaḱ sompadon do baṅ hataolena, Cedaḱ je olre jahan bodol bạnuḱa.',
-'edit-already-exists' => 'Nãwã sakam baṅ tear lena.
-Sakam do laha khon menaḱgea.',
-'defaultmessagetext' => 'Sedae olko',
 
 # Parser/template warnings
 'post-expand-template-inclusion-warning' => '"Sontoroḱme" Noa format do lạṭu geya.
@@ -636,8 +616,6 @@ Onate noa ạrgumenṭkodo bạgi giḍi hoena.",
 
 # History pages
 'viewpagelogs' => 'Noa sakam reaḱ cạbi udukme',
-'nohistory' => 'Noa sakam re do jahan sompadon reaḱ jạṛ bạnuḱa.',
-'currentrev' => 'Mucạt nãwã aroe',
 'currentrev-asof' => 'Mucạt nãwã aroy',
 'revisionasof' => 'Nãwã aro sakam $1 leka',
 'revision-info' => 'Ńel/pańja ruạṛ $1 khon $2',
@@ -655,43 +633,26 @@ Unuduḱ: '''({{int:cur}})''' = nahaḱ nãwã aroeko saõte tulạo, '''({{int:
 'history-show-deleted' => 'khạli get giḍiyaḱ koge',
 'histfirst' => "adi laha-ak'",
 'histlast' => 'Nahak',
-'historysize' => '({{PLURAL:$1 1 bayeṭ $1 bayeṭko}})',
 'historyempty' => '(banuḱa)',
 
 # Revision feed
 'history-feed-title' => 'Jạṛ nãwã aroy',
-'history-feed-description' => 'Noa wikire noa sakam reaḱ nãwã aroe jạṛ',
 'history-feed-item-nocomment' => 're',
 
 # Revision deletion
-'rev-deleted-comment' => '(Sompadon reaḱ guṭ katha do ocoǵ hoena)',
 'rev-deleted-user' => '(laṛcaṛić ńutum ocoḱena)',
-'rev-deleted-event' => '(Log kạmi do ocog hoena)',
-'rev-deleted-user-contribs' => '[Beoharićaḱ ńutum se IP ṭhikạna do ocog hoena - kạmi khon sompadon do uku hoe akana]',
 'rev-delundel' => 'ńeloḱ/danaṅ',
 'rev-showdeleted' => 'Uduḱme',
 'revisiondelete' => 'Get giḍi/nãwã aro baṅ getgiḍi',
-'revdelete-nologtype-title' => 'Jahan cạbi ṭayep baṅ em emakana',
-'revdelete-nologtype-text' => 'Am do paseć noa kạmie lạgit́te jahan cạbi bam bachao akada.',
 'revdelete-show-file-submit' => 'Hẽ',
-'revdelete-hide-text' => 'Nãwã aroe olko ukuemẽ',
-'revdelete-hide-image' => 'Rẽt reaḱ babotko ukue mẽ',
-'revdelete-hide-name' => 'Kạmi ar bejha ukue mẽ',
-'revdelete-hide-comment' => 'Sompadon gut katha ukue mẽ',
-'revdelete-hide-user' => 'Sompadonićaḱ beohar ńutum/IP ṭhikạna ukuemẽ',
 'revdelete-radio-same' => '(alom bodola)',
 'revdelete-radio-set' => 'Hẽ',
-'revdelete-radio-unset' => 'Baṅ',
-'revdelete-log' => 'Babot:',
 'revdel-restore' => 'Judạ lekate ńel',
 'revdel-restore-deleted' => 'giḍikaḱ ńel ruạṛ',
 'revdel-restore-visible' => 'Ńeloḱ leka paṛhao ruạṛ',
 'pagehist' => 'Sakam reaḱ jạṛ',
 'deletedhist' => 'Get giḍi jạṛ',
 'revdelete-reasonotherlist' => 'Eṭaḱak karon',
-
-# History merging
-'mergehistory-reason' => 'Babot:',
 
 # Merge log
 'revertmerge' => 'bań mit́',
@@ -714,7 +675,6 @@ Unuduḱ: '''({{int:cur}})''' = nahaḱ nãwã aroeko saõte tulạo, '''({{int:
 'viewprevnext' => 'Ńelme ($1 {{int:pipe-separator}} $2) ($3)',
 'searchmenu-exists' => "'''Noa wiki re do \"[[:\$1]] ńutum sakam menaḱa",
 'searchmenu-new' => 'wiki re [[:$1]]nãwã sakam tear',
-'searchhelp-url' => 'Help: Goṛawaḱ',
 'searchprofile-articles' => 'Menaḱaḱ sakamko',
 'searchprofile-project' => 'Go̠ṛo ar Project sakam',
 'searchprofile-images' => 'Multimedia',
@@ -730,9 +690,6 @@ Unuduḱ: '''({{int:cur}})''' = nahaḱ nãwã aroeko saõte tulạo, '''({{int:
 'search-redirect' => '($1 te sujhi doṛha )',
 'search-section' => '(Pahaṭa $1)',
 'search-suggest' => 'Am do cet́ $1 em menocoyet tãhẽkana',
-'search-interwiki-caption' => 'Hopon porjekṭko',
-'search-interwiki-default' => '$1 folko:',
-'search-interwiki-more' => '(Arhõ)',
 'searchrelated' => 'songenko',
 'searchall' => 'Sanam',
 'showingresultsheader' => "'''$4'''  lạgit́ {{PLURAL:$5|Pho̠l ńamoḱ́akan - '''$1''' of '''$3'''|Pho̠l ńamoḱ́akan '''$1 - $2''' of '''$3'''}}",
@@ -761,13 +718,11 @@ Unuduḱ: '''({{int:cur}})''' = nahaḱ nãwã aroeko saõte tulạo, '''({{int:
 'timezoneregion-africa' => 'Aphrika',
 'timezoneregion-america' => 'Amirika',
 'timezoneregion-asia' => 'Esiya',
-'timezoneregion-australia' => 'Ausṭralia',
 'prefs-files' => 'Rẽtko',
 'youremail' => 'E-mail:',
 'username' => 'Beoharićaḱ ńutum:',
 'uid' => 'Beoharićaḱ cinhạo nombor',
 'yourrealname' => 'Sạri ńutum',
-'yourlanguage' => 'Pạrsi:',
 'gender-male' => 'Baba hoṛ',
 'gender-female' => 'Gogo hoṛ, Kuṛi, Kuṛi gidrạ',
 'email' => 'E-mail',
@@ -788,7 +743,6 @@ Amaḱ e-mail ṭhikạna do bań cabaḱa tinre onko do ko beohara',
 'saveusergroups' => 'Beoharićaḱ gãotako rukhiyaymẽ',
 
 # Rights
-'right-read' => 'Sakamko paṛhaomẽ',
 'right-edit' => 'Sakamko toṅge',
 'right-createpage' => 'Sakamko benoamẽ (Okako do galmarao sakamko baṅkan)',
 'right-createtalk' => 'Galmarao sakamko benaomẽ',
@@ -1193,7 +1147,7 @@ jeleń',
 'exif-artist' => 'Onoliạ',
 
 # External editor support
-'edit-externally' => 'Noa rẽt tońge joṛao lạgitte bahre reaḱ koejoń  beoharme',
+'edit-externally' => 'Noa rẽt tońge joṛao lạ̣gitte bahre reaḱ koejoń  beoharme',
 'edit-externally-help' => '(Nonḍe ńelme [//www.mediawiki.org/wiki/Manual:External_editors setup instructions] bạṛtite baḍay lạgit)',
 
 # 'all' in various places, this might be different for inflected languages

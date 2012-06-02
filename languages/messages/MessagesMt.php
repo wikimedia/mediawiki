@@ -935,7 +935,6 @@ Ftakar li l-paġni .css u .js personalizzati għandhom l-ewwel ittra tat-titlu �
 'note' => "'''Nota:'''",
 'previewnote' => "'''Ftakar li din hija biss dehra proviżorja.'''
 It-tibdiliet tiegħek għadhom ma ġewx salvati!",
-'continue-editing' => 'Kompli l-modifika',
 'previewconflict' => "Din il-previżjoni turi l-kliem li jinsab fiż-żona ta' modifika superjuri u turi kif tidher kieku l-paġna kella tiġi modifikata.",
 'session_fail_preview' => "'''Jiddispjaċina imma l-modifika tiegħek ma setgħetx tiġi pproċessata minħabba li ntilfet l-informazzjoni tas-sessjoni.
 Jekk jogħġbok, erġa' pprova. Jekk xorta tibqa' ma taħdimx, ipprova [[Special:UserLogout|oħroġ]] u erġa' idħol.'''",

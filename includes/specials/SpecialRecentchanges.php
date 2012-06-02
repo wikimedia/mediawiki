@@ -635,7 +635,7 @@ class SpecialRecentChanges extends IncludableSpecialPage {
 		global $wgContLang;
 
 		$message = $this->msg( 'recentchangestext' )->inContentLanguage();
-		if ( !$message->isDisabled() ) {
+		if ( $message->exists() ) {
 			$this->getOutput()->addWikiText(
 				Html::rawElement( 'p',
 					array( 'lang' => $wgContLang->getCode(), 'dir' => $wgContLang->getDir() ),
