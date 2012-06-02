@@ -381,7 +381,9 @@ class Revision {
 			'page_namespace',
 			'page_title',
 			'page_id',
-			'page_latest'
+			'page_latest',
+			'page_is_redirect',
+			'page_len',
 		);
 	}
 
