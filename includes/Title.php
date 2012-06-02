@@ -4502,9 +4502,11 @@ class Title {
 	 * $wgLang (such as special pages, which are in the user language).
 	 *
 	 * @since 1.18
+	 * @param $convert bool Return the language of a variant if conversion to
+	 *   this variant is applied when this page is displayed.
 	 * @return Language
 	 */
-	public function getPageLanguage() {
+	public function getPageLanguage( $convert = false ) {
 		global $wgLang;
 		if ( $this->isSpecialPage() ) {
 			// special pages are in the user language
@@ -4522,6 +4524,22 @@ class Title {
 		$pageLang = $wgContLang;
 		// Hook at the end because we don't want to override the above stuff
 		wfRunHooks( 'PageContentLanguage', array( $this, &$pageLang, $wgLang ) );
-		return wfGetLangObj( $pageLang );
+		// In case an extension turns $pageLang into a string
+		$pageLang = wfGetLangObj( $pageLang );
+		// This should be after the hook. Extensions are generally unaware of the conversion.
+		if ( $convert ) {
+			// If the user chooses a variant, the content is actually
+			// in a language whose code is the variant code.
+			$variant = $pageLang->getPreferredVariant();
+			if ( $pageLang->getCode() !== $variant ) {
+				try {
+					$pageLang = Language::factory( $variant );
+				} catch ( MWException $e ) {
+					// This shouldn't happen, but just keep the page language
+					// untouched when it accidentally happens.
+				}
+			}
+		}
+		return $pageLang;
 	}
 }
