@@ -86,6 +86,11 @@ if ( defined( 'MW_CONFIG_CALLBACK' ) ) {
 	}
 	// Require the configuration (probably LocalSettings.php)
 	require( $maintenance->loadSettings() );
+
+	if ( defined( 'MW_DB' ) )
+		$wgDBname = MW_DB;
+	if ( defined( 'MW_PREFIX' ) )
+		$wgDBprefix = MW_PREFIX;
 }
 
 if ( $maintenance->getDbType() === Maintenance::DB_ADMIN &&
