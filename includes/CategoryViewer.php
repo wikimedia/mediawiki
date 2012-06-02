@@ -603,8 +603,8 @@ class CategoryViewer extends ContextSource {
 				$lastQuery
 			);
 		}
-
-		return "($prevLink) ($nextLink)";
+		
+		return $this->msg('categoryviewer-pagedlinks')->rawParams($prevLink, $nextLink)->escaped();
 	}
 
 	/**
