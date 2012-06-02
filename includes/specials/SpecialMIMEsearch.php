@@ -96,6 +96,7 @@ class MIMEsearchPage extends QueryPage {
 		);
 
 		$download = Linker::makeMediaLinkObj( $nt, $this->msg( 'download' )->escaped() );
+		$download = $this->msg( 'parentheses' )->rawParams( $download )->escaped();
 		$lang = $this->getLanguage();
 		$bytes = htmlspecialchars( $lang->formatSize( $result->img_size ) );
 		$dimensions = $this->msg( 'widthheight' )->numParams( $result->img_width,
@@ -103,7 +104,7 @@ class MIMEsearchPage extends QueryPage {
 		$user = Linker::link( Title::makeTitle( NS_USER, $result->img_user_text ), htmlspecialchars( $result->img_user_text ) );
 		$time = htmlspecialchars( $lang->userTimeAndDate( $result->img_timestamp, $this->getUser() ) );
 
-		return "($download) $plink . . $dimensions . . $bytes . . $user . . $time";
+		return "$download $plink . . $dimensions . . $bytes . . $user . . $time";
 	}
 
 	/**
