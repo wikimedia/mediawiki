@@ -604,7 +604,7 @@ class CategoryViewer extends ContextSource {
 			);
 		}
 
-		return "($prevLink) ($nextLink)";
+		return $this->msg('categoryviewer-pagedlinks')->rawParams($prevLink, $nextLink)->escaped();
 	}
 
 	/**

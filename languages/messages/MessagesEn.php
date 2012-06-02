@@ -758,6 +758,7 @@ XHTML id names.
 'index-category'                 => 'Indexed pages',
 'noindex-category'               => 'Noindexed pages',
 'broken-file-category'           => 'Pages with broken file links',
+'categoryviewer-pagedlinks'      => '($1) ($2)',
 
 'linkprefix' => '/^(.*?)([a-zA-Z\\x80-\\xff]+)$/sD', # only translate this message to other languages if you have to change it
 
