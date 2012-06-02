@@ -1221,7 +1221,8 @@ class SpecialUndelete extends SpecialPage {
 		$comment = Linker::revComment( $rev );
 		// Revision delete links
 		$revdlink = Linker::getRevDeleteLink( $user, $rev, $this->mTargetObj );
-		return "<li>$checkBox $revdlink ($last) $pageLink . . $userLink $stxt $comment</li>";
+		$last = wfMessage( 'parentheses' )->rawParams( $last );
+		return "<li>$checkBox $revdlink $last $pageLink . . $userLink $stxt $comment</li>";
 	}
 
 	private function formatFileRow( $row ) {
