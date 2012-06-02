@@ -157,6 +157,7 @@ $wgMessageStructure = array(
 		'index-category',
 		'noindex-category',
 		'broken-file-category',
+		'categoryviewer-pagedlinks',
 	),
 	'mainpage' => array(
 		'linkprefix',

@@ -310,6 +310,9 @@ See http://test.wikipedia.org/wiki/Category:Test_ko?uselang={{SUBPAGENAME}}, for
 'index-category' => 'Name of the [[mw:Help:Tracking categories|tracking category]] where pages with the <nowiki>__INDEX__</nowiki> behaviour switch are listed. For description of this behaviour switch see [//www.mediawiki.org/wiki/Help:Magic_words#Behavior_switches mediawiki].',
 'noindex-category' => 'Name of the [[mw:Help:Tracking categories|tracking category]] where pages with the <nowiki>__NOINDEX__</nowiki> behaviour switch are listed. For description of this behaviour switch see [//www.mediawiki.org/wiki/Help:Magic_words#Behavior_switches mediawiki].',
 'broken-file-category' => 'Name of [[mw:Help:Tracking categories|tracking category]] where pages that embed files that do not exist ("broken images") are listed.',
+'categoryviewer-pagedlinks' => 'The pagination links in category viewer. Parameters:
+* $1 is the previous link,
+* $2 is the next link',
 
 'linkprefix' => '{{optional}}',
 
