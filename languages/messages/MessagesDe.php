@@ -2090,7 +2090,7 @@ Vielleicht möchtest du die Beschreibung auf der dortigen [$2 Dateibeschreibungs
 'listredirects' => 'Weiterleitungen',
 
 # Unused templates
-'unusedtemplates' => 'Unbenutzte Vorlagen',
+'unusedtemplates' => 'Verwaiste Vorlagen',
 'unusedtemplatestext' => 'Diese Seite listet alle Seiten im {{ns:template}}-Namensraum auf, die nicht in anderen Seiten eingebunden sind.
 Überprüfe andere Links zu den Vorlagen, bevor du diese löscht.',
 'unusedtemplateswlh' => 'Andere Links',
@@ -2167,8 +2167,8 @@ Jede Zeile enthält Links zur ersten und zweiten Weiterleitung sowie dem Ziel de
 'uncategorizedcategories' => 'Nicht kategorisierte Kategorien',
 'uncategorizedimages' => 'Nicht kategorisierte Dateien',
 'uncategorizedtemplates' => 'Nicht kategorisierte Vorlagen',
-'unusedcategories' => 'Unbenutzte Kategorien',
-'unusedimages' => 'Unbenutzte Dateien',
+'unusedcategories' => 'Verwaiste Kategorien',
+'unusedimages' => 'Verwaiste Dateien',
 'popularpages' => 'Beliebteste Seiten',
 'wantedcategories' => 'Gewünschte Kategorien',
 'wantedpages' => 'Gewünschte Seiten',
@@ -2262,7 +2262,7 @@ Die Ausgabe kann durch die Auswahl des Logbuchtyps, des Benutzers oder des Seite
 # Special:Categories
 'categories' => 'Kategorien',
 'categoriespagetext' => 'Folgende {{PLURAL:$1|Kategorie enthält|Kategorien enthalten}} Seiten oder Dateien.
-[[Special:UnusedCategories|Unbenutzte Kategorien]] werden hier nicht aufgeführt.
+[[Special:UnusedCategories|Verwaiste Kategorien]] werden hier nicht aufgeführt.
 Siehe auch die Liste der [[Special:WantedCategories|gewünschten Kategorien]].',
 'categoriesfrom' => 'Zeige Kategorien ab:',
 'special-categories-sort-count' => 'Sortierung nach Anzahl',

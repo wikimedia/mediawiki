@@ -504,6 +504,7 @@ Rhoddwyd y rheswm hwn - ''$2''.",
 
 Y rheswm a roddwyd gan y gweinyddwr a roddodd y ffeil dan glo yw "\'\'$3\'\'".',
 'invalidtitle-knownnamespace' => 'Teitl annilys o\'r enw "$3" yn y parth "$2"',
+'invalidtitle-unknownnamespace' => 'Teitl annilys ag iddi\'r rhif parth anhysbys $1 a\'r enw "$2"',
 
 # Virus scanner
 'virus-badscanner' => "Cyfluniad gwael: sganiwr firysau anhysbys: ''$1''",
@@ -1149,6 +1150,7 @@ Cofiwch y gall mynegeion Google o gynnwys {{SITENAME}} fod ar ei hôl hi.",
 'prefs-beta' => 'Nodweddion Beta',
 'prefs-datetime' => 'Dyddiad ac amser',
 'prefs-labs' => 'Nodweddion Labs',
+'prefs-user-pages' => 'Tudalennau defnyddwyr',
 'prefs-personal' => 'Data defnyddiwr',
 'prefs-rc' => 'Newidiadau diweddar',
 'prefs-watchlist' => 'Rhestr wylio',
@@ -1605,13 +1607,14 @@ Os yw'r broblem yn parhau, cysylltwch â [[Special:ListUsers/sysop|gweinyddwr]].
 'backend-fail-closetemp' => "Wedi methu cau'r ffeil dros dro.",
 'backend-fail-read' => 'Wedi methu darllen y ffeil $1.',
 'backend-fail-create' => "Wedi methu ysgrifennu'r ffeil $1.",
-'backend-fail-maxsize' => "Ni ellid cynhyrchu'r ffeil $1 oherwydd ei bod yn fwy na{{PLURAL:$2||g un beit| $2 feit| $2 beit| $2 beit| $2 beit}}.",
+'backend-fail-maxsize' => "Ni ellid ysgrifennu'r ffeil $1 oherwydd ei bod yn fwy na{{PLURAL:$2||g un beit| $2 feit| $2 beit| $2 beit| $2 beit}} o faint.",
 'backend-fail-readonly' => 'Ar hyn o bryd gellir darllen y storfa "$1" yn unig. Y rheswm dros hyn yw: "\'\'$2\'\'"',
 'backend-fail-synced' => 'Mae\'r ffeil "$1" mewn cyflwr anghyson oddi mewn i\'r storfeydd tu ôl i\'r llenni.',
 'backend-fail-connect' => 'Ni ellid cysylltu â\'r storfa tu ôl i\'r llenni yn "$1".',
 'backend-fail-internal' => 'Cafwyd gwall anhysbys yn y storfa tu ôl i\'r llenni yn "$1".',
 'backend-fail-contenttype' => 'Methwyd a dirnad pa fath o gynnwys sydd yn y ffeil y ceisir ei storio yn "$1".',
 'backend-fail-batchsize' => "Rhoddwyd llwyth o {{PLURAL:$1|$1 o weithrediadau}} ffeil i'w gwneud i'r storfa; ni all nifer y {{PLURAL:$2|gweithrediadau}} fod yn fwy na $2.",
+'backend-fail-usable' => "Ni ellid ysgrifennu'r ffeil $1 oherwydd nad oedd caniatad digonol ynteu bod cyfeiriaduron neu flychau yn eisiau.",
 
 # File journal errors
 'filejournal-fail-dbconnect' => 'Methwyd cysylltu â lòg y gweithrediadau ar y storfa "$1".',

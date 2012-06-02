@@ -1224,7 +1224,7 @@ Uuden ja vanhan sivun muutoksien pitää muodostaa jatkumo – ne eivät saa men
 'mergelogpagetext' => 'Alla on loki viimeisimmistä muutoshistorioiden yhdistämisistä.',
 
 # Diffs
-'history-title' => 'Sivun $1 muutoshistoria',
+'history-title' => 'Sivun "$1" muutoshistoria',
 'difference-title' => 'Ero sivun "$1" versioiden välillä',
 'difference-title-multipage' => 'Erot sivujen "$1" ja "$2" välillä',
 'difference-multipage' => '(Sivujen välinen eroavaisuus)',
@@ -1324,6 +1324,7 @@ Kokeile lisätä haun alkuun ''all:'', niin haku kohdistuu kaikkeen sisältöön
 'prefs-beta' => 'Beta-ominaisuudet',
 'prefs-datetime' => 'Aika ja päiväys',
 'prefs-labs' => 'Kokeelliset ominaisuudet',
+'prefs-user-pages' => 'Käyttäjäsivut',
 'prefs-personal' => 'Käyttäjätiedot',
 'prefs-rc' => 'Tuoreet muutokset',
 'prefs-watchlist' => 'Tarkkailulista',

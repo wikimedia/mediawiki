@@ -1553,7 +1553,7 @@ $1",
 'right-siteadmin' => '데이터베이스를 잠그거나 잠금 해제',
 'right-override-export-depth' => '5단계로 링크된 문서를 포함하여 문서를 내보내기',
 'right-sendemail' => '다른 사용자에게 이메일 보내기',
-'right-passwordreset' => '암호 재설정 이메일을 보기',
+'right-passwordreset' => '비밀번호 재설정 이메일을 보기',
 
 # User rights log
 'rightslog' => '사용자 권한 기록',
@@ -2990,7 +2990,7 @@ $1 사용자가 차단된 이유는 다음과 같습니다: "$2"',
 
 # Stylesheets
 'common.css' => '/* 이 CSS 설정은 모든 스킨에 동일하게 적용됩니다 */',
-'standard.css' => '/* 이 CSS 설정은 모든 표준 스킨에 적용됩니다 */',
+'standard.css' => '/* 이 CSS 설정은 모든 스탠다드 스킨에 적용됩니다 */',
 'nostalgia.css' => '/* 이 CSS 설정은 모든 노스텔지아 스킨에 적용됩니다 */',
 'cologneblue.css' => '/* 이 CSS 설정은 모든 쾰른 블루 스킨에 적용됩니다 */',
 'monobook.css' => '/* 이 CSS 설정은 모든 모노북 스킨에 적용됩니다 */',
@@ -3009,7 +3009,7 @@ $1 사용자가 차단된 이유는 다음과 같습니다: "$2"',
 
 # Scripts
 'common.js' => '/* 이 자바스크립트 설정은 모든 문서, 모든 사용자에게 적용됩니다. */',
-'standard.js' => '/* 이 자바스크립트 설정은 표준 스킨을 사용하는 사용자에게 적용됩니다 */',
+'standard.js' => '/* 이 자바스크립트 설정은 스탠다드 스킨을 사용하는 사용자에게 적용됩니다 */',
 'nostalgia.js' => '/* 이 자바스크립트 설정은 노스텔지아 스킨을 사용하는 사용자에게 적용됩니다 */',
 'cologneblue.js' => '/* 이 자바스크립트 설정은 쾰른 블루 스킨을 사용하는 사용자에게 적용됩니다 */',
 'monobook.js' => '/* 이 자바스크립트 설정은 모노북 스킨을 사용하는 사용자에게 적용됩니다 */',
@@ -3747,7 +3747,7 @@ $5
 'version-hook-name' => '훅 이름',
 'version-hook-subscribedby' => '훅이 사용된 위치',
 'version-version' => '(버전 $1)',
-'version-license' => '라이센스',
+'version-license' => '라이선스',
 'version-poweredby-credits' => "이 위키는 '''[//www.mediawiki.org/ MediaWiki]'''를 기반으로 작동합니다. Copyright © 2001-$1 $2.",
 'version-poweredby-others' => '그 외 다른 개발자',
 'version-license-info' => '미디어위키는 자유 소프트웨어입니다. 당신은 자유 소프트웨어 재단이 발표한 GNU 일반 공중 사용 허가서 버전 2나 그 이후 버전에 따라 이 파일을 재배포하거나 수정할 수 있습니다.
@@ -3894,7 +3894,7 @@ $5
 'logentry-newusers-create' => '$1 사용자가 계정을 생성했습니다.',
 'logentry-newusers-create2' => '$1 사용자가 $3 계정을 생성했습니다.',
 'logentry-newusers-autocreate' => '$1 계정이 자동적으로 생성되었습니다.',
-'newuserlog-byemail' => '이메일로 보낸 암호',
+'newuserlog-byemail' => '이메일로 보낸 비밀번호',
 
 # Feedback
 'feedback-bugornote' => '기술적 문제를 구체적으로 설명할 준비가 되었다면 [$1 버그를 신고]해 주세요.
