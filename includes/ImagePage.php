@@ -153,7 +153,7 @@ class ImagePage extends Article {
 		if ( $this->mPage->getID() ) {
 			# NS_FILE is in the user language, but this section (the actual wikitext)
 			# should be in page content language
-			$pageLang = $this->getTitle()->getPageLanguage();
+			$pageLang = $this->getTitle()->getPageViewLanguage();
 			$out->addHTML( Xml::openElement( 'div', array( 'id' => 'mw-imagepage-content',
 				'lang' => $pageLang->getCode(), 'dir' => $pageLang->getDir(),
 				'class' => 'mw-content-'.$pageLang->getDir() ) ) );
