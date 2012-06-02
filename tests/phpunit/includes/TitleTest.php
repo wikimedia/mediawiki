@@ -77,4 +77,69 @@ class TitleTest extends MediaWikiTestCase {
 	}
 	
 	
+	/**
+	 * @dataProvider provideCasesForGetpageviewlanguage
+	 */
+	function testGetpageviewlanguage( $expected, $titleText, $contLang, $lang, $variant, $msg='' ) {
+		// Save globals
+		global $wgContLang, $wgLang, $wgAllowUserJs, $wgDefaultLanguageVariant;
+		$save['wgContLang']               = $wgContLang;
+		$save['wgLang']                   = $wgLang;
+		$save['wgAllowUserJs']            = $wgAllowUserJs;
+		$save['wgDefaultLanguageVariant'] = $wgDefaultLanguageVariant;
+
+		// Setup test environnement:
+		$wgContLang = Language::factory( $contLang );
+		$wgLang     = Language::factory( $lang );
+		# To test out .js titles:
+		$wgAllowUserJs = true;
+		$wgDefaultLanguageVariant = $variant;
+
+		$title = Title::newFromText( $titleText );
+		$this->assertInstanceOf( 'Title', $title,
+			"Test must be passed a valid title text, you gave '$titleText'"
+		);
+		$this->assertEquals( $expected,
+			$title->getPageViewLanguage()->getCode(),
+			$msg
+		);
+
+		// Restore globals
+		$wgContLang               = $save['wgContLang'];
+		$wgLang                   = $save['wgLang'];
+		$wgAllowUserJs            = $save['wgAllowUserJs'];
+		$wgDefaultLanguageVariant = $save['wgDefaultLanguageVariant'];
+	}
+
+	function provideCasesForGetpageviewlanguage() {
+		# Format:
+		# - expected
+		# - Title name
+		# - wgContLang (expected in most case)
+		# - wgLang (on some specific pages)
+		# - Optional message
+		return array(
+			array( 'fr', 'Main_page', 'fr', 'fr', false ),
+			array( 'es', 'Main_page', 'es', 'zh-tw', false ),
+			array( 'zh', 'Main_page', 'zh', 'zh-tw', false ),
+
+			array( 'es',    'Main_page',                 'es', 'zh-tw', 'zh-cn' ),
+			array( 'de',    'MediaWiki:About/de',        'es', 'zh-tw', 'zh-cn' ),
+			array( 'es',    'MediaWiki:Common.js',       'es', 'zh-tw', 'zh-cn' ),
+			array( 'es',    'MediaWiki:Common.css',      'es', 'zh-tw', 'zh-cn' ),
+			array( 'es',    'User:JohnDoe/Common.js',    'es', 'zh-tw', 'zh-cn' ),
+			array( 'es',    'User:JohnDoe/Monobook.css', 'es', 'zh-tw', 'zh-cn' ),
+
+			array( 'zh-cn', 'Main_page',                 'zh', 'zh-tw', 'zh-cn' ),
+			array( 'de',    'MediaWiki:About/de',        'zh', 'zh-tw', 'zh-cn' ),
+			array( 'zh',    'MediaWiki:Common.js',       'zh', 'zh-tw', 'zh-cn' ),
+			array( 'zh',    'MediaWiki:Common.css',      'zh', 'zh-tw', 'zh-cn' ),
+			array( 'zh',    'User:JohnDoe/Common.js',    'zh', 'zh-tw', 'zh-cn' ),
+			array( 'zh',    'User:JohnDoe/Monobook.css', 'zh', 'zh-tw', 'zh-cn' ),
+
+			array( 'zh-tw', 'Special:NewPages',       'es', 'zh-tw', 'zh-cn' ),
+			array( 'zh-tw', 'Special:NewPages',       'zh', 'zh-tw', 'zh-cn' ),
+
+		);
+	}
 }
