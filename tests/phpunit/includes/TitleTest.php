@@ -77,4 +77,57 @@ class TitleTest extends MediaWikiTestCase {
 	}
 	
 	
+	/**
+	 * @dataProvider provideCasesForGetpageviewlanguage
+	 */
+	function testGetpageviewlanguage( $expected, $titleText, $contLang, $lang, $msg='' ) {
+		// Save globals
+		global $wgContLang, $wgLang, $wgAllowUserJs;
+		$save['wgContLang']    = $wgContLang;
+		$save['wgLang']        = $wgLang;
+		$save['wgAllowUserJs'] = $wgAllowUserJs;
+
+		// Setup test environnement:
+		$wgContLang = Language::factory( $contLang );
+		$wgLang     = Language::factory( $lang );
+		# To test out .js titles:
+		$wgAllowUserJs = true;
+
+		$title = Title::newFromText( $titleText );
+		$this->assertInstanceOf( 'Title', $title,
+			"Test must be passed a valid title text, you gave '$titleText'"
+		);
+		$this->assertEquals( $expected,
+			$title->getPageViewLanguage()->getCode(),
+			$msg
+		);
+
+		// Restore globals
+		$wgContLang    = $save['wgContLang'];
+		$wgLang        = $save['wgLang'];
+		$wgAllowUserJs = $save['wgAllowUserJs'];
+
+	}
+
+	function provideCasesForGetpageviewlanguage() {
+		# Format:
+		# - expected
+		# - Title name
+		# - wgContLang (expected in most case)
+		# - wgLang (on some specific pages)
+		# - Optional message
+		return array(
+			array( 'fr', 'Main_page', 'fr', 'fr', ),
+			array( 'es', 'Main_page', 'es', 'zh-tw', ),
+
+			array( 'es',    'Main_page',                 'es', 'zh-tw', ),
+			array( 'es',    'MediaWiki:Common.js',       'es', 'zh-tw', ),
+			array( 'es',    'MediaWiki:Common.css',      'es', 'zh-tw', ),
+			array( 'es',    'User:JohnDoe/Common.js',    'es', 'zh-tw', ),
+			array( 'es',    'User:JohnDoe/Monobook.css', 'es', 'zh-tw', ),
+
+			array( 'zh-tw', 'Special:NewPages',       'es', 'zh-tw', ),
+
+		);
+	}
 }
