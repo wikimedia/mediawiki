@@ -404,6 +404,17 @@ class SkinTemplate extends Skin {
 			in_array( $request->getVal( 'action', 'view' ), array( 'view', 'historysubmit' ) ) &&
 			( $title->exists() || $title->getNamespace() == NS_MEDIAWIKI ) ) {
 			$pageLang = $title->getPageLanguage();
+			# If the user chooses a variant, the content is actually
+			# in a language whose code is the variant code.
+			$variant = $pageLang->getPreferredVariant();
+			if ( $pageLang->getCode() !== $variant ) {
+				try {
+					$pageLang = Language::factory( $variant );
+				} catch ( MWException $e ) {
+					# This shouldn't happen, but just keep the page language
+					# untouched when it accidentally happens.
+				}
+			}
 			$realBodyAttribs['lang'] = $pageLang->getHtmlCode();
 			$realBodyAttribs['dir'] = $pageLang->getDir();
 			$realBodyAttribs['class'] = 'mw-content-'.$pageLang->getDir();
