@@ -4494,9 +4494,9 @@ class Title {
 	}
 
 	/**
-	 * Get the language in which the content of this page is written.
-	 * Defaults to $wgContLang, but in certain cases it can be e.g.
-	 * $wgLang (such as special pages, which are in the user language).
+	 * Get the language in which the content of this page is written in
+	 * wikitext. Defaults to $wgContLang, but in certain cases it can be
+	 * e.g. $wgLang (such as special pages, which are in the user language).
 	 *
 	 * @since 1.18
 	 * @return Language
@@ -4520,5 +4520,30 @@ class Title {
 		// Hook at the end because we don't want to override the above stuff
 		wfRunHooks( 'PageContentLanguage', array( $this, &$pageLang, $wgLang ) );
 		return wfGetLangObj( $pageLang );
+	}
+
+	/**
+	 * Get the language in which the content of this page is written when
+	 * viewed by user. Defaults to $wgContLang, but in certain cases it can be
+	 * e.g. $wgLang (such as special pages, which are in the user language).
+	 *
+	 * @since 1.20
+	 * @return Language
+	 */
+	public function getPageViewLanguage() {
+		$pageLang = $this->getPageLanguage();
+		// If this is nothing special (so the content is converted when viewed)
+		if ( !$this->isSpecialPage()
+			&& !$this->isCssOrJsPage() && !$this->isCssJsSubpage()
+			&& $this->getNamespace() !== NS_MEDIAWIKI
+		) {
+			// If the user chooses a variant, the content is actually
+			// in a language whose code is the variant code.
+			$variant = $pageLang->getPreferredVariant();
+			if ( $pageLang->getCode() !== $variant ) {
+				$pageLang = Language::factory( $variant );
+			}
+		}
+		return $pageLang;
 	}
 }
