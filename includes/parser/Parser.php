@@ -2720,6 +2720,18 @@ class Parser {
 				$subjPage = $this->mTitle->getSubjectPage();
 				$value = wfEscapeWikiText( $subjPage->getPrefixedUrl() );
 				break;
+			case 'pageid': // requested via bug 23427
+				$pageid = $this->getTitle()->getArticleId();
+				if( $pageid == 0 ) {
+					# 0 is returned when the page doesn't exist yet in the database,
+					# which means the user is previewing a page that is being created.
+					# Thus we need to set the vary-revision flag because the magic word
+					# will have a different value once the page is saved.
+					$this->mOutput->setFlag( 'vary-revision' );
+					wfDebug( __METHOD__ . ": {{PAGEID}} used in a new page, setting vary-revision...\n" );
+				}
+				$value = $pageid;
+				break;
 			case 'revisionid':
 				# Let the edit saving system know we should parse the page
 				# *after* a revision ID has been assigned.
