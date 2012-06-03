@@ -2796,6 +2796,14 @@ This message was something like "unlock move protection" in the past.',
 
 {{identical|Are you sure you want to view the deleted revision of the file...}}',
 'undelete-show-file-submit' => '{{Identical|Yes}}',
+'undelete-revisionrow' => "A revision row in the undelete page. Parameters:
+* $1 is a checkBox to indicate whether to restore this specific revision
+* $2 is a link to the revision
+* $3 is a link to the last revision of a page ({{msg-mw|last}})
+* $4 is a link to the page
+* $5 is a link to the revision's user
+* $6 is the revision size
+* $7 is the revision comment",
 
 # Namespace form on various pages
 'namespace' => 'This message is located at [[Special:Contributions]].',
