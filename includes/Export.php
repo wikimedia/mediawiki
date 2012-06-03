@@ -468,7 +468,7 @@ class XmlDumpWriter {
 	 * @return string
 	 */
 	function schemaVersion() {
-		return "0.6";
+		return "0.7";
 	}
 
 	/**
