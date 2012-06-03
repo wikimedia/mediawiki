@@ -1,5 +1,5 @@
 <?php
-/** Breton (Brezhoneg)
+/** Breton (brezhoneg)
  *
  * See MessagesQqq.php for message documentation incl. usage of parameters
  * To improve a translation please visit http://translatewiki.net
@@ -1353,7 +1353,7 @@ Ma skrivit anezhañ e vo implijet evit lakaat war wel ar pezh a vo bet degaset g
 'group' => 'Strollad :',
 'group-user' => 'Implijerien',
 'group-autoconfirmed' => 'Implijerien bet kadarnaet ent emgefre',
-'group-bot' => 'Botoù',
+'group-bot' => 'Robotoù',
 'group-sysop' => 'Merourien',
 'group-bureaucrat' => 'Burevidi',
 'group-suppress' => 'Dindan evezh',

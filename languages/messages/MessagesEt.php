@@ -1,5 +1,5 @@
 <?php
-/** Estonian (Eesti)
+/** Estonian (eesti)
  *
  * See MessagesQqq.php for message documentation incl. usage of parameters
  * To improve a translation please visit http://translatewiki.net
@@ -1623,6 +1623,7 @@ See ei tohi olla pikem kui $1 {{PLURAL:$1|sümbol|sümbolit}}.',
 'newsectionsummary' => '/* $1 */ uus alajaotus',
 'rc-enhanced-expand' => 'Näita üksikasju (nõuab JavaScripti)',
 'rc-enhanced-hide' => 'Peida üksikasjad',
+'rc-old-title' => 'alustatud pealkirja "$1" all',
 
 # Recent changes linked
 'recentchangeslinked' => 'Seotud muudatused',

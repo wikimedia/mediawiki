@@ -732,7 +732,9 @@ $1 is a filename, I think.',
 'nologin' => 'A message shown in the log in form. $1 is a link to the account creation form, and the text of it is "[[MediaWiki:Nologinlink/{{SUBPAGENAME}}|{{int:nologinlink}}]]".',
 'nologinlink' => 'Text of the link to the account creation form. Before that link, the message [[MediaWiki:Nologin/{{SUBPAGENAME}}]] appears.
 {{Identical|Create an account}}',
-'createaccount' => 'The title of Special:CreateAccount, where users can register a new account. Used on Special:SpecialPages, and also on the submit button in the form where you register a new account.
+'createaccount' => 'The title of Special:CreateAccount, where users can register a new account. Used on Special:SpecialPages and on the submit button in the form where you register a new account.
+
+It is also used on the top of the page for logged out users, where it appears next to {{msg-mw|login}}, so consider making them similar.
 {{Identical|Create account}}',
 'gotaccount' => 'A message shown in the account creation form. $1 is a link to the log in form, and the text of it is "[[MediaWiki:Gotaccountlink/{{SUBPAGENAME}}|{{int:gotaccountlink}}]]".',
 'gotaccountlink' => 'Text of the link to the log in form. Before that link, the message [[MediaWiki:Gotaccount/{{SUBPAGENAME}}]] appears.
@@ -798,7 +800,7 @@ Parameters:
 *Parameter $4 is a URL to the wiki',
 'login-throttled' => 'Error message shown at [[Special:UserLogin]] after 5 wrong passwords. The hardcoded waiting time is 300 seconds.',
 'login-abort-generic' => 'The generic unsuccessful login message is used unless otherwise specified by hook writers',
-'loginlanguagelabel' => 'Used on [[Special:UserLogin]] if $wgLoginLanguageSelector is true.
+'loginlanguagelabel' => 'Used on [[Special:UserLogin]] if $wgLoginLanguageSelector is true. $1 is a pipe-separated list built from the names that appear in the message {{msg-mw|Loginlanguagelinks}}.
 {{Identical|Language}}',
 
 # E-mail sending

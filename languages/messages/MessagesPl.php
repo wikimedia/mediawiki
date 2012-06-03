@@ -1,5 +1,5 @@
 <?php
-/** Polish (Polski)
+/** Polish (polski)
  *
  * See MessagesQqq.php for message documentation incl. usage of parameters
  * To improve a translation please visit http://translatewiki.net
@@ -1572,7 +1572,7 @@ Jeśli zdecydujesz się je podać, zostaną użyte, by udokumentować Twoje auto
 # User rights log
 'rightslog' => 'Uprawnienia',
 'rightslogtext' => 'Rejestr zmian uprawnień użytkowników.',
-'rightslogentry' => 'zmienia przynależność $1 do grup ($2 → $3)',
+'rightslogentry' => 'zmienił przynależność $1 do grup ($2 → $3)',
 'rightslogentry-autopromote' => 'automatycznie zmienia przynależność ($2 → $3)',
 'rightsnone' => 'brak',
 
