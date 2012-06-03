@@ -5132,10 +5132,18 @@ class Parser {
 		# plicit caption= parameter and preserving the old magic unnamed para-
 		# meter for BC; ...
 		if ( $imageIsFramed ) { # Framed image
-			if ( $caption === '' && !isset( $params['frame']['alt'] ) ) {
+			if ( !isset( $params['frame']['alt'] ) ) {
 				# No caption or alt text, add the filename as the alt text so
 				# that screen readers at least get some description of the image
-				$params['frame']['alt'] = $title->getText();
+				#
+				# add a general "view media page" to have at least a sort of
+				# description even if the image file name is rather undescriptive
+				$params['frame']['alt'] = wfMessage('tooltip-ca-nstab-media')
+					->inContentLanguage()->plain();
+
+				if ( $caption === '' ) {
+					$params['frame']['alt'] .= ": " . $title->getText();
+				}
 			}
 			# Do not set $params['frame']['title'] because tooltips don't make sense
 			# for framed images

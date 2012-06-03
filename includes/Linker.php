@@ -785,36 +785,60 @@ class Linker {
 			$url = wfAppendQuery( $url, 'page=' . urlencode( $page ) );
 		}
 
+		$zoomIcon = '';
 		$s = "<div class=\"thumb t{$fp['align']}\"><div class=\"thumbinner\" style=\"width:{$outerWidth}px;\">";
 		if ( !$exists ) {
 			$s .= self::makeBrokenImageLinkObj( $title, $fp['title'], '', '', '', $time == true );
-			$zoomIcon = '';
 		} elseif ( !$thumb ) {
 			$s .= htmlspecialchars( wfMsg( 'thumbnail_error', '' ) );
-			$zoomIcon = '';
 		} else {
+			$zoomIconAlt = "";
+			// set the magnify icon's alt text if the image itself has an external link
+			if ( isset( $fp['link-url'] ) ) {
+				$zoomIconAlt = $fp['alt'];
+				$fp['alt'] = "";
+			}
+
 			$params = array(
 				'alt' => $fp['alt'],
 				'title' => $fp['title'],
 				'img-class' => 'thumbimage' );
 			$params = self::getImageLinkMTOParams( $fp, $query ) + $params;
-			$s .= $thumb->toHtml( $params );
-			if ( isset( $fp['framed'] ) ) {
+			if ( !isset( $fp['framed'] ) && !isset( $fp['link-url'] ) ) {
+				$zoomIcon = Html::rawElement( 'span', array( 'class' => 'magnify' ),
+					Html::element( 'img', array(
+						'src' => $wgStylePath . '/common/images/magnify-clip' . ( $wgContLang->isRTL() ? '-rtl' : '' ) . '.png',
+						'width' => 15,
+						'height' => 11,
+						'alt' => $zoomIconAlt ) ) );
+			}
+
+			$params['desc-link'] = false;
+			$imgHtml = $thumb->toHtml( $params );
+			$linkAttribs = $thumb->getDescLinkAttribs(empty( $params['title'] ) ? null : $params['title'], $query);
+
+			if ( !isset( $params['custom-url-link'] ) ) {
+				$linkAttribs['title'] =  wfMsg( 'tooltip-ca-nstab-media' );
+				$linkHtml = Xml::tags( 'a', $linkAttribs, $imgHtml . $zoomIcon );
+				$s .= $linkHtml;
 				$zoomIcon = "";
 			} else {
+				# div > a > img
 				$zoomIcon = Html::rawElement( 'div', array( 'class' => 'magnify' ),
 					Html::rawElement( 'a', array(
 						'href' => $url,
 						'class' => 'internal',
-						'title' => wfMsg( 'thumbnail-more' ) ),
+						'title' => wfMsg( 'tooltip-ca-nstab-media' ) ),
 						Html::element( 'img', array(
-							'src' => $wgStylePath . '/common/images/magnify-clip' . ( $wgContLang->isRTL() ? '-rtl' : '' ) . '.png',
+							'src' => $wgStylePath . '/common/images/magnify-clip' .
+								( $wgContLang->isRTL() ? '-rtl' : '' ) . '.png',
 							'width' => 15,
 							'height' => 11,
-							'alt' => "" ) ) ) );
+							'alt' => $zoomIconAlt ) ) ) );
+					$s .= $imgHtml;
 			}
 		}
-		$s .= '  <div class="thumbcaption">' . $zoomIcon . $fp['caption'] . "</div></div></div>";
+		$s .= '  <div class="thumbcaption">' . $zoomIcon . $fp['caption'] . '</div></div></div>';
 		return str_replace( "\n", ' ', $s );
 	}
 
