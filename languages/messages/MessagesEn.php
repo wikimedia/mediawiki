@@ -191,6 +191,7 @@ $bookstoreList = array(
  * Customisable syntax for wikitext and elsewhere.
  *
  * IDs must be valid identifiers, they cannot contain hyphens.
+ * CASE is 0 to match all case variants, 1 for case-sensitive
  *
  * Note to translators:
  *   Please include the English words as synonyms.  This allows people
