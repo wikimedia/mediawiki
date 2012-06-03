@@ -3284,14 +3284,16 @@ class Title {
 	 * @return Array of String the URLs
 	 */
 	public function getSquidURLs() {
+		global $wgContLang;
+
 		$urls = array(
 			$this->getInternalURL(),
 			$this->getInternalURL( 'action=history' )
 		);
 
-		$pageLang = $this->getPageLanguage();
-		if ( $pageLang->hasVariants() ) {
-			$variants = $pageLang->getVariants();
+		// purge variant urls as well
+		if ( $wgContLang->hasVariants() ) {
+			$variants = $wgContLang->getVariants();
 			foreach ( $variants as $vCode ) {
 				$urls[] = $this->getInternalURL( '', $vCode );
 			}
