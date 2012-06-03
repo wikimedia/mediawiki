@@ -38,6 +38,8 @@
  * @licence GNU GPL v2+
  * @author Jeroen De Dauw < jeroendedauw@gmail.com >
  */
+require_once dirname( __FILE__ ) . "/ORMRowTest.php";
+
 class TestORMRowTest extends ORMRowTest {
 
 	/**
@@ -53,7 +55,7 @@ class TestORMRowTest extends ORMRowTest {
 	 * @return IORMTable
 	 */
 	protected function getTableInstance() {
-		return TestORMtable::singleton();
+		return TestORMTable::singleton();
 	}
 
 	public function setUp() {
