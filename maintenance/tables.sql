@@ -441,7 +441,7 @@ CREATE TABLE /*_*/archive (
   -- content model, see CONTENT_MODEL_XXX constants
   ar_content_model  int unsigned default NULL,
 
-  -- content format, see CONTENT_MODEL_XXX constants
+  -- content format, see CONTENT_FORMAT_XXX constants
   ar_content_format int unsigned default NULL
 
 ) /*$wgDBTableOptions*/;

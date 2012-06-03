@@ -471,7 +471,7 @@ class WikiPage extends Page {
 	 * @param $text mixed string containing article contents, or boolean
 	 * @return bool
 	 */
-	public function isRedirect( $text = false ) {
+	public function isRedirect( $text = false ) { #TODO: investiage whether we need the text param
 		if ( $text === false ) $content = $this->getContent();
 		else $content = ContentHandler::makeContent( $text, $this->mTitle ); # TODO: allow model and format to be provided; or better, expect a Content object
 
@@ -1117,7 +1117,7 @@ class WikiPage extends Page {
 			$oldid = $this->getLatest();
 		}
 
-		$pool = new PoolWorkArticleView( $this, $parserOptions, $oldid, $useParserCache, null );
+		$pool = new PoolWorkArticleView( $this, $parserOptions, $oldid, $useParserCache );
 		$pool->execute();
 
 		wfProfileOut( __METHOD__ );
@@ -1172,7 +1172,7 @@ class WikiPage extends Page {
 
 		if ( $this->mTitle->getNamespace() == NS_MEDIAWIKI ) {
 			if ( $this->mTitle->exists() ) {
-				$text = ContentHandler::getContentText( $this->getContent() );
+				$text = ContentHandler::getContentText( $this->getContent() ); #XXX: get native data directly?
 			} else {
 				$text = false;
 			}
@@ -1408,6 +1408,8 @@ class WikiPage extends Page {
 		$sectionContent = ContentHandler::makeContent( $text, $this->getTitle() ); #XXX: could make section title, but that's not required.
 
 		$newContent = $this->replaceSectionContent( $section, $sectionContent, $sectionTitle, $edittime );
+		#TODO: check $newContent == false. throw exception??
+		#TODO: add ContentHandler::supportsSections()
 
 		return ContentHandler::getContentText( $newContent ); #XXX: unclear what will happen for non-wikitext!
 	}
@@ -1603,12 +1605,12 @@ class WikiPage extends Page {
 		$hook_ok = wfRunHooks( 'ArticleContentSave', array( &$this, &$user, &$content, &$summary,
 			$flags & EDIT_MINOR, null, null, &$flags, &$status ) );
 
-		if ( $hook_ok && !empty( $wgHooks['ArticleSave'] ) ) { # avoid serialization overhead if the hook isn't present
+		if ( $hook_ok && !empty( $wgHooks['ArticleSave'] ) ) { #FIXME: use wfHasHook or whatever. # avoid serialization overhead if the hook isn't present
 			$content_text = $content->serialize();
 			$txt = $content_text; # clone
 
 			$hook_ok = wfRunHooks( 'ArticleSave', array( &$this, &$user, &$txt, &$summary,
-				$flags & EDIT_MINOR, null, null, &$flags, &$status ) );
+				$flags & EDIT_MINOR, null, null, &$flags, &$status ) ); #TODO: survey extensions using this hook
 
 			if ( $txt !== $content_text ) {
 				# if the text changed, unserialize the new version to create an updated Content object.
@@ -1685,14 +1687,14 @@ class WikiPage extends Page {
 				'timestamp'  => $now,
 				'content_model' => $content->getModel(),
 				'content_format' => $serialisation_format,
-			) );
+			) ); #XXX: pass content object?!
 
 			$changed = !$content->equals( $old_content );
 
 			if ( $changed ) {
 				// TODO: validate!
 				if ( $content->isValid() ) {
-
+					#XXX: do it! throw exception??
 				}
 
 				$dbw->begin( __METHOD__ );
@@ -1755,8 +1757,6 @@ class WikiPage extends Page {
 				wfProfileOut( __METHOD__ );
 				return $status;
 			}
-
-			// TODO: create content diff to pass to update objects that might need it
 
 			# Update links tables, site stats, etc.
 			$this->doEditUpdates(
@@ -1928,7 +1928,7 @@ class WikiPage extends Page {
 		$edit->revid = $revid;
 
 		$edit->pstContent = $content->preSaveTransform( $this->mTitle, $user, $popts );
-		$edit->pst = $edit->pstContent->serialize( $serialization_format );
+		$edit->pst = $edit->pstContent->serialize( $serialization_format ); #XXX: do we need this??
 		$edit->format = $serialization_format;
 
 		$edit->popts = $this->makeParserOptions( 'canonical' );
@@ -2032,7 +2032,7 @@ class WikiPage extends Page {
 		}
 
 		DeferredUpdates::addUpdate( new SiteStatsUpdate( 0, 1, $good, $total ) );
-		DeferredUpdates::addUpdate( new SearchUpdate( $id, $title, $content->getTextForSearchIndex() ) );
+		DeferredUpdates::addUpdate( new SearchUpdate( $id, $title, $content->getTextForSearchIndex() ) ); #TODO: let the search engine decide what to do with the content object
 
 		# If this is another user's talk page, update newtalk.
 		# Don't do this if $options['changed'] = false (null-edits) nor if
@@ -2115,7 +2115,7 @@ class WikiPage extends Page {
 			'length'     => $content->getSize(),
 			'comment'    => $comment,
 			'minor_edit' => $minor ? 1 : 0,
-		) );
+		) ); #XXX: set the content object
 		$revision->insertOn( $dbw );
 		$this->updateRevisionOn( $dbw, $revision );
 
@@ -2872,91 +2872,7 @@ class WikiPage extends Page {
 
 		$handler = ContentHandler::getForTitle( $this->getTitle() );
 		$handler->getAutoDeleteReason( $this->getTitle(), $hasHistory );
-		global $wgContLang;
-
-		// Get the last revision
-		$rev = $this->getRevision();
-
-		if ( is_null( $rev ) ) {
-			return false;
-		}
-
-		// Get the article's contents
-		$contents = $rev->getText();
-		$blank = false;
-
-		// If the page is blank, use the text from the previous revision,
-		// which can only be blank if there's a move/import/protect dummy revision involved
-		if ( $contents == '' ) {
-			$prev = $rev->getPrevious();
-
-			if ( $prev )	{
-				$contents = $prev->getText();
-				$blank = true;
-			}
-		}
-
-		$dbw = wfGetDB( DB_MASTER );
-
-		// Find out if there was only one contributor
-		// Only scan the last 20 revisions
-		$res = $dbw->select( 'revision', 'rev_user_text',
-			array( 'rev_page' => $this->getID(), $dbw->bitAnd( 'rev_deleted', Revision::DELETED_USER ) . ' = 0' ),
-			__METHOD__,
-			array( 'LIMIT' => 20 )
-		);
-
-		if ( $res === false ) {
-			// This page has no revisions, which is very weird
-			return false;
-		}
-
-		$hasHistory = ( $res->numRows() > 1 );
-		$row = $dbw->fetchObject( $res );
-
-		if ( $row ) { // $row is false if the only contributor is hidden
-			$onlyAuthor = $row->rev_user_text;
-			// Try to find a second contributor
-			foreach ( $res as $row ) {
-				if ( $row->rev_user_text != $onlyAuthor ) { // Bug 22999
-					$onlyAuthor = false;
-					break;
-				}
-			}
-		} else {
-			$onlyAuthor = false;
-		}
-
-		// Generate the summary with a '$1' placeholder
-		if ( $blank ) {
-			// The current revision is blank and the one before is also
-			// blank. It's just not our lucky day
-			$reason = wfMsgForContent( 'exbeforeblank', '$1' );
-		} else {
-			if ( $onlyAuthor ) {
-				$reason = wfMsgForContent( 'excontentauthor', '$1', $onlyAuthor );
-			} else {
-				$reason = wfMsgForContent( 'excontent', '$1' );
-			}
-		}
-
-		if ( $reason == '-' ) {
-			// Allow these UI messages to be blanked out cleanly
-			return '';
-		}
-
-		// Replace newlines with spaces to prevent uglyness
-		$contents = preg_replace( "/[\n\r]/", ' ', $contents );
-		// Calculate the maximum amount of chars to get
-		// Max content length = max comment length - length of the comment (excl. $1)
-		$maxLength = 255 - ( strlen( $reason ) - 2 );
-		$contents = $wgContLang->truncate( $contents, $maxLength );
-		// Remove possible unfinished links
-		$contents = preg_replace( '/\[\[([^\]]*)\]?$/', '$1', $contents );
-		// Now replace the '$1' placeholder
-		$reason = str_replace( '$1', $contents, $reason );
-
-		return $reason;
+		#crap deleted
 	}
 
 	/**

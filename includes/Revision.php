@@ -831,7 +831,7 @@ class Revision {
 	public function getText( $audience = self::FOR_PUBLIC, User $user = null ) { #FIXME: deprecated, replace usage! #FIXME: used a LOT!
 		wfDeprecated( __METHOD__, '1.WD' );
 
-		$content = $this->getContent();
+		$content = $this->getContent( $audience, $user );
 		return ContentHandler::getContentText( $content ); # returns the raw content text, if applicable
 	}
 
@@ -948,7 +948,7 @@ class Revision {
 			$model = $this->getContentModel();
 			$this->mContentHandler = ContentHandler::getForModelID( $model );
 
-			assert( $this->mContentHandler->isSupportedFormat( $this->getContentFormat() ) );
+			assert( $this->mContentHandler->isSupportedFormat( $this->getContentFormat() ) ); #FIXME: use exception, not assert
 		}
 
 		return $this->mContentHandler;

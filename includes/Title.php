@@ -371,7 +371,7 @@ class Title {
 	 * @param $text String: Text with possible redirect
 	 * @return Title: The corresponding Title
 	 */
-	public static function newFromRedirect( $text ) {
+	public static function newFromRedirect( $text ) { #TODO: move to Content class, deprecate here.
 		return self::newFromRedirectInternal( $text );
 	}
 
@@ -724,7 +724,7 @@ class Title {
 	}
 
 	/**
-	 * Conveniance method for checking a title's content model name
+	 * Convenience method for checking a title's content model name
 	 *
 	 * @param int $id
 	 * @return true if $this->getContentModel() == $id
@@ -2871,7 +2871,7 @@ class Title {
 
 		$linkCache = LinkCache::singleton();
 		$cached = $linkCache->getGoodLinkFieldObj( $this, 'redirect' );
-		assert( $cached !== null ); # assert the assumption that the cache actually knows about this title
+		assert( $cached !== null ); # assert the assumption that the cache actually knows about this title #XXX breaks stuff #TODO: use exception
 
 		$this->mRedirect = (bool)$cached;
 
@@ -2894,7 +2894,10 @@ class Title {
 			return $this->mLength = 0;
 		}
 		$linkCache = LinkCache::singleton();
-		$this->mLength = intval( $linkCache->getGoodLinkFieldObj( $this, 'length' ) );
+		$cached = $linkCache->getGoodLinkFieldObj( $this, 'length' );
+		assert( $cached !== null ); # assert the assumption that the cache actually knows about this title #TODO: use exception
+
+		$this->mLength = intval( $cached );
 
 		return $this->mLength;
 	}
@@ -2914,7 +2917,10 @@ class Title {
 			return $this->mLatestID = 0;
 		}
 		$linkCache = LinkCache::singleton();
-		$this->mLatestID = intval( $linkCache->getGoodLinkFieldObj( $this, 'revision' ) );
+		$cached = $linkCache->getGoodLinkFieldObj( $this, 'revision' );
+		assert( $cached !== null ); # assert the assumption that the cache actually knows about this title #TODO: use exception
+
+		$this->mLatestID = intval( $cached );
 
 		return $this->mLatestID;
 	}
