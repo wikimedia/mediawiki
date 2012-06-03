@@ -2264,6 +2264,16 @@ class WikiPage extends Page {
 		$this->mTitle->resetArticleID( 0 );
 	}
 
+	public function getDeletionUpdates() {
+		$updates = array(
+			new LinksDeletionUpdate( $this ),
+		);
+
+		//@todo: make a hook to add update objects
+		//NOTE: deletion updates will be determined by the ContentHandler in the future
+		return $updates;
+	}
+
 	/**
 	 * Roll back the most recent consecutive set of edits to a page
 	 * from the same user; fails if there are no eligible edits to
@@ -2960,16 +2970,6 @@ class WikiPage extends Page {
 		wfDeprecated( __METHOD__, '1.18' );
 		global $wgUser;
 		return $this->isParserCacheUsed( ParserOptions::newFromUser( $wgUser ), $oldid );
-	}
-
-	public function getDeletionUpdates() {
-		$updates = array(
-			new LinksDeletionUpdate( $this ),
-		);
-
-		//@todo: make a hook to add update objects
-		//NOTE: deletion updates will be determined by the ContentHandler in the future
-		return $updates;
 	}
 }
 
