@@ -1,21 +1,23 @@
 <?php
 
+/**
+ * Exception representing a failure to serialize or unserialize a content object.
+ */
 class MWContentSerializationException extends MWException {
 
 }
 
-
 /**
  * A content handler knows how do deal with a specific type of content on a wiki page.
  * Content is stored in the database in a serialized form (using a serialization format aka mime type)
- * and is be unserialized into it's native PHP represenation (the content model), which is wrappe in
+ * and is be unserialized into it's native PHP representation (the content model), which is wrapped in
  * an instance of the appropriate subclass of Content.
  *
  * ContentHandler instances are stateless singletons that serve, among other things, as a factory for
  * Content objects. Generally, there is one subclass of ContentHandler and one subclass of Content
  * for every type of content model.
  *
- * Some content types have a flat model, that is, their native represenation is the
+ * Some content types have a flat model, that is, their native representation is the
  * same as their serialized form. Examples would be JavaScript and CSS code. As of now,
  * this also applies to wikitext (mediawiki's default content type), but wikitext
  * content may be represented by a DOM or AST structure in the future.
@@ -25,7 +27,7 @@ class MWContentSerializationException extends MWException {
 abstract class ContentHandler {
 
 	/**
-	 * Conveniance function for getting flat text from a Content object. This should only
+	 * Convenience function for getting flat text from a Content object. This should only
 	 * be used in the context of backwards compatibility with code that is not yet able
 	 * to handle Content objects!
 	 *
@@ -33,7 +35,7 @@ abstract class ContentHandler {
 	 *
 	 * If $content is an instance of TextContent, this method returns the flat text as returned by $content->getNativeData().
 	 *
-	 * If $content is not a TextContent object, the bahaviour of this method depends on the global $wgContentHandlerTextFallback:
+	 * If $content is not a TextContent object, the behavior of this method depends on the global $wgContentHandlerTextFallback:
 	 * * If $wgContentHandlerTextFallback is 'fail' and $content is not a TextContent object, an MWException is thrown.
 	 * * If $wgContentHandlerTextFallback is 'serialize' and $content is not a TextContent object, $content->serialize()
 	 * is called to get a string form of the content.
@@ -70,7 +72,7 @@ abstract class ContentHandler {
 	}
 
 	/**
-	 * Conveniance function for creating a Content object from a given textual representation.
+	 * Convenience function for creating a Content object from a given textual representation.
 	 *
 	 * $text will be deserialized into a Content object of the model specified by $modelId (or,
 	 * if that is not given, $title->getContentModel()) using the given format.
@@ -78,7 +80,7 @@ abstract class ContentHandler {
 	 * @since WD.1
 	 *
 	 * @static
-	 * @param string $text the textual represenation, will be unserialized to create the Content object
+	 * @param string $text the textual representation, will be unserialized to create the Content object
 	 * @param Title $title the title of the page this text belongs to, required as a context for deserialization
 	 * @param null|String $modelId the model to deserialize to. If not provided, $title->getContentModel() is used.
 	 * @param null|String $format the format to use for deserialization. If not given, the model's default format is used.
@@ -124,7 +126,7 @@ abstract class ContentHandler {
 		global $wgNamespaceContentModels;
 
 		// NOTE: this method must not rely on $title->getContentModel() directly or indirectly,
-		//       because it is used to initialized the mContentModel memebr.
+		//       because it is used to initialized the mContentModel member.
 
 		$ns = $title->getNamespace();
 
@@ -221,7 +223,7 @@ abstract class ContentHandler {
 	 * instantiated and the class name is replaced by te resulting singleton in $wgContentHandlers.
 	 *
 	 * If no ContentHandler is defined for the desired $modelId, the ContentHandler may be provided by the
-	 * a ContentHandlerForModelID hook. if no Contenthandler can be determined, an MWException is raised.
+	 * a ContentHandlerForModelID hook. if no ContentHandler can be determined, an MWException is raised.
 	 *
 	 * @since WD.1
 	 *
@@ -307,7 +309,7 @@ abstract class ContentHandler {
 	 * or null of no mime type is known.
 	 *
 	 * Model names are localized using system messages. Message keys
-	 * have the form conent-model-$id.
+	 * have the form content-model-$id.
 	 *
 	 * @static
 	 * @param int $id the content model id, as given by a CONTENT_MODEL_XXX constant
@@ -392,6 +394,8 @@ abstract class ContentHandler {
 	 * @since WD.1
 	 *
 	 * @param int $model_id the model to check
+	 *
+	 * @throws MWException
 	 */
 	protected function checkModelID( $model_id ) {
 		if ( $model_id !== $this->mModelID ) {
@@ -422,7 +426,7 @@ abstract class ContentHandler {
 	 *
 	 * @since WD.1
 	 *
-	 * @return String the name of the default serialiozation format as a MIME type
+	 * @return String the name of the default serialization format as a MIME type
 	 */
 	public function getDefaultFormat() {
 		return $this->mSupportedFormats[0];
@@ -454,6 +458,8 @@ abstract class ContentHandler {
 	 * for checking whether a format provided as a parameter is actually supported.
 	 *
 	 * @param String $format the serialization format to check
+	 *
+	 * @throws MWException
 	 */
 	protected function checkFormat( $format ) {
 		if ( !$this->isSupportedFormat( $format ) ) {
@@ -470,6 +476,8 @@ abstract class ContentHandler {
 	 * This default implementation always returns true.
 	 *
 	 * @since WD.1
+	 *
+	 * @param \Content $content
 	 *
 	 * @return boolean
 	 */
@@ -492,15 +500,16 @@ abstract class ContentHandler {
 	}
 
 	/**
-	 * Factory
+	 * Factory creating an appropriate DifferenceEngine for this content model.
+	 *
 	 * @since WD.1
 	 *
-	 * @param $context IContextSource context to use, anything else will be ignored
-	 * @param $old Integer old ID we want to show and diff with.
-	 * @param $new String either 'prev' or 'next'.
-	 * @param $rcid Integer ??? FIXME (default 0)
-	 * @param $refreshCache boolean If set, refreshes the diff cache
-	 * @param $unhide boolean If set, allow viewing deleted revs
+	 * @param            $context      IContextSource context to use, anything else will be ignored
+	 * @param            $old          Integer old ID we want to show and diff with.
+	 * @param int|String $new          String either 'prev' or 'next'.
+	 * @param            $rcid         Integer ??? FIXME (default 0)
+	 * @param            $refreshCache boolean If set, refreshes the diff cache
+	 * @param            $unhide       boolean If set, allow viewing deleted revs
 	 *
 	 * @return DifferenceEngine
 	 */
@@ -533,9 +542,10 @@ abstract class ContentHandler {
 	 *
 	 * @since WD.1
 	 *
-	 * @param $oldContent String
-	 * @param $myContent String
-	 * @param $yourContent String
+	 * @param Content|String $oldContent  String
+	 * @param Content|String $myContent   String
+	 * @param Content|String $yourContent String
+	 *
 	 * @return Content|Bool
 	 */
 	public function merge3( Content $oldContent, Content $myContent, Content $yourContent ) {
@@ -543,22 +553,22 @@ abstract class ContentHandler {
 	}
 
 	/**
-	 * Return an applicable autosummary if one exists for the given edit.
+	 * Return an applicable auto-summary if one exists for the given edit.
 	 *
 	 * @since WD.1
 	 *
 	 * @param $oldContent Content|null: the previous text of the page.
 	 * @param $newContent Content|null: The submitted text of the page.
-	 * @param $flags Int bitmask: a bitmask of flags submitted for the edit.
+	 * @param $flags Int bit mask: a bit mask of flags submitted for the edit.
 	 *
-	 * @return string An appropriate autosummary, or an empty string.
+	 * @return string An appropriate auto-summary, or an empty string.
 	 */
 	public function getAutosummary( Content $oldContent = null, Content $newContent = null, $flags ) {
 		global $wgContLang;
 
-		// Decide what kind of autosummary is needed.
+		// Decide what kind of auto-summary is needed.
 
-		// Redirect autosummaries
+		// Redirect auto-summaries
 
 		/**
 		 * @var $ot Title
@@ -578,7 +588,7 @@ abstract class ContentHandler {
 			return wfMsgForContent( 'autoredircomment', $rt->getFullText(), $truncatedtext );
 		}
 
-		// New page autosummaries
+		// New page auto-summaries
 		if ( $flags & EDIT_NEW && $newContent->getSize() > 0 ) {
 			// If they're making a new article, give its text, truncated, in the summary.
 
@@ -588,7 +598,7 @@ abstract class ContentHandler {
 			return wfMsgForContent( 'autosumm-new', $truncatedtext );
 		}
 
-		// Blanking autosummaries
+		// Blanking auto-summaries
 		if ( !empty( $oldContent ) && $oldContent->getSize() > 0 && $newContent->getSize() == 0 ) {
 			return wfMsgForContent( 'autosumm-blank' );
 		} elseif ( !empty( $oldContent ) && $oldContent->getSize() > 10 * $newContent->getSize() && $newContent->getSize() < 500 ) {
@@ -600,8 +610,8 @@ abstract class ContentHandler {
 			return wfMsgForContent( 'autosumm-replace', $truncatedtext );
 		}
 
-		// If we reach this point, there's no applicable autosummary for our case, so our
-		// autosummary is empty.
+		// If we reach this point, there's no applicable auto-summary for our case, so our
+		// auto-summary is empty.
 
 		return '';
 	}
@@ -790,9 +800,10 @@ abstract class TextContentHandler extends ContentHandler {
 	 *
 	 * This text-based implementation uses wfMerge().
 	 *
-	 * @param $oldContent String
-	 * @param $myContent String
-	 * @param $yourContent String
+	 * @param \Content|String $oldContent  String
+	 * @param \Content|String $myContent   String
+	 * @param \Content|String $yourContent String
+	 *
 	 * @return Content|Bool
 	 */
 	public function merge3( Content $oldContent, Content $myContent, Content $yourContent ) {

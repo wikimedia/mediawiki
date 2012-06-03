@@ -1,5 +1,4 @@
 <?php
-
 /**
  * A content object represents page content, e.g. the text to show on a page.
  * Content objects have no knowledge about how they relate to Wiki pages.
@@ -46,7 +45,7 @@ abstract class Content {
 	public abstract function getTextForSummary( $maxlength = 250 );
 
 	/**
-	 * Returns native represenation of the data. Interpretation depends on the data model used,
+	 * Returns native representation of the data. Interpretation depends on the data model used,
 	 * as given by getDataModel().
 	 *
 	 * @since WD.1
@@ -89,6 +88,8 @@ abstract class Content {
 	 * supported by this Content object.
 	 *
 	 * @param int $model_id the model to check
+	 *
+	 * @throws MWException
 	 */
 	protected function checkModelID( $model_id ) {
 		if ( $model_id !== $this->model_id ) {
@@ -100,7 +101,7 @@ abstract class Content {
 	}
 
 	/**
-	 * Conveniance method that returns the ContentHandler singleton for handling the content
+	 * Convenience method that returns the ContentHandler singleton for handling the content
 	 * model this Content object uses.
 	 *
 	 * Shorthand for ContentHandler::getForContent( $this )
@@ -114,7 +115,7 @@ abstract class Content {
 	}
 
 	/**
-	 * Conveniance method that returns the default serialization format for the content model
+	 * Convenience method that returns the default serialization format for the content model
 	 * model this Content object uses.
 	 *
 	 * Shorthand for $this->getContentHandler()->getDefaultFormat()
@@ -128,7 +129,7 @@ abstract class Content {
 	}
 
 	/**
-	 * Conveniance method that returns the list of serialization formats supported
+	 * Convenience method that returns the list of serialization formats supported
 	 * for the content model model this Content object uses.
 	 *
 	 * Shorthand for $this->getContentHandler()->getSupportedFormats()
@@ -176,7 +177,7 @@ abstract class Content {
 	}
 
 	/**
-	 * Conveniance method for serializing this Content object.
+	 * Convenience method for serializing this Content object.
 	 *
 	 * Shorthand for $this->getContentHandler()->serializeContent( $this, $format )
 	 *
@@ -219,13 +220,13 @@ abstract class Content {
 	 *
 	 * Will returns false if $that is null.
 	 * Will return true if $that === $this.
-	 * Will return false if $that->getModleName() != $this->getModel().
+	 * Will return false if $that->getModelName() != $this->getModel().
 	 * Will return false if $that->getNativeData() is not equal to $this->getNativeData(),
 	 * where the meaning of "equal" depends on the actual data model.
 	 *
 	 * Implementations should be careful to make equals() transitive and reflexive:
 	 *
-	 * * $a->equals( $b ) <=> $b->equals( $b )
+	 * * $a->equals( $b ) <=> $b->equals( $a )
 	 * * $a->equals( $b ) &&  $b->equals( $c ) ==> $a->equals( $c )
 	 *
 	 * @since WD.1
@@ -257,8 +258,8 @@ abstract class Content {
 	 * * $original->getModel() === $copy->getModel()
 	 * * $original->equals( $copy )
 	 *
-	 * If and only if the Content object is imutable, the copy() method can and should
-	 * return $this. That is,  $copy === $original may be true, but only for imutable content
+	 * If and only if the Content object is immutable, the copy() method can and should
+	 * return $this. That is,  $copy === $original may be true, but only for immutable content
 	 * objects.
 	 *
 	 * @since WD.1
@@ -291,12 +292,13 @@ abstract class Content {
 	 *
 	 * @return ParserOutput
 	 */
-	public abstract function getParserOutput( Title $title, $revId = null, ParserOptions $options = null, $generateHtml = true );
+	public abstract function getParserOutput( Title $title, $revId = null, ParserOptions $options = null, $generateHtml = true ); #TODO: move to ContentHandler; #TODO: rename to getRenderOutput()
+	#TODO: make RenderOutput and RenderOptions base classes
 
 	/**
 	 * Returns a list of DataUpdate objects for recording information about this Content in some secondary
 	 * data store. If the optional second argument, $old, is given, the updates may model only the changes that
-	 * need to be made to replace information about the old content with infomration about the new content.
+	 * need to be made to replace information about the old content with information about the new content.
 	 *
 	 * This default implementation calls $this->getParserOutput( $title, null, null, false ), and then
 	 * calls getSecondaryDataUpdates( $title, $recursive ) on the resulting ParserOutput object.
@@ -333,8 +335,8 @@ abstract class Content {
 	}
 
 	/**
-	 * Construct the redirect destination from this content and return an
-	 * array of Titles, or null if this content doesn't represent a redirect.
+	 * Construct the redirect destination from this content and return a Title,
+	 * or null if this content doesn't represent a redirect.
 	 * This will only return the immediate redirect target, useful for
 	 * the redirect table and other checks that don't need full recursion.
 	 *
@@ -377,7 +379,7 @@ abstract class Content {
 	 * @since WD.1
 	 *
 	 * @param String $sectionId the section's id, given as a numeric string. The id "0" retrieves the section before
-	 *          the first heading, "1" the text between the first heading (inluded) and the second heading (excluded), etc.
+	 *          the first heading, "1" the text between the first heading (included) and the second heading (excluded), etc.
 	 * @return Content|Boolean|null the section, or false if no such section exist, or null if sections are not supported
 	 */
 	public function getSection( $sectionId ) {
@@ -459,7 +461,7 @@ abstract class Content {
 /**
  * Content object implementation for representing flat text.
  *
- * TextContent instances are imutable
+ * TextContent instances are immutable
  *
  * @since WD.1
  */
@@ -472,7 +474,7 @@ abstract class TextContent extends Content {
 	}
 
 	public function copy() {
-		return $this; #NOTE: this is ok since TextContent are imutable.
+		return $this; #NOTE: this is ok since TextContent are immutable.
 	}
 
 	public function getTextForSummary( $maxlength = 250 ) {
@@ -550,6 +552,11 @@ abstract class TextContent extends Content {
 	/**
 	 * Returns a generic ParserOutput object, wrapping the HTML returned by getHtml().
 	 *
+	 * @param Title              $title context title for parsing
+	 * @param int|null           $revId revision id (the parser wants that for some reason)
+	 * @param ParserOptions|null $options parser options
+	 * @param bool               $generateHtml whether or not to generate HTML
+	 *
 	 * @return ParserOutput representing the HTML form of the text
 	 */
 	public function getParserOutput( Title $title, $revId = null, ParserOptions $options = null, $generateHtml = true ) {
@@ -563,6 +570,12 @@ abstract class TextContent extends Content {
 		return $po;
 	}
 
+	/**
+	 * Generates an HTML version of the content, for display.
+	 * Used by getParserOutput() to construct a ParserOutput object
+	 *
+	 * @return String
+	 */
 	protected abstract function getHtml( );
 
 	/**
@@ -592,7 +605,7 @@ abstract class TextContent extends Content {
 		$ota = explode( "\n", $wgContLang->segmentForDiff( $otext ) );
 		$nta = explode( "\n", $wgContLang->segmentForDiff( $ntext ) );
 
-		$diffs = new Diff( $ota, $nta );
+		$diff = new Diff( $ota, $nta );
 		return $diff;
 	}
 
@@ -615,13 +628,14 @@ class WikitextContent extends TextContent {
 	/**
 	 * Returns a ParserOutput object resulting from parsing the content's text using $wgParser.
 	 *
-	 * @since WikiData1
+	 * @since    WD.1
 	 *
-	 * @param IContextSource|null $context
-	 * @param null $revId
+	 * @param \Title             $title
+	 * @param null               $revId
 	 * @param null|ParserOptions $options
-	 * @param bool $generateHtml
+	 * @param bool               $generateHtml
 	 *
+	 * @internal param \IContextSource|null $context
 	 * @return ParserOutput representing the HTML form of the text
 	 */
 	public function getParserOutput( Title $title, $revId = null, ParserOptions $options = null, $generateHtml = true ) {
@@ -639,7 +653,9 @@ class WikitextContent extends TextContent {
 	/**
 	 * Returns the section with the given id.
 	 *
-	 * @param String $sectionId the section's id
+	 * @param String $section
+	 *
+	 * @internal param String $sectionId the section's id
 	 * @return Content|false|null the section, or false if no such section exist, or null if sections are not supported
 	 */
 	public function getSection( $section ) {
@@ -654,9 +670,11 @@ class WikitextContent extends TextContent {
 	/**
 	 * Replaces a section in the wikitext
 	 *
-	 * @param $section empty/null/false or a section number (0, 1, 2, T1, T2...), or "new"
-	 * @param $with Content: new content of the section
+	 * @param $section      empty/null/false or a section number (0, 1, 2, T1, T2...), or "new"
+	 * @param $with         Content: new content of the section
 	 * @param $sectionTitle String: new section's subject, only if $section is 'new'
+	 *
+	 * @throws MWException
 	 * @return Content Complete article content, or null if error
 	 */
 	public function replaceSection( $section, Content $with, $sectionTitle = '' ) {
@@ -719,7 +737,7 @@ class WikitextContent extends TextContent {
 	 * @param ParserOptions $popts
 	 * @return Content
 	 */
-	public function preSaveTransform( Title $title, User $user, ParserOptions $popts ) {
+	public function preSaveTransform( Title $title, User $user, ParserOptions $popts ) { #FIXME: also needed for JS/CSS!
 		global $wgParser, $wgConteLang;
 
 		$text = $this->getNativeData();
@@ -761,11 +779,13 @@ class WikitextContent extends TextContent {
 
 	/**
 	 * Returns true if this content is not a redirect, and this content's text is countable according to
-	 * the criteria defiend by $wgArticleCountMethod.
+	 * the criteria defined by $wgArticleCountMethod.
 	 *
-	 * @param Bool $hasLinks if it is known whether this content contains links, provide this information here,
-	 *                        to avoid redundant parsing to find out.
-	 * @param IContextSource $context context for parsing if necessary
+	 * @param Bool        $hasLinks  if it is known whether this content contains links, provide this information here,
+	 *                               to avoid redundant parsing to find out.
+	 * @param null|\Title $title
+	 *
+	 * @internal param \IContextSource $context context for parsing if necessary
 	 *
 	 * @return bool true if the content is countable
 	 */
@@ -836,6 +856,7 @@ class MessageContent extends TextContent {
 
 	/**
 	 * Returns the message as rendered HTML, using the options supplied to the constructor plus "parse".
+	 * @return String the message text, parsed
 	 */
 	protected function getHtml(  ) {
 		$opt = array_merge( $this->mOptions, array('parse') );
@@ -846,6 +867,8 @@ class MessageContent extends TextContent {
 
 	/**
 	 * Returns the message as raw text, using the options supplied to the constructor minus "parse" and "parseinline".
+	 *
+	 * @return String the message text, unparsed.
 	 */
 	public function getNativeData( ) {
 		$opt = array_diff( $this->mOptions, array('parse', 'parseinline') );
