@@ -473,6 +473,7 @@ $wgOptionalMessages = array(
 	'version-entrypoints-scriptpath',
 	'mergehistory-revisionrow',
 	'categoryviewer-pagedlinks',
+	'undelete-revisionrow',
 );
 
 /** EXIF messages, which may be set as optional in several checks, but are generally mandatory */
