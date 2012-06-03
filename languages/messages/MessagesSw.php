@@ -1126,6 +1126,7 @@ Ujue lakini kwamba kumbukumbu za {{SITENAME}} kule Google labda zilipitwa na wak
 'datedefault' => 'Chaguo-msingi',
 'prefs-beta' => 'Zana za Beta',
 'prefs-datetime' => 'Tarehe na saa',
+'prefs-user-pages' => 'Kurasa za watumiaji',
 'prefs-personal' => 'Kuhusu mtumiaji',
 'prefs-rc' => 'Mabadiliko ya karibuni',
 'prefs-watchlist' => 'Maangalizi',
@@ -1677,7 +1678,7 @@ Pengine ungependa kuhariri maelezo yaliyopo katika [$2 ukurasa wa maelezo ya fai
 ** Faili la nakili',
 'filedelete-edit-reasonlist' => 'Kuhariri orodha ya sababu za kufuta',
 'filedelete-maintenance' => 'Tovuti inarekebishwa. Kwa muda huo kufuta na kurudisha mafaili haiwezikani.',
-'filedelete-maintenance-title' => 'Faili hilifutiki',
+'filedelete-maintenance-title' => 'Faili halifutiki',
 
 # MIME search
 'mimesearch' => 'Utafutaji wa MIME',
@@ -1720,7 +1721,7 @@ Kumbuka kuhakikisha kwamba hakuna viungo vingine vinavyoelekea kigezo fulani kab
 'statistics-edits' => 'Kurasa zilizohaririwa tangu {{SITENAME}} ilivyoanzishwa',
 'statistics-edits-average' => 'Wastani wa uhariri kwa kurasa',
 'statistics-views-total' => 'Jumla ya mitazamaji',
-'statistics-views-total-desc' => 'Tazamo za kurasa zisizokuwepo na kurasa maalumu ambazo hazijaorodheshwa.',
+'statistics-views-total-desc' => 'Tazamo za kurasa zisizokuwepo na kurasa maalumu hazionikani.',
 'statistics-views-peredit' => 'Mitazamaji kwa haririo',
 'statistics-users' => '[[Special:ListUsers|Watumiaji]] waliojisajiri',
 'statistics-users-active' => 'Watumiaji wanaofanya kazi',

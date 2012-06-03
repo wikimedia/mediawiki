@@ -182,10 +182,13 @@ $messages = array(
 'tog-enotifminoredits' => "Peu'ek cit surat-e keu lon bak neuandam bacut",
 'tog-enotifrevealaddr' => 'Peuleumah alamat surat-e lon bak neubrithee surat-e',
 'tog-shownumberswatching' => 'Peuleumah jumeulah ureueng kalon',
-'tog-oldsig' => 'Peuleumah tanda jaroe:',
+'tog-oldsig' => 'Tanda jaroe jinoe:',
 'tog-fancysig' => 'Peujeuet tanda jaroe sibagoe naseukah wiki (hana hubong keudroe)',
-'tog-externaleditor' => 'Nguy alat leumiek keu ngon peugot kata luwa',
-'tog-externaldiff' => 'Nguy alat leumiek luwa keu eu bida neuandam',
+'tog-externaleditor' => 'Nguy editor eksternal nyang ka na (keu nyang utoih khong, peureulee neuato kusuih bak kompute droeneuh.
+
+[//www.mediawiki.org/wiki/Manual:External_editors Haba leubeh leungkap.])',
+'tog-externaldiff' => 'Nguy diff eksternal nyang ka na (keu nyang utoih mantong, peureulee neuato kusuih bak kompute droeneuh
+[//www.mediawiki.org/wiki/Manual:External_editors More information.])',
 'tog-showjumplinks' => 'Peuudep hubong keu ngon bantu "langsong u"',
 'tog-uselivepreview' => 'Nguy peuleumah hase langsong (JavaScript) (baci)',
 'tog-forceeditsummary' => 'Peuingat lon meunyo plok neuringkaih neuandam mantong soh',
@@ -199,6 +202,11 @@ $messages = array(
 
 'underline-always' => 'Sabe',
 'underline-never' => "H'an tom",
+
+# Font style option in Special:Preferences
+'editfont-monospace' => 'Seunurat Monospace',
+'editfont-sansserif' => 'Seunurat Sans-serif',
+'editfont-serif' => 'Seunurat Serif',
 
 # Dates
 'sunday' => 'Aleuhat',
@@ -259,6 +267,7 @@ $messages = array(
 'category-media-header' => 'Alat lam kawan "$1"',
 'category-empty' => "''Kawan nyoë jinoë hat hana teunuléh atawa media.''",
 'hidden-categories' => '{{PLURAL:$1|Kawan teusom|Kawan teusom}}',
+'hidden-category-category' => 'Kawan teusom',
 'category-subcat-count' => '{{PLURAL:$2|Kawan nyoë  cit na saboh yupkawan nyoë.|Kawan nyoë na {{PLURAL:$1|yupkawan|$1 yupkawan}} nyoë, dari ban dum $2.}}',
 'category-article-count' => '{{PLURAL:$2|Kawan nyoë cit na saboh ôn nyoë.|Kawan nyoë na  {{PLURAL:$1|ôn|$1 ôn }}, dari ban dum $2.}}',
 'category-file-count' => '{{PLURAL:$2|Kawan nyoe cit na beureukaih nyoe sagay.|{{PLURAL:$1|beureukaih|$1 beureukaih}} nyoe na lam kawan nyoe, nibak ban dum $2.}}',
@@ -293,7 +302,7 @@ $messages = array(
 'vector-action-move' => 'Peupinah',
 'vector-action-protect' => 'Peulindông',
 'vector-action-undelete' => 'Bateuë sampôh',
-'vector-action-unprotect' => 'Bateuë peulindông',
+'vector-action-unprotect' => 'Gantoe neulindông',
 'vector-simplesearch-preference' => 'Peuudep mita saran nyang geupeusamporeuna (keu kulet Vector khong)',
 'vector-view-create' => 'Peugöt',
 'vector-view-edit' => 'Andam',
@@ -327,8 +336,8 @@ $messages = array(
 'protect' => 'Peulindông',
 'protect_change' => 'ubah',
 'protectthispage' => 'Peulindong on nyoe',
-'unprotect' => 'Bek peulindong',
-'unprotectthispage' => 'Peuhah neulindông ôn nyoë',
+'unprotect' => 'Gantoe neulindong',
+'unprotectthispage' => 'Gantoe neulindông ôn nyoë',
 'newpage' => 'Ôn barô',
 'talkpage' => 'Peugah haba bhah ôn nyoë',
 'talkpagelinktext' => 'Peugah haba',

@@ -1241,7 +1241,7 @@ Parameters:
 *Parameter $3 is a log comment for the merge',
 'mergehistory-same-destination' => 'Error message shown on [[Special:MergeHistory]] when the user entered the same page title to both source and destination',
 'mergehistory-reason' => '{{Identical|Reason}}',
-'mergehistory-revisionrow'                => 'A revision row in the merge history page. Parameters:
+'mergehistory-revisionrow' => 'A revision row in the merge history page. Parameters:
 * $1 is a radio button to indicate a merge point,
 * $2 is a link to the last revision of a page ({{msg-mw|last}}),
 * $3 is a page link,

@@ -281,7 +281,7 @@ Erklärung: '''({{int:cur}})''' = Unnerschied zu jetzert,
 'revertmerge' => 'Zammefiehrung rickgängich mache',
 
 # Diffs
-'history-title' => 'Versionsgschicht vun "$1"',
+'history-title' => 'Änarungsgschischd vun "$1"',
 'lineno' => 'Zail $1:',
 'compareselectedversions' => 'Die Versione mitenonner vergleiche',
 'editundo' => 'zerick',
