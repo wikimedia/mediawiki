@@ -63,7 +63,7 @@ class ApiQueryCategoryMembers extends ApiQueryGeneratorBase {
 		$fld_ids = isset( $prop['ids'] );
 		$fld_title = isset( $prop['title'] );
 		$fld_sortkey = isset( $prop['sortkey'] );
-		$fld_sortkeyprefix = isset( $prop['sortkeyprefix'] );
+		$fld_sortkeyprefix = isset( $prop['sortkeyprefix'] ) || $params['exactsortkeyprefix'] !== null;
 		$fld_timestamp = isset( $prop['timestamp'] );
 		$fld_type = isset( $prop['type'] );
 
@@ -129,12 +129,19 @@ class ApiQueryCategoryMembers extends ApiQueryGeneratorBase {
 				$this->addWhereRange( 'cl_sortkey', $dir, null, null );
 				$this->addWhereRange( 'cl_from', $dir, null, null );
 			} else {
-				$startsortkey = $params['startsortkeyprefix'] !== null ?
-					Collation::singleton()->getSortkey( $params['startsortkeyprefix'] ) :
+				$startsortkeyprefix = $params['exactsortkeyprefix'] !== null ?
+					$params['exactsortkeyprefix'] : $params['startsortkeyprefix'];
+				$startsortkey = $startsortkeyprefix !== null ?
+					Collation::singleton()->getSortkey( $startsortkeyprefix ) :
 					$params['startsortkey'];
-				$endsortkey = $params['endsortkeyprefix'] !== null ?
-					Collation::singleton()->getSortkey( $params['endsortkeyprefix'] ) :
-					$params['endsortkey'];
+				if ( $params['exactsortkeyprefix'] !== null ) {
+					// exactsortkeyprefix in use, ignore endsortkey/endsortkeyprefix
+					$endsortkey = null;
+				} else {
+					$endsortkey = $params['endsortkeyprefix'] !== null ?
+						Collation::singleton()->getSortkey( $params['endsortkeyprefix'] ) :
+						$params['endsortkey'];
+				}
 
 				// The below produces ORDER BY cl_sortkey, cl_from, possibly with DESC added to each of them
 				$this->addWhereRange( 'cl_sortkey',
@@ -204,6 +211,14 @@ class ApiQueryCategoryMembers extends ApiQueryGeneratorBase {
 			// useless results to the client. ~~~~
 			if ( count( $miser_ns ) && !in_array( $row->page_namespace, $miser_ns ) ) {
 				continue;
+			}
+			// Also do cmexactsortkeyprefix filtering here
+			if ( $params['exactsortkeyprefix'] !== null &&
+				$row->cl_sortkey_prefix !== $params['exactsortkeyprefix']
+			) {
+				// Because we've also set the startsortkeyprefix to this value,
+				// we know there aren't gonna be any matches further down either
+				break;
 			}
 
 			if ( is_null( $resultPageSet ) ) {
@@ -321,6 +336,7 @@ class ApiQueryCategoryMembers extends ApiQueryGeneratorBase {
 			'endsortkey' => null,
 			'startsortkeyprefix' => null,
 			'endsortkeyprefix' => null,
+			'exactsortkeyprefix' => null,
 		);
 	}
 
@@ -349,6 +365,7 @@ class ApiQueryCategoryMembers extends ApiQueryGeneratorBase {
 			'endsortkey' => "Sortkey to end listing at. Must be given in binary format. Can only be used with {$p}sort=sortkey",
 			'startsortkeyprefix' => "Sortkey prefix to start listing from. Can only be used with {$p}sort=sortkey. Overrides {$p}startsortkey",
 			'endsortkeyprefix' => "Sortkey prefix to end listing BEFORE (not at, if this value occurs it will not be included!). Can only be used with {$p}sort=sortkey. Overrides {$p}endsortkey",
+			'exactsortkeyprefix' => "Only list pages with this exact sortkey prefix. Can only be used with {$p}sort=sortkey. Overrides the other start/end sortkey/sortkeyprefix parameters.",
 			'continue' => 'For large categories, give the value returned from previous query',
 			'limit' => 'The maximum number of pages to return.',
 		);
