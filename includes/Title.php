@@ -3287,21 +3287,39 @@ class Title {
 	 * Get a list of URLs to purge from the Squid cache when this
 	 * page changes
 	 *
+	 * @param $redirects bool Whether other redirect URLs
+	 *   which can be used to view this page should be included
+	 * @param $history bool Whether history URL should be included
+	 * @param $variants bool Whether URLs for variants of this page
+	 *   should be included
 	 * @return Array of String the URLs
 	 */
-	public function getSquidURLs() {
+	public function getSquidURLs( $redirects = true, $history = true, $variants = true ) {
 		global $wgContLang;
 
 		$urls = array(
 			$this->getInternalURL(),
-			$this->getInternalURL( 'action=history' )
 		);
 
+		if ( $history ) {
+			$urls[] = $this->getInternalURL( 'action=history' );
+		}
+
 		// purge variant urls as well
-		if ( $wgContLang->hasVariants() ) {
+		if ( $variants && $wgContLang->hasVariants() ) {
 			$variants = $wgContLang->getVariants();
 			foreach ( $variants as $vCode ) {
 				$urls[] = $this->getInternalURL( '', $vCode );
+			}
+		}
+
+		if ( $redirects ) {
+			foreach ( $this->getRedirectsHere() as $t ) {
+				// We don't allow double redirects;
+				// history pages of redirect pages don't change;
+				// usually redirect pages are not viewed with variant set.
+				// So all parameters are set to false now.
+				$urls = array_merge( $urls, $t->getSquidURLs( false, false, false ) );
 			}
 		}
 
