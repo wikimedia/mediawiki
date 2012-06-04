@@ -174,7 +174,7 @@ class SpecialLog extends SpecialPage {
 		$s .= Html::hidden( 'type', 'logging' ) . "\n";
 		$button = Html::element( 'button',
 			array( 'type' => 'submit', 'class' => "deleterevision-log-submit mw-log-deleterevision-button" ),
-			$this->msg( 'showhideselectedversions' )->text()
+			$this->msg( 'showhideselectedlogentries' )->text()
 		) . "\n";
 		$s .= $button . $formcontents . $button;
 		$s .= Html::closeElement( 'form' );
