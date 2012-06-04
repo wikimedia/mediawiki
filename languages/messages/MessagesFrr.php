@@ -409,6 +409,8 @@ $2',
 Jü späre wörd döör [[User:$1|$1]] ma grün "$2" inruchted.',
 'filereadonlyerror' => 'Det datei „$1“ koon ei feranert wurd, auer uun det fertiaknis „$2“ bluas leesen wurd koon.
 Di grünj faan di administraator as: „$3“.',
+'invalidtitle-knownnamespace' => 'Ferkiard auerskraft uun di nöömrüm „$2“ an tekst „$3“',
+'invalidtitle-unknownnamespace' => 'Ferkiard auerskraft uun di ünbekäänd nöömrüm „$1“ an tekst „$2“',
 
 # Virus scanner
 'virus-badscanner' => "Hiinje konfigurasjoon: ünbekånde fiirusscanner: ''$1''",
@@ -702,7 +704,7 @@ Det sidj as oober noch ei seekert!",
 'session_fail_preview' => "'''Din werk küd ei ufseekert wurd, diar as wat skiaf gingen.'''
 Fersjük det man noch ans an trak do üüb ''Sid spiikre''.
 Wan't do imer noch ei loket, [[Special:UserLogout|melde di uf]] an weder uun.",
-'session_fail_preview_html' => "'''Din werk küd ei seekerd wurd. Diar as wat skiaf gingen.'''
+'session_fail_preview_html' => "'''Din werk küd ei seekert wurd. Diar as wat skiaf gingen.'''
 
 ''Uun {{SITENAME}} as HTML aktiwiaret, an diaram as JavaScript deaktiwiaret wurden.''
 
@@ -740,20 +742,20 @@ Wan dü heer wat iinskrafst, do beest dü diarmä iinferstenen an seekerst tu, d
 Wees sü gödj än sääkre di täkst lokool aw din kompjuuter än fersäk tu n lääsern tidpunkt, da änringe tu ouerdreegen.'''.
 
 Grün for jü späre: $1",
-'protectedpagewarning' => "'''PÅÅS AW: Jüheer sid wörd spärd. Bloot benjütere ma adminstrasjoonsruchte koone jü sid beårbe.'''
-For informasjoon füliet di aktuäle logbökönjdråch:",
-'semiprotectedpagewarning' => "'''PÅÅS AW: Jüheer sid wörd spärd. Bloot benjütere ma adminstrasjoonsruchte koone jü sid beårbe.'''
-For informasjoon füliet di aktuäle logbökönjdråch:",
-'cascadeprotectedwarning' => "'''Woorschauing:''' Jüheer sid wörd sü önj ferbading hülen, dåt jü bloot döör benjütere ma administraator-ruchte beårbed wårde koon. Jü as önj {{PLURAL:$1|jü füliend sid|da füliende side}} önjbünen, da döör jü kaskaadespäropsjoon önj ferbading hülen {{PLURAL:$1|wårt|wårde}}:",
-'titleprotectedwarning' => "'''PÅÅS AW: \"Dåt måågen foon side wörd spärd. Bloot benjütere ma [[Special:ListGroupRights|spetsjäle ruchte]] koone da side mååge.'''
-For informasjoon füliet jü leest logbök-önjdråch:",
+'protectedpagewarning' => "'''Paase üüb: Detdiar sidj as speret wurden. Bluas administratooren kön det bewerke.'''
+Uun't logbuk stäänt muar diartu:",
+'semiprotectedpagewarning' => "'''Paase üüb: Detdiar sidj as dialwiis tu't bewerkin speret wurden. Bluas gudkäänd brükern kön det bewerke.'''
+Uun't logbuk stäänt muar diartu:",
+'cascadeprotectedwarning' => "'''Paase üüb:''' Detdiar sidj koon bluas faan administratooren bewerket wurd. Hat as uun {{PLURAL:$1|detdiar ööder sidj|jodiar ööder sidjen}} iinbünjen, diar troch en kaskaaden-optsjuun seekert {{PLURAL:$1|as|san}}:",
+'titleprotectedwarning' => "'''Paase üüb: \"Detdiar sidj mä didiar nööm koon ei faan arken bewerket wurd. Bluas enkelt brükern mä [[Special:ListGroupRights|was brükerrochten]] kön detdiar sidj nei maage of bewerke.'''
+Uun't logbuk stäänt muar diartu:",
 'templatesused' => '{{PLURAL:$1|Jü füliend forlååg wårt|Da füliende forlååge wårde}} foon jüdeer sid ferwånd:',
 'templatesusedpreview' => '{{PLURAL:$1|Jü füliend forlååg wårt|Da füliende forlååge wårde}} foon diheere sideforlök ferwånd:',
 'templatesusedsection' => '{{PLURAL:$1|Jü füliend forlååg wårt|Da füliende forlååge wårde}} foon dideer oufsnaas ferwånd:',
-'template-protected' => '(önj ferbading hülen iinj schriwen)',
-'template-semiprotected' => '(schriwschütsed for ünönjmäldede än naie brükere)',
+'template-protected' => '(seekert)',
+'template-semiprotected' => '(hualew-seekert)',
 'hiddencategories' => 'Jüdeer sid as lasmoot foon {{PLURAL:$1|1 ferstäägen kategorii|$1 ferstäägene kategoriie}}:',
-'nocreatetitle' => 'Dåt måågeb foon naie side as begränsed.',
+'nocreatetitle' => 'Det maagin faan nei sidjen as ei saner aanj mögelk.',
 'nocreatetext' => 'Aw {{SITENAME}} wörd dåt måågen foon naie side begränsed.
 Dü koost bestönjene side änre unti de [[Special:UserLogin|önjmälde unti mååg en account]].',
 'nocreate-loggedin' => 'Dü heest niinj beruchtiging, naie side tu måågen.',
@@ -764,8 +766,8 @@ Dü koost bestönjene side änre unti de [[Special:UserLogin|önjmälde unti må
 'permissionserrorstext-withaction' => 'Dü bast ai beruchtit, $2.
 {{PLURAL:$1|grün|grüne}}:',
 'recreate-moveddeleted-warn' => "'''Paase üüb: Dü wel en artiikel maage, diar iar al ans stregen wurden as.'''
-
-Auerlei di det gud, amdat dü niks ferkiard maagest. At logbuk faan diheer artiikel stäänt diar:",
+Auerlei di det gud, amdat dü niks ferkiard maagest.
+Uun't logbuk stäänt muar diartu:",
 'moveddeleted-notice' => 'Jüheer sid wörd sleeked. Deer füliet en üttooch üt dåt sleek- än ferschüwingslogbök for jüheer sid.',
 'log-fulllog' => 'Åle logbük-önjdrååge önjkiike',
 'edit-hook-aborted' => 'Jü beårbing wörd suner ferklååring döör en snaasstää oufbräägen.',
@@ -789,6 +791,10 @@ Deer {{PLURAL:$2|mötj ai mör ås 1 apteel|mönje ai mör ås $1 apteele}} wees
 'parser-template-loop-warning' => 'Forlåågesloif önjtdäkt: [[$1]]',
 'parser-template-recursion-depth-warning' => 'Forloagerekursjoonsdiipgränse ouerschran ($1)',
 'language-converter-depth-warning' => 'Spräkekonwärsjoonsdiipdegränse ouerschren ($1)',
+'node-count-exceeded-category' => 'Jodiar sidjen haa tuföl ferbinjangen (nodes)',
+'node-count-exceeded-warning' => 'Detdiar sidj hää tuföl ferbinjangen (nodes)',
+'expansion-depth-exceeded-category' => 'Jodiar sidjen haa tuföl ütjwidjangen (expansion)',
+'expansion-depth-exceeded-warning' => 'Detdiar sidj hää tuföl ütjwidjangen (expansion)',
 'parser-unstrip-loop-warning' => 'Diar as en jinsidjag ferwisang',
 'parser-unstrip-recursion-limit' => 'Tuföl jinsidjag ferwisangen bi $1',
 
@@ -1094,7 +1100,7 @@ A nawigatsjuun links saat ales weder turag üüb di ual stant.',
 'recentchangescount' => 'Soföl feranerangen skel uunwiset wurd:',
 'prefs-help-recentchangescount' => 'Det san a leetst feranerangen, wersjuunen an logbuken.',
 'prefs-help-watchlist-token' => "Wan dü detdiar fial mä en hiamelken code ütjfalst, woort en RSS-feed iinracht. Arken mä didiar code koon do sä, wat dü uun't uug behual wel. Diaram skul hi ei so ianfach wees, nem dach didiar: $1",
-'savedprefs' => 'Di iinstelangen san seekerd wurden.',
+'savedprefs' => 'Din iinstelangen san seekert wurden.',
 'timezonelegend' => 'Tidjsoon:',
 'localtime' => 'lokaal tid',
 'timezoneuseserverdefault' => 'Wiki standard tidj brük ($1)',
@@ -1129,7 +1135,7 @@ Do san jo ual iinstelangen wech.',
 'username' => 'Brükernoome:',
 'uid' => 'Brüker ID:',
 'prefs-memberingroups' => 'Lasmoot faan {{PLURAL:$1|brükerskööl|brükersköölen}}:',
-'prefs-registration' => 'Uunmeldetidj',
+'prefs-registration' => 'Uunmelde-tidj',
 'yourrealname' => 'Rocht nööm:',
 'yourlanguage' => 'Spräke:',
 'yourvariant' => 'Spriak:',
@@ -1170,7 +1176,7 @@ Do san jo ual iinstelangen wech.',
 # User rights
 'userrights' => 'Brükerrochten bewerke',
 'userrights-lookup-user' => 'Brükersköölen bewerke',
-'userrights-user-editname' => 'Brükernoome:',
+'userrights-user-editname' => 'Brükernööm:',
 'editusergroup' => 'Brükersköölen bewerke',
 'editinguser' => "Brükerrochten faan '''[[User:$1|$1]]''' $2 feranere",
 'userrights-editusergroup' => 'Lasmootskap tu brükersköölen bewerke',
@@ -1214,6 +1220,30 @@ Do san jo ual iinstelangen wech.',
 'grouppage-suppress' => '{{ns:project}}:Oversighter',
 
 # Rights
+'right-read' => 'Sidjen lees',
+'right-edit' => 'Sidjen bewerke',
+'right-createpage' => 'Sidjen maage (saner diskusjuunssidjen)',
+'right-createtalk' => 'Diskusjuunssidjen maage',
+'right-createaccount' => 'Brükerkonto iinracht',
+'right-move' => 'Sidjen fersküüw',
+'right-move-subpages' => 'Sidjen mä onersidjen fersküüw',
+'right-move-rootuserpages' => 'Hood-brükersidj fersküüw',
+'right-movefile' => 'Dateien fersküüw',
+'right-suppressredirect' => "Bi't fersküüwen nian widjerfeerang iinracht",
+'right-upload' => 'Dateien huuchsjüür',
+'right-reupload' => 'Dateien auerskriiw',
+'right-reupload-own' => 'En datei auerskriiw, diar dü salew huuchsjüürd heest',
+'right-reupload-shared' => 'En datei auerskriiw, diar uun en gemiansoom archiif leit',
+'right-upload_by_url' => 'Dateien faan en URL-adress huuchsjüür',
+'right-purge' => 'Sidjen-cache leesag maage saner efterfraagin',
+'right-autoconfirmed' => 'Hualew-seekert sidjen bewerke',
+'right-bot' => 'Automatisiaret bewerke',
+'right-nominornewtalk' => 'Letj feranerangen üüb diskusjuunssidjen wurd ei üs „nei noorachten“ uunwiset.',
+'right-apihighlimits' => 'Huuger taalen für API-uunfraagen brük',
+'right-writeapi' => 'Write-API brük',
+'right-delete' => 'Sidjen strik',
+'right-bigdelete' => 'Sidjen mä föl wersjuunen strik',
+'right-deleterevision' => 'Enkelt wersjuunen faan en sidj strik of turaghaale',
 'right-sendemail' => 'E-mails tu oudere brükere schake',
 
 # User rights log
@@ -1451,8 +1481,8 @@ Wan dü jü sid wider foon din eefterkiikliste wächhååle mååst, klik aw jü
 'restriction-upload' => 'Huuchsjüür',
 
 # Restriction levels
-'restriction-level-sysop' => 'seekerd (bluas för administratooren)',
-'restriction-level-autoconfirmed' => 'hualew seekerd (bluas för gudkäänd brükern)',
+'restriction-level-sysop' => 'seekert (bluas för administratooren)',
+'restriction-level-autoconfirmed' => 'hualew-seekert (bluas för gudkäänd brükern)',
 'restriction-level-all' => 'aaltumaal',
 
 # Undelete

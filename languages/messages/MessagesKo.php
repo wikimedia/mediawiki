@@ -1653,8 +1653,8 @@ $1",
 'upload-tryagain' => '수정된 파일 설명을 저장',
 'uploadnologin' => '로그인하지 않음',
 'uploadnologintext' => '파일을 올리려면 [[Special:UserLogin|로그인]]해야 합니다.',
-'upload_directory_missing' => '파일 올리기용 디렉토리($1)가 없고 웹 서버가 생성하지 못했습니다.',
-'upload_directory_read_only' => '파일 저장 디렉토리($1)에 쓰기 권한이 없습니다.',
+'upload_directory_missing' => '파일 올리기용 디렉터리($1)가 없고 웹 서버가 생성하지 못했습니다.',
+'upload_directory_read_only' => '파일 저장 디렉터리($1)에 쓰기 권한이 없습니다.',
 'uploaderror' => '올리기 오류',
 'upload-recreate-warning' => "'''경고: 이 파일로 된 이름이 삭제되었거나 옮겨졌습니다.'''
 
@@ -3750,11 +3750,11 @@ $5
 'version-license' => '라이선스',
 'version-poweredby-credits' => "이 위키는 '''[//www.mediawiki.org/ MediaWiki]'''를 기반으로 작동합니다. Copyright © 2001-$1 $2.",
 'version-poweredby-others' => '그 외 다른 개발자',
-'version-license-info' => '미디어위키는 자유 소프트웨어입니다. 당신은 자유 소프트웨어 재단이 발표한 GNU 일반 공중 사용 허가서 버전 2나 그 이후 버전에 따라 이 파일을 재배포하거나 수정할 수 있습니다.
+'version-license-info' => "미디어위키는 자유 소프트웨어입니다. 당신은 자유 소프트웨어 재단이 발표한 GNU 일반 공중 사용 허가서 버전 2나 그 이후 버전에 따라 이 파일을 재배포하거나 수정할 수 있습니다.
 
-미디어위키가 유용하게 사용될 수 있기를 바라지만 상용으로 사용되거나 특정 목적에 맞을 것이라는 것을 보증하지 않습니다. 자세한 내용은 GNU 일반 공중 사용 허가서 전문을 참고하십시오.
+미디어위키가 유용하게 사용될 수 있기를 바라지만 '''상용으로 사용되거나''' '''특정 목적에 맞을 것'''이라는 것을 '''보증하지 않습니다'''. 자세한 내용은 GNU 일반 공중 사용 허가서 전문을 참고하십시오.
 
-당신은 이 프로그램을 통해 [{{SERVER}}{{SCRIPTPATH}}/COPYING GNU 일반 공중 사용 허가서 전문]을 받았습니다; 그렇지 않다면, Free Software Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA로 편지를 보내주시거나 [//www.gnu.org/licenses/old-licenses/gpl-2.0.html 온라인]으로 읽어보시기 바랍니다.',
+당신은 이 프로그램을 통해 [{{SERVER}}{{SCRIPTPATH}}/COPYING GNU 일반 공중 사용 허가서 전문]을 받았습니다; 그렇지 않다면, Free Software Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA로 편지를 보내주시거나 [//www.gnu.org/licenses/old-licenses/gpl-2.0.html 온라인으로 읽어보시기] 바랍니다.",
 'version-software' => '설치된 프로그램',
 'version-software-product' => '제품',
 'version-software-version' => '버전',
@@ -3789,7 +3789,7 @@ $5
 * <span class="mw-specialpagerestricted">제한된 특수 문서.</span>',
 'specialpages-group-maintenance' => '관리용 목록',
 'specialpages-group-other' => '다른 특수 문서',
-'specialpages-group-login' => '로그인 / 등록',
+'specialpages-group-login' => '로그인 / 가입하기',
 'specialpages-group-changes' => '최근 바뀜과 기록',
 'specialpages-group-media' => '파일 관리',
 'specialpages-group-users' => '사용자와 권한',
