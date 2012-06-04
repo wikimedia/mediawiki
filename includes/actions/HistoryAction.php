@@ -87,7 +87,7 @@ class HistoryAction extends FormlessAction {
 	 * Print the history page for an article.
 	 */
 	function onView() {
-		global $wgScript, $wgUseFileCache, $wgSquidMaxage;
+		global $wgScript, $wgUseFileCache;
 
 		$out = $this->getOutput();
 		$request = $this->getRequest();
@@ -100,10 +100,6 @@ class HistoryAction extends FormlessAction {
 		}
 
 		wfProfileIn( __METHOD__ );
-
-		if ( $request->getFullRequestURL() == $this->getTitle()->getInternalURL( 'action=history' ) ) {
-			$out->setSquidMaxage( $wgSquidMaxage );
-		}
 
 		$this->preCacheMessages();
 
