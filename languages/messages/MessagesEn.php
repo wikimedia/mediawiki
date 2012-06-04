@@ -2657,14 +2657,15 @@ Please note that other web sites may link to a file with a direct URL, and so ma
 'pubmedurl' => '//www.ncbi.nlm.nih.gov/pubmed/$1?dopt=Abstract', # do not translate or duplicate this message to other languages
 
 # Special:Log
-'specialloguserlabel'  => 'Performer:',
-'speciallogtitlelabel' => 'Target (title or user):',
-'log'                  => 'Logs',
-'all-logs-page'        => 'All public logs',
-'alllogstext'          => 'Combined display of all available logs of {{SITENAME}}.
+'specialloguserlabel'        => 'Performer:',
+'speciallogtitlelabel'       => 'Target (title or user):',
+'log'                        => 'Logs',
+'all-logs-page'              => 'All public logs',
+'alllogstext'                => 'Combined display of all available logs of {{SITENAME}}.
 You can narrow down the view by selecting a log type, the username (case-sensitive), or the affected page (also case-sensitive).',
-'logempty'             => 'No matching items in log.',
-'log-title-wildcard'   => 'Search titles starting with this text',
+'logempty'                   => 'No matching items in log.',
+'log-title-wildcard'         => 'Search titles starting with this text',
+'showhideselectedlogentries' => 'Show/hide selected log entries',
 
 # Special:AllPages
 'allpages'                => 'All pages',

@@ -1750,6 +1750,7 @@ $wgMessageStructure = array(
 		'alllogstext',
 		'logempty',
 		'log-title-wildcard',
+		'showhideselectedlogentries',
 	),
 	'allpages' => array(
 		'allpages',
