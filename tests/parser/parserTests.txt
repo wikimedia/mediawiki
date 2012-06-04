@@ -9361,6 +9361,17 @@ Language parser function
 </p>
 !! end
 
+!!test
+Padleft and padright as substr
+!! input
+{{padleft:|3|abcde}}
+{{padright:|3|abcde}}
+!! result
+<p>abc
+abc
+</p>
+!! end
+
 TODO:
 more images
 more tables
