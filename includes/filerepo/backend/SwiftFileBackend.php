@@ -1129,7 +1129,7 @@ class SwiftFileBackend extends FileBackendStore {
 	 *
 	 * @param $container string Container name
 	 * @return CF_Container
-	 * @throws InvalidResponseException
+	 * @throws CloudFilesException
 	 */
 	protected function createContainer( $container ) {
 		$conn = $this->getConnection(); // Swift proxy connection
@@ -1143,12 +1143,12 @@ class SwiftFileBackend extends FileBackendStore {
 	 *
 	 * @param $container string Container name
 	 * @return void
-	 * @throws InvalidResponseException
+	 * @throws CloudFilesException
 	 */
 	protected function deleteContainer( $container ) {
 		$conn = $this->getConnection(); // Swift proxy connection
-		$conn->delete_container( $container );
 		unset( $this->connContainers[$container] ); // purge cache
+		$conn->delete_container( $container );
 	}
 
 	/**

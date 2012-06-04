@@ -1392,8 +1392,11 @@ class FileBackendTest extends MediaWikiTestCase {
 
 	private function doTestGetFileList() {
 		$backendName = $this->backendClass();
-
 		$base = $this->baseStorePath();
+
+		// Should have no errors
+		$iter = $this->backend->getFileList( array( 'dir' => "$base/unittest-cont-notexists" ) );
+
 		$files = array(
 			"$base/unittest-cont1/test1.txt",
 			"$base/unittest-cont1/test2.txt",
