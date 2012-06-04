@@ -598,7 +598,7 @@ class Revision {
 	 *
 	 * @param $audience Integer: one of:
 	 *      Revision::FOR_PUBLIC       to be displayed to all users
-	 *      Revision::FOR_THIS_USER    to be displayed to $wgUser
+	 *      Revision::FOR_THIS_USER    to be displayed to the given user
 	 *      Revision::RAW              get the ID regardless of permissions
 	 * @param $user User object to check for, only if FOR_THIS_USER is passed
 	 *              to the $audience parameter
@@ -630,7 +630,7 @@ class Revision {
 	 *
 	 * @param $audience Integer: one of:
 	 *      Revision::FOR_PUBLIC       to be displayed to all users
-	 *      Revision::FOR_THIS_USER    to be displayed to $wgUser
+	 *      Revision::FOR_THIS_USER    to be displayed to the given user
 	 *      Revision::RAW              get the text regardless of permissions
 	 * @param $user User object to check for, only if FOR_THIS_USER is passed
 	 *              to the $audience parameter
@@ -670,7 +670,7 @@ class Revision {
 	 *
 	 * @param $audience Integer: one of:
 	 *      Revision::FOR_PUBLIC       to be displayed to all users
-	 *      Revision::FOR_THIS_USER    to be displayed to $wgUser
+	 *      Revision::FOR_THIS_USER    to be displayed to the given user
 	 *      Revision::RAW              get the text regardless of permissions
 	 * @param $user User object to check for, only if FOR_THIS_USER is passed
 	 *              to the $audience parameter
@@ -748,7 +748,7 @@ class Revision {
 	 *
 	 * @param $audience Integer: one of:
 	 *      Revision::FOR_PUBLIC       to be displayed to all users
-	 *      Revision::FOR_THIS_USER    to be displayed to $wgUser
+	 *      Revision::FOR_THIS_USER    to be displayed to the given user
 	 *      Revision::RAW              get the text regardless of permissions
 	 * @param $user User object to check for, only if FOR_THIS_USER is passed
 	 *              to the $audience parameter

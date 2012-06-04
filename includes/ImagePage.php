@@ -990,7 +990,7 @@ class ImageHistoryList extends ContextSource {
 		$img = $iscur ? $file->getName() : $file->getArchiveName();
 		$userId = $file->getUser( 'id' );
 		$userText = $file->getUser( 'text' );
-		$description = $file->getDescription();
+		$description = $file->getDescription( File::FOR_THIS_USER, $user );
 
 		$local = $this->current->isLocal();
 		$row = $selected = '';

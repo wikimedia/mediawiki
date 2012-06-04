@@ -789,10 +789,15 @@ class XmlDumpWriter {
 		} else {
 			$contents = '';
 		}
+		if ( $file->isDeleted( File::DELETED_COMMENT ) ) {
+			$comment = Xml::element( 'comment', array( 'deleted' => 'deleted' ) );
+		} else {
+			$comment = Xml::elementClean( 'comment', null, $file->getDescription() );
+		}
 		return "    <upload>\n" .
 			$this->writeTimestamp( $file->getTimestamp() ) .
 			$this->writeContributor( $file->getUser( 'id' ), $file->getUser( 'text' ) ) .
-			"      " . Xml::elementClean( 'comment', null, $file->getDescription() ) . "\n" .
+			"      " . $comment . "\n" .
 			"      " . Xml::element( 'filename', null, $file->getName() ) . "\n" .
 			$archiveName .
 			"      " . Xml::element( 'src', null, $file->getCanonicalUrl() ) . "\n" .
