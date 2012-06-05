@@ -1255,6 +1255,7 @@ $2
 'node-count-exceeded-warning' => 'تجاوزت هذه الصفحة تعداد العقد',
 'expansion-depth-exceeded-category' => 'الصفحات التي حدث فيها تجاوز عمق التوسيع',
 'expansion-depth-exceeded-warning' => 'الصفحة تجاوزت عمق التوسيع',
+'parser-unstrip-loop-warning' => 'حلقة معراة تم الكشف عنها',
 
 # "Undo" feature
 'undo-success' => 'يمكن استرجاع التعديل.
@@ -1435,15 +1436,15 @@ $1",
 'mergelogpagetext' => 'بالأسفل قائمة بأحدث عمليات الدمج لتاريخ صفحة ما إلى أخرى.',
 
 # Diffs
-'history-title' => 'تاريخ مراجعة "$1"',
-'difference-title' => 'الفرق بين المراجعتين في «$1»',
-'difference-title-multipage' => 'الفرق بين الصفحتين «$1» و«$2»',
+'history-title' => ' «$1»: تاريخ المراجعة',
+'difference-title' => '«$1»: الفرق بين المراجعتين',
+'difference-title-multipage' => '«$1» و«$2»: الفرق بين الصفحتين',
 'difference-multipage' => '(الفرق بين الصفحتين)',
 'lineno' => 'سطر $1:',
 'compareselectedversions' => 'قارن بين النسختين المختارتين',
 'showhideselectedversions' => 'أظهر/أخف المراجعات المختارة',
 'editundo' => 'تراجع',
-'diff-multi' => '({{PLURAL:$1||مراجعة واحدة متوسطة غير معروضة|مراجعتان متوسطتان غير معروضتان|$1 مراجعات متوسطة غير معروضة|$1 مراجعة متوسطة غير معروضة}} أجراها {{PLURAL:$2||مستخدم واحد|مستخدمان|$2 مستخدمين|$2 مستخدمًا|$2 مستخدم}}.)',
+'diff-multi' => '({{PLURAL:$1||مراجعة واحدة متوسطة غير معروضة أجراها|مراجعتان متوسطتان غير معروضتين أجراهما|$1 مراجعات متوسطة غير معروضة أجراها|$1 مراجعة متوسطة غير معروضة أجراها}} {{PLURAL:$2||مستخدم واحد|مستخدمان|$2 مستخدمين|$2 مستخدمًا|$2 مستخدم}}.)',
 'diff-multi-manyusers' => '({{PLURAL:$1||مراجعة واحدة متوسطة غير معروضة أجراها|مراجعتان متوسطتان غير معروضتان أجراهما|$1 مراجعات متوسطة غير معروضة أجراها|$1 مراجعة متوسطة غير معروضة أجراها}} أكثر من {{PLURAL:$2||مستخدم واحد|مستخدمين|$2 مستخدمين|$2 مستخدمًا|$2 مستخدم}}.)',
 
 # Search results
@@ -1535,6 +1536,7 @@ $1",
 'prefs-beta' => 'مزايا بيتا',
 'prefs-datetime' => 'وقت وتاريخ',
 'prefs-labs' => 'مزايا مختبرية',
+'prefs-user-pages' => 'صفحات المستخدمين',
 'prefs-personal' => 'ملف المستخدم',
 'prefs-rc' => 'أحدث التغييرات',
 'prefs-watchlist' => 'قائمة المراقبة',
@@ -2821,7 +2823,7 @@ $1',
 'unblockip' => 'رفع المنع عن المستخدم',
 'unblockiptext' => 'استخدم الاستمارة أدناه لاسترجاع صلاحية الكتابة الخاصة بعنوان أيبي أو مستخدم تم سحبها منه مسبقا.',
 'ipusubmit' => 'ارفع هذا المنع',
-'unblocked' => '[[User:$1|$1]] تم رفع منعه',
+'unblocked' => '[[User:$1|$1]] تم رفع المنع عنه',
 'unblocked-range' => 'تم إلغاء منع $1',
 'unblocked-id' => 'منع $1 تم رفعه',
 'blocklist' => 'المستخدمون الممنوعون',
@@ -2854,8 +2856,8 @@ $1',
 'change-blocklink' => 'تغيير المنع',
 'contribslink' => 'مساهمات',
 'emaillink' => 'أرسل بريدًا إلكترونيًا',
-'autoblocker' => 'تم منعك تلقائيا لأن الأيبي الخاص بك تم استخدامه مؤخراً بواسطة "[[User:$1|$1]]".
-السبب المعطى لمنع $1 هو: "$2"',
+'autoblocker' => 'تم منعك تلقائياً لأن الأيبي الخاص بك تم استخدامه مؤخراً بواسطة «[[User:$1|$1]]».
+السبب المعطى لمنع $1 هو: «$2»',
 'blocklogpage' => 'سجل المنع',
 'blocklog-showlog' => 'سبق منع هذا المستخدم.
 سجل المنع معروض بالأسفل كمرجع:',
@@ -2864,8 +2866,8 @@ $1',
 'blocklogentry' => 'منع "[[$1]]" لفترة زمنية مدتها $2 $3',
 'reblock-logentry' => 'غير إعدادات المنع ل[[$1]] بتاريخ انتهاء $2 $3',
 'blocklogtext' => 'هذا سجل بعمليات المنع ورفع المنع.
-عناوين الأيبي الممنوعة تلقائيا ليست معروضة.
-أنظر [[Special:BlockList|قائمة منع الآيبي]] لرؤية عمليات المنع المفعلة حاليا.',
+عناوين الأيبي الممنوعة تلقائياً غير معروضة.
+أنظر [[Special:BlockList|قائمة منع الآيبي]] لرؤية عمليات المنع المفعلة حالياً.',
 'unblocklogentry' => 'رفع منع $1',
 'block-log-flags-anononly' => 'المستخدمون المجهولون فقط',
 'block-log-flags-nocreate' => 'إنشاء الحسابات ممنوع',
@@ -2888,7 +2890,7 @@ $1',
 لكنه ممنوع كجزء من النطاق $2، والذي يمكن رفع المنع عنه.',
 'ip_range_invalid' => 'نطاق عناوين الأيبي المدخل غير صحيح.',
 'ip_range_toolarge' => 'لا يسمح بنطاقات المنع الأكبر من /$1',
-'blockme' => 'منعي',
+'blockme' => 'امنعني',
 'proxyblocker' => 'مانع البروكسي',
 'proxyblocker-disabled' => 'هذه الخاصية معطلة.',
 'proxyblockreason' => 'تم منع عنوان الأيبي الخاص بك لكونه بروكسي مفتوح.
@@ -2930,12 +2932,12 @@ $1',
 'move-page-legend' => 'نقل صفحة',
 'movepagetext' => "باستخدام  الاستمارة بالأسفل بإمكانك أن تغير اسم الصفحة، وأن تنقل تاريخها إلى لاسم الجديد.
 العنوان القديم سيصبح تحويلة للعنوان الجديد.
-يمكنك تحديث التحويلات التي تشير إلى العنوان الأصلي تلقائياً.
-لو اخترت ألا تفعل، تأكد من عدم وجود تحويلات [[Special:DoubleRedirects|مزدوجة]] أو [[Special:BrokenRedirects|مكسورة]].
-أنت مسؤول عن التأكد من أن الوصلات تصل إلى الصفحات التي يفترض أن تصل إليها.
+يمكنك أن تترك التحويلات التي تشير إلى العنوان الأصلي كما هي لتقوم البوتات بتحديثها تلقائياً.
+إذا اخترت أن تقوم بالتحديث يدوياً، فتأكد من عدم وجود تحويلات [[Special:DoubleRedirects|مزدوجة]] أو [[Special:BrokenRedirects|مكسورة]] وقم بتصحيحها.
+أنت المسؤول عن التأكد من أن الوصلات تصل إلى الصفحات التي يفترض أن تصل إليها.
 
-لاحظ أنه '''لن يتم''' نقل الصفحة إذا وجدت صفحة في العنوان الجديد، إلا إذا كانت فارغة، أو تحويلة ولا تاريخ لها.
-هذا يعني أنك تستطيع استرجاع الصفحة إلى مكانها لو قمت بخطأ، وأنك لا يمكنك الكتابة على صفحة موجودة.
+لاحظ أنه '''لن يتم''' نقل الصفحة إذا وجدت صفحة في العنوان الجديد، إلا إذا كانت فارغة أو صفحة تحويل، ولا تاريخ لها.
+هذا يعني أنك تستطيع استرجاع الصفحة إلى مكانها لو قمت بخطأ، وأنك لا يمكنك نسخ هذه الصفحة فوق صفحة موجودة.
 
 '''تحذير!'''
 هذا قد يكون تغييراً كارثياً وغير متوقع لصفحة مشهورة؛
@@ -3379,8 +3381,8 @@ $1',
 إذا كان الملف قد عدل عن حالته الأصلية، فبعض التفاصيل قد لا تعبر عن الملف المعدل.',
 'metadata-expand' => 'أظهر التفاصيل الممتدة',
 'metadata-collapse' => 'أخفِ التفاصيل الممتدة',
-'metadata-fields' => 'حقول معطيات الميتا الموجودة في هذه الرسالة سوف تعرض في صفحة الصورة عندما يكون جدول معطيات الميتا مضغوطا.
-الحقول الأخرى ستكون مخفية افتراضيا.
+'metadata-fields' => 'ستعرض حقول معطيات الميتا الموجودة في هذه الرسالة في صفحة الصورة عندما يكون جدول معطيات الميتا مطوياً.
+الحقول الأخرى ستكون مخفية افتراضياً.
 * make
 * model
 * datetimeoriginal
@@ -3398,7 +3400,7 @@ $1',
 # EXIF tags
 'exif-imagewidth' => 'العرض',
 'exif-imagelength' => 'الارتفاع',
-'exif-bitspersample' => 'بت لكل مكون',
+'exif-bitspersample' => 'بت لكل مكونة',
 'exif-compression' => 'نظام الضغط',
 'exif-photometricinterpretation' => 'تركيب البكسل',
 'exif-orientation' => 'التوجيه',
@@ -3415,19 +3417,19 @@ $1',
 'exif-jpeginterchangeformatlength' => 'بايت من بيانات JPEG',
 'exif-whitepoint' => 'ألوان النقطة البيضاء',
 'exif-primarychromaticities' => 'ألوان الأساسيات',
-'exif-ycbcrcoefficients' => 'معاملات مصفوفة تحويل فراغ اللون',
+'exif-ycbcrcoefficients' => 'معاملات مصفوفة تحويل فضاء اللون',
 'exif-referenceblackwhite' => 'زوج من قيم المرجع السوداء والبيضاء',
 'exif-datetime' => 'تاريخ ووقت تغيير الملف',
 'exif-imagedescription' => 'عنوان الصورة',
 'exif-make' => 'مصنع آلة التصوير',
-'exif-model' => 'نوع آلة التصوير',
+'exif-model' => 'طراز الكاميرا',
 'exif-software' => 'البرمجيات المستخدمة',
 'exif-artist' => 'المؤلف',
 'exif-copyright' => 'مالك الحقوق',
 'exif-exifversion' => 'نسخة Exif',
 'exif-flashpixversion' => 'نسخة فلاش بكس المدعومة',
-'exif-colorspace' => 'فرق اللون',
-'exif-componentsconfiguration' => 'معنى كل مكون',
+'exif-colorspace' => 'فضاء الألوان',
+'exif-componentsconfiguration' => 'معنى كل مكونة',
 'exif-compressedbitsperpixel' => 'طور ضغط الصورة',
 'exif-pixelydimension' => 'عرض الصورة',
 'exif-pixelxdimension' => 'ارتفاع الصورة',
@@ -3530,7 +3532,7 @@ $1',
 'exif-credit' => 'الرصيد/المزود',
 'exif-source' => 'المصدر',
 'exif-editstatus' => 'الحالة التحريرية للصورة',
-'exif-urgency' => 'إلحاح',
+'exif-urgency' => 'عاجل',
 'exif-fixtureidentifier' => 'اسم العنصر',
 'exif-locationdest' => 'اسم الموقع مصورا',
 'exif-locationdestcode' => 'رمز الموقع مصورا',
@@ -3569,9 +3571,9 @@ $1',
 'exif-intellectualgenre' => 'نوع العنصر',
 'exif-subjectnewscode' => 'رمز الموضوع',
 'exif-scenecode' => 'رمز مشهد IPTC',
-'exif-event' => 'اسم الحدث مصورا',
-'exif-organisationinimage' => 'المنظمة مصورة',
-'exif-personinimage' => 'الشخص مصورا',
+'exif-event' => 'الحدث في الصورة',
+'exif-organisationinimage' => 'المنظمة في الصورة',
+'exif-personinimage' => 'الشخص في الصورة',
 'exif-originalimageheight' => 'ارتفاع الصورة قبل أن تقتطع',
 'exif-originalimagewidth' => 'عرض الصورة قبل أن تقتطع',
 
@@ -3599,15 +3601,15 @@ $1',
 'exif-unknowndate' => 'تاريخ غير معروف',
 
 'exif-orientation-1' => 'عادي',
-'exif-orientation-2' => 'دار عرضيا',
-'exif-orientation-3' => 'دار 180°',
-'exif-orientation-4' => 'دار أفقيا',
-'exif-orientation-5' => 'دار 90° CCW و انزلق رأسيا',
+'exif-orientation-2' => 'مقلوبة أفقياً',
+'exif-orientation-3' => 'مدورة 180°',
+'exif-orientation-4' => 'مقلوبة رأسياً',
+'exif-orientation-5' => 'مدورة 90° عكس عقارب الساعة ومقلوبة رأسياً',
 'exif-orientation-6' => 'مدورة 90° عكس عقارب الساعة',
-'exif-orientation-7' => 'دار 90° CW و انزلق رأسيا',
+'exif-orientation-7' => 'مدورة 90° في اتجاه عقارب الساعة ومقلوبة رأسياً',
 'exif-orientation-8' => 'مدورة 90° في اتجاه عقارب الساعة',
 
-'exif-planarconfiguration-1' => 'صيغة تشنكي',
+'exif-planarconfiguration-1' => 'صيغة مكتنزة',
 'exif-planarconfiguration-2' => 'صيغة مستوية',
 
 'exif-xyresolution-i' => '$1 نقطة لكل بوصة',
@@ -3627,12 +3629,12 @@ $1',
 'exif-exposureprogram-0' => 'غير معرف',
 'exif-exposureprogram-1' => 'يدوي',
 'exif-exposureprogram-2' => 'برنامج عادي',
-'exif-exposureprogram-3' => 'أولوية الغالق',
-'exif-exposureprogram-4' => 'أولوية الإغلاق',
-'exif-exposureprogram-5' => 'برنامج الصنع (يميل تجاه عمق الحقل)',
-'exif-exposureprogram-6' => 'برنامج الفعل (يميل تجاه سرعة الغلق)',
-'exif-exposureprogram-7' => 'طور البورتريه (لصور الإغلاق مع الخلفية بعيدا عن البؤرة)',
-'exif-exposureprogram-8' => 'طور الأرضية (لصور الأرضية مع الخلفية في البؤرة)',
+'exif-exposureprogram-3' => 'أولوية الفتحة',
+'exif-exposureprogram-4' => 'أولوية المغلاق',
+'exif-exposureprogram-5' => 'برنامج خلاق (تحيز لصالح عمق الحقل)',
+'exif-exposureprogram-6' => 'برنامج الفعل (تحيز لصالح سرعة المغلاق)',
+'exif-exposureprogram-7' => 'أسلوب البورتريه (تصوير من قريب مع تغييم الخلفية)',
+'exif-exposureprogram-8' => 'أسلوب المنظر الطبيعي (لصور المناظر الطبيعية مع الخلفية في البؤرة)',
 
 'exif-subjectdistance-value' => '$1 متر',
 
@@ -3640,7 +3642,7 @@ $1',
 'exif-meteringmode-1' => 'متوسط',
 'exif-meteringmode-2' => 'متوسط موزون بالمركز',
 'exif-meteringmode-3' => 'بقعة',
-'exif-meteringmode-4' => 'مالتي سبوت',
+'exif-meteringmode-4' => 'متعدد البقع',
 'exif-meteringmode-5' => 'نمط',
 'exif-meteringmode-6' => 'جزئي',
 'exif-meteringmode-255' => 'غير ذلك',
@@ -3689,7 +3691,7 @@ $1',
 'exif-sensingmethod-7' => 'مستشعر خطي ثلاثي',
 'exif-sensingmethod-8' => 'مستشعر لون خطي متتابع',
 
-'exif-filesource-3' => 'كاميرا رقمية واقفة',
+'exif-filesource-3' => 'كاميرا رقمية',
 
 'exif-scenetype-1' => 'صورة ملتقطة بشكل مباشر',
 
@@ -3698,14 +3700,14 @@ $1',
 
 'exif-exposuremode-0' => 'تعرض تلقائي',
 'exif-exposuremode-1' => 'تعرض يدوي',
-'exif-exposuremode-2' => 'أقواس تلقائية',
+'exif-exposuremode-2' => 'سلسلة تلقائية',
 
 'exif-whitebalance-0' => 'توازن الأبيض تلقائي',
 'exif-whitebalance-1' => 'توازن الأبيض يدوي',
 
 'exif-scenecapturetype-0' => 'قياسي',
-'exif-scenecapturetype-1' => 'أرضية',
-'exif-scenecapturetype-2' => 'بورتريه',
+'exif-scenecapturetype-1' => 'عرضية',
+'exif-scenecapturetype-2' => 'طولية',
 'exif-scenecapturetype-3' => 'مشهد ليلي',
 
 'exif-gaincontrol-0' => 'لا شيء',
@@ -3719,8 +3721,8 @@ $1',
 'exif-contrast-2' => 'قاسي',
 
 'exif-saturation-0' => 'عادي',
-'exif-saturation-1' => 'تشبع قليل',
-'exif-saturation-2' => 'تشبع عالي',
+'exif-saturation-1' => 'إشباع منخفض',
+'exif-saturation-2' => 'إشباع مرتفع',
 
 'exif-sharpness-0' => 'عادي',
 'exif-sharpness-1' => 'ناعم',
@@ -3728,8 +3730,8 @@ $1',
 
 'exif-subjectdistancerange-0' => 'غير معروف',
 'exif-subjectdistancerange-1' => 'ماكرو',
-'exif-subjectdistancerange-2' => 'رؤية قريبة',
-'exif-subjectdistancerange-3' => 'رؤية بعيدة',
+'exif-subjectdistancerange-2' => 'صورة من قريب',
+'exif-subjectdistancerange-3' => 'صورة من بعيد',
 
 # Pseudotags used for GPSLatitudeRef and GPSDestLatitudeRef
 'exif-gpslatitude-n' => 'دائرة العرض الشمالية',
@@ -3810,7 +3812,7 @@ $1',
 'exif-urgency-normal' => 'عادي ($1)',
 'exif-urgency-low' => 'منخفض ( $1 )',
 'exif-urgency-high' => 'عالي ( $1 )',
-'exif-urgency-other' => 'الأولوية المعرفة من قبل المستخدم ($1)',
+'exif-urgency-other' => 'الأولوية محددة من قبل المستخدم ($1)',
 
 # External editor support
 'edit-externally' => 'عدل هذا الملف باستخدام تطبيق خارجي',
@@ -3825,18 +3827,18 @@ $1',
 # E-mail address confirmation
 'confirmemail' => 'تأكيد عنوان البريد الإلكتروني',
 'confirmemail_noemail' => 'ليس لديك عنوان بريد إلكتروني صحيح مسجل في [[Special:Preferences|تفضيلاتك]].',
-'confirmemail_text' => '{{SITENAME}} يتطلب تأكيد عنوانك الإلكتروني قبل استخدام خصائص البريد الإلكتروني.
-اضغط على زر التفعيل بالأسفل ليتم إرسال رسالة تأكيد لعنوانك.
+'confirmemail_text' => '{{SITENAME}} يجب تأكيد عنوانك الإلكتروني قبل استخدام خصائص البريد الإلكتروني.
+اضغط على زر التفعيل بالأسفل ليتم إرسال رسالة تأكيد إلى عنوانك.
 ستتضمن الرسالة رمز تفعيل؛
 اضغط على الوصلة التي تحتوي الرمز لتأكيد أن عنوانك الإلكتروني صحيح.',
-'confirmemail_pending' => 'تم إرسال كود التأكيد بالفعل من قبل إلى بريدك الإلكتروني؛
-إذا كان حسابك قد تم عمله حالا، ربما يجب أن تنتظر بضع دقائق قبل طلبك لكود آخر.',
+'confirmemail_pending' => 'تم إرسال كود التأكيد إلى بريدك الإلكتروني مؤخراً؛
+إذا كنت قد أنشأت حسابك للتو، من الأفضل أن تنتظر بضع دقائق قبل أن تطلب كوداً آخر.',
 'confirmemail_send' => 'أرسل كود تأكيد',
 'confirmemail_sent' => 'تم إرسال رسالة التأكيد، شكرا لك.',
-'confirmemail_oncreate' => 'تم إرسال كود تأكيد لعنوان بريدك الإلكتروني.
-لا يشترط أن تستخدم الكود للدخول للموسوعة باسمك، ولكن يجب أن تقوم بإدخاله قبل استخدامك أيا من خواص البريد الإلكتروني المستخدمة هنا في الويكي.',
+'confirmemail_oncreate' => 'تم إرسال كود تأكيد إلى عنوان بريدك الإلكتروني.
+الكود غير مطلوب للدخول إلى الموسوعة باسمك، ولكن يجب إدخاله قبل استخدامك أياً من خواص البريد الإلكتروني المستخدمة هنا في الويكي.',
 'confirmemail_sendfailed' => 'لم يتمكن {{SITENAME}} من إرسال رسالة التأكيد إليك.
-من فضلك التمس عنوان بريدك الإلكتروني باحثا عن حروف غير صحيحة.
+من فضلك تأكد من عنوان بريدك الإلكتروني بحثاً عن حروف غير صحيحة.
 
 أرجع خادم البريد: $1',
 'confirmemail_invalid' => 'كود تأكيد غير صحيح.

@@ -700,6 +700,8 @@ $2',
 'ns-specialprotected' => 'Paĝoj en la {{ns:special}} nomspaco ne povas esti redaktataj.',
 'titleprotected' => "Ĉi titolo estas protektita de kreado de [[User:$1|$1]].
 La kialo donata estis ''$2''.",
+'invalidtitle-knownnamespace' => 'Nevalida titolo kun nomspaco "$2" kaj teksto "$3"',
+'invalidtitle-unknownnamespace' => 'Nevalida titolo kun nekonata nomspaca numero $1 kaj teksto "$2"',
 
 # Virus scanner
 'virus-badscanner' => "Malbona konfiguro: nekonata virusa skanilo: ''$1''",
@@ -789,6 +791,7 @@ Neniu retpoŝto estos sendita pro iuj jenaj kialoj.',
 'invalidemailaddress' => 'La retadreso ne povas esti akceptita, ĉar ĝi verŝajne havas malvalidan formaton.
 Enigi bone formatita adreso aŭ malplenigi tiun kampon.',
 'cannotchangeemail' => 'Kontaj retpoŝtadresoj ne povas esti ŝanĝita en ĉi tiu vikio.',
+'emaildisabled' => 'Ĉi tiu paĝaro ne povas sendi retpoŝtojn.',
 'accountcreated' => 'Konto kreita',
 'accountcreatedtext' => 'La uzanto-konto por $1 estas kreita.',
 'createaccount-title' => 'Konto-kreado por {{SITENAME}}',
@@ -1234,8 +1237,8 @@ Bonvolu kontroli la protokolojn.',
 
 # Suppression log
 'suppressionlog' => 'Protokolo pri subigado',
-'suppressionlogtext' => 'Jen listo de forigoj kaj forbaroj pri enhavo kaŝita per administrantoj.
-Rigardu la [[Special:BlockList|IP-forbarliston]] por la listo de nune operaciaj forbaroj kaj forigoj.',
+'suppressionlogtext' => 'Malsupre estas listo de forigoj kaj forbaroj pri enhavo kaŝita de administrantoj.
+Rigardu la [[Special:BlockList|forbarliston]] por la listo de nune operaciaj forbaroj kaj forigoj.',
 
 # History merging
 'mergehistory' => 'Kunfandigi historiojn de paĝoj',
@@ -1267,8 +1270,9 @@ Certigu ke ĉi tiu ŝanĝo tenos kontinuecon de la historia paĝo.',
 'mergelogpagetext' => 'Jen listo de la plej lastatempaj kunigoj de unu paĝhistorio en alian.',
 
 # Diffs
-'history-title' => 'Redakto-historio de "$1"',
-'difference-title' => 'Malsamoj inter versioj de $1',
+'history-title' => 'Revizio-historio de "$1"',
+'difference-title' => '$1: Malsamoj inter versioj',
+'difference-title-multipage' => 'Malsamoj inter la paĝoj $1 kaj $2',
 'difference-multipage' => '(Diferenco inter paĝoj)',
 'lineno' => 'Linio $1:',
 'compareselectedversions' => 'Kompari la elektitajn versiojn',
@@ -1817,7 +1821,7 @@ Se la problemo kontinuas, kontaku [[Special:ListUsers/sysop|sisteman administran
 'backend-fail-writetemp' => 'Ne povis skribi intertempan dosieron.',
 'backend-fail-closetemp' => 'Ne povis fermi provizoran dosieron.',
 'backend-fail-read' => 'Ne povas legi dosieron "$1".',
-'backend-fail-create' => 'Ne povas krei dosieron $1.',
+'backend-fail-create' => 'Ne povas skribi dosieron $1.',
 
 # Lock manager
 'lockmanager-notlocked' => 'Ne povis malŝlosi "$1"; ĝi ne estas ŝlosita.',
@@ -2281,7 +2285,7 @@ La retadreso kiun vi enigis en [[Special:Preferences|viaj preferoj]] aperos kiel
 'watcherrortext' => 'Eraro okazis ŝanĝinte vian agordojn de atentaro por "$1".',
 
 'enotif_mailer' => 'Averta retmesaĝo de {{SITENAME}}',
-'enotif_reset' => 'Marki ĉiujn vizititajn paĝojn',
+'enotif_reset' => 'Marki ĉiujn paĝojn vizititaj',
 'enotif_newpagetext' => 'Tiu ĉi estas nova paĝo',
 'enotif_impersonal_salutation' => 'Uzanto de {{SITENAME}}',
 'changed' => 'ŝanĝita',
@@ -2578,7 +2582,7 @@ Jen la lasta ero de la forbara protokolo:',
 'badipaddress' => 'Neniu uzanto, aŭ la IP-adreso estas misformita.',
 'blockipsuccesssub' => 'Oni sukcese forbaris la adreson/nomon.',
 'blockipsuccesstext' => '[[Special:Contributions/$1|$1]] estas forbarita. <br />
-Vidu la [[Special:BlockList|liston de IP-forbaroj]] por kontroli.',
+Vidu la [[Special:BlockList|liston de forbaroj]] por kontroli.',
 'ipb-blockingself' => 'Vi preskaŭ forbaros vin mem! Ĉu vi certas ke vi volas fari ĉi tiel?',
 'ipb-confirmhideuser' => 'Vi preskaŭ forbaras uzanto kun "kaŝi uzanton" ŝalta. Ĉi tiu kaŝi la nomon de uzanto en ĉiuj listoj ka protokoloj. Ĉu vi certas ke vi volas fari ĉi tiel?',
 'ipb-edit-dropdown' => 'Redakti kialojn por forbaro.',
@@ -2630,7 +2634,7 @@ La kialo donita por la forbaro de $1 estis: "$2"',
 'blocklog-showsuppresslog' => 'Ĉi tiu uzanto estis forbarita kaj kaŝita antaŭe. Jen la protokolo pri subpremado por via informo:',
 'blocklogentry' => 'forbaris [[$1]] por daŭro de $2 $3',
 'reblock-logentry' => 'ŝanĝis forbarajn opciojn [[$1]] kun findato de $2 $3',
-'blocklogtext' => 'Ĉi tio estas protokolo pri forbaraj kaj malforbaraj agoj. Aŭtomate forbaritaj IP adresoj ne estas listigitaj. Vidu la [[Special:BlockList|IP forbarliston]] por ĉi-momente fobaritaj uzantoj kaj IP-adresoj.',
+'blocklogtext' => 'Ĉi tio estas protokolo pri forbaraj kaj malforbaraj agoj. Aŭtomate forbaritaj IP-adresoj ne estas listigitaj. Vidu la [[Special:BlockList|forbarliston]] por ĉi-momente forbaritaj uzantoj kaj IP-adresoj.',
 'unblocklogentry' => '$1 estis restarigita',
 'block-log-flags-anononly' => 'nur anonimaj uzantoj',
 'block-log-flags-nocreate' => 'kreado de kontoj malebligita',

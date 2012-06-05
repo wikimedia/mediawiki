@@ -1,5 +1,5 @@
 <?php
-/** Norwegian Nynorsk (‪Norsk (nynorsk)‬)
+/** Norwegian Nynorsk (‪norsk (nynorsk)‬)
  *
  * See MessagesQqq.php for message documentation incl. usage of parameters
  * To improve a translation please visit http://translatewiki.net
@@ -342,7 +342,7 @@ $messages = array(
 # Font style option in Special:Preferences
 'editfont-style' => 'Endre stilen for skrifttypen i området:',
 'editfont-default' => 'Nettlesar i utgangspunktet',
-'editfont-monospace' => 'Skrift med fast breidde',
+'editfont-monospace' => 'Skrift med fast breidd',
 'editfont-sansserif' => 'Skrifttype utan seriffar',
 'editfont-serif' => 'Skrifttype med seriffar',
 
@@ -958,9 +958,9 @@ lang, altså lenger enn $2 kilobyte som er maksimum. Han kan difor ikkje lagrast
 'readonlywarning' => "'''ÅTVARING: Databasen er skriveverna på grunn av vedlikehald, så du kan ikkje lagre endringane dine akkurat no. Det kan vera lurt å  kopiere teksten din til ei tekstfil, så du kan lagre han her seinare.'''
 
 Systemadministratoren som låste databasen gav følgjande årsak: $1",
-'protectedpagewarning' => "'''ÅTVARING: Denne sida er verna, slik at berre administratorar kan endre ho.'''
+'protectedpagewarning' => "'''ÅTVARING: Denne sida er verna, slik at berre administratorar kan endra henne.'''
 Det siste loggelementet er oppgjeve under som referanse:",
-'semiprotectedpagewarning' => "'''Merk:''' Denne sida er verna slik at berre registrerte brukarar kan endre henne.
+'semiprotectedpagewarning' => "'''Merk:''' Denne sida er verna slik at berre registrerte brukarar kan endra henne.
 Det siste loggelementet er oppgjeve under som referanse:",
 'cascadeprotectedwarning' => "'''Åtvaring:''' Denne sida er verna så berre brukarar med administratortilgang kan endre henne. Dette er fordi ho er inkludert i {{PLURAL:$1|denne djupverna sida|desse djupverna sidene}}:",
 'titleprotectedwarning' => "'''Åtvaring: Denne sida er verna, så berre [[Special:ListGroupRights|nokre brukarar]] kan opprette henne.'''
@@ -1180,9 +1180,9 @@ Pass på at den nye sida også har innhald frå den innfletta sida.',
 'mergelogpagetext' => 'Nedanfor finn du ei liste over dei siste flettingane av ein sidehistorikk til ein annan.',
 
 # Diffs
-'history-title' => 'Historikken til «$1»',
-'difference-title' => 'Skilnad mellom versjonar av «$1»',
-'difference-title-multipage' => 'Skilnad mellom sidene «$1» og «$2»',
+'history-title' => '$1: Versjonshistorikk',
+'difference-title' => '$1: Skilnad mellom versjonar',
+'difference-title-multipage' => '$1 og $2: Skilnad mellom sidene',
 'difference-multipage' => '(Skilnad mellom sider)',
 'lineno' => 'Line $1:',
 'compareselectedversions' => 'Samanlikn valde versjonar',
@@ -1673,7 +1673,7 @@ Om du framleis ønskjer å laste opp fila, gå tilbake og last ho opp med eit an
 'uploadvirus' => 'Fila innheld virus! Detaljar: $1',
 'upload-source' => 'Kjeldefil',
 'sourcefilename' => 'Filsti:',
-'sourceurl' => 'URL til kjelda:',
+'sourceurl' => 'Kjelde-URL:',
 'destfilename' => 'Målfilnamn:',
 'upload-maxfilesize' => 'Maksimal filstorleik: $1',
 'upload-description' => 'Filskildring',
@@ -1713,6 +1713,9 @@ $1',
 'upload-too-many-redirects' => 'URL-en inneheldt for mange omdirigeringar',
 'upload-unknown-size' => 'Ukjend storleik',
 'upload-http-error' => 'Ein HTTP-feil oppstod: $1',
+
+# File backend
+'backend-fail-delete' => 'Kunne ikkje sletta fila «$1».',
 
 # img_auth script messages
 'img-auth-accessdenied' => 'Tilgjenge avslått',
@@ -2000,6 +2003,9 @@ Merk at andre internettsider kan ha direkte lenkjer til filer, og difor kan file
 'allpages-bad-ns' => '{{SITENAME}} har ikkje namnerommet «$1».',
 'allpages-hide-redirects' => 'Gøym omdirigeringar',
 
+# SpecialCachedPage
+'cachedspecial-refresh-now' => 'Sjå siste.',
+
 # Special:Categories
 'categories' => 'Kategoriar',
 'categoriespagetext' => 'Følgjande {{PLURAL:$1|category contains|kategoriar inneheld}} sider eller media.
@@ -2221,6 +2227,7 @@ Sjå [[Special:ProtectedPages|lista over verna sider]] for lista over vern som n
 'unprotectedarticle' => 'fjerna vern av «[[$1]]»',
 'movedarticleprotection' => 'flytta verneinnstillingar frå «[[$2]]» til «[[$1]]»',
 'protect-title' => 'Vernar «$1»',
+'protect-title-notallowed' => 'Sjå vernenivået til «$1»',
 'prot_1movedto2' => '«[[$1]]» flytt til «[[$2]]»',
 'protect-legend' => 'Stadfest vern',
 'protectcomment' => 'Grunngjeving:',
@@ -2752,6 +2759,7 @@ Vitja [//www.mediawiki.org/wiki/Localisation MediaWiki Localisation] og [//trans
 'tooltip-diff' => 'Vis skilnaden mellom din versjon og lagra versjon, utan å lagre.',
 'tooltip-compareselectedversions' => 'Sjå endringane mellom dei valde versjonane av denne sida.',
 'tooltip-watch' => 'Legg denne sida til i overvakingslista di [alt-w]',
+'tooltip-watchlistedit-raw-submit' => 'Oppdater overvakingslista',
 'tooltip-recreate' => 'Ved å trykkje på «Nyopprett» vert sida oppretta på nytt.',
 'tooltip-upload' => 'Start opplastinga',
 'tooltip-rollback' => '«Attenderull»-knappen attenderullar endringar på denne sida med eitt klikk til den førre utgåva av ein annan brukar',
@@ -3214,6 +3222,10 @@ Andre er gøymde som standard.
 'exif-gpslongitude-e' => 'Austleg lengdegrad',
 'exif-gpslongitude-w' => 'Vestleg lengdegrad',
 
+# Pseudotags used for GPSAltitudeRef
+'exif-gpsaltitude-above-sealevel' => '{{PLURAL:$1|Éin|$1}} meter over havet',
+'exif-gpsaltitude-below-sealevel' => '{{PLURAL:$1|Éin|$1}} meter under havet',
+
 'exif-gpsstatus-a' => 'Måling pågår',
 'exif-gpsstatus-v' => 'Målingsinteroperabilitet',
 
@@ -3563,6 +3575,8 @@ Skriv inn filnamnet utan «{{ns:file}}:»-prefikset.',
 'feedback-error1' => 'Feil: Ukjent resultat frå API',
 'feedback-error2' => 'Feil: Brigdinga gjekk ikkje',
 'feedback-error3' => 'Feil: Saknar svar frå API',
+'feedback-thanks' => 'Takk! Attendemeldinga di er lagd inn på sida «[$2 $1]».',
+'feedback-close' => 'Gjort',
 
 # API errors
 'api-error-badaccess-groups' => 'Du har ikkje løyve til å lasta opp filer til wikien.',

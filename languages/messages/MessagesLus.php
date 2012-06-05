@@ -185,8 +185,8 @@ $messages = array(
 'help' => 'Ṭanpuina',
 'search' => 'Zawnna',
 'searchbutton' => 'Zawng rawh le',
-'go' => 'Kal rawh le',
-'searcharticle' => 'Kal rawh le',
+'go' => 'Khai le',
+'searcharticle' => 'Khai le',
 'history' => 'Phêk chanchin',
 'history_short' => 'Chanchin',
 'updatedmarker' => 'ka tlawh hnuhnun ber hnua tihdanglam',
@@ -744,6 +744,7 @@ Google hmangin i lo zawng hrih thei ang.
 'prefs-beta' => 'Beta hman theihnate',
 'prefs-datetime' => 'Hun leh ni',
 'prefs-labs' => '"Lab" hman theihnate',
+'prefs-user-pages' => 'Hmangtu phêkte',
 'prefs-personal' => 'Hmangtu chanchin tawi',
 'prefs-rc' => 'Tihdanglam thar',
 'prefs-watchlist' => 'Ralvèn',
@@ -836,11 +837,11 @@ Hmangtuten e-lehkha an thawn chein i e-chenhmun hrilh an ni chuang lo vang.',
 'prefs-signature' => 'Hmingtàr',
 'prefs-dateformat' => 'Hun tarlan dan tùr',
 'prefs-timeoffset' => 'Hun inthlauhna',
-'prefs-advancedediting' => 'Duhthlan sang',
-'prefs-advancedrc' => 'Duhthlan sang',
-'prefs-advancedrendering' => 'Duhthlan sang',
-'prefs-advancedsearchoptions' => 'Duhthlan sang',
-'prefs-advancedwatchlist' => 'Duhthlan sang',
+'prefs-advancedediting' => 'Duhthlan ràiril',
+'prefs-advancedrc' => 'Duhthlan ràiril',
+'prefs-advancedrendering' => 'Duhthlan ràiril',
+'prefs-advancedsearchoptions' => 'Duhthlan ràiril',
+'prefs-advancedwatchlist' => 'Duhthlan ràiril',
 'prefs-displayrc' => 'Duhthlanna tilang rawh',
 'prefs-displaysearchoptions' => 'Duhthlanna tilang rawh',
 'prefs-displaywatchlist' => 'Duhthlanna tilang rawh',
@@ -1246,7 +1247,7 @@ Taksa sawifiahna hi i siamṭha duh a nih chuan  [$2 taksa sawifiahna phêk] a�
 # Book sources
 'booksources' => 'Lehkhabu rawnte',
 'booksources-search-legend' => 'Lehkhabu hnar zingah zawng rawh',
-'booksources-go' => 'Kal rawh le',
+'booksources-go' => 'Khai le',
 
 # Special:Log
 'specialloguserlabel' => 'Buatsaihtu:',
@@ -1267,7 +1268,7 @@ Taksa sawifiahna hi i siamṭha duh a nih chuan  [$2 taksa sawifiahna phêk] a�
 'allnotinnamespace' => 'Phêk zawng zawng (hminghmun $1-a awm lo)',
 'allpagesprev' => 'Hma',
 'allpagesnext' => 'Dawt',
-'allpagessubmit' => 'Kal rawh le',
+'allpagessubmit' => 'Khai le',
 'allpagesprefix' => 'Hemi thuhmabeta neih zawng hi pholang rawh:',
 'allpagesbadtitle' => 'Phêk hming dik lo emaw ţawng dang/wiki dang thuhmabet a hmang palh a nih hmel.
 Phêk hminga hman awih loh hawrawp a hmang palh a ni mai thei bawk.',
@@ -1369,6 +1370,8 @@ Hetah hian [[Special:UnusedCategories|pawl hman lohho]] pholan tel a ni lo.
 'wlshowlast' => 'Darkar $1 kalta-a tihdanglam tilang rawh , ni $2 kalta-a tihdanglam tilang rawh, $3 tilang rawh',
 'watchlist-options' => 'Ralvèn duhdàn',
 
+'enotif_reset' => 'Phêk zawng zawng tlawh tawh vek angin chhinchhiah rawh.',
+'enotif_newpagetext' => 'Hei hi phêk thar a ni.',
 'enotif_impersonal_salutation' => '{{SITENAME}} hmangtu',
 'changed' => 'tihdanglam a ni ta',
 'created' => 'siam a ni ta',
@@ -1485,6 +1488,7 @@ $2-in a awmphung ngäiah a dahlêt leh.',
 # Namespace form on various pages
 'namespace' => 'Hminghmun:',
 'invert' => 'Thlan lêtna',
+'namespace_association' => 'Hminghmun kaihhnawih',
 'blanknamespace' => '(Phekpui)',
 
 # Contributions
@@ -1492,11 +1496,14 @@ $2-in a awmphung ngäiah a dahlêt leh.',
 'contributions-title' => '$1 kutthawhnate',
 'mycontris' => 'Ka kutthawhnate',
 'contribsub2' => '$1 tan ($2) .',
+'nocontribs' => 'I zawn mil tihdanglamna a awm miah lo a nih hmel.',
 'uctop' => '(chung)',
 'month' => 'Thla (leh a hmalam):',
 'year' => 'Kum (leh a hmalam):',
 
 'sp-contributions-newbies' => 'Siangchan tharte kut-thawhna chauh tilang rawh',
+'sp-contributions-newbies-sub' => 'Siangchan thar tán',
+'sp-contributions-newbies-title' => 'Siangchan thar tána hmangtu kutthawhnate',
 'sp-contributions-blocklog' => 'danbeh chhinchhiahna',
 'sp-contributions-uploads' => 'hlankaite',
 'sp-contributions-logs' => 'chanchin-ziak',
@@ -1593,7 +1600,7 @@ Amah leh amah inluahlantir a theih loh.',
 'allmessagesname' => 'Thuthawn hming',
 'allmessagesdefault' => 'Thuthawn tùr ziahsa',
 'allmessages-language' => 'Ţawng:',
-'allmessages-filter-submit' => 'Kal rawh le',
+'allmessages-filter-submit' => 'Khai le',
 
 # Thumbnails
 'thumbnail-more' => 'Tihlenna',
@@ -1816,7 +1823,7 @@ A bak zawng chu thuhrûk sa vek a ni ang.
 'confirm-unwatch-button' => 'Aw le',
 
 # Multipage image navigation
-'imgmultigo' => 'Kal rawh le!',
+'imgmultigo' => 'Khai le!',
 'imgmultigoto' => 'Phêk $1-ah kal rawh',
 
 # Table pager

@@ -1,5 +1,5 @@
 <?php
-/** Slovak (Slovenčina)
+/** Slovak (slovenčina)
  *
  * See MessagesQqq.php for message documentation incl. usage of parameters
  * To improve a translation please visit http://translatewiki.net
@@ -1242,9 +1242,9 @@ Uistite sa, že táto zmena zachová historickú kontinuitu zmien stránky.',
 'mergelogpagetext' => 'Dolu je zoznam posledných zlúčení jednej histórie revízií stránky do druhej.',
 
 # Diffs
-'history-title' => 'História revízií „$1“',
-'difference-title' => 'Rozdiel medzi revíziami „$1“',
-'difference-title-multipage' => 'Rozdiel medzi stránkami „$1“ a „$2“',
+'history-title' => ' $1: História revízií',
+'difference-title' => '$1: Rozdiel medzi revíziami',
+'difference-title-multipage' => '$1 a $2: Rozdiel medzi stránkami',
 'difference-multipage' => '(Rozdiel medzi stránkami)',
 'lineno' => 'Riadok $1:',
 'compareselectedversions' => 'Porovnať označené verzie',
@@ -1339,6 +1339,7 @@ Uistite sa, že táto zmena zachová historickú kontinuitu zmien stránky.',
 'prefs-beta' => 'Nové funkcie',
 'prefs-datetime' => 'Dátum a čas',
 'prefs-labs' => 'Laboratórne funkcie',
+'prefs-user-pages' => 'Stránky používateľa',
 'prefs-personal' => 'Profil',
 'prefs-rc' => 'Posledné úpravy',
 'prefs-watchlist' => 'Sledované stránky',
@@ -1805,14 +1806,15 @@ Ak problém pretrváva, kontaktujte [[Special:ListUsers/sysop|správcu systému]
 'backend-fail-writetemp' => 'Nebolo možné zapísať do dočasného súboru.',
 'backend-fail-closetemp' => 'Nebolo možné zatvoriť dočasný súbor.',
 'backend-fail-read' => 'Nebolo možné prečítať súbor „$1“.',
-'backend-fail-create' => 'Nebolo možné vytvoriť súbor „$1“.',
-'backend-fail-maxsize' => 'Súbor $1 nie je možné vytvoriť, pretože je väčší ako {{PLURAL:$2|$2 bajtov|$2 bajt}}.',
+'backend-fail-create' => 'Nebolo možné zapísať súbor $1.',
+'backend-fail-maxsize' => 'Nie je možné zapísať súbor  $1  pretože je väčší ako  {{PLURAL:$2| jeden byte| $2  bajtov}}.',
 'backend-fail-readonly' => 'Úložisko „$1“ je momentálne v režime len na čítanie. Udaný dôvod: „$2“',
 'backend-fail-synced' => 'Súbor „$1“ je v nekonzistentnom stave v rámci vnútorného úložiska',
 'backend-fail-connect' => 'Nepodarilo sa pripojiť k úložisku „$1“.',
 'backend-fail-internal' => 'Vyskytla sa neznáma chyba v úložisku „$1“.',
 'backend-fail-contenttype' => 'Nebolo možné určiť typ obsahu súboru, ktorý sa má uložiť na „$1“.',
 'backend-fail-batchsize' => 'Do úložiska bola zaslaná dávka s $1 {{PLURAL:$1|operáciou|operáciami}}; limit je $2 {{PLURAL:$2|operácia|operácie|operácií}}.',
+'backend-fail-usable' => 'Nie je možné zapísať súbor  $1  kvôli nedostatočným povoleniam alebo chýbajúcim adresárom/kontajnerom.',
 
 # File journal errors
 'filejournal-fail-dbconnect' => 'Nepodarilo sa pripojiť k žurnálovej databáze úložiska „$1“.',

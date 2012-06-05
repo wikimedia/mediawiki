@@ -1,5 +1,5 @@
 <?php
-/** Romanian (Română)
+/** Romanian (română)
  *
  * See MessagesQqq.php for message documentation incl. usage of parameters
  * To improve a translation please visit http://translatewiki.net
@@ -1259,9 +1259,9 @@ Folosirea linkurilor de navigare va reseta această coloană.',
 'mergelogpagetext' => 'Mai jos este o listă a celor mai recente combinări ale istoricului unei pagini cu al alteia.',
 
 # Diffs
-'history-title' => 'Istoricul versiunilor pentru „$1”',
-'difference-title' => 'Diferență între versiunile paginii „$1”',
-'difference-title-multipage' => 'Diferență între paginile „$1” și „$2”',
+'history-title' => '$1: Istoricul versiunilor',
+'difference-title' => '$1: Diferență între versiuni',
+'difference-title-multipage' => '$1 și $2: Diferență între pagini',
 'difference-multipage' => '(Diferență între pagini)',
 'lineno' => 'Linia $1:',
 'compareselectedversions' => 'Compară versiunile marcate',
@@ -1357,6 +1357,7 @@ Folosirea linkurilor de navigare va reseta această coloană.',
 'prefs-beta' => 'Opțiuni beta',
 'prefs-datetime' => 'Data și ora',
 'prefs-labs' => 'Opțiuni „labs”',
+'prefs-user-pages' => 'Pagini de utilizator',
 'prefs-personal' => 'Informații personale',
 'prefs-rc' => 'Schimbări recente',
 'prefs-watchlist' => 'Listă de urmărire',
@@ -1817,6 +1818,7 @@ Dacă problema persistă, contactați un [[Special:ListUsers/sysop|administrator
 'backend-fail-create' => 'Imposibil de scris fișierul $1.',
 'backend-fail-maxsize' => 'Nu s-a putut scrie fișierul $1 pentru că acesta este mai mare de {{PLURAL:$2|un octet|$2 octeți|$2 de octeți}}.',
 'backend-fail-contenttype' => 'Nu s-a putut determina tipul de conținut al fișierului de stocat la „$1”.',
+'backend-fail-usable' => 'Imposibil de scris fișierul $1 din cauza permisiunilor insuficiente sau din cauza directoarelor/containerelor lipsă.',
 
 # Lock manager
 'lockmanager-notlocked' => 'Imposibil de deblocat „$1”; nu este blocată.',
@@ -2146,6 +2148,7 @@ Vă rugăm să aveți în vedere faptul că alte saituri web pot avea o legătur
 Puteți limita vizualizarea selectând tipul jurnalului, numele de utilizator sau pagina afectată.',
 'logempty' => 'Nici o înregistrare în jurnal.',
 'log-title-wildcard' => 'Caută titluri care încep cu acest text',
+'showhideselectedlogentries' => 'Arată/ascunde intrările selectate din jurnal',
 
 # Special:AllPages
 'allpages' => 'Toate paginile',
@@ -3828,11 +3831,11 @@ Imaginile sunt afișate la rezoluția lor maximă, în timp ce alte tipuri de fi
 # Database error messages
 'dberr-header' => 'Acest site are o problemă',
 'dberr-problems' => 'Ne cerem scuze! Acest site întâmpină dificultăți tehnice.',
-'dberr-again' => 'Așteaptă câteva minute și încearcă din nou.',
+'dberr-again' => 'Așteptați câteva minute și încercați din nou.',
 'dberr-info' => '(Nu pot contacta baza de date a serverului: $1)',
-'dberr-usegoogle' => 'Între timp poți efectua căutarea folosind Google.',
-'dberr-outofdate' => 'De reținut ca indexarea conținutului nostru de către ei poate să nu fie actualizată.',
-'dberr-cachederror' => 'Următoarea pagină este o copie în cache a paginii cerute, s-ar putea să nu fie actualizată.',
+'dberr-usegoogle' => 'Între timp puteți efectua căutarea folosind Google.',
+'dberr-outofdate' => 'De reținut că indexarea conținutului nostru de către ei poate să nu fie actualizată.',
+'dberr-cachederror' => 'Următoarea pagină este o copie în cache a paginii cerute, care s-ar putea să nu fie actualizată.',
 
 # HTML forms
 'htmlform-invalid-input' => 'Există probleme la valorile introduse',

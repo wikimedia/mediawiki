@@ -518,6 +518,8 @@ Die Sperri isch dur [[User:$1|$1]] yygrichtet wore mit dr Begrindig ''„$2“''
 'filereadonlyerror' => 'D Datei „$1“ cha nit gänderet wäre, wel uf s Dateirepositorium „$2“ nume Läsezuegriff megli isch.
 
 Dr Administrator, wu dr Schrybzuegriff gsperrt het, het dää Grund aagee: „$3“.',
+'invalidtitle-knownnamespace' => 'Nit-gültige Titel mit Namensruum „$2“ un Text „$3“',
+'invalidtitle-unknownnamespace' => 'Ungültige Titel mit unbekannte Namensruumnummer $1 un Text „$2“',
 
 # Virus scanner
 'virus-badscanner' => "Fählerhafti Konfiguration: Virescanner, wu nid bekannt isch: ''$1''",
@@ -804,6 +806,7 @@ As Information chunnt do ne aktuälle Uuszug us em Benutzersperr-Logbuech:',
 'note' => "'''Obacht: '''",
 'previewnote' => "'''Das isch numen e Vorschau und nonig gspycheret!'''
 Die Syte isch nonig gspycheret wore!",
+'continue-editing' => 'Wyter bearbeite',
 'previewconflict' => 'Die Vorschau zeigt dr Inhalt vum obere Täxtfäld. Eso siht dr Artikel us, wän Du jetz uf Spychere drucksch.',
 'session_fail_preview' => "'''Dyyni Bearbeitig het nid chenne gspycheret wäre, wel Sitzigsdate verlore gange sin.
 Bitte versuech s nomol. Derzue drucksch unter däre Täxtvorschau nomol uf „Syte spychere“.
@@ -895,6 +898,12 @@ S {{PLURAL:$2|derf nid meh wie ein Ufruef|derfe nid meh wie $1 Ufruef}} gee.',
 'parser-template-loop-warning' => 'Vorlagelätsch entdeckt: [[$1]]',
 'parser-template-recursion-depth-warning' => 'Vorlagerekursionstiefegränz iberschritte ($1)',
 'language-converter-depth-warning' => 'Gränz vu dr Sprochkonvertertiefi iberschritte ($1)',
+'node-count-exceeded-category' => 'Syte, wo d Chnotezaal überschritte hen',
+'node-count-exceeded-warning' => 'Die Syte het d Chnotepunktzaal überschritte.',
+'expansion-depth-exceeded-category' => 'Syte, wo d Expansionsdiefi überschritte hen',
+'expansion-depth-exceeded-warning' => 'Die Syte het d Expansionsdiefi überschritte.',
+'parser-unstrip-loop-warning' => 'Zirkelbezug festgstellt',
+'parser-unstrip-recursion-limit' => 'Rekursionsgränz bim Ufflöse überschritte ($1)',
 
 # "Undo" feature
 'undo-success' => 'Zum die Änderig ruckgängig z mache, kontrollier bitte d Bearbeitig in dr Verglichsaasicht un druck derno uf „Syte spichere“.',
@@ -1068,7 +1077,9 @@ Stell sicher, ass d Versionsgschicht vun eme Artikel historisch korrekt isch.',
 'mergelogpagetext' => 'Des isch e Lischt vu dr letschte Zämefierige vu Versionsgschichte.',
 
 # Diffs
-'history-title' => 'Versionsgschicht vo „$1“',
+'history-title' => '$1: Versionsgschicht',
+'difference-title' => '$1: Unterschid zwüsche de Versione',
+'difference-title-multipage' => '$1 un $2: Unterschid zwüsche de Syte',
 'difference-multipage' => '(Unterschid zwische Syte)',
 'lineno' => 'Zyle $1:',
 'compareselectedversions' => 'Usgwählti Versione verglyche',
@@ -1163,6 +1174,7 @@ Stell sicher, ass d Versionsgschicht vun eme Artikel historisch korrekt isch.',
 'prefs-beta' => 'Betafunktione',
 'prefs-datetime' => 'Datum un Zyt',
 'prefs-labs' => 'Alphafunktione',
+'prefs-user-pages' => 'Benutzersyte',
 'prefs-personal' => 'Benutzerdate',
 'prefs-rc' => 'Letschti Änderige',
 'prefs-watchlist' => 'Beobachtigslischte',
@@ -1615,14 +1627,15 @@ Wänn s Problem alno uftritt, informier e [[Special:ListUsers/sysop|Ammann]].',
 'backend-fail-writetemp' => 'Di temporär Datei het nit chenne gschribe wäre.',
 'backend-fail-closetemp' => 'Di temporär Datei het nit chenne zuegmacht wäre.',
 'backend-fail-read' => 'D Datei $1 het nit chenne gläse wäre.',
-'backend-fail-create' => 'D Datei $1 het nit chenne aagleit wäre.',
-'backend-fail-maxsize' => 'D Datei $1 het nit chenne aalgeit wäre, wel si greßer isch wie {{PLURAL:$2|ei Byte|$2 Byte}}.',
+'backend-fail-create' => 'D Datei $1 het nit chenne gspyycheret wäre.',
+'backend-fail-maxsize' => 'D Datei $1 het nit chenne gspycheret wäre, wel si greßer isch wie {{PLURAL:$2|ei Byte|$2 Byte}}.',
 'backend-fail-readonly' => 'S Spycher-Backend „$1“ isch zurzyt im Läsemodus. Dr Grund, wu aagee isch, isch: „$2“',
 'backend-fail-synced' => 'D Datei „$1“ isch im intärne Spycher-Backend in eme inkonsischtänte Zuestand.',
 'backend-fail-connect' => 'S het kei Verbindig chenne härgstellt wäre zum Spycher-Backend „$1“.',
 'backend-fail-internal' => 'Im Spycher-Backend „$1“ isch e nit bekannte Fähler ufträtte.',
 'backend-fail-contenttype' => 'Dr Inhaltstyp vu dr Datei, wu im Pfad „$1“ gspycheret soll wäre, het nit chenne bstimmt wäre.',
 'backend-fail-batchsize' => 'E Bygiverarbeitigsdatei, wu s {{PLURAL:$1|ei Operation|$1 Operatione}} din het, isch an s Spycher-Backend gschickt wore. D Gränz lyt aber bi {{PLURAL:$2|eire Operation|$2 Operatione}}.',
+'backend-fail-usable' => 'D Datei $1 het nit chönne gspyycheret werde, entweder wyl kei Verzeichniss vorhande isch oder wyl kei Berächtigung hesch.',
 
 # File journal errors
 'filejournal-fail-dbconnect' => 'S het kei Verbindig chenne härgstellt würe zue dr Journaldatebank vum Spycher-Backend „$1“.',

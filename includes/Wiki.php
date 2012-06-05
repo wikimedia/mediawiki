@@ -462,6 +462,8 @@ class MediaWiki {
 	 * @param $page Page
 	 */
 	private function performAction( Page $page ) {
+		global $wgUseSquid, $wgSquidMaxage;
+
 		wfProfileIn( __METHOD__ );
 
 		$request = $this->context->getRequest();
@@ -480,6 +482,15 @@ class MediaWiki {
 
 		$action = Action::factory( $act, $page );
 		if ( $action instanceof Action ) {
+			# When it's a known action, let Squid cache things if we can purge them.
+			# If the action is unknown, we don't know what may happen in an extension,
+			# but not caching can be always safe.
+			if ( $wgUseSquid &&
+				in_array( $request->getFullRequestURL(), $title->getSquidURLs() )
+			) {
+				$output->setSquidMaxage( $wgSquidMaxage );
+			}
+
 			$action->show();
 			wfProfileOut( __METHOD__ );
 			return;

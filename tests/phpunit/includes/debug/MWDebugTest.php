@@ -30,7 +30,7 @@ class MWDebugTest extends MediaWikiTestCase {
 		$this->assertEquals( array( array(
 			'msg' => 'Warning message',
 			'type' => 'warn',
-			'caller' => 'MWDebug::warning',
+			'caller' => 'MWDebugTest::testAddWarning',
 			) ),
 			MWDebug::getLog()
 		);

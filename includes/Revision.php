@@ -381,7 +381,9 @@ class Revision {
 			'page_namespace',
 			'page_title',
 			'page_id',
-			'page_latest'
+			'page_latest',
+			'page_is_redirect',
+			'page_len',
 		);
 	}
 
@@ -493,7 +495,7 @@ class Revision {
 	/**
 	 * Get revision ID
 	 *
-	 * @return Integer
+	 * @return Integer|null
 	 */
 	public function getId() {
 		return $this->mId;
@@ -512,7 +514,7 @@ class Revision {
 	/**
 	 * Get text row ID
 	 *
-	 * @return Integer
+	 * @return Integer|null
 	 */
 	public function getTextId() {
 		return $this->mTextId;
@@ -530,7 +532,7 @@ class Revision {
 	/**
 	 * Returns the length of the text in this revision, or null if unknown.
 	 *
-	 * @return Integer
+	 * @return Integer|null
 	 */
 	public function getSize() {
 		return $this->mSize;
@@ -539,30 +541,34 @@ class Revision {
 	/**
 	 * Returns the base36 sha1 of the text in this revision, or null if unknown.
 	 *
-	 * @return String
+	 * @return String|null
 	 */
 	public function getSha1() {
 		return $this->mSha1;
 	}
 
 	/**
-	 * Returns the title of the page associated with this entry.
+	 * Returns the title of the page associated with this entry or null.
 	 *
-	 * @return Title
+	 * Will do a query, when title is not set and id is given.
+	 *
+	 * @return Title|null
 	 */
 	public function getTitle() {
 		if( isset( $this->mTitle ) ) {
 			return $this->mTitle;
 		}
-		$dbr = wfGetDB( DB_SLAVE );
-		$row = $dbr->selectRow(
-			array( 'page', 'revision' ),
-			self::selectPageFields(),
-			array( 'page_id=rev_page',
-				   'rev_id' => $this->mId ),
-			__METHOD__ );
-		if ( $row ) {
-			$this->mTitle = Title::newFromRow( $row );
+		if( !is_null( $this->mId ) ) { //rev_id is defined as NOT NULL
+			$dbr = wfGetDB( DB_SLAVE );
+			$row = $dbr->selectRow(
+				array( 'page', 'revision' ),
+				self::selectPageFields(),
+				array( 'page_id=rev_page',
+					   'rev_id' => $this->mId ),
+				__METHOD__ );
+			if ( $row ) {
+				$this->mTitle = Title::newFromRow( $row );
+			}
 		}
 		return $this->mTitle;
 	}
@@ -579,7 +585,7 @@ class Revision {
 	/**
 	 * Get the page ID
 	 *
-	 * @return Integer
+	 * @return Integer|null
 	 */
 	public function getPage() {
 		return $this->mPage;
@@ -592,7 +598,7 @@ class Revision {
 	 *
 	 * @param $audience Integer: one of:
 	 *      Revision::FOR_PUBLIC       to be displayed to all users
-	 *      Revision::FOR_THIS_USER    to be displayed to $wgUser
+	 *      Revision::FOR_THIS_USER    to be displayed to the given user
 	 *      Revision::RAW              get the ID regardless of permissions
 	 * @param $user User object to check for, only if FOR_THIS_USER is passed
 	 *              to the $audience parameter
@@ -624,7 +630,7 @@ class Revision {
 	 *
 	 * @param $audience Integer: one of:
 	 *      Revision::FOR_PUBLIC       to be displayed to all users
-	 *      Revision::FOR_THIS_USER    to be displayed to $wgUser
+	 *      Revision::FOR_THIS_USER    to be displayed to the given user
 	 *      Revision::RAW              get the text regardless of permissions
 	 * @param $user User object to check for, only if FOR_THIS_USER is passed
 	 *              to the $audience parameter
@@ -664,7 +670,7 @@ class Revision {
 	 *
 	 * @param $audience Integer: one of:
 	 *      Revision::FOR_PUBLIC       to be displayed to all users
-	 *      Revision::FOR_THIS_USER    to be displayed to $wgUser
+	 *      Revision::FOR_THIS_USER    to be displayed to the given user
 	 *      Revision::RAW              get the text regardless of permissions
 	 * @param $user User object to check for, only if FOR_THIS_USER is passed
 	 *              to the $audience parameter
@@ -742,7 +748,7 @@ class Revision {
 	 *
 	 * @param $audience Integer: one of:
 	 *      Revision::FOR_PUBLIC       to be displayed to all users
-	 *      Revision::FOR_THIS_USER    to be displayed to $wgUser
+	 *      Revision::FOR_THIS_USER    to be displayed to the given user
 	 *      Revision::RAW              get the text regardless of permissions
 	 * @param $user User object to check for, only if FOR_THIS_USER is passed
 	 *              to the $audience parameter

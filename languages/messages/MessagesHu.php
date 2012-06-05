@@ -1,5 +1,5 @@
 <?php
-/** Hungarian (Magyar)
+/** Hungarian (magyar)
  *
  * See MessagesQqq.php for message documentation incl. usage of parameters
  * To improve a translation please visit http://translatewiki.net
@@ -784,6 +784,7 @@ A visszaélések elkerülése végett {{PLURAL:$1|egy|$1}} óránként csak egy 
 'emailconfirmlink' => 'E-mail cím megerősítése',
 'invalidemailaddress' => 'A megadott e-mail cím érvénytelen formátumú. Kérlek, adj meg egy érvényes e-mail címet vagy hagyd üresen azt a mezőt.',
 'cannotchangeemail' => 'Ezen a wikin nem módosítható a fiókhoz tartozó e-mail cím.',
+'emaildisabled' => 'Ezen az oldalon nem lehet küldeni e-mailek.',
 'accountcreated' => 'Felhasználói fiók létrehozva',
 'accountcreatedtext' => '$1 felhasználói fiókja sikeresen létrejött.',
 'createaccount-title' => 'Új {{SITENAME}}-azonosító létrehozása',
@@ -1056,6 +1057,7 @@ Nem lett magyarázat csatolva.',
 'edit-no-change' => 'A szerkesztésed figyelmen kívül lett hagyva, mivel nem változtattál a lap szövegén.',
 'edit-already-exists' => 'Az új lap nem készíthető el.
 Már létezik.',
+'defaultmessagetext' => 'Alapértelmezett szöveg',
 
 # Parser/template warnings
 'expensive-parserfunction-warning' => 'Figyelem: ezen a lapon túl sok erőforrásigényes elemzőfüggvény-hívás található.
@@ -1244,6 +1246,7 @@ Győződj meg róla, hogy a laptörténet folytonossága megmarad.',
 # Diffs
 'history-title' => 'A(z) „$1” laptörténete',
 'difference-title' => '„$1” változatai közötti eltérés',
+'difference-title-multipage' => 'Oldalak közötti különbség " $1 "és" $2 "',
 'difference-multipage' => '(Lapok közti eltérés)',
 'lineno' => '$1. sor:',
 'compareselectedversions' => 'Kiválasztott változatok összehasonlítása',
@@ -1338,6 +1341,7 @@ Győződj meg róla, hogy a laptörténet folytonossága megmarad.',
 'prefs-beta' => 'Béta funkciók',
 'prefs-datetime' => 'Dátum és idő',
 'prefs-labs' => 'Kísérleti funkciók',
+'prefs-user-pages' => 'Felhasználói lapok',
 'prefs-personal' => 'Felhasználói adatok',
 'prefs-rc' => 'Friss változtatások',
 'prefs-watchlist' => 'Figyelőlista',
@@ -1802,6 +1806,7 @@ Kérjük, hogy lépj kapcsolatba egy  [[Special:ListUsers/sysop|adminisztrátorr
 'backend-fail-closetemp' => 'Nem lehet lezárni az ideiglenes fájlt.',
 'backend-fail-read' => 'Nem sikerült olvasni ebből a fájlból: $1.',
 'backend-fail-create' => 'Nem sikerült írni ebbe a fájlba: $1.',
+'backend-fail-maxsize' => 'Nem lehet írni ezt a fájlt: $1, mert a mérete nagyobb, mint $2 bájt.',
 'backend-fail-readonly' => 'A(z) „$1” tárolórendszer jelenleg csak olvasható. Ennek oka a következő: „$2”',
 'backend-fail-synced' => 'A(z) „$1” fájl inkonzisztens állapotban van a tárolórendszerek között',
 'backend-fail-connect' => 'Nem sikerült csatlakozni a(z) „$1” tárolórendszerhez.',
@@ -2137,6 +2142,11 @@ A napló típusának, a szerkesztő nevének (kis- és nagybetűérzékeny), vag
 'allpagesbadtitle' => 'A megadott lapnév nyelvközi vagy wikiközi előtagot tartalmazott, vagy érvénytelen volt. Talán olyan karakter van benne, amit nem lehet lapnevekben használni.',
 'allpages-bad-ns' => 'A(z) {{SITENAME}} webhelyen nincs "$1" névtér.',
 'allpages-hide-redirects' => 'Átirányítások elrejtése',
+
+# SpecialCachedPage
+'cachedspecial-viewing-cached-ttl' => 'A lap tárolt változatát látod, aminek utolsó frissítése ennyi ideje volt:  $1',
+'cachedspecial-viewing-cached-ts' => 'Az oldal tárolt változatát látod, ami eltérhet az aktuálistól.',
+'cachedspecial-refresh-now' => 'A legfrissebb változat megjelenítése.',
 
 # Special:Categories
 'categories' => 'Kategóriák',
@@ -3733,6 +3743,9 @@ A MediaWikit abban a reményben terjesztjük, hogy hasznos lesz, de GARANCIA NÉ
 'version-software' => 'Telepített szoftverek',
 'version-software-product' => 'Termék',
 'version-software-version' => 'Verzió',
+'version-entrypoints' => 'Belépési pont URL-címek',
+'version-entrypoints-header-entrypoint' => 'Belépési pont',
+'version-entrypoints-header-url' => 'URL',
 
 # Special:FilePath
 'filepath' => 'Fájlelérés',
@@ -3918,5 +3931,16 @@ A képek teljes méretben jelennek meg, más fájltípusok közvetlenül a hozz�
 'api-error-unknownerror' => 'Ismeretlen hiba: „$1”.',
 'api-error-uploaddisabled' => 'A feltöltés le van tiltva ezen a wikin.',
 'api-error-verification-error' => 'A fájl feltehetőleg sérült, vagy hibás a kiterjesztése.',
+
+# Durations
+'duration-seconds' => '{{PLURAL: $1|másodperc|másodperc}}',
+'duration-minutes' => '$1 {{PLURAL: $1|perc|perc}}',
+'duration-hours' => '{{PLURAL:$1|egy|$1}} óra',
+'duration-days' => '{{PLURAL:$1|egy|$1}} nap',
+'duration-weeks' => '$1 {{PLURAL:$1|hét|hét}}',
+'duration-years' => '{{PLURAL: $1|Egy év|$1 év}}',
+'duration-decades' => '{{PLURAL:$1|egy|$1}} évtized',
+'duration-centuries' => '{{PLURAL:$1|egy|$1}} évszázad',
+'duration-millennia' => '{{PLURAL:$1|egy|$1}} évezred',
 
 );

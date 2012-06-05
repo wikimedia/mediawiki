@@ -1,5 +1,5 @@
 <?php
-/** Interlingua (Interlingua)
+/** Interlingua (interlingua)
  *
  * See MessagesQqq.php for message documentation incl. usage of parameters
  * To improve a translation please visit http://translatewiki.net
@@ -1131,9 +1131,9 @@ Nota que le uso del ligamines de navigation causara le perdita de tote cambios i
 'mergelogpagetext' => 'Infra es un lista del fusiones le plus recente de un historia de pagina in un altere.',
 
 # Diffs
-'history-title' => 'Historia de versiones de "$1"',
-'difference-title' => 'Differentia inter versiones de "$1"',
-'difference-title-multipage' => 'Differentia inter paginas "$1" e "$2"',
+'history-title' => '$1: Historia de versiones',
+'difference-title' => '$1: Differentia inter versiones',
+'difference-title-multipage' => '$1 e $2: Differentia inter paginas',
 'difference-multipage' => '(Differentia inter paginas)',
 'lineno' => 'Linea $1:',
 'compareselectedversions' => 'Comparar versiones seligite',
@@ -1223,7 +1223,7 @@ Nota que lor indices del contento de {{SITENAME}} pote esser obsolete.',
 'mypreferences' => 'Mi preferentias',
 'prefs-edits' => 'Numero de modificationes:',
 'prefsnologin' => 'Tu non ha aperite un session',
-'prefsnologintext' => 'Tu debe <span class="plainlinks">[{{fullurl:{{#Special:UserLogin}}|returnto=$1}} aperir un session]</span> pro poter configurar tu preferentias.',
+'prefsnologintext' => 'Tu debe <span class="plainlinks">[{{fullurl:{{#Special:UserLogin}}|returnto=$1}} aperir session]</span> pro configurar preferentias de usator.',
 'changepassword' => 'Cambiar contrasigno',
 'prefs-skin' => 'Apparentia',
 'skin-preview' => 'Previsualisation',
@@ -1231,6 +1231,7 @@ Nota que lor indices del contento de {{SITENAME}} pote esser obsolete.',
 'prefs-beta' => 'Functiones beta',
 'prefs-datetime' => 'Data e hora',
 'prefs-labs' => 'Functiones experimental',
+'prefs-user-pages' => 'Paginas de usator',
 'prefs-personal' => 'Profilo del usator',
 'prefs-rc' => 'Modificationes recente',
 'prefs-watchlist' => 'Observatorio',

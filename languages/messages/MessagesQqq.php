@@ -310,6 +310,9 @@ See http://test.wikipedia.org/wiki/Category:Test_ko?uselang={{SUBPAGENAME}}, for
 'index-category' => 'Name of the [[mw:Help:Tracking categories|tracking category]] where pages with the <nowiki>__INDEX__</nowiki> behaviour switch are listed. For description of this behaviour switch see [//www.mediawiki.org/wiki/Help:Magic_words#Behavior_switches mediawiki].',
 'noindex-category' => 'Name of the [[mw:Help:Tracking categories|tracking category]] where pages with the <nowiki>__NOINDEX__</nowiki> behaviour switch are listed. For description of this behaviour switch see [//www.mediawiki.org/wiki/Help:Magic_words#Behavior_switches mediawiki].',
 'broken-file-category' => 'Name of [[mw:Help:Tracking categories|tracking category]] where pages that embed files that do not exist ("broken images") are listed.',
+'categoryviewer-pagedlinks' => 'The pagination links in category viewer. Parameters:
+* $1 is the previous link,
+* $2 is the next link',
 
 'linkprefix' => '{{optional}}',
 
@@ -729,7 +732,9 @@ $1 is a filename, I think.',
 'nologin' => 'A message shown in the log in form. $1 is a link to the account creation form, and the text of it is "[[MediaWiki:Nologinlink/{{SUBPAGENAME}}|{{int:nologinlink}}]]".',
 'nologinlink' => 'Text of the link to the account creation form. Before that link, the message [[MediaWiki:Nologin/{{SUBPAGENAME}}]] appears.
 {{Identical|Create an account}}',
-'createaccount' => 'The title of Special:CreateAccount, where users can register a new account. Used on Special:SpecialPages, and also on the submit button in the form where you register a new account.
+'createaccount' => 'The title of Special:CreateAccount, where users can register a new account. Used on Special:SpecialPages and on the submit button in the form where you register a new account.
+
+It is also used on the top of the page for logged out users, where it appears next to {{msg-mw|login}}, so consider making them similar.
 {{Identical|Create account}}',
 'gotaccount' => 'A message shown in the account creation form. $1 is a link to the log in form, and the text of it is "[[MediaWiki:Gotaccountlink/{{SUBPAGENAME}}|{{int:gotaccountlink}}]]".',
 'gotaccountlink' => 'Text of the link to the log in form. Before that link, the message [[MediaWiki:Gotaccount/{{SUBPAGENAME}}]] appears.
@@ -795,7 +800,7 @@ Parameters:
 *Parameter $4 is a URL to the wiki',
 'login-throttled' => 'Error message shown at [[Special:UserLogin]] after 5 wrong passwords. The hardcoded waiting time is 300 seconds.',
 'login-abort-generic' => 'The generic unsuccessful login message is used unless otherwise specified by hook writers',
-'loginlanguagelabel' => 'Used on [[Special:UserLogin]] if $wgLoginLanguageSelector is true.
+'loginlanguagelabel' => 'Used on [[Special:UserLogin]] if $wgLoginLanguageSelector is true. $1 is a pipe-separated list built from the names that appear in the message {{msg-mw|Loginlanguagelinks}}.
 {{Identical|Language}}',
 
 # E-mail sending
@@ -1241,6 +1246,13 @@ Parameters:
 *Parameter $3 is a log comment for the merge',
 'mergehistory-same-destination' => 'Error message shown on [[Special:MergeHistory]] when the user entered the same page title to both source and destination',
 'mergehistory-reason' => '{{Identical|Reason}}',
+'mergehistory-revisionrow' => 'A revision row in the merge history page. Parameters:
+* $1 is a radio button to indicate a merge point,
+* $2 is a link to the last revision of a page ({{msg-mw|last}}),
+* $3 is a page link,
+* $4 is a user link,
+* $5 is a revision size,
+* $6 is a revision comment',
 
 # Merge log
 'mergelog' => 'This is the name of a log of merge actions done on [[Special:MergeHistory]]. This special page and this log is not enabled by default.',
@@ -1263,7 +1275,7 @@ Please note that the parameters in a log entry will appear in the log only in th
 See also {{msg-mw|difference}}.',
 'lineno' => 'Message used when comparing different versions of a page (diff). $1 is a line number.',
 'compareselectedversions' => 'Used as button in history pages.',
-'showhideselectedversions' => 'Text of the button which brings up the [[mw:RevisionDelete|RevisionDelete]] menu.',
+'showhideselectedversions' => 'Text of the button which brings up the [[mw:RevisionDelete|RevisionDelete]] menu on history pages.',
 'editundo' => 'Undo link when viewing diffs
 {{Identical|Undo}}
 
@@ -2372,6 +2384,7 @@ The title is {{msg-mw|nopagetitle}}.',
 'alllogstext' => 'Header of [[Special:Log]]',
 'log-title-wildcard' => '* Appears in: [[Special:Log]]
 * Description: A check box to enable prefix search option',
+'showhideselectedlogentries' => 'Text of the button which brings up the [[mw:RevisionDelete|RevisionDelete]] menu on [[Special:Log]].',
 
 # Special:AllPages
 'allpages' => 'First part of the navigation bar for the special page [[Special:AllPages]] and [[Special:PrefixIndex]]. The other parts are {{msg-mw|Prevpage}} and {{msg-mw|Nextpage}}.
@@ -2789,6 +2802,14 @@ This message was something like "unlock move protection" in the past.',
 
 {{identical|Are you sure you want to view the deleted revision of the file...}}',
 'undelete-show-file-submit' => '{{Identical|Yes}}',
+'undelete-revisionrow' => "A revision row in the undelete page. Parameters:
+* $1 is a checkBox to indicate whether to restore this specific revision
+* $2 is a link to the revision
+* $3 is a link to the last revision of a page ({{msg-mw|last}})
+* $4 is a link to the page
+* $5 is a link to the revision's user
+* $6 is the revision size
+* $7 is the revision comment",
 
 # Namespace form on various pages
 'namespace' => 'This message is located at [[Special:Contributions]].',
@@ -3481,7 +3502,7 @@ Part of variable $1 in {{msg-mw|Ago}}
 *{{msg-mw|Days}}',
 
 # Bad image list
-'bad_image_list' => 'This is only message appears to guide administrators to add links with right format. This will not appear anywhere else in Mediawiki.',
+'bad_image_list' => 'This message only appears to guide administrators to add links with the right format. This will not appear anywhere else in MediaWiki.',
 
 /*
 Short names for language variants used for language conversion links.
@@ -4027,6 +4048,7 @@ CW is an abbreviation for clockwise.',
 'exif-contrast-2' => '{{Identical|Hard}}',
 
 'exif-saturation-0' => '{{Identical|Normal}}',
+'exif-saturation-2' => 'Color saturation in picture EXIF data',
 
 'exif-sharpness-0' => '{{Identical|Normal}}',
 'exif-sharpness-1' => '{{Identical|Soft}}',

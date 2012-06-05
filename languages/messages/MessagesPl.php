@@ -1,5 +1,5 @@
 <?php
-/** Polish (Polski)
+/** Polish (polski)
  *
  * See MessagesQqq.php for message documentation incl. usage of parameters
  * To improve a translation please visit http://translatewiki.net
@@ -1076,6 +1076,10 @@ Argument ten będzie pominięty.',
 'language-converter-depth-warning' => 'Przekroczono ograniczenie ($1) głębokości zagnieżdżenia konwersji językowej',
 'node-count-exceeded-category' => 'Strony, gdzie przekroczono liczbę węzłów',
 'node-count-exceeded-warning' => 'Strona przekroczyła liczbę węzłów',
+'expansion-depth-exceeded-category' => 'Strony z przekroczoną głębokością rozbudowy',
+'expansion-depth-exceeded-warning' => 'Strona przekroczyła głębokość rozbudowy',
+'parser-unstrip-loop-warning' => 'Wykryto nieskończoną pętlę',
+'parser-unstrip-recursion-limit' => 'Przekroczono maksymalną głębokość zagnieżdżania ($1)',
 
 # "Undo" feature
 'undo-success' => 'Edycja może zostać wycofana. Porównaj ukazane poniżej różnice między wersjami, a następnie zapisz zmiany.',
@@ -1251,8 +1255,8 @@ Użycie linków nawigacyjnych kasuje wybór w kolumnie.',
 'mergelogpagetext' => 'Poniżej znajduje się lista ostatnich scaleń historii zmian stron.',
 
 # Diffs
-'history-title' => 'Historia edycji „$1”',
-'difference-title' => 'Różnica pomiędzy wersjami strony "$1"',
+'history-title' => '$1: Historia wersji',
+'difference-title' => '$1: Różnice pomiędzy wersjami',
 'difference-title-multipage' => 'Różnica pomiędzy stronami "$1" i "$2"',
 'difference-multipage' => '(Różnica między stronami)',
 'lineno' => 'Linia $1:',
@@ -1350,6 +1354,7 @@ Jednak informacje o treści {{GRAMMAR:D.lp|{{SITENAME}}}} mogą być w Google ni
 'prefs-beta' => 'Funkcje testowe',
 'prefs-datetime' => 'Data i czas',
 'prefs-labs' => 'Funkcje doświadczalne',
+'prefs-user-pages' => 'Strony użytkowników',
 'prefs-personal' => 'Dane użytkownika',
 'prefs-rc' => 'Ostatnie zmiany',
 'prefs-watchlist' => 'Obserwowane',
@@ -1567,7 +1572,7 @@ Jeśli zdecydujesz się je podać, zostaną użyte, by udokumentować Twoje auto
 # User rights log
 'rightslog' => 'Uprawnienia',
 'rightslogtext' => 'Rejestr zmian uprawnień użytkowników.',
-'rightslogentry' => 'zmienia przynależność $1 do grup ($2 → $3)',
+'rightslogentry' => 'zmienił przynależność $1 do grup ($2 → $3)',
 'rightslogentry-autopromote' => 'automatycznie zmienia przynależność ($2 → $3)',
 'rightsnone' => 'brak',
 
@@ -2152,6 +2157,7 @@ Inne witryny mogą odwoływać się do tych plików, używając bezpośrednich a
 Możesz zawęzić liczbę wyników poprzez wybranie typu rejestru, nazwy użytkownika albo tytułu strony.',
 'logempty' => 'W rejestrze nie znaleziono pozycji odpowiadających zapytaniu.',
 'log-title-wildcard' => 'Szukaj tytułów zaczynających się od tego tekstu',
+'showhideselectedlogentries' => 'Pokaż/ukryj zaznaczone wpisy rejestru',
 
 # Special:AllPages
 'allpages' => 'Wszystkie strony',

@@ -874,8 +874,10 @@ class EnhancedChangesList extends ChangesList {
 			array_push( $users, $text );
 		}
 
-		$users = ' <span class="changedby">[' .
-			implode( $this->message['semicolon-separator'], $users ) . ']</span>';
+		$users = ' <span class="changedby">'
+			. $this->getContext()->msg( 'brackets' )->rawParams(
+				implode( $this->message['semicolon-separator'], $users )
+			)->plain() . '</span>';
 
 		$tl = '<span class="mw-collapsible-toggle mw-enhancedchanges-arrow"></span>';
 		$r .= "<td>$tl</td>";
