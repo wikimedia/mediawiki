@@ -26,7 +26,7 @@
 class LogEventsList {
 	const NO_ACTION_LINK = 1;
 	const NO_EXTRA_USER_LINKS = 2;
-	const USE_REVDEL_CHECKBOXES = 3;
+	const USE_REVDEL_CHECKBOXES = 4;
 
 	/**
 	 * @var Skin
