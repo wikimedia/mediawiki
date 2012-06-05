@@ -805,7 +805,7 @@ $2',
 # Change password dialog
 'resetpass' => '비밀번호 바꾸기',
 'resetpass_announce' => '이메일로 받은 임시 비밀번호로 로그인했습니다. 로그인을 마치려면 새 비밀번호를 여기에서 설정해야 합니다:',
-'resetpass_text' => '<!-- 여기에 텍스트를 더하세요 -->',
+'resetpass_text' => '<!-- 여기에 텍스트를 추가하세요 -->',
 'resetpass_header' => '비밀번호 변경',
 'oldpassword' => '이전 비밀번호:',
 'newpassword' => '새 비밀번호:',
@@ -1758,7 +1758,7 @@ $1",
 'filename-bad-prefix' => '올리려고 하는 파일 이름이 \'\'\'"$1"\'\'\'(으)로 시작합니다.
 "$1"은(는) 디지털 사진기가 자동으로 붙이는 의미없는 이름입니다.
 파일에 대해 알기 쉬운 이름을 골라주세요.',
-'filename-prefix-blacklist' => ' #<!-- 이 줄은 그대로 두세요 --> <pre>
+'filename-prefix-blacklist' => ' #<!-- 이 줄은 그대로 두십시오 --> <pre>
 # 문법은 다음과 같습니다:
 #   * "#"에서 그 줄의 끝까지는 코멘트입니다.
 #   * 비어 있지 않은 줄은 디지털 카메라에서 자동적으로 부여하는 파일 접두어입니다.
@@ -1771,7 +1771,7 @@ IMG # 일반
 JD # 제놉틱
 MGP # 펜탁스
 PICT # 기타
- #</pre> <!-- 이 줄은 그대로 두세요 -->',
+ #</pre> <!-- 이 줄은 그대로 두십시오 -->',
 'upload-success-subj' => '올리기 성공',
 'upload-success-msg' => '파일을 [$2]에서 성공적으로 올렸습니다. 당신이 올린 파일이 여기 있습니다: [[:{{ns:file}}:$1]]',
 'upload-failure-subj' => '올리기 실패',
@@ -3752,7 +3752,7 @@ $5
 'version-poweredby-others' => '그 외 다른 개발자',
 'version-license-info' => "미디어위키는 자유 소프트웨어입니다. 당신은 자유 소프트웨어 재단이 발표한 GNU 일반 공중 사용 허가서 버전 2나 그 이후 버전에 따라 이 파일을 재배포하거나 수정할 수 있습니다.
 
-미디어위키가 유용하게 사용될 수 있기를 바라지만 '''상용으로 사용되거나''' '''특정 목적에 맞을 것'''이라는 것을 '''보증하지 않습니다'''. 자세한 내용은 GNU 일반 공중 사용 허가서 전문을 참고하십시오.
+미디어위키가 유용하게 사용될 수 있기를 바라지만 '''상용으로 사용'''되거나 '''특정 목적에 맞을 것'''이라는 것을 '''보증하지 않습니다'''. 자세한 내용은 GNU 일반 공중 사용 허가서 전문을 참고하십시오.
 
 당신은 이 프로그램을 통해 [{{SERVER}}{{SCRIPTPATH}}/COPYING GNU 일반 공중 사용 허가서 전문]을 받았습니다; 그렇지 않다면, Free Software Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA로 편지를 보내주시거나 [//www.gnu.org/licenses/old-licenses/gpl-2.0.html 온라인으로 읽어보시기] 바랍니다.",
 'version-software' => '설치된 프로그램',
@@ -3789,7 +3789,7 @@ $5
 * <span class="mw-specialpagerestricted">제한된 특수 문서.</span>',
 'specialpages-group-maintenance' => '관리용 목록',
 'specialpages-group-other' => '다른 특수 문서',
-'specialpages-group-login' => '로그인 / 가입하기',
+'specialpages-group-login' => '로그인 / 가입',
 'specialpages-group-changes' => '최근 바뀜과 기록',
 'specialpages-group-media' => '파일 관리',
 'specialpages-group-users' => '사용자와 권한',
@@ -3872,8 +3872,8 @@ $5
 'logentry-delete-event-legacy' => '$1 사용자가 $3 문서 기록의 표시 설정을 변경하였습니다.',
 'logentry-delete-revision-legacy' => '$1 사용자가 $3 문서 편집의 표시 설정을 변경하였습니다.',
 'logentry-suppress-delete' => '$1 사용자가 $3 문서를 숨겼습니다.',
-'logentry-suppress-event' => '$1 사용자가 비공개적으로 $3의 {{PLURAL:$5|$5개의 기록}}에 대해 표시 설정을 바꾸었습니다: $4',
-'logentry-suppress-revision' => '$1 사용자가 비공개적으로 $3 문서의 {{PLURAL:$5|$5개의 판}}에 대해 표시 설정을 바꾸었습니다: $4',
+'logentry-suppress-event' => '$1 사용자가 비공개적으로 $3의 {{PLURAL:$5|기록 $5개}}에 대해 표시 설정을 바꾸었습니다: $4',
+'logentry-suppress-revision' => '$1 사용자가 비공개적으로 $3 문서의 {{PLURAL:$5|판 $5개}}에 대해 표시 설정을 바꾸었습니다: $4',
 'logentry-suppress-event-legacy' => '$1 사용자가 비공개적으로 $3의 항목에 대한 표시 설정을 바꾸었습니다.',
 'logentry-suppress-revision-legacy' => '$1 사용자가 비공개적으로 $3 문서의 특정 판에 대한 표시 설정을 바꾸었습니다.',
 'revdelete-content-hid' => '내용 숨겨짐',
@@ -3909,8 +3909,8 @@ $5
 'feedback-error3' => '오류: API가 응답하지 않음',
 'feedback-thanks' => '감사합니다! ‘[$2 $1]’ 문서에 당신의 의견을 남겼습니다.',
 'feedback-close' => '완료',
-'feedback-bugcheck' => '감사합니다! 혹시 해당 사항이 [$1 기존의 버그 리포트]에 올라와 있는지 확인해주세요.',
-'feedback-bugnew' => '확인했습니다. 새로운 버그 리포트를 작성합니다.',
+'feedback-bugcheck' => '감사합니다! 혹시 해당 사항이 [$1 기존의 버그 보고서]에 올라와 있는지 확인해주세요.',
+'feedback-bugnew' => '확인했습니다. 새로운 버그 보고서를 작성합니다.',
 
 # API errors
 'api-error-badaccess-groups' => '당신은 이 위키에 파일을 올릴 권한이 없습니다.',

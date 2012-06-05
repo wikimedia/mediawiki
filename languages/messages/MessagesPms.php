@@ -1889,6 +1889,7 @@ Për piasì, ch'a nòta che d'àutri sit an sl'aragnà a peulo coleghesse a n'ar
 A peul arstrenze la visualisassion an selessionand la sòrt ëd registr, lë stranòm utent (sensìbil a majùscol/minùscol), e la pàgina anteressà (sensìbil a majùscol/minùscol).',
 'logempty' => 'Pa gnun element parèj che a sia trovasse ant ij registr.',
 'log-title-wildcard' => "Sërché ant ij tìtoj ch'as anandio për",
+'showhideselectedlogentries' => 'Smon-e/stërmé le vos ëd registr selessionà',
 
 # Special:AllPages
 'allpages' => 'Tute le pàgine',
@@ -2546,28 +2547,28 @@ L'artìcol ëd destinassion «[[:$1]]» a-i é già. Veul-lo scancelelo për av�
 'imageinvalidfilename' => "Ël nòm ëd l'archivi bërsaj a l'é nen bon",
 'fix-double-redirects' => 'Agiorné tute le ridiression che a ponto vers ël tìtol original',
 'move-leave-redirect' => 'Lassé na ridiression',
-'protectedpagemovewarning' => "'''Avis:''' Sta pàgina-sì a l'é stàita blocà parèj che mach utent con drit d'aministrator a peulo tramudela.
+'protectedpagemovewarning' => "'''Avis:''' Sta pàgina-sì a l'é stàita blocà parèj che mach j'utent con ij drit d'aministrator a peulo tramudela.
 L'ùltima vos dël registr a l'é smonùa sì-sota për arferiment:",
 'semiprotectedpagemovewarning' => "'''Nòta:''' Sta pàgina-sì a l'é stàita blocà parèj che mach j'utent argistrà a peulo tramudela.
 L'ùltima vos dël registr a l'é smonùa sì-sota për arferiment:",
 'move-over-sharedrepo' => "== L'archivi a esist ==
 [[:$1]] a esist già dzora a un depòsit partagià. Tramudé n'archivi a cost tìtol-sì a coaterà l'archivi partagià.",
-'file-exists-sharedrepo' => "Ël nòm dël file sërnù a l'é già dovrà ant ël depòsit condivis.
-Për piasì sern n'àutr nòm.",
+'file-exists-sharedrepo' => "Ël nòm d'archivi sërnù a l'é già dovrà ant ël depòsit condivis.
+Për piasì ch'a serna n'àutr nòm.",
 
 # Export
 'export' => 'Esporté dle pàgine',
 'exporttext' => "A peul esporté ël test e modifiché la stòria ëd na pàgina ò pura
-ëd n'ansema ëd pàgine gropa ant n'archivi XML. Sòn a peul peuj amportesse
-ant n'àutra wiki ën dovrand la funsion Special:Ampòrta pàgina.
+ëd n'ansema ëd pàgine gropà ant n'archivi XML. Sòn a peul peuj amportesse
+ant n'àutra wiki ën dovrand MediaWiki con la [[Special:Import|pàgina d'amportassion]].
 
-Për esporté le pàgine, che a së scriva ij tìtoj ant ël quàder ambelessì sota, butand-ji un tìtol për riga,
-e che as serna se a veul la version corenta ansema a cole veje, con le righe che conto la stòria dla pàgina,
-ò pura mach l'anformassion ant sël quand che a sia staje l'ùltima modìfica.
+Për esporté le pàgine, che a së scriva ij tìtoj ant ël quàder ambelessì-sota, butandje un tìtol për riga,
+e che as serna se a veul la version corenta ansema a cole veje, con le righe che a conto la stòria dla pàgina,
+ò pura mach l'anformassion an  sl'ùltima modìfica.
 
 Se costa ùltima possibilità a fussa lòn che a-j serv, a podrìa ëdcò dovré n'anliura, pr'esempi [[{{#Special:Export}}/{{MediaWiki:Mainpage}}]] për la pàgina \"[[{{MediaWiki:Mainpage}}]]\".",
 'exportall' => 'Esporté tute le pàgine',
-'exportcuronly' => 'Ciapa sù mach la version corenta, pa tuta la stòria',
+'exportcuronly' => 'Ciapé sù mach la version corenta, pa tuta la stòria',
 'exportnohistory' => "----
 '''Nòta:''' la possibilità d'esporté la stòria completa dle pàgine a l'é staita gavà për dle question corelà a le prestassion dël sistema.",
 'exportlistauthors' => 'Anclude na lista completa dij contributor për minca pàgina',

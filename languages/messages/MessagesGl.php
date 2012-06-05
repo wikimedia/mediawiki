@@ -2103,6 +2103,7 @@ Por favor, teña en conta que outras páxinas web poden ligar cara a un ficheiro
 Pode precisar máis a vista seleccionando o tipo de rexistro, o nome do usuario ou o título da páxina afectada.',
 'logempty' => 'Non se atopou ningún elemento relacionado no rexistro.',
 'log-title-wildcard' => 'Procurar os títulos que comecen con este texto',
+'showhideselectedlogentries' => 'Mostrar/agochar as entradas do rexistro seleccionadas',
 
 # Special:AllPages
 'allpages' => 'Todas as páxinas',

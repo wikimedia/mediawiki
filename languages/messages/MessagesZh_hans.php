@@ -2861,6 +2861,11 @@ $1被封禁的理由是：“$2”',
 'vector.css' => '/* 此处的 CSS 将影响使用 Vector 皮肤的用户 */',
 'print.css' => '/* 此处的 CSS 将影响打印输出 */',
 'handheld.css' => '/* 此处的 CSS 将影响在 $wgHandheldStyle 设置手提装置面板 */',
+'noscript.css' => '/* 此处的 CSS 将影响没有启用 JavaScript 的用户 */',
+'group-autoconfirmed.css' => '/* 此处的 CSS 将只会影响自动确认用户 */',
+'group-bot.css' => '/* 此处的 CSS 将只会影响机器人 */',
+'group-sysop.css' => '/* 此处的 CSS 将只会影响管理员 */',
+'group-bureaucrat.css' => '/* 此处的 CSS 将只会影响行政员 */',
 
 # Scripts
 'common.js' => '/* 此处的JavaScript将加载于所有用户每一个页面。 */',
@@ -3006,11 +3011,14 @@ Variants for Chinese language
 'variantname-zh-cn' => '大陆简体',
 'variantname-zh-tw' => '台湾正体',
 'variantname-zh-hk' => '香港繁体',
+'variantname-zh-mo' => '澳门繁体',
 'variantname-zh-sg' => '新加坡简体',
+'variantname-zh-my' => '马来西亚简体',
 'variantname-zh' => '不转换',
 
 # Variants for Gan language
-'variantname-gan-hans' => '',
+'variantname-gan-hans' => '‪中文(简体)',
+'variantname-gan-hant' => '‪中文(繁体)',
 
 # Variants for Kazakh language
 'variantname-kk-cyrl' => '',

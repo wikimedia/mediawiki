@@ -2205,6 +2205,7 @@ Veuillez noter que d’autres sites peuvent avoir un lien direct vers un fichier
 Vous pouvez personnaliser l’affichage en sélectionnant le type de journal, le nom d’utilisateur ou la page concernée (ces deux derniers étant sensibles à la casse).',
 'logempty' => 'Aucune opération correspondante dans les journaux.',
 'log-title-wildcard' => 'Chercher parmi les titres commençant par ce texte',
+'showhideselectedlogentries' => 'Afficher/masquer les entrées de journal sélectionnées',
 
 # Special:AllPages
 'allpages' => 'Toutes les pages',

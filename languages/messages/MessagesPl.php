@@ -2157,6 +2157,7 @@ Inne witryny mogą odwoływać się do tych plików, używając bezpośrednich a
 Możesz zawęzić liczbę wyników poprzez wybranie typu rejestru, nazwy użytkownika albo tytułu strony.',
 'logempty' => 'W rejestrze nie znaleziono pozycji odpowiadających zapytaniu.',
 'log-title-wildcard' => 'Szukaj tytułów zaczynających się od tego tekstu',
+'showhideselectedlogentries' => 'Pokaż/ukryj zaznaczone wpisy rejestru',
 
 # Special:AllPages
 'allpages' => 'Wszystkie strony',
