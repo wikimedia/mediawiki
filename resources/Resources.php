@@ -525,32 +525,32 @@ return array(
 		'scripts' => 'resources/mediawiki.api/mediawiki.api.js',
 		'dependencies' => 'mediawiki.util',
 	),
-	'mediawiki.api.category' => array( 
+	'mediawiki.api.category' => array(
 		'scripts' => 'resources/mediawiki.api/mediawiki.api.category.js',
-		'dependencies' => array( 
+		'dependencies' => array(
 			'mediawiki.api',
-			'mediawiki.Title' 
+			'mediawiki.Title',
 		),
 	),
-	'mediawiki.api.edit' => array( 
+	'mediawiki.api.edit' => array(
 		'scripts' => 'resources/mediawiki.api/mediawiki.api.edit.js',
-		'dependencies' => array( 
+		'dependencies' => array(
 			'mediawiki.api',
-			'mediawiki.Title' 
+			'mediawiki.Title',
 		),
 	),
-	'mediawiki.api.parse' => array( 
+	'mediawiki.api.parse' => array(
 		'scripts' => 'resources/mediawiki.api/mediawiki.api.parse.js',
 		'dependencies' => 'mediawiki.api',
 	),
-	'mediawiki.api.titleblacklist' => array( 
+	'mediawiki.api.titleblacklist' => array(
 		'scripts' => 'resources/mediawiki.api/mediawiki.api.titleblacklist.js',
-		'dependencies' => array( 
+		'dependencies' => array(
 			'mediawiki.api',
-			'mediawiki.Title' 
+			'mediawiki.Title',
 		),
 	),
-	'mediawiki.api.watch' => array( 
+	'mediawiki.api.watch' => array(
 		'scripts' => 'resources/mediawiki.api/mediawiki.api.watch.js',
 		'dependencies' => array(
 			'mediawiki.api',
@@ -573,13 +573,13 @@ return array(
 	'mediawiki.feedback' => array(
 		'scripts' => 'resources/mediawiki/mediawiki.feedback.js',
 		'styles' => 'resources/mediawiki/mediawiki.feedback.css',
-		'dependencies' => array( 
-			'mediawiki.api.edit', 
+		'dependencies' => array(
+			'mediawiki.api.edit',
 			'mediawiki.Title',
 			'mediawiki.jqueryMsg',
 			'jquery.ui.dialog',
 		),
-		'messages' => array( 
+		'messages' => array(
 			'feedback-bugornote',
 			'feedback-subject',
 			'feedback-message',
@@ -728,12 +728,15 @@ return array(
 	),
 
 	'mediawiki.language.init' => array(
-		'scripts' => 'resources/mediawiki.language/mediawiki.language.init.js'
+		'scripts' => 'resources/mediawiki.language/mediawiki.language.init.js',
 	),
 
 	'mediawiki.jqueryMsg' => array(
-		'dependencies' => array( 'mediawiki.language', 'mediawiki.util' ),
-		'scripts' => 'resources/mediawiki/mediawiki.jqueryMsg.js'
+		'scripts' => 'resources/mediawiki/mediawiki.jqueryMsg.js',
+		'dependencies' => array(
+			'mediawiki.util',
+			'mediawiki.language',
+		),
 	),
 
 	/* MediaWiki Libs */
