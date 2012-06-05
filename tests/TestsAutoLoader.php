@@ -28,7 +28,6 @@ $wgAutoloadClasses += array(
 
 	//maintenance
 	'DumpTestCase' => "$testFolder/phpunit/maintenance/DumpTestCase.php",
-	'BackupDumper' => "$testFolder/../maintenance/backup.inc",
 
 	//Generic providers
 	'MediaWikiProvide' => "$testFolder/phpunit/includes/Providers.php",
