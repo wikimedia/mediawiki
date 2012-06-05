@@ -306,15 +306,15 @@ class Preferences {
 				$options[$display] = $code;
 			}
 
-			if ( count( $variantArray ) > 1 ) {
-				$defaultPreferences['variant'] = array(
-					'label-message' => 'yourvariant',
-					'type' => 'select',
-					'options' => $options,
-					'section' => 'personal/i18n',
-					'help-message' => 'prefs-help-variant',
-				);
-			}
+			// It may be possible to go through all language objects
+			// and fetch variants from them but it may be too expensive.
+			$defaultPreferences['variant'] = array(
+				'label-message' => 'yourvariant',
+				'type' => count( $variantArray ) > 1 ? 'selectorother' : 'text',
+				'options' => $options,
+				'section' => 'personal/i18n',
+				'help-message' => 'prefs-help-variant',
+			);
 		}
 
 		if ( count( $variantArray ) > 1 && !$wgDisableLangConversion && !$wgDisableTitleConversion ) {
