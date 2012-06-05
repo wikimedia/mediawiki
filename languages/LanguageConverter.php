@@ -221,7 +221,7 @@ class LanguageConverter {
 	/**
 	 * Determine if the user has a variant set.
 	 *
-	 * @return Mixed: variant if one found, false otherwise.
+	 * @return Mixed: variant if one found, null otherwise.
 	 */
 	protected function getUserVariant() {
 		global $wgUser;
@@ -236,15 +236,21 @@ class LanguageConverter {
 		// Get language variant preference from logged in users
 		// Don't call this on stub objects because that causes infinite
 		// recursion during initialisation
-		if ( $wgUser->isLoggedIn() )  {
-			$ret = $wgUser->getOption( 'variant' );
+		if ( $wgUser->isLoggedIn() ) {
+			$variants = explode( ',', $wgUser->getOption( 'variant' ) );
+			foreach ( $variants as $variant ) {
+				$variant = strtolower( trim( $variant ) );
+				if ( $variant = $this->validateVariant( $variant ) ) {
+					return $this->mUserVariant = $variant;
+				}
+			}
+			return null;
 		} else {
-			// figure out user lang without constructing wgLang to avoid
+			// Figure out user lang without constructing wgLang to avoid
 			// infinite recursion
-			$ret = $wgUser->getOption( 'language' );
+			$variant = $wgUser->getOption( 'language' );
+			return $this->mUserVariant = $this->validateVariant( $variant );
 		}
-
-		return $this->mUserVariant = $this->validateVariant( $ret );
 	}
 
 	/**
