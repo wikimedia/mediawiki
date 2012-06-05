@@ -1,0 +1,8 @@
+Change-Id: Ic29fd59775f597847a57f598a76de48c63952243
+Code-Review+2: awjrichards <arichards@wikimedia.org>
+Verified+1: awjrichards <arichards@wikimedia.org>
+Submitted-by: awjrichards <arichards@wikimedia.org>
+Submitted-at: Tue, 05 Jun 2012 23:01:36 +0000
+Reviewed-on: https://gerrit.wikimedia.org/r/10384
+Project: mediawiki/core
+Branch: refs/heads/master
