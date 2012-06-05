@@ -1275,7 +1275,7 @@ Please note that the parameters in a log entry will appear in the log only in th
 See also {{msg-mw|difference}}.',
 'lineno' => 'Message used when comparing different versions of a page (diff). $1 is a line number.',
 'compareselectedversions' => 'Used as button in history pages.',
-'showhideselectedversions' => 'Text of the button which brings up the [[mw:RevisionDelete|RevisionDelete]] menu.',
+'showhideselectedversions' => 'Text of the button which brings up the [[mw:RevisionDelete|RevisionDelete]] menu on history pages.',
 'editundo' => 'Undo link when viewing diffs
 {{Identical|Undo}}
 
@@ -2384,6 +2384,7 @@ The title is {{msg-mw|nopagetitle}}.',
 'alllogstext' => 'Header of [[Special:Log]]',
 'log-title-wildcard' => '* Appears in: [[Special:Log]]
 * Description: A check box to enable prefix search option',
+'showhideselectedlogentries' => 'Text of the button which brings up the [[mw:RevisionDelete|RevisionDelete]] menu on [[Special:Log]].',
 
 # Special:AllPages
 'allpages' => 'First part of the navigation bar for the special page [[Special:AllPages]] and [[Special:PrefixIndex]]. The other parts are {{msg-mw|Prevpage}} and {{msg-mw|Nextpage}}.
