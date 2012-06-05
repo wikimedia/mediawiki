@@ -2069,6 +2069,7 @@ Potrebbero essere presenti immagini che sono usate da altri siti con un collegam
 È possibile restringere i criteri di ricerca selezionando il tipo di registro, l'utente che ha eseguito l'azione, e/o la pagina interessata (entrambi i campi sono sensibili al maiuscolo/minuscolo).",
 'logempty' => 'Il registro non contiene elementi corrispondenti alla ricerca.',
 'log-title-wildcard' => 'Ricerca dei titoli che iniziano con',
+'showhideselectedlogentries' => 'Mostra/nascondi le voci di registro selezionate',
 
 # Special:AllPages
 'allpages' => 'Tutte le pagine',

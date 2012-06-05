@@ -430,7 +430,7 @@ $messages = array(
 'tog-externaleditor' => 'Externen Editor standardmäßig nutzen (nur für Experten, erfordert spezielle Einstellungen auf dem eigenen Computer. [//www.mediawiki.org/wiki/Manual:External_editors Weitere Informationen hierzu.])',
 'tog-externaldiff' => 'Externes Programm standardmäßig für Versionsunterschiede nutzen (nur für Experten, erfordert spezielle Einstellungen auf dem eigenen Computer. [//www.mediawiki.org/wiki/Manual:External_editors Weitere Informationen hierzu.])',
 'tog-showjumplinks' => '„Wechseln zu“-Links aktivieren',
-'tog-uselivepreview' => 'Sofortige Vorschau nutzen (benötigt JavaScript) (experimentell)',
+'tog-uselivepreview' => 'Vorschau sofort anzeigen (benötigt JavaScript) (experimentell)',
 'tog-forceeditsummary' => 'Warnen, sofern beim Speichern die Zusammenfassung fehlt',
 'tog-watchlisthideown' => 'Eigene Bearbeitungen in der Beobachtungsliste ausblenden',
 'tog-watchlisthidebots' => 'Bearbeitungen durch Bots in der Beobachtungsliste ausblenden',
@@ -1184,7 +1184,7 @@ Grund der Sperre: ''$2''",
 
 # History pages
 'viewpagelogs' => 'Logbücher dieser Seite anzeigen',
-'nohistory' => 'Es gibt keine Versionsgeschichte für diese Seite.',
+'nohistory' => 'Zu dieser Seite ist keine Versionsgeschichte vorhanden.',
 'currentrev' => 'Aktuelle Version',
 'currentrev-asof' => 'Aktuelle Version vom $2, $3 Uhr',
 'revisionasof' => 'Version vom $2, $3 Uhr',
@@ -2235,6 +2235,7 @@ Bitte prüfe, ob sie korrekt von der Quelle übertragen wurde.',
 Die Ausgabe kann durch die Auswahl des Logbuchtyps, des Benutzers oder des Seitentitels eingeschränkt werden (Groß-/Kleinschreibung muss beachtet werden).',
 'logempty' => 'Keine passenden Einträge.',
 'log-title-wildcard' => 'Titel beginnt mit …',
+'showhideselectedlogentries' => 'Ausgewählte Logbucheinträge anzeigen/verstecken',
 
 # Special:AllPages
 'allpages' => 'Alle Seiten',
@@ -3776,8 +3777,8 @@ Bitte bestätige, dass du diese Seite wirklich neu erstellen möchten.",
 # Live preview
 'livepreview-loading' => 'Lade …',
 'livepreview-ready' => 'Laden … Fertig!',
-'livepreview-failed' => 'Die sofortige Vorschau ist nicht möglich!
-Bitte die normale Vorschau nutzen.',
+'livepreview-failed' => 'Die Vorschau kann nicht sofort angezeigt werden!
+Bitte nutze die reguläre Vorschau.',
 'livepreview-error' => 'Verbindung nicht möglich: $1 „$2“. Bitte die normale Vorschau benutzen.',
 
 # Friendlier slave lag warnings
