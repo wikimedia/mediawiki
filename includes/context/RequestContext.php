@@ -394,37 +394,5 @@ class RequestContext implements IContextSource {
 		return $context;
 	}
 
-	public function getViewType() {
-		if ( is_null( $this->viewType ) ) {
-			$this->setViewType();
-		}
-		return $this->viewType;
-	}
-
-	public function setViewType( $viewType = null ) {
-		if ( !is_null( $viewType ) ) { // and in array valid view types?
-			$this->viewType = (string) $viewType;
-			return;
-		}
-
-		// printable?
-		if ( $this->getRequest()->getVal( 'printable' ) === 'yes' ) {
-			$this->viewType = 'print';
-			return;
-		}
-
-		// mobile?
-		// view toggling?!
-		$mobileContext = MobileContext::singleton();
-		if ( $mobileContext->shouldDisplayMobileView() ) {
-			$this->viewType = 'mobile';
-			$extMobileFrontend = new ExtMobileFrontend( $this );
-			$mobileSkin = SkinMobile::factory( $extMobileFrontend );
-			$this->setSkin( $mobileSkin );
-			return;
-		}
-
-		// provide hook for other view handling?
-	}
 }
 
