@@ -350,12 +350,12 @@ class RevisionItem extends RevisionItemBase {
 	 */
 	protected function getDiffLink() {
 		if ( $this->isDeleted() && !$this->canViewContent() ) {
-			return wfMsgHtml('diff');
+			return $this->context->msg( 'diff' )->escaped();
 		} else {
 			return
 				Linker::link(
 					$this->list->title,
-					wfMsgHtml('diff'),
+					$this->context->msg( 'diff' )->escaped(),
 					array(),
 					array(
 						'diff' => $this->revision->getId(),
@@ -371,7 +371,8 @@ class RevisionItem extends RevisionItemBase {
 	}
 
 	public function getHTML() {
-		$difflink = wfMessage( 'parentheses' )->rawParams( $this->getDiffLink() );
+		$difflink = $this->context->msg( 'parentheses' )
+			->rawParams( $this->getDiffLink() )->escaped();
 		$revlink = $this->getRevisionLink();
 		$userlink = Linker::revUserLink( $this->revision );
 		$comment = Linker::revComment( $this->revision );
