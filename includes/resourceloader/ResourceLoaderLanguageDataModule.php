@@ -38,6 +38,36 @@ class ResourceLoaderLanguageDataModule extends ResourceLoaderModule {
 	}
 
 	/**
+	 * Get the digit transform table for the content language
+	 * Seperator transform table also required here to convert
+	 * the . and , sign to appropriate forms in content language.
+	 *
+	 * @return array
+	 */
+	protected function getDigitTransformTable() {
+		global $wgContLang;
+		$digitTransformTable = $wgContLang->digitTransformTable();
+		$separatorTransformTable = $wgContLang->separatorTransformTable();
+		if ( $digitTransformTable ) {
+			array_merge( $digitTransformTable, (array)$separatorTransformTable );
+		} else {
+			return $separatorTransformTable;
+		}
+		return $digitTransformTable;
+	}
+
+	/**
+	 * Get all the dynamic data for the content language to an array
+	 *
+	 * @return array
+	 */
+	protected function getData() {
+		return array( 'grammarForms' => $this->getSiteLangGrammarForms(),
+				'digitTransformTable' => $this->getDigitTransformTable()
+			);
+	}
+
+	/**
 	 * @param $context ResourceLoaderContext
 	 * @return string Javascript code
 	 */
@@ -46,7 +76,7 @@ class ResourceLoaderLanguageDataModule extends ResourceLoaderModule {
 
 		return Xml::encodeJsCall( 'mw.language.setData', array(
 			$wgContLang->getCode(),
-			array( 'grammarForms' => $this->getSiteLangGrammarForms() )
+			$this->getData()
 		) );
 	}
 
@@ -58,8 +88,8 @@ class ResourceLoaderLanguageDataModule extends ResourceLoaderModule {
 		$cache = wfGetCache( CACHE_ANYTHING );
 		$key = wfMemcKey( 'resourceloader', 'langdatamodule', 'changeinfo' );
 
-		$forms = $this->getSiteLangGrammarForms();
-		$hash = md5( serialize( $forms ) );
+		$data = $this->getData();
+		$hash = md5( serialize( $data ) );
 
 		$result = $cache->get( $key );
 		if ( is_array( $result ) ) {
