@@ -2249,6 +2249,7 @@ $wgMessageStructure = array(
 		'cant-see-hidden-user',
 		'ipbblocked',
 		'ipbnounblockself',
+		'ipb-default-expiry',
 	),
 	'developertools' => array(
 		'lockdb',
