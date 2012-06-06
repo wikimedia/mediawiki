@@ -633,10 +633,13 @@ var mw = ( function ( $, undefined ) {
 			 * @param e   Error [optional] to also log.
 			 */
 			function log( msg, e ) {
-				if ( window.console && typeof window.console.log === 'function' ) {
+				var console = window.console;
+				if ( console && console.log ) {
 					console.log( msg );
-					if ( e ) {
-						console.log( e );
+					// Chrome 18+ doesn't show a stacktrace when passing an Error object
+					// to console.log, console.error behaves as expected in all browsers.
+					if ( e && console.error ) {
+						console.error( e );
 					}
 				}
 			}
