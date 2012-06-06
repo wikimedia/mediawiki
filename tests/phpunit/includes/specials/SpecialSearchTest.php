@@ -83,7 +83,9 @@ class SpecialSearchTest extends MediaWikiTestCase {
 				'Web request with specific NS should override user preference'
 			),
 			array(
-				$EMPTY_REQUEST, array( 'searchNs2' => 1, 'searchNs14' => 1 ),
+				$EMPTY_REQUEST, array_fill_keys( array_map( function( $ns ) {
+					return "searchNs$ns";
+				}, $defaultNS ), 0 ) + array( 'searchNs2' => 1, 'searchNs14' => 1 ),
 				'advanced', array( 2, 14 ),
 				'Bug 33583: search with no option should honor User search preferences'
 			),
