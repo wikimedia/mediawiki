@@ -648,7 +648,7 @@ abstract class ContentHandler {
 			$prev = $rev->getPrevious();
 
 			if ( $prev )	{
-				$content = $rev->getContent();
+				$content = $prev->getContent();
 				$blank = true;
 			}
 		}

@@ -2871,8 +2871,7 @@ class WikiPage extends Page {
 		wfDeprecated( __METHOD__, '1.WD' );
 
 		$handler = ContentHandler::getForTitle( $this->getTitle() );
-		$handler->getAutoDeleteReason( $this->getTitle(), $hasHistory );
-		#crap deleted
+		return $handler->getAutoDeleteReason( $this->getTitle(), $hasHistory );
 	}
 
 	/**
