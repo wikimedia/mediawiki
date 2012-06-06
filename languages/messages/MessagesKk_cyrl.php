@@ -1231,6 +1231,7 @@ $3 келтірілген себебі: ''$2''",
 
 # Diffs
 'history-title' => '«$1» — өңдеу тарихы',
+'difference-title' => 'Нұсқалар арасындағы айырмашылық: "$1"',
 'difference-multipage' => '(Беттер арасындағы айырмашылық)',
 'lineno' => 'Жол нөмірі $1:',
 'compareselectedversions' => 'Таңдалған нұсқаларды салыстыру',
@@ -3186,5 +3187,7 @@ $5
 # New logging system
 'revdelete-restricted' => 'әкімшілерге тиымдар қолдады',
 'revdelete-unrestricted' => 'әкімшілерден тиымдарды аластады',
+'logentry-move-move-noredirect' => '$1 $3 бетін $4 бетіне жылжытты (айдатқыш қалдырылмады)',
+'logentry-move-move_redir-noredirect' => '$1 $3 бетін $4 деген айдатқыш үстіне жылжытты (айдатқыш қалдырылмады)',
 
 );

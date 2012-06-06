@@ -2151,7 +2151,7 @@ Harap perhatikan bahwa situs web lain mungkin memiliki pranala ke suatu berkas d
 'log' => 'Log',
 'all-logs-page' => 'Semua log publik',
 'alllogstext' => 'Gabungan tampilan semua log yang tersedia di {{SITENAME}}.
-Anda dapat melakukan pembatasan tampilan dengan memilih jenis log, nama pengguna (sensitif kapital), atau judul halaman (juga sensitif kapital).',
+Anda dapat melakukan pembatasan tampilan dengan memilih jenis log, nama pengguna (sensitif kapitalisasi), atau judul halaman (juga sensitif kapitalisasi).',
 'logempty' => 'Tidak ditemukan entri log yang sesuai.',
 'log-title-wildcard' => 'Cari judul yang diawali dengan teks tersebut',
 

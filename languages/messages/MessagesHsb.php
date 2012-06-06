@@ -1961,6 +1961,7 @@ Prošu wobkedźbuj, zo druhe websydła móža na dataju z direktnym URL wotkazow
 'alllogstext' => 'Kombinowane zwobraznjenje wšěch k dispozicij stejacych protokolow w {{GRAMMAR:lokatiw|{{SITENAME}}}}. Móžeš napohlad wobmjezować, wuběrajo typ protokola, wužiwarske mjeno (dźiwajo na wulkopisanje) abo potrjechu stronu (tež dźiwajo na wulkopisanje).',
 'logempty' => 'Žane wotpowědowace zapiski w protokolu.',
 'log-title-wildcard' => 'Titul započina so z …',
+'showhideselectedlogentries' => 'Wubrane protokolowe zapiski pokazać/schować',
 
 # Special:AllPages
 'allpages' => 'Wšě nastawki',

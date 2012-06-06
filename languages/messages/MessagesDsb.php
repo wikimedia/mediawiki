@@ -1961,6 +1961,7 @@ Pšosym glědaj na to, až druge websedła móžu k drugej dataji z direktnym UR
 'alllogstext' => 'To jo kombiněrowane zwobraznjenje wšyknych we {{GRAMMAR:lokatiw|{{SITENAME}}}} k dispoziciji stojecych protokolow. Móžoš naglěd pśez wubraśe protokolowego typa, wužywarskego mjenja (pód źiwanim wjelikopisanja) abo pótrjefjonego boka (teke pód źiwanim wjelikopisanja) wobgranicowaś.',
 'logempty' => 'Žedne se góźece zapise njeeksistěruju.',
 'log-title-wildcard' => 'Pytaś nadpismo, kótarež zachopijo z ...',
+'showhideselectedlogentries' => 'Wubrane protokolowe zapiski pokazaś/schowaś',
 
 # Special:AllPages
 'allpages' => 'Wšykne boki',

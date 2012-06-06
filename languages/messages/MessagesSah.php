@@ -1,5 +1,5 @@
 <?php
-/** Sakha (Саха тыла)
+/** Sakha (саха тыла)
  *
  * See MessagesQqq.php for message documentation incl. usage of parameters
  * To improve a translation please visit http://translatewiki.net
@@ -9,6 +9,7 @@
  *
  * @author Andrijko Z.
  * @author Bert Jickty
+ * @author Gartem
  * @author HalanTul
  * @author Kaganer
  * @author Meno25
@@ -718,6 +719,7 @@ IP-аадырыһа эрэ көстөр.
 'note' => "'''Хос быһаарыы:'''",
 'previewnote' => "'''Бу барыллаан көрүү эрэ.'''
 Атын уларытыы бигэргэтиллэ илик!",
+'continue-editing' => 'Уларытыыны ситэр',
 'previewconflict' => 'Этот предварительный просмотр отражает текст в верхнем окне редактирования так, как он будет выглядеть, если вы решите записать его.',
 'session_fail_preview' => "'''Сиэрбэр сессия идентификаторын сүтэрэн кэбиһэн эн уларытыыгын кыайан киллэрбэтэ.
 Өссө холонон көр.
@@ -956,7 +958,7 @@ $1",
 # Suppression log
 'suppressionlog' => 'Кистээһин сурунаала',
 'suppressionlogtext' => 'Аллара даһабылларга көстүбэти таарыйар сотуулар уонна хааччахтааһыннар тиһиктэрэ бэриллэр.
-Билигин баар хааччахтары көрөргө [[Special:BlockList|IP хааччахтааһынын тиһигэр]] киир.',
+Билигин баар хааччахтары көрөргө [[Special:BlockList|хааччахтааһынын тиһигэр]] киир.',
 
 # History merging
 'mergehistory' => 'Силбэһии сирэйин хронологията',
@@ -1879,6 +1881,9 @@ $1',
 'allpagesprefix' => 'Мантан саҕаланар сирэйдэри бул:',
 'allpagesbadtitle' => 'Сирэй маннык ааттанара сатаммат: аакка туттуллуо суохтаах бэлиэлэрдээх эбэтэр тыллар ыккардыларыгар туһаныллар ыйынньыктаах.',
 'allpages-bad-ns' => '{{SITENAME}} не содержит пространства имён «$1».',
+
+# SpecialCachedPage
+'cachedspecial-refresh-now' => 'Бутэhиги кор.',
 
 # Special:Categories
 'categories' => 'Категориялар',

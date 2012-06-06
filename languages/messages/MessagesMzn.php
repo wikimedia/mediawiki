@@ -909,7 +909,7 @@ $2، $1',
 'allmessages-filter-all' => 'همه',
 
 # Thumbnails
-'thumbnail-more' => 'گت بأوه',
+'thumbnail-more' => 'گت بوو',
 
 # Special:Import
 'import-interwiki-submit' => 'بیاردن',

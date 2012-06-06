@@ -1404,6 +1404,9 @@ $3',
 'watchlisttools-edit' => 'Бакæсын æмæ ивын цæстдард рæгъ',
 'watchlisttools-raw' => 'Ивын цæстдард рæгъы бындуртекст',
 
+# Signatures
+'signature' => '[[{{ns:user}}:$1|$2]] ([[{{ns:user_talk}}:$1|ныхас]])',
+
 # Core parser functions
 'duplicate-defaultsort' => '\'\'\'Сындæг:\'\'\' Разæвæрд сортгæнæн амонæн "$2" раздæры разæвæрд амонæн "$1"-ы бæсты лæууы.',
 
