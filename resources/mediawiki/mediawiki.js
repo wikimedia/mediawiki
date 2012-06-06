@@ -633,10 +633,13 @@ var mw = ( function ( $, undefined ) {
 			 * @param e   Error [optional] to also log.
 			 */
 			function log( msg, e ) {
-				if ( window.console && typeof window.console.log === 'function' ) {
+				var console = window.console;
+				if ( console && console.log ) {
 					console.log( msg );
-					if ( e ) {
-						console.log( e );
+					// Chrome only shows a stack trace with console.error,
+					// console.log(Error object) is useless. --Krinkle 2012-06-05
+					if ( e && console.error ) {
+						console.error( e );
 					}
 				}
 			}
