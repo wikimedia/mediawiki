@@ -709,8 +709,51 @@ abstract class ContentHandler {
 		return $reason;
 	}
 
-	#@TODO: getSecondaryUpdatesForDeletion( Content ) returns an array of DataUpdate objects
-	#... or do that in the Content class?
+	/**
+	 * Parse the Content object and generate a ParserObject from the result. $result->getText() can
+	 * be used to obtain the generated HTML. If no HTML is needed,  $generateHtml can be set to false;
+	 * in that case, $result->getText() may return null.
+	 *
+	 * @param Content $content the content to render
+	 * @param Title $title the page title to use as a context for rendering
+	 * @param null|int $revId the revision being rendered (optional)
+	 * @param null|ParserOptions $options any parser options
+	 * @param Boolean $generateHtml whether to generate Html (default: true). If false,
+	 *        the result of calling getText() on the ParserOutput object returned by
+	 *        this method is undefined.
+	 *
+	 * @since WD.1
+	 *
+	 * @return ParserOutput
+	 */
+	public abstract function getParserOutput( Content $content, Title $title, $revId = null, ParserOptions $options = null, $generateHtml = true );
+	#TODO: make RenderOutput and RenderOptions base classes
+
+	/**
+	 * Returns a list of DataUpdate objects for recording information about this Content in some secondary
+	 * data store. If the optional second argument, $old, is given, the updates may model only the changes that
+	 * need to be made to replace information about the old content with information about the new content.
+	 *
+	 * This default implementation calls $this->getParserOutput( $title, null, null, false ), and then
+	 * calls getSecondaryDataUpdates( $title, $recursive ) on the resulting ParserOutput object.
+	 *
+	 * Subclasses may implement this to determine the necessary updates more efficiently, or make use of information
+	 * about the old content.
+	 *
+	 * @param Title $title the context for determining the necessary updates
+	 * @param Content|null $old a Content object representing the previous content, i.e. the content being
+	 *                     replaced by this Content object.
+	 * @param bool $recursive whether to include recursive updates (default: false).
+	 *
+	 * @return Array. A list of DataUpdate objects for putting information about this content object somewhere.
+	 *
+	 * @since WD.1
+	 */
+	public function getSecondaryDataUpdates( Content $content, Title $title, Content $old = null, $recursive = false ) {
+		$po = $this->getParserOutput( $content, $title, null, null, false );
+		return $po->getSecondaryDataUpdates( $title, $recursive );
+	}
+
 
 	/**
 	 * Get the Content object that needs to be saved in order to undo all revisions
@@ -837,6 +880,37 @@ abstract class TextContentHandler extends ContentHandler {
 		return $mergedContent;
 	}
 
+	/**
+	 * Returns a generic ParserOutput object, wrapping the HTML returned by getHtml().
+	 *
+	 * @param Content $content the content to render
+	 * @param Title              $title context title for parsing
+	 * @param int|null           $revId revision id (the parser wants that for some reason)
+	 * @param ParserOptions|null $options parser options
+	 * @param bool               $generateHtml whether or not to generate HTML
+	 *
+	 * @return ParserOutput representing the HTML form of the text
+	 */
+	public function getParserOutput( Content $content, Title $title, $revId = null, ParserOptions $options = null, $generateHtml = true ) {
+		# generic implementation, relying on $this->getHtml()
+
+		if ( $generateHtml ) $html = $this->getHtml( $content );
+		else $html = '';
+
+		$po = new ParserOutput( $html );
+		return $po;
+	}
+
+	/**
+	 * Generates an HTML version of the content, for display.
+	 * Used by getParserOutput() to construct a ParserOutput object
+	 *
+	 * @param Content $content the content to render
+	 *
+	 * @return String
+	 */
+	protected abstract function getHtml( Content $content );
+
 
 }
 
@@ -859,6 +933,34 @@ class WikitextContentHandler extends TextContentHandler {
 		return new WikitextContent( '' );
 	}
 
+	/**
+	 * Returns a ParserOutput object resulting from parsing the content's text using $wgParser.
+	 *
+	 * @since    WD.1
+	 *
+	 * @param Content $content the content to render
+	 * @param \Title             $title
+	 * @param null               $revId
+	 * @param null|ParserOptions $options
+	 * @param bool               $generateHtml
+	 *
+	 * @internal param \IContextSource|null $context
+	 * @return ParserOutput representing the HTML form of the text
+	 */
+	public function getParserOutput( Content $content, Title $title, $revId = null, ParserOptions $options = null, $generateHtml = true ) {
+		global $wgParser;
+
+		if ( !$options ) {
+			$options = new ParserOptions();
+		}
+
+		$po = $wgParser->parse( $content->getNativeData(), $title, $options, true, true, $revId );
+		return $po;
+	}
+
+	protected function getHtml( Content $content ) {
+		throw new MWException( "getHtml() not implemented for wikitext. Use getParserOutput()->getText()." );
+	}
 
 }
 
@@ -882,6 +984,15 @@ class JavaScriptContentHandler extends TextContentHandler {
 	public function makeEmptyContent() {
 		return new JavaScriptContent( '' );
 	}
+
+	protected function getHtml( Content $content ) {
+		$html = "";
+		$html .= "<pre class=\"mw-code mw-js\" dir=\"ltr\">\n";
+		$html .= htmlspecialchars( $content->getNativeData() );
+		$html .= "\n</pre>\n";
+
+		return $html;
+	}
 }
 
 /**
@@ -903,4 +1014,13 @@ class CssContentHandler extends TextContentHandler {
 		return new CssContent( '' );
 	}
 
+
+	protected function getHtml( Content $content ) {
+		$html = "";
+		$html .= "<pre class=\"mw-code mw-css\" dir=\"ltr\">\n";
+		$html .= htmlspecialchars( $content->getNativeData() );
+		$html .= "\n</pre>\n";
+
+		return $html;
+	}
 }

@@ -285,6 +285,22 @@ class DummyContentHandlerForTesting extends ContentHandler {
 	{
 		return new DummyContentForTesting( '' );
 	}
+
+	/**
+	 * @param Content $content
+	 * @param Title $title
+	 * @param null $revId
+	 * @param null|ParserOptions $options
+	 * @param Boolean $generateHtml whether to generate Html (default: true). If false,
+	 *        the result of calling getText() on the ParserOutput object returned by
+	 *        this method is undefined.
+	 *
+	 * @return ParserOutput
+	 */
+	public function getParserOutput( Content $content, Title $title, $revId = null, ParserOptions $options = NULL, $generateHtml = true )
+	{
+		return new ParserOutput( $content->getNativeData() );
+	}
 }
 
 class DummyContentForTesting extends Content {
@@ -380,21 +396,6 @@ class DummyContentForTesting extends Content {
 	public function isCountable( $hasLinks = null )
 	{
 		return false;
-	}
-
-	/**
-	 * @param Title $title
-	 * @param null $revId
-	 * @param null|ParserOptions $options
-	 * @param Boolean $generateHtml whether to generate Html (default: true). If false,
-	 *        the result of calling getText() on the ParserOutput object returned by
-	 *        this method is undefined.
-	 *
-	 * @return ParserOutput
-	 */
-	public function getParserOutput( Title $title, $revId = null, ParserOptions $options = NULL, $generateHtml = true )
-	{
-		return new ParserOutput( $this->data );
 	}
 }
 

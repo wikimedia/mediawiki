@@ -20,6 +20,9 @@ abstract class Content {
 	 *
 	 * @return String a string representing the content in a way useful for building a full text search index.
 	 *         If no useful representation exists, this method returns an empty string.
+	 *
+	 * @todo: test that this actually works
+	 * @todo: make sure this also works with LuceneSearch / WikiSearch
 	 */
 	public abstract function getTextForSearchIndex( );
 
@@ -281,6 +284,9 @@ abstract class Content {
 	public abstract function isCountable( $hasLinks = null ) ;
 
 	/**
+	 * Convenience method, shorthand for
+	 * $this->getContentHandler()->getParserOutput( $this, $title, $revId, $options, $generateHtml )
+	 *
 	 * @param Title $title
 	 * @param null $revId
 	 * @param null|ParserOptions $options
@@ -292,19 +298,13 @@ abstract class Content {
 	 *
 	 * @return ParserOutput
 	 */
-	public abstract function getParserOutput( Title $title, $revId = null, ParserOptions $options = null, $generateHtml = true ); #TODO: move to ContentHandler; #TODO: rename to getRenderOutput()
-	#TODO: make RenderOutput and RenderOptions base classes
+	public function getParserOutput( Title $title, $revId = null, ParserOptions $options = null, $generateHtml = true ) {
+		return $this->getContentHandler()->getParserOutput( $this, $title, $revId, $options, $generateHtml );
+	}
 
 	/**
-	 * Returns a list of DataUpdate objects for recording information about this Content in some secondary
-	 * data store. If the optional second argument, $old, is given, the updates may model only the changes that
-	 * need to be made to replace information about the old content with information about the new content.
-	 *
-	 * This default implementation calls $this->getParserOutput( $title, null, null, false ), and then
-	 * calls getSecondaryDataUpdates( $title, $recursive ) on the resulting ParserOutput object.
-	 *
-	 * Subclasses may implement this to determine the necessary updates more efficiently, or make use of information
-	 * about the old content.
+	 * Convenience method, shorthand for
+	 * $this->getContentHandler()->getSecondaryDataUpdates( $this, $title, $old, $recursive )
 	 *
 	 * @param Title $title the context for determining the necessary updates
 	 * @param Content|null $old a Content object representing the previous content, i.e. the content being
@@ -315,9 +315,8 @@ abstract class Content {
 	 *
 	 * @since WD.1
 	 */
-	public function getSecondaryDataUpdates( Title $title, Content $old = null, $recursive = false ) {
-		$po = $this->getParserOutput( $title, null, null, false );
-		return $po->getSecondaryDataUpdates( $title, $recursive );
+	public function getSecondaryDataUpdates( Title $title, Content $old = null, $recursive = false ) { #TODO: remove!
+		return $this->getContentHandler()->getSecondaryDataUpdates( $this, $title, $old, $recursive );
 	}
 
 	/**
@@ -550,35 +549,6 @@ abstract class TextContent extends Content {
 	}
 
 	/**
-	 * Returns a generic ParserOutput object, wrapping the HTML returned by getHtml().
-	 *
-	 * @param Title              $title context title for parsing
-	 * @param int|null           $revId revision id (the parser wants that for some reason)
-	 * @param ParserOptions|null $options parser options
-	 * @param bool               $generateHtml whether or not to generate HTML
-	 *
-	 * @return ParserOutput representing the HTML form of the text
-	 */
-	public function getParserOutput( Title $title, $revId = null, ParserOptions $options = null, $generateHtml = true ) {
-		# generic implementation, relying on $this->getHtml()
-
-		if ( $generateHtml ) $html = $this->getHtml( $options );
-		else $html = '';
-
-		$po = new ParserOutput( $html );
-
-		return $po;
-	}
-
-	/**
-	 * Generates an HTML version of the content, for display.
-	 * Used by getParserOutput() to construct a ParserOutput object
-	 *
-	 * @return String
-	 */
-	protected abstract function getHtml( );
-
-	/**
 	 * Diff this content object with another content object..
 	 *
 	 * @since WD.diff
@@ -619,35 +589,6 @@ class WikitextContent extends TextContent {
 
 	public function __construct( $text ) {
 		parent::__construct($text, CONTENT_MODEL_WIKITEXT);
-	}
-
-	protected function getHtml( ) {
-		throw new MWException( "getHtml() not implemented for wikitext. Use getParserOutput()->getText()." );
-	}
-
-	/**
-	 * Returns a ParserOutput object resulting from parsing the content's text using $wgParser.
-	 *
-	 * @since    WD.1
-	 *
-	 * @param \Title             $title
-	 * @param null               $revId
-	 * @param null|ParserOptions $options
-	 * @param bool               $generateHtml
-	 *
-	 * @internal param \IContextSource|null $context
-	 * @return ParserOutput representing the HTML form of the text
-	 */
-	public function getParserOutput( Title $title, $revId = null, ParserOptions $options = null, $generateHtml = true ) {
-		global $wgParser;
-
-		if ( !$options ) {
-			$options = new ParserOptions();
-		}
-
-		$po = $wgParser->parse( $this->mText, $title, $options, true, true, $revId );
-
-		return $po;
 	}
 
 	/**
@@ -817,6 +758,8 @@ class WikitextContent extends TextContent {
 
 				return $hasLinks;
 		}
+
+		return false;
 	}
 
 	public function getTextForSummary( $maxlength = 250 ) {
@@ -850,15 +793,13 @@ class MessageContent extends TextContent {
 		}
 
 		$this->mOptions = $options;
-
-		$this->mHtmlOptions = null;
 	}
 
 	/**
 	 * Returns the message as rendered HTML, using the options supplied to the constructor plus "parse".
 	 * @return String the message text, parsed
 	 */
-	protected function getHtml(  ) {
+	public function getHtml(  ) {
 		$opt = array_merge( $this->mOptions, array('parse') );
 
 		return wfMsgExt( $this->mMessageKey, $this->mParameters, $opt );
@@ -886,15 +827,6 @@ class JavaScriptContent extends TextContent {
 		parent::__construct($text, CONTENT_MODEL_JAVASCRIPT);
 	}
 
-	protected function getHtml( ) {
-		$html = "";
-		$html .= "<pre class=\"mw-code mw-js\" dir=\"ltr\">\n";
-		$html .= htmlspecialchars( $this->getNativeData() );
-		$html .= "\n</pre>\n";
-
-		return $html;
-	}
-
 }
 
 /**
@@ -903,14 +835,5 @@ class JavaScriptContent extends TextContent {
 class CssContent extends TextContent {
 	public function __construct( $text ) {
 		parent::__construct($text, CONTENT_MODEL_CSS);
-	}
-
-	protected function getHtml( ) {
-		$html = "";
-		$html .= "<pre class=\"mw-code mw-css\" dir=\"ltr\">\n";
-		$html .= htmlspecialchars( $this->getNativeData() );
-		$html .= "\n</pre>\n";
-
-		return $html;
 	}
 }
