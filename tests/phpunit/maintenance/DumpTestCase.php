@@ -1,11 +1,9 @@
 <?php
-global $IP;
-require_once( "$IP/maintenance/backup.inc" );
 
 /**
  * Base TestCase for dumps
  */
-abstract class DumpTestCase extends MediaWikiTestCase {
+abstract class DumpTestCase extends MediaWikiLangTestCase {
 
 	/**
 	 * exception to be rethrown once in sound PHPUnit surrounding
@@ -74,7 +72,7 @@ abstract class DumpTestCase extends MediaWikiTestCase {
 	 *
 	 * Clears $wgUser, and reports errors from addDBData to PHPUnit
 	 */
-	protected function setUp() {
+	public function setUp() {
 		global $wgUser;
 
 		parent::setUp();
@@ -326,12 +324,13 @@ abstract class DumpTestCase extends MediaWikiTestCase {
 			$this->skipWhitespace();
 		}
 
+		$this->assertTextNode( "sha1", $text_sha1 );
+
 		$this->assertNodeStart( "text", false );
 		if ( $text_bytes !== false ) {
 			$this->assertEquals( $this->xml->getAttribute( "bytes" ), $text_bytes,
 				"Attribute 'bytes' of revision " . $id );
 		}
-
 
 		if ( $text === false ) {
 			// Testing for a stub
@@ -353,8 +352,6 @@ abstract class DumpTestCase extends MediaWikiTestCase {
 			$this->assertNodeEnd( "text" );
 			$this->skipWhitespace();
 		}
-
-		$this->assertTextNode( "sha1", $text_sha1 );
 
 		$this->assertNodeEnd( "revision" );
 		$this->skipWhitespace();

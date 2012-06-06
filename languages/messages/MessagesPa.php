@@ -9,6 +9,7 @@
  *
  * @author AS Alam
  * @author Aalam
+ * @author Amire80
  * @author Anjalikaushal
  * @author Gman124
  * @author Guglani
@@ -983,7 +984,7 @@ to upload files.',
 
 # Contributions
 'contributions' => 'ਯੂਜ਼ਰ ਯੋਗਦਾਨ',
-'contributions-title' => '$੧ ਦੀ ਰਚਨਾ',
+'contributions-title' => '$1 ਦੀ ਰਚਨਾ',
 'mycontris' => 'ਮੇਰਾ ਯੋਗਦਾਨ',
 'contribsub2' => '$1 ($2) ਲਈ',
 'uctop' => '(ਉੱਤੇ)',

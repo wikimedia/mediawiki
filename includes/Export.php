@@ -468,7 +468,7 @@ class XmlDumpWriter {
 	 * @return string
 	 */
 	function schemaVersion() {
-		return "0.6";
+		return "0.7";
 	}
 
 	/**
@@ -670,12 +670,6 @@ class XmlDumpWriter {
 				"" ) . "\n";
 		}
 
-		if ( $row->rev_sha1 && !( $row->rev_deleted & Revision::DELETED_TEXT ) ) {
-			$out .= "      " . Xml::element('sha1', null, strval( $row->rev_sha1 ) ) . "\n";
-		} else {
-			$out .= "      <sha1/>\n";
-		}
-
 		wfRunHooks( 'XmlDumpWriterWriteRevision', array( &$this, &$out, $row, $text ) );
 
 		$out .= "    </revision>\n";
@@ -695,37 +689,37 @@ class XmlDumpWriter {
 	function writeLogItem( $row ) {
 		wfProfileIn( __METHOD__ );
 
-		$out  = "    <logitem>\n";
-		$out .= "      " . Xml::element( 'id', null, strval( $row->log_id ) ) . "\n";
+		$out  = "  <logitem>\n";
+		$out .= "    " . Xml::element( 'id', null, strval( $row->log_id ) ) . "\n";
 
-		$out .= $this->writeTimestamp( $row->log_timestamp );
+		$out .= $this->writeTimestamp( $row->log_timestamp, "    " );
 
 		if ( $row->log_deleted & LogPage::DELETED_USER ) {
-			$out .= "      " . Xml::element( 'contributor', array( 'deleted' => 'deleted' ) ) . "\n";
+			$out .= "    " . Xml::element( 'contributor', array( 'deleted' => 'deleted' ) ) . "\n";
 		} else {
-			$out .= $this->writeContributor( $row->log_user, $row->user_name );
+			$out .= $this->writeContributor( $row->log_user, $row->user_name, "    " );
 		}
 
 		if ( $row->log_deleted & LogPage::DELETED_COMMENT ) {
-			$out .= "      " . Xml::element( 'comment', array( 'deleted' => 'deleted' ) ) . "\n";
+			$out .= "    " . Xml::element( 'comment', array( 'deleted' => 'deleted' ) ) . "\n";
 		} elseif ( $row->log_comment != '' ) {
-			$out .= "      " . Xml::elementClean( 'comment', null, strval( $row->log_comment ) ) . "\n";
+			$out .= "    " . Xml::elementClean( 'comment', null, strval( $row->log_comment ) ) . "\n";
 		}
 
-		$out .= "      " . Xml::element( 'type', null, strval( $row->log_type ) ) . "\n";
-		$out .= "      " . Xml::element( 'action', null, strval( $row->log_action ) ) . "\n";
+		$out .= "    " . Xml::element( 'type', null, strval( $row->log_type ) ) . "\n";
+		$out .= "    " . Xml::element( 'action', null, strval( $row->log_action ) ) . "\n";
 
 		if ( $row->log_deleted & LogPage::DELETED_ACTION ) {
-			$out .= "      " . Xml::element( 'text', array( 'deleted' => 'deleted' ) ) . "\n";
+			$out .= "    " . Xml::element( 'text', array( 'deleted' => 'deleted' ) ) . "\n";
 		} else {
 			$title = Title::makeTitle( $row->log_namespace, $row->log_title );
-			$out .= "      " . Xml::elementClean( 'logtitle', null, self::canonicalTitle( $title ) ) . "\n";
-			$out .= "      " . Xml::elementClean( 'params',
+			$out .= "    " . Xml::elementClean( 'logtitle', null, self::canonicalTitle( $title ) ) . "\n";
+			$out .= "    " . Xml::elementClean( 'params',
 				array( 'xml:space' => 'preserve' ),
 				strval( $row->log_params ) ) . "\n";
 		}
 
-		$out .= "    </logitem>\n";
+		$out .= "  </logitem>\n";
 
 		wfProfileOut( __METHOD__ );
 		return $out;
@@ -735,9 +729,9 @@ class XmlDumpWriter {
 	 * @param $timestamp string
 	 * @return string
 	 */
-	function writeTimestamp( $timestamp ) {
+	function writeTimestamp( $timestamp, $indent = "      " ) {
 		$ts = wfTimestamp( TS_ISO_8601, $timestamp );
-		return "      " . Xml::element( 'timestamp', null, $ts ) . "\n";
+		return $indent . Xml::element( 'timestamp', null, $ts ) . "\n";
 	}
 
 	/**
@@ -745,15 +739,15 @@ class XmlDumpWriter {
 	 * @param $text string
 	 * @return string
 	 */
-	function writeContributor( $id, $text ) {
-		$out = "      <contributor>\n";
+	function writeContributor( $id, $text, $indent = "      " ) {
+		$out = $indent . "<contributor>\n";
 		if ( $id || !IP::isValid( $text ) ) {
-			$out .= "        " . Xml::elementClean( 'username', null, strval( $text ) ) . "\n";
-			$out .= "        " . Xml::element( 'id', null, strval( $id ) ) . "\n";
+			$out .= $indent . "  " . Xml::elementClean( 'username', null, strval( $text ) ) . "\n";
+			$out .= $indent . "  " . Xml::element( 'id', null, strval( $id ) ) . "\n";
 		} else {
-			$out .= "        " . Xml::elementClean( 'ip', null, strval( $text ) ) . "\n";
+			$out .= $indent . "  " . Xml::elementClean( 'ip', null, strval( $text ) ) . "\n";
 		}
-		$out .= "      </contributor>\n";
+		$out .= $indent . "</contributor>\n";
 		return $out;
 	}
 
@@ -799,10 +793,15 @@ class XmlDumpWriter {
 		} else {
 			$contents = '';
 		}
+		if ( $file->isDeleted( File::DELETED_COMMENT ) ) {
+			$comment = Xml::element( 'comment', array( 'deleted' => 'deleted' ) );
+		} else {
+			$comment = Xml::elementClean( 'comment', null, $file->getDescription() );
+		}
 		return "    <upload>\n" .
 			$this->writeTimestamp( $file->getTimestamp() ) .
 			$this->writeContributor( $file->getUser( 'id' ), $file->getUser( 'text' ) ) .
-			"      " . Xml::elementClean( 'comment', null, $file->getDescription() ) . "\n" .
+			"      " . $comment . "\n" .
 			"      " . Xml::element( 'filename', null, $file->getName() ) . "\n" .
 			$archiveName .
 			"      " . Xml::element( 'src', null, $file->getCanonicalUrl() ) . "\n" .

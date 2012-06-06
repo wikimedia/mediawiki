@@ -107,7 +107,7 @@ $messages = array(
 'undelete_short' => '{{PLURAL:$1|ä Ännerung|$1 Ännerunge}} widderherschdelle',
 'protect' => 'schitze',
 'protect_change' => 'ännere',
-'unprotect' => 'Widder freigewwe',
+'unprotect' => 'Saideschudz änare',
 'newpage' => 'Naie Said',
 'talkpage' => 'Iwwer die Said dischbediere',
 'talkpagelinktext' => 'Dischbediere',
@@ -281,7 +281,7 @@ Erklärung: '''({{int:cur}})''' = Unnerschied zu jetzert,
 'revertmerge' => 'Zammefiehrung rickgängich mache',
 
 # Diffs
-'history-title' => 'Versionsgschicht vun "$1"',
+'history-title' => 'Änarungsgschischd vun "$1"',
 'lineno' => 'Zail $1:',
 'compareselectedversions' => 'Die Versione mitenonner vergleiche',
 'editundo' => 'zerick',

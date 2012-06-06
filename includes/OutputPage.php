@@ -1739,7 +1739,7 @@ class OutputPage extends ContextSource {
 		$headers = array();
 		foreach( $this->mVaryHeader as $header => $option ) {
 			$newheader = $header;
-			if( is_array( $option ) ) {
+			if ( is_array( $option ) && count( $option ) > 0 ) {
 				$newheader .= ';' . implode( ';', $option );
 			}
 			$headers[] = $newheader;

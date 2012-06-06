@@ -2285,7 +2285,7 @@ La retadreso kiun vi enigis en [[Special:Preferences|viaj preferoj]] aperos kiel
 'watcherrortext' => 'Eraro okazis ŝanĝinte vian agordojn de atentaro por "$1".',
 
 'enotif_mailer' => 'Averta retmesaĝo de {{SITENAME}}',
-'enotif_reset' => 'Marki ĉiujn vizititajn paĝojn',
+'enotif_reset' => 'Marki ĉiujn paĝojn vizititaj',
 'enotif_newpagetext' => 'Tiu ĉi estas nova paĝo',
 'enotif_impersonal_salutation' => 'Uzanto de {{SITENAME}}',
 'changed' => 'ŝanĝita',

@@ -1,5 +1,5 @@
 <?php
-/** French (Français)
+/** French (français)
  *
  * See MessagesQqq.php for message documentation incl. usage of parameters
  * To improve a translation please visit http://translatewiki.net
@@ -367,16 +367,16 @@ $messages = array(
 # User preference toggles
 'tog-underline' => 'Souligner les liens :',
 'tog-justify' => 'Justifier les paragraphes',
-'tog-hideminor' => 'Masquer les modifications mineures parmi les modifications récentes',
-'tog-hidepatrolled' => 'Masquer les modifications surveillées parmi les modifications récentes',
+'tog-hideminor' => 'Masquer les modifications mineures dans les modifications récentes',
+'tog-hidepatrolled' => 'Masquer les modifications surveillées dans les modifications récentes',
 'tog-newpageshidepatrolled' => 'Masquer les pages surveillées parmi les nouvelles pages',
 'tog-extendwatchlist' => 'Étendre la liste de suivi pour afficher toutes les modifications et non seulement les plus récentes',
 'tog-usenewrc' => 'Utiliser les modifications récentes améliorées (nécessite JavaScript)',
 'tog-numberheadings' => 'Numéroter automatiquement les titres de section',
-'tog-showtoolbar' => 'Montrer la barre de menu de modification (nécessite JavaScript)',
-'tog-editondblclick' => 'Double-cliquer permet de modifier une page (nécessite JavaScript)',
+'tog-showtoolbar' => "Montrer la barre d'outils de modification (nécessite JavaScript)",
+'tog-editondblclick' => 'Modifier des pages sur double-clic (nécessite JavaScript)',
 'tog-editsection' => 'Activer les modifications de sections grâce aux liens « [modifier] »',
-'tog-editsectiononrightclick' => 'Un clic droit sur un titre de section permet de modifier celle-ci (nécessite JavaScript)',
+'tog-editsectiononrightclick' => 'Activer la modification de sections par clic droit sur leurs titres (nécessite JavaScript)',
 'tog-showtoc' => 'Afficher la table des matières (pour les pages ayant plus de 3 sections)',
 'tog-rememberpassword' => 'Se souvenir de mon identification avec ce navigateur (au maximum $1 {{PLURAL:$1|jour|jours}})',
 'tog-watchcreations' => 'Ajouter les pages que je crée à ma liste de suivi',
@@ -463,7 +463,7 @@ $messages = array(
 'november-gen' => 'novembre',
 'december-gen' => 'décembre',
 'jan' => 'janv',
-'feb' => 'févr',
+'feb' => 'fév',
 'mar' => 'mars',
 'apr' => 'avr',
 'may' => 'mai',
@@ -500,7 +500,7 @@ $messages = array(
 'cancel' => 'Annuler',
 'moredotdotdot' => 'Plus...',
 'mypage' => 'Ma page',
-'mytalk' => 'Page de discussion',
+'mytalk' => 'Ma page de discussion',
 'anontalk' => 'Discussion avec cette adresse IP',
 'navigation' => 'Navigation',
 'and' => '&#32;et',
@@ -535,7 +535,7 @@ $messages = array(
 
 'errorpagetitle' => 'Erreur',
 'returnto' => 'Revenir à la page $1.',
-'tagline' => 'De {{SITENAME}}.',
+'tagline' => 'De {{SITENAME}}',
 'help' => 'Aide',
 'search' => 'Rechercher',
 'searchbutton' => 'Rechercher',
@@ -644,7 +644,7 @@ $1',
 'thisisdeleted' => 'Désirez-vous afficher ou restaurer $1 ?',
 'viewdeleted' => 'Voir $1 ?',
 'restorelink' => '{{PLURAL:$1|la modification effacée|les $1 modifications effacées}}',
-'feedlinks' => 'Flux',
+'feedlinks' => 'Flux :',
 'feed-invalid' => 'Type de flux invalide.',
 'feed-unavailable' => 'Les flux de syndication ne sont pas disponibles',
 'site-rss-feed' => 'Flux RSS de $1',
@@ -715,9 +715,9 @@ Veuillez le signaler à un [[Special:ListUsers/sysop|administrateur]] sans oubli
 'filedeleteerror' => 'Impossible de supprimer le fichier « $1 ».',
 'directorycreateerror' => 'Impossible de créer le dossier « $1 ».',
 'filenotfound' => 'Impossible de trouver le fichier « $1 ».',
-'fileexistserror' => 'Impossible d’écrire dans le dossier « $1 » : le fichier existe',
+'fileexistserror' => 'Impossible d’écrire le fichier « $1 » : le fichier existe.',
 'unexpected' => 'Valeur inattendue : « $1 » = « $2 ».',
-'formerror' => 'Erreur : Impossible de soumettre le formulaire',
+'formerror' => 'Erreur : Impossible de soumettre le formulaire.',
 'badarticleerror' => 'Cette action ne peut pas être effectuée sur cette page.',
 'cannotdelete' => 'Impossible de supprimer la page ou le fichier « $1 ».
 La suppression a peut-être déjà été effectuée par quelqu’un d’autre.',
@@ -774,7 +774,7 @@ N’oubliez pas de personnaliser vos [[Special:Preferences|préférences sur {{S
 'yourpasswordagain' => 'Confirmez le mot de passe :',
 'remembermypassword' => 'Me reconnecter automatiquement aux prochaines visites avec ce navigateur (au maximum $1 {{PLURAL:$1|jour|jours}})',
 'securelogin-stick-https' => 'Rester connecté en HTTPS après la connexion',
-'yourdomainname' => 'Votre domaine',
+'yourdomainname' => 'Votre domaine :',
 'externaldberror' => 'Une erreur s’est produite avec la base de données d’authentification externe, ou bien vous n’êtes pas autorisé{{GENDER:||e|(e)}} à mettre à jour votre compte externe.',
 'login' => 'Connexion',
 'nav-login-createaccount' => 'Créer un compte ou se connecter',
@@ -2205,6 +2205,7 @@ Veuillez noter que d’autres sites peuvent avoir un lien direct vers un fichier
 Vous pouvez personnaliser l’affichage en sélectionnant le type de journal, le nom d’utilisateur ou la page concernée (ces deux derniers étant sensibles à la casse).',
 'logempty' => 'Aucune opération correspondante dans les journaux.',
 'log-title-wildcard' => 'Chercher parmi les titres commençant par ce texte',
+'showhideselectedlogentries' => 'Afficher/masquer les entrées de journal sélectionnées',
 
 # Special:AllPages
 'allpages' => 'Toutes les pages',

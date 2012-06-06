@@ -1,5 +1,5 @@
 <?php
-/** Romanian (Română)
+/** Romanian (română)
  *
  * See MessagesQqq.php for message documentation incl. usage of parameters
  * To improve a translation please visit http://translatewiki.net
@@ -2148,6 +2148,7 @@ Vă rugăm să aveți în vedere faptul că alte saituri web pot avea o legătur
 Puteți limita vizualizarea selectând tipul jurnalului, numele de utilizator sau pagina afectată.',
 'logempty' => 'Nici o înregistrare în jurnal.',
 'log-title-wildcard' => 'Caută titluri care încep cu acest text',
+'showhideselectedlogentries' => 'Arată/ascunde intrările selectate din jurnal',
 
 # Special:AllPages
 'allpages' => 'Toate paginile',

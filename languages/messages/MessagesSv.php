@@ -1,5 +1,5 @@
 <?php
-/** Swedish (Svenska)
+/** Swedish (svenska)
  *
  * See MessagesQqq.php for message documentation incl. usage of parameters
  * To improve a translation please visit http://translatewiki.net
@@ -1365,6 +1365,7 @@ Notera dock att deras indexering av {{SITENAME}} kan vara något föråldrad.',
 'prefs-beta' => 'Betafunktioner',
 'prefs-datetime' => 'Datum och tid',
 'prefs-labs' => 'Testfunktioner',
+'prefs-user-pages' => 'Användarsidor',
 'prefs-personal' => 'Mitt konto',
 'prefs-rc' => 'Senaste ändringar',
 'prefs-watchlist' => 'Bevakningslista',
@@ -1400,7 +1401,7 @@ Här är ett slumpmässigt genererat värde som du kan använda: $1',
 'savedprefs' => 'Dina inställningar har sparats',
 'timezonelegend' => 'Tidszon:',
 'localtime' => 'Lokal tid:',
-'timezoneuseserverdefault' => 'Använd wiki standard ($1)',
+'timezoneuseserverdefault' => 'Använd wikins standard ($1)',
 'timezoneuseoffset' => 'Annan (specificera skillnad)',
 'timezoneoffset' => 'Skillnad¹:',
 'servertime' => 'Serverns tid:',

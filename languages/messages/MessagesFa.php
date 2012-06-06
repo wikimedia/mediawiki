@@ -254,10 +254,9 @@ $dateFormats = array(
 	'persian date' => '‏xij xiF xiY',
 	'persian both' => '‏xij xiF xiY، ساعت H:i',
 
-    'hebrew time' => '‏H:i',
+	'hebrew time' => '‏H:i',
 	'hebrew date' => '‏xij xjF xjY',
 	'hebrew both' => '‏H:i, xij xjF xjY',
-
 
 	'ISO 8601 time' => 'xnH:xni:xns',
 	'ISO 8601 date' => 'xnY-xnm-xnd',
@@ -1509,6 +1508,7 @@ $1",
 'prefs-beta' => 'ابزارهای کارآمد',
 'prefs-datetime' => 'تاریخ و زمان',
 'prefs-labs' => 'قسمت‌های آزمایشی',
+'prefs-user-pages' => 'صفحه‌های کاربری',
 'prefs-personal' => 'داده‌های کاربر',
 'prefs-rc' => 'تغییرات اخیر',
 'prefs-watchlist' => 'فهرست پی‌گیری‌ها',
@@ -1985,6 +1985,11 @@ $1',
 'backend-fail-internal' => 'خطایی نامعلوم در پشتیبان ذخیره «$1» رخ داد.',
 'backend-fail-contenttype' => 'تعیین نوع محتوای پرونده برای ذخیره در «$1» ناموفق بود.',
 'backend-fail-batchsize' => 'دسته‌ای مشتمل بر $1 {{PLURAL:$1|عملکرد|عملکرد}} پرونده به پشتیبان ذخیره داده شد؛ حداکثر مجاز $2 {{PLURAL:$2|عملکرد|عملکرد}} است.',
+'backend-fail-usable' => 'امکان نوشتن در پروندهٔ $1 وجود نداشت چرا که سطح دسترسی کافی نیست یا شاخه مورد نظر وجود ندارد.',
+
+# File journal errors
+'filejournal-fail-dbconnect' => 'امکان وصل شدن به پایگاه داده دفترخانه برای پشتیبان ذخیره‌سازی «$1» وجود نداشت.',
+'filejournal-fail-dbquery' => 'امکان به روز کردن پایگاه داده دفترخانه برای پشتیبان ذخیره‌سازی «$1» وجود نداشت.',
 
 # Lock manager
 'lockmanager-notlocked' => 'نمی‌توان قفل «$1» را گشود؛ چون قفل نشده‌است.',
@@ -2325,6 +2330,8 @@ https://www.mediawiki.org/wiki/Manual:Image_Authorization را ببینید.',
 'allpages-hide-redirects' => 'پنهان‌کردن تغییرمسیرها',
 
 # SpecialCachedPage
+'cachedspecial-viewing-cached-ttl' => 'شما در حال مشاهدهٔ نسخه‌ای از این صفحه که در میانگیر قرار دارد هستید که ممکن است برای $1 قبل باشد.',
+'cachedspecial-viewing-cached-ts' => 'شما در حال مشاهدهٔ نسخه‌ای از این صفحه که در میانگیر قرار دارد هستید، و این نسخه ممکن است کاملاً واقعی نباشد.',
 'cachedspecial-refresh-now' => 'مشاهده آخرین.',
 
 # Special:Categories

@@ -2147,7 +2147,7 @@ Harap perhatikan bahwa situs web lain mungkin memiliki pranala ke suatu berkas d
 
 # Special:Log
 'specialloguserlabel' => 'Pengguna:',
-'speciallogtitlelabel' => 'Taget (judul atau pengguna):',
+'speciallogtitlelabel' => 'Target (judul atau pengguna):',
 'log' => 'Log',
 'all-logs-page' => 'Semua log publik',
 'alllogstext' => 'Gabungan tampilan semua log yang tersedia di {{SITENAME}}.

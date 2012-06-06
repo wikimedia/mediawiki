@@ -992,7 +992,7 @@ class ImageHistoryList extends ContextSource {
 		$img = $iscur ? $file->getName() : $file->getArchiveName();
 		$userId = $file->getUser( 'id' );
 		$userText = $file->getUser( 'text' );
-		$description = $file->getDescription();
+		$description = $file->getDescription( File::FOR_THIS_USER, $user );
 
 		$local = $this->current->isLocal();
 		$row = $selected = '';
@@ -1040,7 +1040,9 @@ class ImageHistoryList extends ContextSource {
 		$row .= '<td>';
 		if ( $iscur ) {
 			$row .= wfMsgHtml( 'filehist-current' );
-		} elseif ( $local && $user->isLoggedIn() && $this->title->userCan( 'edit' ) ) {
+		} elseif ( $local && $this->title->quickUserCan( 'edit' )
+			&& $this->title->quickUserCan( 'upload' )
+		) {
 			if ( $file->isDeleted( File::DELETED_FILE ) ) {
 				$row .= wfMsgHtml( 'filehist-revert' );
 			} else {

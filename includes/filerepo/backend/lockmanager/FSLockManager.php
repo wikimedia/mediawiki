@@ -176,6 +176,9 @@ class FSLockManager extends LockManager {
 					unset( $this->handles[$path][$type] );
 				}
 			}
+			if ( !count( $this->locksHeld[$path] ) ) {
+				unset( $this->locksHeld[$path] ); // no locks on this path
+			}
 			// Unlock handles to release locks and delete
 			// any lock files that end up with no locks on them...
 			if ( wfIsWindows() ) {
@@ -218,12 +221,11 @@ class FSLockManager extends LockManager {
 	 */
 	private function pruneKeyLockFiles( $path ) {
 		$status = Status::newGood();
-		if ( !count( $this->locksHeld[$path] ) ) {
+		if ( !isset( $this->locksHeld[$path] ) ) {
 			# No locks are held for the lock file anymore
 			if ( !unlink( $this->getLockPath( $path ) ) ) {
 				$status->warning( 'lockmanager-fail-deletelock', $path );
 			}
-			unset( $this->locksHeld[$path] );
 			unset( $this->handles[$path] );
 		}
 		return $status;
@@ -239,11 +241,15 @@ class FSLockManager extends LockManager {
 		return "{$this->lockDir}/{$hash}.lock";
 	}
 
+	/**
+	 * Make sure remaining locks get cleared for sanity
+	 */
 	function __destruct() {
-		// Make sure remaining locks get cleared for sanity
-		foreach ( $this->locksHeld as $path => $locks ) {
-			$this->doSingleUnlock( $path, self::LOCK_EX );
-			$this->doSingleUnlock( $path, self::LOCK_SH );
+		while ( count( $this->locksHeld ) ) {
+			foreach ( $this->locksHeld as $path => $locks ) {
+				$this->doSingleUnlock( $path, self::LOCK_EX );
+				$this->doSingleUnlock( $path, self::LOCK_SH );
+			}
 		}
 	}
 }

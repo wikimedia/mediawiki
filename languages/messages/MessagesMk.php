@@ -1,5 +1,5 @@
 <?php
-/** Macedonian (Македонски)
+/** Macedonian (македонски)
  *
  * See MessagesQqq.php for message documentation incl. usage of parameters
  * To improve a translation please visit http://translatewiki.net
@@ -2220,6 +2220,7 @@ $1',
 Можете да го ограничите прикажаното избирајќи тип на дневник, корисничко име (разликува големи и мали букви), или страница (разликува големи и мали букви).',
 'logempty' => 'Нема соодветни записи во дневникот.',
 'log-title-wildcard' => 'Пребарај наслови кои почнуваат со овој текст',
+'showhideselectedlogentries' => 'Прикажи/скриј одбрани записи',
 
 # Special:AllPages
 'allpages' => 'Сите страници',

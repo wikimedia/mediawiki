@@ -366,7 +366,7 @@ abstract class MediaWikiTestCase extends PHPUnit_Framework_TestCase {
 
 		$db = wfGetDB( DB_SLAVE );
 
-		$res = $db->select( $table, $fields, $condition, array( 'ORDER BY' => $fields ) );
+		$res = $db->select( $table, $fields, $condition, wfGetCaller(), array( 'ORDER BY' => $fields ) );
 		$this->assertNotEmpty( $res, "query failed: " . $db->lastError() );
 
 		$i = 0;

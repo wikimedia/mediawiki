@@ -1,5 +1,5 @@
 <?php
-/** Ukrainian (Українська)
+/** Ukrainian (українська)
  *
  * See MessagesQqq.php for message documentation incl. usage of parameters
  * To improve a translation please visit http://translatewiki.net
@@ -680,7 +680,7 @@ $1',
 'notloggedin' => 'Ви не ввійшли до системи',
 'nologin' => "Ви ще не зареєструвались? '''$1'''.",
 'nologinlink' => 'Створіть обліковий запис',
-'createaccount' => 'Створити',
+'createaccount' => 'Зареєструватися',
 'gotaccount' => "Ви вже зареєстровані? '''$1'''.",
 'gotaccountlink' => 'Увійдіть',
 'userlogin-resetlink' => 'Забули дані, потрібні для входу?',
