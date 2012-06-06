@@ -144,6 +144,7 @@ class SpecialBlock extends FormSpecialPage {
 				'tabindex' => '2',
 				'options' => self::getSuggestedDurations(),
 				'other' => $this->msg( 'ipbother' )->text(),
+				'default' => $this->msg( 'ipb-default-expiry' )->text(),
 			),
 			'Reason' => array(
 				'type' => 'selectandother',
@@ -271,7 +272,7 @@ class SpecialBlock extends FormSpecialPage {
 			}
 
 			if( $block->mExpiry == 'infinity' ) {
-				$fields['Expiry']['default'] = 'indefinite';
+				$fields['Expiry']['default'] = 'infinite';
 			} else {
 				$fields['Expiry']['default'] = wfTimestamp( TS_RFC2822, $block->mExpiry );
 			}
