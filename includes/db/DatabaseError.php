@@ -210,7 +210,7 @@ class DBConnectionError extends DBError {
 	 * @return string
 	 */
 	function searchForm() {
-		global $wgSitename, $wgServer, $wgRequest;
+		global $wgSitename, $wgCanonicalServer, $wgRequest;
 
 		$usegoogle = htmlspecialchars( $this->msg( 'dberr-usegoogle', 'You can try searching via Google in the meantime.' ) );
 		$outofdate = htmlspecialchars( $this->msg( 'dberr-outofdate', 'Note that their indexes of our content may be out of date.' ) );
@@ -218,7 +218,7 @@ class DBConnectionError extends DBError {
 
 		$search = htmlspecialchars( $wgRequest->getVal( 'search' ) );
 
-		$server = htmlspecialchars( $wgServer );
+		$server = htmlspecialchars( $wgCanonicalServer );
 		$sitename = htmlspecialchars( $wgSitename );
 
 		$trygoogle = <<<EOT
