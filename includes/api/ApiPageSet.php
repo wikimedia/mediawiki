@@ -126,12 +126,14 @@ class ApiPageSet extends ApiQueryBase {
 			'page_id' => null,
 		);
 
+		// only store non-default fields
+		$this->mRequestedPageFields = array_diff_key( $this->mRequestedPageFields, $pageFlds );
+
+		// this can be a default field, but also requested by ApiQueryInfo
+		// so allow it also in custom fields
 		if ( $this->mResolveRedirects ) {
 			$pageFlds['page_is_redirect'] = null;
 		}
-
-		// only store non-default fields
-		$this->mRequestedPageFields = array_diff_key( $this->mRequestedPageFields, $pageFlds );
 
 		$pageFlds = array_merge( $pageFlds, $this->mRequestedPageFields );
 		return array_keys( $pageFlds );
