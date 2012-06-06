@@ -276,7 +276,7 @@ $messages = array(
 'faqpage' => 'Project:FAQ',
 
 # Vector skin
-'vector-action-addsection' => 'ایضافه هکردن عونوان',
+'vector-action-addsection' => 'ترنه گپ بزوئن',
 'vector-action-delete' => 'پاک هاکردن',
 'vector-action-move' => 'دکش هاکردن',
 'vector-action-protect' => 'زلفن بزوئن',
@@ -922,7 +922,7 @@ $2، $1',
 'tooltip-pt-mycontris' => 'مه کایری‌ئون لیست',
 'tooltip-pt-login' => 'شه‌ما به‌ته‌ر هـأسـه که سـیـسـتـه‌م ده‌لـه بـیـه‌ئی، هـرچـأن زوری نـیـه',
 'tooltip-pt-logout' => 'سیستم جه دأیابـوری',
-'tooltip-ca-talk' => 'صفحه درباره گپ بَزوئن',
+'tooltip-ca-talk' => 'این صفحه خَوری گپ بَزوئن',
 'tooltip-ca-edit' => 'شِما بتوندی این صفحه ره دَچینی.',
 'tooltip-ca-addsection' => 'أتـا نـه گـب را دأکـه‌تـه‌ن',
 'tooltip-ca-viewsource' => 'این صفحه ره نتوندی دَچینی.

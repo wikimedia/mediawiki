@@ -284,10 +284,6 @@ class Language {
 		}
 
 		if ( !defined( 'MW_COMPILED' ) ) {
-			// Preload base classes to work around APC/PHP5 bug
-			if ( file_exists( "$IP/languages/classes/$class.deps.php" ) ) {
-				include_once( "$IP/languages/classes/$class.deps.php" );
-			}
 			if ( file_exists( "$IP/languages/classes/$class.php" ) ) {
 				include_once( "$IP/languages/classes/$class.php" );
 			}
@@ -744,9 +740,8 @@ class Language {
 		$mwNames = $wgExtraLanguageNames + $coreLanguageNames;
 		foreach ( $mwNames as $mwCode => $mwName ) {
 			# - Prefer own MediaWiki native name when not using the hook
-			#	TODO: prefer it always to make it consistent, but casing is different in CLDR
 			# - For other names just add if not added through the hook
-			if ( ( $mwCode === $inLanguage && !$inLanguage ) || !isset( $names[$mwCode] ) ) {
+			if ( $mwCode === $inLanguage || !isset( $names[$mwCode] ) ) {
 				$names[$mwCode] = $mwName;
 			}
 		}
@@ -2406,8 +2401,12 @@ class Language {
 			return $s;
 		}
 
-		$isutf8 = preg_match( '/^([\x00-\x7f]|[\xc0-\xdf][\x80-\xbf]|' .
-				'[\xe0-\xef][\x80-\xbf]{2}|[\xf0-\xf7][\x80-\xbf]{3})+$/', $s );
+		if ( function_exists( 'mb_check_encoding' ) ) {
+			$isutf8 = mb_check_encoding( $s, 'UTF-8' );
+		} else {
+			$isutf8 = preg_match( '/^(?>[\x00-\x7f]|[\xc0-\xdf][\x80-\xbf]|' .
+					'[\xe0-\xef][\x80-\xbf]{2}|[\xf0-\xf7][\x80-\xbf]{3})+$/', $s );
+		}
 		if ( $isutf8 ) {
 			return $s;
 		}

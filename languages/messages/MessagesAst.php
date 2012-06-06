@@ -1,5 +1,5 @@
 <?php
-/** Asturian (Asturianu)
+/** Asturian (asturianu)
  *
  * See MessagesQqq.php for message documentation incl. usage of parameters
  * To improve a translation please visit http://translatewiki.net
@@ -1044,9 +1044,9 @@ Asegúrate de qu'esti cambéu caltenga la continuidá del históricu de la páxi
 'mergelogpagetext' => "Abaxo amuésase una llista de les fusiones más recientes d'un historial de páxina con otru.",
 
 # Diffs
-'history-title' => 'Historial de revisiones de "$1"',
-'difference-title' => 'Diferencia ente revisiones de «$1»',
-'difference-title-multipage' => 'Diferencia ente les páxines «$1» y «$2»',
+'history-title' => 'Historial de revisiones de «$1»',
+'difference-title' => 'Diferencies ente revisiones de «$1»',
+'difference-title-multipage' => 'Diferencies ente les páxines «$1» y «$2»',
 'difference-multipage' => '(Diferencia ente páxines)',
 'lineno' => 'Llinia $1:',
 'compareselectedversions' => 'Comparar les revisiones seleicionaes',
@@ -1141,6 +1141,7 @@ Asegúrate de qu'esti cambéu caltenga la continuidá del históricu de la páxi
 'prefs-beta' => 'Carauterístiques beta',
 'prefs-datetime' => 'Fecha y hora',
 'prefs-labs' => 'Carauterístiques esperimentales',
+'prefs-user-pages' => "Páxines d'usuariu",
 'prefs-personal' => 'Perfil del usuariu',
 'prefs-rc' => 'Cambios recientes',
 'prefs-watchlist' => 'Llista de vixilancia',

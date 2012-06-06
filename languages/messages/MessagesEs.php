@@ -1,5 +1,5 @@
 <?php
-/** Spanish (Español)
+/** Spanish (español)
  *
  * See MessagesQqq.php for message documentation incl. usage of parameters
  * To improve a translation please visit http://translatewiki.net
@@ -2359,7 +2359,7 @@ La dirección electrónica que indicaste en [[Special:Preferences|tus preferenci
 'watcherrortext' => 'Ocurrió un error al cambiar la configuración de tu lista de seguimiento para «$1».',
 
 'enotif_mailer' => 'Notificación por correo de {{SITENAME}}',
-'enotif_reset' => 'Marcar todas las páginas visitadas',
+'enotif_reset' => 'Marcar todas las páginas como visitadas',
 'enotif_newpagetext' => 'Se trata de una nueva página.',
 'enotif_impersonal_salutation' => 'usuario de {{SITENAME}}',
 'changed' => 'modificada',

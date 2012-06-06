@@ -1,5 +1,5 @@
 <?php
-/** Portuguese (Português)
+/** Portuguese (português)
  *
  * See MessagesQqq.php for message documentation incl. usage of parameters
  * To improve a translation please visit http://translatewiki.net
@@ -2672,7 +2672,7 @@ Consulte a [[Special:BlockList|lista de bloqueios]] para rever os bloqueios.',
 'blocklist-userblocks' => 'Esconder bloqueios de contas',
 'blocklist-tempblocks' => 'Esconder bloqueios temporários',
 'blocklist-addressblocks' => 'Esconder bloqueios de IP único',
-'blocklist-rangeblocks' => 'Ocultar range blocks',
+'blocklist-rangeblocks' => 'Ocultar bloqueios de faixas',
 'blocklist-timestamp' => 'Data e hora',
 'blocklist-target' => 'Destinatário',
 'blocklist-expiry' => 'Duração',

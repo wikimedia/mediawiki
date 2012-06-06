@@ -65,6 +65,10 @@ class LinksUpdate extends SqlDataUpdate {
 		$this->mId = $title->getArticleID();
 		assert( $this->mId > 0 );
 
+		if ( !$this->mId ) {
+			throw new MWException( "The Title object did not provide an article ID. Perhaps the page doesn't exist?" );
+		}
+
 		$this->mParserOutput = $parserOutput;
 
 		$this->mLinks = $parserOutput->getLinks();

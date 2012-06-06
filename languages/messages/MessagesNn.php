@@ -1,5 +1,5 @@
 <?php
-/** Norwegian Nynorsk (‪Norsk (nynorsk)‬)
+/** Norwegian Nynorsk (‪norsk (nynorsk)‬)
  *
  * See MessagesQqq.php for message documentation incl. usage of parameters
  * To improve a translation please visit http://translatewiki.net
@@ -958,9 +958,9 @@ lang, altså lenger enn $2 kilobyte som er maksimum. Han kan difor ikkje lagrast
 'readonlywarning' => "'''ÅTVARING: Databasen er skriveverna på grunn av vedlikehald, så du kan ikkje lagre endringane dine akkurat no. Det kan vera lurt å  kopiere teksten din til ei tekstfil, så du kan lagre han her seinare.'''
 
 Systemadministratoren som låste databasen gav følgjande årsak: $1",
-'protectedpagewarning' => "'''ÅTVARING: Denne sida er verna, slik at berre administratorar kan endre ho.'''
+'protectedpagewarning' => "'''ÅTVARING: Denne sida er verna, slik at berre administratorar kan endra henne.'''
 Det siste loggelementet er oppgjeve under som referanse:",
-'semiprotectedpagewarning' => "'''Merk:''' Denne sida er verna slik at berre registrerte brukarar kan endre henne.
+'semiprotectedpagewarning' => "'''Merk:''' Denne sida er verna slik at berre registrerte brukarar kan endra henne.
 Det siste loggelementet er oppgjeve under som referanse:",
 'cascadeprotectedwarning' => "'''Åtvaring:''' Denne sida er verna så berre brukarar med administratortilgang kan endre henne. Dette er fordi ho er inkludert i {{PLURAL:$1|denne djupverna sida|desse djupverna sidene}}:",
 'titleprotectedwarning' => "'''Åtvaring: Denne sida er verna, så berre [[Special:ListGroupRights|nokre brukarar]] kan opprette henne.'''
@@ -1673,7 +1673,7 @@ Om du framleis ønskjer å laste opp fila, gå tilbake og last ho opp med eit an
 'uploadvirus' => 'Fila innheld virus! Detaljar: $1',
 'upload-source' => 'Kjeldefil',
 'sourcefilename' => 'Filsti:',
-'sourceurl' => 'URL til kjelda:',
+'sourceurl' => 'Kjelde-URL:',
 'destfilename' => 'Målfilnamn:',
 'upload-maxfilesize' => 'Maksimal filstorleik: $1',
 'upload-description' => 'Filskildring',

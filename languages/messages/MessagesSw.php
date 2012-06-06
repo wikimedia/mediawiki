@@ -15,6 +15,7 @@
  * @author Marcos
  * @author Muddyb Blast Producer
  * @author Robert Ullmann
+ * @author Stephenwanjau
  * @author לערי ריינהארט
  */
 
@@ -1004,7 +1005,7 @@ Haliwezi kufichwa.',
 # Suppression log
 'suppressionlog' => 'Kumbukumbu za kuficha',
 'suppressionlogtext' => 'Hapo chini panaonyeshwa orodha ya matukio ya ufutaji na ya uzuio ambayo maelezo yao yamefichwa kutoka kwa wakabidhi.
-Tazama [[Special:BlockList|orodha ya uzuio wa IP]] kuona orodha ya zuio zilizopo sasa hivi.',
+Tazama [[Special:BlockList|IP block orodha ya uzuio wa IP]] kuona orodha ya zuio zilizopo sasa hivi.',
 
 # History merging
 'mergehistory' => 'Unganisha historia za kurasa',
@@ -1125,6 +1126,7 @@ Ujue lakini kwamba kumbukumbu za {{SITENAME}} kule Google labda zilipitwa na wak
 'datedefault' => 'Chaguo-msingi',
 'prefs-beta' => 'Zana za Beta',
 'prefs-datetime' => 'Tarehe na saa',
+'prefs-user-pages' => 'Kurasa za watumiaji',
 'prefs-personal' => 'Kuhusu mtumiaji',
 'prefs-rc' => 'Mabadiliko ya karibuni',
 'prefs-watchlist' => 'Maangalizi',
@@ -1250,7 +1252,7 @@ Taarifa hii itakuwa wazi.',
 'userrights-no-interwiki' => 'Huna ruhusa ya kuhariri haki za mtumiaji kwenye wiki zingine.',
 'userrights-nodatabase' => 'Hakuna hifadhidata inayoitwa $1 au haimo katiko jumuia hii ya wiki.',
 'userrights-nologin' => 'Lazima [[Special:UserLogin|uingie ndani]] ya akaunti ya mkabidhi ili kupanga haki za mtumiaji.',
-'userrights-notallowed' => 'Akaunti yako haina ruhusa ya kupanga haki za mtumiaji.',
+'userrights-notallowed' => 'Akaunti yako haina ruhusa ya kuongeza au kutoa haki za mtumiaji.',
 'userrights-changeable-col' => 'Makundi unayoweza kuyabadilisha',
 'userrights-unchangeable-col' => 'Makundi usiyoweza kuyabadilisha',
 
@@ -1313,7 +1315,7 @@ Taarifa hii itakuwa wazi.',
 'right-hideuser' => 'Kuzuia jina la mtumiaji, lisionekane mbele ya kadamnasi',
 'right-protect' => 'Badilisha viwango vya ulinzi na hariri kurasa zilizolindwa',
 'right-editinterface' => 'Kuhariri kusano ya mtumiaji',
-'right-editusercssjs' => 'Kuhariri mafaili ya CSS na JavaScript ya watumiaji wengine',
+'right-editusercssjs' => 'Hariri mafaili ya CSS na Hatijava ya watumiaji wengine',
 'right-editusercss' => 'Hariri mafaili ya CSS ya watumiaji wengine',
 'right-edituserjs' => 'Hariri mafaili ya JavaScript ya watumiaji wengine',
 'right-import' => 'Kuleta kurasa kutoka kwa wiki zingine',
@@ -1676,7 +1678,7 @@ Pengine ungependa kuhariri maelezo yaliyopo katika [$2 ukurasa wa maelezo ya fai
 ** Faili la nakili',
 'filedelete-edit-reasonlist' => 'Kuhariri orodha ya sababu za kufuta',
 'filedelete-maintenance' => 'Tovuti inarekebishwa. Kwa muda huo kufuta na kurudisha mafaili haiwezikani.',
-'filedelete-maintenance-title' => 'Faili hilifutiki',
+'filedelete-maintenance-title' => 'Faili halifutiki',
 
 # MIME search
 'mimesearch' => 'Utafutaji wa MIME',
@@ -1719,7 +1721,7 @@ Kumbuka kuhakikisha kwamba hakuna viungo vingine vinavyoelekea kigezo fulani kab
 'statistics-edits' => 'Kurasa zilizohaririwa tangu {{SITENAME}} ilivyoanzishwa',
 'statistics-edits-average' => 'Wastani wa uhariri kwa kurasa',
 'statistics-views-total' => 'Jumla ya mitazamaji',
-'statistics-views-total-desc' => 'Tazamo za kurasa zisizokuwepo na kurasa maalumu ambazo hazijaorodheshwa.',
+'statistics-views-total-desc' => 'Tazamo za kurasa zisizokuwepo na kurasa maalumu hazionikani.',
 'statistics-views-peredit' => 'Mitazamaji kwa haririo',
 'statistics-users' => '[[Special:ListUsers|Watumiaji]] waliojisajiri',
 'statistics-users-active' => 'Watumiaji wanaofanya kazi',
@@ -1772,7 +1774,7 @@ Sasa unaelekeza kwa [[$2]].',
 'popularpages' => 'Kurasa zinazopendelewa',
 'wantedcategories' => 'Jamii zinazotakiwa',
 'wantedpages' => 'Kurasa zinazotakiwa',
-'wantedpages-badtitle' => 'Lipo jina batili katika matokeo: $1',
+'wantedpages-badtitle' => 'Kichwa batili katika seti ya matokeo: $1',
 'wantedfiles' => 'Mafaili yanayokosekana',
 'wantedtemplates' => 'Vigezo vinavyotakiwa',
 'mostlinked' => 'Kurasa zinazoungwa kuliko zote',
@@ -1787,11 +1789,13 @@ Sasa unaelekeza kwa [[$2]].',
 'deadendpages' => 'Kurasa ambazo haziungi na ukurasa mwingine wowote',
 'deadendpagestext' => 'Kurasa zifuatazo haziungana na kurasa zingine katika {{SITENAME}}.',
 'protectedpages' => 'Kurasa zinazolindwa',
-'protectedpages-indef' => 'Zinazolindwa kwa muda wote tu',
+'protectedpages-indef' => 'Ulinzi kwa muda usiojulikana tu',
 'protectedpages-cascade' => 'zinazokuwa na ulindaji kwa kurasa chini zake tu',
-'protectedpagestext' => 'Kurasa zifuatazo zinalindwa zisisogezwe wala zisihaririwe',
+'protectedpagestext' => 'Kurasa zifuatazo zinalindwa zisisogezwe wala kuhaririwa',
+'protectedpagesempty' => 'Hakuna kurasa zinazolindwa kwa sasa kwa vigezo hivi.',
 'protectedtitles' => 'Majina yanayozuluiwa',
 'protectedtitlestext' => 'Yafuatayo ni majina ya kurasa yanayozuluiwa kuyatumia',
+'protectedtitlesempty' => 'Hakuna vichwa vinavyolindwa kwa vigezo hivi kwa sasa.',
 'listusers' => 'Orodha ya Watumiaji',
 'listusers-editsonly' => 'Onyesha watumiaji wenye kuhariri tu',
 'listusers-creationsort' => 'Panga kwa tarehe ya kuanzishwa',
@@ -1802,7 +1806,8 @@ Sasa unaelekeza kwa [[$2]].',
 'ancientpages' => 'Kurasa za kale',
 'move' => 'Hamisha',
 'movethispage' => 'Hamisha ukurasa huu',
-'unusedcategoriestext' => 'Kurasa za jamii zifuatazo zinapatikana, ingawaje hakuna ukurasa wala jamii nyingine iliyowekwa ndani ya jamii hizi.',
+'unusedcategoriestext' => 'Kurasa za jamii zifuatazo zinapatikana, ingawaje hakuna ukurasa wala jamii nyingine inayotumia kurasa hizi.',
+'notargettitle' => 'Hakuna lengo',
 'pager-newer-n' => '{{PLURAL:$1|1 ya karibu zaidi|$1 ya karibu zaidi}}',
 'pager-older-n' => '{{PLURAL:$1|$1 ya zamani zaidi}}',
 

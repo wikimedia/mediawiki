@@ -575,11 +575,7 @@ class WikiPage extends Page {
 		}
 
 		wfProfileOut( __METHOD__ );
-		if ( $row ) {
-			return Revision::newFromRow( $row );
-		} else {
-			return null;
-		}
+		return $row ? Revision::newFromRow( $row ) : null;
 	}
 
 	/**
@@ -3137,6 +3133,7 @@ class WikiPage extends Page {
 		wfRunHooks( 'WikiPageDeletionUpdates', array( $this, &$updates ) );
 		return $updates;
 	}
+
 }
 
 class PoolWorkArticleView extends PoolCounterWork {

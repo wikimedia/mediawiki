@@ -1191,8 +1191,8 @@ Takyachikuy kay hukchayqa allin wiñay kawsay ñiqita ama waqllichunchu chaylla.
 
 # Diffs
 'history-title' => '"$1" p\'anqata hukchasqakunap wiñay kawsaynin',
-'difference-title' => '$1: Musuqchasqapura wakin kaynin',
-'difference-title-multipage' => '$1, $2: Willañiqipura wakin kaynin',
+'difference-title' => '$1 nisqapaq musuqchasqapura wakin kaynin',
+'difference-title-multipage' => '$1, $2 sutiyuq willañiqipura wakin kaynin',
 'difference-multipage' => "(P'anqakunaqa manam kaqllachu)",
 'lineno' => "Siq'i $1:",
 'compareselectedversions' => "Akllasqa llamk'apusqakunata wakichay",
@@ -1287,6 +1287,7 @@ Takyachikuy kay hukchayqa allin wiñay kawsay ñiqita ama waqllichunchu chaylla.
 'prefs-beta' => 'Beta nisqap kaqninkuna',
 'prefs-datetime' => "P'unchaw, pacha",
 'prefs-labs' => 'Laburaturyu nisqap kaqninkuna',
+'prefs-user-pages' => "Ruraqpa p'anqankuna",
 'prefs-personal' => 'Kikinpa willankuna',
 'prefs-rc' => 'Ñaqha hukchasqakuna',
 'prefs-watchlist' => "Watiqasqa p'anqakuna",

@@ -1,5 +1,5 @@
 <?php
-/** Finnish (Suomi)
+/** Finnish (suomi)
  *
  * See MessagesQqq.php for message documentation incl. usage of parameters
  * To improve a translation please visit http://translatewiki.net
@@ -1142,8 +1142,8 @@ Voit silti nähdä tämän muutoksen. Lisätietoja löytyy [{{fullurl:{{#Special
 'revdelete-show-file-submit' => 'Kyllä',
 'revdelete-selected' => "'''{{PLURAL:$2|Valittu versio|Valitut versiot}} sivusta '''$1:''''''",
 'logdelete-selected' => "'''{{PLURAL:$1|Valittu lokimerkintä|Valitut lokimerkinnät}}:'''",
-'revdelete-text' => "'''Poistetut versiot näkyvät sivun historiassa, mutta niiden sisältö ei ole julkisesti saatavilla.'''
-Muut ylläpitäjät {{GRAMMAR:inessive|{{SITENAME}}}} voivat silti lukea piilotetun sisällön ja he voivat palauttaa sen tämän käyttöliittymän kautta, ellei sitä ole rajoitettu.",
+'revdelete-text' => "'''Poistetut versiot ja lokitapahtumat näkyvät edelleen sivun historiassa ja lokeissa, mutta osa niiden sisällöstä ei ole julkisesti saatavilla.'''
+Muut ylläpitäjät {{GRAMMAR:inessive|{{SITENAME}}}} voivat silti tarkastella piilotettua sisältöä, ja he voivat palauttaa sen näkyviin tämän käyttöliittymän kautta, ellei tätä ole erikseen rajoitettu.",
 'revdelete-confirm' => 'Varmista, että haluat tehdä tämän – ymmärrät seuraukset ja teet tämän [[{{MediaWiki:Policy-url}}|käytäntöjen]] mukaisesti.',
 'revdelete-suppress-text' => "Häivytystä pitäisi käyttää '''vain''' seuraavissa tapauksissa:
 * Sopimattomat henkilötiedot
@@ -1224,7 +1224,7 @@ Uuden ja vanhan sivun muutoksien pitää muodostaa jatkumo – ne eivät saa men
 'mergelogpagetext' => 'Alla on loki viimeisimmistä muutoshistorioiden yhdistämisistä.',
 
 # Diffs
-'history-title' => 'Sivun $1 muutoshistoria',
+'history-title' => 'Sivun "$1" muutoshistoria',
 'difference-title' => 'Ero sivun "$1" versioiden välillä',
 'difference-title-multipage' => 'Erot sivujen "$1" ja "$2" välillä',
 'difference-multipage' => '(Sivujen välinen eroavaisuus)',
@@ -1324,6 +1324,7 @@ Kokeile lisätä haun alkuun ''all:'', niin haku kohdistuu kaikkeen sisältöön
 'prefs-beta' => 'Beta-ominaisuudet',
 'prefs-datetime' => 'Aika ja päiväys',
 'prefs-labs' => 'Kokeelliset ominaisuudet',
+'prefs-user-pages' => 'Käyttäjäsivut',
 'prefs-personal' => 'Käyttäjätiedot',
 'prefs-rc' => 'Tuoreet muutokset',
 'prefs-watchlist' => 'Tarkkailulista',

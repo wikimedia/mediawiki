@@ -167,7 +167,8 @@ class SpecialVersion extends SpecialPage {
 			$version = $wgVersion;
 		} elseif ( $gitInfo ) {
 			$shortSha1 = substr( $gitInfo, 0, 7 );
-			$version = "$wgVersion ($shortSha1)";
+			$shortSha1 = wfMessage( 'parentheses' )->params( $shortSha1 )->escaped();
+			$version = "$wgVersion $shortSha1";
 		} elseif ( $flags === 'nodb' ) {
 			$version = "$wgVersion (r{$svnInfo['checkout-rev']})";
 		} else {
@@ -615,8 +616,8 @@ class SpecialVersion extends SpecialPage {
 			$list = $list[0];
 		}
 		if( is_object( $list ) ) {
-			$class = get_class( $list );
-			return "($class)";
+			$class = wfMessage( 'parentheses' )->params( get_class( $list ) )->escaped();
+			return $class;
 		} elseif ( !is_array( $list ) ) {
 			return $list;
 		} else {
@@ -625,7 +626,7 @@ class SpecialVersion extends SpecialPage {
 			} else {
 				$class = $list[0];
 			}
-			return "($class, {$list[1]})";
+			return wfMessage( 'parentheses' )->params( "$class, {$list[1]}" )->escaped();
 		}
 	}
 

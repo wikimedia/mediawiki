@@ -1,5 +1,5 @@
 <?php
-/** Tarandíne (Tarandíne)
+/** tarandíne (tarandíne)
  *
  * See MessagesQqq.php for message documentation incl. usage of parameters
  * To improve a translation please visit http://translatewiki.net
@@ -1109,6 +1109,7 @@ Però fa attenzione purcè l'indice lore sus a {{SITENAME}} ponne condenè pàgg
 'prefs-beta' => 'Funziune de Beta',
 'prefs-datetime' => 'Date e ore',
 'prefs-labs' => 'Funziune de Labs',
+'prefs-user-pages' => "Pàgene de l'utende",
 'prefs-personal' => "Profile de l'utende",
 'prefs-rc' => 'Cangiaminde recende',
 'prefs-watchlist' => 'Pàggene condrollete',
