@@ -758,15 +758,21 @@ abstract class ContentHandler {
 	}
 
 	/**
+	 * Returns a lost of updates to perform when the given content is deleted.
+	 * The necessary updates may be taken from the Content object, or depend on the current state of the database.
+	 *
 	 * @since WD.1
 	 *
-	 * @param $page WikiPage the page that was deleted (note: $page->getId() must still return the old page ID!)
+	 * @param \Content           $content the Content object for deletion
+	 * @param \Title             $title   the title of the deleted page
+	 * @param null|\ParserOutput $parserOutput optional parser output object for efficient access to meta-information
+	 *                           about the content object. Provide if you have one handy.
 	 *
 	 * @return array a list of DataUpdate instances that will clean up the database ofter deletion.
 	 */
-	public function getDeletionUpdates( WikiPage $page ) {
+	public function getDeletionUpdates( Content $content, Title $title, ParserOutput $parserOutput = null ) {
 		return array(
-			new LinksDeletionUpdate( $page ),
+			new LinksDeletionUpdate( $title ),
 		);
 	}
 }

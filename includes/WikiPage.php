@@ -1987,7 +1987,7 @@ class WikiPage extends Page {
 		}
 
 		# Update the links tables and other secondary data
-		$updates = $editInfo->output->getSecondaryDataUpdates( $this->getTitle() );
+		$updates = $editInfo->output->getSecondaryDataUpdates( $this->getTitle() ); #FIXME: call ContentHandler::getSecondaryLinkUpdates. Don't parse iuf not needed! But don't parse too early either, only after saving, so we have an article ID!
 		DataUpdate::runUpdates( $updates );
 
 		wfRunHooks( 'ArticleEditUpdates', array( &$this, &$editInfo, $options['changed'] ) );
@@ -2431,6 +2431,9 @@ class WikiPage extends Page {
 			$bitfield = 'rev_deleted';
 		}
 
+		// we need to remember the old content so we can use it to generate all deletion updates.
+		$content = $this->getContent( Revision::RAW );
+
 		$dbw = wfGetDB( DB_MASTER );
 		$dbw->begin( __METHOD__ );
 		// For now, shunt the revision data into the archive table.
@@ -2485,7 +2488,7 @@ class WikiPage extends Page {
 			return WikiPage::DELETE_NO_REVISIONS;
 		}
 
-		$this->doDeleteUpdates( $id );
+		$this->doDeleteUpdates( $id, $content );
 
 		# Log the deletion, if the page was suppressed, log it at Oversight instead
 		$logtype = $suppress ? 'suppress' : 'delete';
@@ -2509,13 +2512,15 @@ class WikiPage extends Page {
 	 * Do some database updates after deletion
 	 *
 	 * @param $id Int: page_id value of the page being deleted (B/C, currently unused)
+	 * @param $content Content: optional page content to be used when determining the required updates.
+	 *        This may be needed because $this->getContent() may already return null when the page proper was deleted.
 	 */
-	public function doDeleteUpdates( $id ) {
+	public function doDeleteUpdates( $id, Content $content = null ) {
 		# update site status
 		DeferredUpdates::addUpdate( new SiteStatsUpdate( 0, 1, - (int)$this->isCountable(), -1 ) );
 
 		# remove secondary indexes, etc
-		$updates = $this->getDeletionUpdates( );
+		$updates = $this->getDeletionUpdates( $content );
 		DataUpdate::runUpdates( $updates );
 
 		# Clear caches
@@ -2534,7 +2539,7 @@ class WikiPage extends Page {
 	 * roll back to, e.g. user is the sole contributor. This function
 	 * performs permissions checks on $user, then calls commitRollback()
 	 * to do the dirty work
-	 * 
+	 *
 	 * @todo: seperate the business/permission stuff out from backend code
 	 *
 	 * @param $fromP String: Name of the user whose edits to rollback.
@@ -3113,8 +3118,21 @@ class WikiPage extends Page {
 		return $this->isParserCacheUsed( ParserOptions::newFromUser( $wgUser ), $oldid );
 	}
 
-	public function getDeletionUpdates() {
-		$updates = $this->getContentHandler()->getDeletionUpdates( $this );
+	/**
+	 * Returns a list of updates to be performed when this page is deleted. The updates should remove any infomration
+	 * about this page from secondary data stores such as links tables.
+	 *
+	 * @param Content|null $content optional Content object for determining the necessary updates
+	 * @return Array an array of DataUpdates objects
+	 */
+	public function getDeletionUpdates( Content $content = null ) {
+		if ( !$content ) {
+			// load content object, which may be used to determine the necessary updates
+			// XXX: the content may not be needed to determine the updates, then this would be overhead.
+			$content = $this->getContent( Revision::RAW );
+		}
+
+		$updates = $this->getContentHandler()->getDeletionUpdates( $content, $this->mTitle );
 
 		wfRunHooks( 'WikiPageDeletionUpdates', array( $this, &$updates ) );
 		return $updates;

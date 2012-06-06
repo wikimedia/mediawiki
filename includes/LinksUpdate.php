@@ -813,7 +813,7 @@ class LinksUpdate extends SqlDataUpdate {
  **/
 class LinksDeletionUpdate extends SqlDataUpdate {
 
-	protected $mPage;     //!< WikiPage the wikipage that was deleted
+	protected $mTitle;     //!< Title the title of page that was deleted
 
 	/**
 	 * Constructor
@@ -822,18 +822,18 @@ class LinksDeletionUpdate extends SqlDataUpdate {
 	 * @param $parserOutput ParserOutput: output from a full parse of this page
 	 * @param $recursive Boolean: queue jobs for recursive updates?
 	 */
-	function __construct( WikiPage $page ) {
+	function __construct( Title $title ) {
 		parent::__construct( );
 
-		$this->mPage = $page;
+		$this->mTitle = $title;
 	}
 
 	/**
 	 * Do some database updates after deletion
 	 */
 	public function doUpdate() {
-		$title = $this->mPage->getTitle();
-		$id = $this->mPage->getId();
+		$title = $this->mTitle;
+		$id = $title->getArticleID();
 
 		# Delete restrictions for it
 		$this->mDb->delete( 'page_restrictions', array ( 'pr_page' => $id ), __METHOD__ );
@@ -846,7 +846,7 @@ class LinksDeletionUpdate extends SqlDataUpdate {
 			$cats [] = $row->cl_to;
 		}
 
-		$this->mPage->updateCategoryCounts( array(), $cats );
+		$this->updateCategoryCounts( array(), $cats );
 
 		# If using cascading deletes, we can skip some explicit deletes
 		if ( !$this->mDb->cascadingDeletes() ) {
@@ -876,5 +876,17 @@ class LinksDeletionUpdate extends SqlDataUpdate {
 				array( 'rc_type != ' . RC_LOG, 'rc_cur_id' => $id ),
 				__METHOD__ );
 		}
+	}
+
+	/**
+	 * Update all the appropriate counts in the category table.
+	 * @param $added array associative array of category name => sort key
+	 * @param $deleted array associative array of category name => sort key
+	 */
+	function updateCategoryCounts( $added, $deleted ) {
+		$a = WikiPage::factory( $this->mTitle );
+		$a->updateCategoryCounts(
+			array_keys( $added ), array_keys( $deleted )
+		);
 	}
 }
