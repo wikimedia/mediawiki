@@ -87,6 +87,14 @@ class SpecialSearchTest extends MediaWikiTestCase {
 				'advanced', array( 2, 14 ),
 				'Bug 33583: search with no option should honor User search preferences'
 			),
+			array(
+				$EMPTY_REQUEST, array_fill_keys( array_map( function( $ns ) {
+					return "searchNs$ns";
+				}, $defaultNS ), 0 ) + array( 'searchNs2' => 1, 'searchNs14' => 1 ),
+				'advanced', array( 2, 14 ),
+				'Bug 33583: search with no option should honor User search preferences'
+				. 'and have all other namespace disabled'
+			),
 		);
 	}
 
