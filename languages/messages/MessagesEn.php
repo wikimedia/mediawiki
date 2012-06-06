@@ -1035,6 +1035,8 @@ $2',
 'namespaceprotected'   => "You do not have permission to edit pages in the '''$1''' namespace.",
 'customcssprotected'   => "You do not have permission to edit this CSS page, because it contains another user's personal settings.",
 'customjsprotected'    => "You do not have permission to edit this JavaScript page, because it contains another user's personal settings.",
+'globalcssprotected'   => "You do not have permission to edit global CSS pages",
+'globaljsprotected'    => "You do not have permission to edit global JavaScript pages",
 'ns-specialprotected'  => 'Special pages cannot be edited.',
 'titleprotected'       => 'This title has been protected from creation by [[User:$1|$1]].
 The reason given is "\'\'$2\'\'".',

@@ -1004,6 +1004,24 @@ class Title {
 	}
 
 	/**
+	 * Is this a .js page of MediaWiki?
+	 *
+	 * @return Bool
+	 */
+	public function isMediaWikiJsPage() {
+		return ( NS_MEDIAWIKI == $this->mNamespace && preg_match( "!\.js$!i", $this->mTextform ) );
+	}
+
+	/**
+	 * Is this a .css page of MediaWiki?
+	 *
+	 * @return Bool
+	 */
+	public function isMediaWikiCssPage() {
+		return ( NS_MEDIAWIKI == $this->mNamespace && preg_match( "!\.css$!i", $this->mTextform ) );
+	}
+
+	/**
 	 * Is this a talk page of some sort?
 	 *
 	 * @return Bool
@@ -1777,6 +1795,10 @@ class Title {
 				$errors[] = array( 'customcssprotected' );
 			} elseif ( $this->isJsSubpage() && !$user->isAllowed( 'edituserjs' ) ) {
 				$errors[] = array( 'customjsprotected' );
+			} elseif ( $this->isMediaWikiJsPage() && !$user->isAllowed( 'editglobaljs' ) ) {
+				$errors[] = array( 'globaljsprotected' );
+			} elseif ( $this->isMediaWikiCssPage() && !$user->isAllowed( 'editglobalcss' ) ) {
+				$errors[] = array( 'globalcssprotected' );
 			}
 		}
 
