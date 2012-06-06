@@ -1,0 +1,8 @@
+Change-Id: I3c4cab7e370b9d15d01de0f049b5205a344108ff
+Code-Review+2: awjrichards <arichards@wikimedia.org>
+Verified+1: awjrichards <arichards@wikimedia.org>
+Submitted-by: awjrichards <arichards@wikimedia.org>
+Submitted-at: Wed, 06 Jun 2012 00:31:50 +0000
+Reviewed-on: https://gerrit.wikimedia.org/r/10389
+Project: mediawiki/core
+Branch: refs/heads/mobilefrontend-core-merge
