@@ -927,7 +927,7 @@ class OutputPage extends ContextSource {
 	 * @return Boolean
 	 */
 	public function isPrintable() {
-		return $this->getContext()->getViewType() === 'print';
+		return $this->mPrintable;
 	}
 
 	/**
