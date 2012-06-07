@@ -479,6 +479,8 @@ class TextPassDumperTest extends DumpTestCase {
       </contributor>
       <comment>BackupDumperTestP1Summary1</comment>
       <sha1>0bolhl6ol7i6x0e7yq91gxgaan39j87</sha1>
+      <model name="wikitext">1</model>
+      <format mime="text/x-wiki">1</format>
       <text id="' . $this->textId1_1 . '" bytes="23" />
     </revision>
   </page>
@@ -495,6 +497,8 @@ class TextPassDumperTest extends DumpTestCase {
       </contributor>
       <comment>BackupDumperTestP2Summary1</comment>
       <sha1>jprywrymfhysqllua29tj3sc7z39dl2</sha1>
+      <model name="wikitext">1</model>
+      <format mime="text/x-wiki">1</format>
       <text id="' . $this->textId2_1 . '" bytes="23" />
     </revision>
     <revision>
@@ -505,6 +509,8 @@ class TextPassDumperTest extends DumpTestCase {
       </contributor>
       <comment>BackupDumperTestP2Summary2</comment>
       <sha1>b7vj5ks32po5m1z1t1br4o7scdwwy95</sha1>
+      <model name="wikitext">1</model>
+      <format mime="text/x-wiki">1</format>
       <text id="' . $this->textId2_2 . '" bytes="23" />
     </revision>
     <revision>
@@ -515,6 +521,8 @@ class TextPassDumperTest extends DumpTestCase {
       </contributor>
       <comment>BackupDumperTestP2Summary3</comment>
       <sha1>jfunqmh1ssfb8rs43r19w98k28gg56r</sha1>
+      <model name="wikitext">1</model>
+      <format mime="text/x-wiki">1</format>
       <text id="' . $this->textId2_3 . '" bytes="23" />
     </revision>
     <revision>
@@ -525,6 +533,8 @@ class TextPassDumperTest extends DumpTestCase {
       </contributor>
       <comment>BackupDumperTestP2Summary4 extra</comment>
       <sha1>6o1ciaxa6pybnqprmungwofc4lv00wv</sha1>
+      <model name="wikitext">1</model>
+      <format mime="text/x-wiki">1</format>
       <text id="' . $this->textId2_4 . '" bytes="44" />
     </revision>
   </page>
@@ -543,6 +553,8 @@ class TextPassDumperTest extends DumpTestCase {
       </contributor>
       <comment>Talk BackupDumperTestP1 Summary1</comment>
       <sha1>nktofwzd0tl192k3zfepmlzxoax1lpe</sha1>
+      <model name="wikitext">1</model>
+      <format mime="text/x-wiki">1</format>
       <text id="' . $this->textId4_1 . '" bytes="35" />
     </revision>
   </page>

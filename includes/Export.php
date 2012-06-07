@@ -644,22 +644,6 @@ class XmlDumpWriter {
 			$out .= "      " . Xml::elementClean( 'comment', array(), strval( $row->rev_comment ) ) . "\n";
 		}
 
-		if ( isset( $row->rev_content_model ) && !is_null( $row->rev_content_model )  ) {
-			$name = ContentHandler::getContentModelName( $row->rev_content_model );
-			$out .= "      " . Xml::element('model', array( 'name' => $name ), strval( $row->rev_content_model ) ) . "\n";
-		}
-
-		if ( isset( $row->rev_content_format ) && !is_null( $row->rev_content_format ) ) {
-			$mime = ContentHandler::getContentFormatMimeType( $row->rev_content_format );
-			$out .= "      " . Xml::element('format', array( 'mime' => $mime ), strval( $row->rev_content_format ) ) . "\n";
-		}
-
-		if ( $row->rev_sha1 && !( $row->rev_deleted & Revision::DELETED_TEXT ) ) {
-			$out .= "      " . Xml::element('sha1', null, strval( $row->rev_sha1 ) ) . "\n";
-		} else {
-			$out .= "      <sha1/>\n";
-		}
-
 		$text = '';
 		if ( $row->rev_deleted & Revision::DELETED_TEXT ) {
 			$out .= "      " . Xml::element( 'text', array( 'deleted' => 'deleted' ) ) . "\n";
@@ -675,6 +659,36 @@ class XmlDumpWriter {
 				array( 'id' => $row->rev_text_id, 'bytes' => intval( $row->rev_len ) ),
 				"" ) . "\n";
 		}
+
+		if ( $row->rev_sha1 && !( $row->rev_deleted & Revision::DELETED_TEXT ) ) {
+			$out .= "      " . Xml::element('sha1', null, strval( $row->rev_sha1 ) ) . "\n";
+		} else {
+			$out .= "      <sha1/>\n";
+		}
+
+		if ( isset( $row->rev_content_model ) && !is_null( $row->rev_content_model )  ) {
+			$content_model = intval( $row->rev_content_model );
+		} else {
+			// probably using $wgContentHandlerUseDB = false;
+			// @todo: test!
+			$title = Title::makeTitle( $row->page_namespace, $row->page_title );
+			$content_model = ContentHandler::getDefaultModelFor( $title );
+		}
+
+		$name = ContentHandler::getContentModelName( $content_model );
+		$out .= "      " . Xml::element('model', array( 'name' => $name ), strval( $content_model ) ) . "\n";
+
+		if ( isset( $row->rev_content_format ) && !is_null( $row->rev_content_format ) ) {
+			$content_format = intval( $row->rev_content_format );
+		} else {
+			// probably using $wgContentHandlerUseDB = false;
+			// @todo: test!
+			$content_handler = ContentHandler::getForModelID( $content_model );
+			$content_format = $content_handler->getDefaultFormat();
+		}
+
+		$mime = ContentHandler::getContentFormatMimeType( $content_format );
+		$out .= "      " . Xml::element('format', array( 'mime' => $mime ), strval( $content_format ) ) . "\n";
 
 		wfRunHooks( 'XmlDumpWriterWriteRevision', array( &$this, &$out, $row, $text ) );
 
