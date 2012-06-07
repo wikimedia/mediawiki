@@ -1778,14 +1778,25 @@ class User {
 	 */
 	public function getNewMessageLinks() {
 		$talks = array();
-		if( !wfRunHooks( 'UserRetrieveNewTalks', array( &$this, &$talks ) ) )
+		if( !wfRunHooks( 'UserRetrieveNewTalks', array( &$this, &$talks ) ) ) {
 			return $talks;
-
-		if( !$this->getNewtalk() )
+		} elseif( !$this->getNewtalk() ) {
 			return array();
-		$up = $this->getUserPage();
-		$utp = $up->getTalkPage();
-		return array( array( 'wiki' => wfWikiID(), 'link' => $utp->getLocalURL() ) );
+		}
+		$utp = $this->getTalkPage();
+		$dbr = wfGetDB( DB_SLAVE );
+		// Get the "last viewed rev" timestamp from the oldest message notification
+		$timestamp = $dbr->selectField( 'user_newtalk',
+			'MIN(user_last_timestamp)',
+			$this->mId ? array( 'user_id' => $this->mId ) : array( 'user_ip' => $this->mName ),
+			__METHOD__ );
+		if ( $timestamp ) {
+			$rev = Revision::loadFromTimestamp( $dbr, $utp, $timestamp );
+			$id = $rev ? $rev->getId() : 0;
+		} else {
+			$id = 0; // current revision
+		}
+		return array( array( 'wiki' => wfWikiID(), 'link' => $utp->getLocalURL(), 'revid' => $id ) );
 	}
 
 	/**
@@ -1815,9 +1826,14 @@ class User {
 	 * @return Bool True if successful, false otherwise
 	 */
 	protected function updateNewtalk( $field, $id ) {
+		// Get timestamp of the talk page revision prior to the current one
+		$curRev = Revision::newFromTitle( $this->getTalkPage() );
+		$prevRev = $curRev ? $curRev->getPrevious() : false;
+		$ts = $prevRev ? $prevRev->getTimestamp() : null;
+		// Mark the user as having new messages since this revision
 		$dbw = wfGetDB( DB_MASTER );
 		$dbw->insert( 'user_newtalk',
-			array( $field => $id ),
+			array( $field => $id, 'user_last_timestamp' => $dbw->timestampOrNull( $ts ) ),
 			__METHOD__,
 			'IGNORE' );
 		if ( $dbw->affectedRows() ) {

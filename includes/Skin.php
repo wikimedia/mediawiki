@@ -72,7 +72,7 @@ abstract class Skin extends ContextSource {
 		}
 		return $wgValidSkinNames;
 	}
- 
+
  	/**
 	 * Fetch the skinname messages for available skins.
 	 * @return array of strings
@@ -1357,7 +1357,9 @@ abstract class Skin extends ContextSource {
 					$userTalkTitle,
 					$this->msg( 'newmessagesdifflink' )->escaped(),
 					array(),
-					array( 'diff' => 'cur' )
+					isset( $newtalks[0]['revid'] ) && $newtalks[0]['revid']
+						? array( 'oldid' => $newtalks[0]['revid'], 'diff' => 'cur' )
+						: array( 'diff' => 'cur' )
 				);
 
 				$ntl = $this->msg(
