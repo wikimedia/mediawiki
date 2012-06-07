@@ -72,7 +72,7 @@ abstract class Skin extends ContextSource {
 		}
 		return $wgValidSkinNames;
 	}
- 
+
  	/**
 	 * Fetch the skinname messages for available skins.
 	 * @return array of strings
@@ -1342,22 +1342,38 @@ abstract class Skin extends ContextSource {
 		$ntl = '';
 
 		if ( count( $newtalks ) == 1 && $newtalks[0]['wiki'] === wfWikiID() ) {
-			$userTitle = $this->getUser()->getUserPage();
-			$userTalkTitle = $userTitle->getTalkPage();
+			$userTalkTitle = $this->getUser()->getTalkPage();
 
 			if ( !$userTalkTitle->equals( $out->getTitle() ) ) {
+				$lastSeenRevID = isset( $newtalks[0]['revid'] ) ? $newtalks[0]['revid'] : 0;
+				if ( $lastSeenRevID !== 0 ) {
+					$plural = true; // Default if we have a revision ID: if unknown, use plural
+					$lastSeenRev = Revision::newFromTitle( $userTalkTitle, $lastSeenRevID );
+					$firstUnseenRev = $lastSeenRev !== null ? $lastSeenRev->getNext() : null;
+					if ( $firstUnseenRev !== null ) {
+						// Singular if only 1 unseen revision, plural if several unseen revisions.
+						$plural = $userTalkTitle->getLatestRevID() !== $firstUnseenRev->getId();
+					}
+				} else {
+					$plural = false; // Singular if no revision ID -> diff link will show latest change only in any case
+				}
+				$plural = $plural ? 2 : 1;
+				// 2 signifies "more than one revision". We don't know how many, and even if we did, the number of revisions
+				// is not necessarily the same as the number of "messages".
 				$newMessagesLink = Linker::linkKnown(
 					$userTalkTitle,
-					$this->msg( 'newmessageslink' )->escaped(),
+					$this->msg( 'newmessageslink' )->params( $plural )->escaped(),
 					array(),
 					array( 'redirect' => 'no' )
 				);
 
 				$newMessagesDiffLink = Linker::linkKnown(
 					$userTalkTitle,
-					$this->msg( 'newmessagesdifflink' )->escaped(),
+					$this->msg( 'newmessagesdifflink' )->params( $plural )->escaped(),
 					array(),
-					array( 'diff' => 'cur' )
+					$lastSeenRevID !== 0
+						? array( 'oldid' => $lastSeenRevID, 'diff' => 'cur' )
+						: array( 'diff' => 'cur' )
 				);
 
 				$ntl = $this->msg(
