@@ -1358,6 +1358,7 @@ Note que os índices do sistema de busca externo poderão conter referências de
 'prefs-beta' => 'Características beta',
 'prefs-datetime' => 'Data e hora',
 'prefs-labs' => 'Características de laboratório',
+'prefs-user-pages' => 'Páginas de usuário',
 'prefs-personal' => 'Perfil de usuário',
 'prefs-rc' => 'Mudanças recentes',
 'prefs-watchlist' => 'Lista de páginas vigiadas',
@@ -2162,6 +2163,7 @@ Por favor note que outros websites podem apontar para um arquivo através de um 
 Você pode diminuir a lista escolhendo um tipo de registro, um nome de usuário (sensível a maiúsculas e minúsculas), ou uma página afetada (também sensível a maiúsculas e minúsculas).',
 'logempty' => 'Nenhum item idêntico no registro.',
 'log-title-wildcard' => 'Procurar por títulos que sejam iniciados com o seguinte texto',
+'showhideselectedlogentries' => 'Exibir/ocultar os itens de registros selecionados',
 
 # Special:AllPages
 'allpages' => 'Todas as páginas',

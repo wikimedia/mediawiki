@@ -1339,8 +1339,10 @@ Hetah hian [[Special:UnusedCategories|pawl hman lohho]] pholan tel a ni lo.
 'emailccsubject' => '$1: $2 hnenah thawn bawk rawh',
 'emailsent' => 'E-lehkha thawn a ni.',
 'emailsenttext' => 'I e-lehkha thawn a ni.',
+'emailuserfooter' => 'Hë e-lehkha hi {{SITENAME}}-a "Hmangtu e-lehkha thawn rawh" tih hmanraw hmanga $1-in $2 a thawn a ni.',
 
 # User Messenger
+'usermessage-summary' => 'Kháwlthuthawn a hnutchhiah e.',
 'usermessage-editor' => 'Thuthawntu khawl',
 
 # Watchlist

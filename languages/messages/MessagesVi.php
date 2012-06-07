@@ -2137,6 +2137,7 @@ Xin lưu ý là các trang Web bên ngoài có thể liên kết đến một t�
 Bạn có thể thu hẹp kết quả bằng cách chọn loại nhật trình, tên thành viên (phân biệt chữ hoa-chữ thường), hoặc các trang bị ảnh hưởng (cũng phân biệt chữ hoa-chữ thường).',
 'logempty' => 'Không có mục nào khớp với từ khóa.',
 'log-title-wildcard' => 'Tìm các tựa trang bắt đầu bằng các chữ này',
+'showhideselectedlogentries' => 'Hiện/ẩn các mục nhật trình đã chọn',
 
 # Special:AllPages
 'allpages' => 'Mọi trang',
