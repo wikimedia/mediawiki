@@ -367,7 +367,7 @@ class ApiPageSet extends ApiQueryBase {
 	 */
 	public function processDbRow( $row ) {
 		// Store Title object in various data structures
-		$title = Title::makeTitle( $row->page_namespace, $row->page_title );
+		$title = Title::newFromRow( $row );
 
 		$pageId = intval( $row->page_id );
 		$this->mAllPages[$row->page_namespace][$row->page_title] = $pageId;
