@@ -376,7 +376,7 @@ $messages = array(
 'tog-editsection' => '[編集]リンクから節を編集できるようにする',
 'tog-editsectiononrightclick' => '節見出しの右クリックで節を編集できるようにする（JavaScriptが必要）',
 'tog-showtoc' => '目次を表示（ページに見出しが4つ以上ある場合）',
-'tog-rememberpassword' => 'このブラウザにログイン情報を記憶（最大 $1 {{PLURAL:$1|日間}}）',
+'tog-rememberpassword' => 'このブラウザーにログイン情報を記憶（最大 $1 {{PLURAL:$1|日間}}）',
 'tog-watchcreations' => '自分が作成したページをウォッチリストに追加',
 'tog-watchdefault' => '自分が編集したページをウォッチリストに追加',
 'tog-watchmoves' => '自分が移動したページをウォッチリストに追加',
@@ -384,7 +384,7 @@ $messages = array(
 'tog-minordefault' => '細部の編集に既定でチェックを入れる',
 'tog-previewontop' => 'プレビューを編集ボックスの前に配置',
 'tog-previewonfirst' => '編集開始時にもプレビューを表示',
-'tog-nocache' => 'ブラウザによるページのキャッシュを無効にする',
+'tog-nocache' => 'ブラウザーによるページのキャッシュを無効にする',
 'tog-enotifwatchlistpages' => 'ウォッチリストにあるページが更新されたらメールを受け取る',
 'tog-enotifusertalkpages' => '自分のトークページが更新されたらメールを受け取る',
 'tog-enotifminoredits' => '細部の編集でもメールを受け取る',
@@ -412,11 +412,11 @@ $messages = array(
 
 'underline-always' => '常に付ける',
 'underline-never' => '常に付けない',
-'underline-default' => 'ブラウザの設定を使用',
+'underline-default' => 'ブラウザーの設定を使用',
 
 # Font style option in Special:Preferences
 'editfont-style' => '編集エリアのフォントスタイル：',
-'editfont-default' => 'ブラウザの設定を使用',
+'editfont-default' => 'ブラウザーの設定を使用',
 'editfont-monospace' => '等幅フォント',
 'editfont-sansserif' => 'Sans Serif フォント',
 'editfont-serif' => 'Serif フォント',
@@ -765,7 +765,7 @@ $2',
 'logouttext' => "'''ログアウトしました。'''
 
 このまま匿名で{{SITENAME}}の使用を続行できます。同じまたは別の利用者として[[Special:UserLogin|もう一度ログイン]]することもできます。
-なお、ページによっては、ブラウザのキャッシュをクリアするまで、ログインしているかのように表示され続ける場合があるためご注意ください。",
+なお、ページによっては、ブラウザーのキャッシュをクリアするまで、ログインしているかのように表示され続ける場合があるためご注意ください。",
 'welcomecreation' => '== ようこそ、$1 さん！ ==
 アカウントが作成されました。
 [[Special:Preferences|{{SITENAME}}の個人設定]]の変更も忘れないようにしてください。',
@@ -866,7 +866,7 @@ $2',
 しばらく時間をおいてから再度お試しください。',
 'login-abort-generic' => 'ログインに失敗しました - 中止',
 'loginlanguagelabel' => '言語: $1',
-'suspicious-userlogout' => '壊れたブラウザもしくはキャッシュプロキシによって送信された可能性があるため、ログアウト要求は拒否されました。',
+'suspicious-userlogout' => '壊れたブラウザーまたはキャッシュプロキシによって送信された可能性があるため、ログアウト要求は拒否されました。',
 
 # E-mail sending
 'php-mail-error-unknown' => 'PHPのmail()関数で不明なエラー',
@@ -1029,7 +1029,7 @@ $1または他の[[{{MediaWiki:Grouppage-sysop}}|管理者]]にこの件につ�
 'newarticle' => '（新）',
 'newarticletext' => "まだ存在していないページへのリンクをたどりました。
 このページを新規に作成するには、下のボックスに内容を書き込んでください（詳しくは[[{{MediaWiki:Helppage}}|ヘルプページ]]を参照してください）。
-誤ってこのページにたどり着いた場合には、ブラウザの'''戻る'''ボタンで前のページに戻ってください。",
+誤ってこのページにたどり着いた場合には、ブラウザーの'''戻る'''ボタンで前のページに戻ってください。",
 'anontalkpagetext' => "----''このページはアカウントをまだ作成していないか使用していない匿名利用者のための議論ページです。
 匿名利用者を識別するために、利用者名の代わりにIPアドレスが使用されています。
 IP アドレスは複数の利用者で共有されている場合があります。
@@ -1044,7 +1044,7 @@ IP アドレスは複数の利用者で共有されている場合がありま�
 'userpage-userdoesnotexist-view' => '利用者アカウント「$1」は登録されていません。',
 'blocked-notice-logextract' => 'この利用者は現在ブロックされています。
 参考のために最新のブロック記録を以下に表示します。',
-'clearyourcache' => "'''注意:''' 保存後、変更を確認するにはブラウザのキャッシュを消去する必要がある場合があります。
+'clearyourcache' => "'''注意:''' 保存後、変更を確認するにはブラウザーのキャッシュを消去する必要がある場合があります。
 * '''Firefox / Safari:''' ''Shift'' を押しながら ''再読み込み'' をクリックする、もしくは ''Ctrl-F5'' か ''Ctrl-R'' を押してください (Macでは ''&#x2318;-R'' )
 * '''Google Chrome:''' ''Ctrl-Shift-R'' を押してください (Macでは ''&#x2318;-Shift-R'' )
 * '''Internet Explorer:''' ''Ctrl'' を押しながら ''最新の情報に更新'' をクリックする、もしくは ''Ctrl-F5'' を押してください
@@ -1490,7 +1490,7 @@ $1",
 'timezoneuseoffset' => 'その他（時差を指定）',
 'timezoneoffset' => '時差¹：',
 'servertime' => 'サーバーの時刻：',
-'guesstimezone' => 'ブラウザの設定から入力',
+'guesstimezone' => 'ブラウザーの設定から入力',
 'timezoneregion-africa' => 'アフリカ',
 'timezoneregion-america' => 'アメリカ',
 'timezoneregion-antarctica' => '南極',
@@ -1863,7 +1863,7 @@ HTMLタグを見直してください。',
 'uploaddisabledtext' => 'ファイルのアップロードは、無効になっています。',
 'php-uploaddisabledtext' => 'ファイルのアップロードがPHPで無効化されています。
 file_uploadsの設定を確認してください。',
-'uploadscripted' => 'このファイルは、ウェブブラウザが誤って解釈してしまうおそれのあるHTMLまたはスクリプトコードを含んでいます。',
+'uploadscripted' => 'このファイルは、ウェブブラウザーが誤って解釈してしまうおそれがあるHTMLまたはスクリプトコードを含んでいます。',
 'uploadvirus' => 'このファイルにはウイルスが含まれています！
 詳細：$1',
 'uploadjava' => 'このファイルは、Javaの.classファイルを含むZIPファイルです。
@@ -2789,8 +2789,8 @@ $1のブロックの理由は「$2」です。',
 参考のため、ブロックの記録を以下に示します：',
 'blocklog-showsuppresslog' => 'この利用者は以前にブロックされ、隠されたことがあります。
 参考のため、秘匿記録を以下に示します：',
-'blocklogentry' => '[[$1]] を$2ブロックしました。ブロックの詳細$3',
-'reblock-logentry' => '[[$1]]ブロック設定を$2に変更しました。ブロックの詳細$3',
+'blocklogentry' => ' が [[$1]] を$2ブロックしました。ブロックの詳細：$3',
+'reblock-logentry' => ' が [[$1]] のブロック設定を$2に変更しました。ブロックの詳細：$3',
 'blocklogtext' => 'このページは利用者のブロックと解除の記録です。
 自動的にブロックされたIPアドレスは表示されていません。
 現時点で有効なブロックは[[Special:BlockList|ブロックの一覧]]をご覧ください。',
@@ -4033,11 +4033,11 @@ MediaWikiは、有用であることを期待して配布されていますが�
 'version-software' => 'インストール済みソフトウェア',
 'version-software-product' => '製品',
 'version-software-version' => 'バージョン',
-'version-entrypoints' => 'エントリー ポイントの URL',
-'version-entrypoints-header-entrypoint' => 'エントリー ポイント',
+'version-entrypoints' => 'エントリーポイントの URL',
+'version-entrypoints-header-entrypoint' => 'エントリーポイント',
 'version-entrypoints-header-url' => 'URL',
 'version-entrypoints-articlepath' => '[https://www.mediawiki.org/wiki/Manual:$wgArticlePath 記事のパス]',
-'version-entrypoints-scriptpath' => '[https://www.mediawiki.org/wiki/Manual:$wgScriptPath スクリプト パス]',
+'version-entrypoints-scriptpath' => '[https://www.mediawiki.org/wiki/Manual:$wgScriptPath スクリプトパス]',
 
 # Special:FilePath
 'filepath' => 'ファイルパス',
@@ -4174,7 +4174,8 @@ MediaWikiは、有用であることを期待して配布されていますが�
 'newuserlog-byemail' => 'パスワードをメールで送信しました',
 
 # Feedback
-'feedback-bugornote' => '技術的な問題の詳細をご説明する準備ができているなら[$1 バグを報告]してください。それ以外の場合、下の簡易フォームを使用すれば、あなたのコメントが"[$3 $2]"にあなたの利用者名と使用中のブラウザ名と共に追加されます。',
+'feedback-bugornote' => '技術的な問題の詳細を説明なさる準備ができている場合は[$1 バグを報告]してください。
+そうではない場合は、下の簡易フォームを使用してください。あなたのコメントがあなたの利用者名とご使用中のブラウザー名と共に、ページ"[$3 $2]"に追加されます。',
 'feedback-subject' => '件名：',
 'feedback-message' => 'メッセージ：',
 'feedback-cancel' => 'キャンセル',
@@ -4186,7 +4187,7 @@ MediaWikiは、有用であることを期待して配布されていますが�
 'feedback-thanks' => 'ありがとうございます。あなたのフィードバックは「[$2 $1]」のページに投稿されました。',
 'feedback-close' => '完了',
 'feedback-bugcheck' => 'Great! [$1 既出のバグ]に既に含まれていないか確認してください。',
-'feedback-bugnew' => 'チェック済み。バグを報告する。',
+'feedback-bugnew' => 'チェックしました。バグを報告します。',
 
 # API errors
 'api-error-badaccess-groups' => 'このウィキへのファイルのアップロードが許可されていません。',

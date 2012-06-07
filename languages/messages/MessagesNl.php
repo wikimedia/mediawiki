@@ -2260,6 +2260,7 @@ Controleer of u wellicht een fout hebt gemaakt bij de invoer.',
 U kunt ook kiezen voor specifieke logboeken en filteren op gebruiker (hoofdlettergevoelig) en paginanaam (hoofdlettergevoelig).',
 'logempty' => 'Er zijn geen regels in het logboek die voldoen aan deze criteria.',
 'log-title-wildcard' => "Pagina's zoeken die met deze tekens beginnen",
+'showhideselectedlogentries' => 'Geselecteerde logboekregels weergeven of verbergen',
 
 # Special:AllPages
 'allpages' => "Alle pagina's",

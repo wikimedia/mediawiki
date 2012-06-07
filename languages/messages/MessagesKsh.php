@@ -991,7 +991,7 @@ aanfange dun, alsu etwa: {{ns:user}}:Name/vector.css, un {{ns:user}}:Name/vector
 'updated' => '(Aanjepack)',
 'note' => "'''Opjepass:'''",
 'previewnote' => "'''Heh kütt nor de Vör-Aansich — Ding Änderunge sin noch nit jesechert!'''",
-'continue-editing' => 'Wiggerschrieve',
+'continue-editing' => 'Jangk tiräk nohm Plaz zom Schrieve',
 'previewconflict' => 'Heh die Vör-Aansich zeich dä Enhald vum bovvere Texfeld.
 Esu wööd dä Atikkel ussinn, wann De n jetz avspeichere däts.',
 'session_fail_preview' => "'''Schad: Ding Änderunge kunnte mer su nix met aanfange.

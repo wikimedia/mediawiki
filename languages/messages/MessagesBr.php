@@ -2015,6 +2015,7 @@ Na zisoñjit ket e c'hall lec'hiennoù all kaout ul liamm eeun war-du ur restr b
 Gallout a rit strishaat ar mod diskwel en ur zibab ar marilh, an anv implijer (diwallit ouzh ar pennlizherennoù) pe ar bajenn a fell deoc'h (memes tra).",
 'logempty' => 'Goullo eo istor ar bajenn-mañ.',
 'log-title-wildcard' => 'Klask an titloù a grog gant an destenn-mañ',
+'showhideselectedlogentries' => 'Diskouez/kuzhat penngerioù ar marilh bet diuzet',
 
 # Special:AllPages
 'allpages' => 'An holl bajennoù',

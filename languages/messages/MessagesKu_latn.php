@@ -323,7 +323,7 @@ $messages = array(
 'policy-url' => 'Project:Rêgez',
 'portal' => 'Portala komê',
 'portal-url' => 'Project:Portala komê',
-'privacy' => 'Parastina daneyan',
+'privacy' => 'Siyaseta taybetîtiyê',
 'privacypage' => 'Project:Parastina daneyan',
 
 'badaccess' => 'Çewtiya destûrê',
@@ -572,7 +572,7 @@ Eger account\'a bikarhêneran şaşî hate çêkirin, guhdare vê peyamê meke.'
 'hr_tip' => 'Rastexêza berwarî (kêm bi kar bîne)',
 
 # Edit pages
-'summary' => 'Kurte û çavkanî (Te çi kir?):',
+'summary' => 'Kurte (Te çi kir?):',
 'subject' => 'Mijar/sernivîs:',
 'minoredit' => 'Ev guhertineke biçûk e',
 'watchthis' => 'Vê gotarê bişopîne',
@@ -1018,13 +1018,13 @@ Sedema qedexekirina $3 ev e: ''$2''",
 'recentchanges-summary' => 'Guhertinên herî dawî yên wîkiyê li ser vê rûpelê bişopîne.',
 'recentchanges-label-minor' => 'Ev guhertineka biçûk e',
 'rcnote' => "Jêr {{PLURAL:$1|guherandinek|'''$1''' guherandinên dawî}} di {{PLURAL:$2|rojê|'''$2''' rojên dawî}} de ji $3 şûnde tên nîşan dan.",
-'rclistfrom' => 'an jî guherandinên ji $1 şûnda nîşan bide.',
-'rcshowhideminor' => 'guherandinên biçûk $1',
-'rcshowhidebots' => "bot'an $1",
-'rcshowhideliu' => 'bikarhênerên qeydkirî $1',
-'rcshowhideanons' => 'bikarhênerên neqeydkirî (IP) $1',
+'rclistfrom' => 'Guherandinên ji $1 şûnde nîşan bide',
+'rcshowhideminor' => 'Guherandinên biçûk $1',
+'rcshowhidebots' => "Bot'an $1",
+'rcshowhideliu' => 'Bikarhênerên qeydkirî $1',
+'rcshowhideanons' => 'Bikarhênerên neqeydkirî (IP) $1',
 'rcshowhidepatr' => '$1 guherandinên kontrolkirî',
-'rcshowhidemine' => 'guherandinên min $1',
+'rcshowhidemine' => 'Guherandinên min $1',
 'rclinks' => '$1 guherandinên di $2 rojên dawî de nîşan bide<br />$3',
 'diff' => 'cudahî',
 'hist' => 'dîrok',
@@ -1454,7 +1454,7 @@ Naverroka berî betalkirinê ev bû:'$1'",
 'reverted' => 'Hate şondabirin berve verzyonekî berê',
 'deletecomment' => 'Sedem:',
 'deleteotherreason' => 'Sedemekî din:',
-'deletereasonotherlist' => 'Sedemekî din',
+'deletereasonotherlist' => 'Sedema din',
 'deletereason-dropdown' => '*Sedemên jêbirinê
 ** Daxwaziya xwedî
 ** Pirsgirêka lîsansê
@@ -1542,7 +1542,7 @@ Ji bo jêbirinan û çêkirinên nuh ra, xêra xwe di [[Special:Log/delete|reşa
 
 # Namespace form on various pages
 'namespace' => 'Valahiya nav:',
-'invert' => 'Hilbijardinê pêçewane bike',
+'invert' => 'Hemûyan bibîne',
 'namespace_association' => 'Navê têkilîdar',
 'blanknamespace' => '(Sereke)',
 
@@ -1661,7 +1661,7 @@ Sedemekê binivîse!',
 'contribslink' => 'beşdarî',
 'emaillink' => 'e-name bişîne',
 'autoblocker' => 'Otomatîk hat bestin jiberku IP-ya we û ya "[[User:$1|$1]]" yek in. Sedem: "\'\'\'$2\'\'\'"',
-'blocklogpage' => 'Astengkirina bikarhêner',
+'blocklogpage' => 'Astengkirina têketinê',
 'blocklogentry' => '"[[$1]]" ji bo dema $2 $3 hatîye asteng kirin',
 'blocklogtext' => "Ev reşahîyek ji astengkirinên û rakirina astengkirinên bikarhêneran ra ye. Adrêsên IP'yan, yê otomatîk hatine astengkirin, nehatine nivîsandin. [[Special:BlockList|Lîsteya IP'yên astengkirî]] bibîne ji bo dîtina astengkirinên IP'yan.",
 'unblocklogentry' => 'astenga "$1" betalkir',
@@ -1878,7 +1878,7 @@ Rûpela "[[:$1]]" berê heye. Tu rast dixazê wê jêbibê ji bo navguherandinê
 'file-info' => 'mezinbûnê data: $1, MIME-typ: $2',
 'file-info-size' => '$1 × $2 pixel, mezinbûnê data: $3, MIME-typ: $4',
 'file-nohires' => 'Versyonekî jê mezintir tune.',
-'svg-long-desc' => "Data'ya SVG, mezinbûna rast: $1 × $2 pixel; mezinbûna data'yê: $3",
+'svg-long-desc' => 'Daneya SVG, mezinbûna rast: $1 × $2 pixel; mezinbûna daneyê: $3',
 'show-big-image' => 'Mezînbûn',
 
 # Special:NewFiles
@@ -1898,7 +1898,7 @@ Rûpela "[[:$1]]" berê heye. Tu rast dixazê wê jêbibê ji bo navguherandinê
 'variantname-ku' => 'disable',
 
 # Metadata
-'metadata' => "Data'yên meta",
+'metadata' => 'Daneyên meta',
 'metadata-expand' => 'Detayên dirêj nîşan bide',
 'metadata-collapse' => 'Detayên dirêj veşêre',
 
