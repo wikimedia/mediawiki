@@ -825,7 +825,7 @@ class Title {
 
 	/**
 	 * Returns true if the title is inside the specified namespace.
-	 * 
+	 *
 	 * Please make use of this instead of comparing to getNamespace()
 	 * This function is much more resistant to changes we may make
 	 * to namespaces than code that makes direct comparisons.
@@ -1881,7 +1881,7 @@ class Title {
 					$title_protection['pt_create_perm'] = 'protect'; // B/C
 				}
 				if( $title_protection['pt_create_perm'] == '' ||
-					!$user->isAllowed( $title_protection['pt_create_perm'] ) ) 
+					!$user->isAllowed( $title_protection['pt_create_perm'] ) )
 				{
 					$errors[] = array( 'titleprotected', User::whoIs( $title_protection['pt_user'] ), $title_protection['pt_reason'] );
 				}
@@ -4080,11 +4080,12 @@ class Title {
 	 * Used for diffs and other things that really need it.
 	 *
 	 * @param $old int|Revision Old revision or rev ID (first before range)
-	 * @param $new int|Revision New revision or rev ID (first after range)
+	 * @param $new int|Revision New revision or rev ID (first after range by default, but see $includeNew)
 	 * @param $limit Int Maximum number of authors
+	 * @param $includeNew Bool if <code>true</code>, $new is included in the range (default is <code>false</code>).
 	 * @return Int Number of revision authors between these revisions.
 	 */
-	public function countAuthorsBetween( $old, $new, $limit ) {
+	public function countAuthorsBetween( $old, $new, $limit, $includeNew = false ) {
 		if ( !( $old instanceof Revision ) ) {
 			$old = Revision::newFromTitle( $this, (int)$old );
 		}
@@ -4099,7 +4100,7 @@ class Title {
 			array(
 				'rev_page' => $this->getArticleID(),
 				'rev_timestamp > ' . $dbr->addQuotes( $dbr->timestamp( $old->getTimestamp() ) ),
-				'rev_timestamp < ' . $dbr->addQuotes( $dbr->timestamp( $new->getTimestamp() ) )
+				'rev_timestamp' . ( $includeNew ? ' <= ' : ' < ' ) . $dbr->addQuotes( $dbr->timestamp( $new->getTimestamp() ) )
 			), __METHOD__,
 			array( 'LIMIT' => $limit + 1 ) // add one so caller knows it was truncated
 		);
