@@ -81,6 +81,11 @@ $specialPageAliases = array(
 	'Watchlist'                 => array( 'Čuovvunlistu' ),
 );
 
+$magicWords = array(
+	'redirect'                => array( '0', '#OĐĐASITSTIVREN', '#STIVREN', '#REDIRECT' ),
+	'numberofarticles'        => array( '1', 'ARTIHKKALIIDMEARRI', 'NUMBEROFARTICLES' ),
+);
+
 $linkTrail = '/^(:?[a-zàáâçčʒǯđðéèêëǧǥȟíìîïıǩŋñóòôõßšŧúùûýÿüžþæøåäö]+)(.*)$/sDu';
 
 $messages = array(
