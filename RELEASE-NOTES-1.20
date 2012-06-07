@@ -110,11 +110,13 @@ upgrade PHP if you have not done so prior to upgrading MediaWiki.
 * (bug 35572) Blocks appear to succeed even if query fails due to wrong DB structure
 * (bug 31757) Add a word-separator between help-messages in HTMLForm
 * (bug 30410) Removed deprecated $wgFilterCallback and the 'filtered' API error.
-* (bug 32604) Some messages needs escaping of wikitext inside username
+* (bug 32604) Some messages needs escaping of wikitext inside username.
 * (bug 36537) Rename wfArrayToCGI to wfArrayToCgi for consistency with wfCgiToArray.
-* (bug 25946) The message on the top of Special:RecentChanges is now displayed
-  in user language instead of content language
+* (bug 25946) The message on the top of Special:RecentChanges is now displayed.
+  in user language instead of content language.
 * (bug 35264) Wrong type used for <ns> in export.xsd
+* (bug 35082) mw.util.addPortletLink incorrectly adds link to mutiple <ul> tags.
+
 
 === API changes in 1.20 ===
 * (bug 34316) Add ability to retrieve maximum upload size from MediaWiki API.

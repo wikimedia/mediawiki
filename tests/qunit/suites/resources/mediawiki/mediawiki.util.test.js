@@ -141,12 +141,25 @@ test( '$content', function() {
  * one element can have a given id. 
  */
 test( 'addPortletLink', function () {
-	var pTestTb, vectorTabs, tbRL, tbMW, $tbMW, tbRLDM, caFoo;
-	expect(7);
+	var pTestTb, vectorTabs, tbRL, cuQuux, $cuQuux, tbMW, $tbMW, tbRLDM, caFoo;
+	expect( 8 );
 
 	pTestTb = '\
 	<div class="portlet" id="p-test-tb">\
+		<h5>Toolbox</h5>\
 		<ul class="body"></ul>\
+	</div>';
+	pCustom = '\
+	<div class="portlet" id="p-test-custom">\
+		<h5>Views</h5>\
+		<ul class="body">\
+			<li id="c-foo"><a href="#">Foo</a></li>\
+			<li id="c-barmenu">\
+				<ul>\
+					<li id="c-bar-baz"><a href="#">Baz</a></a>\
+				</ul>\
+			</li>\
+		</ul>\
 	</div>';
 	vectorTabs = '\
 	<div id="p-test-views" class="vectorTabs">\
@@ -154,7 +167,7 @@ test( 'addPortletLink', function () {
 		<ul></ul>\
 	</div>';
 
-	$('#qunit-fixture').append(pTestTb, vectorTabs);
+	$( '#qunit-fixture' ).append( pTestTb, pCustom, vectorTabs );
 
 	tbRL = mw.util.addPortletLink( 'p-test-tb', '//mediawiki.org/wiki/ResourceLoader',
 		'ResourceLoader', 't-rl', 'More info about ResourceLoader on MediaWiki.org ', 'l' );
@@ -169,6 +182,15 @@ test( 'addPortletLink', function () {
 	equal( $tbMW.attr( 'id' ), 't-mworg', 'Link has correct ID set' );
 	equal( $tbMW.closest( '.portlet' ).attr( 'id' ), 'p-test-tb', 'Link was inserted within correct portlet' );
 	equal( $tbMW.next().attr( 'id' ), 't-rl', 'Link is in the correct position (by passing nextnode)' );
+
+	cuQuux = mw.util.addPortletLink( 'p-test-custom', '#', 'Quux' );
+	$cuQuux = $(cuQuux);
+
+	equal(
+		$( '#p-test-custom #c-barmenu ul li' ).length,
+		1,
+		'addPortletLink did not add the item to all <ul> elements in the portlet (bug 35082)'
+	);
 
 	tbRLDM = mw.util.addPortletLink( 'p-test-tb', '//mediawiki.org/wiki/RL/DM',
 		'Default modules', 't-rldm', 'List of all default modules ', 'd', '#t-rl' );
