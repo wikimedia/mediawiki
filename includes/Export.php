@@ -654,6 +654,12 @@ class XmlDumpWriter {
 			$out .= "      " . Xml::element('format', array( 'mime' => $mime ), strval( $row->rev_content_format ) ) . "\n";
 		}
 
+		if ( $row->rev_sha1 && !( $row->rev_deleted & Revision::DELETED_TEXT ) ) {
+			$out .= "      " . Xml::element('sha1', null, strval( $row->rev_sha1 ) ) . "\n";
+		} else {
+			$out .= "      <sha1/>\n";
+		}
+
 		$text = '';
 		if ( $row->rev_deleted & Revision::DELETED_TEXT ) {
 			$out .= "      " . Xml::element( 'text', array( 'deleted' => 'deleted' ) ) . "\n";
