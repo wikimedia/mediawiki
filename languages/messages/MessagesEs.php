@@ -2201,6 +2201,7 @@ Por favor note que otros sitios web pueden vincular a un archivo con un URL dire
 Puedes filtrar la vista seleccionando un tipo de registro, el nombre del usuario o la página afectada. Se distinguen mayúsculas de minúsculas.',
 'logempty' => 'No hay elementos en el registro con esas condiciones.',
 'log-title-wildcard' => 'Buscar títulos que empiecen con este texto',
+'showhideselectedlogentries' => 'Mostrar u ocultar las entradas del registro seleccionado',
 
 # Special:AllPages
 'allpages' => 'Todas las páginas',

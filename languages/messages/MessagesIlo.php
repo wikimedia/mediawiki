@@ -425,6 +425,8 @@ Ti naited a rason ket ''$2''.",
 'filereadonlyerror' => 'Di nabaliwan ti papales "$1" gapu ket ti repositorio ti papeles "$2" ket basaen laeng a moda.
 
 Ti administrador a nagserra ket nagited iti daytoy a panagilawlawag "\'\'$3\'\'".',
+'invalidtitle-knownnamespace' => 'Imbalido a titulo nga adda ti nagan ti lugar "$2" ken testo "$3"',
+'invalidtitle-unknownnamespace' => 'Imbalido a titulo nga adda di-amammo a nagan ti lugar a numero $1 ken testo "$2"',
 
 # Virus scanner
 'virus-badscanner' => 'Madi di panaka-aramidna: Di am-ammo a birus a panagskan: "$1"',
@@ -830,6 +832,12 @@ Dagitoy a panagpalawag  ket naikkaten.",
 'parser-template-loop-warning' => 'Adda nasarakan a silo ti plantilia: [[$1]]',
 'parser-template-recursion-depth-warning' => 'Ti kinauneg ti pinagdullit ti plantilia ket nagpatingga ti napalabes ($1)',
 'language-converter-depth-warning' => 'Ti kauneg ti panagaramid ti pagsasao ket napalabes ti agpatingga a ($1)',
+'node-count-exceeded-category' => 'Dagiti panid a simmurok ti bilang ti node',
+'node-count-exceeded-warning' => 'Ti panid ket nasurokanna ti bilang ti node',
+'expansion-depth-exceeded-category' => 'Dagiti panid a nasurokan ti kauneg ti panagpadakkel',
+'expansion-depth-exceeded-warning' => 'Ti panid ket nasurokanna ti kauneg ti panagpadakkel',
+'parser-unstrip-loop-warning' => 'Adda  nakita a di-naukisan a silo',
+'parser-unstrip-recursion-limit' => 'Ti di-naukisan a panagsumro manen a patingga ket nasurokan ($1)',
 
 # "Undo" feature
 'undo-success' => 'Ti panag-urnos ket san a maisubli.
@@ -1008,7 +1016,9 @@ Usaren ti radio a buton a tukol ti pinagtipon iti laeng pinagbaliw a naaramid id
 'mergelogpagetext' => 'Adda dita baba ti listaan dagiti kinaudian a pinagtipon ti maysa a panid ti pakasaritaan iti maysa a sabali.',
 
 # Diffs
-'history-title' => 'Pakasaritaan ti pannakabalbaliw ti "$1"',
+'history-title' => 'Panagbalbaliw a pakasaritaan iti "$1"',
+'difference-title' => 'Paggiddiatan a nagbaetan dagiti panagbalbaliw iti "$1"',
+'difference-title-multipage' => 'Paggiddiatan a nagbaetan dagiti panid  "$1" ken "$2"',
 'difference-multipage' => '(Paggiddiatan dagiti panid)',
 'lineno' => 'Linia $1:',
 'compareselectedversions' => 'Paggidiaten dagiti pinili a binaliwan',
@@ -1106,6 +1116,7 @@ Laglagipem laeng a dagiti listaan da a nagyan ti {{SITENAME}} saan a barbaro.',
 'prefs-beta' => 'Dagiti beta a langa',
 'prefs-datetime' => 'Petsa ken oras',
 'prefs-labs' => 'Dagiti subokan a langa',
+'prefs-user-pages' => 'Dagiti panid ti agar-aramat',
 'prefs-personal' => 'Bariweswes ti agar-aramat',
 'prefs-rc' => 'Kaudian a balbaliw',
 'prefs-watchlist' => 'Listaan ti bambantayan',
@@ -1574,13 +1585,14 @@ No ti parikut ket agsubli latta, kontaken ti [[Special:ListUsers/sysop|administr
 'backend-fail-writetemp' => 'Saan a masuratan ti temporario a papeles.',
 'backend-fail-closetemp' => 'Saan a marikpan ti temporario a papeles.',
 'backend-fail-read' => 'Saan a mabasa ti papeles $1.',
-'backend-fail-create' => 'Saan a maaramid ti papeles $1.',
-'backend-fail-maxsize' => 'Saan a naaramid ti papeles $1 gapu ket dakdakkel ngem {{PLURAL:$2|maysa a byte|$2 a dagiti bytes}}.',
+'backend-fail-create' => 'Saan a masuratan ti papeles $1.',
+'backend-fail-maxsize' => 'Saan a masuratan ti papeles $1 gapu ta dakdakkel ngem {{PLURAL:$2|maysa a byte|$2 a dagiti bytes}}.',
 'backend-fail-readonly' => 'Ti pagidulinan a kalikudan ti "$1" ket agdama a mabasa laeng. Ti rason a naited idi ket: "$2"',
 'backend-fail-synced' => 'Ti papeles "$1" ket bangking ti kasasaad na  iti kinauneg a pagidulinan ti kalikudan',
 'backend-fail-connect' => 'Saan a makaikapet idiay pagidulinan a kalikudan  "$1".',
 'backend-fail-internal' => 'Adda di amammo a biddut ti napasamak idiay pagidulinan a kalikudan "$1".',
 'backend-fail-contenttype' => 'Saan a maammoan ti kita ti linaon ti papeles nga idulin idiay "$1".',
+'backend-fail-usable' => 'Saan a masuratan ti papeles $1 gapu ta awan ti makaanay a pammalubos wenno awan dagiti direktorio/pangikabilan.',
 
 # Lock manager
 'lockmanager-notlocked' => 'Saan a malukatan ti "$1"; saan a nakandaduan.',
@@ -1899,6 +1911,7 @@ Pangngaasi a laglagipen a dagiti sabali a pagsaadan ti apot ket makapanilpo ti p
 Mapabassit mo ti pinagpakita no piliam ti kita ti listaan, ti nagan ti gar-aramat (sensitibo ti kadakkel ti letra), wenno ti naapektaran a panid (ket sensitibo met ti kadakkel ti letra).',
 'logempty' => 'Awan ti agpada a bagay dita listaan.',
 'log-title-wildcard' => 'Agsapul kadagiti titulo nga agrugi iti daytoy a testo',
+'showhideselectedlogentries' => 'Ipakita/ilemmeng dagiti napili a naikabil ti listaan',
 
 # Special:AllPages
 'allpages' => 'Amin a panid',
@@ -1920,6 +1933,7 @@ Mapabassit mo ti pinagpakita no piliam ti kita ti listaan, ti nagan ti gar-arama
 
 # SpecialCachedPage
 'cachedspecial-viewing-cached-ttl' => 'Kitkitaenm ti naidulin a bersion iti daytoy a panid, nga addan ti kadaanan a $1.',
+'cachedspecial-viewing-cached-ts' => 'Kitkitaem ti maysa a naidulin a bersion iti daytoy a panid, a baka daytoy ket saan a kompleto nga agpayso.',
 'cachedspecial-refresh-now' => 'Kitaen ti kinaudian.',
 
 # Special:Categories

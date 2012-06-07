@@ -113,14 +113,14 @@ class DatabaseMysql extends DatabaseBase {
 		$phpError = $this->restoreErrorHandler();
 		# Always log connection errors
 		if ( !$this->mConn ) {
-			$error = $this->lastError();
+			$error = $phpError;
 			if ( !$error ) {
-				$error = $phpError;
+				$error = $this->lastError();
 			}
 			wfLogDBError( "Error connecting to {$this->mServer}: $error\n" );
 			wfDebug( "DB connection error\n" );
 			wfDebug( "Server: $server, User: $user, Password: " .
-				substr( $password, 0, 3 ) . "..., error: " . mysql_error() . "\n" );
+				substr( $password, 0, 3 ) . "..., error: " . $error . "\n" );
 		}
 
 		wfProfileOut("dbconnect-$server");

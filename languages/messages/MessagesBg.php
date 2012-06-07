@@ -1,5 +1,5 @@
 <?php
-/** Bulgarian (Български)
+/** Bulgarian (български)
  *
  * See MessagesQqq.php for message documentation incl. usage of parameters
  * To improve a translation please visit http://translatewiki.net
@@ -1271,6 +1271,7 @@ $1",
 'prefs-beta' => 'Функционалности на Бета',
 'prefs-datetime' => 'Дата и час',
 'prefs-labs' => 'Функционалности на Labs',
+'prefs-user-pages' => 'Потребителски страници',
 'prefs-personal' => 'Потребителски данни',
 'prefs-rc' => 'Последни промени',
 'prefs-watchlist' => 'Списък за наблюдение',
@@ -1703,6 +1704,7 @@ $1',
 'backend-fail-notexists' => 'Файлът $1 не съществува.',
 'backend-fail-delete' => 'Файлът $1 не може да бъде изтрит.',
 'backend-fail-alreadyexists' => 'Файлът $1 вече съществува.',
+'backend-fail-store' => 'Файлът $1 не може да бъде съхранен в $2.',
 'backend-fail-copy' => 'Файлът „$1“ не можа да бъде копиран в „$2“.',
 'backend-fail-move' => 'Файлът „$1“ не можа да бъде преместен в „$2“.',
 'backend-fail-opentemp' => 'Временният файл не може да бъде отворен.',
@@ -3490,6 +3492,7 @@ MediaWiki се разпространява с надеждата, че ще б�
 'version-software' => 'Инсталиран софтуер',
 'version-software-product' => 'Продукт',
 'version-software-version' => 'Версия',
+'version-entrypoints-header-url' => 'Адрес',
 
 # Special:FilePath
 'filepath' => 'Път към файл',

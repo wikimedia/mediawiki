@@ -741,8 +741,8 @@ URL を間違って入力したか、正しくないリンクをたどった可�
 'viewyourtext' => "このページへの'''あなたの編集'''のソースの閲覧やコピーができます：",
 'protectedinterface' => 'このページはソフトウェアのインターフェイスに使用されるテキストが保存されており、いたずらなどの防止のために保護されています。',
 'editinginterface' => "'''警告：'''ソフトウェアのインターフェイスの文章として使用しているページを編集しています。
-このページの変更は他の利用者のユーザー インターフェイスの外観に影響します。
-翻訳する場合、MediaWiki のローカライズ プロジェクト [//translatewiki.net/wiki/Main_Page?setlang=ja translatewiki.net] の使用を検討してください。",
+このページの変更は他の利用者のユーザーインターフェイスの外観に影響します。
+翻訳する場合、MediaWiki のローカライズプロジェクト [//translatewiki.net/wiki/Main_Page?setlang=ja translatewiki.net] の使用を検討してください。",
 'sqlhidden' => '（SQLクエリ非表示）',
 'cascadeprotected' => 'このページは、「カスケード保護」が指定された状態で保護されている以下の{{PLURAL:$1|ページ|ページ群}}で読み込まれているため、編集できないように保護されています:
 $2',
@@ -1295,7 +1295,7 @@ $1",
 'pagehist' => 'ページの履歴',
 'deletedhist' => '削除された履歴',
 'revdelete-hide-current' => '$1$2の項目の非表示に失敗しました：これは最新版であるため。
-隠すことはできません。',
+非表示にはできません。',
 'revdelete-show-no-access' => '$1$2の項目の表示に失敗しました：この項目は「制限付き」に設定されています。
 アクセス権限がありません。',
 'revdelete-modify-no-access' => '$1$2の項目の修正に失敗しました：この項目は「制限付き」に設定されています。
@@ -1340,7 +1340,7 @@ $1",
 'mergehistory-invalid-destination' => '統合先のページは有効な名前でなければなりません。',
 'mergehistory-autocomment' => '[[:$1]]を[[:$2]]に統合',
 'mergehistory-comment' => '[[:$1]]を[[:$2]]に統合：$3',
-'mergehistory-same-destination' => '統合元と統合先に同じページを設定することはできません',
+'mergehistory-same-destination' => '統合元と統合先のページを同じにはできません',
 'mergehistory-reason' => '理由：',
 
 # Merge log
@@ -1646,7 +1646,7 @@ HTMLタグを見直してください。',
 'right-unblockself' => '自分自身に対するブロックを解除',
 'right-protect' => '保護レベルを変更し、保護されたページを編集',
 'right-editprotected' => '保護ページ（カスケード保護を除く）を編集',
-'right-editinterface' => 'ユーザー インターフェイスを編集',
+'right-editinterface' => 'ユーザーインターフェイスを編集',
 'right-editusercssjs' => '他の利用者のCSSとJavaScriptファイルを編集',
 'right-editusercss' => '他の利用者のCSSファイルを編集',
 'right-edituserjs' => '他の利用者のJavaScriptファイルを編集',
@@ -1867,7 +1867,7 @@ file_uploadsの設定を確認してください。',
 'uploadvirus' => 'このファイルにはウイルスが含まれています！
 詳細：$1',
 'uploadjava' => 'このファイルは、Javaの.classファイルを含むZIPファイルです。
-セキュリティの制限を回避されるおそれがあるため、Javaファイルをアップロードすることは許可されていません。',
+セキュリティの制限を回避されるおそれがあるため、Javaファイルのアップロードは許可されていません。',
 'upload-source' => 'アップロード元ファイル',
 'sourcefilename' => 'アップロード元のファイル名：',
 'sourceurl' => 'アップロード元のURL：',
@@ -1988,7 +1988,7 @@ https://www.mediawiki.org/wiki/Manual:Image_Authorization を参照してくだ�
 'img-auth-isdir' => 'ディレクトリー「$1」にアクセスしようとしています。
 ファイルへのアクセスのみが許可されています。',
 'img-auth-streaming' => '「$1」を転送中。',
-'img-auth-public' => 'img_auth.phpの機能は非公開ウィキからファイルを出力することです。
+'img-auth-public' => 'img_auth.phpの機能は、非公開ウィキからのファイルの出力です。
 このウィキは公開ウィキとして構成されています。
 最適なセキュリティーのため、img_auth.phpは無効化されています。',
 'img-auth-noread' => '利用者は「$1」の読み取り権限を持っていません。',
@@ -2239,7 +2239,7 @@ contenttype/subtypeの形式で指定してください（例：<tt>image/jpeg</
 'move' => '移動',
 'movethispage' => 'このページを移動',
 'unusedimagestext' => '以下のファイルは存在していますが、どのページにも埋め込まれていません。
-ただし、他のウェブサイトが直接URLでファイルにリンクすることがあることに注意してください。以下のファイル一覧には、そのような形で利用中のファイルが含まれていることがあります。',
+ただし、他のウェブサイトがURLでファイルに直接リンクする場合があることに注意してください。以下のファイル一覧には、そのような形で利用中のファイルが含まれている場合があります。',
 'unusedcategoriestext' => '以下のカテゴリはページが存在しますが、他のどのページおよびカテゴリでも使用されていません。',
 'notargettitle' => '対象が存在しません',
 'notargettext' => 'この機能の実行対象となるページまたは利用者が指定されていません。',
@@ -2443,23 +2443,23 @@ $NEWPAGE
 
 編集内容の要約：$PAGESUMMARY（$PAGEMINOREDIT）
 
-投稿者に連絡：
+投稿者の連絡先：
 メール：$PAGEEDITOR_EMAIL
 ウィキ：$PAGEEDITOR_WIKI
 
 このページを訪れない限り、これ以上の変更に対する通知は送信されません。
-ウォッチリストからすべての通知を再設定することもできます。
+ウォッチリスト内のすべてのページについて、通知を再設定することもできます。
 
                          {{SITENAME}}通知システム
 
 --
-メール通知の設定は、次のページから変更してください。
+メール通知の設定は、以下のページで変更してください：
 {{canonicalurl:{{#special:Preferences}}}}
 
-ウォッチリストの設定は、次のページから変更してください。
+ウォッチリストの設定は、以下のページで変更してください：
 {{canonicalurl:{{#special:EditWatchlist}}}}
 
-このページは、次のページでウォッチリストから除去することができます。
+このページは、以下のページでウォッチリストから削除できます：
 $UNWATCHURL
 
 ご意見、お問い合わせ：
@@ -2812,8 +2812,8 @@ $1のブロックの理由は「$2」です。',
 'unblock-hideuser' => '利用者名が隠されているため、この利用者のブロックを解除できません。',
 'ipb_cant_unblock' => 'エラー：ブロック ID $1 がありません。
 ブロックが既に解除されている可能性があります。',
-'ipb_blocked_as_range' => 'エラー：IPアドレス$1は直接ブロックされておらず、ブロックを解除できませんでした。
-ただし、$2の範囲でブロックされており、こちらの設定を変更することでブロック解除できます。',
+'ipb_blocked_as_range' => 'エラー：IPアドレス$1は直接ブロックされておらず、ブロック解除できませんでした。
+ただし、$2の範囲でブロックされており、こちらのブロックは別途解除できます。',
 'ip_range_invalid' => '不正なIP範囲です。',
 'ip_range_toolarge' => '/$1よりサイズの広い範囲ブロックは許可されていません。',
 'blockme' => '自分をブロック',
@@ -2924,14 +2924,14 @@ hideuser権限を持っていないため、この利用者のブロックを閲
 'delete_and_move_reason' => '「[[$1]]」からの移動のために削除',
 'selfmove' => '移動元と移動先のページ名が同じです。
 自分自身へは移動できません。',
-'immobile-source-namespace' => '$1名前空間のページを移動させることはできません。',
-'immobile-target-namespace' => '「$1」名前空間へはページを移動させることはできません。',
+'immobile-source-namespace' => '「$1」名前空間のページを移動させることはできません',
+'immobile-target-namespace' => '「$1」名前空間にページを移動させることはできません',
 'immobile-target-namespace-iw' => 'ウィキ間リンクは、ページの移動では不正な対象です。',
 'immobile-source-page' => 'このページは移動できません。',
-'immobile-target-page' => '対象ページ名へは移動させることができません。',
-'imagenocrossnamespace' => 'ファイル名前空間以外に、ファイルを移動することはできません。',
-'nonfile-cannot-move-to-file' => 'ファイルでないものを、ファイル名前空間に移動することはできません',
-'imagetypemismatch' => '新しいファイルの拡張子がファイルのタイプと一致していません。',
+'immobile-target-page' => '対象ページ名に移動させることはできません。',
+'imagenocrossnamespace' => 'ファイルを、ファイル名前空間以外に移動させることはできません',
+'nonfile-cannot-move-to-file' => 'ファイルではないものを、ファイル名前空間に移動させることはできません',
+'imagetypemismatch' => '新しいファイルの拡張子がファイルのタイプと一致していません',
 'imageinvalidfilename' => '対象ファイル名が不正です',
 'fix-double-redirects' => 'このページへのリダイレクトがあればそのリダイレクトを修正',
 'move-leave-redirect' => '移動元にリダイレクトを作成する',
@@ -2952,7 +2952,7 @@ hideuser権限を持っていないため、この利用者のブロックを閲
 ページを書き出すには、下の入力ボックスに一行に一つずつ書き出したいページの名前を記入してください。また、編集履歴とともにすべての過去版を含めて書き出すのか、最新版のみを書き出すのか選択してください。
 
 後者の場合ではリンクの形で使うこともできます。例えば、[[{{#Special:Export}}/{{MediaWiki:Mainpage}}]]はページ「[[{{MediaWiki:Mainpage}}]]」が対象になります。',
-'exportall' => 'すべてのページをエクスポート',
+'exportall' => 'すべてのページを書き出し',
 'exportcuronly' => '完全な履歴は含めず、最新版のみを含める',
 'exportnohistory' => "----
 '''注意：'''負荷上の理由により、このフォームによるページの完全な履歴の書き出しは無効化されています。",
@@ -2973,7 +2973,7 @@ hideuser権限を持っていないため、この利用者のブロックを閲
 'allmessagescurrent' => '現在のメッセージ文',
 'allmessagestext' => 'これは MediaWiki 名前空間で利用できるシステム メッセージの一覧です。
 MediaWiki 全般のローカライズ（地域化）に貢献したい場合は、[//www.mediawiki.org/wiki/Localisation/ja MediaWiki のローカライズ] や [//translatewiki.net?setlang=ja translatewiki.net] をご覧ください。',
-'allmessagesnotsupportedDB' => "'''\$wgUseDatabaseMessages'''が無効なので、このページを使うことはできません。",
+'allmessagesnotsupportedDB' => "'''\$wgUseDatabaseMessages'''が無効のため、このページを使用できません。",
 'allmessages-filter-legend' => '絞り込み',
 'allmessages-filter' => '変更状態により絞り込む：',
 'allmessages-filter-unmodified' => '変更なし',
@@ -3112,7 +3112,7 @@ MediaWiki 全般のローカライズ（地域化）に貢献したい場合は�
 'tooltip-ca-nstab-main' => '本文を閲覧',
 'tooltip-ca-nstab-user' => '利用者ページを表示',
 'tooltip-ca-nstab-media' => 'メディアページを表示',
-'tooltip-ca-nstab-special' => 'これは特別ページです。編集することはできません。',
+'tooltip-ca-nstab-special' => 'これは特別ページです。編集できません。',
 'tooltip-ca-nstab-project' => 'プロジェクトページを表示',
 'tooltip-ca-nstab-image' => 'ファイルページを表示',
 'tooltip-ca-nstab-mediawiki' => 'システムメッセージを表示',
@@ -4215,7 +4215,7 @@ MediaWikiは、有用であることを期待して配布されていますが�
 'api-error-noimageinfo' => 'アップロードには成功しましたが、サーバーはファイルに関する情報を返しませんでした。',
 'api-error-nomodule' => '内部エラー：アップロードを処理するモジュールが設定されていません。',
 'api-error-ok-but-empty' => '内部エラー：サーバーからの応答がありません。',
-'api-error-overwrite' => '既存のファイルへ上書きすることは許可されていません。',
+'api-error-overwrite' => '既存のファイルへの上書きは許可されていません。',
 'api-error-stashfailed' => '内部エラー：サーバーは一時ファイルを格納できませんでした。',
 'api-error-timeout' => 'サーバーが決められた時間内に応答しませんでした。',
 'api-error-unclassified' => '不明なエラーが発生しました。',

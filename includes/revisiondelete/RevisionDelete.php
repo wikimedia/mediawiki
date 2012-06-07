@@ -260,7 +260,8 @@ class RevDel_RevisionItem extends RevDel_Item {
 	}
 
 	public function getHTML() {
-		$difflink = wfMessage( 'parentheses' )->rawParams( $this->getDiffLink() );
+		$difflink = $this->list->msg( 'parentheses' )
+			->rawParams( $this->getDiffLink() )->escaped();
 		$revlink = $this->getRevisionLink();
 		$userlink = Linker::revUserLink( $this->revision );
 		$comment = Linker::revComment( $this->revision );
@@ -885,7 +886,7 @@ class RevDel_LogItem extends RevDel_Item {
 			array(),
 			array( 'page' => $title->getPrefixedText() )
 		);
-		$loglink = wfMessage( 'parentheses' )->rawParams( $loglink );
+		$loglink = $this->list->msg( 'parentheses' )->rawParams( $loglink )->escaped();
 		// User links and action text
 		$action = $formatter->getActionText();
 		// Comment

@@ -2038,6 +2038,7 @@ executar iste function.',
 Pro restringer le presentation, selige un typo de registro, le nomine de usator (sensibile al majusculas e minusculas), o le pagina in question (etiam sensibile al majusculas e minusculas).',
 'logempty' => 'Le registro contine nihil pro iste pagina.',
 'log-title-wildcard' => 'Cercar titulos que comencia con iste texto',
+'showhideselectedlogentries' => 'Monstrar/celar le entratas de registro seligite',
 
 # Special:AllPages
 'allpages' => 'Tote le paginas',
