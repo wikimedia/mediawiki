@@ -497,7 +497,7 @@ class Revision {
 
 			# if we have a content object, use it to set the model and type
 			if ( !empty( $row['content'] ) ) {
-				if ( !empty( $row['text_id'] ) ) { #FIXME: when is that set? test with external store setup! check out insertOn()
+				if ( !empty( $row['text_id'] ) ) { //@todo: when is that set? test with external store setup! check out insertOn() [dk]
 					throw new MWException( "Text already stored in external store (id {$row['text_id']}), can't serialize content object" );
 				}
 
@@ -542,7 +542,7 @@ class Revision {
 			}
 
 			$this->mTitle     = null; # Load on demand if needed
-			$this->mCurrent   = false; #XXX: really? we are about to create a revision. it will usually then be the current one.
+			$this->mCurrent   = false; # XXX: really? we are about to create a revision. it will usually then be the current one.
 
 			# If we still have no length, see it we have the text to figure it out
 			if ( !$this->mSize ) {
@@ -566,9 +566,6 @@ class Revision {
 			throw new MWException( 'Revision constructor passed invalid row format.' );
 		}
 		$this->mUnpatrolled = null;
-
-		// @TODO: add support for ar_content_format, ar_content_model, rev_content_format, rev_content_model to API
-		// @TODO: get rid of $mText
 	}
 
 	/**
@@ -881,9 +878,24 @@ class Revision {
 	 * Fetch revision text without regard for view restrictions
 	 *
 	 * @return String
+	 *
+	 * @deprecated since 1.WD. Instead, use Revision::getContent( Revision::RAW ) or Revision::getSerializedData() as appropriate.
 	 */
 	public function getRawText() { #FIXME: deprecated, replace usage!
+		wfDeprecated( __METHOD__, "1.WD" );
+
 		return $this->getText( self::RAW );
+	}
+
+	/**
+	 * Fetch original serialized data without regard for view restrictions
+	 *
+	 * @return String
+	 *
+	 * @since 1.WD
+	 */
+	public function getSerializedData() {
+		return $this->mText;
 	}
 
 	protected function getContentInternal() {
@@ -954,7 +966,14 @@ class Revision {
 			$model = $this->getContentModel();
 			$this->mContentHandler = ContentHandler::getForModelID( $model );
 
-			assert( $this->mContentHandler->isSupportedFormat( $this->getContentFormat() ) ); #FIXME: use exception, not assert
+			$format = $this->getContentFormat();
+
+			if ( !$this->mContentHandler->isSupportedFormat( $format ) ) {
+				$formatName = ContentHandler::getContentFormatMimeType( $format );
+				$modelName = ContentHandler::getContentModelName( $model );
+
+				throw new MWException( "Oops, the content format #$format ($formatName) is not supported for this content model, #$model ($modelName)" );
+			}
 		}
 
 		return $this->mContentHandler;
@@ -1204,10 +1223,6 @@ class Revision {
 		if ( $wgContentHandlerUseDB ) {
 			$row[ 'rev_content_model' ] = $this->getContentModel();
 			$row[ 'rev_content_format' ] = $this->getContentFormat();
-		} else {
-			// @todo: Make sure the revision is using the default model and format.
-			//        Since we don't store the actual model and format, we won't have any way to determine it later
-			//        if it's not the default.
 		}
 
 		$dbw->insert( 'revision', $row, __METHOD__ );

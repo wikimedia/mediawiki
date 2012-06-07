@@ -78,7 +78,7 @@ class RevisionTest_ContentHandlerUseDB extends RevisionStorageTest {
 		$orig = $this->makeRevision( array( 'text' => 'hello hello.', 'content_model' => CONTENT_MODEL_JAVASCRIPT, 'content_format' => 'text/javascript' ) );
 		$rev = Revision::newFromId( $orig->getId() );
 
-		$this->assertEquals( 'text/x-wiki', $rev->getContentFormat() );
+		$this->assertEquals( CONTENT_FORMAT_WIKITEXT, $rev->getContentFormat() );
 	}
 
 }
