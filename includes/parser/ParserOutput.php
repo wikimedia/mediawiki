@@ -480,6 +480,9 @@ class ParserOutput extends CacheTime {
 	 * extracted from the page's content, including a LinksUpdate object for all links stored in
 	 * this ParserOutput object.
 	 *
+	 * @note: Avoid using this method directly, use ContentHandler::getSecondaryDataUpdates() instead! The content
+	 *        handler may provide additional update objects.
+	 *
 	 * @param $title Title of the page we're updating. If not given, a title object will be created based on $this->getTitleText()
 	 * @param $recursive Boolean: queue jobs for recursive updates?
 	 *

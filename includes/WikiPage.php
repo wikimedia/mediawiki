@@ -1983,7 +1983,8 @@ class WikiPage extends Page {
 		}
 
 		# Update the links tables and other secondary data
-		$updates = $editInfo->output->getSecondaryDataUpdates( $this->getTitle() ); #FIXME: call ContentHandler::getSecondaryLinkUpdates. Don't parse iuf not needed! But don't parse too early either, only after saving, so we have an article ID!
+		$contentHandler = $revision->getContentHandler();
+		$updates = $contentHandler->getSecondaryDataUpdates( $content, $this->getTitle(), null, true, $editInfo->output );
 		DataUpdate::runUpdates( $updates );
 
 		wfRunHooks( 'ArticleEditUpdates', array( &$this, &$editInfo, $options['changed'] ) );

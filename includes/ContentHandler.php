@@ -734,24 +734,32 @@ abstract class ContentHandler {
 	 * data store. If the optional second argument, $old, is given, the updates may model only the changes that
 	 * need to be made to replace information about the old content with information about the new content.
 	 *
-	 * This default implementation calls $this->getParserOutput( $title, null, null, false ), and then
+	 * This default implementation calls $this->getParserOutput( $content, $title, null, null, false ), and then
 	 * calls getSecondaryDataUpdates( $title, $recursive ) on the resulting ParserOutput object.
 	 *
 	 * Subclasses may implement this to determine the necessary updates more efficiently, or make use of information
 	 * about the old content.
 	 *
+	 * @param Content $content the content for determining the necessary updates
 	 * @param Title $title the context for determining the necessary updates
-	 * @param Content|null $old a Content object representing the previous content, i.e. the content being
+	 * @param Content|null $old an optional Content object representing the previous content, i.e. the content being
 	 *                     replaced by this Content object.
-	 * @param bool $recursive whether to include recursive updates (default: false).
+	 * @param boolean $recursive whether to include recursive updates (default: false).
+	 * @param ParserOutput|null $parserOutput optional ParserOutput object. Provide if you have one handy, to avoid re-parsing
+	 *        of the content.
 	 *
 	 * @return Array. A list of DataUpdate objects for putting information about this content object somewhere.
 	 *
 	 * @since WD.1
 	 */
-	public function getSecondaryDataUpdates( Content $content, Title $title, Content $old = null, $recursive = false ) {
-		$po = $this->getParserOutput( $content, $title, null, null, false );
-		return $po->getSecondaryDataUpdates( $title, $recursive );
+	public function getSecondaryDataUpdates( Content $content, Title $title, Content $old = null,
+											$recursive = true, ParserOutput $parserOutput = null ) {
+
+		if ( !$parserOutput ) {
+			$parserOutput = $this->getParserOutput( $content, $title, null, null, false );
+		}
+
+		return $parserOutput->getSecondaryDataUpdates( $title, $recursive );
 	}
 
 

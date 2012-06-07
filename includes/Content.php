@@ -287,6 +287,9 @@ abstract class Content {
 	 * Convenience method, shorthand for
 	 * $this->getContentHandler()->getParserOutput( $this, $title, $revId, $options, $generateHtml )
 	 *
+	 * @note: subclasses should NOT override this to provide custom rendering.
+	 *        Override ContentHandler::getParserOutput() instead!
+	 *
 	 * @param Title $title
 	 * @param null $revId
 	 * @param null|ParserOptions $options
@@ -300,23 +303,6 @@ abstract class Content {
 	 */
 	public function getParserOutput( Title $title, $revId = null, ParserOptions $options = null, $generateHtml = true ) {
 		return $this->getContentHandler()->getParserOutput( $this, $title, $revId, $options, $generateHtml );
-	}
-
-	/**
-	 * Convenience method, shorthand for
-	 * $this->getContentHandler()->getSecondaryDataUpdates( $this, $title, $old, $recursive )
-	 *
-	 * @param Title $title the context for determining the necessary updates
-	 * @param Content|null $old a Content object representing the previous content, i.e. the content being
-	 *                     replaced by this Content object.
-	 * @param bool $recursive whether to include recursive updates (default: false).
-	 *
-	 * @return Array. A list of DataUpdate objects for putting information about this content object somewhere.
-	 *
-	 * @since WD.1
-	 */
-	public function getSecondaryDataUpdates( Title $title, Content $old = null, $recursive = false ) { #TODO: remove!
-		return $this->getContentHandler()->getSecondaryDataUpdates( $this, $title, $old, $recursive );
 	}
 
 	/**

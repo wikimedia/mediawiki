@@ -63,7 +63,6 @@ class LinksUpdate extends SqlDataUpdate {
 
 		$this->mTitle = $title;
 		$this->mId = $title->getArticleID();
-		assert( $this->mId > 0 );
 
 		if ( !$this->mId ) {
 			throw new MWException( "The Title object did not provide an article ID. Perhaps the page doesn't exist?" );
@@ -830,6 +829,10 @@ class LinksDeletionUpdate extends SqlDataUpdate {
 		parent::__construct( );
 
 		$this->mTitle = $title;
+
+		if ( !$title->getArticleID() ) {
+			throw new MWException( "The Title object did not provide an article ID. Perhaps the page doesn't exist?" );
+		}
 	}
 
 	/**

@@ -1204,6 +1204,10 @@ class Revision {
 		if ( $wgContentHandlerUseDB ) {
 			$row[ 'rev_content_model' ] = $this->getContentModel();
 			$row[ 'rev_content_format' ] = $this->getContentFormat();
+		} else {
+			// @todo: Make sure the revision is using the default model and format.
+			//        Since we don't store the actual model and format, we won't have any way to determine it later
+			//        if it's not the default.
 		}
 
 		$dbw->insert( 'revision', $row, __METHOD__ );
