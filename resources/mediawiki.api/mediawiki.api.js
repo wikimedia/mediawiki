@@ -1,5 +1,6 @@
-/* mw.Api objects represent the API of a particular MediaWiki server. */
-
+/**
+ * mw.Api objects represent the API of a particular MediaWiki server.
+ */
 ( function( $, mw, undefined ) {
 
 	/**
@@ -21,14 +22,7 @@
 			ajax: {
 				url: mw.util.wikiScript( 'api' ),
 
-				ok: function() {},
-
-				// caller can supply handlers for http transport error or api errors
-				err: function( code, result ) {
-					mw.log( 'mw.Api error: ' + code, 'debug' );
-				},
-
-				timeout: 30000, // 30 seconds
+				timeout: 30 * 1000, // 30 seconds
 
 				dataType: 'json'
 			}
@@ -73,32 +67,29 @@
 	mw.Api.prototype = {
 
 		/**
-		 * For api queries, in simple cases the caller just passes a success callback.
-		 * In complex cases they pass an object with a success property as callback and
-		 * probably other options.
-		 * Normalize the argument so that it's always the latter case.
+		 * Normalize the ajax options for compatibility and/or convinience methods.
 		 *
-		 * @param {Object|Function} An object contaning one or more of options.ajax,
+		 * @param {undefined|Object|Function} An object contaning one or more of options.ajax,
 		 * or just a success function (options.ajax.ok).
 		 * @return {Object} Normalized ajax options.
 		 */
-		normalizeAjaxOptions: function( arg ) {
-			var opt = arg;
+		normalizeAjaxOptions: function ( arg ) {
+			// Arg argument is usually empty
+			// (before MW 1.20 it was often used to pass ok/err callbacks)
+			var opts = arg || {};
+			// Options can also be a success callback handler
 			if ( typeof arg === 'function' ) {
-				opt = { 'ok': arg };
+				opts = { ok: arg };
 			}
-			if ( !opt.ok ) {
-				throw new Error( 'ajax options must include ok callback' );
-			}
-			return opt;
+			return opts;
 		},
 
 		/**
 		 * Perform API get request
 		 *
 		 * @param {Object} request parameters
-		 * @param {Object|Function} ajax options, or just a success function
-		 * @return {jqXHR}
+		 * @param {Object|Function} [optional] ajax options
+		 * @return {jQuery.Promise}
 		 */
 		get: function( parameters, ajaxOptions ) {
 			ajaxOptions = this.normalizeAjaxOptions( ajaxOptions );
@@ -111,8 +102,8 @@
 		 * @todo Post actions for nonlocal will need proxy
 		 *
 		 * @param {Object} request parameters
-		 * @param {Object|Function} ajax options, or just a success function
-		 * @return {jqXHR}
+		 * @param {Object|Function} [optional] ajax options
+		 * @return {jQuery.Promise}
 		 */
 		post: function( parameters, ajaxOptions ) {
 			ajaxOptions = this.normalizeAjaxOptions( ajaxOptions );
@@ -125,10 +116,14 @@
 		 *
 		 * @param {Object} request parameters
 		 * @param {Object} ajax options
-		 * @return {jqXHR}
+		 * @return {jQuery.Promise}
+		 * - done: API response data as first argument
+		 * - fail: errorcode as first arg, details (string or object) as second arg.
 		 */
 		ajax: function( parameters, ajaxOptions ) {
-			var token;
+			var token,
+				apiDeferred = $.Deferred();
+
 			parameters = $.extend( {}, this.defaults.parameters, parameters );
 			ajaxOptions = $.extend( {}, this.defaults.ajax, ajaxOptions );
 
@@ -141,32 +136,52 @@
 			// So let's escape them here. See bug #28235
 			// This works because jQuery accepts data as a query string or as an Object
 			ajaxOptions.data = $.param( parameters ).replace( /\./g, '%2E' );
+
 			// If we extracted a token parameter, add it back in.
 			if ( token ) {
 				ajaxOptions.data += '&token=' + encodeURIComponent( token );
 			}
-			ajaxOptions.error = function( xhr, textStatus, exception ) {
-				ajaxOptions.err( 'http', {
-					xhr: xhr,
-					textStatus: textStatus,
-					exception: exception
+
+			// Backwards compatibility: Before MediaWiki 1.20,
+			// callbacks were done with the 'ok' and 'err' property in ajaxOptions.
+			if ( ajaxOptions.ok ) {
+				apiDeferred.done( ajaxOptions.ok );
+				delete ajaxOptions.ok;
+			}
+			if ( ajaxOptions.err ) {
+				apiDeferred.fail( ajaxOptions.err );
+				delete ajaxOptions.err;
+			}
+
+			// Make the AJAX request
+			$.ajax( ajaxOptions )
+				// If AJAX fails, reject API call with error code 'http'
+				// and details in second argument.
+				.fail( function ( xhr, textStatus, exception ) {
+					apiDeferred.reject( 'http', {
+						xhr: xhr,
+						textStatus: textStatus,
+						exception: exception
+					} );
+				} )
+				// AJAX success just means "200 OK" response, also check API error codes
+				.done( function ( result ) {
+					if ( result === undefined || result === null || result === '' ) {
+						apiDeferred.reject( 'ok-but-empty',
+							'OK response but empty result (check HTTP headers?)'
+						);
+					} else if ( result.error ) {
+						var code = result.error.code === undefined ? 'unknown' : result.error.code;
+						apiDeferred.reject( code, result );
+					} else {
+						apiDeferred.resolve( result );
+					}
 				} );
-			};
 
-			// Success just means 200 OK; also check for output and API errors
-			ajaxOptions.success = function( result ) {
-				if ( result === undefined || result === null || result === '' ) {
-					ajaxOptions.err( 'ok-but-empty',
-						'OK response but empty result (check HTTP headers?)' );
-				} else if ( result.error ) {
-					var code = result.error.code === undefined ? 'unknown' : result.error.code;
-					ajaxOptions.err( code, result );
-				} else {
-					ajaxOptions.ok( result );
-				}
-			};
-
-			return $.ajax( ajaxOptions );
+			// Return the Promise
+			return apiDeferred.promise().fail( function ( code, details ) {
+				mw.log( 'mw.Api error: ', code, details );
+			});
 		}
 
 	};
