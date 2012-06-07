@@ -41,14 +41,6 @@
  * @author Тест
  */
 
-/**
- * УВАГА! НЕ РЕДАГУЙТЕ ЦЕЙ ФАЙЛ!
- *
- * Якщо необхідно змінити переклад окремих частин інтерфейсу,
- * то це можна зробити редагуючи сторінки типу «MediaWiki:*».
- * Їх список можна знайти на сторінці «Special:Allmessages».
- */
-
 $separatorTransformTable = array(
 	',' => "\xc2\xa0", # nbsp
 	'.' => ','
@@ -107,6 +99,94 @@ $dateFormats = array(
 
 $bookstoreList = array(
 	'Amazon.com' => 'http://www.amazon.com/exec/obidos/ISBN=$1'
+);
+
+$specialPageAliases = array(
+	'Activeusers'               => array( 'Активні_учасники' ),
+	'Allmessages'               => array( 'Системні_повідомлення' ),
+	'Allpages'                  => array( 'Усі_сторінки' ),
+	'Ancientpages'              => array( 'Давні_сторінки' ),
+	'Blankpage'                 => array( 'Порожня_сторінка' ),
+	'Block'                     => array( 'Заблокувати' ),
+	'Blockme'                   => array( 'Заблокуйте_мене' ),
+	'Booksources'               => array( 'Джерела_книг' ),
+	'BrokenRedirects'           => array( 'Розірвані_перенаправлення' ),
+	'Categories'                => array( 'Категорії' ),
+	'ChangeEmail'               => array( 'Змінити_e-mail' ),
+	'ChangePassword'            => array( 'Змінити_пароль' ),
+	'ComparePages'              => array( 'Порівняння_сторінок' ),
+	'Confirmemail'              => array( 'Підтвердити_e-mail' ),
+	'Contributions'             => array( 'Внесок' ),
+	'CreateAccount'             => array( 'Створити_обліковий_запис' ),
+	'Deadendpages'              => array( 'Сторінки_без_посилань' ),
+	'DeletedContributions'      => array( 'Вилучений_внесок' ),
+	'Disambiguations'           => array( 'Неоднозначні_посилання' ),
+	'DoubleRedirects'           => array( 'Подвійні_перенаправлення' ),
+	'EditWatchlist'             => array( 'Правити_список_спостереження' ),
+	'Emailuser'                 => array( 'Лист_користувачеві' ),
+	'Export'                    => array( 'Експорт' ),
+	'FileDuplicateSearch'       => array( 'Пошук_дублікатів_файлів' ),
+	'Import'                    => array( 'Імпорт' ),
+	'BlockList'                 => array( 'Список_блокувань', 'Блокування', 'Блокування_IP-адрес' ),
+	'LinkSearch'                => array( 'Пошук_посилань' ),
+	'Listadmins'                => array( 'Список_адміністраторів' ),
+	'Listbots'                  => array( 'Список_ботів' ),
+	'Listfiles'                 => array( 'Список_файлів' ),
+	'Listgrouprights'           => array( 'Список_прав_груп', 'Права_груп_користувачів' ),
+	'Listredirects'             => array( 'Список_перенаправлень' ),
+	'Listusers'                 => array( 'Список_користувачів' ),
+	'Lockdb'                    => array( 'Заблокувати_базу_даних' ),
+	'Log'                       => array( 'Журнали' ),
+	'Lonelypages'               => array( 'Ізольовані_сторінки' ),
+	'Longpages'                 => array( 'Найдовші_сторінки' ),
+	'MergeHistory'              => array( 'Об\'єднання_історії' ),
+	'MIMEsearch'                => array( 'Пошук_по_MIME' ),
+	'Mostimages'                => array( 'Найбільш_використовувані_файли' ),
+	'Movepage'                  => array( 'Перейменувати' ),
+	'Mycontributions'           => array( 'Мій_внесок' ),
+	'Mypage'                    => array( 'Моя_сторінка' ),
+	'Mytalk'                    => array( 'Моє_обговорення' ),
+	'Myuploads'                 => array( 'Мої_завантаження' ),
+	'Newimages'                 => array( 'Нові_файли' ),
+	'Newpages'                  => array( 'Нові_сторінки' ),
+	'PermanentLink'             => array( 'Постійне_посилання' ),
+	'Popularpages'              => array( 'Популярні_сторінки' ),
+	'Preferences'               => array( 'Налаштування' ),
+	'Protectedpages'            => array( 'Захищені_сторінки' ),
+	'Protectedtitles'           => array( 'Захищені_назви_сторінок' ),
+	'Randompage'                => array( 'Випадкова_сторінка' ),
+	'Randomredirect'            => array( 'Випадкове_перенаправлення' ),
+	'Recentchanges'             => array( 'Нещодавні_редагування' ),
+	'Recentchangeslinked'       => array( 'Пов\'язані_редагування' ),
+	'Revisiondelete'            => array( 'Перевірити_видалення' ),
+	'Search'                    => array( 'Пошук' ),
+	'Shortpages'                => array( 'Короткі_сторінки' ),
+	'Specialpages'              => array( 'Спеціальні_сторінки' ),
+	'Statistics'                => array( 'Статистика' ),
+	'Tags'                      => array( 'Мітки' ),
+	'Unblock'                   => array( 'Розблокувати' ),
+	'Uncategorizedcategories'   => array( 'Некатегоризовані_категорії' ),
+	'Uncategorizedimages'       => array( 'Некатегоризовані_файли' ),
+	'Uncategorizedpages'        => array( 'Некатегоризовані_сторінки' ),
+	'Uncategorizedtemplates'    => array( 'Некатегоризовані_шаблони' ),
+	'Undelete'                  => array( 'Відновити' ),
+	'Unlockdb'                  => array( 'Розблокувати_базу_даних' ),
+	'Unusedcategories'          => array( 'Порожні_категорії' ),
+	'Unusedimages'              => array( 'Невикористовувані_файли' ),
+	'Unusedtemplates'           => array( 'Невикористовувані_шаблони' ),
+	'Unwatchedpages'            => array( 'Сторінки_за_якими_не_спостерігають' ),
+	'Upload'                    => array( 'Завантаження' ),
+	'UploadStash'               => array( 'Приховане_завантаження' ),
+	'Userlogin'                 => array( 'Вхід' ),
+	'Userlogout'                => array( 'Вихід' ),
+	'Userrights'                => array( 'Керування_правами_користувачів' ),
+	'Version'                   => array( 'Версія' ),
+	'Wantedcategories'          => array( 'Потрібні_категорії' ),
+	'Wantedfiles'               => array( 'Потрібні_файли' ),
+	'Wantedpages'               => array( 'Потрібні_сторінки' ),
+	'Wantedtemplates'           => array( 'Потрібні_шаблони' ),
+	'Watchlist'                 => array( 'Список_спостереження' ),
+	'Whatlinkshere'             => array( 'Посилання_сюди' ),
 );
 
 $magicWords = array(

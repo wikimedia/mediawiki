@@ -49,6 +49,11 @@ $namespaceAliases = array(
 	'Категорийы_тыххæй_дискусси'  => NS_CATEGORY_TALK,
 );
 
+$specialPageAliases = array(
+	'Recentchanges'             => array( 'Фæстаг_ивдтытæ' ),
+);
+
+
 $magicWords = array(
 	'redirect'                => array( '0', '#РАРВЫСТ', '#перенаправление', '#перенапр', '#REDIRECT' ),
 	'img_right'               => array( '1', 'рахиз', 'справа', 'right' ),

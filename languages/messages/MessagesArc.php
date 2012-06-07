@@ -43,8 +43,10 @@ $namespaceAliases = array(
 );
 
 $specialPageAliases = array(
+	'Activeusers'               => array( 'ܡܦܠܚܢ̈ܐ_ܙܪ̄ܝܙܐ' ),
 	'Allmessages'               => array( 'ܟܠ_ܐܓܪ̈ܬܐ' ),
 	'Allpages'                  => array( 'ܟܠ_ܦܐܬܬ̈ܐ' ),
+	'Badtitle'                  => array( 'ܟܘܢܝܐ_ܠܐ_ܛܒܐ' ),
 	'Blankpage'                 => array( 'ܦܐܬܐ_ܣܦܝܩܬܐ' ),
 	'Categories'                => array( 'ܣܕܪ̈ܐ' ),
 	'Contributions'             => array( 'ܫܘܬܦܘܝܬ̈ܐ' ),
@@ -58,10 +60,11 @@ $specialPageAliases = array(
 	'Mycontributions'           => array( 'ܫܘܬܦܘܝܬ̈ܝ' ),
 	'Mypage'                    => array( 'ܦܐܬܐ_ܕܝܠܝ' ),
 	'Mytalk'                    => array( 'ܡܡܠܠܐ_ܕܝܠܝ' ),
+	'Myuploads'                 => array( 'ܐܣܩܬ̈ܐ_ܕܝܠܝ' ),
 	'Newimages'                 => array( 'ܠܦܦ̈ܐ_ܚܕ̈ܬܐ', 'ܨܘܪ̈ܬܐ_ܚܕ̈ܬܬܐ' ),
 	'Newpages'                  => array( 'ܦܐܬܬ̈ܐ_ܚܕ̈ܬܬܐ' ),
 	'PermanentLink'             => array( 'ܐܣܘܪܐ_ܦܝܘܫܐ' ),
-	'Preferences'               => array( 'ܓܒܝܬ̈ܐ' ),
+	'Preferences'               => array( 'ܨܒܝܢܝܘܬ̈ܐ' ),
 	'Protectedpages'            => array( 'ܦܐܬܬ̈ܐ_ܢܛܝܪ̈ܬܐ' ),
 	'Protectedtitles'           => array( 'ܟܘܢܝ̈ܐ_ܢܛܝܪ̈ܐ' ),
 	'Recentchanges'             => array( 'ܫܘܚܠܦ̈ܐ_ܚܕ̈ܬܐ' ),
@@ -69,6 +72,7 @@ $specialPageAliases = array(
 	'Shortpages'                => array( 'ܦܐܬܬ̈ܐ_ܟܪ̈ܝܬܐ' ),
 	'Specialpages'              => array( 'ܦܐܬܬ̈ܐ_ܕ̈ܝܠܢܝܬܐ' ),
 	'Upload'                    => array( 'ܐܣܩ' ),
+	'Version'                   => array( 'ܨܚܚܐ' ),
 	'Watchlist'                 => array( 'ܪ̈ܗܝܬܐ' ),
 	'Whatlinkshere'             => array( 'ܡܐ_ܐܣܪ_ܠܗܪܟܐ' ),
 );
