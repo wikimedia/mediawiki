@@ -265,7 +265,7 @@ $dateFormats = array(
 );
 
 $magicWords = array(
-	'redirect'                => array( '0', '#تغییر_مسیر', '#تغییرمسیر', '#تغییرمسیر', '#REDIRECT' ),
+	'redirect'                => array( '0', '#تغییر_مسیر', '#تغییرمسیر', '#REDIRECT' ),
 	'notoc'                   => array( '0', '__بی‌فهرست__', '__NOTOC__' ),
 	'nogallery'               => array( '0', '__بی‌نگارخانه__', '__NOGALLERY__' ),
 	'forcetoc'                => array( '0', '__بافهرست__', '__FORCETOC__' ),

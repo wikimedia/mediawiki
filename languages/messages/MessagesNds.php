@@ -56,7 +56,7 @@ $namespaceAliases = array(
 
 $magicWords = array(
 	'redirect'                => array( '0', '#wiederleiden', '#WEITERLEITUNG', '#REDIRECT' ),
-	'notoc'                   => array( '0', '__KEENINHOLTVERTEKEN__', '__KEIN_INHALTSVERZEICHNIS__', '__NOTOC__' ),
+	'notoc'                   => array( '0', '__KEENINHOLTVERTEKEN__', '__KEIN_INHALTSVERZEICHNIS__', '__KEININHALTSVERZEICHNIS__', '__NOTOC__' ),
 	'forcetoc'                => array( '0', '__WIESINHOLTVERTEKEN__', '__INHALTSVERZEICHNIS_ERZWINGEN__', '__FORCETOC__' ),
 	'toc'                     => array( '0', '__INHOLTVERTEKEN__', '__INHALTSVERZEICHNIS__', '__TOC__' ),
 	'noeditsection'           => array( '0', '__KEENÄNNERNLINK__', '__ABSCHNITTE_NICHT_BEARBEITEN__', '__NOEDITSECTION__' ),
@@ -71,7 +71,7 @@ $magicWords = array(
 	'pagename'                => array( '1', 'SIETNAAM', 'SEITENNAME', 'PAGENAME' ),
 	'pagenamee'               => array( '1', 'SIETNAAME', 'SEITENNAME_URL', 'PAGENAMEE' ),
 	'namespace'               => array( '1', 'NAAMRUUM', 'NAMENSRAUM', 'NAMESPACE' ),
-	'img_thumbnail'           => array( '1', 'duum', 'miniatur', 'thumbnail', 'thumb' ),
+	'img_thumbnail'           => array( '1', 'duum', 'miniatur', 'mini', 'thumbnail', 'thumb' ),
 	'img_right'               => array( '1', 'rechts', 'right' ),
 	'img_left'                => array( '1', 'links', 'left' ),
 	'img_none'                => array( '1', 'keen', 'ohne', 'none' ),
@@ -80,7 +80,7 @@ $magicWords = array(
 	'sitename'                => array( '1', 'STEEDNAAM', 'PROJEKTNAME', 'SITENAME' ),
 	'ns'                      => array( '0', 'NR:', 'NS:' ),
 	'localurl'                => array( '0', 'STEEDURL:', 'LOKALE_URL:', 'LOCALURL:' ),
-	'localurle'               => array( '0', 'STEEDURLE:', 'LOCALURLE:' ),
+	'localurle'               => array( '0', 'STEEDURLE:', 'LOKALE_URL_C:', 'LOCALURLE:' ),
 	'grammar'                 => array( '0', 'GRAMMATIK:', 'GRAMMAR:' ),
 );
 
