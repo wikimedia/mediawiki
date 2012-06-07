@@ -216,12 +216,13 @@ class RevDel_RevisionItem extends RevDel_Item {
 	 * @return string
 	 */
 	protected function getRevisionLink() {
-		$date = $this->list->getLanguage()->userTimeAndDate(
-			$this->revision->getTimestamp(), $this->list->getUser() );
+		$date = htmlspecialchars( $this->list->getLanguage()->userTimeAndDate(
+			$this->revision->getTimestamp(), $this->list->getUser() ) );
+
 		if ( $this->isDeleted() && !$this->canViewContent() ) {
 			return $date;
 		}
-		return Linker::link(
+		return Linker::linkKnown(
 			$this->list->title,
 			$date,
 			array(),
@@ -242,7 +243,7 @@ class RevDel_RevisionItem extends RevDel_Item {
 			return $this->list->msg( 'diff' )->escaped();
 		} else {
 			return
-				Linker::link(
+				Linker::linkKnown(
 					$this->list->title,
 					$this->list->msg( 'diff' )->escaped(),
 					array(),
@@ -250,10 +251,6 @@ class RevDel_RevisionItem extends RevDel_Item {
 						'diff' => $this->revision->getId(),
 						'oldid' => 'prev',
 						'unhide' => 1
-					),
-					array(
-						'known',
-						'noclasses'
 					)
 				);
 		}
@@ -365,30 +362,39 @@ class RevDel_ArchiveItem extends RevDel_RevisionItem {
 	}
 
 	protected function getRevisionLink() {
-		$undelete = SpecialPage::getTitleFor( 'Undelete' );
-		$date = $this->list->getLanguage()->userTimeAndDate(
-			$this->revision->getTimestamp(), $this->list->getUser() );
+		$date = htmlspecialchars( $this->list->getLanguage()->userTimeAndDate(
+			$this->revision->getTimestamp(), $this->list->getUser() ) );
+
 		if ( $this->isDeleted() && !$this->canViewContent() ) {
 			return $date;
 		}
-		return Linker::link( $undelete, $date, array(),
+
+		return Linker::link(
+			SpecialPage::getTitleFor( 'Undelete' ),
+			$date,
+			array(),
 			array(
 				'target' => $this->list->title->getPrefixedText(),
 				'timestamp' => $this->revision->getTimestamp()
-			) );
+			)
+		);
 	}
 
 	protected function getDiffLink() {
 		if ( $this->isDeleted() && !$this->canViewContent() ) {
 			return $this->list->msg( 'diff' )->escaped();
 		}
-		$undelete = SpecialPage::getTitleFor( 'Undelete' );
-		return Linker::link( $undelete, $this->list->msg( 'diff' )->escaped(), array(),
+
+		return Linker::link(
+			SpecialPage::getTitleFor( 'Undelete' ),
+			$this->list->msg( 'diff' )->escaped(),
+			array(),
 			array(
 				'target' => $this->list->title->getPrefixedText(),
 				'diff' => 'prev',
 				'timestamp' => $this->revision->getTimestamp()
-			) );
+			)
+		);
 	}
 }
 
@@ -599,30 +605,31 @@ class RevDel_FileItem extends RevDel_Item {
 	 * @return string
 	 */
 	protected function getLink() {
-		$date = $this->list->getLanguage()->userTimeAndDate(
-			$this->file->getTimestamp(), $this->list->getUser() );
-		if ( $this->isDeleted() ) {
-			# Hidden files...
-			if ( !$this->canViewContent() ) {
-				$link = $date;
-			} else {
-				$revdelete = SpecialPage::getTitleFor( 'Revisiondelete' );
-				$link = Linker::link(
-					$revdelete,
-					$date, array(),
-					array(
-						'target' => $this->list->title->getPrefixedText(),
-						'file'   => $this->file->getArchiveName(),
-						'token'  => $this->list->getUser()->getEditToken(
-							$this->file->getArchiveName() )
-					)
-				);
-			}
-			return '<span class="history-deleted">' . $link . '</span>';
-		} else {
+		$date = htmlspecialchars( $this->list->getLanguage()->userTimeAndDate(
+			$this->file->getTimestamp(), $this->list->getUser() ) );
+
+		if ( !$this->isDeleted() ) {
 			# Regular files...
-			return Xml::element( 'a', array( 'href' => $this->file->getUrl() ), $date );
+			return Html::rawElement( 'a', array( 'href' => $this->file->getUrl() ), $date );
 		}
+
+		# Hidden files...
+		if ( !$this->canViewContent() ) {
+			$link = $date;
+		} else {
+			$link = Linker::link(
+				SpecialPage::getTitleFor( 'Revisiondelete' ),
+				$date,
+				array(),
+				array(
+					'target' => $this->list->title->getPrefixedText(),
+					'file'   => $this->file->getArchiveName(),
+					'token'  => $this->list->getUser()->getEditToken(
+						$this->file->getArchiveName() )
+				)
+			);
+		}
+		return '<span class="history-deleted">' . $link . '</span>';
 	}
 	/**
 	 * Generate a user tool link cluster if the current user is allowed to view it
@@ -746,14 +753,15 @@ class RevDel_ArchivedFileItem extends RevDel_FileItem {
 	}
 
 	protected function getLink() {
-		$date = $this->list->getLanguage()->userTimeAndDate(
-			$this->file->getTimestamp(), $this->list->getUser() );
-		$undelete = SpecialPage::getTitleFor( 'Undelete' );
-		$key = $this->file->getKey();
+		$date = htmlspecialchars( $this->list->getLanguage()->userTimeAndDate(
+			$this->file->getTimestamp(), $this->list->getUser() ) );
+
 		# Hidden files...
 		if( !$this->canViewContent() ) {
 			$link = $date;
 		} else {
+			$undelete = SpecialPage::getTitleFor( 'Undelete' );
+			$key = $this->file->getKey();
 			$link = Linker::link( $undelete, $date, array(),
 				array(
 					'target' => $this->list->title->getPrefixedText(),
