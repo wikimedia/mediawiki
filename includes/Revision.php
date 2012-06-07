@@ -634,7 +634,7 @@ class Revision {
 		if( isset( $this->mTitle ) ) {
 			return $this->mTitle;
 		}
-		if( !is_null( $this->mId ) ) { //rev_id is defined as NOT NULL
+		if( !is_null( $this->mId ) ) { //rev_id is defined as NOT NULL, but this revision may not yet have been inserted.
 			$dbr = wfGetDB( DB_SLAVE );
 			$row = $dbr->selectRow(
 				array( 'page', 'revision' ),
@@ -646,6 +646,8 @@ class Revision {
 				$this->mTitle = Title::newFromRow( $row );
 			}
 		}
+
+		//@todo: as a last resort, perhaps load from page table, if $this->mPage is given?!
 		return $this->mTitle;
 	}
 
@@ -1225,6 +1227,8 @@ class Revision {
 			$row[ 'rev_content_format' ] = $this->getContentFormat();
 		}
 
+		$this->checkContentModel();
+
 		$dbw->insert( 'revision', $row, __METHOD__ );
 
 		$this->mId = !is_null( $rev_id ) ? $rev_id : $dbw->insertId();
@@ -1233,6 +1237,57 @@ class Revision {
 
 		wfProfileOut( __METHOD__ );
 		return $this->mId;
+	}
+
+	protected function checkContentModel() {
+		global $wgContentHandlerUseDB;
+
+		$title = $this->getTitle(); //note: returns null for revisions that have not yet been inserted.
+
+		$model = $this->getContentModel();
+		$format = $this->getContentFormat();
+		$handler = $this->getContentHandler();
+
+		if ( !$handler->isSupportedFormat( $format ) ) {
+			$t = $title->getPrefixedDBkey();
+			$modelName = ContentHandler::getContentModelName( $model );
+			$formatName = ContentHandler::getContentFormatMimeType( $format );
+
+			throw new MWException( "Can't use format #$format ($formatName) with content model #$model ($modelName) on $t" );
+		}
+
+		if ( !$wgContentHandlerUseDB && $title ) {
+			// if $wgContentHandlerUseDB is not set, all revisions must use the default content model and format.
+
+			$defaultModel = ContentHandler::getDefaultModelFor( $title );
+			$defaultHandler = ContentHandler::getForModelID( $defaultModel );
+			$defaultFormat = $defaultHandler->getDefaultFormat();
+
+			if ( $this->getContentModel() != $defaultModel ) {
+				$defaultModelName = ContentHandler::getContentModelName( $defaultModel );
+				$modelName = ContentHandler::getContentModelName( $model );
+				$t = $title->getPrefixedDBkey();
+
+				throw new MWException( "Can't save non-default content model with \$wgContentHandlerUseDB disabled: model is #$model ($modelName), default for $t is #$defaultModel ($defaultModelName)" );
+			}
+
+			if ( $this->getContentFormat() != $defaultFormat ) {
+				$defaultFormatName = ContentHandler::getContentFormatMimeType( $defaultFormat );
+				$formatName = ContentHandler::getContentFormatMimeType( $format );
+				$t = $title->getPrefixedDBkey();
+
+				throw new MWException( "Can't use non-default content format with \$wgContentHandlerUseDB disabled: format is #$format ($formatName), default for $t is #$defaultFormat ($defaultFormatName)" );
+			}
+		}
+
+		$content = $this->getContent( Revision::RAW );
+
+		if ( !$content->isValid() ) {
+			$t = $title->getPrefixedDBkey();
+			$modelName = ContentHandler::getContentModelName( $model );
+
+			throw new MWException( "Content of $t is not valid! Content model is #$model ($modelName)" );
+		}
 	}
 
 	/**

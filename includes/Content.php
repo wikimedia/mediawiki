@@ -443,6 +443,8 @@ abstract class Content {
 	# FUTURE: MultipartMultipart < WikipageContent (Main + Links + X)
 	# FUTURE: LinksContent < LanguageLinksContent, CategoriesContent
 
+// @TODO: add support for ar_content_format, ar_content_model, rev_content_format, rev_content_model to API
+
 /**
  * Content object implementation for representing flat text.
  *
