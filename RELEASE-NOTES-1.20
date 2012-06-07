@@ -53,6 +53,8 @@ upgrade PHP if you have not done so prior to upgrading MediaWiki.
 * (bug 35685) api.php URL and other entry point URLs are now listed on
   Special:Version
 * Edit notices can now be translated.
+* (bug 35680) jQuery upgraded to 1.7.2.
+* jQuery UI upgraded to 1.8.19.
 * (bug 22887) Add warning and tracking category for preprocessor errors
 * (bug 31704) Allow selection of associated namespace on the watchlist
 * (bug 5445) Now remove autoblocks when a user is unblocked.
@@ -65,6 +67,7 @@ upgrade PHP if you have not done so prior to upgrading MediaWiki.
 * New getCreator and getOldestRevision methods added to WikiPage class
 * (bug 4220) the XML dump format schema now have unique identity constraints
   for page and revision identifiers. Patch by Elvis Stansvik.
+* (bug 35705) QUnit upgraded from 1.2.0 to 1.7.0
 
 === Bug fixes in 1.20 ===
 * (bug 30245) Use the correct way to construct a log page title.
@@ -98,9 +101,6 @@ upgrade PHP if you have not done so prior to upgrading MediaWiki.
 * Removed white border around thumbnails in galleries.
 * (bug 31236) "Next" and "Previous" buttons are shown incorrectly in
   an RTL environment.
-* (bug 35680) jQuery upgraded to 1.7.2.
-* jQuery UI upgraded to 1.8.19.
-* (bug 35705) QUnit upgraded from 1.2.0 to 1.5.0
 * (bug 35749) Updated maintenance/checkSyntax.php to use Git instead of
   Subversion when invoked with the --modified option.
 * (bug 35069) On history pages, the " . . " separator after the number of
