@@ -370,6 +370,7 @@ $specialPageAliases = array(
 	'Filepath'                  => array( 'مسار_ملف' ),
 	'Import'                    => array( 'استيراد' ),
 	'Invalidateemail'           => array( 'تعطيل_البريد_الإلكتروني' ),
+	'JavaScriptTest'            => array( 'اختبار_جافا_سكريبت' ),
 	'BlockList'                 => array( 'قائمة_المنع', 'عرض_المنع', 'قائمة_منع_أيبي' ),
 	'LinkSearch'                => array( 'بحث_الوصلات' ),
 	'Listadmins'                => array( 'عرض_الإداريين' ),
