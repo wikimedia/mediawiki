@@ -611,7 +611,7 @@ class WikiPage extends Page {
 		if ( !$this->mTimestamp ) {
 			$this->loadLastEdit();
 		}
-		
+
 		return wfTimestamp( TS_MW, $this->mTimestamp );
 	}
 
@@ -1819,9 +1819,9 @@ class WikiPage extends Page {
 					wfDebug( __METHOD__ . ": invalid username\n" );
 				} elseif ( User::isIP( $shortTitle ) ) {
 					// An anonymous user
-					$other->setNewtalk( true );
+					$other->setNewtalk( true, $revision );
 				} elseif ( $other->isLoggedIn() ) {
-					$other->setNewtalk( true );
+					$other->setNewtalk( true, $revision );
 				} else {
 					wfDebug( __METHOD__ . ": don't need to notify a nonexistent user\n" );
 				}
@@ -2280,7 +2280,7 @@ class WikiPage extends Page {
 	 * roll back to, e.g. user is the sole contributor. This function
 	 * performs permissions checks on $user, then calls commitRollback()
 	 * to do the dirty work
-	 * 
+	 *
 	 * @todo: seperate the business/permission stuff out from backend code
 	 *
 	 * @param $fromP String: Name of the user whose edits to rollback.
