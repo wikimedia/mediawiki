@@ -135,11 +135,11 @@ class RefreshLinksJob2 extends Job {
 			wfProfileIn( __METHOD__.'-parse' );
 			$options = ParserOptions::newFromUserAndLang( new User, $wgContLang );
 			$content = $revision->getContent();
-			$parserOutput = $content->getParserOutput( $this->title, $revision->getId(), $options, false );
+			$parserOutput = $content->getParserOutput( $title, $revision->getId(), $options, false );
 			wfProfileOut( __METHOD__.'-parse' );
 			wfProfileIn( __METHOD__.'-update' );
 
-			$updates = $content->getContentHandler()->getSecondaryDataUpdates( $content, $this->title, null, false, $parserOutput  );
+			$updates = $content->getContentHandler()->getSecondaryDataUpdates( $content, $title, null, false, $parserOutput  );
 			DataUpdate::runUpdates( $updates );
 
 			wfProfileOut( __METHOD__.'-update' );
