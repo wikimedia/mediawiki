@@ -285,10 +285,8 @@ class SpecialMergeHistory extends SpecialPage {
 		}
 		$comment = Linker::revComment( $rev );
 
-		$revisionRow = $this->msg( 'mergehistory-revisionrow' )->rawParams( $checkBox, $last, $pageLink, $userLink, $stxt, $comment)->escaped();
-		$revisionRow .= "<li>" . $line . "</li>";
-
-		return $revisionRow;
+		return Html::rawElement( 'li', array(),
+			$this->msg( 'mergehistory-revisionrow' )->rawParams( $checkBox, $last, $pageLink, $userLink, $stxt, $comment )->escaped() );
 	}
 
 	function merge() {
