@@ -466,18 +466,15 @@ class WikiPage extends Page {
 	}
 
 	/**
-	 * Tests if the article text represents a redirect
+	 * Tests if the article content represents a redirect
 	 *
-	 * @param $text mixed string containing article contents, or boolean
 	 * @return bool
 	 */
-	public function isRedirect( $text = false ) { #TODO: investiage whether we need the text param
-		if ( $text === false ) $content = $this->getContent();
-		else $content = ContentHandler::makeContent( $text, $this->mTitle ); # TODO: allow model and format to be provided; or better, expect a Content object
+	public function isRedirect( ) {
+		$content = $this->getContent();
+		if ( !$content ) return false;
 
-
-		if ( empty( $content ) ) return false;
-		else return $content->isRedirect();
+		return $content->isRedirect();
 	}
 
 	/**

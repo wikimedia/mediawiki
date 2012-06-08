@@ -105,13 +105,12 @@ class WikiFilePage extends WikiPage {
 	}
 
 	/**
-	 * @param bool $text
 	 * @return bool
 	 */
-	public function isRedirect( $text = false ) {
+	public function isRedirect( ) {
 		$this->loadFile();
 		if ( $this->mFile->isLocal() ) {
-			return parent::isRedirect( $text );
+			return parent::isRedirect();
 		}
 
 		return (bool)$this->mFile->getRedirected();
