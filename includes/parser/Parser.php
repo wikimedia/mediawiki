@@ -3552,7 +3552,13 @@ class Parser {
 			}
 
 			if ( $rev ) {
-				$text = $rev->getText();
+				$content = $rev->getContent();
+				$text = $content->getWikitextForTransclusion();
+
+				if ( $text === false || $text === null ) {
+					$text = false;
+					break;
+				}
 			} elseif ( $title->getNamespace() == NS_MEDIAWIKI ) {
 				global $wgContLang;
 				$message = wfMessage( $wgContLang->lcfirst( $title->getText() ) )->inContentLanguage();
