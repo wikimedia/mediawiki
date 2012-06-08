@@ -58,11 +58,12 @@ class RefreshLinksJob extends Job {
 
 		wfProfileIn( __METHOD__.'-parse' );
 		$options = ParserOptions::newFromUserAndLang( new User, $wgContLang );
-		$parserOutput = $wgParser->parse( $revision->getText(), $this->title, $options, true, true, $revision->getId() ); #FIXME: content
+		$content = $revision->getContent();
+		$parserOutput = $content->getParserOutput( $this->title, $revision->getId(), $options, false );
 		wfProfileOut( __METHOD__.'-parse' );
 		wfProfileIn( __METHOD__.'-update' );
 
-		$updates = $parserOutput->getSecondaryDataUpdates( $this->title, false ); #FIXME: content handler
+		$updates = $content->getContentHandler()->getSecondaryDataUpdates( $content, $this->title, null, false, $parserOutput  );
 		DataUpdate::runUpdates( $updates );
 
 		wfProfileOut( __METHOD__.'-update' );
@@ -132,11 +133,13 @@ class RefreshLinksJob2 extends Job {
 				return false;
 			}
 			wfProfileIn( __METHOD__.'-parse' );
-			$parserOutput = $wgParser->parse( $revision->getText(), $title, $options, true, true, $revision->getId() ); #FIXME: content handler
+			$options = ParserOptions::newFromUserAndLang( new User, $wgContLang );
+			$content = $revision->getContent();
+			$parserOutput = $content->getParserOutput( $this->title, $revision->getId(), $options, false );
 			wfProfileOut( __METHOD__.'-parse' );
 			wfProfileIn( __METHOD__.'-update' );
 
-			$updates = $parserOutput->getSecondaryDataUpdates( $title, false ); #FIXME: content handler
+			$updates = $content->getContentHandler()->getSecondaryDataUpdates( $content, $this->title, null, false, $parserOutput  );
 			DataUpdate::runUpdates( $updates );
 
 			wfProfileOut( __METHOD__.'-update' );
