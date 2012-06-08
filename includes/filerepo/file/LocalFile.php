@@ -1458,9 +1458,9 @@ class LocalFile extends File {
 		global $wgParser;
 		$revision = Revision::newFromTitle( $this->title );
 		if ( !$revision ) return false;
-		$text = $revision->getText();
-		if ( !$text ) return false;
-		$pout = $wgParser->parse( $text, $this->title, new ParserOptions() );
+		$content = $revision->getContent();
+		if ( !$content ) return false;
+		$pout = $content->getParserOutput( $this->title, null, new ParserOptions() );
 		return $pout->getText();
 	}
 
