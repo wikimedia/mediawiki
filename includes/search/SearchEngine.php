@@ -801,11 +801,12 @@ class SearchResult {
 	 */
 	protected function initText() {
 		if ( !isset( $this->mText ) ) {
-			if ( $this->mRevision != null )
-				$this->mText = $this->mRevision->getText();
-			else // TODO: can we fetch raw wikitext for commons images?
+			if ( $this->mRevision != null ) {
+				$content = $this->mRevision->getContent();
+				$this->mText = $content->getTextForSearchIndex(); //XXX: maybe we don't even need the text, but the content object?
+			} else { // TODO: can we fetch raw wikitext for commons images?
 				$this->mText = '';
-
+			}
 		}
 	}
 
@@ -817,7 +818,7 @@ class SearchResult {
 		global $wgUser, $wgAdvancedSearchHighlighting;
 		$this->initText();
 		list( $contextlines, $contextchars ) = SearchEngine::userHighlightPrefs( $wgUser );
-		$h = new SearchHighlighter();
+		$h = new SearchHighlighter(); // TODO: make highliter take a content object. Make ContentHandler a factory for SearchHighliter.
 		if ( $wgAdvancedSearchHighlighting )
 			return $h->highlightText( $this->mText, $terms, $contextlines, $contextchars );
 		else
