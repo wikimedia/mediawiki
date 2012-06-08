@@ -20,6 +20,8 @@ upgrade PHP if you have not done so prior to upgrading MediaWiki.
 * `$wgUsePathInfo = true;` is no longer needed to make $wgArticlePath work on servers
   using like nginx, lighttpd, and apache over fastcgi. MediaWiki now always extracts
   path info from REQUEST_URI if it's available.
+* $wgAllowCopyUploads needs explicit permissions setting in $wgGroupPermissions to work.
+  The default assign of user right 'upload_by_url' to user group 'sysop' is removed.
 
 === New features in 1.20 ===
 * Added TitleIsAlwaysKnown hook which gets called when determining if a page exists.
