@@ -96,6 +96,7 @@ class CleanupSpam extends Maintenance {
 		$rev = Revision::newFromTitle( $title );
 		$currentRevId = $rev->getId();
 
+		//FIXME: LinkFilter needs to handle Content objects! Or rather, ContentHandler needs to provide the appropriate LinkFilter.
 		while ( $rev && ( $rev->isDeleted( Revision::DELETED_TEXT ) || LinkFilter::matchEntry( $rev->getText() , $domain ) ) ) {
 			$rev = $rev->getPrevious();
 		}

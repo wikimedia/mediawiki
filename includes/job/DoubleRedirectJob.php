@@ -129,7 +129,7 @@ class DoubleRedirectJob extends Job {
 		# so the regex has to be fairly general
 		$newText = preg_replace( '/ \[ \[  [^\]]*  \] \] /x',
 			'[[' . $newTitle->getFullText() . ']]',
-			$text, 1 );
+			$text, 1 ); #FIXME: need a way to do this via ContentHandler!
 
 		if ( $newText === $text ) {
 			$this->setLastError( 'Text unchanged???' );

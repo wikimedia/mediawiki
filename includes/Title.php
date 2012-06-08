@@ -397,6 +397,7 @@ class Title {
 	 *
 	 * @param $text String Text with possible redirect
 	 * @return Array of Titles, with the destination last
+	 * @todo: migrate this logic into WikitextContent!
 	 */
 	public static function newFromRedirectArray( $text ) {
 		global $wgMaxRedirects;
