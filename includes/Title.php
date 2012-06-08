@@ -3873,24 +3873,24 @@ class Title {
 		if( !is_object( $rev ) ){
 			return false;
 		}
-		$text = $rev->getText();
+		$content = $rev->getContent();
 		# Does the redirect point to the source?
 		# Or is it a broken self-redirect, usually caused by namespace collisions?
-		$m = array();
-		if ( preg_match( "/\\[\\[\\s*([^\\]\\|]*)]]/", $text, $m ) ) {
-			$redirTitle = Title::newFromText( $m[1] );
-			if ( !is_object( $redirTitle ) ||
-				( $redirTitle->getPrefixedDBkey() != $this->getPrefixedDBkey() &&
-				$redirTitle->getPrefixedDBkey() != $nt->getPrefixedDBkey() ) ) {
+		$redirTitle = $content->getRedirectTarget();
+
+		if ( $redirTitle ) {
+			if ( $redirTitle->getPrefixedDBkey() != $this->getPrefixedDBkey() &&
+				$redirTitle->getPrefixedDBkey() != $nt->getPrefixedDBkey() ) {
 				wfDebug( __METHOD__ . ": redirect points to other page\n" );
 				return false;
+			} else {
+				return true;
 			}
 		} else {
-			# Fail safe
-			wfDebug( __METHOD__ . ": failsafe\n" );
+			# Fail safe (not a redirect after all. strange.)
+			wfDebug( __METHOD__ . ": failsafe: database sais " . $nt->getPrefixedDBkey() . " is a redirect, but it doesn't contain a valid redirect.\n" );
 			return false;
 		}
-		return true;
 	}
 
 	/**
