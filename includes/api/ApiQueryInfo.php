@@ -337,7 +337,10 @@ class ApiQueryInfo extends ApiQueryBase {
 	 */
 	private function extractPageInfo( $pageid, $title ) {
 		$pageInfo = array();
-		if ( $title->exists() ) {
+		$titleExists = $pageid > 0; //$title->exists() needs pageid, which is not set for all title objects
+		$ns = $title->getNamespace();
+		$dbkey = $title->getDBkey();
+		if ( $titleExists ) {
 			global $wgDisableCounters;
 
 			$pageInfo['touched'] = wfTimestamp( TS_ISO_8601, $this->pageTouched[$pageid] );
@@ -370,23 +373,23 @@ class ApiQueryInfo extends ApiQueryBase {
 
 		if ( $this->fld_protection ) {
 			$pageInfo['protection'] = array();
-			if ( isset( $this->protections[$title->getNamespace()][$title->getDBkey()] ) ) {
+			if ( isset( $this->protections[$ns][$dbkey] ) ) {
 				$pageInfo['protection'] =
-					$this->protections[$title->getNamespace()][$title->getDBkey()];
+					$this->protections[$ns][$dbkey];
 			}
 			$this->getResult()->setIndexedTagName( $pageInfo['protection'], 'pr' );
 		}
 
-		if ( $this->fld_watched && isset( $this->watched[$title->getNamespace()][$title->getDBkey()] ) ) {
+		if ( $this->fld_watched && isset( $this->watched[$ns][$dbkey] ) ) {
 			$pageInfo['watched'] = '';
 		}
 
-		if ( $this->fld_talkid && isset( $this->talkids[$title->getNamespace()][$title->getDBkey()] ) )	{
-			$pageInfo['talkid'] = $this->talkids[$title->getNamespace()][$title->getDBkey()];
+		if ( $this->fld_talkid && isset( $this->talkids[$ns][$dbkey] ) )	{
+			$pageInfo['talkid'] = $this->talkids[$ns][$dbkey];
 		}
 
-		if ( $this->fld_subjectid && isset( $this->subjectids[$title->getNamespace()][$title->getDBkey()] ) ) {
-			$pageInfo['subjectid'] = $this->subjectids[$title->getNamespace()][$title->getDBkey()];
+		if ( $this->fld_subjectid && isset( $this->subjectids[$ns][$dbkey] ) ) {
+			$pageInfo['subjectid'] = $this->subjectids[$ns][$dbkey];
 		}
 
 		if ( $this->fld_url ) {
@@ -398,7 +401,7 @@ class ApiQueryInfo extends ApiQueryBase {
 		}
 
 		if ( $this->fld_preload ) {
-			if ( $title->exists() ) {
+			if ( $titleExists ) {
 				$pageInfo['preload'] = '';
 			} else {
 				$text = null;
@@ -409,8 +412,8 @@ class ApiQueryInfo extends ApiQueryBase {
 		}
 
 		if ( $this->fld_displaytitle ) {
-			if ( isset( $this->displaytitles[$title->getArticleID()] ) ) {
-				$pageInfo['displaytitle'] = $this->displaytitles[$title->getArticleID()];
+			if ( isset( $this->displaytitles[$pageid] ) ) {
+				$pageInfo['displaytitle'] = $this->displaytitles[$pageid];
 			} else {
 				$pageInfo['displaytitle'] = $title->getPrefixedText();
 			}
