@@ -872,6 +872,7 @@ class SpecialUndelete extends SpecialPage {
 
 		if( $this->mPreview ) {
 			// Hide [edit]s
+			//FIXME: ContentHandler will have to provide some specialized magic to do this
 			$popts = $out->parserOptions();
 			$popts->setEditSection( false );
 			$out->parserOptions( $popts );
@@ -883,7 +884,7 @@ class SpecialUndelete extends SpecialPage {
 					'readonly' => 'readonly',
 					'cols' => intval( $user->getOption( 'cols' ) ),
 					'rows' => intval( $user->getOption( 'rows' ) ) ),
-				$rev->getText( Revision::FOR_THIS_USER, $user ) . "\n" ) .
+				$rev->getText( Revision::FOR_THIS_USER, $user ) . "\n" ) . //FIXME: ContentHandler will have to provide some specialized magic to do this
 			Xml::openElement( 'div' ) .
 			Xml::openElement( 'form', array(
 				'method' => 'post',
