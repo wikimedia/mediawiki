@@ -53,6 +53,19 @@ class MediaWikiPHPUnitCommand extends PHPUnit_TextUI_Command {
 		}
 	}
 
+	protected function handleCustomTestSuite() {
+		if ( empty( $this->arguments['printer'] ) ) {
+			$this->arguments['printer'] = new PHPUnit_TextUI_ResultPrinter(
+				null,
+				isset($this->arguments['verbose']) ? $this->arguments['verbose'] : false,
+				isset($this->arguments['colors']) ? $this->arguments['colors'] : true,
+				isset($this->arguments['debug']) ? $this->arguments['debug'] : false
+			);
+		}
+
+		parent::handleCustomTestSuite();
+	}
+
 	public function showHelp() {
 		parent::showHelp();
 
@@ -71,6 +84,33 @@ Database options:
 
 
 EOT;
+	}
+
+}
+
+class MediaWikiPHPUnitResultPrinter extends PHPUnit_TextUI_ResultPrinter {
+	/**
+	 * Overrides original method to ignore incomplete tests except in verbose mode.
+	 *
+	 * @param  PHPUnit_Framework_TestResult  $result
+	 */
+	protected function printIncompletes(PHPUnit_Framework_TestResult $result)
+	{
+		if ( $this->verbose ) {
+			parent::printIncompletes( $result );
+		}
+	}
+
+	/**
+	 * Overrides original method to ignore skipped tests except in verbose mode.
+	 *
+	 * @param  PHPUnit_Framework_TestResult  $result
+	 */
+	protected function printSkipped(PHPUnit_Framework_TestResult $result)
+	{
+		if ( $this->verbose ) {
+			parent::printSkipped( $result );
+		}
 	}
 
 }
