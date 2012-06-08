@@ -165,6 +165,16 @@ class ApiQueryAllPages extends ApiQueryGeneratorBase {
 		$this->addOption( 'LIMIT', $limit + 1 );
 		$res = $this->select( __METHOD__ );
 
+		//Get gender information
+		if( MWNamespace::hasGenderDistinction( $params['namespace'] ) ) {
+			$users = array();
+			foreach ( $res as $row ) {
+				$users[] = $row->page_title;
+			}
+			GenderCache::singleton()->doQuery( $users, __METHOD__ );
+			$res->rewind(); //reset
+		}
+
 		$count = 0;
 		$result = $this->getResult();
 		foreach ( $res as $row ) {
