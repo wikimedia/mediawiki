@@ -663,7 +663,7 @@ class WikiPage extends Page {
 	 * @return String|bool The text of the current revision. False on failure
 	 * @deprecated as of 1.WD, getContent() should be used instead.
 	 */
-	public function getRawText() { #@todo: deprecated, replace usage!
+	public function getRawText() {
 		wfDeprecated( __METHOD__, '1.WD' );
 
 		return $this->getText( Revision::RAW );

@@ -883,7 +883,7 @@ class Revision {
 	 *
 	 * @deprecated since 1.WD. Instead, use Revision::getContent( Revision::RAW ) or Revision::getSerializedData() as appropriate.
 	 */
-	public function getRawText() { #FIXME: deprecated, replace usage!
+	public function getRawText() {
 		wfDeprecated( __METHOD__, "1.WD" );
 
 		return $this->getText( self::RAW );
