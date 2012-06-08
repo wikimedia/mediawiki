@@ -549,9 +549,8 @@ class Revision {
 				if ( !is_null( $this->mContent ) ) {
 					$this->mSize = $this->mContent->getSize();
 				} else {
-					#XXX: my be inconsistent with the notion of "size" use for the present content model
-					#NOTE: should never happen if we have either text or content object!
-					$this->mSize = is_null( $this->mText ) ? null : strlen( $this->mText );
+					#NOTE: this should never happen if we have either text or content object!
+					$this->mSize = null;
 				}
 			}
 
@@ -832,8 +831,9 @@ class Revision {
 	 *              to the $audience parameter
 	 * @return String
 	 * @deprecated in 1.WD, use getContent() instead
+	 * @todo: replace usage in core
 	 */
-	public function getText( $audience = self::FOR_PUBLIC, User $user = null ) { #FIXME: deprecated, replace usage! #FIXME: used a LOT!
+	public function getText( $audience = self::FOR_PUBLIC, User $user = null ) {
 		wfDeprecated( __METHOD__, '1.WD' );
 
 		$content = $this->getContent( $audience, $user );
