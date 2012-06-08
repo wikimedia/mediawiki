@@ -768,16 +768,27 @@ class MessageCache {
 		# Try loading it from the database
 		$revision = Revision::newFromTitle( Title::makeTitle( NS_MEDIAWIKI, $title ) );
 		if ( $revision ) {
-			$message = $revision->getText();
-			if ($message === false) {
+			$content = $revision->getContent();
+			if ( !$content ) {
 				// A possibly temporary loading failure.
 				wfDebugLog( 'MessageCache', __METHOD__ . ": failed to load message page text for {$title} ($code)" );
+				$message = null; // no negative caching
 			} else {
-				$this->mCache[$code][$title] = ' ' . $message;
-				$this->mMemc->set( $titleKey, ' ' . $message, $this->mExpiry );
+				$message = $content->getWikitextForTransclusion(); #XXX: is this the reight way to turn a Content object into a mesage?
+
+				if ( $message === false || $message === null ) {
+					wfDebugLog( 'MessageCache', __METHOD__ . ": message content doesn't provide wikitext (content model: #" . $content->getContentHandler() . ")" );
+					$message = false; // negative caching
+				} else {
+					$this->mCache[$code][$title] = ' ' . $message;
+					$this->mMemc->set( $titleKey, ' ' . $message, $this->mExpiry );
+				}
 			}
 		} else {
-			$message = false;
+			$message = false; // negative caching
+		}
+
+		if ( $message === false ) { // negative caching
 			$this->mCache[$code][$title] = '!NONEXISTENT';
 			$this->mMemc->set( $titleKey, '!NONEXISTENT', $this->mExpiry );
 		}
