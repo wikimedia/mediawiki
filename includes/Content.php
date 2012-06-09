@@ -5,15 +5,7 @@
  *
  * @since 1.WD
  */
-abstract class Content {
-
-	/**
-	 * Name of the content model this Content object represents.
-	 * Use with CONTENT_MODEL_XXX constants
-	 *
-	 * @var String $model_id
-	 */
-	protected $model_id;
+interface Content {
 
 	/**
 	 * @since WD.1
@@ -24,7 +16,7 @@ abstract class Content {
 	 * @todo: test that this actually works
 	 * @todo: make sure this also works with LuceneSearch / WikiSearch
 	 */
-	public abstract function getTextForSearchIndex( );
+	public function getTextForSearchIndex( );
 
 	/**
 	 * @since WD.1
@@ -35,7 +27,7 @@ abstract class Content {
 	 * @TODO: allow native handling, bypassing wikitext representation, like for includable special pages.
 	 * @TODO: use in parser, etc!
 	 */
-	public abstract function getWikitextForTransclusion( );
+	public function getWikitextForTransclusion( );
 
 	/**
 	 * Returns a textual representation of the content suitable for use in edit summaries and log messages.
@@ -45,7 +37,7 @@ abstract class Content {
 	 * @param int $maxlength maximum length of the summary text
 	 * @return String the summary text
 	 */
-	public abstract function getTextForSummary( $maxlength = 250 );
+	public function getTextForSummary( $maxlength = 250 );
 
 	/**
 	 * Returns native representation of the data. Interpretation depends on the data model used,
@@ -58,14 +50,322 @@ abstract class Content {
 	 *
 	 * @NOTE: review all calls carefully, caller must be aware of content model!
 	 */
-	public abstract function getNativeData( );
+	public function getNativeData( );
 
 	/**
 	 * returns the content's nominal size in bogo-bytes.
 	 *
 	 * @return int
 	 */
-	public abstract function getSize( );
+	public function getSize( );
+
+	/**
+	 * Returns the id of the content model used by this content objects.
+	 * Corresponds to the CONTENT_MODEL_XXX constants.
+	 *
+	 * @since WD.1
+	 *
+	 * @return int the model id
+	 */
+	public function getModel();
+
+	/**
+	 * Convenience method that returns the ContentHandler singleton for handling the content
+	 * model this Content object uses.
+	 *
+	 * Shorthand for ContentHandler::getForContent( $this )
+	 *
+	 * @since WD.1
+	 *
+	 * @return ContentHandler
+	 */
+	public function getContentHandler();
+
+	/**
+	 * Convenience method that returns the default serialization format for the content model
+	 * model this Content object uses.
+	 *
+	 * Shorthand for $this->getContentHandler()->getDefaultFormat()
+	 *
+	 * @since WD.1
+	 *
+	 * @return ContentHandler
+	 */
+	public function getDefaultFormat();
+
+	/**
+	 * Convenience method that returns the list of serialization formats supported
+	 * for the content model model this Content object uses.
+	 *
+	 * Shorthand for $this->getContentHandler()->getSupportedFormats()
+	 *
+	 * @since WD.1
+	 *
+	 * @return array of supported serialization formats
+	 */
+	public function getSupportedFormats();
+
+	/**
+	 * Returns true if $format is a supported serialization format for this Content object,
+	 * false if it isn't.
+	 *
+	 * Note that this should always return true if $format is null, because null stands for the
+	 * default serialization.
+	 *
+	 * Shorthand for $this->getContentHandler()->isSupportedFormat( $format )
+	 *
+	 * @since WD.1
+	 *
+	 * @param String $format the format to check
+	 * @return bool whether the format is supported
+	 */
+	public function isSupportedFormat( $format );
+
+	/**
+	 * Convenience method for serializing this Content object.
+	 *
+	 * Shorthand for $this->getContentHandler()->serializeContent( $this, $format )
+	 *
+	 * @since WD.1
+	 *
+	 * @param null|String $format the desired serialization format (or null for the default format).
+	 * @return String serialized form of this Content object
+	 */
+	public function serialize( $format = null );
+
+	/**
+	 * Returns true if this Content object represents empty content.
+	 *
+	 * @since WD.1
+	 *
+	 * @return bool whether this Content object is empty
+	 */
+	public function isEmpty();
+
+	/**
+	 * Returns whether the content is valid. This is intended for local validity checks, not considering global consistency.
+	 * Content needs to be valid before it can be saved.
+	 *
+	 * This default implementation always returns true.
+	 *
+	 * @since WD.1
+	 *
+	 * @return boolean
+	 */
+	public function isValid();
+
+	/**
+	 * Returns true if this Content objects is conceptually equivalent to the given Content object.
+	 * Contract:
+	 *
+	 * * Will return false if $that is null.
+	 * * Will return true if $that === $this.
+	 * * Will return false if $that->getModelName() != $this->getModel().
+	 * * Will return false if $that->getNativeData() is not equal to $this->getNativeData(),
+	 *   where the meaning of "equal" depends on the actual data model.
+	 *
+	 * Implementations should be careful to make equals() transitive and reflexive:
+	 *
+	 * * $a->equals( $b ) <=> $b->equals( $a )
+	 * * $a->equals( $b ) &&  $b->equals( $c ) ==> $a->equals( $c )
+	 *
+	 * @since WD.1
+	 *
+	 * @param Content $that the Content object to compare to
+	 * @return bool true if this Content object is equal to $that, false otherwise.
+	 */
+	public function equals( Content $that = null );
+
+	/**
+	 * Return a copy of this Content object. The following must be true for the object returned
+	 * if $copy = $original->copy()
+	 *
+	 * * get_class($original) === get_class($copy)
+	 * * $original->getModel() === $copy->getModel()
+	 * * $original->equals( $copy )
+	 *
+	 * If and only if the Content object is immutable, the copy() method can and should
+	 * return $this. That is,  $copy === $original may be true, but only for immutable content
+	 * objects.
+	 *
+	 * @since WD.1
+	 *
+	 * @return Content. A copy of this object
+	 */
+	public function copy( );
+
+	/**
+	 * Returns true if this content is countable as a "real" wiki page, provided
+	 * that it's also in a countable location (e.g. a current revision in the main namespace).
+	 *
+	 * @since WD.1
+	 *
+	 * @param $hasLinks Bool: if it is known whether this content contains links, provide this information here,
+	 *                        to avoid redundant parsing to find out.
+	 * @return boolean
+	 */
+	public function isCountable( $hasLinks = null ) ;
+
+	/**
+	 * Convenience method, shorthand for
+	 * $this->getContentHandler()->getParserOutput( $this, $title, $revId, $options, $generateHtml )
+	 *
+	 * @note: subclasses should NOT override this to provide custom rendering.
+	 *        Override ContentHandler::getParserOutput() instead!
+	 *
+	 * @param Title $title
+	 * @param null $revId
+	 * @param null|ParserOptions $options
+	 * @param Boolean $generateHtml whether to generate Html (default: true). If false,
+	 *        the result of calling getText() on the ParserOutput object returned by
+	 *        this method is undefined.
+	 *
+	 * @since WD.1
+	 *
+	 * @return ParserOutput
+	 */
+	public function getParserOutput( Title $title, $revId = null, ParserOptions $options = null, $generateHtml = true );
+
+	/**
+	 * Construct the redirect destination from this content and return an
+	 * array of Titles, or null if this content doesn't represent a redirect.
+	 * The last element in the array is the final destination after all redirects
+	 * have been resolved (up to $wgMaxRedirects times).
+	 *
+	 * @since WD.1
+	 *
+	 * @return Array of Titles, with the destination last
+	 */
+	public function getRedirectChain();
+
+	/**
+	 * Construct the redirect destination from this content and return a Title,
+	 * or null if this content doesn't represent a redirect.
+	 * This will only return the immediate redirect target, useful for
+	 * the redirect table and other checks that don't need full recursion.
+	 *
+	 * @since WD.1
+	 *
+	 * @return Title: The corresponding Title
+	 */
+	public function getRedirectTarget();
+
+	/**
+	 * Construct the redirect destination from this content and return the
+	 * Title, or null if this content doesn't represent a redirect.
+	 * This will recurse down $wgMaxRedirects times or until a non-redirect target is hit
+	 * in order to provide (hopefully) the Title of the final destination instead of another redirect.
+	 *
+	 * @since WD.1
+	 *
+	 * @return Title
+	 */
+	public function getUltimateRedirectTarget();
+
+	/**
+	 * Returns whether this Content represents a redirect.
+	 * Shorthand for getRedirectTarget() !== null.
+	 *
+	 * @since WD.1
+	 *
+	 * @return bool
+	 */
+	public function isRedirect();
+
+	/**
+	 * Returns the section with the given id.
+	 *
+	 * @since WD.1
+	 *
+	 * @param String $sectionId the section's id, given as a numeric string. The id "0" retrieves the section before
+	 *          the first heading, "1" the text between the first heading (included) and the second heading (excluded), etc.
+	 * @return Content|Boolean|null the section, or false if no such section exist, or null if sections are not supported
+	 */
+	public function getSection( $sectionId );
+
+	/**
+	 * Replaces a section of the content and returns a Content object with the section replaced.
+	 *
+	 * @since WD.1
+	 *
+	 * @param $section empty/null/false or a section number (0, 1, 2, T1, T2...), or "new"
+	 * @param $with Content: new content of the section
+	 * @param $sectionTitle String: new section's subject, only if $section is 'new'
+	 * @return string Complete article text, or null if error
+	 */
+	public function replaceSection( $section, Content $with, $sectionTitle = ''  );
+
+	/**
+	 * Returns a Content object with pre-save transformations applied (or this object if no transformations apply).
+	 *
+	 * @since WD.1
+	 *
+	 * @param Title $title
+	 * @param User $user
+	 * @param null|ParserOptions $popts
+	 * @return Content
+	 */
+	public function preSaveTransform( Title $title, User $user, ParserOptions $popts );
+
+	/**
+	 * Returns a new WikitextContent object with the given section heading prepended, if supported.
+	 * The default implementation just returns this Content object unmodified, ignoring the section header.
+	 *
+	 * @since WD.1
+	 *
+	 * @param $header String
+	 * @return Content
+	 */
+	public function addSectionHeader( $header );
+
+	/**
+	 * Returns a Content object with preload transformations applied (or this object if no transformations apply).
+	 *
+	 * @since WD.1
+	 *
+	 * @param Title $title
+	 * @param null|ParserOptions $popts
+	 * @return Content
+	 */
+	public function preloadTransform( Title $title, ParserOptions $popts );
+
+	# TODO: handle ImagePage and CategoryPage
+	# TODO: make sure we cover lucene search / wikisearch.
+	# TODO: make sure ReplaceTemplates still works
+	# FUTURE: nice&sane integration of GeSHi syntax highlighting
+	#   [11:59] <vvv> Hooks are ugly; make CodeHighlighter interface and a config to set the class which handles syntax highlighting
+	#   [12:00] <vvv> And default it to a DummyHighlighter
+
+	# TODO: make sure we cover the external editor interface (does anyone actually use that?!)
+
+	# TODO: tie into API to provide contentModel for Revisions
+	# TODO: tie into API to provide serialized version and contentFormat for Revisions
+	# TODO: tie into API edit interface
+	# FUTURE: make EditForm plugin for EditPage
+
+	# FUTURE: special type for redirects?!
+	# FUTURE: MultipartMultipart < WikipageContent (Main + Links + X)
+	# FUTURE: LinksContent < LanguageLinksContent, CategoriesContent
+
+// @TODO: add support for ar_content_format, ar_content_model, rev_content_format, rev_content_model to API
+}
+
+
+/**
+ * A content object represents page content, e.g. the text to show on a page.
+ * Content objects have no knowledge about how they relate to Wiki pages.
+ *
+ * @since 1.WD
+ */
+abstract class AbstractContent implements Content {
+
+	/**
+	 * Name of the content model this Content object represents.
+	 * Use with CONTENT_MODEL_XXX constants
+	 *
+	 * @var String $model_id
+	 */
+	protected $model_id;
 
 	/**
 	 * @param int $model_id
@@ -254,36 +554,6 @@ abstract class Content {
 	}
 
 	/**
-	 * Return a copy of this Content object. The following must be true for the object returned
-	 * if $copy = $original->copy()
-	 *
-	 * * get_class($original) === get_class($copy)
-	 * * $original->getModel() === $copy->getModel()
-	 * * $original->equals( $copy )
-	 *
-	 * If and only if the Content object is immutable, the copy() method can and should
-	 * return $this. That is,  $copy === $original may be true, but only for immutable content
-	 * objects.
-	 *
-	 * @since WD.1
-	 *
-	 * @return Content. A copy of this object
-	 */
-	public abstract function copy( );
-
-	/**
-	 * Returns true if this content is countable as a "real" wiki page, provided
-	 * that it's also in a countable location (e.g. a current revision in the main namespace).
-	 *
-	 * @since WD.1
-	 *
-	 * @param $hasLinks Bool: if it is known whether this content contains links, provide this information here,
-	 *                        to avoid redundant parsing to find out.
-	 * @return boolean
-	 */
-	public abstract function isCountable( $hasLinks = null ) ;
-
-	/**
 	 * Convenience method, shorthand for
 	 * $this->getContentHandler()->getParserOutput( $this, $title, $revId, $options, $generateHtml )
 	 *
@@ -424,26 +694,7 @@ abstract class Content {
 	public function preloadTransform( Title $title, ParserOptions $popts ) {
 		return $this;
 	}
-
-	# TODO: handle ImagePage and CategoryPage
-	# TODO: make sure we cover lucene search / wikisearch.
-	# TODO: make sure ReplaceTemplates still works
-	# FUTURE: nice&sane integration of GeSHi syntax highlighting
-	#   [11:59] <vvv> Hooks are ugly; make CodeHighlighter interface and a config to set the class which handles syntax highlighting
-	#   [12:00] <vvv> And default it to a DummyHighlighter
-
-	# TODO: make sure we cover the external editor interface (does anyone actually use that?!)
-
-	# TODO: tie into API to provide contentModel for Revisions
-	# TODO: tie into API to provide serialized version and contentFormat for Revisions
-	# TODO: tie into API edit interface
-	# FUTURE: make EditForm plugin for EditPage
 }
-	# FUTURE: special type for redirects?!
-	# FUTURE: MultipartMultipart < WikipageContent (Main + Links + X)
-	# FUTURE: LinksContent < LanguageLinksContent, CategoriesContent
-
-// @TODO: add support for ar_content_format, ar_content_model, rev_content_format, rev_content_model to API
 
 /**
  * Content object implementation for representing flat text.
@@ -452,7 +703,7 @@ abstract class Content {
  *
  * @since WD.1
  */
-abstract class TextContent extends Content {
+abstract class TextContent extends AbstractContent {
 
 	public function __construct( $text, $model_id = null ) {
 		parent::__construct( $model_id );

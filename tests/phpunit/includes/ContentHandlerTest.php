@@ -408,7 +408,7 @@ class DummyContentHandlerForTesting extends ContentHandler {
 	}
 }
 
-class DummyContentForTesting extends Content {
+class DummyContentForTesting extends AbstractContent {
 
 	public function __construct( $data ) {
 		parent::__construct( 999999 );
