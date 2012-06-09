@@ -46,7 +46,9 @@ class ResourceLoaderLanguageDataModule extends ResourceLoaderModule {
 
 		return Xml::encodeJsCall( 'mw.language.setData', array(
 			$wgContLang->getCode(),
-			array( 'grammarForms' => $this->getSiteLangGrammarForms() )
+			array(
+				'grammarForms' => $this->getSiteLangGrammarForms()
+			)
 		) );
 	}
 
