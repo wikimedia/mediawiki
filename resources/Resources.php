@@ -364,6 +364,7 @@ return array(
 			'is' => 'resources/jquery.ui/i18n/jquery.ui.datepicker-is.js',
 			'it' => 'resources/jquery.ui/i18n/jquery.ui.datepicker-it.js',
 			'ja' => 'resources/jquery.ui/i18n/jquery.ui.datepicker-ja.js',
+			'ka' => 'resources/jquery.ui/i18n/jquery.ui.datepicker-ka.js',
 			'kk' => 'resources/jquery.ui/i18n/jquery.ui.datepicker-kk.js',
 			'km' => 'resources/jquery.ui/i18n/jquery.ui.datepicker-km.js',
 			'ko' => 'resources/jquery.ui/i18n/jquery.ui.datepicker-ko.js',

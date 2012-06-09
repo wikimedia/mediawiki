@@ -1,5 +1,5 @@
 /*!
- * jQuery UI Effects 1.8.20
+ * jQuery UI Effects 1.8.21
  *
  * Copyright 2012, AUTHORS.txt (http://jqueryui.com/about)
  * Dual licensed under the MIT or GPL Version 2 licenses.
@@ -306,7 +306,7 @@ $.fn.extend({
 /******************************************************************************/
 
 $.extend($.effects, {
-	version: "1.8.20",
+	version: "1.8.21",
 
 	// Saves a set of properties in a data storage
 	save: function(element, set) {
@@ -370,7 +370,16 @@ $.extend($.effects, {
 				}),
 			active = document.activeElement;
 
-		element.wrap(wrapper);
+		// support: Firefox
+		// Firefox incorrectly exposes anonymous content
+		// https://bugzilla.mozilla.org/show_bug.cgi?id=561664
+		try {
+			active.id;
+		} catch( e ) {
+			active = document.body;
+		}
+
+		element.wrap( wrapper );
 
 		// Fixes #7595 - Elements lose focus when wrapped.
 		if ( element[ 0 ] === active || $.contains( element[ 0 ], active ) ) {
