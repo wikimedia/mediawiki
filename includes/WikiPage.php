@@ -1164,8 +1164,16 @@ class WikiPage extends Page {
 		}
 
 		if ( $this->mTitle->getNamespace() == NS_MEDIAWIKI ) {
+			//@todo: move this logic to MessageCache
+
 			if ( $this->mTitle->exists() ) {
-				$text = ContentHandler::getContentText( $this->getContent() ); #XXX: get native data directly?
+				// NOTE: use transclusion text for messages.
+				//       This is consistent with  MessageCache::getMsgFromNamespace()
+
+				$content = $this->getContent();
+				$text = $content === null ? null : $content->getWikitextForTransclusion();
+
+				if ( $text === null ) $text = false;
 			} else {
 				$text = false;
 			}

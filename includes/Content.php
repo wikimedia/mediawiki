@@ -25,7 +25,8 @@ interface Content {
 	 *         includable in a wikitext page.
 	 *
 	 * @TODO: allow native handling, bypassing wikitext representation, like for includable special pages.
-	 * @TODO: use in parser, etc!
+	 * @TODO: allow transclusion into other content models than Wikitext!
+	 * @TODO: used in WikiPage and MessageCache to get message text. Not so nice. What should we use instead?!
 	 */
 	public function getWikitextForTransclusion( );
 
