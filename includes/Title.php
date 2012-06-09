@@ -825,7 +825,7 @@ class Title {
 
 	/**
 	 * Returns true if the title is inside the specified namespace.
-	 * 
+	 *
 	 * Please make use of this instead of comparing to getNamespace()
 	 * This function is much more resistant to changes we may make
 	 * to namespaces than code that makes direct comparisons.
@@ -1881,7 +1881,7 @@ class Title {
 					$title_protection['pt_create_perm'] = 'protect'; // B/C
 				}
 				if( $title_protection['pt_create_perm'] == '' ||
-					!$user->isAllowed( $title_protection['pt_create_perm'] ) ) 
+					!$user->isAllowed( $title_protection['pt_create_perm'] ) )
 				{
 					$errors[] = array( 'titleprotected', User::whoIs( $title_protection['pt_user'] ), $title_protection['pt_reason'] );
 				}
@@ -4076,31 +4076,97 @@ class Title {
 	}
 
 	/**
-	 * Get the number of authors between the given revision IDs.
+	 * Get the number of authors between the given revisions or revision IDs.
 	 * Used for diffs and other things that really need it.
 	 *
-	 * @param $old int|Revision Old revision or rev ID (first before range)
-	 * @param $new int|Revision New revision or rev ID (first after range)
+	 * @param $old int|Revision Old revision or rev ID (first <em>before</em> range by default)
+	 * @param $new int|Revision New revision or rev ID (first <em>after</em> range by default)
 	 * @param $limit Int Maximum number of authors
-	 * @return Int Number of revision authors between these revisions.
+	 * @param $options String|array (Optional, default is <code>null</code>): Single option, or an array of options.
+	 * Option values are:
+	 * <dl>
+	 *   <dt>'include_old'</dt>
+	 *   <dd>Include <code>$old</code> in the range; <code>$new</code> is excluded.</dd>
+	 *   <dt>'include_new'</dt>
+	 *   <dd>Include <code>$new</code> in the range; <code>$old</code> is excluded.</dd>
+	 *   <dt>'include_both'</dt>
+	 *   <dd>Include both <code>$old</code> and <code>$new</code> in the range.</dd>
+	 *   <dt>'skip_deleted_text'</dt>
+	 *   <dd>Exclude deleted revisions from the count.</dd>
+	 *   <dt>'skip_suppressed_user'</dt>
+	 *   <dd>Exclude revisions where the user has been suppressed from the count.</dd>
+	 *   <dt>'skip_deleted'</dt>
+	 *   <dd>Exclude deleted revisions and revisions where the user has been suppressed from the count.</dd>
+	 *   <dt>'skip_minor'</dt>
+	 *   <dd>Exclude revisions marked as minor edits from the count</dd>
+	 * </dl>
+	 * Unknown option values are ignored.
+	 * @return Int Number of revision authors in the range; zero if not both revisions exist
 	 */
-	public function countAuthorsBetween( $old, $new, $limit ) {
+	public function countAuthorsBetween( $old, $new, $limit, $options = null ) {
 		if ( !( $old instanceof Revision ) ) {
 			$old = Revision::newFromTitle( $this, (int)$old );
 		}
 		if ( !( $new instanceof Revision ) ) {
 			$new = Revision::newFromTitle( $this, (int)$new );
 		}
+		// XXX: what if Revision objects are passed in, but they don't refer to this title?
+		// Add $old->getPage() != $new->getPage() || $old->getPage() != $this->getArticleID()
+		// in the sanity check below?
 		if ( !$old || !$new ) {
 			return 0; // nothing to compare
 		}
+		$old_cmp = ' > ';
+		$new_cmp = ' < ';
+		$skip_del = 0;
+		$skip_minor = false;
+		if ($options !== null) {
+			if ( !is_array ( $options ) ) {
+				$options = array ( $options );
+			}
+			foreach ( $options as $option ) {
+				switch ( $option ) {
+					case 'include_old':
+						$old_cmp = ' >= ';
+						break;
+					case 'include_new':
+						$new_cmp = ' <= ';
+						break;
+					case 'include_both':
+						$old_cmp = ' >= ';
+						$new_cmp = ' <= ';
+						break;
+					case 'skip_deleted_text':
+						$skip_del |= Revision::DELETED_TEXT;
+						break;
+					case 'skip_suppressed_user':
+						$skip_del |= Revision::SUPPRESSED_USER;
+						break;
+					case 'skip_deleted':
+						$skip_del = Revision::DELETED_TEXT | Revision::SUPPRESSED_USER;
+						break;
+					case 'skip_minor':
+						$skip_minor = true;
+						break;
+				}
+				// There's no 'skip_deleted_comment' since edit comment suppression is considered irrelevant for
+				// counting the number of authors.
+			}
+		}
 		$dbr = wfGetDB( DB_SLAVE );
-		$res = $dbr->select( 'revision', 'DISTINCT rev_user_text',
-			array(
-				'rev_page' => $this->getArticleID(),
-				'rev_timestamp > ' . $dbr->addQuotes( $dbr->timestamp( $old->getTimestamp() ) ),
-				'rev_timestamp < ' . $dbr->addQuotes( $dbr->timestamp( $new->getTimestamp() ) )
-			), __METHOD__,
+		$conditions = array(
+			'rev_page' => $this->getArticleID(),
+			'rev_timestamp' . $old_cmp . $dbr->addQuotes( $dbr->timestamp( $old->getTimestamp() ) ),
+			'rev_timestamp' . $new_cmp . $dbr->addQuotes( $dbr->timestamp( $new->getTimestamp() ) )
+		);
+		if ( $skip_del !== 0 ) {
+			$conditions[] = $dbr->bitAnd( 'rev_deleted', $skip_del ) . ' = 0';
+		}
+		if ( $skip_minor ) {
+			$conditions[] = 'rev_minor_edit = 0';
+		}
+		$res = $dbr->select(
+			'revision', 'DISTINCT rev_user_text', $conditions, __METHOD__,
 			array( 'LIMIT' => $limit + 1 ) // add one so caller knows it was truncated
 		);
 		return (int)$dbr->numRows( $res );

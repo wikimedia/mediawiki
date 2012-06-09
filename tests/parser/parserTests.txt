@@ -3134,7 +3134,7 @@ disabled
 !! test
 int keyword
 !! input
-{{int:youhavenewmessages|lots of money|not!}}
+{{int:youhavenewmessages|lots of money|not!|}}
 !! result
 <p>You have lots of money (not!).
 </p>

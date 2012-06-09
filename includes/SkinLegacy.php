@@ -467,21 +467,67 @@ class LegacyTemplate extends BaseTemplate {
 		if ( $wgUser->getNewtalk() ) {
 			# do not show "You have new messages" text when we are viewing our
 			# own talk page
-			if ( !$title->equals( $wgUser->getTalkPage() ) ) {
+			$userTalkTitle = $wgUser->getTalkPage();
+			if ( !$title->equals( $userTalkTitle ) ) {
+				$newtalks = $wgUser->getNewMessageLinks();
+				$nofAuthors = 0;
+				if ( count( $newtalks ) == 1 && $newtalks[0]['wiki'] === wfWikiID() ) {
+					$lastSeenRev = isset( $newtalks[0]['rev'] ) ? $newtalks[0]['rev'] : null;
+					if ( $lastSeenRev !== null ) {
+						$plural = true; // Default if we have a revision: if unknown, use plural
+						$firstUnseenRevID = $userTalkTitle->getNextRevisionID( $lastSeenRev->getId() );
+						if ( $firstUnseenRevID !== false ) {
+							// Singular if only 1 unseen revision, plural if several unseen revisions.
+							$plural = $userTalkTitle->getLatestRevID() !== $firstUnseenRevID;
+							if ($plural) {
+								// Count authors; zero means "latest revision"; at most 10
+								$nofAuthors = $userTalkTitle->countAuthorsBetween(
+									$lastSeenRev, 0, 10, array ( 'include_new', 'skip_deleted' )
+								);
+								// If $nofAuthors is >10 now, we know that we have 10 or more authors
+							} else {
+								$nofAuthors = 1;
+							}
+						}
+					} else {
+						$plural = false; // Singular if no revision -> diff link will show latest change only in any case
+					}
+					$plural = $plural ? 2 : 1;
+					// 2 signifies "more than one revision". We don't know how many, and even if we did,
+					// the number of revisions or authors is not necessarily the same as the number of
+					// "messages".
+					$diffplural = $plural;
+				} else {
+					// Old behavior considered only $wgUser->getNewtalk() and always generated a link to the last diff.
+					// "You have new messages (last change)"
+					$plural = 2;
+					$diffplural = 1;
+					$lastSeenRev = null;
+				}
 				$tl = Linker::linkKnown(
-					$wgUser->getTalkPage(),
-					wfMsgHtml( 'newmessageslink' ),
+					$userTalkTitle,
+					wfMsgExt( 'newmessageslink', array( 'parsemag', 'escape' ), $plural),
 					array(),
 					array( 'redirect' => 'no' )
 				);
 
+				if ( $nofAuthors === 0 ) {
+					$fromAuthors = '';
+				} elseif ( $nofAuthors <= 10 ) {
+					$fromAuthors = wfMsgExt( 'newmessagesauthors', array( 'parsemag', 'escape' ), $nofAuthors );
+				} else {
+					$fromAuthors = wfMsg( 'newmessagesmanyauthors' );
+				}
+
 				$dl = Linker::linkKnown(
-					$wgUser->getTalkPage(),
-					wfMsgHtml( 'newmessagesdifflink' ),
+					$userTalkTitle,
+					wfMsgExt( 'newmessagesdifflink', array( 'parsemag', 'escape' ), $diffplural),
 					array(),
-					array( 'diff' => 'cur' )
+					$lastSeenRev !== null
+						? array( 'oldid' => $lastSeenRev->getId(), 'diff' => 'cur' )
+						: array( 'diff' => 'cur' )
 				);
-				$s[] = '<strong>' . wfMsg( 'youhavenewmessages', $tl, $dl ) . '</strong>';
+				$s[] = '<strong>' . wfMsg( 'youhavenewmessages', $tl, $dl, $fromAuthors ) . '</strong>';
 				# disable caching
 				$wgOut->setSquidMaxage( 0 );
 				$wgOut->enableClientCache( false );
