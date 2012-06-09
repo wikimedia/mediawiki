@@ -108,13 +108,13 @@ class BackupDumperPageTest extends DumpTestCase {
 			"BackupDumperTestP2Text1" );
 		$this->assertRevision( $this->revId2_2, "BackupDumperTestP2Summary2",
 			$this->textId2_2, 23, "b7vj5ks32po5m1z1t1br4o7scdwwy95",
-			"BackupDumperTestP2Text2" );
+			"BackupDumperTestP2Text2", $this->revId2_1 );
 		$this->assertRevision( $this->revId2_3, "BackupDumperTestP2Summary3",
 			$this->textId2_3, 23, "jfunqmh1ssfb8rs43r19w98k28gg56r",
-			"BackupDumperTestP2Text3" );
+			"BackupDumperTestP2Text3", $this->revId2_2 );
 		$this->assertRevision( $this->revId2_4, "BackupDumperTestP2Summary4 extra",
 			$this->textId2_4, 44, "6o1ciaxa6pybnqprmungwofc4lv00wv",
-			"BackupDumperTestP2Text4 some additional Text" );
+			"BackupDumperTestP2Text4 some additional Text", $this->revId2_3 );
 		$this->assertPageEnd();
 
 		// Page 3
@@ -156,11 +156,11 @@ class BackupDumperPageTest extends DumpTestCase {
 		$this->assertRevision( $this->revId2_1, "BackupDumperTestP2Summary1",
 			$this->textId2_1, 23, "jprywrymfhysqllua29tj3sc7z39dl2" );
 		$this->assertRevision( $this->revId2_2, "BackupDumperTestP2Summary2",
-			$this->textId2_2, 23, "b7vj5ks32po5m1z1t1br4o7scdwwy95" );
+			$this->textId2_2, 23, "b7vj5ks32po5m1z1t1br4o7scdwwy95", false, $this->revId2_1 );
 		$this->assertRevision( $this->revId2_3, "BackupDumperTestP2Summary3",
-			$this->textId2_3, 23, "jfunqmh1ssfb8rs43r19w98k28gg56r" );
+			$this->textId2_3, 23, "jfunqmh1ssfb8rs43r19w98k28gg56r", false, $this->revId2_2 );
 		$this->assertRevision( $this->revId2_4, "BackupDumperTestP2Summary4 extra",
-			$this->textId2_4, 44, "6o1ciaxa6pybnqprmungwofc4lv00wv" );
+			$this->textId2_4, 44, "6o1ciaxa6pybnqprmungwofc4lv00wv", false, $this->revId2_3 );
 		$this->assertPageEnd();
 
 		// Page 3
@@ -199,7 +199,7 @@ class BackupDumperPageTest extends DumpTestCase {
 		// Page 2
 		$this->assertPageStart( $this->pageId2, NS_MAIN, "BackupDumperTestP2" );
 		$this->assertRevision( $this->revId2_4, "BackupDumperTestP2Summary4 extra",
-			$this->textId2_4, 44, "6o1ciaxa6pybnqprmungwofc4lv00wv" );
+			$this->textId2_4, 44, "6o1ciaxa6pybnqprmungwofc4lv00wv", false, $this->revId2_3 );
 		$this->assertPageEnd();
 
 		// Page 3
@@ -239,7 +239,7 @@ class BackupDumperPageTest extends DumpTestCase {
 		// Page 2
 		$this->assertPageStart( $this->pageId2, NS_MAIN, "BackupDumperTestP2" );
 		$this->assertRevision( $this->revId2_4, "BackupDumperTestP2Summary4 extra",
-			$this->textId2_4, 44, "6o1ciaxa6pybnqprmungwofc4lv00wv" );
+			$this->textId2_4, 44, "6o1ciaxa6pybnqprmungwofc4lv00wv", false, $this->revId2_3 );
 		$this->assertPageEnd();
 
 		// Page 3
@@ -310,11 +310,11 @@ class BackupDumperPageTest extends DumpTestCase {
 		$this->assertRevision( $this->revId2_1, "BackupDumperTestP2Summary1",
 			$this->textId2_1, 23, "jprywrymfhysqllua29tj3sc7z39dl2" );
 		$this->assertRevision( $this->revId2_2, "BackupDumperTestP2Summary2",
-			$this->textId2_2, 23, "b7vj5ks32po5m1z1t1br4o7scdwwy95" );
+			$this->textId2_2, 23, "b7vj5ks32po5m1z1t1br4o7scdwwy95", false, $this->revId2_1 );
 		$this->assertRevision( $this->revId2_3, "BackupDumperTestP2Summary3",
-			$this->textId2_3, 23, "jfunqmh1ssfb8rs43r19w98k28gg56r" );
+			$this->textId2_3, 23, "jfunqmh1ssfb8rs43r19w98k28gg56r", false, $this->revId2_2 );
 		$this->assertRevision( $this->revId2_4, "BackupDumperTestP2Summary4 extra",
-			$this->textId2_4, 44, "6o1ciaxa6pybnqprmungwofc4lv00wv" );
+			$this->textId2_4, 44, "6o1ciaxa6pybnqprmungwofc4lv00wv", false, $this->revId2_3 );
 		$this->assertPageEnd();
 
 		// Page 3
@@ -342,7 +342,7 @@ class BackupDumperPageTest extends DumpTestCase {
 		// Page 2
 		$this->assertPageStart( $this->pageId2, NS_MAIN, "BackupDumperTestP2" );
 		$this->assertRevision( $this->revId2_4, "BackupDumperTestP2Summary4 extra",
-			$this->textId2_4, 44, "6o1ciaxa6pybnqprmungwofc4lv00wv" );
+			$this->textId2_4, 44, "6o1ciaxa6pybnqprmungwofc4lv00wv", false, $this->revId2_3 );
 		$this->assertPageEnd();
 
 		// Page 3
@@ -370,7 +370,7 @@ class BackupDumperPageTest extends DumpTestCase {
 		// Page 2
 		$this->assertPageStart( $this->pageId2, NS_MAIN, "BackupDumperTestP2" );
 		$this->assertRevision( $this->revId2_4, "BackupDumperTestP2Summary4 extra",
-			$this->textId2_4, 44, "6o1ciaxa6pybnqprmungwofc4lv00wv" );
+			$this->textId2_4, 44, "6o1ciaxa6pybnqprmungwofc4lv00wv", false, $this->revId2_3 );
 		$this->assertPageEnd();
 
 		// Page 3

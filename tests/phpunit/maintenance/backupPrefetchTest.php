@@ -207,6 +207,7 @@ class BaseDumpTest extends MediaWikiTestCase {
     <id>2</id>
     <revision>
       <id>2</id>
+      <parentid>5</parentid>
       <timestamp>2012-04-01T16:46:05Z</timestamp>
       <contributor>
         <ip>127.0.0.1</ip>

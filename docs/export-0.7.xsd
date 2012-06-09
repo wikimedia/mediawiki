@@ -22,6 +22,7 @@
 	revision identifiers. See also bug 4220.
 	Fix type for <ns> from "positiveInteger" to "nonNegativeInteger" to allow 0
 	Moves <logitem> to its right location.
+	Add parentid to revision.
 
 	The canonical URL to the schema document is:
 	http://www.mediawiki.org/xml/export-0.7.xsd
@@ -158,6 +159,7 @@
 	<complexType name="RevisionType">
 		<sequence>
 			<element name="id" type="positiveInteger" />
+			<element name="parentid" type="positiveInteger" minOccurs="0" />
 			<element name="timestamp" type="dateTime" />
 			<element name="contributor" type="mw:ContributorType" />
 			<element name="minor" minOccurs="0" maxOccurs="1" />
