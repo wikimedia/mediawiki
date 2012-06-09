@@ -1408,11 +1408,22 @@ class WikiPage extends Page {
 
 		$sectionContent = ContentHandler::makeContent( $text, $this->getTitle() ); #XXX: could make section title, but that's not required.
 
+		#TODO: check ContentHandler::supportsSections(). throw exception??
 		$newContent = $this->replaceSectionContent( $section, $sectionContent, $sectionTitle, $edittime );
 		#TODO: check $newContent == false. throw exception??
-		#TODO: add ContentHandler::supportsSections()
 
 		return ContentHandler::getContentText( $newContent ); #XXX: unclear what will happen for non-wikitext!
+	}
+
+	/**
+	 * Returns true iff this page's content model supports sections.
+	 *
+	 * @return boolean whether sections are supported.
+	 *
+	 * @todo: the skin should check this and not offer section functionality if sections are not supported.
+	 */
+	public function supportsSections() {
+		return $this->getContentHandler()->supportsSections();
 	}
 
 	/**

@@ -826,6 +826,17 @@ abstract class ContentHandler {
 			new LinksDeletionUpdate( $title ),
 		);
 	}
+
+	/**
+	 * Returns true iff this page's content model supports sections.
+	 *
+	 * This default implementation returns false,
+	 *
+	 * @return boolean whether sections are supported.
+	 */
+	public function supportsSections() {
+		return false;
+	}
 }
 
 /**
@@ -970,6 +981,14 @@ class WikitextContentHandler extends TextContentHandler {
 		throw new MWException( "getHtml() not implemented for wikitext. Use getParserOutput()->getText()." );
 	}
 
+	/**
+	 * Returns true because wikitext supports sections.
+	 * 
+	 * @return boolean whether sections are supported.
+	 */
+	public function supportsSections() {
+		return false;
+	}
 }
 
 #XXX: make ScriptContentHandler base class with plugin interface for syntax highlighting?
