@@ -233,7 +233,7 @@
 			// Get last match, stop at hash
 			var	re = new RegExp( '^[^#]*[&?]' + $.escapeRE( param ) + '=([^&#]*)' ),
 				m = re.exec( url );
-			if ( m && m.length > 1 ) {
+			if ( m ) {
 				// Beware that decodeURIComponent is not required to understand '+'
 				// by spec, as encodeURIComponent does not produce it.
 				return decodeURIComponent( m[1].replace( /\+/g, '%20' ) );
