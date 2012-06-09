@@ -1369,10 +1369,12 @@ class Article extends Page {
 
 			$this->doDelete( $reason, $suppress );
 
-			if ( $request->getCheck( 'wpWatch' ) && $user->isLoggedIn() ) {
-				WatchAction::doWatch( $title, $user );
-			} elseif ( $title->userIsWatching() ) {
-				WatchAction::doUnwatch( $title, $user );
+			if ( $user->isLoggedIn() && $request->getCheck( 'wpWatch' ) != $user->isWatched( $title ) ) {
+				if ( $request->getCheck( 'wpWatch' ) ) {
+					WatchAction::doWatch( $title, $user );
+				} else {
+					WatchAction::doUnwatch( $title, $user );
+				}
 			}
 
 			return;
@@ -1436,7 +1438,7 @@ class Article extends Page {
 		} else {
 			$suppress = '';
 		}
-		$checkWatch = $user->getBoolOption( 'watchdeletion' ) || $this->getTitle()->userIsWatching();
+		$checkWatch = $user->getBoolOption( 'watchdeletion' ) || $user->isWatched( $this->getTitle() );
 
 		$form = Xml::openElement( 'form', array( 'method' => 'post',
 			'action' => $this->getTitle()->getLocalURL( 'action=delete' ), 'id' => 'deleteconfirm' ) ) .

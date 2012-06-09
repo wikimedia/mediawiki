@@ -358,7 +358,7 @@ class MovePageForm extends UnlistedSpecialPage {
 		}
 
 		$watchChecked = $user->isLoggedIn() && ($this->watch || $user->getBoolOption( 'watchmoves' )
-			|| $this->oldTitle->userIsWatching());
+			|| $user->isWatched( $this->oldTitle ) );
 		# Don't allow watching if user is not logged in
 		if( $user->isLoggedIn() ) {
 			$out->addHTML( "

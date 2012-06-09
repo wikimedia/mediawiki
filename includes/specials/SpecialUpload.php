@@ -516,7 +516,7 @@ class SpecialUpload extends SpecialPage {
 		if( $local && $local->exists() ) {
 			// We're uploading a new version of an existing file.
 			// No creation, so don't watch it if we're not already.
-			return $local->getTitle()->userIsWatching();
+			return $this->getUser()->isWatched( $local->getTitle() );
 		} else {
 			// New page should get watched if that's our option.
 			return $this->getUser()->getOption( 'watchcreations' );

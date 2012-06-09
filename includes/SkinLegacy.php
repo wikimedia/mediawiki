@@ -638,7 +638,7 @@ class LegacyTemplate extends BaseTemplate {
 		$title = $this->getSkin()->getTitle();
 
 		if ( $wgOut->isArticleRelated() ) {
-			if ( $title->userIsWatching() ) {
+			if ( $wgUser->isWatched( $title ) ) {
 				$text = wfMsg( 'unwatchthispage' );
 				$query = array(
 					'action' => 'unwatch',

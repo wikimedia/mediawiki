@@ -119,10 +119,12 @@ class FileDeleteForm {
 				// file, otherwise go back to the description page
 				$wgOut->addReturnTo( $this->oldimage ? $this->title : Title::newMainPage() );
 
-				if ( $wgRequest->getCheck( 'wpWatch' ) && $wgUser->isLoggedIn() ) {
-					WatchAction::doWatch( $this->title, $wgUser );
-				} elseif ( $this->title->userIsWatching() ) {
-					WatchAction::doUnwatch( $this->title, $wgUser );
+				if ( $wgUser->isLoggedIn() && $wgRequest->getCheck( 'wpWatch' ) != $wgUser->isWatched( $this->title ) ) {
+					if ( $wgRequest->getCheck( 'wpWatch' ) ) {
+						WatchAction::doWatch( $this->title, $wgUser );
+					} else {
+						WatchAction::doUnwatch( $this->title, $wgUser );
+					}
 				}
 			}
 			return;
@@ -210,7 +212,7 @@ class FileDeleteForm {
 			$suppress = '';
 		}
 
-		$checkWatch = $wgUser->getBoolOption( 'watchdeletion' ) || $this->title->userIsWatching();
+		$checkWatch = $wgUser->getBoolOption( 'watchdeletion' ) || $wgUser->isWatched( $this->title );
 		$form = Xml::openElement( 'form', array( 'method' => 'post', 'action' => $this->getAction(),
 			'id' => 'mw-img-deleteconfirm' ) ) .
 			Xml::openElement( 'fieldset' ) .

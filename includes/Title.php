@@ -1516,6 +1516,7 @@ class Title {
 	/**
 	 * Is $wgUser watching this page?
 	 *
+	 * @deprecated in 1.20; use User::isWatched() instead.
 	 * @return Bool
 	 */
 	public function userIsWatching() {

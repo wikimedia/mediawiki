@@ -825,7 +825,7 @@ abstract class ApiBase extends ContextSource {
 	 */
 	protected function getWatchlistValue ( $watchlist, $titleObj, $userOption = null ) {
 
-		$userWatching = $titleObj->userIsWatching();
+		$userWatching = $this->getUser()->isWatched( $titleObj );
 
 		switch ( $watchlist ) {
 			case 'watch':

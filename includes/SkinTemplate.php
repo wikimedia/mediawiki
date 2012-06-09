@@ -258,7 +258,7 @@ class SkinTemplate extends Skin {
 		/* XXX currently unused, might get useful later
 		$tpl->set( 'editable', ( !$title->isSpecialPage() ) );
 		$tpl->set( 'exists', $title->getArticleID() != 0 );
-		$tpl->set( 'watch', $title->userIsWatching() ? 'unwatch' : 'watch' );
+		$tpl->set( 'watch', $user->isWatched( $title ) ? 'unwatch' : 'watch' );
 		$tpl->set( 'protect', count( $title->isProtected() ) ? 'unprotect' : 'protect' );
 		$tpl->set( 'helppage', $this->msg( 'helppage' )->text() );
 		*/
@@ -974,7 +974,7 @@ class SkinTemplate extends Skin {
 					 * a change to that procedure these messages will have to remain as
 					 * the global versions.
 					 */
-					$mode = $title->userIsWatching() ? 'unwatch' : 'watch';
+					$mode = $user->isWatched( $title ) ? 'unwatch' : 'watch';
 					$token = WatchAction::getWatchToken( $title, $user, $mode );
 					$content_navigation['actions'][$mode] = array(
 						'class' => $onPage && ( $action == 'watch' || $action == 'unwatch' ) ? 'selected' : false,

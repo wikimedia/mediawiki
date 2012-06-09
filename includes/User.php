@@ -66,6 +66,11 @@ class User {
 	const EDIT_TOKEN_SUFFIX = EDIT_TOKEN_SUFFIX;
 
 	/**
+	 * Maximum items in $mWatchedItems
+	 */
+	const MAX_WATCHED_ITEMS_CACHE = 100;
+
+	/**
 	 * Array of Strings List of member variables which are saved to the
 	 * shared cache (memcached). Any operation which changes the
 	 * corresponding database fields must call a cache-clearing function.
@@ -218,6 +223,11 @@ class User {
 	 * @var Block
 	 */
 	private $mBlockedFromCreateAccount = false;
+
+	/**
+	 * @var Array
+	 */
+	private $mWatchedItems = array();
 
 	static $idCacheByName = array();
 
@@ -2614,13 +2624,33 @@ class User {
 	}
 
 	/**
+	 * Get a WatchedItem for this user and $title.
+	 *
+	 * @param $title Title
+	 * @return WatchedItem
+	 */
+	public function getWatchedItem( $title ) {
+		$key = $title->getNamespace() . ':' . $title->getDBkey();
+
+		if ( isset( $this->mWatchedItems[$key] ) ) {
+			return $this->mWatchedItems[$key];
+		}
+
+		if ( count( $this->mWatchedItems ) >= self::MAX_WATCHED_ITEMS_CACHE ) {
+			$this->mWatchedItems = array();
+		}
+
+		$this->mWatchedItems[$key] = WatchedItem::fromUserTitle( $this, $title );
+		return $this->mWatchedItems[$key];
+	}
+
+	/**
 	 * Check the watched status of an article.
 	 * @param $title Title of the article to look at
 	 * @return Bool
 	 */
 	public function isWatched( $title ) {
-		$wl = WatchedItem::fromUserTitle( $this, $title );
-		return $wl->isWatched();
+		return $this->getWatchedItem( $title )->isWatched();
 	}
 
 	/**
@@ -2628,8 +2658,7 @@ class User {
 	 * @param $title Title of the article to look at
 	 */
 	public function addWatch( $title ) {
-		$wl = WatchedItem::fromUserTitle( $this, $title );
-		$wl->addWatch();
+		$this->getWatchedItem( $title )->addWatch();
 		$this->invalidateCache();
 	}
 
@@ -2638,8 +2667,7 @@ class User {
 	 * @param $title Title of the article to look at
 	 */
 	public function removeWatch( $title ) {
-		$wl = WatchedItem::fromUserTitle( $this, $title );
-		$wl->removeWatch();
+		$this->getWatchedItem( $title )->removeWatch();
 		$this->invalidateCache();
 	}
 

@@ -756,7 +756,7 @@ class EditPage {
 		} elseif ( $wgUser->getOption( 'watchcreations' ) && !$this->mTitle->exists() ) {
 			# Watch creations
 			$this->watchthis = true;
-		} elseif ( $this->mTitle->userIsWatching() ) {
+		} elseif ( $wgUser->isWatched( $this->mTitle ) ) {
 			# Already watched
 			$this->watchthis = true;
 		}
@@ -1470,7 +1470,7 @@ class EditPage {
 	 */
 	protected function commitWatch() {
 		global $wgUser;
-		if ( $this->watchthis xor $this->mTitle->userIsWatching() ) {
+		if ( $wgUser->isLoggedIn() && $this->watchthis != $wgUser->isWatched( $this->mTitle ) ) {
 			$dbw = wfGetDB( DB_MASTER );
 			$dbw->begin( __METHOD__ );
 			if ( $this->watchthis ) {
