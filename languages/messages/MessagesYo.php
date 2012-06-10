@@ -271,7 +271,7 @@ $messages = array(
 'redirectpagesub' => 'Ojúewé àtúnjúwe',
 'lastmodifiedat' => 'Àtunṣe ojúewé yi gbẹ̀yìn wáyé ni ago $2, ọjọ́ọdún $1.',
 'viewcount' => 'A ti wo ojúewé yi ni {{PLURAL:$1|ẹ̀kan péré|iye ìgbà $1}}.',
-'protectedpage' => 'Ojúewé ajẹ́dídáàbòbò',
+'protectedpage' => 'Ojúewé oníàbò',
 'jumpto' => 'Lọ sí:',
 'jumptonavigation' => 'atọ́ka',
 'jumptosearch' => 'àwárí',
@@ -438,7 +438,7 @@ Fún ìyédèpadà, ẹ jọ̀wọ́ ẹ lo [//translatewiki.net/wiki/Main_Page?
 'customcssprotected' => 'Ẹ kò ní ìyọ̀nda láti ṣàtúnṣe ojúewé CSS yìí nítorípé ó ní àwọn ìtòjọ oníṣe ẹlòmíràn.',
 'customjsprotected' => 'Ẹ kò ní ìyọ̀nda láti ṣàtúnṣe ojúewé JavaScript yìí nítorípé ó ní àwọn ìtòjọ oníṣe ẹlòmíràn.',
 'ns-specialprotected' => 'Àtúnṣe kò ṣe é ṣe sí àwọn ojúewé pàtàkì.',
-'titleprotected' => "[[User:$1|$1]] ti dínà sí dídá àkọlé yìí. Àlàyé rẹ̀ ni pí ''$2''.",
+'titleprotected' => "[[User:$1|$1]] ti dínà sí dídá àkọlé yìí. Ìdí rẹ̀ ni pé ''$2''.",
 
 # Virus scanner
 'virus-badscanner' => "Ìtorapọ̀ búburú: awáìpasẹ̀ èràn aláìmọ̀n : ''$1''",
@@ -737,6 +737,7 @@ Tó bá jẹ́ pé oníṣe aláìlórúkọ ni yín, tí ẹ sì ri pé wọ́n
 'note' => "'''Àkíyèsí:'''",
 'previewnote' => "'''Ẹ rántí pé àyẹ̀wò lásán nì yí.'''
 Àwọn àtúnṣe yín kò tíì jẹ́ kìkópamọ́!",
+'continue-editing' => 'Ìtẹ̀síwájú àtúnṣe',
 'previewconflict' => 'Àkọ́wò yìí jẹ́ bí ìkọ̀rọ̀ inú àlà ìtúnṣe ìkọ̀rọ̀ òkè yíò ṣe hàn tí ẹ bá yàn láti ṣàmúpamọ́.',
 'session_fail_preview' => "'''Àforíjìn! A kò le gbésẹ̀ àtúnṣe yín nítorí ìpòfo data ìsinsìyí.
 Ẹ jọ̀wọ́ ẹ gbìyànjú lẹ́ẹ̀kan si.
@@ -752,6 +753,7 @@ Tí kò bá ṣiṣẹ́ síbẹ̀, ẹ gbìyànjú láti [[Special:UserLogout|j
 Èyí únsábà ṣẹlẹ̀ nígbàtí ẹ bá únlo ẹ̀rọ-ìwọ̀fà ẹlòmíràn aláìlórúkọ torí Internet tí kò dára.",
 'edit_form_incomplete' => "'''Àwọn apá kan fọ́ọ̀mù àtúnṣe kò dé ọ̀dọ̀ ẹ̀rọ-ìwọ̀fà; ẹ wo àtúnṣe yín pẹ́ o wà bí ẹ ṣe ṣé kí ẹ tó tún gbìyànjú lẹ́ẹ̀kan síi.'''",
 'editing' => 'Àtúnṣe sí $1',
+'creating' => 'Ìdá $1',
 'editingsection' => 'Àtúnṣe sí $1 (abala)',
 'editingcomment' => 'Àtúnṣe sí $1 (abala tuntun)',
 'editconflict' => 'Ìtakora àtúnṣe: $1',
@@ -1009,6 +1011,8 @@ Kò ṣe é bòmọ́lẹ̀.',
 
 # Diffs
 'history-title' => 'Ìtàn àtúnyẹ̀wò fún "$1"',
+'difference-title' => 'Ìyàtọ̀ láàrin àwọn àtúnyẹ̀wò "$1"',
+'difference-title-multipage' => 'Ìyàtọ̀ láàrin àwọn ojúewé "$1" àti "$2"',
 'difference-multipage' => '(Ìyàtọ̀ láàrin àwọn ojúewé)',
 'lineno' => 'Ìlà $1:',
 'compareselectedversions' => 'Ìfiwéra àwọn àtúnṣe ìṣàyàn',
@@ -1105,6 +1109,7 @@ Ní báyìí ná ẹ le ṣàwárí lọ́dọ̀ Google.
 'prefs-beta' => 'Àwọn ìní Beta',
 'prefs-datetime' => 'Ọjọ́ọdún àti àkókò',
 'prefs-labs' => 'Àwọn ìní ibiàdánwò',
+'prefs-user-pages' => 'Àwọn ojúewé oníṣe',
 'prefs-personal' => 'Ọ̀rọ̀ nípa oníṣe',
 'prefs-rc' => 'Àwọn àtúnṣe tuntun',
 'prefs-watchlist' => 'Ìmójútó',
@@ -1267,7 +1272,7 @@ Tí ẹ bá fisílẹ̀ a ó lòó láti tóka iṣẹ́ yín fún yín.',
 'right-movefile' => 'Yípò fáìlì',
 'right-suppressredirect' => 'Mọ́ dàá àwọn àtúnjúwe lati ojúewé orísun nígbà tí ojúewé bá únyípòdà',
 'right-upload' => 'Ìrùsókè àwọn faili',
-'right-reupload' => 'Kọléṣórí fáìlì tó wà yìí',
+'right-reupload' => 'Ìkọṣórí àwọn fáìlì',
 'right-reupload-own' => 'Ìkọsórí àwọn fáìlì tó wà tí wọn jẹ́ rírùsókè lọ́wọ́ araẹni',
 'right-reupload-shared' => 'Ìrékọjá àwọn fáìlì nínú ibi-àkójọ amóhùnmáwòrán àjọpín lábẹ́lé',
 'right-upload_by_url' => 'Ìrùsókè àwọn faili láti URL kan',
@@ -1333,7 +1338,7 @@ Tí ẹ bá fisílẹ̀ a ó lòó láti tóka iṣẹ́ yín fún yín.',
 'action-move-subpages' => 'yípò ojúewé yìí àti àwọn ọmọ ojúewé rẹ̀',
 'action-move-rootuserpages' => 'yípòdà gbọ̀ngàn àwọn ojúewé oníṣe',
 'action-movefile' => 'yípò fáìlì yìí',
-'action-upload' => 'rùsókè fáìlì yìí',
+'action-upload' => 'ìrùsókè fáìlì yìí',
 'action-reupload' => 'kọléṣórí fáìlì tó wà yìí',
 'action-reupload-shared' => 'ṣe ìrékọjá fáìlì yìí nínú ibi-àkójọ àjọpín',
 'action-upload_by_url' => 'rùsókè fáìlí yìí láti URL',
@@ -2530,6 +2535,9 @@ kò le yípò ojúewé padà sí ara rẹ̀.',
 'import-logentry-interwiki' => 'mú $1 wá láti inú wiki míràn',
 'import-logentry-interwiki-detail' => '{{PLURAL:$1|Àtúnyẹ̀wò|Àwọn àtúnyẹ̀wò}} $1 láti $2',
 
+# JavaScriptTest
+'javascripttest' => 'Ìdánwò JavaScript',
+
 # Tooltip help for the actions
 'tooltip-pt-userpage' => 'Ojúewé oníṣe yín',
 'tooltip-pt-mytalk' => 'Ojúewé ọ̀rọ̀ yín',
@@ -2609,6 +2617,7 @@ kò le yípò ojúewé padà sí ara rẹ̀.',
 'spamprotectiontitle' => 'Ajọ̀ àbò spam',
 
 # Info page
+'pageinfo-title' => 'Àròyé fún "$1"',
 'pageinfo-header-edits' => 'Àwọn àtúnṣe',
 'pageinfo-header-watchlist' => 'Ìmójútó',
 'pageinfo-header-views' => 'Àwọn ìwò',
@@ -2639,6 +2648,7 @@ kò le yípò ojúewé padà sí ara rẹ̀.',
 'widthheightpage' => '$1 × $2, $3 {{PLURAL:$3|ojúewé|àwọn ojúewé}}',
 'file-info' => 'ìtóbi faili: $1, irú MIME: $2',
 'file-info-size' => '$1 × $2 pixel, ìtóbi faili: $3, irú MIME: $4',
+'file-info-size-pages' => '$1 × $2 pixel, ìtóbi faili: $3, irú MIME: $4, {{PLURAL:$5|ojúewé|ojúewé}} $5',
 'file-nohires' => 'Kò sí ìgbéhàn gíga jù báun lọ.',
 'svg-long-desc' => 'faili SVG, pẹ̀lú $1 × $2 pixels, ìtòbi faili: $3',
 'show-big-image' => 'Pẹ̀lú ìgbéhàn gíga',
@@ -2878,6 +2888,7 @@ Tóbájẹ́pé fáìlì ọ̀hún ti jẹ́ títúnṣe sí bóṣewà ní bẹ
 'version-poweredby-credits' => "Agbára ìṣiṣẹ́ wiki yìí wá látọwọ́ '''[//www.mediawiki.org/ MediaWiki]''', copyright © 2001-$1 $2.",
 'version-poweredby-others' => 'àwọn mìíràn',
 'version-software-version' => 'Àtẹ̀jáde',
+'version-entrypoints-header-url' => 'URL',
 
 # Special:FilePath
 'filepath' => 'Ipaṣẹ̀ fáìlì',
@@ -2979,5 +2990,13 @@ Tóbájẹ́pé fáìlì ọ̀hún ti jẹ́ títúnṣe sí bóṣewà ní bẹ
 'api-error-filename-tooshort' => 'Orúkọ fáílì kéréjú bó ṣe yẹ lọ.',
 'api-error-unknown-code' => 'Àsìṣe aláìlójúùtú: "$1".',
 'api-error-unknownerror' => 'Àsìṣe aláìlójúùtú: "$1".',
+
+# Durations
+'duration-seconds' => '{{PLURAL:$1|ìṣẹ́júkejì|ìṣẹ́júkejì}} $1',
+'duration-minutes' => '{{PLURAL:$1|ìṣẹ́jú|ìṣẹ́jú}} $1',
+'duration-hours' => '{{PLURAL:$1|wákàtí|wákàtí}} $1',
+'duration-days' => '{{PLURAL:$1|ọjọ́|ọjọ́}} $1',
+'duration-weeks' => '{{PLURAL:$1|ọ̀sẹ̀|ọ̀sẹ̀}} $1',
+'duration-years' => '{{PLURAL:$1|ọdún|ọdún}} $1',
 
 );

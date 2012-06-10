@@ -1257,6 +1257,7 @@ $2
 'expansion-depth-exceeded-category' => 'الصفحات التي حدث فيها تجاوز عمق التوسيع',
 'expansion-depth-exceeded-warning' => 'الصفحة تجاوزت عمق التوسيع',
 'parser-unstrip-loop-warning' => 'حلقة معراة تم الكشف عنها',
+'parser-unstrip-recursion-limit' => 'تعدى حد العودية Unstrip  ($1)',
 
 # "Undo" feature
 'undo-success' => 'يمكن استرجاع التعديل.

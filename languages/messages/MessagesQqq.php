@@ -414,7 +414,7 @@ Also used as title of [[Special:Search]] page in [[Special:SpecialPages]].
 'edit' => 'The text of the tab going to the edit form. When the page is protected, you will see "[[MediaWiki:Viewsource/{{SUBPAGENAME}}|{{int:viewsource}}]]". Should be in the infinitive mood.
 
 {{Identical|Edit}}',
-'create' => 'The text on the tab for to the edit form on unexisting pages.
+'create' => 'The text on the tab of the edit form on unexisting pages starts editing them.
 
 {{Identical|Create}}',
 'editthispage' => 'This is the "edit" link as used in the skins Classic/Standard, Cologne Blue and Nostalgia. See {{msg|create-this-page}} for when the page does not exist.',
@@ -1980,7 +1980,9 @@ Extensions making use of it:
 'backend-fail-batchsize' => 'Error message when the limit of operations to be done at once in the file backend was reached.
 Parameters:
 * $1 is the number of operations attempted at once in this case.
-* $2 is the maximum number of operations that can be attempted at once.',
+* $2 is the maximum number of operations that can be attempted at once.
+
+A "[[:wikipedia:Front and back ends|backend]]" is a system or component that ordinary users don\'t interact with directly and don\'t need to know about, and that is responsible for a distinct task or service - for example, a storage back-end is a generic system for storing data which other applications can use. Possible alternatives for back-end are "system" or "service", or (depending on context and language) even leave it untranslated.',
 'backend-fail-usable' => 'Parameters:
 * $1 is the file name, including the path, formatted for the storage backend used',
 

@@ -2026,6 +2026,7 @@ serta mungkin mempunyai maklumat lanjut mengenai buku yang anda cari:',
 'alllogstext' => 'Yang berikut ialah gabungan bagi semua log yang ada bagi {{SITENAME}}. Anda boleh menapis senarai ini dengan memilih jenis log, nama pengguna (peka huruf besar), atau nama laman yang terjejas (juga peka huruf besar).',
 'logempty' => 'Tiada item yang sepadan dalam log.',
 'log-title-wildcard' => 'Cari semua tajuk yang bermula dengan teks ini',
+'showhideselectedlogentries' => 'Tunjukkan/sorokkan entri-entri log yang terpilih',
 
 # Special:AllPages
 'allpages' => 'Semua laman',

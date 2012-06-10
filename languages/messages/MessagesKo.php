@@ -1117,7 +1117,7 @@ $2개 보다 적게 써야 하지만 지금은 $1개를 쓰고 있습니다.",
 'page_first' => '처음',
 'page_last' => '마지막',
 'histlegend' => "비교하려는 판을 선택한 다음 엔터나 아래의 버튼을 누르세요.<br />
-설명: '''({{int:cur}})''' = 최신판과 비교,
+설명: '''({{int:cur}})''' = 최신 판과 비교,
 '''({{int:last}})''' = 이전 판과 비교, '''{{int:minoreditletter}}'''= 사소한 편집",
 'history-fieldset-title' => '문서의 변경 내력 찾기',
 'history-show-deleted' => '삭제된 것만',

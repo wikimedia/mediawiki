@@ -601,7 +601,7 @@ Na zisoñjit ket resisaat ho [[Special:Preferences|penndibaboù evit {{SITENAME}
 'createaccount' => 'Krouiñ ur gont nevez',
 'gotaccount' => "Ur gont zo ganeoc'h dija ? '''$1'''.",
 'gotaccountlink' => 'Kevreañ',
-'userlogin-resetlink' => "Ha disoñjet hoc'h eus ho titouroù kevreañ ?",
+'userlogin-resetlink' => "Ha disoñjet eo bet ho titouroù kevreañ ganeoc'h ?",
 'createaccountmail' => 'dre bostel',
 'createaccountreason' => 'Abeg :',
 'badretype' => 'Ne glot ket ar gerioù-tremen an eil gant egile.',

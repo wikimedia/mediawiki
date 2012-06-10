@@ -879,7 +879,7 @@ Mga detalye: $1',
 'nolicense' => 'Waray napili',
 
 # Special:ListFiles
-'imgfile' => 'fayl',
+'imgfile' => 'paypay',
 'listfiles' => 'Listahan han fayl',
 'listfiles_date' => 'Pitsa',
 'listfiles_name' => 'Ngaran',
@@ -888,8 +888,8 @@ Mga detalye: $1',
 'listfiles_count' => 'Mga bersyon',
 
 # File description page
-'file-anchor-link' => 'Fayl',
-'filehist' => 'Kaagi han fayl',
+'file-anchor-link' => 'Paypay',
+'filehist' => 'Kaagi han paypay',
 'filehist-help' => 'Pidlita an adlaw/oras para makit-an an fayl nga naggawas hito nga oras.',
 'filehist-deleteall' => 'Paraa ngatanan',
 'filehist-deleteone' => 'paraa',

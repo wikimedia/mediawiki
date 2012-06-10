@@ -2183,6 +2183,7 @@ Uvědomte si, že jiné webové stránky mohou na soubor odkazovat pomocí pří
 Zobrazení můžete zúžit výběrem typu záznamu, uživatelského jména (záleží na velikosti písmen) nebo dotčené stránky (také záleží na velikosti písmen).',
 'logempty' => 'Protokol neobsahuje žádný odpovídající záznam.',
 'log-title-wildcard' => 'Hledat názvy začínající na tento text',
+'showhideselectedlogentries' => 'Ukázat/skrýt vybrané záznamy',
 
 # Special:AllPages
 'allpages' => 'Všechny stránky',

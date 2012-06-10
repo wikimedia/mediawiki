@@ -2579,10 +2579,10 @@ Se costa ùltima possibilità a fussa lòn che a-j serv, a podrìa ëdcò dovré
 'export-addns' => 'Gionté',
 'export-download' => 'Ciamé dë salvelo coma archivi',
 'export-templates' => 'Ciapa andrinta jë stamp',
-'export-pagelinks' => 'Anseriss pàgine colegà a na përfondità ëd:',
+'export-pagelinks' => 'Anclude le pàgine colegà a na përfondità ëd:',
 
 # Namespace 8 related
-'allmessages' => 'Messagi ëd sistema',
+'allmessages' => 'Mëssagi ëd sistema',
 'allmessagesname' => 'Nòm',
 'allmessagesdefault' => "Test che a-i sarìa se a-i fusso pa 'd modìfiche",
 'allmessagescurrent' => 'Test corent',
