@@ -92,7 +92,7 @@ class TextPassDumperTest extends DumpTestCase {
 		$nameStub = $this->setUpStub();
 		$nameFull = $this->getNewTempFile();
 		$dumper = new TextPassDumper( array ( "--stub=file:" . $nameStub,
-				"--output=file:" . $nameFull ) );
+				"--output=file:" . $nameFull, "--quiet" ) );
 		$dumper->reporting = false;
 		$dumper->setDb( $this->db );
 
@@ -243,7 +243,7 @@ class TextPassDumperTest extends DumpTestCase {
 			$dumper = new TextPassDumper( array ( "--stub=file:" . $nameStub,
 					"--output=" . $checkpointFormat . ":" . $nameOutputDir . "/full",
 					"--maxtime=1" /*This is in minutes. Fixup is below*/,
-					"--checkpointfile=checkpoint-%s-%s.xml.gz" ) );
+					"--checkpointfile=checkpoint-%s-%s.xml.gz", "--quiet" ) );
 			$dumper->setDb( $this->db );
 			$dumper->maxTimeAllowed = $checkpointAfter; // Patching maxTime from 1 minute
 			$dumper->stderr = $stderr;
@@ -429,10 +429,10 @@ class TextPassDumperTest extends DumpTestCase {
 		if ( $fname === null ) {
 			$fname = $this->getNewTempFile();
 		}
-		$header = '<mediawiki xmlns="http://www.mediawiki.org/xml/export-0.6/" '
+		$header = '<mediawiki xmlns="http://www.mediawiki.org/xml/export-0.7/" '
 			. 'xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" '
-			. 'xsi:schemaLocation="http://www.mediawiki.org/xml/export-0.6/ '
-			. 'http://www.mediawiki.org/xml/export-0.6.xsd" version="0.6" xml:lang="en">
+			. 'xsi:schemaLocation="http://www.mediawiki.org/xml/export-0.7/ '
+			. 'http://www.mediawiki.org/xml/export-0.7.xsd" version="0.7" xml:lang="en">
   <siteinfo>
     <sitename>wikisvn</sitename>
     <base>http://localhost/wiki-svn/index.php/Main_Page</base>
