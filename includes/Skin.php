@@ -72,7 +72,7 @@ abstract class Skin extends ContextSource {
 		}
 		return $wgValidSkinNames;
 	}
- 
+
  	/**
 	 * Fetch the skinname messages for available skins.
 	 * @return array of strings
@@ -1342,28 +1342,62 @@ abstract class Skin extends ContextSource {
 		$ntl = '';
 
 		if ( count( $newtalks ) == 1 && $newtalks[0]['wiki'] === wfWikiID() ) {
-			$userTitle = $this->getUser()->getUserPage();
-			$userTalkTitle = $userTitle->getTalkPage();
+			$userTalkTitle = $this->getUser()->getTalkPage();
 
 			if ( !$userTalkTitle->equals( $out->getTitle() ) ) {
+				$lastSeenRev = isset( $newtalks[0]['rev'] ) ? $newtalks[0]['rev'] : null;
+				$nofAuthors = 0;
+				if ( $lastSeenRev !== null ) {
+					$plural = true; // Default if we have a revision ID: if unknown, use plural
+					$firstUnseenRevID = $userTalkTitle->getNextRevisionID( $lastSeenRev->getId() );
+					if ( $firstUnseenRevID !== false ) {
+						// Singular if only 1 unseen revision, plural if several unseen revisions.
+						$plural = $userTalkTitle->getLatestRevID() !== $firstUnseenRevID;
+						if ($plural) {
+							// Count authors; zero means "latest revision"; at most 10
+							$nofAuthors = $userTalkTitle->countAuthorsBetween( $lastSeenRev, 0, 10, 'include_new' );
+							// If $nofAuthors is >10 now, we know that we have 10 or more authors
+						} else {
+							$nofAuthors = 1;
+						}
+					}
+				} else {
+					// Singular if no revision -> diff link will show latest change only in any case
+					$plural = false;
+				}
+				$plural = $plural ? 2 : 1;
+				// 2 signifies "more than one revision". We don't know how many, and even if we did,
+				// the number of revisions or authors is not necessarily the same as the number of
+				// "messages".
 				$newMessagesLink = Linker::linkKnown(
 					$userTalkTitle,
-					$this->msg( 'newmessageslink' )->escaped(),
+					$this->msg( 'newmessageslinkplural' )->params( $plural )->escaped(),
 					array(),
 					array( 'redirect' => 'no' )
 				);
 
+				if ( $nofAuthors === 0 ) {
+					$fromAuthors = '';
+				} elseif ( $nofAuthors <= 10 ) {
+					$fromAuthors = $this->msg( 'newmessagesauthors' )->numParams( $nofAuthors )->text();
+				} else {
+					$fromAuthors = $this->msg( 'newmessagesmanyauthors' )->text();
+				}
+
 				$newMessagesDiffLink = Linker::linkKnown(
 					$userTalkTitle,
-					$this->msg( 'newmessagesdifflink' )->escaped(),
+					$this->msg( 'newmessagesdifflinkplural' )->params( $plural )->escaped(),
 					array(),
-					array( 'diff' => 'cur' )
+					$lastSeenRev !== null
+						? array( 'oldid' => $lastSeenRev->getID(), 'diff' => 'cur' )
+						: array( 'diff' => 'cur' )
 				);
 
 				$ntl = $this->msg(
-					'youhavenewmessages',
+					'youhavenewmessagesfromusers',
 					$newMessagesLink,
-					$newMessagesDiffLink
+					$newMessagesDiffLink,
+					$fromAuthors
 				)->text();
 				# Disable Squid cache
 				$out->setSquidMaxage( 0 );
