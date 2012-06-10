@@ -337,7 +337,7 @@ class Parser {
 		 * to internalParse() which does all the real work.
 		 */
 
-		global $wgUseTidy, $wgAlwaysUseTidy, $wgDisableLangConversion, $wgDisableTitleConversion;
+		global $wgUseTidy, $wgAlwaysUseTidy;
 		$fname = __METHOD__.'-' . wfGetCaller();
 		wfProfileIn( __METHOD__ );
 		wfProfileIn( $fname );
@@ -389,9 +389,8 @@ class Parser {
 		 * c) It's a conversion table
 		 * d) it is an interface message (which is in the user language)
 		 */
-		if ( !( $wgDisableLangConversion
-				|| isset( $this->mDoubleUnderscores['nocontentconvert'] )
-				|| $this->mTitle->isConversionTable() ) )
+		if ( !( $options->getDisableContentConversion()
+				|| isset( $this->mDoubleUnderscores['nocontentconvert'] ) ) )
 		{
 			# Run convert unconditionally in 1.18-compatible mode
 			global $wgBug34832TransitionalRollback;
@@ -410,8 +409,7 @@ class Parser {
 		 * {{DISPLAYTITLE:...}} is present. DISPLAYTITLE takes precedence over
 		 * automatic link conversion.
 		 */
-		if ( !( $wgDisableLangConversion
-				|| $wgDisableTitleConversion
+		if ( !( $options->getDisableTitleConversion()
 				|| isset( $this->mDoubleUnderscores['nocontentconvert'] )
 				|| isset( $this->mDoubleUnderscores['notitleconvert'] )
 				|| $this->mOutput->getDisplayTitle() !== false ) )
