@@ -15,6 +15,7 @@
  * @author Dbl2010
  * @author Don Alessandro
  * @author Emperyan
+ * @author Erdemaslancan
  * @author Erkan Yilmaz
  * @author Fryed-peach
  * @author Goktr001
@@ -1825,6 +1826,7 @@ Güvenlik denetimi uygun bir şekilde gerçekleştirilemiyor.',
 'uploadstash-badtoken' => 'İşlemin gerçekleştirilmesi başarısız oldu, muhtemelen düzenleme yetkileriniz zaman aşımına uğradı. Yeniden deneyin.',
 'uploadstash-errclear' => 'Dosyaların silinmesi başarısız oldu.',
 'uploadstash-refresh' => 'Dosya listelerini yenile',
+'invalid-chunk-offset' => 'Geçersiz öbek ofset',
 
 # img_auth script messages
 'img-auth-accessdenied' => 'Erişim engellendi',
@@ -2866,8 +2868,8 @@ Geçici dosya kayıp.',
 'tooltip-pt-preferences' => 'Tercihleriniz (ayarlarınız)',
 'tooltip-pt-watchlist' => 'Değişiklikler için izlemeye aldığınız sayfaların listesi',
 'tooltip-pt-mycontris' => 'Katkılarınızın listesi',
-'tooltip-pt-login' => 'Mecbur değilsiniz fakat oturum açmanız tavsiye olunur',
-'tooltip-pt-anonlogin' => 'Oturum açmanız tavsiye olunur ama mecbur değilsiniz.',
+'tooltip-pt-login' => 'Oturum açmanızı tavsiye ederiz; ancak zorunda değilsiniz',
+'tooltip-pt-anonlogin' => 'Oturum açmanızı tavsiye ederiz; ancak zorunda değilsiniz',
 'tooltip-pt-logout' => 'Sistemden çık',
 'tooltip-ca-talk' => 'İçerik ile ilgili tartışma',
 'tooltip-ca-edit' => 'Bu sayfayı değiştirebilirsiniz. Lütfen kaydetmeden önce önizleme düğmesini kullanın.',

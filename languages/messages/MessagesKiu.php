@@ -949,6 +949,7 @@ Kaberê bini ke şıma de kewti irtıbat, adresa e-postey şıma eşkera nêbena
 'filestatus' => 'Halê heqa telifi:',
 'filesource' => 'Çıme:',
 'uploadedfiles' => 'Dosyê barkerdey',
+'empty-file' => 'Dosya ke ti şawit veng biy.',
 'savefile' => 'Dosya qeyd ke',
 'uploadedimage' => '"[[$1]]" bar bi',
 'upload-source' => 'Dosya çımey',

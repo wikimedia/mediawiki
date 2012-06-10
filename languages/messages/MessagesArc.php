@@ -865,6 +865,7 @@ $1',
 'http-read-error' => 'HTTP ܦܘܕܐ ܒܩܪܝܬܐ.',
 'http-curl-error' => 'ܦܘܕܐ ܒܫܟܚܐ ܕURL: $1',
 
+'license-header' => 'ܦܣܣܐ',
 'license-nopreview' => '(ܠܝܬ ܚܝܪܐ ܩܕܡܝܐ)',
 'upload_source_file' => ' (ܠܦܦܐ ܥܠ ܚܫܘܒܬܐ ܕܝܠܟ)',
 
@@ -936,6 +937,7 @@ $1',
 'randomredirect-nopages' => 'ܠܝܬ ܨܘܝܒ̈ܐ ܒܚܩܠܐ ܕ"$1".',
 
 # Statistics
+'statistics' => 'ܡܢܝܢܘܬ',
 'statistics-pages' => 'ܦܐܬܬ̈ܐ',
 'statistics-users-active' => 'ܡܦܠܚܢ̈ܐ ܙܪ̄ܝܙܐ',
 
@@ -1124,8 +1126,8 @@ $1',
 # Delete
 'deletepage' => 'ܫܘܦ ܦܐܬܐ',
 'confirm' => 'ܚܬܬ',
-'excontent' => "ܚܒܝܫܬ̈ܐ ܗܘܬ: '$1'",
-'excontentauthor' => "ܚܒܝܫܬ̈ܐ ܗܘܬ: '$1' (ܘܫܘܬܦܢܐ ܝܚܝܕܝܐ ܗܘܐ '[[Special:Contributions/$2|$2]]')",
+'excontent' => "ܚܒܝܫܬ̈ܐ ܗܘ̈ܝ: '$1'",
+'excontentauthor' => "ܚܒܝܫܬ̈ܐ ܗܘ̈ܝ: '$1' (ܘܫܘܬܦܢܐ ܝܚܝܕܝܐ ܗܘܐ '[[Special:Contributions/$2|$2]]')",
 'exblank' => 'ܦܐܬܐ ܣܦܝܩܬܐ ܗܘܐ',
 'delete-confirm' => 'ܫܘܦ "$1"',
 'delete-legend' => 'ܫܘܦ',
@@ -1141,6 +1143,7 @@ $1',
 # Rollback
 'rollbacklink' => 'ܐܦܢܝ',
 'editcomment' => "ܦܣܝܩܬ̈ܐ ܕܫܘܚܠܦܐ ܗܘܐ: \"''\$1''\".",
+'revertpage' => 'ܐܗܦܟ ܫܘܚܠܦ̈ܐ ܒܝܕ [[Special:Contributions/$2|$2]] ([[User talk:$2|ܡܡܠܐ]]) ܠܬܢܝܬܐ ܐܚܪܝܬܐ ܒܝܕ [[User:$1|$1]]',
 
 # Edit tokens
 'sessionfailure-title' => 'ܡܘܬܒܐ ܠܐ ܢܨܚܬ',
@@ -1157,7 +1160,7 @@ $1',
 'protect-fallback' => 'ܒܥܝ "$1" ܦܣܣܐ',
 'protect-level-autoconfirmed' => 'ܚܪܘܡ ܡܦܠܚܢ̈ܐ ܚܕ̈ܬܐ ܘܠܐ ܥܠܝܠ̈ܐ',
 'protect-level-sysop' => 'ܡܕܒܪ̈ܢܐ ܒܠܚܘܕ',
-'protect-expiring' => 'ܦܪܩ ܒ $1 (UTC)',
+'protect-expiring' => 'ܬܦܪܘܩ ܒ $1 (UTC)',
 'protect-expiry-indefinite' => 'ܠܥܠܡ',
 'protect-othertime' => 'ܥܕܢܐ ܐܚܪܬܐ:',
 'protect-othertime-op' => 'ܥܕܢܐ ܐܚܪܬܐ',
@@ -1353,6 +1356,17 @@ Do you want to change the settings?',
 'importlogpage' => 'ܣܓܠܐ ܕܡܥܠܢܘܬܐ',
 'import-logentry-upload-detail' => '$1 {{PLURAL:$1|ܬܢܝܬܐ |ܬܢܝܬ̈ܐ}}',
 'import-logentry-interwiki-detail' => '$1 {{PLURAL:$1|ܬܢܝܬܐ |ܬܢܝܬ̈ܐ}} ܡܢ $2',
+
+# Tooltip help for the actions
+'tooltip-pt-preferences' => 'ܓܒܝܬ̈ܝ',
+'tooltip-pt-login' => 'ܛܒ ܐܢܬ ܕܣܓܠ ܥܠܠܐ، ܐܠܐ ܗܢܐ ܠܘ ܐܠܨܝܐ',
+'tooltip-pt-logout' => 'ܦܠܘܛ',
+'tooltip-ca-talk' => 'ܡܡܠܠܐ ܥܠ ܚܒܝܫܬܐ ܕܦܐܬܐ',
+'tooltip-ca-protect' => 'ܢܛܘܪ ܗܕܐ ܦܐܬܐ',
+'tooltip-ca-delete' => 'ܫܘܦ ܦܐܬܐ ܗܕܐ',
+'tooltip-n-randompage' => 'ܦܬܘܟ ܡܓܠܬܐ ܚܘܝܚܬܐ',
+'tooltip-t-emailuser' => 'ܫܕܪ ܐܓܪܬܐ ܠܗܢܐ ܡܦܠܚܢܐ',
+'tooltip-save' => 'ܠܒܘܟ ܫܘܚܠܦܘܟ',
 
 # Attribution
 'anonymous' => '{{PLURAL:$1|ܡܦܠܚܢܐ ܠܐ ܝܕܝܥܐ|ܡܦܠܚܢ̈ܐ ܠܐ ܝܕ̈ܝܥܐ}} ܕ {{SITENAME}}',

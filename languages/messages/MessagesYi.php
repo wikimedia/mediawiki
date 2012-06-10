@@ -311,6 +311,7 @@ $messages = array(
 'index-category' => 'אינדעקסירטע בלעטער',
 'noindex-category' => 'אומאינדעקסירטע בלעטער',
 'broken-file-category' => 'בלעטער מיט צעבראכענע טעקע לינקען',
+'categoryviewer-pagedlinks' => '($1) ($2)',
 
 'about' => 'וועגן',
 'article' => 'אינהאלט בלאט',
@@ -1613,6 +1614,7 @@ $1",
 'uploadedimage' => 'אַרױפֿגעלאָדן "[[$1]]"',
 'overwroteimage' => 'אַרויפֿגעלאָדן א נײַע ווערסיע פון "[[$1]]"',
 'uploaddisabled' => 'אַרויפֿלאָדן טעקעס מבוטל',
+'copyuploaddisabled' => 'ארויפלאדן דורך URL אומאקטיווירט',
 'uploadfromurl-queued' => 'אייער ארויפלאד איז אין דער רייע.',
 'uploaddisabledtext' => 'אַרויפֿלאָדן טעקעס נישט דערמעגלעכט אצינד.',
 'uploadscripted' => 'די טעקע האט א סקריפט אדער HTML קאד וואס קען ווערן פֿאלש אויסגעטייטשט דורך א בלעטערער',
@@ -2039,6 +2041,7 @@ $1",
 # User Messenger
 'usermessage-summary' => 'איבערלאזן סיסטעם אָנזאָג',
 'usermessage-editor' => 'סיסטעם שליח',
+'usermessage-template' => 'MediaWiki:באניצער־מעלדונג',
 
 # Watchlist
 'watchlist' => 'מיין אויפפַּאסונג ליסטע',
@@ -2175,6 +2178,7 @@ $UNWATCHURL
 'unprotectedarticle' => 'אראפגענומען שוץ פון "[[$1]] "',
 'movedarticleprotection' => 'באוועגט די שיץ באשטימונגען פֿון "[[$2]]" אויף "[[$1]]"',
 'protect-title' => 'ענדערן שיץ ניווא פֿאַר "$1"',
+'protect-title-notallowed' => 'באקוקן שיץ־ניווא פון "$1"',
 'prot_1movedto2' => '[[$1]] אריבערגעפירט צו [[$2]]',
 'protect-badnamespace-title' => 'אומשיצבארער נאמענטייל',
 'protect-badnamespace-text' => 'בלעטער אין דעם נאמענטייל קען מען נישט שיצן.',
@@ -2275,6 +2279,7 @@ $UNWATCHURL
 $1',
 'undelete-show-file-confirm' => 'צי זענט איר זעכער איר ווילט באַקוקן די אויסגעמעקטע רעוויזיע פון דער טעקע "<nowiki>$1</nowiki>" פון $2 בשעה $3?',
 'undelete-show-file-submit' => 'יא',
+'undelete-revisionrow' => '$1 $2 $3 $4 . . $5 $6 $7',
 
 # Namespace form on various pages
 'namespace' => 'נאמענטייל:',
@@ -2746,8 +2751,15 @@ $1',
 
 # Stylesheets
 'common.css' => '/* CSS געשריבן דא וועט אפילירן און באיינפלוסן אלע סקינס */',
-'monobook.css' => '/* סטייל דא געלייגט וועט באיינפלוסן די בעקגראונד Monobook בלויז */',
-'vector.css' => '/* CSS געשטעלט דא ווירקט נאר אויפן Vector סקין */',
+'standard.css' => '/* CSS געשטעלט דא ווירקט אויפן סטאנדארט סקין */',
+'nostalgia.css' => '/* CSS געשטעלט דא ווירקט נאר אויפן נאסטאלגיע סקין */',
+'cologneblue.css' => '/* CSS געשטעלט דא ווירקט נאר אויפן קעלנישן־בלוי סקין */',
+'monobook.css' => '/* סטייל דא געלייגט וועט באאיינפלוסן דעם Monobook סקין */',
+'myskin.css' => '/* CSS געשטעלט דא ווירקט אויפן MySkin סקין */',
+'chick.css' => '/* CSS געשטעלט דא ווירקט אויפן טשיק סקין */',
+'simple.css' => '/* CSS געשטעלט דא ווירקט אויפן איינפאך סקין */',
+'modern.css' => '/* CSS געשטעלט דא ווירקט אויפן מאדערנעם סקין */',
+'vector.css' => '/* CSS געשטעלט דא ווירקט נאר אויפן וועקטאר סקין */',
 
 # Scripts
 'common.js' => '/* אלע סקריפטן פון JavaScript דא געשריבן וועט לויפן פאר אלע באנוצער ווען זיי וועלן לאדירן דעם בלאט */',
@@ -2785,6 +2797,17 @@ $1',
 'pageinfo-views' => 'צאַל קוקן',
 'pageinfo-viewsperedit' => 'צאל קוקן צו א רעדאַקטירונג',
 
+# Skin names
+'skinname-standard' => 'קלאסיש',
+'skinname-nostalgia' => 'נאסטאלגיע',
+'skinname-cologneblue' => 'קעלניש בלוי',
+'skinname-monobook' => 'מאנאבוק',
+'skinname-myskin' => 'מיין סקין',
+'skinname-chick' => 'טשיק',
+'skinname-simple' => 'איינפֿאַך',
+'skinname-modern' => 'מאדערן',
+'skinname-vector' => 'וועקטאר',
+
 # Patrolling
 'markaspatrolleddiff' => 'באצייכנען אלס פאטראלירט',
 'markaspatrolledtext' => 'באצייכנען בלאט אלס פאטראלירט',
@@ -2818,6 +2841,7 @@ $1',
 
 # Media information
 'thumbsize' => 'קליינבילד גרייס:',
+'widthheight' => '$1 × $2',
 'widthheightpage' => '$1 × $2, {{PLURAL:$3|איין בלאט|$3 בלעטער}}',
 'file-info' => 'טעקע גרייס: $1, MIME טיפ: $2',
 'file-info-size' => '$1 × $2 פיקסעל, טעקע גרייס: $3, טיפ MIME: $4',
@@ -2847,6 +2871,9 @@ $1',
 'sp-newimages-showfrom' => 'באַװײַזן נײַע טעקעס פון $2, $1',
 
 # Video information, used by Language::formatTimePeriod() to format lengths in the above messages
+'video-dims' => '$1, $2 × $3',
+'seconds-abbrev' => '$1ס',
+'minutes-abbrev' => '$1מ',
 'seconds' => '{{PLURAL:$1|$1 סעקונדע|$1 סעקונדעס}}',
 'minutes' => '{{PLURAL:$1|$1 מינוט|$1 מינוט}}',
 'hours' => '{{PLURAL:$1|$1 שעה|$1 שעה}}',
@@ -2967,6 +2994,7 @@ $1',
 'exif-citycreated' => "שטאַט וואו מ'האט געמאכט דאס בילד",
 'exif-countrydest' => 'לאנד געוויזן',
 'exif-countrycodedest' => 'קאד פאר לאנד געוויזן',
+'exif-provinceorstatedest' => 'פראווינץ אדער שטאַט געוויזן',
 'exif-citydest' => 'געוויזענע שטאט',
 'exif-objectname' => 'קורצער טיטל',
 'exif-source' => 'מקור',
@@ -3302,8 +3330,27 @@ $5
 'iranian-calendar-m11' => 'באַהמאַן',
 'iranian-calendar-m12' => 'עספֿאַנד',
 
+# Hijri month names
+'hijri-calendar-m9' => 'ראמאדאן',
+'hijri-calendar-m10' => 'שאוואל',
+'hijri-calendar-m11' => 'דהו אל־קאדא',
+'hijri-calendar-m12' => 'דהו אל־הידזשא',
+
 # Hebrew month names
-'hebrew-calendar-m9' => 'סיון',
+'hebrew-calendar-m1' => 'תשרי',
+'hebrew-calendar-m2' => 'חשוון',
+'hebrew-calendar-m3' => 'כסלו',
+'hebrew-calendar-m4' => 'טבת',
+'hebrew-calendar-m5' => 'שבט',
+'hebrew-calendar-m6' => 'אדר',
+'hebrew-calendar-m6a' => "אדר א'",
+'hebrew-calendar-m6b' => "אדר ב'",
+'hebrew-calendar-m7' => 'ניסן',
+'hebrew-calendar-m8' => 'אייר',
+'hebrew-calendar-m9' => 'סיוון',
+'hebrew-calendar-m10' => 'תמוז',
+'hebrew-calendar-m11' => 'אב',
+'hebrew-calendar-m12' => 'אלול',
 'hebrew-calendar-m1-gen' => 'תשרי',
 'hebrew-calendar-m2-gen' => 'חשוון',
 'hebrew-calendar-m3-gen' => 'כסלו',
@@ -3326,6 +3373,7 @@ $5
 'version' => 'ווערסיע',
 'version-specialpages' => 'ספעציעלע בלעטער',
 'version-variables' => 'וואַריאַבלען',
+'version-skins' => 'באניצער־אייבערפלאכן',
 'version-other' => 'אנדער',
 'version-version' => '(ווערסיע $1)',
 'version-license' => 'ליצענץ',
@@ -3521,5 +3569,6 @@ $5
 'duration-years' => '$1 {{PLURAL:$1|יאר|יאר}}',
 'duration-decades' => '$1 {{PLURAL:$1|צענדליקער|צענדליקערס}}',
 'duration-centuries' => '$1 {{PLURAL:$1|יארהונדערט|יארהונדערטער}}',
+'duration-millennia' => '$1 {{PLURAL:$1|יארטויזנט|יארטויזנטער}}',
 
 );

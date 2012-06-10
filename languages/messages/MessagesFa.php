@@ -2101,7 +2101,7 @@ https://www.mediawiki.org/wiki/Manual:Image_Authorization را ببینید.',
 'linkstoimage-more' => 'بیش از $1 صفحه به این پرونده پیوند {{PLURAL:$1|دارد|دارند}}.
 فهرست زیر تنها {{PLURAL:$1|اولین پیوند|اولین $1 پیوند}} به این صفحه را نشان می‌دهد.
 [[Special:WhatLinksHere/$2|فهرست کامل]] نیز موجود است.',
-'nolinkstoimage' => 'هیچ صفحه‌ای به این تصویر پیوند ندارد.',
+'nolinkstoimage' => 'این پرونده در هیچ صفحه‌ای به کار نرفته‌است.',
 'morelinkstoimage' => '[[Special:WhatLinksHere/$1|پیوندهای دیگر]] به این پرونده را ببینید.',
 'linkstoimage-redirect' => '$1 (تغییرمسیر پرونده) $2',
 'duplicatesoffile' => '{{PLURAL:$1|پروندهٔ|پرونده‌های}} زیر نسخهٔ تکراری این پرونده {{PLURAL:$1|است|هستند}} ([[Special:FileDuplicateSearch/$2|اطلاعات بیشتر]]):',

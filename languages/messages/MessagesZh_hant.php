@@ -2003,6 +2003,7 @@ Template:消除歧義',
 'alllogstext' => '綜合顯示 {{SITENAME}} 的上傳、刪除、保護、查封以及站務日誌。',
 'logempty' => '在日誌中不存在匹配項。',
 'log-title-wildcard' => '搜尋以這個文字開始的標題',
+'showhideselectedlogentries' => '顯示/隱藏所選的日誌項目',
 
 # Special:AllPages
 'allpages' => '所有頁面',

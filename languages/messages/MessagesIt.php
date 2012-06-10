@@ -2387,7 +2387,7 @@ Le impostazioni correnti per la pagina sono '''$1''':",
 'undeletepagetitle' => "'''Quanto segue è composto da revisioni cancellate di [[:$1|$1]]'''.",
 'viewdeletedpage' => 'Visualizza le pagine cancellate',
 'undeletepagetext' => "{{PLURAL:$1|La pagina indicata di seguito è stata cancellata, ma è ancora in archivio e pertanto può essere recuperata|Le pagine indicate di seguito sono state cancellate, ma sono ancora in archivio e pertanto possono essere recuperate}}. L'archivio può essere svuotato periodicamente.",
-'undelete-fieldset-title' => 'Recupera revisioni',
+'undelete-fieldset-title' => 'Ripristina versioni',
 'undeleteextrahelp' => "Per recuperare l'intera cronologia della pagina, lasciare tutte le caselle deselezionate e fare clic su '''''{{int:undeletebtn}}'''''.
 Per effettuare un ripristino selettivo, selezionare le caselle corrispondenti alle revisioni da ripristinare e fare clic su '''''{{int:undeletebtn}}'''''.",
 'undeleterevisions' => '{{PLURAL:$1|Una revisione|$1 revisioni}} in archivio',

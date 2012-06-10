@@ -164,11 +164,11 @@ $messages = array(
 'may_long' => 'gulan',
 'june' => 'pûşper',
 'july' => 'tîrmeh',
-'august' => 'tebax',
+'august' => 'gelawêj',
 'september' => 'rezber',
 'october' => 'kewçêr',
 'november' => 'sermawez',
-'december' => 'Berfanbar',
+'december' => 'berfanbar',
 'january-gen' => 'Rêbendan',
 'february-gen' => 'Reşemî',
 'march-gen' => 'Adar',
@@ -185,7 +185,7 @@ $messages = array(
 'feb' => 'reş',
 'mar' => 'adr',
 'apr' => 'avr',
-'may' => 'gul',
+'may' => 'gulan',
 'jun' => 'pûş',
 'jul' => 'tîr',
 'aug' => 'teb',
@@ -364,7 +364,7 @@ $messages = array(
 
 # Short words for each namespace, by default used in the namespace tab in monobook
 'nstab-main' => 'Rûpel',
-'nstab-user' => 'Bikarhêner',
+'nstab-user' => 'Rûpela bikarhêner',
 'nstab-media' => 'Medya',
 'nstab-special' => 'Rûpela taybet',
 'nstab-project' => 'Rûpela projeyê',
@@ -664,7 +664,7 @@ Heke niha tomar bikî, '''bi tene''' nivîsara qutiya jor wê bê tomarkirin.",
 'editingold' => "'''Hişyarî: Tu li ser guhertoyeke kevn a vê rûpelê dixebitî.
 Heke tu qeyd bikî, hemû guhertinên piştî vê revîzyonê winda dibin.
 '''",
-'yourdiff' => 'Ciyawazî',
+'yourdiff' => 'Cudahî',
 'copyrightwarning' => "Hişyarî: Hemû tevkariyên {{SITENAME}} di bin $2 de tên belav kirin (ji bo hûragahiyan li $1 binêre). Eger tu nexwazî ku nivîsên te bê dilrehmî bên guherandin û li gora keyfa herkesî bên belavkirin, li vir neweşîne.<br />
 Tu soz didî ku te ev bi xwe nivîsand an jî ji çavkaniyekê azad an geliyane ''(public domain)'' girt.
 '''BERHEMÊN MAFÊN WAN PARASTÎ (©) BÊ DESTÛR NEWEŞÎNE!'''",
@@ -695,7 +695,7 @@ Sedema jêbirina rûpelê bi referansa li jêr hatiye piştrastkirin.',
 Ew berê heye.',
 
 # "Undo" feature
-'undo-success' => 'Ev guherandina kane were şondakirin. Xêra xwe ferqê piştî tomarkirinê bibîne û seke, ku tu ew versîyona dixwazê û tomarbike. Eger te şaşbûnekî kir, xêra xwe derkeve.',
+'undo-success' => 'Ev guherandin dikare were şûndekirin. Ji kerema xwe ferqa piştî tomarkirinê bibîne, bê ka tu dixwazî vê guhertoyê tomar bikî an na. Ger te şaşîtiyek kir, ji kerema xwe derkeve.',
 'undo-failure' => 'Ev guherandina nikane were şondakirin ji ber ku guherandinên piştî wê.',
 'undo-summary' => 'Guhertoya $1 ya [[Special:Contributions/$2|$2]] ([[User talk:$2|gotûbêj]]) şûnde kir',
 
@@ -778,7 +778,7 @@ Sedema qedexekirina $3 ev e: ''$2''",
 'revertmerge' => 'Veqetîne',
 
 # Diffs
-'history-title' => 'Dîroka versyonên "$1"',
+'history-title' => 'Dîroka guhertoyên "$1"',
 'difference-title' => 'Cudahiya di navbera guhertoyên "$1" de',
 'difference-multipage' => '(Cudahî di navbera rûpelan de)',
 'lineno' => 'Rêz $1:',
@@ -1136,7 +1136,7 @@ Xêra xwe navekî din bibîne.",
 'listfiles_user' => 'Bikarhêner',
 'listfiles_size' => 'Mezinbûn',
 'listfiles_description' => 'Danasîn',
-'listfiles_count' => 'Versiyon',
+'listfiles_count' => 'Guherto',
 
 # File description page
 'file-anchor-link' => 'Wêne',
@@ -1537,7 +1537,7 @@ Ji bo jêbirinan û çêkirinên nuh ra, xêra xwe di [[Special:Log/delete|reşa
 'undelete-header' => '[[Special:Log/delete|Reşahîya jêbirinê]] bibîne ji bo rûpelên jêbirî.',
 'undelete-search-box' => 'Rûpelên jêbirî lêbigere',
 'undelete-search-prefix' => 'Rûpela pêşe min ke ê bi vê destpêdîkin:',
-'undelete-search-submit' => 'Lêbigere',
+'undelete-search-submit' => 'Lêgerîn',
 'undelete-show-file-submit' => 'Erê',
 
 # Namespace form on various pages
@@ -1566,7 +1566,7 @@ Ji bo jêbirinan û çêkirinên nuh ra, xêra xwe di [[Special:Log/delete|reşa
 'sp-contributions-userrights' => 'Îdarekirina mafên bikarhêneran',
 'sp-contributions-search' => 'Li beşdariyan bigere',
 'sp-contributions-username' => 'Adresê IP ya navî bikarhêner:',
-'sp-contributions-submit' => 'Lêbigere',
+'sp-contributions-submit' => 'Lêgerîn',
 
 # What links here
 'whatlinkshere' => 'Girêdanên li ser vê rûpelê',
@@ -1643,7 +1643,7 @@ Sedemekê binivîse!',
 'blocklist-by' => 'Astengkirina rêveber',
 'blocklist-params' => 'Parametreyan asteng bike',
 'blocklist-reason' => 'Sedem',
-'ipblocklist-submit' => 'Lêbigere',
+'ipblocklist-submit' => 'Lêgerîn',
 'ipblocklist-localblock' => 'Astengkirina herêmî',
 'ipblocklist-otherblocks' => '{{PLURAL:$1|Astengkirin|Astengkirinên}} din',
 'infiniteblock' => 'ji her demê ra',
@@ -1779,12 +1779,12 @@ Rûpela "[[:$1]]" berê heye. Tu rast dixazê wê jêbibê ji bo navguherandinê
 'tooltip-pt-preferences' => 'Tercîhên min',
 'tooltip-pt-watchlist' => 'The list of pages you',
 'tooltip-pt-mycontris' => 'Lîsteya beşdariyên min',
-'tooltip-pt-logout' => 'Derkeve (Log out)',
+'tooltip-pt-logout' => 'Derkeve',
 'tooltip-ca-talk' => 'Gotûbêj li ser rûpela naverokê',
 'tooltip-ca-edit' => 'Vê rûpelê biguherîne! Berê qeydkirinê bişkoka "Pêşdîtin',
 'tooltip-ca-addsection' => 'Beşekê zêde bike.',
 'tooltip-ca-viewsource' => 'Ev rûpela tê parastin. Tu dikarê bes li çavkanîyê sekê.',
-'tooltip-ca-history' => 'Versyonên berê yên vê rûpelê.',
+'tooltip-ca-history' => 'Guhertoyên berê yên vê rûpelê',
 'tooltip-ca-protect' => 'Vê rûpelê biparêze',
 'tooltip-ca-unprotect' => 'Parastina vê rûpelê rake',
 'tooltip-ca-delete' => 'Vê rûpelê jê bibe',
@@ -1799,7 +1799,7 @@ Rûpela "[[:$1]]" berê heye. Tu rast dixazê wê jêbibê ji bo navguherandinê
 'tooltip-n-mainpage-description' => 'Biçe Destpêkê',
 'tooltip-n-portal' => 'Agahdarî li ser {{SITENAME}}, tu dikarî çi bikî, tu dikarî çi li ku bîbînî',
 'tooltip-n-recentchanges' => "Lîsteya guherandinên dawî di vê Wîkî'yê da.",
-'tooltip-n-randompage' => 'Rûpelekî helkeft biwêşîne',
+'tooltip-n-randompage' => 'Rûpeleka ketober bar bike',
 'tooltip-n-help' => 'Bersivên ji bo pirsên te.',
 'tooltip-t-whatlinkshere' => 'Lîsteya hemû rûpelên ku ji vê re grêdidin.',
 'tooltip-t-recentchangeslinked' => 'Recent changes in pages linking to this page',
@@ -1868,8 +1868,8 @@ Rûpela "[[:$1]]" berê heye. Tu rast dixazê wê jêbibê ji bo navguherandinê
 'filedelete-current-unregistered' => 'Datayê "$1" di sistêmê da tune.',
 
 # Browsing diffs
-'previousdiff' => '← Ciyawaziya pêştir',
-'nextdiff' => 'Ciyawaziya paştir →',
+'previousdiff' => '← Cudahiya pêştir',
+'nextdiff' => 'Cudahiya paştir →',
 
 # Media information
 'thumbsize' => 'Mezinahiya wêne:',
@@ -1888,7 +1888,7 @@ Rûpela "[[:$1]]" berê heye. Tu rast dixazê wê jêbibê ji bo navguherandinê
 'newimages-legend' => 'Parzûn',
 'showhidebots' => '($1 bot)',
 'noimages' => 'Ne tiştek tê dîtin.',
-'ilsubmit' => 'Lêbigere',
+'ilsubmit' => 'Lêgerîn',
 'bydate' => 'li gor dîrokê',
 'sp-newimages-showfrom' => "Data'yên nuh ji dema $1, saet $2 da bibîne",
 
@@ -1923,6 +1923,7 @@ Rûpela "[[:$1]]" berê heye. Tu rast dixazê wê jêbibê ji bo navguherandinê
 'exif-languagecode' => 'Ziman',
 'exif-iimcategory' => 'Kategorî',
 'exif-label' => 'Etîket',
+'exif-disclaimer' => 'Ferexetname',
 
 'exif-unknowndate' => 'Dîroka nayê zanîn',
 
@@ -2063,7 +2064,8 @@ Ji kerema xwe zanibe ku tu bi rastî dixwazî vê rûpelê dîsa çêkî.",
 'version-version' => ' (Verzîyon $1)',
 'version-license' => 'Destûr',
 'version-software-product' => 'Berhem',
-'version-software-version' => 'Versiyon',
+'version-software-version' => 'Guherto',
+'version-entrypoints-header-url' => 'URL',
 
 # Special:FilePath
 'filepath-page' => 'Wêne:',

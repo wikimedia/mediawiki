@@ -1325,7 +1325,7 @@ Ha de tenir com a molt {{PLURAL:$1|un caràcter|$1 caràcters}}.',
 'prefs-i18n' => 'Internacionalització',
 'prefs-signature' => 'Signatura',
 'prefs-dateformat' => 'Format de la data',
-'prefs-timeoffset' => "Duració de l'acció",
+'prefs-timeoffset' => 'Decalatge horari',
 'prefs-advancedediting' => 'Opcions avançades',
 'prefs-advancedrc' => 'Opcions avançades',
 'prefs-advancedrendering' => 'Opcions avançades',
@@ -2006,6 +2006,7 @@ Tingueu en compte que altres llocs web poden enllaçar un fitxer amb un URL dire
 Podeu reduir l'extensió seleccionant el tipus de registre, el nom d'usuari realitzador (distingeix entre majúscules i minúscules), o la pàgina objectiu (també en distingeix).",
 'logempty' => 'No hi ha cap coincidència en el registre.',
 'log-title-wildcard' => 'Cerca els títols que comencin amb aquest text',
+'showhideselectedlogentries' => 'Mostra/amaga les entrades de registre seleccionades',
 
 # Special:AllPages
 'allpages' => 'Totes les pàgines',

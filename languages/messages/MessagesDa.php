@@ -1994,6 +1994,7 @@ Læg mærke til at andre hjemmesider kan henvise til filen med en direkte URL, o
 Du kan afgrænse visningen ved at vælge en logtype, brugernavn eller påvirket side. Der skelnes mellem små og store bogstaver for både bruger- og sidenavne.',
 'logempty' => 'Intet passende fundet.',
 'log-title-wildcard' => 'Søg i titler som begynder med teksten',
+'showhideselectedlogentries' => 'Vis/skjul de markerede loghændelser',
 
 # Special:AllPages
 'allpages' => 'Alle sider',
