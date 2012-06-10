@@ -30,8 +30,8 @@ class MessageTest extends MediaWikiLangTestCase {
 	function testMessageParams() {
 		$this->assertEquals( 'Return to $1.', wfMessage( 'returnto' )->text() );
 		$this->assertEquals( 'Return to $1.', wfMessage( 'returnto', array() )->text() );
-		$this->assertEquals( 'You have foo (bar).', wfMessage( 'youhavenewmessages', 'foo', 'bar' )->text() );
-		$this->assertEquals( 'You have foo (bar).', wfMessage( 'youhavenewmessages', array( 'foo', 'bar' ) )->text() );
+		$this->assertEquals( 'You have foo (bar).', wfMessage( 'youhavenewmessages', 'foo', 'bar', '' )->text() );
+		$this->assertEquals( 'You have foo (bar).', wfMessage( 'youhavenewmessages', array( 'foo', 'bar', '' ) )->text() );
 	}
 
 	function testMessageParamSubstitution() {

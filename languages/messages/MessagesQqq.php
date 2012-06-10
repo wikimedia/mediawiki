@@ -540,12 +540,23 @@ Do '''not''' replace SITENAME with a translation of Wikipedia or some encycopedi
 Appears in subtitle
 * $1 is a link to the page (HTML)',
 'retrievedfrom' => 'Message which appears in the source of every page, but it is hidden. It is shown when printing. $1 is a link back to the current page: {{FULLURL:{{FULLPAGENAME}}}}.',
-'youhavenewmessages' => 'The blue message appearing when someone edited your user talk page.
+'youhavenewmessages' => 'The message appearing when someone edited your user talk page.
 The format is: "{{int:youhavenewmessages| [[MediaWiki:Newmessageslink/{{SUBPAGENAME}}|{{int:newmessageslink}}]] |[[MediaWiki:Newmessagesdifflink/{{SUBPAGENAME}}|{{int:newmessagesdifflink}}]]}}"',
 'newmessageslink' => 'This is the first link displayed in an orange rectangle when a user gets a message on his talk page. Used in message {{msg-mw|youhavenewmessages}} (as parameter $1).
+This message itself takes one parameter, $1, which is 1 if there has been one new edit, or 2 if there have been more than one new edit
+since the last time the user has seen his or her talk page.
 
 {{Identical|New messages}}',
-'newmessagesdifflink' => 'This is the second link displayed in an orange rectangle when a user gets a message on his talk page. Used in message {{msg-mw|youhavenewmessages}} (as parameter $2).',
+'newmessagesdifflink' => 'This is the second link displayed in an orange rectangle when a user gets a message on his talk page. Used in message {{msg-mw|youhavenewmessages}} (as parameter $2).
+This message itself takes one parameter, $1, which is 1 if there has been one new edit, or 2 if there have been more than one new edit
+since the last time the user has seen his or her talk page.',
+'newmessagesauthors' => 'The third parametrizable part of the new talk page message indicator. The message takes one parater $1,
+which is the number of different users who edited the user talk page since the user last viewed it. The value is from 1 to 10.
+The message appears after the "newmessageslink"; it is followed by the "newmessagesdifflink". This message thus should normally
+include a trailing whitespace. Used in message {{msg-mw|youhavenewmessages}} (as parameter $3).',
+'newmessagesmanyauthors' => 'An alternative for the third parametrizable part of the new talk page indicator used when more than
+ten users have edited the user talk page since the user last viewed it. Like "newmessagesauthors", this message should normally
+include a trailing whitespace. Used in message {{msg-mw|youhavenewmessages}} (as parameter $3).',
 'youhavenewmessagesmulti' => 'The alternative of {{msg|youhavenewmessages}} as used on wikis with a special setup so they can receive the "new message" notice on other wikis as well. Used on [http://www.wikia.com/ Wikia].
 The format is: "{{int:youhavenewmessagesmulti| [[MediaWiki:Newmessageslink/{{SUBPAGENAME}}|{{int:newmessageslink}}]]}}"',
 'editsection' => 'Display name of link to edit a section on a content page. Example: [{{MediaWiki:Editsection}}].

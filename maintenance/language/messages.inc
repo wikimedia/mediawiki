@@ -306,6 +306,8 @@ $wgMessageStructure = array(
 		'youhavenewmessages',
 		'newmessageslink',
 		'newmessagesdifflink',
+		'newmessagesauthors',
+		'newmessagesmanyauthors',
 		'youhavenewmessagesmulti',
 		'newtalkseparator',
 		'editsection',
