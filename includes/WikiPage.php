@@ -1661,6 +1661,10 @@ class WikiPage extends Page implements IDBAccessObject {
 			$options = ParserOptions::newFromUserAndLang( new User, $wgContLang );
 		}
 
+		if ( $this->getTitle()->isConversionTable() ) {
+			$options->disableContentConversion();
+		}
+
 		$options->enableLimitReport(); // show inclusion/loop reports
 		$options->setTidy( true ); // fix bad HTML
 
