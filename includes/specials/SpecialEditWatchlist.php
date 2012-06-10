@@ -275,7 +275,7 @@ class SpecialEditWatchlist extends UnlistedSpecialPage {
 
 		$res = $dbr->select(
 			array( 'watchlist' ),
-			array( 'wl_namespace',  'wl_title' ),
+			array( 'wl_namespace', 'wl_group', 'wl_title' ),
 			array( 'wl_user' => $this->getUser()->getId() ),
 			__METHOD__,
 			array( 'ORDER BY' => array( 'wl_namespace', 'wl_title' ) )
@@ -285,7 +285,7 @@ class SpecialEditWatchlist extends UnlistedSpecialPage {
 		foreach ( $res as $row ) {
 			$lb->add( $row->wl_namespace, $row->wl_title );
 			if ( !MWNamespace::isTalk( $row->wl_namespace ) ) {
-				$titles[$row->wl_namespace][$row->wl_title] = 1;
+				$titles[$row->wl_namespace][$row->wl_title] = intval($row->wl_group);
 			}
 		}
 
@@ -436,6 +436,17 @@ class SpecialEditWatchlist extends UnlistedSpecialPage {
 	public function submitNormal( $data ) {
 		$removed = array();
 
+		// Regrouping submission
+		$group = intval( $data['group'] );
+		unset($data['group']);
+		if( $group > -1 ){
+			foreach( $data as $titles ) {
+				WatchlistGroup::regroupTitles( $titles, $group, $this->getContext() );
+			}
+			$this->successMessage = 'Titles were successfully regrouped!';
+			return true;
+		}
+
 		foreach( $data as $titles ) {
 			$this->unwatchTitles( $titles );
 			$removed = array_merge( $removed, $titles );
@@ -458,6 +469,8 @@ class SpecialEditWatchlist extends UnlistedSpecialPage {
 	 */
 	protected function getNormalForm(){
 		global $wgContLang;
+
+		
 
 		$fields = array();
 		$count = 0;
@@ -501,6 +514,19 @@ class SpecialEditWatchlist extends UnlistedSpecialPage {
 			$this->toc = false;
 		}
 
+		$groups = WatchlistGroup::getGroups( $this->getContext() );
+		foreach( $groups as &$g ){
+			$g = 'Change group to "' . $g . '"';
+		}
+
+		$gsOptions = array_merge( array( 'Remove titles' => -1, 'Ungroup' => 0 ), array_flip( $groups ) );
+
+		$fields['group'] = array(
+			'type' => 'select',
+			'options' => $gsOptions,
+			'label' => "Action:"
+		);
+
 		$form = new EditWatchlistNormalHTMLForm( $fields, $this->getContext() );
 		$form->setTitle( $this->getTitle() );
 		$form->setSubmitTextMsg( 'watchlistedit-normal-submit' );
@@ -540,9 +566,12 @@ class SpecialEditWatchlist extends UnlistedSpecialPage {
 			);
 		}
 
+		$wgroup = WatchlistGroup::getGroupFromUserTitle( $title, $this->getContext() );
+		$wgrouplink = $wgroup[0];
+
 		wfRunHooks( 'WatchlistEditorBuildRemoveLine', array( &$tools, $title, $title->isRedirect(), $this->getSkin() ) );
 
-		return $link . " (" . $this->getLanguage()->pipeList( $tools ) . ")";
+		return $link . " (" . $this->getLanguage()->pipeList( $tools ) . ") (Group: " . $wgrouplink . ")";
 	}
 
 	/**
