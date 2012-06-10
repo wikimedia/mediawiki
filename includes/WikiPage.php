@@ -1678,6 +1678,9 @@ class WikiPage extends Page {
 		} else { // canonical settings
 			$options = ParserOptions::newFromUserAndLang( new User, $wgContLang );
 		}
+		if ( $this->getTitle()->isConversionTable() ) {
+			$options->disableContentConversion();
+		}
 		$options->enableLimitReport(); // show inclusion/loop reports
 		$options->setTidy( true ); // fix bad HTML
 		return $options;

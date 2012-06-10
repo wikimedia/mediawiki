@@ -150,6 +150,16 @@ class ParserOptions {
 	var $mPreSaveTransform = true;
 
 	/**
+	 * Whether content conversion should be disabled
+	 */
+	var $mDisableContentConversion;
+
+	/**
+	 * Whether title conversion should be disabled
+	 */
+	var $mDisableTitleConversion;
+
+	/**
 	 * Automatically number headings?
 	 */
 	var $mNumberHeadings;
@@ -228,6 +238,8 @@ class ParserOptions {
 	function getEnableLimitReport()             { return $this->mEnableLimitReport; }
 	function getCleanSignatures()               { return $this->mCleanSignatures; }
 	function getExternalLinkTarget()            { return $this->mExternalLinkTarget; }
+	function getDisableContentConversion()      { return $this->mDisableContentConversion; }
+	function getDisableTitleConversion()        { return $this->mDisableTitleConversion; }
 	function getMath()                          { $this->optionUsed( 'math' );
 												  return $this->mMath; }
 	function getThumbSize()                     { $this->optionUsed( 'thumbsize' );
@@ -316,6 +328,8 @@ class ParserOptions {
 	function setTimestamp( $x )                 { return wfSetVar( $this->mTimestamp, $x ); }
 	function setCleanSignatures( $x )           { return wfSetVar( $this->mCleanSignatures, $x ); }
 	function setExternalLinkTarget( $x )        { return wfSetVar( $this->mExternalLinkTarget, $x ); }
+	function disableContentConversion( $x = true ) { return wfSetVar( $this->mDisableContentConversion, $x ); }
+	function disableTitleConversion( $x = true ) { return wfSetVar( $this->mDisableTitleConversion, $x ); }
 	function setMath( $x )                      { return wfSetVar( $this->mMath, $x ); }
 	function setUserLang( $x )                  {
 		if ( is_string( $x ) ) {
@@ -404,7 +418,8 @@ class ParserOptions {
 		global $wgUseDynamicDates, $wgInterwikiMagic, $wgAllowExternalImages,
 			$wgAllowExternalImagesFrom, $wgEnableImageWhitelist, $wgAllowSpecialInclusion,
 			$wgMaxArticleSize, $wgMaxPPNodeCount, $wgMaxTemplateDepth, $wgMaxPPExpandDepth,
-			$wgCleanSignatures, $wgExternalLinkTarget, $wgExpensiveParserFunctionLimit;
+			$wgCleanSignatures, $wgExternalLinkTarget, $wgExpensiveParserFunctionLimit,
+			$wgDisableLangConversion, $wgDisableTitleConversion;
 
 		wfProfileIn( __METHOD__ );
 
@@ -421,6 +436,8 @@ class ParserOptions {
 		$this->mExpensiveParserFunctionLimit = $wgExpensiveParserFunctionLimit;
 		$this->mCleanSignatures = $wgCleanSignatures;
 		$this->mExternalLinkTarget = $wgExternalLinkTarget;
+		$this->mDisableContentConversion = $wgDisableLangConversion;
+		$this->mDisableTitleConversion = $wgDisableTitleConversion;
 
 		$this->mUser = $user;
 		$this->mNumberHeadings = $user->getOption( 'numberheadings' );
