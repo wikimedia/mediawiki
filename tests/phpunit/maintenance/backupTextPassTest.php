@@ -99,6 +99,8 @@ class TextPassDumperTest extends DumpTestCase {
 		// Performing the dump
 		$dumper->dump( WikiExporter::FULL, WikiExporter::TEXT );
 
+		$this->validateXmlAgainstXsd( $nameFull );
+
 		// Checking for correctness of the dumped data
 		$this->assertDumpStart( $nameFull );
 
@@ -162,6 +164,8 @@ class TextPassDumperTest extends DumpTestCase {
 
 		// Performing the dump
 		$dumper->dump( WikiExporter::FULL, WikiExporter::TEXT );
+
+		$this->validateXmlAgainstXsd( $nameFull );
 
 		// Checking for correctness of the dumped data
 		$this->assertDumpStart( $nameFull );
@@ -306,6 +310,7 @@ class TextPassDumperTest extends DumpTestCase {
 				if ( $checkpointFormat == "gzip" ) {
 					$this->gunzip( $nameOutputDir . "/" . $fname );
 				}
+				$this->validateXmlAgainstXsd( $nameOutputDir . "/" . $fname );
 				$this->assertDumpStart( $nameOutputDir . "/" . $fname );
 				$fileOpened = true;
 				$checkpointFiles++;
