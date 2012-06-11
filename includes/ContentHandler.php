@@ -1028,7 +1028,7 @@ class WikitextContentHandler extends TextContentHandler {
 	 * @return boolean whether sections are supported.
 	 */
 	public function supportsSections() {
-		return false;
+		return true;
 	}
 }
 
