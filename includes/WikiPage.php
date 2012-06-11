@@ -1617,7 +1617,7 @@ class WikiPage extends Page {
 		$hook_ok = wfRunHooks( 'ArticleContentSave', array( &$this, &$user, &$content, &$summary,
 			$flags & EDIT_MINOR, null, null, &$flags, &$status ) );
 
-		if ( $hook_ok && !empty( $wgHooks['ArticleSave'] ) ) { #FIXME: use wfHasHook or whatever. # avoid serialization overhead if the hook isn't present
+		if ( $hook_ok && Hooks::isRegistered( 'ArticleSave' ) ) { # avoid serialization overhead if the hook isn't present
 			$content_text = $content->serialize();
 			$txt = $content_text; # clone
 
@@ -1704,9 +1704,8 @@ class WikiPage extends Page {
 			$changed = !$content->equals( $old_content );
 
 			if ( $changed ) {
-				// TODO: validate!
-				if ( $content->isValid() ) {
-					#XXX: do it! throw exception??
+				if ( !$content->isValid() ) {
+					throw new MWException( "New content failed validity check!" );
 				}
 
 				$dbw->begin( __METHOD__ );
@@ -1950,8 +1949,9 @@ class WikiPage extends Page {
 		$edit->newContent = $content;
 		$edit->oldContent = $this->getContent( Revision::RAW );
 
-		$edit->newText = ContentHandler::getContentText( $edit->newContent ); #FIXME: B/C only! don't use this field!
-		$edit->oldText = $edit->oldContent ? ContentHandler::getContentText( $edit->oldContent ) : ''; #FIXME: B/C only! don't use this field!
+		#NOTE: B/C for hooks! don't use these fields!
+		$edit->newText = ContentHandler::getContentText( $edit->newContent );
+		$edit->oldText = $edit->oldContent ? ContentHandler::getContentText( $edit->oldContent ) : '';
 
 		$this->mPreparedEdit = $edit;
 
@@ -2071,7 +2071,7 @@ class WikiPage extends Page {
 		}
 
 		if ( $this->mTitle->getNamespace() == NS_MEDIAWIKI ) {
-			$msgtext = ContentHandler::getContentText( $content ); #XXX: could skip pseudo-messages like js/css here, based on content model.
+			$msgtext = $content->getWikitextForTransclusion(); #XXX: could skip pseudo-messages like js/css here, based on content model.
 			if ( $msgtext === false || $msgtext === null ) $msgtext = '';
 
 			MessageCache::singleton()->replace( $shortTitle, $msgtext );
@@ -2128,7 +2128,7 @@ class WikiPage extends Page {
 			'length'     => $content->getSize(),
 			'comment'    => $comment,
 			'minor_edit' => $minor ? 1 : 0,
-		) ); #XXX: set the content object
+		) ); #XXX: set the content object?
 		$revision->insertOn( $dbw );
 		$this->updateRevisionOn( $dbw, $revision );
 

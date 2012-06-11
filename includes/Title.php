@@ -416,7 +416,6 @@ class Title {
 	 * @param $text String Text with possible redirect
 	 * @return Array of Titles, with the destination last
 	 * @deprecated since 1.WD, use Content::getRedirectChain instead.
-	 * @todo: migrate this logic into WikitextContent!
 	 */
 	public static function newFromRedirectArray( $text ) {
 		$content = ContentHandler::makeContent( $text, null, CONTENT_MODEL_WIKITEXT );
@@ -2838,7 +2837,11 @@ class Title {
 
 		$linkCache = LinkCache::singleton();
 		$cached = $linkCache->getGoodLinkFieldObj( $this, 'redirect' );
-		assert( $cached !== null ); # assert the assumption that the cache actually knows about this title #XXX breaks stuff #TODO: use exception
+		if ( $cached === null ) { # check the assumption that the cache actually knows about this title
+			# XXX: this does apparently happen, see https://bugzilla.wikimedia.org/show_bug.cgi?id=37209
+			#      as a stop gap, perhaps log this, but don't throw an exception?
+			throw new MWException( "LinkCache doesn't currently know about this title: " . $this->getPrefixedDBkey() );
+		}
 
 		$this->mRedirect = (bool)$cached;
 
@@ -2862,7 +2865,11 @@ class Title {
 		}
 		$linkCache = LinkCache::singleton();
 		$cached = $linkCache->getGoodLinkFieldObj( $this, 'length' );
-		assert( $cached !== null ); # assert the assumption that the cache actually knows about this title #TODO: use exception
+		if ( $cached === null ) { # check the assumption that the cache actually knows about this title
+			# XXX: this does apparently happen, see https://bugzilla.wikimedia.org/show_bug.cgi?id=37209
+			#      as a stop gap, perhaps log this, but don't throw an exception?
+			throw new MWException( "LinkCache doesn't currently know about this title: " . $this->getPrefixedDBkey() );
+		}
 
 		$this->mLength = intval( $cached );
 
@@ -2885,7 +2892,11 @@ class Title {
 		}
 		$linkCache = LinkCache::singleton();
 		$cached = $linkCache->getGoodLinkFieldObj( $this, 'revision' );
-		assert( $cached !== null ); # assert the assumption that the cache actually knows about this title #TODO: use exception
+		if ( $cached === null ) { # check the assumption that the cache actually knows about this title
+			# XXX: this does apparently happen, see https://bugzilla.wikimedia.org/show_bug.cgi?id=37209
+			#      as a stop gap, perhaps log this, but don't throw an exception?
+			throw new MWException( "LinkCache doesn't currently know about this title: " . $this->getPrefixedDBkey() );
+		}
 
 		$this->mLatestID = intval( $cached );
 
