@@ -262,8 +262,10 @@ class Article extends Page {
 	 * @return Content Return the content of this revision
 	 *
 	 * @since 1.WD
+	 *
+	 * @todo: FIXME: this should really be protected, all callers should be changed to use WikiPage::getContent() instead.
 	 */
-   protected function getContentObject() {
+	public function getContentObject() {
 		global $wgUser;
 		wfProfileIn( __METHOD__ );
 
