@@ -949,8 +949,7 @@ abstract class TextContentHandler extends ContentHandler {
 	protected function getHtml( Content $content ) {
 		$this->checkModelID( $content->getModel() );
 
-		#XXX: hook?
-		return $this->getHighlighteHtml( $content );
+		return $this->getHighlightHtml( $content );
 	}
 
 	/**
@@ -964,8 +963,7 @@ abstract class TextContentHandler extends ContentHandler {
 	protected function getHighlightHtml( Content $content ) {
 		$this->checkModelID( $content->getModel() );
 
-		#TODO: use highlighter, if available
-		#XXX: hook?
+		#TODO: make Highlighter interface, use here highlighter, if available
 		return htmlspecialchars( $content->getNativeData() );
 	}
 
@@ -1032,7 +1030,7 @@ class WikitextContentHandler extends TextContentHandler {
 	}
 }
 
-#XXX: make ScriptContentHandler base class with plugin interface for syntax highlighting?
+#XXX: make ScriptContentHandler base class, do highlighting stuff there?
 
 /**
  * @since WD.1
