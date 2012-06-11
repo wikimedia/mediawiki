@@ -8,6 +8,7 @@
  * @file
  *
  * @author Itsmine
+ * @author Justincheng12345
  * @author Omnipaedista
  * @author Shinjiman
  */
@@ -709,6 +710,7 @@ $2',
 '''纂文若合，惠再之。如復不成，簿[[Special:UserLogout|重登]]焉。'''",
 'token_suffix_mismatch' => "'''君修見拒，蓋因代理之故，亂事見兮。'''",
 'editing' => '纂$1',
+'creating' => '撰$1',
 'editingsection' => '纂節$1',
 'editingcomment' => '贊$1',
 'editconflict' => '纂沖$1',

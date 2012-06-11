@@ -38,7 +38,53 @@ $namespaceNames = array(
 );
 
 $specialPageAliases = array(
+	'Activeusers'               => array( 'Aktiivvalaš_geavaheaddjit' ),
+	'Allmessages'               => array( 'Buot_systemasánit' ),
+	'Allpages'                  => array( 'Buot_siiddut' ),
+	'Ancientpages'              => array( 'Dološ_siiddut' ),
+	'Block'                     => array( 'Cagge_geavaheaddji' ),
+	'Booksources'               => array( 'Girjegáldut' ),
+	'Categories'                => array( 'Kategoriijat' ),
+	'Contributions'             => array( 'Geavaheaddji_rievdadusat' ),
+	'Disambiguations'           => array( 'Liŋkkat_dárkonsiidduide' ),
+	'DoubleRedirects'           => array( 'Guoktegeardásaš_ođđasitstivremat' ),
+	'Export'                    => array( 'Olggosfievrrit_siidduid' ),
+	'Listfiles'                 => array( 'Fiilalogahallan' ),
+	'Listredirects'             => array( 'Listu_ođđasitstivremiin' ),
+	'Listusers'                 => array( 'Listu_geavaheddjiin' ),
+	'Log'                       => array( 'Loggat', 'Logga' ),
+	'Lonelypages'               => array( 'Oarbbes_siiddut' ),
+	'Longpages'                 => array( 'Guhkes_siiddut' ),
+	'MIMEsearch'                => array( 'MIME-ohcan' ),
+	'Newimages'                 => array( 'Ođđa_govat' ),
+	'Newpages'                  => array( 'Ođđa_siiddut' ),
+	'Preferences'               => array( 'Válljemat' ),
+	'Protectedpages'            => array( 'Suodjaluvvon_siiddut' ),
+	'Randompage'                => array( 'Summal_siidu' ),
+	'Randomredirect'            => array( 'Summal_ođđasitstivren' ),
 	'Recentchanges'             => array( 'Varas_rievdadusat' ),
+	'Search'                    => array( 'Oza' ),
+	'Shortpages'                => array( 'Oanehis_siiddut' ),
+	'Specialpages'              => array( 'Erenoamáš_siiddut' ),
+	'Statistics'                => array( 'Statistihkat' ),
+	'Uncategorizedcategories'   => array( 'Klassifiserekeahtes_kategoriijat' ),
+	'Uncategorizedimages'       => array( 'Klassifiserekeahtes_govat' ),
+	'Uncategorizedpages'        => array( 'Klassifiserekeahtes_siiddut' ),
+	'Uncategorizedtemplates'    => array( 'Klassifiserekeahtes_mállevuođut' ),
+	'Unusedcategories'          => array( 'Geavatkeahtes_lágit' ),
+	'Unusedimages'              => array( 'Geavatkeahtes_govat' ),
+	'Unusedtemplates'           => array( 'Geavatkeahtes_mállevuođut' ),
+	'Unwatchedpages'            => array( 'Čuovvotkeahtes_siiddut' ),
+	'Upload'                    => array( 'Sádde_fiilla' ),
+	'Version'                   => array( 'Veršuvdna' ),
+	'Wantedcategories'          => array( 'Kategoriijasávaldagat' ),
+	'Wantedpages'               => array( 'Siidusávaldagat' ),
+	'Watchlist'                 => array( 'Čuovvunlistu' ),
+);
+
+$magicWords = array(
+	'redirect'                => array( '0', '#OĐĐASITSTIVREN', '#STIVREN', '#REDIRECT' ),
+	'numberofarticles'        => array( '1', 'ARTIHKKALIIDMEARRI', 'NUMBEROFARTICLES' ),
 );
 
 $linkTrail = '/^(:?[a-zàáâçčʒǯđðéèêëǧǥȟíìîïıǩŋñóòôõßšŧúùûýÿüžþæøåäö]+)(.*)$/sDu';

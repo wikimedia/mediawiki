@@ -1662,7 +1662,7 @@ $1',
 'upload-too-many-redirects' => 'URLમાં ઘણાં ઉપ નિર્દેશનો છે.',
 'upload-unknown-size' => 'અજ્ઞાત કદ',
 'upload-http-error' => ' HTTP ત્રુટિ : $1',
-'upload-copy-upload-invalid-domain' => 'આ વેબસાઇટ પર થી ફાયલ નહી ચડાવાય',
+'upload-copy-upload-invalid-domain' => 'આ વેબસાઇટ પરથી ફાઈલ નહીં ચડાવાય.',
 
 # File backend
 'backend-fail-stream' => 'ફાઈલ $1 ને લાવી ન શકાઈ.',
@@ -1680,7 +1680,7 @@ $1',
 'backend-fail-writetemp' => 'હંગામી ફાઇલમાં લખી ન શકાયું.',
 'backend-fail-closetemp' => 'હંગામી ફાઇલ બંધ ન કરી શકાઇ',
 'backend-fail-read' => 'ફાઈલ $1 ને વાંચી ન શકાઈ.',
-'backend-fail-create' => 'ફાઈલ $1 ને બનાવી શકાઈ.',
+'backend-fail-create' => 'ફાઈલ $1 લખી શકાઈ નહીં.',
 'backend-fail-readonly' => 'સંગ્રહ પાર્શ્વભૂમિ  "$1" એ હાલમાં માત્ર વાંચન સક્ષમ છે. તેનું કારણ આપવામાં આવ્યું હતું: "$2"',
 'backend-fail-synced' => 'ફાઈલ "$1"  અંતરિક સ્ટોરેજ બેકઍંડ માં એક અસંગત સ્થિતિમાં છે',
 'backend-fail-connect' => 'સંગ્રહ પૃષ્ઠભૂમિ "$1" સાથે સંપર્ક સ્થાપી ના શકાયો.',
@@ -1897,7 +1897,7 @@ https://www.mediawiki.org/wiki/Manual:Image_Authorization. જુઓ',
 તેના કરતા તેને યોગ્ય તે વિષ્ય સાથે જોડાયેલા હોવા જોઇએ.<br />
 આ પાનાને સંદિગ્ધ  વાક્યો વાળા પાના ત્યારે કહી શકાય જ્યારે તે [[MediaWiki:Disambiguationspage]] નામના ઢાંચા સાથે જોડાયેલા હોય.",
 
-'doubleredirects' => 'બનણું દિશાનિર્દેશિત',
+'doubleredirects' => 'બમણું દિશાનિર્દેશન',
 'doubleredirectstext' => 'આ પાનું દિશા નિર્દેશિત પાના પર થયેલા દિશા નિર્દેશિત પાનાની યાદિ બતાવે છે.
 દરેક લિટીમાં પાના પ્રથમ અને દ્વીતીય દિશા નિર્દેશન ક્ડી બતાવે છે, તે સિવાય દ્વીતીય દિશા નિર્દેશનનું લક્ષ્ય પણ બતાવે છે કે મોટે ભાગે મૂળ પાનું હોઇ શકે છેૢ જેના પર પ્રથમ દિશા નિર્દેશન લક્ષિત છે. <del>Crossed out</del> લિટીઓ  નો ઉત્તર મેળવાયો છે.',
 'double-redirect-fixed-move' => '[[$1]] હટાવી દેવાયું છે.
@@ -2002,6 +2002,7 @@ https://www.mediawiki.org/wiki/Manual:Image_Authorization. જુઓ',
 તમે લોગનો પ્રકાર,સભ્ય નામ અથવા અસરગ્રસ્ત પાના આદિ પસંદ કરી તમારી યાદિ ટૂંકાવી શકો.',
 'logempty' => 'લોગમાં આને મળતી કોઇ વસ્તુ નથી',
 'log-title-wildcard' => 'આ શબ્દો દ્વારા શરૂ થનાર શીર્ષકો શોધો',
+'showhideselectedlogentries' => 'પસંદગીની લોગ નોંધણીઓ બતાવો/છૂપાવો',
 
 # Special:AllPages
 'allpages' => 'બધા પાના',
@@ -2020,6 +2021,10 @@ https://www.mediawiki.org/wiki/Manual:Image_Authorization. જુઓ',
 'allpagesbadtitle' => 'આપનું ઈચ્છિત શીર્ષક અમાન્ય છે, ખાલી છે, અથવાતો અયોગ્ય રીતે આંતર-ભાષિય કે આંતર-વિકિ સાથે જોડાયેલું શીર્ષક છે.
 શક્ય છે કે તેમાં એક કે વધુ એવા અક્ષર કે ચિહ્નો છે કે જે પાનાનાં શીર્ષક માટે અવૈધ છે.',
 'allpages-bad-ns' => '{{SITENAME}} ને નામસ્થળ  "$1" નથી.',
+'allpages-hide-redirects' => 'અન્યત્ર વાળેલાં પાનાંઓ છૂપાવો',
+
+# SpecialCachedPage
+'cachedspecial-refresh-now' => 'આધૂનિક બતાવો.',
 
 # Special:Categories
 'categories' => 'શ્રેણીઓ',
@@ -2047,17 +2052,17 @@ https://www.mediawiki.org/wiki/Manual:Image_Authorization. જુઓ',
 'linksearch-error' => 'યજમાન નામની શરૂઆતમાં જ વાઈલ્ડકાર્ડ પ્રકટ થશે',
 
 # Special:ListUsers
-'listusersfrom' => 'અહીંથી સભ્યો બતાવો',
+'listusersfrom' => 'આનાથી શરૂ થતા સભ્યો દર્શાવો:',
 'listusers-submit' => 'બતાવો',
 'listusers-noresult' => 'કોઇ સભ્ય ન મળ્યો',
 'listusers-blocked' => '(પ્રતિબંધિત)',
 
 # Special:ActiveUsers
-'activeusers' => 'સક્રીયા સભ્ય છુપાવો',
-'activeusers-intro' => 'છેલ્લા  $1 {{PLURAL:$1|દિવસ|દિવસો}}માં જે સભ્યોએ કોઇક યોગદાન કર્યું હોય તેમની યાદિ.',
+'activeusers' => 'સક્રિય સભ્યોની યાદી',
+'activeusers-intro' => 'છેલ્લા  $1 {{PLURAL:$1|દિવસ|દિવસો}}માં જે સભ્યોએ કંઈક યોગદાન કર્યું હોય તેમની યાદી.',
 'activeusers-count' => '$1 {{PLURAL:$1|ફેરફાર|ફેરફારો}} છેલ્લા {{PLURAL:$3|દિવસ |$3 દિવસો }}માં',
 'activeusers-from' => 'આનાથી શરૂ થતા સભ્યો દર્શાવો:',
-'activeusers-hidebots' => 'બોટને સંતાડો',
+'activeusers-hidebots' => 'બોટને છુપાવો',
 'activeusers-hidesysops' => 'પ્રબંધકો છુપાવો',
 'activeusers-noresult' => 'કોઇ સક્રીય સભ્ય ન મળ્યો',
 
@@ -2140,7 +2145,7 @@ https://www.mediawiki.org/wiki/Manual:Image_Authorization. જુઓ',
 'notvisiblerev' => 'અન્ય સભ્ય દ્વારા થયેલું સંપાદન ભૂંસી નખાયું છે.',
 'watchnochange' => 'તમારા દ્વારા નિરીક્ષિત પાના આપેલ સમય ગાળામાં ફેરફારીત થયા',
 'watchlist-details' => 'ચર્ચાનાં પાનાં ન ગણતા {{PLURAL:$1|$1 પાનું|$1 પાનાં}} ધ્યાનસૂચીમાં છે.',
-'wlheader-enotif' => '*ઈ-મેલા સૂચના પદ્ધતિ સક્રીય કરાઈ',
+'wlheader-enotif' => '*ઈ-મેલ સૂચના પદ્ધતિ સક્રીય કરાઈ.',
 'wlheader-showupdated' => "*તમારી મુલાકાત લીધા પછી બદલાયેલા પાના  '''ઘાટા''' અક્ષરો વડે દર્શાવ્યાં છે",
 'watchmethod-recent' => 'હાલમાં ફેરફાર થયેલ પાનાની ચકાસણી જારી',
 'watchmethod-list' => 'હાલમાં થયેલ ફેરફાર માટે નીરીક્ષીત પાના તપાસાય છે',

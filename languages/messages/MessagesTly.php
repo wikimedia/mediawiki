@@ -1,5 +1,5 @@
 <?php
-/** Толышә зывон (Толышә зывон)
+/** толышә зывон (толышә зывон)
  *
  * See MessagesQqq.php for message documentation incl. usage of parameters
  * To improve a translation please visit http://translatewiki.net
@@ -484,9 +484,9 @@ $messages = array(
 'prefsnologintext' => 'Шымә бәбе <span class="plainlinks">[{{fullurl:{{#Special:UserLogin}}|returnto=$1}} ыштәни едәштән]</span> бо иштирокәкә пеғәндон дәгиш кардеј.',
 'changepassword' => 'Пароли дәгиш кардеј',
 'skin-preview' => 'Сыфтәнә нишо дој',
-'prefs-rc' => 'Ән нуә дәгишон',
+'prefs-rc' => 'Ән нујә дәгишон',
 'prefs-changeemail' => 'Е-номә дәгиш кардеј',
-'saveprefs' => 'Огәте',
+'saveprefs' => 'Огәтеј',
 'searchresultshead' => 'Нәве',
 'timezoneregion-america' => 'Америка',
 'timezoneregion-europe' => 'Авропа',

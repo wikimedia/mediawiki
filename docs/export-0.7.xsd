@@ -157,7 +157,7 @@
 
 	<complexType name="RevisionType">
 		<sequence>
-			<element name="id" type="positiveInteger" minOccurs="0" />
+			<element name="id" type="positiveInteger" />
 			<element name="timestamp" type="dateTime" />
 			<element name="contributor" type="mw:ContributorType" />
 			<element name="minor" minOccurs="0" maxOccurs="1" />

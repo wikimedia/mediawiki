@@ -1202,6 +1202,7 @@ Nota li l-użu tal-links tan-navigazzjoni jagħmel reset tal-kolonna.",
 
 # Diffs
 'history-title' => 'Kronoloġija tal-modifiki ta\' "$1"',
+'difference-title' => 'Differenza bejn ir-reviżjonijiet ta\' "$1"',
 'difference-multipage' => '(Differenzi bejn il-paġni)',
 'lineno' => 'Linja $1:',
 'compareselectedversions' => 'Qabbel il-verżjonijiet magħżula',
@@ -2393,7 +2394,7 @@ $1',
 'namespace' => 'Spazju tal-isem:',
 'invert' => 'Inverti l-għażla',
 'tooltip-invert' => 'Agħżel din il-kaxxa biex taħbi l-modifiki lejn paġni li jinsabu fl-ispazji tal-isem magħżula (u l-ispazju tal-isem assoċjat jekk hu magħżul)',
-'namespace_association' => 'Spazju tal-isem assoċjata',
+'namespace_association' => 'Spazju tal-isem assoċjat',
 'tooltip-namespace_association' => "Agħżel din il-kaxxa sabiex tinkludi l-paġna ta' diskussjoni jew l-oġġett tal-ispazju tal-isem assoċjat mal-ispazju tal-isem magħżul",
 'blanknamespace' => '(Prinċipali)',
 
@@ -3702,6 +3703,7 @@ Stampi huwa mogħrija b'risoluzzjoni sħiħa, tipi tal-fajl oħrajn jibdew bil-p
 'sqlite-no-fts' => "$1 mingħajr il-possibilità ta' tfittxija kompluta fit-test",
 
 # New logging system
+'logentry-delete-delete' => '$1 ħassar il-paġna $3',
 'revdelete-restricted' => "limiti applikati 'l amministraturi",
 'revdelete-unrestricted' => "neħħi l-limiti 'l amministraturi",
 'logentry-move-move' => '$1 mexxa l-paġna $3 għal $4',

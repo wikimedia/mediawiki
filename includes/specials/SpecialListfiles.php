@@ -197,7 +197,7 @@ class ImageListPager extends TablePager {
 				$thumb = $file->transform( array( 'width' => 180, 'height' => 360 ) );
 				return $thumb->toHtml( array( 'desc-link' => true ) );
 			case 'img_timestamp':
-				return htmlspecialchars( $this->getLanguage()->timeanddate( $value, true ) );
+				return htmlspecialchars( $this->getLanguage()->userTimeAndDate( $value, $this->getUser() ) );
 			case 'img_name':
 				static $imgfile = null;
 				if ( $imgfile === null ) $imgfile = $this->msg( 'imgfile' )->text();

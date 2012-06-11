@@ -252,9 +252,11 @@ class SpecialMergeHistory extends SpecialPage {
 		$ts = wfTimestamp( TS_MW, $row->rev_timestamp );
 		$checkBox = Xml::radio( 'mergepoint', $ts, false );
 
+		$user = $this->getUser();
+
 		$pageLink = Linker::linkKnown(
 			$rev->getTitle(),
-			htmlspecialchars( $this->getLanguage()->timeanddate( $ts ) ),
+			htmlspecialchars( $this->getLanguage()->userTimeAndDate( $ts, $user ) ),
 			array(),
 			array( 'oldid' => $rev->getId() )
 		);
@@ -263,7 +265,7 @@ class SpecialMergeHistory extends SpecialPage {
 		}
 
 		# Last link
-		if( !$rev->userCan( Revision::DELETED_TEXT, $this->getUser() ) ) {
+		if( !$rev->userCan( Revision::DELETED_TEXT, $user ) ) {
 			$last = $this->message['last'];
 		} elseif( isset( $this->prevId[$row->rev_id] ) ) {
 			$last = Linker::linkKnown(
@@ -285,10 +287,8 @@ class SpecialMergeHistory extends SpecialPage {
 		}
 		$comment = Linker::revComment( $rev );
 
-		$revisionRow = $this->msg( 'mergehistory-revisionrow' )->rawParams( $checkBox, $last, $pageLink, $userLink, $stxt, $comment)->escaped();
-		$revisionRow .= "<li>" . $line . "</li>";
-
-		return $revisionRow;
+		return Html::rawElement( 'li', array(),
+			$this->msg( 'mergehistory-revisionrow' )->rawParams( $checkBox, $last, $pageLink, $userLink, $stxt, $comment )->escaped() );
 	}
 
 	function merge() {

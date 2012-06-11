@@ -865,7 +865,7 @@ Kaberê bini ke şıma de kewti irtıbat, adresa e-postey şıma eşkera nêbena
 'grouppage-bureaucrat' => '{{ns:project}}:Burokrati',
 
 # Rights
-'right-read' => 'Pelu bıwane',
+'right-read' => 'Pelan bıwanê',
 'right-edit' => 'Pelu bıvurne',
 'right-move' => 'Pelu bere',
 'right-movefile' => 'Dosyu bere',
@@ -949,6 +949,7 @@ Kaberê bini ke şıma de kewti irtıbat, adresa e-postey şıma eşkera nêbena
 'filestatus' => 'Halê heqa telifi:',
 'filesource' => 'Çıme:',
 'uploadedfiles' => 'Dosyê barkerdey',
+'empty-file' => 'Dosya ke ti şawit veng biy.',
 'savefile' => 'Dosya qeyd ke',
 'uploadedimage' => '"[[$1]]" bar bi',
 'upload-source' => 'Dosya çımey',
@@ -1211,6 +1212,7 @@ Tı şikina sewiya sevekiyaena na pele bıvurnê, hema yê nae sevekiyaena qedem
 'undeletereset' => 'Vaz be',
 'undeleteinvert' => 'Weçinıtey ters bıçarne',
 'undeletecomment' => 'Sebeb:',
+'undelete-header' => 'Peleyê ke veror de besterneyayê êna bıvinê: [[Special:Log/delete|qeydê esterneya]].',
 'undelete-search-submit' => 'Cıfeteliye',
 'undelete-show-file-submit' => 'Heya',
 

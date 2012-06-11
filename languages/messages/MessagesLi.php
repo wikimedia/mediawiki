@@ -1972,6 +1972,7 @@ Controleer of se wellich n fout höbs gemaak bie de inveur.',
 'alllogstext' => "Dit is 't gecombineerd logbook ven {{SITENAME}}. De kins ouch 'n bepaald logbook keze, of filtere op gebroekersnaam of  pazjena, beide huidlettergeveulig.",
 'logempty' => "d'r Zeen gein regels in 't logbook die voldaon aan deze criteria.",
 'log-title-wildcard' => "Zeuk pagina's die met deze naam beginne",
+'showhideselectedlogentries' => 'Tuin of verstaek geselecteerdje logbookregels',
 
 # Special:AllPages
 'allpages' => "Alle pagina's",

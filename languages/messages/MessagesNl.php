@@ -135,6 +135,7 @@ $magicWords = array(
 	'pagenamee'               => array( '1', 'PAGINANAAME', 'PAGENAMEE' ),
 	'namespace'               => array( '1', 'NAAMRUIMTE', 'NAMESPACE' ),
 	'namespacee'              => array( '1', 'NAAMRUIMTEE', 'NAMESPACEE' ),
+	'namespacenumber'         => array( '1', 'NAAMRUIMTENUMMER', 'NAMESPACENUMBER' ),
 	'talkspace'               => array( '1', 'OVERLEGRUIMTE', 'TALKSPACE' ),
 	'talkspacee'              => array( '1', 'OVERLEGRUIMTEE', 'TALKSPACEE' ),
 	'subjectspace'            => array( '1', 'ONDERWERPRUIMTE', 'ARTIKELRUIMTE', 'SUBJECTSPACE', 'ARTICLESPACE' ),
@@ -223,6 +224,7 @@ $magicWords = array(
 	'padleft'                 => array( '0', 'LINKSOPVULLEN', 'PADLEFT' ),
 	'padright'                => array( '0', 'RECHTSOPVULLEN', 'PADRIGHT' ),
 	'special'                 => array( '0', 'speciaal', 'special' ),
+	'speciale'                => array( '0', 'speciaale', 'speciale' ),
 	'defaultsort'             => array( '1', 'STANDAARDSORTERING:', 'DEFAULTSORT:', 'DEFAULTSORTKEY:', 'DEFAULTCATEGORYSORT:' ),
 	'filepath'                => array( '0', 'BESTANDSPAD:', 'FILEPATH:' ),
 	'tag'                     => array( '0', 'label', 'tag' ),
@@ -2258,6 +2260,7 @@ Controleer of u wellicht een fout hebt gemaakt bij de invoer.',
 U kunt ook kiezen voor specifieke logboeken en filteren op gebruiker (hoofdlettergevoelig) en paginanaam (hoofdlettergevoelig).',
 'logempty' => 'Er zijn geen regels in het logboek die voldoen aan deze criteria.',
 'log-title-wildcard' => "Pagina's zoeken die met deze tekens beginnen",
+'showhideselectedlogentries' => 'Geselecteerde logboekregels weergeven of verbergen',
 
 # Special:AllPages
 'allpages' => "Alle pagina's",

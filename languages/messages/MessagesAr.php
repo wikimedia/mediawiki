@@ -370,6 +370,7 @@ $specialPageAliases = array(
 	'Filepath'                  => array( 'مسار_ملف' ),
 	'Import'                    => array( 'استيراد' ),
 	'Invalidateemail'           => array( 'تعطيل_البريد_الإلكتروني' ),
+	'JavaScriptTest'            => array( 'اختبار_جافا_سكريبت' ),
 	'BlockList'                 => array( 'قائمة_المنع', 'عرض_المنع', 'قائمة_منع_أيبي' ),
 	'LinkSearch'                => array( 'بحث_الوصلات' ),
 	'Listadmins'                => array( 'عرض_الإداريين' ),
@@ -1256,6 +1257,7 @@ $2
 'expansion-depth-exceeded-category' => 'الصفحات التي حدث فيها تجاوز عمق التوسيع',
 'expansion-depth-exceeded-warning' => 'الصفحة تجاوزت عمق التوسيع',
 'parser-unstrip-loop-warning' => 'حلقة معراة تم الكشف عنها',
+'parser-unstrip-recursion-limit' => 'تعدى حد العودية Unstrip  ($1)',
 
 # "Undo" feature
 'undo-success' => 'يمكن استرجاع التعديل.

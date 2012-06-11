@@ -78,10 +78,10 @@ $specialPageAliases = array(
 	'Booksources'               => array( 'منابع_کتاب' ),
 	'BrokenRedirects'           => array( 'تغییرمسیرهای_خراب' ),
 	'Categories'                => array( 'رده‌ها' ),
-	'ChangeEmail'               => array( 'تغییر_رایانامه', 'تغییر_پست_الکترونیکی' ),
+	'ChangeEmail'               => array( 'تغییر_رایانامه' ),
 	'ChangePassword'            => array( 'از_نو_کردن_گذرواژه' ),
 	'ComparePages'              => array( 'مقایسه_صفحات' ),
-	'Confirmemail'              => array( 'تایید_رایانامه', 'تایید_پست_الکترونیکی' ),
+	'Confirmemail'              => array( 'تایید_رایانامه' ),
 	'Contributions'             => array( 'مشارکت‌ها' ),
 	'CreateAccount'             => array( 'ایجاد_حساب_کاربری' ),
 	'Deadendpages'              => array( 'صفحه‌های_بن‌بست' ),
@@ -95,7 +95,7 @@ $specialPageAliases = array(
 	'FileDuplicateSearch'       => array( 'جستجوی_پرونده_تکراری' ),
 	'Filepath'                  => array( 'مسیر_پرونده' ),
 	'Import'                    => array( 'درون_ریزی_صفحه' ),
-	'Invalidateemail'           => array( 'باطل_کردن_رایانامه', 'باطل_کردن_پست_الکترونیکی' ),
+	'Invalidateemail'           => array( 'باطل_کردن_رایانامه' ),
 	'BlockList'                 => array( 'فهرست_بستن_نشانی_آی‌پی' ),
 	'LinkSearch'                => array( 'جستجوی_پیوند' ),
 	'Listadmins'                => array( 'فهرست_مدیران' ),
@@ -264,7 +264,7 @@ $dateFormats = array(
 );
 
 $magicWords = array(
-	'redirect'                => array( '0', '#تغییر_مسیر', '#تغییرمسیر', '#تغییرمسیر', '#REDIRECT' ),
+	'redirect'                => array( '0', '#تغییر_مسیر', '#تغییرمسیر', '#REDIRECT' ),
 	'notoc'                   => array( '0', '__بی‌فهرست__', '__NOTOC__' ),
 	'nogallery'               => array( '0', '__بی‌نگارخانه__', '__NOGALLERY__' ),
 	'forcetoc'                => array( '0', '__بافهرست__', '__FORCETOC__' ),
@@ -2101,7 +2101,7 @@ https://www.mediawiki.org/wiki/Manual:Image_Authorization را ببینید.',
 'linkstoimage-more' => 'بیش از $1 صفحه به این پرونده پیوند {{PLURAL:$1|دارد|دارند}}.
 فهرست زیر تنها {{PLURAL:$1|اولین پیوند|اولین $1 پیوند}} به این صفحه را نشان می‌دهد.
 [[Special:WhatLinksHere/$2|فهرست کامل]] نیز موجود است.',
-'nolinkstoimage' => 'هیچ صفحه‌ای به این تصویر پیوند ندارد.',
+'nolinkstoimage' => 'این پرونده در هیچ صفحه‌ای به کار نرفته‌است.',
 'morelinkstoimage' => '[[Special:WhatLinksHere/$1|پیوندهای دیگر]] به این پرونده را ببینید.',
 'linkstoimage-redirect' => '$1 (تغییرمسیر پرونده) $2',
 'duplicatesoffile' => '{{PLURAL:$1|پروندهٔ|پرونده‌های}} زیر نسخهٔ تکراری این پرونده {{PLURAL:$1|است|هستند}} ([[Special:FileDuplicateSearch/$2|اطلاعات بیشتر]]):',

@@ -39,14 +39,16 @@ class ResourceLoaderLanguageDataModule extends ResourceLoaderModule {
 
 	/**
 	 * @param $context ResourceLoaderContext
-	 * @return string Javascript code
+	 * @return string: Javascript code
 	 */
 	public function getScript( ResourceLoaderContext $context ) {
 		global $wgContLang;
 
 		return Xml::encodeJsCall( 'mw.language.setData', array(
 			$wgContLang->getCode(),
-			array( 'grammarForms' => $this->getSiteLangGrammarForms() )
+			array(
+				'grammarForms' => $this->getSiteLangGrammarForms()
+			)
 		) );
 	}
 
@@ -62,13 +64,14 @@ class ResourceLoaderLanguageDataModule extends ResourceLoaderModule {
 		$hash = md5( serialize( $forms ) );
 
 		$result = $cache->get( $key );
-		if ( is_array( $result ) ) {
-			if ( $result['hash'] === $hash ) {
-				return $result['timestamp'];
-			}
+		if ( is_array( $result ) && $result['hash'] === $hash ) {
+			return $result['timestamp'];
 		}
 		$timestamp = wfTimestamp();
-		$cache->set( $key, array( 'hash' => $hash, 'timestamp' => $timestamp ) );
+		$cache->set( $key, array(
+			'hash' => $hash,
+			'timestamp' => $timestamp,
+		) );
 		return $timestamp;
 	}
 

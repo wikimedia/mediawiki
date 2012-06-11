@@ -53,6 +53,7 @@
  * @author Wrightbus
  * @author Xiaomingyan
  * @author Yfdyh000
+ * @author 燃玉
  * @author 阿pp
  */
 
@@ -924,7 +925,7 @@ $2
 你所做的修改显示在下面的文字框中。
 你应当将你所做的修改加入现有的内容中。
 '''只有'''在上面文字框中的内容会在你点击“{{int:savearticle}}”后被保存。",
-'yourtext' => '您的文字',
+'yourtext' => '你的文字',
 'storedversion' => '已保存的版本',
 'nonunicodebrowser' => "'''警告：您的浏览器不兼容Unicode编码。'''这里有一个工作区将使您能安全地编辑页面：非ASCII字符将以十六进制编码方式出现在编辑框中。",
 'editingold' => "'''警告：你正在编辑的是本页的旧版本。'''
@@ -1155,8 +1156,8 @@ $1",
 'mergelogpagetext' => '以下是一个最近由一个页面的修订历史合并到另一个页面的列表。',
 
 # Diffs
-'history-title' => '$1：版本历史',
-'difference-title' => '$1：修订版本之间的差异',
+'history-title' => '“$1”的版本历史',
+'difference-title' => '“$1”的版本间的差异',
 'difference-title-multipage' => '页面“$1”与“$2”之间的差异',
 'difference-multipage' => '（页面间的差异）',
 'lineno' => '第$1行：',
@@ -2019,6 +2020,7 @@ $1',
 您可以选择日志类型，用户名（区分大小写）或者相关页面（区分大小写）来缩小查询范围。',
 'logempty' => '在日志中不存在匹配项。',
 'log-title-wildcard' => '搜索以这个文字开始的标题',
+'showhideselectedlogentries' => '显示/隐藏所选日志项',
 
 # Special:AllPages
 'allpages' => '所有页面',
@@ -2386,8 +2388,8 @@ $1',
 'contribsub2' => '$1的贡献（$2）',
 'nocontribs' => '没有找到符合特征的更改。',
 'uctop' => '（最后更改）',
-'month' => '自月份（及之前内容）：',
-'year' => '自年份（及之前内容）：',
+'month' => '截止月份：',
+'year' => '截止年份：',
 
 'sp-contributions-newbies' => '只显示新账户的贡献',
 'sp-contributions-newbies-sub' => '新手',
@@ -3234,7 +3236,7 @@ Variants for Chinese language
 'exif-copyrighted-true' => '版权',
 'exif-copyrighted-false' => '公共领域',
 
-'exif-unknowndate' => '未知的日期',
+'exif-unknowndate' => '未知日期',
 
 'exif-orientation-1' => '标准',
 'exif-orientation-2' => '水平翻转',
@@ -3547,8 +3549,8 @@ $5
 'descending_abbrev' => '降',
 'table_pager_next' => '下一页',
 'table_pager_prev' => '上一页',
-'table_pager_first' => '第一页',
-'table_pager_last' => '最后一页',
+'table_pager_first' => '首页',
+'table_pager_last' => '末页',
 'table_pager_limit' => '每页显示$1项',
 'table_pager_limit_label' => '每页项目数：',
 'table_pager_limit_submit' => '提交',
@@ -3593,7 +3595,7 @@ $5
 'watchlistedit-raw-removed' => '$1个标题被删除：',
 
 # Watchlist editing tools
-'watchlisttools-view' => '查看相关更改',
+'watchlisttools-view' => '查看监视更改',
 'watchlisttools-edit' => '查看并编辑监视列表',
 'watchlisttools-raw' => '编辑原始监视列表',
 

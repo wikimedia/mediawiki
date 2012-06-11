@@ -74,7 +74,7 @@ $namespaceAliases = array(
 );
 
 $magicWords = array(
-	'redirect'                => array( '0', '#بور', '#تغییرمسیر', '#REDIRECT' ),
+	'redirect'                => array( '0', '#بور', '#تغییرمسیر', '#تغییر_مسیر', '#REDIRECT' ),
 	'notoc'                   => array( '0', '__بی‌فهرست__', '__NOTOC__' ),
 	'nogallery'               => array( '0', '__بی‌نگارخنه__', '__بی‌نگارخانه__', '__NOGALLERY__' ),
 	'forcetoc'                => array( '0', '__بافهرست__', '__FORCETOC__' ),

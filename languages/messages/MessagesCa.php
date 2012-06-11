@@ -1,5 +1,5 @@
 <?php
-/** Catalan (Català)
+/** Catalan (català)
  *
  * See MessagesQqq.php for message documentation incl. usage of parameters
  * To improve a translation please visit http://translatewiki.net
@@ -215,8 +215,8 @@ $messages = array(
 'tog-previewontop' => "Mostra una previsualització abans del quadre d'edició",
 'tog-previewonfirst' => 'Mostra una previsualització en la primera modificació',
 'tog-nocache' => 'Inhabilita la memòria cau de les pàgines',
-'tog-enotifwatchlistpages' => "Notifica'm per correu electrònic dels canvis a les pàgines que vigili",
-'tog-enotifusertalkpages' => "Notifica'm per correu quan hi hagi modificacions a la pàgina de discussió del meu compte d'usuari",
+'tog-enotifwatchlistpages' => "Envia'm un correu electrònic quan es modifiqui una pàgina de la meva llista de seguiment",
+'tog-enotifusertalkpages' => "Envia'm un correu electrònic quan es modifiqui la meva pàgina de discussió",
 'tog-enotifminoredits' => "Notifica'm per correu també en casos d'edicions menors",
 'tog-enotifrevealaddr' => "Mostra la meua adreça electrònica en els missatges d'avís per correu",
 'tog-shownumberswatching' => "Mostra el nombre d'usuaris que hi vigilen",
@@ -234,7 +234,7 @@ $messages = array(
 'tog-watchlisthideanons' => "Amaga a la llista les edicions d'usuaris anònims",
 'tog-watchlisthidepatrolled' => 'Amaga edicions patrullades de la llista de seguiment',
 'tog-nolangconversion' => 'Inhabilita la conversió de variants',
-'tog-ccmeonemails' => "Envia'm còpies dels missatges que enviï als altres usuaris.",
+'tog-ccmeonemails' => "Envia'm còpia dels missatges que enviï als altres usuaris",
 'tog-diffonly' => 'Amaga el contingut de la pàgina davall de la taula de diferències',
 'tog-showhiddencats' => 'Mostra les categories ocultes',
 'tog-noconvertlink' => 'Inhabilita la conversió dels títols dels enllaços',
@@ -1284,7 +1284,7 @@ A continuació es mostra un valor generat de forma aleatòria que podeu fer serv
 'timezoneregion-europe' => 'Europa',
 'timezoneregion-indian' => 'Oceà Índic',
 'timezoneregion-pacific' => 'Oceà Pacífic',
-'allowemail' => "Habilita el correu electrònic des d'altres usuaris",
+'allowemail' => 'Permet que altres usuaris puguin enviar-me correus electrònics',
 'prefs-searchoptions' => 'Preferències de la cerca',
 'prefs-namespaces' => 'Espais de noms',
 'defaultns' => 'Cerca per defecte en els següents espais de noms:',
@@ -1325,7 +1325,7 @@ Ha de tenir com a molt {{PLURAL:$1|un caràcter|$1 caràcters}}.',
 'prefs-i18n' => 'Internacionalització',
 'prefs-signature' => 'Signatura',
 'prefs-dateformat' => 'Format de la data',
-'prefs-timeoffset' => "Duració de l'acció",
+'prefs-timeoffset' => 'Decalatge horari',
 'prefs-advancedediting' => 'Opcions avançades',
 'prefs-advancedrc' => 'Opcions avançades',
 'prefs-advancedrendering' => 'Opcions avançades',
@@ -2006,6 +2006,7 @@ Tingueu en compte que altres llocs web poden enllaçar un fitxer amb un URL dire
 Podeu reduir l'extensió seleccionant el tipus de registre, el nom d'usuari realitzador (distingeix entre majúscules i minúscules), o la pàgina objectiu (també en distingeix).",
 'logempty' => 'No hi ha cap coincidència en el registre.',
 'log-title-wildcard' => 'Cerca els títols que comencin amb aquest text',
+'showhideselectedlogentries' => 'Mostra/amaga les entrades de registre seleccionades',
 
 # Special:AllPages
 'allpages' => 'Totes les pàgines',

@@ -2859,7 +2859,8 @@ class Parser {
 				$value = $pageLang->formatNum( SiteStats::edits() );
 				break;
 			case 'numberofviews':
-				$value = $pageLang->formatNum( SiteStats::views() );
+				global $wgDisableCounters;
+				$value = !$wgDisableCounters ? $pageLang->formatNum( SiteStats::views() ) : '';
 				break;
 			case 'currenttimestamp':
 				$value = wfTimestamp( TS_MW, $ts );

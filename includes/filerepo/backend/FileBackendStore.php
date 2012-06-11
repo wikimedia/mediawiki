@@ -1358,16 +1358,17 @@ abstract class FileBackendStore extends FileBackend {
 	 * @param $val mixed Information to cache
 	 */
 	final protected function setContainerCache( $container, $val ) {
-		$this->memCache->set( $this->containerCacheKey( $container ), $val, 14*86400 );
+		$this->memCache->add( $this->containerCacheKey( $container ), $val, 14*86400 );
 	}
 
 	/**
-	 * Delete the cached info for a container
+	 * Delete the cached info for a container.
+	 * The cache key is salted for a while to prevent race conditions.
 	 *
 	 * @param $container string Resolved container name
 	 */
 	final protected function deleteContainerCache( $container ) {
-		if ( !$this->memCache->delete( $this->containerCacheKey( $container ) ) ) {
+		if ( !$this->memCache->set( $this->containerCacheKey( $container ), 'PURGED', 300 ) ) {
 			trigger_error( "Unable to delete stat cache for container $container." );
 		}
 	}
@@ -1445,16 +1446,17 @@ abstract class FileBackendStore extends FileBackend {
 	 * @param $val mixed Information to cache
 	 */
 	final protected function setFileCache( $path, $val ) {
-		$this->memCache->set( $this->fileCacheKey( $path ), $val, 7*86400 );
+		$this->memCache->add( $this->fileCacheKey( $path ), $val, 7*86400 );
 	}
 
 	/**
-	 * Delete the cached stat info for a file path
+	 * Delete the cached stat info for a file path.
+	 * The cache key is salted for a while to prevent race conditions.
 	 *
 	 * @param $path string Storage path
 	 */
 	final protected function deleteFileCache( $path ) {
-		if ( !$this->memCache->delete( $this->fileCacheKey( $path ) ) ) {
+		if ( !$this->memCache->set( $this->fileCacheKey( $path ), 'PURGED', 300 ) ) {
 			trigger_error( "Unable to delete stat cache for file $path." );
 		}
 	}

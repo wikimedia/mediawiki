@@ -1,5 +1,5 @@
 <?php
-/** Icelandic (Íslenska)
+/** Icelandic (íslenska)
  *
  * See MessagesQqq.php for message documentation incl. usage of parameters
  * To improve a translation please visit http://translatewiki.net
@@ -2375,7 +2375,7 @@ $1',
 # Namespace form on various pages
 'namespace' => 'Nafnrými:',
 'invert' => 'allt nema valið',
-'tooltip-invert' => 'Hakaðu við þennan kassa til að fela breytingar á síðum innan við ákveðið nafnrými',
+'tooltip-invert' => 'Hakaðu við þennan kassa til að fela breytingar á síðum innan ákveðins nafnrýmis',
 'namespace_association' => 'Tengd nafnrými',
 'tooltip-namespace_association' => 'Hakaðu við þennan kassa til að hafa með spjallsíður eða tengd nafnrými.',
 'blanknamespace' => '(Aðalnafnrýmið)',
@@ -3653,7 +3653,7 @@ Ef ekki, þá getur þú notað einfalt eyðublað hér fyrir neðan. Athugasemd
 'api-error-filename-tooshort' => 'Skráarnafnið er of stutt',
 'api-error-filetype-banned' => 'Þessi gerð skráar er bönnuð.',
 'api-error-filetype-missing' => 'Skráin hefur enga skráarendingu.',
-'api-error-hookaborted' => 'Hætt var við breytinguna sem þú reyndir að gera af viðbótar haka.',
+'api-error-hookaborted' => 'Hætt var við breytinguna sem þú reyndir að gera með viðbót.',
 'api-error-http' => 'Innri villa: Get ekki tengst vefþjón.',
 'api-error-illegal-filename' => 'Þetta skráarnafn er ekki leyft.',
 'api-error-internal-error' => 'Innri villa: Mistókst að vinna úr upphali þínu.',

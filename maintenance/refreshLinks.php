@@ -286,6 +286,7 @@ class RefreshLinks extends Maintenance {
 				$dbw->delete( $table, array( $field => $list ), __METHOD__ );
 			}
 			$this->output( "\n" );
+			wfWaitForSlaves();
 		}
 		$lb->closeAll();
 	}
