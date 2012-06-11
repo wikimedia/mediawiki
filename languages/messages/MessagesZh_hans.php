@@ -1782,8 +1782,7 @@ $1',
 'upload_source_file' => '（您计算机上的一个文件）',
 
 # Special:ListFiles
-'listfiles-summary' => '该特殊页面显示所有上传的文件。
-当用户过滤图片时，只有当该文件的最新版本由该用户上传时才会显示。',
+'listfiles-summary' => '本特殊页面显示所有上传的文件。当按用户过滤时，只显示输入的用户最后上传的文件版本。',
 'listfiles_search_for' => '按媒体名称搜索：',
 'imgfile' => '文件',
 'listfiles' => '文件列表',
@@ -1810,7 +1809,7 @@ $1',
 'filehist-user' => '用户',
 'filehist-dimensions' => '大小',
 'filehist-filesize' => '文件大小',
-'filehist-comment' => '注解',
+'filehist-comment' => '评论',
 'filehist-missing' => '文件遗失',
 'imagelinks' => '文件用途',
 'linkstoimage' => '以下的$1个页面链接到本文件：',

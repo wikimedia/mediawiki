@@ -3190,6 +3190,8 @@ $5
 'revdelete-restricted' => 'ئەو سنووری بەرگریانەی خستراوەتە سەر بەڕێوبەران',
 'revdelete-unrestricted' => 'ئەو سنووری بەرگریانەی لابردراوە لە سەر بەڕێوبەران',
 'logentry-move-move' => '$1 پەڕەی $3ی گواستەوە بۆ $4',
+'logentry-move-move-noredirect' => '$1 پەڕەی $3 گواستەوە بۆ $4 بێ بەجێھشتنی ڕەوانەکردنەوەیەک',
+'logentry-move-move_redir-noredirect' => '$1 پەڕەی $3 گواستەوە بۆ $4 لە جێگەی ڕەوانەکەرێک بە بێ بەجێھشتنی ڕەوانەکردنەوەیەک',
 'logentry-newusers-newusers' => '$1 ھەژمارێکی بەکارھێنەریی دروستکرد',
 'logentry-newusers-create' => '$1 ھەژمارێکی بەکارھێنەریی دروستکرد',
 'logentry-newusers-create2' => '$1 ھەژمارێکی بەکارھێنەریی دروستکرد $3',

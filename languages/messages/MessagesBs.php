@@ -1,5 +1,5 @@
 <?php
-/** Bosnian (Bosanski)
+/** Bosnian (bosanski)
  *
  * See MessagesQqq.php for message documentation incl. usage of parameters
  * To improve a translation please visit http://translatewiki.net
@@ -979,6 +979,7 @@ Izmjena je odbačena da bi se spriječilo uništavanje teksta stranice.
 To se događa ponekad kad korisite problematični anonimni proxy koji je baziran na web-u.'''",
 'edit_form_incomplete' => "'''Neki dijelovi uređivačkog obrasca nisu došli do servera; dvaput provjerite da su vaše izmjene nepromjenjene i pokušajte ponovno.'''",
 'editing' => 'Uređujete $1',
+'creating' => 'Pravljenje stranice $1',
 'editingsection' => 'Uređujete $1 (dio)',
 'editingcomment' => 'Uređujete $1 (nova sekcija)',
 'editconflict' => 'Sukobljenje izmjene: $1',
@@ -1048,6 +1049,7 @@ Izgleda da je obrisana.',
 'edit-no-change' => 'Vaša izmjena je ignorirana, jer nije bilo promjena teksta stranice.',
 'edit-already-exists' => 'Stranica nije mogla biti kreirana.
 Izgleda da već postoji.',
+'defaultmessagetext' => 'Uobičajeni tekst poruke',
 
 # Parser/template warnings
 'expensive-parserfunction-warning' => 'Upozorenje: Ova stranica sadrži previše poziva opterećujućih parserskih funkcija.
@@ -1063,6 +1065,12 @@ Ovakvi argumenti se trebaju izbjegavati.',
 'parser-template-loop-warning' => 'Otkrivena kružna greška u šablonu: [[$1]]',
 'parser-template-recursion-depth-warning' => 'Dubina uključivanja šablona prekoračena ($1)',
 'language-converter-depth-warning' => 'Prekoračena granica dubine jezičkog pretvarača ($1)',
+'node-count-exceeded-category' => 'Stranice sa prekoračenim brojem čvorova',
+'node-count-exceeded-warning' => 'Stranice koje imaju prevelik broj čvorova',
+'expansion-depth-exceeded-category' => 'Stranice koje su prekoračile dubinu proširenja',
+'expansion-depth-exceeded-warning' => 'Stranice koje su prekoračile dubinu proširenja',
+'parser-unstrip-loop-warning' => 'Pronađena petlja',
+'parser-unstrip-recursion-limit' => 'Prekoračeno ograničenje rekurzije ($1)',
 
 # "Undo" feature
 'undo-success' => 'Izmjena se može vratiti.
@@ -1240,7 +1248,9 @@ Korištenje navigacionih linkova će resetovati ovaj stupac.',
 'mergelogpagetext' => 'Ispod je spisak nedavnih spajanja historija stranica.',
 
 # Diffs
-'history-title' => 'Historija izmjena stranice "$1"',
+'history-title' => 'Historija revizija "$1"',
+'difference-title' => 'Razlike između revizija od "$1"',
+'difference-title-multipage' => 'Razlika između stranica "$1" i "$2"',
 'difference-multipage' => '(Razlika između stranica)',
 'lineno' => 'Linija $1:',
 'compareselectedversions' => 'Uporedite označene verzije',
@@ -1336,6 +1346,7 @@ Pokušajte u Vaš upit uključiti prefiks ''all:'' da bi ste pretražili sav sad
 'prefs-beta' => 'Beta mogućnosti',
 'prefs-datetime' => 'Datum i vrijeme',
 'prefs-labs' => 'Eksperimentalne mogućnosti',
+'prefs-user-pages' => 'Korisničke stranice',
 'prefs-personal' => 'Korisnički podaci',
 'prefs-rc' => 'Podešavanja nedavnih izmjena',
 'prefs-watchlist' => 'Moji praćeni članci',
@@ -1407,6 +1418,7 @@ Ovo se ne može vratiti unazad.',
 'yourrealname' => 'Vaše pravo ime:',
 'yourlanguage' => 'Jezik:',
 'yourvariant' => 'Varijanta jezika:',
+'prefs-help-variant' => 'Vaša preferirana varijanta ili pravopis za prikaz sadržaja stranica na ovoj wiki.',
 'yournick' => 'Nadimak (za potpise):',
 'prefs-help-signature' => 'Komentari na stranicama za razgovor trebaju biti potpisani sa "<nowiki>~~~~</nowiki>" koje će biti pretvoreno u vaš potpis i vrijeme.',
 'badsig' => 'Loš sirovi potpis.
@@ -1461,7 +1473,7 @@ Ako izaberete da date ime, biće korišteno za pripisivanje za vaš rad.',
 'userrights-no-interwiki' => 'Nemate dopuštenja da uređujete korisnička prava na drugim wikijima.',
 'userrights-nodatabase' => 'Baza podataka $1 ne postoji ili nije lokalna baza.',
 'userrights-nologin' => 'Morate se [[Special:UserLogin|prijaviti]] sa administratorskim računom da bi ste mogli postavljati korisnička prava.',
-'userrights-notallowed' => 'Vaš korisnički račun nema privilegije da dodaje prava korisnika.',
+'userrights-notallowed' => 'Vaš račun nema privilegije da dodaje ili oduzima prava korisnika.',
 'userrights-changeable-col' => 'Grupe koje možete mijenjati',
 'userrights-unchangeable-col' => 'Grupe koje ne možete mijenjati',
 
@@ -1548,7 +1560,7 @@ Ako izaberete da date ime, biće korišteno za pripisivanje za vaš rad.',
 'right-siteadmin' => 'Zaključavanje i otključavanje baze podataka',
 'right-override-export-depth' => 'Izvoz stranica uključujući povezane stranice do dubine od 5 linkova',
 'right-sendemail' => 'Slanje e-maila drugim korisnicima',
-'right-passwordreset' => 'Poništavanje šifre korisnika ([[Special:PasswordReset|posebna stranica]])',
+'right-passwordreset' => 'Pogledaj e-mailove za obnavljanje šifre',
 
 # User rights log
 'rightslog' => 'Zapisnik korisničkih prava',
@@ -1582,6 +1594,7 @@ Ako izaberete da date ime, biće korišteno za pripisivanje za vaš rad.',
 'action-suppressionlog' => 'vidite ovaj privatni zapis',
 'action-block' => 'blokirate uređivanje ovog korisnika',
 'action-protect' => 'promijeniti nivo zaštite za ovu stranicu',
+'action-rollback' => 'brzo vraćanje izmjena zadnjeg korisnika koji je uređivao određenu stranicu',
 'action-import' => 'uvozite ovu stranicu iz druge wiki',
 'action-importupload' => 'uvezete ovu stranicu putem postavljanja datoteke',
 'action-patrol' => 'označite izmjene drugih kao patrolirane',
@@ -1623,6 +1636,7 @@ Ako izaberete da date ime, biće korišteno za pripisivanje za vaš rad.',
 'number_of_watching_users_pageview' => '[$1 {{PLURAL:$1|korisnik|korisnika}} koji pregledaju]',
 'rc_categories' => 'Ograniči na kategorije (razdvojene sa "|")',
 'rc_categories_any' => 'Sve',
+'rc-change-size-new' => '$1 {{PLURAL:$1|bajt|bajta|bajtova}} poslije izmjene',
 'newsectionsummary' => '/* $1 */ nova sekcija',
 'rc-enhanced-expand' => 'Pokaži detalje (neophodna JavaScript)',
 'rc-enhanced-hide' => 'Sakrij detalje',
@@ -1785,11 +1799,18 @@ Ako se problem ne riješi, kontaktirajte [[Special:ListUsers/sysop|administrator
 'upload-too-many-redirects' => 'URL sadrži previše preusmjerenja',
 'upload-unknown-size' => 'Nepoznata veličina',
 'upload-http-error' => 'Desila se HTTP greška: $1',
+'upload-copy-upload-invalid-domain' => 'Kopije postavljenih datoteka nisu dostupne sa ove domene.',
 
 # File backend
+'backend-fail-stream' => 'Ne mogu emitirati datoteku $1.',
 'backend-fail-backup' => 'Ne može sigurnosno kopirati datoteku $1.',
 'backend-fail-notexists' => 'Datoteka $1 ne postoji.',
+'backend-fail-hashes' => 'Nisam našao datoteku disperzije radi usporedbe.',
+'backend-fail-notsame' => 'Već postoji različita datoteka $1.',
+'backend-fail-invalidpath' => '$1 nije valjana putanja za skladištenje.',
+'backend-fail-delete' => 'Ne može se izbrisati datoteka $1.',
 'backend-fail-alreadyexists' => 'Datoteka $1 već postoji.',
+'backend-fail-store' => 'Ne može se spremiti datoteka $1 na $2.',
 'backend-fail-read' => 'Ne mogu čitati datoteku $1.',
 'backend-fail-create' => 'Ne mogu napraviti datoteku $1.',
 
@@ -1988,7 +2009,7 @@ Prije brisanja provjerite da li druge stranice vode na te šablone.',
 'statistics-users-active-desc' => 'Korisnici koju su izvršili akciju u toku {{PLURAL:$1|zadnjeg dana|zadnja $1 dana|zadnjih $1 dana}}',
 'statistics-mostpopular' => 'Najviše pregledane stranice',
 
-'disambiguations' => 'Stranice za čvor članke',
+'disambiguations' => 'Stranice koje vode na čvor članke',
 'disambiguationspage' => '{{ns:template}}:Čvor',
 'disambiguations-text' => "Slijedeće stranice su povezane sa '''čvor stranicom'''.
 Po pravilu, one se trebaju povezati sa konkretnim člankom.<br />
@@ -2089,7 +2110,7 @@ na kome bi se izvela ova funkcija.',
 'booksources-invalid-isbn' => 'Navedeni ISBN broj nije validan; molimo da provjerite da li je došlo do greške pri kopiranju iz prvobitnog izvora.',
 
 # Special:Log
-'specialloguserlabel' => 'Korisnik:',
+'specialloguserlabel' => 'Izvršilac:',
 'speciallogtitlelabel' => 'Cilj (naslov ili korisnik):',
 'log' => 'Protokoli',
 'all-logs-page' => 'Svi javni registri',
@@ -2132,7 +2153,7 @@ Vidi također [[Special:WantedCategories|zatražene kategorije]].',
 'sp-deletedcontributions-contribs' => 'doprinosi',
 
 # Special:LinkSearch
-'linksearch' => 'Vanjski linkovi',
+'linksearch' => 'Pretraga vanjskih linkova',
 'linksearch-pat' => 'Šema traženja:',
 'linksearch-ns' => 'Imenski prostor:',
 'linksearch-ok' => 'Traži',
