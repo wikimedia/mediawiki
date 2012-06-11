@@ -840,7 +840,7 @@ abstract class ContentHandler {
 	}
 
 	/**
-	 * Returns true iff this page's content model supports sections.
+	 * Returns true iff this content model supports sections.
 	 *
 	 * This default implementation returns false,
 	 *

@@ -1406,13 +1406,15 @@ class WikiPage extends Page {
 	public function replaceSection( $section, $text, $sectionTitle = '', $edittime = null ) {
 		wfDeprecated( __METHOD__, '1.WD' );
 
-		$sectionContent = ContentHandler::makeContent( $text, $this->getTitle() ); #XXX: could make section title, but that's not required.
+		if ( !$this->supportsSections() ) {
+			return null;
+		}
 
-		#TODO: check ContentHandler::supportsSections(). throw exception??
+		$sectionContent = ContentHandler::makeContent( $text, $this->getTitle() ); # could even make section title, but that's not required.
+
 		$newContent = $this->replaceSectionContent( $section, $sectionContent, $sectionTitle, $edittime );
-		#TODO: check $newContent == false. throw exception??
 
-		return ContentHandler::getContentText( $newContent ); #XXX: unclear what will happen for non-wikitext!
+		return ContentHandler::getContentText( $newContent );
 	}
 
 	/**
@@ -1421,6 +1423,7 @@ class WikiPage extends Page {
 	 * @return boolean whether sections are supported.
 	 *
 	 * @todo: the skin should check this and not offer section functionality if sections are not supported.
+	 * @todo: the EditPage should check this and not offer section functionality if sections are not supported.
 	 */
 	public function supportsSections() {
 		return $this->getContentHandler()->supportsSections();
@@ -1438,6 +1441,11 @@ class WikiPage extends Page {
 	 */
 	public function replaceSectionContent( $section, Content $sectionContent, $sectionTitle = '', $edittime = null ) {
 		wfProfileIn( __METHOD__ );
+
+		if ( !$this->supportsSections() ) {
+			#XXX: log this?
+			return null;
+		}
 
 		if ( strval( $section ) == '' ) {
 			// Whole-page edit; let the whole text through
@@ -3270,7 +3278,6 @@ class PoolWorkArticleView extends PoolCounterWork {
 		}
 
 		$time = - microtime( true );
-		// TODO: page might not have this method? Hard to tell what page is supposed to be here...
 		$this->parserOutput = $content->getParserOutput( $this->page->getTitle(), $this->revid, $this->parserOptions );
 		$time += microtime( true );
 
