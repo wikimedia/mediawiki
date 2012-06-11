@@ -55,6 +55,19 @@ $namespaceNames = array(
 	NS_CATEGORY_TALK    => 'Categoreye_copene',
 );
 
+$specialPageAliases = array(
+	'Allpages'                  => array( 'Totes_les_pådjes' ),
+	'Block'                     => array( 'Bloker', 'Blocaedje' ),
+	'Categories'                => array( 'Categoreyes' ),
+	'Preferences'               => array( 'Preferinces' ),
+	'Prefixindex'               => array( 'Indecse_pa_betchete' ),
+	'Search'                    => array( 'Cweri' ),
+	'Specialpages'              => array( 'Pådjes_sipeciåles' ),
+	'Statistics'                => array( 'Sitatistikes' ),
+	'Version'                   => array( 'Modêye' ),
+	'Watchlist'                 => array( 'Pådjes_shuvowes' ),
+);
+
 # definixha del cogne po les limeros
 # (number format definition)
 # en: 12,345.67 -> wa: 12 345,67
@@ -62,12 +75,6 @@ $separatorTransformTable = array( ',' => "\xc2\xa0", '.' => ',' );
 
 # $linkTrail = '/^([a-zåâêîôûçéèA-ZÅÂÊÎÔÛÇÉÈ]+)(.*)$/sDu';
 $linkTrail = '/^([a-zåâêîôûçéè]+)(.*)$/sDu';
-
-#
-# NOTE:
-# sysop = manaedjeu
-# bureaucrat = mwaisse-manaedjeu
-#
 
 $messages = array(
 # User preference toggles
