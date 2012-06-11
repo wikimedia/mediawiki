@@ -289,6 +289,7 @@ $magicWords = array(
 	'server'                  => array( '0', 'СЕРВЕР', 'SERVER' ),
 	'servername'              => array( '0', 'НАЗВА_СЕРВЕРА', 'НАЗВАНИЕ_СЕРВЕРА', 'SERVERNAME' ),
 	'scriptpath'              => array( '0', 'ШЛЯХ_ДО_СКРИПТУ', 'ПУТЬ_К_СКРИПТУ', 'SCRIPTPATH' ),
+	'stylepath'               => array( '0', 'ШЛЯХ_ДО_СТИЛЮ', 'ПУТЬ_К_СТИЛЮ', 'STYLEPATH' ),
 	'grammar'                 => array( '0', 'ВІДМІНОК:', 'ПАДЕЖ:', 'GRAMMAR:' ),
 	'gender'                  => array( '0', 'СТАТЬ:', 'ПОЛ:', 'GENDER:' ),
 	'notitleconvert'          => array( '0', '__БЕЗ_ПЕРЕТВОРЕННЯ_ЗАГОЛОВКУ__', '__БЕЗ_ПРЕОБРАЗОВАНИЯ_ЗАГОЛОВКА__', '__NOTITLECONVERT__', '__NOTC__' ),
@@ -301,6 +302,7 @@ $magicWords = array(
 	'revisionday'             => array( '1', 'ДЕНЬ_ВЕРСІЇ', 'ДЕНЬ_ВЕРСИИ', 'REVISIONDAY' ),
 	'revisionday2'            => array( '1', 'ДЕНЬ_ВЕРСІЇ_2', 'ДЕНЬ_ВЕРСИИ_2', 'REVISIONDAY2' ),
 	'revisionmonth'           => array( '1', 'МІСЯЦЬ_ВЕРСІЇ', 'МЕСЯЦ_ВЕРСИИ', 'REVISIONMONTH' ),
+	'revisionmonth1'          => array( '1', 'МІСЯЦЬ_ВЕРСІЇ_1', 'МЕСЯЦ_ВЕРСИИ_1', 'REVISIONMONTH1' ),
 	'revisionyear'            => array( '1', 'РІК_ВЕРСІЇ', 'ГОД_ВЕРСИИ', 'REVISIONYEAR' ),
 	'revisiontimestamp'       => array( '1', 'МІТКА_ЧАСУ_ВЕРСІЇ', 'ОТМЕТКА_ВРЕМЕНИ_ВЕРСИИ', 'REVISIONTIMESTAMP' ),
 	'revisionuser'            => array( '1', 'ВЕРСІЯ_КОРИСТУВАЧА', 'ВЕРСИЯ_УЧАСНИКА', 'REVISIONUSER' ),
@@ -342,6 +344,9 @@ $magicWords = array(
 	'staticredirect'          => array( '1', '__СТАТИЧНЕ_ПЕРЕНАПРАВЛЕННЯ__', '__СТАТИЧЕСКОЕ_ПЕРЕНАПРАВЛЕНИЕ__', '__STATICREDIRECT__' ),
 	'protectionlevel'         => array( '1', 'РІВЕНЬ_ЗАХИСТУ', 'УРОВЕНЬ_ЗАЩИТЫ', 'PROTECTIONLEVEL' ),
 	'formatdate'              => array( '0', 'форматдати', 'форматдаты', 'formatdate', 'dateformat' ),
+	'url_path'                => array( '0', 'ШЛЯХ', 'ПУТЬ', 'PATH' ),
+	'url_wiki'                => array( '0', 'ВІКІ', 'ВИКИ', 'WIKI' ),
+	'url_query'               => array( '0', 'ЗАПИТ', 'ЗАПРОС', 'QUERY' ),
 );
 
 $linkTrail = '/^([a-zабвгґдеєжзиіїйклмнопрстуфхцчшщьєюяёъы“»]+)(.*)$/sDu';
