@@ -74,7 +74,7 @@ class LinkCache {
 	 * Get a field of a title object from cache.
 	 * If this link is not good, it will return NULL.
 	 * @param $title Title
-	 * @param $field String: ('length','redirect','revision')
+	 * @param $field String: ('length','redirect','revision','model')
 	 * @return mixed
 	 */
 	public function getGoodLinkFieldObj( $title, $field ) {
@@ -102,14 +102,16 @@ class LinkCache {
 	 * @param $len Integer: text's length
 	 * @param $redir Integer: whether the page is a redirect
 	 * @param $revision Integer: latest revision's ID
+	 * @param $model Integer: latest revision's content model ID
 	 */
-	public function addGoodLinkObj( $id, $title, $len = -1, $redir = null, $revision = false ) {
+	public function addGoodLinkObj( $id, $title, $len = -1, $redir = null, $revision = false, $model = false ) {
 		$dbkey = $title->getPrefixedDbKey();
 		$this->mGoodLinks[$dbkey] = intval( $id );
 		$this->mGoodLinkFields[$dbkey] = array(
 			'length' => intval( $len ),
 			'redirect' => intval( $redir ),
-			'revision' => intval( $revision ) );
+			'revision' => intval( $revision ),
+			'model' => intval( $model ) );
 	}
 
 	/**
@@ -117,7 +119,7 @@ class LinkCache {
 	 * @since 1.19
 	 * @param $title Title
 	 * @param $row object which has the fields page_id, page_is_redirect,
-	 *  page_latest
+	 *  page_latest and page_content_model
 	 */
 	public function addGoodLinkObjFromRow( $title, $row ) {
 		$dbkey = $title->getPrefixedDbKey();
@@ -126,6 +128,7 @@ class LinkCache {
 			'length' => intval( $row->page_len ),
 			'redirect' => intval( $row->page_is_redirect ),
 			'revision' => intval( $row->page_latest ),
+			'model' => !empty( $row->page_content_model ) ? intval( $row->page_content_model ) : null,
 		);
 	}
 
@@ -178,7 +181,8 @@ class LinkCache {
 	 * @return Integer
 	 */
 	public function addLinkObj( $nt ) {
-		global $wgAntiLockFlags;
+		global $wgAntiLockFlags, $wgContentHandlerUseDB;
+
 		wfProfileIn( __METHOD__ );
 
 		$key = $nt->getPrefixedDBkey();
@@ -210,8 +214,10 @@ class LinkCache {
 			$options = array();
 		}
 
-		$s = $db->selectRow( 'page',
-			array( 'page_id', 'page_len', 'page_is_redirect', 'page_latest' ),
+		$f = array( 'page_id', 'page_len', 'page_is_redirect', 'page_latest' );
+		if ( $wgContentHandlerUseDB ) $f[] = 'page_content_model';
+
+		$s = $db->selectRow( 'page', $f,
 			array( 'page_namespace' => $nt->getNamespace(), 'page_title' => $nt->getDBkey() ),
 			__METHOD__, $options );
 		# Set fields...

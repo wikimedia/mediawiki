@@ -202,6 +202,27 @@ class Title {
 	}
 
 	/**
+	 * Returns a list of fields that are to be selected for initializing Title objects or LinkCache entries.
+	 * Uses $wgContentHandlerUseDB to determine whether to include page_content_model.
+	 *
+	 * @return array
+	 */
+	protected static function getSelectFields() {
+		global $wgContentHandlerUseDB;
+
+		$fields = array(
+			'page_namespace', 'page_title', 'page_id',
+			'page_len', 'page_is_redirect', 'page_latest',
+		);
+
+		if ( $wgContentHandlerUseDB ) {
+			$fields[] = 'page_content_model';
+		}
+
+		return $fields;
+	}
+
+	/**
 	 * Create a new Title from an article ID
 	 *
 	 * @param $id Int the page_id corresponding to the Title to create
@@ -212,10 +233,7 @@ class Title {
 		$db = ( $flags & self::GAID_FOR_UPDATE ) ? wfGetDB( DB_MASTER ) : wfGetDB( DB_SLAVE );
 		$row = $db->selectRow(
 			'page',
-			array(
-				'page_namespace', 'page_title', 'page_id',
-				'page_len', 'page_is_redirect', 'page_latest',
-			),
+			self::getSelectFields(),
 			array( 'page_id' => $id ),
 			__METHOD__
 		);
@@ -241,10 +259,7 @@ class Title {
 
 		$res = $dbr->select(
 			'page',
-			array(
-				'page_namespace', 'page_title', 'page_id',
-				'page_len', 'page_is_redirect', 'page_latest',
-			),
+			self::getSelectFields(),
 			array( 'page_id' => $ids ),
 			__METHOD__
 		);
@@ -283,17 +298,17 @@ class Title {
 			if ( isset( $row->page_is_redirect ) )
 				$this->mRedirect = (bool)$row->page_is_redirect;
 			if ( isset( $row->page_latest ) )
-				$this->mLatestID = (int)$row->page_latest; # FIXME: whene3ver page_latest is updated, also update page_content_model
+				$this->mLatestID = (int)$row->page_latest;
 			if ( isset( $row->page_content_model ) )
 				$this->mContentModel = intval( $row->page_content_model );
 			else
-				$this->mContentModel = null; # initialized lazily in getContentModel()
+				$this->mContentModel = false; # initialized lazily in getContentModel()
 		} else { // page not found
 			$this->mArticleID = 0;
 			$this->mLength = 0;
 			$this->mRedirect = false;
 			$this->mLatestID = 0;
-			$this->mContentModel = null; # initialized lazily in getContentModel()
+			$this->mContentModel = false; # initialized lazily in getContentModel()
 		}
 	}
 
@@ -319,7 +334,7 @@ class Title {
 		$t->mArticleID = ( $ns >= 0 ) ? -1 : 0;
 		$t->mUrlform = wfUrlencode( $t->mDbkeyform );
 		$t->mTextform = str_replace( '_', ' ', $title );
-		$t->mContentModel = null; # initialized lazily in getContentModel()
+		$t->mContentModel = false; # initialized lazily in getContentModel()
 		return $t;
 	}
 
@@ -659,11 +674,19 @@ class Title {
 	 * @return Integer: Content model id
 	 */
 	public function getContentModel() {
-		if ( empty( $this->mContentModel ) ) {
+		if ( !$this->mContentModel ) {
+			$linkCache = LinkCache::singleton();
+			$this->mContentModel = $linkCache->getGoodLinkFieldObj( $this, 'model' );
+		}
+
+		if ( !$this->mContentModel ) {
 			$this->mContentModel = ContentHandler::getDefaultModelFor( $this );
 		}
 
-		assert( !empty( $this->mContentModel ) );
+		if( !$this->mContentModel ) {
+			throw new MWException( "failed to determin content model!" );
+		}
+
 		return $this->mContentModel;
 	}
 
@@ -671,7 +694,7 @@ class Title {
 	 * Convenience method for checking a title's content model name
 	 *
 	 * @param int $id
-	 * @return true if $this->getContentModel() == $id
+	 * @return Boolean true if $this->getContentModel() == $id
 	 */
 	public function hasContentModel( $id ) {
 		return $this->getContentModel() == $id;
@@ -2893,6 +2916,7 @@ class Title {
 		$this->mRedirect = null;
 		$this->mLength = -1;
 		$this->mLatestID = false;
+		$this->mContentModel = false;
 		$this->mEstimateRevisions = null;
 	}
 
@@ -3131,7 +3155,7 @@ class Title {
 
 		$res = $db->select(
 			array( 'page', $table ),
-			array( 'page_namespace', 'page_title', 'page_id', 'page_len', 'page_is_redirect', 'page_latest' ),
+			self::getSelectFields(),
 			array(
 				"{$prefix}_from=page_id",
 				"{$prefix}_namespace" => $this->getNamespace(),
@@ -3181,6 +3205,8 @@ class Title {
 	 * @return Array of Title objects linking here
 	 */
 	public function getLinksFrom( $options = array(), $table = 'pagelinks', $prefix = 'pl' ) {
+		global $wgContentHandlerUseDB;
+
 		$id = $this->getArticleID();
 
 		# If the page doesn't exist; there can't be any link from this page
@@ -3197,9 +3223,12 @@ class Title {
 		$namespaceFiled = "{$prefix}_namespace";
 		$titleField = "{$prefix}_title";
 
+		$fields = array( $namespaceFiled, $titleField, 'page_id', 'page_len', 'page_is_redirect', 'page_latest' );
+		if ( $wgContentHandlerUseDB ) $fields[] = 'page_content_model';
+
 		$res = $db->select(
 			array( $table, 'page' ),
-			array( $namespaceFiled, $titleField, 'page_id', 'page_len', 'page_is_redirect', 'page_latest' ),
+			$fields,
 			array( "{$prefix}_from" => $id ),
 			__METHOD__,
 			$options,
@@ -3761,10 +3790,16 @@ class Title {
 	 * @return Bool
 	 */
 	public function isSingleRevRedirect() {
+		global $wgContentHandlerUseDB;
+
 		$dbw = wfGetDB( DB_MASTER );
+
 		# Is it a redirect?
+		$fields = array( 'page_is_redirect', 'page_latest', 'page_id' );
+		if ( $wgContentHandlerUseDB ) $fields[] = 'page_content_model';
+
 		$row = $dbw->selectRow( 'page',
-			array( 'page_is_redirect', 'page_latest', 'page_id' ),
+			$fields,
 			$this->pageCond(),
 			__METHOD__,
 			array( 'FOR UPDATE' )
@@ -3773,6 +3808,7 @@ class Title {
 		$this->mArticleID = $row ? intval( $row->page_id ) : 0;
 		$this->mRedirect = $row ? (bool)$row->page_is_redirect : false;
 		$this->mLatestID = $row ? intval( $row->page_latest ) : false;
+		$this->mContentModel = $row && isset( $row->page_content_model ) ? intval( $row->page_content_model ) : false;
 		if ( !$this->mRedirect ) {
 			return false;
 		}

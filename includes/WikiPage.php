@@ -1279,7 +1279,7 @@ class WikiPage extends Page {
 			$this->mLatest = $revision->getId();
 			$this->mIsRedirect = (bool)$rt;
 			# Update the LinkCache.
-			LinkCache::singleton()->addGoodLinkObj( $this->getId(), $this->mTitle, $len, $this->mIsRedirect, $this->mLatest );
+			LinkCache::singleton()->addGoodLinkObj( $this->getId(), $this->mTitle, $len, $this->mIsRedirect, $this->mLatest, $revision->getContentModel() );
 		}
 
 		wfProfileOut( __METHOD__ );
