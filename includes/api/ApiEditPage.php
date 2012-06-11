@@ -60,7 +60,7 @@ class ApiEditPage extends ApiBase {
 			if ( $titleObj->isRedirect() ) {
 				$oldTitle = $titleObj;
 
-				$titles = Title::newFromRedirectArray( Revision::newFromTitle( $oldTitle )->getText( Revision::FOR_THIS_USER ) );
+				$titles = Revision::newFromTitle( $oldTitle )->getContent( Revision::FOR_THIS_USER )->getRedirectChain();
 				// array_shift( $titles );
 
 				$redirValues = array();
@@ -110,10 +110,10 @@ class ApiEditPage extends ApiBase {
 			// MediaWiki: pages, though
 			if ( $articleObj->getID() == 0 && $titleObj->getNamespace() != NS_MEDIAWIKI ) {
 				$content = null;
-                $text = '';
+				$text = '';
 			} else {
-                $content = $articleObj->getContentObject();
-                $text = ContentHandler::getContentText( $content ); #FIXME: serialize?! get format from params?...
+				$content = $articleObj->getContentObject();
+				$text = ContentHandler::getContentText( $content ); #FIXME: serialize?! get format from params?...
 			}
 
 			if ( !is_null( $params['section'] ) ) {

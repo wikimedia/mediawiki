@@ -80,17 +80,23 @@ abstract class ContentHandler {
 	 * @since WD.1
 	 *
 	 * @static
-	 * @param string $text the textual representation, will be unserialized to create the Content object
-	 * @param Title $title the title of the page this text belongs to, required as a context for deserialization
+	 *
+	 * @param string      $text    the textual representation, will be unserialized to create the Content object
+	 * @param null|Title  $title   the title of the page this text belongs to. Required if $modelId is not provided.
 	 * @param null|String $modelId the model to deserialize to. If not provided, $title->getContentModel() is used.
-	 * @param null|String $format the format to use for deserialization. If not given, the model's default format is used.
+	 * @param null|String $format  the format to use for deserialization. If not given, the model's default format is used.
 	 *
 	 * @return Content a Content object representing $text
+	 *
 	 * @throw MWException if $model or $format is not supported or if $text can not be unserialized using $format.
 	 */
-	public static function makeContent( $text, Title $title, $modelId = null, $format = null ) {
+	public static function makeContent( $text, Title $title = null, $modelId = null, $format = null ) {
 
 		if ( is_null( $modelId ) ) {
+			if ( is_null( $title ) ) {
+				throw new MWException( "Must provide a Title object or a content model ID." );
+			}
+
 			$modelId = $title->getContentModel();
 		}
 
@@ -642,6 +648,8 @@ abstract class ContentHandler {
 		$content = $rev->getContent();
 		$blank = false;
 
+		$this->checkModelID( $content->getModel() );
+
 		// If the page is blank, use the text from the previous revision,
 		// which can only be blank if there's a move/import/protect dummy revision involved
 		if ( $content->getSize() == 0 ) {
@@ -786,6 +794,10 @@ abstract class ContentHandler {
 		$undo_content = $undo->getContent();
 		$undoafter_content = $undoafter->getContent();
 
+		$this->checkModelID( $cur_content->getModel() );
+		$this->checkModelID( $undo_content->getModel() );
+		$this->checkModelID( $undoafter_content->getModel() );
+
 		if ( $cur_content->equals( $undo_content ) ) {
 			// No use doing a merge if it's just a straight revert.
 			return $undoafter_content;
@@ -911,6 +923,8 @@ abstract class TextContentHandler extends ContentHandler {
 	 * @return ParserOutput representing the HTML form of the text
 	 */
 	public function getParserOutput( Content $content, Title $title, $revId = null, ParserOptions $options = null, $generateHtml = true ) {
+		$this->checkModelID( $content->getModel() );
+
 		# generic implementation, relying on $this->getHtml()
 
 		if ( $generateHtml ) $html = $this->getHtml( $content );
@@ -922,13 +936,38 @@ abstract class TextContentHandler extends ContentHandler {
 
 	/**
 	 * Generates an HTML version of the content, for display.
-	 * Used by getParserOutput() to construct a ParserOutput object
+	 * Used by getParserOutput() to construct a ParserOutput object.
+	 *
+	 * This default implementation just calls getHighlightHtml(). Content models that
+	 * have another mapping to HTML (as is the case for markup languages like wikitext)
+	 * should override this method to generate the appropriate html.
 	 *
 	 * @param Content $content the content to render
 	 *
-	 * @return String
+	 * @return String an HTML representation of the content
 	 */
-	protected abstract function getHtml( Content $content );
+	protected function getHtml( Content $content ) {
+		$this->checkModelID( $content->getModel() );
+
+		#XXX: hook?
+		return $this->getHighlighteHtml( $content );
+	}
+
+	/**
+	 * Generates a syntax-highlighted version the content, as HTML.
+	 * Used by the default implementation if getHtml().
+	 *
+	 * @param Content $content the content to render
+	 *
+	 * @return String an HTML representation of the content's markup
+	 */
+	protected function getHighlightHtml( Content $content ) {
+		$this->checkModelID( $content->getModel() );
+
+		#TODO: use highlighter, if available
+		#XXX: hook?
+		return htmlspecialchars( $content->getNativeData() );
+	}
 
 
 }
@@ -969,6 +1008,8 @@ class WikitextContentHandler extends TextContentHandler {
 	public function getParserOutput( Content $content, Title $title, $revId = null, ParserOptions $options = null, $generateHtml = true ) {
 		global $wgParser;
 
+		$this->checkModelID( $content->getModel() );
+
 		if ( !$options ) {
 			$options = new ParserOptions();
 		}
@@ -983,7 +1024,7 @@ class WikitextContentHandler extends TextContentHandler {
 
 	/**
 	 * Returns true because wikitext supports sections.
-	 * 
+	 *
 	 * @return boolean whether sections are supported.
 	 */
 	public function supportsSections() {
@@ -1015,7 +1056,7 @@ class JavaScriptContentHandler extends TextContentHandler {
 	protected function getHtml( Content $content ) {
 		$html = "";
 		$html .= "<pre class=\"mw-code mw-js\" dir=\"ltr\">\n";
-		$html .= htmlspecialchars( $content->getNativeData() );
+		$html .= $this->getHighlightHtml( $content );
 		$html .= "\n</pre>\n";
 
 		return $html;
@@ -1045,7 +1086,7 @@ class CssContentHandler extends TextContentHandler {
 	protected function getHtml( Content $content ) {
 		$html = "";
 		$html .= "<pre class=\"mw-code mw-css\" dir=\"ltr\">\n";
-		$html .= htmlspecialchars( $content->getNativeData() );
+		$html .= $this->getHighlightHtml( $content );
 		$html .= "\n</pre>\n";
 
 		return $html;

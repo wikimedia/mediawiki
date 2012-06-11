@@ -582,19 +582,51 @@ abstract class AbstractContent implements Content {
 	 * The last element in the array is the final destination after all redirects
 	 * have been resolved (up to $wgMaxRedirects times).
 	 *
+	 * There is usually no need to override the default behaviour, subclasses that
+	 * want to implement redirects should override getRedirectTarget().
+	 *
 	 * @since WD.1
 	 *
 	 * @return Array of Titles, with the destination last
+	 * @note: migrated here from Title::newFromRedirectArray
 	 */
 	public function getRedirectChain() {
-		return null;
+		global $wgMaxRedirects;
+		$title = $this->getRedirectTarget();
+		if ( is_null( $title ) ) {
+			return null;
+		}
+		// recursive check to follow double redirects
+		$recurse = $wgMaxRedirects;
+		$titles = array( $title );
+		while ( --$recurse > 0 ) {
+			if ( $title->isRedirect() ) {
+				$page = WikiPage::factory( $title );
+				$newtitle = $page->getRedirectTarget();
+			} else {
+				break;
+			}
+			// Redirects to some special pages are not permitted
+			if ( $newtitle instanceOf Title && $newtitle->isValidRedirectTarget() ) {
+				// the new title passes the checks, so make that our current title so that further recursion can be checked
+				$title = $newtitle;
+				$titles[] = $newtitle;
+			} else {
+				break;
+			}
+		}
+		return $titles;
 	}
 
 	/**
 	 * Construct the redirect destination from this content and return a Title,
 	 * or null if this content doesn't represent a redirect.
-	 * This will only return the immediate redirect target, useful for
+	 *
+	 * This shall only return the immediate redirect target, useful for
 	 * the redirect table and other checks that don't need full recursion.
+	 *
+	 * This implementation always returns null, subclasses should implement it
+	 * according to their data model.
 	 *
 	 * @since WD.1
 	 *
@@ -610,12 +642,17 @@ abstract class AbstractContent implements Content {
 	 * This will recurse down $wgMaxRedirects times or until a non-redirect target is hit
 	 * in order to provide (hopefully) the Title of the final destination instead of another redirect.
 	 *
+	 * There is usually no need to override the default behaviour, subclasses that
+	 * want to implement redirects should override getRedirectTarget().
+	 *
 	 * @since WD.1
 	 *
 	 * @return Title
+	 * @note: migrated here from Title::newFromRedirectRecurse
 	 */
 	public function getUltimateRedirectTarget() {
-		return null;
+		$titles = $this->getRedirectChain();
+		return $titles ? array_pop( $titles ) : null;
 	}
 
 	/**
@@ -943,19 +980,45 @@ class WikitextContent extends TextContent {
 		return new WikitextContent( $plt );
 	}
 
-	public function getRedirectChain() {
-		$text = $this->getNativeData();
-		return Title::newFromRedirectArray( $text );
-	}
-
+	/**
+	 * Implement redirect extraction for wikitext.
+	 *
+	 * @return null|Title
+	 *
+	 * @note: migrated here from Title::newFromRedirectInternal()
+	 *
+	 * @see Content::getRedirectTarget
+	 * @see AbstractContent::getRedirectTarget
+	 */
 	public function getRedirectTarget() {
-		$text = $this->getNativeData();
-		return Title::newFromRedirect( $text );
-	}
-
-	public function getUltimateRedirectTarget() {
-		$text = $this->getNativeData();
-		return Title::newFromRedirectRecurse( $text );
+		global $wgMaxRedirects;
+		if ( $wgMaxRedirects < 1 ) {
+			//redirects are disabled, so quit early
+			return null;
+		}
+		$redir = MagicWord::get( 'redirect' );
+		$text = trim( $this->getNativeData() );
+		if ( $redir->matchStartAndRemove( $text ) ) {
+			// Extract the first link and see if it's usable
+			// Ensure that it really does come directly after #REDIRECT
+			// Some older redirects included a colon, so don't freak about that!
+			$m = array();
+			if ( preg_match( '!^\s*:?\s*\[{2}(.*?)(?:\|.*?)?\]{2}!', $text, $m ) ) {
+				// Strip preceding colon used to "escape" categories, etc.
+				// and URL-decode links
+				if ( strpos( $m[1], '%' ) !== false ) {
+					// Match behavior of inline link parsing here;
+					$m[1] = rawurldecode( ltrim( $m[1], ':' ) );
+				}
+				$title = Title::newFromText( $m[1] );
+				// If the title is a redirect to bad special pages or is invalid, return null
+				if ( !$title instanceof Title || !$title->isValidRedirectTarget() ) {
+					return null;
+				}
+				return $title;
+			}
+		}
+		return null;
 	}
 
 	/**
@@ -971,7 +1034,7 @@ class WikitextContent extends TextContent {
 	 * @return bool true if the content is countable
 	 */
 	public function isCountable( $hasLinks = null, Title $title = null ) {
-		global $wgArticleCountMethod, $wgRequest;
+		global $wgArticleCountMethod;
 
 		if ( $this->isRedirect( ) ) {
 			return false;

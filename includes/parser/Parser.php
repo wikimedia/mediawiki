@@ -3567,15 +3567,16 @@ class Parser {
 					break;
 				}
 				$text = $message->plain();
+				$content = ContentHandler::makeContent( $text, $title ); #TODO: use Message::content() instead, once that exists
 			} else {
 				break;
 			}
-			if ( $text === false ) {
+			if ( !$content ) {
 				break;
 			}
 			# Redirect?
 			$finalTitle = $title;
-			$title = Title::newFromRedirect( $text );
+			$title = $content->getRedirectTarget();
 		}
 		return array(
 			'text' => $text,

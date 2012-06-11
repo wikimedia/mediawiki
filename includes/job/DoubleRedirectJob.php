@@ -94,16 +94,17 @@ class DoubleRedirectJob extends Job {
 			wfDebug( __METHOD__.": target redirect already deleted, ignoring\n" );
 			return true;
 		}
-		$text = $targetRev->getText();
-		$currentDest = Title::newFromRedirect( $text );
+		$content = $targetRev->getContent();
+		$currentDest = $content->getRedirectTarget();
 		if ( !$currentDest || !$currentDest->equals( $this->redirTitle ) ) {
 			wfDebug( __METHOD__.": Redirect has changed since the job was queued\n" );
 			return true;
 		}
 
 		# Check for a suppression tag (used e.g. in periodically archived discussions)
+		$text = ContentHandler::getContentText( $content );
 		$mw = MagicWord::get( 'staticredirect' );
-		if ( $mw->match( $text ) ) {
+		if ( $mw->match( $text ) ) { #FIXME: add support for this to ContentHandler/Content
 			wfDebug( __METHOD__.": skipping: suppressed with __STATICREDIRECT__\n" );
 			return true;
 		}

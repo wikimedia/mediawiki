@@ -370,9 +370,11 @@ class Title {
 	 *
 	 * @param $text String: Text with possible redirect
 	 * @return Title: The corresponding Title
+	 * @deprecated since 1.WD, use Content::getRedirectTarget instead.
 	 */
-	public static function newFromRedirect( $text ) { #TODO: move to Content class, deprecate here.
-		return self::newFromRedirectInternal( $text );
+	public static function newFromRedirect( $text ) {
+		$content = ContentHandler::makeContent( $text, null, CONTENT_MODEL_WIKITEXT );
+		return $content->getRedirectTarget();
 	}
 
 	/**
@@ -383,10 +385,11 @@ class Title {
 	 *
 	 * @param $text String Text with possible redirect
 	 * @return Title
+	 * @deprecated since 1.WD, use Content::getUltimateRedirectTarget instead.
 	 */
 	public static function newFromRedirectRecurse( $text ) {
-		$titles = self::newFromRedirectArray( $text );
-		return $titles ? array_pop( $titles ) : null;
+		$content = ContentHandler::makeContent( $text, null, CONTENT_MODEL_WIKITEXT );
+		return $content->getUltimateRedirectTarget();
 	}
 
 	/**
@@ -397,72 +400,12 @@ class Title {
 	 *
 	 * @param $text String Text with possible redirect
 	 * @return Array of Titles, with the destination last
+	 * @deprecated since 1.WD, use Content::getRedirectChain instead.
 	 * @todo: migrate this logic into WikitextContent!
 	 */
 	public static function newFromRedirectArray( $text ) {
-		global $wgMaxRedirects;
-		$title = self::newFromRedirectInternal( $text );
-		if ( is_null( $title ) ) {
-			return null;
-		}
-		// recursive check to follow double redirects
-		$recurse = $wgMaxRedirects;
-		$titles = array( $title );
-		while ( --$recurse > 0 ) {
-			if ( $title->isRedirect() ) {
-				$page = WikiPage::factory( $title );
-				$newtitle = $page->getRedirectTarget();
-			} else {
-				break;
-			}
-			// Redirects to some special pages are not permitted
-			if ( $newtitle instanceOf Title && $newtitle->isValidRedirectTarget() ) {
-				// the new title passes the checks, so make that our current title so that further recursion can be checked
-				$title = $newtitle;
-				$titles[] = $newtitle;
-			} else {
-				break;
-			}
-		}
-		return $titles;
-	}
-
-	/**
-	 * Really extract the redirect destination
-	 * Do not call this function directly, use one of the newFromRedirect* functions above
-	 *
-	 * @param $text String Text with possible redirect
-	 * @return Title
-	 */
-	protected static function newFromRedirectInternal( $text ) {
-		global $wgMaxRedirects;
-		if ( $wgMaxRedirects < 1 ) {
-			//redirects are disabled, so quit early
-			return null;
-		}
-		$redir = MagicWord::get( 'redirect' );
-		$text = trim( $text );
-		if ( $redir->matchStartAndRemove( $text ) ) {
-			// Extract the first link and see if it's usable
-			// Ensure that it really does come directly after #REDIRECT
-			// Some older redirects included a colon, so don't freak about that!
-			$m = array();
-			if ( preg_match( '!^\s*:?\s*\[{2}(.*?)(?:\|.*?)?\]{2}!', $text, $m ) ) {
-				// Strip preceding colon used to "escape" categories, etc.
-				// and URL-decode links
-				if ( strpos( $m[1], '%' ) !== false ) {
-					// Match behavior of inline link parsing here;
-					$m[1] = rawurldecode( ltrim( $m[1], ':' ) );
-				}
-				$title = Title::newFromText( $m[1] );
-				// If the title is a redirect to bad special pages or is invalid, return null
-				if ( !$title instanceof Title || !$title->isValidRedirectTarget() ) {
-					return null;
-				}
-				return $title;
-			}
-		}
-		return null;
+		$content = ContentHandler::makeContent( $text, null, CONTENT_MODEL_WIKITEXT );
+		return $content->getRedirectChain();
 	}
 
 	/**
