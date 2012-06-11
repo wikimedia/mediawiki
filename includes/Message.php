@@ -203,6 +203,11 @@ class Message {
 	protected $title = null;
 
 	/**
+	 * Content object representing the message
+	 */
+	protected $content = null;
+
+	/**
 	 * @var string
 	 */
 	protected $message;
@@ -395,7 +400,15 @@ class Message {
 		return $this;
 	}
 
-	/**
+	public function content() {
+		if ( !$this->content ) {
+			$this->content = new MessageContent( $this->key );
+		}
+
+		return $this->content;
+	}
+
+		/**
 	 * Returns the message parsed from wikitext to HTML.
 	 * @return String: HTML
 	 */
