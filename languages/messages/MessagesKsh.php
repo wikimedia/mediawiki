@@ -2335,11 +2335,12 @@ Adress en Dinge [[Special:Preferences|ming Enstellunge]] stonn han, öm en E-Mai
 schecke.',
 'emailuser' => 'E-mail aan dä Metmaacher',
 'emailpage' => 'E-mail aan ene Metmaacher',
-'emailpagetext' => 'Wann dä Metmaacher en E-mail Adress aanjejovve hätt en singe Enstellunge,
-un die deit et och, dann kanns De met däm Fomular hee unge en einzelne E-Mail aan dä Metmaacher schecke.
-Ding E-mail Adress, die De en [[Special:Preferences|Ding eije Enstellunge]] aanjejovve häs,
-die weed als em Avsender sing Adress en die E-Mail enjedrage.
-Domet kann, wä die E-Mail kritt, drop antwoote, un die Antwood jeiht tirek aan Dech.
+'emailpagetext' => 'Wann heh dä Metmaacher en Adräß för sing <i lang="en">e-mail</i> aanjejovve hätt en singe Enstellunge,
+un die deit et och, dann kanns De met däm Fomular hee unge en einzel <i lang="en">e-mail</i> aan dä Metmaacher schecke.
+
+Ding <i lang="en">e-mail</i>-Adräß, di De en [[Special:Preferences|Ding eije Enstellunge]] aanjejovve häs,
+di weed als em Afsender sing Adräß en Ding <i lang="en">e-mail</i> enjedrage.
+Domet kann, wä di <i lang="en">e-mail</i> kritt, drop antwoote, un di Antwood jeiht tirek aan Desch.
 Alles klor?',
 'usermailererror' => 'Dat E-Mail-Objek jov ene Fähler us:',
 'defemailsubject' => 'e-mail fum $1 {{GRAMMAR:fun|{{SITENAME}}}}.',
@@ -2421,14 +2422,14 @@ dann klick op „Nimieh drop oppasse“ wann De die Sigg om Schirm häs.",
 'enotif_anon_editor' => 'Dä namelose Metmaacher $1',
 'enotif_body' => 'Leeven $WATCHINGUSERNAME,
 
-{{GRAMMAR:em|{{SITENAME}}}} wood die Sigg „$PAGETITLE“ am $PAGEEDITDATE vun „$PAGEEDITOR“ $CHANGEDORCREATED, unger $PAGETITLE_URL fings Do de neuste Version.
+{{GRAMMAR:em|{{SITENAME}}}} wood die Sigg „$PAGETITLE“ am $PAGEEDITDATE {{GENDER:$PAGEEDITOR|vum|vum|vum_Metmaacher|vun dä|vum}} „$PAGEEDITOR“ $CHANGEDORCREATED, unger $PAGETITLE_URL fings Do de neuste Version.
 
 $NEWPAGE
 
 {{int:summary}} „$PAGESUMMARY“ $PAGEMINOREDIT
 
 Do kanns dä Metmaacher „$PAGEEDITOR“ aanspreche:
-* E-mail: $PAGEEDITOR_EMAIL
+* Övver e-mail: $PAGEEDITOR_EMAIL
 * Em Wiki: $PAGEEDITOR_WIKI
 
 Do kriss vun jetz aan kein e-mail mieh, bes dat Do Der di Sigg aanjeluurt häs,
@@ -2441,10 +2442,10 @@ Ene schöne Jroß {{GRAMMAR:vun|{{SITENAME}}}}.
 Öm de Enshtällonge för Nohreeschet aan Desch ze ändere, jangk op:
 {{canonicalurl:{{#special:Preferences}}}}
 
-Do kanns hee Ding Oppassliss ändere:
+Do kanns hee Ding Oppassleß ändere:
 {{canonicalurl:{{#special:EditWatchlist}}}}
 
-Öm di Sigg vun Dinger Oppassliss ze schmieße:
+Öm di Sigg vun Dinger Oppassleß ze schmieße:
 $UNWATCHURL
 
 Do kanns hee noh Hölp luure:

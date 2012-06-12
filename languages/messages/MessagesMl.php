@@ -3677,7 +3677,7 @@ $5
 
 # Watchlist editing tools
 'watchlisttools-view' => 'ബന്ധപ്പെട്ട മാറ്റങ്ങൾ കാട്ടുക',
-'watchlisttools-edit' => 'ശ്രദ്ധിക്കുന്ന താളുകളുടെ പട്ടിക കാട്ടുക, തിരുത്തുക',
+'watchlisttools-edit' => 'ശ്രദ്ധിക്കുന്ന താളുകളുടെ പട്ടിക കാണുക, തിരുത്തുക',
 'watchlisttools-raw' => 'താങ്കൾ ശ്രദ്ധിക്കുന്ന താളുകളുടെ പട്ടികയുടെ മൂലരൂപം തിരുത്തുക',
 
 # Signatures

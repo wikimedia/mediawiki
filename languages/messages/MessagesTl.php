@@ -2158,29 +2158,35 @@ Makikita doon ang lahat ng mga susunod na pagbabago sa pahinang ito pati na ang 
 'enotif_lastvisited' => 'Tingnan ang $1 para sa lahat ng mga pagbabago magmula noong huling pagdalaw mo.',
 'enotif_lastdiff' => 'Tingnan ang $1 para makita ang pagbabagong ito.',
 'enotif_anon_editor' => 'hindi nakikilalang tagagamit $1',
-'enotif_body' => 'Mahal na $WATCHINGUSERNAME,
+'enotif_body' => 'Mahal naming $WATCHINGUSERNAME,
 
 
-Ang pahinang $PAGETITLE ng {{SITENAME}} ay $CHANGEDORCREATED noong $PAGEEDITDATE ni $PAGEEDITOR, tingnan ang $PAGETITLE_URL para sa pangkasalukuyang rebisyon.
+Ang pahinang $PAGETITLE ng {{SITENAME}} ay $CHANGEDORCREATED ni $PAGEEDITOR noong $PAGEEDITDATE, tingnan ang $PAGETITLE_URL para sa pangkasalukuyang rebisyon.
 
 $NEWPAGE
 
-Buod mula sa patnugot: $PAGESUMMARY $PAGEMINOREDIT
+Buod ng patnugot: $PAGESUMMARY $PAGEMINOREDIT
 
 Makipagugnayan sa patnugot:
 liham: $PAGEEDITOR_EMAIL
 wiki: $PAGEEDITOR_WIKI
 
 Wala nang iba pang mga pagpapahayag sa pagkakataon ng pagkakaroon ng karagdagang mga pagbabago maliban na lamang kung dadalawin mo ang pahinang ito.
-Maaari mo ring muling itakda ang mga watawat na pangpag-uulat para sa lahat ng mga pahinang binabantayan mo sa loob ng iyong talaan ng mga binabantayan.
+Maaari mo ring itakda muli ang mga watawat na pangpagpapabatid para sa lahat ng mga pahinang binabantayan mo sa loob ng iyong talaan ng mga binabantayan.
 
-             Ang iyong palakaibigang sistemang pangpag-uulat ng {{SITENAME}}
+Ang iyong maginhawang sistema ng pagpapabatid ng {{SITENAME}}
 
 --
-Para baguhin ang mga pagtatakda ng iyong talaan ng mga binabantayan, puntahan ang
+Upang mabago ang mga katakdaan sa iyong talaan ng mga binabantayan, dalawin ang
+{{canonicalurl:{{#special:Preferences}}}}
+
+Upang baguhin ang mga katakdaan ng bantayan mo, dumalaw sa
+{{canonicalurl:{{#special:EditWatchlist}}}}
+
+Upang burahin ang pahina mula sa pahina mo ng mga binabantayan, dumalaw sa
 $UNWATCHURL
 
-Balik-tugon at karagdagang tulong:
+Tugon at karagdagang tulong:
 {{canonicalurl:{{MediaWiki:Helppage}}}}',
 
 # Delete
@@ -2312,8 +2318,8 @@ Maaari mong baguhin ang antas ng panananggalang ng pahina, ngunit hindi ito maka
 'undeletepagetext' => 'Ang sumusunod na {{PLURAL:$1|pahina ay nabura na subalit |$1 mga pahina ay nabura na subalit}} nananatili pa rin sa sinupan/arkibo at maaaring bang ibalik mula sa pagkakabura.
 Maaaring palagiang linisin o tanggalan ng laman ang sinupan/arkibo.',
 'undelete-fieldset-title' => 'Ibalik ang mga pagbabago',
-'undeleteextrahelp' => "Para maibalik ang kabuoan ng kasaysayan ng pahina, iwanang walang laman ang mga kahong lagayan ng mga tsek at pindutin ang '''''Ibalik'''''. Para maisagawa ang pagbabalik na may pagpili, lagyan ng tsek ang mga kahong may kaugnayan sa pagpapabalik ng mga pagbabago at pindutin ang '''''Ibalik'''''.
-Malilinis ang pook ng kumento/puna at iba pang mga kahong lagayan ng mga tsek kapag pinindot ang '''''Magtakda uli'''''.",
+'undeleteextrahelp' => "Upang maibalik ang buong kasaysayan ng pahina, iwanang walang mga tsek ang lahat ng mga kahon at lagitikin ang '''''{{int:undeletebtn}}'''''.
+Upang makapagsagawa ng pagpapanumbalik na may pinipili, tsekan ang mga kahon na tumutugma sa mga pagbabagong ibabalik, at pindutin ang '''''{{int:undeletebtn}}'''''.",
 'undeleterevisions' => 'Sininop/nilagay sa sinupan o arkibo ang $1 {{PLURAL:$1|pagbabago|mga pagbabago}}',
 'undeletehistory' => 'Kapag ibinalik mo ang pahina, ibabalik ang lahat ng mga pagbabago sa kasaysayan.
 Kapag nalikha ang isang bagong pahinang may katulad na pangalan mula noong pagbura, lilitaw ang naibalik na mga pagbabago sa sinaunang kasaysayan.',
@@ -2501,9 +2507,9 @@ Ibinigay sa ibaba ang talaan ng pagharang upang mapagsanggunian:',
 Ang tala ng pagpigil ay ibinigay sa ibaba upang mapagsanggunian:',
 'blocklogentry' => 'hinarang/hinadlangan si [[$1]] na may oras/panahon ng pagtatapos na $2 $3',
 'reblock-logentry' => 'binago ang itinakdang pagharang/paghadlang kay [[$1]] na may oras/panahon ng pagtatapos na $2 $3',
-'blocklogtext' => 'Tala ito ng paghaharang at pagpapawawalang bisa ng pagharang/paghadlang.
-Hindi nakatala rito ang mga awtomatiko/kusang hinarang/hinadlangang mga adres ng IP.
-Tingnan ang [[Special:BlockList|talaan ng mga hinarang na/hinadlangang IP]] para sa talaan ng pangkasalukuyang gumagana pang mga pinagbabawalan at mga pagharang/paghadlang.',
+'blocklogtext' => 'Isa itong talaan ng mga gawain ng pagharang at hindi pagharang sa tagagamit.
+Hindi nakalista ang mga tirahan ng IP ng kusang hinadlangan.
+Tingnan ang [[Special:BlockList|talaan ng pagharang]] para sa lista ng kasalukuyang may bisa na mga pagbabawal at mga paghadlang.',
 'unblocklogentry' => 'tinanggal ang pagharang/paghadlang kay $1',
 'block-log-flags-anononly' => 'mga di-kilalang tagagamit lamang',
 'block-log-flags-nocreate' => 'Nakapatay ang paglikha ng akawnt',
@@ -3188,6 +3194,7 @@ Likas na nakatakdang itago ang iba pa.
 
 # EXIF attributes
 'exif-compression-1' => 'Walang kompresyon',
+'exif-compression-2' => 'CCITT Pangkat 3 1-kodigo sa haba ng pagtakbo ng Pangdimensiyong Huffman na May Bahagyang Pagbabago',
 'exif-compression-3' => 'Kodigo ng Pangkat 3 ng CCITT',
 'exif-compression-4' => 'Kodigo ng Pangkat 4 ng CCITT',
 
