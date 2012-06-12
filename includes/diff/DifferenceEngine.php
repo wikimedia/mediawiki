@@ -505,16 +505,16 @@ class DifferenceEngine extends ContextSource {
 				// Give hooks a chance to customise the output
 				// @TODO: standardize this crap into one function
 				if ( !Hook::isRegistered( 'ShowRawCssJs' )
-                    || wfRunHooks( 'ShowRawCssJs', array( ContentHandler::getContentText( $this->mNewContent ), $this->mNewPage, $out ) ) ) { #NOTE: deperecated hook, B/C only
-                    // use the content object's own rendering
-                    $po = $this->mContentObject->getParserOutput();
-                    $out->addHTML( $po->getText() );
+					|| wfRunHooks( 'ShowRawCssJs', array( ContentHandler::getContentText( $this->mNewContent ), $this->mNewPage, $out ) ) ) { #NOTE: deperecated hook, B/C only
+					// use the content object's own rendering
+					$po = $this->mContentObject->getParserOutput();
+					$out->addHTML( $po->getText() );
 				}
-            } elseif( !wfRunHooks( 'ArticleContentViewCustom', array( $this->mNewContent, $this->mNewPage, $out ) ) ) {
-                // Handled by extension
-            } elseif( Hooks::isRegistered( 'ArticleViewCustom' )
-                    && !wfRunHooks( 'ArticleViewCustom', array( ContentHandler::getContentText( $this->mNewContent ), $this->mNewPage, $out ) ) ) { #NOTE: deperecated hook, B/C only
-                // Handled by extension
+			} elseif( !wfRunHooks( 'ArticleContentViewCustom', array( $this->mNewContent, $this->mNewPage, $out ) ) ) {
+				// Handled by extension
+			} elseif( Hooks::isRegistered( 'ArticleViewCustom' )
+					&& !wfRunHooks( 'ArticleViewCustom', array( ContentHandler::getContentText( $this->mNewContent ), $this->mNewPage, $out ) ) ) { #NOTE: deperecated hook, B/C only
+				// Handled by extension
 			} else {
 				// Normal page
 				if ( $this->getTitle()->equals( $this->mNewPage ) ) {
@@ -645,8 +645,6 @@ class DifferenceEngine extends ContextSource {
 			return false;
 		}
 
-        #TODO: make sure both Content objects have the same content model. What do we do if they don't?
-
 		$difftext = $this->generateContentDiffBody( $this->mOldContent, $this->mNewContent );
 
 		// Save to cache for 7 days
@@ -684,45 +682,45 @@ class DifferenceEngine extends ContextSource {
 		}
 	}
 
-    /**
-     * Generate a diff, no caching.
-     *
-     * Subclasses may override this to provide a
-     *
-     * @param $old Content: old content
-     * @param $new Content: new content
-     *
-     * @since 1.WD
-     */
-    function generateContentDiffBody( Content $old, Content $new ) {
-        #XXX: generate a warning if $old or $new are not instances of TextContent?
-        #XXX: fail if $old and $new don't have the same content model? or what?
+	/**
+	 * Generate a diff, no caching.
+	 *
+	 * Subclasses may override this to provide a
+	 *
+	 * @param $old Content: old content
+	 * @param $new Content: new content
+	 *
+	 * @since 1.WD
+	 */
+	function generateContentDiffBody( Content $old, Content $new ) {
+		#XXX: generate a warning if $old or $new are not instances of TextContent?
+		#XXX: fail if $old and $new don't have the same content model? or what?
 
-        $otext = $old->serialize();
-        $ntext = $new->serialize();
+		$otext = $old->serialize();
+		$ntext = $new->serialize();
 
-        #XXX: text should be "already segmented". what does that mean?
-        return $this->generateTextDiffBody( $otext, $ntext );
-    }
-
-    /**
-     * Generate a diff, no caching
-     *
-     * @param $otext String: old text, must be already segmented
-     * @param $ntext String: new text, must be already segmented
-     * @deprecated since 1.WD, use generateContentDiffBody() instead!
-     */
-    function generateDiffBody( $otext, $ntext ) {
-        wfDeprecated( __METHOD__, "1.WD" );
-
-        return $this->generateTextDiffBody( $otext, $ntext );
-    }
+		#XXX: text should be "already segmented". what does that mean?
+		return $this->generateTextDiffBody( $otext, $ntext );
+	}
 
 	/**
 	 * Generate a diff, no caching
 	 *
-     * @todo move this to TextDifferenceEngine, make DifferenceEngine abstract. At some point.
-     *
+	 * @param $otext String: old text, must be already segmented
+	 * @param $ntext String: new text, must be already segmented
+	 * @deprecated since 1.WD, use generateContentDiffBody() instead!
+	 */
+	function generateDiffBody( $otext, $ntext ) {
+		wfDeprecated( __METHOD__, "1.WD" );
+
+		return $this->generateTextDiffBody( $otext, $ntext );
+	}
+
+	/**
+	 * Generate a diff, no caching
+	 *
+	 * @todo move this to TextDifferenceEngine, make DifferenceEngine abstract. At some point.
+	 *
 	 * @param $otext String: old text, must be already segmented
 	 * @param $ntext String: new text, must be already segmented
 	 * @return bool|string
@@ -981,28 +979,28 @@ class DifferenceEngine extends ContextSource {
 
 	/**
 	 * Use specified text instead of loading from the database
-     * @deprecated since 1.WD
+	 * @deprecated since 1.WD
 	 */
 	function setText( $oldText, $newText ) { #FIXME: no longer use this, use setContent()!
-        wfDeprecated( __METHOD__, "1.WD" );
+		wfDeprecated( __METHOD__, "1.WD" );
 
-        $oldContent = ContentHandler::makeContent( $oldText, $this->getTitle() );
-        $newContent = ContentHandler::makeContent( $newText, $this->getTitle() );
+		$oldContent = ContentHandler::makeContent( $oldText, $this->getTitle() );
+		$newContent = ContentHandler::makeContent( $newText, $this->getTitle() );
 
-        $this->setContent( $oldContent, $newContent );
-    }
+		$this->setContent( $oldContent, $newContent );
+	}
 
-    /**
-     * Use specified text instead of loading from the database
-     * @since 1.WD
-     */
-    function setContent( Content $oldContent, Content $newContent ) {
-        $this->mOldContent = $oldContent;
-        $this->mNewContent = $newContent;
+	/**
+	 * Use specified text instead of loading from the database
+	 * @since 1.WD
+	 */
+	function setContent( Content $oldContent, Content $newContent ) {
+		$this->mOldContent = $oldContent;
+		$this->mNewContent = $newContent;
 
-        $this->mTextLoaded = 2;
-        $this->mRevisionsLoaded = true;
-    }
+		$this->mTextLoaded = 2;
+		$this->mRevisionsLoaded = true;
+	}
 
 	/**
 	 * Set the language in which the diff text is written
