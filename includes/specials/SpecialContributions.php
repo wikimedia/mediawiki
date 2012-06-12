@@ -594,6 +594,126 @@ class ContribsPager extends ReverseChronologicalPager {
 		return $query;
 	}
 
+	/**
+	 * This method basically executes the exact same code as the parent class, though with
+	 * a hook added, to allow extentions to add additional queries.
+	 *
+	 * @param $offset String: index offset, inclusive
+	 * @param $limit Integer: exact query limit
+	 * @param $descending Boolean: query direction, false for ascending, true for descending
+	 * @return ResultWrapper
+	 */
+	function reallyDoQuery( $offset, $limit, $descending ) {
+		$parameters = $this->buildQueryInfo( $offset, $limit, $descending );
+		$pager = $this;
+		$queries = array();
+
+		/*
+		 * This hook will allow extensions to add in additional queries, so they can get their data
+		 * in My Contributions as well. Extensions should append their "simple" query parameters to
+		 * the $queries array and we'll handle the UNION.
+		 *
+		 * &$queries: an array of parameters for queries (UNION will automatically be constructed)
+		 * $pager: the ContribsPager object hooked into
+		 * $offset: see phpdoc above
+		 * $limit: see phpdoc above
+		 * $descending: see phpdoc above
+		 */
+		$queries[] = $parameters;
+		wfRunHooks( 'ContribsPager::reallyDoQuery', array( &$queries, $pager, $offset, $limit, $descending ) );
+
+		/*
+		 * To build the UNION, we've got to make sure all individual queries:
+		 * - return the same amount of columns
+		 * - have a common sorting column, to sort again once UNION-ized
+		 * - have no offset/limit on their limited subset, since it can only be
+		 *   calculated on the combined resultset (subset may not offset & only limit at <offset+limit>)
+		 */
+		// fetch all column names in all queries
+		$columns = array();
+		$columnsPerQuery = array();
+		foreach ( $queries as $i => $query ) {
+			$parameters = $query[1];
+			foreach ( $parameters AS $column ) {
+				// keep only column alias (if any)
+				$column = preg_replace( '/.*?\sAS\s/', '', $column );
+				$column = preg_replace( '/`/', '', $column );
+				$column = preg_replace( '/.*?\./', '', $column );
+				$columns[] = $column;
+				$columnsPerQuery[$i][] = $column;
+			}
+		}
+		$columns = array_unique( $columns );
+
+		// create stub columns and align all columns in the same order for all queries
+		foreach ( $columns as $columnIndex => $column ) {
+			foreach ( $queries as $i => $query ) {
+				if ( !in_array( $column, $columnsPerQuery[$i] ) ) {
+					array_splice( $queries[$i][1], $columnIndex, 0, "'' AS `$column`" );
+				}
+			}
+		}
+
+		foreach ( $queries as $i => $query ) {
+			/*
+			 * Note: the only scenario where the extensions query will actually sort as desired
+			 * is when there's only 1 ORDER BY-column (because the rest will be ignored) which
+			 * is a timestamp & is supposed to be order DESC (because that's how core works and
+			 * we'll enfore it upon the full resultset)
+			 */
+			// find sorting column(s) in every query & add it as a field 'order' in the select
+			if ( isset( $query[4]['ORDER BY'] ) && $query[4]['ORDER BY'] ) {
+				$orderColumns = array();
+
+				// remove the sort order
+				foreach ( (array) $query[4]['ORDER BY'] as $column ) {
+					$column = preg_replace( '/BINARY\s/', '', $column );
+					$column = preg_replace( '/\s(ASC|DESC)/', '', $column );
+					$orderColumns[] = $column;
+				}
+			} else {
+				// we'll need something to "order" on - making sure it doesn't break
+				$orderColumns = array( '1' );
+			}
+
+			// now add 1 column in the SELECT-statement, so we can sort on it again later
+			$queries[$i][1][] = "`$orderColumns[0]` AS `order`";
+
+			// remove limit/offset statements in individual queries
+			$queries[$i][4]['LIMIT'] = null;
+		}
+
+		/*
+		 * Now that the individual "queries" have been updated so that they're prepared to safely
+		 * form a UNION, let's go do just that :)
+		 */
+		// build individual queries
+		foreach ( $queries as &$query ) {
+			list( $tables, $fields, $conds, $fname, $options, $join_conds ) = $query;
+			$query = $this->mDb->selectSQLText( $tables, $fields, $conds, $fname, $options, $join_conds );
+
+			// add safe LIMIT 0, <limit+offset> statement to reduce size of in-memory temp-tables
+			$query = $this->mDb->limitResult( $query, $limit + $offset, false );
+		}
+
+		// UNION queries
+		$sql = $this->mDb->unionQueries( $queries, false );
+
+		/*
+		 * Finally, order the complete resultset once again and apply the real offset/limit
+		 */
+		if ( $this->mDb->unionSupportsOrderAndLimit() )
+		{
+			if ( isset( $options['ORDER BY'] ) && $options['ORDER BY'] ) {
+				$sql .= ' ORDER BY `order` DESC';
+			}
+			$sql = $this->mDb->limitResult( $sql, $limit, false );
+		}
+
+		$result = $this->mDb->query( $sql );
+		return new ResultWrapper( $this->mDb, $result );
+	}
+
 	function getQueryInfo() {
 		list( $tables, $index, $userCond, $join_cond ) = $this->getUserCond();
 
