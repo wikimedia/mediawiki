@@ -3567,8 +3567,8 @@ class Parser {
 					$text = false;
 					break;
 				}
+				$content = $message->content();
 				$text = $message->plain();
-				$content = ContentHandler::makeContent( $text, $title ); #TODO: use Message::content() instead, once that exists
 			} else {
 				break;
 			}

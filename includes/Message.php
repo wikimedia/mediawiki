@@ -400,6 +400,10 @@ class Message {
 		return $this;
 	}
 
+	/**
+	 * Returns the message as a Content object.
+	 * @return Content
+	 */
 	public function content() {
 		if ( !$this->content ) {
 			$this->content = new MessageContent( $this->key );
@@ -408,7 +412,7 @@ class Message {
 		return $this->content;
 	}
 
-		/**
+	/**
 	 * Returns the message parsed from wikitext to HTML.
 	 * @return String: HTML
 	 */
