@@ -15,6 +15,8 @@ release and submitting bug reports.
 
 === Changes since 1.19.0 ===
 * (bug 36568) Fixed "Illegal string offset 'LIMIT'" warnings in updater
+* (bug 36938) Correctly escape uselang attribute to prevent xss
+* Expanded Blacklist for SVG Files
 
 === Changes since 1.19 beta 2 ===
 * Special:Watchlist no longer sets links to feed when the user is anonymous.
