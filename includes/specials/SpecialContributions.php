@@ -594,6 +594,120 @@ class ContribsPager extends ReverseChronologicalPager {
 		return $query;
 	}
 
+	/**
+	 * Retrieve the column name or alias, based upon the full definition.
+	 *
+	 * @param string $column
+	 * @return string
+	 */
+	public static function getColumnAlias( $definition ) {
+		$column = $definition;
+		$column = preg_replace( '/.*?\sAS\s/', '', $column );
+		$column = preg_replace( '/`/', '', $column );
+		$column = preg_replace( '/.*?\./', '', $column );
+		return $column;
+	}
+
+	/**
+	 * Sort columns alphabetically
+	 *
+	 * @param string $columnA
+	 * @param string $columnB
+	 * @return boolean
+	 */
+	public static function orderColumns( $columnA, $columnB ) {
+		return strcmp( self::getColumnAlias( $columnA ), self::getColumnAlias( $columnB ) );
+	}
+
+	/**
+	 * This method basically executes the exact same code as the parent class, though with
+	 * a hook added, to allow extentions to add additional queries.
+	 *
+	 * @param $offset String: index offset, inclusive
+	 * @param $limit Integer: exact query limit
+	 * @param $descending Boolean: query direction, false for ascending, true for descending
+	 * @return ResultWrapper
+	 */
+	function reallyDoQuery( $offset, $limit, $descending ) {
+		$parameters = $this->buildQueryInfo( $offset, $limit, $descending );
+		$pager = $this;
+		$queries = array();
+
+		/*
+		 * This hook will allow extensions to add in additional queries, so they can get their data
+		 * in My Contributions as well. Extensions should append their "simple" query parameters to
+		 * the $queries array and we'll handle the UNION.
+		 *
+		 * Extension queries have to implement the navbar requirement as well. They should
+		 * - have a column aliased as $pager->getIndexField()
+		 * - have LIMIT set
+		 * - have a WHERE-clause that compares the $pager->getIndexField()-equivalent column to the offset
+		 * - have the ORDER BY specified based upon the details provided by the navbar
+		 *
+		 * See includes/Pager.php buildQueryInfo() method on how to build LIMIT, WHERE & ORDER BY
+		 *
+		 * &$queries: an array of parameters for queries (UNION will automatically be constructed)
+		 * $pager: the ContribsPager object hooked into
+		 * $offset: see phpdoc above
+		 * $limit: see phpdoc above
+		 * $descending: see phpdoc above
+		 */
+		$queries[] = $parameters;
+		wfRunHooks( 'ContribsPager::reallyDoQuery', array( &$queries, $pager, $offset, $limit, $descending ) );
+
+		/*
+		 * To build the UNION, we've got to make sure all individual queries:
+		 * - return the same amount of columns
+		 * - have a common sorting column, to sort again once UNION-ized
+		 */
+		// fetch all column names in all queries
+		$columns = array();
+		$columnsPerQuery = array();
+		foreach ( $queries as $i => $query ) {
+			$parameters = $query[1];
+			foreach ( $parameters AS $column ) {
+				$column = self::getColumnAlias( $column );
+				$columns[] = $column;
+				$columnsPerQuery[$i][] = $column;
+			}
+		}
+		$columns = array_unique( $columns );
+
+		foreach ( $queries as $i => &$query ) {
+			// create stub columns and align all columns in the same order for all queries
+			foreach ( $columns as $columnIndex => $column ) {
+				if ( !in_array( $column, $columnsPerQuery[$i] ) ) {
+					array_splice( $query[1], $columnIndex, 0, "'' AS $column" );
+				}
+			}
+			usort( $query[1], array( 'self', 'orderColumns' ));
+
+			/*
+			 * Now that the individual "queries" have been updated so that they're prepared to safely
+			 * form a UNION, let's go do just that :)
+			 */
+			list( $tables, $fields, $conds, $fname, $options, $join_conds ) = $query;
+			$query = $this->mDb->selectSQLText( $tables, $fields, $conds, $fname, $options, $join_conds );
+		}
+
+		// UNION queries
+		$sql = $this->mDb->unionQueries( $queries, false );
+
+		/*
+		 * Finally, order the complete resultset once again and apply the real offset/limit
+		 */
+		if ( $this->mDb->unionSupportsOrderAndLimit() )
+		{
+			$order = $descending ? 'ASC' : 'DESC'; // something's wrong with $descending - see logic applied in includes/Pager.php
+			$sql .= ' ORDER BY ' . $this->getIndexField() . " $order";
+
+			$sql = $this->mDb->limitResult( $sql, $limit, false );
+		}
+
+		$result = $this->mDb->query( $sql );
+		return new ResultWrapper( $this->mDb, $result );
+	}
+
 	function getQueryInfo() {
 		list( $tables, $index, $userCond, $join_cond ) = $this->getUserCond();
 
