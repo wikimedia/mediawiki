@@ -970,7 +970,7 @@ $1",
 'mergelogpagetext' => 'Ниже є список найновшых злучінь історії єдной сторінкы з другов.',
 
 # Diffs
-'history-title' => 'Історія змін сторінкы «$1»',
+'history-title' => '$1: Історія змін',
 'difference-multipage' => '(Роздїлы міджі сторінками)',
 'lineno' => 'Рядок $1:',
 'compareselectedversions' => 'Порівнати выбраны верзії',

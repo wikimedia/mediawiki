@@ -1338,6 +1338,20 @@ Loukîz eto [[Special:WantedCategories|les categoreyes dimandêyes]].',
 'deletedcontributions' => 'Contribouwaedjes disfacés',
 'deletedcontributions-title' => 'Contribouwaedjes disfacés',
 
+# Special:LinkSearch
+'linksearch' => 'Cweri des dfoûtrinnès hårdêyes',
+'linksearch-pat' => 'Patron pol cweraedje:',
+'linksearch-ns' => 'Espåce di lomaedje:',
+'linksearch-ok' => 'Cweri',
+'linksearch-text' => 'Des caracteres «djokers» polèt esse eployîs, metans «*.wikipedia.org».
+Mins i fåt pol moens on dominne di prumî livea, metans «*.org»<br />
+Protocoles ricnoxhous: <tt>$1</tt> (nelzès metoz nén dins vosse tchinne di cweraedje).',
+'linksearch-line' => "$1 est loyî a pårti d' $2",
+'linksearch-error' => "Les caracteres djokers èn polèt esse eployîs k' a l' atake d' on no d' dominne ou d' lodjoe.",
+
+# Special:ListUsers
+'listusersfrom' => 'Håyner les uzeus a pårti di:',
+
 # Special:Log/newusers
 'newuserlogpage' => 'Djournå des noveas uzeus',
 'newuserlogpagetext' => "Chal pa dzo c' est ene djivêye des uzeus novelmint eredjîstrés.",
@@ -1632,6 +1646,10 @@ Loukîz li [[Special:BlockList|djivêye des blocaedjes]] po vey les blocaedjes �
 'sorbs_create_account_reason' => "Voste adresse IP si trove dins l' djivêye des procsis å lådje di DNSBL. Vos n' poloz nén ahiver on conte d' uzeu.",
 
 # Developer tools
+'lockdb' => 'Aclawaedje del båze di dnêyes',
+'lockdbsuccesssub' => "L' aclawaedje del båze di dnêyes a stî comifåt",
+'lockdbsuccesstext' => 'Li båze di dnêyes a stî aclawêye.<br />
+Ni rovyîz nén del [[Special:UnlockDB|disserer]] cwand vos åroz tot fwait avou voste etertinaedje.',
 'lockedbyandtime' => '(pa $1 li $2 a $3)',
 
 # Move page
@@ -2134,6 +2152,9 @@ Acertinez s' i vs plait ki vos vloz vormint rifé cisse pådje ci.",
 'specialpages-group-changes' => 'Dierins candjmints et djournås',
 'specialpages-group-users' => 'Uzeus et abondroets',
 'specialpages-group-highuse' => 'Eployaedje timpesse des pådjes',
+'specialpages-group-pages' => 'Djivêyes di pådjes',
+'specialpages-group-pagetools' => 'Usteyes po les pådjes',
+'specialpages-group-wiki' => 'Usteyes et dnêyes do wiki',
 'specialpages-group-redirects' => 'Ridjiblaedjes di pådjes sipeciåles',
 
 # Special:BlankPage

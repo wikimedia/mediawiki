@@ -1880,9 +1880,8 @@ Možda možete pokušati kada bude manje opterećenje.',
 'upload_source_file' => ' (datoteka na Vašem računaru)',
 
 # Special:ListFiles
-'listfiles-summary' => 'Ova specijalna stranica prikazuje sve postavljene datoteke.
-Uobičajeno je da posljednja postavljena datoteka bude prikazana na vrhu spiska.
-Klikom na zaglavlje kolone možete promjeniti način sortiranja.',
+'listfiles-summary' => 'Ova posebna stranica prikazuje sve postavljene datoteke.
+Kada je filtrirana od strane korisnika, prikazane su samo datoteke ako je korisnik postavio posljednju verziju te datoteke.',
 'listfiles_search_for' => 'Traži medije po imenu:',
 'imgfile' => 'datoteka',
 'listfiles' => 'Spisak slika',
@@ -2157,8 +2156,9 @@ Vidi također [[Special:WantedCategories|zatražene kategorije]].',
 'linksearch-pat' => 'Šema traženja:',
 'linksearch-ns' => 'Imenski prostor:',
 'linksearch-ok' => 'Traži',
-'linksearch-text' => 'Općeniti izrazi poput "*.wikipedia.org" se mogu koristiti.<br />
-Podržani protokoli: <tt>$1</tt>',
+'linksearch-text' => 'Mogu se koristiti općeniti izrazi poput "*.wikipedia.org"
+Potrebna je najmanje osnovna domena, naprimjer "*.org."<br />
+Podržani protokoli: <tt>$1</tt> (ne dodavajte bilo koji od ovih u vašu pretragu).',
 'linksearch-line' => '$1 je povezan od $2',
 'linksearch-error' => 'Džokeri se mogu pojavljivati samo na početku naziva servera.',
 

@@ -2594,9 +2594,9 @@ Për piasì, ch'a vìsita la [//www.mediawiki.org/wiki/Localisation Localisassio
 'allmessages-filter-unmodified' => 'Pa modificà',
 'allmessages-filter-all' => 'Tùit',
 'allmessages-filter-modified' => 'Modificà',
-'allmessages-prefix' => 'Filtra për prefiss:',
+'allmessages-prefix' => 'Filtré për prefiss:',
 'allmessages-language' => 'Lenga:',
-'allmessages-filter-submit' => 'Và',
+'allmessages-filter-submit' => 'Apliché',
 
 # Thumbnails
 'thumbnail-more' => 'Slarga',
