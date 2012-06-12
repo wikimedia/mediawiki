@@ -3,10 +3,10 @@
 Security reminder: MediaWiki does not require PHP's register_globals
 setting since version 1.2.0. If you have it on, turn it '''off''' if you can.
 
-== MediaWiki 1.17.4 ==
-2012-04-25
+== MediaWiki 1.17.5 ==
+2012-06-12
 
-This a maintenance of the MediaWiki 1.17 branch.
+This is a security release of the MediaWiki 1.17 branch.
 
 === Summary of selected changes in 1.17 ===
 
@@ -34,6 +34,11 @@ Selected changes since MediaWiki 1.16 that may be of interest:
 
 * The lowest supported version of PHP is now 5.2.3. If necessary, please
   upgrade PHP prior to upgrading MediaWiki.
+
+=== Changes since 1.17.4 ===
+
+* (bug 36938) Correctly escape uselang attribute to prevent xss
+* Expanded Blacklist for SVG Files
 
 === Changes since 1.17.3 ===
 
