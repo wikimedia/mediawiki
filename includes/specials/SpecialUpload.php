@@ -519,7 +519,8 @@ class SpecialUpload extends SpecialPage {
 			return $local->getTitle()->userIsWatching();
 		} else {
 			// New page should get watched if that's our option.
-			return $this->getUser()->getOption( 'watchcreations' );
+			return $this->getUser()->getOption( 'watchcreations' )
+				|| $this->getUser()->getOption( 'watchuploads' );
 		}
 	}
 
@@ -1024,7 +1025,8 @@ class UploadForm extends HTMLForm {
 					'id' => 'wpWatchthis',
 					'label-message' => 'watchthisupload',
 					'section' => 'options',
-					'default' => $user->getOption( 'watchcreations' ),
+					'default' => $user->getOption( 'watchcreations' )
+						|| $user->getOption( 'watchuploads' ),
 				)
 			);
 		}
