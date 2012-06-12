@@ -194,6 +194,7 @@ abstract class IndexPager extends ContextSource implements Pager {
 			$queryLimit,
 			$descending
 		);
+
 		$this->extractResultInfo( $this->mOffset, $queryLimit, $this->mResult );
 		$this->mQueryDone = true;
 
@@ -303,7 +304,21 @@ abstract class IndexPager extends ContextSource implements Pager {
 	 * @param $descending Boolean: query direction, false for ascending, true for descending
 	 * @return ResultWrapper
 	 */
-	function reallyDoQuery( $offset, $limit, $descending ) {
+	public function reallyDoQuery( $offset, $limit, $descending ) {
+		list( $tables, $fields, $conds, $fname, $options, $join_conds ) = $this->buildQueryInfo( $offset, $limit, $descending );
+		$result = $this->mDb->select( $tables, $fields, $conds, $fname, $options, $join_conds );
+		return new ResultWrapper( $this->mDb, $result );
+	}
+
+	/**
+	 * Build variables to use by the database wrapper.
+	 *
+	 * @param $offset String: index offset, inclusive
+	 * @param $limit Integer: exact query limit
+	 * @param $descending Boolean: query direction, false for ascending, true for descending
+	 * @return array
+	 */
+	protected function buildQueryInfo( $offset, $limit, $descending ) {
 		$fname = __METHOD__ . ' (' . $this->getSqlComment() . ')';
 		$info = $this->getQueryInfo();
 		$tables = $info['tables'];
@@ -327,8 +342,7 @@ abstract class IndexPager extends ContextSource implements Pager {
 			$conds[] = $this->mIndexField . $operator . $this->mDb->addQuotes( $offset );
 		}
 		$options['LIMIT'] = intval( $limit );
-		$res = $this->mDb->select( $tables, $fields, $conds, $fname, $options, $join_conds );
-		return new ResultWrapper( $this->mDb, $res );
+		return array( $tables, $fields, $conds, $fname, $options, $join_conds );
 	}
 
 	/**
