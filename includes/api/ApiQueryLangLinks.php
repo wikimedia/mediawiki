@@ -159,6 +159,19 @@ class ApiQueryLangLinks extends ApiQueryBase {
 		);
 	}
 
+	public function getResultProperties() {
+		return array(
+			'' => array(
+				'lang' => 'string',
+				'url' => array(
+					ApiBase::PROP_TYPE => 'string',
+					Apibase::PROP_NULLABLE => true
+				),
+				'*' => 'string'
+			)
+		);
+	}
+
 	public function getDescription() {
 		return 'Returns all interlanguage links from the given page(s)';
 	}

@@ -161,6 +161,16 @@ class ApiQueryRandom extends ApiQueryGeneratorBase {
 		);
 	}
 
+	public function getResultProperties() {
+		return array(
+			'' => array(
+				'id' => 'integer',
+				'ns' => 'namespace',
+				'title' => 'string'
+			)
+		);
+	}
+
 	public function getDescription() {
 		return array(
 			'Get a set of random pages',

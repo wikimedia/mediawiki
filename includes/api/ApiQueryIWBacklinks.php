@@ -195,6 +195,23 @@ class ApiQueryIWBacklinks extends ApiQueryGeneratorBase {
 		);
 	}
 
+	public function getResultProperties() {
+		return array(
+			'' => array(
+				'pageid' => 'integer',
+				'ns' => 'namespace',
+				'title' => 'string',
+				'redirect' => 'boolean'
+			),
+			'iwprefix' => array(
+				'iwprefix' => 'string'
+			),
+			'iwtitle' => array(
+				'iwtitle' => 'string'
+			)
+		);
+	}
+
 	public function getDescription() {
 		return array( 'Find all pages that link to the given interwiki link.',
 			'Can be used to find all links with a prefix, or',

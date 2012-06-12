@@ -122,6 +122,17 @@ class ApiUndelete extends ApiBase {
 		);
 	}
 
+	public function getResultProperties() {
+		return array(
+			'' => array(
+				'title' => 'string',
+				'revisions' => 'integer',
+				'filerevisions' => 'integer',
+				'reason' => 'string'
+			)
+		);
+	}
+
 	public function getDescription() {
 		return array(
 			'Restore certain revisions of a deleted page. A list of deleted revisions (including timestamps) can be',

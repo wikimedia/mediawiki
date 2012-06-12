@@ -107,6 +107,18 @@ class ApiOptions extends ApiBase {
 		);
 	}
 
+	public function getResultProperties() {
+		return array(
+			'' => array(
+				'*' => array(
+					ApiBase::PROP_TYPE => array(
+						'success'
+					)
+				)
+			)
+		);
+	}
+
 	public function getParamDescription() {
 		return array(
 			'token' => 'An options token previously obtained through the action=tokens',

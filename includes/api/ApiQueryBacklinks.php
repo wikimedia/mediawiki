@@ -481,6 +481,17 @@ class ApiQueryBacklinks extends ApiQueryGeneratorBase {
 		) );
 	}
 
+	public function getResultProperties() {
+		return array(
+			'' => array(
+				'pageid' => 'integer',
+				'ns' => 'namespace',
+				'title' => 'string',
+				'redirect' => 'boolean'
+			)
+		);
+	}
+
 	public function getDescription() {
 		switch ( $this->getModuleName() ) {
 			case 'backlinks':
