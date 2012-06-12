@@ -81,7 +81,7 @@ class CommandLineInstaller extends Maintenance {
 		}
 
 		$installer =
-			new CliInstaller( $siteName, $adminName, $this->mOptions );
+			InstallerOverrides::getCliInstaller( $siteName, $adminName, $this->mOptions );
 
 		$status = $installer->doEnvironmentChecks();
 		if( $status->isGood() ) {

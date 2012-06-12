@@ -29,16 +29,16 @@
  */
 class LocalSettingsGenerator {
 
-	private $extensions = array();
-	private $values = array();
-	private $groupPermissions = array();
-	private $dbSettings = '';
-	private $safeMode = false;
+	protected $extensions = array();
+	protected $values = array();
+	protected $groupPermissions = array();
+	protected $dbSettings = '';
+	protected $safeMode = false;
 
 	/**
 	 * @var Installer
 	 */
-	private $installer;
+	protected $installer;
 
 	/**
 	 * Constructor.
@@ -166,7 +166,7 @@ class LocalSettingsGenerator {
 	/**
 	 * @return String
 	 */
-	private function buildMemcachedServerList() {
+	protected function buildMemcachedServerList() {
 		$servers = $this->values['_MemCachedServers'];
 
 		if( !$servers ) {
@@ -187,7 +187,7 @@ class LocalSettingsGenerator {
 	/**
 	 * @return String
 	 */
-	private function getDefaultText() {
+	protected function getDefaultText() {
 		if( !$this->values['wgImageMagickConvertCommand'] ) {
 			$this->values['wgImageMagickConvertCommand'] = '/usr/bin/convert';
 			$magic = '#';

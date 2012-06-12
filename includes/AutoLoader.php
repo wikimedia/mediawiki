@@ -992,6 +992,9 @@ $wgAutoloadLocalClasses = array(
 	'AnsiTermColorer'  => 'maintenance/term/MWTerm.php',
 	'DummyTermColorer' => 'maintenance/term/MWTerm.php',
 
+	# mw-config
+	'InstallerOverrides' => 'mw-config/overrides.php',
+
 	# tests
 	'DbTestPreviewer' => 'tests/testHelpers.inc',
 	'DbTestRecorder' => 'tests/testHelpers.inc',

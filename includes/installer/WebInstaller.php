@@ -161,7 +161,7 @@ class WebInstaller extends Installer {
 				'Content-Disposition: attachment; filename="LocalSettings.php"'
 			);
 
-			$ls = new LocalSettingsGenerator( $this );
+			$ls = InstallerOverrides::getLocalSettingsGenerator( $this );
 			$rightsProfile = $this->rightsProfiles[$this->getVar( '_RightsProfile' )];
 			foreach( $rightsProfile as $group => $rightsArr ) {
 				$ls->setGroupRights( $group, $rightsArr );
