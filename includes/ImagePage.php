@@ -158,9 +158,9 @@ class ImagePage extends Article {
 				'lang' => $pageLang->getCode(), 'dir' => $pageLang->getDir(),
 				'class' => 'mw-content-'.$pageLang->getDir() ) ) );
 
-            parent::view(); #FIXME: use ContentHandler::makeArticle() !!
+			parent::view();
 
-			$wgOut->addHTML( Xml::closeElement( 'div' ) );
+			$out->addHTML( Xml::closeElement( 'div' ) );
 		} else {
 			# Just need to set the right headers
 			$out->setArticleFlag( true );
