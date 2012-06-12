@@ -753,123 +753,128 @@ class ContribsPager extends ReverseChronologicalPager {
 	function formatRow( $row ) {
 		wfProfileIn( __METHOD__ );
 
-		$rev = new Revision( $row );
+		$ret = '';
 		$classes = array();
 
-		$page = Title::newFromRow( $row );
-		$link = Linker::link(
-			$page,
-			htmlspecialchars( $page->getPrefixedText() ),
-			array(),
-			$page->isRedirect() ? array( 'redirect' => 'no' ) : array()
-		);
-		# Mark current revisions
-		$topmarktext = '';
-		if ( $row->rev_id == $row->page_latest ) {
-			$topmarktext .= '<span class="mw-uctop">' . $this->messages['uctop'] . '</span>';
-			# Add rollback link
-			if ( !$row->page_is_new && $page->quickUserCan( 'rollback' )
-				&& $page->quickUserCan( 'edit' ) )
-			{
-				$this->preventClickjacking();
-				$topmarktext .= ' ' . Linker::generateRollback( $rev );
+		if ( isset( $row->rev_id ) ) {
+			$rev = new Revision( $row );
+
+			$page = Title::newFromRow( $row );
+			$link = Linker::link(
+				$page,
+				htmlspecialchars( $page->getPrefixedText() ),
+				array(),
+				$page->isRedirect() ? array( 'redirect' => 'no' ) : array()
+			);
+			# Mark current revisions
+			$topmarktext = '';
+			if ( $row->rev_id == $row->page_latest ) {
+				$topmarktext .= '<span class="mw-uctop">' . $this->messages['uctop'] . '</span>';
+				# Add rollback link
+				if ( !$row->page_is_new && $page->quickUserCan( 'rollback' )
+					&& $page->quickUserCan( 'edit' ) )
+				{
+					$this->preventClickjacking();
+					$topmarktext .= ' ' . Linker::generateRollback( $rev );
+				}
 			}
-		}
-		$user = $this->getUser();
-		# Is there a visible previous revision?
-		if ( $rev->userCan( Revision::DELETED_TEXT, $user ) && $rev->getParentId() !== 0 ) {
-			$difftext = Linker::linkKnown(
+			$user = $this->getUser();
+			# Is there a visible previous revision?
+			if ( $rev->userCan( Revision::DELETED_TEXT, $user ) && $rev->getParentId() !== 0 ) {
+				$difftext = Linker::linkKnown(
+					$page,
+					$this->messages['diff'],
+					array(),
+					array(
+						'diff' => 'prev',
+						'oldid' => $row->rev_id
+					)
+				);
+			} else {
+				$difftext = $this->messages['diff'];
+			}
+			$histlink = Linker::linkKnown(
 				$page,
-				$this->messages['diff'],
+				$this->messages['hist'],
 				array(),
-				array(
-					'diff' => 'prev',
-					'oldid' => $row->rev_id
-				)
+				array( 'action' => 'history' )
 			);
-		} else {
-			$difftext = $this->messages['diff'];
-		}
-		$histlink = Linker::linkKnown(
-			$page,
-			$this->messages['hist'],
-			array(),
-			array( 'action' => 'history' )
-		);
 
-		if ( $row->rev_parent_id === null ) {
-			// For some reason rev_parent_id isn't populated for this row.
-			// Its rumoured this is true on wikipedia for some revisions (bug 34922).
-			// Next best thing is to have the total number of bytes.
-			$chardiff = ' . . ' . Linker::formatRevisionSize( $row->rev_len ) . ' . . ';
-		} else {
-			$parentLen = isset( $this->mParentLens[$row->rev_parent_id] ) ? $this->mParentLens[$row->rev_parent_id] : 0;
-			$chardiff = ' . . ' . ChangesList::showCharacterDifference(
-					$parentLen, $row->rev_len ) . ' . . ';
-		}
+			if ( $row->rev_parent_id === null ) {
+				// For some reason rev_parent_id isn't populated for this row.
+				// Its rumoured this is true on wikipedia for some revisions (bug 34922).
+				// Next best thing is to have the total number of bytes.
+				$chardiff = ' . . ' . Linker::formatRevisionSize( $row->rev_len ) . ' . . ';
+			} else {
+				$parentLen = isset( $this->mParentLens[$row->rev_parent_id] ) ? $this->mParentLens[$row->rev_parent_id] : 0;
+				$chardiff = ' . . ' . ChangesList::showCharacterDifference(
+						$parentLen, $row->rev_len ) . ' . . ';
+			}
 
-		$lang = $this->getLanguage();
-		$comment = $lang->getDirMark() . Linker::revComment( $rev, false, true );
-		$date = $lang->userTimeAndDate( $row->rev_timestamp, $user );
-		if ( $rev->userCan( Revision::DELETED_TEXT, $user ) ) {
-			$d = Linker::linkKnown(
-				$page,
-				htmlspecialchars( $date ),
-				array(),
-				array( 'oldid' => intval( $row->rev_id ) )
-			);
-		} else {
-			$d = htmlspecialchars( $date );
-		}
-		if ( $rev->isDeleted( Revision::DELETED_TEXT ) ) {
-			$d = '<span class="history-deleted">' . $d . '</span>';
-		}
+			$lang = $this->getLanguage();
+			$comment = $lang->getDirMark() . Linker::revComment( $rev, false, true );
+			$date = $lang->userTimeAndDate( $row->rev_timestamp, $user );
+			if ( $rev->userCan( Revision::DELETED_TEXT, $user ) ) {
+				$d = Linker::linkKnown(
+					$page,
+					htmlspecialchars( $date ),
+					array(),
+					array( 'oldid' => intval( $row->rev_id ) )
+				);
+			} else {
+				$d = htmlspecialchars( $date );
+			}
+			if ( $rev->isDeleted( Revision::DELETED_TEXT ) ) {
+				$d = '<span class="history-deleted">' . $d . '</span>';
+			}
 
-		# Show user names for /newbies as there may be different users.
-		# Note that we already excluded rows with hidden user names.
-		if ( $this->contribs == 'newbie' ) {
-			$userlink = ' . . ' . Linker::userLink( $rev->getUser(), $rev->getUserText() );
-			$userlink .= ' ' . $this->msg( 'parentheses' )->rawParams(
-				Linker::userTalkLink( $rev->getUser(), $rev->getUserText() ) )->escaped() . ' ';
-		} else {
-			$userlink = '';
+			# Show user names for /newbies as there may be different users.
+			# Note that we already excluded rows with hidden user names.
+			if ( $this->contribs == 'newbie' ) {
+				$userlink = ' . . ' . Linker::userLink( $rev->getUser(), $rev->getUserText() );
+				$userlink .= ' ' . $this->msg( 'parentheses' )->rawParams(
+					Linker::userTalkLink( $rev->getUser(), $rev->getUserText() ) )->escaped() . ' ';
+			} else {
+				$userlink = '';
+			}
+
+			if ( $rev->getParentId() === 0 ) {
+				$nflag = ChangesList::flag( 'newpage' );
+			} else {
+				$nflag = '';
+			}
+
+			if ( $rev->isMinor() ) {
+				$mflag = ChangesList::flag( 'minor' );
+			} else {
+				$mflag = '';
+			}
+
+			$del = Linker::getRevDeleteLink( $user, $rev, $page );
+			if ( $del !== '' ) {
+				$del .= ' ';
+			}
+
+			$diffHistLinks = $this->msg( 'parentheses' )->rawParams( $difftext . $this->messages['pipe-separator'] . $histlink )->escaped();
+			$ret = "{$del}{$d} {$diffHistLinks}{$chardiff}{$nflag}{$mflag} {$link}{$userlink} {$comment} {$topmarktext}";
+
+			# Denote if username is redacted for this edit
+			if ( $rev->isDeleted( Revision::DELETED_USER ) ) {
+				$ret .= " <strong>" . $this->msg( 'rev-deleted-user-contribs' )->escaped() . "</strong>";
+			}
+
+			# Tags, if any.
+			list( $tagSummary, $newClasses ) = ChangeTags::formatSummaryRow( $row->ts_tags, 'contributions' );
+			$classes = array_merge( $classes, $newClasses );
+			$ret .= " $tagSummary";
 		}
-
-		if ( $rev->getParentId() === 0 ) {
-			$nflag = ChangesList::flag( 'newpage' );
-		} else {
-			$nflag = '';
-		}
-
-		if ( $rev->isMinor() ) {
-			$mflag = ChangesList::flag( 'minor' );
-		} else {
-			$mflag = '';
-		}
-
-		$del = Linker::getRevDeleteLink( $user, $rev, $page );
-		if ( $del !== '' ) {
-			$del .= ' ';
-		}
-
-		$diffHistLinks = $this->msg( 'parentheses' )->rawParams( $difftext . $this->messages['pipe-separator'] . $histlink )->escaped();
-		$ret = "{$del}{$d} {$diffHistLinks}{$chardiff}{$nflag}{$mflag} {$link}{$userlink} {$comment} {$topmarktext}";
-
-		# Denote if username is redacted for this edit
-		if ( $rev->isDeleted( Revision::DELETED_USER ) ) {
-			$ret .= " <strong>" . $this->msg( 'rev-deleted-user-contribs' )->escaped() . "</strong>";
-		}
-
-		# Tags, if any.
-		list( $tagSummary, $newClasses ) = ChangeTags::formatSummaryRow( $row->ts_tags, 'contributions' );
-		$classes = array_merge( $classes, $newClasses );
-		$ret .= " $tagSummary";
 
 		// Let extensions add data
-		wfRunHooks( 'ContributionsLineEnding', array( &$this, &$ret, $row ) );
+		wfRunHooks( 'ContributionsLineEnding', array( $this, &$ret, $row, &$classes ) );
 
 		$classes = implode( ' ', $classes );
 		$ret = "<li class=\"$classes\">$ret</li>\n";
+
 		wfProfileOut( __METHOD__ );
 		return $ret;
 	}

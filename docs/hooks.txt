@@ -703,8 +703,9 @@ $user: user (object) whose email is being confirmed
 
 'ContributionsLineEnding': Called before a contributions HTML line is finished
 $page: SpecialPage object for contributions
-$ret: the HTML line
+&$ret: the HTML line
 $row: the DB row for this line
+&$classes: the classes to add to the surrounding <li>
 
 'ContributionsToolLinks': Change tool links above Special:Contributions
 $id: User identifier
