@@ -390,7 +390,7 @@ class Article extends Page {
 		$content = $this->fetchContentObject();
 
 		$this->mContent = ContentHandler::getContentText( $content ); #@todo: get rid of mContent everywhere!
-		wfRunHooks( 'ArticleAfterFetchContent', array( &$this, &$this->mContent ) ); #BC cruft! #XXX: can we deprecate that hook?
+		wfRunHooks( 'ArticleAfterFetchContent', array( &$this, &$this->mContent ) ); #BC cruft, deprecated!
 
 		wfProfileOut( __METHOD__ );
 

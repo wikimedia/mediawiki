@@ -948,15 +948,15 @@ class WikitextContent extends TextContent {
 	}
 
 	/**
-	 * Returns a Content object with pre-save transformations applied (or this object if no transformations apply).
+	 * Returns a Content object with pre-save transformations applied using Parser::preSaveTransform().
 	 *
 	 * @param Title $title
 	 * @param User $user
 	 * @param ParserOptions $popts
 	 * @return Content
 	 */
-	public function preSaveTransform( Title $title, User $user, ParserOptions $popts ) { #FIXME: also needed for JS/CSS!
-		global $wgParser, $wgConteLang;
+	public function preSaveTransform( Title $title, User $user, ParserOptions $popts ) {
+		global $wgParser;
 
 		$text = $this->getNativeData();
 		$pst = $wgParser->preSaveTransform( $text, $title, $user, $popts );
@@ -972,7 +972,7 @@ class WikitextContent extends TextContent {
 	 * @return Content
 	 */
 	public function preloadTransform( Title $title, ParserOptions $popts ) {
-		global $wgParser, $wgConteLang;
+		global $wgParser;
 
 		$text = $this->getNativeData();
 		$plt = $wgParser->getPreloadText( $text, $title, $popts );
@@ -1130,6 +1130,24 @@ class JavaScriptContent extends TextContent {
 		parent::__construct($text, CONTENT_MODEL_JAVASCRIPT);
 	}
 
+	/**
+	 * Returns a Content object with pre-save transformations applied using Parser::preSaveTransform().
+	 *
+	 * @param Title $title
+	 * @param User $user
+	 * @param ParserOptions $popts
+	 * @return Content
+	 */
+	public function preSaveTransform( Title $title, User $user, ParserOptions $popts ) {
+		global $wgParser;
+		// @todo: make pre-save transformation optional for script pages
+
+		$text = $this->getNativeData();
+		$pst = $wgParser->preSaveTransform( $text, $title, $user, $popts );
+
+		return new JavaScriptContent( $pst );
+	}
+
 }
 
 /**
@@ -1139,4 +1157,23 @@ class CssContent extends TextContent {
 	public function __construct( $text ) {
 		parent::__construct($text, CONTENT_MODEL_CSS);
 	}
+
+	/**
+	 * Returns a Content object with pre-save transformations applied using Parser::preSaveTransform().
+	 *
+	 * @param Title $title
+	 * @param User $user
+	 * @param ParserOptions $popts
+	 * @return Content
+	 */
+	public function preSaveTransform( Title $title, User $user, ParserOptions $popts ) {
+		global $wgParser;
+		// @todo: make pre-save transformation optional for script pages
+
+		$text = $this->getNativeData();
+		$pst = $wgParser->preSaveTransform( $text, $title, $user, $popts );
+
+		return new CssContent( $pst );
+	}
+
 }

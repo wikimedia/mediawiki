@@ -76,6 +76,8 @@ class JavascriptContentTest extends WikitextContentTest {
 		$this->assertTrue( $content->equals( $c ) );
 	}
 
+	// XXX: currently, preSaveTransform is applied to scripts. this may change or become optional.
+	/*
 	public function dataPreSaveTransform() {
 		return array(
 			array( 'hello this is ~~~',
@@ -86,6 +88,7 @@ class JavascriptContentTest extends WikitextContentTest {
 			),
 		);
 	}
+	*/
 
 	public function dataPreloadTransform() {
 		return array(
