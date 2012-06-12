@@ -70,6 +70,7 @@ upgrade PHP if you have not done so prior to upgrading MediaWiki.
 * (bug 35705) QUnit upgraded from 1.2.0 to 1.7.0
 * cleanupSpam.php now can delete spam pages if --delete was specified instead of blanking
   them.
+* Added ContribsPager::reallyDoQuery hook allowing extensions to data to MyContribs
 
 === Bug fixes in 1.20 ===
 * (bug 30245) Use the correct way to construct a log page title.
