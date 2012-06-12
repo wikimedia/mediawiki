@@ -1,6 +1,7 @@
 <?php
 /**
- * Result of a ORMTable::select, which returns IORMRow objects.
+ * ORMIterator that takes a ResultWrapper object returned from
+ * a select operation returning IORMRow objects (ie IORMTable::select).
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -26,7 +27,7 @@
  * @author Jeroen De Dauw < jeroendedauw@gmail.com >
  */
 
-class ORMResult implements Iterator {
+class ORMResult implements ORMIterator {
 
 	/**
 	 * @var ResultWrapper
@@ -36,7 +37,7 @@ class ORMResult implements Iterator {
 	/**
 	 * @var integer
 	 */
-	protected  $key;
+	protected $key;
 
 	/**
 	 * @var IORMRow

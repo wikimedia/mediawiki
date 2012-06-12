@@ -470,6 +470,7 @@ $wgAutoloadLocalClasses = array(
 	'MySQLMasterPos' => 'includes/db/DatabaseMysql.php',
 	'ORAField' => 'includes/db/DatabaseOracle.php',
 	'ORAResult' => 'includes/db/DatabaseOracle.php',
+	'ORMIterator' => 'includes/db/ORMIterator',
 	'ORMResult' => 'includes/db/ORMResult.php',
 	'ORMRow' => 'includes/db/ORMRow.php',
 	'ORMTable' => 'includes/db/ORMTable.php',
