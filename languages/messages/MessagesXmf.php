@@ -323,8 +323,8 @@ $messages = array(
 თქვა შეილებუნა [[Special:Search/{{PAGENAME}}|გორათ ათე ხასილაშ ჯოხო]] შხვა ხასილეფს,
 <span class=\\"plainlinks\\">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} დოგორათ მეხუჯაფილ ჟურნალეფ],
 ვარა [{{fullurl:{{FULLPAGENAME}}|action=edit}} დიჭყათ ათე ხასილაშ რედაქტირაფა]</span>.',
-'noarticletext-nopermission'       => '"ათე ხასჷლას ასე ტექსტი ვა რე. თქვა შეილებუნა [[Special:Search/{{PAGENAME}}|დოგორათ თე ხასჷლაშ დუდჯოხო]] შხვა ხასჷლეფს,
-ვარდა <span class=""plainlinks"">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} დოგორათ გინორცხილ ჟურნალეფი]</span>."',
+'noarticletext-nopermission'       => 'ათე ხასჷლას ასე ტექსტი ვა რე. თქვა შეილებუნა [[Special:Search/{{PAGENAME}}|დოგორათ თე ხასჷლაშ დუდჯოხო]] შხვა ხასჷლეფს,
+ვარდა <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} დოგორათ გინორცხილ ჟურნალეფი]</span>.',
 'previewnote'                      => "'''რშუდანი თენა რე ხვალე გიწოთოლორაფა'''
 თქვანი თირაფეფი დიო ვარე ჩუალირი!",
 'editing'                          => 'რედაქტირაფა $1',

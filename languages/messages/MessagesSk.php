@@ -1,5 +1,5 @@
 <?php
-/** Slovak (Slovenčina)
+/** Slovak (slovenčina)
  *
  * See MessagesQqq.php for message documentation incl. usage of parameters
  * To improve a translation please visit http://translatewiki.net
@@ -11,6 +11,7 @@
  * @author Danny B.
  * @author Helix84
  * @author Kaganer
+ * @author Kusavica
  * @author Liso
  * @author Maros
  * @author Michawiki
@@ -22,6 +23,7 @@
  * @author Rudko
  * @author Sp5uhe
  * @author Tchoř
+ * @author Teslaton
  * @author Urhixidur
  * @author Valasek
  * @author Wizzard
@@ -408,7 +410,7 @@ $messages = array(
 'listingcontinuesabbrev'         => 'pokrač.',
 'index-category'                 => 'Indexované stránky',
 'noindex-category'               => 'neindexované stránky',
-'broken-file-category'           => 'Stránky s poškodenými odkazmi súbor',
+'broken-file-category'           => 'Stránky s odkazom na neexistujúci súbor',
 
 'about'         => 'Projekt',
 'article'       => 'Stránka s obsahom',
@@ -659,8 +661,8 @@ Požiadavka: $2',
 'cascadeprotected'     => 'Táto stránka bola zamknutá proti úpravám, pretože je použitá na {{PLURAL:$1|nasledovnej stránke, ktorá je zamknutá|nasledovných stránkach, ktoré sú zamknuté}} voľbou „kaskádového zamknutia“:
 $2',
 'namespaceprotected'   => "Nemáte povolenie upravovať stránky v mennom priestore '''$1'''.",
-'customcssprotected'   => 'Nemáte právo upravovať túto CSS stránku, pretože obsahuje osobné nastavenie iného užívateľa.',
-'customjsprotected'    => 'Nemáte právo upravovať túto JavaScript stránku, pretože obsahuje osobné nastavenie iného užívateľa.',
+'customcssprotected'   => 'Nemáte právo upravovať túto CSS stránku, pretože obsahuje osobné nastavenie iného používateľa.',
+'customjsprotected'    => 'Nemáte právo upravovať túto JavaScript stránku, pretože obsahuje osobné nastavenie iného používateľa.',
 'ns-specialprotected'  => 'Stránky v mennom pristore {{ns:special}} nie je možné upravovať.',
 'titleprotected'       => "Používateľ [[User:$1|$1]] zabránil vytváraniu stránky s týmto názvom.
 Udaný dôvod: ''$2''.",
@@ -753,7 +755,7 @@ Z tohto dôvodu nemôžu návštevníci z tejto IP adresy momentálne vytvoriť 
 'noemailprefs'               => 'Tieto nástroje budú prístupné po vyplnení emailovej adresy vo vašich nastaveniach.',
 'emailconfirmlink'           => 'Potvrďte vašu e-mailovú adresu',
 'invalidemailaddress'        => 'Emailovú adresu nemožno akceptovať, pretože sa zdá, že má neplatný formát. Zadajte adresu v správnom tvare alebo nechajte príslušné políčko prázdne.',
-'cannotchangeemail'          => 'Na tejto wiki nie je možné meniť e-mailové adresy užívateľského konta.',
+'cannotchangeemail'          => 'Na tejto wiki nie je možné meniť e-mailové adresy používateľského konta.',
 'accountcreated'             => 'Účet vytvorený',
 'accountcreatedtext'         => 'Používateľský účet $1 bol vytvorený.',
 'createaccount-title'        => 'Vytvorenie účtu na {{GRAMMAR:lokál|{{SITENAME}}}}',
@@ -799,7 +801,7 @@ Je možné, že sa vám už podarilo úspešne zmeniť svoje heslo alebo ste si 
 'passwordreset-username'           => 'Používateľské meno:',
 'passwordreset-domain'             => 'Doména:',
 'passwordreset-capture'            => 'Zobraziť výsledný e-mail?',
-'passwordreset-capture-help'       => 'Ak označíte toto políčko, bude e-mail (s dočasným heslom) okrem zaslania užívateľovi zobrazený aj vám.',
+'passwordreset-capture-help'       => 'Ak označíte toto políčko, bude e-mail (s dočasným heslom) okrem zaslania používateľovi zobrazený aj vám.',
 'passwordreset-email'              => 'Emailová adresa:',
 'passwordreset-emailtitle'         => 'Podrobnosti o účte na {{GRAMMAR:lokál|{{SITENAME}}}}',
 'passwordreset-emailtext-ip'       => 'Niekto (pravdepodobne vy z IP adresy $1) požiadal pripomenutie podrobností o vašom
@@ -826,7 +828,7 @@ ignorovať a ďalej používať vaše staré heslo.',
 Dočasné heslo:$2',
 'passwordreset-emailsent'          => 'Email s heslom bol odoslaný.',
 'passwordreset-emailsent-capture'  => 'Bol vytvorený pripomienkový e-mail, ktorý je zobrazený nižšie.',
-'passwordreset-emailerror-capture' => 'Bol vytvorený pripomienkový e-mail, ktorý je zobrazený nižšie, ale nepodarilo sa ho odoslať užívateľovi: $1',
+'passwordreset-emailerror-capture' => 'Bol vytvorený pripomienkový e-mail, ktorý je zobrazený nižšie, ale nepodarilo sa ho odoslať používateľovi: $1',
 
 # Special:ChangeEmail
 'changeemail'          => 'Zmena e-mailovej adresy',
@@ -1226,7 +1228,7 @@ Uistite sa, že táto zmena zachová historickú kontinuitu zmien stránky.',
 'mergelogpagetext'   => 'Dolu je zoznam posledných zlúčení jednej histórie revízií stránky do druhej.',
 
 # Diffs
-'history-title'            => 'História revízií „$1“',
+'history-title'            => ' $1: História revízií',
 'difference'               => '(Rozdiel medzi revíziami)',
 'difference-multipage'     => '(Rozdiel medzi stránkami)',
 'lineno'                   => 'Riadok $1:',
@@ -1612,6 +1614,7 @@ Musí obsahovať menej ako $1 {{PLURAL:$1|znak|znaky|znakov}}.',
 'newsectionsummary'                 => '/* $1 */ nová sekcia',
 'rc-enhanced-expand'                => 'Zobraziť podrobnosti (vyžaduje JavaScript)',
 'rc-enhanced-hide'                  => 'Skryť podrobnosti',
+'rc-old-title'                      => 'pôvodne vytvorené ako "$1"',
 
 # Recent changes linked
 'recentchangeslinked'          => 'Súvisiace úpravy',
@@ -1786,7 +1789,7 @@ Ak problém pretrváva, kontaktujte [[Special:ListUsers/sysop|správcu systému]
 'backend-fail-writetemp'     => 'Nebolo možné zapísať do dočasného súboru.',
 'backend-fail-closetemp'     => 'Nebolo možné zatvoriť dočasný súbor.',
 'backend-fail-read'          => 'Nebolo možné prečítať súbor „$1“.',
-'backend-fail-create'        => 'Nebolo možné vytvoriť súbor „$1“.',
+'backend-fail-create'        => 'Nebolo možné zapísať súbor $1.',
 'backend-fail-readonly'      => 'Úložisko „$1“ je momentálne v režime len na čítanie. Udaný dôvod: „$2“',
 'backend-fail-synced'        => 'Súbor „$1“ je v nekonzistentnom stave v rámci vnútorného úložiska',
 'backend-fail-connect'       => 'Nepodarilo sa pripojiť k úložisku „$1“.',
@@ -2596,7 +2599,7 @@ z/od momentálne zablokovanej IP adresy/používateľa.',
 'emaillink'                       => 'poslať email',
 'autoblocker'                     => 'Boli ste automaticky zablokovaný, pretože vašu IP adresu nedávno použil „[[User:$1|$1]]“.
 Uvedený dôvod zablokovania používateľa $2 bol: „$2“',
-'blocklogpage'                    => 'Záznam_blokovaní',
+'blocklogpage'                    => 'Záznam blokovaní',
 'blocklog-showlog'                => 'Tento používateľ bol v minulosti zablokovaný. Záznam blokovaní uvádza nasledovný dôvod:',
 'blocklog-showsuppresslog'        => 'Tento používateľ bol v minulosti zablokovaný a skrytý. Záznam potlačení uvádza nasledovný dôvod:',
 'blocklogentry'                   => 'zablokoval/a "[[$1]]" s časom ukončenia $2 $3',
@@ -2949,30 +2952,39 @@ Umožnuje do zhrnutia pridanie dôvodu.',
 'tooltip-summary'                     => 'Zadajte krátke zhrnutie',
 
 # Stylesheets
-'common.css'      => '/* Tu umiestnené CSS bude ovplyvňovať všetky štýly */',
-'standard.css'    => '/* Tu umiestnené CSS bude ovplyvňovať používateľov štýlu Klasický */',
-'nostalgia.css'   => '/* Tu umiestnené CSS bude ovplyvňovať používateľov štýlu Nostalgia */',
-'cologneblue.css' => '/* Tu umiestnené CSS bude ovplyvňovať používateľov štýlu Kolínska modrá */',
-'monobook.css'    => '/* Tu umiestnené CSS bude ovplyvňovať používateľov štýlu Monobook */',
-'myskin.css'      => '/* Tu umiestnené CSS bude ovplyvňovať používateľov štýlu Môjvzhľad */',
-'chick.css'       => '/* Tu umiestnené CSS bude ovplyvňovať používateľov štýlu Kuriatko */',
-'simple.css'      => '/* Tu umiestnené CSS bude ovplyvňovať používateľov štýlu Jednoduchý */',
-'modern.css'      => '/* Tu umiestnené CSS bude ovplyvňovať používateľov štýlu Moderný */',
-'vector.css'      => '/* Tu umiestnené CSS bude ovplyvňovať používateľov štýlu Vector */',
-'print.css'       => '/* Tu umiestnené CSS bude ovplyvňovať tlačový výstup */',
-'handheld.css'    => '/* Tu umiestnené CSS bude ovplyvňovať prenosné zariadenia vychádzajúceho zo štýlu nastaveného v $wgHandheldStyle */',
+'common.css'              => '/* Tu umiestnené CSS bude ovplyvňovať všetky štýly */',
+'standard.css'            => '/* Tu umiestnené CSS bude ovplyvňovať používateľov štýlu Klasický */',
+'nostalgia.css'           => '/* Tu umiestnené CSS bude ovplyvňovať používateľov štýlu Nostalgia */',
+'cologneblue.css'         => '/* Tu umiestnené CSS bude ovplyvňovať používateľov štýlu Kolínska modrá */',
+'monobook.css'            => '/* Tu umiestnené CSS bude ovplyvňovať používateľov štýlu Monobook */',
+'myskin.css'              => '/* Tu umiestnené CSS bude ovplyvňovať používateľov štýlu Môjvzhľad */',
+'chick.css'               => '/* Tu umiestnené CSS bude ovplyvňovať používateľov štýlu Kuriatko */',
+'simple.css'              => '/* Tu umiestnené CSS bude ovplyvňovať používateľov štýlu Jednoduchý */',
+'modern.css'              => '/* Tu umiestnené CSS bude ovplyvňovať používateľov štýlu Moderný */',
+'vector.css'              => '/* Tu umiestnené CSS bude ovplyvňovať používateľov štýlu Vector */',
+'print.css'               => '/* Tu umiestnené CSS bude ovplyvňovať tlačový výstup */',
+'handheld.css'            => '/* Tu umiestnené CSS bude ovplyvňovať prenosné zariadenia vychádzajúceho zo štýlu nastaveného v $wgHandheldStyle */',
+'noscript.css'            => '/* Tu umiestnené CSS bude ovplyvňovať používateľov s vypnutým JavaScriptom */',
+'group-autoconfirmed.css' => '/* Tu umiestnené CSS bude ovplyvňovať iba používateľov s overenou emailovou adresou */',
+'group-bot.css'           => '/* Tu umiestnené CSS bude ovplyvňovať iba robotov */',
+'group-sysop.css'         => '/* Tu umiestnené CSS bude ovplyvňovať iba správcov */',
+'group-bureaucrat.css'    => '/* Tu umiestnené CSS bude ovplyvňovať iba byrokratov */',
 
 # Scripts
-'common.js'      => '/* Tu uvedený JavaScript sa nahrá všetkým užívateľom pri každom nahraní stránky. */',
-'standard.js'    => '/* Tu sa nachádzajúci JavaScript sa načíta používateľom vzhľadu Klasický */',
-'nostalgia.js'   => '/* Tu sa nachádzajúci JavaScript sa načíta používateľom vzhľadu Nostalgia */',
-'cologneblue.js' => '/* Tu sa nachádzajúci JavaScript sa načíta používateľom vzhľadu Kolínska modrá */',
-'monobook.js'    => '/* Tu sa nachádzajúci JavaScript sa načíta používateľom vzhľadu Monobook */',
-'myskin.js'      => '/* Tu sa nachádzajúci JavaScript sa načíta používateľom vzhľadu Môjvzhľad */',
-'chick.js'       => '/* Tu sa nachádzajúci JavaScript sa načíta používateľom vzhľadu Kuriatko */',
-'simple.js'      => '/* Tu sa nachádzajúci JavaScript sa načíta používateľom vzhľadu Jednoduchý */',
-'modern.js'      => '/* Tu sa nachádzajúci JavaScript sa načíta používateľom vzhľadu Moderný */',
-'vector.js'      => '/* Tu sa nachádzajúci JavaScript sa načíta používateľom vzhľadu Vector */',
+'common.js'              => '/* Tu uvedený JavaScript sa nahrá všetkým používateľom pri každom nahraní stránky. */',
+'standard.js'            => '/* Tu sa nachádzajúci JavaScript sa načíta používateľom vzhľadu Klasický */',
+'nostalgia.js'           => '/* Tu sa nachádzajúci JavaScript sa načíta používateľom vzhľadu Nostalgia */',
+'cologneblue.js'         => '/* Tu sa nachádzajúci JavaScript sa načíta používateľom vzhľadu Kolínska modrá */',
+'monobook.js'            => '/* Tu sa nachádzajúci JavaScript sa načíta používateľom vzhľadu Monobook */',
+'myskin.js'              => '/* Tu sa nachádzajúci JavaScript sa načíta používateľom vzhľadu Môjvzhľad */',
+'chick.js'               => '/* Tu sa nachádzajúci JavaScript sa načíta používateľom vzhľadu Kuriatko */',
+'simple.js'              => '/* Tu sa nachádzajúci JavaScript sa načíta používateľom vzhľadu Jednoduchý */',
+'modern.js'              => '/* Tu sa nachádzajúci JavaScript sa načíta používateľom vzhľadu Moderný */',
+'vector.js'              => '/* Tu sa nachádzajúci JavaScript sa načíta používateľom vzhľadu Vector */',
+'group-autoconfirmed.js' => '/* Tu sa nachádzajúci JavaScript sa načíta používateľom s potvrdenou emailovou adresou */',
+'group-bot.js'           => '/* Tu sa nachádzajúci JavaScript sa načíta len robotom */',
+'group-sysop.js'         => '/* Tu sa nachádzajúci JavaScript sa načíta len správcom */',
+'group-bureaucrat.js'    => '/* Tu sa nachádzajúci JavaScript sa načíta len byrokratom */',
 
 # Metadata
 'notacceptable' => 'Wiki server nedokáže poskytovať dáta vo formáte, v akom ich váš klient vie čítať.',
@@ -3020,6 +3032,7 @@ Pravdepodobne to spôsobil odkaz na externú internetovú lokalitu, ktorá sa na
 'skinname-chick'       => 'Kuriatko',
 'skinname-simple'      => 'Jednoduchý',
 'skinname-modern'      => 'Moderný',
+'skinname-vector'      => 'Vector',
 
 # Patrolling
 'markaspatrolleddiff'                 => 'Označiť ako stráženú',
@@ -3797,7 +3810,7 @@ Obrázky sa zobrazia v plnom rozlíšení, ostatné typy súborov sa spustia v p
 'dberr-info'        => '(Spojenie s databázovým serverom neúspešné: $1)',
 'dberr-usegoogle'   => 'Zatiaľ môžete skúsiť hľadať pomocou Google.',
 'dberr-outofdate'   => 'Pamätajte, že ich indexy nemusia byť aktuálne.',
-'dberr-cachederror' => 'Toto je kópia požadovanej ztránky z vyrovnávacej pamäte a nemusí byť aktuálna.',
+'dberr-cachederror' => 'Toto je kópia požadovanej stránky z vyrovnávacej pamäte a nemusí byť aktuálna.',
 
 # HTML forms
 'htmlform-invalid-input'       => 'Niekotrý z údajov, ktoré ste zadali je problematický',

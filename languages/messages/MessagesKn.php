@@ -21,6 +21,7 @@
  * @author Omshivaprakash
  * @author Shankar
  * @author Shushruth
+ * @author Teju2friends
  * @author The Evil IP address
  * @author VASANTH S.N.
  * @author לערי ריינהארט
@@ -90,7 +91,7 @@ $messages = array(
 'tog-enotifminoredits'        => 'ಚಿಕ್ಕ-ಪುಟ್ಟ ಬದಲಾವಣೆಗಳಾದಾಗಲೂ ಇ-ಅಂಚೆ ಕಳುಹಿಸು',
 'tog-enotifrevealaddr'        => 'ಪ್ರಕಟಣೆ ಇ-ಅಂಚೆಗಳಲ್ಲಿ ನನ್ನ ಇ-ಅಂಚೆ ವಿಳಾಸ ತೋರು',
 'tog-shownumberswatching'     => 'ಪುಟವನ್ನು ವೀಕ್ಷಿಸುತ್ತಿರುವ ಸದಸ್ಯರ ಸಂಖ್ಯೆಯನ್ನು ತೋರಿಸು',
-'tog-oldsig'                  => 'ಪ್ರಸ್ತತ ಹಸ್ತ',
+'tog-oldsig'                  => 'ಪ್ರಸ್ತುತ ಸಹಿ',
 'tog-fancysig'                => 'ಸರಳ ಸಹಿಗಳು (ಕೊಂಡಿ ಇಲ್ಲದಿರುವಂತೆ)',
 'tog-externaleditor'          => 'ಬಾಹ್ಯ ಸಂಪಾದನೆ ಸಲಕರಣೆಯನ್ನು ಯಾವಾಗಲೂ ಉಪಯೋಗಿಸು (ಅನುಭವ ಹೊಂದಿರುವ ಬಳಕೆದಾರರಿಗೆ ಮಾತ್ರ, ನಿಮ್ಮ ಗಣಕಯಂತ್ರದಲ್ಲಿ ವಿಶೇಷ ಬದಲಾವಣೆಗಳು ಬೇಕಾಗುತ್ತದೆ)',
 'tog-externaldiff'            => 'ಬಾಹ್ಯ ಅಂತರದರ್ಶಕವನ್ನು ಯಾವಗಲೂ ಉಪಯೋಗಿಸು (ಅನುಭವ ಹೊಂದಿರುವ ಬಳಕೆದಾರರಿಗೆ ಮಾತ್ರ, ನಿಮ್ಮ ಗಣಕಯಂತ್ರದಲ್ಲಿ ವಿಶೇಷ ಬದಲಾವಣೆಗಳು ಬೇಕಾಗುತ್ತದೆ)',
@@ -188,7 +189,7 @@ $messages = array(
 'listingcontinuesabbrev'         => 'ಮುಂದು.',
 'index-category'                 => 'ಸೂಚಿನಾಮದ ಪುತಗಳು',
 'noindex-category'               => 'ಅಸುಚಿನಾಮದ ಪುತಗಳು',
-'broken-file-category'           => 'ಪುತಗಲ್ಲಿ ಮುರುದಿರುವ ಕಡತ ಕೊಂಡಿಗಳು',
+'broken-file-category'           => 'ಕಡತ ಕೊಂಡಿಗಳು ಮುರಿದಿರುವ ಪುಟಗಳು',
 
 'about'         => 'ನಮ್ಮ ಬಗ್ಗೆ',
 'article'       => 'ಲೇಖನ ಪುಟ',
@@ -618,12 +619,17 @@ $2',
 ನೀವು ಇತರ ಪುಟಗಳಲ್ಲಿ [[Special:Search/{{PAGENAME}}|ಈ ಹೆಸರನ್ನು ಹುಡುಕಬಹುದು]],
 <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} ಸಂಬಂಧಿತ ದಾಖಲೆಗಳನ್ನು ಹುಡುಕಬಹುದು],
 ಅಥವ [{{fullurl:{{FULLPAGENAME}}|action=edit}} ಈ ಪುಟವನ್ನು ಸಂಪಾದಿಸಬಹುದು]</span>.',
+'noarticletext-nopermission'       => 'ಈ ಪುಟದಲ್ಲಿ ಸದ್ಯಕ್ಕೆ ಯಾವ ಪಠ್ಯವೂ ಇಲ್ಲ.
+ನೀವು ಇತರ ಪುಟಗಳಲ್ಲಿ [[ವಿಶೇಷ:Search/{{PAGENAME}}|ಈ ಶೀರ್ಷಿಕೆಗಾಗಿ ಹುಡುಕಬಹುದು]],
+ಅಥವಾ <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} ಸಂಬಂಧಿಸಿದ ದಾಖಲಾತಿ ಹುಡುಕಿ]</span>.',
 'userpage-userdoesnotexist'        => 'ಬಳಕೆದಾರ ಖಾತೆ "<nowiki>$1</nowiki>" ದಾಖಲಾಗಿಲ್ಲ. ನೀವು ಇದೇ ಪುಟವನ್ನು ಸೃಷ್ಟಿ/ಸಂಪಾದನೆ ಮಾಡಬೇಕೆಂದಿರುವಿರಿ ಎಂದು ಖಾತ್ರಿ ಮಾಡಿಕೊಳ್ಳಿ.',
 'usercssyoucanpreview'             => "'''ಗಮನಿಸಿ:''' ಉಳಿಸುವ ಮುನ್ನ 'ಮುನ್ನೋಟ' ಗುಂಡಿಯನ್ನು ಉಪಯೋಗಿಸಿ ನಿಮ್ಮ ಹೊಸ CSS ಅನ್ನು ಪ್ರಯೋಗ ಮಾಡಿ.",
 'userjsyoucanpreview'              => "'''ಗಮನಿಸಿ:''' ಉಳಿಸುವ ಮುನ್ನ 'ಮುನ್ನೋಟ' ಗುಂಡಿಯನ್ನು ಉಪಯೋಗಿಸಿ ನಿಮ್ಮ ಹೊಸ JS ಅನ್ನು ಪ್ರಯೋಗ ಮಾಡಿ.",
 'usercsspreview'                   => "'''ನೆನಪಿಡಿ: ನೀವು ಇಲ್ಲಿ ಕೇವಲ ನಿಮ್ಮ ಬಳಕೆದಾರ CSSನ ಮುನ್ನೋಟ ನೋಡುತ್ತಿರುವಿರಿ.'''
 '''ಅದನ್ನು ಇನ್ನೂ ಉಳಿಸಲಾಗಿಲ್ಲ!'''",
 'userjspreview'                    => "'''ಗಮನಿಸಿ: ನೀವು ನಿಮ್ಮ ಬಳಕೆದಾರ JavaScriptನ ಮುನ್ನೋಟ ನೋಡುತ್ತಿರುವಿರಿ ಅಥವ ಪ್ರಯೋಗ ಮಾಡುತ್ತಿರುವಿರಿ. ಅದನ್ನಿನ್ನೂ ಉಳಿಸಲಾಗಿಲ್ಲ!'''",
+'sitecsspreview'                   => "'''ನೆನಪಿಡಿ: ನೀವು ಇಲ್ಲಿ ಕೇವಲ ನಿಮ್ಮ ಬಳಕೆದಾರ CSSನ ಮುನ್ನೋಟ ನೋಡುತ್ತಿರುವಿರಿ.''''''ಅದನ್ನು ಇನ್ನೂ ಉಳಿಸಲಾಗಿಲ್ಲ!'''",
+'sitejspreview'                    => "'''ನೆನಪಿಡಿ: ನೀವು ಇಲ್ಲಿ ಕೇವಲ ನಿಮ್ಮ ಬಳಕೆದಾರ CSSನ ಮುನ್ನೋಟ ನೋಡುತ್ತಿರುವಿರಿ.''''''ಅದನ್ನು ಇನ್ನೂ ಉಳಿಸಲಾಗಿಲ್ಲ!'''",
 'note'                             => "'''ಸೂಚನೆ:'''",
 'previewnote'                      => "'''ಇದು ಕೇವಲ ಮುನ್ನೋಟ; ಪುಟವನ್ನು ಇನ್ನೂ ಉಳಿಸಲಾಗಿಲ್ಲ ಎಂಬುದನ್ನು ಮರೆಯದಿರಿ!'''",
 'editing'                          => "'$1' ಲೇಖನ ಬದಲಾಯಿಸಲಾಗುತ್ತಿದೆ",
@@ -817,10 +823,13 @@ $2',
 'notextmatches'                    => 'ಯಾವ ಪುಟದ ಪಠ್ಯದಲ್ಲೂ ಹೋಲಿಕೆಗಳಿಲ್ಲ',
 'prevn'                            => 'ಹಿಂದಿನ {{PLURAL:$1|$1}}',
 'nextn'                            => 'ಮುಂದಿನ {{PLURAL:$1|$1}}',
+'prevn-title'                      => 'ಹಿಂದಿನ $1 {{PLURAL:$1|ಫಲಿತಾಂಶ|ಫಲಿತಾಂಶಗಳು}}',
+'nextn-title'                      => 'ಮುಂದಿನ $1 {{PLURAL:$1|ಫಲಿತಾಂಶ|ಫಲಿತಾಂಶಗಳು}}',
 'shown-title'                      => 'ಪ್ರತಿ ಪುಟದಲ್ಲಿಯೂ $1 {{PLURAL:$1|result|results}} ತೋರಿಸು',
 'viewprevnext'                     => 'ವೀಕ್ಷಿಸು ($1 {{int:pipe-separator}} $2) ($3)',
 'searchmenu-new'                   => "'''''[[:$1]]'' ಪುಟವನ್ನು ಈ ವಿಕಿಯಲ್ಲಿ ಸೃಷ್ಟಿಸಿ!'''",
 'searchhelp-url'                   => 'Help:ಪರಿವಿಡಿ',
+'searchprofile-articles'           => 'ಲೇಖನ ಪುಟ',
 'searchprofile-project'            => 'ಸಹಾಯ ಮತ್ತು ಯೋಜನೆ ಪುಟಗಳು',
 'searchprofile-images'             => 'ಬಹುಮಾಧ್ಯಮ',
 'searchprofile-everything'         => 'ಪ್ರತಿಯೊಂದು',
@@ -846,15 +855,17 @@ $2',
 'searchall'                        => 'ಎಲ್ಲಾ',
 'showingresults'                   => "ಕೆಳಗೆ #'''$2''' ಇಂದ ಶುರುವಾದ {{PLURAL:$1|'''೧''' ಫಲಿತಾಂಶದ|'''$1''' ಫಲಿತಾಂಶಗಳ}}ವರೆಗೂ ತೋರಿಸಲಾಗುತ್ತಿದೆ.",
 'showingresultsnum'                => "ಕೆಳಗೆ #'''$2''' ಇಂದ ಶುರುವಾಗಿ {{PLURAL:$3|'''೧''' ಫಲಿತಾಂಶವನ್ನು|'''$3''' ಫಲಿತಾಂಶಗಳನ್ನು}} ತೋರಿಸಲಾಗುತ್ತಿದೆ.",
+'showingresultsheader'             => "'''$4''' ಗೆ {{PLURAL:$5|'''$3''' ರಲ್ಲಿ '''$1'''  ಫಲಿತಾಂಶ|'''$3''' ರಲ್ಲಿ '''$1 - $2'''  ಫಲಿತಾಂಶಗಳು}}",
 'nonefound'                        => "'''ಸೂಚನೆ''': ಕೆಲವೊಂದು ನೇಮ್ ಸ್ಪೇಸ್ ಗಳನ್ನು ಮಾತ್ರ ಪೂರ್ವನಿಯೋಜಿತವಾಗಿ ಹುಡುಕಲಾಗುತ್ತದೆ.
 ನಿಮ್ಮ ಹುಡುಕುಪದದ ಹಿಂದೆ ''all:'' ಬಳಸಿ, ವಿಷಯವನ್ನು ಹುಡುಕಿ (ಚರ್ಚೆ, ಟೆಂಪ್ಲೇಟು, ಇತ್ಯಾದಿ ಪುಟಗಳನ್ನೊಳಗೊಂಡು), ಅಥವಾ ನಿಮಗೆ ಇಷ್ಟ ಬಂದ ನೇಮ್ ಸ್ಪೇಸ್ ಅನ್ನು ಪೂರ್ವಪ್ರತ್ಯಯವನ್ನಾಗಿ ಬಳಸಿ.",
-'search-nonefound'                 => 'ಉಥರ ಇಲ್ಲ, ಈ ಪ್ರಶನಖೇ.',
+'search-nonefound'                 => 'ನಿಮ್ಮ ವಿಚಾರಣೆಗೆ ತಕ್ಕ ಫಲಿತಾಂಶಗಳಿಲ್ಲ.',
 'powersearch'                      => 'ಹುಡುಕಿ',
 'powersearch-legend'               => 'ಮುಂದುವರೆದ ಹುಡುಕಾಟ',
 'powersearch-ns'                   => 'ಈ ಪುಟ ಪ್ರಬೇಧಗಳಲ್ಲಿ ಹುಡುಕು:',
 'powersearch-redir'                => 'ಪುನರ್ನಿರ್ದೇಶನಗಳ ಪಟ್ಟಿ',
 'powersearch-field'                => 'ಇದನ್ನು ಹುಡುಕು',
 'powersearch-toggleall'            => 'ಎಲ್ಲಾ',
+'powersearch-togglenone'           => 'ಯಾವುದೂ ಇಲ್ಲ',
 'search-external'                  => 'ಬಾಹ್ಯ ಹುಡುಕಾಟ',
 'searchdisabled'                   => '{{SITENAME}} ಹುಡುಕಾಟ ಸದ್ಯಕ್ಕೆ ಸ್ಥಗಿತವಾಗಿದೆ.
 ಈ ವೇಳೆಯಲ್ಲಿ ನೀವು ಗೂಗಲ್ ಉಪಯೋಗಿಸಿ ಹುಡುಕಾಟ ನಡೆಸಬಹುದು.
@@ -1145,6 +1156,7 @@ $2',
 ಈ URL ಸರಿಯಿದೆ ಮತ್ತು ಆ ತಾಣ ಕಾರ್ಯ ಮಾಡುತ್ತಿದೆ ಎಂದು ಮತ್ತೊಮ್ಮೆ ಪರೀಕ್ಷಿಸಿ.',
 'upload-curl-error28'     => 'ಅಪ್ಲೋಡ್ ಕಾಲಾವಧಿ ಮೀರಿದೆ',
 
+'license-header'     => 'ಪರವಾನಗಿ',
 'upload_source_url'  => ' (ಒಂದು ಮನ್ನಿತ, ಸಾರ್ವಜನಿಕವಾಗಿ ಎಟಕುವ URL)',
 'upload_source_file' => ' (ನಿಮ್ಮ ಗಣಕಯಂತ್ರದಲ್ಲಿರುವ ಒಂದು ಫೈಲು)',
 
@@ -1176,7 +1188,7 @@ $2',
 'filehist-dimensions'       => 'ಆಯಾಮಗಳು',
 'filehist-filesize'         => 'ಫೈಲಿನ ಗಾತ್ರ',
 'filehist-comment'          => 'ವಕ್ಕಣೆ',
-'imagelinks'                => 'ಫೈಲು ಕೊಂಡಿಗಳು',
+'imagelinks'                => 'ಕಡತ ಬಳಕೆ',
 'linkstoimage'              => 'ಈ ಕೆಳಗಿನ {{PLURAL:$1|ಪುಟವು|$1 ಪುಟಗಳು}} ಈ ಚಿತ್ರಕ್ಕೆ ಸಂಪರ್ಕ {{PLURAL:$1|ಹೊಂದಿದೆ|ಹೊಂದಿವೆ}}:',
 'nolinkstoimage'            => 'ಈ ಫೈಲಿಗೆ ಯಾವ ಪುಟವೂ ಸಂಪರ್ಕ ಹೊಂದಿಲ್ಲ.',
 'sharedupload'              => 'ಈ ಫೈಲು $1 ಇಂದ. ಇದು ಇತರ ಯೋಜನೆಗಳಲ್ಲಿ ಉಪಯೋಗದಲ್ಲಿರಬಹುದು.',
@@ -1294,6 +1306,7 @@ $2',
 'protectedtitles'         => 'ಸಂರಕ್ಷಿತ ಶೀರ್ಷಿಕೆಗಳು',
 'protectedtitlestext'     => 'ಈ ಕೆಳಗಿನ ಶೀರ್ಷಿಕೆಗಳನ್ನು ಸೃಷ್ಟಿಸಲಾಗದಂತೆ ಸಂರಕ್ಷಿಸಲಾಗಿದೆ',
 'listusers'               => 'ಸದಸ್ಯರ ಪಟ್ಟಿ',
+'usercreated'             => '$1 ರಂದು $2 ಸಮಯಕ್ಕೆ {{GENDER:$3|ಸೃಷ್ಟಿಸಿದರು}}',
 'newpages'                => 'ಹೊಸ ಪುಟಗಳು',
 'newpages-username'       => 'ಬಳಕೆದಾರ ಹೆಸರು:',
 'ancientpages'            => 'ಹಳೆಯ ಪುಟಗಳು',
@@ -1533,6 +1546,7 @@ $2',
 'sp-contributions-newbies'     => 'ಹೊಸ ಖಾತೆಗಳ ಕಾಣಿಕೆಗಳನ್ನು ಮಾತ್ರ ತೋರಿಸು',
 'sp-contributions-newbies-sub' => 'ಹೊಸ ಖಾತೆಗಳಿಗೆ',
 'sp-contributions-blocklog'    => 'ತಡೆಹಿಡಿಯುವಿಕೆ ದಾಖಲೆ',
+'sp-contributions-logs'        => 'ದಾಖಲೆಗಳು',
 'sp-contributions-talk'        => 'ಚರ್ಚೆ',
 'sp-contributions-userrights'  => 'ಬಳಕೆದಾರ ಹಕ್ಕುಗಳ ನಿರ್ವಹಣೆ',
 'sp-contributions-search'      => 'ಸಂಪಾದನೆಗಳನ್ನು ಹುಡುಕು',
@@ -1837,15 +1851,15 @@ $1',
 'metadata-collapse' => 'ವಿಸ್ತಾರವಾದ ವಿವರಗಳನ್ನು ಅಡಗಿಸು',
 'metadata-fields'   => 'ಈ ಸಂದೇಶದಲ್ಲಿ ಪಟ್ಟಿ ಮಾಡಲಾಗಿರುವ EXIF ಮೇಲ್ದರ್ಜೆ ಮಾಹಿತಿ ಚಿತ್ರ ಪುಟದಲ್ಲಿ ಸೇರಿಸಲಾಗುತ್ತದೆ. ಪುಟದಲ್ಲಿ ಮೇಲ್ದರ್ಜೆ ಮಾಹಿತಿ ಪಟ್ಟಿಯನ್ನು ತೆರೆದಾಗ ಇವು ಕಾಣುತ್ತದೆ.
 ಉಳಿದವುಗಳು ಮೂಲಸ್ಥಿತಿಯಲ್ಲಿ ಅಗೋಚರವಾಗಿರುತ್ತವೆ.
-* make
-* model
-* datetimeoriginal
-* exposuretime
+* ಸೃಷ್ಟಿ
+* ಮಾದರಿ
+* ಮೂಲಸಮಯದಿನಾಂಕ
+* ಅನಾವರಣಸಮಯ
 * fnumber
 * isospeedratings
 * focallength
-* artist
-* copyright
+* ಕಲಾವಿದ
+* ಕೃತಿಸ್ವಾಮ್ಯ
 * imagedescription
 * gpslatitude
 * gpslongitude
@@ -2082,7 +2096,7 @@ $5
 'blankpage' => 'ಖಾಲಿ ಪುಟ',
 
 # Special:Tags
-'tag-filter' => '[[special : Tags | ದಿನ]]  ಶುಧಕರಿ:',
+'tag-filter' => '[[ವಿಶೇಷ:ತಳುಕುಗಳು|ತಳುಕು]] ಶೋಧಕ:',
 'tags-edit'  => 'ಸಂಪಾದಿಸಿ',
 
 # Special:ComparePages

@@ -7,6 +7,7 @@
  * @ingroup Language
  * @file
  *
+ * @author Engelseziekte
  * @author Gazeb
  * @author Gleb Borisov
  * @author Kaganer
@@ -623,7 +624,7 @@ $2
 'showpreview'                      => 'Указати нагляд',
 'showlivepreview'                  => 'Швыдкый нагляд',
 'showdiff'                         => 'Указати зміны',
-'anoneditwarning'                  => "'''Увага''': Не сте приголошены. Ваша IP-адреса буде записана до історії змін той сторінкы.",
+'anoneditwarning'                  => "'''Увага''': Не сьте приголошены. Ваша IP-адреса буде записана до історії змін той сторінкы.",
 'anonpreviewwarning'               => "''Не сьте приголошеный(а). Уложінём буде ваша IP адреса записана в історії  той сторінкы.''",
 'missingsummary'                   => "'''Припомянутя:''' Не задали сьте згорнутя едітації. Кідь іщі раз кликтете на Уложыти зміны, буде вапа едітація записана без згорнутя.",
 'missingcommenttext'               => 'Задайте коментарь',
@@ -704,8 +705,8 @@ $2
 'userinvalidcssjstitle'            => "'''Увага:''' Тема взгляду „$1“ не екзістує. Не забудьте, же хосновательске .css і .js файлы хоснують малы писмена, наприклад {{ns:user}}:{{BASEPAGENAME}}/vector.css, а не {{ns:user}}:{{BASEPAGENAME}}/Vector.css.",
 'updated'                          => '(Зміна уложена)',
 'note'                             => "'''Позначка:'''&nbsp;",
-'previewnote'                      => "'''Памятайте, же то лем попереднїй перегляд,
-текст іщі не є уложеный!'''",
+'previewnote'                      => "'''Памятайте, же то лем нагляд.'''
+Зміны іщі не суть уложены!",
 'previewconflict'                  => 'Тот нагляд зображує текст так, як буде вызерати по уложіню сторінкы.',
 'session_fail_preview'             => "'''Вашу пожадавку ся не подарило зпрацовати, бо были страчены дата сеансу.
 Просиме, спробуйте то зясь.
@@ -969,7 +970,7 @@ $1",
 'mergelogpagetext'   => 'Ниже є список найновшых злучінь історії єдной сторінкы з другов.',
 
 # Diffs
-'history-title'            => 'Історія змін сторінкы «$1»',
+'history-title'            => '$1: Історія змін',
 'difference'               => '(роздїл міджі ревізіями)',
 'difference-multipage'     => '(Роздїлы міджі сторінками)',
 'lineno'                   => 'Рядок $1:',
@@ -1016,7 +1017,7 @@ $1",
 'search-result-score'              => 'Одповідность: $1 %',
 'search-redirect'                  => '(напрямити $1)',
 'search-section'                   => '(секція $1)',
-'search-suggest'                   => 'Може сте мали на мыслї: $1',
+'search-suggest'                   => 'Може сьте мали на мыслї: $1',
 'search-interwiki-caption'         => 'Сестерьскы проєкты',
 'search-interwiki-default'         => '$1 резултаты:',
 'search-interwiki-more'            => '(веце)',
@@ -1290,7 +1291,7 @@ $1",
 # Associated actions - in the sentence "You do not have permission to X"
 'action-read'                 => 'прочітати тоту сторінку',
 'action-edit'                 => 'едітованя той сторінкы',
-'action-createpage'           => 'створіня сторінок',
+'action-createpage'           => 'створїня сторінок',
 'action-createtalk'           => 'Вытворїня сторінок діскузії',
 'action-createaccount'        => 'Вытворїня того конта хоснователя',
 'action-minoredit'            => 'означіти тото едітованя як мале',
@@ -1305,7 +1306,7 @@ $1",
 'action-writeapi'             => 'хосновати API про писаня',
 'action-delete'               => 'Вымазати тоту сторінку',
 'action-deleterevision'       => 'вымазати тоту ревізію сторінкы',
-'action-deletedhistory'       => 'зобразити  історію змазаных ревізій той сторінкы',
+'action-deletedhistory'       => 'зобразити історію змазаных ревізій той сторінкы',
 'action-browsearchive'        => 'глядати змазаны сторінкы',
 'action-undelete'             => 'обновити тоту сторінку',
 'action-suppressrevision'     => 'сконтролёвати і обновити тоту сховану ревізію',
@@ -1364,7 +1365,7 @@ $1",
 'recentchangeslinked-feed'     => 'Повязаны зміны',
 'recentchangeslinked-toolbox'  => 'Повязаны зміны',
 'recentchangeslinked-title'    => 'Зміны звязаны з «$1»',
-'recentchangeslinked-noresult' => 'В зазазначенім часї не были жадны зміны на одказованых сторінках.',
+'recentchangeslinked-noresult' => 'В зазначенім часї не были жадны зміны на одказованых сторінках.',
 'recentchangeslinked-summary'  => "Тото є список недавных змін на сторінках на котры одказує задана сторінка (або котры належать до той катеґорії).
 Сторінкы з [[Special:Watchlist|вашого списку слїдованых]] суть вызначены '''тучно'''.",
 'recentchangeslinked-page'     => 'Назва сторінкы:',
@@ -1465,9 +1466,9 @@ $1",
 'uploadvirus'                 => 'Файл обсягує вірус! Детайлы: $1',
 'uploadjava'                  => 'Тот файл є ZIP архів, котрый обсягує .class-файл Java.
 Начітаня Java-файлів не є доволене, бо они можуть запричінити обход забезпечіня сістемы.',
-'upload-source'               => 'Здройовый файл',
-'sourcefilename'              => 'Назва здройового файлу:',
-'sourceurl'                   => 'Здройова URL-адреса:',
+'upload-source'               => 'Жрідловый файл',
+'sourcefilename'              => 'Назва жрідлового файлу:',
+'sourceurl'                   => 'Жрідлова URL-адреса:',
 'destfilename'                => 'Назва цілёвого файлу:',
 'upload-maxfilesize'          => 'Максімалный розмір файлу: $1',
 'upload-description'          => 'Попис файлу',

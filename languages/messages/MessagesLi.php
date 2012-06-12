@@ -1045,7 +1045,7 @@ Controleer de logbeuk.",
 # Suppression log
 'suppressionlog'     => 'Verbergingslogbook',
 'suppressionlogtext' => 'De ongerstaonde lies bevat de verwiederinge en blokkades die veur beheerders verborge zeen.
-In de [[Special:BlockList|IP-blokkeerlies]] zeen de hudige blokkades te bekieke.',
+In de [[Special:BlockList|blokkeerlies]] zeen de hudige blokkades te bekieke.',
 
 # History merging
 'mergehistory'                     => "Gesjiedenis van pagina's samevoege",
@@ -1077,7 +1077,7 @@ Wees zeker det deze wieziging de gesjiedenisdoorloupendheid van de pagina zal be
 'mergelogpagetext'   => "Hiejonger zuut geer 'ne lies van recente samevoeginge van 'ne paginagesjiedenis nao 'ne angere.",
 
 # Diffs
-'history-title'            => 'Gesjiedenis van "$1"',
+'history-title'            => '$1: bewèrkingseuverzich',
 'difference'               => '(Versjil tösje bewirkinge)',
 'difference-multipage'     => '(Versjil tösje paazjes)',
 'lineno'                   => 'Tekslien $1:',
@@ -1440,7 +1440,7 @@ Deze informatie is zichbaar veur angere gebroekers.',
 'nchanges'                          => '$1 {{PLURAL:$1|bewerking|bewerkinge}}',
 'recentchanges'                     => 'Lètste verangeringe',
 'recentchanges-legend'              => 'Opties veur recènte verangeringe',
-'recentchangestext'                 => 'op dees pagina kins doe de recènte verangeringe in deze wiki bekieke.',
+'recentchangestext'                 => 'Op dees pagina kins se de recènste verangeringe op deze wiki bekieke.',
 'recentchanges-feed-description'    => 'Volg de meis recente bewerkinge in deze wiki via deze feed.',
 'recentchanges-label-newpage'       => "Mit dees verangering is 'n nuuj pagina aangemaak",
 'recentchanges-label-minor'         => "Dit is 'n klein bewirking",
@@ -1470,6 +1470,7 @@ Deze informatie is zichbaar veur angere gebroekers.',
 'newsectionsummary'                 => '/* $1 */ nuje subkop',
 'rc-enhanced-expand'                => 'Details weergaeve (JavaScript verplich)',
 'rc-enhanced-hide'                  => 'Details verberge',
+'rc-old-title'                      => 'oearsprónkelik aangemaak es "$1"',
 
 # Recent changes linked
 'recentchangeslinked'          => 'Volg links',
@@ -1628,7 +1629,7 @@ Gank trök nao t [[Special:Upload/stash/$1|uploadformuleer]] om dit perbleem te 
 'backend-fail-writetemp'     => "'t Waes neet mäögelik nao 'n tiedelik besjtand te sjrieve.",
 'backend-fail-closetemp'     => "'t Waes neet mäögelik 'n tiedelik besjtand te sjlete.",
 'backend-fail-read'          => 'Kós bestjand $1 neet laeze.',
-'backend-fail-create'        => 'Kós bestjand $1 neet aanmake.',
+'backend-fail-create'        => 'Kós bestandj $1 neet sjrieve.',
 'backend-fail-readonly'      => 'Vannen opslaag "$1" kin op dit memènt allein gelaeze waere. De opgegaeve raeje is: "$2"',
 'backend-fail-synced'        => '\'t Bestandj "$1" bevindj zich in \'nen ónsamehangendje toestandj inne intern opslaagbackends.',
 'backend-fail-connect'       => 'Kós de bestandjsbackend neet verbinje mitte opslaagbackend "$1".',
@@ -2441,7 +2442,7 @@ Zuug de [[Special:BlockList|lies van geblokkeerde IP-adresse]].',
 'blocklog-showsuppresslog'        => "Deze gebroeker is al geblok gewaes en d'r zeen (deil van) bewerkinge van deze gebroeker verbórge. 't Verbèrgingslogbook steit hieónger:",
 'blocklogentry'                   => '"[[$1]]" is geblokkeerd veur d\'n tied van $2 $3',
 'reblock-logentry'                => 'haet de instellinge veur de blokkaasj veur [[$1]] gewiezig. Deze verlöp noe op $2 om $3',
-'blocklogtext'                    => "Dit is 'n log van blokkades van gebroekers. Automatisch geblokkeerde IP-adresse sjtoon hie neet bie. Zuug de [[Special:BlockList|Lies van geblokkeerde IP-adresse]] veur de lies van op dit mement wèrkende blokkades.",
+'blocklogtext'                    => "Dit is 'n log van blokkades van gebroekers. Automatisch geblokkeerde IP-adresse sjtoon hie neet bie. Zuug de [[Special:BlockList|Lies van geblokkeerde adresse]] veur de lies van op dit mement wèrkende blokkades.",
 'unblocklogentry'                 => 'blokkade van $1 opgeheve',
 'block-log-flags-anononly'        => 'allein anoniem',
 'block-log-flags-nocreate'        => 'aanmake gebroekers geblokkeerd',
@@ -2691,7 +2692,7 @@ Slaon de oetveur op dien eige systeem op, en voeg dae dao nao hiej toe.',
 
 # JavaScriptTest
 'javascripttest'                           => 'Tes JavaScript',
-'javascripttest-disabled'                  => 'Dees funksje steit oet.',
+'javascripttest-disabled'                  => 'Dees funksje steit oet op deze wiki.',
 'javascripttest-title'                     => 'Veur tes oet veur $1',
 'javascripttest-pagetext-noframework'      => "Dees pagina is gerizzerveerd veur 't oetveure van JavaScriptteste.",
 'javascripttest-pagetext-unknownframework' => 'Ónbekèndje testframework "$1".',
@@ -2845,7 +2846,7 @@ $1",
 
 # Media information
 'mediawarning'           => "'''Waorsjuwing''': Dit bestandj kin 'n anger kood höbbe, door 't te doorveure in dien systeem kin 't gecompromeerde dinger oplevere.",
-'imagemaxsize'           => "Meximale aafbeildjingsaafmaeting:<b r/>''(veur besjrievingspaasj)''",
+'imagemaxsize'           => "Meximaal aafbeildjingsaafmaeting:<br />''(veur besjrievingspaasj)''",
 'thumbsize'              => 'Gruutde vanne thumbnail:',
 'widthheightpage'        => "$1 × $2, $3 {{PLURAL:$3|pazjena|pazjena's}}",
 'file-info'              => 'bestandsgruutde: $1, MIME-type: $2',

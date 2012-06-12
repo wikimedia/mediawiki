@@ -697,6 +697,10 @@ Milo ko do gumuli om mongidit di bolikon poinsuang, toi ko [[Special:UserLogin|s
 'permissionserrors'                => 'Nokosilap pinapasaga',
 'permissionserrorstext'            => 'Awu ko pasagaon do momonsoi miagal dilo, tu {{PLURAL:$1|sabab|sasabab no}} do:',
 'permissionserrorstext-withaction' => 'Awu ko pasagaon do $2, {{PLURAL:$1|sabab|sasabab no}} do:',
+'recreate-moveddeleted-warn'       => "'''Kapanansarahan: Koponugut koh do momudali di bolikon do nopugas.'''
+
+Pomusarahai poh koti pogulu do potilombusonnu do mongitit toi monimban.
+Log pinomugasan pinotangoi do hiti montok noh do kasanangannu.",
 'moveddeleted-notice'              => 'Nopugas no bolikon diti. Pimomugasan om log pinowolihon do bolikon pinosodia id siriba montok riporon.',
 'log-fulllog'                      => 'Intaai log poimponu',
 'edit-hook-aborted'                => 'Niditan pinaratu do kakait.
@@ -715,6 +719,8 @@ It should have less than $2 {{PLURAL:$2|call|calls}}, there {{PLURAL:$1|is now $
 'post-expand-template-inclusion-warning'  => "'''Panansarahan:''' Pomitanan pinohompit kalabai tukuran.
 Pipiro pomitanan polobuson.",
 'post-expand-template-inclusion-category' => 'Bobolikon kohompit pomitanan kolabai tukuran',
+'post-expand-template-argument-warning'   => "'''Kapanansarahan:''' Kisuang do sokukuri do iso pogibabarasan id pomitanan diti ii koponginggayo do suang. Nadaan noh pogibabarasan diti.",
+'post-expand-template-argument-category'  => 'Yadaan bolikon dii kipibarasan kokomoi do pomitanan.',
 
 # History pages
 'viewpagelogs'           => 'Intaai tongolog do bolikon diti',
@@ -951,6 +957,7 @@ Imurai no do indik suang diti {{SITENAME}} nopo nga nokolipas.',
 'recentchanges-label-bot'         => 'Niditan diti winonsoi do robot',
 'recentchanges-label-unpatrolled' => 'Niditan diti awu poh nosimak',
 'rcnote'                          => "Iti {{PLURAL:$1|noh '''1''' nalanan|nopo '''$1''' dohuri nopingalanan}} solinaid {{PLURAL:$2|tadau|'''$2''' tadau}}, ontok di $4, jaam $5.",
+'rcnotefrom'                      => "Id siriba diti pokitonon ii nopingalanan mantad '''$2''' (gisom '''$1''' ).",
 'rclistfrom'                      => 'Pokitono naalanan kawawagu tumimpuun mantad $1',
 'rcshowhideminor'                 => '$1 niditan tokoto',
 'rcshowhidebots'                  => 'Roboto $1',
@@ -1022,7 +1029,7 @@ Bobolikon id [[Special:Watchlist|lis pintangannu]] nopo nga '''pinakapal'''.",
 'filehist-filesize'         => 'Tinipongan pail',
 'filehist-comment'          => 'Kumin',
 'filehist-missing'          => 'Natagak pail',
-'imagelinks'                => 'Noputan do pail',
+'imagelinks'                => 'Pomogunaan do pail',
 'linkstoimage'              => 'Iti kiharo {{PLURAL:$1|bolikon poingoput|$1 bobolikon poingoput}} id pail diti:',
 'nolinkstoimage'            => 'Ingaa bobolikon it poingoput id pail diti.',
 'morelinkstoimage'          => 'Intaai [[Special:WhatLinksHere/$1|tongotoput]] pail diti.',
@@ -1039,11 +1046,13 @@ Kointalangan dilo [$2 kointalangan pail] okito id siriba.',
 # Statistics
 'statistics' => 'Runumboboyo',
 
+'disambiguationspage' => 'Template:patarango',
+
 # Miscellaneous special pages
 'nbytes'        => '$1 {{PLURAL:$1|bait|babait}}',
 'nmembers'      => '$1 {{PLURAL:$1|koombolutan|tongokoombolutan}}',
 'prefixindex'   => 'Oinsanan bolikan di kiponimpuunan',
-'usercreated'   => 'Winonsoi ontok $1 di jaam $2',
+'usercreated'   => '{{GENDER:$3|Created}} ontok $1 di jaam $2',
 'newpages'      => 'Bobolikon wagu',
 'move'          => 'Poundoliho',
 'movethispage'  => 'Poundoliho iti bolikon',
@@ -1178,9 +1187,11 @@ Milo ko nogi do mongolon tingkat tingolig diti, nga ingaa it kosimbanon montok t
 'sp-contributions-newbies'  => 'Pokitono pinotoluod di takaun kawawagu nopo.',
 'sp-contributions-blocklog' => 'antabai log',
 'sp-contributions-uploads'  => 'poposuang',
+'sp-contributions-logs'     => 'tongolog',
 'sp-contributions-talk'     => 'bolotok',
 'sp-contributions-search'   => 'Ihumo pinotoluod',
 'sp-contributions-username' => 'Kinoyonon IP toi momomoguno:',
+'sp-contributions-toponly'  => 'Pokitono nititan kawawagu di nobiri.',
 'sp-contributions-submit'   => 'Ihumo',
 
 # What links here
@@ -1188,6 +1199,7 @@ Milo ko nogi do mongolon tingkat tingolig diti, nga ingaa it kosimbanon montok t
 'whatlinkshere-title'      => 'Bolikon di poingoput id "$1"',
 'whatlinkshere-page'       => 'Bolikon:',
 'linkshere'                => "Bolikon diti poingoput kumaa id  '''[[:$1]]''':",
+'nolinkshere'              => "Ingaa bolikon poingoput id '''[[:$1]]'''.",
 'isredirect'               => 'bolikon pinotilombus',
 'istemplate'               => 'alanai',
 'isimage'                  => 'noputan do upa',
@@ -1390,6 +1402,16 @@ Iri suai sinandad do poinlisok.
 
 # Special:SpecialPages
 'specialpages' => 'Bolikon suaikowokon',
+
+# External image whitelist
+'external_image_whitelist' => ' #Pologoson baris diti<pre>
+#Suangai do boros koubasanan (guas boros id pialatan //) ponongsiriba
+#Noputan di kaagal pojodion do toput poinsuang (toput koubasanan) do tangagambar
+#Toput di kaagal no silihon do gambar, nung awu nga okito o noputan sinuratan
+#Baris di kisimbol do # nopo nga ointutunan sobaagi do bolotok
+#Tumanud do pisuaian A om a
+
+#Posurato toinsanan id sawat do garis diti. Pologoson iti garis miagal diti</pre>',
 
 # Special:Tags
 'tag-filter' => '[[Special:Tags|Pananda]] gagan:',

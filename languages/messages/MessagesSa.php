@@ -15,9 +15,11 @@
  * @author Hrishikesh.kb
  * @author Htt
  * @author Kaustubh
+ * @author Krinkle
  * @author Mahitgar
  * @author Naveen Sankar
  * @author Omnipaedista
+ * @author Shantanoo
  * @author Shijualex
  * @author Shubha
  * @author Vibhijain
@@ -536,6 +538,7 @@ $1',
 'versionrequiredtext' => 'एतत्पृष्ठं प्रयोक्तुं मीडियाविकि इत्येतस्य $1तमा आवृत्तिः आवश्यकी। पश्यतु [[Special:Version|आवृत्ति-सूचिका]]',
 
 'ok'                      => 'अस्तु',
+'pagetitle'               => '$1 - {{SITENAME}}',
 'retrievedfrom'           => '"$1" इत्यस्माद् उद्धृतम्',
 'youhavenewmessages'      => 'भवदर्थम् $1 सन्ति। ($2).',
 'newmessageslink'         => 'नूतनाः सन्देशाः',
@@ -1072,7 +1075,7 @@ $2
 'notitlematches'                   => 'न कस्यापि पृष्ठस्य शीर्षकम् अस्य समम्।',
 'notextmatches'                    => 'न कस्यापि पृष्ठस्य पाठः अस्य सममस्ति',
 'prevn'                            => 'प्राक्तनानि {{PLURAL:$1|$1}}',
-'nextn'                            => 'अग्रिमाणि{{PLURAL:$1|$1}}',
+'nextn'                            => 'अग्रिमाणि {{PLURAL:$1|$1}}',
 'prevn-title'                      => 'प्राक्तन-{{PLURAL:$1|फलितम्| फलितानि}}',
 'nextn-title'                      => 'प्राक्तन-{{PLURAL:$1|फलितम्| फलितानि}}',
 'shown-title'                      => 'प्रत्येकस्मिन् पृष्ठे $1 {{PLURAL:$1|फलितम्|फलितानि}} दर्श्यताम्',
@@ -1178,7 +1181,7 @@ $2
 'prefs-registration'        => 'पंजीकरण कालः:',
 'yourrealname'              => 'वास्तविकं नाम:',
 'yourlanguage'              => 'भाषा:',
-'yournick'                  => ' नूतनाः हस्ताक्षराः:',
+'yournick'                  => 'नूतनाः हस्ताक्षराः:',
 'prefs-help-signature'      => 'संभाषणपृष्ठगताः संवादाः "<nowiki>~~~~</nowiki>" इति लिखित्वा हस्ताक्षरोपेताः कर्त्तव्याः। एतानि चिह्नानि पृष्ठरक्षणपश्चात् भवतः हस्ताक्षरान् समयमुद्रां च प्रदर्शयिष्यन्ति।',
 'badsig'                    => 'अमान्याः (त्रुटिपूर्णाः) हि एते अपक्वाः हस्ताक्षराः।
 एचटीएमएल्-टैग इत्येतानि पुनरीक्षितव्यानि भवता।',
@@ -1831,6 +1834,13 @@ $2
 'htmlform-int-invalid'         => 'भवता निर्दिष्टं मौल्यं पूर्णाङ्कः न ।',
 'htmlform-float-invalid'       => 'भवता निर्दिष्टं मौल्यं संख्या न ।',
 'htmlform-selectorother-other' => 'अन्य',
+
+# New logging system
+'logentry-move-move'                  => '$1 इति प्रयोक्त्रा $3 इत्येतत् $4 इत्येतत् प्रति चालितम्',
+'logentry-move-move-noredirect'       => '$1 इति प्रयोक्त्रा $3 इति पृष्ठम् $4 इत्येतत् प्रति चालितं, अनुप्रेषणेन विना',
+'logentry-move-move_redir'            => '↓
+$1 इत्यनेन $3 इति पृष्ठम् $4 इत्येतत् प्रति चालितं, अनुप्रेषणम् अतिक्रम्य',
+'logentry-move-move_redir-noredirect' => '$1 इति प्रयोक्त्रा $3 इति पृष्ठं $4 इत्येतत् प्रति चालितम्, अनुप्रेषणम् अतिक्रम्य, अनुप्रेषणमोचनेन च विना।',
 
 # Feedback
 'feedback-subject' => 'विषय:',

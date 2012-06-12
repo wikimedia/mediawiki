@@ -772,7 +772,7 @@ Dyma'r cofnod lòg diweddaraf, er gwybodaeth:",
 Cofiwch bod y tudalennau .css a .js yn defnyddio llythrennau bach, e.e. {{ns:user}}:Foo/vector.css yn hytrach na {{ns:user}}:Foo/Vector.css.",
 'updated'                          => '(Diweddariad)',
 'note'                             => "'''Dalier sylw:'''",
-'previewnote'                      => "'''Cofiwch taw rhagolwg yw hwn; nid yw'r dudalen wedi ei chadw eto.'''",
+'previewnote'                      => "'''Cofiwch taw rhagolwg yw hwn.''' Nid yw eich gwaith wedi ei roi ar gadw eto!",
 'previewconflict'                  => "Mae'r rhagolwg hwn yn dangos y testun yn yr ardal golygu uchaf, fel ag y byddai'n ymddangos petaech yn rhoi'r dudalen ar gadw.",
 'session_fail_preview'             => "'''Ymddiheurwn! Methwyd prosesu eich golygiad gan fod rhan o ddata'r sesiwn wedi'i golli. Ceisiwch eto.
 Os digwydd yr un peth eto, ceisiwch [[Special:UserLogout|allgofnodi]] ac yna mewngofnodi eto.'''",
@@ -914,7 +914,7 @@ Gallwch [[Special:Search|chwilio'r]] wici am dudalennau eraill perthnasol.",
 'rev-deleted-comment'         => '(dilëwyd crynodeb y golygiad)',
 'rev-deleted-user'            => '(enw defnyddiwr wedi ei ddiddymu)',
 'rev-deleted-event'           => '(tynnwyd gweithred y lòg)',
-'rev-deleted-user-contribs'   => '[tynnwyd enw defnyddiwr neu gyfeiriad IP i ffwrdd - ni ddangosir y golygiad ar y rhestr cyfraniadau]',
+'rev-deleted-user-contribs'   => '[tynnwyd enw defnyddiwr neu gyfeiriad IP i ffwrdd - ni ddangosir y golygiad ar y rhestr gyfraniadau]',
 'rev-deleted-text-permission' => "'''Dilëwyd''' y diwygiad hwn o'r dudalen.
 Mae manylion ar gael yn y [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} lòg dileuon].",
 'rev-deleted-text-unhide'     => "Cafodd y diwygiad hwn o'r dudalen ei '''ddileu'''.
@@ -1007,7 +1007,7 @@ Edrychwch ar y logiau er mwyn cael rhagor o wybodaeth.",
 # Suppression log
 'suppressionlog'     => 'Lòg cuddio',
 'suppressionlogtext' => "Dyma restr y dileuon a'r blociau lle y cuddiwyd cynnwys rhag y gweinyddwyr.
-Gallwch weld rhestr y gwaharddiadau a'r blociau gweithredol ar y [[Special:BlockList|rhestr blociau IP]].",
+Gallwch weld rhestr y gwaharddiadau a'r blociau gweithredol ar y [[Special:BlockList|rhestr blociau]].",
 
 # History merging
 'mergehistory'                     => 'Cyfuno hanesion y tudalennau',
@@ -1039,7 +1039,7 @@ Pan yn gwneud hyn dylid sicrhau nad yw dilyniant hanes tudalennau yn cael ei ddi
 'mergelogpagetext'   => "Fe ddilyn rhestr o'r achosion diweddaraf o hanes tudalen yn cael ei gyfuno a hanes tudalen arall.",
 
 # Diffs
-'history-title'            => "Hanes golygu '$1'",
+'history-title'            => '$1: hanes golygu',
 'difference'               => '(Gwahaniaethau rhwng diwygiadau)',
 'difference-multipage'     => '(Y gwahaniaeth rhwng y tudalennau)',
 'lineno'                   => 'Llinell $1:',
@@ -1429,6 +1429,7 @@ Mae'r wybodaeth hon ar gael i'r cyhoedd.",
 'newsectionsummary'                 => '/* $1 */ adran newydd',
 'rc-enhanced-expand'                => 'Dangos y manylion (angen JavaScript)',
 'rc-enhanced-hide'                  => "Cuddio'r manylion",
+'rc-old-title'                      => 'yr enw gwreiddiol oedd "$1"',
 
 # Recent changes linked
 'recentchangeslinked'          => 'Newidiadau perthnasol',
@@ -1491,7 +1492,7 @@ Gweler [[Special:NewFiles|oriel y ffeiliau newydd]] i fwrw golwg drostynt.",
 'filename-tooshort'           => "Mae enw'r ffeil yn rhy fyr.",
 'filetype-banned'             => "Mae'r math hwn o ffeil wedi ei wahardd.",
 'verification-error'          => "Nid yw'r ffeil hon wedi ei derbyn wrth ei gwirio.",
-'hookaborted'                 => 'Cafodd y darpar newid ei derfynu gan fachyn estyniad.',
+'hookaborted'                 => 'Cafodd y darpar newid ei derfynu gan estyniad.',
 'illegal-filename'            => "Nid yw'r enw ffeil hwn yn cael ei ganiatáu.",
 'overwrite'                   => 'Ni chaniateir trosysgrifo ffeil sydd eisoes yn bod.',
 'unknown-error'               => 'Cafwyd gwall anhysbys.',
@@ -1578,6 +1579,7 @@ Os yw'r broblem yn parhau, cysylltwch â [[Special:ListUsers/sysop|gweinyddwr]].
 'backend-fail-stream'        => "Wedi methu ffrydio'r ffeil $1.",
 'backend-fail-backup'        => "Wedi methu gwneud copi wrth gefn o'r ffeil $1.",
 'backend-fail-notexists'     => "Nid yw'r ffeil $1 ar gael.",
+'backend-fail-hashes'        => 'Methwyd cael symiau stwnsh y ffeil er mwyn eu cymharu.',
 'backend-fail-notsame'       => "Mae ffeil gwahanol a'r enw $1 arni eisoes ar gael.",
 'backend-fail-invalidpath'   => 'Nid yw $1 yn lwybr dilys i roi ffeil ar gadw.',
 'backend-fail-delete'        => "Wedi methu dileu'r ffeil $1.",
@@ -1589,7 +1591,13 @@ Os yw'r broblem yn parhau, cysylltwch â [[Special:ListUsers/sysop|gweinyddwr]].
 'backend-fail-writetemp'     => "Wedi methu ysgrifennu i'r ffeil dros dro.",
 'backend-fail-closetemp'     => "Wedi methu cau'r ffeil dros dro.",
 'backend-fail-read'          => 'Wedi methu darllen y ffeil $1.',
-'backend-fail-create'        => "Wedi methu creu'r ffeil $1.",
+'backend-fail-create'        => "Wedi methu ysgrifennu'r ffeil $1.",
+'backend-fail-readonly'      => 'Ar hyn o bryd gellir darllen y storfa "$1" yn unig. Y rheswm dros hyn yw: "\'\'$2\'\'"',
+'backend-fail-synced'        => 'Mae\'r ffeil "$1" mewn cyflwr anghyson oddi mewn i\'r storfeydd tu ôl i\'r llenni.',
+'backend-fail-connect'       => 'Ni ellid cysylltu â\'r storfa tu ôl i\'r llenni yn "$1".',
+'backend-fail-internal'      => 'Cafwyd gwall anhysbys yn y storfa tu ôl i\'r llenni yn "$1".',
+'backend-fail-contenttype'   => 'Methwyd a dirnad pa fath o gynnwys sydd yn y ffeil y ceisir ei storio yn "$1".',
+'backend-fail-batchsize'     => "Rhoddwyd llwyth o {{PLURAL:$1|$1 o weithrediadau}} ffeil i'w gwneud i'r storfa; ni all nifer y {{PLURAL:$2|gweithrediadau}} fod yn fwy na $2.",
 
 # Lock manager
 'lockmanager-notlocked'        => 'Wedi methu datgloi "$1"; nid yw ar glo.',
@@ -1598,6 +1606,7 @@ Os yw'r broblem yn parhau, cysylltwch â [[Special:ListUsers/sysop|gweinyddwr]].
 'lockmanager-fail-acquirelock' => 'Wedi methu cael clo ar "$1".',
 'lockmanager-fail-openlock'    => 'Wedi methu agor y ffeil cloi mynediad at "$1".',
 'lockmanager-fail-releaselock' => 'Wedi methu agor y clo ar "$1".',
+'lockmanager-fail-db-bucket'   => 'Methwyd cysylltu â digon o gronfeydd data cloi yn y bwced $1.',
 'lockmanager-fail-db-release'  => 'Wedi methu agor y cloion ar y gronfa ddata $1.',
 'lockmanager-fail-svr-release' => 'Wedi methu agor y cloion ar y gweinydd $1.',
 
@@ -1697,8 +1706,8 @@ Pan hidlir y rhestr yn ôl defnyddiwr, yr unig rhai a ddangosir o blith y ffeili
 'filehist-missing'                  => 'Y ffeil yn eisiau',
 'imagelinks'                        => 'Defnydd y ffeil',
 'linkstoimage'                      => "Mae'r {{PLURAL:$1|tudalen|dudalen|tudalennau|tudalennau|tudalennau|tudalennau}} isod yn cysylltu i'r ddelwedd hon:",
-'linkstoimage-more'                 => "Mae rhagor na $1 {{PLURAL:$1|tudalen yn|dudalen yn|dudalen yn|o dudalennau'n|o dudalennau'n|o dudalennau'n}} cysylltu at y ffeil hon.
-Mae'r rhestr canlynol yn dangos y {{PLURAL:$1|$1 cysylltiad cyntaf}} at y ffeil hon yn unig. Mae [[Special:WhatLinksHere/$2|rhestr lawn]] ar gael.",
+'linkstoimage-more'                 => "Mae mwy na $1 {{PLURAL:$1|tudalen yn|dudalen yn|dudalen yn|o dudalennau'n|o dudalennau'n|o dudalennau'n}} cysylltu at y ffeil hon.
+Mae'r rhestr ganlynol yn dangos y {{PLURAL:$1|$1 cysylltiad cyntaf}} at y ffeil hon yn unig. Mae [[Special:WhatLinksHere/$2|rhestr lawn]] ar gael.",
 'nolinkstoimage'                    => 'Nid oes cyswllt ar unrhyw dudalen yn arwain at y ffeil hon.',
 'morelinkstoimage'                  => 'Gweld [[Special:WhatLinksHere/$1|rhagor o gysylltiadau]] at y ffeil hon.',
 'linkstoimage-redirect'             => "$1 (tudalen ffeil sy'n ailgyfeirio) $2",
@@ -1840,6 +1849,8 @@ Gosodwyd <del>llinell</del> drwy'r eitemau sydd eisoes wedi eu datrys.",
 'wantedpages'             => 'Erthyglau sydd eu hangen',
 'wantedpages-badtitle'    => 'Mae teitl annilys ymhlith y canlyniadau, sef: $1',
 'wantedfiles'             => 'Ffeiliau sydd eu hangen',
+'wantedfiletext-cat'      => "Mae'r ffeiliau canlynol yn cael eu defnyddio er nad ydynt ar gael. Hwyrach bod ffeiliau o storfeydd allanol hefyd ar y rhestr, serch eu bod ar gael. Bydd y rhain, sydd wedi eu cynnwys yma yn anghywir, yn ymddangos a <del>llinell drwyddynt</del>. Hefyd, mae rhestr o dudalennau sydd a ffeiliau nad ydynt ar gael arnynt draw ar [[:$1]].",
+'wantedfiletext-nocat'    => "Mae'r ffeiliau canlynol yn cael eu defnyddio er nad ydynt ar gael. Hwyrach bod ffeiliau o storfeydd allanol hefyd ar y rhestr, serch eu bod ar gael. Bydd y rhain, sydd wedi eu cynnwys yma yn anghywir, yn ymddangos a <del>llinell drwyddynt</del>.",
 'wantedtemplates'         => 'Nodiadau sydd eu hangen',
 'mostlinked'              => 'Tudalennau yn nhrefn nifer y cysylltiadau iddynt',
 'mostlinkedcategories'    => 'Categorïau yn nhrefn nifer eu haelodau',
@@ -2358,8 +2369,8 @@ Rhowch reswm dros rwystro'r defnyddiwr (er enghraifft, dywedwch pa dudalen(au) a
 'ipb-confirm'                     => "Cadarnhau'r rhwystr",
 'badipaddress'                    => 'Cyfeiriad IP annilys.',
 'blockipsuccesssub'               => 'Llwyddodd y rhwystr',
-'blockipsuccesstext'              => 'Mae cyfeiriad IP [[Special:Contributions/$1|$1]] wedi cael ei flocio.<br />
-Gwelwch y [[Special:BlockList|rhestr flociau IP]] er mwyn arolygu blociau.',
+'blockipsuccesstext'              => 'Mae [[Special:Contributions/$1|$1]] wedi cael ei flocio.<br />
+Gweler y [[Special:BlockList|rhestr blociau]] er mwyn arolygu blociau.',
 'ipb-blockingself'                => "Rydych ar rwystro'ch hunan! A ydych yn siŵr eich bod chi am wneud hyn?",
 'ipb-confirmhideuser'             => 'Rydych ar rwystro defnyddiwr sydd yn "guddiedig." Bydd hyn yn atal enw\'r defnyddiwr ym mhob rhestr a chofnod lòg. A ydych yn siŵr eich bod chi am wneud hyn?',
 'ipb-edit-dropdown'               => "Golygu'r rhesymau dros flocio",
@@ -2412,7 +2423,9 @@ Dyma'r lòg rhwystro perthnasol:",
 Dyma'r lòg cuddio perthnasol:",
 'blocklogentry'                   => 'wedi rhwystro "[[$1]]" sy\'n dod i\'w ben ar $2 $3',
 'reblock-logentry'                => "wedi newid y gosodiadau rhwystro sydd ar [[$1]] sy'n dod i'w ben am $2 $3",
-'blocklogtext'                    => "Dyma lòg o'r holl weithredoedd rhwystro a dadrwystro. Nid yw'r cyfeiriadau IP sydd wedi cael ei rwystro'n awtomatig ar y rhestr. Gweler y [[Special:BlockList|rhestr rhwystrau IP]] am restr y rhwystrau a'r gwaharddiadau sydd yn weithredol ar hyn o bryd.",
+'blocklogtext'                    => "Dyma lòg o'r holl weithredoedd rhwystro a dadrwystro. 
+Nid yw'r cyfeiriadau IP sydd wedi cael eu rhwystro'n awtomatig ar y rhestr. 
+Gallwch weld rhestr y rhwystrau a'r gwaharddiadau sydd yn weithredol ar hyn o bryd ar y [[Special:BlockList|rhestr rhwystrau]].",
 'unblocklogentry'                 => 'wedi dadrwystro $1',
 'block-log-flags-anononly'        => 'defnyddwyr anhysbys yn unig',
 'block-log-flags-nocreate'        => 'analluogwyd creu cyfrif',
@@ -2656,6 +2669,7 @@ Mae ffolder dros dro yn eisiau.',
 'import-error-edit'          => 'Ni fewnforiwyd y dudalen "$1" oherwydd nad yw\'r gallu i\'w golygu gennych.',
 'import-error-create'        => 'Ni fewnforiwyd y dudalen "$1" oherwydd nad yw\'r gallu i\'w chreu gennych.',
 'import-error-interwiki'     => 'Ni fewnforwyd y dudalen "$1" oherwydd bod yr enw arni wedi ei neilltuo at ddiben cysylltu\'n allanol (rhyngwici).',
+'import-error-special'       => 'Ni fewnforiwyd y dudalen "$1" oherwydd ei bod yn perthyn i barth arbennig lle nad oes tudalennau i\'w cael.',
 'import-error-invalid'       => 'Ni fewnforwyd y dudalen "$1" oherwydd bod yr enw arni yn annilys.',
 
 # Import log
@@ -2668,12 +2682,13 @@ Mae ffolder dros dro yn eisiau.',
 
 # JavaScriptTest
 'javascripttest'                           => 'Profi JavaScript',
-'javascripttest-disabled'                  => 'Analluogwyd y swyddogaeth hon.',
+'javascripttest-disabled'                  => 'Ni alluogwyd y swyddogaeth hon ar y wici hwn.',
 'javascripttest-title'                     => 'Yn cynnal profion $1',
 'javascripttest-pagetext-noframework'      => 'Neilltuwyd y dudalen hon at gynnal profion JavaScript.',
 'javascripttest-pagetext-unknownframework' => 'Ni nabyddwyd y fframwaith profi "$1".',
 'javascripttest-pagetext-frameworks'       => "Dewiswch un o'r fframweithiau profi canlynol: $1",
 'javascripttest-pagetext-skins'            => 'Dewiswch wedd i gynnal profion arni:',
+'javascripttest-qunit-intro'               => 'Gweler y [$1 wybodaeth am y profion] ar mediawiki.org.',
 'javascripttest-qunit-heading'             => 'Cyfres brofi MediaWiki JavaScript QUnit',
 
 # Tooltip help for the actions
@@ -2764,7 +2779,7 @@ Gellir ychwanegu rheswm dros y dadwneud yn y crynodeb.',
 # Spam protection
 'spamprotectiontitle' => 'Hidlydd amddiffyn rhag sbam',
 'spamprotectiontext'  => 'Ataliwyd y dudalen rhag ei rhoi ar gadw gan yr hidlydd sbam.
-Achos hyn yn fwy na thebyg yw presenoldeb cysylltiad i wefan ar y rhestr gwaharddedig.',
+Achos hyn yn fwy na thebyg yw presenoldeb cysylltiad i wefan ar y rhestr waharddedig.',
 'spamprotectionmatch' => "Dyma'r testun gyneuodd ein hidlydd amddiffyn rhag sbam: $1",
 'spambot_username'    => 'Teclyn clirio sbam MediaWiki',
 'spam_reverting'      => "Yn troi nôl i'r diwygiad diweddaraf sydd ddim yn cynnwys cysylltiadau i $1",
@@ -2842,7 +2857,7 @@ Mae'n bosib y bydd eich cyfrifiadur yn cael ei danseilio wrth ddefnyddio'r ffeil
 
 # Special:NewFiles
 'newimages'             => 'Oriel y ffeiliau newydd',
-'imagelisttext'         => "Isod mae rhestr {{PLURAL:$1|gwag o ffeiliau|o '''$1''' ffeil|o '''$1''' ffeil wedi'u trefnu $2|o '''$1''' ffeil wedi'u trefnu $2|o '''$1''' o ffeiliau wedi'u trefnu $2|o '''$1''' o ffeiliau wedi'u trefnu $2|}}.",
+'imagelisttext'         => "Isod mae rhestr {{PLURAL:$1|wag o ffeiliau|o '''$1''' ffeil|o '''$1''' ffeil wedi'u trefnu $2|o '''$1''' ffeil wedi'u trefnu $2|o '''$1''' o ffeiliau wedi'u trefnu $2|o '''$1''' o ffeiliau wedi'u trefnu $2|}}.",
 'newimages-summary'     => "Mae'r dudalen arbennig hon yn dangos y ffeiliau a uwchlwythwyd yn ddiweddar.",
 'newimages-legend'      => 'Hidlo',
 'newimages-label'       => "Enw'r ffeil (neu ran ohono):",
@@ -3618,7 +3633,7 @@ Dangosir delweddau ar eu maint llawn, dechreuir ffeiliau o fathau eraill yn unio
 'api-error-copyuploaddisabled'            => 'Nid oes modd uwchlwytho drwy URL ar y gweinydd hwn',
 'api-error-duplicate'                     => "Mae {{PLURAL:$1||[$2 ffeil arall]|[$2 ffeiliau eraill]|[$2 ffeiliau eraill]|[$2 ffeiliau eraill]|[$2 ffeiliau eraill]}} gyda'r un cynnwys {{PLURAL:$1||ynddi|ynddynt|ynddynt|ynddynt|ynddynt}} eisoes ar y wici hwn",
 'api-error-duplicate-archive'             => "Fe fu {{PLURAL:$1|[$2 ffeil arall gyda'r un cynnwys ynddi]|[$2 ffeiliau eraill gyda'r un cynnwys ynddynt]}} ar y safle, ond fe'{{PLURAL:$1|i|u}} dilëwyd.",
-'api-error-duplicate-archive-popup-title' => '{{PLURAL:$1|Ffeiliau|Ffeil|Ffeiliau|Ffeiliau|Ffeiliau|Ffeiliau}} dyblyg, sydd eisoes wedi eu dileu.',
+'api-error-duplicate-archive-popup-title' => '{{PLURAL:$1|Ffeiliau|Ffeil|Ffeiliau|Ffeiliau|Ffeiliau|Ffeiliau}} dyblyg, sydd eisoes wedi {{PLURAL:$1|eu|ei|eu|eu|eu|eu}} dileu.',
 'api-error-duplicate-popup-title'         => '{{PLURAL:$1|Ffeiliau|ffeil|ffeiliau|ffeiliau|ffeiliau|ffeiliau}} dyblyg.',
 'api-error-empty-file'                    => "Mae'r ffeil a gyflwynwyd gennych yn wag.",
 'api-error-emptypage'                     => "Ni chaniateir dechrau tudalen newydd, a honno'n wag.",
@@ -3627,6 +3642,7 @@ Dangosir delweddau ar eu maint llawn, dechreuir ffeiliau o fathau eraill yn unio
 'api-error-filename-tooshort'             => "Mae enw'r ffeil yn rhy fyr.",
 'api-error-filetype-banned'               => "Mae'r math hwn o ffeil wedi ei wahardd.",
 'api-error-filetype-missing'              => 'Mae estyniad yn eisiau ar y ffeil.',
+'api-error-hookaborted'                   => 'Cafodd y darpar newid ei derfynu gan estyniad.',
 'api-error-http'                          => "Gwall mewnol: ni ellir cysylltu â'r gweinydd.",
 'api-error-illegal-filename'              => "Nid yw'r enw ffeil hwn yn cael ei ganiatáu.",
 'api-error-internal-error'                => "Gwall mewnol: aeth rhywbeth o'i le wrth brosesu'ch uwchlwythiad ar y wici.",

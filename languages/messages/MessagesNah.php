@@ -1500,4 +1500,17 @@ Niman tihuelīti [[Special:UserLogin|timocalaqui]] auh ticpactiāz huiquitica.',
 # HTML forms
 'htmlform-selectorother-other' => 'Occē',
 
+# API errors
+'api-error-ok-but-empty'       => 'Tlâtek îtlakawilistli: Âmò tènankilia in tlatèmakani.',
+'api-error-overwrite'          => 'Awel motlâkuilnepanòltis sè èwalli tlèn yi katki.',
+'api-error-stashfailed'        => 'Tlâtek îtlakawilistli: In tlatèmakani awel òkeuh in èwalpanòni.',
+'api-error-timeout'            => 'In tlatèmakani âmò òwalnàwat kèn òmochìxtikatka.',
+'api-error-unclassified'       => 'Òpanòk sè âmò ìxmatkàyo îtlakawilistli.',
+'api-error-unknown-code'       => 'Âmò ìxmatkàyo îtlakawilistli: "$1".',
+'api-error-unknown-error'      => 'Tlâtek îtlakawilistli: Îtlâtlèn òîtlakauh îkuàk òmonekià motilànas in èwalli.',
+'api-error-unknown-warning'    => 'Âmò ìxmatkàyo tlanawatilistli: "$1".',
+'api-error-unknownerror'       => 'Âmò ìxmatkàyo îtlakawilistli: "$1".',
+'api-error-uploaddisabled'     => 'Sèuhtok in êkawilistli ìpan inìn wiki.',
+'api-error-verification-error' => 'Inìn èwalli welis îtlakauhtok, noso âmò kualli motzòwîtok.',
+
 );

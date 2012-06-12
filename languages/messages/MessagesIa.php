@@ -1,5 +1,5 @@
 <?php
-/** Interlingua (Interlingua)
+/** Interlingua (interlingua)
  *
  * See MessagesQqq.php for message documentation incl. usage of parameters
  * To improve a translation please visit http://translatewiki.net
@@ -840,7 +840,7 @@ Memora que le paginas .css and .js personalisate usa un titulo in minusculas, p.
 'updated'                          => '(Actualisate)',
 'note'                             => "'''Nota:'''",
 'previewnote'                      => "'''Isto es solmente un previsualisation.'''
-'''Le modificationes non ha ancora essite publicate!'''",
+Le modificationes non ha ancora essite publicate!",
 'previewconflict'                  => 'Iste previsualisation reflecte le apparentia final del texto in le area de modification superior
 si tu opta pro publicar lo.',
 'session_fail_preview'             => "'''Nos non poteva processar tu modification proque nos perdeva le datos del session.
@@ -1083,7 +1083,7 @@ Per favor verifica le registros.',
 # Suppression log
 'suppressionlog'     => 'Registro de suppressiones',
 'suppressionlogtext' => 'Infra es un lista de deletiones e blocadas que involve contento que es celate de administratores.
-Vide le [[Special:BlockList|lista de blocadas IP]] pro le lista de bannimentos e blocadas actualmente in operation.',
+Vide le [[Special:BlockList|lista de blocadas]] pro le lista de bannimentos e blocadas actualmente in operation.',
 
 # History merging
 'mergehistory'                     => 'Fusionar historias del paginas',
@@ -1117,7 +1117,7 @@ Nota que le uso del ligamines de navigation causara le perdita de tote cambios i
 'mergelogpagetext'   => 'Infra es un lista del fusiones le plus recente de un historia de pagina in un altere.',
 
 # Diffs
-'history-title'            => 'Historia de versiones de "$1"',
+'history-title'            => '$1: Historia de versiones',
 'difference'               => '(Differentia inter versiones)',
 'difference-multipage'     => '(Differentia inter paginas)',
 'lineno'                   => 'Linea $1:',
@@ -1208,7 +1208,7 @@ Nota que lor indices del contento de {{SITENAME}} pote esser obsolete.',
 'mypreferences'                 => 'Mi preferentias',
 'prefs-edits'                   => 'Numero de modificationes:',
 'prefsnologin'                  => 'Tu non ha aperite un session',
-'prefsnologintext'              => 'Tu debe <span class="plainlinks">[{{fullurl:{{#Special:UserLogin}}|returnto=$1}} aperir un session]</span> pro poter configurar tu preferentias.',
+'prefsnologintext'              => 'Tu debe <span class="plainlinks">[{{fullurl:{{#Special:UserLogin}}|returnto=$1}} aperir session]</span> pro configurar preferentias de usator.',
 'changepassword'                => 'Cambiar contrasigno',
 'prefs-skin'                    => 'Apparentia',
 'skin-preview'                  => 'Previsualisation',
@@ -1508,6 +1508,7 @@ Si tu opta pro dar lo, isto essera usate pro dar te attribution pro tu contribut
 'newsectionsummary'                 => '/* $1 */ nove section',
 'rc-enhanced-expand'                => 'Revelar detalios (require JavaScript)',
 'rc-enhanced-hide'                  => 'Celar detalios',
+'rc-old-title'                      => 'originalmente create como "$1"',
 
 # Recent changes linked
 'recentchangeslinked'          => 'Modificationes ligate',
@@ -1688,7 +1689,7 @@ Si le problema persiste, contacta un [[Special:ListUsers/sysop|administrator]].'
 'backend-fail-writetemp'     => 'Non poteva scriber in file temporari.',
 'backend-fail-closetemp'     => 'Non poteva clauder file temporari.',
 'backend-fail-read'          => 'Non poteva leger le file $1',
-'backend-fail-create'        => 'Non poteva crear le file $1',
+'backend-fail-create'        => 'Non poteva crear le file $1.',
 'backend-fail-readonly'      => 'Le systema de immagazinage "$1" es actualmente in lectura sol. Le sequente motivo esseva specificate: "$2"',
 'backend-fail-synced'        => 'Le file "$1" es in un stato inconsistente inter le systemas interne de immagazinage',
 'backend-fail-connect'       => 'Impossibile connecter al systema de immagazinage "$1".',
@@ -2486,7 +2487,7 @@ specific que ha essite vandalisate).',
 'badipaddress'                    => 'Adresse IP mal formate.',
 'blockipsuccesssub'               => 'Blocada succedite',
 'blockipsuccesstext'              => '[[Special:Contributions/$1|$1]] ha essite blocate.<br />
-Vide le [[Special:BlockList|lista de adresses IP blocate]] pro revider le blocadas.',
+Vide le [[Special:BlockList|lista de blocadas]] pro revider le blocadas.',
 'ipb-blockingself'                => 'Tu sta super le puncto de blocar te mesme! Es tu secur de voler facer isto?',
 'ipb-confirmhideuser'             => 'Tu es super le puncto de blocar un usator con le option "celar usator" activate. Isto supprimera le nomine del usator in tote le listas e entratas de registro. Es tu secur de voler facer isto?',
 'ipb-edit-dropdown'               => 'Modificar le motivos pro blocar',
@@ -2540,7 +2541,7 @@ Le motivo specificate pro le blocada de $1 es: "$2"',
 'reblock-logentry'                => 'cambiava configurationes de blocada pro [[$1]] con un tempore de expiration de $2 $3',
 'blocklogtext'                    => 'Isto es un registro de blocadas e disblocadas de usatores.
 Le adresses IP automaticamente blocate non es includite.
-Vide le [[Special:BlockList|lista de blocadas IP]] pro le lista de bannimentos e blocadas actualmente in operation.',
+Vide le [[Special:BlockList|lista de blocadas]] pro le lista de bannimentos e blocadas actualmente in operation.',
 'unblocklogentry'                 => 'disblocava $1',
 'block-log-flags-anononly'        => 'usatores anonyme solmente',
 'block-log-flags-nocreate'        => 'creation de contos disactivate',
@@ -2802,7 +2803,7 @@ Salveguarda lo in tu computator e incarga lo hic.',
 
 # JavaScriptTest
 'javascripttest'                           => 'Test de JavaScript',
-'javascripttest-disabled'                  => 'Iste function es disactivate.',
+'javascripttest-disabled'                  => 'Iste function non ha essite activate in iste wiki.',
 'javascripttest-title'                     => 'Execution de $1 tests',
 'javascripttest-pagetext-noframework'      => 'Iste pagina es reservate pro le execution de tests de JavaScript.',
 'javascripttest-pagetext-unknownframework' => 'Structura de test "$1" incognite.',

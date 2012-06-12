@@ -14,6 +14,7 @@
  * @author Kwekubo
  * @author Moilleadóir
  * @author Moydow
+ * @author Reedy
  * @author Spacebirdy
  * @author Stifle
  * @author Tameamseo
@@ -1592,7 +1593,7 @@ Tá dualgas ort bheith cinnte go rachaidh na naisc chuig an áit is ceart.
 Tabhair faoi deara '''nach''' n-athainmneofar an leathanach má tá leathanach ann cheana féin faoin teideal nua, ach amháin más folamh nó atreorú é nó mura bhfuil aon stair athraithe aige cheana.
 Mar sin, is féidir leathanach a athainmniú ar ais chuig an teideal a raibh air roimhe má tá botún déanta agat, agus ní féidir leathanach atá ann cheana a fhorscríobh.
 
-<font color=\"red\">'''Rabhadh!'''</font>
+'''Rabhadh!'''
 Is féidir gur dianbheart gan choinne é athrú a dhéanamh ar leathanach móréilimh;
 cinntigh go dtuigeann tú na hiarmhairtí go léir roimh dul ar aghaigh.",
 'movepagetalktext'        => "Aistreofar an leathanach plé go huathoibríoch '''ach ní tharlófar sin''':

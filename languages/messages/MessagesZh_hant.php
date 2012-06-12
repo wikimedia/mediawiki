@@ -1,5 +1,5 @@
 <?php
-/** Traditional Chinese (‪中文(繁體)‬)
+/** Traditional Chinese (‪中文（繁體）‬)
  *
  * See MessagesQqq.php for message documentation incl. usage of parameters
  * To improve a translation please visit http://translatewiki.net
@@ -21,6 +21,7 @@
  * @author Hzy980512
  * @author Jidanni
  * @author Jimmy xu wrk
+ * @author Justincheng12345
  * @author Kaganer
  * @author KaiesTse
  * @author Kuailong
@@ -33,6 +34,7 @@
  * @author Philip
  * @author Shinjiman
  * @author Shizhao
+ * @author Simon Shek
  * @author Skjackey tse
  * @author Waihorace
  * @author Wmr89502270
@@ -428,7 +430,7 @@ $messages = array(
 'redirectpagesub'   => '重定向頁面',
 'lastmodifiedat'    => '此頁面最後修訂於 $1 $2。',
 'viewcount'         => '本頁面已經被瀏覽$1次。',
-'protectedpage'     => '被保護頁',
+'protectedpage'     => '受保護頁面',
 'jumpto'            => '跳轉到:',
 'jumptonavigation'  => '導覽',
 'jumptosearch'      => '搜尋',
@@ -793,18 +795,15 @@ $2
 'summary-preview'                  => '摘要預覽:',
 'subject-preview'                  => '主題/標題預覽:',
 'blockedtitle'                     => '用戶被查封',
-'blockedtext'                      => "{{GENDER:|你|妳|你}}的用戶名或IP地址已經被$1查封。
+'blockedtext'                      => "'''您的用戶名或IP地址已被封禁。'''
 
-這次查封是由$1所封的。當中的原因是''$2''。
+此次封禁操作由$1完成，封禁原因爲''$2''。
 
-* 這次查封開始的時間是：$8
-* 這次查封到期的時間是：$6
-* 對於被查封者：$7
+* 起始時間：$8
+* 終止時間：$6
+* 擬封禁對象：$7
 
-{{GENDER:|你|妳|你}}可以聯絡$1或者其他的[[{{MediaWiki:Grouppage-sysop}}|管理員]]，討論這次查封。
-除非{{GENDER:|你|妳|你}}已經在{{GENDER:|你|妳|你}}的[[Special:Preferences|賬號參數設置]]中設定了一個有效的電子郵件地址，否則{{GENDER:|你|妳|你}}是不能使用「電郵這位用戶」的功能。當設定了一個有效的電子郵件地址後，這個功能是不會封鎖的。
-
-{{GENDER:|你|妳|你}}目前的IP地址是$3，而該查封ID是 #$5。 請在{{GENDER:|你|妳|你}}的查詢中註明以上所有的資料。",
+您可以聯繫$1或其他的[[{{MediaWiki:Grouppage-sysop}}|管理員]]討論此次封禁。若您已在[[Special:Preferences|帳號設置]]中配置了一個有效的電子郵件地址，且未被封禁電子郵件功能，則您可通過“發送電子郵件給這位用戶”功能來聯絡相關管理員。您當前的IP地址是$3，此次封禁的ID爲#$5。請在您的查詢中註明上述所有信息。",
 'autoblockedtext'                  => "{{GENDER:|你|妳|你}}的IP地址已經被自動查封，由於先前的另一位用戶被$1所查封。
 而查封的原因是：
 
@@ -1049,7 +1048,7 @@ $2
 'revdelete-hide-comment'      => '隱藏編輯摘要',
 'revdelete-hide-user'         => '隱藏編輯者的用戶名/IP地址',
 'revdelete-hide-restricted'   => '同時廢止由操作員以及其他用戶的資料',
-'revdelete-radio-same'        => '(勿更改)',
+'revdelete-radio-same'        => '（不要更改）',
 'revdelete-radio-set'         => '是',
 'revdelete-radio-unset'       => '否',
 'revdelete-suppress'          => '同時廢止由操作員以及其他用戶的資料',
@@ -1084,7 +1083,7 @@ $1",
 
 # Suppression log
 'suppressionlog'     => '監督日誌',
-'suppressionlogtext' => '該列表列出對管理員隱藏的刪除與封禁。另參見[[Special:BlockList|IP封鎖名單]]以查詢當前的封禁列表。',
+'suppressionlogtext' => '該列表列出對管理員隱藏的刪除與封禁。另參見[[Special:BlockList|封鎖名單]]以查詢當前的封禁列表。',
 
 # History merging
 'mergehistory'                     => '合併頁面歷史',
@@ -1116,7 +1115,7 @@ $1",
 'mergelogpagetext'   => '以下是一個最近由一個頁面的修訂歷史合併到另一個頁面的列表。',
 
 # Diffs
-'history-title'            => '「$1」的修訂歷史',
+'history-title'            => '$1：修訂歷史',
 'difference'               => '（修訂版本間的差異）',
 'difference-multipage'     => '（頁面間的差異）',
 'lineno'                   => '第$1行：',
@@ -1413,7 +1412,7 @@ $1",
 'right-noratelimit'           => '沒有使用頻率限制',
 'right-import'                => '由其它wiki中匯入頁面',
 'right-importupload'          => '由檔案上載中匯入頁面',
-'right-patrol'                => '標示其它的編輯作已巡查的',
+'right-patrol'                => '標示他人的編輯爲已巡查',
 'right-autopatrol'            => '將自己的編輯自動標示為已巡查的',
 'right-patrolmarks'           => '檢視最近巡查標記更改',
 'right-unwatchedpages'        => '檢視未監視之頁面',
@@ -1503,12 +1502,13 @@ $1",
 'newsectionsummary'                 => '/* $1 */ 新段落',
 'rc-enhanced-expand'                => '顯示細節 （需要 JavaScript）',
 'rc-enhanced-hide'                  => '隱藏細節',
+'rc-old-title'                      => '最初創建為"$1"',
 
 # Recent changes linked
-'recentchangeslinked'          => '連出更改',
-'recentchangeslinked-feed'     => '連出更改',
-'recentchangeslinked-toolbox'  => '連出更改',
-'recentchangeslinked-title'    => '對於「$1」有關的連出更改',
+'recentchangeslinked'          => '相關更改',
+'recentchangeslinked-feed'     => '相關更改',
+'recentchangeslinked-toolbox'  => '相關更改',
+'recentchangeslinked-title'    => '與「$1」有關的更改',
 'recentchangeslinked-noresult' => '在這一段時間中連結的頁面並無更改。',
 'recentchangeslinked-summary'  => "這一個特殊頁面列示''由''所給出的一個頁面之連結到頁面的最近更改（或者是對於指定分類的成員）。
 在[[Special:Watchlist|您的監視列表]]中的頁面會以'''粗體'''顯示。",
@@ -1656,13 +1656,13 @@ $1',
 'backend-fail-writetemp'     => '無法寫臨時文件。',
 'backend-fail-closetemp'     => '無法創建臨時文件。',
 'backend-fail-read'          => '找不到文件“$1”。',
-'backend-fail-create'        => '找不到「$1」檔案。',
+'backend-fail-create'        => '無法寫入檔案  $1。',
 'backend-fail-readonly'      => '「$1」儲存後端目前是唯讀模式，因為：「$2」',
-'backend-fail-synced'        => '文件"$1"在內部後端是不一致的區域。',
-'backend-fail-connect'       => '無法連結至檔案後方“$1”。',
-'backend-fail-internal'      => '檔案後方“$1”發生了一個未知錯誤。',
+'backend-fail-synced'        => '文件"$1"在內部存儲後端是不一致的區域。',
+'backend-fail-connect'       => '無法連結至存儲後方“$1”。',
+'backend-fail-internal'      => '存儲後方“$1”發生了一個未知錯誤。',
 'backend-fail-contenttype'   => '無法確定檔案的內容類型以存儲於“$1”。',
-'backend-fail-batchsize'     => '鑒於一批後端 $1 檔 {{PLURAL:$1| operation|operations}} ；限制是 $2   {{PLURAL:$2| operation|operations}}。',
+'backend-fail-batchsize'     => '存儲後端被給予了$1次檔𣗈 {{PLURAL:$1|操作|操作}} ；限制是$2次{{PLURAL:$2|操作|操作}}。',
 
 # Lock manager
 'lockmanager-notlocked'        => '無法解鎖「$1」；它沒有被鎖定。',
@@ -1695,7 +1695,10 @@ $1',
 
 # img_auth script messages
 'img-auth-accessdenied'     => '拒絕存取',
-'img-auth-nopathinfo'       => 'PATH_INFO缺失。您的服務器尚未設置傳送該信息。它可能是基於CGI的，因而不支持img_auth。[https://www.mediawiki.org/wiki/Manual:Image_Authorization 參見圖片認證。]',
+'img-auth-nopathinfo'       => 'PATH_INFO缺失。
+您的服務器尚未設置傳送該信息。
+它可能是基於CGI的，因而不支持img_auth。
+請參見 https://www.mediawiki.org/wiki/Manual:Image_Authorization',
 'img-auth-notindir'         => '所請求的路徑不在已經設定的上載目錄。',
 'img-auth-badtitle'         => '不能夠由"$1"建立一個有效標題。',
 'img-auth-nologinnWL'       => '您而家並未登入，"$1"不在白名單上。',
@@ -1928,12 +1931,12 @@ Template:消除歧義',
 'longpages'               => '長頁面',
 'deadendpages'            => '斷連頁面',
 'deadendpagestext'        => '以下頁面沒有連結到{{SITENAME}}中的其它頁面。',
-'protectedpages'          => '已保護頁面',
+'protectedpages'          => '受保護頁面',
 'protectedpages-indef'    => '只有無期之保護頁面',
 'protectedpages-cascade'  => '只有連鎖之保護頁面',
 'protectedpagestext'      => '以下頁面已經被保護以防止移動或編輯',
 'protectedpagesempty'     => '在這些參數下沒有頁面正在保護。',
-'protectedtitles'         => '已保護的標題',
+'protectedtitles'         => '受保護標題',
 'protectedtitlestext'     => '以下的頁面已經被保護以防止建立',
 'protectedtitlesempty'    => '在這些參數之下並無標題正在保護。',
 'listusers'               => '用戶列表',
@@ -2062,9 +2065,9 @@ Template:消除歧義',
 'emailuser'            => 'E-mail該用戶',
 'emailpage'            => 'E-mail用戶',
 'emailpagetext'        => '您可以用下面的表格去寄一封電郵給這位用戶。
-您在[[Special:Preferences|您參數設置]]中所輸入的e-mail地址將出現在郵件「發件人」一欄中，這樣該用戶就可以回覆您。',
+您在[[Special:Preferences|您的參數設置]]中所輸入的電子郵件地址將出現在郵件「發件人」一欄中，這樣該用戶就可以回覆您。',
 'usermailererror'      => '目標郵件地址返回錯誤：',
-'defemailsubject'      => '{{SITENAME}}用戶 $1 發送電子郵件',
+'defemailsubject'      => '{{SITENAME}}來自用戶“$1”的電子郵件',
 'usermaildisabled'     => '用戶電郵已停用',
 'usermaildisabledtext' => '您不可以發送電郵到這個wiki上的其他用戶',
 'noemailtitle'         => '無e-mail地址',
@@ -2082,7 +2085,7 @@ Template:消除歧義',
 'emailmessage'         => '訊息：',
 'emailsend'            => '發送',
 'emailccme'            => '將我的消息的副本發送一份到我的電郵信箱。',
-'emailccsubject'       => '將您的訊息複製到 $1: $2',
+'emailccsubject'       => '您發送給$1的訊息的副本：$2',
 'emailsent'            => '電子郵件已發送',
 'emailsenttext'        => '您的電子郵件已經發出。',
 'emailuserfooter'      => '這封電郵是由$1寄給$2經{{SITENAME}}的「電郵用戶」功能發出的。',
@@ -2131,9 +2134,9 @@ Template:消除歧義',
 'enotif_reset'                 => '將所有頁面標為已閱讀',
 'enotif_newpagetext'           => '這是新建頁面。',
 'enotif_impersonal_salutation' => '{{SITENAME}}用戶',
-'changed'                      => '修改了',
+'changed'                      => '更改',
 'created'                      => '建立了',
-'enotif_subject'               => '{{SITENAME}}有頁面 $PAGETITLE 被 $PAGEEDITOR $CHANGEDORCREATED',
+'enotif_subject'               => '{{SITENAME}}頁面“$PAGETITLE”已被$PAGEEDITOR$CHANGEDORCREATED',
 'enotif_lastvisited'           => '檢視您上次訪問後的所有更改請參閱$1。',
 'enotif_lastdiff'              => '檢視更改請參閱$1。',
 'enotif_anon_editor'           => '匿名用戶$1',
@@ -2302,7 +2305,7 @@ $UNWATCHURL
 如果本頁刪除後有一個同名的新頁面建立，被恢復的版本將會出現在先前的歷史中。',
 'undeleterevdel'               => '如果把最新修訂部份刪除，反刪除便無法進行。如果遇到這種情況，您必須反選或反隱藏最新已刪除的修訂。',
 'undeletehistorynoadmin'       => '這個頁面已經被刪除，刪除原因顯示在下方編輯摘要中。被刪除前的所有修訂版本，連同刪除前貢獻用戶等等細節只有管理員可以看見。',
-'undelete-revision'            => '刪除$1時由$3（在$4 $5）所編寫的修訂版本:',
+'undelete-revision'            => '$1由$3（在$4 $5）所編寫的已刪除修訂版本：',
 'undeleterevision-missing'     => '此版本的內容不正確或已經遺失。可能連結錯誤、被移除或已經被恢復。',
 'undelete-nodiff'              => '找不到先前的修訂版本。',
 'undeletebtn'                  => '恢復',
@@ -2427,8 +2430,8 @@ $1',
 'ipb-confirm'                     => '確認封禁',
 'badipaddress'                    => '無效IP地址',
 'blockipsuccesssub'               => '查封成功',
-'blockipsuccesstext'              => '[[Special:Contributions/$1|$1]]已經被查封。
-<br />參看[[Special:BlockList|被封IP地址列表]]以覆審查封。',
+'blockipsuccesstext'              => '[[Special:Contributions/$1|$1]]已經被查封。<br />
+參看[[Special:BlockList|被封IP地址列表]]以覆審查封。',
 'ipb-blockingself'                => '你要封禁自己！確認要這樣做嗎？',
 'ipb-confirmhideuser'             => '你要封禁用戶並隱藏其用戶名，這會隱藏在所有列表及日誌中涉及此用戶之用戶名。你確定要這樣做嗎？',
 'ipb-edit-dropdown'               => '編輯查封原因',
@@ -2740,7 +2743,7 @@ $1被封禁的理由是“$2”',
 
 # JavaScriptTest
 'javascripttest'                           => 'JavaScript測試',
-'javascripttest-disabled'                  => '此功能已禁用。',
+'javascripttest-disabled'                  => '此功能在此Wiki上未被使用。',
 'javascripttest-title'                     => '運行$1測試。',
 'javascripttest-pagetext-noframework'      => '這個頁面預留了作JavaScript測試。',
 'javascripttest-pagetext-unknownframework' => '未知框架"$1"',
@@ -2819,18 +2822,23 @@ $1被封禁的理由是“$2”',
 'tooltip-summary'                     => '輸入一個簡短的摘要',
 
 # Stylesheets
-'common.css'      => '/* 此處的 CSS 將應用於所有的面板 */',
-'standard.css'    => '/* 此處的 CSS 將影響使用標準面板的用戶 */',
-'nostalgia.css'   => '/* 此處的 CSS 將影響使用懷舊面板的用戶 */',
-'cologneblue.css' => '/* 此處的 CSS 將影響使用科隆香水藍面板的用戶 */',
-'monobook.css'    => '/* 此處的 CSS 將影響使用 Monobook 面板的用戶 */',
-'myskin.css'      => '/* 此處的 CSS 將影響使用 MySkin 面板的用戶 */',
-'chick.css'       => '/* 此處的 CSS 將影響使用 Chick 面板的用戶 */',
-'simple.css'      => '/* 此處的 CSS 將影響使用 Simple 面板的用戶 */',
-'modern.css'      => '/* 此處的 CSS 將影響使用 Modern 面板的用戶 */',
-'vector.css'      => '/* 此處的 CSS 將影響使用 Vector 面板的用戶 */',
-'print.css'       => '/* 此處的 CSS 將影響打印輸出 */',
-'handheld.css'    => '/* 此處的 CSS 將影響在 $wgHandheldStyle 設定手提裝置面板 */',
+'common.css'              => '/* 此處的 CSS 將應用於所有的面板 */',
+'standard.css'            => '/* 此處的 CSS 將影響使用標準面板的用戶 */',
+'nostalgia.css'           => '/* 此處的 CSS 將影響使用懷舊面板的用戶 */',
+'cologneblue.css'         => '/* 此處的 CSS 將影響使用科隆香水藍面板的用戶 */',
+'monobook.css'            => '/* 此處的 CSS 將影響使用 Monobook 面板的用戶 */',
+'myskin.css'              => '/* 此處的 CSS 將影響使用 MySkin 面板的用戶 */',
+'chick.css'               => '/* 此處的 CSS 將影響使用 Chick 面板的用戶 */',
+'simple.css'              => '/* 此處的 CSS 將影響使用 Simple 面板的用戶 */',
+'modern.css'              => '/* 此處的 CSS 將影響使用 Modern 面板的用戶 */',
+'vector.css'              => '/* 此處的 CSS 將影響使用 Vector 面板的用戶 */',
+'print.css'               => '/* 此處的 CSS 將影響打印輸出 */',
+'handheld.css'            => '/* 此處的 CSS 將影響在 $wgHandheldStyle 設定手提裝置面板 */',
+'noscript.css'            => '/* 此處的 CSS 將影響沒有啓用 JavaScript 的用戶 */',
+'group-autoconfirmed.css' => '/* 此處的 CSS 將只會影響自動確認用戶 */',
+'group-bot.css'           => '/* 此處的 CSS 將只會影響機器人 */',
+'group-sysop.css'         => '/* 此處的 CSS 將只會影響管理員 */',
+'group-bureaucrat.css'    => '/* 此處的 CSS 將只會影響行政員 */',
 
 # Scripts
 'common.js'      => '/* 此處的JavaScript將載入於所有用戶每一個頁面。 */',
@@ -2972,13 +2980,19 @@ To disable showing a particular link, set it to 'disable', e.g.
 'variantname-zh-sg' => 'disable',
 Variants for Chinese language
 */
-'variantname-zh-hans' => '簡體',
-'variantname-zh-hant' => '繁體',
+'variantname-zh-hans' => '‪中文(简体)',
+'variantname-zh-hant' => '‪中文(繁體)',
 'variantname-zh-cn'   => '大陸簡體',
 'variantname-zh-tw'   => '台灣正體',
 'variantname-zh-hk'   => '香港繁體',
+'variantname-zh-mo'   => '澳門繁體',
 'variantname-zh-sg'   => '新加坡簡體',
+'variantname-zh-my'   => '马来西亚简体',
 'variantname-zh'      => '不轉換',
+
+# Variants for Gan language
+'variantname-gan-hans' => '‪中文(简体)',
+'variantname-gan-hant' => '‪中文(繁體)',
 
 # Metadata
 'metadata'          => '元數據',
@@ -3489,6 +3503,7 @@ $5
 
 # Separators for various lists, etc.
 'comma-separator' => '、',
+'colon-separator' => '：',
 'word-separator'  => '',
 'parentheses'     => '（$1）',
 

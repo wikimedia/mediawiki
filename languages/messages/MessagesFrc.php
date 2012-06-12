@@ -1,5 +1,5 @@
 <?php
-/** Cajun French (Français cadien)
+/** Cajun French (français cadien)
  *
  * See MessagesQqq.php for message documentation incl. usage of parameters
  * To improve a translation please visit http://translatewiki.net
@@ -315,7 +315,9 @@ Demande: $2',
 'protectedpagetext'    => 'Cette page est barrée pour empêcher des changements.',
 'viewsourcetext'       => 'Vous pouvez voir et copier la source de cette page:',
 'protectedinterface'   => "Cette page crée le texte de l'interface pour le software, et est barrée pour empêcher l'abus.",
-'editinginterface'     => "'''Attention:'''  Vous êtes après changer une page qu'est usée pour créer le texte de l'interface pour le software.  Si vous changerait cette page, vous changerait des autres pages aussi.",
+'editinginterface'     => "'''Warning:''' You are editing a page which is used to provide interface text for the software.
+Changes to this page will affect the appearance of the user interface for other users.
+For translations, please consider using [//translatewiki.net/wiki/Main_Page?setlang=en translatewiki.net], the MediaWiki localisation project.",
 'sqlhidden'            => '(Demande SQL cachée)',
 'cascadeprotected'     => 'Cette page est protégée parce qu’elle est incluse par {{PLURAL:$1|la page suivante, qui est protégée|les pages suivantes, qui sont protégées}} avec l’option « protection en cascade » activée :
 $2',
@@ -502,8 +504,10 @@ Il foudra que vous mettez vos changements dans le texte qu'est là asteur.
 'nonunicodebrowser'                => "'''ATTENTION: Votre navigateur supporte pas les caractères unicode.  Une solution de peu de durée a été trouvée pour que vous peuvez changer des articles sans problèmes.  Les caractères qui sont pas ASCII va apparaître dans la boëte de changements comme des codes hexadécimaux.'''",
 'editingold'                       => "'''ATTENTION: Vous êtes après changer une vieille version de cette page.  Si vous le sauverait, vous perdrait n'importe quels changements faits depuis cette version.'''",
 'yourdiff'                         => 'Différences',
-'copyrightwarning'                 => "Notez donc que toutes les contributions à {{SITENAME}} sont considérées d'être libérées sous le $2 (voyez $1 pour les détails).  Si vous voulez pas que votre écriture soye changée sans pitié et redistribuée à volonté, mettez donc pas votre écriture ici.<br />  Vous êtes après nous promettre aussi que vous l'avez écrit vous-même ou que vous l'avez copié du domain public ou un autre ressource libre. ''' METTEZ PAS DE L'OUVRAGE SOUS COPYRIGHT ICI SANS PERMISSION!'''",
-'copyrightwarning2'                => "Notez donc que toutes les contributions à {{SITENAME}} pourriont être changées ou ôtées par des autres useurs.  Si vous voulez pas que votre écriture soye changée sans pitié, mettez donc pas votre écriture ici.<br />  Vous êtes après nous promettre aussi que vous l'avez écrit vous-même ou que vous l'avez copié du domain public ou un autre ressource libre (voyez $1 pour les détails). ''' METTEZ PAS DE L'OUVRAGE SOUS COPYRIGHT ICI SANS PERMISSION!'''",
+'copyrightwarning'                 => "Notez donc que toutes les contributions à {{SITENAME}} sont considérées d’être libérées sous le $2 (voyez $1 pour les détails). Si vous voulez pas que votre écriture soye changée sans pitié et redistribuée à volonté, mettez donc pas votre écriture ici.<br 
+/>Vous êtes après nous promettre aussi que vous l’avez écrit vous-même ou que vous l’avez copié du domaine public ou un autre ressource libre. ''' METTEZ PAS DE L’OUVRAGE SOUS COPYRIGHT ICI SANS PERMISSION !'''",
+'copyrightwarning2'                => "Notez donc que toutes les contributions à {{SITENAME}} pourriont être changées ou ôtées par des autres useurs. Si vous voulez pas que votre écriture soye changée sans pitié, mettez donc pas votre écriture ici.<br 
+/>Vous êtes après nous promettre aussi que vous l’avez écrit vous-même ou que vous l’avez copié du domaine public ou un autre ressource libre (voyez $1 pour les détails). ''' METTEZ PAS DE L’OUVRAGE SOUS COPYRIGHT ICI SANS PERMISSION !'''",
 'longpageerror'                    => "'''ERREUR: Le texte que vous avec mis a une taille de $1 kilobytes qu'est plus grande que le maximum de $2 kilobytes.  Ça peut pas être sauvé.'''",
 'readonlywarning'                  => "'''ATTENTION: La base d'information a été barrée, ça fait, vous serez pas capable de sauver votres changements asteur.  Vous ferait mieux de copier et coller le texte dans un dossier texte et le sauver pour plus tard.'''",
 'protectedpagewarning'             => "'''ATTENTION: Cette page a été barrée pour que ça peuve être changée juste par les administrateurs.'''",

@@ -9,17 +9,37 @@
  *
  * @author Etse (on chr.wikipedia.org)
  * @author Gmaxwell (on chr.wikipedia.org)
+ * @author Malafaya
  * @author Maximillion Pegasus
  * @author Srtxg (on chr.wikipedia.org)
  */
 
 $messages = array(
 # Dates
-'january'  => 'UᏃᎸᏔᏂ',
-'february' => 'KᎠᎦᎵ',
-'march'    => 'ᎠᏄᏱ',
-'april'    => 'ᏥᎶᏂ',
-'june'     => 'DᎡᎭᎷᏱ',
+'january'   => 'ᏚᏃᎸᏔᏂ',
+'february'  => 'ᎧᎦᎵ',
+'march'     => 'ᎠᏄᏱ',
+'april'     => 'ᎧᏩᏂ',
+'may_long'  => 'ᎠᎾᎠᎬᏘ',
+'june'      => 'ᏕᎭᎷᏱ',
+'july'      => 'ᎫᏰᏉᏂ',
+'august'    => 'ᎦᎶᏂᎢ',
+'september' => 'ᏚᎵᎢᏍᏗ',
+'october'   => 'ᏚᏂᏅᏗ',
+'november'  => 'ᏄᏓᏕᏆ',
+'december'  => 'ᎥᏍᎩᎦ',
+'jan'       => 'ᏚᏃᎸ',
+'feb'       => 'ᎧᎦᎵ',
+'mar'       => 'ᎠᏄᏱ',
+'apr'       => 'ᎧᏩᏂ',
+'may'       => 'ᎠᎾᎠ',
+'jun'       => 'ᏕᎭᎷ',
+'jul'       => 'ᎫᏰᏉ',
+'aug'       => 'ᎦᎶᏂ',
+'sep'       => 'ᏚᎵᎢ',
+'oct'       => 'ᏚᏂᏅ',
+'nov'       => 'ᏄᏓᏕ',
+'dec'       => 'ᎥᏍᎩ',
 
 'about'      => 'ᎬᏩᏚᏫᏛ',
 'article'    => 'ᎤᏓᏡᎬ',
@@ -31,6 +51,7 @@ $messages = array(
 
 'help'             => 'ᎠᎵᏍᏕᎸᏗ',
 'search'           => 'ᎠᏯᏍᏗ',
+'searchbutton'     => 'ᎠᏯᏍᏗ',
 'go'               => 'ᎮᎦ',
 'history'          => 'ᏆᏥ ᎧᏃᎮᏍᎩ',
 'history_short'    => 'ᎧᏃᎮᏍᎩ',
@@ -55,6 +76,9 @@ $messages = array(
 
 # General errors
 'viewsource' => 'DᎢᎧᏃᏗᎢ DᎢᏓᎴᎲᏍᎬ',
+
+# Revision deletion
+'revdelete-radio-set' => 'ᎥᎥ',
 
 # Diffs
 'editundo' => 'IᎬᎾᏕᏍᏗ',

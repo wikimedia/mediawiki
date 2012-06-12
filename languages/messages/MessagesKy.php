@@ -9,11 +9,29 @@
  *
  * @author AidaBishkek
  * @author Aidabishkek
+ * @author Amire80
+ * @author Ztimur
  */
 
 $messages = array(
+# User preference toggles
+'tog-underline'       => 'Шилтемелердин алдын сызуу:',
+'tog-highlightbroken' => 'Үзүлгөн (туура эмес) шилтемени <a href="" class="new">бул сыяктуу</a> көрсөтүү (андай болбосо, бул сыяктуу<a href="" class="internal">?</a>).',
+'tog-justify'         => 'Тексти барактын жазысы боюнча түздөө',
+'tog-hideminor'       => 'Соңку өзгөрүүлөрдө, майда өзгөрүүлөрдү жашыруу',
+'tog-usenewrc'        => 'Акыркы өзгөрүүлөрдүн жакшыртылган тизмесин колдонуу (JavaScript талап кылынат)',
+'tog-numberheadings'  => 'Башсаптарды автоматтык түрдө номурлоо',
+'tog-showtoolbar'     => 'Оңдоо учурунда аспаптар тактасын көрсөтүү (JavaScript талап кылынат)',
+'tog-editondblclick'  => 'Кош чертүү менен баракты оңдоо (JavaScript талап кылынат)',
+'tog-editsection'     => 'Ар бир секция үчүн «оңдоо» шилтемеси',
+
 'underline-always' => 'Ар дайым',
 'underline-never'  => 'Эч качан',
+
+# Font style option in Special:Preferences
+'editfont-style'     => 'Оңдоо талаасынын арибинин стили:',
+'editfont-default'   => 'Аралагычтын арибин клдонуу',
+'editfont-monospace' => 'Моножазы ариби',
 
 # Dates
 'sunday'        => 'Жекшемби',
@@ -68,38 +86,53 @@ $messages = array(
 'dec'           => 'Дек',
 
 # Categories related messages
-'pagecategories'         => '{{PLURAL:$1|Категория|Категориялар}}',
-'category_header'        => '"$1" категориядагы барактар',
-'subcategories'          => 'Көмөк категориялар',
-'category-media-header'  => '"$1" категориясындагы медиафайлдар',
-'category-empty'         => "''Бул категорияда азыр эч бир барак же файл жок.''",
-'hidden-categories'      => '{{PLURAL:$1|Жашырылган категория|Жашырылган категориялар}}',
-'category-subcat-count'  => '{{PLURAL:$2|Бул категория төмөнкү көмөк категорияны камтыйт.|Бул категорияда жалпы $2, {{PLURAL:$1|көмөк категория|$1 көмөк категория}} бар.}}',
-'category-article-count' => '{{PLURAL:$2|Бул категория төмөнкү баракты камтыйт.|Бул категорияда жалпы $2, төмөнкү {{PLURAL:$1|барак|$1 барак}} бар.}}',
-'category-file-count'    => '{{PLURAL:$2|Бул категория төмөнкү файлды камтыйт.|Бул категорияда жалпы $2, төмөнкү {{PLURAL:$1|файл|$1 файл}} бар.}}',
-'listingcontinuesabbrev' => 'уланд.',
-'noindex-category'       => 'Иреттелбеген барактар',
+'pagecategories'                 => '{{PLURAL:$1|Категория|Категориялар}}',
+'category_header'                => '"$1" категориядагы барактар',
+'subcategories'                  => 'Көмөк категориялар',
+'category-media-header'          => '"$1" категориясындагы медиафайлдар',
+'category-empty'                 => "''Бул категорияда азыр эч бир барак же файл жок.''",
+'hidden-categories'              => '{{PLURAL:$1|Жашырылган категория|Жашырылган категориялар}}',
+'hidden-category-category'       => 'Жашырылган категориялар',
+'category-subcat-count'          => '{{PLURAL:$2|Бул категория төмөнкү көмөк категорияны камтыйт.|Бул категорияда жалпы $2, {{PLURAL:$1|көмөк категория|$1 көмөк категория}} бар.}}',
+'category-subcat-count-limited'  => 'Бул категорияда {{PLURAL:$1|$1|$1|$1}} ички категория бар.',
+'category-article-count'         => '{{PLURAL:$2|Бул категория төмөнкү баракты камтыйт.|Бул категорияда жалпы $2, төмөнкү {{PLURAL:$1|барак|$1 барак}} бар.}}',
+'category-article-count-limited' => 'Бул категорияда $1 барак бар.',
+'category-file-count'            => '{{PLURAL:$2|Бул категория төмөнкү файлды камтыйт.|Бул категорияда жалпы $2, төмөнкү {{PLURAL:$1|файл|$1 файл}} бар.}}',
+'category-file-count-limited'    => 'Бул категорияда {{PLURAL:$1|$1|$1|$1}} файл бар.',
+'listingcontinuesabbrev'         => 'уланд.',
+'index-category'                 => 'Индекстелген барактар',
+'noindex-category'               => 'Иреттелбеген барактар',
+'broken-file-category'           => 'Файлдарга туура эмес шилтемелүү барактар',
 
-'about'      => 'Тууралуу',
-'newwindow'  => '(жаңы терезеде ачылат)',
-'cancel'     => 'Жокко чыгар',
-'mypage'     => 'Барагым',
-'mytalk'     => 'Талкуум',
-'navigation' => 'Багыттоо',
-'and'        => '&#32;жана',
+'about'         => 'Тууралуу',
+'article'       => 'Макала',
+'newwindow'     => '(жаңы терезеде ачылат)',
+'cancel'        => 'Жокко чыгар',
+'moredotdotdot' => 'Уландысы...',
+'mypage'        => 'Барагым',
+'mytalk'        => 'Талкуум',
+'anontalk'      => 'Бул IP дарек үчүн талкуу',
+'navigation'    => 'Багыттоо',
+'and'           => '&#32;жана',
 
 # Cologne Blue skin
-'qbedit'        => 'Оңдоо',
-'qbpageoptions' => 'Бул барак',
-'qbpageinfo'    => 'Контекст',
-'qbmyoptions'   => 'Барактарым',
-'faq'           => 'КБС',
+'qbfind'         => 'Издөө',
+'qbbrowse'       => 'Кароо',
+'qbedit'         => 'Оңдоо',
+'qbpageoptions'  => 'Бул барак',
+'qbpageinfo'     => 'Контекст',
+'qbmyoptions'    => 'Барактарым',
+'qbspecialpages' => 'Атайын барактар',
+'faq'            => 'КБС',
+'faqpage'        => 'Project:КБС',
 
 # Vector skin
 'vector-action-addsection' => 'Тема кошумчала',
 'vector-action-delete'     => 'Өчүр',
 'vector-action-move'       => 'Аталышын өзгөрт',
 'vector-action-protect'    => 'Корго',
+'vector-action-undelete'   => 'Калыбына келтирүү',
+'vector-action-unprotect'  => 'Коргоону өзгөртүү',
 'vector-view-create'       => 'Башта',
 'vector-view-edit'         => 'Оңдо',
 'vector-view-history'      => 'Тарыхын кара',
@@ -121,22 +154,42 @@ $messages = array(
 'history_short'    => 'Тарыхы',
 'printableversion' => 'Басма үлгүсү',
 'permalink'        => 'Туруктуу шилтеме',
+'print'            => 'Басып чыгаруу',
+'view'             => 'Кароо',
 'edit'             => 'Оңдоо',
 'create'           => 'Башта',
 'editthispage'     => 'Бул баракты оңдо',
+'create-this-page' => 'Бул баракты түзүү',
 'delete'           => 'Өчүрүү',
 'deletethispage'   => 'Бул баракты өчүрүп кой',
 'protect'          => 'Коргоо',
 'protect_change'   => 'өзгөрт',
+'protectthispage'  => 'Бул баракты коргоо',
+'unprotect'        => 'Коргоону өзгөртүү',
 'newpage'          => 'Жаңы барак',
+'talkpage'         => 'Бул баракты талкууга алуу',
 'talkpagelinktext' => 'Талкуу',
+'specialpage'      => 'Атайын барак',
 'personaltools'    => 'Жеке аспаптар',
+'postcomment'      => 'Жаңы бөлүм',
+'articlepage'      => 'Макаланы кароо',
 'talk'             => 'Талкуу',
 'views'            => 'Көрсөтүүлөр',
 'toolbox'          => 'Аспап кутусу',
+'userpage'         => 'Катышуучунун барагын кароо',
+'projectpage'      => 'Долбоор барагын кароо',
+'imagepage'        => 'Файлдын барагын кароо',
+'mediawikipage'    => 'Кабардын  барагын кароо',
+'templatepage'     => 'Калыптын барагын кароо',
+'viewhelppage'     => 'Жардам барагы',
+'categorypage'     => 'Категория барагын көрсөтүү',
+'viewtalkpage'     => 'Талкууну кароо',
 'otherlanguages'   => 'Башка тилдерде',
 'redirectedfrom'   => '($1 барагындан багытталды)',
+'redirectpagesub'  => 'Айдама барак',
 'lastmodifiedat'   => 'Бул барак соңку жолу $1, $2 өзгөртүлгөн.',
+'viewcount'        => 'Бул барак {{PLURAL:$1|$1|$1}} жолу ачылды.',
+'protectedpage'    => 'Корголгон барак',
 'jumpto'           => 'Атта:',
 'jumptonavigation' => 'багыттоо',
 'jumptosearch'     => 'издөө',
@@ -190,17 +243,30 @@ $messages = array(
 'nstab-category'  => 'Категория',
 
 # General errors
-'error'              => 'Жаңылыш',
-'missing-article'    => 'Табылууга тийиш «$1» $2 деп аталган баракта текст маалыматтар базасында табылган жок.
+'error'                => 'Жаңылыш',
+'missing-article'      => 'Табылууга тийиш «$1» $2 деп аталган баракта текст маалыматтар базасында табылган жок.
 
 Бул сыяктуу абал өчүрүлгөн барактын өзгөрүүлөрдүн тарыхына эски шилтеме менен өткөндө учурайт.
 
 Эгерде башка себеби бар болсо, анда Сиз программалык жабдууда ката таптыңыз. Кичи пейилдикке, ушул URL көрсөтүп [[Special:ListUsers/sysop|администраторлордун]] бирине кабарлап коюңуз.',
-'missingarticle-rev' => '(версия#: $1)',
-'badtitle'           => 'Ыксыз аталыш',
-'badtitletext'       => 'Талап кылынган барак аталышы туура эмес, бош, же тилдер-аралык же уики-аралык аталышы туура эмес шилтемеленген.
+'missingarticle-rev'   => '(версия#: $1)',
+'internalerror'        => 'Ички ката',
+'internalerror_info'   => 'Ички ката: $1',
+'fileappenderrorread'  => 'Аягына кошуу үчүн «$1» файлы ачылбады.',
+'fileappenderror'      => '"$1" файлы "$2" файлынын аягына кошулбады.',
+'filecopyerror'        => '"$1" файлы "$2" файлына көчүрүлбөдү.',
+'filedeleteerror'      => '"$1" файлын өчүрүүгө болбоду.',
+'directorycreateerror' => '"$1" каталогун түзүүгө болбоду.',
+'filenotfound'         => '"$1" файлы табылбады.',
+'fileexistserror'      => '"$1" файлына жазууга болбоду: Мурдатан бар.',
+'unexpected'           => 'Күтүлбөгөн маани: "$1"="$2".',
+'formerror'            => 'Ката: Форманы жөнөтүүгө болбоду.',
+'badarticleerror'      => 'Бул аракетти бул баракта аткарууга болбой.',
+'cannotdelete-title'   => '"$1" барагын өчүрүүгө болбойт',
+'badtitle'             => 'Ыксыз аталыш',
+'badtitletext'         => 'Талап кылынган барак аталышы туура эмес, бош, же тилдер-аралык же уики-аралык аталышы туура эмес шилтемеленген.
 Балким аталышта колдонулбай турган бир же андан көп белги камтылган.',
-'viewsource'         => 'Байкоо',
+'viewsource'           => 'Байкоо',
 
 # Login and logout pages
 'welcomecreation'         => '== Кош келиңиз, $1! ==
@@ -272,7 +338,7 @@ IP дарегиңиз бул барактын оңдоо тарыхына жаз
 'noarticletext'                    => "Азыр бул баракта текст жок.
 Сиз [[Special:Search/{{PAGENAME}}|ушул аталыш менен баракты изде]] башка барактарда 
 <span class=\"plainlinks\">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} тийиштүү жазууларды таба аласыз],
-же '''[{{fullurl:{{FULLPAGENAME}}|action=edit}} ошондой аталыш менен барак ача аласыз].'''</span>.",
+же '''[{{fullurl:{{FULLPAGENAME}}|action=edit}} ошондой аталыш менен барак ача аласыз]'''</span>.",
 'noarticletext-nopermission'       => 'Азыр бул баракта текст жок.
 Сиз башка барактардан [[Special:Search/{{PAGENAME}}|ушул аталыш менен баракты издөө]] салып,
 же <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} тийиштүү жазууларды таба аласыз]</span>.',

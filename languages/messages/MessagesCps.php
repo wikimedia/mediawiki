@@ -434,8 +434,8 @@ Indi pagkalimtan nga islan ang imo [[Special:Preferences|mga uyon mo sa {{SITENA
 'gotaccountlink'          => 'Magsulod',
 'createaccountmail'       => 'Paagi sa email',
 'badretype'               => 'Wala gasanto ang password nga imo ginsulod',
-'userexists'              => 'May nagagamit na sang mina nga ngalan sang manug-usar.
-Magpili sang iban nga pangalan.',
+'userexists'              => 'May naga-usar na sang ginpasulod nga ngalan manug-usar.
+Magpili sang iban nga ngalan.',
 'loginerror'              => 'Sala sa pagsulod',
 'createaccounterror'      => 'Indi mahimo ang acount nga: $1',
 'noname'                  => 'Wala mo nahatag ang tsakto nga ngalan sang manug-usar.',

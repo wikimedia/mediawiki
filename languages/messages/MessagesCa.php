@@ -1,5 +1,5 @@
 <?php
-/** Catalan (Català)
+/** Catalan (català)
  *
  * See MessagesQqq.php for message documentation incl. usage of parameters
  * To improve a translation please visit http://translatewiki.net
@@ -210,8 +210,8 @@ $messages = array(
 'tog-previewontop'            => "Mostra una previsualització abans del quadre d'edició",
 'tog-previewonfirst'          => 'Mostra una previsualització en la primera modificació',
 'tog-nocache'                 => 'Inhabilita la memòria cau de les pàgines',
-'tog-enotifwatchlistpages'    => "Notifica'm per correu electrònic dels canvis a les pàgines que vigili",
-'tog-enotifusertalkpages'     => "Notifica'm per correu quan hi hagi modificacions a la pàgina de discussió del meu compte d'usuari",
+'tog-enotifwatchlistpages'    => "Envia'm un correu electrònic quan es modifiqui una pàgina de la meva llista de seguiment",
+'tog-enotifusertalkpages'     => "Envia'm un correu electrònic quan es modifiqui la meva pàgina de discussió",
 'tog-enotifminoredits'        => "Notifica'm per correu també en casos d'edicions menors",
 'tog-enotifrevealaddr'        => "Mostra la meua adreça electrònica en els missatges d'avís per correu",
 'tog-shownumberswatching'     => "Mostra el nombre d'usuaris que hi vigilen",
@@ -229,7 +229,7 @@ $messages = array(
 'tog-watchlisthideanons'      => "Amaga a la llista les edicions d'usuaris anònims",
 'tog-watchlisthidepatrolled'  => 'Amaga edicions patrullades de la llista de seguiment',
 'tog-nolangconversion'        => 'Inhabilita la conversió de variants',
-'tog-ccmeonemails'            => "Envia'm còpies dels missatges que enviï als altres usuaris.",
+'tog-ccmeonemails'            => "Envia'm còpia dels missatges que enviï als altres usuaris",
 'tog-diffonly'                => 'Amaga el contingut de la pàgina davall de la taula de diferències',
 'tog-showhiddencats'          => 'Mostra les categories ocultes',
 'tog-noconvertlink'           => 'Inhabilita la conversió dels títols dels enllaços',
@@ -846,7 +846,8 @@ Per més detalls, la darrera entrada del registre es mostra a continuació:",
 'userinvalidcssjstitle'            => "'''Atenció:''' No existeix l'aparença «$1». Recordeu que les subpàgines personalitzades amb extensions .css i .js utilitzen el títol en minúscules, per exemple, {{ns:user}}:NOM/vector.css no és el mateix que {{ns:user}}:NOM/Vector.css.",
 'updated'                          => '(Actualitzat)',
 'note'                             => "'''Nota:'''",
-'previewnote'                      => "'''Açò només és una previsualització, els canvis de la qual encara no s'han desat!'''",
+'previewnote'                      => "'''Recorda que això és només una previsualització.'''
+Els vostres canvis encara no s'han desat!",
 'previewconflict'                  => "Aquesta previsualització reflecteix, a l'àrea
 d'edició superior, el text tal i com apareixerà si trieu desar-lo.",
 'session_fail_preview'             => "'''No s'ha pogut processar la vostra modificació a causa d'una pèrdua de dades de la sessió.
@@ -1083,8 +1084,8 @@ Si us plau, verifica els registres.",
 
 # Suppression log
 'suppressionlog'     => 'Registre de supressió',
-'suppressionlogtext' => 'A continuació es mostra una llista de les supressions i blocs que impliquen contingut ocult a administradors.
-Veure la [[Special:BlockList|List]] per a la llista de prohibicions actualment operatives i blocs.',
+'suppressionlogtext' => 'A continuació es mostra una llista de les supressions i blocs que impliquen contingut ocult per administradors.
+Veure la [[Special:BlockList|llista de bloqueigs]] per a la llista de prohibicions actualment operatives i bloqueigs.',
 
 # History merging
 'mergehistory'                     => 'Fusiona els historials de les pàgines',
@@ -1116,7 +1117,7 @@ Assegureu-vos que aquest canvi mantindrà la continuïtat històrica de la pàgi
 'mergelogpagetext'   => "A sota hi ha una llista de les fusions més recents d'una pàgina d'historial en una altra.",
 
 # Diffs
-'history-title'            => 'Historial de versions de «$1»',
+'history-title'            => '$1: Historial de revisions',
 'difference'               => '(Diferència entre revisions)',
 'difference-multipage'     => '(Diferència entre pàgines)',
 'lineno'                   => 'Línia $1:',
@@ -1262,7 +1263,7 @@ A continuació es mostra un valor generat de forma aleatòria que podeu fer serv
 'timezoneregion-europe'         => 'Europa',
 'timezoneregion-indian'         => 'Oceà Índic',
 'timezoneregion-pacific'        => 'Oceà Pacífic',
-'allowemail'                    => "Habilita el correu electrònic des d'altres usuaris",
+'allowemail'                    => 'Permet que altres usuaris puguin enviar-me correus electrònics',
 'prefs-searchoptions'           => 'Preferències de la cerca',
 'prefs-namespaces'              => 'Espais de noms',
 'defaultns'                     => 'Cerca per defecte en els següents espais de noms:',
@@ -1303,7 +1304,7 @@ Ha de tenir com a molt {{PLURAL:$1|un caràcter|$1 caràcters}}.',
 'prefs-i18n'                    => 'Internacionalització',
 'prefs-signature'               => 'Signatura',
 'prefs-dateformat'              => 'Format de la data',
-'prefs-timeoffset'              => "Duració de l'acció",
+'prefs-timeoffset'              => 'Decalatge horari',
 'prefs-advancedediting'         => 'Opcions avançades',
 'prefs-advancedrc'              => 'Opcions avançades',
 'prefs-advancedrendering'       => 'Opcions avançades',
@@ -1503,6 +1504,7 @@ Ha de tenir com a molt {{PLURAL:$1|un caràcter|$1 caràcters}}.',
 'newsectionsummary'                 => '/* $1 */ secció nova',
 'rc-enhanced-expand'                => 'Mostra detalls (requereix JavaScript)',
 'rc-enhanced-hide'                  => 'Amagar detalls',
+'rc-old-title'                      => 'originàriament creada com «$1»',
 
 # Recent changes linked
 'recentchangeslinked'          => "Seguiment d'enllaços",
@@ -1969,7 +1971,7 @@ Tingueu en compte que altres llocs web poden enllaçar un fitxer amb un URL dire
 'log'                  => 'Registres',
 'all-logs-page'        => 'Tots els registres públics',
 'alllogstext'          => "Presentació combinada de tots els registres disponibles de {{SITENAME}}.
-Podeu reduir l'extensió seleccionant el tipus de registre, el nom del usuari (distingeix entre majúscules i minúscules), o la pàgina afectada (també en distingeix).",
+Podeu reduir l'extensió seleccionant el tipus de registre, el nom d'usuari realitzador (distingeix entre majúscules i minúscules), o la pàgina objectiu (també en distingeix).",
 'logempty'             => 'No hi ha cap coincidència en el registre.',
 'log-title-wildcard'   => 'Cerca els títols que comencin amb aquest text',
 
@@ -2432,8 +2434,8 @@ quines pàgines en concret estan sent vandalitzades).",
 'ipb-confirm'                     => 'Confirma el blocatge',
 'badipaddress'                    => "L'adreça IP no té el format correcte.",
 'blockipsuccesssub'               => "S'ha blocat amb èxit",
-'blockipsuccesstext'              => "L'usuari «[[Special:Contributions/$1|$1]]» ha estat blocat.
-<br />Vegeu la [[Special:BlockList|llista d'IP blocades]] per revisar els bloquejos.",
+'blockipsuccesstext'              => "[[Special:Contributions/$1|$1]] ha estat {{GENDER:$1|bloquejat|bloquejada|bloquejat/da}}.<br />
+Vegeu la [[Special:BlockList|llista d'IP blocades]] per revisar els bloqueigs.",
 'ipb-blockingself'                => 'Esteu a punt de blocar-vos a vós mateix! Esteu segurs de voler-ho fer?',
 'ipb-confirmhideuser'             => "Esteu a punt de bloquejar un usuari que està marcat amb l'opció «amaga l'usuari». Això suprimirà el seu nom a totes les llistes i registres. Esteu segurs de voler-ho fer?",
 'ipb-edit-dropdown'               => 'Edita les raons per a blocar',
@@ -2487,7 +2489,7 @@ Per més detalls, a sota es mostra el registre de bloquejos:',
 Per més detalls, a sota es mostra el registre de supressions:',
 'blocklogentry'                   => "ha blocat l'{{GENDER:$1|usuari|usuària}} [[$1]] per un període de: $2 $3",
 'reblock-logentry'                => 'canviades les opcions del blocatge a [[$1]] amb caducitat a $2, $3',
-'blocklogtext'                    => "Això és una relació de accions de bloqueig i desbloqueig. Les adreces IP bloquejades automàticament no apareixen. Vegeu la [[Special:BlockList|llista d'usuaris actualment bloquejats]].",
+'blocklogtext'                    => 'Això és una relació de accions de bloqueig i desbloqueig. Les adreces IP bloquejades automàticament no apareixen. Vegeu la [[Special:BlockList|llista de bloqueigs]] per veure una llista dels actuals bloqueigs operatius.',
 'unblocklogentry'                 => 'ha desblocat $1',
 'block-log-flags-anononly'        => 'només els usuaris anònims',
 'block-log-flags-nocreate'        => "s'ha desactivat la creació de comptes",
@@ -2741,7 +2743,7 @@ Deseu-lo al vostre ordinador i carregueu-ne una còpia ací.",
 
 # JavaScriptTest
 'javascripttest'                           => 'Proves de JavaScript',
-'javascripttest-disabled'                  => 'La funció està inhabilitada.',
+'javascripttest-disabled'                  => "No s'ha inhabilitat la funció en el wiki.",
 'javascripttest-title'                     => "S'estan executant $1 proves",
 'javascripttest-pagetext-noframework'      => "Es reserva la pàgina per a l'execució de tests amb JavaScript.",
 'javascripttest-pagetext-unknownframework' => "L'entorn de proves «$1» és desconegut.",

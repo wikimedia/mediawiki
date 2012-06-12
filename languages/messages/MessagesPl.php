@@ -1,5 +1,5 @@
 <?php
-/** Polish (Polski)
+/** Polish (polski)
  *
  * See MessagesQqq.php for message documentation incl. usage of parameters
  * To improve a translation please visit http://translatewiki.net
@@ -36,6 +36,7 @@
  * @author Remember the dot
  * @author Rzuwig
  * @author Saper
+ * @author Sovq
  * @author Sp5uhe
  * @author Stlmch
  * @author Stv
@@ -862,7 +863,7 @@ Tymczasowe hasło – $2',
 'nowiki_sample'   => 'Tutaj wstaw niesformatowany tekst',
 'nowiki_tip'      => 'Zignoruj formatowanie wiki',
 'image_sample'    => 'Przykład.jpg',
-'image_tip'       => 'Grafika lub inny plik osadzony w stronie',
+'image_tip'       => 'Obraz lub inny plik osadzony na stronie',
 'media_sample'    => 'Przykład.ogg',
 'media_tip'       => 'Link do pliku',
 'sig_tip'         => 'Twój podpis wraz z datą i czasem',
@@ -880,7 +881,7 @@ Tymczasowe hasło – $2',
 'showdiff'                         => 'Podgląd zmian',
 'anoneditwarning'                  => "'''Uwaga:''' Nie jesteś {{GENDER:|zalogowany|zalogowana}}.
 Twój adres IP zostanie zapisany w historii edycji strony.",
-'anonpreviewwarning'               => "''Nie jesteś zalogowany. Jeśli zapiszesz zmiany w historii edycji strony zostanie umieszczony Twój adres IP.''",
+'anonpreviewwarning'               => "''Nie jesteś zalogowany. Jeśli zapiszesz zmiany, w historii edycji strony zostanie umieszczony Twój adres IP.''",
 'missingsummary'                   => "'''Uwaga:''' Nie wprowadz{{GENDER:|iłeś|iłaś|ono}} opisu zmian.
 Jeżeli nie chcesz go wprowadzać, naciśnij przycisk „Zapisz” jeszcze raz.",
 'missingcommenttext'               => 'Wprowadź komentarz poniżej.',
@@ -968,7 +969,8 @@ Ostatni wpis rejestru blokad jest pokazany poniżej.',
 Strony użytkownika zawierające CSS i JavaScript powinny zaczynać się małą literą, np. {{ns:user}}:Foo/vector.css, w przeciwieństwie do nieprawidłowego {{ns:user}}:Foo/Vector.css.",
 'updated'                          => '(Zmodyfikowano)',
 'note'                             => "'''Uwaga:'''",
-'previewnote'                      => "'''To jest tylko podgląd – zmiany nie zostały jeszcze zapisane!'''",
+'previewnote'                      => "'''To jest tylko podgląd'''
+Zmiany nie zostały jeszcze zapisane!",
 'previewconflict'                  => 'Podgląd odnosi się do tekstu z górnego pola edycji. Tak będzie wyglądać strona, jeśli zdecydujesz się ją zapisać.',
 'session_fail_preview'             => "'''Uwaga! Serwer nie może przetworzyć tej edycji z powodu utraty danych sesji.
 Spróbuj jeszcze raz.
@@ -983,9 +985,9 @@ Jeśli to nie pomoże – [[Special:UserLogout|wyloguj się]] i zaloguj ponownie
 Twoja edycja została odrzucona by zapobiec zniszczeniu tekstu strony.
 Takie problemy zdarzają się w wypadku korzystania z wadliwych anonimowych sieciowych usług proxy.'''",
 'edit_form_incomplete'             => "'''Niektóre informacje wprowadzone do formularza nie dotarły do serwera. Upewnij się, że wprowadzone dane nie uległy uszkodzeniu i spróbuj ponownie.'''",
-'editing'                          => 'Edytujesz „$1”',
-'editingsection'                   => 'Edytujesz „$1” (fragment)',
-'editingcomment'                   => 'Edytujesz „$1” (nowa sekcja)',
+'editing'                          => 'Edytujesz $1',
+'editingsection'                   => 'Edytujesz $1 (sekcja)',
+'editingcomment'                   => 'Edytujesz $1 (nowa sekcja)',
 'editconflict'                     => 'Konflikt edycji: $1',
 'explainconflict'                  => "Ktoś zmienił treść strony w trakcie Twojej edycji.
 Górne pole zawiera tekst strony aktualnie zapisany w bazie danych.
@@ -999,10 +1001,10 @@ Z tego powodu wszystkie znaki, których przeglądarka nie rozpoznaje, zostały z
 'editingold'                       => "'''Uwaga! Edytujesz starszą niż bieżąca wersję tej strony.
 Jeśli ją zapiszesz, wszystkie zmiany wykonane w międzyczasie zostaną wycofane.'''",
 'yourdiff'                         => 'Różnice',
-'copyrightwarning'                 => "Wkład do {{GRAMMAR:D.lp|{{SITENAME}}}} jest udostępniany na licencji $2 (szczegóły w $1). Jeśli nie chcesz, żeby Twój tekst był dowolnie zmieniany przez każdego i rozpowszechniany bez ograniczeń, nie umieszczaj go tutaj.<br />
+'copyrightwarning'                 => "Wkład na {{SITENAME}} jest udostępniany na licencji $2 (szczegóły w $1). Jeśli nie chcesz, żeby Twój tekst był dowolnie zmieniany przez każdego i rozpowszechniany bez ograniczeń, nie umieszczaj go tutaj.<br />
 Zapisując swoją edycję, oświadczasz, że ten tekst jest Twoim dziełem lub pochodzi z materiałów dostępnych na warunkach ''domeny publicznej'' lub kompatybilnych.
 '''PROSZĘ NIE WPROWADZAĆ MATERIAŁÓW CHRONIONYCH PRAWEM AUTORSKIM BEZ POZWOLENIA WŁAŚCICIELA!'''",
-'copyrightwarning2'                => "Wszelki wkład w {{GRAMMAR:B.lp|{{SITENAME}}}} może być edytowany, zmieniany lub usunięty przez innych użytkowników.
+'copyrightwarning2'                => "Wszelki wkład na {{SITENAME}} może być edytowany, zmieniany lub usunięty przez innych użytkowników.
 Jeśli nie chcesz, żeby Twój tekst był dowolnie zmieniany przez każdego i rozpowszechniany bez ograniczeń, nie umieszczaj go tutaj.<br />
 Zapisując swoją edycję, oświadczasz, że ten tekst jest Twoim dziełem lub pochodzi z materiałów dostępnych na warunkach ''domeny publicznej'' lub kompatybilnych (zobacz także $1).
 '''PROSZĘ NIE WPROWADZAĆ MATERIAŁÓW CHRONIONYCH PRAWEM AUTORSKIM BEZ POZWOLENIA WŁAŚCICIELA!'''",
@@ -1053,7 +1055,7 @@ Strona już istnieje.',
 'expensive-parserfunction-warning'        => 'Uwaga! Ta strona zawiera zbyt wiele wywołań złożonych obliczeniowo funkcji parsera.
 
 Powinno być mniej niż $2 {{PLURAL:$2|wywołanie|wywołania|wywołań}}, a obecnie {{PLURAL:$1|jest $1 wywołanie|są $1 wywołania|jest $1 wywołań}}.',
-'expensive-parserfunction-category'       => 'Strony ze zbyt dużą liczbą wywołań trudnych funkcji parsera',
+'expensive-parserfunction-category'       => 'Strony ze zbyt dużą liczbą wywołań kosztownych funkcji parsera',
 'post-expand-template-inclusion-warning'  => 'Uwaga – zbyt duża wielkość wykorzystanych szablonów.
 Niektóre szablony nie zostaną użyte.',
 'post-expand-template-inclusion-category' => 'Strony, w których przekroczone jest ograniczenie wielkości użytych szablonów',
@@ -1204,7 +1206,7 @@ Proszę sprawdzić rejestr operacji.',
 # Suppression log
 'suppressionlog'     => 'Rejestr utajniania',
 'suppressionlogtext' => 'Poniżej znajduje się lista usunięć i blokad utajnionych przed administratorami.
-Zobacz [[Special:BlockList|rejestr blokowania adresów IP]], jeśli chcesz sprawdzić aktualne zakazy i blokady.',
+Zobacz [[Special:BlockList|rejestr blokad]], jeśli chcesz sprawdzić aktualne zakazy i blokady.',
 
 # History merging
 'mergehistory'                     => 'Scalanie historii stron',
@@ -1233,12 +1235,12 @@ Użycie linków nawigacyjnych kasuje wybór w kolumnie.',
 
 # Merge log
 'mergelog'           => 'Scalone',
-'pagemerge-logentry' => 'scalił [[$1]] z [[$2]] (historia zmian aż do $3)',
+'pagemerge-logentry' => 'scala [[$1]] z [[$2]] (historia zmian aż do $3)',
 'revertmerge'        => 'Rozdziel',
 'mergelogpagetext'   => 'Poniżej znajduje się lista ostatnich scaleń historii zmian stron.',
 
 # Diffs
-'history-title'            => 'Historia edycji „$1”',
+'history-title'            => '$1: Historia wersji',
 'difference'               => '(Różnice między wersjami)',
 'difference-multipage'     => '(Różnica między stronami)',
 'lineno'                   => 'Linia $1:',
@@ -1554,7 +1556,7 @@ Jeśli zdecydujesz się je podać, zostaną użyte, by udokumentować Twoje auto
 'rightslog'                  => 'Uprawnienia',
 'rightslogtext'              => 'Rejestr zmian uprawnień użytkowników.',
 'rightslogentry'             => 'zmienił przynależność $1 do grup ($2 → $3)',
-'rightslogentry-autopromote' => 'automatycznie zmienił przynależność ($2 → $3)',
+'rightslogentry-autopromote' => 'automatycznie zmienia przynależność ($2 → $3)',
 'rightsnone'                 => 'brak',
 
 # Associated actions - in the sentence "You do not have permission to X"
@@ -1628,6 +1630,7 @@ Jeśli zdecydujesz się je podać, zostaną użyte, by udokumentować Twoje auto
 'newsectionsummary'                 => '/* $1 */ nowa sekcja',
 'rc-enhanced-expand'                => 'Pokaż szczegóły (wymagana JavaScript)',
 'rc-enhanced-hide'                  => 'Ukryj szczegóły',
+'rc-old-title'                      => 'oryginalnie utworzono jako "$1"',
 
 # Recent changes linked
 'recentchangeslinked'          => 'Zmiany w dolinkowanych',
@@ -2075,7 +2078,7 @@ Każdy wiersz zawiera linki do pierwszego i drugiego przekierowania oraz link, d
 'mostimages'              => 'Najczęściej linkowane pliki',
 'mostrevisions'           => 'Strony o największej liczbie wersji',
 'prefixindex'             => 'Wszystkie strony o prefiksie',
-'prefixindex-namespace'   => 'Wszystkie strony z prefiksem ( $1 przestrzeń nazw)',
+'prefixindex-namespace'   => 'Wszystkie strony z prefiksem (przestrzeń nazw $1)',
 'shortpages'              => 'Najkrótsze strony',
 'longpages'               => 'Najdłuższe strony',
 'deadendpages'            => 'Strony bez linków wewnętrznych',
@@ -2376,7 +2379,7 @@ Naciśnij „wstecz” w przeglądarce, przeładuj stronę, po czym ponownie wyd
 Wszystkie aktywne zabezpieczenia odnajdziesz na liście [[Special:ProtectedPages|zabezpieczonych stron]].',
 'protectedarticle'            => 'zabezpieczył [[$1]]',
 'modifiedarticleprotection'   => 'zmienił poziom zabezpieczenia [[$1]]',
-'unprotectedarticle'          => 'odbezpieczył „[[$1]]“',
+'unprotectedarticle'          => 'odbezpieczył [[$1]]',
 'movedarticleprotection'      => 'przeniósł ustawienia zabezpieczeń z [[$2]] do [[$1]]',
 'protect-title'               => 'Zmiana poziomu zabezpieczenia „$1”',
 'protect-title-notallowed'    => 'Podgląd poziomu zabezpieczenia „$1”',
@@ -2583,8 +2586,8 @@ Podaj powód (np. umieszczając nazwy stron, na których dopuszczono się wandal
 'ipb-confirm'                     => 'Potwierdzam blokadę',
 'badipaddress'                    => 'Niepoprawny adres IP',
 'blockipsuccesssub'               => 'Zablokowanie powiodło się',
-'blockipsuccesstext'              => '{{GENDER:$1|Użytkownik|Użytkowniczka}} [[Special:Contributions/$1|$1]] {{GENDER:$1|został zablokowany|została zablokowana}}.<br />
-Przejdź do [[Special:BlockList|listy zablokowanych adresów IP]], by przejrzeć blokady.',
+'blockipsuccesstext'              => '[[Special:Contributions/$1|$1]] {{GENDER:$1|został zablokowany|została zablokowana}}.<br />
+Przejdź do [[Special:BlockList|listy blokad]], by przejrzeć blokady.',
 'ipb-blockingself'                => 'Usiłujesz zablokować siebie samego! Czy na pewno chcesz to zrobić?',
 'ipb-confirmhideuser'             => 'Zamierzasz zablokować użytkownika z włączoną opcją „ukryj użytkownika”. Spowoduje to pominięcie nazwy użytkownika we wszystkich listach i rejestrach. Czy na pewno chcesz to zrobić?',
 'ipb-edit-dropdown'               => 'Edytuj listę przyczyn blokady',
@@ -2633,12 +2636,12 @@ Przyczyna blokady $1 to: „$2”',
 'blocklogpage'                    => 'Historia blokad',
 'blocklog-showlog'                => '{{GENDER:$1|Ten użytkownik był|Ta użytkowniczka była}} już wcześniej {{GENDER:$1|blokowany|blokowana}}. Poniżej znajduje się rejestr blokad:',
 'blocklog-showsuppresslog'        => '{{GENDER:$1|Ten użytkownik był|Ta użytkowniczka była}} już wcześniej {{GENDER:$1|blokowany oraz ukrywany|blokowana oraz ukrywana}}. Poniżej znajduje się rejestr ukrywania:',
-'blocklogentry'                   => 'zablokował [[$1]], czas blokady: $2 $3',
-'reblock-logentry'                => 'zmienił ustawienia blokady dla [[$1]], czas blokady: $2 $3',
+'blocklogentry'                   => 'blokuje [[$1]], czas blokady: $2 $3',
+'reblock-logentry'                => 'zmienia ustawienia blokady dla [[$1]], czas blokady: $2 $3',
 'blocklogtext'                    => 'Poniżej znajduje się lista blokad założonych i zdjętych z poszczególnych adresów IP.
 Na liście nie znajdą się adresy IP, które zablokowano w sposób automatyczny.
 By przejrzeć listę obecnie aktywnych blokad, przejdź na stronę [[Special:BlockList|zablokowanych adresów i użytkowników]].',
-'unblocklogentry'                 => 'odblokował $1',
+'unblocklogentry'                 => 'zdejmuje blokadę $1',
 'block-log-flags-anononly'        => 'tylko anonimowi',
 'block-log-flags-nocreate'        => 'blokada tworzenia konta',
 'block-log-flags-noautoblock'     => 'automatyczne blokowanie wyłączone',
@@ -2888,14 +2891,14 @@ Brak katalogu dla plików tymczasowych.',
 # Import log
 'importlogpage'                    => 'Rejestr importu',
 'importlogpagetext'                => 'Rejestr przeprowadzonych importów stron z innych serwisów wiki.',
-'import-logentry-upload'           => 'zaimportował [[$1]] przez przesłanie pliku',
+'import-logentry-upload'           => 'importuje [[$1]] przez przesłanie pliku',
 'import-logentry-upload-detail'    => '$1 {{PLURAL:$1|wersja|wersje|wersji}}',
-'import-logentry-interwiki'        => 'zaimportował $1 używając transwiki',
+'import-logentry-interwiki'        => 'importuje $1 używając transwiki',
 'import-logentry-interwiki-detail' => '$1 {{PLURAL:$1|wersja|wersje|wersji}} z $2',
 
 # JavaScriptTest
 'javascripttest'                           => 'Testowanie JavaScript',
-'javascripttest-disabled'                  => 'Ta funkcja jest wyłączona.',
+'javascripttest-disabled'                  => 'Ta funkcja nie została włączona na tej wiki.',
 'javascripttest-title'                     => 'Uruchamianie testów $1',
 'javascripttest-pagetext-noframework'      => 'Ta strona jest zarezerwowana dla wykonywania testów JavaScript.',
 'javascripttest-pagetext-unknownframework' => 'Nieznany framework testowania „$1”.',
@@ -3061,8 +3064,8 @@ Najprawdopodobniej zostało to spowodowane przez link do zewnętrznej strony int
 'markedaspatrollederror-noautopatrol' => 'Nie masz uprawnień wymaganych do oznaczania swoich edycji jako „sprawdzone”.',
 
 # Patrol log
-'patrol-log-page'      => 'Dziennik patrolowania',
-'patrol-log-header'    => 'Poniżej znajduje się dziennik patrolowania stron.',
+'patrol-log-page'      => 'Rejestr patrolowania',
+'patrol-log-header'    => 'Poniżej znajduje się rejestr patrolowania stron.',
 'log-show-hide-patrol' => '$1 rejestr sprawdzania',
 
 # Image deletion
@@ -3892,21 +3895,21 @@ Grafiki są pokazywane w pełnej rozdzielczości. Inne typy plików są otwieran
 'htmlform-selectorother-other' => 'Inne',
 
 # SQLite database support
-'sqlite-has-fts' => '$1 ze wsparciem pełnotekstowego wyszukiwania',
-'sqlite-no-fts'  => '$1 bez wsparcia pełnotekstowego wyszukiwania',
+'sqlite-has-fts' => '$1 z obsługą pełnotekstowego wyszukiwania',
+'sqlite-no-fts'  => '$1 bez obsługi pełnotekstowego wyszukiwania',
 
 # New logging system
-'logentry-delete-delete'              => '$1 usunął stronę $3',
-'logentry-delete-restore'             => '$1 odtworzył stronę $3',
-'logentry-delete-event'               => '$1 zmienił widoczność {{PLURAL:$5|zdarzenia|$5 zdarzeń}} w rejestrze $3, wykonano następujące operacje: $4',
-'logentry-delete-revision'            => '$1 zmienił widoczność {{PLURAL:$5|wersji|$5 wersji}} strony $3, wykonano następujące operacje: $4',
-'logentry-delete-event-legacy'        => '$1 zmienił widoczność zdarzeń w rejestrze $3',
-'logentry-delete-revision-legacy'     => '$1 zmienił widoczność wersji strony $3',
-'logentry-suppress-delete'            => '$1 ukrył stronę $3',
-'logentry-suppress-event'             => '$1 potajemnie zmienił widoczność {{PLURAL:$5|zdarzenia|$5 zdarzeń}} w $3, wykonano następujące operacje: $4',
-'logentry-suppress-revision'          => '$1 potajemnie zmienił widoczność {{PLURAL:$5|wersji|$5 wersji}} strony $3, wykonano następujące operacje: $4',
-'logentry-suppress-event-legacy'      => '$1 potajemnie zmienił widoczność zdarzenia w rejestrze $3',
-'logentry-suppress-revision-legacy'   => '$1 potajemnie zmienił widoczność wersji strony $3',
+'logentry-delete-delete'              => '$1 usuwa stronę $3',
+'logentry-delete-restore'             => '$1 odtwarza stronę $3',
+'logentry-delete-event'               => '$1 zmienia widoczność {{PLURAL:$5|zdarzenia|$5 zdarzeń}} w rejestrze $3, wykonano następujące operacje: $4',
+'logentry-delete-revision'            => '$1 zmienia widoczność {{PLURAL:$5|wersji|$5 wersji}} strony $3, wykonano następujące operacje: $4',
+'logentry-delete-event-legacy'        => '$1 zmienia widoczność zdarzeń w rejestrze $3',
+'logentry-delete-revision-legacy'     => '$1 zmienia widoczność wersji strony $3',
+'logentry-suppress-delete'            => '$1 ukrywa stronę $3',
+'logentry-suppress-event'             => '$1 potajemnie zmienia widoczność {{PLURAL:$5|zdarzenia|$5 zdarzeń}} w $3, wykonano następujące operacje: $4',
+'logentry-suppress-revision'          => '$1 potajemnie zmienia widoczność {{PLURAL:$5|wersji|$5 wersji}} strony $3, wykonano następujące operacje: $4',
+'logentry-suppress-event-legacy'      => '$1 potajemnie zmienia widoczność zdarzenia w rejestrze $3',
+'logentry-suppress-revision-legacy'   => '$1 potajemnie zmienia widoczność wersji strony $3',
 'revdelete-content-hid'               => 'treść została ukryta',
 'revdelete-summary-hid'               => 'opis zmian został ukryty',
 'revdelete-uname-hid'                 => 'nazwa użytkownika została ukryta',
@@ -3915,21 +3918,21 @@ Grafiki są pokazywane w pełnej rozdzielczości. Inne typy plików są otwieran
 'revdelete-uname-unhid'               => 'wycofano ukrycie nazwy użytkownika',
 'revdelete-restricted'                => 'ograniczono widoczność dla administratorów',
 'revdelete-unrestricted'              => 'wycofano ograniczenie widoczności dla administratorów',
-'logentry-move-move'                  => '$1 przeniósł stronę $3 na $4',
-'logentry-move-move-noredirect'       => '$1 przeniósł stronę $3 na $4, bez pozostawienia przekierowania pod starym tytułem',
-'logentry-move-move_redir'            => '$1 przeniósł stronę $3 na $4, czyli w miejsce przekierowania',
-'logentry-move-move_redir-noredirect' => '$1 przeniósł stronę $3 na $4, czyli w miejsce przekierowania i bez pozostawienia przekierowania pod starym tytułem',
-'logentry-patrol-patrol'              => '$1 oznaczył wersję $4 strony $3 jako sprawdzoną',
-'logentry-patrol-patrol-auto'         => '$1 automatycznie oznaczył wersję $4 strony $3 jako sprawdzoną',
-'logentry-newusers-newusers'          => '$1 utworzył konto użytkownika',
-'logentry-newusers-create'            => '$1 utworzył konto użytkownika',
-'logentry-newusers-create2'           => '$1 utworzył konto użytkownika $3',
-'logentry-newusers-autocreate'        => 'Konto użytkownika $1 zostało utworzone automatycznie',
+'logentry-move-move'                  => '$1 przenosi stronę $3 do $4',
+'logentry-move-move-noredirect'       => '$1 przenosi stronę $3 na $4, bez pozostawienia przekierowania pod starym tytułem',
+'logentry-move-move_redir'            => '$1 przenosi stronę $3 na $4 w miejsce przekierowania',
+'logentry-move-move_redir-noredirect' => '$1 przenosi stronę $3 na $4 w miejsce przekierowania i bez pozostawienia przekierowania pod starym tytułem',
+'logentry-patrol-patrol'              => '$1 oznacza wersję $4 strony $3 jako sprawdzoną',
+'logentry-patrol-patrol-auto'         => '$1 automatycznie oznacza wersję $4 strony $3 jako sprawdzoną',
+'logentry-newusers-newusers'          => '$1 tworzy konto użytkownika',
+'logentry-newusers-create'            => '$1 tworzy konto użytkownika',
+'logentry-newusers-create2'           => '$1 tworzy konto użytkownika $3',
+'logentry-newusers-autocreate'        => '$1 automatycznie tworzy konto użytkownika',
 'newuserlog-byemail'                  => 'hasło zostało wysłane e‐mailem',
 
 # Feedback
-'feedback-bugornote' => 'Jeśli jesteś gotów szczegółowo opisać problem techniczny proszę [ $1  Zgłoś].
-W przeciwnym wypadku można użyć prostego formularza poniżej. Komentarz zostanie dodany do strony "[ $3  $2 ]", wraz z nazwą użytkownika i nazwą  przeglądarki.',
+'feedback-bugornote' => 'Jeśli jesteś {{GENDER:|gotów|gotowa}} szczegółowo opisać problem techniczny proszę [$1 zgłoś błąd].
+W przeciwnym wypadku można użyć prostego formularza poniżej. Komentarz zostanie dodany do strony "[$3  $2]", wraz z nazwą użytkownika i nazwą przeglądarki.',
 'feedback-subject'   => 'Temat',
 'feedback-message'   => 'Wiadomość:',
 'feedback-cancel'    => 'Anuluj',
@@ -3938,10 +3941,10 @@ W przeciwnym wypadku można użyć prostego formularza poniżej. Komentarz zosta
 'feedback-error1'    => 'Błąd – nierozpoznana odpowiedź API',
 'feedback-error2'    => 'Błąd – edycja nieudana',
 'feedback-error3'    => 'Błąd – brak odpowiedzi API',
-'feedback-thanks'    => 'Dziękujemy! Twoja opinia została opublikowana na stronie "[ $2  $1 ]".',
+'feedback-thanks'    => 'Dziękujemy! Twoja opinia została opublikowana na stronie "[$2 $1]".',
 'feedback-close'     => 'Gotowe',
-'feedback-bugcheck'  => 'Świetnie! Tylko sprawdzić, czy nie jest już jednym z [$1 znanych błędów].',
-'feedback-bugnew'    => 'Sprawdziłem. Zgłoś nowy błąd',
+'feedback-bugcheck'  => 'Świetnie! Tylko sprawdź, czy nie jest już jednym ze [$1 znanych błędów].',
+'feedback-bugnew'    => '{{GENDER:|Sprawdziłem|Sprawdziłam}}. Zgłoś nowy błąd',
 
 # API errors
 'api-error-badaccess-groups'              => 'Nie masz uprawnień aby przesyłać pliki do tej wiki.',

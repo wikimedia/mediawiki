@@ -252,7 +252,9 @@ Lakanga: $1<br />
 Eke: $2",
 'viewsource'           => 'Vakai ki he tupunga',
 'protectedinterface'   => 'Ko e peesi ʻeni ʻoku fakaai ia ʻa e potutohi maʻa e founga fakakomipiuta, ʻoku maluʻi ia ʻo taʻofi leakovi.',
-'editinginterface'     => "'''Fakatokanga''' ʻOku ke fatu ʻi he peesi ʻoku ne ngāueʻaki ki he potutohi ʻo e founga fakakomipiuta. Ko ia ʻene ʻasi mai maʻa e kau ʻetita kotoa ʻe hūkitonu ai ʻa e ngaahi liliu ʻo e pēsí.",
+'editinginterface'     => "'''Warning:''' You are editing a page which is used to provide interface text for the software.
+Changes to this page will affect the appearance of the user interface for other users.
+For translations, please consider using [//translatewiki.net/wiki/Main_Page?setlang=en translatewiki.net], the MediaWiki localisation project.",
 'sqlhidden'            => '(ʻOku toi ʻa e fehuʻi SQL)',
 'namespaceprotected'   => "ʻOku ʻikai ngofua ke ke fatu ʻa e ngaahi kupu ʻi he vā hingoa '''$1'''.",
 

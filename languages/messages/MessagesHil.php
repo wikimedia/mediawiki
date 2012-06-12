@@ -11,6 +11,7 @@
  * @author Erythrii
  * @author Jose77
  * @author Kguirnela
+ * @author Oxyzen
  * @author Tagimata
  */
 
@@ -1236,6 +1237,8 @@ Mga Pahina sa [[Special:Watchlist|imo lista-lantaw]] ay '''dukot'''.",
 'uploadedimage'     => 'na-uplod "[[$1]]"',
 'watchthisupload'   => 'Bantayan ining panid',
 
+'license-header' => 'Pagpanglisensya',
+
 # File description page
 'filehist'                  => 'Historya file',
 'filehist-help'             => 'I-klik sa may petsa/oras para makita ang file sa ina nga oras.',
@@ -1416,7 +1419,7 @@ Pwede mo mabag-o ang lebel sang proteksiyon sang pahina, pero indi ini ma apektu
 'blockip'                  => 'i-Pugong ang naga-usar',
 'ipbreason'                => 'Rason:',
 'ipboptions'               => '2 oras:2 hours,1 adlaw:1 day,3 adlaw:3 days,1 semana:1 week,2 semana:2 weeks,1 bulan:1 month,3 bulan:3 months,6 bulan:6 months,1 tu-ig:1 year,wala katapusan:infinite',
-'ipblocklist'              => 'Napugong nga mga IP adres kag mga ngalan ka naga-usar',
+'ipblocklist'              => 'Napunggan nga mga manug-usar',
 'ipblocklist-submit'       => 'Pangita-a',
 'blocklink'                => 'harang',
 'unblocklink'              => 'di pagpugong',

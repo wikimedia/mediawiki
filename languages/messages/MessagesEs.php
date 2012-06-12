@@ -1,5 +1,5 @@
 <?php
-/** Spanish (Español)
+/** Spanish (español)
  *
  * See MessagesQqq.php for message documentation incl. usage of parameters
  * To improve a translation please visit http://translatewiki.net
@@ -15,6 +15,7 @@
  * @author Ascánder
  * @author Baiji
  * @author Bea.miau
+ * @author Benfutbol10
  * @author Bengoa
  * @author Bernardom
  * @author Better
@@ -23,6 +24,7 @@
  * @author Candalua
  * @author Capmo
  * @author Cerealito
+ * @author Ciencia Al Poder
  * @author Clerc
  * @author Crazymadlover
  * @author Cvmontuy
@@ -40,6 +42,7 @@
  * @author Hercule
  * @author Icvav
  * @author Imre
+ * @author Invadinado
  * @author Jatrobat
  * @author Jens Liebenau
  * @author Jurock
@@ -62,6 +65,7 @@
  * @author Remember the dot
  * @author Richard Wolf VI
  * @author Sanbec
+ * @author Savh
  * @author Spacebirdy
  * @author Technorum
  * @author The Evil IP address
@@ -350,7 +354,7 @@ $messages = array(
 'tog-extendwatchlist'         => 'Expandir la lista de seguimiento a todos los cambios, no sólo a los más recientes.',
 'tog-usenewrc'                => 'Cambios recientes mejorados (requiere JavaScript)',
 'tog-numberheadings'          => 'Numerar automáticamente los encabezados',
-'tog-showtoolbar'             => 'Mostrar la barra de edición',
+'tog-showtoolbar'             => 'Mostrar la barra de edición (requiere JavaScript)',
 'tog-editondblclick'          => 'Editar páginas con doble clic (requiere JavaScript)',
 'tog-editsection'             => 'Habilitar la edición de secciones usando el enlace [editar]',
 'tog-editsectiononrightclick' => 'Habilitar la edición de secciones presionando el botón de la derecha en los títulos de secciones (requiere JavaScript)',
@@ -364,15 +368,15 @@ $messages = array(
 'tog-previewontop'            => 'Mostrar previsualización antes del cuadro de edición',
 'tog-previewonfirst'          => 'Mostrar previsualización en la primera edición',
 'tog-nocache'                 => 'Desactivar la caché de páginas del navegador',
-'tog-enotifwatchlistpages'    => 'Enviarme un correo electrónico cuando una página en mi lista de seguimiento sea modificada',
-'tog-enotifusertalkpages'     => 'Enviarme un correo electrónico cuando mi página de discusión sea modificada',
+'tog-enotifwatchlistpages'    => 'Enviarme un correo electrónico cuando se modifique una página en mi lista de seguimiento',
+'tog-enotifusertalkpages'     => 'Enviarme un correo electrónico cuando se modifique mi página de discusión',
 'tog-enotifminoredits'        => 'Notificarme también los cambios menores de páginas',
 'tog-enotifrevealaddr'        => 'Revelar mi dirección de correo electrónico en los correos de notificación',
 'tog-shownumberswatching'     => 'Mostrar el número de usuarios que la vigilan',
 'tog-oldsig'                  => 'Firma actual:',
 'tog-fancysig'                => 'Tratar firma como wikitexto (sin un enlace automático)',
-'tog-externaleditor'          => 'Utilizar editor externo por defecto (sólo para expertos pues necesitas ajustes especiales en tu ordenador. [//www.mediawiki.org/wiki/Manual:External_editors Más información.])',
-'tog-externaldiff'            => 'Utilizar diff externo por defecto (sólo para expertos pues necesitas ajustes especiales en tu ordenador. [//www.mediawiki.org/wiki/Manual:External_editors Más información.])',
+'tog-externaleditor'          => 'Utilizar editor externo por defecto (sólo para expertos, pues necesitas ajustes especiales en tu ordenador; [//www.mediawiki.org/wiki/Manual:External_editors más información])',
+'tog-externaldiff'            => 'Utilizar diff externo por defecto (sólo para expertos, pues necesitas ajustes especiales en tu ordenador; [//www.mediawiki.org/wiki/Manual:External_editors más información])',
 'tog-showjumplinks'           => 'Habilitar enlaces de accesibilidad «saltar a»',
 'tog-uselivepreview'          => 'Usar live preview (JavaScript) (Experimental)',
 'tog-forceeditsummary'        => 'Alertar al grabar sin resumen de edición.',
@@ -460,7 +464,7 @@ $messages = array(
 'category-empty'                 => "''La categoría no contiene actualmente ningún artículo o archivo multimedia.''",
 'hidden-categories'              => '{{PLURAL:$1|Categoría escondida|Categorías escondidas}}',
 'hidden-category-category'       => 'Categorías ocultas',
-'category-subcat-count'          => '{{PLURAL:$2|Esta categoría comprende solamente la siguiente categoría.|Esta categoría incluye {{PLURAL:$1|la siguiente categorías|las siguientes $1 subcategorías}}, de un total de $2.}}',
+'category-subcat-count'          => '{{PLURAL:$2|Esta categoría solo contiene la siguiente subcategoría.|Esta categoría contiene {{PLURAL:$1|la siguiente subcategoría|las siguientes $1 subcategorías}}, de un total de $2.}}',
 'category-subcat-count-limited'  => 'Esta categoría contiene {{PLURAL:$1|la siguiente subcategoría|las siguientes $1 subcategorías}}.',
 'category-article-count'         => '{{PLURAL:$2|Esta categoría incluye solamente la siguiente página.|{{PLURAL:$1|La siguiente página página pertenece|Las siguientes $1 páginas pertenecen}} a esta categoría, de un total de $2.}}',
 'category-article-count-limited' => '{{PLURAL:$1|La siguiente página pertenece|Las siguientes $1 páginas pertenecen}} a esta categoría.',
@@ -468,12 +472,12 @@ $messages = array(
 'category-file-count-limited'    => '{{PLURAL:$1|El siguiente fichero pertenece|Los siguientes $1 ficheros pertenecen}} a esta categoría.',
 'listingcontinuesabbrev'         => 'cont.',
 'index-category'                 => 'Páginas indexadas',
-'noindex-category'               => 'Páginas no indizadas',
+'noindex-category'               => 'Páginas no indexadas',
 'broken-file-category'           => 'Páginas con enlaces rotos a archivos',
 
 'about'         => 'Acerca de',
 'article'       => 'Artículo',
-'newwindow'     => '(Se abre en una ventana nueva)',
+'newwindow'     => '(se abre en una ventana nueva)',
 'cancel'        => 'Cancelar',
 'moredotdotdot' => 'Más...',
 'mypage'        => 'Mi página',
@@ -698,7 +702,7 @@ Por favor, avisa a un [[Special:ListUsers/sysop|administrador]], tomando nota de
 'badarticleerror'      => 'Esta acción no se puede llevar a cabo en esta página.',
 'cannotdelete'         => 'La página o archivo «$1» no se pudo borrar.
 Puede que ya haya sido borrado por alguien más.',
-'cannotdelete-title'   => 'No se pudede borrar la página «$1»',
+'cannotdelete-title'   => 'No se puede borrar la página «$1»',
 'badtitle'             => 'Título incorrecto',
 'badtitletext'         => 'El título de la página solicitada está vacío, no es válido, o es un enlace interidioma o interwiki incorrecto.
 Puede que contenga uno o más caracteres que no se pueden usar en los títulos.',
@@ -830,7 +834,7 @@ Puedes ignorar este mensaje si esta cuenta fue creada por error.',
 'login-throttled'            => 'Has intentado demasiadas veces iniciar sesión. Por favor espera antes de intentarlo nuevamente.',
 'login-abort-generic'        => 'Tu inicio de sesión no fue exitoso - Cancelado',
 'loginlanguagelabel'         => 'Idioma: $1',
-'suspicious-userlogout'      => 'Tu solicitud de desconexión ha sido denegada debido a que parece que ésta ha sido enviada desde un navegador defectuoso o un proxy caché.',
+'suspicious-userlogout'      => 'Tu solicitud de desconexión ha sido denegada, pues parece haber sido enviada desde un navegador defectuoso o un proxy caché.',
 
 # E-mail sending
 'php-mail-error-unknown' => 'Error desconocido en la función mail() de PHP',
@@ -938,7 +942,7 @@ Contraseña temporal: $2',
 Tu dirección IP se almacenará en el historial de ediciones de la página.",
 'anonpreviewwarning'               => "''No has iniciado sesión con una cuenta de usuario. Al guardar los cambios se almacenará tu dirección IP en el historial de edición de la página.''",
 'missingsummary'                   => "'''Atención:''' No has escrito un resumen de edición. Si haces clic nuevamente en «{{int:savearticle}}» tu edición se grabará sin él.",
-'missingcommenttext'               => 'Por favor introduce texto debajo.',
+'missingcommenttext'               => 'Por favor, introduce un texto debajo.',
 'missingcommentheader'             => "'''Recordatorio:''' No has escrito un título para este comentario. Si haces clic nuevamente en \"{{int:savearticle}}\" tu edición se grabará sin él.",
 'summary-preview'                  => 'Previsualización del resumen:',
 'subject-preview'                  => 'Previsualización del tema/título:',
@@ -966,9 +970,9 @@ La razón dada es esta:
 * Caducidad del bloqueo: $6
 * Bloqueo destinado a: $7
 
-Puedes contactar con $1 o con otro de los [[{{MediaWiki:Grouppage-sysop}}|bibliotecarios]] para discutir el bloqueo.
+Puedes contactar con $1 o con otro de los [[{{MediaWiki:Grouppage-sysop}}|administradores]] para discutir el bloqueo.
 
-No puedes utilizar la función «enviar correo electrónico a este usuario»  a menos que tengas una dirección de correo electrónico válida registrada en tus [[Special:Preferences|preferencias de usuario]] y que el bloqueo no haya inhabilitado esta función.
+Ten en cuenta de que no podrás utilizar la herramienta de «enviar correo electrónico a este usuario»  a menos que tengas una dirección de correo electrónico válida registrada en tus [[Special:Preferences|preferencias de usuario]] y que el bloqueo no haya inhabilitado esta función.
 
 Tu actual dirección IP es $3, y el identificador del bloqueo es #$5.
 Por favor incluye todos los datos aquí mostrados en cualquier consulta que hagas.",
@@ -1091,7 +1095,7 @@ El registro de borrado y traslados para esta página están provistos aquí por 
 El registro de borrados y traslados para la página están provistos debajo como referencia.',
 'log-fulllog'                      => 'Ver el registro completo',
 'edit-hook-aborted'                => 'Edición cancelada por la extensión.
-No dió explicaciones.',
+No se aportaron explicaciones.',
 'edit-gone-missing'                => 'No se pudo actualizar la página.
 Parece que ha sido borrada.',
 'edit-conflict'                    => 'Conflicto de edición.',
@@ -1206,10 +1210,10 @@ Aún tiene la posibilidad de verla; puede ampliar los detalles en el [{{fullurl:
 'revdelete-text'              => "Las revisiones borradas aún aparecerán en el historial de la página y en los registros, pero sus contenidos no serán accesibles al público.'''
 Otros administradores de {{SITENAME}} aún podrán acceder al contenido oculto y podrán deshacer el borrado a través de la misma interfaz, a menos que se establezcan restricciones adicionales.",
 'revdelete-confirm'           => 'Por favor confirma que deseas realizar la operación, que entiendes las consecuencias y que estás ejecutando dicha acción acorde con [[{{MediaWiki:Policy-url}}|las políticas]].',
-'revdelete-suppress-text'     => "La eliminación '''solamente''' debería usarse en los siguientes casos:
-* Información potencialmente difamatoria
-* Información personal inapropiada
-* domicilios y números de teléfono, números de seguridad social, etc.",
+'revdelete-suppress-text'     => "La herramienta de supresión '''sólo''' debería usarse en los siguientes casos:
+* Información potencialmente injuriosa o calumniante.
+* Información personal inapropiada, tal como:
+*: ''nombres, domicilios, números de teléfono, números de la seguridad social e información análoga.",
 'revdelete-legend'            => 'Establecer restricciones de revisión:',
 'revdelete-hide-text'         => 'Ocultar el texto de la revisión',
 'revdelete-hide-image'        => 'Ocultar el contenido del archivo',
@@ -1256,8 +1260,8 @@ No tiene acceso a él.',
 
 # Suppression log
 'suppressionlog'     => 'Registro de supresiones',
-'suppressionlogtext' => 'Debajo hay una lista con los borrados y bloqueos recientes, que incluyen contenido oculto de los administradores.
-Mire la [[Special:BlockList|lista de bloqueos activos]] para ver una lista de prohibiciones actualmente operativas.',
+'suppressionlogtext' => 'A continuación hay una lista con los borrados y bloqueos cuyo contenido se encuentra oculto para los administradores.
+Ver la [[Special:BlockList|lista de bloqueos]] que incluye las prohibiciones y bloqueos actualmente operativos.',
 
 # History merging
 'mergehistory'                     => 'Fusionar historiales de páginas',
@@ -1504,10 +1508,10 @@ Tu dirección de correo no se revela cuando otros usuarios te contactan.',
 'saveusergroups'               => 'Guardar grupos de usuarios',
 'userrights-groupsmember'      => 'Miembro de:',
 'userrights-groupsmember-auto' => 'Miembro implícito de:',
-'userrights-groups-help'       => 'Puedes modificar los grupos a los que pertenece este usuario:
-* Un recuadro marcado significa que el usuario está en ese grupo.
-* Un recuadro no marcado significa que el usuario no está en ese grupo.
-* Un * indica que no podrás retirar el grupo una vez que lo concedas, o viceversa.',
+'userrights-groups-help'       => 'Puedes modificar los grupos a los que pertenece {{GENDER:$1|este usuario|esta usuaria}}:
+* Un recuadro marcado significa que {{GENDER:$1|el usuario|la usuaria}} está en ese grupo.
+* Un recuadro no marcado significa que {{GENDER:$1|el usuario|la usuaria}} no está en ese grupo.
+* Un * indica que no podrás eliminar el grupo una vez que lo agregues, o viceversa.',
 'userrights-reason'            => 'Motivo:',
 'userrights-no-interwiki'      => 'No tienes permiso para editar los grupos a los que pertenece un usuario en otros wikis.',
 'userrights-nodatabase'        => 'La base de datos $1 no existe o no es local.',
@@ -1679,6 +1683,7 @@ Tu dirección de correo no se revela cuando otros usuarios te contactan.',
 'newsectionsummary'                 => 'Nueva sección: /* $1 */',
 'rc-enhanced-expand'                => 'Mostrar detalles (requiere JavaScript)',
 'rc-enhanced-hide'                  => 'Ocultar detalles',
+'rc-old-title'                      => 'originalmente creado como "$1"',
 
 # Recent changes linked
 'recentchangeslinked'          => 'Cambios relacionados',
@@ -1691,7 +1696,7 @@ Tu dirección de correo no se revela cuando otros usuarios te contactan.',
 'recentchangeslinked-to'       => 'Muestra los cambios recientes en lugar de la página indicada',
 
 # Upload
-'upload'                      => 'Subir archivo',
+'upload'                      => 'Subir un archivo',
 'uploadbtn'                   => 'Subir un archivo',
 'reuploaddesc'                => 'Regresar al formulario para subir.',
 'upload-tryagain'             => 'Envíe la descripción del archivo modificado',
@@ -1801,6 +1806,20 @@ No se permite subir archivos Java, porque pueden causar que se puedan saltar res
 'filename-bad-prefix'         => "El nombre del archivo que estás subiendo comienza por '''«$1»''', un nombre nada descriptivo de su contenido. Es un típico nombre de los que asignan automáticamente las cámaras digitales.
 
 Por favor, elige un nombre más descriptivo.",
+'filename-prefix-blacklist'   => ' #<!-- deja esta línea exactamente como está --> <pre>
+# La sintaxis de esta página es la siguiente:
+#   * Todo texto que se encuentre después del carácter "#" hasta el final de la línea se tratará como un comentario y será ignorado
+#   * Cualquier línea que no esté en blanco será interpretada como un prefijo típico en nombres de archivo que suelen asignar automáticamente las cámaras digitales
+CIMG # Casio
+DSC_ # Nikon
+DSCF # Fuji
+DSCN # Nikon
+DUW # algunos teléfonos móviles / celulares
+IMG # genérico
+JD # Jenoptik
+MGP # Pentax
+PICT # misc.
+ #</pre> <!-- deja esta línea exactamente como está -->',
 'upload-success-subj'         => 'Subida con éxito',
 'upload-success-msg'          => 'Tu carga de [$2] fue exitosa. Está disponible aquí: [[:{{ns:file}}:$1]]',
 'upload-failure-subj'         => 'Problema en la carga',
@@ -1836,7 +1855,7 @@ $1',
 'backend-fail-writetemp'     => 'No se pudo escribir en el archivo temporal.',
 'backend-fail-closetemp'     => 'No se pudo cerrar el archivo temporal.',
 'backend-fail-read'          => 'No se pudo leer el archivo «$1».',
-'backend-fail-create'        => 'No se pudo crear el archivo «$1».',
+'backend-fail-create'        => 'No se pudo escribir el archivo $1.',
 'backend-fail-readonly'      => 'El servidor (back-end) de almacenamiento "$1" está actualmente en estado de sólo lectura. La razón aducida fue: "$2"',
 'backend-fail-synced'        => 'El archivo "$1" se encuentra en un estado incoherente dentro de los servidores (backends) de almacenamiento interno',
 'backend-fail-connect'       => 'No se pudo conectar al servidor (backend) de almacenamiento "$1".',
@@ -1967,6 +1986,7 @@ La descripción en su [$2 página de descripción del archivo] está mostrada de
 'uploadnewversion-linktext' => 'Subir una nueva versión de este archivo',
 'shared-repo-from'          => 'de $1',
 'shared-repo'               => 'un repositorio compartido',
+'filepage.css'              => '/* Los estilos CSS colocados aquí se incluirán en las páginas de descripción de archivos, incluso en los wikis externos que incluyan estas páginas */',
 
 # File reversion
 'filerevert'                => 'Revertir $1',
@@ -2307,7 +2327,7 @@ La dirección electrónica que indicaste en [[Special:Preferences|tus preferenci
 'watcherrortext' => 'Ocurrió un error al cambiar la configuración de tu lista de seguimiento para «$1».',
 
 'enotif_mailer'                => 'Notificación por correo de {{SITENAME}}',
-'enotif_reset'                 => 'Marcar todas las páginas visitadas',
+'enotif_reset'                 => 'Marcar todas las páginas como visitadas',
 'enotif_newpagetext'           => 'Se trata de una nueva página.',
 'enotif_impersonal_salutation' => 'usuario de {{SITENAME}}',
 'changed'                      => 'modificada',
@@ -2578,8 +2598,8 @@ A continuación se muestra la última entrada del registro de bloqueos para mayo
 'blockiptext'                     => 'Usa el siguiente formulario para bloquear el acceso de escritura desde una dirección IP específica o nombre de usuario.
 Esto debería hacerse sólo para prevenir vandalismos, y de acuerdo a las [[{{MediaWiki:Policy-url}}|políticas]].
 Explica la razón específica del bloqueo (por ejemplo, citando las páginas en particular que han sido objeto de vandalismo).',
-'ipadressorusername'              => 'Dirección IP o nombre de usuario',
-'ipbexpiry'                       => 'Caduca dentro de',
+'ipadressorusername'              => 'Dirección IP o nombre de usuario:',
+'ipbexpiry'                       => 'Caducidad:',
 'ipbreason'                       => 'Motivo:',
 'ipbreasonotherlist'              => 'Otra razón',
 'ipbreason-dropdown'              => '*Motivos comunes de bloqueo
@@ -2588,7 +2608,7 @@ Explica la razón específica del bloqueo (por ejemplo, citando las páginas en 
 ** Publicitar enlaces a otras páginas web
 ** Añadir basura a las páginas
 ** Comportamiento intimidatorio u hostil
-** Abusar de múltiples cuentas
+** Abuso de múltiples cuentas
 ** Nombre de usuario inaceptable',
 'ipb-hardblock'                   => 'Impedir que los usuarios identificados editen desde esta dirección IP',
 'ipbcreateaccount'                => 'Prevenir la creación de cuentas de usuario',
@@ -2631,7 +2651,7 @@ Véase la [[Special:BlockList|lista de bloqueos]] para revisarlo.',
 'blocklist-timestamp'             => 'Marca de tiempo',
 'blocklist-target'                => 'Destino',
 'blocklist-expiry'                => 'Caduca',
-'blocklist-by'                    => 'Bloqueo de administrador',
+'blocklist-by'                    => 'Administrador bloqueante',
 'blocklist-params'                => 'Parámetros de bloqueo',
 'blocklist-reason'                => 'Motivo',
 'ipblocklist-submit'              => 'Buscar',
@@ -2657,9 +2677,9 @@ Véase la [[Special:BlockList|lista de bloqueos]] para revisarlo.',
 'blocklog-showsuppresslog'        => 'Este usuario ha sido bloqueado y ocultado. Se provee el registro de supresiones para más detalle:',
 'blocklogentry'                   => 'bloqueó a [[$1]] $3 durante un plazo de $2',
 'reblock-logentry'                => 'cambió el bloqueo para  [[$1]] con una caducidad de $2 $3',
-'blocklogtext'                    => 'Esto es un registro de bloqueos y desbloqueos de usuarios.
-Las direcciones bloqueadas automáticamente no aparecen aquí.
-Consulte la [[Special:BlockList|lista de direcciones IP bloqueadas]] para ver la lista de bloqueos vigente.',
+'blocklogtext'                    => 'Esto es un registro de acciones de bloqueo y desbloqueo de usuarios.
+Las direcciones IP bloqueadas automáticamente no aparecen aquí.
+Consulta la [[Special:BlockList|lista de bloqueos]] para ver la lista de bloqueos y prohibiciones de operar en vigor.',
 'unblocklogentry'                 => 'desbloqueó a $1',
 'block-log-flags-anononly'        => 'sólo anónimos',
 'block-log-flags-nocreate'        => 'desactivada la creación de cuentas',
@@ -2914,7 +2934,7 @@ No hay un directorio temporal.',
 
 # JavaScriptTest
 'javascripttest'                           => 'Pruebas de JavaScript',
-'javascripttest-disabled'                  => 'Esta función está deshabilitada.',
+'javascripttest-disabled'                  => 'Esta función no ha sido activada en este wiki.',
 'javascripttest-title'                     => 'Pruebas de $1 en ejecución',
 'javascripttest-pagetext-noframework'      => 'Esta página está reservada para ejecutar pruebas de JavaScript.',
 'javascripttest-pagetext-unknownframework' => 'Marco de pruebas desconocido "$1".',
@@ -2995,30 +3015,39 @@ Permite añadir una razón al resumen de edición.',
 'tooltip-summary'                     => 'Introduce un breve resumen',
 
 # Stylesheets
-'common.css'      => '/* Los estilos CSS definidos aquí aplicarán a todas las pieles (skins) */',
-'standard.css'    => '/* Los estilos CSS colocados aquí se aplicarán para todos los usuarios que usen la piel Standard */',
-'nostalgia.css'   => '/* Los estilos CSS colocados aquí se aplicarán para todos los usuarios que usen la piel Nostalgia */',
-'cologneblue.css' => '/* Los estilos CSS colocados aquí se aplicarán para todos los usuarios que usen la piel Cologne Blue */',
-'monobook.css'    => '/* Los estilos CSS colocados aquí se aplicarán para todos los usuarios que usen la piel Monobook */',
-'myskin.css'      => '/* Los estilos CSS colocados aquí se aplicarán para todos los usuarios que usen la piel MySkin */',
-'chick.css'       => '/* Los estilos CSS colocados aquí se aplicarán para todos los usuarios que usen la piel Chick */',
-'simple.css'      => '/* Los estilos CSS colocados aquí se aplicarán para todos los usuarios que usen la piel Simple */',
-'modern.css'      => '/* Los estilos CSS colocados aquí se aplicarán para todos los usuarios que usen la piel Modern */',
-'vector.css'      => '/* Los estilos CSS colocados aquí se aplicarán para todos los usuarios que usen la piel Vector */',
-'print.css'       => '/* Los estilos CSS colocados aquí afectarán la impresión */',
-'handheld.css'    => '/* Los estilos CSS colocados aquí afectarán a los dispositivos móviles basados en las pieles configuradas en $wgHandheldStyle */',
+'common.css'              => '/* Los estilos CSS definidos aquí aplicarán a todas las pieles (skins) */',
+'standard.css'            => '/* Los estilos CSS colocados aquí se aplicarán para todos los usuarios que usen la piel Standard */',
+'nostalgia.css'           => '/* Los estilos CSS colocados aquí se aplicarán para todos los usuarios que usen la piel Nostalgia */',
+'cologneblue.css'         => '/* Los estilos CSS colocados aquí se aplicarán para todos los usuarios que usen la piel Cologne Blue */',
+'monobook.css'            => '/* Los estilos CSS colocados aquí se aplicarán para todos los usuarios que usen la piel Monobook */',
+'myskin.css'              => '/* Los estilos CSS colocados aquí se aplicarán para todos los usuarios que usen la piel MySkin */',
+'chick.css'               => '/* Los estilos CSS colocados aquí se aplicarán para todos los usuarios que usen la piel Chick */',
+'simple.css'              => '/* Los estilos CSS colocados aquí se aplicarán para todos los usuarios que usen la piel Simple */',
+'modern.css'              => '/* Los estilos CSS colocados aquí se aplicarán para todos los usuarios que usen la piel Modern */',
+'vector.css'              => '/* Los estilos CSS colocados aquí se aplicarán para todos los usuarios que usen la piel Vector */',
+'print.css'               => '/* Los estilos CSS colocados aquí afectarán la impresión */',
+'handheld.css'            => '/* Los estilos CSS colocados aquí afectarán a los dispositivos móviles basados en las pieles configuradas en $wgHandheldStyle */',
+'noscript.css'            => '/* Los estilos CSS colocados aquí se aplicarán a los usuarios que hayan desactivado el JavaScript en su navegador */',
+'group-autoconfirmed.css' => '/* Los estilos CSS colocados aquí se aplicarán para todos los usuarios del grupo Usuarios autoconfirmados */',
+'group-bot.css'           => '/* Los estilos CSS colocados aquí se aplicarán para todos los usuarios del grupo Bots */',
+'group-sysop.css'         => '/* Los estilos CSS colocados aquí se aplicarán para todos los usuarios del grupo Administradores */',
+'group-bureaucrat.css'    => '/* Los estilos CSS colocados aquí se aplicarán para todos los usuarios del grupo Burócratas */',
 
 # Scripts
-'common.js'      => '/* Cualquier código JavaScript escrito aquí se cargará para todos los usuarios en cada carga de página */',
-'standard.js'    => '/* Cualquier código JavaScript escrito aquí se cargará para todos los usuarios que usen la piel Estandar */',
-'nostalgia.js'   => '/* Cualquier código JavaScript escrito aquí se cargará para todos los usuarios que usen la piel Nostalgia. */',
-'cologneblue.js' => '/* Cualquier código JavaScript escrito aquí se cargará para todos los usuarios que usen la piel Colonia azul */',
-'monobook.js'    => '/* El código JavaScript que se ponga aquí será cargado por los usuarios de la piel MonoBook */',
-'myskin.js'      => '/* Cualquier código JavaScript escrito aquí se cargará para todos los usuarios que usen la piel Mi piel */',
-'chick.js'       => '/* Cualquier código JavaScript escrito aquí se cargará para todos los usuarios que usen la piel Pollito */',
-'simple.js'      => '/* Cualquier código JavaScript escrito aquí se cargará para todos los usuarios que usen la piel Simple */',
-'modern.js'      => '/* Cualquier código JavaScript escrito aquí se cargará para todos los usuarios que usen la piel Moderna */',
-'vector.js'      => '/* Cualquier código JavaScript escrito aquí se cargará para todos los usuarios que usen la piel Vector */',
+'common.js'              => '/* Cualquier código JavaScript escrito aquí se cargará para todos los usuarios en cada carga de página */',
+'standard.js'            => '/* Cualquier código JavaScript escrito aquí se cargará para todos los usuarios que usen la piel Estandar */',
+'nostalgia.js'           => '/* Cualquier código JavaScript escrito aquí se cargará para todos los usuarios que usen la piel Nostalgia. */',
+'cologneblue.js'         => '/* Cualquier código JavaScript escrito aquí se cargará para todos los usuarios que usen la piel Colonia azul */',
+'monobook.js'            => '/* El código JavaScript que se ponga aquí será cargado por los usuarios de la piel MonoBook */',
+'myskin.js'              => '/* Cualquier código JavaScript escrito aquí se cargará para todos los usuarios que usen la piel Mi piel */',
+'chick.js'               => '/* Cualquier código JavaScript escrito aquí se cargará para todos los usuarios que usen la piel Pollito */',
+'simple.js'              => '/* Cualquier código JavaScript escrito aquí se cargará para todos los usuarios que usen la piel Simple */',
+'modern.js'              => '/* Cualquier código JavaScript escrito aquí se cargará para todos los usuarios que usen la piel Moderna */',
+'vector.js'              => '/* Cualquier código JavaScript escrito aquí se cargará para todos los usuarios que usen la piel Vector */',
+'group-autoconfirmed.js' => '/* Cualquier código JavaScript escrito aquí se cargará para todos los usuarios del grupo Usuarios autoconfirmados */',
+'group-bot.js'           => '/* Cualquier código JavaScript escrito aquí se cargará para todos los usuarios del grupo Bots */',
+'group-sysop.js'         => '/* Cualquier código JavaScript escrito aquí se cargará para todos los usuarios del grupo Administradores */',
+'group-bureaucrat.js'    => '/* Cualquier código JavaScript escrito aquí se cargará para todos los usuarios del grupo Burócratas */',
 
 # Metadata
 'notacceptable' => 'El servidor wiki no puede proveer los datos en un formato que su cliente (navegador) pueda entender.',
@@ -3104,6 +3133,7 @@ $1',
 Ejecutarlo podría comprometer la seguridad de su equipo.",
 'imagemaxsize'           => "Límite de tamaño de imagen:<br />''(para páginas de descripción de archivo)''",
 'thumbsize'              => 'Tamaño de las vistas en miniatura:',
+'widthheight'            => '$1 × $2',
 'widthheightpage'        => '$1 × $2, $3 {{PLURAL:|página|páginas}}',
 'file-info'              => 'tamaño de archivo: $1; tipo MIME: $2',
 'file-info-size'         => '$1 × $2 píxeles; tamaño de archivo: $3; tipo MIME: $4',
@@ -3133,8 +3163,10 @@ Ejecutarlo podría comprometer la seguridad de su equipo.",
 'sp-newimages-showfrom' => 'Mostrar nuevas imágenes empezando por $2, $1',
 
 # Video information, used by Language::formatTimePeriod() to format lengths in the above messages
+'seconds-abbrev' => '$1s',
 'minutes-abbrev' => '$1m',
 'hours-abbrev'   => '$1h',
+'days-abbrev'    => '$1d',
 'seconds'        => '{{PLURAL:$1|un segundo|$1 segundos}}',
 'minutes'        => '{{PLURAL:$1|un minuto|$1 minutos}}',
 'hours'          => '{{PLURAL:$1|una hora|$1 horas}}',
@@ -3667,7 +3699,7 @@ Confirma que realmente quieres volver a crear esta página.",
 'table_pager_first'        => 'Primera página',
 'table_pager_last'         => 'Última página',
 'table_pager_limit'        => 'Mostrar $1 elementos por página',
-'table_pager_limit_label'  => 'Items por página:',
+'table_pager_limit_label'  => 'Elementos por página:',
 'table_pager_limit_submit' => 'Ir',
 'table_pager_empty'        => 'No hay resultados',
 
@@ -3861,7 +3893,7 @@ Este sitio está experimentando dificultades técnicas.',
 'logentry-delete-revision'            => '$1 modificó la visibilidad de {{PLURAL:$5|una edición|$5 ediciones}} en la página $3: $4',
 'logentry-delete-event-legacy'        => '$1 modificó la visibilidad de los eventos del registro en $3',
 'logentry-delete-revision-legacy'     => '$1 modificó la visibilidad de las ediciones en la página $3',
-'logentry-suppress-delete'            => '$1 borró la página $3',
+'logentry-suppress-delete'            => '$1 borró (restricciones para administradores aplicadas) la página $3',
 'logentry-suppress-event'             => '$1 modificó secretamente la visibilidad de {{PLURAL:$5|un evento del registro|$5 eventos del registro}} en $3: $4',
 'logentry-suppress-revision'          => '$1 modificó secretamente la visibilidad de {{PLURAL:$5|una edición|$5 ediciones}} en la página $3: $4',
 'logentry-suppress-event-legacy'      => '$1 modificó secretamente la visibilidad de los eventos del registro en $3',

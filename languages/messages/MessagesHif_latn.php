@@ -8,6 +8,7 @@
  * @file
  *
  * @author Abdul Kadir
+ * @author AndySingh
  * @author Bihari
  * @author Girmitya
  * @author Kaganer
@@ -256,7 +257,7 @@ $1',
 'copyrightpage'        => '{{ns:project}}:Chhaape ke adhikaar',
 'currentevents'        => 'Abhi ke ghatna',
 'currentevents-url'    => 'Project:Abhi ke ghatna',
-'disclaimers'          => 'Jimmewari se chhuut',
+'disclaimers'          => 'Jimmewari se chhutkaari',
 'disclaimerpage'       => 'Project:Saadharan jimmewari nai lo',
 'edithelp'             => 'Badlao pe madat',
 'edithelppage'         => 'Help:Badle me',
@@ -372,10 +373,11 @@ Iske, URL ke likh ke, koi administrator ke report karo.',
 'formerror'            => 'Galti: form ke submit nai kare sakaa',
 'badarticleerror'      => 'Ii chij ke ii panna me nai karaa jae sake hai.',
 'cannotdelete'         => '{{PLURAL:$1|Template|Template}} ke ii jhalak me kaam me lawa gais hae:',
+'cannotdelete-title'   => 'Panna "$1" ke mitae nai saktaa hae',
 'badtitle'             => 'Kharaab title',
 'badtitletext'         => 'Jon panna aap mangta hai uske page title invalid, galat, nai to an incorrectly linked inter-language or inter-wiki title. Isme sait ek yah jaada character hoi jon ki title me nai kaam me lawa jae sake hai.',
-'perfcached'           => 'Niche likha data ke cache karaa gais hai aur sait purana hoi. A maximum of {{PLURAL:$1|one result is|$1 results are}} available in the cache.',
-'perfcachedts'         => 'Niche likha data ke cache kar dewa gais rahaa, aur pichhle time $1 ke badlaa gais rahaa. A maximum of {{PLURAL:$4|one result is|$4 results are}} available in the cache.',
+'perfcached'           => 'Niche likha data ke cache karaa gais hai aur sait purana hoi. Jaada se jaada {{PLURAL:$1|ek result |$1 results}} cache me hae.',
+'perfcachedts'         => 'Niche likha data ke cache kar dewa gais rahaa, aur pichhle time $1 ke badlaa gais rahaa. Jaada se jaada {{PLURAL:$4|ek result |$4 results}} cache me hae.',
 'querypage-no-updates' => 'Ii panna me badlao abhi band hai. Data ke abhi nawaa nai karaa jaai.',
 'wrong_wfQuery_params' => 'Galat parameters to wfQuery()<br />
 Function: $1<br />
@@ -548,6 +550,12 @@ $2
 
 {{PLURAL:$3|Ii temporary password|Ii sab temporary passwords}}  {{PLURAL:$5|ek din|$5 din}} me khalaas hoi.
 Aap ke chaahi ki aap login kar ke ek nawaa password banao.  Agar aur koi ii request karis hae, nai to agae aap aapan purana paasword ke yaad kar liya hae, tab ii sandes ke baare me bhuul jaao aur purana password use karte raho.',
+'passwordreset-emailtext-user'     => '
+Sadasya $1 {{SITENAME}} pe aap ke account details ke {{SITENAME}} $4 ke khaatir  reminder maagis hae
+ NIche ke sadasya {{PLURAL:$3|account hae|accounts hae}} ii e-mail address: $2 se associatied hae
+
+{{PLURAL:$3|Ii temporary password|Ii sab temporary passwords}}  {{PLURAL:$5|ek din|$5 din}} me khalaas hoi.
+Aap ke chaahi ki aap login kar ke ek nawaa password banao.  Agar aur koi ii request karis hae, nai to agae aap aapan purana paasword ke yaad kar liya hae, tab ii sandes ke baare me bhuul jaao aur purana password use karte raho.',
 'passwordreset-emailelement'       => 'Sadasya ke naam: $1
 Kuchh din ke khatir password: $2',
 'passwordreset-emailsent'          => 'Aap ke yaad karae ke khatir ek e-mail ke bhej dewa gais hae.',
@@ -686,7 +694,8 @@ Iske abhi save nai karaa gais hai!'''",
 Yaad rakhna ki custom .css aur .js panna owercase title use kare hai, jaise ki {{ns:user}}:Foo/vector.css aur{{ns:user}}:Foo/Vector.css nai.",
 'updated'                          => '(Update kar dewa gais hai)',
 'note'                             => "'''Dhyan rakkho:'''",
-'previewnote'                      => "'''Ii khali ek jhalak dekhae hai; badlao abhi save nai bhae hai!'''",
+'previewnote'                      => "'''Ii khaali ek jhalak dekhae hai'''
+Tumar badlao abhi save nai bhais hai!",
 'previewconflict'                  => 'Ii preview uu text dekhae hai jon ki uppar ke text editing area me dekhai agar aap iske save karaa.',
 'session_fail_preview'             => "''' Maaf karna! Ham log aap ke badlao ke process nai kare paya hai due to a loss of session data.
 Fir se kosis karna.
@@ -724,8 +733,8 @@ Aap ii bhi waada kartaa hai ki iske aap likha hai aur koi duusra jagah se copy n
 Agar aap nai mangta ki koi aur aap ke yogdaan ke badle, tab aap hian par nai likho.<br />
 Aap ii bhi kasam khata hai ki aap iske apne se likha hai aur kahin se copy nai karaa hai (Aur jaankari khatir $1 ke dekho).
 ''' COPYRIGHT WORK KE BINA AUNUMATI KE SUBMIT NAI KARNA!'''",
-'longpageerror'                    => "'''ERROR: Jon text aap submit karaa hai uu $1 kilobytes lamba hai, ii maximum $2 kilobytes se lamba hai.
-Iske save nai karaa jae sake hai.'''",
+'longpageerror'                    => "!'''ERROR: Jon text aap submit karaa hai uu {{PLURAL:$1|ek kilobyte|$1 kilobytes}} lamba hai, jon ki maximum {{PLURAL:$2|ek kilobyte|$2 kilobytes}} se lamba hai.'''
+Iske bajawa nai karaa jae sake hai.",
 'readonlywarning'                  => "'''WARNING: Database ke maintenance khatir band kar dewa gais hai, tab abhi aap aapan badlao ke save nai kare paega.
 Aap sait aapan badlao ke ek text file me cut-n-paste kar ke baad me use kare khatir save kae le sakta hai.'''
 
@@ -1315,6 +1324,7 @@ Iske $1 {{PLURAL:$1|character|characters}} se kamti rahe ke chaahi.',
 'action-userrights'           => 'sab sadasya ke adhikar ke badlo',
 'action-userrights-interwiki' => 'duusra wiki ke sadasya ke adhikar ke badlo',
 'action-siteadmin'            => 'database ke band karo nai to kholo',
+'action-sendemail'            => 'E-mail bhejo',
 
 # Recent changes
 'nchanges'                          => '$1 {{PLURAL:$1|badlao|badlao}}',
@@ -1346,9 +1356,11 @@ Iske $1 {{PLURAL:$1|character|characters}} se kamti rahe ke chaahi.',
 'number_of_watching_users_pageview' => '[$1 {{PLURAL:$1|user|users}} ke dekhta hae]',
 'rc_categories'                     => 'Categories me limit ("|" se separate  karo)',
 'rc_categories_any'                 => 'Koi bhi',
+'rc-change-size-new'                => '$1 {{PLURAL:$1|byte|bytes}} badlao ke baad',
 'newsectionsummary'                 => '/* $1 */ nawaa vibhag',
 'rc-enhanced-expand'                => 'Details dekhao (JavaScript jaruri hai)',
 'rc-enhanced-hide'                  => 'Details ke lukao',
+'rc-old-title'                      => 'Sab se pahile "$1" ke naam ke niche banawa gais rahaa',
 
 # Recent changes linked
 'recentchangeslinked'          => 'Panna ke jurraa badlao',
@@ -1399,6 +1411,7 @@ Visual overview ke khatir [[Special:NewFiles|nawaa file ke gallery]] ke dekho.',
 'minlength1'                  => 'File ke naam me kamti se kamti ek letter hoe ke chaahi.',
 'illegalfilename'             => 'Filename "$1" me uu akchhar hai jiske panna ke title me allowed nai hai.
 Maharbaani kar ke file ke naam ke badal ke fir se upload kare ke kosis karo.',
+'filename-toolong'            => 'File ke naam 240 bytes se lamba nai rahe sake hae.',
 'badfilename'                 => 'File ke naam badak ke "$1" kar dewa gais hai.',
 'filetype-mime-mismatch'      => 'File ke extension ".$1", jon rakam ke MIME hae, se nai mile hae ($2).',
 'filetype-badmime'            => 'MIME rakam "$1" ke upload kare ke ijajat nai hai.',
@@ -1460,6 +1473,8 @@ Agar jo aap fir bhi aapan file upload kare manta hai tab pichhe jaae ke nawaa na
 'php-uploaddisabledtext'      => 'File uploads ke PHP me disable kar dewa gais hai. Meharbani kar ke file_uploads setting ke check karo.',
 'uploadscripted'              => 'Ii file me HTML nai to script code hai jiske web browser erroneously interpret kare sake hai.',
 'uploadvirus'                 => 'Ii file me virus hai! Details: $1',
+'uploadjava'                  => 'Ii file ek ZIP file hae jisme Java .class ke file hae.
+Java ke uplaod kare ke anumati nai hae, kaaheki isse kuchh security restrictions ke bypass karaa jaae sake hae.',
 'upload-source'               => 'Suruu waala file',
 'sourcefilename'              => 'Suruu waala file ke naam:',
 'sourceurl'                   => 'Suruu waala URL',
@@ -1494,6 +1509,29 @@ Agar jo problem fir nai khatam hoe tab [[Special:ListUsers/sysop|administrator]]
 'upload-unknown-size'       => 'Nai pataa ki ketnaa barraa hae',
 'upload-http-error'         => 'Ek HTTP galti hoe gais hae: $1',
 
+# File backend
+'backend-fail-stream'        => 'File $1 ke stream nai kare sakaa hae.',
+'backend-fail-backup'        => 'File $1 ke backuo nai kare sakaa hae.',
+'backend-fail-notexists'     => 'Ii file $1 nai hae.',
+'backend-fail-hashes'        => 'Compare kare ke khatir file hashes ke nai paawa jaae sakaa hae.',
+'backend-fail-notsame'       => 'Ek duusra file $1 pe hae.',
+'backend-fail-invalidpath'   => '$1, valid storage path nai hae.',
+'backend-fail-delete'        => 'File $1 ke nai mitae sakaa hae.',
+'backend-fail-alreadyexists' => '$1 naam ke ek file abhi hae.',
+'backend-fail-store'         => '$2 pe file $1 ke nai bachae sakaa hae.',
+'backend-fail-copy'          => 'File $1 ke $2 me nai copy kare sakaa hae',
+'backend-fail-move'          => 'File $1 ke hatae ke $2 nai kare sakaa hae.',
+'backend-fail-opentemp'      => 'Temporary file ke nai khole sakaa hae.',
+'backend-fail-writetemp'     => 'Temporary file me nai likhe sakaa hae.',
+'backend-fail-closetemp'     => 'Temporary file ke nai band kare sakaa hae.',
+'backend-fail-read'          => 'File $1 ke nai parrhe sakaa hae.',
+'backend-fail-create'        => 'File $1 ke nai banae sakaa hae.',
+'backend-fail-readonly'      => 'Storage backend "$1" abhi khaali read-only hae. Iske kaaran hae: "$2"',
+'backend-fail-synced'        => 'File "$1" internal storage backends me ek inconsistent state me hae',
+'backend-fail-connect'       => 'Storage backend "$1" se connect nai kare sakaa hae.',
+'backend-fail-internal'      => 'Storage backend "$1" me ek unknown error hoe gais hae.',
+'backend-fail-contenttype'   => 'Ii nai pataa lagae sakaa hae ki "$1" me bachae ke khaatir file kon rakam ke hae.',
+
 # Special:UploadStash
 'uploadstash'          => 'Gupt file ke upload karo',
 'uploadstash-summary'  => 'Ii panna se uu file pe jaawa jaae sake hae jiske upload karaa gais hae (nai to upload karaa jaawe hae) lekin abhi talak wiki me publish nai karaa gais hae.
@@ -1506,8 +1544,7 @@ Ii sab panna khaali uu sadasya ke dekhae hae jon ki iske uplaod karis hae.',
 
 # img_auth script messages
 'img-auth-accessdenied'     => 'ijajat nai hae',
-'img-auth-nopathinfo'       => 'PATH_INFO nai hae
-Aap ke server ke ii jankari de khatir set up nai karaa gais hae
+'img-auth-nopathinfo'       => 'Aap ke server ke ii jankari de khatir set up nai karaa gais hae
 Saait ii CGI-based hoi aur img_auth ke nai support karat hoi.
 https://www.mediawiki.org/wiki/Manual:Image_Authorization ke dekho.',
 'img-auth-notindir'         => 'Maanga gais path configured upload directory me me nai hae.',
@@ -2562,7 +2599,7 @@ Meharbani kar ke, fir se kosis karo.',
 'tooltip-t-contributions'         => 'Ii sadasya ke yogdaan ke suchi dekho',
 'tooltip-t-emailuser'             => 'Ii user ke lage ek mail bhejo',
 'tooltip-t-upload'                => 'File upload karo',
-'tooltip-t-specialpages'          => 'Sab visesh panna ke suchi',
+'tooltip-t-specialpages'          => 'Sab khaas panna ke suchi',
 'tooltip-t-print'                 => 'Ii panna ke chhape waala version',
 'tooltip-t-permalink'             => 'Ii panna ke ii badlao ke pakka jorr',
 'tooltip-ca-nstab-main'           => 'Content panna ke dekho',
@@ -2764,6 +2801,8 @@ Wahii line pe aur koi jorr exception consider karaa jai i.e. jahaan pe panna sak
 'exif-subjectarea'                 => 'Vishay ke jagha',
 'exif-flashenergy'                 => 'Chamak ke taagat',
 'exif-focalplanexresolution'       => 'Focal plane X resolution',
+'exif-focalplaneyresolution'       => 'Focal plane Y ke resolution',
+'exif-subjectlocation'             => 'Subject ke location',
 'exif-filesource'                  => 'File ke source',
 'exif-scenetype'                   => 'Kon rakam ke scene hae',
 'exif-gpsaltitude'                 => 'Uunchai',
@@ -2776,9 +2815,9 @@ Wahii line pe aur koi jorr exception consider karaa jai i.e. jahaan pe panna sak
 'exif-orientation-3' => '180° ghumawa gais hae',
 'exif-orientation-4' => 'Khrraa ultawa gais hae',
 'exif-orientation-5' => '90° CCW ghumawa aur kharraa ultawa gais hae',
-'exif-orientation-6' => '90° CW ghumawa gais hae',
+'exif-orientation-6' => '90° CCW ghumawa gais hae',
 'exif-orientation-7' => '90° CW ghumawa aur kharraa ultawa gais hae',
-'exif-orientation-8' => '90° CCW ghumawa gais hae',
+'exif-orientation-8' => '90° CW ghumawa gais hae',
 
 'exif-meteringmode-0'   => 'Nai maluum',
 'exif-meteringmode-6'   => 'Puura nai',

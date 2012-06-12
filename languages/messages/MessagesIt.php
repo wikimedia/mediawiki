@@ -1,5 +1,5 @@
 <?php
-/** Italian (Italiano)
+/** Italian (italiano)
  *
  * See MessagesQqq.php for message documentation incl. usage of parameters
  * To improve a translation please visit http://translatewiki.net
@@ -292,7 +292,7 @@ $messages = array(
 'tog-externaleditor'          => "Usa per default un editor di testi esterno (solo per utenti esperti, richiede l'uso di impostazioni particolari sul proprio computer. [//www.mediawiki.org/wiki/Manual:External_editors Ulteriori informazioni.])",
 'tog-externaldiff'            => "Usa per default un programma di diff esterno (solo per utenti esperti, richiede l'uso di impostazioni particolari sul proprio computer. [//www.mediawiki.org/wiki/Manual:External_editors Ulteriori informazioni.])",
 'tog-showjumplinks'           => 'Attiva i collegamenti accessibili "vai a"',
-'tog-uselivepreview'          => "Attiva la funzione ''Live preview'' (anteprima in diretta - richiede JavaScript; sperimentale)",
+'tog-uselivepreview'          => "Abilita la funzione ''Live preview'' (anteprima in diretta - richiede JavaScript; sperimentale)",
 'tog-forceeditsummary'        => 'Chiedi conferma se il campo oggetto è vuoto',
 'tog-watchlisthideown'        => 'Nascondi le mie modifiche negli osservati speciali',
 'tog-watchlisthidebots'       => 'Nascondi le modifiche dei bot negli osservati speciali',
@@ -477,7 +477,7 @@ $messages = array(
 'otherlanguages'    => 'Altre lingue',
 'redirectedfrom'    => '(Reindirizzamento da <b>$1</b>)',
 'redirectpagesub'   => 'Pagina di reindirizzamento',
-'lastmodifiedat'    => 'Ultima modifica per la pagina: $2, $1.',
+'lastmodifiedat'    => "Questa pagina è stata modificata per l'ultima volta il $1 alle $2.",
 'viewcount'         => 'Questa pagina è stata letta {{PLURAL:$1|una volta|$1 volte}}.',
 'protectedpage'     => 'Pagina bloccata',
 'jumpto'            => 'Vai a:',
@@ -759,7 +759,7 @@ Riprovare più tardi.',
 'resetpass-no-info'         => "Devi aver effettuato l'accesso per accedere a questa pagina direttamente.",
 'resetpass-submit-loggedin' => 'Cambia password',
 'resetpass-submit-cancel'   => 'Annulla',
-'resetpass-wrong-oldpass'   => 'Password temporanea o corrente non valida.
+'resetpass-wrong-oldpass'   => 'Password temporanea o attuale non valida.
 La password potrebbe essere stata già cambiata, oppure potrebbe essere stata richiesta una nuova password temporanea.',
 'resetpass-temp-password'   => 'Password temporanea:',
 
@@ -846,7 +846,7 @@ Password temporanea: $2',
 'summary-preview'                  => "Anteprima dell'oggetto:",
 'subject-preview'                  => 'Anteprima oggetto/intestazione:',
 'blockedtitle'                     => 'Utente bloccato.',
-'blockedtext'                      => "'''Questo nome utente o indirizzo IP sono stati bloccati.'''
+'blockedtext'                      => "'''Il tuo nome utente o indirizzo IP è stato bloccato.'''
 
 Il blocco è stato imposto da $1. La motivazione del blocco è la seguente: ''$2''
 
@@ -914,11 +914,12 @@ L'ultimo elemento del registro dei blocchi è riportato di seguito per informazi
 'userinvalidcssjstitle'            => "'''Attenzione:'''  Non esiste alcuna skin con nome \"\$1\". Si noti che le pagine per i .css e .js personalizzati hanno l'iniziale del titolo minuscola, ad esempio {{ns:user}}:Esempio/vector.css e non {{ns:user}}:Esempio/Vector.css.",
 'updated'                          => '(Aggiornato)',
 'note'                             => "'''NOTA:'''",
-'previewnote'                      => "'''Questa è solo un'anteprima; le modifiche alla pagina NON sono ancora state salvate!'''",
+'previewnote'                      => "'''Ricorda che questa è solo un'anteprima.'''
+Le tue modifiche NON sono ancora state salvate!",
 'previewconflict'                  => 'L\'anteprima corrisponde al testo presente nella casella di modifica superiore e rappresenta la pagina come apparirà se si sceglie di premere "Salva la pagina" in questo momento.',
 'session_fail_preview'             => "'''Non è stato possibile elaborare la modifica perché sono andati persi i dati relativi alla sessione.
 Riprovare.
-Se il problema persiste, si può provare a [[Special:UserLogout|scollegarsi]] ed effettuare un nuovo accesso.'''",
+Se il problema persiste, si può tentare di [[Special:UserLogout|scollegarsi]] ed effettuare un nuovo accesso.'''",
 'session_fail_preview_html'        => "'''Non è stato possibile elaborare la modifica perché sono andati persi i dati relativi alla sessione.'''
 
 ''Poiché in {{SITENAME}} è abilitato l'uso di HTML senza limitazioni, l'anteprima non viene visualizzata; si tratta di una misura di sicurezza contro gli attacchi JavaScript.''
@@ -1123,7 +1124,7 @@ $1",
 'revdel-restore-visible'      => 'revisioni visibili',
 'pagehist'                    => 'Cronologia della pagina',
 'deletedhist'                 => 'Cronologia cancellata',
-'revdelete-hide-current'      => "Impossibile nascondere l'oggetto con data $1 $2 in quanto è la revisione corrente.",
+'revdelete-hide-current'      => "Impossibile nascondere l'oggetto con data $1 $2 in quanto è la revisione attuale.",
 'revdelete-show-no-access'    => 'Impossibile mostrare l\'oggetto con data $1 $2 in quanto è stato identificato come "riservato" e non si dispone del relativo accesso.',
 'revdelete-modify-no-access'  => 'Impossibile modificare l\'oggetto con data $1 $2 in quanto è stato identificato come "riservato" e non si dispone del relativo accesso.',
 'revdelete-modify-missing'    => "Impossibile modificare l'oggetto con ID $1 in quanto non è presente nel database.",
@@ -1140,7 +1141,8 @@ $1",
 
 # Suppression log
 'suppressionlog'     => 'Log delle soppressioni',
-'suppressionlogtext' => "Di seguito sono elencate le cancellazioni e i blocchi con del contenuto nascosto agli amministratori. Vedi l'[[Special:BlockList|elenco degli IP bloccati]] per l'elenco dei blocchi attivi al momento.",
+'suppressionlogtext' => "Di seguito sono elencate le cancellazioni e i blocchi con del contenuto nascosto agli amministratori.
+Vedi l'[[Special:BlockList|elenco dei blocchi]] per l'elenco dei bandi e dei blocchi attivi al momento.",
 
 # History merging
 'mergehistory'                     => 'Unione cronologie',
@@ -1172,7 +1174,7 @@ $1",
 'mergelogpagetext'   => 'Di seguito sono elencate le ultime operazioni di unione della cronologia di due pagine.',
 
 # Diffs
-'history-title'            => 'Cronologia delle modifiche di "$1"',
+'history-title'            => '$1: cronologia delle modifiche',
 'difference'               => '(Differenze fra le revisioni)',
 'difference-multipage'     => '(Differenze fra le pagine)',
 'lineno'                   => 'Riga $1:',
@@ -1347,7 +1349,7 @@ L'operazione non può essere annullata.",
 'gender-male'                   => 'Maschile',
 'gender-female'                 => 'Femminile',
 'prefs-help-gender'             => "Opzionale: consente di adattare i messaggi del software in funzione del genere dell'utente. Questa informazione sarà pubblica.",
-'email'                         => 'Indirizzo e-mail',
+'email'                         => 'Indirizzo email',
 'prefs-help-realname'           => "L'indicazione del proprio nome vero è opzionale; se si sceglie di inserirlo, verrà utilizzato per attribuire la paternità dei contenuti inviati.",
 'prefs-help-email'              => "L'inserimento del proprio indirizzo e-mail è facoltativo, ma permette di ricevere la propria password qualora venisse dimenticata.",
 'prefs-help-email-others'       => 'Puoi anche scegliere di lasciare che gli altri ti contattino via posta elettronica con un collegamento dalla tua pagina utente o di discussione.
@@ -1462,7 +1464,7 @@ Il tuo indirizzo non viene rivelato quando gli altri utenti ti contattano.',
 'right-editusercssjs'         => 'Modifica i file CSS e JS di altri utenti',
 'right-editusercss'           => 'Modifica i file CSS di altri utenti',
 'right-edituserjs'            => 'Modifica i file JS di altri utenti',
-'right-rollback'              => "Annullamento rapido delle modifiche dell'ultimo utente che ha modificato una particolare pagina",
+'right-rollback'              => "Annulla rapidamente le modifiche dell'ultimo utente che ha modificato una particolare pagina",
 'right-markbotedits'          => 'Segna le modifiche soggette a rollback come effettuate da bot',
 'right-noratelimit'           => 'Non soggetto al limite di azioni',
 'right-import'                => 'Importa pagine da altri wiki',
@@ -1511,7 +1513,7 @@ Il tuo indirizzo non viene rivelato quando gli altri utenti ti contattano.',
 'action-suppressionlog'       => 'visionare questo log privato',
 'action-block'                => 'bloccare questo utente in scrittura',
 'action-protect'              => 'modificare i livelli di protezione per questa pagina',
-'action-rollback'             => "Annullamento rapido delle modifiche dell'ultimo utente che ha modificato una determinata pagina",
+'action-rollback'             => "annullare rapidamente le modifiche dell'ultimo utente che ha modificato una determinata pagina",
 'action-import'               => "importare questa pagina da un'altra wiki",
 'action-importupload'         => 'importare questa pagina tramite upload da file',
 'action-patrol'               => 'segnare le modifiche degli altri utenti come verificate',
@@ -1545,8 +1547,8 @@ Il tuo indirizzo non viene rivelato quando gli altri utenti ti contattano.',
 'rclinks'                           => 'Mostra le $1 modifiche più recenti apportate negli ultimi $2 giorni<br />$3',
 'diff'                              => 'diff',
 'hist'                              => 'cron',
-'hide'                              => 'nascondi',
-'show'                              => 'mostra',
+'hide'                              => 'Nascondi',
+'show'                              => 'Mostra',
 'minoreditletter'                   => 'm',
 'newpageletter'                     => 'N',
 'boteditletter'                     => 'b',
@@ -1557,6 +1559,7 @@ Il tuo indirizzo non viene rivelato quando gli altri utenti ti contattano.',
 'newsectionsummary'                 => '/* $1 */ nuova sezione',
 'rc-enhanced-expand'                => 'Mostra dettagli (richiede JavaScript)',
 'rc-enhanced-hide'                  => 'Nascondi dettagli',
+'rc-old-title'                      => 'originariamente creata come "$1"',
 
 # Recent changes linked
 'recentchangeslinked'          => 'Modifiche correlate',
@@ -1710,7 +1713,7 @@ $1',
 'backend-fail-hashes'        => 'Impossibile ottenere hash dei file per confronto.',
 'backend-fail-notsame'       => 'Esiste già un file non identico a  $1 .',
 'backend-fail-invalidpath'   => '$1 non è un percorso di archiviazione valido.',
-'backend-fail-delete'        => 'Impossibile eliminare il file  $1 .',
+'backend-fail-delete'        => 'Impossibile cancellare il file $1.',
 'backend-fail-alreadyexists' => 'Il file $1 esiste già.',
 'backend-fail-store'         => 'Impossibilie memorizzare file  $1  in  $2 .',
 'backend-fail-copy'          => 'Impossibile copiare il file  $1  in  $2 .',
@@ -1719,7 +1722,7 @@ $1',
 'backend-fail-writetemp'     => 'Impossibile creare il file temporaneo.',
 'backend-fail-closetemp'     => 'Impossibile chiudere il file temporaneo.',
 'backend-fail-read'          => 'Impossibile leggere il file  $1 .',
-'backend-fail-create'        => 'Impossibile creare il file  $1 .',
+'backend-fail-create'        => 'Impossibile creare il file $1.',
 'backend-fail-readonly'      => 'Il backend "$1" è attualmente di sola lettura. La ragione indicata è: "$2"',
 'backend-fail-synced'        => 'Il file "$1" è in uno stato non coerente nei backend di memoria interna.',
 'backend-fail-connect'       => 'Impossibile connettersi al backend di memoria "$1".',
@@ -1819,7 +1822,7 @@ Se vengono filtrati per utente, saranno mostrati solamente quei file per i quali
 'filehist-deleteall'        => 'cancella tutto',
 'filehist-deleteone'        => 'cancella',
 'filehist-revert'           => 'ripristina',
-'filehist-current'          => 'corrente',
+'filehist-current'          => 'attuale',
 'filehist-datetime'         => 'Data/Ora',
 'filehist-thumb'            => 'Miniatura',
 'filehist-thumbtext'        => 'Miniatura della versione delle $1',
@@ -1958,7 +1961,7 @@ I redirect <del>cancellati</del> sono stati corretti.',
 'nrevisions'              => '$1 {{PLURAL:$1|revisione|revisioni}}',
 'nviews'                  => '$1 {{PLURAL:$1|visita|visite}}',
 'nimagelinks'             => 'Utilizzato su $1 {{PLURAL:$1|pagina|pagine}}',
-'ntransclusions'          => 'tilizzato su $1 {{PLURAL:$1|pagina|pagine}}',
+'ntransclusions'          => 'usato in $1 {{PLURAL:$1|pagina|pagine}}',
 'specialpage-empty'       => 'Questa pagina speciale è attualmente vuota.',
 'lonelypages'             => 'Pagine orfane',
 'lonelypagestext'         => 'Le pagine indicate di seguito sono prive di collegamenti provenienti da altre pagine di {{SITENAME}} e non sono incluse in nessuna pagina del sito.',
@@ -2346,7 +2349,7 @@ Le impostazioni correnti per la pagina sono '''$1''':",
 'undeletepagetitle'            => "'''Quanto segue è composto da revisioni cancellate di [[:$1|$1]]'''.",
 'viewdeletedpage'              => 'Visualizza le pagine cancellate',
 'undeletepagetext'             => "{{PLURAL:$1|La pagina indicata di seguito è stata cancellata, ma è ancora in archivio e pertanto può essere recuperata|Le pagine indicate di seguito sono state cancellate, ma sono ancora in archivio e pertanto possono essere recuperate}}. L'archivio può essere svuotato periodicamente.",
-'undelete-fieldset-title'      => 'Recupera revisioni',
+'undelete-fieldset-title'      => 'Ripristina versioni',
 'undeleteextrahelp'            => "Per recuperare l'intera cronologia della pagina, lasciare tutte le caselle deselezionate e fare clic su '''''{{int:undeletebtn}}'''''.
 Per effettuare un ripristino selettivo, selezionare le caselle corrispondenti alle revisioni da ripristinare e fare clic su '''''{{int:undeletebtn}}'''''.",
 'undeleterevisions'            => '{{PLURAL:$1|Una revisione|$1 revisioni}} in archivio',
@@ -2480,8 +2483,8 @@ Indicare il motivo specifico per il quale si procede al blocco (per esempio, cit
 'ipb-confirm'                     => 'Conferma il blocco',
 'badipaddress'                    => 'Indirizzo IP non valido.',
 'blockipsuccesssub'               => 'Blocco eseguito',
-'blockipsuccesstext'              => '[[Special:Contributions/$1|$1]] è stato bloccato. <br />
-Consultare la [[Special:BlockList|lista degli IP bloccati]] per vedere i blocchi attivi.',
+'blockipsuccesstext'              => '[[Special:Contributions/$1|$1]] è stato bloccato.<br />
+Consultare la [[Special:BlockList|lista dei blocchi]] per vedere i blocchi attivi.',
 'ipb-blockingself'                => 'Stai per bloccare te stesso! Sei sicuro di volerlo fare?',
 'ipb-confirmhideuser'             => 'Si sta per bloccare un utente con l\'opzione "Nascondi utente" abilitata.
 In questo modo si evita che il nome utente compaia in tutte le liste e le voci di registro.
@@ -2526,7 +2529,7 @@ Sei sicuro di voler continuare?',
 'unblocklink'                     => 'sblocca',
 'change-blocklink'                => 'cambia blocco',
 'contribslink'                    => 'contributi',
-'emaillink'                       => 'invia e-mail',
+'emaillink'                       => 'invia email',
 'autoblocker'                     => 'Bloccato automaticamente perché l\'indirizzo IP è condiviso con l\'utente "[[User:$1|$1]]".
 Il blocco dell\'utente $1 è stato imposto per il seguente motivo: "$2".',
 'blocklogpage'                    => 'Blocchi',
@@ -2534,7 +2537,9 @@ Il blocco dell\'utente $1 è stato imposto per il seguente motivo: "$2".',
 'blocklog-showsuppresslog'        => 'Questo utente è stato bloccato e nascosto in precedenza. Il registro delle rimozioni è riportato di seguito per informazione:',
 'blocklogentry'                   => 'ha bloccato [[$1]] per un periodo di $2 $3',
 'reblock-logentry'                => 'ha cambiato le impostazioni del blocco per [[$1]] con una scadenza di $2 $3',
-'blocklogtext'                    => "Di seguito sono elencate le azioni di blocco e sblocco utenti. Gli indirizzi IP bloccati automaticamente non sono elencati. Consultare l'[[Special:BlockList|elenco IP bloccati]] per l'elenco degli indirizzi e nomi utente il cui blocco è operativo.",
+'blocklogtext'                    => "Di seguito sono elencate le azioni di blocco e sblocco utenti.
+Gli indirizzi IP bloccati automaticamente non sono elencati.
+Consultare l'[[Special:BlockList|elenco dei blocchi]] per l'elenco dei bandi o blocchi attualmente operativi.",
 'unblocklogentry'                 => 'ha sbloccato $1',
 'block-log-flags-anononly'        => 'solo utenti anonimi',
 'block-log-flags-nocreate'        => 'creazione account bloccata',
@@ -2557,7 +2562,7 @@ Il blocco dell\'utente $1 è stato imposto per il seguente motivo: "$2".',
 'ip_range_toolarge'               => 'Non è possibile bloccare range superiori al /$1',
 'blockme'                         => 'Bloccami',
 'proxyblocker'                    => 'Blocco dei proxy aperti',
-'proxyblocker-disabled'           => 'Questa funzione non è attiva.',
+'proxyblocker-disabled'           => 'Questa funzione è disabilitata.',
 'proxyblockreason'                => 'Questo indirizzo IP è stato bloccato perché risulta essere un proxy aperto. Si prega di contattare il proprio fornitore di accesso a Internet o il supporto tecnico e informarli di questo grave problema di sicurezza.',
 'proxyblocksuccess'               => 'Fatto.',
 'sorbsreason'                     => 'Questo indirizzo IP è elencato come proxy aperto nella blacklist DNSBL utilizzata da {{SITENAME}}.',
@@ -2773,7 +2778,7 @@ Tutte le operazioni di importazione trans-wiki sono registrate nel [[Special:Log
 
 # JavaScriptTest
 'javascripttest'                           => 'Sperimentazione JavaScript',
-'javascripttest-disabled'                  => 'Questa funzione è disabilitata.',
+'javascripttest-disabled'                  => 'Questa funzione non è abilitata su questo wiki.',
 'javascripttest-title'                     => 'In esecuzione test per $1',
 'javascripttest-pagetext-noframework'      => "Questa pagina è riservata all'esecuzione di test di JavaScript.",
 'javascripttest-pagetext-unknownframework' => 'Framework di test sconosciuto "$1".',
@@ -2893,7 +2898,7 @@ Tutte le operazioni di importazione trans-wiki sono registrate nel [[Special:Log
 'anonymous'        => '{{PLURAL:$1|Utente anonimo|Utenti anonimi}} di {{SITENAME}}',
 'siteuser'         => '$1, utente di {{SITENAME}}',
 'anonuser'         => '$1, utente anonimo di {{SITENAME}}',
-'lastmodifiedatby' => "Questa pagina è stata modificata per l'ultima volta il $2, $1 da $3.",
+'lastmodifiedatby' => "Questa pagina è stata modificata per l'ultima volta il $1 alle $2 da $3.",
 'othercontribs'    => 'Il testo attuale è basato su contributi di $1.',
 'others'           => 'altri',
 'siteusers'        => '$1, {{PLURAL:$2|utente|utenti}} di {{SITENAME}}',
@@ -2977,7 +2982,7 @@ $1',
 'newimages'             => 'Galleria dei nuovi file',
 'imagelisttext'         => "La lista presentata di seguito, costituita da {{PLURAL:$1|un file|'''$1''' file}}, è ordinata $2.",
 'newimages-summary'     => 'Questa pagina speciale mostra i file caricati più di recente.',
-'newimages-legend'      => 'Nome file',
+'newimages-legend'      => 'Filtra',
 'newimages-label'       => 'Nome file (o una parte di esso):',
 'showhidebots'          => '($1 i bot)',
 'noimages'              => "Non c'è nulla da vedere.",

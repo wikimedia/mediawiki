@@ -48,6 +48,8 @@ $messages = array(
 'tog-oldsig'                  => 'موجودہ دستخطو نمائش:',
 'tog-fancysig'                => '(سادہ دسخط بلا خودکار ربط)',
 'tog-externaleditor'          => 'ہمیشہ بیرونی تدوین کار استعمال کورے (صرفی ماہرینن بچے، ھمو بچے کمپیوٹرا خاص ترتیبات درکار بونیان)',
+'tog-externaldiff'            => 'ہمیشہ بیرونی تدوین کار استعمال کورے (صرفی ماہرینن بچے، ھمو بچے کمپیوٹرا خاص ترتیبات درکار بونیان)',
+'tog-showjumplinks'           => 'ھیہ ووشکی څروٹھاوے',
 'tog-uselivepreview'          => 'براہِ راست نمائش استعمال کورے (JavaScript ضرورت بوی)',
 'tog-forceeditsummary'        => 'کیاوتکی آوا ترمیمی خلاصو خالی پیڅھیتام تھے متے لو دیت',
 'tog-watchlisthideown'        => 'زیرِنظرفہرستہ مہ ترمیماتن کھوشاوے',
@@ -66,7 +68,10 @@ $messages = array(
 
 # Font style option in Special:Preferences
 'editfont-style'     => 'خانۂ تدوینو اندازِ تحریر:',
+'editfont-default'   => 'ڈیفالٹ براوزر',
 'editfont-monospace' => 'یکفضائی نویسہ',
+'editfont-sansserif' => 'بےحلیہ فونٹ',
+'editfont-serif'     => 'حلیہ فونٹ',
 
 # Dates
 'sunday'        => 'یک شمبے',
@@ -121,19 +126,23 @@ $messages = array(
 'dec'           => 'دسمبر',
 
 # Categories related messages
-'pagecategories'                => '{{PLURAL:$1|زمرہ|زمرہ جات}}',
-'category_header'               => 'زمرہ "$1" مضمون\'',
-'subcategories'                 => 'ذیلی ذمرہ جات',
-'category-media-header'         => 'زمرا "$1" میڈیا',
-'category-empty'                => '‘‘ھیہ زمرا ھنیسے کیہ صفحہ یا میڈیا موجود نیکی.’’',
-'hidden-categories'             => '{{PLURAL:$1|کھوشت زمرہ|کھوشت زمرہ جات}}',
-'hidden-category-category'      => 'کھوشت زمرہ جات',
-'category-subcat-count'         => '{{PLURAL:$2|اِس زمرہ میں صرف درج ذیل ذیلی زمرہ ہے.|اِس زمرہ میں درج ذیل {{PLURAL:$1|ذیلی زمرہ|$1 ذیلی زمرہ جات}}, کل $2 میں سے.}}',
-'category-subcat-count-limited' => 'ھیہ زمرا درج ذیل {{PLURAL:$1|ذیلی زمرہ ہے|$1 ذیلی زمرہ جات شینی}}.',
-'category-article-count'        => '{{Plural:$2|مضمون شینی|{{Plural:$1|صفحا|صفحا}} $2 ھیہ زمرا مضمون شینی}}',
-'listingcontinuesabbrev'        => 'جاری',
-'index-category'                => 'نو انڈیکس صفحات',
-'noindex-category'              => 'نو انڈیکس صفحات',
+'pagecategories'                 => '{{PLURAL:$1|زمرہ|زمرہ جات}}',
+'category_header'                => 'زمرہ "$1" مضمون\'',
+'subcategories'                  => 'ذیلی ذمرہ جات',
+'category-media-header'          => 'زمرا "$1" میڈیا',
+'category-empty'                 => '‘‘ھیہ زمرا ھنیسے کیہ صفحہ یا میڈیا موجود نیکی.’’',
+'hidden-categories'              => '{{PLURAL:$1|کھوشت زمرہ|کھوشت زمرہ جات}}',
+'hidden-category-category'       => 'کھوشت زمرہ جات',
+'category-subcat-count'          => '{{PLURAL:$2|اِس زمرہ میں صرف درج ذیل ذیلی زمرہ ہے.|اِس زمرہ میں درج ذیل {{PLURAL:$1|ذیلی زمرہ|$1 ذیلی زمرہ جات}}, کل $2 میں سے.}}',
+'category-subcat-count-limited'  => 'ھیہ زمرا درج ذیل {{PLURAL:$1|ذیلی زمرہ ہے|$1 ذیلی زمرہ جات شینی}}.',
+'category-article-count'         => '{{Plural:$2|مضمون شینی|{{Plural:$1|صفحا|صفحا}} $2 ھیہ زمرا مضمون شینی}}',
+'category-article-count-limited' => 'The following {{PLURAL:$1|صفحا|$1 صفحات}} in the current category.',
+'category-file-count'            => '{{Plural:$2|مضمون شینی|{{Plural:$1|صفحا|صفحا}} $2 ھیہ زمرا مضمون شینی}}',
+'category-file-count-limited'    => 'The following {{PLURAL:$1|file is|$1 files are}} in the current category.',
+'listingcontinuesabbrev'         => 'جاری',
+'index-category'                 => 'نو انڈیکس صفحات',
+'noindex-category'               => 'نو انڈیکس صفحات',
+'broken-file-category'           => 'نس پھت صفحات',
 
 'about'         => 'تعارف',
 'article'       => 'صفحۂ مشمول',
@@ -162,6 +171,7 @@ $messages = array(
 'vector-action-delete'     => 'بوغاوے',
 'vector-action-move'       => 'منتقل کورے',
 'vector-action-protect'    => 'محفوظ کورے',
+'vector-action-undelete'   => 'اچی انگیے',
 'vector-action-unprotect'  => 'غیر محفوظ',
 'vector-view-create'       => 'ساوزاوے',
 'vector-view-edit'         => 'ایڈٹ کورے',
@@ -225,6 +235,11 @@ $messages = array(
 'jumpto'            => 'ھیہ ووشکی څروٹھاوے',
 'jumptonavigation'  => 'رہنمائی',
 'jumptosearch'      => 'تلاش',
+'view-pool-error'   => 'معذرت: تمام سرورا موجودہ وختہ اِضافی بوجھ شیر.
+بہت زیادہ صارفین موجودہ وختہ ھیہ صفحو لاڑینیان 
+برائے مہربانی! صفحو لوڑیکو بچے دوبارہ کوشش کوریکاری پروشٹی پھوکرو انتظار کورے.
+
+$1',
 
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
 'aboutsite'            => 'تعارف {{SITENAME}}',
@@ -762,7 +777,8 @@ HTML tags لوڑے.',",
 'protectedpages'       => 'محفوظ شدہ صفحہ',
 'protectedtitles'      => 'محفوظ شدہ صفحہ',
 'listusers'            => 'فہرست ارکان',
-'usercreated'          => 'ساوزینو ھوی $1 at $2',
+'usercreated'          => '
+{{GENDER:$3|تخلیق شدہ}}  بتاریخ $1 بوقت $2',
 'newpages'             => 'نوغ صفحات',
 'newpages-username'    => 'اسمِ رکنیت',
 'move'                 => 'منتقل',

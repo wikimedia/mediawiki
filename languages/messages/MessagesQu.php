@@ -527,7 +527,7 @@ $1",
 'versionrequired'     => "$1 nisqa MediaWiki llamk'apusqatam muchunki kay p'anqata llamk'achinaykipaq",
 'versionrequiredtext' => "$1 nisqa MediaWiki llamk'apusqatam muchunki kay p'anqata llamk'achinaykipaq. Astawan willasunaykipaqqa, [[Special:Version]] nisqapi qhaway",
 
-'ok'                      => 'OK',
+'ok'                      => 'Arí niy',
 'retrievedfrom'           => '"$1" p\'anqamanta chaskisqa (Qhichwa / Quechua)',
 'youhavenewmessages'      => '$1 qhawanayki kachkan ($2).',
 'newmessageslink'         => 'Musuq willaymi',
@@ -914,7 +914,8 @@ Hark'ay hallch'api qhipaq hark'asqataqa kaypim rikunki willasunaykipaq:",
 'userinvalidcssjstitle'            => "'''Paqtataq:''' Manam kanchu \"\$1\" qara. Yuyariy, kikinpa .css, .js p'anqankunaqa uchuy sanampa umalliyuqmi, ahinataq {{ns:user}}:Foo/vector.css manataq  {{ns:user}}:Foo/Vector.css nisqachu.",
 'updated'                          => '(Musuqchasqa)',
 'note'                             => "'''Musyay:'''",
-'previewnote'                      => "'''Yuyaykuy: Kayqa manaraq waqaychaspa qhawariymi!'''",
+'previewnote'                      => "'''Yuyaykuy: Kayqa qhawariyllam.'''
+Llamk'apusqaykiqa manaraqmi waqaychasqachu!",
 'previewconflict'                  => "Rikuchkanki kay p'anqataqa, ima hinachus waqaychasqa kanqa.",
 'session_fail_preview'             => "'''Achachaw! Llamk'apusqaykiqa manam waqaychasqachu, llamk'ana tiyaypa willankuna chinkaptinmi. Ama hina kaspa, musuqmanta ruraykachay. Mana atispaykiqa, [[Special:UserLogout|lluqsispa]] musuqmanta yaykuy.'''",
 'session_fail_preview_html'        => "'''Achachaw! Llamk'apusqaykiqa manam waqaychasqachu, llamk'ana tiyaypa willankuna chinkaptinmi.'''
@@ -1143,7 +1144,7 @@ Ama hina kaspa, hallch'akunapi qhaway.",
 
 # Suppression log
 'suppressionlog'     => "Ñit'ipay hallch'asqa",
-'suppressionlogtext' => "Kay qatiq sutisuyupiqa ñaqha qullusqakunatam hark'asqakunatapas rikunki, kamachiqkunamanta pakasqa samiqniyuq. [[Special:BlockList|IP hark'ay sutisuyuta]] qhaway kunan hark'asqakunata rikunaykipaq.",
+'suppressionlogtext' => "Kay qatiq sutisuyupiqa ñaqha qullusqakunatam hark'asqakunatapas rikunki, kamachiqkunamanta pakasqa samiqniyuq. [[Special:BlockList|Hark'ay sutisuyuta]] qhaway kunan hark'asqakunata rikunaykipaq.",
 
 # History merging
 'mergehistory'                     => "P'anqa wiñay kawsaykunata huñuy",
@@ -1561,6 +1562,7 @@ $1 {{PLURAL:$1|sanampamanta|sanampakunamanta}} aswan pisi kananmi.',
 'newsectionsummary'                 => 'Musuq raki: /* $1 */',
 'rc-enhanced-expand'                => 'Imaymanachakunata rikuchiy (JavaScript kananmi)',
 'rc-enhanced-hide'                  => 'Imaymanachakunata pakay',
+'rc-old-title'                      => 'ñawpaqta "$1" sutiwan kamarisqa',
 
 # Recent changes linked
 'recentchangeslinked'          => "Hukchasqa t'inkimuq",
@@ -1709,7 +1711,7 @@ $1',
 'backend-fail-writetemp'     => "Manam atinichu mit'alla willañiqiman qillqayta.",
 'backend-fail-closetemp'     => "Manam atinichu mit'alla willañiqita wichq'ayta.",
 'backend-fail-read'          => 'Manam atinichu $1 sutiyuq willañiqita ñawiriyta.',
-'backend-fail-create'        => 'Manam atinichu $1 sutiyuq willañiqita kamariyta.',
+'backend-fail-create'        => 'Manam atinichu $1 sutiyuq willañiqita qillqayta.',
 'backend-fail-readonly'      => '"$1" sutiyuq willañiqi hallch\'ana sirwiqqa ñawirinallapaqmi kachkan, kayrayku: "$2"',
 'backend-fail-synced'        => '"$1" sutiyuq willañiqiqa manam sinchichu kachkan ukhupi willañiqi hallch\'ana sirwiqkunapi',
 'backend-fail-connect'       => 'Manam atinichu "$1" sutiyuq willañiqi hallch\'ana sirwiqwan t\'inkinakuyta.',
@@ -2466,7 +2468,7 @@ Willariy imaraykum hark'anki (ahinataq: sapaq wandaluchasqa p'anqakunamanta will
 'ipb-confirm'                     => "Hark'ayta takyachiy",
 'badipaddress'                    => 'IP huchhaqa manam allinchu.',
 'blockipsuccesssub'               => "Ruraqqa hark'asqañam",
-'blockipsuccesstext'              => "[[Special:Contributions/$1|$1]] huchhayuq tiyayqa hark'asqañam. <br />[[Special:BlockList|Hark'asqakunamanta p'anqata]] qhaway hark'akunata hukchanaykipaq.",
+'blockipsuccesstext'              => "[[Special:Contributions/$1|$1]] nisqaqa hark'asqam. <br />[[Special:BlockList|Hark'ay sutisuyuta]] qhaway hark'akunata hukchanaykipaq.",
 'ipb-blockingself'                => "Kikiykitam hark'aykachachkanki!  Chiqapta kayta rurayta munankichu?",
 'ipb-confirmhideuser'             => 'Ruraqta hark\'aykachachkanki, payman "Ruraqta pakay" nisqam.  Chaywanqa manam pipas chay ruraqpa sutinta ima sutisuyupipas hallch\'apipas rikunqachu.  Chiqapta kayta rurayta munankichu?',
 'ipb-edit-dropdown'               => "Hark'aypa hamunta llamk'apuy",
@@ -2516,7 +2518,7 @@ Willariy imaraykum hark'anki (ahinataq: sapaq wandaluchasqa p'anqakunamanta will
 'blocklog-showsuppresslog'        => "Kay ruraqqa ñawpaqta hark'asqam pakasqapas. Ñit'ipay hallch'ataqa kaypim rikunki willasunaykipaq:",
 'blocklogentry'                   => "hark'an [[$1]]-ta kay pachakama: $2 $3",
 'reblock-logentry'                => "hukchan [[$1]]-paq hark'ana allinchanakunata kay pachakama hark'aspa: $2 $3",
-'blocklogtext'                    => "Kayqa ruraqta hark'asqakunap qispichisqakunappas hallch'anmi. Kikinmanta hark'asqa tiyaykunataqa manam kaypi rikunkichu. [[Special:BlockList|Hark'asqakunamanta p'anqata]] qhaway kunan hark'asqakunata rikunaykipaq.",
+'blocklogtext'                    => "Kayqa ruraqta hark'asqakunap qispichisqakunappas hallch'anmi. Kikinmanta hark'asqa tiyaykunataqa manam kaypi rikunkichu. [[Special:BlockList|Hark'ay sutisuyuta]] qhaway kunan hark'asqakunata rikunaykipaq.",
 'unblocklogentry'                 => 'paskan "$1"-ta hark\'asqa kaymanta',
 'block-log-flags-anononly'        => 'sutinnaqlla',
 'block-log-flags-nocreate'        => 'rakiquna kichariyman ama nisqa',
@@ -2763,7 +2765,7 @@ Tukuy hawa wikimanta chaskisqakunaqa [[Special:Log/import|hawamanta chaskiy hall
 
 # JavaScriptTest
 'javascripttest'                           => 'JavaScript llanchiy',
-'javascripttest-disabled'                  => 'Kay ruranamanqa ama nisqam.',
+'javascripttest-disabled'                  => 'Kay ruranaqa kay wikipi manam atichisqachu.',
 'javascripttest-title'                     => '$1 llanchiykunam richkan',
 'javascripttest-pagetext-noframework'      => "Kay p'anqaqa JavaScript llanchina purichinallapaqmi kachun.",
 'javascripttest-pagetext-unknownframework' => 'Mana riqsisqa "$1" nisqa llanchina inchu ruray',

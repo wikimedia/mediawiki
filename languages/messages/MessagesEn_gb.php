@@ -28,14 +28,47 @@ $messages = array(
 'tog-watchdefault'   => 'Add pages I edit to my watchlist',
 'tog-watchmoves'     => 'Add pages I move to my watchlist',
 'tog-watchdeletion'  => 'Add pages I delete to my watchlist',
+'tog-showjumplinks'  => 'Enable ‘jump to’ accessibility links',
+
+# Categories related messages
+'category_header'       => 'Pages in category ‘$1’',
+'category-media-header' => 'Media in category ‘$1’',
+
+'retrievedfrom'  => 'Retrieved from ‘$1’',
+'page-rss-feed'  => '‘$1’ RSS feed',
+'page-atom-feed' => '‘$1’ Atom feed',
 
 # General errors
-'missing-article' => 'The database did not find the text of a page that it should have found, named ‘$1’ $2.
+'dberrortext'          => 'A database query syntax error has occurred.
+This may indicate a bug in the software.
+The last attempted database query was:
+<blockquote><tt>$1</tt></blockquote>
+from within function ‘<tt>$2</tt>.’
+Database returned error ‘<tt>$3: $4</tt>.’',
+'dberrortextcl'        => 'A database query syntax error has occurred.
+The last attempted database query was:
+‘$1’
+from within function ‘$2.’
+Database returned error ‘$3: $4’',
+'missing-article'      => 'The database did not find the text of a page that it should have found, named ‘$1’ $2.
 
 This is usually caused by following an outdated diff or history link to a page that has been deleted.
 
 If this is not the case, you may have found a bug in the software.
 Please report this to an [[Special:ListUsers/sysop|administrator]], making note of the URL.',
+'fileappenderrorread'  => 'Could not read ‘$1’ during append.',
+'fileappenderror'      => 'Could not append ‘$1’ to ‘$2.’',
+'filecopyerror'        => 'Could not copy file ‘$1’ to ‘$2.’',
+'filerenameerror'      => 'Could not rename file ‘$1’ to ‘$2.’',
+'filedeleteerror'      => 'Could not delete file ‘$1’.',
+'directorycreateerror' => 'Could not create directory ‘$1’.',
+'filenotfound'         => 'Could not find file ‘$1’.',
+'fileexistserror'      => 'Unable to write to file ‘$1’: file exists',
+'unexpected'           => 'Unexpected value: ‘$1’=‘$2’.',
+'cannotdelete'         => 'The page or file ‘$1’ could not be deleted.
+It may have already been deleted by someone else.',
+'cascadeprotected'     => 'This page has been protected from editing, because it is included in the following {{PLURAL:$1|page, which is|pages, which are}} protected with the ‘cascading’ option turned on:
+$2',
 
 # Miscellaneous special pages
 'uncategorizedpages'      => 'Uncategorised pages',

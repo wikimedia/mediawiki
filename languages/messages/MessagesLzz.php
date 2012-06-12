@@ -10,7 +10,9 @@
  * @author Bombola
  * @author Dato deutschland
  * @author Dawid Deutschland
+ * @author Erdemaslancan
  * @author Ibero-kolxi
+ * @author Reedy
  * @author The Evil IP address
  */
 
@@ -111,8 +113,11 @@ $messages = array(
 'qbspecialpages' => 'Doxmeli sayfape',
 
 # Vector skin
-'vector-action-delete' => 'Jili',
-'vector-view-edit'     => 'Doktiri',
+'vector-action-delete'  => 'Jili',
+'vector-action-protect' => 'İçvi',
+'vector-view-create'    => 'dokʼidi',
+'vector-view-edit'      => 'Doktiri',
+'variants'              => "Variant'epe",
 
 'errorpagetitle'   => 'Çilata',
 'returnto'         => '$1 butʼkʼaşa goikti.',
@@ -168,7 +173,7 @@ $messages = array(
 
 'ok'                      => 'HO',
 'retrievedfrom'           => '"$1" adresişen eizdinu',
-'youhavenewmessages'      => 'Ağani <u>$1</u> giğun. ($2)',
+'youhavenewmessages'      => 'Ağani $1 giğun. ($2)',
 'newmessageslink'         => 'ağani mesajepe',
 'newmessagesdifflink'     => 'çodinaşi oktiroba',
 'youhavenewmessagesmulti' => "$1's ağne mesajepe giğun",
@@ -268,7 +273,7 @@ varna am butʼkʼa [{{fullurl:{{FULLPAGENAME}}|action=edit}} gaktirinen]</span>.
 paktʼiş doloxe ren (detayepe şeni $1's o3ʼkʼedi).
 Na qʼvi meşvelaşa başka makʼaturepeşkʼelen pʼatʼi mutxanepe ixvenen varna xemoşletinerot do uoçodinurot başka svapeşa niçinen, aya kʼabuli qʼvi varna am sitʼe şeni mutu mo ikip!<br />
 Edo amuş metʼi, ak mxuciş meçamu ginonna, meşvelape ti-skani kʼala oçʼaruşi re, varna ofi3ialurişa gon3ʼkʼimeri na ren ar kʼaynağişen (odudeşen) varna başka oxoşkveri kʼaynağepeşen (odudepeşen) na ezdi kʼabuli oxvenuşi re.<br />
-'''<center>DOXMELİ HAKʼEPETE NA İŞİNAXENAN XANDAPE AK MO UKʼATEPT!</center>'''",
+'''DOXMELİ HAKʼEPETE NA İŞİNAXENAN XANDAPE AK MO UKʼATEPT!'''",
 'templatesused'                    => 'Am butʼkʼas na ixmarinen {{PLURAL:$1|şabloni|şablonepe}}:',
 'templatesusedpreview'             => 'Am "Evvelişen i3ʼkʼedi" fonkʼsionis na ixmarinen {{PLURAL:$1|şabloni|şablonepe}}:',
 'template-protected'               => '(oçvu)',
@@ -328,6 +333,7 @@ Oxo3ʼonapape: (a3ʼineri) = a3ʼineri versiyoni kʼala na ren farkʼi,
 'search-interwiki-more'     => '(çkva)',
 'search-mwsuggest-enabled'  => 'okʼvandupete',
 'search-mwsuggest-disabled' => 'okʼvandu varen',
+'searchall'                 => 'mteli',
 'nonefound'                 => "'''Notʼi''': Xvala, namtini svacoxope maartani oqʼopinot igoren.
 Ogoruşi dudis '''all:''' pʼrefiksi okʼatute doloçʼareli na ren iri şeyi (oğarğaluşi butʼkʼape, şablonepe, doçkva şeyepeti iqʼvasen) mgori varna pʼrefiksi oqʼopinot na igoren svacoxo ixmarit.",
 'powersearch'               => 'Mordineri ogoru',
@@ -406,7 +412,10 @@ Ogoruşi dudis '''all:''' pʼrefiksi okʼatute doloçʼareli na ren iri şeyi (o
 'uploadlogpage' => 'Dosya oncğonu kʼayitʼepe',
 'uploadedimage' => 'Siteşa na incğonen resimi: "[[$1]]"',
 
+'license-header' => 'Lisans',
+
 # File description page
+'file-anchor-link'          => 'Dosya',
 'filehist'                  => 'Dosyaşi tarixi',
 'filehist-help'             => 'Dosyaşi tarixi oz*iru şeni Ndğa/Ora burme-muşis na renan tarixepes o3ʼkʼedi.',
 'filehist-deleteall'        => 'mteli jili',
@@ -550,6 +559,7 @@ Am butʼkʼaşi oçvuşi sinori gaktirinen; ama am oktiroba, kʼademoni oçvalu�
 
 'sp-contributions-newbies'  => 'Xvala ağani maxmarepeşi meşvelape ko3ʼiri',
 'sp-contributions-blocklog' => 'Bloğiş kʼayitʼi',
+'sp-contributions-talk'     => 'Mesaji',
 'sp-contributions-search'   => 'Meşvelape mgori',
 'sp-contributions-username' => 'IP varna maxmare:',
 'sp-contributions-submit'   => 'Mgori',
@@ -616,6 +626,9 @@ Mu iqʼven başka coxo doçʼari.',
 
 # Export
 'export' => 'Butʼkʼa ikʼayitʼi',
+
+# Namespace 8 related
+'allmessagesname' => 'Coxo',
 
 # Thumbnails
 'thumbnail-more' => 'Didi qʼvi',

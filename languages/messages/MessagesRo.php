@@ -1,5 +1,5 @@
 <?php
-/** Romanian (Română)
+/** Romanian (română)
  *
  * See MessagesQqq.php for message documentation incl. usage of parameters
  * To improve a translation please visit http://translatewiki.net
@@ -974,7 +974,8 @@ Ultima intrare în jurnalul blocărilor este afișată mai jos pentru referinț�
 Paginile .css și .js specifice utilizatorilor au titluri care încep cu literă mică; de exemplu {{ns:user}}:Foo/vector.css în comparație cu {{ns:user}}:Foo/Vector.css.",
 'updated'                          => '(Actualizat)',
 'note'                             => "'''Notă:'''",
-'previewnote'                      => "Aceasta este doar o previzualizare! Pentru a salva pagina în forma actuală, descrieți succint modificările efectuate și apăsați butonul '''Salvează pagina'''.",
+'previewnote'                      => "'''Țineți cont că aceasta este doar o previzualizare.'''
+Modificările dumneavoastră nu au fost încă salvate!",
 'previewconflict'                  => 'Această pre-vizualizare reflectă textul din caseta de sus, respectiv felul în care va arăta articolul dacă alegeți să-l salvați acum.',
 'session_fail_preview'             => "'''Ne pare rău! Nu am putut procesa modificarea dumneavoastră din cauza pierderii datelor sesiunii.
 Vă rugăm să încercați din nou.
@@ -1213,7 +1214,7 @@ Nu ai acces asupra lui.',
 # Suppression log
 'suppressionlog'     => 'Înlătură jurnalul',
 'suppressionlogtext' => 'Mai jos este afișată o listă a ștergerilor și a blocărilor care implică conținutul ascuns de administratori.
-Vedeți [[Special:BlockList|adresele IP blocate]] pentru o listă a interzicerilor operaționale sau a blocărilor.',
+Vedeți [[Special:BlockList|lista blocărilor]] pentru o listă a interzicerilor operaționale sau a blocărilor.',
 
 # History merging
 'mergehistory'                     => 'Unește istoricul paginilor',
@@ -1247,7 +1248,7 @@ Folosirea linkurilor de navigare va reseta această coloană.',
 'mergelogpagetext'   => 'Mai jos este o listă a celor mai recente combinări ale istoricului unei pagini cu al alteia.',
 
 # Diffs
-'history-title'            => 'Istoricul versiunilor pentru „$1”',
+'history-title'            => '$1: Istoricul versiunilor',
 'difference'               => '(Diferența dintre versiuni)',
 'difference-multipage'     => '(Diferență între pagini)',
 'lineno'                   => 'Linia $1:',
@@ -1640,6 +1641,7 @@ $3',
 'newsectionsummary'                 => '/* $1 */ secțiune nouă',
 'rc-enhanced-expand'                => 'Arată detalii (necesită JavaScript)',
 'rc-enhanced-hide'                  => 'Ascunde detaliile',
+'rc-old-title'                      => 'inițial creată cu titlul „$1”',
 
 # Recent changes linked
 'recentchangeslinked'          => 'Modificări corelate',
@@ -1799,7 +1801,7 @@ Dacă problema persistă, contactați un [[Special:ListUsers/sysop|administrator
 'backend-fail-writetemp'     => 'Imposibil de scris în fișierul temporar.',
 'backend-fail-closetemp'     => 'Imposibil de închis fișierul temporar.',
 'backend-fail-read'          => 'Imposibil de citit fișierul $1.',
-'backend-fail-create'        => 'Imposibil de creat fișierul $1.',
+'backend-fail-create'        => 'Imposibil de scris fișierul $1.',
 'backend-fail-contenttype'   => 'Nu s-a putut determina tipul de conținut al fișierului de stocat la „$1”.',
 
 # Lock manager
@@ -1916,7 +1918,7 @@ O [[Special:WhatLinksHere/$2|listă completă]] este disponibilă.',
 'morelinkstoimage'          => 'Vedeți [[Special:WhatLinksHere/$1|mai multe legături]] către acest fișier.',
 'linkstoimage-redirect'     => '$1 (redirecționare de fișier) $2',
 'duplicatesoffile'          => '{{PLURAL:$1|Fișierul următor este duplicat|Următoarele $1 fișiere sunt duplicate}} ale acestui fișier ([[Special:FileDuplicateSearch/$2|mai multe detalii]]):',
-'sharedupload'              => 'Acest fișier provine de la $1 și poate fi folosit și de alte proiecte.',
+'sharedupload'              => 'Acest fișier provine de la $1, putând fi folosit și de alte proiecte.',
 'sharedupload-desc-there'   => 'Acest fișier provine de la $1 și poate fi folosit și în cadrul altor proiecte.
 Vizitați [$2 pagina de descriere a fișierului] pentru mai multe detalii.',
 'sharedupload-desc-here'    => 'Acest fișier provine de la $1 și poate fi folosit și în cadrul altor proiecte.
@@ -2496,7 +2498,7 @@ $1',
 'blanknamespace'                => 'Articole',
 
 # Contributions
-'contributions'       => 'Contribuțiile utilizatorului',
+'contributions'       => 'Contribuții utilizator',
 'contributions-title' => 'Contribuțiile utilizatorului $1',
 'mycontris'           => 'Contribuții',
 'contribsub2'         => 'Pentru $1 ($2)',
@@ -2580,8 +2582,8 @@ Precizați motivul blocării; de exemplu indicați paginile vandalizate de acest
 'ipb-confirm'                     => 'Confirmare blocare',
 'badipaddress'                    => 'Adresa IP este invalidă.',
 'blockipsuccesssub'               => 'Utilizatorul a fost blocat',
-'blockipsuccesstext'              => '[[Special:Contributions/$1|$1]] a fost blocată.<br />
-Vezi [[Special:BlockList|lista de adrese IP și conturi blocate]] pentru a revizui adresele blocate.',
+'blockipsuccesstext'              => '[[Special:Contributions/$1|$1]] a fost blocat{{GENDER:$1||ă|}}.<br />
+Vedeți [[Special:BlockList|lista blocărilor]] pentru a revizui adresele blocate.',
 'ipb-blockingself'                => 'Sunteți pe cale să vă autoblocați! Sunteți sigur că doriți să continuați?',
 'ipb-confirmhideuser'             => 'Sunteți pe cale să blocați un utilizator cu funcția „ascunde utilizator” activată. Acest lucru va înlătura numele său de utilizator din toate listele și jurnalele. Sunteți sigur că vreți să continuați?',
 'ipb-edit-dropdown'               => 'Modifică motivele blocării',
@@ -2634,7 +2636,7 @@ Jurnalul blocărilor este indicat mai jos:',
 Jurnalul suprimărilor este indicat mai jos:',
 'blocklogentry'                   => 'a blocat utilizatorul „[[$1]]” pe o perioadă de $2 $3',
 'reblock-logentry'                => 'a fost schimbată blocarea pentru [[$1]] cu data expirării la $2 $3',
-'blocklogtext'                    => 'Acest jurnal cuprinde acțiunile de blocare și deblocare. Adresele IP blocate automat nu sunt afișate. Vizitați [[Special:BlockList|lista de adrese blocate]] pentru o listă explicită a adreselor blocate în acest moment.',
+'blocklogtext'                    => 'Acest jurnal cuprinde acțiunile de blocare și deblocare. Adresele IP blocate automat nu sunt afișate. Vizitați [[Special:BlockList|lista blocărilor]] pentru o listă explicită a adreselor blocate în acest moment.',
 'unblocklogentry'                 => 'a deblocat utilizatorul $1',
 'block-log-flags-anononly'        => 'doar utilizatorii anonimi',
 'block-log-flags-nocreate'        => 'crearea de conturi dezactivată',
@@ -2899,7 +2901,7 @@ Un dosar temporar lipsește.',
 
 # JavaScriptTest
 'javascripttest'                           => 'Testare JavaScript',
-'javascripttest-disabled'                  => 'Această funcție este dezactivată.',
+'javascripttest-disabled'                  => 'Această funcție nu a fost activată pe acest wiki.',
 'javascripttest-title'                     => 'Rulare teste pentru $1',
 'javascripttest-pagetext-noframework'      => 'Această pagină este rezervată rulării testelor JavaScript.',
 'javascripttest-pagetext-unknownframework' => 'Cadru de testare „$1” necunoscut.',
@@ -3081,7 +3083,7 @@ Executându-l, sistemul dvs. poate fi compromis.",
 'file-info-size-pages'   => '$1 × $2 pixeli, mărime fișier: $3, tip MIME: $4, $5 {{PLURAL:$5|pagină|pagini}}',
 'file-nohires'           => 'Rezoluții mai mari nu sunt disponibile.',
 'svg-long-desc'          => 'fișier SVG, cu dimensiunea nominală de $1 × $2 pixeli, mărime fișier: $3',
-'show-big-image'         => 'Mărește rezoluția imaginii',
+'show-big-image'         => 'Rezoluție maximă',
 'show-big-image-preview' => 'Mărimea acestei previzualizări: $1.',
 'show-big-image-other'   => '{{PLURAL:$2|Altă rezoluție|Alte rezoluții}}: $1.',
 'show-big-image-size'    => '$1 × $2 pixeli',
@@ -3799,11 +3801,11 @@ Imaginile sunt afișate la rezoluția lor maximă, în timp ce alte tipuri de fi
 # Database error messages
 'dberr-header'      => 'Acest site are o problemă',
 'dberr-problems'    => 'Ne cerem scuze! Acest site întâmpină dificultăți tehnice.',
-'dberr-again'       => 'Așteaptă câteva minute și încearcă din nou.',
+'dberr-again'       => 'Așteptați câteva minute și încercați din nou.',
 'dberr-info'        => '(Nu pot contacta baza de date a serverului: $1)',
-'dberr-usegoogle'   => 'Între timp poți efectua căutarea folosind Google.',
-'dberr-outofdate'   => 'De reținut ca indexarea conținutului nostru de către ei poate să nu fie actualizată.',
-'dberr-cachederror' => 'Următoarea pagină este o copie în cache a paginii cerute, s-ar putea să nu fie actualizată.',
+'dberr-usegoogle'   => 'Între timp puteți efectua căutarea folosind Google.',
+'dberr-outofdate'   => 'De reținut că indexarea conținutului nostru de către ei poate să nu fie actualizată.',
+'dberr-cachederror' => 'Următoarea pagină este o copie în cache a paginii cerute, care s-ar putea să nu fie actualizată.',
 
 # HTML forms
 'htmlform-invalid-input'       => 'Există probleme la valorile introduse',

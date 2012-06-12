@@ -1,5 +1,5 @@
 <?php
-/** Breton (Brezhoneg)
+/** Breton (brezhoneg)
  *
  * See MessagesQqq.php for message documentation incl. usage of parameters
  * To improve a translation please visit http://translatewiki.net
@@ -597,7 +597,7 @@ Na zisoñjit ket resisaat ho [[Special:Preferences|penndibaboù evit {{SITENAME}
 'createaccount'              => 'Krouiñ ur gont nevez',
 'gotaccount'                 => "Ur gont zo ganeoc'h dija ? '''$1'''.",
 'gotaccountlink'             => 'Kevreañ',
-'userlogin-resetlink'        => "Ha disoñjet hoc'h eus ho titouroù kevreañ ?",
+'userlogin-resetlink'        => "Ha disoñjet eo bet ho titouroù kevreañ ganeoc'h ?",
 'createaccountmail'          => 'dre bostel',
 'createaccountreason'        => 'Abeg :',
 'badretype'                  => 'Ne glot ket ar gerioù-tremen an eil gant egile.',
@@ -846,7 +846,7 @@ Dindan emañ merket moned diwezhañ marilh ar stankadennoù, d'ho kelaouiñ :",
 'updated'                          => '(Hizivaet)',
 'note'                             => "'''Notenn :'''",
 'previewnote'                      => "'''Diwallit mat, n'eus ken ur rakweled eus an destenn-mañ.'''
-N'eo ket bet enrollet ho kemmoù evit c'hoazh !'''",
+N'eo ket bet enrollet ho kemmoù evit c'hoazh !",
 'previewconflict'                  => 'Gant ar rakweled e teu testenn ar bajenn war wel evel ma vo pa vo bet enrollet.',
 'session_fail_preview'             => "'''Ho tigarez! N'eus ket bet tu da enrollañ ho kemmoù rak kollet eo bet roadennoù an dalc'h.'''
 Klaskit en-dro mar plij.
@@ -1337,7 +1337,7 @@ Ma skrivit anezhañ e vo implijet evit lakaat war wel ar pezh a vo bet degaset g
 'group'               => 'Strollad :',
 'group-user'          => 'Implijerien',
 'group-autoconfirmed' => 'Implijerien bet kadarnaet ent emgefre',
-'group-bot'           => 'Botoù',
+'group-bot'           => 'Robotoù',
 'group-sysop'         => 'Merourien',
 'group-bureaucrat'    => 'Burevidi',
 'group-suppress'      => 'Dindan evezh',
@@ -1496,6 +1496,7 @@ Ma skrivit anezhañ e vo implijet evit lakaat war wel ar pezh a vo bet degaset g
 'newsectionsummary'                 => '/* $1 */ rann nevez',
 'rc-enhanced-expand'                => 'Diskouez ar munudoù (JavaScript rekis)',
 'rc-enhanced-hide'                  => 'Kuzhat munudoù',
+'rc-old-title'                      => 'bet krouet da gentañ gant an anv "$1"',
 
 # Recent changes linked
 'recentchangeslinked'          => 'Heuliañ al liammoù',
@@ -1654,13 +1655,13 @@ Ma talc'h ar gudenn, kit e darempred gant [[Special:ListUsers/sysop|merourien ar
 'upload-http-error'         => 'Ur fazi HTTP zo bet : $1',
 
 # File backend
-'backend-fail-stream'        => 'Dibosupl lenn ar restr $1.',
+'backend-fail-stream'        => 'Dibosupl eo lenn ar restr $1.',
 'backend-fail-backup'        => 'Dibosupl enrollañ ar restr $1.',
 'backend-fail-notexists'     => "N'eus ket eus ar restr $1.",
 'backend-fail-hashes'        => 'Dibosupl eo bet tapout hacherezh ar restr evit keñveriañ.',
 'backend-fail-notsame'       => "Ur restr disheñvel zo e $1 c'hoazh.",
 'backend-fail-invalidpath'   => "$1 n'eo ket un hent stokañ reizh.",
-'backend-fail-delete'        => 'Dibosupl eo diverkañ a restr $1.',
+'backend-fail-delete'        => 'Dibosupl eo diverkañ ar restr $1.',
 'backend-fail-alreadyexists' => 'Ar restr "$1" zo anezhi c\'hoazh.',
 'backend-fail-store'         => 'Dibosupl stokañ ar restr $1 e $2.',
 'backend-fail-copy'          => 'Dibosupl eilañ ar restr "$1" war-du "$2".',
@@ -1669,7 +1670,7 @@ Ma talc'h ar gudenn, kit e darempred gant [[Special:ListUsers/sysop|merourien ar
 'backend-fail-writetemp'     => 'Dibosupl skrivañ er restr padennek.',
 'backend-fail-closetemp'     => 'Dibosupl eo serriñ ar restr padennek.',
 'backend-fail-read'          => 'Dibosupl lenn ar restr $1.',
-'backend-fail-create'        => 'Dibosupl krouiñ ar restr $1.',
+'backend-fail-create'        => 'Dibosupl eo krouiñ ar restr $1.',
 'backend-fail-readonly'      => 'Emañ an dermenell stokañ "$1" e mod lenn hepken. Setu aze an abeg a oa bet roet : "$2".',
 'backend-fail-synced'        => 'Emañ ar restr "$1" en ur stad direizhet en termenelloù stokañ diabarzh',
 'backend-fail-connect'       => 'Dibosupl kevreañ ouzh termenell stokañ ar restr "$1".',
@@ -2322,7 +2323,7 @@ Ma'z eus bet krouet ur bajenn nevez dezhi an hevelep anv abaoe an diverkadenn, e
 'undelete-revision'            => 'Stumm diverket eus $1, (gwiriadenn eus $4 da $5) gant $3 :',
 'undeleterevision-missing'     => "Stumm fall pe diank. Pe hoc'h eus heuliet ul liamm fall, pe eo bet diziverket ar stumm pe c'hoazh eo bet lamet diouzh an dielloù.",
 'undelete-nodiff'              => "N'eus bet kavet stumm kent ebet.",
-'undeletebtn'                  => 'Diziverkañ!',
+'undeletebtn'                  => 'Assevel',
 'undeletelink'                 => 'gwelet/assevel',
 'undeleteviewlink'             => 'gwelet',
 'undeletereset'                => 'Adderaouekaat',
@@ -2500,7 +2501,7 @@ Setu aze an abeg(où) m\'eo bet stanket $1 : "$2"',
 'blocklog-showsuppresslog'        => "Stanket ha kuzhet eo bet an implijer-mañ c'hoazh. A-is emañ marilh ar diverkadennoù, d'ho titouriñ :",
 'blocklogentry'                   => 'en/he deus stanket [[$1]] betek an $2 $3',
 'reblock-logentry'                => "en deus kemmet an arventennoù stankañ evit [[$1]] gant un termen d'an $2 $3",
-'blocklogtext'                    => "Setu roud stankadennoù ha distankadennoù an implijerien. N'eo ket bet rollet ar chomlec'hioù IP bet stanket outo ent emgefre. Sellet ouzh [[Special:BlockList|roll an implijerien stanket]] evit gwelet piv zo stanket e gwirionez.",
+'blocklogtext'                    => "Setu roud stankadennoù ha distankadennoù an implijerien. N'eo ket bet rollet ar chomlec'hioù IP bet stanket ent emgefre. Sellet ouzh [[Special:BlockList|roll an implijerien stanket]] evit gwelet piv zo stanket e gwirionez.",
 'unblocklogentry'                 => 'distanket "$1"',
 'block-log-flags-anononly'        => 'implijerien dizanv hepken',
 'block-log-flags-nocreate'        => 'berzet eo krouiñ kontoù',
@@ -2747,7 +2748,7 @@ Enrollit ar bajenn war hoc'h urzhiataer ha kargit anezhi amañ.",
 
 # JavaScriptTest
 'javascripttest'                           => 'Amprouadenn JavaScript',
-'javascripttest-disabled'                  => "Diweredekaet eo an arc'hwel-mañ.",
+'javascripttest-disabled'                  => "N'eo ket bet gweredekaet an arc'hwel-mañ war ar wiki.",
 'javascripttest-title'                     => 'Emeur o seveniñ $1 amprouadenn',
 'javascripttest-pagetext-noframework'      => 'Miret eo ar bajenn-mañ evit amprouiñ JavaScript.',
 'javascripttest-pagetext-unknownframework' => 'Framm amprouiñ "$1" dianav.',
@@ -3745,7 +3746,7 @@ Diskouezet eo ar skeudennoù gant ur pizhder uhel, erounit a ra ar restroù all 
 'feedback-bugornote' => "Ma'z oc'h prest da zeskrivañ ur gudenn deknikel dre ar munud e c'hallit [\$1 kemenn un draen].
 A-hend-all e c'hallit ober gant ar furmskrid eeunaet dindan. Ouzhpennet e vo hoc'h evezhiadenn d'ar bajenn \"[\$3 \$2]\", a-gevret gant hoc'h anv implijer hag anv ar merdeer a rit gantañ.",
 'feedback-subject'   => 'Danvez :',
-'feedback-message'   => 'Kemennadenn:',
+'feedback-message'   => 'Kemennadenn :',
 'feedback-cancel'    => 'Nullañ',
 'feedback-submit'    => 'Kas ho soñj',
 'feedback-adding'    => "Oc'h ouzhpennañ ho soñj war ar bajenn...",

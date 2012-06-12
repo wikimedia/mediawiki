@@ -1,5 +1,5 @@
 <?php
-/** Danish (Dansk)
+/** Danish (dansk)
  *
  * See MessagesQqq.php for message documentation incl. usage of parameters
  * To improve a translation please visit http://translatewiki.net
@@ -21,6 +21,7 @@
  * @author Hylle
  * @author Jan Friberg
  * @author Jon Harald Søby
+ * @author Kaare
  * @author Kaganer
  * @author Kwi
  * @author Lars J. Helbo <lars.helbo@gmail.com>
@@ -219,7 +220,7 @@ $messages = array(
 'tog-externaleditor'          => 'Brug ekstern editor automatisk (kun for rutinerede brugere, da det kræver særlige indstillinger på din computer. [//www.mediawiki.org/wiki/Manual:External_editors Flere oplysninger.])',
 'tog-externaldiff'            => 'Brug ekstern forskelsvisning automatisk (kun for rutinerede brugere, da det kræver særlige indstillinger på din computer. [//www.mediawiki.org/wiki/Manual:External_editors Flere oplysninger.])',
 'tog-showjumplinks'           => 'Vis tilgængeligheds-henvisninger',
-'tog-uselivepreview'          => 'Brug automatisk forhåndsvisning (JavaScript) (eksperimentel)',
+'tog-uselivepreview'          => 'Brug automatisk forhåndsvisning (kræver JavaScript og er på forsøgsstadiet)',
 'tog-forceeditsummary'        => 'Advar mig hvis jeg ikke udfylder beskrivelsesfeltet',
 'tog-watchlisthideown'        => 'Skjul egne ændringer i overvågningslisten',
 'tog-watchlisthidebots'       => 'Skjul ændringer fra bots i overvågningslisten',
@@ -853,7 +854,8 @@ Loggen over den seneste blokering ses nedenfor:',
 'userinvalidcssjstitle'            => "'''Advarsel:''' Der findes intet skin „$1“. Tænk på, at brugerspecifikke .css- og .js-sider begynder med små bogstaver, altså f.eks. ''{{ns:user}}:Hansen/vector.css'' og ikke ''{{ns:user}}:Hansen/Vector.css''.",
 'updated'                          => '(Opdateret)',
 'note'                             => "'''Bemærk:'''",
-'previewnote'                      => 'Husk at dette er kun en forhåndsvisning, siden er ikke gemt endnu!',
+'previewnote'                      => "'''Husk at dette er kun en forhåndsvisning.'''
+Dine ændringer er endnu ikke blevet gemt!",
 'previewconflict'                  => 'Denne forhåndsvisning er resultatet af den redigérbare tekst ovenfor, sådan vil det komme til at se ud hvis du vælger at gemme teksten.',
 'session_fail_preview'             => "'''Din ændring kunne ikke gemmes, da dine sessionsdata er gået tabt.
 Prøv venligst igen. Hvis problemet fortsætter, log af og log på igen.'''",
@@ -901,8 +903,8 @@ Den seneste logpost vises nedenfor:",
 'titleprotectedwarning'            => "ADVARSEL:  Den side er låst så kun [[Special:ListGroupRights|visse brugere]] kan oprette den.'''
 <br />Den seneste logpost vises nedenfor:",
 'templatesused'                    => '{{PLURAL:$1|Skabelon|Skabeloner}} der er brugt på denne side:',
-'templatesusedpreview'             => 'Følgende {{PLURAL:$1|Skabelon|Skabeloner}} bruges af denne artikelforhåndsvisning:',
-'templatesusedsection'             => 'Følgende {{PLURAL:$1|skabelon|skabeloner}} bruges af dette afsnit:',
+'templatesusedpreview'             => 'Følgende {{PLURAL:$1|skabelon|skabeloner}} bruges i denne forhåndsvisning:',
+'templatesusedsection'             => 'Følgende {{PLURAL:$1|skabelon|skabeloner}} bruges i dette afsnit:',
 'template-protected'               => '(skrivebeskyttet)',
 'template-semiprotected'           => '(delvist beskyttet)',
 'hiddencategories'                 => 'Denne side er i {{PLURAL:$1|en skjult kategori|$1 skjulte kategorier}}:',
@@ -1079,7 +1081,7 @@ Se venligst loglisterne.',
 # Suppression log
 'suppressionlog'     => 'Skjulningslog',
 'suppressionlogtext' => 'Nedenfor listes de sletninger og blokeringer, som involverer indhold, der er skjult for administratorer.
-Se [[Special:BlockList|IP-blokeringslisten]] for listen over alle aktuelle blokeringer.',
+Se [[Special:BlockList|blokeringslisten]] for listen over alle aktuelle blokeringer.',
 
 # History merging
 'mergehistory'                     => 'Sammenflet sidehistorikker',
@@ -1113,7 +1115,7 @@ Vær opmæksom på at bevare kontinuiteten i sidehistorikken.
 'mergelogpagetext'   => 'Nedenfor vises en liste med de nyeste sammenfletninger af en sides historik i en anden.',
 
 # Diffs
-'history-title'            => 'Versionshistorik for "$1"',
+'history-title'            => '$1: Versionshistorik',
 'difference'               => '(Forskel mellem versioner)',
 'difference-multipage'     => '(Forskel mellem sider)',
 'lineno'                   => 'Linje $1:',
@@ -1502,6 +1504,7 @@ Hvis du vælger at oplyse dit navn, vil det blive brugt til at tilskrive dig dit
 'newsectionsummary'                 => '/* $1 */ nyt afsnit',
 'rc-enhanced-expand'                => 'Vis detaljer (kræver JavaScript)',
 'rc-enhanced-hide'                  => 'Skjul detaljer',
+'rc-old-title'                      => 'oprindeligt oprettet som "$1"',
 
 # Recent changes linked
 'recentchangeslinked'          => 'Relaterede ændringer',
@@ -1657,7 +1660,7 @@ Informer venligst en [[Special:ListUsers/sysop|systemadministrator]].',
 'backend-fail-writetemp'     => 'Kunne ikke skrive til midlertidig fil.',
 'backend-fail-closetemp'     => 'Kunne ikke lukke midlertidig fil.',
 'backend-fail-read'          => 'Kunne ikke læse filen $1.',
-'backend-fail-create'        => 'Kunne ikke oprette filen $1.',
+'backend-fail-create'        => 'Kunne ikke gemme filen $1.',
 'backend-fail-readonly'      => 'Lagrings-backend "$1" er i øjeblikket skrivebeskyttet. Den angivne begrundelse var: " $2 "',
 'backend-fail-synced'        => 'Filen "$1" er i en inkonsistent tilstand inden for de interne lagringsbackends',
 'backend-fail-connect'       => 'Kunne ikke forbinde til lagringsbackend "$1".',
@@ -2425,7 +2428,7 @@ Angiv en konkret begrundelse herunder (for eksempel med angivelse af sider der h
 'badipaddress'                    => 'IP-adressen/brugernavnet er udformet forkert eller eksistere ikke.',
 'blockipsuccesssub'               => 'Blokeringen er gennemført.',
 'blockipsuccesstext'              => '[[Special:Contributions/$1|$1]] er blevet blokeret.<br />
-Se [[Special:BlockList|IP-blokeringslisten]] for alle blokeringer.',
+Se [[Special:BlockList|blokeringslisten]] for alle blokeringer.',
 'ipb-blockingself'                => 'Du er ved at blokere dig selv! Er du sikker på, du vil gøre det?',
 'ipb-confirmhideuser'             => 'Du er ved at blokere en bruger med "skjul bruger" aktiveret. Dette vil skjule brugerens navn på alle lister og logposter. Er du sikker på du vil gøre det?',
 'ipb-edit-dropdown'               => 'Ændre spærreårsager',
@@ -2478,7 +2481,9 @@ Blokeringsloggen vises nedenfor som reference:',
 Skjulningsloggen vises nedenfor som reference:',
 'blocklogentry'                   => 'blokerede [[$1]] med en varighed på $2 $3',
 'reblock-logentry'                => 'ændrede blokeringsindstillinger for [[$1]] med en varighed $2 $3',
-'blocklogtext'                    => 'Dette er en liste med blokerede brugere og ophævede blokeringer af brugere. Automatisk blokerede IP-adresser er ikke anført her. Se [[Special:BlockList|blokeringslisten]] for den nuværende liste med blokerede brugere.',
+'blocklogtext'                    => 'Dette er en liste med blokerede brugere og ophævede blokeringer af brugere.
+Automatisk blokerede IP-adresser er ikke anført her.
+Se [[Special:BlockList|blokeringslisten]] for den nuværende liste med aktuelle blokeringer.',
 'unblocklogentry'                 => 'ophævede blokering af "$1"',
 'block-log-flags-anononly'        => 'kun anonyme',
 'block-log-flags-nocreate'        => 'Oprettelse af brugerkonti blokeret',
@@ -2715,7 +2720,7 @@ Alle Transwiki import-aktioner protokolleres i [[Special:Log/import|import-logge
 
 # JavaScriptTest
 'javascripttest'                           => 'Test af JavaScript',
-'javascripttest-disabled'                  => 'Denne funktion er deaktiveret.',
+'javascripttest-disabled'                  => 'Denne funktion er ikke aktiveret på denne wiki.',
 'javascripttest-title'                     => 'Kører $1 test',
 'javascripttest-pagetext-noframework'      => 'Denne side er reserveret til at teste JavaScript.',
 'javascripttest-pagetext-unknownframework' => 'Ukendt testmiljø "$1".',
@@ -2885,7 +2890,7 @@ $1',
 'mediawarning'           => "'''Advarsel''': Denne filtype kan muligvis indeholde skadelig kode.
 Du kan beskadige dit system hvis du udfører den.",
 'imagemaxsize'           => "Maksimal billedstørrelse<br />''(på filbeskrivelsessider)''",
-'thumbsize'              => 'Thumbnailstørrelse :',
+'thumbsize'              => 'Thumbnailstørrelse:',
 'widthheightpage'        => '$1 × $2, $3 {{PLURAL:$3|side|sider}}',
 'file-info'              => 'Filstørrelse: $1, MIME-Type: $2',
 'file-info-size'         => '$1 × $2 punkter, filstørrelse: $3, MIME-Type: $4',
@@ -3519,7 +3524,7 @@ Du kan også [[Special:EditWatchlist|bruge standard editoren]].',
 'version-license'               => 'Licens',
 'version-poweredby-credits'     => "Denne wiki er drevet af '''[//www.mediawiki.org/ MediaWiki ]''', copyright © 2001-$1 $2.",
 'version-poweredby-others'      => 'andre',
-'version-license-info'          => 'MediaWiki er gratis software; du kan redistribuere det og/eller ændre det under betingelserne i GNU General Public License som offentliggjort af Free Software Foundation; enten version 2 af licensen eller (efter eget valg) enhver senere version. 
+'version-license-info'          => 'MediaWiki er fri software; du kan redistribuere det og/eller ændre det under betingelserne i GNU General Public License som offentliggjort af Free Software Foundation; enten version 2 af licensen eller (efter eget valg) enhver senere version. 
 
 MediaWiki distribueres i håb om at det vil være nyttigt, men UDEN NOGEN GARANTI; uden selv de underforståede garantier SALGBARHED eller EGNETHED TIL ET BESTEMT FORMÅL. Se GNU General Public License for yderligere detaljer. 
 

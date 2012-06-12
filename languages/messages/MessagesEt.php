@@ -1,5 +1,5 @@
 <?php
-/** Estonian (Eesti)
+/** Estonian (eesti)
  *
  * See MessagesQqq.php for message documentation incl. usage of parameters
  * To improve a translation please visit http://translatewiki.net
@@ -1182,7 +1182,7 @@ Palun vaata logisid.',
 # Suppression log
 'suppressionlog'     => 'Varjamislogi',
 'suppressionlogtext' => 'Allpool on nimekiri kustutamistest ja blokeeringutest, millega kaasneb administraatorite eest sisu varjamine.
-Jõus olevad keelud ja blokeeringud leiad [[Special:BlockList|blokeeritud IP-aadresside loendist]].',
+Jõus olevad keelud ja blokeeringud leiad [[Special:BlockList|blokeerimisnimekirja]].',
 
 # History merging
 'mergehistory'                     => 'Ühenda lehtede ajalood',
@@ -1608,6 +1608,7 @@ See ei tohi olla pikem kui $1 {{PLURAL:$1|sümbol|sümbolit}}.',
 'newsectionsummary'                 => '/* $1 */ uus alajaotus',
 'rc-enhanced-expand'                => 'Näita üksikasju (nõuab JavaScripti)',
 'rc-enhanced-hide'                  => 'Peida üksikasjad',
+'rc-old-title'                      => 'alustatud pealkirja "$1" all',
 
 # Recent changes linked
 'recentchangeslinked'          => 'Seotud muudatused',
@@ -1773,7 +1774,7 @@ Kui probleem ei kao, võta ühendust [[Special:ListUsers/sysop|administraatoriga
 'backend-fail-writetemp'     => 'Ajutist faili ei saa kirjutada.',
 'backend-fail-closetemp'     => 'Ajutist faili ei saa sulgeda.',
 'backend-fail-read'          => 'Faili $1 ei saa lugeda.',
-'backend-fail-create'        => 'Faili $1 ei saa luua.',
+'backend-fail-create'        => 'Faili $1 ei saa kirjutada.',
 'backend-fail-contenttype'   => 'Faili, mida soovitakse talletada asukohas "$1", sisutüüpi saanud kindlaks teha.',
 
 # Lock manager
@@ -1917,7 +1918,7 @@ Järgnevas loetelus on kuvatud ainult {{PLURAL:$1|esimene viitav lehekülg|esime
 'filedelete-otherreason'       => 'Muu või täiendav põhjus:',
 'filedelete-reason-otherlist'  => 'Muu põhjus',
 'filedelete-reason-dropdown'   => '*Harilikud kustutamise põhjused
-** Autoriõiguste rikkumine
+** Autoriõiguse rikkumine
 ** Duplikaat',
 'filedelete-edit-reasonlist'   => 'Redigeeri kustutamise põhjuseid',
 'filedelete-maintenance'       => 'Failide kustutamine ja taastamine on hoolduse ajaks keelatud.',
@@ -2411,7 +2412,7 @@ Sellisel juhul tuleb uusima kustutatud redaktsiooni juurest linnuke eemaldada v�
 'undeletehistorynoadmin'       => 'See lehekülg on kustutatud.
 Kustutamise põhjus ning selle lehekülje kustutamiseelne redigeerimislugu on näha allolevas kokkuvõttes.
 Lehekülje kustutamiseelsed redaktsioonid on kättesaadavad ainult administraatoritele.',
-'undelete-revision'            => 'Lehekülje $1 kustutatud redaktsioonid, mille autor on $3, seisuga $4 kell $5.',
+'undelete-revision'            => 'Lehekülje $1 kustutatud redaktsioon, mille autor on $3, seisuga $4, kell $5.',
 'undeleterevision-missing'     => 'Vigane või puuduv redaktsioon.
 Link võib olla kõlbmatu või redaktsioon võib olla taastatud või arhiivist eemaldatud.',
 'undelete-nodiff'              => 'Varasemat redaktsiooni ei leidunud.',
@@ -2539,7 +2540,7 @@ Täida ka põhjuse väli, näiteks viidates lehekülgedele, mis rikuti.',
 'badipaddress'                    => 'Vigane IP-aadress',
 'blockipsuccesssub'               => 'Blokeerimine õnnestus',
 'blockipsuccesstext'              => '[[Special:Contributions/$1|$1]] on blokeeritud.<br />
-Kehtivaid blokeeringuid vaata [[Special:BlockList|blokeeringute loendist]].',
+Kehtivaid blokeeringuid vaata [[Special:BlockList|blokeerimisnimekirjast]].',
 'ipb-blockingself'                => 'Sa blokeerid iseenda! Kas tahad tõesti seda teha?',
 'ipb-confirmhideuser'             => 'Avaldasid soovi kasutaja blokeerida ja peita. Kasutaja nimi peidetakse kõigist loenditest ja logisissekannetest. Kas oled kindel, et soovid seda teha?',
 'ipb-edit-dropdown'               => 'Muuda blokeeringu põhjuseid',
@@ -2589,7 +2590,9 @@ Kehtivaid blokeeringuid vaata [[Special:BlockList|blokeeringute loendist]].',
 'blocklog-showsuppresslog'        => 'See kasutaja on varem blokeeritud ja peidetud. Allpool on toodud varjamislogi:',
 'blocklogentry'                   => 'blokeeris kasutaja [[$1]]. Blokeeringu aegumistähtaeg on $2 $3',
 'reblock-logentry'                => 'muutis kasutaja või IP-aadressi [[$1]] blokeeringu sätteid. Blokeering aegumistähtaeg: $2. Põhjus: $3',
-'blocklogtext'                    => 'See on kasutajate blokeerimiste ja blokeeringute eemaldamiste nimekiri. Automaatselt blokeeritud IP aadresse siin ei näidata. Hetkel aktiivsete blokeeringute ja redigeerimiskeeldude nimekirja vaata [[Special:BlockList|IP blokeeringute nimekirja]] leheküljelt.',
+'blocklogtext'                    => 'See on kasutajate blokeerimiste ja blokeeringute eemaldamiste logi.
+Automaatselt blokeeritud IP-aadresse siin ei näidata.
+Praegu jõus olevad blokeeringud ja redigeerimiskeelud leiad [[Special:BlockList|blokeerimisnimekirjast]].',
 'unblocklogentry'                 => 'eemaldas kasutaja $1 blokeeringu',
 'block-log-flags-anononly'        => 'ainult anonüümsed kasutajad',
 'block-log-flags-nocreate'        => 'kontode loomine on blokeeritud',
@@ -2850,7 +2853,7 @@ Palun ürita uuesti.',
 
 # JavaScriptTest
 'javascripttest'                           => 'JavaScripti katsetamine',
-'javascripttest-disabled'                  => 'See toiming on keelatud.',
+'javascripttest-disabled'                  => 'See funktsioon pole selles vikis lubatud.',
 'javascripttest-title'                     => '$1-katse käitus',
 'javascripttest-pagetext-noframework'      => 'Seda lehekülge hoitakse JavaScripti katsete jaoks.',
 'javascripttest-pagetext-unknownframework' => 'Tundmatu katseraamistik "$1".',
@@ -3253,7 +3256,7 @@ Kui faili on rakendustarkvaraga töödeldud, võib osa andmeid olla muudetud võ
 # EXIF attributes
 'exif-compression-1' => 'Pakkimata',
 
-'exif-copyrighted-true'  => 'Autoriõigustega kaitstud',
+'exif-copyrighted-true'  => 'Kaitstud',
 'exif-copyrighted-false' => 'Avalikus omandis',
 
 'exif-unknowndate' => 'Kuupäev teadmata',
@@ -3316,11 +3319,11 @@ Kui faili on rakendustarkvaraga töödeldud, võib osa andmeid olla muudetud võ
 'exif-flash-return-0'   => 'ei ole välgu peegeldumist tuvastavat funktsiooni',
 'exif-flash-return-2'   => 'välgu peegeldust ei tuvastatud',
 'exif-flash-return-3'   => 'tuvastati välgu peegeldus',
-'exif-flash-mode-1'     => 'sund välk',
+'exif-flash-mode-1'     => 'sundvälk',
 'exif-flash-mode-2'     => 'välk keelatud',
 'exif-flash-mode-3'     => 'automaatne töörežiim',
 'exif-flash-function-1' => 'Välgu funktsiooni ei ole',
-'exif-flash-redeye-1'   => 'Punasilmsust vähendav reziim',
+'exif-flash-redeye-1'   => 'punasilmsust vähendav režiim',
 
 'exif-focalplaneresolutionunit-2' => 'toll',
 
@@ -3410,6 +3413,9 @@ Kui faili on rakendustarkvaraga töödeldud, võib osa andmeid olla muudetud võ
 # Pseudotags used for GPSTrackRef, GPSImgDirectionRef and GPSDestBearingRef
 'exif-gpsdirection-t' => 'Tegelik suund',
 'exif-gpsdirection-m' => 'Magneetiline suund',
+
+'exif-ycbcrpositioning-1' => 'Keskele asetatud',
+'exif-ycbcrpositioning-2' => 'Kõrvuti asetatud',
 
 'exif-dc-contributor' => 'Asjaosalised',
 'exif-dc-coverage'    => 'Teabevahendi ruumiline või ajaline ulatus',
@@ -3735,34 +3741,36 @@ Pilt kuvatakse algupärases suuruses, muu fail avatakse koheselt seostuva progra
 'sqlite-no-fts'  => '$1 ilma täistekstiotsingu toeta',
 
 # New logging system
-'logentry-delete-delete'            => '$1 kustutas lehekülje $3',
-'logentry-delete-restore'           => '$1 taastas lehekülje $3',
-'logentry-delete-event'             => '$1 muutis leheküljel $3 {{PLURAL:$5|ühe|$5}} logisündmuse nähtavust: $4',
-'logentry-delete-revision'          => '$1 muutis leheküljel $3 {{PLURAL:$5|ühe|$5}} redaktsiooni nähtavust: $4',
-'logentry-delete-event-legacy'      => '$1 muutis leheküljel $3 logisündmuste nähtavust',
-'logentry-delete-revision-legacy'   => '$1 muutis leheküljel $3 redaktsioonide nähtavust',
-'logentry-suppress-delete'          => '$1 varjas lehekülje $3',
-'logentry-suppress-event'           => '$1 muutis salaja leheküljel $3 {{PLURAL:$5|ühe|$5}} logisündmuse nähtavust: $4',
-'logentry-suppress-revision'        => '$1 muutis salaja leheküljel $3 {{PLURAL:$5|ühe|$5}} redaktsiooni nähtavust: $4',
-'logentry-suppress-event-legacy'    => '$1 muutis salaja leheküljel $3 logisündmuste nähtavust',
-'logentry-suppress-revision-legacy' => '$1 muutis salaja leheküljel $3 redaktsioonide nähtavust',
-'revdelete-content-hid'             => 'peideti sisu',
-'revdelete-summary-hid'             => 'peideti resümee',
-'revdelete-uname-hid'               => 'peideti kasutajanimi',
-'revdelete-content-unhid'           => 'nähtavaks tehti sisu',
-'revdelete-summary-unhid'           => 'nähtavaks tehti resümee',
-'revdelete-uname-unhid'             => 'nähtavaks tehti kasutajanimi',
-'revdelete-restricted'              => 'kehtestati piirangud administraatoritele',
-'revdelete-unrestricted'            => 'eemaldati administraatoritelt piirangud',
-'logentry-move-move'                => '$1 teisaldas lehekülje $3 pealkirja $4 alla',
-'logentry-move-move-noredirect'     => '$1 teisaldas lehekülje $3 pealkirja $4 alla ümbersuunamist maha jätmata',
-'logentry-patrol-patrol'            => '$1 märkis lehekülje $3 redaktsiooni $4 kontrollituks',
-'logentry-patrol-patrol-auto'       => '$1 märkis automaatselt lehekülje $3 redaktsiooni $4 kontrollituks',
-'logentry-newusers-newusers'        => '$1 tegi kasutajakonto',
-'logentry-newusers-create'          => '$1 tegi kasutajakonto',
-'logentry-newusers-create2'         => '$1 tegi kasutajakonto $3',
-'logentry-newusers-autocreate'      => 'Konto $1 loodi automaatselt',
-'newuserlog-byemail'                => 'parool saadetud e-postiga',
+'logentry-delete-delete'              => '$1 kustutas lehekülje $3',
+'logentry-delete-restore'             => '$1 taastas lehekülje $3',
+'logentry-delete-event'               => '$1 muutis leheküljel $3 {{PLURAL:$5|ühe|$5}} logisündmuse nähtavust: $4',
+'logentry-delete-revision'            => '$1 muutis leheküljel $3 {{PLURAL:$5|ühe|$5}} redaktsiooni nähtavust: $4',
+'logentry-delete-event-legacy'        => '$1 muutis leheküljel $3 logisündmuste nähtavust',
+'logentry-delete-revision-legacy'     => '$1 muutis leheküljel $3 redaktsioonide nähtavust',
+'logentry-suppress-delete'            => '$1 varjas lehekülje $3',
+'logentry-suppress-event'             => '$1 muutis salaja leheküljel $3 {{PLURAL:$5|ühe|$5}} logisündmuse nähtavust: $4',
+'logentry-suppress-revision'          => '$1 muutis salaja leheküljel $3 {{PLURAL:$5|ühe|$5}} redaktsiooni nähtavust: $4',
+'logentry-suppress-event-legacy'      => '$1 muutis salaja leheküljel $3 logisündmuste nähtavust',
+'logentry-suppress-revision-legacy'   => '$1 muutis salaja leheküljel $3 redaktsioonide nähtavust',
+'revdelete-content-hid'               => 'peideti sisu',
+'revdelete-summary-hid'               => 'peideti resümee',
+'revdelete-uname-hid'                 => 'peideti kasutajanimi',
+'revdelete-content-unhid'             => 'nähtavaks tehti sisu',
+'revdelete-summary-unhid'             => 'nähtavaks tehti resümee',
+'revdelete-uname-unhid'               => 'nähtavaks tehti kasutajanimi',
+'revdelete-restricted'                => 'kehtestati piirangud administraatoritele',
+'revdelete-unrestricted'              => 'eemaldati administraatoritelt piirangud',
+'logentry-move-move'                  => '$1 teisaldas lehekülje $3 pealkirja $4 alla',
+'logentry-move-move-noredirect'       => '$1 teisaldas lehekülje $3 pealkirja $4 alla ümbersuunamist maha jätmata',
+'logentry-move-move_redir'            => '$1 teisaldas lehekülje $3 ümbersuunamise $4 asemele',
+'logentry-move-move_redir-noredirect' => '$1 teisaldas lehekülje $3 ümbersuunamise $4 asemele ümbersuunamist maha jätmata',
+'logentry-patrol-patrol'              => '$1 märkis lehekülje $3 redaktsiooni $4 kontrollituks',
+'logentry-patrol-patrol-auto'         => '$1 märkis automaatselt lehekülje $3 redaktsiooni $4 kontrollituks',
+'logentry-newusers-newusers'          => '$1 tegi kasutajakonto',
+'logentry-newusers-create'            => '$1 tegi kasutajakonto',
+'logentry-newusers-create2'           => '$1 tegi kasutajakonto $3',
+'logentry-newusers-autocreate'        => 'Konto $1 loodi automaatselt',
+'newuserlog-byemail'                  => 'parool saadetud e-postiga',
 
 # Feedback
 'feedback-bugornote' => 'Kui arvad, et oskad tehnilist probleemi üksikasjalikult kirjeldada, [$1 teata veast].

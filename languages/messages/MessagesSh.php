@@ -1,5 +1,5 @@
 <?php
-/** Serbo-Croatian (Srpskohrvatski)
+/** Serbo-Croatian (srpskohrvatski / српскохрватски)
  *
  * See MessagesQqq.php for message documentation incl. usage of parameters
  * To improve a translation please visit http://translatewiki.net
@@ -894,8 +894,8 @@ Posljednje stavke evidencije blokiranja možete pogledati ispod:',
 Ne zaboravite da imena stranica s .css i .js kodom počinju malim slovom, npr. {{ns:user}}:Foo/vector.css, a ne {{ns:user}}:Foo/Vector.css.",
 'updated'                          => '(Osvježeno)',
 'note'                             => "'''Napomena:'''",
-'previewnote'                      => "'''Upamtite da je ovo samo pretpregled.'''
-Vaše izmjene još uvijek nisu snimljene!",
+'previewnote'                      => "'''Ne zaboravite da je ovo samo pregled'''
+Izmjene stranice nisu još sačuvane!",
 'previewconflict'                  => 'Ovaj pretpregled reflektuje tekst u gornjem polju
 kako će izgledati ako pritisnete "Snimi stranicu".',
 'session_fail_preview'             => "'''Izvinjavamo se! Nismo mogli obraditi vašu izmjenu zbog gubitka podataka o prijavi. Molimo pokušajte ponovno. Ako i dalje ne bude radilo, pokušajte se [[Special:UserLogout|odjaviti]] i ponovno prijaviti.'''",
@@ -1134,7 +1134,8 @@ Molimo provjerite zapise.',
 
 # Suppression log
 'suppressionlog'     => 'Registri sakrivanja',
-'suppressionlogtext' => 'Ispod je spisak brisanja i blokiranja koja su povezana sa sadržajem koji je sakriven od administratora. Vidi [[Special:IPBlockList|spisak IP blokiranja]] za pregled trenutno važećih blokada.',
+'suppressionlogtext' => 'Ispod je spisak brisanja i blokiranja koja su povezana sa sadržajem koji je sakriven od administratora. 
+Vidi [[Special:BlockList|spisak blokiranja]] za pregled trenutno važećih blokada.',
 
 # History merging
 'mergehistory'                     => 'Spoji historije stranice',
@@ -1560,6 +1561,7 @@ Ako izaberete da date ime, biće korišteno za pripisivanje Vašeg rada.',
 'newsectionsummary'                 => '/* $1 */ nova sekcija',
 'rc-enhanced-expand'                => 'Pokaži detalje (neophodan JavaScript)',
 'rc-enhanced-hide'                  => 'Sakrij detalje',
+'rc-old-title'                      => 'prvobitno kreirano kao "$1"',
 
 # Recent changes linked
 'recentchangeslinked'          => 'Srodne izmjene',
@@ -2566,8 +2568,8 @@ Evidencija sakrivanja je prikazana ispod kao referenca:',
 'blocklogentry'                   => 'blokiran [[$1]] s rokom: $2 $3',
 'reblock-logentry'                => 'promjena postavki blokiranja za [[$1]] sa vremenom isteka u $2 $3',
 'blocklogtext'                    => 'Ovo je historija akcija blokiranja i deblokiranja korisnika.
-Automatsko blokirane IP adrese nisu uspisane ovde.
-Pogledajte [[Special:BlockList|blokirane IP adrese]] za spisak trenutnih zabrana i blokiranja.',
+Automatski blokirane IP adrese nisu navedene ovdje.
+Pogledajte [[Special:BlockList|spisak blokiranja]] za spisak trenutnih zabrana i blokiranja.',
 'unblocklogentry'                 => 'deblokiran $1',
 'block-log-flags-anononly'        => 'samo anonimni korisnici',
 'block-log-flags-nocreate'        => 'pravljenje računa onemogućeno',
@@ -2831,7 +2833,7 @@ Molimo pokušajte ponovno.',
 
 # JavaScriptTest
 'javascripttest'                           => 'Javaskript test',
-'javascripttest-disabled'                  => 'Ova funkcija je onemogućena.',
+'javascripttest-disabled'                  => 'Ova funkcija je onemogućena na ovom wikiju.',
 'javascripttest-title'                     => 'Izvršavanje testova za $1',
 'javascripttest-pagetext-noframework'      => 'Ova stranica je rezervisana za izvršavanje javaskript testova.',
 'javascripttest-pagetext-unknownframework' => 'Nepoznati radni okvir „$1“.',

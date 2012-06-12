@@ -14,6 +14,7 @@
  * @author Rachitrali
  * @author Reedy
  * @author Wisesabre
+ * @author ZxxZxxZ
  * @author לערי ריינהארט
  * @author سمرقندی
  * @author محبوب عالم
@@ -904,7 +905,7 @@ HTML tags جانچئے.',
 'userrights'                  => 'حقوقِ صارف کی نظامت',
 'userrights-lookup-user'      => 'گروہائے صارف کا انتظام',
 'userrights-user-editname'    => 'کوئی اسم‌صارف داخل کیجئے:',
-'editinguser'                 => "تبدیلئ حقوق برائے صارف '''[[User:$1|$1]]''' ([[User talk:$1|{{int:talkpagelinktext}}]]{{int:pipe-separator}}[[Special:Contributions/$1|{{int:contribslink}}]])",
+'editinguser'                 => "تبدیلئ حقوق برائے صارف '''[[صارف:$1|$1]]''' $2",
 'userrights-groupsmember'     => 'رکنِ:',
 'userrights-reason'           => 'وجہ:',
 'userrights-no-interwiki'     => 'دوسرے ویکیوں پر حقوقِ صارف میں ترمیم کی آپ کو اجازت نہیں ہے.',

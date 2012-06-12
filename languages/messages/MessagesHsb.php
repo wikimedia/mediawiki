@@ -724,7 +724,7 @@ Nachwilne hesło: $2',
 'showpreview'                      => 'Přehlad pokazać',
 'showlivepreview'                  => 'Hnydomny přehlad',
 'showdiff'                         => 'Změny pokazać',
-'anoneditwarning'                  => "'''Kedźbu:''' Njejsy přizjewjeny. Twoja IP-adresa budźe so do wersijowych stawiznow strony napisał.",
+'anoneditwarning'                  => "'''Kedźbu:''' Njejsy přizjewjeny. Twoja IP-adresa budźe so do wersijowych stawiznow strony přijimać.",
 'anonpreviewwarning'               => "''Njejsy přizjewjeny. Składowanje přenošuje twoju IP-adresu do wobdźěłowanskeje historije tuteje strony.''",
 'missingsummary'                   => "'''Kedźbu:''' Njejsy žane zjeće zapodał. Jeli hišće raz na \"{{int:savearticle}}\" kliknješ, budźe so twoja změna bjez njeho składować.",
 'missingcommenttext'               => 'Prošu zapodaj komentar.',
@@ -799,7 +799,8 @@ Móžeš [[Special:Search/{{PAGENAME}}|tutón titul strony]] na druhich stronach
 'userinvalidcssjstitle'            => "'''Warnowanje:''' Drasta z mjenom „$1” njeeksistuje. Prošu mysli na to, zo wosobinske strony .css a .js titul z małym pismikom wuwziwaja, na př. {{ns:user}}:Foo/vector.css město {{ns:user}}:Foo/Vector.css.",
 'updated'                          => '(Zaktualizowany)',
 'note'                             => "'''Kedźbu:'''",
-'previewnote'                      => "'''Kedźbu, to je jenož přehlad. Twoje změny hišće składowane njejsu!'''",
+'previewnote'                      => "'''Wobmysl, zo to je jenož přehlad.'''
+Twoje změny hišće njejsu składowane!",
 'previewconflict'                  => 'Tutón přehlad zwobraznja tekst w hornim tekstowym polu,  kaž so zjewi, jeli jón składuješ.',
 'session_fail_preview'             => "'''Njemóžachmy twoju změnu předźěłać, dokelž su so posedźenske daty zhubili.'''
 Spytaj prošu hišće raz.
@@ -816,15 +817,17 @@ Składowanje móže wobsah strony zničić. Móže so to na přikład přez wopa
 'editingsection'                   => 'Wobdźěłanje strony $1 (wotrězk)',
 'editingcomment'                   => '$1 so wobdźěłuje (nowy wotrězk)',
 'editconflict'                     => 'Wobdźěłowanski konflikt: $1',
-'explainconflict'                  => "Něchtó druhi je stronu změnił w samsnym času, hdyž sy spytał ju wobdźěłować.
+'explainconflict'                  => "Něchtó druhi je stronu změnił, po tym zo sy započał, ju wobdźěłować.
 Hornje tekstowe polo wobsahuje tekst strony kaž tuchwilu eksistuje.
 Twoje změny so w delnim tekstowym polu pokazuja.
 Dyrbiš swoje změny do eksistowaceho teksta zadźěłać.
-'''Jenož''' tekst w hornim tekstowym polu so składuje hdyž znowa na „{{int:savearticle}}” kliknješ.",
+'''Jenož''' tekst w hornim tekstowym polu so składuje, hdyž znowa na „{{int:savearticle}}” kliknješ.",
 'yourtext'                         => 'Twój tekst',
 'storedversion'                    => 'Składowana wersija',
-'nonunicodebrowser'                => "'''KEDŹBU: Twój wobhladowak z Unikodu kompatibelny njeje. Prošu wužiwaj hinaši wobhladowak.'''",
-'editingold'                       => "'''KEDŹBU: Wobdźěłuješ staršu wersiju strony. Jeli ju składuješ, zjewi so jako najnowša wersija!'''",
+'nonunicodebrowser'                => "'''KEDŹBU: Twój wobhladowak z Unikodom kompatibelny njeje.'''
+Prowizoriske rozrisanje steji k dispoziciji, zo by ći zmóžnił, strony wěsće wobdźěłał: Nic-ASCII-znamješka budu so we wobdźěłowanskim polu jako heksadecimalne kody jewić.",
+'editingold'                       => "'''Kedźbu: Wobdźěłuješ staršu wersiju tuteje strony.'''
+Jeli ju składuješ, zhubja so wšě změny, kotrež sy wot tuteje wersije činił.",
 'yourdiff'                         => 'Rozdźěle',
 'copyrightwarning'                 => "Prošu wobkedźbuj, zo wšě přinoški k {{GRAMMAR:datiw|{{SITENAME}}}} $2 podleže (hlej $1 za podrobnosće). Jeli nochceš, zo so twój přinošk po dobrozdaću wobdźěłuje a znowa rozšěrja, njeskładuj jón.<br />
 Lubiš tež, zo sy to sam napisał abo ze zjawneje domejny abo z podobneho žórła kopěrował.
@@ -921,7 +924,7 @@ Legenda: (akt) = rozdźěl k tuchwilnej wersiji, (posl) = rozdźěl k předchadn
 'history-fieldset-title' => 'Stawizny přepytać',
 'history-show-deleted'   => 'Jenož wušmórnjene',
 'histfirst'              => 'najstaršu',
-'histlast'               => 'tuchwilnu',
+'histlast'               => 'najnowšu',
 'historysize'            => '({{PLURAL:$1|1 bajt|$1 bajtaj|$1 bajty|$1 bajtow}})',
 'historyempty'           => '(prózdna)',
 
@@ -984,7 +987,7 @@ Druzy administratorojo na {{GRAMMAR:lokatiw|{{SITENAME}}}} móža hišće na sch
 'revdelete-legend'            => 'Wobmjezowanja za widźomnosć nastajić',
 'revdelete-hide-text'         => 'Tekst tuteje wersije schować',
 'revdelete-hide-image'        => 'Wobsah wobraza schować',
-'revdelete-hide-name'         => 'Akciju w protokolach schować',
+'revdelete-hide-name'         => 'Akciju a cil schować',
 'revdelete-hide-comment'      => 'Zjeće schować',
 'revdelete-hide-user'         => 'Wužiwarske mjeno/IP-adresu schować',
 'revdelete-hide-restricted'   => 'Daty wot administratorow kaž tež te druhich wužiwarjow potłóčić',
@@ -1028,7 +1031,7 @@ Prošu přepruwuj protokole.',
 # Suppression log
 'suppressionlog'     => 'Protokol potłóčenjow',
 'suppressionlogtext' => 'Deleka je lisćina wušmórnjenjow a zablokowanjow, inkluziwnje wobsaha schowaneho wot administratorow.
-Hlej [[Special:BlockList|Lisćina zablokowanych IP-adresow]] za lisćinu tuchwilnych zablokowanjow.',
+Hlej [[Special:BlockList|Lisćinu blokowanjow]] za lisćinu tuchwilnych zablokowanjow.',
 
 # History merging
 'mergehistory'                     => 'Stawizny stronow zjednoćić',
@@ -1060,7 +1063,7 @@ Zawěsć, zo tuta změna stawiznisku kontinuitu strony wobchowuje.',
 'mergelogpagetext'   => 'Deleka je lisćina najaktualnišich zjednoćenjow stawiznow dweju stronow.',
 
 # Diffs
-'history-title'            => 'Stawizny wersijow strony „$1“',
+'history-title'            => '$1: Wersijowe stawizny',
 'difference'               => '(rozdźěl mjez wersijomaj)',
 'difference-multipage'     => '(Rozdźěl mjez stronami)',
 'lineno'                   => 'Rjadka $1:',
@@ -1288,7 +1291,7 @@ Smě mjenje hač $1 {{PLURAL:$1|znamješko|znamješce|znamješka|znamješkow}} d
 # Groups
 'group'               => 'Skupina:',
 'group-user'          => 'wužiwarjo',
-'group-autoconfirmed' => 'awtomatisce potwjerdźeny',
+'group-autoconfirmed' => 'Awtomatisce potwjerdźeni wužiwarjo',
 'group-bot'           => 'Boty',
 'group-sysop'         => 'Administratorojo',
 'group-bureaucrat'    => 'Běrokraća',
@@ -1449,11 +1452,12 @@ Smě mjenje hač $1 {{PLURAL:$1|znamješko|znamješce|znamješka|znamješkow}} d
 'newsectionsummary'                 => 'Nowy wotrězk: /* $1 */',
 'rc-enhanced-expand'                => 'Podrobnosće pokazać (wužaduje sej JavaScript)',
 'rc-enhanced-hide'                  => 'Podrobnosće schować',
+'rc-old-title'                      => 'prěnjotnje wutworjeny jako "$1"',
 
 # Recent changes linked
-'recentchangeslinked'          => 'Změny zwjazanych stron',
+'recentchangeslinked'          => 'Změny w zwjazanych stronach',
 'recentchangeslinked-feed'     => 'Změny zwjazanych stron',
-'recentchangeslinked-toolbox'  => 'Změny zwjazanych stron',
+'recentchangeslinked-toolbox'  => 'Změny w zwjazanych stronach',
 'recentchangeslinked-title'    => 'Změny na stronach, kotrež su z „$1“ wotkazane',
 'recentchangeslinked-noresult' => 'Njejsu změny zwajzanych stron we wubranej dobje.',
 'recentchangeslinked-summary'  => "Tuta strona nalistuje poslednje změny na wotkazanych stronach (resp. pola kategorijow na čłonach kategorije).
@@ -1620,7 +1624,7 @@ $1',
 'backend-fail-writetemp'     => 'Njeda so do temporerneje dataje pisać.',
 'backend-fail-closetemp'     => 'Temporerna dataja njeda so začinić.',
 'backend-fail-read'          => 'Dataja $1 njeda so čitać',
-'backend-fail-create'        => 'Dataja $1 njeda so wutworić',
+'backend-fail-create'        => 'Dataja $1 njeda so pisać.',
 'backend-fail-readonly'      => 'Składowanski backend "$1" da so tuchwilu jenož čitać. Přičina je była: "$2"',
 'backend-fail-synced'        => 'Dataja "$1" je znutřka interneho składowanskeho backenda w inkonsistentnym stawje',
 'backend-fail-connect'       => 'Zwisk z datajowym składowanskim backendom "$1" móžno njeje.',
@@ -2376,8 +2380,8 @@ Najnowši zapisk w protokolu blokowanjow so deleka jako referenca podawa:',
 'ipb-confirm'                     => 'Blokowanje wobkrućić',
 'badipaddress'                    => 'Njepłaćiwa IP-adresa',
 'blockipsuccesssub'               => 'Zablokowanje wuspěšne',
-'blockipsuccesstext'              => '[[Special:Contributions/$1|$1]] bu zablokowany.
-<br />Hlej [[Special:BlockList|lisćinu blokowanjow IP]], zo by zablokowanjow pruwował.',
+'blockipsuccesstext'              => '[[Special:Contributions/$1|$1]] bu {{GENDER:$1|zablokowany|zablokowana}}.<br />
+Hlej [[Special:BlockList|lisćinu blokowanjow]], zo by zablokowanjow pruwował.',
 'ipb-blockingself'                => 'Chceš samoho blokować! Chceš to woprawdźe činić?',
 'ipb-confirmhideuser'             => 'Chceš runje wužiwarja z nastajenjom "wužiwarja schować" blokować. To k tomu dowjedźe, zo mjeno wužiwarja so we wšch lisćinach a protokolowych zapiskach potłóči. Chceš to woprawdźe činić?',
 'ipb-edit-dropdown'               => 'přičiny zablokowanjow wobdźěłać',
@@ -2427,7 +2431,7 @@ Najnowši zapisk w protokolu blokowanjow so deleka jako referenca podawa:',
 'blocklog-showsuppresslog'        => 'Tutón wužiwar bu prjedy zablokowany a schowany. Protokol potłóčenjow  so deleka jako referenca podawa:',
 'blocklogentry'                   => 'je wužiwarja [[$1]] zablokował z časom spadnjenja $2 $3',
 'reblock-logentry'                => 'změni blokowanske nastajenja za [[$1]] z časom spadnjenja $2 $3',
-'blocklogtext'                    => 'To je protokol blokowanja a wotblokowanja wužiwarjow. Awtomatisce blokowane IP-adresy so njenalistuja. Hlej [[Special:BlockList|lisćinu zablokowanych IP-adresow]] za lisćinu tuchwilnych wuhnaćow a zablokowanjow.',
+'blocklogtext'                    => 'To je protokol blokowanja a wotblokowanja wužiwarjow. Awtomatisce blokowane IP-adresy so njenalistuja. Hlej [[Special:BlockList|lisćinu blokowanjow]] za lisćinu tuchwilnych wuhnaćow a zablokowanjow.',
 'unblocklogentry'                 => 'zablokowanje wužiwarja $1 bu zběhnjene',
 'block-log-flags-anononly'        => 'jenož anonymnych',
 'block-log-flags-nocreate'        => 'wutworjenje wužiwarskich kontow znjemóžnjene',
@@ -2666,7 +2670,7 @@ W poslednim padźe móžeš tež wotkaz wužiwać, na př. „[[{{#Special:Expor
 
 # JavaScriptTest
 'javascripttest'                           => 'JavaScriptowy test',
-'javascripttest-disabled'                  => 'Tuta funkcija je znjemóžnjena.',
+'javascripttest-disabled'                  => 'Tuta funkcija njeje na tutym wikiju zmóžnjena.',
 'javascripttest-title'                     => 'Testy $1 so přewjedu',
 'javascripttest-pagetext-noframework'      => 'Tuta strona je za přewjedźenje javascriptowych testow přewostajena.',
 'javascripttest-pagetext-unknownframework' => 'Njeznaty wobłuk "$1".',

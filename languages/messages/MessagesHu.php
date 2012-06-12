@@ -1,5 +1,5 @@
 <?php
-/** Hungarian (Magyar)
+/** Hungarian (magyar)
  *
  * See MessagesQqq.php for message documentation incl. usage of parameters
  * To improve a translation please visit http://translatewiki.net
@@ -26,6 +26,7 @@
  * @author Kaganer
  * @author KossuthRad
  * @author Misibacsi
+ * @author R-Joe
  * @author Samat
  * @author Sucy
  * @author Terik
@@ -976,7 +977,7 @@ A blokkolási napló legutóbbi ide vonatkozó bejegyzése a következő:',
 'userinvalidcssjstitle'            => "'''Figyelem:''' Nincs „$1” nevű felület. A felületekhez tartozó .css/.js oldalak kisbetűvel kezdődnek, például ''{{ns:user}}:Gipsz Jakab/vector.css'' és nem ''{{ns:user}}:Gipsz Jakab/Vector.css''.",
 'updated'                          => '(frissítve)',
 'note'                             => "'''Megjegyzés:'''",
-'previewnote'                      => "'''Ne feledd, hogy ez csak előnézet, a változtatásaid még nincsenek elmentve!'''",
+'previewnote'                      => "'''Ne feledd, hogy ez csak egy előnézet.''' A változtatásaid még nincsenek elmentve!",
 'previewconflict'                  => 'Ez az előnézet a felső szerkesztődobozban levő szöveg mentés utáni megfelelőjét mutatja.',
 'session_fail_preview'             => "'''Az elveszett munkamenetadatok miatt sajnos nem tudtuk feldolgozni a szerkesztésedet.
 Kérjük próbálkozz újra!
@@ -1208,7 +1209,7 @@ Ellenőrizd a naplókat.',
 
 # Suppression log
 'suppressionlog'     => 'Adatvédelmibiztos-napló',
-'suppressionlogtext' => 'Lenn látható az adminisztrátorok elől legutóbb elrejtett törlések és blokkok listája. Lásd a [[Special:BlockList|blokkolt IP-címek listája]] lapot a jelenleg érvényben lévő kitiltásokhoz és blokkokhoz.',
+'suppressionlogtext' => 'Lenn látható az adminisztrátorok elől legutóbb elrejtett törlések és blokkok listája. Lásd a [[Special:BlockList|blokkok listája]] lapot a jelenleg érvényben lévő kitiltásokhoz és blokkokhoz.',
 
 # History merging
 'mergehistory'                     => 'Laptörténetek egyesítése',
@@ -1466,7 +1467,7 @@ A műveletet nem lehet visszavonni.',
 # Groups
 'group'               => 'Csoport:',
 'group-user'          => 'szerkesztők',
-'group-autoconfirmed' => 'automatikusan megerősített felhasználók',
+'group-autoconfirmed' => 'automatikusan megerősített szerkesztők',
 'group-bot'           => 'botok',
 'group-sysop'         => 'adminisztrátorok',
 'group-bureaucrat'    => 'bürokraták',
@@ -1481,7 +1482,7 @@ A műveletet nem lehet visszavonni.',
 'group-suppress-member'      => '{{GENDER:$1|adatvédelmi biztos}}',
 
 'grouppage-user'          => '{{ns:project}}:Felhasználók',
-'grouppage-autoconfirmed' => '{{ns:project}}:Automatikusan megerősített felhasználók',
+'grouppage-autoconfirmed' => '{{ns:project}}:Munkatársak#Automatikusan megerősített szerkesztők',
 'grouppage-bot'           => '{{ns:project}}:Botok',
 'grouppage-sysop'         => '{{ns:project}}:Adminisztrátorok',
 'grouppage-bureaucrat'    => '{{ns:project}}:Bürokraták',
@@ -1626,6 +1627,7 @@ A műveletet nem lehet visszavonni.',
 'newsectionsummary'                 => '/* $1 */ (új szakasz)',
 'rc-enhanced-expand'                => 'Részletek megjelenítése (JavaScript szükséges)',
 'rc-enhanced-hide'                  => 'Részletek elrejtése',
+'rc-old-title'                      => 'eredetileg létrehozott " $1 "',
 
 # Recent changes linked
 'recentchangeslinked'          => 'Kapcsolódó változtatások',
@@ -1661,7 +1663,7 @@ Képet a következő módon illeszthetsz be egy oldalra: '''<nowiki>[[</nowiki>{
 'upload-preferred'            => 'Támogatott fájltípusok: $1.',
 'upload-prohibited'           => 'Tiltott fájltípusok: $1.',
 'uploadlog'                   => 'feltöltési napló',
-'uploadlogpage'               => 'Feltöltési_napló',
+'uploadlogpage'               => 'Feltöltési napló',
 'uploadlogpagetext'           => 'Lentebb látható a legutóbbi felküldések listája.
 Lásd még az [[Special:NewFiles|új fáljlok galériáját]]',
 'filename'                    => 'Fájlnév',
@@ -1798,7 +1800,7 @@ Kérjük, hogy lépj kapcsolatba egy  [[Special:ListUsers/sysop|adminisztrátorr
 'backend-fail-writetemp'     => 'Nem lehet írni az ideiglenes fájlba.',
 'backend-fail-closetemp'     => 'Nem lehet lezárni az ideiglenes fájlt.',
 'backend-fail-read'          => 'Nem sikerült olvasni ebből a fájlból: $1.',
-'backend-fail-create'        => 'Nem sikerült létrehozni ezt a fájlt: $1.',
+'backend-fail-create'        => 'Nem sikerült írni ebbe a fájlba: $1.',
 'backend-fail-readonly'      => 'A(z) „$1” tárolórendszer jelenleg csak olvasható. Ennek oka a következő: „$2”',
 'backend-fail-synced'        => 'A(z) „$1” fájl inkonzisztens állapotban van a tárolórendszerek között',
 'backend-fail-connect'       => 'Nem sikerült csatlakozni a(z) „$1” tárolórendszerhez.',
@@ -2323,7 +2325,7 @@ Kérjük, erősítsd meg, hogy valóban ezt szeretnéd tenni, átlátod a követ
 'actionfailed'           => 'A művelet nem sikerült',
 'deletedtext'            => 'A(z) „$1” lapot törölted.
 A legutóbbi törlések listájához lásd a $2 lapot.',
-'dellogpage'             => 'Törlési_napló',
+'dellogpage'             => 'Törlési napló',
 'dellogpagetext'         => 'Itt láthatók a legutóbb törölt lapok.',
 'deletionlog'            => 'törlési napló',
 'reverted'               => 'Visszaállítva a korábbi változatra',
@@ -2360,7 +2362,7 @@ ez a művelet a munkamenet eltérítése miatti óvatosságból megszakadt.
 Kérjük, hogy nyomd meg a "vissza" gombot, és töltsd le újra az oldalt, ahonnan jöttél, majd próbáld újra.',
 
 # Protect
-'protectlogpage'              => 'Lapvédelmi_napló',
+'protectlogpage'              => 'Lapvédelmi napló',
 'protectlogtext'              => 'Alább látható a lapvédelemmel kapcsolatos változtatások listája.
 A [[Special:ProtectedPages|védett lapok listáján]] megtekintheted a jelenleg is érvényben lévő védelmeket.',
 'protectedarticle'            => 'levédte a(z) [[$1]] lapot',
@@ -2624,7 +2626,7 @@ Add meg a blokkolás okát is (például idézd a blokkolandó személy által v
 'blocklog-showsuppresslog'        => 'Ez a felhasználó korábban blokkot kapott, és a naplóbejegyzés el lett rejtve. Az elrejtési napló alább látható tájékoztatásként:',
 'blocklogentry'                   => '„[[$1]]” blokkolva $2 $3 időtartamra',
 'reblock-logentry'                => 'megváltoztatta [[$1]] blokkjának beállításait, a blokk lejárta: $2 $3',
-'blocklogtext'                    => 'Ez a felhasználókra helyezett blokkoknak és azok feloldásának listája. Az IP-autoblokkok nem szerepelnek a listában. Lásd még [[Special:BlockList|a jelenleg életben lévő blokkok listáját]].',
+'blocklogtext'                    => 'Ez a felhasználókra helyezett blokkoknak és azok feloldásának listája. Az automatikus blokkolt IP címek nem szerepelnek a listában. Lásd még [[Special:BlockList|a jelenleg életben lévő blokkok listáját]].',
 'unblocklogentry'                 => '„$1” blokkolása feloldva',
 'block-log-flags-anononly'        => 'csak anonok',
 'block-log-flags-nocreate'        => 'nem hozhat létre új fiókot',
@@ -2885,7 +2887,7 @@ Mentsd el a számítógépedre, majd töltsd fel ide.',
 
 # JavaScriptTest
 'javascripttest'                           => 'JavaScript tesztelés',
-'javascripttest-disabled'                  => 'Ez a funkció le van tiltva.',
+'javascripttest-disabled'                  => 'Ez a funkció nincs engedélyezve ebben a wikiben.',
 'javascripttest-title'                     => '$1 tesztek futtatása',
 'javascripttest-pagetext-noframework'      => 'Ez az oldal JavaStript tesztek futtatására van fenntartva.',
 'javascripttest-pagetext-unknownframework' => 'Ismeretlen teszt keretrendszer: $1.',
@@ -3188,15 +3190,15 @@ míg a többi elem a táblázat összecsukása után alapértelmezett esetben re
 'exif-subsectimedigitized'         => 'DateTimeDigitized almásodpercek',
 'exif-exposuretime'                => 'Expozíciós idő',
 'exif-exposuretime-format'         => '$1 mp. ($2)',
-'exif-fnumber'                     => 'F szám',
+'exif-fnumber'                     => 'Rekesznyílás',
 'exif-exposureprogram'             => 'Expozíciós program',
 'exif-spectralsensitivity'         => 'Színkép érzékenysége',
-'exif-isospeedratings'             => 'ISO érzékenység minősítése',
+'exif-isospeedratings'             => 'ISO érzékenység értéke',
 'exif-shutterspeedvalue'           => 'APEX zársebesség',
 'exif-aperturevalue'               => 'APEX lencsenyílás',
 'exif-brightnessvalue'             => 'APEX fényerő',
-'exif-exposurebiasvalue'           => 'Expozíciós dőltség',
-'exif-maxaperturevalue'            => 'Legnagyobb földi lencsenyílás',
+'exif-exposurebiasvalue'           => 'Expozíciós eltolás',
+'exif-maxaperturevalue'            => 'Legnagyobb rekesznyílás',
 'exif-subjectdistance'             => 'Tárgy távolsága',
 'exif-meteringmode'                => 'Fénymérési mód',
 'exif-lightsource'                 => 'Fényforrás',
@@ -3394,7 +3396,7 @@ míg a többi elem a táblázat összecsukása után alapértelmezett esetben re
 'exif-flash-return-2'   => 'strobe return light nincs érzékelve',
 'exif-flash-return-3'   => 'strobe return light érzékelve',
 'exif-flash-mode-1'     => 'Kötelező vaku',
-'exif-flash-mode-2'     => 'Kötelező vakuelnyomás',
+'exif-flash-mode-2'     => 'Kötelező vakukikapcsolás',
 'exif-flash-mode-3'     => 'automatikus mód',
 'exif-flash-function-1' => 'Nincs vakufunkció',
 'exif-flash-redeye-1'   => 'Vörös szem eltávolító mód',
@@ -3852,7 +3854,7 @@ A képek teljes méretben jelennek meg, más fájltípusok közvetlenül a hozz�
 'revdelete-unrestricted'              => 'felfedett az adminisztrátoroknak',
 'logentry-move-move'                  => '$1 átnevezte a(z) $3 lapot a következő névre: $4',
 'logentry-move-move-noredirect'       => '$1 átnevezte a(z) $3 lapot $4 lapra átirányítás nélkül',
-'logentry-move-move_redir'            => '$1 átmozgatta a(z) $3 lapot $4 lapra átirányítással',
+'logentry-move-move_redir'            => '$1 átnevezte a(z) $3 lapot $4 lapra átirányítással',
 'logentry-move-move_redir-noredirect' => '$1 átnevezte a(z) $3 lapot $4 lapra átirányítás nélkül',
 'logentry-patrol-patrol'              => '$1 a(z) $3 lap $4 változatát ellenőrzöttnek jelölte',
 'logentry-patrol-patrol-auto'         => '$1 a(z) $3 lap $4 változatát automatikusan ellenőrzöttnek jelölte',

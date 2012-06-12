@@ -1,5 +1,5 @@
 <?php
-/** Tetum (Tetun)
+/** Tetum (tetun)
  *
  * See MessagesQqq.php for message documentation incl. usage of parameters
  * To improve a translation please visit http://translatewiki.net
@@ -174,6 +174,7 @@ $messages = array(
 'vector-view-create'  => 'Kria',
 'vector-view-edit'    => 'Edita',
 'vector-view-history' => 'Haree istória',
+'actions'             => 'Aksaun sira',
 
 'errorpagetitle'    => 'Sala',
 'returnto'          => 'Fali ba $1.',
@@ -345,7 +346,8 @@ Check your spelling, ka [[Special:UserLogin/signup|kria konta foun]].',
 'loginreqpagetext'                 => 'Ó tenke $1 ba haree pájina seluk.',
 'newarticle'                       => '(Foun)',
 'noarticletext'                    => "Iha momentu lá'os testu iha pájina ne'e, bele [[Special:Search/{{PAGENAME}}|buka naran pájina nian]] iha pájina seluk, <span class=\"plainlinks\">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} search the related logs], ka [{{fullurl:{{FULLPAGENAME}}|action=edit}} edita pájina ne'e]</span>.",
-'previewnote'                      => "'''Ne'e de'it pájina ba kontrola; Ita-nia mudansa la armazenadu seidauk!'''",
+'previewnote'                      => "'''Ne'e de'it pájina ba kontrola.'''
+Ita-nia mudansa la armazenadu seidauk!",
 'editing'                          => 'Edita $1',
 'editingsection'                   => 'Edita $1 (seksaun)',
 'editingcomment'                   => 'Edita $1 (seksaun foun)',
@@ -394,19 +396,21 @@ Check your spelling, ka [[Special:UserLogin/signup|kria konta foun]].',
 'lineno' => 'Liña $1:',
 
 # Search results
-'searchsubtitleinvalid'     => "Ita buka tiha ona '''$1'''",
-'prevn'                     => 'molok {{PLURAL:$1|$1}}',
-'nextn'                     => 'oinmai {{PLURAL:$1|$1}}',
-'viewprevnext'              => 'Haree ($1 {{int:pipe-separator}} $2) ($3)',
-'search-result-size'        => '$1 ({{PLURAL:$2|liafuan ida|liafuan $2}})',
-'search-section'            => '(seksaun $1)',
-'search-interwiki-caption'  => 'Projetu seluseluk sira',
-'search-mwsuggest-enabled'  => 'fó sujestaun',
-'search-mwsuggest-disabled' => 'la hatudu sujestaun',
-'searchall'                 => 'hotu',
-'powersearch'               => 'Buka',
-'powersearch-field'         => 'Buka',
-'powersearch-toggleall'     => 'Hotu',
+'searchsubtitleinvalid'         => "Ita buka tiha ona '''$1'''",
+'prevn'                         => 'molok {{PLURAL:$1|$1}}',
+'nextn'                         => 'oinmai {{PLURAL:$1|$1}}',
+'viewprevnext'                  => 'Haree ($1 {{int:pipe-separator}} $2) ($3)',
+'searchmenu-new'                => "'''Kria pájina \"[[:\$1]]\" iha wiki ne'e!'''",
+'searchprofile-project-tooltip' => 'Buka iha $1',
+'search-result-size'            => '$1 ({{PLURAL:$2|liafuan ida|liafuan $2}})',
+'search-section'                => '(seksaun $1)',
+'search-interwiki-caption'      => 'Projetu seluseluk sira',
+'search-mwsuggest-enabled'      => 'fó sujestaun',
+'search-mwsuggest-disabled'     => 'la hatudu sujestaun',
+'searchall'                     => 'hotu',
+'powersearch'                   => 'Buka',
+'powersearch-field'             => 'Buka',
+'powersearch-toggleall'         => 'Hotu',
 
 # Preferences page
 'preferences'               => 'Preferénsia',
@@ -435,6 +439,7 @@ Check your spelling, ka [[Special:UserLogin/signup|kria konta foun]].',
 'userrights-lookup-user'   => "Muda grupu uza-na'in",
 'userrights-user-editname' => "Fó naran uza-na'in ida:",
 'editusergroup'            => "Muda grupu uza-na'in",
+'editinguser'              => "Muda grupu '''[[User:$1|$1]]''' nian $2",
 'userrights-editusergroup' => "Muda grupu uza-na'in",
 'userrights-groupsmember'  => 'Membru iha:',
 'userrights-reason'        => 'Motivu:',
@@ -477,7 +482,7 @@ Check your spelling, ka [[Special:UserLogin/signup|kria konta foun]].',
 # User rights log
 'rightslog'      => "Lista mudansa priviléjiu uza-na'in",
 'rightslogtext'  => "Ne'e lista mudansa priviléjiu uza-na'in sira nian.",
-'rightslogentry' => 'muda grupu $1 nian husi $2 ba $3',
+'rightslogentry' => 'muda grupu "$1" nian husi "$2" ba "$3"',
 'rightsnone'     => '(mamuk)',
 
 # Associated actions - in the sentence "You do not have permission to X"
@@ -924,6 +929,7 @@ Check your spelling, ka [[Special:UserLogin/signup|kria konta foun]].',
 'version-other'            => 'Seluk',
 'version-version'          => '(Versaun $1)',
 'version-license'          => 'Lisensa',
+'version-poweredby-others' => 'ema seluk',
 'version-software-product' => 'Produtu',
 'version-software-version' => 'Versaun',
 

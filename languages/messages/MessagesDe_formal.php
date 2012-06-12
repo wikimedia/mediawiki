@@ -119,7 +119,7 @@ Besucher, die diese IP-Adresse verwenden, können momentan keine Benutzerkonten 
 
 Falls das Benutzerkonto irrtümlich angelegt wurde, können Sie diese Nachricht ignorieren.',
 'login-throttled'            => 'Sie haben zu oft versucht, sich anzumelden.
-Bitte warten Sie, bevor Sie es erneut probierst.',
+Bitte warten Sie, bevor Sie es erneut probieren.',
 
 # Change password dialog
 'resetpass_announce'      => 'Anmeldung mit dem per E-Mail zugesandten Code. Um die Anmeldung abzuschließen, müssen Sie jetzt ein neues Passwort wählen.',
@@ -166,7 +166,7 @@ Als Grund wurde ''$2'' angegeben.
 * Sperre betrifft: $7
 
 Sie könnten $1 oder einen der anderen [[{{MediaWiki:Grouppage-sysop}}|Administratoren]] kontaktieren, um über die Sperre zu diskutieren.
-Sie können die „E-Mail an diesen Benutzer“-Funktion nicht nutzen, solange keine gültige E-Mail-Adresse in Ihren [[Special:Preferences|Benutzerkonto-Einstellungen]] eingetragen ist, oder diese Funktion für Sie gesperrt wurde.
+Sie können die „E-Mail an diesen Benutzer“-Funktion nicht nutzen, solange keine gültige E-Mail-Adresse in Ihren [[Special:Preferences|Benutzerkonto-Einstellungen]] eingetragen ist oder diese Funktion für Sie gesperrt wurde.
 Ihre aktuelle IP-Adresse ist $3, und die Sperr-ID ist $5.
 Bitte fügen Sie alle Informationen jeder Anfrage hinzu, die Sie stellen.",
 'autoblockedtext'                  => "Ihre IP-Adresse wurde automatisch gesperrt, da sie von einem anderen Benutzer genutzt wurde, der von $1 gesperrt wurde.
@@ -180,7 +180,7 @@ Als Grund wurde angegeben:
 
 Sie können $1 oder einen der anderen [[{{MediaWiki:Grouppage-sysop}}|Administratoren]] kontaktieren, um über die Sperre zu diskutieren.
 
-Sie können die „E-Mail an diesen Benutzer“-Funktion nicht nutzen, solange keine gültige E-Mail-Adresse in Ihren [[Special:Preferences|Benutzerkonto-Einstellungen]] eingetragen ist, oder diese Funktion für Sie gesperrt wurde.
+Sie können die „E-Mail an diesen Benutzer“-Funktion nicht nutzen, solange keine gültige E-Mail-Adresse in Ihren [[Special:Preferences|Benutzerkonto-Einstellungen]] eingetragen ist oder diese Funktion für Sie gesperrt wurde.
 
 Ihre aktuelle IP-Adresse ist $3, und die Sperr-ID ist $5.
 Bitte fügen Sie alle Informationen jeder Anfrage hinzu, die Sie stellen.",
@@ -334,8 +334,9 @@ Dies kann nicht mehr rückgängig gemacht werden.',
 'prefs-help-email-others'    => 'Mit anderen Benutzern können Sie auch über die Benutzerdiskussionsseiten Kontakt aufnehmen, ohne dass Sie Ihre Identität offenlegen müssen.',
 
 # User rights
-'userrights-groups-help'      => 'Sie können die Gruppenzugehörigkeit dieses Benutzer ändern.
+'userrights-groups-help'      => 'Sie können die Gruppenzugehörigkeit dieses Benutzers ändern:
 * Ein markiertes Kästchen bedeutet, dass der Benutzer Mitglied dieser Gruppe ist.
+* Ein nichtmarkiertes Kästchen bedeutet, dass der Benutzer nicht Mitglied dieser Gruppe ist.
 * Ein * bedeutet, dass Sie das Benutzerrecht nach Erteilung nicht wieder zurücknehmen können (oder umgekehrt).',
 'userrights-no-interwiki'     => 'Sie haben nicht die erforderliche Berechtigung, um Benutzerrechte in anderen Wikis ändern zu können.',
 'userrights-nologin'          => 'Sie müssen sich mit einem Administrator-Benutzerkonto [[Special:UserLogin|anmelden]], um Benutzerrechte zu ändern.',
@@ -363,9 +364,7 @@ Um ein '''Bild''' in einer Seite zu verwenden, nutzen Sie einen Link in der folg
 * '''<tt><nowiki>[[</nowiki>{{ns:media}}<nowiki>:Datei.ogg]]</nowiki></tt>''' – für einen direkten Link auf die Datei, ohne Darstellung der Datei",
 'illegalfilename'             => 'Der Dateiname „$1“ enthält mindestens ein nicht erlaubtes Zeichen. Bitte benennen Sie die Datei um und versuchen Sie sie erneut hochzuladen.',
 'emptyfile'                   => 'Die hochgeladene Datei ist leer. Der Grund kann ein Tippfehler im Dateinamen sein. Bitte kontrollieren Sie, ob Sie die Datei wirklich hochladen wollen.',
-'fileexists'                  => "Eine Datei mit diesem Namen existiert bereits.
-Wenn Sie auf „Datei speichern“ klicken, wird die Datei überschrieben.
-Bitte prüfen Sie '''<tt>[[:$1]]</tt>''', wenn Sie sich nicht sicher sind.
+'fileexists'                  => "Eine Datei dieses Namens ist bereits vorhanden. Bitte prüfen Sie '''<tt>[[:$1]]</tt>''', sofern Sie sich nicht sicher sind, ob Sie sie ändern möchten.
 [[$1|thumb]]",
 'filepageexists'              => "Eine Beschreibungsseite wurde bereits als '''<tt>[[:$1]]</tt>''' erstellt, es ist aber keine Datei mit diesem Namen vorhanden.
 Die eingegebene Beschreibung wird nicht auf die Beschreibungsseite übernommen.
@@ -416,7 +415,7 @@ Nur Dateizugriff ist erlaubt.',
 
 # File description page
 'filehist-help'        => 'Klicken Sie auf einen Zeitpunkt, um diese Version zu laden.',
-'filepage-nofile-link' => 'Es existiert keine Datei mit diesem Namen, aber Sie können [$1 diese Datei hochladen].',
+'filepage-nofile-link' => 'Es ist keine Datei dieses namens vorhanden. Sie können jedoch [$1 diese Datei hochladen].',
 
 # File reversion
 'filerevert-intro' => "Sie setzen die Datei '''[[Media:$1|$1]]''' auf die [$4 Version vom $2, $3 Uhr] zurück.",
@@ -603,7 +602,8 @@ Alle Transwiki-Import-Aktionen werden im [[Special:Log/import|Import-Logbuch]] p
 'import-error-create'   => 'Die Seite „$1“ wurde nicht importiert, da Sie nicht berechtigt sind, sie zu erstellen.',
 
 # JavaScriptTest
-'javascripttest-pagetext-skins' => 'Wählen Sie eine Benutzeroberfläche zur Durchführung der Tests aus:',
+'javascripttest-pagetext-frameworks' => 'Bitte wählen Sie eine der folgenden Prüfumgebungen aus: $1',
+'javascripttest-pagetext-skins'      => 'Wählen Sie eine Benutzeroberfläche zur Durchführung der Tests aus:',
 
 # Tooltip help for the actions
 'tooltip-pt-userpage'            => 'Ihre Benutzerseite',
@@ -683,6 +683,10 @@ Wenn Sie die Seite speichern, wird sie neu angelegt.',
 'confirmrecreate'     => "Benutzer [[User:$1|$1]] ([[User talk:$1|Diskussion]]) hat diese Seite gelöscht, nachdem Sie angefangen haben, sie zu bearbeiten. Die Begründung lautete:
 : ''$2''
 Bitte bestätigen Sie, dass Sie diese Seite wirklich neu erstellen möchten.",
+
+# Live preview
+'livepreview-failed' => 'Die Vorschau kann nicht sofort angezeigt werden!
+Bitte nutzen Sie die reguläre Vorschau.',
 
 # Watchlist editor
 'watchlistedit-numitems'       => 'Ihre Beobachtungsliste enthält {{PLURAL:$1|einen Eintrag|$1 Einträge}}. Die Diskussionsseiten wurden dabei nicht mitgezählt.',

@@ -934,7 +934,8 @@ L-aħħar daħla fir-reġistru tal-imblokki hi mogħtiha hawn taħt għal refere
 Ftakar li l-paġni .css u .js personalizzati għandhom l-ewwel ittra tat-titlu żgħira, eż. {{ns:user}}:Foo/vector.css u mhux {{ns:user}}:Foo/Vector.css.",
 'updated'                          => '(Aġġornata)',
 'note'                             => "'''Nota:'''",
-'previewnote'                      => "'''Ftakar li din hija biss dehra proviżorja, u li għadha ma ġietx salvata!'''",
+'previewnote'                      => "'''Ftakar li din hija biss dehra proviżorja.'''
+It-tibdiliet tiegħek għadhom ma ġewx salvati!",
 'previewconflict'                  => "Din il-previżjoni turi l-kliem li jinsab fiż-żona ta' modifika superjuri u turi kif tidher kieku l-paġna kella tiġi modifikata.",
 'session_fail_preview'             => "'''Jiddispjaċina imma l-modifika tiegħek ma setgħetx tiġi pproċessata minħabba li ntilfet l-informazzjoni tas-sessjoni.
 Jekk jogħġbok, erġa' pprova. Jekk xorta tibqa' ma taħdimx, ipprova [[Special:UserLogout|oħroġ]] u erġa' idħol.'''",
@@ -2393,7 +2394,7 @@ $1',
 'namespace'                     => 'Spazju tal-isem:',
 'invert'                        => 'Inverti l-għażla',
 'tooltip-invert'                => 'Agħżel din il-kaxxa biex taħbi l-modifiki lejn paġni li jinsabu fl-ispazji tal-isem magħżula (u l-ispazju tal-isem assoċjat jekk hu magħżul)',
-'namespace_association'         => 'Spazju tal-isem assoċjata',
+'namespace_association'         => 'Spazju tal-isem assoċjat',
 'tooltip-namespace_association' => "Agħżel din il-kaxxa sabiex tinkludi l-paġna ta' diskussjoni jew l-oġġett tal-ispazju tal-isem assoċjat mal-ispazju tal-isem magħżul",
 'blanknamespace'                => '(Prinċipali)',
 
@@ -3702,6 +3703,7 @@ Stampi huwa mogħrija b'risoluzzjoni sħiħa, tipi tal-fajl oħrajn jibdew bil-p
 'sqlite-no-fts'  => "$1 mingħajr il-possibilità ta' tfittxija kompluta fit-test",
 
 # New logging system
+'logentry-delete-delete'              => '$1 ħassar il-paġna $3',
 'revdelete-restricted'                => "limiti applikati 'l amministraturi",
 'revdelete-unrestricted'              => "neħħi l-limiti 'l amministraturi",
 'logentry-move-move'                  => '$1 mexxa l-paġna $3 għal $4',

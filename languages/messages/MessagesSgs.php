@@ -64,14 +64,14 @@ $messages = array(
 'tog-justify'                 => 'Līgintė pastraipas palē abi poses',
 'tog-hideminor'               => 'Pakavuotė mažus pataisėmus vielībūju taisīmu sārašė',
 'tog-extendwatchlist'         => 'Ėšpliestė keravuojamu sāraša, kū ruodītu vėsus tėnkamus pakeitėmus',
-'tog-usenewrc'                => 'Pažongē ruodomė vielibė̅jė pakeitėmā (JavaScript)',
+'tog-usenewrc'                => 'Pažongē ruodomė vielibė̅jė pakeitėmā (rēk JavaScript)',
 'tog-numberheadings'          => 'Autuomatėškā numeroutė skėrsnelios',
 'tog-showtoolbar'             => 'Ruodītė redagavėma rakondinė (JavaScript)',
 'tog-editondblclick'          => 'Poslapiu redagavėms dvėgobu paspaudėmu (JavaScript)',
 'tog-editsection'             => 'Ijongtė skėrsneliu redagavėma nauduojant nūruodas [taisītė]',
 'tog-editsectiononrightclick' => 'Ijongtė skėrsneliu redagavėma paspaudos skėrsnelė pavadėnėma<br />dešėniouju pelies klavėšu (JavaScript)',
 'tog-showtoc'                 => 'Ruodītė torėni, jē poslapī daugiau kāp 3 skėrsnelē',
-'tog-rememberpassword'        => 'Atmintė prėsėjongėma infuormacėjė šėtom kuompioterī (for a maximum of $1 {{PLURAL:$1|day|days}})',
+'tog-rememberpassword'        => 'Atmintė prėsėjongėma infuormacėjė šėtom kuompioterī (daugiausē $1 {{PLURAL:$1|dėina|dėinuom}})',
 'tog-watchcreations'          => 'Pridietė poslapius, katrūs sokorio, i keravuojamu sāraša',
 'tog-watchdefault'            => 'Pridietė poslapius, katrūs taisau, i keravuojamu sāraša',
 'tog-watchmoves'              => 'Pridietė poslapius, katrūs parkelio, i keravuojamu sāraša',
@@ -85,9 +85,10 @@ $messages = array(
 'tog-enotifminoredits'        => 'Siōstė mon gromata, kūmet poslapė keitėms īr mažos',
 'tog-enotifrevealaddr'        => 'Ruodītė mona el. pašta adresa primėnėma gromatuos',
 'tog-shownumberswatching'     => 'Ruodītė keravuojantiu nauduotuoju skatliu',
-'tog-fancysig'                => 'Parašos ba autuomatėniu nūruodu',
-'tog-externaleditor'          => 'Palē nutīliejėma nauduotė ėšuorini radaktuoriu',
-'tog-externaldiff'            => 'Palē nutīliejėma nauduotė ėšuorinė skėrtomu ruodīma pruograma',
+'tog-oldsig'                  => 'Esams parašos:',
+'tog-fancysig'                => 'Parašos kāp wiki tekstos (ba autuomatėniu nūruodu)',
+'tog-externaleditor'          => 'Vagol nutīliejėma nauduotė ėšuorini radaktuoriu (tėktās specam, rēk specēliū nustatīmu kompioteriō. [//www.mediawiki.org/wiki/Manual:External_editors Daugiau infuormacėjės.])',
+'tog-externaldiff'            => 'Palē nutīliejėma nauduotė ėšuorinė skėrtomu ruodīma pruograma (tėktās specam, rēk specēliū nustatīmu kompioteriō. [//www.mediawiki.org/wiki/Manual:External_editors Daugiau infuormacėjės.])',
 'tog-showjumplinks'           => 'Ijongtė „paršuoktė i“ pasėikiamoma nūruodas',
 'tog-uselivepreview'          => 'Nauduotė tėisiogėne parvėiza (JavaScript) (Eksperimentėnis)',
 'tog-forceeditsummary'        => 'Klaustė, kumet palėiku toščē pakeitėma kuomentara',
@@ -96,6 +97,7 @@ $messages = array(
 'tog-watchlisthideminor'      => 'Kavuotė mažos pakeitėmos keravuojamu sarašė',
 'tog-watchlisthideliu'        => 'Kavuotė prisėjongosium nauduotuojum keitėmus keravuojamu sārošė',
 'tog-watchlisthideanons'      => 'Kavuotė anonimėniu nauduotuoju keitėmus keravuojamu sarašė',
+'tog-watchlisthidepatrolled'  => 'Kavuotė parveizietos pakeitėmos keravuojamu sārašė',
 'tog-nolangconversion'        => 'Ėšjongtė variantu keitėma',
 'tog-ccmeonemails'            => 'Siōstė mon gromatu kopėjės, katros siontiu kėtėims nauduotojams',
 'tog-diffonly'                => 'Neruodītė poslapė torėnė puo skėrtomās',
@@ -105,6 +107,10 @@ $messages = array(
 'underline-always'  => 'Visumet',
 'underline-never'   => 'Nikumet',
 'underline-default' => 'Palē naršīklės nostatīmos',
+
+# Font style option in Special:Preferences
+'editfont-style'   => 'Redagavėma longa teksta stėlios:',
+'editfont-default' => 'Palē naršīklės nostatīmos',
 
 # Dates
 'sunday'        => 'sekma dėina',
@@ -159,18 +165,23 @@ $messages = array(
 'dec'           => 'grd',
 
 # Categories related messages
-'pagecategories'           => '{{PLURAL:$1|Kateguorėjė|Kateguorėjės|Kateguorėju}}',
-'category_header'          => 'Kateguorėjės „$1“ straipsnē',
-'subcategories'            => 'Subkateguorėjės',
-'category-media-header'    => 'Abruozdielis kateguorėjuo „$1“',
-'category-empty'           => "''Šėta kateguorėjė nūnā netor nė vėina straipsnė a faila.''",
-'hidden-categories'        => '{{PLURAL:$1|Pakavuota kateguorėjė|Pakavuotas kateguorėjės}}',
-'hidden-category-category' => 'Pakavuotas kateguorėjės',
-'category-subcat-count'    => '{{PLURAL:$2|Tuo kateguorėjuo īr vėina subkateguorėjė.|{{PLURAL:$1|Ruodoma|Ruodomas|Ruodoma}} $1 {{PLURAL:$1|subkateguorėjė|subkateguorėjės|subkateguorėju}} (ėš vėsa īr $2 {{PLURAL:$2|subkateguorėjė|subkateguorėjės|subkateguorėju}}).}}',
-'category-article-count'   => '{{PLURAL:$2|Tuo kateguorėjuo īr vėins poslapis.|{{PLURAL:$1|Ruodoms|Ruodomė|Ruodoma}} $1 tuos kateguorėjės {{PLURAL:$1|poslapis|poslapē|poslapiu}} (ėš vėsa kateguorėjuo īr $2 {{PLURAL:$2|poslapis|poslapē|poslapiu}}).}}',
-'category-file-count'      => '{{PLURAL:$2|Tuo kateguorėjuo īr vėins poslapis.|{{PLURAL:$1|Ruodoms|Ruodomė|Ruodoma}} $1 tuos kateguorėjės {{PLURAL:$1|fails|failā|failu}} (ėš vėsa kateguorėjuo īr $2 {{PLURAL:$2|poslapis|poslapē|poslapiu}}).}}',
-'listingcontinuesabbrev'   => 'tes.',
-'noindex-category'         => 'Neindeksoutė poslapē',
+'pagecategories'                 => '{{PLURAL:$1|Kateguorėjė|Kateguorėjės|Kateguorėju}}',
+'category_header'                => 'Kateguorėjės „$1“ straipsnē',
+'subcategories'                  => 'Subkateguorėjės',
+'category-media-header'          => 'Abruozdielis kateguorėjuo „$1“',
+'category-empty'                 => "''Šėta kateguorėjė nūnā netor nė vėina straipsnė a faila.''",
+'hidden-categories'              => '{{PLURAL:$1|Pakavuota kateguorėjė|Pakavuotas kateguorėjės}}',
+'hidden-category-category'       => 'Pakavuotas kateguorėjės',
+'category-subcat-count'          => '{{PLURAL:$2|Tuo kateguorėjuo īr vėina subkateguorėjė.|{{PLURAL:$1|Ruodoma|Ruodomas|Ruodoma}} $1 {{PLURAL:$1|subkateguorėjė|subkateguorėjės|subkateguorėju}} (ėš vėsa īr $2 {{PLURAL:$2|subkateguorėjė|subkateguorėjės|subkateguorėju}}).}}',
+'category-subcat-count-limited'  => 'Tuo kateguorėjuo īr {{PLURAL:$1|subkateguorėjė|subkateguorėjės|subkateguorėju}}.',
+'category-article-count'         => '{{PLURAL:$2|Tuo kateguorėjuo īr vėins poslapis.|{{PLURAL:$1|Ruodoms|Ruodomė|Ruodoma}} $1 tuos kateguorėjės {{PLURAL:$1|poslapis|poslapē|poslapiu}} (ėš vėsa kateguorėjuo īr $2 {{PLURAL:$2|poslapis|poslapē|poslapiu}}).}}',
+'category-article-count-limited' => '{{PLURAL:$1|Ruodoms|Ruodomė|Ruodom}} $1 tuos kateguorėjės {{PLURAL:$1|poslapis|poslapē|poslapiu}}.',
+'category-file-count'            => '{{PLURAL:$2|Tuo kateguorėjuo īr vėins poslapis.|{{PLURAL:$1|Ruodoms|Ruodomė|Ruodoma}} $1 tuos kateguorėjės {{PLURAL:$1|fails|failā|failu}} (ėš vėsa kateguorėjuo īr $2 {{PLURAL:$2|poslapis|poslapē|poslapiu}}).}}',
+'category-file-count-limited'    => '{{PLURAL:$1|Ruodoms|Ruodomė|Ruodom}} $1 tuos kateguorėjės {{PLURAL:$1|fails|failā|failu}}.',
+'listingcontinuesabbrev'         => 'tes.',
+'index-category'                 => 'Indeksoutė poslapē',
+'noindex-category'               => 'Neindeksoutė poslapē',
+'broken-file-category'           => 'Poslapē, katrėi tor neteisingas nūruodas i failus',
 
 'about'         => 'Aple',
 'article'       => 'Straipsnis',
@@ -200,7 +211,7 @@ $messages = array(
 'vector-action-move'       => 'Parvadintė',
 'vector-action-protect'    => 'Ožrakintė',
 'vector-action-undelete'   => 'Atkortė',
-'vector-action-unprotect'  => 'Atrakintė',
+'vector-action-unprotect'  => 'Keistė apsauga',
 'vector-view-create'       => 'Sokortė',
 'vector-view-edit'         => 'Taisītė',
 'vector-view-history'      => 'Veizietė istuorėjė',
@@ -224,17 +235,20 @@ $messages = array(
 'printableversion'  => 'Versėjė spausdintė',
 'permalink'         => 'Nulatėnė nūruoda',
 'print'             => 'Spausdėntė',
+'view'              => 'Veizietė',
 'edit'              => 'Taisītė',
 'create'            => 'Sokortė',
 'editthispage'      => 'Taisītė ton poslapė',
 'create-this-page'  => 'Sokortė ta poslapi',
 'delete'            => 'Trintė',
 'deletethispage'    => 'Trintė ton poslapė',
+'undelete_short'    => 'Atstatītė $1 {{PLURAL:$1:redagavėma|redagavėmus|redagavėmu}}',
+'viewdeleted_short' => 'Veizietė $1 {{PLURAL:$1|ėštrinta keitėma|ėštrintus keitėmus|ėštrintū keitėmu}}',
 'protect'           => 'Ožrakintė',
 'protect_change'    => 'pakeistė',
 'protectthispage'   => 'Ožrakintė šėta poslapi',
-'unprotect'         => 'Atrakintė',
-'unprotectthispage' => 'Atrakintė šėta poslapi',
+'unprotect'         => 'Keistė apsauga',
+'unprotectthispage' => 'Keistė tuo poslapė apsauga',
 'newpage'           => 'Naus poslapis',
 'talkpage'          => 'Aptartė šėta poslapi',
 'talkpagelinktext'  => 'Aptarėms',
@@ -262,6 +276,12 @@ $messages = array(
 'jumpto'            => 'Paršuoktė i:',
 'jumptonavigation'  => 'navėgacėjė',
 'jumptosearch'      => 'paėiška',
+'view-pool-error'   => 'Atsėprašuom, bat serverē daba īr perkrautė.
+Nuognē pardaug nauduotoju skait ton poslapi.
+Prašuom palaukat ė mieginkat i ton poslapi patekt vieliau.
+
+$1',
+'pool-errorunknown' => 'Nežėnuoma klaida',
 
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
 'aboutsite'            => 'Aple {{SITENAME}}',
@@ -354,10 +374,10 @@ Prašuom aple šėtā paskelbtė [[Special:ListUsers/sysop|adminėstratoriō]], 
 'filenotfound'         => 'Nepavīkst rastė faila „$1“.',
 'fileexistserror'      => 'Nepavīkst irašītė i faila „$1“: tas fails jau īr',
 'unexpected'           => 'Natėkieta raikšmie: „$1“=„$2“.',
-'cannotdelete'         => 'Nepavīka ėštrintė nuruodīta poslapė a faila. (Mažo kažkas padarė pėrmesnis šėta)',
+'cannotdelete'         => 'Nepavīka ėštrintė nuruodīta poslapė a faila "$1". (Mažo kažkas padarė pėrmesnis šėta)',
 'badtitle'             => 'Bluogs pavadėnėms',
 'badtitletext'         => 'Nuruodīts poslapė pavadėnėms bova neleistėns, toščės a neteisėngā sojongts terpkalbinis a terppruojektėnis pavadėnėms. Anamė gal būtė vėins a daugiau sėmbuoliu, neleistėnū pavadėnėmūs',
-'perfcachedts'         => 'Ruodoma ėšsauguota doumenū kopėjė, katra bova atnaujėnta $1. A maximum of {{PLURAL:$4|one result is|$4 results are}} available in the cache.',
+'perfcachedts'         => 'Ruodoma ėšsauguota doumenū kopėjė, katra bova atnaujėnta $1. Daugiausē $4 {{PLURAL:$4|rezoltats|rezoltatā|rezoltatu}} īr sauguoma.',
 'querypage-no-updates' => 'Atnaujėnėmā tam poslapiō nūnā ėšjongtė īr. Doumenīs nūnā čė nebus atnaujėntė.',
 'wrong_wfQuery_params' => 'Netaisingė parametrā i funkcėjė wfQuery()<br />
 Funkcėjė: $1<br />
@@ -374,11 +394,11 @@ Ožklausėms: $2',
 # Login and logout pages
 'logouttext'                 => "'''Daba Tamsta esat atsėjongės.'''
 
-Galėt ė tuoliau nauduotė {{SITENAME}} anuonimėškā aba prisėjonkėt ėš naujė šėtuo patiu a kėto nauduotuojė vardu.
+Galat ė tuoliau nauduotė {{SITENAME}} anuonimėškā aba [[Special:UserLogin|prisėjonkat]] ėš naujė šėtuo patiu a kėto nauduotuojė vardu.
 Pastebiejims: katruos nekatruos poslapiuos ė tuoliau gal ruodītė būktā būtomiet prisėjongės lėgė tuol, kumet ėšvalīsėt sava naršīklės dietovė (''cache'').",
 'welcomecreation'            => '== Svēkė, $1! ==
 
-Tamstas paskīra bova sokorta. Neožmėrškėt pakeistė sava {{SITENAME}} nustatīmu.',
+Tamstas paskīra bova sokorta. Neožmėrškėt pakeistė sava [[Special:Preferences|{{SITENAME}} nustatīmu]].',
 'yourname'                   => 'Nauduotuojė vards:',
 'yourpassword'               => 'Slaptažuodis:',
 'yourpasswordagain'          => 'Pakartuoket slaptažuodė:',
@@ -388,6 +408,7 @@ Tamstas paskīra bova sokorta. Neožmėrškėt pakeistė sava {{SITENAME}} nusta
 'nav-login-createaccount'    => 'Prėsėjongtė / sokortė paskīra',
 'loginprompt'                => 'Ijonkėt pakavukus, jēgo nuorėt prisėjongtė pri {{SITENAME}}.',
 'userlogin'                  => 'Prėsėjongtė / sokortė paskīra',
+'userloginnocreate'          => 'Prisėjongtė',
 'logout'                     => 'Atsėjongtė',
 'userlogout'                 => 'Atsėjongtė',
 'notloggedin'                => 'Neprisėjongis',
@@ -397,12 +418,15 @@ Tamstas paskīra bova sokorta. Neožmėrškėt pakeistė sava {{SITENAME}} nusta
 'gotaccount'                 => "Jau torėt paskīra? '''$1'''.",
 'gotaccountlink'             => 'Prisėjonkėt',
 'userlogin-resetlink'        => 'Ožmiršat sava prisėjongėma doumenis?',
+'createaccountmail'          => 'Par elektruonėni pašta',
+'createaccountreason'        => 'Prīžastis:',
 'badretype'                  => 'Ivestė slaptažuodē nesotamp.',
 'userexists'                 => 'Irašīts nauduotuojė vards jau īr nauduojams.
 Prašuom pasėrėnktė kėtuoki varda.',
 'loginerror'                 => 'Prisėjongėma klaida',
+'createaccounterror'         => 'Neėšiejė sokortė paskīruos: $1',
 'nocookiesnew'               => 'Nauduotuojė paskīra bova sokurta, ale Tamsta nēsot prisėjongis. {{SITENAME}} nauduo pakavukus, kū prijongtu nauduotuojus. Tamsta esot ėšjongis anūs. Prašuom ijongtė pakavukus, tumet prisėjonkėt so sava nauju nauduotuojė vardu ė slaptažuodiu.',
-'nocookieslogin'             => "Vikipedėjė nauduo pakavukus (''cookies''), kū prijongtu nauduotuojus. Tamsta esat ėšjongės anūs. Prašuom ijongtė pakavukus ė pamiegītė viel.",
+'nocookieslogin'             => "{{SITENAME}} nauduo pakavukus (''cookies''), kū prijongtu nauduotuojus. Tamsta esat ėšjongės anūs. Prašuom ijongtė pakavukus ė pamiegītė viel.",
 'loginsuccesstitle'          => 'Siekmingā prisėjongiet.',
 'loginsuccess'               => "'''Nūnā Tamsta esot prisėjongės pri {{SITENAME}} kāp „$1“.'''",
 'nosuchuser'                 => 'Nier anėjuokė nauduotuojė pavadėnta „$1“.
@@ -411,28 +435,33 @@ Patikrėnkėt rašība, aba [[Special:UserLogin/signup|sokorkėt naujė paskīra
 'nouserspecified'            => 'Tamstā rēk nuruodītė nauduotuojė varda.',
 'wrongpassword'              => 'Ivests neteisings slaptažuodis. Pameginket dā karta.',
 'wrongpasswordempty'         => 'Ivests slaptažuodis īr tošts. Pameginket vielėk.',
-'passwordtooshort'           => 'Tamstas slaptažuodis nier laistėns aba par tromps īr. Ans tor būtė nuors {{PLURAL:$1|1 sėmbuolė|$1 sėmbuoliu}} ėlgoma ė skėrtės nū Tamstas nauduotuojė varda.',
+'passwordtooshort'           => 'Tamstas slaptažuodis nier laistėns aba par tromps īr. Ans tor būtė nuors {{PLURAL:$1|1 sėmbuolė|$1 sėmbuoliu}} ėlgoma.',
+'password-name-match'        => 'Tamstas slaptažuodis tor skirtėis nu Tamstas nauduotuojė varda.',
+'password-login-forbidden'   => 'Tuo nauduotuojė varda ė slaptažuodė nauduojėms nie galėms.',
 'mailmypassword'             => 'Atsiōstė naujė slaptažuodi pašto',
 'passwordremindertitle'      => 'Laikėns {{SITENAME}} slaptažuodis',
-'passwordremindertext'       => 'Kažkastā (tėkriausē Tamsta, IP adreso $1)
+'passwordremindertext'       => 'Kažkastā (tėkriausē Tamsta, ėš IP adresa $1)
 paprašė, kū atsiōstomiet naujė slaptažuodi pruojektō {{SITENAME}} ($4).
 Laikėns slaptažuodis nauduotuojō „$2“ bova sokorts ėr nustatīts kāp „$3“.
 Jēgo Tamsta nuoriejot ana pakeistė tūmet torietomiet prisėjongtė ė daba pakeistė sava slaptažuodi.
+Tamstas laikėns slaptažuodis bengs galiuotė par {{PLURAL:$5|dėina|$5 dėinas}}.
 
 Jēgo kažkas kėts atlėka ta prašīma aba Tamsta prisėmėniet sava slaptažuodi ė
 nebnuorėt ana pakeistė, Tamsta galėt tėisiuog nekreiptė diemiesė ė šėta gruomata ė tuoliau
 nauduotis sava senu slaptažuodžiu.',
 'noemail'                    => 'Nier anėjuokė el. pašta adresa ivesta nauduotuojō „$1“.',
+'noemailcreate'              => 'Tamsta nuruodīkat elektruonėni pašta, katros vēk',
 'passwordsent'               => 'Naus slaptažuodis bova nusiōsts i el. pašta adresa,
 ožregėstrouta nauduotuojė „$1“.
 Prašuom prisėjongtė vielē, kumet Tamsta gausėt anū.',
 'blocked-mailpassword'       => 'Tamstas IP adresos īr ožblokouts nū redagavėma, tudie neleidama nauduotė slaptažuodė priminėma funkcėjės, kū apsėsauguotomė nū pėktnaudžēvėma.',
 'eauthentsent'               => 'Patvėrtėnėma gruomata bova nusiōsta i paskėrta el. pašta adresa.
 Prīš ėšsiontiant kėta gruomata i Tamstas diežote, Tamsta torėt vīkdītė nuruodīmus gruomatuo, kū patvėrtėntomiet, kū diežotė tėkrā īr Tamstas.',
-'throttled-mailpassword'     => 'Slaptažuodžė priminims jau bova ėšsiōsts, par paskotėnes $1 adīnas. Nuorint apsėsauguotė nū pėktnaudžēvėma, slaptažuodė priminims gal būt ėšsiōsts tėk kas $1 adīnas.',
+'throttled-mailpassword'     => 'Slaptažuodžė priminims jau bova ėšsiōsts, par paskotėnes {{PLURAL:$1|adīna|$1 adīnas}}. Nuorint apsėsauguotė nū pėktnaudžēvėma, slaptažuodė priminims gal būt ėšsiōsts tėk kas {{PLURAL:$1|adīna|$1 adīnas}}.',
 'mailerror'                  => 'Klaida siontiant pašta: $1',
-'acct_creation_throttle_hit' => 'Tamsta jau sokūriet $1 prisėjongėma varda. Daugiau nebgalėma.',
-'emailauthenticated'         => 'Tamstas el. pašta adresos bova ožtvirtėnts $1.',
+'acct_creation_throttle_hit' => 'Ton pruojekta lankītuojē, katrėi nauduo Tamstas IP adresa, padėrba {{PLURAL:$1|$1 paskīra|$1 paskīras|$1 paskīrū}} par paskotėnta dėina, a tas īr dėdliausis leidams skaitlios par ta čiesa.
+Tudie šėton čieso lankītuojē, katrėi nauduo ta IP adresa, daugiau paskīrū dėrbt negal.',
+'emailauthenticated'         => 'Tamstas el. pašta adresos bova ožtvirtėnts $2 d. $3.',
 'emailnotauthenticated'      => 'Tamstas el. pašta adresos da nier patvėrtėnts. Anėjuokės gruomatas
 nebus siontamas ni vėinam žemiau ėšvardėntam puoslaugiō.',
 'noemailprefs'               => 'Nuruodėkīt el. pašta adresa, kū vėiktu šėtos funkcėjės.',
@@ -1934,6 +1963,13 @@ Tamsta tēpuogi galėt [[Special:EditWatchlist/raw|redagoutė grīnaji keravuoja
 'tags-edit'  => 'taisītė',
 
 # New logging system
-'newuserlog-byemail' => 'slaptažuodis ėšsiōsts par el. pašta',
+'logentry-move-move'                  => '$1 pervadėna poslapi $3 i $4',
+'logentry-move-move-noredirect'       => '$1 pervadėna poslapi $3 i $4, nepalikdams nukreipėma',
+'logentry-move-move_redir'            => '$1 pervadėna poslapi $3 i $4, vėituo buvosė nukreipėma',
+'logentry-move-move_redir-noredirect' => '$1 pervadėna poslapi $3 i $4, vėituo buvosė nukreipėma, bat nepadėrbdams naujė',
+'logentry-newusers-newusers'          => '$1 padėrba nauduotuojė paskīra',
+'logentry-newusers-create2'           => '$1 padėrba nauduotuojė paskīra $3',
+'logentry-newusers-autocreate'        => 'Paskīra $1 bova padėrbta autuomatėškā',
+'newuserlog-byemail'                  => 'slaptažuodis ėšsiōsts par el. pašta',
 
 );

@@ -802,7 +802,7 @@ Titulus: '''({{int:cur}})''' = dissimilis ab emendatione novissima,
 'revertmerge' => 'Inconfundere',
 
 # Diffs
-'history-title'            => 'Historia paginae "$1"',
+'history-title'            => '$1: Historia paginae',
 'difference'               => '(Dissimilitudo inter emendationes)',
 'lineno'                   => 'Linea $1:',
 'compareselectedversions'  => 'Conferre emendationes selectas',
@@ -2360,6 +2360,16 @@ Quaesumus, adfirma ut iterum hanc paginam crees.",
 'htmlform-selectorother-other' => 'Aliud',
 
 # New logging system
-'newuserlog-byemail' => 'tessera missa litteris electronicis',
+'logentry-delete-delete'              => '$1 delevit paginam $3',
+'logentry-delete-restore'             => '$1 restituit paginam $3',
+'logentry-move-move'                  => '$1 movit paginam $3 ad $4',
+'logentry-move-move-noredirect'       => '$1 movit paginam $3 ad $4 sine redirectione',
+'logentry-move-move_redir'            => '$1 movit paginam $3 ad $4 praeter redirectionem',
+'logentry-move-move_redir-noredirect' => '$1 movit paginam $3 ad $4 praeter redirectionem sine redirectione',
+'logentry-newusers-newusers'          => '$1 creavit rationem usoris',
+'logentry-newusers-create'            => '$1 creavit rationem usoris',
+'logentry-newusers-create2'           => '$1 creavit rationem usoris $3',
+'logentry-newusers-autocreate'        => 'Ratio $1 automatice creata est',
+'newuserlog-byemail'                  => 'tessera missa litteris electronicis',
 
 );

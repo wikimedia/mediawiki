@@ -745,7 +745,7 @@ $3 keltirilgen sebebi: ''$2''",
 'last'                   => 'aqır.',
 'page_first'             => 'birinshi',
 'page_last'              => "aqırg'ı",
-'histlegend'             => "Tu'sindirme: salıstırajaq nusqaların'ızdı saylan' ha'mde <Enter> knopkasın yamasa to'mendegi knopkani basın'.<br />
+'histlegend'             => "Tu'sindirme: salıstırajaq nusqaların'ızdı saylan' ha'mde Enter knopkasın yamasa to'mendegi knopkani basın'.<br />
 Sha'rtli belgiler: (ha'z.) = ha'zirgi nusqasi menen parqı,
 (aqır.) = aldıng'ı nusqasi menen parqı, k = kishi o'zgeris",
 'history-fieldset-title' => 'Tariyxınan izlew',

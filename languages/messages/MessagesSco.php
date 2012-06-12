@@ -357,7 +357,9 @@ Aks: $2',
 'protectedpagetext'    => "Sairy, this page haes been '''lockit''' tae hinder vandalism.",
 'viewsourcetext'       => 'Ye can leuk at an copy the soorce o this page:',
 'protectedinterface'   => 'Sairy, but this page provides interface text for the saftware, an is lockit to hinder abuise.',
-'editinginterface'     => "'''Warnin:''' Ye'r editin a page that's uised tae provide interface text for the saftware. Chynges tae this page will affect the appearance o the uiser interface for ither uisers.",
+'editinginterface'     => "'''Warning:''' You are editing a page which is used to provide interface text for the software.
+Changes to this page will affect the appearance of the user interface for other users.
+For translations, please consider using [//translatewiki.net/wiki/Main_Page?setlang=en translatewiki.net], the MediaWiki localisation project.",
 'sqlhidden'            => '(SQL query hidden)',
 'cascadeprotected'     => 'This page haes been protectit fra editin, acause it is includit in the followin {{PLURAL:$1|page|pages}}, that are protectit wi the "cascading" option turnit on:
 $2',

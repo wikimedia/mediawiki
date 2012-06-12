@@ -7,6 +7,7 @@
  * @ingroup Language
  * @file
  *
+ * @author Dbc334
  * @author Derbeth
  * @author Dunak
  * @author Dundak
@@ -806,7 +807,8 @@ Nejnowšy zapisk blokěrowańskego protokola pódawa se dołojce ako referenca:'
 'userinvalidcssjstitle'            => "'''Warnowanje:''' Njeeksistěrujo šat „$1“. Pšosym mysli na to, až wužywaju .css- a .js-boki mały pismik, na pś. ''{{ns:user}}:Pśikładowa/vector.css'' město ''{{ns:user}}:Pśikładowa/Vector.css''.",
 'updated'                          => '(Zaktualizěrowane)',
 'note'                             => "'''Pokazka:'''",
-'previewnote'                      => "'''To jo jano pśeglěd, bok njejo hyšći składowany!'''",
+'previewnote'                      => "'''Wobmysli, až to jo jano pśeglěd.'''
+Twóje změny hyšći njejsu składowane!",
 'previewconflict'                  => 'Toś ten pśeglěd wótbłyšćujo tekst górjejcnego póla. Bok buźo tak wuglědaś, jolic jen něnto składujoš.',
 'session_fail_preview'             => "'''Wódaj! Twójo wobźěłanje njejo se mógało składowaś, dokulaž su daty twójogo pósejźenja se zgubili. Pšosym wopytaj hyšći raz. Jolic až to pón pśecej hyšći njejźo, wopytaj se wótzjawiś a zasej pśizjawiś.'''",
 'session_fail_preview_html'        => "'''Wódaj! Twójo wobźěłanje njejo se mógało składowaś, dokulaž su daty twójogo pósejźenja se zgubili.'''
@@ -1031,7 +1033,7 @@ Pšosym pśeglědaj protokole.',
 
 # Suppression log
 'suppressionlog'     => 'Protokol pódłocowanjow',
-'suppressionlogtext' => 'To jo lisćina wulašowanjow a blokěrowanjow, kótaraž ma wopśimjeśe, kótarež jo wót administratorow schowane. Glědaj  [[Special:BlockList|lisćinu IP-blokěrowanjow]] za lisćinu aktualnych wugnanjow a blokěrowanjow.',
+'suppressionlogtext' => 'To jo lisćina wulašowanjow a blokěrowanjow, kótaraž ma wopśimjeśe, kótarež jo wót administratorow schowane. Glědaj  [[Special:BlockList|lisćinu blokěrowanjow]] za lisćinu aktualnych wugnanjow a blokěrowanjow.',
 
 # History merging
 'mergehistory'                     => 'Zwězaś stawizny bokow',
@@ -1063,7 +1065,7 @@ Zaruc, až historija wersijow nastawka jo njepśetergnjona.',
 'mergelogpagetext'   => 'Dołojce jo lisćina nejnowejšych zjadnośenjow historije boka z drugej.',
 
 # Diffs
-'history-title'            => 'Stawizny wersijow boka „$1“',
+'history-title'            => '$1: Wersijowe stawizny',
 'difference'               => '(rozdźěle mjazy wersijoma/wersijami)',
 'difference-multipage'     => '(Rozdźěl mjazy bokami)',
 'lineno'                   => 'Rědka $1:',
@@ -1156,7 +1158,7 @@ Zaruc, až historija wersijow nastawka jo njepśetergnjona.',
 'prefs-skin'                    => 'Šat',
 'skin-preview'                  => 'Pśeglěd',
 'datedefault'                   => 'Standard',
-'prefs-beta'                    => 'Betafunkcije',
+'prefs-beta'                    => 'Preizkusne funkcije',
 'prefs-datetime'                => 'Datum a cas',
 'prefs-labs'                    => 'Laborowe funkcije',
 'prefs-personal'                => 'Wužywarski profil',
@@ -1449,6 +1451,7 @@ Móžoš toś ten bok wužywaś, aby slědk stajił swóje nastajenja na standar
 'newsectionsummary'                 => 'Nowy wótrězk /* $1 */',
 'rc-enhanced-expand'                => 'Drobnosći pokazaś (pomina se JavaScript)',
 'rc-enhanced-hide'                  => 'Drobnosći schowaś',
+'rc-old-title'                      => 'spócetnje napórany ako "$1"',
 
 # Recent changes linked
 'recentchangeslinked'          => 'Změny w zwězanych bokach',
@@ -1618,7 +1621,7 @@ $1',
 'backend-fail-writetemp'     => 'Temporerna dataja njedajo se pisaś.',
 'backend-fail-closetemp'     => 'Temporerna dataja njedajo se zacyniś.',
 'backend-fail-read'          => 'Dataja $1 njedajo se cytaś.',
-'backend-fail-create'        => 'Dataja $1 njedajo se napóraś.',
+'backend-fail-create'        => 'Dataja $1 njedajo se pisaś.',
 'backend-fail-readonly'      => 'Składowański backend "$1" dajo se tuchylu jano cytaś. Pśicyna jo była: "$2"',
 'backend-fail-synced'        => 'Dataja "$1" jo  w internem składowańskem backenźe w inkonsistentnem stawje',
 'backend-fail-connect'       => 'Zwisk z datajowym składowańskem backendom "$1" njejo móžno.',
@@ -1691,7 +1694,7 @@ Za optimalnu wěstotu img_auth.php jo znjemóžnjony.',
 'upload-curl-error28-text' => 'Bok pśedłujko njejo wótegronił. Kontrolěruj, lic jo bok online, pócakaj wokognuśe a wopytaj pón hyšći raz. Móžo byś zmysłapołne, w drugem casu hyšći raz proběrowaś.',
 
 'license'            => 'Licenca:',
-'license-header'     => 'Licencowanje',
+'license-header'     => 'Licencěrowanje',
 'nolicense'          => 'Nic njejo wuzwólone.',
 'license-nopreview'  => '(Pśeglěd njejo móžny.)',
 'upload_source_url'  => ' (płaśeca, zjawnje pśistupna URL)',
@@ -2373,8 +2376,8 @@ Nejnowšy zapisk protokola blokěrowanjow pódawa se dołojce ako referenca:',
 'ipb-confirm'                     => 'Blokěrowanje wobkšuśiś',
 'badipaddress'                    => 'IP-adresa jo njekorektna',
 'blockipsuccesssub'               => 'Wuspěšnje blokěrowane',
-'blockipsuccesstext'              => '[[Special:Contributions/$1|$1]] jo se blokěrował.<br />
-Glědaj do [[Special:BlockList|lisćiny aktiwnych blokěrowanjow]], aby blokěrowanja pśeglědał.',
+'blockipsuccesstext'              => '[[Special:Contributions/$1|$1]] jo se {{GENDER:$1|blokěrował|blokěrowała}}.<br />
+Glědaj do [[Special:BlockList|lisćiny blokěrowanjow]], aby blokěrowanja pśeglědał.',
 'ipb-blockingself'                => 'Coš samogo blokěrowaś! Coš to napšawdu cyniś?',
 'ipb-confirmhideuser'             => 'Coš rowno wužywarja z nastajenim "wužywarja schowaś" blokěrowaś. To k tomu dowjeźo, až mě wužywarja pódłocyjo se we wšych lisćinach a protokolowych zapiskach. Coš to napšawdu cyniś?',
 'ipb-edit-dropdown'               => 'Pśicyny blokěrowanja wobźěłaś',
@@ -2424,9 +2427,7 @@ Glědaj do [[Special:BlockList|lisćiny aktiwnych blokěrowanjow]], aby blokěro
 'blocklog-showsuppresslog'        => 'Toś ten wužywaŕ jo se pjerwjej zablokěrował a schował. Protokol pódtłocowanjow pódawa se dołojce ako referenca:',
 'blocklogentry'                   => '[[$1]] blokěrujo se na $2 $3',
 'reblock-logentry'                => 'jo změnił blokěrowańske nastajenja za [[$1]] z casom spadnjenja $2 $3',
-'blocklogtext'                    => 'To jo protokol blokěrowanjow a dopušćenjow.
-IP-adresy, ako su awtomatiski se blokěrowali, se njepokažu.
-Na boce [[Special:BlockList|Lisćina blokěrowanych IP-adresow a wužywarskich mjenjow]] jo móžno, akualne blokěrowanja pśeglědowaś.',
+'blocklogtext'                    => 'To jo protokol blokěrowanja a wótblokěrowanja wužywarjow. Awtomatiski blokěrowane IP-adrese se njenalistuju. Glědaj [[Special:BlockList|lisćinu blokěrowanjow]] za lisćinu tuchylnych wugnanjow a blokěrowanjow.',
 'unblocklogentry'                 => 'jo $1 zasej dopušćił',
 'block-log-flags-anononly'        => 'jano anonymne',
 'block-log-flags-nocreate'        => 'stwórjenje konta jo se znjemóžniło',
@@ -2673,7 +2674,7 @@ Wšykne transwiki-importowe akcije protokolěruju se w [[Special:Log/import|log-
 
 # JavaScriptTest
 'javascripttest'                           => 'JavaScriptowy test',
-'javascripttest-disabled'                  => 'Toś ta funkcija jo znjemóžnjona.',
+'javascripttest-disabled'                  => 'Toś ta funkcija njejo na toś tom wikiju zmóžnjona.',
 'javascripttest-title'                     => 'Testy $1 se pśewjeduju',
 'javascripttest-pagetext-noframework'      => 'Toś ten bok jo pśewjedowanjeju javascriptowych testow pśewóstajony.',
 'javascripttest-pagetext-unknownframework' => 'Njeznaty wobłuk "$1".',
@@ -3013,7 +3014,7 @@ Slědujuce wótkaze w tej samej smužce se za wuwześa naglědaju, w kótarychž
 'exif-gpsdestdistance'             => 'Distanca k celowemu městnu',
 'exif-gpsprocessingmethod'         => 'Mě metody pśeźěłanja GPS',
 'exif-gpsareainformation'          => 'Mě wobcerka GPS',
-'exif-gpsdatestamp'                => 'Datum GPS',
+'exif-gpsdatestamp'                => 'GPS-datum',
 'exif-gpsdifferential'             => 'Diferencialna korektura GPS',
 'exif-jpegfilecomment'             => 'Komentar JPEG-dataje',
 'exif-keywords'                    => 'Klucowe słowa',

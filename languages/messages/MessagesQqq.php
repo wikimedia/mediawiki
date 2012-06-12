@@ -8,6 +8,7 @@
  * @file
  *
  * @author *Surak*
+ * @author Abanima
  * @author Ahonc
  * @author Aleator
  * @author AlexSm
@@ -19,6 +20,7 @@
  * @author Bangin
  * @author Bennylin
  * @author Beta16
+ * @author Bilalokms
  * @author Boivie
  * @author Brest
  * @author BrokenArrow
@@ -97,7 +99,9 @@
  * @author Sborsody
  * @author Seb35
  * @author Sherbrooke
+ * @author Shirayuki
  * @author Shushruth
+ * @author Siddhartha Ghai
  * @author Siebrand
  * @author Singularity
  * @author Sionnach
@@ -315,7 +319,7 @@ See http://test.wikipedia.org/wiki/Category:Test_ko?uselang={{SUBPAGENAME}}, for
 Possible alternatives to the word 'content' are 'subject matter' or 'wiki subject' or 'wiki purpose'.
 
 {{Identical|Content page}}",
-'newwindow'     => 'Below the edit form, next to "[[MediaWiki:Edithelp/{{SUBPAGENAME}}|Editing help]]".',
+'newwindow'     => 'Below the edit form, next to "{{msg-mw|Edithelp}}".',
 'cancel'        => 'Message shown below the edit form, and if you click on it, you stop with editing the page and go back to the normal page view.
 
 {{Identical|Cancel}}',
@@ -407,7 +411,7 @@ Also used as title of [[Special:Search]] page in [[Special:SpecialPages]].
 'edit'              => 'The text of the tab going to the edit form. When the page is protected, you will see "[[MediaWiki:Viewsource/{{SUBPAGENAME}}|{{int:viewsource}}]]". Should be in the infinitive mood.
 
 {{Identical|Edit}}',
-'create'            => 'The text on the tab for to the edit form on unexisting pages.
+'create'            => 'The text on the tab of the edit form on unexisting pages starts editing them.
 
 {{Identical|Create}}',
 'editthispage'      => 'This is the "edit" link as used in the skins Classic/Standard, Cologne Blue and Nostalgia. See {{msg|create-this-page}} for when the page does not exist.',
@@ -554,7 +558,7 @@ The format is: "{{int:youhavenewmessagesmulti| [[MediaWiki:Newmessageslink/{{SUB
 
 {{Identical|View source}}',
 'editsectionhint'         => "Tool tip shown when hovering the mouse over the link to '[{{MediaWiki:Editsection}}]' a section. Example: Edit section: Heading name",
-'toc'                     => 'Ini adalah judul "Daftar isi" yang terlihat pada halaman yang memiliki lebih dari 3 bagian
+'toc'                     => 'This is the title of the table of contents displayed in pages with more than 3 sections
 
 {{Identical|Contents}}',
 'showtoc'                 => 'This is the link used to show the table of contents
@@ -718,7 +722,9 @@ $1 is a filename, I think.',
 'nologin'                    => 'A message shown in the log in form. $1 is a link to the account creation form, and the text of it is "[[MediaWiki:Nologinlink/{{SUBPAGENAME}}|{{int:nologinlink}}]]".',
 'nologinlink'                => 'Text of the link to the account creation form. Before that link, the message [[MediaWiki:Nologin/{{SUBPAGENAME}}]] appears.
 {{Identical|Create an account}}',
-'createaccount'              => 'The title of Special:CreateAccount, where users can register a new account. Used on Special:SpecialPages, and also on the submit button in the form where you register a new account.
+'createaccount'              => 'The title of Special:CreateAccount, where users can register a new account. Used on Special:SpecialPages and on the submit button in the form where you register a new account.
+
+It is also used on the top of the page for logged out users, where it appears next to {{msg-mw|login}}, so consider making them similar.
 {{Identical|Create account}}',
 'gotaccount'                 => 'A message shown in the account creation form. $1 is a link to the log in form, and the text of it is "[[MediaWiki:Gotaccountlink/{{SUBPAGENAME}}|{{int:gotaccountlink}}]]".',
 'gotaccountlink'             => 'Text of the link to the log in form. Before that link, the message [[MediaWiki:Gotaccount/{{SUBPAGENAME}}]] appears.
@@ -732,7 +738,9 @@ $1 is a filename, I think.',
 'nocookieslogin'             => "This message is displayed when someone tried to login, but the browser doesn't accept cookies.",
 'nocookiesfornew'            => "This message is displayed when the user tried to create a new account, but it failed the cross-site request forgery (CSRF) check. It could be blocking an attack, but most likely, the browser isn't  accepting cookies.",
 'nocookiesforlogin'          => "{{optional}}
-This message is displayed when someone tried to login and the CSRF failed (most likely, the browser doesn't accept cookies). Defaults to nocookieslogin",
+This message is displayed when someone tried to login and the CSRF failed (most likely, the browser doesn't accept cookies).
+
+Defaults to '''nocookieslogin''' ({{int:nocookieslogin}})",
 'loginsuccesstitle'          => 'The title of the page saying that you are logged in. The content of the page is the message "[[MediaWiki:Loginsuccess/{{SUBPAGENAME}}]]".',
 'loginsuccess'               => 'The content of the page saying that you are logged in. The title of the page is "[[MediaWiki:Loginsuccesstitle/{{SUBPAGENAME}}|{{int:loginsuccesstitle}}]]". $1 is the name of the logged in user.
 
@@ -781,7 +789,7 @@ Parameters:
 *Parameter $4 is a URL to the wiki',
 'login-throttled'            => 'Error message shown at [[Special:UserLogin]] after 5 wrong passwords. The hardcoded waiting time is 300 seconds.',
 'login-abort-generic'        => 'The generic unsuccessful login message is used unless otherwise specified by hook writers',
-'loginlanguagelabel'         => 'Used on [[Special:UserLogin]] if $wgLoginLanguageSelector is true.
+'loginlanguagelabel'         => 'Used on [[Special:UserLogin]] if $wgLoginLanguageSelector is true. $1 is a pipe-separated list built from the names that appear in the message {{msg-mw|Loginlanguagelinks}}.
 {{Identical|Language}}',
 
 # E-mail sending
@@ -813,7 +821,8 @@ Used on [[Special:ResetPass]]',
 {{Identical|Reset password}}',
 'passwordreset-text'               => 'Text on [[Special:PasswordReset]]',
 'passwordreset-legend'             => '{{Identical|Reset password}}',
-'passwordreset-pretext'            => '$1 is the number of password reset routes. Apparently, this is never 1, but always two or more. Thus, the first plural option is empty in English.',
+'passwordreset-pretext'            => 'Parameters:
+* $1 is the number of password reset routes. This is never 1, but always two or more. Thus, the first plural option is empty in English.',
 'passwordreset-username'           => '{{Identical|Username}}',
 'passwordreset-domain'             => 'A domain like used in Domain Name System (DNS) or more specifically like a domain component in the Lightweight Directory Access Protocol (LDAP)',
 'passwordreset-capture'            => 'Label for checkbox asking the user whether they want to see the contents of the password reset email (only shown if they have the <tt>passwordreset</tt> permission',
@@ -1004,7 +1013,9 @@ Please report at [[Support]] if you are unable to properly translate this messag
 'expensive-parserfunction-warning'        => 'On some (expensive) [[MetaWikipedia:Help:ParserFunctions|parser functions]] (e.g. <code><nowiki>{{#ifexist:}}</nowiki></code>) there is a limit of how many times it may be used. This is an error message shown when the limit is exceeded.
 
 * $1 is the current number of parser function calls.
-* $2 is the allowed number of parser function calls.',
+* $2 is the allowed number of parser function calls.
+
+See also [[:mw:Manual:$wgExpensiveParserFunctionLimit|$wgExpensiveParserFunctionLimit in the MediaWiki manual]].',
 'expensive-parserfunction-category'       => 'This message is used as a category name for a [[mw:Help:Tracking categories|tracking category]] where pages are placed automatically if they contain too many calls to expensive parser functions.',
 'post-expand-template-inclusion-warning'  => 'When templates are expanded, there is a size limit for the number of bytes yielded. Usually that occurs from excessively nested templates, recursive templates, or ones having x-zillion of #if #case or similar contructs in them. When the wikicode parser detects this, it outputs a red warning message to the page.',
 'post-expand-template-inclusion-category' => 'This message is used as a category name for a [[mw:Help:Tracking categories|tracking category]] where pages are placed automatically if the expanded size of the templates they contain exceeds the limit.
@@ -1224,9 +1235,11 @@ Please note that the parameters in a log entry will appear in the log only in th
 See also {{msg-mw|difference}}.',
 'lineno'                   => 'Message used when comparing different versions of a page (diff). $1 is a line number.',
 'compareselectedversions'  => 'Used as button in history pages.',
-'showhideselectedversions' => 'Text of the button which brings up the [[mw:RevisionDelete|RevisionDelete]] menu.',
+'showhideselectedversions' => 'Text of the button which brings up the [[mw:RevisionDelete|RevisionDelete]] menu on history pages.',
 'editundo'                 => 'Undo link when viewing diffs
-{{Identical|Undo}}',
+{{Identical|Undo}}
+
+This message has sometimes a tooltip {{msg-mw|tooltip-undo}}',
 'diff-multi'               => "This message appears in the revision history of a page when comparing two versions which aren't consecutive.
 
 *Parameter $1 is the number of revisions
@@ -1731,7 +1744,7 @@ This action allows editing of all of the "user rights", not just the rights of t
 
 {{Identical|Recent changes}}',
 'recentchanges-legend'            => 'Legend of the fieldset of [[Special:RecentChanges]]',
-'recentchangestext'               => 'Text in recent changes',
+'recentchangestext'               => 'Text in [[Special:RecentChanges]]',
 'recentchanges-label-newpage'     => 'Tooltip for {{msg-mw|newpageletter}}',
 'recentchanges-label-minor'       => 'Tooltip for {{msg-mw|newpageletter}}',
 'recentchanges-label-bot'         => 'Tooltip for {{msg-mw|boteditletter}}',
@@ -1895,8 +1908,9 @@ Extensions making use of it:
 * $1 is a filename.',
 'backend-fail-notexists'     => 'Parameters:
 * $1 is a filename.',
-'backend-fail-notsame'       => 'Parameters:
-* $1 is a filename.',
+'backend-fail-hashes'        => 'Definition of "[[w:en:Hash_function|hashes]]".',
+'backend-fail-notsame'       => 'Parametreler:
+* $1 bir dosya ismi.',
 'backend-fail-invalidpath'   => 'Parameters:
 * $1 is a storage path.',
 'backend-fail-delete'        => 'Parameters:
@@ -1916,8 +1930,17 @@ Extensions making use of it:
 * $1 is a filename.',
 'backend-fail-create'        => 'Parameters:
 * $1 is a filename.',
+'backend-fail-readonly'      => 'A "[[:wikipedia:Front and back ends|backend]]" is a system or component that ordinary users don\'t interact with directly and don\'t need to know about, and that is responsible for a distinct task or service - for example, a storage back-end is a generic system for storing data which other applications can use. Possible alternatives for back-end are "system" or "service", or (depending on context and language) even leave it untranslated.',
+'backend-fail-synced'        => 'A "[[:wikipedia:Front and back ends|backend]]" is a system or component that ordinary users don\'t interact with directly and don\'t need to know about, and that is responsible for a distinct task or service - for example, a storage back-end is a generic system for storing data which other applications can use. Possible alternatives for back-end are "system" or "service", or (depending on context and language) even leave it untranslated.',
+'backend-fail-connect'       => 'A "[[:wikipedia:Front and back ends|backend]]" is a system or component that ordinary users don\'t interact with directly and don\'t need to know about, and that is responsible for a distinct task or service - for example, a storage back-end is a generic system for storing data which other applications can use. Possible alternatives for back-end are "system" or "service", or (depending on context and language) even leave it untranslated.',
+'backend-fail-internal'      => 'A "[[:wikipedia:Front and back ends|backend]]" is a system or component that ordinary users don\'t interact with directly and don\'t need to know about, and that is responsible for a distinct task or service - for example, a storage back-end is a generic system for storing data which other applications can use. Possible alternatives for back-end are "system" or "service", or (depending on context and language) even leave it untranslated.',
 'backend-fail-contenttype'   => '$1 is a storage (file) path',
-'backend-fail-batchsize'     => 'Error message when the limit of 1000 operations in the file backend was reached.',
+'backend-fail-batchsize'     => 'Error message when the limit of operations to be done at once in the file backend was reached.
+Parameters:
+* $1 is the number of operations attempted at once in this case.
+* $2 is the maximum number of operations that can be attempted at once.
+
+A "[[:wikipedia:Front and back ends|backend]]" is a system or component that ordinary users don\'t interact with directly and don\'t need to know about, and that is responsible for a distinct task or service - for example, a storage back-end is a generic system for storing data which other applications can use. Possible alternatives for back-end are "system" or "service", or (depending on context and language) even leave it untranslated.',
 
 # Lock manager
 'lockmanager-notlocked'        => 'Parameters:
@@ -2284,7 +2307,7 @@ $1 is a page title",
 'nopagetitle'             => 'Used as title of [[Special:MovePage]], when the oldtitle does not exist.
 
 The text is {{msg-mw|nopagetext}}.',
-'nopagetext'              => 'Used as text of [[Special:MovePage]], when the oldtitle does not exist.
+'nopagetext'              => 'Used as text on special pages like [[Special:MovePage]] (when the oldtitle does not exist) or [[Special:PermaLink]].
 
 The title is {{msg-mw|nopagetitle}}.',
 'pager-newer-n'           => "This is part of the navigation message on the top and bottom of Special pages which are lists of things in date order, e.g. the User's contributions page. It is passed as the second argument of {{msg-mw|Viewprevnext}}. $1 is the number of items shown per page.",
@@ -2400,7 +2423,7 @@ You can apparently use 'URL' instead of 'hostname'.",
 'activeusers-noresult' => 'identical with {{msg-mw|listusers-noresult}}',
 
 # Special:Log/newusers
-'newuserlogpage'     => 'Part of the "Newuserlog" extension. It is both the title of [[Special:Log/newusers]] and the link you can see in the recent changes.',
+'newuserlogpage'     => 'Part of the "Newuserlog" extension. It is both the title of [[Special:Log/newusers]] and the link you can see in [[Special:RecentChanges]].',
 'newuserlogpagetext' => 'Part of the "Newuserlog" extension. It is the description you can see on [[Special:Log/newusers]].',
 
 # Special:ListGroupRights
@@ -2512,7 +2535,7 @@ This is a button text used in [[Special:Emailuser]] when called without a (valid
 Possible alternatives to the word 'content' are 'subject matter' or 'wiki subject' or 'wiki purpose'.
 
 {{Identical|Content page}}",
-'watchlist-details'    => 'Message on Special page: My watchlist. This is paired with the message [[Mediawiki:Nowatchlist]] which appears instead of Watchlist-details when $1 is 0.',
+'watchlist-details'    => 'Message on [[Special:Watchlist]]. This is paired with the message {{msg-mw|Nowatchlist}} which appears instead of Watchlist-details when $1 is 0.',
 'wlheader-showupdated' => 'This message shows up near top of users watchlist page.',
 'wlnote'               => 'Used on [[Special:Watchlist]] when the maximum number of days is specified.
 Similar to {{msg-mw|rcnote}} which is used on [[Special:RecentChanges]].
@@ -2528,6 +2551,7 @@ Similar to {{msg-mw|rcnote}} which is used on [[Special:RecentChanges]].
 'unwatching'     => 'Text displayed when clicked on the unwatch tab: [[MediaWiki:Unwatch/{{SUBPAGENAME}}|{{int:unwatch}}]]. It means the wiki is removing that page from your watchlist.',
 'watcherrortext' => 'When a user clicked the watch/unwatch tab and the action did not succeed, this message is displayed. See also {{msg|addedwatchtext}}. and {{msg|addedwatchtext}}. This message is used raw and should not contain wikitext.',
 
+'enotif_reset'       => "This should be translated as \"Mark all pages '''as''' visited\".",
 'enotif_newpagetext' => 'Part of text of a notification e-mail sent when a watched page has been created. See [[File:Screenshot_MediaWiki_e-mail_notifier.PNG|150px|right]]',
 'changed'            => 'Possible value for $CHANGEDORCREATED in {{msg|enotif_subject}} and {{msg|enotif_body}}.',
 'created'            => 'Possible value for $CHANGEDORCREATED in {{msg|enotif_subject}} and {{msg|enotif_body}}.',
@@ -2581,7 +2605,8 @@ $1 is the <b>approximate</b> number of revisions that the page has, the message 
 # Rollback
 'rollback'          => '{{Identical|Rollback}}',
 'rollback_short'    => '{{Identical|Rollback}}',
-'rollbacklink'      => '{{Identical|Rollback}}',
+'rollbacklink'      => '{{Identical|Rollback}}
+This message has a tooltip {{msg-mw|tooltip-rollback}}',
 'rollbackfailed'    => '{{Identical|Rollback}}',
 'cantrollback'      => '{{Identical|Revert}}
 {{Identical|Rollback}}',
@@ -2660,8 +2685,8 @@ This message was something like "unlock move protection" in the past.',
 {{Identical|Infinite}}",
 'restriction-type'            => 'Used on [[Special:ProtectedPages]]. The text next to a drop-down box. See [[mw:Manual:Administrators|MediaWiki Manual]] for more information on protection.',
 'restriction-level'           => 'Used on [[Special:ProtectedPages]] and [[Special:ProtectedTitles]]. The text next to a drop-down box. See the [//www.mediawiki.org/wiki/Project:Protected_titles help page on Mediawiki] and on [http://meta.wikimedia.org/wiki/Protect Meta] for more information.',
-'minimum-size'                => 'Used in [[Special:Protectedpages]] as a pair of radio buttons, with [[MediaWiki:Maximum-size]]. There is an input box to specify the minimum bites of the projected pages listed.',
-'maximum-size'                => 'Used in [[Special:Protectedpages]] as a pair of radio buttons, with [[MediaWiki:Minimum-size]]. There is an input box to specify the maximum bites of the projected pages listed.',
+'minimum-size'                => 'Used in [[Special:Protectedpages]] as a pair of radio buttons, with {{msg-mw|Maximum-size}}. There is an input box to specify the minimum bites of the projected pages listed.',
+'maximum-size'                => 'Used in [[Special:Protectedpages]] as a pair of radio buttons, with {{msg-mw|Minimum-size}}. There is an input box to specify the maximum bites of the projected pages listed.',
 'pagesize'                    => 'Used on [[Special:ProtectedPages]]. See the help page on [http://meta.wikimedia.org/wiki/Protect Meta] for more information on protection.',
 
 # Restrictions (nouns)
@@ -2724,9 +2749,13 @@ This message was something like "unlock move protection" in the past.',
 'namespace'                     => 'This message is located at [[Special:Contributions]].',
 'invert'                        => 'Displayed in [[Special:RecentChanges|RecentChanges]], [[Special:RecentChangesLinked|RecentChangesLinked]] and [[Special:Watchlist|Watchlist]]
 
-{{Identical|Invert selection}}',
+{{Identical|Invert selection}}
+
+This message has a tooltip {{msg-mw|tooltip-invert}}',
 'tooltip-invert'                => 'Used in [[Special:Recentchanges]] as a tooltip for the invert checkbox. See also the message {{msg-mw|invert}}',
-'namespace_association'         => 'Used in [[Special:Recentchanges]] with a checkbox which selects the associated namespace to be added to the selected namespace, so that both are searched (or excluded depending on another checkbox selection). The association is between a namespace and its talk namespace.',
+'namespace_association'         => 'Used in [[Special:Recentchanges]] with a checkbox which selects the associated namespace to be added to the selected namespace, so that both are searched (or excluded depending on another checkbox selection). The association is between a namespace and its talk namespace.
+
+This message has a tooltip {{msg-mw|tooltip-namespace association}}',
 'tooltip-namespace_association' => 'Used in [[Special:Recentchanges]] as a tooltip for the associated namespace checkbox. See also the message {{msg-mw|namespace_association}}',
 'blanknamespace'                => 'Name for main namespace (blank namespace) in drop-down menus at [[Special:RecentChanges]] and other special pages.',
 
@@ -2978,6 +3007,7 @@ See also {{msg-mw|Movepagetext-noredirectfixer|notext=1}}',
 'movetalk'                     => 'The text of the checkbox to watch the associated talk page to the page you are moving. This only appears when the talk page is not empty.',
 'move-subpages'                => 'The text of an option on the special page [[Special:MovePage|MovePage]]. If this option is ticked, any subpages will be moved with the main page to a new title.',
 'move-talk-subpages'           => 'The text of an option on the special page [[Special:MovePage|MovePage]]. If this option is ticked, any talk subpages will be moved with the talk page to a new title.',
+'movepage-max-pages'           => 'PROBABLY (A GUESS): when moving a page, you can select an option of moving its subpages, but there is a maximum that can be moved automatically.',
 'movelogpage'                  => 'Title of [[Special:Log/move]]. Used as heading on that page, and in the dropdown menu on log pages.',
 'movelogpagetext'              => "Text on the special page 'Move log'.",
 'movesubpage'                  => "This is a section header on [[Special:MovePage]], below is a list of subpages.
@@ -2988,6 +3018,7 @@ Parameters:
 
 {{Identical|Reason}}',
 'revertmove'                   => '{{Identical|Revert}}',
+'delete_and_move'              => 'Button text on the move page when the target page already exists.',
 'delete_and_move_text'         => 'Used when moving a page, but the destination page already exists and needs deletion. This message is to confirm that you really want to delete the page. See also {{msg|delete and move confirm}}.',
 'delete_and_move_confirm'      => 'Used when moving a page, but the destination page already exists and needs deletion. This message is for a checkbox to confirm that you really want to delete the page. See also {{msg|delete and move text}}.',
 'delete_and_move_reason'       => 'Shown as reason in content language in the deletion log. Parameter:
@@ -3080,13 +3111,13 @@ See also:
 
 # Import log
 'importlogpage'          => '',
-'importlogpagetext'      => 'This text appears at the top of the [http://translatewiki.net/w/i.php?title=Special%3ALog&type=import&user=&page=&year=&month=-1 import log] special page.',
+'importlogpagetext'      => 'This text appears at the top of the [//translatewiki.net/w/i.php?title=Special:Log&type=import import log] special page.',
 'import-logentry-upload' => 'This is the text of an entry in the Import log (and Recent Changes), after hour (and date, only in the Import log) and sysop name:
 * $1 is the name of the imported file',
 
 # JavaScriptTest
 'javascripttest'                           => 'Title of [[Special:JavaScriptTest|the special page]]',
-'javascripttest-disabled'                  => '{{Identical|Function disabled}}.',
+'javascripttest-disabled'                  => 'Message displayed on [[Special:JavaScriptTest]] if this feature is disabled (it is disabled by default).',
 'javascripttest-title'                     => 'Title of the special page when running a test suite. Parameters:
 * $1 is the name of the framework, for example QUnit.',
 'javascripttest-pagetext-unknownframework' => 'Error message when given framework id is not found. $1 is the id of the framework.',
@@ -3097,7 +3128,7 @@ See also:
 # Tooltip help for the actions
 'tooltip-pt-userpage'                 => 'Tooltip shown when hovering the mouse over the link to your own User page in the upper-side personal toolbox.',
 'tooltip-pt-mytalk'                   => 'Tooltip shown when hovering over the "my talk" link in your personal toolbox (upper right side).',
-'tooltip-pt-preferences'              => 'Tooltip shown when hovering over the "my preferences" ([[MediaWiki:Mypreferences]]) link in your personal toolbox (upper right side).
+'tooltip-pt-preferences'              => 'Tooltip shown when hovering over the {{msg-mw|Mypreferences}} link in your personal toolbox (upper right side).
 
 {{Identical|My preferences}}',
 'tooltip-pt-watchlist'                => 'Tooltip shown when hovering over the "my watchlist" link in your personal toolbox (upper right side).',
@@ -3125,8 +3156,8 @@ Possible alternatives to the word 'content' are 'subject matter' or 'wiki subjec
 'tooltip-ca-watch'                    => '{{Identical|Add this page to your watchlist}}',
 'tooltip-ca-unwatch'                  => 'Tooltip shown when hovering over the {{msg|unwatch}} tab.',
 'tooltip-search'                      => 'The tooltip when hovering over the search menu.',
-'tooltip-search-go'                   => 'This is the text of the tooltip displayed when hovering the mouse over the “[[MediaWiki:Go|Go]]” button next to the search box.',
-'tooltip-search-fulltext'             => 'This is the text of the tooltip displayed when hovering the mouse over the “[[MediaWiki:Search|Search]]” button under the search box.',
+'tooltip-search-go'                   => 'This is the text of the tooltip displayed when hovering the mouse over the “{{msg-mw|Go}}” button next to the search box.',
+'tooltip-search-fulltext'             => 'This is the text of the tooltip displayed when hovering the mouse over the “{{msg-mw|Search}}” button under the search box.',
 'tooltip-p-logo'                      => 'Tool tip shown when hovering the mouse over the logo that links to [[Main Page]].
 {{Identical|Visit the main page}}',
 'tooltip-n-mainpage'                  => 'Tool tip shown when hovering the mouse over the link to [[{{MediaWiki:Mainpage}}]].
@@ -3154,7 +3185,7 @@ No GENDER-Support for performance reason.',
 'tooltip-ca-nstab-template'           => 'Tooltip shown when hovering over the {{msg|nstab-template}} tab.',
 'tooltip-ca-nstab-help'               => 'Tootip shown when hovering over the {{msg|nstab-help}} tab in the Help namespace.',
 'tooltip-ca-nstab-category'           => 'Tooltip shown when hovering over the {{msg|nstab-category}} tab.',
-'tooltip-minoredit'                   => 'Tooltip shown when hovering over the "[[MediaWiki:Minoredit/{{SUBPAGENAME}}|{{int:minoredit}}]]" link below the edit form.',
+'tooltip-minoredit'                   => 'Tooltip shown when hovering over the "{{msg-mw|Minoredit}}" link below the edit form.',
 'tooltip-save'                        => "This is the text that appears when you hover the mouse over the 'Save page' button on the edit page",
 'tooltip-preview'                     => 'Tooltip shown when hovering over the "Show preview" button.
 
@@ -3164,10 +3195,10 @@ If the length of the translated message is over 60 characters (including spaces)
 'tooltip-watch'                       => '{{Identical|Add this page to your watchlist}}',
 'tooltip-watchlistedit-normal-submit' => 'Tooltip for {{msg|watchlistedit-normal-submit}} (used as button on [[Special:EditWatchlist]]).',
 'tooltip-watchlistedit-raw-submit'    => 'Tooltip for {{msg|watchlistedit-raw-submit}} (used as button on [[Special:EditWatchlist/raw]]).',
-'tooltip-rollback'                    => 'Tooltip of the rollback link on the history page and the diff view
+'tooltip-rollback'                    => 'Tooltip of the rollback link on the history page and the diff view {{msg-mw|rollbacklink}}
 {{Identical|Rollback}}
 {{Identical|Revert}}',
-'tooltip-undo'                        => 'Tooltip of the undo link on the history page and the diff view
+'tooltip-undo'                        => 'Tooltip of the undo link on the history page and the diff view {{msg-mw|editundo}}
 {{Identical|Undo}}{{Identical|Revert}}',
 
 # Stylesheets
@@ -3405,7 +3436,7 @@ Part of variable $1 in {{msg-mw|Ago}}
 *{{msg-mw|Days}}',
 
 # Bad image list
-'bad_image_list' => 'This is only message appears to guide administrators to add links with right format. This will not appear anywhere else in Mediawiki.',
+'bad_image_list' => 'This message only appears to guide administrators to add links with the right format. This will not appear anywhere else in MediaWiki.',
 
 /*
 Short names for language variants used for language conversion links.
@@ -3951,6 +3982,7 @@ CW is an abbreviation for clockwise.',
 'exif-contrast-2' => '{{Identical|Hard}}',
 
 'exif-saturation-0' => '{{Identical|Normal}}',
+'exif-saturation-2' => 'Color saturation in picture EXIF data',
 
 'exif-sharpness-0' => '{{Identical|Normal}}',
 'exif-sharpness-1' => '{{Identical|Soft}}',
@@ -4191,14 +4223,14 @@ Bitrate (of a file, typically) in yottabits (1 yottabits = 1000×1000×1000×100
 'livepreview-loading' => '{{Identical|Loading}}',
 
 # Watchlist editor
-'watchlistedit-numitems'       => 'Message on Special page: Edit watchlist. This is paired with the message [[Mediawiki:Watchlistedit-noitems]] which appears instead of Watchlistedit-numitems when $1 is 0.',
-'watchlistedit-noitems'        => "Message on [[Special:Watchlist/edit]], which only appears when a user's watchlist is empty.",
+'watchlistedit-numitems'       => 'Message on [[Special:EditWatchlist]]. This is paired with the message {{Msg-mw|Watchlistedit-noitems}} which appears instead of Watchlistedit-numitems when $1 is 0.',
+'watchlistedit-noitems'        => "Message on [[Special:EditWatchlist]], which only appears when a user's watchlist is empty.",
 'watchlistedit-normal-title'   => 'Title of [[Special:Watchlist/edit|special page]].',
 'watchlistedit-normal-legend'  => 'Heading of dialogue box on [[Special:Watchlist/edit]]',
 'watchlistedit-normal-explain' => 'An introduction/explanation about the [[Special:Watchlist/edit|normal edit watchlist function]].
 Hint: the text "Remove Titles" is in {{msg-mw|watchlistedit-normal-submit}}',
 'watchlistedit-normal-submit'  => 'Text of submit button on [[Special:Watchlist/edit]].',
-'watchlistedit-normal-done'    => 'Message on Special page: Edit watchlist after pages are removed from the watchlist.',
+'watchlistedit-normal-done'    => 'Message on [[Special:EditWatchlist]] after pages are removed from the watchlist.',
 'watchlistedit-raw-title'      => 'Title of [[Special:Watchlist/raw|Special page]].
 
 {{Identical|Edit raw watchlist}}',
@@ -4209,8 +4241,8 @@ Hint: the text "Remove Titles" is in {{msg-mw|watchlistedit-normal-submit}}',
 'watchlistedit-raw-titles'     => 'Text above edit box containing items being watched on [[Special:Watchlist/raw]].',
 'watchlistedit-raw-submit'     => 'Text of submit button on [[Special:Watchlist/raw]].',
 'watchlistedit-raw-done'       => 'A message which appears after the raw watchlist has been updated using [[Special:Watchlist/raw]].',
-'watchlistedit-raw-added'      => 'Message on special page: Edit raw watchlist. The message appears after at least 1 message is added to the raw watchlist.',
-'watchlistedit-raw-removed'    => 'Message on special page: Edit raw watchlist. The message appears after at least 1 message is deleted from the raw watchlist.',
+'watchlistedit-raw-added'      => 'Message on [[Special:EditWatchlist/raw]]. The message appears after at least 1 message is added to the raw watchlist.',
+'watchlistedit-raw-removed'    => 'Message on [[Special:EditWatchlist/raw]]. The message appears after at least 1 message is deleted from the raw watchlist.',
 
 # Watchlist editing tools
 'watchlisttools-view' => '[[Special:Watchlist]]: Navigation link under the title. See also {{msg|watchlisttools-edit}} and {{msg|watchlisttools-raw}}.',

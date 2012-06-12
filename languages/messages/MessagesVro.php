@@ -10,6 +10,7 @@
  * @author Kaganer
  * @author Niklas Laxström
  * @author Pikne
+ * @author Reedy
  * @author Sulev Iva (Võrok)
  * @author Trixt
  * @author Võrok
@@ -640,7 +641,7 @@ Ku klõpsahtat nuppi \"{{int:savearticle}}\", sis pästetäs '''õnnõ''' ülemb
 'copyrightwarning2'                => "Rehkendäq tuud, et kõiki seo lehe pääle tettüid kirotuisi ja toimõnduisi või kiä taht muutaq vai ärq kistutaq. Ku sa taha-i, et su tüüd armuhiitmäldä ümbre tetäs ja uma ärqnägemise perrä pruugitas, sis pästku-i taad siiäq. Sa piät ka lubama, et kirotit uma jutu esiq vai võtit kopimiskeelüldä paigast (täpsämbält kaeq $1). '''PANGU-I TAAHA TEGIJÄÕIGUISIGA KAIDSÕTUT MATÕRJAALI ILMA LUALDA!'''",
 'longpageerror'                    => "'''VIGA: Lehe suurus om $1 kilobaiti. Taad saa-i pästäq, selle et kõgõ suurõmb lubat suurus om $2 kilobaiti.'''",
 'readonlywarning'                  => "'''HOIATUS: Teedüskogo om huuldustöie jaos lukku pant, nii et parhilla saa-i paranduisi pästäq. Võit teksti alalõ hoitaq tekstifailin ja pästäq taa siiäq peränpoolõ.'''",
-'protectedpagewarning'             => '<center><small>Taa leht om lukun. Taad saavaq toimõndaq õnnõ kõrraldajaõiguisiga pruukjaq.</small></center>',
+'protectedpagewarning'             => 'Taa leht om lukun. Taad saavaq toimõndaq õnnõ kõrraldajaõiguisiga pruukjaq.',
 'semiprotectedpagewarning'         => 'Seod lehte saavaq muutaq õnnõ nimega sisse lännüq pruukjaq.',
 'cascadeprotectedwarning'          => 'Taad lehte võivaq toimõndaq õnnõ kõrraldajaõiguisiga pruukjaq, selle et taa kuulus $1 järgmädse kaidsõdu lehe hulka:',
 'templatesused'                    => 'Seo lehe pääl om pruugit {{PLURAL:$1|näüdüst|näüdüssit}}:',
@@ -2168,7 +2169,7 @@ Kokkovõttõria pääle või kirotaq tagasivõtmisõ põhjusõ.',
 'scarytranscludetoolong'  => "[Võrgoaadrõs om pall'o pikk]",
 
 # Delete conflict
-'deletedwhileediting' => "<center>'''Hoiatus''': taa leht om ärq kistutõt päält tuud, ku sa taad toimõndama naksit!</center>",
+'deletedwhileediting' => "'''Hoiatus''': taa leht om ärq kistutõt päält tuud, ku sa taad toimõndama naksit!",
 'confirmrecreate'     => "Pruukja '''[[User:$1|$1]]''' ([[User talk:$1|arotus]]) kistut' taa lehe ärq päält tuud, ku sa naksit taad toimõndama. Põhjus oll':
 : ''$2''
 Olõq hää, kinnüdäq, et tahat taad lehte vahtsõst luvvaq.",

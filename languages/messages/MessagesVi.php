@@ -15,6 +15,7 @@
  * @author Mxn
  * @author Neoneurone
  * @author Nguyễn Thanh Quang
+ * @author Prenn
  * @author Thaisk
  * @author Thanhtai2009
  * @author Tmct
@@ -416,7 +417,7 @@ $messages = array(
 'category-article-count-limited' => '{{PLURAL:$1|Trang|$1 trang}} sau nằm trong thể loại hiện hành.',
 'category-file-count'            => '{{PLURAL:$2|Thể loại này có tập tin sau.|{{PLURAL:$1|Tập tin|$1 tập tin}} sau nằm trong thể loại này, trong tổng số $2 tập tin.}}',
 'category-file-count-limited'    => '{{PLURAL:$1|Tập tin|$1 tập tin}} sau nằm trong thể loại hiện hành.',
-'listingcontinuesabbrev'         => 'tiếp',
+'listingcontinuesabbrev'         => '(tiếp theo)',
 'index-category'                 => 'Trang được ghi chỉ mục',
 'noindex-category'               => 'Trang không hiển thị trong bộ máy tìm kiếm',
 'broken-file-category'           => 'Trang nhúng tập tin không tồn tại',
@@ -773,7 +774,7 @@ Xin hãy đợi chốc lát rồi thử lại.',
 
 # Change password dialog
 'resetpass'                 => 'Đổi mật khẩu',
-'resetpass_announce'        => 'Bạn đã đăng nhập bằng mật khẩu tạm gởi qua e-mail. Để hoàn tất việc đăng nhập, bạn phải tạo lại mật khẩu mới tại đây:',
+'resetpass_announce'        => 'Bạn đã đăng nhập bằng mật khẩu tạm gửi qua thư điện tử. Để hoàn tất việc đăng nhập, bạn phải tạo lại mật khẩu mới tại đây:',
 'resetpass_text'            => '<!-- Nhập văn bản vào đây -->',
 'resetpass_header'          => 'Đổi mật khẩu cho tài khoản',
 'oldpassword'               => 'Mật khẩu cũ:',
@@ -955,7 +956,8 @@ Nó chưa được lưu!'''",
 'userinvalidcssjstitle'            => "'''Cảnh báo:''' Không có skin “$1”. Hãy nhớ rằng các trang .css và .js tùy chỉnh sử dụng tiêu đề chữ thường, như {{ns:user}}:Ví&nbsp;dụ/vector.css chứ không phải {{ns:user}}:Ví&nbsp;dụ/Vector.css.",
 'updated'                          => '(Cập nhật)',
 'note'                             => "'''Ghi chú:'''",
-'previewnote'                      => "'''Đây chỉ mới là xem thử; các thay đổi vẫn chưa được lưu!'''",
+'previewnote'                      => "'''Đây chỉ mới là xem thử.'''
+Các thay đổi của bạn vẫn chưa được lưu!",
 'previewconflict'                  => 'Phần xem thử này là kết quả của văn bản trong vùng soạn thảo phía trên và nó sẽ xuất hiện như vậy nếu bạn chọn lưu trang.',
 'session_fail_preview'             => "'''Những sửa đổi của bạn chưa được lưu giữ do mất dữ liệu về phiên làm việc.
 Xin hãy thử lần nữa.
@@ -1192,7 +1194,7 @@ Xin hãy kiểm tra nhật trình.',
 # Suppression log
 'suppressionlog'     => 'Nhật trình ẩn giấu',
 'suppressionlogtext' => 'Dưới đây là danh sách các tác vụ xóa và cấm liên quan đến nội dung mà các quản lý không nhìn thấy.
-Xem [[Special:BlockList|danh sách các IP bị cấm]] để xem danh sách các tác vụ cấm chỉ và cấm thông thường hiện nay.',
+Xem [[Special:BlockList|danh sách cấm]] để xem danh sách các tác vụ cấm chỉ và cấm thông thường hiện nay.',
 
 # History merging
 'mergehistory'                     => 'Trộn lịch sử trang',
@@ -1408,7 +1410,7 @@ Thông tin này là công khai.',
 Nếu bạn đồng ý cung cấp, nó sẽ dùng để ghi nhận công lao của bạn.',
 'prefs-help-email'              => 'Địa chỉ thư điện tử là tùy chọn, nhưng nó giúp chúng tôi gửi cho bạn mật khẩu mới qua thư điện tử nếu bạn quên mật khẩu của mình.',
 'prefs-help-email-others'       => 'Bạn cũng có thể lựa chọn cho phép người khác liên lạc với bạn thông qua trang cá nhân hoặc trang thảo luận cá nhân mà không cần để lộ danh tính.',
-'prefs-help-email-required'     => 'Bắt buộc phải có địa chỉ e-mail.',
+'prefs-help-email-required'     => 'Bắt buộc phải có địa chỉ thư điện tử.',
 'prefs-info'                    => 'Thông tin cơ bản',
 'prefs-i18n'                    => 'Quốc tế hóa',
 'prefs-signature'               => 'Chữ ký',
@@ -1507,7 +1509,7 @@ Nếu bạn đồng ý cung cấp, nó sẽ dùng để ghi nhận công lao c�
 'right-suppressrevision'      => 'Xem lại và phục hồi phiên bản mà Sysop không thấy',
 'right-suppressionlog'        => 'Xem nhật trình riêng tư',
 'right-block'                 => 'Cấm thành viên khác sửa đổi',
-'right-blockemail'            => 'Cấm thành viên gửi thư',
+'right-blockemail'            => 'Cấm người dùng gửi thư điện tử',
 'right-hideuser'              => 'Cấm thành viên, rồi ẩn nó đi',
 'right-ipblock-exempt'        => 'Bỏ qua cấm IP, tự động cấm và cấm dải IP',
 'right-proxyunbannable'       => 'Bỏ qua cấm proxy tự động',
@@ -1613,6 +1615,7 @@ Nếu bạn đồng ý cung cấp, nó sẽ dùng để ghi nhận công lao c�
 'newsectionsummary'                 => 'Đề mục mới: /* $1 */',
 'rc-enhanced-expand'                => 'Xem chi tiết (cần JavaScript)',
 'rc-enhanced-hide'                  => 'Giấu chi tiết',
+'rc-old-title'                      => 'tên ban đầu là “$1”',
 
 # Recent changes linked
 'recentchangeslinked'          => 'Thay đổi liên quan',
@@ -1787,8 +1790,8 @@ Nếu vẫn còn bị lỗi, xin hãy liên hệ với một [[Special:ListUsers
 'backend-fail-writetemp'     => 'Không thể ghi vào tập tin tạm thời.',
 'backend-fail-closetemp'     => 'Không thể đóng tập tin tạm thời.',
 'backend-fail-read'          => 'Không thể đọc tập tin $1.',
-'backend-fail-create'        => 'Không thể tạo tập tin $1.',
-'backend-fail-readonly'      => 'Phía sau lưu trữ “$1” bây giờ là chỉ-đọc. Lý do đưa ra là: “$2”',
+'backend-fail-create'        => 'Không thể ghi tập tin $1.',
+'backend-fail-readonly'      => 'Phía sau lưu trữ “$1” đang ở chế độ chỉ-đọc. Lý do đưa ra là: “$2”',
 'backend-fail-synced'        => 'Tập tin “$1” đang có trạng thái không nhất quán đối với các phía sau lưu trữ nội bộ',
 'backend-fail-connect'       => 'Không thể kết nối đến phía sau lưu trữ “$1”.',
 'backend-fail-internal'      => 'Lỗi không rõ xuất hiện trong phía sau lưu trữ “$1”.',
@@ -2547,7 +2550,7 @@ $1',
 ** Con rối của thành viên bị cấm',
 'ipb-hardblock'                   => 'Ngăn không cho thành viên đã đăng nhập sửa đổi từ địa chỉ IP này',
 'ipbcreateaccount'                => 'Cấm mở tài khoản',
-'ipbemailban'                     => 'Không cho gửi email',
+'ipbemailban'                     => 'Không cho gửi thư điện tử',
 'ipbenableautoblock'              => 'Tự động cấm các địa chỉ IP mà thành viên này sử dụng',
 'ipbsubmit'                       => 'Cấm',
 'ipbother'                        => 'Thời hạn khác:',
@@ -2561,8 +2564,8 @@ $1',
 'ipb-confirm'                     => 'Xác nhận cấm',
 'badipaddress'                    => 'Địa chỉ IP không hợp lệ',
 'blockipsuccesssub'               => 'Cấm thành công',
-'blockipsuccesstext'              => '[[Special:Contributions/$1|$1]] đã bị cấm.
-<br />Xem lại những lần cấm tại [[Special:BlockList|danh sách cấm]].',
+'blockipsuccesstext'              => '[[Special:Contributions/$1|$1]] đã bị cấm.<br />
+Xem lại những lần cấm tại [[Special:BlockList|danh sách cấm]].',
 'ipb-blockingself'                => 'Bạn sẽ tự bỏ cấm cho mình! Bạn có chắc chắn muốn làm vậy không?',
 'ipb-confirmhideuser'             => 'Bạn sẽ cấm người dùng với tùy chọn “ẩn người dùng”. Bạn có chắc chắn muốn dời tên người dùng khỏi tất cả mọi danh sách và nhật trình?',
 'ipb-edit-dropdown'               => 'Sửa đổi lý do cấm',
@@ -2866,7 +2869,7 @@ Lưu nó vào máy tính của bạn rồi tải nó lên đây.',
 
 # JavaScriptTest
 'javascripttest'                           => 'Kiểm thử JavaScript',
-'javascripttest-disabled'                  => 'Chức năng này đã bị tắt.',
+'javascripttest-disabled'                  => 'Chức năng này chưa được kích hoạt trên wiki này.',
 'javascripttest-title'                     => 'Đang chạy $1 ca kiểm thử',
 'javascripttest-pagetext-noframework'      => 'Trang này dành cho việc chạy các ca kiểm thử JavaScript.',
 'javascripttest-pagetext-unknownframework' => 'Nền tảng kiểm thử không rõ “$1”.',
@@ -3242,7 +3245,7 @@ Những thông tin khác mặc định sẽ được ẩn đi.
 'exif-scenetype'                   => 'Loại cảnh',
 'exif-customrendered'              => 'Sửa hình thủ công',
 'exif-exposuremode'                => 'Chế độ phơi sáng',
-'exif-whitebalance'                => 'Độ sáng trắng',
+'exif-whitebalance'                => 'Cân bằng trắng',
 'exif-digitalzoomratio'            => 'Tỷ lệ phóng lớn kỹ thuật số',
 'exif-focallengthin35mmfilm'       => 'Tiêu cự trong phim 35 mm',
 'exif-scenecapturetype'            => 'Kiểu chụp cảnh',
@@ -3935,14 +3938,14 @@ Các hình ảnh được hiển thị ở kích thước tối đa, còn các l
 'revdelete-uname-unhid'               => 'đã hiện tên người dùng',
 'revdelete-restricted'                => 'đã áp dụng hạn chế cho bảo quản viên',
 'revdelete-unrestricted'              => 'đã gỡ bỏ hạn chế cho bảo quản viên',
-'logentry-move-move'                  => '$1 đã đổi trang $3 thành $4',
-'logentry-move-move-noredirect'       => '$1 đã đổi trang $3 thành $4 mà không để lại một trang đổi hướng',
-'logentry-move-move_redir'            => '$1 đã đổi trang $3 thành $4 qua trang đổi hướng',
-'logentry-move-move_redir-noredirect' => '$1 đã đổi trang $3 thành $4 qua trang đổi hướng mà không để lại một trang đổi hướng',
+'logentry-move-move'                  => '$1 đã đổi $3 thành $4',
+'logentry-move-move-noredirect'       => '$1 đã đổi $3 thành $4 (đã tắt đổi hướng)',
+'logentry-move-move_redir'            => '$1 đã đổi $3 thành $4 qua đổi hướng',
+'logentry-move-move_redir-noredirect' => '$1 đã đổi $3 thành $4 qua đổi hướng (đã tắt đổi hướng)',
 'logentry-patrol-patrol'              => '$1 đã đánh dấu tuần tra phiên bản $4 của trang $3',
 'logentry-patrol-patrol-auto'         => '$1 đã tự động đánh dấu tuần tra phiên bản $4 của trang $3',
-'logentry-newusers-newusers'          => '$1 đã mở một tài khoản người dùng',
-'logentry-newusers-create'            => '$1 đã mở một tài khoản người dùng',
+'logentry-newusers-newusers'          => '$1 đã mở tài khoản mới',
+'logentry-newusers-create'            => '$1 đã mở tài khoản mới',
 'logentry-newusers-create2'           => '$1 đã mở tài khoản người dùng $3',
 'logentry-newusers-autocreate'        => 'Tài khoản $1 đã được mở tự động',
 'newuserlog-byemail'                  => 'gửi mật khẩu qua thư điện tử',

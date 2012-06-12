@@ -13,6 +13,7 @@
  * @author Kandar
  * @author Meursault2004
  * @author Mssetiadi
+ * @author Reedy
  * @author Urhixidur
  * @author לערי ריינהארט
  */
@@ -488,8 +489,8 @@ Sigana geus dihapus ku nu séjén.',
 'cannotdelete-title'   => 'Hanteu bisa ngahapus kaca "$1"',
 'badtitle'             => 'Judul goréng',
 'badtitletext'         => 'Judul kaca nu dipénta teu bener, kosong, atawa judul antarbasa atawa antarwikina salah tutumbu.',
-'perfcached'           => 'Data di handap ieu sindangan sahingga--meureun--teu mutahir. A maximum of {{PLURAL:$1|one result is|$1 results are}} available in the cache.',
-'perfcachedts'         => 'Data di handap ieu mah sindangan, panungtungan diropéa téh $1. A maximum of {{PLURAL:$4|one result is|$4 results are}} available in the cache.',
+'perfcached'           => "Data di handap ieu mangrupa 'cache' sahingga bisa jadi henteu mutahir. 'Cache' nyadiakeun paling loba {{PLURAL:$1|hiji hasil|$1 hasil}}.",
+'perfcachedts'         => "Data di handap mangrupa 'cache' anu panungtungan diropéa $1. 'Cache' nyadiakeun paling loba {{PLURAL:$4|hiji hasil|$4 hasil}}.",
 'querypage-no-updates' => 'Pangrobahan ahir ti kaca ieu keur dipaéhkeun. Data anu aya di dieu ayeuna moal dimuat deui.',
 'wrong_wfQuery_params' => 'Parameter salah ka wfQuery()<br />Fungsi: $1<br />Pamenta: $2',
 'viewsource'           => 'Témbongkeun sumber',
@@ -718,7 +719,7 @@ Alesanana ''\$2''.
 * Sasaran nudipeungpeuk : \$7
 
 Anjeun bisa nepungan \$1 atawa salasahiji [[{{MediaWiki:Grouppage-sysop}}|kuncén]] séjén pikeun nyawalakeun hal ieu.
-'''<u>Catet</u>''': yén anjeun teu bisa maké fungsi \"surélékan pamaké ieu\" mun anjeun teu ngadaptarkeun alamat surélék nu sah kana [[Special:Preferences|préferénsi pamaké]] anjeun.
+'''Catet''': yén anjeun teu bisa maké fungsi \"surélékan pamaké ieu\" mun anjeun teu ngadaptarkeun alamat surélék nu sah kana [[Special:Preferences|préferénsi pamaké]] anjeun.
 
 Alamat IP anjeun \$3 jeung ID na #\$5.
 Lampirkeun informasi ieu dina unggal ''query'' anjeun.",
@@ -780,7 +781,7 @@ Pikeun rujukan, éntri log panungtung dipidangkeun di handap:',
 'userinvalidcssjstitle'            => "'''Awas''': kulit \"\$1\" mah teu aya. Sing émut yén kaca .css jeung .js mah migunakeun aksara leutik dina judulna, contona baé {{ns:user}}:Foo/vector.css lawan {{ns:user}}:Foo/Vector.css.",
 'updated'                          => '(Geus diropéa)',
 'note'                             => "'''Catetan:'''",
-'previewnote'                      => "'''Inget yén ieu ukur pramidang, can disimpen!'''
+'previewnote'                      => "'''Inget yén ieu ukur pratayang, can disimpen.'''
 Éditan anjeun can disimpen!",
 'previewconflict'                  => 'Sawangan ieu mangrupa eunteung pikeun téks na rohangan ngédit sakumaha bakal katémbong mun ku anjeun disimpen.',
 'session_fail_preview'             => "'''Punten! Kami teu bisa ngolah éditan anjeun alatan leungitna data rintakan. Mangga cobian deui. Mun tetep teu bisa, cobi kaluar log lajeng lebet deui.'''",

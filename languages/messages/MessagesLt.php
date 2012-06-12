@@ -1,5 +1,5 @@
 <?php
-/** Lithuanian (Lietuvių)
+/** Lithuanian (lietuvių)
  *
  * See MessagesQqq.php for message documentation incl. usage of parameters
  * To improve a translation please visit http://translatewiki.net
@@ -18,6 +18,7 @@
  * @author Kaganer
  * @author Matasg
  * @author Meno25
+ * @author Ola
  * @author Pdxx
  * @author Perkunas
  * @author Pėstininkas
@@ -836,7 +837,7 @@ Jūs galite [[Special:Search/{{PAGENAME}}|ieškoti šio puslapio pavadinimo]] ki
 'userinvalidcssjstitle'            => "'''Dėmesio:''' Nėra jokios išvaizdos „$1“. Nepamirškite, kad savo .css ir .js puslapiai naudoja pavadinimą mažosiomis raidėmis, pvz., {{ns:user}}:Foo/vector.css, o ne {{ns:user}}:Foo/Vector.css.",
 'updated'                          => '(Atnaujinta)',
 'note'                             => "'''Pastaba:'''",
-'previewnote'                      => "'''Nepamirškite, kad tai tik peržiūra, pakeitimai dar nėra išsaugoti!'''",
+'previewnote'                      => "''Nepamirškite, kad tai tik peržiūra, pakeitimai dar nėra išsaugoti!'''",
 'previewconflict'                  => 'Ši peržiūra parodo tekstą iš viršutiniojo teksto redagavimo lauko taip, kaip jis bus rodomas, jei pasirinksite išsaugoti.',
 'session_fail_preview'             => "'''Atsiprašome! Mes negalime vykdyti jūsų keitimo dėl sesijos duomenų praradimo.
 Prašome pamėginti vėl. Jei tai nepadeda, pamėginkite atsijungti ir prisijungti atgal.'''",
@@ -1071,7 +1072,7 @@ Prašome patikrinti sąrašus.',
 # Suppression log
 'suppressionlog'     => 'Trynimo istorija',
 'suppressionlogtext' => 'Žemiau yra trynimų ir blokavimų sąrašas, įtraukiant turinį, paslėptą nuo administratorių.
-Žiūrėkite [[Special:BlockList|IP blokavimų sąrašą]], kad rastumėte dabar veikiančius draudimus ir blokavimus.',
+Žiūrėkite [[Special:BlockList|blokavimų sąrašą]], kad rastumėte dabar veikiančius draudimus ir blokavimus.',
 
 # History merging
 'mergehistory'                     => 'Sujungti puslapių istorijas',
@@ -1494,6 +1495,7 @@ teisės",
 'newsectionsummary'                 => '/* $1 */ naujas skyrius',
 'rc-enhanced-expand'                => 'Rodyti detales (reikia JavaScript)',
 'rc-enhanced-hide'                  => 'Slėpti detales',
+'rc-old-title'                      => 'iš pradžių sukurtas kaip " $1 "',
 
 # Recent changes linked
 'recentchangeslinked'          => 'Susiję keitimai',
@@ -2470,7 +2472,7 @@ Pateikiamas paskutinis blokavimo istorijos įrašas.',
 'reblock-logentry'                => 'pakeisti [[$1]] blokavimo nustatymai, naujas blokavimo laikas – $2 $3',
 'blocklogtext'                    => 'Čia yra naudotojų blokavimo ir atblokavimo sąrašas.
 Automatiškai blokuoti IP adresai neišvardinti.
-Jei norite pamatyti dabar blokuojamus adresus, žiūrėkite [[Special:BlockList|IP blokavimų sąrašą]].',
+Jei norite pamatyti dabar blokuojamus adresus, žiūrėkite [[Special:BlockList|blokavimų sąrašą]].',
 'unblocklogentry'                 => 'atblokavo $1',
 'block-log-flags-anononly'        => 'tik anoniminiai naudotojai',
 'block-log-flags-nocreate'        => 'paskyrų kūrimas išjungtas',
@@ -2739,7 +2741,7 @@ Išsaugokite jį savo kompiuteryje ir įkelkite jį čia.',
 
 # JavaScriptTest
 'javascripttest'                           => 'JavaScript testavimas',
-'javascripttest-disabled'                  => 'Ši funkcija yra išjungta.',
+'javascripttest-disabled'                  => 'Ši funkcija šiame wiki projekte neįjungta.',
 'javascripttest-title'                     => 'Vykdomas $1 testavimas',
 'javascripttest-pagetext-noframework'      => 'Šis puslapis yra skirtas vykdyti JavaScript testavimus.',
 'javascripttest-pagetext-unknownframework' => 'Nežinoma "$1" testavimo struktūra.',
@@ -3665,11 +3667,25 @@ Paveikslėliai yra rodomi pilna raiška, kiti failų tipai paleidžiami tiesiogi
 'sqlite-no-fts'  => '$1 be visatekstės paieškos palaikymo',
 
 # New logging system
-'logentry-delete-delete'  => '$1 panaikino puslapį $3',
-'logentry-delete-restore' => '$1 atstatė puslapį $3',
-'revdelete-restricted'    => 'uždėti apribojimai administratoriams',
-'revdelete-unrestricted'  => 'pašalinti apribojimai administratoriams',
-'newuserlog-byemail'      => 'slaptažodis nusiųstas elektroniniu paštu',
+'logentry-delete-delete'              => '$1 panaikino puslapį $3',
+'logentry-delete-restore'             => '$1 atstatė puslapį $3',
+'revdelete-content-hid'               => 'turinys paslėptas',
+'revdelete-summary-hid'               => 'paslėptas keitimo komentaras',
+'revdelete-uname-hid'                 => 'paslėptas naudotojo vardas',
+'revdelete-content-unhid'             => 'turinys paviešintas',
+'revdelete-summary-unhid'             => 'keitimo komentaras paviešintas',
+'revdelete-uname-unhid'               => 'naudotojo vardas paviešintas',
+'revdelete-restricted'                => 'uždėti apribojimai administratoriams',
+'revdelete-unrestricted'              => 'pašalinti apribojimai administratoriams',
+'logentry-move-move'                  => '$1 pervadino puslapį $3 į $4',
+'logentry-move-move-noredirect'       => '$1 pervadino puslapį $3 į $4, nepalikdamas nukreipimo',
+'logentry-move-move_redir'            => '$1 pervadino puslapį iš $3 į $4, vietoje buvusio nukreipimo',
+'logentry-move-move_redir-noredirect' => '$1 pervadino puslapį iš $3 į $4, vietoje buvusio nukreipimo, bet nesukurdamas naujo',
+'logentry-newusers-newusers'          => '$1 sukūrė naudotojo paskyrą',
+'logentry-newusers-create'            => '$1 sukūrė naudotojo paskyrą',
+'logentry-newusers-create2'           => '$1 sukūrė naudotojo paskyrą $3',
+'logentry-newusers-autocreate'        => 'Paskyra $1 buvo sukurta automatiškai',
+'newuserlog-byemail'                  => 'slaptažodis nusiųstas elektroniniu paštu',
 
 # Feedback
 'feedback-subject' => 'Tema:',
@@ -3678,6 +3694,7 @@ Paveikslėliai yra rodomi pilna raiška, kiti failų tipai paleidžiami tiesiogi
 'feedback-submit'  => 'Siųsti Atsiliepimą',
 'feedback-adding'  => 'Pridedamas atsiliepimas į puslapį ...',
 'feedback-error2'  => 'Klaida: Redagavimas nepavyko',
+'feedback-close'   => 'Atlikta',
 
 # API errors
 'api-error-badaccess-groups'      => 'Jums neleidžiama įkelti failus į šią wiki.',
@@ -3698,6 +3715,8 @@ Paveikslėliai yra rodomi pilna raiška, kiti failų tipai paleidžiami tiesiogi
 'api-error-unknown-code'          => 'Nežinoma klaida: " $1 "',
 'api-error-unknown-error'         => 'Vidinė klaida: kažkas nutiko bandant įkelti failą.',
 'api-error-unknown-warning'       => 'Nežinomas įspėjimas: $1',
+'api-error-unknownerror'          => 'Nežinoma klaida: "$1"',
 'api-error-uploaddisabled'        => 'Įkėlimas išjungtas šioje wiki.',
+'api-error-verification-error'    => 'Šis failas gali būti sugadintas arba turi neteisingą papildinį.',
 
 );

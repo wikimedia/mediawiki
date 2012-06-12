@@ -108,7 +108,7 @@ $messages = array(
 'group'       => 'ብሓበር:',
 'group-sysop' => 'ሲሶፓት',
 
-'group-sysop-member' => 'ሲሶፕ',
+'group-sysop-member' => '{{GENDER:$1|ሲሶፕ}}',
 
 # Recent changes
 'hist'          => 'ታሪኽ',

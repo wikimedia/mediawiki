@@ -11,6 +11,7 @@
  * @author Kaganer
  * @author Khalid Mahmood
  * @author Rachitrali
+ * @author Reedy
  * @author ZaDiak
  */
 
@@ -133,7 +134,7 @@ $messages = array(
 
 # Categories related messages
 'pagecategories'                 => '{{PLURAL:$1|گٹھ|گٹھیاں}}',
-'category_header'                => '"$1" کیٹاگری وچ صفحے',
+'category_header'                => '"$1" کیٹاگری وچ صفے',
 'subcategories'                  => 'تھلے آلی کیٹاگری',
 'category-media-header'          => 'اس "$1" کیٹاگری وچ میڈيا',
 'category-empty'                 => "''اس کیٹاگری وچ کوئی صفحہ یا میڈیا موجود نہیں۔''",
@@ -155,7 +156,7 @@ $messages = array(
 'newwindow'     => '(نئی ونڈو چ کھولو)',
 'cancel'        => 'ختم',
 'moredotdotdot' => 'مزید۔۔۔۔',
-'mypage'        => 'میرا صفحہ',
+'mypage'        => 'میرا صفہ',
 'mytalk'        => 'میریاں گلاں',
 'anontalk'      => 'اس آئی پی آسطے گل کرو',
 'navigation'    => 'کھوج',
@@ -191,7 +192,7 @@ $messages = array(
 
 'errorpagetitle'    => 'مسئلہ',
 'returnto'          => 'واپس $1 چلو',
-'tagline'           => 'سے {{SITENAME}}',
+'tagline'           => ' {{SITENAME}} توں',
 'help'              => 'مدد',
 'search'            => 'کھوج',
 'searchbutton'      => 'کھوج',
@@ -225,11 +226,11 @@ $messages = array(
 'postcomment'       => 'نویں ونڈ',
 'articlepage'       => 'مضمون آلا صفحہ',
 'talk'              => 'گل بات',
-'views'             => 'منظر',
-'toolbox'           => 'اوزار',
-'userpage'          => 'ورتن آلے دا صفحہ ویکھو',
-'projectpage'       => 'منصوبے آلا صفحہ ویکھو',
-'imagepage'         => 'فائل آلا صفحہ ویکھو',
+'views'             => 'وکھالے',
+'toolbox'           => 'اوزار ڈبہ',
+'userpage'          => 'ورتن آلے دا صفہ ویکھو',
+'projectpage'       => 'ویونت والا صفہ ویکھو',
+'imagepage'         => 'فائل آلا صفہ ویکھو',
 'mediawikipage'     => 'سنیعا آلا صفحہ ویکھو',
 'templatepage'      => 'سچے آلا صفحہ ویکھو',
 'viewhelppage'      => 'مدد آلا صفحہ ویکھو',
@@ -246,7 +247,7 @@ $messages = array(
 'jumptonavigation'  => 'مدد',
 'jumptosearch'      => 'کھوج',
 'view-pool-error'   => '$1',
-'pool-timeout'      => 'تالے لئی انتضار',
+'pool-timeout'      => 'تالے لئی انتظار',
 'pool-queuefull'    => 'چنوتی کرن ل‏ئی بندے پورے نیں۔',
 'pool-errorunknown' => 'انجان غلطی',
 
@@ -261,7 +262,7 @@ $messages = array(
 'disclaimerpage'       => 'Project:عام منکرنا',
 'edithelp'             => 'لکھن وچ مدد',
 'edithelppage'         => 'Help:لکھنا',
-'helppage'             => 'Help:فہرست',
+'helppage'             => 'Help:لسٹ',
 'mainpage'             => 'پہلا صفہ',
 'mainpage-description' => 'پہلا صفہ',
 'policy-url'           => 'Project:پالیسی',
@@ -279,7 +280,7 @@ $messages = array(
 [[Special:Version|ورژن آلا صفحہ]] وکیھو',
 
 'ok'                      => 'ٹھیک اے',
-'retrievedfrom'           => 'توں لیا "$1"',
+'retrievedfrom'           => '"$1" توں لیا',
 'youhavenewmessages'      => 'تواڈے لئی $1 ($2).',
 'newmessageslink'         => 'نواں سنیآ',
 'newmessagesdifflink'     => 'آخری تبدیلی',
@@ -292,12 +293,12 @@ $messages = array(
 'editsectionhint'         => 'حصہ لکھو: $1',
 'toc'                     => 'حصے',
 'showtoc'                 => 'کھولو',
-'hidetoc'                 => 'چپھاؤ',
+'hidetoc'                 => 'چھپاؤ',
 'collapsible-collapse'    => 'ڈگنا',
 'collapsible-expand'      => 'ودھاؤ',
 'thisisdeleted'           => '$1 ویکھو یا واپس لاؤ',
-'viewdeleted'             => 'ویکھو $1 ؟',
-'restorelink'             => '{{PLURAL:$1|اک مٹائی گئی تبدیلی|$1 مٹائیاں گئیاں تبدیلیاں}}',
+'viewdeleted'             => 'ویکھو 1$ ؟',
+'restorelink'             => '{{PLURAL:$1|اک مٹائی گئی تبدیلی|1$ مٹائیاں گئیاں تبدیلیاں}}',
 'feedlinks'               => 'دسو:',
 'feed-invalid'            => 'ناں منی جان والی سبسکرپشن فیڈ ٹائپ',
 'feed-unavailable'        => 'سنڈیکیشن فیڈز کوئی نیں۔',
@@ -374,7 +375,7 @@ $messages = array(
 اینوں پہلاں توں ای کسے نے مٹایا ہوۓ گا۔',
 'cannotdelete-title'   => 'صفہ مٹا نئیں سکدے "$1"',
 'badtitle'             => 'پیڑا عنوان',
-'badtitletext'         => 'منگیا گۓ صفحہ دا ناں غلط اے، خالی اے یا غلط تریقے نال جوڑیا گیا اے۔<div/>
+'badtitletext'         => 'منگیا گۓ صفحہ دا ناں غلط اے، خالی اے یا غلط تریقے نال جوڑیا گیا اے۔
 ہوسکدا اے ایدے چ اک دو ھندسے ایسے ہون جیڑے عنوان وچ استعمال نہیں کیتے جاسکدے۔',
 'perfcached'           => 'تھلے دتا گیا ڈیٹا کاشیڈ اے تے پانویں نواں ناں ہووے. زیادہ توں زیادہ کاشے چ  {{PLURAL:$1|اک نتیجہ ہووے|$1 نتیجے ہوون}} گے.',
 'perfcachedts'         => 'تھلے دتا گیا ڈیٹا کاشیڈ اے تے  $1 نوں نواں کیتا گیا۔ زیادہ توں زیادہ {{PLURAL:$4|اک نتیجہ ہووے|$4 نتیجے ہوون}} نتیجے کاشے چ ہیگے نیں .',
@@ -597,7 +598,7 @@ $2
 'showpreview'                      => 'کچا کم ویکھو',
 'showlivepreview'                  => 'جیندا کچا کم',
 'showdiff'                         => 'تبدیلیاں وکھاؤ',
-'anoneditwarning'                  => "<div/>'''خبردار''' تسی اندر نہیں آۓ
+'anoneditwarning'                  => "'''خبردار''' تسی اندر نہیں آۓ
 تواڈا ''آئی پی'' پتہ فائل فائل وچ لکھیا جاۓ گا۔",
 'anonpreviewwarning'               => "''تسی ہلے لاگ ان نئیں ہوۓ،۔ کم بچاؤ گے تے تواڈا IP پتہ صفحے دی تریخ چ لکھ لیا جاۓ گا۔''",
 'missingsummary'                   => "'''یادکرائی:''' تساں تبدیلی دی سمری نئیں دتی۔  اگر تسیں \"{{int:savearticle}}\" نوں کلک کروگے تواڈیاں تبدیلیاں اک دے بنا بچ جان گیاں۔",
@@ -750,7 +751,7 @@ Custom .css تے .js pages use a lowercase title, e.g. {{ns:user}}:Foo/vector.cs
 'permissionserrorstext-withaction' => 'تواڈے کول $2 کرن دی اجازت نئیں اے۔ اس دی {{PLURAL:$1|وجہ|وجوہات}} نیں۔',
 'recreate-moveddeleted-warn'       => "'''خبردار: تسی اک پہلاں توں مٹایا ہویا صفحہ دوبارا لکھ رہے او۔'''
 
-توانوں اے گل سوچنی چائیدی اے کہ اینو لکھنا کوئی عقلمنداں دا کم اے۔<div/>
+توانوں اے گل سوچنی چائیدی اے کہ اینو لکھنا کوئی عقلمنداں دا کم اے۔
 تواڈی سہولت آسطے مٹان دا لاگ ایتھے موجود اے۔",
 'moveddeleted-notice'              => 'اس صفحے نوں مٹا دتا گیا اے۔
 مٹان دا لاگ تھلے دتا گیا اے۔',
@@ -926,7 +927,7 @@ $1",
 ایہ گل پکی کرو جے تبدیلی رکارڈ دی لکاتاری نوں رکھے گی۔',
 'mergehistory-box'                 => 'دوصفیاں دیاں رلیاں ریویني',
 'mergehistory-from'                => 'ذریعے آلا صفحہ:',
-'mergehistory-into'                => 'اصلی صفحہ:',
+'mergehistory-into'                => 'اصلی صفہ:',
 'mergehistory-list'                => 'رلنوالا لکھت رکارڈ',
 'mergehistory-merge'               => 'تھلے دتیاں گیاں ریویناں [[:$1]] نوں [[:$2]] چ رلایا جاسادا اے۔
 ریڈیو بٹن کالم نوں ورتو، رلان لئی صرف ریویناں بناں لئی خاص ویلے توں پہلے یا اوس ویلے۔
@@ -1045,7 +1046,7 @@ $1",
 'prefsnologin'                  => 'لاگ ان نئیں او',
 'prefsnologintext'              => 'تسیں لازمی <span class="plainlinks">[{{fullurl:{{#Special:UserLogin}}|returnto=$1}} لاگ ان]</span> ورتن تانگاں سیٹ کرنا.',
 'changepassword'                => 'کنجی بدلو',
-'prefs-skin'                    => 'کھل',
+'prefs-skin'                    => 'چھاڑ',
 'skin-preview'                  => 'کچا کم',
 'datedefault'                   => 'خاص پسند نئیں',
 'prefs-beta'                    => 'بیٹا فیچرز',
@@ -1707,9 +1708,9 @@ $1",
 'randomredirect-nopages' => '"$1" ناں نال کوئی ریڈائرکٹ نئیں۔',
 
 # Statistics
-'statistics'                   => 'سعاب کتاب',
-'statistics-header-pages'      => 'صفے دا سعاب کتاب',
-'statistics-header-edits'      => 'تبدیلیاں دا سعاب کتاب',
+'statistics'                   => 'آنکڑے',
+'statistics-header-pages'      => 'صفے دے آنکڑے',
+'statistics-header-edits'      => 'تبدیلیاں دا آنکڑہ',
 'statistics-header-views'      => 'ویکھن دا سعاب کتاب',
 'statistics-header-users'      => 'ورتن آلیاں دا سعاب کتاب',
 'statistics-header-hooks'      => 'دوجے سعاب کتاب',
@@ -2211,7 +2212,7 @@ $2 نے آخری ریوین تک واپس کیتا۔',
 'undelete-error-short'         => 'فاغل واپس کرن چ غلطی: $1',
 'undelete-error-long'          => 'فائل واپس کرن  لگیاں غلطیاں ہوئیاں:
 $1',
-'undelete-show-file-confirm'   => 'تساں نوں کیا پک اے جے تسیں فائل "<نوکی>$1</نوکی>" دی مٹائی ریوین  $2 توں $3 تک ویکھنا چاندے او؟',
+'undelete-show-file-confirm'   => 'تساں نوں کیا پک اے جے تسیں فائل "<nowiki>$1</nowiki>" دی مٹائی ریوین  $2 توں $3 تک ویکھنا چاندے او؟',
 'undelete-show-file-submit'    => 'ہاں جی',
 
 # Namespace form on various pages
@@ -2454,7 +2455,7 @@ $1',
 'movenotallowedfile'           => 'تواڈے کول صفحے لے چلن دی اجازت نئیں اے۔',
 'cant-move-user-page'          => 'تھواڈے کول ورتن والے صفے (نکیاں نوں چھڈ کے) نوں دوجے تھاں لجان دی اجازت نئیں۔',
 'cant-move-to-user-page'       => 'تھوانوں اک صفے نوں ورتن والے صفے ول لجان دی اجازت نئیں (سواے نکے ورتن والے صفے دے)',
-'newtitle'                     => 'نوے عنوان ول:',
+'newtitle'                     => 'نویں ناں ول:',
 'move-watch'                   => 'صفحے اکھ تھلے رکھو',
 'movepagebtn'                  => 'صفحہ لے جاؤ',
 'pagemovedsub'                 => 'لے جانا کامیاب ریا',
@@ -2568,7 +2569,7 @@ $1',
 سارے وکیاں وشکار لیان کم [[Special:Log/import|لیان لاگ]] تے لاگڈ نیں۔',
 'import-interwiki-source'    => 'سورس وکی/صفہ:',
 'import-interwiki-history'   => 'ایس صفے لئی سارا ریرین ریکارڈ کاپی کرو۔',
-'import-interwiki-templates' => 'سارے سخے رلاؤ',
+'import-interwiki-templates' => 'سارے سچے رلاؤ',
 'import-interwiki-submit'    => 'لے آؤ',
 'import-interwiki-namespace' => 'انت ناں',
 'import-upload-filename'     => 'فائل دا ناں',
@@ -2578,7 +2579,7 @@ $1',
 'import-revision-count'      => '$1 {{PLURAL:$1|ریوین}}',
 'importnopages'              => 'لانے آسطے کوئی صفحہ نئیں۔',
 'imported-log-entries'       => '{{PLURAL:$1|لاگ انٹریلاگ انٹریاں}}!!لیاندی گئی $1 {{PLURAL:$1|لاگ انٹری}}.',
-'importfailed'               => 'لیانا فیل: <نوکی>$1</نوکی>',
+'importfailed'               => 'لیانا فیل: <nowiki>$1</nowiki>',
 'importunknownsource'        => 'انجان لیان سورس ٹائپ',
 'importcantopen'             => 'لیاندی گئی فائل نئیں کھولی جاسکی',
 'importbadinterwiki'         => 'پیڑا انٹروکی لنک',
@@ -2617,7 +2618,7 @@ $1',
 
 # JavaScriptTest
 'javascripttest'                           => 'JavaScript ٹیسٹنگ',
-'javascripttest-disabled'                  => 'ایہ کم نکارہ کردتا گیا اے۔',
+'javascripttest-disabled'                  => 'ایس وکی تے ایہ کم نئیں چلدا۔',
 'javascripttest-title'                     => 'ٹیسٹ  $1 چلدا اے۔',
 'javascripttest-pagetext-noframework'      => 'ایہ صفہ JavaScript  ٹیسٹاں لئی بچایا گیا اے۔',
 'javascripttest-pagetext-unknownframework' => '"$1" انجانا ٹیسٹنگ فریمورک۔',
@@ -2627,14 +2628,14 @@ $1',
 'javascripttest-qunit-heading'             => 'MediaWiki JavaScript QUnit test suite',
 
 # Tooltip help for the actions
-'tooltip-pt-userpage'                 => 'میرا صفحہ',
+'tooltip-pt-userpage'                 => 'میرا صفہ',
 'tooltip-pt-anonuserpage'             => 'ورتن صفہ IP  پتے لئی تسی تبدیل کر رۓ او۔۔۔',
 'tooltip-pt-mytalk'                   => 'میریاں گلاں',
 'tooltip-pt-anontalk'                 => 'ایس IP  پتے دیاں تبدیلیاں تے گل بات',
 'tooltip-pt-preferences'              => 'میریاں تانگاں',
 'tooltip-pt-watchlist'                => 'او صفحے جنہاں وچ تبدیلیاں تسی ویکھ رہے او',
 'tooltip-pt-mycontris'                => 'میرے کم',
-'tooltip-pt-login'                    => 'جی صدقے اندر آؤ، پر اے لازمی نہیں۔',
+'tooltip-pt-login'                    => 'اے بہتر اے کہ لاگ ان ہو جاؤ، لیکن فیر وی اے لازمی نئیں۔',
 'tooltip-pt-anonlogin'                => 'اے بہتر اے کہ لاگ ان ہو جاؤ، لیکن فیر وی اے لازمی نئیں۔',
 'tooltip-pt-logout'                   => 'باہر آؤ',
 'tooltip-ca-talk'                     => 'اس صفحے دے بار وچ گل بات',
@@ -2812,7 +2813,7 @@ $1',
 
 # Metadata
 'metadata'          => 'میٹا ڈیٹا',
-'metadata-help'     => 'اس فائل وچ ہور وی معلومات نے، شاید او ڈیجیٹل کیمرے یا سکینر نے پائیاں گئیاں نے جس نال اینو کچھیا یا ڈیجیٹل بنایا گیا اے۔<div/>
+'metadata-help'     => 'اس فائل وچ ہور وی معلومات نے، شاید او ڈیجیٹل کیمرے یا سکینر نے پائیاں گئیاں نے جس نال اینو کچھیا یا ڈیجیٹل بنایا گیا اے۔
 اگر فائل نو ایدی اصلی حالت توں تبدیل کیتا گیا اے تے کجھ تفصیلات تبدیل ہوئی فائل دے بارے چ نئیں دسن گیاں۔',
 'metadata-expand'   => 'ہور تفصیلات دسو',
 'metadata-collapse' => 'تفصیلات چھپاؤ',
@@ -2834,7 +2835,7 @@ $1',
 # EXIF tags
 'exif-imagewidth'                  => 'چوڑائی',
 'exif-imagelength'                 => 'اچائی',
-'exif-bitspersample'               => 'بٹو اک کمپوننٹ چ',
+'exif-bitspersample'               => 'اک کمپوننٹ وچ بٹ',
 'exif-compression'                 => 'کمپریشن سکیم',
 'exif-photometricinterpretation'   => 'پکسل کمپوزیشن',
 'exif-orientation'                 => 'اورینٹیشن',
@@ -2878,7 +2879,7 @@ $1',
 'exif-exposuretime-format'         => '$1 سکنٹ ($2)',
 'exif-fnumber'                     => 'ایف نمبر',
 'exif-exposureprogram'             => 'ایکسپویر پروگرام',
-'exif-spectralsensitivity'         => 'سحیکٹرل سنسیٹیوٹی',
+'exif-spectralsensitivity'         => 'سپیکٹرل سنسیٹیوٹی',
 'exif-isospeedratings'             => 'ISO  سپیڈ ریٹنگ',
 'exif-shutterspeedvalue'           => '!!!!شٹر دی تیزی',
 'exif-aperturevalue'               => '!!اپیکس!!اپرچر',
@@ -3327,7 +3328,7 @@ $5
 'ascending_abbrev'         => 'اے ایس سی',
 'descending_abbrev'        => 'ڈی ایایس سی',
 'table_pager_next'         => 'اگلا صفہ',
-'table_pager_prev'         => 'پچھلا صفحہ',
+'table_pager_prev'         => 'پچھلا صفہ',
 'table_pager_first'        => 'پہلا صفہ',
 'table_pager_last'         => 'آخری صفہ',
 'table_pager_limit'        => '$1 وکھاؤ ہر صفے تے',
@@ -3391,7 +3392,7 @@ $5
 # Special:Version
 'version'                       => 'ورژن',
 'version-extensions'            => 'انسٹالڈ کیتیاں گیاں ایکسٹنشن',
-'version-specialpages'          => 'خاص صفحے',
+'version-specialpages'          => 'خاص صفے',
 'version-parserhooks'           => 'پارسر ہکز',
 'version-variables'             => 'ویریایبلز',
 'version-antispam'              => 'سپام بچاؤ',
@@ -3598,7 +3599,7 @@ the Free Software Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 
 'api-error-stashfailed'                   => 'اندر دی غلطی: سرور کچیاں فائلاں نوں رکھن چ نکام۔',
 'api-error-timeout'                       => 'سرور نے توقع رکھے ویلے ج جواب نئیں دتا۔',
 'api-error-unclassified'                  => 'اک انجان غلطی ہوگئی اے۔',
-'api-error-unknown-code'                  => 'اجان غلطی:"$1"',
+'api-error-unknown-code'                  => 'انجان غلطی:"$1"',
 'api-error-unknown-error'                 => 'اندر دی غلطی: کوئی چیز غلط ہوئی جدوں تسی فائل چڑھاندے سی۔',
 'api-error-unknown-warning'               => 'انجان خبرداری: $1',
 'api-error-unknownerror'                  => 'انجان غلطی : "$1"۔',

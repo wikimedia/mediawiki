@@ -967,7 +967,7 @@ Ihü nọr na [[Special:Watchlist|ndétu ihe Í ne lé]] di na mkpụrụ edemed
 'filehist-filesize'         => 'Ívù usòrò',
 'filehist-comment'          => 'Okwu-nokwu',
 'filehist-missing'          => 'Usòrò è fwuólé',
-'imagelinks'                => 'Jikodo usòrò',
+'imagelinks'                => 'Mgbanwe usòrò',
 'linkstoimage'              => '{{PLURAL:$1|Ihü nká|Ihü nke $1}} na jikodo gá usòrò nká:',
 'nolinkstoimage'            => 'Àdíghị ihü na jikodo usòrò nke.',
 'sharedupload'              => 'Ákwúkwó runotu nke shì $1 na ó nwèríkí di na orürü nke ndi ozor.',
@@ -1489,7 +1489,7 @@ Jikodo nke gị byá àzú na áhìrì nke òfu á bu nke nwéríkí gáfè, dí
 Ȯ bụ nà usòrò à gabnwere shí òtù ȯ di nà mgbe mbu, ótù ụmà àgághị è zí ya.',
 'metadata-expand'   => 'Zi nkówá di ógólógó',
 'metadata-collapse' => 'Zonari nkówá di ógólógó',
-'metadata-fields'   => 'Ómárí nso nke nkeji nke EXIF détùrù na ozi nká gí banyé na nlé ihü nhuunuche mgbè ómárí nso mgbe àgàdà gi dátù.
+'metadata-fields'   => 'Ómárí nso nke nkeji nke nhuunuche détùrù na ozi nká gí banyé na nlé ihü nhuunuche mgbè ómárí nso mgbe àgàdà gi dátù.
 Nke ozor gí zonari na áká onwe ha.
 * make
 * model

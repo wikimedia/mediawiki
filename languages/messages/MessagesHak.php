@@ -317,7 +317,9 @@ Chhà-khon: $2',
 'protectedpagetext'    => 'Pún-chông yí-kîn pûn fûng-só put yún-chún phiên-cho.',
 'viewsourcetext'       => 'Ngì khó-yî chhà-khon pin fuk-chṳ pún vùn-chông ke kîn-ngièn.',
 'protectedinterface'   => 'Ke-chông thì-kiûng liáu ngiôn-thí ke kie-mien vùn-sṳ, kí yí-kîn pûn fûng-só fòng-chṳ́ sùi-yi ke siû-kói.',
-'editinginterface'     => "'''Kín-ko:''' Ngì chang-chhai phiên-siá ke vùn-chông he yung chhai-yî thì-kiûng ngiôn-thí ke kie-mien vùn-sṳ. Kói-pien chhṳ́-chông chiông-voi yáng-hióng khì-thâ yung-fu-chá ke kie-mien ngoi-kôn.",
+'editinginterface'     => "'''Warning:''' You are editing a page which is used to provide interface text for the software.
+Changes to this page will affect the appearance of the user interface for other users.
+For translations, please consider using [//translatewiki.net/wiki/Main_Page?setlang=en translatewiki.net], the MediaWiki localisation project.",
 'sqlhidden'            => '（Yún-chhòng SQL ke chhà-chhìm）',
 'cascadeprotected'     => 'Liá-ke vùn-chông yí-kîn pûn pó-fu, yîn-vi liá-ke hong-mien pûn yî-ha phêu-chu "lièn-só pó-fu" ke {{PLURAL:$1|yit-ke|tô-ke}} pûn pó-fu vùn-chông pâu-hàm:',
 'ns-specialprotected'  => 'Chhai thi̍t-sû miàng-sṳ khúng-kiên tsûng ke vùn-thí he vù-nèn piên-sip ke.',

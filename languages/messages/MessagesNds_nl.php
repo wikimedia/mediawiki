@@ -1629,6 +1629,7 @@ Disse informasie is zichtbaor veur aandere gebrukers.',
 'newsectionsummary'                 => 'Niej onderwarp: /* $1 */',
 'rc-enhanced-expand'                => "Details bekieken (hier he'j JavaScript veur neudig)",
 'rc-enhanced-hide'                  => 'Details verbargen',
+'rc-old-title'                      => 'oorspronkelik an-emaakt as "$1"',
 
 # Recent changes linked
 'recentchangeslinked'          => 'Volg verwiezigingen',
@@ -1832,7 +1833,7 @@ De veiligheid kan niet ekontroleerd wörden.',
 'img-auth-nopathinfo'       => 'PATH_INFO ontbrik.
 Joew server is niet in-esteld um disse informasie deur te geven.
 Misschien gebruukt t CGI, en dan wörden img_auth niet ondersteund.
-Zie https://www.mediawiki.org/wiki/Manual:Image_Authorization rechten veur aofbeeldingen veur meer informasie.',
+Zie https://www.mediawiki.org/wiki/Manual:Image_Authorization veur meer informasie.',
 'img-auth-notindir'         => 't Op-evreugen pad is niet de in-estelde bestaandinlaodmap',
 'img-auth-badtitle'         => 'Kon gien geldige paginanaam maken van "$1".',
 'img-auth-nologinnWL'       => 'Je bin niet an-emeld en "$1" steet niet op de witte lieste.',
@@ -2867,7 +2868,7 @@ De tiedelike map is niet anwezig.',
 
 # JavaScriptTest
 'javascripttest'                           => 'JavaScript testen',
-'javascripttest-disabled'                  => 'Disse funksie steet uut.',
+'javascripttest-disabled'                  => 'Disse funksie steet niet an op disse wiki.',
 'javascripttest-title'                     => 'Tests uutvoeren veur $1',
 'javascripttest-pagetext-noframework'      => 'Disse pagina is ereserveerd veur t uutvoeren van JavaScript-testen.',
 'javascripttest-pagetext-unknownframework' => 'Onbekend testraamwark "$1".',
@@ -3839,7 +3840,7 @@ Aanders ku\'j oek t eenvoudige formulier hieronder gebruken. Joew opmarkingen zu
 'api-error-hookaborted'                   => "De wieziging die'j proberen deur te voeren is aofebreuken deur n extra uutbreiding.",
 'api-error-http'                          => 'Interne fout: der kon gien verbiending emaakt wörden mit de server.',
 'api-error-illegal-filename'              => 'Disse bestaandsnaam mag niet.',
-'api-error-internal-error'                => 'Interne fout: der is iets verkeerd egaon tiedens t verwarken van joew op-estuurden bestaand deur de wiki.',
+'api-error-internal-error'                => 'Interne fout: der is iets verkeerd egaon tiejens t verwarken van joew op-estuurden bestaand deur de wiki.',
 'api-error-invalid-file-key'              => 'Interne fout: t bestaand stung niet in de tiedelike opslag.',
 'api-error-missingparam'                  => 'Interne fout: niet alle parameters bin in t verzeuk mee-eleverd.',
 'api-error-missingresult'                 => 'Interne fout: kon niet vaststellen of t kopiëren wel wol lokken.',
@@ -3853,7 +3854,7 @@ Aanders ku\'j oek t eenvoudige formulier hieronder gebruken. Joew opmarkingen zu
 'api-error-timeout'                       => 'De server hef niet binnen de verwachte tied antwoord egeven.',
 'api-error-unclassified'                  => 'Der is n onbekende fout op-etrejen',
 'api-error-unknown-code'                  => 'Interne fout: "$1"',
-'api-error-unknown-error'                 => 'Interne fout: der is iets verkeerd egaon tiedens t opsturen van joew bestaand.',
+'api-error-unknown-error'                 => 'Interne fout: der is iets verkeerd egaon tiejens t opsturen van joew bestaand.',
 'api-error-unknown-warning'               => 'Onbekende waorschuwing: $1',
 'api-error-unknownerror'                  => 'Onbekende fout: "$1"',
 'api-error-uploaddisabled'                => 'Je kunnen gien bestaanden opsturen in deze wiki.',

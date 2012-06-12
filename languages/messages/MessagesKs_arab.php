@@ -44,12 +44,18 @@ $messages = array(
 
 'about' => 'مُتعلِق',
 
+# Vector skin
+'vector-view-edit' => 'تَرتیٖب دِیُن',
+'vector-view-view' => 'پَرُن',
+
 'help'             => 'مدد',
 'search'           => 'ژھارُن',
 'searchbutton'     => 'ژھارُن',
 'history_short'    => 'توٲریٖخ',
 'talkpagelinktext' => 'بَحَژ',
 'talk'             => 'بَحَژ',
+'toolbox'          => 'اَوزار',
+'otherlanguages'   => 'باقیَن زَبانَن منٛز',
 'jumptosearch'     => 'ژھارُن',
 
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).

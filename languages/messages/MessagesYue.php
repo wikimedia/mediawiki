@@ -11,6 +11,7 @@
  * @author Kaganer
  * @author KaiesTse
  * @author Mark85296341
+ * @author Simon Shek
  * @author Waihorace
  * @author William915
  * @author Wong128hk
@@ -639,6 +640,7 @@ $1',
 'createaccount'              => '開戶口',
 'gotaccount'                 => '已經有戶口？ $1。',
 'gotaccountlink'             => '登入',
+'userlogin-resetlink'        => '唔記得簽到資料？',
 'createaccountmail'          => '用電郵',
 'createaccountreason'        => '原因：',
 'badretype'                  => '你入嘅密碼唔一致。',
@@ -1699,7 +1701,7 @@ $1',
 'filehist-filesize'         => '檔案大細',
 'filehist-comment'          => '註解',
 'filehist-missing'          => '檔案遺失',
-'imagelinks'                => '檔案連結',
+'imagelinks'                => '檔案用途',
 'linkstoimage'              => '以下嘅$1個頁面連結到呢個檔案：',
 'linkstoimage-more'         => '多過$1版連過去呢個檔案。
 下面嘅表只係列示咗連去呢個檔案嘅最頭$1版。

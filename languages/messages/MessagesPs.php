@@ -320,6 +320,7 @@ $messages = array(
 'vector-view-viewsource'   => 'سرچينه کتل',
 'actions'                  => 'کړنې',
 'namespaces'               => 'نوم-تشيالونه',
+'variants'                 => 'ډولونه',
 
 'errorpagetitle'    => 'تېروتنه',
 'returnto'          => 'بېرته $1 ته وګرځه.',
@@ -516,6 +517,7 @@ $1',
 
 # Virus scanner
 'virus-badscanner'     => "بده سازېدنه: د ويروس ناڅرګنده ځيرڅار: ''$1''",
+'virus-scanfailed'     => 'ځيرڅارنه بريالۍ نه شوه (کوډ $1)',
 'virus-unknownscanner' => 'ناڅرګند ضدويروس:',
 
 # Login and logout pages
@@ -627,19 +629,22 @@ $1',
 'resetpass-temp-password'   => 'لنډمهالی پټنوم:',
 
 # Special:PasswordReset
-'passwordreset'              => 'پټنوم بياپرځايول',
-'passwordreset-text'         => 'د دې لپاره چې ستاسې د ګڼون بشپړې څرګندنې دربرېښليک شي نو دا فورمه ډکه کړۍ.',
-'passwordreset-legend'       => 'پټنوم بياپرځايول',
-'passwordreset-username'     => 'کارن-نوم:',
-'passwordreset-domain'       => 'شپول:',
-'passwordreset-email'        => 'برېښليک پته:',
-'passwordreset-emailtitle'   => 'د {{SITENAME}} د ګڼون څرګندنې',
-'passwordreset-emailelement' => 'کارن-نوم: $1
+'passwordreset'                   => 'پټنوم بياپرځايول',
+'passwordreset-text'              => 'د دې لپاره چې ستاسې د ګڼون بشپړې څرګندنې دربرېښليک شي نو دا فورمه ډکه کړۍ.',
+'passwordreset-legend'            => 'پټنوم بياپرځايول',
+'passwordreset-username'          => 'کارن-نوم:',
+'passwordreset-domain'            => 'شپول:',
+'passwordreset-capture'           => 'د پايلې برېښليک کتل غواړې؟',
+'passwordreset-email'             => 'برېښليک پته:',
+'passwordreset-emailtitle'        => 'د {{SITENAME}} د ګڼون څرګندنې',
+'passwordreset-emailelement'      => 'کارن-نوم: $1
 لنډمهاله پټنوم: $2',
-'passwordreset-emailsent'    => 'يو يادښتي برېښليک ولېږل شو.',
+'passwordreset-emailsent'         => 'يو يادښتي برېښليک ولېږل شو.',
+'passwordreset-emailsent-capture' => 'د يادونې لپاره يو برېښليک ولېږل شو، برېښليک په لاندې توګه ښودل شوی.',
 
 # Special:ChangeEmail
 'changeemail'          => 'برېښليک پته بدلول',
+'changeemail-header'   => 'د ګڼون برېښليک پته بدلول',
 'changeemail-oldemail' => 'اوسنۍ برېښليک پته:',
 'changeemail-newemail' => 'نوې برېښليک پته:',
 'changeemail-none'     => '(هېڅ)',
@@ -733,11 +738,11 @@ $1',
 'blocked-notice-logextract'        => 'دم مهال په دې کارن بنديز لګېدلی.
 دلته لاندې د بنديز تازه يادښت د سرچينې په توګه ورکړ شوی:',
 'clearyourcache'                   => "'''يادونه:''' د غوره توبونو د خوندي کولو وروسته، ددې لپاره چې تاسو خپل سر ته رسولي ونجونه وګورۍ نو پکار ده چې د خپل بروزر ساتل شوې حافظه تازه کړی. 
-* د '''Mozilla / Firefox / Safari:''' لپاره د ''Shift'' تڼۍ نيولې وساتی کله مو چې په ''Reload''، ټک واهه، او يا هم ''Ctrl-Shift-R'' تڼۍ کېښکاږۍ (په Apple Mac کمپيوټر باندې ''Cmd-Shift-R'' کېښکاږۍ)
-* '''د ګووګل کروم:''' لپاره د ''Ctrl-Shift-R'' تڼۍ کېښکاږۍ (د مک لپاره ''Command-Shift-R'')
-* د '''IE:''' د ''Ctrl'' تڼۍ کېښکاږۍ کله مو چې په ''Refresh'' ټک واهه، او يا هم د ''Ctrl-F5'' تڼۍ کېښکاږۍ
-* د '''Konqueror:''' بروزر کې يواځې ''Reload'' ته ټک ورکړۍ، او يا په ''F5''
-* د '''Opera''' کارنانو ته پکار ده چې په بشپړه توګه د خپل کمپيوټر ساتل شوې حافظه تازه کړي چې پدې توګه کېږي ''Tools→Preferences''.",
+* '''موزېلا/ فايرفاکس/ سفري:''' په دې کتنمل کې د ''Reload'' د ټکوهلو په وخت د ''Shift'' تڼۍ نيولې وساتی، او يا هم ''Ctrl-F5'' يا ''Ctrl-R'' تڼۍ کېښکاږۍ (په Apple Mac کمپيوټر باندې ''⌘-R'' کېښکاږۍ)
+* '''ګووګل کروم:''' په دې کتنمل کې د ''Ctrl-Shift-R'' تڼۍ کېښکاږۍ (د مک لپاره ''⌘-Shift-R'')
+* '''انټرنټ اېکسپلورر:''' په دې کتنمل کې د ''Refresh'' د ټکوهلو په وخت کې د ''Ctrl'' تڼۍ کېښکاږلې ونيسۍ، او يا هم د ''Ctrl-F5'' تڼۍ کېښکاږۍ
+* '''کانکوېرور:''' په دې کتنمل کې د يواځې د ''Reload'' تڼۍ ټکوهۍ، او يا ''F5'' کېښکاږۍ
+* '''اوپرا''': په دې کتنمل کې د خپل براوزر ساتل شوې حافظه پدې توګه سپينولی شی ''Tools→Preferences''",
 'usercsspreview'                   => "'''هېر مو نشي چې دا يوازې ستاسې د کارن CSS مخليدنه ده.'''
 '''تر اوسه پورې لا ستاسې بدلونونه نه دي خوندي شوي!'''",
 'userjspreview'                    => "'''هېر مو نشي چې دا يوازې ستاسې د کارن د جاوا سکرېپټ آزمېيل/مخليدنه ده.'''
@@ -746,7 +751,8 @@ $1',
 '''تر اوسه پورې دا نه دی خوندي شوی!'''",
 'updated'                          => '(تازه)',
 'note'                             => "'''يادونه:'''",
-'previewnote'                      => "'''دا يواځې مخليدنه ده، تاسې چې کوم بدلونونه ترسره کړي، لا تر اوسه پورې نه دي خوندي شوي!'''",
+'previewnote'                      => "'''هېر مو نه شي چې دا يواځې يوه مخليدنه ده.'''
+ستاسې لخوا ترسره شوي بدلونونه لا تر اوسه پورې نه دي خوندي شوي!!",
 'editing'                          => 'د $1 سمونه',
 'editingsection'                   => 'سمونه $1 (برخه)',
 'editingcomment'                   => 'د $1 سمون (نوې برخه)',
@@ -756,8 +762,8 @@ $1',
 'yourdiff'                         => 'توپيرونه',
 'copyrightwarning'                 => "لطفاً په پام کې وساتۍ چې ټولې هغه ونډې چې تاسې يې {{SITENAME}} کې ترسره کوی هغه د $2 له مخې د خپرولو لپاره ګڼل کېږي (د لانورو تفصيلاتو لپاره $1 وګورۍ). که تاسې نه غواړۍ چې په ليکنو کې مو په بې رحمۍ سره لاسوهنې (سمونې) وشي او د نورو په غوښتنه پسې لانورې هم خپرې شي، نو دلته يې مه ځای پر ځای کوی..<br />
 تاسې زمونږ سره دا ژمنه هم کوی چې تاسې پخپله دا ليکنه کښلې، او يا مو د ټولګړو پاڼو او يا ورته وړيا سرچينو نه کاپي کړې ده '''لطفاً د ليکوال د اجازې نه پرته د خوندي رښتو ليکنې مه خپروی!'''",
-'longpageerror'                    => "'''ستونزه: کوم متن چې دلته تاسو ليکلی، $1 کيلوبايټه اوږد دی او دا د همدې مخ د لوړترين ټاکلي بريده، $2 کيلوبايټه، څخه اوږد دی.
-ستاسو متن نه شي خوندي کېدلای.'''",
+'longpageerror'                    => "'''تېروتنه: کوم متن چې مو ليکلی {{PLURAL:$1|يو کيلوبايټه|$1 کيلوبايټه}} اوږد دی، چې دا پخپله د حد اکثر نه {{PLURAL:$2|يو کيلوبايټه|$2 کيلوبايټه}} اوږد دی.'''
+ستاسې متن نه شي خوندي کېدلای.",
 'protectedpagewarning'             => "'''ګواښنه: همدا مخ تړل شوی او يوازې هغه کارنان په دې مخ کې بدلونونه راوستلای شي چې د پازوالۍ د آسانتياوو نه برخمن دي.'''
 ستاسې د مالوماتو لپاره د وروستني يادښت متن دلته په دې توګه راوړل شوی:",
 'semiprotectedpagewarning'         => "'''پاملرنه:''' دا مخ تړل شوی او يواځې ثبت شوي کارنان کولای شي چې په دې مخ کې بدلونونه راولي.
@@ -795,8 +801,9 @@ $1',
 پدې نوم د پخوا نه يو مخ شته.',
 
 # Parser/template warnings
-'post-expand-template-inclusion-warning' => "'''ګواښنه:''' دا کينډۍ د خپل ټاکلي بريد نه ډېره لويه ده.
+'post-expand-template-inclusion-warning'  => "'''ګواښنه:''' دا کينډۍ د خپل ټاکلي بريد نه ډېره لويه ده.
 ځينې کينډۍ به په کې ګډې نه شي.",
+'post-expand-template-inclusion-category' => 'هغه مخونه چې په کې د کارېدلو کينډيو شمېر له ټاکلې کچې ډېر دی',
 
 # "Undo" feature
 'undo-norev' => 'دا سمون ناکړ کېدلای نه شي دا ځکه چې دا سمون نشته او يا هم ړنګ شوی.',
@@ -1081,25 +1088,28 @@ $1',
 'userrights-unchangeable-col' => 'هغه ډلې چې تاسې يې نه شی بدلولی',
 
 # Groups
-'group'            => 'ډله:',
-'group-user'       => 'کارنان',
-'group-bot'        => 'روباټونه',
-'group-sysop'      => 'پازوالان',
-'group-bureaucrat' => 'بيوروکراټان',
-'group-suppress'   => 'څارونکي',
-'group-all'        => '(ټول)',
+'group'               => 'ډله:',
+'group-user'          => 'کارنان',
+'group-autoconfirmed' => 'تاييد شوي کارنان',
+'group-bot'           => 'روباټونه',
+'group-sysop'         => 'پازوالان',
+'group-bureaucrat'    => 'بيوروکراټان',
+'group-suppress'      => 'څارونکي',
+'group-all'           => '(ټول)',
 
-'group-user-member'       => 'کارن',
-'group-bot-member'        => 'روباټ',
-'group-sysop-member'      => 'پازوال',
-'group-bureaucrat-member' => 'بيوروکراټ',
-'group-suppress-member'   => '{{GENDER:$1|څارن}}',
+'group-user-member'          => '{{GENDER:$1|کارن}}',
+'group-autoconfirmed-member' => '{{GENDER:$1|تاييد شوی کارن}}',
+'group-bot-member'           => '{{GENDER:$1|روباټ}}',
+'group-sysop-member'         => '{{GENDER:$1|پازوال}}',
+'group-bureaucrat-member'    => '{{GENDER:$1|بيوروکراټ}}',
+'group-suppress-member'      => '{{GENDER:$1|څارن}}',
 
-'grouppage-user'       => '{{ns:project}}:کارنان',
-'grouppage-bot'        => '{{ns:project}}:روباټان',
-'grouppage-sysop'      => '{{ns:project}}:پازوالان',
-'grouppage-bureaucrat' => '{{ns:project}}:بيوروکراټان',
-'grouppage-suppress'   => '{{ns:project}}:څارن',
+'grouppage-user'          => '{{ns:project}}:کارنان',
+'grouppage-autoconfirmed' => '{{ns:project}}:تاييد شوي کارنان',
+'grouppage-bot'           => '{{ns:project}}:روباټان',
+'grouppage-sysop'         => '{{ns:project}}:پازوالان',
+'grouppage-bureaucrat'    => '{{ns:project}}:بيوروکراټان',
+'grouppage-suppress'      => '{{ns:project}}:څارن',
 
 # Rights
 'right-read'                 => 'مخونه لوستل',
@@ -1112,6 +1122,7 @@ $1',
 'right-move-subpages'        => 'مخونه د خپلو څېرمه مخونو سره لېږدول',
 'right-movefile'             => 'دوتنې لېږدول',
 'right-upload'               => 'دوتنې پورته کول',
+'right-upload_by_url'        => 'د يو URL نه دوتنې پورته کول',
 'right-writeapi'             => 'د API کښنې کارېدنه',
 'right-delete'               => 'مخونه ړنګول',
 'right-bigdelete'            => 'د اوږدو پېښليکونو مخونه ړنګول',
@@ -1269,6 +1280,12 @@ $1',
 'upload-unknown-size' => 'ناڅرګنده کچه',
 'upload-http-error'   => 'د HTTP يوه ستونزه رامېنځ ته شوې: $1',
 
+# File backend
+'backend-fail-delete'        => 'د "$1" دوتنه ړنګه نه شوه.',
+'backend-fail-alreadyexists' => 'د $1 دوتنه له پخوا نه شته.',
+'backend-fail-read'          => 'د "$1" دوتنه نه شي لوستل کېدای.',
+'backend-fail-create'        => 'د "$1" دوتنه نه شي جوړېدای.',
+
 # ZipDirectoryReader
 'zip-wrong-format' => 'ځانګړې شوې دوتنه يوه ZIP دوتنه نه وه.',
 
@@ -1411,6 +1428,7 @@ $1',
 'nrevisions'              => '$1 {{PLURAL:$1|بڼه|بڼې}}',
 'nviews'                  => '$1 {{PLURAL:$1|کتنه|کتنې}}',
 'nimagelinks'             => 'په $1 {{PLURAL:$1|کارېدلی مخ|کارېدلي مخونه}}',
+'ntransclusions'          => 'په $1 {{PLURAL:$1|مخ|مخونو}} کارېدلی',
 'specialpage-empty'       => 'د دې راپور لپاره کومې پايلې نشته.',
 'lonelypages'             => 'يتيم مخونه',
 'uncategorizedpages'      => 'په وېشنيزو ناوېشلي مخونه',
@@ -1431,6 +1449,7 @@ $1',
 'mostimages'              => 'د ډېرو تړنو انځورونه',
 'mostrevisions'           => 'ډېر کتلي مخونه',
 'prefixindex'             => 'د مختاړيو ټول مخونه',
+'prefixindex-namespace'   => 'د مختاړي ټول مخونه ($1 نومتشيال)',
 'shortpages'              => 'لنډ مخونه',
 'longpages'               => 'اوږده مخونه',
 'deadendpages'            => 'بې پايه مخونه',
@@ -1707,6 +1726,7 @@ $UNWATCHURL  نه ليدنه وکړۍ
 'restriction-type'            => 'اجازه:',
 'restriction-level'           => 'د بنديز کچه:',
 'minimum-size'                => 'وړه کچه',
+'maximum-size'                => 'د حد اکثر کچه:',
 'pagesize'                    => '(بايټونه)',
 
 # Restrictions (nouns)
@@ -1808,8 +1828,8 @@ $UNWATCHURL  نه ليدنه وکړۍ
 'ipb-confirm'                => 'د بنديز تاييد',
 'badipaddress'               => 'ناسمه IP پته',
 'blockipsuccesssub'          => 'بنديز په برياليتوب سره ولګېده',
-'blockipsuccesstext'         => 'د [[Special:Contributions/$1|$1]] مخه نيول شوې.
-<br />د مخنيول شويو خلکو د کتنې لپاره، د [[Special:BlockList|مخنيول شويو IP لړليک]] وګورۍ.',
+'blockipsuccesstext'         => 'په [[Special:Contributions/$1|$1]] بنديز لګېدلی.<br />
+د بنديزونو د څارلو لپاره [[Special:BlockList|بنديز لړليک]] وګورۍ.',
 'ipb-edit-dropdown'          => 'د بنديز سببونه سمول',
 'ipb-unblock-addr'           => 'له $1 بنديز ليرې کول',
 'ipb-unblock'                => 'له يوه کارن-نوم يا IP پتې بنديز ليري کول',
@@ -1958,6 +1978,9 @@ $UNWATCHURL  نه ليدنه وکړۍ
 # Import log
 'importlogpage' => 'د واردولو يادښت',
 
+# JavaScriptTest
+'javascripttest' => 'د جاوا سکرېپټ آزمېښت',
+
 # Tooltip help for the actions
 'tooltip-pt-userpage'             => 'ستاسې کارن مخ',
 'tooltip-pt-mytalk'               => 'ستاسې د خبرواترو مخ',
@@ -2015,6 +2038,7 @@ $UNWATCHURL  نه ليدنه وکړۍ
 'tooltip-diff'                    => 'دا هغه بدلونونه چې تاسې په متن کې ترسره کړي، ښکاره کوي. [alt-v]',
 'tooltip-compareselectedversions' => 'د همدې مخ د دوو ټاکل شويو بڼو تر مېنځ توپيرونه وګورۍ.',
 'tooltip-watch'                   => 'دا مخ ستاسې کتنلړ کې ورګډوي [alt-w]',
+'tooltip-upload'                  => 'د پورته کولو پيل',
 'tooltip-rollback'                => 'په همدې مخ کې "په شابېول" د وروستني ونډوال سمون (سمونونه) په يوه کلېک په څټ ورګرځوي.',
 'tooltip-undo'                    => '"ناکړ" همدا سمون پر شا ګرځوي او د سمون کړکۍ د مخکتنې په بڼه پرانيزي.
 دا کړنه د لنډيز په برخه کې د سمونونو د سببونو د ورګډولو آسانتيا برابروي.',
@@ -2070,6 +2094,7 @@ $UNWATCHURL  نه ليدنه وکړۍ
 'svg-long-desc'        => 'SVG دوتنه، نومېنلي $1 × $2 پېکسل، د دوتنې کچه: $3',
 'show-big-image'       => 'بشپړ بېلن نښې',
 'file-info-gif-frames' => '$1 {{PLURAL:$1|چوکاټ|چوکاټونه}}',
+'file-info-png-repeat' => '$1 {{PLURAL:$1|ځل|ځله}} وغږېده',
 'file-info-png-frames' => '$1 {{PLURAL:$1|چوکاټ|چوکاټونه}}',
 
 # Special:NewFiles
@@ -2130,10 +2155,12 @@ $UNWATCHURL  نه ليدنه وکړۍ
 'exif-model'               => 'د کامرې ماډل',
 'exif-software'            => 'کارېدلې ساوترۍ',
 'exif-artist'              => 'ليکوال',
+'exif-copyright'           => 'د رښتو خاوند',
 'exif-colorspace'          => 'رنګ تشيال',
 'exif-pixelydimension'     => 'د انځور سور',
 'exif-pixelxdimension'     => 'د انځور جګوالی',
 'exif-usercomment'         => 'د کارونکي تبصرې',
+'exif-relatedsoundfile'    => 'اړونده غږيزه دوتنه',
 'exif-datetimedigitized'   => 'د ګڼياليز کېدنې وخت او نېټه',
 'exif-fnumber'             => 'F شمېره',
 'exif-lightsource'         => 'د رڼا سرچينه',
@@ -2158,19 +2185,26 @@ $UNWATCHURL  نه ليدنه وکړۍ
 'exif-objectname'          => 'لنډ سرليک',
 'exif-headline'            => 'سرليک',
 'exif-source'              => 'سرچينه',
-'exif-contact'             => 'د اړيکې مالومات',
+'exif-contact'             => 'د اړيکو مالومات',
 'exif-writer'              => 'ليکوال',
 'exif-languagecode'        => 'ژبه',
 'exif-iimcategory'         => 'وېشنيزه',
 'exif-datetimeexpires'     => 'مه يې کاروۍ وروسته له',
+'exif-datetimereleased'    => 'خپرېدلی په',
 'exif-identifier'          => 'پېژندنه',
 'exif-lens'                => 'کارېدلې لېنز',
 'exif-serialnumber'        => 'د کامرې پرله پسې شمېره',
 'exif-cameraownername'     => 'د کامرې خاوند',
 'exif-label'               => 'نښکه',
+'exif-copyrighted'         => 'د رښتو دريځ',
+'exif-copyrightowner'      => 'د رښتو خاوند',
+'exif-usageterms'          => 'د کارولو شرايط',
 'exif-pngfilecomment'      => 'د PNG دوتنې تبصره',
 'exif-disclaimer'          => 'ردادعاليک',
 'exif-giffilecomment'      => 'د GIF دوتنې تبصره',
+
+'exif-copyrighted-true'  => 'په رښتو سمبال',
+'exif-copyrighted-false' => 'ټولګړی شپول',
 
 'exif-unknowndate' => 'نامالومه نېټه',
 
@@ -2191,6 +2225,7 @@ $UNWATCHURL  نه ليدنه وکړۍ
 'exif-lightsource-1'   => 'د ورځې رڼا',
 'exif-lightsource-4'   => 'فلش',
 'exif-lightsource-9'   => 'ښه هوا',
+'exif-lightsource-10'  => 'ورېځ پوښلې هوا',
 'exif-lightsource-11'  => 'سيوری',
 'exif-lightsource-255' => 'د رڼا بله سرچينه',
 
@@ -2387,6 +2422,9 @@ $5
 'iranian-calendar-m11' => 'سلواغه',
 'iranian-calendar-m12' => 'کب',
 
+# Signatures
+'signature' => '[[{{ns:user}}:$1|$2]] ([[{{ns:user_talk}}:$1|خبرې اترې]])',
+
 # Special:Version
 'version'                   => 'بڼه',
 'version-extensions'        => 'لګېدلي شاتاړي',
@@ -2449,6 +2487,7 @@ $5
 #ټولې regex ټوټې د دغې کرښې نه پورته ځای پر ځای کړی. دا کرښه چې څنګه ده، همداسې يې پرېږدۍ</pre>',
 
 # Special:Tags
+'tag-filter'              => '[[Special:Tags|نښلن]] چاڼګر:',
 'tag-filter-submit'       => 'چاڼګر',
 'tags-display-header'     => 'د بدلون په لړليکونو کې ښکارېدنه',
 'tags-description-header' => 'د مانا بشپړه څرګندونه',
@@ -2500,11 +2539,14 @@ $5
 'feedback-close'   => 'ترسره شو',
 
 # API errors
-'api-error-empty-file'        => 'کومه دوتنه چې تاسې دلته سپارلې هغه تشه ده.',
-'api-error-file-too-large'    => 'کومه دوتنه چې تاسې دلته سپارلې ډېره لويه ده.',
-'api-error-filename-tooshort' => 'د دوتنې نوم ډېر لنډ دی.',
-'api-error-filetype-banned'   => 'په دې ډول دوتنې بنديز دی.',
-'api-error-illegal-filename'  => 'د دوتنې نوم نه دی پرېښل شوی.',
-'api-error-unknown-code'      => 'ناڅرګنده تېروتنه: "$1"',
+'api-error-duplicate-popup-title' => 'غبرګونې {{PLURAL:$1|دوتنه|دوتنې}}.',
+'api-error-empty-file'            => 'کومه دوتنه چې تاسې دلته سپارلې هغه تشه ده.',
+'api-error-file-too-large'        => 'کومه دوتنه چې تاسې دلته سپارلې ډېره لويه ده.',
+'api-error-filename-tooshort'     => 'د دوتنې نوم ډېر لنډ دی.',
+'api-error-filetype-banned'       => 'په دې ډول دوتنې بنديز دی.',
+'api-error-illegal-filename'      => 'د دوتنې نوم نه دی پرېښل شوی.',
+'api-error-unknown-code'          => 'ناڅرګنده تېروتنه: "$1"',
+'api-error-unknown-warning'       => 'ناڅرګنده ګواښنه: "$1".',
+'api-error-unknownerror'          => 'ناڅرګنده تېروتنه: "$1".',
 
 );

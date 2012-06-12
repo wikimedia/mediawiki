@@ -67,6 +67,7 @@ $messages = array(
 'edit'             => 'Fakahakohako',
 'delete'           => 'Tamate',
 'protect'          => 'Puipui',
+'talkpagelinktext' => 'Tutala',
 'talk'             => 'Fakatutala',
 'toolbox'          => 'Puha Mena Gahua',
 'otherlanguages'   => 'Ke he falu vagahau',
@@ -75,11 +76,14 @@ $messages = array(
 
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
 'aboutsite'            => 'Hagaao ke he {{SITENAME}}',
+'aboutpage'            => 'Project: Hagaao',
 'currentevents'        => 'Tau Fakaholoaga Mogonei',
 'edithelp'             => 'Lagomatai ke he Fakahakohako',
+'helppage'             => 'Help: Ke lata mo e tau mena i loto',
 'mainpage'             => 'Matapatu Lau',
 'mainpage-description' => 'Matapatu Lau',
 'portal'               => 'Maaga ke Matutaki',
+'portal-url'           => 'Project:Ko e lau auloa ma maaga',
 'privacy'              => 'Ko e puipuiaga ke he tau talahauaga mo e talahauaga fakatagata',
 
 'youhavenewmessages'      => 'Fai $1 ($2).',
@@ -87,8 +91,11 @@ $messages = array(
 'youhavenewmessagesmulti' => 'Fai tohi foou a koe he $1',
 'editsection'             => 'fakahakohako',
 'editold'                 => 'fakahakohako',
+'editsectionhint'         => 'Hiki e vala e: $1',
+'red-link-title'          => '$1 (nakai fai lau pihia i i loto e)',
 
 # Short words for each namespace, by default used in the namespace tab in monobook
+'nstab-main' => 'Lau',
 'nstab-user' => 'Lau he tagata',
 
 # General errors
@@ -126,6 +133,9 @@ Ua nimo ke hiki e haau tau [[Special:Preferences|manako {{SITENAME}}]].',
 # History pages
 'currentrev'          => 'Kitekiteaga mogonei',
 'currentrevisionlink' => 'Kitekiteaga mogonei',
+
+# Diffs
+'editundo' => 'Liuaki',
 
 # Preferences page
 'mypreferences'     => 'Haaku a tau manako',
@@ -219,12 +229,31 @@ Ua nimo ke hiki e haau tau [[Special:Preferences|manako {{SITENAME}}]].',
 'allmessages' => 'Tau fakailoaga',
 
 # Tooltip help for the actions
-'tooltip-pt-preferences' => 'Haaku a tau manako',
-'tooltip-pt-logout'      => 'Hu mai ki tua',
-'tooltip-p-logo'         => 'Matapatu Lau',
+'tooltip-pt-preferences'         => 'Haaku a tau manako',
+'tooltip-pt-login'               => 'Kua lata ia koe ke loko ini, kae pule ni e a koe, ai pehe ko e masi a koe ke loko ini',
+'tooltip-pt-logout'              => 'Hu mai ki tua',
+'tooltip-ca-talk'                => 'Tutala ke he tau matapatu lau',
+'tooltip-ca-edit'                => 'Maeke ia koe ke hiki, uta kehe mo e lalafi atu falu mena ke he lau nei.  Fakamolemole ti fakaaoga e PREVIEW patani to taofi mau.',
+'tooltip-search'                 => 'Kumi {{SITENAME}}',
+'tooltip-search-fulltext'        => 'Kumi ke he tau lau oti e kupu e',
+'tooltip-p-logo'                 => 'Matapatu Lau',
+'tooltip-n-mainpage-description' => 'Fano ke he matapatu lau',
+'tooltip-n-portal'               => 'Hagao ke he gahua lahi, ko e heigoa kua lata a koe ke taute, mo e moua mai i fe e tau mena',
+'tooltip-n-currentevents'        => 'Kumi e tau vala tala kehekehe hagao ke he tau mena tutupu',
+'tooltip-n-recentchanges'        => 'Hae e tau hikihiki foou he wiki',
+'tooltip-n-randompage'           => 'Tuku mai noa ni e ha lau',
+'tooltip-n-help'                 => 'Ko e matakavi ke kumi ki ai',
+'tooltip-t-whatlinkshere'        => 'Ko e tau lau wiki oti ne fai matutaki mai ke he lau e',
+'tooltip-t-upload'               => 'Fakahu ki loto e tau faila',
+'tooltip-t-specialpages'         => 'Ko e tau lau oti kua kehekehe',
 
 # Special:NewFiles
 'ilsubmit' => 'Kumi',
+
+# Bad image list
+'bad_image_list' => 'Ko e tau mena ni ne fakakite mai ka onoono ki ai (ko e tau laini ne kamata aki e *).
+Ko e liniki fakamua he laini ko e liniki ke he faila kelea.
+Ko e tau liniki foki i lalo he laini taha ko e tau laini fifili pauaki, i.e. ko e tau lau ne fai faila i loto he laini ia.',
 
 # Multipage image navigation
 'imgmultigo' => 'Fano!',

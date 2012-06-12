@@ -1,5 +1,5 @@
 <?php
-/** Swedish (Svenska)
+/** Swedish (svenska)
  *
  * See MessagesQqq.php for message documentation incl. usage of parameters
  * To improve a translation please visit http://translatewiki.net
@@ -44,6 +44,7 @@
  * @author StefanB
  * @author Steinninn
  * @author Str4nd
+ * @author Thurs
  * @author Tobulos1
  * @author Where next Columbus
  * @author Where next Columbus?
@@ -676,8 +677,8 @@ Den kanske redan har raderats av någon annan.',
 'badtitle'             => 'Felaktig titel',
 'badtitletext'         => 'Den begärda sidtiteln är antingen ogiltig eller tom, eller så är titeln felaktigt länkad från en annan wiki.
 Den kan innehålla ett eller flera tecken som inte får användas i sidtitlar.',
-'perfcached'           => 'Följande data är cachad och är möjligtvis inte helt uppdaterad. Maximalt {{PLURAL:$1|ett|$1}} restultat finns {{PLURAL:$1|tillgängligt|tillgängliga}} i cachen.',
-'perfcachedts'         => 'Sidan är hämtad ur ett cacheminne och uppdaterades senast $1. Maximalt {{PLURAL:$4|ett|$4}} restultat finns {{PLURAL:$4|tillgängligt|tillgängliga}} i cachen.',
+'perfcached'           => 'Följande data är cachad och är möjligtvis inte helt uppdaterad. Maximalt {{PLURAL:$1|ett|$1}} resultat finns {{PLURAL:$1|tillgängligt|tillgängliga}} i cachen.',
+'perfcachedts'         => 'Sidan är hämtad ur ett cacheminne och uppdaterades senast $1. Maximalt {{PLURAL:$4|ett|$4}} resultat finns {{PLURAL:$4|tillgängligt|tillgängliga}} i cachen.',
 'querypage-no-updates' => 'Uppdatering av den här sidan är inte aktiverad. Datan kommer i nuläget inte att uppdateras.',
 'wrong_wfQuery_params' => 'Felaktiga parametrar för wfQuery()<br /> Funktion: $1<br /> Förfrågan: $2',
 'viewsource'           => 'Visa wikitext',
@@ -978,8 +979,8 @@ Den har inte sparats än!'''",
 'userinvalidcssjstitle'            => "'''Varning:''' Skalet \"\$1\" finns inte. Kom ihåg att .css- och .js-sidor för enskilda användare börjar på liten bokstav. Exempel: {{ns:user}}:Foo/vector.css i stället för {{ns:user}}:Foo/Vector.css.",
 'updated'                          => '(Uppdaterad)',
 'note'                             => "'''Obs!'''",
-'previewnote'                      => "'''Detta är bara en förhandsvisning;
-ändringar har ännu inte sparats!'''",
+'previewnote'                      => "'''Kom ihåg att detta bara är en förhandsvisning.'''
+Dina ändringar har ännu inte sparats!",
 'previewconflict'                  => 'Den här förhandsvisningen är resultatet av den
 redigerbara texten ovanför,
 så som det kommer att se ut om du väljer att spara.',
@@ -1220,7 +1221,7 @@ Vänligen kontrollera loggarna.',
 # Suppression log
 'suppressionlog'     => 'Undanhållandelogg',
 'suppressionlogtext' => 'Nedan visas en lista över raderingar och blockeringar som berör innehåll dolt för administratörer.
-Se [[Special:BlockList|IP-blockeringslistan]] för listan över gällande blockeringar.',
+Se [[Special:BlockList|blockeringslistan]] för listan över gällande blockeringar.',
 
 # History merging
 'mergehistory'                     => 'Sammanfoga sidhistoriker',
@@ -1385,7 +1386,7 @@ Här är ett slumpmässigt genererat värde som du kan använda: $1',
 'savedprefs'                    => 'Dina inställningar har sparats',
 'timezonelegend'                => 'Tidszon:',
 'localtime'                     => 'Lokal tid:',
-'timezoneuseserverdefault'      => 'Använd wiki standard ($1)',
+'timezoneuseserverdefault'      => 'Använd wikins standard ($1)',
 'timezoneuseoffset'             => 'Annan (specificera skillnad)',
 'timezoneoffset'                => 'Skillnad¹:',
 'servertime'                    => 'Serverns tid:',
@@ -1642,6 +1643,7 @@ Om du väljer att ange ditt riktiga namn, kommer det att användas för att till
 'newsectionsummary'                 => '/* $1 */ nytt avsnitt',
 'rc-enhanced-expand'                => 'Visa detaljer (kräver JavaScript)',
 'rc-enhanced-hide'                  => 'Göm detaljer',
+'rc-old-title'                      => 'skapades ursprungligen som "$1"',
 
 # Recent changes linked
 'recentchangeslinked'          => 'Relaterade ändringar',
@@ -1817,12 +1819,12 @@ Om problemet kvarstår, kontakta en [[Special:ListUsers/sysop|administratör]].'
 'backend-fail-closetemp'     => 'Kunde inte stänga temporär fil.',
 'backend-fail-read'          => 'Kunde inte läsa filen $1.',
 'backend-fail-create'        => 'Kunde inte skapa filen $1.',
-'backend-fail-readonly'      => 'Lagrings-backend "$1" är för närvarande skrivskyddad. Den angivna anledningen är: "$2"',
-'backend-fail-synced'        => 'Filen "$1" är i ett inkonsekvent tillstånd inom de interna lagrings-backends',
-'backend-fail-connect'       => 'Kunde inte ansluta till lagrings-backend "$1".',
-'backend-fail-internal'      => 'Ett okänt fel uppstod i lagrings-backend "$1".',
+'backend-fail-readonly'      => 'Lagringssystemet "$1" är för närvarande skrivskyddad. Den angivna anledningen är: "$2"',
+'backend-fail-synced'        => 'Filen "$1" är i ett inkonsekvent tillstånd inom de interna lagringssystemen',
+'backend-fail-connect'       => 'Kunde inte ansluta till lagringssystemet "$1".',
+'backend-fail-internal'      => 'Ett okänt fel uppstod i lagringssystemet "$1".',
 'backend-fail-contenttype'   => 'Kunde inte bestämma innehållstypen för filen att spara på "$1".',
-'backend-fail-batchsize'     => 'Lagrings-backend gavs en batch på $1 fil{{PLURAL:$1|operation|operationer}}; gränsen är $2 {{PLURAL:$2|operation|operationer}}.',
+'backend-fail-batchsize'     => 'Lagringssystemet gav en batch på $1 fil{{PLURAL:$1|operation|operationer}}; gränsen är $2 {{PLURAL:$2|operation|operationer}}.',
 
 # Lock manager
 'lockmanager-notlocked'        => 'Kunde inte låsa upp "$1"; den är inte låst.',
@@ -1945,6 +1947,7 @@ Beskrivningen på dess [$2 filbeskrivningssida] visas nedan.',
 'uploadnewversion-linktext' => 'Ladda upp en ny version av denna fil',
 'shared-repo-from'          => 'från $1',
 'shared-repo'               => 'en gemensam filförvaring',
+'filepage.css'              => '/* CSS som skrivs här inkluderas på filbeskrivningssidan, även på utländska klientwikis */',
 
 # File reversion
 'filerevert'                => 'Återställ $1',
@@ -2584,8 +2587,8 @@ Ange orsak nedan (exempelvis genom att nämna sidor som blivit vandaliserade).',
 'ipb-confirm'                     => 'Bekräfta blockering',
 'badipaddress'                    => 'Du har inte skrivit IP-adressen korrekt.',
 'blockipsuccesssub'               => 'Blockeringen är utförd',
-'blockipsuccesstext'              => '[[Special:Contributions/$1|$1]] har blockerats.
-<br />För att se alla aktuella blockeringar, gå till [[Special:BlockList|listan över blockeringar]].',
+'blockipsuccesstext'              => '[[Special:Contributions/$1|$1]] har blockerats.<br />
+För att se alla aktuella blockeringar, gå till [[Special:BlockList|listan över blockeringar]].',
 'ipb-blockingself'                => 'Du håller på att blockera dig själv! Är du säker på att du vill göra det?',
 'ipb-confirmhideuser'             => 'Du är på väg att blockera en användare med "göm användare" aktiverat. Detta kommer upphäva användarens namn i alla listor och loggar. Är du säker på att du vill göra det?',
 'ipb-edit-dropdown'               => 'Redigera blockeringsanledningar',
@@ -2640,7 +2643,7 @@ Undanhållandeloggen visas nedan för referens:',
 'reblock-logentry'                => 'ändrade blockeringsinställningar för [[$1]] med en varaktighet på $2 $3',
 'blocklogtext'                    => 'Detta är en logg över blockeringar och avblockeringar.
 Automatiskt blockerade IP-adresser listas ej.
-I [[Special:BlockList|blockeringslistan]] listas alla IP-adresser och användare som är blockerade för närvarande.',
+Se [[Special:BlockList|blockeringslistan]] för en översikt av gällande blockeringar.',
 'unblocklogentry'                 => 'tog bort blockering av "$1"',
 'block-log-flags-anononly'        => 'bara oinloggade',
 'block-log-flags-nocreate'        => 'hindrar kontoregistrering',
@@ -2894,7 +2897,7 @@ Spara den på din dator och ladda upp den här.',
 
 # JavaScriptTest
 'javascripttest'                           => 'JavaScript-testning',
-'javascripttest-disabled'                  => 'Denna funktion är avaktiverad.',
+'javascripttest-disabled'                  => 'Denna funktion har inte aktiverats på denna wiki.',
 'javascripttest-title'                     => 'Kör $1 tester',
 'javascripttest-pagetext-noframework'      => 'Denna sida är reserverat för att köra JavaScript-tester.',
 'javascripttest-pagetext-unknownframework' => 'Okänd testmiljö "$1".',
@@ -2975,29 +2978,39 @@ Ger möjlighet att skriva en motivering i redigeringssammanfattningen',
 'tooltip-summary'                     => 'Skriv en kort sammanfattning',
 
 # Stylesheets
-'common.css'      => '/* CSS som skrivs här påverkar alla skal */',
-'standard.css'    => '/* CSS som skrivs här kommer att påverka alla användare av skalet Standard */',
-'nostalgia.css'   => '/* CSS som skrivs här kommer att påverka alla användare av skalet Nostalgi */',
-'cologneblue.css' => '/* CSS som skrivs här kommer att påverka alla användare av skalet Cologne blå */',
-'monobook.css'    => '/* CSS som skrivs här kommer att påverka alla användare av skalet Monobook */',
-'myskin.css'      => '/* CSS som skrivs här kommer att påverka alla användare av skalet Mitt utseende */',
-'chick.css'       => '/* CSS som skrivs här kommer att påverka alla användare av skalet Chick */',
-'simple.css'      => '/* CSS som skrivs här kommer att påverka alla användare av skalet Enkel */',
-'modern.css'      => '/* CSS som skrivs här kommer att påverka alla användare av skalet Modern */',
-'vector.css'      => '/* CSS som skrivs här kommer att påverka alla användare av skalet Vector */',
-'print.css'       => '/* CSS som skrivs här kommer att påverka utskriftsversionen */',
+'common.css'              => '/* CSS som skrivs här påverkar alla skal */',
+'standard.css'            => '/* CSS som skrivs här kommer att påverka alla användare av skalet Standard */',
+'nostalgia.css'           => '/* CSS som skrivs här kommer att påverka alla användare av skalet Nostalgi */',
+'cologneblue.css'         => '/* CSS som skrivs här kommer att påverka alla användare av skalet Cologne blå */',
+'monobook.css'            => '/* CSS som skrivs här kommer att påverka alla användare av skalet Monobook */',
+'myskin.css'              => '/* CSS som skrivs här kommer att påverka alla användare av skalet Mitt utseende */',
+'chick.css'               => '/* CSS som skrivs här kommer att påverka alla användare av skalet Chick */',
+'simple.css'              => '/* CSS som skrivs här kommer att påverka alla användare av skalet Enkel */',
+'modern.css'              => '/* CSS som skrivs här kommer att påverka alla användare av skalet Modern */',
+'vector.css'              => '/* CSS som skrivs här kommer att påverka alla användare av skalet Vector */',
+'print.css'               => '/* CSS som skrivs här kommer att påverka utskriftsversionen */',
+'handheld.css'            => '/* CSS som placeras här kommer att påverka handhållna enheter som baseras på skalet som konfigurerats i $wgHandheldStyle */',
+'noscript.css'            => '/* CSS som placeras här kommer att påverka användare med JavaScript inaktiverat */',
+'group-autoconfirmed.css' => '/* CSS som placeras här kommer bara att påverka bekräftade användare */',
+'group-bot.css'           => '/* CSS som placeras här kommer bara att påverka robotar */',
+'group-sysop.css'         => '/* CSS som placeras här kommer bara att påverka administratörer */',
+'group-bureaucrat.css'    => '/* CSS som placeras här kommer bara att påverka byråkrater */',
 
 # Scripts
-'common.js'      => '/* JavaScript som skrivs här körs varje gång en användare laddar en sida. */',
-'standard.js'    => '/* JavaScript här kommer att laddas för dem som använder skalet Standard */',
-'nostalgia.js'   => '/* JavaScript här kommer att laddas för dem som använder skalet Nostalgi */',
-'cologneblue.js' => '/* JavaScript här kommer att laddas för dem som använder skalet Cologne blå */',
-'monobook.js'    => '/* JavaScript här kommer att laddas för dem som använder skalet Monobook */',
-'myskin.js'      => '/* JavaScript här kommer att laddas för dem som använder skalet Mitt utseende */',
-'chick.js'       => '/* JavaScript här kommer att laddas för dem som använder skalet Chick */',
-'simple.js'      => '/* JavaScript här kommer att laddas för dem som använder skalet Enkel */',
-'modern.js'      => '/* JavaScript här kommer att laddas för dem som använder skalet Modern */',
-'vector.js'      => '/* JavaScript här kommer att laddas för dem som använder skalet Vector */',
+'common.js'              => '/* JavaScript som skrivs här körs varje gång en användare laddar en sida. */',
+'standard.js'            => '/* JavaScript här kommer att laddas för dem som använder skalet Standard */',
+'nostalgia.js'           => '/* JavaScript här kommer att laddas för dem som använder skalet Nostalgi */',
+'cologneblue.js'         => '/* JavaScript här kommer att laddas för dem som använder skalet Cologne blå */',
+'monobook.js'            => '/* JavaScript här kommer att laddas för dem som använder skalet Monobook */',
+'myskin.js'              => '/* JavaScript här kommer att laddas för dem som använder skalet Mitt utseende */',
+'chick.js'               => '/* JavaScript här kommer att laddas för dem som använder skalet Chick */',
+'simple.js'              => '/* JavaScript här kommer att laddas för dem som använder skalet Enkel */',
+'modern.js'              => '/* JavaScript här kommer att laddas för dem som använder skalet Modern */',
+'vector.js'              => '/* JavaScript här kommer att laddas för dem som använder skalet Vector */',
+'group-autoconfirmed.js' => '/* JavaScript här kommer att laddas för bekräftade användare */',
+'group-bot.js'           => '/* JavaScript här kommer att laddas för robotar */',
+'group-sysop.js'         => '/* JavaScript här kommer att laddas för administratörer */',
+'group-bureaucrat.js'    => '/* JavaScript här kommer att laddas för byråkrater */',
 
 # Metadata
 'notacceptable' => 'Den här wiki-servern kan inte erbjuda data i ett format som din klient kan läsa.',
@@ -3330,6 +3343,7 @@ Andra kommer att gömmas som standard
 'exif-compression-2' => 'CCITT Grupp 3 1-dimensionell modifierad Huffman-skurlängdskodning',
 'exif-compression-3' => 'CCITT Grupp 3 fax-kodning',
 'exif-compression-4' => 'CCITT Grupp 4 fax-kodning',
+'exif-compression-6' => 'JPEG (gammal)',
 
 'exif-copyrighted-true'  => 'Upphovsrättsskyddat',
 'exif-copyrighted-false' => 'Allmän egendom',

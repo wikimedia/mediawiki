@@ -311,7 +311,7 @@ $messages = array(
 
 'ok'                      => 'TAMAN',
 'retrievedfrom'           => 'Alındı "$1"dän',
-'youhavenewmessages'      => 'Var eni <u>$1</u>. ($2)',
+'youhavenewmessages'      => 'Var eni $1 ($2).',
 'newmessageslink'         => 'eni mesajlar',
 'newmessagesdifflink'     => 'Bitki diişmäk',
 'youhavenewmessagesmulti' => "$1'de eni mesajınız var.",
@@ -499,11 +499,11 @@ Bu başlıı [[Special:Search/{{PAGENAME}}|var nicä aramaa]] übür sayfalarda 
 'yourtext'                         => 'Sizin tekstiniz',
 'storedversion'                    => 'Saklanmış tekst',
 'yourdiff'                         => 'Farklar',
-'copyrightwarning'                 => "'''Bakınız:''' {{SITENAME}} saytına yapılan hepsi eklemäkler hem diişmäkler läazım olsun  <i>$2</i>
+'copyrightwarning'                 => "'''Bakınız:''' {{SITENAME}} saytına yapılan hepsi eklemäkler hem diişmäkler läazım olsun $2
 lițenziyası şartları içindä (detallar için $1'a bakınız).
 Herliim istemeersiniz ani sizin tekstlär serbest yayılsın hem diiştirilsin übür kullanıcılar tarafınnan, onnarı erleştirmeyniz buraya.<br />
 Hem siz garantiyada bulunêrsiniz ani eklemäklerin avtorusunuz, yaki onnarı kopiya ettiniz kaynaktan angısı izin verer teksti serbest yaymaa hem diiştirmää.<br />
-'''<center>AVTORLUK KORUNMAK HAKKILAN KORUNMAYAN MATERİALLAR EKLEMEYNİZ!</center>'''",
+'''AVTORLUK KORUNMAK HAKKILAN KORUNMAYAN MATERİALLAR EKLEMEYNİZ!'''",
 'templatesused'                    => 'Bu sayfada kullanılan {{PLURAL:$1|şablon|şablonlar}}:',
 'templatesusedpreview'             => '{{PLURAL:$1|Şablon|Şablonnar}} ani bu ön siirdä kullanıldı:',
 'templatesusedsection'             => 'Bu bölümde kullanılan {{PLURAL:$1|şablon|şablonlar}}:',

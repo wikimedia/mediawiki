@@ -1,5 +1,5 @@
 <?php
-/** Traditional Gan script (‪贛語(繁體)‬)
+/** Traditional Gan script (‪贛語（繁體）‬)
  *
  * See MessagesQqq.php for message documentation incl. usage of parameters
  * To improve a translation please visit http://translatewiki.net
@@ -410,7 +410,9 @@ MySQL回到錯誤“$3: $4”。',
 'protectedpagetext'    => '箇頁鎖到嘞，改伓正。',
 'viewsourcetext'       => '倷可以眵吖或複製箇頁嗰原始碼：',
 'protectedinterface'   => '箇頁給正嘞軟件嗰界面文本，佢拕鎖到怕人亂扤。',
-'editinginterface'     => "!!糊糊涂涂!!'''警告'''：倷編寫嗰頁面係用來提供軟件嗰界面文本，改動箇頁會礙到別嗰用戶嗰界面外觀。",
+'editinginterface'     => "'''Warning:''' You are editing a page which is used to provide interface text for the software.
+Changes to this page will affect the appearance of the user interface for other users.
+For translations, please consider using [//translatewiki.net/wiki/Main_Page?setlang=en translatewiki.net], the MediaWiki localisation project.",
 'sqlhidden'            => '（SQL 弆到嗰查詢）',
 'cascadeprotected'     => '箇頁已拕保護，因為佢拕「聯鎖保護」嗰{{PLURAL:$1|一隻|幾隻}}拕保護頁包到：
 $2',

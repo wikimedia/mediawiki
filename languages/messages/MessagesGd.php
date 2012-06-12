@@ -500,6 +500,7 @@ Cha dèid post-d a chur airson gin dhe na feartan a leanas.',
 'emailconfirmlink'           => 'Dearbh an seòladh puist-dhealain agad',
 'invalidemailaddress'        => "Chan urrainn dhuinn gabhail ris an t-seòladh seo a chionn 's gu bheil coltas cearr air.
 Cuir a-steach seòladh san fhòrmat cheart no falamhaich an raon sin.",
+'cannotchangeemail'          => 'Cha ghabh na puist-d a tha co-cheangailte ri cunntas atharrachadh air an uicipeid seo.',
 'accountcreated'             => 'Cunntas cruthaichte',
 'accountcreatedtext'         => 'Chaidh an cunntas cleachdaiche airson $1 a chruthachadh.',
 'createaccount-title'        => 'Cruthachadh cunntais airson {{SITENAME}}',
@@ -516,6 +517,7 @@ Fuirich ort mus feuch thu ris a-rithist.",
 
 # E-mail sending
 'php-mail-error-unknown' => 'Mearachd neo-aithichte san fheart mail() aig PHP.',
+'user-mail-no-addy'      => 'Cha do ghabh am post-d a chur leis nach robh seòladh puist-d ann.',
 
 # Change password dialog
 'resetpass'                 => 'Atharraich am facal-faire',
@@ -676,7 +678,7 @@ Mìneachadh: '''({{int:cur}})''' = an diofar eadar e 's am mùthadh as ùire, ''
 'revertmerge' => 'Dì-aontaich',
 
 # Diffs
-'history-title'           => 'Eachdraidh nam mùthaidhean de "$1"',
+'history-title'           => 'Eachdraidh nam mùthaidhean aig "$1"',
 'difference'              => '(An diofar eadar na mùthaidhean)',
 'lineno'                  => 'Loidhne $1:',
 'compareselectedversions' => 'Dèan coimeas eadar na mùthaidhean a thagh thu',
@@ -1183,7 +1185,7 @@ Tadhail air [//www.mediawiki.org/wiki/Localisation Ionadaileadh MediaWiki] is [/
 'tooltip-feed-atom'               => 'Inbhir Atom airson na duilleige seo',
 'tooltip-t-contributions'         => "Seall liosta nam mùthaidhean a rinn a' chleachdaiche seo",
 'tooltip-t-emailuser'             => 'Cuir post-dealain dhan chleachdaiche seo',
-'tooltip-t-upload'                => 'Luchdaich a-nuas faidhlichean',
+'tooltip-t-upload'                => 'Luchdaich suas faidhle',
 'tooltip-t-specialpages'          => 'Liosta de gach duilleag shònraichte',
 'tooltip-t-print'                 => 'Tionndadh dhen duilleag a ghabhas a chlò-bhualadh',
 'tooltip-t-permalink'             => 'Dèan ceangal buan gu mùthadh seo na duilleige',

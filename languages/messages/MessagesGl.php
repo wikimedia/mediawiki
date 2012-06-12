@@ -252,8 +252,8 @@ $messages = array(
 'tog-shownumberswatching'     => 'Mostrar o número de usuarios que están a vixiar',
 'tog-oldsig'                  => 'Sinatura actual:',
 'tog-fancysig'                => 'Tratar a sinatura como se fose texto wiki (sen ligazón automática)',
-'tog-externaleditor'          => 'Usar un editor externo por omisión (só para expertos, precisa duns parámetros especiais no seu computador. [//www.mediawiki.org/wiki/Manual:External_editors Máis información.])',
-'tog-externaldiff'            => 'Usar as diferenzas externas por omisión (só para expertos, precisa duns parámetros especiais no seu computador. [//www.mediawiki.org/wiki/Manual:External_editors Máis información.])',
+'tog-externaleditor'          => 'Usar un editor externo por defecto (só para expertos; cómpre configurar o computador. [//www.mediawiki.org/wiki/Manual:External_editors Máis información.])',
+'tog-externaldiff'            => 'Usar as diferenzas externas por defecto (só para expertos; cómpre configurar o computador. [//www.mediawiki.org/wiki/Manual:External_editors Máis información.])',
 'tog-showjumplinks'           => 'Permitir as ligazóns de accesibilidade "ir a"',
 'tog-uselivepreview'          => 'Usar a vista previa en tempo real (cómpre JavaScript) (experimental)',
 'tog-forceeditsummary'        => 'Avisádeme cando o campo resumo estea baleiro',
@@ -609,7 +609,7 @@ $2',
 'customjsprotected'    => 'Non dispón de permisos para modificar esta páxina de JavaScript, dado que contén a configuración persoal doutro usuario.',
 'ns-specialprotected'  => 'Non se poden editar as páxinas no espazo de nomes {{ns:special}}.',
 'titleprotected'       => "Este título foi protexido da creación por [[User:$1|$1]].
-A razón dada foi ''$2''.",
+O motivo achegado é ''$2''.",
 
 # Virus scanner
 'virus-badscanner'     => "Configuración errónea: escáner de virus descoñecido: ''$1''",
@@ -1005,7 +1005,7 @@ Algúns modelos non se incluirán.",
 Estes argumentos foron omitidos.",
 'post-expand-template-argument-category'  => 'Páxinas que conteñen argumentos de modelo omitidos',
 'parser-template-loop-warning'            => 'Detectouse un modelo en bucle: [[$1]]',
-'parser-template-recursion-depth-warning' => 'Excedeuse o límite da profundidade do recurso do modelo ($1)',
+'parser-template-recursion-depth-warning' => 'Excedeuse o límite de profundidade de recursión do modelo ($1)',
 'language-converter-depth-warning'        => 'Excedeuse o límite de profundidade do convertedor de lingua ($1)',
 
 # "Undo" feature
@@ -1151,7 +1151,7 @@ Por favor, comprobe os rexistros.',
 # Suppression log
 'suppressionlog'     => 'Rexistro de supresións',
 'suppressionlogtext' => 'A continuación móstrase unha lista coas eliminacións e cos bloqueos recentes, que inclúen contido oculto dos administradores.
-Vexa a [[Special:BlockList|lista de enderezos IP bloqueados]] para comprobar as prohibicións e os bloqueos vixentes.',
+Olle a [[Special:BlockList|lista de bloqueos]] para comprobar os bloqueos vixentes.',
 
 # History merging
 'mergehistory'                     => 'Fusionar os historiais das páxinas',
@@ -1206,8 +1206,8 @@ Asegúrese de que esta modificación da páxina mantén a continuidade históric
 'notextmatches'                    => 'Non se atopou o texto en ningunha páxina',
 'prevn'                            => '{{PLURAL:$1|$1}} previas',
 'nextn'                            => '{{PLURAL:$1|$1}} seguintes',
-'prevn-title'                      => '$1 {{PLURAL:$1|resultado previo|resultados previos}}',
-'nextn-title'                      => '$1 {{PLURAL:$1|resultado seguinte|resultados seguintes}}',
+'prevn-title'                      => '{{PLURAL:$1|O resultado anterior|Os anteriores $1 resultados}}',
+'nextn-title'                      => '{{PLURAL:$1|O seguinte resultado|Os seguintes $1 resultados}}',
 'shown-title'                      => 'Mostrar $1 {{PLURAL:$1|resultado|resultados}} por páxina',
 'viewprevnext'                     => 'Ver as ($1 {{int:pipe-separator}} $2) ($3)',
 'searchmenu-legend'                => 'Opcións de busca',
@@ -1543,8 +1543,8 @@ Ha de ter menos {{PLURAL:$1|dun carácter|de $1 caracteres}}.',
 'nchanges'                          => '$1 {{PLURAL:$1|cambio|cambios}}',
 'recentchanges'                     => 'Cambios recentes',
 'recentchanges-legend'              => 'Opcións dos cambios',
-'recentchangestext'                 => 'Nesta páxina pode seguir os cambios máis recentes no wiki.',
-'recentchanges-feed-description'    => 'Nesta fonte de novas pode seguir os cambios máis recentes no wiki.',
+'recentchangestext'                 => 'Nesta páxina pode seguir as modificacións máis recentes feitas no wiki.',
+'recentchanges-feed-description'    => 'Nesta fonte de novas pode seguir as modificacións máis recentes feitas no wiki.',
 'recentchanges-label-newpage'       => 'Esta edición creou unha nova páxina',
 'recentchanges-label-minor'         => 'Esta é unha edición pequena',
 'recentchanges-label-bot'           => 'Esta edición foi realizada por un bot',
@@ -1573,6 +1573,7 @@ Ha de ter menos {{PLURAL:$1|dun carácter|de $1 caracteres}}.',
 'newsectionsummary'                 => 'Nova sección: /* $1 */',
 'rc-enhanced-expand'                => 'Mostrar os detalles (cómpre JavaScript)',
 'rc-enhanced-hide'                  => 'Agochar os detalles',
+'rc-old-title'                      => 'creada orixinalmente como "$1"',
 
 # Recent changes linked
 'recentchangeslinked'          => 'Cambios relacionados',
@@ -1753,7 +1754,7 @@ Se o problema persiste, póñase en contacto cun [[Special:ListUsers/sysop|admin
 'backend-fail-writetemp'     => 'Non se puido escribir no ficheiro temporal.',
 'backend-fail-closetemp'     => 'Non se puido pechar o ficheiro temporal.',
 'backend-fail-read'          => 'Non se puido ler o ficheiro "$1".',
-'backend-fail-create'        => 'Non se puido crear o ficheiro "$1".',
+'backend-fail-create'        => 'Non se puido escribir o ficheiro "$1".',
 'backend-fail-readonly'      => 'Nestes intres, o sistema de almacenamento "$1" está en modo de só lectura. A razón dada é: "$2"',
 'backend-fail-synced'        => 'O ficheiro "$1" está nun estado inconsistente dentro do sistema de almacenamento interno',
 'backend-fail-connect'       => 'Non se puido conectar co sistema de almacenamento "$1".',
@@ -1910,7 +1911,7 @@ A descrición da [$2 páxina de descrición do ficheiro] móstrase a continuaci�
 'filedelete-otherreason'       => 'Outro motivo:',
 'filedelete-reason-otherlist'  => 'Outro motivo',
 'filedelete-reason-dropdown'   => '*Motivos frecuentes para borrar
-** Violación dos dereitos de autor
+** Violación dos dereitos de autoría
 ** Ficheiro duplicado',
 'filedelete-edit-reasonlist'   => 'Editar os motivos de borrado',
 'filedelete-maintenance'       => 'Os borrados e restauracións de ficheiros están desactivados temporalmente durante o mantemento.',
@@ -1952,7 +1953,7 @@ Lembre verificar outras ligazóns cara aos modelos antes de borralos.',
 'statistics-header-hooks'      => 'Outras estatísticas',
 'statistics-articles'          => 'Páxinas de contido',
 'statistics-pages'             => 'Páxinas',
-'statistics-pages-desc'        => 'Todas as páxinas do wiki; isto inclúe as páxinas de conversa, redireccións, etc.',
+'statistics-pages-desc'        => 'Todas as páxinas do wiki; isto inclúe as páxinas de conversa, redireccións etc.',
 'statistics-files'             => 'Ficheiros cargados',
 'statistics-edits'             => 'Edicións nas páxinas des que se creou {{SITENAME}}',
 'statistics-edits-average'     => 'Media de edicións por páxina',
@@ -2292,8 +2293,8 @@ No $2 pode ver unha lista cos borrados máis recentes.',
 'deleteotherreason'      => 'Outro motivo:',
 'deletereasonotherlist'  => 'Outro motivo',
 'deletereason-dropdown'  => '*Motivos frecuentes para borrar
-** Solicitado polo autor
-** Violación dos dereitos de autor
+** Solicitado pola persoa que o creou
+** Violación dos dereitos de autoría
 ** Vandalismo',
 'delete-edit-reasonlist' => 'Editar os motivos de borrado',
 'delete-toobig'          => 'Esta páxina conta cun historial longo, de máis {{PLURAL:$1|dunha revisión|de $1 revisións}}.
@@ -2534,8 +2535,8 @@ Explique a razón específica do bloqueo (por exemplo, citando as páxinas concr
 'ipb-confirm'                     => 'Confirmar o bloqueo',
 'badipaddress'                    => 'O enderezo IP non é válido',
 'blockipsuccesssub'               => 'Bloqueo exitoso',
-'blockipsuccesstext'              => 'O enderezo IP [[Special:Contributions/$1|$1]] foi bloqueado.<br />
-Olle a [[Special:BlockList|lista de enderezos IP e usuarios bloqueados]] para revisalo.',
+'blockipsuccesstext'              => '[[Special:Contributions/$1|$1]] foi {{GENDER:$1|bloqueado|bloqueada}}.<br />
+Olle a [[Special:BlockList|lista de bloqueos]] para revisalo.',
 'ipb-blockingself'                => 'Está a piques de se bloquear! Está seguro de querer facelo?',
 'ipb-confirmhideuser'             => 'Está a piques de bloquear un usuario coa opción "agochar o usuario" activada. Isto suprime o nome de usuario de todas as listas e entradas de rexistro. Está seguro de querer facelo?',
 'ipb-edit-dropdown'               => 'Editar os motivos de bloqueo',
@@ -2588,7 +2589,7 @@ O motivo do bloqueo de $1 é: "$2"',
 'reblock-logentry'                => 'cambiou as configuracións do bloqueo de "[[$1]]" cunha caducidade de $2 $3',
 'blocklogtext'                    => 'Este é o rexistro das accións de bloqueo e desbloqueo de usuarios.
 Non se listan os enderezos IP bloqueados automaticamente.
-Olle a [[Special:BlockList|lista de enderezos IP e usuarios bloqueados]] se quere comprobar a lista cos bloqueos vixentes.',
+Olle a [[Special:BlockList|lista de bloqueos]] para comprobar os bloqueos vixentes.',
 'unblocklogentry'                 => 'desbloqueou a "$1"',
 'block-log-flags-anononly'        => 'só os usuarios anónimos',
 'block-log-flags-nocreate'        => 'desactivada a creación de contas',
@@ -2677,7 +2678,7 @@ por favor, asegúrese de que entende as consecuencias disto antes de proseguir."
 
 Nestes casos, terá que mover ou mesturar a páxina manualmente se o desexa.",
 'movearticle'                  => 'Mover esta páxina:',
-'moveuserpage-warning'         => "'''Aviso:''' está a piques de mover unha páxina de usuario. Por favor, teña en conta que só se trasladará a páxina e que o usuario '''non''' será renomeado.",
+'moveuserpage-warning'         => "'''Aviso:''' Está a piques de mover unha páxina de usuario. Por favor, teña en conta que só se trasladará a páxina e que o usuario '''non''' será renomeado.",
 'movenologin'                  => 'Non accedeu ao sistema',
 'movenologintext'              => 'Debe ser un usuario rexistrado e [[Special:UserLogin|acceder ao sistema]] para mover unha páxina.',
 'movenotallowed'               => 'Non ten os permisos necesarios para mover páxinas.',
@@ -2690,11 +2691,11 @@ Nestes casos, terá que mover ou mesturar a páxina manualmente se o desexa.",
 'pagemovedsub'                 => 'O movemento foi un éxito',
 'movepage-moved'               => '\'\'\'A páxina "$1" foi movida a "$2"\'\'\'',
 'movepage-moved-redirect'      => 'Creouse unha redirección da primeira cara á segunda.',
-'movepage-moved-noredirect'    => 'A creación da redirección da primeira cara á segunda foi cancelada.',
+'movepage-moved-noredirect'    => 'Cancelouse a creación da redirección da primeira cara á segunda.',
 'articleexists'                => 'Xa existe unha páxina con ese nome, ou o nome que escolleu non é válido.
 Por favor, escolla outro nome.',
 'cantmove-titleprotected'      => 'Non pode mover a páxina a este destino, xa que o novo título foi protexido fronte á creación',
-'talkexists'                   => "'''Só foi movida con éxito a páxina, pero a páxina de conserva non puido ser movida porque xa existe unha co novo título. Por favor, mestúreas de xeito manual.'''",
+'talkexists'                   => "'''Unicamente se puido facer o traslado da páxina. A páxina de conversa non se puido mover porque xa existe unha no novo título. Por favor, mestúreas de xeito manual.'''",
 'movedto'                      => 'movido a',
 'movetalk'                     => 'Mover a páxina de conversa, se cómpre',
 'move-subpages'                => 'Mover as subpáxinas (ata $1)',
@@ -2711,9 +2712,9 @@ Por favor, escolla outro nome.',
 'movereason'                   => 'Motivo:',
 'revertmove'                   => 'reverter',
 'delete_and_move'              => 'Borrar e mover',
-'delete_and_move_text'         => '==Precísase borrar==
+'delete_and_move_text'         => '== Cómpre borrar ==
 A páxina de destino, chamada "[[:$1]]", xa existe.
-Quérea eliminar para facer sitio para mover?',
+Quérea borrar para deixar sitio para facer o traslado?',
 'delete_and_move_confirm'      => 'Si, borrar a páxina',
 'delete_and_move_reason'       => 'Eliminado para facer sitio para mover "[[$1]]"',
 'selfmove'                     => 'O título de orixe e o de destino é o mesmo; non se pode mover unha páxina sobre si mesma.',
@@ -2843,7 +2844,7 @@ Gárdeo no seu disco duro e cárgueo aquí.',
 
 # JavaScriptTest
 'javascripttest'                           => 'Proba de JavaScript',
-'javascripttest-disabled'                  => 'Esta función está desactivada.',
+'javascripttest-disabled'                  => 'Esta función está desactivada neste wiki.',
 'javascripttest-title'                     => 'Executando probas de $1',
 'javascripttest-pagetext-noframework'      => 'Esta páxina está reservada para executar probas do JavaScript.',
 'javascripttest-pagetext-unknownframework' => 'Descoñécese a infraestrutura dixital "$1" de probas.',

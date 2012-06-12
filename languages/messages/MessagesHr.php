@@ -1,5 +1,5 @@
 <?php
-/** Croatian (Hrvatski)
+/** Croatian (hrvatski)
  *
  * See MessagesQqq.php for message documentation incl. usage of parameters
  * To improve a translation please visit http://translatewiki.net
@@ -775,7 +775,7 @@ Zbog toga posjetitelji s ove IP adrese trenutačno ne mogu otvoriti nove suradni
 'emailauthenticated'         => 'Vaša e-mail adresa je ovjerena $2 u $3.',
 'emailnotauthenticated'      => 'Vaša e-mail adresa još nije ovjerena.
 Ne možemo poslati e-mail ni u jednoj od sljedećih naredbi.',
-'noemailprefs'               => 'Nije navedena e-mail adresa, stoga sljedeće naredbe neće raditi.',
+'noemailprefs'               => 'Nije navedena adresa elektroničke pošte, stoga sljedeće naredbe ne će raditi.',
 'emailconfirmlink'           => 'Potvrdite svoju e-mail adresu',
 'invalidemailaddress'        => 'Ne mogu prihvatiti e-mail adresu jer nije valjano oblikovana.
 Molim unesite ispravno oblikovanu adresu ili ostavite polje praznim.',
@@ -2464,7 +2464,7 @@ Posljednja stavka evidencije blokiranja navedena je niže kao napomena:',
 'whatlinkshere-hidetrans'  => '$1 transkluzije',
 'whatlinkshere-hidelinks'  => '$1 poveznice',
 'whatlinkshere-hideimages' => '$1 poveznice slike',
-'whatlinkshere-filters'    => 'Filteri',
+'whatlinkshere-filters'    => 'Filtri',
 
 # Block/unblock
 'autoblockid'                     => 'Automatsko blokiranje #$1',
@@ -2616,13 +2616,13 @@ mijenjanje postavki, uređivanje popisa praćenja i druge stvari koje zahtijevaj
 # Move page
 'move-page'                    => 'Premjesti $1',
 'move-page-legend'             => 'Premjesti stranicu',
-'movepagetext'                 => "Korištenjem ovog obrasca ćete preimenovati stranicu i premjestiti sve stare izmjene na novo ime.
+'movepagetext'                 => "Uporabom ovog obrasca ćete preimenovati stranicu i premjestiti sve stare izmjene na novo ime.
 Stari će se naslov pretvoriti u stranicu koja automatski preusmjerava na novi naslov.
-Možete odabrati automatsko ažuriranje preusmjeravanja na originalni naslov.
+Možete odabrati automatsko ažuriranje preusmjeravanja na izvorni naslov.
 Ako se ne odlučite na to, provjerite [[Special:DoubleRedirects|dvostruka]] ili [[Special:BrokenRedirects|neispravna preusmjeravanja]].
 Dužni ste provjeriti da sve poveznice i dalje nastave voditi na prave stranice.
 
-Stranica se '''neće''' premjestiti ako već postoji stranica s novim naslovom, osim u slučaju prazne stranice ili stranice za preusmjeravanje koja nema nikakvih starih izmjena.
+Stranica se '''ne će''' premjestiti ako već postoji stranica s novim naslovom, osim u slučaju prazne stranice ili stranice za preusmjeravanje koja nema nikakvih starih izmjena.
 To znači: 1. ako pogriješite, možete opet preimenovati stranicu na stari naslov, 2. ne može se dogoditi da izbrišete neku postojeću stranicu.
 
 '''Upozorenje!'''
@@ -2632,21 +2632,21 @@ Stari će se naslov pretvoriti u stranicu koja automatski preusmjerava na novi n
 Budite sigurni da ste provjerili [[Special:DoubleRedirects|dvostruka]] ili [[Special:BrokenRedirects|nevaljana preusmjeravanja]]. 
 Vi ste odgovorni za to da poveznice i dalje povezuju tamo gdje treba.
 
-Imajte na umu da stranica '''neće''' biti premještena ako već postoji stranica s novim naslovom, osim u slučaju prazne stranice ili stranice za preusmjeravanje koja nema nikakvih starih izmjena. 
-To znači da stranicu možete preimenovati u prethodno ime ukoliko ste pogriješili te ne možete pisati preko postojeće stranice. 
+Imajte na umu da stranica '''ne će''' biti premještena ako već postoji stranica s novim naslovom, osim u slučaju prazne stranice ili stranice za preusmjeravanje koja nema nikakvih starih izmjena. 
+To znači da stranicu možete preimenovati u prethodno ime ako ste pogriješili te ne možete pisati preko postojeće stranice. 
 
 '''Upozorenje!''' 
 Ovo može biti drastična i neočekivana promjena kad su u pitanju popularne stranice; 
 budite sigurni da razumijete posljedice ove akcije prije nastavka.",
-'movepagetalktext'             => "Stranica za razgovor, ako postoji, automatski će se premjestiti zajedno sa stranicom koju premještate. '''Stranica za razgovor neće se premjestiti ako:'''
+'movepagetalktext'             => "Stranica za razgovor, ako postoji, automatski će se premjestiti zajedno sa stranicom koju premještate. '''Stranica se za razgovor ne će premjestiti ako:'''
 *premještate stranicu iz jednog prostora u drugi,
 *pod novim imenom već postoji stranica za razgovor s nekim sadržajem, ili
 *maknete kvačicu u kućici na dnu ove stranice.
 
-U tim slučajevima ćete morati sami premjestiti ili iskopirati stranicu za razgovor,
+U tim ćete slučajevima morati sami premjestiti ili iskopirati stranicu za razgovor,
 ako to želite.",
 'movearticle'                  => 'Premjesti stranicu',
-'moveuserpage-warning'         => "'''Upozorenje:''' Premještate suradničku stranicu. Imajte na umu da će stranica biti premještena, ali suradnik ''neće'' biti preimenovan.",
+'moveuserpage-warning'         => "'''Upozorenje:''' Premještate suradničku stranicu. Imajte na umu da će stranica biti premještena, ali suradnik ''ne će'' biti preimenovan.",
 'movenologin'                  => 'Niste prijavljeni',
 'movenologintext'              => 'Ako želite premjestiti stranicu morate biti [[Special:UserLogin|prijavljeni]].',
 'movenotallowed'               => 'Nemate pravo premještanja stranica.',
@@ -2897,9 +2897,9 @@ Snimite je na svoje računalo i postavite je ovdje.',
 
 # Spam protection
 'spamprotectiontitle' => 'Zaštita od spama',
-'spamprotectiontext'  => 'Stranicu koju ste željeli snimiti blokirao je filter spama.
+'spamprotectiontext'  => 'Stranicu koju ste željeli snimiti blokirao je filtar spama.
 Razlog je vjerojatno vanjska poveznica koja se nalazi na crnom popisu.',
-'spamprotectionmatch' => 'Naš filter spama reagirao je na sljedeći tekst: $1',
+'spamprotectionmatch' => 'Naš filtar spama reagirao je na sljedeći tekst: $1',
 'spambot_username'    => 'MediaWiki zaštita od spama',
 'spam_reverting'      => 'Vraćam na zadnju inačicu koja ne sadrži poveznice na $1',
 'spam_blanking'       => 'Sve inačice sadrže poveznice na $1, brišem cjelokupni sadržaj',
@@ -2981,7 +2981,7 @@ Njegovim izvršavanjem mogli biste oštetiti svoj sustav.",
 'newimages'             => 'Galerija novih datoteka',
 'imagelisttext'         => 'Ispod je popis {{PLURAL:$1|$1 slike|$1 slike|$1 slika}} složen $2.',
 'newimages-summary'     => 'Ova posebna stranica pokazuje zadnje nedavno postavljene datoteke.',
-'newimages-legend'      => 'Filter',
+'newimages-legend'      => 'Filtar',
 'newimages-label'       => 'Naziv datoteke (ili njen dio):',
 'showhidebots'          => '($1 botova)',
 'noimages'              => 'Nema slika.',
@@ -3720,8 +3720,8 @@ Slike se na taj način prikazuju u punoj rezoluciji, a drugi tipovi datoteka se 
 
 # Special:Tags
 'tags'                    => 'Valjane oznake izmjena',
-'tag-filter'              => 'Filter [[Special:Tags|oznaka]]:',
-'tag-filter-submit'       => 'Filter',
+'tag-filter'              => 'Filtar [[Special:Tags|oznaka]]:',
+'tag-filter-submit'       => 'Filtar',
 'tags-title'              => 'Oznake',
 'tags-intro'              => 'Ova je stranica popis oznaka s kojima softver može označiti promjenu te njihovo značenje.',
 'tags-tag'                => 'Naziv oznake',
@@ -3769,7 +3769,7 @@ Slike se na taj način prikazuju u punoj rezoluciji, a drugi tipovi datoteka se 
 'sqlite-no-fts'  => '$1 bez podrške pretraživanja cijelog teksta',
 
 # New logging system
-'logentry-delete-delete'              => '$1 je obrisao stranicu $3',
+'logentry-delete-delete'              => '$1 obrisao je stranicu $3',
 'logentry-delete-restore'             => '$1 je vratio stranicu $3',
 'logentry-delete-event'               => '$1 je promijenio vidljivost {{PLURAL:$5|zapisa u evidenciji|$5 zapisa u evidenciji}} na $3: $4',
 'logentry-delete-revision'            => '$1 je promijenio vidljivost {{PLURAL:$5|uređivanja|$5 uređivanja}} na stranici $3: $4',
@@ -3844,6 +3844,7 @@ Inače, možete ispuniti jednostavan obrazac u nastavku. Vaš komentar biti će 
 'api-error-unknown-code'       => 'Nepoznata pogreška: "$1"',
 'api-error-unknown-error'      => 'Dogodila se pogrješka pri pokušaju postavljanja vaše datoteke.',
 'api-error-unknown-warning'    => 'Nepoznato upozorenje: $1',
+'api-error-unknownerror'       => 'Nepoznata pogrješka: "$1"',
 'api-error-uploaddisabled'     => 'Postavljanje datoteka je onemogućeno na ovom wikiprojektu.',
 'api-error-verification-error' => 'Ova datoteka je možda oštećena ili ima pogrešan nastavak.',
 

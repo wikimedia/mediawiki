@@ -103,7 +103,7 @@ $messages = array(
 'copyrightwarning' => "o sona e ni: ken $2 (o lukin e $1) li lawa tawa ante ali lon {{SITENAME}} li. jan li ken ante e toki sina li ken pana e ona tawa jan ante. sina wile ala e ni la, o sitelen ala lon lipu ni.<br />
 kin la sina toki e ni: toki sina ni li tan sina taso anu lipu pi ken ali.
 '''SINA KEN ALA LA, O PANA ALA E TOKI PI KEN LILI TAWA LIPU NI!'''",
-'templatesused'    => 'lipu ni li kepeken e lipu mama ni:',
+'templatesused'    => '{{PLURAL:$1|Template|Templates}} used on this page:',
 
 # History pages
 'histfirst' => 'pini taso',

@@ -1,5 +1,5 @@
 <?php
-/** Portuguese (Português)
+/** Portuguese (português)
  *
  * See MessagesQqq.php for message documentation incl. usage of parameters
  * To improve a translation please visit http://translatewiki.net
@@ -672,13 +672,13 @@ Pode já ter sido eliminado por outro utilizador.',
 'badtitletext'         => 'O título de página solicitado era inválido, vazio, ou um link interlínguas ou interwikis incorrecto.
 Talvez contenha um ou mais caracteres que não podem ser usados em títulos.',
 'perfcached'           => "Os seguintes dados encontram-se armazenados na ''cache'' e podem não estar actualizados. No máximo {{PLURAL:$1|um resultado é disponível|$1 resultados são disponíveis}} na ''cache''.",
-'perfcachedts'         => "Os seguintes dados encontram-se armazenados na ''cache'' e foram actualizados pela última vez a $1. A maximum of {{PLURAL:$4|one result is|$4 results are}} available in the cache.",
+'perfcachedts'         => "Os seguintes dados encontram-se armazenados na ''cache'' e foram actualizados pela última vez a $1. No máximo {{PLURAL:$4|um resultado está disponível|$4 resultados estão disponíveis}} na ''cache''.",
 'querypage-no-updates' => 'As actualizações estão presentemente desactivadas para esta página.
 Por enquanto, os dados aqui presentes não poderão ser actualizados.',
 'wrong_wfQuery_params' => 'Parâmetros incorrectos para wfQuery()<br />
 Função: $1<br />
 Consulta: $2',
-'viewsource'           => 'Ver conteúdo',
+'viewsource'           => 'Ver código-fonte',
 'viewsource-title'     => 'Mostrar código-fonte de $1',
 'actionthrottled'      => 'Operação limitada',
 'actionthrottledtext'  => 'Como medida anti-spam, está impedido de realizar esta operação demasiadas vezes num espaço de tempo curto e já excedeu esse limite. Tente de novo dentro de alguns minutos, por favor.',
@@ -1235,8 +1235,8 @@ Verifique os registos, por favor.',
 
 # Suppression log
 'suppressionlog'     => 'Registo de supressões',
-'suppressionlogtext' => 'Abaixo está uma lista das eliminações e bloqueios envolvendo conteúdo ocultado a administradores.
-Veja a [[Special:BlockList|lista de bloqueios a IPs]] para uma lista de banimentos e bloqueios em efeito neste momento.',
+'suppressionlogtext' => 'Abaixo está uma lista das eliminações e bloqueios envolvendo conteúdo ocultado para administradores.
+Veja a [[Special:BlockList|lista de bloqueios]] para uma lista de banimentos e bloqueios em efeito neste momento.',
 
 # History merging
 'mergehistory'                     => 'Fundir histórico de páginas',
@@ -1373,7 +1373,7 @@ Note, no entanto, que a indexação da {{SITENAME}} neste motor de busca pode es
 'prefs-rc'                      => 'Mudanças recentes',
 'prefs-watchlist'               => 'Páginas vigiadas',
 'prefs-watchlist-days'          => 'Dias a mostrar nas mudanças às páginas vigiadas:',
-'prefs-watchlist-days-max'      => 'Maximum $1 {{PLURAL:$1|day|days}}',
+'prefs-watchlist-days-max'      => 'Máximo: $1 {{PLURAL:$1|dia|dias}}',
 'prefs-watchlist-edits'         => 'Número de edições a mostrar na listagem expandida:',
 'prefs-watchlist-edits-max'     => 'Máximo: 1000',
 'prefs-watchlist-token'         => 'Senha secreta da lista de {{lc:{{int:watchlist}}}}:',
@@ -1395,7 +1395,7 @@ Note, no entanto, que a indexação da {{SITENAME}} neste motor de busca pode es
 'stub-threshold'                => 'Links para páginas curtas terão <a href="#" class="stub">este formato</a> se elas ocuparem menos de (bytes):',
 'stub-threshold-disabled'       => 'Desactivado',
 'recentchangesdays'             => 'Dias a apresentar nas mudanças recentes:',
-'recentchangesdays-max'         => '(máximo: $1 {{PLURAL:$1|dia|dias}})',
+'recentchangesdays-max'         => 'Máximo: $1 {{PLURAL:$1|dia|dias}}',
 'recentchangescount'            => 'Número de edições a apresentar por omissão:',
 'prefs-help-recentchangescount' => 'Inclui mudanças recentes, histórico de páginas e registos.',
 'prefs-help-watchlist-token'    => "Preencher este campo com uma senha secreta gera um ''feed'' RSS para a sua lista de páginas vigiadas.
@@ -1658,9 +1658,11 @@ Esta informação será pública.',
 'number_of_watching_users_pageview' => '[{{PLURAL:$1|$1 utilizador|$1 utilizadores}} a vigiar]',
 'rc_categories'                     => 'Limitar às categorias (separar com "|")',
 'rc_categories_any'                 => 'Qualquer',
+'rc-change-size-new'                => '$1 {{PLURAL:$1|byte|bytes}} após mudança',
 'newsectionsummary'                 => '/* $1 */ nova secção',
 'rc-enhanced-expand'                => 'Mostrar detalhes (requer JavaScript)',
 'rc-enhanced-hide'                  => 'Esconder detalhes',
+'rc-old-title'                      => 'originalmente criado como "$1"',
 
 # Recent changes linked
 'recentchangeslinked'          => 'Alterações relacionadas',
@@ -1836,14 +1838,31 @@ Caso o problema persista, contacte um [[Special:ListUsers/sysop|administrador]].
 'backend-fail-invalidpath'   => '$1 não é um caminho de armazenamento válido.',
 'backend-fail-delete'        => 'Não foi possível excluir o ficheiro $1.',
 'backend-fail-alreadyexists' => 'O ficheiro $1 já existe.',
-'backend-fail-store'         => 'Não foi possível armazenar o arquivo $1 em $2.',
+'backend-fail-store'         => 'Não foi possível armazenar o ficheiro $1 em $2.',
 'backend-fail-copy'          => 'Não foi possível copiar o ficheiro $1 para $2.',
 'backend-fail-move'          => 'Não é possível mover o ficheiro $1 para $2.',
-'backend-fail-opentemp'      => 'Não foi possível abrir o arquivo temporário.',
+'backend-fail-opentemp'      => 'Não foi possível abrir o ficheiro temporário.',
 'backend-fail-writetemp'     => 'Não foi possível gravar para arquivo temporário.',
 'backend-fail-closetemp'     => 'Não foi possível fechar o arquivo temporário.',
 'backend-fail-read'          => 'Não foi possível ler o arquivo $1.',
 'backend-fail-create'        => 'Não foi possível criar o arquivo $1.',
+'backend-fail-readonly'      => 'O servidor de armazenamento "$1" está actualmente no modo "somente leitura". A razão dada foi: "$2"',
+'backend-fail-synced'        => 'O ficheiro" $1 " está em um estado inconsistente dentro da base de dados',
+'backend-fail-connect'       => 'Não foi possível estabelecer ligação com o servidor de armazenamento "$1".',
+'backend-fail-internal'      => 'Ocorreu um erro desconhecido no servidor de armazenamento "$1".',
+'backend-fail-contenttype'   => 'Não foi possível determinar o tipo de conteúdo do ficheiro para armazenar em " $1 ".',
+'backend-fail-batchsize'     => 'Foi fornecido um bloco de $1 {{PLURAL:$1|operação|operações}} sobre ficheiros ao servidor backend de armazenamento; o limite é de $2 {{PLURAL:$2|operação|operações}}.',
+
+# Lock manager
+'lockmanager-notlocked'        => 'Não foi possível desbloquear " $1 "; não se encontra bloqueado.',
+'lockmanager-fail-closelock'   => 'Não foi possível encerrar a referência de bloqueio para "$1".',
+'lockmanager-fail-deletelock'  => 'Não foi possível eliminar a referência de bloqueio para "$1".',
+'lockmanager-fail-acquirelock' => 'Não foi possível adquirir bloqueio para "$1".',
+'lockmanager-fail-openlock'    => 'Não foi possível abrir ficheiro de bloqueio para "$1".',
+'lockmanager-fail-releaselock' => 'Não foi possível libertar bloqueio para "$1".',
+'lockmanager-fail-db-bucket'   => 'Não foi possível contactar bases de dados de bloqueio suficientes no "bucket" $1.',
+'lockmanager-fail-db-release'  => 'Não foi possível libertar bloqueios na base de dados $1.',
+'lockmanager-fail-svr-release' => 'Não foi possível libertar bloqueios no servidor $1.',
 
 # ZipDirectoryReader
 'zip-file-open-error' => 'Foi encontrado um erro ao abrir o ficheiro ZIP para verificação.',
@@ -1861,6 +1880,7 @@ A sua segurança não pode ser devidamente verificada.',
 'uploadstash-badtoken' => 'Não foi possível executar essa operação, talvez porque as suas credenciais de edição expiraram. Tente novamente.',
 'uploadstash-errclear' => 'Não foi possível apagar os ficheiros.',
 'uploadstash-refresh'  => 'Actualizar a lista de ficheiros',
+'invalid-chunk-offset' => 'Deslocamento de fragmento inválido',
 
 # img_auth script messages
 'img-auth-accessdenied'     => 'Acesso negado',
@@ -2082,6 +2102,8 @@ Agora redirecciona para [[$2]].',
 'wantedpages'             => 'Páginas desejadas',
 'wantedpages-badtitle'    => 'Título inválido no conjunto de resultados: $1',
 'wantedfiles'             => 'Ficheiros desejados',
+'wantedfiletext-cat'      => 'Os seguintes ficheiros são usados, mas não existem. Ficheiros de repositórios externos podem ser listados apesar de existirem. Tais falsos positivos aparecerão <del>riscados</del>. Adicionalmente, páginas que incorporam ficheiros que não existem estão listadas em [[:$1]].',
+'wantedfiletext-nocat'    => 'Os seguintes ficheiros são usados, mas não existem. Ficheiros de repositórios externos podem ser listados apesar de existirem. Tais falsos positivos aparecerão <del>riscados</del>.',
 'wantedtemplates'         => 'Predefinições desejadas',
 'mostlinked'              => 'Páginas com mais afluentes',
 'mostlinkedcategories'    => 'Categorias com mais membros',
@@ -2231,7 +2253,7 @@ Encontram-se disponíveis [[{{MediaWiki:Listgrouprights-helppage}}|informações
 'emailpagetext'        => 'Pode usar o formulário abaixo para enviar uma mensagem por correio electrónico para este utilizador.
 O endereço de correio que introduziu nas suas [[Special:Preferences|preferências]] irá aparecer no campo do remetente da mensagem "De:", para que o destinatário lhe possa responder directamente.',
 'usermailererror'      => 'O sistema de correio devolveu o erro:',
-'defemailsubject'      => '{{SITENAME}} e-mail do usuário "$1"',
+'defemailsubject'      => 'E-mail do usuário "$1" da {{SITENAME}}',
 'usermaildisabled'     => 'Correio electrónico do utilizador foi desactivado',
 'usermaildisabledtext' => 'Não pode enviar correio electrónico aos outros utilizadores desta wiki',
 'noemailtitle'         => 'Sem endereço de correio electrónico',
@@ -2600,8 +2622,8 @@ Isto só deve ser feito para prevenir vandalismo e de acordo com a [[{{MediaWiki
 'ipb-confirm'                     => 'Confirmar o bloqueio',
 'badipaddress'                    => 'Endereço IP inválido',
 'blockipsuccesssub'               => 'Bloqueio bem sucedido',
-'blockipsuccesstext'              => '[[Special:Contributions/$1|$1]] foi bloqueado.<br />
-Consulte a [[Special:BlockList|lista de IPs bloqueados]] para rever os bloqueios.',
+'blockipsuccesstext'              => '[[Special:Contributions/$1|$1]] foi {{GENDER:$1|bloqueado|bloqueada}}.<br />
+Consulte a [[Special:BlockList|lista de bloqueios]] para rever os bloqueios.',
 'ipb-blockingself'                => 'Está prestes a bloquear-se a si próprio. Tem a certeza de que pretende fazê-lo?',
 'ipb-confirmhideuser'             => 'Está prestes a bloquear um utilizador com "Ocultar nome de utilizador/IP" activado. Isto irá suprimir o nome do utilizador de todas as listas e entradas dos registos. Tem a certeza de que pretende fazê-lo?',
 'ipb-edit-dropdown'               => 'Editar motivos de bloqueio',
@@ -2621,7 +2643,7 @@ Consulte a [[Special:BlockList|lista de IPs bloqueados]] para rever os bloqueios
 'blocklist-userblocks'            => 'Esconder bloqueios de contas',
 'blocklist-tempblocks'            => 'Esconder bloqueios temporários',
 'blocklist-addressblocks'         => 'Esconder bloqueios de IP único',
-'blocklist-rangeblocks'           => 'Ocultar range blocks',
+'blocklist-rangeblocks'           => 'Ocultar bloqueios de faixas',
 'blocklist-timestamp'             => 'Data e hora',
 'blocklist-target'                => 'Destinatário',
 'blocklist-expiry'                => 'Duração',
@@ -2651,11 +2673,11 @@ Consulte a [[Special:BlockList|lista de IPs bloqueados]] para rever os bloqueios
 O registo de bloqueios é fornecido abaixo para referência:',
 'blocklog-showsuppresslog'        => 'Este utilizador foi bloqueado e ocultado anteriomente.
 O registo de supressão é fornecido abaixo para referência:',
-'blocklogentry'                   => 'bloqueou "[[$1]]" $3. O bloqueio expira em $2.',
-'reblock-logentry'                => 'modificou parâmetros de bloqueio de [[$1]] $3. O bloqueio expira em $2.',
-'blocklogtext'                    => 'Este é um registo de acções de bloqueio e desbloqueio.
-Endereços IP sujeitos a bloqueio automático não são listados.
-Consulte a [[Special:BlockList|lista de IPs bloqueados]] para obter a lista de bloqueios e banimentos actualmente válidos.',
+'blocklogentry'                   => 'bloqueou "[[$1]]" por $2. $3',
+'reblock-logentry'                => 'modificou parâmetros de bloqueio de [[$1]] com expiração em $2. $3',
+'blocklogtext'                    => 'Este é um registo de ações de bloqueio e desbloqueio.
+Endereços IP sujeitos a bloqueio automático não estão listados.
+Consulte a [[Special:BlockList|lista de bloqueios]] para obter a lista de bloqueios e banimentos atualmente válidos.',
 'unblocklogentry'                 => 'desbloqueou $1',
 'block-log-flags-anononly'        => 'apenas utilizadores anónimos',
 'block-log-flags-nocreate'        => 'criação de contas impossibilitada',
@@ -2848,6 +2870,7 @@ Se deseja colaborar na localização genérica do MediaWiki, visite [//www.media
 'thumbnail_error'          => 'Erro ao criar miniatura: $1',
 'djvu_page_error'          => 'página DjVu inacessível',
 'djvu_no_xml'              => 'Não foi possível aceder ao XML para o ficheiro DjVU',
+'thumbnail-temp-create'    => 'Não foi possível criar ficheiro temporário de miniatura',
 'thumbnail-dest-create'    => 'Não é possível salvar miniatura',
 'thumbnail_invalid_params' => 'Parâmetros de miniatura inválidos',
 'thumbnail_dest_directory' => 'Não foi possível criar o directório de destino',
@@ -2912,13 +2935,14 @@ Não há um directório temporário.',
 
 # JavaScriptTest
 'javascripttest'                           => 'Teste de JavaScript',
-'javascripttest-disabled'                  => 'Esta função está desabilitada.',
+'javascripttest-disabled'                  => 'Esta função está desabilitada neste wiki.',
 'javascripttest-title'                     => 'Executando os testes $1',
 'javascripttest-pagetext-noframework'      => 'Esta página é reservada para a execução de testes de JavaScript.',
 'javascripttest-pagetext-unknownframework' => 'Estrutura de testes "$1" desconhecido.',
 'javascripttest-pagetext-frameworks'       => 'Escolha, por favor, uma das seguintes estruturas de teste: $1',
 'javascripttest-pagetext-skins'            => 'Escolher um tema para executar os testes com:',
 'javascripttest-qunit-intro'               => 'Consulte a [ $1 documentação de testes] no mediawiki.org.',
+'javascripttest-qunit-heading'             => 'Pacote de ferramentas de teste de JavaScript QUnit do MediaWiki',
 
 # Tooltip help for the actions
 'tooltip-pt-userpage'                 => 'A sua página de utilizador',
@@ -3861,20 +3885,20 @@ Imagens serão apresentadas pelo browser na resolução máxima; ficheiros de ou
 # New logging system
 'logentry-delete-delete'              => '$1 apagou a página $3',
 'logentry-delete-restore'             => '$1 restaurou a página $3',
-'logentry-delete-event'               => '$1 alterou a visibilidade {{PLURAL:$5|de uma entrada|$5 das entradas}} em $3: $4',
-'logentry-delete-revision'            => '$1 alterou a visibilidade {{PLURAL:$5|de uma revisão|$5 das revisões}} em $3: $4',
+'logentry-delete-event'               => '$1 alterou a visibilidade {{PLURAL:$5|de uma entrada|das $5 entradas}} em $3: $4',
+'logentry-delete-revision'            => '$1 alterou a visibilidade {{PLURAL:$5|de uma revisão|das $5 revisões}} em $3: $4',
 'logentry-delete-event-legacy'        => '$1 alterou a visibilidade de uma entrada em $3',
 'logentry-delete-revision-legacy'     => '$1 alterou a visibilidade de uma revisão em $3',
 'logentry-suppress-delete'            => '$1 suprimiu a página $3',
-'logentry-suppress-event'             => '$1 alterou secretamente a visibilidade {{PLURAL:$5|de uma entrada|$5 das entradas}} em $3: $4',
-'logentry-suppress-revision'          => '$1 secretamente alterou a visibilidade {{PLURAL:$5|de uma revisão|$5 das revisões}} em $3: $4',
+'logentry-suppress-event'             => '$1 alterou secretamente a visibilidade {{PLURAL:$5|de uma entrada|das $5 entradas}} em $3: $4',
+'logentry-suppress-revision'          => '$1 secretamente alterou a visibilidade {{PLURAL:$5|de uma revisão|das $5 revisões}} em $3: $4',
 'logentry-suppress-event-legacy'      => '$1 secretamente alterou a visibilidade das entradas em $3',
 'logentry-suppress-revision-legacy'   => '$1 secretamente alterou a visibilidade das revisões em $3',
 'revdelete-content-hid'               => 'conteúdo oculto',
-'revdelete-summary-hid'               => 'editar sumário oculto',
+'revdelete-summary-hid'               => 'sumário de edição oculto',
 'revdelete-uname-hid'                 => 'utilizador oculto',
 'revdelete-content-unhid'             => 'conteúdo não oculto',
-'revdelete-summary-unhid'             => 'editar sumário não oculto',
+'revdelete-summary-unhid'             => 'sumário de edição não oculto',
 'revdelete-uname-unhid'               => 'utilizador não oculto',
 'revdelete-restricted'                => 'restrições a administradores aplicadas',
 'revdelete-unrestricted'              => 'restrições a administradores removidas',
@@ -3891,15 +3915,20 @@ Imagens serão apresentadas pelo browser na resolução máxima; ficheiros de ou
 'newuserlog-byemail'                  => 'palavra-chave enviada por correio-electrónico',
 
 # Feedback
-'feedback-subject' => 'Assunto:',
-'feedback-message' => 'Mensagem:',
-'feedback-cancel'  => 'Cancelar',
-'feedback-submit'  => 'Enviar Comentários',
-'feedback-adding'  => 'A acrescentar os comentários à página...',
-'feedback-error1'  => 'Erro: O resultado da API não foi reconhecido',
-'feedback-error2'  => 'Erro: A edição falhou',
-'feedback-error3'  => 'Erro: A API não responde',
-'feedback-close'   => 'Feito',
+'feedback-bugornote' => 'Se está pronto para descrever um problema técnico em detalhe, por favor, [$1 denuncie um defeito].
+Caso contrário, pode facilmente usar o formulário abaixo. O seu comentário será adicionado à página "[$3 $2]", junto com o seu nome de utilizador e o navegador que está a usar.',
+'feedback-subject'   => 'Assunto:',
+'feedback-message'   => 'Mensagem:',
+'feedback-cancel'    => 'Cancelar',
+'feedback-submit'    => 'Enviar Comentários',
+'feedback-adding'    => 'A acrescentar os comentários à página...',
+'feedback-error1'    => 'Erro: O resultado da API não foi reconhecido',
+'feedback-error2'    => 'Erro: A edição falhou',
+'feedback-error3'    => 'Erro: A API não responde',
+'feedback-thanks'    => 'Obrigado! O seu comentário foi adicionado à página "[ $2  $1 ]".',
+'feedback-close'     => 'Feito',
+'feedback-bugcheck'  => 'Perfeito! Verifique apenas que não é já um dos [$1 defeitos conhecidos].',
+'feedback-bugnew'    => 'Eu verifiquei. Denunciar um novo defeito.',
 
 # API errors
 'api-error-badaccess-groups'              => 'Não tem permissão para enviar ficheiros para esta wiki.',
@@ -3910,6 +3939,7 @@ Imagens serão apresentadas pelo browser na resolução máxima; ficheiros de ou
 'api-error-duplicate-archive-popup-title' => '{{PLURAL:$1|Ficheiro duplicado que já foi eliminado|Ficheiros duplicados que já foram eliminados}}',
 'api-error-duplicate-popup-title'         => '{{PLURAL:$1|Ficheiro duplicado|Ficheiros duplicados}}',
 'api-error-empty-file'                    => 'O ficheiro que enviou está vazio.',
+'api-error-emptypage'                     => 'Não é permitido criar páginas novas vazias.',
 'api-error-fetchfileerror'                => 'Erro interno: Ocorreu um problema indeterminado ao aceder ao ficheiro.',
 'api-error-file-too-large'                => 'O ficheiro que enviou era demasiado grande.',
 'api-error-filename-tooshort'             => 'O nome do ficheiro é demasiado curto.',

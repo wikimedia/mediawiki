@@ -1,5 +1,5 @@
 <?php
-/** Czech (Česky)
+/** Czech (česky)
  *
  * See MessagesQqq.php for message documentation incl. usage of parameters
  * To improve a translation please visit http://translatewiki.net
@@ -11,6 +11,7 @@
  * @author Dontlietome7
  * @author Helix84
  * @author Jachym
+ * @author Jezevec
  * @author Jkjk
  * @author Kaganer
  * @author Kuvaly
@@ -369,7 +370,7 @@ $messages = array(
 'tog-rememberpassword'        => 'Zapamatovat si mé přihlášení v tomto prohlížeči (maximálně $1 {{PLURAL:$1|den|dny|dní}})',
 'tog-watchcreations'          => 'Přidávat mnou založené stránky ke sledovaným',
 'tog-watchdefault'            => 'Přidávat mnou editované stránky ke sledovaným',
-'tog-watchmoves'              => 'Přidávat přesouvané stránky mezi sledované',
+'tog-watchmoves'              => 'Přidávat mnou přesouvané stránky mezi sledované',
 'tog-watchdeletion'           => 'Přidávat stránky, které smažu, mezi sledované',
 'tog-minordefault'            => 'Označit editaci implicitně jako malá editace',
 'tog-previewontop'            => 'Zobrazovat náhled před editačním oknem (ne za ním)',
@@ -685,7 +686,7 @@ Databáze vrátila chybu „$3: $4“',
 'enterlockreason'      => 'Udejte důvod zamčení, včetně odhadu, za jak dlouho dojde k odemčení.',
 'readonlytext'         => 'Databáze je nyní uzamčena, takže nelze ukládat nové doplňky a změny. Důvodem je pravděpodobně pravidelná údržba, po které se vše vrátí do normálního stavu.
 
-Správce, který databázi zamkl, zanechal následující zprávu: $1',
+Správce serveru, který databázi zamkl, poskytl toto zdůvodnění: $1',
 'missing-article'      => 'V databázi nebyl nalezen požadovaný text stránky „$1“ $2.
 
 Toto je obvykle způsobeno tím, že jste následovali zastaralý odkaz na rozdíl verzí nebo historickou verzi stránky, jež byla smazána.
@@ -944,17 +945,17 @@ Pokud ještě jednou kliknete na „{{int:savearticle}}“, bude vaše editace z
 'summary-preview'                  => 'Náhled shrnutí:',
 'subject-preview'                  => 'Náhled předmětu/nadpisu:',
 'blockedtitle'                     => 'Uživatel zablokován',
-'blockedtext'                      => "'''Vaší IP adrese či uživatelskému jménu byla zablokována možnost editace.'''
+'blockedtext'                      => "Vaší IP adrese či uživatelskému jménu byla zablokována možnost editace.'''
 
-Zablokování provedl $1.
-Udaným důvodem bylo „$2“.
+Zablokování provedl{{gender:$1||a}} $1.
+Udaným důvodem bylo ''$2''.
 
 * Začátek blokování: $8
 * Zablokování vyprší: $6
 * Blokovaný uživatel: $7
 
-Pokud chcete zablokování prodiskutovat, můžete kontaktovat uživatele $1 či jiného [[{{MediaWiki:Grouppage-sysop}}|správce]].
-Uvědomte si, že nemůžete použít nabídku „Poslat e-mail“, jestliže nemáte na {{grammar:6sg|{{SITENAME}}}} účet a&nbsp;ve svém [[Special:Preferences|nastavení]] uvedenu platnou e-mailovou adresu nebo pokud Vám byla tato možnost zakázána.
+Pokud chcete zablokování prodiskutovat, můžete kontaktovat {{gender:$1|uživatele|uživatelku}} $1 či jiného [[{{MediaWiki:Grouppage-sysop}}|správce]].
+Uvědomte si, že nemůžete použít nabídku „Poslat e-mail“, jestliže nemáte ve svém [[Special:Preferences|nastavení]] uvedenu platnou e-mailovou adresu nebo pokud vám byla tato možnost zakázána.
 Vaše IP adresa je $3 a&nbsp;identifikační číslo bloku je #$5; tyto údaje uvádějte ve všech dotazech na správce.",
 'autoblockedtext'                  => "Vaše IP adresa byla automaticky zablokována, protože ji používal jiný uživatel, kterého zablokoval $1.
 Udaný důvod blokování:
@@ -1015,7 +1016,8 @@ Zde je pro přehled zobrazen nejnovější záznam z knihy zablokování:',
 'userinvalidcssjstitle'            => "'''Varování:''' Vzhled „$1“ neexistuje. Nezapomeňte, že uživatelské .css a .js soubory používají malá písmena, např. {{ns:user}}:{{BASEPAGENAME}}/vector.css, nikoli {{ns:user}}:{{BASEPAGENAME}}/Vector.css.",
 'updated'                          => '(Změna uložena)',
 'note'                             => "'''Poznámka:'''&nbsp;",
-'previewnote'                      => "'''Pamatujte, že toto je pouze náhled, změny zatím nebyly uloženy!'''",
+'previewnote'                      => "'''Pamatujte, že toto je pouze náhled.'''
+Změny zatím nebyly uloženy!",
 'previewconflict'                  => 'Tento náhled ukazuje text tak, jak bude vypadat po uložení stránky.',
 'session_fail_preview'             => "'''Váš požadavek se nepodařilo zpracovat kvůli ztrátě dat z relace.
 Zkuste to prosím znovu.
@@ -1281,7 +1283,7 @@ Ujistěte se, že tato změna udrží souvislost a posloupnost verzí v historii
 'mergelogpagetext'   => 'Níže je seznam nejnovějších sloučení historie jedné stránky s jinou.',
 
 # Diffs
-'history-title'            => 'Historie verzí stránky „$1“',
+'history-title'            => '$1: Historie verzí',
 'difference'               => '(Rozdíly mezi verzemi)',
 'difference-multipage'     => '(Rozdíly mezi stránkami)',
 'lineno'                   => 'Řádka $1:',
@@ -1638,7 +1640,7 @@ Tuto operaci nelze vrátit zpět.',
 'nchanges'                          => '$1 {{PLURAL:$1|změna|změny|změn}}',
 'recentchanges'                     => 'Poslední změny',
 'recentchanges-legend'              => 'Možnosti posledních změn',
-'recentchangestext'                 => 'Sledujte poslední změny na {{grammar:6sg|{{SITENAME}}}} na této stránce.',
+'recentchangestext'                 => '-',
 'recentchanges-feed-description'    => 'Na tomto kanále sledujte poslední změny na {{grammar:6sg|{{SITENAME}}}}.',
 'recentchanges-label-newpage'       => 'Touto editací byla založena nová stránka',
 'recentchanges-label-minor'         => 'Toto je malá editace',
@@ -1669,6 +1671,7 @@ $3',
 'newsectionsummary'                 => 'Nová sekce /* $1 */',
 'rc-enhanced-expand'                => 'Zobrazit detaily (vyžaduje JavaScript)',
 'rc-enhanced-hide'                  => 'Skrýt detaily',
+'rc-old-title'                      => 'původně vytvořena jako „$1“',
 
 # Recent changes linked
 'recentchangeslinked'          => 'Související změny',
@@ -1835,7 +1838,7 @@ Kontaktuje prosím [[Special:ListUsers/sysop|správce]].',
 'backend-fail-writetemp'     => 'Do dočasného souboru nelze zapisovat.',
 'backend-fail-closetemp'     => 'Dočasný soubor nelze zavřít.',
 'backend-fail-read'          => 'Soubor $1 nelze číst.',
-'backend-fail-create'        => 'Soubor $1 nelze vytvořit.',
+'backend-fail-create'        => 'Nepodařilo se zapsat do souboru $1.',
 'backend-fail-readonly'      => 'Koncový úložný systém „$1“ je momentálně pouze pro čtení. Udaným důvodem je: „$2“',
 'backend-fail-synced'        => 'Soubor „$1“ je v interních koncových úložných systémech v nekonzistentním stavu',
 'backend-fail-connect'       => 'Nepodařilo se připojit ke koncovému úložnému systému „$1“.',
@@ -1964,6 +1967,7 @@ Níže jsou zobrazeny informace, které obsahuje jeho [$2 tamější stránka s 
 'uploadnewversion-linktext' => 'Načíst novou verzi tohoto souboru',
 'shared-repo-from'          => 'z {{grammar:2sg|$1}}',
 'shared-repo'               => 'sdíleného úložiště',
+'filepage.css'              => '/* Zde uvedené CSS se vkládá na stránky s popisem souboru, včetně cizích klientských wiki */',
 
 # File reversion
 'filerevert'                => 'Vrátit zpět $1',
@@ -2173,7 +2177,7 @@ Zobrazení můžete zúžit výběrem typu záznamu, uživatelského jména (zá
 'categoriespagetext'            => 'Následující kategorie {{PLURAL:$1|obsahuje|obsahují}} stránky nebo soubory.
 Nezobrazují se tu [[Special:UnusedCategories|nepoužívané kategorie]].
 Podívejte se také na [[Special:WantedCategories|žádané kategorie]].',
-'categoriesfrom'                => 'Zobrazit kategorie začínající na:',
+'categoriesfrom'                => 'Zobrazit kategorie počínaje od:',
 'special-categories-sort-count' => 'seřadit podle počtu',
 'special-categories-sort-abc'   => 'seřadit abecedně',
 
@@ -2596,7 +2600,7 @@ Udejte přesný důvod níže (například ocitujte, které stránky byly poško
 'ipb-confirm'                     => 'Potvrdit zablokování',
 'badipaddress'                    => 'Neplatná IP adresa',
 'blockipsuccesssub'               => 'Zablokování uspělo',
-'blockipsuccesstext'              => 'Uživatel „[[Special:Contributions/$1|$1]]“ je zablokován.<br />
+'blockipsuccesstext'              => '„[[Special:Contributions/$1|$1]]“ je {{GENDER:$1|zablokován|zablokována}}.<br />
 Můžete si prohlédnout [[Special:BlockList|seznam zablokovaných uživatelů]].',
 'ipb-blockingself'                => 'Chystáte se zablokovat {{gender:|sám|sama|sami}} sebe! Jste si {{gender:|jist|jista|jisti}}, že to chcete udělat?',
 'ipb-confirmhideuser'             => 'Chystáte se zablokovat uživatele se zapnutou volbou „skrýt uživatelské jméno“. To způsobí, že jméno uživatele zmizí ze všech seznamů a protokolovacích záznamů. Jste si {{gender:|jist|jista|jisti}}, že to chcete udělat?',
@@ -2648,7 +2652,9 @@ Zde je pro přehled zobrazen výpis z knihy zablokování:',
 'blocklog-showsuppresslog'        => 'Tento uživatel byl zablokován a skryt. Zde je pro přehled zobrazen výpis záznamu utajení:',
 'blocklogentry'                   => 'blokuje „[[$1]]“ s časem vypršení $2 $3',
 'reblock-logentry'                => 'mění nastavení bloku „[[$1]]“ s časem vypršení $2 $3',
-'blocklogtext'                    => 'Toto je kniha úkonů blokování a odblokování uživatelů. Automaticky blokované IP adresy nejsou vypsány. Podívejte se na [[Special:BlockList|seznam blokování IP]] s výčtem aktuálních zákazů a blokování.',
+'blocklogtext'                    => 'Toto je kniha úkonů blokování a odblokování uživatelů.
+Automaticky blokované IP adresy nejsou vypsány.
+Vizte též [[Special:BlockList|seznam všech probíhajících bloků]].',
 'unblocklogentry'                 => 'odblokovává „$1“',
 'block-log-flags-anononly'        => 'pouze anonymní uživatelé',
 'block-log-flags-nocreate'        => 'vytváření účtů zablokováno',
@@ -2893,7 +2899,7 @@ Uložte jej na svůj disk a nahrajte ho sem.',
 
 # JavaScriptTest
 'javascripttest'                           => 'Testování JavaScriptu',
-'javascripttest-disabled'                  => 'Tato funkce je vypnuta.',
+'javascripttest-disabled'                  => 'Tato funkce nebyla na této wiki povolena.',
 'javascripttest-title'                     => 'Spouštějí se testy v $1',
 'javascripttest-pagetext-noframework'      => 'Tato stránka je vyhrazena pro spouštění testů JavaScriptu.',
 'javascripttest-pagetext-unknownframework' => 'Neznámá testovací knihovna „$1“.',
@@ -2972,30 +2978,39 @@ Uložte jej na svůj disk a nahrajte ho sem.',
 'tooltip-summary'                     => 'Zadejte stručné shrnutí',
 
 # Stylesheets
-'common.css'      => '/* Zde uvedené CSS bude ovlivňovat všechny styly */',
-'standard.css'    => '/* Zde uvedené CSS bude ovlivňovat pouze styl „Klasický“  */',
-'nostalgia.css'   => '/* Zde uvedené CSS bude ovlivňovat pouze styl „Nostalgie“  */',
-'cologneblue.css' => '/* Zde uvedené CSS bude ovlivňovat pouze styl „Kolínská modř“  */',
-'monobook.css'    => '/* Zde uvedené CSS bude ovlivňovat pouze styl „Monobook“ */',
-'myskin.css'      => '/* Zde uvedené CSS bude ovlivňovat pouze styl „Můj vzhled“ */',
-'chick.css'       => '/* Zde uvedené CSS bude ovlivňovat pouze styl „Kuře“ */',
-'simple.css'      => '/* Zde uvedené CSS bude ovlivňovat pouze styl „Jednoduchý“ */',
-'modern.css'      => '/* Zde uvedené CSS bude ovlivňovat pouze styl „Moderní“ */',
-'vector.css'      => '/* Zde uvedené CSS bude ovlivňovat pouze styl „Vektor“ */',
-'print.css'       => '/* Zde uvedené CSS bude ovlivňovat tiskový výstup */',
-'handheld.css'    => '/* Zde uvedené CSS bude ovlivňovat přenosná zařízení vycházející ze stylu nastaveného v proměnné $wgHandheldStyle */',
+'common.css'              => '/* Zde uvedené CSS bude ovlivňovat všechny styly */',
+'standard.css'            => '/* Zde uvedené CSS bude ovlivňovat pouze styl „Klasický“  */',
+'nostalgia.css'           => '/* Zde uvedené CSS bude ovlivňovat pouze styl „Nostalgie“  */',
+'cologneblue.css'         => '/* Zde uvedené CSS bude ovlivňovat pouze styl „Kolínská modř“  */',
+'monobook.css'            => '/* Zde uvedené CSS bude ovlivňovat pouze styl „Monobook“ */',
+'myskin.css'              => '/* Zde uvedené CSS bude ovlivňovat pouze styl „Můj vzhled“ */',
+'chick.css'               => '/* Zde uvedené CSS bude ovlivňovat pouze styl „Kuře“ */',
+'simple.css'              => '/* Zde uvedené CSS bude ovlivňovat pouze styl „Jednoduchý“ */',
+'modern.css'              => '/* Zde uvedené CSS bude ovlivňovat pouze styl „Moderní“ */',
+'vector.css'              => '/* Zde uvedené CSS bude ovlivňovat pouze styl „Vektor“ */',
+'print.css'               => '/* Zde uvedené CSS bude ovlivňovat tiskový výstup */',
+'handheld.css'            => '/* Zde uvedené CSS bude ovlivňovat přenosná zařízení vycházející ze stylu nastaveného v proměnné $wgHandheldStyle */',
+'noscript.css'            => '/* Zde uvedené CSS bude ovlivňovat uživatele s vypnutým JavaScriptem */',
+'group-autoconfirmed.css' => '/* Zde uvedené CSS bude ovlivňovat pouze automaticky schválené uživatele */',
+'group-bot.css'           => '/* Zde uvedené CSS bude ovlivňovat pouze boty */',
+'group-sysop.css'         => '/* Zde uvedené CSS bude ovlivňovat pouze správce */',
+'group-bureaucrat.css'    => '/* Zde uvedené CSS bude ovlivňovat pouze byrokraty */',
 
 # Scripts
-'common.js'      => '/* Zde uvedený JavaScript bude použit pro všechny uživatele při načtení každé stránky.  */',
-'standard.js'    => '/* JavaScript pro uživatele používající vzhled „Klasický“ */',
-'nostalgia.js'   => '/* JavaScript pro uživatele používající vzhled „Nostalgie“  */',
-'cologneblue.js' => '/* JavaScript pro uživatele používající vzhled „Kolínská modř“  */',
-'monobook.js'    => '/* JavaScript pro uživatele používající vzhled MonoBook */',
-'myskin.js'      => '/* JavaScript pro uživatele používající vzhled „Můj vzhled“ */',
-'chick.js'       => '/* JavaScript pro uživatele používající vzhled „Kuře“ */',
-'simple.js'      => '/* JavaScript pro uživatele používající vzhled „Jednoduchý“ */',
-'modern.js'      => '/* JavaScript pro uživatele používající vzhled „Moderní“ */',
-'vector.js'      => '/* JavaScript pro uživatele používající vzhled „Vektor“ */',
+'common.js'              => '/* Zde uvedený JavaScript bude použit pro všechny uživatele při načtení každé stránky.  */',
+'standard.js'            => '/* JavaScript pro uživatele používající vzhled „Klasický“ */',
+'nostalgia.js'           => '/* JavaScript pro uživatele používající vzhled „Nostalgie“  */',
+'cologneblue.js'         => '/* JavaScript pro uživatele používající vzhled „Kolínská modř“  */',
+'monobook.js'            => '/* JavaScript pro uživatele používající vzhled MonoBook */',
+'myskin.js'              => '/* JavaScript pro uživatele používající vzhled „Můj vzhled“ */',
+'chick.js'               => '/* JavaScript pro uživatele používající vzhled „Kuře“ */',
+'simple.js'              => '/* JavaScript pro uživatele používající vzhled „Jednoduchý“ */',
+'modern.js'              => '/* JavaScript pro uživatele používající vzhled „Moderní“ */',
+'vector.js'              => '/* JavaScript pro uživatele používající vzhled „Vektor“ */',
+'group-autoconfirmed.js' => '/* Zde uvedený JavaScript bude použit pouze pro automaticky schválené uživatele */',
+'group-bot.js'           => '/* Zde uvedený JavaScript bude použit pouze pro boty */',
+'group-sysop.js'         => '/* Zde uvedený JavaScript bude použit pouze pro správce */',
+'group-bureaucrat.js'    => '/* Zde uvedený JavaScript bude použit pouze pro byrokraty */',
 
 # Metadata
 'notacceptable' => 'Tento wiki server není schopen poskytnout data ve formátu, který by váš klient byl schopen přečíst.',
@@ -3628,8 +3643,9 @@ Opravdu si přejete znovu tuto stránku založit?',
 'confirm-unwatch-top'    => 'Vyjmout tuto stránku ze sledovaných?',
 
 # Separators for various lists, etc.
-'ellipsis' => '…',
-'percent'  => '$1&nbsp;%',
+'autocomment-prefix' => '–&#32;',
+'ellipsis'           => '…',
+'percent'            => '$1&nbsp;%',
 
 # Multipage image navigation
 'imgmultipageprev' => '← předchozí stránka',
@@ -3656,7 +3672,7 @@ Opravdu si přejete znovu tuto stránku založit?',
 'autosumm-new'     => 'Založena nová stránka: $1',
 
 # Size units
-'size-kilobytes' => '$1 kB',
+'size-kilobytes' => '$1 KB',
 
 # Live preview
 'livepreview-loading' => 'Nahrávám…',

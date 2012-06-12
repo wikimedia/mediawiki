@@ -1,5 +1,5 @@
 <?php
-/** Latvian (Latviešu)
+/** Latvian (latviešu)
  *
  * See MessagesQqq.php for message documentation incl. usage of parameters
  * To improve a translation please visit http://translatewiki.net
@@ -668,7 +668,7 @@ Pēdējais bloķēšanas reģistra ieraksts ir apskatāms zemāk:',
 '''Tas vēl nav saglabāts!'''",
 'updated'                          => '(Atjaunots)',
 'note'                             => "'''Piezīme: '''",
-'previewnote'                      => "'''Atceries, ka šis ir tikai pirmskats un vēl nav saglabāts!'''",
+'previewnote'                      => "'''Atceries, ka šis ir tikai pirmskats un teksts vēl nav saglabāts!'''",
 'session_fail_preview'             => "'''Neizdevās apstrādāt tavas izmaiņas, jo tika pazaudēti sesijas dati.
 Lūdzu mēģini vēlreiz.
 Ja tas joprojām nedarbojas, mēģini [[Special:UserLogout|izlogoties ārā]] un ielogoties no jauna.'''",
@@ -1111,10 +1111,10 @@ Ja tu izvēlies to norādīt, tas tiks izmantots, lai identificētu tavu darbu (
 'group-all'           => '(visi)',
 
 'group-user-member'          => '{{GENDER:$1|lietotājs}}',
-'group-autoconfirmed-member' => 'automātiski apstiprinātais lietotājs',
-'group-bot-member'           => 'Bots',
-'group-sysop-member'         => 'Administrators',
-'group-bureaucrat-member'    => 'Birokrāts',
+'group-autoconfirmed-member' => '{{GENDER:$1|automātiski apstiprināts lietotājs|automātiski apstiprināta lietotāja}}',
+'group-bot-member'           => '{{GENDER:$1|bots}}',
+'group-sysop-member'         => '{{GENDER:$1|administrators|administratore}}',
+'group-bureaucrat-member'    => '{{GENDER:$1|birokrāts|birokrāte}}',
 'group-suppress-member'      => 'novērotājs',
 
 'grouppage-user'          => '{{ns:project}}:Lietotāji',
@@ -1222,7 +1222,7 @@ Ja tu izvēlies to norādīt, tas tiks izmantots, lai identificētu tavu darbu (
 'nchanges'                          => '$1 {{PLURAL:$1|izmaiņa|izmaiņas}}',
 'recentchanges'                     => 'Pēdējās izmaiņas',
 'recentchanges-legend'              => 'Pēdējo izmaiņu iespējas',
-'recentchangestext'                 => 'Šajā lapā ir šitajā viki izdarītās pēdējās izmaiņas.',
+'recentchangestext'                 => 'Šajā lapā ir uzskaitītas pēdējās izdarītās izmaiņas.',
 'recentchanges-feed-description'    => 'Sekojiet līdzi jaunākajām izmaiņām vikijā izmantojot šo barotni.',
 'recentchanges-label-newpage'       => 'Šī ir jaunizveidota lapa',
 'recentchanges-label-minor'         => 'Šī ir maznozīmīga izmaiņa',
@@ -1635,7 +1635,7 @@ Katrā rindiņā ir saites uz pirmo un otro pāradresācijas lapu, kā arī pirm
 'listusers-editsonly'     => 'Rādīt tikai lietotājus, kas ir izdarījuši kādas izmaiņas',
 'listusers-creationsort'  => 'Kārtot pēc izveidošanas datuma',
 'usereditcount'           => '$1 {{PLURAL:$1|izmaiņa|izmaiņas}}',
-'usercreated'             => 'Izveidots $1, $2',
+'usercreated'             => '{{GENDER:$3|Izveidoja}} $1 plkst. $2',
 'newpages'                => 'Jaunas lapas',
 'newpages-username'       => 'Lietotājs:',
 'ancientpages'            => 'Vecākās lapas',
@@ -1700,6 +1700,7 @@ Skatīt arī [[Special:WantedCategories|''sarkanās'' kategorijas]].",
 'linksearch-ns'   => 'Vārdtelpas:',
 'linksearch-ok'   => 'Meklēt',
 'linksearch-text' => 'Atbalstītie protokoli: <tt>$1</tt>',
+'linksearch-line' => '$1 ir izveidota saite no $2',
 
 # Special:ListUsers
 'listusersfrom'      => 'Parādīt lietotājus sākot ar:',
@@ -1910,7 +1911,7 @@ Pašreizējie lapas '''$1''' iestatījumi ir:",
 'protect-default'             => 'Atļaut visiem lietotājiem',
 'protect-fallback'            => 'Nepieciešama atļauja "$1"',
 'protect-level-autoconfirmed' => 'Bloķēt jauniem un nereģistrētiem lietotājiem',
-'protect-level-sysop'         => 'Tikai adminiem',
+'protect-level-sysop'         => 'Tikai administratoriem',
 'protect-summary-cascade'     => 'kaskāde',
 'protect-expiring'            => 'līdz $1 (UTC)',
 'protect-expiring-local'      => 'beidzas $1',

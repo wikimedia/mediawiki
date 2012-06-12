@@ -1,5 +1,5 @@
 <?php
-/** Serbian (Latin script) (‪Srpski (latinica)‬)
+/** Serbian (Latin script) (‪srpski (latinica)‬)
  *
  * See MessagesQqq.php for message documentation incl. usage of parameters
  * To improve a translation please visit http://translatewiki.net
@@ -996,8 +996,8 @@ Izveštaj o poslednjem blokiranju možete pogledati ispod:',
 Prilagođene stranice CSS i javaskript počinju malim slovom, npr. {{ns:user}}:Foo/vector.css, a ne {{ns:user}}:Foo/Vector.css.",
 'updated'                          => '(Ažurirano)',
 'note'                             => "'''Napomena:'''",
-'previewnote'                      => "'''Ovo je samo pregled.'''
-Stranica još nije sačuvana!",
+'previewnote'                      => "'''Imajte u vidu da je ovo samo pregled.'''
+Vaše izmene još nisu sačuvane!",
 'previewconflict'                  => 'Ovaj pregled oslikava kako će tekst u tekstualnom okviru izgledati.',
 'session_fail_preview'             => "'''Nismo mogli da obradimo vašu izmenu zbog gubitka podataka sesije.'''
 Pokušajte ponovo.
@@ -1239,7 +1239,7 @@ Pogledajte istoriju.',
 
 # Suppression log
 'suppressionlog'     => 'Istorija sakrivanja',
-'suppressionlogtext' => 'Ispod se nalazi spisak brisanja i blokiranja koji uključuje sadržaj sakriven od administratora. Pogledajte [[Special:BlockList|spisak blokiranih IP adresa]] za pregled važećih zabrana i blokiranja.',
+'suppressionlogtext' => 'Ispod se nalazi spisak brisanja i blokiranja koji uključuje sadržaj sakriven od administratora. Tekuće zabrane i blokiranja možete naći [[Special:BlockList|ovde]].',
 
 # History merging
 'mergehistory'                     => 'Spoji istorije stranica',
@@ -1671,6 +1671,7 @@ Ako izaberete da ga unesete, ono će biti korišćeno za pripisivanje vašeg rad
 'newsectionsummary'                 => '/* $1 */ novi odeljak',
 'rc-enhanced-expand'                => 'Prikaži detalje (javaskript)',
 'rc-enhanced-hide'                  => 'Sakrij detalje',
+'rc-old-title'                      => 'prvobitno napravljeno kao „$1“',
 
 # Recent changes linked
 'recentchangeslinked'          => 'Srodne izmene',
@@ -2397,7 +2398,7 @@ Potvrdite svoju nameru, da razumete posledice i da ovo radite u skladu s [[{{Med
 Pogledajte ''$2'' za više detalja.",
 'dellogpage'             => 'Dnevnik brisanja',
 'dellogpagetext'         => 'Ispod je spisak poslednjih brisanja.',
-'deletionlog'            => 'istorija brisanja',
+'deletionlog'            => 'Dnevnik brisanja',
 'reverted'               => 'Vraćeno na raniju izmenu',
 'deletecomment'          => 'Razlog:',
 'deleteotherreason'      => 'Drugi/dodatni razlog:',
@@ -2612,7 +2613,7 @@ Izveštaj o blokiranim korisnicima se nalazi ispod:',
 # Block/unblock
 'autoblockid'                     => 'Samoblokiranje #$1',
 'block'                           => 'Blokiraj korisnika',
-'unblock'                         => 'Deblokiraj korisnika',
+'unblock'                         => 'Odblokiraj korisnika',
 'blockip'                         => 'Blokiraj korisnika',
 'blockip-title'                   => 'Blokiranje korisnika',
 'blockip-legend'                  => 'Blokiraj korisnika',
@@ -2633,7 +2634,7 @@ Izaberite konkretan razlog ispod (primer: navođenje konkretnih stranica koje su
 ** Neprihvatljivo korisničko ime',
 'ipb-hardblock'                   => 'Zabrani prijavljenim korisnicima da uređuju s ove IP adrese',
 'ipbcreateaccount'                => 'Onemogući otvaranje naloga',
-'ipbemailban'                     => 'Zabrani članu slanje e-poruka',
+'ipbemailban'                     => 'Zabrani korisniku slanje e-poruka',
 'ipbenableautoblock'              => 'Automatski blokiraj poslednju IP adresu ovog korisnika i sve daljnje adrese s kojih pokuša da uređuje',
 'ipbsubmit'                       => 'Blokiraj ovog korisnika',
 'ipbother'                        => 'Drugo vreme:',
@@ -2648,15 +2649,15 @@ Izaberite konkretan razlog ispod (primer: navođenje konkretnih stranica koje su
 'badipaddress'                    => 'Neispravna IP adresa',
 'blockipsuccesssub'               => 'Blokiranje je uspelo',
 'blockipsuccesstext'              => '[[Special:Contributions/$1|$1]] je {{GENDER:$1|blokiran|blokirana|blokiran}}.<br />
-Pogledajte [[Special:BlockList|spisak blokiranih IP adresa]] za pregled blokiranja.',
+Blokiranja možete da pogledate [[Special:BlockList|ovde]].',
 'ipb-blockingself'                => 'Ovom radnjom ćete blokirati sebe! Jeste li sigurni da to želite?',
 'ipb-confirmhideuser'             => 'Upravo ćete blokirati korisnika s uključenom mogućnošću „sakrij korisnika“. Ovim će korisničko ime biti sakriveno u svim spiskovima i izveštajima. Želite li to da uradite?',
 'ipb-edit-dropdown'               => 'Uredi razloge blokiranja',
-'ipb-unblock-addr'                => 'Deblokiraj $1',
-'ipb-unblock'                     => 'Deblokiraj korisničko ime ili IP adresu',
+'ipb-unblock-addr'                => 'Odblokiraj $1',
+'ipb-unblock'                     => 'Odblokiraj korisničko ime ili IP adresu',
 'ipb-blocklist'                   => 'Pogledaj postojeća blokiranja',
 'ipb-blocklist-contribs'          => 'Doprinosi za $1',
-'unblockip'                       => 'Deblokiraj korisnika',
+'unblockip'                       => 'Odblokiraj korisnika',
 'unblockiptext'                   => 'Koristite obrazac ispod da biste vratili pravo pisanja blokiranoj IP adresi ili korisničkom imenu.',
 'ipusubmit'                       => 'Ukloni ovu blokadu',
 'unblocked'                       => '[[User:$1|$1]] je deblokiran',
@@ -2688,7 +2689,7 @@ Pogledajte [[Special:BlockList|spisak blokiranih IP adresa]] za pregled blokiran
 'ipblocklist-empty'               => 'Spisak blokiranja je prazan.',
 'ipblocklist-no-results'          => 'Tražena IP adresa ili korisničko ime nije blokirano.',
 'blocklink'                       => 'blokiraj',
-'unblocklink'                     => 'deblokiraj',
+'unblocklink'                     => 'odblokiraj',
 'change-blocklink'                => 'promeni blokiranje',
 'contribslink'                    => 'doprinosi',
 'emaillink'                       => 'pošalji e-poruku',
@@ -2703,8 +2704,8 @@ Istorija sakrivanja se nalazi ispod:',
 'reblock-logentry'                => '{{GENDER:|je promenio|je promenila|je promenio}} podešavanja za blokiranje {{GENDER:$1|korisnika|korisnice|korisnika}} [[$1]] s rokom isteka od $2 ($3)',
 'blocklogtext'                    => 'Ovo je dnevnik blokiranja i deblokiranja korisnika.
 Automatski blokirane IP adrese nisu navedene.
-Pogledajte [[Special:BlockList|spisak blokiranih IP adresa]].',
-'unblocklogentry'                 => '{{GENDER:|je deblokirao|je deblokirala|je deblokirao}} „$1“',
+Tekuće zabrane i blokiranja možete naći [[Special:BlockList|ovde]].',
+'unblocklogentry'                 => '{{GENDER:|je odblokirao|je odblokirala|je odblokirao}} „$1“',
 'block-log-flags-anononly'        => 'samo anonimni korisnici',
 'block-log-flags-nocreate'        => 'onemogućeno otvaranje naloga',
 'block-log-flags-noautoblock'     => 'automatsko blokiranje je onemogućeno',
@@ -2969,7 +2970,7 @@ Pokušajte ponovo.',
 
 # JavaScriptTest
 'javascripttest'                           => 'Javaskript test',
-'javascripttest-disabled'                  => 'Ova funkcija je onemogućena.',
+'javascripttest-disabled'                  => 'Ova funkcija nije omogućena na ovom vikiju.',
 'javascripttest-title'                     => 'Izvršavanje testova za $1',
 'javascripttest-pagetext-noframework'      => 'Ova stranica je rezervisana za izvršavanje javaskript testova.',
 'javascripttest-pagetext-unknownframework' => 'Nepoznati radni okvir „$1“.',

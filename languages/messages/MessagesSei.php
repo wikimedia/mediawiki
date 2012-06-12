@@ -308,7 +308,9 @@ Query: $2',
 'protectedpagetext'    => 'Jan páhina coccebj lockom neticpatlöx pos-poop.',
 'viewsourcetext'       => 'Mecohuatlöx ö copynom sourcenam zode jan páhina:',
 'protectedinterface'   => "Jan páhina coccebj textuade interface software zo 'de ö coccebj lockom neticpatlöx abusenam.",
-'editinginterface'     => "'''Attencion:''' Meticpatlöx páhinám pac, jan usadadde textuade interface software zo 'de. Quiíxde jan páhinám affectom caitominterface zode diijömde caitóm.",
+'editinginterface'     => "'''Warning:''' You are editing a page which is used to provide interface text for the software.
+Changes to this page will affect the appearance of the user interface for other users.
+For translations, please consider using [//translatewiki.net/wiki/Main_Page?setlang=en translatewiki.net], the MediaWiki localisation project.",
 'sqlhidden'            => '(SQL querynam cíiitámöx)',
 'cascadeprotected'     => 'Jan páhina coccebj protectöxde ticpatlöx, zo coccebj cascadande jan {{PLURAL:$1|páhina|páhinám}}, jan coccebj protëctox cascadanöx opcion zo mii:
 $2',
