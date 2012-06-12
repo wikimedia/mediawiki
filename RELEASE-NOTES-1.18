@@ -3,9 +3,21 @@
 Security reminder: MediaWiki does not require PHP's register_globals
 setting since version 1.2.0. If you have it on, turn it '''off''' if you can.
 
-=== Changes since 1.18.2 ===
+== MediaWiki 1.18.4 ==
+2012-06-12
+
+This is a security release of the MediaWiki 1.18 branch.
+
+=== Changes since 1.18.3 ===
+* (bug 36938) Correctly escape uselang attribute to prevent xss
+* Expanded Blacklist for SVG Files
+
+== MediaWiki 1.18.3 ==
 2012-04-25
 
+This is a maintenance release of the MediaWiki 1.18 branch.
+
+=== Changes since 1.18.2 ===
 * (bug 35446) Using "{{nse:}}" with an invalid namespace name no longer throws
   a PHP warning.
 * (bug 35567) The whole password reminder e-mail is now sent in the same language.
