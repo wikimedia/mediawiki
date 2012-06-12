@@ -2,5 +2,5 @@
 host=gerrit.wikimedia.org
 port=29418
 project=mediawiki/core.git
-defaultbranch=wmf/1.20wmf5x
+defaultbranch=wmf/1.20wmf5
 defaultrebase=0
