@@ -46,8 +46,6 @@ abstract class SqlDataUpdate extends DataUpdate {
 			$this->mOptions = array( 'FOR UPDATE' );
 		}
 
-		// @todo: get connection only when it's needed? make sure that doesn't break anything, especially transactions!
-		$this->mDb = wfGetDB( DB_MASTER );
 		$this->mHasTransaction = false;
 	}
 
@@ -58,6 +56,8 @@ abstract class SqlDataUpdate extends DataUpdate {
 	 * checkes Database::trxLevel() and only opens a transaction if none is yet active.
 	 */
 	public function beginTransaction() {
+		$this->mDb = wfGetDB( DB_MASTER );
+
 		// NOTE: nested transactions are not supported, only start a transaction if none is open
 		if ( $this->mDb->trxLevel() === 0 ) {
 			$this->mDb->begin( get_class( $this ) . '::beginTransaction'  );
