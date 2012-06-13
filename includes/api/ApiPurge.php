@@ -86,15 +86,17 @@ class ApiPurge extends ApiBase {
 
 			if( $forceLinkUpdate ) {
 				if ( !$user->pingLimiter() ) {
-					global $wgParser, $wgEnableParserCache;
+					global $wgEnableParserCache;
 
 					$popts = ParserOptions::newFromContext( $this->getContext() );
 					$popts->setTidy( true );
-					$p_result = $wgParser->parse( $page->getRawText(), $title, $popts,
-						true, true, $page->getLatest() ); #FIXME: content!
+
+					# Parse content; note that HTML generation is only needed if we want to cache the result.
+					$content = $page->getContent( Revision::RAW );
+					$p_result = $content->getParserOutput( $title, $page->getLatest(), $popts, $wgEnableParserCache );
 
 					# Update the links tables
-					$updates = $p_result->getSecondaryDataUpdates( $title ); #FIXME: content handler
+					$updates = $content->getContentHandler()->getSecondaryDataUpdates( $content, $title, null, true, $p_result );
 					DataUpdate::runUpdates( $updates );
 
 					$r['linkupdate'] = '';
