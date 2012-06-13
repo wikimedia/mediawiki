@@ -68,6 +68,9 @@ $namespaceAliases = array(
 	'Diskussión_de_Kateggoría' => NS_CATEGORY_TALK,
 );
 
+// Remove Spanish gender aliases (bug 37090)
+$namespaceGenderAliases = array();
+
 $specialPageAliases = array(
 	'Activeusers'               => array( 'UsadoresAktivos' ),
 	'Allmessages'               => array( 'TodosLosMessajes' ),

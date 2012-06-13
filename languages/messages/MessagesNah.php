@@ -36,6 +36,9 @@ $namespaceNames = array(
 	NS_CATEGORY_TALK    => 'Neneuhcāyōtl_tēixnāmiquiliztli',
 );
 
+// Remove Spanish gender aliases (bug 37090)
+$namespaceGenderAliases = array();
+
 $namespaceAliases = array(
 	'Media'		=> NS_MEDIA,
 	'Especial'	=> NS_SPECIAL,
@@ -1038,7 +1041,7 @@ In āxcān tlachiyaliztli onca īpan $PAGETITLE_URL
 $NEWPAGE
 
 In tlapatlaliztli īxtlamatiliztli cah: $PAGESUMMARY $PAGEMINOREDIT
- 
+
 Xicnotzāz in tlapatlani:
 Correo electrónico: {{canonicalurl:Special:Emailuser|target=$PAGEEDITOR}}
 Huiqui: {{canonicalurl:User:$PAGEEDITOR}}
