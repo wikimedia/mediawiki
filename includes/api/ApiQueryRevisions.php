@@ -34,15 +34,15 @@
 class ApiQueryRevisions extends ApiQueryBase {
 
 	private $diffto, $difftotext, $expandTemplates, $generateXML, $section,
-		$token, $parseContent;
+		$token, $parseContent, $contentFormat;
 
 	public function __construct( $query, $moduleName ) {
 		parent::__construct( $query, $moduleName, 'rv' );
 	}
 
-	private $fld_ids = false, $fld_flags = false, $fld_timestamp = false, $fld_size = false,
+	private $fld_ids = false, $fld_flags = false, $fld_timestamp = false, $fld_size = false, $fld_sha1 = false,
 			$fld_comment = false, $fld_parsedcomment = false, $fld_user = false, $fld_userid = false,
-			$fld_content = false, $fld_tags = false;
+			$fld_content = false, $fld_tags = false, $fld_contentmodel = false;
 
 	private $tokenFunctions;
 
@@ -114,7 +114,7 @@ class ApiQueryRevisions extends ApiQueryBase {
 		}
 
 		if ( !is_null( $params['difftotext'] ) ) {
-			$this->difftotext = $params['difftotext']; #FIXME: handle non-text content!
+			$this->difftotext = $params['difftotext'];
 		} elseif ( !is_null( $params['diffto'] ) ) {
 			if ( $params['diffto'] == 'cur' ) {
 				$params['diffto'] = 0;
@@ -155,9 +155,20 @@ class ApiQueryRevisions extends ApiQueryBase {
 		$this->fld_parsedcomment = isset ( $prop['parsedcomment'] );
 		$this->fld_size = isset ( $prop['size'] );
 		$this->fld_sha1 = isset ( $prop['sha1'] );
+		$this->fld_contentmodel = isset ( $prop['contentmodel'] );
 		$this->fld_userid = isset( $prop['userid'] );
 		$this->fld_user = isset ( $prop['user'] );
 		$this->token = $params['token'];
+
+		if ( !empty( $params['contentformat'] ) ) {
+			$n = ContentHandler::getContentFormatID( $params['contentformat'] );
+
+			if ( is_int( $n ) ) {
+				$this->contentFormat = $n;
+			} else {
+				$this->dieUsage( "Unknown format " . $params['contentformat'], 'badformat' );
+			}
+		}
 
 		// Possible indexes used
 		$index = array();
@@ -431,6 +442,10 @@ class ApiQueryRevisions extends ApiQueryBase {
 			}
 		}
 
+		if ( $this->fld_contentmodel ) {
+			$vals['contentmodel'] = $revision->getContentModel();
+		}
+
 		if ( $this->fld_comment || $this->fld_parsedcomment ) {
 			if ( $revision->isDeleted( Revision::DELETED_COMMENT ) ) {
 				$vals['commenthidden'] = '';
@@ -469,39 +484,82 @@ class ApiQueryRevisions extends ApiQueryBase {
 			}
 		}
 
-		$text = null;
+		$content = null;
 		global $wgParser;
 		if ( $this->fld_content || !is_null( $this->difftotext ) ) {
-			$text = $revision->getText();
+			$content = $revision->getContent();
 			// Expand templates after getting section content because
 			// template-added sections don't count and Parser::preprocess()
 			// will have less input
 			if ( $this->section !== false ) {
-				$text = $wgParser->getSection( $text, $this->section, false );
-				if ( $text === false ) {
+				$content = $content->getSection( $this->section, false );
+				if ( !$content ) {
 					$this->dieUsage( "There is no section {$this->section} in r" . $revision->getId(), 'nosuchsection' );
 				}
 			}
 		}
 		if ( $this->fld_content && !$revision->isDeleted( Revision::DELETED_TEXT ) ) {
-			if ( $this->generateXML ) {
-				$wgParser->startExternalParse( $title, ParserOptions::newFromContext( $this->getContext() ), OT_PREPROCESS );
-				$dom = $wgParser->preprocessToDom( $text );
-				if ( is_callable( array( $dom, 'saveXML' ) ) ) {
-					$xml = $dom->saveXML();
-				} else {
-					$xml = $dom->__toString();
-				}
-				$vals['parsetree'] = $xml;
+			$text = null;
 
+			if ( $this->generateXML ) {
+				if ( $content->getModel() === CONTENT_MODEL_WIKITEXT ) {
+					$t = $content->getNativeData(); # note: don't set $text
+
+					$wgParser->startExternalParse( $title, ParserOptions::newFromContext( $this->getContext() ), OT_PREPROCESS );
+					$dom = $wgParser->preprocessToDom( $t );
+					if ( is_callable( array( $dom, 'saveXML' ) ) ) {
+						$xml = $dom->saveXML();
+					} else {
+						$xml = $dom->__toString();
+					}
+					$vals['parsetree'] = $xml;
+				} else {
+					$this->setWarning( "Conversion to XML is supported for wikitext only, " .
+										$title->getPrefixedDBkey() .
+										" uses content model #" . $content->getModel() .
+										" (" . ContentHandler::getContentModelName( $content->getModel() ). ")" );
+				}
 			}
+
 			if ( $this->expandTemplates && !$this->parseContent ) {
-				$text = $wgParser->preprocess( $text, $title, ParserOptions::newFromContext( $this->getContext() ) );
+				#XXX: implement template expansion for all content types in ContentHandler?
+				if ( $content->getModel() === CONTENT_MODEL_WIKITEXT ) {
+					$text = $content->getNativeData();
+
+					$text = $wgParser->preprocess( $text, $title, ParserOptions::newFromContext( $this->getContext() ) );
+				} else {
+					$this->setWarning( "Template expansion is supported for wikitext only, " .
+						$title->getPrefixedDBkey() .
+						" uses content model #" . $content->getModel() .
+						" (" . ContentHandler::getContentModelName( $content->getModel() ). ")" );
+
+					$text = false;
+				}
 			}
 			if ( $this->parseContent ) {
-				$text = $wgParser->parse( $text, $title, ParserOptions::newFromContext( $this->getContext() ) )->getText();
+				$po = $content->getParserOutput( $title, ParserOptions::newFromContext( $this->getContext() ) );
+				$text = $po->getText();
 			}
-			ApiResult::setContent( $vals, $text );
+
+			if ( $text === null ) {
+				$format = $this->contentFormat ? $this->contentFormat : $content->getDefaultFormat();
+
+				if ( !$content->isSupportedFormat( $format ) ) {
+					$model = $content->getModel();
+					$formatName = ContentHandler::getContentFormatMimeType( $format );
+					$modelName = ContentHandler::getContentModelName( $model );
+					$name = $title->getPrefixedDBkey();
+
+					$this->dieUsage( "The requested format #{$this->contentFormat} ($formatName) is not supported for content model #$model ($modelName) used by $name", 'badformat' );
+				}
+
+				$text = $content->serialize( $format );
+				$vals['textformat'] = ContentHandler::getContentFormatMimeType( $format );
+			}
+
+			if ( $text !== false ) {
+				ApiResult::setContent( $vals, $text );
+			}
 		} elseif ( $this->fld_content ) {
 			$vals['texthidden'] = '';
 		}
@@ -513,11 +571,23 @@ class ApiQueryRevisions extends ApiQueryBase {
 				$vals['diff'] = array();
 				$context = new DerivativeContext( $this->getContext() );
 				$context->setTitle( $title );
-                $handler = ContentHandler::getForTitle( $title );
+				$handler = ContentHandler::getForTitle( $title );
 
 				if ( !is_null( $this->difftotext ) ) {
+					$model = $title->getContentModel();
+
+					if ( $this->contentFormat && !ContentHandler::getForModelID( $model )->isSupportedFormat( $this->contentFormat ) ) {
+						$formatName = ContentHandler::getContentFormatMimeType( $this->contentFormat );
+						$modelName = ContentHandler::getContentModelName( $model );
+						$name = $title->getPrefixedDBkey();
+
+						$this->dieUsage( "The requested format #{$this->contentFormat} ($formatName) is not supported for content model #$model ($modelName) used by $name", 'badformat' );
+					}
+
+					$difftocontent = ContentHandler::makeContent( $this->difftotext, $title, $model, $this->contentFormat );
+
 					$engine = $handler->createDifferenceEngine( $context );
-					$engine->setText( $text, $this->difftotext ); #FIXME: use content objects!...
+					$engine->setContent( $content, $difftocontent );
 				} else {
 					$engine = $handler->createDifferenceEngine( $context, $revision->getID(), $this->diffto );
 					$vals['diff']['from'] = $engine->getOldid();
@@ -559,6 +629,7 @@ class ApiQueryRevisions extends ApiQueryBase {
 					'userid',
 					'size',
 					'sha1',
+					'contentmodel',
 					'comment',
 					'parsedcomment',
 					'content',
@@ -608,6 +679,10 @@ class ApiQueryRevisions extends ApiQueryBase {
 			'continue' => null,
 			'diffto' => null,
 			'difftotext' => null,
+			'contentformat' => array(
+				ApiBase::PARAM_TYPE => array_values( $GLOBALS[ 'wgContentFormatMimeTypes' ] ),
+				ApiBase::PARAM_DFLT => null
+			),
 		);
 	}
 
@@ -623,6 +698,7 @@ class ApiQueryRevisions extends ApiQueryBase {
 				' userid         - User id of revision creator',
 				' size           - Length (bytes) of the revision',
 				' sha1           - SHA-1 (base 16) of the revision',
+				' contentmodel   - Content model id',
 				' comment        - Comment by the user for revision',
 				' parsedcomment  - Parsed comment by the user for the revision',
 				' content        - Text of the revision',
@@ -647,6 +723,7 @@ class ApiQueryRevisions extends ApiQueryBase {
 			'difftotext' => array( 'Text to diff each revision to. Only diffs a limited number of revisions.',
 				"Overrides {$p}diffto. If {$p}section is set, only that section will be diffed against this text" ),
 			'tag' => 'Only list revisions tagged with this tag',
+			'contentformat' => 'Serialization format used for difftotext and expected for output of content',
 		);
 	}
 
@@ -671,6 +748,7 @@ class ApiQueryRevisions extends ApiQueryBase {
 			array( 'code' => 'badparams', 'info' => 'end and endid cannot be used together' ),
 			array( 'code' => 'badparams', 'info' => 'user and excludeuser cannot be used together' ),
 			array( 'code' => 'nosuchsection', 'info' => 'There is no section section in rID' ),
+			array( 'code' => 'badformat', 'info' => 'The requested serialization format can not be applied to the page\'s content model' ),
 		) );
 	}
 
