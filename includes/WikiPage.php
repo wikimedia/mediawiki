@@ -243,11 +243,20 @@ class WikiPage extends Page {
 
 	/**
 	 * Clear the object
+	 * @return void
 	 */
 	public function clear() {
 		$this->mDataLoaded = false;
 		$this->mDataLoadedFrom = self::DATA_NOT_LOADED;
 
+		$this->clearCacheFields();
+	}
+
+	/**
+	 * Clear the object cache fields
+	 * @return void
+	 */
+	protected function clearCacheFields() {
 		$this->mCounter = null;
 		$this->mRedirectTarget = null; # Title object if set
 		$this->mLastRevision = null; # Latest revision
@@ -396,10 +405,18 @@ class WikiPage extends Page {
 			$this->mTouched     = wfTimestamp( TS_MW, $data->page_touched );
 			$this->mIsRedirect  = intval( $data->page_is_redirect );
 			$this->mLatest      = intval( $data->page_latest );
+			// Bug 37225: $latest may no longer match the cached latest Revision object.
+			// Double-check the ID of any cached latest Revision object for consistency.
+			if ( $this->mLastRevision && $this->mLastRevision->getId() != $this->mLatest ) {
+				$this->mLastRevision = null;
+				$this->mTimestamp = '';
+			}
 		} else {
 			$lc->addBadLinkObj( $this->mTitle );
 
 			$this->mTitle->loadFromRow( false );
+
+			$this->clearCacheFields();
 		}
 
 		$this->mDataLoaded = true;
@@ -611,7 +628,7 @@ class WikiPage extends Page {
 		if ( !$this->mTimestamp ) {
 			$this->loadLastEdit();
 		}
-		
+
 		return wfTimestamp( TS_MW, $this->mTimestamp );
 	}
 
@@ -2280,7 +2297,7 @@ class WikiPage extends Page {
 	 * roll back to, e.g. user is the sole contributor. This function
 	 * performs permissions checks on $user, then calls commitRollback()
 	 * to do the dirty work
-	 * 
+	 *
 	 * @todo: seperate the business/permission stuff out from backend code
 	 *
 	 * @param $fromP String: Name of the user whose edits to rollback.
