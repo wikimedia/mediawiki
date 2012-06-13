@@ -677,6 +677,10 @@ $output: OutputPage object in use
 'CategoryPageView': before viewing a categorypage in CategoryPage::view
 $catpage: CategoryPage instance
 
+'ChangePasswordForm': For extensions that need to add a field to the ChangePassword form
+via the Preferences form
+&$extraFields: An array of arrays that hold fields like would be passed to the pretty function.
+
 'ChangesListInsertArticleLink': Override or augment link to article in RC list.
 &$changesList: ChangesList instance.
 &$articlelink: HTML of link to article (already filled-in).
