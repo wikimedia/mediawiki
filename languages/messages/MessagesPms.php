@@ -2599,7 +2599,7 @@ Për piasì, ch'a vìsita la [//www.mediawiki.org/wiki/Localisation Localisassio
 'allmessages-filter-submit' => 'Apliché',
 
 # Thumbnails
-'thumbnail-more' => 'Slarga',
+'thumbnail-more' => 'Slarghé',
 'filemissing' => 'Archivi che a manca',
 'thumbnail_error' => 'Eror antramentr che as fasìa la figurin-a: $1',
 'djvu_page_error' => 'Pàgina DjVu fòra dij lìmit',
@@ -2609,15 +2609,15 @@ Për piasì, ch'a vìsita la [//www.mediawiki.org/wiki/Localisation Localisassio
 'thumbnail_invalid_params' => 'Paràmetro dla figurin-a pa giust',
 'thumbnail_dest_directory' => 'As peul pa fesse ël dossié ëd destinassion',
 'thumbnail_image-type' => 'Sòrt ëd figura nen gestì',
-'thumbnail_gd-library' => 'Configurassion pa finìa dla librerìa GD: Fonsion $1 mancanta',
-'thumbnail_image-missing' => 'Ël file a smija esse mancant: $1',
+'thumbnail_gd-library' => 'Configurassion incompleta dla biblioteca GD: Fonsion $1 mancanta',
+'thumbnail_image-missing' => "L'archivi a smija ch'a manca: $1",
 
 # Special:Import
 'import' => 'Amportassion ëd pàgine',
 'importinterwiki' => 'Amportassion da wiki diferente',
 'import-interwiki-text' => "Che a selession-a na wiki e ël tìtol dla pàgina da amporté.
-Date dle revision e stranòm dj'editor a resteran piajit sù 'cò lor.
-Tute le amportassion antra wiki diferente a resto marcà ant ël [[Special:Log/import|Registr dj'amportassion]].",
+Date dle revision e stranòm dj'editor a resteran piàjit sù 'cò lor.
+Tute j'amportassion antra wiki diferente a resto marcà ant ël [[Special:Log/import|Registr dj'amportassion]].",
 'import-interwiki-source' => 'Sorziss wiki/pàgina:',
 'import-interwiki-history' => 'Còpia tute le version stòriche dë sta pàgina-sì',
 'import-interwiki-templates' => 'Ansëriss tùit jë stamp',
