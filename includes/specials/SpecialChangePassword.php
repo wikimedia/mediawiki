@@ -136,6 +136,15 @@ class SpecialChangePassword extends UnlistedSpecialPage {
 			$oldpassMsg = 'oldpassword';
 			$submitMsg = 'resetpass-submit-loggedin';
 		}
+		$extraFields = array();
+		wfRunHooks( 'ChangePasswordForm', array( &$extraFields ) );
+		$prettyFields = array(
+					array( 'wpName', 'username', 'text', $this->mUserName ),
+					array( 'wpPassword', $oldpassMsg, 'password', $this->mOldpass ),
+					array( 'wpNewPassword', 'newpassword', 'password', null ),
+					array( 'wpRetype', 'retypenew', 'password', null ),
+				);
+		$prettyFields = array_merge( $prettyFields, $extraFields );
 		$this->getOutput()->addHTML(
 			Xml::fieldset( $this->msg( 'resetpass_header' )->text() ) .
 			Xml::openElement( 'form',
@@ -149,12 +158,7 @@ class SpecialChangePassword extends UnlistedSpecialPage {
 			Html::hidden( 'returnto', $this->getRequest()->getVal( 'returnto' ) ) . "\n" .
 			$this->msg( 'resetpass_text' )->parseAsBlock() . "\n" .
 			Xml::openElement( 'table', array( 'id' => 'mw-resetpass-table' ) ) . "\n" .
-			$this->pretty( array(
-				array( 'wpName', 'username', 'text', $this->mUserName ),
-				array( 'wpPassword', $oldpassMsg, 'password', $this->mOldpass ),
-				array( 'wpNewPassword', 'newpassword', 'password', null ),
-				array( 'wpRetype', 'retypenew', 'password', null ),
-			) ) . "\n" .
+			$this->pretty( $prettyFields ) . "\n" .
 			$rememberMe .
 			"<tr>\n" .
 				"<td></td>\n" .
