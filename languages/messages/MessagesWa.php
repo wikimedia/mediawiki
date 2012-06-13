@@ -279,7 +279,7 @@ $messages = array(
 'otherlanguages' => 'Ôtes lingaedjes',
 'redirectedfrom' => '(Redjiblé di $1)',
 'redirectpagesub' => 'Pådje di redjiblaedje',
-'lastmodifiedat' => 'Cisse pådje a stî candjeye pol dierin côp li $2, $1.',
+'lastmodifiedat' => 'Cisse pådje a stî candjeye pol dierin côp li $2 a $1.',
 'viewcount' => 'Cisse pådje la a stî léjhowe {{PLURAL:$1|on côp|$1 côps}}.',
 'protectedpage' => 'Pådje protedjeye',
 'jumpto' => 'Potchî a:',
@@ -413,7 +413,7 @@ Notez ki des pådjes k' i gn a si pôrént continowuer a vey come si vos estîz 
 
 Vosse conte a stî ahivé.
 Èn rovyîz nén di candjî les [[Special:Preferences|preferinces di {{SITENAME}}]] a vosse môde.',
-'yourname' => "Vosse no d' elodjaedje",
+'yourname' => "Vosse no d' elodjaedje:",
 'yourpassword' => 'Vosse sicret',
 'yourpasswordagain' => 'Ritapez vosse sicret',
 'remembermypassword' => "Rimimbrer m' sicret inte les sessions (nén dpus ki po $1 {{PLURAL:$1|djoû|djoûs}})",
@@ -753,6 +753,8 @@ Les ôtes manaedjeus so {{SITENAME}} pôront todi vey li contnou catchî eyet l'
 'revdelete-hide-comment' => "Catchî l' comintaire di candjmint",
 'revdelete-hide-user' => "Catchî l' no d' uzeu/adresse IP do candjeu",
 'revdelete-hide-restricted' => "Oister foû les dnêyes ossu bén po les manaedjeus k' po les ôtes",
+'revdelete-radio-set' => 'Oyi',
+'revdelete-radio-unset' => 'Neni',
 'revdelete-log' => 'Råjhon:',
 'revdelete-submit' => 'Apliker {{PLURAL:$1|al modêye tchoezeye|åzès modêyes tchoezeyes}}',
 'deletedhist' => 'Istwere disfacêye',
@@ -1635,7 +1637,7 @@ Loukîz li [[Special:BlockList|djivêye des blocaedjes]] po verifyî les blocaed
 'blocklogtext' => "Çouchal, c' est on djournå des blocaedjes eyet disblocaedjes d' uzeus.
 Les adresses IP blokêyes otomaticmint èn sont nén håynêyes.
 Loukîz li [[Special:BlockList|djivêye des blocaedjes]] po vey les blocaedjes èn alaedje pol moumint.",
-'unblocklogentry' => '«$1» a stî disbloké',
+'unblocklogentry' => 'a disbloké «$1»',
 'range_block_disabled' => "Li possibilité po les manaedjeus di bloker des fortchetes d' adresses IP a stî dismetowe.",
 'ipb_expiry_invalid' => 'Tins di blocaedje nén valide.',
 'ip_range_invalid' => "Fortchete d' adresses IP nén valide.",
@@ -2133,8 +2135,15 @@ Acertinez s' i vs plait ki vos vloz vormint rifé cisse pådje ci.",
 
 # Special:Version
 'version' => 'Modêye des programes',
+'version-extensions' => "Rawetes d' astalêyes",
+'version-specialpages' => 'Pådjes sipeciåles',
+'version-variables' => 'Variåves',
+'version-antispam' => 'Siconte do spam',
 'version-skins' => 'Peas',
 'version-other' => 'Ôtes',
+'version-license' => 'Licince',
+'version-software' => 'Programes astalés',
+'version-software-product' => 'Prodût',
 'version-software-version' => 'Modêye',
 
 # Special:FilePath
@@ -2150,12 +2159,14 @@ Acertinez s' i vs plait ki vos vloz vormint rifé cisse pådje ci.",
 'specialpages-group-other' => 'Ôtès pådjes especiåles',
 'specialpages-group-login' => "S' elodjî / si rashire",
 'specialpages-group-changes' => 'Dierins candjmints et djournås',
+'specialpages-group-media' => 'Rapoirts et eberwetaedjes multimedia',
 'specialpages-group-users' => 'Uzeus et abondroets',
 'specialpages-group-highuse' => 'Eployaedje timpesse des pådjes',
 'specialpages-group-pages' => 'Djivêyes di pådjes',
 'specialpages-group-pagetools' => 'Usteyes po les pådjes',
 'specialpages-group-wiki' => 'Usteyes et dnêyes do wiki',
 'specialpages-group-redirects' => 'Ridjiblaedjes di pådjes sipeciåles',
+'specialpages-group-spam' => 'Usteyes siconte do spam',
 
 # Special:BlankPage
 'blankpage' => 'Vude pådje',
