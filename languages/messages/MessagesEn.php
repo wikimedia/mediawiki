@@ -906,6 +906,11 @@ See [[Special:Version|version page]].',
 'youhavenewmessages'           => 'You have $1 ($2).',
 'newmessageslink'              => 'new messages',
 'newmessagesdifflink'          => 'last change',
+'youhavenewmessagesfromusers'  => 'You have $1 $3($2).',
+'newmessageslinkplural'        => '{{PLURAL:$1|a new message|new messages}}', # don't rely on the value of $1, it's 1 for singular and 2 for "more than one"
+'newmessagesdifflinkplural'    => 'last {{PLURAL:$1|change|changes}}', # don't rely on the value of $1, it's 1 for singular and 2 for "more than one"
+'newmessagesauthors'           => 'from {{PLURAL:$1|another user|$1 users}} ',
+'newmessagesmanyauthors'       => 'from more than 10 users ',
 'youhavenewmessagesmulti'      => 'You have new messages on $1',
 'newtalkseparator'             => ',&#32;', # do not translate or duplicate this message to other languages
 'editsection'                  => 'edit',
