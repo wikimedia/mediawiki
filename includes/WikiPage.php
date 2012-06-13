@@ -2869,6 +2869,7 @@ class WikiPage extends Page {
 	* @param $newtext String|null: The submitted text of the page.
 	* @param $flags Int bitmask: a bitmask of flags submitted for the edit.
 	* @return string An appropriate autosummary, or an empty string.
+	*
 	* @deprecated since 1.WD, use ContentHandler::getAutosummary() instead
 	*/
 	public static function getAutosummary( $oldtext, $newtext, $flags ) {
@@ -2889,15 +2890,9 @@ class WikiPage extends Page {
 	 * @param &$hasHistory Boolean: whether the page has a history
 	 * @return mixed String containing deletion reason or empty string, or boolean false
 	 *    if no revision occurred
-	 * @deprecated since 1.WD, use ContentHandler::getAutoDeleteReason() instead
 	 */
 	public function getAutoDeleteReason( &$hasHistory ) {
-		#NOTE: stub for backwards-compatibility.
-
-		wfDeprecated( __METHOD__, '1.WD' );
-
-		$handler = ContentHandler::getForTitle( $this->getTitle() );
-		return $handler->getAutoDeleteReason( $this->getTitle(), $hasHistory );
+		return $this->getContentHandler()->getAutoDeleteReason( $this->getTitle(), $hasHistory );
 	}
 
 	/**
