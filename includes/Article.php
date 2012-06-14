@@ -496,7 +496,7 @@ class Article extends Page {
 		if ( $outputPage->isPrintable() ) {
 			$parserOptions->setIsPrintable( true );
 			$parserOptions->setEditSection( false );
-		} elseif ( !$this->isCurrent() || !$this->getTitle()->quickUserCan( 'edit' ) ) {
+		} elseif ( !$this->isCurrent() || !$this->getTitle()->quickUserCan( 'edit', $user ) ) {
 			$parserOptions->setEditSection( false );
 		}
 
@@ -956,7 +956,7 @@ class Article extends Page {
 		$user = $this->getContext()->getUser();
 		$rcid = $request->getVal( 'rcid' );
 
-		if ( !$rcid || !$this->getTitle()->quickUserCan( 'patrol' ) ) {
+		if ( !$rcid || !$this->getTitle()->quickUserCan( 'patrol', $user ) ) {
 			return;
 		}
 
@@ -1137,9 +1137,11 @@ class Article extends Page {
 
 		$current = ( $oldid == $this->mPage->getLatest() );
 		$language = $this->getContext()->getLanguage();
-		$td = $language->timeanddate( $timestamp, true );
-		$tddate = $language->date( $timestamp, true );
-		$tdtime = $language->time( $timestamp, true );
+		$user = $this->getContext()->getUser();
+
+		$td = $language->userTimeAndDate( $timestamp, $user );
+		$tddate = $language->userDate( $timestamp, $user );
+		$tdtime = $language->userTime( $timestamp, $user );
 
 		# Show user links if allowed to see them. If hidden, then show them only if requested...
 		$userlinks = Linker::revUserTools( $revision, !$unhide );
@@ -1224,7 +1226,7 @@ class Article extends Page {
 				array( 'known', 'noclasses' )
 			);
 
-		$cdel = Linker::getRevDeleteLink( $this->getContext()->getUser(), $revision, $this->getTitle() );
+		$cdel = Linker::getRevDeleteLink( $user, $revision, $this->getTitle() );
 		if ( $cdel !== '' ) {
 			$cdel .= ' ';
 		}
