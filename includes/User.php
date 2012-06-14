@@ -1028,7 +1028,7 @@ class User {
 		}
 
 		$dbr = wfGetDB( DB_MASTER );
-		$s = $dbr->selectRow( 'user', '*', array( 'user_id' => $this->mId ), __METHOD__ );
+		$s = $dbr->selectRow( 'user', self::selectFields(), array( 'user_id' => $this->mId ), __METHOD__ );
 
 		wfRunHooks( 'UserLoadFromDatabase', array( $this, &$s ) );
 
@@ -1283,11 +1283,11 @@ class User {
 		}
 
 		# User/IP blocking
-		$block = Block::newFromTarget( $this->getName(), $ip, !$bFromSlave );
+		$block = Block::newFromTarget( $this, $ip, !$bFromSlave );
 
 		# Proxy blocking
 		if ( !$block instanceof Block && $ip !== null && !$this->isAllowed( 'proxyunbannable' )
-			&& !in_array( $ip, $wgProxyWhitelist ) ) 
+			&& !in_array( $ip, $wgProxyWhitelist ) )
 		{
 			# Local list
 			if ( self::isLocallyBlockedProxy( $ip ) ) {
@@ -1926,10 +1926,19 @@ class User {
 			$this->mTouched = self::newTouchedTimestamp();
 
 			$dbw = wfGetDB( DB_MASTER );
-			$dbw->update( 'user',
-				array( 'user_touched' => $dbw->timestamp( $this->mTouched ) ),
-				array( 'user_id' => $this->mId ),
-				__METHOD__ );
+
+			// Prevent contention slams by checking user_touched first
+			$now = $dbw->timestamp( $this->mTouched );
+			$needsPurge = $dbw->selectField( 'user', '1',
+				array( 'user_id' => $this->mId, 'user_touched < ' . $dbw->addQuotes( $now ) )
+			);
+			if ( $needsPurge ) {
+				$dbw->update( 'user',
+					array( 'user_touched' => $now ),
+					array( 'user_id' => $this->mId, 'user_touched < ' . $dbw->addQuotes( $now ) ),
+					__METHOD__
+				);
+			}
 
 			$this->clearSharedCache();
 		}
@@ -2281,7 +2290,10 @@ class User {
 	 * Reset all options to the site defaults
 	 */
 	public function resetOptions() {
+		$this->load();
+
 		$this->mOptions = self::getDefaultOptions();
+		$this->mOptionsLoaded = true;
 	}
 
 	/**
@@ -3011,7 +3023,7 @@ class User {
 	 */
 	public function getPageRenderingHash() {
 		wfDeprecated( __METHOD__, '1.17' );
-		
+
 		global $wgUseDynamicDates, $wgRenderHashAppend, $wgLang, $wgContLang;
 		if( $this->mHash ){
 			return $this->mHash;
@@ -3362,7 +3374,7 @@ class User {
 	 * @return String New token URL
 	 */
 	private function invalidationTokenUrl( $token ) {
-		return $this->getTokenUrl( 'Invalidateemail', $token );
+		return $this->getTokenUrl( 'InvalidateEmail', $token );
 	}
 
 	/**
@@ -3924,7 +3936,7 @@ class User {
 		} elseif ( $type == ':B:' ) {
 			# Salted
 			list( $salt, $realHash ) = explode( ':', substr( $hash, 3 ), 2 );
-			return md5( $salt.'-'.md5( $password ) ) == $realHash;
+			return md5( $salt.'-'.md5( $password ) ) === $realHash;
 		} else {
 			# Old-style
 			return self::oldCrypt( $password, $userId ) === $hash;
@@ -4006,7 +4018,7 @@ class User {
 
 			$res = $dbr->select(
 				'user_properties',
-				'*',
+				array( 'up_property', 'up_value' ),
 				array( 'up_user' => $this->getId() ),
 				__METHOD__
 			);
@@ -4029,13 +4041,9 @@ class User {
 	protected function saveOptions() {
 		global $wgAllowPrefChange;
 
-		$extuser = ExternalUser::newFromUser( $this );
-
 		$this->loadOptions();
-		$dbw = wfGetDB( DB_MASTER );
 
-		$insert_rows = array();
-
+		// Not using getOptions(), to keep hidden preferences in database
 		$saveOptions = $this->mOptions;
 
 		// Allow hooks to abort, for instance to save to a global profile.
@@ -4044,13 +4052,17 @@ class User {
 			return;
 		}
 
+		$extuser = ExternalUser::newFromUser( $this );
+		$userId = $this->getId();
+		$insert_rows = array();
 		foreach( $saveOptions as $key => $value ) {
 			# Don't bother storing default values
-			if ( ( is_null( self::getDefaultOption( $key ) ) &&
-					!( $value === false || is_null($value) ) ) ||
-					$value != self::getDefaultOption( $key ) ) {
+			$defaultOption = self::getDefaultOption( $key );
+			if ( ( is_null( $defaultOption ) &&
+					!( $value === false || is_null( $value ) ) ) ||
+					$value != $defaultOption ) {
 				$insert_rows[] = array(
-						'up_user' => $this->getId(),
+						'up_user' => $userId,
 						'up_property' => $key,
 						'up_value' => $value,
 					);
@@ -4067,7 +4079,8 @@ class User {
 			}
 		}
 
-		$dbw->delete( 'user_properties', array( 'up_user' => $this->getId() ), __METHOD__ );
+		$dbw = wfGetDB( DB_MASTER );
+		$dbw->delete( 'user_properties', array( 'up_user' => $userId ), __METHOD__ );
 		$dbw->insert( 'user_properties', $insert_rows, __METHOD__ );
 	}
 
@@ -4128,5 +4141,29 @@ class User {
 		*/
 
 		return $ret;
+	}
+
+	/**
+	 * Return the list of user fields that should be selected to create
+	 * a new user object.
+	 * @return array
+	 */
+	public static function selectFields() {
+		return array(
+			'user_id',
+			'user_name',
+			'user_real_name',
+			'user_password',
+			'user_newpassword',
+			'user_newpass_time',
+			'user_email',
+			'user_touched',
+			'user_token',
+			'user_email_authenticated',
+			'user_email_token',
+			'user_email_token_expires',
+			'user_registration',
+			'user_editcount',
+		);
 	}
 }

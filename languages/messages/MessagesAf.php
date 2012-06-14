@@ -594,6 +594,8 @@ Probeer asseblief weer oor 'n paar minute.",
 'ns-specialprotected' => 'Spesiale bladsye kan nie geredigeer word nie.',
 'titleprotected' => "Hierdie titel is beskerm teen skepping deur [[User:$1|$1]].
 Die rede gegee is ''$2''.",
+'invalidtitle-knownnamespace' => 'Ongeldige titel met naamruimte "$2" en teks "$3"',
+'invalidtitle-unknownnamespace' => 'Ongeldige titel met onbekende naamruimtenummer $1 en teks "$2"',
 
 # Virus scanner
 'virus-badscanner' => "Slegte konfigurasie: onbekende virusskandeerder: ''$1''",
@@ -682,6 +684,7 @@ Om misbruik te voorkom, word slegs een wagwoordwenk per {{PLURAL:$1|uur|$1 ure}}
 'invalidemailaddress' => "Die e-posadres is nie aanvaar nie, aangesien dit 'n ongeldige formaat blyk te hê.
 Voer asseblief 'n geldige e-posadres in, of laat die veld leeg.",
 'cannotchangeemail' => "Die e-posadres vir 'n gebruiker kan nie op hierdie wiki gewysig word nie.",
+'emaildisabled' => 'Hierdie webwerf kan nie e-poste stuur nie.',
 'accountcreated' => 'Rekening geskep',
 'accountcreatedtext' => 'Die rekening vir gebruiker $1 is geskep.',
 'createaccount-title' => 'Rekeningskepping vir {{SITENAME}}',
@@ -876,7 +879,8 @@ Die laaste inskrywing in die blokkeerlogboek word hieronder vertoon:',
 Onthou dat u eie .css- en .js-bladsye met 'n kleinletter begin, byvoorbeeld {{ns:user}}:Naam/vector.css in plaas van {{ns:user}}:Naam/Vector.css.",
 'updated' => '(Gewysig)',
 'note' => "'''Nota:'''",
-'previewnote' => "'''Onthou dat hierdie slegs 'n voorskou is en nog nie gestoor is nie!'''",
+'previewnote' => "'''Onthou dat hierdie slegs 'n voorskou is.'''
+U teks is nog nie gestoor nie!",
 'previewconflict' => 'Hierdie voorskou vertoon die teks in die boonste teksarea soos dit sou lyk indien u die bladsy stoor.',
 'session_fail_preview' => "'''Jammer! Weens verlies aan sessie-inligting is die wysiging nie verwerk nie.
 Probeer asseblief weer. As dit steeds nie werk nie, probeer om [[Special:UserLogout|af te teken]] en dan weer aan te teken.'''",
@@ -890,6 +894,7 @@ Die bewerking is geweier om verminking van die bladsy se teks te voorkom.
 Dit gebeur soms as 'n webgebaseerde instaandiens (proxy) gebruik word wat foute bevat.",
 'edit_form_incomplete' => "'''Dele van die vorm het nie die bediener bereik nie. Kyk of alles reg lyk en probeer weer.'''",
 'editing' => 'Besig om $1 te wysig',
+'creating' => 'Besig om $1 te skep',
 'editingsection' => 'Besig om $1 (onderafdeling) te wysig',
 'editingcomment' => 'Besig om $1 te wysig (nuwe opskrif)',
 'editconflict' => 'Wysigingskonflik: $1',
@@ -953,6 +958,7 @@ Dit lyk of dit verwyder is.',
 'edit-no-change' => 'U wysiging was geignoreer omdat die teks nie verander is nie.',
 'edit-already-exists' => 'Die bladsy is nie geskep nie.
 Dit bestaan alreeds.',
+'defaultmessagetext' => 'Verstekteks',
 
 # Parser/template warnings
 'expensive-parserfunction-warning' => 'Waarskuwing: Die bladsy gebruik te veel duur ontlederfunksies.
@@ -1146,8 +1152,9 @@ Let op dat die gebruik van navigasieskakels hierdie kolom se waardes sal herstel
 'mergelogpagetext' => "Hieronder is 'n lys van die mees onlangse versmeltings van een bladsy se geskiedenis na 'n ander.",
 
 # Diffs
-'history-title' => 'Weergawegeskiedenis van "$1"',
-'difference' => '(Verskil tussen weergawes)',
+'history-title' => '$1: weergawegeskiedenis',
+'difference-title' => '$1: verskil tussen weergawes',
+'difference-title-multipage' => '$1 en $2: verskil tussen bladsye',
 'difference-multipage' => '(Verskil tussen bladsye)',
 'lineno' => 'Lyn $1:',
 'compareselectedversions' => 'Vergelyk gekose weergawes',
@@ -1244,6 +1251,7 @@ U kan ook 'n naamruimte as voorvoegsel gebruik.",
 'prefs-beta' => 'Beta-funksies',
 'prefs-datetime' => 'Datum en tyd',
 'prefs-labs' => 'Labs-funksies',
+'prefs-user-pages' => 'Gebruikersbladsye',
 'prefs-personal' => 'Gebruikersdata',
 'prefs-rc' => 'Onlangse wysigings',
 'prefs-watchlist' => 'Dophoulys',
@@ -1507,7 +1515,7 @@ Die inligting is vir ander gebruikers sigbaar.',
 'nchanges' => '$1 {{PLURAL:$1|wysiging|wysigings}}',
 'recentchanges' => 'Onlangse wysigings',
 'recentchanges-legend' => 'Opsies vir onlangse wysigings',
-'recentchangestext' => 'Volg die mees onlangse wysigings aan die wiki op die bladsy.',
+'recentchanges-summary' => 'Volg die mees onlangse wysigings aan die wiki op die bladsy.',
 'recentchanges-feed-description' => 'Spoor die mees onlangse wysigings op die wiki na in die voer.',
 'recentchanges-label-newpage' => "Met die wysiging is 'n nuwe bladsy geskep",
 'recentchanges-label-minor' => "Hierdie is 'n klein wysiging",
@@ -1537,6 +1545,7 @@ Die inligting is vir ander gebruikers sigbaar.',
 'newsectionsummary' => '/* $1 */ nuwe afdeling',
 'rc-enhanced-expand' => 'Wys details (benodig JavaScript)',
 'rc-enhanced-hide' => 'Steek details weg',
+'rc-old-title' => 'oorspronklik geskep as "$1"',
 
 # Recent changes linked
 'recentchangeslinked' => 'Verwante veranderings',
@@ -1713,7 +1722,7 @@ As daar steeds probleme is, kontak 'n [[Special:ListUsers/sysop|administrateur]]
 'backend-fail-writetemp' => 'Kon nie na tydelike lêer skryf nie.',
 'backend-fail-closetemp' => 'Kon nie tydelike lêer sluit nie.',
 'backend-fail-read' => 'Kon nie lêer $1 lees nie.',
-'backend-fail-create' => 'Kon nie lêer $1 skep nie.',
+'backend-fail-create' => 'Kon nie lêer $1 uitskryf nie.',
 
 # ZipDirectoryReader
 'zip-file-open-error' => "'n Fout het voorgekom met die opening van die lêer vir ZIP toetsing.",
@@ -2033,6 +2042,12 @@ U kan die resultate vernou deur 'n boekstaaftipe, gebruikersnaam (kas-sensitief)
 'allpagesbadtitle' => "Die gespesifiseerde bladsynaam is ongeldig of het 'n intertaal- of interwiki-voorvoegsel.
 Dit is moontlik dat die naam karakters bevat wat nie in titels gebruik mag word nie.",
 'allpages-bad-ns' => '{{SITENAME}} het geen naamspasie "$1" nie.',
+'allpages-hide-redirects' => 'Versteek aansture',
+
+# SpecialCachedPage
+'cachedspecial-viewing-cached-ttl' => "U kyk na 'n gekasde weergawe ban die bladsy, wat tot $1 oud kan wees.",
+'cachedspecial-viewing-cached-ts' => "U kyk na 'n gekasde weergawe ban die bladsy, wat moontlik nie volledig bygewerk is nie.",
+'cachedspecial-refresh-now' => 'Wys nuutste.',
 
 # Special:Categories
 'categories' => 'Kategorieë',
@@ -2785,7 +2800,7 @@ Die lêer is slegs gedeeltelik opgelaai.',
 
 # JavaScriptTest
 'javascripttest' => 'JavaScript toetsing',
-'javascripttest-disabled' => 'Die funksie is gedeaktiveer.',
+'javascripttest-disabled' => 'Die funksie is nie op hierdie wiki geaktiveer nie.',
 'javascripttest-title' => 'Voer toetse uit vir $1',
 
 # Tooltip help for the actions
@@ -3588,6 +3603,9 @@ Saam met die program moes u \'n [{{SERVER}}{{SCRIPTPATH}}/COPYING kopie van van 
 'version-software' => 'Geïnstalleerde sagteware',
 'version-software-product' => 'Produk',
 'version-software-version' => 'Weergawe',
+'version-entrypoints' => "URL's vir ingange",
+'version-entrypoints-header-entrypoint' => 'Ingang',
+'version-entrypoints-header-url' => 'URL',
 
 # Special:FilePath
 'filepath' => 'Lêerpad',
@@ -3738,10 +3756,12 @@ Beelde word in hulle volle resolusie gewys. Ander lêertipes word direk met hull
 # API errors
 'api-error-badaccess-groups' => 'U word nie toegelaat om lêers te laai op hierdie wiki.',
 'api-error-badtoken' => 'Interne fout: slegte teken.',
+'api-error-copyuploaddisabled' => 'Oplaai via URL is gedeaktiveer op hierdie bediener.',
 'api-error-duplicate-archive-popup-title' => 'Duplikaat {{PLURAL:$1|lêer|lêers}} wat al verwyder is.',
 'api-error-duplicate-popup-title' => 'Duplikaat {{PLURAL:$1|lêer|lêers}}',
 'api-error-empty-file' => 'Die lêer wat u probeer oplaai is leeg.',
 'api-error-emptypage' => 'Die skep van leë nuwe bladsye word nie toegelaat nie.',
+'api-error-fetchfileerror' => 'Interne fout: Iets het verkeerd gegaan met die haal van die lêer.',
 'api-error-file-too-large' => 'Die lêer wat u probeer oplaai is te groot.',
 'api-error-filename-tooshort' => 'Die lêernaam is te kort.',
 'api-error-filetype-banned' => 'Hierdie tipe lêer is verban en word nie toegelaat nie.',
@@ -3750,10 +3770,13 @@ Beelde word in hulle volle resolusie gewys. Ander lêertipes word direk met hull
 'api-error-http' => "Interne fout: Kan nie 'n verbinding met die bediener maak nie.",
 'api-error-illegal-filename' => 'Die lêernaam word nie toegelaat nie.',
 'api-error-internal-error' => 'Interne fout: daar is iets verkeerd gegaan het met die verwerking van die oplaai van die lêer op die wiki.',
+'api-error-invalid-file-key' => 'Interne fout: die lêer is nie in tydelike berging gevind nie.',
 'api-error-missingparam' => 'Interne fout: ontbrekende parameters op aanvraag.',
 'api-error-missingresult' => 'Interne fout: Kon nie bepaal of die kopie daarin geslaag.',
 'api-error-mustbeloggedin' => 'U moet ingeteken wees om lêers te kan laai.',
+'api-error-mustbeposted' => "Interne fout: Die versoek vereis 'n HTTP POST-metode.",
 'api-error-noimageinfo' => 'Die oplaai daarin geslaag, maar die bediener het ons nie enige inligting oor die lêer.',
+'api-error-nomodule' => "Interne fout: daar is nie 'n uploadmodule ingestel nie.",
 'api-error-ok-but-empty' => 'Interne fout: geen reaksie van die bediener.',
 'api-error-overwrite' => "'N bestaande lêer vervang word nie toegelaat nie.",
 'api-error-stashfailed' => 'Interne fout: Server nie tydelike lêer te stoor.',
@@ -3765,5 +3788,16 @@ Beelde word in hulle volle resolusie gewys. Ander lêertipes word direk met hull
 'api-error-unknownerror' => 'Onbekende fout: "$1"',
 'api-error-uploaddisabled' => 'Oplaai is afgeskakel op hierdie wiki.',
 'api-error-verification-error' => 'Hierdie lêer kan beskadig of het die verkeerde uitbreiding.',
+
+# Durations
+'duration-seconds' => '$1 {{PLURAL:$1|sekonde|sekondes}}',
+'duration-minutes' => '$1 {{PLURAL:$1|minuut|minute}}',
+'duration-hours' => '$1 {{PLURAL:$1|uur|ure}}',
+'duration-days' => '$1 {{PLURAL:$1|dag|dae}}',
+'duration-weeks' => '$1 {{PLURAL:$1|week|weke}}',
+'duration-years' => '$1 {{PLURAL:$1|jaar|jare}}',
+'duration-decades' => '$1 {{PLURAL:$1|dekade|dekades}}',
+'duration-centuries' => '$1 {{PLURAL:$1|eeu|eeue}}',
+'duration-millennia' => '$1 {{PLURAL:$1|millennium|millennia}}',
 
 );

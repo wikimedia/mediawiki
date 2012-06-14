@@ -885,7 +885,6 @@ Kini kujdes se përdorimi i lidhjeve të shfletimit do të ndryshojë përzgjedh
 
 # Diffs
 'history-title' => 'Historiku i redaktimeve për "$1"',
-'difference' => '(Dallimet midis verzioneve)',
 'lineno' => 'Rreshti $1:',
 'compareselectedversions' => 'Krahasoni versionet e zgjedhme',
 'editundo' => 'ktheje',
@@ -1180,7 +1179,7 @@ Mundeni me zgjedhe që të tjerët me ju kontaktue përmjet faqe së diskutimit 
 'nchanges' => '$1 {{PLURAL:$1|ndryshim|ndryshime}}',
 'recentchanges' => 'Ndryshimet e fundit',
 'recentchanges-legend' => 'Opcionet e ndryshimeve të reja',
-'recentchangestext' => 'Ndiqni ndryshime së fundmi tek kjo faqe.',
+'recentchanges-summary' => 'Ndiqni ndryshime së fundmi tek kjo faqe.',
 'recentchanges-feed-description' => 'Përcjelli ndryshimet mâ të reja të këtij wiki në këtë feed.',
 'recentchanges-label-newpage' => 'Ky redaktim krijoi një faqe të re',
 'rcnote' => "Mâ poshtë {{PLURAL:$1|âsht '''1''' ndryshim|janë '''$1''' ndryshimet e fundit}} në {{PLURAL:$2|ditën|'''$2''' ditët}} e fundit, prej $5, $4.",

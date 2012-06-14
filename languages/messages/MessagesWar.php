@@ -21,16 +21,22 @@ $namespaceNames = array(
 	NS_USER             => 'Gumaramit',
 	NS_USER_TALK        => 'Hiruhimangaw_hiton_gumaramit',
 	NS_PROJECT_TALK     => 'Hiruhimangraw_hiton_$1',
-	NS_FILE             => 'Fayl',
-	NS_FILE_TALK        => 'Hiruhimangraw_hiton_fayl',
-	NS_MEDIAWIKI        => 'MediaWiki',
-	NS_MEDIAWIKI_TALK   => 'Hiruhimangraw_hiton_MediaWiki',
+	NS_FILE             => 'Paypay',
+	NS_FILE_TALK        => 'Hiruhimangraw_hiton_paypay',
+	NS_MEDIAWIKI        => 'MedyaWiki',
+	NS_MEDIAWIKI_TALK   => 'Hiruhimangraw_hiton_MedyaWiki',
 	NS_TEMPLATE         => 'Batakan',
 	NS_TEMPLATE_TALK    => 'Hiruhimangraw_hiton_batakan',
 	NS_HELP             => 'Bulig',
 	NS_HELP_TALK        => 'Hiruhimangaw_hiton_bulig',
 	NS_CATEGORY         => 'Kaarangay',
 	NS_CATEGORY_TALK    => 'Hiruhimangraw_hiton_kaarangay',
+);
+
+$namespaceAliases = array(
+	'Fayl'                          => NS_FILE,
+	'Hiruhimangraw_hiton_fayl'      => NS_FILE_TALK,
+	'Hiruhimangraw_hiton_MediaWiki' => NS_MEDIAWIKI_TALK,
 );
 
 $specialPageAliases = array(
@@ -644,7 +650,6 @@ Leyenda: '''({{int:cur}})''' = kaibhan ha giuurhii nga pag-bag-o, '''({{int:last
 
 # Diffs
 'history-title' => "Kaagi han pagbag-o han ''$1''",
-'difference' => '(Kaibhan han kabutngaan han mga pagliwat)',
 'lineno' => 'Bagis $1:',
 'compareselectedversions' => 'Igkumpara an mga pinili nga pagbabag-o',
 'editundo' => 'Igpawara an ginbuhat',
@@ -799,7 +804,7 @@ An imo e-mail address in diri makikit-an kun an iba nga mga gumaramit in makonta
 'nchanges' => '$1 {{PLURAL:$1|pagbag-o|mga pagbabag-o}}',
 'recentchanges' => 'Mga kabag-ohan',
 'recentchanges-legend' => 'Mga pirilion han mga lab-as nga pagbag-o',
-'recentchangestext' => 'Nasubay han pinakalab-as nga pagbag-o ha wiki dinhi nga pakli.',
+'recentchanges-summary' => 'Nasubay han pinakalab-as nga pagbag-o ha wiki dinhi nga pakli.',
 'recentchanges-feed-description' => 'Panultol han pinakalab-as nga pagbabag-o ha wiki dinhi nga panubong.',
 'recentchanges-label-newpage' => 'Ini nga pagliwat hin naghimo hin bag-o nga pakli',
 'recentchanges-label-minor' => 'Gutiay ini nga pagliwat',
@@ -874,7 +879,7 @@ Mga detalye: $1',
 'nolicense' => 'Waray napili',
 
 # Special:ListFiles
-'imgfile' => 'fayl',
+'imgfile' => 'paypay',
 'listfiles' => 'Listahan han fayl',
 'listfiles_date' => 'Pitsa',
 'listfiles_name' => 'Ngaran',
@@ -883,8 +888,8 @@ Mga detalye: $1',
 'listfiles_count' => 'Mga bersyon',
 
 # File description page
-'file-anchor-link' => 'Fayl',
-'filehist' => 'Kaagi han fayl',
+'file-anchor-link' => 'Paypay',
+'filehist' => 'Kaagi han paypay',
 'filehist-help' => 'Pidlita an adlaw/oras para makit-an an fayl nga naggawas hito nga oras.',
 'filehist-deleteall' => 'Paraa ngatanan',
 'filehist-deleteone' => 'paraa',
@@ -939,7 +944,7 @@ An paglaladawan han iya [$2 fayl han paglaladawan nga pakli] didto in ginpapakit
 'statistics-articles' => 'Unod nga mga pakli',
 'statistics-pages' => 'Mga pakli',
 'statistics-pages-desc' => 'Ngatanan nga mga pakli ha sulod hini nga wiki, lakip an hiruhimangraw nga mga pakli, mga redirect, ngan iba pa',
-'statistics-files' => 'Ginkarga nga mga file',
+'statistics-files' => 'Ginkarga nga mga paypay',
 'statistics-edits' => 'Mga pagliwat hit pakli tikang gintukod hini nga {{SITENAME}}',
 'statistics-edits-average' => 'Average nga mga pagliwat kada pakli',
 'statistics-views-total' => 'Ngatanan nga mga panginano',
@@ -1283,7 +1288,7 @@ Makikit-an nimo an ginkuhaaan',
 'tooltip-feed-atom' => 'Atom nga pangarga para hini nga pakli',
 'tooltip-t-contributions' => 'Kitaa an talaan hin mga amot hini nga nágámit',
 'tooltip-t-emailuser' => 'Padad-i hin e-mail ini nga nágámit',
-'tooltip-t-upload' => 'Pagkarga hin mga fayl',
+'tooltip-t-upload' => 'Pagkarga hin mga paypay',
 'tooltip-t-specialpages' => 'Talaan hin mga pinaurog nga pakli',
 'tooltip-t-print' => 'Maipapatik nga bersyon hini nga pakli',
 'tooltip-t-permalink' => 'Sumpay nga unob ha hini nga pagliwat han pakli',

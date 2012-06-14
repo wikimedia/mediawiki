@@ -1,5 +1,5 @@
 <?php
-/** Czech (Česky)
+/** Czech (česky)
  *
  * See MessagesQqq.php for message documentation incl. usage of parameters
  * To improve a translation please visit http://translatewiki.net
@@ -740,6 +740,8 @@ $2',
 'filereadonlyerror' => "Nelze změnit soubor „$1“, protože úložiště souborů „$2“ je momentálně pouze pro čtení.
 
 Správce serveru, který úložiště zamkl, poskytl toto zdůvodnění: „''$3''“.",
+'invalidtitle-knownnamespace' => 'Neplatný název se jmenným prostorem „$2“ a textem „$3“',
+'invalidtitle-unknownnamespace' => 'Neplatný název s neznámým číslem jmenného prostoru $1 a textem „$2“',
 
 # Virus scanner
 'virus-badscanner' => "Špatná konfigurace: neznámý antivirový program: ''$1''",
@@ -950,16 +952,16 @@ Pokud ještě jednou kliknete na „{{int:savearticle}}“, bude vaše editace z
 'summary-preview' => 'Náhled shrnutí:',
 'subject-preview' => 'Náhled předmětu/nadpisu:',
 'blockedtitle' => 'Uživatel zablokován',
-'blockedtext' => "'''Vaší IP adrese či uživatelskému jménu byla zablokována možnost editace.'''
+'blockedtext' => "Vaší IP adrese či uživatelskému jménu byla zablokována možnost editace.'''
 
-Zablokování provedl{{gender:$4||a}} $1.
+Zablokování provedl{{gender:$1||a}} $1.
 Udaným důvodem bylo ''$2''.
 
 * Začátek blokování: $8
 * Zablokování vyprší: $6
 * Blokovaný uživatel: $7
 
-Pokud chcete zablokování prodiskutovat, můžete kontaktovat {{gender:$4|uživatele|uživatelku}} $1 či jiného [[{{MediaWiki:Grouppage-sysop}}|správce]].
+Pokud chcete zablokování prodiskutovat, můžete kontaktovat {{gender:$1|uživatele|uživatelku}} $1 či jiného [[{{MediaWiki:Grouppage-sysop}}|správce]].
 Uvědomte si, že nemůžete použít nabídku „Poslat e-mail“, jestliže nemáte ve svém [[Special:Preferences|nastavení]] uvedenu platnou e-mailovou adresu nebo pokud vám byla tato možnost zakázána.
 Vaše IP adresa je $3 a&nbsp;identifikační číslo bloku je #$5; tyto údaje uvádějte ve všech dotazech na správce.",
 'autoblockedtext' => "Vaše IP adresa byla automaticky zablokována, protože ji používal jiný uživatel, kterého zablokoval $1.
@@ -1022,7 +1024,8 @@ Zde je pro přehled zobrazen nejnovější záznam z knihy zablokování:',
 'updated' => '(Změna uložena)',
 'note' => "'''Poznámka:'''&nbsp;",
 'previewnote' => "'''Pamatujte, že toto je pouze náhled.'''
-Změny zatím nebyly uloženy! [[#editform|→ Pokračovat v editaci]]",
+Změny zatím nebyly uloženy!",
+'continue-editing' => 'Pokračovat v editaci',
 'previewconflict' => 'Tento náhled ukazuje text tak, jak bude vypadat po uložení stránky.',
 'session_fail_preview' => "'''Váš požadavek se nepodařilo zpracovat kvůli ztrátě dat z relace.
 Zkuste to prosím znovu.
@@ -1114,6 +1117,12 @@ Tyto argumenty byly vynechány.',
 'parser-template-loop-warning' => 'Nalezena smyčka šablon: [[$1]]',
 'parser-template-recursion-depth-warning' => 'Překročen limit hloubky rekurzivního vkládání šablon ($1)',
 'language-converter-depth-warning' => 'Překročen limit vnoření u jazykové konverze ($1)',
+'node-count-exceeded-category' => 'Stránky překračující počet uzlů',
+'node-count-exceeded-warning' => 'Stránka překročila počet uzlů',
+'expansion-depth-exceeded-category' => 'Stránky překračující hloubku expanze',
+'expansion-depth-exceeded-warning' => 'Stránka překročila hloubku expanze',
+'parser-unstrip-loop-warning' => 'Detekováno zacyklení unstrip',
+'parser-unstrip-recursion-limit' => 'Překročen limit rekurze unstrip ($1)',
 
 # "Undo" feature
 'undo-success' => 'Editace může být zrušena. Zkontrolujte a pak potvrďte změny zobrazené níže.',
@@ -1290,8 +1299,9 @@ Ujistěte se, že tato změna udrží souvislost a posloupnost verzí v historii
 'mergelogpagetext' => 'Níže je seznam nejnovějších sloučení historie jedné stránky s jinou.',
 
 # Diffs
-'history-title' => 'Historie verzí stránky „$1“',
-'difference' => '(Rozdíly mezi verzemi)',
+'history-title' => '$1: Historie verzí',
+'difference-title' => '$1: Porovnání verzí',
+'difference-title-multipage' => '$1 a $2: Porovnání stránek',
 'difference-multipage' => '(Rozdíly mezi stránkami)',
 'lineno' => 'Řádka $1:',
 'compareselectedversions' => 'Porovnat vybrané verze',
@@ -1387,6 +1397,7 @@ Pokud na začátek dotazu přidáte ''all:'', bude se hledat všude (včetně di
 'prefs-beta' => 'Funkce z betaverze',
 'prefs-datetime' => 'Datum a čas',
 'prefs-labs' => 'Funkce z Labs',
+'prefs-user-pages' => 'Uživatelské stránky',
 'prefs-personal' => 'Údaje o uživateli',
 'prefs-rc' => 'Poslední změny',
 'prefs-watchlist' => 'Sledované stránky',
@@ -1526,7 +1537,7 @@ Tuto operaci nelze vrátit zpět.',
 
 'group-user-member' => '{{GENDER:$1|uživatel|uživatelka|uživatel}}',
 'group-autoconfirmed-member' => 'automaticky {{GENDER:$1|schválený uživatel|schválená uživatelka|schválený uživatel}}',
-'group-bot-member' => '{{GENDER:$1|bot}}',
+'group-bot-member' => '{{GENDER:$1|bot|botka|bot}}',
 'group-sysop-member' => '{{GENDER:$1|správce|správkyně|správce}}',
 'group-bureaucrat-member' => '{{GENDER:$1|byrokrat|byrokratka|byrokrat}}',
 'group-suppress-member' => '{{GENDER:$1|dohlížitel|dohlížitelka|dohlížitel}}',
@@ -1647,7 +1658,7 @@ Tuto operaci nelze vrátit zpět.',
 'nchanges' => '$1 {{PLURAL:$1|změna|změny|změn}}',
 'recentchanges' => 'Poslední změny',
 'recentchanges-legend' => 'Možnosti posledních změn',
-'recentchangestext' => 'Sledujte poslední změny na {{grammar:6sg|{{SITENAME}}}} na této stránce.',
+'recentchanges-summary' => 'Sledujte poslední změny na {{grammar:6sg|{{SITENAME}}}} na této stránce.',
 'recentchanges-feed-description' => 'Na tomto kanále sledujte poslední změny na {{grammar:6sg|{{SITENAME}}}}.',
 'recentchanges-label-newpage' => 'Touto editací byla založena nová stránka',
 'recentchanges-label-minor' => 'Toto je malá editace',
@@ -1846,14 +1857,15 @@ Kontaktuje prosím [[Special:ListUsers/sysop|správce]].',
 'backend-fail-writetemp' => 'Do dočasného souboru nelze zapisovat.',
 'backend-fail-closetemp' => 'Dočasný soubor nelze zavřít.',
 'backend-fail-read' => 'Soubor $1 nelze číst.',
-'backend-fail-create' => 'Soubor $1 nelze vytvořit.',
-'backend-fail-maxsize' => 'Nelze vytvořit soubor $1, protože je větší než {{PLURAL:$2|$2 bajt|$2 bajty|$2 bajtů}}.',
+'backend-fail-create' => 'Nepodařilo se zapsat do souboru $1.',
+'backend-fail-maxsize' => 'Nepodařilo se zapsat do souboru $1, protože je větší než {{PLURAL:$2|$2 bajt|$2 bajty|$2 bajtů}}.',
 'backend-fail-readonly' => 'Koncový úložný systém „$1“ je momentálně pouze pro čtení. Udaným důvodem je: „$2“',
 'backend-fail-synced' => 'Soubor „$1“ je v interních koncových úložných systémech v nekonzistentním stavu',
 'backend-fail-connect' => 'Nepodařilo se připojit ke koncovému úložnému systému „$1“.',
 'backend-fail-internal' => 'V koncovém úložném systému „$1“ došlo k neznámé chybě.',
 'backend-fail-contenttype' => 'Nelze určit typ obsahu souboru k uložení do „$1“.',
 'backend-fail-batchsize' => 'Koncový úložný systém přijal dávku s $1 {{PLURAL:souborovou operací|souborovými operacemi}}; maximum je {{PLURAL:$2|$2}}.',
+'backend-fail-usable' => 'Nepodařilo se zapsat do souboru $1 kvůli nedostatečným oprávněním nebo chybějícím adresářům/kontejnerům.',
 
 # File journal errors
 'filejournal-fail-dbconnect' => 'Nelze se připojit k žurnálové databázi pro koncový úložný systém „$1“.',
@@ -2171,6 +2183,7 @@ Uvědomte si, že jiné webové stránky mohou na soubor odkazovat pomocí pří
 Zobrazení můžete zúžit výběrem typu záznamu, uživatelského jména (záleží na velikosti písmen) nebo dotčené stránky (také záleží na velikosti písmen).',
 'logempty' => 'Protokol neobsahuje žádný odpovídající záznam.',
 'log-title-wildcard' => 'Hledat názvy začínající na tento text',
+'showhideselectedlogentries' => 'Ukázat/skrýt vybrané záznamy',
 
 # Special:AllPages
 'allpages' => 'Všechny stránky',
@@ -3823,6 +3836,9 @@ MediaWiki je distribuována v naději, že bude užitečná, avšak BEZ JAKÉKOL
 'version-software' => 'Nainstalovaný software',
 'version-software-product' => 'Název',
 'version-software-version' => 'Verze',
+'version-entrypoints' => 'URL vstupních bodů',
+'version-entrypoints-header-entrypoint' => 'Vstupní bod',
+'version-entrypoints-header-url' => 'URL',
 
 # Special:FilePath
 'filepath' => 'Cesta k souboru',

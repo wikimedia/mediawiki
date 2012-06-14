@@ -173,7 +173,7 @@ class ApiUpload extends ApiBase {
 	 */
 	private function getChunkResult(){
 		$result = array();
-		
+
 		$result['result'] = 'Continue';
 		$request = $this->getMain()->getRequest();
 		$chunkPath = $request->getFileTempname( 'chunk' );
@@ -185,7 +185,7 @@ class ApiUpload extends ApiBase {
 										$this->mParams['offset']);
 			if ( !$status->isGood() ) {
 				$this->dieUsage( $status->getWikiText(), 'stashfailed' );
-				return ;
+				return array();
 			}
 
 			// Check we added the last chunk: 
@@ -194,7 +194,7 @@ class ApiUpload extends ApiBase {
 
 				if ( !$status->isGood() ) {
 					$this->dieUsage( $status->getWikiText(), 'stashfailed' );
-					return ;
+					return array();
 				}
 
 				// We have a new filekey for the fully concatenated file.
@@ -621,6 +621,41 @@ class ApiUpload extends ApiBase {
 
 		return $params;
 
+	}
+
+	public function getResultProperties() {
+		return array(
+			'' => array(
+				'result' => array(
+					ApiBase::PROP_TYPE => array(
+						'Success',
+						'Warning',
+						'Continue',
+						'Queued'
+					),
+				),
+				'filekey' => array(
+					ApiBase::PROP_TYPE => 'string',
+					ApiBase::PROP_NULLABLE => true
+				),
+				'sessionkey' => array(
+					ApiBase::PROP_TYPE => 'string',
+					ApiBase::PROP_NULLABLE => true
+				),
+				'offset' => array(
+					ApiBase::PROP_TYPE => 'integer',
+					ApiBase::PROP_NULLABLE => true
+				),
+				'statuskey' => array(
+					ApiBase::PROP_TYPE => 'string',
+					ApiBase::PROP_NULLABLE => true
+				),
+				'filename' => array(
+					ApiBase::PROP_TYPE => 'string',
+					ApiBase::PROP_NULLABLE => true
+				)
+			)
+		);
 	}
 
 	public function getDescription() {

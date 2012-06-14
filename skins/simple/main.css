@@ -215,7 +215,7 @@ textarea {
 	margin-left: 0.5em;
 }
 
-pre {
+pre, .mw-code {
 	margin: 2em;
 	border: solid 1px black;
 }

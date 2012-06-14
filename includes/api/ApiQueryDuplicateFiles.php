@@ -91,14 +91,14 @@ class ApiQueryDuplicateFiles extends ApiQueryGeneratorBase {
 			);
 		}
 
-		$dir = ( $params['dir'] == 'descending' ? ' DESC' : '' );
+		$sort = ( $params['dir'] == 'descending' ? ' DESC' : '' );
 		// Don't order by i1.img_name if it's constant in the WHERE clause
 		if ( count( $this->getPageSet()->getGoodTitles() ) == 1 ) {
-			$this->addOption( 'ORDER BY', 'i2.img_name' . $dir );
+			$this->addOption( 'ORDER BY', 'i2.img_name' . $sort );
 		} else {
 			$this->addOption( 'ORDER BY', array(
-					'i1.img_name' . $dir,
-					'i2.img_name' . $dir
+					'i1.img_name' . $sort,
+					'i2.img_name' . $sort
 			));
 		}
 		$this->addOption( 'LIMIT', $params['limit'] + 1 );
@@ -162,6 +162,16 @@ class ApiQueryDuplicateFiles extends ApiQueryGeneratorBase {
 			'limit' => 'How many files to return',
 			'continue' => 'When more results are available, use this to continue',
 			'dir' => 'The direction in which to list',
+		);
+	}
+
+	public function getResultProperties() {
+		return array(
+			'' => array(
+				'name' => 'string',
+				'user' => 'string',
+				'timestamp' => 'timestamp'
+			)
 		);
 	}
 

@@ -8,6 +8,7 @@
  * @file
  *
  * @author Amire80
+ * @author Reedy
  * @author Sapral Mikail
  * @author Tagir
  */
@@ -399,7 +400,7 @@ $messages = array(
 Шун йийшая, кхыдола йоазувнашкахь [[Special:Search/{{PAGENAME}}|дола цӀерий хаттам корае]] е <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} нийсамий тептара йоазувнаш корае].</span>',
 'note' => "'''ХӀамоалар:'''",
 'previewnote' => "'''Хьалхе б|аргтассам мара бац.'''
-Яздам кха яздаь дац! [[#editform|→ хувцам д|ахьо д|аде]]",
+Яздам кха яздаь дац!",
 'editing' => 'ГӀалатнийсдар: $1',
 'editingsection' => 'ГIалатнийсдар $1 (оагӀувдакъа)',
 'editingcomment' => 'ГӀалатнийсдар $1 (керда декъам)',
@@ -481,7 +482,6 @@ $messages = array(
 
 # Diffs
 'history-title' => '"$1" хувцамий искар',
-'difference' => '(Доржамашкахь юкъера къоастамаш)',
 'lineno' => 'МугI $1:',
 'compareselectedversions' => 'Хьаржа доржамаша тарона тIа хьажа',
 'editundo' => 'юхавала/яла',
@@ -626,7 +626,7 @@ $messages = array(
 'nchanges' => '$1 {{PLURAL:$1|хувцам|хувцамаш}}',
 'recentchanges' => 'Керда хувцамаш',
 'recentchanges-legend' => 'Керда хувцамий оттамаш',
-'recentchangestext' => 'КIалхагIа лоарамий доаламе тIехьара оагIувний хувцамаш дIаязадаь да{{grammar:genitive|{{SITENAME}}}}.',
+'recentchanges-summary' => 'КIалхагIа лоарамий доаламе тIехьара оагIувний хувцамаш дIаязадаь да{{grammar:genitive|{{SITENAME}}}}.',
 'recentchanges-feed-description' => 'Укх ларамца тIехьара викихувцамашт теркам бе.',
 'recentchanges-label-newpage' => 'Укх хувцамаца керда оагIув даь хиннад',
 'recentchanges-label-minor' => 'ЗIамига хувцам я',
@@ -1135,7 +1135,7 @@ $messages = array(
 #Укх # тамагIалгаца дIадувлаш дола мугIанаш, оалам мо лоархаш да.
 #МугIанаш яздaтакха каьда да
 
-#Каст-каста оаламаш укх мугIа лакхе дIаязаде. Из мугI ший долаш тайпара дита<pre>',
+#Каст-каста оаламаш укх мугIа лакхе дIаязаде. Из мугI ший долаш тайпара дита</pre>',
 
 # Special:Tags
 'tag-filter' => '[[Special:Tags|Йоазоний]] цIенаярг:',

@@ -48,18 +48,10 @@ class ApiEditPage extends ApiBase {
 			$this->dieUsageMsg( 'missingtext' );
 		}
 
-		$this->requireOnlyOneParameter( $params, 'title', 'pageid' );
-
-		if ( isset( $params['title'] ) ) {
-			$titleObj = Title::newFromText( $params['title'] );
-			if ( !$titleObj || $titleObj->isExternal() ) {
-				$this->dieUsageMsg( array( 'invalidtitle', $params['title'] ) );
-			}
-		} elseif ( isset( $params['pageid'] ) ) {
-			$titleObj = Title::newFromID( $params['pageid'] );
-			if ( !$titleObj ) {
-				$this->dieUsageMsg( array( 'nosuchpageid', $params['pageid'] ) );
-			}
+		$pageObj = $this->getTitleOrPageId( $params );
+		$titleObj = $pageObj->getTitle();
+		if ( $titleObj->isExternal() ) {
+			$this->dieUsageMsg( array( 'invalidtitle', $params['title'] ) );
 		}
 
 		$apiResult = $this->getResult();
@@ -291,9 +283,6 @@ class ApiEditPage extends ApiBase {
 			case EditPage::AS_SPAM_ERROR:
 				$this->dieUsageMsg( array( 'spamdetected', $result['spam'] ) );
 
-			case EditPage::AS_FILTERING:
-				$this->dieUsageMsg( 'filtered' );
-
 			case EditPage::AS_BLOCKED_PAGE_FOR_USER:
 				$this->dieUsageMsg( 'blockedtext' );
 
@@ -351,16 +340,11 @@ class ApiEditPage extends ApiBase {
 				$this->dieUsageMsg( 'summaryrequired' );
 
 			case EditPage::AS_END:
+			default:
 				// $status came from WikiPage::doEdit()
 				$errors = $status->getErrorsArray();
 				$this->dieUsageMsg( $errors[0] ); // TODO: Add new errors to message map
 				break;
-			default:
-				if ( is_string( $status->value ) && strlen( $status->value ) ) {
-					$this->dieUsage( "An unknown return value was returned by Editpage. The code returned was \"{$status->value}\"" , $status->value );
-				} else {
-					$this->dieUsageMsg( array( 'unknownerror', $status->value ) );
-				}
 		}
 		$apiResult->addValue( null, $this->getModuleName(), $r );
 	}
@@ -381,11 +365,9 @@ class ApiEditPage extends ApiBase {
 		global $wgMaxArticleSize;
 
 		return array_merge( parent::getPossibleErrors(),
-			$this->getRequireOnlyOneParameterErrorMessages( array( 'title', 'pageid' ) ),
+			$this->getTitleOrPageIdErrorMessage(),
 			array(
-				array( 'nosuchpageid', 'pageid' ),
 				array( 'missingtext' ),
-				array( 'invalidtitle', 'title' ),
 				array( 'createonly-exists' ),
 				array( 'nocreate-missing' ),
 				array( 'nosuchrevid', 'undo' ),
@@ -398,7 +380,6 @@ class ApiEditPage extends ApiBase {
 				array( 'noimageredirect-logged' ),
 				array( 'spamdetected', 'spam' ),
 				array( 'summaryrequired' ),
-				array( 'filtered' ),
 				array( 'blockedtext' ),
 				array( 'contenttoobig', $wgMaxArticleSize ),
 				array( 'noedit-anon' ),
@@ -484,14 +465,14 @@ class ApiEditPage extends ApiBase {
 			'sectiontitle' => 'The title for a new section',
 			'text' => 'Page content',
 			'token' => array( 'Edit token. You can get one of these through prop=info.',
-						'The token should always be sent as the last parameter, or at least, after the text parameter'
+						"The token should always be sent as the last parameter, or at least, after the {$p}text parameter"
 			),
-			'summary' => 'Edit summary. Also section title when section=new',
+			'summary' => "Edit summary. Also section title when {$p}section=new and {$p}sectiontitle is not set",
 			'minor' => 'Minor edit',
 			'notminor' => 'Non-minor edit',
 			'bot' => 'Mark this edit as bot',
 			'basetimestamp' => array( 'Timestamp of the base revision (obtained through prop=revisions&rvprop=timestamp).',
-						'Used to detect edit conflicts; leave unset to ignore conflicts.'
+						'Used to detect edit conflicts; leave unset to ignore conflicts'
 			),
 			'starttimestamp' => array( 'Timestamp when you obtained the edit token.',
 						'Used to detect edit conflicts; leave unset to ignore conflicts'
@@ -505,10 +486,46 @@ class ApiEditPage extends ApiBase {
 			'md5' => array(	"The MD5 hash of the {$p}text parameter, or the {$p}prependtext and {$p}appendtext parameters concatenated.",
 					'If set, the edit won\'t be done unless the hash is correct' ),
 			'prependtext' => "Add this text to the beginning of the page. Overrides {$p}text",
-			'appendtext' => "Add this text to the end of the page. Overrides {$p}text",
+			'appendtext' => array( "Add this text to the end of the page. Overrides {$p}text.",
+						"Use {$p}section=new to append a new section" ),
 			'undo' => "Undo this revision. Overrides {$p}text, {$p}prependtext and {$p}appendtext",
 			'undoafter' => 'Undo all revisions from undo to this one. If not set, just undo one revision',
 			'redirect' => 'Automatically resolve redirects',
+		);
+	}
+
+	public function getResultProperties() {
+		return array(
+			'' => array(
+				'new' => 'boolean',
+				'result' => array(
+					ApiBase::PROP_TYPE => array(
+						'Success',
+						'Failure'
+					),
+				),
+				'pageid' => array(
+					ApiBase::PROP_TYPE => 'integer',
+					ApiBase::PROP_NULLABLE => true
+				),
+				'title' => array(
+					ApiBase::PROP_TYPE => 'string',
+					ApiBase::PROP_NULLABLE => true
+				),
+				'nochange' => 'boolean',
+				'oldrevid' => array(
+					ApiBase::PROP_TYPE => 'integer',
+					ApiBase::PROP_NULLABLE => true
+				),
+				'newrevid' => array(
+					ApiBase::PROP_TYPE => 'integer',
+					ApiBase::PROP_NULLABLE => true
+				),
+				'newtimestamp' => array(
+					ApiBase::PROP_TYPE => 'string',
+					ApiBase::PROP_NULLABLE => true
+				)
+			)
 		);
 	}
 

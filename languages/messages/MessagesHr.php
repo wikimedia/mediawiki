@@ -779,7 +779,7 @@ Zbog toga posjetitelji s ove IP adrese trenutačno ne mogu otvoriti nove suradni
 'emailauthenticated' => 'Vaša e-mail adresa je ovjerena $2 u $3.',
 'emailnotauthenticated' => 'Vaša e-mail adresa još nije ovjerena.
 Ne možemo poslati e-mail ni u jednoj od sljedećih naredbi.',
-'noemailprefs' => 'Nije navedena e-mail adresa, stoga sljedeće naredbe neće raditi.',
+'noemailprefs' => 'Nije navedena adresa elektroničke pošte, stoga sljedeće naredbe ne će raditi.',
 'emailconfirmlink' => 'Potvrdite svoju e-mail adresu',
 'invalidemailaddress' => 'Ne mogu prihvatiti e-mail adresu jer nije valjano oblikovana.
 Molim unesite ispravno oblikovanu adresu ili ostavite polje praznim.',
@@ -977,6 +977,7 @@ Posljednja stavka evidencije blokiranja navedena je niže kao napomena:',
 'updated' => '(Ažurirano)',
 'note' => "'''Napomena:'''",
 'previewnote' => "'''Ne zaboravite da je ovo samo pregled kako će stranica izgledati i da stranica još nije snimljena!'''",
+'continue-editing' => 'Nastavi uređivati',
 'previewconflict' => 'Ovaj pregled odražava stanje u gornjem polju za unos koje će biti sačuvano
 ako pritisnete "Sačuvaj stranicu".',
 'session_fail_preview' => "'''Ispričavamo se! Nismo mogli obraditi Vašu izmjenu zbog gubitka podataka o prijavi.
@@ -991,6 +992,7 @@ Stoga je uređivanje odbačeno da se spriječi uništavanje teksta stranice.
 To se ponekad događa kad rabite neispravan web-baziran anonimni posrednik (proxy).",
 'edit_form_incomplete' => "'''Neki dijelovi obrasca za uređivanja nisu dostigli do poslužitelja; provjerite jesu li izmjene netaknute i pokušajte ponovno.'''",
 'editing' => 'Uređujete $1',
+'creating' => 'Stvori $1',
 'editingsection' => 'Uređujete $1 (odlomak)',
 'editingcomment' => 'Uređujete $1 (novi odlomak)',
 'editconflict' => 'Istovremeno uređivanje: $1',
@@ -1241,7 +1243,7 @@ Primijetite da uporaba navigacijskih poveznica resetira Vaše izbore u stupcu.',
 
 # Diffs
 'history-title' => 'Povijest izmjena stranice "$1"',
-'difference' => '(Usporedba među inačicama)',
+'difference-title' => '$1: Razlika između inačica',
 'difference-multipage' => '(Razlika između stranica)',
 'lineno' => 'Redak $1:',
 'compareselectedversions' => 'Usporedi odabrane inačice',
@@ -1594,7 +1596,7 @@ Ne smije biti duži od $1 {{PLURAL:$1|znaka|znaka|znakova}}.',
 'nchanges' => '{{PLURAL:$1|$1 promjena|$1 promjene|$1 promjena}}',
 'recentchanges' => 'Nedavne promjene',
 'recentchanges-legend' => 'Izbornik nedavnih promjena',
-'recentchangestext' => 'Na ovoj stranici možete pratiti nedavne promjene u wikiju.',
+'recentchanges-summary' => 'Na ovoj stranici možete pratiti nedavne promjene u wikiju.',
 'recentchanges-feed-description' => 'Na ovoj stranici možete pratiti nedavne promjene u wikiju.',
 'recentchanges-label-newpage' => 'Ova izmjena stvorila je novu stranicu',
 'recentchanges-label-minor' => 'Ovo je manja izmjena',
@@ -2620,13 +2622,13 @@ mijenjanje postavki, uređivanje popisa praćenja i druge stvari koje zahtijevaj
 # Move page
 'move-page' => 'Premjesti $1',
 'move-page-legend' => 'Premjesti stranicu',
-'movepagetext' => "Korištenjem ovog obrasca ćete preimenovati stranicu i premjestiti sve stare izmjene na novo ime.
+'movepagetext' => "Uporabom ovog obrasca ćete preimenovati stranicu i premjestiti sve stare izmjene na novo ime.
 Stari će se naslov pretvoriti u stranicu koja automatski preusmjerava na novi naslov.
-Možete odabrati automatsko ažuriranje preusmjeravanja na originalni naslov.
+Možete odabrati automatsko ažuriranje preusmjeravanja na izvorni naslov.
 Ako se ne odlučite na to, provjerite [[Special:DoubleRedirects|dvostruka]] ili [[Special:BrokenRedirects|neispravna preusmjeravanja]].
 Dužni ste provjeriti da sve poveznice i dalje nastave voditi na prave stranice.
 
-Stranica se '''neće''' premjestiti ako već postoji stranica s novim naslovom, osim u slučaju prazne stranice ili stranice za preusmjeravanje koja nema nikakvih starih izmjena.
+Stranica se '''ne će''' premjestiti ako već postoji stranica s novim naslovom, osim u slučaju prazne stranice ili stranice za preusmjeravanje koja nema nikakvih starih izmjena.
 To znači: 1. ako pogriješite, možete opet preimenovati stranicu na stari naslov, 2. ne može se dogoditi da izbrišete neku postojeću stranicu.
 
 '''Upozorenje!'''
@@ -2636,21 +2638,21 @@ Stari će se naslov pretvoriti u stranicu koja automatski preusmjerava na novi n
 Budite sigurni da ste provjerili [[Special:DoubleRedirects|dvostruka]] ili [[Special:BrokenRedirects|nevaljana preusmjeravanja]]. 
 Vi ste odgovorni za to da poveznice i dalje povezuju tamo gdje treba.
 
-Imajte na umu da stranica '''neće''' biti premještena ako već postoji stranica s novim naslovom, osim u slučaju prazne stranice ili stranice za preusmjeravanje koja nema nikakvih starih izmjena. 
-To znači da stranicu možete preimenovati u prethodno ime ukoliko ste pogriješili te ne možete pisati preko postojeće stranice. 
+Imajte na umu da stranica '''ne će''' biti premještena ako već postoji stranica s novim naslovom, osim u slučaju prazne stranice ili stranice za preusmjeravanje koja nema nikakvih starih izmjena. 
+To znači da stranicu možete preimenovati u prethodno ime ako ste pogriješili te ne možete pisati preko postojeće stranice. 
 
 '''Upozorenje!''' 
 Ovo može biti drastična i neočekivana promjena kad su u pitanju popularne stranice; 
 budite sigurni da razumijete posljedice ove akcije prije nastavka.",
-'movepagetalktext' => "Stranica za razgovor, ako postoji, automatski će se premjestiti zajedno sa stranicom koju premještate. '''Stranica za razgovor neće se premjestiti ako:'''
+'movepagetalktext' => "Stranica za razgovor, ako postoji, automatski će se premjestiti zajedno sa stranicom koju premještate. '''Stranica se za razgovor ne će premjestiti ako:'''
 *premještate stranicu iz jednog prostora u drugi,
 *pod novim imenom već postoji stranica za razgovor s nekim sadržajem, ili
 *maknete kvačicu u kućici na dnu ove stranice.
 
-U tim slučajevima ćete morati sami premjestiti ili iskopirati stranicu za razgovor,
+U tim ćete slučajevima morati sami premjestiti ili iskopirati stranicu za razgovor,
 ako to želite.",
 'movearticle' => 'Premjesti stranicu',
-'moveuserpage-warning' => "'''Upozorenje:''' Premještate suradničku stranicu. Imajte na umu da će stranica biti premještena, ali suradnik ''neće'' biti preimenovan.",
+'moveuserpage-warning' => "'''Upozorenje:''' Premještate suradničku stranicu. Imajte na umu da će stranica biti premještena, ali suradnik ''ne će'' biti preimenovan.",
 'movenologin' => 'Niste prijavljeni',
 'movenologintext' => 'Ako želite premjestiti stranicu morate biti [[Special:UserLogin|prijavljeni]].',
 'movenotallowed' => 'Nemate pravo premještanja stranica.',

@@ -515,7 +515,6 @@ You cannot use the 'e-mail this user' feature unless a valid e-mail address is s
 
 # Diffs
 'history-title' => '"$1" جي سوانح',
-'difference' => '(مسودن درميان تفاوت)',
 'lineno' => 'سِٽَ $1:',
 'compareselectedversions' => 'چونڊيل پرت ڀيٽيو',
 'editundo' => 'اڻڪريو',

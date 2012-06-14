@@ -430,7 +430,7 @@ class ApiQueryImageInfo extends ApiQueryBase {
 	 * @param $img File
 	 * @return string
 	 */
-	private function getContinueStr( $img ) {
+	protected function getContinueStr( $img ) {
 		return $img->getOriginalTitle()->getText() .
 			'|' .  $img->getTimestamp();
 	}
@@ -545,6 +545,114 @@ class ApiQueryImageInfo extends ApiQueryBase {
 						"Defaults to '1' for backwards compatibility" ),
 			'continue' => 'If the query response includes a continue value, use it here to get another page of results'
 		);
+	}
+
+	public static function getResultPropertiesFiltered( $filter = array() ) {
+		$props = array(
+			'timestamp' => array(
+				'timestamp' => 'timestamp'
+			),
+			'user' => array(
+				'userhidden' => 'boolean',
+				'user' => 'string',
+				'anon' => 'boolean'
+			),
+			'userid' => array(
+				'userhidden' => 'boolean',
+				'userid' => 'integer',
+				'anon' => 'boolean'
+			),
+			'size' => array(
+				'size' => 'integer',
+				'width' => 'integer',
+				'height' => 'integer',
+				'pagecount' => array(
+					ApiBase::PROP_TYPE => 'integer',
+					ApiBase::PROP_NULLABLE => true
+				)
+			),
+			'comment' => array(
+				'commenthidden' => 'boolean',
+				'comment' => array(
+					ApiBase::PROP_TYPE => 'string',
+					ApiBase::PROP_NULLABLE => true
+				)
+			),
+			'parsedcomment' => array(
+				'commenthidden' => 'boolean',
+				'parsedcomment' => array(
+					ApiBase::PROP_TYPE => 'string',
+					ApiBase::PROP_NULLABLE => true
+				)
+			),
+			'url' => array(
+				'filehidden' => 'boolean',
+				'thumburl' => array(
+					ApiBase::PROP_TYPE => 'string',
+					ApiBase::PROP_NULLABLE => true
+				),
+				'thumbwidth' => array(
+					ApiBase::PROP_TYPE => 'integer',
+					ApiBase::PROP_NULLABLE => true
+				),
+				'thumbheight' => array(
+					ApiBase::PROP_TYPE => 'integer',
+					ApiBase::PROP_NULLABLE => true
+				),
+				'thumberror' => array(
+					ApiBase::PROP_TYPE => 'string',
+					ApiBase::PROP_NULLABLE => true
+				),
+				'url' => array(
+					ApiBase::PROP_TYPE => 'string',
+					ApiBase::PROP_NULLABLE => true
+				),
+				'descriptionurl' => array(
+					ApiBase::PROP_TYPE => 'string',
+					ApiBase::PROP_NULLABLE => true
+				)
+			),
+			'sha1' => array(
+				'filehidden' => 'boolean',
+				'sha1' => array(
+					ApiBase::PROP_TYPE => 'string',
+					ApiBase::PROP_NULLABLE => true
+				)
+			),
+			'mime' => array(
+				'filehidden' => 'boolean',
+				'mime' => array(
+					ApiBase::PROP_TYPE => 'string',
+					ApiBase::PROP_NULLABLE => true
+				)
+			),
+			'mediatype' => array(
+				'filehidden' => 'boolean',
+				'mediatype' => array(
+					ApiBase::PROP_TYPE => 'string',
+					ApiBase::PROP_NULLABLE => true
+				)
+			),
+			'archivename' => array(
+				'filehidden' => 'boolean',
+				'archivename' => array(
+					ApiBase::PROP_TYPE => 'string',
+					ApiBase::PROP_NULLABLE => true
+				)
+			),
+			'bitdepth' => array(
+				'filehidden' => 'boolean',
+				'bitdepth' => array(
+					ApiBase::PROP_TYPE => 'integer',
+					ApiBase::PROP_NULLABLE => true
+				)
+			),
+		);
+		return array_diff_key( $props, array_flip( $filter ) );
+	}
+
+	public function getResultProperties() {
+		return self::getResultPropertiesFiltered();
 	}
 
 	public function getDescription() {

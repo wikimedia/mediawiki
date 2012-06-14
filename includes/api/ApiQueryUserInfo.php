@@ -60,7 +60,7 @@ class ApiQueryUserInfo extends ApiQueryBase {
 	}
 
 	protected function getCurrentUserInfo() {
-		global $wgRequest, $wgHiddenPrefs;
+		global $wgHiddenPrefs;
 		$user = $this->getUser();
 		$result = $this->getResult();
 		$vals = array();
@@ -73,7 +73,10 @@ class ApiQueryUserInfo extends ApiQueryBase {
 
 		if ( isset( $this->prop['blockinfo'] ) ) {
 			if ( $user->isBlocked() ) {
-				$vals['blockedby'] = User::whoIs( $user->blockedBy() );
+				$block = $user->getBlock();
+				$vals['blockid'] = $block->getId();
+				$vals['blockedby'] = $block->getByName();
+				$vals['blockedbyid'] = $block->getBy();
 				$vals['blockreason'] = $user->blockedFor();
 			}
 		}
@@ -146,7 +149,7 @@ class ApiQueryUserInfo extends ApiQueryBase {
 		}
 
 		if ( isset( $this->prop['acceptlang'] ) ) {
-			$langs = $wgRequest->getAcceptLang();
+			$langs = $this->getRequest()->getAcceptLang();
 			$acceptLang = array();
 			foreach ( $langs as $lang => $val ) {
 				$r = array( 'q' => $val );
@@ -196,16 +199,13 @@ class ApiQueryUserInfo extends ApiQueryBase {
 
 	protected function getTokens($tokens) {
 		$res = array();
+		$types = $this->getTokenTypes();
+		
 		foreach ( $tokens as $type ) {
 			$type = strtolower( $type );
-			$func = 'get' .
-					ucfirst( $type ) .
-					'Token';
-			if ( $type === 'patrol' ) {
-				$val = call_user_func( array( 'ApiQueryRecentChanges', $func ), null, null );
-			} else {
-				$val = call_user_func( array( 'ApiQueryInfo', $func ), null, null );
-			}
+
+			$val = call_user_func( $types[$type], null, null );
+
 			if ( $val === false ) {
 				$this->setWarning( "Action '$type' is not allowed for the current user" );
 			} else {
@@ -213,6 +213,24 @@ class ApiQueryUserInfo extends ApiQueryBase {
 			}
 		}
 		return $res;
+	}
+	
+	protected function getTokenTypes() {
+		static $types = null;
+		if ( $types ) {
+			return $types;
+		}
+		wfProfileIn( __METHOD__ );
+		$types = array( 'patrol' => 'ApiQueryRecentChanges::getPatrolToken' );
+		$names = array( 'edit', 'delete', 'protect', 'move', 'block', 'unblock',
+			'email', 'import', 'watch', 'options' );
+		foreach ( $names as $name ) {
+			$types[$name] = 'ApiQueryInfo::get' . ucfirst( $name ) . 'Token';
+		}
+		wfRunHooks( 'ApiTokensGetTokenTypes', array( &$types ) ); // remove "Tokens" from Hook name?
+		ksort( $types );
+		wfProfileOut( __METHOD__ );
+		return $types;
 	}
 
 	public function getAllowedParams() {
@@ -240,10 +258,7 @@ class ApiQueryUserInfo extends ApiQueryBase {
 			'tokens' => array(
 				ApiBase::PARAM_DFLT => null,
 				ApiBase::PARAM_ISMULTI => true,
-				ApiBase::PARAM_TYPE => array(
-					'edit', 'delete', 'protect', 'move', 'block', 'unblock',
-					'email', 'import', 'watch', 'patrol'
-				)
+				ApiBase::PARAM_TYPE => array_keys( $this->getTokenTypes() ),
 			)
 		);
 	}
@@ -268,6 +283,109 @@ class ApiQueryUserInfo extends ApiQueryBase {
 				'  registrationdate - Adds the user\'s registration date',
 			),
 			'tokens' => 'Type of token(s) to request. Defaults to "edit"'
+		);
+	}
+
+	public function getResultProperties() {
+		return array(
+			ApiBase::PROP_LIST => false,
+			'' => array(
+				'id' => 'integer',
+				'name' => 'string',
+				'anon' => 'boolean'
+			),
+			'blockinfo' => array(
+				'blockid' => array(
+					ApiBase::PROP_TYPE => 'integer',
+					ApiBase::PROP_NULLABLE => true
+				),
+				'blockedby' => array(
+					ApiBase::PROP_TYPE => 'string',
+					ApiBase::PROP_NULLABLE => true
+				),
+				'blockedbyid' => array(
+					ApiBase::PROP_TYPE => 'integer',
+					ApiBase::PROP_NULLABLE => true
+				),
+				'blockedreason' => array(
+					ApiBase::PROP_TYPE => 'string',
+					ApiBase::PROP_NULLABLE => true
+				)
+			),
+			'hasmsg' => array(
+				'messages' => 'boolean'
+			),
+			'preferencestoken' => array(
+				'preferencestoken' => 'string'
+			),
+			'editcount' => array(
+				'editcount' => 'integer'
+			),
+			'realname' => array(
+				'realname' => array(
+					ApiBase::PROP_TYPE => 'string',
+					ApiBase::PROP_NULLABLE => true
+				)
+			),
+			'email' => array(
+				'email' => 'string',
+				'emailauthenticated' => array(
+					ApiBase::PROP_TYPE => 'timestamp',
+					ApiBase::PROP_NULLABLE => true
+				)
+			),
+			'registrationdate' => array(
+				'registrationdate' => array(
+					ApiBase::PROP_TYPE => 'timestamp',
+					ApiBase::PROP_NULLABLE => true
+				)
+			),
+			'tokens' => array(
+				'patroltoken' => array(
+					ApiBase::PROP_TYPE => 'string',
+					ApiBase::PROP_NULLABLE => true
+				),
+				'edittoken' => array(
+					ApiBase::PROP_TYPE => 'string',
+					ApiBase::PROP_NULLABLE => true
+				),
+				'deletetoken' => array(
+					ApiBase::PROP_TYPE => 'string',
+					ApiBase::PROP_NULLABLE => true
+				),
+				'protecttoken' => array(
+					ApiBase::PROP_TYPE => 'string',
+					ApiBase::PROP_NULLABLE => true
+				),
+				'movetoken' => array(
+					ApiBase::PROP_TYPE => 'string',
+					ApiBase::PROP_NULLABLE => true
+				),
+				'blocktoken' => array(
+					ApiBase::PROP_TYPE => 'string',
+					ApiBase::PROP_NULLABLE => true
+				),
+				'unblocktoken' => array(
+					ApiBase::PROP_TYPE => 'string',
+					ApiBase::PROP_NULLABLE => true
+				),
+				'emailtoken' => array(
+					ApiBase::PROP_TYPE => 'string',
+					ApiBase::PROP_NULLABLE => true
+				),
+				'importtoken' => array(
+					ApiBase::PROP_TYPE => 'string',
+					ApiBase::PROP_NULLABLE => true
+				),
+				'watchtoken' => array(
+					ApiBase::PROP_TYPE => 'string',
+					ApiBase::PROP_NULLABLE => true
+				),
+				'optionstoken' => array(
+					ApiBase::PROP_TYPE => 'string',
+					ApiBase::PROP_NULLABLE => true
+				)
+			)
 		);
 	}
 

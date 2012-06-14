@@ -1,9 +1,26 @@
 <?php
 /**
- * Classes to show various lists of changes:
+ * Classes to show lists of changes.
+ *
+ * These can be:
  * - watchlist
  * - related changes
  * - recent changes
+ *
+ * This program is free software; you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation; either version 2 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License along
+ * with this program; if not, write to the Free Software Foundation, Inc.,
+ * 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
+ * http://www.gnu.org/copyleft/gpl.html
  *
  * @file
  */
@@ -857,8 +874,10 @@ class EnhancedChangesList extends ChangesList {
 			array_push( $users, $text );
 		}
 
-		$users = ' <span class="changedby">[' .
-			implode( $this->message['semicolon-separator'], $users ) . ']</span>';
+		$users = ' <span class="changedby">'
+			. $this->getContext()->msg( 'brackets' )->rawParams(
+				implode( $this->message['semicolon-separator'], $users )
+			)->plain() . '</span>';
 
 		$tl = '<span class="mw-collapsible-toggle mw-enhancedchanges-arrow"></span>';
 		$r .= "<td>$tl</td>";

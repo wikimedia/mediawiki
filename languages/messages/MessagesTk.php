@@ -7,10 +7,12 @@
  * @ingroup Language
  * @file
  *
+ * @author Amire80
  * @author Cekli829
  * @author Flrn
  * @author Hanberke
  * @author Kaganer
+ * @author Reedy
  * @author Runningfridgesrule
  * @author The Evil IP address
  */
@@ -146,7 +148,7 @@ $messages = array(
 'dec' => 'dek',
 
 # Categories related messages
-'pagecategories' => 'Sahypanyň {{PLURAL:$1|kategoriýasy|kategoriýalary}}',
+'pagecategories' => '{{PLURAL:$1|Kategoriýa|Kategoriýalar}}',
 'category_header' => '"$1" kategoriýasyndaky sahypalar',
 'subcategories' => 'Kiçi kategoriýalar',
 'category-media-header' => '"$1" kategoriýasyndaky multimediýa faýllary',
@@ -297,7 +299,7 @@ Bu sahypany ulanmak üçin MediaWikiniň $1 wersiýasy talap edilýär. [[Specia
 
 'ok' => 'OK',
 'retrievedfrom' => '"$1" adresinden alyndy.',
-'youhavenewmessages' => 'Size <u>$1</u> bar. ($2)',
+'youhavenewmessages' => 'Size $1 bar. ($2)',
 'newmessageslink' => 'täze habarlaşyk',
 'newmessagesdifflink' => 'soňky üýtgeşme',
 'youhavenewmessagesmulti' => 'Size $1-de täze habarlaşyk bar.',
@@ -647,7 +649,7 @@ Salgylanmak üçin iň soňky blokirleme gündeligi ýazgysy aşakda berilýär:
 Hususy .css we .js sahypalarynyň setir harp bilen ýazylýandygyny ýatda saklaň, ýagny {{ns:user}}:Ulanyjy/Vector.css däl-de, eýsem {{ns:user}}:Ulanyjy/vector.css.",
 'updated' => '(Täzelenen)',
 'note' => "'''Bellik:'''",
-'previewnote' => "'''Ýatda saklaň, bu bir ýöne deslapky syn.''' Üýtgeşmeleriňiz heniz ýazdyrylan däldir! [[#editform|→ Redaktirläberiň]]",
+'previewnote' => "'''Ýatda saklaň, bu bir ýöne deslapky syn.''' Üýtgeşmeleriňiz heniz ýazdyrylan däldir!",
 'previewconflict' => 'Bu deslapky syn redaktirleme penjiresiniň üstünde ýerleşip, ol ýazdyran mahalyňyz sahypanyň nähili görünjekdigini görkezýär.',
 'session_fail_preview' => "'''Bagyşlaň! Sessiýa maglumatynyň ýitirilmegi zerarly serwer özgerdişiňizi işläp bilenok.'''
 Gaýtadan synanyşmagyňyzy haýyş edýäris.
@@ -678,10 +680,10 @@ Sahypalary howpsuz ýagdaýda rdaktirlemegiňiz şeýle aýlawly ýol bar: ASCII
 'editingold' => "'''Duýdyryş: Sahypanyň möwriti geçen bir wersiýasyny redaktirleýärsiňiz.
 Eger ony ýazdyraýsaňyz, onda şu wersiýadan bäri edilen ähli özgerdişler ýok bolar.'''",
 'yourdiff' => 'Aratapawutlar',
-'copyrightwarning' => "'''Üns beriň:''' {{SITENAME}} saýtyna edilen ähli goşantlar <i>$2</i> ygtyýarnamasyna laýyklykdadyr (jikme-jiklikler üçin serediň:  $1).
+'copyrightwarning' => "'''Üns beriň:''' {{SITENAME}} saýtyna edilen ähli goşantlar $2 ygtyýarnamasyna laýyklykdadyr (jikme-jiklikler üçin serediň:  $1).
 Eden goşandyňyzyň başga ulanyjylar tarapyndan gypynç etmezden redaktirlenmegini ýa-da erkin hem-de çäklendirilmedik tertipde başga ýerlere paýlanmagyny islemeýän bolsaňyz, goşant etmäň.<br />
 Mundan hem başga, siz bu ýere goşant goşmak bilen bu goşandyň özüňiz tarapyndan ýazylandygyna, ýa-da jemgyýetçilige açyk bir çeşmeden ýa-da başga bir erkin çeşmeden göçürilip alnandygyna güwä geçýärsiňiz.<br />
-'''<center>AWTORLYK HUKUGY BOÝUNÇA GORALÝAN HIÇ BIR IŞI BU ÝERE BIRUGSAT GOŞMAŇ!</center>'''",
+'''AWTORLYK HUKUGY BOÝUNÇA GORALÝAN HIÇ BIR IŞI BU ÝERE BIRUGSAT GOŞMAŇ!'''",
 'copyrightwarning2' => "Üns beriň,  {{SITENAME}} saýtyna edilen ähli goşantlaryň başga ulanyjylar tarapyndan redaktirlenmegi, düzedilmegi ýa-da aýyrylmagy mümkindir.
 Eger-de işiňiziň gypynç etmezden redaktirlenmegini islemeýän bolsaňyz, onda ony goşant etmäň.<br />
 Şeýle-de, siz ony özüňiziň ýazandygyňyza ýa-da jemgyýetçilige açyk bir çeşmeden ýa-da bolmasa şoňa meňzeş bir erkin çeşmeden göçürip alandygyňyza güwä geçýärsiňiz (jikme-jiklikler üçin serediň: $1).
@@ -924,7 +926,6 @@ Nawigasiýa çykgytlaryny ulanmaklygyň bu sütüni başky ýagdaýyna getirjekd
 
 # Diffs
 'history-title' => '"$1" sahypasynyň geçmişi',
-'difference' => '(Wersiýalaryň aratapawudy)',
 'difference-multipage' => '(Sahypalaryň arasyndaky tapawut)',
 'lineno' => 'Setir $1:',
 'compareselectedversions' => 'Saýlanan wersiýalary deňeşdir',
@@ -1269,7 +1270,7 @@ $1 {{PLURAL:$1|simwoldan|simwoldan}} köp bolmaly däl.',
 'nchanges' => '$1 {{PLURAL:$1|üýtgeşme|üýtgeşme}}',
 'recentchanges' => 'Soňky üýtgeşmeler',
 'recentchanges-legend' => 'Soňky üýtgeşmeleriň opsiýalary',
-'recentchangestext' => 'Wikidäki iň soňky üýtgeşmeleri şu sahypadan yzarlaň.',
+'recentchanges-summary' => 'Wikidäki iň soňky üýtgeşmeleri şu sahypadan yzarlaň.',
 'recentchanges-feed-description' => 'Bu lentadaky wikide edilen iň soňky üýtgeşmeleri yzarlaň.',
 'recentchanges-label-newpage' => 'Bu özgerdiş täze bir sahypa döretdi',
 'recentchanges-label-minor' => 'Bu bir ujypsyzja özgerdiş',

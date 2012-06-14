@@ -46,26 +46,12 @@ class ApiDelete extends ApiBase {
 	public function execute() {
 		$params = $this->extractRequestParams();
 
-		$this->requireOnlyOneParameter( $params, 'title', 'pageid' );
-
-		if ( isset( $params['title'] ) ) {
-			$titleObj = Title::newFromText( $params['title'] );
-			if ( !$titleObj ) {
-				$this->dieUsageMsg( array( 'invalidtitle', $params['title'] ) );
-			}
-			$pageObj = WikiPage::factory( $titleObj );
-			$pageObj->loadPageData( 'fromdbmaster' );
-			if ( !$pageObj->exists() ) {
-				$this->dieUsageMsg( 'notanarticle' );
-			}
-		} elseif ( isset( $params['pageid'] ) ) {
-			$pageObj = WikiPage::newFromID( $params['pageid'] );
-			if ( !$pageObj ) {
-				$this->dieUsageMsg( array( 'nosuchpageid', $params['pageid'] ) );
-			}
-			$titleObj = $pageObj->getTitle();
+		$pageObj = $this->getTitleOrPageId( $params, 'fromdbmaster' );
+		if ( !$pageObj->exists() ) {
+			$this->dieUsageMsg( 'notanarticle' );
 		}
 
+		$titleObj = $pageObj->getTitle();
 		$reason = ( isset( $params['reason'] ) ? $params['reason'] : null );
 		$user = $this->getUser();
 
@@ -235,16 +221,23 @@ class ApiDelete extends ApiBase {
 		);
 	}
 
+	public function getResultProperties() {
+		return array(
+			'' => array(
+				'title' => 'string',
+				'reason' => 'string'
+			)
+		);
+	}
+
 	public function getDescription() {
 		return 'Delete a page';
 	}
 
 	public function getPossibleErrors() {
 		return array_merge( parent::getPossibleErrors(),
-			$this->getRequireOnlyOneParameterErrorMessages( array( 'title', 'pageid' ) ),
+			$this->getTitleOrPageIdErrorMessage(),
 			array(
-				array( 'invalidtitle', 'title' ),
-				array( 'nosuchpageid', 'pageid' ),
 				array( 'notanarticle' ),
 				array( 'hookaborted', 'error' ),
 				array( 'delete-toobig', 'limit' ),

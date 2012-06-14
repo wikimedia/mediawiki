@@ -1,5 +1,7 @@
 <?php
 /**
+ * Resource loader module based on local JavaScript/CSS files.
+ *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2 of the License, or
@@ -109,6 +111,8 @@ class ResourceLoaderFileModule extends ResourceLoaderModule {
 	protected $position = 'bottom';
 	/** Boolean: Link to raw files in debug mode */
 	protected $debugRaw = true;
+	/** Boolean: Whether mw.loader.state() call should be omitted */
+	protected $raw = false;
 	/**
 	 * Array: Cache for mtime
 	 * @par Usage:
@@ -238,6 +242,7 @@ class ResourceLoaderFileModule extends ResourceLoaderModule {
 					break;
 				// Single booleans
 				case 'debugRaw':
+				case 'raw':
 					$this->{$member} = (bool) $option;
 					break;
 			}
@@ -363,6 +368,13 @@ class ResourceLoaderFileModule extends ResourceLoaderModule {
 	 */
 	public function getDependencies() {
 		return $this->dependencies;
+	}
+
+	/**
+	 * @return bool
+	 */
+	public function isRaw() {
+		return $this->raw;
 	}
 
 	/**

@@ -126,6 +126,17 @@ class ApiImport extends ApiBase {
 		);
 	}
 
+	public function getResultProperties() {
+		return array(
+			ApiBase::PROP_LIST => true,
+			'' => array(
+				'ns' => 'namespace',
+				'title' => 'string',
+				'revisions' => 'integer'
+			)
+		);
+	}
+
 	public function getDescription() {
 		return array(
 			'Import a page from another wiki, or an XML file.' ,
@@ -186,8 +197,16 @@ class ApiImportReporter extends ImportReporter {
 	function reportPage( $title, $origTitle, $revisionCount, $successCount, $pageInfo ) {
 		// Add a result entry
 		$r = array();
-		ApiQueryBase::addTitleInfo( $r, $title );
-		$r['revisions'] = intval( $successCount );
+
+		if ( $title === null ) {
+			# Invalid or non-importable title
+			$r['title'] = $pageInfo['title'];
+			$r['invalid'] = '';
+		} else {
+			ApiQueryBase::addTitleInfo( $r, $title );
+			$r['revisions'] = intval( $successCount );
+		}
+
 		$this->mResultArr[] = $r;
 
 		// Piggyback on the parent to do the logging

@@ -934,7 +934,8 @@ Ftakar li l-paġni .css u .js personalizzati għandhom l-ewwel ittra tat-titlu �
 'updated' => '(Aġġornata)',
 'note' => "'''Nota:'''",
 'previewnote' => "'''Ftakar li din hija biss dehra proviżorja.'''
-It-tibdiliet tiegħek għadhom ma ġewx salvati! [[#editform|→ Kompli immodifika]]",
+It-tibdiliet tiegħek għadhom ma ġewx salvati!",
+'continue-editing' => 'Kompli l-modifika',
 'previewconflict' => "Din il-previżjoni turi l-kliem li jinsab fiż-żona ta' modifika superjuri u turi kif tidher kieku l-paġna kella tiġi modifikata.",
 'session_fail_preview' => "'''Jiddispjaċina imma l-modifika tiegħek ma setgħetx tiġi pproċessata minħabba li ntilfet l-informazzjoni tas-sessjoni.
 Jekk jogħġbok, erġa' pprova. Jekk xorta tibqa' ma taħdimx, ipprova [[Special:UserLogout|oħroġ]] u erġa' idħol.'''",
@@ -1201,7 +1202,7 @@ Nota li l-użu tal-links tan-navigazzjoni jagħmel reset tal-kolonna.",
 
 # Diffs
 'history-title' => 'Kronoloġija tal-modifiki ta\' "$1"',
-'difference' => '(Differenzi bejn ir-reviżjonijiet)',
+'difference-title' => 'Differenza bejn ir-reviżjonijiet ta\' "$1"',
 'difference-multipage' => '(Differenzi bejn il-paġni)',
 'lineno' => 'Linja $1:',
 'compareselectedversions' => 'Qabbel il-verżjonijiet magħżula',
@@ -1557,7 +1558,7 @@ Hawnhekk hawn valur iġġenerat b'mod każwali li inti tista' tuża: $1",
 'nchanges' => '{{PLURAL:$1|modifika $1 |$1 modifiki}}',
 'recentchanges' => 'Tibdil riċenti',
 'recentchanges-legend' => 'Opzjonijiet tat-tibdil riċenti',
-'recentchangestext' => 'Din il-paġna turi l-modifiki l-aktar riċenti għal kontenut tas-sit.',
+'recentchanges-summary' => 'Din il-paġna turi l-modifiki l-aktar riċenti għal kontenut tas-sit.',
 'recentchanges-feed-description' => "Dan il-feed jirraporta l-modifiki l-aktar riċenti fil-kontenut ta' dan is-sit.",
 'recentchanges-label-newpage' => 'Din il-modifika ħolqot paġna ġdida',
 'recentchanges-label-minor' => 'Din hi modifika minuri',
@@ -2393,7 +2394,7 @@ $1',
 'namespace' => 'Spazju tal-isem:',
 'invert' => 'Inverti l-għażla',
 'tooltip-invert' => 'Agħżel din il-kaxxa biex taħbi l-modifiki lejn paġni li jinsabu fl-ispazji tal-isem magħżula (u l-ispazju tal-isem assoċjat jekk hu magħżul)',
-'namespace_association' => 'Spazju tal-isem assoċjata',
+'namespace_association' => 'Spazju tal-isem assoċjat',
 'tooltip-namespace_association' => "Agħżel din il-kaxxa sabiex tinkludi l-paġna ta' diskussjoni jew l-oġġett tal-ispazju tal-isem assoċjat mal-ispazju tal-isem magħżul",
 'blanknamespace' => '(Prinċipali)',
 
@@ -3702,6 +3703,7 @@ Stampi huwa mogħrija b'risoluzzjoni sħiħa, tipi tal-fajl oħrajn jibdew bil-p
 'sqlite-no-fts' => "$1 mingħajr il-possibilità ta' tfittxija kompluta fit-test",
 
 # New logging system
+'logentry-delete-delete' => '$1 ħassar il-paġna $3',
 'revdelete-restricted' => "limiti applikati 'l amministraturi",
 'revdelete-unrestricted' => "neħħi l-limiti 'l amministraturi",
 'logentry-move-move' => '$1 mexxa l-paġna $3 għal $4',

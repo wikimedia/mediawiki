@@ -5,6 +5,23 @@
  */
 
 /**
+ * File operation journaling.
+ *
+ * This program is free software; you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation; either version 2 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License along
+ * with this program; if not, write to the Free Software Foundation, Inc.,
+ * 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
+ * http://www.gnu.org/copyleft/gpl.html
+ *
  * @file
  * @ingroup FileJournal
  * @author Aaron Schulz
@@ -35,9 +52,10 @@ abstract class FileJournal {
 
 	/**
 	 * Create an appropriate FileJournal object from config
-	 * 
+	 *
 	 * @param $config Array
 	 * @param $backend string A registered file backend name
+	 * @throws MWException
 	 * @return FileJournal
 	 */
 	final public static function factory( array $config, $backend ) {
@@ -93,9 +111,46 @@ abstract class FileJournal {
 	abstract protected function doLogChangeBatch( array $entries, $batchId );
 
 	/**
+	 * Get an array of file change log entries.
+	 * A starting change ID and/or limit can be specified.
+	 *
+	 * The result as a list of associative arrays, each having:
+	 *     id         : unique, monotonic, ID for this change
+	 *     batch_uuid : UUID for an operation batch
+	 *     backend    : the backend name
+	 *     op         : primitive operation (create,update,delete)
+	 *     path       : affected storage path
+	 *     path_sha1  : base 36 sha1 of the affected storage path
+	 *     timestamp  : TS_MW timestamp of the batch change
+
+	 * Also, $next is updated to the ID of the next entry.
+	 *
+	 * @param $start integer Starting change ID or null
+	 * @param $limit integer Maximum number of items to return
+	 * @param &$next string
+	 * @return Array
+	 */
+	final public function getChangeEntries( $start = null, $limit = 0, &$next = null ) {
+		$entries = $this->doGetChangeEntries( $start, $limit ? $limit + 1 : 0 );
+		if ( $limit && count( $entries ) > $limit ) {
+			$last = array_pop( $entries ); // remove the extra entry
+			$next = $last['id']; // update for next call
+		} else {
+			$next = null; // end of list
+		}
+		return $entries;
+	}
+
+	/**
+	 * @see FileJournal::getChangeEntries()
+	 * @return Array
+	 */
+	abstract protected function doGetChangeEntries( $start, $limit );
+
+	/**
 	 * Purge any old log entries
-	 * 
-	 * @return Status 
+	 *
+	 * @return Status
 	 */
 	final public function purgeOldLogs() {
 		return $this->doPurgeOldLogs();
@@ -115,10 +170,20 @@ abstract class FileJournal {
 class NullFileJournal extends FileJournal {
 	/**
 	 * @see FileJournal::logChangeBatch()
-	 * @return Status 
+	 * @param $entries array
+	 * @param $batchId string
+	 * @return Status
 	 */
 	protected function doLogChangeBatch( array $entries, $batchId ) {
 		return Status::newGood();
+	}
+
+	/**
+	 * @see FileJournal::doGetChangeEntries()
+	 * @return Array
+	 */
+	protected function doGetChangeEntries( $start, $limit ) {
+		return array();
 	}
 
 	/**

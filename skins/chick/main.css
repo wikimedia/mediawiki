@@ -151,7 +151,7 @@ q {
 	font-style: italic;
 }
 code { background-color: #f9f9f9; }
-pre {
+pre, .mw-code {
 	padding: 1em;
 	border: 1px dashed #2f6fab;
 	color: black;

@@ -152,13 +152,14 @@ class ApiQueryContributions extends ApiQueryBase {
 				$this->dieUsage( 'Invalid continue param. You should pass the original ' .
 					'value returned by the previous query', '_badcontinue' );
 			}
-			$encUser = $this->getDB()->strencode( $continue[0] );
-			$encTS = wfTimestamp( TS_MW, $continue[1] );
+			$db = $this->getDB();
+			$encUser = $db->addQuotes( $continue[0] );
+			$encTS = $db->addQuotes( $db->timestamp( $continue[1] ) );
 			$op = ( $this->params['dir'] == 'older' ? '<' : '>' );
 			$this->addWhere(
-				"rev_user_text $op '$encUser' OR " .
-				"(rev_user_text = '$encUser' AND " .
-				"rev_timestamp $op= '$encTS')"
+				"rev_user_text $op $encUser OR " .
+				"(rev_user_text = $encUser AND " .
+				"rev_timestamp $op= $encTS)"
 			);
 		}
 
@@ -185,7 +186,7 @@ class ApiQueryContributions extends ApiQueryBase {
 		if ( !is_null( $show ) ) {
 			$show = array_flip( $show );
 			if ( ( isset( $show['minor'] ) && isset( $show['!minor'] ) )
-			   		|| ( isset( $show['patrolled'] ) && isset( $show['!patrolled'] ) ) ) {
+					|| ( isset( $show['patrolled'] ) && isset( $show['!patrolled'] ) ) ) {
 				$this->dieUsageMsg( 'show' );
 			}
 
@@ -444,6 +445,55 @@ class ApiQueryContributions extends ApiQueryBase {
 					"NOTE: if {$p}show=patrolled or {$p}show=!patrolled is set, revisions older than \$wgRCMaxAge ($wgRCMaxAge) won't be shown", ),
 			'tag' => 'Only list revisions tagged with this tag',
 			'toponly' => 'Only list changes which are the latest revision',
+		);
+	}
+
+	public function getResultProperties() {
+		return array(
+			'' => array(
+				'userid' => 'integer',
+				'user' => 'string',
+				'userhidden' => 'boolean'
+			),
+			'ids' => array(
+				'pageid' => 'integer',
+				'revid' => 'integer'
+			),
+			'title' => array(
+				'ns' => 'namespace',
+				'title' => 'string'
+			),
+			'timestamp' => array(
+				'timestamp' => 'timestamp'
+			),
+			'flags' => array(
+				'new' => 'boolean',
+				'minor' => 'boolean',
+				'top' => 'boolean'
+			),
+			'comment' => array(
+				'commenthidden' => 'boolean',
+				'comment' => array(
+					ApiBase::PROP_TYPE => 'string',
+					ApiBase::PROP_NULLABLE => true
+				)
+			),
+			'parsedcomment' => array(
+				'commenthidden' => 'boolean',
+				'parsedcomment' => array(
+					ApiBase::PROP_TYPE => 'string',
+					ApiBase::PROP_NULLABLE => true
+				)
+			),
+			'patrolled' => array(
+				'patrolled' => 'boolean'
+			),
+			'size' => array(
+				'size' => array(
+					ApiBase::PROP_TYPE => 'integer',
+					ApiBase::PROP_NULLABLE => true
+				)
+			)
 		);
 	}
 

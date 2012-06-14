@@ -26,6 +26,7 @@
 class LogEventsList {
 	const NO_ACTION_LINK = 1;
 	const NO_EXTRA_USER_LINKS = 2;
+	const USE_REVDEL_CHECKBOXES = 4;
 
 	/**
 	 * @var Skin
@@ -504,27 +505,32 @@ class LogEventsList {
 	 */
 	private function getShowHideLinks( $row ) {
 		global $wgUser;
-		if( ( $this->flags & self::NO_ACTION_LINK ) // we don't want to see the links
+		if( ( $this->flags == self::NO_ACTION_LINK ) // we don't want to see the links
 			|| $row->log_type == 'suppress' ) { // no one can hide items from the suppress log
 			return '';
 		}
 		$del = '';
-		// Don't show useless link to people who cannot hide revisions
+		// Don't show useless checkbox to people who cannot hide revisions
 		if( $wgUser->isAllowed( 'deletedhistory' ) ) {
 			if( $row->log_deleted || $wgUser->isAllowed( 'deleterevision' ) ) {
 				$canHide = $wgUser->isAllowed( 'deleterevision' );
-				// If event was hidden from sysops
-				if( !self::userCan( $row, LogPage::DELETED_RESTRICTED ) ) {
-					$del = Linker::revDeleteLinkDisabled( $canHide );
+				if ( $this->flags & self::USE_REVDEL_CHECKBOXES ) { // Show checkboxes instead of links.
+					if ( !self::userCan( $row, LogPage::DELETED_RESTRICTED ) ) { // If event was hidden from sysops
+						$del = Xml::check( 'deleterevisions', false, array( 'disabled' => 'disabled' ) );
+					} else {
+						$del = Xml::check( 'showhiderevisions', false, array( 'name' => 'ids[' . $row->log_id . ']' ) );
+					}
 				} else {
-					$target = SpecialPage::getTitleFor( 'Log', $row->log_type );
-					$query = array(
-						'target' => $target->getPrefixedDBkey(),
-						'type'   => 'logging',
-						'ids'    => $row->log_id,
-					);
-					$del = Linker::revDeleteLink( $query,
-						self::isDeleted( $row, LogPage::DELETED_RESTRICTED ), $canHide );
+					if ( !self::userCan( $row, LogPage::DELETED_RESTRICTED ) ) { // If event was hidden from sysops
+						$del = Linker::revDeleteLinkDisabled( $canHide );
+					} else {
+						$query = array(
+							'target' => SpecialPage::getTitleFor( 'Log', $row->log_type )->getPrefixedDBkey(),
+							'type'   => 'logging',
+							'ids'    => $row->log_id,
+						);
+						$del = Linker::revDeleteLink( $query, self::isDeleted( $row, LogPage::DELETED_RESTRICTED ), $canHide );
+					}
 				}
 			}
 		}

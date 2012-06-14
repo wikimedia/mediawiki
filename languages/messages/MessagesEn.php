@@ -191,6 +191,7 @@ $bookstoreList = array(
  * Customisable syntax for wikitext and elsewhere.
  *
  * IDs must be valid identifiers, they cannot contain hyphens.
+ * CASE is 0 to match all case variants, 1 for case-sensitive
  *
  * Note to translators:
  *   Please include the English words as synonyms.  This allows people
@@ -758,6 +759,7 @@ XHTML id names.
 'index-category'                 => 'Indexed pages',
 'noindex-category'               => 'Noindexed pages',
 'broken-file-category'           => 'Pages with broken file links',
+'categoryviewer-pagedlinks'      => '($1) ($2)',
 
 'linkprefix' => '/^(.*?)([a-zA-Z\\x80-\\xff]+)$/sD', # only translate this message to other languages if you have to change it
 
@@ -1036,9 +1038,11 @@ $2',
 'ns-specialprotected'  => 'Special pages cannot be edited.',
 'titleprotected'       => 'This title has been protected from creation by [[User:$1|$1]].
 The reason given is "\'\'$2\'\'".',
-'filereadonlyerror'    => 'Unable to the modify the file "$1" because the file repository "$2" is in read-only mode.
+'filereadonlyerror'    => 'Unable to modify the file "$1" because the file repository "$2" is in read-only mode.
 
 The administrator who locked it offered this explanation: "$3".',
+'invalidtitle-knownnamespace'   => 'Invalid title with namespace "$2" and text "$3"',
+'invalidtitle-unknownnamespace' => 'Invalid title with unknown namespace number $1 and text "$2"',
 
 # Virus scanner
 'virus-badscanner'     => "Bad configuration: Unknown virus scanner: ''$1''",
@@ -1372,7 +1376,8 @@ Custom .css and .js pages use a lowercase title, e.g. {{ns:user}}:Foo/vector.css
 'updated'                          => '(Updated)',
 'note'                             => "'''Note:'''",
 'previewnote'                      => "'''Remember that this is only a preview.'''
-Your changes have not yet been saved! [[#editform|→ Continue editing]]",
+Your changes have not yet been saved!",
+'continue-editing'                 => "Continue editing",
 'previewconflict'                  => 'This preview reflects the text in the upper text editing area as it will appear if you choose to save.',
 'session_fail_preview'             => "'''Sorry! We could not process your edit due to a loss of session data.'''
 Please try again.
@@ -1477,6 +1482,12 @@ These arguments have been omitted.",
 'parser-template-loop-warning'            => 'Template loop detected: [[$1]]',
 'parser-template-recursion-depth-warning' => 'Template recursion depth limit exceeded ($1)',
 'language-converter-depth-warning'        => 'Language converter depth limit exceeded ($1)',
+'node-count-exceeded-category'            => 'Pages where node-count is exceeded',
+'node-count-exceeded-warning'             => 'Page exceeded the node-count',
+'expansion-depth-exceeded-category'       => 'Pages where expansion depth is exceeded',
+'expansion-depth-exceeded-warning'        => 'Page exceeded the expansion depth',
+'parser-unstrip-loop-warning'             => 'Unstrip loop detected',
+'parser-unstrip-recursion-limit'          => 'Unstrip recursion limit exceeded ($1)',
 
 # "Undo" feature
 'undo-success' => 'The edit can be undone.
@@ -1652,6 +1663,7 @@ Note that using the navigation links will reset this column.',
 'mergehistory-comment'             => 'Merged [[:$1]] into [[:$2]]: $3',
 'mergehistory-same-destination'    => 'Source and destination pages cannot be the same',
 'mergehistory-reason'              => 'Reason:',
+'mergehistory-revisionrow'         => '$1 ($2) $3 . . $4 $5 $6',
 
 # Merge log
 'mergelog'           => 'Merge log',
@@ -1660,15 +1672,16 @@ Note that using the navigation links will reset this column.',
 'mergelogpagetext'   => 'Below is a list of the most recent merges of one page history into another.',
 
 # Diffs
-'history-title'            => 'Revision history of "$1"',
-'difference'               => '(Difference between revisions)',
-'difference-multipage'     => '(Difference between pages)',
-'lineno'                   => 'Line $1:',
-'compareselectedversions'  => 'Compare selected revisions',
-'showhideselectedversions' => 'Show/hide selected revisions',
-'editundo'                 => 'undo',
-'diff-multi'               => '({{PLURAL:$1|One intermediate revision|$1 intermediate revisions}} by {{PLURAL:$2|one user|$2 users}} not shown)',
-'diff-multi-manyusers'     => '({{PLURAL:$1|One intermediate revision|$1 intermediate revisions}} by more than $2 {{PLURAL:$2|user|users}} not shown)',
+'history-title'              => 'Revision history of "$1"',
+'difference-title'           => 'Difference between revisions of "$1"',
+'difference-title-multipage' => 'Difference between pages "$1" and "$2"',
+'difference-multipage'       => '(Difference between pages)',
+'lineno'                     => 'Line $1:',
+'compareselectedversions'    => 'Compare selected revisions',
+'showhideselectedversions'   => 'Show/hide selected revisions',
+'editundo'                   => 'undo',
+'diff-multi'                 => '({{PLURAL:$1|One intermediate revision|$1 intermediate revisions}} by {{PLURAL:$2|one user|$2 users}} not shown)',
+'diff-multi-manyusers'       => '({{PLURAL:$1|One intermediate revision|$1 intermediate revisions}} by more than $2 {{PLURAL:$2|user|users}} not shown)',
 
 # Search results
 'search-summary'                   => '', # do not translate or duplicate this message to other languages
@@ -1781,6 +1794,7 @@ Note that their indexes of {{SITENAME}} content may be out of date.',
 'prefs-beta'                    => 'Beta features',
 'prefs-datetime'                => 'Date and time',
 'prefs-labs'                    => 'Labs features',
+'prefs-user-pages'              => 'User pages',
 'prefs-personal'                => 'User profile',
 'prefs-rc'                      => 'Recent changes',
 'prefs-watchlist'               => 'Watchlist',
@@ -2051,7 +2065,8 @@ Your e-mail address is not revealed when other users contact you.',
 'recentchanges'                     => 'Recent changes',
 'recentchanges-url'                 => 'Special:RecentChanges', # do not translate or duplicate this message to other languages
 'recentchanges-legend'              => 'Recent changes options',
-'recentchangestext'                 => 'Track the most recent changes to the wiki on this page.',
+'recentchanges-summary'             => 'Track the most recent changes to the wiki on this page.',
+'recentchangestext'                 => '-', # do not translate or duplicate this message to other languages
 'recentchanges-feed-description'    => 'Track the most recent changes to the wiki in this feed.',
 'recentchanges-label-newpage'       => 'This edit created a new page',
 'recentchanges-label-minor'         => 'This is a minor edit',
@@ -2273,8 +2288,9 @@ If the problem persists, contact an [[Special:ListUsers/sysop|administrator]].',
 'backend-fail-writetemp'     => 'Could not write to temporary file.',
 'backend-fail-closetemp'     => 'Could not close temporary file.',
 'backend-fail-read'          => 'Could not read file $1.',
-'backend-fail-create'        => 'Could not create file $1.',
-'backend-fail-maxsize'       => 'Could not create file $1 because it is larger than {{PLURAL:$2|one byte|$2 bytes}}.',
+'backend-fail-create'        => 'Could not write file $1.',
+'backend-fail-maxsize'       => 'Could not write file $1 because it is larger than {{PLURAL:$2|one byte|$2 bytes}}.',
+'backend-fail-usable'        => 'Could not write file $1 due to insufficient permissions or missing directories/containers.',
 'backend-fail-readonly'      => 'The storage backend "$1" is currently read-only. The reason given is: "\'\'$2\'\'"',
 'backend-fail-synced'        => 'The file "$1" is in an inconsistent state within the internal storage backends',
 'backend-fail-connect'       => 'Could not connect to storage backend "$1".',
@@ -2642,14 +2658,15 @@ Please note that other web sites may link to a file with a direct URL, and so ma
 'pubmedurl' => '//www.ncbi.nlm.nih.gov/pubmed/$1?dopt=Abstract', # do not translate or duplicate this message to other languages
 
 # Special:Log
-'specialloguserlabel'  => 'Performer:',
-'speciallogtitlelabel' => 'Target (title or user):',
-'log'                  => 'Logs',
-'all-logs-page'        => 'All public logs',
-'alllogstext'          => 'Combined display of all available logs of {{SITENAME}}.
+'specialloguserlabel'        => 'Performer:',
+'speciallogtitlelabel'       => 'Target (title or user):',
+'log'                        => 'Logs',
+'all-logs-page'              => 'All public logs',
+'alllogstext'                => 'Combined display of all available logs of {{SITENAME}}.
 You can narrow down the view by selecting a log type, the username (case-sensitive), or the affected page (also case-sensitive).',
-'logempty'             => 'No matching items in log.',
-'log-title-wildcard'   => 'Search titles starting with this text',
+'logempty'                   => 'No matching items in log.',
+'log-title-wildcard'         => 'Search titles starting with this text',
+'showhideselectedlogentries' => 'Show/hide selected log entries',
 
 # Special:AllPages
 'allpages'                => 'All pages',
@@ -3039,6 +3056,7 @@ It may have already been undeleted.',
 $1',
 'undelete-show-file-confirm'   => 'Are you sure you want to view the deleted revision of the file "<nowiki>$1</nowiki>" from $2 at $3?',
 'undelete-show-file-submit'    => 'Yes',
+'undelete-revisionrow'        => "$1 $2 $3 $4 . . $5 $6 $7",
 
 # Namespace form on various pages
 'namespace'                     => 'Namespace:',
@@ -3674,6 +3692,7 @@ This is probably caused by a link to a blacklisted external site.',
 'spambot_username'    => 'MediaWiki spam cleanup',
 'spam_reverting'      => 'Reverting to last revision not containing links to $1',
 'spam_blanking'       => 'All revisions contained links to $1, blanking',
+'spam_deleting'       => 'All revisions contained links to $1, deleting',
 
 # Info page
 'pageinfo-title'            => 'Information for "$1"',
@@ -4413,6 +4432,7 @@ Please confirm that you really want to recreate this page.",
 'ellipsis'            => '...', # only translate this message to other languages if you have to change it
 'percent'             => '$1%', # only translate this message to other languages if you have to change it
 'parentheses'         => '($1)', # only translate this message to other languages if you have to change it
+'brackets'            => '[$1]', # only translate this message to other languages if you have to change it
 
 # Multipage image navigation
 'imgmultipageprev' => '← previous page',
@@ -4622,6 +4642,14 @@ You should have received [{{SERVER}}{{SCRIPTPATH}}/COPYING a copy of the GNU Gen
 'version-software'              => 'Installed software',
 'version-software-product'      => 'Product',
 'version-software-version'      => 'Version',
+'version-entrypoints'           => 'Entry point URLs',
+'version-entrypoints-header-entrypoint' => 'Entry point',
+'version-entrypoints-header-url' => 'URL',
+'version-entrypoints-articlepath' => '[https://www.mediawiki.org/wiki/Manual:$wgArticlePath Article path]',
+'version-entrypoints-scriptpath' => '[https://www.mediawiki.org/wiki/Manual:$wgScriptPath Script path]',
+'version-entrypoints-index-php' => '[https://www.mediawiki.org/wiki/Manual:index.php index.php]',
+'version-entrypoints-api-php'   => '[https://www.mediawiki.org/wiki/Manual:api.php api.php]',
+'version-entrypoints-load-php'  => '[https://www.mediawiki.org/wiki/Manual:load.php load.php]',
 
 # Special:FilePath
 'filepath'         => 'File path',

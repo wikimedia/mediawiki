@@ -584,7 +584,6 @@ Leggenda: (corr) = differense co-a verscion corrente, (prec) = differense co-a v
 
 # Diffs
 'history-title' => 'Stöia de revixoìn de "$1"',
-'difference' => '(Differense fra e revixoîn)',
 'lineno' => 'Linia $1:',
 'compareselectedversions' => 'Confronta e verscioîn selessionæ',
 'editundo' => 'Anùlla',
@@ -666,7 +665,7 @@ Leggenda: (corr) = differense co-a verscion corrente, (prec) = differense co-a v
 'nchanges' => '$1 {{PLURAL:$1|modiffica|modiffiche}}',
 'recentchanges' => 'Ùrtimi cangiamenti',
 'recentchanges-legend' => 'Inpostaçioìn de lìùrtimi cangiaménti',
-'recentchangestext' => "Questa pàgina a g'ha di càngi ciù reçenti a-i contegnûi do scîto.",
+'recentchanges-summary' => "Questa pàgina a g'ha di càngi ciù reçenti a-i contegnûi do scîto.",
 'recentchanges-feed-description' => "Questo feed o g'ha di cangiaménti ciù reçenti a-i contegnûi do scîto.",
 'recentchanges-label-newpage' => "Sto cangiaménto o l'à creòu 'na pàgina nêuva",
 'recentchanges-label-minor' => 'Cangiamento minô (m)',

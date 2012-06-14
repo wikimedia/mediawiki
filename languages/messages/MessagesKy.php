@@ -9,8 +9,24 @@
  *
  * @author AidaBishkek
  * @author Aidabishkek
+ * @author Amire80
+ * @author Muratjumashev
  * @author Ztimur
  */
+
+$namespaceNames = array(
+	NS_MEDIA            => 'Медиа',
+	NS_SPECIAL          => 'Атайын',
+	NS_TALK             => 'Баарлашуу',
+	NS_USER             => 'Колдонуучу',
+	NS_USER_TALK        => 'Колдонуучунун_баарлашуулары',
+	NS_PROJECT_TALK     => '$1_баарлашуу',
+	NS_FILE             => 'Файл',
+	NS_MEDIAWIKI        => 'MediaWiki',
+	NS_TEMPLATE         => 'Калып',
+	NS_HELP             => 'Жардам',
+	NS_CATEGORY         => 'Категория',
+);
 
 $messages = array(
 # User preference toggles
@@ -336,7 +352,7 @@ IP дарегиңиз бул барактын оңдоо тарыхына жаз
 'noarticletext' => "Азыр бул баракта текст жок.
 Сиз [[Special:Search/{{PAGENAME}}|ушул аталыш менен баракты изде]] башка барактарда 
 <span class=\"plainlinks\">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} тийиштүү жазууларды таба аласыз],
-же '''[{{fullurl:{{FULLPAGENAME}}|action=edit}} ошондой аталыш менен барак ача аласыз].'''</span>.",
+же '''[{{fullurl:{{FULLPAGENAME}}|action=edit}} ошондой аталыш менен барак ача аласыз]'''</span>.",
 'noarticletext-nopermission' => 'Азыр бул баракта текст жок.
 Сиз башка барактардан [[Special:Search/{{PAGENAME}}|ушул аталыш менен баракты издөө]] салып,
 же <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} тийиштүү жазууларды таба аласыз]</span>.',
@@ -398,7 +414,6 @@ IP дарегиңиз бул барактын оңдоо тарыхына жаз
 
 # Diffs
 'history-title' => '"$1" барактын тарыхына сереп',
-'difference' => '(Оңдоолордун айырмасы)',
 'lineno' => '$1 -сап:',
 'compareselectedversions' => 'Тандалган версияларды салыштыр',
 'editundo' => 'жокко чыгар',
@@ -474,7 +489,7 @@ IP дарегиңиз бул барактын оңдоо тарыхына жаз
 'nchanges' => '$1 {{PLURAL:$1|өзгөрүү|өзгөрүү}}',
 'recentchanges' => 'Соңку өзгөрүүлөр',
 'recentchanges-legend' => 'Соңку өзгөртүүлөрдүн ырастоолору',
-'recentchangestext' => 'Уикидеги соңку өзгөрүүлөрдү ушул барактан көзөмөлдө.',
+'recentchanges-summary' => 'Уикидеги соңку өзгөрүүлөрдү ушул барактан көзөмөлдө.',
 'recentchanges-feed-description' => 'Ушул агымдагы уикидеги соңку өзгөрүүлөрдү көзөмөлдө.',
 'recentchanges-label-newpage' => 'Бул оңдоо жаңы баракты ачты',
 'recentchanges-label-minor' => 'Бул майда оңдоо',

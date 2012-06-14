@@ -14,6 +14,7 @@
  * @author Kwekubo
  * @author Moilleadóir
  * @author Moydow
+ * @author Reedy
  * @author Spacebirdy
  * @author Stifle
  * @author Tameamseo
@@ -758,7 +759,6 @@ Treoir: (rth) = difríocht ón leagan reatha, (rmh) = difríocht ón leagan roim
 
 # Diffs
 'history-title' => 'Stair leasú "$1"',
-'difference' => '(Difríochtaí idir leaganacha)',
 'lineno' => 'Líne $1:',
 'compareselectedversions' => 'Cuir na leagain roghnaithe i gcomparáid',
 'editundo' => 'cealaigh',
@@ -955,7 +955,7 @@ do chuid dreachtaí a chur i leith tusa.',
 'nchanges' => '{{PLURAL:$1|Athrú amháin|$1 athruithe}}',
 'recentchanges' => 'Athruithe is déanaí',
 'recentchanges-legend' => 'Roghanna do na hathruithe is déanaí',
-'recentchangestext' => 'Déan faire ar na hathruithe is déanaí sa vicí ar an leathanach seo.',
+'recentchanges-summary' => 'Déan faire ar na hathruithe is déanaí sa vicí ar an leathanach seo.',
 'recentchanges-feed-description' => 'Rianaigh na n-athruite vicí is déanaí sa fotha seo.',
 'recentchanges-label-bot' => 'Chomhlíon róbó an t-athrú seo',
 'rcnote' => "Is {{PLURAL:$1|é seo a leanas <strong>an t-athrú amháin</strong>|iad seo a leanas na <strong>$1</strong> athruithe is déanaí}} {{PLURAL:$2|ar feadh an lae dheireanaigh|ar feadh na '''$2''' lá deireanacha}}, as $5, $4.",
@@ -1590,7 +1590,7 @@ Tá dualgas ort bheith cinnte go rachaidh na naisc chuig an áit is ceart.
 Tabhair faoi deara '''nach''' n-athainmneofar an leathanach má tá leathanach ann cheana féin faoin teideal nua, ach amháin más folamh nó atreorú é nó mura bhfuil aon stair athraithe aige cheana.
 Mar sin, is féidir leathanach a athainmniú ar ais chuig an teideal a raibh air roimhe má tá botún déanta agat, agus ní féidir leathanach atá ann cheana a fhorscríobh.
 
-<font color=\"red\">'''Rabhadh!'''</font>
+'''Rabhadh!'''
 Is féidir gur dianbheart gan choinne é athrú a dhéanamh ar leathanach móréilimh;
 cinntigh go dtuigeann tú na hiarmhairtí go léir roimh dul ar aghaigh.",
 'movepagetalktext' => "Aistreofar an leathanach plé go huathoibríoch '''ach ní tharlófar sin''':

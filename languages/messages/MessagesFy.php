@@ -897,7 +897,6 @@ Tink derom it brûken fan de navigaasjeferwizings dy kolom op'e nij ynstelt.",
 
 # Diffs
 'history-title' => 'Sideskiednis fan "$1"',
-'difference' => '(Ferskil tusken ferzjes)',
 'lineno' => 'Rigel $1:',
 'compareselectedversions' => 'Ferlykje selektearre ferzjes',
 'showhideselectedversions' => 'Oantikke ferzjes wol/net sjen litte',
@@ -1207,7 +1206,7 @@ Jo kinne ek oaren de mûglikheid jaan kontakt mei jo op te nimmen troch in ferwi
 'nchanges' => '$1 {{PLURAL:$1|bewurking|bewurkings}}',
 'recentchanges' => 'Koartlyn feroare',
 'recentchanges-legend' => 'Opsjes foar resinte feroarings',
-'recentchangestext' => 'De lêste feroarings fan de {{SITENAME}}.',
+'recentchanges-summary' => 'De lêste feroarings fan de {{SITENAME}}.',
 'recentchanges-feed-description' => 'Mei dizze feed kinne jo de nijste feroarings yn dizze wiki besjen.',
 'recentchanges-label-newpage' => 'Mei dizze wiziging is in nije side makke',
 'recentchanges-label-minor' => 'Dit is in tekstwiziging',

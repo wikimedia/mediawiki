@@ -1,5 +1,5 @@
 <?php
-/** Bishnupria Manipuri (ইমার ঠার/বিষ্ণুপ্রিয়া মণিপুরী)
+/** Bishnupria Manipuri (বিষ্ণুপ্রিয়া মণিপুরী)
  *
  * See MessagesQqq.php for message documentation incl. usage of parameters
  * To improve a translation please visit http://translatewiki.net
@@ -813,7 +813,6 @@ $2',
 
 # Diffs
 'history-title' => '"$1"-র রিভিসন ইতিহাসহান',
-'difference' => '(রিভিসনহানির ফারাকহান)',
 'lineno' => 'লাইন $1:',
 'compareselectedversions' => 'বাসাইল সংস্করণহানি তুলনা কর',
 'showhideselectedversions' => 'বাসিসি রিভিশনহানি দেখাদে/গুর',

@@ -331,6 +331,11 @@ descriptions.
 &$module: ApiBase Module object
 &$desc: Array of parameter descriptions
 
+'APIGetResultProperties': use this hook to mofify the properties
+in a module's result.
+&$module: ApiBase Module object
+&$properties: Array of properties
+
 'APIQueryAfterExecute': after calling the execute() method of an
 action=query submodule. Use this to extend core API modules.
 &$module: Module object
@@ -394,6 +399,11 @@ unique name, passed as key for the array that represents the service data.
 In this data array, the key-value-pair identified by the apiLink key is
 required.
 &$apis: array of services
+
+'ApiTokensGetTokenTypes': use this hook to extend action=tokens with new
+token types.
+&$tokenTypes: supported token types in format 'type' => callback function
+used to retrieve this type of tokens.
 
 'ArticleAfterFetchContent': after fetching content of an article from
 the database
@@ -899,6 +909,12 @@ $article: in case all revisions of the file are deleted a reference to the
 $user: user who performed the deletion
 $reason: reason
 
+'FileTransformed': When a file is transformed and moved into storage
+$file: reference to the File object
+$thumb: the MediaTransformOutput object
+$tmpThumbPath: The temporary file system path of the transformed file
+$thumbPath: The permanent storage path of the transformed file
+
 'FileUpload': When a file upload occurs
 $file : Image object representing the file that was uploaded
 $reupload : Boolean indicating if there was a previously another image there or not (since 1.17)
@@ -1339,6 +1355,11 @@ using this hook.
 &$toolbox: An array of toolbox items, see BaseTemplate::getToolbox and
 	BaseTemplate::makeListItem for details on the format of individual
 	items inside of this array
+
+'NamespaceIsMovable': Called when determining if it is possible to pages in a namespace.
+$index: Integer; the index of the namespace being checked.
+$result: Boolean; whether MediaWiki currently thinks that pages in this namespace are movable.
+Hooks may change this value to override the return value of MWNamespace::isMovable()
 
 'NewRevisionFromEditComplete': called when a revision was inserted
 due to an edit

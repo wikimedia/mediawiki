@@ -616,7 +616,6 @@ Fanapunta na para u na'nuebu i kolumna anggen un usa i inachetton nabegasion.",
 
 # Diffs
 'history-title' => 'Historian tinilaika nu "$1"',
-'difference' => '(Diferensia siha gi tinilaika)',
 'lineno' => 'Liña $1:',
 'compareselectedversions' => "Akompara i tinilaika siha ma'ayek",
 'editundo' => 'funas',

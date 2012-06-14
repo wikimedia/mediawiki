@@ -15,7 +15,9 @@
  * @author Migraghvi
  * @author Namik
  * @author Nemo bis
+ * @author Ole Yves
  * @author Reedy
+ * @author Soul Train
  */
 
 $fallback = 'ru';
@@ -27,21 +29,23 @@ $messages = array(
 'tog-hideminor' => 'Мукьвара хьайи дегишвилера авай гъвечIи дуьзар хъувунар чуьнуьхун',
 'tog-hidepatrolled' => 'Мукьвара хьайи дегишвилера авай къаравулвал авунвай дуьзар хъувунар чуьнуьхун',
 'tog-newpageshidepatrolled' => 'ЦIийи ччинрин сиягьда къаравулвал авунвай ччинар чуьнуьхун',
-'tog-extendwatchlist' => 'Чlехи сиягь килигунин, кутазвай вири дегишунар, амма са эхирбур туш',
+'tog-extendwatchlist' => 'ЧӀехи сиягь килигунин, кутазвай вири дегишунар, амма са эхирбур туш',
 'tog-usenewrc' => 'ЦIийи дегишвилерин сиягь кардик кутун (JavaScript герекзава)',
-'tog-numberheadings' => 'КЬилин цIарариз автоматдаказ номерар эцигун',
+'tog-numberheadings' => 'Кьилин цӀарариз автоматдаказ номерар эцигун',
 'tog-showtoolbar' => 'Дуьзар хъувунин алатрин кьвати къалура (JavaScript)',
 'tog-editondblclick' => 'Ччинар кьве тIампIуналди дуьзар хъувун (JavaScript герекзава)',
 'tog-editsection' => 'Пай [дуьзар хъувун] патал элячIун къалура',
 'tog-editsectiononrightclick' => 'Пайдин кьилинцIардиз эрчIи патан тIампI авуна пайдин дуьзар хъувуниз мумкинвал гун (JavaScript герекзава)',
-'tog-showtoc' => 'КЪенеавайбурун сиягь къалурун (3-й гзаф кьилинцIарар авай ччинар патал)',
+'tog-showtoc' => 'Къенеавайбурун сиягь къалурун (3-й гзаф кьилинцӀарар авай ччинар патал)',
 'tog-rememberpassword' => 'И браузерда зи логин рикlел хуьхь (лап гзаф $1 {{PLURAL:$1|югъ|йикъар}})',
 'tog-watchcreations' => 'За туькIуьрнавай ччинар зи гуьзетунин сиягьдиз алава авун',
 'tog-watchdefault' => 'За дуьзар хъувунвай ччинар зи гуьзетунин сиягьдиз алава авун',
 'tog-watchmoves' => 'За тIвар эхцигай ччинар зи гуьзетунин сиягьдиз алава авун',
 'tog-watchdeletion' => 'За алуднавай ччинар зи гуьзетунин сиягьдиз алава авун',
+'tog-minordefault' => 'Авайвилелди, вири дуьзар хъувунар гъвечIи дуьзар хъувунар хьиз лишан авун',
 'tog-previewontop' => 'Сифтедин килигун дуьзар хъувундин дакIардин вилик эцига',
 'tog-previewonfirst' => 'Дуьзар хъувундиз эгечIайла сифтедин килигун къалурун',
+'tog-enotifwatchlistpages' => 'Зи гуьзетунин ччин масакIа хьайила заз эмейл ракъура.',
 'tog-enotifusertalkpages' => 'КЬилди жуван веревирдрин ччина хьанвай дегишвилерикай э-почтадиз чар ракъурун.',
 'tog-oldsig' => 'Алай къул:',
 'tog-showhiddencats' => 'Чуьнуьхай категорияр къалурун',
@@ -52,6 +56,7 @@ $messages = array(
 
 # Font style option in Special:Preferences
 'editfont-style' => 'Дуьзар хъувунин чкадин шрифтдин жуьре',
+'editfont-default' => 'Браузердин низамарунрикай шрифт',
 'editfont-monospace' => 'Моногьяркьуьвилер авай шрифт',
 'editfont-sansserif' => 'КЬацI авачир шрифт',
 'editfont-serif' => 'КьацI авай кхьин',
@@ -64,55 +69,55 @@ $messages = array(
 'thursday' => 'Хемис',
 'friday' => 'Жуьмя',
 'saturday' => 'Киш',
-'sun' => 'Гья',
+'sun' => 'Гьяд',
 'mon' => 'Исл',
 'tue' => 'Сал',
 'wed' => 'Aрб',
 'thu' => 'Xем',
 'fri' => 'Жум',
 'sat' => 'Киш',
-'january' => 'Суьл',
-'february' => 'Чила',
-'march' => 'ТIул',
-'april' => 'Вил',
-'may_long' => 'мукал',
-'june' => 'Кьамуг',
-'july' => 'БаскIум',
-'august' => 'Нава',
-'september' => 'Мара',
-'october' => 'Баскlум',
-'november' => 'Цlехуьл',
-'december' => 'Фандукl',
-'january-gen' => 'Гьер',
-'february-gen' => 'Эхем',
-'march-gen' => 'Ибне',
-'april-gen' => 'Нава',
-'may-gen' => 'ТӀул',
-'june-gen' => 'Къамуг',
-'july-gen' => 'Чиле',
-'august-gen' => 'Пахун',
-'september-gen' => 'Мара',
-'october-gen' => 'БаскӀум',
-'november-gen' => 'ЦӀехуьл',
-'december-gen' => 'ФaндукӀ',
-'jan' => 'Гье',
-'feb' => 'Эхе',
-'mar' => 'Ибн',
-'apr' => 'Нав',
-'may' => 'Тlул',
-'jun' => 'Къа',
-'jul' => 'Чил',
-'aug' => 'Пахун',
-'sep' => 'Мар',
-'oct' => 'Бас',
-'nov' => 'Цlе',
-'dec' => 'Фан',
+'january' => 'гьер (январь)',
+'february' => 'эхен (февраль)',
+'march' => 'ибне (март)',
+'april' => 'нава (апрель)',
+'may_long' => 'тӀул (май)',
+'june' => 'кьамуг (июнь)',
+'july' => 'чиле (июль)',
+'august' => 'пахун (август)',
+'september' => 'мара (сентябрь)',
+'october' => 'баскӀум (октябрь)',
+'november' => 'цӀехуьл (ноябрь)',
+'december' => 'фундукӀ (декабрь)',
+'january-gen' => 'гьер (январдиз)',
+'february-gen' => 'эхен (февралдиз)',
+'march-gen' => 'ибне (мартдиз)',
+'april-gen' => 'нава (апрелдиз)',
+'may-gen' => 'тӀул (майдиз)',
+'june-gen' => 'кьамуг (июндиз)',
+'july-gen' => 'чиле (июлдиз)',
+'august-gen' => 'пахун (августдиз)',
+'september-gen' => 'мара (сентябрдиз)',
+'october-gen' => 'баскӀум (октябрдиз)',
+'november-gen' => 'цӀехуьл (ноябрдиз)',
+'december-gen' => 'фундукӀ (декабрдиз)',
+'jan' => 'гьер (январь)',
+'feb' => 'эхен (февраль)',
+'mar' => 'ибне (март)',
+'apr' => 'нава (апрель)',
+'may' => 'тӀул (май)',
+'jun' => 'кьамуг (июнь)',
+'jul' => 'чиле (июль)',
+'aug' => 'пахун (август)',
+'sep' => 'мара (сентябрь)',
+'oct' => 'баскӀум (октябрь)',
+'nov' => 'цӀехуьл (ноябрь)',
+'dec' => 'фандукl (декабрь)',
 
 # Categories related messages
 'pagecategories' => '{{PLURAL:$1|Категория|Категории}}',
 'category_header' => '"$1" категориядин ччинар',
 'subcategories' => 'агъакатегорияр',
-'category-media-header' => '"$1" категорияда медиа',
+'category-media-header' => '"$1" категоридин медиа',
 'category-empty' => "''Алай чIава и категория ичIи я.\"",
 'hidden-categories' => '{{PLURAL:$1|Чуьнуьхай категория |Чуьнуьхай категорияр }}',
 'hidden-category-category' => 'Чуьнуьхай категорияр',
@@ -170,7 +175,7 @@ $messages = array(
 'returnto' => '$1 ччиниз элкъвена хтун',
 'tagline' => '{{SITENAME}} Cайтдихъай',
 'help' => 'Куьмек',
-'search' => 'Жагъурун',
+'search' => 'Жугъурун',
 'searchbutton' => 'Жагъурун',
 'go' => 'ЭлячIун',
 'searcharticle' => 'ЭлячIун',
@@ -200,7 +205,7 @@ $messages = array(
 'specialpage' => 'Куьмекчи ччин',
 'personaltools' => 'Кьилди вичин алатар',
 'postcomment' => 'ЦIйий пай',
-'articlepage' => 'КЪене авайбурун ччиндиз  килигун',
+'articlepage' => 'Къене авайбурун ччиндиз килигун',
 'talk' => 'Веревирд авун',
 'views' => 'Килигунар',
 'toolbox' => 'Алатрин кьвати',
@@ -237,10 +242,10 @@ $messages = array(
 'helppage' => 'Help:Къене авайбур',
 'mainpage' => 'Кьилин ччин',
 'mainpage-description' => 'Кьилин ччин',
-'policy-url' => 'Project:КЪайдаяр',
+'policy-url' => 'Project:Къайдаяр',
 'portal' => 'КIапIалдин портал',
 'portal-url' => 'Project:КIапIалдин портал',
-'privacy' => 'Чинебанвилин политика',
+'privacy' => 'Чинебанвилин сиясат',
 'privacypage' => 'Project:Чинебанвилин политика',
 
 'badaccess' => 'ГЬатунин гъалатlдин',
@@ -299,6 +304,7 @@ $messages = array(
 'missingarticle-rev' => '(жуьре#: $1)',
 'internalerror' => 'КЪенепатан гъалатI',
 'internalerror_info' => 'КЪенепатан гъалатI $1',
+'filerenameerror' => '«$1» файл  «$2» -з тIвар эхцигиз жезвач..',
 'badarticleerror' => 'И ччина и кар кьилиз акъудиз мумкин ттуш.',
 'cannotdelete-title' => ' "$1" ччин алудиз жезвач',
 'badtitle' => 'Ииже текъвер тIвар',
@@ -338,6 +344,7 @@ $messages = array(
 'wrongpasswordempty' => 'Тавакъу ийида, ичIи тушир парол ттур.',
 'mailmypassword' => 'ЦIийи парол Э-мейлдиз къачун',
 'mailerror' => 'Чар ракъурунин гъалатI: $1',
+'emailconfirmlink' => 'Куь электрон почтунин адрес тестикьун.',
 'accountcreated' => 'Аккаунт туькIуьрнава',
 'usernamehasherror' => 'Уртахдин тIвар "диез"дин лишан квачиз хьана кIанзава',
 'loginlanguagelabel' => 'ЧIал: $1',
@@ -398,6 +405,7 @@ $messages = array(
 'showdiff' => 'МасакIавилер къалурун',
 'anoneditwarning' => "'''Дикъет:''' Куьне системадиз жув вуж ятIа лагьанвач. Куь IP-адрес и ччинин масакIавилерин тарихдиз  кхьида.",
 'summary-preview' => 'Сифте килигун паталди:',
+'subject-preview' => 'КьилинцIарцIин сифтедин килигун:',
 'blockedtitle' => 'Иштиракчи блокарнава',
 'blockednoreason' => 'Са себебни ганвач',
 'nosuchsectiontitle' => 'Пай жугъуриз жезвач',
@@ -415,10 +423,13 @@ $messages = array(
 'noarticletext-nopermission' => 'Исятда и  ччина са текстни авач.
 Квевай [[Special:Search/{{PAGENAME}}| и тlвар алай ччин]] муькуь ччинра жугъуриз ва я
 <span class="plainlinks"> [{{fullurl: {{# Special:Log}} | page = {{FULLPAGENAMEE}}}} журналрин талукь тир кхьей затIар жугъуриз] жеда.',
+'blocked-notice-logextract' => 'И уртах алайчIава блокарнава.
+Агъадихъ блокарунин журналдикай эхиримжи кхьинар къалурнава:',
 'previewnote' => "'''Рикlел хуьх хьи, им анжах сифтедин килигун я.'''  
-Куь масакIавилер гьеле хвенвач! [[#editform|→ дуьзар хъувун давамрун]]",
+Куь масакIавилер гьеле хвенвач!",
 'editing' => '$1 Дуьзар хъувун',
 'editingsection' => 'Дуьзар хъувун $1  (пай)',
+'editingcomment' => '$1 дуьзар хъувун (цIийи пай)',
 'editconflict' => 'Дуьзар хъувунрин акьунар: $1',
 'yourtext' => 'Зи текст',
 'yourdiff' => 'Тафаватар',
@@ -513,10 +524,9 @@ $messages = array(
 
 # Diffs
 'history-title' => '$1  -  масакIавилерин тарих',
-'difference' => '(Жуьрейрин арада тафаватар)',
 'lineno' => 'ЦIар $1:',
 'compareselectedversions' => 'Хкягъай жуьреяр гекъигун',
-'editundo' => 'Гьич авун',
+'editundo' => 'гьич авун',
 'diff-multi' => '({{PLURAL:$2|Са уртах|$2 уртахар}} патал авунвай {{PLURAL:$1|са арадин жуьре|$1 арадин жуьреяр}} къалурнавач)',
 
 # Search results
@@ -533,7 +543,7 @@ $messages = array(
 'nextn' => 'Гуьгъуьнин {{PLURAL:$1|$1}}',
 'prevn-title' => 'Вилик фейи  $1 {{PLURAL:$1|нетижа|нетижаяр}}',
 'nextn-title' => 'КЪведай $1 {{PLURAL:$1|нетижа|нетижаяр}}',
-'shown-title' => 'Ччина $1 {{PLURAL:$1|нетижа|нетижаяр}} къалура',
+'shown-title' => 'Ччина $1 {{PLURAL:$1|нетижа|нетижа}} къалурун',
 'viewprevnext' => 'Килигун ($1 {{int:pipe-separator}} $2) ($3)',
 'searchmenu-legend' => 'Жагъурунин низамарунар',
 'searchmenu-exists' => "'''И вики-проектда \"[[:\$1]]\" тlвар алай ччин ава.'''",
@@ -549,7 +559,7 @@ $messages = array(
 'searchprofile-images-tooltip' => 'Файлар жугъура',
 'searchprofile-everything-tooltip' => 'Вири ччинра къекъуьгъ (веревирдрин ччинар кваз)',
 'searchprofile-advanced-tooltip' => 'Ганвай тlварарин генгвилера къекъуьгъ',
-'search-result-size' => '$1 ({{PLURAL:$2|1 гаф|$2 гафар}})',
+'search-result-size' => '$1 ({{PLURAL:$2|1 гаф|$2 гаф}})',
 'search-result-category-size' => '{{PLURAL:$1|1 элемент|$1 элементар}} ({{PLURAL:$2|1 агъакатегория|$2 агъакатегорияр}}, {{PLURAL:$3|1 файл|$3 файлар}})',
 'search-redirect' => '(рахкъурун $1)',
 'search-section' => '(пай $1)',
@@ -632,13 +642,14 @@ $messages = array(
 'timezoneregion-pacific' => 'Секин чIехи гуьл',
 'prefs-files' => 'Шикил',
 'youremail' => 'Электрон почта:',
-'username' => 'Ишлемишчидин тlар',
+'username' => 'Уртахдин тӀвар',
 'uid' => 'Уртах тайин ийидайди:',
 'yourrealname' => 'Xалис тIвар:',
 'yourlanguage' => 'ЧIалар',
+'yournick' => 'ЦӀийи къул:',
 'yourgender' => 'Жинс:',
 'gender-male' => 'итимдин',
-'gender-female' => 'Фамили',
+'gender-female' => 'папарин',
 'email' => 'E-mail',
 'prefs-help-email' => 'Электрон почтунин адрес кхьи  мажбури туш, амма куьне парол рикIелай ракъурдатIа, ам герек жеда.',
 'prefs-help-email-others' => 'Квевай куь уртахдин, ва я куь веревирдрин ччина элячIун къалурна муькуь уртахар галаз электрон почтадин куькмедалди алакъа хуьз жеда.
@@ -703,10 +714,10 @@ $messages = array(
 
 # Recent changes
 'nchanges' => '$1 {{PLURAL:$1|масакIавал|масакIавилер}}',
-'recentchanges' => 'Mукьвара хьайи масакIавилер',
+'recentchanges' => 'Mукьвара хьайи масакӀавилер',
 'recentchanges-legend' => 'Цlийи масакIавилерин низамарунар',
-'recentchangestext' => 'Викида хьанвай эхиримжи масакIавилер и ччина гуьзетун',
-'recentchanges-feed-description' => 'И хвала викида хьанвай эхиримжи масакIавилер гуьзетун',
+'recentchanges-summary' => 'Викида хьанвай эхиримжи масакIавилер и ччина гуьзетун',
+'recentchanges-feed-description' => 'И хвала викида хьанвай эхиримжи масакIавилер вилив хуьн',
 'recentchanges-label-newpage' => 'И дуьзар хъувун  цlийи ччин туькlуьрна',
 'recentchanges-label-minor' => 'Им гъвечlи дуьзар хъувун я',
 'recentchanges-label-bot' => 'И дуьзар хъувун ботди авунвайд я',
@@ -738,7 +749,7 @@ $messages = array(
 'recentchangeslinked-toolbox' => 'Галкlанвай масакIавилер',
 'recentchangeslinked-title' => '"$1" галаз галкlанавай масакIавилер',
 'recentchangeslinked-noresult' => 'Ганвай чlава галкlанавай ччинра са масакIавални хьанвайд туш',
-'recentchangeslinked-summary' => 'Им къалурай ччиниз (ва я къалурай категориядиз гьатзавай ччинриз) элячIзавай ччинра мукьвара хьайи масакIавилерин сиягь я. Куь [[Special:Watchlist| гуьзетунин сиягь  ]]диз гьатзавай  ччинар яцlу шрифтдал къалурнава.',
+'recentchangeslinked-summary' => 'Им къалурай ччиниз (ва я къалурай категориядиз гьатзавай ччинриз) элячIзавай ччинра мукьвара хьайи масакIавилерин сиягь я. Куь [[Special:Watchlist| вилив хуьнин сиягь ]]диз гьатзавай  ччинар яцlу шрифтдал къалурнава.',
 'recentchangeslinked-page' => 'Ччинин тlвар:',
 'recentchangeslinked-to' => 'Аксина, къалурай ччиниз элячlзавай ччинра масакIавилер къалура',
 
@@ -774,7 +785,7 @@ $messages = array(
 # img_auth script messages
 'img-auth-accessdenied' => 'Гьахьун къадагъа авунва',
 
-'license' => 'Лицензиа авун:',
+'license' => 'Лицензиярун',
 'license-header' => 'Лицинзиярун',
 'nolicense' => 'ЗатIни хкягънавач',
 'license-nopreview' => '(Сифтедин килигун авайд ттуш)',
@@ -896,7 +907,7 @@ $messages = array(
 'allpagessubmit' => 'ЭлячIун',
 
 # Special:Categories
-'categories' => 'Тlаб',
+'categories' => 'Категорияр',
 
 # Special:LinkSearch
 'linksearch' => 'КЪецепатан элячIунар жугъурун',
@@ -927,17 +938,17 @@ $messages = array(
 'emailsend' => 'Ракъурун',
 
 # Watchlist
-'watchlist' => 'Зи гуьзетунин сиягь',
-'mywatchlist' => 'Зи гуьзетунин сиягь',
+'watchlist' => 'Зи вилив хуьнин сиягь',
+'mywatchlist' => 'Зи вилив хуьнин сиягь',
 'watchlistfor2' => '$1 $2 патал',
 'addedwatchtext' => "Чар \"[[:\$1]]\" тун хъувунай куьн [[Special:Watchlist|watchlist]].                                                                                                             Къвезмай дегишунар и чарчел ва галкlанавай чарчихъ ихтилатар жеда инна, ахъатдава \"сакlус яцlу''''' инна [[Special:RecentChanges|list of recent changes]] гьам кьизил авун.",
 'removedwatchtext' => 'Чар "[[:$1]]" Идай чlурнай [[Special:Watchlist|ахтармишунин цlарар]].',
-'watch' => 'Гуьзетун',
+'watch' => 'Вилив хуьн',
 'watchthispage' => 'Гелкъуьн и хъувун',
-'unwatch' => 'Гуьзет ийимир',
-'watchlist-details' => 'Куь гуьзетунин сиягьда {{PLURAL:$1|$1 ччин|$1 ччинар}}, веревирдрин ччинар квачиз.',
+'unwatch' => 'Вилив хуьмир',
+'watchlist-details' => 'Куь вилив хуьнин сиягьда {{PLURAL:$1|$1 ччин|$1 ччин}} авайди я, веревирдрин ччинар квачиз.',
 'wlshowlast' => 'Эхиримжи $1 сят $2 югъ $3 къалура',
-'watchlist-options' => 'Гуьзетунин сиягьдин низамарунар',
+'watchlist-options' => 'Вилив хуьнин сиягьдин низамарунар',
 
 # Displayed when you click the "watch" button and it is in the process of watching
 'watching' => 'Килигун...',
@@ -1015,7 +1026,7 @@ $messages = array(
 # Contributions
 'contributions' => 'Уртахди кутур крар',
 'contributions-title' => '$1 уртахдин кутур крар',
-'mycontris' => 'За кутур крар',
+'mycontris' => 'За кутур кар',
 'contribsub2' => '($1)-ин кутур пай  ($2)',
 'uctop' => '(вини кьил)',
 'month' => ' Вацралай (ва адалай вилик)',
@@ -1121,10 +1132,10 @@ $messages = array(
 'import-token-mismatch' => 'Сеансдин  ганайбур квахьнава. Тавакъу ийида, мадни алахъун ая.',
 
 # Tooltip help for the actions
-'tooltip-pt-userpage' => 'Куь ишлемишзавайдин ччин',
+'tooltip-pt-userpage' => 'Куьн (уртахдин) ччин',
 'tooltip-pt-mytalk' => 'Куь веревирдрин ччин',
 'tooltip-pt-preferences' => 'Куь низамарунар',
-'tooltip-pt-watchlist' => 'Куьне гуьзетзавай ччинрин сиягь',
+'tooltip-pt-watchlist' => 'Куьне вилив хуьзвай ччинрин сиягь',
 'tooltip-pt-mycontris' => 'Куьне авунвай дуьзар хъувунрин сиягь',
 'tooltip-pt-login' => 'Квез гьахьиз теклифзава, анжах им мажбури туш',
 'tooltip-pt-logout' => 'ЭкъечIун',
@@ -1136,19 +1147,19 @@ $messages = array(
 'tooltip-ca-protect' => 'И ччин хуьн',
 'tooltip-ca-delete' => 'И ччин алудун',
 'tooltip-ca-move' => 'Ччиндин тIвар масакIа авун',
-'tooltip-ca-watch' => 'И ччин куь гуьзетунин сиягьдиз алава авун',
-'tooltip-ca-unwatch' => 'И ччин куь гуьзетунин сиягьдал къахчун',
-'tooltip-search' => 'И гаф жагъурун {{SITENAME}}',
+'tooltip-ca-watch' => 'И ччин куь вилив хуьнин сиягьдиз алава авун',
+'tooltip-ca-unwatch' => 'И ччин куь вилив хуьнин сиягьдай къахчун',
+'tooltip-search' => '{{SITENAME}} къекъуьн',
 'tooltip-search-go' => 'АватIа, гьа и тIвар авай ччиниз элячIун',
-'tooltip-search-fulltext' => 'Къалурай текст авай ччинар жугъура',
+'tooltip-search-fulltext' => 'Къалурай текст авай ччинар жугъурун',
 'tooltip-p-logo' => 'Кьилин ччиниз элячIун',
-'tooltip-n-mainpage' => 'Кьилин ччиндиз элячIун',
+'tooltip-n-mainpage' => 'Кьилин ччиниз элячIун',
 'tooltip-n-mainpage-description' => 'Кьилин ччиндиз элячIун',
 'tooltip-n-portal' => 'Проектдикай,  квевай вуч йийз алакьда, са вуч ятIани гьинай жугъурда',
 'tooltip-n-currentevents' => 'Алай вакъийрин сиягь',
 'tooltip-n-recentchanges' => 'Викида мукьвара хьайи масакIавилерин сиягь',
 'tooltip-n-randompage' => 'Дуьшуьшдин чин ппарун',
-'tooltip-n-help' => 'Жагъурдай чка',
+'tooltip-n-help' => 'Жагъурун патал чка',
 'tooltip-t-whatlinkshere' => 'Иниз элячIзавай викидин вири  ччинрин сиягь',
 'tooltip-t-recentchangeslinked' => 'И ччиндиз элячIзавай ччинра  мукьвара хьайи масакIавилер',
 'tooltip-feed-rss' => 'RSS  хуьрек и чарчиз',
@@ -1171,7 +1182,7 @@ $messages = array(
 'tooltip-preview' => 'Ччин хуьдалди вилик, сифте килигун кардик кутун тавакъу ийизва',
 'tooltip-diff' => 'Сифте кьилин текстдиз талукь тир куьне авунвай масакIавилер къалурун',
 'tooltip-compareselectedversions' => 'И ччинин кьве хкягъай жуьрейрин арада авай тафаватдиз килигун',
-'tooltip-watch' => 'И ччин куь гуьзетунин сиягьдиз алава авун',
+'tooltip-watch' => 'И ччин куь вилив хуьнин сиягьдиз алава авун',
 'tooltip-rollback' => '« КЬулухъди чIугун »  и ччиндиз эхиримжи кар кутазвайди патай  авунвай дуьзар хъувунар са т!ампуналди  paxкурзава',
 'tooltip-undo' => '«Гьич авун»  авунвай дуьзар хъувун paxкурзава ва сифтедин килигунин режимда  дуьзар хъувундин форма ахъа йийзва. Им нетижадиз себеб алава йийз мумкинвал гузва',
 'tooltip-summary' => 'Куьруь нетижа гьадрун',
@@ -1249,20 +1260,7 @@ Cиягьда авай анжах (* лишандихъ галаз эгечIза
 'limitall' => 'вири',
 
 # action=purge
-'confirm_purge_button' => 'Э(кхьин)
-
-
-
-
-
-
-
-
-
-
-
-
-9',
+'confirm_purge_button' => 'ЭХь',
 'confirm-purge-top' => 'И ччинин кэш алуддани?',
 
 # action=watch/unwatch
@@ -1316,14 +1314,14 @@ Cиягьда авай анжах (* лишандихъ галаз эгечIза
 'specialpages' => 'КьетIен  ччинар',
 
 # External image whitelist
-'external_image_whitelist' => ' #И цIар авайд хьиз тур</pre>
-#Агъада вахт акадар тийиз жезвай (гьамиша къайдадалди ) лугьунрин кьатIар эцига (// арада авай кIус).
+'external_image_whitelist' => ' #И цӀар авайд хьиз тур<pre>
+#Агъада вахт акадар тийиз жезвай (гьамиша къайдадалди) лугьунрин кьатӀар эцига (// арада авай кӀус).
 #Ибур кьецепатан суьретрин URL галаз гекъигда.
-#Дуьзкъвезвайбур суьретар хьиз къалурда, муькуьбур суьретриз тухузвай элячIунар хьиз къалурда.
-# "#" галаз эгечIзавай цIарариз къейдериз хьиз килигда.
-#ЦIарар регистрдиз фад кьатIудайбур я.
+#Дуьзкъвезвайбур суьретар хьиз къалурда, муькуьбур суьретриз тухузвай элячӀунар хьиз къалурда.
+#«#» галаз эгечӀзавай цӀарариз къейдериз хьиз килигда.
+#ЦӀарар регистрдиз фад кьатӀудайбур я.
 
-#ЦIарцин винел вири вахт акадар тийиз жезвай лугьунрин кьатIар эцига.И цIар авайд хьиз тур</pre>',
+#ЦӀарцин винел вири вахт акадар тийиз жезвай лугьунрин кьатӀар эцига. И цӀар авайд хьиз тур</pre>',
 
 # Special:Tags
 'tag-filter' => '[[Special:Tags|Tag]] куьзунаг:',

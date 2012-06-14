@@ -1,5 +1,5 @@
 <?php
-/** Russian (Русский)
+/** Russian (русский)
  *
  * See MessagesQqq.php for message documentation incl. usage of parameters
  * To improve a translation please visit http://translatewiki.net
@@ -8,6 +8,7 @@
  * @file
  *
  * @author AVRS
+ * @author Agilight
  * @author Ahonc
  * @author Aleksandrit
  * @author Alessandro
@@ -22,6 +23,7 @@
  * @author Claymore
  * @author Comp1089
  * @author DCamer
+ * @author Daniyar
  * @author Dim Grits
  * @author Don Alessandro
  * @author Eleferen
@@ -39,6 +41,7 @@
  * @author Illusion
  * @author Iniquity
  * @author Innv
+ * @author Jackie
  * @author JenVan
  * @author Jl
  * @author KPu3uC B Poccuu
@@ -53,6 +56,7 @@
  * @author Putnik
  * @author Rave
  * @author Rubin
+ * @author Sagan
  * @author Sk
  * @author TarzanASG
  * @author Temuri rajavi
@@ -60,26 +64,11 @@
  * @author VasilievVV
  * @author Ytsukeng Fyvaprol
  * @author Александр Сигачёв
+ * @author Гусейн
  * @author ОйЛ
  * @author לערי ריינהארט
  * @author გიორგიმელა
  */
-
-/**
- * Изменения сделанные в этом файле будут потеряны при обновлении MediaWiki.
- *
- * Если необходимо внести изменения в перевод отдельных строк интерфейса,
- * сделайте это посредством редактирования страниц вида «MediaWiki:*».
- * Их список можно найти на странице «Special:Allmessages».
- */
-
-$separatorTransformTable = array(
-	',' => "\xc2\xa0", # nbsp
-	'.' => ','
-);
-
-$fallback8bitEncoding = 'windows-1251';
-$linkPrefixExtension = false;
 
 $namespaceNames = array(
 	NS_MEDIA            => 'Медиа',
@@ -110,32 +99,91 @@ $namespaceGenderAliases = array(
 	NS_USER_TALK => array( 'male' => 'Обсуждение_участника', 'female' => 'Обсуждение_участницы' ),
 );
 
-$dateFormats = array(
-	'mdy time' => 'H:i',
-	'mdy date' => 'xg j, Y',
-	'mdy both' => 'H:i, xg j, Y',
-
-	'dmy time' => 'H:i',
-	'dmy date' => 'j xg Y',
-	'dmy both' => 'H:i, j xg Y',
-
-	'ymd time' => 'H:i',
-	'ymd date' => 'Y xg j',
-	'ymd both' => 'H:i, Y xg j',
-
-	'ISO 8601 time' => 'xnH:xni:xns',
-	'ISO 8601 date' => 'xnY-xnm-xnd',
-	'ISO 8601 both' => 'xnY-xnm-xnd"T"xnH:xni:xns',
-
-);
-
-$bookstoreList = array(
-	'Поиск по библиотекам «Сигла»' => 'http://www.sigla.ru/results.jsp?f=7&t=3&v0=$1',
-	'Findbook.ru' => 'http://findbook.ru/search/d0?ptype=4&pvalue=$1',
-	'Яндекс.Маркет' => 'http://market.yandex.ru/search.xml?text=$1',
-	'ОЗОН' => 'http://www.ozon.ru/?context=advsearch_book&isbn=$1',
-	'Books.Ru' => 'http://www.books.ru/shop/search?query=$1',
-	'Amazon.com' => 'http://www.amazon.com/exec/obidos/ISBN=$1'
+$specialPageAliases = array(
+	'Activeusers'               => array( 'Активные_участники' ),
+	'Allmessages'               => array( 'Системные_сообщения' ),
+	'Allpages'                  => array( 'Все_страницы' ),
+	'Blankpage'                 => array( 'Пустая_страница' ),
+	'Block'                     => array( 'Заблокировать' ),
+	'Blockme'                   => array( 'Заблокируй_меня' ),
+	'Booksources'               => array( 'Источники_книг' ),
+	'BrokenRedirects'           => array( 'Разорванные_перенаправления' ),
+	'Categories'                => array( 'Категории' ),
+	'ChangeEmail'               => array( 'Сменить_e-mail' ),
+	'ChangePassword'            => array( 'Сменить_пароль' ),
+	'ComparePages'              => array( 'Сравнение_страниц' ),
+	'Confirmemail'              => array( 'Подтвердить_e-mail' ),
+	'Contributions'             => array( 'Вклад' ),
+	'CreateAccount'             => array( 'Создать_учётную_запись', 'Создать_пользователя', 'Зарегистрироваться' ),
+	'Deadendpages'              => array( 'Тупиковые_страницы' ),
+	'DeletedContributions'      => array( 'Удалённый_вклад' ),
+	'Disambiguations'           => array( 'Неоднозначности' ),
+	'DoubleRedirects'           => array( 'Двойные_перенаправления' ),
+	'EditWatchlist'             => array( 'Править_список_наблюдения' ),
+	'Emailuser'                 => array( 'Письмо_участнику', 'Отправить_письмо' ),
+	'Export'                    => array( 'Экспорт', 'Выгрузка' ),
+	'FileDuplicateSearch'       => array( 'Поиск_дубликатов_файлов' ),
+	'Filepath'                  => array( 'Путь_к_файлу' ),
+	'Import'                    => array( 'Импорт' ),
+	'BlockList'                 => array( 'Список_блокировок', 'Блокировки' ),
+	'LinkSearch'                => array( 'Поиск_ссылок' ),
+	'Listadmins'                => array( 'Список_администраторов' ),
+	'Listbots'                  => array( 'Список_ботов' ),
+	'Listfiles'                 => array( 'Список_файлов', 'Список_изображений' ),
+	'Listgrouprights'           => array( 'Права_групп_участников', 'Список_прав_групп' ),
+	'Listredirects'             => array( 'Список_перенаправлений' ),
+	'Listusers'                 => array( 'Список_участников' ),
+	'Lockdb'                    => array( 'Заблокировать_БД', 'Заблокировать_базу_данных' ),
+	'Log'                       => array( 'Журналы', 'Журнал' ),
+	'Lonelypages'               => array( 'Изолированные_страницы' ),
+	'Longpages'                 => array( 'Длинные_страницы' ),
+	'MergeHistory'              => array( 'Объединение_историй' ),
+	'MIMEsearch'                => array( 'Поиск_по_MIME' ),
+	'Mostimages'                => array( 'Самые_используемые_файлы' ),
+	'Movepage'                  => array( 'Переименовать_страницу', 'Переименование', 'Переименовать' ),
+	'Mycontributions'           => array( 'Мой_вклад' ),
+	'Mypage'                    => array( 'Моя_страница' ),
+	'Mytalk'                    => array( 'Моё_обсуждение' ),
+	'Myuploads'                 => array( 'Мои_загрузки' ),
+	'Newimages'                 => array( 'Новые_файлы' ),
+	'Newpages'                  => array( 'Новые_страницы' ),
+	'PasswordReset'             => array( 'Сброс_пароля' ),
+	'PermanentLink'             => array( 'Постоянная_ссылка' ),
+	'Popularpages'              => array( 'Популярные_страницы' ),
+	'Preferences'               => array( 'Настройки' ),
+	'Protectedpages'            => array( 'Защищённые_страницы' ),
+	'Protectedtitles'           => array( 'Защищённые_названия' ),
+	'Randompage'                => array( 'Случайная_страница', 'Случайная' ),
+	'Recentchanges'             => array( 'Свежие_правки' ),
+	'Recentchangeslinked'       => array( 'Связанные_правки' ),
+	'Revisiondelete'            => array( 'Удаление_правки' ),
+	'Search'                    => array( 'Поиск' ),
+	'Shortpages'                => array( 'Короткие_страницы' ),
+	'Specialpages'              => array( 'Спецстраницы' ),
+	'Statistics'                => array( 'Статистика' ),
+	'Tags'                      => array( 'Метки' ),
+	'Unblock'                   => array( 'Разблокировка' ),
+	'Uncategorizedcategories'   => array( 'Некатегоризованные_категории' ),
+	'Uncategorizedimages'       => array( 'Некатегоризованные_файлы' ),
+	'Uncategorizedpages'        => array( 'Некатегоризованные_страницы' ),
+	'Uncategorizedtemplates'    => array( 'Некатегоризованные_шаблоны' ),
+	'Undelete'                  => array( 'Восстановить', 'Восстановление' ),
+	'Unusedcategories'          => array( 'Неиспользуемые_категории' ),
+	'Unusedimages'              => array( 'Неиспользуемые_файлы' ),
+	'Unusedtemplates'           => array( 'Неиспользуемые_шаблоны' ),
+	'Upload'                    => array( 'Загрузка' ),
+	'UploadStash'               => array( 'Скрытная_загрузка' ),
+	'Userlogin'                 => array( 'Вход' ),
+	'Userlogout'                => array( 'Завершение_сеанса', 'Выход' ),
+	'Userrights'                => array( 'Управление_правами' ),
+	'Version'                   => array( 'Версия' ),
+	'Wantedcategories'          => array( 'Требуемые_категории' ),
+	'Wantedfiles'               => array( 'Требуемые_файлы' ),
+	'Wantedpages'               => array( 'Требуемые_страницы' ),
+	'Wantedtemplates'           => array( 'Требуемые_шаблоны' ),
+	'Watchlist'                 => array( 'Список_наблюдения' ),
+	'Whatlinkshere'             => array( 'Ссылки_сюда' ),
+	'Withoutinterwiki'          => array( 'Без_интервики' ),
 );
 
 $magicWords = array(
@@ -289,6 +337,51 @@ $magicWords = array(
 	'url_query'               => array( '0', 'ЗАПРОС', 'QUERY' ),
 );
 
+
+$dateFormats = array(
+	'mdy time' => 'H:i',
+	'mdy date' => 'xg j, Y',
+	'mdy both' => 'H:i, xg j, Y',
+
+	'dmy time' => 'H:i',
+	'dmy date' => 'j xg Y',
+	'dmy both' => 'H:i, j xg Y',
+
+	'ymd time' => 'H:i',
+	'ymd date' => 'Y xg j',
+	'ymd both' => 'H:i, Y xg j',
+
+	'ISO 8601 time' => 'xnH:xni:xns',
+	'ISO 8601 date' => 'xnY-xnm-xnd',
+	'ISO 8601 both' => 'xnY-xnm-xnd"T"xnH:xni:xns',
+
+);
+
+$bookstoreList = array(
+	'Поиск по библиотекам «Сигла»' => 'http://www.sigla.ru/results.jsp?f=7&t=3&v0=$1',
+	'Findbook.ru' => 'http://findbook.ru/search/d0?ptype=4&pvalue=$1',
+	'Яндекс.Маркет' => 'http://market.yandex.ru/search.xml?text=$1',
+	'ОЗОН' => 'http://www.ozon.ru/?context=advsearch_book&isbn=$1',
+	'Books.Ru' => 'http://www.books.ru/shop/search?query=$1',
+	'Amazon.com' => 'http://www.amazon.com/exec/obidos/ISBN=$1'
+);
+
+/**
+ * Изменения сделанные в этом файле будут потеряны при обновлении MediaWiki.
+ *
+ * Если необходимо внести изменения в перевод отдельных строк интерфейса,
+ * сделайте это посредством редактирования страниц вида «MediaWiki:*».
+ * Их список можно найти на странице «Special:Allmessages».
+ */
+
+$separatorTransformTable = array(
+	',' => "\xc2\xa0", # nbsp
+	'.' => ','
+);
+
+$fallback8bitEncoding = 'windows-1251';
+$linkPrefixExtension = false;
+
 $imageFiles = array(
 	'button-bold'   => 'cyrl/button_bold.png',
 	'button-italic' => 'cyrl/button_italic.png',
@@ -343,6 +436,7 @@ $messages = array(
 'tog-ccmeonemails' => 'Отправлять мне копии писем, которые я посылаю другим участникам',
 'tog-diffonly' => 'Не показывать содержание страницы под сравнением двух версий',
 'tog-showhiddencats' => 'Показывать скрытые категории',
+'tog-noconvertlink' => 'Отключить ссылку на преобразование заголовка',
 'tog-norollbackdiff' => 'Не показывать разницу версий после выполнения отката',
 
 'underline-always' => 'Всегда',
@@ -474,7 +568,7 @@ $messages = array(
 'searchbutton' => 'Найти',
 'go' => 'Перейти',
 'searcharticle' => 'Перейти',
-'history' => 'история',
+'history' => 'История',
 'history_short' => 'история',
 'updatedmarker' => 'обновлено после моего последнего посещения',
 'printableversion' => 'Версия для печати',
@@ -687,6 +781,8 @@ $2',
 'filereadonlyerror' => "Не удаётся изменить файл «$1», так как хранилище «$2» находится в режиме «только для чтения».
 
 Установивший этот режим администратор оставил следующее разъяснение: «''$3''».",
+'invalidtitle-knownnamespace' => 'Недопустимый заголовок с пространством имен «$2» и текстом «$3»',
+'invalidtitle-unknownnamespace' => 'Недопустимый заголовок с неизвестным номером пространства $1 и текстом «$2»',
 
 # Virus scanner
 'virus-badscanner' => "Ошибка настройки. Неизвестный сканер вирусов: ''$1''",
@@ -984,7 +1080,8 @@ $2
 'updated' => '(Обновлена)',
 'note' => "'''Примечание:'''",
 'previewnote' => "'''Помните, что это только предварительный просмотр.'''
-Ваши изменения ещё не были сохранены! [[#editform|→ продолжить редактирование]]",
+Ваши изменения ещё не были сохранены!",
+'continue-editing' => 'Продолжить редактирование',
 'previewconflict' => 'Этот предварительный просмотр отражает текст в верхнем окне редактирования так, как он будет выглядеть, если вы решите записать его.',
 'session_fail_preview' => "'''К сожалению, сервер не смог обработать вашу правку из-за потери идентификатора сессии.
 Пожалуйста, попробуйте ещё раз.
@@ -999,7 +1096,7 @@ $2
 в окне редактирования. Правка была отменена для предотвращения искажения текста статьи.
 Подобные проблемы могут возникать при использовании анонимизирующих веб-прокси, содержащих ошибки.'''",
 'edit_form_incomplete' => "'''Некоторые части формы редактирования не достигли сервера. Внимательно проверьте, что ваши правки не повреждены, и попробуйте ещё раз.'''",
-'editing' => 'Редактирование: $1',
+'editing' => 'Редактирование $1',
 'creating' => 'Создание $1',
 'editingsection' => 'Редактирование: $1 (раздел)',
 'editingcomment' => 'Редактирование $1 (новый раздел)',
@@ -1083,6 +1180,12 @@ $2
 'parser-template-loop-warning' => 'Обнаружена петля в шаблонах: [[$1]]',
 'parser-template-recursion-depth-warning' => 'Превышен предел глубины рекурсии шаблона ($1)',
 'language-converter-depth-warning' => 'Превышен предел глубины преобразователя языков ($1)',
+'node-count-exceeded-category' => 'Странице, на которых превышено число узлов',
+'node-count-exceeded-warning' => 'На странице превышено число узлов',
+'expansion-depth-exceeded-category' => 'Страницы с превышением глубины раскрытия',
+'expansion-depth-exceeded-warning' => 'На странице превышен предел вложенности',
+'parser-unstrip-loop-warning' => 'Обнаружен незакрытый pre',
+'parser-unstrip-recursion-limit' => 'Превышен предел рекурсии ($1)',
 
 # "Undo" feature
 'undo-success' => 'Правка может быть отменена. Пожалуйста, просмотрите сравнение версий, чтобы убедиться, что это именно те изменения, которые вас интересуют, и нажмите «Записать страницу», чтобы изменения вступили в силу.',
@@ -1259,13 +1362,14 @@ $1",
 
 # Diffs
 'history-title' => '$1 — история изменений',
-'difference' => '(Различия между версиями)',
+'difference-title' => '$1 — различия между версиями',
+'difference-title-multipage' => 'Разница между страницами «$1» и «$2»',
 'difference-multipage' => '(Различия между страницами)',
 'lineno' => 'Строка $1:',
 'compareselectedversions' => 'Сравнить выбранные версии',
 'showhideselectedversions' => 'Показать/скрыть выбранные версии',
 'editundo' => 'отменить',
-'diff-multi' => '({{PLURAL:$1|не показана $1 промежуточная версия|не показаны $1 промежуточные версии|не показаны $1 промежуточных версий}} {{PLURAL:$2|$2 участника|$2 участников|$2 участников}})',
+'diff-multi' => '({{PLURAL:$1|не показана $1 промежуточная версия|не показаны $1 промежуточные версии|не показаны $1 промежуточных версий}} {{PLURAL:$2|$2 участника|$2 участников}})',
 'diff-multi-manyusers' => '(не {{PLURAL:$1|показана $1 промежуточная версия|показаны $1 промежуточные версии|показаны $1 промежуточных версий}}, сделанные более чем $2 {{PLURAL:$2|участником|участниками}})',
 
 # Search results
@@ -1354,6 +1458,7 @@ $1",
 'prefs-beta' => 'Бета-возможности',
 'prefs-datetime' => 'Дата и время',
 'prefs-labs' => 'Экспериментальные возможности',
+'prefs-user-pages' => 'Страницы участника',
 'prefs-personal' => 'Личные данные',
 'prefs-rc' => 'Свежие правки',
 'prefs-watchlist' => 'Список наблюдения',
@@ -1617,7 +1722,7 @@ $1",
 'nchanges' => '$1 {{PLURAL:$1|изменение|изменения|изменений}}',
 'recentchanges' => 'Свежие правки',
 'recentchanges-legend' => 'Настройки свежих правок',
-'recentchangestext' => 'Ниже в хронологическом порядке перечислены последние изменения на страницах {{grammar:genitive|{{SITENAME}}}}.',
+'recentchanges-summary' => 'Ниже в хронологическом порядке перечислены последние изменения на страницах {{grammar:genitive|{{SITENAME}}}}.',
 'recentchanges-feed-description' => 'Отслеживать последние изменения в вики в этом потоке.',
 'recentchanges-label-newpage' => 'Этой правкой была создана новая страница.',
 'recentchanges-label-minor' => 'Это незначительное изменение',
@@ -1644,7 +1749,7 @@ $1",
 'number_of_watching_users_pageview' => '[$1 {{PLURAL:$1|наблюдающий участник|наблюдающих участника|наблюдающих участников}}]',
 'rc_categories' => 'Только из категорий (разделитель «|»)',
 'rc_categories_any' => 'Любой',
-'rc-change-size-new' => 'Размер после изменения: {{PLURAL:$1|байт|байта|байт}}',
+'rc-change-size-new' => 'Размер после изменения: $1 {{PLURAL:$1|байт|байта|байт}}',
 'newsectionsummary' => '/* $1 */ новая тема',
 'rc-enhanced-expand' => 'Показать подробности (используется JavaScript)',
 'rc-enhanced-hide' => 'Скрыть подробности',
@@ -1822,14 +1927,15 @@ $1',
 'backend-fail-writetemp' => 'Не удалось записать во временный файл.',
 'backend-fail-closetemp' => 'Не удаётся закрыть временный файл.',
 'backend-fail-read' => 'Не удалось прочитать файл $1.',
-'backend-fail-create' => 'Не удалось создать файл $1.',
-'backend-fail-maxsize' => 'Не удалось создать файл $1, так как его размер превышает {{PLURAL:$2|$2 байт|$2 байта|$2 байт}}.',
+'backend-fail-create' => 'Не удалось записать файл $1.',
+'backend-fail-maxsize' => 'Не удалось записать файл $1, так как его размер превышает {{PLURAL:$2|$2 байт|$2 байта|$2 байт}}.',
 'backend-fail-readonly' => 'Хранилище «$1» сейчас находится в режиме «только чтение». Причина: «$2»',
 'backend-fail-synced' => 'Файл «$1» находится в несогласованном состоянии во внутреннем хранилище',
 'backend-fail-connect' => 'Не удалось подключиться к хранилищу «$1».',
 'backend-fail-internal' => 'Произошла неизвестная ошибка в хранилище «$1».',
 'backend-fail-contenttype' => 'Не удалось определить тип содержимого файла, чтобы сохранить его в «$1».',
 'backend-fail-batchsize' => 'Хранилище получило блок из $1 {{PLURAL:$1|файловой операции|файловых операций|файловых операций}}, ограничение составляет $2 {{PLURAL:$1|операцию|операции|файловых операций}}.',
+'backend-fail-usable' => 'Не удалось записать файл $1 из-за нехватки прав или отсутствия нужных папок.',
 
 # File journal errors
 'filejournal-fail-dbconnect' => 'Не удалось подключиться к базе данных журнала для хранилища «$1».',
@@ -2150,6 +2256,7 @@ $1',
 Вы можете отфильтровать результаты по типу журнала, имени участника (учитывается регистр) или затронутой странице (также учитывается регистр).',
 'logempty' => 'Подходящие записи в журнале отсутствуют.',
 'log-title-wildcard' => 'Найти заголовки, начинающиеся с данных символов',
+'showhideselectedlogentries' => 'Показать/скрыть выбранные записи журнала',
 
 # Special:AllPages
 'allpages' => 'Все страницы',
@@ -3019,12 +3126,20 @@ $1',
 'group-bureaucrat.css' => '/* Размещённый здесь CSS будет применяться только для бюрократов */',
 
 # Scripts
-'common.js' => '/* Размещённый здесь JavaScript код будет загружаться всем пользователям при обращении к каждой странице */',
-'standard.js' => '/* Размещённый здесь JavaScript код будет загружаться пользователям использующих тему оформления Standard */',
-'nostalgia.js' => '/* Размещённый здесь JavaScript код будет загружаться пользователям использующих тему оформления Nostalgia */',
-'cologneblue.js' => '/* Размещённый здесь JavaScript код будет загружаться пользователям использующих тему оформления Cologne Blue */',
-'monobook.js' => '/* Размещённый здесь JavaScript код будет загружаться пользователям использующих тему оформления MonoBook */',
-'vector.js' => '/* Указанный здесь JavaScript будет загружен всем участникам, использующим векторную тему оформления  */',
+'common.js' => '/* Размещённый здесь код JavaScript будет загружаться пользователям при обращении к каждой странице */',
+'standard.js' => '/* Размещённый здесь код JavaScript будет загружаться пользователям, использующим тему оформления Standard */',
+'nostalgia.js' => '/* Размещённый здесь код JavaScript будет загружаться пользователям, использующим тему оформления Nostalgia */',
+'cologneblue.js' => '/* Размещённый здесь код JavaScript будет загружаться пользователям, использующим тему оформления Cologne Blue */',
+'monobook.js' => '/* Размещённый здесь код JavaScript будет загружаться пользователям, использующим тему оформления MonoBook */',
+'myskin.js' => '/* Размещённый здесь код JavaScript будет загружаться пользователям, использующим тему оформления MySkin  */',
+'chick.js' => '/* Размещённый здесь код JavaScript будет загружаться пользователям, использующим тему оформления Chick */',
+'simple.js' => '/* Размещённый здесь код JavaScript будет загружаться пользователям, использующим тему оформления Simple */',
+'modern.js' => '/* Размещённый здесь код JavaScript будет загружаться пользователям, использующим тему оформления Modern */',
+'vector.js' => '/* Размещённый здесь код JavaScript будет загружаться пользователям, использующим тему оформления Vector */',
+'group-autoconfirmed.js' => '/* Размещённый здесь код JavaScript будет загружаться только участникам, имеющим статус автоподтверждённых (autoconfirmed) */',
+'group-bot.js' => '/* Размещённый здесь код JavaScript будет загружаться только участникам, имеющим статус ботов (bots) */',
+'group-sysop.js' => '/* Размещённый здесь код JavaScript будет загружаться только участникам, имеющим статус администраторов (sysops) */',
+'group-bureaucrat.js' => '/* Размещённый здесь код JavaScript будет загружаться только участникам, имеющим статус бюрократов (bureaucrats) */',
 
 # Metadata
 'notacceptable' => "Вики-сервер не может предоставить данные в формате, который мог бы прочитать ваш браузер.<br />
@@ -3768,9 +3883,24 @@ $5
 'iranian-calendar-m11' => 'Бахман',
 'iranian-calendar-m12' => 'Эсфанд',
 
+# Hijri month names
+'hijri-calendar-m1' => 'Мухаррам',
+'hijri-calendar-m2' => 'Сафар',
+'hijri-calendar-m3' => 'Рабиуль-Аввал',
+'hijri-calendar-m4' => 'Раби ас-сани',
+'hijri-calendar-m5' => 'Джумада аль-уля',
+'hijri-calendar-m6' => 'Джумада ас-сани',
+'hijri-calendar-m7' => 'Раджаб',
+'hijri-calendar-m8' => 'Шаабан',
+'hijri-calendar-m9' => 'Рамадан',
+'hijri-calendar-m10' => 'Шавваль',
+'hijri-calendar-m11' => 'Зулькада',
+'hijri-calendar-m12' => 'Зуль-Хиджа',
+
 # Hebrew month names
 'hebrew-calendar-m1' => 'Тишрей',
 'hebrew-calendar-m2' => 'Хешван',
+'hebrew-calendar-m3' => 'Кислев',
 'hebrew-calendar-m4' => 'Тевет',
 'hebrew-calendar-m5' => 'Шват',
 'hebrew-calendar-m6' => 'Адар',
@@ -3832,6 +3962,11 @@ MediaWiki распространяется в надежде, что она бу
 'version-software' => 'Установленное программное обеспечение',
 'version-software-product' => 'Продукт',
 'version-software-version' => 'Версия',
+'version-entrypoints' => 'Адреса точек входа',
+'version-entrypoints-header-entrypoint' => 'Точка входа',
+'version-entrypoints-header-url' => 'URL',
+'version-entrypoints-articlepath' => '[https://www.mediawiki.org/wiki/Manual:$wgArticlePath Путь к статье]',
+'version-entrypoints-scriptpath' => '[https://www.mediawiki.org/wiki/Manual:$wgScriptPath Путь к скрипту]',
 
 # Special:FilePath
 'filepath' => 'Путь к файлу',

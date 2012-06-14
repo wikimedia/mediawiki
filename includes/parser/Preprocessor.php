@@ -2,7 +2,23 @@
 /**
  * Interfaces for preprocessors
  *
+ * This program is free software; you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation; either version 2 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License along
+ * with this program; if not, write to the Free Software Foundation, Inc.,
+ * 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
+ * http://www.gnu.org/copyleft/gpl.html
+ *
  * @file
+ * @ingroup Parser
  */
 
 /**
@@ -62,15 +78,19 @@ interface PPFrame {
 
 	const RECOVER_ORIG = 27; // = 1|2|8|16 no constant expression support in PHP yet
 
+	/** This constant exists when $indexOffset is supported in newChild() */
+	const SUPPORTS_INDEX_OFFSET = 1;
+
 	/**
 	 * Create a child frame
 	 *
 	 * @param $args array
 	 * @param $title Title
+	 * @param $indexOffset A number subtracted from the index attributes of the arguments
 	 *
 	 * @return PPFrame
 	 */
-	function newChild( $args = false, $title = false );
+	function newChild( $args = false, $title = false, $indexOffset = 0 );
 
 	/**
 	 * Expand a document tree node

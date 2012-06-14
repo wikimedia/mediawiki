@@ -8,7 +8,7 @@
 
 	/**
 	 * Enforces a byte limit to a textbox, so that UTF-8 entries are counted as well, when, for example,
-	 * a databae field has a byte limit rather than a character limit.
+	 * a database field has a byte limit rather than a character limit.
 	 * Plugin rationale: Browser has native maxlength for number of characters, this plugin exists to
 	 * limit number of bytes instead.
 	 *

@@ -248,6 +248,8 @@ class AuthPlugin {
 	/**
 	 * If you want to munge the case of an account name before the final
 	 * check, now is your chance.
+	 * @param $username string
+	 * @return string
 	 */
 	public function getCanonicalName( $username ) {
 		return $username;

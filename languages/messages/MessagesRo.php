@@ -1,5 +1,5 @@
 <?php
-/** Romanian (Română)
+/** Romanian (română)
  *
  * See MessagesQqq.php for message documentation incl. usage of parameters
  * To improve a translation please visit http://translatewiki.net
@@ -146,6 +146,7 @@ $magicWords = array(
 	'contentlanguage'         => array( '1', 'LIMBACONTINUT', 'CONTENTLANGUAGE', 'CONTENTLANG' ),
 	'pagesinnamespace'        => array( '1', 'PANIGIINSPATIULDENUME:', 'PAGINIINSN:', 'PAGESINNAMESPACE:', 'PAGESINNS:' ),
 	'numberofadmins'          => array( '1', 'NUMARADMINI', 'NUMBEROFADMINS' ),
+	'formatnum'               => array( '0', 'FORMATNR', 'FORMATNUM' ),
 	'defaultsort'             => array( '1', 'SORTAREIMPLICITA:', 'CHEIESORTAREIMPLICITA:', 'CATEGORIESORTAREIMPLICITA:', 'DEFAULTSORT:', 'DEFAULTSORTKEY:', 'DEFAULTCATEGORYSORT:' ),
 	'filepath'                => array( '0', 'CALEAFISIERULUI:', 'FILEPATH:' ),
 	'tag'                     => array( '0', 'eticheta', 'tag' ),
@@ -692,6 +693,8 @@ Motivul invocat este ''$2''.",
 'filereadonlyerror' => 'Imposibil de modificat fișierul „$1”, deoarece depozitul de fișiere „$2” este în modul „doar citire”.
 
 Administratorul care a efectuat blocarea a furnizat explicația: „$3”.',
+'invalidtitle-knownnamespace' => 'Titlu invalid cu spațiul de nume „$2” și textul „$3”',
+'invalidtitle-unknownnamespace' => 'Titlu invalid cu numărul spațiului de nume $1 necunoscut și textul „$2”',
 
 # Virus scanner
 'virus-badscanner' => "Configurație greșită: scaner de virus necunoscut: ''$1''",
@@ -978,7 +981,8 @@ Paginile .css și .js specifice utilizatorilor au titluri care încep cu literă
 'updated' => '(Actualizat)',
 'note' => "'''Notă:'''",
 'previewnote' => "'''Țineți cont că aceasta este doar o previzualizare.'''
-Modificările dumneavoastră nu au fost încă salvate! [[#editform|→ Continuă editarea]]",
+Modificările dumneavoastră nu au fost încă salvate!",
+'continue-editing' => 'Continuare editare',
 'previewconflict' => 'Această pre-vizualizare reflectă textul din caseta de sus, respectiv felul în care va arăta articolul dacă alegeți să-l salvați acum.',
 'session_fail_preview' => "'''Ne pare rău! Nu am putut procesa modificarea dumneavoastră din cauza pierderii datelor sesiunii.
 Vă rugăm să încercați din nou.
@@ -993,7 +997,7 @@ Modificarea a fost respinsă pentru a preveni deformarea textului paginii.
 Acest fapt se poate întâmpla atunci când folosești un serviciu proxy anonim.'''",
 'edit_form_incomplete' => "'''Unele părți ale formularului de modificare nu au ajuns la server; verificați dacă modificările dumneavoastră sunt intacte și reîncercați.'''",
 'editing' => 'modificare $1',
-'creating' => 'Se creează $1',
+'creating' => 'Crearea paginii $1',
 'editingsection' => 'modificare $1 (secțiune)',
 'editingcomment' => 'Modificare $1 (secțiune nouă)',
 'editconflict' => 'Conflict de modificare: $1',
@@ -1077,6 +1081,8 @@ Acsete argumente au fost omise.',
 'parser-template-loop-warning' => 'Buclă de formate detectată: [[$1]]',
 'parser-template-recursion-depth-warning' => 'Limită de adâncime a recursiei depășită ($1)',
 'language-converter-depth-warning' => 'Limita adâncimii convertorului de limbă a fost depășită ($1)',
+'node-count-exceeded-category' => 'Pagini unde numărul de noduri este depășit',
+'node-count-exceeded-warning' => 'Pagina a depășit numărul de noduri',
 
 # "Undo" feature
 'undo-success' => 'Modificarea poate fi anulată. Verificați diferența de dedesupt și apoi salvați pentru a termina anularea modificării.',
@@ -1253,8 +1259,9 @@ Folosirea linkurilor de navigare va reseta această coloană.',
 'mergelogpagetext' => 'Mai jos este o listă a celor mai recente combinări ale istoricului unei pagini cu al alteia.',
 
 # Diffs
-'history-title' => 'Istoricul versiunilor pentru „$1”',
-'difference' => '(Diferența dintre versiuni)',
+'history-title' => '$1: Istoricul versiunilor',
+'difference-title' => '$1: Diferență între versiuni',
+'difference-title-multipage' => '$1 și $2: Diferență între pagini',
 'difference-multipage' => '(Diferență între pagini)',
 'lineno' => 'Linia $1:',
 'compareselectedversions' => 'Compară versiunile marcate',
@@ -1350,6 +1357,7 @@ Folosirea linkurilor de navigare va reseta această coloană.',
 'prefs-beta' => 'Opțiuni beta',
 'prefs-datetime' => 'Data și ora',
 'prefs-labs' => 'Opțiuni „labs”',
+'prefs-user-pages' => 'Pagini de utilizator',
 'prefs-personal' => 'Informații personale',
 'prefs-rc' => 'Schimbări recente',
 'prefs-watchlist' => 'Listă de urmărire',
@@ -1613,7 +1621,7 @@ Dacă decideți furnizarea sa, acesta va fi folosit pentru a vă atribui munca.'
 'nchanges' => '$1 {{PLURAL:$1|modificare|modificări|de modificări}}',
 'recentchanges' => 'Schimbări recente',
 'recentchanges-legend' => 'Opțiuni schimbări recente',
-'recentchangestext' => 'Urmăriți în această pagină cele mai recente modificări de pe site.',
+'recentchanges-summary' => 'Schimbări recente ... (Log)',
 'recentchanges-feed-description' => 'Urmărește cele mai recente schimbări folosind acest flux.',
 'recentchanges-label-newpage' => 'Această modificare a creat o pagină nouă',
 'recentchanges-label-minor' => 'Aceasta este o modificare minoră',
@@ -1807,9 +1815,10 @@ Dacă problema persistă, contactați un [[Special:ListUsers/sysop|administrator
 'backend-fail-writetemp' => 'Imposibil de scris în fișierul temporar.',
 'backend-fail-closetemp' => 'Imposibil de închis fișierul temporar.',
 'backend-fail-read' => 'Imposibil de citit fișierul $1.',
-'backend-fail-create' => 'Imposibil de creat fișierul $1.',
-'backend-fail-maxsize' => 'Nu s-a putut crea fișierul $1 pentru că acesta este mai mare de {{PLURAL:$2|un octet|$2 octeți|$2 de octeți}}.',
+'backend-fail-create' => 'Imposibil de scris fișierul $1.',
+'backend-fail-maxsize' => 'Nu s-a putut scrie fișierul $1 pentru că acesta este mai mare de {{PLURAL:$2|un octet|$2 octeți|$2 de octeți}}.',
 'backend-fail-contenttype' => 'Nu s-a putut determina tipul de conținut al fișierului de stocat la „$1”.',
+'backend-fail-usable' => 'Imposibil de scris fișierul $1 din cauza permisiunilor insuficiente sau din cauza directoarelor/containerelor lipsă.',
 
 # Lock manager
 'lockmanager-notlocked' => 'Imposibil de deblocat „$1”; nu este blocată.',
@@ -2139,6 +2148,7 @@ Vă rugăm să aveți în vedere faptul că alte saituri web pot avea o legătur
 Puteți limita vizualizarea selectând tipul jurnalului, numele de utilizator sau pagina afectată.',
 'logempty' => 'Nici o înregistrare în jurnal.',
 'log-title-wildcard' => 'Caută titluri care încep cu acest text',
+'showhideselectedlogentries' => 'Arată/ascunde intrările selectate din jurnal',
 
 # Special:AllPages
 'allpages' => 'Toate paginile',
@@ -3100,7 +3110,7 @@ Executându-l, sistemul dvs. poate fi compromis.",
 'file-info-size-pages' => '$1 × $2 pixeli, mărime fișier: $3, tip MIME: $4, $5 {{PLURAL:$5|pagină|pagini}}',
 'file-nohires' => 'Rezoluții mai mari nu sunt disponibile.',
 'svg-long-desc' => 'fișier SVG, cu dimensiunea nominală de $1 × $2 pixeli, mărime fișier: $3',
-'show-big-image' => 'Mărește rezoluția imaginii',
+'show-big-image' => 'Rezoluție maximă',
 'show-big-image-preview' => 'Mărimea acestei previzualizări: $1.',
 'show-big-image-other' => '{{PLURAL:$2|Altă rezoluție|Alte rezoluții}}: $1.',
 'show-big-image-size' => '$1 × $2 pixeli',
@@ -3738,6 +3748,9 @@ MediaWiki este distribuit în speranța că va fi folositor, dar FĂRĂ VREO GAR
 'version-software' => 'Software instalat',
 'version-software-product' => 'Produs',
 'version-software-version' => 'Versiune',
+'version-entrypoints' => 'URL-uri pentru puncte de intrare',
+'version-entrypoints-header-entrypoint' => 'Punct de intrare',
+'version-entrypoints-header-url' => 'URL',
 
 # Special:FilePath
 'filepath' => 'Cale fișier',
@@ -3818,11 +3831,11 @@ Imaginile sunt afișate la rezoluția lor maximă, în timp ce alte tipuri de fi
 # Database error messages
 'dberr-header' => 'Acest site are o problemă',
 'dberr-problems' => 'Ne cerem scuze! Acest site întâmpină dificultăți tehnice.',
-'dberr-again' => 'Așteaptă câteva minute și încearcă din nou.',
+'dberr-again' => 'Așteptați câteva minute și încercați din nou.',
 'dberr-info' => '(Nu pot contacta baza de date a serverului: $1)',
-'dberr-usegoogle' => 'Între timp poți efectua căutarea folosind Google.',
-'dberr-outofdate' => 'De reținut ca indexarea conținutului nostru de către ei poate să nu fie actualizată.',
-'dberr-cachederror' => 'Următoarea pagină este o copie în cache a paginii cerute, s-ar putea să nu fie actualizată.',
+'dberr-usegoogle' => 'Între timp puteți efectua căutarea folosind Google.',
+'dberr-outofdate' => 'De reținut că indexarea conținutului nostru de către ei poate să nu fie actualizată.',
+'dberr-cachederror' => 'Următoarea pagină este o copie în cache a paginii cerute, care s-ar putea să nu fie actualizată.',
 
 # HTML forms
 'htmlform-invalid-input' => 'Există probleme la valorile introduse',

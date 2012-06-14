@@ -629,7 +629,7 @@ oke <span class="plainlinks">[{{fullurl:{{#Special:Log}}|bu={{FULLPAGENAMEE}}}} 
 'updated' => '(Nuskeyen)',
 'note' => "'''Straga :'''",
 'previewnote' => "'''Obral, bat krent anton tir abdinedik.'''
-Rinafa betara men tid giwayan ! [[#editform|→ Continue editing]]",
+Rinafa betara men tid giwayan !",
 'previewconflict' => 'Abdinedira nedir va krent ke batu bu inde in giwayanon titir.',
 'editing' => 'betara va $1',
 'editingsection' => 'betara va $1 (gabot)',
@@ -801,7 +801,6 @@ Ta ropasusu warzafu bu yo va [[Special:Search|aneyara ko wiki]] yawal.',
 
 # Diffs
 'history-title' => 'Va "$1" betarizvot',
-'difference' => '(Siatosamidaceem)',
 'difference-multipage' => '(Amiduca wal batu bu isu banu)',
 'lineno' => 'Conya $1:',
 'compareselectedversions' => 'Dodisukera va toloy reban siatos',
@@ -1067,7 +1066,7 @@ Rinafe e-mail mane me zo razdar viele ar webesik uzerar.',
 'nchanges' => '$1 {{PLURAL:$1|betaks|betaks}}',
 'recentchanges' => 'Noeltaf betakseem',
 'recentchanges-legend' => 'Ikatcuks ke noeltaf betaks',
-'recentchangestext' => 'Moo batu bu va ironokaf betakseem ke {{SITENAME}} suzdal.',
+'recentchanges-summary' => 'Moo batu bu va ironokaf betakseem ke {{SITENAME}} suzdal.',
 'recentchanges-feed-description' => 'Sledara va tel lonoeltaf betakseem va wiki koo bat rust.',
 'recentchanges-label-newpage' => 'Bata betara va warzafu bu reduyur',
 'recentchanges-label-minor' => 'Betamaks',
@@ -1785,12 +1784,14 @@ N'oubliez pas de la déverrouiller lorsque vous aurez terminé votre opération 
 # Move page
 'move-page' => 'Arrundara va $1',
 'move-page-legend' => 'Va teliz tolyoltá',
-'movepagetext' => "Utilisez le formulaire ci-dessous pour renommer un article, en déplaçant toutes ses versions antérieures vers le nouveau nom.
+'movepagetext' => "Utilisez le formulaire ci-dessous pour renommer un article (et sa page de discussion, le cas échéant), en déplaçant toutes ses versions antérieures vers le nouveau nom.
 
-Le titre précédent deviendra une page de redirection vers le nouveau titre. Les liens vers l'ancien titre ne seront pas modifiés et la page discussion, si elle existe, ne sera pas déplacée.
+Vous pouvez mettre à jour les redirections qui pointent sur l’ancien titre automatiquement. Si vous ne le faites pas, assurez-vous qu’il n’y ait pas de redirections [[Special:DoubleRedirects|doubles]] ou [[Special:BrokenRedirects|rompues]]. Vous êtes responsable de vous assurer que les liens continuent de pointer aux bons endroits.
 
-'''ATTENTION!'''
-Il peut s'agir d'un changement radical et inattendu pour un article souvent consulté; assurez-vous que vous en comprenez bien les conséquences avant de procéder.",
+Notez que la page ne sera '''pas''' déplacée s’il y a déjà une page au nouveau titre, à moins que cette dernière ne soit vide ou une redirection, et qu’elle soit sans historique. Ceci vous permet de revenir en arrière en cas d’erreur, et vous empêche d’écraser les pages existantes.
+
+'''ATTENTION !'''
+Il peut s’agir d’un changement radical et inattendu pour un article souvent consulté ; assurez-vous que vous en comprenez bien les conséquences avant de procéder.",
 'movepagetalktext' => "La page de discussion associée, si présente, sera automatiquement renommée avec '''sauf si:'''
 *Vous renommez une page vers un autre espace,
 *Une page de discussion existe déjà avec le nouveau nom, ou

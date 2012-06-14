@@ -61,10 +61,10 @@ class ApiQueryUsers extends ApiQueryBase {
 		return $this->tokenFunctions;
 	}
 
-	 /**
-	  * @param $user User
-	  * @return String
-	  */
+	/**
+	 * @param $user User
+	 * @return String
+	 */
 	public static function getUserrightsToken( $user ) {
 		global $wgUser;
 		// Since the permissions check for userrights is non-trivial,
@@ -107,7 +107,7 @@ class ApiQueryUsers extends ApiQueryBase {
 
 		if ( count( $goodNames ) ) {
 			$this->addTables( 'user' );
-			$this->addFields( '*' );
+			$this->addFields( User::selectFields() );
 			$this->addWhereFld( 'user_name', $goodNames );
 
 			if ( isset( $this->prop['groups'] ) || isset( $this->prop['rights'] ) ) {
@@ -165,7 +165,9 @@ class ApiQueryUsers extends ApiQueryBase {
 					$data[$name]['hidden'] = '';
 				}
 				if ( isset( $this->prop['blockinfo'] ) && !is_null( $row->ipb_by_text ) ) {
+					$data[$name]['blockid'] = $row->ipb_id;
 					$data[$name]['blockedby'] = $row->ipb_by_text;
+					$data[$name]['blockedbyid'] = $row->ipb_by;
 					$data[$name]['blockreason'] = $row->ipb_reason;
 					$data[$name]['blockexpiry'] = $row->ipb_expiry;
 				}
@@ -311,6 +313,73 @@ class ApiQueryUsers extends ApiQueryBase {
 			'users' => 'A list of users to obtain the same information for',
 			'token' => 'Which tokens to obtain for each user',
 		);
+	}
+
+	public function getResultProperties() {
+		$props = array(
+			'' => array(
+				'userid' => array(
+					ApiBase::PROP_TYPE => 'integer',
+					ApiBase::PROP_NULLABLE => true
+				),
+				'name' => 'string',
+				'invalid' => 'boolean',
+				'hidden' => 'boolean',
+				'interwiki' => 'boolean',
+				'missing' => 'boolean'
+			),
+			'editcount' => array(
+				'editcount' => array(
+					ApiBase::PROP_TYPE => 'integer',
+					ApiBase::PROP_NULLABLE => true
+				)
+			),
+			'registration' => array(
+				'registration' => array(
+					ApiBase::PROP_TYPE => 'timestamp',
+					ApiBase::PROP_NULLABLE => true
+				)
+			),
+			'blockinfo' => array(
+				'blockid' => array(
+					ApiBase::PROP_TYPE => 'integer',
+					ApiBase::PROP_NULLABLE => true
+				),
+				'blockedby' => array(
+					ApiBase::PROP_TYPE => 'string',
+					ApiBase::PROP_NULLABLE => true
+				),
+				'blockedbyid' => array(
+					ApiBase::PROP_TYPE => 'integer',
+					ApiBase::PROP_NULLABLE => true
+				),
+				'blockedreason' => array(
+					ApiBase::PROP_TYPE => 'string',
+					ApiBase::PROP_NULLABLE => true
+				),
+				'blockedexpiry' => array(
+					ApiBase::PROP_TYPE => 'timestamp',
+					ApiBase::PROP_NULLABLE => true
+				)
+			),
+			'emailable' => array(
+				'emailable' => 'boolean'
+			),
+			'gender' => array(
+				'gender' => array(
+					ApiBase::PROP_TYPE => array(
+						'male',
+						'female',
+						'unknown'
+					),
+					ApiBase::PROP_NULLABLE => true
+				)
+			)
+		);
+
+		self::addTokenProperties( $props, $this->getTokenFunctions() );
+
+		return $props;
 	}
 
 	public function getDescription() {

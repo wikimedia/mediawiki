@@ -1,25 +1,24 @@
 <?php
 /**
- * SpecialPage: handling special pages and lists thereof.
+ * Parent class for all special pages.
  *
- * To add a special page in an extension, add to $wgSpecialPages either
- * an object instance or an array containing the name and constructor
- * parameters. The latter is preferred for performance reasons.
+ * This program is free software; you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation; either version 2 of the License, or
+ * (at your option) any later version.
  *
- * The object instantiated must be either an instance of SpecialPage or a
- * sub-class thereof. It must have an execute() method, which sends the HTML
- * for the special page to $wgOut. The parent class has an execute() method
- * which distributes the call to the historical global functions. Additionally,
- * execute() also checks if the user has the necessary access privileges
- * and bails out if not.
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+ * GNU General Public License for more details.
  *
- * To add a core special page, use the similar static list in
- * SpecialPage::$mList. To remove a core static special page at runtime, use
- * a SpecialPage_initList hook.
+ * You should have received a copy of the GNU General Public License along
+ * with this program; if not, write to the Free Software Foundation, Inc.,
+ * 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
+ * http://www.gnu.org/copyleft/gpl.html
  *
  * @file
  * @ingroup SpecialPage
- * @defgroup SpecialPage SpecialPage
  */
 
 /**
@@ -627,7 +626,7 @@ class SpecialPage {
 		} else {
 			$msg = $summaryMessageKey;
 		}
-		if ( !$this->msg( $msg )->isBlank() && !$this->including() ) {
+		if ( !$this->msg( $msg )->isDisabled() && !$this->including() ) {
 			$this->getOutput()->wrapWikiMsg(
 				"<div class='mw-specialpage-summary'>\n$1\n</div>", $msg );
 		}

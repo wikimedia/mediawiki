@@ -96,7 +96,7 @@ class ApiFeedContributions extends ApiBase {
 	}
 
 	protected function feedItem( $row ) {
-		$title = Title::MakeTitle( intval( $row->page_namespace ), $row->page_title );
+		$title = Title::makeTitle( intval( $row->page_namespace ), $row->page_title );
 		if( $title ) {
 			$date = $row->rev_timestamp;
 			$comments = $title->getTalkPage()->getFullURL();

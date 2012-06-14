@@ -596,7 +596,7 @@ Mamnuucida ugu danbeyso in oo soo galo hoostaan ee ku qorantahay',
 'updated' => '(waa la opdate gareeyay)',
 'note' => "'''fiiro gaar ah:'''",
 'previewnote' => "'''Ogaaw kan waa horfiirin oo kaliya.'''
-Bedelyadaada wali lama keydin!  [[#editform|→ Wax ka sii badal]]",
+Bedelyadaada wali lama keydin!",
 'session_fail_preview' => "'''Waan ka xunahay! Wixii aad bedeshay ma'suurto galin in la'keydiyo cilad dhacday awgeed.
 Fadlan markale isku day. Hadii aysan weli shaqaynin, ka bax ee markale soo gudagal.'''",
 'session_fail_preview_html' => "'''Waan ka xunahay! Wixii aad bedeshay ma'suurto galin in la'keydiyo cilad dhacday awgeed.'''
@@ -700,7 +700,6 @@ sababteeda neh waxaa laga heli kartaa  [{{fullurl:{{#Special:Log}}/delete|page={
 
 # Diffs
 'history-title' => 'Taariikhda badalka "$1"',
-'difference' => '(Kala duwanaanshaha bedelyada)',
 'lineno' => 'Safka $1:',
 'compareselectedversions' => 'Is barbardhig bedelyada aad dooratay',
 'showhideselectedversions' => 'Itusi/qari bedelaadyada aad dooratay',
@@ -849,7 +848,7 @@ E-mailkaada mala sheegaayo markii ee dadka kale kula soo xiriirayaan.',
 'nchanges' => '$1 {{PLURAL:$1|bedelka|bedelada}}',
 'recentchanges' => 'Isbedelada dhow',
 'recentchanges-legend' => 'Dooqyada isbedelada dhow',
-'recentchangestext' => 'Dabagal isbedelada dhow ee wikiga oo ku dhacay bogaan.',
+'recentchanges-summary' => 'Dabagal isbedelada dhow ee wikiga ee ku dhacay bogaan.',
 'recentchanges-feed-description' => 'Dabagal isbedelada dhow ee wikiga oo ku dhacay feedkaan',
 'recentchanges-label-newpage' => 'Wax bedelkaan wuxuu sameeyay bog cusub',
 'recentchanges-label-minor' => 'Kan waa bedel yar',

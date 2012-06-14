@@ -72,7 +72,7 @@ div.emptyPortlet {
 /* Personal */
 #p-personal {
 	position: absolute;
-	top: 0;
+	top: 0.33em;
 	right: 0.75em;
 }
 #p-personal h5 {
@@ -652,7 +652,7 @@ div#footer #footer-places li {
 	padding-left: 0.5em;
 	padding-right: 0.5em;
 }
-#preferences td.htmlform-tip {
+.htmlform-tip {
 	font-size: x-small;
 	padding: .2em 2em;
 	color: #666666;
@@ -683,7 +683,7 @@ ul {
 	list-style-image: url(images/bullet-icon.png);
 }
 
-pre {
+pre, .mw-code {
 	line-height: 1.3em;
 }
 
@@ -843,4 +843,45 @@ div.vectorTabs ul {
 /* Tooltips are outside of the normal body code, so this helps make the size of the text sensible */
 .tipsy {
 	font-size: 0.8em;
+}
+
+/* Animate between standard and high definition layouts */
+
+body.vector-animateLayout div#content,
+body.vector-animateLayout div#footer {
+	transition: margin-left 250ms, padding 250ms;
+	-moz-transition: margin-left 250ms, padding 250ms;
+	-webkit-transition: margin-left 250ms, padding 250ms;
+	-o-transition: margin-left 250ms, padding 250ms;
+}
+body.vector-animateLayout #p-logo,
+body.vector-animateLayout #left-navigation {
+	transition: left 250ms;
+	-moz-transition: left 250ms;
+	-webkit-transition: left 250ms;
+	-o-transition: left 250ms;
+}
+body.vector-animateLayout #mw-panel {
+	transition: padding-left 250ms;
+	-moz-transition: padding-left 250ms;
+	-webkit-transition: padding-left 250ms;
+	-o-transition: padding-left 250ms;
+}
+body.vector-animateLayout #p-search {
+	transition: margin-right 250ms;
+	-moz-transition: margin-right 250ms;
+	-webkit-transition: margin-right 250ms;
+	-o-transition: margin-right 250ms;
+}
+body.vector-animateLayout #p-personal {
+	transition: right 250ms;
+	-moz-transition: right 250ms;
+	-webkit-transition: right 250ms;
+	-o-transition: right 250ms;
+}
+body.vector-animateLayout #mw-head-base {
+	transition: margin-left 250ms;
+	-moz-transition: margin-left 250ms;
+	-webkit-transition: margin-left 250ms;
+	-o-transition: margin-left 250ms;
 }

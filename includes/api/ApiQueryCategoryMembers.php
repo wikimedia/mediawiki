@@ -54,22 +54,9 @@ class ApiQueryCategoryMembers extends ApiQueryGeneratorBase {
 	private function run( $resultPageSet = null ) {
 		$params = $this->extractRequestParams();
 
-		$this->requireOnlyOneParameter( $params, 'title', 'pageid' );
-
-		if ( isset( $params['title'] ) ) {
-			$categoryTitle = Title::newFromText( $params['title'] );
-
-			if ( is_null( $categoryTitle ) || $categoryTitle->getNamespace() != NS_CATEGORY ) {
-				$this->dieUsage( 'The category name you entered is not valid', 'invalidcategory' );
-			}
-		} elseif( isset( $params['pageid'] ) ) {
-			$categoryTitle = Title::newFromID( $params['pageid'] );
-
-			if ( !$categoryTitle ) {
-				$this->dieUsageMsg( array( 'nosuchpageid', $params['pageid'] ) );
-			} elseif ( $categoryTitle->getNamespace() != NS_CATEGORY ) {
-				$this->dieUsage( 'The category name you entered is not valid', 'invalidcategory' );
-			}
+		$categoryTitle = $this->getTitleOrPageId( $params )->getTitle();
+		if ( $categoryTitle->getNamespace() != NS_CATEGORY ) {
+			$this->dieUsage( 'The category name you entered is not valid', 'invalidcategory' );
 		}
 
 		$prop = array_flip( $params['prop'] );
@@ -110,7 +97,7 @@ class ApiQueryCategoryMembers extends ApiQueryGeneratorBase {
 		$dir = in_array( $params['dir'], array( 'asc', 'ascending', 'newer' ) ) ? 'newer' : 'older';
 
 		if ( $params['sort'] == 'timestamp' ) {
-			$this->addWhereRange( 'cl_timestamp',
+			$this->addTimestampWhereRange( 'cl_timestamp',
 				$dir,
 				$params['start'],
 				$params['end'] );
@@ -362,7 +349,7 @@ class ApiQueryCategoryMembers extends ApiQueryGeneratorBase {
 			'endsortkey' => "Sortkey to end listing at. Must be given in binary format. Can only be used with {$p}sort=sortkey",
 			'startsortkeyprefix' => "Sortkey prefix to start listing from. Can only be used with {$p}sort=sortkey. Overrides {$p}startsortkey",
 			'endsortkeyprefix' => "Sortkey prefix to end listing BEFORE (not at, if this value occurs it will not be included!). Can only be used with {$p}sort=sortkey. Overrides {$p}endsortkey",
-			'continue' => 'For large categories, give the value retured from previous query',
+			'continue' => 'For large categories, give the value returned from previous query',
 			'limit' => 'The maximum number of pages to return.',
 		);
 
@@ -377,17 +364,46 @@ class ApiQueryCategoryMembers extends ApiQueryGeneratorBase {
 		return $desc;
 	}
 
+	public function getResultProperties() {
+		return array(
+			'ids' => array(
+				'pageid' => 'integer'
+			),
+			'title' => array(
+				'ns' => 'namespace',
+				'title' => 'string'
+			),
+			'sortkey' => array(
+				'sortkey' => 'string'
+			),
+			'sortkeyprefix' => array(
+				'sortkeyprefix' => 'string'
+			),
+			'type' => array(
+				'type' => array(
+					ApiBase::PROP_TYPE => array(
+						'page',
+						'subcat',
+						'file'
+					)
+				)
+			),
+			'timestamp' => array(
+				'timestamp' => 'timestamp'
+			)
+		);
+	}
+
 	public function getDescription() {
 		return 'List all pages in a given category';
 	}
 
 	public function getPossibleErrors() {
 		return array_merge( parent::getPossibleErrors(),
-			$this->getRequireOnlyOneParameterErrorMessages( array( 'title', 'pageid' ) ),
+			$this->getTitleOrPageIdErrorMessage(),
 			array(
 				array( 'code' => 'invalidcategory', 'info' => 'The category name you entered is not valid' ),
 				array( 'code' => 'badcontinue', 'info' => 'Invalid continue param. You should pass the original value returned by the previous query' ),
-				array( 'nosuchpageid', 'pageid' ),
 			)
 		);
 	}

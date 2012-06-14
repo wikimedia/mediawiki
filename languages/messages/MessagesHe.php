@@ -154,7 +154,6 @@ $magicWords = array(
 	'localurl'                => array( '0', 'כתובת יחסית:', 'LOCALURL:' ),
 	'localurle'               => array( '0', 'כתובת יחסית מקודד:', 'LOCALURLE:' ),
 	'articlepath'             => array( '0', 'נתיב הדפים', 'ARTICLEPATH' ),
-	'pageid'                  => array( '0', 'מזהה הדף', 'PAGEID' ),
 	'server'                  => array( '0', 'כתובת השרת', 'שרת', 'SERVER' ),
 	'servername'              => array( '0', 'שם השרת', 'SERVERNAME' ),
 	'scriptpath'              => array( '0', 'נתיב הקבצים', 'SCRIPTPATH' ),
@@ -420,13 +419,13 @@ $messages = array(
 'thursday' => 'חמישי',
 'friday' => 'שישי',
 'saturday' => 'שבת',
-'sun' => "ראש'",
-'mon' => 'שני',
-'tue' => "שלי'",
-'wed' => "רבי'",
-'thu' => "חמי'",
-'fri' => "שיש'",
-'sat' => 'שבת',
+'sun' => "א'",
+'mon' => "ב'",
+'tue' => "ג'",
+'wed' => "ד'",
+'thu' => "ה'",
+'fri' => "ו'",
+'sat' => "ש'",
 'january' => 'ינואר',
 'february' => 'פברואר',
 'march' => 'מרץ',
@@ -745,6 +744,8 @@ $2',
 'filereadonlyerror' => 'לא ניתן לשנות את הקובץ "$1" כיוון שמאגר הקבצים "$2" במצב קריאה בלבד.
 
 מנהל המערכת שנעל את המאגר סיפק את ההסבר הבא: "\'\'\'$3\'\'\'".',
+'invalidtitle-knownnamespace' => 'כותרת בלתי־תקינה עם מרחב השם "$2" ושם דף "$3"',
+'invalidtitle-unknownnamespace' => 'כותרת בלתי־תקינה עם מרחב שם בלתי־ידוע מספר $1 ושם דף "$2"',
 
 # Virus scanner
 'virus-badscanner' => "הגדרות שגויות: סורק הווירוסים אינו ידוע: ''$1''",
@@ -776,7 +777,7 @@ $2',
 'notloggedin' => 'לא בחשבון',
 'nologin' => 'אין לכם חשבון? $1.',
 'nologinlink' => 'הרשמה',
-'createaccount' => 'יצירת משתמש חדש',
+'createaccount' => 'יצירת חשבון חדש',
 'gotaccount' => 'כבר נרשמתם? $1.',
 'gotaccountlink' => 'כניסה לחשבון',
 'userlogin-resetlink' => 'שכחת את פרטי הכניסה?',
@@ -1041,7 +1042,8 @@ $2
 'updated' => '(מעודכן)',
 'note' => "'''הערה:'''",
 'previewnote' => "'''זכרו שזו רק תצוגה מקדימה.'''
-השינויים שלכם טרם נשמרו! [[#editform|← להמשך העריכה]]",
+השינויים שלכם טרם נשמרו!",
+'continue-editing' => 'להמשך העריכה',
 'previewconflict' => 'תצוגה מקדימה זו מציגה כיצד ייראה הטקסט בחלון העריכה העליון, אם תבחרו לשמור אותו.',
 'session_fail_preview' => "'''לא ניתן לבצע את עריכתכם עקב אובדן מידע הכניסה.'''
 אנא נסו שוב.
@@ -1134,6 +1136,12 @@ $2
 'parser-template-loop-warning' => 'נמצאה תבנית הקוראת לעצמה: [[$1]]',
 'parser-template-recursion-depth-warning' => 'עומק התבניות המוכללות זו בזו עבר את המגבלה ($1)',
 'language-converter-depth-warning' => 'עומק ממיר השפה עבר את המגבלה ($1)',
+'node-count-exceeded-category' => 'דפים שבהם מספר הצמתים גדול מדי',
+'node-count-exceeded-warning' => 'מספר הצמתים בדף גדול מדי',
+'expansion-depth-exceeded-category' => 'דפים שבהם עומק ההרחבה גדול מדי',
+'expansion-depth-exceeded-warning' => 'עומק ההרחבה בדף גדול מדי',
+'parser-unstrip-loop-warning' => 'נמצאה לולאה בפריסה',
+'parser-unstrip-recursion-limit' => 'עומק הרקורסיה של הפריסה עבר את המגבלה ($1)',
 
 # "Undo" feature
 'undo-success' => 'ניתן לבטל את העריכה. אנא בִדקו את השוואת הגרסאות למטה כדי לוודא שזה מה שאתם רוצים לעשות, ואז שמרו את השינויים למטה כדי לבצע את ביטול העריכה.',
@@ -1310,8 +1318,9 @@ $1",
 'mergelogpagetext' => 'זוהי רשימה של המיזוגים האחרונים של גרסאות מדף אחד לתוך דף שני.',
 
 # Diffs
-'history-title' => 'היסטוריית הגרסאות של $1',
-'difference' => '(הבדלים בין גרסאות)',
+'history-title' => '$1: היסטוריית גרסאות',
+'difference-title' => '$1: הבדלים בין גרסאות',
+'difference-title-multipage' => '$1 ו{{GRAMMAR:תחילית|$2}}: הבדלים בין דפים',
 'difference-multipage' => '(הבדלים בין דפים)',
 'lineno' => 'שורה $1:',
 'compareselectedversions' => 'השוואת הגרסאות שנבחרו',
@@ -1408,6 +1417,7 @@ $1",
 'prefs-beta' => 'אפשרויות בטא',
 'prefs-datetime' => 'תאריך ושעה',
 'prefs-labs' => 'אפשרויות מעבדה',
+'prefs-user-pages' => 'דפי משתמש',
 'prefs-personal' => 'פרטי המשתמש',
 'prefs-rc' => 'שינויים אחרונים',
 'prefs-watchlist' => 'רשימת המעקב',
@@ -1672,7 +1682,7 @@ $1",
 'nchanges' => '{{PLURAL:$1|שינוי אחד|$1 שינויים}}',
 'recentchanges' => 'שינויים אחרונים',
 'recentchanges-legend' => 'אפשרויות בשינויים האחרונים',
-'recentchangestext' => 'ניתן לעקוב אחרי השינויים האחרונים באתר בדף זה.',
+'recentchanges-summary' => 'ניתן לעקוב אחרי השינויים האחרונים באתר בדף זה.',
 'recentchanges-feed-description' => 'ניתן לעקוב אחרי השינויים האחרונים באתר בדף זה.',
 'recentchanges-label-newpage' => 'בעריכה זו נוצר דף חדש',
 'recentchanges-label-minor' => 'זוהי עריכה משנית',
@@ -1881,14 +1891,15 @@ $1',
 'backend-fail-writetemp' => 'לא הייתה אפשרות לכתוב אל הקובץ הזמני.',
 'backend-fail-closetemp' => 'לא הייתה אפשרות לסגור את הקובץ הזמני.',
 'backend-fail-read' => 'קריאת הקובץ $1 לא הצליחה',
-'backend-fail-create' => 'יצירת הקובץ $1 לא הצליחה',
-'backend-fail-maxsize' => 'יצירת הקובץ $1 לא הצליחה כיוון שהוא גדול יותר {{PLURAL:$2|מבית אחד|מ־$2 בתים}}.',
+'backend-fail-create' => 'כתיבת הקובץ $1 לא הצליחה',
+'backend-fail-maxsize' => 'כתיבת הקובץ $1 לא הצליחה כיוון שהוא גדול יותר {{PLURAL:$2|מבית אחד|מ־$2 בתים}}.',
 'backend-fail-readonly' => 'מאגר האחסון לקבצים "$1" הוא כרגע במצב קריאה בלבד. הסיבה שניתנה לכך היא: "\'\'\'$2\'\'\'"',
 'backend-fail-synced' => 'הקובץ "$1" נמצא במצב לא עקבי בתוך מאגרי אחסון הקבצים הפנימיים',
 'backend-fail-connect' => 'לא ניתן היה להתחבר למאגר אחסון הקבצים הפנימי "$1".',
 'backend-fail-internal' => 'אירעה שגיאה בלתי־ידועה במאגר אחסון הקבצים הפנימי "$1".',
 'backend-fail-contenttype' => 'לא ניתן היה לקבוע את סוג התוכן של הקובץ לאחסון ב־"$1".',
 'backend-fail-batchsize' => 'למאגר אחסון הקבצים הפנימי הועבר אוסף של {{PLURAL:$1|פעולת קובץ אחת|$1 פעולות קובץ}}; המגבלה היא {{PLURAL:$2|פעולה אחת|$2 פעולות}}.',
+'backend-fail-usable' => 'כתיבת הקובץ $1 לא הצליחה כיוון שההרשאות אינן מספיקות או כיוון שהספריות/המכלים חסרים.',
 
 # File journal errors
 'filejournal-fail-dbconnect' => 'לא ניתן היה להתחבר לבסיס הנתונים של היומן עבור מאגר אחסון הקבצים הפנימי "$1".',
@@ -2210,6 +2221,7 @@ $1',
 ניתן לצמצם את התצוגה על ידי בחירת סוג היומן, שם המשתמש (תלוי רישיות) או הדף המושפע (גם כן תלוי רישיות).',
 'logempty' => 'אין פריטים תואמים ביומן.',
 'log-title-wildcard' => 'חיפוש כותרות המתחילות באותיות אלה',
+'showhideselectedlogentries' => 'הצגת/הסתרת פעולות היומן שנבחרו',
 
 # Special:AllPages
 'allpages' => 'כל הדפים',
@@ -2371,7 +2383,7 @@ $1',
 'watcherrortext' => 'אירעה שגיאה בעת שינוי הגדרות רשימת המעקב של "$1".',
 
 'enotif_mailer' => 'הודעות {{SITENAME}}',
-'enotif_reset' => 'לסמן את כל הדפים כאילו נצפו',
+'enotif_reset' => 'סימון כל הדפים כאילו נצפו',
 'enotif_newpagetext' => 'זהו דף חדש.',
 'enotif_impersonal_salutation' => 'משתמש של {{SITENAME}}',
 'changed' => 'שונה',
@@ -3218,7 +3230,8 @@ $1',
 # Bad image list
 'bad_image_list' => 'דרך הכתיבה בהודעה היא כמתואר להלן:
 
-רק פריטי רשימה (שורות המתחילות עם *) נחשבים. הקישור הראשון בשורה חייב להיות קישור לקובץ שאין להציג.
+רק פריטי רשימה (שורות המתחילות עם *) נחשבים.
+הקישור הראשון בשורה חייב להיות קישור לקובץ בעייתי.
 כל הקישורים הבאים באותה השורה נחשבים לחריגים, כלומר לדפים שבהם ניתן להציג את הקובץ.',
 
 # Metadata
@@ -3885,12 +3898,15 @@ $5
 'version-poweredby-others' => 'אחרים',
 'version-license-info' => "מדיה־ויקי היא תוכנה חופשית; באפשרותכם להפיץ אותה מחדש ו/או לשנות אותה לפי תנאי הרישיון הציבורי הכללי של גנו המפורסם על ידי המוסד לתוכנה חופשית: גרסה 2 של רישיון זה, או (לפי בחירתכם) כל גרסה מאוחרת יותר.
 
-מדיה־ויקי מופצת בתקווה שהיא תהיה שימושית, אך '''ללא כל הבטחה לאחריות'''; אפילו לא אחריות משתמעת של '''יכולת להיסחר''' או '''התאמה לרישיון מסוים'''. ראו את הרישיון הציבורי הכללי של גנו לפרטים נוספים.
+מדיה־ויקי מופצת בתקווה שהיא תהיה שימושית, אך '''ללא כל הבטחה לאחריות'''; אפילו לא אחריות משתמעת של '''יכולת להיסחר''' או '''התאמה למטרה מסוימת'''. ראו את הרישיון הציבורי הכללי של גנו לפרטים נוספים.
 
-הייתם צריכים לקבל [{{SERVER}}{{SCRIPTPATH}}/COPYING העתק של הרישיון הציבורי הכללי של גנו] יחד עם תוכנה זו; אם לא, כתבו למוסד לתוכנה חופשית: Free Software Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA או [//www.gnu.org/licenses/old-licenses/gpl-2.0.html קראו אותו ברשת].",
+הייתם אמורים לקבל [{{SERVER}}{{SCRIPTPATH}}/COPYING העתק של הרישיון הציבורי הכללי של גנו] יחד עם תוכנה זו; אם לא, כִתבו למוסד לתוכנה חופשית: Free Software Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA או [//www.gnu.org/licenses/old-licenses/gpl-2.0.html קִראו אותו ברשת].",
 'version-software' => 'תוכנות מותקנות',
 'version-software-product' => 'תוכנה',
 'version-software-version' => 'גרסה',
+'version-entrypoints' => 'כתובות של נקודות כניסה',
+'version-entrypoints-header-entrypoint' => 'נקודת כניסה',
+'version-entrypoints-header-url' => 'כתובת',
 
 # Special:FilePath
 'filepath' => 'נתיב לקובץ',

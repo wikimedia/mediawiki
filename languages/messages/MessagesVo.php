@@ -685,6 +685,7 @@ Memolös, das pads: .css e .js mutons labön tiädi minudik: {{ns:user}}:Foo/vec
 Redakam perefudon ad vitön dädükami padavödema.
 Atos jenon ömna ven geboy düni pladulöma nennemik bevüresodik säkädik.'''",
 'editing' => 'Redakam pada: $1',
+'creating' => 'Jafäd pada: $1',
 'editingsection' => 'Redakam pada: $1 (diläd)',
 'editingcomment' => 'Redakam pada: $1 (diläd nulik)',
 'editconflict' => 'Redakamakonflit: $1',
@@ -882,7 +883,6 @@ Kontrololös, va votükam at okipon fovöfi padajenotema.',
 
 # Diffs
 'history-title' => 'Revidajenotem pada: "$1"',
-'difference' => '(Dif vü revids)',
 'difference-multipage' => '(Dif vü pads)',
 'lineno' => 'Lien $1:',
 'compareselectedversions' => 'Leigodolöd fomamis pevälöl',
@@ -1190,7 +1190,7 @@ Dalol i dälön votikanes kosikön ko ol yufü gebana- u bespikapad olik nes sä
 'nchanges' => '{{PLURAL:$1|votükam|votükams}} $1',
 'recentchanges' => 'Votükams nulik',
 'recentchanges-legend' => 'Votükams nulik: paramets',
-'recentchangestext' => 'Su pad at binons votükams nulikün in vüki at.',
+'recentchanges-summary' => 'Su pad at binons votükams nulikün in vüki at.',
 'recentchanges-feed-description' => 'Getön votükamis nulikün in vük at me nünakanad at.',
 'recentchanges-label-newpage' => 'Redakam at päjafon pad nulik',
 'recentchanges-label-minor' => 'Atos binon redakam pülik',

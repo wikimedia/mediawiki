@@ -763,7 +763,6 @@ Cunsulthà lu [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} rigi
 
 # Diffs
 'history-title' => 'Cronologia di li mudìfigghi di "$1"',
-'difference' => '(Diffarènzia i li ribisioni)',
 'lineno' => 'Riga $1:',
 'compareselectedversions' => 'Cunfronta li versioni sciubaraddi',
 'editundo' => 'annulla',
@@ -928,7 +927,7 @@ Cunsulthà lu [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} rigi
 'nchanges' => '$1 {{PLURAL:$1|mudìfigga|mudìfigghi}}',
 'recentchanges' => 'Ulthimi mudìfigghi',
 'recentchanges-legend' => 'Opzioni ulthimi mudifigghi',
-'recentchangestext' => 'Chistha pàgina prisinta li mudìfigghi più rizzenti a li cuntinuddi di lu situ.',
+'recentchanges-summary' => 'Chistha pàgina prisinta li mudìfigghi più rizzenti a li cuntinuddi di lu situ.',
 'recentchanges-feed-description' => 'Chisthu feed cunteni li mudìfigghi più rizzenti a li cuntinuddi di lu situ.',
 'rcnote' => "Inogghi {{PLURAL:$1|è erencadda la mudìfigga più rizzenti arriggadda|so erencaddi li '''$1''' mudìfigghi più rizzenti arriggaddi}} a lu situ {{PLURAL:$2|i' l'ulthimi 24 ori|i' li '''$2''' dì passaddi}}; i dati so aggiornaddi a li $5 di lu $4.",
 'rcnotefrom' => "Inogghi so erencaddi li mudìfigghi arriggaddi a parthì da '''$2''' (finz'a '''$1''').",

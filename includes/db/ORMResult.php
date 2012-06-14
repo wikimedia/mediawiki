@@ -1,15 +1,31 @@
 <?php
-
 /**
- * Result of a ORMTable::select, which returns ORMRow objects.
+ * Result of a ORMTable::select, which returns IORMRow objects.
+ *
+ * This program is free software; you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation; either version 2 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License along
+ * with this program; if not, write to the Free Software Foundation, Inc.,
+ * 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
+ * http://www.gnu.org/copyleft/gpl.html
  *
  * @since 1.20
  *
  * @file ORMResult.php
+ * @ingroup ORM
  *
  * @licence GNU GPL v2 or later
  * @author Jeroen De Dauw < jeroendedauw@gmail.com >
  */
+
 class ORMResult implements Iterator {
 
 	/**
@@ -23,20 +39,20 @@ class ORMResult implements Iterator {
 	protected  $key;
 
 	/**
-	 * @var ORMRow
+	 * @var IORMRow
 	 */
 	protected $current;
 
 	/**
-	 * @var ORMTable
+	 * @var IORMTable
 	 */
 	protected $table;
 
 	/**
-	 * @param ORMTable $table
+	 * @param IORMTable $table
 	 * @param ResultWrapper $res
 	 */
-	public function __construct( ORMTable $table, ResultWrapper $res ) {
+	public function __construct( IORMTable $table, ResultWrapper $res ) {
 		$this->table = $table;
 		$this->res = $res;
 		$this->key = 0;
@@ -69,7 +85,7 @@ class ORMResult implements Iterator {
 	}
 
 	/**
-	 * @return ORMRow
+	 * @return IORMRow
 	 */
 	public function current() {
 		return $this->current;

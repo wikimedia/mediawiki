@@ -1,5 +1,5 @@
 <?php
-/** Traditional Chinese (‪中文(繁體)‬)
+/** Traditional Chinese (‪中文（繁體）‬)
  *
  * See MessagesQqq.php for message documentation incl. usage of parameters
  * To improve a translation please visit http://translatewiki.net
@@ -21,6 +21,7 @@
  * @author Hzy980512
  * @author Jidanni
  * @author Jimmy xu wrk
+ * @author Justincheng12345
  * @author Kaganer
  * @author KaiesTse
  * @author Kuailong
@@ -33,6 +34,7 @@
  * @author Philip
  * @author Shinjiman
  * @author Shizhao
+ * @author Simon Shek
  * @author Skjackey tse
  * @author Waihorace
  * @author Wmr89502270
@@ -590,6 +592,10 @@ $2',
 'customjsprotected' => '你並無權限去編輯此JavaScript頁面，因為他包含了另一位用戶的個人設定。',
 'ns-specialprotected' => '特殊頁面是不可以編輯的。',
 'titleprotected' => "這個標題已經被[[User:$1|$1]]保護以防止建立。理由是''$2''。",
+'filereadonlyerror' => '無法修改文件" $1 "因為文件庫" $2 "處於唯讀模式。 ！
+管理員鎖定它的解釋是：" $3 "。',
+'invalidtitle-knownnamespace' => '使用名字空間“$2”和文本“$3”的無效標題',
+'invalidtitle-unknownnamespace' => '使用未知名字空間編號$1和文本“$2”的無效標題',
 
 # Virus scanner
 'virus-badscanner' => "損壞設定: 未知的病毒掃瞄器: ''$1''",
@@ -674,6 +680,7 @@ $2',
 'emailconfirmlink' => '確認您的郵箱地址',
 'invalidemailaddress' => '郵箱地址格式不正確，請輸入正確的郵箱位址或清空該輸入框。',
 'cannotchangeemail' => '本wiki不允許對賬戶的電郵地址進行更改。',
+'emaildisabled' => '此網站不能發送電子郵件。',
 'accountcreated' => '已建立賬戶',
 'accountcreatedtext' => '$1的賬戶已經被建立。',
 'createaccount-title' => '在{{SITENAME}}中建立新賬戶',
@@ -792,18 +799,15 @@ $2
 'summary-preview' => '摘要預覽:',
 'subject-preview' => '主題/標題預覽:',
 'blockedtitle' => '用戶被查封',
-'blockedtext' => "{{GENDER:|你|妳|你}}的用戶名或IP地址已經被$1查封。
+'blockedtext' => "'''您的用戶名或IP地址已被封禁。'''
 
-這次查封是由$1所封的。當中的原因是''$2''。
+此次封禁操作由$1完成，封禁原因爲''$2''。
 
-* 這次查封開始的時間是：$8
-* 這次查封到期的時間是：$6
-* 對於被查封者：$7
+* 起始時間：$8
+* 終止時間：$6
+* 擬封禁對象：$7
 
-{{GENDER:|你|妳|你}}可以聯絡$1或者其他的[[{{MediaWiki:Grouppage-sysop}}|管理員]]，討論這次查封。
-除非{{GENDER:|你|妳|你}}已經在{{GENDER:|你|妳|你}}的[[Special:Preferences|賬號參數設置]]中設定了一個有效的電子郵件地址，否則{{GENDER:|你|妳|你}}是不能使用「電郵這位用戶」的功能。當設定了一個有效的電子郵件地址後，這個功能是不會封鎖的。
-
-{{GENDER:|你|妳|你}}目前的IP地址是$3，而該查封ID是 #$5。 請在{{GENDER:|你|妳|你}}的查詢中註明以上所有的資料。",
+您可以聯繫$1或其他的[[{{MediaWiki:Grouppage-sysop}}|管理員]]討論此次封禁。若您已在[[Special:Preferences|帳號設置]]中配置了一個有效的電子郵件地址，且未被封禁電子郵件功能，則您可通過“發送電子郵件給這位用戶”功能來聯絡相關管理員。您當前的IP地址是$3，此次封禁的ID爲#$5。請在您的查詢中註明上述所有信息。",
 'autoblockedtext' => "{{GENDER:|你|妳|你}}的IP地址已經被自動查封，由於先前的另一位用戶被$1所查封。
 而查封的原因是：
 
@@ -864,6 +868,7 @@ $2
 'updated' => '（已更新）',
 'note' => "'''注意:'''",
 'previewnote' => "'''請記住這只是預覽，內容尚未儲存！'''",
+'continue-editing' => '繼續編輯',
 'previewconflict' => '這個預覽顯示了上面文字編輯區中的內容。它將在{{GENDER:|你|妳|你}}選擇保存後出現。',
 'session_fail_preview' => "'''很抱歉！由於部份資料遺失，我們無法處理您的編輯。'''
 請再試一次。
@@ -877,6 +882,7 @@ $2
 這種情況通常出現於使用含有很多臭蟲、以網絡為主的匿名代理服務的時候。",
 'edit_form_incomplete' => '編輯表單的某些部分沒有到達伺服器 ；請檢查您的編輯內容是否完整並再試一次。',
 'editing' => '編輯“$1”',
+'creating' => '創建$1',
 'editingsection' => '編輯“$1”（段落）',
 'editingcomment' => '編輯“$1”（新段落）',
 'editconflict' => '編輯衝突：$1',
@@ -942,6 +948,7 @@ $2
 'edit-no-change' => '您的編輯已經略過，因為文字無任何改動。',
 'edit-already-exists' => '不可以建立一個新頁面。
 它已經存在。',
+'defaultmessagetext' => '預設訊息文字',
 
 # Parser/template warnings
 'expensive-parserfunction-warning' => '警告: 這個頁面有太多耗費的語法功能呼叫。
@@ -957,6 +964,12 @@ $2
 'parser-template-loop-warning' => '已偵測迴歸模板: [[$1]]',
 'parser-template-recursion-depth-warning' => '已超過迴歸模板深度限制 （$1）',
 'language-converter-depth-warning' => '已超過字詞轉換器深度限制（$1）',
+'node-count-exceeded-category' => '頁面的節點數超出限制',
+'node-count-exceeded-warning' => '頁面超出節點數',
+'expansion-depth-exceeded-category' => '擴展深度超出限制的頁面',
+'expansion-depth-exceeded-warning' => '頁面超出擴展深度',
+'parser-unstrip-loop-warning' => '檢測到迴圈',
+'parser-unstrip-recursion-limit' => '遞歸超過限制 ($1)',
 
 # "Undo" feature
 'undo-success' => '該編輯可以被撤銷。請檢查以下對比以核實這正是您想做的，然後儲存以下更改以完成撤銷編輯。',
@@ -1048,7 +1061,7 @@ $2
 'revdelete-hide-comment' => '隱藏編輯摘要',
 'revdelete-hide-user' => '隱藏編輯者的用戶名/IP地址',
 'revdelete-hide-restricted' => '同時廢止由操作員以及其他用戶的資料',
-'revdelete-radio-same' => '(勿更改)',
+'revdelete-radio-same' => '（不要更改）',
 'revdelete-radio-set' => '是',
 'revdelete-radio-unset' => '否',
 'revdelete-suppress' => '同時廢止由操作員以及其他用戶的資料',
@@ -1083,7 +1096,7 @@ $1",
 
 # Suppression log
 'suppressionlog' => '監督日誌',
-'suppressionlogtext' => '該列表列出對管理員隱藏的刪除與封禁。另參見[[Special:BlockList|IP封鎖名單]]以查詢當前的封禁列表。',
+'suppressionlogtext' => '該列表列出對管理員隱藏的刪除與封禁。另參見[[Special:BlockList|封鎖名單]]以查詢當前的封禁列表。',
 
 # History merging
 'mergehistory' => '合併頁面歷史',
@@ -1115,8 +1128,9 @@ $1",
 'mergelogpagetext' => '以下是一個最近由一個頁面的修訂歷史合併到另一個頁面的列表。',
 
 # Diffs
-'history-title' => '「$1」的修訂歷史',
-'difference' => '（修訂版本間的差異）',
+'history-title' => '$1：修訂歷史',
+'difference-title' => '$1：修訂版本之間的差異',
+'difference-title-multipage' => '"$1"和"$2": 頁面之間的差異',
 'difference-multipage' => '（頁面間的差異）',
 'lineno' => '第$1行：',
 'compareselectedversions' => '比較選定的修訂版本',
@@ -1211,6 +1225,7 @@ $1",
 'prefs-beta' => 'Beta 特性',
 'prefs-datetime' => '日期和時間',
 'prefs-labs' => '實驗中的功能',
+'prefs-user-pages' => '用戶頁面',
 'prefs-personal' => '用戶資料',
 'prefs-rc' => '最近更改',
 'prefs-watchlist' => '監視列表',
@@ -1472,7 +1487,7 @@ $1",
 'nchanges' => '$1次更改',
 'recentchanges' => '近期變動',
 'recentchanges-legend' => '最近更改選項',
-'recentchangestext' => '跟蹤這個wiki上的最新更改。',
+'recentchanges-summary' => '跟蹤這個wiki上的最新更改。',
 'recentchanges-feed-description' => '追蹤此訂閱在 wiki 上的最近更改。',
 'recentchanges-label-newpage' => '這次編輯建立了一個新頁面',
 'recentchanges-label-minor' => '這是一個小編輯',
@@ -1502,6 +1517,7 @@ $1",
 'newsectionsummary' => '/* $1 */ 新段落',
 'rc-enhanced-expand' => '顯示細節 （需要 JavaScript）',
 'rc-enhanced-hide' => '隱藏細節',
+'rc-old-title' => '最初創建為"$1"',
 
 # Recent changes linked
 'recentchangeslinked' => '相關更改',
@@ -1638,6 +1654,7 @@ $1',
 'upload-too-many-redirects' => '在網址中有太多重新定向',
 'upload-unknown-size' => '未知的大小',
 'upload-http-error' => '已發生一個HTTP錯誤：$1',
+'upload-copy-upload-invalid-domain' => '不能從該域名上載檔𣗈副本。',
 
 # File backend
 'backend-fail-stream' => '無法流傳送文件$1。',
@@ -1655,13 +1672,19 @@ $1',
 'backend-fail-writetemp' => '無法寫臨時文件。',
 'backend-fail-closetemp' => '無法創建臨時文件。',
 'backend-fail-read' => '找不到文件“$1”。',
-'backend-fail-create' => '找不到「$1」檔案。',
+'backend-fail-create' => '無法寫入檔案  $1。',
+'backend-fail-maxsize' => '無法寫入檔𣗈$1​​，因為它大於$2字節。',
 'backend-fail-readonly' => '「$1」儲存後端目前是唯讀模式，因為：「$2」',
-'backend-fail-synced' => '文件"$1"在內部後端是不一致的區域。',
-'backend-fail-connect' => '無法連結至檔案後方“$1”。',
-'backend-fail-internal' => '檔案後方“$1”發生了一個未知錯誤。',
+'backend-fail-synced' => '文件"$1"在內部存儲後端是不一致的區域。',
+'backend-fail-connect' => '無法連結至存儲後方“$1”。',
+'backend-fail-internal' => '存儲後方“$1”發生了一個未知錯誤。',
 'backend-fail-contenttype' => '無法確定檔案的內容類型以存儲於“$1”。',
-'backend-fail-batchsize' => '鑒於一批後端 $1 檔 {{PLURAL:$1| operation|operations}} ；限制是 $2   {{PLURAL:$2| operation|operations}}。',
+'backend-fail-batchsize' => '存儲後端被給予了$1次檔𣗈 {{PLURAL:$1|操作|操作}} ；限制是$2次{{PLURAL:$2|操作|操作}}。',
+'backend-fail-usable' => '由於沒有足夠的權限或缺少路徑/容器，所以無法寫入檔𣗈 $1 。',
+
+# File journal errors
+'filejournal-fail-dbconnect' => '無法連接到後端存儲的日誌資料庫" $1 "。',
+'filejournal-fail-dbquery' => '無法更新後端存儲的日誌資料庫" $1 "。',
 
 # Lock manager
 'lockmanager-notlocked' => '無法解鎖「$1」；它沒有被鎖定。',
@@ -1694,7 +1717,10 @@ $1',
 
 # img_auth script messages
 'img-auth-accessdenied' => '拒絕存取',
-'img-auth-nopathinfo' => 'PATH_INFO缺失。您的服務器尚未設置傳送該信息。它可能是基於CGI的，因而不支持img_auth。[https://www.mediawiki.org/wiki/Manual:Image_Authorization 參見圖片認證。]',
+'img-auth-nopathinfo' => 'PATH_INFO缺失。
+您的服務器尚未設置傳送該信息。
+它可能是基於CGI的，因而不支持img_auth。
+請參見 https://www.mediawiki.org/wiki/Manual:Image_Authorization',
 'img-auth-notindir' => '所請求的路徑不在已經設定的上載目錄。',
 'img-auth-badtitle' => '不能夠由"$1"建立一個有效標題。',
 'img-auth-nologinnWL' => '您而家並未登入，"$1"不在白名單上。',
@@ -1776,6 +1802,10 @@ $1',
 請參閱在[$2 檔案描述頁面]以了解其相關資訊。',
 'sharedupload-desc-here' => '該檔案來自於$1，它可能在其它計劃項目中被應用。
 它在[$2 檔案描述頁面]那邊上的描述於下面顯示。',
+'sharedupload-desc-edit' => '該檔案來自$1，它可能在其它計劃項目中被使用。
+或許您可以在其[$2 檔𣗈描述頁面]上編輯說明。',
+'sharedupload-desc-create' => '該檔案來自$1，它可能在其它計劃項目中被使用。
+或許您可以在那邊的[$2 檔𣗈描述頁面]上編輯其說明。',
 'filepage-nofile' => '不存在此名稱的檔案。',
 'filepage-nofile-link' => '不存在此名稱的檔案，但您可以[$1 上傳它]。',
 'uploadnewversion-linktext' => '上傳該檔案的新版本',
@@ -1973,6 +2003,7 @@ Template:消除歧義',
 'alllogstext' => '綜合顯示 {{SITENAME}} 的上傳、刪除、保護、查封以及站務日誌。',
 'logempty' => '在日誌中不存在匹配項。',
 'log-title-wildcard' => '搜尋以這個文字開始的標題',
+'showhideselectedlogentries' => '顯示/隱藏所選的日誌項目',
 
 # Special:AllPages
 'allpages' => '所有頁面',
@@ -1990,6 +2021,12 @@ Template:消除歧義',
 'allpagesprefix' => '顯示具有此前綴（名字空間）的頁面:',
 'allpagesbadtitle' => '給定的頁面標題是非法的，或者具有一個內部語言或內部 wiki 的前綴。它可能包含一個或更多的不能用於標題的字元。',
 'allpages-bad-ns' => '在{{SITENAME}}中沒有一個叫做"$1"的名字空間。',
+'allpages-hide-redirects' => '隱藏重定向頁',
+
+# SpecialCachedPage
+'cachedspecial-viewing-cached-ttl' => '你正在瀏覽本頁的緩存版本，至多可能存在$1的延遲。',
+'cachedspecial-viewing-cached-ts' => '您正在閱讀此頁的緩存版本，這可能不是完整的版本。',
+'cachedspecial-refresh-now' => '查看最新。',
 
 # Special:Categories
 'categories' => '頁面分類',
@@ -2061,9 +2098,9 @@ Template:消除歧義',
 'emailuser' => 'E-mail該用戶',
 'emailpage' => 'E-mail用戶',
 'emailpagetext' => '您可以用下面的表格去寄一封電郵給這位用戶。
-您在[[Special:Preferences|您參數設置]]中所輸入的e-mail地址將出現在郵件「發件人」一欄中，這樣該用戶就可以回覆您。',
+您在[[Special:Preferences|您的參數設置]]中所輸入的電子郵件地址將出現在郵件「發件人」一欄中，這樣該用戶就可以回覆您。',
 'usermailererror' => '目標郵件地址返回錯誤：',
-'defemailsubject' => '{{SITENAME}}用戶 $1 發送電子郵件',
+'defemailsubject' => '{{SITENAME}}來自用戶“$1”的電子郵件',
 'usermaildisabled' => '用戶電郵已停用',
 'usermaildisabledtext' => '您不可以發送電郵到這個wiki上的其他用戶',
 'noemailtitle' => '無e-mail地址',
@@ -2426,8 +2463,8 @@ $1',
 'ipb-confirm' => '確認封禁',
 'badipaddress' => '無效IP地址',
 'blockipsuccesssub' => '查封成功',
-'blockipsuccesstext' => '[[Special:Contributions/$1|$1]]已經被查封。
-<br />參看[[Special:BlockList|被封IP地址列表]]以覆審查封。',
+'blockipsuccesstext' => '[[Special:Contributions/$1|$1]]已經被查封。<br />
+參看[[Special:BlockList|被封IP地址列表]]以覆審查封。',
 'ipb-blockingself' => '你要封禁自己！確認要這樣做嗎？',
 'ipb-confirmhideuser' => '你要封禁用戶並隱藏其用戶名，這會隱藏在所有列表及日誌中涉及此用戶之用戶名。你確定要這樣做嗎？',
 'ipb-edit-dropdown' => '編輯查封原因',
@@ -2739,7 +2776,7 @@ $1被封禁的理由是“$2”',
 
 # JavaScriptTest
 'javascripttest' => 'JavaScript測試',
-'javascripttest-disabled' => '此功能已禁用。',
+'javascripttest-disabled' => '此功能在此Wiki上未被使用。',
 'javascripttest-title' => '運行$1測試。',
 'javascripttest-pagetext-noframework' => '這個頁面預留了作JavaScript測試。',
 'javascripttest-pagetext-unknownframework' => '未知框架"$1"',
@@ -2830,6 +2867,11 @@ $1被封禁的理由是“$2”',
 'vector.css' => '/* 此處的 CSS 將影響使用 Vector 面板的用戶 */',
 'print.css' => '/* 此處的 CSS 將影響打印輸出 */',
 'handheld.css' => '/* 此處的 CSS 將影響在 $wgHandheldStyle 設定手提裝置面板 */',
+'noscript.css' => '/* 此處的 CSS 將影響沒有啓用 JavaScript 的用戶 */',
+'group-autoconfirmed.css' => '/* 此處的 CSS 將只會影響自動確認用戶 */',
+'group-bot.css' => '/* 此處的 CSS 將只會影響機器人 */',
+'group-sysop.css' => '/* 此處的 CSS 將只會影響管理員 */',
+'group-bureaucrat.css' => '/* 此處的 CSS 將只會影響行政員 */',
 
 # Scripts
 'common.js' => '/* 此處的JavaScript將載入於所有用戶每一個頁面。 */',
@@ -2971,13 +3013,19 @@ To disable showing a particular link, set it to 'disable', e.g.
 'variantname-zh-sg' => 'disable',
 Variants for Chinese language
 */
-'variantname-zh-hans' => '簡體',
-'variantname-zh-hant' => '繁體',
+'variantname-zh-hans' => '‪中文(简体)',
+'variantname-zh-hant' => '‪中文(繁體)',
 'variantname-zh-cn' => '大陸簡體',
 'variantname-zh-tw' => '台灣正體',
 'variantname-zh-hk' => '香港繁體',
+'variantname-zh-mo' => '澳門繁體',
 'variantname-zh-sg' => '新加坡簡體',
+'variantname-zh-my' => '马来西亚简体',
 'variantname-zh' => '不轉換',
+
+# Variants for Gan language
+'variantname-gan-hans' => '‪中文(简体)',
+'variantname-gan-hant' => '‪中文(繁體)',
 
 # Metadata
 'metadata' => '元數據',
@@ -3488,6 +3536,7 @@ $5
 
 # Separators for various lists, etc.
 'comma-separator' => '、',
+'colon-separator' => '：',
 'word-separator' => '',
 'parentheses' => '（$1）',
 
@@ -3587,6 +3636,9 @@ MediaWiki是基於使用目的而加以發佈，然而不負任何擔保責任�
 'version-software' => '已經安裝的軟件',
 'version-software-product' => '產品',
 'version-software-version' => '版本',
+'version-entrypoints' => '入口點URL',
+'version-entrypoints-header-entrypoint' => '入口點',
+'version-entrypoints-header-url' => 'URL',
 
 # Special:FilePath
 'filepath' => '檔案路徑',
@@ -3773,5 +3825,16 @@ MediaWiki是基於使用目的而加以發佈，然而不負任何擔保責任�
 'api-error-unknownerror' => '未知錯誤：$1。',
 'api-error-uploaddisabled' => '本wiki的上傳檔案功能已停用。',
 'api-error-verification-error' => '本檔案可能已損壞，或副檔名錯誤。',
+
+# Durations
+'duration-seconds' => '$1秒',
+'duration-minutes' => '$1分',
+'duration-hours' => '$1小時',
+'duration-days' => '$1天',
+'duration-weeks' => '$1週',
+'duration-years' => '$1年',
+'duration-decades' => '$1十年',
+'duration-centuries' => '$1世紀',
+'duration-millennia' => '$1千年',
 
 );

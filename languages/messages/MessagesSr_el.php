@@ -1,5 +1,5 @@
 <?php
-/** Serbian (Latin script) (‪Srpski (latinica)‬)
+/** Serbian (Latin script) (‪srpski (latinica)‬)
  *
  * See MessagesQqq.php for message documentation incl. usage of parameters
  * To improve a translation please visit http://translatewiki.net
@@ -22,16 +22,16 @@
  */
 
 $namespaceNames = array(
-	NS_MEDIA            => 'Medija',
+	NS_MEDIA            => 'Medij',
 	NS_SPECIAL          => 'Posebno',
 	NS_TALK             => 'Razgovor',
 	NS_USER             => 'Korisnik',
 	NS_USER_TALK        => 'Razgovor_sa_korisnikom',
 	NS_PROJECT_TALK     => 'Razgovor_o_$1',
-	NS_FILE             => 'Slika',
-	NS_FILE_TALK        => 'Razgovor_o_slici',
-	NS_MEDIAWIKI        => 'MedijaViki',
-	NS_MEDIAWIKI_TALK   => 'Razgovor_o_MedijaVikiju',
+	NS_FILE             => 'Datoteka',
+	NS_FILE_TALK        => 'Razgovor_o_datoteci',
+	NS_MEDIAWIKI        => 'Medijaviki',
+	NS_MEDIAWIKI_TALK   => 'Razgovor_o_Medijavikiju',
 	NS_TEMPLATE         => 'Šablon',
 	NS_TEMPLATE_TALK    => 'Razgovor_o_šablonu',
 	NS_HELP             => 'Pomoć',
@@ -58,6 +58,10 @@ $namespaceAliases = array(
 	'Разговор_о_помоћи'       => NS_HELP_TALK,
 	'Категорија'              => NS_CATEGORY,
 	'Разговор_о_категорији'   => NS_CATEGORY_TALK,
+
+	'Medija'                  => NS_MEDIA,
+	'Slika'                   => NS_FILE,
+	'Razgovor_o_slici'        => NS_FILE_TALK,
 );
 
 $extraUserToggles = array(
@@ -703,6 +707,8 @@ Navedeni razlog: ''$2''.",
 'filereadonlyerror' => 'Ne mogu da izmenim datoteku „$1“ jer je riznica „$2“ u režimu za čitanje.
 
 Administrator koji ju je zaključao ponudio je sledeće objašnjenje: „$3“.',
+'invalidtitle-knownnamespace' => 'Neispravan naslov s imenskim prostorom „$2“ i tekstom „$3“',
+'invalidtitle-unknownnamespace' => 'Neispravan naslov s imenskim prostorom br. $1 i tekstom „$2“',
 
 # Virus scanner
 'virus-badscanner' => "Neispravna postavka: nepoznati skener za viruse: ''$1''",
@@ -1000,7 +1006,8 @@ Prilagođene stranice CSS i javaskript počinju malim slovom, npr. {{ns:user}}:F
 'updated' => '(Ažurirano)',
 'note' => "'''Napomena:'''",
 'previewnote' => "'''Imajte u vidu da je ovo samo pregled.'''
-Vaše izmene još nisu sačuvane! [[#editform|→ Nastavi s uređivanjem]]",
+Vaše izmene još nisu sačuvane!",
+'continue-editing' => 'Nastavi uređivanje',
 'previewconflict' => 'Ovaj pregled oslikava kako će tekst u tekstualnom okviru izgledati.',
 'session_fail_preview' => "'''Nismo mogli da obradimo vašu izmenu zbog gubitka podataka sesije.'''
 Pokušajte ponovo.
@@ -1099,6 +1106,12 @@ Ovakve argumente bi trebalo izbegavati.",
 'parser-template-loop-warning' => 'Otkrivena je petlja šablona: [[$1]]',
 'parser-template-recursion-depth-warning' => 'Dubina uključivanja šablona je prekoračena ($1)',
 'language-converter-depth-warning' => 'Prekoračena je granica dubine jezičkog pretvarača ($1)',
+'node-count-exceeded-category' => 'Stranice u kojima je prekoračen broj čvorova',
+'node-count-exceeded-warning' => 'Stranica u kojoj je prekoračen broj čvorova',
+'expansion-depth-exceeded-category' => 'Stranice u kojima je prekoračena dubina proširenja',
+'expansion-depth-exceeded-warning' => 'Stranica u kojoj je prekoračena dubina proširenja',
+'parser-unstrip-loop-warning' => 'Utvrđena je petlja',
+'parser-unstrip-recursion-limit' => 'Prekoračeno je ograničenje rekurzije ($1)',
 
 # "Undo" feature
 'undo-success' => 'Izmena se može vratiti.
@@ -1244,7 +1257,7 @@ Pogledajte istoriju.',
 
 # Suppression log
 'suppressionlog' => 'Istorija sakrivanja',
-'suppressionlogtext' => 'Ispod se nalazi spisak brisanja i blokiranja koji uključuje sadržaj sakriven od administratora. Pogledajte [[Special:BlockList|spisak blokiranih IP adresa]] za pregled važećih zabrana i blokiranja.',
+'suppressionlogtext' => 'Ispod se nalazi spisak brisanja i blokiranja koji uključuje sadržaj sakriven od administratora. Tekuće zabrane i blokiranja možete naći [[Special:BlockList|ovde]].',
 
 # History merging
 'mergehistory' => 'Spoji istorije stranica',
@@ -1279,7 +1292,8 @@ Korišćenje navigacionih veza će poništiti ovu kolonu.',
 
 # Diffs
 'history-title' => 'Istorija izmena za „$1“',
-'difference' => '(razlike između izmena)',
+'difference-title' => 'Razlika između izmena stranice „$1“',
+'difference-title-multipage' => 'Razlika između stranica „$1“ i „$2“',
 'difference-multipage' => '(razlike između stranica)',
 'lineno' => 'Red $1:',
 'compareselectedversions' => 'Uporedi izabrane izmene',
@@ -1644,7 +1658,7 @@ Ako izaberete da ga unesete, ono će biti korišćeno za pripisivanje vašeg rad
 'nchanges' => '$1 {{PLURAL:$1|izmena|izmene|izmena}}',
 'recentchanges' => 'Skorašnje izmene',
 'recentchanges-legend' => 'Postavke skorašnjih izmena',
-'recentchangestext' => 'Pratite skorašnje izmene na ovoj stranici.',
+'recentchanges-summary' => 'Ovde pratite najskorije izmene na vikiju.',
 'recentchanges-feed-description' => 'Pratite skorašnje izmene uz pomoć ovog dovoda.',
 'recentchanges-label-newpage' => 'Nova stranica',
 'recentchanges-label-minor' => 'Manja izmena',
@@ -2216,6 +2230,11 @@ Možda sadrži znakove koji se ne mogu koristiti u naslovima.',
 'allpages-bad-ns' => '{{SITENAME}} nema imenski prostor „$1“.',
 'allpages-hide-redirects' => 'Sakrij preusmerenja',
 
+# SpecialCachedPage
+'cachedspecial-viewing-cached-ttl' => 'Gledate keširanu verziju ove stranice, koja može biti stara i do $1.',
+'cachedspecial-viewing-cached-ts' => 'Gledate keširanu verziju ove stranice, koja može da se razlikuje od trenutne.',
+'cachedspecial-refresh-now' => 'Pogledaj najnoviju.',
+
 # Special:Categories
 'categories' => 'Kategorije',
 'categoriespagetext' => '{{PLURAL:$1|Sledeća kategorija sadrži|Sledeće kategorije sadrže}} stranice ili datoteke.
@@ -2414,7 +2433,7 @@ Potvrdite svoju nameru, da razumete posledice i da ovo radite u skladu s [[{{Med
 Pogledajte ''$2'' za više detalja.",
 'dellogpage' => 'Dnevnik brisanja',
 'dellogpagetext' => 'Ispod je spisak poslednjih brisanja.',
-'deletionlog' => 'istorija brisanja',
+'deletionlog' => 'Dnevnik brisanja',
 'reverted' => 'Vraćeno na raniju izmenu',
 'deletecomment' => 'Razlog:',
 'deleteotherreason' => 'Drugi/dodatni razlog:',
@@ -2629,7 +2648,7 @@ Izveštaj o blokiranim korisnicima se nalazi ispod:',
 # Block/unblock
 'autoblockid' => 'Samoblokiranje #$1',
 'block' => 'Blokiraj korisnika',
-'unblock' => 'Deblokiraj korisnika',
+'unblock' => 'Odblokiraj korisnika',
 'blockip' => 'Blokiraj korisnika',
 'blockip-title' => 'Blokiranje korisnika',
 'blockip-legend' => 'Blokiraj korisnika',
@@ -2650,7 +2669,7 @@ Izaberite konkretan razlog ispod (primer: navođenje konkretnih stranica koje su
 ** Neprihvatljivo korisničko ime',
 'ipb-hardblock' => 'Zabrani prijavljenim korisnicima da uređuju s ove IP adrese',
 'ipbcreateaccount' => 'Onemogući otvaranje naloga',
-'ipbemailban' => 'Zabrani članu slanje e-poruka',
+'ipbemailban' => 'Zabrani korisniku slanje e-poruka',
 'ipbenableautoblock' => 'Automatski blokiraj poslednju IP adresu ovog korisnika i sve daljnje adrese s kojih pokuša da uređuje',
 'ipbsubmit' => 'Blokiraj ovog korisnika',
 'ipbother' => 'Drugo vreme:',
@@ -2665,15 +2684,15 @@ Izaberite konkretan razlog ispod (primer: navođenje konkretnih stranica koje su
 'badipaddress' => 'Neispravna IP adresa',
 'blockipsuccesssub' => 'Blokiranje je uspelo',
 'blockipsuccesstext' => '[[Special:Contributions/$1|$1]] je {{GENDER:$1|blokiran|blokirana|blokiran}}.<br />
-Pogledajte [[Special:BlockList|spisak blokiranih IP adresa]] za pregled blokiranja.',
+Blokiranja možete da pogledate [[Special:BlockList|ovde]].',
 'ipb-blockingself' => 'Ovom radnjom ćete blokirati sebe! Jeste li sigurni da to želite?',
 'ipb-confirmhideuser' => 'Upravo ćete blokirati korisnika s uključenom mogućnošću „sakrij korisnika“. Ovim će korisničko ime biti sakriveno u svim spiskovima i izveštajima. Želite li to da uradite?',
 'ipb-edit-dropdown' => 'Uredi razloge blokiranja',
-'ipb-unblock-addr' => 'Deblokiraj $1',
-'ipb-unblock' => 'Deblokiraj korisničko ime ili IP adresu',
+'ipb-unblock-addr' => 'Odblokiraj $1',
+'ipb-unblock' => 'Odblokiraj korisničko ime ili IP adresu',
 'ipb-blocklist' => 'Pogledaj postojeća blokiranja',
 'ipb-blocklist-contribs' => 'Doprinosi za $1',
-'unblockip' => 'Deblokiraj korisnika',
+'unblockip' => 'Odblokiraj korisnika',
 'unblockiptext' => 'Koristite obrazac ispod da biste vratili pravo pisanja blokiranoj IP adresi ili korisničkom imenu.',
 'ipusubmit' => 'Ukloni ovu blokadu',
 'unblocked' => '[[User:$1|$1]] je deblokiran',
@@ -2705,7 +2724,7 @@ Pogledajte [[Special:BlockList|spisak blokiranih IP adresa]] za pregled blokiran
 'ipblocklist-empty' => 'Spisak blokiranja je prazan.',
 'ipblocklist-no-results' => 'Tražena IP adresa ili korisničko ime nije blokirano.',
 'blocklink' => 'blokiraj',
-'unblocklink' => 'deblokiraj',
+'unblocklink' => 'odblokiraj',
 'change-blocklink' => 'promeni blokiranje',
 'contribslink' => 'doprinosi',
 'emaillink' => 'pošalji e-poruku',
@@ -2720,8 +2739,8 @@ Istorija sakrivanja se nalazi ispod:',
 'reblock-logentry' => '{{GENDER:|je promenio|je promenila|je promenio}} podešavanja za blokiranje {{GENDER:$1|korisnika|korisnice|korisnika}} [[$1]] s rokom isteka od $2 ($3)',
 'blocklogtext' => 'Ovo je dnevnik blokiranja i deblokiranja korisnika.
 Automatski blokirane IP adrese nisu navedene.
-Pogledajte [[Special:BlockList|spisak blokiranih IP adresa]].',
-'unblocklogentry' => '{{GENDER:|je deblokirao|je deblokirala|je deblokirao}} „$1“',
+Tekuće zabrane i blokiranja možete naći [[Special:BlockList|ovde]].',
+'unblocklogentry' => '{{GENDER:|je odblokirao|je odblokirala|je odblokirao}} „$1“',
 'block-log-flags-anononly' => 'samo anonimni korisnici',
 'block-log-flags-nocreate' => 'onemogućeno otvaranje naloga',
 'block-log-flags-noautoblock' => 'automatsko blokiranje je onemogućeno',
@@ -4012,6 +4031,9 @@ Trebalo bi da ste primili [{{SERVER}}{{SCRIPTPATH}}/COPYING primerak GNU-ove op�
 'version-software' => 'Instalirani softver',
 'version-software-product' => 'Proizvod',
 'version-software-version' => 'Verzija',
+'version-entrypoints' => 'Adrese ulazne tačke',
+'version-entrypoints-header-entrypoint' => 'Ulazna tačka',
+'version-entrypoints-header-url' => 'Adresa',
 
 # Special:FilePath
 'filepath' => 'Putanja datoteke',
@@ -4199,5 +4221,16 @@ U suprotnom, poslužite se jednostavnim obrascem ispod. Vaš komentar će stajat
 'api-error-unknownerror' => 'Nepoznata greška: „$1“.',
 'api-error-uploaddisabled' => 'Otpremanje je onemogućeno na ovom vikiju.',
 'api-error-verification-error' => 'Datoteka je oštećena ili ima neispravan nastavak.',
+
+# Durations
+'duration-seconds' => '$1 {{PLURAL:$1|sekund|sekunde|sekundi}}',
+'duration-minutes' => '$1 {{PLURAL:$1|minut|minuta|minuta}}',
+'duration-hours' => '$1 {{PLURAL:$1|sat|sata|sati}}',
+'duration-days' => '$1 {{PLURAL:$1|dan|dana|dana}}',
+'duration-weeks' => '$1 {{PLURAL:$1|nedelja|nedelje|nedelja}}',
+'duration-years' => '$1 {{PLURAL:$1|godina|godine|godina}}',
+'duration-decades' => '$1 {{PLURAL:$1|decenija|decenije|decenija}}',
+'duration-centuries' => '$1 {{PLURAL:$1|vek|veka|vekova}}',
+'duration-millennia' => '$1 {{PLURAL:$1|milenijum|milenijuma|milenijuma}}',
 
 );

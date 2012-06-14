@@ -26,7 +26,7 @@
  *
  * @ingroup SpecialPage
  */
-class DisambiguationsPage extends PageQueryPage {
+class DisambiguationsPage extends QueryPage {
 
 	function __construct( $name = 'Disambiguations' ) {
 		parent::__construct( $name );

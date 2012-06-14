@@ -671,6 +671,7 @@ class WebRequest {
 
 	/**
 	 * HTML-safe version of appendQuery().
+	 * @deprecated: Deprecated in 1.20, warnings in 1.21, remove in 1.22.
 	 *
 	 * @param $query String: query string fragment; do not include initial '?'
 	 * @return String
@@ -980,9 +981,11 @@ HTML;
 
 	/**
 	 * Parse the Accept-Language header sent by the client into an array
-	 * @return array array( languageCode => q-value ) sorted by q-value in descending order
+	 * @return array array( languageCode => q-value ) sorted by q-value in descending order then
+	 *                                                appearing time in the header in ascending order.
 	 * May contain the "language" '*', which applies to languages other than those explicitly listed.
 	 * This is aligned with rfc2616 section 14.4
+	 * Preference for earlier languages appears in rfc3282 as an extension to HTTP/1.1.
 	 */
 	public function getAcceptLang() {
 		// Modified version of code found at http://www.thefutureoftheweb.com/blog/use-accept-language-header
@@ -1003,19 +1006,25 @@ HTML;
 			return array();
 		}
 
-		// Create a list like "en" => 0.8
-		$langs = array_combine( $lang_parse[1], $lang_parse[4] );
+		$langcodes = $lang_parse[1];
+		$qvalues = $lang_parse[4];
+		$indices = range( 0, count( $lang_parse[1] ) - 1 );
+
 		// Set default q factor to 1
-		foreach ( $langs as $lang => $val ) {
-			if ( $val === '' ) {
-				$langs[$lang] = 1;
-			} elseif ( $val == 0 ) {
-				unset($langs[$lang]);
+		foreach ( $indices as $index ) {
+			if ( $qvalues[$index] === '' ) {
+				$qvalues[$index] = 1;
+			} elseif ( $qvalues[$index] == 0 ) {
+				unset( $langcodes[$index], $qvalues[$index], $indices[$index] );
 			}
 		}
 
-		// Sort list
-		arsort( $langs, SORT_NUMERIC );
+		// Sort list. First by $qvalues, then by order. Reorder $langcodes the same way
+		array_multisort( $qvalues, SORT_DESC, SORT_NUMERIC, $indices, $langcodes );
+
+		// Create a list like "en" => 0.8
+		$langs = array_combine( $langcodes, $qvalues );
+
 		return $langs;
 	}
 

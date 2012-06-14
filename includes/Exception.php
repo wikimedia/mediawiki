@@ -1,6 +1,21 @@
 <?php
 /**
- * Exception class and handler
+ * Exception class and handler.
+ *
+ * This program is free software; you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation; either version 2 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License along
+ * with this program; if not, write to the Free Software Foundation, Inc.,
+ * 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
+ * http://www.gnu.org/copyleft/gpl.html
  *
  * @file
  */
@@ -15,6 +30,8 @@
  * @ingroup Exception
  */
 class MWException extends Exception {
+	var $logId;
+
 	/**
 	 * Should the exception use $wgOut to output the error ?
 	 * @return bool
@@ -53,11 +70,11 @@ class MWException extends Exception {
 		global $wgExceptionHooks;
 
 		if ( !isset( $wgExceptionHooks ) || !is_array( $wgExceptionHooks ) ) {
-			return; // Just silently ignore
+			return null; // Just silently ignore
 		}
 
 		if ( !array_key_exists( $name, $wgExceptionHooks ) || !is_array( $wgExceptionHooks[ $name ] ) ) {
-			return;
+			return null;
 		}
 
 		$hooks = $wgExceptionHooks[ $name ];
@@ -74,6 +91,7 @@ class MWException extends Exception {
 				return $result;
 			}
 		}
+		return null;
 	}
 
 	/**
@@ -110,9 +128,14 @@ class MWException extends Exception {
 				'</p><p>Backtrace:</p><p>' . nl2br( htmlspecialchars( $this->getTraceAsString() ) ) .
 				"</p>\n";
 		} else {
-			return "<p>Set <b><tt>\$wgShowExceptionDetails = true;</tt></b> " .
+			return 
+				"<div class=\"errorbox\">" .
+				'[' . $this->getLogId() . '] ' .
+				gmdate( 'Y-m-d H:i:s' ) . 
+				": Fatal exception of type " . get_class( $this ) . "</div>\n" .
+				"<!-- Set \$wgShowExceptionDetails = true; " .
 				"at the bottom of LocalSettings.php to show detailed " .
-				"debugging information.</p>";
+				"debugging information. -->";
 		}
 	}
 
@@ -141,6 +164,13 @@ class MWException extends Exception {
 		return $this->msg( 'internalerror', "Internal error" );
 	}
 
+	function getLogId() {
+		if ( $this->logId === null ) {
+			$this->logId = wfRandomString( 8 );
+		}
+		return $this->logId;
+	}
+
 	/**
 	 * Return the requested URL and point to file and line number from which the
 	 * exception occured
@@ -150,6 +180,7 @@ class MWException extends Exception {
 	function getLogMessage() {
 		global $wgRequest;
 
+		$id = $this->getLogId();
 		$file = $this->getFile();
 		$line = $this->getLine();
 		$message = $this->getMessage();
@@ -163,7 +194,7 @@ class MWException extends Exception {
 			$url = '[no req]';
 		}
 
-		return "$url   Exception from line $line of $file: $message";
+		return "[$id] $url   Exception from line $line of $file: $message";
 	}
 
 	/** Output the exception report using HTML */
@@ -197,10 +228,15 @@ class MWException extends Exception {
 	 * It will be either HTML or plain text based on isCommandLine().
 	 */
 	function report() {
+		global $wgLogExceptionBacktrace;
 		$log = $this->getLogMessage();
 
 		if ( $log ) {
-			wfDebugLog( 'exception', $log );
+			if ( $wgLogExceptionBacktrace ) {
+				wfDebugLog( 'exception', $log . "\n" . $this->getTraceAsString() . "\n" );
+			} else {
+				wfDebugLog( 'exception', $log );
+			}
 		}
 
 		if ( defined( 'MW_API' ) ) {
@@ -210,6 +246,9 @@ class MWException extends Exception {
 		} elseif ( self::isCommandLine() ) {
 			MWExceptionHandler::printError( $this->getText() );
 		} else {
+			header( "HTTP/1.1 500 MediaWiki exception" );
+			header( "Status: 500 MediaWiki exception", true );
+
 			$this->reportHTML();
 		}
 	}
@@ -441,7 +480,7 @@ class HttpError extends MWException {
 		$this->content = $content;
 	}
 
-	public function reportHTML() {
+	public function report() {
 		$httpMessage = HttpStatus::getMessage( $this->httpCode );
 
 		header( "Status: {$this->httpCode} {$httpMessage}" );
@@ -461,7 +500,7 @@ class HttpError extends MWException {
 			$content = htmlspecialchars( $this->content );
 		}
 
-		print "<!DOCTYPE HTML PUBLIC \"-//IETF//DTD HTML 2.0//EN\">\n".
+		print "<!DOCTYPE html>\n".
 			"<html><head><title>$header</title></head>\n" .
 			"<body><h1>$header</h1><p>$content</p></body></html>\n";
 	}

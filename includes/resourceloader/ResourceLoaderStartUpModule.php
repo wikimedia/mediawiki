@@ -1,5 +1,7 @@
 <?php
 /**
+ * Module for resource loader initialization.
+ *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2 of the License, or
@@ -170,6 +172,13 @@ class ResourceLoaderStartUpModule extends ResourceLoaderModule {
 	}
 
 	/* Methods */
+
+	/**
+	 * @return bool
+	 */
+	public function isRaw() {
+		return true;
+	}
 
 	/**
 	 * @param $context ResourceLoaderContext

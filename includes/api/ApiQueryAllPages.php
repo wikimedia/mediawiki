@@ -153,7 +153,7 @@ class ApiQueryAllPages extends ApiQueryGeneratorBase {
 			$this->addOption( 'STRAIGHT_JOIN' );
 			// We have to GROUP BY all selected fields to stop
 			// PostgreSQL from whining
-			$this->addOption( 'GROUP BY', implode( ', ', $selectFields ) );
+			$this->addOption( 'GROUP BY', $selectFields );
 			$forceNameTitleIndex = false;
 		}
 
@@ -293,6 +293,16 @@ class ApiQueryAllPages extends ApiQueryGeneratorBase {
 				' definite - Get only pages with a definite (specific) protection expiry',
 				' all - Get pages with any protections expiry'
 			),
+		);
+	}
+
+	public function getResultProperties() {
+		return array(
+			'' => array(
+				'pageid' => 'integer',
+				'ns' => 'namespace',
+				'title' => 'string'
+			)
 		);
 	}
 

@@ -970,7 +970,6 @@ Ii baat ke dhyan me rakhna ki navigation jorr ke kaam me laae se ii column reset
 
 # Diffs
 'history-title' => '"$1" ke sansodhan ke itihaas',
-'difference' => '(Badlao me farak)',
 'difference-multipage' => '(Panna ke biich ke antar)',
 'lineno' => 'Rekha $1:',
 'compareselectedversions' => 'Chuna gae version ke compare karo',
@@ -1329,7 +1328,7 @@ Iske $1 {{PLURAL:$1|character|characters}} se kamti rahe ke chaahi.',
 'nchanges' => '$1 {{PLURAL:$1|badlao|badlao}}',
 'recentchanges' => 'Nawaa badlao',
 'recentchanges-legend' => 'Nawaa badlao options',
-'recentchangestext' => 'Wiki me ii panna ke nawaa badlao pe dhyan rakho.',
+'recentchanges-summary' => 'Wiki me ii panna ke nawaa badlao pe dhyan rakho.',
 'recentchanges-feed-description' => 'Abhi haali me bhae ii wiki ke feed me ke track karo.',
 'recentchanges-label-newpage' => 'Ii badlao ek nawaa panna banais hae',
 'recentchanges-label-minor' => 'Ii ek chhota badlao hae',

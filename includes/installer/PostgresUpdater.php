@@ -2,6 +2,21 @@
 /**
  * PostgreSQL-specific updater.
  *
+ * This program is free software; you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation; either version 2 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License along
+ * with this program; if not, write to the Free Software Foundation, Inc.,
+ * 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
+ * http://www.gnu.org/copyleft/gpl.html
+ *
  * @file
  * @ingroup Deployment
  */
@@ -97,6 +112,7 @@ class PostgresUpdater extends DatabaseUpdater {
 			array( 'addPgField', 'ipblocks',      'ipb_create_account',   'SMALLINT NOT NULL DEFAULT 1' ),
 			array( 'addPgField', 'ipblocks',      'ipb_deleted',          'SMALLINT NOT NULL DEFAULT 0' ),
 			array( 'addPgField', 'ipblocks',      'ipb_enable_autoblock', 'SMALLINT NOT NULL DEFAULT 1' ),
+			array( 'addPgField', 'ipblocks',      'ipb_parent_block_id',            'INTEGER DEFAULT NULL REFERENCES ipblocks(ipb_id) ON DELETE SET NULL DEFERRABLE INITIALLY DEFERRED' ),
 			array( 'addPgField', 'filearchive',   'fa_deleted',           'SMALLINT NOT NULL DEFAULT 0' ),
 			array( 'addPgField', 'logging',       'log_deleted',          'SMALLINT NOT NULL DEFAULT 0' ),
 			array( 'addPgField', 'logging',       'log_id',               "INTEGER NOT NULL PRIMARY KEY DEFAULT nextval('logging_log_id_seq')" ),
@@ -185,9 +201,7 @@ class PostgresUpdater extends DatabaseUpdater {
 			array( 'changeNullableField', 'oldimage', 'oi_timestamp',  'NULL' ),
 			array( 'changeNullableField', 'oldimage', 'oi_major_mime', 'NULL' ),
 			array( 'changeNullableField', 'oldimage', 'oi_minor_mime', 'NULL' ),
-			array( 'setDefault', 'image', 'img_metadata', '\'\x\'::bytea'),
 			array( 'changeNullableField', 'image', 'img_metadata', 'NOT NULL'),
-			array( 'setDefault', 'filearchive', 'fa_metadata', '\'\x\'::bytea'),
 			array( 'changeNullableField', 'filearchive', 'fa_metadata', 'NOT NULL'),
 			array( 'changeNullableField', 'recentchanges', 'rc_cur_id', 'NULL' ),
 
@@ -196,6 +210,7 @@ class PostgresUpdater extends DatabaseUpdater {
 			# New indexes
 			array( 'addPgIndex', 'archive',       'archive_user_text',      '(ar_user_text)' ),
 			array( 'addPgIndex', 'image',         'img_sha1',               '(img_sha1)' ),
+			array( 'addPgIndex', 'ipblocks',      'ipb_parent_block_id',              '(ipb_parent_block_id)' ),
 			array( 'addPgIndex', 'oldimage',      'oi_sha1',                '(oi_sha1)' ),
 			array( 'addPgIndex', 'page',          'page_mediawiki_title',   '(page_title) WHERE page_namespace = 8' ),
 			array( 'addPgIndex', 'pagelinks',     'pagelinks_title',        '(pl_title)' ),
@@ -292,6 +307,7 @@ class PostgresUpdater extends DatabaseUpdater {
 			array( 'changeFkeyDeferrable', 'imagelinks',       'il_from',         'page(page_id) ON DELETE CASCADE' ),
 			array( 'changeFkeyDeferrable', 'ipblocks',         'ipb_by',          'mwuser(user_id) ON DELETE CASCADE' ),
 			array( 'changeFkeyDeferrable', 'ipblocks',         'ipb_user',        'mwuser(user_id) ON DELETE SET NULL' ),
+			array( 'changeFkeyDeferrable', 'ipblocks',         'ipb_parent_block_id',       'ipblocks(ipb_id) ON DELETE SET NULL' ),
 			array( 'changeFkeyDeferrable', 'langlinks',        'll_from',         'page(page_id) ON DELETE CASCADE' ),
 			array( 'changeFkeyDeferrable', 'logging',          'log_user',        'mwuser(user_id) ON DELETE SET NULL' ),
 			array( 'changeFkeyDeferrable', 'oldimage',         'oi_name',         'image(img_name) ON DELETE CASCADE ON UPDATE CASCADE' ),

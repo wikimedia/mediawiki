@@ -553,7 +553,6 @@ $messages = array(
 
 # Diffs
 'history-title' => '"$1" ಪುಟೊತ ಆವೃತ್ತಿ ಇತಿಹಾಸ',
-'difference' => '(ಆವೃತ್ತಿಲೆದ ನಡುತ ವ್ಯತ್ಯಾಸ)',
 'lineno' => '$1 ನೇ ಸಾಲ್:',
 'compareselectedversions' => 'ಆಯ್ಕೆ ಮಲ್ತಿನ ಆವೃತ್ತಿಲೆನ್ ಹೊಂದಾಣಿಕೆ ಮಲ್ತ್ ತೂಲೆ',
 'editundo' => 'ದುಂಬುದಲೆಕ',
@@ -663,7 +662,7 @@ $messages = array(
 'nchanges' => '$1 {{PLURAL:$1|ಬದಲಾವಣೆ|ಬದಲಾವಣೆಲು}}',
 'recentchanges' => 'ಇಂಚಿಪದ ಬದಲಾವಣೆಲು',
 'recentchanges-legend' => 'ಇಂಚಿಪದ ಬದಲಾವಣೆಲು ಆಯ್ಕೆಲು',
-'recentchangestext' => 'ಈ ವಿಕಿಟ್ ಇಂಚಿಪ್ಪ ಆತಿನ ಬದಲಾವಣೆನ್ ಟ್ರಾಕ್ ಮಲ್ಪುಲೆ',
+'recentchanges-summary' => 'ಈ ವಿಕಿಟ್ ಇಂಚಿಪ್ಪ ಆತಿನ ಬದಲಾವಣೆನ್ ಟ್ರಾಕ್ ಮಲ್ಪುಲೆ',
 'recentchanges-feed-description' => 'ಈ ಫೀಡ್’ಡ್ ವಿಕಿಕ್ ಇಂಚಿಪ್ಪ ಆತಿನಂಚಿನ ಬದಲಾವಣೆಲೆನ್ ಟ್ರ್ಯಾಕ್ ಮಲ್ಪುಲೆ.',
 'recentchanges-label-newpage' => 'ಇರ್ನ ಈ ಬದಲಾವಣೆ ಪೊಸ ಪುಟೊನು ಸುರು ಮಲ್ಪುಂಡು',
 'recentchanges-label-minor' => 'ಉಂದು ಎಲ್ಯ ಬದಲಾವಣೆ',

@@ -583,6 +583,8 @@ Pertanyaan: $2',
 'filereadonlyerror' => 'Fail "$1" tidak dapat diubah suai kerana repositori fail "$2" berada dalam ragam baca sahaja.
 
 Pentadbir yang menguncinya memberikan penjelasan yang berikut: "$3".',
+'invalidtitle-knownnamespace' => 'Tajuk tidak sah dengan ruang nama "$2" dan teks "$3"',
+'invalidtitle-unknownnamespace' => 'Tajuk tidak sah dengan nombor ruang nama tidak dikenali $1 dan teks "$2"',
 
 # Virus scanner
 'virus-badscanner' => "Konfigurasi rosak: pengimbas virus yang tidak diketahui: ''$1''",
@@ -858,7 +860,8 @@ Masukan log sekatan terakhir disediakan di bawah sebagai rujukan:',
 'updated' => '(Dikemas kini)',
 'note' => "'''Catatan:'''",
 'previewnote' => "'''Ingatlah bahawa ini hanya pralihat.'''
-Perubahan anda belum disimpan! [[#editform|→ Terus menyunting]]",
+Perubahan anda belum disimpan!",
+'continue-editing' => 'Teruskan menyunting',
 'previewconflict' => 'Paparan ini merupakan teks di bahagian atas dalam kotak sunting teks. Teks ini akan disimpan sekiranya anda memilih berbuat demikian.',
 'session_fail_preview' => "'''Kami tidak dapat memproses suntingan anda kerana kehilangan data sesi. Sila cuba lagi. Jika masalah ini berlanjutan, [[Special:UserLogout|log keluar]] dahulu, kemudian log masuk sekali lagi.'''",
 'session_fail_preview_html' => "'''Kami tidak dapat memproses suntingan anda kerana kehilangan data sesi.'''
@@ -952,6 +955,12 @@ Argumen-argumen ini telah ditinggalkan.',
 'parser-template-loop-warning' => 'Gelung templat dikesan: [[$1]]',
 'parser-template-recursion-depth-warning' => 'Had pengulangan templat dilebihi ($1)',
 'language-converter-depth-warning' => 'Had kedalaman penukar bahasa dilepasi ($1)',
+'node-count-exceeded-category' => 'Laman yang melebihi had kiraan nod',
+'node-count-exceeded-warning' => 'Laman terlebih kiraan nod',
+'expansion-depth-exceeded-category' => 'Laman yang melebihi had kedalaman peluasan',
+'expansion-depth-exceeded-warning' => 'Laman terlebih dalam peluasan',
+'parser-unstrip-loop-warning' => 'Gelung unstrip dikesan',
+'parser-unstrip-recursion-limit' => 'Had rekursi unstrip dilampaui ($1)',
 
 # "Undo" feature
 'undo-success' => 'Suntingan ini boleh dibatalkan. Sila semak perbandingan di bawah untuk mengesahkan bahawa anda betul-betul mahu melakukan tindakan ini, kemudian simpan perubahan tersebut.',
@@ -1131,7 +1140,8 @@ Sila pastikan bahawa perubahan ini akan mengekalkan kesinambungan sejarah laman.
 
 # Diffs
 'history-title' => 'Sejarah semakan bagi "$1"',
-'difference' => '(Perbezaan antara semakan)',
+'difference-title' => 'Perbezaan antara semakan-semakan "$1"',
+'difference-title-multipage' => 'Perbezaan antara laman "$1" dan "$2"',
 'difference-multipage' => '(Perbezaan antara laman)',
 'lineno' => 'Baris $1:',
 'compareselectedversions' => 'Bandingkan versi-versi yang dipilih',
@@ -1227,6 +1237,7 @@ Cuba berikan awalan ''all:'' untuk mencari semua kandungan (termasuk laman perbi
 'prefs-beta' => 'Ciri-ciri beta',
 'prefs-datetime' => 'Tarikh dan waktu',
 'prefs-labs' => 'Ciri-ciri makmal',
+'prefs-user-pages' => 'Laman pengguna',
 'prefs-personal' => 'Profil',
 'prefs-rc' => 'Perubahan terkini',
 'prefs-watchlist' => 'Senarai pantau',
@@ -1490,7 +1501,7 @@ Tindakan ini tidak boleh dibatalkan.',
 'nchanges' => '$1 perubahan',
 'recentchanges' => 'Perubahan terkini',
 'recentchanges-legend' => 'Pilihan perubahan terkini',
-'recentchangestext' => 'Jejaki perubahan terkini dalam {{SITENAME}} pada laman ini.',
+'recentchanges-summary' => 'Jejaki perubahan terkini dalam {{SITENAME}} pada laman ini.',
 'recentchanges-feed-description' => 'Jejaki perubahan terkini dalam {{SITENAME}} pada suapan ini.',
 'recentchanges-label-newpage' => 'Suntingan ini mencipta laman baru',
 'recentchanges-label-minor' => 'Ini ialah suntingan kecil',
@@ -1690,14 +1701,15 @@ Sila hubungi [[Special:ListUsers/sysop|pentadbir sistem]].',
 'backend-fail-writetemp' => 'Fail sementara tidak dapat ditulisi.',
 'backend-fail-closetemp' => 'Fail sementara tidak dapat ditutup.',
 'backend-fail-read' => 'Fail $1 tidak dapat dibaca.',
-'backend-fail-create' => 'Fail $1 tidak dapat diwujudkan.',
-'backend-fail-maxsize' => 'Fail $1 tidak boleh dibuat kerana melebihi $2 bait.',
+'backend-fail-create' => 'Fail $1 tidak dapat ditulis.',
+'backend-fail-maxsize' => 'Fail $1 tidak boleh ditulis kerana melebihi $2 bait.',
 'backend-fail-readonly' => 'Backend storan "$1" kini dalam mod baca sahaja. Sebab yang diberikan ialah: "$2"',
 'backend-fail-synced' => 'Fail "$1" berada dalam keadaan yang tidak sejajar dalam backend storan dalaman',
 'backend-fail-connect' => 'Tidak dapat bersambung dengan backend storan "$1".',
 'backend-fail-internal' => 'Berlakunya ralat yang tidak dikenali dalam backend storan "$1".',
 'backend-fail-contenttype' => 'Jenis kandungan fail untuk disimpan di "$1" tidak dapat ditentukan.',
 'backend-fail-batchsize' => 'Backend storan diberi $1 operasi fail dalam satu kelompok; hadnya ialah $2 operasi.',
+'backend-fail-usable' => 'Fail $1 tidak boleh ditulis kerana kebenaran tidak memadai atau tertinggal direktori/penyimpan.',
 
 # File journal errors
 'filejournal-fail-dbconnect' => 'Tidak dapat bersambung dengan pangkalan data jurnal untuk backend storan "$1".',
@@ -2014,6 +2026,7 @@ serta mungkin mempunyai maklumat lanjut mengenai buku yang anda cari:',
 'alllogstext' => 'Yang berikut ialah gabungan bagi semua log yang ada bagi {{SITENAME}}. Anda boleh menapis senarai ini dengan memilih jenis log, nama pengguna (peka huruf besar), atau nama laman yang terjejas (juga peka huruf besar).',
 'logempty' => 'Tiada item yang sepadan dalam log.',
 'log-title-wildcard' => 'Cari semua tajuk yang bermula dengan teks ini',
+'showhideselectedlogentries' => 'Tunjukkan/sorokkan entri-entri log yang terpilih',
 
 # Special:AllPages
 'allpages' => 'Semua laman',
@@ -2535,9 +2548,9 @@ dirosakkan).',
 Log sekatan disediakan di bawah sebagai rujukan:',
 'blocklogentry' => 'menyekat [[$1]] sehingga $2 $3',
 'reblock-logentry' => 'menukar tetapan sekatan [[$1]] yang tamat pada $2 $3',
-'blocklogtext' => 'Ini adalah log bagi sekatan dan penyahsekatan.
-Alamat IP yang disekat secara automatik tidak disenaraikan di sini.
-Sila lihat juga [[Special:BlockList|senarai sekatan]] yang sedang berkuatkuasa.',
+'blocklogtext' => 'Ini adalah log bagi tindakan menyekat dan menyahsekat pengguna.
+Alamat-alamat IP yang disekat secara automatik tidak disenaraikan di sini.
+Sila lihat juga [[Special:BlockList|senarai sekatan]] untuk senarai larangan dan sekatan yang sedang berkuatkuasa.',
 'unblocklogentry' => 'menyahsekat $1',
 'block-log-flags-anononly' => 'pengguna tanpa nama sahaja',
 'block-log-flags-nocreate' => 'pembukaan akaun dimatikan',
@@ -3623,6 +3636,11 @@ Anda patut telah menerima [{{SERVER}}{{SCRIPTPATH}}/COPYING sebuah salinan bagi 
 'version-software' => 'Perisian yang dipasang',
 'version-software-product' => 'Produk',
 'version-software-version' => 'Versi',
+'version-entrypoints' => 'URL titik permulaan',
+'version-entrypoints-header-entrypoint' => 'Titik permulaan',
+'version-entrypoints-header-url' => 'URL',
+'version-entrypoints-articlepath' => '[https://www.mediawiki.org/wiki/Manual:$wgArticlePath Laluan rencana]',
+'version-entrypoints-scriptpath' => '[https://www.mediawiki.org/wiki/Manual:$wgScriptPath Laluan skrip]',
 
 # Special:FilePath
 'filepath' => 'Laluan fail',

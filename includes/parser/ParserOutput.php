@@ -2,6 +2,21 @@
 /**
  * Output of the PHP parser
  *
+ * This program is free software; you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation; either version 2 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License along
+ * with this program; if not, write to the Free Software Foundation, Inc.,
+ * 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
+ * http://www.gnu.org/copyleft/gpl.html
+ *
  * @file
  * @ingroup Parser
  */
@@ -10,7 +25,6 @@
  * @todo document
  * @ingroup Parser
  */
-
 class CacheTime {
 	var	$mVersion = Parser::VERSION,  # Compatibility check
 		$mCacheTime = '',             # Time when this object was generated, or -1 for uncacheable. Used in ParserCache.
@@ -141,8 +155,9 @@ class ParserOutput extends CacheTime {
 		$mProperties = array(),       # Name/value pairs to be cached in the DB
 		$mTOCHTML = '',               # HTML of the TOC
 		$mTimestamp;                  # Timestamp of the revision
-	private $mIndexPolicy = '';       # 'index' or 'noindex'?  Any other value will result in no change.
-	private $mAccessedOptions = array(); # List of ParserOptions (stored in the keys)
+		private $mIndexPolicy = '';       # 'index' or 'noindex'?  Any other value will result in no change.
+		private $mAccessedOptions = array(); # List of ParserOptions (stored in the keys)
+		private $mSecondaryDataUpdates = array(); # List of instances of SecondaryDataObject(), used to cause some information extracted from the page in a custom place.
 
 	const EDITSECTION_REGEX = '#<(?:mw:)?editsection page="(.*?)" section="(.*?)"(?:/>|>(.*?)(</(?:mw:)?editsection>))#';
 
@@ -448,5 +463,41 @@ class ParserOutput extends CacheTime {
 	  */
 	 function recordOption( $option ) {
 		 $this->mAccessedOptions[$option] = true;
+	 }
+
+	/**
+	 * Adds an update job to the output. Any update jobs added to the output will eventually bexecuted in order to
+	 * store any secondary information extracted from the page's content.
+	 *
+	 * @param StorageUpdate $update
+	 */
+	public function addSecondaryDataUpdate( DataUpdate $update ) {
+		$this->mSecondaryDataUpdates[] = $update;
+	}
+
+	/**
+	 * Returns any DataUpdate jobs to be executed in order to store secondary information
+	 * extracted from the page's content, including a LinksUpdate object for all links stored in
+	 * this ParserOutput object.
+	 *
+	 * @param $title Title of the page we're updating. If not given, a title object will be created based on $this->getTitleText()
+	 * @param $recursive Boolean: queue jobs for recursive updates?
+	 *
+	 * @return Array. An array of instances of DataUpdate
+	 */
+	public function getSecondaryDataUpdates( Title $title = null, $recursive = true ) {
+		if ( !$title ) {
+			$title = Title::newFromText( $this->getTitleText() );
+		}
+
+		$linksUpdate = new LinksUpdate( $title, $this, $recursive );
+
+		if ( !$this->mSecondaryDataUpdates ) {
+			return array( $linksUpdate );
+		} else {
+			$updates = array_merge( $this->mSecondaryDataUpdates, array( $linksUpdate ) );
+		}
+
+		return $updates;
 	 }
 }

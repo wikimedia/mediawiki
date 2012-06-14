@@ -1,14 +1,25 @@
 <?php
 /**
- * Job queue base code
+ * Job queue base code.
+ *
+ * This program is free software; you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation; either version 2 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License along
+ * with this program; if not, write to the Free Software Foundation, Inc.,
+ * 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
+ * http://www.gnu.org/copyleft/gpl.html
  *
  * @file
  * @defgroup JobQueue JobQueue
  */
-
-if ( !defined( 'MEDIAWIKI' ) ) {
-	die( "This file is part of MediaWiki, it is not a valid entry point\n" );
-}
 
 /**
  * Class to both describe a background job and handle jobs.
@@ -102,7 +113,6 @@ abstract class Job {
 	 * @return Job or false if there's no jobs
 	 */
 	static function pop( $offset = 0 ) {
-		global $wgJobTypesExcludedFromDefaultQueue;
 		wfProfileIn( __METHOD__ );
 
 		$dbr = wfGetDB( DB_SLAVE );
@@ -113,12 +123,9 @@ abstract class Job {
 			NB: If random fetch previously was used, offset
 				will always be ahead of few entries
 		*/
-		$conditions = array();
-		if ( count( $wgJobTypesExcludedFromDefaultQueue ) != 0 ) {
-			foreach ( $wgJobTypesExcludedFromDefaultQueue as $cmdType ) {
-				$conditions[] = "job_cmd != " . $dbr->addQuotes( $cmdType );
-			}
-		}
+
+		$conditions = self::defaultQueueConditions();
+
 		$offset = intval( $offset );
 		$options = array( 'ORDER BY' => 'job_id', 'USE INDEX' => 'PRIMARY' );
 
@@ -186,6 +193,12 @@ abstract class Job {
 		$namespace = $row->job_namespace;
 		$dbkey = $row->job_title;
 		$title = Title::makeTitleSafe( $namespace, $dbkey );
+
+		if ( is_null( $title ) ) {
+			wfProfileOut( __METHOD__ );
+			return false;
+		}
+
 		$job = Job::factory( $row->job_cmd, $title, Job::extractBlob( $row->job_params ), $row->job_id );
 
 		// Remove any duplicates it may have later in the queue
@@ -204,7 +217,7 @@ abstract class Job {
 	 * @param $id Int: Job identifier
 	 * @return Job
 	 */
-	static function factory( $command, $title, $params = false, $id = 0 ) {
+	static function factory( $command, Title $title, $params = false, $id = 0 ) {
 		global $wgJobClasses;
 		if( isset( $wgJobClasses[$command] ) ) {
 			$class = $wgJobClasses[$command];
@@ -300,6 +313,27 @@ abstract class Job {
 			$dbw->insert( 'job', $rows, __METHOD__, 'IGNORE' );
 		}
 		wfIncrStats( 'job-insert', count( $jobs ) );
+	}
+
+
+	/**
+	 * SQL conditions to apply on most JobQueue queries
+	 *
+	 * Whenever we exclude jobs types from the default queue, we want to make
+	 * sure that queries to the job queue actually ignore them.
+	 *
+	 * @return array SQL conditions suitable for Database:: methods
+	 */
+	static function defaultQueueConditions( ) {
+		global $wgJobTypesExcludedFromDefaultQueue;
+		$conditions = array();
+		if ( count( $wgJobTypesExcludedFromDefaultQueue ) > 0 ) {
+			$dbr = wfGetDB( DB_SLAVE );
+			foreach ( $wgJobTypesExcludedFromDefaultQueue as $cmdType ) {
+				$conditions[] = "job_cmd != " . $dbr->addQuotes( $cmdType );
+			}
+		}
+		return $conditions;
 	}
 
 	/*-------------------------------------------------------------------------

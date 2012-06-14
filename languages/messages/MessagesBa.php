@@ -13,9 +13,11 @@
  * @author Kaganer
  * @author Reedy
  * @author Roustammr
+ * @author Sagan
  * @author Timming
  * @author Рустам Нурыев
  * @author ҒатаУлла
+ * @author Ҡамыр Батыр
  */
 
 $fallback = 'ru';
@@ -23,20 +25,36 @@ $fallback = 'ru';
 $namespaceNames = array(
 	NS_MEDIA            => 'Медиа',
 	NS_SPECIAL          => 'Ярҙамсы',
-	NS_TALK             => 'Фекер_алышыу',
+	NS_TALK             => 'Фекерләшеү',
 	NS_USER             => 'Ҡатнашыусы',
-	NS_USER_TALK        => 'Ҡатнашыусы_м-н_фекер_алышыу',
-	NS_PROJECT_TALK     => '$1_б-са_фекер_алышыу',
+	NS_USER_TALK        => 'Ҡатнашыусы_менән_һөйләшеү',
+	NS_PROJECT_TALK     => '$1_буйынса_фекерләшеү',
 	NS_FILE             => 'Рәсем',
-	NS_FILE_TALK        => 'Рәсем_б-са_фекер_алышыу',
+	NS_FILE_TALK        => 'Рәсем_буйынса_фекерләшеү',
 	NS_MEDIAWIKI        => 'MediaWiki',
-	NS_MEDIAWIKI_TALK   => 'MediaWiki_б-са_фекер_алышыу',
+	NS_MEDIAWIKI_TALK   => 'MediaWiki_буйынса_фекерләшеү',
 	NS_TEMPLATE         => 'Ҡалып',
-	NS_TEMPLATE_TALK    => 'Ҡалып_б-са_фекер_алышыу',
+	NS_TEMPLATE_TALK    => 'Ҡалып_буйынса_фекерләшеү',
 	NS_HELP             => 'Белешмә',
-	NS_HELP_TALK        => 'Белешмә_б-са_фекер_алышыу',
-	NS_CATEGORY         => 'Категория',
-	NS_CATEGORY_TALK    => 'Категория_б-са_фекер_алышыу',
+	NS_HELP_TALK        => 'Белешмә_буйынса_фекерләшеү',
+	NS_CATEGORY         => 'Төркөм',
+	NS_CATEGORY_TALK    => 'Төркөм_буйынса_фекерләшеү',
+);
+
+$namespaceAliases = array(
+	'Фекер_алышыу' => NS_TALK,
+	'Ҡатнашыусы_м-н_фекер_алышыу' => NS_USER_TALK,
+	'$1_б-са_фекер_алышыу' => NS_PROJECT_TALK,
+	'Рәсем_б-са_фекер_алышыу' => NS_FILE_TALK,
+	'MediaWiki_б-са_фекер_алышыу' => NS_MEDIAWIKI_TALK,
+	'Ҡалып_б-са_фекер_алышыу' => NS_TEMPLATE_TALK,
+	'Белешмә_б-са_фекер_алышыу' => NS_HELP_TALK,
+	'Категория' => NS_CATEGORY,
+	'Категория_б-са_фекер_алышыу' => NS_CATEGORY_TALK,
+);
+
+$specialPageAliases = array(
+	'Activeusers'               => array( 'ӘүҙемҠатнашыусылар', 'АктивҠатнашыусылар' ),
 );
 
 // Remove Russian aliases
@@ -107,30 +125,30 @@ $messages = array(
 'monday' => 'Дүшәмбе',
 'tuesday' => 'Шишәмбе',
 'wednesday' => 'Шаршамбы',
-'thursday' => 'Кесеаҙна',
+'thursday' => 'Кесаҙна',
 'friday' => 'Йома',
 'saturday' => 'Шәмбе',
-'sun' => 'Йәкшәмбе',
-'mon' => 'Дүшәмбе',
-'tue' => 'Шишәмбе',
-'wed' => 'Шаршамбы',
-'thu' => 'Кесеаҙна',
-'fri' => 'Йома',
-'sat' => 'Шәмбе',
-'january' => 'ғинуар',
-'february' => 'февраль',
-'march' => 'март',
-'april' => 'апрель',
-'may_long' => 'май',
-'june' => 'июнь',
-'july' => 'июль',
-'august' => 'август',
-'september' => 'сентябрь',
-'october' => 'октябрь',
-'november' => 'ноябрь',
-'december' => 'декабрь',
-'january-gen' => 'ғинуар',
-'february-gen' => 'февраль',
+'sun' => 'Йш',
+'mon' => 'Дш',
+'tue' => 'Шш',
+'wed' => 'Шр',
+'thu' => 'Кс',
+'fri' => 'Йм',
+'sat' => 'Шб',
+'january' => 'ғинуар (һыуығай)',
+'february' => 'февраль (шаҡай)',
+'march' => 'март (буранай)',
+'april' => 'апрель (алағарай)',
+'may_long' => 'май (һабанай)',
+'june' => 'июнь (һөтай)',
+'july' => 'июль (майай)',
+'august' => 'август (урағай)',
+'september' => 'сентябрь (һарысай)',
+'october' => 'октябрь (ҡарасай)',
+'november' => 'ноябрь (ҡырпағай)',
+'december' => 'декабрь (аҡъюлай)',
+'january-gen' => 'ғинуар (һыуығай)',
+'february-gen' => 'февраль (шаҡай)',
 'march-gen' => 'март',
 'april-gen' => 'апрель',
 'may-gen' => 'май',
@@ -139,8 +157,8 @@ $messages = array(
 'august-gen' => 'август',
 'september-gen' => 'сентябрь',
 'october-gen' => 'октябрь',
-'november-gen' => 'ноябрь',
-'december-gen' => 'декабрь',
+'november-gen' => 'ноябрь (ҡырпағай)',
+'december-gen' => 'декабрь (аҡъюлай)',
 'jan' => 'ғин',
 'feb' => 'фев',
 'mar' => 'мар',
@@ -256,7 +274,7 @@ $messages = array(
 'mediawikipage' => 'Хәбәрҙәр битен ҡарарға',
 'templatepage' => 'Ҡалып битен ҡарарға',
 'viewhelppage' => 'Ярҙам битен ҡарарға',
-'categorypage' => 'Категория битен ҡарарға',
+'categorypage' => 'Төркөм битен ҡарарға',
 'viewtalkpage' => 'Фекер алышыу битен ҡарарға',
 'otherlanguages' => 'Башҡа телдәрҙә',
 'redirectedfrom' => '($1 битенән йүнәлтелде)',
@@ -304,6 +322,7 @@ $1',
 'versionrequiredtext' => 'Был бит менән эшләү өсөн MediaWiki-ның $1 версияһы кәрәк. [[Special:Version|Ҡулланылған версия тураһында мәғлүмәт битен]] ҡара.',
 
 'ok' => 'Тамам',
+'pagetitle' => '{{SITENAME}} проектынан',
 'retrievedfrom' => 'Сығанағы — «$1»',
 'youhavenewmessages' => 'Яңы $1 бар ($2).',
 'newmessageslink' => 'яңы хәбәр',
@@ -431,9 +450,9 @@ $2',
 'ns-specialprotected' => '«{{ns:special}}» исем арауығындағы биттәрҙе үҙгәртеп булмай.',
 'titleprotected' => "Был исем менән бит яһау [[User:$1|$1]] тарафынан тыйылған.
 Белдерелгән сәбәп: ''$2''.",
-'filereadonlyerror' => "«$1» файлын үҙгәртеп булмай, сөнки «$2» һаҡлағысы «уҡыу өсөн генә» тәртибенде.
+'filereadonlyerror' => "«$1» файлын үҙгәртеп булмай, сөнки «$2» һаҡлағысы «уҡыу өсөн генә» тәртибендә.
 
-Установивший этот режим администратор оставил следующее разъяснение: «''$3''».",
+Был сикләүҙе индергән хаким биргән аңлатма:«''$3''».",
 
 # Virus scanner
 'virus-badscanner' => "Көйләү хатаһы: Билдәһеҙ вирустар сканеры: ''$1''",
@@ -710,7 +729,8 @@ $2
 'updated' => '(Яңыртылды)',
 'note' => "'''Иҫкәрмә:'''",
 'previewnote' => "'''Ҡарап сығыу өлгөһө, әлегә үҙгәрештәр яҙҙырылмаған!'''
-Һеҙҙең үҙгәртеүҙәр әле яҙылмаған! [[#editform|→ мөхәрирләүҙә дауам итеү]]",
+Һеҙҙең үҙгәртеүҙәр әле яҙылмаған!",
+'continue-editing' => 'Мөхәррирләүҙе дауам итергә',
 'previewconflict' => 'Әлеге алдан ҡарау, мөхәррирләү тәҙрәһенең өҫтөндә, һаҡланғандан һуң текстың нисек күренәсәген күрһәтә.',
 'session_fail_preview' => "'''Ҡыҙғанысҡа ҡаршы, һеҙҙең ултырыш идентификаторығыҙ юғалды. Һөҙөмтәлә үҙгәртеүҙәрегеҙ ҡабул ителмәйәсәк.
 Зинһар, тағы бер тапҡыр ҡабатлағыҙ.
@@ -789,6 +809,7 @@ $2
 'edit-no-change' => 'Текста үҙгәртеүҙер булмау сәбәпле үҙгәртеүегеҙгә иғтибар ителмәне.',
 'edit-already-exists' => 'Яңы бит яһап булмай.
 Ул былай ҙа бар.',
+'defaultmessagetext' => 'Алдан билдәләнгән яҙма',
 
 # Parser/template warnings
 'expensive-parserfunction-warning' => "'''Иғтибар:''' был биттә хәтерҙе күп ҡулланыусы функциялар ныҡ күп.
@@ -947,7 +968,7 @@ $1",
 # Suppression log
 'suppressionlog' => 'Йәшереү яҙмалары',
 'suppressionlogtext' => 'Түбәндә, администраторҙарҙан йәшерелгән материалдар булған һуңғы юйыуҙыр һәм блоклауҙар исемлеге килтерелгән.
-Ағымдағы блоклауҙарҙы күрер өсөн [[Special:BlockList|IP-блоклауҙар исемлеген]] ҡарағыҙ.',
+Ағымдағы блоклауҙарҙы күрер өсөн [[Special:BlockList|блоклауҙар исемлеген]] ҡарағыҙ.',
 
 # History merging
 'mergehistory' => 'Үҙгәртеүҙәр тарихын берләштерергә',
@@ -980,7 +1001,6 @@ $1",
 
 # Diffs
 'history-title' => '$1 битенең үҙгәртеү тарихы',
-'difference' => '(Өлгөләр араһында айырма)',
 'difference-multipage' => '(Биттәр араһындағы айырма)',
 'lineno' => '$1 юл:',
 'compareselectedversions' => 'Һайланған версияларҙы сағыштырыу',
@@ -1077,6 +1097,7 @@ $1",
 'prefs-beta' => 'Бета версияһы мөмкинлектәре',
 'prefs-datetime' => 'Көн һәм ваҡыт',
 'prefs-labs' => 'Һынау өсөн мөмкинлектәр',
+'prefs-user-pages' => 'Ҡатнашыусы бите',
 'prefs-personal' => 'Шәхси мәғлүмәттәр',
 'prefs-rc' => 'Һуңғы үҙгәртеүҙәр',
 'prefs-watchlist' => 'Күҙәтеү исемлеге',
@@ -1341,7 +1362,7 @@ $1",
 'nchanges' => '$1 {{PLURAL:$1|үҙгәртеү|үҙгәртеү}}',
 'recentchanges' => 'Һуңғы үҙгәртеүҙәр',
 'recentchanges-legend' => 'Һуңғы үҙгәртеүҙәр көйләүҙәре',
-'recentchangestext' => '{{grammar:genitive|{{SITENAME}}}}. биттәрендә индерелгән һуңғы үҙгәртеүҙәр исемлеге',
+'recentchanges-summary' => '{{grammar:genitive|{{SITENAME}}}}. биттәрендә индерелгән һуңғы үҙгәртеүҙәр исемлеге',
 'recentchanges-feed-description' => 'Был таҫмалағы һуңғы үҙгәртеүҙәрҙе күҙәтеп барырға',
 'recentchanges-label-newpage' => 'Был үҙгәртеү яңы бит яһаны',
 'recentchanges-label-minor' => 'Был әҙ үҙгәреш',
@@ -1538,12 +1559,16 @@ $1',
 'backend-fail-writetemp' => 'Ваҡытлы файлға яҙып булмай.',
 'backend-fail-closetemp' => 'Ваҡытлы файлды ябып булмай.',
 'backend-fail-read' => '«$1» файлын уҡып булмай.',
-'backend-fail-create' => '«$1» файлын яһап булмай.',
+'backend-fail-create' => '«$1» файлын яҙып булмай.',
 'backend-fail-readonly' => '$1 һаҡлағысы әлегә уҡыу өсөн генә асыҡ. Сәбәбе: $2',
 'backend-fail-synced' => '$1 файлы эске һаҡлағыста ярашһыҙ хәлдә тора.',
 'backend-fail-connect' => '"$1" һаҡлағысы менән бәйләнеш яһап булманы.',
 'backend-fail-internal' => '$1 һаҡлағысында билдәһеҙ хата килеп сыҡты',
 'backend-fail-contenttype' => 'Файлды $1 адресына һаҡлар өсөн уның эстәлеге төрөн билдәләп булманы.',
+
+# File journal errors
+'filejournal-fail-dbconnect' => '"$1" мәғлүмәт базаһы журналына тоташып булманы.',
+'filejournal-fail-dbquery' => '«$1» мәғлүмәт базаһын һаҡлағын журналды яңыртып булманы.',
 
 # Lock manager
 'lockmanager-notlocked' => '" $1 " асҡысының биген сисеп булмай; ул бикле түгел.',
@@ -1875,6 +1900,10 @@ $1',
 'allpagesbadtitle' => 'Күрһәтелгән бит исеме дөрөҫ түгел йәки телдәр араһы йәки интервики ҡушымтаһы менән башлана.
 Исемдә тыйылған символдар булыуы ла мөмкин.',
 'allpages-bad-ns' => '{{SITENAME}} проектында "$1" исемдәр арауығы юҡ.',
+'allpages-hide-redirects' => 'Йүнәлтеүҙәрҙе йәшерергә',
+
+# SpecialCachedPage
+'cachedspecial-refresh-now' => 'Һуңғы версияны ҡарарға',
 
 # Special:Categories
 'categories' => 'Категориялар',
@@ -2318,7 +2347,7 @@ $1',
 'badipaddress' => 'IP адрес дөрөҫ түгел',
 'blockipsuccesssub' => 'Бикләү уңышлы башҡарылды',
 'blockipsuccesstext' => '[[Special:Contributions/$1|$1]] бикләнде.<br />
-[[Special:BlockList|Бикләнгән IP адрестарҙы]] ҡарарға.',
+Биктәрҙе күреү өсөн [[Special:BlockList|бикләнгән IP адрестарҙы]] ҡарағыҙ.',
 'ipb-blockingself' => 'Һеҙ үҙегеҙҙе бикләргә теләйһегеҙ! Быны эшләүҙе раҫлайһығыҙмы?',
 'ipb-confirmhideuser' => '"Ҡулланыусыны йәшер" ғәмәлдә саҡта ҡулланыусыны блокларға теләйһегеҙ. Уның исеме исемлектәрҙә һәм журналдарҙа күренмәйәсәк. Быны эшләргә теләүегеҙҙе раҫлайһығыҙмы?',
 'ipb-edit-dropdown' => 'Бикләү сәбәптәрен мөхәррирләргә',
@@ -2371,8 +2400,8 @@ $1 ҡатнашыусыһын бикләү сәбәбе: "$2"',
 Түбәндә белешмә өсөн йәшереү яҙмалары журналы килтерелгән:',
 'blocklogentry' => '[[$1]] бикләгән, тамамланыу ваҡыты: $2 $3',
 'reblock-logentry' => '[[$1]] ҡатнашыусыһының бикләү көйләүҙәрен үҙгәрткән, тамамланыу ваҡыты — $2 $3',
-'blocklogtext' => 'Ҡатнашыусыларҙы бикләү һәм бикте алыу яҙмалары журналы.
-Авто бикләнеүсе IP адрестар бында күрһәтелмәй.
+'blocklogtext' => 'Ҡатнашыусыларҙы бикләү һәм бикте алыу журналы.
+Автоматик бикләнгән IP адрестар бында күрһәтелмәй.
 [[Special:BlockList|Ғәмәлдәге тыйыуҙырҙы һәм бикләүҙәрҙе]] ҡарай алаһығыҙ.',
 'unblocklogentry' => '$1 ҡулланыусыһының блокланыу ваҡыты тамамланды',
 'block-log-flags-anononly' => 'танылмаған ҡатнашыусылар ғына',
@@ -2619,6 +2648,8 @@ $1 ҡатнашыусыһын бикләү сәбәбе: "$2"',
 'import-invalid-interwiki' => 'Күрһәтелгән вики проекттан тейәү мөмкин түгел.',
 'import-error-edit' => '«$1» битен импортлап булманы, сөнки һеҙгә ул битте мөхәррирләү тыйылған.',
 'import-error-create' => '«$1» битен импортлап булманы, сөнки һеҙгә ул битте яһау тыйылған.',
+'import-error-interwiki' => '«$1» бите импортҡа сығарылманы, сөнки уның исеме тышҡы һылианма  (интервики)өсөн резервланған.',
+'import-error-special' => ' «$1» бите импортҡа сығарылманы, сөнки ул биттәр яһау мөмкин булмаған исемдәр арауығына ҡарай.',
 'import-error-invalid' => '"$1" бите яраҡһыҙ исеме өсөн импортланманы.',
 
 # Import log
@@ -2632,12 +2663,14 @@ $1 ҡатнашыусыһын бикләү сәбәбе: "$2"',
 # JavaScriptTest
 'javascripttest' => '
 JavaScript тикшереү',
-'javascripttest-disabled' => 'Был мөмкинлек һүндерелгән.',
+'javascripttest-disabled' => 'Был мөмкинлек был Википроектта ғәмәлгә индерелмәгән.',
 'javascripttest-title' => '$1 тикшеренеү үткәрелә',
 'javascripttest-pagetext-noframework' => 'Был бит JavaScript тикшеренеүҙәре үткәреү өсөн  резервланған.',
 'javascripttest-pagetext-unknownframework' => 'Билдәһеҙ тикшеренеүҙәр мөхитнамәһе "$1".',
 'javascripttest-pagetext-frameworks' => 'Зинһар өсөн киләһе тикшеренеүҙәр мөхитнамәһенең береһен һайлап алығыҙ: $1',
+'javascripttest-pagetext-skins' => 'Һынауҙы башлау өсөн тышса һыйлағыҙ.',
 'javascripttest-qunit-intro' => 'mediawiki.org адресы буйынса ҡарағыҙ [$1 тест үткәреү документацияһы].',
+'javascripttest-qunit-heading' => 'MediaWiki JavaScript QUnit өсөн һынауҙар йыйлмаһы.',
 
 # Tooltip help for the actions
 'tooltip-pt-userpage' => 'Ҡулланыусы битегеҙ',
@@ -2700,6 +2733,7 @@ JavaScript тикшереү',
 'tooltip-diff' => 'Сығанаҡ текстҡа ҡарата эшләгән үҙгәртеүҙәрҙе күрһәтергә.',
 'tooltip-compareselectedversions' => 'Был биттең һайланған ике өлгөһө араһындағы айырманы ҡарарға',
 'tooltip-watch' => 'Битте күҙәтеү исемлегемә өҫтәргә',
+'tooltip-watchlistedit-normal-submit' => 'Биттәрҙе юйырға',
 'tooltip-watchlistedit-raw-submit' => 'Күҙәтеү исемлеген яңыртырға',
 'tooltip-recreate' => 'Битте юйылған булыуына ҡарамаҫтан тергеҙергә',
 'tooltip-upload' => 'Күсерә башларға',
@@ -3440,6 +3474,9 @@ MediaWiki файҙалы булыр, тигән өмөттә, ләкин БЕР 
 'version-software' => 'Ҡуйылған программалар',
 'version-software-product' => 'Продукт',
 'version-software-version' => 'Өлгөһө',
+'version-entrypoints' => 'Инеш өсөн URL адрестар',
+'version-entrypoints-header-entrypoint' => 'Инеш урыны',
+'version-entrypoints-header-url' => 'URL',
 
 # Special:FilePath
 'filepath' => 'Файлға юл',
@@ -3592,23 +3629,52 @@ MediaWiki файҙалы булыр, тигән өмөттә, ләкин БЕР 
 'feedback-bugnew' => 'Тикшерҙем. Яңы хата тураһында белдерергә',
 
 # API errors
+'api-error-badaccess-groups' => 'Һеҙгә был викиға файлдар күсереү рөхсәт ителмәй',
+'api-error-badtoken' => 'Эске хата: дөрөҫ булмаған токен',
+'api-error-copyuploaddisabled' => 'Был серверҙа URL адрес буйынса йөкләү өҙөлгән',
+'api-error-duplicate' => 'Бындай эстәлекле {{PLURAL:$1|[$2 файл]}}  бар.',
+'api-error-duplicate-archive' => 'Сайтта бындай эстәлекле {{PLURAL:$1|[$2 башҡа файл]}} бар ине инде, ләкин {{PLURAL:$1|ул юйылды|улар юйылды}}',
+'api-error-duplicate-archive-popup-title' => 'Элек юйылған {{PLURAL:$1|файлдың|файлдарҙың}} дубликаты',
 'api-error-duplicate-popup-title' => '{{PLURAL:$1|файлы|файлдары}} дубликаты.',
 'api-error-empty-file' => 'Һеҙ ебәргән файл буш.',
 'api-error-emptypage' => 'Яңы буш биттәр яһау тыйыла.',
+'api-error-fetchfileerror' => 'Эске хата: файлды күсергән ваҡытта хата китте',
 'api-error-file-too-large' => 'Һеҙ ебәргән файл үтә ҙур.',
 'api-error-filename-tooshort' => 'Файл исеме бик ҡыҫҡа.',
 'api-error-filetype-banned' => 'Был файл төрө тыйылған.',
+'api-error-filetype-missing' => 'Был файлдың ҡушымтаһы юҡ',
+'api-error-hookaborted' => 'Һеҙ эшләргә теләгән үҙгәртеүҙәр ҡушымтаны тикшереүсе тарафынан өҙөлдө',
 'api-error-http' => 'Эске хата: серверға бәйләнеп булмай.',
 'api-error-illegal-filename' => 'Рөхсәт ителмәгән файл исеме.',
+'api-error-internal-error' => 'Эске хата: һеҙ викиға йөкләгәнде тикшергән ваҡытта хата китте',
+'api-error-invalid-file-key' => 'Эске хата: ваҡытлыса һаҡлағыста файл табылманы',
+'api-error-missingparam' => 'Эске хата: мөрәжәғеттең параматрҙары юҡ.',
+'api-error-missingresult' => 'Эске хата: күсереү уңышлы булыуын билдәләп булманы.',
 'api-error-mustbeloggedin' => 'Файлдарҙы йөкмәтеү өсөн һеҙ сисемаға танышырға тейешһегеҙ.',
+'api-error-mustbeposted' => 'Эске хата: мөрәжәғәт HTTP POST адресын талап итә.',
+'api-error-noimageinfo' => 'Йөкләү уңышлы тамамланды, әммә сервер файл тураһында бер ниндәйҙә мәғлүмәт бирмәне.',
 'api-error-nomodule' => 'Эске хата: тейәү модуле көйләнмәгән.',
 'api-error-ok-but-empty' => 'Эске хата: серверҙан яуап юҡ.',
 'api-error-overwrite' => 'Булған файлды алыштырыу рөхсәт ителмәй.',
+'api-error-stashfailed' => 'Эске хата: сервер ваҡытлыса файлды һаҡлай алманы.',
 'api-error-timeout' => 'Көтөлгән ваҡыт эсендә сервер яуып бирмәне.',
 'api-error-unclassified' => 'Билдәһеҙ хата барлыҡҡа килде.',
 'api-error-unknown-code' => 'Билдәһеҙ хата: «$1»',
+'api-error-unknown-error' => 'Эске хата: файлды йөкләгәндә ниндәйҙер хата китте.',
 'api-error-unknown-warning' => 'Билдәһеҙ белдереү: "$1".',
 'api-error-unknownerror' => 'Билдәһеҙ хата: «$1»',
 'api-error-uploaddisabled' => 'Был викила файл тейәү мөмкинлеге ябылған.',
+'api-error-verification-error' => 'Был файл боҙолған, йәки дөрөҫ булмаған ҡушымтаһы бар.',
+
+# Durations
+'duration-seconds' => '$1 {{PLURAL:$1|секунд|секунд}}',
+'duration-minutes' => '$1 {{PLURAL:$1|минут|минут}}',
+'duration-hours' => '$1 {{PLURAL:$1|сәғәт|сәғәт}}',
+'duration-days' => '$1 {{PLURAL:$1|көн|көн}}',
+'duration-weeks' => '$1 {{PLURAL:$1|аҙна|аҙналар|аҙна}}',
+'duration-years' => '$1 {{PLURAL:$1|йыл|йылдар}}',
+'duration-decades' => '$1 {{PLURAL:$1|ун көнлөк|ун көнлөктәр}}',
+'duration-centuries' => '$1 {{PLURAL:$1|быуат|быуаттар}}',
+'duration-millennia' => '$1 {{PLURAL:$1|меңйыллыҡ|меңйыллыҡтар}}',
 
 );

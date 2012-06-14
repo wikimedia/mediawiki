@@ -1,9 +1,28 @@
 <?php
 /**
- * @defgroup Pager Pager
+ * Efficient paging for SQL queries.
+ *
+ * This program is free software; you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation; either version 2 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License along
+ * with this program; if not, write to the Free Software Foundation, Inc.,
+ * 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
+ * http://www.gnu.org/copyleft/gpl.html
  *
  * @file
  * @ingroup Pager
+ */
+
+/**
+ * @defgroup Pager Pager
  */
 
 /**
@@ -294,14 +313,14 @@ abstract class IndexPager extends ContextSource implements Pager {
 		$join_conds = isset( $info['join_conds'] ) ? $info['join_conds'] : array();
 		$sortColumns = array_merge( array( $this->mIndexField ), $this->mExtraSortFields );
 		if ( $descending ) {
-			$options['ORDER BY'] = implode( ',', $sortColumns );
+			$options['ORDER BY'] = $sortColumns;
 			$operator = '>';
 		} else {
 			$orderBy = array();
 			foreach ( $sortColumns as $col ) {
 				$orderBy[] = $col . ' DESC';
 			}
-			$options['ORDER BY'] = implode( ',', $orderBy );
+			$options['ORDER BY'] = $orderBy;
 			$operator = '<';
 		}
 		if ( $offset != '' ) {

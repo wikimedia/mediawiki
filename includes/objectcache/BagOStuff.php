@@ -56,8 +56,7 @@ abstract class BagOStuff {
 	/**
 	 * Get an item with the given key. Returns false if it does not exist.
 	 * @param $key string
-	 *
-	 * @return bool|Object
+	 * @return mixed Returns false on failure
 	 */
 	abstract public function get( $key );
 
@@ -66,6 +65,7 @@ abstract class BagOStuff {
 	 * @param $key string
 	 * @param $value mixed
 	 * @param $exptime int Either an interval in seconds or a unix timestamp for expiry
+	 * @return bool success
 	 */
 	abstract public function set( $key, $value, $exptime = 0 );
 
@@ -73,19 +73,33 @@ abstract class BagOStuff {
 	 * Delete an item.
 	 * @param $key string
 	 * @param $time int Amount of time to delay the operation (mostly memcached-specific)
+	 * @return bool True if the item was deleted or not found, false on failure
 	 */
 	abstract public function delete( $key, $time = 0 );
 
+	/**
+	 * @param $key string
+	 * @param $timeout integer
+	 * @return bool success
+	 */
 	public function lock( $key, $timeout = 0 ) {
 		/* stub */
 		return true;
 	}
 
+	/**
+	 * @param $key string
+	 * @return bool success
+	 */
 	public function unlock( $key ) {
 		/* stub */
 		return true;
 	}
 
+	/**
+	 * @todo: what is this?
+	 * @return Array
+	 */
 	public function keys() {
 		/* stub */
 		return array();
@@ -107,24 +121,52 @@ abstract class BagOStuff {
 
 	/* *** Emulated functions *** */
 
-	public function add( $key, $value, $exptime = 0 ) {
-		if ( !$this->get( $key ) ) {
-			$this->set( $key, $value, $exptime );
-
-			return true;
+	/**
+	 * Get an associative array containing the item for each of the keys that have items.
+	 * @param $keys Array List of strings
+	 * @return Array
+	 */
+	public function getMulti( array $keys ) {
+		$res = array();
+		foreach ( $keys as $key ) {
+			$val = $this->get( $key );
+			if ( $val !== false ) {
+				$res[$key] = $val;
+			}
 		}
+		return $res;
 	}
 
+	/**
+	 * @param $key string
+	 * @param $value mixed
+	 * @param $exptime integer
+	 * @return bool success
+	 */
+	public function add( $key, $value, $exptime = 0 ) {
+		if ( $this->get( $key ) === false ) {
+			return $this->set( $key, $value, $exptime );
+		}
+		return false; // key already set
+	}
+
+	/**
+	 * @param $key string
+	 * @param $value mixed
+	 * @return bool success
+	 */
 	public function replace( $key, $value, $exptime = 0 ) {
 		if ( $this->get( $key ) !== false ) {
-			$this->set( $key, $value, $exptime );
+			return $this->set( $key, $value, $exptime );
 		}
+		return false; // key not already set
 	}
 
 	/**
 	 * @param $key String: Key to increase
 	 * @param $value Integer: Value to add to $key (Default 1)
 	 * @return null if lock is not possible else $key value increased by $value
+	 * @return success
 	 */
 	public function incr( $key, $value = 1 ) {
 		if ( !$this->lock( $key ) ) {
@@ -142,10 +184,18 @@ abstract class BagOStuff {
 		return $n;
 	}
 
+	/**
+	 * @param $key String
+	 * @param $value Integer
+	 * @return bool success
+	 */
 	public function decr( $key, $value = 1 ) {
 		return $this->incr( $key, - $value );
 	}
 
+	/**
+	 * @param $text string
+	 */
 	public function debug( $text ) {
 		if ( $this->debugMode ) {
 			$class = get_class( $this );
@@ -155,6 +205,7 @@ abstract class BagOStuff {
 
 	/**
 	 * Convert an optionally relative time to an absolute time
+	 * @param $exptime integer
 	 * @return int
 	 */
 	protected function convertExpiry( $exptime ) {
@@ -165,5 +216,3 @@ abstract class BagOStuff {
 		}
 	}
 }
-
-

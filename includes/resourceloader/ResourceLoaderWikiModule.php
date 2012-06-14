@@ -1,5 +1,7 @@
 <?php
 /**
+ * Abstraction for resource loader modules which pull from wiki pages.
+ *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2 of the License, or
@@ -19,8 +21,6 @@
  * @author Trevor Parscal
  * @author Roan Kattouw
  */
-
-defined( 'MEDIAWIKI' ) || die( 1 );
 
 /**
  * Abstraction for resource loader modules which pull from wiki pages
@@ -70,8 +70,10 @@ abstract class ResourceLoaderWikiModule extends ResourceLoaderModule {
 	 */
 	protected function getContent( $title ) {
 		if ( $title->getNamespace() === NS_MEDIAWIKI ) {
-			$message = wfMessage( $title->getDBkey() )->inContentLanguage();
-			return $message->exists() ? $message->plain() : '';
+			// The first "true" is to use the database, the second is to use the content langue
+			// and the last one is to specify the message key already contains the language in it ("/de", etc.)
+			$text = MessageCache::singleton()->get( $title->getDBkey(), true, true, true );
+			return $text === false ? '' : $text;
 		}
 		if ( !$title->isCssJsSubpage() && !$title->isCssOrJsPage() ) {
 			return null;

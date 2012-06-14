@@ -224,6 +224,13 @@ class ApiQueryRevisions extends ApiQueryBase {
 			}
 		}
 
+		// add user name, if needed
+		if ( $this->fld_user ) {
+			$this->addTables( 'user' );
+			$this->addJoinConds( array( 'user' => Revision::userJoinCond() ) );
+			$this->addFields( Revision::selectUserFields() );
+		}
+
 		// Bug 24166 - API error when using rvprop=tags
 		$this->addTables( 'revision' );
 
@@ -290,7 +297,7 @@ class ApiQueryRevisions extends ApiQueryBase {
 			$this->addWhereFld( 'rev_id', array_keys( $revs ) );
 
 			if ( !is_null( $params['continue'] ) ) {
-				$this->addWhere( "rev_id >= '" . intval( $params['continue'] ) . "'" );
+				$this->addWhere( 'rev_id >= ' . intval( $params['continue'] ) );
 			}
 			$this->addOption( 'ORDER BY', 'rev_id' );
 
@@ -322,12 +329,15 @@ class ApiQueryRevisions extends ApiQueryBase {
 				$pageid = intval( $cont[0] );
 				$revid = intval( $cont[1] );
 				$this->addWhere(
-					"rev_page > '$pageid' OR " .
-					"(rev_page = '$pageid' AND " .
-					"rev_id >= '$revid')"
+					"rev_page > $pageid OR " .
+					"(rev_page = $pageid AND " .
+					"rev_id >= $revid)"
 				);
 			}
-			$this->addOption( 'ORDER BY', 'rev_page, rev_id' );
+			$this->addOption( 'ORDER BY', array(
+				'rev_page',
+				'rev_id'
+			));
 
 			// assumption testing -- we should never get more then $pageCount rows.
 			$limit = $pageCount;
@@ -636,6 +646,66 @@ class ApiQueryRevisions extends ApiQueryBase {
 				"Overrides {$p}diffto. If {$p}section is set, only that section will be diffed against this text" ),
 			'tag' => 'Only list revisions tagged with this tag',
 		);
+	}
+
+	public function getResultProperties() {
+		$props = array(
+			'' => array(),
+			'ids' => array(
+				'revid' => 'integer',
+				'parentid' => array(
+					ApiBase::PROP_TYPE => 'integer',
+					ApiBase::PROP_NULLABLE => true
+				)
+			),
+			'flags' => array(
+				'minor' => 'boolean'
+			),
+			'user' => array(
+				'userhidden' => 'boolean',
+				'user' => 'string',
+				'anon' => 'boolean'
+			),
+			'userid' => array(
+				'userhidden' => 'boolean',
+				'userid' => 'integer',
+				'anon' => 'boolean'
+			),
+			'timestamp' => array(
+				'timestamp' => 'timestamp'
+			),
+			'size' => array(
+				'size' => 'integer'
+			),
+			'sha1' => array(
+				'sha1' => 'string'
+			),
+			'comment' => array(
+				'commenthidden' => 'boolean',
+				'comment' => array(
+					ApiBase::PROP_TYPE => 'string',
+					ApiBase::PROP_NULLABLE => true
+				)
+			),
+			'parsedcomment' => array(
+				'commenthidden' => 'boolean',
+				'parsedcomment' => array(
+					ApiBase::PROP_TYPE => 'string',
+					ApiBase::PROP_NULLABLE => true
+				)
+			),
+			'content' => array(
+				'*' => array(
+					ApiBase::PROP_TYPE => 'string',
+					ApiBase::PROP_NULLABLE => true
+				),
+				'texthidden' => 'boolean'
+			)
+		);
+
+		self::addTokenProperties( $props, $this->getTokenFunctions() );
+
+		return $props;
 	}
 
 	public function getDescription() {

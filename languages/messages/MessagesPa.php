@@ -9,6 +9,7 @@
  *
  * @author AS Alam
  * @author Aalam
+ * @author Amire80
  * @author Anjalikaushal
  * @author Gman124
  * @author Guglani
@@ -149,6 +150,7 @@ $messages = array(
 'category-subcat-count' => '{{ਕੁਲ   $2 ਸ਼੍ਰੇਣੀਆਂ ਵਿਚੌਂ , PLURAL:$2|ਇਸ ਸ਼੍ਰੇਣੀ ਵਿਚ ਸਿਰਫ਼ ਹੇਠ ਲਿਖੀ ਸ਼੍ਰੇਣੀ ਹੈ|ਇਸ ਸ਼੍ਰੇਣੀ ਵਿਚ ਨਿਮਿਨਲਿਖਿਤ {{PLURAL:$1|ਉਪ ਸ਼੍ਰੇਣੀ ਹੈ|$1ਉਪਸ਼੍ਰੇਣੀਆਂ ਹਨ}}  }}',
 'category-article-count' => '{{ ਕੁਲ $2 ਲੇਖਾਂ ਵਿਚੌਂ , PLURAL:$2| ਇਸ ਸ਼੍ਰੇਣੀ ਵਿਚ ਸਿਰਫ਼  ਨਿਮਨਲਿਖਿਤ  {{PLURAL:$1|ਲੇਖ ਹੈ|$1 ਲੇਖ ਹਨ}}, }}',
 'listingcontinuesabbrev' => 'ਅਗੇ.',
+'noindex-category' => 'ਕ੍ਰਮਸੂਚੀ ਰਹਿਤ ਸਫ਼ੇ',
 
 'about' => 'ਇਸ ਬਾਰੇ',
 'article' => 'ਸਮੱਗਰੀ ਪੇਜ',
@@ -324,6 +326,7 @@ A list of valid special pages can be found at [[Special:SpecialPages]].',
 'internalerror' => 'ਅੰਦਰੂਨੀ ਗਲਤੀ',
 'internalerror_info' => 'ਅੰਦਰੂਨੀ ਗਲਤੀ: $1',
 'badtitle' => 'ਗਲਤ ਟਾਇਟਲ',
+'badtitletext' => 'ਤੁਹਾਡਾ ਅਰਜ਼ਿਤ ਸਿਰਲੇਖ ਅਪ੍ਰਮਾਣਿਕ,ਖਾਲੀ ਯਾ ਗਲਤ ਜੁੜਿਆ ਹੋਇਆ ਅੰਤਰ-ਭਾਸ਼ਾ ਯਾ ਅੰਤਰ-ਵਿਕਿ ਸਿਰਲੇਖ ਹੈ।ਇਹ ਵੀ ਹੋ ਸਕਦਾ ਹੈ ਕਿ ਇਸ ਵਿਚ ਇਕ ਦੋ ਅੱਖਰ ਐਸੇ ਹੋਣ ਜੋ ਸਿਰਲੇਖ ਵਿਚ ਵਰਤੇ ਨਹੀਂ ਜਾ ਸਕਦੇ।',
 'viewsource' => 'ਸਰੋਤ ਵੇਖੋ',
 'protectedpagetext' => 'ਇਸ ਪੰਨੇ ਨੂੰ ਐਡਿਟ ਕਰਨ ਦੀ ਮਨਾਹੀ ਹੈ।',
 'viewsourcetext' => 'ਤੁਸੀਂ ਇਸ ਪੰਨੇ ਦਾ ਸੋਮਾ ਦੇਖ ਸਕਦੇ ਹੋ ਤੇ ਉਸ ਦਾ ਉਤਾਰਾ ਵੀ ਲੈ ਸਕਦੇ ਹੋ।',
@@ -470,7 +473,7 @@ $1 ਘੰਟੇ ਵਿੱਚ। ਨੁਕਸਾਨ ਤੋਂ ਬਚਣ ਲਈ, $
 ਯਾ [{{fullurl:{{FULLPAGENAME}}|action=edit}} ਇਸ ਪੰਨੇ ਨੂੰ ਸੰਪਾਦਨ ਕਰ ਸਕਦੇ ਹੋ]</span>।',
 'updated' => '(ਅੱਪਡੇਟ)',
 'note' => "'''ਨੋਟ:'''",
-'previewnote' => "'''ਇਹ ਸਿਰਫ਼ ਇੱਕ ਝਲਕ ਹੈ; ਬਦਲਾਅ ਹਾਲੇ ਸੰਭਾਲੇ ਨਹੀਂ ਗਏ ਹਨ!'''",
+'previewnote' => 'ਇਹ ਸਿਰਫ਼ ਇੱਕ ਝਲਕ ਹੈ; ਬਦਲਾਅ ਹਾਲੇ ਸੰਭਾਲੇ ਨਹੀਂ ਗਏ ਹਨ!',
 'editing' => '$1 ਸੋਧਿਆ ਜਾ ਰਿਹਾ ਹੈ',
 'editingsection' => '$1 (ਸ਼ੈਕਸ਼ਨ) ਸੋਧ',
 'editingcomment' => '$1 (ਟਿੱਪਣੀ) ਸੋਧ',
@@ -478,17 +481,24 @@ $1 ਘੰਟੇ ਵਿੱਚ। ਨੁਕਸਾਨ ਤੋਂ ਬਚਣ ਲਈ, $
 'yourtext' => 'ਤੁਹਾਡਾ ਟੈਕਸਟ',
 'storedversion' => 'ਸੰਭਾਲਿਆ ਵਰਜਨ',
 'yourdiff' => 'ਅੰਤਰ',
-'templatesused' => 'ਇਸ ਪੇਜ ਉੱਤੇ ਟੈਪਲੇਟ ਵਰਤਿਆ ਜਾਂਦਾ ਹੈ:',
+'templatesused' => 'ਇਸ ਸਫੇ ਤੇ ਪ੍ਰ੍ਯੋਗਿਤ {{PLURAL:$1|ਫਰਮਾ|ਫਰਮੇ}}:',
 'templatesusedpreview' => "{{PLURAL:$1|ਟੈਪਲੇਟ|ਟੈਪਲੇਟ}} ਇਹ ਝਲਕ 'ਚ ਵਰਤੇ ਜਾਂਦੇ ਹਨ:",
 'templatesusedsection' => 'ਇਹ ਸ਼ੈਕਸ਼ਨ ਵਿੱਚ ਟੈਪਲੇਟ ਵਰਤਿਆ ਜਾਂਦਾ ਹੈ:',
 'template-protected' => '(ਸੁਰੱਖਿਅਤ)',
 'template-semiprotected' => '(ਅਰਧ-ਸੁਰੱਖਿਅਤ)',
 'permissionserrors' => 'ਅਧਿਕਾਰ ਗਲਤੀਆਂ',
 'permissionserrorstext' => 'ਤੁਹਾਨੂੰ ਇੰਝ ਕਰਨ ਦੇ ਅਧਿਕਾਰ ਨਹੀਂ ਹਨ। ਹੇਠ ਦਿੱਤੇ {{PLURAL:$1|ਕਾਰਨ|ਕਾਰਨ}} ਨੇ:',
+'recreate-moveddeleted-warn' => "'''ਖ਼ਬਰਦਾਰ: ਤੁਸੀਂ ਐਸ ਪੰਨਾ ਰਚ ਰਹੇ ਹੋ ਜਿਸ ਨੂੰ ਪਹਿਲੇ ਹਟਾਇਆ ਜਾ ਚੁੱਕ ਹੈ।'''
+ਖਿਆਲ ਕਰੋ ਕਿ ਕੀ ਇਸ ਪੰਨੇ ਦਾ ਕਾਇਮ ਰਹਿਣਾ ਠੀਕ ਹੈ।
+ਇਸ ਪੰਨੇ ਨੂੰ ਹਟਾਉਣ ਯਾ ਜਘ੍ਹਾ ਬਦਲੀ ਦਾ ਚਿੱਠਾ ਹੇਠਾਂ ਦਿੱਤਾ ਹੈ।",
+'moveddeleted-notice' => 'ਇਹ ਪੰਨਾ ਹਟਾ ਦਿੱਤਾ ਗਿਆ ਹੈ।
+ਪੰਨੇ ਦੇ ਹਟਾਣ ਯਾ ਜਗ੍ਹਾ ਬਦਲੀ ਦਾ ਚਿੱਠਾ,ਹਵਾਲੇ ਲਈ ਹੇਠ ਦਿੱਤਾ ਹੈ।',
 
 # Parser/template warnings
 'post-expand-template-inclusion-warning' => "'''ਖ਼ਬਰਦਾਰ: ਸੰਚੇ ਦਾ ਅਕਾਰ ਬਹੁਤ ਵੱਡਾ ਹੈ।ਕੁਝ ਸੰਚੇ ਛੁਟ ਜਾਣਗੇ।",
 'post-expand-template-inclusion-category' => 'ਉਹ ਪੰਨੇ ਜਿਥੇ ਸੰਚਿਆਂ ਦਾ ਅਕਾਰ ਨਿਣਮਿਤ ਹੱਦ ਤੌਂ ਵੱਧ ਹੈ।',
+'post-expand-template-argument-warning' => "'''ਖ਼ਬਰਦਾਰ'''ਇਸ ਸਫ਼ੇ ਤੇ ਕਿਸੇ ਫ਼ਰਮੇ ਵਿਚ ਘੱਟੋ ਘੱਟ ਇਕ ਸਁਘਟਕ ਐਸਾ ਹੈ ਜਿਸ ਦਾ ਵਿਸਤ੍ਰਿਤ ਰੂਪ ਬਹੁਤ ਵੱਡਾ ਹੈ।ਐਸੇ ਸਁਘਟਕਾਂ ਨੂਁ ਛੱਡ ਦਿੱਤਾ ਗਿਆ ਹੈ।",
+'post-expand-template-argument-category' => 'ਐਸੇ ਸਫ਼ੇ ਜਿਨ੍ਹਾਂ ਵਿਚ ਫ਼ਰਮੇ ਦੇ ਸਁਘਟਕ ਛੁੱਟ ਗਏ ਹਨ ।',
 
 # Account creation failure
 'cantcreateaccounttitle' => 'ਅਕਾਊਂਟ ਬਣਾਇਆ ਨਹੀਂ ਜਾ ਸਕਦਾ',
@@ -507,6 +517,8 @@ $1 ਘੰਟੇ ਵਿੱਚ। ਨੁਕਸਾਨ ਤੋਂ ਬਚਣ ਲਈ, $
 'last' => 'ਆਖਰੀ',
 'page_first' => 'ਪਹਿਲਾਂ',
 'page_last' => 'ਆਖਰੀ',
+'history-fieldset-title' => 'ਇਤਿਹਾਸ ਤੇ ਇਕ ਨਜ਼ਰ ਮਾਰੋ ।',
+'history-show-deleted' => 'ਕੇਵਲ ਮਿਟਾਏ ਗਏ',
 'histfirst' => 'ਸਭ ਤੋਂ ਪਹਿਲਾਂ',
 'histlast' => 'ਸਭ ਤੋਂ ਨਵਾਂ',
 'historysize' => '($1 ਬਾਈਟ)',
@@ -538,7 +550,7 @@ $1 ਘੰਟੇ ਵਿੱਚ। ਨੁਕਸਾਨ ਤੋਂ ਬਚਣ ਲਈ, $
 'revertmerge' => 'ਬਿਨ-ਮਿਲਾਨ',
 
 # Diffs
-'difference' => '(ਰੀਵਿਜ਼ਨ ਵਿੱਚ ਅੰਤਰ)',
+'history-title' => '"$1" ਦੀ ਸ਼ੋਧ ਤਵਾਰੀਖ',
 'lineno' => 'ਲਾਈਨ $1:',
 'compareselectedversions' => 'ਚੁਣੇ ਵਰਜਨਾਂ ਦੀ ਤੁਲਨਾ',
 'editundo' => 'ਵਾਪਸ(undo)',
@@ -560,6 +572,7 @@ $1 ਘੰਟੇ ਵਿੱਚ। ਨੁਕਸਾਨ ਤੋਂ ਬਚਣ ਲਈ, $
 ਅਗਲਾ $1 {{PLURAL:$1|ਨਤੀਜਾ|ਨਤੀਜੇ}}',
 'shown-title' => 'ਪ੍ਰਤੀ ਪੇਜ਼ $1 {{PLURAL:$1|ਨਤੀਜਾ|ਨਤੀਜੇ}} ਵੇਖਾਓ',
 'viewprevnext' => 'ਵੇਖੋ ($1 {{int:pipe-separator}} $2) ($3)',
+'searchmenu-exists' => "'''ਇਸ ਵਿਕਿ ਤੇ \"[[:\$1]]\" ਨਾਮ ਦਾ ਇਕ ਸਫ਼ਾ ਹੈ'''",
 'searchmenu-new' => "'''ਇਸ ਵਿਕਿ ਪਰ \"[[:\$1]]\" ਨਾਮ ਨਾਲ ਪੰਨਾ ਬਣਾਓ!'''",
 'searchhelp-url' => 'Help:ਸਮੱਗਰੀ',
 'searchprofile-articles' => 'ਸਮੱਗਰੀ ਪੇਜ',
@@ -667,10 +680,14 @@ $1 ਘੰਟੇ ਵਿੱਚ। ਨੁਕਸਾਨ ਤੋਂ ਬਚਣ ਲਈ, $
 # User rights log
 'rightsnone' => '(ਕੋਈ ਨਹੀਂ)',
 
+# Associated actions - in the sentence "You do not have permission to X"
+'action-edit' => 'ਇਹ ਪੰਨਾ ਸੋਧੋ',
+
 # Recent changes
 'recentchanges' => 'ਤਾਜ਼ਾ ਬਦਲਾਅ',
 'recentchanges-legend' => 'ਤਾਜ਼ਾ ਬਦਲਾਅ ਚੋਣਾਂ',
-'recentchangestext' => 'ਇਸ ਵਿਕੀ ਪਰ ਹਾਲ ਵਿਚ ਹੋਏ ਬਦਲਾਅਦੇਖੇ ਜਾ ਸਕਦੇ ਹਨ।',
+'recentchanges-summary' => 'ਇਸ ਵਿਕੀ ਪਰ ਹਾਲ ਵਿਚ ਹੋਏ ਬਦਲਾਅਦੇਖੇ ਜਾ ਸਕਦੇ ਹਨ।',
+'recentchanges-feed-description' => 'ਇਸ ਵਿਕੀ ਪਰ ਹਾਲ ਵਿਚ ਹੋਏ ਬਦਲਾਅ ਇਸ ਫ਼ੀਡ ਵਿਚ ਦੇਖੇ ਜਾ ਸਕਦੇ ਹਨ।',
 'recentchanges-label-newpage' => 'ਇਹ ਸੋਧ ਨੇ ਨਵਾਂ ਸਫ਼ਾ ਬਣਾਇਆ ਹੈ',
 'recentchanges-label-minor' => 'ਇਹ ਛੋਟੀ ਸੋਧ ਹੈ',
 'recentchanges-label-bot' => 'ਇਹ ਸੋਧ ਨੂੰ ਬੋਟ ਵਲੋਂ ਕੀਤਾ ਗਿਆ ਹੈ',
@@ -699,6 +716,7 @@ $1 ਘੰਟੇ ਵਿੱਚ। ਨੁਕਸਾਨ ਤੋਂ ਬਚਣ ਲਈ, $
 'recentchangeslinked-feed' => 'ਸਬੰਧਿਤ ਬਦਲਾਅ',
 'recentchangeslinked-toolbox' => 'ਸਬੰਧਿਤ ਬਦਲਾਅ',
 'recentchangeslinked-title' => '"$1" ਨਾਲ ਸੰਬੰਧਿਤ ਬਦਲਾਅ',
+'recentchangeslinked-noresult' => 'ਜੁੜੇ ਹੋਏ ਸਫਿਆਂ ਤੇ ,ਦਿੱਤੇ ਸਮੇਂ ਵਿਚ ਕੁਝ ਨਹੀਂ ਬਦਲਿਆ ।',
 'recentchangeslinked-summary' => 'ਇਹ ਸੂਚੀ ਊਨ੍ਹਾਂ ਪੰਨਿਆਂ ,ਜੋ ਇਕ ਖਾਸ ਪੰਨੇ ਨਾਲ ਸੰਬੰਧਿਤ ਹਨ, (ਯਾ ਕਿਸੇ ਖਾਸ ਸ਼੍ਰੇਣੀ ਦੇ ਮੈਂਬਰਾਂ) ਦੇ ਹਾਲ ਵਿਚ ਹੋਏ ਬਦਲਾਵਾਂ ਨੂੰ ਦਰਸ਼ਾਂਦੀ ਹੈ [[Special:Watchlist|ਤੁਹਾਡੀ ਦ੍ਰਿਸ਼ਟੀ ਗੋਚਰ ਸੂਚੀ]] ਵਿਚ ਮੌਜੂਦ ਪੰਨੇ ਮੋਟੇ ਅਖਰਾਂ ਵਿਚ ਦਿਖਾਈ ਦੇਣਗੇ।',
 'recentchangeslinked-page' => 'ਸਫ਼ਾ ਨਾਂ:',
 'recentchangeslinked-to' => 'ਇਸ ਦੇ ਬਦਲੇ ਇਸ ਪੰਨੇ ਨਾਲ ਜੁੜੇ ਪੰਨਿਆਂ ਵਿਚ ਹੋਏ ਬਦਲਾਅ ਦਿਖਾਓ',
@@ -745,7 +763,7 @@ to upload files.',
 'upload-curl-error28' => 'ਅੱਪਲੋਡ ਟਾਈਮ-ਆਉਟ',
 
 'license' => 'ਲਾਈਸੈਂਸਿੰਗ:',
-'license-header' => 'ਲਾਈਸੈਂਸਿੰਗ:',
+'license-header' => 'ਵਰਤਣ ਲਈ ਮੰਜ਼ੂਰੀ ਦੇਣਾ',
 'nolicense' => 'ਕੁਝ ਵੀ ਚੁਣਿਆ',
 'license-nopreview' => '(ਝਲਕ ਉਪਲੱਬਧ ਨਹੀਂ)',
 'upload_source_file' => ' (ਤੁਹਾਡੇ ਕੰਪਿਊਟਰ ਉੱਤੇ ਇੱਕ ਫਾਇਲ)',
@@ -777,6 +795,7 @@ to upload files.',
 'filehist-comment' => 'ਟਿੱਪਣੀ',
 'imagelinks' => 'ਫ਼ਾਈਲ ਦੀ ਵਰਤੌਂ',
 'linkstoimage' => 'ਹੇਠ ਲਿਖਿਤ {{PLURAL:$1|ਪੰਨੇ ਦਾ ਹਵਾਲਾ ਹੈ|$1 ਪੰਨੇ ਦੇ ਹਵਾਲੇ ਹਨ}} to this file:',
+'nolinkstoimage' => 'ਇਸ ਮਿਸਲ ਨਾਲ ਕੋਈ ਵਿ ਸਫ਼ੇ ਮੇਲ ਨਹੀਂ ਖਾਂਦੇ ।',
 'sharedupload-desc-here' => 'ਇਹ ਮਿਸਲ $1 ਦੀ ਹੈ ਅਤੇ ਹੋਰ ਪ੍ਰਾਜੈਕਟਾਂ ਵਿਚ ਵੀ ਵਰਤੀ ਜਾ ਸਕਦੀ ਹੈ । ਇਸ ਦੇ [$2 ਮਿਸਲ ਵਾਲੇ ਬ੍ਰਿਤਾਂਤ ਪੰਨੇ] ਵਿਚ ਮੌਜੂਦ ਵਰਨਣ ਨਿਮਨ ਲਿਖਿਤ ਹੈ।',
 'uploadnewversion-linktext' => 'ਇਸ ਫਾਇਲ ਦਾ ਇੱਕ ਨਵਾਂ ਵਰਜਨ ਅੱਪਲੋਡ ਕਰੋ',
 
@@ -821,6 +840,7 @@ to upload files.',
 'prefixindex' => 'ਇਸ ਅਗੇਤਰ ਵਾਲੇ ਸਾਰੇ ਪੰਨੇ',
 'shortpages' => 'ਛੋਟੇ ਪੇਜ',
 'listusers' => 'ਯੂਜ਼ਰ ਲਿਸਟ',
+'usercreated' => ' $1 ਨੂੰ $2 ਵਜੇ {{GENDER:$3|ਮੈਂਬਰ ਨੇ ਰਚਿਆ}}',
 'newpages' => 'ਨਵੇਂ ਪੇਜ',
 'newpages-username' => 'ਯੂਜ਼ਰ ਨਾਂ:',
 'ancientpages' => 'ਸਭ ਤੋਂ ਪੁਰਾਣੇ ਪੇਜ',
@@ -857,10 +877,14 @@ to upload files.',
 
 # Special:LinkSearch
 'linksearch' => 'ਬਾਹਰੀ ਲਿੰਕ',
+'linksearch-line' => '$2 ਵਿਚ $1 ਬਾਹਰੀ ਸਿਰਨਾਵਾਂ ਹੈ',
 
 # Special:ListUsers
 'listusers-submit' => 'ਵੇਖੋ',
 'listusers-noresult' => 'ਕੋਈ ਯੂਜ਼ਰ ਨਹੀਂ ਲੱਭਿਆ।',
+
+# Special:Log/newusers
+'newuserlogpage' => 'ਮੈਂਬਰ ਖਾਤਾ ਉਸਾਰੀ ਚਿੱਠਾ',
 
 # Special:ListGroupRights
 'listgrouprights-group' => 'ਗਰੁੱਪ',
@@ -884,6 +908,7 @@ to upload files.',
 # Watchlist
 'watchlist' => 'ਮੇਰੀ ਵਾਚ-ਲਿਸਟ',
 'mywatchlist' => 'ਮੇਰੀ ਵਾਚ-ਲਿਸਟ',
+'watchlistfor2' => '$1 $2 ਲਈ',
 'watchnologin' => 'ਲਾਗਇਨ ਨਹੀਂ',
 'watch' => 'ਵਾਚ',
 'watchthispage' => 'ਇਹ ਪੇਜ ਵਾਚ ਕਰੋ',
@@ -909,6 +934,7 @@ to upload files.',
 'delete-confirm' => '"$1" ਹਟਾਓ',
 'delete-legend' => 'ਹਟਾਓ',
 'actioncomplete' => 'ਐਕਸ਼ਨ ਪੂਰਾ ਹੋਇਆ',
+'actionfailed' => 'ਹਰਕਤ ਨਿਸ਼ਫ਼ਲ',
 'dellogpage' => 'ਹਟਾਉਣ ਲਾਗ',
 'deletecomment' => 'ਕਾਰਨ:',
 'deleteotherreason' => 'ਹੋਰ/ਵਾਧੂ ਕਾਰਨ:',
@@ -958,16 +984,21 @@ to upload files.',
 
 # Contributions
 'contributions' => 'ਯੂਜ਼ਰ ਯੋਗਦਾਨ',
+'contributions-title' => '$1 ਦੀ ਰਚਨਾ',
 'mycontris' => 'ਮੇਰਾ ਯੋਗਦਾਨ',
 'contribsub2' => '$1 ($2) ਲਈ',
 'uctop' => '(ਉੱਤੇ)',
+'month' => 'ਇਸ(ਯਾ ਹੋਰ ਪਿਛਲੇ) ਮਹੀਨੇ ਤੌਂ',
+'year' => 'ਇਸ(ਜਾਂ ਹੋਰ ਪਿਛਲੇ) ਸਾਲ ਤੌਂ',
 
 'sp-contributions-newbies-sub' => 'ਨਵੇਂ ਅਕਾਊਂਟਾਂ ਲਈ',
 'sp-contributions-blocklog' => 'ਪਾਬੰਦੀ ਲਾਗ',
+'sp-contributions-uploads' => 'ਅਪਲੋਡ',
 'sp-contributions-logs' => 'ਲਾਗ',
 'sp-contributions-talk' => 'ਗੱਲਬਾਤ',
 'sp-contributions-search' => 'ਯੋਗਦਾਨ ਖੋਜੋ',
 'sp-contributions-username' => 'IP ਐਡਰੈੱਸ ਜਾਂ ਯੂਜ਼ਰ ਨਾਂ:',
+'sp-contributions-toponly' => 'ਕੇਵਲ ਉਹੀ ਸੰਪਾਦਨ ਦਿਖਾਓ ਜੋ ਨਵੀਨਤਮ ਸੋਧਾਂ ਹਨ।',
 'sp-contributions-submit' => 'ਖੋਜ',
 
 # What links here
@@ -983,6 +1014,7 @@ to upload files.',
 'whatlinkshere-next' => '{{PLURAL:$1|ਅਗਲਾ|ਅਗਲੇ $1}}',
 'whatlinkshere-links' => '← ਲਿੰਕ',
 'whatlinkshere-hideredirs' => '$1 ਗੈਰਸਿਧਾ',
+'whatlinkshere-hidetrans' => '$1 ਇੱਥੇ ਕੀ ਕੀ ਜੁੜਦਾ ਹੈ।',
 'whatlinkshere-hidelinks' => '$1 ਲਿੰਕ',
 'whatlinkshere-hideimages' => '$1 ਸੰਬੰਧਿਤ ਚਿਤਰ',
 'whatlinkshere-filters' => 'ਫਿਲਟਰ',
@@ -1051,6 +1083,7 @@ to upload files.',
 # Thumbnails
 'thumbnail-more' => 'ਫੈਲਾਓ',
 'filemissing' => 'ਫਾਇਲ ਗੁੰਮ ਹੈ',
+'thumbnail_error' => 'ਅਁਗੂਠਾ ਝਲਕ ਬਨਾਉਣ ਵਿਚ ਗਲਤੀ ਹੋਈ ਹੈ : $1',
 
 # Special:Import
 'import' => 'ਪੇਜ ਇੰਪੋਰਟ ਕਰੋ',
@@ -1115,10 +1148,12 @@ to upload files.',
 'tooltip-ca-nstab-template' => 'ਟੈਪਲੇਟ ਵੇਖੋ',
 'tooltip-ca-nstab-help' => 'ਮੱਦਦ ਪੇਜ ਵੇਖੋ',
 'tooltip-ca-nstab-category' => 'ਕੈਟਾਗਰੀ ਪੇਜ ਵੇਖੋ',
+'tooltip-minoredit' => 'ਇਸ ਤੇ ਛੋਟੇ ਬਦਲਾਅ ਦਾ  ਨਿਸ਼ਾਨ ਲਾਓ',
 'tooltip-save' => 'ਆਪਣੇ ਬਦਲਾਅ ਸੰਭਾਲੋ',
 'tooltip-preview' => 'ਆਪਣੇ ਬਦਲਾਅ ਦੀ ਝਲਕ ਵੇਖੋ, ਸੰਭਾਲਣ ਤੋਂ ਪਹਿਲਾਂ ਇਹ ਵਰਤੋਂ ਜੀ!',
 'tooltip-diff' => 'ਇਸ ਪਾਠ ਵਿਚ ਆਪਣੇ ਕੀਤੇ ਹੋਏ ਬਦਲਾਅ ਦੇਖੋ',
 'tooltip-compareselectedversions' => 'ਇਸ ਪੰਨੇ ਦੇ ਚੁਣੇ ਹੋਏ ਸ਼ੋਧਾਂ ਵਿਚ ਫ਼ਰਕ ਦੇਖੋ',
+'tooltip-watch' => 'ਇਹ ਸਫ਼ੇ ਨੂੰ ਆਪਣੀ ਵਾਚ-ਲਿਸਟ ਵਿਚ ਪਾਓ',
 'tooltip-upload' => 'ਅੱਪਲੋਡ ਸਟਾਰਟ ਕਰੋ',
 'tooltip-rollback' => "'' ਵਾਪਸ ਲੈ ਜਾਓ '' ਇਕ ਝਟਕੇ ਵਿਚ ਹੀ ਪਿਛਲੇ ਯੂਜ਼ਰ ਦੇ ਬਦਲਾਵਾਂ ਨੂੰ ਗਾਇਬ ਕਰ ਦੇਂਦਾ ਹੈ।",
 'tooltip-undo' => '" ਪੁਰਾਣੀ ਹਾਲਤ ਵਿਚ ਪਰਤੋ " ਇਸ ਬਦਲਾਅ ਨੂੰ ਰੱਦ ਕਰਕੇ ਸੰਪਾਦਨ ਫਾਰਮ ਨੂੰ ਝਲਕ ਦੇ ਅੰਦਾਜ਼ ਵਿਚ ਦਿਖਾਂਦਾ ਹੈ।
@@ -1167,6 +1202,7 @@ to upload files.',
 # Metadata
 'metadata' => 'ਮੇਟਾ ਡੈਟਾ',
 'metadata-help' => 'ਇਸ ਮਿਸਲ ਵਿਚ ਵਾਧੂ ਜਾਨਕਾਰੀਆਂ ਹਨ , ਜੋ ਸ਼ਾਇਦ ਉਸ ਕੈਮਰੇ ਯਾ ਸਕੈਨਰ ਦੀ ਦੇਣ ਹਨ ਜੋਕਿ ਇਸ ਮਿਸਲ ਨੂੰ ਬਨਾਉਣ ਲਈ ਵਰਤਿਆ ਗਿਆ ਹੈ।ਅਗ਼ਰ ਇਹ ਮਿਸਲ ਬਦਲਾਈ ਗਈ ਹੈ ਤਾਂ ਹੋ ਸਕਦਾ ਹੈ ਕੁਝ ਵੇਰਵੇ ਬਦਲੀ ਮਿਸਲ ਦਾ ਸਹੀ ਰੂਪਮਾਨ ਨਾ ਹੋਣ।',
+'metadata-fields' => 'ਮੈਟਾਡੈਟਾ ਸੂਚੀ ਪਟ ਨੂੰ ਛੋਟਾ ਕਰਣ ਨਾਲ ਇਸ ਸੁਨੇਹੇ ਵਿਚ ਸੂਚੀਬੱਧ ਫ਼ੀਲਡ ਮੂਰਤ ਦੇ ਦ੍ਰਿਸ਼ ਵਿਚ ਸ਼ਾਮਲ ਕੀਤੇ ਜਾਣਗੇ।ਬਾਕੀ ਫ਼ੀਲਡਾਂ ਨੂੰ ਛਿਪਾਇਆ ਜਾਏਗਾ।',
 
 # EXIF tags
 'exif-imagewidth' => 'ਚੌੜਾਈ',

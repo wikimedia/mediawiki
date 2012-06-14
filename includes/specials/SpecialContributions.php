@@ -54,6 +54,9 @@ class SpecialContributions extends SpecialPage {
 		if ( $request->getVal( 'contribs' ) == 'newbie' ) {
 			$target = 'newbies';
 			$this->opts['contribs'] = 'newbie';
+		} elseif ( $par === 'newbies' ) { // b/c for WMF
+			$target = 'newbies';
+			$this->opts['contribs'] = 'newbie';
 		} else {
 			$this->opts['contribs'] = 'user';
 		}
@@ -232,7 +235,9 @@ class SpecialContributions extends SpecialPage {
 			$links = $this->getLanguage()->pipeList( $tools );
 
 			// Show a note if the user is blocked and display the last block log entry.
-			if ( $userObj->isBlocked() ) {
+			// Do not expose the autoblocks, since that may lead to a leak of accounts' IPs,
+			// and also this will display a totally irrelevant log entry as a current block.
+			if ( $userObj->isBlocked() && $userObj->getBlock()->getType() != Block::TYPE_AUTO ) {
 				$out = $this->getOutput(); // showLogExtract() wants first parameter by reference
 				LogEventsList::showLogExtract(
 					$out,
@@ -654,7 +659,7 @@ class ContribsPager extends ReverseChronologicalPager {
 			} else {
 				$condition['rev_user_text'] = $this->target;
 				$index = 'usertext_timestamp';
-			} 
+			}
 		}
 		if ( $this->deletedOnly ) {
 			$condition[] = "rev_deleted != '0'";

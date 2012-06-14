@@ -1,6 +1,6 @@
 <?php
 /**
- * Base class for template-based skins
+ * Base class for template-based skins.
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -19,10 +19,6 @@
  *
  * @file
  */
-
-if ( !defined( 'MEDIAWIKI' ) ) {
-	die( 1 );
-}
 
 /**
  * Wrapper object for MediaWiki's localization functions,
@@ -298,7 +294,11 @@ class SkinTemplate extends Skin {
 		$tpl->set( 'specialpageattributes', '' ); # obsolete
 
 		if ( $userlang !== $wgContLang->getHtmlCode() || $userdir !== $wgContLang->getDir() ) {
-			$attrs = " lang='$userlang' dir='$userdir'";
+			$escUserlang = htmlspecialchars( $userlang );
+			$escUserdir = htmlspecialchars( $userdir );
+			// Attributes must be in double quotes because htmlspecialchars() doesn't
+			// escape single quotes
+			$attrs = " lang=\"$escUserlang\" dir=\"$escUserdir\"";
 			$tpl->set( 'userlangattributes', $attrs );
 		}
 
@@ -648,6 +648,9 @@ class SkinTemplate extends Skin {
 				}
 			}
 
+			if ( isset( $createaccount_url ) ) {
+				$personal_urls['createaccount'] = $createaccount_url;
+			}
 
 			if( $this->showIPinHeader() ) {
 				$href = &$this->userpageUrlDetails['href'];
@@ -668,9 +671,6 @@ class SkinTemplate extends Skin {
 				$personal_urls['anonlogin'] = $login_url;
 			} else {
 				$personal_urls['login'] = $login_url;
-			}
-			if ( isset($createaccount_url) ) {
-				$personal_urls['createaccount'] = $createaccount_url;
 			}
 		}
 

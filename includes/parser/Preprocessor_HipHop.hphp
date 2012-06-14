@@ -3,6 +3,21 @@
  * A preprocessor optimised for HipHop, using HipHop-specific syntax.
  * vim: ft=php
  *
+ * This program is free software; you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation; either version 2 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License along
+ * with this program; if not, write to the Free Software Foundation, Inc.,
+ * 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
+ * http://www.gnu.org/copyleft/gpl.html
+ *
  * @file
  * @ingroup Parser
  */
@@ -18,6 +33,9 @@ class Preprocessor_HipHop implements Preprocessor {
 
 	const CACHE_VERSION = 1;
 
+	/**
+	 * @param $parser Parser
+	 */
 	function __construct( $parser ) {
 		$this->parser = $parser;
 	}
@@ -30,7 +48,7 @@ class Preprocessor_HipHop implements Preprocessor {
 	}
 
 	/**
-	 * @param $args
+	 * @param $args array
 	 * @return PPCustomFrame_HipHop
 	 */
 	function newCustomFrame( array $args ) {
@@ -88,6 +106,7 @@ class Preprocessor_HipHop implements Preprocessor {
 	 * cache may be implemented at a later date which takes further advantage of these strict
 	 * dependency requirements.
 	 *
+	 * @throws MWException
 	 * @return PPNode_HipHop_Tree
 	 */
 	function preprocessToObj( string $text, int $flags = 0 ) {
@@ -815,16 +834,23 @@ class PPDStack_HipHop {
  * @ingroup Parser
  */
 class PPDStackElement_HipHop {
-	var $open,		        // Opening character (\n for heading)
-		$close,     	    // Matching closing character
+	var $open,              // Opening character (\n for heading)
+		$close,             // Matching closing character
 		$count,             // Number of opening characters found (number of "=" for heading)
 		$parts,             // Array of PPDPart objects describing pipe-separated parts.
 		$lineStart;         // True if the open char appeared at the start of the input line. Not set for headings.
 
+	/**
+	 * @param $obj PPDStackElement_HipHop
+	 * @return PPDStackElement_HipHop
+	 */
 	static function cast( PPDStackElement_HipHop $obj ) {
 		return $obj;
 	}
 
+	/**
+	 * @param $data array
+	 */
 	function __construct( $data = array() ) {
 		$this->parts = array( new PPDPart_HipHop );
 
@@ -833,14 +859,23 @@ class PPDStackElement_HipHop {
 		}
 	}
 
+	/**
+	 * @return PPDAccum_HipHop
+	 */
 	function getAccum() {
 		return PPDAccum_HipHop::cast( $this->parts[count($this->parts) - 1]->out );
 	}
 
+	/**
+	 * @param $s string
+	 */
 	function addPart( $s = '' ) {
 		$this->parts[] = new PPDPart_HipHop( $s );
 	}
 
+	/**
+	 * @return PPDPart_HipHop
+	 */
 	function getCurrentPart() {
 		return PPDPart_HipHop::cast( $this->parts[count($this->parts) - 1] );
 	}
@@ -861,6 +896,7 @@ class PPDStackElement_HipHop {
 	/**
 	 * Get the accumulator that would result if the close is not found.
 	 *
+	 * @param $openingCount bool
 	 * @return PPDAccum_HipHop
 	 */
 	function breakSyntax( $openingCount = false ) {
@@ -1026,9 +1062,10 @@ class PPFrame_HipHop implements PPFrame {
 	 * Create a new child frame
 	 * $args is optionally a multi-root PPNode or array containing the template arguments
 	 *
-	 * @param $args PPNode_HipHop_Array|array
-	 * @param $title Title|false
+	 * @param $args PPNode_HipHop_Array|array|bool
+	 * @param $title Title|bool
 	 *
+	 * @throws MWException
 	 * @return PPTemplateFrame_HipHop
 	 */
 	function newChild( $args = false, $title = false ) {
@@ -1073,12 +1110,23 @@ class PPFrame_HipHop implements PPFrame {
 		}
 
 		if ( ++$this->parser->mPPNodeCount > $this->parser->mOptions->getMaxPPNodeCount() ) {
+			$this->parser->limitationWarn( 'node-count-exceeded',
+					$this->parser->mPPNodeCount,
+					$this->parser->mOptions->getMaxPPNodeCount()
+			);
 			return '<span class="error">Node-count limit exceeded</span>';
 		}
 		if ( $expansionDepth > $this->parser->mOptions->getMaxPPExpandDepth() ) {
+			$this->parser->limitationWarn( 'expansion-depth-exceeded',
+					$expansionDepth,
+					$this->parser->mOptions->getMaxPPExpandDepth()
+			);
 			return '<span class="error">Expansion depth limit exceeded</span>';
 		}
 		++$expansionDepth;
+		if ( $expansionDepth > $this->parser->mHighestExpansionDepth ) {
+			$this->parser->mHighestExpansionDepth = $expansionDepth;
+		}
 
 		$outStack = array( '', '' );
 		$iteratorStack = array( false, $root );
@@ -1267,6 +1315,7 @@ class PPFrame_HipHop implements PPFrame {
 	/**
 	 * Implode with no flags specified
 	 * This previously called implodeWithFlags but has now been inlined to reduce stack depth
+	 * @param $sep
 	 * @return string
 	 */
 	function implode( $sep /*, ... */ ) {
@@ -1297,6 +1346,7 @@ class PPFrame_HipHop implements PPFrame {
 	 * Makes an object that, when expand()ed, will be the same as one obtained
 	 * with implode()
 	 *
+	 * @param $sep
 	 * @return PPNode_HipHop_Array
 	 */
 	function virtualImplode( $sep /*, ... */ ) {
@@ -1326,6 +1376,9 @@ class PPFrame_HipHop implements PPFrame {
 	/**
 	 * Virtual implode with brackets
 	 *
+	 * @param $start
+	 * @param $sep
+	 * @param $end
 	 * @return PPNode_HipHop_Array
 	 */
 	function virtualBracketedImplode( $start, $sep, $end /*, ... */ ) {
@@ -1446,11 +1499,11 @@ class PPTemplateFrame_HipHop extends PPFrame_HipHop {
 	var $numberedExpansionCache, $namedExpansionCache;
 
 	/**
-	 * @param $preprocessor
-	 * @param $parent
+	 * @param $preprocessor Preprocessor_HipHop
+	 * @param $parent bool
 	 * @param $numberedArgs array
 	 * @param $namedArgs array
-	 * @param $title Title
+	 * @param $title Title|bool
 	 */
 	function __construct( $preprocessor, $parent = false, $numberedArgs = array(), $namedArgs = array(), $title = false ) {
 		parent::__construct( $preprocessor );
@@ -1697,6 +1750,10 @@ class PPNode_HipHop_Tree implements PPNode {
 		return $this->nextSibling;
 	}
 
+	/**
+	 * @param $name string
+	 * @return array
+	 */
 	function getChildrenOfType( $name ) {
 		$children = array();
 		for ( $child = $this->firstChild; $child; $child = $child->nextSibling ) {
@@ -1735,6 +1792,7 @@ class PPNode_HipHop_Tree implements PPNode {
 	 *    index         String index
 	 *    value         PPNode value
 	 *
+	 * @throws MWException
 	 * @return array
 	 */
 	function splitArg() {
@@ -1768,6 +1826,7 @@ class PPNode_HipHop_Tree implements PPNode {
 	 * Split an <ext> node into an associative array containing name, attr, inner and close
 	 * All values in the resulting array are PPNodes. Inner and close are optional.
 	 *
+	 * @throws MWException
 	 * @return array
 	 */
 	function splitExt() {
@@ -1795,6 +1854,7 @@ class PPNode_HipHop_Tree implements PPNode {
 	/**
 	 * Split an <h> node
 	 *
+	 * @throws MWException
 	 * @return array
 	 */
 	function splitHeading() {

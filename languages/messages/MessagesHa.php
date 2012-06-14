@@ -329,7 +329,6 @@ Fasali: '''({{int:cur}})''' = bambanci da zubi na yanzu, '''({{int:last}})''' = 
 
 # Diffs
 'history-title' => 'Tarihin sauye-sauyen "$1"',
-'difference' => '(Bambanci tsakanin zubi da zubi)',
 'lineno' => 'Layi $1:',
 'compareselectedversions' => 'Kwatanta zaɓaɓɓun zubi',
 'editundo' => 'Janyewa',

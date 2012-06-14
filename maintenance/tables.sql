@@ -772,7 +772,13 @@ CREATE TABLE /*_*/ipblocks (
   ipb_block_email bool NOT NULL default 0,
 
   -- Block allows user to edit their own talk page
-  ipb_allow_usertalk bool NOT NULL default 0
+  ipb_allow_usertalk bool NOT NULL default 0,
+
+  -- ID of the block that caused this block to exist
+  -- Autoblocks set this to the original block
+  -- so that the original block being deleted also
+  -- deletes the autoblocks
+  ipb_parent_block_id int default NULL
 
 ) /*$wgDBTableOptions*/;
 
@@ -784,6 +790,7 @@ CREATE INDEX /*i*/ipb_user ON /*_*/ipblocks (ipb_user);
 CREATE INDEX /*i*/ipb_range ON /*_*/ipblocks (ipb_range_start(8), ipb_range_end(8));
 CREATE INDEX /*i*/ipb_timestamp ON /*_*/ipblocks (ipb_timestamp);
 CREATE INDEX /*i*/ipb_expiry ON /*_*/ipblocks (ipb_expiry);
+CREATE INDEX /*i*/ipb_parent_block_id ON /*_*/ipblocks (ipb_parent_block_id);
 
 
 --

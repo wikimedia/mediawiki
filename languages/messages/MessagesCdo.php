@@ -348,7 +348,6 @@ Siók-mìng: (dāng) = gâe̤ng dék sĭng bēng-buōng bī-piâng, (sèng) = g�
 
 # Diffs
 'history-title' => '"$1" gì siŭ-gāi lĭk-sṳ̄',
-'difference' => '(Bēng-buōng cĭ-găng gì chă-biék)',
 'lineno' => 'Dâ̤ $1 hòng:',
 'compareselectedversions' => 'Bī-piâng gēng-sōng bēng-buōng',
 'editundo' => 'chṳ̄-siĕu',
@@ -414,7 +413,7 @@ Siók-mìng: (dāng) = gâe̤ng dék sĭng bēng-buōng bī-piâng, (sèng) = g�
 
 # Recent changes
 'recentchanges' => 'Cī-bŏng gì gāi-biéng',
-'recentchangestext' => 'Găk cī hiĕk dŭi-sùi wiki cī-bŏng dék sĭng gì gāi-biéng.',
+'recentchanges-summary' => 'Găk cī hiĕk dŭi-sùi wiki cī-bŏng dék sĭng gì gāi-biéng.',
 'rcnote' => 'Â-dā̤ sê <strong>{{PLURAL:$1|ék|$2}}</strong> gĕ̤ng ī-nô̤i (hiêng-câi sê $3) dék sĭng gì <strong>{{PLURAL:$1|1|$1}}</strong> hâung gāi-biéng.',
 'rclistfrom' => 'Hiēng-sê iù $1 kăi-sṳ̄ gì sĭng gāi-biéng',
 'rcshowhideminor' => '$1 guó-éu siŭ-gāi',

@@ -5,39 +5,45 @@ setting since version 1.2.0. If you have it on, turn it '''off''' if you can.
 
 == MediaWiki 1.19 ==
 
-THIS IS NOT A RELEASE YET
+MediaWiki 1.19 is a large release that contains many new features and bug
+fixes. This is a summary of the major changes of interest to users.
+You can consult the RELEASE-NOTES-1.19 file for the full list of changes in
+this version.
 
-This is a beta release of the MediaWiki 1.19 branch. Please test it and let us
-know what you think of it. Beta releases are not recommended for use in
-production.
+Our thanks go to everyone who helped to improve MediaWiki by testing the beta
+release and submitting bug reports.
 
 === Changes since 1.19 beta 2 ===
-* Special:Watchlist no longer sets links to feed when the user is anonymous
-* (bug 35565) Special:Log/patrol doesn't indicate whether patrolling was
-  automatic
+* Special:Watchlist no longer sets links to feed when the user is anonymous.
+* (bug 35961) Hash comparison should always be strict.
+* Fix broken email confirmation expiration caused by MWCryptRand changes.
+* (bug 35671) PHP Notice: Undefined index: gettoken in includes/api/ApiMain.php
+  on line 598.
+* (bug 36042) 'show' causes a fatal in blocks API.
 
 === Changes since 1.19 beta 1 ===
 * (bug 35014) Including a special page no longer sets the page's title to the
-  included page.
-* (bug 35019) Edit summaries are no longer transformed in notification e-mails.
-* (bug 35152) Help message for e-mail is shown again in user preferences.
+  included page
+* (bug 35019) Edit summaries are no longer transformed in notification e-mails
+* (bug 35152) Help message for e-mail is shown again in user preferences
 * (bug 34887) $3 and $4 parameters are now substituted correctly in message
-  "movepage-moved".
+  "movepage-moved"
 * (bug 34841) Edit links are no longer displayed when display old page versions
-* (bug 34889) User name should be normalized on Special:Contributions.
-* (bug 35051) If heading has a trailing space after == then its name is not
-  preloaded into edit summary on section edit.
+* (bug 34889) User name should be normalized on Special:Contributions
+* (bug 35051) If heading has a trailing space after == then its name is not 
+  preloaded into edit summary on section edit
 * (bug 31417) New ID mw-content-text around the actual page text, without categories,
   contentSub, ... The same div often also contains the class mw-content-ltr/rtl.
 * (bug 35303) Proxy and DNS blacklist blocking works again
-* (bug 35294) jquery.byteLimit shouldn't set element specific variables outside
-  the "return this.each" loop.
 * (bug 22555) Remove or skip strip markers from tag hooks like &lt;nowiki&gt; in 
   core parser functions which operate on strings, such as padleft.
 * (bug 18295) Don't expose strip markers when a tag appears inside a link 
   inside a heading.
+* (bug 34212) ApiBlock/ApiUnblock allow action to take place without a token
+  parameter present.
 * (bug 34907) Fixed exposure of tokens through load.php that could have facilitated
-  CSRF attacks
+  CSRF attacks.
+* (bug 35317) CSRF in Special:Upload.
 
 === Configuration changes in 1.19 ===
 * Removed SkinTemplateSetupPageCss hook; use BeforePageDisplay instead.
@@ -52,7 +58,7 @@ production.
 * (bug 32239) Removed $wgEnableTooltipsAndAccesskeys.
 * Removed $wgVectorShowVariantName.
 * Removed $wgExtensionAliasesFiles. Use $wgExtensionMessagesFiles.
-* Removed $wgResourceLoaderInlinePrivateModules, now always enabled.
+* Removed $wgResourceLoaderInlinePrivateModules , now always enabled.
 
 === New features in 1.19 ===
 * (bug 19838) Add ability to get all interwiki prefixes also if the interwiki
@@ -136,8 +142,8 @@ production.
   200 status code instead of 404 for nonexistent articles.
 * (bug 33447) Link to the broken image tracking category from Special:Wantedfiles.
 * (bug 27724) Add timestamp to job queue.
-* (bug 30339) Implement SpecialPage for running javascript tests. Disabled by default,
-  due to tests potentially being harmful, not to be run on a production wiki.
+* (bug 30339) Implement SpecialPage for running javascript tests. Disabled by default, due to
+  tests potentially being harmful, not to be run on a production wiki.
   Enable by setting $wgEnableJavaScriptTest to true.
 * Extensions can use the RequestContextCreateSkin hook to override what skin is
   loaded in some contexts.
@@ -154,8 +160,6 @@ production.
 * Special:MovePage now has a dropdown menu for namespaces.
 * (bug 34420) Special:Version now shows git HEAD sha1 when available.
 * (bug 33952) Refactor mw.toolbar to allow dynamic additions at any time.
-* Now possible to specify separate section title and edit summary when adding
-  a new section to a page via the edit API action.
 
 === Bug fixes in 1.19 ===
 * $wgUploadNavigationUrl should be used for file redlinks if.
@@ -288,12 +292,11 @@ production.
 * (bug 28936, bug 5280) Broken or invalid titles can't be removed from watchlist.
 * (bug 34600) Older skins using useHeadElement=false were broken in 1.18.
 * (bug 34604) [mw.config] wgActionPaths should be an object instead of a numeral
-  array.
+  array.* (bug 12262) Indents and lists are now aligned
 * (bug 29753) mw.util.tooltipAccessKeyPrefix should be alt-shift for Chrome
    on Windows
 * (bug 25095) Special:Categories should also include the first relevant item
    when "from" is filled.
-* (bug 12262) Indents and lists are now aligned
 * (bug 34972) An error occurred while changing your watchlist settings for 
   [[Special:WhatLinksHere/Example]]
 
@@ -332,8 +335,8 @@ production.
   calling action=purge&forcelinkupdate.
 * (bug 34377) action=watch now parses messages using the correct title instead
   of "API".
-* (bug 35036) ResourceLoaderWikiModule should auto-update when messages (created
-  or overwritten) in the MediaWiki namespace change.
+* (bug 35036) WikiLove messages were not automatically updated in JavaScript
+  after having been changed on-wiki due to a bug in core
 
 === Languages updated in 1.19 ===
 
@@ -386,7 +389,6 @@ changes to languages because of Bugzilla reports.
   amount of user/site scripts that are lacking dependency information. In the short to
   medium term these user/site scripts should be fixed by adding the used modules to the
   dependencies in the module registry and/or wrapping them in a callback to mw.loader.using.
-* MediaWiki now requires MySQL 5.0.2 or later when using a MySQL database.
 
 == Compatibility ==
 

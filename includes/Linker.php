@@ -1,5 +1,26 @@
 <?php
 /**
+ * Methods to make links and related items.
+ *
+ * This program is free software; you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation; either version 2 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License along
+ * with this program; if not, write to the Free Software Foundation, Inc.,
+ * 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
+ * http://www.gnu.org/copyleft/gpl.html
+ *
+ * @file
+ */
+
+/**
  * Some internal bits split of from Skin.php. These functions are used
  * for primarily page content: links, embedded images, table of contents. Links
  * are also used in the skin.
@@ -395,6 +416,31 @@ class Linker {
 		}
 		list( $inside, $trail ) = self::splitTrail( $trail );
 		return "<strong class=\"selflink\">{$prefix}{$html}{$inside}</strong>{$trail}";
+	}
+
+	/**
+	 * Get a message saying that an invalid title was encountered.
+	 * This should be called after a method like Title::makeTitleSafe() returned
+	 * a value indicating that the title object is invalid.
+	 *
+	 * @param $context IContextSource context to use to get the messages
+	 * @param $namespace int Namespace number
+	 * @param $title string Text of the title, without the namespace part
+	 */
+	public static function getInvalidTitleDescription( IContextSource $context, $namespace, $title ) {
+		global $wgContLang;
+
+		// First we check whether the namespace exists or not.
+		if ( MWNamespace::exists( $namespace ) ) {
+			if ( $namespace == NS_MAIN ) {
+				$name = $context->msg( 'blanknamespace' )->text();
+			} else {
+				$name = $wgContLang->getFormattedNsText( $namespace );
+			}
+			return $context->msg( 'invalidtitle-knownnamespace', $namespace, $name, $title )->text();
+		} else {
+			return $context->msg( 'invalidtitle-unknownnamespace', $namespace, $title )->text();
+		}
 	}
 
 	/**
@@ -995,7 +1041,10 @@ class Linker {
 		wfRunHooks( 'UserToolLinksEdit', array( $userId, $userText, &$items ) );
 
 		if ( $items ) {
-			return ' <span class="mw-usertoollinks">' . wfMessage( 'parentheses' )->rawParams( $wgLang->pipeList( $items ) )->escaped() . '</span>';
+			return wfMessage( 'word-separator' )->plain()
+				. '<span class="mw-usertoollinks">'
+				. wfMessage( 'parentheses' )->rawParams( $wgLang->pipeList( $items ) )->escaped()
+				. '</span>';
 		} else {
 			return '';
 		}
@@ -1079,8 +1128,9 @@ class Linker {
 		} elseif ( $rev->userCan( Revision::DELETED_USER ) ) {
 			$userId = $rev->getUser( Revision::FOR_THIS_USER );
 			$userText = $rev->getUserText( Revision::FOR_THIS_USER );
-			$link = self::userLink( $userId, $userText ) .
-				' ' . self::userToolLinks( $userId, $userText );
+			$link = self::userLink( $userId, $userText )
+				. wfMessage( 'word-separator' )->plain()
+				. self::userToolLinks( $userId, $userText );
 		} else {
 			$link = wfMsgHtml( 'rev-deleted-user' );
 		}
@@ -1595,9 +1645,9 @@ class Linker {
 	 * @return string
 	 */
 	public static function generateRollback( $rev ) {
-		return '<span class="mw-rollback-link">['
-			. self::buildRollbackLink( $rev )
-			. ']</span>';
+		return '<span class="mw-rollback-link">'
+			. wfMessage( 'brackets' )->rawParams( self::buildRollbackLink( $rev ) )->plain()
+			. '</span>';
 	}
 
 	/**

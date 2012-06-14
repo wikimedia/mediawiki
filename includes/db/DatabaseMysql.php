@@ -2,6 +2,21 @@
 /**
  * This is the MySQL database abstraction layer.
  *
+ * This program is free software; you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation; either version 2 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License along
+ * with this program; if not, write to the Free Software Foundation, Inc.,
+ * 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
+ * http://www.gnu.org/copyleft/gpl.html
+ *
  * @file
  * @ingroup Database
  */
@@ -98,14 +113,14 @@ class DatabaseMysql extends DatabaseBase {
 		$phpError = $this->restoreErrorHandler();
 		# Always log connection errors
 		if ( !$this->mConn ) {
-			$error = $this->lastError();
+			$error = $phpError;
 			if ( !$error ) {
-				$error = $phpError;
+				$error = $this->lastError();
 			}
 			wfLogDBError( "Error connecting to {$this->mServer}: $error\n" );
 			wfDebug( "DB connection error\n" );
 			wfDebug( "Server: $server, User: $user, Password: " .
-				substr( $password, 0, 3 ) . "..., error: " . mysql_error() . "\n" );
+				substr( $password, 0, 3 ) . "..., error: " . $error . "\n" );
 		}
 
 		wfProfileOut("dbconnect-$server");
@@ -672,6 +687,21 @@ class DatabaseMysql extends DatabaseBase {
 	}
 
 	/**
+	 * Check to see if a named lock is available. This is non-blocking.
+	 *
+	 * @param $lockName String: name of lock to poll
+	 * @param $method String: name of method calling us
+	 * @return Boolean
+	 * @since 1.20
+	 */
+	public function lockIsFree( $lockName, $method ) {
+		$lockName = $this->addQuotes( $lockName );
+		$result = $this->query( "SELECT IS_FREE_LOCK($lockName) AS lockstatus", $method );
+		$row = $this->fetchObject( $result );
+		return ( $row->lockstatus == 1 );
+	}
+
+	/**
 	 * @param $lockName string
 	 * @param $method string
 	 * @param $timeout int
@@ -700,7 +730,7 @@ class DatabaseMysql extends DatabaseBase {
 		$lockName = $this->addQuotes( $lockName );
 		$result = $this->query( "SELECT RELEASE_LOCK($lockName) as lockstatus", $method );
 		$row = $this->fetchObject( $result );
-		return $row->lockstatus;
+		return ( $row->lockstatus == 1 );
 	}
 
 	/**

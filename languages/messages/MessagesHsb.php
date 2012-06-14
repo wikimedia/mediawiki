@@ -538,6 +538,8 @@ Podata přičina je \'\'"$2"\'\'.',
 'filereadonlyerror' => 'Njeje móžno dataju "$1" změnić, dokelž datajowy repozitorij "$2" je jenož čitajomny.
 
 Administrator, kiž je jón zawrěł, je tule přičinu podał: "$3".',
+'invalidtitle-knownnamespace' => 'Njepłaćiwy titul z mjenowym rumom "$2" a tekstom "$3"',
+'invalidtitle-unknownnamespace' => 'Njepłaćiwy titul z njeznatym mjenowym rumom $1 a tekstom "$2"',
 
 # Virus scanner
 'virus-badscanner' => "Špatna konfiguracija: Njeznaty wirusowy skener: ''$1''",
@@ -803,7 +805,8 @@ Móžeš [[Special:Search/{{PAGENAME}}|tutón titul strony]] na druhich stronach
 'updated' => '(Zaktualizowany)',
 'note' => "'''Kedźbu:'''",
 'previewnote' => "'''Wobmysl, zo to je jenož přehlad.'''
-Twoje změny hišće njejsu składowane! [[#editform|→ Dale wobdźěłaś]]",
+Twoje změny hišće njejsu składowane!",
+'continue-editing' => 'Dale wobdźěłać',
 'previewconflict' => 'Tutón přehlad zwobraznja tekst w hornim tekstowym polu,  kaž so zjewi, jeli jón składuješ.',
 'session_fail_preview' => "'''Njemóžachmy twoju změnu předźěłać, dokelž su so posedźenske daty zhubili.'''
 Spytaj prošu hišće raz.
@@ -895,6 +898,12 @@ Dyrbjała mjenje hač $2 {{PLURAL:$2|wołanje|wołanjej|wołanja|wołanjow}} mě
 'parser-template-loop-warning' => 'Předłohowa sekla wotkryta: [[$1]]',
 'parser-template-recursion-depth-warning' => 'Limit za rekursijnu hłubokosć předłohi překročeny ($1)',
 'language-converter-depth-warning' => 'Limit hłubokosće rěčneho konwertera překročena ($1)',
+'node-count-exceeded-category' => 'Strony, hdźež ličba sukow je překročena',
+'node-count-exceeded-warning' => 'Strona je ličbu sukow překročiła',
+'expansion-depth-exceeded-category' => 'Strony, hdźež ekspansiska hłubokosć je překročena',
+'expansion-depth-exceeded-warning' => 'Strona je ekspansisku hłubokosć překročił',
+'parser-unstrip-loop-warning' => 'Njeskónčna sekla namakana',
+'parser-unstrip-recursion-limit' => 'Rekursiska hranica překročena ($1)',
 
 # "Undo" feature
 'undo-success' => 'Wersija je so wuspěšnje wotstroniła. Prošu přepruwuj deleka w přirunanskim napohledźe, hač twoja změna bu přewzata a klikń potom na „Składować”, zo by změnu składował.',
@@ -1036,7 +1045,7 @@ Prošu přepruwuj protokole.',
 # Suppression log
 'suppressionlog' => 'Protokol potłóčenjow',
 'suppressionlogtext' => 'Deleka je lisćina wušmórnjenjow a zablokowanjow, inkluziwnje wobsaha schowaneho wot administratorow.
-Hlej [[Special:BlockList|Lisćina zablokowanych IP-adresow]] za lisćinu tuchwilnych zablokowanjow.',
+Hlej [[Special:BlockList|Lisćinu blokowanjow]] za lisćinu tuchwilnych zablokowanjow.',
 
 # History merging
 'mergehistory' => 'Stawizny stronow zjednoćić',
@@ -1068,8 +1077,9 @@ Zawěsć, zo tuta změna stawiznisku kontinuitu strony wobchowuje.',
 'mergelogpagetext' => 'Deleka je lisćina najaktualnišich zjednoćenjow stawiznow dweju stronow.',
 
 # Diffs
-'history-title' => 'Stawizny wersijow strony „$1“',
-'difference' => '(rozdźěl mjez wersijomaj)',
+'history-title' => '$1: Wersijowe stawizny',
+'difference-title' => '$1: Rozdźěl mjez wersijemi',
+'difference-title-multipage' => '$1 a $2: Rozdźěl mjez stronami',
 'difference-multipage' => '(Rozdźěl mjez stronami)',
 'lineno' => 'Rjadka $1:',
 'compareselectedversions' => 'Wubranej wersiji přirunać',
@@ -1165,6 +1175,7 @@ Spytaj swoje naprašowanje z prefiksom ''all:'' wužiwać, zo by wšón wobsah (
 'prefs-beta' => 'Betafunkcije',
 'prefs-datetime' => 'Datum a čas',
 'prefs-labs' => 'Laborowe funkcije',
+'prefs-user-pages' => 'Wužiwarske strony',
 'prefs-personal' => 'Wužiwarski profil',
 'prefs-rc' => 'Aktualne změny',
 'prefs-watchlist' => 'Wobkedźbowanki',
@@ -1426,7 +1437,7 @@ Smě mjenje hač $1 {{PLURAL:$1|znamješko|znamješce|znamješka|znamješkow}} d
 'nchanges' => '$1 {{PLURAL:$1|změna|změnje|změny|změnow}}',
 'recentchanges' => 'Aktualne změny',
 'recentchanges-legend' => 'Opcije aktualnych změnow',
-'recentchangestext' => 'Na tutej stronje móžeš najaktualniše změny w {{GRAMMAR:lokatiw|{{SITENAME}}}} wobkedźbować.',
+'recentchanges-summary' => 'Na tutej stronje móžeš najaktualniše změny w {{GRAMMAR:lokatiw|{{SITENAME}}}} wobkedźbować.',
 'recentchanges-feed-description' => 'Slěduj najaktualniše změny {{GRAMMAR:genitiw|{{SITENAME}}}} w tutym kanalu.',
 'recentchanges-label-newpage' => 'Tuta změna je nowu stronu wutworiła',
 'recentchanges-label-minor' => 'To je snadna změna',
@@ -1630,14 +1641,15 @@ $1',
 'backend-fail-writetemp' => 'Njeda so do temporerneje dataje pisać.',
 'backend-fail-closetemp' => 'Temporerna dataja njeda so začinić.',
 'backend-fail-read' => 'Dataja $1 njeda so čitać',
-'backend-fail-create' => 'Dataja $1 njeda so wutworić',
-'backend-fail-maxsize' => 'Dataja $1 njeda so wutworić, dokelž je wjetša hač {{PLURAL:$2|$2 bajt|$2 bajtaj|$2 bajty|$2 bajtow}}.',
+'backend-fail-create' => 'Dataja $1 njeda so pisać.',
+'backend-fail-maxsize' => 'Dataja $1 njeda so pisać, dokelž je wjetša hač {{PLURAL:$2|jedyn bajt|$2 bajtaj|$2 bajty|$2 bajtow}}.',
 'backend-fail-readonly' => 'Składowanski backend "$1" da so tuchwilu jenož čitać. Přičina je była: "$2"',
 'backend-fail-synced' => 'Dataja "$1" je znutřka interneho składowanskeho backenda w inkonsistentnym stawje',
 'backend-fail-connect' => 'Zwisk z datajowym składowanskim backendom "$1" móžno njeje.',
 'backend-fail-internal' => 'W składowanskim backendźe "$1" je njeznaty zmylk wustupił.',
 'backend-fail-contenttype' => 'Wobsahowy typ dataje, kotraž ma so na "$1" składować, njeda so zwěsćić.',
 'backend-fail-batchsize' => 'Staplowa dataja, kotraž {{PLURAL:$1|jednu operaciju|$1 operaciji|$1 operacije|$1 operacijow}} wobsahuje,  je so  na składowanski backend pósłała; limit je $2 {{PLURAL:$2|operaciju|operaciji|operacije|operacijow}} .',
+'backend-fail-usable' => 'Dataja $1 njeda so njedosahacych prawow  dla abo falowacych zapisow dla pisać.',
 
 # File journal errors
 'filejournal-fail-dbconnect' => 'Njeje žadyn zwisk ze žurnalowej datowej banku za składowanski backend "$1" móžno.',
@@ -1949,6 +1961,7 @@ Prošu wobkedźbuj, zo druhe websydła móža na dataju z direktnym URL wotkazow
 'alllogstext' => 'Kombinowane zwobraznjenje wšěch k dispozicij stejacych protokolow w {{GRAMMAR:lokatiw|{{SITENAME}}}}. Móžeš napohlad wobmjezować, wuběrajo typ protokola, wužiwarske mjeno (dźiwajo na wulkopisanje) abo potrjechu stronu (tež dźiwajo na wulkopisanje).',
 'logempty' => 'Žane wotpowědowace zapiski w protokolu.',
 'log-title-wildcard' => 'Titul započina so z …',
+'showhideselectedlogentries' => 'Wubrane protokolowe zapiski pokazać/schować',
 
 # Special:AllPages
 'allpages' => 'Wšě nastawki',
@@ -2401,8 +2414,8 @@ Najnowši zapisk w protokolu blokowanjow so deleka jako referenca podawa:',
 'ipb-confirm' => 'Blokowanje wobkrućić',
 'badipaddress' => 'Njepłaćiwa IP-adresa',
 'blockipsuccesssub' => 'Zablokowanje wuspěšne',
-'blockipsuccesstext' => '[[Special:Contributions/$1|$1]] bu zablokowany.
-<br />Hlej [[Special:BlockList|lisćinu blokowanjow IP]], zo by zablokowanjow pruwował.',
+'blockipsuccesstext' => '[[Special:Contributions/$1|$1]] bu {{GENDER:$1|zablokowany|zablokowana}}.<br />
+Hlej [[Special:BlockList|lisćinu blokowanjow]], zo by zablokowanjow pruwował.',
 'ipb-blockingself' => 'Chceš samoho blokować! Chceš to woprawdźe činić?',
 'ipb-confirmhideuser' => 'Chceš runje wužiwarja z nastajenjom "wužiwarja schować" blokować. To k tomu dowjedźe, zo mjeno wužiwarja so we wšch lisćinach a protokolowych zapiskach potłóči. Chceš to woprawdźe činić?',
 'ipb-edit-dropdown' => 'přičiny zablokowanjow wobdźěłać',
@@ -2452,7 +2465,7 @@ Najnowši zapisk w protokolu blokowanjow so deleka jako referenca podawa:',
 'blocklog-showsuppresslog' => 'Tutón wužiwar bu prjedy zablokowany a schowany. Protokol potłóčenjow  so deleka jako referenca podawa:',
 'blocklogentry' => 'je wužiwarja [[$1]] zablokował z časom spadnjenja $2 $3',
 'reblock-logentry' => 'změni blokowanske nastajenja za [[$1]] z časom spadnjenja $2 $3',
-'blocklogtext' => 'To je protokol blokowanja a wotblokowanja wužiwarjow. Awtomatisce blokowane IP-adresy so njenalistuja. Hlej [[Special:BlockList|lisćinu zablokowanych IP-adresow]] za lisćinu tuchwilnych wuhnaćow a zablokowanjow.',
+'blocklogtext' => 'To je protokol blokowanja a wotblokowanja wužiwarjow. Awtomatisce blokowane IP-adresy so njenalistuja. Hlej [[Special:BlockList|lisćinu blokowanjow]] za lisćinu tuchwilnych wuhnaćow a zablokowanjow.',
 'unblocklogentry' => 'zablokowanje wužiwarja $1 bu zběhnjene',
 'block-log-flags-anononly' => 'jenož anonymnych',
 'block-log-flags-nocreate' => 'wutworjenje wužiwarskich kontow znjemóžnjene',
@@ -3500,6 +3513,9 @@ Ty měł [{{SERVER}}{{SCRIPTPATH}}/COPYING kopiju licency GNU General Public Lic
 'version-software' => 'Instalowana software',
 'version-software-product' => 'Produkt',
 'version-software-version' => 'Wersija',
+'version-entrypoints' => 'URL zastupneho dypka',
+'version-entrypoints-header-entrypoint' => 'Zastupny dypk',
+'version-entrypoints-header-url' => 'URL',
 
 # Special:FilePath
 'filepath' => 'Datajowy puć',

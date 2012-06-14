@@ -1,6 +1,6 @@
 <?php
 /**
- * SVGMetadataExtractor.php
+ * Extraction of SVG image metadata.
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -25,6 +25,9 @@
  * @license http://www.gnu.org/copyleft/gpl.html GNU General Public License
  */
 
+/**
+ * @ingroup Media
+ */
 class SVGMetadataExtractor {
 	static function getMetadata( $filename ) {
 		$svg = new SVGReader( $filename );
@@ -32,6 +35,9 @@ class SVGMetadataExtractor {
 	}
 }
 
+/**
+ * @ingroup Media
+ */
 class SVGReader {
 	const DEFAULT_WIDTH = 512;
 	const DEFAULT_HEIGHT = 512;

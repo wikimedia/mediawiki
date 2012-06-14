@@ -441,7 +441,6 @@ Informasi: (bye) = petuho a nca selt,
 
 # Diffs
 'history-title' => 'Bundau di selt di "$1"',
-'difference' => '(Petuho kwa selt)',
 'lineno' => 'Lani $1:',
 'compareselectedversions' => 'Bapisize',
 'editundo' => "afi hloli ye ng'i",

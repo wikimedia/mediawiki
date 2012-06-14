@@ -396,6 +396,7 @@ CREATE TABLE /*$wgDBprefix*/ipblocks (
 	ipb_deleted BIT NOT NULL DEFAULT 0,
 	ipb_block_email BIT NOT NULL DEFAULT 0,
 	ipb_allow_usertalk BIT NOT NULL DEFAULT 0,
+	ipb_parent_block_id   INT DEFAULT NULL,
 );
 -- Unique index to support "user already blocked" messages
 -- Any new options which prevent collisions should be included

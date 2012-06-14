@@ -1,7 +1,23 @@
 <?php
 /**
+ * Interwiki table entry.
+ *
+ * This program is free software; you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation; either version 2 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License along
+ * with this program; if not, write to the Free Software Foundation, Inc.,
+ * 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
+ * http://www.gnu.org/copyleft/gpl.html
+ *
  * @file
- * Interwiki table entry
  */
 
 /**
@@ -42,7 +58,7 @@ class Interwiki {
 	 * Fetch an Interwiki object
 	 *
 	 * @param $prefix String: interwiki prefix to use
-	 * @return Interwiki Object, or null if not valid
+	 * @return Interwiki|null|bool
 	 */
 	static public function fetch( $prefix ) {
 		global $wgContLang;
@@ -165,7 +181,7 @@ class Interwiki {
 
 		$db = wfGetDB( DB_SLAVE );
 
-		$row = $db->fetchRow( $db->select( 'interwiki', '*', array( 'iw_prefix' => $prefix ),
+		$row = $db->fetchRow( $db->select( 'interwiki', self::selectFields(), array( 'iw_prefix' => $prefix ),
 			__METHOD__ ) );
 		$iw = Interwiki::loadFromArray( $row );
 		if ( $iw ) {
@@ -289,7 +305,7 @@ class Interwiki {
 		}
 
 		$res = $db->select( 'interwiki',
-			array( 'iw_prefix', 'iw_url', 'iw_api', 'iw_wikiid', 'iw_local', 'iw_trans' ),
+			self::selectFields(),
 			$where, __METHOD__, array( 'ORDER BY' => 'iw_prefix' )
 		);
 		$retval = array();
@@ -389,5 +405,21 @@ class Interwiki {
 	public function getDescription() {
 		$msg = wfMessage( 'interwiki-desc-' . $this->mPrefix )->inContentLanguage();
 		return !$msg->exists() ? '' : $msg;
+	}
+
+	/**
+	 * Return the list of interwiki fields that should be selected to create
+	 * a new interwiki object.
+	 * @return array
+	 */
+	public static function selectFields() {
+		return array(
+			'iw_prefix',
+			'iw_url',
+			'iw_api',
+			'iw_wikiid',
+			'iw_local',
+			'iw_trans'
+		);
 	}
 }

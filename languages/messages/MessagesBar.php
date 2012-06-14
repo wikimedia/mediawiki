@@ -649,7 +649,6 @@ Details stehen im [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} 
 
 # Diffs
 'history-title' => 'Versiónsgschicht voh „$1“',
-'difference' => '(Unterschiad zwischen dé Versiónen)',
 'lineno' => 'Zeiln $1:',
 'compareselectedversions' => 'Gwöde Versionen vagleichen',
 'editundo' => 'ryckgängig',
@@ -772,7 +771,7 @@ Details stehen im [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} 
 'nchanges' => '$1 {{PLURAL:$1|Änderrung|Änderrungen}}',
 'recentchanges' => 'Létzde Änderrungen',
 'recentchanges-legend' => 'Åzoagopziónen',
-'recentchangestext' => "Auf derer Seiten kåst d' létzden Änderrungen auf '''{{SITENAME}}''' nochévavóing.",
+'recentchanges-summary' => "Auf derer Seiten kåst d' létzden Änderrungen auf '''{{SITENAME}}''' nochévavóing.",
 'recentchanges-feed-description' => 'Vafóig mid dém Feed dé létzden Änderrungen in {{SITENAME}}.',
 'recentchanges-label-newpage' => 'Neiche Seiten',
 'recentchanges-label-minor' => 'Kloane Änderrungen',

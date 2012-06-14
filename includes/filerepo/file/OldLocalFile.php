@@ -1,6 +1,21 @@
 <?php
 /**
- * Old file in the oldimage table
+ * Old file in the oldimage table.
+ *
+ * This program is free software; you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation; either version 2 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License along
+ * with this program; if not, write to the Free Software Foundation, Inc.,
+ * 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
+ * http://www.gnu.org/copyleft/gpl.html
  *
  * @file
  * @ingroup FileAbstraction
@@ -17,6 +32,13 @@ class OldLocalFile extends LocalFile {
 	const CACHE_VERSION = 1;
 	const MAX_CACHE_ROWS = 20;
 
+	/**
+	 * @param $title Title
+	 * @param $repo FileRepo
+	 * @param $time null
+	 * @return OldLocalFile
+	 * @throws MWException
+	 */
 	static function newFromTitle( $title, $repo, $time = null ) {
 		# The null default value is only here to avoid an E_STRICT
 		if ( $time === null ) {
@@ -25,10 +47,21 @@ class OldLocalFile extends LocalFile {
 		return new self( $title, $repo, $time, null );
 	}
 
+	/**
+	 * @param $title Title
+	 * @param $repo FileRepo
+	 * @param $archiveName
+	 * @return OldLocalFile
+	 */
 	static function newFromArchiveName( $title, $repo, $archiveName ) {
 		return new self( $title, $repo, null, $archiveName );
 	}
 
+	/**
+	 * @param $row
+	 * @param $repo FileRepo
+	 * @return OldLocalFile
+	 */
 	static function newFromRow( $row, $repo ) {
 		$title = Title::makeTitle( NS_FILE, $row->oi_name );
 		$file = new self( $title, $repo, null, $row->oi_archive_name );
@@ -61,7 +94,7 @@ class OldLocalFile extends LocalFile {
 			return false;
 		}
 	}
-	
+
 	/**
 	 * Fields in the oldimage table
 	 * @return array
@@ -92,6 +125,7 @@ class OldLocalFile extends LocalFile {
 	 * @param $repo FileRepo
 	 * @param $time String: timestamp or null to load by archive name
 	 * @param $archiveName String: archive name or null to load by timestamp
+	 * @throws MWException
 	 */
 	function __construct( $title, $repo, $time, $archiveName ) {
 		parent::__construct( $title, $repo );
@@ -102,10 +136,16 @@ class OldLocalFile extends LocalFile {
 		}
 	}
 
+	/**
+	 * @return bool
+	 */
 	function getCacheKey() {
 		return false;
 	}
 
+	/**
+	 * @return String
+	 */
 	function getArchiveName() {
 		if ( !isset( $this->archive_name ) ) {
 			$this->load();
@@ -113,10 +153,16 @@ class OldLocalFile extends LocalFile {
 		return $this->archive_name;
 	}
 
+	/**
+	 * @return bool
+	 */
 	function isOld() {
 		return true;
 	}
 
+	/**
+	 * @return bool
+	 */
 	function isVisible() {
 		return $this->exists() && !$this->isDeleted(File::DELETED_FILE);
 	}
@@ -141,6 +187,10 @@ class OldLocalFile extends LocalFile {
 		wfProfileOut( __METHOD__ );
 	}
 
+	/**
+	 * @param $prefix string
+	 * @return array
+	 */
 	function getCacheFields( $prefix = 'img_' ) {
 		$fields = parent::getCacheFields( $prefix );
 		$fields[] = $prefix . 'archive_name';
@@ -148,10 +198,16 @@ class OldLocalFile extends LocalFile {
 		return $fields;
 	}
 
+	/**
+	 * @return string
+	 */
 	function getRel() {
 		return 'archive/' . $this->getHashPath() . $this->getArchiveName();
 	}
 
+	/**
+	 * @return string
+	 */
 	function getUrlRel() {
 		return 'archive/' . $this->getHashPath() . rawurlencode( $this->getArchiveName() );
 	}
@@ -173,14 +229,15 @@ class OldLocalFile extends LocalFile {
 		wfDebug(__METHOD__.': upgrading '.$this->archive_name." to the current schema\n");
 		$dbw->update( 'oldimage',
 			array(
-				'oi_width' => $this->width,
-				'oi_height' => $this->height,
-				'oi_bits' => $this->bits,
+				'oi_size'       => $this->size, // sanity
+				'oi_width'      => $this->width,
+				'oi_height'     => $this->height,
+				'oi_bits'       => $this->bits,
 				'oi_media_type' => $this->media_type,
 				'oi_major_mime' => $major,
 				'oi_minor_mime' => $minor,
-				'oi_metadata' => $this->metadata,
-				'oi_sha1' => $this->sha1,
+				'oi_metadata'   => $this->metadata,
+				'oi_sha1'       => $this->sha1,
 			), array(
 				'oi_name' => $this->getName(),
 				'oi_archive_name' => $this->archive_name ),
@@ -220,40 +277,45 @@ class OldLocalFile extends LocalFile {
 		$this->load();
 		return Revision::userCanBitfield( $this->deleted, $field, $user );
 	}
-	
+
 	/**
 	 * Upload a file directly into archive. Generally for Special:Import.
-	 * 
-	 * @param $srcPath string File system path of the source file
-	 * @param $archiveName string Full archive name of the file, in the form 
-	 * 	$timestamp!$filename, where $filename must match $this->getName()
 	 *
+	 * @param $srcPath string File system path of the source file
+	 * @param $archiveName string Full archive name of the file, in the form
+	 *     $timestamp!$filename, where $filename must match $this->getName()
+	 *
+	 * @param $timestamp string
+	 * @param $comment string
+	 * @param $user
+	 * @param $flags int
 	 * @return FileRepoStatus
 	 */
 	function uploadOld( $srcPath, $archiveName, $timestamp, $comment, $user, $flags = 0 ) {
 		$this->lock();
-		
+
 		$dstRel = 'archive/' . $this->getHashPath() . $archiveName;
 		$status = $this->publishTo( $srcPath, $dstRel,
 			$flags & File::DELETE_SOURCE ? FileRepo::DELETE_SOURCE : 0
 		);
-		
+
 		if ( $status->isGood() ) {
 			if ( !$this->recordOldUpload( $srcPath, $archiveName, $timestamp, $comment, $user ) ) {
 				$status->fatal( 'filenotfound', $srcPath );
 			}
 		}
-		
+
 		$this->unlock();
-		
+
 		return $status;
 	}
-	
+
 	/**
 	 * Record a file upload in the oldimage table, without adding log entries.
-	 * 
+	 *
 	 * @param $srcPath string File system path to the source file
 	 * @param $archiveName string The archive name of the file
+	 * @param $timestamp string
 	 * @param $comment string Upload comment
 	 * @param $user User User who did this upload
 	 * @return bool

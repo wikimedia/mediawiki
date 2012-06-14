@@ -61,14 +61,15 @@ class ApiQueryLangBacklinks extends ApiQueryGeneratorBase {
 					'original value returned by the previous query', '_badcontinue' );
 			}
 
-			$prefix = $this->getDB()->strencode( $cont[0] );
-			$title = $this->getDB()->strencode( $this->titleToKey( $cont[1] ) );
+			$db = $this->getDB();
+			$prefix = $db->addQuotes( $cont[0] );
+			$title = $db->addQuotes( $this->titleToKey( $cont[1] ) );
 			$from = intval( $cont[2] );
 			$this->addWhere(
-				"ll_lang > '$prefix' OR " .
-				"(ll_lang = '$prefix' AND " .
-				"(ll_title > '$title' OR " .
-				"(ll_title = '$title' AND " .
+				"ll_lang > $prefix OR " .
+				"(ll_lang = $prefix AND " .
+				"(ll_title > $title OR " .
+				"(ll_title = $title AND " .
 				"ll_from >= $from)))"
 			);
 		}
@@ -89,10 +90,17 @@ class ApiQueryLangBacklinks extends ApiQueryGeneratorBase {
 				$this->addWhereFld( 'll_title', $params['title'] );
 				$this->addOption( 'ORDER BY', 'll_from' );
 			} else {
-				$this->addOption( 'ORDER BY', 'll_title, ll_from' );
+				$this->addOption( 'ORDER BY', array(
+					'll_title',
+					'll_from'
+				));
 			}
 		} else {
-			$this->addOption( 'ORDER BY', 'll_lang, ll_title, ll_from' );
+			$this->addOption( 'ORDER BY', array(
+				'll_lang',
+				'll_title',
+				'll_from'
+			));
 		}
 
 		$this->addOption( 'LIMIT', $params['limit'] + 1 );
@@ -187,6 +195,23 @@ class ApiQueryLangBacklinks extends ApiQueryGeneratorBase {
 		);
 	}
 
+	public function getResultProperties() {
+		return array(
+			'' => array(
+				'pageid' => 'integer',
+				'ns' => 'namespace',
+				'title' => 'string',
+				'redirect' => 'boolean'
+			),
+			'lllang' => array(
+				'lllang' => 'string'
+			),
+			'lltitle' => array(
+				'lltitle' => 'string'
+			)
+		);
+	}
+
 	public function getDescription() {
 		return array( 'Find all pages that link to the given language link.',
 			'Can be used to find all links with a language code, or',
@@ -205,7 +230,7 @@ class ApiQueryLangBacklinks extends ApiQueryGeneratorBase {
 	public function getExamples() {
 		return array(
 			'api.php?action=query&list=langbacklinks&lbltitle=Test&lbllang=fr',
-			'api.php?action=query&generator=langbacklinks&glbltitle=Test&lbllang=fr&prop=info'
+			'api.php?action=query&generator=langbacklinks&glbltitle=Test&glbllang=fr&prop=info'
 		);
 	}
 

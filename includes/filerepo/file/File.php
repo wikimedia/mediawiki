@@ -9,6 +9,21 @@
 /**
  * Base code for files.
  *
+ * This program is free software; you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation; either version 2 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License along
+ * with this program; if not, write to the Free Software Foundation, Inc.,
+ * 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
+ * http://www.gnu.org/copyleft/gpl.html
+ *
  * @file
  * @ingroup FileAbstraction
  */
@@ -47,6 +62,11 @@ abstract class File {
 	const RENDER_FORCE = 2;
 
 	const DELETE_SOURCE = 1;
+
+	// Audience options for File::getDescription()
+	const FOR_PUBLIC = 1;
+	const FOR_THIS_USER = 2;
+	const RAW = 3;
 
 	/**
 	 * Some member variables can be lazy-initialised using __get(). The
@@ -94,6 +114,8 @@ abstract class File {
 	 */
 	protected $url, $extension, $name, $path, $hashPath, $pageCount, $transformScript;
 
+	protected $redirectTitle;
+
 	/**
 	 * @var bool
 	 */
@@ -128,6 +150,7 @@ abstract class File {
 	 *
 	 * @param $title Title|string
 	 * @param $exception string|bool Use 'exception' to throw an error on bad titles
+	 * @throws MWException
 	 * @return Title|null
 	 */
 	static function normalizeTitle( $title, $exception = false ) {
@@ -842,6 +865,13 @@ abstract class File {
 				}
 			}
 
+			// If the backend is ready-only, don't keep generating thumbnails
+			// only to return transformation errors, just return the error now.
+			if ( $this->repo->getReadOnlyReason() !== false ) {
+				$thumb = $this->transformErrorOutput( $thumbPath, $thumbUrl, $params, $flags );
+				break;
+			}
+
 			// Create a temp FS file with the same extension and the thumbnail
 			$thumbExt = FileBackend::extensionFromPath( $thumbPath );
 			$tmpFile = TempFSFile::factory( 'transform_', $thumbExt );
@@ -871,6 +901,8 @@ abstract class File {
 				} else {
 					$thumb = $this->transformErrorOutput( $thumbPath, $thumbUrl, $params, $flags );
 				}
+				// Give extensions a chance to do something with this thumbnail...
+				wfRunHooks( 'FileTransformed', array( $this, $thumb, $tmpThumbPath, $thumbPath ) );
 			}
 
 			// Purge. Useful in the event of Core -> Squid connection failure or squid
@@ -993,7 +1025,7 @@ abstract class File {
 	 *
 	 * @return array
 	 */
-	function getHistory($limit = null, $start = null, $end = null, $inc=true) {
+	function getHistory( $limit = null, $start = null, $end = null, $inc=true ) {
 		return array();
 	}
 
@@ -1538,12 +1570,18 @@ abstract class File {
 	}
 
 	/**
-	 * Get discription of file revision
+	 * Get description of file revision
 	 * STUB
 	 *
+	 * @param $audience Integer: one of:
+	 *      File::FOR_PUBLIC       to be displayed to all users
+	 *      File::FOR_THIS_USER    to be displayed to the given user
+	 *      File::RAW              get the description regardless of permissions
+	 * @param $user User object to check for, only if FOR_THIS_USER is passed
+	 *              to the $audience parameter
 	 * @return string
 	 */
-	function getDescription() {
+	function getDescription( $audience = self::FOR_PUBLIC, User $user = null ) {
 		return null;
 	}
 

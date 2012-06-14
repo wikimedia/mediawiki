@@ -37,19 +37,8 @@ class ApiProtect extends ApiBase {
 		global $wgRestrictionLevels;
 		$params = $this->extractRequestParams();
 
-		$this->requireOnlyOneParameter( $params, 'title', 'pageid' );
-
-		if ( isset( $params['title'] ) ) {
-			$titleObj = Title::newFromText( $params['title'] );
-			if ( !$titleObj ) {
-				$this->dieUsageMsg( array( 'invalidtitle', $params['title'] ) );
-			}
-		} elseif ( isset( $params['pageid'] ) ) {
-			$titleObj = Title::newFromID( $params['pageid'] );
-			if ( !$titleObj ) {
-				$this->dieUsageMsg( array( 'nosuchpageid', $params['pageid'] ) );
-			}
-		}
+		$pageObj = $this->getTitleOrPageId( $params, 'fromdbmaster' );
+		$titleObj = $pageObj->getTitle();
 
 		$errors = $titleObj->getUserPermissionsErrors( 'protect', $this->getUser() );
 		if ( $errors ) {
@@ -67,7 +56,7 @@ class ApiProtect extends ApiBase {
 		}
 
 		$restrictionTypes = $titleObj->getRestrictionTypes();
-		$dbr = wfGetDB( DB_SLAVE );
+		$db = $this->getDB();
 
 		$protections = array();
 		$expiryarray = array();
@@ -91,7 +80,7 @@ class ApiProtect extends ApiBase {
 			}
 
 			if ( in_array( $expiry[$i], array( 'infinite', 'indefinite', 'never' ) ) ) {
-				$expiryarray[$p[0]] = $dbr->getInfinity();
+				$expiryarray[$p[0]] = $db->getInfinity();
 			} else {
 				$exp = strtotime( $expiry[$i] );
 				if ( $exp < 0 || !$exp ) {
@@ -105,7 +94,7 @@ class ApiProtect extends ApiBase {
 				$expiryarray[$p[0]] = $exp;
 			}
 			$resultProtections[] = array( $p[0] => $protections[$p[0]],
-					'expiry' => ( $expiryarray[$p[0]] == $dbr->getInfinity() ?
+					'expiry' => ( $expiryarray[$p[0]] == $db->getInfinity() ?
 								'infinite' :
 								wfTimestamp( TS_ISO_8601, $expiryarray[$p[0]] ) ) );
 		}
@@ -115,7 +104,6 @@ class ApiProtect extends ApiBase {
 		$watch = $params['watch'] ? 'watch' : $params['watchlist'];
 		$this->setWatch( $watch, $titleObj );
 
-		$pageObj = WikiPage::factory( $titleObj );
 		$status = $pageObj->doUpdateRestrictions( $protections, $expiryarray, $cascade, $params['reason'], $this->getUser() );
 
 		if ( !$status->isOK() ) {
@@ -196,16 +184,24 @@ class ApiProtect extends ApiBase {
 		);
 	}
 
+	public function getResultProperties() {
+		return array(
+			'' => array(
+				'title' => 'string',
+				'reason' => 'string',
+				'cascade' => 'boolean'
+			)
+		);
+	}
+
 	public function getDescription() {
 		return 'Change the protection level of a page';
 	}
 
 	public function getPossibleErrors() {
 		return array_merge( parent::getPossibleErrors(),
-			$this->getRequireOnlyOneParameterErrorMessages( array( 'title', 'pageid' ) ),
+			$this->getTitleOrPageIdErrorMessage(),
 			array(
-				array( 'invalidtitle', 'title' ),
-				array( 'nosuchpageid', 'pageid' ),
 				array( 'toofewexpiries', 'noofexpiries', 'noofprotections' ),
 				array( 'create-titleexists' ),
 				array( 'missingtitle-createonly' ),

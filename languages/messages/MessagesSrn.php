@@ -629,7 +629,6 @@ A kan ben trowe efu dribi.
 
 # Diffs
 'history-title' => 'Historia fu "$1"',
-'difference' => '(A difrenti fu den kenki)',
 'lineno' => 'Lini $1:',
 'compareselectedversions' => 'Luku den difrenti fu den versi di teki',
 'editundo' => "drai pot' baka",

@@ -79,7 +79,6 @@ h6 {
 	padding-top: .5em;
 	padding-bottom: .17em;
 	border-bottom: 1px solid #aaa;
-	width: auto;
 }
 h1 {
 	font-size: 188%;
@@ -184,7 +183,7 @@ blockquote {
 	font-family: Times, "Times New Roman", serif;
 	font-style: italic;
 }*/
-pre, code, tt, kbd, samp {
+pre, code, tt, kbd, samp, .mw-code {
 	/*
 	 * Some browsers will render the monospace text too small, namely Firefox, Chrome and Safari.
 	 * Specifying any valid, second value will trigger correct behaviour without forcing a different font.
@@ -194,7 +193,7 @@ pre, code, tt, kbd, samp {
 code {
 	background-color: #f9f9f9;
 }
-pre {
+pre, .mw-code {
 	padding: 1em;
 	border: 1px dashed #2f6fab;
 	color: black;

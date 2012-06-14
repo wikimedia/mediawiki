@@ -34,9 +34,6 @@ class ViewAction extends FormlessAction {
 	}
 
 	public function show(){
-		global $wgSquidMaxage;
-
-		$this->getOutput()->setSquidMaxage( $wgSquidMaxage );
 		$this->page->view();
 	}
 

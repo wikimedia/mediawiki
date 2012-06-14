@@ -63,6 +63,7 @@ $namespaceGenderAliases = array(
 );
 
 $specialPageAliases = array(
+	'Activeusers'               => array( 'PërdoruesitAktivë' ),
 	'Allmessages'               => array( 'TëgjithaMesazhet' ),
 	'Allpages'                  => array( 'TëgjithaFaqet' ),
 	'Ancientpages'              => array( 'FaqetAntike' ),
@@ -71,7 +72,9 @@ $specialPageAliases = array(
 	'Blockme'                   => array( 'BllokomMua' ),
 	'Booksources'               => array( 'BurimeteLibrave' ),
 	'Categories'                => array( 'Kategori' ),
+	'ChangeEmail'               => array( 'NdryshoEmail' ),
 	'ChangePassword'            => array( 'NdryshoFjalëkalimin' ),
+	'ComparePages'              => array( 'KrahasoFaqet' ),
 	'Confirmemail'              => array( 'KonfirmoEmail' ),
 	'Contributions'             => array( 'Kontributet' ),
 	'CreateAccount'             => array( 'HapLlogari' ),
@@ -125,6 +128,10 @@ $specialPageAliases = array(
 
 $magicWords = array(
 	'redirect'                => array( '0', '#RIDREJTO', '#REDIRECT' ),
+	'notoc'                   => array( '0', '__JOTP__', '__NOTOC__' ),
+	'nogallery'               => array( '0', '__JOGALERI__', '__NOGALLERY__' ),
+	'toc'                     => array( '0', '__TP__', '__TOC__' ),
+	'noeditsection'           => array( '0', '__JOREDAKTIMSEKSIONI__', '__NOEDITSECTION__' ),
 	'currentmonth'            => array( '1', 'MUAJIMOMENTAL', 'MUAJIMOMENTAL2', 'CURRENTMONTH', 'CURRENTMONTH2' ),
 	'currentmonth1'           => array( '1', 'MUAJIMOMENTAL1', 'CURRENTMONTH1' ),
 	'currentmonthname'        => array( '1', 'EMRIIMUAJITMOMENTAL', 'CURRENTMONTHNAME' ),
@@ -145,10 +152,12 @@ $magicWords = array(
 	'numberofpages'           => array( '1', 'NUMRIFAQEVE', 'NUMBEROFPAGES' ),
 	'numberofarticles'        => array( '1', 'NUMRIIARTIKUJVE', 'NUMBEROFARTICLES' ),
 	'numberoffiles'           => array( '1', 'NUMRIISKEDAVE', 'NUMBEROFFILES' ),
-	'numberofusers'           => array( '1', 'NUMRIPËRDORUESVE', 'NUMBEROFUSERS' ),
+	'numberofusers'           => array( '1', 'NUMRIIPËRDORUESVE', 'NUMBEROFUSERS' ),
+	'numberofactiveusers'     => array( '1', 'NUMRIIPËRDORUESVEAKTIVË', 'NUMBEROFACTIVEUSERS' ),
 	'numberofedits'           => array( '1', 'NUMRIREDAKTIMEVE', 'NUMBEROFEDITS' ),
 	'numberofviews'           => array( '1', 'NUMRIISHIKIMEVE', 'NUMBEROFVIEWS' ),
 	'pagename'                => array( '1', 'EMRIFAQES', 'PAGENAME' ),
+	'namespace'               => array( '1', 'HAPËSIRA', 'NAMESPACE' ),
 	'fullpagename'            => array( '1', 'EMRIIPLOTËIFAQES', 'FULLPAGENAME' ),
 	'fullpagenamee'           => array( '1', 'EMRIIPLOTËIFAQESE', 'FULLPAGENAMEE' ),
 	'subpagename'             => array( '1', 'EMRIINËNFAQES', 'SUBPAGENAME' ),
@@ -163,7 +172,7 @@ $magicWords = array(
 	'img_right'               => array( '1', 'djathtas', 'right' ),
 	'img_left'                => array( '1', 'majtas', 'left' ),
 	'img_none'                => array( '1', 's\'ka', 'none' ),
-	'img_center'              => array( '1', 'qëndër', 'qëndrore', 'center', 'centre' ),
+	'img_center'              => array( '1', 'qendër', 'qendrore', 'center', 'centre' ),
 	'img_framed'              => array( '1', 'i_kornizuar', 'pa_kornizë', 'kornizë', 'framed', 'enframed', 'frame' ),
 	'img_page'                => array( '1', 'faqja=$1', 'faqja $1', 'page=$1', 'page $1' ),
 	'img_upright'             => array( '1', 'lartdjathtas', 'lartdjathtas=$1', 'lartdjathtas $1', 'upright', 'upright=$1', 'upright $1' ),
@@ -175,15 +184,20 @@ $magicWords = array(
 	'img_bottom'              => array( '1', 'fund', 'bottom' ),
 	'img_text_bottom'         => array( '1', 'tekst-fund', 'text-bottom' ),
 	'img_link'                => array( '1', 'lidhje=$1', 'link=$1' ),
-	'sitename'                => array( '1', 'EMRIIFAQES', 'SITENAME' ),
+	'sitename'                => array( '1', 'EMRIISAJTIT', 'SITENAME' ),
 	'localurl'                => array( '0', 'URLLOKALE', 'LOCALURL:' ),
 	'server'                  => array( '0', 'SERVERI', 'SERVER' ),
 	'servername'              => array( '0', 'EMRIISERVERIT', 'SERVERNAME' ),
 	'grammar'                 => array( '0', 'GRAMATIKA:', 'GRAMMAR:' ),
+	'gender'                  => array( '0', 'GJINIA:', 'GENDER:' ),
 	'currentweek'             => array( '1', 'JAVAMOMENTALE', 'CURRENTWEEK' ),
 	'plural'                  => array( '0', 'SHUMËS:', 'PLURAL:' ),
+	'fullurl'                 => array( '0', 'URLEPLOTË', 'FULLURL:' ),
 	'language'                => array( '0', '#GJUHA:', '#LANGUAGE:' ),
+	'numberofadmins'          => array( '1', 'NUMRIIADMINISTRUESVE', 'NUMBEROFADMINS' ),
 	'special'                 => array( '0', 'speciale', 'special' ),
+	'hiddencat'               => array( '1', '__KATEGORIEFSHEHUR__', '__HIDDENCAT__' ),
+	'pagesize'                => array( '1', 'MADHËSIAEFAQES', 'PAGESIZE' ),
 );
 
 $datePreferences = array(
@@ -871,7 +885,7 @@ Më poshtë mund t'i referoheni shënimit të regjistruar për bllokimin e fundi
 'updated' => '(E ndryshuar)',
 'note' => "'''Shënim:'''",
 'previewnote' => "'''Vini re! Kjo faqe është vetëm për shqyrtim.'''
-Ndryshimet tuaja nuk janë ruajtur ende! [[#editform|→ Vazhdo redaktimin]]",
+Ndryshimet tuaja nuk janë ruajtur ende!",
 'previewconflict' => 'Kjo parapamje reflekton tekstin sipër kutisë së redaktimit siç do të duket kur të kryeni ndryshimin.',
 'session_fail_preview' => "'''Ju kërkojmë ndjesë! Redaktimi juaj nuk mund të perpunohej për shkak të humbjes së të dhënave të seancës.'''
 Ju lutemi, provojeni përsëri.
@@ -1142,7 +1156,6 @@ Kini kujdes se përdorimi i lidhjeve të shfletimit do të ndryshojë përzgjedh
 
 # Diffs
 'history-title' => 'Historiku i redaktimeve te "$1"',
-'difference' => '(Ndryshime midis versioneve)',
 'difference-multipage' => '(Ndryshimi midis faqeve)',
 'lineno' => 'Rreshti $1:',
 'compareselectedversions' => 'Krahasoni versionet e zgjedhura',
@@ -1499,7 +1512,7 @@ Kjo informatë është publike.',
 'nchanges' => '$1 {{PLURAL:$1|ndryshim|ndryshime}}',
 'recentchanges' => 'Ndryshime së fundmi',
 'recentchanges-legend' => 'Zgjedhjet e ndryshimeve momentale',
-'recentchangestext' => 'Ndiqni ndryshime së fundmi tek kjo faqe.',
+'recentchanges-summary' => 'Ndiqni ndryshime së fundmi tek kjo faqe.',
 'recentchanges-feed-description' => 'Ndjek ndryshimet më të fundit në wiki tek kjo fushë.',
 'recentchanges-label-newpage' => 'Ky redaktim krijoi një faqe të re',
 'recentchanges-label-minor' => 'Ky është një editim i vogël',

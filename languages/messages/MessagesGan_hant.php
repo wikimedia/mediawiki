@@ -1,5 +1,5 @@
 <?php
-/** Traditional Gan script (‪贛語(繁體)‬)
+/** Traditional Gan script (‪贛語（繁體）‬)
  *
  * See MessagesQqq.php for message documentation incl. usage of parameters
  * To improve a translation please visit http://translatewiki.net
@@ -747,7 +747,6 @@ $2',
 
 # Diffs
 'history-title' => '歷史版本嗰 "$1"',
-'difference' => '（修改之間差異）',
 'lineno' => '第$1行:',
 'compareselectedversions' => '對比揀正嗰版本',
 'editundo' => '還原',
@@ -911,7 +910,7 @@ $2',
 'nchanges' => '$1道改動',
 'recentchanges' => '最晏嗰改動',
 'recentchanges-legend' => '箇晝子嗰更改選項',
-'recentchangestext' => '跟到箇隻wiki上嗰最新改動。',
+'recentchanges-summary' => '跟到箇隻wiki上嗰最新改動。',
 'recentchanges-feed-description' => '跟到箇隻 wiki 上集合嗰最後改動。',
 'recentchanges-label-newpage' => '箇隻編輯會建立隻新頁',
 'recentchanges-label-minor' => '箇係隻細修改',

@@ -542,7 +542,6 @@ fetola tshenolo',
 
 # Diffs
 'history-title' => 'Histori ya diphetogo tša "$1"',
-'difference' => '(Phapang magareng ga dipoeletšo)',
 'lineno' => 'Mothalo $1:',
 'compareselectedversions' => 'Bapetša diphapang tšeo di kgethilwego',
 'editundo' => 'dirolla',
@@ -660,7 +659,7 @@ Ga re fane ka e-poso ya gago go bašumiši ba bangwe ge ba polela le wena ka yon
 'nchanges' => '$1 {{PLURAL:$1|phetogo|diphetogo}}',
 'recentchanges' => 'Diphetogo tša bjale',
 'recentchanges-legend' => 'Dikgetho tša diphetogo tša bjale',
-'recentchangestext' => 'Lebalana diphetogo tše di mphsa-mphsa go wiki  letlakaleng le.',
+'recentchanges-summary' => 'Lebalana diphetogo tše di mphsa-mphsa go wiki  letlakaleng le.',
 'recentchanges-feed-description' => "Lebalana diphetogo tše di mphsa-mphsa go wiki  ka ''feed'' ye.",
 'recentchanges-label-newpage' => 'Phetogo ye e hlomile letlala le lefsa',
 'recentchanges-label-minor' => 'Ye ke phetogo ye nnyenyane',

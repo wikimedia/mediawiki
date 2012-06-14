@@ -70,6 +70,8 @@ class ApiQueryQueryPage extends ApiQueryGeneratorBase {
 	 * @param $resultPageSet ApiPageSet
 	 */
 	public function run( $resultPageSet = null ) {
+		global $wgQueryCacheLimit;
+
 		$params = $this->extractRequestParams();
 		$result = $this->getResult();
 
@@ -88,6 +90,7 @@ class ApiQueryQueryPage extends ApiQueryGeneratorBase {
 				if ( $ts ) {
 					$r['cachedtimestamp'] = wfTimestamp( TS_ISO_8601, $ts );
 				}
+				$r['maxresults'] = $wgQueryCacheLimit;
 			}
 		}
 		$result->addValue( array( 'query' ), $this->getModuleName(), $r );
@@ -167,6 +170,38 @@ class ApiQueryQueryPage extends ApiQueryGeneratorBase {
 			'page' => 'The name of the special page. Note, this is case sensitive',
 			'offset' => 'When more results are available, use this to continue',
 			'limit' => 'Number of results to return',
+		);
+	}
+
+	public function getResultProperties() {
+		return array(
+			ApiBase::PROP_ROOT => array(
+				'name' => array(
+					ApiBase::PROP_TYPE => 'string',
+					ApiBase::PROP_NULLABLE => false
+				),
+				'disabled' => array(
+					ApiBase::PROP_TYPE => 'boolean',
+					ApiBase::PROP_NULLABLE => false
+				),
+				'cached' => array(
+					ApiBase::PROP_TYPE => 'boolean',
+					Apibase::PROP_NULLABLE => false
+				),
+				'cachedtimestamp' => array(
+					ApiBase::PROP_TYPE => 'timestamp',
+					ApiBase::PROP_NULLABLE => true
+				)
+			),
+			'' => array(
+				'value' => 'string',
+				'timestamp' => array(
+					ApiBase::PROP_TYPE => 'timestamp',
+					ApiBase::PROP_NULLABLE => true
+				),
+				'ns' => 'namespace',
+				'title' => 'string'
+			)
 		);
 	}
 

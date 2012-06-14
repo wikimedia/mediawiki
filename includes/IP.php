@@ -133,7 +133,7 @@ class IP {
 	}
 
 	/**
-	 * Convert an IP into a nice standard form.
+	 * Convert an IP into a verbose, uppercase, normalized form.
 	 * IPv6 addresses in octet notation are expanded to 8 words.
 	 * IPv4 addresses are just trimmed.
 	 *
@@ -182,6 +182,49 @@ class IP {
 		}
 		// Remove leading zereos from each bloc as needed
 		$ip = preg_replace( '/(^|:)0+(' . RE_IPV6_WORD . ')/', '$1$2', $ip );
+		return $ip;
+	}
+
+	/**
+	 * Prettify an IP for display to end users.
+	 * This will make it more compact and lower-case.
+	 *
+	 * @param $ip string
+	 * @return string
+	 */
+	public static function prettifyIP( $ip ) {
+		$ip = self::sanitizeIP( $ip ); // normalize (removes '::')
+		if ( self::isIPv6( $ip ) ) {
+			// Split IP into an address and a CIDR
+			if ( strpos( $ip, '/' ) !== false ) {
+				list( $ip, $cidr ) = explode( '/', $ip, 2 );
+			} else {
+				list( $ip, $cidr ) = array( $ip, '' );
+			}
+			// Get the largest slice of words with multiple zeros
+			$offset = 0;
+			$longest = $longestPos = false;
+			while ( preg_match(
+				'!(?:^|:)0(?::0)+(?:$|:)!', $ip, $m, PREG_OFFSET_CAPTURE, $offset
+			) ) {
+				list( $match, $pos ) = $m[0]; // full match
+				if ( strlen( $match ) > strlen( $longest ) ) {
+					$longest = $match;
+					$longestPos = $pos;
+				}
+				$offset += ( $pos + strlen( $match ) ); // advance
+			}
+			if ( $longest !== false ) {
+				// Replace this portion of the string with the '::' abbreviation
+				$ip = substr_replace( $ip, '::', $longestPos, strlen( $longest ) );
+			}
+			// Add any CIDR back on
+			if ( $cidr !== '' ) {
+				$ip = "{$ip}/{$cidr}";
+			}
+			// Convert to lower case to make it more readable
+			$ip = strtolower( $ip );
+		}
 		return $ip;
 	}
 

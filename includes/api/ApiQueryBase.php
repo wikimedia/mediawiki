@@ -233,7 +233,7 @@ abstract class ApiQueryBase extends ApiBase {
 	 */
 	protected function addTimestampWhereRange( $field, $dir, $start, $end, $sort = true ) {
 		$db = $this->getDb();
-		return $this->addWhereRange( $field, $dir,
+		$this->addWhereRange( $field, $dir,
 			$db->timestampOrNull( $start ), $db->timestampOrNull( $end ), $sort );
 	}
 
@@ -519,7 +519,7 @@ abstract class ApiQueryBase extends ApiBase {
 			$this->addFields( 'ipb_deleted' );
 
 			if ( $showBlockInfo ) {
-				$this->addFields( array( 'ipb_reason', 'ipb_by_text', 'ipb_expiry' ) );
+				$this->addFields( array( 'ipb_id', 'ipb_by', 'ipb_by_text', 'ipb_reason', 'ipb_expiry' ) );
 			}
 
 			// Don't show hidden names

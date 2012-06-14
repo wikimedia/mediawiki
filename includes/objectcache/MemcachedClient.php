@@ -1,5 +1,7 @@
 <?php
 /**
+ * Memcached client for PHP.
+ *
  * +---------------------------------------------------------------------------+
  * | memcached client, PHP                                                     |
  * +---------------------------------------------------------------------------+
@@ -338,9 +340,10 @@ class MWMemcached {
 			$this->_debugprint( sprintf( "MemCache: delete %s (%s)\n", $key, $res ) );
 		}
 
-		if ( $res == "DELETED" ) {
+		if ( $res == "DELETED" || $res == "NOT_FOUND" ) {
 			return true;
 		}
+
 		return false;
 	}
 
@@ -829,7 +832,7 @@ class MWMemcached {
 	 * @access private
 	 */
 	function _hashfunc( $key ) {
-		# Hash function must on [0,0x7ffffff]
+		# Hash function must be in [0,0x7ffffff]
 		# We take the first 31 bits of the MD5 hash, which unlike the hash
 		# function used in a previous version of this client, works
 		return hexdec( substr( md5( $key ), 0, 8 ) ) & 0x7fffffff;
@@ -974,15 +977,6 @@ class MWMemcached {
 			$this->stats[$cmd]++;
 		} else {
 			$this->stats[$cmd] = 1;
-		}
-
-		// TTLs higher than 30 days will be detected as absolute TTLs
-		// (UNIX timestamps), and will result in the cache entry being
-		// discarded immediately because the expiry is in the past.
-		// Clamp expiries >30d at 30d, unless they're >=1e9 in which
-		// case they are likely to really be absolute (1e9 = 2011-09-09)
-		if ( $exp > 2592000 && $exp < 1000000000 ) {
-			$exp = 2592000;
 		}
 
 		$flags = 0;
@@ -1139,7 +1133,13 @@ class MWMemcached {
 // }}}
 
 class MemCachedClientforWiki extends MWMemcached {
+
 	function _debugprint( $text ) {
-		wfDebug( "memcached: $text" );
+		global $wgDebugLogGroups;
+		if( !isset( $wgDebugLogGroups['memcached'] ) ) {
+			# Prefix message since it will end up in main debug log file
+			$text = "memcached: $text";
+		}
+		wfDebugLog( 'memcached', $text );
 	}
 }

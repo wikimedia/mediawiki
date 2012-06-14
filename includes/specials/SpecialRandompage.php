@@ -85,7 +85,7 @@ class RandomPage extends SpecialPage {
 		$nsNames = array();
 		foreach( $this->namespaces as $n ) {
 			if( $n === NS_MAIN ) {
-				$nsNames[] = wfMsgNoTrans( 'blanknamespace' );
+				$nsNames[] = $this->msg( 'blanknamespace' )->plain();
 			} else {
 				$nsNames[] = $wgContLang->getNsText( $n );
 			}

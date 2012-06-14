@@ -129,7 +129,7 @@ class ApiQueryLinks extends ApiQueryGeneratorBase {
 			);
 		}
 
-		$dir = ( $params['dir'] == 'descending' ? ' DESC' : '' );
+		$sort = ( $params['dir'] == 'descending' ? ' DESC' : '' );
 		// Here's some MySQL craziness going on: if you use WHERE foo='bar'
 		// and later ORDER BY foo MySQL doesn't notice the ORDER BY is pointless
 		// but instead goes and filesorts, because the index for foo was used
@@ -137,13 +137,13 @@ class ApiQueryLinks extends ApiQueryGeneratorBase {
 		// clause from the ORDER BY clause
 		$order = array();
 		if ( count( $this->getPageSet()->getGoodTitles() ) != 1 ) {
-			$order[] = $this->prefix . '_from' . $dir;
+			$order[] = $this->prefix . '_from' . $sort;
 		}
 		if ( count( $params['namespace'] ) != 1 ) {
-			$order[] = $this->prefix . '_namespace' . $dir;
+			$order[] = $this->prefix . '_namespace' . $sort;
 		}
 
-		$order[] = $this->prefix . "_title" . $dir;
+		$order[] = $this->prefix . '_title' . $sort;
 		$this->addOption( 'ORDER BY', $order );
 		$this->addOption( 'USE INDEX', $this->prefix . '_from' );
 		$this->addOption( 'LIMIT', $params['limit'] + 1 );
@@ -224,6 +224,15 @@ class ApiQueryLinks extends ApiQueryGeneratorBase {
 			'continue' => 'When more results are available, use this to continue',
 			$this->titlesParam => $this->titlesParamDescription,
 			'dir' => 'The direction in which to list',
+		);
+	}
+
+	public function getResultProperties() {
+		return array(
+			'' => array(
+				'ns' => 'namespace',
+				'title' => 'string'
+			)
 		);
 	}
 

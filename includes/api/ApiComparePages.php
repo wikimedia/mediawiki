@@ -124,6 +124,25 @@ class ApiComparePages extends ApiBase {
 			'torev' => 'Second revision to compare',
 		);
 	}
+
+	public function getResultProperties() {
+		return array(
+			'' => array(
+				'fromtitle' => array(
+					ApiBase::PROP_TYPE => 'string',
+					ApiBase::PROP_NULLABLE => true
+				),
+				'fromrevid' => 'integer',
+				'totitle' => array(
+					ApiBase::PROP_TYPE => 'string',
+					ApiBase::PROP_NULLABLE => true
+				),
+				'torevid' => 'integer',
+				'*' => 'string'
+			)
+		);
+	}
+
 	public function getDescription() {
 		return array(
 			'Get the difference between 2 pages',

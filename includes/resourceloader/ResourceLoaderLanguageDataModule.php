@@ -1,5 +1,7 @@
 <?php
 /**
+ * Resource loader module for populating language specific data.
+ *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2 of the License, or
@@ -37,14 +39,16 @@ class ResourceLoaderLanguageDataModule extends ResourceLoaderModule {
 
 	/**
 	 * @param $context ResourceLoaderContext
-	 * @return string Javascript code
+	 * @return string: Javascript code
 	 */
 	public function getScript( ResourceLoaderContext $context ) {
 		global $wgContLang;
 
 		return Xml::encodeJsCall( 'mw.language.setData', array(
 			$wgContLang->getCode(),
-			array( 'grammarForms' => $this->getSiteLangGrammarForms() )
+			array(
+				'grammarForms' => $this->getSiteLangGrammarForms()
+			)
 		) );
 	}
 
@@ -60,13 +64,14 @@ class ResourceLoaderLanguageDataModule extends ResourceLoaderModule {
 		$hash = md5( serialize( $forms ) );
 
 		$result = $cache->get( $key );
-		if ( is_array( $result ) ) {
-			if ( $result['hash'] === $hash ) {
-				return $result['timestamp'];
-			}
+		if ( is_array( $result ) && $result['hash'] === $hash ) {
+			return $result['timestamp'];
 		}
 		$timestamp = wfTimestamp();
-		$cache->set( $key, array( 'hash' => $hash, 'timestamp' => $timestamp ) );
+		$cache->set( $key, array(
+			'hash' => $hash,
+			'timestamp' => $timestamp,
+		) );
 		return $timestamp;
 	}
 
@@ -74,6 +79,6 @@ class ResourceLoaderLanguageDataModule extends ResourceLoaderModule {
 	 * @return array
 	 */
 	public function getDependencies() {
-		return array( 'mediawiki.language' );
+		return array( 'mediawiki.language.init' );
 	}
 }

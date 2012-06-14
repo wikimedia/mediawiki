@@ -836,7 +836,6 @@ Gatèkna, angger nganggo pranala navigasi kuwe bakalan nge-reset kolom kiye.',
 
 # Diffs
 'history-title' => 'Sajarah revisi sekang "$1"',
-'difference' => '(Prabédan antarrevisi)',
 'difference-multipage' => '(Prabedan antarkaca)',
 'lineno' => 'Baris $1:',
 'compareselectedversions' => 'Bandingna revisi kapilih',
@@ -1184,7 +1183,7 @@ Aja kuatir, alamat imele Rika ora ditidokna dong pangganggo sejen ngontak Rika.'
 'nchanges' => '$1 {{PLURAL:$1|pangowahan|owah-owahan}}',
 'recentchanges' => 'Pengobahan',
 'recentchanges-legend' => 'Opsi owahan anyar',
-'recentchangestext' => 'Runutna owah-owahan anyare wiki nang kaca kiye.',
+'recentchanges-summary' => 'Runutna owah-owahan anyare wiki nang kaca kiye.',
 'recentchanges-feed-description' => "Urutna owah-owahan anyare wiki nang ''feed'' kiye.",
 'recentchanges-label-newpage' => 'Suntingan kiye gawé kaca anyar',
 'recentchanges-label-minor' => 'Kiye suntingan cilik',

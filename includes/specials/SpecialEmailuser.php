@@ -61,7 +61,8 @@ class SpecialEmailUser extends UnlistedSpecialPage {
 			),
 			'Subject' => array(
 				'type' => 'text',
-				'default' => wfMsgExt( 'defemailsubject', array( 'content', 'parsemag' ), $this->getUser()->getName() ),
+				'default' => $this->msg( 'defemailsubject',
+					$this->getUser()->getName() )->inContentLanguage()->text(),
 				'label-message' => 'emailsubject',
 				'maxlength' => 200,
 				'size' => 60,
@@ -124,11 +125,11 @@ class SpecialEmailUser extends UnlistedSpecialPage {
 		$this->mTargetObj = $ret;
 
 		$form = new HTMLForm( $this->getFormFields(), $this->getContext() );
-		$form->addPreText( wfMsgExt( 'emailpagetext', 'parseinline' ) );
-		$form->setSubmitText( wfMsg( 'emailsend' ) );
+		$form->addPreText( $this->msg( 'emailpagetext' )->parse() );
+		$form->setSubmitTextMsg( 'emailsend' );
 		$form->setTitle( $this->getTitle() );
-		$form->setSubmitCallback( array( __CLASS__, 'submit' ) );
-		$form->setWrapperLegend( wfMsgExt( 'email-legend', 'parsemag' ) );
+		$form->setSubmitCallback( array( __CLASS__, 'uiSubmit' ) );
+		$form->setWrapperLegendMsg( 'email-legend' );
 		$form->loadData();
 
 		if( !wfRunHooks( 'EmailUserForm', array( &$form ) ) ) {
@@ -224,12 +225,24 @@ class SpecialEmailUser extends UnlistedSpecialPage {
 		$string = Xml::openElement( 'form', array( 'method' => 'get', 'action' => $wgScript, 'id' => 'askusername' ) ) .
 			Html::hidden( 'title', $this->getTitle()->getPrefixedText() ) .
 			Xml::openElement( 'fieldset' ) .
-			Html::rawElement( 'legend', null, wfMessage( 'emailtarget' )->parse() ) .
-			Xml::inputLabel( wfMessage( 'emailusername' )->text(), 'target', 'emailusertarget', 30, $name ) . ' ' .
-			Xml::submitButton( wfMessage( 'emailusernamesubmit' )->text() ) .
+			Html::rawElement( 'legend', null, $this->msg( 'emailtarget' )->parse() ) .
+			Xml::inputLabel( $this->msg( 'emailusername' )->text(), 'target', 'emailusertarget', 30, $name ) . ' ' .
+			Xml::submitButton( $this->msg( 'emailusernamesubmit' )->text() ) .
 			Xml::closeElement( 'fieldset' ) .
 			Xml::closeElement( 'form' ) . "\n";
 		return $string;
+	}
+
+	/**
+	 * Submit callback for an HTMLForm object, will simply call submit().
+	 *
+	 * @since 1.20
+	 * @param $data array
+	 * @param $form HTMLForm object
+	 * @return Status|string|bool
+	 */
+	public static function uiSubmit( array $data, HTMLForm $form ) {
+		return self::submit( $data, $form->getContext() );
 	}
 
 	/**
@@ -240,25 +253,22 @@ class SpecialEmailUser extends UnlistedSpecialPage {
 	 * @return Mixed: Status object, or potentially a String on error
 	 * or maybe even true on success if anything uses the EmailUser hook.
 	 */
-	public static function submit( $data ) {
-		global $wgUser, $wgUserEmailUseReplyTo;
+	public static function submit( array $data, IContextSource $context ) {
+		global $wgUserEmailUseReplyTo;
 
 		$target = self::getTarget( $data['Target'] );
 		if( !$target instanceof User ) {
-			return wfMsgExt( $target . 'text', 'parse' );
+			return $context->msg( $target . 'text' )->parseAsBlock();
 		}
 		$to = new MailAddress( $target );
-		$from = new MailAddress( $wgUser );
+		$from = new MailAddress( $context->getUser() );
 		$subject = $data['Subject'];
 		$text = $data['Text'];
 
 		// Add a standard footer and trim up trailing newlines
 		$text = rtrim( $text ) . "\n\n-- \n";
-		$text .= wfMsgExt(
-			'emailuserfooter',
-			array( 'content', 'parsemag' ),
-			array( $from->name, $to->name )
-		);
+		$text .= $context->msg( 'emailuserfooter',
+			$from->name, $to->name )->inContentLanguage()->text();
 
 		$error = '';
 		if( !wfRunHooks( 'EmailUser', array( &$to, &$from, &$subject, &$text, &$error ) ) ) {
@@ -302,11 +312,8 @@ class SpecialEmailUser extends UnlistedSpecialPage {
 			// unless they are emailing themselves, in which case one
 			// copy of the message is sufficient.
 			if ( $data['CCMe'] && $to != $from ) {
-				$cc_subject = wfMsg(
-					'emailccsubject',
-					$target->getName(),
-					$subject
-				);
+				$cc_subject = $context->msg( 'emailccsubject' )->rawParams(
+					$target->getName(), $subject )->text();
 				wfRunHooks( 'EmailUserCC', array( &$from, &$from, &$cc_subject, &$text ) );
 				$ccStatus = UserMailer::send( $from, $from, $cc_subject, $text );
 				$status->merge( $ccStatus );

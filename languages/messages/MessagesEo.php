@@ -24,6 +24,7 @@
  * @author Michawiki
  * @author Mihxil
  * @author MinuteElectron
+ * @author Objectivesea
  * @author Omnipaedista
  * @author Pedroca cerebral
  * @author Petrus Adamus
@@ -533,12 +534,12 @@ $messages = array(
 'jumpto' => 'Iri al:',
 'jumptonavigation' => 'navigado',
 'jumptosearch' => 'serĉi',
-'view-pool-error' => 'Bedaŭrinde la serviloj estas tro uzata ĉi-momente.
+'view-pool-error' => 'Bedaŭrinde la serviloj estas tro uzataj ĉi-momente.
 Tro da uzantoj provas vidi ĉi tiun paĝon.
-Bonvolu atendi iom antaŭ vi provas atingi ĝin denove.
+Bonvolu atendi iom antaŭ provi atingi ĝin denove.
 
 $1',
-'pool-timeout' => 'Tempolimo atingis atendante ŝlosadon',
+'pool-timeout' => 'Tempolimo atingita dum atendo de ŝlosado',
 'pool-queuefull' => 'Atendovico de servilaro estas plena.',
 'pool-errorunknown' => 'Nekonata eraro',
 
@@ -699,6 +700,8 @@ $2',
 'ns-specialprotected' => 'Paĝoj en la {{ns:special}} nomspaco ne povas esti redaktataj.',
 'titleprotected' => "Ĉi titolo estas protektita de kreado de [[User:$1|$1]].
 La kialo donata estis ''$2''.",
+'invalidtitle-knownnamespace' => 'Nevalida titolo kun nomspaco "$2" kaj teksto "$3"',
+'invalidtitle-unknownnamespace' => 'Nevalida titolo kun nekonata nomspaca numero $1 kaj teksto "$2"',
 
 # Virus scanner
 'virus-badscanner' => "Malbona konfiguro: nekonata virusa skanilo: ''$1''",
@@ -788,6 +791,7 @@ Neniu retpoŝto estos sendita pro iuj jenaj kialoj.',
 'invalidemailaddress' => 'La retadreso ne povas esti akceptita, ĉar ĝi verŝajne havas malvalidan formaton.
 Enigi bone formatita adreso aŭ malplenigi tiun kampon.',
 'cannotchangeemail' => 'Kontaj retpoŝtadresoj ne povas esti ŝanĝita en ĉi tiu vikio.',
+'emaildisabled' => 'Ĉi tiu paĝaro ne povas sendi retpoŝtojn.',
 'accountcreated' => 'Konto kreita',
 'accountcreatedtext' => 'La uzanto-konto por $1 estas kreita.',
 'createaccount-title' => 'Konto-kreado por {{SITENAME}}',
@@ -988,7 +992,9 @@ La lasta protokolero estas jene montrata por via referenco:',
 Rememoru ke individuaj .css-aj kaj .js-aj paĝoj uzas minusklan titolon, ekz. {{ns:user}}:Foo/vector.css kontraŭe al {{ns:user}}:Foo/Vector.css.",
 'updated' => '(Ŝanĝo registrita)',
 'note' => "'''Noto:'''",
-'previewnote' => "'''Memoru, ke ĉi tio estas nur antaŭrigardo kaj ankoraŭ ne konservita!'''",
+'previewnote' => "'''Memoru, ke ĉi tio estas nur antaŭrigardo.''' 
+Viaj ŝanĝoj ne ankoraŭ estas konservitaj!",
+'continue-editing' => 'Redaktu plu',
 'previewconflict' => 'La jena antaŭrigardo montras la tekston el la supra tekstujo,
 kiel ĝi aperos se vi elektos konservi la paĝon.',
 'session_fail_preview' => "'''Ni ne povas procezi vian redakton pro perdo de seancaj datenoj.
@@ -1005,6 +1011,7 @@ La redakto estis malpermesita por preventi koruptado de la teksto de la paĝo.
 Ĉi tiel malofte okazas kiam vi uzas fuŝan TTT-an anoniman prokurilon.'''",
 'edit_form_incomplete' => "'''Kelkaj partoj de la redaktada formo ne atingis la servilon; rekontrolu ke via redakto estas ĝusta kaj reprovu.'''",
 'editing' => 'Redaktado de $1',
+'creating' => 'Kreado de $1',
 'editingsection' => 'Redaktante $1 (sekcion)',
 'editingcomment' => 'Redaktante $1 (nova sekcio)',
 'editconflict' => 'Redakta konflikto: $1',
@@ -1083,6 +1090,10 @@ Iuj ŝablonoj ne estos inkluzivitaj.',
 'parser-template-loop-warning' => 'Rekursiva ŝablono estis trovita: [[$1]]',
 'parser-template-recursion-depth-warning' => 'Limo de ŝablona profundeco pligrandiĝis ($1)',
 'language-converter-depth-warning' => 'Profundo de lingvo-konvertilo preterpasis limon ($1)',
+'node-count-exceeded-category' => 'Paĝoj kie la nombro da nodoj estas preterpasita',
+'node-count-exceeded-warning' => 'Paĝo preterpasis la nombron da nodoj.',
+'expansion-depth-exceeded-category' => 'Paĝoj en kiuj la ekpansiprofundo estas preterpasita',
+'expansion-depth-exceeded-warning' => 'Paĝo preterpasis la ekpansiprofundon.',
 
 # "Undo" feature
 'undo-success' => 'La redakto estas malfarebla.
@@ -1226,8 +1237,8 @@ Bonvolu kontroli la protokolojn.',
 
 # Suppression log
 'suppressionlog' => 'Protokolo pri subigado',
-'suppressionlogtext' => 'Jen listo de forigoj kaj forbaroj pri enhavo kaŝita per administrantoj.
-Rigardu la [[Special:BlockList|IP-forbarliston]] por la listo de nune operaciaj forbaroj kaj forigoj.',
+'suppressionlogtext' => 'Malsupre estas listo de forigoj kaj forbaroj pri enhavo kaŝita de administrantoj.
+Rigardu la [[Special:BlockList|forbarliston]] por la listo de nune operaciaj forbaroj kaj forigoj.',
 
 # History merging
 'mergehistory' => 'Kunfandigi historiojn de paĝoj',
@@ -1259,8 +1270,9 @@ Certigu ke ĉi tiu ŝanĝo tenos kontinuecon de la historia paĝo.',
 'mergelogpagetext' => 'Jen listo de la plej lastatempaj kunigoj de unu paĝhistorio en alian.',
 
 # Diffs
-'history-title' => 'Redakto-historio de "$1"',
-'difference' => '(Malsamoj inter versioj)',
+'history-title' => 'Revizio-historio de "$1"',
+'difference-title' => '$1: Malsamoj inter versioj',
+'difference-title-multipage' => 'Malsamoj inter la paĝoj $1 kaj $2',
 'difference-multipage' => '(Diferenco inter paĝoj)',
 'lineno' => 'Linio $1:',
 'compareselectedversions' => 'Kompari la elektitajn versiojn',
@@ -1618,7 +1630,7 @@ Jen hazarde generita valoro por via uzo: $1',
 'nchanges' => '$1 {{PLURAL:$1|ŝanĝo|ŝanĝoj}}',
 'recentchanges' => 'Lastaj ŝanĝoj',
 'recentchanges-legend' => 'Opcioj pri lastaj ŝanĝoj',
-'recentchangestext' => 'Per ĉi tiu paĝo vi povas sekvi la plej lastajn ŝanĝojn en la {{SITENAME}}.',
+'recentchanges-summary' => 'Per ĉi tiu paĝo vi povas sekvi la plej lastajn ŝanĝojn en la {{SITENAME}}.',
 'recentchanges-feed-description' => 'Sekvi la plej lastatempajn ŝanĝojn al la vikio en ĉi tiu fonto.',
 'recentchanges-label-newpage' => 'Ĉi tiu redakto kreis novan paĝon',
 'recentchanges-label-minor' => 'Ĉi tiu estas eta redakto',
@@ -1809,7 +1821,7 @@ Se la problemo kontinuas, kontaku [[Special:ListUsers/sysop|sisteman administran
 'backend-fail-writetemp' => 'Ne povis skribi intertempan dosieron.',
 'backend-fail-closetemp' => 'Ne povis fermi provizoran dosieron.',
 'backend-fail-read' => 'Ne povas legi dosieron "$1".',
-'backend-fail-create' => 'Ne povas krei dosieron $1.',
+'backend-fail-create' => 'Ne povas skribi dosieron $1.',
 
 # Lock manager
 'lockmanager-notlocked' => 'Ne povis malŝlosi "$1"; ĝi ne estas ŝlosita.',
@@ -2273,7 +2285,7 @@ La retadreso kiun vi enigis en [[Special:Preferences|viaj preferoj]] aperos kiel
 'watcherrortext' => 'Eraro okazis ŝanĝinte vian agordojn de atentaro por "$1".',
 
 'enotif_mailer' => 'Averta retmesaĝo de {{SITENAME}}',
-'enotif_reset' => 'Marki ĉiujn vizititajn paĝojn',
+'enotif_reset' => 'Marki ĉiujn paĝojn vizititaj',
 'enotif_newpagetext' => 'Tiu ĉi estas nova paĝo',
 'enotif_impersonal_salutation' => 'Uzanto de {{SITENAME}}',
 'changed' => 'ŝanĝita',
@@ -2570,7 +2582,7 @@ Jen la lasta ero de la forbara protokolo:',
 'badipaddress' => 'Neniu uzanto, aŭ la IP-adreso estas misformita.',
 'blockipsuccesssub' => 'Oni sukcese forbaris la adreson/nomon.',
 'blockipsuccesstext' => '[[Special:Contributions/$1|$1]] estas forbarita. <br />
-Vidu la [[Special:BlockList|liston de IP-forbaroj]] por kontroli.',
+Vidu la [[Special:BlockList|liston de forbaroj]] por kontroli.',
 'ipb-blockingself' => 'Vi preskaŭ forbaros vin mem! Ĉu vi certas ke vi volas fari ĉi tiel?',
 'ipb-confirmhideuser' => 'Vi preskaŭ forbaras uzanto kun "kaŝi uzanton" ŝalta. Ĉi tiu kaŝi la nomon de uzanto en ĉiuj listoj ka protokoloj. Ĉu vi certas ke vi volas fari ĉi tiel?',
 'ipb-edit-dropdown' => 'Redakti kialojn por forbaro.',
@@ -2622,7 +2634,7 @@ La kialo donita por la forbaro de $1 estis: "$2"',
 'blocklog-showsuppresslog' => 'Ĉi tiu uzanto estis forbarita kaj kaŝita antaŭe. Jen la protokolo pri subpremado por via informo:',
 'blocklogentry' => 'forbaris [[$1]] por daŭro de $2 $3',
 'reblock-logentry' => 'ŝanĝis forbarajn opciojn [[$1]] kun findato de $2 $3',
-'blocklogtext' => 'Ĉi tio estas protokolo pri forbaraj kaj malforbaraj agoj. Aŭtomate forbaritaj IP adresoj ne estas listigitaj. Vidu la [[Special:BlockList|IP forbarliston]] por ĉi-momente fobaritaj uzantoj kaj IP-adresoj.',
+'blocklogtext' => 'Ĉi tio estas protokolo pri forbaraj kaj malforbaraj agoj. Aŭtomate forbaritaj IP-adresoj ne estas listigitaj. Vidu la [[Special:BlockList|forbarliston]] por ĉi-momente forbaritaj uzantoj kaj IP-adresoj.',
 'unblocklogentry' => '$1 estis restarigita',
 'block-log-flags-anononly' => 'nur anonimaj uzantoj',
 'block-log-flags-nocreate' => 'kreado de kontoj malebligita',
@@ -2957,6 +2969,41 @@ Datoj de versioj kaj nomoj de redaktantoj estos preservitaj.
 'tooltip-preferences-save' => 'Konservi preferojn',
 'tooltip-summary' => 'Enigu mallongan resumon',
 
+# Stylesheets
+'common.css' => '/* La jena CSS influos la aspekton de ĉiaj temoj. */',
+'standard.css' => '/* La jena CSS influos la paĝaspekton por uzantoj de la Klasika temo. */',
+'nostalgia.css' => '/* La jena CSS influos la paĝaspekton por uzantoj de la Nostalgia temo. */',
+'cologneblue.css' => '/* La jena CSS influos la paĝaspekton por uzantoj de la Kolonja Blua temo. */',
+'monobook.css' => '/* La jena CSS influos la paĝaspekton por uzantoj de la Libreja temo. */',
+'myskin.css' => '/* La jena CSS influos la paĝaspekton por uzantoj de la Miŝela temo. */',
+'chick.css' => '/* La jena CSS influos la paĝaspekton por uzantoj de la Kokida temo. */',
+'simple.css' => '/* La jena CSS influos la paĝaspekton por uzantoj de la Simpla temo. */',
+'modern.css' => '/* La jena CSS influos la paĝaspekton por uzantoj de la Moderna temo. */',
+'vector.css' => '/* La jena CSS influos la paĝaspekton por uzantoj de la Vektora temo. */',
+'print.css' => '/* La jena CSS influos la prezentadon de la presaĵo. */',
+'handheld.css' => '/* La jena CSS influos manpremitajn komputilojn sur bazo de la temo kiu arangiĝis en $wgHandheldStyle. */',
+'noscript.css' => '/* La jena CSS influos uzantojn, kiuj desebligis Ĝavaskripton. */',
+'group-autoconfirmed.css' => '/* La jena CSS sole influos auxtokonfirmatajn uzantojn. */',
+'group-bot.css' => '/* La jena CSS sole influos robotojn. */',
+'group-sysop.css' => '/* La jena CSS sole influos administrantojn. */',
+'group-bureaucrat.css' => '/* La jena CSS sole influos burokratojn. */',
+
+# Scripts
+'common.js' => '/* La jena Ĝavaskripto ŝargiĝos por ĉiaj uzantoj ĉe ĉiu paĝoŝargado. */',
+'standard.js' => '/* La jena Ĝavaskripto ŝargiĝos por uzantoj de la Klasika temo. */',
+'nostalgia.js' => '/* La jena Ĝavaskripto ŝargiĝos por uzantoj de la Nostalgia temo. */',
+'cologneblue.js' => '/* La jena Ĝavaskripto ŝargiĝos por uzantoj de la Kolonja Blua temo. */',
+'monobook.js' => '/* La jena Ĝavaskripto ŝargiĝos por uzantoj de la Libreja temo. */',
+'myskin.js' => '/* La jena Ĝavaskripto ŝargiĝos por uzantoj de la Miŝela temo. */',
+'chick.js' => '/* La jena Ĝavaskripto ŝargiĝos por uzantoj de la Kokida temo. */',
+'simple.js' => '/* La jena Ĝavaskripto ŝargiĝos por uzantoj de la Simpla temo. */',
+'modern.js' => '/* La jena Ĝavaskripto ŝargiĝos por uzantoj de la Moderna temo. */',
+'vector.js' => '/* La jena Ĝavaskripto ŝargiĝos por uzantoj de la Vektora temo. */',
+'group-autoconfirmed.js' => '/* La jena Ĝavaskripto sole ŝargiĝos por auxtokonfirmataj uzantoj. */',
+'group-bot.js' => '/* La jena Ĝavaskripto sole ŝargiĝos por robotoj. */',
+'group-sysop.js' => '/* La jena Ĝavaskripto sole ŝargiĝos por administrantoj. */',
+'group-bureaucrat.js' => '/* La jena Ĝavaskripto sole ŝargiĝos por burokratoj. */',
+
 # Metadata
 'notacceptable' => 'La viki-servilo ne povas doni datumon en formato kiun via kliento povas legi.',
 
@@ -2995,11 +3042,15 @@ Datoj de versioj kaj nomoj de redaktantoj estos preservitaj.
 'pageinfo-viewsperedit' => 'Po rigardoj por redakto',
 
 # Skin names
-'skinname-standard' => 'Klasika',
+'skinname-standard' => 'Klasiko',
 'skinname-nostalgia' => 'Nostalgio',
 'skinname-cologneblue' => 'Kolonja Bluo',
 'skinname-monobook' => 'Librejo',
+'skinname-myskin' => 'Miŝelo',
 'skinname-chick' => 'Kokido',
+'skinname-simple' => 'Simplo',
+'skinname-modern' => 'Moderno',
+'skinname-vector' => 'Vektoro',
 
 # Patrolling
 'markaspatrolleddiff' => 'Marki kiel patrolitan',

@@ -11,6 +11,7 @@
  * @author Kaganer
  * @author Klenje
  * @author MF-Warburg
+ * @author Reedy
  * @author Urhixidur
  * @author לערי ריינהארט
  */
@@ -646,7 +647,6 @@ Leiende: (cur) = difarencis cun la version atuâl, (prec) = difarencis cun la ve
 
 # Diffs
 'history-title' => 'Storic dai cambiaments di "$1"',
-'difference' => '(Difarence jenfri des revisions)',
 'lineno' => 'Rie $1:',
 'compareselectedversions' => 'Confronte versions selezionadis',
 'editundo' => 'anule',
@@ -831,7 +831,7 @@ La tô direzion di pueste no ven mostrade cuant che i utents ti contatin.',
 'nchanges' => '$1 {{PLURAL:$1|cambiament|cambiaments}}',
 'recentchanges' => 'Ultins cambiaments',
 'recentchanges-legend' => 'Opzions dai ultins cambiaments',
-'recentchangestext' => 'Cheste pagjine e mostre i plui recents cambiaments inte {{SITENAME}}.',
+'recentchanges-summary' => 'Cheste pagjine e mostre i plui recents cambiaments inte {{SITENAME}}.',
 'recentchanges-feed-description' => 'Chest canâl al ripuarte i cambiaments plui recents ai contignûts di cheste wiki.',
 'recentchanges-label-newpage' => 'Chest cambiament al à creât une gnove pagjine',
 'recentchanges-label-minor' => 'Chest al è un piçul cambiament',
@@ -1350,7 +1350,7 @@ tu âs di cognossi lis conseguencis prime di lâ indevant.",
 In chescj câs, tu varâs di movi o unî a man lis informazions contignudis te pagjine di discussion, se tu lu desideris.",
 'movearticle' => 'Môf la vôs',
 'movenologin' => 'No tu sês jentrât',
-'movenologintext' => 'Tu âs di jessi un utent regjistrât e <a href="{{localurl:Special:UserLogin}}">jentrât</a> par movi une pagjine.',
+'movenologintext' => 'Tu âs di jessi un utent regjistrât e [[Special:UserLogin|jentrât]] par movi une pagjine.',
 'movenotallowed' => 'No tu âs i permès che a coventin par movi lis pagjinis.',
 'newtitle' => 'Al gnûf titul',
 'move-watch' => 'Ten di voli cheste pagjine',
