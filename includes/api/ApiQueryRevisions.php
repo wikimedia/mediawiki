@@ -554,7 +554,7 @@ class ApiQueryRevisions extends ApiQueryBase {
 				}
 
 				$text = $content->serialize( $format );
-				$vals['textformat'] = ContentHandler::getContentFormatMimeType( $format );
+				$vals['contentformat'] = ContentHandler::getContentFormatMimeType( $format );
 			}
 
 			if ( $text !== false ) {
