@@ -3461,11 +3461,11 @@ $wgSysopEmailBans = true;
  *
  * CIDR notation is hard to understand, it's easy to mistakenly assume that a
  * /1 is a small range and a /31 is a large range. Setting this to half the
- * number of bits avoids such errors.
+ * number of bits avoids such errors for IPv4.
  */
 $wgBlockCIDRLimit = array(
 	'IPv4' => 16, # Blocks larger than a /16 (64k addresses) will not be allowed
-	'IPv6' => 64, # 2^64 = ~1.8x10^19 addresses
+	'IPv6' => 32, # Blocks larger than a /32 (~7.9x10^28 addresses) will not be allowed
 );
 
 /**
