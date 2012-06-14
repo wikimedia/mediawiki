@@ -120,6 +120,7 @@ upgrade PHP if you have not done so prior to upgrading MediaWiki.
 * (bug 35264) Wrong type used for <ns> in export.xsd
 * (bug 24985) Use $wgTmpDirectory as the default temp directory so that people
   who don't have access to /tmp can specify an alternative.
+* (bug 27283) SqlBagOStuff breaks PostgreSQL transactions
 
 === API changes in 1.20 ===
 * (bug 34316) Add ability to retrieve maximum upload size from MediaWiki API.
