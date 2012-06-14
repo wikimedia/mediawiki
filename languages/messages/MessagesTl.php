@@ -738,8 +738,8 @@ Pansamantalang hudyat: $2',
 'showlivepreview' => 'Buhay na paunang tingin',
 'showdiff' => 'Ipakita ang mga pagbabago',
 'anoneditwarning' => "'''Babala:''' Hindi ka nakalagda.
-Matatala ang adres ng IP mo sa kasaysayan ng pagbabago ng pahinang ito.",
-'anonpreviewwarning' => "''Hindi ka nakalagda.  Itatala sa inyong pagtatala ang inyong adres ng IP sa kasaysayan ng pagbabago ng pahinang ito.''",
+Matatala ang iyong direksiyong IP sa kasaysayan ng pagbabago ng pahinang ito.",
+'anonpreviewwarning' => "''Hindi ka nakalagda.  Itatala sa inyong pagtatala ang inyong direksiyong IP sa kasaysayan ng pagbabago ng pahinang ito.''",
 'missingsummary' => "'''Paalala:''' Hindi ka nagbigay ng buod ng pagbabago.
 Kapag pinindot mo uli ang Sagip, masasagip ang pagbabago mo na wala nito.",
 'missingcommenttext' => 'Magbigay ng isang kumento/puna sa ibaba.',
@@ -1221,8 +1221,8 @@ Subuking lagyan ng unlapi/paunang ''all:'' upang hanapin ang lahat ng mga nialal
 'prefs-watchlist-token' => 'Balap ng talaan ng mga binabantayan:',
 'prefs-misc' => 'Bala-balaki',
 'prefs-resetpass' => 'Baguhin ang hudyat',
-'prefs-changeemail' => 'Baguhin ang tirahan na para sa e-liham',
-'prefs-setemail' => 'Magtakda ng bagong tirahan ng e-liham',
+'prefs-changeemail' => 'Baguhin ang direksiyong e-liham',
+'prefs-setemail' => 'Magtakda ng direksiyong e-liham',
 'prefs-email' => 'Mga pagpipilian para sa e-liham',
 'prefs-rendering' => 'Hitsura',
 'saveprefs' => 'Sagipin',
@@ -1297,7 +1297,7 @@ Dapat na mas mababa kaysa $1 {{PLURAL:$1|panitik|mga panitik}}.',
 Kung pipiliin mong ibigay ito, gagamitin ito para mabigyan ka ng pagkilala para iyong mga ginawa.",
 'prefs-help-email' => 'Hindi talaga kailangang may tirahan ng e-liham, subalit kailangan para sa muling pagtatakda ng hudyat, kung makalimutan mo ang hudyat mo.',
 'prefs-help-email-others' => 'Mapipili mo rin na makipag-ugnayan sa iyo ang iba sa pamamagitan ng iyong pahina ng tagagamit o usapan na hindi kailangang ilantad ang katauhan mo.',
-'prefs-help-email-required' => 'Kailangan ang adres ng e-liham.',
+'prefs-help-email-required' => 'Kailangan ang direksiyong e-liham.',
 'prefs-info' => 'Payak na kabatiran',
 'prefs-i18n' => 'Internasyonalisasyon',
 'prefs-signature' => 'Lagda',
@@ -1314,8 +1314,8 @@ Kung pipiliin mong ibigay ito, gagamitin ito para mabigyan ka ng pagkilala para 
 'prefs-diffs' => 'Mga pagkakaiba',
 
 # User preference: e-mail validation using jQuery
-'email-address-validity-valid' => 'Mukhang katanggap-tanggap ang tirahan ng e-liham',
-'email-address-validity-invalid' => 'Magpasok ng isang tanggap na tirahan ng e-liham',
+'email-address-validity-valid' => 'Mukhang katanggap-tanggap ang direkisyong e-liham',
+'email-address-validity-invalid' => 'Magpasok ng isang tanggap na direksiyong e-liham',
 
 # User rights
 'userrights' => 'Pamamahala ng mga karapatan ng tagagamit',
@@ -1345,7 +1345,7 @@ Kung pipiliin mong ibigay ito, gagamitin ito para mabigyan ka ng pagkilala para 
 'group-autoconfirmed' => 'Mga tagagamit na nakompirma sa kusang paraan (autokompirmasyon)',
 'group-bot' => "Mga ''bot''",
 'group-sysop' => 'Mga tagapangasiwa',
-'group-bureaucrat' => 'Mga burokrato',
+'group-bureaucrat' => 'Mga burokrata',
 'group-suppress' => 'Mga tagapagingat-tago',
 'group-all' => '(lahat)',
 
@@ -1586,8 +1586,8 @@ Hindi lilitaw ang buod na ipapasok mo sa pahina ng paglalarawan.
 Para lumitaw ang buod mo doon, kailangan mong kinakamay na baguhin ito.
 [[$1|thumb]]",
 'fileexists-extension' => "Mayroon talaksan na ganitong pangalan: [[$2|thumb]]
-* Pangalan ng ikakargang talaksan: '''<tt>[[:$1]]</tt>'''
-* Pangalan ng mayroon nang talaksan: '''<tt>[[:$2]]</tt>'''
+* Pangalan ng ikinakargang talaksan: '''<tt>[[:$1]]</tt>'''
+* Pangalan ng umiiral na talaksan: '''<tt>[[:$2]]</tt>'''
 Pumili ng ibang pangalan.",
 'fileexists-thumbnail-yes' => "Mukhang pinaliit ''(thumbnail)'' na larawan ang talaksan. [[$1|thumb]]
 Paki tingin ang talaksan '''<tt>[[:$1]]</tt>'''.
@@ -1743,8 +1743,8 @@ Pakisuring muli kung tama ang URL at kung buhay ang sityo/sayt.',
 Pakisuri kung buhay ang sayt, maghintay ng kaunti at subukin uli.
 Maaaring ibigin mong subukin uli sa isang hindi gaanong abalang panahon.',
 
-'license' => 'Paglilisensya:',
-'license-header' => 'Paglilisensya',
+'license' => 'Paglilisensiya:',
+'license-header' => 'Paglilisensiya',
 'nolicense' => 'Walang napili',
 'license-nopreview' => '(Walang makuhang paunang tingin)',
 'upload_source_url' => ' (isang tanggap at napupuntahan ng publikong URL)',
@@ -1762,7 +1762,7 @@ Kapag sinala ng tagagamit, tanging mga talaksan lang kung saan nagkarga ang taga
 'listfiles_user' => 'Tagagamit',
 'listfiles_size' => 'Sukat',
 'listfiles_description' => 'Paglalarawan',
-'listfiles_count' => 'Mga bersyon',
+'listfiles_count' => 'Mga bersiyon',
 
 # File description page
 'file-anchor-link' => 'Talaksan',
@@ -1942,7 +1942,7 @@ Nasugpo na ang mga ipinasok na <del>inekisan</del>.',
 'prefixindex-namespace' => 'Lahat ng mga pahinang may unlapi ($1 puwang ng pangalan)',
 'shortpages' => 'Mga maiikling pahina',
 'longpages' => 'Mga mahahabang pahina',
-'deadendpages' => 'Mga pahinang walang panloob na ugnay (internal link)',
+'deadendpages' => 'Mga pahinang walang kawing panloob (internal link)',
 'deadendpagestext' => "Ang mga sumusunod na mga pahina'y hindi umuugnay sa ibang mga pahina sa wiking ito.",
 'protectedpages' => 'Mga nakaprotektang pahina',
 'protectedpages-indef' => 'Mga walang katiyakang proteksyon lamang',
@@ -2084,7 +2084,7 @@ Maaaring may mga [[{{MediaWiki:Listgrouprights-helppage}}|karagdagang kabatiran]
 'emailuser' => 'Padalhan ng e-liham ang tagagamit',
 'emailpage' => 'Magpadala ng e-liham sa tagagamit',
 'emailpagetext' => 'Magagamit mo ang pormularyo sa ibaba para makapagpadala ng mensahe sa pamamagitan ng isang e-liham para sa tagagamit na ito.
-Ang ipinasok mong adres ng e-liham sa [[Special:Preferences|iyong mga kagustuhan ng tagagamit]] ay lilitaw bilang adres na "Mula kay" ng e-liham, para tuwirang makatugon sa iyo ang nakatanggap.',
+Ang ipinasok mong direksiyong e-liham sa [[Special:Preferences|iyong mga kagustuhan ng tagagamit]] ay lilitaw bilang adres na "Mula kay" ng e-liham, para tuwirang makatugon sa iyo ang nakatanggap.',
 'usermailererror' => 'Pagkakamaling sanhi ng pagkakabalik ng liham mula sa puntirya:',
 'defemailsubject' => 'E-liham ng {{SITENAME}} mula sa tagagamit na si "$1"',
 'usermaildisabled' => 'Hindi pinagana ang e-liham ng tagagamit',
@@ -2119,7 +2119,7 @@ Ang ipinasok mong adres ng e-liham sa [[Special:Preferences|iyong mga kagustuhan
 'watchlistfor2' => 'Para sa $1 $2',
 'nowatchlist' => 'Wala kang pahinang binabantayan.',
 'watchlistanontext' => 'Paki $1 upang makita o mabago ang mga aytem sa iyong binabantayan.',
-'watchnologin' => 'Di ka naka-lagda',
+'watchnologin' => 'Hindi nakalagda',
 'watchnologintext' => 'Dapat kang [[Special:UserLogin|nakalagda]] upang mabago ang talaan mo ng mga binabantayan.',
 'addwatch' => 'Idagdag sa bantayan',
 'addedwatchtext' => "Dinagdag na ang pahinang \"[[:\$1]]\" sa iyong [[Special:Watchlist|Babantayan]].

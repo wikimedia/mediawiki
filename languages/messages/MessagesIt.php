@@ -2951,6 +2951,7 @@ Tutte le operazioni di importazione trans-wiki sono registrate nel [[Special:Log
 'spambot_username' => 'MediaWiki - sistema di rimozione spam',
 'spam_reverting' => "Ripristinata l'ultima versione priva di collegamenti a $1",
 'spam_blanking' => 'Pagina svuotata, tutte le versioni contenevano collegamenti a $1',
+'spam_deleting' => 'Pagina cancellata, tutte le versioni contenevano collegamenti a $1',
 
 # Info page
 'pageinfo-title' => 'Informazioni per "$1"',

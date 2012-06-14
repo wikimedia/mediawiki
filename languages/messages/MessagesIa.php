@@ -2965,7 +2965,8 @@ Le causa es probabilemente un ligamine verso un sito externe que es presente in 
 'spamprotectionmatch' => 'Le sequente texto es lo que activava nostre filtro antispam: $1',
 'spambot_username' => 'Nettamento de spam in MediaWiki',
 'spam_reverting' => 'Revertite al ultime version que non contine ligamines a $1',
-'spam_blanking' => 'Tote le versiones contineva ligamines a $1. Le pagina ha essite vacuate.',
+'spam_blanking' => 'Tote le versiones contineva ligamines a $1. Le pagina es vacuate.',
+'spam_deleting' => 'Tote le versiones contineva ligamines a $1. Le pagina es delite.',
 
 # Info page
 'pageinfo-title' => 'Informationes pro "$1"',

@@ -520,7 +520,7 @@ Da qualsëssìa ëd coste funsion a sarà mandà gnun messagi fin che chiel (chi
 'invalidemailaddress' => "Costa adrëssa ëd pòsta eletrònica-sì as peul nen pijesse përchè a l'ha na forma nen bon-a.
 Për piasì che a buta n'adrëssa scrita giusta ò che a lassa ël camp veujd.",
 'cannotchangeemail' => "J'adrësse ëd pòsta eletrònica dij cont a peulo pa esse modificà ansima a costa wiki.",
-'emaildisabled' => 'Ës sit a peul pa mandé ëd mëssagi ëd pòsta eletrònica.',
+'emaildisabled' => 'Ës sit a peul pa mandé dij mëssagi ëd pòsta eletrònica.',
 'accountcreated' => 'Cont creà',
 'accountcreatedtext' => "Ël cont Utent për $1 a l'é stàit creà.",
 'createaccount-title' => 'Creassion ëd cont për {{SITENAME}}',

@@ -3105,6 +3105,7 @@ Esto podría estar causado por un enlace a un sitio externo incluido en la lista
 'spambot_username' => 'Limpieza de spam de MediaWiki',
 'spam_reverting' => 'Revirtiendo a la última versión que no contenga enlaces a $1',
 'spam_blanking' => 'Todas las revisiones contienen enlaces a $1, blanqueando',
+'spam_deleting' => 'Todas las revisiones que contienen enlaces a $1, en proceso de eliminación',
 
 # Info page
 'pageinfo-title' => 'Información para «$1»',

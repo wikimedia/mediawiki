@@ -1254,6 +1254,10 @@ Lis intrêyes <del>bårêyes</del> otn ddja stî coridjeyes.",
 'brokenredirects-edit' => 'candjî',
 'brokenredirects-delete' => 'disfacer',
 
+'withoutinterwiki' => 'Pådjes sins loyéns eterwiki',
+'withoutinterwiki-summary' => "Les pådjes shuvantes n' ont nén des loyéns viè ds ôtes lingaedjes.",
+'withoutinterwiki-legend' => 'Betchete',
+
 'fewestrevisions' => "Årtikes k' on n' î a waire bodjî",
 
 # Miscellaneous special pages
@@ -1276,6 +1280,8 @@ Lis intrêyes <del>bårêyes</del> otn ddja stî coridjeyes.",
 'popularpages' => 'Pådjes les pus léjhowes',
 'wantedcategories' => 'Categoreyes les pus rcwerowes',
 'wantedpages' => 'Pådjes les pus rcwerowes',
+'wantedfiles' => 'Fitchîs les pus rcwerous',
+'wantedtemplates' => 'Modeles ricwerous',
 'mostlinked' => 'Pådjes les pus loyeyes',
 'mostlinkedcategories' => 'Categoreyes les pus loyeyes',
 'mostlinkedtemplates' => 'Modeles les pus eployîs',
@@ -1286,7 +1292,15 @@ Lis intrêyes <del>bårêyes</del> otn ddja stî coridjeyes.",
 'shortpages' => 'Coûtès pådjes',
 'longpages' => 'Longowès pådjes',
 'deadendpages' => 'Pådjes sins nou loyén wiki',
+'deadendpagestext' => "Les pådjes shuvantes n' ont nou loyén viè ds ôtès pådjes di {{SITENAME}}.",
 'protectedpages' => 'Pådjes protedjeyes',
+'protectedpages-indef' => "Seulmint les protedjaedje disk' a todi",
+'protectedpages-cascade' => 'Seulmint les protedjaedjes e cascåde',
+'protectedpagestext' => "Les pådjes shuvantes sont protedjeyes siconte li displaeçaedje ou l' candjmint do tecse",
+'protectedpagesempty' => 'I gn a pol moumint nole pådje sifwaitmint protedjeye.',
+'protectedtitles' => 'Tites protedjîs',
+'protectedtitlestext' => "Les tites shuvants sont protedjîs, ça fwait k' on n' pout nén ahiver ene pådje lomêye inla.",
+'protectedtitlesempty' => 'I gn a pol moumint nou tite sifwaitmint protedjî.',
 'listusers' => 'Djivêye des uzeus',
 'usereditcount' => '$1 candjmint{{PLURAL:$1||s}}',
 'usercreated' => '{{GENDER:$3|Edjîstré|Edjîstrêye}} li $1 a $2',
@@ -1335,10 +1349,13 @@ Vos ploz defini l' håynaedje tot tchoezixhant ene sôre di djournå, on no d' u
 [[Special:UnusedCategories|Les categoreyes nén eployeyes]] èn sont nén håynêyes chal.
 Loukîz eto [[Special:WantedCategories|les categoreyes dimandêyes]].',
 'categoriesfrom' => 'Håyner les categoreyes a pårti di:',
+'special-categories-sort-count' => 'relére pa nombe di cayets',
+'special-categories-sort-abc' => 'relére alfabeticmint',
 
 # Special:DeletedContributions
 'deletedcontributions' => 'Contribouwaedjes disfacés',
 'deletedcontributions-title' => 'Contribouwaedjes disfacés',
+'sp-deletedcontributions-contribs' => 'contribouwaedjes',
 
 # Special:LinkSearch
 'linksearch' => 'Cweri des dfoûtrinnès hårdêyes',
@@ -1353,6 +1370,9 @@ Protocoles ricnoxhous: <tt>$1</tt> (nelzès metoz nén dins vosse tchinne di cwe
 
 # Special:ListUsers
 'listusersfrom' => 'Håyner les uzeus a pårti di:',
+'listusers-submit' => 'Vey',
+'listusers-noresult' => 'Nol uzeu di trové.',
+'listusers-blocked' => '({{GENDER:$1|bloké|blokêye}})',
 
 # Special:Log/newusers
 'newuserlogpage' => 'Djournå des noveas uzeus',
@@ -1501,21 +1521,49 @@ Li dierin candjmint a stî fwait pa [[User:$3|$3]] ([[User talk:$3|Copene]]).",
 'protectlogtext' => "Chal pa dzo c' est ene djivêye des protedjaedjes et disprotedjaedjes des pådjes.
 Loukîz al [[Special:ProtectedPages|djivêye des pådjes protedjeyes]] po vey les protedjaedjes ki sont en alaedje pol moumint.",
 'protectedarticle' => '«[[$1]]» protedjî',
+'modifiedarticleprotection' => "a candjî l' livea d' protedjaedje di «[[$1]]»",
 'unprotectedarticle' => 'a disprotedjî «[[$1]]»',
+'movedarticleprotection' => 'a displaecî les parametes di protedjaedje di «[[$1]]» eviè «[[$2]]»',
 'protect-title' => 'Protedjant «$1»',
+'protect-title-notallowed' => "Livea d' protedjaedje di «$1»",
 'prot_1movedto2' => '[[$1]] displaecî viè [[$2]]',
+'protect-badnamespace-title' => 'Espåce di lomaedjé nén protedjåve',
+'protect-badnamespace-text' => "Les pådjes e cist espåce di lomaedje ci n' polèt nén esse protedjeyes.",
 'protect-legend' => "Acertinez l' protedjaedje",
 'protectcomment' => 'Råjhon:',
+'protectexpiry' => 'Termene:',
+'protect-unchain-permissions' => "Disclawer d' ôtès tchuzes di protedjaedje",
 'protect-text' => "Vos ploz droci vey eyet candjî l' livea d' protedjaedje pol pådje '''$1'''.",
 'protect-default' => 'Permete a tos les uzeus',
 'protect-level-autoconfirmed' => 'Bloker les noveas uzeus et les cis nén edjîstrés',
 'protect-level-sysop' => 'Seulmint les manaedjeus',
+'protect-summary-cascade' => 'e cascåde',
+'protect-expiring' => 'finixh li $1 (UTC)',
+'protect-expiring-local' => 'finixh li $1',
+'protect-expiry-indefinite' => 'po todi',
+'protect-cascade' => 'Protedjî eto les modeles eployîs so cisse pådje ci (protedjaedje e cascåde)',
+'protect-othertime' => 'Date di fén:',
+'protect-othertime-op' => 'ôte (a vos del diner)',
+'protect-existing-expiry' => 'Li protedjaedje finixh li $2 a $3',
+'protect-otherreason' => 'Ene råjhon diferinne ou di pus:',
+'protect-otherreason-op' => 'Ôte råjhon',
 'protect-expiry-options' => '1 eure:1 hour,1 djoû:1 day,1 samwinne:1 week,2 samwinnes:2 weeks,1 moes:1 month,3 moes:3 months,6 moes:6 months,1 anêye:1 year,po todi:infinite',
+'restriction-type' => 'Permission po:',
+'restriction-level' => "Livea d' protedjaedje:",
+'minimum-size' => 'Grandeu minimom',
+'maximum-size' => 'Grandeu macsimom:',
 'pagesize' => '(octets)',
 
 # Restrictions (nouns)
-'restriction-edit' => 'Candjî',
-'restriction-move' => 'Displaecî',
+'restriction-edit' => 'candjî',
+'restriction-move' => 'displaecî',
+'restriction-create' => 'ahiver',
+'restriction-upload' => 'eberweter',
+
+# Restriction levels
+'restriction-level-sysop' => 'protedjaedje complet',
+'restriction-level-autoconfirmed' => 'dimey-protedjaedje',
+'restriction-level-all' => 'tos les liveas',
 
 # Undelete
 'undelete' => 'Rapexhî des disfacêyès pådjes',
@@ -1523,6 +1571,7 @@ Loukîz al [[Special:ProtectedPages|djivêye des pådjes protedjeyes]] po vey le
 'viewdeletedpage' => 'Vey les disfacêyès pådjes',
 'undeletepagetext' => '{{PLURAL:$1|Li pådje shuvante a stî disfacêye mins elle est co ezès årtchives, do côp ele pout esse rapexheye|Les pådjes shuvantes ont stî disfacêyes mins ele sont co ezès årtchives, do côp ele polèt esse rapexheyes}}.
 Les årtchives polèt esse rnetieyes di tinzintins.',
+'undelete-fieldset-title' => 'Rapexhî les modêyes',
 'undeleteextrahelp' => "Po rapexhî l' istwere etire del pådje, leyîz vudes totes les boesses a clitchî eyet clitchîz sol boton «'''{{int:undeletebtn}}'''».
 Po rapexhî seulmint des modêyes k' i gn a, tchoezixhoz les cenes ki vos vloz avou les boesses a clitchî, eyet poy clitchîz sol boton «'''{{int:undeletebtn}}'''».",
 'undeleterevisions' => '$1 modêye{{PLURAL:$1||s}} ezès årtchives',
@@ -1583,7 +1632,7 @@ Li dierinne intrêye e djournå des blocaedjes est dnêye chal pa dzo po infôrm
 
 # What links here
 'whatlinkshere' => 'Pådjes ki loynut chal',
-'whatlinkshere-title' => 'Pådjes ki loynut aviè « $1 »',
+'whatlinkshere-title' => 'Pådjes ki loynut aviè «$1»',
 'whatlinkshere-page' => 'Pådje:',
 'linkshere' => "Les pådjes ki shuvèt ont des loyéns viè '''[[:$1]]''':",
 'nolinkshere' => "Nole pådje avou des loyéns viè '''[[:$1]]'''.",

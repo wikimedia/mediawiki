@@ -3127,7 +3127,8 @@ Das liegt wahrscheinlich an einem Link auf eine externe Seite.',
 'spamprotectionmatch' => "'''Der folgende Text wurde vom Spamfilter gefunden: ''$1'''''",
 'spambot_username' => 'MediaWiki-Spam-Säuberung',
 'spam_reverting' => 'Letzte Version ohne Links zu $1 wiederhergestellt.',
-'spam_blanking' => 'Alle Versionen enthielten Links zu $1, bereinigt.',
+'spam_blanking' => 'Alle Versionen mit einem Link zu $1 wurden bereinigt.',
+'spam_deleting' => 'Alle Versionen mit einem Link zu $1 wurden gelöscht.',
 
 # Info page
 'pageinfo-title' => 'Informationen zu „$1“',
