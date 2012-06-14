@@ -324,8 +324,8 @@ class SkinTemplate extends Skin {
 		$lang = $wgLang->getCode();
 		$dir  = $wgLang->getDir();
 		if ( $lang !== $wgContLang->getCode() || $dir !== $wgContLang->getDir() ) {
-			$escUserlang = htmlspecialchars( $userlang );
-			$escUserdir = htmlspecialchars( $userdir );
+			$escUserlang = htmlspecialchars( $lang );
+			$escUserdir = htmlspecialchars( $dir );
 			// Attributes must be in double quotes because htmlspecialchars() doesn't
 			// escape single quotes
 			$attrs = " lang=\"$escUserlang\" dir=\"$escUserdir\"";
