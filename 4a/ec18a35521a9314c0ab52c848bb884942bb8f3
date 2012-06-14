@@ -1,0 +1,8 @@
+Verified+1: jenkins-bot
+Code-Review+2: L10n-bot <l10n-bot@translatewiki.net>
+Verified+1: L10n-bot <l10n-bot@translatewiki.net>
+Submitted-by: L10n-bot <l10n-bot@translatewiki.net>
+Submitted-at: Thu, 14 Jun 2012 18:59:51 +0000
+Reviewed-on: https://gerrit.wikimedia.org/r/11319
+Project: mediawiki/core
+Branch: refs/heads/master
