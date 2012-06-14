@@ -718,7 +718,7 @@ class ResourceLoader {
 					if ( $context->getDebug() && !$context->getOnly() && $module->supportsURLLoading() ) {
 						$styles = $module->getStyleURLsForDebug( $context );
 					} else {
-						$styles = $module->getStyles( $context );
+						$styles = self::makeCombinedStyles( $module->getStyles( $context ) );
 					}
 				}
 
@@ -737,7 +737,7 @@ class ResourceLoader {
 						}
 						break;
 					case 'styles':
-						$out .= self::makeCombinedStyles( $styles );
+						$out .= $styles;
 						break;
 					case 'messages':
 						$out .= self::makeMessageSetScript( new XmlJsCode( $messagesBlob ) );
@@ -755,7 +755,7 @@ class ResourceLoader {
 						$out .= self::makeLoaderImplementScript(
 							$name,
 							$scripts,
-							self::makeCombinedStyles( $styles ),
+							$styles,
 							new XmlJsCode( $messagesBlob )
 						);
 						break;
