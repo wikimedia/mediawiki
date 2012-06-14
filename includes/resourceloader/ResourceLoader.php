@@ -737,7 +737,7 @@ class ResourceLoader {
 						}
 						break;
 					case 'styles':
-						$out .= self::makeCombinedStyles( $styles );
+						$out .= $styles;
 						break;
 					case 'messages':
 						$out .= self::makeMessageSetScript( new XmlJsCode( $messagesBlob ) );
@@ -751,11 +751,13 @@ class ResourceLoader {
 									$styles[$media] = $this->filter( 'minify-css', $style );
 								}
 							}
+							// Combine styles for all media types
+							$styles = self::makeCombinedStyles( $styles );
 						}
 						$out .= self::makeLoaderImplementScript(
 							$name,
 							$scripts,
-							self::makeCombinedStyles( $styles ),
+							$styles,
 							new XmlJsCode( $messagesBlob )
 						);
 						break;
