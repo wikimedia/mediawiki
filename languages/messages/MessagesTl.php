@@ -159,7 +159,7 @@ $messages = array(
 'tog-enotifwatchlistpages' => 'Padalhan ako ng e-liham kapag nabago ang isa sa mga pahinang binabantayan ko',
 'tog-enotifusertalkpages' => 'Padalhan ako ng e-liham kapag binago ang aking pahina ng usapan',
 'tog-enotifminoredits' => 'Padalhan din ako ng e-liham para sa mga maliliit na pagbabago ng mga pahina',
-'tog-enotifrevealaddr' => 'Ipakita ang adres ng e-liham ko sa loob ng mga e-liham ng pagpapahayag',
+'tog-enotifrevealaddr' => 'Ipakita ang aking direksiyong e-liham sa loob ng mga e-liham ng pagpapahayag',
 'tog-shownumberswatching' => 'Ipakita ang bilang ng mga nagbabantay na tagagamit',
 'tog-oldsig' => 'Umiiral na lagda:',
 'tog-fancysig' => 'Ituring ang lagda bilang teksto ng wiki (walang automatikong pagkawing)',
@@ -390,9 +390,9 @@ $1',
 'badaccess-group0' => 'Hindi ka pinahintulutang isagawa ang hiniling mong kilos.',
 'badaccess-groups' => 'Ang kilos na hiniling mo ay nakatakda lamang para sa mga tagagamit sa {{PLURAL:$2|pangkat na|isa sa mga pangkat na}}: $1.',
 
-'versionrequired' => 'Kinakailangan ang bersyong $1 ng MediaWiki',
+'versionrequired' => 'Kinakailangan ang bersiyong $1 ng MediaWiki',
 'versionrequiredtext' => 'Kinakailangan ang bersyong $1 ng MediaWiki upang magamit ang pahinang ito.
-Tingnan ang [[Special:Version|pahina ng bersyon]].',
+Tingnan ang [[Special:Version|pahina ng bersiyon]].',
 
 'ok' => 'Sige',
 'retrievedfrom' => 'Ikinuha mula sa "$1"',
@@ -413,7 +413,7 @@ Tingnan ang [[Special:Version|pahina ng bersyon]].',
 'collapsible-expand' => 'Ibuka',
 'thisisdeleted' => 'Tingnan o ibalik ang $1?',
 'viewdeleted' => 'Tingnan ang $1?',
-'restorelink' => '{{PLURAL:$1|isang binurang pagbabagp|$1 binurang pagbabago}}',
+'restorelink' => '{{PLURAL:$1|isang binurang pagbabago|$1 binurang pagbabago}}',
 'feedlinks' => 'Subo/Karga:',
 'feed-invalid' => 'Hindi tanggap na uri ng serbisyo ng pagpaparating.',
 'feed-unavailable' => 'Walang serbisyo mula sa sindikasyong pangpaglalathala',
@@ -670,18 +670,18 @@ Maaaring matagumpay mo nang nabago ang iyong hudyat o nakahiling na ng isang bag
 'passwordreset-text' => 'Punuin ang pormularyong ito upang makatanggap ng isang pampaalalang e-liham ng iyong mga detalye ng akawnt.',
 'passwordreset-legend' => 'Itakdang muli ang hudyat',
 'passwordreset-disabled' => 'Hindi pinagagana sa wiking ito ang muling mga pagtatakda ng hudyat.',
-'passwordreset-pretext' => '{{PLURAL:$1| | Ipasok ang isa sa mga piraso ng dato sa ibaba}}',
+'passwordreset-pretext' => '{{PLURAL:$1| | Ipasok ang isa sa mga piraso ng datos sa ibaba}}',
 'passwordreset-username' => 'Pangalan ng tagagamit:',
 'passwordreset-domain' => 'Nasasakupan:',
 'passwordreset-capture' => 'Tingnan ang lumabas na e-liham?',
 'passwordreset-capture-help' => 'Kapag tsetsekan mo ang kahong ito, ang e-liham (may pansamantalang hudyat) ay ipapakita sa iyo at ipapadala rin sa tagagamit.',
-'passwordreset-email' => 'Tirahan ng e-liham:',
-'passwordreset-emailtitle' => 'Mga detalye ng akawnt sa {{SITENAME}}',
-'passwordreset-emailtext-ip' => 'Isang tao (marahil ay ikaw, mula sa tirahan ng IP na $1) ang humiling ng isang paalala sa iyong mga detalye ng akawnt para sa {{SITENAME}} ($4). Ang sumusunod na pangtagagamit na {{PLURAL:$3|akawnt ay|mga akawnt ay}} may kaugnayan sa tirahang ito ng e-liham:
+'passwordreset-email' => 'Direksiyong e-liham:',
+'passwordreset-emailtitle' => 'Mga detalye ng kuwenta sa {{SITENAME}}',
+'passwordreset-emailtext-ip' => 'Isang tao (marahil ay ikaw, mula sa direksiyong IP na $1) ang humiling ng isang paalala sa iyong mga detalye ng kuwenta para sa {{SITENAME}} ($4). Ang sumusunod na {{PLURAL:$3|kuwenta ng tagagamit ay|mga kuwenta ng tagagamit ay}} may kaugnayan sa direksiyong e-liham na ito:
 
 $2
 
-{{PLURAL:$3|Ang pansamantalang hudyat na ito|Ang pansamantalang mga hudyat na ito}} ay mawawalan ng bisa sa loob ng {{PLURAL:$5|isang araw|$5 mga araw}}.
+{{PLURAL:$3|Ang pansamantalang hudyat na ito|Ang mga pansamantalang hudyat na ito}} ay mawawalan ng bisa sa loob ng {{PLURAL:$5|isang araw|$5 mga araw}}.
 Dapat kang lumagda at pumili ng isang bagong hudyat ngayon. Kung ibang tao ang gumawa ng kahilingang ito, o kung naalala mo na ang orihinal mong hudyat, at hindi mo na nais palitan ito, maaari mong huwag nang pansinin ang mensaheng ito at magpatuloy sa paggamit ng luma mong hudyat.',
 'passwordreset-emailtext-user' => 'Ang tagagamit na si $1 sa {{SITENAME}} ay humiling ng isang paalala ng iyong mga akawnt ng detalye para sa {{SITENAME}}
 ($4). Ang sumusunod na pangtagagamit na {{PLURAL:$3|akawnt ay|mga akawnt ay}} may kaugnayan sa tirahang ito ng e-liham:
@@ -748,17 +748,18 @@ Kapag pinindot mo uli ang \"{{int:savearticle}}\", masasagip ang pagbabago mo na
 'summary-preview' => 'Paunang tingin sa buod:',
 'subject-preview' => 'Paunang tingin sa paksa/paulo:',
 'blockedtitle' => 'Hinarang ang tagagamit',
-'blockedtext' => "'''Hinarang/hinadlangan ang iyong pangalan ng tagagamit o adres ng IP.'''
+'blockedtext' => "'''Hinarang/hinadlangan ang iyong pangalan ng tagagamit o direksiyong IP.'''
 
-Ginawa ang pagharang/paghadlang ni $1. Ito ang ibinigay na dahilan: ''$2''.
+Ginawa ni $1 ang pagharang/paghadlang.
+Ito ang ibinigay na dahilan: ''$2''.
 
 * Simula ng pagharang/paghadlang: $8
 * Katapusan ng pagharang/paghadlang: $6
 * Ang hinarang/hinadlangan ay si: $7
 
-Maaari kang makipag-ugnayan kay $1 o sa iba pang [[{{MediaWiki:Grouppage-sysop}}|tagapangasiwa]] upang pagusapan ang pagharang/paghadlang na ito.
-Hindi mo magagamit ang kasangkapang-katangiang 'magpadala ng e-liham sa tagagamit' hangga't hindi tinutukoy ang isang tanggap na adres ng e-liham sa iyong [[Special:Preferences|mga kagustuhan]] at hindi ka pa hinaharangan/hinahadlangan sa paggamit nito.
-Ang pangkasalukuyang adres ng IP mo ay $3, at ang ID ay #$5.
+Maaari kang makipag-ugnayan kay $1 o sa ibang [[{{MediaWiki:Grouppage-sysop}}|tagapangasiwa]] upang pagusapan ang pagharang/paghadlang na ito.
+Hindi mo magagamit ang kasangkapang-katangiang 'magpadala ng e-liham sa tagagamit' hangga't hindi tinutukoy ang isang tanggap na direksiyong e-liham sa iyong [[Special:Preferences|mga kagustuhan]] at hindi ka pa hinaharangan/hinahadlangan sa paggamit nito.
+Ang kasalukuyan mong direksiyong IP ay $3, at ang ID ng pagharang/paghadlang ay #$5.
 Pakisama ang lahat ng mga detalye sa anumang mga pagtatanong na ginagawa/gagawin mo.",
 'autoblockedtext' => 'Kusang hinadlangan/hinarang ang adres ng IP mo dahil ginamit ito ng ibang tagagamit, na hinadlangan/hinarang ni $1.
 Ang ibinigay na dahilan ay:
@@ -1198,7 +1199,7 @@ Subuking lagyan ng unlapi/paunang ''all:'' upang hanapin ang lahat ng mga nialal
 
 # Preferences page
 'preferences' => 'Mga kagustuhan',
-'mypreferences' => 'Aking mga kagustuhan',
+'mypreferences' => 'Mga nais ko',
 'prefs-edits' => 'Bilang ng mga pagbabago:',
 'prefsnologin' => 'Hindi nakalagda/nakatala',
 'prefsnologintext' => 'Kailangan mong <span class="plainlinks">[{{fullurl:{{#Special:UserLogin}}|returnto=$1}} lumagda/tumala]</span> para makapagtakda ng mga kagustuhang ng tagagamit.',
@@ -2158,29 +2159,35 @@ Makikita doon ang lahat ng mga susunod na pagbabago sa pahinang ito pati na ang 
 'enotif_lastvisited' => 'Tingnan ang $1 para sa lahat ng mga pagbabago magmula noong huling pagdalaw mo.',
 'enotif_lastdiff' => 'Tingnan ang $1 para makita ang pagbabagong ito.',
 'enotif_anon_editor' => 'hindi nakikilalang tagagamit $1',
-'enotif_body' => 'Mahal na $WATCHINGUSERNAME,
+'enotif_body' => 'Mahal naming $WATCHINGUSERNAME,
 
 
-Ang pahinang $PAGETITLE ng {{SITENAME}} ay $CHANGEDORCREATED noong $PAGEEDITDATE ni $PAGEEDITOR, tingnan ang $PAGETITLE_URL para sa pangkasalukuyang rebisyon.
+Ang pahinang $PAGETITLE ng {{SITENAME}} ay $CHANGEDORCREATED ni $PAGEEDITOR noong $PAGEEDITDATE, tingnan ang $PAGETITLE_URL para sa pangkasalukuyang rebisyon.
 
 $NEWPAGE
 
-Buod mula sa patnugot: $PAGESUMMARY $PAGEMINOREDIT
+Buod ng patnugot: $PAGESUMMARY $PAGEMINOREDIT
 
 Makipagugnayan sa patnugot:
 liham: $PAGEEDITOR_EMAIL
 wiki: $PAGEEDITOR_WIKI
 
 Wala nang iba pang mga pagpapahayag sa pagkakataon ng pagkakaroon ng karagdagang mga pagbabago maliban na lamang kung dadalawin mo ang pahinang ito.
-Maaari mo ring muling itakda ang mga watawat na pangpag-uulat para sa lahat ng mga pahinang binabantayan mo sa loob ng iyong talaan ng mga binabantayan.
+Maaari mo ring itakda muli ang mga watawat na pangpagpapabatid para sa lahat ng mga pahinang binabantayan mo sa loob ng iyong talaan ng mga binabantayan.
 
-             Ang iyong palakaibigang sistemang pangpag-uulat ng {{SITENAME}}
+Ang iyong maginhawang sistema ng pagpapabatid ng {{SITENAME}}
 
 --
-Para baguhin ang mga pagtatakda ng iyong talaan ng mga binabantayan, puntahan ang
+Upang mabago ang mga katakdaan sa iyong talaan ng mga binabantayan, dalawin ang
+{{canonicalurl:{{#special:Preferences}}}}
+
+Upang baguhin ang mga katakdaan ng bantayan mo, dumalaw sa
+{{canonicalurl:{{#special:EditWatchlist}}}}
+
+Upang burahin ang pahina mula sa pahina mo ng mga binabantayan, dumalaw sa
 $UNWATCHURL
 
-Balik-tugon at karagdagang tulong:
+Tugon at karagdagang tulong:
 {{canonicalurl:{{MediaWiki:Helppage}}}}',
 
 # Delete
@@ -2312,8 +2319,8 @@ Maaari mong baguhin ang antas ng panananggalang ng pahina, ngunit hindi ito maka
 'undeletepagetext' => 'Ang sumusunod na {{PLURAL:$1|pahina ay nabura na subalit |$1 mga pahina ay nabura na subalit}} nananatili pa rin sa sinupan/arkibo at maaaring bang ibalik mula sa pagkakabura.
 Maaaring palagiang linisin o tanggalan ng laman ang sinupan/arkibo.',
 'undelete-fieldset-title' => 'Ibalik ang mga pagbabago',
-'undeleteextrahelp' => "Para maibalik ang kabuoan ng kasaysayan ng pahina, iwanang walang laman ang mga kahong lagayan ng mga tsek at pindutin ang '''''Ibalik'''''. Para maisagawa ang pagbabalik na may pagpili, lagyan ng tsek ang mga kahong may kaugnayan sa pagpapabalik ng mga pagbabago at pindutin ang '''''Ibalik'''''.
-Malilinis ang pook ng kumento/puna at iba pang mga kahong lagayan ng mga tsek kapag pinindot ang '''''Magtakda uli'''''.",
+'undeleteextrahelp' => "Upang maibalik ang buong kasaysayan ng pahina, iwanang walang mga tsek ang lahat ng mga kahon at lagitikin ang '''''{{int:undeletebtn}}'''''.
+Upang makapagsagawa ng pagpapanumbalik na may pinipili, tsekan ang mga kahon na tumutugma sa mga pagbabagong ibabalik, at pindutin ang '''''{{int:undeletebtn}}'''''.",
 'undeleterevisions' => 'Sininop/nilagay sa sinupan o arkibo ang $1 {{PLURAL:$1|pagbabago|mga pagbabago}}',
 'undeletehistory' => 'Kapag ibinalik mo ang pahina, ibabalik ang lahat ng mga pagbabago sa kasaysayan.
 Kapag nalikha ang isang bagong pahinang may katulad na pangalan mula noong pagbura, lilitaw ang naibalik na mga pagbabago sa sinaunang kasaysayan.',
@@ -2365,7 +2372,7 @@ $1',
 # Contributions
 'contributions' => 'Mga ambag ng tagagamit',
 'contributions-title' => 'Mga ambag ng tagagamit na si $1',
-'mycontris' => 'Aking mga ginawa',
+'mycontris' => 'Mga ambag ko',
 'contribsub2' => 'Para kay $1 ($2)',
 'nocontribs' => 'Walang pagbabagong nakita sa binigay na kondisyon.',
 'uctop' => ' (itaas)',
@@ -2501,9 +2508,9 @@ Ibinigay sa ibaba ang talaan ng pagharang upang mapagsanggunian:',
 Ang tala ng pagpigil ay ibinigay sa ibaba upang mapagsanggunian:',
 'blocklogentry' => 'hinarang/hinadlangan si [[$1]] na may oras/panahon ng pagtatapos na $2 $3',
 'reblock-logentry' => 'binago ang itinakdang pagharang/paghadlang kay [[$1]] na may oras/panahon ng pagtatapos na $2 $3',
-'blocklogtext' => 'Tala ito ng paghaharang at pagpapawawalang bisa ng pagharang/paghadlang.
-Hindi nakatala rito ang mga awtomatiko/kusang hinarang/hinadlangang mga adres ng IP.
-Tingnan ang [[Special:BlockList|talaan ng mga hinarang na/hinadlangang IP]] para sa talaan ng pangkasalukuyang gumagana pang mga pinagbabawalan at mga pagharang/paghadlang.',
+'blocklogtext' => 'Isa itong talaan ng mga gawain ng pagharang at hindi pagharang sa tagagamit.
+Hindi nakalista ang mga tirahan ng IP ng kusang hinadlangan.
+Tingnan ang [[Special:BlockList|talaan ng pagharang]] para sa lista ng kasalukuyang may bisa na mga pagbabawal at mga paghadlang.',
 'unblocklogentry' => 'tinanggal ang pagharang/paghadlang kay $1',
 'block-log-flags-anononly' => 'mga di-kilalang tagagamit lamang',
 'block-log-flags-nocreate' => 'Nakapatay ang paglikha ng akawnt',
@@ -2772,7 +2779,7 @@ Sagipin mo ito sa iyong kompyuter at papaitaas na ikarga ito rito.',
 'tooltip-pt-anonuserpage' => 'Ang pahina ng tagagamit para sa IP na iyong binabago bilang',
 'tooltip-pt-mytalk' => 'Ang iyong pahina ng usapan',
 'tooltip-pt-anontalk' => 'Usapang tungkol sa mga pagbabagong ginawa sa ip address na ito',
-'tooltip-pt-preferences' => 'Aking mga kagustuhan',
+'tooltip-pt-preferences' => 'Mga nais ko',
 'tooltip-pt-watchlist' => 'Ang talaan ng mga pagbabago sa mga pahinang binabantayan mo',
 'tooltip-pt-mycontris' => 'Talaan ng mga ambag mo',
 'tooltip-pt-login' => 'Hinihimok kang lumagda, bagaman hindi ito kinakailangan.',
@@ -3188,6 +3195,7 @@ Likas na nakatakdang itago ang iba pa.
 
 # EXIF attributes
 'exif-compression-1' => 'Walang kompresyon',
+'exif-compression-2' => 'CCITT Pangkat 3 1-kodigo sa haba ng pagtakbo ng Pangdimensiyong Huffman na May Bahagyang Pagbabago',
 'exif-compression-3' => 'Kodigo ng Pangkat 3 ng CCITT',
 'exif-compression-4' => 'Kodigo ng Pangkat 4 ng CCITT',
 

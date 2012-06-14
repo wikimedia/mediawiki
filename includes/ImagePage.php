@@ -1116,8 +1116,11 @@ class ImageHistoryList extends ContextSource {
 			$row .= '<span class="history-deleted">' . wfMsgHtml( 'rev-deleted-user' ) . '</span>';
 		} else {
 			if ( $local ) {
-				$row .= Linker::userLink( $userId, $userText ) . ' <span style="white-space: nowrap;">' .
-				Linker::userToolLinks( $userId, $userText ) . '</span>';
+				$row .= Linker::userLink( $userId, $userText );
+				$row .= $this->getContext()->msg( 'word-separator' )->plain();
+				$row .= '<span style="white-space: nowrap;">';
+				$row .= Linker::userToolLinks( $userId, $userText );
+				$row .= '</span>';
 			} else {
 				$row .= htmlspecialchars( $userText );
 			}

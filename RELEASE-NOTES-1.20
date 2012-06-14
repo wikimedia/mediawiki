@@ -68,6 +68,8 @@ upgrade PHP if you have not done so prior to upgrading MediaWiki.
 * (bug 4220) the XML dump format schema now have unique identity constraints
   for page and revision identifiers. Patch by Elvis Stansvik.
 * (bug 35705) QUnit upgraded from 1.2.0 to 1.7.0
+* cleanupSpam.php now can delete spam pages if --delete was specified instead of blanking
+  them.
 
 === Bug fixes in 1.20 ===
 * (bug 30245) Use the correct way to construct a log page title.
@@ -115,6 +117,8 @@ upgrade PHP if you have not done so prior to upgrading MediaWiki.
 * (bug 25946) The message on the top of Special:RecentChanges is now displayed
   in user language instead of content language
 * (bug 35264) Wrong type used for <ns> in export.xsd
+* (bug 24985) Use $wgTmpDirectory as the default temp directory so that people
+  who don't have access to /tmp can specify an alternative.
 
 === API changes in 1.20 ===
 * (bug 34316) Add ability to retrieve maximum upload size from MediaWiki API.
@@ -132,6 +136,7 @@ upgrade PHP if you have not done so prior to upgrading MediaWiki.
 * (bug 33224) add variants of content language to meta=siteinfo
 * (bug 36761) "Mark pages as visited" now submits previously established filter options
 * (bug 32643) action=purge with forcelinkupdate no longer crashes when ratelimit is reached
+* The paraminfo module now also contains result properties for most modules
 
 === Languages updated in 1.20 ===
 

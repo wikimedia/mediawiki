@@ -18,3 +18,19 @@ mediaWiki.language.convertPlural = function( count, forms ) {
 	}
 	return forms[4];
 };
+
+mediaWiki.language.convertGrammar = function( word, form ) {
+	var grammarForms = mw.language.getData( 'sl', 'grammarForms' );
+	if ( grammarForms && grammarForms[form] ) {
+		return grammarForms[form][word] ;
+	}
+	switch ( form ) {
+		case 'mestnik': // locative
+			word = 'o ' + word;
+			break;
+		case 'orodnik': // instrumental
+			word = 'z ' + word;
+			break;
+	}
+	return word;
+};

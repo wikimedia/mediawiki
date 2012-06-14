@@ -481,7 +481,7 @@ $messages = array(
 'category-empty' => "''このカテゴリには現在、ページとメディアがひとつもありません。''",
 'hidden-categories' => '{{PLURAL:$1|隠しカテゴリ}}',
 'hidden-category-category' => '隠しカテゴリ',
-'category-subcat-count' => '{{PLURAL:$2|このカテゴリには以下の下位カテゴリのみが含まれています。|このカテゴリには $2 下位カテゴリが含まれており、そのうち以下の{{PLURAL:$1|下位カテゴリ|&#32;$1 下位カテゴリ}}を表示しています。}}',
+'category-subcat-count' => '{{PLURAL:$2|このカテゴリには以下の下位カテゴリのみが含まれています。|このカテゴリには $2 下位カテゴリが含まれており、そのうち以下の {{PLURAL:$1|$1 下位カテゴリ}}を表示しています。}}',
 'category-subcat-count-limited' => 'このカテゴリには以下の{{PLURAL:$1|下位カテゴリ|&#32;$1 下位カテゴリ}}が含まれています。',
 'category-article-count' => '{{PLURAL:$2|このカテゴリには以下のページのみが含まれています。|このカテゴリには $2 ページが含まれており、そのうち以下の {{PLURAL:$1|$1 ページ}}を表示しています。}}',
 'category-article-count-limited' => '現在のカテゴリには以下の{{PLURAL:$1|ページ|&#32;$1 ページ}}が含まれています。',
@@ -553,7 +553,7 @@ $messages = array(
 'delete' => '削除',
 'deletethispage' => 'このページを削除',
 'undelete_short' => '{{PLURAL:$1|$1 版}}を復帰',
-'viewdeleted_short' => '削除された$1件の編集を閲覧',
+'viewdeleted_short' => '{{PLURAL:$1|削除された $1 件の編集}}を閲覧',
 'protect' => '保護',
 'protect_change' => '設定変更',
 'protectthispage' => 'このページを保護',
@@ -642,7 +642,7 @@ $1',
 'collapsible-expand' => '展開する',
 'thisisdeleted' => '$1を閲覧または復帰しますか？',
 'viewdeleted' => '$1を閲覧しますか？',
-'restorelink' => '削除された$1編集',
+'restorelink' => '{{PLURAL:$1|削除された $1 編集}}',
 'feedlinks' => 'フィード：',
 'feed-invalid' => 'フィード形式の指定が間違っています。',
 'feed-unavailable' => 'フィードの配信に対応していません。',
@@ -844,7 +844,7 @@ Cookieを有効にしていることを確認して、このページを再読�
 'mailerror' => 'メールの送信中にエラーが発生しました：$1',
 'acct_creation_throttle_hit' => 'あなたと同じ IP アドレスでこのウィキに訪れた人が、最近 24 時間で {{PLURAL:$1|$1 アカウント}}を作成しており、これはこの期間で作成が許可されている最大数です。
 そのため、現在この IP アドレスではアカウントをこれ以上作成できません。',
-'emailauthenticated' => 'メールアドレスは$2 $3に認証されています。',
+'emailauthenticated' => 'メールアドレスは$2 $3に認証済みです。',
 'emailnotauthenticated' => 'メールアドレスが認証されていません。
 認証されるまで、以下のいかなる機能でもメールは送信されません。',
 'noemailprefs' => 'これらの機能を有効にするためには個人設定でメールアドレスを登録する必要があります。',
@@ -897,7 +897,7 @@ Cookieを有効にしていることを確認して、このページを再読�
 'passwordreset-text' => 'このフォームに入力すると、アカウント詳細のリマインダーをメールでお送りします。',
 'passwordreset-legend' => 'パスワードの再設定',
 'passwordreset-disabled' => 'パスワードの再設定は、このウィキでは無効になっています。',
-'passwordreset-pretext' => '{{PLURAL:$1||以下のデータのうちの 1 つを入力してください}}',
+'passwordreset-pretext' => '{{PLURAL:$1||下記のデータのいずれか 1 つを入力してください}}',
 'passwordreset-username' => '利用者名：',
 'passwordreset-domain' => 'ドメイン：',
 'passwordreset-capture' => '送信されるメールの内容を表示しますか？',
@@ -1124,7 +1124,7 @@ IP アドレスは複数の利用者で共有されている場合がありま�
 'templatesusedsection' => 'この節で使用されている{{PLURAL:$1|テンプレート}}：',
 'template-protected' => '（保護）',
 'template-semiprotected' => '（半保護）',
-'hiddencategories' => 'このページは$1個の隠しカテゴリに属しています：',
+'hiddencategories' => 'このページは {{PLURAL:$1|$1 個の隠しカテゴリ}}に属しています：',
 'edittools' => '<!-- ここに書いたテキストは編集及びアップロードのフォームの下に表示されます。 -->',
 'nocreatetitle' => 'ページの作成が制限されています',
 'nocreatetext' => '{{SITENAME}}ではページの新規作成を制限しています。
@@ -1155,7 +1155,7 @@ IP アドレスは複数の利用者で共有されている場合がありま�
 # Parser/template warnings
 'expensive-parserfunction-warning' => "'''警告：'''このページでの高負荷なパーサー関数の呼び出し回数が多過ぎます。
 
-{{PLURAL:$2|呼び出しは $2 回}}以下にしてください（{{PLURAL:$1|現在は $1 回}}）。",
+{{PLURAL:$2|呼び出しを $2 回}}未満にしてください（{{PLURAL:$1|現在は $1 回}}）。",
 'expensive-parserfunction-category' => '高負荷な構文解析関数の呼び出しが多過ぎるページ',
 'post-expand-template-inclusion-warning' => "'''警告：'''テンプレートの読み込みサイズが大き過ぎます。
 いくつかのテンプレートは読み込まれません。",
@@ -1175,7 +1175,7 @@ IP アドレスは複数の利用者で共有されている場合がありま�
 
 # "Undo" feature
 'undo-success' => 'この編集を取り消せます。
-下記の差分を確認し、本当に取り消すべきだと確認してから、変更を保存して取り消しを完了してください。',
+下記の差分を確認して、本当に取り消していいか検証してください。よろしければ変更を保存して取り消しを完了してください。',
 'undo-failure' => '中間の版での編集と競合したため、取り消せませんでした。',
 'undo-norev' => '取り消そうとした編集が存在しないか削除済みのため取り消せませんでした。',
 'undo-summary' => '[[Special:Contributions/$2|$2]]（[[User talk:$2|トーク]]）による第$1版を取り消し',
@@ -1207,7 +1207,7 @@ $3が示した理由は ''$2'' です。",
 'history-show-deleted' => '削除済みのみ',
 'histfirst' => '最古',
 'histlast' => '最新',
-'historysize' => '$1バイト',
+'historysize' => '({{PLURAL:$1|$1バイト}})',
 'historyempty' => '（空）',
 
 # Revision feed
@@ -1253,7 +1253,7 @@ $3が示した理由は ''$2'' です。",
 'revisiondelete' => '版の削除と復帰',
 'revdelete-nooldid-title' => '不正な対象版',
 'revdelete-nooldid-text' => 'この操作の対象となる版を指定していないか、指定した版が存在していないか、あるいは最新版を非表示しようとしています。',
-'revdelete-nologtype-title' => '記録の種類が指定されていません',
+'revdelete-nologtype-title' => '記録の種類を指定していません',
 'revdelete-nologtype-text' => 'この操作を実行する記録の種類を指定していません。',
 'revdelete-nologid-title' => '不正な記録項目',
 'revdelete-nologid-text' => 'この操作の対象となる記録の項目を指定していないか、あるいは指定した項目が存在しません。',
@@ -1302,7 +1302,8 @@ $1",
 アクセス権限がありません。',
 'revdelete-modify-missing' => 'ID$1の項目の変更に失敗しました：データベースに見当たりません！',
 'revdelete-no-change' => "'''警告：''' $1$2の項目には要求された閲覧レベルが既に設定されています。",
-'revdelete-concurrent-change' => '$1$2の項目の変更に失敗しました：あなたが変更しようとしている間に、他の利用者が変更したようです。',
+'revdelete-concurrent-change' => '$1$2の項目の変更に失敗しました：あなたが変更しようとしている間に、他の誰かが変更したようです。
+記録を確認してください。',
 'revdelete-only-restricted' => '$1$2の項目の版指定削除に失敗しました：他の閲覧レベルの選択肢のうちどれかをさらに選択しなければ、管理者から項目を秘匿できません。',
 'revdelete-reason-dropdown' => '*よくある削除理由
 ** 著作権侵害
@@ -1358,8 +1359,8 @@ $1",
 'compareselectedversions' => '選択した版同士を比較',
 'showhideselectedversions' => '選択した版を表示もしくは非表示',
 'editundo' => '取り消し',
-'diff-multi' => '（$2人の利用者による、間の$1版が非表示）',
-'diff-multi-manyusers' => '（$2人以上の利用者による、間の$1版が非表示）',
+'diff-multi' => '（{{PLURAL:$2|$2人の利用者}}による、{{PLURAL:$1|間の$1版}}が非表示）',
+'diff-multi-manyusers' => '（{{PLURAL:$2|$2人を超える利用者}}による、{{PLURAL:$1|間の$1版}}が非表示）',
 
 # Search results
 'searchresults' => '検索結果',
@@ -1374,13 +1375,13 @@ $1",
 'notextmatches' => 'どのページ本文とも一致しませんでした',
 'prevn' => '前の$1件',
 'nextn' => '次の$1件',
-'prevn-title' => '前の$1結果',
-'nextn-title' => '次の$1結果',
-'shown-title' => 'ページあたり$1件の結果を表示',
+'prevn-title' => '前の{{PLURAL:$1|$1結果}}',
+'nextn-title' => '次の{{PLURAL:$1|$1結果}}',
+'shown-title' => 'ページあたり{{PLURAL:$1|$1件の結果}}を表示',
 'viewprevnext' => '（$1{{int:pipe-separator}}$2）（$3）を表示',
 'searchmenu-legend' => '検索オプション',
 'searchmenu-exists' => "'''このウィキには「[[:$1]]」という名前のページがあります'''",
-'searchmenu-new' => "'''このウィキでページ「[[:$1|$1]]」を新規作成する'''",
+'searchmenu-new' => "'''このウィキでページ「[[:$1]]」を新規作成する'''",
 'searchhelp-url' => 'Help:目次',
 'searchmenu-prefix' => '[[Special:PrefixIndex/$1|この文字列から始まる名前のページを見る]]',
 'searchprofile-articles' => '本文ページ',
@@ -1393,8 +1394,8 @@ $1",
 'searchprofile-images-tooltip' => 'ファイルを検索',
 'searchprofile-everything-tooltip' => '全本文ページ（トークページ含む）を検索',
 'searchprofile-advanced-tooltip' => '特定の名前空間内を検索',
-'search-result-size' => '$1（$2単語）',
-'search-result-category-size' => '$1件（$2下位カテゴリ、$3ファイル）',
+'search-result-size' => '$1（{{PLURAL:$2|$2単語}}）',
+'search-result-category-size' => '{{PLURAL:$1|$1件}}（{{PLURAL:$2|$2下位カテゴリ}}、{{PLURAL:$3|$3ファイル}}）',
 'search-result-score' => '関連度：$1%',
 'search-redirect' => '（$1からのリダイレクト）',
 'search-section' => '（$1の節）',
@@ -1409,8 +1410,8 @@ $1",
 'searcheverything-enable' => 'すべての名前空間を検索',
 'searchrelated' => '関連',
 'searchall' => 'すべて',
-'showingresults' => "'''$2'''件目からの{{PLURAL:$1|'''$1'''件の結果}}を表示しています。",
-'showingresultsnum' => "'''$2'''件目からの{{PLURAL:$3|'''$3'''件の結果}}を表示しています。",
+'showingresults' => "'''$2'''件目以降の{{PLURAL:$1|'''$1'''件の結果}}を表示しています。",
+'showingresultsnum' => "'''$2'''件目以降の{{PLURAL:$3|'''$3'''件の結果}}を表示しています。",
 'showingresultsheader' => "「'''$4'''」に対する{{PLURAL:$5|'''$3'''件中の'''$1'''件の結果|'''$3'''件中の'''$1'''件目から'''$2'''件目の結果}}",
 'nonefound' => "'''注意'''：既定では一部の名前空間のみを検索します。
 ''all:''を前に付けると、すべて（トークページやテンプレートなどを含む）を対象にできます。検索する名前空間を前に付けることもできます。",
@@ -1527,7 +1528,8 @@ $1",
 'prefs-help-signature' => 'トークページ上での発言には「<nowiki>~~~~</nowiki>」と付けて署名すべきです。これは自分の署名に時刻印を付けたものに変換されます。',
 'badsig' => '署名用のソースが正しくありません。
 HTMLタグを見直してください。',
-'badsiglength' => '署名が長すぎます。$1文字以下でなければなりません。',
+'badsiglength' => '署名が長すぎます。
+$1 {{PLURAL:$1|文字}}以下である必要があります。',
 'yourgender' => '性別：',
 'gender-unknown' => '未指定',
 'gender-male' => '男',
@@ -1712,10 +1714,10 @@ HTMLタグを見直してください。',
 'action-sendemail' => 'メールを送信',
 
 # Recent changes
-'nchanges' => '$1回の変更',
+'nchanges' => '$1{{PLURAL:$1|回の変更}}',
 'recentchanges' => '最近の更新',
 'recentchanges-legend' => '最近の更新のオプション',
-'recentchanges-summary' => 'このページで最近の更新を確認できます。',
+'recentchanges-summary' => 'このページでは、このウィキでの最近の更新を確認できます。',
 'recentchanges-feed-description' => 'このフィードでこのウィキの最近の更新を追跡できます。',
 'recentchanges-label-newpage' => 'この編集で新しいページが作成されました',
 'recentchanges-label-minor' => 'これは細部の編集です',
@@ -1739,10 +1741,10 @@ HTMLタグを見直してください。',
 'newpageletter' => '新',
 'boteditletter' => 'ボ',
 'unpatrolledletter' => '!',
-'number_of_watching_users_pageview' => '[$1 人の利用者がウォッチしています]',
+'number_of_watching_users_pageview' => '[{{PLURAL:$1|$1 人の利用者}}がウォッチしています]',
 'rc_categories' => 'カテゴリを限定（「|」で区切る）',
 'rc_categories_any' => 'すべて',
-'rc-change-size-new' => '変更後は$1バイト',
+'rc-change-size-new' => '変更後は $1 {{PLURAL:$1|バイト}}',
 'newsectionsummary' => '/* $1 */ 新しい節',
 'rc-enhanced-expand' => '詳細を表示（JavaScript が必要）',
 'rc-enhanced-hide' => '詳細を非表示',
@@ -1980,7 +1982,7 @@ $1',
 'img-auth-nopathinfo' => 'PATH_INFO が見つかりません。
 サーバーが、この情報を渡すように構成されていません。
 CGI ベースであるため、img_auth に対応できない可能性もあります。
-https://www.mediawiki.org/wiki/Manual:Image_Authorization を参照してください。',
+https://www.mediawiki.org/wiki/Manual:Image_Authorization をご覧ください。',
 'img-auth-notindir' => '要求されたパスは、設定済みのアップロード用ディレクトリー内にありません。',
 'img-auth-badtitle' => '「$1」からは有効なページ名を構築できません。',
 'img-auth-nologinnWL' => 'ログインしておらず、さらに「$1」はホワイトリストに入っていません。',
@@ -2059,7 +2061,7 @@ URLが正しいものであり、ウェブサイトが稼働していること�
 'nolinkstoimage' => 'このファイルへリンクしているページはありません。',
 'morelinkstoimage' => 'このファイルへの[[Special:WhatLinksHere/$1|リンク元を更に]]を表示する。',
 'linkstoimage-redirect' => '$1 (リダイレクト) $2',
-'duplicatesoffile' => '以下の$1ファイルが、このファイルと内容が同一です（[[Special:FileDuplicateSearch/$2|詳細]]）：',
+'duplicatesoffile' => '以下の $1 {{PLURAL:$1|ファイル}}が、このファイルと重複しています（[[Special:FileDuplicateSearch/$2|詳細]]）：',
 'sharedupload' => 'このファイルは$1のものであり、他のプロジェクトで使用されている可能性があります。',
 'sharedupload-desc-there' => 'このファイルは$1のものであり、他のプロジェクトで使用されている可能性があります。
 詳細は[$2 ファイル解説ページ]を参照してください。',
@@ -2084,7 +2086,7 @@ $1での[$2 ファイル解説ページ]にある説明を編集したほうが�
 'filerevert-comment' => '理由：',
 'filerevert-defaultcomment' => '$1$2の版へ差し戻し',
 'filerevert-submit' => '差し戻す',
-'filerevert-success' => "'''[[Media:$1|$1]]'''は[$4  $2$3の版]に差し戻されました。",
+'filerevert-success' => "'''[[Media:$1|$1]]'''は[$4 $2$3の版]に差し戻されました。",
 'filerevert-badversion' => 'このファイルに指定された時刻印を持つ過去の版はありません。',
 
 # File deletion
@@ -2245,8 +2247,8 @@ contenttype/subtypeの形式で指定してください（例：<tt>image/jpeg</
 'notargettext' => 'この機能の実行対象となるページまたは利用者が指定されていません。',
 'nopagetitle' => 'そのようなページはありません',
 'nopagetext' => '指定したページは存在しません。',
-'pager-newer-n' => '以後の$1件',
-'pager-older-n' => '以前の$1件',
+'pager-newer-n' => '{{PLURAL:$1|以後の$1件}}',
+'pager-older-n' => '{{PLURAL:$1|以前の$1件}}',
 'suppress' => '秘匿する',
 'querypage-disabled' => 'パフォーマンスに悪影響を与えるおそれがあるため、この特別ページは無効になっています。',
 
@@ -2409,12 +2411,12 @@ contenttype/subtypeの形式で指定してください（例：<tt>image/jpeg</
 'notanarticle' => '記事ではありません',
 'notvisiblerev' => '別の利用者による最終版は削除されました',
 'watchnochange' => 'ウォッチリストに登録しているページで、指定期間内に編集されたものはありません。',
-'watchlist-details' => 'ウォッチリストには$1ページが登録されています（トークページは数えません）。',
+'watchlist-details' => 'ウォッチリストには {{PLURAL:$1|$1 ページ}}が登録されています（トークページを除く）。',
 'wlheader-enotif' => '* メール通知が有効になっています',
 'wlheader-showupdated' => "* 最後に訪問したあとに変更されたページは、'''太字'''で表示されます",
 'watchmethod-recent' => '最近の更新内のウォッチされているページを確認中',
 'watchmethod-list' => 'ウォッチされているページ内の最近の更新を確認中',
-'watchlistcontains' => 'ウォッチリストには、$1ページが登録されています。',
+'watchlistcontains' => 'ウォッチリストには {{PLURAL:$1|$1 ページ}}が登録されています。',
 'iteminvalidname' => '項目「$1」には問題があります、名前が正しくありません。',
 'wlnote' => "$3 $4 までの{{PLURAL:$2|'''$2'''時間}}になされた{{PLURAL:$1|'''$1'''件の変更}}は以下の通りです。",
 'wlshowlast' => '次の期間で表示：$1時間、$2日間、$3',
@@ -2493,9 +2495,9 @@ $UNWATCHURL
 ** 著作権侵害
 ** 荒らし',
 'delete-edit-reasonlist' => '削除理由を編集',
-'delete-toobig' => 'このページには、$1版より多い編集履歴があります。
+'delete-toobig' => 'このページには、$1版を超える編集履歴があります。
 このようなページの削除は、{{SITENAME}}の偶発的な問題を避けるため、制限されています。',
-'delete-warning-toobig' => 'このページには、 $1版より多い編集履歴があります。
+'delete-warning-toobig' => 'このページには、 $1版を超える編集履歴があります。
 削除すると、{{SITENAME}}のデータベース処理に大きな負荷がかかります。
 十分に注意してください。',
 
@@ -2592,14 +2594,14 @@ $2による直前の版へ変更されました。',
 # Undelete
 'undelete' => '削除されたページを表示',
 'undeletepage' => '削除されたページの表示と復元',
-'undeletepagetitle' => "'''以下は、[[:$1]]の削除された版です'''。",
+'undeletepagetitle' => "'''以下は、[[:$1|$1]]の削除された版です'''。",
 'viewdeletedpage' => '削除されたページを表示',
-'undeletepagetext' => '以下の{{PLURAL:$1|削除されたページ|削除されたページ群}}は、保存版に残っているため復元できます。
+'undeletepagetext' => '以下の{{PLURAL:$1|削除されたページ|&#32;$1 件の削除されたページ}}は、保存版に残っているため復元できます。
 保存版は定期的に消去される可能性があります。',
 'undelete-fieldset-title' => '削除された版の復元',
 'undeleteextrahelp' => "すべての版を復元する場合は、どのボックスにもチェックを入れていない状態で'''''{{int:undeletebtn}}'''''をクリックしてください。
 特定の版を復帰する場合は、復帰する版のボックスにチェックを入れた状態で'''''{{int:undeletebtn}}'''''をクリックしてください。",
-'undeleterevisions' => '$1版が保存されています',
+'undeleterevisions' => '保存版に$1{{PLURAL:$1|版}}あります',
 'undeletehistory' => 'ページの復帰を行うと、すべての版が履歴に復帰します。
 削除されたあとに同じ名前で新しくページが作成されていた場合、復帰した版はそれに先行する履歴として現れます。',
 'undeleterevdel' => '復帰した結果、版指定削除されているページまたはファイルの版が最新となる場合、復帰は実行されません。
@@ -2617,11 +2619,11 @@ $2による直前の版へ変更されました。',
 'undeletereset' => 'リセット',
 'undeleteinvert' => '選択を反転',
 'undeletecomment' => '理由：',
-'undeletedrevisions' => '$1版を復元しました',
-'undeletedrevisions-files' => '$1版と$2ファイルを復元しました',
-'undeletedfiles' => '$1ファイルを復帰しました',
+'undeletedrevisions' => '{{PLURAL:$1|$1版}}を復元しました',
+'undeletedrevisions-files' => '{{PLURAL:$1|$1版}}と{{PLURAL:$2|$2ファイル}}を復元しました',
+'undeletedfiles' => '{{PLURAL:$1|$1ファイル}}を復帰しました',
 'cannotundelete' => '復帰に失敗しました。
-誰かが、既にこのページを復帰した可能性があります。',
+他の誰かがこのページを既に復帰した可能性があります。',
 'undeletedpage' => "'''$1を復元しました。'''
 
 最近の削除と復帰の記録については[[Special:Log/delete|削除記録]]を参照してください。",
@@ -2634,7 +2636,7 @@ $2による直前の版へ変更されました。',
 'undelete-filename-mismatch' => 'ファイルの時刻印$1の版を復帰できません：ファイル名が一致しません。',
 'undelete-bad-store-key' => 'ファイルの時刻印$1の版を復帰できません：削除前にファイルが失われています。',
 'undelete-cleanup-error' => '未使用の保存版のファイル「$1」の削除中にエラーが発生しました。',
-'undelete-missing-filearchive' => 'データベースに存在しないため、ID$1を持つファイルの保存版を復元できません。
+'undelete-missing-filearchive' => 'データベースに存在しないため、ID $1を持つファイルの保存版を復元できません。
 既に復帰されている可能性があります。',
 'undelete-error' => 'ページの復帰エラー',
 'undelete-error-short' => 'ファイルの復帰エラー：$1',
@@ -2810,8 +2812,7 @@ $1のブロックの理由は「$2」です。',
 'ipb-needreblock' => '$1 は既にブロックされています。設定を変更しますか?',
 'ipb-otherblocks-header' => 'その他の{{PLURAL:$1|ブロック}}',
 'unblock-hideuser' => '利用者名が隠されているため、この利用者のブロックを解除できません。',
-'ipb_cant_unblock' => 'エラー：ブロック ID $1 がありません。
-ブロックが既に解除されている可能性があります。',
+'ipb_cant_unblock' => 'エラー：ブロック ID $1 はありません。ブロックが既に解除されている可能性があります。',
 'ipb_blocked_as_range' => 'エラー：IPアドレス$1は直接ブロックされておらず、ブロック解除できませんでした。
 ただし、$2の範囲でブロックされており、こちらのブロックは別途解除できます。',
 'ip_range_invalid' => '不正なIP範囲です。',
@@ -2859,7 +2860,7 @@ hideuser権限を持っていないため、この利用者のブロックを閲
 'movepagetext' => "下のフォームを利用すると、ページ名が変更され、その履歴も変更先へ移動します。
 古いページは変更先へのリダイレクトページとなります。
 変更前のページへのリダイレクトは自動的に修正できます。
-自動的な修正を選択しない場合は、[[Special:DoubleRedirects|二重リダイレクト]]や[[Special:BrokenRedirects|迷子のリダイレクト]]を確認する必要があります。リンクを正しく維持するのはあなたの責任です。
+自動的な修正を選択しない場合は、[[Special:DoubleRedirects|二重リダイレクト]]や[[Special:BrokenRedirects|迷子のリダイレクト]]を確認する必要があります。リンクを正しく維持するのは移動した人の責任です。
 
 移動先が既に存在する場合は、そのページが空またはリダイレクトで、かつ過去の版を持たない場合を除いて移動'''できません'''。つまり、間違えてページ名を変更した場合には元に戻せます。また移動によって既存のページを上書きしてしまうことはありません。
 
@@ -3013,14 +3014,14 @@ MediaWiki 全般のローカライズ（地域化）に貢献したい場合は�
 'importtext' => '元のウィキで[[Special:Export|書き出し機能]]を使用してファイルに書き出してください。
 それをコンピューターに保存した後、こちらへアップロードしてください。',
 'importstart' => 'ページを取り込み中...',
-'import-revision-count' => '$1版',
+'import-revision-count' => '$1{{PLURAL:$1|版}}',
 'importnopages' => '取り込むページがありません。',
 'imported-log-entries' => '$1 件の{{PLURAL:$1|記録項目}}を取り込みました。',
 'importfailed' => '取り込みに失敗しました：<nowiki>$1</nowiki>',
 'importunknownsource' => '取り込み元のタイプが不明です',
 'importcantopen' => '取り込みファイルが開けませんでした',
 'importbadinterwiki' => 'ウィキ間リンクが正しくありません',
-'importnotext' => '空かもしくは本文がありません',
+'importnotext' => '内容が空、または本文がありません',
 'importsuccess' => '取り込みが完了しました！',
 'importhistoryconflict' => '取り込み時にいくつかの版が競合しました（以前に同じページが取り込まれているかもしれません）',
 'importnosources' => 'ウィキ間移動の取り込み元が定義されていないため、履歴の直接アップロードは無効になっています。',
@@ -3049,9 +3050,9 @@ MediaWiki 全般のローカライズ（地域化）に貢献したい場合は�
 'importlogpage' => '取り込み記録',
 'importlogpagetext' => '管理された他のウィキから編集履歴を伴ったページ取り込みです。',
 'import-logentry-upload' => 'ファイルのアップロードにより[[$1]]を取り込みました',
-'import-logentry-upload-detail' => '$1版',
+'import-logentry-upload-detail' => '$1{{PLURAL:$1|版}}',
 'import-logentry-interwiki' => '$1をウィキ間移動しました',
-'import-logentry-interwiki-detail' => '$2の$1版',
+'import-logentry-interwiki-detail' => '$2の$1{{PLURAL:$1|版}}',
 
 # JavaScriptTest
 'javascripttest' => 'JavaScript をテスト中',
@@ -3221,7 +3222,7 @@ MediaWiki 全般のローカライズ（地域化）に貢献したい場合は�
 'markaspatrolleddiff' => '巡回済みにする',
 'markaspatrolledtext' => 'このページを巡回済みにする',
 'markedaspatrolled' => '巡回済みにしました',
-'markedaspatrolledtext' => '選択された[[:$1|$1]]の版を巡回済みにしました。',
+'markedaspatrolledtext' => '[[:$1]]の、選択した版を巡回済みにしました。',
 'rcpatroldisabled' => '最近の更新の巡回は無効です',
 'rcpatroldisabledtext' => '最近の更新の巡回機能は現在無効になっています。',
 'markedaspatrollederror' => '巡回済みにできません',
@@ -3353,7 +3354,7 @@ Variants for Chinese language
 このファイルが元の状態から変更されている場合、いくつかの項目は、修正されたファイルを完全に反映していないかもしれません。',
 'metadata-expand' => '拡張項目を表示',
 'metadata-collapse' => '拡張項目を非表示',
-'metadata-fields' => 'このメッセージにあるEXIFメタデータフィールドは、メタデータ表を折り畳んだ状態のときに画像ページに読み込まれます。
+'metadata-fields' => 'このメッセージで列挙している画像メタデータフィールドは、メタデータ表を折り畳んだ状態のときに画像ページに読み込まれます。
 他のものは既定では非表示です。
 * make
 * model
@@ -3380,8 +3381,8 @@ Variants for Chinese language
 'exif-planarconfiguration' => '画像データの並び',
 'exif-ycbcrsubsampling' => 'YCCの画素構成 (Cの間引き率)',
 'exif-ycbcrpositioning' => 'YCCの画素構成 (YとCの位置)',
-'exif-xresolution' => '画像の幅の解像度',
-'exif-yresolution' => '画像の高さの解像度',
+'exif-xresolution' => '水平方向の解像度',
+'exif-yresolution' => '垂直方向の解像度',
 'exif-stripoffsets' => '画像データのロケーション',
 'exif-rowsperstrip' => '1ストリップごとの行数',
 'exif-stripbytecounts' => 'ストリップの総バイト数',
@@ -3393,8 +3394,8 @@ Variants for Chinese language
 'exif-referenceblackwhite' => '参照黒色点値と参照白色点値',
 'exif-datetime' => 'ファイル変更日時',
 'exif-imagedescription' => '画像の説明',
-'exif-make' => '画像入力機器のメーカ名',
-'exif-model' => '画像入力機器のモデル名',
+'exif-make' => '撮影機器のメーカー名',
+'exif-model' => '撮影機器のモデル名',
 'exif-software' => '使用ソフトウェア名',
 'exif-artist' => '作者名',
 'exif-copyright' => '撮影著作権者/編集著作権者',
@@ -3417,14 +3418,14 @@ Variants for Chinese language
 'exif-fnumber' => 'F値',
 'exif-exposureprogram' => '露出プログラム',
 'exif-spectralsensitivity' => 'スペクトル感度',
-'exif-isospeedratings' => 'ISOスピードレート',
+'exif-isospeedratings' => 'ISO 感度',
 'exif-shutterspeedvalue' => 'シャッタースピード',
 'exif-aperturevalue' => '絞り値',
 'exif-brightnessvalue' => '輝度値',
 'exif-exposurebiasvalue' => '露出補正値',
 'exif-maxaperturevalue' => 'レンズ最小F値',
 'exif-subjectdistance' => '被写体距離',
-'exif-meteringmode' => '測光方式',
+'exif-meteringmode' => '測光モード',
 'exif-lightsource' => '光源',
 'exif-flash' => 'フラッシュ',
 'exif-focallength' => 'レンズ焦点距離',
@@ -3442,7 +3443,7 @@ Variants for Chinese language
 'exif-exposuremode' => '露出モード',
 'exif-whitebalance' => 'ホワイトバランス',
 'exif-digitalzoomratio' => 'デジタルズーム倍率',
-'exif-focallengthin35mmfilm' => '35mm換算レンズ焦点距離',
+'exif-focallengthin35mmfilm' => '35mmフィルム換算焦点距離',
 'exif-scenecapturetype' => '撮影シーンタイプ',
 'exif-gaincontrol' => 'ゲイン制御',
 'exif-contrast' => '撮影コントラスト',
@@ -3458,24 +3459,24 @@ Variants for Chinese language
 'exif-gpslongitude' => '経度',
 'exif-gpsaltituderef' => '高度の基準',
 'exif-gpsaltitude' => '高度',
-'exif-gpstimestamp' => 'GPS時間(原子時計の時間)',
+'exif-gpstimestamp' => 'GPS日時（原子時計）',
 'exif-gpssatellites' => '測位に用いた衛星信号',
 'exif-gpsstatus' => 'GPS受信機の状態',
 'exif-gpsmeasuremode' => 'GPSの測位方法',
 'exif-gpsdop' => '測位の信頼性',
 'exif-gpsspeedref' => '速度の単位',
-'exif-gpsspeed' => '速度',
+'exif-gpsspeed' => 'GPS 受信機の速度',
 'exif-gpstrackref' => '進行方向の単位',
 'exif-gpstrack' => '進行方向',
 'exif-gpsimgdirectionref' => '撮影方向の基準',
-'exif-gpsimgdirection' => '撮影した画像の方向',
+'exif-gpsimgdirection' => '画像の方向',
 'exif-gpsmapdatum' => '測位に用いた地図データ',
-'exif-gpsdestlatituderef' => '目的地の北緯または南緯',
+'exif-gpsdestlatituderef' => '目的地の北緯/南緯',
 'exif-gpsdestlatitude' => '目的地の緯度',
-'exif-gpsdestlongituderef' => '目的地の東経または西経',
+'exif-gpsdestlongituderef' => '目的地の東経/西経',
 'exif-gpsdestlongitude' => '目的地の経度',
 'exif-gpsdestbearingref' => '目的地の方角の単位',
-'exif-gpsdestbearing' => '目的の方角',
+'exif-gpsdestbearing' => '目的地の方角',
 'exif-gpsdestdistanceref' => '目的地までの距離の単位',
 'exif-gpsdestdistance' => '目的地までの距離',
 'exif-gpsprocessingmethod' => '測位方式の名称',
@@ -3484,18 +3485,18 @@ Variants for Chinese language
 'exif-gpsdifferential' => 'GPS補正測位',
 'exif-jpegfilecomment' => 'JPEGファイルのコメント',
 'exif-keywords' => 'キーワード',
-'exif-worldregioncreated' => 'この写真が撮られた大陸や地域',
-'exif-countrycreated' => 'この写真が撮られた国',
-'exif-countrycodecreated' => 'この写真が撮られた国の国名コード',
-'exif-provinceorstatecreated' => 'この写真が撮られた州や県',
-'exif-citycreated' => 'この写真が撮られた市町村',
-'exif-sublocationcreated' => 'この写真が撮られた町名や通りの名前',
-'exif-worldregiondest' => '写っている大陸や地域',
+'exif-worldregioncreated' => '写真が撮影された大陸/地域',
+'exif-countrycreated' => '写真が撮影された国',
+'exif-countrycodecreated' => '写真が撮影された国のコード',
+'exif-provinceorstatecreated' => '写真が撮影された州/県',
+'exif-citycreated' => '写真が撮影された都市',
+'exif-sublocationcreated' => '写真が撮影された町や通りの名前',
+'exif-worldregiondest' => '写っている大陸/地域',
 'exif-countrydest' => '写っている国',
-'exif-countrycodedest' => '写っている国の国名コード',
-'exif-provinceorstatedest' => '写っている州や県',
-'exif-citydest' => '写っている市町村',
-'exif-sublocationdest' => '写っている町名や通りの名前',
+'exif-countrycodedest' => '写っている国のコード',
+'exif-provinceorstatedest' => '写っている州/県',
+'exif-citydest' => '写っている都市',
+'exif-sublocationdest' => '写っている町や通りの名前',
 'exif-objectname' => '短いタイトル',
 'exif-specialinstructions' => '取扱いに関する特記事項',
 'exif-headline' => '見出し',
@@ -3529,7 +3530,7 @@ Variants for Chinese language
 'exif-copyrightowner' => '著作権者',
 'exif-usageterms' => '使用条件',
 'exif-webstatement' => 'オンライン上の著作権文',
-'exif-originaldocumentid' => '元文書の一意な識別子',
+'exif-originaldocumentid' => '元文書の一意なID',
 'exif-licenseurl' => '著作権ライセンスのURL',
 'exif-morepermissionsurl' => '代替ライセンス情報',
 'exif-attributionurl' => 'この作品を再利用する際に、次のURLにリンクしてください',
@@ -3563,10 +3564,10 @@ Variants for Chinese language
 'exif-orientation-2' => '左右反転',
 'exif-orientation-3' => '180°回転',
 'exif-orientation-4' => '上下反転',
-'exif-orientation-5' => '反時計回りに90°回転 上下反転',
-'exif-orientation-6' => '90° 回転 CCW',
-'exif-orientation-7' => '時計回りに90°回転 上下反転',
-'exif-orientation-8' => '90° 回転 CW',
+'exif-orientation-5' => '反時計回りに90°回転、上下反転',
+'exif-orientation-6' => '反時計回りに90°回転',
+'exif-orientation-7' => '時計回りに90°回転、上下反転',
+'exif-orientation-8' => '時計回りに90°回転',
 
 'exif-planarconfiguration-1' => '点順次フォーマット',
 'exif-planarconfiguration-2' => '面順次フォーマット',
@@ -3900,6 +3901,11 @@ $5
 'size-kilobytes' => '$1キロバイト',
 'size-megabytes' => '$1メガバイト',
 'size-gigabytes' => '$1ギガバイト',
+'size-terabytes' => '$1 TB',
+'size-petabytes' => '$1 PB',
+'size-exabytes' => '$1 EB',
+'size-zetabytes' => '$1 ZB',
+'size-yottabytes' => '$1 YB',
 
 # Live preview
 'livepreview-loading' => '読み込み中...',
@@ -3914,15 +3920,15 @@ $5
 'lag-warn-high' => 'データベースサーバー遅延のため、この一覧には、$1秒より前の変更が表示されていない可能性があります。',
 
 # Watchlist editor
-'watchlistedit-numitems' => 'ウォッチリストには、$1件のページ名が含まれています（トークページは除く）。',
-'watchlistedit-noitems' => 'ウォッチリストにはページ名が1つもありません。',
+'watchlistedit-numitems' => 'ウォッチリストには {{PLURAL:$1|$1 ページ}}が登録されています（トークページを除く）。',
+'watchlistedit-noitems' => 'ウォッチリストにはどのページも登録されていません。',
 'watchlistedit-normal-title' => 'ウォッチリストの編集',
 'watchlistedit-normal-legend' => 'ウォッチリストからページ名を除去',
 'watchlistedit-normal-explain' => 'ウォッチリストに入っているページ名を以下に表示しています。
 ページ名を除去するには、隣のボックスにチェックを入れて「{{int:watchlistedit-normal-submit}}」をクリックしてください。
 また、[[Special:EditWatchlist/raw|ウォッチリストをそのまま編集]]も使用できます。',
 'watchlistedit-normal-submit' => 'ページを除去',
-'watchlistedit-normal-done' => 'ウォッチリストから $1 {{PLURAL:$1|件}}を削除しました：',
+'watchlistedit-normal-done' => 'ウォッチリストから {{PLURAL:$1|$1 件}}を削除しました：',
 'watchlistedit-raw-title' => 'ウォッチリストをそのまま編集',
 'watchlistedit-raw-legend' => 'ウォッチリストをそのまま編集',
 'watchlistedit-raw-explain' => 'ウォッチリストに含まれるページ名を以下に表示しています。この一覧で追加または除去ができます。
@@ -3932,8 +3938,8 @@ $5
 'watchlistedit-raw-titles' => 'ページ名：',
 'watchlistedit-raw-submit' => 'ウォッチリストを更新',
 'watchlistedit-raw-done' => 'ウォッチリストを更新しました。',
-'watchlistedit-raw-added' => '$1のページ名が追加されました：',
-'watchlistedit-raw-removed' => '$1件のページ名が除去されました：',
+'watchlistedit-raw-added' => '{{PLURAL:$1|$1 件のページ}}を追加しました：',
+'watchlistedit-raw-removed' => '{{PLURAL:$1|$1 件のページ}}を除去しました：',
 
 # Watchlist editing tools
 'watchlisttools-view' => '関連する変更を閲覧',
@@ -4025,7 +4031,7 @@ $5
 'version-license' => 'ライセンス',
 'version-poweredby-credits' => "このウィキは、'''[//www.mediawiki.org/ MediaWiki]'''(copyright © 2001-$1 $2)で動作しています。",
 'version-poweredby-others' => 'その他',
-'version-license-info' => 'MediaWikiはフリーソフトウェアです。あなたは、フリーソフトウェア財団の発行するGNU一般公衆利用許諾書 (GNU General Public License)（バージョン2、またはそれ以降のライセンス）の規約にもとづき、このライブラリの再配布や改変ができます。
+'version-license-info' => 'MediaWikiはフリーソフトウェアです。あなたは、フリーソフトウェア財団の発行するGNU一般公衆利用許諾書 (GNU General Public License)（バージョン2、またはそれ以降のライセンス）の規約に基づき、このライブラリを再配布および改変できます。
 
 MediaWikiは、有用であることを期待して配布されていますが、商用あるいは特定の目的に適するかどうかも含めて、暗黙的にも、一切保証されません。詳しくは、GNU一般公衆利用許諾書をご覧ください。
 
@@ -4054,15 +4060,14 @@ MediaWikiは、有用であることを期待して配布されていますが�
 'fileduplicatesearch-submit' => '検索',
 'fileduplicatesearch-info' => '$1×$2 ピクセル<br />ファイルサイズ：$3<br />MIMEタイプ：$4',
 'fileduplicatesearch-result-1' => 'ファイル「$1」と重複するファイルはありません。',
-'fileduplicatesearch-result-n' => 'ファイル「$1」は$2件のファイルと重複しています。',
+'fileduplicatesearch-result-n' => 'ファイル「$1」には {{PLURAL:$2|$2 件の重複ファイル}}があります。',
 'fileduplicatesearch-noresults' => '「$1」という名前のファイルはありません。',
 
 # Special:SpecialPages
 'specialpages' => '特別ページ',
 'specialpages-note' => '----
 * 通常の特別ページ
-* <span class="mw-specialpagerestricted">制限されている特別ページ</span>
-* <span class="mw-specialpagecached">（廃止されたかもしれない）キャッシュされた特別ページ</span>',
+* <span class="mw-specialpagerestricted">制限されている特別ページ</span>',
 'specialpages-group-maintenance' => 'メンテナンス報告',
 'specialpages-group-other' => 'その他の特別ページ',
 'specialpages-group-login' => 'ログイン/利用者登録',

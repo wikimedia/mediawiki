@@ -331,6 +331,11 @@ descriptions.
 &$module: ApiBase Module object
 &$desc: Array of parameter descriptions
 
+'APIGetResultProperties': use this hook to mofify the properties
+in a module's result.
+&$module: ApiBase Module object
+&$properties: Array of properties
+
 'APIQueryAfterExecute': after calling the execute() method of an
 action=query submodule. Use this to extend core API modules.
 &$module: Module object

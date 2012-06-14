@@ -345,7 +345,7 @@ class SpecialNewpages extends IncludableSpecialPage {
 			$this->msg( 'parentheses' )->rawParams( $histLink )->escaped() );
 
 		$length = Html::element( 'span', array( 'class' => 'mw-newpages-length' ),
-				'[' . $this->msg( 'nbytes' )->numParams( $result->length )->text() . ']'
+			$this->msg( 'brackets' )->params( $this->msg( 'nbytes' )->numParams( $result->length )->text() )
 		);
 
 		$ulink = Linker::revUserTools( $rev );

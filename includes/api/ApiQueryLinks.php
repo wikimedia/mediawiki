@@ -227,6 +227,15 @@ class ApiQueryLinks extends ApiQueryGeneratorBase {
 		);
 	}
 
+	public function getResultProperties() {
+		return array(
+			'' => array(
+				'ns' => 'namespace',
+				'title' => 'string'
+			)
+		);
+	}
+
 	public function getDescription() {
 		return "Returns all {$this->description}s from the given page(s)";
 	}

@@ -1,5 +1,5 @@
 <?php
-/** Norwegian (bokmål)‬ (‪Norsk (bokmål)‬)
+/** Norwegian (bokmål)‬ (‪norsk (bokmål)‬)
  *
  * See MessagesQqq.php for message documentation incl. usage of parameters
  * To improve a translation please visit http://translatewiki.net
@@ -7,6 +7,7 @@
  * @ingroup Language
  * @file
  *
+ * @author Jeblad
  */
 
 $fallback = 'nb';
@@ -2007,7 +2008,7 @@ Dette er de nåværende innstillingene for siden '''$1''':",
 Du kan endre sidens beskyttelsesnivå, men det vil ikke påvirke dypbeskyttelsen.',
 'protect-default' => 'Tillat alle brukere',
 'protect-fallback' => 'Må ha «$1»-tillatelse',
-'protect-level-autoconfirmed' => 'Blokker nye og uregistrerte brukere',
+'protect-level-autoconfirmed' => 'Eastte anonyma ja ođđa geavaheddjiid',
 'protect-level-sysop' => 'Kun administratorer',
 'protect-summary-cascade' => 'dypbeskyttelse',
 'protect-expiring' => 'utløper $1 (UTC)',

@@ -713,12 +713,23 @@ class ResourceLoader {
 				// Styles
 				$styles = array();
 				if ( $context->shouldIncludeStyles() ) {
-					// If we are in debug mode, we'll want to return an array of URLs
+					// If we are in debug mode without &only= set, we'll want to return an array of URLs
 					// See comment near shouldIncludeScripts() for more details
 					if ( $context->getDebug() && !$context->getOnly() && $module->supportsURLLoading() ) {
 						$styles = $module->getStyleURLsForDebug( $context );
 					} else {
 						$styles = $module->getStyles( $context );
+						// Minify CSS before embedding in mw.loader.implement call
+						// (unless in debug mode)
+						if ( !$context->getDebug() ) {
+							foreach ( $styles as $media => $style ) {
+								if ( is_string( $style ) ) {
+									$styles[$media] = $this->filter( 'minify-css', $style );
+								}
+							}
+						}
+						// Combine styles for all media types
+						$styles = array( '' => self::makeCombinedStyles( $styles ) );
 					}
 				}
 
@@ -737,23 +748,18 @@ class ResourceLoader {
 						}
 						break;
 					case 'styles':
-						$out .= self::makeCombinedStyles( $styles );
+						$out .= $styles['']; // Code above has set $styles['']
 						break;
 					case 'messages':
 						$out .= self::makeMessageSetScript( new XmlJsCode( $messagesBlob ) );
 						break;
 					default:
-						// Minify CSS before embedding in mw.loader.implement call
-						// (unless in debug mode)
-						if ( !$context->getDebug() ) {
-							foreach ( $styles as $media => $style ) {
-								if ( is_string( $style ) ) {
-									$styles[$media] = $this->filter( 'minify-css', $style );
-								}
-							}
-						}
-						$out .= self::makeLoaderImplementScript( $name, $scripts, $styles,
-							new XmlJsCode( $messagesBlob ) );
+						$out .= self::makeLoaderImplementScript(
+							$name,
+							$scripts,
+							$styles,
+							new XmlJsCode( $messagesBlob )
+						);
 						break;
 				}
 			} catch ( Exception $e ) {

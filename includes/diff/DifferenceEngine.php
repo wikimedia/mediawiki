@@ -757,9 +757,9 @@ class DifferenceEngine extends ContextSource {
 		}
 		if ( $wgExternalDiffEngine != 'wikidiff3' && $wgExternalDiffEngine !== false ) {
 			# Diff via the shell
-			global $wgTmpDirectory;
-			$tempName1 = tempnam( $wgTmpDirectory, 'diff_' );
-			$tempName2 = tempnam( $wgTmpDirectory, 'diff_' );
+			$tmpDir = wfTempDir();
+			$tempName1 = tempnam( $tmpDir, 'diff_' );
+			$tempName2 = tempnam( $tmpDir, 'diff_' );
 
 			$tempFile1 = fopen( $tempName1, "w" );
 			if ( !$tempFile1 ) {

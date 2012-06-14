@@ -3693,6 +3693,7 @@ This is probably caused by a link to a blacklisted external site.',
 'spambot_username'    => 'MediaWiki spam cleanup',
 'spam_reverting'      => 'Reverting to last revision not containing links to $1',
 'spam_blanking'       => 'All revisions contained links to $1, blanking',
+'spam_deleting'       => 'All revisions contained links to $1, deleting',
 
 # Info page
 'pageinfo-title'            => 'Information for "$1"',

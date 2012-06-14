@@ -727,6 +727,66 @@ class ApiQueryRevisions extends ApiQueryBase {
 		);
 	}
 
+	public function getResultProperties() {
+		$props = array(
+			'' => array(),
+			'ids' => array(
+				'revid' => 'integer',
+				'parentid' => array(
+					ApiBase::PROP_TYPE => 'integer',
+					ApiBase::PROP_NULLABLE => true
+				)
+			),
+			'flags' => array(
+				'minor' => 'boolean'
+			),
+			'user' => array(
+				'userhidden' => 'boolean',
+				'user' => 'string',
+				'anon' => 'boolean'
+			),
+			'userid' => array(
+				'userhidden' => 'boolean',
+				'userid' => 'integer',
+				'anon' => 'boolean'
+			),
+			'timestamp' => array(
+				'timestamp' => 'timestamp'
+			),
+			'size' => array(
+				'size' => 'integer'
+			),
+			'sha1' => array(
+				'sha1' => 'string'
+			),
+			'comment' => array(
+				'commenthidden' => 'boolean',
+				'comment' => array(
+					ApiBase::PROP_TYPE => 'string',
+					ApiBase::PROP_NULLABLE => true
+				)
+			),
+			'parsedcomment' => array(
+				'commenthidden' => 'boolean',
+				'parsedcomment' => array(
+					ApiBase::PROP_TYPE => 'string',
+					ApiBase::PROP_NULLABLE => true
+				)
+			),
+			'content' => array(
+				'*' => array(
+					ApiBase::PROP_TYPE => 'string',
+					ApiBase::PROP_NULLABLE => true
+				),
+				'texthidden' => 'boolean'
+			)
+		);
+
+		self::addTokenProperties( $props, $this->getTokenFunctions() );
+
+		return $props;
+	}
+
 	public function getDescription() {
 		return array(
 			'Get revision information',

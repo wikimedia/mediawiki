@@ -25,6 +25,44 @@
 
 $fallback = 'pl';
 
+$namespaceNames = array(
+	NS_SPECIAL        => 'Szpecyjalna',
+	NS_TALK           => 'Dyskusyjo',
+	NS_USER           => 'Używacz',
+	NS_USER_TALK      => 'Dyskusyjo_używacza',
+	NS_PROJECT_TALK   => 'Dyskusyjo_$1',
+	NS_FILE           => 'Plik',
+	NS_FILE_TALK      => 'Dyskusyjo_plika',
+	NS_MEDIAWIKI      => 'MediaWiki',
+	NS_MEDIAWIKI_TALK => 'Dyskusyjo_MediaWiki',
+	NS_TEMPLATE       => 'Muster',
+	NS_TEMPLATE_TALK  => 'Dyskusyjo_mustra',
+	NS_HELP           => 'Půmoc',
+	NS_HELP_TALK      => 'Dyskusyjo_půmocy',
+	NS_CATEGORY       => 'Kategoryjo',
+	NS_CATEGORY_TALK  => 'Dyskusyjo_kategoryji',
+);
+
+$namespaceAliases = array(
+	// Aliases for Polish namespaces (bug 34988).
+	'Specjalna'            => NS_SPECIAL,
+	'Dyskusja'             => NS_TALK,
+	'Użytkownik'           => NS_USER,
+	'Dyskusja_użytkownika' => NS_USER_TALK,
+	'Dyskusja_$1'          => NS_PROJECT_TALK,
+	'Dyskusja_pliku'       => NS_FILE_TALK,
+	'Dyskusja_MediaWiki'   => NS_MEDIAWIKI_TALK,
+	'Szablon'              => NS_TEMPLATE,
+	'Dyskusja_szablonu'    => NS_TEMPLATE_TALK,
+	'Pomoc'                => NS_HELP,
+	'Dyskusja_pomocy'      => NS_HELP_TALK,
+	'Kategoria'            => NS_CATEGORY,
+	'Dyskusja_kategorii'   => NS_CATEGORY_TALK,
+);
+
+// Remove Polish gender aliases
+$namespaceGenderAliases = array();
+
 $messages = array(
 # User preference toggles
 'tog-underline' => 'Podsztrychńyńcy linkůw:',
@@ -648,7 +686,7 @@ abo <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}
 'userinvalidcssjstitle' => "'''Pozůr:''' Ńy mo skůrki uo mjańe \"\$1\". Pamjyntej, aže zajty užytkowńika zawjyrajůnce CSS i JavaScript powinny začynać śe mouům buchštabům, np. {{ns:user}}:Foo/vector.css.",
 'updated' => '(Pomjyńano)',
 'note' => "'''Pozůr:'''",
-'previewnote' => "'''To je ino podglůnd - artikel ješče ńy je naškryflany!'''",
+'previewnote' => "'''To je ino podglůnd - artikel jeszcze ńy je spamjyntany!'''",
 'previewconflict' => 'Wersyjo podglůndano uodnośi śe do tekstu s pola edycyje na wjyrchu. Tak bydźe wyglůndać zajta jeli zdecyduješ śe jům naškryflać.',
 'session_fail_preview' => "'''Přeprašomy! Serwer ńy može přetwořyć tygo sprowjyńo skuli utraty danych ze sesyji. Sprůbuj ješče roz. Kejby to ńy pomoguo - wylůguj śe i zalogůj uod nowa.'''",
 'session_fail_preview_html' => "'''Přeprašomy! Serwer ńy može přetwořyć tygo sprowjyńo skuli utraty danych ze sesyji.'''
@@ -924,7 +962,7 @@ $1',
 'search-nonefound' => 'Ńy mo wynikůw, kere uodpadajům kryterjům zapytańo.',
 'powersearch' => 'Sznupańy zaawansowane',
 'powersearch-legend' => 'Šnupańy zaawansowane',
-'powersearch-ns' => 'Šnupej we přestřyńach mjan:',
+'powersearch-ns' => 'Sznupej we przestrzyńach mjan:',
 'powersearch-redir' => 'Pokož překerowańa',
 'powersearch-field' => 'Šnupej',
 'powersearch-togglelabel' => 'Zaznocz:',

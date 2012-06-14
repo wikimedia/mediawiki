@@ -1,5 +1,5 @@
 <?php
-/** Vèneto (Vèneto)
+/** vèneto (vèneto)
  *
  * See MessagesQqq.php for message documentation incl. usage of parameters
  * To improve a translation please visit http://translatewiki.net
@@ -3347,28 +3347,28 @@ Le imagini le vien mostrà a la risoluzion pi granda che se pol, par i altri tip
 'sqlite-no-fts' => '$1 sensa la possibilità de riserca completa nel testo',
 
 # New logging system
-'logentry-delete-delete' => '$1 ga scanselà la pajina $3',
+'logentry-delete-delete' => '$1 ga scansełà ła pajina $3',
 'logentry-delete-restore' => '$1 ga ripristinà "$3"',
-'logentry-delete-event' => '$1 ga canbià la vixibilità de {{PLURAL:$5|n\'asion del registro|$5 asion del registro}} de "$3": $4',
-'logentry-delete-revision' => '$1 ga canbià la vixibilità de {{PLURAL:$5|na revixion|$5 revixion}} de la pajina"$3": $4',
-'logentry-delete-event-legacy' => '$1 ga canbià la vixibilità de calche asion del registro de "$3"',
-'logentry-delete-revision-legacy' => '$1 ga canbià la vixibilità par le revixion de la pajina $3',
+'logentry-delete-event' => '$1 ga canbià ła vixibiłità de {{PLURAL:$5|n\'asion del registro|$5 asion del registro}} de "$3": $4',
+'logentry-delete-revision' => '$1 ga canbià ła vixibiłità de {{PLURAL:$5|na revixion|$5 revixion}} de ła pajina"$3": $4',
+'logentry-delete-event-legacy' => '$1 ga canbià ła vixibiłità de calche asion del registro de "$3"',
+'logentry-delete-revision-legacy' => '$1 ga canbià ła vixibiłità par łe revixion de ła pajina $3',
 'logentry-suppress-delete' => '$1 ga sconto la pajina "$3"',
 'logentry-suppress-event' => '$1 ga canbià de scondón la vixibilità de {{PLURAL:$5|n\'asion del registro|$5 asion del registro}} de "$3": $4',
 'logentry-suppress-revision' => '$1 ga canbià de scondón la vixibilità de {{PLURAL:$5|na revixion|$5 revixion}} de "$3": $4',
 'logentry-suppress-event-legacy' => '$1 ga canbià de scondón la vixibilità de calche asion del registro de "$3"',
 'logentry-suppress-revision-legacy' => '$1 ga canbià de scondón la vixibilità de calche revixion de $3',
 'revdelete-content-hid' => 'contegnùo sconto',
-'revdelete-summary-hid' => 'ogeto de la modifega sconto',
+'revdelete-summary-hid' => 'ogeto de ła modifega sconto',
 'revdelete-uname-hid' => 'nome utente sconto',
 'revdelete-content-unhid' => 'contegnùo ripristinà',
 'revdelete-summary-unhid' => 'ogeto ripristinà',
 'revdelete-uname-unhid' => 'nome utente ripristinà',
 'revdelete-restricted' => 'aplicà restrizioni ai aministradori',
 'revdelete-unrestricted' => 'gà cavà le limitazion par i aministradori',
-'logentry-move-move' => '$1 ga spostà la pajina $3 a $4',
-'logentry-move-move-noredirect' => '$1 ga spostà la pajina $3 a $4 sensa metare un rimando',
-'logentry-move-move_redir' => '$1 ga spostà la pajina $3 a $4 metendo un rimando',
+'logentry-move-move' => '$1 ga spostà ła pajina $3 a $4',
+'logentry-move-move-noredirect' => '$1 ga spostà ła pajina $3 a $4 sensa metare un rimando',
+'logentry-move-move_redir' => '$1 ga spostà ła pajina $3 a $4 lasiando un rimando',
 'logentry-move-move_redir-noredirect' => '$1 ga spostà la pajina $3 a $4 al posto de un rimando sensa metare un rimando',
 'logentry-patrol-patrol' => '$1 ga segnà la revixion $4 de la pajina $3 come verifegà',
 'logentry-patrol-patrol-auto' => '$1 ga segnà automategamente la revixion $4 de la pajina $3 come verifegà',

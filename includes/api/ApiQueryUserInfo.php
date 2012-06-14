@@ -234,6 +234,63 @@ class ApiQueryUserInfo extends ApiQueryBase {
 		);
 	}
 
+	public function getResultProperties() {
+		return array(
+			ApiBase::PROP_LIST => false,
+			'' => array(
+				'id' => 'integer',
+				'name' => 'string',
+				'anon' => 'boolean'
+			),
+			'blockinfo' => array(
+				'blockid' => array(
+					ApiBase::PROP_TYPE => 'integer',
+					ApiBase::PROP_NULLABLE => true
+				),
+				'blockedby' => array(
+					ApiBase::PROP_TYPE => 'string',
+					ApiBase::PROP_NULLABLE => true
+				),
+				'blockedbyid' => array(
+					ApiBase::PROP_TYPE => 'integer',
+					ApiBase::PROP_NULLABLE => true
+				),
+				'blockedreason' => array(
+					ApiBase::PROP_TYPE => 'string',
+					ApiBase::PROP_NULLABLE => true
+				)
+			),
+			'hasmsg' => array(
+				'messages' => 'boolean'
+			),
+			'preferencestoken' => array(
+				'preferencestoken' => 'string'
+			),
+			'editcount' => array(
+				'editcount' => 'integer'
+			),
+			'realname' => array(
+				'realname' => array(
+					ApiBase::PROP_TYPE => 'string',
+					ApiBase::PROP_NULLABLE => true
+				)
+			),
+			'email' => array(
+				'email' => 'string',
+				'emailauthenticated' => array(
+					ApiBase::PROP_TYPE => 'timestamp',
+					ApiBase::PROP_NULLABLE => true
+				)
+			),
+			'registrationdate' => array(
+				'registrationdate' => array(
+					ApiBase::PROP_TYPE => 'timestamp',
+					ApiBase::PROP_NULLABLE => true
+				)
+			)
+		);
+	}
+
 	public function getDescription() {
 		return 'Get information about the current user';
 	}

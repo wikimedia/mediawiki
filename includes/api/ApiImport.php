@@ -126,6 +126,17 @@ class ApiImport extends ApiBase {
 		);
 	}
 
+	public function getResultProperties() {
+		return array(
+			ApiBase::PROP_LIST => true,
+			'' => array(
+				'ns' => 'namespace',
+				'title' => 'string',
+				'revisions' => 'integer'
+			)
+		);
+	}
+
 	public function getDescription() {
 		return array(
 			'Import a page from another wiki, or an XML file.' ,

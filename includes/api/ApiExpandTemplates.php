@@ -103,6 +103,14 @@ class ApiExpandTemplates extends ApiBase {
 		);
 	}
 
+	public function getResultProperties() {
+		return array(
+			'' => array(
+				'*' => 'string'
+			)
+		);
+	}
+
 	public function getDescription() {
 		return 'Expands all templates in wikitext';
 	}

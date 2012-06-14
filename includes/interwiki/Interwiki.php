@@ -58,7 +58,7 @@ class Interwiki {
 	 * Fetch an Interwiki object
 	 *
 	 * @param $prefix String: interwiki prefix to use
-	 * @return Interwiki Object, or null if not valid
+	 * @return Interwiki|null|bool
 	 */
 	static public function fetch( $prefix ) {
 		global $wgContLang;

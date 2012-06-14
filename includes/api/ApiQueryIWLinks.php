@@ -167,6 +167,19 @@ class ApiQueryIWLinks extends ApiQueryBase {
 		);
 	}
 
+	public function getResultProperties() {
+		return array(
+			'' => array(
+				'prefix' => 'string',
+				'url' => array(
+					ApiBase::PROP_TYPE => 'string',
+					ApiBase::PROP_NULLABLE => true
+				),
+				'*' => 'string'
+			)
+		);
+	}
+
 	public function getDescription() {
 		return 'Returns all interwiki links from the given page(s)';
 	}
