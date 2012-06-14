@@ -2,6 +2,11 @@
 
 /**
  * @group ContentHandler
+ *
+ * @note: Declare that we are using the database, because otherwise we'll fail in the "databaseless" test run.
+ * This is because the LinkHolderArray used by the parser needs database access.
+ *
+ * @group Database
  */
 class ContentHandlerTest extends MediaWikiTestCase {
 
