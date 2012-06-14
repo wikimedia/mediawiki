@@ -272,7 +272,8 @@ CREATE TABLE &mw_prefix.ipblocks (
   ipb_range_end         VARCHAR2(255),
   ipb_deleted           CHAR(1)      DEFAULT '0' NOT NULL,
   ipb_block_email       CHAR(1)      DEFAULT '0' NOT NULL,
-  ipb_allow_usertalk    CHAR(1)      DEFAULT '0' NOT NULL
+  ipb_allow_usertalk    CHAR(1)      DEFAULT '0' NOT NULL,
+  ipb_parent_block_id             NUMBER       DEFAULT NULL
 );
 ALTER TABLE &mw_prefix.ipblocks ADD CONSTRAINT &mw_prefix.ipblocks_pk PRIMARY KEY (ipb_id);
 ALTER TABLE &mw_prefix.ipblocks ADD CONSTRAINT &mw_prefix.ipblocks_fk1 FOREIGN KEY (ipb_user) REFERENCES &mw_prefix.mwuser(user_id) ON DELETE SET NULL DEFERRABLE INITIALLY DEFERRED;

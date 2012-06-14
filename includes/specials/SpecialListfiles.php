@@ -156,9 +156,8 @@ class ImageListPager extends TablePager {
 			if( $dbr->implicitGroupby() ) {
 				$options = array( 'GROUP BY' => 'img_name' );
 			} else {
-				$columnlist = implode( ',',
-					preg_grep( '/^img/', array_keys( $this->getFieldNames() ) ) );
-				$options = array( 'GROUP BY' => "img_user, $columnlist" );
+				$columnlist = preg_grep( '/^img/', array_keys( $this->getFieldNames() ) );
+				$options = array( 'GROUP BY' => array_merge( array( 'img_user' ), $columnlist ) );
 			}
 			$join_conds = array( 'oldimage' => array( 'LEFT JOIN', 'oi_name = img_name' ) );
 		}
@@ -198,7 +197,7 @@ class ImageListPager extends TablePager {
 				$thumb = $file->transform( array( 'width' => 180, 'height' => 360 ) );
 				return $thumb->toHtml( array( 'desc-link' => true ) );
 			case 'img_timestamp':
-				return htmlspecialchars( $this->getLanguage()->timeanddate( $value, true ) );
+				return htmlspecialchars( $this->getLanguage()->userTimeAndDate( $value, $this->getUser() ) );
 			case 'img_name':
 				static $imgfile = null;
 				if ( $imgfile === null ) $imgfile = $this->msg( 'imgfile' )->text();
@@ -211,7 +210,8 @@ class ImageListPager extends TablePager {
 						array( 'href' => wfLocalFile( $filePage )->getURL() ),
 						$imgfile
 					);
-					return "$link ($download)";
+					$download = $this->msg( 'parentheses' )->rawParams( $download )->escaped();
+					return "$link $download";
 				} else {
 					return htmlspecialchars( $value );
 				}

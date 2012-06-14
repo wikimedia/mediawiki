@@ -1,14 +1,22 @@
 <?php
 
 class WebRequestTest extends MediaWikiTestCase {
+	static $oldServer;
+
+	function setUp() {
+		self::$oldServer = $_SERVER;
+	}
+
+	function tearDown() {
+		$_SERVER = self::$oldServer;
+	}
+
 	/**
 	 * @dataProvider provideDetectServer
 	 */
 	function testDetectServer( $expected, $input, $description ) {
-		$oldServer = $_SERVER;
 		$_SERVER = $input;
 		$result = WebRequest::detectServer();
-		$_SERVER = $oldServer;
 		$this->assertEquals( $expected, $result, $description );
 	}
 
@@ -91,13 +99,11 @@ class WebRequestTest extends MediaWikiTestCase {
 	 */
 	function testGetIP( $expected, $input, $squid, $private, $description ) {
 		global $wgSquidServersNoPurge, $wgUsePrivateIPs;
-		$oldServer = $_SERVER;
 		$_SERVER = $input;
 		$wgSquidServersNoPurge = $squid;
 		$wgUsePrivateIPs = $private;
 		$request = new WebRequest();
 		$result = $request->getIP();
-		$_SERVER = $oldServer;
 		$this->assertEquals( $expected, $result, $description );
 	}
 
@@ -181,5 +187,30 @@ class WebRequestTest extends MediaWikiTestCase {
 		$request = new WebRequest();
 		# Next call throw an exception about lacking an IP
 		$request->getIP();
+	}
+
+	function languageProvider() {
+		return array(
+			array( '', array(), 'Empty Accept-Language header' ),
+			array( 'en', array( 'en' => 1 ), 'One language' ),
+			array( 'en, ar', array( 'en' => 1, 'ar' => 1 ), 'Two languages listed in appearance order.' ),
+			array( 'zh-cn,zh-tw', array( 'zh-cn' => 1, 'zh-tw' => 1 ), 'Two equally prefered languages, listed in appearance order per rfc3282. Checks c9119' ),
+			array( 'es, en; q=0.5', array( 'es' => 1, 'en' => '0.5' ), 'Spanish as first language and English and second' ),
+			array( 'en; q=0.5, es', array( 'es' => 1, 'en' => '0.5' ), 'Less prefered language first' ),
+			array( 'fr, en; q=0.5, es', array( 'fr' => 1, 'es' => 1, 'en' => '0.5' ), 'Three languages' ),
+			array( 'en; q=0.5, es', array( 'es' => 1, 'en' => '0.5' ), 'Two languages' ),
+			array( 'en, zh;q=0', array( 'en' => 1 ), "It's Chinese to me" ),
+			array( 'es; q=1, pt;q=0.7, it; q=0.6, de; q=0.1, ru;q=0', array( 'es' => '1', 'pt' => '0.7', 'it' => '0.6', 'de' => '0.1' ), 'Preference for romance languages' ),
+			array( 'en-gb, en-us; q=1', array( 'en-gb' => 1, 'en-us' => '1' ), 'Two equally prefered English variants' ),
+		);
+	}
+
+	/**
+	 * @dataProvider languageProvider
+	 */
+	function testAcceptLang($acceptLanguageHeader, $expectedLanguages, $description) {
+		$_SERVER = array( 'HTTP_ACCEPT_LANGUAGE' => $acceptLanguageHeader );
+		$request = new WebRequest();
+		$this->assertSame( $request->getAcceptLang(), $expectedLanguages, $description);
 	}
 }

@@ -135,6 +135,7 @@ $magicWords = array(
 	'pagenamee'               => array( '1', 'PAGINANAAME', 'PAGENAMEE' ),
 	'namespace'               => array( '1', 'NAAMRUIMTE', 'NAMESPACE' ),
 	'namespacee'              => array( '1', 'NAAMRUIMTEE', 'NAMESPACEE' ),
+	'namespacenumber'         => array( '1', 'NAAMRUIMTENUMMER', 'NAMESPACENUMBER' ),
 	'talkspace'               => array( '1', 'OVERLEGRUIMTE', 'TALKSPACE' ),
 	'talkspacee'              => array( '1', 'OVERLEGRUIMTEE', 'TALKSPACEE' ),
 	'subjectspace'            => array( '1', 'ONDERWERPRUIMTE', 'ARTIKELRUIMTE', 'SUBJECTSPACE', 'ARTICLESPACE' ),
@@ -176,7 +177,6 @@ $magicWords = array(
 	'localurl'                => array( '0', 'LOKALEURL', 'LOCALURL:' ),
 	'localurle'               => array( '0', 'LOKALEURLE', 'LOCALURLE:' ),
 	'articlepath'             => array( '0', 'ARTIKELPAD', 'ARTICLEPATH' ),
-	'pageid'                  => array( '0', 'PAGINAID', 'PAGEID' ),
 	'servername'              => array( '0', 'SERVERNAAM', 'SERVERNAME' ),
 	'scriptpath'              => array( '0', 'SCRIPTPAD', 'SCRIPTPATH' ),
 	'stylepath'               => array( '0', 'STIJLPAD', 'STYLEPATH' ),
@@ -224,6 +224,7 @@ $magicWords = array(
 	'padleft'                 => array( '0', 'LINKSOPVULLEN', 'PADLEFT' ),
 	'padright'                => array( '0', 'RECHTSOPVULLEN', 'PADRIGHT' ),
 	'special'                 => array( '0', 'speciaal', 'special' ),
+	'speciale'                => array( '0', 'speciaale', 'speciale' ),
 	'defaultsort'             => array( '1', 'STANDAARDSORTERING:', 'DEFAULTSORT:', 'DEFAULTSORTKEY:', 'DEFAULTCATEGORYSORT:' ),
 	'filepath'                => array( '0', 'BESTANDSPAD:', 'FILEPATH:' ),
 	'tag'                     => array( '0', 'label', 'tag' ),
@@ -377,8 +378,8 @@ $messages = array(
 'tog-fancysig' => 'Als wikitekst behandelen (zonder automatische verwijzing)',
 'tog-externaleditor' => 'Standaard een externe tekstbewerker gebruiken (alleen voor experts - voor deze functie zijn speciale instellingen nodig. [//www.mediawiki.org/wiki/Manual:External_editors Meer informatie]).',
 'tog-externaldiff' => 'Standaard een extern vergelijkingsprogramma gebruiken (alleen voor experts - voor deze functie zijn speciale instellingen nodig. [//www.mediawiki.org/wiki/Manual:External_editors Meer informatie]).',
-'tog-showjumplinks' => '“ga naar”-toegankelijkheidsverwijzingen inschakelen',
-'tog-uselivepreview' => '“live voorvertoning” gebruiken (vereist JavaScript – experimenteel)',
+'tog-showjumplinks' => '"ga naar"-toegankelijkheidsverwijzingen inschakelen',
+'tog-uselivepreview' => '"live voorvertoning" gebruiken (vereist JavaScript – experimenteel)',
 'tog-forceeditsummary' => 'Een melding geven bij een lege bewerkingssamenvatting',
 'tog-watchlisthideown' => 'Eigen bewerkingen op mijn volglijst verbergen',
 'tog-watchlisthidebots' => 'Botbewerkingen op mijn volglijst verbergen',
@@ -458,9 +459,9 @@ $messages = array(
 
 # Categories related messages
 'pagecategories' => '{{PLURAL:$1|Categorie|Categorieën}}',
-'category_header' => 'Pagina’s in categorie “$1”',
+'category_header' => 'Pagina’s in categorie "$1"',
 'subcategories' => 'Ondercategorieën',
-'category-media-header' => 'Media in categorie “$1”',
+'category-media-header' => 'Media in categorie "$1"',
 'category-empty' => "''Deze categorie bevat geen pagina’s of media.''",
 'hidden-categories' => 'Verborgen {{PLURAL:$1|categorie|categorieën}}',
 'hidden-category-category' => 'Verborgen categorieën',
@@ -631,8 +632,8 @@ Meer informatie is beschikbaar op de pagina [[Special:Version|softwareversie]].'
 'feed-unavailable' => 'Syndicatiefeeds zijn niet beschikbaar',
 'site-rss-feed' => '$1 RSS-feed',
 'site-atom-feed' => '$1 Atom-feed',
-'page-rss-feed' => '“$1” RSS-feed',
-'page-atom-feed' => '“$1” Atom-feed',
+'page-rss-feed' => '"$1" RSS-feed',
+'page-atom-feed' => '"$1" Atom-feed',
 'red-link-title' => '$1 (de pagina bestaat niet)',
 'sort-descending' => 'Aflopend sorteren',
 'sort-ascending' => 'Oplopend sorteren',
@@ -666,13 +667,13 @@ Een lijst met bestaande speciale pagina’s staat op [[Special:SpecialPages|{{in
 Mogelijk zit er een fout in de software.
 Het laatste verzoek aan de database was:
 <blockquote><tt>$1</tt></blockquote>
-vanuit de functie “<tt>$2</tt>”.
-De database gaf de volgende foutmelding “<tt>$3: $4</tt>”.',
+vanuit de functie "<tt>$2</tt>".
+De database gaf de volgende foutmelding "<tt>$3: $4</tt>".',
 'dberrortextcl' => 'Er is een syntaxisfout in het databaseverzoek opgetreden.
 Het laatste verzoek aan de database was:
-“$1”
-vanuit de functie “$2”.
-De database gaf de volgende foutmelding: “$3: $4”',
+"$1"
+vanuit de functie "$2".
+De database gaf de volgende foutmelding: "$3: $4"',
 'laggedslavemode' => "'''Waarschuwing:''' in deze pagina zijn recente wijzigingen mogelijk nog niet verwerkt.",
 'readonly' => 'Database geblokkeerd',
 'enterlockreason' => 'Geef een reden op voor de blokkade en geef op wanneer die waarschijnlijk wordt opgeheven',
@@ -695,7 +696,7 @@ Maak hiervan melding bij een [[Special:ListUsers/sysop|beheerder]] van {{SITENAM
 'filecopyerror' => 'Bestand "$1" kon niet naar "$2" gekopieerd worden.',
 'filerenameerror' => '"$1" kon niet hernoemd worden naar "$2".',
 'filedeleteerror' => 'Bestand "$1" kon niet verwijderd worden.',
-'directorycreateerror' => 'Map “$1” kon niet aangemaakt worden.',
+'directorycreateerror' => 'De map "$1" kon niet aangemaakt worden.',
 'filenotfound' => 'Bestand "$1" kon niet gevonden worden.',
 'fileexistserror' => 'Schrijven naar bestand "$1" onmogelijk: het bestand bestaat al.',
 'unexpected' => 'Onverwachte waarde: "$1"="$2".',
@@ -740,6 +741,8 @@ De gegeven reden is ''$2''.",
 'filereadonlyerror' => 'Het was niet mogelijk het bestand "$1" aan te passen omdat de bestandsrepository "$2" op dit moment alleen-lezen is.
 
 De opgegeven reden is "\'\'$3\'\'".',
+'invalidtitle-knownnamespace' => 'Ongeldige titel met naamruimte "$2" en tekst "$3"',
+'invalidtitle-unknownnamespace' => 'Ongeldige titel met onbekend naamruimtenummer $1 en tekst "$2"',
 
 # Virus scanner
 'virus-badscanner' => "Onjuiste configuratie: onbekende virusscanner: ''$1''.",
@@ -1049,7 +1052,8 @@ Uw eigen .css- en .js-pagina's beginnen met een kleine letter, bijvoorbeeld {{ns
 'updated' => '(Bijgewerkt)',
 'note' => "'''Opmerking:'''",
 'previewnote' => "'''Let op: dit is een controlepagina.'''
-Uw tekst is niet opgeslagen! [[#editform|→ Doorgaan met bewerken]]",
+Uw tekst is niet opgeslagen!",
+'continue-editing' => 'Doorgaan met bewerken',
 'previewconflict' => 'Deze voorvertoning geeft aan hoe de tekst in het bovenste veld eruit ziet als u deze opslaat.',
 'session_fail_preview' => "'''Uw bewerking is niet verwerkt, omdat de sessiegegevens verloren zijn gegaan.
 Probeer het opnieuw.
@@ -1149,6 +1153,12 @@ Deze parameters zijn weggelaten.',
 'parser-template-loop-warning' => 'Er is een kringloop in sjablonen geconstateerd: [[$1]]',
 'parser-template-recursion-depth-warning' => 'De recursiediepte voor sjablonen is overschreden ($1)',
 'language-converter-depth-warning' => 'De dieptelimiet voor de taalconvertor is overschreden ($1)',
+'node-count-exceeded-category' => "Pagina's waar het maximaal aantal nodes is overschreden",
+'node-count-exceeded-warning' => 'Op de pagina is het maximale aantal nodes overschreden',
+'expansion-depth-exceeded-category' => "Pagina's waar de expansiediepte is overschreden",
+'expansion-depth-exceeded-warning' => 'De pagina bevat te veel sjablonen',
+'parser-unstrip-loop-warning' => 'Er is een "unstrip"-lus gedetecteerd',
+'parser-unstrip-recursion-limit' => 'De recursielimiet ($1) voor "unstrip" is overschreden',
 
 # "Undo" feature
 'undo-success' => 'Deze bewerking kan ongedaan gemaakt worden.
@@ -1328,8 +1338,9 @@ Let op dat het gebruiken van de navigatieverwijzingen deze kolom opnieuw instelt
 'mergelogpagetext' => 'Hieronder ziet u een lijst van recente samenvoegingen van een paginageschiedenis naar een andere.',
 
 # Diffs
-'history-title' => 'Geschiedenis van "$1"',
-'difference' => '(Verschil tussen bewerkingen)',
+'history-title' => '$1: versiegeschiedenis',
+'difference-title' => '$1: verschil tussen versies',
+'difference-title-multipage' => "$1 en $2: verschil tussen pagina's",
 'difference-multipage' => "(Verschil tussen pagina's)",
 'lineno' => 'Regel $1:',
 'compareselectedversions' => 'Geselecteerde versies vergelijken',
@@ -1429,6 +1440,7 @@ De gegevens over {{SITENAME}} zijn mogelijk niet bijgewerkt.',
 'prefs-beta' => 'Bètafunctionaliteit',
 'prefs-datetime' => 'Datum en tijd',
 'prefs-labs' => 'Alphafunctionaliteit',
+'prefs-user-pages' => "Gebruikerspagina's",
 'prefs-personal' => 'Gebruikersprofiel',
 'prefs-rc' => 'Recente wijzigingen',
 'prefs-watchlist' => 'Volglijst',
@@ -1693,7 +1705,7 @@ Als u deze opgeeft, kan deze naam gebruikt worden om u erkenning te geven voor u
 'nchanges' => '$1 {{PLURAL:$1|bewerking|bewerkingen}}',
 'recentchanges' => 'Recente wijzigingen',
 'recentchanges-legend' => 'Opties voor recente wijzigingen',
-'recentchangestext' => 'Op deze pagina kunt u de recente wijzigingen in deze wiki bekijken.',
+'recentchanges-summary' => 'Op deze pagina kunt u de recentste wijzigingen in deze wiki bekijken.',
 'recentchanges-feed-description' => 'Met deze feed kunt u de recentste wijzigingen in deze wiki bekijken.',
 'recentchanges-label-newpage' => 'Met deze bewerking is een nieuwe pagina aangemaakt',
 'recentchanges-label-minor' => 'Dit is een kleine bewerking',
@@ -1793,7 +1805,7 @@ Aangewezen {{PLURAL:\$3|bestandstype is|bestandstypes zijn}} \$2.",
 'filetype-banned' => 'Het bestand dat u probeerde te uploaden was van een niet toegelaten bestandstype.',
 'verification-error' => 'De verificatie van het bestand dat u probeerde te uploaden is mislukt.',
 'hookaborted' => 'De wijziging die u probeerde te maken is afgebroken door een uitbreidingshook.',
-'illegal-filename' => 'Deze bestandsnaam is niet toegelaten.',
+'illegal-filename' => 'Deze bestandsnaam is niet toegestaan.',
 'overwrite' => 'Het overschrijven van een bestand bestand is niet toegestaan.',
 'unknown-error' => 'Er is een onbekende fout opgetreden.',
 'tmp-create-error' => 'Het was niet mogelijk een tijdelijk bestand aan te maken.',
@@ -1911,14 +1923,15 @@ Als het probleem aanhoudt, neem dan contact op met een [[Special:ListUsers/sysop
 'backend-fail-writetemp' => 'Het was niet mogelijk naar een tijdelijk bestand te schrijven.',
 'backend-fail-closetemp' => 'Het was niet mogelijk een tijdelijk bestand te sluiten.',
 'backend-fail-read' => 'Het was niet mogelijk het bestand $1 te lezen.',
-'backend-fail-create' => 'Het was niet mogelijk het bestand $1 aan te maken.',
-'backend-fail-maxsize' => 'Het was niet mogelijk het bestand $1 aan te maken omdat het groter is dan {{PLURAL:$2|één byte|$2 bytes}}.',
+'backend-fail-create' => 'Het was niet mogelijk naar het bestand $1 te schrijven.',
+'backend-fail-maxsize' => 'Het was niet mogelijk naar het bestand $1 te schrijven omdat het groter is dan {{PLURAL:$2|één byte|$2 bytes}}.',
 'backend-fail-readonly' => 'Het opslagbackend "$1" kan op dit moment alleen gelezen worden. De opgegeven reden was: "$2"',
 'backend-fail-synced' => 'Het bestand "$1" bevindt zich in een inconsistente toestand in de interne opslagbackends.',
 'backend-fail-connect' => 'Het was niet mogelijk een verbinding te maken met het opslagbackend "$1".',
 'backend-fail-internal' => 'Er is een onbekende fout opgetreden in het opslagbackend "$1".',
 'backend-fail-contenttype' => 'Het inhoudstype van het bestand om in de opslag "$1" op te slaan kon niet bepaald worden.',
 'backend-fail-batchsize' => 'Taak met $1 {{PLURAL:$1|bestandshandeling|bestandshandelingen}} in het opslagbackend; de limiet is $2 {{PLURAL:$2|handeling|handelingen}}.',
+'backend-fail-usable' => 'Het was niet mogelijk naar het bestand $1 te schrijven vanwege onvoldoende rechten of niet-aanwezige mappen of containers.',
 
 # File journal errors
 'filejournal-fail-dbconnect' => 'Het was niet mogelijk een verbinding te maken met de journaldatabase voor het opslagbackend "$1".',
@@ -2224,7 +2237,7 @@ Een bestand kan hier dus ten onrechte opgenomen zijn.',
 'notargettitle' => 'Geen doelpagina',
 'notargettext' => 'U hebt niet opgegeven voor welke pagina of gebruiker u deze handeling wilt uitvoeren.',
 'nopagetitle' => 'Te hernoemen pagina bestaat niet',
-'nopagetext' => 'De pagina die u wilt hernoemen bestaat niet.',
+'nopagetext' => 'De doelpagina die u hebt opgegeven bestaat niet.',
 'pager-newer-n' => '{{PLURAL:$1|1 nieuwere|$1 nieuwere}}',
 'pager-older-n' => '{{PLURAL:$1|1 oudere|$1 oudere}}',
 'suppress' => 'Toezicht',
@@ -2247,6 +2260,7 @@ Controleer of u wellicht een fout hebt gemaakt bij de invoer.',
 U kunt ook kiezen voor specifieke logboeken en filteren op gebruiker (hoofdlettergevoelig) en paginanaam (hoofdlettergevoelig).',
 'logempty' => 'Er zijn geen regels in het logboek die voldoen aan deze criteria.',
 'log-title-wildcard' => "Pagina's zoeken die met deze tekens beginnen",
+'showhideselectedlogentries' => 'Geselecteerde logboekregels weergeven of verbergen',
 
 # Special:AllPages
 'allpages' => "Alle pagina's",
@@ -3818,8 +3832,8 @@ Bevestig dat u de pagina opnieuw wilt aanmaken.',
 'livepreview-ready' => 'Bezig met laden… Klaar!',
 'livepreview-failed' => 'Live voorvertoning mislukt!
 Probeer de normale voorvertoning.',
-'livepreview-error' => 'Verbinden mislukt: $1 “$2”.
-Probeer normale voorvertoning.',
+'livepreview-error' => 'Verbinden mislukt: $1 "$2".
+Probeer normale voorvertoning te gebruiken.',
 
 # Friendlier slave lag warnings
 'lag-warn-normal' => 'Wijzigingen in de afgelopen {{PLURAL:$1|seconde|$1 seconden}} worden misschien niet weergegeven in deze lijst.',
@@ -3902,6 +3916,11 @@ Samen met dit programma hoort u een [{{SERVER}}{{SCRIPTPATH}}/COPYING kopie van 
 'version-software' => 'Geïnstalleerde software',
 'version-software-product' => 'Product',
 'version-software-version' => 'Versie',
+'version-entrypoints' => "URL's voor ingangen",
+'version-entrypoints-header-entrypoint' => 'Ingang',
+'version-entrypoints-header-url' => 'URL',
+'version-entrypoints-articlepath' => '[https://www.mediawiki.org/wiki/Manual:$wgArticlePath Article path]',
+'version-entrypoints-scriptpath' => '[https://www.mediawiki.org/wiki/Manual:$wgScriptPath Script path]',
 
 # Special:FilePath
 'filepath' => 'Bestandslocatie',

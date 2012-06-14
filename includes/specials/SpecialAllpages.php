@@ -477,7 +477,7 @@ class SpecialAllpages extends IncludableSpecialPage {
 
 			if( $n == $this->maxPerPage && $s = $res->fetchObject() ) {
 				# $s is the first link of the next chunk
-				$t = Title::MakeTitle($namespace, $s->page_title);
+				$t = Title::makeTitle($namespace, $s->page_title);
 				$query = array( 'from' => $t->getText() );
 
 				if( $namespace )

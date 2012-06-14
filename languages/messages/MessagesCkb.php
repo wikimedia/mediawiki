@@ -1,5 +1,5 @@
 <?php
-/** Sorani (کوردی)
+/** Sorani Kurdish (کوردی)
  *
  * See MessagesQqq.php for message documentation incl. usage of parameters
  * To improve a translation please visit http://translatewiki.net
@@ -814,6 +814,7 @@ $2
 دەستکاریەکەت بۆ بەرگری لە تێکەڵ‌بوونی دەقی لاپەڕەکە وەر نەگیرا.<br />
 ئەمە بڕێ‌جار کاتێ ڕوو ئەدات کە لە خزمەتی پرۆکسی سەر وێب کەڵک وەر بگریت.",
 'editing' => 'دەستکاریکردنی $1',
+'creating' => 'دروستکردنی $1',
 'editingsection' => 'دەستکاریکردنی: $1 (بەش)',
 'editingcomment' => 'دەستکاریکردنی $1 (بەشی  نوێ)',
 'editconflict' => 'دەستکاری کێشە : $1',
@@ -1063,7 +1064,8 @@ $1",
 
 # Diffs
 'history-title' => 'مێژووی پیاچوونەوەکانی «$1»',
-'difference' => '(جیاوازی نێوان پیاچوونەوەکان)',
+'difference-title' => 'جیاوازی نێوان پیاچوونەوەکانی «$1»',
+'difference-title-multipage' => 'جیاوازیی نێوان پەڕەی «$1» و «$2»',
 'difference-multipage' => '(جیاوازی نێوان پەڕەکان)',
 'lineno' => 'ھێڵی  $1:',
 'compareselectedversions' => 'پیاچوونەوە ھەڵبژێردراوەکان ھەڵسەنگێنە',
@@ -1159,6 +1161,7 @@ $1",
 'prefs-beta' => 'کەرەسەکانی بیتا',
 'prefs-datetime' => 'کات و ڕێکەوت',
 'prefs-labs' => 'کەرەسەکانی تاقیگەکان',
+'prefs-user-pages' => 'پەڕە بەکارھێنەرییەکان',
 'prefs-personal' => 'پرۆفایلی بەکارھێنەر',
 'prefs-rc' => 'دوایین گۆڕانکارییەکان',
 'prefs-watchlist' => 'لیستی چاودێری',
@@ -1411,7 +1414,7 @@ $1",
 'nchanges' => '$1 {{PLURAL:$1|گۆڕانکاری|گۆڕانکاری}}',
 'recentchanges' => 'دوایین گۆڕانکارییەکان',
 'recentchanges-legend' => 'ھەڵبژاردەکانی دوایین گۆڕانکارییەکان',
-'recentchangestext' => 'دوای دوایین گۆڕانکارییەکانی ئەم ویکیە بکەوە لەم ئەم پەڕوە.',
+'recentchanges-summary' => 'لەم پەڕەدا بە دوای دوایین گۆڕانکارییەکان لەم ویکیەدا بکەوە.',
 'recentchanges-feed-description' => 'دوای دوایین گۆڕانکارییەکانی ئەم ویکیە بکەوە لەم «فید»ەوە.',
 'recentchanges-label-newpage' => 'ئەم دەستکاریە لاپەڕەیەکی نوێی درووست‌کرد',
 'recentchanges-label-minor' => 'ئەمە دەستکاریەکی بچووکە',
@@ -3187,6 +3190,8 @@ $5
 'revdelete-restricted' => 'ئەو سنووری بەرگریانەی خستراوەتە سەر بەڕێوبەران',
 'revdelete-unrestricted' => 'ئەو سنووری بەرگریانەی لابردراوە لە سەر بەڕێوبەران',
 'logentry-move-move' => '$1 پەڕەی $3ی گواستەوە بۆ $4',
+'logentry-move-move-noredirect' => '$1 پەڕەی $3 گواستەوە بۆ $4 بێ بەجێھشتنی ڕەوانەکردنەوەیەک',
+'logentry-move-move_redir-noredirect' => '$1 پەڕەی $3 گواستەوە بۆ $4 لە جێگەی ڕەوانەکەرێک بە بێ بەجێھشتنی ڕەوانەکردنەوەیەک',
 'logentry-newusers-newusers' => '$1 ھەژمارێکی بەکارھێنەریی دروستکرد',
 'logentry-newusers-create' => '$1 ھەژمارێکی بەکارھێنەریی دروستکرد',
 'logentry-newusers-create2' => '$1 ھەژمارێکی بەکارھێنەریی دروستکرد $3',

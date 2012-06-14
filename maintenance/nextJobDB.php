@@ -94,10 +94,11 @@ class nextJobDB extends Maintenance {
 		$lb = wfGetLB( $dbName );
 		$db = $lb->getConnection( DB_MASTER, array(), $dbName );
 		if ( $type === false ) {
-			$conds = array();
+			$conds = Job::defaultQueueConditions( );
 		} else {
 			$conds = array( 'job_cmd' => $type );
 		}
+
 
 		$exists = (bool) $db->selectField( 'job', '1', $conds, __METHOD__ );
 		$lb->reuseConnection( $db );

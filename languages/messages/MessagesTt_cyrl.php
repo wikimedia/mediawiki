@@ -1,5 +1,5 @@
 <?php
-/** Tatar (Cyrillic script) (Татарча)
+/** Tatar (Cyrillic script) (татарча)
  *
  * See MessagesQqq.php for message documentation incl. usage of parameters
  * To improve a translation please visit http://translatewiki.net
@@ -1104,11 +1104,11 @@ $1",
 
 # Diffs
 'history-title' => '$1 битенең үзгәртү тарихы',
-'difference' => '(Юрамалар арасында аерма)',
 'lineno' => '$1 юл:',
 'compareselectedversions' => 'Сайланган юрамаларны чагыштыру',
 'showhideselectedversions' => 'Сайланган юрамаларны күрсәтү/яшерү',
 'editundo' => 'үткәрмәү',
+'diff-multi' => '({{PLURAL:$2|бер кулланучының|$2 кулланучының}} {{PLURAL:$1|арадагы $1 версиясе күрсәтелмәгән}})',
 
 # Search results
 'searchresults' => 'Эзләү нәтиҗәләре',
@@ -1120,6 +1120,8 @@ $1",
 'notextmatches' => 'Тиңдәш текстлы битләр юк',
 'prevn' => 'алдагы {{PLURAL:$1|$1}}',
 'nextn' => 'чираттагы {{PLURAL:$1|$1}}',
+'prevn-title' => 'Алдагы $1  {{PLURAL:$1|язма}}',
+'nextn-title' => 'Киләсе $1  {{PLURAL:$1|язма}}',
 'shown-title' => 'Сәхифәдә $1 {{PLURAL:$1|язма|язма}} күрсәтелсен',
 'viewprevnext' => 'Күрсәтелүе: ($1 {{int:pipe-separator}} $2) ($3)',
 'searchmenu-legend' => 'Эзләү көйләнмәләре',
@@ -1138,6 +1140,7 @@ $1",
 'searchprofile-everything-tooltip' => 'Барлык битләрдә дә эзләү',
 'searchprofile-advanced-tooltip' => 'Бирелгән исемнәр мәйданында эзләү',
 'search-result-size' => '$1 ({{PLURAL:$2|$2 сүз}})',
+'search-result-category-size' => '{{PLURAL:$1|1 әгъза|$1 әгъза}} ({{PLURAL:$2|1 асттөркем|$2 асттөркем}}, {{PLURAL:$3|1 файл|$3 файл}})',
 'search-result-score' => 'Релевантлыгы: $1 %',
 'search-redirect' => '(юнәлтү $1)',
 'search-section' => '($1 бүлеге)',
@@ -1361,7 +1364,7 @@ $1",
 'nchanges' => '$1 {{PLURAL:$1|үзгәртү|үзгәртү}}',
 'recentchanges' => 'Соңгы үзгәртүләр',
 'recentchanges-legend' => 'Соңгы үзгәртүләр көйләүләре',
-'recentchangestext' => 'Бу биттә {{grammar:genitive|{{SITENAME}}}} проектының соңгы үзгәртүләре күрсәтелә.',
+'recentchanges-summary' => 'Бу биттә {{grammar:genitive|{{SITENAME}}}} проектының соңгы үзгәртүләре күрсәтелә.',
 'recentchanges-feed-description' => 'Бу агымда соңгы үзгәртүләрне күзәтү.',
 'recentchanges-label-newpage' => 'Бу үзгәртү белән яңа бит төзелде',
 'recentchanges-label-minor' => 'Бу кече үзгәртү',
@@ -1633,6 +1636,7 @@ PICT # төрле
 'protectedpages' => 'Якланган битләр',
 'protectedtitles' => 'Тыелган исемнәр',
 'listusers' => 'Кулланучылар исемлеге',
+'usercreated' => '$3 $1 көнне $2 вакытта {{GENDER:$3|теркәлде}}',
 'newpages' => 'Яңа битләр',
 'newpages-username' => 'Кулланучы:',
 'ancientpages' => 'Иң иске битләр',
@@ -1740,6 +1744,7 @@ PICT # төрле
 # Watchlist
 'watchlist' => 'Күзәтү исемлегем',
 'mywatchlist' => 'Күзәтү исемлегем',
+'watchlistfor2' => '$1 $2 өчен',
 'nowatchlist' => 'Күзәтү исемлегегездә битләр юк.',
 'watchnologin' => 'Кермәдегез',
 'watchnologintext' => 'Күзәтү исемлегегезне үзгәртү өчен сез [[Special:UserLogin|керергә]] тиешсез.',
@@ -1924,6 +1929,7 @@ $1',
 'sp-contributions-talk' => 'бәхәс',
 'sp-contributions-search' => 'Кертемне эзләү',
 'sp-contributions-username' => 'Кулланучының IP адресы яки исеме:',
+'sp-contributions-toponly' => 'Соңгы версия булган үзгәртүләрне генә күрсәтергә',
 'sp-contributions-submit' => 'Эзләү',
 
 # What links here
@@ -2427,6 +2433,9 @@ $1',
 'hijri-calendar-m7' => 'Раҗәб',
 'hijri-calendar-m9' => 'Рамазан',
 
+# Core parser functions
+'duplicate-defaultsort' => 'Игътибар. Уйланма куелган "$2" бүлгәләү ачкычы элеккеге уйланма куелган "$1" бүлгәләү ачкычын үзгәртә.',
+
 # Special:Version
 'version' => 'Юрама',
 'version-extensions' => 'Куелган киңәйтүләр',
@@ -2469,6 +2478,16 @@ $1',
 # Special:BlankPage
 'blankpage' => 'Буш бит',
 'intentionallyblankpage' => 'Бу бит махсус буш калдырылган',
+
+# External image whitelist
+'external_image_whitelist' => '#Бу юлны ничек бар, шулаө калдырыгыз<pre>
+#Монда даими фразаларның фрагментларын куегыз (// арасында торган өлешен)
+#алар тышкы сурәтләрнең URL белән бәйләнерләр.
+#Туры килгәннәре сурәт буларак, туры килмәгәннәре сурәткә сылтама буларак күрсәтеләчәкләр.
+# # билгесе белән башланучы юллар шәрехнамә дип саналалар.
+#Юллар регистрга игътибар бирмиләр.
+
+#Даими фразаларның фрагментларын бу кыр өстендә куегыз. Бу кырны ничек бар, шулай калдырыгыз.</pre>',
 
 # Special:Tags
 'tags' => 'Гамәлдә булучы үзгәртүләр билгеләре',

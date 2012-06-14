@@ -137,8 +137,8 @@ class ApiQueryAllImages extends ApiQueryGeneratorBase {
 
 		$limit = $params['limit'];
 		$this->addOption( 'LIMIT', $limit + 1 );
-		$this->addOption( 'ORDER BY', 'img_name' .
-						( $params['dir'] == 'descending' ? ' DESC' : '' ) );
+		$sort = ( $params['dir'] == 'descending' ? ' DESC' : '' );
+		$this->addOption( 'ORDER BY', 'img_name' . $sort );
 
 		$res = $this->select( __METHOD__ );
 
@@ -229,6 +229,19 @@ class ApiQueryAllImages extends ApiQueryGeneratorBase {
 	}
 
 	private $propertyFilter = array( 'archivename' );
+
+	public function getResultProperties() {
+		return array_merge(
+			array(
+				'' => array(
+					'name' => 'string',
+					'ns' => 'namespace',
+					'title' => 'string'
+				)
+			),
+			ApiQueryImageInfo::getResultPropertiesFiltered( $this->propertyFilter )
+		);
+	}
 
 	public function getDescription() {
 		return 'Enumerate all images sequentially';

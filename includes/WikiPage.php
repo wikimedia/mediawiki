@@ -1,5 +1,26 @@
 <?php
 /**
+ * Base representation for a MediaWiki page.
+ *
+ * This program is free software; you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation; either version 2 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License along
+ * with this program; if not, write to the Free Software Foundation, Inc.,
+ * 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
+ * http://www.gnu.org/copyleft/gpl.html
+ *
+ * @file
+ */
+
+/**
  * Abstract class for type hinting (accepts WikiPage, Article, ImagePage, CategoryPage)
  */
 abstract class Page {}
@@ -37,6 +58,28 @@ class WikiPage extends Page {
 	 */
 	const DELETE_NO_REVISIONS = 2;
 
+	// Constants for $mDataLoadedFrom and related
+
+	/**
+	 * Data has not been loaded yet (or the object was cleared)
+	 */
+	const DATA_NOT_LOADED = 0;
+
+	/**
+	 * Data has been loaded from a slave database
+	 */
+	const DATA_FROM_SLAVE = 1;
+
+	/**
+	 * Data has been loaded from the master database
+	 */
+	const DATA_FROM_MASTER = 2;
+
+	/**
+	 * Data has been loaded from the master database using FOR UPDATE
+	 */
+	const DATA_FOR_UPDATE = 3;
+
 	/**
 	 * @var Title
 	 */
@@ -50,6 +93,11 @@ class WikiPage extends Page {
 	public $mLatest = false;             // !< Integer (false means "not loaded")
 	public $mPreparedEdit = false;       // !< Array
 	/**@}}*/
+
+	/**
+	 * @var int; one of the DATA_* constants
+	 */
+	protected $mDataLoadedFrom = self::DATA_NOT_LOADED;
 
 	/**
 	 * @var Title
@@ -117,15 +165,58 @@ class WikiPage extends Page {
 	 * Constructor from a page id
 	 *
 	 * @param $id Int article ID to load
+	 * @param $from string|int one of the following values:
+	 *        - "fromdb" or self::DATA_FROM_SLAVE to select from a slave database
+	 *        - "fromdbmaster" or self::DATA_FROM_MASTER to select from the master database
 	 *
 	 * @return WikiPage|null
 	 */
-	public static function newFromID( $id ) {
-		$t = Title::newFromID( $id );
-		if ( $t ) {
-			return self::factory( $t );
+	public static function newFromID( $id, $from = 'fromdb' ) {
+		$from = self::convertSelectType( $from );
+		$db = wfGetDB( $from === self::DATA_FROM_MASTER ? DB_MASTER : DB_SLAVE );
+		$row = $db->selectRow( 'page', self::selectFields(), array( 'page_id' => $id ), __METHOD__ );
+		if ( !$row ) {
+			return null;
 		}
-		return null;
+		return self::newFromRow( $row, $from );
+	}
+
+	/**
+	 * Constructor from a database row
+	 *
+	 * @since 1.20
+	 * @param $row object: database row containing at least fields returned
+	 *        by selectFields().
+	 * @param $from string|int: source of $data:
+	 *        - "fromdb" or self::DATA_FROM_SLAVE: from a slave DB
+	 *        - "fromdbmaster" or self::DATA_FROM_MASTER: from the master DB
+	 *        - "forupdate" or self::DATA_FOR_UPDATE: from the master DB using SELECT FOR UPDATE
+	 * @return WikiPage
+	 */
+	public static function newFromRow( $row, $from = 'fromdb' ) {
+		$page = self::factory( Title::newFromRow( $row ) );
+		$page->loadFromRow( $row, $from );
+		return $page;
+	}
+
+	/**
+	 * Convert 'fromdb', 'fromdbmaster' and 'forupdate' to DATA_* constants.
+	 *
+	 * @param $type object|string|int
+	 * @return mixed
+	 */
+	private static function convertSelectType( $type ) {
+		switch ( $type ) {
+		case 'fromdb':
+			return self::DATA_FROM_SLAVE;
+		case 'fromdbmaster':
+			return self::DATA_FROM_MASTER;
+		case 'forupdate':
+			return self::DATA_FOR_UPDATE;
+		default:
+			// It may already be an integer or whatever else
+			return $type;
+		}
 	}
 
 	/**
@@ -152,10 +243,20 @@ class WikiPage extends Page {
 
 	/**
 	 * Clear the object
+	 * @return void
 	 */
 	public function clear() {
 		$this->mDataLoaded = false;
+		$this->mDataLoadedFrom = self::DATA_NOT_LOADED;
 
+		$this->clearCacheFields();
+	}
+
+	/**
+	 * Clear the object cache fields
+	 * @return void
+	 */
+	protected function clearCacheFields() {
 		$this->mCounter = null;
 		$this->mRedirectTarget = null; # Title object if set
 		$this->mLastRevision = null; # Latest revision
@@ -192,14 +293,15 @@ class WikiPage extends Page {
 	 * Fetch a page record with the given conditions
 	 * @param $dbr DatabaseBase object
 	 * @param $conditions Array
+	 * @param $options Array
 	 * @return mixed Database result resource, or false on failure
 	 */
-	protected function pageData( $dbr, $conditions ) {
+	protected function pageData( $dbr, $conditions, $options = array() ) {
 		$fields = self::selectFields();
 
 		wfRunHooks( 'ArticlePageDataBefore', array( &$this, &$fields ) );
 
-		$row = $dbr->selectRow( 'page', $fields, $conditions, __METHOD__ );
+		$row = $dbr->selectRow( 'page', $fields, $conditions, __METHOD__, $options );
 
 		wfRunHooks( 'ArticlePageDataAfter', array( &$this, &$row ) );
 
@@ -212,12 +314,13 @@ class WikiPage extends Page {
 	 *
 	 * @param $dbr DatabaseBase object
 	 * @param $title Title object
+	 * @param $options Array
 	 * @return mixed Database result resource, or false on failure
 	 */
-	public function pageDataFromTitle( $dbr, $title ) {
+	public function pageDataFromTitle( $dbr, $title, $options = array() ) {
 		return $this->pageData( $dbr, array(
 			'page_namespace' => $title->getNamespace(),
-			'page_title'     => $title->getDBkey() ) );
+			'page_title'     => $title->getDBkey() ), $options );
 	}
 
 	/**
@@ -225,37 +328,69 @@ class WikiPage extends Page {
 	 *
 	 * @param $dbr DatabaseBase
 	 * @param $id Integer
+	 * @param $options Array
 	 * @return mixed Database result resource, or false on failure
 	 */
-	public function pageDataFromId( $dbr, $id ) {
-		return $this->pageData( $dbr, array( 'page_id' => $id ) );
+	public function pageDataFromId( $dbr, $id, $options = array() ) {
+		return $this->pageData( $dbr, array( 'page_id' => $id ), $options );
 	}
 
 	/**
 	 * Set the general counter, title etc data loaded from
 	 * some source.
 	 *
-	 * @param $data Object|String One of the following:
-	 *		A DB query result object or...
-	 *		"fromdb" to get from a slave DB or...
-	 *		"fromdbmaster" to get from the master DB
+	 * @param $from object|string|int One of the following:
+	 *        - A DB query result object
+	 *        - "fromdb" or self::DATA_FROM_SLAVE to get from a slave DB
+	 *        - "fromdbmaster" or self::DATA_FROM_MASTER to get from the master DB
+	 *        - "forupdate"  or self::DATA_FOR_UPDATE to get from the master DB using SELECT FOR UPDATE
+	 *
 	 * @return void
 	 */
-	public function loadPageData( $data = 'fromdb' ) {
-		if ( $data === 'fromdbmaster' ) {
+	public function loadPageData( $from = 'fromdb' ) {
+		$from = self::convertSelectType( $from );
+		if ( is_int( $from ) && $from <= $this->mDataLoadedFrom ) {
+			// We already have the data from the correct location, no need to load it twice.
+			return;
+		}
+
+		if ( $from === self::DATA_FOR_UPDATE ) {
+			$data = $this->pageDataFromTitle( wfGetDB( DB_MASTER ), $this->mTitle, array( 'FOR UPDATE' ) );
+		} elseif ( $from === self::DATA_FROM_MASTER ) {
 			$data = $this->pageDataFromTitle( wfGetDB( DB_MASTER ), $this->mTitle );
-		} elseif ( $data === 'fromdb' ) { // slave
+		} elseif ( $from === self::DATA_FROM_SLAVE ) {
 			$data = $this->pageDataFromTitle( wfGetDB( DB_SLAVE ), $this->mTitle );
 			# Use a "last rev inserted" timestamp key to dimish the issue of slave lag.
 			# Note that DB also stores the master position in the session and checks it.
 			$touched = $this->getCachedLastEditTime();
 			if ( $touched ) { // key set
 				if ( !$data || $touched > wfTimestamp( TS_MW, $data->page_touched ) ) {
+					$from = self::DATA_FROM_MASTER;
 					$data = $this->pageDataFromTitle( wfGetDB( DB_MASTER ), $this->mTitle );
 				}
 			}
+		} else {
+			// No idea from where the caller got this data, assume slave database.
+			$data = $from;
+			$from = self::DATA_FROM_SLAVE;
 		}
 
+		$this->loadFromRow( $data, $from );
+	}
+
+	/**
+	 * Load the object from a database row
+	 *
+	 * @since 1.20
+	 * @param $data object: database row containing at least fields returned
+	 *        by selectFields()
+	 * @param $from string|int One of the following:
+	 *        - "fromdb" or self::DATA_FROM_SLAVE if the data comes from a slave DB
+	 *        - "fromdbmaster" or self::DATA_FROM_MASTER if the data comes from the master DB
+	 *        - "forupdate"  or self::DATA_FOR_UPDATE if the data comes from from
+	 *          the master DB using SELECT FOR UPDATE
+	 */
+	public function loadFromRow( $data, $from ) {
 		$lc = LinkCache::singleton();
 
 		if ( $data ) {
@@ -270,13 +405,22 @@ class WikiPage extends Page {
 			$this->mTouched     = wfTimestamp( TS_MW, $data->page_touched );
 			$this->mIsRedirect  = intval( $data->page_is_redirect );
 			$this->mLatest      = intval( $data->page_latest );
+			// Bug 37225: $latest may no longer match the cached latest Revision object.
+			// Double-check the ID of any cached latest Revision object for consistency.
+			if ( $this->mLastRevision && $this->mLastRevision->getId() != $this->mLatest ) {
+				$this->mLastRevision = null;
+				$this->mTimestamp = '';
+			}
 		} else {
 			$lc->addBadLinkObj( $this->mTitle );
 
 			$this->mTitle->loadFromRow( false );
+
+			$this->clearCacheFields();
 		}
 
 		$this->mDataLoaded = true;
+		$this->mDataLoadedFrom = self::convertSelectType( $from );
 	}
 
 	/**
@@ -368,6 +512,45 @@ class WikiPage extends Page {
 	}
 
 	/**
+	 * Get the Revision object of the oldest revision
+	 * @return Revision|null
+	 */
+	public function getOldestRevision() {
+		wfProfileIn( __METHOD__ );
+
+		// Try using the slave database first, then try the master
+		$continue = 2;
+		$db = wfGetDB( DB_SLAVE );
+		$revSelectFields = Revision::selectFields();
+
+		while ( $continue ) {
+			$row = $db->selectRow(
+				array( 'page', 'revision' ),
+				$revSelectFields,
+				array(
+					'page_namespace' => $this->mTitle->getNamespace(),
+					'page_title' => $this->mTitle->getDBkey(),
+					'rev_page = page_id'
+				),
+				__METHOD__,
+				array(
+					'ORDER BY' => 'rev_timestamp ASC'
+				)
+			);
+
+			if ( $row ) {
+				$continue = 0;
+			} else {
+				$db = wfGetDB( DB_MASTER );
+				$continue--;
+			}
+		}
+
+		wfProfileOut( __METHOD__ );
+		return $row ? Revision::newFromRow( $row ) : null;
+	}
+
+	/**
 	 * Loads everything except the text
 	 * This isn't necessary for all uses, so it's only done if needed.
 	 */
@@ -445,7 +628,7 @@ class WikiPage extends Page {
 		if ( !$this->mTimestamp ) {
 			$this->loadLastEdit();
 		}
-		
+
 		return wfTimestamp( TS_MW, $this->mTimestamp );
 	}
 
@@ -471,6 +654,24 @@ class WikiPage extends Page {
 			return $this->mLastRevision->getUser( $audience );
 		} else {
 			return -1;
+		}
+	}
+
+	/**
+	 * Get the User object of the user who created the page
+	 * @param $audience Integer: one of:
+	 *      Revision::FOR_PUBLIC       to be displayed to all users
+	 *      Revision::FOR_THIS_USER    to be displayed to $wgUser
+	 *      Revision::RAW              get the text regardless of permissions
+	 * @return User|null
+	 */
+	public function getCreator( $audience = Revision::FOR_PUBLIC ) {
+		$revision = $this->getOldestRevision();
+		if ( $revision ) {
+			$userName = $revision->getUserText( $audience );
+			return User::newFromName( $userName, false );
+		} else {
+			return null;
 		}
 	}
 
@@ -1256,7 +1457,9 @@ class WikiPage extends Page {
 		$user = is_null( $user ) ? $wgUser : $user;
 		$status = Status::newGood( array() );
 
-		# Load $this->mTitle->getArticleID() and $this->mLatest if it's not already
+		// Load the data from the master database if needed.
+		// The caller may already loaded it from the master or even loaded it using
+		// SELECT FOR UPDATE, so do not override that using clear().
 		$this->loadPageData( 'fromdbmaster' );
 
 		$flags = $this->checkFlags( $flags );
@@ -1571,9 +1774,9 @@ class WikiPage extends Page {
 			$parserCache->save( $editInfo->output, $this, $editInfo->popts );
 		}
 
-		# Update the links tables
-		$u = new LinksUpdate( $this->mTitle, $editInfo->output );
-		$u->doUpdate();
+		# Update the links tables and other secondary data
+		$updates = $editInfo->output->getSecondaryDataUpdates( $this->mTitle );
+		DataUpdate::runUpdates( $updates );
 
 		wfRunHooks( 'ArticleEditUpdates', array( &$this, &$editInfo, $options['changed'] ) );
 
@@ -1692,7 +1895,7 @@ class WikiPage extends Page {
 	 * @param &$cascade Integer. Set to false if cascading protection isn't allowed.
 	 * @param $expiry Array: per restriction type expiration
 	 * @param $user User The user updating the restrictions
-	 * @return bool true on success
+	 * @return Status
 	 */
 	public function doUpdateRestrictions( array $limit, array $expiry, &$cascade, $reason, User $user ) {
 		global $wgContLang;
@@ -1958,19 +2161,24 @@ class WikiPage extends Page {
 		$reason, $suppress = false, $id = 0, $commit = true, &$error = '', User $user = null
 	) {
 		global $wgUser;
-		$user = is_null( $user ) ? $wgUser : $user;
 
 		wfDebug( __METHOD__ . "\n" );
 
+		if ( $this->mTitle->getDBkey() === '' ) {
+			return WikiPage::DELETE_NO_PAGE;
+		}
+
+		$user = is_null( $user ) ? $wgUser : $user;
 		if ( ! wfRunHooks( 'ArticleDelete', array( &$this, &$user, &$reason, &$error ) ) ) {
 			return WikiPage::DELETE_HOOK_ABORTED;
 		}
-		$dbw = wfGetDB( DB_MASTER );
-		$t = $this->mTitle->getDBkey();
-		$id = $id ? $id : $this->mTitle->getArticleID( Title::GAID_FOR_UPDATE );
 
-		if ( $t === '' || $id == 0 ) {
-			return WikiPage::DELETE_NO_PAGE;
+		if ( $id == 0 ) {
+			$this->loadPageData( 'forupdate' );
+			$id = $this->getID();
+			if ( $id == 0 ) {
+				return WikiPage::DELETE_NO_PAGE;
+			}
 		}
 
 		// Bitfields to further suppress the content
@@ -1985,6 +2193,7 @@ class WikiPage extends Page {
 			$bitfield = 'rev_deleted';
 		}
 
+		$dbw = wfGetDB( DB_MASTER );
 		$dbw->begin( __METHOD__ );
 		// For now, shunt the revision data into the archive table.
 		// Text is *not* removed from the text table; bulk storage
@@ -2052,57 +2261,18 @@ class WikiPage extends Page {
 	/**
 	 * Do some database updates after deletion
 	 *
-	 * @param $id Int: page_id value of the page being deleted
+	 * @param $id Int: page_id value of the page being deleted (B/C, currently unused)
 	 */
 	public function doDeleteUpdates( $id ) {
+		# update site status
 		DeferredUpdates::addUpdate( new SiteStatsUpdate( 0, 1, - (int)$this->isCountable(), -1 ) );
 
-		$dbw = wfGetDB( DB_MASTER );
-
-		# Delete restrictions for it
-		$dbw->delete( 'page_restrictions', array ( 'pr_page' => $id ), __METHOD__ );
-
-		# Fix category table counts
-		$cats = array();
-		$res = $dbw->select( 'categorylinks', 'cl_to', array( 'cl_from' => $id ), __METHOD__ );
-
-		foreach ( $res as $row ) {
-			$cats [] = $row->cl_to;
-		}
-
-		$this->updateCategoryCounts( array(), $cats );
-
-		# If using cascading deletes, we can skip some explicit deletes
-		if ( !$dbw->cascadingDeletes() ) {
-			$dbw->delete( 'revision', array( 'rev_page' => $id ), __METHOD__ );
-
-			# Delete outgoing links
-			$dbw->delete( 'pagelinks', array( 'pl_from' => $id ), __METHOD__ );
-			$dbw->delete( 'imagelinks', array( 'il_from' => $id ), __METHOD__ );
-			$dbw->delete( 'categorylinks', array( 'cl_from' => $id ), __METHOD__ );
-			$dbw->delete( 'templatelinks', array( 'tl_from' => $id ), __METHOD__ );
-			$dbw->delete( 'externallinks', array( 'el_from' => $id ), __METHOD__ );
-			$dbw->delete( 'langlinks', array( 'll_from' => $id ), __METHOD__ );
-			$dbw->delete( 'iwlinks', array( 'iwl_from' => $id ), __METHOD__ );
-			$dbw->delete( 'redirect', array( 'rd_from' => $id ), __METHOD__ );
-			$dbw->delete( 'page_props', array( 'pp_page' => $id ), __METHOD__ );
-		}
-
-		# If using cleanup triggers, we can skip some manual deletes
-		if ( !$dbw->cleanupTriggers() ) {
-			# Clean up recentchanges entries...
-			$dbw->delete( 'recentchanges',
-				array( 'rc_type != ' . RC_LOG,
-					'rc_namespace' => $this->mTitle->getNamespace(),
-					'rc_title' => $this->mTitle->getDBkey() ),
-				__METHOD__ );
-			$dbw->delete( 'recentchanges',
-				array( 'rc_type != ' . RC_LOG, 'rc_cur_id' => $id ),
-				__METHOD__ );
-		}
+		# remove secondary indexes, etc
+		$updates = $this->getDeletionUpdates( );
+		DataUpdate::runUpdates( $updates );
 
 		# Clear caches
-		self::onArticleDelete( $this->mTitle );
+		WikiPage::onArticleDelete( $this->mTitle );
 
 		# Reset this object
 		$this->clear();
@@ -2111,13 +2281,23 @@ class WikiPage extends Page {
 		$this->mTitle->resetArticleID( 0 );
 	}
 
+	public function getDeletionUpdates() {
+		$updates = array(
+			new LinksDeletionUpdate( $this ),
+		);
+
+		//@todo: make a hook to add update objects
+		//NOTE: deletion updates will be determined by the ContentHandler in the future
+		return $updates;
+	}
+
 	/**
 	 * Roll back the most recent consecutive set of edits to a page
 	 * from the same user; fails if there are no eligible edits to
 	 * roll back to, e.g. user is the sole contributor. This function
 	 * performs permissions checks on $user, then calls commitRollback()
 	 * to do the dirty work
-	 * 
+	 *
 	 * @todo: seperate the business/permission stuff out from backend code
 	 *
 	 * @param $fromP String: Name of the user whose edits to rollback.
@@ -2679,6 +2859,7 @@ class WikiPage extends Page {
 
 		if ( count( $templates_diff ) > 0 ) {
 			# Whee, link updates time.
+			# Note: we are only interested in links here. We don't need to get other DataUpdate items from the parser output.
 			$u = new LinksUpdate( $this->mTitle, $parserOutput, false );
 			$u->doUpdate();
 		}

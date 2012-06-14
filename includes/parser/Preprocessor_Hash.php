@@ -2,6 +2,21 @@
 /**
  * Preprocessor using PHP arrays
  *
+ * This program is free software; you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation; either version 2 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License along
+ * with this program; if not, write to the Free Software Foundation, Inc.,
+ * 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
+ * http://www.gnu.org/copyleft/gpl.html
+ *
  * @file
  * @ingroup Parser
  */
@@ -32,7 +47,7 @@ class Preprocessor_Hash implements Preprocessor {
 	}
 
 	/**
-	 * @param $args
+	 * @param $args array
 	 * @return PPCustomFrame_Hash
 	 */
 	function newCustomFrame( $args ) {
@@ -873,7 +888,7 @@ class PPFrame_Hash implements PPFrame {
 	 *
 	 * @return PPTemplateFrame_Hash
 	 */
-	function newChild( $args = false, $title = false ) {
+	function newChild( $args = false, $title = false, $indexOffset = 0 ) {
 		$namedArgs = array();
 		$numberedArgs = array();
 		if ( $title === false ) {
@@ -889,8 +904,9 @@ class PPFrame_Hash implements PPFrame {
 				$bits = $arg->splitArg();
 				if ( $bits['index'] !== '' ) {
 					// Numbered parameter
-					$numberedArgs[$bits['index']] = $bits['value'];
-					unset( $namedArgs[$bits['index']] );
+					$index = $bits['index'] - $indexOffset;
+					$numberedArgs[$index] = $bits['value'];
+					unset( $namedArgs[$index] );
 				} else {
 					// Named parameter
 					$name = trim( $this->expand( $bits['name'], PPFrame::STRIP_COMMENTS ) );
@@ -915,12 +931,23 @@ class PPFrame_Hash implements PPFrame {
 		}
 
 		if ( ++$this->parser->mPPNodeCount > $this->parser->mOptions->getMaxPPNodeCount() ) {
+			$this->parser->limitationWarn( 'node-count-exceeded',
+					$this->parser->mPPNodeCount,
+					$this->parser->mOptions->getMaxPPNodeCount()
+			);
 			return '<span class="error">Node-count limit exceeded</span>';
 		}
 		if ( $expansionDepth > $this->parser->mOptions->getMaxPPExpandDepth() ) {
+			$this->parser->limitationWarn( 'expansion-depth-exceeded',
+					$expansionDepth,
+					$this->parser->mOptions->getMaxPPExpandDepth()
+			);
 			return '<span class="error">Expansion depth limit exceeded</span>';
 		}
 		++$expansionDepth;
+		if ( $expansionDepth > $this->parser->mHighestExpansionDepth ) {
+			$this->parser->mHighestExpansionDepth = $expansionDepth;
+		}
 
 		$outStack = array( '', '' );
 		$iteratorStack = array( false, $root );
@@ -1469,6 +1496,10 @@ class PPCustomFrame_Hash extends PPFrame_Hash {
 			return false;
 		}
 		return $this->args[$index];
+	}
+
+	function getArguments() {
+		return $this->args;
 	}
 }
 

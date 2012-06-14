@@ -24,6 +24,7 @@
  * @ingroup Maintenance
  */
 
+require_once( dirname( __FILE__ ) . '/backup.inc' );
 
 /**
  * @ingroup Maintenance
@@ -430,7 +431,8 @@ class TextPassDumper extends BackupDumper {
 				if ( $text === false && isset( $this->prefetch ) && $prefetchNotTried ) {
 					$prefetchNotTried = false;
 					$tryIsPrefetch = true;
-					$text = $this->prefetch->prefetch( $this->thisPage, $this->thisRev );
+					$text = $this->prefetch->prefetch( intval( $this->thisPage ),
+						intval( $this->thisRev ) );
 					if ( $text === null ) {
 						$text = false;
 					}
@@ -443,6 +445,13 @@ class TextPassDumper extends BackupDumper {
 						$text = $this->getTextSpawned( $id );
 					} else {
 						$text = $this->getTextDb( $id );
+					}
+
+					// No more checks for texts from DB for now.
+					// If we received something that is not false,
+					// We treat it as good text, regardless of whether it actually is or is not
+					if ( $text !== false ) {
+						return $text;
 					}
 				}
 
@@ -480,20 +489,22 @@ class TextPassDumper extends BackupDumper {
 			// Something went wrong; we did not a text that was plausible :(
 			$failures++;
 
-
-			// After backing off for some time, we try to reboot the whole process as
-			// much as possible to not carry over failures from one part to the other
-			// parts
-			sleep( $this->failureTimeout );
-			try {
-				$this->rotateDb();
-				if ( $this->spawn ) {
-					$this->closeSpawn();
-					$this->openSpawn();
+			// A failure in a prefetch hit does not warrant resetting db connection etc.
+			if ( ! $tryIsPrefetch ) {
+				// After backing off for some time, we try to reboot the whole process as
+				// much as possible to not carry over failures from one part to the other
+				// parts
+				sleep( $this->failureTimeout );
+				try {
+					$this->rotateDb();
+					if ( $this->spawn ) {
+						$this->closeSpawn();
+						$this->openSpawn();
+					}
+				} catch ( Exception $e ) {
+					$this->progress( "Rebooting getText infrastructure failed (" . $e->getMessage() . ")" .
+						" Trying to continue anyways" );
 				}
-			} catch ( Exception $e ) {
-				$this->progress( "Rebooting getText infrastructure failed (" . $e->getMessage() . ")" .
-					" Trying to continue anyways" );
 			}
 		}
 

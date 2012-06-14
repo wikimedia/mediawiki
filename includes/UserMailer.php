@@ -436,9 +436,9 @@ class EmailNotification {
 			$res = $dbw->select( array( 'watchlist' ),
 				array( 'wl_user' ),
 				array(
-					'wl_title' => $title->getDBkey(),
-					'wl_namespace' => $title->getNamespace(),
 					'wl_user != ' . intval( $editor->getID() ),
+					'wl_namespace' => $title->getNamespace(),
+					'wl_title' => $title->getDBkey(),
 					'wl_notificationtimestamp IS NULL',
 				), __METHOD__
 			);
@@ -453,9 +453,9 @@ class EmailNotification {
 					array( /* SET */
 						'wl_notificationtimestamp' => $dbw->timestamp( $timestamp )
 					), array( /* WHERE */
-						'wl_title' => $title->getDBkey(),
+						'wl_user' => $watchers,
 						'wl_namespace' => $title->getNamespace(),
-						'wl_user' => $watchers
+						'wl_title' => $title->getDBkey(),
 					), __METHOD__
 				);
 				$dbw->commit( __METHOD__ );

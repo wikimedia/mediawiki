@@ -7,6 +7,7 @@
  * @ingroup Language
  * @file
  *
+ * @author Dbc334
  * @author Derbeth
  * @author Dunak
  * @author Dundak
@@ -541,6 +542,8 @@ Wótpšašanje: $2',
 'filereadonlyerror' => 'Njejo móžno dataju "$1" změniś, dokulaž datajowy repozitorium "$2" jo jano cytajobny.
 
 Administrator, kenž jo jen zastajił, jo toś tu pśicynu pódał: "$3".',
+'invalidtitle-knownnamespace' => 'Njepłaśiwy titel z mjenjowym rumom "$2" a tekstom "$3"',
+'invalidtitle-unknownnamespace' => 'Njepłaśiwy titel z njeznatym mjenjowym rumom $1 a tekstom "$2"',
 
 # Virus scanner
 'virus-badscanner' => "Špatna konfiguracija: njeznaty wirusowy scanner: ''$1''",
@@ -810,7 +813,8 @@ Nejnowšy zapisk blokěrowańskego protokola pódawa se dołojce ako referenca:'
 'updated' => '(Zaktualizěrowane)',
 'note' => "'''Pokazka:'''",
 'previewnote' => "'''Wobmysli, až to jo jano pśeglěd.'''
-Twóje změny hyšći njejsu składowane! [[#editform|→ Dalej wobźěłaś]]",
+Twóje změny hyšći njejsu składowane!",
+'continue-editing' => 'Dalej wobźěłaś',
 'previewconflict' => 'Toś ten pśeglěd wótbłyšćujo tekst górjejcnego póla. Bok buźo tak wuglědaś, jolic jen něnto składujoš.',
 'session_fail_preview' => "'''Wódaj! Twójo wobźěłanje njejo se mógało składowaś, dokulaž su daty twójogo pósejźenja se zgubili. Pšosym wopytaj hyšći raz. Jolic až to pón pśecej hyšći njejźo, wopytaj se wótzjawiś a zasej pśizjawiś.'''",
 'session_fail_preview_html' => "'''Wódaj! Twójo wobźěłanje njejo se mógało składowaś, dokulaž su daty twójogo pósejźenja se zgubili.'''
@@ -894,6 +898,12 @@ Njesmějo daś wěcej nježli $2 {{PLURAL:$2|wołanja|wołanjowu|wołanjow|woła
 'parser-template-loop-warning' => 'Pśedłogowa šlejfa namakana: [[$1]]',
 'parser-template-recursion-depth-warning' => 'Limit rekursijneje dłymi pśedłogi pśekšocony ($1)',
 'language-converter-depth-warning' => 'Limit dłymokosći rěcnego konwertera pśekšocony ($1)',
+'node-count-exceeded-category' => 'Boki, źož licba sukow jo pśekšocona',
+'node-count-exceeded-warning' => 'Bok jo licbu sukow pśekšocył',
+'expansion-depth-exceeded-category' => 'Boki, źož ekspansiska dłymokosć jo pśekšocona',
+'expansion-depth-exceeded-warning' => 'Bok jo ekspansisku dłymokosć pśekšocył',
+'parser-unstrip-loop-warning' => 'Njeskóńcna kokula namakana',
+'parser-unstrip-recursion-limit' => 'Rekursiska granica pśekšocona ($1)',
 
 # "Undo" feature
 'undo-success' => 'Wobźěłanje móžo se wótpóraś. Pšosym pśeglěduj dołojcne pśirownowanje aby se wěsty był, až to wót wěrnosći coš, a pón składuj změny, aby se wobźěłanje doskóńcnje wótpórało.',
@@ -1037,7 +1047,7 @@ Pšosym pśeglědaj protokole.',
 
 # Suppression log
 'suppressionlog' => 'Protokol pódłocowanjow',
-'suppressionlogtext' => 'To jo lisćina wulašowanjow a blokěrowanjow, kótaraž ma wopśimjeśe, kótarež jo wót administratorow schowane. Glědaj  [[Special:BlockList|lisćinu IP-blokěrowanjow]] za lisćinu aktualnych wugnanjow a blokěrowanjow.',
+'suppressionlogtext' => 'To jo lisćina wulašowanjow a blokěrowanjow, kótaraž ma wopśimjeśe, kótarež jo wót administratorow schowane. Glědaj  [[Special:BlockList|lisćinu blokěrowanjow]] za lisćinu aktualnych wugnanjow a blokěrowanjow.',
 
 # History merging
 'mergehistory' => 'Zwězaś stawizny bokow',
@@ -1069,8 +1079,9 @@ Zaruc, až historija wersijow nastawka jo njepśetergnjona.',
 'mergelogpagetext' => 'Dołojce jo lisćina nejnowejšych zjadnośenjow historije boka z drugej.',
 
 # Diffs
-'history-title' => 'Stawizny wersijow boka „$1“',
-'difference' => '(rozdźěle mjazy wersijoma/wersijami)',
+'history-title' => '$1: Wersijowe stawizny',
+'difference-title' => '$1: Rozdźěl mjazy wersijami',
+'difference-title-multipage' => '$1 a $2: Rozdźěl mjazy bokami',
 'difference-multipage' => '(Rozdźěl mjazy bokami)',
 'lineno' => 'Rědka $1:',
 'compareselectedversions' => 'Wuzwólonej wersiji pśirownaś',
@@ -1162,9 +1173,10 @@ Zaruc, až historija wersijow nastawka jo njepśetergnjona.',
 'prefs-skin' => 'Šat',
 'skin-preview' => 'Pśeglěd',
 'datedefault' => 'Standard',
-'prefs-beta' => 'Betafunkcije',
+'prefs-beta' => 'Preizkusne funkcije',
 'prefs-datetime' => 'Datum a cas',
 'prefs-labs' => 'Laborowe funkcije',
+'prefs-user-pages' => 'Wužywarske boki',
 'prefs-personal' => 'Wužywarski profil',
 'prefs-rc' => 'Aktualne změny',
 'prefs-watchlist' => 'Wobglědowańka',
@@ -1425,7 +1437,7 @@ Móžoš toś ten bok wužywaś, aby slědk stajił swóje nastajenja na standar
 'nchanges' => '$1 {{PLURAL:$1|změna|změnje|změny}}',
 'recentchanges' => 'Aktualne změny',
 'recentchanges-legend' => 'Opcije aktualnych změnow',
-'recentchangestext' => "How móžoš slědne změny we '''{{GRAMMAR:lokatiw|{{SITENAME}}}}''' slědowaś.",
+'recentchanges-summary' => "How móžoš slědne změny we '''{{GRAMMAR:lokatiw|{{SITENAME}}}}''' slědowaś.",
 'recentchanges-feed-description' => 'Slěduj z toś tym zapódaśim nejaktualnjejše změny we {{GRAMMAR:lokatiw|{{SITENAME}}}}.',
 'recentchanges-label-newpage' => 'Toś ta změna jo nowy bok napórała.',
 'recentchanges-label-minor' => 'To jo snadna změna',
@@ -1626,14 +1638,15 @@ $1',
 'backend-fail-writetemp' => 'Temporerna dataja njedajo se pisaś.',
 'backend-fail-closetemp' => 'Temporerna dataja njedajo se zacyniś.',
 'backend-fail-read' => 'Dataja $1 njedajo se cytaś.',
-'backend-fail-create' => 'Dataja $1 njedajo se napóraś.',
-'backend-fail-maxsize' => 'Dataja $1 njedajo se napóraś, dokulaž jo wětša ako {{PLURAL:$2|$2 bajt|$2 bajta|$2 bajty|$2 bajtow}}.',
+'backend-fail-create' => 'Dataja $1 njedajo se pisaś.',
+'backend-fail-maxsize' => 'Dataja $1 njedajo se pisaś, dokulaž jo wětša ako {{PLURAL:$2|jaden bajt|$2 bajta|$2 bajty|$2 bajtow}}.',
 'backend-fail-readonly' => 'Składowański backend "$1" dajo se tuchylu jano cytaś. Pśicyna jo była: "$2"',
 'backend-fail-synced' => 'Dataja "$1" jo  w internem składowańskem backenźe w inkonsistentnem stawje',
 'backend-fail-connect' => 'Zwisk z datajowym składowańskem backendom "$1" njejo móžno.',
 'backend-fail-internal' => 'W składowańskem backenźe "$1" jo njeznata zmólka nastała.',
 'backend-fail-contenttype' => 'Wopśimjeśowy typ dataje, kótaraž ma se na "$1" składowaś, njedajo se zwěsćiś.',
 'backend-fail-batchsize' => 'Štapjelowa dataja, kótaraž wopśimujo {{PLURAL:$1|jadnu operaciju|$1 operaciji|$1 operacije|$1 operacijow}},  jo se  na składowański backend pósłała; limit jo $2 {{PLURAL:$1|operaciju|operaciji|operacije|operacijow}}.',
+'backend-fail-usable' => 'Dataja $1 njedajo se dla njedosegajucych  abo felujucych zapisow pisaś.',
 
 # File journal errors
 'filejournal-fail-dbconnect' => 'Njejo žeden zwisk ze žurnaloweju datoweju banku za składowański backend "$1" móžno.',
@@ -1704,7 +1717,7 @@ Za optimalnu wěstotu img_auth.php jo znjemóžnjony.',
 'upload-curl-error28-text' => 'Bok pśedłujko njejo wótegronił. Kontrolěruj, lic jo bok online, pócakaj wokognuśe a wopytaj pón hyšći raz. Móžo byś zmysłapołne, w drugem casu hyšći raz proběrowaś.',
 
 'license' => 'Licenca:',
-'license-header' => 'Licencowanje',
+'license-header' => 'Licencěrowanje',
 'nolicense' => 'Nic njejo wuzwólone.',
 'license-nopreview' => '(Pśeglěd njejo móžny.)',
 'upload_source_url' => ' (płaśeca, zjawnje pśistupna URL)',
@@ -1948,6 +1961,7 @@ Pšosym glědaj na to, až druge websedła móžu k drugej dataji z direktnym UR
 'alllogstext' => 'To jo kombiněrowane zwobraznjenje wšyknych we {{GRAMMAR:lokatiw|{{SITENAME}}}} k dispoziciji stojecych protokolow. Móžoš naglěd pśez wubraśe protokolowego typa, wužywarskego mjenja (pód źiwanim wjelikopisanja) abo pótrjefjonego boka (teke pód źiwanim wjelikopisanja) wobgranicowaś.',
 'logempty' => 'Žedne se góźece zapise njeeksistěruju.',
 'log-title-wildcard' => 'Pytaś nadpismo, kótarež zachopijo z ...',
+'showhideselectedlogentries' => 'Wubrane protokolowe zapiski pokazaś/schowaś',
 
 # Special:AllPages
 'allpages' => 'Wšykne boki',
@@ -2396,8 +2410,8 @@ Nejnowšy zapisk protokola blokěrowanjow pódawa se dołojce ako referenca:',
 'ipb-confirm' => 'Blokěrowanje wobkšuśiś',
 'badipaddress' => 'IP-adresa jo njekorektna',
 'blockipsuccesssub' => 'Wuspěšnje blokěrowane',
-'blockipsuccesstext' => '[[Special:Contributions/$1|$1]] jo se blokěrował.<br />
-Glědaj do [[Special:BlockList|lisćiny aktiwnych blokěrowanjow]], aby blokěrowanja pśeglědał.',
+'blockipsuccesstext' => '[[Special:Contributions/$1|$1]] jo se {{GENDER:$1|blokěrował|blokěrowała}}.<br />
+Glědaj do [[Special:BlockList|lisćiny blokěrowanjow]], aby blokěrowanja pśeglědał.',
 'ipb-blockingself' => 'Coš samogo blokěrowaś! Coš to napšawdu cyniś?',
 'ipb-confirmhideuser' => 'Coš rowno wužywarja z nastajenim "wužywarja schowaś" blokěrowaś. To k tomu dowjeźo, až mě wužywarja pódłocyjo se we wšych lisćinach a protokolowych zapiskach. Coš to napšawdu cyniś?',
 'ipb-edit-dropdown' => 'Pśicyny blokěrowanja wobźěłaś',
@@ -2447,9 +2461,7 @@ Glědaj do [[Special:BlockList|lisćiny aktiwnych blokěrowanjow]], aby blokěro
 'blocklog-showsuppresslog' => 'Toś ten wužywaŕ jo se pjerwjej zablokěrował a schował. Protokol pódtłocowanjow pódawa se dołojce ako referenca:',
 'blocklogentry' => '[[$1]] blokěrujo se na $2 $3',
 'reblock-logentry' => 'jo změnił blokěrowańske nastajenja za [[$1]] z casom spadnjenja $2 $3',
-'blocklogtext' => 'To jo protokol blokěrowanjow a dopušćenjow.
-IP-adresy, ako su awtomatiski se blokěrowali, se njepokažu.
-Na boce [[Special:BlockList|Lisćina blokěrowanych IP-adresow a wužywarskich mjenjow]] jo móžno, akualne blokěrowanja pśeglědowaś.',
+'blocklogtext' => 'To jo protokol blokěrowanja a wótblokěrowanja wužywarjow. Awtomatiski blokěrowane IP-adrese se njenalistuju. Glědaj [[Special:BlockList|lisćinu blokěrowanjow]] za lisćinu tuchylnych wugnanjow a blokěrowanjow.',
 'unblocklogentry' => 'jo $1 zasej dopušćił',
 'block-log-flags-anononly' => 'jano anonymne',
 'block-log-flags-nocreate' => 'stwórjenje konta jo se znjemóžniło',
@@ -3036,7 +3048,7 @@ Slědujuce wótkaze w tej samej smužce se za wuwześa naglědaju, w kótarychž
 'exif-gpsdestdistance' => 'Distanca k celowemu městnu',
 'exif-gpsprocessingmethod' => 'Mě metody pśeźěłanja GPS',
 'exif-gpsareainformation' => 'Mě wobcerka GPS',
-'exif-gpsdatestamp' => 'Datum GPS',
+'exif-gpsdatestamp' => 'GPS-datum',
 'exif-gpsdifferential' => 'Diferencialna korektura GPS',
 'exif-jpegfilecomment' => 'Komentar JPEG-dataje',
 'exif-keywords' => 'Klucowe słowa',
@@ -3512,6 +3524,9 @@ Ty by dejał [{{SERVER}}{{SCRIPTPATH}}/COPYING kopiju licence GNU General Public
 'version-software' => 'Instalěrowana software',
 'version-software-product' => 'Produkt',
 'version-software-version' => 'Wersija',
+'version-entrypoints' => 'URL zastupneho dypka',
+'version-entrypoints-header-entrypoint' => 'Zastupny dypk',
+'version-entrypoints-header-url' => 'URL',
 
 # Special:FilePath
 'filepath' => 'Datajowa droga',

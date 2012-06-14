@@ -1,5 +1,5 @@
 <?php
-/** Interlingua (Interlingua)
+/** Interlingua (interlingua)
  *
  * See MessagesQqq.php for message documentation incl. usage of parameters
  * To improve a translation please visit http://translatewiki.net
@@ -534,6 +534,8 @@ Le motivo specificate es ''$2''.",
 'filereadonlyerror' => 'Impossibile modificar le file "$1" perque le deposito de files "$2" es in modo de lectura sol.
 
 Le administrator qui lo blocava offereva iste explication: "$3".',
+'invalidtitle-knownnamespace' => 'Titulo invalide con spatio de nomines "$2" e texto "$3"',
+'invalidtitle-unknownnamespace' => 'Titulo invalide con spatio de nomines incognite $1 e texto "$2"',
 
 # Virus scanner
 'virus-badscanner' => "Configuration incorrecte: programma antivirus non cognoscite: ''$1''",
@@ -843,7 +845,8 @@ Memora que le paginas .css and .js personalisate usa un titulo in minusculas, p.
 'updated' => '(Actualisate)',
 'note' => "'''Nota:'''",
 'previewnote' => "'''Isto es solmente un previsualisation.'''
-Le modificationes non ha ancora essite publicate! [[#editform|→ Continuar le modification]]",
+Le modificationes non ha ancora essite publicate!",
+'continue-editing' => 'Continuar a modificar',
 'previewconflict' => 'Iste previsualisation reflecte le apparentia final del texto in le area de modification superior
 si tu opta pro publicar lo.',
 'session_fail_preview' => "'''Nos non poteva processar tu modification proque nos perdeva le datos del session.
@@ -942,6 +945,12 @@ Iste parametros ha essite omittite.",
 'parser-template-loop-warning' => 'Recursion infinite detegite in patrono: [[$1]]',
 'parser-template-recursion-depth-warning' => 'Limite de recursion del patrono excedite ($1)',
 'language-converter-depth-warning' => 'Limite de profunditate del conversor de lingua excedite ($1)',
+'node-count-exceeded-category' => 'Paginas in que le numero de nodos excede le limite',
+'node-count-exceeded-warning' => 'Le numero de nodos in iste pagina excede le limite',
+'expansion-depth-exceeded-category' => 'Paginas in que le profunditate de expansion excede le limite',
+'expansion-depth-exceeded-warning' => 'Le profunditate de expansion in iste pagina excede le limite',
+'parser-unstrip-loop-warning' => 'Bucla de "unstrip" detegite',
+'parser-unstrip-recursion-limit' => 'Limite de recursion de "unstrip" excedite ($1)',
 
 # "Undo" feature
 'undo-success' => 'Le modification pote esser disfacite.
@@ -1088,7 +1097,7 @@ Per favor verifica le registros.',
 # Suppression log
 'suppressionlog' => 'Registro de suppressiones',
 'suppressionlogtext' => 'Infra es un lista de deletiones e blocadas que involve contento que es celate de administratores.
-Vide le [[Special:BlockList|lista de blocadas IP]] pro le lista de bannimentos e blocadas actualmente in operation.',
+Vide le [[Special:BlockList|lista de blocadas]] pro le lista de bannimentos e blocadas actualmente in operation.',
 
 # History merging
 'mergehistory' => 'Fusionar historias del paginas',
@@ -1122,8 +1131,9 @@ Nota que le uso del ligamines de navigation causara le perdita de tote cambios i
 'mergelogpagetext' => 'Infra es un lista del fusiones le plus recente de un historia de pagina in un altere.',
 
 # Diffs
-'history-title' => 'Historia de versiones de "$1"',
-'difference' => '(Differentia inter versiones)',
+'history-title' => '$1: Historia de versiones',
+'difference-title' => '$1: Differentia inter versiones',
+'difference-title-multipage' => '$1 e $2: Differentia inter paginas',
 'difference-multipage' => '(Differentia inter paginas)',
 'lineno' => 'Linea $1:',
 'compareselectedversions' => 'Comparar versiones seligite',
@@ -1213,7 +1223,7 @@ Nota que lor indices del contento de {{SITENAME}} pote esser obsolete.',
 'mypreferences' => 'Mi preferentias',
 'prefs-edits' => 'Numero de modificationes:',
 'prefsnologin' => 'Tu non ha aperite un session',
-'prefsnologintext' => 'Tu debe <span class="plainlinks">[{{fullurl:{{#Special:UserLogin}}|returnto=$1}} aperir un session]</span> pro poter configurar tu preferentias.',
+'prefsnologintext' => 'Tu debe <span class="plainlinks">[{{fullurl:{{#Special:UserLogin}}|returnto=$1}} aperir session]</span> pro configurar preferentias de usator.',
 'changepassword' => 'Cambiar contrasigno',
 'prefs-skin' => 'Apparentia',
 'skin-preview' => 'Previsualisation',
@@ -1221,6 +1231,7 @@ Nota que lor indices del contento de {{SITENAME}} pote esser obsolete.',
 'prefs-beta' => 'Functiones beta',
 'prefs-datetime' => 'Data e hora',
 'prefs-labs' => 'Functiones experimental',
+'prefs-user-pages' => 'Paginas de usator',
 'prefs-personal' => 'Profilo del usator',
 'prefs-rc' => 'Modificationes recente',
 'prefs-watchlist' => 'Observatorio',
@@ -1483,7 +1494,7 @@ Si tu opta pro dar lo, isto essera usate pro dar te attribution pro tu contribut
 'nchanges' => '$1 {{PLURAL:$1|modification|modificationes}}',
 'recentchanges' => 'Modificationes recente',
 'recentchanges-legend' => 'Optiones del modificationes recente',
-'recentchangestext' => 'Seque le plus recente modificationes a {{SITENAME}} in iste pagina.',
+'recentchanges-summary' => 'Seque le plus recente modificationes a {{SITENAME}} in iste pagina.',
 'recentchanges-feed-description' => 'Seque le modificationes le plus recente al wiki in iste syndication.',
 'recentchanges-label-newpage' => 'Iste modification creava un nove pagina',
 'recentchanges-label-minor' => 'Isto es un modification minor',
@@ -1695,14 +1706,15 @@ Si le problema persiste, contacta un [[Special:ListUsers/sysop|administrator]].'
 'backend-fail-writetemp' => 'Non poteva scriber in file temporari.',
 'backend-fail-closetemp' => 'Non poteva clauder file temporari.',
 'backend-fail-read' => 'Non poteva leger le file $1',
-'backend-fail-create' => 'Non poteva crear le file $1',
-'backend-fail-maxsize' => 'Impossibile crear le file $1 perque illo es plus grande que {{PLURAL:$2|$2 byte|$2 bytes}}.',
+'backend-fail-create' => 'Non poteva crear le file $1.',
+'backend-fail-maxsize' => 'Impossibile scriber le file $1 perque illo es plus grande que {{PLURAL:$2|un byte|$2 bytes}}.',
 'backend-fail-readonly' => 'Le systema de immagazinage "$1" es actualmente in lectura sol. Le sequente motivo esseva specificate: "$2"',
 'backend-fail-synced' => 'Le file "$1" es in un stato inconsistente inter le systemas interne de immagazinage',
 'backend-fail-connect' => 'Impossibile connecter al systema de immagazinage "$1".',
 'backend-fail-internal' => 'Un error incognite occurreva in le systema de immagazinage "$1".',
 'backend-fail-contenttype' => 'Non poteva determinar le typo de contento del file a immagazinar in "$1".',
 'backend-fail-batchsize' => 'Le systema de immagazinage ha recipite un lot de $1 {{PLURAL:$1|operation|operationes}} de file; le limite es $2 {{PLURAL:$2|operation|operationes}}.',
+'backend-fail-usable' => 'Non poteva scriber le file $1 a causa de permissiones insufficiente o directorios/contentores mancante.',
 
 # File journal errors
 'filejournal-fail-dbconnect' => 'Non poteva connecter al base de datos de jornal pro le systema de immagazinage "$1".',
@@ -2026,6 +2038,7 @@ executar iste function.',
 Pro restringer le presentation, selige un typo de registro, le nomine de usator (sensibile al majusculas e minusculas), o le pagina in question (etiam sensibile al majusculas e minusculas).',
 'logempty' => 'Le registro contine nihil pro iste pagina.',
 'log-title-wildcard' => 'Cercar titulos que comencia con iste texto',
+'showhideselectedlogentries' => 'Monstrar/celar le entratas de registro seligite',
 
 # Special:AllPages
 'allpages' => 'Tote le paginas',
@@ -2508,7 +2521,7 @@ specific que ha essite vandalisate).',
 'badipaddress' => 'Adresse IP mal formate.',
 'blockipsuccesssub' => 'Blocada succedite',
 'blockipsuccesstext' => '[[Special:Contributions/$1|$1]] ha essite blocate.<br />
-Vide le [[Special:BlockList|lista de adresses IP blocate]] pro revider le blocadas.',
+Vide le [[Special:BlockList|lista de blocadas]] pro revider le blocadas.',
 'ipb-blockingself' => 'Tu sta super le puncto de blocar te mesme! Es tu secur de voler facer isto?',
 'ipb-confirmhideuser' => 'Tu es super le puncto de blocar un usator con le option "celar usator" activate. Isto supprimera le nomine del usator in tote le listas e entratas de registro. Es tu secur de voler facer isto?',
 'ipb-edit-dropdown' => 'Modificar le motivos pro blocar',
@@ -2562,7 +2575,7 @@ Le motivo specificate pro le blocada de $1 es: "$2"',
 'reblock-logentry' => 'cambiava configurationes de blocada pro [[$1]] con un tempore de expiration de $2 $3',
 'blocklogtext' => 'Isto es un registro de blocadas e disblocadas de usatores.
 Le adresses IP automaticamente blocate non es includite.
-Vide le [[Special:BlockList|lista de blocadas IP]] pro le lista de bannimentos e blocadas actualmente in operation.',
+Vide le [[Special:BlockList|lista de blocadas]] pro le lista de bannimentos e blocadas actualmente in operation.',
 'unblocklogentry' => 'disblocava $1',
 'block-log-flags-anononly' => 'usatores anonyme solmente',
 'block-log-flags-nocreate' => 'creation de contos disactivate',
@@ -3666,6 +3679,11 @@ Vos deberea haber recipite [{{SERVER}}{{SCRIPTPATH}}/COPYING un exemplar del Lic
 'version-software' => 'Software installate',
 'version-software-product' => 'Producto',
 'version-software-version' => 'Version',
+'version-entrypoints' => 'URL del puncto de entrata',
+'version-entrypoints-header-entrypoint' => 'Puncto de entrata',
+'version-entrypoints-header-url' => 'URL',
+'version-entrypoints-articlepath' => '[https://www.mediawiki.org/wiki/Manual:$wgArticlePath Cammino al articulo]',
+'version-entrypoints-scriptpath' => '[https://www.mediawiki.org/wiki/Manual:$wgScriptPath Cammino al script]',
 
 # Special:FilePath
 'filepath' => 'Cammino del file',

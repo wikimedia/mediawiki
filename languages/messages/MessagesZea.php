@@ -792,7 +792,6 @@ Zurg da je bie deêze wiezigieng de heschiedenisdeurloôpendeid van de pagina be
 
 # Diffs
 'history-title' => 'Heschiedenisse van "$1"',
-'difference' => '(Verschil tussen bewerkiengen)',
 'lineno' => 'Rehel $1:',
 'compareselectedversions' => 'Anevienkte versies verhelieken',
 'editundo' => 'onedaene maeken',
@@ -961,7 +960,7 @@ Een nie anekruusd vienkvakje beteêken da de gebruker hin lid is van de hroep.",
 'nchanges' => '$1 {{PLURAL:$1|bewerkieng|bewerkiengen}}',
 'recentchanges' => 'Juust angepast',
 'recentchanges-legend' => 'Opties vò juust angepast',
-'recentchangestext' => 'Bekiek wat-a juust veranderd is op deêze wiki.',
+'recentchanges-summary' => 'Bekiek wat-a juust veranderd is op deêze wiki.',
 'recentchanges-feed-description' => 'Bekiek wat-a juust veranderd is op deêze wiki.',
 'recentchanges-label-newpage' => "Mei deêze bewarkienge is 'n nuwe pagina angemaekt",
 'recentchanges-label-minor' => 'Dit is een kleine wieziging',

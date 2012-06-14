@@ -556,7 +556,6 @@ Administrator, chtëren jã zablokòwôł, pòdôł przëczënã: $1",
 
 # Diffs
 'history-title' => 'Historëjô wersëji dlô "$1"',
-'difference' => '(różnice midzë wersëjama)',
 'lineno' => 'Lëniô $1:',
 'compareselectedversions' => 'Przërównôj wëbróné wersëje',
 'editundo' => 'doprowadzë nazôd',
@@ -728,7 +727,7 @@ Mòżesz zezwòlëc jinszim brëkòwniką na łączbã z Tobą przez Twòją sta
 'nchanges' => '{{PLURAL:$1|zjinaka|zjinaczi|zjinaków}}',
 'recentchanges' => 'Slédné edicëje',
 'recentchanges-legend' => 'Òptacëje slédnych zjinaków',
-'recentchangestext' => 'Na starna prezentérëje historëjã slédnëch edicëjów w {{SITENAME}}.',
+'recentchanges-summary' => 'Na starna prezentérëje historëjã slédnëch edicëjów w {{SITENAME}}.',
 'recentchanges-feed-description' => 'Pòdstrzegô slédny zmianë w tim pòwrózkù.',
 'recentchanges-label-minor' => 'To je drobnô edicëjô',
 'rcnote' => "Niżi {{PLURAL:$1|nachôdô sã '''1''' slédnô zjinaka zrobionô|nachôdają sã '''$1''' slédné zjinaczi zrobioné|nachôdô sã '''$1''' slédnych zjinaków zrobionëch}} w {{PLURAL:$2|slédnégò dnia|slédnych '''$2''' dniach}}, rëchùjąc òd $5 dnia $4.",

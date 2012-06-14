@@ -613,7 +613,6 @@ Vider li [[Special:IPBlockList|liste de bloc de IP]] por li liste de bloces e ba
 
 # Diffs
 'history-title' => 'Revision del historie de "$1"',
-'difference' => '(Diferentie inter revisiones)',
 'lineno' => 'Linea $1:',
 'compareselectedversions' => 'Comparar revisiones selectet',
 'editundo' => 'anullar',
@@ -733,7 +732,7 @@ Tui adresse de e-mail ne es revelat quande altri usatores contacter vu.',
 'nchanges' => '$1 {{PLURAL:$1|change|changes}}',
 'recentchanges' => 'Nov changes',
 'recentchanges-legend' => 'Optiones de nov changes',
-'recentchangestext' => 'Seque sur ti-ci págine li ultim modificationes al wiki.',
+'recentchanges-summary' => 'Seque sur ti-ci págine li ultim modificationes al wiki.',
 'recentchanges-feed-description' => 'Monstra li max nov changes to li wiki in ti feed.',
 'recentchanges-label-newpage' => 'Ti redaction creat un nov págine',
 'recentchanges-label-minor' => 'Ti es un redaction minori',

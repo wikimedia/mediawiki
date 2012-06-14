@@ -428,7 +428,6 @@ La arcivo de sutraes per esta paje es asi per conveni:",
 
 # Diffs
 'history-title' => 'Istoria de cambias de "$1"',
-'difference' => '(Difere entre cambias)',
 'lineno' => 'Linia $1:',
 'compareselectedversions' => 'Compare varias elejeda',
 'editundo' => 'desfa',
@@ -505,7 +504,7 @@ La arcivo de sutraes per esta paje es asi per conveni:",
 # Recent changes
 'nchanges' => '$1 {{PLURAL:$1|cambia|cambias}}',
 'recentchanges' => 'Cambias resente',
-'recentchangestext' => 'Asi la lista de cambias resente en la vici.',
+'recentchanges-summary' => 'Asi la lista de cambias resente en la vici.',
 'recentchanges-feed-description' => 'Seque la cambias plu resente a la vici en esta flue.',
 'rcnote' => 'Su es {{PLURAL:$1|cambia|cambias}} en la presedente {{PLURAL:$2|dia|dias}}, en $5, $4.',
 'rcnotefrom' => "A su es la cambias de '''$2''' (asta '''$1''' es mostrada).",

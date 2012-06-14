@@ -1,12 +1,29 @@
 <?php
 /**
- * @defgroup Parser Parser
+ * PHP parser that converts wiki markup to HTML.
+ *
+ * This program is free software; you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation; either version 2 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License along
+ * with this program; if not, write to the Free Software Foundation, Inc.,
+ * 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
+ * http://www.gnu.org/copyleft/gpl.html
  *
  * @file
  * @ingroup Parser
- * File for Parser and related classes
  */
 
+/**
+ * @defgroup Parser Parser
+ */
 
 /**
  * PHP Parser - Processes wiki markup (which uses a more user-friendly
@@ -144,7 +161,7 @@ class Parser {
 	var $mLinkHolders;
 
 	var $mLinkID;
-	var $mIncludeSizes, $mPPNodeCount, $mDefaultSort;
+	var $mIncludeSizes, $mPPNodeCount, $mHighestExpansionDepth, $mDefaultSort;
 	var $mTplExpandCache; # empty-frame expansion cache
 	var $mTplRedirCache, $mTplDomCache, $mHeadings, $mDoubleUnderscores;
 	var $mExpensiveFunctionCount; # number of expensive parser function calls
@@ -188,7 +205,7 @@ class Parser {
 	public function __construct( $conf = array() ) {
 		$this->mConf = $conf;
 		$this->mUrlProtocols = wfUrlProtocols();
-		$this->mExtLinkBracketedRegex = '/\[((' . wfUrlProtocols() . ')'.
+		$this->mExtLinkBracketedRegex = '/\[((' . $this->mUrlProtocols . ')'.
 			self::EXT_LINK_URL_CLASS.'+)\p{Zs}*([^\]\\x00-\\x08\\x0a-\\x1F]*?)\]/Su';
 		if ( isset( $conf['preprocessorClass'] ) ) {
 			$this->mPreprocessorClass = $conf['preprocessorClass'];
@@ -287,6 +304,7 @@ class Parser {
 			'arg' => 0,
 		);
 		$this->mPPNodeCount = 0;
+		$this->mHighestExpansionDepth = 0;
 		$this->mDefaultSort = false;
 		$this->mHeadings = array();
 		$this->mDoubleUnderscores = array();
@@ -445,9 +463,12 @@ class Parser {
 				array_values( $tidyregs ),
 				$text );
 		}
-		global $wgExpensiveParserFunctionLimit;
-		if ( $this->mExpensiveFunctionCount > $wgExpensiveParserFunctionLimit ) {
-			$this->limitationWarn( 'expensive-parserfunction', $this->mExpensiveFunctionCount, $wgExpensiveParserFunctionLimit );
+
+		if ( $this->mExpensiveFunctionCount > $this->mOptions->getExpensiveParserFunctionLimit() ) {
+			$this->limitationWarn( 'expensive-parserfunction',
+				$this->mExpensiveFunctionCount,
+				$this->mOptions->getExpensiveParserFunctionLimit()
+			);
 		}
 
 		wfRunHooks( 'ParserAfterTidy', array( &$this, &$text ) );
@@ -455,12 +476,13 @@ class Parser {
 		# Information on include size limits, for the benefit of users who try to skirt them
 		if ( $this->mOptions->getEnableLimitReport() ) {
 			$max = $this->mOptions->getMaxIncludeSize();
-			$PFreport = "Expensive parser function count: {$this->mExpensiveFunctionCount}/$wgExpensiveParserFunctionLimit\n";
+			$PFreport = "Expensive parser function count: {$this->mExpensiveFunctionCount}/{$this->mOptions->getExpensiveParserFunctionLimit()}\n";
 			$limitReport =
 				"NewPP limit report\n" .
 				"Preprocessor node count: {$this->mPPNodeCount}/{$this->mOptions->getMaxPPNodeCount()}\n" .
 				"Post-expand include size: {$this->mIncludeSizes['post-expand']}/$max bytes\n" .
 				"Template argument size: {$this->mIncludeSizes['arg']}/$max bytes\n".
+				"Highest expansion depth: {$this->mHighestExpansionDepth}/{$this->mOptions->getMaxPPExpandDepth()}\n".
 				$PFreport;
 			wfRunHooks( 'ParserLimitReport', array( $this, &$limitReport ) );
 			$text .= "\n<!-- \n$limitReport-->\n";
@@ -707,8 +729,8 @@ class Parser {
 	}
 
 	/**
-	 * Get the target language for the content being parsed. This is usually the 
-	 * language that the content is in. 
+	 * Get the target language for the content being parsed. This is usually the
+	 * language that the content is in.
 	 */
 	function getTargetLanguage() {
 		$target = $this->mOptions->getTargetLanguage();
@@ -1254,7 +1276,7 @@ class Parser {
 		$text = $this->maybeMakeExternalImage( $url );
 		if ( $text === false ) {
 			# Not an image, make a link
-			$text = Linker::makeExternalLink( $url, 
+			$text = Linker::makeExternalLink( $url,
 				$this->getConverterLanguage()->markNoConversion($url), true, 'free',
 				$this->getExternalLinkAttribs( $url ) );
 			# Register it in the output object...
@@ -1735,7 +1757,7 @@ class Parser {
 		}
 
 		if ( $this->getConverterLanguage()->hasVariants() ) {
-			$selflink = $this->getConverterLanguage()->autoConvertToAllVariants( 
+			$selflink = $this->getConverterLanguage()->autoConvertToAllVariants(
 				$this->mTitle->getPrefixedText() );
 		} else {
 			$selflink = array( $this->mTitle->getPrefixedText() );
@@ -1814,7 +1836,7 @@ class Parser {
 			# Don't allow internal links to pages containing
 			# PROTO: where PROTO is a valid URL protocol; these
 			# should be external links.
-			if ( preg_match( '/^(?:' . wfUrlProtocols() . ')/', $m[1] ) ) {
+			if ( preg_match( '/^(?:' . $this->mUrlProtocols . ')/', $m[1] ) ) {
 				$s .= $prefix . '[[' . $line ;
 				wfProfileOut( __METHOD__."-misc" );
 				continue;
@@ -2051,7 +2073,7 @@ class Parser {
 	 * @return String: less-or-more HTML with NOPARSE bits
 	 */
 	function armorLinks( $text ) {
-		return preg_replace( '/\b(' . wfUrlProtocols() . ')/',
+		return preg_replace( '/\b(' . $this->mUrlProtocols . ')/',
 			"{$this->mUniqPrefix}NOPARSE$1", $text );
 	}
 
@@ -2837,7 +2859,8 @@ class Parser {
 				$value = $pageLang->formatNum( SiteStats::edits() );
 				break;
 			case 'numberofviews':
-				$value = $pageLang->formatNum( SiteStats::views() );
+				global $wgDisableCounters;
+				$value = !$wgDisableCounters ? $pageLang->formatNum( SiteStats::views() ) : '';
 				break;
 			case 'currenttimestamp':
 				$value = wfTimestamp( TS_MW, $ts );
@@ -3054,7 +3077,7 @@ class Parser {
 	 * @private
 	 */
 	function braceSubstitution( $piece, $frame ) {
-		global $wgNonincludableNamespaces, $wgContLang;
+		global $wgContLang;
 		wfProfileIn( __METHOD__ );
 		wfProfileIn( __METHOD__.'-setup' );
 
@@ -3249,8 +3272,11 @@ class Parser {
 
 		# Load from database
 		if ( !$found && $title ) {
-			$titleProfileIn = __METHOD__ . "-title-" . $title->getDBKey();
-			wfProfileIn( $titleProfileIn ); // template in
+			if ( !Profiler::instance()->isPersistent() ) {
+				# Too many unique items can kill profiling DBs/collectors
+				$titleProfileIn = __METHOD__ . "-title-" . $title->getDBKey();
+				wfProfileIn( $titleProfileIn ); // template in
+			}
 			wfProfileIn( __METHOD__ . '-loadtpl' );
 			if ( !$title->isExternal() ) {
 				if ( $title->isSpecialPage()
@@ -3284,7 +3310,7 @@ class Parser {
 						$isHTML = true;
 						$this->disableCache();
 					}
-				} elseif ( $wgNonincludableNamespaces && in_array( $title->getNamespace(), $wgNonincludableNamespaces ) ) {
+				} elseif ( MWNamespace::isNonincludable( $title->getNamespace() ) ) {
 					$found = false; # access denied
 					wfDebug( __METHOD__.": template inclusion denied for " . $title->getPrefixedDBkey() );
 				} else {
@@ -3365,10 +3391,8 @@ class Parser {
 		}
 
 		# Replace raw HTML by a placeholder
-		# Add a blank line preceding, to prevent it from mucking up
-		# immediately preceding headings
 		if ( $isHTML ) {
-			$text = "\n\n" . $this->insertStripItem( $text );
+			$text = $this->insertStripItem( $text );
 		} elseif ( $nowiki && ( $this->ot['html'] || $this->ot['pre'] ) ) {
 			# Escape nowiki-style return values
 			$text = wfEscapeWikiText( $text );
@@ -3811,12 +3835,8 @@ class Parser {
 	 * @return Boolean: false if the limit has been exceeded
 	 */
 	function incrementExpensiveFunctionCount() {
-		global $wgExpensiveParserFunctionLimit;
 		$this->mExpensiveFunctionCount++;
-		if ( $this->mExpensiveFunctionCount <= $wgExpensiveParserFunctionLimit ) {
-			return true;
-		}
-		return false;
+		return $this->mExpensiveFunctionCount <= $this->mOptions->getExpensiveParserFunctionLimit();
 	}
 
 	/**
@@ -4377,8 +4397,7 @@ class Parser {
 		) );
 
 		# Context links: [[|name]] and [[name (context)|]]
-		global $wgLegalTitleChars;
-		$tc = "[$wgLegalTitleChars]";
+		$tc = '[' . Title::legalChars() . ']';
 		$nc = '[ _0-9A-Za-z\x80-\xff-]'; # Namespaces can use non-ascii!
 
 		$p1 = "/\[\[(:?$nc+:|:|)($tc+?)( ?\\($tc+\\))\\|]]/";		# [[ns:page (context)|]]
@@ -5573,7 +5592,7 @@ class Parser {
 		# @todo FIXME: Not tolerant to blank link text
 		# I.E. [http://www.mediawiki.org] will render as [1] or something depending
 		# on how many empty links there are on the page - need to figure that out.
-		$text = preg_replace( '/\[(?:' . wfUrlProtocols() . ')([^ ]+?) ([^[]+)\]/', '$2', $text );
+		$text = preg_replace( '/\[(?:' . $this->mUrlProtocols . ')([^ ]+?) ([^[]+)\]/', '$2', $text );
 
 		# Parse wikitext quotes (italics & bold)
 		$text = $this->doQuotes( $text );

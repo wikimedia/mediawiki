@@ -26,8 +26,8 @@ $namespaceNames = array(
 	NS_MEDIA            => 'Mèdia',
 	NS_SPECIAL          => 'Spèciâl',
 	NS_TALK             => 'Discussion',
-	NS_USER             => 'Usanciér',
-	NS_USER_TALK        => 'Discussion_usanciér',
+	NS_USER             => 'Utilisator',
+	NS_USER_TALK        => 'Discussion_utilisator',
 	NS_PROJECT_TALK     => 'Discussion_$1',
 	NS_FILE             => 'Fichiér',
 	NS_FILE_TALK        => 'Discussion_fichiér',
@@ -43,8 +43,8 @@ $namespaceNames = array(
 
 $namespaceAliases = array(
 	'Discutar'              => NS_TALK,
-	'Utilisator'            => NS_USER,
-	'Discussion_Utilisator' => NS_USER_TALK,
+	'Usanciér'              => NS_USER,
+	'Discussion_usanciér'   => NS_USER_TALK,
 	'Émâge'                 => NS_FILE,
 	'Discussion_Émâge'      => NS_FILE_TALK,
 	'Discussion_Modèlo'     => NS_TEMPLATE_TALK,
@@ -1287,7 +1287,6 @@ Notâd bien que l’usâjo des lims de navigacion tornerat inicialisar cela colo
 
 # Diffs
 'history-title' => 'Historico de les vèrsions de « $1 »',
-'difference' => '(Difèrences entre les vèrsions)',
 'difference-multipage' => '(Difèrences entre les pâges)',
 'lineno' => 'Legne $1 :',
 'compareselectedversions' => 'Comparar les vèrsions chouèsies',
@@ -1648,7 +1647,7 @@ Ceta enformacion serat publica.',
 'nchanges' => '$1 changement{{PLURAL:$1||s}}',
 'recentchanges' => 'Dèrriérs changements',
 'recentchanges-legend' => 'Chouèx des dèrriérs changements',
-'recentchangestext' => 'Siude los dèrriérs changements du vouiqui sur ceta pâge.',
+'recentchanges-summary' => 'Siude los dèrriérs changements du vouiqui sur ceta pâge.',
 'recentchanges-feed-description' => 'Siude los dèrriérs changements du vouiqui dens ceti flux.',
 'recentchanges-label-newpage' => 'Ceti changement at fêt una pâge novèla.',
 'recentchanges-label-minor' => 'Ceti changement est petiôt.',

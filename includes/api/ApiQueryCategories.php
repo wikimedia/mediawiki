@@ -124,14 +124,14 @@ class ApiQueryCategories extends ApiQueryGeneratorBase {
 
 		$this->addOption( 'USE INDEX', array( 'categorylinks' => 'cl_from' ) );
 
-		$dir = ( $params['dir'] == 'descending' ? ' DESC' : '' );
+		$sort = ( $params['dir'] == 'descending' ? ' DESC' : '' );
 		// Don't order by cl_from if it's constant in the WHERE clause
 		if ( count( $this->getPageSet()->getGoodTitles() ) == 1 ) {
-			$this->addOption( 'ORDER BY', 'cl_to' . $dir );
+			$this->addOption( 'ORDER BY', 'cl_to' . $sort );
 		} else {
 			$this->addOption( 'ORDER BY', array(
-						'cl_from' . $dir,
-						'cl_to' . $dir
+						'cl_from' . $sort,
+						'cl_to' . $sort
 			));
 		}
 
@@ -237,6 +237,25 @@ class ApiQueryCategories extends ApiQueryGeneratorBase {
 			'continue' => 'When more results are available, use this to continue',
 			'categories' => 'Only list these categories. Useful for checking whether a certain page is in a certain category',
 			'dir' => 'The direction in which to list',
+		);
+	}
+
+	public function getResultProperties() {
+		return array(
+			'' => array(
+				'ns' => 'namespace',
+				'title' => 'string'
+			),
+			'sortkey' => array(
+				'sortkey' => 'string',
+				'sortkeyprefix' => 'string'
+			),
+			'timestamp' => array(
+				'timestamp' => 'timestamp'
+			),
+			'hidden' => array(
+				'hidden' => 'boolean'
+			)
 		);
 	}
 

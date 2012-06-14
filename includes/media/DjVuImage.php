@@ -1,6 +1,6 @@
 <?php
 /**
- * DjVu image handler
+ * DjVu image handler.
  *
  * Copyright © 2006 Brion Vibber <brion@pobox.com>
  * http://www.mediawiki.org/
@@ -21,6 +21,7 @@
  * http://www.gnu.org/copyleft/gpl.html
  *
  * @file
+ * @ingroup Media
  */
 
 /**

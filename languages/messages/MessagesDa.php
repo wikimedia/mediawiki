@@ -1,5 +1,5 @@
 <?php
-/** Danish (Dansk)
+/** Danish (dansk)
  *
  * See MessagesQqq.php for message documentation incl. usage of parameters
  * To improve a translation please visit http://translatewiki.net
@@ -571,7 +571,9 @@ $2',
 'titleprotected' => "Dette sidenavn er beskyttet mod oprettelse af [[User:$1|$1]]. Begrundelsen for beskyttelsen er ''$2''.",
 'filereadonlyerror' => 'Ude af stand til at redigere filen "$1", fordi fildatabasen "$2" er skrivebeskyttet.
 
-Begrundelsen er "\'\'$3\'\'".',
+Administratoren, som skrivebeskyttede den, gav følgende begrundelse: "$3".',
+'invalidtitle-knownnamespace' => 'Ugyldig titel med navnerummet "$2" og teksten "$3"',
+'invalidtitle-unknownnamespace' => 'Ugyldig titel med ukendt navnerum nummer $1 og tekst "$2"',
 
 # Virus scanner
 'virus-badscanner' => "Konfigurationsfejl: ukendt virus-scanner: ''$1''",
@@ -858,7 +860,8 @@ Loggen over den seneste blokering ses nedenfor:',
 'updated' => '(Opdateret)',
 'note' => "'''Bemærk:'''",
 'previewnote' => "'''Husk at dette er kun en forhåndsvisning.'''
-Dine ændringer er endnu ikke blevet gemt! [[#editform|→ Fortsæt med at redigere]]",
+Dine ændringer er endnu ikke blevet gemt!",
+'continue-editing' => 'Fortsæt med at redigere',
 'previewconflict' => 'Denne forhåndsvisning er resultatet af den redigérbare tekst ovenfor, sådan vil det komme til at se ud hvis du vælger at gemme teksten.',
 'session_fail_preview' => "'''Din ændring kunne ikke gemmes, da dine sessionsdata er gået tabt.
 Prøv venligst igen. Hvis problemet fortsætter, log af og log på igen.'''",
@@ -947,6 +950,8 @@ Der bør være færre end {{PLURAL:$2|$2 kald}}, lige nu er der {{PLURAL:$1|$1 k
 'parser-template-loop-warning' => 'Skabelonløkke fundet: [[$1]]',
 'parser-template-recursion-depth-warning' => 'En skabelon er rekursivt inkluderet for mange gange ($1)',
 'language-converter-depth-warning' => 'Dybdegrænse for sprogkonvertering overskredet ($1)',
+'expansion-depth-exceeded-category' => 'Sider, der overskrider ekspansionsdybden',
+'expansion-depth-exceeded-warning' => 'Siden overskred ekspansionsdybden',
 
 # "Undo" feature
 'undo-success' => 'Redigeringen kan fjernes.
@@ -1086,7 +1091,7 @@ Se venligst loglisterne.',
 # Suppression log
 'suppressionlog' => 'Skjulningslog',
 'suppressionlogtext' => 'Nedenfor listes de sletninger og blokeringer, som involverer indhold, der er skjult for administratorer.
-Se [[Special:BlockList|IP-blokeringslisten]] for listen over alle aktuelle blokeringer.',
+Se [[Special:BlockList|blokeringslisten]] for listen over alle aktuelle blokeringer.',
 
 # History merging
 'mergehistory' => 'Sammenflet sidehistorikker',
@@ -1120,8 +1125,9 @@ Vær opmæksom på at bevare kontinuiteten i sidehistorikken.
 'mergelogpagetext' => 'Nedenfor vises en liste med de nyeste sammenfletninger af en sides historik i en anden.',
 
 # Diffs
-'history-title' => 'Versionshistorik for "$1"',
-'difference' => '(Forskel mellem versioner)',
+'history-title' => '$1: Versionshistorik',
+'difference-title' => 'Forskel mellem versioner af "$1"',
+'difference-title-multipage' => 'Forskel mellem siderne "$1" og "$2"',
 'difference-multipage' => '(Forskel mellem sider)',
 'lineno' => 'Linje $1:',
 'compareselectedversions' => 'Sammenlign valgte versioner',
@@ -1217,6 +1223,7 @@ Du kan prøve at bruge \"all:\" som præfiks for at søge i alt indhold (inkl. d
 'prefs-beta' => 'Betafunktioner',
 'prefs-datetime' => 'Dato og klokkeslæt',
 'prefs-labs' => 'Testfunktioner',
+'prefs-user-pages' => 'Brugerside',
 'prefs-personal' => 'Brugerdata',
 'prefs-rc' => 'Seneste ændringer',
 'prefs-watchlist' => 'Overvågningsliste',
@@ -1478,7 +1485,7 @@ Hvis du vælger at oplyse dit navn, vil det blive brugt til at tilskrive dig dit
 'nchanges' => '$1 {{PLURAL:$1|ændring|ændringer}}',
 'recentchanges' => 'Seneste ændringer',
 'recentchanges-legend' => 'Indstillinger for seneste ændringer',
-'recentchangestext' => "På denne side kan du følge de seneste ændringer på '''{{SITENAME}}'''.",
+'recentchanges-summary' => "På denne side kan du følge de seneste ændringer på '''{{SITENAME}}'''.",
 'recentchanges-feed-description' => 'Med dette feed kan du følge de seneste ændringer på {{SITENAME}}.',
 'recentchanges-label-newpage' => 'Denne redigering oprettede en ny side',
 'recentchanges-label-minor' => 'Dette er en mindre ændring',
@@ -1666,8 +1673,8 @@ Informer venligst en [[Special:ListUsers/sysop|systemadministrator]].',
 'backend-fail-writetemp' => 'Kunne ikke skrive til midlertidig fil.',
 'backend-fail-closetemp' => 'Kunne ikke lukke midlertidig fil.',
 'backend-fail-read' => 'Kunne ikke læse filen $1.',
-'backend-fail-create' => 'Kunne ikke oprette filen $1.',
-'backend-fail-maxsize' => 'Kunne ikke oprette filen $1, da den er større end {{PLURAL:$2|$2 byte|$2 bytes}}.',
+'backend-fail-create' => 'Kunne ikke gemme filen $1.',
+'backend-fail-maxsize' => 'Kunne ikke gemme filen $1, da den er større end {{PLURAL:$2|en byte|$2 bytes}}.',
 'backend-fail-readonly' => 'Lagrings-backend "$1" er i øjeblikket skrivebeskyttet. Den angivne begrundelse var: " $2 "',
 'backend-fail-synced' => 'Filen "$1" er i en inkonsistent tilstand inden for de interne lagringsbackends',
 'backend-fail-connect' => 'Kunne ikke forbinde til lagringsbackend "$1".',
@@ -1987,6 +1994,7 @@ Læg mærke til at andre hjemmesider kan henvise til filen med en direkte URL, o
 Du kan afgrænse visningen ved at vælge en logtype, brugernavn eller påvirket side. Der skelnes mellem små og store bogstaver for både bruger- og sidenavne.',
 'logempty' => 'Intet passende fundet.',
 'log-title-wildcard' => 'Søg i titler som begynder med teksten',
+'showhideselectedlogentries' => 'Vis/skjul de markerede loghændelser',
 
 # Special:AllPages
 'allpages' => 'Alle sider',
@@ -2007,6 +2015,8 @@ Du kan afgrænse visningen ved at vælge en logtype, brugernavn eller påvirket 
 'allpages-hide-redirects' => 'Skjul omdirigeringer',
 
 # SpecialCachedPage
+'cachedspecial-viewing-cached-ttl' => 'Du ser en hengemt version af denne side, som kan være op til $1 gammel.',
+'cachedspecial-viewing-cached-ts' => 'Du ser en hengemt version af denne side, som måske ikke er helt aktuel.',
 'cachedspecial-refresh-now' => 'Vis seneste.',
 
 # Special:Categories
@@ -2443,7 +2453,7 @@ Angiv en konkret begrundelse herunder (for eksempel med angivelse af sider der h
 'badipaddress' => 'IP-adressen/brugernavnet er udformet forkert eller eksistere ikke.',
 'blockipsuccesssub' => 'Blokeringen er gennemført.',
 'blockipsuccesstext' => '[[Special:Contributions/$1|$1]] er blevet blokeret.<br />
-Se [[Special:BlockList|IP-blokeringslisten]] for alle blokeringer.',
+Se [[Special:BlockList|blokeringslisten]] for alle blokeringer.',
 'ipb-blockingself' => 'Du er ved at blokere dig selv! Er du sikker på, du vil gøre det?',
 'ipb-confirmhideuser' => 'Du er ved at blokere en bruger med "skjul bruger" aktiveret. Dette vil skjule brugerens navn på alle lister og logposter. Er du sikker på du vil gøre det?',
 'ipb-edit-dropdown' => 'Ændre spærreårsager',
@@ -2496,7 +2506,9 @@ Blokeringsloggen vises nedenfor som reference:',
 Skjulningsloggen vises nedenfor som reference:',
 'blocklogentry' => 'blokerede [[$1]] med en varighed på $2 $3',
 'reblock-logentry' => 'ændrede blokeringsindstillinger for [[$1]] med en varighed $2 $3',
-'blocklogtext' => 'Dette er en liste med blokerede brugere og ophævede blokeringer af brugere. Automatisk blokerede IP-adresser er ikke anført her. Se [[Special:BlockList|blokeringslisten]] for den nuværende liste med blokerede brugere.',
+'blocklogtext' => 'Dette er en liste med blokerede brugere og ophævede blokeringer af brugere.
+Automatisk blokerede IP-adresser er ikke anført her.
+Se [[Special:BlockList|blokeringslisten]] for den nuværende liste med aktuelle blokeringer.',
 'unblocklogentry' => 'ophævede blokering af "$1"',
 'block-log-flags-anononly' => 'kun anonyme',
 'block-log-flags-nocreate' => 'Oprettelse af brugerkonti blokeret',
@@ -3545,6 +3557,9 @@ Du skulle have modtaget [{{SERVER}}{{SCRIPTPATH}}/COPYING en kopi af GNU General
 'version-software' => 'Installeret software',
 'version-software-product' => 'Produkt',
 'version-software-version' => 'Version',
+'version-entrypoints' => 'URL-adresser til indgangspunkter',
+'version-entrypoints-header-entrypoint' => 'Indgangspunkt',
+'version-entrypoints-header-url' => 'URL',
 
 # Special:FilePath
 'filepath' => 'Filsti',

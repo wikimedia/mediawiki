@@ -7,7 +7,7 @@ var config = {
 	wgContentLanguage: 'en'
 };
 
-module( 'jquery.tablesorter', QUnit.newMwEnvironment( config ) );
+module( 'jquery.tablesorter', QUnit.newMwEnvironment({ config: config }) );
 
 test( '-- Initial check', function() {
 	expect(1);

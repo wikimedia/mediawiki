@@ -469,7 +469,6 @@ $messages = array(
 
 # Diffs
 'history-title' => 'ປະຫວັດການດັດແກ້ ຂອງ "$1"',
-'difference' => '(ສ່ວນຕ່າງລະຫວ່າງແຕ່ລະສະບັບ)',
 'lineno' => 'ແຖວ $1:',
 'compareselectedversions' => 'ສົມທຽບ ລະຫວ່າງ ສະບັບເລືອກ',
 'editundo' => 'ກັບຄືນ',
@@ -544,7 +543,7 @@ $messages = array(
 # Recent changes
 'nchanges' => '$1 {{PLURAL:$1|ການປ່ຽນແປງ|ການປ່ຽນແປງ}}',
 'recentchanges' => 'ການດັດແກ້ຫຼ້າສຸດ',
-'recentchangestext' => 'ເບິ່ງ ການປ່ຽນແປງ ຫຼ້າສຸດ ຢູ່ ໜ້າວິກີນີ້.',
+'recentchanges-summary' => 'ເບິ່ງ ການປ່ຽນແປງ ຫຼ້າສຸດ ຢູ່ ໜ້າວິກີນີ້.',
 'recentchanges-feed-description' => 'ນຳເບິ່ງການປ່ຽນແປງຫຼ້າສຸດຢູ່ ວິກິນີ້ ໃນ ຟີດ',
 'rcnote' => "ທາງລຸ່ມ {{PLURAL:$1|ແມ່ນ'''1''' ການປ່ຽນແປງ|ແມ່ນ '''$1''' ການປ່ຽນແປງຫຼ້າສຸດ}} ໃນ {{PLURAL:$2|ມື້|'''$2''' ມື້}}, ເມື່ອ $3.",
 'rclistfrom' => 'ສະແດງ ການປ່ຽນແປງ ເລີ່ມແຕ່  $1',

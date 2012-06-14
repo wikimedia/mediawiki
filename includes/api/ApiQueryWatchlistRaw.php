@@ -76,12 +76,12 @@ class ApiQueryWatchlistRaw extends ApiQueryGeneratorBase {
 					"original value returned by the previous query", "_badcontinue" );
 			}
 			$ns = intval( $cont[0] );
-			$title = $this->getDB()->strencode( $this->titleToKey( $cont[1] ) );
+			$title = $this->getDB()->addQuotes( $this->titleToKey( $cont[1] ) );
 			$op = $params['dir'] == 'ascending' ? '>' : '<';
 			$this->addWhere(
-				"wl_namespace $op '$ns' OR " .
-				"(wl_namespace = '$ns' AND " .
-				"wl_title $op= '$title')"
+				"wl_namespace $op $ns OR " .
+				"(wl_namespace = $ns AND " .
+				"wl_title $op= $title)"
 			);
 		}
 
@@ -90,7 +90,10 @@ class ApiQueryWatchlistRaw extends ApiQueryGeneratorBase {
 		if ( count( $params['namespace'] ) == 1 ) {
 			$this->addOption( 'ORDER BY', 'wl_title' . $sort );
 		} else {
-			$this->addOption( 'ORDER BY', 'wl_namespace' . $sort . ', wl_title' . $sort );
+			$this->addOption( 'ORDER BY', array(
+				'wl_namespace' . $sort,
+				'wl_title' . $sort
+			));
 		}
 		$this->addOption( 'LIMIT', $params['limit'] + 1 );
 		$res = $this->select( __METHOD__ );
@@ -186,6 +189,21 @@ class ApiQueryWatchlistRaw extends ApiQueryGeneratorBase {
 			'owner' => 'The name of the user whose watchlist you\'d like to access',
 			'token' => 'Give a security token (settable in preferences) to allow access to another user\'s watchlist',
 			'dir' => 'Direction to sort the titles and namespaces in',
+		);
+	}
+
+	public function getResultProperties() {
+		return array(
+			'' => array(
+				'ns' => 'namespace',
+				'title' => 'string'
+			),
+			'changed' => array(
+				'changed' => array(
+					ApiBase::PROP_TYPE => 'timestamp',
+					ApiBase::PROP_NULLABLE => true
+				)
+			)
 		);
 	}
 

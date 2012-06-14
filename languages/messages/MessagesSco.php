@@ -692,7 +692,6 @@ there micht be parteeculars in the [{{fullurl:{{#Special:Log}}/suppress|page={{F
 
 # Diffs
 'history-title' => 'Revision history of "$1"',
-'difference' => '(Difference atween revisions)',
 'lineno' => 'Line $1:',
 'compareselectedversions' => 'Compare selectit versions',
 'editundo' => 'undo',
@@ -827,7 +826,7 @@ Yer e-mail address insae revealed whin ither uisers contact ye.",
 'nchanges' => '$1 {{PLURAL:$1|chynge|chynges}}',
 'recentchanges' => 'Recent chynges',
 'recentchanges-legend' => 'Recent changes options',
-'recentchangestext' => 'Follae the maist recent chynges tae the wiki on this page.',
+'recentchanges-summary' => 'Follae the maist recent chynges tae the wiki on this page.',
 'recentchanges-feed-description' => 'Follae the maist recent chynges tae the wiki in this feed.',
 'recentchanges-label-newpage' => 'This edit created a freish page',
 'recentchanges-label-minor' => 'This is a smaa edit',

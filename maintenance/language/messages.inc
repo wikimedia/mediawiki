@@ -157,6 +157,7 @@ $wgMessageStructure = array(
 		'index-category',
 		'noindex-category',
 		'broken-file-category',
+		'categoryviewer-pagedlinks',
 	),
 	'mainpage' => array(
 		'linkprefix',
@@ -408,7 +409,9 @@ $wgMessageStructure = array(
 		'customjsprotected',
 		'ns-specialprotected',
 		'titleprotected',
-		'filereadonlyerror'
+		'filereadonlyerror',
+		'invalidtitle-knownnamespace',
+		'invalidtitle-unknownnamespace',
 	),
 	'virus' => array(
 		'virus-badscanner',
@@ -623,6 +626,7 @@ $wgMessageStructure = array(
 		'updated',
 		'note',
 		'previewnote',
+		'continue-editing',
 		'previewconflict',
 		'session_fail_preview',
 		'session_fail_preview_html',
@@ -687,6 +691,12 @@ $wgMessageStructure = array(
 		'parser-template-loop-warning',
 		'parser-template-recursion-depth-warning',
 		'language-converter-depth-warning',
+		'node-count-exceeded-category',
+		'node-count-exceeded-warning',
+		'expansion-depth-exceeded-category',
+		'expansion-depth-exceeded-warning',
+		'parser-unstrip-loop-warning',
+		'parser-unstrip-recursion-limit',
 	),
 	'undo' => array(
 		'undo-success',
@@ -823,7 +833,8 @@ $wgMessageStructure = array(
 		'mergehistory-autocomment',
 		'mergehistory-comment',
 		'mergehistory-same-destination',
-		'mergehistory-reason'
+		'mergehistory-reason',
+		'mergehistory-revisionrow'
 	),
 	'mergelog' => array(
 		'mergelog',
@@ -833,7 +844,8 @@ $wgMessageStructure = array(
 	),
 	'diffs' => array(
 		'history-title',
-		'difference',
+		'difference-title',
+		'difference-title-multipage',
 		'difference-multipage',
 		'lineno',
 		'compareselectedversions',
@@ -938,6 +950,7 @@ $wgMessageStructure = array(
 		'prefs-beta',
 		'prefs-datetime',
 		'prefs-labs',
+		'prefs-user-pages',
 		'prefs-personal',
 		'prefs-rc',
 		'prefs-watchlist',
@@ -1203,6 +1216,7 @@ $wgMessageStructure = array(
 		'recentchanges',
 		'recentchanges-url',
 		'recentchanges-legend',
+		'recentchanges-summary',
 		'recentchangestext',
 		'recentchanges-feed-description',
 		'recentchanges-label-newpage',
@@ -1378,7 +1392,8 @@ $wgMessageStructure = array(
 		'backend-fail-connect',
 		'backend-fail-internal',
 		'backend-fail-contenttype',
-		'backend-fail-batchsize'
+		'backend-fail-batchsize',
+		'backend-fail-usable'
 	),
 
 	'filejournal-errors' => array(
@@ -1735,6 +1750,7 @@ $wgMessageStructure = array(
 		'alllogstext',
 		'logempty',
 		'log-title-wildcard',
+		'showhideselectedlogentries',
 	),
 	'allpages' => array(
 		'allpages',
@@ -2052,6 +2068,7 @@ $wgMessageStructure = array(
 		'undelete-error-long',
 		'undelete-show-file-confirm',
 		'undelete-show-file-submit',
+		'undelete-revisionrow',
 	),
 	'nsform' => array(
 		'namespace',
@@ -2617,6 +2634,7 @@ $wgMessageStructure = array(
 		'spambot_username',
 		'spam_reverting',
 		'spam_blanking',
+		'spam_deleting',
 	),
 	'info' => array(
 		'pageinfo-title',
@@ -3308,6 +3326,7 @@ $wgMessageStructure = array(
 		'ellipsis',
 		'percent',
 		'parentheses',
+		'brackets',
 	),
 	'imgmulti' => array(
 		'imgmultipageprev',
@@ -3488,6 +3507,14 @@ $wgMessageStructure = array(
 		'version-software',
 		'version-software-product',
 		'version-software-version',
+		'version-entrypoints',
+		'version-entrypoints-header-entrypoint',
+		'version-entrypoints-header-url',
+		'version-entrypoints-articlepath',
+		'version-entrypoints-scriptpath',
+		'version-entrypoints-index-php',
+		'version-entrypoints-api-php',
+		'version-entrypoints-load-php',
 	),
 	'filepath' => array(
 		'filepath',

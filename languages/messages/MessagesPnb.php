@@ -11,6 +11,7 @@
  * @author Kaganer
  * @author Khalid Mahmood
  * @author Rachitrali
+ * @author Reedy
  * @author ZaDiak
  */
 
@@ -373,7 +374,7 @@ $messages = array(
 اینوں پہلاں توں ای کسے نے مٹایا ہوۓ گا۔',
 'cannotdelete-title' => 'صفہ مٹا نئیں سکدے "$1"',
 'badtitle' => 'پیڑا عنوان',
-'badtitletext' => 'منگیا گۓ صفحہ دا ناں غلط اے، خالی اے یا غلط تریقے نال جوڑیا گیا اے۔<div/>
+'badtitletext' => 'منگیا گۓ صفحہ دا ناں غلط اے، خالی اے یا غلط تریقے نال جوڑیا گیا اے۔
 ہوسکدا اے ایدے چ اک دو ھندسے ایسے ہون جیڑے عنوان وچ استعمال نہیں کیتے جاسکدے۔',
 'perfcached' => 'تھلے دتا گیا ڈیٹا کاشیڈ اے تے پانویں نواں ناں ہووے. زیادہ توں زیادہ کاشے چ  {{PLURAL:$1|اک نتیجہ ہووے|$1 نتیجے ہوون}} گے.',
 'perfcachedts' => 'تھلے دتا گیا ڈیٹا کاشیڈ اے تے  $1 نوں نواں کیتا گیا۔ زیادہ توں زیادہ {{PLURAL:$4|اک نتیجہ ہووے|$4 نتیجے ہوون}} نتیجے کاشے چ ہیگے نیں .',
@@ -596,7 +597,7 @@ $2
 'showpreview' => 'کچا کم ویکھو',
 'showlivepreview' => 'جیندا کچا کم',
 'showdiff' => 'تبدیلیاں وکھاؤ',
-'anoneditwarning' => "<div/>'''خبردار''' تسی اندر نہیں آۓ
+'anoneditwarning' => "'''خبردار''' تسی اندر نہیں آۓ
 تواڈا ''آئی پی'' پتہ فائل فائل وچ لکھیا جاۓ گا۔",
 'anonpreviewwarning' => "''تسی ہلے لاگ ان نئیں ہوۓ،۔ کم بچاؤ گے تے تواڈا IP پتہ صفحے دی تریخ چ لکھ لیا جاۓ گا۔''",
 'missingsummary' => "'''یادکرائی:''' تساں تبدیلی دی سمری نئیں دتی۔  اگر تسیں \"{{int:savearticle}}\" نوں کلک کروگے تواڈیاں تبدیلیاں اک دے بنا بچ جان گیاں۔",
@@ -749,7 +750,7 @@ Custom .css تے .js pages use a lowercase title, e.g. {{ns:user}}:Foo/vector.cs
 'permissionserrorstext-withaction' => 'تواڈے کول $2 کرن دی اجازت نئیں اے۔ اس دی {{PLURAL:$1|وجہ|وجوہات}} نیں۔',
 'recreate-moveddeleted-warn' => "'''خبردار: تسی اک پہلاں توں مٹایا ہویا صفحہ دوبارا لکھ رہے او۔'''
 
-توانوں اے گل سوچنی چائیدی اے کہ اینو لکھنا کوئی عقلمنداں دا کم اے۔<div/>
+توانوں اے گل سوچنی چائیدی اے کہ اینو لکھنا کوئی عقلمنداں دا کم اے۔
 تواڈی سہولت آسطے مٹان دا لاگ ایتھے موجود اے۔",
 'moveddeleted-notice' => 'اس صفحے نوں مٹا دتا گیا اے۔
 مٹان دا لاگ تھلے دتا گیا اے۔',
@@ -952,7 +953,6 @@ $1",
 
 # Diffs
 'history-title' => '"$1" دا ریکارڈ',
-'difference' => '(صفحیاں وچ فرق)',
 'difference-multipage' => '(صفیاں چ فرق)',
 'lineno' => 'لیک $1:',
 'compareselectedversions' => 'چنے صفحے آپنے سامنے کرو',
@@ -1316,7 +1316,7 @@ $1",
 'nchanges' => '$1 {{PLURAL:$1|change|تبدیلیاں}}',
 'recentchanges' => 'نویاں تبدیلیاں',
 'recentchanges-legend' => 'نویاں تبدیلیاں دیاں راواں',
-'recentchangestext' => 'ایس وکی تے نیڑے نیڑے ہون والیاں تبدیلیاں ایس صفے تے دسو۔',
+'recentchanges-summary' => 'ایس وکی تے نیڑے نیڑے ہون والیاں تبدیلیاں ایس صفے تے دسو۔',
 'recentchanges-feed-description' => 'اس فیڈ وچ وکی تے ہوئیاں نویاں تبدیلیاں نو ویکھو۔',
 'recentchanges-label-newpage' => 'ایس تبدیلی نے نواں صفہ بنایا اے۔',
 'recentchanges-label-minor' => 'اے اک چھوٹی تبدیلی اے۔',
@@ -2210,7 +2210,7 @@ $2 نے آخری ریوین تک واپس کیتا۔',
 'undelete-error-short' => 'فاغل واپس کرن چ غلطی: $1',
 'undelete-error-long' => 'فائل واپس کرن  لگیاں غلطیاں ہوئیاں:
 $1',
-'undelete-show-file-confirm' => 'تساں نوں کیا پک اے جے تسیں فائل "<نوکی>$1</نوکی>" دی مٹائی ریوین  $2 توں $3 تک ویکھنا چاندے او؟',
+'undelete-show-file-confirm' => 'تساں نوں کیا پک اے جے تسیں فائل "<nowiki>$1</nowiki>" دی مٹائی ریوین  $2 توں $3 تک ویکھنا چاندے او؟',
 'undelete-show-file-submit' => 'ہاں جی',
 
 # Namespace form on various pages
@@ -2577,7 +2577,7 @@ $1',
 'import-revision-count' => '$1 {{PLURAL:$1|ریوین}}',
 'importnopages' => 'لانے آسطے کوئی صفحہ نئیں۔',
 'imported-log-entries' => '{{PLURAL:$1|لاگ انٹریلاگ انٹریاں}}!!لیاندی گئی $1 {{PLURAL:$1|لاگ انٹری}}.',
-'importfailed' => 'لیانا فیل: <نوکی>$1</نوکی>',
+'importfailed' => 'لیانا فیل: <nowiki>$1</nowiki>',
 'importunknownsource' => 'انجان لیان سورس ٹائپ',
 'importcantopen' => 'لیاندی گئی فائل نئیں کھولی جاسکی',
 'importbadinterwiki' => 'پیڑا انٹروکی لنک',
@@ -2633,7 +2633,7 @@ $1',
 'tooltip-pt-preferences' => 'میریاں تانگاں',
 'tooltip-pt-watchlist' => 'او صفحے جنہاں وچ تبدیلیاں تسی ویکھ رہے او',
 'tooltip-pt-mycontris' => 'میرے کم',
-'tooltip-pt-login' => 'جی صدقے اندر آؤ، پر اے لازمی نہیں۔',
+'tooltip-pt-login' => 'اے بہتر اے کہ لاگ ان ہو جاؤ، لیکن فیر وی اے لازمی نئیں۔',
 'tooltip-pt-anonlogin' => 'اے بہتر اے کہ لاگ ان ہو جاؤ، لیکن فیر وی اے لازمی نئیں۔',
 'tooltip-pt-logout' => 'باہر آؤ',
 'tooltip-ca-talk' => 'اس صفحے دے بار وچ گل بات',
@@ -2811,7 +2811,7 @@ $1',
 
 # Metadata
 'metadata' => 'میٹا ڈیٹا',
-'metadata-help' => 'اس فائل وچ ہور وی معلومات نے، شاید او ڈیجیٹل کیمرے یا سکینر نے پائیاں گئیاں نے جس نال اینو کچھیا یا ڈیجیٹل بنایا گیا اے۔<div/>
+'metadata-help' => 'اس فائل وچ ہور وی معلومات نے، شاید او ڈیجیٹل کیمرے یا سکینر نے پائیاں گئیاں نے جس نال اینو کچھیا یا ڈیجیٹل بنایا گیا اے۔
 اگر فائل نو ایدی اصلی حالت توں تبدیل کیتا گیا اے تے کجھ تفصیلات تبدیل ہوئی فائل دے بارے چ نئیں دسن گیاں۔',
 'metadata-expand' => 'ہور تفصیلات دسو',
 'metadata-collapse' => 'تفصیلات چھپاؤ',
@@ -3326,7 +3326,7 @@ $5
 'ascending_abbrev' => 'اے ایس سی',
 'descending_abbrev' => 'ڈی ایایس سی',
 'table_pager_next' => 'اگلا صفہ',
-'table_pager_prev' => 'پچھلا صفحہ',
+'table_pager_prev' => 'پچھلا صفہ',
 'table_pager_first' => 'پہلا صفہ',
 'table_pager_last' => 'آخری صفہ',
 'table_pager_limit' => '$1 وکھاؤ ہر صفے تے',
@@ -3390,7 +3390,7 @@ $5
 # Special:Version
 'version' => 'ورژن',
 'version-extensions' => 'انسٹالڈ کیتیاں گیاں ایکسٹنشن',
-'version-specialpages' => 'خاص صفحے',
+'version-specialpages' => 'خاص صفے',
 'version-parserhooks' => 'پارسر ہکز',
 'version-variables' => 'ویریایبلز',
 'version-antispam' => 'سپام بچاؤ',

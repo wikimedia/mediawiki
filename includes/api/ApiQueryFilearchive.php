@@ -56,6 +56,7 @@ class ApiQueryFilearchive extends ApiQueryBase {
 		$fld_dimensions = isset( $prop['dimensions'] );
 		$fld_description = isset( $prop['description'] ) || isset( $prop['parseddescription'] );
 		$fld_mime = isset( $prop['mime'] );
+		$fld_mediatype = isset( $prop['mediatype'] );
 		$fld_metadata = isset( $prop['metadata'] );
 		$fld_bitdepth = isset( $prop['bitdepth'] );
 
@@ -68,6 +69,7 @@ class ApiQueryFilearchive extends ApiQueryBase {
 		$this->addFieldsIf( array( 'fa_height', 'fa_width', 'fa_size' ), $fld_dimensions || $fld_size );
 		$this->addFieldsIf( 'fa_description', $fld_description );
 		$this->addFieldsIf( array( 'fa_major_mime', 'fa_minor_mime' ), $fld_mime );
+		$this->addFieldsIf( 'fa_media_type', $fld_mediatype );
 		$this->addFieldsIf( 'fa_metadata', $fld_metadata );
 		$this->addFieldsIf( 'fa_bits', $fld_bitdepth );
 
@@ -117,8 +119,8 @@ class ApiQueryFilearchive extends ApiQueryBase {
 
 		$limit = $params['limit'];
 		$this->addOption( 'LIMIT', $limit + 1 );
-		$this->addOption( 'ORDER BY', 'fa_name' .
-						( $params['dir'] == 'descending' ? ' DESC' : '' ) );
+		$sort = ( $params['dir'] == 'descending' ? ' DESC' : '' );
+		$this->addOption( 'ORDER BY', 'fa_name' . $sort );
 
 		$res = $this->select( __METHOD__ );
 
@@ -164,6 +166,9 @@ class ApiQueryFilearchive extends ApiQueryBase {
 					$file['parseddescription'] = Linker::formatComment(
 						$row->fa_description, $title );
 				}
+			}
+			if ( $fld_mediatype ) {
+				$file['mediatype'] = $row->fa_media_type;
 			}
 			if ( $fld_metadata ) {
 				$file['metadata'] = $row->fa_metadata
@@ -235,6 +240,7 @@ class ApiQueryFilearchive extends ApiQueryBase {
 					'description',
 					'parseddescription',
 					'mime',
+					'mediatype',
 					'metadata',
 					'bitdepth'
 				),
@@ -261,9 +267,71 @@ class ApiQueryFilearchive extends ApiQueryBase {
 				' description       - Adds description the image version',
 				' parseddescription - Parse the description on the version',
 				' mime              - Adds MIME of the image',
+				' mediatype         - Adds the media type of the image',
 				' metadata          - Lists EXIF metadata for the version of the image',
 				' bitdepth          - Adds the bit depth of the version',
-            ),
+			),
+		);
+	}
+
+	public function getResultProperties() {
+		return array(
+			'' => array(
+				'name' => 'string',
+				'ns' => 'namespace',
+				'title' => 'string',
+				'filehidden' => 'boolean',
+				'commenthidden' => 'boolean',
+				'userhidden' => 'boolean',
+				'suppressed' => 'boolean'
+			),
+			'sha1' => array(
+				'sha1' => 'string'
+			),
+			'timestamp' => array(
+				'timestamp' => 'timestamp'
+			),
+			'user' => array(
+				'userid' => 'integer',
+				'user' => 'string'
+			),
+			'size' => array(
+				'size' => 'integer',
+				'pagecount' => array(
+					ApiBase::PROP_TYPE => 'integer',
+					ApiBase::PROP_NULLABLE => true
+				),
+				'height' => 'integer',
+				'width' => 'integer'
+			),
+			'dimensions' => array(
+				'size' => 'integer',
+				'pagecount' => array(
+					ApiBase::PROP_TYPE => 'integer',
+					ApiBase::PROP_NULLABLE => true
+				),
+				'height' => 'integer',
+				'width' => 'integer'
+			),
+			'description' => array(
+				'description' => 'string'
+			),
+			'parseddescription' => array(
+				'description' => 'string',
+				'parseddescription' => 'string'
+			),
+			'metadata' => array(
+				'metadata' => 'string'
+			),
+			'bitdepth' => array(
+				'bitdepth' => 'integer'
+			),
+			'mime' => array(
+				'mime' => 'string'
+			),
+			'mediatype' => array(
+				'mediatype' => 'string'
+			)
 		);
 	}
 

@@ -294,6 +294,8 @@ class SpecialNewpages extends IncludableSpecialPage {
 	 * @return String
 	 */
 	public function formatRow( $result ) {
+		$title = Title::newFromRow( $result );
+
 		# Revision deletion works on revisions, so we should cast one
 		$row = array(
 					  'comment' => $result->rc_comment,
@@ -302,13 +304,13 @@ class SpecialNewpages extends IncludableSpecialPage {
 					  'user' => $result->rc_user,
 					);
 		$rev = new Revision( $row );
+		$rev->setTitle( $title );
 
 		$classes = array();
 
 		$lang = $this->getLanguage();
 		$dm = $lang->getDirMark();
 
-		$title = Title::newFromRow( $result );
 		$spanTime = Html::element( 'span', array( 'class' => 'mw-newpages-time' ),
 			$lang->userTimeAndDate( $result->rc_timestamp, $this->getUser() )
 		);
@@ -432,7 +434,7 @@ class SpecialNewpages extends IncludableSpecialPage {
 	}
 
 	protected function feedItem( $row ) {
-		$title = Title::MakeTitle( intval( $row->rc_namespace ), $row->rc_title );
+		$title = Title::makeTitle( intval( $row->rc_namespace ), $row->rc_title );
 		if( $title ) {
 			$date = $row->rc_timestamp;
 			$comments = $title->getTalkPage()->getFullURL();

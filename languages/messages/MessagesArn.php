@@ -1,5 +1,5 @@
 <?php
-/** Araucanian (Mapudungun)
+/** Araucanian (mapudungun)
  *
  * See MessagesQqq.php for message documentation incl. usage of parameters
  * To improve a translation please visit http://translatewiki.net
@@ -313,7 +313,7 @@ kam [{{fullurl:{{FULLPAGENAME}}|action=edit}} kümeelaymi tüfachi wülngiñ]</s
 Eymi [[Special:Search/{{PAGENAME}}|pepikintuymi tüfachi üy]] kake wülngiñ mew,
 kam <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} kintuymi koneltuyelelu wirintukun]</span>.',
 'previewnote' => "'''Ngüneduamimi tüfachi wüne pen petu eltukawam!'''
-Eltukawlelay feychi kalekünun! [[#editform|→ Continuar editando]]",
+Eltukawlelay feychi kalekünun!",
 'editing' => 'Kümeelngey $1',
 'editingsection' => 'Wirin $1 (Dungu)',
 'editingcomment' => 'Wirin $1 (we dungu)',
@@ -377,7 +377,6 @@ Rulpakünuy feychi kangelkülelu dungu.",
 
 # Diffs
 'history-title' => 'Kuyfi malün "$1" mew',
-'difference' => '(Trürümün epu malün engu)',
 'lineno' => 'Wif $1:',
 'compareselectedversions' => 'Trürümün dullinngelu malün',
 'editundo' => 'wüñoeltun',
@@ -478,7 +477,7 @@ Rulpakünuy feychi kangelkülelu dungu.",
 'nchanges' => '{{PLURAL:$1|kalekünuy|kalekünuy}} $1',
 'recentchanges' => 'Weke kalekünun',
 'recentchanges-legend' => 'Weke kalekünun ñi dullin',
-'recentchangestext' => 'Inayafin doy weke kalekünun tüfa mew.',
+'recentchanges-summary' => 'Inayafin doy weke kalekünun tüfa mew.',
 'recentchanges-feed-description' => 'Inayafin doy weke kalekünun wiki ñi amuldungu mew',
 'recentchanges-label-newpage' => 'Tüfachi wirin dewmakey kiñe we wülngiñ.',
 'recentchanges-label-minor' => 'Tüfachi ta kiñe pichi wirin',

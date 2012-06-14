@@ -909,7 +909,6 @@ $1",
 
 # Diffs
 'history-title' => 'Ṫ-Ṫariĥ dyal lé-vérsyon dyal "$1"',
-'difference' => '(Ferq mabin lé-vérsyon)',
 'difference-multipage' => '(l-fṛq bin ṣ-ṣfaḫi)',
 'lineno' => 'Ṣter $1:',
 'compareselectedversions' => 'Qaren lé-versyon li meĝzolin',
@@ -1240,7 +1239,7 @@ Laḫed ana imken ikono l-indexaṫ dial {{SITENAME}} qdam o ma bqaoċ ṣalḫi
 'nchanges' => '{{PLURAL:$1|ṫeġyira weḫda|$1 dyal ṫ-ṫeġyiraṫ}}',
 'recentchanges' => 'Ṫ-Ṫeĝdilaṫ l-leĥĥra',
 'recentchanges-legend' => 'Opsyon dyal ṫ-ṫeġyiraṫ l-leĥĥra',
-'recentchangestext' => 'Ṫebbeĝ ṫ-ṫeĝdilaṫ l-leĥĥrin dyal had l-wiki fe waḫed l-flu.',
+'recentchanges-summary' => 'Ṫebbeĝ ṫ-ṫeĝdilaṫ l-leĥĥrin dyal had l-wiki fe waḫed l-flu.',
 'recentchanges-feed-description' => 'Ṫebbeĝ ṫ-ṫeĝdilaṫ l-leĥĥrin dyal had l-wiki fe waḫed l-flu.',
 'recentchanges-label-newpage' => "anch' had tadil sfha jdida",
 'recentchanges-label-minor' => 'Hada ṫeĝdil sġir',

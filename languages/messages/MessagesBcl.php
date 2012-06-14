@@ -100,15 +100,15 @@ $messages = array(
 'tog-hideminor' => 'Tagóon an mga saradít na paghirá sa nakakaági pa sanáng pagbabàgo',
 'tog-hidepatrolled' => 'Tagóon an mga saradít na paghirá sa nakakaági pa sanáng pagbabàgo',
 'tog-newpageshidepatrolled' => 'Tagóon an mga pigbabantayán na pahina sa lista nin mga bàgong pahina',
-'tog-extendwatchlist' => 'Palakbangón an lista kan pigbabantayan tangarig mahiling an gabos na angay na pagbabàgo',
-'tog-usenewrc' => 'Paorogón an kaaging pagbabàgo (JavaScript)',
+'tog-extendwatchlist' => 'Palakbangón an taytáy kan babantayan tanganing mahilíng an gabós na angay na pagbàgo',
+'tog-usenewrc' => 'Gamiton an pinauróg na mga nakaaging pagbàgo (kaipohan nin JavaScript)',
 'tog-numberheadings' => 'Tolos na pagbílang sa mga pamayohán',
 'tog-showtoolbar' => 'Ipahilíng an toolbar nin paghirá (JavaScript)',
 'tog-editondblclick' => 'Hirahón sa dobleng paglagatík an mga pahina (JavaScript)',
 'tog-editsection' => 'Togótan an paghirá kan seksyon sa paági kan mga takód na [hirá]',
 'tog-editsectiononrightclick' => 'Togotan an paghirá kan seksyon sa pag-lagatik sa walá sa mga titulo nin seksyon (JavaScript)',
 'tog-showtoc' => 'Ipahilíng an indise kan mga laog (para sa mga pahinang igwang sobra sa 3 pamayohan)',
-'tog-rememberpassword' => 'Giromdomón an mga paglaóg ko sa kompyuter na iní (for a maximum of $1 {{PLURAL:$1|day|days}})',
+'tog-rememberpassword' => 'Giromdomón an mga paglaóg ko sa panlibotlibot na iní (sa nakaaging $1 {{PLURAL:$1|aldaw|mga aldaw}})',
 'tog-watchcreations' => 'Idúgang an mga pahinang ginigíbo ko sa pigbabantayan ko',
 'tog-watchdefault' => 'Idúgang an mga pahinang pighíhirá ko sa pigbabantayan ko',
 'tog-watchmoves' => 'Idúgang an mga pahinang piglilípat ko sa pigbabantayan ko',
@@ -116,7 +116,7 @@ $messages = array(
 'tog-minordefault' => 'Markahán an gabos na paghirá nin sadit na paghirá',
 'tog-previewontop' => 'Ipahilíng an patànaw bàgo an kahon nin paghirá',
 'tog-previewonfirst' => 'Ipahilíng an patànaw sa enot na paghirá',
-'tog-nocache' => 'Pogólon an pag-abang nin mga pahina',
+'tog-nocache' => 'Pugolon an pag-abáng nin mga pahina',
 'tog-enotifwatchlistpages' => 'E-koreohan ako pag pigribayan an pahinang pigbabantayan ko',
 'tog-enotifusertalkpages' => 'E-koreohan ako pag pigribáyan an pahina kan sakóng olay',
 'tog-enotifminoredits' => 'E-koreohan man giraray ako para sa saradit na paghirá kan mga pahina',
@@ -237,6 +237,7 @@ $messages = array(
 'vector-view-view' => 'Basáhon',
 'vector-view-viewsource' => 'Hilingón an ginikánan',
 'actions' => 'Mga paghiro',
+'namespaces' => 'Liang-liang',
 
 'errorpagetitle' => 'Salâ',
 'returnto' => 'Magbwelta sa $1.',
@@ -346,7 +347,7 @@ $messages = array(
 'page-rss-feed' => '"$1" Hungit na RSS',
 'page-atom-feed' => '"$1" Hungit na Atomo',
 'feed-atom' => 'Atomo',
-'red-link-title' => '$1 (dai pa naisusurat)',
+'red-link-title' => '$1 (daí pa naisusurat)',
 
 # Short words for each namespace, by default used in the namespace tab in monobook
 'nstab-main' => 'Pahina',
@@ -736,7 +737,6 @@ An ibang mga administrador sa ining wiki pwede pang maghiling kan mga nakatagong
 
 # Diffs
 'history-title' => 'Uusipón nin pagpakarháy kan "$1"',
-'difference' => '(Kaibhán kan mga pagpakarháy)',
 'lineno' => 'Taytáy $1:',
 'compareselectedversions' => 'Ikomparar an mga piniling bersyon',
 'editundo' => 'isulít',
@@ -757,6 +757,8 @@ An ibang mga administrador sa ining wiki pwede pang maghiling kan mga nakatagong
 'nextn' => 'sunód na {{PLURAL:$1|$1}}',
 'viewprevnext' => 'Hilingón ($1 {{int:pipe-separator}} $2) ($3)',
 'searchhelp-url' => 'Help:Mga laog',
+'searchprofile-everything' => 'Gabós',
+'searchprofile-articles-tooltip' => 'Hanapon sa $1',
 'search-result-size' => '$1 ({{PLURAL:$2|1 tatarámon|$2 mga tatarámon}})',
 'search-suggest' => 'Boót mo iyó: $1',
 'search-interwiki-more' => '(dakol pa)',
@@ -871,7 +873,7 @@ An ibang mga administrador sa ining wiki pwede pang maghiling kan mga nakatagong
 # Recent changes
 'nchanges' => '$1 {{PLURAL:$1|pagbabâgo|mga pagbabâgo}}',
 'recentchanges' => 'Mga nakakaági pa sanáng pagbabàgo',
-'recentchangestext' => 'Hanápon an mga pinahúring pagbabàgo sa wiki digdí sa pahinang iní.',
+'recentchanges-summary' => 'Hanapon an mga pinahuring pagbabâgo sa wiki digdi sa páhinang ini.',
 'recentchanges-feed-description' => 'Hanápon an mga pinakahuring pagbabàgo sa wiki sa hungit na ini.',
 'rcnote' => "Mahihiling sa babâ an {{PLURAL:$1| '''1''' pagbabàgo|'''$1''' pagbabàgo}} sa huring {{PLURAL:$2|na aldaw|'''$2''' na aldaw}}, sa $3.",
 'rcnotefrom' => "Mahihiling sa babâ an mga pagbabàgo poon kan '''$2''' (hasta '''$1''' ipinapahiling).",
@@ -1112,7 +1114,7 @@ An páhina pigkokonsiderar na páhina nin klaripikasyon kun naggagamit ini nin t
 'mostcategories' => 'Mga artikulong may pinaka dakol na kategorya',
 'mostimages' => 'Pinakapigtatakodan na files',
 'mostrevisions' => 'Mga artikulong may pinakadakol na pagpakarháy',
-'prefixindex' => 'Murô nin prefiho',
+'prefixindex' => 'Gabós na pahinang igwáng katakód',
 'shortpages' => 'Haralìpot na pahina',
 'longpages' => 'Mga halabang pahina',
 'deadendpages' => 'Mga pahinang mayong luwasan',
@@ -1432,7 +1434,7 @@ $1",
 
 # What links here
 'whatlinkshere' => 'An nakatakód digdí',
-'whatlinkshere-title' => 'Mga pahinang nakatakod sa $1',
+'whatlinkshere-title' => 'Mga pahinang nakatakód sa $1',
 'whatlinkshere-page' => 'Pahina:',
 'linkshere' => "An mga minasunod na pahina nakatakod sa '''[[:$1]]''':",
 'nolinkshere' => "Mayong pahinang nakatakod sa '''[[:$1]]'''.",
@@ -1496,6 +1498,7 @@ Magkaag nin espisipikong rason (halimbawa, magtao nin ehemplo kan mga páhinang 
 'ipblocklist-no-results' => 'Dai nabagat an hinagad na direccion nin IP o ngaran nin paragamit.',
 'blocklink' => 'bagáton',
 'unblocklink' => 'paagihon',
+'change-blocklink' => 'sanglián an pagbagat',
 'contribslink' => 'mga ambág',
 'autoblocker' => 'Enseguidang binagat an saimong direccion nin IP ta kaaaging ginamit ini ni "[[User:$1|$1]]". An rason nin pagbagat ni $1: "$2"',
 'blocklogpage' => 'Usip nin pagbagat',
@@ -1643,13 +1646,13 @@ Please visit [//www.mediawiki.org/wiki/Localisation MediaWiki Localisation] and 
 'tooltip-pt-anontalk' => 'Mga olay manonongod sa mga hira halî sa ip na ini',
 'tooltip-pt-preferences' => 'Mga kabòtan ko',
 'tooltip-pt-watchlist' => 'Lista nin mga pahina na pigbabantayan an mga pagbabàgo',
-'tooltip-pt-mycontris' => 'Lista kan mga kabòtan ko',
+'tooltip-pt-mycontris' => 'Taytáy kan mga kabòtan ko',
 'tooltip-pt-login' => 'Pigaagda kang maglaog, alagad, bako man ining piriritan.',
 'tooltip-pt-anonlogin' => 'Pig-aagda kang maglaog, alagad, bakô man ining piriritan.',
 'tooltip-pt-logout' => 'Magluwas',
 'tooltip-ca-talk' => 'Olay sa pahina nin laog',
 'tooltip-ca-edit' => 'Pwede mong hirahón ining pahina. Gamiton tabi an patànaw na butones bago an pagtagama.',
-'tooltip-ca-addsection' => 'Magdugang nin komento sa orólay na ini.',
+'tooltip-ca-addsection' => 'Magdugang nin komento sa urulay na iní.',
 'tooltip-ca-viewsource' => 'Sinagangán ining pahina. Mahihilíng mo an ginikanan.',
 'tooltip-ca-history' => 'Mga nakaaging bersyon kaining pahina',
 'tooltip-ca-protect' => 'Protektahán ining pahina',
@@ -1758,7 +1761,7 @@ $1",
 'filedelete-archive-read-only' => 'An direktoryong archibo na "$1" dai nasusuratan kan webserver.',
 
 # Browsing diffs
-'previousdiff' => '← Nakaáging kaibhán',
+'previousdiff' => '← Nakaaging kaibhán',
 'nextdiff' => 'Kaibhán pa→',
 
 # Media information
@@ -1782,11 +1785,11 @@ $1",
 'sp-newimages-showfrom' => 'Hilingón an mga retratong nagpopoon sa $1',
 
 # Bad image list
-'bad_image_list' => 'An pormato iyo an minasunod:
+'bad_image_list' => 'An husay iyó an minasunód:
 
-An mga nakalista sana (mga linyang nagpopoon sa *) an pigkokonsiderar.
-An enot na takod sa linya seguradong sarong takod sa sarong salang file.
-Ano man na takod sa parehong linyang ini pigkokonsiderar na eksepsyon, i.e. mga pahina na may file sa laog nin linya.',
+An mga nakataytáy saná (mga taytáy na nagpopoón sa *) iyó an kaayon.
+An inot na takód sa taytáy kaipohan na saróng takód sa saróng saláng file.
+Anó man na minasunód na takód sa ginikanan na taytáy iyó an kaayon sa mga paglain, i.e. mga pahina na may file na maluwás sa laog kan taytáy.',
 
 # Metadata
 'metadata' => 'Metadatos',

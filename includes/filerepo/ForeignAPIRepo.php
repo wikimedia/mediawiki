@@ -2,6 +2,21 @@
 /**
  * Foreign repository accessible through api.php requests.
  *
+ * This program is free software; you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation; either version 2 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License along
+ * with this program; if not, write to the Free Software Foundation, Inc.,
+ * 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
+ * http://www.gnu.org/copyleft/gpl.html
+ *
  * @file
  * @ingroup FileRepo
  */
@@ -36,6 +51,9 @@ class ForeignAPIRepo extends FileRepo {
 	protected $mQueryCache = array();
 	protected $mFileExists = array();
 
+	/**
+	 * @param $info array|null
+	 */
 	function __construct( $info ) {
 		global $wgLocalFileRepo;
 		parent::__construct( $info );
@@ -66,6 +84,8 @@ class ForeignAPIRepo extends FileRepo {
 	 * Per docs in FileRepo, this needs to return false if we don't support versioned
 	 * files. Well, we don't.
 	 *
+	 * @param $title Title
+	 * @param $time string|bool
 	 * @return File
 	 */
 	function newFile( $title, $time = false ) {
@@ -75,6 +95,10 @@ class ForeignAPIRepo extends FileRepo {
 		return parent::newFile( $title, $time );
 	}
 
+	/**
+	 * @param $files array
+	 * @return array
+	 */
 	function fileExistsBatch( array $files ) {
 		$results = array();
 		foreach ( $files as $k => $f ) {
@@ -87,6 +111,10 @@ class ForeignAPIRepo extends FileRepo {
 				# same repo.
 				$results[$k] = false;
 				unset( $files[$k] );
+			} elseif ( FileBackend::isStoragePath( $f ) ) {
+				$results[$k] = false;
+				unset( $files[$k] );
+				wfWarn( "Got mwstore:// path '$f'." );
 			}
 		}
 
@@ -102,17 +130,25 @@ class ForeignAPIRepo extends FileRepo {
 		return $results;
 	}
 
+	/**
+	 * @param $virtualUrl string
+	 * @return bool
+	 */
 	function getFileProps( $virtualUrl ) {
 		return false;
 	}
 
+	/**
+	 * @param $query array
+	 * @return string
+	 */
 	function fetchImageQuery( $query ) {
 		global $wgMemc;
 
 		$query = array_merge( $query,
 			array(
-				'format' => 'json',
-				'action' => 'query',
+				'format'    => 'json',
+				'action'    => 'query',
 				'redirects' => 'true'
 			) );
 		if ( $this->mApiBase ) {
@@ -141,6 +177,10 @@ class ForeignAPIRepo extends FileRepo {
 		return FormatJson::decode( $this->mQueryCache[$url], true );
 	}
 
+	/**
+	 * @param $data array
+	 * @return bool|array
+	 */
 	function getImageInfo( $data ) {
 		if( $data && isset( $data['query']['pages'] ) ) {
 			foreach( $data['query']['pages'] as $info ) {
@@ -152,6 +192,10 @@ class ForeignAPIRepo extends FileRepo {
 		return false;
 	}
 
+	/**
+	 * @param $hash string
+	 * @return array
+	 */
 	function findBySha1( $hash ) {
 		$results = $this->fetchImageQuery( array(
 										'aisha1base36' => $hash,
@@ -170,6 +214,14 @@ class ForeignAPIRepo extends FileRepo {
 		return $ret;
 	}
 
+	/**
+	 * @param $name string
+	 * @param $width int
+	 * @param $height int
+	 * @param $result null
+	 * @param $otherParams string
+	 * @return bool
+	 */
 	function getThumbUrl( $name, $width = -1, $height = -1, &$result = null, $otherParams = '' ) {
 		$data = $this->fetchImageQuery( array(
 			'titles' => 'File:' . $name,
@@ -198,11 +250,14 @@ class ForeignAPIRepo extends FileRepo {
 	 * @param $name String is a dbkey form of a title
 	 * @param $width
 	 * @param $height
-	 * @param String $param Other rendering parameters (page number, etc) from handler's makeParamString.
+	 * @param String $params Other rendering parameters (page number, etc) from handler's makeParamString.
 	 * @return bool|string
 	 */
-	function getThumbUrlFromCache( $name, $width, $height, $params="" ) {
+	function getThumbUrlFromCache( $name, $width, $height, $params = "" ) {
 		global $wgMemc;
+		// We can't check the local cache using FileRepo functions because
+		// we override fileExistsBatch(). We have to use the FileBackend directly.
+		$backend = $this->getBackend(); // convenience
 
 		if ( !$this->canCacheThumbs() ) {
 			$result = null; // can't pass "null" by reference, but it's ok as default value
@@ -243,9 +298,11 @@ class ForeignAPIRepo extends FileRepo {
 		$localFilename = $localPath . "/" . $fileName;
 		$localUrl =  $this->getZoneUrl( 'thumb' ) . "/" . $this->getHashPath( $name ) . rawurlencode( $name ) . "/" . rawurlencode( $fileName );
 
-		if( $this->fileExists( $localFilename ) && isset( $metadata['timestamp'] ) ) {
+		if( $backend->fileExists( array( 'src' => $localFilename ) )
+			&& isset( $metadata['timestamp'] ) )
+		{
 			wfDebug( __METHOD__ . " Thumbnail was already downloaded before\n" );
-			$modified = $this->getFileTimestamp( $localFilename );
+			$modified = $backend->getFileTimestamp( array( 'src' => $localFilename ) );
 			$remoteModified = strtotime( $metadata['timestamp'] );
 			$current = time();
 			$diff = abs( $modified - $current );
@@ -264,15 +321,13 @@ class ForeignAPIRepo extends FileRepo {
 		}
 
 		# @todo FIXME: Delete old thumbs that aren't being used. Maintenance script?
-		wfSuppressWarnings();
-		$backend = $this->getBackend();
+		$backend->prepare( array( 'dir' => dirname( $localFilename ) ) );
 		$op = array( 'op' => 'create', 'dst' => $localFilename, 'content' => $thumb );
 		if( !$backend->doOperation( $op )->isOK() ) {
 			wfRestoreWarnings();
-			wfDebug( __METHOD__ . " could not write to thumb path\n" );
+			wfDebug( __METHOD__ . " could not write to thumb path '$localFilename'\n" );
 			return $foreignUrl;
 		}
-		wfRestoreWarnings();
 		$knownThumbUrls[$sizekey] = $localUrl;
 		$wgMemc->set( $key, $knownThumbUrls, $this->apiThumbCacheExpiry );
 		wfDebug( __METHOD__ . " got local thumb $localUrl, saving to cache \n" );
@@ -281,6 +336,7 @@ class ForeignAPIRepo extends FileRepo {
 
 	/**
 	 * @see FileRepo::getZoneUrl()
+	 * @param $zone String
 	 * @return String
 	 */
 	function getZoneUrl( $zone ) {
@@ -296,6 +352,7 @@ class ForeignAPIRepo extends FileRepo {
 
 	/**
 	 * Get the local directory corresponding to one of the basic zones
+	 * @param $zone string
 	 * @return bool|null|string
 	 */
 	function getZonePath( $zone ) {
@@ -325,6 +382,9 @@ class ForeignAPIRepo extends FileRepo {
 	/**
 	 * Like a Http:get request, but with custom User-Agent.
 	 * @see Http:get
+	 * @param $url string
+	 * @param $timeout string
+	 * @param $options array
 	 * @return bool|String
 	 */
 	public static function httpGet( $url, $timeout = 'default', $options = array() ) {
@@ -349,10 +409,17 @@ class ForeignAPIRepo extends FileRepo {
 		}
 	}
 
+	/**
+	 * @param $callback Array|string
+	 * @throws MWException
+	 */
 	function enumFiles( $callback ) {
 		throw new MWException( 'enumFiles is not supported by ' . get_class( $this ) );
 	}
 
+	/**
+	 * @throws MWException
+	 */
 	protected function assertWritableRepo() {
 		throw new MWException( get_class( $this ) . ': write operations are not supported.' );
 	}

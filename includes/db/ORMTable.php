@@ -1,35 +1,32 @@
 <?php
-
 /**
  * Abstract base class for representing a single database table.
+ *
+ * This program is free software; you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation; either version 2 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License along
+ * with this program; if not, write to the Free Software Foundation, Inc.,
+ * 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
+ * http://www.gnu.org/copyleft/gpl.html
  *
  * @since 1.20
  *
  * @file ORMTable.php
+ * @ingroup ORM
  *
  * @licence GNU GPL v2 or later
  * @author Jeroen De Dauw < jeroendedauw@gmail.com >
  */
-abstract class ORMTable {
 
-	/**
-	 * Returns the name of the database table objects of this type are stored in.
-	 *
-	 * @since 1.20
-	 *
-	 * @return string
-	 */
-	public abstract function getName();
-
-	/**
-	 * Returns the name of a ORMRow deriving class that
-	 * represents single rows in this table.
-	 *
-	 * @since 1.20
-	 *
-	 * @return string
-	 */
-	public abstract function getRowClass();
+abstract class ORMTable implements IORMTable {
 
 	/**
 	 * Gets the db field prefix.
@@ -39,26 +36,6 @@ abstract class ORMTable {
 	 * @return string
 	 */
 	protected abstract function getFieldPrefix();
-
-	/**
-	 * Returns an array with the fields and their types this object contains.
-	 * This corresponds directly to the fields in the database, without prefix.
-	 *
-	 * field name => type
-	 *
-	 * Allowed types:
-	 * * id
-	 * * str
-	 * * int
-	 * * float
-	 * * bool
-	 * * array
-	 *
-	 * @since 1.20
-	 *
-	 * @return array
-	 */
-	public abstract function getFields();
 
 	/**
 	 * Cache for instances, used by the singleton method.
@@ -237,7 +214,7 @@ abstract class ORMTable {
 	 * @param array $options
 	 * @param string|null $functionName
 	 *
-	 * @return DBObject|bool False on failure
+	 * @return IORMRow|bool False on failure
 	 */
 	public function selectRow( $fields = null, array $conditions = array(),
 							   array $options = array(), $functionName = null ) {
@@ -353,7 +330,7 @@ abstract class ORMTable {
 			$this->getName(),
 			$this->getPrefixedValues( $conditions ),
 			$functionName
-		);
+		) !== false; // DatabaseBase::delete does not always return true for success as documented...
 	}
 	
 	/**
@@ -460,7 +437,7 @@ abstract class ORMTable {
 			$this->getPrefixedValues( $values ),
 			$this->getPrefixedValues( $conditions ),
 			__METHOD__
-		);
+		) !== false; // DatabaseBase::update does not always return true for success as documented...
 	}
 
 	/**
@@ -474,7 +451,7 @@ abstract class ORMTable {
 	public function updateSummaryFields( $summaryFields = null, array $conditions = array() ) {
 		$this->setReadDb( DB_MASTER );
 
-		foreach ( $this->select( null, $conditions ) as /* ORMRow */ $item ) {
+		foreach ( $this->select( null, $conditions ) as /* IORMRow */ $item ) {
 			$item->loadSummaryFields( $summaryFields );
 			$item->setSummaryMode( true );
 			$item->save();
@@ -487,11 +464,6 @@ abstract class ORMTable {
 	 * Takes in an associative array with field names as keys and
 	 * their values as value. The field names are prefixed with the
 	 * db field prefix.
-	 *
-	 * Field names can also be provided as an array with as first element a table name, such as
-	 * $conditions = array(
-	 *	 array( array( 'tablename', 'fieldname' ), $value ),
-	 * );
 	 *
 	 * @since 1.20
 	 *
@@ -584,7 +556,7 @@ abstract class ORMTable {
 	 *
 	 * @since 1.20
 	 *
-	 * @return ORMTable
+	 * @return IORMTable
 	 */
 	public static function singleton() {
 		$class = function_exists( 'get_called_class' ) ? get_called_class() : self::get_called_class();
@@ -652,7 +624,7 @@ abstract class ORMTable {
 	 *
 	 * @param stdClass $result
 	 *
-	 * @return ORMRow
+	 * @return IORMRow
 	 */
 	public function newFromDBResult( stdClass $result ) {
 		return $this->newFromArray( $this->getFieldsFromDBResult( $result ) );
@@ -666,7 +638,7 @@ abstract class ORMTable {
 	 * @param array $data
 	 * @param boolean $loadDefaults
 	 *
-	 * @return ORMRow
+	 * @return IORMRow
 	 */
 	public function newFromArray( array $data, $loadDefaults = false ) {
 		$class = $this->getRowClass();

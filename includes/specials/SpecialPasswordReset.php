@@ -154,7 +154,7 @@ class SpecialPasswordReset extends FormSpecialPage {
 			$method = 'email';
 			$res = wfGetDB( DB_SLAVE )->select(
 				'user',
-				'*',
+				User::selectFields(),
 				array( 'user_email' => $data['Email'] ),
 				__METHOD__
 			);

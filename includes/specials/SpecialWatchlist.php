@@ -91,14 +91,6 @@ class SpecialWatchlist extends SpecialPage {
 			return;
 		}
 
-		if( ( $wgEnotifWatchlist || $wgShowUpdatedMarker ) && $request->getVal( 'reset' ) &&
-			$request->wasPosted() )
-		{
-			$user->clearAllNotifications();
-			$output->redirect( $this->getTitle()->getFullUrl() );
-			return;
-		}
-
 		$nitems = $this->countItems();
 		if ( $nitems == 0 ) {
 			$output->addWikiMsg( 'nowatchlist' );
@@ -116,6 +108,7 @@ class SpecialWatchlist extends SpecialPage {
 		/* bool  */ 'hideOwn'   => (int)$user->getBoolOption( 'watchlisthideown' ),
 		/* ?     */ 'namespace' => 'all',
 		/* ?     */ 'invert'    => false,
+		/* bool  */ 'associated' => false,
 		);
 		$this->customFilters = array();
 		wfRunHooks( 'SpecialWatchlistFilters', array( $this, &$this->customFilters ) );
@@ -148,13 +141,20 @@ class SpecialWatchlist extends SpecialPage {
 
 		# Get namespace value, if supplied, and prepare a WHERE fragment
 		$nameSpace = $request->getIntOrNull( 'namespace' );
-		$invert = $request->getIntOrNull( 'invert' );
+		$invert = $request->getBool( 'invert' );
+		$associated = $request->getBool( 'associated' );
 		if ( !is_null( $nameSpace ) ) {
+			$eq_op = $invert ? '!=' : '=';
+			$bool_op = $invert ? 'AND' : 'OR';
 			$nameSpace = intval( $nameSpace ); // paranioa
-			if ( $invert ) {
-				$nameSpaceClause = "rc_namespace != $nameSpace";
+			if ( !$associated ) {
+				$nameSpaceClause = "rc_namespace $eq_op $nameSpace";
 			} else {
-				$nameSpaceClause = "rc_namespace = $nameSpace";
+				$associatedNS = MWNamespace::getAssociated( $nameSpace );
+				$nameSpaceClause =
+					"rc_namespace $eq_op $nameSpace " .
+					$bool_op .
+					" rc_namespace $eq_op $associatedNS";
 			}
 		} else {
 			$nameSpace = '';
@@ -162,6 +162,7 @@ class SpecialWatchlist extends SpecialPage {
 		}
 		$values['namespace'] = $nameSpace;
 		$values['invert'] = $invert;
+		$values['associated'] = $associated;
 
 		if( is_null( $values['days'] ) || !is_numeric( $values['days'] ) ) {
 			$big = 1000; /* The magical big */
@@ -179,6 +180,14 @@ class SpecialWatchlist extends SpecialPage {
 		$nondefaults = array();
 		foreach ( $defaults as $name => $defValue ) {
 			wfAppendToArrayIfNotDefault( $name, $values[$name], $defaults, $nondefaults );
+		}
+
+		if( ( $wgEnotifWatchlist || $wgShowUpdatedMarker ) && $request->getVal( 'reset' ) &&
+			$request->wasPosted() )
+		{
+			$user->clearAllNotifications();
+			$output->redirect( $this->getTitle()->getFullUrl( $nondefaults ) );
+			return;
 		}
 
 		$dbr = wfGetDB( DB_SLAVE, 'watchlist' );
@@ -254,15 +263,25 @@ class SpecialWatchlist extends SpecialPage {
 						'id' => 'mw-watchlist-resetbutton' ) ) .
 					$this->msg( 'wlheader-showupdated' )->parse() . ' ' .
 					Xml::submitButton( $this->msg( 'enotif_reset' )->text(), array( 'name' => 'dummy' ) ) .
-					Html::hidden( 'reset', 'all' ) .
-					Xml::closeElement( 'form' );
+					Html::hidden( 'reset', 'all' );
+					foreach ( $nondefaults as $key => $value ) {
+						$form .= Html::hidden( $key, $value );
+					}
+					$form .= Xml::closeElement( 'form' );
 		}
 		$form .= '<hr />';
 
 		$tables = array( 'recentchanges', 'watchlist' );
 		$fields = array( $dbr->tableName( 'recentchanges' ) . '.*' );
 		$join_conds = array(
-			'watchlist' => array('INNER JOIN',"wl_user='{$user->getId()}' AND wl_namespace=rc_namespace AND wl_title=rc_title"),
+			'watchlist' => array(
+				'INNER JOIN',
+				array(
+					'wl_user' => $user->getId(),
+					'wl_namespace=rc_namespace',
+					'wl_title=rc_title'
+				),
+			),
 		);
 		$options = array( 'ORDER BY' => 'rc_timestamp DESC' );
 		if( $wgShowUpdatedMarker ) {
@@ -338,7 +357,20 @@ class SpecialWatchlist extends SpecialPage {
 				'class' => 'namespaceselector',
 			)
 		) . '&#160;';
-		$form .= Xml::checkLabel( $this->msg( 'invert' )->text(), 'invert', 'nsinvert', $invert ) . '&#160;';
+		$form .= Xml::checkLabel(
+			$this->msg( 'invert' )->text(),
+			'invert',
+			'nsinvert',
+			$invert,
+			array( 'title' => $this->msg( 'tooltip-invert' )->text() )
+		) . '&#160;';
+		$form .= Xml::checkLabel(
+			$this->msg( 'namespace_association' )->text(),
+			'associated',
+			'associated',
+			$associated,
+			array( 'title' => $this->msg( 'tooltip-namespace_association' )->text() )
+		) . '&#160;';
 		$form .= Xml::submitButton( $this->msg( 'allpagessubmit' )->text() ) . '</p>';
 		$form .= Html::hidden( 'days', $values['days'] );
 		foreach ( $filters as $key => $msg ) {

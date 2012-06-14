@@ -56,7 +56,7 @@ $namespaceAliases = array(
 
 $magicWords = array(
 	'redirect'                => array( '0', '#wiederleiden', '#WEITERLEITUNG', '#REDIRECT' ),
-	'notoc'                   => array( '0', '__KEENINHOLTVERTEKEN__', '__KEIN_INHALTSVERZEICHNIS__', '__NOTOC__' ),
+	'notoc'                   => array( '0', '__KEENINHOLTVERTEKEN__', '__KEIN_INHALTSVERZEICHNIS__', '__KEININHALTSVERZEICHNIS__', '__NOTOC__' ),
 	'forcetoc'                => array( '0', '__WIESINHOLTVERTEKEN__', '__INHALTSVERZEICHNIS_ERZWINGEN__', '__FORCETOC__' ),
 	'toc'                     => array( '0', '__INHOLTVERTEKEN__', '__INHALTSVERZEICHNIS__', '__TOC__' ),
 	'noeditsection'           => array( '0', '__KEENÄNNERNLINK__', '__ABSCHNITTE_NICHT_BEARBEITEN__', '__NOEDITSECTION__' ),
@@ -71,7 +71,7 @@ $magicWords = array(
 	'pagename'                => array( '1', 'SIETNAAM', 'SEITENNAME', 'PAGENAME' ),
 	'pagenamee'               => array( '1', 'SIETNAAME', 'SEITENNAME_URL', 'PAGENAMEE' ),
 	'namespace'               => array( '1', 'NAAMRUUM', 'NAMENSRAUM', 'NAMESPACE' ),
-	'img_thumbnail'           => array( '1', 'duum', 'miniatur', 'thumbnail', 'thumb' ),
+	'img_thumbnail'           => array( '1', 'duum', 'miniatur', 'mini', 'thumbnail', 'thumb' ),
 	'img_right'               => array( '1', 'rechts', 'right' ),
 	'img_left'                => array( '1', 'links', 'left' ),
 	'img_none'                => array( '1', 'keen', 'ohne', 'none' ),
@@ -80,7 +80,7 @@ $magicWords = array(
 	'sitename'                => array( '1', 'STEEDNAAM', 'PROJEKTNAME', 'SITENAME' ),
 	'ns'                      => array( '0', 'NR:', 'NS:' ),
 	'localurl'                => array( '0', 'STEEDURL:', 'LOKALE_URL:', 'LOCALURL:' ),
-	'localurle'               => array( '0', 'STEEDURLE:', 'LOCALURLE:' ),
+	'localurle'               => array( '0', 'STEEDURLE:', 'LOKALE_URL_C:', 'LOCALURLE:' ),
 	'grammar'                 => array( '0', 'GRAMMATIK:', 'GRAMMAR:' ),
 );
 
@@ -1056,7 +1056,6 @@ Seh to, dat de Versionsgeschicht vun’n Artikel vun de Historie her bi de Reeg 
 
 # Diffs
 'history-title' => 'Versionshistorie vun „$1“',
-'difference' => '(Ünnerscheed twischen de Versionen)',
 'lineno' => 'Reeg $1:',
 'compareselectedversions' => 'Ünnerscheed twischen den utwählten Versionen wiesen',
 'showhideselectedversions' => 'Utwählt Versionen wiesen/versteken',
@@ -1396,7 +1395,7 @@ Dat kann nich wedder ungeschehn maakt warrn.',
 'nchanges' => '{{PLURAL:$1|Een Ännern|$1 Ännern}}',
 'recentchanges' => 'Toletzt ännert',
 'recentchanges-legend' => 'Optionen för toletzt ännert',
-'recentchangestext' => 'Op disse Sied warrt de Sieden wiest, de toletzt ännert worrn sünd.',
+'recentchanges-summary' => 'Op disse Sied warrt de Sieden wiest, de toletzt ännert worrn sünd.',
 'recentchanges-feed-description' => 'Behool mit dissen Feed de ne’esten Ännern op dit Wiki in’t Oog.',
 'recentchanges-label-newpage' => "Düsse Ännern stell en ne'e Siet op",
 'recentchanges-label-minor' => 'Dat is en lütte Ännern',

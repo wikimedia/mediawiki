@@ -61,14 +61,15 @@ class ApiQueryIWBacklinks extends ApiQueryGeneratorBase {
 					'original value returned by the previous query', '_badcontinue' );
 			}
 
-			$prefix = $this->getDB()->strencode( $cont[0] );
-			$title = $this->getDB()->strencode( $this->titleToKey( $cont[1] ) );
+			$db = $this->getDB();
+			$prefix = $db->addQuotes( $cont[0] );
+			$title = $db->addQuotes( $this->titleToKey( $cont[1] ) );
 			$from = intval( $cont[2] );
 			$this->addWhere(
-				"iwl_prefix > '$prefix' OR " .
-				"(iwl_prefix = '$prefix' AND " .
-				"(iwl_title > '$title' OR " .
-				"(iwl_title = '$title' AND " .
+				"iwl_prefix > $prefix OR " .
+				"(iwl_prefix = $prefix AND " .
+				"(iwl_title > $title OR " .
+				"(iwl_title = $title AND " .
 				"iwl_from >= $from)))"
 			);
 		}
@@ -89,10 +90,17 @@ class ApiQueryIWBacklinks extends ApiQueryGeneratorBase {
 				$this->addWhereFld( 'iwl_title', $params['title'] );
 				$this->addOption( 'ORDER BY', 'iwl_from' );
 			} else {
-				$this->addOption( 'ORDER BY', 'iwl_title, iwl_from' );
+				$this->addOption( 'ORDER BY', array(
+					'iwl_title',
+					'iwl_from'
+				));
 			}
 		} else {
-			$this->addOption( 'ORDER BY', 'iwl_prefix, iwl_title, iwl_from' );
+			$this->addOption( 'ORDER BY', array(
+				'iwl_prefix',
+				'iwl_title',
+				'iwl_from'
+			));
 		}
 
 		$this->addOption( 'LIMIT', $params['limit'] + 1 );
@@ -187,6 +195,23 @@ class ApiQueryIWBacklinks extends ApiQueryGeneratorBase {
 		);
 	}
 
+	public function getResultProperties() {
+		return array(
+			'' => array(
+				'pageid' => 'integer',
+				'ns' => 'namespace',
+				'title' => 'string',
+				'redirect' => 'boolean'
+			),
+			'iwprefix' => array(
+				'iwprefix' => 'string'
+			),
+			'iwtitle' => array(
+				'iwtitle' => 'string'
+			)
+		);
+	}
+
 	public function getDescription() {
 		return array( 'Find all pages that link to the given interwiki link.',
 			'Can be used to find all links with a prefix, or',
@@ -205,7 +230,7 @@ class ApiQueryIWBacklinks extends ApiQueryGeneratorBase {
 	public function getExamples() {
 		return array(
 			'api.php?action=query&list=iwbacklinks&iwbltitle=Test&iwblprefix=wikibooks',
-			'api.php?action=query&generator=iwbacklinks&giwbltitle=Test&iwblprefix=wikibooks&prop=info'
+			'api.php?action=query&generator=iwbacklinks&giwbltitle=Test&giwblprefix=wikibooks&prop=info'
 		);
 	}
 

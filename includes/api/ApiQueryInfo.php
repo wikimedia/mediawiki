@@ -228,6 +228,21 @@ class ApiQueryInfo extends ApiQueryBase {
 		return $cachedWatchToken;
 	}
 
+	public static function getOptionsToken( $pageid, $title ) {
+		global $wgUser;
+		if ( !$wgUser->isLoggedIn() ) {
+			return false;
+		}
+
+		static $cachedOptionsToken = null;
+		if ( !is_null( $cachedOptionsToken ) ) {
+			return $cachedOptionsToken;
+		}
+
+		$cachedOptionsToken = $wgUser->getEditToken();
+		return $cachedOptionsToken;
+	}
+
 	public function execute() {
 		$this->params = $this->extractRequestParams();
 		if ( !is_null( $this->params['prop'] ) ) {
@@ -704,6 +719,59 @@ class ApiQueryInfo extends ApiQueryBase {
 			'token' => 'Request a token to perform a data-modifying action on a page',
 			'continue' => 'When more results are available, use this to continue',
 		);
+	}
+
+	public function getResultProperties() {
+		$props = array(
+			ApiBase::PROP_LIST => false,
+			'' => array(
+				'touched' => 'timestamp',
+				'lastrevid' => 'integer',
+				'counter' => array(
+					ApiBase::PROP_TYPE => 'integer',
+					ApiBase::PROP_NULLABLE => true
+				),
+				'length' => 'integer',
+				'redirect' => 'boolean',
+				'new' => 'boolean',
+				'starttimestamp' => array(
+					ApiBase::PROP_TYPE => 'timestamp',
+					ApiBase::PROP_NULLABLE => true
+				)
+			),
+			'watched' => array(
+				'watched' => 'boolean'
+			),
+			'talkid' => array(
+				'talkid' => array(
+					ApiBase::PROP_TYPE => 'integer',
+					ApiBase::PROP_NULLABLE => true
+				)
+			),
+			'subjectid' => array(
+				'subjectid' => array(
+					ApiBase::PROP_TYPE => 'integer',
+					ApiBase::PROP_NULLABLE => true
+				)
+			),
+			'url' => array(
+				'fullurl' => 'string',
+				'editurl' => 'string'
+			),
+			'readable' => array(
+				'readable' => 'boolean'
+			),
+			'preload' => array(
+				'preload' => 'string'
+			),
+			'displaytitle' => array(
+				'displaytitle' => 'string'
+			)
+		);
+
+		self::addTokenProperties( $props, $this->getTokenFunctions() );
+
+		return $props;
 	}
 
 	public function getDescription() {

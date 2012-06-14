@@ -701,7 +701,6 @@ Lejen: '''({{int:cur}})''' = difrans wid lietis rivijan, '''({{int:last}})''' = 
 
 # Diffs
 'history-title' => 'Rivijan ischri a "$1"',
-'difference' => '(Difrans bitwiin rivijandem)',
 'lineno' => 'Lain $1:',
 'compareselectedversions' => 'Kompier silektid rivijan',
 'editundo' => 'andu',

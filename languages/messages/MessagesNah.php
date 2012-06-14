@@ -36,6 +36,9 @@ $namespaceNames = array(
 	NS_CATEGORY_TALK    => 'Neneuhcāyōtl_tēixnāmiquiliztli',
 );
 
+// Remove Spanish gender aliases (bug 37090)
+$namespaceGenderAliases = array();
+
 $namespaceAliases = array(
 	'Media'		=> NS_MEDIA,
 	'Especial'	=> NS_SPECIAL,
@@ -586,7 +589,6 @@ Hueliz ōmopolo huiqui nozo ōmozacac.
 
 # Diffs
 'history-title' => '"$1" ītlachiyaliz tlahcuilōlloh',
-'difference' => '(Ahneneuhquiliztli tlapatlaliznepantlah)',
 'lineno' => 'Pāntli $1:',
 'editundo' => 'Tichuelōz',
 'diff-multi' => '({{PLURAL:$1|Cē tlapatlaliztli nepantlah ahmo motta in ōquichīuh|$1 Tlapatlaliztli nepantlah ahmo mottah in ōquinchīuh}}  {{PLURAL:$2|cē tlatequitiltilīlli|$2 tlatequitiltilīltin}})',
@@ -764,7 +766,7 @@ Intlā ticnequi, tlācah quimatīzqueh motequi.',
 'nchanges' => '$1 {{PLURAL:$1|tlapatlaliztli|tlapatlaliztli}}',
 'recentchanges' => 'Yancuīc tlapatlaliztli',
 'recentchanges-legend' => 'Yancuīc tlapatlaliztechcopa tlanequiliztli',
-'recentchangestext' => 'Ìpan inìn tlaìxtlapalli xikỉta in okảchi yankuik ìtlatlaìxpảtilis in wiki.',
+'recentchanges-summary' => 'Xiquinttāz in achi yancuīc ahmo occequīntīn tlapatlaliztli huiquipan inīn zāzanilpan.',
 'rcnote' => "Nicān {{PLURAL:$1|cah '''1''' tlapatlaliaztli|cateh in xōcoyōc '''$1''' tlapatlaliztli}} īpan xōcoyōc {{PLURAL:$2|tōnalli|'''$2''' tōnaltin}} īhuīcpa $5, $4.",
 'rclistfrom' => 'Xiquinttāz yancuīc tlapatlaliztli īhuīcpa $1',
 'rcshowhideminor' => '$1 tlapatlalitzintli',
@@ -1039,7 +1041,7 @@ In āxcān tlachiyaliztli onca īpan $PAGETITLE_URL
 $NEWPAGE
 
 In tlapatlaliztli īxtlamatiliztli cah: $PAGESUMMARY $PAGEMINOREDIT
- 
+
 Xicnotzāz in tlapatlani:
 Correo electrónico: {{canonicalurl:Special:Emailuser|target=$PAGEEDITOR}}
 Huiqui: {{canonicalurl:User:$PAGEEDITOR}}

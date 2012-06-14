@@ -1,4 +1,25 @@
 <?php
+/**
+ * Object caching using a SQL database.
+ *
+ * This program is free software; you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation; either version 2 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License along
+ * with this program; if not, write to the Free Software Foundation, Inc.,
+ * 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
+ * http://www.gnu.org/copyleft/gpl.html
+ *
+ * @file
+ * @ingroup Cache
+ */
 
 /**
  * Class to store objects in the database
@@ -118,40 +139,64 @@ class SqlBagOStuff extends BagOStuff {
 	}
 
 	public function get( $key ) {
-		# expire old entries if any
-		$this->garbageCollect();
-		$db = $this->getDB();
-		$tableName = $this->getTableByKey( $key );
-		$row = $db->selectRow( $tableName, array( 'value', 'exptime' ),
-			array( 'keyname' => $key ), __METHOD__ );
+		$values = $this->getMulti( array( $key ) );
+		return $values[$key];
+	}
 
-		if ( !$row ) {
-			$this->debug( 'get: no matching rows' );
-			return false;
-		}
+	public function getMulti( array $keys ) {
+		$values = array(); // array of (key => value)
 
-		$this->debug( "get: retrieved data; expiry time is " . $row->exptime );
-
-		if ( $this->isExpired( $row->exptime ) ) {
-			$this->debug( "get: key has expired, deleting" );
-			try {
-				$db->begin( __METHOD__ );
-				# Put the expiry time in the WHERE condition to avoid deleting a
-				# newly-inserted value
-				$db->delete( $tableName,
-					array(
-						'keyname' => $key,
-						'exptime' => $row->exptime
-					), __METHOD__ );
-				$db->commit( __METHOD__ );
-			} catch ( DBQueryError $e ) {
-				$this->handleWriteError( $e );
+		$keysByTableName = array();
+		foreach ( $keys as $key ) {
+			$tableName = $this->getTableByKey( $key );
+			if ( !isset( $keysByTableName[$tableName] ) ) {
+				$keysByTableName[$tableName] = array();
 			}
-
-			return false;
+			$keysByTableName[$tableName][] = $key;
 		}
 
-		return $this->unserialize( $db->decodeBlob( $row->value ) );
+		$db = $this->getDB();
+		$this->garbageCollect(); // expire old entries if any
+
+		$dataRows = array();
+		foreach ( $keysByTableName as $tableName => $tableKeys ) {
+			$res = $db->select( $tableName,
+				array( 'keyname', 'value', 'exptime' ),
+				array( 'keyname' => $tableKeys ),
+				__METHOD__ );
+			foreach ( $res as $row ) {
+				$dataRows[$row->keyname] = $row;
+			}
+		}
+
+		foreach ( $keys as $key ) {
+			if ( isset( $dataRows[$key] ) ) { // HIT?
+				$row = $dataRows[$key];
+				$this->debug( "get: retrieved data; expiry time is " . $row->exptime );
+				if ( $this->isExpired( $row->exptime ) ) { // MISS
+					$this->debug( "get: key has expired, deleting" );
+					try {
+						$db->begin( __METHOD__ );
+						# Put the expiry time in the WHERE condition to avoid deleting a
+						# newly-inserted value
+						$db->delete( $this->getTableByKey( $key ),
+							array( 'keyname' => $key, 'exptime' => $row->exptime ),
+							__METHOD__ );
+						$db->commit( __METHOD__ );
+					} catch ( DBQueryError $e ) {
+						$this->handleWriteError( $e );
+					}
+					$values[$key] = false;
+				} else { // HIT
+					$values[$key] = $this->unserialize( $db->decodeBlob( $row->value ) );
+				}
+			} else { // MISS
+				$values[$key] = false;
+				$this->debug( 'get: no matching rows' );
+			}
+		}
+
+		return $values;
 	}
 
 	public function set( $key, $value, $exptime = 0 ) {
@@ -328,7 +373,7 @@ class SqlBagOStuff extends BagOStuff {
 					if ( $maxExpTime !== false ) {
 						$conds[] = 'exptime > ' . $db->addQuotes( $maxExpTime );
 					}
-					$rows = $db->select( 
+					$rows = $db->select(
 						$this->getTableByShard( $i ),
 						array( 'keyname', 'exptime' ),
 						$conds,
@@ -352,7 +397,7 @@ class SqlBagOStuff extends BagOStuff {
 					$db->begin( __METHOD__ );
 					$db->delete(
 						$this->getTableByShard( $i ),
-						array( 
+						array(
 							'exptime >= ' . $db->addQuotes( $minExpTime ),
 							'exptime < ' . $db->addQuotes( $dbTimestamp ),
 							'keyname' => $keys
@@ -364,12 +409,12 @@ class SqlBagOStuff extends BagOStuff {
 						if ( intval( $totalSeconds ) === 0 ) {
 							$percent = 0;
 						} else {
-							$remainingSeconds = wfTimestamp( TS_UNIX, $timestamp ) 
+							$remainingSeconds = wfTimestamp( TS_UNIX, $timestamp )
 								- wfTimestamp( TS_UNIX, $maxExpTime );
 							if ( $remainingSeconds > $totalSeconds ) {
 								$totalSeconds = $remainingSeconds;
 							}
-							$percent = ( $i + $remainingSeconds / $totalSeconds ) 
+							$percent = ( $i + $remainingSeconds / $totalSeconds )
 								/ $this->shards * 100;
 						}
 						call_user_func( $progressCallback, $percent );

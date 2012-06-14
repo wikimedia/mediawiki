@@ -47,8 +47,8 @@ class MostlinkedPage extends QueryPage {
 					'COUNT(*) AS value',
 					'page_namespace' ),
 			'options' => array ( 'HAVING' => 'COUNT(*) > 1',
-				'GROUP BY' => 'pl_namespace, pl_title, '.
-						'page_namespace' ),
+				'GROUP BY' => array( 'pl_namespace', 'pl_title',
+						'page_namespace' ) ),
 			'join_conds' => array ( 'page' => array ( 'LEFT JOIN',
 					array ( 'page_namespace = pl_namespace',
 						'page_title = pl_title' ) ) )
@@ -62,12 +62,12 @@ class MostlinkedPage extends QueryPage {
 	 * @param $res
 	 */
 	function preprocessResults( $db, $res ) {
-		if( $db->numRows( $res ) > 0 ) {
+		if ( $res->numRows() > 0 ) {
 			$linkBatch = new LinkBatch();
 			foreach ( $res as $row ) {
 				$linkBatch->add( $row->namespace, $row->title );
 			}
-			$db->dataSeek( $res, 0 );
+			$res->seek( 0 );
 			$linkBatch->execute();
 		}
 	}
@@ -94,7 +94,8 @@ class MostlinkedPage extends QueryPage {
 	function formatResult( $skin, $result ) {
 		$title = Title::makeTitleSafe( $result->namespace, $result->title );
 		if ( !$title ) {
-			return '<!-- ' . htmlspecialchars( "Invalid title: [[$title]]" ) . ' -->';
+			return Html::element( 'span', array( 'class' => 'mw-invalidtitle' ),
+				Linker::getInvalidTitleDescription( $this->getContext(), $result->namespace, $result->title ) );
 		}
 		$link = Linker::link( $title );
 		$wlh = $this->makeWlhLink( $title,

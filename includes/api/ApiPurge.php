@@ -89,12 +89,13 @@ class ApiPurge extends ApiBase {
 					global $wgParser, $wgEnableParserCache;
 
 					$popts = ParserOptions::newFromContext( $this->getContext() );
+					$popts->setTidy( true );
 					$p_result = $wgParser->parse( $page->getRawText(), $title, $popts,
 						true, true, $page->getLatest() );
 
 					# Update the links tables
-					$u = new LinksUpdate( $title, $p_result );
-					$u->doUpdate();
+					$updates = $p_result->getSecondaryDataUpdates( $title );
+					DataUpdate::runUpdates( $updates );
 
 					$r['linkupdate'] = '';
 
@@ -103,7 +104,8 @@ class ApiPurge extends ApiBase {
 						$pcache->save( $p_result, $page, $popts );
 					}
 				} else {
-					$this->setWarning( $this->parseMsg( array( 'actionthrottledtext' ) ) );
+					$error = $this->parseMsg( array( 'actionthrottledtext' ) );
+					$this->setWarning( $error['info'] );
 					$forceLinkUpdate = false;
 				}
 			}
@@ -130,6 +132,34 @@ class ApiPurge extends ApiBase {
 		$psModule = new ApiPageSet( $this );
 		return $psModule->getParamDescription() + array(
 			'forcelinkupdate' => 'Update the links tables',
+		);
+	}
+
+	public function getResultProperties() {
+		return array(
+			ApiBase::PROP_LIST => true,
+			'' => array(
+				'ns' => array(
+					ApiBase::PROP_TYPE => 'namespace',
+					ApiBase::PROP_NULLABLE => true
+				),
+				'title' => array(
+					ApiBase::PROP_TYPE => 'string',
+					ApiBase::PROP_NULLABLE => true
+				),
+				'pageid' => array(
+					ApiBase::PROP_TYPE => 'integer',
+					ApiBase::PROP_NULLABLE => true
+				),
+				'revid' => array(
+					ApiBase::PROP_TYPE => 'integer',
+					ApiBase::PROP_NULLABLE => true
+				),
+				'invalid' => 'boolean',
+				'missing' => 'boolean',
+				'purged' => 'boolean',
+				'linkupdate' => 'boolean'
+			)
 		);
 	}
 

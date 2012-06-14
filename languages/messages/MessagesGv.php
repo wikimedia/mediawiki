@@ -561,7 +561,6 @@ Ogher: '''({{int:cur}})''' = anchaslyssyn rish y lhieggan t'ayn nish,
 
 # Diffs
 'history-title' => 'Shennaghys aavriwnys dy "$1"',
-'difference' => '(Anchaslys eddyr aavriwnyssyn)',
 'lineno' => 'Linney $1:',
 'compareselectedversions' => 'Cosoylaghey ny lhiegganyn reiht',
 'editundo' => 'rassey',
@@ -739,7 +738,7 @@ My bailliu eh y chiarail, bee eh ymmydit son cur gys lieh y chur dhyt er son yn 
 'nchanges' => '$1 {{PLURAL:$1|caghlaa|chaghlaa|chaghlaa|caghlaaghyn}}',
 'recentchanges' => "Caghlaaghyn s'noa",
 'recentchanges-legend' => "Reihyssyn da ny caghlaaghyn s'noa",
-'recentchangestext' => "Shirr ny caghlaaghyn s'noa da'n wiki er y duillag shoh.",
+'recentchanges-summary' => "Shirrey ny caghlaaghyn s'noa da'n wiki er y duillag shoh.",
 'recentchanges-feed-description' => "Shirr ny caghlaaghyn jeianagh er y wiki 'sy scoltey shoh.",
 'recentchanges-label-newpage' => 'Ren y reaghey shoh croo duillag noa',
 'recentchanges-label-minor' => "She myn-arraghey t'ayn",

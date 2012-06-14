@@ -693,7 +693,7 @@ Alemba om anttud jälgmäine kirjutuz blokiruindaiglehtesespäi:",
 'updated' => '(Udištadud)',
 'note' => "'''Homaičend:'''",
 'previewnote' => "'''Muštkat, miše nece om vaiše ezikacund.''' 
-Teiden toižetused ei olgoi völ kirjutadud! [[#editform|→ jatkta redakrtiruind]]",
+Teiden toižetused ei olgoi völ kirjutadud!",
 'previewconflict' => "Tekst redaktiruindan üläiknas kuvazub neche ezikacundha muga, kut se nägub lopkirjutamižen jäl'ghe.",
 'editing' => '$1-lehtpolen redaktiruind',
 'creating' => 'Sätas $1',
@@ -906,7 +906,6 @@ Tö ei voigoi kävutada sidä.',
 
 # Diffs
 'history-title' => '"$1"-lehtpolen toižetusiden istorii',
-'difference' => '(Erod versijoiden keskes)',
 'difference-multipage' => '(Lehtpoliden erinend)',
 'lineno' => 'Rivi $1:',
 'compareselectedversions' => 'Rindatada valitud versijad',
@@ -1250,7 +1249,7 @@ Ku tö kirjutat sen, nece nimi kävutadas, miše ozutada lehtpolen toižetajad.'
 'nchanges' => '$1 {{PLURAL:$1|toižetuz|toižetust}}',
 'recentchanges' => 'Tantoižed toižetused',
 'recentchanges-legend' => 'Tantoižiden toižetusiden järgendused',
-'recentchangestext' => 'Necil lehtpolil om tantoižid toižetusid {{SITENAME}}-saital.',
+'recentchanges-summary' => 'Necil lehtpolil om tantoižid toižetusid {{SITENAME}}-saital.',
 'recentchanges-feed-description' => "Kacelta jäl'gmäižid toižetusid wikiš neciš valus.",
 'recentchanges-label-newpage' => 'Nece redakcii sädi uden lehtpolen',
 'recentchanges-label-minor' => 'Nece redakcii om penikaine',
@@ -2398,7 +2397,7 @@ Voib olda, necil lehtpolel om kosketuz irdsaitale, kudamb om mustas nimikirjutes
 
 # Patrolling
 'markaspatrolleddiff' => 'Znamoita kut patruliruidud',
-'markaspatrolledtext' => "Zmamoita nece lehtpol' kut patruliruidud",
+'markaspatrolledtext' => "Znamoita nece lehtpol' kut patruliruidud",
 'markedaspatrolled' => 'Om znamoitud kut patruliruidud',
 'markedaspatrolledtext' => 'Valitud [[:$1]]-n versii om znamoitud kut patruliruidud.',
 'rcpatroldisabled' => "Jäl'gmäižiden toižetusiden patruliruind ei ole kävutamas",

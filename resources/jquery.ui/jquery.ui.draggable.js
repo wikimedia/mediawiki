@@ -1,7 +1,7 @@
-/*
- * jQuery UI Draggable 1.8.18
+/*!
+ * jQuery UI Draggable 1.8.21
  *
- * Copyright 2011, AUTHORS.txt (http://jqueryui.com/about)
+ * Copyright 2012, AUTHORS.txt (http://jqueryui.com/about)
  * Dual licensed under the MIT or GPL Version 2 licenses.
  * http://jquery.org/license
  *
@@ -103,6 +103,8 @@ $.widget("ui.draggable", $.ui.mouse, {
 		//Create and append the visible helper
 		this.helper = this._createHelper(event);
 
+		this.helper.addClass("ui-draggable-dragging");
+
 		//Cache the helper size
 		this._cacheHelperProportions();
 
@@ -163,7 +165,7 @@ $.widget("ui.draggable", $.ui.mouse, {
 		if ($.ui.ddmanager && !o.dropBehaviour)
 			$.ui.ddmanager.prepareOffsets(this, event);
 
-		this.helper.addClass("ui-draggable-dragging");
+		
 		this._mouseDrag(event, true); //Execute the drag once - this causes the helper not to be visible before getting its correct position
 		
 		//If the ddmanager is used for droppables, inform the manager that dragging has started (see #5003)
@@ -208,8 +210,14 @@ $.widget("ui.draggable", $.ui.mouse, {
 			this.dropped = false;
 		}
 		
-		//if the original element is removed, don't bother to continue if helper is set to "original"
-		if((!this.element[0] || !this.element[0].parentNode) && this.options.helper == "original")
+		//if the original element is no longer in the DOM don't bother to continue (see #8269)
+		var element = this.element[0], elementInDom = false;
+		while ( element && (element = element.parentNode) ) {
+			if (element == document ) {
+				elementInDom = true;
+			}
+		}
+		if ( !elementInDom && this.options.helper === "original" )
 			return false;
 
 		if((this.options.revert == "invalid" && !dropped) || (this.options.revert == "valid" && dropped) || this.options.revert === true || ($.isFunction(this.options.revert) && this.options.revert.call(this.element, dropped))) {
@@ -505,7 +513,7 @@ $.widget("ui.draggable", $.ui.mouse, {
 });
 
 $.extend($.ui.draggable, {
-	version: "1.8.18"
+	version: "1.8.21"
 });
 
 $.ui.plugin.add("draggable", "connectToSortable", {

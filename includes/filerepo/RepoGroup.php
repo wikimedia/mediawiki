@@ -1,6 +1,21 @@
 <?php
 /**
- * Prioritized list of file repositories
+ * Prioritized list of file repositories.
+ *
+ * This program is free software; you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation; either version 2 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License along
+ * with this program; if not, write to the Free Software Foundation, Inc.,
+ * 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
+ * http://www.gnu.org/copyleft/gpl.html
  *
  * @file
  * @ingroup FileRepo
@@ -150,6 +165,10 @@ class RepoGroup {
 		return $image;
 	}
 
+	/**
+	 * @param $inputItems array
+	 * @return array
+	 */
 	function findFiles( $inputItems ) {
 		if ( !$this->reposInitialised ) {
 			$this->initialiseRepos();
@@ -181,6 +200,7 @@ class RepoGroup {
 
 	/**
 	 * Interface for FileRepo::checkRedirect()
+	 * @param $title Title
 	 * @return bool
 	 */
 	function checkRedirect( Title $title ) {
@@ -244,6 +264,7 @@ class RepoGroup {
 
 	/**
 	 * Get the repo instance with a given key.
+	 * @param $index string|int
 	 * @return bool|LocalRepo
 	 */
 	function getRepo( $index ) {
@@ -258,8 +279,10 @@ class RepoGroup {
 			return false;
 		}
 	}
+
 	/**
 	 * Get the repo instance by its name
+	 * @param $name string
 	 * @return bool
 	 */
 	function getRepoByName( $name ) {
@@ -267,8 +290,9 @@ class RepoGroup {
 			$this->initialiseRepos();
 		}
 		foreach ( $this->foreignRepos as $repo ) {
-			if ( $repo->name == $name)
+			if ( $repo->name == $name ) {
 				return $repo;
+			}
 		}
 		return false;
 	}
@@ -336,6 +360,7 @@ class RepoGroup {
 	/**
 	 * Split a virtual URL into repo, zone and rel parts
 	 * @param $url string
+	 * @throws MWException
 	 * @return array containing repo, zone and rel
 	 */
 	function splitVirtualUrl( $url ) {
@@ -350,6 +375,10 @@ class RepoGroup {
 		return $bits;
 	}
 
+	/**
+	 * @param $fileName string
+	 * @return array
+	 */
 	function getFileProps( $fileName ) {
 		if ( FileRepo::isVirtualUrl( $fileName ) ) {
 			list( $repoName, /* $zone */, /* $rel */ ) = $this->splitVirtualUrl( $fileName );

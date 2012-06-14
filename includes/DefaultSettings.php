@@ -1,6 +1,7 @@
 <?php
 /**
- * @file
+ * Default values for configuration settings.
+ *
  *
  *                 NEVER EDIT THIS FILE
  *
@@ -15,6 +16,23 @@
  *
  * Documentation is in the source and on:
  * http://www.mediawiki.org/wiki/Manual:Configuration_settings
+ *
+ * This program is free software; you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation; either version 2 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License along
+ * with this program; if not, write to the Free Software Foundation, Inc.,
+ * 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
+ * http://www.gnu.org/copyleft/gpl.html
+ *
+ * @file
  */
 
 /**
@@ -222,7 +240,16 @@ $wgAppleTouchIcon = false;
  * The local filesystem path to a temporary directory. This is not required to
  * be web accessible.
  *
- * Will default to "{$wgUploadDirectory}/tmp" in Setup.php
+ * When this setting is set to false, its value will be set through a call
+ * to wfTempDir(). See that methods implementation for the actul detection
+ * logic.
+ *
+ * Developers should use the global function wfTempDir() instead of this
+ * variable.
+ *
+ * @see wfTempDir()
+ * @note Default modified to false in v1.20
+ *
  */
 $wgTmpDirectory = false;
 
@@ -310,9 +337,11 @@ $wgImgAuthPublicTest = true;
  *   - zones            Associative array of zone names that each map to an array with:
  *                          container : backend container name the zone is in
  *                          directory : root path within container for the zone
- *                      Zones default to using <repo name>-<zone> as the
- *                      container name and the container root as the zone directory.
- *   - url              Base public URL
+ *                          url       : base URL to the root of the zone
+ *                      Zones default to using <repo name>-<zone name> as the container name
+ *                      and default to using the container root as the zone's root directory.
+ *                      Nesting of zone locations within other zones should be avoided.
+ *   - url              Public zone URL. The 'zones' settings take precedence.
  *   - hashLevels       The number of directory levels for hash-based division of files
  *   - thumbScriptUrl   The URL for thumb.php (optional, not recommended)
  *   - transformVia404  Whether to skip media file transformation on parse and rely on a 404
@@ -941,8 +970,7 @@ $wgImageLimits = array(
 	array( 640, 480 ),
 	array( 800, 600 ),
 	array( 1024, 768 ),
-	array( 1280, 1024 ),
-	array( 10000, 10000 )
+	array( 1280, 1024 )
 );
 
 /**
@@ -1299,6 +1327,7 @@ $wgSharedTables = array( 'user', 'user_properties' );
  *                  - DBO_TRX -- wrap entire request in a transaction
  *                  - DBO_IGNORE -- ignore errors (not useful in LocalSettings.php)
  *                  - DBO_NOBUFFER -- turn off buffering (not useful in LocalSettings.php)
+ *                  - DBO_PERSISTENT -- enables persistent database connections
  *
  *   - max lag:     (optional) Maximum replication lag before a slave will taken out of rotation
  *   - max threads: (optional) Maximum number of running threads
@@ -1593,6 +1622,7 @@ $wgObjectCaches = array(
 	'xcache' => array( 'class' => 'XCacheBagOStuff' ),
 	'wincache' => array( 'class' => 'WinCacheBagOStuff' ),
 	'memcached-php' => array( 'class' => 'MemcachedPhpBagOStuff' ),
+	'memcached-pecl' => array( 'class' => 'MemcachedPeclBagOStuff' ),
 	'hash' => array( 'class' => 'HashBagOStuff' ),
 );
 
@@ -1874,12 +1904,12 @@ $wgMaxSquidPurgeTitles = 400;
  * Routing configuration for HTCP multicast purging. Add elements here to
  * enable HTCP and determine which purges are sent where. If set to an empty
  * array, HTCP is disabled.
- * 
+ *
  * Each key in this array is a regular expression to match against the purged
  * URL, or an empty string to match all URLs. The purged URL is matched against
  * the regexes in the order specified, and the first rule whose regex matches
  * is used.
- * 
+ *
  * Example configuration to send purges for upload.wikimedia.org to one
  * multicast group and all other purges to another:
  * $wgHTCPMulticastRouting = array(
@@ -1892,7 +1922,7 @@ $wgMaxSquidPurgeTitles = 400;
  *                 'port' => 4827,
  *         ),
  * );
- * 
+ *
  * @see $wgHTCPMulticastTTL
  */
 $wgHTCPMulticastRouting = array();
@@ -1902,12 +1932,12 @@ $wgHTCPMulticastRouting = array();
  *
  * Note that MediaWiki uses the old non-RFC compliant HTCP format, which was
  * present in the earliest Squid implementations of the protocol.
- * 
+ *
  * This setting is DEPRECATED in favor of $wgHTCPMulticastRouting , and kept
  * for backwards compatibility only. If $wgHTCPMulticastRouting is set, this
  * setting is ignored. If $wgHTCPMulticastRouting is not set and this setting
  * is, it is used to populate $wgHTCPMulticastRouting.
- * 
+ *
  * @deprecated in favor of $wgHTCPMulticastRouting
  */
 $wgHTCPMulticastAddress = false;
@@ -3438,12 +3468,19 @@ $wgSysopEmailBans = true;
  * Limits on the possible sizes of range blocks.
  *
  * CIDR notation is hard to understand, it's easy to mistakenly assume that a
- * /1 is a small range and a /31 is a large range. Setting this to half the
- * number of bits avoids such errors.
+ * /1 is a small range and a /31 is a large range. For IPv4, setting a limit of
+ * half the number of bits avoids such errors, and allows entire ISPs to be
+ * blocked using a small number of range blocks.
+ *
+ * For IPv6, RFC 3177 recommends that a /48 be allocated to every residential
+ * customer, so range blocks larger than /64 (half the number of bits) will
+ * plainly be required. RFC 4692 implies that a very large ISP may be
+ * allocated a /19 if a generous HD-Ratio of 0.8 is used, so we will use that
+ * as our limit. As of 2012, blocking the whole world would require a /4 range.
  */
 $wgBlockCIDRLimit = array(
 	'IPv4' => 16, # Blocks larger than a /16 (64k addresses) will not be allowed
-	'IPv6' => 64, # 2^64 = ~1.8x10^19 addresses
+	'IPv6' => 19,
 );
 
 /**
@@ -3816,21 +3853,6 @@ $wgSpamRegex = array();
 $wgSummarySpamRegex = array();
 
 /**
- * Similarly you can get a function to do the job. The function will be given
- * the following args:
- *   - a Title object for the article the edit is made on
- *   - the text submitted in the textarea (wpTextbox1)
- *   - the section number.
- * The return should be boolean indicating whether the edit matched some evilness:
- *  - true : block it
- *  - false : let it through
- *
- * @deprecated since 1.17 Use hooks. See SpamBlacklist extension.
- * @var $wgFilterCallback bool|string|Closure
- */
-$wgFilterCallback = false;
-
-/**
  * Whether to use DNS blacklists in $wgDnsBlacklistUrls to check for open proxies
  * @since 1.16
  */
@@ -4158,6 +4180,11 @@ $wgShowExceptionDetails = false;
 $wgShowDBErrorBacktrace = false;
 
 /**
+ * If true, send the exception backtrace to the error log
+ */
+$wgLogExceptionBacktrace = true;
+
+/**
  * Expose backend server host names through the API and various HTML comments
  */
 $wgShowHostnames = false;
@@ -4237,6 +4264,14 @@ $wgAggregateStatsID = false;
  * Does not work if pages are cached (for example with squid).
  */
 $wgDisableCounters = false;
+
+/**
+ * Set this to an integer to only do synchronous site_stats updates
+ * one every *this many* updates. The other requests go into pending
+ * delta values in $wgMemc. Make sure that $wgMemc is a global cache.
+ * If set to -1, updates *only* go to $wgMemc (useful for daemons).
+ */
+$wgSiteStatsAsyncFactor = false;
 
 /**
  * Parser test suite files to be run by parserTests.php when no specific
@@ -4577,6 +4612,20 @@ $wgReadOnlyFile = false;
  * delete the old key from LocalSettings.php.
  */
 $wgUpgradeKey = false;
+
+/**
+ * Map GIT repository URLs to viewer URLs to provide links in Special:Version
+ *
+ * Key is a pattern passed to preg_match() and preg_replace(),
+ * without the delimiters (which are #) and must match the whole URL.
+ * The value is the replacement for the key (it can contain $1, etc.)
+ * %h will be replaced by the short SHA-1 (7 first chars) and %H by the
+ * full SHA-1 of the HEAD revision.
+ */
+$wgGitRepositoryViewers = array(
+    'https://gerrit.wikimedia.org/r/p/(.*)' => 'https://gerrit.wikimedia.org/r/gitweb?p=$1;h=%H',
+    'ssh://(?:[a-z0-9_]+@)?gerrit.wikimedia.org:29418/(.*)' => 'https://gerrit.wikimedia.org/r/gitweb?p=$1;h=%H',
+);
 
 /** @} */ # End of maintenance }
 
@@ -5728,6 +5777,19 @@ $wgCompiledFiles = array();
 
 /** @} */ # End of HipHop compilation }
 
+
+/************************************************************************//**
+ * @name   Mobile support
+ * @{
+ */
+
+/**
+ * Name of the class used for mobile device detection, must be inherited from
+ * IDeviceDetector.
+ */
+$wgDeviceDetectionClass = 'DeviceDetection';
+
+/** @} */ # End of Mobile support }
 
 /************************************************************************//**
  * @name   Miscellaneous

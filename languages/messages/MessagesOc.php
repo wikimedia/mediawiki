@@ -645,6 +645,7 @@ Informatz-ne un [[Special:ListUsers/sysop|administrator]] aprèp aver notada l�
 'badarticleerror' => 'Aquesta accion pòt pas èsser efectuada sus aquesta pagina.',
 'cannotdelete' => 'Impossible de suprimir la pagina o lo fichièr « $1 ».
 Benlèu la supression ja es estada efectuada per qualqu’un mai.',
+'cannotdelete-title' => 'Impossible de suprimir la pagina "$1"',
 'badtitle' => 'Títol marrit',
 'badtitletext' => 'Lo títol de la pagina demandada es invalid, void o s’agís d’un títol interlenga o interprojècte mal ligat. Benlèu conten un o maites caractèrs que pòdon pas èsser utilizats dins los títols.',
 'perfcached' => 'Aquò es una version en amagatal e es benlèu pas a jorn. A maximum of {{PLURAL:$1|one result is|$1 results are}} available in the cache.',
@@ -654,6 +655,7 @@ Benlèu la supression ja es estada efectuada per qualqu’un mai.',
 Foncion : $1<br />
 Requèsta : $2',
 'viewsource' => 'Vejatz lo tèxte font',
+'viewsource-title' => 'Veire la font de $1',
 'actionthrottled' => 'Accion limitada',
 'actionthrottledtext' => "Per luchar contra lo spam, l’utilizacion d'aquesta accion es limitada a un cèrt nombre de còps dins una sosta pro corta. S'avèra qu'avètz depassat aqueste limit. Ensajatz tornamai dins qualques minutas.",
 'protectedpagetext' => 'Aquesta pagina es estada protegida per empachar sa modificacion.',
@@ -913,6 +915,7 @@ La darrièra entrada del jornal dels blocatges es indicada çaijós a títol d�
 'updated' => '(Mes a jorn)',
 'note' => "'''Nòta :'''",
 'previewnote' => "'''Atencion, aqueste tèxte es sonque una previsualizacion e es pas encara estat salvat !'''",
+'continue-editing' => "Contunhar l'edicion",
 'previewconflict' => 'Aquesta previsualizacion fa veire lo tèxte de la bóstia de modificacion superiora coma apareisserà se causissètz de lo salvar.',
 'session_fail_preview' => "'''Podèm pas enregistrar vòstra modificacion a causa d’una pèrda d’informacions concernent vòstra sesilha.
 Ensajatz tornarmai.
@@ -925,6 +928,7 @@ S'aquò fracassa encara, [[Special:UserLogout|desconnectatz-vos]], puèi connect
 S'aquò capita pas un còp de mai, [[Special:UserLogout|desconnectatz-vos]], puèi connectatz-vos tornamai.'''",
 'token_suffix_mismatch' => "'''Vòstra modificacion es pas estada acceptada perque vòstre navigador a mesclat los caractèrs de ponctuacion dins l’identificant d’edicion. La modificacion es estada regetada per empachar la corrupcion del tèxte de l’article. Aqueste problèma se produtz quand utilizatz un mandatari (proxy) anonim problematic.'''",
 'editing' => 'Modificacion de $1',
+'creating' => 'Creacion de $1',
 'editingsection' => 'Modificacion de $1 (seccion)',
 'editingcomment' => 'Modificacion de $1 (seccion novèla)',
 'editconflict' => 'Conflicte de modificacion : $1',
@@ -981,6 +985,7 @@ Sembla que siá estada suprimida.',
 'edit-no-change' => 'Vòstra modificacion es estada ignorada perque cap de cambiament es pas estat fach dins lo tèxte.',
 'edit-already-exists' => 'La pagina novèla a pogut èsser creada .
 Existís ja.',
+'defaultmessagetext' => 'Messatge per defaut',
 
 # Parser/template warnings
 'expensive-parserfunction-warning' => 'Atencion : Aquesta pagina conten tròp d’apèls dispendioses de foncions del parser.
@@ -1169,7 +1174,6 @@ Asseguratz-vos qu'aqueste cambiament pòsca conservar la continuitat de l'istori
 
 # Diffs
 'history-title' => 'Istoric de las versions de « $1 »',
-'difference' => '(Diferéncias entre las versions)',
 'difference-multipage' => '(Diferéncias entre las paginas)',
 'lineno' => 'Linha $1 :',
 'compareselectedversions' => 'Comparar las versions seleccionadas',
@@ -1517,12 +1521,13 @@ Tanben podètz causir de permetre a d’autres de vos contactar per vòstra pagi
 'action-userrights' => 'modificar totes los dreches d’utilizaire',
 'action-userrights-interwiki' => 'modificar los dreches d’utilizaire e los sus d’autres wikis',
 'action-siteadmin' => 'varrolhar o desvarrolhar la banca de donadas',
+'action-sendemail' => 'mandar corrièrs electronics',
 
 # Recent changes
 'nchanges' => '$1 {{PLURAL:$1|cambiament|cambiaments}}',
 'recentchanges' => 'Darrièrs cambiaments',
 'recentchanges-legend' => 'Opcions dels darrièrs cambiaments',
-'recentchangestext' => 'Vaquí sus aquesta pagina, los darrièrs cambiaments de {{SITENAME}}.',
+'recentchanges-summary' => 'Vaquí sus aquesta pagina, los darrièrs cambiaments de {{SITENAME}}.',
 'recentchanges-feed-description' => "Seguissètz los darrièrs cambiaments d'aqueste wiki dins un flux.",
 'recentchanges-label-newpage' => 'Aquesta modificacion a creat una pagina novèla',
 'recentchanges-label-minor' => 'Aqueste cambiament es menor',
@@ -1780,6 +1785,7 @@ La tièra seguenta aficha {{PLURAL:$1|lo primièr ligam de pagina|los $1 primiè
 Una [[Special:WhatLinksHere/$2|tièra completa]] es disponibla.',
 'nolinkstoimage' => 'Cap de pagina compòrta pas de ligam cap a aqueste imatge.',
 'morelinkstoimage' => 'Vejatz [[Special:WhatLinksHere/$1|mai de ligams]] cap a aqueste imatge.',
+'linkstoimage-redirect' => '$1 (redireccion de fichièr) $2',
 'duplicatesoffile' => "{{PLURAL:$1|Lo fichièr seguent es un duplicata|Los fichièrs seguents son de duplicatas}} d'aqueste fichièr ([[Special:FileDuplicateSearch/$2|mai de detalhs]]):",
 'sharedupload' => 'Aqueste fichièr proven de $1 e pòt èsser utilizat per d’autres projèctes.',
 'sharedupload-desc-there' => "Aqueste fichièr proven de $1 e pòt èsser utilizat per d'autres projèctes. Vejatz [$2 sa pagina de descripcion] per mai d'entresenhas.",
@@ -1876,6 +1882,7 @@ Una pagina es tractada coma una pagina d’omonimia s'utiliza un modèl qu'es li
 Cada entrada conten de ligams cap a la primièra e la segonda redireccions, e mai la primièra linha de tèxte de la segonda pagina, çò que provesís, de costuma, la « vertadièra » pagina cibla, cap a la quala la primièra redireccion deuriá redirigir.
 Las entradas <del>barradas</del> son estadas resolgudas.',
 'double-redirect-fixed-move' => '[[$1]] es estat renomenat, aquò es ara una redireccion cap a [[$2]]',
+'double-redirect-fixed-maintenance' => 'Correccion de  la doble redireccion de [[$1]] a [[$2]]',
 'double-redirect-fixer' => 'Corrector de redireccion',
 
 'brokenredirects' => 'Redireccions copadas',
@@ -2094,8 +2101,10 @@ L'adreça electronica qu'avètz indicada dins [[Special:Preferences|vòstras pre
 'watchnologin' => 'Vos sètz pas identificat(ada)',
 'watchnologintext' => 'Vos cal èsser [[Special:UserLogin|connectat(ada)]]
 per modificar vòstra lista de seguiment.',
+'addwatch' => 'Ajustar a la lista de seguiment',
 'addedwatchtext' => 'La pagina "[[:$1]]" es estada aponduda a vòstra [[Special:Watchlist|lista de seguiment]].
 Las modificacions venentas d\'aquesta pagina e de la pagina de discussion associada seràn repertoriadas aicí, e la pagina apareisserà <b>en gras</b> dins la [[Special:RecentChanges|tièra dels darrièrs cambiaments]] per èsser localizada mai aisidament.',
+'removewatch' => 'Suprimir de la lista de seguiment',
 'removedwatchtext' => 'La pagina « [[:$1]] » es estada levada de vòstra [[Special:Watchlist|lista de seguiment]].',
 'watch' => 'Seguir',
 'watchthispage' => 'Seguir aquesta pagina',
@@ -2419,6 +2428,7 @@ Podètz consultar la [[Special:BlockList|lista dels comptes e de las adreças IP
 a partir d'una adreça IP precedentament blocada.",
 'ipusubmit' => 'Suprimir aqueste blocatge',
 'unblocked' => '[[User:$1|$1]] es estat desblocat',
+'unblocked-range' => '$1 es estat desblocat',
 'unblocked-id' => 'Lo blocatge $1 es estat levat',
 'blocklist' => 'Utilizaires o adreças IP blocats',
 'ipblocklist' => 'Utilizaires o adreças IP blocats',
@@ -2787,6 +2797,13 @@ Aquò es probablament causat per un ligam sus lista negra que punta cap a un sit
 'spam_reverting' => 'Restabliment de la darrièra version que conten pas de ligam cap a $1',
 'spam_blanking' => 'Totas las versions que contenon de ligams cap a $1 son blanquidas',
 
+# Info page
+'pageinfo-subjectpage' => 'Pagina',
+'pageinfo-edits' => "Nombre d'edicions",
+'pageinfo-authors' => "Nombre d'autors distints",
+'pageinfo-views' => 'Nombre de vistas',
+'pageinfo-viewsperedit' => 'Visitas per modificacions',
+
 # Skin names
 'skinname-standard' => 'Estandard',
 'skinname-nostalgia' => 'Nostalgia',
@@ -3154,6 +3171,7 @@ Los autres ligams sus la meteissa linha son considerats coma d'excepcions, per e
 'exif-gpsdirection-m' => 'Nòrd magnetic',
 
 'exif-iimcategory-edu' => 'Educacion',
+'exif-iimcategory-evn' => 'Environament',
 'exif-iimcategory-hth' => 'Santat',
 'exif-iimcategory-lab' => 'Tribailh',
 'exif-iimcategory-pol' => 'Politic',
@@ -3264,6 +3282,7 @@ Confirmatz que desiratz tornar crear aqueste article.",
 'table_pager_first' => 'Primièra pagina',
 'table_pager_last' => 'Darrièra pagina',
 'table_pager_limit' => 'Far veire $1 elements per pagina',
+'table_pager_limit_label' => 'Elements per pagina:',
 'table_pager_limit_submit' => 'Accedir',
 'table_pager_empty' => 'Cap de resultat',
 
@@ -3405,6 +3424,7 @@ Picatz lo nom del fichièr sens lo prefix « {{ns:file}}: »",
 # Special:ComparePages
 'compare-page1' => 'Pagina 1',
 'compare-page2' => 'Pagina 2',
+'compare-submit' => 'Comparar',
 
 # Database error messages
 'dberr-header' => 'Aqueste wiki a un problèma',

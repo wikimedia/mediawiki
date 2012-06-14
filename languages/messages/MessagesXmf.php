@@ -322,8 +322,8 @@ $messages = array(
 თქვა შეილებუნა [[Special:Search/{{PAGENAME}}|გორათ ათე ხასილაშ ჯოხო]] შხვა ხასილეფს,
 <span class=\\"plainlinks\\">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} დოგორათ მეხუჯაფილ ჟურნალეფ],
 ვარა [{{fullurl:{{FULLPAGENAME}}|action=edit}} დიჭყათ ათე ხასილაშ რედაქტირაფა]</span>.',
-'noarticletext-nopermission' => '"ათე ხასჷლას ასე ტექსტი ვა რე. თქვა შეილებუნა [[Special:Search/{{PAGENAME}}|დოგორათ თე ხასჷლაშ დუდჯოხო]] შხვა ხასჷლეფს,
-ვარდა <span class=""plainlinks"">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} დოგორათ გინორცხილ ჟურნალეფი]</span>."',
+'noarticletext-nopermission' => 'ათე ხასჷლას ასე ტექსტი ვა რე. თქვა შეილებუნა [[Special:Search/{{PAGENAME}}|დოგორათ თე ხასჷლაშ დუდჯოხო]] შხვა ხასჷლეფს,
+ვარდა <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} დოგორათ გინორცხილ ჟურნალეფი]</span>.',
 'previewnote' => "'''რშუდანი თენა რე ხვალე გიწოთოლორაფა'''
 თქვანი თირაფეფი დიო ვარე ჩუალირი!",
 'editing' => 'რედაქტირაფა $1',
@@ -391,7 +391,6 @@ $messages = array(
 
 # Diffs
 'history-title' => '"$1"–იშ თირაფეფიშ ისტორია',
-'difference' => '(ვერსიეფშკას შხვაოფეფ)',
 'lineno' => 'ღოზი $1:',
 'compareselectedversions' => 'გიშაგორილ ვერსიეფიშ მეზიმაფა',
 'editundo' => 'გოუქვაფა',
@@ -472,7 +471,7 @@ $messages = array(
 'nchanges' => '$1 {{PLURAL:$1|თირაფა|თირაფეფ}}',
 'recentchanges' => 'ასეიანი თირაფეფი',
 'recentchanges-legend' => 'ასერდენ თირაფეფიშ ოფციეფ',
-'recentchangestext' => 'თე ხასჷლას ქაძირი ვიკიშა მიშაღალირ არძოშ უახალაშ თირაფეფი.',
+'recentchanges-summary' => 'თე ხასჷლას ქაძირი ვიკიშა მიშაღალირ არძოშ უახალაშ თირაფეფი.',
 'recentchanges-feed-description' => "ვიკიშ უახალაშ თირაფეფიშა თოლყ'უჯიშ მეყ'უნაფა თე არხის",
 'recentchanges-label-newpage' => 'ათე რედაქტირაფას მაჸუნ ახალ ხასჷლაშ დორსხუაფაქ.',
 'recentchanges-label-minor' => 'თენა რე ციქა რედაქტირაფა',

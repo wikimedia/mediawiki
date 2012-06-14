@@ -33,6 +33,9 @@ $namespaceNames = array(
 	NS_CATEGORY_TALK    => 'Samiyachiy_rimanakuy',
 );
 
+// Remove Spanish gender aliases (bug 37090)
+$namespaceGenderAliases = array();
+
 $messages = array(
 # User preference toggles
 'tog-underline' => 'Tinkikunana uraypi aspishpa rikuchina',
@@ -238,7 +241,7 @@ $messages = array(
 'jumpto' => 'Chayman rina',
 'jumptonavigation' => 'Wampuna',
 'jumptosearch' => 'Maskana',
-'view-pool-error' => 'Atatay, kunan ratupi pankayuk antawakuna yapa trabajuta charinmi. 
+'view-pool-error' => 'Atatay, kunan ratupi pankayuk antawakuna yapa trabajuta charinmi.
 Yapa runakuna kay pankata rikukunmi.
 Ama shinachu kapay, ashakuta shuyapay, kipalla kutin pankata rikunkapak shamupay.
 
@@ -324,7 +327,7 @@ $1',
 'databaseerror' => 'Yachayyuk ukupi pantay',
 'laggedslavemode' => "'''Rikupay''': Kay pankapi, shina kakpi, mushuk killkaykuna illankacha.",
 'missing-article' => "Hatun kamupi shuk killkayta mana tarin, shinapash chay killkayta tiyanami kan. Paypa chay shutima kan : «$1» $2.
-Icha shuk ñawpak pachamanta ''diff'' ñamana tiyanchu, icha kay tinkika shuk pichashka pankapa shutimi kan. 
+Icha shuk ñawpak pachamanta ''diff'' ñamana tiyanchu, icha kay tinkika shuk pichashka pankapa shutimi kan.
 Mana shina kakpi, shuk [[Special:ListUsers/sysop|kamachyik]]man willapay, payta URL killkata willapay.",
 'missingarticle-rev' => '(Killkay#: $1)',
 'internalerror' => 'Antawa ukupi pantay tiyarka',
@@ -417,7 +420,7 @@ Pakpak shutita [[Special:Search/{{PAGENAME}}|shuk pankakunapi maskanata]], <span
 
 Tapuripay, kaypi killkanata allimi, mana allimi kanchu.
 Uraypi apakunakunapa pichanakunapa kamuta rikuchiwanchik:",
-'moveddeleted-notice' => 'Kaypankaka pichashkami kan. 
+'moveddeleted-notice' => 'Kaypankaka pichashkami kan.
 Uraypi apakuykunpa, pichaykunapa kamuta rikuchinchik:',
 
 # Parser/template warnings
@@ -458,7 +461,6 @@ Kay (kaykunachu) kachashkakunaka cunkashkami kashka.",
 
 # Diffs
 'history-title' => '"$1" pankapa killkaykunapa wiñay kawsay',
-'difference' => '(imashpa shikan shikanmi kan)',
 'lineno' => '$1 aspi',
 'compareselectedversions' => 'Kay akllashka pankakunaka imashpa mana shinami kapan willana',
 'editundo' => 'Kutichina',
@@ -503,7 +505,7 @@ Kay (kaykunachu) kachashkakunaka cunkashkami kashka.",
 'searchrelated' => 'tinkishka',
 'searchall' => 'tukuy',
 'showingresultsheader' => "{{PLURAL:$5|Maskashka panka: '''$1''', '''$3'''-manta|Maskashka pankakuna: '''$1 - $2''', '''$3'''-manta}}, '''$4''' maskashpaka",
-'nonefound' => "'''Musyay''': kikinka mana shina rimakpika, mana tukuy shuti-suyupi maskapanki. 
+'nonefound' => "'''Musyay''': kikinka mana shina rimakpika, mana tukuy shuti-suyupi maskapanki.
 Icha ''all:'' rimaywan (icha shuk shutisuyupa rimaywan) kikinpa killkata kallarikpika taripankimi.",
 'search-nonefound' => 'Kikinka maskashka rimaykunaka mana tiyanchu.',
 'powersearch' => 'Ashtawan alli maskana',
@@ -536,7 +538,7 @@ Shuk rurakkunaka kikinpa e-chaski ''dirección''ta mana yachankachu.",
 'nchanges' => '$1 {{PLURAL:$1|killkay|killkaykuna}}',
 'recentchanges' => 'Mushuk killkaykuna',
 'recentchanges-legend' => 'Mushuk killkaykunamanta akllaykuna',
-'recentchangestext' => 'Kay pankapi tukuy mushuk killkaykunata rikukuna',
+'recentchanges-summary' => 'Kay pankapi tukuy mushuk killkaykunata rikukuna',
 'recentchanges-feed-description' => 'Kay willay mayupi ashtawan mushuk killkaykunata rikukuna',
 'recentchanges-label-newpage' => 'Kay killkayka shuk mushuk pankata kamachirka.',
 'recentchanges-label-minor' => 'Kay killkayka uchillami kan',
@@ -894,7 +896,7 @@ Shuk aspipi, shukniki tinkika ima tinkita wichkashkami kanka nin, kay aspipi shu
 'external_image_whitelist' => "  #Kay aspita kay shinallami sakipay<pre>
 #Uraypi ''regex'' samikunata churapay (// chawpipilla)
 #Kay samikunaka hawa rikchakunapa URLwan taripachishkami kanka.
-#Alli taripashkakunaka rikcha shinami rikushishkami kanka, shukkunaka tinki shinallami riksichinka, 
+#Alli taripashkakunaka rikcha shinami rikushishkami kanka, shukkunaka tinki shinallami riksichinka,
 #«#» llikawan kallarik aspikunaka willaykunallami kanka
 #Uchilla, hatun llikakunatapash churanata ushapanki, kaypi shinallami kan
 

@@ -132,8 +132,18 @@ abstract class MediaWikiTestCase extends PHPUnit_Framework_TestCase {
 	}
 
 	function needsDB() {
+		# if the test says it uses database tables, it needs the database
+		if ( $this->tablesUsed ) {
+			return true;
+		}
+
+		# if the test says it belongs to the Database group, it needs the database
 		$rc = new ReflectionClass( $this );
-		return strpos( $rc->getDocComment(), '@group Database' ) !== false;
+		if ( preg_match( '/@group +Database/im', $rc->getDocComment() ) ) {
+			return true;
+		}
+
+		return false;
 	}
 
 	/**
@@ -330,5 +340,66 @@ abstract class MediaWikiTestCase extends PHPUnit_Framework_TestCase {
 		wfSuppressWarnings();
 		wfDeprecated( $function );
 		wfRestoreWarnings();
+	}
+
+	/**
+	 * Asserts that the given database query yields the rows given by $expectedRows.
+	 * The expected rows should be given as indexed (not associative) arrays, with
+	 * the values given in the order of the columns in the $fields parameter.
+	 * Note that the rows are sorted by the columns given in $fields.
+	 *
+	 * @param $table String|Array the table(s) to query
+	 * @param $fields String|Array the columns to include in the result (and to sort by)
+	 * @param $condition String|Array "where" condition(s)
+	 * @param $expectedRows Array - an array of arrays giving the expected rows.
+	 *
+	 * @throws MWException if this test cases's needsDB() method doesn't return true.
+	 *         Test cases can use "@group Database" to enable database test support,
+	 *         or list the tables under testing in $this->tablesUsed, or override the
+	 *         needsDB() method.
+	 */
+	protected function assertSelect( $table, $fields, $condition, Array $expectedRows ) {
+		if ( !$this->needsDB() ) {
+			throw new MWException( 'When testing database state, the test cases\'s needDB()' .
+				' method should return true. Use @group Database or $this->tablesUsed.');
+		}
+
+		$db = wfGetDB( DB_SLAVE );
+
+		$res = $db->select( $table, $fields, $condition, wfGetCaller(), array( 'ORDER BY' => $fields ) );
+		$this->assertNotEmpty( $res, "query failed: " . $db->lastError() );
+
+		$i = 0;
+
+		foreach ( $expectedRows as $expected ) {
+			$r = $res->fetchRow();
+			self::stripStringKeys( $r );
+
+			$i += 1;
+			$this->assertNotEmpty( $r, "row #$i missing" );
+
+			$this->assertEquals( $expected, $r, "row #$i mismatches" );
+		}
+
+		$r = $res->fetchRow();
+		self::stripStringKeys( $r );
+
+		$this->assertFalse( $r, "found extra row (after #$i)" );
+	}
+
+	/**
+	 * Utility function for eliminating all string keys from an array.
+	 * Useful to turn a database result row as returned by fetchRow() into
+	 * a pure indexed array.
+	 *
+	 * @static
+	 * @param $r mixed the array to remove string keys from.
+	 */
+	protected static function stripStringKeys( &$r ) {
+		if ( !is_array( $r ) ) return;
+
+		foreach ( $r as $k => $v ) {
+			if ( is_string( $k ) ) unset( $r[$k] );
+		}
 	}
 }

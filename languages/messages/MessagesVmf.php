@@ -439,7 +439,6 @@ Hirmid sagsd, das Du den dhägsd '''selbâr gschriim''' hasd, das däär dhägsd
 
 # Diffs
 'history-title' => 'Wärsjoonsfolche fo „$1“',
-'difference' => '(Undârschiid dswischâ wärsjoonâ)',
 'lineno' => 'Dsajln $1:',
 'compareselectedversions' => 'Ausgwäälde wärsjoona fârglajchn',
 'editundo' => 'riggängich machng',

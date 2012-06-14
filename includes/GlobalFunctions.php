@@ -1,6 +1,22 @@
 <?php
 /**
- * Global functions used everywhere
+ * Global functions used everywhere.
+ *
+ * This program is free software; you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation; either version 2 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License along
+ * with this program; if not, write to the Free Software Foundation, Inc.,
+ * 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
+ * http://www.gnu.org/copyleft/gpl.html
+ *
  * @file
  */
 
@@ -14,7 +30,7 @@ if ( !defined( 'MEDIAWIKI' ) ) {
 /**
  * Compatibility functions
  *
- * We support PHP 5.2.3 and up.
+ * We support PHP 5.3.2 and up.
  * Re-implementations of newer functions or functions in non-standard
  * PHP extensions may be included here.
  */
@@ -368,7 +384,7 @@ function wfUrlencode( $s ) {
  * @param $prefix String
  * @return String
  */
-function wfArrayToCGI( $array1, $array2 = null, $prefix = '' ) {
+function wfArrayToCgi( $array1, $array2 = null, $prefix = '' ) {
 	if ( !is_null( $array2 ) ) {
 		$array1 = $array1 + $array2;
 	}
@@ -387,7 +403,7 @@ function wfArrayToCGI( $array1, $array2 = null, $prefix = '' ) {
 				foreach ( $value as $k => $v ) {
 					$cgi .= $firstTime ? '' : '&';
 					if ( is_array( $v ) ) {
-						$cgi .= wfArrayToCGI( $v, null, $key . "[$k]" );
+						$cgi .= wfArrayToCgi( $v, null, $key . "[$k]" );
 					} else {
 						$cgi .= urlencode( $key . "[$k]" ) . '=' . urlencode( $v );
 					}
@@ -405,7 +421,7 @@ function wfArrayToCGI( $array1, $array2 = null, $prefix = '' ) {
 }
 
 /**
- * This is the logical opposite of wfArrayToCGI(): it accepts a query string as
+ * This is the logical opposite of wfArrayToCgi(): it accepts a query string as
  * its argument and returns the same string in array form.  This allows compa-
  * tibility with legacy functions that accept raw query strings instead of nice
  * arrays.  Of course, keys and values are urldecode()d.
@@ -462,7 +478,7 @@ function wfCgiToArray( $query ) {
  */
 function wfAppendQuery( $url, $query ) {
 	if ( is_array( $query ) ) {
-		$query = wfArrayToCGI( $query );
+		$query = wfArrayToCgi( $query );
 	}
 	if( $query != '' ) {
 		if( false === strpos( $url, '?' ) ) {
@@ -559,6 +575,7 @@ function wfExpandUrl( $url, $defaultProto = PROTO_CURRENT ) {
  *
  * @todo Need to integrate this into wfExpandUrl (bug 32168)
  *
+ * @since 1.19
  * @param $urlParts Array URL parts, as output from wfParseUrl
  * @return string URL assembled from its component parts
  */
@@ -1814,7 +1831,7 @@ function wfDebugBacktrace( $limit = 0 ) {
 	}
 
 	if ( $limit && version_compare( PHP_VERSION, '5.4.0', '>=' ) ) {
-		return array_slice( debug_backtrace( DEBUG_BACKTRACE_PROVIDE_OBJECT, $limit ), 1 );
+		return array_slice( debug_backtrace( DEBUG_BACKTRACE_PROVIDE_OBJECT, $limit + 1 ), 1 );
 	} else {
 		return array_slice( debug_backtrace(), 1 );
 	}
@@ -1873,12 +1890,15 @@ function wfBacktrace() {
 
 /**
  * Get the name of the function which called this function
+ * wfGetCaller( 1 ) is the function with the wfGetCaller() call (ie. __FUNCTION__)
+ * wfGetCaller( 2 ) [default] is the caller of the function running wfGetCaller()
+ * wfGetCaller( 3 ) is the parent of that.
  *
  * @param $level Int
  * @return Bool|string
  */
 function wfGetCaller( $level = 2 ) {
-	$backtrace = wfDebugBacktrace( $level );
+	$backtrace = wfDebugBacktrace( $level + 1 );
 	if ( isset( $backtrace[$level] ) ) {
 		return wfFormatStackFrame( $backtrace[$level] );
 	} else {
@@ -2181,13 +2201,7 @@ function wfResetOutputBuffers( $resetGzipEncoding = true ) {
 			if( $status['name'] == 'ob_gzhandler' ) {
 				// Reset the 'Content-Encoding' field set by this handler
 				// so we can start fresh.
-				if ( function_exists( 'header_remove' ) ) {
-					// Available since PHP 5.3.0
-					header_remove( 'Content-Encoding' );
-				} else {
-					// We need to provide a valid content-coding. See bug 28069
-					header( 'Content-Encoding: identity' );
-				}
+				header_remove( 'Content-Encoding' );
 				break;
 			}
 		}
@@ -2596,11 +2610,10 @@ function swap( &$x, &$y ) {
 }
 
 /**
- * Tries to get the system directory for temporary files. The TMPDIR, TMP, and
- * TEMP environment variables are then checked in sequence, and if none are set
- * try sys_get_temp_dir() for PHP >= 5.2.1. All else fails, return /tmp for Unix
- * or C:\Windows\Temp for Windows and hope for the best.
- * It is common to call it with tempnam().
+ * Tries to get the system directory for temporary files. First
+ * $wgTmpDirectory is checked, and then the TMPDIR, TMP, and TEMP
+ * environment variables are then checked in sequence, and if none are
+ * set try sys_get_temp_dir().
  *
  * NOTE: When possible, use instead the tmpfile() function to create
  * temporary files to avoid race conditions on file creation, etc.
@@ -2608,17 +2621,20 @@ function swap( &$x, &$y ) {
  * @return String
  */
 function wfTempDir() {
-	foreach( array( 'TMPDIR', 'TMP', 'TEMP' ) as $var ) {
-		$tmp = getenv( $var );
+	global $wgTmpDirectory;
+
+	if ( $wgTmpDirectory !== false ) {
+		return $wgTmpDirectory;
+	}
+
+	$tmpDir = array_map( "getenv", array( 'TMPDIR', 'TMP', 'TEMP' ) );
+
+	foreach( $tmpDir as $tmp ) {
 		if( $tmp && file_exists( $tmp ) && is_dir( $tmp ) && is_writable( $tmp ) ) {
 			return $tmp;
 		}
 	}
-	if( function_exists( 'sys_get_temp_dir' ) ) {
-		return sys_get_temp_dir();
-	}
-	# Usual defaults
-	return wfIsWindows() ? 'C:\Windows\Temp' : '/tmp';
+	return sys_get_temp_dir();
 }
 
 /**
@@ -2657,7 +2673,8 @@ function wfMkdirParents( $dir, $mode = null, $caller = null ) {
 
 	if( !$ok ) {
 		// PHP doesn't report the path in its warning message, so add our own to aid in diagnosis.
-		trigger_error( __FUNCTION__ . ": failed to mkdir \"$dir\" mode $mode", E_USER_WARNING );
+		trigger_error( sprintf( "%s: failed to mkdir \"%s\" mode 0%o", __FUNCTION__, $dir, $mode ),
+			E_USER_WARNING );
 	}
 	return $ok;
 }
@@ -2759,9 +2776,7 @@ function wfDl( $extension, $fileName = null ) {
 
 	$canDl = false;
 	$sapi = php_sapi_name();
-	if( version_compare( PHP_VERSION, '5.3.0', '<' ) ||
-		$sapi == 'cli' || $sapi == 'cgi' || $sapi == 'embed' )
-	{
+	if( $sapi == 'cli' || $sapi == 'cgi' || $sapi == 'embed' ) {
 		$canDl = ( function_exists( 'dl' ) && is_callable( 'dl' )
 		&& wfIniGetBool( 'enable_dl' ) && !wfIniGetBool( 'safe_mode' ) );
 	}
@@ -2899,16 +2914,7 @@ function wfShellExec( $cmd, &$retval = null, $environ = array() ) {
 	}
 	$cmd = $envcmd . $cmd;
 
-	if ( wfIsWindows() ) {
-		if ( version_compare( PHP_VERSION, '5.3.0', '<' ) && /* Fixed in 5.3.0 :) */
-			( version_compare( PHP_VERSION, '5.2.1', '>=' ) || php_uname( 's' ) == 'Windows NT' ) )
-		{
-			# Hack to work around PHP's flawed invocation of cmd.exe
-			# http://news.php.net/php.internals/21796
-			# Windows 9x doesn't accept any kind of quotes
-			$cmd = '"' . $cmd . '"';
-		}
-	} elseif ( php_uname( 's' ) == 'Linux' ) {
+	if ( php_uname( 's' ) == 'Linux' ) {
 		$time = intval( $wgMaxShellTime );
 		$mem = intval( $wgMaxShellMemory );
 		$filesize = intval( $wgMaxShellFileSize );

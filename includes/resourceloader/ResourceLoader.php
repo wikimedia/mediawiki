@@ -1,5 +1,7 @@
 <?php
 /**
+ * Base class for resource loading system.
+ *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2 of the License, or
@@ -239,9 +241,9 @@ class ResourceLoader {
 				);
 			}
 
-			// Check $name for illegal characters
-			if ( preg_match( '/[|,!]/', $name ) ) {
-				throw new MWException( "ResourceLoader module name '$name' is invalid. Names may not contain pipes (|), commas (,) or exclamation marks (!)" );
+			// Check $name for validity
+			if ( !self::isValidModuleName( $name ) ) {
+				throw new MWException( "ResourceLoader module name '$name' is invalid, see ResourceLoader::isValidModuleName()" );
 			}
 
 			// Attach module
@@ -599,7 +601,7 @@ class ResourceLoader {
 	/**
 	 * Send out code for a response from file cache if possible
 	 *
-	 * @param $fileCache ObjectFileCache: Cache object for this request URL
+	 * @param $fileCache ResourceFileCache: Cache object for this request URL
 	 * @param $context ResourceLoaderContext: Context in which to generate a response
 	 * @return bool If this found a cache file and handled the response
 	 */
@@ -683,6 +685,7 @@ class ResourceLoader {
 		}
 
 		// Generate output
+		$isRaw = false;
 		foreach ( $modules as $name => $module ) {
 			/**
 			 * @var $module ResourceLoaderModule
@@ -761,15 +764,14 @@ class ResourceLoader {
 				$missing[] = $name;
 				unset( $modules[$name] );
 			}
+			$isRaw |= $module->isRaw();
 			wfProfileOut( __METHOD__ . '-' . $name );
 		}
 
 		// Update module states
-		if ( $context->shouldIncludeScripts() ) {
+		if ( $context->shouldIncludeScripts() && !$context->getRaw() && !$isRaw ) {
 			// Set the state of modules loaded as only scripts to ready
-			if ( count( $modules ) && $context->getOnly() === 'scripts'
-				&& !isset( $modules['startup'] ) )
-			{
+			if ( count( $modules ) && $context->getOnly() === 'scripts' ) {
 				$out .= self::makeLoaderStateScript(
 					array_fill_keys( array_keys( $modules ), 'ready' ) );
 			}
@@ -1096,5 +1098,18 @@ class ResourceLoader {
 		// Make queries uniform in order
 		ksort( $query );
 		return $query;
+	}
+
+	/**
+	 * Check a module name for validity.
+	 *
+	 * Module names may not contain pipes (|), commas (,) or exclamation marks (!) and can be
+	 * at most 255 bytes.
+	 *
+	 * @param $moduleName string Module name to check
+	 * @return bool Whether $moduleName is a valid module name
+	 */
+	public static function isValidModuleName( $moduleName ) {
+		return !preg_match( '/[|,!]/', $moduleName ) && strlen( $moduleName ) <= 255;
 	}
 }

@@ -1,5 +1,5 @@
 <?php
-/** Norwegian (bokmål)‬ (‪Norsk (bokmål)‬)
+/** Norwegian (bokmål)‬ (‪norsk (bokmål)‬)
  *
  * See MessagesQqq.php for message documentation incl. usage of parameters
  * To improve a translation please visit http://translatewiki.net
@@ -7,6 +7,7 @@
  * @ingroup Language
  * @file
  *
+ * @author Jeblad
  */
 
 $fallback = 'nb';
@@ -921,7 +922,6 @@ Forsikre deg om at denne endringen vil opprettholde historisk sidekontinuitet.',
 
 # Diffs
 'history-title' => 'Revisjonshistorikk for «$1»',
-'difference' => '(Forskjell mellom revisjoner)',
 'difference-multipage' => '(Forskjell mellom sider)',
 'lineno' => 'Linje $1:',
 'compareselectedversions' => 'Sammenlign valgte revisjoner',
@@ -1271,7 +1271,7 @@ Den kan maks inneholde $1 {{PLURAL:$1|tegn|tegn}}.',
 'nchanges' => '$1 {{PLURAL:$1|endring|endringer}}',
 'recentchanges' => 'Siste endringer',
 'recentchanges-legend' => 'Alternativ for siste endringer',
-'recentchangestext' => 'Vis de siste endringene til denne siden',
+'recentchanges-summary' => 'Vis de siste endringene til denne siden',
 'recentchanges-feed-description' => 'Følg med på siste endringer i denne wikien med denne matingen.',
 'recentchanges-label-newpage' => 'Denne redigeringen opprettet en ny side',
 'recentchanges-label-minor' => 'Dette er en mindre endring',
@@ -2008,7 +2008,7 @@ Dette er de nåværende innstillingene for siden '''$1''':",
 Du kan endre sidens beskyttelsesnivå, men det vil ikke påvirke dypbeskyttelsen.',
 'protect-default' => 'Tillat alle brukere',
 'protect-fallback' => 'Må ha «$1»-tillatelse',
-'protect-level-autoconfirmed' => 'Blokker nye og uregistrerte brukere',
+'protect-level-autoconfirmed' => 'Eastte anonyma ja ođđa geavaheddjiid',
 'protect-level-sysop' => 'Kun administratorer',
 'protect-summary-cascade' => 'dypbeskyttelse',
 'protect-expiring' => 'utløper $1 (UTC)',

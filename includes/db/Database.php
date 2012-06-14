@@ -2,10 +2,26 @@
 /**
  * @defgroup Database Database
  *
+ * This file deals with database interface functions
+ * and query specifics/optimisations.
+ *
+ * This program is free software; you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation; either version 2 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License along
+ * with this program; if not, write to the Free Software Foundation, Inc.,
+ * 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
+ * http://www.gnu.org/copyleft/gpl.html
+ *
  * @file
  * @ingroup Database
- * This file deals with database interface functions
- * and query specifics/optimisations
  */
 
 /** Number of times to re-try an operation in case of deadlock */
@@ -782,7 +798,7 @@ abstract class DatabaseBase implements DatabaseType {
 	 * @return bool
 	 */
 	function isWriteQuery( $sql ) {
-		return !preg_match( '/^(?:SELECT|BEGIN|ROLLBACK|COMMIT|SET|SHOW|\(SELECT)\b/i', $sql );
+		return !preg_match( '/^(?:SELECT|BEGIN|ROLLBACK|COMMIT|SET|SHOW|EXPLAIN|\(SELECT)\b/i', $sql );
 	}
 
 	/**
@@ -1459,6 +1475,7 @@ abstract class DatabaseBase implements DatabaseType {
 	function selectRow( $table, $vars, $conds, $fname = 'DatabaseBase::selectRow',
 		$options = array(), $join_conds = array() )
 	{
+		$options = (array)$options;
 		$options['LIMIT'] = 1;
 		$res = $this->select( $table, $vars, $conds, $fname, $options, $join_conds );
 
@@ -3345,6 +3362,18 @@ abstract class DatabaseBase implements DatabaseType {
 	 */
 	function buildConcat( $stringList ) {
 		return 'CONCAT(' . implode( ',', $stringList ) . ')';
+	}
+
+	/**
+	 * Check to see if a named lock is available. This is non-blocking.
+	 *
+	 * @param $lockName String: name of lock to poll
+	 * @param $method String: name of method calling us
+	 * @return Boolean
+	 * @since 1.20
+	 */
+	public function lockIsFree( $lockName, $method ) {
+		return true;
 	}
 
 	/**

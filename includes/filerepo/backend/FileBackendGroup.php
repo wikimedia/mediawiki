@@ -1,5 +1,22 @@
 <?php
 /**
+ * File backend registration handling.
+ *
+ * This program is free software; you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation; either version 2 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License along
+ * with this program; if not, write to the Free Software Foundation, Inc.,
+ * 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
+ * http://www.gnu.org/copyleft/gpl.html
+ *
  * @file
  * @ingroup FileBackend
  * @author Aaron Schulz
@@ -21,7 +38,6 @@ class FileBackendGroup {
 	protected $backends = array();
 
 	protected function __construct() {}
-	protected function __clone() {}
 
 	/**
 	 * @return FileBackendGroup
@@ -36,7 +52,7 @@ class FileBackendGroup {
 
 	/**
 	 * Destroy the singleton instance
-	 * 
+	 *
 	 * @return void
 	 */
 	public static function destroySingleton() {
@@ -45,7 +61,7 @@ class FileBackendGroup {
 
 	/**
 	 * Register file backends from the global variables
-	 * 
+	 *
 	 * @return void
 	 */
 	protected function initFromGlobals() {
@@ -138,6 +154,21 @@ class FileBackendGroup {
 			$this->backends[$name]['instance'] = new $class( $config );
 		}
 		return $this->backends[$name]['instance'];
+	}
+
+	/**
+	 * Get the config array for a backend object with a given name
+	 *
+	 * @param $name string
+	 * @return Array
+	 * @throws MWException
+	 */
+	public function config( $name ) {
+		if ( !isset( $this->backends[$name] ) ) {
+			throw new MWException( "No backend defined with the name `$name`." );
+		}
+		$class = $this->backends[$name]['class'];
+		return array( 'class' => $class ) + $this->backends[$name]['config'];
 	}
 
 	/**

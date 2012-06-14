@@ -2,6 +2,21 @@
 /**
  * This defines autoloading handler for whole MediaWiki framework
  *
+ * This program is free software; you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation; either version 2 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License along
+ * with this program; if not, write to the Free Software Foundation, Inc.,
+ * 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
+ * http://www.gnu.org/copyleft/gpl.html
+ *
  * @file
  */
 
@@ -56,8 +71,9 @@ $wgAutoloadLocalClasses = array(
 	'DeferredUpdates' => 'includes/DeferredUpdates.php',
 	'DeprecatedGlobal' => 'includes/DeprecatedGlobal.php',
 	'DerivativeRequest' => 'includes/WebRequest.php',
+	'DeviceDetection' => 'includes/mobile/DeviceDetection.php',
+	'DeviceProperties' => 'includes/mobile/DeviceDetection.php',
 	'DiffHistoryBlob' => 'includes/HistoryBlob.php',
-
 	'DoubleReplacer' => 'includes/StringUtils.php',
 	'DummyLinker' => 'includes/Linker.php',
 	'Dump7ZipOutput' => 'includes/Export.php',
@@ -122,6 +138,8 @@ $wgAutoloadLocalClasses = array(
 	'HttpRequest' => 'includes/HttpFunctions.old.php',
 	'ICacheHelper' => 'includes/CacheHelper.php',
 	'IcuCollation' => 'includes/Collation.php',
+	'IDeviceProperties' => 'includes/mobile/DeviceDetection.php',
+	'IDeviceDetector' => 'includes/mobile/DeviceDetection.php',
 	'IdentityCollation' => 'includes/Collation.php',
 	'ImageGallery' => 'includes/ImageGallery.php',
 	'ImageHistoryList' => 'includes/ImagePage.php',
@@ -144,6 +162,7 @@ $wgAutoloadLocalClasses = array(
 	'Linker' => 'includes/Linker.php',
 	'LinkFilter' => 'includes/LinkFilter.php',
 	'LinksUpdate' => 'includes/LinksUpdate.php',
+	'LinksDeletionUpdate' => 'includes/LinksUpdate.php',
 	'LocalisationCache' => 'includes/LocalisationCache.php',
 	'LocalisationCache_BulkLoad' => 'includes/LocalisationCache.php',
 	'MagicWord' => 'includes/MagicWord.php',
@@ -195,6 +214,8 @@ $wgAutoloadLocalClasses = array(
 	'RevisionList' => 'includes/RevisionList.php',
 	'RSSFeed' => 'includes/Feed.php',
 	'Sanitizer' => 'includes/Sanitizer.php',
+	'DataUpdate' => 'includes/DataUpdate.php',
+	'SqlDataUpdate' => 'includes/SqlDataUpdate.php',
 	'ScopedPHPTimeout' => 'includes/ScopedPHPTimeout.php',
 	'SiteConfiguration' => 'includes/SiteConfiguration.php',
 	'SiteStats' => 'includes/SiteStats.php',
@@ -316,6 +337,7 @@ $wgAutoloadLocalClasses = array(
 	'ApiMain' => 'includes/api/ApiMain.php',
 	'ApiMove' => 'includes/api/ApiMove.php',
 	'ApiOpenSearch' => 'includes/api/ApiOpenSearch.php',
+	'ApiOptions' => 'includes/api/ApiOptions.php',
 	'ApiPageSet' => 'includes/api/ApiPageSet.php',
 	'ApiParamInfo' => 'includes/api/ApiParamInfo.php',
 	'ApiParse' => 'includes/api/ApiParse.php',
@@ -424,6 +446,8 @@ $wgAutoloadLocalClasses = array(
 	'DBConnectionError' => 'includes/db/DatabaseError.php',
 	'DBError' => 'includes/db/DatabaseError.php',
 	'DBObject' => 'includes/db/DatabaseUtility.php',
+	'IORMRow' => 'includes/db/IORMRow.php',
+	'IORMTable' => 'includes/db/IORMTable.php',
 	'DBMasterPos' => 'includes/db/DatabaseUtility.php',
 	'DBQueryError' => 'includes/db/DatabaseError.php',
 	'DBUnexpectedError' => 'includes/db/DatabaseError.php',
@@ -509,11 +533,20 @@ $wgAutoloadLocalClasses = array(
 	'FileBackend' => 'includes/filerepo/backend/FileBackend.php',
 	'FileBackendStore' => 'includes/filerepo/backend/FileBackendStore.php',
 	'FileBackendStoreShardListIterator' => 'includes/filerepo/backend/FileBackendStore.php',
+	'FileBackendStoreShardDirIterator' => 'includes/filerepo/backend/FileBackendStore.php',
+	'FileBackendStoreShardFileIterator' => 'includes/filerepo/backend/FileBackendStore.php',
 	'FileBackendMultiWrite' => 'includes/filerepo/backend/FileBackendMultiWrite.php',
+	'FileBackendStoreOpHandle' => 'includes/filerepo/backend/FileBackendStore.php',
 	'FSFileBackend' => 'includes/filerepo/backend/FSFileBackend.php',
+	'FSFileBackendList' => 'includes/filerepo/backend/FSFileBackend.php',
+	'FSFileBackendDirList' => 'includes/filerepo/backend/FSFileBackend.php',
 	'FSFileBackendFileList' => 'includes/filerepo/backend/FSFileBackend.php',
+	'FSFileOpHandle' => 'includes/filerepo/backend/FSFileBackend.php',
 	'SwiftFileBackend' => 'includes/filerepo/backend/SwiftFileBackend.php',
+	'SwiftFileBackendList' => 'includes/filerepo/backend/SwiftFileBackend.php',
+	'SwiftFileBackendDirList' => 'includes/filerepo/backend/SwiftFileBackend.php',
 	'SwiftFileBackendFileList' => 'includes/filerepo/backend/SwiftFileBackend.php',
+	'SwiftFileOpHandle' => 'includes/filerepo/backend/SwiftFileBackend.php',
 	'FileJournal' => 'includes/filerepo/backend/filejournal/FileJournal.php',
 	'DBFileJournal' => 'includes/filerepo/backend/filejournal/DBFileJournal.php',
 	'NullFileJournal' => 'includes/filerepo/backend/filejournal/FileJournal.php',
@@ -526,6 +559,7 @@ $wgAutoloadLocalClasses = array(
 	'MySqlLockManager'=> 'includes/filerepo/backend/lockmanager/DBLockManager.php',
 	'NullLockManager' => 'includes/filerepo/backend/lockmanager/LockManager.php',
 	'FileOp' => 'includes/filerepo/backend/FileOp.php',
+	'FileOpBatch' => 'includes/filerepo/backend/FileOpBatch.php',
 	'StoreFileOp' => 'includes/filerepo/backend/FileOp.php',
 	'CopyFileOp' => 'includes/filerepo/backend/FileOp.php',
 	'MoveFileOp' => 'includes/filerepo/backend/FileOp.php',
@@ -660,6 +694,8 @@ $wgAutoloadLocalClasses = array(
 	'HashBagOStuff' => 'includes/objectcache/HashBagOStuff.php',
 	'MediaWikiBagOStuff' => 'includes/objectcache/SqlBagOStuff.php',
 	'MemCachedClientforWiki' => 'includes/objectcache/MemcachedClient.php',
+	'MemcachedBagOStuff' => 'includes/objectcache/MemcachedBagOStuff.php',
+	'MemcachedPeclBagOStuff' => 'includes/objectcache/MemcachedPeclBagOStuff.php',
 	'MemcachedPhpBagOStuff' => 'includes/objectcache/MemcachedPhpBagOStuff.php',
 	'MultiWriteBagOStuff' => 'includes/objectcache/MultiWriteBagOStuff.php',
 	'MWMemcached' => 'includes/objectcache/MemcachedClient.php',
@@ -955,6 +991,9 @@ $wgAutoloadLocalClasses = array(
 	'AnsiTermColorer'  => 'maintenance/term/MWTerm.php',
 	'DummyTermColorer' => 'maintenance/term/MWTerm.php',
 
+	# mw-config
+	'InstallerOverrides' => 'mw-config/overrides.php',
+
 	# tests
 	'DbTestPreviewer' => 'tests/testHelpers.inc',
 	'DbTestRecorder' => 'tests/testHelpers.inc',
@@ -988,6 +1027,14 @@ class AutoLoader {
 	 */
 	static function autoload( $className ) {
 		global $wgAutoloadClasses, $wgAutoloadLocalClasses;
+
+		// Workaround for PHP bug <https://bugs.php.net/bug.php?id=49143> (5.3.2. is broken, it's fixed in 5.3.6).
+		// Strip leading backslashes from class names. When namespaces are used, leading backslashes are used to indicate
+		// the top-level namespace, e.g. \foo\Bar. When used like this in the code, the leading backslash isn't passed to
+		// the auto-loader ($className would be 'foo\Bar'). However, if a class is accessed using a string instead of a
+		// class literal (e.g. $class = '\foo\Bar'; new $class()), then some versions of PHP do not strip the leading
+		// backlash in this case, causing autoloading to fail.
+		$className = ltrim( $className, '\\' );
 
 		if ( isset( $wgAutoloadLocalClasses[$className] ) ) {
 			$filename = $wgAutoloadLocalClasses[$className];
@@ -1031,6 +1078,7 @@ class AutoLoader {
 	 * Sanitizer that have define()s outside of their class definition. Of course
 	 * this wouldn't be necessary if everything in MediaWiki was class-based. Sigh.
 	 *
+	 * @param $class string
 	 * @return Boolean Return the results of class_exists() so we know if we were successful
 	 */
 	static function loadClass( $class ) {

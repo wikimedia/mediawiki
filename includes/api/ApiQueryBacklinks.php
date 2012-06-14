@@ -188,25 +188,25 @@ class ApiQueryBacklinks extends ApiQueryGeneratorBase {
 		$titleWhere = array();
 		foreach ( $this->redirTitles as $t ) {
 			$titleWhere[] = "{$this->bl_title} = " . $db->addQuotes( $t->getDBkey() ) .
-					( $this->hasNS ? " AND {$this->bl_ns} = '{$t->getNamespace()}'" : '' );
+					( $this->hasNS ? " AND {$this->bl_ns} = {$t->getNamespace()}" : '' );
 		}
 		$this->addWhere( $db->makeList( $titleWhere, LIST_OR ) );
 		$this->addWhereFld( 'page_namespace', $this->params['namespace'] );
 
 		if ( !is_null( $this->redirID ) ) {
 			$first = $this->redirTitles[0];
-			$title = $db->strencode( $first->getDBkey() );
+			$title = $db->addQuotes( $first->getDBkey() );
 			$ns = $first->getNamespace();
 			$from = $this->redirID;
 			if ( $this->hasNS ) {
 				$this->addWhere( "{$this->bl_ns} > $ns OR " .
 						"({$this->bl_ns} = $ns AND " .
-						"({$this->bl_title} > '$title' OR " .
-						"({$this->bl_title} = '$title' AND " .
+						"({$this->bl_title} > $title OR " .
+						"({$this->bl_title} = $title AND " .
 						"{$this->bl_from} >= $from)))" );
 			} else {
-				$this->addWhere( "{$this->bl_title} > '$title' OR " .
-						"({$this->bl_title} = '$title' AND " .
+				$this->addWhere( "{$this->bl_title} > $title OR " .
+						"({$this->bl_title} = $title AND " .
 						"{$this->bl_from} >= $from)" );
 			}
 		}
@@ -369,14 +369,7 @@ class ApiQueryBacklinks extends ApiQueryGeneratorBase {
 		if ( !is_null( $this->params['continue'] ) ) {
 			$this->parseContinueParam();
 		} else {
-			if ( $this->params['title'] !== '' ) {
-				$title = Title::newFromText( $this->params['title'] );
-				if ( !$title ) {
-					$this->dieUsageMsg( array( 'invalidtitle', $this->params['title'] ) );
-				} else {
-					$this->rootTitle = $title;
-				}
-			}
+			$this->rootTitle = $this->getTitleOrPageId( $this->params )->getTitle();
 		}
 
 		// only image titles are allowed for the root in imageinfo mode
@@ -436,7 +429,9 @@ class ApiQueryBacklinks extends ApiQueryGeneratorBase {
 		$retval = array(
 			'title' => array(
 				ApiBase::PARAM_TYPE => 'string',
-				ApiBase::PARAM_REQUIRED => true
+			),
+			'pageid' => array(
+				ApiBase::PARAM_TYPE => 'integer',
 			),
 			'continue' => null,
 			'namespace' => array(
@@ -468,7 +463,8 @@ class ApiQueryBacklinks extends ApiQueryGeneratorBase {
 
 	public function getParamDescription() {
 		$retval = array(
-			'title' => 'Title to search',
+			'title' => "Title to search. Cannot be used together with {$this->bl_code}pageid",
+			'pageid' => "Pageid to search. Cannot be used together with {$this->bl_code}title",
 			'continue' => 'When more results are available, use this to continue',
 			'namespace' => 'The namespace to enumerate',
 		);
@@ -485,6 +481,17 @@ class ApiQueryBacklinks extends ApiQueryGeneratorBase {
 		) );
 	}
 
+	public function getResultProperties() {
+		return array(
+			'' => array(
+				'pageid' => 'integer',
+				'ns' => 'namespace',
+				'title' => 'string',
+				'redirect' => 'boolean'
+			)
+		);
+	}
+
 	public function getDescription() {
 		switch ( $this->getModuleName() ) {
 			case 'backlinks':
@@ -499,11 +506,13 @@ class ApiQueryBacklinks extends ApiQueryGeneratorBase {
 	}
 
 	public function getPossibleErrors() {
-		return array_merge( parent::getPossibleErrors(), array(
-			array( 'invalidtitle', 'title' ),
-			array( 'code' => 'bad_image_title', 'info' => "The title for {$this->getModuleName()} query must be an image" ),
-			array( 'code' => '_badcontinue', 'info' => 'Invalid continue param. You should pass the original value returned by the previous query' ),
-		) );
+		return array_merge( parent::getPossibleErrors(),
+			$this->getTitleOrPageIdErrorMessage(),
+			array(
+				array( 'code' => 'bad_image_title', 'info' => "The title for {$this->getModuleName()} query must be an image" ),
+				array( 'code' => '_badcontinue', 'info' => 'Invalid continue param. You should pass the original value returned by the previous query' ),
+			)
+		);
 	}
 
 	public function getExamples() {

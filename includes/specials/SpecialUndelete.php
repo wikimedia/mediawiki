@@ -97,8 +97,8 @@ class PageArchive {
 				$condition,
 				__METHOD__,
 				array(
-					'GROUP BY' => 'ar_namespace,ar_title',
-					'ORDER BY' => 'ar_namespace,ar_title',
+					'GROUP BY' => array( 'ar_namespace', 'ar_title' ),
+					'ORDER BY' => array( 'ar_namespace', 'ar_title' ),
 					'LIMIT' => 100,
 				)
 			)
@@ -1015,7 +1015,7 @@ class SpecialUndelete extends SpecialPage {
 		}
 		$out->wrapWikiMsg(
 			"<div class='mw-undelete-pagetitle'>\n$1\n</div>\n",
-			array( 'undeletepagetitle', $this->mTargetObj->getPrefixedText() )
+			array( 'undeletepagetitle', wfEscapeWikiText( $this->mTargetObj->getPrefixedText() ) )
 		);
 
 		$archive = new PageArchive( $this->mTargetObj );
@@ -1166,7 +1166,7 @@ class SpecialUndelete extends SpecialPage {
 	private function formatRevisionRow( $row, $earliestLiveTime, $remaining ) {
 		$rev = Revision::newFromArchiveRow( $row,
 			array( 'page' => $this->mTargetObj->getArticleID() ) );
-		$stxt = '';
+		$revTextSize = '';
 		$ts = wfTimestamp( TS_MW, $row->ar_timestamp );
 		// Build checkboxen...
 		if( $this->mAllowed ) {
@@ -1215,13 +1215,15 @@ class SpecialUndelete extends SpecialPage {
 		// Revision text size
 		$size = $row->ar_len;
 		if( !is_null( $size ) ) {
-			$stxt = Linker::formatRevisionSize( $size );
+			$revTextSize = Linker::formatRevisionSize( $size );
 		}
 		// Edit summary
 		$comment = Linker::revComment( $rev );
 		// Revision delete links
 		$revdlink = Linker::getRevDeleteLink( $user, $rev, $this->mTargetObj );
-		return "<li>$checkBox $revdlink ($last) $pageLink . . $userLink $stxt $comment</li>";
+
+		$revisionRow = $this->msg( 'undelete-revisionrow' )->rawParams( $checkBox, $revdlink, $last, $pageLink , $userLink, $revTextSize, $comment )->escaped();
+		return "<li>$revisionRow</li>";
 	}
 
 	private function formatFileRow( $row ) {

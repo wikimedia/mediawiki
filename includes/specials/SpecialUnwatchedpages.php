@@ -68,13 +68,15 @@ class UnwatchedpagesPage extends QueryPage {
 	function formatResult( $skin, $result ) {
 		global $wgContLang;
 
-		$nt = Title::makeTitle( $result->namespace, $result->title );
+		$nt = Title::makeTitleSafe( $result->namespace, $result->title );
+		if ( !$nt ) {
+			return Html::element( 'span', array( 'class' => 'mw-invalidtitle' ),
+				Linker::getInvalidTitleDescription( $this->getContext(), $result->namespace, $result->title ) );
+		}
+
 		$text = $wgContLang->convert( $nt->getPrefixedText() );
 
-		$plink = Linker::linkKnown(
-			$nt,
-			htmlspecialchars( $text )
-		);
+		$plink = Linker::linkKnown( $nt, htmlspecialchars( $text ) );
 		$token = WatchAction::getWatchToken( $nt, $this->getUser() );
 		$wlink = Linker::linkKnown(
 			$nt,

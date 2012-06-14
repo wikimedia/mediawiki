@@ -56,6 +56,11 @@ abstract class ApiBase extends ContextSource {
 	/// @since 1.17
 	const PARAM_RANGE_ENFORCE = 9; // Boolean, if MIN/MAX are set, enforce (die) these? Only applies if TYPE='integer' Use with extreme caution
 
+	const PROP_ROOT = 'ROOT'; // Name of property group that is on the root element of the result, i.e. not part of a list
+	const PROP_LIST = 'LIST'; // Boolean, is the result multiple items? Defaults to true for query modules, to false for other modules
+	const PROP_TYPE = 0; // Type of the property, uses same format as PARAM_TYPE
+	const PROP_NULLABLE = 1; // Boolean, can the property be not included in the result? Defaults to false
+
 	const LIMIT_BIG1 = 500; // Fast query, std user limit
 	const LIMIT_BIG2 = 5000; // Fast query, bot/sysop limit
 	const LIMIT_SML1 = 50; // Slow query, std user limit
@@ -573,6 +578,51 @@ abstract class ApiBase extends ContextSource {
 	}
 
 	/**
+	 * Returns possible properties in the result, grouped by the value of the prop parameter
+	 * that shows them.
+	 *
+	 * Properties that are shown always are in a group with empty string as a key.
+	 * Properties that can be shown by several values of prop are included multiple times.
+	 * If some properties are part of a list and some are on the root object (see ApiQueryQueryPage),
+	 * those on the root object are under the key PROP_ROOT.
+	 * The array can also contain a boolean under the key PROP_LIST,
+	 * indicating whether the result is a list.
+	 *
+	 * Don't call this functon directly: use getFinalResultProperties() to
+	 * allow hooks to modify descriptions as needed.
+	 *
+	 * @return array|bool False on no properties
+	 */
+	protected function getResultProperties() {
+		return false;
+	}
+
+	/**
+	 * Get final possible result properties, after hooks have had a chance to tweak it as
+	 * needed.
+	 *
+	 * @return array
+	 */
+	public function getFinalResultProperties() {
+		$properties = $this->getResultProperties();
+		wfRunHooks( 'APIGetResultProperties', array( $this, &$properties ) );
+		return $properties;
+	}
+
+	/**
+	 * Add token properties to the array used by getResultProperties,
+	 * based on a token functions mapping.
+	 */
+	protected static function addTokenProperties( &$props, $tokenFunctions ) {
+		foreach ( array_keys( $tokenFunctions ) as $token ) {
+			$props[''][$token . 'token'] = array(
+				ApiBase::PROP_TYPE => 'string',
+				ApiBase::PROP_NULLABLE => true
+			);
+		}
+	}
+
+	/**
 	 * Get final module description, after hooks have had a chance to tweak it as
 	 * needed.
 	 *
@@ -695,6 +745,53 @@ abstract class ApiBase extends ContextSource {
 
 		return array(
 			array( 'code' => "{$p}invalidparammix", 'info' => "The parameters {$p}{$params} can not be used together" )
+		);
+	}
+
+	/**
+	 * @param $params array
+	 * @param $load bool|string Whether load the object's state from the database:
+	 *        - false: don't load (if the pageid is given, it will still be loaded)
+	 *        - 'fromdb': load from a slave database
+	 *        - 'fromdbmaster': load from the master database
+	 * @return WikiPage
+	 */
+	public function getTitleOrPageId( $params, $load = false ) {
+		$this->requireOnlyOneParameter( $params, 'title', 'pageid' );
+
+		$pageObj = null;
+		if ( isset( $params['title'] ) ) {
+			$titleObj = Title::newFromText( $params['title'] );
+			if ( !$titleObj ) {
+				$this->dieUsageMsg( array( 'invalidtitle', $params['title'] ) );
+			}
+			$pageObj = WikiPage::factory( $titleObj );
+			if ( $load !== false ) {
+				$pageObj->loadPageData( $load );
+			}
+		} elseif ( isset( $params['pageid'] ) ) {
+			if ( $load === false ) {
+				$load = 'fromdb';
+			}
+			$pageObj = WikiPage::newFromID( $params['pageid'], $load );
+			if ( !$pageObj ) {
+				$this->dieUsageMsg( array( 'nosuchpageid', $params['pageid'] ) );
+			}
+		}
+
+		return $pageObj;
+	}
+
+	/**
+	 * @return array
+	 */
+	public function getTitleOrPageIdErrorMessage() {
+		return array_merge(
+			$this->getRequireOnlyOneParameterErrorMessages( array( 'title', 'pageid' ) ),
+			array(
+				array( 'invalidtitle', 'title' ),
+				array( 'nosuchpageid', 'pageid' ),
+			)
 		);
 	}
 
@@ -1215,7 +1312,6 @@ abstract class ApiBase extends ContextSource {
 		'noimageredirect-anon' => array( 'code' => 'noimageredirect-anon', 'info' => "Anonymous users can't create image redirects" ),
 		'noimageredirect-logged' => array( 'code' => 'noimageredirect', 'info' => "You don't have permission to create image redirects" ),
 		'spamdetected' => array( 'code' => 'spamdetected', 'info' => "Your edit was refused because it contained a spam fragment: \"\$1\"" ),
-		'filtered' => array( 'code' => 'filtered', 'info' => "The filter callback function refused your edit" ),
 		'contenttoobig' => array( 'code' => 'contenttoobig', 'info' => "The content you supplied exceeds the article size limit of \$1 kilobytes" ),
 		'noedit-anon' => array( 'code' => 'noedit-anon', 'info' => "Anonymous users can't edit pages" ),
 		'noedit' => array( 'code' => 'noedit', 'info' => "You don't have permission to edit pages" ),

@@ -640,6 +640,17 @@ Definition and unordered list using wiki syntax nested in unordered list using h
 
 !! end
 
+!! test
+Definition list with empty definition and following paragraph
+!! input
+; term:
+Paragraph text
+!! result
+<dl><dt> term</dt><dd>
+</dd></dl>
+<p>Paragraph text
+</p>
+!! end
 
 ###
 ### External links
@@ -2113,6 +2124,8 @@ Mixed list
 **#Number on level 3
 *#number level 2
 *Level 1
+*** Level 3
+#** Level 3, but ordered
 !! result
 <ul><li>Mixed list
 <ol><li> with numbers
@@ -2135,9 +2148,95 @@ Mixed list
 <ol><li>number level 2
 </li></ol>
 </li><li>Level 1
+<ul><li><ul><li> Level 3
+</li></ul>
+</li></ul>
+</li></ul>
+<ol><li><ul><li><ul><li> Level 3, but ordered
+</li></ul>
+</li></ul>
+</li></ol>
+
+!! end
+
+!! test
+Nested lists 1
+!! input
+*foo
+**bar
+!! result
+<ul><li>foo
+<ul><li>bar
+</li></ul>
 </li></ul>
 
 !! end
+
+!! test
+Nested lists 2
+!! input
+**foo
+*bar
+!! result
+<ul><li><ul><li>foo
+</li></ul>
+</li><li>bar
+</li></ul>
+
+!! end
+
+!! test
+Nested lists 3 (first element empty)
+!! input
+*
+**bar
+!! result
+<ul><li>
+<ul><li>bar
+</li></ul>
+</li></ul>
+
+!! end
+
+!! test
+Nested lists 4 (first element empty)
+!! input
+**
+*bar
+!! result
+<ul><li><ul><li>
+</li></ul>
+</li><li>bar
+</li></ul>
+
+!! end
+
+!! test
+Nested lists 5 (both elements empty)
+!! input
+**
+*
+!! result
+<ul><li><ul><li>
+</li></ul>
+</li><li>
+</li></ul>
+
+!! end
+
+!! test
+Nested lists 6 (both elements empty)
+!! input
+*
+**
+!! result
+<ul><li>
+<ul><li>
+</li></ul>
+</li></ul>
+
+!! end
+
 
 !! test
 List items are not parsed correctly following a <pre> block (bug 785)
@@ -2182,6 +2281,27 @@ List items from template
 </li></ul>
 
 !! end
+
+!! test
+List interrupted by empty line or heading
+!! input
+* foo
+
+** bar
+== A heading ==
+* Another list item
+!! result
+<ul><li> foo
+</li></ul>
+<ul><li><ul><li> bar
+</li></ul>
+</li></ul>
+<h2><span class="editsection">[<a href="/index.php?title=Parser_test&amp;action=edit&amp;section=1" title="Edit section: A heading">edit</a>]</span> <span class="mw-headline" id="A_heading"> A heading </span></h2>
+<ul><li> Another list item
+</li></ul>
+
+!!end
+
 
 ###
 ### Magic Words
@@ -6064,8 +6184,6 @@ Special page transclusion
 !! input
 {{Special:Prefixindex/Xyzzyx}}
 !! result
-<p><br />
-</p>
 <table border="0" id="mw-prefixindex-list-table"><tr><td><a href="/wiki/Xyzzyx" title="Xyzzyx">Xyzzyx</a></td></tr></table>
 
 !! end
@@ -6077,11 +6195,7 @@ Special page transclusion twice (bug 5021)
 {{Special:Prefixindex/Xyzzyx}}
 {{Special:Prefixindex/Xyzzyx}}
 !! result
-<p><br />
-</p>
 <table border="0" id="mw-prefixindex-list-table"><tr><td><a href="/wiki/Xyzzyx" title="Xyzzyx">Xyzzyx</a></td></tr></table>
-<p><br />
-</p>
 <table border="0" id="mw-prefixindex-list-table"><tr><td><a href="/wiki/Xyzzyx" title="Xyzzyx">Xyzzyx</a></td></tr></table>
 
 !! end
@@ -9345,6 +9459,26 @@ File:foobar.jpg|caption|alt=galleryalt|link=" onclick="alert('malicious javascri
 		</div></li>
 </ul>
 
+!! end
+
+!!test
+Language parser function
+!! input
+{{#language:ar}}
+!! result
+<p>العربية
+</p>
+!! end
+
+!!test
+Padleft and padright as substr
+!! input
+{{padleft:|3|abcde}}
+{{padright:|3|abcde}}
+!! result
+<p>abc
+abc
+</p>
 !! end
 
 TODO:

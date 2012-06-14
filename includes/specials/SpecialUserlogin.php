@@ -1261,6 +1261,10 @@ class LoginForm extends SpecialPage {
 	 * @return string
 	 */
 	function makeLanguageSelectorLink( $text, $lang ) {
+		if( $this->getLanguage()->getCode() == $lang ) {
+			// no link for currently used language
+			return htmlspecialchars( $text );
+		}
 		$attr = array( 'uselang' => $lang );
 		if( $this->mType == 'signup' ) {
 			$attr['type'] = 'signup';

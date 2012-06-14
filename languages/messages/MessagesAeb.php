@@ -7,6 +7,7 @@
  * @ingroup Language
  * @file
  *
+ * @author Abanima
  * @author Csisc
  */
 
@@ -376,7 +377,7 @@ $1',
 أو [{{fullurl:{{FULLPAGENAME}}|action=edit}} تعديل هذه الصفحة]</span>.',
 'noarticletext-nopermission' => 'لا يوجد حاليا أي نص في هذه الصفحة.يمكنك [[Special:Search/{{PAGENAME}}|البحث عن عنوان هذه الصفحة]] في الصفحات الأخرى,أو <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} بحث السجلات المتصلة]</span>.',
 'previewnote' => "'''تذكر أن هذه مجرد معاينة للصفحة؛''''
-لم تحفظ تغييراتك إلى الآن[[#editform|→ Continue editing]]",
+لم تحفظ تغييراتك إلى الآن",
 'editing' => 'تحرير $1',
 'editingsection' => 'تحرير $1 (قسم)',
 'templatesused' => '{{PLURAL:$1||القالب المستخدم|القالبان المستخدمان|القوالب المستخدمة}} في هذه الصفحة:',
@@ -431,11 +432,10 @@ $1',
 
 # Diffs
 'history-title' => 'تاريخ مراجعة "$1"',
-'difference' => '(الفرق بين المراجعتين)',
 'lineno' => 'سطر $1:',
 'compareselectedversions' => 'قارن بين النسختين المختارتين',
 'editundo' => 'تراجع',
-'diff-multi' => '({{PLURAL:$1||مراجعة واحدة متوسطة غير معروضة|مراجعتان متوسطتان غير معروضتان|$1 مراجعات متوسطة غير معروضة|$1 مراجعة متوسطة غير معروضة}} أجراها {{PLURAL:$2||مستخدم واحد|مستخدمان|$2 مستخدمين|$2 مستخدمًا|$2 مستخدم}}.)',
+'diff-multi' => '({{PLURAL:$1||مراجعة واحدة متوسطة غير معروضة أجراها|مراجعتان متوسطتان غير معروضتين أجراهما|$1 مراجعات متوسطة غير معروضة أجراها|$1 مراجعة متوسطة غير معروضة أجراها}} {{PLURAL:$2||مستخدم واحد|مستخدمان|$2 مستخدمين|$2 مستخدمًا|$2 مستخدم}}.)',
 
 # Search results
 'searchresults' => 'el resultats',
@@ -482,7 +482,7 @@ $1',
 'nchanges' => '{{PLURAL:$1|لا تغييرات|تغيير واحد|تغييران|$1 تغييرات|$1 تغييرا|$1 تغيير}}',
 'recentchanges' => 'أحدث التغييرات',
 'recentchanges-legend' => 'خيارات أحدث التغييرات',
-'recentchangestext' => 'تابع أحدث التغييرات للويكي عبر هذه التلقيمة.',
+'recentchanges-summary' => 'تابع أحدث التغييرات للويكي عبر هذه التلقيمة.',
 'recentchanges-feed-description' => 'تابع أحدث التغييرات للويكي عبر هذه التلقيمة.',
 'recentchanges-label-newpage' => 'أنشأ هذا التعديل صفحة جديدة',
 'recentchanges-label-minor' => 'هذا تعديل طفيف',

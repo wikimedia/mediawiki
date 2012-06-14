@@ -167,8 +167,8 @@ $magicWords = array(
 	'notoc'                   => array( '0', '__SENÍNDICE__', '__SEMTDC__', '__SEMSUMÁRIO__', '__NOTOC__' ),
 	'nogallery'               => array( '0', '__SENGALERÍA__', '__SEMGALERIA__', '__NOGALLERY__' ),
 	'forcetoc'                => array( '0', '__FORZAROÍNDICE__', '__FORCARTDC__', '__FORCARSUMARIO__', '__FORÇARTDC__', '__FORÇARSUMÁRIO__', '__FORCETOC__' ),
-	'toc'                     => array( '0', '__ÍNDICE__', '__TDC__', '__SUMÁRIO__', '__TOC__' ),
-	'noeditsection'           => array( '0', '__SECCIÓNSNONEDITABLES__', '__NÃOEDITARSEÇÃO__', '__SEMEDITARSEÇÃO__', '__NOEDITSECTION__' ),
+	'toc'                     => array( '0', '__ÍNDICE__', '__TDC__', '__SUMÁRIO__', '__SUMARIO__', '__TOC__' ),
+	'noeditsection'           => array( '0', '__SECCIÓNSNONEDITABLES__', '__NÃOEDITARSEÇÃO__', '__SEMEDITARSEÇÃO__', '__NAOEDITARSECAO__', '__SEMEDITARSECAO__', '__NOEDITSECTION__' ),
 	'noheader'                => array( '0', '___SENCABECEIRA__', '__SEMCABECALHO__', '__SEMCABEÇALHO__', '__SEMTITULO__', '__SEMTÍTULO__', '__NOHEADER__' ),
 	'currentmonth'            => array( '1', 'MESACTUAL', 'MESATUAL', 'MESATUAL2', 'CURRENTMONTH', 'CURRENTMONTH2' ),
 	'currentmonth1'           => array( '1', 'MESACTUAL1', 'MESATUAL1', 'CURRENTMONTH1' ),
@@ -212,6 +212,7 @@ $magicWords = array(
 	'language'                => array( '0', '#LINGUA:', '#IDIOMA:', '#LANGUAGE:' ),
 	'numberofadmins'          => array( '1', 'NÚMERODEADMINISTRADORES', 'NUMERODEADMINISTRADORES', 'NUMBEROFADMINS' ),
 	'special'                 => array( '0', 'especial', 'special' ),
+	'defaultsort'             => array( '1', 'ORDENAR:', 'ORDENACAOPADRAO', 'ORDENAÇÃOPADRÃO', 'ORDEMPADRAO', 'ORDEMPADRÃO', 'DEFAULTSORT:', 'DEFAULTSORTKEY:', 'DEFAULTCATEGORYSORT:' ),
 	'tag'                     => array( '0', 'etiqueta', 'tag' ),
 	'hiddencat'               => array( '1', '__CATEGORÍAOCULTA__', '__CATEGORIAOCULTA__', '__CATOCULTA__', '__HIDDENCAT__' ),
 	'pagesincategory'         => array( '1', 'PÁXINASNACATEGORÍA', 'PAGINASNACATEGORIA', 'PÁGINASNACATEGORIA', 'PAGINASNACAT', 'PÁGINASNACAT', 'PAGESINCATEGORY', 'PAGESINCAT' ),
@@ -612,6 +613,8 @@ O motivo achegado é ''$2''.",
 'filereadonlyerror' => 'Non se puido modificar o ficheiro "$1" porque o repositorio "$2" está en modo de só lectura.
 
 O administrador que bloqueou o repositorio achegou este motivo: "$3".',
+'invalidtitle-knownnamespace' => 'Título inválido co espazo de nomes "$2" e o texto "$3"',
+'invalidtitle-unknownnamespace' => 'Título inválido cun número de espazo de nomes, $1, descoñecido e o texto "$2"',
 
 # Virus scanner
 'virus-badscanner' => "Configuración errónea: escáner de virus descoñecido: ''$1''",
@@ -914,7 +917,8 @@ Velaquí está a última entrada do rexistro de bloqueos, por se quere consultal
 Lembre que as páxinas .css e .js personalizadas utilizan un título en minúsculas, como por exemplo {{ns:user}}:Foo/vector.css no canto de {{ns:user}}:Foo/Vector.css.",
 'updated' => '(Actualizado)',
 'note' => "'''Nota:'''",
-'previewnote' => "'''Lembre que esta é só unha vista previa e que aínda non gardou os seus cambios!''' [[#editform|→ Continuar editando]]",
+'previewnote' => "'''Lembre que esta é só unha vista previa e que aínda non gardou os seus cambios!'''",
+'continue-editing' => 'Continuar editando',
 'previewconflict' => 'Esta vista previa mostra o texto na área superior tal e como aparecerá se escolle gardar.',
 'session_fail_preview' => "'''O sistema non pode procesar a súa edición porque se perderon os datos de inicio da sesión.
 Por favor, inténteo de novo.
@@ -1010,8 +1014,14 @@ Algúns modelos non se incluirán.",
 Estes argumentos foron omitidos.",
 'post-expand-template-argument-category' => 'Páxinas que conteñen argumentos de modelo omitidos',
 'parser-template-loop-warning' => 'Detectouse un modelo en bucle: [[$1]]',
-'parser-template-recursion-depth-warning' => 'Excedeuse o límite da profundidade do recurso do modelo ($1)',
+'parser-template-recursion-depth-warning' => 'Excedeuse o límite de profundidade de recursión do modelo ($1)',
 'language-converter-depth-warning' => 'Excedeuse o límite de profundidade do convertedor de lingua ($1)',
+'node-count-exceeded-category' => 'Páxinas nas que se supera o número de nodos',
+'node-count-exceeded-warning' => 'Páxina que supera o número de nodos',
+'expansion-depth-exceeded-category' => 'Páxinas nas que se supera a profundidade de expansión',
+'expansion-depth-exceeded-warning' => 'Páxina que supera a profundidade de expansión',
+'parser-unstrip-loop-warning' => 'Detectouse un bucle inamovible',
+'parser-unstrip-recursion-limit' => 'Excedeuse o límite de recursión inamovible ($1)',
 
 # "Undo" feature
 'undo-success' => 'A edición pódese desfacer.
@@ -1156,7 +1166,7 @@ Por favor, comprobe os rexistros.',
 # Suppression log
 'suppressionlog' => 'Rexistro de supresións',
 'suppressionlogtext' => 'A continuación móstrase unha lista coas eliminacións e cos bloqueos recentes, que inclúen contido oculto dos administradores.
-Vexa a [[Special:BlockList|lista de enderezos IP bloqueados]] para comprobar as prohibicións e os bloqueos vixentes.',
+Olle a [[Special:BlockList|lista de bloqueos]] para comprobar os bloqueos vixentes.',
 
 # History merging
 'mergehistory' => 'Fusionar os historiais das páxinas',
@@ -1189,7 +1199,8 @@ Asegúrese de que esta modificación da páxina mantén a continuidade históric
 
 # Diffs
 'history-title' => 'Historial de revisións de "$1"',
-'difference' => '(Diferenzas entre revisións)',
+'difference-title' => 'Diferenzas entre revisións de "$1"',
+'difference-title-multipage' => 'Diferenzas entre as páxinas "$1" e "$2"',
 'difference-multipage' => '(Diferenzas entre páxinas)',
 'lineno' => 'Liña $1:',
 'compareselectedversions' => 'Comparar as versións seleccionadas',
@@ -1211,8 +1222,8 @@ Asegúrese de que esta modificación da páxina mantén a continuidade históric
 'notextmatches' => 'Non se atopou o texto en ningunha páxina',
 'prevn' => '{{PLURAL:$1|$1}} previas',
 'nextn' => '{{PLURAL:$1|$1}} seguintes',
-'prevn-title' => '$1 {{PLURAL:$1|resultado previo|resultados previos}}',
-'nextn-title' => '$1 {{PLURAL:$1|resultado seguinte|resultados seguintes}}',
+'prevn-title' => '{{PLURAL:$1|O resultado anterior|Os anteriores $1 resultados}}',
+'nextn-title' => '{{PLURAL:$1|O seguinte resultado|Os seguintes $1 resultados}}',
 'shown-title' => 'Mostrar $1 {{PLURAL:$1|resultado|resultados}} por páxina',
 'viewprevnext' => 'Ver as ($1 {{int:pipe-separator}} $2) ($3)',
 'searchmenu-legend' => 'Opcións de busca',
@@ -1287,6 +1298,7 @@ Note que os seus índices do contido de {{SITENAME}} poden estar desactualizados
 'prefs-beta' => 'Características en probas',
 'prefs-datetime' => 'Data e hora',
 'prefs-labs' => 'Características experimentais',
+'prefs-user-pages' => 'Páxinas de usuario',
 'prefs-personal' => 'Información do usuario',
 'prefs-rc' => 'Cambios recentes',
 'prefs-watchlist' => 'Lista de vixilancia',
@@ -1548,8 +1560,8 @@ Ha de ter menos {{PLURAL:$1|dun carácter|de $1 caracteres}}.',
 'nchanges' => '$1 {{PLURAL:$1|cambio|cambios}}',
 'recentchanges' => 'Cambios recentes',
 'recentchanges-legend' => 'Opcións dos cambios',
-'recentchangestext' => 'Nesta páxina pode seguir os cambios máis recentes no wiki.',
-'recentchanges-feed-description' => 'Nesta fonte de novas pode seguir os cambios máis recentes no wiki.',
+'recentchanges-summary' => 'Nesta páxina pode seguir as modificacións máis recentes feitas no wiki.',
+'recentchanges-feed-description' => 'Nesta fonte de novas pode seguir as modificacións máis recentes feitas no wiki.',
 'recentchanges-label-newpage' => 'Esta edición creou unha nova páxina',
 'recentchanges-label-minor' => 'Esta é unha edición pequena',
 'recentchanges-label-bot' => 'Esta edición foi realizada por un bot',
@@ -1760,14 +1772,15 @@ Se o problema persiste, póñase en contacto cun [[Special:ListUsers/sysop|admin
 'backend-fail-writetemp' => 'Non se puido escribir no ficheiro temporal.',
 'backend-fail-closetemp' => 'Non se puido pechar o ficheiro temporal.',
 'backend-fail-read' => 'Non se puido ler o ficheiro "$1".',
-'backend-fail-create' => 'Non se puido crear o ficheiro "$1".',
-'backend-fail-maxsize' => 'Non se puido crear o ficheiro "$1" porque {{PLURAL:$2|é de máis de $2 byte|supera os $2 bytes}}.',
+'backend-fail-create' => 'Non se puido escribir o ficheiro "$1".',
+'backend-fail-maxsize' => 'Non se puido escribir o ficheiro "$1" porque {{PLURAL:$2|é de máis de $2 byte|supera os $2 bytes}}.',
 'backend-fail-readonly' => 'Nestes intres, o sistema de almacenamento "$1" está en modo de só lectura. A razón dada é: "$2"',
 'backend-fail-synced' => 'O ficheiro "$1" está nun estado inconsistente dentro do sistema de almacenamento interno',
 'backend-fail-connect' => 'Non se puido conectar co sistema de almacenamento "$1".',
 'backend-fail-internal' => 'Houbo un erro descoñecido no sistema de almacenamento "$1".',
 'backend-fail-contenttype' => 'Non se puido determinar o tipo de contido do ficheiro a almacenar en "$1".',
 'backend-fail-batchsize' => 'O sistema de almacenamento recibiu un feixe de $1 {{PLURAL:$1|operación|operacións}} de ficheiro; o límite está en $2 {{PLURAL:$2|operación|operacións}}.',
+'backend-fail-usable' => 'Non se puido escribir o ficheiro "$1" debido a que os permisos son insuficientes ou faltan os directorios/contenedores.',
 
 # File journal errors
 'filejournal-fail-dbconnect' => 'Non se pode conectar coa base de datos do rexistro do sistema de almacenamento "$1".',
@@ -1926,7 +1939,7 @@ Poida que queira editar a descrición da [$2 páxina de descrición do ficheiro]
 'filedelete-otherreason' => 'Outro motivo:',
 'filedelete-reason-otherlist' => 'Outro motivo',
 'filedelete-reason-dropdown' => '*Motivos frecuentes para borrar
-** Violación dos dereitos de autor
+** Violación dos dereitos de autoría
 ** Ficheiro duplicado',
 'filedelete-edit-reasonlist' => 'Editar os motivos de borrado',
 'filedelete-maintenance' => 'Os borrados e restauracións de ficheiros están desactivados temporalmente durante o mantemento.',
@@ -2090,6 +2103,7 @@ Por favor, teña en conta que outras páxinas web poden ligar cara a un ficheiro
 Pode precisar máis a vista seleccionando o tipo de rexistro, o nome do usuario ou o título da páxina afectada.',
 'logempty' => 'Non se atopou ningún elemento relacionado no rexistro.',
 'log-title-wildcard' => 'Procurar os títulos que comecen con este texto',
+'showhideselectedlogentries' => 'Mostrar/agochar as entradas do rexistro seleccionadas',
 
 # Special:AllPages
 'allpages' => 'Todas as páxinas',
@@ -2314,8 +2328,8 @@ No $2 pode ver unha lista cos borrados máis recentes.',
 'deleteotherreason' => 'Outro motivo:',
 'deletereasonotherlist' => 'Outro motivo',
 'deletereason-dropdown' => '*Motivos frecuentes para borrar
-** Solicitado polo autor
-** Violación dos dereitos de autor
+** Solicitado pola persoa que o creou
+** Violación dos dereitos de autoría
 ** Vandalismo',
 'delete-edit-reasonlist' => 'Editar os motivos de borrado',
 'delete-toobig' => 'Esta páxina conta cun historial longo, de máis {{PLURAL:$1|dunha revisión|de $1 revisións}}.
@@ -2556,8 +2570,8 @@ Explique a razón específica do bloqueo (por exemplo, citando as páxinas concr
 'ipb-confirm' => 'Confirmar o bloqueo',
 'badipaddress' => 'O enderezo IP non é válido',
 'blockipsuccesssub' => 'Bloqueo exitoso',
-'blockipsuccesstext' => 'O enderezo IP [[Special:Contributions/$1|$1]] foi bloqueado.<br />
-Olle a [[Special:BlockList|lista de enderezos IP e usuarios bloqueados]] para revisalo.',
+'blockipsuccesstext' => '[[Special:Contributions/$1|$1]] foi {{GENDER:$1|bloqueado|bloqueada}}.<br />
+Olle a [[Special:BlockList|lista de bloqueos]] para revisalo.',
 'ipb-blockingself' => 'Está a piques de se bloquear! Está seguro de querer facelo?',
 'ipb-confirmhideuser' => 'Está a piques de bloquear un usuario coa opción "agochar o usuario" activada. Isto suprime o nome de usuario de todas as listas e entradas de rexistro. Está seguro de querer facelo?',
 'ipb-edit-dropdown' => 'Editar os motivos de bloqueo',
@@ -2610,7 +2624,7 @@ O motivo do bloqueo de $1 é: "$2"',
 'reblock-logentry' => 'cambiou as configuracións do bloqueo de "[[$1]]" cunha caducidade de $2 $3',
 'blocklogtext' => 'Este é o rexistro das accións de bloqueo e desbloqueo de usuarios.
 Non se listan os enderezos IP bloqueados automaticamente.
-Olle a [[Special:BlockList|lista de enderezos IP e usuarios bloqueados]] se quere comprobar a lista cos bloqueos vixentes.',
+Olle a [[Special:BlockList|lista de bloqueos]] para comprobar os bloqueos vixentes.',
 'unblocklogentry' => 'desbloqueou a "$1"',
 'block-log-flags-anononly' => 'só os usuarios anónimos',
 'block-log-flags-nocreate' => 'desactivada a creación de contas',
@@ -3720,6 +3734,11 @@ Debería recibir [{{SERVER}}{{SCRIPTPATH}}/COPYING unha copia da licenza públic
 'version-software' => 'Software instalado',
 'version-software-product' => 'Produto',
 'version-software-version' => 'Versión',
+'version-entrypoints' => 'Enderezos URL de punto de entrada',
+'version-entrypoints-header-entrypoint' => 'Punto de entrada',
+'version-entrypoints-header-url' => 'URL',
+'version-entrypoints-articlepath' => '[https://www.mediawiki.org/wiki/Manual:$wgArticlePath Ruta dos artigos]',
+'version-entrypoints-scriptpath' => '[https://www.mediawiki.org/wiki/Manual:$wgScriptPath Ruta das escrituras]',
 
 # Special:FilePath
 'filepath' => 'Ruta do ficheiro',

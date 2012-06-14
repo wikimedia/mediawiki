@@ -20,7 +20,7 @@ wfInstallerMain();
 function wfInstallerMain() {
 	global $wgRequest, $wgLang, $wgMetaNamespace, $wgCanonicalNamespaceNames;
 
-	$installer = new WebInstaller( $wgRequest );
+	$installer = InstallerOverrides::getWebInstaller( $wgRequest );
 
 	if ( !$installer->startSession() ) {
 		$installer->finish();

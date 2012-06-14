@@ -27,7 +27,7 @@
  *
  * @ingroup SpecialPage
  */
-class DoubleRedirectsPage extends PageQueryPage {
+class DoubleRedirectsPage extends QueryPage {
 
 	function __construct( $name = 'DoubleRedirects' ) {
 		parent::__construct( $name );

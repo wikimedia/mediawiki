@@ -594,6 +594,9 @@ $2',
 'ns-specialprotected' => 'Posebne stranice se ne mogu uređivati.',
 'titleprotected' => 'Naslov stranice je zaštićen od postavljanja od strane korisnika [[User:$1|$1]].
 Kao razlog je naveden "\'\'$2\'\'".',
+'filereadonlyerror' => 'Ne mogu da izmenim datoteku „$1“ jer je riznica „$2“ u režimu za čitanje.
+
+Administrator koji ju je zaključao ponudio je sledeće objašnjenje: „$3“.',
 
 # Virus scanner
 'virus-badscanner' => "Loša konfiguracija: nepoznati anti-virus program: ''$1''",
@@ -688,6 +691,7 @@ Nijedan e-mail neće biti poslan za bilo koju uslugu od slijedećih.',
 'invalidemailaddress' => 'Ova e-mail adresa ne može biti prihvaćena jer je u neodgovarajućem obliku.
 Molimo vas da unesete ispravnu adresu ili ostavite prazno polje.',
 'cannotchangeemail' => 'Na ovom wikiju ne možete promeniti e-mail adresu računa.',
+'emaildisabled' => 'Ova web-stranica ne može da šalje e-poruke.',
 'accountcreated' => 'Korisnički račun je napravljen',
 'accountcreatedtext' => 'Korisnički račun za $1 je napravljen.',
 'createaccount-title' => 'Pravljenje korisničkog računa za {{SITENAME}}',
@@ -893,8 +897,9 @@ Posljednje stavke evidencije blokiranja možete pogledati ispod:',
 Ne zaboravite da imena stranica s .css i .js kodom počinju malim slovom, npr. {{ns:user}}:Foo/vector.css, a ne {{ns:user}}:Foo/Vector.css.",
 'updated' => '(Osvježeno)',
 'note' => "'''Napomena:'''",
-'previewnote' => "'''Upamtite da je ovo samo pretpregled.'''
-Vaše izmjene još uvijek nisu snimljene!",
+'previewnote' => "'''Ne zaboravite da je ovo samo pregled'''
+Izmjene stranice nisu još sačuvane!",
+'continue-editing' => 'Nastavak uređivanja',
 'previewconflict' => 'Ovaj pretpregled reflektuje tekst u gornjem polju
 kako će izgledati ako pritisnete "Snimi stranicu".',
 'session_fail_preview' => "'''Izvinjavamo se! Nismo mogli obraditi vašu izmjenu zbog gubitka podataka o prijavi. Molimo pokušajte ponovno. Ako i dalje ne bude radilo, pokušajte se [[Special:UserLogout|odjaviti]] i ponovno prijaviti.'''",
@@ -908,6 +913,7 @@ Izmjena je odbačena da bi se spriječilo uništavanje teksta stranice.
 To se događa ponekad kad korisite problematični anonimni proxy koji je baziran na web-u.",
 'edit_form_incomplete' => "'''Neki dijelovi uređivačkog obrasca nisu došli do servera; dvaput provjerite da su vaše izmjene nepromjenjene i pokušajte ponovno.'''",
 'editing' => 'Uređujete $1',
+'creating' => 'Stvaranje $1',
 'editingsection' => 'Uređujete $1 (sekciju)',
 'editingcomment' => 'Uređujete $1 (nova sekcija)',
 'editconflict' => 'Sukobljenje izmjene: $1',
@@ -973,6 +979,7 @@ Izgleda da je obrisana.',
 'edit-no-change' => 'Vaša izmjena je ignorirana, jer nije bilo promjena teksta stranice.',
 'edit-already-exists' => 'Stranica nije mogla biti kreirana.
 Izgleda da već postoji.',
+'defaultmessagetext' => 'Uobičajeni tekst poruke',
 
 # Parser/template warnings
 'expensive-parserfunction-warning' => 'Upozorenje: Ova stranica sadrži previše poziva opterećujućih parserskih funkcija.
@@ -1133,7 +1140,8 @@ Molimo provjerite zapise.',
 
 # Suppression log
 'suppressionlog' => 'Registri sakrivanja',
-'suppressionlogtext' => 'Ispod je spisak brisanja i blokiranja koja su povezana sa sadržajem koji je sakriven od administratora. Vidi [[Special:IPBlockList|spisak IP blokiranja]] za pregled trenutno važećih blokada.',
+'suppressionlogtext' => 'Ispod je spisak brisanja i blokiranja koja su povezana sa sadržajem koji je sakriven od administratora. 
+Vidi [[Special:BlockList|spisak blokiranja]] za pregled trenutno važećih blokada.',
 
 # History merging
 'mergehistory' => 'Spoji historije stranice',
@@ -1167,7 +1175,6 @@ Korištenje navigacionih linkova će resetovati ovaj stupac.',
 
 # Diffs
 'history-title' => 'Historija izmjena stranice "$1"',
-'difference' => '(Razlika između revizija)',
 'difference-multipage' => '(Razlika između stranica)',
 'lineno' => 'Linija $1:',
 'compareselectedversions' => 'Uporedite označene verzije',
@@ -1529,7 +1536,7 @@ Ako izaberete da date ime, biće korišteno za pripisivanje Vašeg rada.',
 'nchanges' => '$1 {{PLURAL:$1|izmjena|izmjene|izmjena}}',
 'recentchanges' => 'Nedavne izmjene',
 'recentchanges-legend' => 'Postavke za Nedavne promjene',
-'recentchangestext' => 'Na ovoj stranici možete pratiti nedavne izmjene.',
+'recentchanges-summary' => 'Na ovoj stranici možete pratiti nedavne izmjene.',
 'recentchanges-feed-description' => 'Praćenje nedavnih izmjena na ovom wikiju u ovom feedu.',
 'recentchanges-label-newpage' => 'Ovom izmjenom je stvorena nova stranica',
 'recentchanges-label-minor' => 'Ovo je manja izmjena',
@@ -1559,6 +1566,7 @@ Ako izaberete da date ime, biće korišteno za pripisivanje Vašeg rada.',
 'newsectionsummary' => '/* $1 */ nova sekcija',
 'rc-enhanced-expand' => 'Pokaži detalje (neophodan JavaScript)',
 'rc-enhanced-hide' => 'Sakrij detalje',
+'rc-old-title' => 'prvobitno kreirano kao "$1"',
 
 # Recent changes linked
 'recentchangeslinked' => 'Srodne izmjene',
@@ -1727,6 +1735,7 @@ Ako se problem ne riješi, kontaktirajte [[Special:ListUsers/sysop|administrator
 'backend-fail-closetemp' => 'Ne mogu da zatvorim privremenu datoteku.',
 'backend-fail-read' => 'Ne mogu da pročitam datoteku $1.',
 'backend-fail-create' => 'Ne mogu da napravim datoteku $1.',
+'backend-fail-maxsize' => 'Ne mogu da napravim datoteku $1 jer je veća od {{PLURAL:$2|$2 bajta|$2 bajta|$2 bajtova}}.',
 'backend-fail-readonly' => 'Skladišna osnova „$1“ trenutno ne može da se zapisuje. Navedeni razlog glasi: „$2“',
 'backend-fail-synced' => 'Datoteka „$1“ je nedosledna između unutrašnjih skladišnih osnova',
 'backend-fail-connect' => 'Ne mogu da se povežem sa skladišnom osnovom „$1“.',
@@ -1853,6 +1862,10 @@ Slijedeći popis prikazuje {{PLURAL:$1|stranice koje|prvih $1 stranica koje}} vo
 Molimo pogledajte [$2 stranicu opisa datoteke] za ostale informacije.',
 'sharedupload-desc-here' => 'Ova datoteka je sa $1 i može se koristiti i na drugim projektima.
 Opis sa njene [$2 stranice opisa datoteke] je prikazan ispod.',
+'sharedupload-desc-edit' => 'Ova datoteka se nalazi na $1 i može da se koristi na drugim projektima.
+Njen opis možete da izmenite na [$2 odgovarajućoj stranici].',
+'sharedupload-desc-create' => 'Ova datoteka se nalazi na $1 i može da se koristi na drugim projektima.
+Njen opis možete da izmenite na [$2 odgovarajućoj stranici].',
 'filepage-nofile' => 'Ne postoji datoteka s ovim nazivom.',
 'filepage-nofile-link' => 'Ne postoji datoteka s ovim imenom, ali je možete [$1 postaviti].',
 'uploadnewversion-linktext' => 'Postavite novu verziju ove datoteke/fajla',
@@ -2066,6 +2079,7 @@ Možete specificirati prikaz izabiranjem specifičnog spiska, korisničkog imena
 'allpagesbadtitle' => 'Dati naziv stranice je nepravilan ili ima međujezički ili interwiki prefiks.
 Možda sadrži jedan ili više znakova koji se ne mogu koristiti u naslovima.',
 'allpages-bad-ns' => '{{SITENAME}} nema imenski prostor "$1".',
+'allpages-hide-redirects' => 'Sakrij preusmerenja',
 
 # Special:Categories
 'categories' => 'Kategorije',
@@ -2566,8 +2580,8 @@ Evidencija sakrivanja je prikazana ispod kao referenca:',
 'blocklogentry' => 'blokiran [[$1]] s rokom: $2 $3',
 'reblock-logentry' => 'promjena postavki blokiranja za [[$1]] sa vremenom isteka u $2 $3',
 'blocklogtext' => 'Ovo je historija akcija blokiranja i deblokiranja korisnika.
-Automatsko blokirane IP adrese nisu uspisane ovde.
-Pogledajte [[Special:BlockList|blokirane IP adrese]] za spisak trenutnih zabrana i blokiranja.',
+Automatski blokirane IP adrese nisu navedene ovdje.
+Pogledajte [[Special:BlockList|spisak blokiranja]] za spisak trenutnih zabrana i blokiranja.',
 'unblocklogentry' => 'deblokiran $1',
 'block-log-flags-anononly' => 'samo anonimni korisnici',
 'block-log-flags-nocreate' => 'pravljenje računa onemogućeno',
@@ -2831,7 +2845,7 @@ Molimo pokušajte ponovno.',
 
 # JavaScriptTest
 'javascripttest' => 'Javaskript test',
-'javascripttest-disabled' => 'Ova funkcija je onemogućena.',
+'javascripttest-disabled' => 'Ova funkcija je onemogućena na ovom wikiju.',
 'javascripttest-title' => 'Izvršavanje testova za $1',
 'javascripttest-pagetext-noframework' => 'Ova stranica je rezervisana za izvršavanje javaskript testova.',
 'javascripttest-pagetext-unknownframework' => 'Nepoznati radni okvir „$1“.',
@@ -3638,6 +3652,7 @@ Trebali biste dobiti [{{SERVER}}{{SCRIPTPATH}}/KOPIJU GNU opće javne licence] z
 'version-software' => 'Instalirani softver',
 'version-software-product' => 'Proizvod',
 'version-software-version' => 'Verzija',
+'version-entrypoints-header-url' => 'URL',
 
 # Special:FilePath
 'filepath' => 'Putanja datoteke',
@@ -3825,5 +3840,16 @@ U suprotnom, poslužite se jednostavnim obrascem ispod. Vaš komentar će stajat
 'api-error-unknownerror' => 'Nepoznata greška: "$1"',
 'api-error-uploaddisabled' => 'Postavljanje je onemogućeno na ovoj wiki.',
 'api-error-verification-error' => 'Ova datoteka je možda oštećenja ili ima pogrešan nastavak.',
+
+# Durations
+'duration-seconds' => '$1 {{PLURAL:$1|sekunda|sekunde}}',
+'duration-minutes' => '$1 {{PLURAL:$1|minuta|minuta}}',
+'duration-hours' => '$1 {{PLURAL:$1|sat|sati}}',
+'duration-days' => '$1 {{PLURAL:$1|dan|dana}}',
+'duration-weeks' => '$1 {{PLURAL:$1|sedmica|sedmica}}',
+'duration-years' => '$1 {{PLURAL:$1|godina|godina}}',
+'duration-decades' => '$1 {{PLURAL:$1|decenija|decenija}}',
+'duration-centuries' => '$1 {{PLURAL:$1|vijek|vijekova}}',
+'duration-millennia' => '$1 {{PLURAL:$1|milenijum|milenijuma}}',
 
 );

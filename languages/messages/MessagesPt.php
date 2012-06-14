@@ -1,5 +1,5 @@
 <?php
-/** Portuguese (Português)
+/** Portuguese (português)
  *
  * See MessagesQqq.php for message documentation incl. usage of parameters
  * To improve a translation please visit http://translatewiki.net
@@ -695,6 +695,11 @@ $2',
 'ns-specialprotected' => 'Não é possível editar páginas especiais',
 'titleprotected' => 'Este título foi protegido contra criação por [[User:$1|$1]].
 A justificação foi "\'\'$2\'\'".',
+'filereadonlyerror' => 'Não é possível modificar o ficheiro "$1" porque o repositório de ficheiros "$2" está em modo de leitura.
+
+O administrador que efetuou o bloqueio deu a seguinte explicação: "$3".',
+'invalidtitle-knownnamespace' => 'Título inválido com o espaço nominal "$2" e texto "$3"',
+'invalidtitle-unknownnamespace' => 'Título inválido com número de espaço nominal $1 desconhecido e texto "$2"',
 
 # Virus scanner
 'virus-badscanner' => "Má configuração: antivírus desconhecido: ''$1''",
@@ -788,6 +793,7 @@ Não serão enviados correios de nenhuma das seguintes funcionalidades.',
 'invalidemailaddress' => 'O endereço de correio electrónico não pode ser aceite porque parece ter um formato inválido.
 Introduza um endereço formatado correctamente ou deixe o campo vazio.',
 'cannotchangeemail' => 'A conta de e-mail não pode ser alterado nesta wiki.',
+'emaildisabled' => 'Este site não consegue enviar e-mails.',
 'accountcreated' => 'Conta criada',
 'accountcreatedtext' => 'A conta de utilizador para $1 foi criada.',
 'createaccount-title' => 'Criação de conta na {{SITENAME}}',
@@ -989,7 +995,8 @@ Este ainda não foi gravado!",
 'updated' => '(Actualizado)',
 'note' => "'''Nota:'''",
 'previewnote' => "'''Lembre-se que esta é apenas uma antevisão do resultado.'''
-As modificações ainda não foram gravadas! [[#editform|→ Continuar a editar]]",
+As modificações ainda não foram gravadas!",
+'continue-editing' => 'Continuar a editar',
 'previewconflict' => 'Esta antevisão do resultado apresenta o texto da caixa de edição acima tal como este aparecerá se escolher gravá-lo.',
 'session_fail_preview' => "'''Não foi possível processar a edição devido à perda dos dados da sua sessão.
 Tente novamente, por favor.
@@ -1005,6 +1012,7 @@ A edição foi rejeitada para evitar perdas no texto da página.
 Isso acontece ocasionalmente quando se usa um serviço de proxy anonimizador mal configurado.'''",
 'edit_form_incomplete' => "'''Algumas partes do formulário de edição não chegaram ao servidor; verifique que a sua edição continua intacta e tente novamente, por favor.'''",
 'editing' => 'A editar $1',
+'creating' => 'A criar $1',
 'editingsection' => 'A editar $1 (secção)',
 'editingcomment' => 'A editar $1 (nova secção)',
 'editconflict' => 'Conflito de edição: $1',
@@ -1072,6 +1080,7 @@ Ela parece ter sido eliminada.',
 'edit-no-change' => 'A sua edição foi ignorada, uma vez que o texto não sofreu alterações.',
 'edit-already-exists' => 'Não foi possível criar uma página nova.
 Ela já existia.',
+'defaultmessagetext' => 'Texto da mensagem padrão',
 
 # Parser/template warnings
 'expensive-parserfunction-warning' => 'Aviso: Esta página contém demasiadas chamadas de funções exigentes do analisador sintáctico.
@@ -1086,6 +1095,12 @@ Estes argumentos foram omitidos.',
 'parser-template-loop-warning' => 'Ciclo de predefinições detectado: [[$1]]',
 'parser-template-recursion-depth-warning' => 'Foi excedido o limite da profundidade de recursividade nas predefinições ($1)',
 'language-converter-depth-warning' => 'O limite de profundidade do conversor de línguas excedeu a ($1)',
+'node-count-exceeded-category' => 'Páginas em que o total de nós é excedido',
+'node-count-exceeded-warning' => 'A página excedeu o total de nós',
+'expansion-depth-exceeded-category' => 'Páginas em que a profundidade de expansão é excedida',
+'expansion-depth-exceeded-warning' => 'A página excedeu a profundidade de expansão',
+'parser-unstrip-loop-warning' => 'Detectado loop unstrip',
+'parser-unstrip-recursion-limit' => 'Limite de recursão do unstrip excedido ($1)',
 
 # "Undo" feature
 'undo-success' => 'É possível desfazer a edição.
@@ -1234,8 +1249,8 @@ Verifique os registos, por favor.',
 
 # Suppression log
 'suppressionlog' => 'Registo de supressões',
-'suppressionlogtext' => 'Abaixo está uma lista das eliminações e bloqueios envolvendo conteúdo ocultado a administradores.
-Veja a [[Special:BlockList|lista de bloqueios a IPs]] para uma lista de banimentos e bloqueios em efeito neste momento.',
+'suppressionlogtext' => 'Abaixo está uma lista das eliminações e bloqueios envolvendo conteúdo ocultado para administradores.
+Veja a [[Special:BlockList|lista de bloqueios]] para uma lista de banimentos e bloqueios em efeito neste momento.',
 
 # History merging
 'mergehistory' => 'Fundir histórico de páginas',
@@ -1270,7 +1285,6 @@ Note que, se usar os links de navegação, os botões de opção voltarão aos v
 
 # Diffs
 'history-title' => 'Histórico de edições de "$1"',
-'difference' => '(Diferença entre edições)',
 'difference-multipage' => '(Diferenças entre páginas)',
 'lineno' => 'Linha $1:',
 'compareselectedversions' => 'Comparar as versões seleccionadas',
@@ -1631,7 +1645,7 @@ Esta informação será pública.',
 'nchanges' => '$1 {{PLURAL:$1|alteração|alterações}}',
 'recentchanges' => 'Mudanças recentes',
 'recentchanges-legend' => 'Opções das mudanças recentes',
-'recentchangestext' => 'Acompanhe nesta página as mudanças mais recentes da wiki.',
+'recentchanges-summary' => 'Acompanhe nesta página as mudanças mais recentes da wiki.',
 'recentchanges-feed-description' => "Acompanhe neste ''feed'' as mudanças mais recentes da wiki.",
 'recentchanges-label-newpage' => 'Esta edição criou uma página nova',
 'recentchanges-label-minor' => 'Esta é uma edição menor',
@@ -1846,15 +1860,28 @@ Caso o problema persista, contacte um [[Special:ListUsers/sysop|administrador]].
 'backend-fail-closetemp' => 'Não foi possível fechar o arquivo temporário.',
 'backend-fail-read' => 'Não foi possível ler o arquivo $1.',
 'backend-fail-create' => 'Não foi possível criar o arquivo $1.',
+'backend-fail-maxsize' => 'Não foi possível criar o ficheiro  $1  porque ele é maior do que  {{PLURAL:$2| um byte| $2  bytes}}.',
 'backend-fail-readonly' => 'O servidor de armazenamento "$1" está actualmente no modo "somente leitura". A razão dada foi: "$2"',
+'backend-fail-synced' => 'O ficheiro" $1 " está em um estado inconsistente dentro da base de dados',
 'backend-fail-connect' => 'Não foi possível estabelecer ligação com o servidor de armazenamento "$1".',
 'backend-fail-internal' => 'Ocorreu um erro desconhecido no servidor de armazenamento "$1".',
 'backend-fail-contenttype' => 'Não foi possível determinar o tipo de conteúdo do ficheiro para armazenar em " $1 ".',
+'backend-fail-batchsize' => 'Foi fornecido um bloco de $1 {{PLURAL:$1|operação|operações}} sobre ficheiros ao servidor backend de armazenamento; o limite é de $2 {{PLURAL:$2|operação|operações}}.',
+
+# File journal errors
+'filejournal-fail-dbconnect' => 'Não foi possível ligar à base de dados de registos no "backend" de armazenamento "$1".',
+'filejournal-fail-dbquery' => 'Não foi possível atualizar a base de dados de registos do "backend" de armazenamento "$1".',
 
 # Lock manager
 'lockmanager-notlocked' => 'Não foi possível desbloquear " $1 "; não se encontra bloqueado.',
 'lockmanager-fail-closelock' => 'Não foi possível encerrar a referência de bloqueio para "$1".',
 'lockmanager-fail-deletelock' => 'Não foi possível eliminar a referência de bloqueio para "$1".',
+'lockmanager-fail-acquirelock' => 'Não foi possível adquirir bloqueio para "$1".',
+'lockmanager-fail-openlock' => 'Não foi possível abrir ficheiro de bloqueio para "$1".',
+'lockmanager-fail-releaselock' => 'Não foi possível libertar bloqueio para "$1".',
+'lockmanager-fail-db-bucket' => 'Não foi possível contactar bases de dados de bloqueio suficientes no "bucket" $1.',
+'lockmanager-fail-db-release' => 'Não foi possível libertar bloqueios na base de dados $1.',
+'lockmanager-fail-svr-release' => 'Não foi possível libertar bloqueios no servidor $1.',
 
 # ZipDirectoryReader
 'zip-file-open-error' => 'Foi encontrado um erro ao abrir o ficheiro ZIP para verificação.',
@@ -1872,6 +1899,7 @@ A sua segurança não pode ser devidamente verificada.',
 'uploadstash-badtoken' => 'Não foi possível executar essa operação, talvez porque as suas credenciais de edição expiraram. Tente novamente.',
 'uploadstash-errclear' => 'Não foi possível apagar os ficheiros.',
 'uploadstash-refresh' => 'Actualizar a lista de ficheiros',
+'invalid-chunk-offset' => 'Deslocamento de fragmento inválido',
 
 # img_auth script messages
 'img-auth-accessdenied' => 'Acesso negado',
@@ -1961,6 +1989,10 @@ Encontra-se disponível uma [[Special:WhatLinksHere/$2|lista completa]].',
 Consulte a [$2 página de descrição do ficheiro] para mais informações, por favor.',
 'sharedupload-desc-here' => 'Este ficheiro provém de $1 e pode ser usado por outros projectos.
 A descrição na [$2 página de descrição] é mostrada abaixo.',
+'sharedupload-desc-edit' => 'Este ficheiro provém de $1 e pode ser utilizado por outros projetos.
+Talvez você pretenda editar a descrição na sua [$2 página de descrição de ficheiro] lá.',
+'sharedupload-desc-create' => 'Este ficheiro provém de $1 e pode ser utilizado por outros projetos.
+Talvez você pretenda editar a descrição na sua [$2 página de descrição de ficheiro] lá.',
 'filepage-nofile' => 'Não existe nenhum ficheiro com este nome.',
 'filepage-nofile-link' => 'Não existe nenhum ficheiro com este nome, mas pode [$1 carregá-lo].',
 'uploadnewversion-linktext' => 'Carregar uma nova versão deste ficheiro',
@@ -2093,6 +2125,8 @@ Agora redirecciona para [[$2]].',
 'wantedpages' => 'Páginas desejadas',
 'wantedpages-badtitle' => 'Título inválido no conjunto de resultados: $1',
 'wantedfiles' => 'Ficheiros desejados',
+'wantedfiletext-cat' => 'Os seguintes ficheiros são usados, mas não existem. Ficheiros de repositórios externos podem ser listados apesar de existirem. Tais falsos positivos aparecerão <del>riscados</del>. Adicionalmente, páginas que incorporam ficheiros que não existem estão listadas em [[:$1]].',
+'wantedfiletext-nocat' => 'Os seguintes ficheiros são usados, mas não existem. Ficheiros de repositórios externos podem ser listados apesar de existirem. Tais falsos positivos aparecerão <del>riscados</del>.',
 'wantedtemplates' => 'Predefinições desejadas',
 'mostlinked' => 'Páginas com mais afluentes',
 'mostlinkedcategories' => 'Categorias com mais membros',
@@ -2170,6 +2204,12 @@ Pode reduzir a lista escolhendo um tipo de registo, um nome de utilizador ou um 
 'allpagesbadtitle' => 'O título de página fornecido era inválido ou tinha um prefixo interlínguas ou interwikis.
 Talvez contenha um ou mais caracteres que não podem ser usados nos títulos.',
 'allpages-bad-ns' => 'A {{SITENAME}} não possui o espaço nominal "$1".',
+'allpages-hide-redirects' => 'Ocultar redirecionamentos',
+
+# SpecialCachedPage
+'cachedspecial-viewing-cached-ttl' => 'Você está a visualizar uma versão desta página em cache que tem uma antiguidade máxima de $1.',
+'cachedspecial-viewing-cached-ts' => 'Você está a visualizar uma versão desta página em cache que pode não refletir totalmente a situação atual.',
+'cachedspecial-refresh-now' => 'Ver mais recente.',
 
 # Special:Categories
 'categories' => 'Categorias',
@@ -2611,8 +2651,8 @@ Isto só deve ser feito para prevenir vandalismo e de acordo com a [[{{MediaWiki
 'ipb-confirm' => 'Confirmar o bloqueio',
 'badipaddress' => 'Endereço IP inválido',
 'blockipsuccesssub' => 'Bloqueio bem sucedido',
-'blockipsuccesstext' => '[[Special:Contributions/$1|$1]] foi bloqueado.<br />
-Consulte a [[Special:BlockList|lista de IPs bloqueados]] para rever os bloqueios.',
+'blockipsuccesstext' => '[[Special:Contributions/$1|$1]] foi {{GENDER:$1|bloqueado|bloqueada}}.<br />
+Consulte a [[Special:BlockList|lista de bloqueios]] para rever os bloqueios.',
 'ipb-blockingself' => 'Está prestes a bloquear-se a si próprio. Tem a certeza de que pretende fazê-lo?',
 'ipb-confirmhideuser' => 'Está prestes a bloquear um utilizador com "Ocultar nome de utilizador/IP" activado. Isto irá suprimir o nome do utilizador de todas as listas e entradas dos registos. Tem a certeza de que pretende fazê-lo?',
 'ipb-edit-dropdown' => 'Editar motivos de bloqueio',
@@ -2632,7 +2672,7 @@ Consulte a [[Special:BlockList|lista de IPs bloqueados]] para rever os bloqueios
 'blocklist-userblocks' => 'Esconder bloqueios de contas',
 'blocklist-tempblocks' => 'Esconder bloqueios temporários',
 'blocklist-addressblocks' => 'Esconder bloqueios de IP único',
-'blocklist-rangeblocks' => 'Ocultar range blocks',
+'blocklist-rangeblocks' => 'Ocultar bloqueios de faixas',
 'blocklist-timestamp' => 'Data e hora',
 'blocklist-target' => 'Destinatário',
 'blocklist-expiry' => 'Duração',
@@ -2662,11 +2702,11 @@ Consulte a [[Special:BlockList|lista de IPs bloqueados]] para rever os bloqueios
 O registo de bloqueios é fornecido abaixo para referência:',
 'blocklog-showsuppresslog' => 'Este utilizador foi bloqueado e ocultado anteriomente.
 O registo de supressão é fornecido abaixo para referência:',
-'blocklogentry' => 'bloqueou "[[$1]]" $3. O bloqueio expira em $2.',
-'reblock-logentry' => 'modificou parâmetros de bloqueio de [[$1]] $3. O bloqueio expira em $2.',
-'blocklogtext' => 'Este é um registo de acções de bloqueio e desbloqueio.
-Endereços IP sujeitos a bloqueio automático não são listados.
-Consulte a [[Special:BlockList|lista de IPs bloqueados]] para obter a lista de bloqueios e banimentos actualmente válidos.',
+'blocklogentry' => 'bloqueou "[[$1]]" por $2. $3',
+'reblock-logentry' => 'modificou parâmetros de bloqueio de [[$1]] com expiração em $2. $3',
+'blocklogtext' => 'Este é um registo de ações de bloqueio e desbloqueio.
+Endereços IP sujeitos a bloqueio automático não estão listados.
+Consulte a [[Special:BlockList|lista de bloqueios]] para obter a lista de bloqueios e banimentos atualmente válidos.',
 'unblocklogentry' => 'desbloqueou $1',
 'block-log-flags-anononly' => 'apenas utilizadores anónimos',
 'block-log-flags-nocreate' => 'criação de contas impossibilitada',
@@ -2859,6 +2899,7 @@ Se deseja colaborar na localização genérica do MediaWiki, visite [//www.media
 'thumbnail_error' => 'Erro ao criar miniatura: $1',
 'djvu_page_error' => 'página DjVu inacessível',
 'djvu_no_xml' => 'Não foi possível aceder ao XML para o ficheiro DjVU',
+'thumbnail-temp-create' => 'Não foi possível criar ficheiro temporário de miniatura',
 'thumbnail-dest-create' => 'Não é possível salvar miniatura',
 'thumbnail_invalid_params' => 'Parâmetros de miniatura inválidos',
 'thumbnail_dest_directory' => 'Não foi possível criar o directório de destino',
@@ -2930,6 +2971,7 @@ Não há um directório temporário.',
 'javascripttest-pagetext-frameworks' => 'Escolha, por favor, uma das seguintes estruturas de teste: $1',
 'javascripttest-pagetext-skins' => 'Escolher um tema para executar os testes com:',
 'javascripttest-qunit-intro' => 'Consulte a [ $1 documentação de testes] no mediawiki.org.',
+'javascripttest-qunit-heading' => 'Pacote de ferramentas de teste de JavaScript QUnit do MediaWiki',
 
 # Tooltip help for the actions
 'tooltip-pt-userpage' => 'A sua página de utilizador',
@@ -3768,6 +3810,9 @@ Em conjunto com este programa deve ter recebido [{{SERVER}}{{SCRIPTPATH}}/COPYIN
 'version-software' => 'Software instalado',
 'version-software-product' => 'Produto',
 'version-software-version' => 'Versão',
+'version-entrypoints' => 'URLs de ponto de entrada',
+'version-entrypoints-header-entrypoint' => 'Ponto de entrada',
+'version-entrypoints-header-url' => 'URL',
 
 # Special:FilePath
 'filepath' => 'Endereço de ficheiro',
@@ -3902,6 +3947,8 @@ Imagens serão apresentadas pelo browser na resolução máxima; ficheiros de ou
 'newuserlog-byemail' => 'palavra-chave enviada por correio-electrónico',
 
 # Feedback
+'feedback-bugornote' => 'Se está pronto para descrever um problema técnico em detalhe, por favor, [$1 denuncie um defeito].
+Caso contrário, pode facilmente usar o formulário abaixo. O seu comentário será adicionado à página "[$3 $2]", junto com o seu nome de utilizador e o navegador que está a usar.',
 'feedback-subject' => 'Assunto:',
 'feedback-message' => 'Mensagem:',
 'feedback-cancel' => 'Cancelar',
@@ -3910,9 +3957,10 @@ Imagens serão apresentadas pelo browser na resolução máxima; ficheiros de ou
 'feedback-error1' => 'Erro: O resultado da API não foi reconhecido',
 'feedback-error2' => 'Erro: A edição falhou',
 'feedback-error3' => 'Erro: A API não responde',
+'feedback-thanks' => 'Obrigado! O seu comentário foi adicionado à página "[ $2  $1 ]".',
 'feedback-close' => 'Feito',
 'feedback-bugcheck' => 'Perfeito! Verifique apenas que não é já um dos [$1 defeitos conhecidos].',
-'feedback-bugnew' => 'Eu verifiquei. Reportar um novo bug.',
+'feedback-bugnew' => 'Eu verifiquei. Denunciar um novo defeito.',
 
 # API errors
 'api-error-badaccess-groups' => 'Não tem permissão para enviar ficheiros para esta wiki.',
@@ -3951,5 +3999,16 @@ Imagens serão apresentadas pelo browser na resolução máxima; ficheiros de ou
 'api-error-unknownerror' => 'Erro desconhecido: "$1".',
 'api-error-uploaddisabled' => 'Esta wiki não está configurada para poder receber ficheiros.',
 'api-error-verification-error' => 'Este ficheiro pode estar corrompido, ou ter a extensão errada.',
+
+# Durations
+'duration-seconds' => '$1 {{PLURAL:$1|segundo|segundos}}',
+'duration-minutes' => '$1 {{PLURAL:$1|minuto|minutos}}',
+'duration-hours' => '$1 {{PLURAL:$1|hora|horas}}',
+'duration-days' => '$1 {{PLURAL:$1|dia|dias}}',
+'duration-weeks' => '$1 {{PLURAL:$1|semana|semanas}}',
+'duration-years' => '$1 {{PLURAL:$1|ano|anos}}',
+'duration-decades' => '$1 {{PLURAL:$1|década|décadas}}',
+'duration-centuries' => '$1 {{PLURAL:$1|século|séculos}}',
+'duration-millennia' => '$1 {{PLURAL:$1|milénio|milénios}}',
 
 );

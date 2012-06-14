@@ -68,7 +68,7 @@ class LogPage {
 	}
 
 	/**
-	 * @return bool|int|null
+	 * @return int log_id of the inserted log entry
 	 */
 	protected function saveContent() {
 		global $wgLogRestrictions;
@@ -105,7 +105,7 @@ class LogPage {
 		} elseif( $this->sendToUDP ) {
 			# Don't send private logs to UDP
 			if( isset( $wgLogRestrictions[$this->type] ) && $wgLogRestrictions[$this->type] != '*' ) {
-				return true;
+				return $newId;
 			}
 
 			# Notify external application via UDP.
@@ -438,8 +438,7 @@ class LogPage {
 	 * @param $params Array: parameters passed later to wfMsg.* functions
 	 * @param $doer User object: the user doing the action
 	 *
-	 * @return bool|int|null
-	 * @TODO: make this use LogEntry::saveContent()
+	 * @return int log_id of the inserted log entry
 	 */
 	public function addEntry( $action, $target, $comment, $params = array(), $doer = null ) {
 		global $wgContLang;

@@ -1,10 +1,29 @@
 <?php
 /**
- * @defgroup Profiler Profiler
+ * Base class and functions for profiling.
+ *
+ * This program is free software; you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation; either version 2 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License along
+ * with this program; if not, write to the Free Software Foundation, Inc.,
+ * 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
+ * http://www.gnu.org/copyleft/gpl.html
  *
  * @file
  * @ingroup Profiler
  * This file is only included if profiling is enabled
+ */
+
+/**
+ * @defgroup Profiler Profiler
  */
 
 /**
@@ -93,6 +112,16 @@ class Profiler {
 	 */
 	public function isStub() {
 		return false;
+	}
+
+	/**
+	 * Return whether this profiler stores data
+	 *
+	 * @see Profiler::logData()
+	 * @return Boolean
+	 */
+	public function isPersistent() {
+		return true;
 	}
 
 	public function setProfileID( $id ) {
@@ -460,7 +489,7 @@ class Profiler {
 		}
 		wfProfileOut( '-overhead-total' );
 	}
-	
+
 	/**
 	 * Counts the number of profiled function calls sitting under
 	 * the given point in the call graph. Not the most efficient algo.
@@ -530,7 +559,7 @@ class Profiler {
 			$rc = $dbw->affectedRows();
 			if ( $rc == 0 ) {
 				$dbw->insert('profiling', array ('pf_name' => $name, 'pf_count' => $eventCount,
-					'pf_time' => $timeSum, 'pf_memory' => $memorySum, 'pf_server' => $pfhost ), 
+					'pf_time' => $timeSum, 'pf_memory' => $memorySum, 'pf_server' => $pfhost ),
 					__METHOD__, array ('IGNORE'));
 			}
 			// When we upgrade to mysql 4.1, the insert+update

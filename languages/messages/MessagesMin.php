@@ -771,7 +771,6 @@ Legend: '''({{int:kini}})''' = perbedaan jo revisi terakhir, '''({{int:dulu}})''
 
 # Diffs
 'history-title' => 'Riwayat revisi dari "$1"',
-'difference' => '(Parbedaan antaro revisi)',
 'lineno' => 'Barih $1:',
 'compareselectedversions' => 'Bandingkan revisi pilihan',
 'editundo' => 'batalkan',
@@ -851,7 +850,7 @@ Alamaik surek elektronik awak ang tu indak kan katahuan dek urang lain nan mangh
 'nchanges' => '$1 {{PLURAL:$1|parubahan|parubahan}}',
 'recentchanges' => 'Parubahan baru',
 'recentchanges-legend' => 'Pilihan parubahan baru',
-'recentchangestext' => 'Manjajak parubahan terbaru dalam wiki di laman ko.',
+'recentchanges-summary' => 'Manjajak parubahan terbaru dalam wiki di laman ko.',
 'recentchanges-feed-description' => 'Temukan parubahan baru dalam umpan wiki ko',
 'recentchanges-label-newpage' => 'Suntiang ko mambuek laman baru',
 'recentchanges-label-minor' => 'Iko di suntiang saketek',

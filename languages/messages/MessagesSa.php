@@ -19,6 +19,7 @@
  * @author Mahitgar
  * @author Naveen Sankar
  * @author Omnipaedista
+ * @author Shantanoo
  * @author Shijualex
  * @author Shubha
  * @author Vibhijain
@@ -536,7 +537,7 @@ $1',
 'versionrequiredtext' => 'एतत्पृष्ठं प्रयोक्तुं मीडियाविकि इत्येतस्य $1तमा आवृत्तिः आवश्यकी। पश्यतु [[Special:Version|आवृत्ति-सूचिका]]',
 
 'ok' => 'अस्तु',
-'pagetitle' => '',
+'pagetitle' => '$1 - {{SITENAME}}',
 'retrievedfrom' => '"$1" इत्यस्माद् उद्धृतम्',
 'youhavenewmessages' => 'भवदर्थम् $1 सन्ति। ($2).',
 'newmessageslink' => 'नूतनाः सन्देशाः',
@@ -1059,7 +1060,6 @@ $2
 
 # Diffs
 'history-title' => '"$1" इत्येतस्य आवर्तनेतिहासः :',
-'difference' => '(संस्करणानां भेदाः)',
 'lineno' => 'पंक्तिः $1:',
 'compareselectedversions' => 'चितानाम् आवृत्तीनां तोलनं क्रियताम्',
 'editundo' => 'निष्क्रियताम्',
@@ -1073,7 +1073,7 @@ $2
 'notitlematches' => 'न कस्यापि पृष्ठस्य शीर्षकम् अस्य समम्।',
 'notextmatches' => 'न कस्यापि पृष्ठस्य पाठः अस्य सममस्ति',
 'prevn' => 'प्राक्तनानि {{PLURAL:$1|$1}}',
-'nextn' => 'अग्रिमाणि{{PLURAL:$1|$1}}',
+'nextn' => 'अग्रिमाणि {{PLURAL:$1|$1}}',
 'prevn-title' => 'प्राक्तन-{{PLURAL:$1|फलितम्| फलितानि}}',
 'nextn-title' => 'प्राक्तन-{{PLURAL:$1|फलितम्| फलितानि}}',
 'shown-title' => 'प्रत्येकस्मिन् पृष्ठे $1 {{PLURAL:$1|फलितम्|फलितानि}} दर्श्यताम्',
@@ -1219,7 +1219,7 @@ $2
 'nchanges' => '$1 {{PLURAL:$1|परिवर्तनम्|परिवर्तनानि}}',
 'recentchanges' => 'सद्योजातानि परिवर्तनानि',
 'recentchanges-legend' => 'सद्योजातानां परिवर्तनानां विकल्पाः',
-'recentchangestext' => 'अस्मिन् विकियोजनायां सद्योजातानि परिवर्तनानि दर्श्यन्ताम्',
+'recentchanges-summary' => 'अस्मिन् विकियोजनायां सद्योजातानि परिवर्तनानि दर्श्यन्ताम्',
 'recentchanges-feed-description' => 'अस्मिन् विकियोजनायां सद्योजातानि परिवर्तनानि दर्श्यन्ताम्',
 'recentchanges-label-newpage' => 'एतस्मात् सम्पादनात् नूतनं पृष्ठं सृष्टमस्ति',
 'recentchanges-label-minor' => 'इदं लघु परिवर्तनम्',

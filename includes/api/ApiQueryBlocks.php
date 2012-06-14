@@ -103,10 +103,15 @@ class ApiQueryBlocks extends ApiQueryBase {
 			}
 			$prefix = substr( $lower, 0, 4 );
 
+			# Fairly hard to make a malicious SQL statement out of hex characters,
+			# but it is good practice to add quotes
+			$lower = $db->addQuotes( $lower );
+			$upper = $db->addQuotes( $upper );
+
 			$this->addWhere( array(
 				'ipb_range_start' . $db->buildLike( $prefix, $db->anyString() ),
-				"ipb_range_start <= '$lower'",
-				"ipb_range_end >= '$upper'",
+				'ipb_range_start <= ' . $lower,
+				'ipb_range_end >= ' . $upper,
 				'ipb_auto' => 0
 			) );
 		}
@@ -316,6 +321,60 @@ class ApiQueryBlocks extends ApiQueryBase {
 				'Show only items that meet this criteria.',
 				"For example, to see only indefinite blocks on IPs, set {$p}show=ip|!temp"
 			),
+		);
+	}
+
+	public function getResultProperties() {
+		return array(
+			'id' => array(
+				'id' => 'integer'
+			),
+			'user' => array(
+				'user' => array(
+					ApiBase::PROP_TYPE => 'string',
+					ApiBase::PROP_NULLABLE => true
+				)
+			),
+			'userid' => array(
+				'userid' => array(
+					ApiBase::PROP_TYPE => 'integer',
+					ApiBase::PROP_NULLABLE => true
+				)
+			),
+			'by' => array(
+				'by' => 'string'
+			),
+			'byid' => array(
+				'byid' => 'integer'
+			),
+			'timestamp' => array(
+				'timestamp' => 'timestamp'
+			),
+			'expiry' => array(
+				'expiry' => 'timestamp'
+			),
+			'reason' => array(
+				'reason' => 'string'
+			),
+			'range' => array(
+				'rangestart' => array(
+					ApiBase::PROP_TYPE => 'string',
+					ApiBase::PROP_NULLABLE => true
+				),
+				'rangeend' => array(
+					ApiBase::PROP_TYPE => 'string',
+					ApiBase::PROP_NULLABLE => true
+				)
+			),
+			'flags' => array(
+				'automatic' => 'boolean',
+				'anononly' => 'boolean',
+				'nocreate' => 'boolean',
+				'autoblock' => 'boolean',
+				'noemail' => 'boolean',
+				'hidden' => 'boolean',
+				'allowusertalk' => 'boolean'
+			)
 		);
 	}
 

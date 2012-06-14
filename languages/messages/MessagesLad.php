@@ -68,6 +68,9 @@ $namespaceAliases = array(
 	'Diskussión_de_Kateggoría' => NS_CATEGORY_TALK,
 );
 
+// Remove Spanish gender aliases (bug 37090)
+$namespaceGenderAliases = array();
+
 $specialPageAliases = array(
 	'Activeusers'               => array( 'UsadoresAktivos' ),
 	'Allmessages'               => array( 'TodosLosMessajes' ),
@@ -169,7 +172,7 @@ $specialPageAliases = array(
 
 $magicWords = array(
 	'redirect'                => array( '0', '#DIRIJAR', '#DIRECCIÓN', '#REDIRECCIÓN', '#REDIRECCION', '#REDIRECT' ),
-	'fullpagename'            => array( '1', 'NOMBREDEHOJACOMPLETA', 'NOMBREDEPÁGINACOMPLETA', 'NOMBREDEPAGINACOMPLETA', 'NOMBREDEPÁGINAENTERA', 'NOMBREDEPAGINAENTERA', 'FULLPAGENAME' ),
+	'fullpagename'            => array( '1', 'NOMBREDEHOJACOMPLETA', 'NOMBREDEPÁGINACOMPLETA', 'NOMBREDEPAGINACOMPLETA', 'NOMBREDEPÁGINAENTERA', 'NOMBREDEPAGINAENTERA', 'NOMBRECOMPLETODEPÁGINA', 'NOMBRECOMPLETODEPAGINA', 'FULLPAGENAME' ),
 	'subpagename'             => array( '1', 'NOMBREDEHOJICA', 'NOMBREDESUBPAGINA', 'NOMBREDESUBPÁGINA', 'SUBPAGENAME' ),
 	'msg'                     => array( '0', 'MSJ:', 'MSG:' ),
 	'img_left'                => array( '1', 'cierda', 'izquierda', 'izda', 'izq', 'left' ),
@@ -633,7 +636,6 @@ Leyenda: (act) = diferencias con la versión actual,
 
 # Diffs
 'history-title' => 'Istoria de revisiones para «$1»',
-'difference' => '(Diferencias entre rêvisiones)',
 'lineno' => 'Shurá $1:',
 'compareselectedversions' => 'Comparar versiones escogidas',
 'editundo' => 'deshaze',
@@ -741,7 +743,7 @@ Las búsquedas producen más o munco a buscar biervos comunes como «la» o «de
 'nchanges' => '$1 {{PLURAL:$1|trocamiento|trocamientos}}',
 'recentchanges' => 'Trocamientos freskos',
 'recentchanges-legend' => 'Opciones encima de los trocamientos frescos',
-'recentchangestext' => 'Perseguid en esta hoja, los trocamientos de alcabo realizados en la Viki.',
+'recentchanges-summary' => 'Perseguid en esta hoja, los trocamientos de alcabo realizados en la Viki.',
 'recentchanges-feed-description' => 'Perseguir los trocamientos más nuevos en el viki en este feed.',
 'recentchanges-label-minor' => 'Esta es un trocamiento chiquitico',
 'rcnote' => "Debaxo {{PLURAL:$1|ay '''1''' trocamiento realizado|están los dal cabo '''$1''' trocamientos realizados}} en  {{PLURAL:$2|el dal cabo día|los dal cabo '''$2''' días}}, hasta el $4, $5.",

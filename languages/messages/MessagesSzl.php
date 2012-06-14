@@ -25,6 +25,44 @@
 
 $fallback = 'pl';
 
+$namespaceNames = array(
+	NS_SPECIAL        => 'Szpecyjalna',
+	NS_TALK           => 'Dyskusyjo',
+	NS_USER           => 'Używacz',
+	NS_USER_TALK      => 'Dyskusyjo_używacza',
+	NS_PROJECT_TALK   => 'Dyskusyjo_$1',
+	NS_FILE           => 'Plik',
+	NS_FILE_TALK      => 'Dyskusyjo_plika',
+	NS_MEDIAWIKI      => 'MediaWiki',
+	NS_MEDIAWIKI_TALK => 'Dyskusyjo_MediaWiki',
+	NS_TEMPLATE       => 'Muster',
+	NS_TEMPLATE_TALK  => 'Dyskusyjo_mustra',
+	NS_HELP           => 'Půmoc',
+	NS_HELP_TALK      => 'Dyskusyjo_půmocy',
+	NS_CATEGORY       => 'Kategoryjo',
+	NS_CATEGORY_TALK  => 'Dyskusyjo_kategoryji',
+);
+
+$namespaceAliases = array(
+	// Aliases for Polish namespaces (bug 34988).
+	'Specjalna'            => NS_SPECIAL,
+	'Dyskusja'             => NS_TALK,
+	'Użytkownik'           => NS_USER,
+	'Dyskusja_użytkownika' => NS_USER_TALK,
+	'Dyskusja_$1'          => NS_PROJECT_TALK,
+	'Dyskusja_pliku'       => NS_FILE_TALK,
+	'Dyskusja_MediaWiki'   => NS_MEDIAWIKI_TALK,
+	'Szablon'              => NS_TEMPLATE,
+	'Dyskusja_szablonu'    => NS_TEMPLATE_TALK,
+	'Pomoc'                => NS_HELP,
+	'Dyskusja_pomocy'      => NS_HELP_TALK,
+	'Kategoria'            => NS_CATEGORY,
+	'Dyskusja_kategorii'   => NS_CATEGORY_TALK,
+);
+
+// Remove Polish gender aliases
+$namespaceGenderAliases = array();
+
 $messages = array(
 # User preference toggles
 'tog-underline' => 'Podsztrychńyńcy linkůw:',
@@ -411,7 +449,7 @@ Dej pozůr, co na ńykerych zajtach přeglůndarka može dali pokozywać co jež
 'welcomecreation' => '== Witej, $1! ==
 Uotwarli my sam lo Ćebje kůnto.
 Ńy zapomńij poštalować [[Special:Preferences|preferencyji lo {{GRAMMAR:D.lp|{{SITENAME}}}}]].',
-'yourname' => 'Mjano užytkowńika:',
+'yourname' => 'Mjano użytkowńika:',
 'yourpassword' => 'Hasuo:',
 'yourpasswordagain' => 'Naszkryflej ausdruk zaś',
 'remembermypassword' => 'Pamjyntej můj ausdruk na tym kůmputrze (nojdalij bez $1 {{PLURAL:$1|dźyń|dńůw}})',
@@ -420,14 +458,14 @@ Uotwarli my sam lo Ćebje kůnto.
 'externaldberror' => 'Je jaki feler we zewnyntřnyj baźe autentyfikacyjnyj, abo ńy moš uprawńyń potřebnych do aktualizacyji zewnyntřnego kůnta.',
 'login' => 'Zaloguj śe',
 'nav-login-createaccount' => 'Logowańy / tworzińy kůnta',
-'loginprompt' => 'Muśiš mjeć zouůnčůne cookies coby můc śe sam zalůgować.',
-'userlogin' => 'Lůgowańy / Twořyńy kůnta',
+'loginprompt' => 'Muśisz mjeć zołůnczůne cookies coby můc śe sam zalůgować.',
+'userlogin' => 'Lůgowańy / Tworzyńy kůnta',
 'userloginnocreate' => 'Zalůguj śe',
 'logout' => 'Wyloguj',
 'userlogout' => 'Uodloguj śe',
 'notloggedin' => 'Ńy ježeś zalůgowany',
 'nologin' => "Ńy moš kůnta? '''$1'''.",
-'nologinlink' => 'Twůř kůnto',
+'nologinlink' => 'Twůrz kůnto',
 'createaccount' => 'Zouůž nowe kůnto',
 'gotaccount' => "Mosz już kůnto? '''$1'''.",
 'gotaccountlink' => 'Naloguj śe',
@@ -438,16 +476,16 @@ Uotwarli my sam lo Ćebje kůnto.
 'userexists' => 'Mjano użytkowńika, kere żeś wybroł, je zajynte. Wybjer, prosza, inksze mjano.',
 'loginerror' => 'Feler při logůwańu',
 'createaccounterror' => 'Ńy możno stworzić konta $1',
-'nocookiesnew' => 'Kůnto užytkowńika zostouo utwořůne, nale ńy ježeś zalůgowany. {{SITENAME}} užywo ćosteček do logůwańo. Moš wyuůnčone ćostečka. Coby śe zalůgować, uodymknij ćostečka a podej mjano a hasuo swojigo kůnta.',
+'nocookiesnew' => 'Kůnto użytkowńika zostoło utworzůne, nale ńy jeżeś zalůgowany. {{SITENAME}} używo ćosteczek do logůwańo. Mosz wyłůnczone ćosteczka. Coby śe zalůgować, uodymknij ćosteczka a podej mjano a hasło swojigo kůnta.',
 'nocookieslogin' => '{{SITENAME}} užywo ćosteček do lůgowańo užytkowńikůw. Moš zablokowano jejich uobsuůga. Sprůbuj zaś jak zauůnčyš uobsuůga ćosteček.',
 'nocookiesfornew' => 'Konto sprowjorza ńy uostoło stworzone. Sprawdź, cze mosz uodymkńynto obsługe cookies.',
-'noname' => 'To ńy je půprowne mjano užytkowńika.',
+'noname' => 'To ńy je půprowne mjano użytkowńika.',
 'loginsuccesstitle' => 'Lůgowańy udane',
 'loginsuccess' => "'''Terozki ježeś zalůgowany do {{SITENAME}} jako \"\$1\".'''",
 'nosuchuser' => 'Ńy ma sam użytkowńika uo mjańe "$1".
 Sprowdź szrajbůng, abo [[Special:UserLogin/signup|utwůrz nowe kůnto]].',
 'nosuchusershort' => 'Ńy mo sam užytkowńika uo mjańe "$1".',
-'nouserspecified' => 'Podej mjano užytkowńika.',
+'nouserspecified' => 'Podej mjano użytkowńika.',
 'login-userblocked' => 'Tyn sprowjorz ma zawrzite sprowjyńa. Ńy możno sie zalgować.',
 'wrongpassword' => 'Hasuo kere žeś naškryflou je felerne. Poprůbůj naškryflać je ješče roz.',
 'wrongpasswordempty' => 'Hasuo kere žeś podou je puste. Naškryflej je ješče roz.',
@@ -648,7 +686,7 @@ abo <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}
 'userinvalidcssjstitle' => "'''Pozůr:''' Ńy mo skůrki uo mjańe \"\$1\". Pamjyntej, aže zajty užytkowńika zawjyrajůnce CSS i JavaScript powinny začynać śe mouům buchštabům, np. {{ns:user}}:Foo/vector.css.",
 'updated' => '(Pomjyńano)',
 'note' => "'''Pozůr:'''",
-'previewnote' => "'''To je ino podglůnd - artikel ješče ńy je naškryflany!'''",
+'previewnote' => "'''To je ino podglůnd - artikel jeszcze ńy je spamjyntany!'''",
 'previewconflict' => 'Wersyjo podglůndano uodnośi śe do tekstu s pola edycyje na wjyrchu. Tak bydźe wyglůndać zajta jeli zdecyduješ śe jům naškryflać.',
 'session_fail_preview' => "'''Přeprašomy! Serwer ńy može přetwořyć tygo sprowjyńo skuli utraty danych ze sesyji. Sprůbuj ješče roz. Kejby to ńy pomoguo - wylůguj śe i zalogůj uod nowa.'''",
 'session_fail_preview_html' => "'''Přeprašomy! Serwer ńy može přetwořyć tygo sprowjyńo skuli utraty danych ze sesyji.'''
@@ -733,7 +771,7 @@ Powinno być myńi jak $2 {{PLURAL:$2|wywouańy|wywouańo|wywouań}}, a terozki 
 
 # Account creation failure
 'cantcreateaccounttitle' => 'Ńy idźe utwořić kůnta',
-'cantcreateaccount-text' => "Twořyńy kůnta s tygo adresu IP ('''$1''') zostouo zawarte bez užytkowńika [[User:$3|$3]].
+'cantcreateaccount-text' => "Tworzyńy kůnta s tygo adresu IP ('''$1''') zostoło zawarte bez użytkowńika [[User:$3|$3]].
 
 Skuli: ''$2''",
 
@@ -792,7 +830,7 @@ Inkśi admińistratorzi {{GRAMMAR:D.lp|{{SITENAME}}}} dali bydům mjeć dostymp 
 'revdelete-hide-image' => 'Schrůń zawartość plika',
 'revdelete-hide-name' => 'Schrůń akcyjo a cyl',
 'revdelete-hide-comment' => 'Schrůń kůmyntoř sprowjyńo',
-'revdelete-hide-user' => 'Schrůń mjano užytkowńika/adres IP',
+'revdelete-hide-user' => 'Schrůń mjano użytkowńika/adres IP',
 'revdelete-hide-restricted' => 'Schrůń informacyje zarůwno przed admińistratorůma jak i przed inkszymi',
 'revdelete-radio-same' => '(byz pomjyń)',
 'revdelete-radio-set' => 'Ja',
@@ -861,7 +899,6 @@ $1',
 
 # Diffs
 'history-title' => 'Historyjo sprowjyń "$1"',
-'difference' => '(Růžńice mjyndzy škryflańami)',
 'difference-multipage' => '(Porůwnańje zajt)',
 'lineno' => 'Lińijo $1:',
 'compareselectedversions' => 'zrůwnej uobrane wersyje',
@@ -925,7 +962,7 @@ $1',
 'search-nonefound' => 'Ńy mo wynikůw, kere uodpadajům kryterjům zapytańo.',
 'powersearch' => 'Sznupańy zaawansowane',
 'powersearch-legend' => 'Šnupańy zaawansowane',
-'powersearch-ns' => 'Šnupej we přestřyńach mjan:',
+'powersearch-ns' => 'Sznupej we przestrzyńach mjan:',
 'powersearch-redir' => 'Pokož překerowańa',
 'powersearch-field' => 'Šnupej',
 'powersearch-togglelabel' => 'Zaznocz:',
@@ -1007,7 +1044,7 @@ $1',
 'default' => 'důmyślńy',
 'prefs-files' => 'Pliki',
 'youremail' => 'E-brif:',
-'username' => 'Mjano užytkowńika:',
+'username' => 'Mjano użytkowńika:',
 'uid' => 'ID užytkowńika:',
 'prefs-memberingroups' => 'Naležy do {{PLURAL:$1|grupy|grup:}}',
 'yourrealname' => 'Prawdźiwe mjano',
@@ -1078,7 +1115,7 @@ $1',
 'right-move' => 'Přećepane zajty',
 'right-move-subpages' => 'Přećep zajty wroz s jejich podzajtůma',
 'right-move-rootuserpages' => 'Překludzańy zajtůw uod užytkowńikůw',
-'right-suppressredirect' => 'Ńy twůř překerowańo ze starygo mjana jak přećepuješ zajta',
+'right-suppressredirect' => 'Ńy twůrz przekerowańo ze starygo mjana jak przećepujesz zajta',
 'right-upload' => 'Wćepane pliki',
 'right-reupload' => 'Nadpisuj pliki kere sam juž sům wćepane',
 'right-reupload-own' => 'Nadpisuj plik wćepany sam bez tygo somygo užytkowńika',
@@ -1100,7 +1137,7 @@ $1',
 'right-suppressionlog' => 'Pokož prywatne lůgi',
 'right-block' => 'Zawjyrańy sprowjorzům możebnośći edytowańo',
 'right-blockemail' => 'Zablokuj užytkowńikowi wysyuańy e-brifůw',
-'right-hideuser' => 'Zablokuj mjano užytkowńika i schrůń to před publičnym dostympym',
+'right-hideuser' => 'Zablokuj mjano użytkowńika i schrůń to przed publicznym dostympym',
 'right-ipblock-exempt' => 'Uobejdź zawarća uod sprowjyń do IP, autozawarća i zawarća zakresůw',
 'right-proxyunbannable' => 'Uobejdź autůmatyčne zawarća uod sprowjyń do proxy',
 'right-protect' => 'Zmjyń poźůmy zawarć i sprowjej zawarte zajty',
@@ -1167,7 +1204,7 @@ $1',
 'nchanges' => '$1 {{PLURAL:$1|pomjyńańe|pomjyńańa|pomjyńań}}',
 'recentchanges' => 'Ńydowno půmjyńane',
 'recentchanges-legend' => 'Uopcyje ńydowno půmjyńanych',
-'recentchangestext' => 'Ta zajta předstawjo historyjo uostatńich půmjyńań na tyj wiki',
+'recentchanges-summary' => 'Ta zajta předstawjo historyjo uostatńich půmjyńań na tyj wiki',
 'recentchanges-feed-description' => 'Dowej pozůr na půmjyńane na uostatku na tyj wiki.',
 'recentchanges-label-newpage' => 'Tym sprowjyńym stworzůno nowa zajta',
 'recentchanges-label-minor' => 'To je ńywjelge sprowjyńy',
@@ -1483,7 +1520,7 @@ Zajta uznawano je za ujydnoznačńajůnco kej zawiyro šablůn uokreślůny we [
 'usereditcount' => '$1 {{PLURAL:$1|sprowjyńe|sprowjyńa|sprowjyń}}',
 'usercreated' => '{{GENDER:$3:Utworzono}} $1 uo $2',
 'newpages' => 'Nowe zajty',
-'newpages-username' => 'Mjano užytkowńika:',
+'newpages-username' => 'Mjano użytkowńika:',
 'ancientpages' => 'Nojstarše artikle',
 'move' => 'Przećep',
 'movethispage' => 'Přećepej ta zajta',
@@ -1854,7 +1891,7 @@ $1',
 'sp-contributions-talk' => '↓ dyskusyjo',
 'sp-contributions-userrights' => 'Zařůndzańy prowami užytkowńikůw',
 'sp-contributions-search' => 'Šnupej za wkuodym',
-'sp-contributions-username' => 'Adres IP abo mjano užytkowńika',
+'sp-contributions-username' => 'Adres IP abo mjano użytkowńika',
 'sp-contributions-toponly' => 'Ukoż jyno ůostanie wersyje',
 'sp-contributions-submit' => 'Šnupej',
 
@@ -1883,18 +1920,18 @@ $1',
 'blockiptext' => 'Tyn formulař suužy do zawjerańo sprowjyń spod uokreślůnygo adresu IP abo kůnkretnymu užytkowńikowi.
 Zawjerać noležy jydyńy po to, by zapobjec wandalizmům, zgodńy s [[{{MediaWiki:Policy-url}}|přijyntymi zasadami]].
 Podej powůd (np. umješčajůnc mjana zajtůw, na kerych dopuščůno śe wandalizmu).',
-'ipadressorusername' => 'Adres IP abo mjano užytkowńika',
+'ipadressorusername' => 'Adres IP abo mjano użytkowńika',
 'ipbexpiry' => 'Wygaso:',
 'ipbreason' => 'Čymu:',
 'ipbreasonotherlist' => 'Inkszy powůd',
-'ipbreason-dropdown' => '*Nojčynstše powody zawjerańo uod sprawjyń
-** Ataki na inkšych užytkowńikůw
-** Narušyńy praw autorskych
-** Ńydozwolůne mjano užytkowńika
-** Upen proxy/Tor
+'ipbreason-dropdown' => '*Nojczynstsze powody zawjerańo uod sprawjyń
+** Ataki na inkszych użytkowńikůw
+** Naruszyńy praw autorskych
+** Ńydozwolůne mjano użytkowńika
+** Open proxy/Tor
 ** Spamowańy
 ** Ůsuwańy treśći zajtůw
-** Wprowadzańy foušywych informacyji
+** Wprowadzańy fołszywych informacyji
 ** Wulgaryzmy
 ** Wypisywańy guůpot na zajtach',
 'ipbcreateaccount' => 'Ńy dozwůl utwožyć kůnta',
@@ -1905,7 +1942,7 @@ Podej powůd (np. umješčajůnc mjana zajtůw, na kerych dopuščůno śe wanda
 'ipboptions' => '2 godźiny:2 hours,1 dźyń:1 day,3 dńi:3 days,1 tydźyń:1 week,2 tydńe:2 weeks,1 mjeśůnc:1 month,3 mjeśůnce:3 months,6 mjeśůncůw:6 months,1 rok:1 year,nawdy:infinite',
 'ipbotheroption' => 'inkšy',
 'ipbotherreason' => 'Inkšy powůd:',
-'ipbhidename' => 'Schrůń mjano užytkowńika/adres IP w rejeře zawarć, na liśće aktywnych zawarć i liśće užytkowńikůw',
+'ipbhidename' => 'Schrůń mjano użytkowńika/adres IP w rejerze zawarć, na liśće aktywnych zawarć i liśće użytkowńikůw',
 'ipbwatchuser' => 'Dowej pozůr na zajta uosobisto i zajta godki tygo užytkowńika',
 'ipb-change-block' => 'Zmjyń sztalowańa zawarća uod sprowjyń',
 'badipaddress' => 'Felerny adres IP',

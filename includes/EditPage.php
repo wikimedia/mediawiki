@@ -1,6 +1,22 @@
 <?php
 /**
- * Contains the EditPage class
+ * Page edition user interface.
+ *
+ * This program is free software; you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation; either version 2 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License along
+ * with this program; if not, write to the Free Software Foundation, Inc.,
+ * 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
+ * http://www.gnu.org/copyleft/gpl.html
+ *
  * @file
  */
 
@@ -35,11 +51,6 @@ class EditPage {
 	 * Status: Article update aborted by a hook function
 	 */
 	const AS_HOOK_ERROR                = 210;
-
-	/**
-	 * Status: The filter function set in $wgFilterCallback returned true (= block it)
-	 */
-	const AS_FILTERING                 = 211;
 
 	/**
 	 * Status: A hook function returned an error
@@ -143,6 +154,11 @@ class EditPage {
 	 * Status: logged in user is not allowed to upload (User::isAllowed('upload') == false)
 	 */
 	const AS_IMAGE_REDIRECT_LOGGED     = 234;
+
+	/**
+	 * HTML id and name for the beginning of the edit form.
+	 */
+	const EDITFORM_ID                  = 'editform';
 
 	/**
 	 * @var Article
@@ -819,7 +835,7 @@ class EditPage {
 
 							# If we just undid one rev, use an autosummary
 							$firstrev = $oldrev->getNext();
-							if ( $firstrev->getId() == $undo ) {
+							if ( $firstrev && $firstrev->getId() == $undo ) {
 								$undoSummary = wfMsgForContent( 'undo-summary', $undo, $undorev->getUserText() );
 								if ( $this->summary === '' ) {
 									$this->summary = $undoSummary;
@@ -968,7 +984,6 @@ class EditPage {
 		$bot = $wgUser->isAllowed( 'bot' ) && $this->bot;
 		$status = $this->internalAttemptSave( $resultDetails, $bot );
 		// FIXME: once the interface for internalAttemptSave() is made nicer, this should use the message in $status
-
 		if ( $status->value == self::AS_SUCCESS_UPDATE || $status->value == self::AS_SUCCESS_NEW_ARTICLE ) {
 			$this->didSave = true;
 		}
@@ -985,7 +1000,6 @@ class EditPage {
 				return true;
 
 			case self::AS_HOOK_ERROR:
-			case self::AS_FILTERING:
 				return false;
 
 			case self::AS_SUCCESS_NEW_ARTICLE:
@@ -1040,6 +1054,14 @@ class EditPage {
 				$permission = $this->mTitle->isTalkPage() ? 'createtalk' : 'createpage';
 				throw new PermissionsError( $permission );
 
+			default:
+				// We don't recognize $status->value. The only way that can happen
+				// is if an extension hook aborted from inside ArticleSave.
+				// Render the status object into $this->hookError
+				// FIXME this sucks, we should just use the Status object throughout
+				$this->hookError = '<div class="error">' . $status->getWikitext() .
+					'</div>';
+				return true;
 		}
 		return false;
 	}
@@ -1057,8 +1079,7 @@ class EditPage {
 	 * AS_CONTENT_TOO_BIG and AS_BLOCKED_PAGE_FOR_USER. All that stuff needs to be cleaned up some time.
 	 */
 	function internalAttemptSave( &$result, $bot = false ) {
-		global $wgFilterCallback, $wgUser, $wgRequest, $wgParser;
-		global $wgMaxArticleSize;
+		global $wgUser, $wgRequest, $wgParser, $wgMaxArticleSize;
 
 		$status = Status::newGood();
 
@@ -1100,13 +1121,6 @@ class EditPage {
 			wfDebugLog( 'SpamRegex', "$ip spam regex hit [[$pdbk]]: \"$match\"" );
 			$status->fatal( 'spamprotectionmatch', $match );
 			$status->value = self::AS_SPAM_ERROR;
-			wfProfileOut( __METHOD__ . '-checks' );
-			wfProfileOut( __METHOD__ );
-			return $status;
-		}
-		if ( $wgFilterCallback && is_callable( $wgFilterCallback ) && $wgFilterCallback( $this->mTitle, $this->textbox1, $this->section, $this->hookError, $this->summary ) ) {
-			# Error messages or other handling should be performed by the filter function
-			$status->setResult( false, self::AS_FILTERING );
 			wfProfileOut( __METHOD__ . '-checks' );
 			wfProfileOut( __METHOD__ );
 			return $status;
@@ -1188,9 +1202,10 @@ class EditPage {
 
 		wfProfileOut( __METHOD__ . '-checks' );
 
-		# If article is new, insert it.
-		$aid = $this->mTitle->getArticleID( Title::GAID_FOR_UPDATE );
-		$new = ( $aid == 0 );
+		// Use SELECT FOR UPDATE here to avoid transaction collision in
+		// WikiPage::updateRevisionOn() and ending in the self::AS_END case.
+		$this->mArticle->loadPageData( 'forupdate' );
+		$new = !$this->mArticle->exists();
 
 		if ( $new ) {
 			// Late check for create permission, just in case *PARANOIA*
@@ -1259,10 +1274,7 @@ class EditPage {
 		} else {
 
 			# Article exists. Check for edit conflict.
-
-			$this->mArticle->clear(); # Force reload of dates, etc.
 			$timestamp = $this->mArticle->getTimestamp();
-
 			wfDebug( "timestamp: {$timestamp}, edittime: {$this->edittime}\n" );
 
 			if ( $timestamp != $this->edittime ) {
@@ -1438,8 +1450,17 @@ class EditPage {
 			wfProfileOut( __METHOD__ );
 			return $status;
 		} else {
-			$this->isConflict = true;
-			$doEditStatus->value = self::AS_END; // Destroys data doEdit() put in $status->value but who cares
+			// Failure from doEdit()
+			// Show the edit conflict page for certain recognized errors from doEdit(),
+			// but don't show it for errors from extension hooks
+			$errors = $doEditStatus->getErrorsArray();
+			if ( in_array( $errors[0][0], array( 'edit-gone-missing', 'edit-conflict',
+				'edit-already-exists' ) ) )
+			{
+				$this->isConflict = true;
+				// Destroys data doEdit() put in $status->value but who cares
+				$doEditStatus->value = self::AS_END;
+			}
 			wfProfileOut( __METHOD__ );
 			return $doEditStatus;
 		}
@@ -1769,7 +1790,7 @@ class EditPage {
 			}
 		}
 
-		$wgOut->addHTML( Html::openElement( 'form', array( 'id' => 'editform', 'name' => 'editform',
+		$wgOut->addHTML( Html::openElement( 'form', array( 'id' => self::EDITFORM_ID, 'name' => self::EDITFORM_ID,
 			'method' => 'post', 'action' => $this->getActionURL( $this->getContextTitle() ),
 			'enctype' => 'multipart/form-data' ) ) );
 
@@ -1913,7 +1934,7 @@ class EditPage {
 
 		# Optional notices on a per-namespace and per-page basis
 		$editnotice_ns = 'editnotice-' . $this->mTitle->getNamespace();
-		$editnotice_ns_message = wfMessage( $editnotice_ns )->inContentLanguage();
+		$editnotice_ns_message = wfMessage( $editnotice_ns );
 		if ( $editnotice_ns_message->exists() ) {
 			$wgOut->addWikiText( $editnotice_ns_message->plain() );
 		}
@@ -1922,7 +1943,7 @@ class EditPage {
 			$editnotice_base = $editnotice_ns;
 			while ( count( $parts ) > 0 ) {
 				$editnotice_base .= '-' . array_shift( $parts );
-				$editnotice_base_msg = wfMessage( $editnotice_base )->inContentLanguage();
+				$editnotice_base_msg = wfMessage( $editnotice_base );
 				if ( $editnotice_base_msg->exists() ) {
 					$wgOut->addWikiText( $editnotice_base_msg->plain() );
 				}
@@ -1930,7 +1951,7 @@ class EditPage {
 		} else {
 			# Even if there are no subpages in namespace, we still don't want / in MW ns.
 			$editnoticeText = $editnotice_ns . '-' . str_replace( '/', '-', $this->mTitle->getDBkey() );
-			$editnoticeMsg = wfMessage( $editnoticeText )->inContentLanguage();
+			$editnoticeMsg = wfMessage( $editnoticeText );
 			if ( $editnoticeMsg->exists() ) {
 				$wgOut->addWikiText( $editnoticeMsg->plain() );
 			}
@@ -2550,7 +2571,7 @@ HTML
 	 * @return string
 	 */
 	function getPreviewText() {
-		global $wgOut, $wgUser, $wgParser, $wgRawHtml;
+		global $wgOut, $wgUser, $wgParser, $wgRawHtml, $wgLang;
 
 		wfProfileIn( __METHOD__ );
 
@@ -2578,7 +2599,8 @@ HTML
 		} elseif ( $this->incompleteForm ) {
 			$note = wfMsg( 'edit_form_incomplete' );
 		} else {
-			$note = wfMsg( 'previewnote' );
+			$note = wfMsg( 'previewnote' ) .
+				' [[#' . self::EDITFORM_ID . '|' . $wgLang->getArrow() . ' ' . wfMsg( 'continue-editing' ) . ']]';
 		}
 
 		$parserOptions = ParserOptions::newFromUser( $wgUser );
@@ -2588,9 +2610,7 @@ HTML
 		$parserOptions->setIsSectionPreview( !is_null( $this->section ) && $this->section !== '' );
 
 		# don't parse non-wikitext pages, show message about preview
-		# XXX: stupid php bug won't let us use $this->getContextTitle()->isCssJsSubpage() here -- This note has been there since r3530. Sure the bug was fixed time ago?
-
-		if ( $this->isCssJsSubpage || !$this->mTitle->isWikitextPage() ) {
+		if ( $this->mTitle->isCssJsSubpage() || !$this->mTitle->isWikitextPage() ) {
 			if ( $this->mTitle->isCssJsSubpage() ) {
 				$level = 'user';
 			} elseif ( $this->mTitle->isCssOrJsPage() ) {
@@ -2601,20 +2621,23 @@ HTML
 
 			# Used messages to make sure grep find them:
 			# Messages: usercsspreview, userjspreview, sitecsspreview, sitejspreview
+			$class = 'mw-code';
 			if ( $level ) {
 				if ( preg_match( "/\\.css$/", $this->mTitle->getText() ) ) {
 					$previewtext = "<div id='mw-{$level}csspreview'>\n" . wfMsg( "{$level}csspreview" ) . "\n</div>";
-					$class = "mw-code mw-css";
+					$class .= " mw-css";
 				} elseif ( preg_match( "/\\.js$/", $this->mTitle->getText() ) ) {
 					$previewtext = "<div id='mw-{$level}jspreview'>\n" . wfMsg( "{$level}jspreview" ) . "\n</div>";
-					$class = "mw-code mw-js";
+					$class .= " mw-js";
 				} else {
 					throw new MWException( 'A CSS/JS (sub)page but which is not css nor js!' );
 				}
+				$parserOutput = $wgParser->parse( $previewtext, $this->mTitle, $parserOptions );
+				$previewHTML = $parserOutput->getText();
+			} else {
+				$previewHTML = '';
 			}
 
-			$parserOutput = $wgParser->parse( $previewtext, $this->mTitle, $parserOptions );
-			$previewHTML = $parserOutput->mText;
 			$previewHTML .= "<pre class=\"$class\" dir=\"ltr\">\n" . htmlspecialchars( $this->textbox1 ) . "\n</pre>\n";
 		} else {
 			$toparse = $this->textbox1;

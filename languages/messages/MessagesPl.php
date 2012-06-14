@@ -1,5 +1,5 @@
 <?php
-/** Polish (Polski)
+/** Polish (polski)
  *
  * See MessagesQqq.php for message documentation incl. usage of parameters
  * To improve a translation please visit http://translatewiki.net
@@ -21,6 +21,7 @@
  * @author Kaganer
  * @author Lajsikonik
  * @author Lampak
+ * @author Lazowik
  * @author Leinad
  * @author Maikking
  * @author Marcin Łukasz Kiejzik
@@ -678,6 +679,8 @@ Uzasadnienie blokady: ''$2''.",
 'filereadonlyerror' => 'Nie można zmodyfikować pliku "$1" ponieważ repozytorium plików "$2" jest w trybie tylko do odczytu.
 
 Administrator blokujący go podał następujący powód "\'\'$3\'\'".',
+'invalidtitle-knownnamespace' => 'Nieprawidłowa nazwa w obszarze nazw "$2" o treści "$3"',
+'invalidtitle-unknownnamespace' => 'Nieprawidłowa nazwa z nieznaną liczbą przestrzeni nazw  $1  o treści "$2"',
 
 # Virus scanner
 'virus-badscanner' => "Zła konfiguracja – nieznany skaner antywirusowy ''$1''",
@@ -773,7 +776,7 @@ Poniższe funkcje poczty nie działają.",
 'invalidemailaddress' => 'Adres e‐mail jest niepoprawny i nie może być zaakceptowany.
 Wpisz poprawny adres e‐mail lub wyczyść pole.',
 'cannotchangeemail' => 'Na tej wiki nie ma możliwości zmiany adresu e‐mail przypisanego do konta.',
-'emaildisabled' => 'Ta witryna nie można wysłać wiadomości e-mail.',
+'emaildisabled' => 'Ta witryna nie może wysłać wiadomości e-mail.',
 'accountcreated' => 'Konto zostało utworzone',
 'accountcreatedtext' => 'Konto dla $1 zostało utworzone.',
 'createaccount-title' => 'Utworzenie konta w {{GRAMMAR:MS.lp|{{SITENAME}}}}',
@@ -973,7 +976,8 @@ Strony użytkownika zawierające CSS i JavaScript powinny zaczynać się małą 
 'updated' => '(Zmodyfikowano)',
 'note' => "'''Uwaga:'''",
 'previewnote' => "'''To jest tylko podgląd'''
-Zmiany nie zostały jeszcze zapisane! [[#editform|→ Kontynuuj edycję]]",
+Zmiany nie zostały jeszcze zapisane!",
+'continue-editing' => 'Kontynuuj edycję',
 'previewconflict' => 'Podgląd odnosi się do tekstu z górnego pola edycji. Tak będzie wyglądać strona, jeśli zdecydujesz się ją zapisać.',
 'session_fail_preview' => "'''Uwaga! Serwer nie może przetworzyć tej edycji z powodu utraty danych sesji.
 Spróbuj jeszcze raz.
@@ -1070,6 +1074,12 @@ Argument ten będzie pominięty.',
 'parser-template-loop-warning' => 'Wykryto pętlę w szablonie [[$1]]',
 'parser-template-recursion-depth-warning' => 'Przekroczno limit głębokości rekurencji szablonu ($1)',
 'language-converter-depth-warning' => 'Przekroczono ograniczenie ($1) głębokości zagnieżdżenia konwersji językowej',
+'node-count-exceeded-category' => 'Strony, gdzie przekroczono liczbę węzłów',
+'node-count-exceeded-warning' => 'Strona przekroczyła liczbę węzłów',
+'expansion-depth-exceeded-category' => 'Strony z przekroczoną głębokością rozbudowy',
+'expansion-depth-exceeded-warning' => 'Strona przekroczyła głębokość rozbudowy',
+'parser-unstrip-loop-warning' => 'Wykryto nieskończoną pętlę',
+'parser-unstrip-recursion-limit' => 'Przekroczono maksymalną głębokość zagnieżdżania ($1)',
 
 # "Undo" feature
 'undo-success' => 'Edycja może zostać wycofana. Porównaj ukazane poniżej różnice między wersjami, a następnie zapisz zmiany.',
@@ -1211,7 +1221,7 @@ Proszę sprawdzić rejestr operacji.',
 # Suppression log
 'suppressionlog' => 'Rejestr utajniania',
 'suppressionlogtext' => 'Poniżej znajduje się lista usunięć i blokad utajnionych przed administratorami.
-Zobacz [[Special:BlockList|rejestr blokowania adresów IP]], jeśli chcesz sprawdzić aktualne zakazy i blokady.',
+Zobacz [[Special:BlockList|rejestr blokad]], jeśli chcesz sprawdzić aktualne zakazy i blokady.',
 
 # History merging
 'mergehistory' => 'Scalanie historii stron',
@@ -1245,8 +1255,9 @@ Użycie linków nawigacyjnych kasuje wybór w kolumnie.',
 'mergelogpagetext' => 'Poniżej znajduje się lista ostatnich scaleń historii zmian stron.',
 
 # Diffs
-'history-title' => 'Historia edycji „$1”',
-'difference' => '(Różnice między wersjami)',
+'history-title' => '$1: Historia wersji',
+'difference-title' => '$1: Różnice pomiędzy wersjami',
+'difference-title-multipage' => 'Różnica pomiędzy stronami "$1" i "$2"',
 'difference-multipage' => '(Różnica między stronami)',
 'lineno' => 'Linia $1:',
 'compareselectedversions' => 'porównaj wybrane wersje',
@@ -1343,6 +1354,7 @@ Jednak informacje o treści {{GRAMMAR:D.lp|{{SITENAME}}}} mogą być w Google ni
 'prefs-beta' => 'Funkcje testowe',
 'prefs-datetime' => 'Data i czas',
 'prefs-labs' => 'Funkcje doświadczalne',
+'prefs-user-pages' => 'Strony użytkowników',
 'prefs-personal' => 'Dane użytkownika',
 'prefs-rc' => 'Ostatnie zmiany',
 'prefs-watchlist' => 'Obserwowane',
@@ -1560,7 +1572,7 @@ Jeśli zdecydujesz się je podać, zostaną użyte, by udokumentować Twoje auto
 # User rights log
 'rightslog' => 'Uprawnienia',
 'rightslogtext' => 'Rejestr zmian uprawnień użytkowników.',
-'rightslogentry' => 'zmienia przynależność $1 do grup ($2 → $3)',
+'rightslogentry' => 'zmienił przynależność $1 do grup ($2 → $3)',
 'rightslogentry-autopromote' => 'automatycznie zmienia przynależność ($2 → $3)',
 'rightsnone' => 'brak',
 
@@ -1605,7 +1617,7 @@ Jeśli zdecydujesz się je podać, zostaną użyte, by udokumentować Twoje auto
 'nchanges' => '$1 {{PLURAL:$1|zmiana|zmiany|zmian}}',
 'recentchanges' => 'Ostatnie zmiany',
 'recentchanges-legend' => 'Opcje ostatnich zmian',
-'recentchangestext' => 'Ta strona przedstawia historię ostatnich zmian w tej wiki.',
+'recentchanges-summary' => 'Ta strona przedstawia historię ostatnich zmian w tej wiki.',
 'recentchanges-feed-description' => 'Obserwuj najświeższe zmiany w tej wiki.',
 'recentchanges-label-newpage' => 'W tej edycji utworzono nową stronę',
 'recentchanges-label-minor' => 'To jest drobna zmiana',
@@ -1817,13 +1829,14 @@ Jeśli problem będzie się powtarzał, skontaktuj się z [[Special:ListUsers/sy
 'backend-fail-closetemp' => 'Nie można zamknąć pliku tymczasowego.',
 'backend-fail-read' => 'Nie można odczytać pliku $1.',
 'backend-fail-create' => 'Nie można utworzyć pliku $1.',
-'backend-fail-maxsize' => 'Nie udało utworzyć pliku $1 ponieważ jest on większy niż {{PLURAL:$2|$2 bajt| $2 bajty| $2 bajtów}}.',
+'backend-fail-maxsize' => 'Nie udało zapisać pliku $1 ponieważ jest on większy niż {{PLURAL:$2|jeden bajt| $2 bajty| $2 bajtów}}.',
 'backend-fail-readonly' => 'Interfejs magazynowania "$1" jest obecnie tylko do odczytu. Powód: "$2"',
 'backend-fail-synced' => 'Plik "$1" jest w niespójnym stanie w ramach wewnętrznych funkcji magazynowania',
 'backend-fail-connect' => 'Nie można nawiązać połączenia do wewnętrznych funkcji magazynowania "$1".',
 'backend-fail-internal' => 'Wystąpił nieznany błąd w wewnętrznych funkcjach magazynowania "$1".',
 'backend-fail-contenttype' => 'Nie można określić typ zawartości pliku do przechowywania w "$1".',
 'backend-fail-batchsize' => 'Wewnętrzne funkcje magazynowania otrzymały $1 {{PLURAL:$1|operację|operacje|operacji}} na pliku; limit wynosi $2 {{PLURAL:$2| operacja|operacje|operacji}}.',
+'backend-fail-usable' => 'Nie można zapisać pliku $1 ze względu na niewystarczające uprawnienia lub brak katalogów/kontenerów.',
 
 # File journal errors
 'filejournal-fail-dbconnect' => 'Nie można połączyć się z bazą danych dziennika dla backendu magazynowania "$1".',
@@ -1946,6 +1959,10 @@ Dostępna jest też [[Special:WhatLinksHere/$2|pełna lista]].',
 Więcej informacji odnajdziesz na [$2 stronie opisu pliku].',
 'sharedupload-desc-here' => 'Ten plik znajduje się na $1 i może być używany w innych projektach.
 Poniżej znajdują się informacje ze [$2 strony opisu] tego pliku.',
+'sharedupload-desc-edit' => 'Plik ten pochodzi z $1 i może być wykorzystany w innych projektach.
+Być może zechcesz zmienić opis na tej [$2 stronie opisu pliku].',
+'sharedupload-desc-create' => 'Plik ten pochodzi z $1 i może być wykorzystany w innych projektach.
+Być może zechcesz zmienić opis na tej [$2 stronie opisu pliku].',
 'filepage-nofile' => 'Plik o tej nazwie nie istnieje.',
 'filepage-nofile-link' => 'Plik o tej nazwie nie istnieje, ale możesz go [$1 przesłać].',
 'uploadnewversion-linktext' => 'Załaduj nowszą wersję tego pliku',
@@ -2140,6 +2157,7 @@ Inne witryny mogą odwoływać się do tych plików, używając bezpośrednich a
 Możesz zawęzić liczbę wyników poprzez wybranie typu rejestru, nazwy użytkownika albo tytułu strony.',
 'logempty' => 'W rejestrze nie znaleziono pozycji odpowiadających zapytaniu.',
 'log-title-wildcard' => 'Szukaj tytułów zaczynających się od tego tekstu',
+'showhideselectedlogentries' => 'Pokaż/ukryj zaznaczone wpisy rejestru',
 
 # Special:AllPages
 'allpages' => 'Wszystkie strony',
@@ -2603,8 +2621,8 @@ Podaj powód (np. umieszczając nazwy stron, na których dopuszczono się wandal
 'ipb-confirm' => 'Potwierdzam blokadę',
 'badipaddress' => 'Niepoprawny adres IP',
 'blockipsuccesssub' => 'Zablokowanie powiodło się',
-'blockipsuccesstext' => '{{GENDER:$1|Użytkownik|Użytkowniczka}} [[Special:Contributions/$1|$1]] {{GENDER:$1|został zablokowany|została zablokowana}}.<br />
-Przejdź do [[Special:BlockList|listy zablokowanych adresów IP]], by przejrzeć blokady.',
+'blockipsuccesstext' => '[[Special:Contributions/$1|$1]] {{GENDER:$1|został zablokowany|została zablokowana}}.<br />
+Przejdź do [[Special:BlockList|listy blokad]], by przejrzeć blokady.',
 'ipb-blockingself' => 'Usiłujesz zablokować siebie samego! Czy na pewno chcesz to zrobić?',
 'ipb-confirmhideuser' => 'Zamierzasz zablokować użytkownika z włączoną opcją „ukryj użytkownika”. Spowoduje to pominięcie nazwy użytkownika we wszystkich listach i rejestrach. Czy na pewno chcesz to zrobić?',
 'ipb-edit-dropdown' => 'Edytuj listę przyczyn blokady',
@@ -3814,6 +3832,9 @@ Powinieneś otrzymać [{{SERVER}}{{SCRIPTPATH}}/COPYING kopię licencji GNU Gene
 'version-software' => 'Zainstalowane oprogramowanie',
 'version-software-product' => 'Nazwa',
 'version-software-version' => 'Wersja',
+'version-entrypoints' => 'Adres URL punktu wejścia',
+'version-entrypoints-header-entrypoint' => 'Punkt wejścia',
+'version-entrypoints-header-url' => 'URL',
 
 # Special:FilePath
 'filepath' => 'Ścieżka do pliku',
@@ -3935,7 +3956,7 @@ Grafiki są pokazywane w pełnej rozdzielczości. Inne typy plików są otwieran
 'revdelete-uname-unhid' => 'wycofano ukrycie nazwy użytkownika',
 'revdelete-restricted' => 'ograniczono widoczność dla administratorów',
 'revdelete-unrestricted' => 'wycofano ograniczenie widoczności dla administratorów',
-'logentry-move-move' => '$1 przenosi stronę $3 na $4',
+'logentry-move-move' => '$1 przenosi stronę $3 do $4',
 'logentry-move-move-noredirect' => '$1 przenosi stronę $3 na $4, bez pozostawienia przekierowania pod starym tytułem',
 'logentry-move-move_redir' => '$1 przenosi stronę $3 na $4 w miejsce przekierowania',
 'logentry-move-move_redir-noredirect' => '$1 przenosi stronę $3 na $4 w miejsce przekierowania i bez pozostawienia przekierowania pod starym tytułem',

@@ -8,9 +8,94 @@
  * @file
  *
  * @author Itsmine
+ * @author Justincheng12345
  * @author Omnipaedista
  * @author Shinjiman
  */
+
+$specialPageAliases = array(
+	'Activeusers'               => array( '躍簿' ),
+	'Allmessages'               => array( '官話' ),
+	'Allpages'                  => array( '全典' ),
+	'Ancientpages'              => array( '陳年' ),
+	'Blankpage'                 => array( '白頁' ),
+	'Booksources'               => array( '書海' ),
+	'BrokenRedirects'           => array( '斷渡' ),
+	'Categories'                => array( '類' ),
+	'ChangePassword'            => array( '易符節' ),
+	'ComparePages'              => array( '較頁' ),
+	'Confirmemail'              => array( '核郵驛' ),
+	'Contributions'             => array( '功績' ),
+	'CreateAccount'             => array( '增簿' ),
+	'Deadendpages'              => array( '此無路也' ),
+	'DeletedContributions'      => array( '已刪之積' ),
+	'Disambiguations'           => array( '釋義' ),
+	'DoubleRedirects'           => array( '窮渡' ),
+	'EditWatchlist'             => array( '治哨站' ),
+	'Emailuser'                 => array( '遺書' ),
+	'Export'                    => array( '出匯' ),
+	'Fewestrevisions'           => array( '鮮察' ),
+	'FileDuplicateSearch'       => array( '擇重檔' ),
+	'Filepath'                  => array( '檔路' ),
+	'Import'                    => array( '圖入匯' ),
+	'Invalidateemail'           => array( '消核郵驛' ),
+	'BlockList'                 => array( '列禁簿、禁址' ),
+	'LinkSearch'                => array( '尋網連' ),
+	'Listfiles'                 => array( '見檔' ),
+	'Listgrouprights'           => array( '權任一覽' ),
+	'Listredirects'             => array( '表轉' ),
+	'Listusers'                 => array( '點簿' ),
+	'Lockdb'                    => array( '閉庫' ),
+	'Log'                       => array( '誌' ),
+	'Lonelypages'               => array( '孤寡' ),
+	'Longpages'                 => array( '長言' ),
+	'MergeHistory'              => array( '併頁之誌' ),
+	'MIMEsearch'                => array( '篩檔' ),
+	'Mostcategories'            => array( '跨船' ),
+	'Mostimages'                => array( '名檔' ),
+	'Mostlinked'                => array( '好料' ),
+	'Mostlinkedcategories'      => array( '豪門' ),
+	'Mostlinkedtemplates'       => array( '美模' ),
+	'Mostrevisions'             => array( '屢審' ),
+	'Movepage'                  => array( '遷' ),
+	'Mycontributions'           => array( '吾績' ),
+	'Newimages'                 => array( '新圖之廊' ),
+	'Newpages'                  => array( '新灶' ),
+	'Preferences'               => array( '簿註' ),
+	'Prefixindex'               => array( '依名索引' ),
+	'Protectedpages'            => array( '頁錮' ),
+	'Randompage'                => array( '清風翻書' ),
+	'Randomredirect'            => array( '任渡' ),
+	'Recentchanges'             => array( '近易' ),
+	'Recentchangeslinked'       => array( '援引' ),
+	'Search'                    => array( '尋' ),
+	'Shortpages'                => array( '短篇' ),
+	'Specialpages'              => array( '特查' ),
+	'Statistics'                => array( '彙統' ),
+	'Uncategorizedcategories'   => array( '問栓' ),
+	'Uncategorizedimages'       => array( '候裱' ),
+	'Uncategorizedpages'        => array( '欲訂' ),
+	'Uncategorizedtemplates'    => array( '待蘸' ),
+	'Undelete'                  => array( '覽刪' ),
+	'Unlockdb'                  => array( '開庫' ),
+	'Unusedcategories'          => array( '樞鏽' ),
+	'Unusedimages'              => array( '色褪' ),
+	'Unusedtemplates'           => array( '墨乾' ),
+	'Unwatchedpages'            => array( '無哨頁' ),
+	'Upload'                    => array( '進獻' ),
+	'UploadStash'               => array( '貢貯' ),
+	'Userlogin'                 => array( '登簿' ),
+	'Userlogout'                => array( '去簿' ),
+	'Userrights'                => array( '秉治權任' ),
+	'Version'                   => array( '版' ),
+	'Wantedcategories'          => array( '求門' ),
+	'Wantedfiles'               => array( '求檔' ),
+	'Wantedpages'               => array( '徵頁' ),
+	'Wantedtemplates'           => array( '徵模' ),
+	'Watchlist'                 => array( '哨站' ),
+	'Whatlinkshere'             => array( '取佐' ),
+	'Withoutinterwiki'          => array( '孤語' ),
+);
 
 /**
  * A list of date format preference keys which can be selected in user
@@ -58,13 +143,6 @@ $digitTransformTable = array(
 	'.' => '點',
 	',' => '',
 );
-
-# -------------------------------------------------------------------
-# Default messages
-# -------------------------------------------------------------------
-# Allowed characters in keys are: A-Z, a-z, 0-9, underscore (_) and
-# hyphen (-). If you need more characters, you may be able to change
-# the regex in MagicWord::initRegex
 
 $messages = array(
 # User preference toggles
@@ -632,6 +710,7 @@ $2',
 '''纂文若合，惠再之。如復不成，簿[[Special:UserLogout|重登]]焉。'''",
 'token_suffix_mismatch' => "'''君修見拒，蓋因代理之故，亂事見兮。'''",
 'editing' => '纂$1',
+'creating' => '撰$1',
 'editingsection' => '纂節$1',
 'editingcomment' => '贊$1',
 'editconflict' => '纂沖$1',
@@ -857,7 +936,6 @@ $1",
 
 # Diffs
 'history-title' => '$1之誌',
-'difference' => '（辨異）',
 'difference-multipage' => '（辨頁）',
 'lineno' => '列$1：',
 'compareselectedversions' => '辨二擇',
@@ -1194,7 +1272,7 @@ $1",
 'nchanges' => '$1易',
 'recentchanges' => '近易',
 'recentchanges-legend' => '近易項',
-'recentchangestext' => '共筆揮新，悉列於此。',
+'recentchanges-summary' => '共筆揮新，悉列於此。',
 'recentchanges-feed-description' => '跟wiki源之近易。',
 'recentchanges-label-newpage' => '此纂開新頁',
 'recentchanges-label-minor' => '此乃細纂',

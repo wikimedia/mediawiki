@@ -11,6 +11,7 @@
  * @author Kaganer
  * @author KaiesTse
  * @author Mark85296341
+ * @author Simon Shek
  * @author Waihorace
  * @author William915
  * @author Wong128hk
@@ -638,6 +639,7 @@ $1',
 'createaccount' => '開戶口',
 'gotaccount' => '已經有戶口？ $1。',
 'gotaccountlink' => '登入',
+'userlogin-resetlink' => '唔記得簽到資料？',
 'createaccountmail' => '用電郵',
 'createaccountreason' => '原因：',
 'badretype' => '你入嘅密碼唔一致。',
@@ -1097,7 +1099,6 @@ $1",
 
 # Diffs
 'history-title' => '"$1"嘅修訂歷史',
-'difference' => '（修訂之間嘅差異）',
 'difference-multipage' => '（版之間嘅差異）',
 'lineno' => '第$1行：',
 'compareselectedversions' => '比較被選嘅修訂',
@@ -1445,7 +1446,7 @@ $1",
 'nchanges' => '$1次更改',
 'recentchanges' => '最近更改',
 'recentchanges-legend' => '最近更改選項',
-'recentchangestext' => '追蹤對哩一個 wiki 嘅最後更改。',
+'recentchanges-summary' => '追蹤對哩一個 wiki 嘅最後更改。',
 'recentchanges-feed-description' => '追蹤對哩一個 wiki 度呢個集合嘅最後更改。',
 'recentchanges-label-newpage' => '呢次編輯開咗一個新版',
 'recentchanges-label-minor' => '呢個係一個細編輯',
@@ -1698,7 +1699,7 @@ $1',
 'filehist-filesize' => '檔案大細',
 'filehist-comment' => '註解',
 'filehist-missing' => '檔案遺失',
-'imagelinks' => '檔案連結',
+'imagelinks' => '檔案用途',
 'linkstoimage' => '以下嘅$1個頁面連結到呢個檔案：',
 'linkstoimage-more' => '多過$1版連過去呢個檔案。
 下面嘅表只係列示咗連去呢個檔案嘅最頭$1版。

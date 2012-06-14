@@ -44,6 +44,7 @@
  * @author Purodha
  * @author Raimond Spekking (Raymond) <raimond.spekking@gmail.com> since January 2007
  * @author Red Baron
+ * @author Reedy
  * @author Remember the dot
  * @author Revolus
  * @author Rillke
@@ -119,12 +120,12 @@ $specialPageAliases = array(
 	'Block'                     => array( 'Sperren' ),
 	'Blockme'                   => array( 'Proxy-Sperre' ),
 	'Booksources'               => array( 'ISBN-Suche' ),
-	'BrokenRedirects'           => array( 'Kaputte_Weiterleitungen' ),
+	'BrokenRedirects'           => array( 'Defekte_Weiterleitungen', 'Kaputte_Weiterleitungen' ),
 	'Categories'                => array( 'Kategorien' ),
 	'ChangeEmail'               => array( 'E-Mail-Adresse_ändern' ),
 	'ChangePassword'            => array( 'Passwort_ändern', 'Passwort_zurücksetzen' ),
 	'ComparePages'              => array( 'Seiten_vergleichen' ),
-	'Confirmemail'              => array( 'E-Mail_bestaetigen', 'E-Mail_bestätigen' ),
+	'Confirmemail'              => array( 'E-Mail_bestätigen', 'E-Mail_bestaetigen' ),
 	'Contributions'             => array( 'Beiträge' ),
 	'CreateAccount'             => array( 'Benutzerkonto_anlegen' ),
 	'Deadendpages'              => array( 'Sackgassenseiten' ),
@@ -132,14 +133,15 @@ $specialPageAliases = array(
 	'Disambiguations'           => array( 'Begriffsklärungsverweise' ),
 	'DoubleRedirects'           => array( 'Doppelte_Weiterleitungen' ),
 	'EditWatchlist'             => array( 'Beobachtungsliste_bearbeiten' ),
-	'Emailuser'                 => array( 'E-Mail' ),
+	'Emailuser'                 => array( 'E-Mail_senden', 'Mailen', 'E-Mail' ),
 	'Export'                    => array( 'Exportieren' ),
 	'Fewestrevisions'           => array( 'Wenigstbearbeitete_Seiten' ),
 	'FileDuplicateSearch'       => array( 'Dateiduplikatsuche', 'Datei-Duplikat-Suche' ),
 	'Filepath'                  => array( 'Dateipfad' ),
 	'Import'                    => array( 'Importieren' ),
-	'Invalidateemail'           => array( 'E-Mail_nicht_bestaetigen', 'E-Mail_nicht_bestätigen' ),
-	'BlockList'                 => array( 'Liste_der_Sperren', 'Gesperrte_IP-Adressen', 'Gesperrte_IPs' ),
+	'Invalidateemail'           => array( 'E-Mail_nicht_bestätigen', 'E-Mail_nicht_bestaetigen' ),
+	'JavaScriptTest'            => array( 'JavaScript-Test' ),
+	'BlockList'                 => array( 'Liste_der_Sperren', 'Gesperrte_IP-Adressen', 'Gesperrte_IPs', 'Sperrliste' ),
 	'LinkSearch'                => array( 'Weblinksuche', 'Weblink-Suche' ),
 	'Listadmins'                => array( 'Administratoren' ),
 	'Listbots'                  => array( 'Bots' ),
@@ -201,9 +203,9 @@ $specialPageAliases = array(
 	'Userlogout'                => array( 'Abmelden' ),
 	'Userrights'                => array( 'Benutzerrechte' ),
 	'Wantedcategories'          => array( 'Gewünschte_Kategorien' ),
-	'Wantedfiles'               => array( 'Fehlende_Dateien' ),
+	'Wantedfiles'               => array( 'Gewünschte_Dateien', 'Fehlende_Dateien' ),
 	'Wantedpages'               => array( 'Gewünschte_Seiten' ),
-	'Wantedtemplates'           => array( 'Fehlende_Vorlagen' ),
+	'Wantedtemplates'           => array( 'Gewünschte_Vorlagen', 'Fehlende_Vorlagen' ),
 	'Watchlist'                 => array( 'Beobachtungsliste' ),
 	'Whatlinkshere'             => array( 'Linkliste', 'Verweisliste' ),
 	'Withoutinterwiki'          => array( 'Fehlende_Interwikis' ),
@@ -244,12 +246,12 @@ $dateFormats = array(
 
 $magicWords = array(
 	'redirect'                => array( '0', '#WEITERLEITUNG', '#REDIRECT' ),
-	'notoc'                   => array( '0', '__KEIN_INHALTSVERZEICHNIS__', '__NOTOC__' ),
-	'nogallery'               => array( '0', '__KEINE_GALERIE__', '__NOGALLERY__' ),
+	'notoc'                   => array( '0', '__KEIN_INHALTSVERZEICHNIS__', '__KEININHALTSVERZEICHNIS__', '__NOTOC__' ),
+	'nogallery'               => array( '0', '__KEINE_GALERIE__', '__KEINEGALERIE__', '__NOGALLERY__' ),
 	'forcetoc'                => array( '0', '__INHALTSVERZEICHNIS_ERZWINGEN__', '__FORCETOC__' ),
 	'toc'                     => array( '0', '__INHALTSVERZEICHNIS__', '__TOC__' ),
 	'noeditsection'           => array( '0', '__ABSCHNITTE_NICHT_BEARBEITEN__', '__NOEDITSECTION__' ),
-	'noheader'                => array( '0', '__KEINKOPF__', '__NOHEADER__' ),
+	'noheader'                => array( '0', '__KEINKOPF__', '__KEIN_HEADER__', '__KEIN_KOPF__', '__KEINHEADER__', '__NOHEADER__' ),
 	'currentmonth'            => array( '1', 'JETZIGER_MONAT', 'JETZIGER_MONAT_2', 'CURRENTMONTH', 'CURRENTMONTH2' ),
 	'currentmonth1'           => array( '1', 'JETZIGER_MONAT_1', 'CURRENTMONTH1' ),
 	'currentmonthname'        => array( '1', 'JETZIGER_MONATSNAME', 'CURRENTMONTHNAME' ),
@@ -298,19 +300,26 @@ $magicWords = array(
 	'subjectpagename'         => array( '1', 'HAUPTSEITE', 'SUBJECTPAGENAME', 'ARTICLEPAGENAME' ),
 	'subjectpagenamee'        => array( '1', 'HAUPTSEITE_URL', 'SUBJECTPAGENAMEE', 'ARTICLEPAGENAMEE' ),
 	'subst'                   => array( '0', 'ERS:', 'SUBST:' ),
-	'img_thumbnail'           => array( '1', 'miniatur', 'thumbnail', 'thumb' ),
-	'img_manualthumb'         => array( '1', 'miniatur=$1', 'thumbnail=$1', 'thumb=$1' ),
+	'safesubst'               => array( '0', 'SICHER_ERS:', 'SICHERERS:', 'SAFESUBST:' ),
+	'img_thumbnail'           => array( '1', 'miniatur', 'mini', 'thumbnail', 'thumb' ),
+	'img_manualthumb'         => array( '1', 'miniatur=$1', 'mini=$1', 'thumbnail=$1', 'thumb=$1' ),
 	'img_right'               => array( '1', 'rechts', 'right' ),
 	'img_left'                => array( '1', 'links', 'left' ),
 	'img_none'                => array( '1', 'ohne', 'none' ),
 	'img_center'              => array( '1', 'zentriert', 'center', 'centre' ),
 	'img_framed'              => array( '1', 'gerahmt', 'framed', 'enframed', 'frame' ),
 	'img_frameless'           => array( '1', 'rahmenlos', 'frameless' ),
-	'img_page'                => array( '1', 'seite=$1', 'seite $1', 'page=$1', 'page $1' ),
+	'img_page'                => array( '1', 'seite=$1', 'seite_$1', 'page=$1', 'page $1' ),
 	'img_upright'             => array( '1', 'hochkant', 'hochkant=$1', 'hochkant $1', 'upright', 'upright=$1', 'upright $1' ),
 	'img_border'              => array( '1', 'rand', 'border' ),
-	'img_sub'                 => array( '1', 'tiefgestellt', 'sub' ),
-	'img_super'               => array( '1', 'hochgestellt', 'super', 'sup' ),
+	'img_baseline'            => array( '1', 'grundlinie', 'baseline' ),
+	'img_sub'                 => array( '1', 'tiefgestellt', 'tief', 'sub' ),
+	'img_super'               => array( '1', 'hochgestellt', 'hoch', 'super', 'sup' ),
+	'img_top'                 => array( '1', 'oben', 'top' ),
+	'img_text_top'            => array( '1', 'text-oben', 'text-top' ),
+	'img_middle'              => array( '1', 'mitte', 'middle' ),
+	'img_bottom'              => array( '1', 'unten', 'bottom' ),
+	'img_text_bottom'         => array( '1', 'text-unten', 'text-bottom' ),
 	'img_link'                => array( '1', 'verweis=$1', 'link=$1' ),
 	'img_alt'                 => array( '1', 'alternativtext=$1', 'alt=$1' ),
 	'int'                     => array( '0', 'NACHRICHT:', 'INT:' ),
@@ -318,12 +327,14 @@ $magicWords = array(
 	'ns'                      => array( '0', 'NR:', 'NS:' ),
 	'nse'                     => array( '0', 'NR_URL:', 'NSE:' ),
 	'localurl'                => array( '0', 'LOKALE_URL:', 'LOCALURL:' ),
+	'localurle'               => array( '0', 'LOKALE_URL_C:', 'LOCALURLE:' ),
 	'articlepath'             => array( '0', 'ARTIKELPFAD', 'ARTICLEPATH' ),
-	'pageid'                  => array( '0', 'SEITENID', 'PAGEID' ),
 	'scriptpath'              => array( '0', 'SKRIPTPFAD', 'SCRIPTPATH' ),
-	'stylepath'               => array( '0', 'STYLEPFAD', 'STYLEPATH' ),
+	'stylepath'               => array( '0', 'STILPFAD', 'STYLEPFAD', 'STYLEPATH' ),
 	'grammar'                 => array( '0', 'GRAMMATIK:', 'GRAMMAR:' ),
 	'gender'                  => array( '0', 'GESCHLECHT:', 'GENDER:' ),
+	'notitleconvert'          => array( '0', '__KEINE_TITELKONVERTIERUNG__', '__NOTITLECONVERT__', '__NOTC__' ),
+	'nocontentconvert'        => array( '0', '__KEINE_INHALTSKONVERTIERUNG__', '__NOCONTENTCONVERT__', '__NOCC__' ),
 	'currentweek'             => array( '1', 'JETZIGE_KALENDERWOCHE', 'CURRENTWEEK' ),
 	'currentdow'              => array( '1', 'JETZIGER_WOCHENTAG_ZAHL', 'CURRENTDOW' ),
 	'localweek'               => array( '1', 'LOKALE_KALENDERWOCHE', 'LOCALWEEK' ),
@@ -337,7 +348,9 @@ $magicWords = array(
 	'revisiontimestamp'       => array( '1', 'REVISIONSZEITSTEMPEL', 'REVISIONTIMESTAMP' ),
 	'revisionuser'            => array( '1', 'REVISIONSBENUTZER', 'REVISIONUSER' ),
 	'fullurl'                 => array( '0', 'VOLLSTÄNDIGE_URL:', 'FULLURL:' ),
+	'fullurle'                => array( '0', 'VOLLSTÄNDIGE_URL_C:', 'FULLURLE:' ),
 	'canonicalurl'            => array( '0', 'KANONISCHE_URL:', 'CANONICALURL:' ),
+	'canonicalurle'           => array( '0', 'KANONISCHE_URL_C:', 'CANONICALURLE:' ),
 	'lcfirst'                 => array( '0', 'INITIAL_KLEIN:', 'LCFIRST:' ),
 	'ucfirst'                 => array( '0', 'INITIAL_GROSS:', 'UCFIRST:' ),
 	'lc'                      => array( '0', 'KLEIN:', 'LC:' ),
@@ -348,13 +361,13 @@ $magicWords = array(
 	'nonewsectionlink'        => array( '1', '__KEIN_NEUER_ABSCHNITTSLINK__', '__KEIN_PLUS_LINK__', '__NONEWSECTIONLINK__' ),
 	'currentversion'          => array( '1', 'JETZIGE_VERSION', 'CURRENTVERSION' ),
 	'urlencode'               => array( '0', 'URLENKODIERT:', 'URLENCODE:' ),
-	'anchorencode'            => array( '0', 'SPRUNGMARKEENKODIERT:', 'ANCHORENCODE' ),
+	'anchorencode'            => array( '0', 'ANKERENKODIERT:', 'SPRUNGMARKEENKODIERT:', 'ANCHORENCODE' ),
 	'currenttimestamp'        => array( '1', 'JETZIGER_ZEITSTEMPEL', 'CURRENTTIMESTAMP' ),
 	'localtimestamp'          => array( '1', 'LOKALER_ZEITSTEMPEL', 'LOCALTIMESTAMP' ),
 	'directionmark'           => array( '1', 'TEXTAUSRICHTUNG', 'DIRECTIONMARK', 'DIRMARK' ),
 	'language'                => array( '0', '#SPRACHE:', '#LANGUAGE:' ),
 	'contentlanguage'         => array( '1', 'INHALTSSPRACHE', 'CONTENTLANGUAGE', 'CONTENTLANG' ),
-	'pagesinnamespace'        => array( '1', 'SEITEN_IM_NAMENSRAUM:', 'SEITEN_NR:', 'PAGESINNAMESPACE:', 'PAGESINNS:' ),
+	'pagesinnamespace'        => array( '1', 'SEITEN_IM_NAMENSRAUM:', 'SEITEN_IN_NR:', 'SEITEN_NR:', 'PAGESINNAMESPACE:', 'PAGESINNS:' ),
 	'numberofadmins'          => array( '1', 'ADMINANZAHL', 'NUMBEROFADMINS' ),
 	'formatnum'               => array( '0', 'ZAHLENFORMAT', 'FORMATNUM' ),
 	'padleft'                 => array( '0', 'FÜLLENLINKS', 'PADLEFT' ),
@@ -362,6 +375,7 @@ $magicWords = array(
 	'special'                 => array( '0', 'spezial', 'special' ),
 	'defaultsort'             => array( '1', 'SORTIERUNG:', 'DEFAULTSORT:', 'DEFAULTSORTKEY:', 'DEFAULTCATEGORYSORT:' ),
 	'filepath'                => array( '0', 'DATEIPFAD:', 'FILEPATH:' ),
+	'tag'                     => array( '0', 'markierung', 'tag' ),
 	'hiddencat'               => array( '1', '__VERSTECKTE_KATEGORIE__', '__WARTUNGSKATEGORIE__', '__HIDDENCAT__' ),
 	'pagesincategory'         => array( '1', 'SEITEN_IN_KATEGORIE', 'SEITEN_KAT', 'PAGESINCATEGORY', 'PAGESINCAT' ),
 	'pagesize'                => array( '1', 'SEITENGRÖSSE', 'PAGESIZE' ),
@@ -371,6 +385,10 @@ $magicWords = array(
 	'staticredirect'          => array( '1', '__PERMANENTE_WEITERLEITUNG__', '__STATICREDIRECT__' ),
 	'protectionlevel'         => array( '1', 'SCHUTZSTATUS', 'PROTECTIONLEVEL' ),
 	'formatdate'              => array( '0', 'DATUMSFORMAT', 'formatdate', 'dateformat' ),
+	'url_path'                => array( '0', 'PFAD', 'PATH' ),
+	'url_query'               => array( '0', 'ABFRAGE', 'QUERY' ),
+	'defaultsort_noerror'     => array( '0', 'keinfehler', 'noerror' ),
+	'defaultsort_noreplace'   => array( '0', 'keineersetzung', 'noreplace' ),
 );
 
 $imageFiles = array(
@@ -412,7 +430,7 @@ $messages = array(
 'tog-externaleditor' => 'Externen Editor standardmäßig nutzen (nur für Experten, erfordert spezielle Einstellungen auf dem eigenen Computer. [//www.mediawiki.org/wiki/Manual:External_editors Weitere Informationen hierzu.])',
 'tog-externaldiff' => 'Externes Programm standardmäßig für Versionsunterschiede nutzen (nur für Experten, erfordert spezielle Einstellungen auf dem eigenen Computer. [//www.mediawiki.org/wiki/Manual:External_editors Weitere Informationen hierzu.])',
 'tog-showjumplinks' => '„Wechseln zu“-Links aktivieren',
-'tog-uselivepreview' => 'Sofortige Vorschau nutzen (benötigt JavaScript) (experimentell)',
+'tog-uselivepreview' => 'Vorschau sofort anzeigen (benötigt JavaScript) (experimentell)',
 'tog-forceeditsummary' => 'Warnen, sofern beim Speichern die Zusammenfassung fehlt',
 'tog-watchlisthideown' => 'Eigene Bearbeitungen in der Beobachtungsliste ausblenden',
 'tog-watchlisthidebots' => 'Bearbeitungen durch Bots in der Beobachtungsliste ausblenden',
@@ -739,8 +757,9 @@ Möglicherweise wurde sie bereits von jemand anderem gelöscht.',
 'badtitle' => 'Ungültiger Titel',
 'badtitletext' => 'Der Titel der angeforderten Seite ist ungültig, leer oder ein ungültiger Sprachlink von einem anderen Wiki.',
 'perfcached' => 'Die folgenden Daten stammen aus dem Cache und sind möglicherweise nicht aktuell. Maximal {{PLURAL:$1|ein Ergebnis ist|$1 Ergebnisse sind}} im Cache verfügbar.',
-'perfcachedts' => 'Diese Daten stammen aus dem Cache. Der Zeitpunkt der letzten Aktualisierung: $1. Maximal {{PLURAL:$4|ein Ergebnis ist|$4 Ergebnisse sind}} im Cache verfügbar.',
-'querypage-no-updates' => "'''Die Aktualisierungsfunktion dieser Seite ist zurzeit deaktiviert. Die Daten werden bis auf Weiteres nicht erneuert.'''",
+'perfcachedts' => 'Diese Daten stammen aus dem Cache. Der Zeitpunkt der letzten Aktualisierung: $2, $3 Uhr. Maximal {{PLURAL:$4|ein Ergebnis ist|$4 Ergebnisse sind}} im Cache verfügbar.',
+'querypage-no-updates' => 'Die Aktualisierungsfunktion dieser Seite ist zurzeit deaktiviert.
+Die Daten werden bis auf Weiteres nicht erneuert.',
 'wrong_wfQuery_params' => 'Falsche Parameter für wfQuery()<br />
 Funktion: $1<br />
 Abfrage: $2',
@@ -768,6 +787,8 @@ Die Sperre wurde durch [[User:$1|$1]] mit der Begründung ''„$2“'' eingerich
 'filereadonlyerror' => 'Die Datei „$1“ kann nicht verändert werden, da auf das Dateirepositorium „$2“ nur Lesezugriff möglich ist.
 
 Der Administrator, der den Schreibzugriff sperrte, gab folgenden Grund an: „$3“.',
+'invalidtitle-knownnamespace' => 'Ungültiger Titel mit Namensraum „$2“ und Text „$3“',
+'invalidtitle-unknownnamespace' => 'Ungültiger Titel mit unbekannter Namensraumnummer $1 und Text „$2“',
 
 # Virus scanner
 'virus-badscanner' => "Fehlerhafte Konfiguration: unbekannter Virenscanner: ''$1''",
@@ -822,7 +843,7 @@ Es muss sichergestellt sein, dass Cookies aktiviert sind. Danach diese Seite ern
 Überprüfe die Schreibweise (Groß-/Kleinschreibung beachten) oder [[Special:UserLogin/signup|melde dich als neuer Benutzer an]].',
 'nosuchusershort' => 'Der Benutzername „$1“ ist nicht vorhanden. Bitte überprüfe die Schreibweise.',
 'nouserspecified' => 'Bitte gib einen Benutzernamen an.',
-'login-userblocked' => '{{GENDER:$1|Dieser Benutzer|Dieser Benutzerin|Dieser Benutzer}} ist gesperrt. Anmeldung nicht erlaubt.',
+'login-userblocked' => '{{GENDER:$1|Dieser Benutzer|Diese Benutzerin|Dieser Benutzer}} ist gesperrt. Die Anmeldung ist nicht erlaubt.',
 'wrongpassword' => 'Das Passwort ist falsch. Bitte versuche es erneut.',
 'wrongpasswordempty' => 'Es wurde kein Passwort eingegeben. Bitte versuche es erneut.',
 'passwordtooshort' => 'Passwörter müssen mindestens {{PLURAL:$1|1 Zeichen|$1 Zeichen}} lang sein.',
@@ -1048,7 +1069,8 @@ Zur Information folgt ein aktueller Auszug aus dem Benutzersperr-Logbuch:',
 'updated' => '(Geändert)',
 'note' => "'''Hinweis:'''",
 'previewnote' => "'''Dies ist nur eine Vorschau.'''
-Die Seite wurde noch nicht gespeichert! [[#editform|→ Weiter bearbeiten]]",
+Die Seite wurde noch nicht gespeichert!",
+'continue-editing' => 'Weiter bearbeiten',
 'previewconflict' => 'Diese Vorschau gibt den Inhalt des oberen Textfeldes wieder. So wird die Seite aussehen, wenn du jetzt speicherst.',
 'session_fail_preview' => "'''Deine Bearbeitung konnte nicht gespeichert werden, da Sitzungsdaten verloren gegangen sind.
 Bitte versuche es erneut, indem du unter der folgenden Textvorschau nochmals auf „Seite speichern“ klickst.
@@ -1140,6 +1162,12 @@ Sie darf nicht mehr als $2 {{PLURAL:$2|Aufruf|Aufrufe}} haben, es {{PLURAL:$1|is
 'parser-template-loop-warning' => 'Vorlagenschleife entdeckt: [[$1]]',
 'parser-template-recursion-depth-warning' => 'Vorlagenrekursionstiefengrenze überschritten ($1)',
 'language-converter-depth-warning' => 'Sprachkonvertertiefenlimit überschritten ($1)',
+'node-count-exceeded-category' => 'Seiten, die die Knotenanzahl überschritten haben',
+'node-count-exceeded-warning' => 'Die Seite hat die Knotenpunktanzahl überschritten.',
+'expansion-depth-exceeded-category' => 'Seiten, die die Expansionstiefe überschritten haben',
+'expansion-depth-exceeded-warning' => 'Die Seite hat die Expansionstiefe überschritten.',
+'parser-unstrip-loop-warning' => 'Zirkelbezug festgestellt',
+'parser-unstrip-recursion-limit' => 'Rekursionsgrenze beim Auflösen überschritten ($1)',
 
 # "Undo" feature
 'undo-success' => 'Die Bearbeitung kann rückgängig gemacht werden.
@@ -1156,7 +1184,7 @@ Grund der Sperre: ''$2''",
 
 # History pages
 'viewpagelogs' => 'Logbücher dieser Seite anzeigen',
-'nohistory' => 'Es gibt keine Versionsgeschichte für diese Seite.',
+'nohistory' => 'Zu dieser Seite ist keine Versionsgeschichte vorhanden.',
 'currentrev' => 'Aktuelle Version',
 'currentrev-asof' => 'Aktuelle Version vom $2, $3 Uhr',
 'revisionasof' => 'Version vom $2, $3 Uhr',
@@ -1173,7 +1201,7 @@ Grund der Sperre: ''$2''",
 * ({{int:cur}}) = Unterschied zur aktuellen Version, ({{int:last}}) = Unterschied zur vorherigen Version
 * Uhrzeit/Datum = Version zu dieser Zeit, Benutzername/IP-Adresse des Bearbeiters, {{int:minoreditletter}} = Kleine Änderung',
 'history-fieldset-title' => 'In der Versionsgeschichte suchen',
-'history-show-deleted' => 'nur gelöschte Versionen',
+'history-show-deleted' => 'Nur gelöschte Versionen zeigen',
 'histfirst' => 'Älteste',
 'histlast' => 'Neueste',
 'historysize' => '({{PLURAL:$1|1 Byte|$1 Bytes}})',
@@ -1314,8 +1342,9 @@ Stelle sicher, dass die Versionsgeschichte einer Seite historisch korrekt ist.',
 'mergelogpagetext' => 'Dies ist das Logbuch der vereinigten Versionsgeschichten.',
 
 # Diffs
-'history-title' => 'Versionsgeschichte von „$1“',
-'difference' => '(Unterschied zwischen Versionen)',
+'history-title' => '$1: Versionsgeschichte',
+'difference-title' => '$1: Unterschied zwischen den Versionen',
+'difference-title-multipage' => '$1 und $2: Unterschied zwischen den Seiten',
 'difference-multipage' => '(Unterschied zwischen Seiten)',
 'lineno' => 'Zeile $1:',
 'compareselectedversions' => 'Gewählte Versionen vergleichen',
@@ -1409,14 +1438,15 @@ Stelle sicher, dass die Versionsgeschichte einer Seite historisch korrekt ist.',
 'datedefault' => 'Standard',
 'prefs-beta' => 'Beta-Funktionen',
 'prefs-datetime' => 'Datum und Zeit',
-'prefs-labs' => 'Alpha-Funktionen (experimentell)',
+'prefs-labs' => 'Alpha-Funktionen',
+'prefs-user-pages' => 'Benutzerseiten',
 'prefs-personal' => 'Benutzerdaten',
 'prefs-rc' => 'Letzte Änderungen',
 'prefs-watchlist' => 'Beobachtungsliste',
-'prefs-watchlist-days' => 'Anzahl der Tage, die die Beobachtungsliste standardmäßig umfassen soll:',
+'prefs-watchlist-days' => 'Maximale Anzahl der einbezogenen Tage:',
 'prefs-watchlist-days-max' => 'Maximal {{PLURAL:$1|ein Tag|$1 Tage}}',
-'prefs-watchlist-edits' => 'Maximale Zahl der Einträge:',
-'prefs-watchlist-edits-max' => 'Maximale Anzahl: 1000',
+'prefs-watchlist-edits' => 'Maximale Anzahl der angezeigten Einträge:',
+'prefs-watchlist-edits-max' => 'Maximal 1.000 Einträge',
 'prefs-watchlist-token' => 'Beobachtungslisten-Token:',
 'prefs-misc' => 'Verschiedenes',
 'prefs-resetpass' => 'Passwort ändern',
@@ -1435,7 +1465,7 @@ Stelle sicher, dass die Versionsgeschichte einer Seite historisch korrekt ist.',
 'resultsperpage' => 'Treffer pro Seite:',
 'stub-threshold' => 'Linkformatierung <a href="#" class="stub">kleiner Seiten</a> (in Byte):',
 'stub-threshold-disabled' => 'Deaktiviert',
-'recentchangesdays' => 'Anzahl der Tage, die die Liste der „Letzten Änderungen“ standardmäßig umfassen soll:',
+'recentchangesdays' => 'Anzahl der standardmäßig einbezogenen Tage:',
 'recentchangesdays-max' => 'Maximal $1 {{PLURAL:$1|Tag|Tage}}',
 'recentchangescount' => 'Anzahl der standardmäßig angezeigten Bearbeitungen:',
 'prefs-help-recentchangescount' => 'Dies umfasst die Liste der letzten Änderungen, die Versionsgeschichte und die Logbücher.',
@@ -1492,7 +1522,7 @@ Dies kann nicht mehr rückgängig gemacht werden.',
 'gender-unknown' => 'Nicht angegeben',
 'gender-male' => 'Männlich',
 'gender-female' => 'Weiblich',
-'prefs-help-gender' => 'Optional: Wird unter anderem von der Software für die geschlechtsspezifische Anrede genutzt. Diese Information ist <u>öffentlich</u>.',
+'prefs-help-gender' => 'Optional: Wird unter anderem von der Software für die geschlechtsspezifische Anrede genutzt. Diese Information ist öffentlich.',
 'email' => 'E-Mail',
 'prefs-help-realname' => 'Optional. Damit kann dein bürgerlicher Name deinen Beiträgen zugeordnet werden.',
 'prefs-help-email' => 'Die Angabe einer E-Mail-Adresse ist optional, ermöglicht aber die Zusendung eines Ersatzpasswortes, sofern du dein Passwort vergessen hast.',
@@ -1527,9 +1557,9 @@ Dies kann nicht mehr rückgängig gemacht werden.',
 'saveusergroups' => 'Gruppenzugehörigkeit ändern',
 'userrights-groupsmember' => 'Mitglied von:',
 'userrights-groupsmember-auto' => 'Automatisch Mitglied von:',
-'userrights-groups-help' => 'Du kannst die Gruppenzugehörigkeit dieses Benutzers ändern:
-* Ein markiertes Kästchen bedeutet, dass der Benutzer Mitglied dieser Gruppe ist.
-* Ein nichtmarkiertes Kästchen bedeutet, dass der Benutzer nicht Mitglied dieser Gruppe ist.
+'userrights-groups-help' => 'Du kannst die Gruppenzugehörigkeit {{GENDER:$1|dieses Benutzers|dieser Benutzerin}} ändern:
+* Ein markiertes Kästchen bedeutet, dass {{GENDER:$1|der Benutzer|die Benutzerin}} Mitglied dieser Gruppe ist.
+* Ein nichtmarkiertes Kästchen bedeutet, dass {{GENDER:$1|der Benutzer|die Benutzerin}} nicht Mitglied dieser Gruppe ist.
 * Ein * bedeutet, dass du das Benutzerrecht nach Erteilung nicht wieder zurücknehmen kannst (oder umgekehrt).',
 'userrights-reason' => 'Grund:',
 'userrights-no-interwiki' => 'Du hast nicht die erforderliche Berechtigung, um Benutzerrechte in anderen Wikis ändern zu können.',
@@ -1672,7 +1702,7 @@ Dies kann nicht mehr rückgängig gemacht werden.',
 'nchanges' => '$1 {{PLURAL:$1|Änderung|Änderungen}}',
 'recentchanges' => 'Letzte Änderungen',
 'recentchanges-legend' => 'Anzeigeoptionen',
-'recentchangestext' => "Auf dieser Seite kannst du die letzten Änderungen auf '''{{SITENAME}}''' nachverfolgen.",
+'recentchanges-summary' => 'Auf dieser Seite kannst du die letzten Änderungen in diesem Wiki nachverfolgen.',
 'recentchanges-feed-description' => 'Verfolge mit diesem Feed die letzten Änderungen in {{SITENAME}}.',
 'recentchanges-label-newpage' => 'Neue Seite',
 'recentchanges-label-minor' => 'Kleine Änderung',
@@ -1778,8 +1808,7 @@ Um ein '''Bild''' in einer Seite zu verwenden, nutze einen Link in der folgenden
 'largefileserver' => 'Die Datei ist größer als die vom Server eingestellte Maximalgröße.',
 'emptyfile' => 'Die hochgeladene Datei ist leer. Der Grund kann ein Tippfehler im Dateinamen sein. Bitte kontrolliere, ob du die Datei wirklich hochladen willst.',
 'windows-nonascii-filename' => 'Dieses Wiki unterstützt keine Dateinamen die Sonderzeichen enthalten.',
-'fileexists' => "Eine Datei mit diesem Namen existiert bereits.
-Bitte prüfe '''<tt>[[:$1]]</tt>''', wenn du dir nicht sicher bist, ob du sie ändern willst.
+'fileexists' => "Eine Datei dieses Namens ist bereits vorhanden. Bitte prüfe '''<tt>[[:$1]]</tt>''', sofern du dir nicht sicher bist, ob du sie ändern möchtest.
 [[$1|thumb]]",
 'filepageexists' => "Eine Beschreibungsseite wurde bereits als '''<tt>[[:$1]]</tt>''' erstellt, es ist aber keine Datei mit diesem Namen vorhanden.
 Die eingegebene Beschreibung wird nicht auf die Beschreibungsseite übernommen.
@@ -1821,7 +1850,7 @@ Das Hochladen von Java-Dateien ist nicht gestattet, da sie die Umgehung von Sich
 'destfilename' => 'Zielname:',
 'upload-maxfilesize' => 'Maximale Dateigröße: $1',
 'upload-description' => 'Dateibeschreibung',
-'upload-options' => 'Hochlade-Optionen',
+'upload-options' => 'Hochladeoptionen',
 'watchthisupload' => 'Diese Datei beobachten',
 'filewasdeleted' => 'Eine Datei mit diesem Namen wurde schon einmal hochgeladen und zwischenzeitlich wieder gelöscht. Bitte prüfe zuerst den Eintrag im $1, bevor du die Datei wirklich speicherst.',
 'filename-bad-prefix' => "Der Dateiname beginnt mit '''„$1“'''. Dies ist im allgemeinen der von einer Digitalkamera vorgegebene Dateiname und daher nicht sehr aussagekräftig.
@@ -1879,14 +1908,15 @@ Wenn das Problem weiter besteht, informiere einen [[Special:ListUsers/sysop|Syst
 'backend-fail-writetemp' => 'Die temporäre Datei konnte nicht geschrieben werden.',
 'backend-fail-closetemp' => 'Die temporäre Datei konnte nicht geschlossen werden.',
 'backend-fail-read' => 'Die Datei $1 konnte nicht gelesen werden.',
-'backend-fail-create' => 'Die Datei $1 konnte nicht erstellt werden.',
-'backend-fail-maxsize' => 'Die Datei $1 konnte nicht erstellt werden, da sie größer als {{PLURAL:$2|ein Byte|$2 Byte}} ist.',
+'backend-fail-create' => 'Die Datei $1 konnte nicht gespeichert werden.',
+'backend-fail-maxsize' => 'Die Datei $1 konnte nicht gespeichert werden, da sie größer als {{PLURAL:$2|ein Byte|$2 Byte}} ist.',
 'backend-fail-readonly' => 'Das Speicher-Backend „$1“ befindet sich derzeit im Lesemodus. Der angegebene Grund lautet: „$2“',
 'backend-fail-synced' => 'Die Datei „$1“ befindet sich, innerhalb des internen Speicher-Backends, in einem inkonsistenten Zustand.',
 'backend-fail-connect' => 'Es konnte keine Verbindung zum Speicher-Backend „$1“ hergestellt werden.',
 'backend-fail-internal' => 'Im Speicher-Backend „$1“ ist ein unbekannter Fehler aufgetreten.',
 'backend-fail-contenttype' => 'Der Inhaltstyp, der im Pfad „$1“ zu speichernden Datei, konnte nicht bestimmt werden.',
 'backend-fail-batchsize' => 'Eine Stapelverarbeitungsdatei, die {{PLURAL:$1|eine Operation|$1 Operationen}} enthält, wurde an das Speicher-Backend gesandt. Die Begrenzung liegt allerdings bei {{PLURAL:$2|einer Operation|$2 Operationen}}.',
+'backend-fail-usable' => 'Die Datei $1 konnte, entweder aufgrund eines nicht vorhandenen Verzeichnisses oder aufgrund unzureichender Berechtigungen, nicht gespeichert werden.',
 
 # File journal errors
 'filejournal-fail-dbconnect' => 'Es konnte keine Verbindung zur Journaldatenbank des Speicher-Backends „$1“ hergestellt werden.',
@@ -1900,8 +1930,8 @@ Wenn das Problem weiter besteht, informiere einen [[Special:ListUsers/sysop|Syst
 'lockmanager-fail-openlock' => 'Die Sperrdatei für „$1“ konnte nicht geöffnet werden.',
 'lockmanager-fail-releaselock' => 'Die Sperre für „$1“ konnte nicht freigegeben werden.',
 'lockmanager-fail-db-bucket' => 'Es konnte mit Sammelabruf $1 keine ausreichende Anzahl an Verbindungen zu Sperrdatenbanken hergestellt werden.',
-'lockmanager-fail-db-release' => 'Die Sperren auf Datenbank $1 konnte nicht freigegeben werden.',
-'lockmanager-fail-svr-release' => 'Die Sperren auf Server $1 konnte nicht freigegeben werden.',
+'lockmanager-fail-db-release' => 'Die Sperren auf Datenbank $1 konnten nicht freigegeben werden.',
+'lockmanager-fail-svr-release' => 'Die Sperren auf Server $1 konnten nicht freigegeben werden.',
 
 # ZipDirectoryReader
 'zip-file-open-error' => 'Es ist ein Fehler beim Öffnen der Datei zur ZIP-Überprüfung aufgetreten.',
@@ -2010,8 +2040,8 @@ Eine [[Special:WhatLinksHere/$2|vollständige Liste]] ist verfügbar.',
 Vielleicht möchtest du die Beschreibung auf der dortigen [$2 Dateibeschreibungsseite] bearbeiten.',
 'sharedupload-desc-create' => 'Diese Datei stammt aus $1 und kann von anderen Projekten verwendet werden.
 Vielleicht möchtest du die Beschreibung auf der dortigen [$2 Dateibeschreibungsseite] bearbeiten.',
-'filepage-nofile' => 'Es existiert keine Datei mit diesem Namen.',
-'filepage-nofile-link' => 'Es existiert keine Datei mit diesem Namen, aber du kannst [$1 diese Datei hochladen].',
+'filepage-nofile' => 'Es ist keine Datei dieses namens vorhanden.',
+'filepage-nofile-link' => 'Es ist keine Datei dieses namens vorhanden. Du kannst jedoch [$1 diese Datei hochladen].',
 'uploadnewversion-linktext' => 'Eine neue Version dieser Datei hochladen',
 'shared-repo-from' => 'aus $1',
 'shared-repo' => 'einem gemeinsam genutzten Medienarchiv',
@@ -2060,7 +2090,7 @@ Vielleicht möchtest du die Beschreibung auf der dortigen [$2 Dateibeschreibungs
 'listredirects' => 'Weiterleitungen',
 
 # Unused templates
-'unusedtemplates' => 'Unbenutzte Vorlagen',
+'unusedtemplates' => 'Verwaiste Vorlagen',
 'unusedtemplatestext' => 'Diese Seite listet alle Seiten im {{ns:template}}-Namensraum auf, die nicht in anderen Seiten eingebunden sind.
 Überprüfe andere Links zu den Vorlagen, bevor du diese löscht.',
 'unusedtemplateswlh' => 'Andere Links',
@@ -2137,8 +2167,8 @@ Jede Zeile enthält Links zur ersten und zweiten Weiterleitung sowie dem Ziel de
 'uncategorizedcategories' => 'Nicht kategorisierte Kategorien',
 'uncategorizedimages' => 'Nicht kategorisierte Dateien',
 'uncategorizedtemplates' => 'Nicht kategorisierte Vorlagen',
-'unusedcategories' => 'Unbenutzte Kategorien',
-'unusedimages' => 'Unbenutzte Dateien',
+'unusedcategories' => 'Verwaiste Kategorien',
+'unusedimages' => 'Verwaiste Dateien',
 'popularpages' => 'Beliebteste Seiten',
 'wantedcategories' => 'Gewünschte Kategorien',
 'wantedpages' => 'Gewünschte Seiten',
@@ -2205,6 +2235,7 @@ Bitte prüfe, ob sie korrekt von der Quelle übertragen wurde.',
 Die Ausgabe kann durch die Auswahl des Logbuchtyps, des Benutzers oder des Seitentitels eingeschränkt werden (Groß-/Kleinschreibung muss beachtet werden).',
 'logempty' => 'Keine passenden Einträge.',
 'log-title-wildcard' => 'Titel beginnt mit …',
+'showhideselectedlogentries' => 'Ausgewählte Logbucheinträge anzeigen/verstecken',
 
 # Special:AllPages
 'allpages' => 'Alle Seiten',
@@ -2232,7 +2263,7 @@ Die Ausgabe kann durch die Auswahl des Logbuchtyps, des Benutzers oder des Seite
 # Special:Categories
 'categories' => 'Kategorien',
 'categoriespagetext' => 'Folgende {{PLURAL:$1|Kategorie enthält|Kategorien enthalten}} Seiten oder Dateien.
-[[Special:UnusedCategories|Unbenutzte Kategorien]] werden hier nicht aufgeführt.
+[[Special:UnusedCategories|Verwaiste Kategorien]] werden hier nicht aufgeführt.
 Siehe auch die Liste der [[Special:WantedCategories|gewünschten Kategorien]].',
 'categoriesfrom' => 'Zeige Kategorien ab:',
 'special-categories-sort-count' => 'Sortierung nach Anzahl',
@@ -2487,9 +2518,10 @@ Siehe die [[Special:ProtectedPages|Liste der geschützten Seiten]] für alle akt
 'protect-existing-expiry' => 'Aktuelles Seitenschutzende: $2, $3 Uhr',
 'protect-otherreason' => 'Anderer/ergänzender Grund:',
 'protect-otherreason-op' => 'Anderer Grund',
-'protect-dropdown' => '*Allgemeine Schutzgründe
-** Weblink-Spam
-** Editwar
+'protect-dropdown' => '* Allgemeine Schutzgründe
+** Edit-War
+** Wiederkehrender Vandalismus
+** Wiederholtes Einstellen von Werbung
 ** Häufig eingebundene Vorlage
 ** Seite mit hoher Besucherzahl',
 'protect-edit-reasonlist' => 'Schutzgründe bearbeiten',
@@ -2939,7 +2971,7 @@ Diese auf dem lokalen Rechner speichern und danach hier hochladen.',
 'importuploaderrortemp' => 'Das Hochladen der Importdatei ist fehlgeschlagen. Ein temporäres Verzeichnis fehlt.',
 'import-parse-failure' => 'Fehler beim XML-Import:',
 'import-noarticle' => 'Es wurde keine zu importierende Seite angegeben!',
-'import-nonewrevisions' => 'Es sind keine neuen Versionen zum Import vorhanden, alle Versionen wurden bereits früher importiert.',
+'import-nonewrevisions' => 'Alle Versionen wurden bereits zu einem früheren Zeitpunkt importiert.',
 'xml-error-string' => '$1 Zeile $2, Spalte $3, (Byte $4): $5',
 'import-upload' => 'XML-Daten importieren',
 'import-token-mismatch' => 'Verlust der Sessiondaten. Bitte versuche es erneut.',
@@ -2964,7 +2996,7 @@ Diese auf dem lokalen Rechner speichern und danach hier hochladen.',
 'javascripttest-title' => '$1-Tests werden durchgeführt',
 'javascripttest-pagetext-noframework' => 'Diese Seite ist JavaSkript-Tests vorbehalten.',
 'javascripttest-pagetext-unknownframework' => 'Unbekanntes Framework „$1“.',
-'javascripttest-pagetext-frameworks' => 'Bitte eines der folgenden Frameworks auswählen: $1',
+'javascripttest-pagetext-frameworks' => 'Bitte wähle eine der folgenden Prüfumgebungen aus: $1',
 'javascripttest-pagetext-skins' => 'Wähle eine Benutzeroberfläche zur Durchführung der Tests aus:',
 'javascripttest-qunit-intro' => 'Siehe die [$1 Dokumentation zu Tests] auf mediawiki.org',
 'javascripttest-qunit-heading' => 'MediaWiki-JavaSkript-QUnit-Tester',
@@ -3188,7 +3220,7 @@ Durch das Herunterladen und Öffnen der Datei kann dein Computer beschädigt wer
 # Video information, used by Language::formatTimePeriod() to format lengths in the above messages
 'seconds' => '{{PLURAL:$1|$1 Sekunde|$1 Sekunden}}',
 'minutes' => '{{PLURAL:$1|$1 Minute|$1 Minuten}}',
-'hours' => '{{PLURAL:$1|$1 Stunde|$1 Stunden}}',
+'hours' => '{{PLURAL:$1|einer Stunde|$1 Stunden}}',
 'days' => '{{PLURAL:$1|$1 Tag|$1 Tage}}',
 'ago' => 'vor $1',
 
@@ -3625,7 +3657,7 @@ Weitere werden standardmäßig nicht angezeigt.
 'confirmemail_pending' => 'Es wurde dir bereits ein Bestätigungscode per E-Mail zugeschickt.
 Wenn du dein Benutzerkonto erst vor kurzem erstellt hast, warte bitte noch ein paar Minuten auf die E-Mail, bevor du einen neuen Code anforderst.',
 'confirmemail_send' => 'Bestätigungscode zuschicken',
-'confirmemail_sent' => 'Bestätigungs-E-Mail wurde verschickt.',
+'confirmemail_sent' => 'Die Bestätigungs-E-Mail wurde verschickt.',
 'confirmemail_oncreate' => 'Ein Bestätigungs-Code wurde an deine E-Mail-Adresse gesandt. Dieser Code wird für die Anmeldung nicht benötigt, jedoch wird er zur Aktivierung der E-Mail-Funktionen innerhalb des Wikis gebraucht.',
 'confirmemail_sendfailed' => '{{SITENAME}} konnte die Bestätigungs-E-Mail nicht an dich versenden.
 Bitte prüfe die E-Mail-Adresse auf ungültige Zeichen.
@@ -3743,10 +3775,10 @@ Bitte bestätige, dass du diese Seite wirklich neu erstellen möchten.",
 'size-gigabytes' => '$1 GB',
 
 # Live preview
-'livepreview-loading' => 'Am Laden …',
+'livepreview-loading' => 'Lade …',
 'livepreview-ready' => 'Laden … Fertig!',
-'livepreview-failed' => 'Die sofortige Vorschau ist nicht möglich!
-Bitte die normale Vorschau nutzen.',
+'livepreview-failed' => 'Die Vorschau kann nicht sofort angezeigt werden!
+Bitte nutze die reguläre Vorschau.',
 'livepreview-error' => 'Verbindung nicht möglich: $1 „$2“. Bitte die normale Vorschau benutzen.',
 
 # Friendlier slave lag warnings
@@ -3824,6 +3856,11 @@ Eine [{{SERVER}}{{SCRIPTPATH}}/COPYING Kopie der ''GNU General Public License'']
 'version-software' => 'Installierte Software',
 'version-software-product' => 'Software',
 'version-software-version' => 'Version',
+'version-entrypoints' => 'Eingangspunkt-URLs',
+'version-entrypoints-header-entrypoint' => 'Eingangspunkt',
+'version-entrypoints-header-url' => 'URL',
+'version-entrypoints-articlepath' => '[https://www.mediawiki.org/wiki/Manual:$wgArticlePath Artikelpfad]',
+'version-entrypoints-scriptpath' => '[https://www.mediawiki.org/wiki/Manual:$wgScriptPath Skriptpfad]',
 
 # Special:FilePath
 'filepath' => 'Dateipfad',

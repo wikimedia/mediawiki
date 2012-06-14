@@ -2,17 +2,19 @@
 /**
  * JavaScript Minifier
  *
+ * @file
+ * @author Paul Copperman <paul.copperman@gmail.com>
+ * @license Choose any of Apache, MIT, GPL, LGPL
+ */
+
+/**
  * This class is meant to safely minify javascript code, while leaving syntactically correct
  * programs intact. Other libraries, such as JSMin require a certain coding style to work
  * correctly. OTOH, libraries like jsminplus, that do parse the code correctly are rather
  * slow, because they construct a complete parse tree before outputting the code minified.
  * So this class is meant to allow arbitrary (but syntactically correct) input, while being
  * fast enough to be used for on-the-fly minifying.
- *
- * Author: Paul Copperman <paul.copperman@gmail.com>
- * License: choose any of Apache, MIT, GPL, LGPL
  */
-
 class JavaScriptMinifier {
 
 	/* Class constants */

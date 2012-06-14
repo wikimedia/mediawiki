@@ -15,11 +15,13 @@
  * @author Dbl2010
  * @author Don Alessandro
  * @author Emperyan
+ * @author Erdemaslancan
  * @author Erkan Yilmaz
  * @author Fryed-peach
  * @author Goktr001
  * @author Hanberke
  * @author Hcagri
+ * @author Ijon
  * @author Incelemeelemani
  * @author Joseph
  * @author Kaganer
@@ -33,7 +35,9 @@
  * @author Mirzali
  * @author Mskyrider
  * @author Myildirim2007
+ * @author Reedy
  * @author Runningfridgesrule
+ * @author Sadrettin
  * @author Srhat
  * @author Stultiwikia
  * @author Suelnur
@@ -579,7 +583,7 @@ $1',
 'ok' => 'TAMAM',
 'pagetitle-view-mainpage' => '{{SITENAME}}',
 'retrievedfrom' => '"$1" adresinden alındı.',
-'youhavenewmessages' => 'Yeni <u>$1</u> var. ($2)',
+'youhavenewmessages' => 'Yeni $1 var ($2).',
 'newmessageslink' => 'mesajınız',
 'newmessagesdifflink' => 'son değişiklik',
 'youhavenewmessagesmulti' => "$1'de yeni mesajınız var.",
@@ -984,7 +988,8 @@ Son engelleme günlüğü girdisi referans için aşağıda sağlanmıştır:',
 'updated' => '(Güncellendi)',
 'note' => "'''Not: '''",
 'previewnote' => "'''Bunun yalnızca bir ön izleme olduğunu unutmayın.'''
-Yaptığınız değişiklikler henüz kaydedilmedi! [[#editform|→ Düzenlemeye devam edin]]",
+Yaptığınız değişiklikler henüz kaydedilmedi!",
+'continue-editing' => 'Düzenlemeye devam et',
 'previewconflict' => 'Bu önizleme metin düzenleme kutucuğunun üstünde, maddenin eğer değişikliklerinizi kaydetmeyi seçerseniz nasıl görüneceğini yansıtır.',
 'session_fail_preview' => 'Özür dileriz. Oturum açılması ile ilgili veri kaybından kaynaklı değişikliğinizi kaydedemedik. Lütfen tekrar deneyiniz. Eğer bu yöntem işe yaramazsa oturumu kapatıp tekrar sisteme geri giriş yapınız.',
 'session_fail_preview_html' => "'''Üzgünüz! Oturum verisinin kaybolmasından dolayı düzenlemenizi işleme geçiremeyeceğiz.'''
@@ -1253,7 +1258,6 @@ Gezinti bağlantılarının bu sütunu sıfırlayacağını unutmayın.',
 
 # Diffs
 'history-title' => '"$1" sayfasının geçmişi',
-'difference' => '(Sürümler arası farklar)',
 'difference-multipage' => '(Sayfalar arasındaki fark)',
 'lineno' => '$1. satır:',
 'compareselectedversions' => 'Seçilen sürümleri karşılaştır',
@@ -1610,7 +1614,7 @@ Diğer kullanıcılar sizinle bu yolla iletişime geçtiğinde e-posta adresiniz
 'nchanges' => '$1 {{PLURAL:$1|değişiklik|değişiklik}}',
 'recentchanges' => 'Son değişiklikler',
 'recentchanges-legend' => 'Son değişiklikler seçenekleri',
-'recentchangestext' => 'Yapılan en son değişiklikleri bu sayfadan izleyin.',
+'recentchanges-summary' => 'Yapılan en son değişiklikleri bu sayfadan izleyin.',
 'recentchanges-feed-description' => "Bu beslemede, viki'de yapılan en son değişiklikleri takip edin.",
 'recentchanges-label-newpage' => 'Bu değişiklik yeni bir sayfa oluşturdu',
 'recentchanges-label-minor' => 'Bu küçük bir değişiklik',
@@ -1822,6 +1826,7 @@ Güvenlik denetimi uygun bir şekilde gerçekleştirilemiyor.',
 'uploadstash-badtoken' => 'İşlemin gerçekleştirilmesi başarısız oldu, muhtemelen düzenleme yetkileriniz zaman aşımına uğradı. Yeniden deneyin.',
 'uploadstash-errclear' => 'Dosyaların silinmesi başarısız oldu.',
 'uploadstash-refresh' => 'Dosya listelerini yenile',
+'invalid-chunk-offset' => 'Geçersiz öbek ofset',
 
 # img_auth script messages
 'img-auth-accessdenied' => 'Erişim engellendi',
@@ -2116,6 +2121,7 @@ Günlük tipini, kullanıcı adını (büyük-küçük harf duyarlı), ya da etk
 'allpagesprefix' => 'Buraya yazdığınız harflerle başlayan sayfaları listeleyin:',
 'allpagesbadtitle' => 'Girilen sayfa ismi diller arası bağlantı ya da vikiler arası bağlantı içerdiğinden geçerli değil. Başlıklarda kullanılması yasak olan bir ya da daha çok karakter içeriyor olabilir.',
 'allpages-bad-ns' => '{{SITENAME}} sitesinde "$1" ad alanı yok.',
+'allpages-hide-redirects' => 'Yönlendirmeleri gizle',
 
 # Special:Categories
 'categories' => 'Kategoriler',
@@ -2274,8 +2280,8 @@ $NEWPAGE
 Değişikliği yapan kullanıcının açıklaması: $PAGESUMMARY $PAGEMINOREDIT
 
 Sayfayı değiştiren kullanıcıya erişim bilgileri:
-e-posta: $PAGEEDITOR_EMAIL
-viki: $PAGEEDITOR_WIKI
+E-posta: $PAGEEDITOR_EMAIL
+Viki: $PAGEEDITOR_WIKI
 
 Bahsi geçen sayfayı ziyaret edinceye kadar sayfayla ilgili başka değişiklik bildirimi gönderilmeyecektir. İzleme listenizdeki tüm sayfalar bildirim durumlarını sıfırlayabilirsiniz.
 
@@ -2862,8 +2868,8 @@ Geçici dosya kayıp.',
 'tooltip-pt-preferences' => 'Tercihleriniz (ayarlarınız)',
 'tooltip-pt-watchlist' => 'Değişiklikler için izlemeye aldığınız sayfaların listesi',
 'tooltip-pt-mycontris' => 'Katkılarınızın listesi',
-'tooltip-pt-login' => 'Mecbur değilsiniz fakat oturum açmanız tavsiye olunur',
-'tooltip-pt-anonlogin' => 'Oturum açmanız tavsiye olunur ama mecbur değilsiniz.',
+'tooltip-pt-login' => 'Oturum açmanızı tavsiye ederiz; ancak zorunda değilsiniz',
+'tooltip-pt-anonlogin' => 'Oturum açmanızı tavsiye ederiz; ancak zorunda değilsiniz',
 'tooltip-pt-logout' => 'Sistemden çık',
 'tooltip-ca-talk' => 'İçerik ile ilgili tartışma',
 'tooltip-ca-edit' => 'Bu sayfayı değiştirebilirsiniz. Lütfen kaydetmeden önce önizleme düğmesini kullanın.',
@@ -3232,6 +3238,8 @@ Diğerleri varsayılan olarak gizlenecektir.
 'exif-subjectnewscode' => 'Konu kodu',
 'exif-event' => 'Adı geçen olay',
 'exif-personinimage' => 'Adı geçen kişi',
+'exif-originalimageheight' => 'Resmin kırpılmadan önceki yükseliği',
+'exif-originalimagewidth' => 'Resmin kırpılmadan önceki genişliği',
 
 # EXIF attributes
 'exif-compression-1' => 'Sıkıştırılmamış',
@@ -3819,6 +3827,7 @@ Resimler tam çözünürlükte görüntülenir, diğer dosya tipleri ilgili prog
 'api-error-mustbeposted' => 'İç hata: İstek HTTP POST gerektiriyor.',
 'api-error-nomodule' => 'İç hata: Yükleme modülü ayarı yapılmadı.',
 'api-error-ok-but-empty' => 'İç hata: Sunucu yanıt vermiyor.',
+'api-error-overwrite' => 'Varolan dosyanın üzerine yazmaya izin verilmiyor.',
 'api-error-stashfailed' => 'İç hata: Sunucu, geçici dosyaları kaybetti.',
 'api-error-unclassified' => 'Bilinmeyen bir hata oluştu.',
 'api-error-unknown-code' => 'Bilinmeyen hata: "$1"',
@@ -3826,5 +3835,6 @@ Resimler tam çözünürlükte görüntülenir, diğer dosya tipleri ilgili prog
 'api-error-unknown-warning' => 'Bilinmeyen uyarı: $1',
 'api-error-unknownerror' => 'Bilinmeyen hata: "$1".',
 'api-error-uploaddisabled' => 'Yükleme bu vikide devre dışı bırakılmıştır.',
+'api-error-verification-error' => 'Dosya bozuk veya yanlış uzantıya sahip olabilir.',
 
 );

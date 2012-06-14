@@ -1,6 +1,21 @@
 <?php
 /**
- * Internationalisation code
+ * Internationalisation code.
+ *
+ * This program is free software; you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation; either version 2 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License along
+ * with this program; if not, write to the Free Software Foundation, Inc.,
+ * 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
+ * http://www.gnu.org/copyleft/gpl.html
  *
  * @file
  * @ingroup Language
@@ -245,6 +260,17 @@ class Language {
 	 * @return bool
 	 */
 	public static function isValidBuiltInCode( $code ) {
+
+		if( !is_string($code) ) {
+			$type = gettype( $code );
+			if( $type === 'object' ) {
+				$addmsg = " of class " . get_class( $code );
+			} else {
+				$addmsg = '';
+			}
+			throw new MWException( __METHOD__ . " must be passed a string, $type given$addmsg" );
+		}
+
 		return preg_match( '/^[a-z0-9-]+$/i', $code );
 	}
 
@@ -273,10 +299,6 @@ class Language {
 		}
 
 		if ( !defined( 'MW_COMPILED' ) ) {
-			// Preload base classes to work around APC/PHP5 bug
-			if ( file_exists( "$IP/languages/classes/$class.deps.php" ) ) {
-				include_once( "$IP/languages/classes/$class.deps.php" );
-			}
 			if ( file_exists( "$IP/languages/classes/$class.php" ) ) {
 				include_once( "$IP/languages/classes/$class.php" );
 			}
@@ -700,9 +722,9 @@ class Language {
 	 *		Use null for autonyms (native names)
 	 * @param $include string:
 	 *		'all' all available languages
-	 *		'mw' only if the language is defined in MediaWiki or wgExtraLanguageNames
+	 *		'mw' only if the language is defined in MediaWiki or wgExtraLanguageNames (default)
 	 *		'mwfile' only if the language is in 'mw' *and* has a message file
-	 * @return array|bool: language code => language name, false if $include is wrong
+	 * @return array: language code => language name
 	 * @since 1.20
 	 */
 	public static function fetchLanguageNames( $inLanguage = null, $include = 'mw' ) {
@@ -723,9 +745,8 @@ class Language {
 		$mwNames = $wgExtraLanguageNames + $coreLanguageNames;
 		foreach ( $mwNames as $mwCode => $mwName ) {
 			# - Prefer own MediaWiki native name when not using the hook
-			#	TODO: prefer it always to make it consistent, but casing is different in CLDR
 			# - For other names just add if not added through the hook
-			if ( ( $mwCode === $inLanguage && !$inLanguage ) || !isset( $names[$mwCode] ) ) {
+			if ( $mwCode === $inLanguage || !isset( $names[$mwCode] ) ) {
 				$names[$mwCode] = $mwName;
 			}
 		}
@@ -740,9 +761,7 @@ class Language {
 			$returnMw[$coreCode] = $names[$coreCode];
 		}
 
-		if( $include === 'mw' ) {
-			return $returnMw;
-		} elseif( $include === 'mwfile' ) {
+		if( $include === 'mwfile' ) {
 			$namesMwFile = array();
 			# We do this using a foreach over the codes instead of a directory
 			# loop so that messages files in extensions will work correctly.
@@ -753,7 +772,8 @@ class Language {
 			}
 			return $namesMwFile;
 		}
-		return false;
+		# 'mw' option; default if it's not one of the other two options (all/mwfile)
+		return $returnMw;
 	}
 
 	/**
@@ -2386,8 +2406,12 @@ class Language {
 			return $s;
 		}
 
-		$isutf8 = preg_match( '/^([\x00-\x7f]|[\xc0-\xdf][\x80-\xbf]|' .
-				'[\xe0-\xef][\x80-\xbf]{2}|[\xf0-\xf7][\x80-\xbf]{3})+$/', $s );
+		if ( function_exists( 'mb_check_encoding' ) ) {
+			$isutf8 = mb_check_encoding( $s, 'UTF-8' );
+		} else {
+			$isutf8 = preg_match( '/^(?>[\x00-\x7f]|[\xc0-\xdf][\x80-\xbf]|' .
+					'[\xe0-\xef][\x80-\xbf]{2}|[\xf0-\xf7][\x80-\xbf]{3})+$/', $s );
+		}
 		if ( $isutf8 ) {
 			return $s;
 		}
@@ -2708,12 +2732,26 @@ class Language {
 	}
 
 	/**
-	 * An arrow, depending on the language direction
+	 * An arrow, depending on the language direction.
 	 *
+	 * @param $direction String: the direction of the arrow: forwards (default), backwards, left, right, up, down.
 	 * @return string
 	 */
-	function getArrow() {
-		return $this->isRTL() ? '←' : '→';
+	function getArrow( $direction = 'forwards' ) {
+		switch ( $direction ) {
+		case 'forwards':
+			return $this->isRTL() ? '←' : '→';
+		case 'backwards':
+			return $this->isRTL() ? '→' : '←';
+		case 'left':
+			return '←';
+		case 'right':
+			return '→';
+		case 'up':
+			return '↑';
+		case 'down':
+			return '↓';
+		}
 	}
 
 	/**
@@ -3649,6 +3687,9 @@ class Language {
 	/**
 	 * Get the RFC 3066 code for this language object
 	 *
+	 * NOTE: The return value of this function is NOT HTML-safe and must be escaped with
+	 * htmlspecialchars() or similar
+	 *
 	 * @return string
 	 */
 	public function getCode() {
@@ -3658,6 +3699,10 @@ class Language {
 	/**
 	 * Get the code in Bcp47 format which we can use
 	 * inside of html lang="" tags.
+	 *
+	 * NOTE: The return value of this function is NOT HTML-safe and must be escaped with
+	 * htmlspecialchars() or similar.
+	 *
 	 * @since 1.19
 	 * @return string
 	 */

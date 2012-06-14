@@ -3,6 +3,21 @@
  * Local repository that stores files in the local filesystem and registers them
  * in the wiki's own database.
  *
+ * This program is free software; you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation; either version 2 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License along
+ * with this program; if not, write to the Free Software Foundation, Inc.,
+ * 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
+ * http://www.gnu.org/copyleft/gpl.html
+ *
  * @file
  * @ingroup FileRepo
  */
@@ -24,7 +39,7 @@ class LocalRepo extends FileRepo {
 	/**
 	 * @throws MWException
 	 * @param $row
-	 * @return File
+	 * @return LocalFile
 	 */
 	function newFileFromRow( $row ) {
 		if ( isset( $row->img_name ) ) {
@@ -133,7 +148,7 @@ class LocalRepo extends FileRepo {
 	public static function getHashFromKey( $key ) {
 		return strtok( $key, '.' );
 	}
-	
+
 	/**
 	 * Checks if there is a redirect named as $title
 	 *
@@ -182,7 +197,6 @@ class LocalRepo extends FileRepo {
 			return false;
 		}
 	}
-
 
 	/**
 	 * Function link Title::getArticleID().

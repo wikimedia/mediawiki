@@ -974,7 +974,6 @@ Hon kann ikki fjalast.',
 
 # Diffs
 'history-title' => 'Versjónssøgan hjá "$1"',
-'difference' => '(Munur millum endurskoðanir)',
 'difference-multipage' => '(Munur millum síður)',
 'lineno' => 'Linja $1:',
 'compareselectedversions' => 'Bera saman valdar útgávur',
@@ -1248,7 +1247,7 @@ Tín t-post adressa verður ikki avdúkað, tá aðrir brúkarir seta seg í sam
 'nchanges' => '$1 {{PLURAL:$1|broyting|broytingar}}',
 'recentchanges' => 'Seinastu broytingar',
 'recentchanges-legend' => 'Nýligar broytingar møguleikar',
-'recentchangestext' => 'Á hesi síðu kanst tú fylgja teimum nýggjastu broytingunum á hesi wiki.',
+'recentchanges-summary' => 'Á hesi síðu kanst tú fylgja teimum nýggjastu broytingunum á hesi wiki.',
 'recentchanges-feed-description' => "Við hesum feed'inum kanst tú fylgja teimum seinastu broytingunum á hesi wiki'ini.",
 'recentchanges-label-newpage' => 'Henda rætting upprættaði eina nýggja síðu',
 'recentchanges-label-minor' => 'Hetta er ein lítil rætting',

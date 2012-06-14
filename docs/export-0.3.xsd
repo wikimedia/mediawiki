@@ -2,48 +2,48 @@
 <!--
 	This is an XML Schema description of the format
 	output by MediaWiki's Special:Export system.
-	
+
 	Version 0.2 adds optional basic file upload info support,
 	which is used by our OAI export/import submodule.
-	
+
 	Version 0.3 adds some site configuration information such
 	as a list of defined namespaces.
-	
+
 	The canonical URL to the schema document is:
 	http://www.mediawiki.org/xml/export-0.3.xsd
-	
+
 	Use the namespace:
 	http://www.mediawiki.org/xml/export-0.3/
 -->
 <schema xmlns="http://www.w3.org/2001/XMLSchema"
-        xmlns:mw="http://www.mediawiki.org/xml/export-0.3/"
-        targetNamespace="http://www.mediawiki.org/xml/export-0.3/"
-        elementFormDefault="qualified">
+		xmlns:mw="http://www.mediawiki.org/xml/export-0.3/"
+		targetNamespace="http://www.mediawiki.org/xml/export-0.3/"
+		elementFormDefault="qualified">
 
 	<annotation>
 		<documentation xml:lang="en">
 			MediaWiki's page export format
 		</documentation>
 	</annotation>
-	
+
 	<!-- Need this to reference xml:lang -->
 	<import namespace="http://www.w3.org/XML/1998/namespace"
-		schemaLocation="http://www.w3.org/2001/xml.xsd"/>
-	
+			schemaLocation="http://www.w3.org/2001/xml.xsd"/>
+
 	<!-- Our root element -->
 	<element name="mediawiki" type="mw:MediaWikiType"/>
-	
+
 	<complexType name="MediaWikiType">
 		<sequence>
 			<element name="siteinfo" type="mw:SiteInfoType"
-				minOccurs="0" maxOccurs="1"/>
+					 minOccurs="0" maxOccurs="1"/>
 			<element name="page" type="mw:PageType"
-				minOccurs="0" maxOccurs="unbounded"/>
+					 minOccurs="0" maxOccurs="unbounded"/>
 		</sequence>
 		<attribute name="version" type="string" use="required"/>
 		<attribute ref="xml:lang" use="required"/>
 	</complexType>
-	
+
 	<complexType name="SiteInfoType">
 		<sequence>
 			<element name="sitename" type="string" minOccurs="0" />
@@ -53,30 +53,30 @@
 			<element name="namespaces" type="mw:NamespacesType" minOccurs="0" />
 		</sequence>
 	</complexType>
-	
+
 	<simpleType name="CaseType">
 		<restriction base="NMTOKEN">
 			<!-- Cannot have two titles differing only by case of first letter. -->
 			<!-- Default behavior through 1.5, $wgCapitalLinks = true -->
 			<enumeration value="first-letter" />
-			
+
 			<!-- Complete title is case-sensitive -->
 			<!-- Behavior when $wgCapitalLinks = false -->
 			<enumeration value="case-sensitive" />
-			
+
 			<!-- Cannot have two titles differing only by case. -->
 			<!-- Not yet implemented as of MediaWiki 1.5 -->
 			<enumeration value="case-insensitive" />
 		</restriction>
 	</simpleType>
-	
+
 	<complexType name="NamespacesType">
 		<sequence>
 			<element name="namespace" type="mw:NamespaceType"
-				minOccurs="0" maxOccurs="unbounded" />
+					 minOccurs="0" maxOccurs="unbounded" />
 		</sequence>
 	</complexType>
-	
+
 	<complexType name="NamespaceType">
 		<simpleContent>
 			<extension base="string">
@@ -84,18 +84,18 @@
 			</extension>
 		</simpleContent>
 	</complexType>
-	
+
 	<complexType name="PageType">
 		<sequence>
 			<!-- Title in text form. (Using spaces, not underscores; with namespace ) -->
 			<element name="title" type="string"/>
-			
+
 			<!-- optional page ID number -->
 			<element name="id" type="positiveInteger" minOccurs="0"/>
-			
+
 			<!-- comma-separated list of string tokens, if present -->
 			<element name="restrictions" type="string" minOccurs="0"/>
-			
+
 			<!-- Zero or more sets of revision or upload data -->
 			<choice minOccurs="0" maxOccurs="unbounded">
 				<element name="revision" type="mw:RevisionType" />
@@ -103,7 +103,7 @@
 			</choice>
 		</sequence>
 	</complexType>
-	
+
 	<complexType name="RevisionType">
 		<sequence>
 			<element name="id" type="positiveInteger" minOccurs="0"/>
@@ -114,7 +114,7 @@
 			<element name="text" type="mw:TextType" />
 		</sequence>
 	</complexType>
-	
+
 	<complexType name="TextType">
 		<simpleContent>
 			<extension base="string">
@@ -122,33 +122,33 @@
 			</extension>
 		</simpleContent>
 	</complexType>
-	
+
 	<complexType name="ContributorType">
 		<sequence>
 			<element name="username" type="string" minOccurs="0"/>
 			<element name="id" type="positiveInteger" minOccurs="0" />
-			
+
 			<element name="ip" type="string" minOccurs="0"/>
 		</sequence>
 	</complexType>
-	
+
 	<complexType name="UploadType">
 		<sequence>
 			<!-- Revision-style data... -->
 			<element name="timestamp" type="dateTime"/>
 			<element name="contributor" type="mw:ContributorType"/>
 			<element name="comment" type="string" minOccurs="0"/>
-			
+
 			<!-- Filename. (Using underscores, not spaces. No 'Image:' namespace marker.) -->
 			<element name="filename" type="string"/>
-			
+
 			<!-- URI at which this resource can be obtained -->
 			<element name="src" type="anyURI"/>
-			
+
 			<element name="size" type="positiveInteger" />
-			
+
 			<!-- TODO: add other metadata fields -->
 		</sequence>
 	</complexType>
-	
+
 </schema>

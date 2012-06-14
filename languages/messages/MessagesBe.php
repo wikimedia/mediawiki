@@ -1,5 +1,5 @@
 <?php
-/** Belarusian (Беларуская)
+/** Belarusian (беларуская)
  *
  * See MessagesQqq.php for message documentation incl. usage of parameters
  * To improve a translation please visit http://translatewiki.net
@@ -14,6 +14,7 @@
  * @author Maksim L.
  * @author Mienski
  * @author Prima klasy4na
+ * @author Renessaince
  * @author Riwnodennyk
  * @author Urhixidur
  * @author Wizardist
@@ -49,7 +50,7 @@ $namespaceNames = array(
 	NS_TALK             => 'Размовы',
 	NS_USER             => 'Удзельнік',
 	NS_USER_TALK        => 'Размовы_з_удзельнікам',
-	NS_PROJECT_TALK     => '$1_размовы',
+	NS_PROJECT_TALK     => 'Размовы_пра_{{GRAMMAR:вінавальны|$1}}',
 	NS_FILE             => 'Выява',
 	NS_FILE_TALK        => 'Размовы_пра_выяву',
 	NS_MEDIAWIKI        => 'MediaWiki',
@@ -60,6 +61,10 @@ $namespaceNames = array(
 	NS_HELP_TALK        => 'Размовы_пра_даведку',
 	NS_CATEGORY         => 'Катэгорыя',
 	NS_CATEGORY_TALK    => 'Размовы_пра_катэгорыю',
+);
+
+$namespaceAliases = array(
+	'$1_размовы' => NS_PROJECT_TALK,
 );
 
 $magicWords = array(
@@ -361,7 +366,7 @@ $1',
 'collapsible-expand' => 'Паказаць',
 'thisisdeleted' => 'Паказаць ці аднавіць $1?',
 'viewdeleted' => 'Ці паказаць $1?',
-'restorelink' => '{{PLURAL:$1|адна сцёртая праўка|$1 сцёртых правак}}',
+'restorelink' => '$1 {{PLURAL:$1|сцёртая праўка|сцёртых правак}}',
 'feedlinks' => 'Струмень:',
 'feed-invalid' => 'Недапушчальны тып струмяня навін.',
 'feed-unavailable' => 'Няма струмянёў навін',
@@ -710,10 +715,10 @@ $2
 'newarticle' => '(Новы)',
 'newarticletext' => 'Вы перайшлі да старонкі, якой яшчэ няма, і таму трапілі сюды. Каб пачаць новую старонку, пішыце яе тэкст у ніжэйпаказаным акне рэдагавання (падрабязнасці бач у [[{{MediaWiki:Helppage}}|даведцы]]). Калі вы тут выпадкова, проста націсніце "назад" у браўзеры.',
 'anontalkpagetext' => "----''Гэта старонка размовы з ананімным удзельнікам, які або не мае свайго рахунку, або ім не карыстаўся. Таму дзеля яго ці яе ідэнтыфікацыі мы мусім выкарыстаць лічбавы Адрас IP. Такі адрас IP могуць дзяліць між сабою некалькі асоб. Калі вы ананімны ўдзельнік, і лічыце, што атрымліваеце няслушныя заўвагі,[[Special:UserLogin/signup|стварыце рахунак]] або [[Special:UserLogin|акажыцеся]], каб вас больш не блыталі з іншымі ананімнымі ўдзельнікамі.''",
-'noarticletext' => 'Старонка не ўтрымлівае тэксту. Вы можаце [[Special:Search/{{PAGENAME}}|пашукаць гэтакай назвы]] ў іншых старонках ці <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} ў журналах],
+'noarticletext' => 'Старонка не ўтрымлівае тэксту. Вы можаце [[Special:Search/{{PAGENAME}}|пашукаць гэткую назву]] ў іншых старонках ці <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} ў журналах],
 або [{{fullurl:{{FULLPAGENAME}}|action=edit}} папрацаваць з гэтай старонкай]</span>.',
 'noarticletext-nopermission' => 'Старонка не ўтрымлівае тэксту.
-Вы можаце [[Special:Search/{{PAGENAME}}|пашукаць гэтакай назвы]] ў іншых старонках,
+Вы можаце [[Special:Search/{{PAGENAME}}|пашукаць гэткую назву]] ў іншых старонках,
 ці <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} ў журналах]</span>.',
 'userpage-userdoesnotexist' => 'Рахунак удзельніка "<nowiki>$1</nowiki>" не зарэгістраваны. Праверце, ці вы жадаеце стварыць або паправіць гэтую старонку.',
 'userpage-userdoesnotexist-view' => 'Уліковы запіс удзельніка " $1 "не зарэгістраваны.',
@@ -999,7 +1004,6 @@ $1",
 
 # Diffs
 'history-title' => 'Гісторыя версій "$1"',
-'difference' => '(Розніца між версіямі)',
 'difference-multipage' => '(Розніца паміж старонкамі)',
 'lineno' => 'Радок $1:',
 'compareselectedversions' => 'Параўнаць азначаныя версіі',
@@ -1354,7 +1358,7 @@ $1",
 'nchanges' => '$1 {{PLURAL:$1|мена|менаў}}',
 'recentchanges' => 'Нядаўнія змяненні',
 'recentchanges-legend' => 'Магчымасці паказу',
-'recentchangestext' => 'Гэта апошнія мены на пляцоўцы {{SITENAME}}.',
+'recentchanges-summary' => 'Гэта апошнія мены на пляцоўцы {{SITENAME}}.',
 'recentchanges-feed-description' => 'Сачыць за найбольш актуальнымі змяненнямі ў віксе праз гэты струмень навін.',
 'recentchanges-label-newpage' => 'Гэтай праўкай была створана новая старонка',
 'recentchanges-label-minor' => 'Гэта дробная па значэнні праўка',

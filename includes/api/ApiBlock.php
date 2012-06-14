@@ -100,12 +100,14 @@ class ApiBlock extends ApiBase {
 
 		$block = Block::newFromTarget( $target );
 		if( $block instanceof Block ){
-			$res['expiry'] = $block->mExpiry == wfGetDB( DB_SLAVE )->getInfinity()
+			$res['expiry'] = $block->mExpiry == $this->getDB()->getInfinity()
 				? 'infinite'
 				: wfTimestamp( TS_ISO_8601, $block->mExpiry );
+			$res['id'] = $block->getId();
 		} else {
 			# should be unreachable
 			$res['expiry'] = '';
+			$res['id'] = '';
 		}
 
 		$res['reason'] = $params['reason'];
@@ -149,7 +151,10 @@ class ApiBlock extends ApiBase {
 				ApiBase::PARAM_REQUIRED => true
 			),
 			'token' => null,
-			'gettoken' => false,
+			'gettoken' => array(
+				ApiBase::PARAM_DFLT => false,
+				ApiBase::PARAM_DEPRECATED => true,
+			),
 			'expiry' => 'never',
 			'reason' => null,
 			'anononly' => false,
@@ -166,7 +171,7 @@ class ApiBlock extends ApiBase {
 	public function getParamDescription() {
 		return array(
 			'user' => 'Username, IP address or IP range you want to block',
-			'token' => 'A block token previously obtained through the gettoken parameter or prop=info',
+			'token' => 'A block token previously obtained through prop=info',
 			'gettoken' => 'If set, a block token will be returned, and no other action will be taken',
 			'expiry' => 'Relative expiry time, e.g. \'5 months\' or \'2 weeks\'. If set to \'infinite\', \'indefinite\' or \'never\', the block will never expire.',
 			'reason' => 'Reason for block (optional)',
@@ -178,6 +183,44 @@ class ApiBlock extends ApiBase {
 			'allowusertalk' => 'Allow the user to edit their own talk page (depends on $wgBlockAllowsUTEdit)',
 			'reblock' => 'If the user is already blocked, overwrite the existing block',
 			'watchuser' => 'Watch the user/IP\'s user and talk pages',
+		);
+	}
+
+	public function getResultProperties() {
+		return array(
+			'' => array(
+				'blocktoken' => array(
+					ApiBase::PROP_TYPE => 'string',
+					ApiBase::PROP_NULLABLE => true
+				),
+				'user' => array(
+					ApiBase::PROP_TYPE => 'string',
+					ApiBase::PROP_NULLABLE => true
+				),
+				'userID' => array(
+					ApiBase::PROP_TYPE => 'integer',
+					ApiBase::PROP_NULLABLE => true
+				),
+				'expiry' => array(
+					ApiBase::PROP_TYPE => 'string',
+					ApiBase::PROP_NULLABLE => true
+				),
+				'id' => array(
+					ApiBase::PROP_TYPE => 'integer',
+					ApiBase::PROP_NULLABLE => true
+				),
+				'reason' => array(
+					ApiBase::PROP_TYPE => 'string',
+					ApiBase::PROP_NULLABLE => true
+				),
+				'anononly' => 'boolean',
+				'nocreate' => 'boolean',
+				'autoblock' => 'boolean',
+				'noemail' => 'boolean',
+				'hidename' => 'boolean',
+				'allowusertalk' => 'boolean',
+				'watchuser' => 'boolean'
+			)
 		);
 	}
 

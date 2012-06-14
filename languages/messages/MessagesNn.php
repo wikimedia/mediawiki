@@ -1,5 +1,5 @@
 <?php
-/** Norwegian Nynorsk (‪Norsk (nynorsk)‬)
+/** Norwegian Nynorsk (‪norsk (nynorsk)‬)
  *
  * See MessagesQqq.php for message documentation incl. usage of parameters
  * To improve a translation please visit http://translatewiki.net
@@ -342,7 +342,7 @@ $messages = array(
 # Font style option in Special:Preferences
 'editfont-style' => 'Endre stilen for skrifttypen i området:',
 'editfont-default' => 'Nettlesar i utgangspunktet',
-'editfont-monospace' => 'Skrift med fast breidde',
+'editfont-monospace' => 'Skrift med fast breidd',
 'editfont-sansserif' => 'Skrifttype utan seriffar',
 'editfont-serif' => 'Skrifttype med seriffar',
 
@@ -917,7 +917,8 @@ Det siste elementet i blokkeringsloggen er oppgjeve nedanfor:',
 'updated' => '(Oppdatert)',
 'note' => "'''Merk:'''",
 'previewnote' => "'''Hugsa at dette berre er ei førehandsvising.'''
-Endringane dine er ikkje lagra enno! [[#editform|→ Haldt fram med å endra]]",
+Endringane dine er ikkje lagra enno!",
+'continue-editing' => 'Endra vidare',
 'previewconflict' => 'Dette er ei førehandsvising av teksten i endringsboksen over, slik han vil sjå ut om du lagrar han',
 'session_fail_preview' => "'''Orsak! Endringa di kunne ikkje lagrast. Ver venleg og prøv ein gong til. Dersom det framleis ikkje går, prøv å logge deg ut og inn att.'''",
 'session_fail_preview_html' => "'''Beklagar! Endringa di kunne ikkje lagrast.'''
@@ -928,6 +929,7 @@ Endringane dine er ikkje lagra enno! [[#editform|→ Haldt fram med å endra]]",
 'token_suffix_mismatch' => "'''Endringa di vart avvist fordi klienten/nettlesaren din lagar teiknfeil i teksten. Dette vart gjort for å hindre øydelegging av teksten på sida. Slikt kan av og til hende når ein brukar feilprogrammerte og vevbaserte anonyme proxytenester.'''",
 'edit_form_incomplete' => 'Delar av redigeringsskjemaet nådde ikkje fram til tenaren; dobbelsjekk at redigeringa er korrekt, og prøv om att.',
 'editing' => 'Endrar $1',
+'creating' => 'Opprettar $1',
 'editingsection' => 'Endrar $1 (bolk)',
 'editingcomment' => 'Endrar $1 (ny bolk)',
 'editconflict' => 'Endringskonflikt: $1',
@@ -956,9 +958,9 @@ lang, altså lenger enn $2 kilobyte som er maksimum. Han kan difor ikkje lagrast
 'readonlywarning' => "'''ÅTVARING: Databasen er skriveverna på grunn av vedlikehald, så du kan ikkje lagre endringane dine akkurat no. Det kan vera lurt å  kopiere teksten din til ei tekstfil, så du kan lagre han her seinare.'''
 
 Systemadministratoren som låste databasen gav følgjande årsak: $1",
-'protectedpagewarning' => "'''ÅTVARING: Denne sida er verna, slik at berre administratorar kan endre ho.'''
+'protectedpagewarning' => "'''ÅTVARING: Denne sida er verna, slik at berre administratorar kan endra henne.'''
 Det siste loggelementet er oppgjeve under som referanse:",
-'semiprotectedpagewarning' => "'''Merk:''' Denne sida er verna slik at berre registrerte brukarar kan endre henne.
+'semiprotectedpagewarning' => "'''Merk:''' Denne sida er verna slik at berre registrerte brukarar kan endra henne.
 Det siste loggelementet er oppgjeve under som referanse:",
 'cascadeprotectedwarning' => "'''Åtvaring:''' Denne sida er verna så berre brukarar med administratortilgang kan endre henne. Dette er fordi ho er inkludert i {{PLURAL:$1|denne djupverna sida|desse djupverna sidene}}:",
 'titleprotectedwarning' => "'''Åtvaring: Denne sida er verna, så berre [[Special:ListGroupRights|nokre brukarar]] kan opprette henne.'''
@@ -1118,7 +1120,7 @@ $1",
 'logdelete-success' => "'''Visinga av loggoppføringar er endra.'''",
 'logdelete-failure' => "'''Korleis loggen skal vera synleg kunne ikkje verta stilt inn:'''
 $1",
-'revdel-restore' => 'endra synlegheita',
+'revdel-restore' => 'endra synlegdomen',
 'revdel-restore-deleted' => 'sletta versjonar',
 'revdel-restore-visible' => 'synlege versjonar',
 'pagehist' => 'Sidehistorikk',
@@ -1138,7 +1140,7 @@ Sjekk gjerne loggføringa.',
 ** Brot på opphavsrettar
 ** Ikkje høveleg personleg informasjon
 ** Mogleg falskt sladder',
-'revdelete-otherreason' => 'Annan årsak, eller tilleggsårsak:',
+'revdelete-otherreason' => 'Anna årsak, eller tilleggsårsak:',
 'revdelete-reasonotherlist' => 'Annan grunn',
 'revdelete-edit-reasonlist' => 'Endre grunnar til sletting',
 'revdelete-offender' => 'Forfattar av denne versjonen:',
@@ -1146,7 +1148,7 @@ Sjekk gjerne loggføringa.',
 # Suppression log
 'suppressionlog' => 'Logg over historikkfjerningar',
 'suppressionlogtext' => 'Under er ei liste over slettingar og blokkeringar som er gøymde frå administratorane.
-Sjå [[Special:IPBlockList|blokkeringslista]] for oversikta over gjeldande blokkeringar.',
+Sjå [[Special:BlockList|blokkeringslista]] for oversikta over gjeldande blokkeringar.',
 
 # History merging
 'mergehistory' => 'Flett sidehistorikkar',
@@ -1178,8 +1180,9 @@ Pass på at den nye sida også har innhald frå den innfletta sida.',
 'mergelogpagetext' => 'Nedanfor finn du ei liste over dei siste flettingane av ein sidehistorikk til ein annan.',
 
 # Diffs
-'history-title' => 'Historikken til «$1»',
-'difference' => '(Skilnad mellom versjonar)',
+'history-title' => '$1: Versjonshistorikk',
+'difference-title' => '$1: Skilnad mellom versjonar',
+'difference-title-multipage' => '$1 og $2: Skilnad mellom sidene',
 'difference-multipage' => '(Skilnad mellom sider)',
 'lineno' => 'Line $1:',
 'compareselectedversions' => 'Samanlikn valde versjonar',
@@ -1534,7 +1537,7 @@ Dette kan ikke tilbakestillast.',
 'nchanges' => '{{PLURAL:$1|Éi endring|$1 endringar}}',
 'recentchanges' => 'Siste endringar',
 'recentchanges-legend' => 'Alternativ for siste endringar',
-'recentchangestext' => 'På denne sida ser du dei sist endra sidene i {{SITENAME}}.',
+'recentchanges-summary' => 'På denne sida ser du dei sist endra sidene i {{SITENAME}}.',
 'recentchanges-feed-description' => 'Fylg med på dei siste endringane på denne wikien med dette abonnementet.',
 'recentchanges-label-newpage' => 'Denne redigeringa oppretta ei ny side',
 'recentchanges-label-minor' => 'Dette er ei mindre endring',
@@ -1563,6 +1566,7 @@ Dette kan ikke tilbakestillast.',
 'newsectionsummary' => '/* $1 */ ny bolk',
 'rc-enhanced-expand' => 'Vis detaljar (krev JavaScript)',
 'rc-enhanced-hide' => 'Skjul detaljar',
+'rc-old-title' => 'opphavleg oppretta som «$1»',
 
 # Recent changes linked
 'recentchangeslinked' => 'Relaterte endringar',
@@ -1669,7 +1673,7 @@ Om du framleis ønskjer å laste opp fila, gå tilbake og last ho opp med eit an
 'uploadvirus' => 'Fila innheld virus! Detaljar: $1',
 'upload-source' => 'Kjeldefil',
 'sourcefilename' => 'Filsti:',
-'sourceurl' => 'URL til kjelda:',
+'sourceurl' => 'Kjelde-URL:',
 'destfilename' => 'Målfilnamn:',
 'upload-maxfilesize' => 'Maksimal filstorleik: $1',
 'upload-description' => 'Filskildring',
@@ -1709,6 +1713,9 @@ $1',
 'upload-too-many-redirects' => 'URL-en inneheldt for mange omdirigeringar',
 'upload-unknown-size' => 'Ukjend storleik',
 'upload-http-error' => 'Ein HTTP-feil oppstod: $1',
+
+# File backend
+'backend-fail-delete' => 'Kunne ikkje sletta fila «$1».',
 
 # img_auth script messages
 'img-auth-accessdenied' => 'Tilgjenge avslått',
@@ -1934,7 +1941,7 @@ Skildringa frå [$2 filskildringssida] der er vist nedanfor.',
 'deadendpages' => 'Blindvegsider',
 'deadendpagestext' => 'Desse sidene har ikkje lenkjer til andre sider på {{SITENAME}}.',
 'protectedpages' => 'Verna sider',
-'protectedpages-indef' => 'Berre vern på ubestemt tid',
+'protectedpages-indef' => 'Berre vern på uavgrensa tid',
 'protectedpages-cascade' => 'Berre djupvern',
 'protectedpagestext' => 'Desse sidene er verna mot flytting og endring',
 'protectedpagesempty' => 'Ingen sider er verna på den valde måten akkurat no.',
@@ -1981,8 +1988,8 @@ Merk at andre internettsider kan ha direkte lenkjer til filer, og difor kan file
 # Special:AllPages
 'allpages' => 'Alle sider',
 'alphaindexline' => '$1 til $2',
-'nextpage' => 'Neste side ($1)',
-'prevpage' => 'Førre side ($1)',
+'nextpage' => 'Neste sida ($1)',
+'prevpage' => 'Førre sida ($1)',
 'allpagesfrom' => 'Vis sider frå:',
 'allpagesto' => 'Vis sider til og med:',
 'allarticles' => 'Alle sider',
@@ -1994,6 +2001,10 @@ Merk at andre internettsider kan ha direkte lenkjer til filer, og difor kan file
 'allpagesprefix' => 'Vis sider med prefikset:',
 'allpagesbadtitle' => 'Det oppgjevne sidenamnet var ugyldig eller hadde eit interwiki-prefiks. Det kan også ha hatt eitt eller fleire teikn som ikkje kan brukast i sidenamn.',
 'allpages-bad-ns' => '{{SITENAME}} har ikkje namnerommet «$1».',
+'allpages-hide-redirects' => 'Gøym omdirigeringar',
+
+# SpecialCachedPage
+'cachedspecial-refresh-now' => 'Sjå siste.',
 
 # Special:Categories
 'categories' => 'Kategoriar',
@@ -2216,6 +2227,7 @@ Sjå [[Special:ProtectedPages|lista over verna sider]] for lista over vern som n
 'unprotectedarticle' => 'fjerna vern av «[[$1]]»',
 'movedarticleprotection' => 'flytta verneinnstillingar frå «[[$2]]» til «[[$1]]»',
 'protect-title' => 'Vernar «$1»',
+'protect-title-notallowed' => 'Sjå vernenivået til «$1»',
 'prot_1movedto2' => '«[[$1]]» flytt til «[[$2]]»',
 'protect-legend' => 'Stadfest vern',
 'protectcomment' => 'Grunngjeving:',
@@ -2235,14 +2247,15 @@ Her er dei noverande innstillingane for sida '''$1''':",
 'protect-level-sysop' => 'Berre administratorar',
 'protect-summary-cascade' => 'djupvern',
 'protect-expiring' => 'endar $1 (UTC)',
-'protect-expiry-indefinite' => 'ubestemt',
+'protect-expiring-local' => 'endar $1',
+'protect-expiry-indefinite' => 'uavgrensa',
 'protect-cascade' => 'Vern alle sidene som er inkludert på denne sida (djupvern)',
 'protect-cantedit' => 'Du kan ikkje endre vernenivået på sida fordi du ikkje har tilgang til å endre henne.',
 'protect-othertime' => 'Anna tid:',
 'protect-othertime-op' => 'anna tid',
 'protect-existing-expiry' => 'Gjeldande utløpstid: $3 $2',
-'protect-otherreason' => 'Annan/ytterlegare årsak:',
-'protect-otherreason-op' => 'Annan årsak',
+'protect-otherreason' => 'Anna/ytterlegare årsak:',
+'protect-otherreason-op' => 'Anna årsak',
 'protect-dropdown' => '*Vanlege verneårsaker
 ** Gjenteke hærverk
 ** Gjenteke spam
@@ -2300,6 +2313,7 @@ Innhaldet i dei sletta versjonane er berre tilgjengeleg for administratorar.',
 
 Sjå [[Special:Log/delete|sletteloggen]] for eit oversyn over sider som nyleg er sletta eller attoppretta.",
 'undelete-header' => 'Sjå [[Special:Log/delete|sletteloggen]] for dei sist sletta sidene.',
+'undelete-search-title' => 'Søk i sletta sider',
 'undelete-search-box' => 'Søk i sletta sider',
 'undelete-search-prefix' => 'Vis sider frå og med:',
 'undelete-search-submit' => 'Søk',
@@ -2567,7 +2581,7 @@ I desse falla lyt du flytte eller flette saman sida manuelt.",
 
 Målsida «[[:$1]]» finst allereie. Vil du slette ho for å gje rom for flytting?',
 'delete_and_move_confirm' => 'Ja, slett sida',
-'delete_and_move_reason' => 'Sletta for å gi rom for flytting frå "[[$1]]"',
+'delete_and_move_reason' => 'Sletta for å gje rom for flytting frå «[[$1]]»',
 'selfmove' => 'Kjelde- og måltitlane er like; kan ikkje flytte sida over seg sjølv.',
 'immobile-source-namespace' => 'Kan ikkje flytte sider i namnerommet «$1»',
 'immobile-target-namespace' => 'Kan ikkje flytte sider til namnerommet «$1»',
@@ -2745,6 +2759,7 @@ Vitja [//www.mediawiki.org/wiki/Localisation MediaWiki Localisation] og [//trans
 'tooltip-diff' => 'Vis skilnaden mellom din versjon og lagra versjon, utan å lagre.',
 'tooltip-compareselectedversions' => 'Sjå endringane mellom dei valde versjonane av denne sida.',
 'tooltip-watch' => 'Legg denne sida til i overvakingslista di [alt-w]',
+'tooltip-watchlistedit-raw-submit' => 'Oppdater overvakingslista',
 'tooltip-recreate' => 'Ved å trykkje på «Nyopprett» vert sida oppretta på nytt.',
 'tooltip-upload' => 'Start opplastinga',
 'tooltip-rollback' => '«Attenderull»-knappen attenderullar endringar på denne sida med eitt klikk til den førre utgåva av ein annan brukar',
@@ -2870,6 +2885,7 @@ $1',
 'file-info-gif-frames' => '$1 {{PLURAL:$1|rame|ramer}}',
 'file-info-png-looped' => '↓oppatteke',
 'file-info-png-repeat' => 'spela av {{PLURAL:$1|éin gong|$1 gonger}}',
+'file-info-png-frames' => '$1 {{PLURAL:$1|bilete|bilete}}',
 
 # Special:NewFiles
 'newimages' => 'Filgalleri',
@@ -2882,6 +2898,13 @@ $1',
 'ilsubmit' => 'Søk',
 'bydate' => 'etter dato',
 'sp-newimages-showfrom' => 'Vis nye filer frå og med $2 $1',
+
+# Video information, used by Language::formatTimePeriod() to format lengths in the above messages
+'seconds' => '{{PLURAL:$1|$1 sekund|$1 sekund}}',
+'minutes' => '{{PLURAL:$1|$1 minutt|$1 minutt}}',
+'hours' => '{{PLURAL:$1|$1 time|$1 timar}}',
+'days' => '{{PLURAL:$1|$1 dag|$1 dagar}}',
+'ago' => '$1 sidan',
 
 # Bad image list
 'bad_image_list' => 'Formatet er slik:
@@ -3044,6 +3067,7 @@ Andre er gøymde som standard.
 'exif-headline' => 'Overskrift',
 'exif-credit' => 'Opphavrettseigar/filgjevar',
 'exif-source' => 'Kjelde',
+'exif-writer' => 'Forfattar',
 'exif-languagecode' => 'Språk',
 'exif-iimversion' => 'IIM-versjon',
 'exif-iimcategory' => 'Kategori',
@@ -3198,6 +3222,10 @@ Andre er gøymde som standard.
 'exif-gpslongitude-e' => 'Austleg lengdegrad',
 'exif-gpslongitude-w' => 'Vestleg lengdegrad',
 
+# Pseudotags used for GPSAltitudeRef
+'exif-gpsaltitude-above-sealevel' => '{{PLURAL:$1|Éin|$1}} meter over havet',
+'exif-gpsaltitude-below-sealevel' => '{{PLURAL:$1|Éin|$1}} meter under havet',
+
 'exif-gpsstatus-a' => 'Måling pågår',
 'exif-gpsstatus-v' => 'Målingsinteroperabilitet',
 
@@ -3213,6 +3241,8 @@ Andre er gøymde som standard.
 'exif-gpsdestdistance-k' => 'Kilometer',
 'exif-gpsdestdistance-m' => 'Miles',
 'exif-gpsdestdistance-n' => 'Nautiske mil',
+
+'exif-gpsdop-good' => 'God ($1)',
 
 # Pseudotags used for GPSTrackRef, GPSImgDirectionRef and GPSDestBearingRef
 'exif-gpsdirection-t' => 'Verkeleg retning',
@@ -3322,16 +3352,16 @@ Du må stadfeste at du verkeleg vil nyopprette denne sida.",
 'confirm-unwatch-top' => 'Fjern denne sida frå overvakingslista di?',
 
 # Multipage image navigation
-'imgmultipageprev' => '← førre side',
-'imgmultipagenext' => 'neste side →',
+'imgmultipageprev' => '← førre sida',
+'imgmultipagenext' => 'neste sida →',
 'imgmultigo' => 'Gå!',
 'imgmultigoto' => 'Gå til sida $1',
 
 # Table pager
 'ascending_abbrev' => 'stigande',
 'descending_abbrev' => 'synkande',
-'table_pager_next' => 'Neste side',
-'table_pager_prev' => 'Førre side',
+'table_pager_next' => 'Neste sida',
+'table_pager_prev' => 'Førre sida',
 'table_pager_first' => 'Fyrste side',
 'table_pager_last' => 'Siste side',
 'table_pager_limit' => 'Vis $1 element per side',
@@ -3513,8 +3543,17 @@ Skriv inn filnamnet utan «{{ns:file}}:»-prefikset.',
 # New logging system
 'logentry-delete-delete' => '$1 sletta sida $3',
 'logentry-delete-restore' => '$1 attoppretta sida $3',
+'logentry-delete-event' => '$1 endra synlegdomen av {{PLURAL:$5|éi loggoppføring|$5 loggoppføringar}} på $3: $4',
+'logentry-delete-revision' => '$1 endra synlegdomen av {{PLURAL:$5|éin versjon|$5 versjonar}} på sida $3: $4',
+'logentry-delete-event-legacy' => '$1 endra synlegdomen av loggoppføringar på $3',
+'logentry-delete-revision-legacy' => '$1 endra synlegdomen av versjonar på sida $3',
+'logentry-suppress-delete' => '$1 gøymde sida $3',
 'revdelete-content-hid' => 'innhald gøymt',
 'revdelete-summary-hid' => 'endringsamandrag gøymt',
+'revdelete-uname-hid' => 'brukarnamn gøymt',
+'revdelete-content-unhid' => 'innhald gjort synleg',
+'revdelete-summary-unhid' => 'endringssamandrag gjort synleg',
+'revdelete-uname-unhid' => 'brukarnamn gjort synleg',
 'revdelete-restricted' => 'la til avgrensingar for administratorar',
 'revdelete-unrestricted' => 'fjerna avgrensingar for administratorar',
 'logentry-move-move' => '$1 flytte sida $3 til $4',
@@ -3536,6 +3575,8 @@ Skriv inn filnamnet utan «{{ns:file}}:»-prefikset.',
 'feedback-error1' => 'Feil: Ukjent resultat frå API',
 'feedback-error2' => 'Feil: Brigdinga gjekk ikkje',
 'feedback-error3' => 'Feil: Saknar svar frå API',
+'feedback-thanks' => 'Takk! Attendemeldinga di er lagd inn på sida «[$2 $1]».',
+'feedback-close' => 'Gjort',
 
 # API errors
 'api-error-badaccess-groups' => 'Du har ikkje løyve til å lasta opp filer til wikien.',
@@ -3566,5 +3607,16 @@ Skriv inn filnamnet utan «{{ns:file}}:»-prefikset.',
 'api-error-unknownerror' => 'Ukjend feil: «$1».',
 'api-error-uploaddisabled' => 'Det er ikkje høve til å lasta opp filer til wikien.',
 'api-error-verification-error' => 'Fila kan vera øydelagd eller ha rang filending.',
+
+# Durations
+'duration-seconds' => '$1 {{PLURAL:$1|sekund|sekund}}',
+'duration-minutes' => '$1 {{PLURAL:$1|minutt|minutt}}',
+'duration-hours' => '$1 {{PLURAL:$1|time|timar}}',
+'duration-days' => '$1 {{PLURAL:$1|dag|dagar}}',
+'duration-weeks' => '$1 {{PLURAL:$1|veke|veker}}',
+'duration-years' => '$1 {{PLURAL:$1|år|år}}',
+'duration-decades' => '$1 {{PLURAL:$1|tiår|tiår}}',
+'duration-centuries' => '$1 {{PLURAL:$1|hundreår|hundreår}}',
+'duration-millennia' => '$1 {{PLURAL:$1|tusenår|tusenår}}',
 
 );

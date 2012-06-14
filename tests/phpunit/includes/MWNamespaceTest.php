@@ -546,6 +546,15 @@ class MWNamespaceTest extends MediaWikiTestCase {
 
 	}
 
+	public function testIsNonincludable() {
+		global $wgNonincludableNamespaces;
+		$wgNonincludableNamespaces = array( NS_USER );
+
+		$this->assertTrue( MWNamespace::isNonincludable( NS_USER ) );
+
+		$this->assertFalse( MWNamespace::isNonincludable( NS_TEMPLATE ) );
+	}
+
 	####### HELPERS ###########################################################
 	function __call( $method, $args ) {
 		// Call the real method if it exists

@@ -896,6 +896,7 @@ Nilaina io tsy fanekena io mba tsy hikatso ilay pejy.
 Misy io olana io rehefa mamppiasa serveur mandataire tsy manana anarana sy manan-olana eo amin'ny tranonkala ianao.",
 'edit_form_incomplete' => "'''Misy tsy tonga tany amin'ny lohamilina ny singan'ity pejy fenoina ity. Azonao ampiana ny mpandika hafa amin'ny famoronana ny fanazavana ity pejy ity.",
 'editing' => "Manova an'i $1",
+'creating' => "Famoronana an'i $1",
 'editingsection' => 'Fanovana $1 (fizarana)',
 'editingcomment' => 'Fanovana $1 (fizarana vaovao)',
 'editconflict' => 'Fanovana mifandona : $1',
@@ -1149,7 +1150,6 @@ $3 santiôna{{PLURAL:}} natsonika tamin'ny [[:$2]]",
 
 # Diffs
 'history-title' => "Tantara ny endrik'i « $1 »",
-'difference' => "(Fahasamihafan'ny pejy)",
 'difference-multipage' => "(Fahasamihafan'ny pejy)",
 'lineno' => 'Andalana $1:',
 'compareselectedversions' => 'Ampitahao ireo version voafidy',
@@ -1498,7 +1498,7 @@ Tsy haseho ny adiresy imailakao rehefa manoratra any aminao ny mpikambana hafa."
 'nchanges' => '{{PLURAL:$1|fanovana|fanovana}} $1',
 'recentchanges' => 'Fanovana farany',
 'recentchanges-legend' => 'Safidy ny fanovàna farany',
-'recentchangestext' => "Jereo eto amin'ity pejy ity izay vao niova vao haingana teto amin'ity wiki ity.",
+'recentchanges-summary' => "Jereo eto amin'ity pejy ity izay vao niova vao haingana teto amin'ity wiki ity.",
 'recentchanges-feed-description' => "Arao ny fanovàna farany amin'ity wiki ity anaty topa",
 'recentchanges-label-newpage' => 'Namorona pejy vaovao io fanovana io',
 'recentchanges-label-minor' => 'Kely fotsiny ity fanovana ity',
@@ -3170,6 +3170,8 @@ Aseho amin'ny tena habeny ny sary aseho, ny hafa dia alefa miaraka amin'ny rindr
 'htmlform-selectorother-other' => 'Hafa',
 
 # New logging system
+'logentry-delete-delete' => "nofafan'i $1 ny pejy $3",
+'logentry-suppress-delete' => "nofafan'i $1 ny pejy $3",
 'revdelete-restricted' => "nametraka fanerena ho an'ny mpandrindra",
 'revdelete-unrestricted' => "fanerena nesorina tamin'ny mpandrindra",
 'newuserlog-byemail' => 'tenimiafina nalefa imailaka',

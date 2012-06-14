@@ -158,7 +158,7 @@ p {
 	line-height: 1.2em;
 }
 
-pre {
+pre, .mw-code {
 	border: 1pt dashed black;
 	white-space: pre;
 	font-size: 8pt;

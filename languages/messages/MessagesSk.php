@@ -1,5 +1,5 @@
 <?php
-/** Slovak (Slovenčina)
+/** Slovak (slovenčina)
  *
  * See MessagesQqq.php for message documentation incl. usage of parameters
  * To improve a translation please visit http://translatewiki.net
@@ -409,7 +409,7 @@ $messages = array(
 'listingcontinuesabbrev' => 'pokrač.',
 'index-category' => 'Indexované stránky',
 'noindex-category' => 'neindexované stránky',
-'broken-file-category' => 'Stránky s poškodenými odkazmi súbor',
+'broken-file-category' => 'Stránky s odkazom na neexistujúci súbor',
 
 'about' => 'Projekt',
 'article' => 'Stránka s obsahom',
@@ -668,6 +668,8 @@ Udaný dôvod: ''$2''.",
 'filereadonlyerror' => 'Nebolo možné modifikovať súbor „$1“, pretože úložisko „$2“ je momentálne v režime len na čítanie.
 
 Správca, ktorý ho zamkol ponúkol toto vysvetlenie: „$3“.',
+'invalidtitle-knownnamespace' => 'Neplatný názov s menným priestorom „$2“ a textom „$3“',
+'invalidtitle-unknownnamespace' => 'Neplatný názov s neznámym číslom menného priestoru „$1“ a textom „$2“',
 
 # Virus scanner
 'virus-badscanner' => "Chybná konfigurácia: neznámy antivírus: ''$1''",
@@ -963,7 +965,8 @@ Dolu je pre informáciu posledná položka zo záznamu blokovaní:',
 'updated' => '(Aktualizovaný)',
 'note' => "'''Poznámka: '''",
 'previewnote' => "'''Nezabudnite, toto je iba náhľad stránky, ktorú upravujete.
-Zmeny ešte nie sú uložené!''' [[#editform|→ Pokračujte v úpravách]]",
+Zmeny ešte nie sú uložené!'''",
+'continue-editing' => 'Pokračovať v úpravách',
 'previewconflict' => 'Tento náhľad upravenej stránky zobrazuje text z horného poľa s textom tak, ako sa zobrazí potom, keď ju uložíte.',
 'session_fail_preview' => "'''Prepáčte, nemohli sme spracovať váš príspevok kvôli strate údajov relácie.
 Skúste to prosím ešte raz.
@@ -1058,6 +1061,12 @@ Tieto argumenty boli vynechané.',
 'parser-template-loop-warning' => 'Zistená slučka v šablónach: [[$1]]',
 'parser-template-recursion-depth-warning' => 'Bol prekročený limit rekurzie šablón ($1)',
 'language-converter-depth-warning' => 'Bolo prekročené obmedzenie hĺbky ($1) jazykového konvertora',
+'node-count-exceeded-category' => 'Stránky s priveľkým počtom uzlov',
+'node-count-exceeded-warning' => 'Stránka prekročila povolený počet uzlov',
+'expansion-depth-exceeded-category' => 'Stránky s priveľkou hĺbkou expanzie',
+'expansion-depth-exceeded-warning' => 'Stránka prekročila povolenú hĺbku expanzie',
+'parser-unstrip-loop-warning' => 'Zistené zacyklenie volania rozširovacej značky',
+'parser-unstrip-recursion-limit' => 'Prektočený limit rekurzie volania rozširovacej značky ($1)',
 
 # "Undo" feature
 'undo-success' => 'Úpravu je možné vrátiť. Prosím skontrolujte tento rozdiel, čím overíte, že táto úprava je tá, ktorú chcete, a následne uložte zmeny, čím ukončíte vrátenie.',
@@ -1233,8 +1242,9 @@ Uistite sa, že táto zmena zachová historickú kontinuitu zmien stránky.',
 'mergelogpagetext' => 'Dolu je zoznam posledných zlúčení jednej histórie revízií stránky do druhej.',
 
 # Diffs
-'history-title' => 'História revízií „$1“',
-'difference' => '(Rozdiel medzi revíziami)',
+'history-title' => ' $1: História revízií',
+'difference-title' => '$1: Rozdiel medzi revíziami',
+'difference-title-multipage' => '$1 a $2: Rozdiel medzi stránkami',
 'difference-multipage' => '(Rozdiel medzi stránkami)',
 'lineno' => 'Riadok $1:',
 'compareselectedversions' => 'Porovnať označené verzie',
@@ -1329,6 +1339,7 @@ Uistite sa, že táto zmena zachová historickú kontinuitu zmien stránky.',
 'prefs-beta' => 'Nové funkcie',
 'prefs-datetime' => 'Dátum a čas',
 'prefs-labs' => 'Laboratórne funkcie',
+'prefs-user-pages' => 'Stránky používateľa',
 'prefs-personal' => 'Profil',
 'prefs-rc' => 'Posledné úpravy',
 'prefs-watchlist' => 'Sledované stránky',
@@ -1589,7 +1600,7 @@ Musí obsahovať menej ako $1 {{PLURAL:$1|znak|znaky|znakov}}.',
 'nchanges' => '$1 {{PLURAL:$1|zmena|zmeny|zmien}}',
 'recentchanges' => 'Posledné úpravy',
 'recentchanges-legend' => 'Možnosti posledných zmien',
-'recentchangestext' => 'Pomocou tejto stránky sledujete posledné úpravy wiki.',
+'recentchanges-summary' => 'Pomocou tejto stránky sledujete posledné úpravy wiki.',
 'recentchanges-feed-description' => 'Sledovať posledné úpravy tejto wiki týmto kanálom.',
 'recentchanges-label-newpage' => 'Táto úprava vytvorila novú stránku.',
 'recentchanges-label-minor' => 'Toto je drobná úprava',
@@ -1795,14 +1806,15 @@ Ak problém pretrváva, kontaktujte [[Special:ListUsers/sysop|správcu systému]
 'backend-fail-writetemp' => 'Nebolo možné zapísať do dočasného súboru.',
 'backend-fail-closetemp' => 'Nebolo možné zatvoriť dočasný súbor.',
 'backend-fail-read' => 'Nebolo možné prečítať súbor „$1“.',
-'backend-fail-create' => 'Nebolo možné vytvoriť súbor „$1“.',
-'backend-fail-maxsize' => 'Súbor $1 nie je možné vytvoriť, pretože je väčší ako {{PLURAL:$2|$2 bajtov|$2 bajt}}.',
+'backend-fail-create' => 'Nebolo možné zapísať súbor $1.',
+'backend-fail-maxsize' => 'Nie je možné zapísať súbor  $1  pretože je väčší ako  {{PLURAL:$2| jeden byte| $2  bajtov}}.',
 'backend-fail-readonly' => 'Úložisko „$1“ je momentálne v režime len na čítanie. Udaný dôvod: „$2“',
 'backend-fail-synced' => 'Súbor „$1“ je v nekonzistentnom stave v rámci vnútorného úložiska',
 'backend-fail-connect' => 'Nepodarilo sa pripojiť k úložisku „$1“.',
 'backend-fail-internal' => 'Vyskytla sa neznáma chyba v úložisku „$1“.',
 'backend-fail-contenttype' => 'Nebolo možné určiť typ obsahu súboru, ktorý sa má uložiť na „$1“.',
 'backend-fail-batchsize' => 'Do úložiska bola zaslaná dávka s $1 {{PLURAL:$1|operáciou|operáciami}}; limit je $2 {{PLURAL:$2|operácia|operácie|operácií}}.',
+'backend-fail-usable' => 'Nie je možné zapísať súbor  $1  kvôli nedostatočným povoleniam alebo chýbajúcim adresárom/kontajnerom.',
 
 # File journal errors
 'filejournal-fail-dbconnect' => 'Nepodarilo sa pripojiť k žurnálovej databáze úložiska „$1“.',
@@ -2985,6 +2997,11 @@ Umožnuje do zhrnutia pridanie dôvodu.',
 'vector.css' => '/* Tu umiestnené CSS bude ovplyvňovať používateľov štýlu Vector */',
 'print.css' => '/* Tu umiestnené CSS bude ovplyvňovať tlačový výstup */',
 'handheld.css' => '/* Tu umiestnené CSS bude ovplyvňovať prenosné zariadenia vychádzajúceho zo štýlu nastaveného v $wgHandheldStyle */',
+'noscript.css' => '/* Tu umiestnené CSS bude ovplyvňovať používateľov s vypnutým JavaScriptom */',
+'group-autoconfirmed.css' => '/* Tu umiestnené CSS bude ovplyvňovať iba používateľov s overenou emailovou adresou */',
+'group-bot.css' => '/* Tu umiestnené CSS bude ovplyvňovať iba robotov */',
+'group-sysop.css' => '/* Tu umiestnené CSS bude ovplyvňovať iba správcov */',
+'group-bureaucrat.css' => '/* Tu umiestnené CSS bude ovplyvňovať iba byrokratov */',
 
 # Scripts
 'common.js' => '/* Tu uvedený JavaScript sa nahrá všetkým používateľom pri každom nahraní stránky. */',
@@ -2997,6 +3014,10 @@ Umožnuje do zhrnutia pridanie dôvodu.',
 'simple.js' => '/* Tu sa nachádzajúci JavaScript sa načíta používateľom vzhľadu Jednoduchý */',
 'modern.js' => '/* Tu sa nachádzajúci JavaScript sa načíta používateľom vzhľadu Moderný */',
 'vector.js' => '/* Tu sa nachádzajúci JavaScript sa načíta používateľom vzhľadu Vector */',
+'group-autoconfirmed.js' => '/* Tu sa nachádzajúci JavaScript sa načíta používateľom s potvrdenou emailovou adresou */',
+'group-bot.js' => '/* Tu sa nachádzajúci JavaScript sa načíta len robotom */',
+'group-sysop.js' => '/* Tu sa nachádzajúci JavaScript sa načíta len správcom */',
+'group-bureaucrat.js' => '/* Tu sa nachádzajúci JavaScript sa načíta len byrokratom */',
 
 # Metadata
 'notacceptable' => 'Wiki server nedokáže poskytovať dáta vo formáte, v akom ich váš klient vie čítať.',
@@ -3044,6 +3065,7 @@ Pravdepodobne to spôsobil odkaz na externú internetovú lokalitu, ktorá sa na
 'skinname-chick' => 'Kuriatko',
 'skinname-simple' => 'Jednoduchý',
 'skinname-modern' => 'Moderný',
+'skinname-vector' => 'Vector',
 
 # Patrolling
 'markaspatrolleddiff' => 'Označiť ako stráženú',
@@ -3737,6 +3759,9 @@ Spolu s týmto programom by ste obdržať [{{SERVER}}{{SCRIPTPATH}}/COPYING kóp
 'version-software' => 'Nainštalovaný softvér',
 'version-software-product' => 'Produkt',
 'version-software-version' => 'Verzia',
+'version-entrypoints' => 'URL vstupných bodov',
+'version-entrypoints-header-entrypoint' => 'Vstupný bod',
+'version-entrypoints-header-url' => 'URL',
 
 # Special:FilePath
 'filepath' => 'Cesta k súboru',

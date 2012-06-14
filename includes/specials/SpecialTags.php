@@ -21,9 +21,6 @@
  * @ingroup SpecialPage
  */
 
-if (!defined('MEDIAWIKI'))
-	die;
-
 /**
  * A special page that lists tags for edits
  *
@@ -44,10 +41,10 @@ class SpecialTags extends SpecialPage {
 		$out->wrapWikiMsg( "<div class='mw-tags-intro'>\n$1\n</div>", 'tags-intro' );
 
 		// Write the headers
-		$html = Xml::tags( 'tr', null, Xml::tags( 'th', null, wfMsgExt( 'tags-tag', 'parseinline' ) ) .
-				Xml::tags( 'th', null, wfMsgExt( 'tags-display-header', 'parseinline' ) ) .
-				Xml::tags( 'th', null, wfMsgExt( 'tags-description-header', 'parseinline' ) ) .
-				Xml::tags( 'th', null, wfMsgExt( 'tags-hitcount-header', 'parseinline' ) )
+		$html = Xml::tags( 'tr', null, Xml::tags( 'th', null, $this->msg( 'tags-tag' )->parse() ) .
+				Xml::tags( 'th', null, $this->msg( 'tags-display-header' )->parse() ) .
+				Xml::tags( 'th', null, $this->msg( 'tags-description-header' )->parse() ) .
+				Xml::tags( 'th', null, $this->msg( 'tags-hitcount-header' )->parse() )
 			);
 		$dbr = wfGetDB( DB_SLAVE );
 		$res = $dbr->select( 'change_tag', array( 'ct_tag', 'count(*) AS hitcount' ),
@@ -76,18 +73,18 @@ class SpecialTags extends SpecialPage {
 
 		$disp = ChangeTags::tagDescription( $tag );
 		$disp .= ' ';
-		$editLink = Linker::link( Title::makeTitle( NS_MEDIAWIKI, "Tag-$tag" ), wfMsgHtml( 'tags-edit' ) );
+		$editLink = Linker::link( Title::makeTitle( NS_MEDIAWIKI, "Tag-$tag" ), $this->msg( 'tags-edit' )->escaped() );
 		$disp .= $this->msg( 'parentheses' )->rawParams( $editLink )->escaped();
 		$newRow .= Xml::tags( 'td', null, $disp );
 
-		$msg = wfMessage( "tag-$tag-description" );
+		$msg = $this->msg( "tag-$tag-description" );
 		$desc = !$msg->exists() ? '' : $msg->parse();
 		$desc .= ' ';
-		$editDescLink = Linker::link( Title::makeTitle( NS_MEDIAWIKI, "Tag-$tag-description" ), wfMsgHtml( 'tags-edit' ) );
+		$editDescLink = Linker::link( Title::makeTitle( NS_MEDIAWIKI, "Tag-$tag-description" ), $this->msg( 'tags-edit' )->escaped() );
 		$desc .= $this->msg( 'parentheses' )->rawParams( $editDescLink )->escaped();
 		$newRow .= Xml::tags( 'td', null, $desc );
 
-		$hitcount = wfMsgExt( 'tags-hitcount', array( 'parsemag' ), $this->getLanguage()->formatNum( $hitcount ) );
+		$hitcount = $this->msg( 'tags-hitcount' )->numParams( $hitcount )->escaped();
 		$hitcount = Linker::link( SpecialPage::getTitleFor( 'Recentchanges' ), $hitcount, array(), array( 'tagfilter' => $tag ) );
 		$newRow .= Xml::tags( 'td', null, $hitcount );
 
