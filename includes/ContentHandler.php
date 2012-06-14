@@ -248,6 +248,11 @@ abstract class ContentHandler {
 	}
 
 	/**
+	 * @var Array A Cache of ContentHandler instances by model id
+	 */
+	static $handlers;
+
+	/**
 	 * Returns the ContentHandler singleton for the given model ID. Use the
 	 * CONTENT_MODEL_XXX constants to identify the desired content model.
 	 *
@@ -276,25 +281,33 @@ abstract class ContentHandler {
 	public static function getForModelID( $modelId ) {
 		global $wgContentHandlers;
 
+		if ( isset( ContentHandler::$handlers[$modelId] ) ) {
+			return ContentHandler::$handlers[$modelId];
+		}
+
 		if ( empty( $wgContentHandlers[$modelId] ) ) {
 			$handler = null;
 
 			wfRunHooks( 'ContentHandlerForModelID', array( $modelId, &$handler ) );
 
-			if ( $handler ) { // NOTE: may be a string or an object, either is fine!
-				$wgContentHandlers[$modelId] = $handler;
-			} else {
-				throw new MWException( "No handler for model #$modelId registered " .
-					"in \$wgContentHandlers" );
+			if ( $handler === null ) {
+				throw new MWException( "No handler for model #$modelId registered in \$wgContentHandlers" );
+			}
+
+			if ( !( $handler instanceof ContentHandler ) ) {
+				throw new MWException( "ContentHandlerForModelID must supply a ContentHandler instance" );
+			}
+		} else {
+			$class = $wgContentHandlers[$modelId];
+			$handler = new $class( $modelId );
+
+			if ( !( $handler instanceof ContentHandler ) ) {
+				throw new MWException( "$class from \$wgContentHandlers is not compatible with ContentHandler" );
 			}
 		}
 
-		if ( is_string( $wgContentHandlers[$modelId] ) ) {
-			$class = $wgContentHandlers[$modelId];
-			$wgContentHandlers[$modelId] = new $class( $modelId );
-		}
-
-		return $wgContentHandlers[$modelId];
+		ContentHandler::$handlers[$modelId] = $handler;
+		return ContentHandler::$handlers[$modelId];
 	}
 
 	/**
