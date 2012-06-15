@@ -204,6 +204,11 @@ class HistoryAction extends FormlessAction {
 	 * @return ResultWrapper
 	 */
 	function fetchRevisions( $limit, $offset, $direction ) {
+		// Fail if article doesn't exist.
+		if( !$this->getTitle()->exists() ) {
+			return new FakeResultWrapper( array() );
+		}
+
 		$dbr = wfGetDB( DB_SLAVE );
 
 		if ( $direction == HistoryPage::DIR_PREV ) {
