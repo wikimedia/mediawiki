@@ -106,7 +106,7 @@ interface IORMTable {
 	 * @return ORMResult
 	 */
 	public function select( $fields = null, array $conditions = array(),
-							array $options = array(), $functionName  = null );
+							array $options = array(), $functionName = null );
 
 	/**
 	 * Selects the the specified fields of the records matching the provided
@@ -122,7 +122,7 @@ interface IORMTable {
 	 * @return array of self
 	 */
 	public function selectObjects( $fields = null, array $conditions = array(),
-								   array $options = array(), $functionName  = null );
+								   array $options = array(), $functionName = null );
 
 	/**
 	 * Do the actual select.
@@ -137,7 +137,7 @@ interface IORMTable {
 	 * @return ResultWrapper
 	 */
 	public function rawSelect( $fields = null, array $conditions = array(),
-							   array $options = array(), $functionName  = null );
+							   array $options = array(), $functionName = null );
 
 	/**
 	 * Selects the the specified fields of the records matching the provided
@@ -162,7 +162,7 @@ interface IORMTable {
 	 * @return array of array
 	 */
 	public function selectFields( $fields = null, array $conditions = array(),
-								  array $options = array(), $collapse = true, $functionName  = null );
+								  array $options = array(), $collapse = true, $functionName = null );
 
 	/**
 	 * Selects the the specified fields of the first matching record.
