@@ -391,7 +391,7 @@ class SiteStatsUpdate implements DeferrableUpdate {
 	/**
 	 * @param $type string
 	 * @param $sign string ('+' or '-')
-	 * @return void
+	 * @return string
 	 */
 	private function getTypeCacheKey( $type, $sign ) {
 		return wfMemcKey( 'sitestatsupdate', 'pendingdelta', $type, $sign );
@@ -443,7 +443,7 @@ class SiteStatsUpdate implements DeferrableUpdate {
 
 	/**
 	 * Reduce pending delta counters after updates have been applied
-	 * @param Array Result of getPendingDeltas(), used for DB update
+	 * @param Array $pd Result of getPendingDeltas(), used for DB update
 	 * @return void
 	 */
 	protected function removePendingDeltas( array $pd ) {
