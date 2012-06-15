@@ -161,7 +161,6 @@ changes to languages because of Bugzilla reports.
 * Removed ./tests/qunit/index.html from core. It wasn't actively maintained and
   has been made obsolete when [[Special:JavaScriptTest/qunit]] was introduced,
   which actually uses ResourceLoader, LocalSettings and the Skin.
-* Skin::getCommonStylePath has been deprecated. Its use is obsolete.
 
 == Compatibility ==
 
