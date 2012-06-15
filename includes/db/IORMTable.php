@@ -62,6 +62,9 @@ interface IORMTable {
 	 * * array
 	 * * blob
 	 *
+	 * TODO: get rid of the id field. Every row instance needs to have
+	 * one so this is just causing hassle at various locations by requiring an extra check for field name.
+	 *
 	 * @since 1.20
 	 *
 	 * @return array
