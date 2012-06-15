@@ -109,6 +109,13 @@ class SpecialWatchlist extends SpecialPage {
 		/* ?     */ 'namespace' => 'all',
 		/* ?     */ 'invert'    => false,
 		/* bool  */ 'associated' => false,
+
+
+		'group' => null,
+		'user' => $user->getId()
+
+
+
 		);
 		$this->customFilters = array();
 		wfRunHooks( 'SpecialWatchlistFilters', array( $this, &$this->customFilters ) );
@@ -128,6 +135,16 @@ class SpecialWatchlist extends SpecialPage {
 
 		# Get query variables
 		$values = array();
+
+
+
+
+		$values['group'] = (int)$request->getVal( 'group', $defaults['group'] );
+		$values['user'] = $request->getVal( 'user', $defaults['user'] );
+
+
+
+
 		$values['days']      	 = $request->getVal( 'days', $prefs['days'] );
 		$values['hideMinor'] 	 = (int)$request->getBool( 'hideMinor', $prefs['hideminor'] );
 		$values['hideBots']  	 = (int)$request->getBool( 'hideBots' , $prefs['hidebots'] );
@@ -195,6 +212,21 @@ class SpecialWatchlist extends SpecialPage {
 		# Possible where conditions
 		$conds = array();
 
+
+
+		//NEW PERMISSIONS CHECK
+		$conds[] = 'wg_perm = 1 OR (wg_perm = 0 AND wg_user = ' . $user->getId() . ')';
+
+		//GROUP/USER CHECK
+		if( !is_null( $values['group'] ) ) {
+			$conds[] = 'wg_id = ' . $values['group'];
+		} else {
+			$conds[] = 'wg_user = ' . $values['user'];
+		}
+
+
+
+
 		if( $values['days'] > 0 ) {
 			$conds[] = "rc_timestamp > '".$dbr->timestamp( time() - intval( $values['days'] * 86400 ) )."'";
 		}
@@ -248,8 +280,16 @@ class SpecialWatchlist extends SpecialPage {
 			$output->showLagWarning( $lag );
 		}
 
+		# ADD USER WATCHLIST/GROUP SELECTION
+		$form  = Xml::fieldset( $this->msg( 'Watchlist selection' )->text(), false, array( 'id' => 'mw-watchlist-options' ) );
+		$form .= Xml::openElement( 'form', array( 'method' => 'post',
+						'action' => $this->getTitle()->getLocalUrl(),
+						'id' => 'mw-watchlist-resetbutton' ) );
+		$form .= Xml::closeElement( 'form' );
+		$form .= Xml::closeElement( 'fieldset' );
+
 		# Create output form
-		$form  = Xml::fieldset( $this->msg( 'watchlist-options' )->text(), false, array( 'id' => 'mw-watchlist-options' ) );
+		$form  .= Xml::fieldset( $this->msg( 'watchlist-options' )->text(), false, array( 'id' => 'mw-watchlist-options' ) );
 
 		# Show watchlist header
 		$form .= $this->msg( 'watchlist-details' )->numParams( $nitems )->parse();
@@ -271,18 +311,39 @@ class SpecialWatchlist extends SpecialPage {
 		}
 		$form .= '<hr />';
 
-		$tables = array( 'recentchanges', 'watchlist' );
-		$fields = array( $dbr->tableName( 'recentchanges' ) . '.*' );
+		$tables = array( 'recentchanges', 'watchlist', 'watchlist_groups' );
+		$fields = array( $dbr->tableName( 'recentchanges' ) . '.*', $dbr->tableName( 'watchlist_groups' ) . '.*' );
+
 		$join_conds = array(
 			'watchlist' => array(
 				'INNER JOIN',
 				array(
-					'wl_user' => $user->getId(),
+					'wl_user' => $values['user'],
 					'wl_namespace=rc_namespace',
 					'wl_title=rc_title'
 				),
 			),
+			'watchlist_groups' => array(
+				'LEFT JOIN',
+				array(
+					'wg_id' => $values['group'],
+					'wg_id=wl_group'
+				),
+			)
 		);
+
+		/*if( $values['group'] != null ){
+			$tables[] = 'watchlist_groups';
+			$fields[] = $dbr->tableName( 'watchlist_groups' ) . '.*';
+			$join_conds['watchlist_groups'] = array(
+				'LEFT JOIN',
+				array(
+					'wg_id' => $values['group'],
+					'wg_id=wl_group'
+				),
+			);
+		}*/
+
 		$options = array( 'ORDER BY' => 'rc_timestamp DESC' );
 		if( $wgShowUpdatedMarker ) {
 			$fields[] = 'wl_notificationtimestamp';

@@ -38,7 +38,7 @@ class WatchlistGroup {
 		$res = $dbr->selectRow( 'watchlist', array( 'wl_group' ),
 			array( 'wl_title' => $title, 'wl_user' => $context->getUser()->getId()), __METHOD__ 
 		);
-		$gid = intval($res->wl_group);
+		$gid = intval( $res->wl_group );
 
 		if($gid == 0){
 			$gname = 'None';
@@ -54,8 +54,39 @@ class WatchlistGroup {
 
 	public static function regroupTitles( $titles, $group, $context ){
 		$dbw = wfGetDB( DB_MASTER );
+		foreach($titles as $t){
+			$titles_escaped[] = Title::newFromText($t)->getDBKey();
+		}
 		$res = $dbw->update( 'watchlist', array( 'wl_group' => $group ),
-			array( 'wl_title' => $titles), __METHOD__ );
+			array( 'wl_title' => $titles_escaped, 'wl_user' => $context->getUser()->getId() ), __METHOD__ );
+		return $res;
+	}
+
+	public static function getNextGroupId( $user ){
+		$dbr = wfGetDB( DB_SLAVE );
+		$res = $dbr->selectRow( 'watchlist_groups', array( 'MAX(wg_id) as maxid' ),
+			array( 'wl_user' => $context->getUser()->getId() ), __METHOD__ 
+		);
+		return $res->maxid;
+	}
+
+	public static function createGroup( $name ){
+		$dbw = wfGetDB( DB_MASTER );
+		$res = $dbw->insert( 'watchlist_groups', array( 'wg_name' => $name, 'wg_user' => $context->getUser()->getId(),
+			'wg_id' => getNextGroupId( $context->getUser()->getId() ) ), array( 'wl_title' => $titles), __METHOD__ );
+		return $res;
+	}
+
+	public static function renameGroup( $group, $name, $context ){
+		$dbw = wfGetDB( DB_MASTER );
+		$res = $dbw->update( 'watchlist_groups', array( 'wg_name' => $name ),
+			array( 'wg_id' => $group, 'wg_user' => $context->getUser()->getId() ), __METHOD__ );
+		return $res;
+	}
+
+	public static function deleteGroup( $group, $context ){
+		$dbw = wfGetDB( DB_MASTER );
+		$res = $dbw->delete( 'watchlist_groups', array( 'wg_id' => $group, 'wg_user' => $context->getUser()->getId() ), __METHOD__ );
 		return $res;
 	}
 }

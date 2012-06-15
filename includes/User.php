@@ -2627,7 +2627,7 @@ class User {
 	 * Watch an article.
 	 * @param $title Title of the article to look at
 	 */
-	public function addWatch( $title, $group ) {
+	public function addWatch( $title, $group = 0 ) {
 		$wl = WatchedItem::fromUserTitle( $this, $title, $group );
 		$wl->addWatch();
 		$this->invalidateCache();

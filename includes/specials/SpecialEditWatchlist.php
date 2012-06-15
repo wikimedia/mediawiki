@@ -470,9 +470,19 @@ class SpecialEditWatchlist extends UnlistedSpecialPage {
 	protected function getNormalForm(){
 		global $wgContLang;
 
-		
-
 		$fields = array();
+
+		/*$wgform = new HTMLForm( $fields, $this->getContext() );
+		$wgform->setWrapperLegendMsg( 'Edit watchlist groups' );
+		$wgform->setTitle( $this->getTitle() );
+		$wgform->setSubmitTextMsg( 'Create' );
+		# Used message keys: 'accesskey-watchlistedit-normal-submit', 'tooltip-watchlistedit-normal-submit'
+		$wgform->setSubmitTooltip('watchlistedit-normal-submit');
+		$wgform->addHeaderText( $this->msg( '' )->parse() );
+		$wgform->setSubmitCallback( array( $this, 'submitNormal' ) );
+		$wgform->show();
+
+		$fields = array();*/
 		$count = 0;
 
 		foreach( $this->getWatchlistInfo() as $namespace => $pages ){
