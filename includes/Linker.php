@@ -1216,41 +1216,44 @@ class Linker {
 		$pre = $match[1];
 		$auto = $match[2];
 		$post = $match[3];
-		$link = '';
-		if ( $title ) {
-			$section = $auto;
+		$comment = '';
+		if ( wfRunHooks( 'FormatAutocomments', array( &$comment, $pre, $auto, $post, $title, $local ) ) ) {
+			$link = '';
+			if ( $title ) {
+				$section = $auto;
 
-			# Remove links that a user may have manually put in the autosummary
-			# This could be improved by copying as much of Parser::stripSectionName as desired.
-			$section = str_replace( '[[:', '', $section );
-			$section = str_replace( '[[', '', $section );
-			$section = str_replace( ']]', '', $section );
+				# Remove links that a user may have manually put in the autosummary
+				# This could be improved by copying as much of Parser::stripSectionName as desired.
+				$section = str_replace( '[[:', '', $section );
+				$section = str_replace( '[[', '', $section );
+				$section = str_replace( ']]', '', $section );
 
-			$section = Sanitizer::normalizeSectionNameWhitespace( $section ); # bug 22784
-			if ( $local ) {
-				$sectionTitle = Title::newFromText( '#' . $section );
-			} else {
-				$sectionTitle = Title::makeTitleSafe( $title->getNamespace(),
-					$title->getDBkey(), $section );
+				$section = Sanitizer::normalizeSectionNameWhitespace( $section ); # bug 22784
+				if ( $local ) {
+					$sectionTitle = Title::newFromText( '#' . $section );
+				} else {
+					$sectionTitle = Title::makeTitleSafe( $title->getNamespace(),
+						$title->getDBkey(), $section );
+				}
+				if ( $sectionTitle ) {
+					$link = self::link( $sectionTitle,
+						$wgLang->getArrow(), array(), array(),
+						'noclasses' );
+				} else {
+					$link = '';
+				}
 			}
-			if ( $sectionTitle ) {
-				$link = self::link( $sectionTitle,
-					$wgLang->getArrow(), array(), array(),
-					'noclasses' );
-			} else {
-				$link = '';
+			if ( $pre ) {
+				# written summary $presep autocomment (summary /* section */)
+				$pre .= wfMsgExt( 'autocomment-prefix', array( 'escapenoentities', 'content' ) );
 			}
+			if ( $post ) {
+				# autocomment $postsep written summary (/* section */ summary)
+				$auto .= wfMsgExt( 'colon-separator', array( 'escapenoentities', 'content' ) );
+			}
+			$auto = '<span class="autocomment">' . $auto . '</span>';
+			$comment = $pre . $link . $wgLang->getDirMark() . '<span dir="auto">' . $auto . $post . '</span>';
 		}
-		if ( $pre ) {
-			# written summary $presep autocomment (summary /* section */)
-			$pre .= wfMsgExt( 'autocomment-prefix', array( 'escapenoentities', 'content' ) );
-		}
-		if ( $post ) {
-			# autocomment $postsep written summary (/* section */ summary)
-			$auto .= wfMsgExt( 'colon-separator', array( 'escapenoentities', 'content' ) );
-		}
-		$auto = '<span class="autocomment">' . $auto . '</span>';
-		$comment = $pre . $link . $wgLang->getDirMark() . '<span dir="auto">' . $auto . $post . '</span>';
 		return $comment;
 	}
 
