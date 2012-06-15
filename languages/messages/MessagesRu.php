@@ -16,6 +16,7 @@
  * @author Alexander Sigachov (alexander.sigachov@gmail.com)
  * @author Alexandr Efremov
  * @author Amikeco
+ * @author Amire80
  * @author Askarmuk
  * @author Assele
  * @author Bouron
@@ -3165,6 +3166,7 @@ The wiki server can't provide data in a format your client can read.",
 'spambot_username' => 'Чистка спама',
 'spam_reverting' => 'Откат к последней версии, не содержащей ссылки на $1',
 'spam_blanking' => 'Все версии содержат ссылки на $1, очистка',
+'spam_deleting' => 'Все версии содержали ссылки на $1, производится удаление',
 
 # Info page
 'pageinfo-title' => 'Сведения по «$1»',

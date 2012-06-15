@@ -740,6 +740,7 @@ $1',
 Зазначена наступна причина: ''$2''.",
 'filereadonlyerror' => "Неможливо змінити файл «$1» тому, що файловий архів «$2» перебуває в режимі «лише для читання».
 Адміністратор, що заблокував його, залишив таке пояснення: «''$3''».",
+'invalidtitle-knownnamespace' => 'Неприйнятна назва у просторі імен «$2» і текстом «$3»',
 
 # Virus scanner
 'virus-badscanner' => "Помилка налаштування: невідомий сканер вірусів: ''$1''",
@@ -1132,6 +1133,7 @@ $2
 'parser-template-loop-warning' => 'Виявлена петля у шаблонах: [[$1]]',
 'parser-template-recursion-depth-warning' => 'Перевищене обмеження глибини рекурсії шаблону ($1)',
 'language-converter-depth-warning' => 'Перевищене обмеження глибини мовного конвертора ($1)',
+'parser-unstrip-loop-warning' => 'Виявлено незакритий тег <pre>',
 
 # "Undo" feature
 'undo-success' => 'Редагування може бути скасовано.
@@ -1406,6 +1408,7 @@ $1",
 'prefs-beta' => 'Бета-функції',
 'prefs-datetime' => 'Дата й час',
 'prefs-labs' => 'Експериментальні функції',
+'prefs-user-pages' => 'Сторінки користувача',
 'prefs-personal' => 'Особисті дані',
 'prefs-rc' => 'Сторінка останніх редагувань',
 'prefs-watchlist' => 'Список спостереження',
@@ -2232,6 +2235,7 @@ $1',
 
 # SpecialCachedPage
 'cachedspecial-viewing-cached-ts' => 'Ви переглядаєте кешовану версію сторінки, яка могла втратити актуальність',
+'cachedspecial-refresh-now' => 'Показати останні',
 
 # Special:Categories
 'categories' => 'Категорії',
@@ -3126,6 +3130,7 @@ The wiki server can't provide data in a format your client can read.",
 'spambot_username' => 'Очистка спаму',
 'spam_reverting' => 'Відкинути до останньої версії, що не містить посилання на $1',
 'spam_blanking' => 'Всі версії містять посилання на $1, очистка',
+'spam_deleting' => 'Все версії містили посилання на $1, видаляються',
 
 # Info page
 'pageinfo-title' => 'Інформація про " $1 "',

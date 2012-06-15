@@ -11,6 +11,7 @@
  * @author Kaganer
  * @author Mikel
  * @author Remember the dot
+ * @author Savh
  * @author Xuacu
  * @author לערי ריינהארט
  */
@@ -1748,7 +1749,7 @@ Hai disponible una [[Special:WhatLinksHere/$2|llista completa]].",
 'sharedupload-desc-there' => 'Esti ficheru ye de $1 y puen usalu otros proyeutos.
 Llee la [páxina de descripción del ficheru $2] pa más información.',
 'sharedupload-desc-here' => "Esti ficheru ye de $1 y puen usalu otros proyeutos.
-La descripción de la [páxina de descripción del ficheru $2] s'amuesa darréu.",
+La descripción de la [$2 páxina de descripción del ficheru] s'amuesa darréu.",
 'sharedupload-desc-edit' => "Esti ficheru ye de $1 y se pue usar n'otros proyeutos.
 Seique quieras camudar la descripción de la so [páxina de descripción de ficheru $2] allí.",
 'sharedupload-desc-create' => "Esti ficheru ye de $1 y se pue usar n'otros proyeutos.

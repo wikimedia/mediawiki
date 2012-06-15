@@ -1361,13 +1361,13 @@ Do you want to change the settings?',
 # Tooltip help for the actions
 'tooltip-pt-preferences' => 'Your preferences',
 'tooltip-pt-login' => 'ܛܒ ܐܢܬ ܕܣܓܠ ܥܠܠܐ، ܐܠܐ ܗܢܐ ܠܘ ܐܠܨܝܐ',
-'tooltip-pt-logout' => 'ܦܠܘܛ',
+'tooltip-pt-logout' => 'ܦܠܛܐ',
 'tooltip-ca-talk' => 'ܡܡܠܠܐ ܥܠ ܚܒܝܫܬܐ ܕܦܐܬܐ',
 'tooltip-ca-protect' => 'ܢܛܘܪ ܗܕܐ ܦܐܬܐ',
 'tooltip-ca-delete' => 'ܫܘܦ ܦܐܬܐ ܗܕܐ',
 'tooltip-n-randompage' => 'ܦܬܘܟ ܡܓܠܬܐ ܚܘܝܚܬܐ',
 'tooltip-t-emailuser' => 'ܫܕܪ ܐܓܪܬܐ ܠܗܢܐ ܡܦܠܚܢܐ',
-'tooltip-save' => 'ܠܒܘܟ ܫܘܚܠܦܘܟ',
+'tooltip-save' => 'ܠܒܘܟ ܫܘܚܠܦܟ',
 
 # Attribution
 'anonymous' => '{{PLURAL:$1|ܡܦܠܚܢܐ ܠܐ ܝܕܝܥܐ|ܡܦܠܚܢ̈ܐ ܠܐ ܝܕ̈ܝܥܐ}} ܕ {{SITENAME}}',
@@ -1578,6 +1578,7 @@ $1',
 'logentry-newusers-newusers' => '$1 ܒܪܐ ܚܘܫܒܢܐ ܕܡܦܠܚܢܐ',
 'logentry-newusers-create' => '$1 ܒܪܐ ܚܘܫܒܢܐ ܕܡܦܠܚܢܐ',
 'logentry-newusers-create2' => '$1 ܒܪܐ ܚܘܫܒܢܐ ܕܡܦܠܚܢܐ $3',
+'logentry-newusers-autocreate' => 'ܚܘܫܒܢܐ $1 ܐܬܒܪܝ ܝܬܐܝܬ',
 'newuserlog-byemail' => 'ܡܠܬܐ ܕܥܠܠܐ ܐܫܬܕܪܬ ܒܝܕ ܒܝܠܕܪܐ ܐܠܩܛܪܘܢܝܐ',
 
 # Feedback

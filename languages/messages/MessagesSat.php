@@ -12,6 +12,7 @@
  * @author Ghonokuashabaskey
  * @author Joseph Mardy
  * @author Nipon087
+ * @author Reedy
  * @author Salvator
  * @author Samar88
  * @author Srabony90
@@ -334,7 +335,7 @@ Noa do noṅkanaḱ menkana je {{SITENAME}} sayeṭre beoharen sofṭower re mit
 'dberrortext' => 'Database query syntexre vul hoeakana.
 Sofṭoyerre jahan bag karonte noa do hoe daṛeyaḱa.
 Joto khon mucạt́ database query do tahẽkana noṅka:
-<blockquote><tt>$1<//tt><blockquote>
+<blockquote><tt>$1</tt><blockquote>
 "<tt>$2</tt>" bhitrire tahẽna.
 Database okaṭaḱ vule em akada:"<tt>$3: $4</tt>".',
 'dberrortextcl' => 'Ḍaṭabes query sintxexṭre vul hoeakana.

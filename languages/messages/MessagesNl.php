@@ -3186,6 +3186,7 @@ Meestal wordt dit door een externe verwijzing op een zwarte lijst veroorzaakt.',
 'spambot_username' => 'MediaWiki opschoning spam',
 'spam_reverting' => 'Bezig met terugdraaien naar de laatste versie die geen verwijzing heeft naar $1',
 'spam_blanking' => 'Alle wijzigingen met een verwijzing naar $1 worden verwijderd',
+'spam_deleting' => 'Alle versies bevatten verwijzingen naar $1. Bezig met verwijderen...',
 
 # Info page
 'pageinfo-title' => 'Informatie over "$1"',

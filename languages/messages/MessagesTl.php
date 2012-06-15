@@ -2890,6 +2890,7 @@ Maaaring dahil ito sa isang kawing sa isang nakatalang hinarang dahil di-kinaisn
 'spambot_username' => "Paglilinis ng ''spam'' ng MediaWiki",
 'spam_reverting' => "Ibinabalik sa huling bersyon na 'di-naglalaman ng mga kawing sa $1",
 'spam_blanking' => 'Lahat ng mga pagbabago ay naglalaman ng mga kawing sa $1, pagpapatlang',
+'spam_deleting' => 'Lahat ng mga pagbabago ay naglalaman ng mga kawing sa $1, binubura',
 
 # Info page
 'pageinfo-title' => 'Kabatiran para sa "$1"',

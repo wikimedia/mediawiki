@@ -1320,7 +1320,7 @@ Li [[Special:WantedCategories|kategoriyên xwestî]] binêre.',
 
 # Special:DeletedContributions
 'deletedcontributions' => 'Beşdariyên bikarhênerekî yê jêbirî',
-'deletedcontributions-title' => 'Guherandinên bikarhênerekî yê jêbirî',
+'deletedcontributions-title' => 'Guherandinên bikarhêner yê jêbirî',
 'sp-deletedcontributions-contribs' => 'tevkarî',
 
 # Special:LinkSearch
@@ -1443,7 +1443,7 @@ Paşagahîdan û alîkaraya din:
 'exbeforeblank' => 'Naverok berî betalkirinê ev bû: "$1"',
 'exblank' => 'rûpel vala bû',
 'delete-confirm' => 'Jêbirina "$1"',
-'delete-legend' => 'Jêbirin',
+'delete-legend' => 'Jê bibe',
 'historywarning' => "'''Hişyarî''': Dîrokeke vê rûpela tu dixwazî jê bibî heye:",
 'confirmdeletetext' => 'Tu kê niha rûpelekê bi tev dîroka wê jêbibê. Xêra xwe zanibe tu kê niha çi bikê û zanibe, çi di wîkîyê da yê bibe. Hên jî seke, ku ev jêbirina bi [[{{MediaWiki:Policy-url}}|mafên wîkîyê]] ra dimeşin ya na.',
 'actioncomplete' => 'Çalakî pêk hat',
@@ -1580,7 +1580,7 @@ Ji bo jêbirinan û çêkirinên nû, ji kerema xwe li [[{{ns:special}}:Log/dele
 'nolinkshere-ns' => "Ne lînkek berve '''[[:$1]]''' di vê namespace'a da tê.",
 'isredirect' => 'rûpelê beralî bike',
 'istemplate' => 'tê bikaranîn',
-'isimage' => 'lînka wêneyê',
+'isimage' => 'girêdana wêneyî',
 'whatlinkshere-prev' => '{{PLURAL:$1|yê|$1 yên}} berê',
 'whatlinkshere-next' => '{{PLURAL:$1|yê|$1 yên}} din',
 'whatlinkshere-links' => '← girêdan',

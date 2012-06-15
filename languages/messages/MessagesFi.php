@@ -1298,7 +1298,7 @@ Kokeile lisätä haun alkuun ''all:'', niin haku kohdistuu kaikkeen sisältöön
 'powersearch-field' => 'Etsi',
 'powersearch-togglelabel' => 'Muuta valinta',
 'powersearch-toggleall' => 'Valitse kaikki',
-'powersearch-togglenone' => 'Poista kaikki',
+'powersearch-togglenone' => 'Valitse ei mitään',
 'search-external' => 'Ulkoinen haku',
 'searchdisabled' => 'Tekstihaku on poistettu toistaiseksi käytöstä suuren kuorman vuoksi. Voit käyttää alla olevaa Googlen hakukenttää sivujen etsimiseen, kunnes haku tulee taas käyttöön. <small>Huomaa, että ulkopuoliset kopiot {{GRAMMAR:genitive|{{SITENAME}}}} sisällöstä eivät välttämättä ole ajan tasalla.</small>',
 
