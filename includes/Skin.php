@@ -164,6 +164,11 @@ abstract class Skin extends ContextSource {
 		if ( !MWInit::classExists( $className ) ) {
 
 			if ( !defined( 'MW_COMPILED' ) ) {
+				// Preload base classes to work around APC/PHP5 bug
+				$deps = "{$wgStyleDirectory}/{$skinName}.deps.php";
+				if ( file_exists( $deps ) ) {
+					include_once( $deps );
+				}
 				require_once( "{$wgStyleDirectory}/{$skinName}.php" );
 			}
 

@@ -299,6 +299,10 @@ class Language {
 		}
 
 		if ( !defined( 'MW_COMPILED' ) ) {
+			// Preload base classes to work around APC/PHP5 bug
+			if ( file_exists( "$IP/languages/classes/$class.deps.php" ) ) {
+				include_once( "$IP/languages/classes/$class.deps.php" );
+			}
 			if ( file_exists( "$IP/languages/classes/$class.php" ) ) {
 				include_once( "$IP/languages/classes/$class.php" );
 			}
