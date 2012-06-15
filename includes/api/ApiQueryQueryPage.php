@@ -186,7 +186,7 @@ class ApiQueryQueryPage extends ApiQueryGeneratorBase {
 				),
 				'cached' => array(
 					ApiBase::PROP_TYPE => 'boolean',
-					Apibase::PROP_NULLABLE => false
+					ApiBase::PROP_NULLABLE => false
 				),
 				'cachedtimestamp' => array(
 					ApiBase::PROP_TYPE => 'timestamp',
