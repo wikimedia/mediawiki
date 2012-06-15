@@ -1,0 +1,9 @@
+Verified+1: jenkins-bot
+Code-Review+2: Siebrand <s.mazeland@xs4all.nl>
+Code-Review+1: Nikerabbit <niklas.laxstrom@gmail.com>
+Code-Review+1: Jdlrobson <jdlrobson@gmail.com>
+Submitted-by: Siebrand <s.mazeland@xs4all.nl>
+Submitted-at: Fri, 15 Jun 2012 13:12:55 +0000
+Reviewed-on: https://gerrit.wikimedia.org/r/7846
+Project: mediawiki/core
+Branch: refs/heads/master
