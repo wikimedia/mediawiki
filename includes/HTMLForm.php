@@ -727,7 +727,7 @@ class HTMLForm extends ContextSource {
 	 * @param $msg String message key
 	 */
 	public function setSubmitTextMsg( $msg ) {
-		return $this->setSubmitText( $this->msg( $msg )->text() );
+		$this->setSubmitText( $this->msg( $msg )->text() );
 	}
 
 	/**
@@ -775,7 +775,7 @@ class HTMLForm extends ContextSource {
 	 * @param $msg String message key
 	 */
 	public function setWrapperLegendMsg( $msg ) {
-		return $this->setWrapperLegend( $this->msg( $msg )->escaped() );
+		$this->setWrapperLegend( $this->msg( $msg )->escaped() );
 	}
 
 	/**

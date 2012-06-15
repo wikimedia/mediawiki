@@ -1408,7 +1408,7 @@ class Article extends Page {
 			}
 		}
 
-		return $this->confirmDelete( $reason );
+		$this->confirmDelete( $reason );
 	}
 
 	/**
