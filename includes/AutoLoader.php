@@ -875,6 +875,7 @@ $wgAutoloadLocalClasses = array(
 	'SpecialComparePages' => 'includes/specials/SpecialComparePages.php',
 	'SpecialContributions' => 'includes/specials/SpecialContributions.php',
 	'SpecialEditWatchlist' => 'includes/specials/SpecialEditWatchlist.php',
+	'SpecialEditWatchlistGroup' => 'includes/specials/SpecialEditWatchlistGroup.php',
 	'SpecialEmailUser' => 'includes/specials/SpecialEmailuser.php',
 	'SpecialExport' => 'includes/specials/SpecialExport.php',
 	'SpecialFilepath' => 'includes/specials/SpecialFilepath.php',

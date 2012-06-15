@@ -388,6 +388,7 @@ $specialPageAliases = array(
 	'Disambiguations'           => array( 'Disambiguations' ),
 	'DoubleRedirects'           => array( 'DoubleRedirects' ),
 	'EditWatchlist'             => array( 'EditWatchlist' ),
+	'EditWatchlistGroup'        => array( 'EditWatchlistGroup' ),
 	'Emailuser'                 => array( 'EmailUser' ),
 	'Export'                    => array( 'Export' ),
 	'Fewestrevisions'           => array( 'FewestRevisions' ),
@@ -2831,6 +2832,11 @@ Future changes to this page and its associated talk page will be listed there, a
 'wlshowlast'           => 'Show last $1 hours $2 days $3',
 'watchlist-options'    => 'Watchlist options',
 
+'watchlist-selection'  => 'Watchlist selection',
+'watchlist-user'       => 'User:',
+'watchlist-group'      => 'Group:',
+'watchlist-search'     => 'Search',
+
 # Displayed when you click the "watch" button and it is in the process of watching
 'watching'       => 'Watching...',
 'unwatching'     => 'Unwatching...',
@@ -3692,7 +3698,6 @@ This is probably caused by a link to a blacklisted external site.',
 'spambot_username'    => 'MediaWiki spam cleanup',
 'spam_reverting'      => 'Reverting to last revision not containing links to $1',
 'spam_blanking'       => 'All revisions contained links to $1, blanking',
-'spam_deleting'       => 'All revisions contained links to $1, deleting',
 
 # Info page
 'pageinfo-title'            => 'Information for "$1"',
@@ -4521,11 +4526,14 @@ Try normal preview.',
 'watchlistedit-numitems'       => 'Your watchlist contains {{PLURAL:$1|1 title|$1 titles}}, excluding talk pages.',
 'watchlistedit-noitems'        => 'Your watchlist contains no titles.',
 'watchlistedit-normal-title'   => 'Edit watchlist',
-'watchlistedit-normal-legend'  => 'Remove titles from watchlist',
+'watchlistedit-normal-legend'  => 'Edit titles in watchlist',
 'watchlistedit-normal-explain' => 'Titles on your watchlist are shown below.
-To remove a title, check the box next to it, and click "{{int:Watchlistedit-normal-submit}}".
+To edit a title, check the box next to it, select an action to regroup or remove the titles, and click "{{int:Watchlistedit-normal-submit}}".
 You can also [[Special:EditWatchlist/raw|edit the raw list]].',
-'watchlistedit-normal-submit'  => 'Remove titles',
+'watchlistedit-normal-ungroup' => 'Ungroup titles',
+'watchlistedit-normal-remove'  => 'Remove titles',
+'watchlistedit-normal-action'  => 'Action:',
+'watchlistedit-normal-submit'  => 'Update watchlist',
 'watchlistedit-normal-done'    => '{{PLURAL:$1|1 title was|$1 titles were}} removed from your watchlist:',
 'watchlistedit-raw-title'      => 'Edit raw watchlist',
 'watchlistedit-raw-legend'     => 'Edit raw watchlist',
@@ -4539,10 +4547,27 @@ You can also [[Special:EditWatchlist|use the standard editor]].',
 'watchlistedit-raw-added'      => '{{PLURAL:$1|1 title was|$1 titles were}} added:',
 'watchlistedit-raw-removed'    => '{{PLURAL:$1|1 title was|$1 titles were}} removed:',
 
+# Watchlist group editor
+'wlgroup-title'     => 'Edit watchlist groups',
+'wlgroup-legend'    => 'Edit watchlist groups',
+'wlgroup-explain'   => 'Groups of your watchlist are shown below.
+To rename a group, select "{{int:Wlgroup-rename}}" and fill in the new group name below the old one.
+To delete a group, select "{{int:Wlgroup-delete}}".
+To add a group, fill in the name of the new group in the last field.
+When finished, click "{{int:Wlgroup-submit}}".',
+'wlgroup-noaction'  => 'Take no action',
+'wlgroup-rename'    => 'Rename',
+'wlgroup-delete'    => 'Delete',
+'wlgroup-newname'   => 'New group name:',
+'wlgroup-createnew' => 'Create a new watchlist group:',
+'wlgroup-submit'    => 'Save groups',
+'wlgroup-success'   => 'Your watchlist groups were uploaded successfully',
+
 # Watchlist editing tools
-'watchlisttools-view' => 'View relevant changes',
-'watchlisttools-edit' => 'View and edit watchlist',
-'watchlisttools-raw'  => 'Edit raw watchlist',
+'watchlisttools-view'  => 'View relevant changes',
+'watchlisttools-edit'  => 'View and edit watchlist',
+'watchlisttools-raw'   => 'Edit raw watchlist',
+'watchlisttools-group' => 'View and edit watchlist groups',
 
 # Iranian month names
 'iranian-calendar-m1'  => 'Farvardin', # only translate this message to other languages if you have to change it
