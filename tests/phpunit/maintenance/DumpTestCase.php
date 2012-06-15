@@ -349,4 +349,44 @@ abstract class DumpTestCase extends MediaWikiLangTestCase {
 		$this->skipWhitespace();
 	}
 
+	/**
+	 * Validates a xml file against the xsd.
+	 *
+	 * @param $fname string: name of file to validate
+	 */
+	protected function validateXmlFileAgainstXsd( $fname ) {
+		$dom = new DomDocument();
+		$dom->load( $fname );
+
+		$this->validateDomDocumentAgainstXsd( $dom );
+	}
+
+	/**
+	 * Validates xml string against the xsd.
+	 *
+	 * @param $xml string: xml to validate
+	 */
+	protected function validateXmlAgainstXsd( $xml ) {
+		$dom = new DomDocument();
+		$dom->loadXML( $xml );
+
+		$this->validateDomDocumentAgainstXsd( $dom );
+	}
+
+	/**
+	 * Validates dom against the xsd.
+	 *
+	 * @param $dom DocDocument: dom to validate
+	 */
+	protected function validateDomDocumentAgainstXsd( $dom ) {
+		$version = WikiExporter::schemaVersion();
+
+		try {
+			$this->assertTrue( $dom->schemaValidate( "../../docs/export-" . $version . ".xsd" ),
+				"schemaValidate has found an error" );
+		} catch( Exception $e ) {
+			$this->fail( "xml not valid against xsd: " . $e->getMessage() );
+		}
+	}
+
 }

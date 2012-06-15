@@ -7,7 +7,7 @@ require_once dirname( __FILE__ ) . "/../../../maintenance/backupPrefetch.inc";
  *
  * @group Dump
  */
-class BaseDumpTest extends MediaWikiTestCase {
+class BaseDumpTest extends DumpTestCase {
 
 	/**
 	 * @var BaseDump the BaseDump instance used within a test.
@@ -16,7 +16,7 @@ class BaseDumpTest extends MediaWikiTestCase {
 	 */
 	private $dump = null;
 
-	protected function tearDown() {
+	public function tearDown() {
 		parent::tearDown();
 
 		if ( $this->dump !== null ) {
@@ -258,6 +258,8 @@ class BaseDumpTest extends MediaWikiTestCase {
 			$content .= $available_pages[ $i ];
 		}
 		$content .= $tail;
+
+		$this->validateXmlAgainstXsd( $content );
 
 		$this->assertEquals( strlen( $content ), file_put_contents(
 				$fname, $content ), "Length of prepared prefetch" );

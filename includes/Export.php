@@ -59,6 +59,14 @@ class WikiExporter {
 	var $sink;
 
 	/**
+	 * Returns the export schema version.
+	 * @return string
+	 */
+	public static function schemaVersion() {
+		return "0.7";
+	}
+
+	/**
 	 * If using WikiExporter::STREAM to stream a large amount of data,
 	 * provide a database connection which is not managed by
 	 * LoadBalancer to read from: some history blob types will
@@ -464,14 +472,6 @@ class WikiExporter {
  */
 class XmlDumpWriter {
 	/**
-	 * Returns the export schema version.
-	 * @return string
-	 */
-	function schemaVersion() {
-		return "0.7";
-	}
-
-	/**
 	 * Opens the XML output stream's root <mediawiki> element.
 	 * This does not include an xml directive, so is safe to include
 	 * as a subelement in a larger XML stream. Namespace and XML Schema
@@ -483,7 +483,7 @@ class XmlDumpWriter {
 	 */
 	function openStream() {
 		global $wgLanguageCode;
-		$ver = $this->schemaVersion();
+		$ver = WikiExporter::schemaVersion();
 		return Xml::element( 'mediawiki', array(
 			'xmlns'              => "http://www.mediawiki.org/xml/export-$ver/",
 			'xmlns:xsi'          => "http://www.w3.org/2001/XMLSchema-instance",
