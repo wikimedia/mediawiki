@@ -496,9 +496,7 @@ class LogFormatter {
 	 * @return Message
 	 */
 	protected function msg( $key ) {
-		return wfMessage( $key )
-			->inLanguage( $this->context->getLanguage() )
-			->title( $this->context->getTitle() );
+		return $this->context->msg( $key );
 	}
 
 	protected function makeUserLink( User $user ) {
