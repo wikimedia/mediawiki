@@ -930,6 +930,14 @@ $fileVersions: array of undeleted versions. Empty if all versions were restored
 $user: user who performed the undeletion
 $reason: reason
 
+'FormatAutocomments': When an autocomment is formatted by the Linker
+ &$comment: Reference to the accumulated comment. Initially null, when set the default code will be skipped.
+ $pre: Initial part of the parsed comment before the call to the hook.
+ $auto: The extracted part of the parsed comment before the call to the hook.
+ $post: The final part of the parsed comment before the call to the hook.
+ $title: An optional title object used to links to sections. Can be null.
+ $local: Boolean indicating whether section links should refer to local page.
+
 'GetAutoPromoteGroups': When determining which autopromote groups a user
 is entitled to be in.
 &$user: user to promote.
