@@ -219,6 +219,8 @@ changes to languages because of Bugzilla reports.
   and only applies to MyISAM or similar DBs. Those should only be used
   for archived sites anyway. We can't get edit conflicts on such sites,
   so the WikiPage code wasn't useful there either.
+* Deprecated DatabaseBase functions newFromParams(), newFromType(), set(),
+  quote_ident(), and escapeLike() where removed.
 
 == Compatibility ==
 

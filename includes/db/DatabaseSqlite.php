@@ -176,7 +176,7 @@ class DatabaseSqlite extends DatabaseBase {
 		}
 		$cachedResult = false;
 		$table = 'dummy_search_test';
-		
+
 		$db = new DatabaseSqliteStandalone( ':memory:' );
 
 		if ( $db->query( "CREATE VIRTUAL TABLE $table USING FTS3(dummy_field)", __METHOD__, true ) ) {
@@ -313,7 +313,7 @@ class DatabaseSqlite extends DatabaseBase {
 
 	/**
 	 * @param $res ResultWrapper
-	 * @param $n 
+	 * @param $n
 	 * @return bool
 	 */
 	function fieldName( $res, $n ) {
@@ -670,15 +670,6 @@ class DatabaseSqlite extends DatabaseBase {
 	}
 
 	/**
-	 * @param  $sql
-	 * @param  $num
-	 * @return string
-	 */
-	function limitResultForUpdate( $sql, $num ) {
-		return $this->limitResult( $sql, $num );
-	}
-
-	/**
 	 * @param $s string
 	 * @return string
 	 */
@@ -827,8 +818,8 @@ class DatabaseSqlite extends DatabaseBase {
 		}
 		return $this->query( $sql, $fname );
 	}
-	
-	
+
+
 	/**
 	 * List all tables on the database
 	 *
@@ -843,21 +834,21 @@ class DatabaseSqlite extends DatabaseBase {
 			'name',
 			"type='table'"
 		);
-		
+
 		$endArray = array();
-		
-		foreach( $result as $table ) {	
+
+		foreach( $result as $table ) {
 			$vars = get_object_vars($table);
 			$table = array_pop( $vars );
-			
+
 			if( !$prefix || strpos( $table, $prefix ) === 0 ) {
 				if ( strpos( $table, 'sqlite_' ) !== 0 ) {
 					$endArray[] = $table;
 				}
-				
+
 			}
 		}
-		
+
 		return $endArray;
 	}
 

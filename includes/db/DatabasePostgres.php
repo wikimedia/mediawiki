@@ -1296,11 +1296,6 @@ SQL;
 		return pg_field_type( $res, $index );
 	}
 
-	/* Not even sure why this is used in the main codebase... */
-	function limitResultForUpdate( $sql, $num ) {
-		return $sql;
-	}
-
 	/**
 	 * @param $b
 	 * @return Blob
