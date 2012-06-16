@@ -732,6 +732,10 @@ return array(
 		'dependencies' => array( 'mediawiki.language.data' ),
 	),
 
+	'mediawiki.language.cldr.pluralparser' => array(
+		'scripts' => 'resources/mediawiki.language/mediawiki.language.cldr.pluralparser.js',
+	),
+
 	'mediawiki.language.init' => array(
 		'scripts' => 'resources/mediawiki.language/mediawiki.language.init.js',
 	),
@@ -741,6 +745,7 @@ return array(
 		'dependencies' => array(
 			'mediawiki.util',
 			'mediawiki.language',
+			'mediawiki.language.cldr.pluralparser'
 		),
 	),
 
