@@ -43,10 +43,18 @@ var language = {
 	 * @return string Correct form for quantifier in this language
 	 */
 	'convertPlural': function( count, forms ){
+		var pluralFormIndex = 0;
 		if ( !forms || forms.length === 0 ) {
 			return '';
 		}
-		return ( parseInt( count, 10 ) == 1 ) ? forms[0] : forms[1];
+		var pluralRules = mw.language.getData( mw.config.get( 'wgUserLanguage' ), 'pluralRules' );
+		if ( !pluralRules ) {
+			// default fallback.
+			return (count === 1) ? forms[0]: forms[1];
+		}
+		pluralFormIndex = mw.cldr.getPluralForm( count, pluralRules);
+		pluralFormIndex = Math.min( pluralFormIndex, forms.length-1 );
+		return forms[pluralFormIndex];
 	},
 	/**
 	 * Pads an array to a specific length by copying the last one element.
