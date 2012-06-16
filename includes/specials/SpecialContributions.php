@@ -441,7 +441,7 @@ class SpecialContributions extends SpecialPage {
 				'target',
 				$this->opts['target'],
 				'text',
-				array( 'size' => '20', 'required' => '', 'class' => 'mw-input' ) +
+				array( 'size' => '40', 'required' => '', 'class' => 'mw-input' ) +
 					( $this->opts['target'] ? array() : array( 'autofocus' )
 				)
 			) . ' '
