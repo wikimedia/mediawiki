@@ -1031,13 +1031,6 @@ __INDEXATTR__;
 	}
 
 	/**
-	 * Return aggregated value function call
-	 */
-	function aggregateValue( $valuedata, $valuename = 'value' ) {
-		return $valuedata;
-	}
-
-	/**
 	 * @return string wikitext of a link to the server software's web site
 	 */
 	public static function getSoftwareLink() {
@@ -1290,11 +1283,6 @@ SQL;
 			$res = $res->result;
 		}
 		return pg_field_type( $res, $index );
-	}
-
-	/* Not even sure why this is used in the main codebase... */
-	function limitResultForUpdate( $sql, $num ) {
-		return $sql;
 	}
 
 	/**

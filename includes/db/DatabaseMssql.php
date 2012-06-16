@@ -620,14 +620,6 @@ class DatabaseMssql extends DatabaseBase {
 		return $sql;
 	}
 
-	// MSSQL does support this, but documentation is too thin to make a generalized
-	// function for this. Apparently UPDATE TOP (N) works, but the sort order
-	// may not be what we're expecting so the top n results may be a random selection.
-	// TODO: Implement properly.
-	function limitResultForUpdate( $sql, $num ) {
-		return $sql;
-	}
-
 	function timestamp( $ts = 0 ) {
 		return wfTimestamp( TS_ISO_8601, $ts );
 	}
