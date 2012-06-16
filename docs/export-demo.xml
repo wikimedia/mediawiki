@@ -70,6 +70,8 @@
       <!-- Unique revision ID number (rev_id) in the source database.  -->
       <!-- This number uniquely identifies the revision on that wiki.  -->
       <id>100</id>
+      <!-- revision id of the parent revision -->
+      <parentid>99</parentid>
       <timestamp>2001-01-15T13:15:00Z</timestamp>
       <contributor>
         <username>Foobar</username>
