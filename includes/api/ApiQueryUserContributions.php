@@ -35,10 +35,10 @@ class ApiQueryContributions extends ApiQueryBase {
 		parent::__construct( $query, $moduleName, 'uc' );
 	}
 
-	private $params, $prefixMode, $userprefix, $multiUserMode, $usernames;
+	private $params, $prefixMode, $userprefix, $multiUserMode, $usernames, $parentLens;
 	private $fld_ids = false, $fld_title = false, $fld_timestamp = false,
 			$fld_comment = false, $fld_parsedcomment = false, $fld_flags = false,
-			$fld_patrolled = false, $fld_tags = false, $fld_size = false;
+			$fld_patrolled = false, $fld_tags = false, $fld_size = false, $fld_sizediff = false;
 
 	public function execute() {
 		// Parse some parameters
@@ -50,6 +50,7 @@ class ApiQueryContributions extends ApiQueryBase {
 		$this->fld_comment = isset( $prop['comment'] );
 		$this->fld_parsedcomment = isset ( $prop['parsedcomment'] );
 		$this->fld_size = isset( $prop['size'] );
+		$this->fld_sizediff = isset( $prop['sizediff'] );
 		$this->fld_flags = isset( $prop['flags'] );
 		$this->fld_timestamp = isset( $prop['timestamp'] );
 		$this->fld_patrolled = isset( $prop['patrolled'] );
@@ -81,6 +82,17 @@ class ApiQueryContributions extends ApiQueryBase {
 
 		// Do the actual query.
 		$res = $this->select( __METHOD__ );
+
+		if( $this->fld_sizediff ) {
+			$revIds = array();
+			foreach ( $res as $row ) {
+				if( $row->rev_parent_id ) {
+					$revIds[] = $row->rev_parent_id;
+				}
+			}
+			$this->parentLens = Revision::getParentLengths( $this->getDB(), $revIds );
+			$res->rewind(); // reset
+		}
 
 		// Initialise some variables
 		$count = 0;
@@ -245,7 +257,8 @@ class ApiQueryContributions extends ApiQueryBase {
 		// $this->addFieldsIf( 'rev_text_id', $this->fld_ids ); // Should this field be exposed?
 		$this->addFieldsIf( 'rev_comment', $this->fld_comment || $this->fld_parsedcomment );
 		$this->addFieldsIf( 'rev_len', $this->fld_size );
-		$this->addFieldsIf( array( 'rev_minor_edit', 'rev_parent_id' ), $this->fld_flags );
+		$this->addFieldsIf( 'rev_minor_edit', $this->fld_flags );
+		$this->addFieldsIf( 'rev_parent_id', $this->fld_flags || $this->fld_sizediff );
 		$this->addFieldsIf( 'rc_patrolled', $this->fld_patrolled );
 
 		if ( $this->fld_tags ) {
@@ -333,6 +346,11 @@ class ApiQueryContributions extends ApiQueryBase {
 			$vals['size'] = intval( $row->rev_len );
 		}
 
+		if ( $this->fld_sizediff && !is_null( $row->rev_len ) && !is_null( $row->rev_parent_id ) ) {
+			$parentLen = isset( $this->parentLens[$row->rev_parent_id] ) ? $this->parentLens[$row->rev_parent_id] : 0;
+			$vals['sizediff'] = intval( $row->rev_len - $parentLen );
+		}
+
 		if ( $this->fld_tags ) {
 			if ( $row->ts_tags ) {
 				$tags = explode( ',', $row->ts_tags );
@@ -398,6 +416,7 @@ class ApiQueryContributions extends ApiQueryBase {
 					'comment',
 					'parsedcomment',
 					'size',
+					'sizediff',
 					'flags',
 					'patrolled',
 					'tags'
@@ -436,7 +455,8 @@ class ApiQueryContributions extends ApiQueryBase {
 				' timestamp      - Adds the timestamp of the edit',
 				' comment        - Adds the comment of the edit',
 				' parsedcomment  - Adds the parsed comment of the edit',
-				' size           - Adds the size of the page',
+				' size           - Adds the new size of the edit',
+				' sizediff       - Adds the size delta of the edit against its parent',
 				' flags          - Adds flags of the edit',
 				' patrolled      - Tags patrolled edits',
 				' tags           - Lists tags for the edit',
