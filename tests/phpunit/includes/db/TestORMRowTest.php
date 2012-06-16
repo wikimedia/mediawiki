@@ -68,7 +68,7 @@ class TestORMRowTest extends ORMRowTest {
 		$idField = $isSqlite ? 'INTEGER' : 'INT unsigned';
 		$primaryKey = $isSqlite ? 'PRIMARY KEY AUTOINCREMENT' : 'auto_increment PRIMARY KEY';
 
-		$dbw->safeQuery(
+		$dbw->query(
 			'CREATE TABLE IF NOT EXISTS ' . $dbw->tableName( 'orm_test' ) . '(
 				test_id                    ' . $idField . '        NOT NULL ' . $primaryKey . ',
 				test_name                  VARCHAR(255)        NOT NULL,
