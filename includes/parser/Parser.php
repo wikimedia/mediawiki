@@ -5022,27 +5022,20 @@ class Parser {
 
 				# Special case; width and height come in one variable together
 				if ( $type === 'handler' && $paramName === 'width' ) {
-					$m = array();
-					# (bug 13500) In both cases (width/height and width only),
-					# permit trailing "px" for backward compatibility.
-					if ( preg_match( '/^([0-9]*)x([0-9]*)\s*(?:px)?\s*$/', $value, $m ) ) {
-						$width = intval( $m[1] );
-						$height = intval( $m[2] );
+					$parsedWidthParam = $this->parseWidthParam( $value );
+					if( isset( $parsedWidthParam['width'] ) ) {
 						if ( $handler->validateParam( 'width', $width ) ) {
 							$params[$type]['width'] = $width;
 							$validated = true;
 						}
+					}
+					if( isset( $parsedWidthParam['height'] ) ) {
 						if ( $handler->validateParam( 'height', $height ) ) {
 							$params[$type]['height'] = $height;
 							$validated = true;
 						}
-					} elseif ( preg_match( '/^[0-9]*\s*(?:px)?\s*$/', $value ) ) {
-						$width = intval( $value );
-						if ( $handler->validateParam( 'width', $width ) ) {
-							$params[$type]['width'] = $width;
-							$validated = true;
-						}
-					} # else no validation -- bug 13436
+					}
+					# else no validation -- bug 13436
 				} else {
 					if ( $type === 'handler' ) {
 						# Validate handler parameter
@@ -5760,5 +5753,33 @@ class Parser {
 	 */
 	function isValidHalfParsedText( $data ) {
 		return isset( $data['version'] ) && $data['version'] == self::HALF_PARSED_VERSION;
+	}
+
+	/**
+	 * Parsed a width param of imagelink like 300px or 200x300px
+	 *
+	 * @param $value String
+	 *
+	 * @return array
+	 * @since 1.20
+	 */
+	public function parseWidthParam( $value ) {
+		$parsedWidthParam = array();
+		if( $value == '' ) {
+			return $parsedWidthParam;
+		}
+		$m = array();
+		# (bug 13500) In both cases (width/height and width only),
+		# permit trailing "px" for backward compatibility.
+		if ( preg_match( '/^([0-9]*)x([0-9]*)\s*(?:px)?\s*$/', $value, $m ) ) {
+			$width = intval( $m[1] );
+			$height = intval( $m[2] );
+			$parsedWidthParam['width'] = $width;
+			$parsedWidthParam['height'] = $height;
+		} elseif ( preg_match( '/^[0-9]*\s*(?:px)?\s*$/', $value ) ) {
+			$width = intval( $value );
+			$parsedWidthParam['width'] = $width;
+		}
+		return $parsedWidthParam;
 	}
 }
