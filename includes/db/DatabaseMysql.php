@@ -660,13 +660,6 @@ class DatabaseMysql extends DatabaseBase {
 	}
 
 	/**
-	 * @return bool
-	 */
-	function standardSelectDistinct() {
-		return false;
-	}
-
-	/**
 	 * @param $options array
 	 */
 	public function setSessionOptions( array $options ) {
