@@ -810,7 +810,7 @@ class DatabaseOracle extends DatabaseBase {
 	/**
 	 * Return aggregated value function call
 	 */
-	function aggregateValue ( $valuedata, $valuename = 'value' ) {
+	public function aggregateValue( $valuedata, $valuename = 'value' ) {
 		return $valuedata;
 	}
 
@@ -977,11 +977,6 @@ class DatabaseOracle extends DatabaseBase {
 			$this->mTrxLevel = 0;
 			$this->doQuery( 'SET CONSTRAINTS ALL IMMEDIATE' );
 		}
-	}
-
-	/* Not even sure why this is used in the main codebase... */
-	function limitResultForUpdate( $sql, $num ) {
-		return $sql;
 	}
 
 	/* defines must comply with ^define\s*([^\s=]*)\s*=\s?'\{\$([^\}]*)\}'; */
