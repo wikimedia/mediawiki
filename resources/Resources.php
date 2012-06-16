@@ -687,7 +687,6 @@ return array(
 			'gd' => 'resources/mediawiki.language/languages/gd.js',
 			'gv' => 'resources/mediawiki.language/languages/gv.js',
 			'he' => 'resources/mediawiki.language/languages/he.js',
-			'hi' => 'resources/mediawiki.language/languages/hi.js',
 			'hr' => 'resources/mediawiki.language/languages/hr.js',
 			'hsb' => 'resources/mediawiki.language/languages/hsb.js',
 			'hu' => 'resources/mediawiki.language/languages/hu.js',
@@ -719,7 +718,21 @@ return array(
 			'uk' => 'resources/mediawiki.language/languages/uk.js',
 			'wa' => 'resources/mediawiki.language/languages/wa.js',
 		),
-		'dependencies' => array( 'mediawiki.language.data' ),
+		'dependencies' => array(
+				'mediawiki.language.data',
+				'mediawiki.cldr'
+			),
+	),
+
+	'mediawiki.cldr' => array(
+		'scripts' => 'resources/mediawiki.language/mediawiki.cldr.js',
+		'dependencies' => array(
+			'mediawiki.libs.pluralruleparser',
+		),
+	),
+
+	'mediawiki.libs.pluralruleparser' => array(
+		'scripts' => 'resources/mediawiki.libs/CLDRPluralRuleParser.js',
 	),
 
 	'mediawiki.language.init' => array(
