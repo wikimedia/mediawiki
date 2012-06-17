@@ -1470,6 +1470,12 @@ A parser extension which depends on user options should install
 this hook and append its values to the key.
 $hash: reference to a hash key string which can be modified
 
+'ParserAfterParse': Called from Parser::parse() just after the call to
+Parser::internalParse() returns
+$parser: parser object
+$text: text being parsed
+$stripState: stripState used (object)
+
 'ParserAfterStrip': Same as ParserBeforeStrip
 
 'ParserAfterTidy': Called after Parser::tidy() in Parser::parse()
