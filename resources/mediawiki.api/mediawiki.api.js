@@ -128,14 +128,24 @@
 		 * @return {jqXHR}
 		 */
 		ajax: function( parameters, ajaxOptions ) {
+			var token;
 			parameters = $.extend( {}, this.defaults.parameters, parameters );
 			ajaxOptions = $.extend( {}, this.defaults.ajax, ajaxOptions );
 
+			// ensure that "token" param is last, if it exists
+			// per [[mw:API:Edit#Token]]
+			if (parameters.token) {
+				token = parameters.token;
+				delete parameters.token;
+			}
 			// Some deployed MediaWiki >= 1.17 forbid periods in URLs, due to an IE XSS bug
 			// So let's escape them here. See bug #28235
 			// This works because jQuery accepts data as a query string or as an Object
 			ajaxOptions.data = $.param( parameters ).replace( /\./g, '%2E' );
-
+			// add "token" param back, if it exists
+			if (token) {
+				ajaxOptions.data += "&token=" + encodeURIComponent(token);
+			}
 			ajaxOptions.error = function( xhr, textStatus, exception ) {
 				ajaxOptions.err( 'http', {
 					xhr: xhr,
