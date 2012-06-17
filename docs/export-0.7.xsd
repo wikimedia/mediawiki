@@ -61,8 +61,7 @@
 
 	<complexType name="MediaWikiType">
 		<sequence>
-			<element name="siteinfo" type="mw:SiteInfoType"
-					 minOccurs="0" maxOccurs="1" />
+			<element name="siteinfo" type="mw:SiteInfoType" />
 			<element name="page" type="mw:PageType"
 					 minOccurs="0" maxOccurs="unbounded" />
 			<element name="logitem" type="mw:LogItemType"
@@ -74,11 +73,11 @@
 
 	<complexType name="SiteInfoType">
 		<sequence>
-			<element name="sitename" type="string" minOccurs="0" />
-			<element name="base" type="anyURI" minOccurs="0" />
-			<element name="generator" type="string" minOccurs="0" />
-			<element name="case" type="mw:CaseType" minOccurs="0" />
-			<element name="namespaces" type="mw:NamespacesType" minOccurs="0" />
+			<element name="sitename" type="string" />
+			<element name="base" type="anyURI" />
+			<element name="generator" type="string" />
+			<element name="case" type="mw:CaseType" />
+			<element name="namespaces" type="mw:NamespacesType" />
 		</sequence>
 	</complexType>
 
@@ -140,7 +139,7 @@
 			<element name="id" type="positiveInteger" />
 
 			<!-- flag if the current revision is a redirect -->
-			<element name="redirect" type="mw:RedirectType" minOccurs="0" maxOccurs="1" />
+			<element name="redirect" type="mw:RedirectType" minOccurs="0" />
 
 			<!-- comma-separated list of string tokens, if present -->
 			<element name="restrictions" type="string" minOccurs="0" />
@@ -152,7 +151,7 @@
 			</choice>
 
 			<!-- Zero or One sets of discussion threading data -->
-			<element name="discussionthreadinginfo" minOccurs="0" maxOccurs="1" type="mw:DiscussionThreadingInfo" />
+			<element name="discussionthreadinginfo" minOccurs="0" type="mw:DiscussionThreadingInfo" />
 		</sequence>
 	</complexType>
 
@@ -162,8 +161,8 @@
 			<element name="parentid" type="positiveInteger" minOccurs="0" />
 			<element name="timestamp" type="dateTime" />
 			<element name="contributor" type="mw:ContributorType" />
-			<element name="minor" minOccurs="0" maxOccurs="1" />
-			<element name="comment" type="mw:CommentType" minOccurs="0" maxOccurs="1" />
+			<element name="minor" minOccurs="0" />
+			<element name="comment" type="mw:CommentType" minOccurs="0" />
 			<element name="sha1" type="string" />
 			<element name="text" type="mw:TextType" />
 		</sequence>
@@ -177,9 +176,9 @@
 			<element name="comment" type="mw:CommentType" minOccurs="0" />
 			<element name="type" type="string" />
 			<element name="action" type="string" />
-			<element name="text" type="mw:LogTextType" minOccurs="0" maxOccurs="1" />
-			<element name="logtitle" type="string" minOccurs="0" maxOccurs="1" />
-			<element name="params" type="mw:LogParamsType" minOccurs="0" maxOccurs="1" />
+			<element name="text" type="mw:LogTextType" minOccurs="0" />
+			<element name="logtitle" type="string" minOccurs="0" />
+			<element name="params" type="mw:LogParamsType" minOccurs="0" />
 		</sequence>
 	</complexType>
 
