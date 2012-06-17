@@ -4171,7 +4171,7 @@ class Parser {
 			# Don't number the heading if it is the only one (looks silly)
 			if ( count( $matches[3] ) > 1 && $this->mOptions->getNumberHeadings() ) {
 				# the two are different if the line contains a link
-				$headline = $numbering . ' ' . $headline;
+				$headline = Html::element( 'span', array( 'class' => 'mw-headline-number' ), $numbering ) . ' ' . $headline;
 			}
 
 			# Create the anchor for linking from the TOC to the section
