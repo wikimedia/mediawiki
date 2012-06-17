@@ -3698,6 +3698,8 @@ $wgMessageStructure = array(
 		'api-error-empty-file',
 		'api-error-emptypage',
 		'api-error-fetchfileerror',
+		'api-error-fileexists-forbidden',
+		'api-error-fileexists-shared-forbidden',
 		'api-error-file-too-large',
 		'api-error-filename-tooshort',
 		'api-error-filetype-banned',

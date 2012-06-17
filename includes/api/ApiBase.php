@@ -1307,6 +1307,8 @@ abstract class ApiBase extends ContextSource {
 		'specialpage-cantexecute' => array( 'code' => 'specialpage-cantexecute', 'info' => "You don't have permission to view the results of this special page" ),
 		'invalidoldimage' => array( 'code' => 'invalidoldimage', 'info' => 'The oldimage parameter has invalid format' ),
 		'nodeleteablefile' => array( 'code' => 'nodeleteablefile', 'info' => 'No such old version of the file' ),
+		'fileexists-forbidden' => array( 'code' => 'fileexists-forbidden', 'info' => 'A file with name "$1" already exists, and cannot be overwritten.' ),
+		'fileexists-shared-forbidden' => array( 'code' => 'fileexists-shared-forbidden', 'info' => 'A file with name "$1" already exists in the shared file repository, and cannot be overwritten.' ),
 
 		// ApiEditPage messages
 		'noimageredirect-anon' => array( 'code' => 'noimageredirect-anon', 'info' => "Anonymous users can't create image redirects" ),
