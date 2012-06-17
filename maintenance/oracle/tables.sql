@@ -48,10 +48,11 @@ CREATE TABLE &mw_prefix.user_newtalk (
   user_id  NUMBER DEFAULT 0 NOT NULL,
   user_ip  VARCHAR2(40)        NULL,
   user_last_timestamp         TIMESTAMP(6) WITH TIME ZONE
+  user_msg_type NUMBER DEFAULT 0 NOT NULL,
 );
 ALTER TABLE &mw_prefix.user_newtalk ADD CONSTRAINT &mw_prefix.user_newtalk_fk1 FOREIGN KEY (user_id) REFERENCES &mw_prefix.mwuser(user_id) ON DELETE CASCADE DEFERRABLE INITIALLY DEFERRED;
-CREATE INDEX &mw_prefix.user_newtalk_i01 ON &mw_prefix.user_newtalk (user_id);
-CREATE INDEX &mw_prefix.user_newtalk_i02 ON &mw_prefix.user_newtalk (user_ip);
+CREATE UNIQUE INDEX &mw_prefix.user_newtalk_i01 ON &mw_prefix.user_newtalk (user_id, user_msg_type);
+CREATE UNIQUE INDEX &mw_prefix.user_newtalk_i02 ON &mw_prefix.user_newtalk (user_ip, user_msg_type);
 
 CREATE TABLE &mw_prefix.user_properties (
   up_user NUMBER NOT NULL,

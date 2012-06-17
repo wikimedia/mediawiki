@@ -903,11 +903,11 @@ See [[Special:Version|version page]].',
 'pagetitle-view-mainpage'      => '{{SITENAME}}', # only translate this message to other languages if you have to change it
 'backlinksubtitle'             => '← $1', # only translate this message to other languages if you have to change it
 'retrievedfrom'                => 'Retrieved from "$1"',
-'youhavenewmessages'           => 'You have $1 ($2).',
-'newmessageslink'              => 'new messages',
-'newmessagesdifflink'          => 'last change',
-'youhavenewmessagesmulti'      => 'You have new messages on $1',
-'newtalkseparator'             => ',&#32;', # do not translate or duplicate this message to other languages
+'newmessages-here'             => 'You have new $1.',
+'newmessages-there'            => 'You have new $1 on $2.',
+'newmessages-type-talk'        => 'talk page messages',
+'newmessages-type-auth'        => 'failed logins',
+'newmessages-sep'              => ',&#32;', # do not translate or duplicate this message to other languages
 'editsection'                  => 'edit',
 'editsection-brackets'         => '[$1]', # only translate this message to other languages if you have to change it
 'editold'                      => 'edit',
@@ -1171,6 +1171,10 @@ Please wait before trying again.',
 * Italiano|it
 * Nederlands|nl', # do not translate or duplicate this message to other languages
 'suspicious-userlogout'      => 'Your request to log out was denied because it looks like it was sent by a broken browser or caching proxy.',
+
+# Auth log
+'authlogpage'            => 'Auth log',
+'authlogtext'            => 'This is a list of authentication events, i.e., login attempts.',
 
 # E-mail sending
 'pear-mail-error'        => '$1', # do not translate or duplicate this message to other languages
@@ -1809,6 +1813,8 @@ Note that their indexes of {{SITENAME}} content may be out of date.',
 'prefs-setemail'                => 'Set an e-mail address',
 'prefs-email'                   => 'E-mail options',
 'prefs-rendering'               => 'Appearance',
+'prefs-authnotify'              => 'Enable notifications for invalid logins.',
+'prefs-authemail'               => 'Enable e-mail notifications for when $1 invalid logins occur in $2 hours.',
 'saveprefs'                     => 'Save',
 'resetprefs'                    => 'Clear unsaved changes',
 'restoreprefs'                  => 'Restore all default settings',
@@ -2873,6 +2879,22 @@ To change your watchlist settings, visit
 
 To delete the page from your watchlist, visit
 $UNWATCHURL
+
+Feedback and further assistance:
+{{canonicalurl:{{MediaWiki:Helppage}}}}',
+
+# Auth notifications
+'enotif-auth-subject' => '{{SITENAME}} - Account Security Notification',
+'enotif-auth-body'    => 'Dear $1,
+
+Over the past $2 hours, more than $3 invalid login attempts have been made to your account. It is recommended you login to your
+account, check to make sure nobody has accessed your account without your knowledge, and check to make sure your password is secure.
+
+			 Your friendly {{SITENAME}} notification system
+
+--
+To change your e-mail notification settings, visit
+{{canonicalurl:{{#special:Preferences}}}}
 
 Feedback and further assistance:
 {{canonicalurl:{{MediaWiki:Helppage}}}}',
@@ -4756,6 +4778,7 @@ This site is experiencing technical difficulties.',
 'sqlite-no-fts'  => '$1 without full-text search support',
 
 # New logging system
+'log-anonymous'                       => 'Somebody',
 'logentry-delete-delete'              => '$1 deleted page $3',
 'logentry-delete-restore'             => '$1 restored page $3',
 'logentry-delete-event'               => '$1 changed visibility of {{PLURAL:$5|a log event|$5 log events}} on $3: $4',
@@ -4785,7 +4808,10 @@ This site is experiencing technical difficulties.',
 'logentry-newusers-create'            => '$1 created a user account',
 'logentry-newusers-create2'           => '$1 created a user account $3',
 'logentry-newusers-autocreate'        => 'Account $1 was created automatically',
+'logentry-auth-login'                 => '$1 $4 logging in to $3.',
 'newuserlog-byemail'                  => 'password sent by e-mail',
+'authlog-success'                     => 'succeeded',
+'authlog-failed'                      => 'failed',
 
 # For IRC, see bug 34508. Do not change
 'revdelete-logentry'          => 'changed revision visibility of "[[$1]]"', # do not translate or duplicate this message to other languages

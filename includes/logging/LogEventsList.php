@@ -726,21 +726,48 @@ class LogEventsList {
 	 * @return Mixed: string or false
 	 */
 	public static function getExcludeClause( $db, $audience = 'public' ) {
-		global $wgLogRestrictions, $wgUser;
+		global $wgLogRestrictions, $wgUser, $wgRequest;
 		// Reset the array, clears extra "where" clauses when $par is used
 		$hiddenLogs = array();
+		$ownOnlyLogs = array();
 		// Don't show private logs to unprivileged users
-		foreach( $wgLogRestrictions as $logType => $right ) {
-			if( $audience == 'public' || !$wgUser->isAllowed($right) ) {
-				$safeType = $db->strencode( $logType );
-				$hiddenLogs[] = $safeType;
+		foreach( $wgLogRestrictions as $index => $val ) {
+			if( $audience == 'public' ) {
+				$hiddenLogs[] = $index;
+			} elseif( is_array( $val ) && !$wgUser->isAllowed( $val['all'] ) ) {
+				if( $wgUser->isAllowed( $val['own'] ) ) {
+					$ownOnlyLogs[] = $index;
+				} else {
+					$hiddenLogs[] = $index;
+				}
+			} elseif( is_string( $val ) && !$wgUser->isAllowed( $val ) ) {
+				$hiddenLogs[] = $index;
 			}
 		}
+		
+		$cond = '';
 		if( count($hiddenLogs) == 1 ) {
-			return 'log_type != ' . $db->addQuotes( $hiddenLogs[0] );
+			$cond .= $db->addIdentifierQuotes( 'log_type' ) . ' != ' . $db->addQuotes( $hiddenLogs[0] );
 		} elseif( $hiddenLogs ) {
-			return 'log_type NOT IN (' . $db->makeList($hiddenLogs) . ')';
+			$cond .= $db->addIdentifierQuotes( 'log_type' ) . ' NOT IN (' . $db->makeList( $hiddenLogs ) . ')';
+		} else {
+			$cond .= '';
 		}
-		return false;
+		
+		if( $ownOnlyLogs ) {
+			$userConds = array( 'log_namespace' => NS_USER, 'log_title' => $wgUser->getName() );
+			if( count( $ownOnlyLogs ) == 1 ) {
+				$typeCond = $db->addIdentifierQuotes( 'log_type' ) . ' = ' . $db->addQuotes( $ownOnlyLogs[0] );
+			} else {
+				$typeCond = $db->addIdentifierQuotes( 'log_type' ) . 'NOT IN (' . $db->makeList( $ownOnlyLogs ) . ')';
+			}
+			
+			if( $cond ) {
+				$cond .= ' AND ';
+			}
+			$cond .= 'NOT ( ' . $typeCond . ' AND NOT ( ' . $db->makeList( $userConds, LIST_AND ) . ' ) )';
+		}
+
+		return $cond;
 	}
  }

@@ -62,9 +62,10 @@ CREATE TABLE user_newtalk (
   user_id              INTEGER      NOT NULL  REFERENCES mwuser(user_id) ON DELETE CASCADE DEFERRABLE INITIALLY DEFERRED,
   user_ip              TEXT             NULL,
   user_last_timestamp  TIMESTAMPTZ
+  user_msg_type        INTEGER      NOT NULL  DEFAULT 0
 );
-CREATE INDEX user_newtalk_id_idx ON user_newtalk (user_id);
-CREATE INDEX user_newtalk_ip_idx ON user_newtalk (user_ip);
+CREATE UNIQUE INDEX user_newtalk_id_idx ON user_newtalk (user_id, user_msg_type);
+CREATE UNIQUE INDEX user_newtalk_ip_idx ON user_newtalk (user_ip, user_msg_type);
 
 
 CREATE SEQUENCE page_page_id_seq;

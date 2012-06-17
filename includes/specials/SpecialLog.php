@@ -39,6 +39,7 @@ class SpecialLog extends SpecialPage {
 		'block',
 		'newusers',
 		'rights',
+		'auth'
 	);
 
 	public function __construct() {
@@ -51,7 +52,7 @@ class SpecialLog extends SpecialPage {
 		$this->setHeaders();
 		$this->outputHeader();
 
-		$opts = new FormOptions;
+		$opts = new FormOptions();
 		$opts->add( 'type', '' );
 		$opts->add( 'user', '' );
 		$opts->add( 'page', '' );
@@ -78,9 +79,10 @@ class SpecialLog extends SpecialPage {
 		// Reset the log type to default (nothing) if it's invalid or if the
 		// user does not possess the right to view it
 		$type = $opts->getValue( 'type' );
+		$restriction = is_array( $wgLogRestrictions[$type] ) ? $wgLogRestrictions[$type]['own'] : $wgLogRestrictions[$type];
 		if ( !LogPage::isLogType( $type )
 			|| ( isset( $wgLogRestrictions[$type] )
-				&& !$this->getUser()->isAllowed( $wgLogRestrictions[$type] ) )
+				&& !$this->getUser()->isAllowed( $restriction ) )
 		) {
 			$opts->setValue( 'type', '' );
 		}
