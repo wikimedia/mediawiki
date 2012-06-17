@@ -482,7 +482,9 @@ class LoginForm extends SpecialPage {
 	 * @return int
 	 */
 	public function authenticateUserData() {
-		global $wgUser, $wgAuth;
+		global $wgUser, $wgAuth, $wgRequest;
+		global $wgAuthLogging, $wgAuthLoggingStoreIP, $wgAuthLoggingStoreValid;
+		global $wgAuthLoggingEmail, $wgAuthLoggingUserPref, $wgAuthLoggingGracePeriod;
 
 		$this->load();
 
@@ -616,6 +618,77 @@ class LoginForm extends SpecialPage {
 
 			$retval = self::SUCCESS;
 		}
+		
+		// If logging is enabled, and either valid login logging is enabled or this is an invalid login.
+		if( $wgAuthLogging && ( $wgAuthLoggingStoreValid || $retval != self::SUCCESS ) ) {
+			$res = ( $retval == self::SUCCESS ) ? true : false;
+			$anon = new User();
+			$anon->setName( '0.0.0.0' );
+			$params = array( '4:bool:result' => $res );
+			
+			$entry = new ManualLogEntry( "auth", "login" );
+			$entry->setTarget( Title::makeTitle( NS_USER, $this->mUsername ) );
+			$entry->setPerformer( $wgAuthLoggingStoreIP ? $wgUser : $anon );
+			$entry->setParameters( $params );
+			$entry->insert();
+		}
+		
+		// If the login wasn't successful, either send an email if above the threshold or set a notification.
+		if( $retval != self::SUCCESS ) {
+			// Get user's auth message.
+			$msg = new UserMessage( $u, UserMessage::MSG_AUTH );
+			$msg->load();
+			
+			// First check if emailing is enabled and if user set preferences to enable it (or if preferences are disabled).
+			// Also check if the AUTH message is set. If it's not set, then the number of invalid logins is 0.
+			if( 	$wgAuthLoggingEmail
+					&& ( !$wgAuthLoggingUserPref || $u->getOption( "invalidloginemail", false ) )
+					&& $msg->getStatus() == UserMessage::SET ) {
+				$db = wfGetDB( DB_SLAVE );
+				$queryData = DatabaseLogEntry::getSelectQueryData();
+				$conds = $queryData['conds'];
+				$options = $queryData['options'];
+				
+				// Get all invalid logins that happened after the AUTH message timestamp or the configured
+				// time period, whatever is less.
+				$baseline = max( $msg->getTimestamp( TS_UNIX ), wfTimestamp( TS_UNIX ) - $wgAuthLoggingEmail['period'] * 3600 );
+				$time_limit = wfTimestamp( TS_MW, $baseline  );
+				$conds['log_namespace'] = NS_USER;
+				$conds['log_title'] = $this->mUsername;
+				$conds[] = 'log_timestamp > ' . $db->addQuotes( $time_limit );
+				// No need to get more than the threshold. Being above it is an automatic trigger.
+				$options['LIMIT'] = $wgAuthLoggingEmail['threshold'];
+				
+				// Now we need to filter for only log lines that were invalid logins.
+				$res = $db->select( 'logging', 'log_params', $conds, $options );
+				$numLogins = 0;
+				if( $wgAuthLoggingStoreValid ) {
+					foreach( $res as $row ) {
+						$entry = DatabaseLogEntry::newFromRow( $row );
+						$params = $entry->getParameters();
+						if( $params['4:bool:result'] == false ) {
+							$numLogins++;
+						}
+					}
+				} else {
+					// If valid login logging isn't enabled, then they all must be invalid.
+					$numLogins = $res->numRows();
+				}
+				
+				if( $numLogins >= $wgAuthLoggingEmail['threshold'] ) {
+					$subject = wfMsg( 'enotif-auth-subject' );
+					$body = wfMsg( 'enotif-auth-body', $u->getName(), $wgAuthLoggingEmail['threshold'], $wgAuthLoggingEmail['period'] );
+					$u->sendMail( $subject, $body );
+					$msg = new UserMessage( $u, UserMessage::MSG_AUTH );
+					$msg->update( UserMessage::NOTSET );
+				}
+			} else {
+				$msg = new UserMessage( $u, UserMessage::MSG_AUTH );
+				$msg->update( UserMessage::SET );
+				$u->invalidateCache();
+			}
+		}
+		
 		wfRunHooks( 'LoginAuthenticateAudit', array( $u, $this->mPassword, $retval ) );
 		return $retval;
 	}
