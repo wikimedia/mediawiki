@@ -1846,20 +1846,20 @@ abstract class DatabaseBase implements DatabaseType {
 					// Don't necessarily assume the single key is 0; we don't
 					// enforce linear numeric ordering on other arrays here.
 					$value = array_values( $value );
-					$list .= $field . " = " . $this->addQuotes( $value[0] );
+					$list .= $this->addIdentifierQuotes( $field ) . " = " . $this->addQuotes( $value[0] );
 				} else {
-					$list .= $field . " IN (" . $this->makeList( $value ) . ") ";
+					$list .= $this->addIdentifierQuotes( $field ) . " IN (" . $this->makeList( $value ) . ") ";
 				}
 			} elseif ( $value === null ) {
 				if ( $mode == LIST_AND || $mode == LIST_OR ) {
-					$list .= "$field IS ";
+					$list .= $this->addIdentifierQuotes( $field ) . " IS ";
 				} elseif ( $mode == LIST_SET ) {
-					$list .= "$field = ";
+					$list .= $this->addIdentifierQuotes( $field ) . " = ";
 				}
 				$list .= 'NULL';
 			} else {
 				if ( $mode == LIST_AND || $mode == LIST_OR || $mode == LIST_SET ) {
-					$list .= "$field = ";
+					$list .= $this->addIdentifierQuotes( $field ) . " = ";
 				}
 				$list .= $mode == LIST_NAMES ? $value : $this->addQuotes( $value );
 			}

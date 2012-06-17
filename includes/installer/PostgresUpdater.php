@@ -330,6 +330,7 @@ class PostgresUpdater extends DatabaseUpdater {
 			# r81574
 			array( 'addInterwikiType' ),
 			# end
+			array( 'addPgField', 'user_newtalk', 'user_newtalk_type',               'patch-user_newtalk_type.sql' ),
 			array( 'tsearchFixes' ),
 		);
 	}

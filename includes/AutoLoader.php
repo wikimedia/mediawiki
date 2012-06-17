@@ -254,6 +254,7 @@ $wgAutoloadLocalClasses = array(
 	'UserArrayFromResult' => 'includes/UserArray.php',
 	'UserBlockedError' => 'includes/Exception.php',
 	'UserMailer' => 'includes/UserMailer.php',
+	'UserMessage' => 'includes/UserMessage.php',
 	'UserRightsProxy' => 'includes/UserRightsProxy.php',
 	'ViewCountUpdate' => 'includes/ViewCountUpdate.php',
 	'WantedQueryPage' => 'includes/QueryPage.php',
@@ -635,6 +636,7 @@ $wgAutoloadLocalClasses = array(
 	'JSParser' => 'includes/libs/jsminplus.php',
 
 	# includes/logging
+	'AuthLogFormatter' => 'includes/logging/LogFormatter.php',
 	'DatabaseLogEntry' => 'includes/logging/LogEntry.php',
 	'DeleteLogFormatter' => 'includes/logging/LogFormatter.php',
 	'LegacyLogFormatter' => 'includes/logging/LogFormatter.php',
