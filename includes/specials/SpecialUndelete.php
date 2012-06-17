@@ -921,7 +921,8 @@ class SpecialUndelete extends SpecialPage {
 				"</td>\n" .
 			"</tr>" .
 			$diffEngine->generateDiffBody(
-				$previousRev->getText(), $currentRev->getText() ) .
+				$previousRev->getText( Revision::FOR_THIS_USER, $this->getUser() ),
+				$currentRev->getText( Revision::FOR_THIS_USER, $this->getUser() ) ) .
 			"</table>" .
 			"</div>\n"
 		);
