@@ -3634,15 +3634,15 @@ pst
 [[Bar:Article（context）|]]
 [[:Bar:Article（context）|]]
 [[|Article（context）]]
-[[Bar:X （Y） Z|]]
-[[:Bar:X （Y） Z|]]
+[[Bar:X（Y）Z|]]
+[[:Bar:X（Y）Z|]]
 !! result
 [[Article（context）|Article]]
 [[Bar:Article（context）|Article]]
 [[:Bar:Article（context）|Article]]
 [[Article（context）]]
-[[Bar:X （Y） Z|X （Y） Z]]
-[[:Bar:X （Y） Z|X （Y） Z]]
+[[Bar:X（Y）Z|X（Y）Z]]
+[[:Bar:X（Y）Z|X（Y）Z]]
 !! end
 
 !! test
@@ -3683,6 +3683,26 @@ pst
 [[Article(context)]]
 [[Bar:X(Y)Z|X(Y)Z]]
 [[:Bar:X(Y)Z|X(Y)Z]]
+!! end
+
+!! test
+pre-save transform: context links ("pipe trick") with commas (bug 21660)
+!! options
+pst
+!! input
+[[Article (context), context|]]
+[[Article (context)，context|]]
+[[Bar:Article (context), context|]]
+[[Bar:Article (context)，context|]]
+[[:Bar:Article (context), context|]]
+[[:Bar:Article (context)，context|]]
+!! result
+[[Article (context), context|Article]]
+[[Article (context)，context|Article]]
+[[Bar:Article (context), context|Article]]
+[[Bar:Article (context)，context|Article]]
+[[:Bar:Article (context), context|Article]]
+[[:Bar:Article (context)，context|Article]]
 !! end
 
 !! test
