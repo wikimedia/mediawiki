@@ -1832,13 +1832,14 @@ class WikiPage extends Page {
 		) {
 			if ( wfRunHooks( 'ArticleEditUpdateNewTalk', array( &$this ) ) ) {
 				$other = User::newFromName( $shortTitle, false );
+				$msg = new UserMessage( $other, UserMessage::MSG_TALK );
 				if ( !$other ) {
 					wfDebug( __METHOD__ . ": invalid username\n" );
 				} elseif ( User::isIP( $shortTitle ) ) {
 					// An anonymous user
-					$other->setNewtalk( true );
+					$msg->update( UserMessage::SET );
 				} elseif ( $other->isLoggedIn() ) {
-					$other->setNewtalk( true );
+					$msg->update( UserMessage::SET );
 				} else {
 					wfDebug( __METHOD__ . ": don't need to notify a nonexistent user\n" );
 				}
@@ -2538,8 +2539,9 @@ class WikiPage extends Page {
 		# User talk pages
 		if ( $title->getNamespace() == NS_USER_TALK ) {
 			$user = User::newFromName( $title->getText(), false );
+			$msg = new UserMessage( $user, UserMessage::MSG_TALK );
 			if ( $user ) {
-				$user->setNewtalk( false );
+				$msg->update( UserMessage::NOTSET );
 			}
 		}
 

@@ -69,6 +69,7 @@ class OracleUpdater extends DatabaseUpdater {
 
 			//1.20
 			array( 'addTable', 'config', 'patch-config.sql' ),
+			array( 'addField', 'user_newtalk', 'user_newtalk_type',               'patch-user_newtalk_type.sql' ),
 
 			// KEEP THIS AT THE BOTTOM!!
 			array( 'doRebuildDuplicateFunction' ),

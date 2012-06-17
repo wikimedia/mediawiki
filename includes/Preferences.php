@@ -156,7 +156,8 @@ class Preferences {
 		global $wgAuth, $wgContLang, $wgParser, $wgCookieExpiration, $wgLanguageCode,
 			$wgDisableTitleConversion, $wgDisableLangConversion, $wgMaxSigChars,
 			$wgEnableEmail, $wgEmailConfirmToEdit, $wgEnableUserEmail, $wgEmailAuthentication,
-			$wgEnotifWatchlist, $wgEnotifUserTalk, $wgEnotifRevealEditorAddress;
+			$wgEnotifWatchlist, $wgEnotifUserTalk, $wgEnotifRevealEditorAddress,
+			$wgAuthLoggingNotifications, $wgAuthLoggingUserPref, $wgAuthLoggingEmail;
 
 		## User info #####################################
 		// Information panel
@@ -268,6 +269,15 @@ class Preferences {
 				'label' => $context->msg( 'tog-rememberpassword' )->numParams(
 					ceil( $wgCookieExpiration / ( 3600 * 24 ) ) )->text(),
 				'section' => 'personal/info',
+			);
+		}
+		
+		if( $wgAuthLoggingNotifications ) {
+			$defaultPreferences['invalidloginnotification'] = array(
+				'type' => 'toggle',
+				'label' => $context->msg( 'prefs-authnotify' )->text(),
+				'section' => 'personal/info',
+				'disabled' => !$wgAuthLoggingUserPref
 			);
 		}
 
@@ -481,6 +491,16 @@ class Preferences {
 						'disabled' => $disableEmailPrefs,
 					);
 				}
+			}
+			
+			if( $wgAuthLoggingEmail ) {
+				$defaultPreferences['invalidloginemail'] = array(
+					'type' => 'toggle',
+					'section' => 'personal/email',
+					'label' => $context->msg( 'prefs-authemail' )->numParams(
+						$wgAuthLoggingEmail['threshold'], $wgAuthLoggingEmail['period'] )->text(),
+					'disabled' => $disableEmailPrefs || !$wgAuthLoggingUserPref
+				);
 			}
 		}
 	}
