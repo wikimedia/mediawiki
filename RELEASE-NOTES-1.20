@@ -71,6 +71,9 @@ upgrade PHP if you have not done so prior to upgrading MediaWiki.
 * cleanupSpam.php now can delete spam pages if --delete was specified instead of blanking
   them.
 * Added new hook ChangePasswordForm to allow adding of additional fields in Special:ChangePassword
+* Added new hook ParserAfterParse to allow extensions to affect parsed output
+  after the parse is complete but before block level processing, link holder
+  replacement, and so on.
 
 === Bug fixes in 1.20 ===
 * (bug 30245) Use the correct way to construct a log page title.
