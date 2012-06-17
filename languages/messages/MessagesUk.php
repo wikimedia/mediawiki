@@ -3130,7 +3130,7 @@ The wiki server can't provide data in a format your client can read.",
 'spambot_username' => 'Очистка спаму',
 'spam_reverting' => 'Відкинути до останньої версії, що не містить посилання на $1',
 'spam_blanking' => 'Всі версії містять посилання на $1, очистка',
-'spam_deleting' => 'Все версії містили посилання на $1, видаляються',
+'spam_deleting' => 'Все версії, що містили посилання на $1, вилучаються',
 
 # Info page
 'pageinfo-title' => 'Інформація про " $1 "',

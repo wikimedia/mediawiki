@@ -2131,7 +2131,7 @@ $UNWATCHURL
 'deletepage' => 'מעק אויס בלאט',
 'confirm' => 'באַשטעטיגן',
 'excontent' => 'אינהאלט געווען: "$1"',
-'excontentauthor' => "אינהאלט געווען: '$1' (און דער איינציגסטער בארבייטער איז געווען '[[Special:Contributions/$2|$2]]')",
+'excontentauthor' => "אינהאלט געווען: '$1' (און דער איינציגסטער באארבעטער איז געווען '[[Special:Contributions/$2|$2]]')",
 'exbeforeblank' => 'אינהאַלט בעפֿאַרן אויסליידיגן איז געווען: "$1"',
 'exblank' => 'בלאט איז געווען ליידיג',
 'delete-confirm' => 'אויסמעקן $1',
@@ -3122,7 +3122,7 @@ $1',
 
 'exif-contrast-0' => 'נארמאל',
 'exif-contrast-1' => 'ווייך',
-'exif-contrast-2' => 'הארט',
+'exif-contrast-2' => 'האַרט',
 
 'exif-saturation-0' => 'נארמאַל',
 

@@ -496,7 +496,7 @@ $1',
 'site-atom-feed' => '$1的Atom訂閱',
 'page-rss-feed' => '「$1」的RSS訂閱',
 'page-atom-feed' => '「$1」的Atom訂閱',
-'red-link-title' => '$1 （頁面未存在）',
+'red-link-title' => '$1（頁面未存在）',
 'sort-descending' => '倒序排列',
 'sort-ascending' => '升序排序',
 

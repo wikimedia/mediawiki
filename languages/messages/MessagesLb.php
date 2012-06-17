@@ -2863,6 +2863,7 @@ Dëst warscheinlech duerch en externe Link den op der schwaarzer Lëscht (blackl
 'spambot_username' => 'Botz vum Spam duerch MediaWiki',
 'spam_reverting' => 'Déi lescht Versioun ouni Linken op $1 restauréieren.',
 'spam_blanking' => 'An alle Versioune ware Linken op $1, et ass elo alles gebotzt.',
+'spam_deleting' => 'All Versioune mat Linken op $1 gi geläscht',
 
 # Info page
 'pageinfo-title' => 'Informatioun iwwer "$1"',
