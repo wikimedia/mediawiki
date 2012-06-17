@@ -1336,55 +1336,48 @@ abstract class Skin extends ContextSource {
 	 * @return MediaWiki message or if no new talk page messages, nothing
 	 */
 	function getNewtalks() {
-		$out = $this->getOutput();
+		global $wgAuthLoggingUserPref, $wgAuthLogging, $wgAuthLoggingNotifications;
+		$user = $this->getUser();
+		$title = $this->getOutput()->getTitle();
+		$messages = UserMessage::getUserMessages( $user );
 
-		$newtalks = $this->getUser()->getNewMessageLinks();
-		$ntl = '';
-
-		if ( count( $newtalks ) == 1 && $newtalks[0]['wiki'] === wfWikiID() ) {
-			$userTitle = $this->getUser()->getUserPage();
-			$userTalkTitle = $userTitle->getTalkPage();
-
-			if ( !$userTalkTitle->equals( $out->getTitle() ) ) {
-				$newMessagesLink = Linker::linkKnown(
-					$userTalkTitle,
-					$this->msg( 'newmessageslink' )->escaped(),
-					array(),
-					array( 'redirect' => 'no' )
-				);
-
-				$newMessagesDiffLink = Linker::linkKnown(
-					$userTalkTitle,
-					$this->msg( 'newmessagesdifflink' )->escaped(),
-					array(),
-					array( 'diff' => 'cur' )
-				);
-
-				$ntl = $this->msg(
-					'youhavenewmessages',
-					$newMessagesLink,
-					$newMessagesDiffLink
-				)->text();
-				# Disable Squid cache
-				$out->setSquidMaxage( 0 );
+		$ntls = array();
+		foreach( $messages as $message ) {
+			if( $message->getType() == UserMessage::MSG_TALK ) {
+				$page = $user->getUserPage()->getTalkPage();
+			} elseif( $message->getType() == UserMessage::MSG_AUTH ) {
+				if( !$wgAuthLoggingNotifications || $wgAuthLoggingUserPref && !$user->getOption( "invalidloginnotification", false ) ) {
+					continue;
+				}
+				$page = Title::makeTitle( NS_SPECIAL, 'Log/auth' );
+			} else {
+				continue;
 			}
-		} elseif ( count( $newtalks ) ) {
-			// _>" " for BC <= 1.16
-			$sep = str_replace( '_', ' ', $this->msg( 'newtalkseparator' )->escaped() );
-			$msgs = array();
-
-			foreach ( $newtalks as $newtalk ) {
-				$msgs[] = Xml::element(
-					'a',
-					array( 'href' => $newtalk['link'] ), $newtalk['wiki']
-				);
+			
+			if( $page->equals( $title ) ) {
+				$message->update( UserMessage::NOTSET );
+				$user->invalidateCache();
+				continue;
 			}
-			$parts = implode( $sep, $msgs );
-			$ntl = $this->msg( 'youhavenewmessagesmulti' )->rawParams( $parts )->escaped();
-			$out->setSquidMaxage( 0 );
+			
+			$link = Linker::linkKnown(
+				$page,
+				$message->getMessage()->escaped(),
+				array(),
+				array( 'redirect' => 'no' )
+			);
+			
+			$ntls[] = $this->msg(
+				'newmessages-here',
+				$link
+			)->text();
+			
+			# Disable Squid cache
+			$this->getOutput()->setSquidMaxage( 0 );
 		}
 
-		return $ntl;
+		$break = Html::element( 'br' );
+		return implode( $break, $ntls );
 	}
 
 	/**

@@ -1740,154 +1740,6 @@ class User {
 	}
 
 	/**
-	 * Check if the user has new messages.
-	 * @return Bool True if the user has new messages
-	 */
-	public function getNewtalk() {
-		$this->load();
-
-		# Load the newtalk status if it is unloaded (mNewtalk=-1)
-		if( $this->mNewtalk === -1 ) {
-			$this->mNewtalk = false; # reset talk page status
-
-			# Check memcached separately for anons, who have no
-			# entire User object stored in there.
-			if( !$this->mId ) {
-				global $wgMemc;
-				$key = wfMemcKey( 'newtalk', 'ip', $this->getName() );
-				$newtalk = $wgMemc->get( $key );
-				if( strval( $newtalk ) !== '' ) {
-					$this->mNewtalk = (bool)$newtalk;
-				} else {
-					// Since we are caching this, make sure it is up to date by getting it
-					// from the master
-					$this->mNewtalk = $this->checkNewtalk( 'user_ip', $this->getName(), true );
-					$wgMemc->set( $key, (int)$this->mNewtalk, 1800 );
-				}
-			} else {
-				$this->mNewtalk = $this->checkNewtalk( 'user_id', $this->mId );
-			}
-		}
-
-		return (bool)$this->mNewtalk;
-	}
-
-	/**
-	 * Return the talk page(s) this user has new messages on.
-	 * @return Array of String page URLs
-	 */
-	public function getNewMessageLinks() {
-		$talks = array();
-		if( !wfRunHooks( 'UserRetrieveNewTalks', array( &$this, &$talks ) ) )
-			return $talks;
-
-		if( !$this->getNewtalk() )
-			return array();
-		$up = $this->getUserPage();
-		$utp = $up->getTalkPage();
-		return array( array( 'wiki' => wfWikiID(), 'link' => $utp->getLocalURL() ) );
-	}
-
-	/**
-	 * Internal uncached check for new messages
-	 *
-	 * @see getNewtalk()
-	 * @param $field String 'user_ip' for anonymous users, 'user_id' otherwise
-	 * @param $id String|Int User's IP address for anonymous users, User ID otherwise
-	 * @param $fromMaster Bool true to fetch from the master, false for a slave
-	 * @return Bool True if the user has new messages
-	 */
-	protected function checkNewtalk( $field, $id, $fromMaster = false ) {
-		if ( $fromMaster ) {
-			$db = wfGetDB( DB_MASTER );
-		} else {
-			$db = wfGetDB( DB_SLAVE );
-		}
-		$ok = $db->selectField( 'user_newtalk', $field,
-			array( $field => $id ), __METHOD__ );
-		return $ok !== false;
-	}
-
-	/**
-	 * Add or update the new messages flag
-	 * @param $field String 'user_ip' for anonymous users, 'user_id' otherwise
-	 * @param $id String|Int User's IP address for anonymous users, User ID otherwise
-	 * @return Bool True if successful, false otherwise
-	 */
-	protected function updateNewtalk( $field, $id ) {
-		$dbw = wfGetDB( DB_MASTER );
-		$dbw->insert( 'user_newtalk',
-			array( $field => $id ),
-			__METHOD__,
-			'IGNORE' );
-		if ( $dbw->affectedRows() ) {
-			wfDebug( __METHOD__ . ": set on ($field, $id)\n" );
-			return true;
-		} else {
-			wfDebug( __METHOD__ . " already set ($field, $id)\n" );
-			return false;
-		}
-	}
-
-	/**
-	 * Clear the new messages flag for the given user
-	 * @param $field String 'user_ip' for anonymous users, 'user_id' otherwise
-	 * @param $id String|Int User's IP address for anonymous users, User ID otherwise
-	 * @return Bool True if successful, false otherwise
-	 */
-	protected function deleteNewtalk( $field, $id ) {
-		$dbw = wfGetDB( DB_MASTER );
-		$dbw->delete( 'user_newtalk',
-			array( $field => $id ),
-			__METHOD__ );
-		if ( $dbw->affectedRows() ) {
-			wfDebug( __METHOD__ . ": killed on ($field, $id)\n" );
-			return true;
-		} else {
-			wfDebug( __METHOD__ . ": already gone ($field, $id)\n" );
-			return false;
-		}
-	}
-
-	/**
-	 * Update the 'You have new messages!' status.
-	 * @param $val Bool Whether the user has new messages
-	 */
-	public function setNewtalk( $val ) {
-		if( wfReadOnly() ) {
-			return;
-		}
-
-		$this->load();
-		$this->mNewtalk = $val;
-
-		if( $this->isAnon() ) {
-			$field = 'user_ip';
-			$id = $this->getName();
-		} else {
-			$field = 'user_id';
-			$id = $this->getId();
-		}
-		global $wgMemc;
-
-		if( $val ) {
-			$changed = $this->updateNewtalk( $field, $id );
-		} else {
-			$changed = $this->deleteNewtalk( $field, $id );
-		}
-
-		if( $this->isAnon() ) {
-			// Anons have a separate memcached space, since
-			// user records aren't kept for them.
-			$key = wfMemcKey( 'newtalk', 'ip', $id );
-			$wgMemc->set( $key, $val ? 1 : 0, 1800 );
-		}
-		if ( $changed ) {
-			$this->invalidateCache();
-		}
-	}
-
-	/**
 	 * Generate a current or new-future timestamp to be stored in the
 	 * user_touched field when we update things.
 	 * @return String Timestamp in TS_MW format
@@ -2661,7 +2513,8 @@ class User {
 			$title->getText() == $this->getName() ) {
 			if( !wfRunHooks( 'UserClearNewTalkNotification', array( &$this ) ) )
 				return;
-			$this->setNewtalk( false );
+			$msg = new UserMessage( $this, UserMessage::MSG_TALK );
+			$msg->update( UserMessage::NOTSET );
 		}
 
 		if( !$wgUseEnotif && !$wgShowUpdatedMarker ) {
@@ -2696,7 +2549,8 @@ class User {
 	public function clearAllNotifications() {
 		global $wgUseEnotif, $wgShowUpdatedMarker;
 		if ( !$wgUseEnotif && !$wgShowUpdatedMarker ) {
-			$this->setNewtalk( false );
+			$msg = new UserMessage( $this, UserMessage::MSG_TALK );
+			$msg->update( UserMessage::NOTSET );
 			return;
 		}
 		$id = $this->getId();
