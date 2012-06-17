@@ -172,6 +172,7 @@ upgrade PHP if you have not done so prior to upgrading MediaWiki.
 * The paraminfo module now also contains result properties for most modules
 * (bug 32348) Allow descending order for list=alllinks
 * (bug 31777) Upload unknown error ``fileexists-forbidden''
+* (bug 32382) Allow descending order for list=iwbacklinks
 
 === Languages updated in 1.20 ===
 
