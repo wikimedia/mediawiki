@@ -1,4 +1,4 @@
-# MediaWiki Parser test cases
+﻿# MediaWiki Parser test cases
 # Some taken from http://meta.wikimedia.org/wiki/Parser_testing
 # All (C) their respective authors and released under the GPL
 #
@@ -3134,9 +3134,9 @@ disabled
 !! test
 int keyword
 !! input
-{{int:youhavenewmessages|lots of money|not!}}
+{{int:newmessages-here|shoes}}
 !! result
-<p>You have lots of money (not!).
+<p>You have new shoes.
 </p>
 !! end
 

@@ -431,7 +431,12 @@ class LogFormatter {
 	public function getPerformerElement() {
 		if ( $this->canView( LogPage::DELETED_USER ) ) {
 			$performer = $this->entry->getPerformer();
-			$element = $this->makeUserLink( $performer );
+			if( $performer->getName() == '0.0.0.0' ) {
+				$element = wfMsg( 'log-anonymous' );
+			} else {
+				$element = $this->makeUserLink( $performer );
+			}
+			
 			if ( $this->entry->isDeleted( LogPage::DELETED_USER ) ) {
 				$element = $this->styleRestricedElement( $element );
 			}
@@ -734,5 +739,17 @@ class NewUsersLogFormatter extends LogFormatter {
 			return array( Title::makeTitle( NS_USER_TALK, $this->entry->getTarget()->getText() ) );
 		}
 		return array();
+	}
+}
+
+
+/**
+ * This class formats auth log entries.
+ */
+ class AuthLogFormatter extends LogFormatter {
+	protected function getMessageParameters() {
+		$params = parent::getMessageParameters();
+		$params[3] = $params[3] ? wfMsg( 'authlog-success' ) : wfMsg( 'authlog-failed' );
+		return $params;
 	}
 }

@@ -628,10 +628,15 @@ class LogPage {
 	 * @return string
 	 * @since 1.19
 	 */
-	public function getRestriction() {
+	public function getRestriction($own = false) {
 		global $wgLogRestrictions;
 		if ( isset( $wgLogRestrictions[$this->type] ) ) {
-			$restriction = $wgLogRestrictions[$this->type];
+			if( is_array( $wgLogRestrictions[$this->type] ) ) {
+				$key = $own ? 'own' : 'all';
+				$restriction = $wgLogRestrictions[$this->type][$key];
+			} else {
+				$restriction = $wgLogRestrictions[$this->type];
+			}
 		} else {
 			// '' always returns true with $user->isAllowed()
 			$restriction = '';

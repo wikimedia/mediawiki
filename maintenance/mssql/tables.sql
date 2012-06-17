@@ -72,9 +72,10 @@ CREATE TABLE /*$wgDBprefix*/user_newtalk (
    user_id INT         NOT NULL DEFAULT 0 REFERENCES /*$wgDBprefix*/[user](user_id) ON DELETE CASCADE,
    user_ip NVARCHAR(40) NOT NULL DEFAULT '',
    user_last_timestamp DATETIME NOT NULL DEFAULT '',
+   user_msg_type INT NOT NULL DEFAULT 0
 );
-CREATE INDEX /*$wgDBprefix*/user_group_id ON /*$wgDBprefix*/user_newtalk([user_id]);
-CREATE INDEX /*$wgDBprefix*/user_ip       ON /*$wgDBprefix*/user_newtalk(user_ip);
+CREATE UNIQUE INDEX /*$wgDBprefix*/user_group_id ON /*$wgDBprefix*/user_newtalk([user_id], user_msg_type);
+CREATE UNIQUE INDEX /*$wgDBprefix*/user_ip       ON /*$wgDBprefix*/user_newtalk(user_ip, user_msg_type);
 
 -- 
 -- User preferences and other fun stuff

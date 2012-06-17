@@ -3254,6 +3254,52 @@ $wgPasswordResetRoutes = array(
 );
 
 /**
+ * Turns on or off logging of authentication attempts.
+ */
+$wgAuthLogging = true;
+
+/**
+ * Whether to log successful logins in addition to failed logins.
+ */
+$wgAuthLoggingStoreValid = true;
+
+/**
+ * Whether to store IP addresses with all login attempts.
+ */
+$wgAuthLoggingStoreIP = true;
+
+/**
+ * Whether to display message notifications to the user any time an invalid login
+ * attempt is made. Similar to talk page messages.
+ */
+$wgAuthLoggingNotifications = true;
+
+/**
+ * If either $wgAuthLoggingNotifications is set to false or if a user does not log
+ * in for an extended period of time, set the conditions for which the user will be
+ * sent an email warning of invalid logins. If there are more than $threshold invalid
+ * logins in $period amount of time, the user will be emailed. Set to false to disable.
+ */
+$wgAuthLoggingEmail = array( 'period' => 72, 'threshold' => 10 );
+
+/**
+ * Whether to allow the user to customize his/her notifications and email settings for
+ * invalid logins. Strict sysadmins can set this to false to force users to be notified
+ * of invalid logins. Note that users can only turn notifications and emails on/off, they
+ * cannot customize the options in $wgAuthLoggingEmail.
+ */
+$wgAuthLoggingUserPref = true;
+
+/**
+ * Grace period in seconds for authentication logging. If an IP address
+ * makes a failed login attempt, but logs in successfully before this
+ * grace period ends, the user will not be notified. This stops the site
+ * from warning users of their own accidental invalid logins.
+ */
+$wgAuthLoggingGracePeriod = 300;
+
+
+/**
  * Maximum number of Unicode characters in signature
  */
 $wgMaxSigChars = 255;
@@ -3567,6 +3613,7 @@ $wgGroupPermissions['user']['reupload-shared']  = true;
 $wgGroupPermissions['user']['minoredit']        = true;
 $wgGroupPermissions['user']['purge']            = true; // can use ?action=purge without clicking "ok"
 $wgGroupPermissions['user']['sendemail']        = true;
+$wgGroupPermissions['user']['authlog-own']      = true;
 
 // Implicit group for accounts that pass $wgAutoConfirmAge
 $wgGroupPermissions['autoconfirmed']['autoconfirmed'] = true;
@@ -3623,6 +3670,7 @@ $wgGroupPermissions['sysop']['suppressredirect'] = true;
 // Permission to change users' group assignments
 $wgGroupPermissions['bureaucrat']['userrights']  = true;
 $wgGroupPermissions['bureaucrat']['noratelimit'] = true;
+$wgGroupPermissions['bureaucrat']['authlog'] = true;
 // Permission to change users' groups assignments across wikis
 #$wgGroupPermissions['bureaucrat']['userrights-interwiki'] = true;
 // Permission to export pages including linked pages regardless of $wgExportMaxLinkDepth
@@ -5145,6 +5193,7 @@ $wgLogTypes = array(
 	'patrol',
 	'merge',
 	'suppress',
+	'auth'
 );
 
 /**
@@ -5155,7 +5204,8 @@ $wgLogTypes = array(
  * Format: logtype => permissiontype
  */
 $wgLogRestrictions = array(
-	'suppress' => 'suppressionlog'
+	'suppress' => 'suppressionlog',
+	'auth' => array( 'all' => 'authlog', 'own' => 'authlog-own' )
 );
 
 /**
@@ -5203,6 +5253,7 @@ $wgLogNames = array(
 	'patrol'  => 'patrol-log-page',
 	'merge'   => 'mergelog',
 	'suppress' => 'suppressionlog',
+	'auth'    => 'authlogpage'
 );
 
 /**
@@ -5226,6 +5277,7 @@ $wgLogHeaders = array(
 	'patrol'  => 'patrol-log-header',
 	'merge'   => 'mergelogpagetext',
 	'suppress' => 'suppressionlogtext',
+	'auth'    => 'authlogtext'
 );
 
 /**
@@ -5269,6 +5321,7 @@ $wgLogActionsHandlers = array(
 	'suppress/event'    => 'DeleteLogFormatter',
 	'suppress/delete'   => 'DeleteLogFormatter',
 	'patrol/patrol'     => 'PatrolLogFormatter',
+	'auth/*'            => 'AuthLogFormatter'
 );
 
 /**
