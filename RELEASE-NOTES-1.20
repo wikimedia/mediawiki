@@ -16,7 +16,7 @@ upgrade PHP if you have not done so prior to upgrading MediaWiki.
 
 === Configuration changes in 1.20 ===
 * $wgGitRepositoryViewers defines a mapping from Git remote repository to the
-  Gitweb instance URL used in Special:Version
+  Gitweb instance URL used in Special:Version.
 * `$wgUsePathInfo = true;` is no longer needed to make $wgArticlePath work on servers
   using like nginx, lighttpd, and apache over fastcgi. MediaWiki now always extracts
   path info from REQUEST_URI if it's available.
@@ -36,16 +36,16 @@ upgrade PHP if you have not done so prior to upgrading MediaWiki.
 * Introduce a cryptographic random number generator source api for use when
   generating various tokens.
 * (bug 30963) Option on Special:Prefixindex and Special:Allpages to not show redirects.
-* (bug 18062) new message when edit or create the local page of a shared file.
+* (bug 18062) New message when edit or create the local page of a shared file.
 * (bug 22870) Separate interface message when creating a page.
 * (bug 17615) nosummary option should be reassigned on preview/captcha.
-* (bug 34355) add a variable and parser function for the namespace number.
+* (bug 34355) Add a variable and parser function for the namespace number.
 * (bug 35649) Special:Version now shows hashes of extensions checked out from git.
 * (bug 35728) Git revisions are now linked on Special:Version.
 * "Show Changes" on default messages shows now diff against default message text
 * (bug 23006) create #speciale parser function.
 * generateSitemap can now optionally skip redirect pages.
-* (bug 27757) new API command just for retrieving tokens (not page-based)
+* (bug 27757) New API command just for retrieving tokens (not page-based).
 * Added GitViewers hook for extensions using external git repositories to have a web-based
   repository viewer linked to from Special:Version.
 * Memcached debug logs can now be sent to their own file logs by setting
@@ -67,7 +67,7 @@ upgrade PHP if you have not done so prior to upgrading MediaWiki.
 * New getCreator and getOldestRevision methods added to WikiPage class
 * (bug 4220) the XML dump format schema now have unique identity constraints
   for page and revision identifiers. Patch by Elvis Stansvik.
-* (bug 35705) QUnit upgraded from 1.2.0 to 1.7.0
+* (bug 35705) QUnit upgraded from v1.2.0 to v1.8.0.
 * cleanupSpam.php now can delete spam pages if --delete was specified instead of blanking
   them.
 * Added new hook ChangePasswordForm to allow adding of additional fields in Special:ChangePassword
