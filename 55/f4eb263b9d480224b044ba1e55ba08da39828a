@@ -1,0 +1,10 @@
+Verified+1: jenkins-bot
+Code-Review+1: au <audreyt@audreyt.org>
+Code-Review+2: GWicke <gwicke@wikimedia.org>
+Verified+1: GWicke <gwicke@wikimedia.org>
+Code-Review+1: Subramanya Sastry <ssastry@wikimedia.org>
+Submitted-by: GWicke <gwicke@wikimedia.org>
+Submitted-at: Sun, 17 Jun 2012 16:39:27 +0000
+Reviewed-on: https://gerrit.wikimedia.org/r/9980
+Project: mediawiki/core
+Branch: refs/heads/master
