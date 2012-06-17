@@ -4844,6 +4844,8 @@ Otherwise, you can use the easy form below. Your comment will be added to the pa
 'api-error-emptypage'                     => 'Creating new, empty pages is not allowed.',
 'api-error-fetchfileerror'                => 'Internal error: Something went wrong while fetching the file.',
 'api-error-file-too-large'                => 'The file you submitted was too large.',
+'api-error-fileexists-forbidden'          => 'A file with name "$1" already exists, and cannot be overwritten.',
+'api-error-fileexists-shared-forbidden'   => 'A file with name "$1" already exists in the shared file repository, and cannot be overwritten.',
 'api-error-filename-tooshort'             => 'The filename is too short.',
 'api-error-filetype-banned'               => 'This type of file is banned.',
 'api-error-filetype-missing'              => 'The filename is missing an extension.',

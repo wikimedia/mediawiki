@@ -687,6 +687,8 @@ class ApiUpload extends ApiBase {
 				array( 'code' => 'stashfailed', 'info' => 'Stashing temporary file failed' ),
 				array( 'code' => 'internal-error', 'info' => 'An internal error occurred' ),
 				array( 'code' => 'asynccopyuploaddisabled', 'info' => 'Asynchronous copy uploads disabled' ),
+				array( 'fileexists-forbidden' ),
+				array( 'fileexists-shared-forbidden' ),
 			)
 		);
 	}
