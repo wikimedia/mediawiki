@@ -1185,9 +1185,10 @@ class EnhancedChangesList extends ChangesList {
 		$r .= '&#160;'.$rcObj->timestamp.'&#160;</td><td>';
 		# Article or log link
 		if( $logType ) {
+			$logPage = new LogPage($logType);
 			$logtitle = SpecialPage::getTitleFor( 'Log', $logType );
-			$logname = LogPage::logName( $logType );
-			$r .= $this->msg( 'parentheses' )->rawParams( Linker::linkKnown( $logtitle, htmlspecialchars( $logname ) ) )->escaped();
+			$logname = $logPage->getName();
+			$r .= $this->msg( 'parentheses' )->rawParams( Linker::linkKnown( $logtitle, $logPage->getName() ) )->escaped();
 		} else {
 			$this->insertArticleLink( $r, $rcObj, $rcObj->unpatrolled, $rcObj->watched );
 		}

@@ -419,9 +419,10 @@ class LogPage {
 
 					# Use the language name for log titles, rather than Log/X
 					if( $name == 'Log' ) {
-						$titleLink = Linker::link( $title, LogPage::logName( $par ) );
+						$logPage = new LogPage( $par );
+						$titleLink = Linker::link( $title, $logPage->getName()->text() );
 						$titleLink = wfMessage( 'parentheses' )->inLanguage( $lang )
-							->rawParams( $titleLink )->escaped();
+						             ->rawParams( $titleLink )->escaped();
 					} else {
 						$titleLink = Linker::link( $title );
 					}
