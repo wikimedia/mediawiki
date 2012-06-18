@@ -1333,12 +1333,15 @@ class Article extends Page {
 		$conds = $title->pageCond();
 		$latest = $dbw->selectField( 'page', 'page_latest', $conds, __METHOD__ );
 		if ( $latest === false ) {
+			$deleteLogPage = new LogPage( 'delete' );
 			$outputPage = $this->getContext()->getOutput();
 			$outputPage->setPageTitle( wfMessage( 'cannotdelete-title', $title->getPrefixedText() ) );
 			$outputPage->wrapWikiMsg( "<div class=\"error mw-error-cannotdelete\">\n$1\n</div>",
 					array( 'cannotdelete', wfEscapeWikiText( $title->getPrefixedText() ) )
 				);
-			$outputPage->addHTML( Xml::element( 'h2', null, LogPage::logName( 'delete' ) ) );
+			$outputPage->addHTML(
+				Xml::element( 'h2', null, $deleteLogPage->getName() )
+			);
 			LogEventsList::showLogExtract(
 				$outputPage,
 				'delete',
@@ -1506,7 +1509,9 @@ class Article extends Page {
 			}
 
 		$outputPage->addHTML( $form );
-		$outputPage->addHTML( Xml::element( 'h2', null, LogPage::logName( 'delete' ) ) );
+
+		$deleteLogPage = new LogPage( 'delete' );
+		$outputPage->addHTML( Xml::element( 'h2', null, $deleteLogPage->getName() ) );
 		LogEventsList::showLogExtract( $outputPage, 'delete',
 			$this->getTitle()->getPrefixedText()
 		);
@@ -1533,10 +1538,11 @@ class Article extends Page {
 		} else {
 			$outputPage->setPageTitle( wfMessage( 'cannotdelete-title', $this->getTitle()->getPrefixedText() ) );
 			if ( $error == '' ) {
+				$deleteLogPage = new LogPage( 'delete' );
 				$outputPage->wrapWikiMsg( "<div class=\"error mw-error-cannotdelete\">\n$1\n</div>",
 					array( 'cannotdelete', wfEscapeWikiText( $this->getTitle()->getPrefixedText() ) )
 				);
-				$outputPage->addHTML( Xml::element( 'h2', null, LogPage::logName( 'delete' ) ) );
+				$outputPage->addHTML( Xml::element( 'h2', null, $deleteLogPage->getName() ) );
 
 				LogEventsList::showLogExtract(
 					$outputPage,
