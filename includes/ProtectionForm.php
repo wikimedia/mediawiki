@@ -74,17 +74,17 @@ class ProtectionForm {
 		$this->disabledAttrib = $this->disabled
 			? array( 'disabled' => 'disabled' )
 			: array();
-		
+
 		$this->loadData();
 	}
-	
+
 	/**
 	 * Loads the current state of protection into the object.
 	 */
 	function loadData() {
 		global $wgRequest, $wgUser;
 		global $wgRestrictionLevels;
-		
+
 		$this->mCascade = $this->mTitle->areRestrictionsCascading();
 
 		$this->mReason = $wgRequest->getText( 'mwProtect-reason' );
@@ -94,7 +94,7 @@ class ProtectionForm {
 		foreach( $this->mApplicableTypes as $action ) {
 			// @todo FIXME: This form currently requires individual selections,
 			// but the db allows multiples separated by commas.
-			
+
 			// Pull the actual restriction from the DB
 			$this->mRestrictions[$action] = implode( '', $this->mTitle->getRestrictions( $action ) );
 
@@ -151,7 +151,7 @@ class ProtectionForm {
 	 * Get the expiry time for a given action, by combining the relevant inputs.
 	 *
 	 * @param $action string
-	 * 
+	 *
 	 * @return string 14-char timestamp or "infinity", or false if the input was invalid
 	 */
 	function getExpiry( $action ) {
@@ -576,14 +576,14 @@ class ProtectionForm {
 			return wfMsg( 'protect-fallback', $permission );
 		}
 	}
-	
+
 	function buildCleanupScript() {
 		global $wgRestrictionLevels, $wgGroupPermissions, $wgOut;
 
 		$cascadeableLevels = array();
 		foreach( $wgRestrictionLevels as $key ) {
 			if ( ( isset( $wgGroupPermissions[$key]['protect'] ) && $wgGroupPermissions[$key]['protect'] )
-				|| $key == 'protect' 
+				|| $key == 'protect'
 			) {
 				$cascadeableLevels[] = $key;
 			}
@@ -608,7 +608,8 @@ class ProtectionForm {
 	 */
 	function showLogExtract( &$out ) {
 		# Show relevant lines from the protection log:
-		$out->addHTML( Xml::element( 'h2', null, LogPage::logName( 'protect' ) ) );
+		$protectLogPage = new LogPage( 'protect' );
+		$out->addHTML( Xml::element( 'h2', null, $protectLogPage->getName()->text() ) );
 		LogEventsList::showLogExtract( $out, 'protect', $this->mTitle );
 		# Let extensions add other relevant log extracts
 		wfRunHooks( 'ProtectionForm::showLogExtract', array($this->mArticle,$out) );
