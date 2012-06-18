@@ -33,7 +33,7 @@ class ApiQueryInfo extends ApiQueryBase {
 
 	private $fld_protection = false, $fld_talkid = false,
 		$fld_subjectid = false, $fld_url = false,
-		$fld_readable = false, $fld_watched = false,
+		$fld_readable = false, $fld_watched = false, $fld_notificationtimestamp = false,
 		$fld_preload = false, $fld_displaytitle = false;
 
 	private $params, $titles, $missing, $everything, $pageCounter;
@@ -41,7 +41,7 @@ class ApiQueryInfo extends ApiQueryBase {
 	private $pageRestrictions, $pageIsRedir, $pageIsNew, $pageTouched,
 		$pageLatest, $pageLength;
 
-	private $protections, $watched, $talkids, $subjectids, $displaytitles;
+	private $protections, $watched, $notificationtimestamps, $talkids, $subjectids, $displaytitles;
 
 	private $tokenFunctions;
 
@@ -249,6 +249,7 @@ class ApiQueryInfo extends ApiQueryBase {
 			$prop = array_flip( $this->params['prop'] );
 			$this->fld_protection = isset( $prop['protection'] );
 			$this->fld_watched = isset( $prop['watched'] );
+			$this->fld_notificationtimestamp = isset( $prop['notificationtimestamp'] );
 			$this->fld_talkid = isset( $prop['talkid'] );
 			$this->fld_subjectid = isset( $prop['subjectid'] );
 			$this->fld_url = isset( $prop['url'] );
@@ -301,7 +302,7 @@ class ApiQueryInfo extends ApiQueryBase {
 			$this->getProtectionInfo();
 		}
 
-		if ( $this->fld_watched ) {
+		if ( $this->fld_watched || $this->fld_notificationtimestamp ) {
 			$this->getWatchedInfo();
 		}
 
@@ -382,6 +383,13 @@ class ApiQueryInfo extends ApiQueryBase {
 
 		if ( $this->fld_watched && isset( $this->watched[$ns][$dbkey] ) ) {
 			$pageInfo['watched'] = '';
+		}
+
+		if ( $this->fld_notificationtimestamp ) {
+			$pageInfo['notificationtimestamp'] = '';
+			if ( isset( $this->notificationtimestamps[$ns][$dbkey] ) ) {
+				$pageInfo['notificationtimestamp'] = wfTimestamp( TS_ISO_8601, $this->notificationtimestamps[$ns][$dbkey] );
+			}
 		}
 
 		if ( $this->fld_talkid && isset( $this->talkids[$ns][$dbkey] ) )	{
@@ -630,6 +638,7 @@ class ApiQueryInfo extends ApiQueryBase {
 
 	/**
 	 * Get information about watched status and put it in $this->watched
+	 * and $this->notificationtimestamps
 	 */
 	private function getWatchedInfo() {
 		$user = $this->getUser();
@@ -639,6 +648,7 @@ class ApiQueryInfo extends ApiQueryBase {
 		}
 
 		$this->watched = array();
+		$this->notificationtimestamps = array();
 		$db = $this->getDB();
 
 		$lb = new LinkBatch( $this->everything );
@@ -646,6 +656,7 @@ class ApiQueryInfo extends ApiQueryBase {
 		$this->resetQueryParams();
 		$this->addTables( array( 'watchlist' ) );
 		$this->addFields( array( 'wl_title', 'wl_namespace' ) );
+		$this->addFieldsIf( 'wl_notificationtimestamp', $this->fld_notificationtimestamp );
 		$this->addWhere( array(
 			$lb->constructSet( 'wl', $db ),
 			'wl_user' => $user->getID()
@@ -654,7 +665,12 @@ class ApiQueryInfo extends ApiQueryBase {
 		$res = $this->select( __METHOD__ );
 
 		foreach ( $res as $row ) {
-			$this->watched[$row->wl_namespace][$row->wl_title] = true;
+			if ( $this->fld_watched ) {
+				$this->watched[$row->wl_namespace][$row->wl_title] = true;
+			}
+			if ( $this->fld_notificationtimestamp ) {
+				$this->notificationtimestamps[$row->wl_namespace][$row->wl_title] = $row->wl_notificationtimestamp;
+			}
 		}
 	}
 
@@ -689,6 +705,7 @@ class ApiQueryInfo extends ApiQueryBase {
 					'protection',
 					'talkid',
 					'watched', # private
+					'notificationtimestamp', # private
 					'subjectid',
 					'url',
 					'readable', # private
@@ -710,14 +727,15 @@ class ApiQueryInfo extends ApiQueryBase {
 		return array(
 			'prop' => array(
 				'Which additional properties to get:',
-				' protection   - List the protection level of each page',
-				' talkid       - The page ID of the talk page for each non-talk page',
-				' watched      - List the watched status of each page',
-				' subjectid    - The page ID of the parent page for each talk page',
-				' url          - Gives a full URL to the page, and also an edit URL',
-				' readable     - Whether the user can read this page',
-				' preload      - Gives the text returned by EditFormPreloadText',
-				' displaytitle - Gives the way the page title is actually displayed',
+				' protection            - List the protection level of each page',
+				' talkid                - The page ID of the talk page for each non-talk page',
+				' watched               - List the watched status of each page',
+				' notificationtimestamp - The watchlist notification timestamp of each page',
+				' subjectid             - The page ID of the parent page for each talk page',
+				' url                   - Gives a full URL to the page, and also an edit URL',
+				' readable              - Whether the user can read this page',
+				' preload               - Gives the text returned by EditFormPreloadText',
+				' displaytitle          - Gives the way the page title is actually displayed',
 			),
 			'token' => 'Request a token to perform a data-modifying action on a page',
 			'continue' => 'When more results are available, use this to continue',
@@ -744,6 +762,12 @@ class ApiQueryInfo extends ApiQueryBase {
 			),
 			'watched' => array(
 				'watched' => 'boolean'
+			),
+			'notificationtimestamp' => array(
+				'notificationtimestamp' => array(
+					ApiBase::PROP_TYPE => 'timestamp',
+					ApiBase::PROP_NULLABLE => true
+				)
 			),
 			'talkid' => array(
 				'talkid' => array(
