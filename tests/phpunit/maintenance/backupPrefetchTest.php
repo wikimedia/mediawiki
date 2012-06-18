@@ -17,11 +17,11 @@ class BaseDumpTest extends MediaWikiTestCase {
 	private $dump = null;
 
 	protected function tearDown() {
-		parent::tearDown();
-
 		if ( $this->dump !== null ) {
 			$this->dump->close();
 		}
+		
+		parent::tearDown();
 	}
 
 	/**
