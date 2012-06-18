@@ -65,6 +65,7 @@ class ApiMain extends ApiBase {
 
 		// Write modules
 		'purge' => 'ApiPurge',
+		'setnotificationtimestamp' => 'ApiSetNotificationTimestamp',
 		'rollback' => 'ApiRollback',
 		'delete' => 'ApiDelete',
 		'undelete' => 'ApiUndelete',
