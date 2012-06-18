@@ -54,7 +54,7 @@ upgrade PHP if you have not done so prior to upgrading MediaWiki.
   Special:Version
 * Edit notices can now be translated.
 * (bug 35680) jQuery upgraded to 1.7.2.
-* jQuery UI upgraded to 1.8.19.
+* jQuery UI upgraded to 1.8.21.
 * (bug 22887) Add warning and tracking category for preprocessor errors
 * (bug 31704) Allow selection of associated namespace on the watchlist
 * (bug 5445) Now remove autoblocks when a user is unblocked.
