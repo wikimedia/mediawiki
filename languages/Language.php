@@ -738,6 +738,11 @@ class Language {
 
 		$names = array();
 
+		if( $inLanguage === 'en' ) {
+			# Include English language names of all ISO 639 codes
+			$names += self::getISO639Names( true );
+		}
+
 		if( $inLanguage ) {
 			# TODO: also include when $inLanguage is null, when this code is more efficient
 			wfRunHooks( 'LanguageGetTranslatedLanguageNames', array( &$names, $inLanguage ) );
@@ -787,6 +792,39 @@ class Language {
 	public static function fetchLanguageName( $code, $inLanguage = null, $include = 'all' ) {
 		$array = self::fetchLanguageNames( $inLanguage, $include );
 		return !array_key_exists( $code, $array ) ? '' : $array[$code];
+	}
+
+	/**
+	 * Get the data from LanguageCodes.php
+	 * @param $includeRedirects bool
+	 * @since 1.20
+	 * @return Array
+	 */
+	public static function getISO639Codes( $includeRedirects = true ) {
+		global $wgISO6393LanguageCodes;
+		if( $includeRedirects ) {
+			global $wgISO6393LanguageCodeRedirects;
+			return $wgISO6393LanguageCodes + $wgISO6393LanguageCodeRedirects;
+		}
+		return $wgISO6393LanguageCodes;
+	}
+
+	/**
+	 * @param $includeRedirects Bool Whether to include ISO 639-1 and 639-2T/B codes
+	 * @since 1.20
+	 * @return Array code => name
+	 */
+	public static function getISO639Names( $includeRedirects = true ) {
+		$getCodes = self::getISO639Codes( $includeRedirects );
+		$codes = array();
+		foreach( $getCodes as $code => $data ) {
+			if( is_array( $data ) ) { # Add the language name of this code
+				$codes[$code] = $data['Ref_Name'];
+			} else { # Add the language name of the code it refers to
+				$codes[$code] = $getCodes[$data]['Ref_Name'];
+			}
+		}
+		return $codes;
 	}
 
 	/**
