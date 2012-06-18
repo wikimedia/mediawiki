@@ -5261,10 +5261,12 @@ $wgLogActions = array(
  * @see LogFormatter
  */
 $wgLogActionsHandlers = array(
-	// move, move_redir
-	'move/*'            => 'MoveLogFormatter',
-	// delete, restore, revision, event
-	'delete/*'          => 'DeleteLogFormatter',
+	'move/move'         => 'MoveLogFormatter',
+	'move/move_redir'  => 'MoveLogFormatter',
+	'delete/delete'     => 'DeleteLogFormatter',
+	'delete/restore'    => 'DeleteLogFormatter',
+	'delete/revision'   => 'DeleteLogFormatter',
+	'delete/event'      => 'DeleteLogFormatter',
 	'suppress/revision' => 'DeleteLogFormatter',
 	'suppress/event'    => 'DeleteLogFormatter',
 	'suppress/delete'   => 'DeleteLogFormatter',

@@ -365,8 +365,10 @@ if ( $wgNewUserLog ) {
 	$wgLogTypes[]                        = 'newusers';
 	$wgLogNames['newusers']              = 'newuserlogpage';
 	$wgLogHeaders['newusers']            = 'newuserlogpagetext';
-	# newusers, create, create2, autocreate
-	$wgLogActionsHandlers['newusers/*']  = 'NewUsersLogFormatter';
+	$wgLogActionsHandlers['newusers/newusers'] = 'NewUsersLogFormatter';
+	$wgLogActionsHandlers['newusers/create'] = 'NewUsersLogFormatter';
+	$wgLogActionsHandlers['newusers/create2'] = 'NewUsersLogFormatter';
+	$wgLogActionsHandlers['newusers/autocreate'] = 'NewUsersLogFormatter';
 }
 
 if ( $wgCookieSecure === 'detect' ) {
