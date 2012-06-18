@@ -605,7 +605,8 @@ class UserrightsPage extends SpecialPage {
 	 * @param $output OutputPage to use
 	 */
 	protected function showLogFragment( $user, $output ) {
-		$output->addHTML( Xml::element( 'h2', null, LogPage::logName( 'rights' ) . "\n" ) );
+		$rightsLogPage = new LogPage( 'rights' );
+		$output->addHTML( Xml::element( 'h2', null, $rightsLogPage->getname() . "\n" ) );
 		LogEventsList::showLogExtract( $output, 'rights', $user->getUserPage() );
 	}
 }

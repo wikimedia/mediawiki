@@ -226,8 +226,9 @@ class SpecialMergeHistory extends SpecialPage {
 			$out->addWikiMsg( 'mergehistory-empty' );
 		}
 
-		# Show relevant lines from the deletion log:
-		$out->addHTML( '<h2>' . htmlspecialchars( LogPage::logName( 'merge' ) ) . "</h2>\n" );
+		# Show relevant lines from the merge log:
+		$mergeLogPage = new LogPage( 'merge' );
+		$out->addHTML( '<h2>' . $mergeLogPage->getname()->escaped() . "</h2>\n" );
 		LogEventsList::showLogExtract( $out, 'merge', $this->mTargetObj );
 
 		# When we submit, go by page ID to avoid some nasty but unlikely collisions.
