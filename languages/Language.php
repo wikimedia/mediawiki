@@ -753,6 +753,11 @@ class Language {
 
 		$names = array();
 
+		if ( $inLanguage === 'en' ) {
+			# Include English language names of all ISO 639 codes
+			$names += self::getISO639Names( 'all' );
+		}
+
 		if ( $inLanguage ) {
 			# TODO: also include when $inLanguage is null, when this code is more efficient
 			wfRunHooks( 'LanguageGetTranslatedLanguageNames', array( &$names, $inLanguage ) );
@@ -771,11 +776,7 @@ class Language {
 			return $names;
 		}
 
-		$returnMw = array();
-		$coreCodes = array_keys( $mwNames );
-		foreach ( $coreCodes as $coreCode ) {
-			$returnMw[$coreCode] = $names[$coreCode];
-		}
+		$returnMw = array_intersect_key( $names, $mwNames );
 
 		if ( $include === 'mwfile' ) {
 			$namesMwFile = array();
@@ -802,6 +803,46 @@ class Language {
 	public static function fetchLanguageName( $code, $inLanguage = null, $include = 'all' ) {
 		$array = self::fetchLanguageNames( $inLanguage, $include );
 		return !array_key_exists( $code, $array ) ? '' : $array[$code];
+	}
+
+	/**
+	 * Get the language names of LanguageCodes.php,
+	 * which contains the English names of all ISO 639 languages
+	 * @param $include String 'main' (ISO 639-3) or 'all' (also 639-1 and -2)
+	 * @since 1.20
+	 * @return Array code => name
+	 */
+	public static function getISO639Names( $include = 'all' ) {
+		$file = __DIR__ . '/LanguageCodes.cdb';
+		if ( !file_exists( $file ) ) {
+			return array(); # just in case
+		}
+
+		static $codes = null;
+		if ( $codes === null ) {
+			$cdb = CdbReader::open( $file );
+			$codes = array();
+			$all3codes = explode( '|', $cdb->get( 'ALL3CODES' ) );
+			foreach( $all3codes as $langcode ) {
+				$langcodeCdb = explode( '|', $cdb->get( $langcode ) );
+				$codes[$langcode] = $langcodeCdb[5];
+			}
+		}
+
+		if ( $include === 'main' ) {
+			return $codes;
+		}
+
+		$all1codes = explode( '|', $cdb->get( 'ALL1CODES' ) );
+		$all2codes = explode( '|', $cdb->get( 'ALL2CODES' ) );
+		$allcodes = array_merge( $all1codes, $all2codes );
+
+		foreach( $allcodes as $code => $targetcode ) {
+			# Add the language name of the code it refers to
+			$codes[$code] = &$codes[$targetcode];
+		}
+
+		return $codes;
 	}
 
 	/**
