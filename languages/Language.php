@@ -31,8 +31,10 @@ if ( !defined( 'MEDIAWIKI' ) ) {
 }
 
 # Read language names
-global $wgLanguageNames;
+global $wgLanguageNames, $wgISO6393LanguageCodes;
+global $wgISO6391LanguageCodes, $wgISO6392LanguageCodes;
 require_once( dirname( __FILE__ ) . '/Names.php' );
+require_once( dirname( __FILE__ ) . '/LanguageCodes.php' );
 
 if ( function_exists( 'mb_strtoupper' ) ) {
 	mb_internal_encoding( 'UTF-8' );
@@ -742,6 +744,11 @@ class Language {
 
 		$names = array();
 
+		if( $inLanguage === 'en' ) {
+			# Include English language names of all ISO 639 codes
+			$names += self::getISO639Names( 'all' );
+		}
+
 		if( $inLanguage ) {
 			# TODO: also include when $inLanguage is null, when this code is more efficient
 			wfRunHooks( 'LanguageGetTranslatedLanguageNames', array( &$names, $inLanguage ) );
@@ -791,6 +798,35 @@ class Language {
 	public static function fetchLanguageName( $code, $inLanguage = null, $include = 'all' ) {
 		$array = self::fetchLanguageNames( $inLanguage, $include );
 		return !array_key_exists( $code, $array ) ? '' : $array[$code];
+	}
+
+	/**
+	 * Get the language names of LanguageCodes.php,
+	 * which contains the English names of all ISO 639 languages
+	 * @param $include String 'main' (ISO 639-3) or 'all' (also 639-1 and -2)
+	 * @since 1.20
+	 * @return Array code => name
+	 */
+	public static function getISO639Names( $include = 'all' ) {
+		global $wgISO6393LanguageCodes;
+		$getCodes = $wgISO6393LanguageCodes;
+		if( $include === 'all' ) {
+			global $wgISO6391LanguageCodes, $wgISO6392LanguageCodes;
+			$getCodes += $wgISO6391LanguageCodes + $wgISO6392LanguageCodes;
+		}
+		if( !is_array( $getCodes ) ) {
+			wfDebug( __METHOD__ . ': $getCodes is not an array' );
+			return array();
+		}
+		$codes = array();
+		foreach( $getCodes as $code => $data ) {
+			if( is_array( $data ) ) { # Add the language name of this code
+				$codes[$code] = $data['Ref_Name'];
+			} else { # Add the language name of the code it refers to
+				$codes[$code] = $getCodes[$data]['Ref_Name'];
+			}
+		}
+		return $codes;
 	}
 
 	/**
