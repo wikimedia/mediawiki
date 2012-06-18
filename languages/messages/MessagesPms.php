@@ -2777,6 +2777,7 @@ Sòn a l'é motobin belfé che a sia rivà përchè a-i era n'anliura a un sit e
 'spambot_username' => 'MediaWiki - trigomiro che a-j dà deuit a la rumenta',
 'spam_reverting' => "Buta andaré a l'ùltima version che a l'avèissa pa andrinta dj'anliure a $1",
 'spam_blanking' => "Pàgina dësveujdà, che tute le version a l'avìo andrinta dj'anliure a $1",
+'spam_deleting' => 'Tute le revision a contenìo colegament a $1, scanselé',
 
 # Info page
 'pageinfo-title' => 'Anformassion për "$1"',

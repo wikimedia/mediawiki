@@ -3069,6 +3069,7 @@ $1 사용자가 차단된 이유는 다음과 같습니다: "$2"',
 'spambot_username' => 'MediaWiki 스팸 제거',
 'spam_reverting' => '$1을 포함하지 않는 최신 버전으로 되돌림',
 'spam_blanking' => '모든 버전에 $1 링크를 포함하고 있어 문서를 비움',
+'spam_deleting' => '모든 버전에 $1 링크를 포함하고 있어 문서를 삭제함',
 
 # Info page
 'pageinfo-title' => '"$1" 문서에 대한 정보',

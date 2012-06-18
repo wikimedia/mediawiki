@@ -54,9 +54,9 @@ $messages = array(
 'tog-watchlisthideanons' => 'Hmangtu hriat lohvina an siamţhat ralvèn zing aţang',
 'tog-watchlisthidepatrolled' => 'Siamţhat viltu nei ralvèn zingah telh suh',
 'tog-ccmeonemails' => 'Hmangtu dang hnena ka email thawn apiang min thawn ve zel rawh',
-'tog-diffonly' => 'Diff hnuaiah phêk chhunga awmte tilang suh',
+'tog-diffonly' => 'Dnglmn hnuaiah phêk chhúng tilang suh',
 'tog-showhiddencats' => 'Pawl thuhrûkho tilang rawh',
-'tog-norollbackdiff' => 'Lumlêt hnuah diff kalkan rawh',
+'tog-norollbackdiff' => 'Lumlêt hnuah dnglmn kalkan rawh',
 
 'underline-always' => 'Ziah/ngei ngei',
 'underline-never' => 'Ngai lo',
@@ -99,7 +99,7 @@ $messages = array(
 'january-gen' => 'Pawlkût thla',
 'february-gen' => 'Ramtuk thla',
 'march-gen' => 'Vau thla',
-'april-gen' => 'Ţau thla',
+'april-gen' => 'Ṭau thla',
 'may-gen' => 'Ţomir thla',
 'june-gen' => 'Nikir thla',
 'july-gen' => 'Vawkhniahzawn thla',
@@ -642,7 +642,7 @@ Heng kawngte hi hmaih mai tur.",
 'viewpagelogs' => 'He phêk chanchin hi en rawh',
 'nohistory' => 'Hë phêk siamṭhatna chanchin ziak a awm lo tlat.',
 'currentrev' => 'Ennawnna hnuhnung ber',
-'currentrev-asof' => 'Ni $1-a ennawnna hnuhnung ber',
+'currentrev-asof' => 'Dar $1-a ennawnna hnuhnung ber',
 'revisionasof' => '$1 -a ennawnna zawng',
 'revision-info' => '$1-a $2 ennawnna',
 'previousrevision' => '←Ennawnna hlui zâwk',
@@ -664,6 +664,7 @@ Lamtawi hmante: '''({{int:cur}})'''= ennawnna thar ber nena danglamna, '''({{int
 
 # Revision feed
 'history-feed-title' => 'Ennawnna chanchin',
+'history-feed-description' => 'Wiki-a hemi phêk ennawnna chanchin',
 'history-feed-item-nocomment' => '$1-in $2-ah',
 
 # Revision deletion

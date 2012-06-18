@@ -889,7 +889,7 @@ Cookieを有効にしていることを確認して、このページを再読�
 'resetpass-submit-loggedin' => 'パスワードを変更',
 'resetpass-submit-cancel' => '中止',
 'resetpass-wrong-oldpass' => '仮パスワードまたは現在のパスワードが正しくありません。
-既にパスワード変更したか、新しい仮パスワードを依頼した可能性があります。',
+パスワードを既に変更した、または新しい仮パスワードを依頼した可能性があります。',
 'resetpass-temp-password' => '仮パスワード：',
 
 # Special:PasswordReset
@@ -1897,7 +1897,7 @@ MGP # ペンタックス
 PICT # その他
  #</pre> <!-- この行はそのままにしておいてください -->',
 'upload-success-subj' => 'アップロード成功',
-'upload-success-msg' => '[$2] からのアップロードに成功しました。こちらで利用できます：[[:{{ns:file}}:$1]]',
+'upload-success-msg' => '[$2] からアップロードしました。こちらで利用できます：[[:{{ns:file}}:$1]]',
 'upload-failure-subj' => 'アップロードで発生した問題',
 'upload-failure-msg' => '[$2]からのアップロード中に問題が発生しました：
 
@@ -1972,7 +1972,7 @@ $1',
 'uploadstash-summary' => 'このページでは、アップロードされた、もしくはアップロード中の、ウィキ上でまだ公開されていないファイルを表示します。これらのファイルは、アップロードした利用者以外閲覧できません。',
 'uploadstash-clear' => '未公開ファイルを消去',
 'uploadstash-nofiles' => '未公開ファイルはありません。',
-'uploadstash-badtoken' => '実行できませんでした。編集するための認証が無効になったことが原因である可能性があります。再度お試しください。',
+'uploadstash-badtoken' => '操作を実行できませんでした。編集するための認証の期限切れが原因である可能性があります。再度お試しください。',
 'uploadstash-errclear' => 'ファイルの消去に失敗しました。',
 'uploadstash-refresh' => 'ファイルの一覧を更新',
 'invalid-chunk-offset' => '無効なチャンクオフセット',
@@ -3194,6 +3194,7 @@ MediaWiki 全般のローカライズ（地域化）に貢献したい場合は�
 'spambot_username' => 'MediaWikiスパム除去',
 'spam_reverting' => '$1へのリンクを含まない最新の版に差し戻し',
 'spam_blanking' => 'すべての版が$1へのリンクを含んでいます。白紙化します。',
+'spam_deleting' => 'すべての版が$1へのリンクを含んでいます。削除します。',
 
 # Info page
 'pageinfo-title' => '「$1」の情報',
@@ -3398,7 +3399,7 @@ Variants for Chinese language
 'exif-make' => '撮影機器のメーカー名',
 'exif-model' => '撮影機器のモデル名',
 'exif-software' => '使用ソフトウェア名',
-'exif-artist' => '作者名',
+'exif-artist' => '作者',
 'exif-copyright' => '撮影著作権者/編集著作権者',
 'exif-exifversion' => 'Exifバージョン',
 'exif-flashpixversion' => '対応フラッシュピックスバージョン',

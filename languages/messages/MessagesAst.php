@@ -1946,6 +1946,7 @@ Date cuenta de qu'otros sitios web puen enllazar a un ficheru con una URL direut
 Pues filtrar la visualización seleicionando una mena de rexistru, el nome d'usuariu (teniendo en cuenta les mayúscules y minúscules) o la páxina afectada (teniendo en cuenta tamién les mayúscules y minúscules).",
 'logempty' => 'Nun hai coincidencies nel rexistru.',
 'log-title-wildcard' => "Buscar títulos qu'emprimen con esti testu",
+'showhideselectedlogentries' => 'Amosar/anubrir les entraes del rexistru seleicionaes',
 
 # Special:AllPages
 'allpages' => 'Toles páxines',
@@ -2858,6 +2859,7 @@ Probablemente tea causao por un enllaz a un sitiu esternu de la llista prieta.',
 'spambot_username' => 'Llimpieza de spam de MediaWiki',
 'spam_reverting' => 'Revirtiendo a la cabera versión que nun contién enllaces a $1',
 'spam_blanking' => 'Toles revisiones teníen enllaces a $1; dexando en blanco',
+'spam_deleting' => 'Toles revisiones teníen enllaces a $1, desaniciando',
 
 # Info page
 'pageinfo-title' => 'Información sobro "$1"',
