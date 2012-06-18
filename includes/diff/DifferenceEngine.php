@@ -213,7 +213,7 @@ class DifferenceEngine extends ContextSource {
 		# If external diffs are enabled both globally and for the user,
 		# we'll use the application/x-external-editor interface to call
 		# an external diff tool like kompare, kdiff3, etc.
-		if ( ExternalEdit::useExternalEngine( $this->getContext(), 'diff' ) ) {
+		if ( ExternalEdit::useExternalEngine( $this->getContext(), 'diff' ) ) { #FIXME: how to handle this for non-text content?
 			$urls = array(
 				'File' => array( 'Extension' => 'wiki', 'URL' =>
 					# This should be mOldPage, but it may not be set, see below.
@@ -888,7 +888,7 @@ class DifferenceEngine extends ContextSource {
 	 *        the visibility of the revision and a link to edit the page.
 	 * @return String HTML fragment
 	 */
-	private function getRevisionHeader( Revision $rev, $complete = '' ) {
+	protected function getRevisionHeader( Revision $rev, $complete = '' ) {
 		$lang = $this->getLanguage();
 		$user = $this->getUser();
 		$revtimestamp = $rev->getTimestamp();
