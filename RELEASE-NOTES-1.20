@@ -139,6 +139,7 @@ upgrade PHP if you have not done so prior to upgrading MediaWiki.
 * (bug 36761) "Mark pages as visited" now submits previously established filter options
 * (bug 32643) action=purge with forcelinkupdate no longer crashes when ratelimit is reached
 * The paraminfo module now also contains result properties for most modules
+* Watchlist notification timestamp may be queried by page and may be updated via the API.
 
 === Languages updated in 1.20 ===
 
