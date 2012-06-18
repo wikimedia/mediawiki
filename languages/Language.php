@@ -262,9 +262,9 @@ class Language {
 	 */
 	public static function isValidBuiltInCode( $code ) {
 
-		if( !is_string($code) ) {
+		if ( !is_string( $code ) ) {
 			$type = gettype( $code );
-			if( $type === 'object' ) {
+			if ( $type === 'object' ) {
 				$addmsg = " of class " . get_class( $code );
 			} else {
 				$addmsg = '';
@@ -738,7 +738,7 @@ class Language {
 
 		$names = array();
 
-		if( $inLanguage ) {
+		if ( $inLanguage ) {
 			# TODO: also include when $inLanguage is null, when this code is more efficient
 			wfRunHooks( 'LanguageGetTranslatedLanguageNames', array( &$names, $inLanguage ) );
 		}
@@ -758,11 +758,11 @@ class Language {
 
 		$returnMw = array();
 		$coreCodes = array_keys( $mwNames );
-		foreach( $coreCodes as $coreCode ) {
+		foreach ( $coreCodes as $coreCode ) {
 			$returnMw[$coreCode] = $names[$coreCode];
 		}
 
-		if( $include === 'mwfile' ) {
+		if ( $include === 'mwfile' ) {
 			$namesMwFile = array();
 			# We do this using a foreach over the codes instead of a directory
 			# loop so that messages files in extensions will work correctly.
@@ -3409,9 +3409,12 @@ class Language {
 		if ( !count( $forms ) ) {
 			return '';
 		}
-		$forms = $this->preConvertPlural( $forms, 2 );
+		$pluralForm = $this->getPluralForm( $count );
+		if ( $pluralForm >= count( $forms ) ) {
+			$pluralForm =  count( $forms )-1;
+		}
 
-		return ( $count == 1 ) ? $forms[0] : $forms[1];
+		return  $forms[$pluralForm];
 	}
 
 	/**
@@ -4179,4 +4182,21 @@ class Language {
 	public function getConvRuleTitle() {
 		return $this->mConverter->getConvRuleTitle();
 	}
+
+	public function getPluralRules() {
+		return self::$dataCache->getItem( strtolower( $this->mCode ), 'pluralRules' );
+	}
+
+	/**
+	 * Find the plural form matching to the given number
+	 * It return the form index.
+	 * @return integer
+	 */
+	private function getPluralForm( $number ) {
+		$pluralRules =  $this->getPluralRules();
+		$form = CLDRPluralRuleEvaluator::evaluate( $number, $pluralRules );
+		return $form;
+	}
+
+
 }
