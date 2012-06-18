@@ -426,10 +426,15 @@ class SkinTemplate extends Skin {
 				unset( $tmp );
 				$nt = Title::newFromText( $l );
 				if ( $nt ) {
+					$ilLangName = Language::fetchLanguageName( $nt->getInterwiki() );
+					if ( strval( $ilLangName ) === '' ) {
+						$ilLangName = $l;
+					} else {
+						$ilLangName = $this->getLanguage()->ucfirst( $ilLangName );
+					}
 					$language_urls[] = array(
 						'href' => $nt->getFullURL(),
-						'text' => ( Language::fetchLanguageName( $nt->getInterwiki() ) != '' ?
-									Language::fetchLanguageName( $nt->getInterwiki() ) : $l ),
+						'text' => $ilLangName,
 						'title' => $nt->getText(),
 						'class' => $class,
 						'lang' => $nt->getInterwiki(),
