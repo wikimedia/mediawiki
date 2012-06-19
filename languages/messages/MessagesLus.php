@@ -951,7 +951,7 @@ Hmangtuten e-lehkha an thawn chein i e-chenhmun hrilh an ni chuang lo vang.',
 
 # Associated actions - in the sentence "You do not have permission to X"
 'action-read' => 'he phêk hi chhiar rawh',
-'action-edit' => 'he phek hi siamţha rawh',
+'action-edit' => 'phek siamṭhat',
 'action-createpage' => 'phêk siam tharna',
 'action-createtalk' => 'sawihona phêk siamna',
 'action-createaccount' => 'he hmangtu siangchan hi siam rawh',
@@ -966,8 +966,10 @@ Hmangtuten e-lehkha an thawn chein i e-chenhmun hrilh an ni chuang lo vang.',
 'action-writeapi' => 'ziakna WPI hmang rawh',
 'action-delete' => 'he phêk hi paih rawh',
 'action-deleterevision' => 'he ennawnna hi paih rawh',
+'action-deletedhistory' => 'phêk chanchin nuaibo tawh enna',
 'action-browsearchive' => 'phêk nuaibo tawhte zawng rawh',
 'action-undelete' => 'he phêk hi lakir leh rawh',
+'action-suppressionlog' => 'mimal chanchin bîk enna',
 'action-block' => 'he hmangtuina a siam danglam tùr hi däl rawh',
 
 # Recent changes
