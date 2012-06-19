@@ -337,6 +337,7 @@ Do not forget to change your [[Special:Preferences|{{SITENAME}} preferences]].',
 'logout' => 'Үнери',
 'userlogout' => 'Үнери',
 'notloggedin' => 'Кирбес',
+'nologin' => 'Силерде бүрүткел бижик чок? $1',
 'nologinlink' => 'Бүрүткел бижикти бүдүрери',
 'createaccount' => 'Бүрүткел бижикти бүдүрери',
 'gotaccount' => "Силер бүрүтекнип алдыңар де? '''$1'''.",
@@ -651,6 +652,7 @@ It must not be more than $1 {{PLURAL:$1|character|characters}} long.',
 'recentchanges-label-newpage' => 'Бо өскерлиишкин чаа арынны чогааткан.',
 'recentchanges-label-minor' => 'Бо өскерлиишкин бичии-дир',
 'recentchanges-label-unpatrolled' => 'Бо өскерлиишкин истенмейн каан',
+'rclistfrom' => 'Starting from $1 чаа өскерлиишкиннерни көргүзери',
 'rcshowhideminor' => 'Бичии өскерлиишкиннерни $1',
 'rcshowhidebots' => 'Роботтарну $1',
 'rcshowhideliu' => 'Кирер ажыглакчыларны $1',
@@ -673,6 +675,7 @@ It must not be more than $1 {{PLURAL:$1|character|characters}} long.',
 # Recent changes linked
 'recentchangeslinked' => 'Хамааржыр өскерлиишкиннер',
 'recentchangeslinked-toolbox' => 'Хамааржыр өскерлиишкиннер',
+'recentchangeslinked-title' => '«$1» деп арынга хамаарыштырган өскерлиишкиннер',
 'recentchangeslinked-page' => 'Арынның ады:',
 
 # Upload
@@ -717,7 +720,8 @@ It must not be more than $1 {{PLURAL:$1|character|characters}} long.',
 'filehist-revert' => 'эгидип тургузары',
 'filehist-current' => 'амгы',
 'filehist-datetime' => 'Ай, Хүн/Шак',
-'filehist-thumb' => 'Бичии чурук',
+'filehist-thumb' => 'Бичии чурумал',
+'filehist-thumbtext' => 'Бичии чурумал for version as of $1',
 'filehist-user' => 'Ажыглакчы',
 'filehist-dimensions' => 'Хемчээлдери',
 'filehist-filesize' => 'Файл хемчээли',
@@ -938,7 +942,9 @@ It must not be more than $1 {{PLURAL:$1|character|characters}} long.',
 
 # What links here
 'whatlinkshere' => 'Шөлүлгелерни бээр',
+'whatlinkshere-title' => '«$1» деп арынга шөлүтген арыннар',
 'whatlinkshere-page' => 'Арын:',
+'nolinkshere' => "'''[[:$1]]''' деп арынга шөлүтген арыннар чок.",
 'isredirect' => 'шиглидер арын',
 'istemplate' => 'киирткен арыннар',
 'isimage' => 'файлдың холбаазы',
@@ -1007,6 +1013,7 @@ It must not be more than $1 {{PLURAL:$1|character|characters}} long.',
 
 # Thumbnails
 'thumbnail-more' => 'Улгаттыр',
+'thumbnail_error' => 'Error creating бичии чурумал: $1',
 
 # Special:Import
 'import-comment' => 'Тайылбыр:',
@@ -1042,6 +1049,7 @@ It must not be more than $1 {{PLURAL:$1|character|characters}} long.',
 'tooltip-n-recentchanges' => 'Викиниң энир өскерлиишкиннери',
 'tooltip-n-randompage' => 'Душ арынны көөрү',
 'tooltip-n-help' => 'Төлевилелдиң тайылбыры «{{SITENAME}}»',
+'tooltip-t-whatlinkshere' => 'Бүгү маңаа шөлүтген вики арыннарның даңзызы',
 'tooltip-t-recentchangeslinked' => 'Бо арындан шөлүткен өске арыннарның сөөлгү өскерлиишкиннери',
 'tooltip-feed-rss' => 'Бо арының РСС медээ агымы',
 'tooltip-feed-atom' => 'Бо арының Атом медээ агымы',
@@ -1091,7 +1099,7 @@ It must not be more than $1 {{PLURAL:$1|character|characters}} long.',
 'file-info-size' => '$1 × $2 пиксел, Файл хемчээли: $3, MIME янзызы: $4',
 'file-nohires' => 'Оон улуг хевири чок',
 'svg-long-desc' => 'SVG файл, $1 x $2 пиксел, файл хемчээли: $3',
-'show-big-image' => 'Улуг чурук',
+'show-big-image' => 'Улуг чурумал',
 'show-big-image-size' => '$1 × $2 пиксел',
 
 # Special:NewFiles
@@ -1099,6 +1107,24 @@ It must not be more than $1 {{PLURAL:$1|character|characters}} long.',
 'showhidebots' => '(роботтарны $1)',
 'noimages' => 'Nothing to see.',
 'ilsubmit' => 'Дилээр',
+
+# Metadata
+'metadata' => 'Чурумал дугайында медээлер',
+'metadata-fields' => 'Чурумал дугайында медээлер listed in this message will be included on image page display when the metadata table is collapsed.
+Others will be hidden by default.
+* make
+* model
+* datetimeoriginal
+* exposuretime
+* fnumber
+* isospeedratings
+* focallength
+* artist
+* copyright
+* imagedescription
+* gpslatitude
+* gpslongitude
+* gpsaltitude',
 
 # EXIF tags
 'exif-imagewidth' => 'Калбаа',
@@ -1113,6 +1139,9 @@ It must not be more than $1 {{PLURAL:$1|character|characters}} long.',
 
 'exif-subjectdistancerange-2' => 'Чоок көрүш',
 'exif-subjectdistancerange-3' => 'ырак көрүш',
+
+# External editor support
+'edit-externally' => 'Бо файлды даштики application-биле өскертири',
 
 # 'all' in various places, this might be different for inflected languages
 'watchlistall2' => 'шупту',
