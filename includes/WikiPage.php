@@ -1445,7 +1445,7 @@ class WikiPage extends Page {
 	 *  Compatibility note: this function previously returned a boolean value indicating success/failure
 	 */
 	public function doEdit( $text, $summary, $flags = 0, $baseRevId = false, $user = null ) {
-		global $wgUser, $wgDBtransactions, $wgUseAutomaticEditSummaries;
+		global $wgUser, $wgUseAutomaticEditSummaries;
 
 		# Low-level sanity check
 		if ( $this->mTitle->getText() === '' ) {
@@ -1513,11 +1513,6 @@ class WikiPage extends Page {
 				return $status;
 			}
 
-			# Make sure the revision is either completely inserted or not inserted at all
-			if ( !$wgDBtransactions ) {
-				$userAbort = ignore_user_abort( true );
-			}
-
 			$revision = new Revision( array(
 				'page'       => $this->getId(),
 				'comment'    => $summary,
@@ -1548,11 +1543,6 @@ class WikiPage extends Page {
 					/* Belated edit conflict! Run away!! */
 					$status->fatal( 'edit-conflict' );
 
-					# Delete the invalid revision if the DB is not transactional
-					if ( !$wgDBtransactions ) {
-						$dbw->delete( 'revision', array( 'rev_id' => $revisionId ), __METHOD__ );
-					}
-
 					$revisionId = 0;
 					$dbw->rollback( __METHOD__ );
 				} else {
@@ -1581,10 +1571,6 @@ class WikiPage extends Page {
 				// Bug 32948: revision ID must be set to page {{REVISIONID}} and
 				// related variables correctly
 				$revision->setId( $this->getLatest() );
-			}
-
-			if ( !$wgDBtransactions ) {
-				ignore_user_abort( $userAbort );
 			}
 
 			// Now that ignore_user_abort is restored, we can respond to fatal errors
