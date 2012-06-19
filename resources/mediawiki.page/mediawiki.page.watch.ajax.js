@@ -1,8 +1,6 @@
-/**
- * Animate watch/unwatch links to use asynchronous API requests to
- * watch pages, rather than navigating to a different URI.
- */
 ( function ( $, mw, undefined ) {
+
+	mw.page.watch = {};
 
 	/**
 	 * The name of the page to watch or unwatch.
@@ -17,11 +15,12 @@
 	 * @param action {String} One of 'watch', 'unwatch'.
 	 * @param state {String} [optional] 'idle' or 'loading'. Default is 'idle'.
 	 */
-	function updateWatchLink( $link, action, state ) {
-		var accesskeyTip, msgKey, $li;
+	mw.page.watch.updateWatchLink = function( $link, action, state ) {
+		var accesskeyTip, msgKey, $li, otherAction;
 
 		// message keys 'watch', 'watching', 'unwatch' or 'unwatching'.
 		msgKey = state === 'loading' ? action + 'ing' : action;
+		otherAction = action === 'watch' ? 'unwatch' : 'watch';
 		accesskeyTip = $link.attr( 'title' ).match( mw.util.tooltipAccessKeyRegexp );
 		$li = $link.closest( 'li' );
 
@@ -36,6 +35,11 @@
 				})
 			);
 
+			// Most common ID style
+			if ( $li.prop( 'id' ) === 'ca-' + otherAction ) {
+				$li.prop( 'id', 'ca-' + action );
+			}	
+
 		// Special case for vector icon
 		if ( $li.hasClass( 'icon' ) ) {
 			if ( state === 'loading' ) {
@@ -44,7 +48,7 @@
 				$link.removeClass( 'loading' );
 			}
 		}
-	}
+	};
 
 	/**
 	 * @todo This should be moved somewhere more accessible.
@@ -103,7 +107,7 @@
 
 			$link = $( this );
 
-			updateWatchLink( $link, action, 'loading' );
+			mw.page.watch.updateWatchLink( $link, action, 'loading' );
 
 			api = new mw.Api();
 			api[action](
@@ -118,12 +122,7 @@
 					mw.util.jsMessage( watchResponse.message, 'ajaxwatch' );
 
 					// Set link to opposite
-					updateWatchLink( $link, otherAction );
-
-					// Most common ID style
-					if ( $li.prop( 'id' ) === 'ca-' + otherAction || $li.prop( 'id' ) === 'ca-' + action ) {
-						$li.prop( 'id', 'ca-' + otherAction );
-					}
+					mw.page.watch.updateWatchLink( $link, otherAction );
 
 					// Bug 12395 - update the watch checkbox on edit pages when the
 					// page is watched or unwatched via the tab.
@@ -138,7 +137,7 @@
 					var cleanTitle, html, link;
 
 					// Reset link to non-loading mode
-					updateWatchLink( $link, action );
+					mw.page.watch.updateWatchLink( $link, action );
 
 					// Format error message
 					cleanTitle = title.replace( /_/g, ' ' );
@@ -158,4 +157,5 @@
 		});
 	});
 
-}( jQuery, mediaWiki ) );
+
+} )( jQuery, mediaWiki );
