@@ -674,10 +674,10 @@ $wgMediaHandlers = array(
  * Each entry in the array maps a model id to a class name
  */
 $wgContentHandlers = array(
-    CONTENT_MODEL_WIKITEXT => 'WikitextContentHandler', // the usual case
-    CONTENT_MODEL_JAVASCRIPT => 'JavaScriptContentHandler', // dumb version, no syntax highlighting
-    CONTENT_MODEL_CSS => 'CssContentHandler', // dumb version, no syntax highlighting
-    CONTENT_MODEL_TEXT => 'TextContentHandler', // dumb plain text in <pre>
+	CONTENT_MODEL_WIKITEXT => 'WikitextContentHandler', // the usual case
+	CONTENT_MODEL_JAVASCRIPT => 'JavaScriptContentHandler', // dumb version, no syntax highlighting
+	CONTENT_MODEL_CSS => 'CssContentHandler', // dumb version, no syntax highlighting
+	CONTENT_MODEL_TEXT => 'TextContentHandler', // dumb plain text in <pre>
 );
 
 /**

@@ -250,9 +250,9 @@ class Article extends Page {
 
 	/**
 	 * Returns a Content object representing the pages effective display content,
-     * not necessarily the revision's content!
-     *
-     * Note that getContent/loadContent do not follow redirects anymore.
+	 * not necessarily the revision's content!
+	 *
+	 * Note that getContent/loadContent do not follow redirects anymore.
 	 * If you need to fetch redirectable content easily, try
 	 * the shortcut in WikiPage::getRedirectTarget()
 	 *

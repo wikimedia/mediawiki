@@ -138,8 +138,8 @@ class FeedUtils {
 			$diffText = '';
 			// Don't bother generating the diff if we won't be able to show it
 			if ( $wgFeedDiffCutoff > 0 ) {
-                $contentHandler = ContentHandler::getForTitle( $title );
-                $de = $contentHandler->createDifferenceEngine( $title, $oldid, $newid );
+				$contentHandler = ContentHandler::getForTitle( $title );
+				$de = $contentHandler->createDifferenceEngine( $title, $oldid, $newid );
 				$diffText = $de->getDiff(
 					wfMsg( 'previousrevision' ), // hack
 					wfMsg( 'revisionasof',

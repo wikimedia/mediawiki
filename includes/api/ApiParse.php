@@ -336,7 +336,7 @@ class ApiParse extends ApiBase {
 				$this->dieUsage( "There is no revision ID {$page->getLatest()}", 'missingrev' );
 			}
 			if ( $getWikitext ) {
-                $this->content = $page->getContent( Revision::RAW ); #FIXME: use $this->content everywhere
+				$this->content = $page->getContent( Revision::RAW ); #FIXME: use $this->content everywhere
 				$this->text = ContentHandler::getContentText( $this->content ); #FIXME: serialize, get format from params; or use object structure in result?
 			}
 			return $pout;

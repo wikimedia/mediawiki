@@ -119,8 +119,8 @@ class ApiEditPage extends ApiBase {
 			if ( !is_null( $params['section'] ) ) {
 				// Process the content for section edits
 				$section = intval( $params['section'] );
-                $sectionContent = $content->getSection( $section );
-                $text = ContentHandler::getContentText( $sectionContent ); #FIXME: serialize?! get format from params?...
+				$sectionContent = $content->getSection( $section );
+				$text = ContentHandler::getContentText( $sectionContent ); #FIXME: serialize?! get format from params?...
 				if ( $text === false || $text === null ) {
 					$this->dieUsage( "There is no section {$section}.", 'nosuchsection' );
 				}
@@ -242,7 +242,7 @@ class ApiEditPage extends ApiBase {
 		// TODO: Make them not or check if they still do
 		$wgTitle = $titleObj;
 
-        $handler = ContentHandler::getForTitle( $titleObj );
+		$handler = ContentHandler::getForTitle( $titleObj );
 		$ep = $handler->createEditPage( $articleObj );
 
 		$ep->setContextTitle( $titleObj );
