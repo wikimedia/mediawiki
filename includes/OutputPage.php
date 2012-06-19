@@ -2470,7 +2470,7 @@ $templates
 			wfRunHooks( 'AjaxAddScript', array( &$this ) );
 
 			if( $wgAjaxWatch && $this->getUser()->isLoggedIn() ) {
-				$this->addModules( 'mediawiki.action.watch.ajax' );
+				$this->addModules( 'mediawiki.page.watch.ajax' );
 			}
 
 			if ( $wgEnableMWSuggest && !$this->getUser()->getOption( 'disablesuggest', false ) ) {
