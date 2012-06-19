@@ -120,7 +120,7 @@ class ContentHandlerTest extends MediaWikiTestCase {
 		$this->assertEquals( $expectedId, $id );
 	}
 
-	public function dataGetContentModelName() {
+	public function dataGetLocalizedNameName() {
 		return array(
 			array( 0, null ),
 			array( null, null ),
@@ -131,16 +131,61 @@ class ContentHandlerTest extends MediaWikiTestCase {
 	}
 
 	/**
+	 * @dataProvider dataGetLocalizedNameName
+	 */
+	public function testGetLocalizedName( $id, $expected ) {
+		try{
+			$name = ContentHandler::getLocalizedName( $id );
+
+			if ( !$expected ) $this->fail("should not have a name for content id #$id");
+
+			$this->assertNotNull( $name, "no name found for content model #$id" );
+			$this->assertTrue( preg_match( $expected, $name ) > 0 , "content model name for #$id did not match pattern $expected" );
+		} catch (MWException $e) {
+			if ( $expected ) $this->fail("failed to get name for content id #$id");
+		}
+	}
+
+	public function dataGetContentModelName() {
+		return array(
+			array( 0, null ),
+			array( null, null ),
+			array( 99887766, null ),
+
+			array( CONTENT_MODEL_JAVASCRIPT, 'javascript' ),
+		);
+	}
+
+	/**
 	 * @dataProvider dataGetContentModelName
 	 */
 	public function testGetContentModelName( $id, $expected ) {
-		$name = ContentHandler::getContentModelName( $id );
+		try {
+			$name = ContentHandler::getContentModelName( $id );
 
-		if ( $expected === null ) {
-			$this->assertNull( $name, "content model name for #$id was expected to be null" );
-		} else {
+			if ( !$expected ) $this->fail("should not have a name for content id #$id");
+
 			$this->assertNotNull( $name, "no name found for content model #$id" );
-			$this->assertTrue( preg_match( $expected, $name ) > 0 , "content model name for #$id did not match pattern $expected" );
+			$this->assertEquals( $expected, $name);
+		} catch (MWException $e) {
+			if ( $expected ) $this->fail("failed to get name for content id #$id");
+		}
+	}
+
+	/**
+	 * @dataProvider dataGetContentModelName
+	 */
+	public function testGetModelName( $id, $expected ) {
+		try {
+			$handler = ContentHandler::getForModelID( $id );
+			$name = $handler->getModelName();
+
+			if ( !$expected ) $this->fail("should not have a name for content id #$id");
+
+			$this->assertNotNull( $name, "no name found for content model #$id" );
+			$this->assertEquals( $expected, $name);
+		} catch (MWException $e) {
+			if ( $expected ) $this->fail("failed to get name for content id #$id");
 		}
 	}
 
@@ -353,6 +398,10 @@ class ContentHandlerTest extends MediaWikiTestCase {
 				$this->assertEquals( $value, $v, "unexpected value for field $field in instance of $class" );
 			}
 		}
+	}
+
+	public function testSupportsSections() {
+		$this->markTestIncomplete( "not yet implemented" );
 	}
 }
 

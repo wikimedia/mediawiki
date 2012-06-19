@@ -360,28 +360,46 @@ abstract class ContentHandler {
 	}
 
 	/**
-	 * Returns the localized name for a given content model,
-	 * or null if no MIME type is known.
+	 * Returns the symbolic name for a given content model.
+	 *
+	 * @param $id int The content model ID, as given by a CONTENT_MODEL_XXX
+	 *    constant or returned by Revision::getContentModel().
+	 *
+	 * @return string The content model's symbolic name.
+	 * @throws MWException if the model id isn't known.
+	 */
+	public static function getContentModelName( $id ) {
+		$handler = self::getForModelID( $id );
+		return $handler->getModelName();
+	}
+
+
+	/**
+	 * Returns the localized name for a given content model.
 	 *
 	 * Model names are localized using system messages. Message keys
-	 * have the form content-model-$id.
+	 * have the form content-model-$name, where $name is getContentModelName( $id ).
 	 *
 	 * @static
 	 * @param $id int The content model ID, as given by a CONTENT_MODEL_XXX
 	 *    constant or returned by Revision::getContentModel().
+	 * @todo also accept a symbolic name instead of a numeric id
 	 *
-	 * @return string|null The content format's MIME type.
+	 * @return string The content format's localized name.
+	 * @throws MWException if the model id isn't known.
 	 */
-	public static function getContentModelName( $id ) {
-		$key = "content-model-$id";
+	public static function getLocalizedName( $id ) {
+		$name = self::getContentModelName( $id );
+		$key = "content-model-$name";
 
-		if ( wfEmptyMsg( $key ) ) return null;
+		if ( wfEmptyMsg( $key ) ) return $name;
 		else return wfMsg( $key );
 	}
 
 	// ------------------------------------------------------------------------
 
 	protected $mModelID;
+	protected $mModelName;
 	protected $mSupportedFormats;
 
 	/**
@@ -396,8 +414,11 @@ abstract class ContentHandler {
 	public function __construct( $modelId, $formats ) {
 		$this->mModelID = $modelId;
 		$this->mSupportedFormats = $formats;
-	}
 
+		$this->mModelName = preg_replace( '/(Content)?Handler$/', '', get_class( $this ) );
+		$this->mModelName = preg_replace( '/[_\\\\]/', '', $this->mModelName );
+		$this->mModelName = strtolower( $this->mModelName );
+	}
 
 	/**
 	 * Serializes a Content object of the type supported by this ContentHandler.
@@ -443,6 +464,20 @@ abstract class ContentHandler {
 	 */
 	public function getModelID() {
 		return $this->mModelID;
+	}
+
+	/**
+	 * Returns the content model's symbolic name.
+	 *
+	 * The symbolic name is is this object's class name in lower case with the trailing "ContentHandler"
+	 * and and special characters removed.
+	 *
+	 * @since WD.1
+	 *
+	 * @return String The content model's name
+	 */
+	public function getModelName() {
+		return $this->mModelName;
 	}
 
 	/**

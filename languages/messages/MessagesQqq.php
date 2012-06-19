@@ -4738,10 +4738,10 @@ $4 is the gender of the target user.',
 'api-error-uploaddisabled' => 'API error message that can be used for client side localisation of API errors.',
 'api-error-verification-error' => 'The word "extension" refers to the part behind the last dot in a file name, that by convention gives a hint about the kind of data format which a files contents are in.',
 
-# Content model IDs for the ContentHandler facility; used by ContentHander::getContentModel()
-'content-model-1' => 'Name for the wikitext content model, used when decribing what type of content a page contains.',
-'content-model-2' => 'Name for the JavaScript content model, used when decribing what type of content a page contains.',
-'content-model-3' => 'Name for the CSS content model, used when decribing what type of content a page contains.',
-'content-model-4' => 'Name for the plain text content model, used when decribing what type of content a page contains.',
+# Content model IDs for the ContentHandler facility; used by ContentHandler::getContentModel()
+'content-model-wikitext' => 'Name for the wikitext content model, used when decribing what type of content a page contains.',
+'content-model-javascript' => 'Name for the JavaScript content model, used when decribing what type of content a page contains.',
+'content-model-css' => 'Name for the CSS content model, used when decribing what type of content a page contains.',
+'content-model-text' => 'Name for the plain text content model, used when decribing what type of content a page contains.',
 
 );

@@ -4876,10 +4876,10 @@ Otherwise, you can use the easy form below. Your comment will be added to the pa
 'duration-centuries' => '$1 {{PLURAL:$1|century|centuries}}',
 'duration-millennia' => '$1 {{PLURAL:$1|millennium|millennia}}',
 
-# Content model IDs for the ContentHandler facility; used by ContentHander::getContentModel()
-'content-model-1' => 'wikitext',
-'content-model-2' => 'JavaScript',
-'content-model-3' => 'CSS',
-'content-model-4' => 'plain text',
+# Content model IDs for the ContentHandler facility; used by ContentHandler::getContentModel()
+'content-model-wikitext' => 'wikitext',
+'content-model-javascript' => 'JavaScript',
+'content-model-css' => 'CSS',
+'content-model-text' => 'plain text',
 
 );
