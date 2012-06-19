@@ -1054,6 +1054,23 @@ $wgAutoloadLocalClasses = array(
 	'SeleniumTestListener' => 'tests/selenium/SeleniumTestListener.php',
 	'SeleniumTestSuite' => 'tests/selenium/SeleniumTestSuite.php',
 	'SeleniumConfig' => 'tests/selenium/SeleniumConfig.php',
+
+	# skins
+	'CologneBlueTemplate' => 'skins/CologneBlue.php',
+	'ModernTemplate' => 'skins/Modern.php',
+	'MonoBookTemplate' => 'skins/MonoBook.php',
+	'NostalgiaTemplate' => 'skins/Nostalgia.php',
+	'SkinChick' => 'skins/Chick.php',
+	'SkinCologneBlue' => 'skins/CologneBlue.php',
+	'SkinModern' => 'skins/Modern.php',
+	'SkinMonoBook' => 'skins/MonoBook.php',
+	'SkinMySkin' => 'skins/MySkin.php',
+	'SkinNostalgia' => 'skins/Nostalgia.php',
+	'SkinSimple' => 'skins/Simple.php',
+	'SkinStandard' => 'skins/Standard.php',
+	'SkinVector' => 'skins/Vector.php',
+	'StandardTemplate' => 'skins/Standard.php',
+	'VectorTemplate' => 'skins/Vector.php',
 );
 
 class AutoLoader {
