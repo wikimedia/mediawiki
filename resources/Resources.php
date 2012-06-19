@@ -655,22 +655,6 @@ return array(
 	'mediawiki.action.view.rightClickEdit' => array(
 		'scripts' => 'resources/mediawiki.action/mediawiki.action.view.rightClickEdit.js',
 	),
-	'mediawiki.action.watch.ajax' => array(
-		'scripts' => 'resources/mediawiki.action/mediawiki.action.watch.ajax.js',
-		'dependencies' => array(
-			'mediawiki.api.watch',
-			'mediawiki.util',
-		),
-		'messages' => array(
-			'watch',
-			'unwatch',
-			'watching',
-			'unwatching',
-			'tooltip-ca-watch',
-			'tooltip-ca-unwatch',
-			'watcherrortext',
-		),
-	),
 
 	/* MediaWiki Language */
 
@@ -770,7 +754,23 @@ return array(
 		),
 		'position' => 'top',
 	),
-
+	'mediawiki.page.watch.ajax' => array(
+		'scripts' => 'resources/mediawiki.page/mediawiki.page.watch.ajax.js',
+		'dependencies' => array(
+			'mediawiki.page.startup',
+			'mediawiki.api.watch',
+			'mediawiki.util'
+		),
+		'messages' => array(
+			'watch',
+			'unwatch',
+			'watching',
+			'unwatching',
+			'tooltip-ca-watch',
+			'tooltip-ca-unwatch',
+			'watcherrortext',
+		),
+	),
 
 	/* MediaWiki Special pages */
 

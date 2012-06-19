@@ -3,12 +3,15 @@
  * watch pages, rather than navigating to a different URI.
  */
 ( function ( $, mw, undefined ) {
-
 	/**
 	 * The name of the page to watch or unwatch.
 	 */
 	var title = mw.config.get( 'wgRelevantPageName', mw.config.get( 'wgPageName' ) );
 
+	// Expose local methods
+	mw.page.watch = {
+		'updateWatchLink': updateWatchLink
+	};
 	/**
 	 * Update the link text, link href attribute and (if applicable)
 	 * "loading" class.
@@ -18,12 +21,16 @@
 	 * @param state {String} [optional] 'idle' or 'loading'. Default is 'idle'.
 	 */
 	function updateWatchLink( $link, action, state ) {
-		var accesskeyTip, msgKey, $li;
+		var accesskeyTip, msgKey, $li, otherAction;
 
 		// message keys 'watch', 'watching', 'unwatch' or 'unwatching'.
 		msgKey = state === 'loading' ? action + 'ing' : action;
+		otherAction = action === 'watch' ? 'unwatch' : 'watch';
 		accesskeyTip = $link.attr( 'title' ).match( mw.util.tooltipAccessKeyRegexp );
 		$li = $link.closest( 'li' );
+
+		// Trigger watch event for this List item
+		$li.trigger( 'watch', action );
 
 		$link
 			.text( mw.msg( msgKey ) )
@@ -35,6 +42,11 @@
 					action: action
 				})
 			);
+
+		// Most common ID style
+		if ( $li.prop( 'id' ) === 'ca-' + otherAction ) {
+			$li.prop( 'id', 'ca-' + action );
+		}
 
 		// Special case for vector icon
 		if ( $li.hasClass( 'icon' ) ) {
@@ -119,11 +131,6 @@
 
 					// Set link to opposite
 					updateWatchLink( $link, otherAction );
-
-					// Most common ID style
-					if ( $li.prop( 'id' ) === 'ca-' + otherAction || $li.prop( 'id' ) === 'ca-' + action ) {
-						$li.prop( 'id', 'ca-' + otherAction );
-					}
 
 					// Bug 12395 - update the watch checkbox on edit pages when the
 					// page is watched or unwatched via the tab.
