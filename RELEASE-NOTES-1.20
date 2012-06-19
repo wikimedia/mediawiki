@@ -75,6 +75,9 @@ upgrade PHP if you have not done so prior to upgrading MediaWiki.
 * (bug 23427) New magic word {{PAGEID}} which gives the current page ID.
   Will be null on previewing a page being created.
 * Added ContribsPager::reallyDoQuery hook allowing extensions to data to MyContribs
+* Added regex whitelisting and blacklisting (with inverse regex like /(?!PageName)/) capablities
+  to $wgWhitelistRead so admins can whitelist specific pagelists or all pagelists but the 
+  specified ones, respectively. Useful for hiding namespaces from users not in a particular group.
 
 === Bug fixes in 1.20 ===
 * (bug 30245) Use the correct way to construct a log page title.
