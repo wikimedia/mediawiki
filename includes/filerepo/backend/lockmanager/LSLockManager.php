@@ -36,7 +36,7 @@
  * @ingroup LockManager
  * @since 1.19
  */
-class LSLockManager extends LockManager {
+class LSLockManager extends QuorumLockManager {
 	/** @var Array Mapping of lock types to the type actually used */
 	protected $lockTypeMap = array(
 		self::LOCK_SH => self::LOCK_SH,
@@ -46,8 +46,6 @@ class LSLockManager extends LockManager {
 
 	/** @var Array Map of server names to server config */
 	protected $lockServers; // (server name => server config array)
-	/** @var Array Map of bucket indexes to peer server lists */
-	protected $srvsByBucket; // (bucket index => (lsrv1, lsrv2, ...))
 
 	/** @var Array Map Server connections (server name => resource) */
 	protected $conns = array();
@@ -57,7 +55,7 @@ class LSLockManager extends LockManager {
 
 	/**
 	 * Construct a new instance from configuration.
-	 * 
+	 *
 	 * $config paramaters include:
 	 *     'lockServers'  : Associative array of server names to configuration.
 	 *                      Configuration is an associative array that includes:
@@ -68,7 +66,7 @@ class LSLockManager extends LockManager {
 	 *                      each having an odd-numbered list of server names (peers) as values.
 	 *     'connTimeout'  : Lock server connection attempt timeout. [optional]
 	 *
-	 * @param Array $config 
+	 * @param Array $config
 	 */
 	public function __construct( array $config ) {
 		parent::__construct( $config );
@@ -84,123 +82,49 @@ class LSLockManager extends LockManager {
 			$this->connTimeout = 3; // use some sane amount
 		}
 
-		$this->session = '';
-		for ( $i = 0; $i < 5; $i++ ) {
-			$this->session .= mt_rand( 0, 2147483647 );
-		}
-		$this->session = wfBaseConvert( sha1( $this->session ), 16, 36, 31 );
+		$this->session = wfRandomString( 31 );
 	}
 
 	/**
-	 * @see LockManager::doLock()
-	 * @param $paths array
-	 * @param $type int
+	 * @see QuorumLockManager::getLocksOnServer()
 	 * @return Status
 	 */
-	protected function doLock( array $paths, $type ) {
+	protected function getLocksOnServer( $lockSrv, array $paths, $type ) {
 		$status = Status::newGood();
-
-		$pathsToLock = array();
-		// Get locks that need to be acquired (buckets => locks)...
-		foreach ( $paths as $path ) {
-			if ( isset( $this->locksHeld[$path][$type] ) ) {
-				++$this->locksHeld[$path][$type];
-			} elseif ( isset( $this->locksHeld[$path][self::LOCK_EX] ) ) {
-				$this->locksHeld[$path][$type] = 1;
-			} else {
-				$bucket = $this->getBucketFromKey( $path );
-				$pathsToLock[$bucket][] = $path;
-			}
-		}
-
-		$lockedPaths = array(); // files locked in this attempt
-		// Attempt to acquire these locks...
-		foreach ( $pathsToLock as $bucket => $paths ) {
-			// Try to acquire the locks for this bucket
-			$res = $this->doLockingRequestAll( $bucket, $paths, $type );
-			if ( $res === 'cantacquire' ) {
-				// Resources already locked by another process.
-				// Abort and unlock everything we just locked.
-				foreach ( $paths as $path ) {
-					$status->fatal( 'lockmanager-fail-acquirelock', $path );
-				}
-				$status->merge( $this->doUnlock( $lockedPaths, $type ) );
-				return $status;
-			} elseif ( $res !== true ) {
-				// Couldn't contact any servers for this bucket.
-				// Abort and unlock everything we just locked.
-				foreach ( $paths as $path ) {
-					$status->fatal( 'lockmanager-fail-acquirelock', $path );
-				}
-				$status->merge( $this->doUnlock( $lockedPaths, $type ) );
-				return $status;
-			}
-			// Record these locks as active
-			foreach ( $paths as $path ) {
-				$this->locksHeld[$path][$type] = 1; // locked
-			}
-			// Keep track of what locks were made in this attempt
-			$lockedPaths = array_merge( $lockedPaths, $paths );
-		}
-
-		return $status;
-	}
-
-	/**
-	 * @see LockManager::doUnlock()
-	 * @param $paths array
-	 * @param $type int
-	 * @return Status
-	 */
-	protected function doUnlock( array $paths, $type ) {
-		$status = Status::newGood();
-
-		foreach ( $paths as $path ) {
-			if ( !isset( $this->locksHeld[$path] ) ) {
-				$status->warning( 'lockmanager-notlocked', $path );
-			} elseif ( !isset( $this->locksHeld[$path][$type] ) ) {
-				$status->warning( 'lockmanager-notlocked', $path );
-			} else {
-				--$this->locksHeld[$path][$type];
-				if ( $this->locksHeld[$path][$type] <= 0 ) {
-					unset( $this->locksHeld[$path][$type] );
-				}
-				if ( !count( $this->locksHeld[$path] ) ) {
-					unset( $this->locksHeld[$path] ); // no SH or EX locks left for key
-				}
-			}
-		}
-
-		// Reference count the locks held and release locks when zero
-		if ( !count( $this->locksHeld ) ) {
-			$status->merge( $this->releaseLocks() );
-		}
-
-		return $status;
-	}
-
-	/**
-	 * Get a connection to a lock server and acquire locks on $paths
-	 *
-	 * @param $lockSrv string
-	 * @param $paths Array
-	 * @param $type integer LockManager::LOCK_EX or LockManager::LOCK_SH
-	 * @return bool Resources able to be locked
-	 */
-	protected function doLockingRequest( $lockSrv, array $paths, $type ) {
-		if ( $type == self::LOCK_SH ) { // reader locks
-			$type = 'SH';
-		} elseif ( $type == self::LOCK_EX ) { // writer locks
-			$type = 'EX';
-		} else {
-			return true; // ok...
-		}
 
 		// Send out the command and get the response...
+		$type = ( $type == self::LOCK_SH ) ? 'SH' : 'EX';
 		$keys = array_unique( array_map( 'LockManager::sha1Base36', $paths ) );
 		$response = $this->sendCommand( $lockSrv, 'ACQUIRE', $type, $keys );
 
-		return ( $response === 'ACQUIRED' );
+		if ( $response !== 'ACQUIRED' ) {
+			foreach ( $paths as $path ) {
+				$status->fatal( 'lockmanager-fail-acquirelock', $path );
+			}
+		}
+
+		return $status;
+	}
+
+	/**
+	 * @see QuorumLockManager::freeLocksOnServer()
+	 * @return Status
+	 */
+	protected function freeLocksOnServer( $lockSrv, array $paths, $type ) {
+		$status = Status::newGood();
+
+		// Send out the command and get the response...
+		$type = ( $type == self::LOCK_SH ) ? 'SH' : 'EX';
+		$keys = array_unique( array_map( 'LockManager::sha1Base36', $paths ) );
+		$response = $this->sendCommand( $lockSrv, 'RELEASE', $type, $keys );
+
+		if ( $response !== 'RELEASED' ) {
+			foreach ( $paths as $path ) {
+				$status->fatal( 'lockmanager-fail-releaselock', $path );
+			}
+		}
+
+		return $status;
 	}
 
 	/**
@@ -234,36 +158,11 @@ class LSLockManager extends LockManager {
 	}
 
 	/**
-	 * Attempt to acquire locks with the peers for a bucket
-	 *
-	 * @param $bucket integer
-	 * @param $paths Array List of resource keys to lock
-	 * @param $type integer LockManager::LOCK_EX or LockManager::LOCK_SH
-	 * @return bool|string One of (true, 'cantacquire', 'srverrors')
+	 * @see QuorumLockManager::isServerUp()
+	 * @return bool
 	 */
-	protected function doLockingRequestAll( $bucket, array $paths, $type ) {
-		$yesVotes = 0; // locks made on trustable servers
-		$votesLeft = count( $this->srvsByBucket[$bucket] ); // remaining peers
-		$quorum = floor( $votesLeft/2 + 1 ); // simple majority
-		// Get votes for each peer, in order, until we have enough...
-		foreach ( $this->srvsByBucket[$bucket] as $lockSrv ) {
-			// Attempt to acquire the lock on this peer
-			if ( !$this->doLockingRequest( $lockSrv, $paths, $type ) ) {
-				return 'cantacquire'; // vetoed; resource locked
-			}
-			++$yesVotes; // success for this peer
-			if ( $yesVotes >= $quorum ) {
-				return true; // lock obtained
-			}
-			--$votesLeft;
-			$votesNeeded = $quorum - $yesVotes;
-			if ( $votesNeeded > $votesLeft ) {
-				// In "trust cache" mode we don't have to meet the quorum
-				break; // short-circuit
-			}
-		}
-		// At this point, we must not have meet the quorum
-		return 'srverrors'; // not enough votes to ensure correctness
+	protected function isServerUp( $lockSrv ) {
+		return (bool)$this->getConnection( $lockSrv );
 	}
 
 	/**
@@ -291,11 +190,10 @@ class LSLockManager extends LockManager {
 	}
 
 	/**
-	 * Release all locks that this session is holding
-	 *
+	 * @see QuorumLockManager::releaseAllLocks()
 	 * @return Status
 	 */
-	protected function releaseLocks() {
+	protected function releaseAllLocks() {
 		$status = Status::newGood();
 		foreach ( $this->conns as $lockSrv => $conn ) {
 			$response = $this->sendCommand( $lockSrv, 'RELEASE_ALL', '', array() );
@@ -307,22 +205,10 @@ class LSLockManager extends LockManager {
 	}
 
 	/**
-	 * Get the bucket for resource path.
-	 * This should avoid throwing any exceptions.
-	 *
-	 * @param $path string
-	 * @return integer
-	 */
-	protected function getBucketFromKey( $path ) {
-		$prefix = substr( sha1( $path ), 0, 2 ); // first 2 hex chars (8 bits)
-		return intval( base_convert( $prefix, 16, 10 ) ) % count( $this->srvsByBucket );
-	}
-
-	/**
 	 * Make sure remaining locks get cleared for sanity
 	 */
 	function __destruct() {
-		$this->releaseLocks();
+		$this->releaseAllLocks();
 		foreach ( $this->conns as $conn ) {
 			fclose( $conn );
 		}
