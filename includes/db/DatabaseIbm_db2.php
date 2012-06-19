@@ -1433,7 +1433,7 @@ class DatabaseIbm_db2 extends DatabaseBase {
 		// db2_ping() doesn't exist
 		// Emulate
 		$this->close();
-		$this->mConn = $this->openUncataloged( $this->mDBName, $this->mUser,
+		$this->openUncataloged( $this->mDBName, $this->mUser,
 			$this->mPassword, $this->mServer, $this->mPort );
 
 		return false;
