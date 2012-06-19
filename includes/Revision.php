@@ -396,6 +396,29 @@ class Revision {
 	}
 
 	/**
+	 * Do a batched query to get the parent revision lengths
+	 * @param $db DatabaseBase
+	 * @param $revIds Array
+	 * @return array
+	 */
+	public static function getParentLengths( $db, array $revIds ) {
+		$revLens = array();
+		if ( !$revIds ) {
+			return $revLens; // empty
+		}
+		wfProfileIn( __METHOD__ );
+		$res = $db->select( 'revision',
+			array( 'rev_id', 'rev_len' ),
+			array( 'rev_id' => $revIds ),
+			__METHOD__ );
+		foreach ( $res as $row ) {
+			$revLens[$row->rev_id] = $row->rev_len;
+		}
+		wfProfileOut( __METHOD__ );
+		return $revLens;
+	}
+
+	/**
 	 * Constructor
 	 *
 	 * @param $row Mixed: either a database row or an array
