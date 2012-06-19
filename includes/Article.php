@@ -1050,16 +1050,12 @@ class Article extends Page {
 		} elseif ( $this->getTitle()->getNamespace() === NS_MEDIAWIKI ) {
 			// Use the default message text
 			$text = $this->getTitle()->getDefaultMessageText();
+		} elseif ( $this->getTitle()->quickUserCan( 'create', $this->getContext()->getUser() )
+			&& $this->getTitle()->quickUserCan( 'edit', $this->getContext()->getUser() )
+		) {
+			$text = wfMsgNoTrans( 'noarticletext' );
 		} else {
-			$createErrors = $this->getTitle()->getUserPermissionsErrors( 'create', $this->getContext()->getUser() );
-			$editErrors = $this->getTitle()->getUserPermissionsErrors( 'edit', $this->getContext()->getUser() );
-			$errors = array_merge( $createErrors, $editErrors );
-
-			if ( !count( $errors ) ) {
-				$text = wfMsgNoTrans( 'noarticletext' );
-			} else {
-				$text = wfMsgNoTrans( 'noarticletext-nopermission' );
-			}
+			$text = wfMsgNoTrans( 'noarticletext-nopermission' );
 		}
 		$text = "<div class='noarticletext'>\n$text\n</div>";
 
