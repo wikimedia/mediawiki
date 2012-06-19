@@ -2035,9 +2035,27 @@ class Title {
 			$dbName = $this->getPrefixedDBKey();
 
 			// Check for explicit whitelisting with and without underscores
-			if ( in_array( $name, $wgWhitelistRead, true ) || in_array( $dbName, $wgWhitelistRead, true ) ) {
-				$whitelisted = true;
-			} elseif ( $this->getNamespace() == NS_MAIN ) {
+			# Perform regex match using list item from LocalSettings so user
+			# can specify custom regular expressions for generic namespaces/titles
+			foreach ( $wgWhitelistRead as $listItem ) {
+				# If the listItem starts and ends with forward slashes, we assume
+				# it is intended to be a regex match
+                                if ( preg_match( '/^\/.*\/\w*$/', $listItem ) ) {
+                                        if ( preg_match( $listItem.'u' , $name )
+                                        || preg_match( $listItem.'u', $dbName ) ) {
+                                                print $listItem.' - MATCHED!';
+                                                $whitelisted = true;
+                                        }
+                                }
+				# Else it should be matched as an exact string
+				else {
+					if ( $listItem == $name || $listItem == $dbName ) {
+						# Check for explicit whitelisting
+						$whitelisted = true;
+					}
+				}
+			}
+			if ( $this->getNamespace() == NS_MAIN ) {
 				# Old settings might have the title prefixed with
 				# a colon for main-namespace pages
 				if ( in_array( ':' . $name, $wgWhitelistRead ) ) {
