@@ -54,7 +54,8 @@ class MigrateUserGroup extends Maintenance {
 			$dbw->update( 'user_groups',
 				array( 'ug_group' => $newGroup ),
 				array( 'ug_group' => $oldGroup,
-					"ug_user BETWEEN $blockStart AND $blockEnd" )
+					"ug_user BETWEEN $blockStart AND $blockEnd" ),
+				array( 'IGNORE' )
 			);
 			$count += $dbw->affectedRows();
 			$dbw->commit( __METHOD__ );
