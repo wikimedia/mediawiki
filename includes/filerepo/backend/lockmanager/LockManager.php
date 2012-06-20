@@ -268,12 +268,11 @@ abstract class QuorumLockManager extends LockManager {
 			}
 		}
 
-		// Remove these single locks if the medium supports it
+		// Remove these specific locks if possible, or at least release
+		// all locks once this process is currently not holding any locks.
 		foreach ( $pathsToUnlock as $bucket => $paths ) {
 			$status->merge( $this->doUnlockingRequestBucket( $bucket, $paths, $type ) );
 		}
-
-		// Reference count the locks held and release locks when zero
 		if ( !count( $this->locksHeld ) ) {
 			$status->merge( $this->releaseAllLocks() );
 		}
@@ -378,7 +377,9 @@ abstract class QuorumLockManager extends LockManager {
 	abstract protected function getLocksOnServer( $lockSrv, array $paths, $type );
 
 	/**
-	 * Get a connection to a lock server and release locks on $paths
+	 * Get a connection to a lock server and release locks on $paths.
+	 *
+	 * Subclasses must effectively implement this or releaseAllLocks().
 	 *
 	 * @param $lockSrv string
 	 * @param $paths array
@@ -388,7 +389,9 @@ abstract class QuorumLockManager extends LockManager {
 	abstract protected function freeLocksOnServer( $lockSrv, array $paths, $type );
 
 	/**
-	 * Release all locks that this session is holding
+	 * Release all locks that this session is holding.
+	 *
+	 * Subclasses must effectively implement this or freeLocksOnServer().
 	 *
 	 * @return Status
 	 */
