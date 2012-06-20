@@ -243,6 +243,7 @@ class SquidPurgeClient {
 		} elseif ( $bytesRead === 0 ) {
 			// Assume EOF
 			$this->close();
+			$this->nextRequest();
 			return;
 		}
 
@@ -321,6 +322,9 @@ class SquidPurgeClient {
 			$this->bodyRemaining = intval( $m[1] );
 		} elseif ( $line === '' ) {
 			$this->readState = 'body';
+		}  elseif (preg_match( '/^Connection: close/i', $line ) ) {
+			$this->readState = 'body';
+			$this->bodyRemaining = null;
 		}
 	}
 
@@ -372,14 +376,14 @@ class SquidPurgeClientPool {
 		$startTime = microtime( true );
 		while ( !$done ) {
 			$readSockets = $writeSockets = array();
-			foreach ( $this->clients as $clientIndex => $client ) {
+			foreach ( $this->clients as $client ) {
 				$sockets = $client->getReadSocketsForSelect();
-				foreach ( $sockets as $i => $socket ) {
-					$readSockets["$clientIndex/$i"] = $socket;
+				foreach ( $sockets as $socket ) {
+					$readSockets[] = $socket;
 				}
 				$sockets = $client->getWriteSocketsForSelect();
-				foreach ( $sockets as $i => $socket ) {
-					$writeSockets["$clientIndex/$i"] = $socket;
+				foreach ( $sockets as $socket ) {
+					$writeSockets[] = $socket;
 				}
 			}
 			if ( !count( $readSockets ) && !count( $writeSockets ) ) {
@@ -404,15 +408,21 @@ class SquidPurgeClientPool {
 				continue;
 			}
 
-			foreach ( $readSockets as $key => $socket ) {
-				list( $clientIndex, ) = explode( '/', $key );
-				$client = $this->clients[$clientIndex];
-				$client->doReads();
+			foreach ( $readSockets as $socket ) {
+				foreach ( $this->clients as $client ) {
+					if ($client->socket === $socket){
+						$client->doReads();
+						break;
+					}
+				}				
 			}
-			foreach ( $writeSockets as $key => $socket ) {
-				list( $clientIndex, ) = explode( '/', $key );
-				$client = $this->clients[$clientIndex];
-				$client->doWrites();
+			foreach ( $writeSockets as $socket ) {
+				foreach ( $this->clients as $client ) {
+					if ($client->socket === $socket){
+						$client->doWrites();
+						break;
+					}
+				}
 			}
 
 			$done = true;
