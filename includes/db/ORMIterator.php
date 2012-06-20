@@ -28,10 +28,5 @@
  */
 interface ORMIterator extends Iterator {
 
-	/**
-	 * @see Iterator::current()
-	 * @return IORMRow
-	 */
-	public function current();
 
 }
