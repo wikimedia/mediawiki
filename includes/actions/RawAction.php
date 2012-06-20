@@ -151,7 +151,7 @@ class RawAction extends FormlessAction {
 				$content = $rev->getContent();
 
 				if ( !$content instanceof TextContent ) {
-					wfHttpError( 406, "Not Acceptable", "The requeste page uses the content model `"
+					wfHttpError( 406, "Not Acceptable", "The requested page uses the content model `"
 														. $content->getModel() . "` which is not supported via this interface." );
 					die();
 				}
