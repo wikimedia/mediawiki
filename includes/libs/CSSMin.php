@@ -152,6 +152,13 @@ class CSSMin {
 				$offset = $match[0][1] + strlen( $match[0][0] ) + $lengthIncrease;
 				continue;
 			}
+
+			// Guard against double slashes, because "some/remote/../foo.png"
+			// resolves to "some/remote/foo.png" on (some?) clients (bug 27052).
+			if ( substr( $remote, -1 ) == '/' ) {
+				$remote = substr( $remote, 0, -1 );
+			}
+
 			// Shortcuts
 			$embed = $match['embed'][0];
 			$pre = $match['pre'][0];
@@ -159,10 +166,9 @@ class CSSMin {
 			$query = $match['query'][0];
 			$url = "{$remote}/{$match['file'][0]}";
 			$file = "{$local}/{$match['file'][0]}";
-			// bug 27052 - Guard against double slashes, because foo//../bar
-			// apparently resolves to foo/bar on (some?) clients
-			$url = preg_replace( '#([^:])//+#', '\1/', $url );
+
 			$replacement = false;
+
 			if ( $local !== false && file_exists( $file ) ) {
 				// Add version parameter as a time-stamp in ISO 8601 format,
 				// using Z for the timezone, meaning GMT
