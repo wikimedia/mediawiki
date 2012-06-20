@@ -51,12 +51,14 @@ class MigrateUserGroup extends Maintenance {
 		while ( $blockEnd <= $end ) {
 			$this->output( "Doing users $blockStart to $blockEnd\n" );
 			$dbw->begin( __METHOD__ );
+			$prev = $dbw->ignoreErrors( true );
 			$dbw->update( 'user_groups',
 				array( 'ug_group' => $newGroup ),
 				array( 'ug_group' => $oldGroup,
 					"ug_user BETWEEN $blockStart AND $blockEnd" )
 			);
 			$count += $dbw->affectedRows();
+			$dbw->ignoreErrors( $prev );
 			$dbw->commit( __METHOD__ );
 			$blockStart += $this->mBatchSize;
 			$blockEnd += $this->mBatchSize;
