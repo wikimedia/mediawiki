@@ -249,6 +249,7 @@ $messages = array(
 'printableversion' => 'Modêye sicrirece-amiståve',
 'permalink' => 'Hårdêye viè cisse modêye ci',
 'print' => 'Imprimer',
+'view' => 'Vey',
 'edit' => 'Candjî',
 'create' => 'Ahiver',
 'editthispage' => "Candjî l' pådje",

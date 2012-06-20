@@ -1309,7 +1309,7 @@ Note que os seus índices do contido de {{SITENAME}} poden estar desactualizados
 'prefs-watchlist-token' => 'Pase para a lista de vixilancia:',
 'prefs-misc' => 'Preferencias varias',
 'prefs-resetpass' => 'Cambiar o contrasinal',
-'prefs-changeemail' => 'Cambiar o correo electrónico',
+'prefs-changeemail' => 'Cambiar o enderezo de correo electrónico',
 'prefs-setemail' => 'Establecer un enderezo de correo electrónico',
 'prefs-email' => 'Opcións de correo electrónico',
 'prefs-rendering' => 'Aparencia',

@@ -280,7 +280,7 @@ $messages = array(
 'viewdeleted' => '{{grammar:accusative|$1}} көөр?',
 'restorelink' => '{{PLURAL:$1|$1 балаттынган өскерилгелер}}',
 'feedlinks' => 'Агым:',
-'feed-invalid' => 'Бижидилгениң агым янзы багай-дыр.',
+'feed-invalid' => 'Бижидилгениң агым хевири багай-дыр.',
 'site-rss-feed' => '$1 RSS Медээ Агымы',
 'site-atom-feed' => '$1 Atom Медээ Агымы',
 'page-rss-feed' => '«$1» RSS Медээ Агымы',
@@ -321,10 +321,11 @@ Please report this to an [[Special:ListUsers/sysop|administrator]], making note 
 'badtitle' => 'Багай ат',
 'viewsource' => 'Бажы көөрү',
 'actionthrottled' => 'Шеглээн дүрген',
+'sqlhidden' => '(SQL айтырыгны чажырган)',
 
 # Login and logout pages
 'welcomecreation' => '== Кирип моорлаңар, $1! ==
-Your account has been created.
+Силер бүрүткел бижик has been created.
 Do not forget to change your [[Special:Preferences|{{SITENAME}} preferences]].',
 'yourname' => 'Aжыглакчының ады',
 'yourpassword' => 'Чажыт сөс',
@@ -381,6 +382,7 @@ Do not forget to change your [[Special:Preferences|{{SITENAME}} preferences]].',
 
 # Special:ChangeEmail
 'changeemail' => 'Э-чагааның адресин өскертири',
+'changeemail-header' => 'Бүрүткел бижиктиң э-чагааның адресин өскертири',
 'changeemail-oldemail' => 'Амгы э-чагааның адреси:',
 'changeemail-newemail' => 'Чаа э-чагааның адреси:',
 'changeemail-none' => '(чок)',
@@ -404,6 +406,7 @@ Do not forget to change your [[Special:Preferences|{{SITENAME}} preferences]].',
 'image_tip' => 'Киир туткан файл',
 'media_sample' => 'Чижек.ogg',
 'media_tip' => 'Файлдың холбаазы',
+'hr_tip' => 'Доора шугум (use sparingly)',
 
 # Edit pages
 'summary' => 'Түңнел:',
@@ -425,6 +428,9 @@ Do not forget to change your [[Special:Preferences|{{SITENAME}} preferences]].',
 
 The password for this new account can be changed on the ''[[Special:ChangePassword|change password]]'' page upon logging in.",
 'newarticle' => '(Чаа)',
+'userpage-userdoesnotexist' => '«<nowiki>$1</nowiki>» деп ажыглакчы is not registered.
+Please check if you want to create/edit this page.',
+'userpage-userdoesnotexist-view' => '«$1» деп ажыглакчы not registered.',
 'note' => "'''Тайылбыр:'''",
 'previewnote' => "'''Бо чүгле шенеп көөрү-дүр.'''
  Бижик ам-даа шыгжатынмаан!",
@@ -507,7 +513,7 @@ The password for this new account can be changed on the ''[[Special:ChangePasswo
 'nextn-title' => 'Дараазында $1 {{PLURAL:$1|бижик|бижик}}',
 'shown-title' => 'Арынга $1 {{PLURAL:$1|түңнелди|түңнелди}} көргүзери',
 'viewprevnext' => '($1 {{int:pipe-separator}} $2) ($3) көөрү',
-'searchmenu-new' => "'''Бо вики-проектиге «[[:$1]]» арынны чогаадыры'''",
+'searchmenu-new' => "'''Бо викиде «[[:$1]]» арынны чогаадыры'''",
 'searchhelp-url' => 'Help:Допчузу',
 'searchprofile-articles' => 'үндезин арыннар',
 'searchprofile-project' => 'Төлевилел биле дуза арыннары',
@@ -743,6 +749,7 @@ It must not be more than $1 {{PLURAL:$1|character|characters}} long.',
 'filedelete-reason-otherlist' => 'Өске чылдагаан',
 
 # MIME search
+'mimetype' => 'MIME хевири:',
 'download' => 'алыры',
 
 # Unwatched pages
@@ -1095,8 +1102,11 @@ It must not be more than $1 {{PLURAL:$1|character|characters}} long.',
 'nextdiff' => 'Артык чаа үндүрери →',
 
 # Media information
+'thumbsize' => 'Бичии чурумалдың хемчээли:',
 'widthheightpage' => '$1x$2, $3 {{PLURAL:$3|арын}}',
-'file-info-size' => '$1 × $2 пиксел, Файл хемчээли: $3, MIME янзызы: $4',
+'file-info' => 'файлдың хемчээли: $1, MIME хевири: $2',
+'file-info-size' => '$1 × $2 пиксел, Файл хемчээли: $3, MIME хевири: $4',
+'file-info-size-pages' => '$1 × $2 пикcелдер, файл хемчээли: $3, MIME хевири: $4, $5 {{PLURAL:$5|арын|арын}}',
 'file-nohires' => 'Оон улуг хевири чок',
 'svg-long-desc' => 'SVG файл, $1 x $2 пиксел, файл хемчээли: $3',
 'show-big-image' => 'Улуг чурумал',
@@ -1193,7 +1203,7 @@ Others will be hidden by default.
 # Special:FileDuplicateSearch
 'fileduplicatesearch-filename' => 'Файлдың ады:',
 'fileduplicatesearch-submit' => 'Дилээри',
-'fileduplicatesearch-info' => '$1 × $2 пиксел<br />Файл хемчээли: $3<br />MIME янзызы: $4',
+'fileduplicatesearch-info' => '$1 × $2 пиксел<br />Файл хемчээли: $3<br />MIME хевири: $4',
 
 # Special:SpecialPages
 'specialpages' => 'Тускай арыннар',
