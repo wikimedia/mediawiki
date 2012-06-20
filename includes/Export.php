@@ -626,6 +626,9 @@ class XmlDumpWriter {
 
 		$out  = "    <revision>\n";
 		$out .= "      " . Xml::element( 'id', null, strval( $row->rev_id ) ) . "\n";
+		if( $row->rev_parent_id ) {
+			$out .= "      " . Xml::element( 'parentid', null, strval( $row->rev_parent_id ) ) . "\n";
+		}
 
 		$out .= $this->writeTimestamp( $row->rev_timestamp );
 

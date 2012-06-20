@@ -2116,6 +2116,7 @@ $1',
 # Namespace form on various pages
 'namespace' => 'Атла алам:',
 'invert' => 'Сайланнганны айландыр',
+'namespace_association' => 'Байламлы ат алам',
 'blanknamespace' => '(Баш)',
 
 # Contributions

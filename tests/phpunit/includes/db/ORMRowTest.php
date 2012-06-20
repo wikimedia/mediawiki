@@ -80,6 +80,53 @@ abstract class ORMRowTest extends \MediaWikiTestCase {
 	}
 
 	/**
+	 * @since 1.20
+	 * @return array
+	 */
+	protected function getMockValues() {
+		return array(
+			'id' => 1,
+			'str' => 'foobar4645645',
+			'int' => 42,
+			'float' => 4.2,
+			'bool' => true,
+			'array' => array( 42, 'foobar' ),
+			'blob' => new stdClass()
+		);
+	}
+
+	/**
+	 * @since 1.20
+	 * @return array
+	 */
+	protected function getMockFields() {
+		$mockValues = $this->getMockValues();
+		$mockFields = array();
+
+		foreach ( $this->getTableInstance()->getFields() as $name => $type ) {
+			if ( $name !== 'id' ) {
+				$mockFields[$name] = $mockValues[$type];
+			}
+		}
+
+		return $mockFields;
+	}
+
+	/**
+	 * @since 1.20
+	 * @return array of IORMRow
+	 */
+	public function instanceProvider() {
+		$instances = array();
+
+		foreach ( $this->constructorTestProvider() as $arguments ) {
+			$instances[] = array( call_user_func_array( array( $this, 'getRowInstance' ), $arguments ) );
+		}
+
+		return $instances;
+	}
+
+	/**
 	 * @dataProvider constructorTestProvider
 	 */
 	public function testConstructor( array $data, $loadDefaults ) {
@@ -127,6 +174,59 @@ abstract class ORMRowTest extends \MediaWikiTestCase {
 		$this->assertFalse( $item->hasIdField() );
 
 		$this->verifyFields( $item, $data );
+	}
+
+	/**
+	 * @dataProvider instanceProvider
+	 */
+	public function testSetField( IORMRow $item ) {
+		foreach ( $this->getMockFields() as $name => $value ) {
+			$item->setField( $name, $value );
+			$this->assertEquals( $value, $item->getField( $name ) );
+		}
+	}
+
+	/**
+	 * @since 1.20
+	 * @param array $expected
+	 * @param IORMRow $item
+	 */
+	protected function assertFieldValues( array $expected, IORMRow $item ) {
+		foreach ( $expected as $name => $type ) {
+			if ( $name !== 'id' ) {
+				$this->assertEquals( $expected[$name], $item->getField( $name ) );
+			}
+		}
+	}
+
+	/**
+	 * @dataProvider instanceProvider
+	 */
+	public function testSetFields( IORMRow $item ) {
+		$originalValues = $item->getFields();
+
+		$item->setFields( array(), false );
+
+		foreach ( $item->getTable()->getFields() as $name => $type ) {
+			$originalHas = array_key_exists( $name, $originalValues );
+			$newHas = $item->hasField( $name );
+
+			$this->assertEquals( $originalHas, $newHas );
+
+			if ( $originalHas && $newHas ) {
+				$this->assertEquals( $originalValues[$name], $item->getField( $name ) );
+			}
+		}
+
+		$mockFields = $this->getMockFields();
+
+		$item->setFields( $mockFields, false );
+
+		$this->assertFieldValues( $originalValues, $item );
+
+		$item->setFields( $mockFields, true );
+
+		$this->assertFieldValues( $mockFields, $item );
 	}
 
 	// TODO: test all of the methods!

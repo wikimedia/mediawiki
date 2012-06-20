@@ -26,7 +26,7 @@ var language = {
 			}
 			// Restore the count into a Number ( if it got converted earlier )
 			var count = mw.language.convertNumber( template.title, true );
-			// Do convertPlural call 
+			// Do convertPlural call
 			return mw.language.convertPlural( parseInt( count, 10 ), template.parameters );
 		}
 		// Could not process plural return first form or nothing
@@ -99,7 +99,7 @@ var language = {
 	 * Provides an alternative text depending on specified gender.
 	 * Usage {{gender:[gender|user object]|masculine|feminine|neutral}}.
 	 * If second or third parameter are not specified, masculine is used.
-	 * 
+	 *
 	 * These details may be overriden per language.
 	 *
 	 * @param gender string male, female, or anything else for neutral.
@@ -132,7 +132,7 @@ var language = {
 	 * @return {String}
 	 */
 	convertGrammar: function ( word, form ) {
-		var grammarForms = mw.language.getData( mw.config.get( 'wgContentLanguage' ), 'grammarForms' );
+		var grammarForms = mw.language.getData( mw.config.get( 'wgUserLanguage' ), 'grammarForms' );
 		if ( grammarForms && grammarForms[form] ) {
 			return grammarForms[form][word] || word;
 		}
@@ -140,7 +140,7 @@ var language = {
 	},
 
 	// Digit Transform Table, populated by language classes where applicable
-	'digitTransformTable': null
+	'digitTransformTable': mw.language.getData( mw.config.get( 'wgUserLanguage' ), 'digitTransformTable' )
 };
 
 $.extend( mw.language, language );

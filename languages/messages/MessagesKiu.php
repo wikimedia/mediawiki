@@ -1224,7 +1224,7 @@ Tı şikina sewiya sevekiyaena na pele bıvurnê, hema yê nae sevekiyaena qedem
 # Contributions
 'contributions' => 'İştırakê karberi',
 'contributions-title' => '$1 de iştırakê karberi',
-'mycontris' => 'İştıraxê mı',
+'mycontris' => 'İştırakê mı',
 'contribsub2' => 'Serba $1 ($2)',
 'uctop' => '(ser)',
 'month' => 'Asme ra (u ravêr):',

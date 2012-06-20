@@ -2811,7 +2811,8 @@ W poslednim padźe móžeš tež wotkaz wužiwać, na př. „[[{{#Special:Expor
 'spamprotectionmatch' => 'Sćěhowacy tekst je naš spamowy filter wotpokazał: $1',
 'spambot_username' => 'MediaWiki čisćenje wot spama',
 'spam_reverting' => 'wróćo na poslednju wersiju, kotraž wotkazy na $1 njewobsahuje',
-'spam_blanking' => 'Wšě wersije wobsahowachu wotkazy na $1, wučisćene.',
+'spam_blanking' => 'Wšě wersije z wotkazami do $1 so porjedźeja',
+'spam_deleting' => 'Wšě wersije z wotkazami do $1 so zhašeja',
 
 # Info page
 'pageinfo-title' => 'Informacije za stronu "$1"',

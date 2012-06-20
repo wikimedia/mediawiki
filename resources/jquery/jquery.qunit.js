@@ -1,5 +1,5 @@
 /**
- * QUnit v1.7.0 - A JavaScript Unit Testing Framework
+ * QUnit v1.8.0 - A JavaScript Unit Testing Framework
  *
  * http://docs.jquery.com/QUnit
  *
@@ -12,6 +12,7 @@
 
 var QUnit,
 	config,
+	onErrorFnPrev,
 	testId = 0,
 	fileName = (sourceFromStacktrace( 0 ) || "" ).replace(/(:\d+)+\)?/, "").replace(/.+\//, ""),
 	toString = Object.prototype.toString,
@@ -256,6 +257,8 @@ Test.prototype = {
 		});
 
 		QUnit.reset();
+
+		config.current = undefined;
 	},
 
 	queue: function() {
@@ -469,11 +472,13 @@ QUnit.assert = {
 			expected = null;
 		}
 
+		config.current.ignoreGlobalErrors = true;
 		try {
 			block.call( config.current.testEnvironment );
 		} catch (e) {
 			actual = e;
 		}
+		config.current.ignoreGlobalErrors = false;
 
 		if ( actual ) {
 			// we don't want to validate thrown error
@@ -576,7 +581,13 @@ config = {
 	}
 
 	QUnit.urlParams = urlParams;
+
+	// String search anywhere in moduleName+testName
 	config.filter = urlParams.filter;
+
+	// Exact match of the module name
+	config.module = urlParams.module;
+
 	config.testNumber = parseInt( urlParams.testNumber, 10 ) || null;
 
 	// Figure out if we're running the tests from a server or not
@@ -760,6 +771,10 @@ extend( QUnit, {
 	},
 
 	pushFailure: function( message, source ) {
+		if ( !config.current ) {
+			throw new Error( "pushFailure() assertion outside test context, was " + sourceFromStacktrace(2) );
+		}
+
 		var output,
 			details = {
 				result: false,
@@ -933,15 +948,36 @@ QUnit.load = function() {
 
 addEvent( window, "load", QUnit.load );
 
-// addEvent(window, "error" ) gives us a useless event object
-window.onerror = function( message, file, line ) {
-	if ( QUnit.config.current ) {
-		QUnit.pushFailure( message, file + ":" + line );
-	} else {
-		QUnit.test( "global failure", function() {
-			QUnit.pushFailure( message, file + ":" + line );
-		});
+// `onErrorFnPrev` initialized at top of scope
+// Preserve other handlers
+onErrorFnPrev = window.onerror;
+
+// Cover uncaught exceptions
+// Returning true will surpress the default browser handler,
+// returning false will let it run.
+window.onerror = function ( error, filePath, linerNr ) {
+	var ret = false;
+	if ( onErrorFnPrev ) {
+		ret = onErrorFnPrev( error, filePath, linerNr );
 	}
+
+	// Treat return value as window.onerror itself does,
+	// Only do our handling if not surpressed.
+	if ( ret !== true ) {
+		if ( QUnit.config.current ) {
+			if ( QUnit.config.current.ignoreGlobalErrors ) {
+				return true;
+			}
+			QUnit.pushFailure( error, filePath + ":" + linerNr );
+		} else {
+			QUnit.test( "global failure", function() {
+				QUnit.pushFailure( error, filePath + ":" + linerNr );
+			});
+		}
+		return false;
+	}
+
+	return ret;
 };
 
 function done() {
@@ -1011,13 +1047,19 @@ function done() {
 	});
 }
 
+/** @return Boolean: true if this test should be ran */
 function validTest( test ) {
 	var include,
 		filter = config.filter && config.filter.toLowerCase(),
+		module = config.module,
 		fullName = (test.module + ": " + test.testName).toLowerCase();
 
 	if ( config.testNumber ) {
 		return test.testNumber === config.testNumber;
+	}
+
+	if ( module && test.module !== module ) {
+		return false;
 	}
 
 	if ( !filter ) {

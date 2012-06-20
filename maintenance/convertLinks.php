@@ -1,7 +1,6 @@
 <?php
 /**
- * Convert from the old links schema (string->ID) to the new schema (ID->ID)
- * The wiki should be put into read-only mode while this script executes
+ * Convert from the old links schema (string->ID) to the new schema (ID->ID).
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -24,12 +23,20 @@
 
 require_once( dirname( __FILE__ ) . '/Maintenance.php' );
 
+/**
+ * Maintenance script to convert from the old links schema (string->ID)
+ * to the new schema (ID->ID).
+ *
+ * The wiki should be put into read-only mode while this script executes.
+ *
+ * @ingroup Maintenance
+ */
 class ConvertLinks extends Maintenance {
 	private $logPerformance;
 
 	public function __construct() {
 		parent::__construct();
-		$this->mDescription = "Convert from the old links schema (string->ID) to the new schema (ID->ID)
+		$this->mDescription = "Convert from the old links schema (string->ID) to the new schema (ID->ID).
 The wiki should be put into read-only mode while this script executes";
 
 		$this->addArg( 'logperformance', "Log performance to perfLogFilename.", false );

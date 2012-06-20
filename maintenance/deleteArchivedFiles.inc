@@ -17,9 +17,15 @@
  * 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
  * http://www.gnu.org/copyleft/gpl.html
  *
+ * @file
  * @ingroup Maintenance
  */
 
+/**
+ * Core functions for deleteArchivedFiles.php
+ *
+ * @ingroup Maintenance
+ */
 class DeleteArchivedFilesImplementation {
 	static public function doDelete( $output, $force ) {
 		# Data should come off the master, wrapped in a transaction

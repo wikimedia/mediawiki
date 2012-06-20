@@ -933,7 +933,7 @@ class Title {
 	 */
 	public function isConversionTable() {
 		return $this->getNamespace() == NS_MEDIAWIKI &&
-			strpos( $this->getText(), 'Conversiontable' ) !== false;
+			strpos( $this->getText(), 'Conversiontable/' ) === 0;
 	}
 
 	/**

@@ -482,9 +482,7 @@ class MediaWiki {
 
 		$action = Action::factory( $act, $page );
 		if ( $action instanceof Action ) {
-			# When it's a known action, let Squid cache things if we can purge them.
-			# If the action is unknown, we don't know what may happen in an extension,
-			# but not caching can be always safe.
+			# Let Squid cache things if we can purge them.
 			if ( $wgUseSquid &&
 				in_array( $request->getFullRequestURL(), $title->getSquidURLs() )
 			) {

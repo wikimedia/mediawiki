@@ -1168,7 +1168,6 @@ class EditPage {
 					'</div>';
 				return true;
 		}
-		return false;
 	}
 
 	/**

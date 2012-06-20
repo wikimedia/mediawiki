@@ -21,6 +21,8 @@ class BaseDumpTest extends MediaWikiTestCase {
 			$this->dump->close();
 		}
 
+		// Bug 37458, parent teardown need to be done after closing the
+		// dump or it might cause some permissions errors.
 		parent::tearDown();
 	}
 
@@ -150,7 +152,7 @@ class BaseDumpTest extends MediaWikiTestCase {
 		$fname = $this->getNewTempFile();
 
 		// The header of every prefetch file
-		$header = '<mediawiki xmlns="http://www.mediawiki.org/xml/export-0.6/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.mediawiki.org/xml/export-0.6/ http://www.mediawiki.org/xml/export-0.6.xsd" version="0.6" xml:lang="en">
+		$header = '<mediawiki xmlns="http://www.mediawiki.org/xml/export-0.7/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.mediawiki.org/xml/export-0.7/ http://www.mediawiki.org/xml/export-0.7.xsd" version="0.7" xml:lang="en">
   <siteinfo>
     <sitename>wikisvn</sitename>
     <base>http://localhost/wiki-svn/index.php/Main_Page</base>
@@ -195,8 +197,8 @@ class BaseDumpTest extends MediaWikiTestCase {
         <ip>127.0.0.1</ip>
       </contributor>
       <comment>BackupDumperTestP1Summary1</comment>
-      <text xml:space="preserve">BackupDumperTestP1Text1</text>
       <sha1>0bolhl6ol7i6x0e7yq91gxgaan39j87</sha1>
+      <text xml:space="preserve">BackupDumperTestP1Text1</text>
       <model name="wikitext">1</model>
       <format mime="text/x-wiki">1</format>
     </revision>
@@ -209,13 +211,14 @@ class BaseDumpTest extends MediaWikiTestCase {
     <id>2</id>
     <revision>
       <id>2</id>
+      <parentid>5</parentid>
       <timestamp>2012-04-01T16:46:05Z</timestamp>
       <contributor>
         <ip>127.0.0.1</ip>
       </contributor>
       <comment>BackupDumperTestP2Summary1</comment>
-      <text xml:space="preserve">BackupDumperTestP2Text1</text>
       <sha1>jprywrymfhysqllua29tj3sc7z39dl2</sha1>
+      <text xml:space="preserve">BackupDumperTestP2Text1</text>
       <model name="wikitext">1</model>
       <format mime="text/x-wiki">1</format>
     </revision>
@@ -226,8 +229,8 @@ class BaseDumpTest extends MediaWikiTestCase {
         <ip>127.0.0.1</ip>
       </contributor>
       <comment>BackupDumperTestP2Summary4 extra</comment>
-      <text xml:space="preserve">BackupDumperTestP2Text4 some additional Text</text>
       <sha1>6o1ciaxa6pybnqprmungwofc4lv00wv</sha1>
+      <text xml:space="preserve">BackupDumperTestP2Text4 some additional Text</text>
       <model name="wikitext">1</model>
       <format mime="text/x-wiki">1</format>
     </revision>
@@ -245,10 +248,10 @@ class BaseDumpTest extends MediaWikiTestCase {
         <ip>127.0.0.1</ip>
       </contributor>
       <comment>Talk BackupDumperTestP1 Summary1</comment>
-      <text xml:space="preserve">Talk about BackupDumperTestP1 Text1</text>
       <sha1>nktofwzd0tl192k3zfepmlzxoax1lpe</sha1>
       <model name="wikitext">1</model>
       <format mime="text/x-wiki">1</format>
+      <text xml:space="preserve">Talk about BackupDumperTestP1 Text1</text>
     </revision>
   </page>
 ';

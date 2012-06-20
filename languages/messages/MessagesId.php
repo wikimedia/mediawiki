@@ -2154,6 +2154,7 @@ Harap perhatikan bahwa situs web lain mungkin memiliki pranala ke suatu berkas d
 Anda dapat melakukan pembatasan tampilan dengan memilih jenis log, nama pengguna (sensitif kapitalisasi), atau judul halaman (juga sensitif kapitalisasi).',
 'logempty' => 'Tidak ditemukan entri log yang sesuai.',
 'log-title-wildcard' => 'Cari judul yang diawali dengan teks tersebut',
+'showhideselectedlogentries' => 'Tampilkan/sembunyikan entri log terpilih',
 
 # Special:AllPages
 'allpages' => 'Semua halaman',
@@ -3033,6 +3034,7 @@ Ini mungkin disebabkan oleh pranala ke situs luar yang termasuk dalam daftar hit
 'spambot_username' => 'Pembersihan span MediaWiki',
 'spam_reverting' => 'Mengembalikan ke versi terakhir yang tak memiliki pranala ke $1',
 'spam_blanking' => 'Semua revisi yang memiliki pranala ke $1, pengosongan',
+'spam_deleting' => 'Semua revisi yang memiliki pranala ke $1, penghapusan',
 
 # Info page
 'pageinfo-title' => 'Informasi untuk "$1"',

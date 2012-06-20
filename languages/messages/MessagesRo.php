@@ -3041,7 +3041,8 @@ Permite adăugarea unui motiv în descrierea modificărilor',
 'spamprotectionmatch' => 'Următorul text a fost oferit de filtrul de spam: $1',
 'spambot_username' => 'Curățarea de spam a MediaWiki',
 'spam_reverting' => 'Revenire la ultima versiune care nu conține legături către $1',
-'spam_blanking' => 'Toate reviziile conținând legături către $1, au eșuat',
+'spam_blanking' => 'Toate versiunile conținând legături către $1 au fost golite',
+'spam_deleting' => 'Toate versiunile conținând legături către $1 au fost șterse',
 
 # Info page
 'pageinfo-title' => 'Informații pentru „$1”',

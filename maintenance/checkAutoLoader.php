@@ -23,6 +23,11 @@
 
 require_once( dirname( __FILE__ ) . '/Maintenance.php' );
 
+/**
+ * Maintenance script to check classes definitions in the autoloader.
+ *
+ * @ingroup Maintenance
+ */
 class CheckAutoLoader extends Maintenance {
 	public function __construct() {
 		parent::__construct();

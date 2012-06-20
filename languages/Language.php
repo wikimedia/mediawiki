@@ -256,6 +256,7 @@ class Language {
 	 *
 	 * @param $code string
 	 *
+	 * @throws MWException
 	 * @since 1.18
 	 * @return bool
 	 */
@@ -4125,7 +4126,7 @@ class Language {
 	 * @param $title Title object to link
 	 * @param $offset Integer offset parameter
 	 * @param $limit Integer limit parameter
-	 * @param $query String optional URL query parameter string
+	 * @param $query array|String optional URL query parameter string
 	 * @param $atend Bool optional param for specified if this is the last page
 	 * @return String
 	 */

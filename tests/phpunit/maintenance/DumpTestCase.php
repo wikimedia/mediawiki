@@ -297,14 +297,19 @@ abstract class DumpTestCase extends MediaWikiLangTestCase {
 	 *            revision stub
 	 * @param $model int: the expected content model id (default: CONTENT_MODEL_WIKITEXT)
 	 * @param $format int: the expected format model id (default: CONTENT_FORMAT_WIKITEXT)
+	 * @param $parentid int|false: (optional) id of the parent revision
 	 */
-	protected function assertRevision( $id, $summary, $text_id, $text_bytes, $text_sha1, $text = false,
-										$model = CONTENT_MODEL_WIKITEXT, $format = CONTENT_FORMAT_WIKITEXT ) {
+	protected function assertRevision( $id, $summary, $text_id, $text_bytes, $text_sha1, $text = false, 
+						$model = CONTENT_MODEL_WIKITEXT, $format = CONTENT_FORMAT_WIKITEXT,
+						$parentid = false ) {
 
 		$this->assertNodeStart( "revision" );
 		$this->skipWhitespace();
 
 		$this->assertTextNode( "id", $id );
+		if( $parentid ) {
+			$this->assertTextNode( "parentid", $parentid );
+		}
 		$this->assertTextNode( "timestamp", false );
 
 		$this->assertNodeStart( "contributor" );
@@ -367,5 +372,8 @@ abstract class DumpTestCase extends MediaWikiLangTestCase {
 			$this->assertNodeEnd( "text" );
 			$this->skipWhitespace();
 		}
+
+		$this->assertNodeEnd( "revision" );
+		$this->skipWhitespace();
 	}
 }

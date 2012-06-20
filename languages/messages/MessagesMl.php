@@ -1821,6 +1821,18 @@ $1',
 'backend-fail-connect' => '"$1"  ശേഖരണ ബാക്കെൻഡുമായി ബന്ധപ്പെടാൻ കഴിഞ്ഞില്ല.',
 'backend-fail-internal' => '"$1" എന്ന സ്റ്റോറേജ് ബാക്കെൻഡിൽ അപരിചിതമായ പിഴവ് സംഭവിച്ചു.',
 'backend-fail-contenttype' => '"$1" എന്നതിൽ സംഭരിച്ചിരിക്കുന്ന പ്രമാണത്തിന്റെ ഉള്ളടക്ക തരം നിർണ്ണയിക്കാനായില്ല.',
+'backend-fail-usable' => 'ആവശ്യമായത്ര അനുമതിയില്ലാത്തതു കൊണ്ടോ ഡയറക്റ്ററികൾ/കണ്ടൈനറുകൾ ഇല്ലാത്തതു കൊണ്ടോ പ്രമാണം $1 എഴുതിച്ചേർക്കാൻ കഴിഞ്ഞില്ല.',
+
+# Lock manager
+'lockmanager-notlocked' => '"$1" എന്നതിലെ പൂട്ടൽ അഴിക്കാൻ കഴിഞ്ഞില്ല; അത് പൂട്ടിയിട്ടില്ല.',
+'lockmanager-fail-closelock' => '"$1" എന്നതിന്റെ പൂട്ടൽ പ്രമാണം അടയ്ക്കാൻ കഴിഞ്ഞില്ല.',
+'lockmanager-fail-deletelock' => '"$1" എന്നതിന്റെ പൂട്ടൽ പ്രമാണം നീക്കംചെയ്യാൻ കഴിഞ്ഞില്ല.',
+'lockmanager-fail-acquirelock' => '"$1" എന്നതിന്റെ പൂട്ട് ലഭ്യമാക്കാൻ കഴിഞ്ഞില്ല.',
+'lockmanager-fail-openlock' => '"$1" എന്നതിന്റെ പൂട്ടൽ പ്രമാണം തുറക്കാൻ കഴിഞ്ഞില്ല.',
+'lockmanager-fail-releaselock' => '"$1" എന്നതിന്റെ പൂട്ട് വിടുവിക്കാൻ കഴിഞ്ഞില്ല.',
+'lockmanager-fail-db-bucket' => '$1 എന്ന ബക്കറ്റിൽ ആവശ്യത്തിനു പൂട്ടൽ ഡേറ്റാബേസുകളെ ബന്ധപ്പെടാൻ കഴിഞ്ഞില്ല.',
+'lockmanager-fail-db-release' => '$1 ഡേറ്റാബേസിലെ പൂട്ടലുകൾ വിടുവിക്കാൻ കഴിഞ്ഞില്ല.',
+'lockmanager-fail-svr-release' => '$1 സെർവറിലെ പൂട്ടലുകൾ വിടുവിക്കാൻ കഴിഞ്ഞില്ല.',
 
 # ZipDirectoryReader
 'zip-file-open-error' => 'സിപ് (ZIP) പരിശോധനകൾക്കായി പ്രമാണം തുറന്നപ്പോൾ പിഴവുണ്ടായി.',
@@ -2119,7 +2131,7 @@ https://www.mediawiki.org/wiki/Manual:Image_Authorization കാണുക.',
 'booksources-invalid-isbn' => 'തന്നിരിക്കുന്ന ഐ.എസ്.ബി.എൻ. സാധുവാണെന്നു തോന്നുന്നില്ല; യഥാർത്ഥ സ്രോതസ്സിൽ നിന്നും പകർത്തിയപ്പോൾ തെറ്റുപറ്റിയോ എന്നു പരിശോധിക്കുക',
 
 # Special:Log
-'specialloguserlabel' => 'ആവിഷ്കർത്താവ്:',
+'specialloguserlabel' => 'നടപ്പിലാക്കിയയാൾ:',
 'speciallogtitlelabel' => 'ലക്ഷ്യം (തലക്കെട്ട് അല്ലെങ്കിൽ ഉപയോക്താവ്) :',
 'log' => 'പ്രവർത്തനരേഖകൾ',
 'all-logs-page' => 'എല്ലാ പൊതുരേഖകളും',
@@ -2137,7 +2149,7 @@ https://www.mediawiki.org/wiki/Manual:Image_Authorization കാണുക.',
 'allpagesto' => 'ഇതിൽ അവസാനിക്കുന്ന താളുകൾ കാട്ടുക:',
 'allarticles' => 'എല്ലാ താളുകളും',
 'allinnamespace' => 'എല്ലാ താളുകളും ($1 നാമമേഖല)',
-'allnotinnamespace' => 'എല്ലാ താളുകളും ($1 നാമമേഖലയിലല്ലാത്തത്)',
+'allnotinnamespace' => 'എല്ലാ താളുകളും ($1 നാമമേഖലയിലല്ലാത്തവ)',
 'allpagesprev' => 'മുമ്പത്തെ',
 'allpagesnext' => 'അടുത്തത്',
 'allpagessubmit' => 'പോകൂ',
@@ -2181,7 +2193,7 @@ https://www.mediawiki.org/wiki/Manual:Image_Authorization കാണുക.',
 'listusersfrom' => 'ഇങ്ങനെ തുടങ്ങുന്ന ഉപയോക്താക്കളെ പ്രദർശിപ്പിക്കുക:',
 'listusers-submit' => 'പ്രദർശിപ്പിക്കുക',
 'listusers-noresult' => 'ഈ സംഘത്തിൽ ഉൾപ്പെടുന്ന ഉപയോക്താക്കൾ ആരും ഇല്ല.',
-'listusers-blocked' => '(തടയപ്പെട്ടത്)',
+'listusers-blocked' => '(തടയപ്പെട്ടു)',
 
 # Special:ActiveUsers
 'activeusers' => 'സജീവ ഉപയോക്താക്കളുടെ പട്ടിക',
@@ -2202,7 +2214,7 @@ https://www.mediawiki.org/wiki/Manual:Image_Authorization കാണുക.',
 വ്യക്തിപരമായ അവകാശങ്ങളെ കുറിച്ച് [[{{MediaWiki:Listgrouprights-helppage}}|കൂടുതൽ വിവരങ്ങൾ]] ഉണ്ടാകാനിടയുണ്ട്.',
 'listgrouprights-key' => '* <span class="listgrouprights-granted">അവകാശം നൽകിയിരിക്കുന്നു</span>
 * <span class="listgrouprights-revoked">അവകാശം നീക്കിയിരിക്കുന്നു</span>',
-'listgrouprights-group' => 'വിഭാഗം',
+'listgrouprights-group' => 'സംഘം',
 'listgrouprights-rights' => 'അവകാശങ്ങൾ',
 'listgrouprights-helppage' => 'Help:സംഘാവകാശങ്ങൾ',
 'listgrouprights-members' => '(അംഗങ്ങളുടെ പട്ടിക)',
@@ -2414,7 +2426,7 @@ $UNWATCHURL
 'protect-othertime' => 'മറ്റ് കാലാവധി:',
 'protect-othertime-op' => 'മറ്റു കാലയളവ്',
 'protect-existing-expiry' => 'നിലവിലെ കാലാവധി: $3, $2',
-'protect-otherreason' => 'മറ്റുള്ള/പുറമേയുള്ള കാരണം:',
+'protect-otherreason' => 'മറ്റ്/കൂടുതൽ കാരണം:',
 'protect-otherreason-op' => 'മറ്റ് കാരണം',
 'protect-dropdown' => '*സംരക്ഷിക്കാനുള്ള കാരണങ്ങൾ
 ** അമിതമായ നശീകരണപ്രവർത്തനങ്ങൾ
@@ -2629,7 +2641,7 @@ $1',
 'change-blocklink' => 'തടയലിൽ മാറ്റം വരുത്തുക',
 'contribslink' => 'സംഭാവനകൾ',
 'emaillink' => 'ഇമെയിൽ അയയ്ക്കുക',
-'autoblocker' => 'താങ്കളുടെ ഐ.പി. വിലാസം "[[User:$1|$1]]" എന്ന ഉപയോക്താവ് ഈ അടുത്ത് ഉപയോഗിക്കുകയും പ്രസ്തുത ഉപയോക്താവിനെ വിക്കിയിൽ നിന്നു തടയുകയും ചെയ്തിട്ടുള്ളതാണ്‌. അതിനാൽ താങ്കളും യാന്ത്രികമായി തടയപ്പെട്ടിരിക്കുന്നു. $1ന്റെ തടയലിനു സൂചിപ്പിക്കപ്പെട്ട കാരണം "$2" ആണ്‌.',
+'autoblocker' => 'താങ്കളുടെ ഐ.പി. വിലാസം "[[User:$1|$1]]" എന്ന ഉപയോക്താവ് ഈ അടുത്ത് ഉപയോഗിക്കുകയും പ്രസ്തുത ഉപയോക്താവിനെ വിക്കിയിൽ നിന്നു തടയുകയും ചെയ്തിട്ടുള്ളതാണ്‌. അതിനാൽ താങ്കളും യാന്ത്രികമായി തടയപ്പെട്ടിരിക്കുന്നു. $1 എന്ന ഉപയോക്താവിന്റെ തടയലിനു സൂചിപ്പിക്കപ്പെട്ട കാരണം "$2" എന്നാണ്‌.',
 'blocklogpage' => 'തടയൽ രേഖ',
 'blocklog-showlog' => 'ഈ ഉപയോക്താവ് മുമ്പേ തടയപ്പെട്ടതാണ്.
 തടയൽ രേഖ അവലംബമായി താഴെ കൊടുത്തിരിക്കുന്നു:',
@@ -3024,7 +3036,8 @@ $1',
 'spamprotectionmatch' => 'പാഴെഴുത്ത് അരിപ്പയെ ഉണർത്തിയ എഴുത്ത് താഴെ കൊടുത്തിരിക്കുന്നു: $1',
 'spambot_username' => 'മീഡിയാവിക്കിയിലെ പാഴെഴുത്ത് ശുദ്ധീകരണം',
 'spam_reverting' => '$1 എന്നതിലേയ്ക്കുള്ള കണ്ണികളില്ലാത്ത അവസാന നാൾപ്പതിപ്പിലേയ്ക്ക് മുൻപ്രാപനം ചെയ്യുന്നു',
-'spam_blanking' => '$1 എന്ന കണ്ണികളുള്ള നാൾപ്പതിപ്പുകളെല്ലാം ശൂന്യമാക്കുന്നു',
+'spam_blanking' => '$1 എന്നതിലേയ്ക്ക് കണ്ണികളുള്ള എല്ലാ നാൾപ്പതിപ്പുകളും ശൂന്യമാക്കുന്നു',
+'spam_deleting' => '$1 എന്നതിലേയ്ക്ക് കണ്ണികളുള്ള എല്ലാ നാൾപ്പതിപ്പുകളും മായ്ക്കുന്നു',
 
 # Info page
 'pageinfo-title' => '"$1" എന്ന താളിന്റെ വിവരങ്ങൾ',
@@ -3326,6 +3339,9 @@ $1',
 
 # EXIF attributes
 'exif-compression-1' => 'ചുരുക്കാത്തത്',
+'exif-compression-5' => 'എൽ.സെഡ്.ഡബ്ല്യു.',
+'exif-compression-6' => 'ജെപിഇജി (പഴയത്)',
+'exif-compression-7' => 'ജെപിഇജി',
 
 'exif-copyrighted-true' => 'പകർപ്പവകാശസംരക്ഷിതം',
 'exif-copyrighted-false' => 'പൊതുസഞ്ചയം',
@@ -3610,6 +3626,8 @@ $5
 'confirmrecreate-noreason' => 'താങ്കൾ തിരുത്താനാരംഭിച്ചതിനു ശേഷം, ഉപയോക്താവ് [[User:$1|$1]] ([[User talk:$1|സംവാദം]]) ഈ താൾ മായ്ച്ചിരിക്കുന്നു. ഈ താൾ പുനഃസൃഷ്ടിക്കണം എന്നത് സ്ഥിരീകരിക്കുക.',
 'recreate' => 'പുനഃസൃഷ്ടിക്കുക',
 
+'unit-pixel' => 'ബിന്ദു',
+
 # action=purge
 'confirm_purge_button' => 'ശരി',
 'confirm-purge-top' => 'ഈ താളിന്റെ കാഷെ ക്ലീയർ ചെയ്യട്ടെ?',
@@ -3644,6 +3662,19 @@ $5
 'autosumm-replace' => 'താളിലെ വിവരങ്ങൾ $1 എന്നാക്കിയിരിക്കുന്നു',
 'autoredircomment' => '[[$1]] എന്ന താളിലേക്ക് തിരിച്ചുവിടുന്നു',
 'autosumm-new' => "'$1' താൾ സൃഷ്ടിച്ചിരിക്കുന്നു",
+
+# Size units
+'size-bytes' => '$1 ബൈ',
+'size-kilobytes' => '$1 കെ.ബി.',
+'size-megabytes' => '$1 എം.ബി.',
+'size-gigabytes' => '$1 ജി.ബി.',
+'size-terabytes' => '$1 ടി.ബി.',
+
+# Bitrate units
+'bitrate-bits' => '$1ബി.പി.എസ്.',
+'bitrate-kilobits' => '$1കെ.ബി.പി.എസ്.',
+'bitrate-megabits' => '$1എം.ബി.പി.എസ്.',
+'bitrate-gigabits' => '$1ജി.ബി.പി.എസ്.',
 
 # Live preview
 'livepreview-loading' => 'ശേഖരിക്കുന്നു...',
@@ -3718,6 +3749,8 @@ $5
 'version-entrypoints' => 'പ്രവേശന നില യൂ.ആർ.എല്ലുകൾ',
 'version-entrypoints-header-entrypoint' => 'പ്രവേശന നില',
 'version-entrypoints-header-url' => 'യൂ.ആർ.എൽ.',
+'version-entrypoints-articlepath' => '[https://www.mediawiki.org/wiki/Manual:$wgArticlePath ലേഖന പഥം]',
+'version-entrypoints-scriptpath' => '[https://www.mediawiki.org/wiki/Manual:$wgScriptPath സ്ക്രിപ്റ്റ് പഥം]',
 
 # Special:FilePath
 'filepath' => 'പ്രമാണത്തിലേക്കുള്ള വിലാസം',

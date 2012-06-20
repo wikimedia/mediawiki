@@ -815,6 +815,11 @@ return array(
 	'mediawiki.special.search' => array(
 		'scripts' => 'resources/mediawiki.special/mediawiki.special.search.js',
 		'styles' => 'resources/mediawiki.special/mediawiki.special.search.css',
+		'messages' => array(
+			'powersearch-togglelabel',
+			'powersearch-toggleall',
+			'powersearch-togglenone',
+		),
 	),
 	'mediawiki.special.undelete' => array(
 		'scripts' => 'resources/mediawiki.special/mediawiki.special.undelete.js',

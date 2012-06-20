@@ -441,7 +441,7 @@ class SpecialContributions extends SpecialPage {
 				'target',
 				$this->opts['target'],
 				'text',
-				array( 'size' => '20', 'required' => '', 'class' => 'mw-input' ) +
+				array( 'size' => '40', 'required' => '', 'class' => 'mw-input' ) +
 					( $this->opts['target'] ? array() : array( 'autofocus' )
 				)
 			) . ' '
@@ -706,7 +706,7 @@ class ContribsPager extends ReverseChronologicalPager {
 				$revIds[] = $row->rev_parent_id;
 			}
 		}
-		$this->mParentLens = $this->getParentLengths( $revIds );
+		$this->mParentLens = Revision::getParentLengths( $this->getDatabase(), $revIds );
 		$this->mResult->rewind(); // reset
 
 		# Do a link batch query
@@ -722,28 +722,6 @@ class ContribsPager extends ReverseChronologicalPager {
 		}
 		$batch->execute();
 		$this->mResult->seek( 0 );
-	}
-
-	/**
-	 * Do a batched query to get the parent revision lengths
-	 * @param $revIds array
-	 * @return array
-	 */
-	private function getParentLengths( array $revIds ) {
-		$revLens = array();
-		if ( !$revIds ) {
-			return $revLens; // empty
-		}
-		wfProfileIn( __METHOD__ );
-		$res = $this->getDatabase()->select( 'revision',
-			array( 'rev_id', 'rev_len' ),
-			array( 'rev_id' => $revIds ),
-			__METHOD__ );
-		foreach ( $res as $row ) {
-			$revLens[$row->rev_id] = $row->rev_len;
-		}
-		wfProfileOut( __METHOD__ );
-		return $revLens;
 	}
 
 	/**

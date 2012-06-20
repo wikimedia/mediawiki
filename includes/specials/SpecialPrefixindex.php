@@ -196,7 +196,8 @@ class SpecialPrefixindex extends SpecialAllpages {
 						$link = ($s->page_is_redirect ? '<div class="allpagesredirect">' : '' ) .
 							Linker::linkKnown(
 								$t,
-								htmlspecialchars( $t->getText() )
+								htmlspecialchars( $t->getText() ),
+								$s->page_is_redirect ? array( 'class' => 'mw-redirect' ) : array()
 							) .
 							($s->page_is_redirect ? '</div>' : '' );
 					} else {

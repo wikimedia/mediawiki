@@ -3129,7 +3129,7 @@ class WikiPage extends Page {
 	public function quickEdit( $text, $comment = '', $minor = 0 ) {
 		wfDeprecated( __METHOD__, '1.18' );
 		global $wgUser;
-		return $this->doQuickEdit( $text, $wgUser, $comment, $minor );
+		$this->doQuickEdit( $text, $wgUser, $comment, $minor );
 	}
 
 	/**

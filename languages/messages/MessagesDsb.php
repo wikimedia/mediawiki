@@ -2817,6 +2817,7 @@ W zespominanju dajo se pśicyna pódaś.',
 'spambot_username' => 'MediaWikijowe spamowe rěšenje',
 'spam_reverting' => 'Nawrośijo se slědna wersija, kótaraž njejo wopśimjeła wótkaz na $1.',
 'spam_blanking' => 'Wšykne wersije su wopśimowali wótkaze na $1, do rěcha spórane.',
+'spam_deleting' => 'Wšykne wersije z wótkazami do $1 so lašuju',
 
 # Info page
 'pageinfo-title' => 'Informacije za bok "$1"',

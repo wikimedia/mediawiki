@@ -2376,7 +2376,7 @@ The title is {{msg-mw|nopagetitle}}.',
 'booksources-go' => 'Name of button in [[Special:BookSources]]
 
 {{Identical|Go}}',
-'booksources-invalid-isbn' => 'This message is displayed after an invalid ISBN is entered on Special:Booksources.',
+'booksources-invalid-isbn' => 'This message is displayed after an invalid ISBN is entered on [[Special:Booksources]].',
 
 # Special:Log
 'specialloguserlabel' => 'Used in [[Special:Log]] as a label for an input field with which the log can be filtered for entries describing actions \'\'performed\'\' by the specified user.  "Carried out" and "done" are possible alternatives for "performed".',
