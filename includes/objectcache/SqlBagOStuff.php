@@ -122,6 +122,7 @@ class SqlBagOStuff extends BagOStuff {
 
 	/**
 	 * Get the table name for a given key
+	 * @param $key string
 	 * @return string
 	 */
 	protected function getTableByKey( $key ) {
@@ -135,6 +136,7 @@ class SqlBagOStuff extends BagOStuff {
 
 	/**
 	 * Get the table name for a given shard index
+	 * @param $index int
 	 * @return string
 	 */
 	protected function getTableByShard( $index ) {
@@ -147,11 +149,19 @@ class SqlBagOStuff extends BagOStuff {
 		}
 	}
 
+	/**
+	 * @param $key string
+	 * @return mixed
+	 */
 	public function get( $key ) {
 		$values = $this->getMulti( array( $key ) );
 		return $values[$key];
 	}
 
+	/**
+	 * @param $keys array
+	 * @return Array
+	 */
 	public function getMulti( array $keys ) {
 		$values = array(); // array of (key => value)
 
@@ -208,6 +218,12 @@ class SqlBagOStuff extends BagOStuff {
 		return $values;
 	}
 
+	/**
+	 * @param $key string
+	 * @param $value mixed
+	 * @param $exptime int
+	 * @return bool
+	 */
 	public function set( $key, $value, $exptime = 0 ) {
 		$db = $this->getDB();
 		$exptime = intval( $exptime );
@@ -247,6 +263,11 @@ class SqlBagOStuff extends BagOStuff {
 		return true;
 	}
 
+	/**
+	 * @param $key string
+	 * @param $time int
+	 * @return bool
+	 */
 	public function delete( $key, $time = 0 ) {
 		$db = $this->getDB();
 
@@ -266,6 +287,11 @@ class SqlBagOStuff extends BagOStuff {
 		return true;
 	}
 
+	/**
+	 * @param $key string
+	 * @param $step int
+	 * @return int|null
+	 */
 	public function incr( $key, $step = 1 ) {
 		$db = $this->getDB();
 		$tableName = $this->getTableByKey( $key );
@@ -316,6 +342,9 @@ class SqlBagOStuff extends BagOStuff {
 		return $newValue;
 	}
 
+	/**
+	 * @return Array
+	 */
 	public function keys() {
 		$db = $this->getDB();
 		$result = array();
@@ -331,10 +360,17 @@ class SqlBagOStuff extends BagOStuff {
 		return $result;
 	}
 
+	/**
+	 * @param $exptime string
+	 * @return bool
+	 */
 	protected function isExpired( $exptime ) {
 		return $exptime != $this->getMaxDateTime() && wfTimestamp( TS_UNIX, $exptime ) < time();
 	}
 
+	/**
+	 * @return string
+	 */
 	protected function getMaxDateTime() {
 		if ( time() > 0x7fffffff ) {
 			return $this->getDB()->timestamp( 1 << 62 );
@@ -366,6 +402,8 @@ class SqlBagOStuff extends BagOStuff {
 
 	/**
 	 * Delete objects from the database which expire before a certain date.
+	 * @param $timestamp string
+	 * @param $progressCallback bool|callback
 	 * @return bool
 	 */
 	public function deleteObjectsExpiringBefore( $timestamp, $progressCallback = false ) {

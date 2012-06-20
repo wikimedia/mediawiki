@@ -153,6 +153,7 @@ abstract class BagOStuff {
 	/**
 	 * @param $key string
 	 * @param $value mixed
+	 * @param $exptime int
 	 * @return bool success
 	 */
 	public function replace( $key, $value, $exptime = 0 ) {
@@ -166,7 +167,7 @@ abstract class BagOStuff {
 	 * @param $key String: Key to increase
 	 * @param $value Integer: Value to add to $key (Default 1)
 	 * @return null if lock is not possible else $key value increased by $value
-	 * @return success
+	 * @return bool success
 	 */
 	public function incr( $key, $value = 1 ) {
 		if ( !$this->lock( $key ) ) {
