@@ -119,6 +119,7 @@ class MemcachedBagOStuff extends BagOStuff {
 	 * the other control characters for compatibility with libmemcached
 	 * verify_key. We leave other punctuation alone, to maximise backwards
 	 * compatibility.
+	 * @param $key string
 	 * @return string
 	 */
 	public function encodeKey( $key ) {
@@ -126,6 +127,10 @@ class MemcachedBagOStuff extends BagOStuff {
 			array( $this, 'encodeKeyCallback' ), $key );
 	}
 
+	/**
+	 * @param $m array
+	 * @return string
+	 */
 	protected function encodeKeyCallback( $m ) {
 		return rawurlencode( $m[0] );
 	}

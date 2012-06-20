@@ -68,7 +68,7 @@ class MemcachedPhpBagOStuff extends MemcachedBagOStuff {
 	/**
 	 * @param $key
 	 * @param $timeout int
-	 * @return
+	 * @return bool
 	 */
 	public function lock( $key, $timeout = 0 ) {
 		return $this->client->lock( $this->encodeKey( $key ), $timeout );

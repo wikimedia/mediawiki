@@ -141,6 +141,7 @@ class MemcachedPeclBagOStuff extends MemcachedBagOStuff {
 	/**
 	 * @param $key string
 	 * @param $value int
+	 * @param $exptime int
 	 * @return Mixed
 	 */
 	public function add( $key, $value, $exptime = 0 ) {
@@ -188,8 +189,9 @@ class MemcachedPeclBagOStuff extends MemcachedBagOStuff {
 	 * the client, but some day we might find a case where it should be
 	 * different.
 	 *
-	 * @param $key The key used by the caller, or false if there wasn't one.
-	 * @param $result The return value
+	 * @param $key string The key used by the caller, or false if there wasn't one.
+	 * @param $result Mixed The return value
+	 * @return Mixed
 	 */
 	protected function checkResult( $key, $result ) {
 		if ( $result !== false ) {

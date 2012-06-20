@@ -35,6 +35,9 @@
 class DBABagOStuff extends BagOStuff {
 	var $mHandler, $mFile, $mReader, $mWriter, $mDisabled;
 
+	/**
+	 * @param $params array
+	 */
 	public function __construct( $params ) {
 		global $wgDBAhandler;
 
@@ -63,6 +66,7 @@ class DBABagOStuff extends BagOStuff {
 	}
 
 	/**
+	 * @param $blob string
 	 * @return array list containing value first and expiry second
 	 */
 	function decode( $blob ) {
@@ -76,6 +80,9 @@ class DBABagOStuff extends BagOStuff {
 		}
 	}
 
+	/**
+	 * @return resource
+	 */
 	function getReader() {
 		if ( file_exists( $this->mFile ) ) {
 			$handle = dba_open( $this->mFile, 'rl', $this->mHandler );
@@ -90,6 +97,9 @@ class DBABagOStuff extends BagOStuff {
 		return $handle;
 	}
 
+	/**
+	 * @return resource
+	 */
 	function getWriter() {
 		$handle = dba_open( $this->mFile, 'cl', $this->mHandler );
 
@@ -100,6 +110,10 @@ class DBABagOStuff extends BagOStuff {
 		return $handle;
 	}
 
+	/**
+	 * @param $key string
+	 * @return mixed|null|string
+	 */
 	function get( $key ) {
 		wfProfileIn( __METHOD__ );
 		wfDebug( __METHOD__ . "($key)\n" );
@@ -129,6 +143,12 @@ class DBABagOStuff extends BagOStuff {
 		return $val;
 	}
 
+	/**
+	 * @param $key string
+	 * @param $value mixed
+	 * @param $exptime int
+	 * @return bool
+	 */
 	function set( $key, $value, $exptime = 0 ) {
 		wfProfileIn( __METHOD__ );
 		wfDebug( __METHOD__ . "($key)\n" );
@@ -148,6 +168,11 @@ class DBABagOStuff extends BagOStuff {
 		return $ret;
 	}
 
+	/**
+	 * @param $key string
+	 * @param $time int
+	 * @return bool
+	 */
 	function delete( $key, $time = 0 ) {
 		wfProfileIn( __METHOD__ );
 		wfDebug( __METHOD__ . "($key)\n" );
@@ -165,6 +190,12 @@ class DBABagOStuff extends BagOStuff {
 		return $ret;
 	}
 
+	/**
+	 * @param $key string
+	 * @param $value mixed
+	 * @param $exptime int
+	 * @return bool
+	 */
 	function add( $key, $value, $exptime = 0 ) {
 		wfProfileIn( __METHOD__ );
 
@@ -197,6 +228,9 @@ class DBABagOStuff extends BagOStuff {
 		return $ret;
 	}
 
+	/**
+	 * @return Array
+	 */
 	function keys() {
 		$reader = $this->getReader();
 		$k1 = dba_firstkey( $reader );

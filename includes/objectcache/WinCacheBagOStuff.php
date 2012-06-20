@@ -74,6 +74,9 @@ class WinCacheBagOStuff extends BagOStuff {
 		return true;
 	}
 
+	/**
+	 * @return Array
+	 */
 	public function keys() {
 		$info = wincache_ucache_info();
 		$list = $info['ucache_entries'];
