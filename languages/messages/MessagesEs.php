@@ -506,7 +506,7 @@ $messages = array(
 'vector-simplesearch-preference' => 'Activar sugerencias de búsqueda mejoradas (piel Vector solamente)',
 'vector-view-create' => 'Crear',
 'vector-view-edit' => 'Editar',
-'vector-view-history' => 'Ver historial',
+'vector-view-history' => 'Ver el historial',
 'vector-view-view' => 'Leer',
 'vector-view-viewsource' => 'Ver fuente',
 'actions' => 'Acciones',
@@ -841,7 +841,7 @@ Puedes ignorar este mensaje si esta cuenta fue creada por error.',
 'suspicious-userlogout' => 'Tu solicitud de desconexión ha sido denegada, pues parece haber sido enviada desde un navegador defectuoso o un proxy caché.',
 
 # E-mail sending
-'php-mail-error-unknown' => 'Error desconocido en la función mail() de PHP',
+'php-mail-error-unknown' => 'Error desconocido en la función mail() de PHP.',
 'user-mail-no-addy' => 'Se ha intentado enviar correo electrónico sin una dirección de correo electrónico.',
 
 # Change password dialog
