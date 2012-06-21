@@ -4060,4 +4060,6 @@ Anderenfalls kannst du auch das untenstehende einfache Formular nutzen. Dein Kom
 'duration-centuries' => '$1 {{PLURAL:$1|Jahrhundert|Jahrhunderte}}',
 'duration-millennia' => '$1 {{PLURAL:$1|Jahrtausend|Jahrtausende}}',
 
+# Unknown messages
+'lockmanager-fail-svr-acquire' => 'Die Sperren auf Server $1 konnte nicht abgerufen werden.',
 );

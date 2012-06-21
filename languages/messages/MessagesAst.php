@@ -3777,4 +3777,6 @@ D\'otra miente, pues usar el formulariu cenciellu d\'abaxo. El to comentariu apa
 'duration-centuries' => '$1 {{PLURAL:$1|sieglu|sieglos}}',
 'duration-millennia' => '$1 {{PLURAL:$1|mileniu|milenios}}',
 
+# Unknown messages
+'lockmanager-fail-svr-acquire' => 'Nun se pudieron afitar los bloqueos nel sirvidor $1.',
 );

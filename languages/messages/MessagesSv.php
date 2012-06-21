@@ -3988,4 +3988,6 @@ Annars kan du använda det enkla formuläret nedan. Din kommentar kommer att lä
 'duration-centuries' => '$1 {{PLURAL:$1|sekel|sekel}}',
 'duration-millennia' => '$1 {{PLURAL:$1|millennium|millennier}}',
 
+# Unknown messages
+'lockmanager-fail-svr-acquire' => 'Kunde inte erhålla lås på servern $1 .',
 );

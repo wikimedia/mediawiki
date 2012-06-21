@@ -4053,4 +4053,6 @@ Sinon, vous pouvez utiliser le formulaire simplifié ci-dessous. Votre commentai
 'duration-centuries' => '$1 {{PLURAL:$1|siècle|siècles}}',
 'duration-millennia' => '$1 {{PLURAL:$1|millénaire|millénaires}}',
 
+# Unknown messages
+'lockmanager-fail-svr-acquire' => "Impossible d'acquérir des verrous sur le serveur $1.",
 );

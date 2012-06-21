@@ -526,6 +526,7 @@ $1 ਘੰਟੇ ਵਿੱਚ। ਨੁਕਸਾਨ ਤੋਂ ਬਚਣ ਲਈ, $
 
 # Revision feed
 'history-feed-title' => 'ਰੀਵਿਜ਼ਨ ਅਤੀਤ',
+'history-feed-item-nocomment' => '$1 ਤੋਂ $2 ਵੱਜੇ',
 
 # Revision deletion
 'rev-deleted-comment' => '(ਟਿੱਪਣੀ ਹਟਾਈ)',

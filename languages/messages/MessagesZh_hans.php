@@ -662,7 +662,7 @@ $2',
 
 您可以继续以匿名方式使用{{SITENAME}}，或再次以相同或不同用户身份[[Special:UserLogin|登录]]。请注意一些页面可能仍然显示您为登录状态，直到您清空您的浏览器缓存为止。",
 'welcomecreation' => '== 欢迎，$1！ ==
-您的账户已经建立。别忘了设置您的[[Special:Preferences|{{SITENAME}}个人参数]]。',
+你的账户已创建。请别忘记更改你的[[Special:Preferences|{{SITENAME}}系统设置]]。',
 'yourname' => '用户名：',
 'yourpassword' => '密码：',
 'yourpasswordagain' => '再次输入密码：',
@@ -883,12 +883,12 @@ $2
 请在创建／编辑该页之前进行核对。',
 'userpage-userdoesnotexist-view' => '用户账户“$1”未曾创建。',
 'blocked-notice-logextract' => '这位用户目前已被封禁。以下提供最近的封禁日志以供参考：',
-'clearyourcache' => "'''注意：在保存以后，您必须绕过浏览器缓存才能看到所作出的改变。'''
-* '''火狐（Firefox）／Safari'''：按住“Shift”键再点击“刷新”，或按下“Ctrl-F5”或“Ctrl-R”（Mac上为“⌘-R”）
-* '''谷歌浏览器（Google Chrome）'''：按下“Ctrl-Shift-R”（Mac上为“⌘-Shift-R”）
-* '''Internet Explorer'''：按住“Ctrl”键再点击“刷新”，或按下“Ctrl-F5”
-* '''Konqueror'''：点击“刷新”或按下“F5”
-* '''Opera'''：在“工具→首选项”中清除缓存",
+'clearyourcache' => "'''注意：'''保存之后，你必须清除浏览器缓存才能看到做出的更改。
+* '''火狐（Firefox）/Safari：'''按住“Shift”，同时单击“刷新”，或按“Ctrl-F5”或“Ctrl-R”（Mac为“⌘-R”）
+* '''谷歌浏览器（Google Chrome）：'''按“Ctrl-Shift-R”（Mac为“⌘-Shift-R”）
+* '''Internet Explorer：'''按住“Ctrl”，同时单击“刷新”，或按“Ctrl-F5”
+* '''Konqueror：'''点击“刷新”或按“F5”
+* '''Opera：'''在“工具→首选项”中清除缓存",
 'usercssyoucanpreview' => "'''提示：''' 在保存前请用“{{int:showpreview}}”按钮来测试您新的 CSS 。",
 'userjsyoucanpreview' => "'''提示：''' 在保存前请用“{{int:showpreview}}”按钮来测试您新的 JavaScript 。",
 'usercsspreview' => "'''记住您只是在预览您的个人 CSS。'''
@@ -1277,7 +1277,7 @@ $1",
 'columns' => '列：',
 'searchresultshead' => '搜索',
 'resultsperpage' => '每页显示链接数：',
-'stub-threshold' => '<a href="#" class="stub">短页面链接</a>格式门槛值（字节）：',
+'stub-threshold' => '<a href="#" class="stub">短页面链接</a>格式阈值（字节）：',
 'stub-threshold-disabled' => '已停用',
 'recentchangesdays' => '最近更改中显示的天数：',
 'recentchangesdays-max' => '最多$1天',
@@ -1567,10 +1567,9 @@ $1",
 'upload-recreate-warning' => "'''警告：一个相同名字的文件曾经被删除或者移动至别处。'''
 
 这个页面的删除和移动日志在这里提供以便参考：",
-'uploadtext' => "使用下面的表单来上传文件。
-要查看或搜索以前上传的文件，可以进入[[Special:FileList|文件上传列表]]，（重新）上传也将在[[Special:Log/upload|上传日志]]中记录，而删除将在[[Special:Log/delete|删除日志]]中记录。
+'uploadtext' => "请使用下面的表格上传文件。要查看或搜索以前上传的文件，可以进入[[Special:FileList|文件上传列表]]，（重新）上传也将在[[Special:Log/upload|上传日志]]中记录，而删除将在[[Special:Log/delete|删除日志]]中记录。
 
-要在页面中加入文件，使用以下其中一种形式的链接：
+要在页面中加入文件，请使用一种以下形式的链接：
 * '''<tt><nowiki>[[</nowiki>{{ns:file}}<nowiki>:File.jpg]]</nowiki></tt>'''使用文件的完整版本
 * '''<tt><nowiki>[[</nowiki>{{ns:file}}<nowiki>:File.png|200px|thumb|left|替换文字]]</nowiki></tt>'''使用放置于左侧的一个框内的200像素宽的图片，同时使用“替换文字”作为描述
 * '''<tt><nowiki>[[</nowiki>{{ns:media}}<nowiki>:File.ogg]]</nowiki></tt>'''直接链接到文件而不显示文件",

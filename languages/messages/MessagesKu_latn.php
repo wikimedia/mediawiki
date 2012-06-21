@@ -632,8 +632,9 @@ Ji bo alîkariyê binêre: [[{{MediaWiki:Helppage}}|Alîkarî]].<br />
 Heke tu bi şaşîtî hatî, bizîvire rûpela berê.",
 'anontalkpagetext' => "----''Ev rûpela gotûbêjê ye ji bo bikarhênerên nediyarkirî ku hîn hesabekî xwe çênekirine an jî bikarnaînin. Ji ber vê yekê divê em wan bi navnîşana IP ya hejmarî nîşan bikin. Navnîşaneke IP dikare ji aliyê gelek kesan ve were bikaranîn. Heger tu bikarhênerekî nediyarkirî bî û bawerdikî ku nirxandinên bê peywend di der barê te de hatine kirin ji kerema xwe re [[Special:UserLogin|hesabekî xwe veke an jî têkeve]] da ku tu xwe ji tevlîheviyên bi bikarhênerên din re biparêzî.''",
 'noarticletext' => 'Ev rûpel niha vala ye, tu dikarî [[Special:Search/{{PAGENAME}}|Di nav gotarên din de li "{{PAGENAME}}" bigere]] an [{{fullurl:{{FULLPAGENAME}}|action=edit}} vê rûpelê biguherînî].',
-'noarticletext-nopermission' => 'Ev rûpel niha vala ye, tu dikarî [[Special:Search/{{PAGENAME}}|Di nav gotarên din de li "{{PAGENAME}}" bigere]] an [{{fullurl:{{FULLPAGENAME}}|action=edit}} vê rûpelê biguherînî].
-Ev rûpel niha vala ye, tu dikarî [[Special:Search/{{PAGENAME}}|Di nav gotarên din de li "{{PAGENAME}}" bigere]] an [{{fullurl:{{FULLPAGENAME}}|action=edit}} vê rûpelê biguherînî].',
+'noarticletext-nopermission' => 'Ev rûpel niha vala ye. 
+Tu dikarî [[Special:Search/{{PAGENAME}}|Di nav gotarên din de li "{{PAGENAME}}" bigere]] 
+an <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} vê rûpelê biguherînî]</span>.',
 'userpage-userdoesnotexist' => 'Hesabê bikarhêneran "<nowiki>$1</nowiki>" nehatiye qeydkirin. Heke tu bixwazî vê rûpelê çêkî/biguherînî ji kerema xwe lê binêre.',
 'userpage-userdoesnotexist-view' => 'Hesabê bikarhêner  "$1"  nehatiye qeyd kirin.',
 'blocked-notice-logextract' => 'Ev bikarhêner hatiye astengkirin.

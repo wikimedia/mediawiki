@@ -3847,4 +3847,6 @@ O kaya, maaari mong gamitin ang maginhawang pormularyo sa ibaba. Ang iyong pagpu
 'duration-centuries' => '$1 {{PLURAL:$1|daantaon|mga daantaon}}',
 'duration-millennia' => '$1 {{PLURAL:$1|milenyo|mga milenyo}}',
 
+# Unknown messages
+'lockmanager-fail-svr-acquire' => 'Hindi magawang kunin ang mga kandado sa tagapaghain na $1.',
 );

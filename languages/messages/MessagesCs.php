@@ -4039,4 +4039,6 @@ Jinak můžete využít jednoduchý formulář níže. Váš komentář bude př
 'duration-centuries' => '$1 {{PLURAL:$1|století}}',
 'duration-millennia' => '$1 {{PLURAL:$1|tisíciletí}}',
 
+# Unknown messages
+'lockmanager-fail-svr-acquire' => 'Nepodařilo se získat zámek serveru $1.',
 );

@@ -2618,7 +2618,7 @@ Për piasì, ch'a vìsita la [//www.mediawiki.org/wiki/Localisation Localisassio
 'import-interwiki-text' => "Che a selession-a na wiki e ël tìtol dla pàgina da amporté.
 Date dle revision e stranòm dj'editor a resteran piàjit sù 'cò lor.
 Tute j'amportassion antra wiki diferente a resto marcà ant ël [[Special:Log/import|Registr dj'amportassion]].",
-'import-interwiki-source' => 'Sorziss wiki/pàgina:',
+'import-interwiki-source' => 'Wiki e pàgina sorgiss:',
 'import-interwiki-history' => 'Còpia tute le version stòriche dë sta pàgina-sì',
 'import-interwiki-templates' => 'Ansëriss tùit jë stamp',
 'import-interwiki-submit' => 'Amporté',
@@ -2777,7 +2777,7 @@ Sòn a l'é motobin belfé che a sia rivà përchè a-i era n'anliura a un sit e
 'spambot_username' => 'MediaWiki - trigomiro che a-j dà deuit a la rumenta',
 'spam_reverting' => "Buta andaré a l'ùltima version che a l'avèissa pa andrinta dj'anliure a $1",
 'spam_blanking' => "Pàgina dësveujdà, che tute le version a l'avìo andrinta dj'anliure a $1",
-'spam_deleting' => 'Tute le revision a contenìo colegament a $1, scanselé',
+'spam_deleting' => 'Tute le revision a contnisìo dle liure a $1, scancelament',
 
 # Info page
 'pageinfo-title' => 'Anformassion për "$1"',

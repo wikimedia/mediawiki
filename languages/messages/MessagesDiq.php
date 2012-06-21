@@ -745,8 +745,8 @@ Eke vurnayişê parolayi, şıma nêwaşt ya zi parolayê şıma ameyo şıma vi
 'noemailcreate' => 'Şıma gani yew parolayo meqbul peda bıkeri',
 'passwordsent' => '"$1" No name de yew e-posta erşawiya (ruşya). hesabê xo, şıma wext mesaj gırewt u çax akere.',
 'blocked-mailpassword' => 'Cıkewetışê na keyepel de şıma qedexe biye, ey ra newe yew şifre nêerşawyeno.',
-'eauthentsent' => 'Adreso ke şıma dayo ma, ma yew e-posta erşawıt uca, o e-posta de kodê tesdiq kerdış esto.
-Heta ke şıma o e-posta tesdiq nêkeri ma yewna e-posta şıma ri nêerşaweni.',
+'eauthentsent' => 'Adreso ke şıma dayo ma, ma yew e-posta rışt uca, o e-posta de kodê araşt kerdış esto.
+Heta ke şıma o e-postaaraşt nêkeri ma yewna e-posta şıma ri nêrışêno.',
 'throttled-mailpassword' => 'Parola vir ardış, zerreyê {{PLURAL:$1|yew seet|$1 seet}} de erşawiya.
 Parola her {{PLURAL:$1|yew seete|$1 seete}} de yew rey erşawiyena.',
 'mailerror' => 'Erşawıtışe xetayê e-posta: $1',
@@ -756,7 +756,7 @@ xulasa ney kesê ke IP adresê şıma xebıtneni hini nêeşkeni ney ra zêdêr 
 'emailnotauthenticated' => 'No format de nuştışê e-postayi qebul nêbeno.
 Yew formato meqbul de adresê e-posta bınuse ya zi veng bıverde.',
 'noemailprefs' => 'Hesab biyo a.',
-'emailconfirmlink' => 'E-postayê xo tesdiq kere',
+'emailconfirmlink' => 'E-postayê xo araşt kerê',
 'invalidemailaddress' => 'No format de nuştışê e-postayi qebul nêbeno. Yew formato meqbul de adresê e-posta bınuse ya zi veng bıverde.',
 'cannotchangeemail' => 'E-postay hesabi ena wiki sera nêvurneyêno.',
 'emaildisabled' => 'Na site ra e-posta nêrışêno.',
@@ -827,7 +827,7 @@ Parola vêrdiye: $2',
 # Special:ChangeEmail
 'changeemail' => 'E-posta adresa xo bıvurnê',
 'changeemail-header' => 'E-posya adresta hesabdê xo bıvurnê',
-'changeemail-text' => 'Şıma qayılê ke e-postay xo bıvurnê se enê formi pırkerê. Qandê tesdiq kerdışi zi parolay xo şıma de bınusnê',
+'changeemail-text' => 'Şıma qayılê ke e-postay xo bıvurnê se enê formi pırkerê. Qandê araşt kerdışi zi parolay xo şıma de bınusnê',
 'changeemail-no-info' => 'Resayışê ena pela rê Dekewtış icab keno.',
 'changeemail-oldemail' => 'E-postay şımaya newki:',
 'changeemail-newemail' => 'E-postay şımayê newe:',
@@ -844,11 +844,11 @@ Parola vêrdiye: $2',
 'link_tip' => 'Gırê dahili',
 'extlink_sample' => 'http://www.example.com titleya gire',
 'extlink_tip' => 'Çımeyo tewer (http:// prefix)',
-'headline_sample' => 'nuşteyo headline',
+'headline_sample' => 'nuştey xeta seri',
 'headline_tip' => 'Ket 2 headline',
 'nowiki_sample' => 'Non-format nuşte itiya ra bıerz',
 'nowiki_tip' => 'Formatê wiki iptal bık',
-'image_sample' => 'resım bıerze cı',
+'image_sample' => 'Misal resim.jpg',
 'image_tip' => 'Dosyaya embedi',
 'media_sample' => 'misal.jpg',
 'media_tip' => 'Gırey dosya',
@@ -1456,7 +1456,7 @@ Kaberê bini ke şıma de kewti irtıbat, adresa e-postey şıma eşkera nêbena
 # Groups
 'group' => 'Grup:',
 'group-user' => 'Karberi',
-'group-autoconfirmed' => 'Karberê ke otomatikmen tesdiq biy',
+'group-autoconfirmed' => 'Karbero ke xob xo biyê araşt',
 'group-bot' => 'Boti',
 'group-sysop' => 'İdarekari',
 'group-bureaucrat' => 'Burokrati',
@@ -1464,14 +1464,14 @@ Kaberê bini ke şıma de kewti irtıbat, adresa e-postey şıma eşkera nêbena
 'group-all' => '(pêro)',
 
 'group-user-member' => '{{GENDER:$1|karber}}',
-'group-autoconfirmed-member' => '{{GENDER:$1|Karbero ke otomotik tesdiq biyo}}',
+'group-autoconfirmed-member' => '{{GENDER:$1|Karbero ke xob xo biyê araşt}}',
 'group-bot-member' => '{{GENDER:$1|bot}}',
 'group-sysop-member' => '{{GENDER:$1|İdarekar}}',
 'group-bureaucrat-member' => '{{GENDER:$1|buroqrat}}',
 'group-suppress-member' => '{{GENDER:$1|Temaşekar}}',
 
 'grouppage-user' => '{{ns:project}}:Karberi',
-'grouppage-autoconfirmed' => '{{ns:project}}: karberê tesdiqbiyaey',
+'grouppage-autoconfirmed' => '{{ns:project}}:Karbero ke xob xo biyê araşt',
 'grouppage-bot' => '{{ns:project}}:Boti',
 'grouppage-sysop' => '{{ns:project}}:İdarekeri',
 'grouppage-bureaucrat' => '{{ns:project}}:Burokrati',
@@ -1494,7 +1494,7 @@ Kaberê bini ke şıma de kewti irtıbat, adresa e-postey şıma eşkera nêbena
 'right-reupload-own' => 'Dosyeyê ke to bar kerdi, inan sero bınuse',
 'right-reupload-shared' => 'Dosyeyê ke ambarê medyao barekerde de, inan mehelli wedare',
 'right-upload_by_url' => 'Yew URL ra dosyan bar bıke',
-'right-purge' => 'Seba yew pela ke tesdiq nêbiya, viria (cache) keypele pak bıke',
+'right-purge' => 'Verde ju pela araşt kerdışi hafızay sita besterne',
 'right-autoconfirmed' => 'Pelanê ke nême kılit biyê, inan bıvurne',
 'right-bot' => 'Zey yew karê xoserkerdey be',
 'right-nominornewtalk' => 'Pelanê werênayışan rê vurnayışê qıckeki çıniyê, qutiya mesacanê newiyan bıgurene',
@@ -1601,7 +1601,7 @@ Kaberê bini ke şıma de kewti irtıbat, adresa e-postey şıma eşkera nêbena
 'rcshowhideanons' => 'karberanê anoniman $1',
 'rcshowhidepatr' => '$1 vurnayışê ke dewriya geyrayê',
 'rcshowhidemine' => 'nuştışanê mı $1',
-'rclinks' => 'Peyni rocan de vurnayışa $1  $2 roci dı<br />$3',
+'rclinks' => 'Peyni $2 rocan de vurnayışa $1  bımocne <br />$3',
 'diff' => 'ferq',
 'hist' => 'verên',
 'hide' => 'Bınımne',
@@ -2381,7 +2381,7 @@ Qey malumato ziyede [[Special:ProtectedPages|Peleyê ke star biye]] bewni rê ê
 'prot_1movedto2' => 'nameyê [[$1]] peli yo newe: [[$2]]',
 'protect-badnamespace-title' => 'Heruna naman itad starêna',
 'protect-badnamespace-text' => 'Na herunda namide peley nêstarênê.',
-'protect-legend' => 'pawıtışi tesdiq bıker',
+'protect-legend' => 'Pawıtışi araşt ke',
 'protectcomment' => 'Sebeb:',
 'protectexpiry' => 'Qediyeno:',
 'protect_expiry_invalid' => 'Demo qediyayışi raşt niyo.',
@@ -2680,7 +2680,7 @@ eke şıma ıney gure keni u şıma xo ra emini, taahhud bıde wexta gure şıma
 'unlockconfirm' => 'Ya, ez wazene database a bikeri.',
 'lockbtn' => 'Database kilit bik',
 'unlockbtn' => 'Database a bik',
-'locknoconfirm' => 'şıma qutiyê tesdiq kerdışi nişane nıkerd',
+'locknoconfirm' => 'Şıma qutiyê araşt kerdışi nêweçinê.',
 'lockdbsuccesssub' => 'Database kilit biya',
 'unlockdbsuccesssub' => 'Database a biya',
 'lockdbsuccesstext' => 'database qefıliya.<br />
@@ -3627,9 +3627,9 @@ $8',
 # E-mail address confirmation
 'confirmemail' => 'Adresê emaîlî xo konfirme bike',
 'confirmemail_noemail' => 'Yew emaîlê tu raştîyê çin o ke [[Special:Preferences|tercihê karberî]] ayar bike.',
-'confirmemail_text' => 'qey şuxulnayişê e-postayê wikiyi gani ewwil e-posyaê şıma tesdiq bıbo.
-adresa şıma re qey erşawıtışê e-postayê tesdiqi, butonê cêrıni bıtıknê.
-e-posta yo ke erşawiyeno tede gıreyê kodê tesdiqi esto, gıreyi bıtıkne akerê u e-postayê xo tesdiq kerê.',
+'confirmemail_text' => 'Qey gurweyayışê e-postayê wikiyi gani veror e-postayê şıma araşt bıbo.
+Adresa şıma re qey erşawıtışê e-postayê araştin, butonê cêrıni pıploxnê.
+E-posta yo ke erşawiyeno tede gıreyê kodê araşti esto, gıreyi pıploxne akerê u e-postayê xo araşt kerê.',
 'confirmemail_pending' => 'Yew codê konfirmasyonî ma ti ra şiravt;
 Eka ti newe hesabê xo viraşt, ti gani yew di dekika vindero u email xo kontrol bike, yani reyna yew hesab meviraz.',
 'confirmemail_send' => 'Yew kodê konfirmasyonî email mina bişirave',
@@ -3651,15 +3651,15 @@ Ti eşkeno [[Special:UserLogin|ci kewt]].',
 'confirmemail_body' => 'Brayo delal, mara ke şıma no IP-adresi ra,
 keyepelê {{SITENAME}}i de pêno $2 e-postayi hesab kerda.
 
-eke raşta no e-posta eyê şımayo şıma gani tesdiq bıkerî, qey tesdiq kerdışi gani karê e-postayê keyepeli {{SITENAME}} aktif bıbo, qey aktif kerdışi gıreyê cêrêni bıtıkne.
+eke raşta no e-posta eyê şımayo şıma gani araşt bıkerî, qey araşt kerdışi gani karê e-postayê keyepeli {{SITENAME}} aktif bıbo, qey aktif kerdışi gıreyê cêrêni bıtıkne.
 
 $3
 
-eke şıma hesab *nê akerdo*, qey ibtalê tesdiqkerdışê adresa e-postayi gıreyê cêrıni bıtıknê:
+eke şıma hesab *nê akerdo*, qey terqnayışê araşt kerdışê adresa e-postayi gıreyê cêrıni pıploxnê:
 
 $5
 
-kodê tesdiqi heta ıney tarixi $4 meqbulo.',
+kodê araşti heta ıney tarixi $4 meqbulo.',
 'confirmemail_body_changed' => 'Yew ten, muhtemelen şıma no IP-adresi $1 ra,
 keyepelê {{SITENAME}}i de pê no $2 e-postayi hesab kerd a.
 
@@ -4109,4 +4109,6 @@ Ena sita dı newke xırabiya teknik esta.',
 'duration-centuries' => '$1 {{PLURAL:$1|seserre|seserri}}',
 'duration-millennia' => '$1 {{PLURAL:$1|milenyum|milenyumi}}',
 
+# Unknown messages
+'lockmanager-fail-svr-acquire' => 'Kılitê teqdimkarê $1i nêvêniyenê.',
 );

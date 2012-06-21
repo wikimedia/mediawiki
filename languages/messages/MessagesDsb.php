@@ -3726,4 +3726,6 @@ Hować móžoš slědujucy jadnory formular wužywaś. Twój komentar pśidajo s
 'duration-centuries' => '$1 {{PLURAL:$1|stolěśe|stolěśi|stolěśa|stolěśow}}',
 'duration-millennia' => '$1 {{PLURAL:$1|lěttysac|lěttysaca|lěttysace|lěttysacow}}',
 
+# Unknown messages
+'lockmanager-fail-svr-acquire' => 'Zastajenja na serwer $1 njedaju se wótwołaś.',
 );

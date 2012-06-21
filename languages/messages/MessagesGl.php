@@ -3508,7 +3508,7 @@ Os demais agocharanse por omisión.
 
 'exif-isospeedratings-overflow' => 'Superior a 65535',
 
-'exif-iimcategory-ace' => 'Arte, cultura e entretemento',
+'exif-iimcategory-ace' => 'Arte, cultura e lecer',
 'exif-iimcategory-clj' => 'Crime e dereito',
 'exif-iimcategory-dis' => 'Desastres e accidentes',
 'exif-iimcategory-fin' => 'Economía e negocios',
@@ -3938,4 +3938,6 @@ En caso contrario, pode empregar o formulario sinxelo inferior. O seu comentario
 'duration-centuries' => '$1 {{PLURAL:$1|século|séculos}}',
 'duration-millennia' => '$1 {{PLURAL:$1|milenio|milenios}}',
 
+# Unknown messages
+'lockmanager-fail-svr-acquire' => 'Non se puideron obter os peches no servidor $1.',
 );

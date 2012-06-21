@@ -3864,4 +3864,6 @@ Le immagini vengono mostrate alla massima risoluzione disponibile, per gli altri
 'duration-centuries' => '$1 {{PLURAL:$1|secolo|secoli}}',
 'duration-millennia' => '$1 {{PLURAL:$1|millennio|millenni}}',
 
+# Unknown messages
+'lockmanager-fail-svr-acquire' => 'Impossibile acquisire blocchi sul server $1.',
 );

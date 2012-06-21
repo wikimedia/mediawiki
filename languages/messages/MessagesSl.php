@@ -2160,10 +2160,8 @@ Na voljo so morda [[{{MediaWiki:Listgrouprights-helppage}}|dodatne informacije]]
 'mailnologintext' => 'Za pošiljanje e-pošte drugim uporabnikom se [[Special:UserLogin|prijavite]] in v [[Special:Preferences|nastavitvah]] vpišite veljaven e-poštni naslov.',
 'emailuser' => 'Pošlji uporabniku e-pismo',
 'emailpage' => 'Pošlji uporabniku e-pismo',
-'emailpagetext' => "S spodnjim obrazcem lahko uporabniku pošljete e-poštno sporočilo.
-E-poštni naslov, ki ste ga vpisali v [[Special:Preferences|uporabniških nastavitvah]], bo v e-sporočilu naveden kot naslov »Od:«, tako da bo prejemnik lahko odgovoril neposredno vam.
-
-'''Pomembno:''' funkcija je namenjena za zasebno sporočanje uporabnikom. O vsebinskih zadevah komunicirajte raje na ustrezni [[Pomoč:Pogovorna stran|pogovorni strani]] da se zagotovi udeležba skupnosti.",
+'emailpagetext' => 'S spodnjim obrazcem lahko uporabniku pošljete e-poštno sporočilo.
+E-poštni naslov, ki ste ga vpisali v [[Special:Preferences|uporabniških nastavitvah]], bo v e-sporočilu naveden kot naslov »Od:«, tako da bo prejemnik lahko odgovoril neposredno vam.',
 'usermailererror' => 'Predmet e-pošte je vrnil napako:',
 'defemailsubject' => 'Elektronska pošta {{GRAMMAR:rodilnik|{{SITENAME}}}} od uporabnika »$1«',
 'usermaildisabled' => 'Uporabniška e-pošta je onemogočena',
@@ -3876,4 +3874,6 @@ V nasprotnem primeru lahko uporabite preprost obrazec spodaj. Vašo pripombo bom
 'duration-centuries' => '$1 {{PLURAL:$1|stoletje|stoletji|stoletja|stoletij}}',
 'duration-millennia' => '$1 {{PLURAL:$1|tisočletje|tisočletji|tisočletja|tisočletij}}',
 
+# Unknown messages
+'lockmanager-fail-svr-acquire' => 'Ne morem pridobiti zaklepov na strežniku $1.',
 );
