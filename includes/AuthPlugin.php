@@ -34,6 +34,12 @@
  * someone logs in who can be authenticated externally.
  */
 class AuthPlugin {
+
+	/**
+	 * @var string
+	 */
+	protected $domain;
+
 	/**
 	 * Check whether there exists a user account with the given name.
 	 * The name will be normalized to MediaWiki's requirements, so
@@ -89,7 +95,7 @@ class AuthPlugin {
 	 * @return string
 	 */
 	public function getDomain() {
-		if ( $this->domain ) {
+		if ( isset( $this->domain ) ) {
 			return $this->domain;
 		} else {
 			return 'invaliddomain';
