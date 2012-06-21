@@ -468,7 +468,7 @@ class XmlDumpWriter {
 	 * @return string
 	 */
 	function schemaVersion() {
-		return "0.7";
+		return "0.8"; #FIXME: Make sure to bump this to > 0.7 when merging Wikidata branch!
 	}
 
 	/**
@@ -488,7 +488,7 @@ class XmlDumpWriter {
 			'xmlns'              => "http://www.mediawiki.org/xml/export-$ver/",
 			'xmlns:xsi'          => "http://www.w3.org/2001/XMLSchema-instance",
 			'xsi:schemaLocation' => "http://www.mediawiki.org/xml/export-$ver/ " .
-			                        "http://www.mediawiki.org/xml/export-$ver.xsd",
+			                        "http://www.mediawiki.org/xml/export-$ver.xsd", #TODO: how do we get a new version up there?
 			'version'            => $ver,
 			'xml:lang'           => $wgLanguageCode ),
 			null ) .
