@@ -29,13 +29,13 @@
 		accesskeyTip = $link.attr( 'title' ).match( mw.util.tooltipAccessKeyRegexp );
 		$li = $link.closest( 'li' );
 		/**
-		 * Trigger a 'watch' event for this List item.
+		 * Trigger a 'watchpage' event for this List item.
 		 * Announce the otherAction value as the first param.
 		 * Used to monitor the state of watch link.
 		 * TODO: Revise when system wide hooks are implemented
 		 */
 		if( state === undefined ) {
-			$li.trigger( 'watch.mw', otherAction );
+			$li.trigger( 'watchpage.mw', otherAction );
 		}
 
 		$link
