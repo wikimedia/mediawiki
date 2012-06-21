@@ -84,6 +84,19 @@ class AuthPlugin {
 	}
 
 	/**
+	 * Get the user's domain
+	 *
+	 * @return string
+	 */
+	public function getDomain() {
+		if ( $this->domain ) {
+			return $this->domain;
+		} else {
+			return 'invaliddomain';
+		}
+	}
+
+	/**
 	 * Check to see if the specific domain is a valid domain.
 	 *
 	 * @param $domain String: authentication domain.

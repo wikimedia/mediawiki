@@ -71,6 +71,7 @@ upgrade PHP if you have not done so prior to upgrading MediaWiki.
 * cleanupSpam.php now can delete spam pages if --delete was specified instead of blanking
   them.
 * Added new hook ChangePasswordForm to allow adding of additional fields in Special:ChangePassword
+* Added new function getDomain to AuthPlugin for getting a user's domain
 
 === Bug fixes in 1.20 ===
 * (bug 30245) Use the correct way to construct a log page title.
