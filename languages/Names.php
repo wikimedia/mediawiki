@@ -90,8 +90,8 @@
 	'crh-latn' => "\xE2\x80\xAAQırımtatarca (Latin)\xE2\x80\xAC",       # Crimean Tatar (Latin)
 	'crh-cyrl' => "\xE2\x80\xAAКъырымтатарджа (Кирилл)\xE2\x80\xAC",       # Crimean Tatar (Cyrillic)
 	'cs' => 'česky',	# Czech
-	'csb' => 'Kaszëbsczi',	# Cassubian
-	'cu' => 'Словѣ́ньскъ / ⰔⰎⰑⰂⰡⰐⰠⰔⰍⰟ',	# Old Church Slavonic (ancient language)
+	'csb' => 'kaszëbsczi',	# Cassubian
+	'cu' => 'словѣ́ньскъ / ⰔⰎⰑⰂⰡⰐⰠⰔⰍⰟ',	# Old Church Slavonic (ancient language)
 	'cv' => 'Чӑвашла',	# Chuvash
 	'cy' => 'Cymraeg',		# Welsh
 	'da' => 'dansk',		# Danish
@@ -100,7 +100,7 @@
 	'de-ch' => 'Schweizer Hochdeutsch',		# Swiss Standard German
 	'de-formal' => "\xE2\x80\xAADeutsch (Sie-Form)\xE2\x80\xAC",		# German - formal address ("Sie")
 	'diq' => 'Zazaki',		# Zazaki
-	'dsb' => 'Dolnoserbski', # Lower Sorbian
+	'dsb' => 'dolnoserbski', # Lower Sorbian
 	'dtp' => 'Dusun Bundu-liwan', # Central Dusun
 	'dv' => 'ދިވެހިބަސް',		# Dhivehi
 	'dz' => 'ཇོང་ཁ',		# Dzongkha (Bhutan)
@@ -152,7 +152,7 @@
 	'hil' => 'Ilonggo',	# Hiligaynon
 	'ho' => 'Hiri Motu',	# Hiri Motu
 	'hr' => 'hrvatski',		# Croatian
-	'hsb' => 'Hornjoserbsce',	# Upper Sorbian
+	'hsb' => 'hornjoserbsce',	# Upper Sorbian
 	'ht'  => 'Kreyòl ayisyen',		# Haitian Creole French
 	'hu' => 'magyar',		# Hungarian
 	'hy' => 'Հայերեն',	# Armenian
@@ -307,7 +307,7 @@
 	'roa-rup' => 'Armãneashce', # Aromanian (deprecated code, 'rup' exists in ISO 693-3)
 	'roa-tara' => 'tarandíne',	# Tarantino
 	'ru' => 'русский',	# Russian
-	'rue' => 'Русиньскый',	# Rusyn
+	'rue' => 'русиньскый',	# Rusyn
 	'rup' => 'Armãneashce', # Aromanian
 	'ruq' => 'Vlăheşte',	# Megleno-Romanian (multiple scripts - defaults to Latin)
 	'ruq-cyrl' => 'Влахесте',	# Megleno-Romanian (Cyrillic script)
@@ -325,7 +325,7 @@
 	'se' => 'sámegiella',	# Northern Sami
 	'sei' => 'Cmique Itom',	# Seri
 	'sg' => 'Sängö',		# Sango/Sangho
-	'sgs' => 'Žemaitėška', # Samogitian
+	'sgs' => 'žemaitėška', # Samogitian
 	'sh' => 'srpskohrvatski / српскохрватски', # Serbocroatian
 	'shi' => 'Tašlḥiyt/ⵜⴰⵛⵍⵃⵉⵜ',    # Tachelhit (multiple scripts - defaults to Latin)
 	'shi-tfng' => 'ⵜⴰⵛⵍⵃⵉⵜ',    # Tachelhit (Tifinagh script)
@@ -350,7 +350,7 @@
 	'su' => 'Basa Sunda',	# Sundanese
 	'sv' => 'svenska',		# Swedish
 	'sw' => 'Kiswahili',	# Swahili
-	'szl' => 'Ślůnski',	# Silesian
+	'szl' => 'ślůnski',	# Silesian
 	'ta' => 'தமிழ்',	# Tamil
 	'tcy' => 'ತುಳು', # Tulu
 	'te' => 'తెలుగు',	# Telugu
