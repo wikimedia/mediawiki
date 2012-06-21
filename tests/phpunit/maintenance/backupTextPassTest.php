@@ -382,7 +382,7 @@ class TextPassDumperTest extends DumpTestCase {
 		$this->assertEmpty( $files, "Remaining unchecked files" );
 
 		// ... and have dealt with more than one checkpoint file
-		$this->assertGreaterThan( 1, $checkpointFiles, "# of checkpoint files" );
+		$this->assertGreaterThan( 1, $checkpointFiles, "expected more than 1 checkpoint to have been created. Checkpoint interval is $checkpointAfter seconds, maybe your computer is too fast?" );
 
 		$this->expectETAOutput();
 	}
