@@ -102,14 +102,14 @@ abstract class ApiTestCase extends MediaWikiLangTestCase {
 		return $data;
 	}
 
-	protected function getTokenList( $user ) {
-		$data = $this->doApiRequest( array(
-			'action' => 'query',
-			'titles' => 'Main Page',
-			'intoken' => 'edit|delete|protect|move|block|unblock',
-			'prop' => 'info' ), false, $user->user );
-		return $data;
-	}
+        protected function getTokenList( ApiTestUser $user, Array $session = null ) {
+                $data = $this->doApiRequest( array(
+                        'action' => 'query',
+                        'titles' => 'Main Page',
+                        'intoken' => 'edit|delete|protect|move|block|unblock',
+                        'prop' => 'info' ), $session, false, $user->user );
+                return $data;
+        }
 }
 
 class UserWrapper {
