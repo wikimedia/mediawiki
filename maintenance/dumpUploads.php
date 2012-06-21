@@ -80,6 +80,7 @@ By default, outputs relative paths against the parent directory of \$wgUploadDir
 		$image = $dbr->tableName( 'image' );
 		$imagelinks = $dbr->tableName( 'imagelinks' );
 
+		//TODO: abstract this SQL query with an extended update method in Database class (cf. bug 26670)
 		$sql = "SELECT DISTINCT il_to, img_name
 			FROM $imagelinks
 			LEFT OUTER JOIN $image

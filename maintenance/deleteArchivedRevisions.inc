@@ -45,7 +45,7 @@ class DeleteArchivedRevisionsImplementation {
 
 		# Delete as appropriate
 		$maint->handleOutput( "Deleting archived revisions... " );
-		$dbw->query( "DELETE FROM $tbl_arch" );
+		$dbw->delete( $tbl_arch, '*' );
 
 		$count = $dbw->affectedRows();
 		$deletedRows = $count != 0;

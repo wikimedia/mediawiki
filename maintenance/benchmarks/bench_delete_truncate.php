@@ -17,6 +17,7 @@ class BenchmarkDeleteTruncate extends Benchmarker {
 		$dbw = wfGetDB( DB_MASTER );
 
 		$test = $dbw->tableName( 'test' );
+		//TODO: add a create table method in Database class (cf. bug 26670)
 		$dbw->query( "CREATE TABLE IF NOT EXISTS /*_*/$test (
   test_id int unsigned NOT NULL PRIMARY KEY AUTO_INCREMENT,
   text varbinary(255) NOT NULL
@@ -74,6 +75,7 @@ class BenchmarkDeleteTruncate extends Benchmarker {
 	 */
 	private function truncate( $dbw ) {
 		$test = $dbw->tableName( 'test' );
+		//TODO: add a truncate table method in Database class (cf. bug 26670)
 		$dbw->query( "TRUNCATE TABLE $test" );
 	}
 }

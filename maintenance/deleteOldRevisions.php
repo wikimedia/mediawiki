@@ -55,6 +55,7 @@ class DeleteOldRevisions extends Maintenance {
 		$revPageClause = '';
 
 		# If a list of page_ids was provided, limit results to that set of page_ids
+		# TODO: abstract these SQL queries (cf. bug 26670)
 		if ( sizeof( $args ) > 0 ) {
 			$pageIdList = implode( ',', $args );
 			$pageIdClause = " WHERE page_id IN ({$pageIdList})";

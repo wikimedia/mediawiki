@@ -51,7 +51,7 @@ class CleanupRemovedModules extends Maintenance {
 		$i = 1;
 		$modDeps = $dbw->tableName( 'module_deps' );
 		do {
-			// $dbw->delete() doesn't support LIMIT :(
+			// TODO: add LIMIT support in delete method in Database class (cf. bug 26670)
 			$where = $moduleList ? "md_module NOT IN ($moduleList)" : '1=1';
 			$dbw->query( "DELETE FROM $modDeps WHERE $where LIMIT $limit", __METHOD__ );
 			$numRows = $dbw->affectedRows();

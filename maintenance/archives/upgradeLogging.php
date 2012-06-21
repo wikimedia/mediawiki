@@ -41,6 +41,7 @@ class UpdateLogging {
 		if ( $this->dbw->tableExists( 'logging_pre_1_10' ) && !$this->dbw->tableExists( 'logging' ) ) {
 			# Fix previous aborted run
 			echo "Cleaning up from previous aborted run\n";
+			# TODO: add a rename table method in Database class (cf. bug 26670)
 			$this->dbw->query( "RENAME TABLE $logging_pre_1_10 TO $logging", __METHOD__ );
 		}
 
@@ -102,6 +103,7 @@ EOT;
 		echo "Sync done\n\n";
 
 		# Rename the old table away
+		# TODO: add a rename table method in Database class (cf. bug 26670)
 		echo "Renaming the old table to $logging_pre_1_10\n";
 		$this->dbw->query( "RENAME TABLE $logging TO $logging_pre_1_10", __METHOD__ );
 

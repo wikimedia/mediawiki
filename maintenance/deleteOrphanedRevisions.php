@@ -48,6 +48,7 @@ class DeleteOrphanedRevisions extends Maintenance {
 		list( $page, $revision ) = $dbw->tableNamesN( 'page', 'revision' );
 
 		# Find all the orphaned revisions
+		# TODO: abstract these SQL queries with an extended update method in Database class (cf. bug 26670)
 		$this->output( "Checking for orphaned revisions..." );
 		$sql = "SELECT rev_id FROM {$revision} LEFT JOIN {$page} ON rev_page = page_id WHERE page_namespace IS NULL";
 		$res = $dbw->query( $sql, 'deleteOrphanedRevisions' );

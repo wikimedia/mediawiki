@@ -87,12 +87,14 @@ class ViewCountUpdate implements DeferrableUpdate {
 		$acchitsTable = $dbw->tableName( 'acchits' );
 		$pageTable = $dbw->tableName( 'page' );
 
+		//TODO: add a create temporary table method in Database class (cf. bug 26670)
 		$dbw->query( "CREATE TEMPORARY TABLE $acchitsTable $tabletype AS " .
 			"SELECT hc_id,COUNT(*) AS hc_n FROM $hitcounterTable " .
 			'GROUP BY hc_id', __METHOD__ );
 		$dbw->delete( 'hitcounter', '*', __METHOD__ );
 		$dbw->unlockTables( __METHOD__ );
 
+		//TODO: abstract these SQL queries with an extended update method in Database class (cf. bug 26670)
 		if ( $dbType == 'mysql' ) {
 			$dbw->query( "UPDATE $pageTable,$acchitsTable SET page_counter=page_counter + hc_n " .
 				'WHERE page_id = hc_id', __METHOD__ );
@@ -100,7 +102,7 @@ class ViewCountUpdate implements DeferrableUpdate {
 			$dbw->query( "UPDATE $pageTable SET page_counter=page_counter + hc_n " .
 				"FROM $acchitsTable WHERE page_id = hc_id", __METHOD__ );
 		}
-		$dbw->query( "DROP TABLE $acchitsTable", __METHOD__ );
+		$dbw->dropTable($acchitsTable, __METHOD__);
 
 		ignore_user_abort( $old_user_abort );
 		wfProfileOut( __METHOD__ . '-collect' );

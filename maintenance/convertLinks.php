@@ -87,13 +87,22 @@ This gives a huge speed improvement for very large links tables which are MyISAM
 			return;
 		}
 
-		$res = $dbw->query( "SELECT l_from FROM $links LIMIT 1" );
+		$res = $dbw->select(
+			$links,
+			array( 'l_from' ),
+			array(),
+			__METHOD__
+			array( 'LIMIT' => 1 )
+		);
 		if ( $dbw->fieldType( $res, 0 ) == "int" ) {
 			$this->output( "Schema already converted\n" );
 			return;
 		}
 
-		$res = $dbw->query( "SELECT COUNT(*) AS count FROM $links" );
+		$res = $dbw->select(
+			$links,
+			array( 'COUNT(*) AS count' ),
+		);
 		$row = $dbw->fetchObject( $res );
 		$numRows = $row->count;
 		$dbw->freeResult( $res );
@@ -117,7 +126,10 @@ This gives a huge speed improvement for very large links tables which are MyISAM
 			$this->performanceLog ( $fh, "rows read vs seconds elapsed:\n" );
 
 			$dbw->bufferResults( false );
-			$res = $dbw->query( "SELECT cur_namespace,cur_title,cur_id FROM $cur" );
+			$res = $dbw->select(
+				$cur,
+				array( 'cur_namespace', 'cur_title', 'cur_id' ),
+			);
 			$ids = array();
 
 			foreach ( $res as $row ) {
@@ -151,6 +163,7 @@ This gives a huge speed improvement for very large links tables which are MyISAM
 			$this->performanceLog( $fh, "rows inserted vs seconds elapsed:\n" );
 
 			for ( $rowOffset = $initialRowOffset; $rowOffset < $numRows; $rowOffset += $linksConvInsertInterval ) {
+				//TODO: check if this should be more abstracted (cf. bug 26670)
 				$sqlRead = "SELECT * FROM $links ";
 				$sqlRead = $dbw->limitResult( $sqlRead, $linksConvInsertInterval, $rowOffset );
 				$res = $dbw->query( $sqlRead );

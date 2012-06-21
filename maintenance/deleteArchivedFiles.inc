@@ -35,7 +35,10 @@ class DeleteArchivedFilesImplementation {
 		$repo = RepoGroup::singleton()->getLocalRepo();
 		# Get "active" revisions from the filearchive table
 		$output->handleOutput( "Searching for and deleting archived files...\n" );
-		$res = $dbw->query( "SELECT fa_id,fa_storage_group,fa_storage_key FROM $tbl_arch" );
+		$res = $dbw->select(
+			$tbl_arch,
+			array( 'fa_id', 'fa_storage_group', 'fa_storage_key' ),
+		);
 		$count = 0;
 		foreach ( $res as $row ) {
 			$key = $row->fa_storage_key;
@@ -53,7 +56,7 @@ class DeleteArchivedFilesImplementation {
 			if ( $path && $repo->fileExists( $path ) && !$inuse ) {
 				if ( $repo->quickPurge( $path ) ) {
 					$count++;
-					$dbw->query( "DELETE FROM $tbl_arch WHERE fa_id = $id" );
+					$dbw->delete( $tbl_arch, array( 'fa_id' => $id ) );
 				} else {
 					$output->handleOutput( "Unable to remove file $path, skipping\n" );
 				}
@@ -61,7 +64,7 @@ class DeleteArchivedFilesImplementation {
 				$output->handleOutput( "Notice - file '$key' not found in group '$group'\n" );
 				if ( $force ) {
 					$output->handleOutput( "Got --force, deleting DB entry\n" );
-					$dbw->query( "DELETE FROM $tbl_arch WHERE fa_id = $id" );
+					$dbw->delete( $tbl_arch, array( 'fa_id' => $id ) );
 				}
 			}
 		}

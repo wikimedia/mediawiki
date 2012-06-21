@@ -715,7 +715,7 @@ abstract class Maintenance {
 			return;
 		}
 
-		$screenWidth = 80; // TODO: Caculate this!
+		$screenWidth = 80; // TODO: Calculate this!
 		$tab = "    ";
 		$descWidth = $screenWidth - ( 2 * strlen( $tab ) );
 
@@ -944,7 +944,13 @@ abstract class Maintenance {
 
 		# Get "active" text records from the revisions table
 		$this->output( 'Searching for active text records in revisions table...' );
-		$res = $dbw->query( "SELECT DISTINCT rev_text_id FROM $tbl_rev" );
+		$res = $dbw->select(
+			$tbl_rev,
+			array('rev_text_id'),
+			array(),
+			__METHOD__,
+			array('DISTINCT')
+		);
 		foreach ( $res as $row ) {
 			$cur[] = $row->rev_text_id;
 		}
@@ -952,13 +958,20 @@ abstract class Maintenance {
 
 		# Get "active" text records from the archive table
 		$this->output( 'Searching for active text records in archive table...' );
-		$res = $dbw->query( "SELECT DISTINCT ar_text_id FROM $tbl_arc" );
+		$res = $dbw->select(
+			$tbl_arc,
+			array('ar_text_id'),
+			array(),
+			__METHOD__,
+			array('DISTINCT')
+		);
 		foreach ( $res as $row ) {
 			$cur[] = $row->ar_text_id;
 		}
 		$this->output( "done.\n" );
 
 		# Get the IDs of all text records not in these sets
+		# TODO: Handle NOT IN condition clauses in select method in Database class (cf. bug 26670)
 		$this->output( 'Searching for inactive text records...' );
 		$set = implode( ', ', $cur );
 		$res = $dbw->query( "SELECT old_id FROM $tbl_txt WHERE old_id NOT IN ( $set )" );
@@ -973,6 +986,7 @@ abstract class Maintenance {
 		$this->output( "$count inactive items found.\n" );
 
 		# Delete as appropriate
+		# TODO: Handle NOT IN condition clauses in delete method in Database class (cf. bug 26670)
 		if ( $delete && $count ) {
 			$this->output( 'Deleting...' );
 			$set = implode( ', ', $old );
