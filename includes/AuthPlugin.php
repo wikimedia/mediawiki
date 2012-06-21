@@ -34,6 +34,10 @@
  * someone logs in who can be authenticated externally.
  */
 class AuthPlugin {
+
+	// The authentication domain the user logged in with
+	var $domain;
+
 	/**
 	 * Check whether there exists a user account with the given name.
 	 * The name will be normalized to MediaWiki's requirements, so
