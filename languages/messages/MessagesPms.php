@@ -2619,11 +2619,11 @@ Për piasì, ch'a vìsita la [//www.mediawiki.org/wiki/Localisation Localisassio
 Date dle revision e stranòm dj'editor a resteran piàjit sù 'cò lor.
 Tute j'amportassion antra wiki diferente a resto marcà ant ël [[Special:Log/import|Registr dj'amportassion]].",
 'import-interwiki-source' => 'Wiki e pàgina sorgiss:',
-'import-interwiki-history' => 'Còpia tute le version stòriche dë sta pàgina-sì',
-'import-interwiki-templates' => 'Ansëriss tùit jë stamp',
+'import-interwiki-history' => 'Copié tute le revision ëd la stòria ëd costa pàgina',
+'import-interwiki-templates' => 'Anserì tùit jë stamp',
 'import-interwiki-submit' => 'Amporté',
 'import-interwiki-namespace' => 'Spassi nominal ëd destinassion:',
-'import-upload-filename' => 'Nòm dël file:',
+'import-upload-filename' => "Nòm ëd l'archivi:",
 'import-comment' => 'Oget:',
 'importtext' => "Për piasì, che as espòrta l'archivi da 'nt la sorgiss wiki ën dovrand l'[[Special:Export|utiss d'esportassion]]. 
 Che as lo salva ansima a sò ordinator e peui che a lo caria ambelessì.",

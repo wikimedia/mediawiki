@@ -4056,4 +4056,6 @@ Nếu không thì bạn có thể điền biểu mẫu đơn giản ở dưới.
 'duration-centuries' => '$1 thế kỷ',
 'duration-millennia' => '$1 thiên niên kỷ',
 
+# Unknown messages
+'lockmanager-fail-svr-acquire' => 'Không thể lấy các chìa khóa trên máy chủ $1.',
 );

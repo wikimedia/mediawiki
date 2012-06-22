@@ -3841,4 +3841,6 @@ Ataupun, anda boleh menggunakan borang yang mudah di bawah. Ulasan anda akan dic
 'duration-centuries' => '$1 abad',
 'duration-millennia' => '$1 alaf',
 
+# Unknown messages
+'lockmanager-fail-svr-acquire' => 'Selak-selak tidak dapat diperoleh di pelayan $1.',
 );

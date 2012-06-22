@@ -306,19 +306,19 @@ $messages = array(
 'vector-view-view' => 'చదువు',
 'vector-view-viewsource' => 'మూలాన్ని చూడండి',
 'actions' => 'పనులు',
-'namespaces' => 'నేంస్పేసులు',
+'namespaces' => 'పేరుబరులు',
 'variants' => 'రకరకాలు',
 
 'errorpagetitle' => 'పొరపాటు',
 'returnto' => 'తిరిగి $1కి.',
 'tagline' => '{{SITENAME}} నుండి',
-'help' => 'సాయము',
+'help' => 'సహాయం',
 'search' => 'వెతుకు',
 'searchbutton' => 'వెతుకు',
 'go' => 'వెళ్లు',
 'searcharticle' => 'వెళ్లు',
 'history' => 'పేజీ చరిత్ర',
-'history_short' => 'మెలన',
+'history_short' => 'చరిత్ర',
 'updatedmarker' => 'నేను కిందటిసారి వచ్చిన తరువాత జరిగిన మార్పులు',
 'printableversion' => 'అచ్చుతీయదగ్గ కూర్పు',
 'permalink' => 'శాశ్వత లంకె',
@@ -388,10 +388,10 @@ $1',
 'mainpage' => 'మొదటి పేజీ',
 'mainpage-description' => 'తలపుట',
 'policy-url' => 'Project:విధానం',
-'portal' => 'మంది పందిరి',
+'portal' => 'సముదాయ పందిరి',
 'portal-url' => 'Project:సముదాయ పందిరి',
 'privacy' => 'గోప్యతా విధానం',
-'privacypage' => 'Project:మరుగు తీరు',
+'privacypage' => 'Project:గోప్యతా విధానం',
 
 'badaccess' => 'అనుమతి లోపం',
 'badaccess-group0' => 'మీరు చేయతలపెట్టిన పనికి మీకు హక్కులు లేవు.',
@@ -514,7 +514,7 @@ $1',
 'actionthrottledtext' => 'స్పామును తగ్గించటానికి తీసుకున్న నిర్ణయాల వల్ల, మీరు ఈ కార్యాన్ని అతి తక్కువ సమయంలో బోలెడన్ని సార్లు చేయకుండా అడ్డుకుంటున్నాము. కొన్ని నిమిషాలు ఆగి మరలా ప్రయత్నించండి.',
 'protectedpagetext' => 'ఈ పేజీని మార్చకుండా ఉండేందుకు సంరక్షించారు.',
 'viewsourcetext' => 'మీరీ పేజీ సోర్సును చూడవచ్చు, కాపీ చేసుకోవచ్చు:',
-'viewyourtext' => 'ఈ పుటకు "మీ మార్పుల"యొక్క వేరును మీరు చూడవచ్చు లేదా అచ్చుదింపవచ్చు:',
+'viewyourtext' => "ఈ పేజీకి '''మీ మార్పుల''' యొక్క మూలాన్ని చూడవచ్చు లేదా కాపీచేసుకోవచ్చు:",
 'protectedinterface' => 'సాఫ్టువేరు ఇంటరుఫేసుకు చెందిన టెక్స్టును ఈ పేజీ అందిస్తుంది. దుశ్చర్యల నివారణ కోసమై దీన్ని లాకు చేసాం.',
 'editinginterface' => "'''హెచ్చరిక''': సాఫ్టువేరుకు ఇంటరుఫేసు టెక్స్టును అందించే పేజీని మీరు సరిదిద్దుతున్నారు.
 ఈ పేజీలో చేసే మార్పుల వల్ల ఇతర వాడుకరులకు ఇంటరుఫేసు కనబడే విధానంలో తేడావస్తుంది.
@@ -548,8 +548,8 @@ $2',
 'securelogin-stick-https' => 'ప్రవేశం తర్వాత కూడా HTTPSకి అనుసంధానమై ఉండు',
 'yourdomainname' => 'మీ డోమైను',
 'externaldberror' => 'డేటాబేసు అధీకరణలో పొరపాటు జరిగింది లేదా మీ బయటి ఖాతాని తాజాకరించడానికి మీకు అనుమతి లేదు.',
-'login' => 'ప్రవేశించండి',
-'nav-login-createaccount' => 'లోనికి రండి/ పద్దును కల్పించుకోండి',
+'login' => 'లోనికి రండి',
+'nav-login-createaccount' => 'లోనికి ప్రవేశించండి / ఖాతాని సృష్టించుకోండి',
 'loginprompt' => '{{SITENAME}}లోకి ప్రవేశించాలంటే మీ విహారిణిలో కూకీలు చేతనమై ఉండాలి.',
 'userlogin' => 'ప్రవేశించండి / ఖాతాను సృష్టించుకోండి',
 'userloginnocreate' => 'ప్రవేశించండి',
@@ -764,7 +764,7 @@ $2
 'nosuchsectiontext' => 'మీరు లేని విభాగాన్ని మార్చడానికి ప్రయత్నించారు.
 మీరు పేజీని చూస్తూన్నప్పుడు దాన్ని ఎవరైనా తరలించి లేదా తొలగించి ఉండవచ్చు.',
 'loginreqtitle' => 'ప్రవేశము తప్పనిసరి',
-'loginreqlink' => 'ప్రవేశించి',
+'loginreqlink' => 'లోనికి రండి',
 'loginreqpagetext' => 'ఇతర పుటలను చూడడానికి మీరు $1 ఉండాలి.',
 'accmailtitle' => 'సంకేతపదం పంపించబడింది.',
 'accmailtext' => "[[User talk:$1|$1]] కొరకు ఒక యాదృచ్చిక సంకేతపదాన్ని $2కి పంపించాం.
@@ -1450,7 +1450,7 @@ $1",
 # Recent changes linked
 'recentchangeslinked' => 'సంబంధిత మార్పులు',
 'recentchangeslinked-feed' => 'సంబంధిత మార్పులు',
-'recentchangeslinked-toolbox' => 'పొత్తుగల మార్పులు',
+'recentchangeslinked-toolbox' => 'పొంతనగల మార్పులు',
 'recentchangeslinked-title' => '$1 కు సంబంధించిన మార్పులు',
 'recentchangeslinked-noresult' => 'మీరిచ్చిన కాలంలో ఇక్కడికి లింకు ఉన్న పేజీలలో ఎటువంటు మార్పులూ జరగలేదు.',
 'recentchangeslinked-summary' => "దీనికి లింకై ఉన్న పేజీల్లో జరిగిన చివరి మార్పులు ఇక్కడ చూడవచ్చు. మీ వీక్షణ జాబితాలో ఉన్న పేజీలు '''బొద్దు'''గా ఉంటాయి.",
@@ -1458,7 +1458,7 @@ $1",
 'recentchangeslinked-to' => 'ఇచ్చిన పేజీకి లింకయివున్న పేజీలలో జరిగిన మార్పులను చూపించు',
 
 # Upload
-'upload' => 'దస్త్రము ఎక్కించు',
+'upload' => 'దస్త్రపు ఎక్కింపు',
 'uploadbtn' => 'దస్త్రాన్ని ఎక్కించు',
 'reuploaddesc' => 'మళ్ళీ అప్‌లోడు ఫారంకు వెళ్ళు.',
 'upload-tryagain' => 'మార్చిన ఫైలు వివరణని దాఖలుచేయండి',
@@ -1885,7 +1885,7 @@ https://www.mediawiki.org/wiki/Manual:Image_Authorization చూడండి.',
 
 # Special:AllPages
 'allpages' => 'అన్ని పేజీలు',
-'alphaindexline' => '$1 నుండి $2',
+'alphaindexline' => '$1 నుండి $2 వరకు',
 'nextpage' => 'తరువాతి పేజీ ($1)',
 'prevpage' => 'మునుపటి పేజీ ($1)',
 'allpagesfrom' => 'ఇక్కడ మొదలు పెట్టి పేజీలు చూపించు:',
@@ -2231,7 +2231,7 @@ $UNWATCHURL కి వెళ్ళండి.
 'namespace' => 'పేరుబరి:',
 'invert' => 'ఎంపికను తిరగవెయ్యి',
 'namespace_association' => 'సంబంధిత పేరుబరి',
-'blanknamespace' => '(తల)',
+'blanknamespace' => '(మొదటి)',
 
 # Contributions
 'contributions' => 'వాడుకరి రచనలు',
@@ -3391,7 +3391,7 @@ $5
 'fileduplicatesearch-noresults' => '"$1" అనే పేరుగల దస్త్రమేమీ కనబడలేదు.',
 
 # Special:SpecialPages
-'specialpages' => 'వేరైన పుటలు',
+'specialpages' => 'ప్రత్యేక పేజీలు',
 'specialpages-note' => '----
 * మామూలు ప్రత్యేక పుటలు.
 * <strong class="mw-specialpagerestricted">నియంత్రిత ప్రత్యేక పుటలు.</strong>
