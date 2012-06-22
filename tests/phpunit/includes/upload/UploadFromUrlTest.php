@@ -20,7 +20,7 @@ class UploadFromUrlTest extends ApiTestCase {
 		}
 	}
 
-	protected function doApiRequest( $params, $unused = null, $appendModule = false, $user = null ) {
+	protected function doApiRequest( Array $params, Array $unused = null, $appendModule = false, User $user = null ) {
 		$sessionId = session_id();
 		session_write_close();
 
