@@ -229,19 +229,27 @@ test( 'All-dressed URI with everything', function () {
 
 test( 'Cloning', function () {
 	var original, clone;
-	expect( 5 );
+	expect( 6 );
 
-	original = new mw.Uri( 'http://en.wiki.local/w/api.php?action=query&foo=bar' );
+	original = new mw.Uri( 'http://foo.example.org/index.php?one=1&two=2' );
 	clone = original.clone();
 
 	deepEqual( clone, original, 'clone has equivalent properties' );
 	equal( original.toString(), clone.toString(), 'toString matches original' );
 
-	notStrictEqual( clone, original, 'clone is not the same when compared by reference' );
+	notStrictEqual( clone, original, 'clone is a different object when compared by reference' );
 
-	clone.host = 'fr.wiki.local';
+	clone.host = 'bar.example.org';
 	notEqual( original.host, clone.host, 'manipulating clone did not effect original' );
-	notEqual( original.toString(), clone.toString(), 'toString no longer matches original' );
+	notEqual( original.toString(), clone.toString(), 'Stringified url no longer matches original' );
+
+	clone.query.three = 3;
+
+	deepEqual(
+		original.query,
+		{ 'one': '1', 'two': '2' },
+		'Properties is deep cloned (bug 37708)'
+	);
 } );
 
 test( 'Constructing mw.Uri from plain object', function () {
