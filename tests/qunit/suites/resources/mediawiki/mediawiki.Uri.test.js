@@ -407,3 +407,20 @@ test( 'bug 35658', function () {
 	equal( href, testProtocol + testServer + ':' + testPort + testPath, 'Root-relative URL gets host, protocol, and port supplied' );
 
 } );
+
+test( 'Cloning', function () {
+	expect( 2 );
+
+	var a = new mw.Uri( 'http://www.example.org/?one=1&two=2' ),
+		b = a.clone();
+
+	notStrictEqual( a, b, 'Clone is different by reference' );
+
+	a.query.three = 3;
+
+	deepEqual(
+		b.query,
+		{ 'one': '1', 'two': '2' },
+		'Query is deep cloned using a deep copy (bug 37708)'
+	);
+} );
