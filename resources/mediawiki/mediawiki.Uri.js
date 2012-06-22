@@ -121,11 +121,19 @@
 				if ( typeof uri === 'string' ) {
 					this.parse( uri, options );
 				} else if ( typeof uri === 'object' ) {
-					var uriObj = this;
-					$.each( properties, function ( i, property ) {
-						uriObj[property] = uri[property];
-					} );
-					if ( this.query === undefined ) {
+					// Copy data over from existing URI object
+					for ( var prop in uri ) {
+						// Only copy direct properties, not inherited ones
+						if ( uri.hasOwnProperty( prop ) ) {
+							// Deep copy object properties
+							if ( $.isArray( uri[prop] ) || $.isPlainObject( uri[prop] ) ) {
+								this[prop] = $.extend( true, {}, uri[prop] );
+							} else {
+								this[prop] = uri[prop];
+							}
+						}
+					}
+					if ( !this.query ) {
 						this.query = {};
 					}
 				}
