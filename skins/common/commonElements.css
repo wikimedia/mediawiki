@@ -198,6 +198,12 @@ pre, .mw-code {
 	border: 1px dashed #2f6fab;
 	color: black;
 	background-color: #f9f9f9;
+	/* Handle overflow (bug 260) */
+	overflow: auto;
+	/* IE 7 is the first IE to support overflow but got it wrong */
+	/* IE 8+ is fine */
+	*padding-bottom: 21px;
+	*overflow-y: hidden;
 }
 
 /* Tables */
