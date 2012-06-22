@@ -108,6 +108,8 @@ upgrade PHP if you have not done so prior to upgrading MediaWiki.
 * (bug 38151) Implemented mw.user.getRights for getting and caching the current
   user's user rights.
 * Implemented mw.user.getGroups for getting and caching user groups.
+* (bug 37830) Added $wgRequirePasswordforEmailChange to control whether password
+  confirmation is required for changing an email address or not.
 
 === Bug fixes in 1.20 ===
 * (bug 30245) Use the correct way to construct a log page title.

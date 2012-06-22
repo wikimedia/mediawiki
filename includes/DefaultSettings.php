@@ -6146,6 +6146,11 @@ $wgDBtestuser = ''; //db user that has permission to create and drop the test da
 $wgDBtestpassword = '';
 
 /**
+ * Whether the user must enter their password to change their e-mail address
+ */
+$wgRequirePasswordforEmailChange = true;
+
+/**
  * For really cool vim folding this needs to be at the end:
  * vim: foldmarker=@{,@} foldmethod=marker
  * @}
