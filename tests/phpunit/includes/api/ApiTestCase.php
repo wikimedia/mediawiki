@@ -45,7 +45,10 @@ abstract class ApiTestCase extends MediaWikiLangTestCase {
 
 	protected function doApiRequest( $params, $session = null, $appendModule = false, $user = null ) {
 		if ( is_null( $session ) ) {
-			$session = array();
+			# use global session by default
+
+			global $wgRequest;
+			$session = $wgRequest->getSessionArray();
 		}
 
 		$context = $this->apiContext->newTestContext( $params, $session, $user );

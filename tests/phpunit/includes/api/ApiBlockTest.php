@@ -56,7 +56,7 @@ class ApiBlockTest extends ApiTestCase {
 			'action' => 'block',
 			'user' => 'UTApiBlockee',
 			'reason' => 'Some reason',
-			'token' => $pageinfo['blocktoken'] ), $data, false, self::$users['sysop']->user );
+			'token' => $pageinfo['blocktoken'] ), null, false, self::$users['sysop']->user );
 
 		$block = Block::newFromTarget('UTApiBlockee');
 
