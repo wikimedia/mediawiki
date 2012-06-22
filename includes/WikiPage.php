@@ -1523,6 +1523,9 @@ class WikiPage extends Page {
 				'user_text'  => $user->getName(),
 				'timestamp'  => $now
 			) );
+			# Bug 37225: use accessor to get the text as Revision may trim it.
+			# After trimming, the text may be a duplicate of the current text.
+			$text = $revision->getText(); // sanity; EditPage should trim already
 
 			$changed = ( strcmp( $text, $oldtext ) != 0 );
 
@@ -1619,6 +1622,9 @@ class WikiPage extends Page {
 				'timestamp'  => $now
 			) );
 			$revisionId = $revision->insertOn( $dbw );
+
+			# Bug 37225: use accessor to get the text as Revision may trim it
+			$text = $revision->getText(); // sanity; EditPage should trim already
 
 			# Update the page record with revision data
 			$this->updateRevisionOn( $dbw, $revision, 0 );
