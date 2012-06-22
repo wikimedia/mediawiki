@@ -457,7 +457,7 @@ $messages = array(
 'vector-view-create' => 'Tạo',
 'vector-view-edit' => 'Sửa',
 'vector-view-history' => 'Xem lịch sử',
-'vector-view-view' => 'Xem',
+'vector-view-view' => 'Đọc',
 'vector-view-viewsource' => 'Xem mã nguồn',
 'actions' => 'Tác vụ',
 'namespaces' => 'Không gian tên',
@@ -3041,7 +3041,8 @@ Lưu nó vào máy tính của bạn rồi tải nó lên đây.',
 'spamprotectionmatch' => 'Nội dung sau đây đã kích hoạt bộ lọc thư rác: $1',
 'spambot_username' => 'Bộ dọn dẹp thư rác MediaWiki',
 'spam_reverting' => 'Lùi lại đến phiên bản cuối không chứa liên kết đến $1',
-'spam_blanking' => 'Tất cả các phiên bản có liên kết đến $1, đang tẩy trống',
+'spam_blanking' => 'Tất cả các phiên bản có liên kết đến $1; tẩy trống',
+'spam_deleting' => 'Tất cả các phiên bản có liên kết đến $1; xóa',
 
 # Info page
 'pageinfo-title' => 'Thông tin về “$1”',

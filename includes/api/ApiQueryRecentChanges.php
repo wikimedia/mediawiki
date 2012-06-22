@@ -648,11 +648,11 @@ class ApiQueryRecentChanges extends ApiQueryGeneratorBase {
 				'title' => 'string',
 				'new_ns' => array(
 					ApiBase::PROP_TYPE => 'namespace',
-					Apibase::PROP_NULLABLE => true
+					ApiBase::PROP_NULLABLE => true
 				),
 				'new_title' => array(
 					ApiBase::PROP_TYPE => 'string',
-					Apibase::PROP_NULLABLE => true
+					ApiBase::PROP_NULLABLE => true
 				)
 			),
 			'ids' => array(
@@ -684,13 +684,13 @@ class ApiQueryRecentChanges extends ApiQueryGeneratorBase {
 			'comment' => array(
 				'comment' => array(
 					ApiBase::PROP_TYPE => 'string',
-					Apibase::PROP_NULLABLE => true
+					ApiBase::PROP_NULLABLE => true
 				)
 			),
 			'parsedcomment' => array(
 				'parsedcomment' => array(
 					ApiBase::PROP_TYPE => 'string',
-					Apibase::PROP_NULLABLE => true
+					ApiBase::PROP_NULLABLE => true
 				)
 			),
 			'redirect' => array(
@@ -702,15 +702,15 @@ class ApiQueryRecentChanges extends ApiQueryGeneratorBase {
 			'loginfo' => array(
 				'logid' => array(
 					ApiBase::PROP_TYPE => 'integer',
-					Apibase::PROP_NULLABLE => true
+					ApiBase::PROP_NULLABLE => true
 				),
 				'logtype' => array(
 					ApiBase::PROP_TYPE => $wgLogTypes,
-					Apibase::PROP_NULLABLE => true
+					ApiBase::PROP_NULLABLE => true
 				),
 				'logaction' => array(
 					ApiBase::PROP_TYPE => 'string',
-					Apibase::PROP_NULLABLE => true
+					ApiBase::PROP_NULLABLE => true
 				)
 			)
 		);

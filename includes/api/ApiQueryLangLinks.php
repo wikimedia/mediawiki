@@ -165,7 +165,7 @@ class ApiQueryLangLinks extends ApiQueryBase {
 				'lang' => 'string',
 				'url' => array(
 					ApiBase::PROP_TYPE => 'string',
-					Apibase::PROP_NULLABLE => true
+					ApiBase::PROP_NULLABLE => true
 				),
 				'*' => 'string'
 			)

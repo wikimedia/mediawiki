@@ -2917,6 +2917,7 @@ Simpan dalam komputer anda dan muat naiknya di sini.',
 'spambot_username' => 'Pembersihan spam MediaWiki',
 'spam_reverting' => 'Membalikkan kepada versi terakhir yang tidak mengandungi pautan ke $1',
 'spam_blanking' => 'Mengosongkan semua semakan yang mengandungi pautan ke $1',
+'spam_deleting' => 'Menghapuskan semua semakan yang mengandungi pautan ke $1',
 
 # Info page
 'pageinfo-title' => 'Maklumat untuk "$1"',

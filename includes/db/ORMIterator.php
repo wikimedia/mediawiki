@@ -1,7 +1,7 @@
 <?php
+
 /**
- * Chick: A lightweight Monobook skin with no sidebar, the sidebar links are
- * given at the bottom of the page instead, as in the unstyled MySkin.
+ * Interface for Iterators containing IORMRows.
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -18,30 +18,20 @@
  * 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
  * http://www.gnu.org/copyleft/gpl.html
  *
+ * @since 1.20
+ *
  * @file
- * @ingroup Skins
+ * @ingroup ORM
+ *
+ * @licence GNU GPL v2 or later
+ * @author Jeroen De Dauw < jeroendedauw@gmail.com >
  */
-
-if( !defined( 'MEDIAWIKI' ) )
-	die( -1 );
-
-/**
- * Inherit main code from SkinTemplate, set the CSS and template filter.
- * @ingroup Skins
- */
-class SkinChick extends SkinTemplate {
-	var $skinname = 'chick', $stylename = 'chick',
-	$template = 'MonoBookTemplate', $useHeadElement = true;
+interface ORMIterator extends Iterator {
 
 	/**
-	 * @param $out OutputPage
+	 * @see Iterator::current()
+	 * @return IORMRow
 	 */
-	function setupSkinUserCss( OutputPage $out ){
-		parent::setupSkinUserCss( $out );
+	public function current();
 
-		$out->addModuleStyles( 'skins.chick' );
-
-		// TODO: Migrate all of these to RL
-		$out->addStyle( 'chick/IE60Fixes.css', 'screen,handheld', 'IE 6' );
-	}
 }

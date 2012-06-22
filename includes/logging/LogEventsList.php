@@ -106,16 +106,14 @@ class LogEventsList {
 		$month = '', $filter = null, $tagFilter='' ) {
 		global $wgScript, $wgMiserMode;
 
-		$action = $wgScript;
 		$title = SpecialPage::getTitleFor( 'Log' );
-		$special = $title->getPrefixedDBkey();
 
 		// For B/C, we take strings, but make sure they are converted...
 		$types = ($types === '') ? array() : (array)$types;
 
 		$tagSelector = ChangeTags::buildTagFilterSelector( $tagFilter );
 
-		$html = Html::hidden( 'title', $special );
+		$html = Html::hidden( 'title', $title->getPrefixedDBkey() );
 
 		// Basic selectors
 		$html .= $this->getTypeMenu( $types ) . "\n";
@@ -148,7 +146,7 @@ class LogEventsList {
 		$html = Xml::fieldset( wfMsg( 'log' ), $html );
 
 		// Form wrapping
-		$html = Xml::tags( 'form', array( 'action' => $action, 'method' => 'get' ), $html );
+		$html = Xml::tags( 'form', array( 'action' => $wgScript, 'method' => 'get' ), $html );
 
 		$this->out->addHTML( $html );
 	}
@@ -173,12 +171,11 @@ class LogEventsList {
 			$hideVal = 1 - intval($val);
 			$query[$queryKey] = $hideVal;
 
-			$link = Linker::link(
+			$link = Linker::linkKnown(
 				$this->getDisplayTitle(),
 				$messages[$hideVal],
 				array(),
-				$query,
-				array( 'known', 'noclasses' )
+				$query
 			);
 
 			$links[$type] = wfMsgHtml( "log-show-hide-{$type}", $link );
@@ -384,7 +381,7 @@ class LogEventsList {
 		if( self::typeAction( $row, 'move', 'move', 'move' ) && !empty( $paramArray[0] ) ) {
 			$destTitle = Title::newFromText( $paramArray[0] );
 			if( $destTitle ) {
-				$revert = Linker::link(
+				$revert = Linker::linkKnown(
 					SpecialPage::getTitleFor( 'Movepage' ),
 					$this->message['revertmove'],
 					array(),
@@ -393,8 +390,7 @@ class LogEventsList {
 						'wpNewTitle' => $title->getPrefixedDBkey(),
 						'wpReason'   => wfMsgForContent( 'revertmove' ),
 						'wpMovetalk' => 0
-					),
-					array( 'known', 'noclasses' )
+					)
 				);
 				$revert = wfMessage( 'parentheses' )->rawParams( $revert )->escaped();
 			}
@@ -405,30 +401,23 @@ class LogEventsList {
 			} else {
 				$viewdeleted = $this->message['undeletelink'];
 			}
-			$revert = Linker::link(
+			$revert = Linker::linkKnown(
 				SpecialPage::getTitleFor( 'Undelete' ),
 				$viewdeleted,
 				array(),
-				array( 'target' => $title->getPrefixedDBkey() ),
-				array( 'known', 'noclasses' )
+				array( 'target' => $title->getPrefixedDBkey() )
 			 );
 			$revert = wfMessage( 'parentheses' )->rawParams( $revert )->escaped();
 		// Show unblock/change block link
 		} elseif( self::typeAction( $row, array( 'block', 'suppress' ), array( 'block', 'reblock' ), 'block' ) ) {
-			$revert = Linker::link(
+			$revert = Linker::linkKnown(
 					SpecialPage::getTitleFor( 'Unblock', $row->log_title ),
-					$this->message['unblocklink'],
-					array(),
-					array(),
-					'known'
+					$this->message['unblocklink']
 				) .
 				$this->message['pipe-separator'] .
-				Linker::link(
+				Linker::linkKnown(
 					SpecialPage::getTitleFor( 'Block', $row->log_title ),
-					$this->message['change-blocklink'],
-					array(),
-					array(),
-					'known'
+					$this->message['change-blocklink']
 				);
 				$revert = wfMessage( 'parentheses' )->rawParams( $revert )->escaped();
 		// Show change protection link
@@ -452,7 +441,7 @@ class LogEventsList {
 			$revert = ' ' . wfMessage( 'parentheses' )->rawParams( $revert )->escaped();
 		// Show unmerge link
 		} elseif( self::typeAction( $row, 'merge', 'merge', 'mergehistory' ) ) {
-			$revert = Linker::link(
+			$revert = Linker::linkKnown(
 				SpecialPage::getTitleFor( 'MergeHistory' ),
 				$this->message['revertmerge'],
 				array(),
@@ -460,8 +449,7 @@ class LogEventsList {
 					'target' => $paramArray[0],
 					'dest' => $title->getPrefixedDBkey(),
 					'mergepoint' => $paramArray[1]
-				),
-				array( 'known', 'noclasses' )
+				)
 			);
 			$revert = wfMessage( 'parentheses' )->rawParams( $revert )->escaped();
 		// If an edit was hidden from a page give a review link to the history
@@ -475,7 +463,7 @@ class LogEventsList {
 				// $paramArray[1] is a CSV of the IDs
 				$query = $paramArray[0];
 				// Link to each hidden object ID, $paramArray[1] is the url param
-				$revert = Linker::link(
+				$revert = Linker::linkKnown(
 					$revdel,
 					$this->message['revdel-restore'],
 					array(),
@@ -483,8 +471,7 @@ class LogEventsList {
 						'target' => $title->getPrefixedText(),
 						'type' => 'logging',
 						'ids' => $query
-					),
-					array( 'known', 'noclasses' )
+					)
 				);
 				$revert = wfMessage( 'parentheses' )->rawParams( $revert )->escaped();
 			}

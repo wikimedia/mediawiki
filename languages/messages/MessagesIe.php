@@ -612,7 +612,7 @@ Vider li [[Special:IPBlockList|liste de bloc de IP]] por li liste de bloces e ba
 'revertmerge' => 'Desfar fusion',
 
 # Diffs
-'history-title' => 'Revision del historie de "$1"',
+'history-title' => 'Historic del revision de "$1"',
 'lineno' => 'Linea $1:',
 'compareselectedversions' => 'Comparar revisiones selectet',
 'editundo' => 'anullar',

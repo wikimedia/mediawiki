@@ -23,6 +23,11 @@
 
 require_once( dirname( __FILE__ ) . '/Maintenance.php' );
 
+/**
+ * Maintenance script to check syntax of all PHP files in MediaWiki.
+ *
+ * @ingroup Maintenance
+ */
 class CheckSyntax extends Maintenance {
 
 	// List of files we're going to check

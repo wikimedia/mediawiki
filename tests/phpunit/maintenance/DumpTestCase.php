@@ -295,13 +295,17 @@ abstract class DumpTestCase extends MediaWikiLangTestCase {
 	 * @param $text_sha1 string: the base36 SHA-1 of the revision's text
 	 * @param $text string|false: (optional) The revision's string, or false to check for a
 	 *            revision stub
+	 * @param $parentid int|false: (optional) id of the parent revision
 	 */
-	protected function assertRevision( $id, $summary, $text_id, $text_bytes, $text_sha1, $text = false ) {
+	protected function assertRevision( $id, $summary, $text_id, $text_bytes, $text_sha1, $text = false, $parentid = false ) {
 
 		$this->assertNodeStart( "revision" );
 		$this->skipWhitespace();
 
 		$this->assertTextNode( "id", $id );
+		if( $parentid ) {
+			$this->assertTextNode( "parentid", $parentid );
+		}
 		$this->assertTextNode( "timestamp", false );
 
 		$this->assertNodeStart( "contributor" );

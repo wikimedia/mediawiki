@@ -12,12 +12,14 @@ class TextPassDumperTest extends DumpTestCase {
 
 	// We'll add several pages, revision and texts. The following variables hold the
 	// corresponding ids.
-	private $pageId1, $pageId2, $pageId3, $pageId4, $pageId5;
+	private $pageId1, $pageId2, $pageId3, $pageId4;
+	private static $numOfPages = 4;
 	private $revId1_1, $textId1_1;
 	private $revId2_1, $textId2_1, $revId2_2, $textId2_2;
 	private $revId2_3, $textId2_3, $revId2_4, $textId2_4;
 	private $revId3_1, $textId3_1, $revId3_2, $textId3_2;
 	private $revId4_1, $textId4_1;
+	private static $numOfRevs = 8;
 
 	function addDBData() {
 		$this->tablesUsed[] = 'page';
@@ -112,13 +114,13 @@ class TextPassDumperTest extends DumpTestCase {
 		$this->assertPageStart( $this->pageId2, NS_MAIN, "BackupDumperTestP2" );
 		$this->assertRevision( $this->revId2_1, "BackupDumperTestP2Summary1",
 			$this->textId2_1, false, "jprywrymfhysqllua29tj3sc7z39dl2",
-			"BackupDumperTestP2Text1" );
+			"BackupDumperTestP2Text1", $this->revId2_2 );
 		$this->assertRevision( $this->revId2_2, "BackupDumperTestP2Summary2",
 			$this->textId2_2, false, "b7vj5ks32po5m1z1t1br4o7scdwwy95",
-			"BackupDumperTestP2Text2" );
+			"BackupDumperTestP2Text2", $this->revId2_3 );
 		$this->assertRevision( $this->revId2_3, "BackupDumperTestP2Summary3",
 			$this->textId2_3, false, "jfunqmh1ssfb8rs43r19w98k28gg56r",
-			"BackupDumperTestP2Text3" );
+			"BackupDumperTestP2Text3", $this->revId2_4 );
 		$this->assertRevision( $this->revId2_4, "BackupDumperTestP2Summary4 extra",
 			$this->textId2_4, false, "6o1ciaxa6pybnqprmungwofc4lv00wv",
 			"BackupDumperTestP2Text4 some additional Text" );
@@ -178,15 +180,15 @@ class TextPassDumperTest extends DumpTestCase {
 		$this->assertPageStart( $this->pageId2, NS_MAIN, "BackupDumperTestP2" );
 		$this->assertRevision( $this->revId2_1, "BackupDumperTestP2Summary1",
 			$this->textId2_1, false, "jprywrymfhysqllua29tj3sc7z39dl2",
-			"BackupDumperTestP2Text1" );
+			"BackupDumperTestP2Text1", $this->revId2_2 );
 		$this->assertRevision( $this->revId2_2, "BackupDumperTestP2Summary2",
 			$this->textId2_2, false, "b7vj5ks32po5m1z1t1br4o7scdwwy95",
-			"BackupDumperTestP2Text2" );
+			"BackupDumperTestP2Text2", $this->revId2_3 );
 		// Prefetch kicks in. This is still the SHA-1 of the original text,
 		// But the actual text (with different SHA-1) comes from prefetch.
 		$this->assertRevision( $this->revId2_3, "BackupDumperTestP2Summary3",
 			$this->textId2_3, false, "jfunqmh1ssfb8rs43r19w98k28gg56r",
-			"Prefetch_________2Text3" );
+			"Prefetch_________2Text3", $this->revId2_4 );
 		$this->assertRevision( $this->revId2_4, "BackupDumperTestP2Summary4 extra",
 			$this->textId2_4, false, "6o1ciaxa6pybnqprmungwofc4lv00wv",
 			"BackupDumperTestP2Text4 some additional Text" );
@@ -314,9 +316,9 @@ class TextPassDumperTest extends DumpTestCase {
 			switch ( $lookingForPage ) {
 			case 1:
 				// Page 1
-				$this->assertPageStart( $this->pageId1 + $i * 4, NS_MAIN,
+				$this->assertPageStart( $this->pageId1 + $i * self::$numOfPages, NS_MAIN,
 					"BackupDumperTestP1" );
-				$this->assertRevision( $this->revId1_1, "BackupDumperTestP1Summary1",
+				$this->assertRevision( $this->revId1_1 + $i * self::$numOfRevs, "BackupDumperTestP1Summary1",
 					$this->textId1_1, false, "0bolhl6ol7i6x0e7yq91gxgaan39j87",
 					"BackupDumperTestP1Text1" );
 				$this->assertPageEnd();
@@ -326,18 +328,18 @@ class TextPassDumperTest extends DumpTestCase {
 
 			case 2:
 				// Page 2
-				$this->assertPageStart( $this->pageId2 + $i * 4, NS_MAIN,
+				$this->assertPageStart( $this->pageId2 + $i * self::$numOfPages, NS_MAIN,
 					"BackupDumperTestP2" );
-				$this->assertRevision( $this->revId2_1, "BackupDumperTestP2Summary1",
+				$this->assertRevision( $this->revId2_1 + $i * self::$numOfRevs, "BackupDumperTestP2Summary1",
 					$this->textId2_1, false, "jprywrymfhysqllua29tj3sc7z39dl2",
-					"BackupDumperTestP2Text1" );
-				$this->assertRevision( $this->revId2_2, "BackupDumperTestP2Summary2",
+					"BackupDumperTestP2Text1", $this->revId2_2 + $i * self::$numOfRevs );
+				$this->assertRevision( $this->revId2_2 + $i * self::$numOfRevs, "BackupDumperTestP2Summary2",
 					$this->textId2_2, false, "b7vj5ks32po5m1z1t1br4o7scdwwy95",
-					"BackupDumperTestP2Text2" );
-				$this->assertRevision( $this->revId2_3, "BackupDumperTestP2Summary3",
+					"BackupDumperTestP2Text2", $this->revId2_3 + $i * self::$numOfRevs );
+				$this->assertRevision( $this->revId2_3 + $i * self::$numOfRevs, "BackupDumperTestP2Summary3",
 					$this->textId2_3, false, "jfunqmh1ssfb8rs43r19w98k28gg56r",
-					"BackupDumperTestP2Text3" );
-				$this->assertRevision( $this->revId2_4,
+					"BackupDumperTestP2Text3", $this->revId2_4 + $i * self::$numOfRevs );
+				$this->assertRevision( $this->revId2_4 + $i * self::$numOfRevs,
 					"BackupDumperTestP2Summary4 extra",
 					$this->textId2_4, false, "6o1ciaxa6pybnqprmungwofc4lv00wv",
 					"BackupDumperTestP2Text4 some additional Text" );
@@ -348,9 +350,9 @@ class TextPassDumperTest extends DumpTestCase {
 
 			case 4:
 				// Page 4
-				$this->assertPageStart( $this->pageId4 + $i * 4, NS_TALK,
+				$this->assertPageStart( $this->pageId4 + $i * self::$numOfPages, NS_TALK,
 					"Talk:BackupDumperTestP1" );
-				$this->assertRevision( $this->revId4_1,
+				$this->assertRevision( $this->revId4_1 + $i * self::$numOfRevs,
 					"Talk BackupDumperTestP1 Summary1",
 					$this->textId4_1, false, "nktofwzd0tl192k3zfepmlzxoax1lpe",
 					"Talk about BackupDumperTestP1 Text1" );
@@ -428,10 +430,10 @@ class TextPassDumperTest extends DumpTestCase {
 		if ( $fname === null ) {
 			$fname = $this->getNewTempFile();
 		}
-		$header = '<mediawiki xmlns="http://www.mediawiki.org/xml/export-0.6/" '
+		$header = '<mediawiki xmlns="http://www.mediawiki.org/xml/export-0.7/" '
 			. 'xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" '
-			. 'xsi:schemaLocation="http://www.mediawiki.org/xml/export-0.6/ '
-			. 'http://www.mediawiki.org/xml/export-0.6.xsd" version="0.6" xml:lang="en">
+			. 'xsi:schemaLocation="http://www.mediawiki.org/xml/export-0.7/ '
+			. 'http://www.mediawiki.org/xml/export-0.7.xsd" version="0.7" xml:lang="en">
   <siteinfo>
     <sitename>wikisvn</sitename>
     <base>http://localhost/wiki-svn/index.php/Main_Page</base>
@@ -469,9 +471,9 @@ class TextPassDumperTest extends DumpTestCase {
 			$page1 = '  <page>
     <title>BackupDumperTestP1</title>
     <ns>0</ns>
-    <id>' . ( $this->pageId1 + $i * 4 ) . '</id>
+    <id>' . ( $this->pageId1 + $i * self::$numOfPages ) . '</id>
     <revision>
-      <id>' . $this->revId1_1 . '</id>
+      <id>' . ( $this->revId1_1 + $i * self::$numOfRevs ) . '</id>
       <timestamp>2012-04-01T16:46:05Z</timestamp>
       <contributor>
         <ip>127.0.0.1</ip>
@@ -485,9 +487,10 @@ class TextPassDumperTest extends DumpTestCase {
 			$page2 = '  <page>
     <title>BackupDumperTestP2</title>
     <ns>0</ns>
-    <id>' . ( $this->pageId2 + $i * 4 ) . '</id>
+    <id>' . ( $this->pageId2 + $i * self::$numOfPages ) . '</id>
     <revision>
-      <id>' . $this->revId2_1 . '</id>
+      <id>' . ( $this->revId2_1 + $i * self::$numOfRevs ) . '</id>
+      <parentid>' . ( $this->revId2_2 + $i * self::$numOfRevs ) . '</parentid>
       <timestamp>2012-04-01T16:46:05Z</timestamp>
       <contributor>
         <ip>127.0.0.1</ip>
@@ -497,7 +500,8 @@ class TextPassDumperTest extends DumpTestCase {
       <text id="' . $this->textId2_1 . '" bytes="23" />
     </revision>
     <revision>
-      <id>' . $this->revId2_2 . '</id>
+      <id>' . ( $this->revId2_2 + $i * self::$numOfRevs ) . '</id>
+      <parentid>' . ( $this->revId2_3 + $i * self::$numOfRevs ) . '</parentid>
       <timestamp>2012-04-01T16:46:05Z</timestamp>
       <contributor>
         <ip>127.0.0.1</ip>
@@ -507,7 +511,8 @@ class TextPassDumperTest extends DumpTestCase {
       <text id="' . $this->textId2_2 . '" bytes="23" />
     </revision>
     <revision>
-      <id>' . $this->revId2_3 . '</id>
+      <id>' . ( $this->revId2_3 + $i * self::$numOfRevs ) . '</id>
+      <parentid>' . ( $this->revId2_4 + $i * self::$numOfRevs ) . '</parentid>
       <timestamp>2012-04-01T16:46:05Z</timestamp>
       <contributor>
         <ip>127.0.0.1</ip>
@@ -517,7 +522,7 @@ class TextPassDumperTest extends DumpTestCase {
       <text id="' . $this->textId2_3 . '" bytes="23" />
     </revision>
     <revision>
-      <id>' . $this->revId2_4 . '</id>
+      <id>' . ( $this->revId2_4 + $i * self::$numOfRevs ) . '</id>
       <timestamp>2012-04-01T16:46:05Z</timestamp>
       <contributor>
         <ip>127.0.0.1</ip>
@@ -533,9 +538,9 @@ class TextPassDumperTest extends DumpTestCase {
 			$page4 = '  <page>
     <title>Talk:BackupDumperTestP1</title>
     <ns>1</ns>
-    <id>' . ( $this->pageId4 + $i * 4 ) . '</id>
+    <id>' . ( $this->pageId4 + $i * self::$numOfPages ) . '</id>
     <revision>
-      <id>' . $this->revId4_1 . '</id>
+      <id>' . ( $this->revId4_1 + $i * self::$numOfRevs ) . '</id>
       <timestamp>2012-04-01T16:46:05Z</timestamp>
       <contributor>
         <ip>127.0.0.1</ip>

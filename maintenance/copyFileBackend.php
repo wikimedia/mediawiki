@@ -2,12 +2,6 @@
 /**
  * Copy all files in one container of one backend to another.
  *
- * This can also be used to re-shard the files for one backend using the
- * config of second backend. The second backend should have the same config
- * as the first, except for it having a different name and different sharding
- * configuration. The backend should be made read-only while this runs.
- * After this script finishes, the old files in the containers can be deleted.
- *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2 of the License, or
@@ -23,11 +17,23 @@
  * 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
  * http://www.gnu.org/copyleft/gpl.html
  *
+ * @file
  * @ingroup Maintenance
  */
 
 require_once( dirname( __FILE__ ) . '/Maintenance.php' );
 
+/**
+ * Copy all files in one container of one backend to another.
+ *
+ * This can also be used to re-shard the files for one backend using the
+ * config of second backend. The second backend should have the same config
+ * as the first, except for it having a different name and different sharding
+ * configuration. The backend should be made read-only while this runs.
+ * After this script finishes, the old files in the containers can be deleted.
+ *
+ * @ingroup Maintenance
+ */
 class CopyFileBackend extends Maintenance {
 	public function __construct() {
 		parent::__construct();

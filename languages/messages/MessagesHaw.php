@@ -7,6 +7,7 @@
  * @ingroup Language
  * @file
  *
+ * @author Bulaisen
  * @author Kalani
  * @author Kolonahe
  * @author Node ue
@@ -253,7 +254,7 @@ $messages = array(
 'jumptosearch' => 'huli',
 
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
-'aboutsite' => 'No {{SITENAME}}',
+'aboutsite' => 'E pili ana iā {{SITENAME}}',
 'aboutpage' => 'Project:E pili ana',
 'copyrightpage' => '{{ns:project}}:Palapala ho‘okuleana',
 'currentevents' => 'Ka nū hou',
@@ -263,7 +264,7 @@ $messages = array(
 'edithelp' => 'Kōkua me ka ho‘ololi ‘ana',
 'edithelppage' => 'Help:Ho‘ololi',
 'helppage' => 'Help:Papa kuhikuhi',
-'mainpage' => 'Papa kinohi',
+'mainpage' => "Kahua pa'a",
 'mainpage-description' => 'Ka papa kinohi',
 'policy-url' => 'Project:Palapala',
 'portal' => 'Ka hui kaiaulu',
@@ -298,7 +299,7 @@ $messages = array(
 'red-link-title' => '$1 (ʻaʻole i kākau ʻia)',
 
 # Short words for each namespace, by default used in the namespace tab in monobook
-'nstab-main' => 'ʻaoʻao',
+'nstab-main' => 'ʻAoʻao',
 'nstab-user' => 'Inoa mea ho‘ohana',
 'nstab-media' => 'Pāpaho',
 'nstab-special' => 'Papa nui',

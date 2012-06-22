@@ -3114,6 +3114,7 @@ Permet de rétablir la version précédente et d’ajouter un motif dans la boî
 'spambot_username' => 'Nettoyage de pourriels par MediaWiki',
 'spam_reverting' => 'Rétablissement de la dernière version ne contenant pas de lien vers $1',
 'spam_blanking' => 'Toutes les versions contenant des liens vers $1 sont blanchies',
+'spam_deleting' => 'Toutes les versions contenaient des liens vers $1, suppression',
 
 # Info page
 'pageinfo-title' => 'Informations pour « $1 »',
@@ -4052,4 +4053,6 @@ Sinon, vous pouvez utiliser le formulaire simplifié ci-dessous. Votre commentai
 'duration-centuries' => '$1 {{PLURAL:$1|siècle|siècles}}',
 'duration-millennia' => '$1 {{PLURAL:$1|millénaire|millénaires}}',
 
+# Unknown messages
+'lockmanager-fail-svr-acquire' => "Impossible d'acquérir des verrous sur le serveur $1.",
 );

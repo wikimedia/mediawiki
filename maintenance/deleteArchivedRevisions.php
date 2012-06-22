@@ -1,7 +1,8 @@
 <?php
-
 /**
  * Delete archived (deleted from public) revisions from the database
+ *
+ * Shamelessly stolen from deleteOldRevisions.php by Rob Church :)
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -18,14 +19,20 @@
  * 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
  * http://www.gnu.org/copyleft/gpl.html
  *
+ * @file
  * @ingroup Maintenance
  * @author Aaron Schulz
- * Shamelessly stolen from deleteOldRevisions.php by Rob Church :)
  */
 
 require_once( dirname( __FILE__ ) . '/Maintenance.php' );
 require_once( dirname( __FILE__ ) . '/deleteArchivedRevisions.inc' );
 
+/**
+ * Maintenance script to delete archived (deleted from public) revisions
+ * from the database.
+ *
+ * @ingroup Maintenance
+ */
 class DeleteArchivedRevisions extends Maintenance {
 	public function __construct() {
 		parent::__construct();

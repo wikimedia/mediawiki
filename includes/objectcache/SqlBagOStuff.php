@@ -87,24 +87,33 @@ class SqlBagOStuff extends BagOStuff {
 	 * @return DatabaseBase
 	 */
 	protected function getDB() {
+		global $wgDebugDBTransactions;
 		if ( !isset( $this->db ) ) {
 			# If server connection info was given, use that
 			if ( $this->serverInfo ) {
+				if ( $wgDebugDBTransactions ) {
+					wfDebug( sprintf( "Using provided serverInfo for SqlBagOStuff\n" ) );
+				}
 				$this->lb = new LoadBalancer( array(
 					'servers' => array( $this->serverInfo ) ) );
 				$this->db = $this->lb->getConnection( DB_MASTER );
 				$this->db->clearFlag( DBO_TRX );
 			} else {
-				# We must keep a separate connection to MySQL in order to avoid deadlocks
-				# However, SQLite has an opposite behaviour.
-				# @todo Investigate behaviour for other databases
-				if ( wfGetDB( DB_MASTER )->getType() == 'sqlite' ) {
-					$this->db = wfGetDB( DB_MASTER );
-				} else {
+				/*
+				 * We must keep a separate connection to MySQL in order to avoid deadlocks
+				 * However, SQLite has an opposite behaviour. And PostgreSQL needs to know
+				 * if we are in transaction or no
+				 */
+				if ( wfGetDB( DB_MASTER )->getType() == 'mysql' ) {
 					$this->lb = wfGetLBFactory()->newMainLB();
 					$this->db = $this->lb->getConnection( DB_MASTER );
 					$this->db->clearFlag( DBO_TRX );
+				} else {
+					$this->db = wfGetDB( DB_MASTER );
 				}
+			}
+			if ( $wgDebugDBTransactions ) {
+				wfDebug( sprintf( "Connection %s will be used for SqlBagOStuff\n", $this->db ) );
 			}
 		}
 

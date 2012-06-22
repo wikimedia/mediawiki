@@ -682,35 +682,24 @@ abstract class AlphabeticPager extends IndexPager {
 			return $this->mNavigationBar;
 		}
 
-		$lang = $this->getLanguage();
-
-		$opts = array( 'parsemag', 'escapenoentities' );
 		$linkTexts = array(
-			'prev' => wfMsgExt(
-				'prevn',
-				$opts,
-				$lang->formatNum( $this->mLimit )
-			),
-			'next' => wfMsgExt(
-				'nextn',
-				$opts,
-				$lang->formatNum($this->mLimit )
-			),
-			'first' => wfMsgExt( 'page_first', $opts ),
-			'last' => wfMsgExt( 'page_last', $opts )
+			'prev' => $this->msg( 'prevn' )->numParams( $this->mLimit )->escaped(),
+			'next' => $this->msg( 'nextn' )->numParams( $this->mLimit )->escaped(),
+			'first' => $this->msg( 'page_first' )->escaped(),
+			'last' => $this->msg( 'page_last' )->escaped()
 		);
+
+		$lang = $this->getLanguage();
 
 		$pagingLinks = $this->getPagingLinks( $linkTexts );
 		$limitLinks = $this->getLimitLinks();
 		$limits = $lang->pipeList( $limitLinks );
 
-		$this->mNavigationBar = wfMessage( 'parentheses' )->rawParams(
-			$lang->pipeList(
-				array( $pagingLinks['first'],
-					$pagingLinks['last'] )
-			) )->escaped() . " " .
-			wfMsgHtml( 'viewprevnext', $pagingLinks['prev'],
-				$pagingLinks['next'], $limits );
+		$this->mNavigationBar = $this->msg( 'parentheses' )->rawParams(
+			$lang->pipeList( array( $pagingLinks['first'],
+			$pagingLinks['last'] ) ) )->escaped() . " " .
+			$this->msg( 'viewprevnext' )->rawParams( $pagingLinks['prev'],
+				$pagingLinks['next'], $limits )->escaped();
 
 		if( !is_array( $this->getIndexField() ) ) {
 			# Early return to avoid undue nesting
@@ -724,21 +713,21 @@ abstract class AlphabeticPager extends IndexPager {
 			if( $first ) {
 				$first = false;
 			} else {
-				$extra .= wfMsgExt( 'pipe-separator' , 'escapenoentities' );
+				$extra .= $this->msg( 'pipe-separator' )->escaped();
 			}
 
 			if( $order == $this->mOrderType ) {
-				$extra .= wfMsgHTML( $msgs[$order] );
+				$extra .= $this->msg( $msgs[$order] )->escaped();
 			} else {
 				$extra .= $this->makeLink(
-					wfMsgHTML( $msgs[$order] ),
+					$this->msg( $msgs[$order] )->escaped(),
 					array( 'order' => $order )
 				);
 			}
 		}
 
 		if( $extra !== '' ) {
-			$extra = ' ' . wfMessage( 'parentheses' )->rawParams( $extra )->escaped();
+			$extra = ' ' . $this->msg( 'parentheses' )->rawParams( $extra )->escaped();
 			$this->mNavigationBar .= $extra;
 		}
 
@@ -776,35 +765,23 @@ abstract class ReverseChronologicalPager extends IndexPager {
 			return $this->mNavigationBar;
 		}
 
-		$nicenumber = $this->getLanguage()->formatNum( $this->mLimit );
 		$linkTexts = array(
-			'prev' => wfMsgExt(
-				'pager-newer-n',
-				array( 'parsemag', 'escape' ),
-				$nicenumber
-			),
-			'next' => wfMsgExt(
-				'pager-older-n',
-				array( 'parsemag', 'escape' ),
-				$nicenumber
-			),
-			'first' => wfMsgHtml( 'histlast' ),
-			'last' => wfMsgHtml( 'histfirst' )
+			'prev' => $this->msg( 'pager-newer-n' )->numParams( $this->mLimit )->escaped(),
+			'next' => $this->msg( 'pager-older-n' )->numParams( $this->mLimit )->escaped(),
+			'first' => $this->msg( 'histlast' )->escaped(),
+			'last' => $this->msg( 'histfirst' )->escaped()
 		);
 
 		$pagingLinks = $this->getPagingLinks( $linkTexts );
 		$limitLinks = $this->getLimitLinks();
 		$limits = $this->getLanguage()->pipeList( $limitLinks );
-		$firstLastLinks = wfMessage( 'parentheses' )->rawParams( "{$pagingLinks['first']}" .
-			wfMsgExt( 'pipe-separator' , 'escapenoentities' ) .
+		$firstLastLinks = $this->msg( 'parentheses' )->rawParams( "{$pagingLinks['first']}" .
+			$this->msg( 'pipe-separator' )->escaped() .
 			"{$pagingLinks['last']}" )->escaped();
 
 		$this->mNavigationBar = $firstLastLinks . ' ' .
-			wfMsgHTML(
-				'viewprevnext',
-				$pagingLinks['prev'], $pagingLinks['next'],
-				$limits
-			);
+			$this->msg( 'viewprevnext' )->rawParams(
+				$pagingLinks['prev'], $pagingLinks['next'], $limits )->escaped();
 
 		return $this->mNavigationBar;
 	}
@@ -917,13 +894,13 @@ abstract class TablePager extends IndexPager {
 						$image = 'Arr_d.png';
 						$query['asc'] = '1';
 						$query['desc'] = '';
-						$alt = htmlspecialchars( wfMsg( 'descending_abbrev' ) );
+						$alt = $this->msg( 'descending_abbrev' )->escaped();
 					} else {
 						# Ascending
 						$image = 'Arr_u.png';
 						$query['asc'] = '';
 						$query['desc'] = '1';
-						$alt = htmlspecialchars( wfMsg( 'ascending_abbrev' ) );
+						$alt = $this->msg( 'ascending_abbrev' )->escaped();
 					}
 					$image = htmlspecialchars( "$wgStylePath/common/images/$image" );
 					$link = $this->makeLink(
@@ -955,7 +932,7 @@ abstract class TablePager extends IndexPager {
 	 */
 	function getEmptyBody() {
 		$colspan = count( $this->getFieldNames() );
-		$msgEmpty = wfMsgHtml( 'table_pager_empty' );
+		$msgEmpty = $this->msg( 'table_pager_empty' )->escaped();
 		return "<tr><td colspan=\"$colspan\">$msgEmpty</td></tr>\n";
 	}
 
@@ -1101,7 +1078,7 @@ abstract class TablePager extends IndexPager {
 		$linkTexts = array();
 		$disabledTexts = array();
 		foreach ( $labels as $type => $label ) {
-			$msgLabel = wfMsgHtml( $label );
+			$msgLabel = $this->msg( $label )->escaped();
 			$linkTexts[$type] = "<img src=\"$path/{$images[$type]}\" alt=\"$msgLabel\"/><br />$msgLabel";
 			$disabledTexts[$type] = "<img src=\"$path/{$disabledImages[$type]}\" alt=\"$msgLabel\"/><br />$msgLabel";
 		}
@@ -1193,9 +1170,10 @@ abstract class TablePager extends IndexPager {
 	 */
 	function getLimitDropdown() {
 		# Make the select with some explanatory text
-		$msgSubmit = wfMsgHtml( 'table_pager_limit_submit' );
+		$msgSubmit = $this->msg( 'table_pager_limit_submit' )->escaped();
 
-		return wfMsgHtml( 'table_pager_limit', $this->getLimitSelect() ) .
+		return $this->msg( 'table_pager_limit' )
+			->rawParams( $this->getLimitSelect() )->escaped() .
 			"\n<input type=\"submit\" value=\"$msgSubmit\"/>\n" .
 			$this->getHiddenFields( array( 'limit' ) );
 	}

@@ -2956,6 +2956,7 @@ Omogoča vnos pojasnila v povzetku urejanja.',
 'spambot_username' => 'Čiščenje navlake MediaWiki',
 'spam_reverting' => 'Vračanje na zadnjo redakcijo brez povezav na $1',
 'spam_blanking' => 'Vse redakcije so vsebovale povezave na $1, izpraznjujem',
+'spam_deleting' => 'Vse redakcije so vsebovale povezave na $1, brišem',
 
 # Info page
 'pageinfo-title' => 'Informacije o »$1«',
@@ -3873,4 +3874,6 @@ V nasprotnem primeru lahko uporabite preprost obrazec spodaj. Vašo pripombo bom
 'duration-centuries' => '$1 {{PLURAL:$1|stoletje|stoletji|stoletja|stoletij}}',
 'duration-millennia' => '$1 {{PLURAL:$1|tisočletje|tisočletji|tisočletja|tisočletij}}',
 
+# Unknown messages
+'lockmanager-fail-svr-acquire' => 'Ne morem pridobiti zaklepov na strežniku $1.',
 );

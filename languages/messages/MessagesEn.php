@@ -288,7 +288,8 @@ $magicWords = array(
 	'nse'                    => array( 0,    'NSE:'                   ),
 	'localurl'               => array( 0,    'LOCALURL:'              ),
 	'localurle'              => array( 0,    'LOCALURLE:'             ),
-	'articlepath'            => array( 0,	 'ARTICLEPATH'            ),
+	'articlepath'            => array( 0,    'ARTICLEPATH'            ),
+	'pageid'                 => array( 0,    'PAGEID'                 ),
 	'server'                 => array( 0,    'SERVER'                 ),
 	'servername'             => array( 0,    'SERVERNAME'             ),
 	'scriptpath'             => array( 0,    'SCRIPTPATH'             ),
@@ -2310,6 +2311,7 @@ If the problem persists, contact an [[Special:ListUsers/sysop|administrator]].',
 'lockmanager-fail-releaselock' => 'Could not release lock for "$1".',
 'lockmanager-fail-db-bucket'   => 'Could not contact enough lock databases in bucket $1.',
 'lockmanager-fail-db-release'  => 'Could not release locks on database $1.',
+'lockmanager-fail-svr-acquire' => 'Could not acquire locks on server $1.',
 'lockmanager-fail-svr-release' => 'Could not release locks on server $1.',
 
 # ZipDirectoryReader
@@ -3692,6 +3694,7 @@ This is probably caused by a link to a blacklisted external site.',
 'spambot_username'    => 'MediaWiki spam cleanup',
 'spam_reverting'      => 'Reverting to last revision not containing links to $1',
 'spam_blanking'       => 'All revisions contained links to $1, blanking',
+'spam_deleting'       => 'All revisions contained links to $1, deleting',
 
 # Info page
 'pageinfo-title'            => 'Information for "$1"',

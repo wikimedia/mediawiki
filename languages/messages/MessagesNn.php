@@ -640,7 +640,7 @@ Ho kan allereie vere sletta av andre.',
 'cannotdelete-title' => 'Kan ikkje sletta sida «$1»',
 'badtitle' => 'Feil i tittelen',
 'badtitletext' => 'Den ønskte tittelen var ulovleg, tom eller feillenkja frå ein annan wiki. Kanskje inneheld han eitt eller fleire teikn som ikkje kan brukast i sidetitlar.',
-'perfcached' => 'Det følgjande er frå mellomlageret åt tenaren og er ikkje nødvendigvis oppdatert. A maximum of {{PLURAL:$1|one result is|$1 results are}} available in the cache.',
+'perfcached' => 'Dei følgjande dataa er frå mellomlageret åt tenaren og er ikkje utan vidare oppdatert. Høgst {{PLURAL:$1|eitt resultat er tilgjengeleg|$1 resultat er tilgjengelege}} i mellomlageret.',
 'perfcachedts' => 'Desse dataa er mellomlagra, og vart sist oppdaterte $1. Høgst {{PLURAL:$4|eitt resultat er tilgjengeleg|$4 resultat er tilgjengelege}} i mellomlageret.',
 'querypage-no-updates' => 'Oppdatering av denne sida er slått av, og data her vil ikkje verte fornya.',
 'wrong_wfQuery_params' => 'Feil parameter gjevne til wfQuery()<br />Funksjon: $1<br />Førespurnad: $2',
@@ -650,6 +650,7 @@ Ho kan allereie vere sletta av andre.',
 'actionthrottledtext' => 'For å hindre spamming kan du ikkje utføre denne handlinga for mange gonger på kort tid. Ver venleg og prøv igjen litt seinare.',
 'protectedpagetext' => 'Denne sida er verna for å hindre endring.',
 'viewsourcetext' => 'Du kan sjå og kopiere kjeldekoden til denne sida:',
+'viewyourtext' => "Du kan sjå og kopiera kjelda til '''endringane dine''' på sida:",
 'protectedinterface' => 'Denne sida inneheld tekst som er brukt av brukargrensesnittet for programvara, og er difor låst for å hindre hærverk.',
 'editinginterface' => "'''Åtvaring:''' Du endrar på ei side som inneheld tekst som er brukt av brukargrensesnittet for programvara. Endringar på denne sida påverkar utsjånaden til sida for dei andre brukarane. Dersom du ynskjer å setje om, ver venleg og vurder å bruke [//translatewiki.net/wiki/Main_Page?setlang=nn translatewiki.net], prosjektet for omsetjing av MediaWiki.",
 'sqlhidden' => '(SQL-førespurnaden er gøymd)',
@@ -661,6 +662,8 @@ $2',
 'ns-specialprotected' => 'Sider i {{ns:special}}-namnerommet kan ikkje endrast.',
 'titleprotected' => "Denne sidetittelen er verna mot oppretting av [[User:$1|$1]].
 Grunnen som er gjeven er: ''$2''.",
+'invalidtitle-knownnamespace' => 'Ugyldig tittel med namnerommet «$2» og teksten «$3»',
+'invalidtitle-unknownnamespace' => 'Ugyldig tittel med ukjend namneromstal $1 og teksten «$2»',
 
 # Virus scanner
 'virus-badscanner' => "Dårleg konfigurasjon: ukjend virusskanner: ''$1''",
@@ -743,6 +746,7 @@ Grunna dette vil ikkje vitjande som nyttar denne IP-adressa kunna oppretta nye k
 'emailconfirmlink' => 'Stadfest e-post-adressa di',
 'invalidemailaddress' => 'E-postadressa kan ikkje nyttast sidan formatet truleg er feil. Skriv ei fungerande adresse eller tøm feltet.',
 'cannotchangeemail' => 'Epost-adresser knytta til brukarkonti kan ikkje endrast på denne wikien.',
+'emaildisabled' => 'Denne nettstaden kan ikkje senda e-postar.',
 'accountcreated' => 'Brukarkonto oppretta',
 'accountcreatedtext' => 'Brukarkontoen til $1 er oppretta.',
 'createaccount-title' => 'Oppretting av brukarkonto på {{SITENAME}}',
@@ -904,7 +908,12 @@ eller <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}
 'userpage-userdoesnotexist-view' => 'Brukarkontoen «$1» er ikkje oppretta.',
 'blocked-notice-logextract' => 'Denne brukaren er for tida blokkert.
 Det siste elementet i blokkeringsloggen er oppgjeve nedanfor:',
-'clearyourcache' => "Merk: Etter lagring vil det kanskje vera naudsynt at nettlesaren slettar mellomlageret sitt for at endringane skal tre i kraft.''' '''Firefox og Safari:''' Hald ''Shift'' nede medan du trykkjer anten ''Ctrl-F5'' eller ''Ctrl-R'' (''Command-R'' på Mac). '''Konqueror:''' Trykk ''Oppdater'' eller på ''F5''. '''Opera:''' Tøm mellomlageret i ''Verktøy → Innstillingar''. '''Internet Explorer:''' Hald nede ''Ctrl'' medan du trykkjer ''Oppdater'', eler trykk ''Ctrl-F5.''",
+'clearyourcache' => "'''Merk:''' Etter lagring vil det kanskje vera naudsynt at nettlesaren slettar mellomlageret sitt for at endringane skal tre i kraft.
+* '''Firefox og Safari:''' Haldt nede ''Shift'' medan du klikkar på ''Oppdater'', eller trykk anten ''Ctrl-F5'' eller ''Ctrl-R'' (''⌘-R'' på Mac)
+* '''Google Chrome:''' Trykk ''Ctrl-Shift-R'' (''⌘-Shift-R'' på Mac)
+* '''Internet Explorer:''' Haldt nede ''Ctrl'' medan du klikkar ''Oppdater'', eller trykk ''Ctrl-F5.''
+* '''Konqueror:''' Klikk ''Oppdater'' eller trykk ''F5''. 
+* '''Opera:''' Tøm mellomlageret i ''Verktøy → Innstillingar''.",
 'usercssyoucanpreview' => "'''Tips:''' Bruk «{{int:showpreview}}»-knappen for å teste den nye CSS- eller JavaScript-koden din før du lagrar.",
 'userjsyoucanpreview' => "''Tips:''' Bruk «{{int:showpreview}}»-knappen for å teste den nye CSS- eller JavaScript-koden din før du lagrar.",
 'usercsspreview' => "'''Hugs at dette berre er ei førehandsvising av din eigen CSS og at han ikkje er lagra enno!'''",
@@ -953,8 +962,7 @@ Teksten må du ha skrive sjølv, eller kopiert frå ein ressurs som er kompatibe
 Teksten må du ha skrive sjølv eller ha kopiert frå ein ressurs som er kompatibel med vilkåra eller ikkje verna av opphavsrett (sjå $1 for detaljar).
 
 '''LEGG ALDRI INN MATERIALE SOM ANDRE HAR OPPHAVSRETT TIL UTAN LØYVE FRÅ DEI!'''",
-'longpageerror' => "'''Feil: Teksten du har prøvd å lagre er $1 kilobyte
-lang, altså lenger enn $2 kilobyte som er maksimum. Han kan difor ikkje lagrast.'''",
+'longpageerror' => "'''Feil: Teksten du sende inn er {{PLURAL:$1|éin kilobyte|$1 kilobyte}} stor, noko som er større enn øvstegrensa på {{PLURAL:$2|éin kilobyte|$2 kilobyte}}.''' Han kan difor ikkje lagrast.",
 'readonlywarning' => "'''ÅTVARING: Databasen er skriveverna på grunn av vedlikehald, så du kan ikkje lagre endringane dine akkurat no. Det kan vera lurt å  kopiere teksten din til ei tekstfil, så du kan lagre han her seinare.'''
 
 Systemadministratoren som låste databasen gav følgjande årsak: $1",
@@ -1070,16 +1078,16 @@ Som administrator kan du sjå han. Det finst kanskje meir informasjon i [{{fullu
 'rev-deleted-no-diff' => "Du kan ikkje vise denne skilnaden fordi ein av versjonane er vorten '''sletta'''.
 Det finst kanskje detaljar i [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} sletteloggen].",
 'rev-suppressed-no-diff' => "Du kan ikkje sjå denne skilnaden av di ein av versjonane er vorten '''sletta'''.",
-'rev-deleted-unhide-diff' => "Éin av versjonane i denne skilnaden er vorten '''sletta'''.
-Det finst kanskje detaljar i [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} sletteloggen].
-Som administrator kan du framleis [$1 sjå skilnaden] om du ynskjer å halda fram.",
-'rev-suppressed-unhide-diff' => "Ei av sideversjonane i denne lista over versjonar har vorte '''skjult'''.
-Det kan vera detaljar i [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} skjulingsloggen].
-Som administrator kan du framleis [$1 sjå versjonen] om du ynskjer det.",
-'rev-deleted-diff-view' => "Ei av endringane i dette oversynet er '''sletta'''.
-Som administrator kan du sjå oversynet; detaljar finn du i [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} sletteloggen].",
-'rev-suppressed-diff-view' => "Ei av endringane i dette oversynet er '''løynd'''.
-Som administrator kan du sjå dette oversynet; detaljar finn du i [{{fullurl:{{#Special:Log}}/suppcess|page={{FULLPAGENAMEE}}}} historikkfjerningsloggen].",
+'rev-deleted-unhide-diff' => "Ein av versjonane i denne skilnaden er vorten '''sletta'''.
+Det finst detaljar i [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} sletteloggen].
+Du kan framleis [$1 sjå skilnaden] om du ynskjer å halda fram.",
+'rev-suppressed-unhide-diff' => "Ein av sideversjonane i denne lista over versjonar er vorten '''løynd'''.
+Det finst detaljar i [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} løyneloggen].
+Du kan framleis [$1 sjå skilnaden] om du ynskjer å halda fram.",
+'rev-deleted-diff-view' => "Ein av versjonane i skilnaden er vorten '''sletta'''.
+Du kan sjå skilnaden; detaljar finst i [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} sletteloggen].",
+'rev-suppressed-diff-view' => "Ei av endringane i skilnaden er vorten '''løynd'''.
+Du kan sjå skilnaden; detaljar finst i [{{fullurl:{{#Special:Log}}/suppcess|page={{FULLPAGENAMEE}}}} løyneloggen].",
 'rev-delundel' => 'vis/gøym',
 'rev-showdeleted' => 'syn',
 'revisiondelete' => 'Slett/attopprett versjonar',
@@ -1265,6 +1273,7 @@ Ver merksam på at registra deira kan vera utdaterte.',
 'qbsettings-fixedright' => 'Høgre',
 'qbsettings-floatingleft' => 'Flytande venstre',
 'qbsettings-floatingright' => 'Flytande høgre',
+'qbsettings-directionality' => 'Fast, avhengig av kva retning språket ditt vert lese',
 
 # Preferences page
 'preferences' => 'Innstillingar',
@@ -1279,6 +1288,7 @@ Ver merksam på at registra deira kan vera utdaterte.',
 'prefs-beta' => 'Betafunksjonar',
 'prefs-datetime' => 'Dato og klokkeslett',
 'prefs-labs' => 'Testfunksjonar',
+'prefs-user-pages' => 'Brukarsider',
 'prefs-personal' => 'Brukaropplysningar',
 'prefs-rc' => 'Siste endringar',
 'prefs-watchlist' => 'Overvakingsliste',
@@ -1615,8 +1625,9 @@ For å bruke ei fil på ei side, bruk ei lenkje på eit liknande format:
 'ignorewarnings' => 'Oversjå åtvaringar',
 'minlength1' => 'Filnamn må ha minst eitt teikn.',
 'illegalfilename' => 'Filnamnet «$1» inneheld teikn som ikkje er tillatne i sidetitlar. Skift namn på fila og prøv på nytt.',
+'filename-toolong' => 'Filnamn kan ikkje vera lengre enn 240 byte.',
 'badfilename' => 'Namnet på fila har vorte endra til «$1».',
-'filetype-mime-mismatch' => 'Filendinga samsvarar ikkje med ein MIME-type.',
+'filetype-mime-mismatch' => 'Filendinga «.$1» samsvarar ikkje med MIME-typen som er funnen i fila ($2).',
 'filetype-badmime' => 'Filer av MIME-typen «$1» kan ikkje lastast opp.',
 'filetype-bad-ie-mime' => 'Kan ikkje lasta opp fila då Internet Explorer ville merka ho som "$1", ein ikkje-tillate og potensielt farleg filtype.',
 'filetype-unwanted-type' => "«'''.$1'''» er ein uynskt filtype.
@@ -1715,7 +1726,9 @@ $1',
 'upload-http-error' => 'Ein HTTP-feil oppstod: $1',
 
 # File backend
+'backend-fail-invalidpath' => '$1 er ikkje ein gyldig lagringsstig.',
 'backend-fail-delete' => 'Kunne ikkje sletta fila «$1».',
+'backend-fail-alreadyexists' => 'Fila $1 finst frå før.',
 
 # img_auth script messages
 'img-auth-accessdenied' => 'Tilgjenge avslått',
@@ -2287,9 +2300,8 @@ Her er dei noverande innstillingane for sida '''$1''':",
 'viewdeletedpage' => 'Sjå sletta sider',
 'undeletepagetext' => '{{PLURAL:$1|Den følgjande sida er sletta, men ho|Dei følgjande $1 sidene er sletta, men dei}} finst enno i arkivet og kan attopprettast. Arkivet blir periodevis sletta.',
 'undelete-fieldset-title' => 'Attenderull endringar',
-'undeleteextrahelp' => "For å attenderulle heile sida, la alle boksane vere som dei er, og klikk '''''Rull attende'''''.
-For å berre attenderulle delar, kryss av boksane til endringane, og klikk '''''Rull attende'''''.
-Å klikke '''''Nullstill''''' vil føre til at alle tekstfelt og boksar vert blanke.",
+'undeleteextrahelp' => "For å attoppretta heile historikken til sida, lat alle boksane vera vera tomme og trykk '''''{{int:undeletebtn}}'''''.
+For å berre attopretta delar av historikken, haka av boksane til dei relevante endringane og trykk '''''{{int:undeletebtn}}'''''.",
 'undeleterevisions' => '{{PLURAL:$1|Éin versjon arkivert|$1 versjonar arkiverte}}',
 'undeletehistory' => 'Om du gjenopprettar sida vil alle endringar i historikken også bli gjenoppretta. Dersom ei ny side med same namn er oppretta etter slettinga, vil dei gjenoppretta endringane dukke opp før denne i endringshistorikken.',
 'undeleterevdel' => 'Gjenoppretting kan ikkje utførast om det resulterer i at den øvste endringa delvis vert sletta. I slike tilfelle må du fjerne merkinga av den siste sletta endringa.',
@@ -2322,6 +2334,7 @@ Sjå [[Special:Log/delete|sletteloggen]] for eit oversyn over sider som nyleg er
 'undelete-bad-store-key' => 'Kan ikkje gjenopprette filutgåva med tidstrykk $1: fil mangla før sletting',
 'undelete-cleanup-error' => 'Feil ved sletting av den ubrukte arkivfila «$1».',
 'undelete-missing-filearchive' => 'Kunne ikkje attopprette filarkivet med nummer $1 fordi det ikkje ligg i databasen. Det kan allereie ver attoppretta.',
+'undelete-error' => 'Feil under attoppretting av sida.',
 'undelete-error-short' => 'Veil ved sletting av fila: $1',
 'undelete-error-long' => 'Feil ved attoppretting av fila:
 

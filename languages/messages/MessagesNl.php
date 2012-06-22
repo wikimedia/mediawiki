@@ -3186,6 +3186,7 @@ Meestal wordt dit door een externe verwijzing op een zwarte lijst veroorzaakt.',
 'spambot_username' => 'MediaWiki opschoning spam',
 'spam_reverting' => 'Bezig met terugdraaien naar de laatste versie die geen verwijzing heeft naar $1',
 'spam_blanking' => 'Alle wijzigingen met een verwijzing naar $1 worden verwijderd',
+'spam_deleting' => 'Alle versies bevatten verwijzingen naar $1. Bezig met verwijderen...',
 
 # Info page
 'pageinfo-title' => 'Informatie over "$1"',
@@ -4121,4 +4122,6 @@ Anders kunt u ook het eenvoudige formulier hieronder gebruiken. Uw reactie wordt
 'duration-centuries' => '$1 {{PLURAL:$1|eeuw|eeuwen}}',
 'duration-millennia' => '$1 {{PLURAL:$1|millennium|millennia}}',
 
+# Unknown messages
+'lockmanager-fail-svr-acquire' => 'Het was niet mogelijk een vergrendeling te krijgen op server $1.',
 );
