@@ -412,6 +412,8 @@ $wgMessageStructure = array(
 		'filereadonlyerror',
 		'invalidtitle-knownnamespace',
 		'invalidtitle-unknownnamespace',
+		'exception-nologin',
+		'exception-nologin-text',
 	),
 	'virus' => array(
 		'virus-badscanner',

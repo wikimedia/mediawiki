@@ -744,6 +744,8 @@ It is also used on the top of the page for logged out users, where it appears ne
 'createaccountreason' => '{{Identical|Reason}}',
 'createaccounterror' => 'Parameters:
 * $1 is an error message',
+'exception-nologin' => 'Generic page title used on error page when a user is not logged in. Message used by the UserNotLoggedIn exception.',
+'exception-nologin-text' => 'Generic reason displayed on error page when a user is not logged in. Message used by the UserNotLoggedIn exception.',
 'nocookiesnew' => "This message is displayed when a new account was successfully created, but the browser doesn't accept cookies.",
 'nocookieslogin' => "This message is displayed when someone tried to login, but the browser doesn't accept cookies.",
 'nocookiesfornew' => "This message is displayed when the user tried to create a new account, but it failed the cross-site request forgery (CSRF) check. It could be blocking an attack, but most likely, the browser isn't  accepting cookies.",
