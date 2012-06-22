@@ -74,6 +74,8 @@ upgrade PHP if you have not done so prior to upgrading MediaWiki.
 * Added new function getDomain to AuthPlugin for getting a user's domain
 * (bug 23427) New magic word {{PAGEID}} which gives the current page ID.
   Will be null on previewing a page being created.
+* (bug 37830) New configuration setting to control whether password confirmation is required
+  for changing an e-mail-address or not.
 
 === Bug fixes in 1.20 ===
 * (bug 30245) Use the correct way to construct a log page title.
