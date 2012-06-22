@@ -840,9 +840,22 @@ __INDEXATTR__;
 	{
 		$destTable = $this->tableName( $destTable );
 
-		if( is_array( $insertOptions ) ) {
-			$insertOptions = implode( ' ', $insertOptions ); // FIXME: This is unused
+		if( !is_array( $insertOptions ) ) {
+			$insertOptions = array( $insertOptions );
 		}
+
+		/*
+		 * If IGNORE is set, we use savepoints to emulate mysql's behavior
+		 * Ignore LOW PRIORITY option, since it is MySQL-specific
+		 */
+		$savepoint = null;
+		if ( in_array( 'IGNORE', $insertOptions ) ) {
+			$savepoint = new SavepointPostgres( $this, 'mw' );
+			$olde = error_reporting( 0 );
+			$numrowsinserted = 0;
+			$savepoint->savepoint();
+		}
+
 		if( !is_array( $selectOptions ) ) {
 			$selectOptions = array( $selectOptions );
 		}
@@ -851,15 +864,6 @@ __INDEXATTR__;
 			$srcTable = implode( ',', array_map( array( &$this, 'tableName' ), $srcTable ) );
 		} else {
 			$srcTable = $this->tableName( $srcTable );
-		}
-
-		// If IGNORE is set, we use savepoints to emulate mysql's behavior
-		$savepoint = null;
-		if ( in_array( 'IGNORE', $options ) ) {
-			$savepoint = new SavepointPostgres( $this, 'mw' );
-			$olde = error_reporting( 0 );
-			$numrowsinserted = 0;
-			$savepoint->savepoint();
 		}
 
 		$sql = "INSERT INTO $destTable (" . implode( ',', array_keys( $varMap ) ) . ')' .
