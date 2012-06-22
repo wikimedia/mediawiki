@@ -16,6 +16,7 @@
  * @author Symane
  * @author Urhixidur
  * @author Vipuser
+ * @author Xiaomingyan
  */
 
 $fallback = 'zh-hans';
@@ -1074,7 +1075,7 @@ $2',
 ** 档案重复',
 
 # MIME search
-'mimesearch' => 'MIME 搜索',
+'mimesearch' => 'MIME搜索',
 'mimesearch-summary' => '个只页面启用档案MIME类型筛检程式。输入：内容类型/子类型，像 <tt>image/jpeg</tt>。',
 'mimetype' => 'MIME 类型:',
 'download' => '下载',

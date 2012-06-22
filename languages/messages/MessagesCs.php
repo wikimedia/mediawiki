@@ -3069,7 +3069,8 @@ Uložte jej na svůj disk a nahrajte ho sem.',
 'spamprotectionmatch' => 'Následující text spustil náš filtr proti spamu: $1',
 'spambot_username' => 'Systémový čistič spamu',
 'spam_reverting' => 'Revert na poslední verzi neobsahující odkazy na $1',
-'spam_blanking' => 'Všechny revize obsahovaly odkazy na $1, vyprázdněno',
+'spam_blanking' => 'Všechny verze obsahovaly odkazy na $1, vyprázdněno',
+'spam_deleting' => 'Všechny verze obsahovaly odkazy na $1, smazáno',
 
 # Info page
 'pageinfo-title' => 'Informace o "$1"',
@@ -4038,4 +4039,6 @@ Jinak můžete využít jednoduchý formulář níže. Váš komentář bude př
 'duration-centuries' => '$1 {{PLURAL:$1|století}}',
 'duration-millennia' => '$1 {{PLURAL:$1|tisíciletí}}',
 
+# Unknown messages
+'lockmanager-fail-svr-acquire' => 'Nepodařilo se získat zámek serveru $1.',
 );

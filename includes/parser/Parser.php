@@ -2720,6 +2720,18 @@ class Parser {
 				$subjPage = $this->mTitle->getSubjectPage();
 				$value = wfEscapeWikiText( $subjPage->getPrefixedUrl() );
 				break;
+			case 'pageid': // requested in bug 23427
+				$pageid = $this->getTitle()->getArticleId();
+				if( $pageid == 0 ) {
+					# 0 means the page doesn't exist in the database,
+					# which means the user is previewing a new page.
+					# The vary-revision flag must be set, because the magic word
+					# will have a different value once the page is saved.
+					$this->mOutput->setFlag( 'vary-revision' );
+					wfDebug( __METHOD__ . ": {{PAGEID}} used in a new page, setting vary-revision...\n" );
+				}
+				$value = $pageid ? $pageid : null;
+				break;
 			case 'revisionid':
 				# Let the edit saving system know we should parse the page
 				# *after* a revision ID has been assigned.
@@ -4171,7 +4183,7 @@ class Parser {
 			# Don't number the heading if it is the only one (looks silly)
 			if ( count( $matches[3] ) > 1 && $this->mOptions->getNumberHeadings() ) {
 				# the two are different if the line contains a link
-				$headline = $numbering . ' ' . $headline;
+				$headline = Html::element( 'span', array( 'class' => 'mw-headline-number' ), $numbering ) . ' ' . $headline;
 			}
 
 			# Create the anchor for linking from the TOC to the section
@@ -4402,7 +4414,7 @@ class Parser {
 
 		$p1 = "/\[\[(:?$nc+:|:|)($tc+?)( ?\\($tc+\\))\\|]]/";		# [[ns:page (context)|]]
 		$p4 = "/\[\[(:?$nc+:|:|)($tc+?)( ?（$tc+）)\\|]]/";		# [[ns:page（context）|]]
-		$p3 = "/\[\[(:?$nc+:|:|)($tc+?)( ?\\($tc+\\)|)(, $tc+|)\\|]]/";	# [[ns:page (context), context|]]
+		$p3 = "/\[\[(:?$nc+:|:|)($tc+?)( ?\\($tc+\\)|)((?:, |，)$tc+|)\\|]]/";	# [[ns:page (context), context|]]
 		$p2 = "/\[\[\\|($tc+)]]/";					# [[|page]]
 
 		# try $p1 first, to turn "[[A, B (C)|]]" into "[[A, B (C)|A, B]]"

@@ -17,6 +17,7 @@
  * @author Iketsi
  * @author Jens Liebenau
  * @author Kaganer
+ * @author Karika
  * @author Lucas
  * @author LyzTyphone
  * @author Malafaya
@@ -2151,6 +2152,9 @@ Vi povas plistrikti la mendon per selektado de protokola speco, la salutnomo (in
 'allpagesbadtitle' => 'La donata paĝo estis nevalida aŭ havis interlingvan aŭ intervikian prefikson. Ĝi eble enhavas unu aŭ plurajn signojn kiu ne povas esti uzataj en titoloj.',
 'allpages-bad-ns' => '{{SITENAME}} ne havas nomspacon "$1".',
 'allpages-hide-redirects' => 'Kaŝi alidirektilojn',
+
+# SpecialCachedPage
+'cachedspecial-refresh-now' => 'Vidas plej nova.',
 
 # Special:Categories
 'categories' => 'Kategorioj',

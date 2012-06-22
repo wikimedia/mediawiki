@@ -256,6 +256,7 @@ class Language {
 	 *
 	 * @param $code string
 	 *
+	 * @throws MWException
 	 * @since 1.18
 	 * @return bool
 	 */
@@ -3687,6 +3688,9 @@ class Language {
 	/**
 	 * Get the RFC 3066 code for this language object
 	 *
+	 * NOTE: The return value of this function is NOT HTML-safe and must be escaped with
+	 * htmlspecialchars() or similar
+	 *
 	 * @return string
 	 */
 	public function getCode() {
@@ -3696,6 +3700,10 @@ class Language {
 	/**
 	 * Get the code in Bcp47 format which we can use
 	 * inside of html lang="" tags.
+	 *
+	 * NOTE: The return value of this function is NOT HTML-safe and must be escaped with
+	 * htmlspecialchars() or similar.
+	 *
 	 * @since 1.19
 	 * @return string
 	 */
@@ -4108,7 +4116,7 @@ class Language {
 	 * @param $title Title object to link
 	 * @param $offset Integer offset parameter
 	 * @param $limit Integer limit parameter
-	 * @param $query String optional URL query parameter string
+	 * @param $query array|String optional URL query parameter string
 	 * @param $atend Bool optional param for specified if this is the last page
 	 * @return String
 	 */

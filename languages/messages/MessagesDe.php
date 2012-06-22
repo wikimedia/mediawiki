@@ -2971,7 +2971,7 @@ Diese auf dem lokalen Rechner speichern und danach hier hochladen.',
 'importuploaderrortemp' => 'Das Hochladen der Importdatei ist fehlgeschlagen. Ein temporäres Verzeichnis fehlt.',
 'import-parse-failure' => 'Fehler beim XML-Import:',
 'import-noarticle' => 'Es wurde keine zu importierende Seite angegeben!',
-'import-nonewrevisions' => 'Es sind keine neuen Versionen zum Import vorhanden, alle Versionen wurden bereits früher importiert.',
+'import-nonewrevisions' => 'Alle Versionen wurden bereits zu einem früheren Zeitpunkt importiert.',
 'xml-error-string' => '$1 Zeile $2, Spalte $3, (Byte $4): $5',
 'import-upload' => 'XML-Daten importieren',
 'import-token-mismatch' => 'Verlust der Sessiondaten. Bitte versuche es erneut.',
@@ -3127,7 +3127,8 @@ Das liegt wahrscheinlich an einem Link auf eine externe Seite.',
 'spamprotectionmatch' => "'''Der folgende Text wurde vom Spamfilter gefunden: ''$1'''''",
 'spambot_username' => 'MediaWiki-Spam-Säuberung',
 'spam_reverting' => 'Letzte Version ohne Links zu $1 wiederhergestellt.',
-'spam_blanking' => 'Alle Versionen enthielten Links zu $1, bereinigt.',
+'spam_blanking' => 'Alle Versionen mit einem Link zu $1 wurden bereinigt.',
+'spam_deleting' => 'Alle Versionen mit einem Link zu $1 wurden gelöscht.',
 
 # Info page
 'pageinfo-title' => 'Informationen zu „$1“',
@@ -4059,4 +4060,6 @@ Anderenfalls kannst du auch das untenstehende einfache Formular nutzen. Dein Kom
 'duration-centuries' => '$1 {{PLURAL:$1|Jahrhundert|Jahrhunderte}}',
 'duration-millennia' => '$1 {{PLURAL:$1|Jahrtausend|Jahrtausende}}',
 
+# Unknown messages
+'lockmanager-fail-svr-acquire' => 'Die Sperren auf Server $1 konnte nicht abgerufen werden.',
 );

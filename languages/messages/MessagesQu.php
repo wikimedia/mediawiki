@@ -37,6 +37,9 @@ $namespaceNames = array(
 	NS_CATEGORY_TALK    => 'Katiguriya_rimanakuy',
 );
 
+// Remove Spanish gender aliases (bug 37090)
+$namespaceGenderAliases = array();
+
 $specialPageAliases = array(
 	'Allmessages'               => array( 'TukuyWillaykuna' ),
 	'Allpages'                  => array( 'TukuyPanqakuna' ),
@@ -2233,7 +2236,7 @@ Kay p\'anqata mana musuqmanta watukamuptiykiqa, manam huk hukchasqakunamanta wil
 
 --
 E-chaski willaykuy allinkachinakunata hukchanaykipaqqa kay p\'anqatam qhaway:
-{{canonicalurl:{{#special:Preferences}}}} 
+{{canonicalurl:{{#special:Preferences}}}}
 
 Watiqana sutisuyuykipaq allinkachinakunata hukchanaykipaqqa kay p\'anqatam qhaway:
 {{canonicalurl:{{#special:EditWatchlist}}}}

@@ -2376,7 +2376,7 @@ The title is {{msg-mw|nopagetitle}}.',
 'booksources-go' => 'Name of button in [[Special:BookSources]]
 
 {{Identical|Go}}',
-'booksources-invalid-isbn' => 'This message is displayed after an invalid ISBN is entered on Special:Booksources.',
+'booksources-invalid-isbn' => 'This message is displayed after an invalid ISBN is entered on [[Special:Booksources]].',
 
 # Special:Log
 'specialloguserlabel' => 'Used in [[Special:Log]] as a label for an input field with which the log can be filtered for entries describing actions \'\'performed\'\' by the specified user.  "Carried out" and "done" are possible alternatives for "performed".',
@@ -2484,7 +2484,7 @@ You can apparently use 'URL' instead of 'hostname'.",
 'activeusers-noresult' => 'identical with {{msg-mw|listusers-noresult}}',
 
 # Special:Log/newusers
-'newuserlogpage' => 'Part of the "Newuserlog" extension. It is both the title of [[Special:Log/newusers]] and the link you can see in the recent changes.',
+'newuserlogpage' => 'Part of the "Newuserlog" extension. It is both the title of [[Special:Log/newusers]] and the link you can see in [[Special:RecentChanges]].',
 'newuserlogpagetext' => 'Part of the "Newuserlog" extension. It is the description you can see on [[Special:Log/newusers]].',
 
 # Special:ListGroupRights
@@ -4556,7 +4556,7 @@ It appears that the word 'valid' describes 'tags', not 'change'. It also appears
 'tags-hitcount-header' => 'Caption of a column in [[Special:Tags]]. For more information on tags see [//www.mediawiki.org/wiki/Manual:Tags Mediawiki].',
 'tags-edit' => '{{Identical|Edit}}
 Used on [[Special:Tags]]. Verb. Used as display text on a link to create/edit a description.',
-'tags-hitcount' => 'Shown in the “Tagged changes” column in [[Special:Tags]]. For more information on tags see [//www.mediawiki.org/wiki/Manual:Tags Mediawiki].
+'tags-hitcount' => 'Shown in the "{{msg-mw|Tags-hitcount-header}}" column in [[Special:Tags]]. For more information on tags see [//www.mediawiki.org/wiki/Manual:Tags Mediawiki].
 
 * <code>$1</code> is the number of changes marked with the tag',
 

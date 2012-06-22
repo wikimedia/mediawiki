@@ -77,9 +77,6 @@ if ( $wgLogo === false ) $wgLogo = "$wgStylePath/common/images/wiki.png";
 
 if ( $wgUploadPath === false ) $wgUploadPath = "$wgScriptPath/images";
 if ( $wgUploadDirectory === false ) $wgUploadDirectory = "$IP/images";
-
-if ( $wgTmpDirectory === false ) $wgTmpDirectory = "{$wgUploadDirectory}/tmp";
-
 if ( $wgReadOnlyFile === false ) $wgReadOnlyFile = "{$wgUploadDirectory}/lock_yBgMBwiR";
 if ( $wgFileCacheDirectory === false ) $wgFileCacheDirectory = "{$wgUploadDirectory}/cache";
 if ( $wgDeletedDirectory === false ) $wgDeletedDirectory = "{$wgUploadDirectory}/deleted";
@@ -400,7 +397,12 @@ if ( !defined( 'MW_COMPILED' ) ) {
 	wfProfileOut( $fname . '-includes' );
 }
 
-# Now that GlobalFunctions is loaded, set the default for $wgCanonicalServer
+# Now that GlobalFunctions is loaded, set defaults that depend
+# on it.
+if ( $wgTmpDirectory === false ) {
+	$wgTmpDirectory = wfTempDir();
+}
+
 if ( $wgCanonicalServer === false ) {
 	$wgCanonicalServer = wfExpandUrl( $wgServer, PROTO_HTTP );
 }

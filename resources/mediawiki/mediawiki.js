@@ -626,17 +626,21 @@ var mw = ( function ( $, undefined ) {
 
 			/**
 			 * Log a message to window.console, if possible. Useful to force logging of some
-			 * errors that are otherwise hard to detect, even if mw.log is not available. (I.e.,
-			 * this logs also if not in debug mode.)
+			 * errors that are otherwise hard to detect (I.e., this logs also in production mode).
+			 * Gets console references in each invocation, so that delayed debugging tools work
+			 * fine. No need for optimization here, which would only result in losing logs.
 			 *
-			 * @param msg String text for the log entry
-			 * @param e   Error [optional] to also log.
+			 * @param msg String text for the log entry.
+			 * @param e Error [optional] to also log.
 			 */
 			function log( msg, e ) {
-				if ( window.console && typeof window.console.log === 'function' ) {
+				var console = window.console;
+				if ( console && console.log ) {
 					console.log( msg );
+					// console.error triggers the proper handling of exception objects in
+					// consoles that support it. Fallback to passing as plain object to log().
 					if ( e ) {
-						console.log( e );
+						(console.error || console.log).call( console, e );
 					}
 				}
 			}

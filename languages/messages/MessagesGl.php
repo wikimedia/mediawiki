@@ -1,5 +1,5 @@
 <?php
-/** Galician (Galego)
+/** Galician (galego)
  *
  * See MessagesQqq.php for message documentation incl. usage of parameters
  * To improve a translation please visit http://translatewiki.net
@@ -1309,7 +1309,7 @@ Note que os seus índices do contido de {{SITENAME}} poden estar desactualizados
 'prefs-watchlist-token' => 'Pase para a lista de vixilancia:',
 'prefs-misc' => 'Preferencias varias',
 'prefs-resetpass' => 'Cambiar o contrasinal',
-'prefs-changeemail' => 'Cambiar o correo electrónico',
+'prefs-changeemail' => 'Cambiar o enderezo de correo electrónico',
 'prefs-setemail' => 'Establecer un enderezo de correo electrónico',
 'prefs-email' => 'Opcións de correo electrónico',
 'prefs-rendering' => 'Aparencia',
@@ -2848,7 +2848,7 @@ Gárdeo no seu disco duro e cárgueo aquí.',
 'importunknownsource' => 'Fonte de importación descoñecida',
 'importcantopen' => 'Non se pode abrir o ficheiro importado',
 'importbadinterwiki' => 'Ligazón interwiki incorrecta',
-'importnotext' => 'Texto baleiro ou inexistente',
+'importnotext' => 'Baleiro ou sen texto',
 'importsuccess' => 'A importación rematou!',
 'importhistoryconflict' => 'Existe un conflito no historial de revisións (por ter importado esta páxina antes)',
 'importnosources' => 'Non se defininiu ningunha fonte de importación transwiki e os envíos directos dos historiais están desactivados.',
@@ -2858,8 +2858,8 @@ Gárdeo no seu disco duro e cárgueo aquí.',
 'importuploaderrortemp' => 'Fallou o envío do ficheiro de importación. Falta un cartafol temporal.',
 'import-parse-failure' => 'Fallo de análise da importación de XML',
 'import-noarticle' => 'Ningunha páxina para importar!',
-'import-nonewrevisions' => 'Todas as revisións son previamente importadas.',
-'xml-error-string' => '$1 na liña $2, col $3 (byte $4): $5',
+'import-nonewrevisions' => 'Todas as revisións foron importadas previamente.',
+'xml-error-string' => '$1 na liña $2, columna $3 (byte $4): $5',
 'import-upload' => 'Cargar datos XML',
 'import-token-mismatch' => 'Perdéronse os datos da sesión. Por favor, inténteo de novo.',
 'import-invalid-interwiki' => 'Non se pode importar desde o wiki escificado.',
@@ -3014,8 +3014,9 @@ Pode ver o código fonte.',
 Isto, probabelmente, se debe a unha ligazón cara a un sitio externo que está na lista negra.',
 'spamprotectionmatch' => 'O seguinte texto foi o que activou o noso filtro de spam: $1',
 'spambot_username' => 'Limpeza de spam de MediaWiki',
-'spam_reverting' => 'Revertida á última edición sen ligazóns a $1',
+'spam_reverting' => 'Revertida á última edición sen ligazóns a "$1"',
 'spam_blanking' => 'Limpáronse todas as revisións con ligazóns a "$1"',
+'spam_deleting' => 'Borráronse todas as revisións con ligazóns a "$1"',
 
 # Info page
 'pageinfo-title' => 'Información sobre "$1"',
@@ -3507,7 +3508,7 @@ Os demais agocharanse por omisión.
 
 'exif-isospeedratings-overflow' => 'Superior a 65535',
 
-'exif-iimcategory-ace' => 'Arte, cultura e entretemento',
+'exif-iimcategory-ace' => 'Arte, cultura e lecer',
 'exif-iimcategory-clj' => 'Crime e dereito',
 'exif-iimcategory-dis' => 'Desastres e accidentes',
 'exif-iimcategory-fin' => 'Economía e negocios',
@@ -3937,4 +3938,6 @@ En caso contrario, pode empregar o formulario sinxelo inferior. O seu comentario
 'duration-centuries' => '$1 {{PLURAL:$1|século|séculos}}',
 'duration-millennia' => '$1 {{PLURAL:$1|milenio|milenios}}',
 
+# Unknown messages
+'lockmanager-fail-svr-acquire' => 'Non se puideron obter os peches no servidor $1.',
 );

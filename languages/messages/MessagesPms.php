@@ -520,7 +520,7 @@ Da qualsëssìa ëd coste funsion a sarà mandà gnun messagi fin che chiel (chi
 'invalidemailaddress' => "Costa adrëssa ëd pòsta eletrònica-sì as peul nen pijesse përchè a l'ha na forma nen bon-a.
 Për piasì che a buta n'adrëssa scrita giusta ò che a lassa ël camp veujd.",
 'cannotchangeemail' => "J'adrësse ëd pòsta eletrònica dij cont a peulo pa esse modificà ansima a costa wiki.",
-'emaildisabled' => 'Ës sit a peul pa mandé ëd mëssagi ëd pòsta eletrònica.',
+'emaildisabled' => 'Ës sit a peul pa mandé dij mëssagi ëd pòsta eletrònica.',
 'accountcreated' => 'Cont creà',
 'accountcreatedtext' => "Ël cont Utent për $1 a l'é stàit creà.",
 'createaccount-title' => 'Creassion ëd cont për {{SITENAME}}',
@@ -2599,7 +2599,7 @@ Për piasì, ch'a vìsita la [//www.mediawiki.org/wiki/Localisation Localisassio
 'allmessages-filter-submit' => 'Apliché',
 
 # Thumbnails
-'thumbnail-more' => 'Slarga',
+'thumbnail-more' => 'Slarghé',
 'filemissing' => 'Archivi che a manca',
 'thumbnail_error' => 'Eror antramentr che as fasìa la figurin-a: $1',
 'djvu_page_error' => 'Pàgina DjVu fòra dij lìmit',
@@ -2609,16 +2609,16 @@ Për piasì, ch'a vìsita la [//www.mediawiki.org/wiki/Localisation Localisassio
 'thumbnail_invalid_params' => 'Paràmetro dla figurin-a pa giust',
 'thumbnail_dest_directory' => 'As peul pa fesse ël dossié ëd destinassion',
 'thumbnail_image-type' => 'Sòrt ëd figura nen gestì',
-'thumbnail_gd-library' => 'Configurassion pa finìa dla librerìa GD: Fonsion $1 mancanta',
-'thumbnail_image-missing' => 'Ël file a smija esse mancant: $1',
+'thumbnail_gd-library' => 'Configurassion incompleta dla biblioteca GD: Fonsion $1 mancanta',
+'thumbnail_image-missing' => "L'archivi a smija ch'a manca: $1",
 
 # Special:Import
 'import' => 'Amportassion ëd pàgine',
 'importinterwiki' => 'Amportassion da wiki diferente',
 'import-interwiki-text' => "Che a selession-a na wiki e ël tìtol dla pàgina da amporté.
-Date dle revision e stranòm dj'editor a resteran piajit sù 'cò lor.
-Tute le amportassion antra wiki diferente a resto marcà ant ël [[Special:Log/import|Registr dj'amportassion]].",
-'import-interwiki-source' => 'Sorziss wiki/pàgina:',
+Date dle revision e stranòm dj'editor a resteran piàjit sù 'cò lor.
+Tute j'amportassion antra wiki diferente a resto marcà ant ël [[Special:Log/import|Registr dj'amportassion]].",
+'import-interwiki-source' => 'Wiki e pàgina sorgiss:',
 'import-interwiki-history' => 'Còpia tute le version stòriche dë sta pàgina-sì',
 'import-interwiki-templates' => 'Ansëriss tùit jë stamp',
 'import-interwiki-submit' => 'Amporté',
@@ -2777,6 +2777,7 @@ Sòn a l'é motobin belfé che a sia rivà përchè a-i era n'anliura a un sit e
 'spambot_username' => 'MediaWiki - trigomiro che a-j dà deuit a la rumenta',
 'spam_reverting' => "Buta andaré a l'ùltima version che a l'avèissa pa andrinta dj'anliure a $1",
 'spam_blanking' => "Pàgina dësveujdà, che tute le version a l'avìo andrinta dj'anliure a $1",
+'spam_deleting' => 'Tute le revision a contnisìo dle liure a $1, scancelament',
 
 # Info page
 'pageinfo-title' => 'Anformassion për "$1"',

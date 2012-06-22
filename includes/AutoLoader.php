@@ -176,6 +176,7 @@ $wgAutoloadLocalClasses = array(
 	'MWException' => 'includes/Exception.php',
 	'MWExceptionHandler' => 'includes/Exception.php',
 	'MWFunction' => 'includes/MWFunction.php',
+	'MWHookException' => 'includes/Hooks.php',
 	'MWHttpRequest' => 'includes/HttpFunctions.php',
 	'MWInit' => 'includes/Init.php',
 	'MWNamespace' => 'includes/Namespace.php',
@@ -208,6 +209,7 @@ $wgAutoloadLocalClasses = array(
 	'ReplacementArray' => 'includes/StringUtils.php',
 	'Replacer' => 'includes/StringUtils.php',
 	'ReverseChronologicalPager' => 'includes/Pager.php',
+	'RevisionItem' => 'includes/RevisionList.php',
 	'RevisionItemBase' => 'includes/RevisionList.php',
 	'RevisionListBase' => 'includes/RevisionList.php',
 	'Revision' => 'includes/Revision.php',
@@ -248,6 +250,7 @@ $wgAutoloadLocalClasses = array(
 	'TitleArrayFromResult' => 'includes/TitleArray.php',
 	'ThrottledError' => 'includes/Exception.php',
 	'UnlistedSpecialPage' => 'includes/SpecialPage.php',
+	'UploadSourceAdapter' => 'includes/Import.php',
 	'UppercaseCollation' => 'includes/Collation.php',
 	'User' => 'includes/User.php',
 	'UserArray' => 'includes/UserArray.php',
@@ -275,10 +278,12 @@ $wgAutoloadLocalClasses = array(
 	'Xml' => 'includes/Xml.php',
 	'XmlDumpWriter' => 'includes/Export.php',
 	'XmlJsCode' => 'includes/Xml.php',
+	'XMLReader2' => 'includes/Import.php',
 	'XmlSelect' => 'includes/Xml.php',
 	'XmlTypeCheck' => 'includes/XmlTypeCheck.php',
 	'ZhClient' => 'includes/ZhClient.php',
 	'ZipDirectoryReader' => 'includes/ZipDirectoryReader.php',
+	'ZipDirectoryReaderError' => 'includes/ZipDirectoryReader.php',
 
 	# includes/actions
 	'CachedAction' => 'includes/actions/CachedAction.php',
@@ -444,6 +449,7 @@ $wgAutoloadLocalClasses = array(
 	'DatabaseSqlite' => 'includes/db/DatabaseSqlite.php',
 	'DatabaseSqliteStandalone' => 'includes/db/DatabaseSqlite.php',
 	'DatabaseType' => 'includes/db/Database.php',
+	'DBAccessError' => 'includes/db/LBFactory.php',
 	'DBConnectionError' => 'includes/db/DatabaseError.php',
 	'DBError' => 'includes/db/DatabaseError.php',
 	'DBObject' => 'includes/db/DatabaseUtility.php',
@@ -456,7 +462,10 @@ $wgAutoloadLocalClasses = array(
 	'Field' => 'includes/db/DatabaseUtility.php',
 	'IBM_DB2Blob' => 'includes/db/DatabaseIbm_db2.php',
 	'IBM_DB2Field' => 'includes/db/DatabaseIbm_db2.php',
+	'IBM_DB2Helper' => 'includes/db/DatabaseIbm_db2.php',
+	'IBM_DB2Result' => 'includes/db/DatabaseIbm_db2.php',
 	'LBFactory' => 'includes/db/LBFactory.php',
+	'LBFactory_Fake' => 'includes/db/LBFactory.php',
 	'LBFactory_Multi' => 'includes/db/LBFactory_Multi.php',
 	'LBFactory_Simple' => 'includes/db/LBFactory.php',
 	'LBFactory_Single' => 'includes/db/LBFactory_Single.php',
@@ -466,15 +475,20 @@ $wgAutoloadLocalClasses = array(
 	'LoadMonitor' => 'includes/db/LoadMonitor.php',
 	'LoadMonitor_MySQL' => 'includes/db/LoadMonitor.php',
 	'LoadMonitor_Null' => 'includes/db/LoadMonitor.php',
+	'MssqlField' => 'includes/db/DatabaseMssql.php',
+	'MssqlResult' => 'includes/db/DatabaseMssql.php',
 	'MySQLField' => 'includes/db/DatabaseMysql.php',
 	'MySQLMasterPos' => 'includes/db/DatabaseMysql.php',
 	'ORAField' => 'includes/db/DatabaseOracle.php',
 	'ORAResult' => 'includes/db/DatabaseOracle.php',
+	'ORMIterator' => 'includes/db/ORMIterator.php',
 	'ORMResult' => 'includes/db/ORMResult.php',
 	'ORMRow' => 'includes/db/ORMRow.php',
 	'ORMTable' => 'includes/db/ORMTable.php',
 	'PostgresField' => 'includes/db/DatabasePostgres.php',
+	'PostgresTransactionState' => 'includes/db/DatabasePostgres.php',
 	'ResultWrapper' => 'includes/db/DatabaseUtility.php',
+	'SavepointPostgres' => 'includes/db/DatabasePostgres.php',
 	'SQLiteField' => 'includes/db/DatabaseSqlite.php',
 
 	# includes/debug
@@ -514,6 +528,7 @@ $wgAutoloadLocalClasses = array(
 	'LocalRepo' => 'includes/filerepo/LocalRepo.php',
 	'NullRepo' => 'includes/filerepo/NullRepo.php',
 	'RepoGroup' => 'includes/filerepo/RepoGroup.php',
+	'TempFileRepo' => 'includes/filerepo/FileRepo.php',
 
 	# includes/filerepo/file
 	'ArchivedFile' => 'includes/filerepo/file/ArchivedFile.php',
@@ -557,6 +572,8 @@ $wgAutoloadLocalClasses = array(
 	'FSLockManager' => 'includes/filerepo/backend/lockmanager/FSLockManager.php',
 	'DBLockManager' => 'includes/filerepo/backend/lockmanager/DBLockManager.php',
 	'LSLockManager' => 'includes/filerepo/backend/lockmanager/LSLockManager.php',
+	'MemcLockManager' => 'includes/filerepo/backend/lockmanager/MemcLockManager.php',
+	'QuorumLockManager' => 'includes/filerepo/backend/lockmanager/LockManager.php',
 	'MySqlLockManager'=> 'includes/filerepo/backend/lockmanager/DBLockManager.php',
 	'NullLockManager' => 'includes/filerepo/backend/lockmanager/LockManager.php',
 	'FileOp' => 'includes/filerepo/backend/FileOp.php',
@@ -625,13 +642,18 @@ $wgAutoloadLocalClasses = array(
 
 	# includes/libs
 	'CSSJanus' => 'includes/libs/CSSJanus.php',
+	'CSSJanus_Tokenizer' => 'includes/libs/CSSJanus.php',
 	'CSSMin' => 'includes/libs/CSSMin.php',
 	'HttpStatus' => 'includes/libs/HttpStatus.php',
 	'IEContentAnalyzer' => 'includes/libs/IEContentAnalyzer.php',
 	'IEUrlExtension' => 'includes/libs/IEUrlExtension.php',
 	'JavaScriptMinifier' => 'includes/libs/JavaScriptMinifier.php',
+	'JSCompilerContext' => 'includes/libs/jsminplus.php',
 	'JSMinPlus' => 'includes/libs/jsminplus.php',
+	'JSNode' => 'includes/libs/jsminplus.php',
 	'JSParser' => 'includes/libs/jsminplus.php',
+	'JSToken' => 'includes/libs/jsminplus.php',
+	'JSTokenizer' => 'includes/libs/jsminplus.php',
 
 	# includes/logging
 	'DatabaseLogEntry' => 'includes/logging/LogEntry.php',
@@ -674,6 +696,7 @@ $wgAutoloadLocalClasses = array(
 	'PNGMetadataExtractor' => 'includes/media/PNGMetadataExtractor.php',
 	'SvgHandler' => 'includes/media/SVG.php',
 	'SVGMetadataExtractor' => 'includes/media/SVGMetadataExtractor.php',
+	'SVGReader' => 'includes/media/SVGMetadataExtractor.php',
 	'ThumbnailImage' => 'includes/media/MediaTransformOutput.php',
 	'TiffHandler' => 'includes/media/Tiff.php',
 	'TransformParameterError' => 'includes/media/MediaTransformOutput.php',
@@ -714,6 +737,7 @@ $wgAutoloadLocalClasses = array(
 	'LinkHolderArray' => 'includes/parser/LinkHolderArray.php',
 	'LinkMarkerReplacer' => 'includes/parser/Parser_LinkHooks.php',
 	'MWTidy' => 'includes/parser/Tidy.php',
+	'MWTidyWrapper' => 'includes/parser/Tidy.php',
 	'PPCustomFrame_DOM' => 'includes/parser/Preprocessor_DOM.php',
 	'PPCustomFrame_Hash' => 'includes/parser/Preprocessor_Hash.php',
 	'PPCustomFrame_HipHop' => 'includes/parser/Preprocessor_HipHop.hphp',
@@ -785,6 +809,7 @@ $wgAutoloadLocalClasses = array(
 	# includes/revisiondelete
 	'RevDel_ArchivedFileItem' => 'includes/revisiondelete/RevisionDelete.php',
 	'RevDel_ArchivedFileList' => 'includes/revisiondelete/RevisionDelete.php',
+	'RevDel_ArchivedRevisionItem' => 'includes/revisiondelete/RevisionDelete.php',
 	'RevDel_ArchiveItem' => 'includes/revisiondelete/RevisionDelete.php',
 	'RevDel_ArchiveList' => 'includes/revisiondelete/RevisionDelete.php',
 	'RevDel_FileItem' => 'includes/revisiondelete/RevisionDelete.php',
@@ -800,6 +825,7 @@ $wgAutoloadLocalClasses = array(
 	'RevisionDeleteUser' => 'includes/revisiondelete/RevisionDeleteUser.php',
 
 	# includes/search
+	'MssqlSearchResultSet' => 'includes/search/SearchMssql.php',
 	'MySQLSearchResultSet' => 'includes/search/SearchMySQL.php',
 	'PostgresSearchResult' => 'includes/search/SearchPostgres.php',
 	'PostgresSearchResultSet' => 'includes/search/SearchPostgres.php',
@@ -809,6 +835,7 @@ $wgAutoloadLocalClasses = array(
 	'SearchIBM_DB2' => 'includes/search/SearchIBM_DB2.php',
 	'SearchMssql' => 'includes/search/SearchMssql.php',
 	'SearchMySQL' => 'includes/search/SearchMySQL.php',
+	'SearchNearMatchResultSet' => 'includes/search/SearchEngine.php',
 	'SearchOracle' => 'includes/search/SearchOracle.php',
 	'SearchPostgres' => 'includes/search/SearchPostgres.php',
 	'SearchResult' => 'includes/search/SearchEngine.php',
@@ -826,6 +853,7 @@ $wgAutoloadLocalClasses = array(
 	'AncientPagesPage' => 'includes/specials/SpecialAncientpages.php',
 	'BlockListPager' => 'includes/specials/SpecialBlockList.php',
 	'BrokenRedirectsPage' => 'includes/specials/SpecialBrokenRedirects.php',
+	'CategoryPager' => 'includes/specials/SpecialCategories.php',
 	'ContribsPager' => 'includes/specials/SpecialContributions.php',
 	'DBLockForm' => 'includes/specials/SpecialLockdb.php',
 	'DBUnlockForm' => 'includes/specials/SpecialUnlockdb.php',
@@ -834,11 +862,14 @@ $wgAutoloadLocalClasses = array(
 	'DeletedContributionsPage' => 'includes/specials/SpecialDeletedContributions.php',
 	'DisambiguationsPage' => 'includes/specials/SpecialDisambiguations.php',
 	'DoubleRedirectsPage' => 'includes/specials/SpecialDoubleRedirects.php',
+	'EditWatchlistCheckboxSeriesField' => 'includes/specials/SpecialEditWatchlist.php',
+	'EditWatchlistNormalHTMLForm' => 'includes/specials/SpecialEditWatchlist.php',
 	'EmailConfirmation' => 'includes/specials/SpecialConfirmemail.php',
 	'EmailInvalidation' => 'includes/specials/SpecialConfirmemail.php',
 	'FewestrevisionsPage' => 'includes/specials/SpecialFewestrevisions.php',
 	'FileDuplicateSearchPage' => 'includes/specials/SpecialFileDuplicateSearch.php',
 	'HTMLBlockedUsersItemSelect' => 'includes/specials/SpecialBlockList.php',
+	'ImageListPager' => 'includes/specials/SpecialListfiles.php',
 	'ImportReporter' => 'includes/specials/SpecialImport.php',
 	'IPBlockForm' => 'includes/specials/SpecialBlock.php',
 	'LinkSearchPage' => 'includes/specials/SpecialLinkSearch.php',
@@ -846,6 +877,7 @@ $wgAutoloadLocalClasses = array(
 	'LoginForm' => 'includes/specials/SpecialUserlogin.php',
 	'LonelyPagesPage' => 'includes/specials/SpecialLonelypages.php',
 	'LongPagesPage' => 'includes/specials/SpecialLongpages.php',
+	'MergeHistoryPager' => 'includes/specials/SpecialMergeHistory.php',
 	'MIMEsearchPage' => 'includes/specials/SpecialMIMEsearch.php',
 	'MostcategoriesPage' => 'includes/specials/SpecialMostcategories.php',
 	'MostimagesPage' => 'includes/specials/SpecialMostimages.php',
@@ -854,9 +886,12 @@ $wgAutoloadLocalClasses = array(
 	'MostlinkedTemplatesPage' => 'includes/specials/SpecialMostlinkedtemplates.php',
 	'MostrevisionsPage' => 'includes/specials/SpecialMostrevisions.php',
 	'MovePageForm' => 'includes/specials/SpecialMovepage.php',
+	'NewFilesPager' => 'includes/specials/SpecialNewimages.php',
 	'NewPagesPager' => 'includes/specials/SpecialNewpages.php',
 	'PageArchive' => 'includes/specials/SpecialUndelete.php',
 	'PopularPagesPage' => 'includes/specials/SpecialPopularpages.php',
+	'ProtectedPagesPager' => 'includes/specials/SpecialProtectedpages.php',
+	'ProtectedTitlesPager' => 'includes/specials/SpecialProtectedtitles.php',
 	'RandomPage' => 'includes/specials/SpecialRandompage.php',
 	'ShortPagesPage' => 'includes/specials/SpecialShortpages.php',
 	'SpecialActiveUsers' => 'includes/specials/SpecialActiveusers.php',
@@ -907,10 +942,11 @@ $wgAutoloadLocalClasses = array(
 	'SpecialUnlockdb' => 'includes/specials/SpecialUnlockdb.php',
 	'SpecialUpload' => 'includes/specials/SpecialUpload.php',
 	'SpecialUploadStash' => 'includes/specials/SpecialUploadStash.php',
+	'SpecialUploadStashTooLargeException' => 'includes/specials/SpecialUploadStash.php',
 	'SpecialUserlogout' => 'includes/specials/SpecialUserlogout.php',
 	'SpecialVersion' => 'includes/specials/SpecialVersion.php',
 	'SpecialWatchlist' => 'includes/specials/SpecialWatchlist.php',
-	'SpecialWhatlinkshere' => 'includes/specials/SpecialWhatlinkshere.php',
+	'SpecialWhatLinksHere' => 'includes/specials/SpecialWhatlinkshere.php',
 	'UncategorizedCategoriesPage' => 'includes/specials/SpecialUncategorizedcategories.php',
 	'UncategorizedImagesPage' => 'includes/specials/SpecialUncategorizedimages.php',
 	'UncategorizedPagesPage' => 'includes/specials/SpecialUncategorizedpages.php',
@@ -919,6 +955,8 @@ $wgAutoloadLocalClasses = array(
 	'UnusedimagesPage' => 'includes/specials/SpecialUnusedimages.php',
 	'UnusedtemplatesPage' => 'includes/specials/SpecialUnusedtemplates.php',
 	'UnwatchedpagesPage' => 'includes/specials/SpecialUnwatchedpages.php',
+	'UploadChunkFileException' => 'includes/upload/UploadFromChunks.php',
+	'UploadChunkZeroLengthFileException' => 'includes/upload/UploadFromChunks.php',
 	'UploadForm' => 'includes/specials/SpecialUpload.php',
 	'UploadSourceField' => 'includes/specials/SpecialUpload.php',
 	'UserrightsPage' => 'includes/specials/SpecialUserrights.php',
@@ -953,6 +991,7 @@ $wgAutoloadLocalClasses = array(
 	'UploadStashNoSuchKeyException' => 'includes/upload/UploadStash.php',
 
 	# languages
+	'ConverterRule' => 'languages/LanguageConverter.php',
 	'FakeConverter' => 'languages/Language.php',
 	'Language' => 'languages/Language.php',
 	'LanguageConverter' => 'languages/LanguageConverter.php',
@@ -982,6 +1021,7 @@ $wgAutoloadLocalClasses = array(
 
 	# maintenance/language
 	'csvStatsOutput' => 'maintenance/language/StatOutputs.php',
+	'extensionLanguages' => 'maintenance/language/languages.inc',
 	'languages' => 'maintenance/language/languages.inc',
 	'MessageWriter' => 'maintenance/language/writeMessagesArray.inc',
 	'statsOutput' => 'maintenance/language/StatOutputs.php',
@@ -994,17 +1034,18 @@ $wgAutoloadLocalClasses = array(
 
 	# mw-config
 	'InstallerOverrides' => 'mw-config/overrides.php',
+	'MyLocalSettingsGenerator' => 'mw-config/overrides.php',
 
 	# tests
 	'DbTestPreviewer' => 'tests/testHelpers.inc',
 	'DbTestRecorder' => 'tests/testHelpers.inc',
+	'DelayedParserTest' => 'tests/testHelpers.inc',
 	'TestFileIterator' => 'tests/testHelpers.inc',
 	'TestRecorder' => 'tests/testHelpers.inc',
 
 	# tests/parser
 	'ParserTest' => 'tests/parser/parserTest.inc',
 	'ParserTestParserHook' => 'tests/parser/parserTestsParserHook.php',
-	'ParserTestStaticParserHook' => 'tests/parser/parserTestsStaticParserHook.php',
 
 	# tests/selenium
 	'Selenium' => 'tests/selenium/Selenium.php',
@@ -1015,6 +1056,23 @@ $wgAutoloadLocalClasses = array(
 	'SeleniumTestListener' => 'tests/selenium/SeleniumTestListener.php',
 	'SeleniumTestSuite' => 'tests/selenium/SeleniumTestSuite.php',
 	'SeleniumConfig' => 'tests/selenium/SeleniumConfig.php',
+
+	# skins
+	'CologneBlueTemplate' => 'skins/CologneBlue.php',
+	'ModernTemplate' => 'skins/Modern.php',
+	'MonoBookTemplate' => 'skins/MonoBook.php',
+	'NostalgiaTemplate' => 'skins/Nostalgia.php',
+	'SkinChick' => 'skins/Chick.php',
+	'SkinCologneBlue' => 'skins/CologneBlue.php',
+	'SkinModern' => 'skins/Modern.php',
+	'SkinMonoBook' => 'skins/MonoBook.php',
+	'SkinMySkin' => 'skins/MySkin.php',
+	'SkinNostalgia' => 'skins/Nostalgia.php',
+	'SkinSimple' => 'skins/Simple.php',
+	'SkinStandard' => 'skins/Standard.php',
+	'SkinVector' => 'skins/Vector.php',
+	'StandardTemplate' => 'skins/Standard.php',
+	'VectorTemplate' => 'skins/Vector.php',
 );
 
 class AutoLoader {

@@ -159,7 +159,7 @@ $messages = array(
 'tog-enotifwatchlistpages' => 'Padalhan ako ng e-liham kapag nabago ang isa sa mga pahinang binabantayan ko',
 'tog-enotifusertalkpages' => 'Padalhan ako ng e-liham kapag binago ang aking pahina ng usapan',
 'tog-enotifminoredits' => 'Padalhan din ako ng e-liham para sa mga maliliit na pagbabago ng mga pahina',
-'tog-enotifrevealaddr' => 'Ipakita ang adres ng e-liham ko sa loob ng mga e-liham ng pagpapahayag',
+'tog-enotifrevealaddr' => 'Ipakita ang aking direksiyong e-liham sa loob ng mga e-liham ng pagpapahayag',
 'tog-shownumberswatching' => 'Ipakita ang bilang ng mga nagbabantay na tagagamit',
 'tog-oldsig' => 'Umiiral na lagda:',
 'tog-fancysig' => 'Ituring ang lagda bilang teksto ng wiki (walang automatikong pagkawing)',
@@ -390,9 +390,9 @@ $1',
 'badaccess-group0' => 'Hindi ka pinahintulutang isagawa ang hiniling mong kilos.',
 'badaccess-groups' => 'Ang kilos na hiniling mo ay nakatakda lamang para sa mga tagagamit sa {{PLURAL:$2|pangkat na|isa sa mga pangkat na}}: $1.',
 
-'versionrequired' => 'Kinakailangan ang bersyong $1 ng MediaWiki',
+'versionrequired' => 'Kinakailangan ang bersiyong $1 ng MediaWiki',
 'versionrequiredtext' => 'Kinakailangan ang bersyong $1 ng MediaWiki upang magamit ang pahinang ito.
-Tingnan ang [[Special:Version|pahina ng bersyon]].',
+Tingnan ang [[Special:Version|pahina ng bersiyon]].',
 
 'ok' => 'Sige',
 'retrievedfrom' => 'Ikinuha mula sa "$1"',
@@ -413,7 +413,7 @@ Tingnan ang [[Special:Version|pahina ng bersyon]].',
 'collapsible-expand' => 'Ibuka',
 'thisisdeleted' => 'Tingnan o ibalik ang $1?',
 'viewdeleted' => 'Tingnan ang $1?',
-'restorelink' => '{{PLURAL:$1|isang binurang pagbabagp|$1 binurang pagbabago}}',
+'restorelink' => '{{PLURAL:$1|isang binurang pagbabago|$1 binurang pagbabago}}',
 'feedlinks' => 'Subo/Karga:',
 'feed-invalid' => 'Hindi tanggap na uri ng serbisyo ng pagpaparating.',
 'feed-unavailable' => 'Walang serbisyo mula sa sindikasyong pangpaglalathala',
@@ -670,18 +670,18 @@ Maaaring matagumpay mo nang nabago ang iyong hudyat o nakahiling na ng isang bag
 'passwordreset-text' => 'Punuin ang pormularyong ito upang makatanggap ng isang pampaalalang e-liham ng iyong mga detalye ng akawnt.',
 'passwordreset-legend' => 'Itakdang muli ang hudyat',
 'passwordreset-disabled' => 'Hindi pinagagana sa wiking ito ang muling mga pagtatakda ng hudyat.',
-'passwordreset-pretext' => '{{PLURAL:$1| | Ipasok ang isa sa mga piraso ng dato sa ibaba}}',
+'passwordreset-pretext' => '{{PLURAL:$1| | Ipasok ang isa sa mga piraso ng datos sa ibaba}}',
 'passwordreset-username' => 'Pangalan ng tagagamit:',
 'passwordreset-domain' => 'Nasasakupan:',
 'passwordreset-capture' => 'Tingnan ang lumabas na e-liham?',
 'passwordreset-capture-help' => 'Kapag tsetsekan mo ang kahong ito, ang e-liham (may pansamantalang hudyat) ay ipapakita sa iyo at ipapadala rin sa tagagamit.',
-'passwordreset-email' => 'Tirahan ng e-liham:',
-'passwordreset-emailtitle' => 'Mga detalye ng akawnt sa {{SITENAME}}',
-'passwordreset-emailtext-ip' => 'Isang tao (marahil ay ikaw, mula sa tirahan ng IP na $1) ang humiling ng isang paalala sa iyong mga detalye ng akawnt para sa {{SITENAME}} ($4). Ang sumusunod na pangtagagamit na {{PLURAL:$3|akawnt ay|mga akawnt ay}} may kaugnayan sa tirahang ito ng e-liham:
+'passwordreset-email' => 'Direksiyong e-liham:',
+'passwordreset-emailtitle' => 'Mga detalye ng kuwenta sa {{SITENAME}}',
+'passwordreset-emailtext-ip' => 'Isang tao (marahil ay ikaw, mula sa direksiyong IP na $1) ang humiling ng isang paalala sa iyong mga detalye ng kuwenta para sa {{SITENAME}} ($4). Ang sumusunod na {{PLURAL:$3|kuwenta ng tagagamit ay|mga kuwenta ng tagagamit ay}} may kaugnayan sa direksiyong e-liham na ito:
 
 $2
 
-{{PLURAL:$3|Ang pansamantalang hudyat na ito|Ang pansamantalang mga hudyat na ito}} ay mawawalan ng bisa sa loob ng {{PLURAL:$5|isang araw|$5 mga araw}}.
+{{PLURAL:$3|Ang pansamantalang hudyat na ito|Ang mga pansamantalang hudyat na ito}} ay mawawalan ng bisa sa loob ng {{PLURAL:$5|isang araw|$5 mga araw}}.
 Dapat kang lumagda at pumili ng isang bagong hudyat ngayon. Kung ibang tao ang gumawa ng kahilingang ito, o kung naalala mo na ang orihinal mong hudyat, at hindi mo na nais palitan ito, maaari mong huwag nang pansinin ang mensaheng ito at magpatuloy sa paggamit ng luma mong hudyat.',
 'passwordreset-emailtext-user' => 'Ang tagagamit na si $1 sa {{SITENAME}} ay humiling ng isang paalala ng iyong mga akawnt ng detalye para sa {{SITENAME}}
 ($4). Ang sumusunod na pangtagagamit na {{PLURAL:$3|akawnt ay|mga akawnt ay}} may kaugnayan sa tirahang ito ng e-liham:
@@ -738,8 +738,8 @@ Pansamantalang hudyat: $2',
 'showlivepreview' => 'Buhay na paunang tingin',
 'showdiff' => 'Ipakita ang mga pagbabago',
 'anoneditwarning' => "'''Babala:''' Hindi ka nakalagda.
-Matatala ang adres ng IP mo sa kasaysayan ng pagbabago ng pahinang ito.",
-'anonpreviewwarning' => "''Hindi ka nakalagda.  Itatala sa inyong pagtatala ang inyong adres ng IP sa kasaysayan ng pagbabago ng pahinang ito.''",
+Matatala ang iyong direksiyong IP sa kasaysayan ng pagbabago ng pahinang ito.",
+'anonpreviewwarning' => "''Hindi ka nakalagda.  Itatala sa inyong pagtatala ang inyong direksiyong IP sa kasaysayan ng pagbabago ng pahinang ito.''",
 'missingsummary' => "'''Paalala:''' Hindi ka nagbigay ng buod ng pagbabago.
 Kapag pinindot mo uli ang Sagip, masasagip ang pagbabago mo na wala nito.",
 'missingcommenttext' => 'Magbigay ng isang kumento/puna sa ibaba.',
@@ -748,17 +748,18 @@ Kapag pinindot mo uli ang \"{{int:savearticle}}\", masasagip ang pagbabago mo na
 'summary-preview' => 'Paunang tingin sa buod:',
 'subject-preview' => 'Paunang tingin sa paksa/paulo:',
 'blockedtitle' => 'Hinarang ang tagagamit',
-'blockedtext' => "'''Hinarang/hinadlangan ang iyong pangalan ng tagagamit o adres ng IP.'''
+'blockedtext' => "'''Hinarang/hinadlangan ang iyong pangalan ng tagagamit o direksiyong IP.'''
 
-Ginawa ang pagharang/paghadlang ni $1. Ito ang ibinigay na dahilan: ''$2''.
+Ginawa ni $1 ang pagharang/paghadlang.
+Ito ang ibinigay na dahilan: ''$2''.
 
 * Simula ng pagharang/paghadlang: $8
 * Katapusan ng pagharang/paghadlang: $6
 * Ang hinarang/hinadlangan ay si: $7
 
-Maaari kang makipag-ugnayan kay $1 o sa iba pang [[{{MediaWiki:Grouppage-sysop}}|tagapangasiwa]] upang pagusapan ang pagharang/paghadlang na ito.
-Hindi mo magagamit ang kasangkapang-katangiang 'magpadala ng e-liham sa tagagamit' hangga't hindi tinutukoy ang isang tanggap na adres ng e-liham sa iyong [[Special:Preferences|mga kagustuhan]] at hindi ka pa hinaharangan/hinahadlangan sa paggamit nito.
-Ang pangkasalukuyang adres ng IP mo ay $3, at ang ID ay #$5.
+Maaari kang makipag-ugnayan kay $1 o sa ibang [[{{MediaWiki:Grouppage-sysop}}|tagapangasiwa]] upang pagusapan ang pagharang/paghadlang na ito.
+Hindi mo magagamit ang kasangkapang-katangiang 'magpadala ng e-liham sa tagagamit' hangga't hindi tinutukoy ang isang tanggap na direksiyong e-liham sa iyong [[Special:Preferences|mga kagustuhan]] at hindi ka pa hinaharangan/hinahadlangan sa paggamit nito.
+Ang kasalukuyan mong direksiyong IP ay $3, at ang ID ng pagharang/paghadlang ay #$5.
 Pakisama ang lahat ng mga detalye sa anumang mga pagtatanong na ginagawa/gagawin mo.",
 'autoblockedtext' => 'Kusang hinadlangan/hinarang ang adres ng IP mo dahil ginamit ito ng ibang tagagamit, na hinadlangan/hinarang ni $1.
 Ang ibinigay na dahilan ay:
@@ -1220,8 +1221,8 @@ Subuking lagyan ng unlapi/paunang ''all:'' upang hanapin ang lahat ng mga nialal
 'prefs-watchlist-token' => 'Balap ng talaan ng mga binabantayan:',
 'prefs-misc' => 'Bala-balaki',
 'prefs-resetpass' => 'Baguhin ang hudyat',
-'prefs-changeemail' => 'Baguhin ang tirahan na para sa e-liham',
-'prefs-setemail' => 'Magtakda ng bagong tirahan ng e-liham',
+'prefs-changeemail' => 'Baguhin ang direksiyong e-liham',
+'prefs-setemail' => 'Magtakda ng direksiyong e-liham',
 'prefs-email' => 'Mga pagpipilian para sa e-liham',
 'prefs-rendering' => 'Hitsura',
 'saveprefs' => 'Sagipin',
@@ -1296,7 +1297,7 @@ Dapat na mas mababa kaysa $1 {{PLURAL:$1|panitik|mga panitik}}.',
 Kung pipiliin mong ibigay ito, gagamitin ito para mabigyan ka ng pagkilala para iyong mga ginawa.",
 'prefs-help-email' => 'Hindi talaga kailangang may tirahan ng e-liham, subalit kailangan para sa muling pagtatakda ng hudyat, kung makalimutan mo ang hudyat mo.',
 'prefs-help-email-others' => 'Mapipili mo rin na makipag-ugnayan sa iyo ang iba sa pamamagitan ng iyong pahina ng tagagamit o usapan na hindi kailangang ilantad ang katauhan mo.',
-'prefs-help-email-required' => 'Kailangan ang adres ng e-liham.',
+'prefs-help-email-required' => 'Kailangan ang direksiyong e-liham.',
 'prefs-info' => 'Payak na kabatiran',
 'prefs-i18n' => 'Internasyonalisasyon',
 'prefs-signature' => 'Lagda',
@@ -1313,8 +1314,8 @@ Kung pipiliin mong ibigay ito, gagamitin ito para mabigyan ka ng pagkilala para 
 'prefs-diffs' => 'Mga pagkakaiba',
 
 # User preference: e-mail validation using jQuery
-'email-address-validity-valid' => 'Mukhang katanggap-tanggap ang tirahan ng e-liham',
-'email-address-validity-invalid' => 'Magpasok ng isang tanggap na tirahan ng e-liham',
+'email-address-validity-valid' => 'Mukhang katanggap-tanggap ang direkisyong e-liham',
+'email-address-validity-invalid' => 'Magpasok ng isang tanggap na direksiyong e-liham',
 
 # User rights
 'userrights' => 'Pamamahala ng mga karapatan ng tagagamit',
@@ -1344,7 +1345,7 @@ Kung pipiliin mong ibigay ito, gagamitin ito para mabigyan ka ng pagkilala para 
 'group-autoconfirmed' => 'Mga tagagamit na nakompirma sa kusang paraan (autokompirmasyon)',
 'group-bot' => "Mga ''bot''",
 'group-sysop' => 'Mga tagapangasiwa',
-'group-bureaucrat' => 'Mga burokrato',
+'group-bureaucrat' => 'Mga burokrata',
 'group-suppress' => 'Mga tagapagingat-tago',
 'group-all' => '(lahat)',
 
@@ -1585,8 +1586,8 @@ Hindi lilitaw ang buod na ipapasok mo sa pahina ng paglalarawan.
 Para lumitaw ang buod mo doon, kailangan mong kinakamay na baguhin ito.
 [[$1|thumb]]",
 'fileexists-extension' => "Mayroon talaksan na ganitong pangalan: [[$2|thumb]]
-* Pangalan ng ikakargang talaksan: '''<tt>[[:$1]]</tt>'''
-* Pangalan ng mayroon nang talaksan: '''<tt>[[:$2]]</tt>'''
+* Pangalan ng ikinakargang talaksan: '''<tt>[[:$1]]</tt>'''
+* Pangalan ng umiiral na talaksan: '''<tt>[[:$2]]</tt>'''
 Pumili ng ibang pangalan.",
 'fileexists-thumbnail-yes' => "Mukhang pinaliit ''(thumbnail)'' na larawan ang talaksan. [[$1|thumb]]
 Paki tingin ang talaksan '''<tt>[[:$1]]</tt>'''.
@@ -1742,8 +1743,8 @@ Pakisuring muli kung tama ang URL at kung buhay ang sityo/sayt.',
 Pakisuri kung buhay ang sayt, maghintay ng kaunti at subukin uli.
 Maaaring ibigin mong subukin uli sa isang hindi gaanong abalang panahon.',
 
-'license' => 'Paglilisensya:',
-'license-header' => 'Paglilisensya',
+'license' => 'Paglilisensiya:',
+'license-header' => 'Paglilisensiya',
 'nolicense' => 'Walang napili',
 'license-nopreview' => '(Walang makuhang paunang tingin)',
 'upload_source_url' => ' (isang tanggap at napupuntahan ng publikong URL)',
@@ -1761,7 +1762,7 @@ Kapag sinala ng tagagamit, tanging mga talaksan lang kung saan nagkarga ang taga
 'listfiles_user' => 'Tagagamit',
 'listfiles_size' => 'Sukat',
 'listfiles_description' => 'Paglalarawan',
-'listfiles_count' => 'Mga bersyon',
+'listfiles_count' => 'Mga bersiyon',
 
 # File description page
 'file-anchor-link' => 'Talaksan',
@@ -1941,7 +1942,7 @@ Nasugpo na ang mga ipinasok na <del>inekisan</del>.',
 'prefixindex-namespace' => 'Lahat ng mga pahinang may unlapi ($1 puwang ng pangalan)',
 'shortpages' => 'Mga maiikling pahina',
 'longpages' => 'Mga mahahabang pahina',
-'deadendpages' => 'Mga pahinang walang panloob na ugnay (internal link)',
+'deadendpages' => 'Mga pahinang walang kawing panloob (internal link)',
 'deadendpagestext' => "Ang mga sumusunod na mga pahina'y hindi umuugnay sa ibang mga pahina sa wiking ito.",
 'protectedpages' => 'Mga nakaprotektang pahina',
 'protectedpages-indef' => 'Mga walang katiyakang proteksyon lamang',
@@ -2083,7 +2084,7 @@ Maaaring may mga [[{{MediaWiki:Listgrouprights-helppage}}|karagdagang kabatiran]
 'emailuser' => 'Padalhan ng e-liham ang tagagamit',
 'emailpage' => 'Magpadala ng e-liham sa tagagamit',
 'emailpagetext' => 'Magagamit mo ang pormularyo sa ibaba para makapagpadala ng mensahe sa pamamagitan ng isang e-liham para sa tagagamit na ito.
-Ang ipinasok mong adres ng e-liham sa [[Special:Preferences|iyong mga kagustuhan ng tagagamit]] ay lilitaw bilang adres na "Mula kay" ng e-liham, para tuwirang makatugon sa iyo ang nakatanggap.',
+Ang ipinasok mong direksiyong e-liham sa [[Special:Preferences|iyong mga kagustuhan ng tagagamit]] ay lilitaw bilang adres na "Mula kay" ng e-liham, para tuwirang makatugon sa iyo ang nakatanggap.',
 'usermailererror' => 'Pagkakamaling sanhi ng pagkakabalik ng liham mula sa puntirya:',
 'defemailsubject' => 'E-liham ng {{SITENAME}} mula sa tagagamit na si "$1"',
 'usermaildisabled' => 'Hindi pinagana ang e-liham ng tagagamit',
@@ -2118,7 +2119,7 @@ Ang ipinasok mong adres ng e-liham sa [[Special:Preferences|iyong mga kagustuhan
 'watchlistfor2' => 'Para sa $1 $2',
 'nowatchlist' => 'Wala kang pahinang binabantayan.',
 'watchlistanontext' => 'Paki $1 upang makita o mabago ang mga aytem sa iyong binabantayan.',
-'watchnologin' => 'Di ka naka-lagda',
+'watchnologin' => 'Hindi nakalagda',
 'watchnologintext' => 'Dapat kang [[Special:UserLogin|nakalagda]] upang mabago ang talaan mo ng mga binabantayan.',
 'addwatch' => 'Idagdag sa bantayan',
 'addedwatchtext' => "Dinagdag na ang pahinang \"[[:\$1]]\" sa iyong [[Special:Watchlist|Babantayan]].
@@ -2889,6 +2890,7 @@ Maaaring dahil ito sa isang kawing sa isang nakatalang hinarang dahil di-kinaisn
 'spambot_username' => "Paglilinis ng ''spam'' ng MediaWiki",
 'spam_reverting' => "Ibinabalik sa huling bersyon na 'di-naglalaman ng mga kawing sa $1",
 'spam_blanking' => 'Lahat ng mga pagbabago ay naglalaman ng mga kawing sa $1, pagpapatlang',
+'spam_deleting' => 'Lahat ng mga pagbabago ay naglalaman ng mga kawing sa $1, binubura',
 
 # Info page
 'pageinfo-title' => 'Kabatiran para sa "$1"',
@@ -3845,4 +3847,6 @@ O kaya, maaari mong gamitin ang maginhawang pormularyo sa ibaba. Ang iyong pagpu
 'duration-centuries' => '$1 {{PLURAL:$1|daantaon|mga daantaon}}',
 'duration-millennia' => '$1 {{PLURAL:$1|milenyo|mga milenyo}}',
 
+# Unknown messages
+'lockmanager-fail-svr-acquire' => 'Hindi magawang kunin ang mga kandado sa tagapaghain na $1.',
 );

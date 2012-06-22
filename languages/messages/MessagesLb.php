@@ -1672,6 +1672,9 @@ Wann de Problem weider besteet, dann un de [[Special:ListUsers/sysop|Administrat
 'lockmanager-notlocked' => '"$1" konnt net fräigeschalt ginn; $1 ass net gespaart.',
 'lockmanager-fail-closelock' => 'De Spärfichier fir "$1" konnt net zougemaach ginn.',
 'lockmanager-fail-deletelock' => 'De Spärfichier fir "$1" konnt net geläscht ginn.',
+'lockmanager-fail-acquirelock' => '"$1" konnt net gespaart ginn.',
+'lockmanager-fail-openlock' => 'De Spärfichier fir "$1" konnt net opgemaach ginn.',
+'lockmanager-fail-releaselock' => 'D\'Spär fir "$1" konnt net opgehuewe ginn.',
 'lockmanager-fail-db-release' => "D'Spären op der Datebank $1 konnten net fräigeschalt ginn.",
 'lockmanager-fail-svr-release' => "D'Spären um Server $1 konnten net fräigeschalt ginn.",
 
@@ -2863,6 +2866,7 @@ Dëst warscheinlech duerch en externe Link den op der schwaarzer Lëscht (blackl
 'spambot_username' => 'Botz vum Spam duerch MediaWiki',
 'spam_reverting' => 'Déi lescht Versioun ouni Linken op $1 restauréieren.',
 'spam_blanking' => 'An alle Versioune ware Linken op $1, et ass elo alles gebotzt.',
+'spam_deleting' => 'All Versioune mat Linken op $1 gi geläscht',
 
 # Info page
 'pageinfo-title' => 'Informatioun iwwer "$1"',
@@ -3746,4 +3750,6 @@ Soss kënnt Dir den einfache Formulär hei drënner benotzen. Är Bemierkung gë
 'duration-centuries' => '$1 {{PLURAL:$1|Joerhonnert|Joerhonnerten}}',
 'duration-millennia' => '$1 {{PLURAL:$1|Millenaire|Millenairen}}',
 
+# Unknown messages
+'lockmanager-fail-svr-acquire' => "D'Spären um Server $1 konnten net ofgefrot ginn.",
 );

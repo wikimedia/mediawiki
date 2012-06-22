@@ -62,6 +62,9 @@ interface IORMTable {
 	 * * array
 	 * * blob
 	 *
+	 * TODO: get rid of the id field. Every row instance needs to have
+	 * one so this is just causing hassle at various locations by requiring an extra check for field name.
+	 *
 	 * @since 1.20
 	 *
 	 * @return array
@@ -103,7 +106,7 @@ interface IORMTable {
 	 * @return ORMResult
 	 */
 	public function select( $fields = null, array $conditions = array(),
-							array $options = array(), $functionName  = null );
+							array $options = array(), $functionName = null );
 
 	/**
 	 * Selects the the specified fields of the records matching the provided
@@ -119,7 +122,7 @@ interface IORMTable {
 	 * @return array of self
 	 */
 	public function selectObjects( $fields = null, array $conditions = array(),
-								   array $options = array(), $functionName  = null );
+								   array $options = array(), $functionName = null );
 
 	/**
 	 * Do the actual select.
@@ -134,7 +137,7 @@ interface IORMTable {
 	 * @return ResultWrapper
 	 */
 	public function rawSelect( $fields = null, array $conditions = array(),
-							   array $options = array(), $functionName  = null );
+							   array $options = array(), $functionName = null );
 
 	/**
 	 * Selects the the specified fields of the records matching the provided
@@ -159,7 +162,7 @@ interface IORMTable {
 	 * @return array of array
 	 */
 	public function selectFields( $fields = null, array $conditions = array(),
-								  array $options = array(), $collapse = true, $functionName  = null );
+								  array $options = array(), $collapse = true, $functionName = null );
 
 	/**
 	 * Selects the the specified fields of the first matching record.

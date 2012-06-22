@@ -868,6 +868,7 @@ Gunakna tombol radio kanggo nggabungaké révisi-révisi sing digawé sadurungé
 
 # Diffs
 'history-title' => 'Sajarah revisi saka "$1"',
+'difference-title' => '$1: Bèntenipun revisi',
 'lineno' => 'Larikan $1:',
 'compareselectedversions' => 'Bandhingna vèrsi kapilih',
 'showhideselectedversions' => 'Tampilaké/dhelikaké révisi kapilih',

@@ -976,7 +976,7 @@ $2
 
 Вашата IP-адреса е $3, a ID на блокирањеto е $5.
 Ве молиме наведете ги овие подробности доколку реагирате на блокирањето.",
-'blockednoreason' => 'не е дадено образложение',
+'blockednoreason' => 'не е наведена причина',
 'whitelistedittext' => 'Мора да сте $1 за да уредувате страници.',
 'confirmedittext' => 'Морате да ја потврдите вашата е-поштенска адреса пред да уредувате страници.
 Поставете ја и валидирајте ја вашата е-поштенска адреса преку вашите [[Special:Preferences|нагодувања]].',
@@ -1777,7 +1777,7 @@ $1",
 'tmp-create-error' => 'Не можев да создадам привремена податотека.',
 'tmp-write-error' => 'Грешка при запис на привремената податотека.',
 'large-file' => 'Се препорачува податотеките да не бидат поголеми од $1; оваа податотека е $2.',
-'largefileserver' => 'Големината на податотеката е поголема од максимално дозволената големина.',
+'largefileserver' => 'Големината на оваа податотека е поголема од максимално дозволената големина од серверот.',
 'emptyfile' => 'Податотеката што ја подигнавте изгледа дека е празна.
 Ова може да е поради грешка во името на податотеката.
 Ве молиме проверете дали навистина сакате да ја подигнете оваа податотека.',
@@ -1970,7 +1970,7 @@ $1',
 'nolicense' => 'Нема',
 'license-nopreview' => '(Прегледот не е достапен)',
 'upload_source_url' => ' (важечка, јавно достапна URL-адреса)',
-'upload_source_file' => '(податотека на вашиот сметач)',
+'upload_source_file' => '(податотека на вашиот компјутер)',
 
 # Special:ListFiles
 'listfiles-summary' => 'Оваа специјална страница ги прикажува сите подигнати податотеки.
@@ -2679,7 +2679,7 @@ $1',
 'ipbenableautoblock' => 'Автоматски блокирај ја последната IP-адреса што ја користел корисникот и сите понатамошни адреси од кои ќе се обиде да уредува',
 'ipbsubmit' => 'Блокирај го овој корисник',
 'ipbother' => 'Друг рок:',
-'ipboptions' => '2 часа:2 hours,1 ден:1 day,3 дена:3 days,1 седмица:1 week,2 седмици:2 weeks,1 месец:1 month,3 месеци:3 months,6 месеци:6 months,1 година:1 year,бесконечно:infinite',
+'ipboptions' => '2 часа:2 hours,1 ден:1 day,3 дена:3 days,1 недела:1 week,2 недели:2 weeks,1 месец:1 month,3 месеци:3 months,6 месеци:6 months,1 година:1 year,бесконечно:infinite',
 'ipbotheroption' => 'друго',
 'ipbotherreason' => 'Друга, дополнителна причина:',
 'ipbhidename' => 'Скриј го корисничкото име во уредувањата и списоците',
@@ -3143,7 +3143,8 @@ $1',
 'spamprotectionmatch' => 'Следниот текст е она што го предизвика нашиот филтер за спам: $1',
 'spambot_username' => 'МедијаВики чистач на спам',
 'spam_reverting' => 'Враќам на последната верзија што не содржи врска до $1',
-'spam_blanking' => 'Сите верзии содржеа врски до $1, бришам',
+'spam_blanking' => 'Сите ревизии содржеа врски до $1. Чистам',
+'spam_deleting' => 'Сите ревизии содржеа врски до $1. Бришам',
 
 # Info page
 'pageinfo-title' => 'Информации за „$1“',
@@ -4016,8 +4017,8 @@ $5
 'version-entrypoints' => 'URL-а на влезните точки',
 'version-entrypoints-header-entrypoint' => 'Влезна точка',
 'version-entrypoints-header-url' => 'URL',
-'version-entrypoints-articlepath' => '[https://www.mediawiki.org/wiki/Manual:$wgArticlePath?uselang=mk Патека на статијата]',
-'version-entrypoints-scriptpath' => '[https://www.mediawiki.org/wiki/Manual:$wgScriptPath?uselang=mk Патека на скриптата]',
+'version-entrypoints-articlepath' => '[https://www.mediawiki.org/wiki/Manual:$wgArticlePath?uselang=mk Статија]',
+'version-entrypoints-scriptpath' => '[https://www.mediawiki.org/wiki/Manual:$wgScriptPath?uselang=mk Скрипта]',
 
 # Special:FilePath
 'filepath' => 'Патека до податотека',
@@ -4216,4 +4217,6 @@ $5
 'duration-centuries' => '$1 {{PLURAL:$1|век|века}}',
 'duration-millennia' => '$1 {{PLURAL:$1|милениум|милениуми}}',
 
+# Unknown messages
+'lockmanager-fail-svr-acquire' => 'Не можев да добијам катанци за опслужувачот $1',
 );

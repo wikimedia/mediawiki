@@ -496,7 +496,7 @@ $1',
 'site-atom-feed' => '$1的Atom訂閱',
 'page-rss-feed' => '「$1」的RSS訂閱',
 'page-atom-feed' => '「$1」的Atom訂閱',
-'red-link-title' => '$1 （頁面未存在）',
+'red-link-title' => '$1（頁面未存在）',
 'sort-descending' => '倒序排列',
 'sort-ascending' => '升序排序',
 
@@ -2908,6 +2908,7 @@ $1被封禁的理由是“$2”',
 'spambot_username' => 'MediaWiki 廣告清除',
 'spam_reverting' => '恢復到不包含連結至$1的最近修訂版本',
 'spam_blanking' => '所有包含連結至$1的修訂，清空',
+'spam_deleting' => '所有包含連結至$1的修訂，刪除中',
 
 # Info page
 'pageinfo-title' => '" $1 "的信息',

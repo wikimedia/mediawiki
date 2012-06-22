@@ -20,10 +20,10 @@
  * @file
  * @ingroup Cache
  */
- 
+
 /**
  * A wrapper class for the PECL memcached client
- * 
+ *
  * @ingroup Cache
  */
 class MemcachedPeclBagOStuff extends MemcachedBagOStuff {
@@ -37,7 +37,7 @@ class MemcachedPeclBagOStuff extends MemcachedBagOStuff {
 	 *   - compress_threshold:  The minimum size an object must be before it is compressed
 	 *   - timeout:             The read timeout in microseconds
 	 *   - connect_timeout:     The connect timeout in seconds
-	 *   - serializer:          May be either "php" or "igbinary". Igbinary produces more compact 
+	 *   - serializer:          May be either "php" or "igbinary". Igbinary produces more compact
 	 *                          values, but serialization is much slower unless the php.ini option
 	 *                          igbinary.compact_strings is off.
 	 */
@@ -45,7 +45,14 @@ class MemcachedPeclBagOStuff extends MemcachedBagOStuff {
 		$params = $this->applyDefaultParams( $params );
 
 		if ( $params['persistent'] ) {
-			$this->client = new Memcached( __CLASS__ );
+			// The pool ID must be unique to the server/option combination.
+			// The Memcached object is essentially shared for each pool ID.
+			// We can only resuse a pool ID if we keep the config consistent.
+			$this->client = new Memcached( md5( serialize( $params ) ) );
+			if ( count( $this->client->getServerList() ) ) {
+				wfDebug( __METHOD__ . ": persistent Memcached object already loaded.\n" );
+				return; // already initialized; don't add duplicate servers
+			}
 		} else {
 			$this->client = new Memcached;
 		}
@@ -54,8 +61,8 @@ class MemcachedPeclBagOStuff extends MemcachedBagOStuff {
 			$params['serializer'] = 'php';
 		}
 
-		// The compression threshold is an undocumented php.ini option for some 
-		// reason. There's probably not much harm in setting it globally, for 
+		// The compression threshold is an undocumented php.ini option for some
+		// reason. There's probably not much harm in setting it globally, for
 		// compatibility with the settings for the PHP client.
 		ini_set( 'memcached.compression_threshold', $params['compress_threshold'] );
 
@@ -65,10 +72,10 @@ class MemcachedPeclBagOStuff extends MemcachedBagOStuff {
 		$this->client->setOption( Memcached::OPT_RECV_TIMEOUT, $params['timeout'] );
 		$this->client->setOption( Memcached::OPT_POLL_TIMEOUT, $params['timeout'] / 1000 );
 
-		// Set libketama mode since it's recommended by the documentation and 
+		// Set libketama mode since it's recommended by the documentation and
 		// is as good as any. There's no way to configure libmemcached to use
 		// hashes identical to the ones currently in use by the PHP client, and
-		// even implementing one of the libmemcached hashes in pure PHP for 
+		// even implementing one of the libmemcached hashes in pure PHP for
 		// forwards compatibility would require MWMemcached::get_sock() to be
 		// rewritten.
 		$this->client->setOption( Memcached::OPT_LIBKETAMA_COMPATIBLE, true );
@@ -80,7 +87,7 @@ class MemcachedPeclBagOStuff extends MemcachedBagOStuff {
 				break;
 			case 'igbinary':
 				if ( !Memcached::HAVE_IGBINARY ) {
-					throw new MWException( __CLASS__.': the igbinary extension is not available ' . 
+					throw new MWException( __CLASS__.': the igbinary extension is not available ' .
 						'but igbinary serialization was requested.' );
 				}
 				$this->client->setOption( Memcached::OPT_SERIALIZER, Memcached::SERIALIZER_IGBINARY );
@@ -88,10 +95,11 @@ class MemcachedPeclBagOStuff extends MemcachedBagOStuff {
 			default:
 				throw new MWException( __CLASS__.': invalid value for serializer parameter' );
 		}
+		$servers = array();
 		foreach ( $params['servers'] as $host ) {
-			list( $ip, $port ) = IP::splitHostAndPort( $host );
-			$this->client->addServer( $ip, $port );
+			$servers[] = IP::splitHostAndPort( $host ); // (ip, port)
 		}
+		$this->client->addServers( $servers );
 	}
 
 	/**
@@ -174,12 +182,12 @@ class MemcachedPeclBagOStuff extends MemcachedBagOStuff {
 	}
 
 	/**
-	 * Check the return value from a client method call and take any necessary 
-	 * action. Returns the value that the wrapper function should return. At 
+	 * Check the return value from a client method call and take any necessary
+	 * action. Returns the value that the wrapper function should return. At
 	 * present, the return value is always the same as the return value from
-	 * the client, but some day we might find a case where it should be 
+	 * the client, but some day we might find a case where it should be
 	 * different.
-	 * 
+	 *
 	 * @param $key The key used by the caller, or false if there wasn't one.
 	 * @param $result The return value
 	 */
@@ -220,8 +228,8 @@ class MemcachedPeclBagOStuff extends MemcachedBagOStuff {
 		return $this->checkResult( false, $result );
 	}
 
-	/* NOTE: there is no cas() method here because it is currently not supported 
-	 * by the BagOStuff interface and other BagOStuff subclasses, such as 
+	/* NOTE: there is no cas() method here because it is currently not supported
+	 * by the BagOStuff interface and other BagOStuff subclasses, such as
 	 * SqlBagOStuff.
 	 */
 }

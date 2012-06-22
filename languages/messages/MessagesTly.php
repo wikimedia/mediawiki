@@ -46,7 +46,7 @@ $messages = array(
 'tog-watchdefault' => 'Зијод кардеј демы дәгиш кардә быә сәһифон бә ноғо доә сијоһи',
 'tog-watchmoves' => 'Зијод кардеј ном дәгиш кардә быә сәһифон бә ноғо доә сијоһи',
 'tog-watchdeletion' => 'Зијод кардеј сәһифон комон аз рәдд кардәме бә ноғо доә сијоһи',
-'tog-enotifwatchlistpages' => 'Ноғо доә сијоһиәдә сәһифон кејнә дәгиш бәбен бәмы е-номә бывығанд',
+'tog-enotifwatchlistpages' => 'Ноғо доә сијоһиәдә кејнә сәһифон дәгиш бәбен бәмы е-номә бывығанд',
 'tog-watchlisthideown' => 'Чымы дәгишон ноғо доә сијһиәдә нијо кардеј',
 'tog-watchlisthidebots' => 'Нијо кардеј ботон дәгишон ноғо доә сијоһиәдә',
 'tog-watchlisthideminor' => 'Нијо кардеј гәдә дәгишон ноғо доә сијоһиәдә',
@@ -138,7 +138,7 @@ $messages = array(
 'qbpageoptions' => 'Ым сәһифә',
 'qbpageinfo' => 'Мәзмун.',
 'qbmyoptions' => 'Чымы сәһифон',
-'qbspecialpages' => 'Хысусиә сәһифон',
+'qbspecialpages' => 'Хысусијә сәһифон',
 'faq' => 'РАП',
 'faqpage' => 'Project:РАП',
 
@@ -188,7 +188,7 @@ $messages = array(
 'newpage' => 'Тожә сәһифә',
 'talkpage' => 'Ым сәһифә мызокирә кардеј',
 'talkpagelinktext' => 'Мызокирә',
-'specialpage' => 'Хысусиә сәһифә',
+'specialpage' => 'Хысусијә сәһифә',
 'personaltools' => 'Шәхси диләгон',
 'postcomment' => 'Нујә ғысм',
 'articlepage' => 'Мәғолә дијә кардеј',
@@ -263,7 +263,7 @@ $messages = array(
 'nstab-main' => 'Мәғолә',
 'nstab-user' => 'Иштирокәкә сәһифә',
 'nstab-media' => 'Медијә сәһифә',
-'nstab-special' => 'Хысусиә сәһифә',
+'nstab-special' => 'Хысусијә сәһифә',
 'nstab-project' => 'Нахшә бәрәдә',
 'nstab-image' => 'Фајл',
 'nstab-template' => 'Ғәлиб',
@@ -484,6 +484,7 @@ $messages = array(
 'prefsnologintext' => 'Шымә бәбе <span class="plainlinks">[{{fullurl:{{#Special:UserLogin}}|returnto=$1}} ыштәни едәштән]</span> бо иштирокәкә пеғәндон дәгиш кардеј.',
 'changepassword' => 'Пароли дәгиш кардеј',
 'skin-preview' => 'Сыфтәнә нишо дој',
+'prefs-user-pages' => 'Иштирокәкә сәһифон',
 'prefs-rc' => 'Ән нујә дәгишон',
 'prefs-changeemail' => 'Е-номә дәгиш кардеј',
 'saveprefs' => 'Огәтеј',
@@ -532,6 +533,8 @@ $messages = array(
 'minoreditletter' => 'г',
 'newpageletter' => 'Т',
 'boteditletter' => 'б',
+'rc_categories_any' => 'Һар гылә',
+'newsectionsummary' => '/* $1 */ нујә мывзу',
 'rc-enhanced-expand' => 'Тәфсилотон нишо дој (JavaScript истифодә бедә)',
 'rc-enhanced-hide' => 'Тәфсилотон нијо кардеј',
 
@@ -554,10 +557,21 @@ $messages = array(
 'license' => 'Лисензијә:',
 'license-header' => 'Лисензијә',
 
+# Special:ListFiles
+'imgfile' => 'фајл',
+'listfiles' => 'Фајлон сијоһи',
+'listfiles_thumb' => 'Гәдә шикил',
+'listfiles_name' => 'Фајли ном',
+'listfiles_user' => 'Иштирокәкә',
+'listfiles_size' => 'Улгу',
+'listfiles_description' => 'Тәсвир',
+'listfiles_count' => 'Рәвојәт',
+
 # File description page
 'file-anchor-link' => 'Фајл',
 'filehist' => 'Фајли тарых',
 'filehist-help' => 'Фајли сыфтә рәвојәти виндеј горә бә тарых/вахт егәтән.',
+'filehist-deleteall' => 'һәммәј рәдд кардеј',
 'filehist-revert' => 'Огард',
 'filehist-current' => 'есәтнә',
 'filehist-datetime' => 'Тарых/Вахт',
@@ -677,7 +691,7 @@ $messages = array(
 'whatlinkshere-page' => 'Сәһифә:',
 'linkshere' => "Ым сәһифон сәбон вардән ијо ''[[:$1]]''':",
 'nolinkshere' => "Бә ым сәһифә ҹо сәһифонку сәбонон нин '''[[:$1]]'''.",
-'isredirect' => 'увони дәгиш кардә сәһифәје',
+'isredirect' => 'унвони дәгиш кардә сәһифәје',
 'istemplate' => 'әловә',
 'isimage' => 'фајлинә сәбон',
 'whatlinkshere-prev' => '{{PLURAL:$1|навынәни|навынәни $1}}',
@@ -701,19 +715,24 @@ $messages = array(
 'block-log-flags-nocreate' => 'нујә иштирокәкон ғејд карде ғәдәғәне',
 
 # Move page
+'move-page-legend' => 'Сәһифә номи дәгиш карде',
+'newtitle' => 'Нујә ном:',
+'movepagebtn' => 'Сәһифә номи дәгиш кардеј',
 'movelogpage' => 'Ном дәгиш кардә быә чијон журнал',
 'revertmove' => 'Бә кәно окырније',
 
 # Export
 'export' => 'Сәһифон ихроҹ кардеј',
+'export-addcat' => 'Зијод кардеј',
 
 # Namespace 8 related
 'allmessagesname' => 'Хәбә',
 'allmessagesdefault' => 'Иминә огәтә быә мәтн',
+'allmessages-filter-all' => 'Һаммај',
 
 # Thumbnails
 'thumbnail-more' => 'Һејве кардеј',
-'thumbnail_error' => 'Гәдә шикили туму кардәдә сәһф: $1',
+'thumbnail_error' => 'Гәдә шикили туму кардејәдә сәһв: $1',
 
 # Tooltip help for the actions
 'tooltip-pt-userpage' => 'Шымә иштирокәкә сәһифә',
@@ -755,6 +774,7 @@ $messages = array(
 'tooltip-t-permalink' => 'Бә ым сәһифә рәвојәти еғрорә сәбон',
 'tooltip-ca-nstab-main' => 'Мәғолә мығдор',
 'tooltip-ca-nstab-user' => 'Иштирок кардәкәси сәһифә',
+'tooltip-ca-nstab-media' => 'Медиа-фајл',
 'tooltip-ca-nstab-special' => 'Ым хыдмәтә сәһифәје бычыми горә дәгиш кардеј әбыни',
 'tooltip-ca-nstab-project' => 'Нәхши сәһифә',
 'tooltip-ca-nstab-image' => 'Фајли сәһифә',
@@ -766,6 +786,7 @@ $messages = array(
 'tooltip-diff' => 'Бешемонә мәтни һәхәдә сохтә быә дәгишон нишо дој.',
 'tooltip-compareselectedversions' => 'Че ым сәһифә ды гылә выжнијә быә рәвојәтон мијонәдә фәрғи едјәсеј.',
 'tooltip-watch' => 'Ым сәһифә зијод кардеј бә ыштә нығо доә сијоһи',
+'tooltip-upload' => 'Бо жәј бино кардеј',
 'tooltip-rollback' => 'Охонә редактори дәгиш кардә быә чијон де и гылә егәте ләғв кардеј',
 'tooltip-undo' => 'Дәғандә дәгиши рәдд кардеј ијән "сыфтәнә нишо дој" окардеј, де ләғви сәбәби нышон дој имкони.',
 'tooltip-summary' => 'Кыртә тәсвир бынывыштән',
@@ -814,6 +835,11 @@ $messages = array(
 * gpslongitude
 * gpsaltitude',
 
+# EXIF tags
+'exif-imagewidth' => 'Һовужи',
+'exif-imagelength' => 'Былынди',
+'exif-languagecode' => 'Зывон',
+
 'exif-gaincontrol-0' => 'Ни',
 
 'exif-saturation-0' => 'Ади',
@@ -836,6 +862,8 @@ $messages = array(
 'duplicate-defaultsort' => '\'\'\'Дыггәт:\'\'\' Еһтимал кардә быә "$2" классификасијә ачари нафконә "$1" классификасијә ачари етиборсоз кардә',
 
 # Special:Version
+'version' => 'Рәвојәт',
+'version-specialpages' => 'Хысусијә сәһифон',
 'version-entrypoints-header-url' => 'URL',
 
 # Special:FilePath
@@ -846,7 +874,7 @@ $messages = array(
 'fileduplicatesearch-submit' => 'Нәве',
 
 # Special:SpecialPages
-'specialpages' => 'Хысусиә сәһифон',
+'specialpages' => 'Хысусијә сәһифон',
 
 # External image whitelist
 'external_image_whitelist' => ' #Ым сәтри огәтәнән чокнәј әв һесте<pre>

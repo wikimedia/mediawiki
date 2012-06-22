@@ -1,6 +1,6 @@
 <?php
 /**
- * Check images to see if they exist, are readable, etc etc
+ * Check images to see if they exist, are readable, etc.
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -22,6 +22,11 @@
  */
 require_once( dirname( __FILE__ ) . '/Maintenance.php' );
 
+/**
+ * Maintenance script to check images to see if they exist, are readable, etc.
+ *
+ * @ingroup Maintenance
+ */
 class CheckImages extends Maintenance {
 
 	public function __construct() {

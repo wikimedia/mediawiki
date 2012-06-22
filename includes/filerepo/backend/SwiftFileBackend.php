@@ -639,7 +639,7 @@ class SwiftFileBackend extends FileBackendStore {
 			$stat = array(
 				// Convert dates like "Tue, 03 Jan 2012 22:01:04 GMT" to TS_MW
 				'mtime' => wfTimestamp( TS_MW, $srcObj->last_modified ),
-				'size'  => $srcObj->content_length,
+				'size'  => (int)$srcObj->content_length,
 				'sha1'  => $srcObj->metadata['Sha1base36']
 			);
 		} catch ( NoSuchContainerException $e ) {

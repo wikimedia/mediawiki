@@ -1171,7 +1171,7 @@ class EnhancedChangesList extends ChangesList {
 		} else { 
 			$r .= ' '.$rcObj->userlink . $rcObj->usertalklink;
 			$r .= $this->insertComment( $rcObj );
-			$r .= $this->insertRollback( $r, $rcObj );
+			$this->insertRollback( $r, $rcObj );
 		}
 
 		# Tags

@@ -841,7 +841,7 @@ Puedes ignorar este mensaje si esta cuenta fue creada por error.',
 'suspicious-userlogout' => 'Tu solicitud de desconexión ha sido denegada, pues parece haber sido enviada desde un navegador defectuoso o un proxy caché.',
 
 # E-mail sending
-'php-mail-error-unknown' => 'Error desconocido en la función mail() de PHP',
+'php-mail-error-unknown' => 'Error desconocido en la función mail() de PHP.',
 'user-mail-no-addy' => 'Se ha intentado enviar correo electrónico sin una dirección de correo electrónico.',
 
 # Change password dialog
@@ -3105,6 +3105,7 @@ Esto podría estar causado por un enlace a un sitio externo incluido en la lista
 'spambot_username' => 'Limpieza de spam de MediaWiki',
 'spam_reverting' => 'Revirtiendo a la última versión que no contenga enlaces a $1',
 'spam_blanking' => 'Todas las revisiones contienen enlaces a $1, blanqueando',
+'spam_deleting' => 'Todas las revisiones que contienen enlaces a $1, en proceso de eliminación',
 
 # Info page
 'pageinfo-title' => 'Información para «$1»',
