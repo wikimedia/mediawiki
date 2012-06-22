@@ -85,10 +85,16 @@ abstract class ApiTestCase extends MediaWikiLangTestCase {
 	 * This is cheating a bit -- we grab a token in the correct format and then add it to the pseudo-session and to the
 	 * request, without actually requesting a "real" edit token
 	 * @param $params Array: key-value API params
-	 * @param $session Array: session array
+	 * @param $session Array|null: session array
 	 * @param $user User|null A User object for the context
 	 */
-	protected function doApiRequestWithToken( Array $params, Array $session, User $user = null ) {
+	protected function doApiRequestWithToken( Array $params, Array $session = null, User $user = null ) {
+		global $wgRequest;
+
+		if ( $session === null ) {
+			$session = $wgRequest->getSessionArray();
+		}
+
 		if ( $session['wsToken'] ) {
 			// add edit token to fake session
 			$session['wsEditToken'] = $session['wsToken'];
