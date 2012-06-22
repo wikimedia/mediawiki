@@ -201,7 +201,7 @@ class SpecialChangeEmail extends UnlistedSpecialPage {
 		if ( !$status->isGood() ) {
 			$this->getOutput()->addHTML(
 				'<p class="error">' .
-				$this->getOutput()->parseInline( $status->getWikiText( $info ) ) .
+				$this->getOutput()->parseInline( $status->getWikiText( 'mailerror' ) ) .
 				'</p>' );
 			return false;
 		}
