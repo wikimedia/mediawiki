@@ -79,6 +79,8 @@ class ApiLogin extends ApiBase {
 				$user->setOption( 'rememberpassword', 1 );
 				$user->setCookies( $this->getRequest() );
 
+				ApiQueryInfo::resetTokenCache();
+
 				// Run hooks.
 				// @todo FIXME: Split back and frontend from this hook.
 				// @todo FIXME: This hook should be placed in the backend
