@@ -526,7 +526,7 @@ class User {
 	 * @return Bool
 	 */
 	public static function isIP( $name ) {
-		return preg_match('/^\d{1,3}\.\d{1,3}\.\d{1,3}\.(?:xxx|\d{1,3})$/',$name) || IP::isIPv6($name);
+		return preg_match('/^\d{1,3}\.\d{1,3}\.\d{1,3}\.(?:xxx|\d{1,3})$/',$name) || IP::looksIPv6($name);
 	}
 
 	/**
