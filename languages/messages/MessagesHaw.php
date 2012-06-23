@@ -12,6 +12,7 @@
  * @author Kolonahe
  * @author Node ue
  * @author Singularity
+ * @author Xqt
  */
 
 $namespaceNames = array(
@@ -588,6 +589,8 @@ E ʻoluʻolu, e hōʻoia i ka hoʻokūkū ʻana i lalo, a laila, e mālama i nā
 
 # Statistics
 'statistics' => 'Papa helu',
+
+'disambiguationspage' => 'Template:Huaʻōlelo puana like',
 
 'brokenredirects-edit' => 'e ho‘ololi',
 'brokenredirects-delete' => 'e kāpae',

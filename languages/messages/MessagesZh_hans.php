@@ -1466,7 +1466,7 @@ $1",
 # User rights log
 'rightslog' => '用户权限日志',
 'rightslogtext' => '这是用户权限更改的日志。',
-'rightslogentry' => '更改$1的用户组自$2至$3',
+'rightslogentry' => '将$1的用户组由$2更改为$3',
 'rightslogentry-autopromote' => '被自动提升自$2至$3',
 'rightsnone' => '（无）',
 

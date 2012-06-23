@@ -343,7 +343,7 @@ $messages = array(
 'tog-hidepatrolled' => '최근 바뀜에서 검토된 편집을 숨기기',
 'tog-newpageshidepatrolled' => '새 문서 목록에서 검토된 문서를 숨기기',
 'tog-extendwatchlist' => '주시문서 목록에서 가장 최근의 편집만이 아닌 모든 편집을 보기',
-'tog-usenewrc' => '향상된 최근 바뀜 (자바스크립트)',
+'tog-usenewrc' => '최근 바뀜 및 주시 문서 목록에서 문서별 그룹 바뀜 (자바스크립트 필요)',
 'tog-numberheadings' => '머릿글 번호 매기기',
 'tog-showtoolbar' => '편집창에 툴바 보이기 (자바스크립트)',
 'tog-editondblclick' => '더블클릭으로 문서 편집하기 (자바스크립트)',
@@ -3985,4 +3985,6 @@ $5
 'duration-centuries' => '$1{{PLURAL:$1|세기}}',
 'duration-millennia' => '$1{{PLURAL:$1|천년}}',
 
+# Unknown messages
+'lockmanager-fail-svr-acquire' => '서버 $1의 잠금을 걸지 못했습니다.',
 );

@@ -1866,7 +1866,8 @@ Tazama pia [[Special:WantedCategories|jamii zinazohitajika]].',
 'linksearch-ns' => 'Eneo la wiki:',
 'linksearch-ok' => 'Tafuta',
 'linksearch-text' => 'Alama maalum za kutafuta kama "*.wikipedia.org" zinaweza kutumika.<br />
-Itifaki zinazoungwa mkono: <tt>$1</tt>',
+Kikoa cha kiwango cha juu inahitajika, kwa mfano "*.org".<br />
+Itifaki zinazoungwa mkono: <tt>$1</tt> (usiongeza hizi unapotafuta).',
 'linksearch-line' => '$2 umeungwa kutoka $1',
 'linksearch-error' => 'Alama maalum za kutafuta zinaweza kutumika mwanzoni mwa URL tu.',
 

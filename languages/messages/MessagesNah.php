@@ -1041,7 +1041,7 @@ In āxcān tlachiyaliztli onca īpan $PAGETITLE_URL
 $NEWPAGE
 
 In tlapatlaliztli īxtlamatiliztli cah: $PAGESUMMARY $PAGEMINOREDIT
-
+ 
 Xicnotzāz in tlapatlani:
 Correo electrónico: {{canonicalurl:Special:Emailuser|target=$PAGEEDITOR}}
 Huiqui: {{canonicalurl:User:$PAGEEDITOR}}
