@@ -23,13 +23,12 @@
 
 /**
  * Class to handle file lock manager registration
- * 
+ *
  * @ingroup LockManager
  * @author Aaron Schulz
  * @since 1.19
  */
 class LockManagerGroup {
-
 	/**
 	 * @var LockManagerGroup
 	 */
@@ -61,7 +60,7 @@ class LockManagerGroup {
 
 	/**
 	 * Register lock managers from the global variables
-	 * 
+	 *
 	 * @return void
 	 */
 	protected function initFromGlobals() {
@@ -114,5 +113,31 @@ class LockManagerGroup {
 			$this->managers[$name]['instance'] = new $class( $config );
 		}
 		return $this->managers[$name]['instance'];
+	}
+
+	/**
+	 * Get the default lock manager configured for the site.
+	 * Returns NullLockManager if no lock manager could be found.
+	 *
+	 * @return LockManager
+	 */
+	public function getDefault() {
+		return isset( $this->managers['default'] )
+			? $this->get( 'default' )
+			: new NullLockManager( array() );
+	}
+
+	/**
+	 * Get the default lock manager configured for the site
+	 * or at least some other effective configured lock manager.
+	 * Throws an exception if no lock manager could be found.
+	 *
+	 * @return LockManager
+	 * @throws MWException
+	 */
+	public function getAny() {
+		return isset( $this->managers['default'] )
+			? $this->get( 'default' )
+			: $this->get( 'fsLockManager' );
 	}
 }
