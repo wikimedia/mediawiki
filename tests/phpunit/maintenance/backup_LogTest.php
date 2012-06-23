@@ -148,6 +148,8 @@ class BackupDumperLoggerTest extends DumpTestCase {
 		// Performing the dump
 		$dumper->dump( WikiExporter::LOGS, WikiExporter::TEXT );
 
+		$this->validateXmlFileAgainstXsd( $fname );
+
 		// Analyzing the dumped data
 		$this->assertDumpStart( $fname );
 
@@ -197,6 +199,8 @@ class BackupDumperLoggerTest extends DumpTestCase {
 
 		// Analyzing the dumped data
 		$this->gunzip( $fname );
+
+		$this->validateXmlFileAgainstXsd( $fname );
 
 		$this->assertDumpStart( $fname );
 

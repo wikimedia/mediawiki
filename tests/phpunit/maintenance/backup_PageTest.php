@@ -91,6 +91,8 @@ class BackupDumperPageTest extends DumpTestCase {
 		// Performing the dump
 		$dumper->dump( WikiExporter::FULL, WikiExporter::TEXT );
 
+		$this->validateXmlFileAgainstXsd( $fname );
+
 		// Checking the dumped data
 		$this->assertDumpStart( $fname );
 
@@ -142,6 +144,8 @@ class BackupDumperPageTest extends DumpTestCase {
 		// Performing the dump
 		$dumper->dump( WikiExporter::FULL, WikiExporter::STUB );
 
+		$this->validateXmlFileAgainstXsd( $fname );
+
 		// Checking the dumped data
 		$this->assertDumpStart( $fname );
 
@@ -187,6 +191,8 @@ class BackupDumperPageTest extends DumpTestCase {
 		// Performing the dump
 		$dumper->dump( WikiExporter::CURRENT, WikiExporter::STUB );
 
+		$this->validateXmlFileAgainstXsd( $fname );
+
 		// Checking the dumped data
 		$this->assertDumpStart( $fname );
 
@@ -228,6 +234,7 @@ class BackupDumperPageTest extends DumpTestCase {
 
 		// Checking the dumped data
 		$this->gunzip( $fname );
+		$this->validateXmlFileAgainstXsd( $fname );
 		$this->assertDumpStart( $fname );
 
 		// Page 1
@@ -297,6 +304,7 @@ class BackupDumperPageTest extends DumpTestCase {
 		// Checking meta-history -------------------------------------------------
 
 		$this->gunzip( $fnameMetaHistory );
+		$this->validateXmlFileAgainstXsd( $fnameMetaHistory );
 		$this->assertDumpStart( $fnameMetaHistory );
 
 		// Page 1
@@ -331,6 +339,7 @@ class BackupDumperPageTest extends DumpTestCase {
 		// Checking meta-current -------------------------------------------------
 
 		$this->gunzip( $fnameMetaCurrent );
+		$this->validateXmlFileAgainstXsd( $fnameMetaCurrent );
 		$this->assertDumpStart( $fnameMetaCurrent );
 
 		// Page 1
@@ -359,6 +368,7 @@ class BackupDumperPageTest extends DumpTestCase {
 		// Checking articles -------------------------------------------------
 
 		$this->gunzip( $fnameArticles );
+		$this->validateXmlFileAgainstXsd( $fnameArticles );
 		$this->assertDumpStart( $fnameArticles );
 
 		// Page 1
