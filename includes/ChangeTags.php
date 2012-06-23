@@ -35,6 +35,8 @@ class ChangeTags {
 	 *
 	 */
 	static function formatSummaryRow( $tags, $page ) {
+		global $wgLang;
+
 		if( !$tags )
 			return array( '', array() );
 
@@ -51,7 +53,7 @@ class ChangeTags {
 			);
 			$classes[] = Sanitizer::escapeClass( "mw-tag-$tag" );
 		}
-		$markers = '(' . implode( ', ', $displayTags ) . ')';
+		$markers = wfMessage( 'parentheses' )->rawParams( $wgLang->commaList( $displayTags ) )->text();
 		$markers = Xml::tags( 'span', array( 'class' => 'mw-tag-markers' ), $markers );
 
 		return array( $markers, $classes );
