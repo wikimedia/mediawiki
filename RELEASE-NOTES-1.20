@@ -145,6 +145,9 @@ upgrade PHP if you have not done so prior to upgrading MediaWiki.
 * (bug 36991) jquery.tablesorter should extract date sort format from date
   string instead of global config. Dates like "April 1 2012" and "1 April 2012"
   now sort correctly regardless of the content language's DefaultDateFormat.
+* (bug 31895) mw.loader mode now correct when triggered from a $.fn.ready
+  handler that is bound before mediawiki.js's handler (e.g. browser-userscripts
+  like greasemonkey).
 
 === API changes in 1.20 ===
 * (bug 34316) Add ability to retrieve maximum upload size from MediaWiki API.
