@@ -88,8 +88,7 @@ class ApiPurge extends ApiBase {
 				if ( !$user->pingLimiter() ) {
 					global $wgParser, $wgEnableParserCache;
 
-					$popts = ParserOptions::newFromContext( $this->getContext() );
-					$popts->setTidy( true );
+					$popts = $page->makeParserOptions( 'canonical' );
 					$p_result = $wgParser->parse( $page->getRawText(), $title, $popts,
 						true, true, $page->getLatest() );
 
