@@ -96,6 +96,19 @@ class IP {
 	}
 
 	/**
+	 * Given a string, determine if it looks as a valid IP in IPv6 format.
+	 * Unlike isIPv6(), this detects bogus addresses that would easily trick a human.
+	 * See for instance http://en.wikipedia.org/wiki/Special:Log/200:0DB8:0016:0005:0ACE:0BD1:07BE
+	 *
+	 * @param $ip String: possible IP address
+	 * @return Boolean
+	 */
+	public static function looksIPv6( $ip ) {
+		return (bool)( preg_match( '/^[0-9A-Fa-f]{0,10}:([0-9A-Fa-f]{0,10}:)*([0-9A-Fa-f]{0,10})?(?:\/' . RE_IPV6_PREFIX . ')?$/', $ip ) &&
+			!preg_match( '/^[^:]+:(?:[^:]+|::+)?$/', $ip ) ); // Allow just a single colon or trailing colons (but not just two, which could make a IPv6).
+	}
+
+	/**
 	 * Given a string, determine if it as valid IP in IPv4 only.
 	 * Note: Unlike isValid(), this looks for networks too.
 	 *

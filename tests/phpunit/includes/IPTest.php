@@ -1,10 +1,12 @@
 <?php
+
 /**
  * Tests for IP validity functions. Ported from /t/inc/IP.t by avar.
  * @group IP
  */
 
 class IPTest extends MediaWikiTestCase {
+
 	/**
 	 *  not sure it should be tested with boolean false. hashar 20100924
 	 * @covers IP::isIPAddress
@@ -36,59 +38,123 @@ class IPTest extends MediaWikiTestCase {
 		}
 	}
 
+	public function dataIPv6() {
+		return array(
+			array( False, ':fc:100::', 'IPv6 starting with lone ":"' ),
+			array( False, 'fc:100:::', 'IPv6 ending with a ":::"' ),
+			array( False, 'fc:300', 'IPv6 with only 2 words' ),
+			array( False, 'fc:100:300', 'IPv6 with only 3 words' ),
+
+			array( True, 'fc:100::', 'fc:100::' ),
+			array( True, 'fc:100:a::', 'fc:100:a::' ),
+			array( True, 'fc:100:a:d::', 'fc:100:a:d::' ),
+			array( True, 'fc:100:a:d:1::', 'fc:100:a:d:1::' ),
+			array( True, 'fc:100:a:d:1:e::', 'fc:100:a:d:1:e::' ),
+			array( True, 'fc:100:a:d:1:e:ac::', 'fc:100:a:d:1:e:ac::' ),
+
+			array( False, 'fc:100:a:d:1:e:ac:0::', 'IPv6 with 8 words ending with "::"' ),
+			array( False, 'fc:100:a:d:1:e:ac:0:1::', 'IPv6 with 9 words ending with "::"' ),
+
+			array( False, ':::', ':::' ),
+			array( False, '::0:', 'IPv6 ending in a lone ":"' ),
+
+			array( True, '::', 'IPv6 zero address' ),
+			array( True, '::0', '::0' ),
+			array( True, '::fc', '::fc' ),
+			array( True, '::fc:100', '::fc:100' ),
+			array( True, '::fc:100:a', '::fc:100:a' ),
+			array( True, '::fc:100:a:d', '::fc:100:a:d' ),
+			array( True, '::fc:100:a:d:1', '::fc:100:a:d:1' ),
+			array( True, '::fc:100:a:d:1:e', '::fc:100:a:d:1:e' ),
+			array( True, '::fc:100:a:d:1:e:ac', '::fc:100:a:d:1:e:ac' ),
+
+			array( False, '::fc:100:a:d:1:e:ac:0', 'IPv6 with "::" and 8 words' ),
+			array( False, '::fc:100:a:d:1:e:ac:0:1', 'IPv6 with 9 words' ),
+
+			array( False, ':fc::100', 'IPv6 starting with lone ":"' ),
+			array( False, 'fc::100:', 'IPv6 ending with lone ":"' ),
+			array( False, 'fc:::100', 'IPv6 with ":::" in the middle' ),
+
+			array( True, 'fc::100', 'IPv6 with "::" and 2 words' ),
+			array( True, 'fc::100:a', 'IPv6 with "::" and 3 words' ),
+			array( True, 'fc::100:a:d', 'IPv6 with "::" and 4 words', 'fc::100:a:d', 'IPv6 with "::" and 4 words' ),
+			array( True, 'fc::100:a:d:1', 'IPv6 with "::" and 5 words' ),
+			array( True, 'fc::100:a:d:1:e', 'IPv6 with "::" and 6 words' ),
+			array( True, 'fc::100:a:d:1:e:ac', 'IPv6 with "::" and 7 words' ),
+			array( True, '2001::df', 'IPv6 with "::" and 2 words' ),
+			array( True, '2001:5c0:1400:a::df', 'IPv6 with "::" and 5 words' ),
+			array( True, '2001:5c0:1400:a::df:2', 'IPv6 with "::" and 6 words' ),
+
+			array( False, 'fc::100:a:d:1:e:ac:0', 'IPv6 with "::" and 8 words' ),
+			array( False, 'fc::100:a:d:1:e:ac:0:1', 'IPv6 with 9 words' ),
+
+			array( True, 'fc:100:a:d:1:e:ac:0', 'fc:100:a:d:1:e:ac:0' ),
+		);
+			
+	}
+
+	public function dataNotLikeIPv6() {
+		return array(
+			array( 'Foo: Bar' ),
+			array( 'User2' ),
+			array( 'DeadBeef' ),
+			array( '0009:' ),
+			array( 'Your username should not contain:' ),
+			array( 'A:' ),
+			array( '(: Username :)' ),
+			array( '..:: Username ::..' ),
+			array( '..:: Username ::..' ),
+			array( '.::.' ),
+			array( 'Abe' ),
+			array( '.::abe::.' ),
+			array( 'C:' ),
+			array( 'CSI:Miami' ),
+
+			array( '16:9', '16:9' ),
+			array( '12:51', '12:51' ),
+			array( '25:45', '25:45' ),
+			// array( '23:59:59', '23:59:59' ),
+		);
+	}
+	
 	/**
 	 * @covers IP::isIPv6
+	 * @dataProvider dataIPv6
 	 */
-	public function testisIPv6() {
-		$this->assertFalse( IP::isIPv6( ':fc:100::' ), 'IPv6 starting with lone ":"' );
-		$this->assertFalse( IP::isIPv6( 'fc:100:::' ), 'IPv6 ending with a ":::"' );
-		$this->assertFalse( IP::isIPv6( 'fc:300' ), 'IPv6 with only 2 words' );
-		$this->assertFalse( IP::isIPv6( 'fc:100:300' ), 'IPv6 with only 3 words' );
+	public function testisIPv6($good, $ip, $comment) {
+		if ( $good )
+			$this->assertTrue( IP::isIPv6( $ip ), $comment );
+		else
+			$this->assertFalse( IP::isIPv6( $ip ), $comment );
+	}
 
-		$this->assertTrue( IP::isIPv6( 'fc:100::' ) );
-		$this->assertTrue( IP::isIPv6( 'fc:100:a::' ) );
-		$this->assertTrue( IP::isIPv6( 'fc:100:a:d::' ) );
-		$this->assertTrue( IP::isIPv6( 'fc:100:a:d:1::' ) );
-		$this->assertTrue( IP::isIPv6( 'fc:100:a:d:1:e::' ) );
-		$this->assertTrue( IP::isIPv6( 'fc:100:a:d:1:e:ac::' ) );
+	/**
+	 * @covers IP::looksIPv6
+	 * @dataProvider dataIPv6
+	 */
+	public function testlooksIPv6($good, $ip, $comment) {
+		$this->assertTrue( $ip == 'fc:300' ? true : IP::looksIPv6( $ip ), $comment );
+	}
 
-		$this->assertFalse( IP::isIPv6( 'fc:100:a:d:1:e:ac:0::' ), 'IPv6 with 8 words ending with "::"' );
-		$this->assertFalse( IP::isIPv6( 'fc:100:a:d:1:e:ac:0:1::' ), 'IPv6 with 9 words ending with "::"' );
-
-		$this->assertFalse( IP::isIPv6( ':::' ) );
-		$this->assertFalse( IP::isIPv6( '::0:' ), 'IPv6 ending in a lone ":"' );
-
-		$this->assertTrue( IP::isIPv6( '::' ), 'IPv6 zero address' );
-		$this->assertTrue( IP::isIPv6( '::0' ) );
-		$this->assertTrue( IP::isIPv6( '::fc' ) );
-		$this->assertTrue( IP::isIPv6( '::fc:100' ) );
-		$this->assertTrue( IP::isIPv6( '::fc:100:a' ) );
-		$this->assertTrue( IP::isIPv6( '::fc:100:a:d' ) );
-		$this->assertTrue( IP::isIPv6( '::fc:100:a:d:1' ) );
-		$this->assertTrue( IP::isIPv6( '::fc:100:a:d:1:e' ) );
-		$this->assertTrue( IP::isIPv6( '::fc:100:a:d:1:e:ac' ) );
-
-		$this->assertFalse( IP::isIPv6( '::fc:100:a:d:1:e:ac:0' ), 'IPv6 with "::" and 8 words' );
-		$this->assertFalse( IP::isIPv6( '::fc:100:a:d:1:e:ac:0:1' ), 'IPv6 with 9 words' );
-
-		$this->assertFalse( IP::isIPv6( ':fc::100' ), 'IPv6 starting with lone ":"' );
-		$this->assertFalse( IP::isIPv6( 'fc::100:' ), 'IPv6 ending with lone ":"' );
-		$this->assertFalse( IP::isIPv6( 'fc:::100' ), 'IPv6 with ":::" in the middle' );
-
-		$this->assertTrue( IP::isIPv6( 'fc::100' ), 'IPv6 with "::" and 2 words' );
-		$this->assertTrue( IP::isIPv6( 'fc::100:a' ), 'IPv6 with "::" and 3 words' );
-		$this->assertTrue( IP::isIPv6( 'fc::100:a:d', 'IPv6 with "::" and 4 words' ) );
-		$this->assertTrue( IP::isIPv6( 'fc::100:a:d:1' ), 'IPv6 with "::" and 5 words' );
-		$this->assertTrue( IP::isIPv6( 'fc::100:a:d:1:e' ), 'IPv6 with "::" and 6 words' );
-		$this->assertTrue( IP::isIPv6( 'fc::100:a:d:1:e:ac' ), 'IPv6 with "::" and 7 words' );
-		$this->assertTrue( IP::isIPv6( '2001::df'), 'IPv6 with "::" and 2 words' );
-		$this->assertTrue( IP::isIPv6( '2001:5c0:1400:a::df'), 'IPv6 with "::" and 5 words' );
-		$this->assertTrue( IP::isIPv6( '2001:5c0:1400:a::df:2'), 'IPv6 with "::" and 6 words' );
-
-		$this->assertFalse( IP::isIPv6( 'fc::100:a:d:1:e:ac:0' ), 'IPv6 with "::" and 8 words' );
-		$this->assertFalse( IP::isIPv6( 'fc::100:a:d:1:e:ac:0:1' ), 'IPv6 with 9 words' );
-
-		$this->assertTrue( IP::isIPv6( 'fc:100:a:d:1:e:ac:0' ) );
+	/**
+	 * @covers IP::looksIPv6
+	 * @dataProvider dataNotLikeIPv6
+	 */
+	public function testlooksIPv6Not($ip) {
+		$this->assertFalse( IP::looksIPv6( $ip ), "$ip is different enough from a IPv6 address" );
+	}
+	
+	/*  */
+	public function testTrailingColons() {
+		$this->assertFalse( IP::isIPv6( 'c:' ), 'A letter with a trailing colon' );
+		$this->assertTrue( IP::isIPv6( 'c::' ), 'A letter with two trailing colons' );
+		$this->assertFalse( IP::isIPv6( 'c:::' ), 'A letter with three trailing colons' );
+		$this->assertFalse( IP::isIPv6( 'c::::' ), 'A letter with four trailing colons' );
+		
+		$this->assertFalse( IP::looksIPv6( 'c:' ), 'A letter with a trailing colon' );
+		$this->assertTrue( IP::looksIPv6( 'c::' ), 'A letter with two trailing colons' );
+		$this->assertFalse( IP::looksIPv6( 'c:::' ), 'A letter with three trailing colons' );
+		$this->assertFalse( IP::looksIPv6( 'c::::' ), 'A letter with four trailing colons' );
 	}
 
 	/**
