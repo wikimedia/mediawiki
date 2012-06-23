@@ -125,7 +125,6 @@ upgrade PHP if you have not done so prior to upgrading MediaWiki.
   who don't have access to /tmp can specify an alternative.
 * (bug 27283) SqlBagOStuff breaks PostgreSQL transactions.
 * (bug 35727) mw.Api ajax() should put token parameter last.
-* (bug 260) Handle <pre> overflow automatically with a scroll bar.
 * (bug 37708) mw.Uri.clone() should make a deep copy.
 
 === API changes in 1.20 ===
