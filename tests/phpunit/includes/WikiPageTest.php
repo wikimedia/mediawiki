@@ -769,6 +769,7 @@ more stuff
 	 * @dataProvider dataPreSaveTransform
 	 */
 	public function testPreSaveTransform( $text, $expected ) {
+		$this->hideDeprecated( 'WikiPage::preSaveTransform' );
 		$user = new User();
 		$user->setName("127.0.0.1");
 
