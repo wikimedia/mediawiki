@@ -1619,6 +1619,16 @@ $out: OutputPage object
 &$obj: RawPage object
 &$text: The text that's going to be the output
 
+'RDBStoreTableSchemaInfo': Called when the RDBStoreGroup singleton is initialized.
+&groups       : Map of group names to a list of tables.
+                Extensions may register tables here to make sure groups of tables are in the same store.
+&denormalized : Map of table names to schema information for tables that are sharded and denormalized.
+                Extensions may register tables here to make sure cross-shard commits are journaled.
+                Each table has an array of schema information which includes the following:
+                  - rowIdColumn        : The integer unique ID column (up to 128 bits)
+                  - canonicalShardKey  : The shard column that the canonical table copy is sharded on
+                  - secondaryShardKeys : Array of additional columns that the table is also sharded on
+
 'RecentChange_save': called at the end of RecentChange::save()
 $recentChange: RecentChange object
 
