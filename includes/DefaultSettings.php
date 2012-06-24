@@ -1483,6 +1483,52 @@ $wgExternalServers = array();
 $wgDefaultExternalStore = false;
 
 /**
+ * Associative array of storage names to configuration arrays, each having:
+ *   - clusterPrefix : The prefix to each external cluster name
+ *   - clusterCount  : The number of clusters in the store (power of 2)
+ * The clusters are all named <clusterPrefix><x>, where x is in [1,<clusterCount>].
+ * These clusters need to actually exist in $wgExternalServers or $wgLBFactoryConf.
+ *
+ * This setting must be global to all wikis that may use the store.
+ *
+ * Example use:
+ *   $wgRDBStores['store1'] = array( 'clusterPrefix' => 'main-rdb-cluster', 'clusterCount' => 2 )
+ *
+ * @var array
+ */
+$wgRDBStores = array();
+
+/**
+ * Map of table names to external $wgRDBStores names.
+ * Core or extensions may check this to determine where a table is placed.
+ * This can be used to partition large tables, storing them in large,
+ * horizontally scalable, RDBMs data stores.
+ *
+ * @var array
+ */
+$wgRDBStoredTables = array();
+
+/**
+ * Map of table groups to the list of tables in those groups.
+ * Extensions may register tables here to make sure related tables are in the same store.
+ *
+ * @var array
+ */
+$wgRDBStoreTableGroups = array();
+
+/**
+ * Map of table names to schema information for tables that are sharded and denormalized.
+ * Extensions may register tables here to make sure cross-shard commits are journaled.
+ * Each table has an array of schema information which includes the following:
+ *   - rowIdColumn        : The integer unique ID column (up to 128 bits)
+ *   - canonicalShardKey  : The shard column that the canonical table copy is sharded on
+ *   - secondaryShardKeys : Array of additional columns that the table is also sharded on
+ *
+ * @var array
+ */
+$wgRDBStoreDenormalizedTables = array();
+
+/**
  * Revision text may be cached in $wgMemc to reduce load on external storage
  * servers and object extraction overhead for frequently-loaded revisions.
  *
