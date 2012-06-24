@@ -1121,8 +1121,16 @@ $prefix: interwiki prefix we are looking for.
 &$iwData: output array describing the interwiki with keys iw_url, iw_local,
   iw_trans and optionally iw_api and iw_wikiid.
 
+'InternalParseBeforeSanitize': during Parser's internalParse method just before the
+parser removes unwanted/dangerous HTML tags and after nowiki/noinclude/includeonly/
+onlyinclude and other processings. Ideal for syntax-extensions after template/parser
+function execution which respect nowiki and HTML-comments.
+&$parser: Parser object
+&$text: string containing partially parsed text
+&$stripState: Parser's internal StripState object
+
 'InternalParseBeforeLinks': during Parser's internalParse method before links
-but after noinclude/includeonly/onlyinclude and other processing.
+but after nowiki/noinclude/includeonly/onlyinclude and other processings.
 &$parser: Parser object
 &$text: string containing partially parsed text
 &$stripState: Parser's internal StripState object
