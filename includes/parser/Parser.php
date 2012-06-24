@@ -1121,6 +1121,7 @@ class Parser {
 			$text = $this->replaceVariables( $text );
 		}
 
+		wfRunHooks( 'InternalParseBeforeSanitize', array( &$this, &$text, &$this->mStripState ) );
 		$text = Sanitizer::removeHTMLtags( $text, array( &$this, 'attributeStripCallback' ), false, array_keys( $this->mTransparentTagHooks ) );
 		wfRunHooks( 'InternalParseBeforeLinks', array( &$this, &$text, &$this->mStripState ) );
 
