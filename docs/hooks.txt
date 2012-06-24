@@ -1619,6 +1619,19 @@ $out: OutputPage object
 &$obj: RawPage object
 &$text: The text that's going to be the output
 
+'RDBStoreTableSchemaInfo': Called when the RDBStoreGroup singleton is initialized.
+&groups    : Map of group names to a list of tables.
+                Extensions may register tables here to make sure groups of tables are in the same store.
+&$syncInfo : Map of tables to denormalization information, which consists of:
+               - srcShardKey  : the canonical shard column name
+               - dupShardKeys : list of shard columns for duplicated rows
+               - uniqueKey    : list of the fields that comprise a unique key
+               - timeColumn   : indexed timestamp column name
+             This should only be used for tables that duplicate data to shard on different
+             columns (e.g. user and object ID) and where the table is also either:
+               - (a) insert-only (no updates/deletes)
+               - (b) insert/update-only and all duplicate rows only have immutable columns
+
 'RecentChange_save': called at the end of RecentChange::save()
 $recentChange: RecentChange object
 
