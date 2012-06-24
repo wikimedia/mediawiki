@@ -249,6 +249,7 @@ $wgAutoloadLocalClasses = array(
 	'TitleArray' => 'includes/TitleArray.php',
 	'TitleArrayFromResult' => 'includes/TitleArray.php',
 	'ThrottledError' => 'includes/Exception.php',
+	'UIDGenerator' => 'includes/UIDGenerator.php',
 	'UnlistedSpecialPage' => 'includes/SpecialPage.php',
 	'UploadSourceAdapter' => 'includes/Import.php',
 	'UppercaseCollation' => 'includes/Collation.php',
@@ -498,6 +499,16 @@ $wgAutoloadLocalClasses = array(
 	'ResultWrapper' => 'includes/db/DatabaseUtility.php',
 	'SavepointPostgres' => 'includes/db/DatabasePostgres.php',
 	'SQLiteField' => 'includes/db/DatabaseSqlite.php',
+
+	# includes/rdbstore
+	'ExternalRDBStore' => 'includes/rdbstore/ExternalRDBStore.php',
+	'ExternalRDBStoreTablePartition' => 'includes/rdbstore/ExternalRDBStoreTablePartition.php',
+	'ExternalRDBStoreTrxJournal' => 'includes/rdbstore/ExternalRDBStoreTrxJournal.php',
+	'LocalRDBStore' => 'includes/rdbstore/LocalRDBStore.php',
+	'LocalRDBStoreTablePartition' => 'includes/rdbstore/LocalRDBStoreTablePartition.php',
+	'RDBStore' => 'includes/rdbstore/RDBStore.php',
+	'RDBStoreGroup' => 'includes/rdbstore/RDBStoreGroup.php',
+	'RDBStoreTablePartition' => 'includes/rdbstore/RDBStoreTablePartition.php',
 
 	# includes/debug
 	'MWDebug' => 'includes/debug/Debug.php',
