@@ -319,7 +319,7 @@ $messages = array(
 'tog-hidepatrolled' => 'Esconder edições patrulhadas nas mudanças recentes',
 'tog-newpageshidepatrolled' => 'Esconder páginas patrulhadas da lista de páginas novas',
 'tog-extendwatchlist' => 'Expandir a lista de páginas vigiadas para mostrar todas as alterações aplicáveis, não apenas as mais recentes',
-'tog-usenewrc' => 'Utilizar mudanças recentes melhoradas (requer JavaScript)',
+'tog-usenewrc' => 'Agrupar alterações por páginas nas mudanças recentes e páginas vigiadas (requer JavaScript)',
 'tog-numberheadings' => 'Auto-numerar cabeçalhos',
 'tog-showtoolbar' => 'Mostrar barra de edição (JavaScript)',
 'tog-editondblclick' => 'Editar páginas quando houver clique duplo (JavaScript)',
@@ -796,9 +796,10 @@ Como resultado, visitantes que usam este endereço IP não podem criar mais nenh
 'accountcreated' => 'Conta criada',
 'accountcreatedtext' => 'A conta de usuário para $1 foi criada.',
 'createaccount-title' => 'Criação de conta em {{SITENAME}}',
-'createaccount-text' => 'Alguém criou uma conta de nome $2 para o seu endereço de email no wiki {{SITENAME}} ($4), tendo como senha "$3". Você deve se autenticar e alterar sua senha.
+'createaccount-text' => 'Alguém criou uma conta de nome $2 para o seu endereço de email no wiki {{SITENAME}} ($4), tendo como senha "$3".
+Você deve se autenticar e alterar sua senha.
 
-Você pode ignorar esta mensagem caso a conta tenha sido criada por engano.',
+Ignore esta mensagem caso a conta tenha sido criada por engano.',
 'usernamehasherror' => 'Nome de usuário não pode conter o símbolo de cardinal (#).',
 'login-throttled' => 'Você fez tentativas demais de se autenticar com esta conta recentemente.
 Por favor aguarde antes de tentar novamente.',

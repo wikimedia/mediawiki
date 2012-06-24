@@ -639,7 +639,11 @@ an <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}}
 'userpage-userdoesnotexist-view' => 'Hesabê bikarhêner  "$1"  nehatiye qeyd kirin.',
 'blocked-notice-logextract' => 'Ev bikarhêner hatiye astengkirin.
 Astengkirina dawî bi referansa li jêr hatiye piştrastkirin:',
-'clearyourcache' => "'''Zanibe:''' Piştî tomarkirinê, tu gireke cache'a browser'î xwe dîsa wînê ji bo dîtina guherandinan. '''Mozilla / Firefor /Safari:''' Kepsa ''Shift'' bigre û li ''Reload'' xe, ya ''Ctrl-Shift-R'' bikepsîne (''Cmd-Shift-R'' li cem Apple Mac); '''IE:''' Kepsa ''Ctrl'' bigre û li ''Reload'' xe, ya li ''Ctrl-F5''; '''Konqueror:''' bes li ''Reload'' xe ya li kepsa ''F5'' xe; bikarhênerên '''Opera''' girekin belkî cache'a xwe tevda di bin ''Tools → Preferences'' da valabikin.",
+'clearyourcache' => "'''Zanibe:''' Piştî tomarkirinê, tu gireke cache'a browser'î xwe dîsa wînê ji bo dîtina guherandinan.
+* '''Firefor / Safari: ''' Kepsa ''Shift'' bigre û li ''Reload'' xe, ya ''Ctrl-Shift-R'' bikepsîne (''Cmd-Shift-R'' li cem Apple Mac)
+* '''IE:''' Kepsa ''Ctrl'' bigre û li ''Reload'' xe, ya li ''Ctrl-F5''
+* '''Konqueror:''' Bes li ''Reload'' xe ya li kepsa ''F5'' xe
+* '''Opera:''' Girekin belkî cache'a xwe tevda di bin ''Tools → Preferences'' da valabikin",
 'usercssyoucanpreview' => "'''Tîp:''' 'Pêşdîtin' bikarwîne ji bo tu bibînê çawa CSS'ê te yê nuh e berî tomarkirinê.",
 'userjsyoucanpreview' => "'''Tîp:''' 'Pêşdîtin' bikarwîne ji bo tu bibînê çawa JS'ê te yê nuh e berî tomarkirinê.",
 'usercsspreview' => "'''Zanibe ku tu bes pêşdîtina CSS dibînî.'''

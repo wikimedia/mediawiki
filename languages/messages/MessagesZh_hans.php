@@ -3608,10 +3608,10 @@ $5
 'version-specialpages' => '特殊页面',
 'version-parserhooks' => '解析器钩',
 'version-variables' => '变量',
-'version-antispam' => '垃圾防止',
+'version-antispam' => '垃圾阻止',
 'version-skins' => '皮肤',
 'version-other' => '其他',
-'version-mediahandlers' => '媒体处理器',
+'version-mediahandlers' => '媒体文件处理器',
 'version-hooks' => '钩',
 'version-extension-functions' => '扩展函数',
 'version-parser-extensiontags' => '解析器扩展标签',
@@ -3630,8 +3630,8 @@ MediaWiki是基于使用目的而加以发布，然而不负任何担保责任�
 'version-software' => '已安装的软件',
 'version-software-product' => '产品',
 'version-software-version' => '版本',
-'version-entrypoints' => '入口点 URL',
-'version-entrypoints-header-entrypoint' => '入口点',
+'version-entrypoints' => '接入点URL',
+'version-entrypoints-header-entrypoint' => '接入点',
 'version-entrypoints-header-url' => 'URL',
 
 # Special:FilePath

@@ -199,7 +199,7 @@ $messages = array(
 'tog-hidepatrolled' => 'Amaga edicions patrullades als canvis recents',
 'tog-newpageshidepatrolled' => 'Amaga pàgines patrullades de la llista de pàgines noves',
 'tog-extendwatchlist' => 'Desplega la llista de seguiment per a mostrar tots els canvis afectats, no només els més recents',
-'tog-usenewrc' => 'Usa la presentació millorada dels canvis recents (cal JavaScript)',
+'tog-usenewrc' => 'Utilitza una presentació millorada dels canvis recents (cal JavaScript)',
 'tog-numberheadings' => 'Enumera automàticament els encapçalaments',
 'tog-showtoolbar' => "Mostra la barra d'eines d'edició (cal JavaScript)",
 'tog-editondblclick' => 'Edita les pàgines amb un doble clic (cal JavaScript)',
@@ -2891,6 +2891,7 @@ Això deu ser degut per un enllaç a un lloc extern inclòs a la llista negra.',
 'spambot_username' => 'Neteja de brossa del MediaWiki',
 'spam_reverting' => 'Es reverteix a la darrera versió que no conté enllaços a $1',
 'spam_blanking' => "Totes les revisions contenien enllaços $1, s'està deixant en blanc",
+'spam_deleting' => "S'estan suprimint totes les revisions que contenien enllaços a $1",
 
 # Info page
 'pageinfo-title' => 'Informació de «$1»',
@@ -3802,4 +3803,6 @@ Altrament, podeu fer servir un senzill formulari a continuació. El vostre comen
 'duration-centuries' => '$1 {{PLURAL:$1|segle|segles}}',
 'duration-millennia' => '$1 {{PLURAL:$1|mil·leni|mil·lenis}}',
 
+# Unknown messages
+'lockmanager-fail-svr-acquire' => "No s'han pogut aconseguir els bloquejos al servidor $1.",
 );

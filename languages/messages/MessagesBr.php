@@ -185,7 +185,7 @@ $messages = array(
 'tog-hidepatrolled' => "Kuzhat ar c'hemmoù evezhiet e-touez ar c'hemmoù diwezhañ",
 'tog-newpageshidepatrolled' => 'Kuzhat ar pajennoù evezhiet diouzh roll ar pajennoù nevez',
 'tog-extendwatchlist' => 'Astenn ar roll evezhiañ a-benn diskouez an holl gemmoù ha neket ar re ziwezhañ hepken.',
-'tog-usenewrc' => "Ober gant ar c'hemmoù nevez gwellaet<br /> (rekis eo JavaScript)",
+'tog-usenewrc' => "Diskouez ar c'hemmoù nevez en ur feson kempennoc'h (rekis eo JavaScript)",
 'tog-numberheadings' => 'Niverenniñ emgefre an titloù',
 'tog-showtoolbar' => 'Diskouez ar varrenn gant ar meuzioù skridaozañ',
 'tog-editondblclick' => 'Daouglikañ evit kemmañ ur bajenn (JavaScript)',
@@ -2915,6 +2915,7 @@ Sur a-walc'h abalamour d'ul liamm enni a gas d'ul lec'hienn ziavaez berzet.",
 'spambot_username' => 'Naetaat ar strob gant MediaWiki',
 'spam_reverting' => "Distreiñ d'ar stumm diwezhañ hep liamm davet $1",
 'spam_blanking' => 'Diverkañ an holl stummoù enno liammoù davet $1',
+'spam_deleting' => 'An holl stummoù enno liammoù war-zu $1, o tiverkañ',
 
 # Info page
 'pageinfo-title' => 'Titouroù evit "$1"',
@@ -3844,4 +3845,6 @@ A-hend-all e c'hallit ober gant ar furmskrid eeunaet dindan. Ouzhpennet e vo hoc
 'duration-centuries' => "$1 {{PLURAL:$1|c'hantved|kantved}}",
 'duration-millennia' => '$1 {{PLURAL:$1|milvloaz|milvoaz}}',
 
+# Unknown messages
+'lockmanager-fail-svr-acquire' => 'Dibosupl eo bet tapout ar prennoù war ar servijer $1.',
 );

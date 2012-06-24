@@ -568,11 +568,11 @@ $2',
 'virus-unknownscanner' => 'onbekannten Antivirus:',
 
 # Login and logout pages
-'logouttext' => "'''Dir sidd elo ofgemellt.'''
+'logouttext' => "'''Dir sidd elo ausgeloggt.'''
 
-Dir kënnt {{SITENAME}} elo anonym benotzen, oder Iech [[Special:UserLogin|erëm umellen]].
+Dir kënnt {{SITENAME}} elo anonym benotzen, oder Iech [[Special:UserLogin|erëm aloggen]].
 
-Opgepasst: Op verschiddene Säite gesäit et nach esou aus, wéi wann Dir nach ugemellt wiert, bis Dir Ärem Browser säin Tëschespäicher (cache) eidel maacht.",
+Opgepasst: Op verschiddene Säite kann et nach esou aus gesinn, wéi wann Dir nach ageloggt wiert, bis Dir Ärem Browser säin Tëschespäicher (cache) eidel maacht.",
 'welcomecreation' => '== Wëllkomm, $1! ==
 Äre Kont gouf kreéiert.
 Denkt drun, Är [[Special:Preferences|{{SITENAME}}-Astellungen]] unzepassen.',
@@ -583,7 +583,7 @@ Denkt drun, Är [[Special:Preferences|{{SITENAME}}-Astellungen]] unzepassen.',
 'securelogin-stick-https' => 'Nom Umelle mat HTTPS verbonn bleiwen',
 'yourdomainname' => 'Ären Domain',
 'externaldberror' => 'Entweder ass e Feeler bei der externer Authentifizéierung geschitt, oder Dir däerft Ären externe Benotzerkont net aktualiséieren.',
-'login' => 'Umellen',
+'login' => 'Aloggen',
 'nav-login-createaccount' => 'Aloggen / Benotzerkont uleeën',
 'loginprompt' => "Fir sech op {{SITENAME}} aloggen ze kënnen, mussen d'Cookien aktivéiert sinn.",
 'userlogin' => 'Aloggen / Benotzerkont uleeën',
@@ -682,7 +682,7 @@ Fir är Umeldung ofzeschléissen, musst Dir elo hei een neit Passwuert uginn:',
 'oldpassword' => 'Aalt Passwuert:',
 'newpassword' => 'Neit Passwuert:',
 'retypenew' => 'Neit Passwuert nach eemol antippen:',
-'resetpass_submit' => 'Passwuert aginn an umellen',
+'resetpass_submit' => 'Passwuert aginn an aloggen',
 'resetpass_success' => 'Äert Passwuert gouf geännert!
 Loggt Iech elo an ...',
 'resetpass_forbidden' => 'Passwierder kënnen net geännert ginn.',

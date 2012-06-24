@@ -799,7 +799,7 @@ Per favor entra e valida tu adresse de e-mail per medio de tu [[Special:Preferen
 'nosuchsectiontitle' => 'Section non trovate',
 'nosuchsectiontext' => 'Tu ha tentate modificar un section que non existe.
 Illo pote haber essite displaciate o delite durante que tu legeva le pagina.',
-'loginreqtitle' => 'Identification requirite',
+'loginreqtitle' => 'Identification necessari',
 'loginreqlink' => 'aperir un session',
 'loginreqpagetext' => 'Tu debe $1 pro poter vider altere paginas.',
 'accmailtitle' => 'Contrasigno inviate.',

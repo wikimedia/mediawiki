@@ -329,7 +329,7 @@ $messages = array(
 'tog-enotifminoredits' => 'ابعتلى ايميل للتعديلات الصغيره للصفحات',
 'tog-enotifrevealaddr' => 'بين الايميل بتاعى فى ايميلات الاعلام',
 'tog-shownumberswatching' => 'بين عدد اليوزرز المراقبين',
-'tog-oldsig' => 'بروفه للامضا الحاليه',
+'tog-oldsig' => 'الامضا دلوقتى:',
 'tog-fancysig' => 'امضا خام (من غير لينك أوتوماتيك)',
 'tog-externaleditor' => 'استعمل محرر خارجى افتراضيا',
 'tog-externaldiff' => 'استعمل فرق خارجى افتراضيا',
@@ -458,7 +458,7 @@ $messages = array(
 'vector-action-move' => 'نقل',
 'vector-action-protect' => 'حمايه',
 'vector-action-undelete' => 'الغى المسح',
-'vector-action-unprotect' => 'الغى الحمايه',
+'vector-action-unprotect' => 'غير الحمايه',
 'vector-view-create' => 'اعمل',
 'vector-view-edit' => 'تعديل',
 'vector-view-history' => 'استعراض التاريخ',
@@ -492,8 +492,8 @@ $messages = array(
 'protect' => 'حمايه',
 'protect_change' => 'غيّر',
 'protectthispage' => 'احمى الصفحه دى',
-'unprotect' => 'الغى الحماية',
-'unprotectthispage' => 'شيل حماية الصفحه دى',
+'unprotect' => 'غير الحمايه',
+'unprotectthispage' => 'غير حماية الصفحه دى',
 'newpage' => 'صفحه جديده',
 'talkpage' => 'ناقش الصفحه دى',
 'talkpagelinktext' => 'مناقشه',
@@ -526,6 +526,9 @@ $messages = array(
 لو سمحت تستنا شويه قبل ما تحاول تستعرض الصفحه دى من تانى.
 
 $1',
+'pool-timeout' => 'انتهاء الانتظار للقفل',
+'pool-queuefull' => 'طابور الانتخاب مليان',
+'pool-errorunknown' => 'غلط مش معروف',
 
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
 'aboutsite' => 'عن {{SITENAME}}',
@@ -707,8 +710,8 @@ $2',
 'createaccountmail' => 'بـ الايميل',
 'createaccountreason' => 'السبب:',
 'badretype' => 'كلمتين السر اللى  كتبتهم مش  زى بعضهم',
-'userexists' => 'اسم اليوزر اللى دخلته بيستعمله يوزر غيرك.
-دخل اسم تانى.',
+'userexists' => 'اسم اليوزر اللى كتبته بيستعمله يوزر غيرك.
+اكتت اسم يوزر تانى.',
 'loginerror' => 'غلط فى الدخول',
 'createaccounterror' => 'مش قادر يعمل الحساب: $1',
 'nocookiesnew' => 'اليوزر خلاص اتفتح له حساب، بس انت لسة ما سجلتش دخولك.
@@ -969,12 +972,12 @@ $2',
 'permissionserrorstext-withaction' => 'أنت ما عندكش الصلاحيات علشان $2، لل{{PLURAL:$1|سبب|أسباب}} ده:',
 'recreate-moveddeleted-warn' => "'''تحذير: انت بتعيد انشاء صفحه اتمسحت قبل كده.'''
 لازم تتأكد من ان الاستمرار فى تحرير الصفحه دى ملائم.
-سجلات الحذف و النقل بتوع الصفحه دى معروضه هنا:",
+سجلات المسح  و النقل بتوع الصفحه دى معروضه هنا:",
 'moveddeleted-notice' => 'الصفحة دى اتمسحت. سجل المسح و سجل النقل بتوع الصفحة معروضين تحت علشان ترجعلهم.',
 'log-fulllog' => 'استعراض السجل بالكامل',
 'edit-hook-aborted' => 'الخطاف ساب التعديل من غير مايدى تفسير.',
-'edit-gone-missing' => 'لم يمكن تحديث الصفحة.
-يبدو أنه تم حذفها.',
+'edit-gone-missing' => 'مش ممكن تعديل الصفحه.
+يظهر انها إتمسحت.',
 'edit-conflict' => 'تضارب تحريرى.',
 'edit-no-change' => 'تعديلك تم تجاهله، لأن ما حصلش أى تعديل للنص.',
 'edit-already-exists' => 'لم يمكن إنشاء صفحة جديدة.
@@ -1065,7 +1068,7 @@ $2',
 ممكن تكون فيه تفاصيل فى [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} سجل التخبيه].
 كسيسوب ممكن [$1 تشوف الفرق ده] لو إنت عايز تكمل.",
 'rev-deleted-diff-view' => "واحده من نسخ الفرق ده '''اتمسحت'''.
-كسيسوب ممكن تشوف الفرق ده؛ ممكن تكون فيه تفاصيل فى [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} سجل الحذف].",
+كسيسوب ممكن تشوف الفرق ده؛ ممكن تكون فيه تفاصيل فى [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} سجل المسح].",
 'rev-suppressed-diff-view' => "واحده من نسخ الفرق ده '''اتخبت'''.
 كسيسوب ممكن تشوف الفرق ده؛ ممكن تكون فيه تفاصيل فى [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} سجل التخبيه].",
 'rev-delundel' => 'عرض/تخبيه',
@@ -1171,11 +1174,13 @@ $1",
 
 # Diffs
 'history-title' => 'تاريخ تعديل "$1"',
+'difference-multipage' => '(الفرق بين الصفحتين)',
 'lineno' => 'سطر $1:',
 'compareselectedversions' => 'قارن بين النسختين المختارتين',
 'showhideselectedversions' => 'عرض/تخبية المراجعات المختاره.',
 'editundo' => 'استرجاع',
 'diff-multi' => '({{PLURAL:$1|نسخه واحده متوسطه|$1 نسخ متوسطه}} by {{PLURAL:$2|يوزر واحد |$2 يوزرات}}  مش معروضه)',
+'diff-multi-manyusers' => '({{PLURAL:$1|نسخه واحده متوسطه|$1 نسخ متوسطه}} by {{PLURAL:$2|يوزر واحد |$2 يوزرات}}  مش معروضه)',
 
 # Search results
 'searchresults' => 'نتايج التدوير',
@@ -1210,6 +1215,7 @@ $1",
 'searchprofile-everything-tooltip' => 'دور فى  كل المحتوى (شامل صفحات النقاش)',
 'searchprofile-advanced-tooltip' => 'دور فى النطاقات المخصصة',
 'search-result-size' => '$1 ({{PLURAL:$2|1 كلمه|$2 كلام}})',
+'search-result-category-size' => '{{PLURAL:$1|لا أعضاء|عضو واحد|عضوين|$1 أعضاء|$1 عضوًا|$1 عضو}} ({{PLURAL:$2|لا تصانيف فرعية|تصنيف فرعى واحد|تصنيفين فرعيين|$2 تصنيفات فرعية|$2 تصنيف فرعى|$2 تصنيف فرعى}} و{{PLURAL:$3|لا ملفات|ملف واحد|ملفين|$3 ملفات|$3 ملف|$3 ملف}})',
 'search-result-score' => 'الارتباط: $1%',
 'search-redirect' => '(تحويله $1)',
 'search-section' => '(جزء $1)',
@@ -1364,6 +1370,10 @@ $1",
 'prefs-displaywatchlist' => 'اختيارات العرض',
 'prefs-diffs' => 'التغيير',
 
+# User preference: e-mail validation using jQuery
+'email-address-validity-valid' => 'عنوان الإيميل صح',
+'email-address-validity-invalid' => 'عنوان الإيميل غلط',
+
 # User rights
 'userrights' => 'إدارة الحقوق بتاعة اليوزر',
 'userrights-lookup-user' => 'إدارة مجموعات اليوزر',
@@ -1447,6 +1457,7 @@ $1",
 'right-hideuser' => 'منع اسم يوزر، و خبيه عن الناس',
 'right-ipblock-exempt' => 'إتفادى عمليات منع الأيبي، المنع الأوتوماتيكى ومنع النطاق.',
 'right-proxyunbannable' => 'إتفادى عمليات المنع الأوتوماتيكية للبروكسيهات',
+'right-unblockself' => 'رفع المنع عن نفسهم',
 'right-protect' => 'تغيير مستويات الحماية وتعديل الصفحات المحمية',
 'right-editprotected' => 'تعديل الصفحات المحمية (من غير الحماية المتضمنة)',
 'right-editinterface' => 'تعديل الواجهة بتاعة اليوزر',
@@ -1600,6 +1611,8 @@ $1",
 'filetype-banned-type' => "'''\".\$1\"''' مش نوع ملف مسموح بيه.
 {{PLURAL:\$3|نوع الملف المسموح بيه هو|أنواع الملفات المسموح بيها هي}} \$2.",
 'filetype-missing' => 'الملف مالوش امتدا(مثلا ".jpg").',
+'file-too-large' => 'الملف كان كبير جدا.',
+'filetype-banned' => 'نوع الملف ده ممنوع.',
 'large-file' => 'ينصح ان الملفات ماتكونش أكبر من $1؛ الملف ده حجمه $2.',
 'largefileserver' => 'حجم الملف ده أكبر من المسموح بيه على السيرڨر ده .',
 'emptyfile' => 'الظاهر ان الملف اللى انت حملته طلع فاضي.
@@ -2144,7 +2157,7 @@ $UNWATCHURL
 'delete-legend' => 'مسح',
 'historywarning' => "'''تحذير:''' الصفحه اللى ها  تمسحها ليها تاريخ فيه تقريبا $1 {{PLURAL:$1|مراجعة|مراجعة}}:",
 'confirmdeletetext' => 'انت على وشك انك تمسح صفحه أو صوره و كل تاريخها.
-من فضلك  اتأكد انك عايز المسح وبأنك فاهم نتايج  العمليه  دى. عمليات الحذف لازم تتم بناء على [[{{MediaWiki:Policy-url}}|القواعد المتفق عليها]].',
+من فضلك  اتأكد انك عايز المسح وبأنك فاهم نتايج  العمليه  دى. عمليات المسح لازم تتم بناء على [[{{MediaWiki:Policy-url}}|القواعد المتفق عليها]].',
 'actioncomplete' => 'العمليه خلصت',
 'actionfailed' => 'الفعل فشل',
 'deletedtext' => '"$1" اتمسحت.
