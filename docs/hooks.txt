@@ -1619,6 +1619,10 @@ $out: OutputPage object
 &$obj: RawPage object
 &$text: The text that's going to be the output
 
+'RDBStoreTableSchemaInfo': Called when the RDBStoreGroup singleton is initialized.
+&groups       : Map of group names to a list of tables.
+                Extensions may register tables here to make sure groups of tables are in the same store.
+
 'RecentChange_save': called at the end of RecentChange::save()
 $recentChange: RecentChange object
 
