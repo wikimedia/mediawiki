@@ -311,7 +311,7 @@ class MediaWiki {
 	 */
 	public function getAction() {
 		static $action = null;
-		
+
 		if ( $action === null ) {
 			$action = Action::getActionName( $this->context );
 		}
@@ -418,6 +418,7 @@ class MediaWiki {
 		if ( $wgJobRunRate <= 0 || wfReadOnly() ) {
 			return;
 		}
+
 		if ( $wgJobRunRate < 1 ) {
 			$max = mt_getrandmax();
 			if ( mt_rand( 0, $max ) > $max * $wgJobRunRate ) {
@@ -428,19 +429,35 @@ class MediaWiki {
 			$n = intval( $wgJobRunRate );
 		}
 
-		while ( $n-- && false != ( $job = Job::pop() ) ) {
-			$output = $job->toString() . "\n";
-			$t = - microtime( true );
-			$success = $job->run();
-			$t += microtime( true );
-			$t = round( $t * 1000 );
-			if ( !$success ) {
-				$output .= "Error: " . $job->getLastError() . ", Time: $t ms\n";
-			} else {
-				$output .= "Success, Time: $t ms\n";
+		$jqGroup = JobQueueGroup::singleton();
+		$types = $jqGroup->getDefaultQueueTypes();
+		shuffle( $types ); // avoid starvation
+
+		// Scan the queues for a job N times...
+		do {
+			$jobFound = false; // found a job in any queue?
+			// Find a queue with a job on it and run it...
+			foreach ( $types as $type ) {
+				$queue = $jqGroup->get( $type );
+				$job = $queue->pop();
+				if ( $job ) {
+					$jobFound = true;
+					$output = $job->toString() . "\n";
+					$t = - microtime( true );
+					$success = $job->run();
+					$queue->ack( $job ); // done
+					$t += microtime( true );
+					$t = round( $t * 1000 );
+					if ( !$success ) {
+						$output .= "Error: " . $job->getLastError() . ", Time: $t ms\n";
+					} else {
+						$output .= "Success, Time: $t ms\n";
+					}
+					wfDebugLog( 'jobqueue', $output );
+					break;
+				}
 			}
-			wfDebugLog( 'jobqueue', $output );
-		}
+		} while ( --$n && $jobFound );
 	}
 
 	/**
