@@ -42,7 +42,8 @@ class RunJobs extends Maintenance {
 	}
 
 	public function execute() {
-		global $wgTitle;
+		global $wgTitle, $wgJobTypesExcludedFromDefaultQueue;
+
 		if ( $this->hasOption( 'procs' ) ) {
 			$procs = intval( $this->getOption( 'procs' ) );
 			if ( $procs < 1 || $procs > 1000 ) {
@@ -60,25 +61,28 @@ class RunJobs extends Maintenance {
 		$wgTitle = Title::newFromText( 'RunJobs.php' );
 		$dbw = wfGetDB( DB_MASTER );
 		$n = 0;
-		$conds = '';
+
+		$qGroup = JobQueueGroup::singleton();
 		if ( $type === false ) {
-			$conds = Job::defaultQueueConditions( );
+			$types = array_diff( $qGroup->getQueueTypes(), $wgJobTypesExcludedFromDefaultQueue );
 		} else {
-			$conds = "job_cmd = " . $dbw->addQuotes( $type );
+			$types = array( $type );
 		}
 
-		while ( $dbw->selectField( 'job', 'job_id', $conds, 'runJobs.php' ) ) {
-			$offset = 0;
-			for ( ; ; ) {
-				$job = !$type ? Job::pop( $offset ) : Job::pop_type( $type );
-
+		do {
+			$jobFound = false; // found a job?
+			foreach ( $types as $type ) {
+				// Pop a job off of the queue...
+				$queue = $qGroup->get( $type );
+				$job = $queue->pop();
 				if ( !$job ) {
-					break;
+					continue;
 				}
-
-				wfWaitForSlaves();
+				$jobFound = true;
+				// Don't let any disk backup fall behind...
+				$queue->waitForBackup();
+				// Perform the job (logging success/failure and runtime)...
 				$t = microtime( true );
-				$offset = $job->id;
 				$status = $job->run();
 				$t = microtime( true ) - $t;
 				$timeMs = intval( $t * 1000 );
@@ -87,7 +91,7 @@ class RunJobs extends Maintenance {
 				} else {
 					$this->runJobsLog( $job->toString() . " t=$timeMs good" );
 				}
-
+				// Break out if we hit the job count or wall time limits...
 				if ( $maxJobs && ++$n > $maxJobs ) {
 					break 2;
 				}
@@ -95,7 +99,7 @@ class RunJobs extends Maintenance {
 					break 2;
 				}
 			}
-		}
+		} while ( $jobFound );
 	}
 
 	/**
