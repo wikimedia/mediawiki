@@ -292,7 +292,13 @@ class ErrorPageError extends MWException {
 	public $title, $msg, $params;
 
 	/**
+	 * @todo document
+	 *
 	 * Note: these arguments are keys into wfMsg(), not text!
+	 *
+	 * @param $title A title
+	 * @param $msg String|Message . In string form, should be a message key
+	 * @param $params Array Array to wfMsg()
 	 */
 	function __construct( $title, $msg, $params = null ) {
 		$this->title = $title;
