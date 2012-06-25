@@ -320,11 +320,11 @@ class ForeignAPIRepo extends FileRepo {
 			return false;
 		}
 
+
 		# @todo FIXME: Delete old thumbs that aren't being used. Maintenance script?
 		$backend->prepare( array( 'dir' => dirname( $localFilename ) ) );
-		$op = array( 'op' => 'create', 'dst' => $localFilename, 'content' => $thumb );
-		if( !$backend->doOperation( $op )->isOK() ) {
-			wfRestoreWarnings();
+		$params = array( 'dst' => $localFilename, 'content' => $thumb );
+		if( !$backend->quickCreate( $params )->isOK() ) {
 			wfDebug( __METHOD__ . " could not write to thumb path '$localFilename'\n" );
 			return $foreignUrl;
 		}
