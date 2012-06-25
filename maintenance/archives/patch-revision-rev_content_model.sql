@@ -1,2 +1,2 @@
 ALTER TABLE /*$wgDBprefix*/revision
-  ADD rev_content_model int unsigned DEFAULT NULL;
+  ADD rev_content_model varbinary(32) DEFAULT NULL;

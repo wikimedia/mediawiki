@@ -677,30 +677,6 @@ $wgContentHandlers = array(
 	CONTENT_MODEL_WIKITEXT => 'WikitextContentHandler', // the usual case
 	CONTENT_MODEL_JAVASCRIPT => 'JavaScriptContentHandler', // dumb version, no syntax highlighting
 	CONTENT_MODEL_CSS => 'CssContentHandler', // dumb version, no syntax highlighting
-	CONTENT_MODEL_TEXT => 'TextContentHandler', // dumb plain text in <pre>
-);
-
-/**
- * Mime types for content formats.
- * Each entry in the array maps a content format to a mime type.
- *
- * Extensions that define their own content formats can register
- * the appropriate mime types in this array.
- *
- * Such extensions shall use content format IDs
- * larger than 100 and register the ids they use at
- * <http://mediawiki.org/ContentHandler/registry>
- * to avoid conflicts with other extensions.
- */
-$wgContentFormatMimeTypes = array(
-	CONTENT_FORMAT_WIKITEXT => 'text/x-wiki',
-	CONTENT_FORMAT_JAVASCRIPT => 'text/javascript',
-	CONTENT_FORMAT_CSS => 'text/css',
-	CONTENT_FORMAT_TEXT => 'text/plain',
-	CONTENT_FORMAT_HTML => 'text/html',
-	CONTENT_FORMAT_XML => 'application/xml',
-	CONTENT_FORMAT_JSON => 'application/json',
-	CONTENT_FORMAT_SERIALIZED => 'application/vnd.php.serialized',
 );
 
 /**

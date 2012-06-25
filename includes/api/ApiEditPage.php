@@ -59,23 +59,16 @@ class ApiEditPage extends ApiBase {
 		// @todo ask handler whether direct editing is supported at all! make allowFlatEdit() method or some such
 
 		if ( !isset( $params['contentformat'] ) || $params['contentformat'] == '' ) {
-			$contentFormat = $contentHandler->getDefaultFormat();
-			$params['contentformat'] = ContentHandler::getContentFormatMimeType( $contentFormat );
-		} else {
-			$contentFormat = ContentHandler::getContentFormatID( $params['contentformat'] );
-
-			if ( !is_int( $contentFormat ) ) {
-				$this->dieUsage( "Unknown format " . $params['contentformat'], 'badformat' );
-			}
+			$params['contentformat'] = $contentHandler->getDefaultFormat();
 		}
 
+		$contentFormat = $params['contentformat'];
+
 		if ( !$contentHandler->isSupportedFormat( $contentFormat ) ) {
-			$formatName = ContentHandler::getContentFormatMimeType( $contentFormat );
-			$modelName = $contentHandler->getModelName();
 			$name = $titleObj->getPrefixedDBkey();
 			$model = $contentHandler->getModelID();
 
-			$this->dieUsage( "The requested format #$contentFormat ($formatName) is not supported for content model #$model ($modelName) used by $name", 'badformat' );
+			$this->dieUsage( "The requested format $contentFormat is not supported for content model $model used by $name", 'badformat' );
 		}
 
 		$apiResult = $this->getResult();
@@ -131,7 +124,7 @@ class ApiEditPage extends ApiBase {
 			if ( !( $content instanceof TextContent ) ) {
 				// @todo: ContentHandler should have an isFlat() method or some such
 				// @todo: XXX: or perhaps there should be Content::append(), Content::prepend() and Content::supportsConcatenation()
-				$mode = $contentHandler->getModelName();
+				$mode = $contentHandler->getModelID();
 				$this->dieUsage( "Can't append to pages using content model $mode", 'appendnotsupported' );
 			}
 
@@ -150,7 +143,7 @@ class ApiEditPage extends ApiBase {
 
 			if ( !is_null( $params['section'] ) ) {
 				if ( !$contentHandler->supportsSections() ) {
-					$modelName = $contentHandler->getModelName();
+					$modelName = $contentHandler->getModelID();
 					$this->dieUsage( "Sections are not supported for this content model: $modelName.", 'sectionsnotsupported' );
 				}
 

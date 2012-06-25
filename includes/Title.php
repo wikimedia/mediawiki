@@ -300,7 +300,7 @@ class Title {
 			if ( isset( $row->page_latest ) )
 				$this->mLatestID = (int)$row->page_latest;
 			if ( isset( $row->page_content_model ) )
-				$this->mContentModel = intval( $row->page_content_model );
+				$this->mContentModel = strval( $row->page_content_model );
 			else
 				$this->mContentModel = false; # initialized lazily in getContentModel()
 		} else { // page not found
@@ -670,7 +670,7 @@ class Title {
 	/**
 	 * Get the page's content model id, see the CONTENT_MODEL_XXX constants.
 	 *
-	 * @return Integer: Content model id
+	 * @return String: Content model id
 	 */
 	public function getContentModel() {
 		if ( !$this->mContentModel ) {
@@ -3819,7 +3819,7 @@ class Title {
 		$this->mArticleID = $row ? intval( $row->page_id ) : 0;
 		$this->mRedirect = $row ? (bool)$row->page_is_redirect : false;
 		$this->mLatestID = $row ? intval( $row->page_latest ) : false;
-		$this->mContentModel = $row && isset( $row->page_content_model ) ? intval( $row->page_content_model ) : false;
+		$this->mContentModel = $row && isset( $row->page_content_model ) ? strval( $row->page_content_model ) : false;
 		if ( !$this->mRedirect ) {
 			return false;
 		}

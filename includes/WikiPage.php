@@ -500,7 +500,7 @@ class WikiPage extends Page {
 	 * Will use the revisions actual content model if the page exists,
 	 * and the page's default if the page doesn't exist yet.
 	 *
-	 * @return int
+	 * @return String
 	 *
 	 * @since 1.WD
 	 */

@@ -1,2 +1,2 @@
 ALTER TABLE /*$wgDBprefix*/archive
-  ADD ar_content_model int unsigned DEFAULT NULL;
+  ADD ar_content_model varbinary(32) DEFAULT NULL;

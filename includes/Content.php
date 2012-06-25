@@ -71,7 +71,7 @@ interface Content {
 	 *
 	 * @since WD.1
 	 *
-	 * @return int The model id
+	 * @return String The model id
 	 */
 	public function getModel();
 
@@ -95,7 +95,7 @@ interface Content {
 	 *
 	 * @since WD.1
 	 *
-	 * @return ContentHandler
+	 * @return String
 	 */
 	public function getDefaultFormat();
 
@@ -375,9 +375,6 @@ interface Content {
 	# FUTURE: special type for redirects?!
 	# FUTURE: MultipartMultipart < WikipageContent (Main + Links + X)
 	# FUTURE: LinksContent < LanguageLinksContent, CategoriesContent
-
-	// @TODO: add support for ar_content_format, ar_content_model, 
-	// rev_content_format, rev_content_model to API
 }
 
 
@@ -398,7 +395,7 @@ abstract class AbstractContent implements Content {
 	protected $model_id;
 
 	/**
-	 * @param $model_id int
+	 * @param String $model_id
 	 */
 	public function __construct( $model_id = null ) {
 		$this->model_id = $model_id;
@@ -421,12 +418,9 @@ abstract class AbstractContent implements Content {
 	 */
 	protected function checkModelID( $model_id ) {
 		if ( $model_id !== $this->model_id ) {
-			$model_name = ContentHandler::getContentModelName( $model_id );
-			$own_model_name = ContentHandler::getContentModelName( $this->model_id );
-
-			throw new MWException( "Bad content model: " . 
-				"expected {$this->model_id} ($own_model_name) " . 
-				"but got $model_id ($model_name)." );
+			throw new MWException( "Bad content model: " .
+				"expected {$this->model_id}  " .
+				"but got $model_id." );
 		}
 	}
 
@@ -777,12 +771,9 @@ class WikitextContent extends TextContent {
 		$sectionModelId = $with->getModel();
 
 		if ( $sectionModelId != $myModelId  ) {
-			$myModelName = ContentHandler::getContentModelName( $myModelId );
-			$sectionModelName = ContentHandler::getContentModelName( $sectionModelId );
-
-			throw new MWException( "Incompatible content model for section: " . 
-				"document uses $myModelId ($myModelName), " .
-				"section uses $sectionModelId ($sectionModelName)." );
+			throw new MWException( "Incompatible content model for section: " .
+				"document uses $myModelId but " .
+				"section uses $sectionModelId." );
 		}
 
 		$oldtext = $this->getNativeData();

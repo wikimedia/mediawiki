@@ -670,7 +670,7 @@ class XmlDumpWriter {
 		}
 
 		if ( isset( $row->rev_content_model ) && !is_null( $row->rev_content_model )  ) {
-			$content_model = intval( $row->rev_content_model );
+			$content_model = strval( $row->rev_content_model );
 		} else {
 			// probably using $wgContentHandlerUseDB = false;
 			// @todo: test!
@@ -678,11 +678,10 @@ class XmlDumpWriter {
 			$content_model = ContentHandler::getDefaultModelFor( $title );
 		}
 
-		$name = ContentHandler::getContentModelName( $content_model );
-		$out .= "      " . Xml::element('model', array( 'name' => $name ), strval( $content_model ) ) . "\n";
+		$out .= "      " . Xml::element('model', null, strval( $content_model ) ) . "\n";
 
 		if ( isset( $row->rev_content_format ) && !is_null( $row->rev_content_format ) ) {
-			$content_format = intval( $row->rev_content_format );
+			$content_format = strval( $row->rev_content_format );
 		} else {
 			// probably using $wgContentHandlerUseDB = false;
 			// @todo: test!
@@ -690,8 +689,7 @@ class XmlDumpWriter {
 			$content_format = $content_handler->getDefaultFormat();
 		}
 
-		$mime = ContentHandler::getContentFormatMimeType( $content_format );
-		$out .= "      " . Xml::element('format', array( 'mime' => $mime ), strval( $content_format ) ) . "\n";
+		$out .= "      " . Xml::element('format', null, strval( $content_format ) ) . "\n";
 
 		wfRunHooks( 'XmlDumpWriterWriteRevision', array( &$this, &$out, $row, $text ) );
 

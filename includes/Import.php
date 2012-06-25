@@ -1179,7 +1179,7 @@ class WikiRevision {
 	}
 
 	/**
-	 * @return int
+	 * @return String
 	 */
 	function getModel() {
 		if ( is_null( $this->model ) ) {
@@ -1190,7 +1190,7 @@ class WikiRevision {
 	}
 
 	/**
-	 * @return int
+	 * @return String
 	 */
 	function getFormat() {
 		if ( is_null( $this->model ) ) {
