@@ -165,7 +165,7 @@ class ApiQueryAllImages extends ApiQueryGeneratorBase {
 					break;
 				}
 			} else {
-				$titles[] = Title::makeTitle( NS_IMAGE, $row->img_name );
+				$titles[] = Title::makeTitle( NS_FILE, $row->img_name );
 			}
 		}
 

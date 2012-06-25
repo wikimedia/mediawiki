@@ -81,14 +81,14 @@ class ApiQueryImageInfo extends ApiQueryBase {
 				}
 
 				$start = $skip ? $fromTimestamp : $params['start'];
-				$pageId = $pageIds[NS_IMAGE][ $img->getOriginalTitle()->getDBkey() ];
+				$pageId = $pageIds[NS_FILE][ $img->getOriginalTitle()->getDBkey() ];
 
 				$fit = $result->addValue(
 					array( 'query', 'pages', intval( $pageId ) ),
 					'imagerepository', $img->getRepoName()
 				);
 				if ( !$fit ) {
-					if ( count( $pageIds[NS_IMAGE] ) == 1 ) {
+					if ( count( $pageIds[NS_FILE] ) == 1 ) {
 						// The user is screwed. imageinfo can't be solely
 						// responsible for exceeding the limit in this case,
 						// so set a query-continue that just returns the same
@@ -119,7 +119,7 @@ class ApiQueryImageInfo extends ApiQueryBase {
 						self::getInfo( $img, $prop, $result,
 							$finalThumbParams, $params['metadataversion'] ) );
 					if ( !$fit ) {
-						if ( count( $pageIds[NS_IMAGE] ) == 1 ) {
+						if ( count( $pageIds[NS_FILE] ) == 1 ) {
 							// See the 'the user is screwed' comment above
 							$this->setContinueEnumParameter( 'start',
 								wfTimestamp( TS_ISO_8601, $img->getTimestamp() ) );
@@ -149,7 +149,7 @@ class ApiQueryImageInfo extends ApiQueryBase {
 						self::getInfo( $oldie, $prop, $result,
 							$finalThumbParams, $params['metadataversion'] ) );
 					if ( !$fit ) {
-						if ( count( $pageIds[NS_IMAGE] ) == 1 ) {
+						if ( count( $pageIds[NS_FILE] ) == 1 ) {
 							$this->setContinueEnumParameter( 'start',
 								wfTimestamp( TS_ISO_8601, $oldie->getTimestamp() ) );
 						} else {
