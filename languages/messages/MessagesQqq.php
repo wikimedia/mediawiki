@@ -1650,6 +1650,15 @@ If someone with this right (bots by default) edits a user talk page and marks it
 'right-writeapi' => '{{doc-right|writeapi}}',
 'right-delete' => '{{doc-right|delete}}',
 'right-bigdelete' => '{{doc-right|bigdelete}}',
+'right-deletelogentry' => '{{doc-right|deletelogentry}}
+This user right is part of the [[mw:RevisionDelete|RevisionDelete]] feature.
+It can be given to the group {{msg|group-sysop|pl=yes}}, although this right is disabled by default.
+
+See also
+* {{msg|right-suppressionlog|pl=yes}}
+* {{msg|right-hideuser|pl=yes}}
+* {{msg|right-suppressrevision|pl=yes}}
+* {{msg|right-deleterevision|pl=yes}}',
 'right-deleterevision' => '{{doc-right|deleterevision}}
 This user right is part of the [[mw:RevisionDelete|RevisionDelete]] feature.
 It can be given to the group {{msg|group-sysop|pl=yes}}, although this right is disabled by default.
@@ -1657,7 +1666,8 @@ It can be given to the group {{msg|group-sysop|pl=yes}}, although this right is 
 See also
 * {{msg|right-suppressionlog|pl=yes}}
 * {{msg|right-hideuser|pl=yes}}
-* {{msg|right-suppressrevision|pl=yes}}',
+* {{msg|right-suppressrevision|pl=yes}}
+* {{msg|right-deletelogentry|pl=yes}}',
 'right-deletedhistory' => '{{doc-right|deletedhistory}}',
 'right-deletedtext' => '{{doc-right|deletedtext}}',
 'right-browsearchive' => '{{doc-right|browsearchive}}',
@@ -1669,6 +1679,7 @@ It can be given to the group {{msg|group-suppress|pl=yes}}, although that group 
 See also
 * {{msg|right-suppressionlog|pl=yes}}
 * {{msg|right-hideuser|pl=yes}}
+* {{msg|right-deletelogentry|pl=yes}}
 * {{msg|right-deleterevision|pl=yes}}',
 'right-suppressionlog' => '{{doc-right|suppressionlog}}
 This user right is part of the [[mw:RevisionDelete|RevisionDelete]] feature.
@@ -1677,6 +1688,7 @@ It can be given to the group {{msg|group-suppress|pl=yes}}, although that group 
 See also
 * {{msg|right-suppressrevision|pl=yes}}
 * {{msg|right-hideuser|pl=yes}}
+* {{msg|right-deletelogentry|pl=yes}}
 * {{msg|right-deleterevision|pl=yes}}',
 'right-block' => '{{doc-right|block}}',
 'right-blockemail' => '{{doc-right|blockemail}}',
@@ -1687,6 +1699,7 @@ It can be given to the group {{msg|group-suppress|pl=yes}}, although that group 
 See also
 * {{msg|right-suppressionlog|pl=yes}}
 * {{msg|right-suppressrevision|pl=yes}}
+* {{msg|right-deletelogentry|pl=yes}}
 * {{msg|right-deleterevision|pl=yes}}',
 'right-ipblock-exempt' => '{{doc-right|ipblock-exempt}}
 This user automatically bypasses IP blocks, auto-blocks and range blocks - so I presume - but I am uncertain',

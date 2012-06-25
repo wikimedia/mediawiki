@@ -499,8 +499,8 @@ class LogEventsList {
 		$del = '';
 		// Don't show useless checkbox to people who cannot hide revisions
 		if( $wgUser->isAllowed( 'deletedhistory' ) ) {
-			if( $row->log_deleted || $wgUser->isAllowed( 'deleterevision' ) ) {
-				$canHide = $wgUser->isAllowed( 'deleterevision' );
+			if( $row->log_deleted || $wgUser->isAllowed( 'deletelogentry' ) ) {
+				$canHide = $wgUser->isAllowed( 'deletelogentry' );
 				if ( $this->flags & self::USE_REVDEL_CHECKBOXES ) { // Show checkboxes instead of links.
 					if ( !self::userCan( $row, LogPage::DELETED_RESTRICTED ) ) { // If event was hidden from sysops
 						$del = Xml::check( 'deleterevisions', false, array( 'disabled' => 'disabled' ) );
