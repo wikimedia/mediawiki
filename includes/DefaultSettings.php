@@ -128,28 +128,6 @@ $wgUsePathInfo =
  */
 $wgScriptExtension  = '.php';
 
-/**
- * The URL path to index.php.
- *
- * Will default to "{$wgScriptPath}/index{$wgScriptExtension}" in Setup.php
- */
-$wgScript = false;
-
-/**
- * The URL path to redirect.php. This is a script that is used by the Nostalgia
- * skin.
- *
- * Will default to "{$wgScriptPath}/redirect{$wgScriptExtension}" in Setup.php
- */
-$wgRedirectScript = false;
-
-/**
- * The URL path to load.php.
- *
- * Defaults to "{$wgScriptPath}/load{$wgScriptExtension}".
- */
-$wgLoadScript = false;
-
 
 /**@}*/
 
@@ -172,7 +150,30 @@ $wgLoadScript = false;
  */
 
 /**
- * The URL path of the skins directory. Will default to "{$wgScriptPath}/skins" in Setup.php
+ * The URL path to index.php.
+ *
+ * Defaults to "{$wgScriptPath}/index{$wgScriptExtension}".
+ */
+$wgScript = false;
+
+/**
+ * The URL path to redirect.php. This is a script that is used by the Nostalgia
+ * skin.
+ *
+ * Defaults to "{$wgScriptPath}/redirect{$wgScriptExtension}".
+ */
+$wgRedirectScript = false;
+
+/**
+ * The URL path to load.php.
+ *
+ * Defaults to "{$wgScriptPath}/load{$wgScriptExtension}".
+ */
+$wgLoadScript = false;
+
+/**
+ * The URL path of the skins directory.
+ * Defaults to "{$wgScriptPath}/skins".
  */
 $wgStylePath = false;
 $wgStyleSheetPath = &$wgStylePath;
@@ -191,7 +192,8 @@ $wgLocalStylePath = false;
 $wgExtensionAssetsPath = false;
 
 /**
- * Filesystem stylesheets directory. Will default to "{$IP}/skins" in Setup.php
+ * Filesystem stylesheets directory.
+ * Defaults to "{$IP}/skins".
  */
 $wgStyleDirectory = false;
 
@@ -199,20 +201,16 @@ $wgStyleDirectory = false;
  * The URL path for primary article page views. This path should contain $1,
  * which is replaced by the article title.
  *
- * Will default to "{$wgScript}/$1" or "{$wgScript}?title=$1" in Setup.php,
+ * Defaults to "{$wgScript}/$1" or "{$wgScript}?title=$1",
  * depending on $wgUsePathInfo.
  */
 $wgArticlePath = false;
 
 /**
- * The URL path for the images directory. Will default to "{$wgScriptPath}/images" in Setup.php
+ * The URL path for the images directory.
+ * Defaults to "{$wgScriptPath}/images".
  */
 $wgUploadPath = false;
-
-/**
- * The maximum age of temporary (incomplete) uploaded files
- */
-$wgUploadStashMaxAge = 6 * 3600; // 6 hours
 
 /**
  * The filesystem path of the images directory. Defaults to "{$IP}/images".
@@ -220,8 +218,14 @@ $wgUploadStashMaxAge = 6 * 3600; // 6 hours
 $wgUploadDirectory = false;
 
 /**
+ * Directory where the cached page will be saved.
+ * Defaults to "{$wgUploadDirectory}/cache".
+ */
+$wgFileCacheDirectory = false;
+
+/**
  * The URL path of the wiki logo. The logo size should be 135x135 pixels.
- * Will default to "{$wgStylePath}/common/images/wiki.png" in Setup.php
+ * Defaults to "{$wgStylePath}/common/images/wiki.png".
  */
 $wgLogo = false;
 
@@ -241,14 +245,14 @@ $wgAppleTouchIcon = false;
  * be web accessible.
  *
  * When this setting is set to false, its value will be set through a call
- * to wfTempDir(). See that methods implementation for the actul detection
+ * to wfTempDir(). See that methods implementation for the actual detection
  * logic.
  *
  * Developers should use the global function wfTempDir() instead of this
  * variable.
  *
  * @see wfTempDir()
- * @note Default modified to false in v1.20
+ * @note Default changed to false in MediaWiki 1.20.
  *
  */
 $wgTmpDirectory = false;
@@ -286,6 +290,11 @@ $wgActionPaths = array();
 
 /** Uploads have to be specially set up to be secure */
 $wgEnableUploads = false;
+
+/**
+ * The maximum age of temporary (incomplete) uploaded files
+ */
+$wgUploadStashMaxAge = 6 * 3600; // 6 hours
 
 /** Allows to move images and other media files */
 $wgAllowImageMoving = true;
@@ -460,29 +469,38 @@ $wgUpdateCompatibleMetadata = false;
  * $wgForeignFileRepos variable.
  */
 $wgUseSharedUploads = false;
+
 /** Full path on the web server where shared uploads can be found */
 $wgSharedUploadPath = "http://commons.wikimedia.org/shared/images";
+
 /** Fetch commons image description pages and display them on the local wiki? */
 $wgFetchCommonsDescriptions = false;
+
 /** Path on the file system where shared uploads can be found. */
 $wgSharedUploadDirectory = "/var/www/wiki3/images";
+
 /** DB name with metadata about shared directory. Set this to false if the uploads do not come from a wiki. */
 $wgSharedUploadDBname = false;
+
 /** Optional table prefix used in database. */
 $wgSharedUploadDBprefix = '';
+
 /** Cache shared metadata in memcached. Don't do this if the commons wiki is in a different memcached domain */
 $wgCacheSharedUploads = true;
+
 /**
-* Allow for upload to be copied from an URL. Requires Special:Upload?source=web
-* The timeout for copy uploads is set by $wgHTTPTimeout.
-* You have to assign the user right 'upload_by_url' to a user group, to use this.
-*/
+ * Allow for upload to be copied from an URL. Requires Special:Upload?source=web
+ * The timeout for copy uploads is set by $wgHTTPTimeout.
+ * You have to assign the user right 'upload_by_url' to a user group, to use this.
+ */
 $wgAllowCopyUploads = false;
+
 /**
  * Allow asynchronous copy uploads.
  * This feature is experimental and broken as of r81612.
  */
 $wgAllowAsyncCopyUploads = false;
+
 /**
  * A list of domains copy uploads can come from
  */
@@ -733,14 +751,19 @@ $wgSVGConverters = array(
 	'imgserv' => '$path/imgserv-wrapper -i svg -o png -w$width $input $output',
 	'ImagickExt' => array( 'SvgHandler::rasterizeImagickExt' ),
 	);
+
 /** Pick a converter defined in $wgSVGConverters */
 $wgSVGConverter = 'ImageMagick';
+
 /** If not in the executable PATH, specify the SVG converter path. */
 $wgSVGConverterPath = '';
+
 /** Don't scale a SVG larger than this */
 $wgSVGMaxSize = 2048;
+
 /** Don't read SVG metadata beyond this point.
- * Default is 1024*256 bytes */
+ * Default is 1024*256 bytes
+ */
 $wgSVGMetadataCutoff = 262144;
 
 /**
@@ -1631,7 +1654,8 @@ $wgObjectCaches = array(
 $wgParserCacheExpireTime = 86400;
 
 /**
- * Select which DBA handler <http://www.php.net/manual/en/dba.requirements.php> to use as CACHE_DBA backend
+ * Select which DBA handler <http://www.php.net/manual/en/dba.requirements.php>
+ * to use as CACHE_DBA backend.
  */
 $wgDBAhandler = 'db3';
 
@@ -1742,12 +1766,6 @@ $wgStyleVersion = '303';
  * as well as single module requests.
  */
 $wgUseFileCache = false;
-
-/**
- * Directory where the cached page will be saved.
- * Will default to "{$wgUploadDirectory}/cache" in Setup.php
- */
-$wgFileCacheDirectory = false;
 
 /**
  * Depth of the subdirectory hierarchy to be created under
@@ -2632,7 +2650,7 @@ $wgResourceModules = array();
 $wgResourceLoaderSources = array();
 
 /**
- * Default 'remoteBasePath' value for resource loader modules.
+ * Default 'remoteBasePath' value for instances of ResourceLoaderFileModule.
  * If not set, then $wgScriptPath will be used as a fallback.
  */
 $wgResourceBasePath = null;
