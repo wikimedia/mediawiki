@@ -98,6 +98,8 @@ class CoreParserFunctions {
 		$parser->setFunctionHook( 'subjectpagenamee', array( __CLASS__, 'subjectpagenamee' ), SFH_NO_HASH );
 		$parser->setFunctionHook( 'tag',              array( __CLASS__, 'tagObj'           ), SFH_OBJECT_ARGS );
 		$parser->setFunctionHook( 'formatdate',       array( __CLASS__, 'formatDate'       ) );
+		$parser->setFunctionHook( 'iffunction',       array( __CLASS__, 'iffunction'       ), SFH_OBJECT_ARGS );
+		$parser->setFunctionHook( 'iftag',            array( __CLASS__, 'iftag'            ), SFH_OBJECT_ARGS );
 
 		if ( $wgAllowDisplayTitle ) {
 			$parser->setFunctionHook( 'displaytitle', array( __CLASS__, 'displaytitle' ), SFH_NO_HASH );
@@ -839,5 +841,35 @@ class CoreParserFunctions {
 			'close' => "</$tagName>",
 		);
 		return $parser->extensionSubstitution( $params, $frame );
+	}
+
+	/**
+	 * @param $parser Parser
+	 * @param $frame PPFrame
+	 * @param $args array
+	 * @return string
+	 */
+	public static function iffunction( Parser $parser, PPFrame $frame, $args ) {
+		$func = isset( $args[0] ) ? trim( $frame->expand( $args[0] ) ) : '';
+		if ( $parser->hasFunctionHook( $func ) ) {
+			return isset( $args[1] ) ? trim( $frame->expand( $args[1] ) ) : '';
+		} else {
+			return isset( $args[2] ) ? trim( $frame->expand( $args[2] ) ) : '';
+		}
+	}
+
+	/**
+	 * @param $parser Parser
+	 * @param $frame PPFrame
+	 * @param $args array
+	 * @return string
+	 */
+	public static function iftag( Parser $parser, PPFrame $frame, $args ) {
+		$func = isset( $args[0] ) ? trim( $frame->expand( $args[0] ) ) : '';
+		if ( $parser->hasTag( $func ) ) {
+			return isset( $args[1] ) ? trim( $frame->expand( $args[1] ) ) : '';
+		} else {
+			return isset( $args[2] ) ? trim( $frame->expand( $args[2] ) ) : '';
+		}
 	}
 }

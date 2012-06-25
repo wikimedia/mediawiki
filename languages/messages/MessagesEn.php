@@ -356,6 +356,8 @@ $magicWords = array(
 	'url_query'              => array( 0,    'QUERY' ),
 	'defaultsort_noerror'    => array( 0,    'noerror' ),
 	'defaultsort_noreplace'  => array( 0,    'noreplace' ),
+	'iffunction'             => array( 0,    'IFFUNCTION:' ),
+	'iftag'                  => array( 0,    'IFTAG:' ),
 );
 
 /**

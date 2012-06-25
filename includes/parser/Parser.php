@@ -4691,6 +4691,19 @@ class Parser {
 	}
 
 	/**
+	 * Checks whether a tag hook of any type with a given name is registered
+	 * @since 1.20
+	 *
+	 * @param $name string
+	 * @return bool
+	 */
+	public function hasTag( $name ) {
+		return isset( $this->mTagHooks[$name] )
+			|| isset( $this->mTransparentTagHooks[$name] )
+			|| isset( $this->mFunctionTagHooks[$name] );
+	}
+
+	/**
 	 * Create a function, e.g. {{sum:1|2|3}}
 	 * The callback function should have the form:
 	 *    function myParserFunction( &$parser, $arg1, $arg2, $arg3 ) { ... }
@@ -4771,6 +4784,17 @@ class Parser {
 	 */
 	function getFunctionHooks() {
 		return array_keys( $this->mFunctionHooks );
+	}
+
+	/**
+	 * Checks whether a function with a given name is registered
+	 * @since 1.20
+	 *
+	 * @param $name string
+	 * @return bool
+	 */
+	public function hasFunctionHook( $name ) {
+		return isset( $this->mFunctionHooks[$name] );
 	}
 
 	/**
