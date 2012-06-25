@@ -114,6 +114,7 @@ class User {
 		'delete',
 		'deletedhistory',
 		'deletedtext',
+		'deletelogentry',
 		'deleterevision',
 		'edit',
 		'editinterface',
