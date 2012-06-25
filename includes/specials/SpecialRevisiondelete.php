@@ -66,6 +66,7 @@ class SpecialRevisionDelete extends UnlistedSpecialPage {
 			'success' 		=> 'revdelete-success',
 			'failure' 		=> 'revdelete-failure',
 			'list-class' 	=> 'RevDel_RevisionList',
+			'permission'	=> 'deleterevision',
 		),
 		'archive' => array(
 			'check-label' 	=> 'revdelete-hide-text',
@@ -73,6 +74,7 @@ class SpecialRevisionDelete extends UnlistedSpecialPage {
 			'success' 		=> 'revdelete-success',
 			'failure' 		=> 'revdelete-failure',
 			'list-class' 	=> 'RevDel_ArchiveList',
+			'permission'	=> 'deleterevision',
 		),
 		'oldimage'=> array(
 			'check-label' 	=> 'revdelete-hide-image',
@@ -80,6 +82,7 @@ class SpecialRevisionDelete extends UnlistedSpecialPage {
 			'success' 		=> 'revdelete-success',
 			'failure' 		=> 'revdelete-failure',
 			'list-class' 	=> 'RevDel_FileList',
+			'permission'	=> 'deleterevision',
 		),
 		'filearchive' => array(
 			'check-label' 	=> 'revdelete-hide-image',
@@ -87,6 +90,7 @@ class SpecialRevisionDelete extends UnlistedSpecialPage {
 			'success' 		=> 'revdelete-success',
 			'failure' 		=> 'revdelete-failure',
 			'list-class' 	=> 'RevDel_ArchivedFileList',
+			'permission'	=> 'deleterevision',
 		),
 		'logging' => array(
 			'check-label'	=> 'revdelete-hide-name',
@@ -94,6 +98,7 @@ class SpecialRevisionDelete extends UnlistedSpecialPage {
 			'success' 		=> 'logdelete-success',
 			'failure' 		=> 'logdelete-failure',
 			'list-class'	=> 'RevDel_LogList',
+			'permission'	=> 'deletelogentry',
 		),
 	);
 
@@ -117,7 +122,6 @@ class SpecialRevisionDelete extends UnlistedSpecialPage {
 		$output = $this->getOutput();
 		$user = $this->getUser();
 
-		$this->mIsAllowed = $user->isAllowed('deleterevision'); // for changes
 		$this->setHeaders();
 		$this->outputHeader();
 		$request = $this->getRequest();
@@ -144,6 +148,8 @@ class SpecialRevisionDelete extends UnlistedSpecialPage {
 			$this->typeName = $request->getVal( 'type' );
 			$this->targetObj = Title::newFromText( $request->getText( 'target' ) );
 		}
+
+		$this->mIsAllowed = $user->isAllowed( self::$allowedTypes[$this->typeName]['permission'] );
 
 		# For reviewing deleted files...
 		$this->archiveName = $request->getVal( 'file' );
