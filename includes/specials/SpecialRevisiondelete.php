@@ -117,7 +117,6 @@ class SpecialRevisionDelete extends UnlistedSpecialPage {
 		$output = $this->getOutput();
 		$user = $this->getUser();
 
-		$this->mIsAllowed = $user->isAllowed('deleterevision'); // for changes
 		$this->setHeaders();
 		$this->outputHeader();
 		$request = $this->getRequest();
@@ -140,8 +139,10 @@ class SpecialRevisionDelete extends UnlistedSpecialPage {
 			// getFullTitle() will contain the target title and not our title
 			$this->targetObj = $this->getFullTitle();
 			$this->typeName = 'revision';
+			$this->mIsAllowed = $user->isAllowed('deleterevision'); // for changes
 		} else {
 			$this->typeName = $request->getVal( 'type' );
+			$this->mIsAllowed = $user->isAllowed('deletelogentry'); // for changes
 			$this->targetObj = Title::newFromText( $request->getText( 'target' ) );
 		}
 
