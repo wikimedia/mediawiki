@@ -1278,9 +1278,17 @@ CREATE TABLE /*_*/job (
 
   -- Any other parameters to the command
   -- Stored as a PHP serialized array, or an empty string if there are no parameters
-  job_params blob NOT NULL
+  job_params blob NOT NULL,
+
+  -- Field that conveys process locks on rows via process UUIDs
+  job_token varbinary(32) NOT NULL default '',
+
+  -- Hash of the job parameters relevant to detecting duplicates
+  job_sha1 varbinary(32) NOT NULL default ''
 ) /*$wgDBTableOptions*/;
 
+CREATE INDEX /*i*/job_sha1 ON /*_*/job (job_sha1);
+CREATE INDEX /*i*/job_token_cmd ON /*_*/job (job_token,job_cmd);
 CREATE INDEX /*i*/job_cmd ON /*_*/job (job_cmd, job_namespace, job_title, job_params(128));
 CREATE INDEX /*i*/job_timestamp ON /*_*/job (job_timestamp);
 

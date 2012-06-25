@@ -23,6 +23,7 @@
 
 /**
  * Class to both describe a background job and handle jobs.
+ * This queue aspects of this class are now deprecated.
  *
  * @ingroup JobQueue
  */
@@ -61,6 +62,7 @@ abstract class Job {
 	 * @param $type string
 	 *
 	 * @return Job
+	 * @deprecated 1.20
 	 */
 	static function pop_type( $type ) {
 		wfProfilein( __METHOD__ );
@@ -111,6 +113,7 @@ abstract class Job {
 	 *
 	 * @param $offset Integer: Number of jobs to skip
 	 * @return Job or false if there's no jobs
+	 * @deprecated 1.20
 	 */
 	static function pop( $offset = 0 ) {
 		wfProfileIn( __METHOD__ );
@@ -229,6 +232,7 @@ abstract class Job {
 	/**
 	 * @param $params
 	 * @return string
+	 * @deprecated 1.20
 	 */
 	static function makeBlob( $params ) {
 		if ( $params !== false ) {
@@ -241,6 +245,7 @@ abstract class Job {
 	/**
 	 * @param $blob
 	 * @return bool|mixed
+	 * @deprecated 1.20
 	 */
 	static function extractBlob( $blob ) {
 		if ( (string)$blob !== '' ) {
@@ -258,6 +263,7 @@ abstract class Job {
 	 * removed later on, when the first one is popped.
 	 *
 	 * @param $jobs array of Job objects
+	 * @deprecated 1.20
 	 */
 	static function batchInsert( $jobs ) {
 		if ( !count( $jobs ) ) {
@@ -295,6 +301,7 @@ abstract class Job {
 	 * large batches of jobs can cause slave lag.
 	 *
 	 * @param $jobs array of Job objects
+	 * @deprecated 1.20
 	 */
 	static function safeBatchInsert( $jobs ) {
 		if ( !count( $jobs ) ) {
@@ -323,6 +330,7 @@ abstract class Job {
 	 * sure that queries to the job queue actually ignore them.
 	 *
 	 * @return array SQL conditions suitable for Database:: methods
+	 * @deprecated 1.20
 	 */
 	static function defaultQueueConditions( ) {
 		global $wgJobTypesExcludedFromDefaultQueue;
@@ -358,8 +366,44 @@ abstract class Job {
 	}
 
 	/**
+	 * @return integer May be 0 for jobs stored outside the DB
+	 */
+	public function getId() {
+		return $this->id;
+	}
+
+	/**
+	 * @return string
+	 */
+	public function getType() {
+		return $this->command;
+	}
+
+	/**
+	 * @return Title
+	 */
+	public function getTitle() {
+		return $this->title;
+	}
+
+	/**
+	 * @return array
+	 */
+	public function getParams() {
+		return $this->params;
+	}
+
+	/**
+	 * @return bool
+	 */
+	public function ignoreDuplicates() {
+		return $this->removeDuplicates;
+	}
+
+	/**
 	 * Insert a single job into the queue.
 	 * @return bool true on success
+	 * @deprecated 1.20
 	 */
 	function insert() {
 		$fields = $this->insertFields();
@@ -394,6 +438,7 @@ abstract class Job {
 	/**
 	 * Remove jobs in the job queue which are duplicates of this job.
 	 * This is deadlock-prone and so starts its own transaction.
+	 * @deprecated 1.20
 	 */
 	function removeDuplicates() {
 		if ( !$this->removeDuplicates ) {
