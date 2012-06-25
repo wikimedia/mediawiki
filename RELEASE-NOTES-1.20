@@ -83,6 +83,8 @@ upgrade PHP if you have not done so prior to upgrading MediaWiki.
   "mw-changeslist-line-watched" or "mw-changeslist-line-not-watched", and the
   title itself is surrounded by <span></span> tags with class "mw-title".
 * Added ContribsPager::reallyDoQuery hook allowing extensions to data to MyContribs
+* (bug 37926) Deleterevision will no longer allow users to delete log entries,
+  the new deletelogentry permission is required for this.
 
 === Bug fixes in 1.20 ===
 * (bug 30245) Use the correct way to construct a log page title.

@@ -493,7 +493,7 @@ class LogEventsList extends ContextSource {
 		}
 		$del = '';
 		$user = $this->getUser();
-		// Don't show useless checkbox to people who cannot hide revisions
+		// Don't show useless checkbox to people who cannot hide log entries
 		if( $user->isAllowed( 'deletedhistory' ) ) {
 			if( $row->log_deleted || $user->isAllowed( 'deleterevision' ) ) {
 				$canHide = $user->isAllowed( 'deleterevision' );
