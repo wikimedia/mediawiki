@@ -5283,6 +5283,25 @@ $wgJobClasses = array(
 $wgJobTypesExcludedFromDefaultQueue = array();
 
 /**
+ * Map of blob queue store names to configuration arrays.
+ * This setting should be global to all wikis.
+ */
+$wgJobQueueStores = array(
+	'default' => array( 'class' => 'JobQueueStoreDB' )
+);
+
+/**
+ * Map of job types to configuration arrays.
+ * This setting should be global to all wikis.
+ */
+$wgJobTypeConf = array(
+	'default' => array(
+		'class' => 'JobQueueSimple',
+		'store' => 'default'
+	),
+);
+
+/**
  * Additional functions to be performed with updateSpecialPages.
  * Expensive Querypages are already updated.
  */
