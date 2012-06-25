@@ -2236,7 +2236,7 @@ Kay p\'anqata mana musuqmanta watukamuptiykiqa, manam huk hukchasqakunamanta wil
 
 --
 E-chaski willaykuy allinkachinakunata hukchanaykipaqqa kay p\'anqatam qhaway:
-{{canonicalurl:{{#special:Preferences}}}}
+{{canonicalurl:{{#special:Preferences}}}} 
 
 Watiqana sutisuyuykipaq allinkachinakunata hukchanaykipaqqa kay p\'anqatam qhaway:
 {{canonicalurl:{{#special:EditWatchlist}}}}

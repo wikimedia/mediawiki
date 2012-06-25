@@ -7,6 +7,7 @@
  * @ingroup Language
  * @file
  *
+ * @author Xqt
  */
 
 $datePreferences = array(
@@ -499,6 +500,8 @@ Siók-mìng: (dāng) = gâe̤ng dék sĭng bēng-buōng bī-piâng, (sèng) = g�
 # Statistics
 'statistics' => 'Só-gé̤ṳ',
 'statistics-header-users' => 'Ê̤ṳng-hô só-gé̤ṳ',
+
+'disambiguationspage' => 'Template:Gì-ngiê',
 
 'brokenredirects-edit' => 'gāi',
 'brokenredirects-delete' => 'chēng',

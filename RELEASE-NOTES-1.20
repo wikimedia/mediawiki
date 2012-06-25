@@ -71,6 +71,9 @@ upgrade PHP if you have not done so prior to upgrading MediaWiki.
 * cleanupSpam.php now can delete spam pages if --delete was specified instead of blanking
   them.
 * Added new hook ChangePasswordForm to allow adding of additional fields in Special:ChangePassword
+* Added new function getDomain to AuthPlugin for getting a user's domain
+* (bug 23427) New magic word {{PAGEID}} which gives the current page ID.
+  Will be null on previewing a page being created.
 
 === Bug fixes in 1.20 ===
 * (bug 30245) Use the correct way to construct a log page title.
@@ -116,12 +119,13 @@ upgrade PHP if you have not done so prior to upgrading MediaWiki.
 * (bug 32604) Some messages needs escaping of wikitext inside username
 * (bug 36537) Rename wfArrayToCGI to wfArrayToCgi for consistency with wfCgiToArray.
 * (bug 25946) The message on the top of Special:RecentChanges is now displayed
-  in user language instead of content language
+  in user language instead of content language.
 * (bug 35264) Wrong type used for <ns> in export.xsd
 * (bug 24985) Use $wgTmpDirectory as the default temp directory so that people
   who don't have access to /tmp can specify an alternative.
-* (bug 27283) SqlBagOStuff breaks PostgreSQL transactions
+* (bug 27283) SqlBagOStuff breaks PostgreSQL transactions.
 * (bug 35727) mw.Api ajax() should put token parameter last.
+* (bug 37708) mw.Uri.clone() should make a deep copy.
 
 === API changes in 1.20 ===
 * (bug 34316) Add ability to retrieve maximum upload size from MediaWiki API.
@@ -129,10 +133,10 @@ upgrade PHP if you have not done so prior to upgrading MediaWiki.
   the format parameter.
 * (bug 32384) Allow descending order for list=watchlistraw.
 * (bug 31883) Limit of bkusers of list=blocks and titles of action=query is not documented in API help.
-* (bug 32492) API now allows editing using pageid
-* (bug 32497) API now allows changing of protection level using pageid
-* (bug 32498) API now allows comparing pages using pageids
-* (bug 30975) API import of pages with invalid characters in this wiki leads to Fatal Error
+* (bug 32492) API now allows editing using pageid.
+* (bug 32497) API now allows changing of protection level using pageid.
+* (bug 32498) API now allows comparing pages using pageids.
+* (bug 30975) API import of pages with invalid characters in this wiki leads to Fatal Error.
 * (bug 30488) API now allows listing of backlinks/embeddedin/imageusage per pageid
 * (bug 34927) Output media_type for list=filearchive
 * (bug 28814) add properties to output of action=parse
@@ -162,6 +166,10 @@ changes to languages because of Bugzilla reports.
 * Removed ./tests/qunit/index.html from core. It wasn't actively maintained and
   has been made obsolete when [[Special:JavaScriptTest/qunit]] was introduced,
   which actually uses ResourceLoader, LocalSettings and the Skin.
+* Removed $wgDBtransactions global. This was only checked in one class
+  and only applies to MyISAM or similar DBs. Those should only be used
+  for archived sites anyway. We can't get edit conflicts on such sites,
+  so the WikiPage code wasn't useful there either.
 
 == Compatibility ==
 

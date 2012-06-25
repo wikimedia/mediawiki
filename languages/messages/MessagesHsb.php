@@ -1,5 +1,5 @@
 <?php
-/** Upper Sorbian (Hornjoserbsce)
+/** Upper Sorbian (hornjoserbsce)
  *
  * See MessagesQqq.php for message documentation incl. usage of parameters
  * To improve a translation please visit http://translatewiki.net
@@ -160,7 +160,7 @@ $messages = array(
 'tog-hidepatrolled' => 'Dohladawane změny w aktualnych změnach schować',
 'tog-newpageshidepatrolled' => 'Dohladowane strony z lisćiny nowych stronow schować',
 'tog-extendwatchlist' => 'Lisćinu wobkedźbowankow wočinić, zo by wšě změny widźał, nic jenož najnowše',
-'tog-usenewrc' => 'Rozšěrjenu lisćinu aktualnych změnow (trjeba JavaScript) wužiwać',
+'tog-usenewrc' => 'Skupinske změny po stronje w aktualnych změnach a wobkedźbowankach (trjeba JavaScript)',
 'tog-numberheadings' => 'Nadpisma awtomatisce čisłować',
 'tog-showtoolbar' => 'Gratowu lajstu pokazać (wužaduje sej JavaScript)',
 'tog-editondblclick' => 'Strony z dwójnym kliknjenjom wobdźěłować (wužaduje sej JavaScript)',
@@ -3716,4 +3716,6 @@ Hewak móžeš slědowacy jednory formular wužiwać. Twój komentar přida so s
 'duration-centuries' => '$1 {{PLURAL:$1|lětstotk|lětstotkaj|lětstotki|lětstotkow}}',
 'duration-millennia' => '$1 {{PLURAL:$1|lěttysac|lěttysacaj|lěttysacy|lěttysacow}}',
 
+# Unknown messages
+'lockmanager-fail-svr-acquire' => 'Zawěry na serwer $1 njehodźa so wotwołać.',
 );

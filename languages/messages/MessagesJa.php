@@ -1357,7 +1357,7 @@ $1",
 'difference-multipage' => '（ページ間の差分）',
 'lineno' => '$1行：',
 'compareselectedversions' => '選択した版同士を比較',
-'showhideselectedversions' => '選択した版を表示もしくは非表示',
+'showhideselectedversions' => '選択した版を表示/非表示',
 'editundo' => '取り消し',
 'diff-multi' => '（{{PLURAL:$2|$2人の利用者}}による、{{PLURAL:$1|間の$1版}}が非表示）',
 'diff-multi-manyusers' => '（{{PLURAL:$2|$2人を超える利用者}}による、{{PLURAL:$1|間の$1版}}が非表示）',
@@ -2268,6 +2268,7 @@ contenttype/subtypeの形式で入力してください（例：<tt>image/jpeg</
 記録の種類、実行した利用者（大文字小文字は区別）、影響を受けたページ（大文字小文字は区別）による絞り込みができます。',
 'logempty' => '該当する記録はありません。',
 'log-title-wildcard' => 'この文字列で始まるページ名を検索',
+'showhideselectedlogentries' => '選択した記録の項目を表示/非表示',
 
 # Special:AllPages
 'allpages' => '全ページ',
@@ -2528,10 +2529,10 @@ $2による直前の版へ変更されました。',
 'protectlogpage' => '保護記録',
 'protectlogtext' => '以下はページ保護に対する変更の記録です。
 現在、保護レベルを変更できるページについては[[Special:ProtectedPages|保護ページ一覧]]を参照してください。',
-'protectedarticle' => '「[[$1]]」を保護しました',
-'modifiedarticleprotection' => '「[[$1]]」の保護レベルを変更しました',
-'unprotectedarticle' => '「[[$1]]」の保護を解除しました',
-'movedarticleprotection' => '保護の設定を「[[$2]]」から「[[$1]]」へ移動しました',
+'protectedarticle' => ' が「[[$1]]」を保護しました',
+'modifiedarticleprotection' => ' が「[[$1]]」の保護レベルを変更しました',
+'unprotectedarticle' => ' が「[[$1]]」の保護を解除しました',
+'movedarticleprotection' => ' が保護の設定を「[[$2]]」から「[[$1]]」へ移動しました',
 'protect-title' => '「$1」の保護レベルを変更',
 'protect-title-notallowed' => '「$1」の保護レベルを表示',
 'prot_1movedto2' => '[[$1]] を [[$2]] へ移動',
@@ -2664,7 +2665,7 @@ $1',
 'month' => 'これ以前の月：',
 'year' => 'これ以前の年：',
 
-'sp-contributions-newbies' => '新規利用者の投稿のみ表示',
+'sp-contributions-newbies' => '新しい利用者からの投稿のみ表示',
 'sp-contributions-newbies-sub' => '新規利用者のみ',
 'sp-contributions-newbies-title' => '新規利用者の投稿記録',
 'sp-contributions-blocklog' => 'ブロック記録',
@@ -3092,7 +3093,7 @@ MediaWiki 全般のローカライズ（地域化）に貢献したい場合は�
 'tooltip-ca-unwatch' => 'このページをウォッチリストから除去する',
 'tooltip-search' => '{{SITENAME}}内を検索する',
 'tooltip-search-go' => '厳密に一致する名前のページが存在すれば、そのページへ移動する',
-'tooltip-search-fulltext' => '入力した文字列が含まれるページを検索する',
+'tooltip-search-fulltext' => 'この文字列が含まれるページを探す',
 'tooltip-p-logo' => 'メインページに移動する',
 'tooltip-n-mainpage' => 'メインページに移動する',
 'tooltip-n-mainpage-description' => 'メインページに移動する',
@@ -3114,7 +3115,7 @@ MediaWiki 全般のローカライズ（地域化）に貢献したい場合は�
 'tooltip-ca-nstab-main' => '本文を閲覧',
 'tooltip-ca-nstab-user' => '利用者ページを表示',
 'tooltip-ca-nstab-media' => 'メディアページを表示',
-'tooltip-ca-nstab-special' => 'これは特別ページです。編集できません。',
+'tooltip-ca-nstab-special' => 'これは特別ページです。編集はできません。',
 'tooltip-ca-nstab-project' => 'プロジェクトページを表示',
 'tooltip-ca-nstab-image' => 'ファイルページを表示',
 'tooltip-ca-nstab-mediawiki' => 'システムメッセージを表示',
@@ -4088,14 +4089,14 @@ MediaWikiは、有用であることを期待して配布されていますが�
 'intentionallyblankpage' => 'このページは意図的に白紙にされています。',
 
 # External image whitelist
-'external_image_whitelist' => '  #この行はそのままにしておいてください<pre>
+'external_image_whitelist' => '  #この行はこのままにしておいてください<pre>
 #この下に正規表現（//の間に入る記述）を置いてください
 #外部の（ホットリンクされている）画像の URL と一致するか検査されます
 #一致する場合は画像として、一致しない場合は画像へのリンクとして表示されます
 #行の頭に # を付けるとコメントとして扱われます
 #大文字と小文字は区別されません
 
-#正規表現はすべてこの行の上に置いてください。この行を変更しないでください</pre>',
+#正規表現はすべてこの行の上に置いてください。この行はこのままにしておいてください</pre>',
 
 # Special:Tags
 'tags' => '有効な変更タグ',

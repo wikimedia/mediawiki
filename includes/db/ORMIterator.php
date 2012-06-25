@@ -28,5 +28,4 @@
  */
 interface ORMIterator extends Iterator {
 
-
 }

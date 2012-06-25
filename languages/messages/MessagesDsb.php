@@ -1,5 +1,5 @@
 <?php
-/** Lower Sorbian (Dolnoserbski)
+/** Lower Sorbian (dolnoserbski)
  *
  * See MessagesQqq.php for message documentation incl. usage of parameters
  * To improve a translation please visit http://translatewiki.net
@@ -166,7 +166,7 @@ $messages = array(
 'tog-hidepatrolled' => 'Doglědowane změny w aktualnych změnach schowaś',
 'tog-newpageshidepatrolled' => 'Doglědowane boki z lisćiny nowych bokow schowaś',
 'tog-extendwatchlist' => 'Wobglědowańku wócyniś, aby wšě změny pokazał, nic jano nejnowše',
-'tog-usenewrc' => 'Rozšyrjonu lisćinu aktualnych změnow (JavaScript trěbny) wužywaś',
+'tog-usenewrc' => 'Kupkowe změny pó boku w aktualnych změnach a wobglědowanjach (trjeba JavaScript)',
 'tog-numberheadings' => 'Nadpisma awtomatiski numerěrowaś',
 'tog-showtoolbar' => 'Wobźěłańsku lejstwu pokazaś (JavaScript)',
 'tog-editondblclick' => 'Boki z dwójnym kliknjenim wobźěłaś (JavaScript)',
@@ -3726,4 +3726,6 @@ Hować móžoš slědujucy jadnory formular wužywaś. Twój komentar pśidajo s
 'duration-centuries' => '$1 {{PLURAL:$1|stolěśe|stolěśi|stolěśa|stolěśow}}',
 'duration-millennia' => '$1 {{PLURAL:$1|lěttysac|lěttysaca|lěttysace|lěttysacow}}',
 
+# Unknown messages
+'lockmanager-fail-svr-acquire' => 'Zastajenja na serwer $1 njedaju se wótwołaś.',
 );

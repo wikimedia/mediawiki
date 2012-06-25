@@ -334,7 +334,7 @@ $messages = array(
 'tog-hidepatrolled' => 'Скриј испатролирани уредувања во скорешните промени',
 'tog-newpageshidepatrolled' => 'Скриј испатролирани страници од списокот на нови страници',
 'tog-extendwatchlist' => 'Прошири го список на набљудувања за приказ на сите промени, не само скорешните',
-'tog-usenewrc' => 'Користи подобрени скорешни промени (бара JavaScript)',
+'tog-usenewrc' => 'Промени во групи по страници во списокот на скорешни промени (бара JavaScript)',
 'tog-numberheadings' => 'Авто нумерирање на заглавијата',
 'tog-showtoolbar' => 'Прикажи алатник за уредување (JavaScript)',
 'tog-editondblclick' => 'Уредување на страници при двојно кликнување (JavaScript)',
@@ -1777,7 +1777,7 @@ $1",
 'tmp-create-error' => 'Не можев да создадам привремена податотека.',
 'tmp-write-error' => 'Грешка при запис на привремената податотека.',
 'large-file' => 'Се препорачува податотеките да не бидат поголеми од $1; оваа податотека е $2.',
-'largefileserver' => 'Големината на податотеката е поголема од максимално дозволената големина.',
+'largefileserver' => 'Големината на оваа податотека е поголема од максимално дозволената големина од серверот.',
 'emptyfile' => 'Податотеката што ја подигнавте изгледа дека е празна.
 Ова може да е поради грешка во името на податотеката.
 Ве молиме проверете дали навистина сакате да ја подигнете оваа податотека.',
@@ -1970,7 +1970,7 @@ $1',
 'nolicense' => 'Нема',
 'license-nopreview' => '(Прегледот не е достапен)',
 'upload_source_url' => ' (важечка, јавно достапна URL-адреса)',
-'upload_source_file' => '(податотека на вашиот сметач)',
+'upload_source_file' => '(податотека на вашиот компјутер)',
 
 # Special:ListFiles
 'listfiles-summary' => 'Оваа специјална страница ги прикажува сите подигнати податотеки.
@@ -4017,8 +4017,8 @@ $5
 'version-entrypoints' => 'URL-а на влезните точки',
 'version-entrypoints-header-entrypoint' => 'Влезна точка',
 'version-entrypoints-header-url' => 'URL',
-'version-entrypoints-articlepath' => '[https://www.mediawiki.org/wiki/Manual:$wgArticlePath?uselang=mk Патека на статијата]',
-'version-entrypoints-scriptpath' => '[https://www.mediawiki.org/wiki/Manual:$wgScriptPath?uselang=mk Патека на скриптата]',
+'version-entrypoints-articlepath' => '[https://www.mediawiki.org/wiki/Manual:$wgArticlePath?uselang=mk Статија]',
+'version-entrypoints-scriptpath' => '[https://www.mediawiki.org/wiki/Manual:$wgScriptPath?uselang=mk Скрипта]',
 
 # Special:FilePath
 'filepath' => 'Патека до податотека',
@@ -4217,4 +4217,6 @@ $5
 'duration-centuries' => '$1 {{PLURAL:$1|век|века}}',
 'duration-millennia' => '$1 {{PLURAL:$1|милениум|милениуми}}',
 
+# Unknown messages
+'lockmanager-fail-svr-acquire' => 'Не можев да добијам катанци за опслужувачот $1',
 );

@@ -353,7 +353,7 @@ $messages = array(
 'tog-hidepatrolled' => 'Gemarkeerde wijzigingen verbergen in recente wijzigingen',
 'tog-newpageshidepatrolled' => "Gemarkeerde pagina's verbergen in de lijst met nieuwe pagina's",
 'tog-extendwatchlist' => 'Uitgebreide volglijst gebruiken om alle wijzigingen te bekijken, en niet alleen de laatste',
-'tog-usenewrc' => 'Uitgebreide Recente Wijzigingen-pagina gebruiken (vereist JavaScript)',
+'tog-usenewrc' => 'Wijzigingen per pagina weergeven in recente wijzigingen en volglijst (vereist JavaScript)',
 'tog-numberheadings' => 'Koppen automatisch nummeren',
 'tog-showtoolbar' => 'Bewerkingswerkbalk weergeven (vereist JavaScript)',
 'tog-editondblclick' => 'Dubbelklikken voor bewerken (vereist JavaScript)',
@@ -4122,4 +4122,6 @@ Anders kunt u ook het eenvoudige formulier hieronder gebruiken. Uw reactie wordt
 'duration-centuries' => '$1 {{PLURAL:$1|eeuw|eeuwen}}',
 'duration-millennia' => '$1 {{PLURAL:$1|millennium|millennia}}',
 
+# Unknown messages
+'lockmanager-fail-svr-acquire' => 'Het was niet mogelijk een vergrendeling te krijgen op server $1.',
 );

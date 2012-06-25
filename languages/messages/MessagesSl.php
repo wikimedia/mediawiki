@@ -191,7 +191,7 @@ $messages = array(
 'tog-hidepatrolled' => 'Skrij pregledana urejanja v zadnjih spremembah',
 'tog-newpageshidepatrolled' => 'Skrij pregledane strani iz seznama novih strani',
 'tog-extendwatchlist' => 'Razširi spisek nadzorov, da bo prikazoval vse spremembe, ne le najnovejše',
-'tog-usenewrc' => 'Izboljšane zadnje spremembe (zahteva JavaScript)',
+'tog-usenewrc' => 'Združi spremembe posamezne strani na zadnjih spremembah in spisku nadzorov (zahteva JavaScript)',
 'tog-numberheadings' => 'Samodejno številči poglavja',
 'tog-showtoolbar' => 'Prikaži urejevalno orodno vrstico',
 'tog-editondblclick' => 'Omogoči urejanje strani z dvojnim klikom (zahteva JavaScript)',
@@ -3874,4 +3874,6 @@ V nasprotnem primeru lahko uporabite preprost obrazec spodaj. Vašo pripombo bom
 'duration-centuries' => '$1 {{PLURAL:$1|stoletje|stoletji|stoletja|stoletij}}',
 'duration-millennia' => '$1 {{PLURAL:$1|tisočletje|tisočletji|tisočletja|tisočletij}}',
 
+# Unknown messages
+'lockmanager-fail-svr-acquire' => 'Ne morem pridobiti zaklepov na strežniku $1.',
 );

@@ -427,7 +427,7 @@ Pirs: $2',
 'protectedpagetext' => 'Ev rûpel ji bo nenivîsandinê hatiye parastin.',
 'viewsourcetext' => 'Tu dikarî li çavkaniya vê rûpelê binêrî û wê kopî bikî:',
 'protectedinterface' => "Di vê rûpelê da nivîsandin ji bo interface'î zimanan yê vê software'ê ye. Ew tê parstin ji bo vandalîzm li vê derê çênebe.",
-'editinginterface' => "'''Hişyarî:''' Tu rûpeleke ku di Wîkîpediya de ji bo sîstemê girîng e diguherînî. Guherandinên di vê rûpelê de wê ji aliyê hemû bikarhêneran ve werin dîtin. Ji bo wergerê ji kerema xwe di [//translatewiki.net/wiki/Main_Page?setlang=ku translatewiki.net] de bixebite, projeya MediaWiki.",
+'editinginterface' => "'''Hişyarî:''' Tu rûpeleke ku di Wîkîpediya de ji bo sîstemê girîng e diguherînî. Guherandinên di vê rûpelê de wê ji aliyê hemû bikarhêneran ve werin dîtin. Ji bo wergerê ji kerema xwe di [//translatewiki.net/wiki/Main_Page?setlang=ku-latn translatewiki.net] de bixebite, projeya MediaWiki.",
 'sqlhidden' => '(Jêpirskirina SQL hatiye veşartin)',
 'cascadeprotected' => 'Ev rûpel hatiye parastin ji ber guherandinê, ji ber ku ev rûpela di {{PLURAL:$1|vê rûpelê|van rûpelan da}} tê bikaranîn:
 $2',
@@ -632,13 +632,18 @@ Ji bo alîkariyê binêre: [[{{MediaWiki:Helppage}}|Alîkarî]].<br />
 Heke tu bi şaşîtî hatî, bizîvire rûpela berê.",
 'anontalkpagetext' => "----''Ev rûpela gotûbêjê ye ji bo bikarhênerên nediyarkirî ku hîn hesabekî xwe çênekirine an jî bikarnaînin. Ji ber vê yekê divê em wan bi navnîşana IP ya hejmarî nîşan bikin. Navnîşaneke IP dikare ji aliyê gelek kesan ve were bikaranîn. Heger tu bikarhênerekî nediyarkirî bî û bawerdikî ku nirxandinên bê peywend di der barê te de hatine kirin ji kerema xwe re [[Special:UserLogin|hesabekî xwe veke an jî têkeve]] da ku tu xwe ji tevlîheviyên bi bikarhênerên din re biparêzî.''",
 'noarticletext' => 'Ev rûpel niha vala ye, tu dikarî [[Special:Search/{{PAGENAME}}|Di nav gotarên din de li "{{PAGENAME}}" bigere]] an [{{fullurl:{{FULLPAGENAME}}|action=edit}} vê rûpelê biguherînî].',
-'noarticletext-nopermission' => 'Ev rûpel niha vala ye, tu dikarî [[Special:Search/{{PAGENAME}}|Di nav gotarên din de li "{{PAGENAME}}" bigere]] an [{{fullurl:{{FULLPAGENAME}}|action=edit}} vê rûpelê biguherînî].
-Ev rûpel niha vala ye, tu dikarî [[Special:Search/{{PAGENAME}}|Di nav gotarên din de li "{{PAGENAME}}" bigere]] an [{{fullurl:{{FULLPAGENAME}}|action=edit}} vê rûpelê biguherînî].',
+'noarticletext-nopermission' => 'Ev rûpel niha vala ye. 
+Tu dikarî [[Special:Search/{{PAGENAME}}|Di nav gotarên din de li "{{PAGENAME}}" bigere]] 
+an <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} vê rûpelê biguherînî]</span>.',
 'userpage-userdoesnotexist' => 'Hesabê bikarhêneran "<nowiki>$1</nowiki>" nehatiye qeydkirin. Heke tu bixwazî vê rûpelê çêkî/biguherînî ji kerema xwe lê binêre.',
 'userpage-userdoesnotexist-view' => 'Hesabê bikarhêner  "$1"  nehatiye qeyd kirin.',
 'blocked-notice-logextract' => 'Ev bikarhêner hatiye astengkirin.
 Astengkirina dawî bi referansa li jêr hatiye piştrastkirin:',
-'clearyourcache' => "'''Zanibe:''' Piştî tomarkirinê, tu gireke cache'a browser'î xwe dîsa wînê ji bo dîtina guherandinan. '''Mozilla / Firefor /Safari:''' Kepsa ''Shift'' bigre û li ''Reload'' xe, ya ''Ctrl-Shift-R'' bikepsîne (''Cmd-Shift-R'' li cem Apple Mac); '''IE:''' Kepsa ''Ctrl'' bigre û li ''Reload'' xe, ya li ''Ctrl-F5''; '''Konqueror:''' bes li ''Reload'' xe ya li kepsa ''F5'' xe; bikarhênerên '''Opera''' girekin belkî cache'a xwe tevda di bin ''Tools → Preferences'' da valabikin.",
+'clearyourcache' => "'''Zanibe:''' Piştî tomarkirinê, tu gireke cache'a browser'î xwe dîsa wînê ji bo dîtina guherandinan.
+* '''Firefor / Safari: ''' Kepsa ''Shift'' bigre û li ''Reload'' xe, ya ''Ctrl-Shift-R'' bikepsîne (''Cmd-Shift-R'' li cem Apple Mac)
+* '''IE:''' Kepsa ''Ctrl'' bigre û li ''Reload'' xe, ya li ''Ctrl-F5''
+* '''Konqueror:''' Bes li ''Reload'' xe ya li kepsa ''F5'' xe
+* '''Opera:''' Girekin belkî cache'a xwe tevda di bin ''Tools → Preferences'' da valabikin",
 'usercssyoucanpreview' => "'''Tîp:''' 'Pêşdîtin' bikarwîne ji bo tu bibînê çawa CSS'ê te yê nuh e berî tomarkirinê.",
 'userjsyoucanpreview' => "'''Tîp:''' 'Pêşdîtin' bikarwîne ji bo tu bibînê çawa JS'ê te yê nuh e berî tomarkirinê.",
 'usercsspreview' => "'''Zanibe ku tu bes pêşdîtina CSS dibînî.'''
@@ -1125,8 +1130,8 @@ Xêra xwe navekî din bibîne.",
 'upload-unknown-size' => 'Mezinahiya nayê zanîn',
 
 'license' => 'Lîsans:',
-'license-header' => 'Lîsens:',
-'nolicense' => 'ya hilbijartî nîne',
+'license-header' => 'Lîsans',
+'nolicense' => 'Ya hilbijartî nîne',
 'license-nopreview' => 'Pêşdîtin ne gengaz e.',
 
 # Special:ListFiles

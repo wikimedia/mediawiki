@@ -140,7 +140,7 @@ $messages = array(
 'tog-hidepatrolled' => 'Ikubli ang napatrolyang mga pagbabagong nasa kamakailang mga pagbabago',
 'tog-newpageshidepatrolled' => 'Itago ang napatrolyang mga pahina mula talaan ng bagong pahina',
 'tog-extendwatchlist' => 'Palawigin ang talaan ng mga binabantayan upang maipakita ang lahat ng mga pagbabago, hindi lamang ang pinakakamakailan lamang',
-'tog-usenewrc' => 'Gamitin ang pinadagdagang huling binago (kailangan ng JavaScript)',
+'tog-usenewrc' => 'Mga pagbabago ng pangkat ayon sa pahina sa kamakailang mga pagbabago at bantayan (nangangailangan ng JavaScript)',
 'tog-numberheadings' => 'Automatikong bilangin ang mga pamagat',
 'tog-showtoolbar' => "Ipakita ang ''toolbar'' ng pagbabago (JavaScript)",
 'tog-editondblclick' => 'Magbago ng mga pahina sa dalawahang pagpindot (JavaScript)',
@@ -3847,4 +3847,6 @@ O kaya, maaari mong gamitin ang maginhawang pormularyo sa ibaba. Ang iyong pagpu
 'duration-centuries' => '$1 {{PLURAL:$1|daantaon|mga daantaon}}',
 'duration-millennia' => '$1 {{PLURAL:$1|milenyo|mga milenyo}}',
 
+# Unknown messages
+'lockmanager-fail-svr-acquire' => 'Hindi magawang kunin ang mga kandado sa tagapaghain na $1.',
 );

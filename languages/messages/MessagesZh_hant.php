@@ -216,7 +216,7 @@ $messages = array(
 'tog-hidepatrolled' => '於最近更改中隱藏巡查過的編輯',
 'tog-newpageshidepatrolled' => '於新頁面清單中隱藏巡查過的頁面',
 'tog-extendwatchlist' => '展開監視清單以顯示所有更改，不只是最近的',
-'tog-usenewrc' => '使用增強最近更改 （需要JavaScript）',
+'tog-usenewrc' => '在最近更改和監視列表中整合同一頁的修改 （需要JavaScript）',
 'tog-numberheadings' => '標題自動編號',
 'tog-showtoolbar' => '顯示編輯工具欄 （需要JavaScript）',
 'tog-editondblclick' => '雙擊編輯頁面 （需要JavaScript）',
@@ -3838,4 +3838,6 @@ MediaWiki是基於使用目的而加以發佈，然而不負任何擔保責任�
 'duration-centuries' => '$1世紀',
 'duration-millennia' => '$1千年',
 
+# Unknown messages
+'lockmanager-fail-svr-acquire' => '無法取得伺服器$1上的鎖。',
 );

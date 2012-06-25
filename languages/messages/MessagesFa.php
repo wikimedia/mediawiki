@@ -1232,6 +1232,12 @@ $2
 'parser-template-loop-warning' => 'حلقه در الگو پیدا شد: [[$1]]',
 'parser-template-recursion-depth-warning' => 'محدودیت عمق بازگشت الگو رد شد ($1)',
 'language-converter-depth-warning' => 'محدودیت عمق مبدل زبانی رد شد ($1)',
+'node-count-exceeded-category' => 'صفحه‌هایی که از حداکثر تعداد گره تجاوز کرده‌اند',
+'node-count-exceeded-warning' => 'صفحه از حداکثر تعداد گره تجاوز کرد',
+'expansion-depth-exceeded-category' => 'صفحه‌هایی که از حداکثر عمق بسط دادن تجاوز کرده‌اند',
+'expansion-depth-exceeded-warning' => 'صفحه حداکثر عمق بسط دادن تجاوز کرد',
+'parser-unstrip-loop-warning' => 'حلقه در دستور unstrip پیدا شد',
+'parser-unstrip-recursion-limit' => 'از حداکثر ارجاع در دستور unstrip تجاوز شد ($1)',
 
 # "Undo" feature
 'undo-success' => 'این ویرایش را می‌توان خنثی کرد.
@@ -2310,6 +2316,7 @@ https://www.mediawiki.org/wiki/Manual:Image_Authorization را ببینید.',
 می‌توانید با انتخاب نوع سیاهه، نام کاربری (حساس به کوچکی و بزرگی حروف) و صفحه‌های تغییریافته (حساس به بزرگی و کوچکی حروف)، نمایش را محدودتر سازید.',
 'logempty' => 'مورد منطبق با منظور شما در سیاهه یافت نشد.',
 'log-title-wildcard' => 'صفحه‌هایی را جستجو کن که عنوانشان با این عبارت آغاز می‌شود',
+'showhideselectedlogentries' => 'نمایش/نهفتن موارد انتخابی در سیاهه',
 
 # Special:AllPages
 'allpages' => 'همهٔ صفحه‌ها',
@@ -3202,6 +3209,7 @@ $1',
 'spambot_username' => 'هرزه‌تمیزکارِ مدیاویکی',
 'spam_reverting' => 'واگردانی به آخرین نسخه‌ای که پیوندی به $1 ندارد.',
 'spam_blanking' => 'تمام نسخه‌ها حاوی پیوند به $1 بود، در حال خالی کردن',
+'spam_deleting' => 'تمام نسخه‌ها حاوی پیوند به $1 بود، در حال حذف',
 
 # Info page
 'pageinfo-title' => 'اطلاعات در مورد «$1»',
@@ -4178,4 +4186,6 @@ $5
 'duration-centuries' => '$1 قرن',
 'duration-millennia' => '{{PLURAL:$1|هزار سال |$1 هزار سال}}',
 
+# Unknown messages
+'lockmanager-fail-svr-acquire' => 'امکان گرفتن قفل‌های سرور $1 وجود ندارد.',
 );

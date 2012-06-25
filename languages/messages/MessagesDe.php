@@ -404,7 +404,7 @@ $messages = array(
 'tog-hidepatrolled' => 'Kontrollierte Änderungen in den „Letzten Änderungen“ ausblenden',
 'tog-newpageshidepatrolled' => 'Kontrollierte Seiten bei den „Neuen Seiten“ ausblenden',
 'tog-extendwatchlist' => 'Erweiterte Beobachtungsliste zur Anzeige aller Änderungen',
-'tog-usenewrc' => 'Erweiterte Darstellung der „Letzten Änderungen“ (benötigt JavaScript)',
+'tog-usenewrc' => 'Seitenbezogene Gruppierung bei den „Letzten Änderungen“ und auf der Beobachtungsliste (benötigt JavaScript)',
 'tog-numberheadings' => 'Überschriften automatisch nummerieren',
 'tog-showtoolbar' => 'Bearbeiten-Werkzeugleiste anzeigen (benötigt JavaScript)',
 'tog-editondblclick' => 'Seiten mit Doppelklick bearbeiten (benötigt JavaScript)',
@@ -440,7 +440,7 @@ $messages = array(
 'tog-watchlisthidepatrolled' => 'Kontrollierte Änderungen in der Beobachtungsliste ausblenden',
 'tog-nolangconversion' => 'Konvertierung von Sprachvarianten deaktivieren',
 'tog-ccmeonemails' => 'Schicke mir Kopien der E-Mails, die ich anderen Benutzern sende',
-'tog-diffonly' => 'Zeige beim Versionsvergleich nur die Unterschiede und nicht die vollständige Seite',
+'tog-diffonly' => 'Beim Versionsvergleich nur die Unterschiede und nicht die vollständige Seite anzeigen',
 'tog-showhiddencats' => 'Anzeige versteckter Kategorien',
 'tog-noconvertlink' => 'Konvertierung des Titels deaktivieren',
 'tog-norollbackdiff' => 'Unterschied nach dem Zurücksetzen unterdrücken',
@@ -4060,4 +4060,6 @@ Anderenfalls kannst du auch das untenstehende einfache Formular nutzen. Dein Kom
 'duration-centuries' => '$1 {{PLURAL:$1|Jahrhundert|Jahrhunderte}}',
 'duration-millennia' => '$1 {{PLURAL:$1|Jahrtausend|Jahrtausende}}',
 
+# Unknown messages
+'lockmanager-fail-svr-acquire' => 'Die Sperren auf Server $1 konnte nicht abgerufen werden.',
 );

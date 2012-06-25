@@ -88,7 +88,7 @@ class ApiPurge extends ApiBase {
 				if ( !$user->pingLimiter() ) {
 					global $wgEnableParserCache;
 
-					$popts = ParserOptions::newFromContext( $this->getContext() );
+					$popts = $page->makeParserOptions( 'canonical' );
 					$popts->setTidy( true );
 
 					# Parse content; note that HTML generation is only needed if we want to cache the result.

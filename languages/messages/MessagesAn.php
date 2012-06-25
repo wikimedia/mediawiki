@@ -1,5 +1,5 @@
 <?php
-/** Aragonese (Aragonés)
+/** Aragonese (aragonés)
  *
  * See MessagesQqq.php for message documentation incl. usage of parameters
  * To improve a translation please visit http://translatewiki.net
@@ -2078,7 +2078,7 @@ Contacto con l\'editor:
 correu-e: $PAGEEDITOR_EMAIL
 wiki: $PAGEEDITOR_WIKI
 
-Si no visita a pachina, no recibirá mas notificacions de futuros cambios cambios.
+Si no visita a pachina, no recibirá mas notificacions de futuros cambios cambios. 
 Tamién puet cambiar o modo de notificación d\'as pachinas que cosira en a suya lista de seguimiento.
 Atentament,
 O servicio de notificacions d\'o prochecto {{SITENAME}}
@@ -2148,7 +2148,7 @@ Torne t'a pachina anterior, recargue a pachina y torne a prebar alavez.",
 
 # Protect
 'protectlogpage' => 'Rechistro de proteccions de pachinas',
-'protectlogtext' => "Contino s'amuestra una lista de cambios en a protección d'as pachinas.
+'protectlogtext' => "Contino s'amuestra una lista de cambios en a protección d'as pachinas. 
 Se veiga a [[Special:ProtectedPages|lista de pachinas protechitas]] ta conoixer a lista de proteccions de pachinas actualment operacional.",
 'protectedarticle' => "s'ha protechito [[$1]]",
 'modifiedarticleprotection' => 's\'ha cambiato o livel de protección de "[[$1]]"',
@@ -3481,7 +3481,7 @@ Tamién puede fer servir o [[Special:EditWatchlist|editor estándar]].",
 'version-license' => 'Licencia',
 'version-poweredby-credits' => "Iste wiki funciona gracias a '''[//www.mediawiki.org/ MediaWiki]''', copyright © 2001-$1 $2.",
 'version-poweredby-others' => 'atros',
-'version-license-info' => "MediaWiki ye software libre, puet redistribuyir-lo y/u modificar-lo baixo os terminos d'a Licencia Publica Cheneral GNU publicada por a Free Software Foundation, ya siga d'a suya versión 2 u (a la suya esleción) qualsiquier versión posterior.
+'version-license-info' => "MediaWiki ye software libre, puet redistribuyir-lo y/u modificar-lo baixo os terminos d'a Licencia Publica Cheneral GNU publicada por a Free Software Foundation, ya siga d'a suya versión 2 u (a la suya esleción) qualsiquier versión posterior. 
 
 MediaWiki se distribuye con l'asperanza d'estar d'utilidat, pero SIN GARRA GUARANCIA; nian a guarancia implicita de COMERCIALIZACIÓN u ADEQUACIÓN TA UNA FINALIDAT DETERMINADA. En trobará más detalles en a Licencia Publica General GNU.
 

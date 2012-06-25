@@ -208,7 +208,7 @@ $messages = array(
 'qbbrowse' => 'ܡܦܐܬ',
 'qbedit' => 'ܫܚܠܦ',
 'qbpageoptions' => 'ܗܕܐ ܦܐܬܐ',
-'qbmyoptions' => 'ܕ̈ܦܐ ܕܝܠܝ',
+'qbmyoptions' => 'ܦܐܬܬ̈ܐ ܕܝܠܝ',
 'qbspecialpages' => 'ܦܐܬܬ̈ܐ ܕ̈ܝܠܢܝܬܐ',
 'faq' => 'ܫܘܐܠ̈ܐ ܬܢܝ̈ܐ',
 'faqpage' => 'Project:ܫܘܐܠ̈ܐ ܬܢܝ̈ܐ',
@@ -284,9 +284,9 @@ $messages = array(
 'jumpto' => 'ܫܘܪ ܠ:',
 'jumptonavigation' => 'ܐܠܦܪܘܬܐ',
 'jumptosearch' => 'ܒܨܝܐ',
-'view-pool-error' => 'ܬܘܝܚܐ، ܬܫܡܫܬ̈ܐ ܐܢܘܢ ܠܐ̈ܝܐ ܗܫܐܝܬ
-ܣܓܝ ܡܦܠܚܢ̈ܐ ܢܣܝܢ ܠܚܙܝܐ ܕܗܢܐ ܕܦܐ
-ܦܝܣܐ ܡܢܟ ܣܟܝ ܩܠܝܠ ܡܢ ܩܕܡ ܕܬܢܣܐ ܠܡܛܝܐ ܠܗܢܐ ܕܦܐ ܙܒܢܬܐ ܐܚܪܬܐ.
+'view-pool-error' => 'ܫܘܒܩܢܐ، ܬܫܡܫܬ̈ܐ ܐܢܘܢ ܠܐ̈ܝܐ ܗܫܐܝܬ
+ܣܓܝ ܡܦܠܚܢ̈ܐ ܢܣܝܢ ܠܚܙܝܐ ܕܦܐܬܐ ܗܕܐ
+ܦܝܣܐ ܡܢܟ ܣܟܝ ܩܠܝܠ ܡܢ ܩܕܡ ܕܬܢܣܐ ܠܡܛܝܐ ܠܦܐܬܐ ܗܕܐ ܙܒܢܬܐ ܐܚܪܬܐ.
 
 $1',
 'pool-timeout' => 'ܫܠܡ ܥܕܢܐ ܣܒܪܬܐ ܠܚܠܩܐ',
@@ -368,8 +368,8 @@ $1',
 'actionthrottled' => 'ܠܐ ܡܬܡܨܝܢܬܐ ܐܝܬܝܗܝ ܠܡܥܒܕ ܝܬܝܪ ܡܢ ܗܢܐ ܥܒܕܐ',
 'viewsourcetext' => 'ܡܨܐ ܐܢܬ ܕܢܚܙܐ ܘܢܣܚܐ ܠܡܒܘ̈ܥܐ ܕܗܕܐ ܦܐܬܐ:',
 'protectedinterface' => 'ܗܕܐ ܦܐܬܐ ܡܘܬܪܐ ܟܬܝܒܬܐ ܕܦܐܬܐ ܠܚܘܪܙܐ, ܘܐܝܬܝܗܝ ܢܛܪܬܐ ܠܡܘܢܥ ܚܘܒܠܐ.',
-'editinginterface' => "'''ܙܘܗܪܐ:''' ܐܢܬ ܫܚܠܦܬ ܕܦܐ ܕܡܬܦܠܚ ܒܚܙܝܐ ܟܬܝܒܝܐ ܕܚܘܪܙܐ.
-ܟܠ ܫܘܚܠܦܐ ܒܗܢܐ ܕܦܐ ܢܗܘܐ ܠܗ ܡܥܒܕܢܘܬܐ ܥܠ ܐܣܟܡܐ ܕܕܦܐ ܕܡܦܠܚܢܐ ܕܡܦܠܚܢ̈ܐ ܐܚܪ̈ܢܐ.
+'editinginterface' => "'''ܙܘܗܪܐ:''' ܐܢܬ ܫܚܠܦܬ ܦܐܬܐ ܕܡܬܦܠܚܬ ܒܚܙܝܐ ܟܬܝܒܝܐ ܕܚܘܪܙܐ.
+ܟܠ ܫܘܚܠܦܐ ܒܦܐܬܐ ܗܕܐ ܢܗܘܐ ܠܗ ܡܥܒܕܢܘܬܐ ܥܠ ܐܣܟܡܐ ܕܦܐܬܐ ܕܡܦܠܚܢܐ ܕܡܦܠܚܢ̈ܐ ܐܚܪ̈ܢܐ.
 ܠܬܘܪ̈ܓܡܐ، ܐܦܠܚ ܬܪܡܝܬܐ ܕܬܘܪܓܡܐ ܕܡܝܕܝܐܘܝܩܝ [//translatewiki.net/wiki/Main_Page?setlang=ar translatewiki.net].",
 'sqlhidden' => '(ܒܘܬܬܐ SQL ܛܫܝܐ)',
 'namespaceprotected' => "ܠܝܬ ܠܟ ܦܣܣܐ ܠܫܚܠܦܬܐ ܕܦܐܬܬ̈ܐ ܒܚܩܠܐ ܕ'''$1'''.",
@@ -377,9 +377,9 @@ $1',
 # Login and logout pages
 'logouttext' => "'''ܗܫܐ ܦܠܛܠܟ ܡܢ ܚܘܫܒܢܟ.'''
 
-ܡܨܐ ܐܢܬ ܕܐܬܚܫܚ {{SITENAME}} ܐܝܟ ܡܦܠܚܢܐ ܠܐ ܝܕܝܥܐ ܐܘ ܡܨܐ ܐܢܬ ܕ[[Special:UserLogin|ܬܥܘܠ]] ܒܚܘܫܒܢܐ ܥܝܢܗ ܐܘ ܐܝܟ ܡܦܠܚܢܐ ܐܚܪܢܐ.
+ܡܨܐ ܐܢܬ ܐܦܠܚܬ {{SITENAME}} ܐܝܟ ܡܦܠܚܢܐ ܠܐ ܝܕܝܥܐ ܐܘ ܡܨܐ ܐܢܬ ܕ[[Special:UserLogin|ܬܥܘܠ]] ܒܚܘܫܒܢܐ ܥܝܢܗ ܐܘ ܐܝܟ ܡܦܠܚܢܐ ܐܚܪܢܐ.
 
-ܚܕ ܟܡܐ ܡܢ ܕ̈ܦܐ ܡܬܚܙܝܢ ܐܝܟ ܕܗܘ ܐܢܬ ܥܠܝܠܐ ܥܕܡܐ ܕܐܣܦܩܬ ܠܕ̈ܦܐ ܠܒܝܟ̈ܐ ܕܡܦܐܬܢܐ ܕܝܠܟ",
+ܚܕ ܟܡܐ ܡܢ ܦܐܬܬ̈ܐ ܡܬܚܙܝܢ ܐܝܟ ܕܗܘ ܐܢܬ ܥܠܝܠܐ ܥܕܡܐ ܕܐܣܦܩܬ ܠܦܐܬܬ̈ܐ ܠܒܝܟܬ̈ܐ ܕܡܦܐܬܢܐ ܕܝܠܟ",
 'welcomecreation' => '== ܒܫܝܢܐ, $1! ==
 ܐܬܒܪܝ ܚܘܫܒܢܟ.
 ܠܐ ܢܫܐ ܐܢܬ ܠܫܚܠܦܬܐ ܕ[[Special:Preferences|ܨܒܝܢܝܘܬ̈ܐ ܒ {{SITENAME}}]].',
@@ -454,7 +454,7 @@ $1',
 'subject' => 'ܡܠܘܐܐ/ܡܘܢܥܐ ܪܫܝܐ:',
 'minoredit' => 'ܗܢܐ ܗܘ ܫܘܚܠܦܐ ܙܥܘܪܐ',
 'watchthis' => 'ܪܗܝ ܦܐܬܐ ܗܕܐ',
-'savearticle' => 'ܠܒܘܟ ܕܦܐ',
+'savearticle' => 'ܠܒܘܟ ܦܐܬܐ',
 'preview' => 'ܚܝܪܐ ܩܕܡܝܐ',
 'showpreview' => 'ܚܘܝ ܚܝܪܐ ܩܕܡܝܐ',
 'showlivepreview' => 'ܚܝܪܐ ܩܕܡܝܐ ܚܝܐ',
@@ -469,8 +469,8 @@ $1',
 'loginreqlink' => 'ܥܘܠ',
 'accmailtitle' => 'ܡܠܬܐ ܕܥܠܠܐ ܫܕܪܬ',
 'newarticle' => '(ܚܕܬܐ)',
-'newarticletext' => "ܐܬܬ ܒܬܪ ܐܣܪܐ ܕܕܦܐ ܕܠܐ ܐܬܬܣܝܡ ܥܕܡܫ.
-ܠܣܘܝܡܐ ܕܕܦܐ ܗܢܐ, ܫܪܝ ܠܟܬܒܬܐ ܒܣܢܕܘܩܐ ܠܬܚܬ (ܚܙܝ [[{{MediaWiki:Helppage}}|ܕܦܐ ܕܥܘܕܪܢܐ]] ܠܐܚܪܢܐ ܝܕ̈ܥܬܐ).
+'newarticletext' => "ܐܬܬ ܒܬܪ ܐܣܪܐ ܕܦܐܬܐ ܕܠܐ ܐܬܬܣܝܡܬ ܥܕܡܫ.
+ܠܣܘܝܡܐ ܕܦܐܬܐ ܗܕܐ, ܫܪܝ ܠܟܬܒܬܐ ܒܣܢܕܘܩܐ ܠܬܚܬ (ܚܙܝ [[{{MediaWiki:Helppage}}|ܦܐܬܐ ܕܥܘܕܪܢܐ]] ܠܐܚܪܢܐ ܝܕ̈ܥܬܐ).
 ܐܢ ܐܬܬ ܠܗܪܟܐ ܦܘܕܐܝܬ, ܕܘܫ ܠܦܪܡܝܬܐ ܕ '''ܠܒܣܬܪ back''' ܒܡܦܐܬܢܐ ܕܝܠܟ.",
 'updated' => '(ܐܬܚܕܬ)',
 'note' => "'''ܡܥܝܪܢܘܬܐ:'''",
@@ -483,8 +483,8 @@ $1',
 'editingcomment' => 'ܫܚܠܦܬܐ ܕ $1 (ܡܢܬܐ ܚܕܬܐ)',
 'yourtext' => 'ܟܬܒܬܐ ܕܝܠܟ',
 'storedversion' => 'ܬܢܝܬ̈ܐ ܐܣܝܢ̈ܐ',
-'editingold' => "'''ܙܘܗܪܐ: ܫܚܠܦ ܐܢܬ ܬܢܝܬܐ ܥܬܝܩܬܐ ܕܕܦܐ ܗܢܐ.'''
-ܐܢ ܠܒܟ ܐܢܬ ܕܦܐ ܗܢܐ, ܟܠ ܫܘ̈ܚܠܦܐ ܕܐܬܥܒܕܘ ܒܬܪ ܗܕܐ ܬܢܝܬܐ ܢܬܛܠܩܘܢ.",
+'editingold' => "'''ܙܘܗܪܐ: ܫܚܠܦ ܐܢܬ ܬܢܝܬܐ ܥܬܝܩܬܐ ܕܦܐܬܐ ܗܕܐ.'''
+ܐܢ ܠܒܟ ܐܢܬ ܦܐܬܐ ܗܕܐ, ܟܠ ܫܘ̈ܚܠܦܐ ܕܐܬܥܒܕܘ ܒܬܪ ܗܕܐ ܬܢܝܬܐ ܢܬܛܠܩܘܢ.",
 'yourdiff' => 'ܦܪ̈ܝܫܘܝܬܐ',
 'templatesused' => '{{PLURAL:$1|ܩܠܒܐ|ܩܠܒ̈ܐ}} ܒܦܐܬܐ ܗܕܐ:',
 'template-protected' => '(ܢܛܝܪܐ)',
@@ -574,9 +574,9 @@ $1',
 'history-title' => '"$1": ܬܫܥܝܬܐ ܕܬܢܝܬܐ',
 'difference-title' => '«$1»: ܦܘܪܫܐ ܒܝܢܝ ܬܢܝܬ̈ܐ',
 'difference-title-multipage' => '«$1» ܘ«$2»: ܦܘܪܫܐ ܒܝܢܝ ܬܢܝܬ̈ܐ',
-'difference-multipage' => '(ܦܘܪܫܐ ܒܝܢܝ ܕ̈ܦܐ)',
+'difference-multipage' => '(ܦܘܪܫܐ ܒܝܢܝ ܦܐܬܬ̈ܐ)',
 'lineno' => 'ܣܪܛܐ $1:',
-'compareselectedversions' => 'ܦܚܘܡ ܒܝܬ ܬܪܝܢ ܬܢܝܬ̈ܐ ܓܒܝܬ̈ܐ',
+'compareselectedversions' => 'ܦܚܘܡ ܒܝܢܝ  ܬܪܝܢ ܬܢܝܬ̈ܐ ܓܒܝܬ̈ܐ',
 'showhideselectedversions' => 'ܚܘܝ/ܛܫܝ ܬܢܝܬ̈ܐ ܓܒܝܬ̈ܐ',
 'editundo' => 'ܠܐ ܬܥܒܕ',
 'diff-multi' => '({{PLURAL:$1|ܚܕܐ ܬܢܝܬܐ ܡܨܥܝܬܐ|$1 ܬܢܝܬ̈ܐ ܡܨܥܝܬ̈ܐ}} ܒܝܕ {{PLURAL:$2|ܚܕ ܡܦܠܚܢܐ ܠܐ ܓܠܝܚܬܐ|$2 ܡܦܠܚܢ̈ܐ ܠܐ ܓܠܝܚܬ̈ܐ}})',
@@ -752,7 +752,7 @@ $1',
 'right-createaccount' => 'ܒܪܝ ܚܘܫܒܢ̈ܐ ܕܡܦܠܚܢܐ ܚܕܬܐ',
 'right-minoredit' => 'ܫܘܕܥ ܥܠ ܫܘܚܠܦ̈ܐ ܐܝܟ ܙܥܘܪܐ',
 'right-move' => 'ܫܢܝ ܦܐܬܬ̈ܐ',
-'right-move-subpages' => 'ܫܢܝ ܕ̈ܦܐ ܥܡ ܕ̈ܦܐ ܦܪ̈ܥܝܐ ܕܝܠܗܘܢ',
+'right-move-subpages' => 'ܫܢܝ ܦܐܬܬ̈ܐ ܥܡ ܦܐܬܬ̈ܐ ܦܪ̈ܥܝܐ ܕܝܠܗܘܢ',
 'right-movefile' => 'ܫܢܝ ܠܦܦ̈ܐ',
 'right-upload' => 'ܐܣܩ ܠܦܦ̈ܐ',
 'right-delete' => 'ܫܘܦ ܦܐܬܬ̈ܐ',
@@ -794,7 +794,7 @@ $1',
 'recentchanges' => 'ܫܘܚܠܦ̈ܐ ܚܕ̈ܬܐ',
 'recentchanges-legend' => 'ܓܒܝܬ̈ܐ ܕܫܘܚܠܦ̈ܐ ܚܕ̈ܬܐ',
 'recentchanges-summary' => 'ܥܩܒ ܫܘܚܠܦ̈ܐ ܚܕܬ ܡܢ ܟܠ ܕܘܝܩܝ ܒܦܐܬܐ ܗܕܐ.',
-'recentchanges-label-newpage' => 'ܫܘܚܠܦܐ ܗܢܐ ܐܬܬܣܝܡ ܕܦܐ ܚܕܬܐ',
+'recentchanges-label-newpage' => 'ܫܘܚܠܦܐ ܗܢܐ ܐܬܬܣܝܡ ܦܐܬܐ ܚܕܬܐ',
 'recentchanges-label-minor' => 'ܗܢܘ ܫܘܚܠܦܐ ܙܥܘܪܐ',
 'recentchanges-label-bot' => 'ܒܘܬ (bot) ܥܒܕ ܗܢܐ ܫܘܚܠܦܐ',
 'rclistfrom' => 'ܚܘܝ ܫܘܚܠܦ̈ܐ ܚܕ̈ܬܐ ܡܢ $1',
@@ -955,7 +955,7 @@ $1',
 'brokenredirects-delete' => 'ܫܘܦ',
 
 'withoutinterwiki' => 'ܦܐܬܬ̈ܐ ܕܠܐ ܐܣܘܪ̈ܐ ܕܠܫܢ̈ܐ ܐܚܪ̈ܢܐ',
-'withoutinterwiki-summary' => 'ܕ̈ܦܐ ܗܠܝܢ ܠܐ ܡܛܝܢ ܠܨ̈ܚܚܐ ܕܠܫܢ̈ܐ ܐܚܪ̈ܢܐ.',
+'withoutinterwiki-summary' => 'ܦܐܬܬ̈ܐ ܗܠܝܢ ܠܐ ܡܛܝܢ ܠܨ̈ܚܚܐ ܕܠܫܢ̈ܐ ܐܚܪ̈ܢܐ.',
 'withoutinterwiki-legend' => 'ܫܪܘܝܐ',
 'withoutinterwiki-submit' => 'ܚܘܝ',
 
@@ -1187,7 +1187,7 @@ $1',
 
 # Undelete
 'undelete' => 'ܚܙܝ ܦܐܬܬ̈ܐ ܫܝܦܬ̈ܐ',
-'undeletepage' => 'ܚܙܝ ܘܐܦܢܝ ܕ̈ܦܐ ܫܝܦ̈ܐ',
+'undeletepage' => 'ܚܙܝ ܘܐܦܢܝ ܦܐܬܬ̈ܐ ܫܝܦܬ̈ܐ',
 'viewdeletedpage' => 'ܚܙܝ ܦܐܬܬ̈ܐ ܫܝܦܬ̈ܐ',
 'undelete-fieldset-title' => 'ܐܦܢܝ ܬܢܝܬ̈ܐ',
 'undelete-revision' => 'ܫܦ ܬܢܝܬܐ ܕ $1 (ܒܣܝܩܘܡ $4, ܒ $5) ܒܝܕ $3:',
@@ -1311,8 +1311,8 @@ Do you want to change the settings?',
 'movepage-moved' => '\'\'\'"$1" ܐܫܬܢܝܬ ܠ "$2"\'\'\'',
 'movepage-moved-redirect' => 'ܨܘܝܒܐ ܐܬܒܪܝ',
 'movedto' => 'ܐܬܫܢܝ ܠ',
-'move-subpages' => 'ܫܢܝ ܕ̈ܦܐ ܦܪ̈ܥܝܐ (ܥܕܡܐ ܠ $1)',
-'move-talk-subpages' => 'ܫܢܝ ܕ̈ܦܐ ܦܪ̈ܥܝܐ ܕܕܦܐ ܕܕܘܪܫܐ (ܥܕܡܐ ܠ $1)',
+'move-subpages' => 'ܫܢܝ ܦܐܬܬ̈ܐ ܦܪ̈ܥܝܬ̈ܐ (ܥܕܡܐ ܠ $1)',
+'move-talk-subpages' => 'ܫܢܝ ܦܐܬܬ̈ܐ ܦܪ̈ܥܝܬ̈ܐ ܕܦܐܬܐ ܕܕܘܪܫܐ (ܥܕܡܐ ܠ $1)',
 'movelogpage' => 'ܣܓܠܐ ܕܫܘܢܝܐ',
 'movereason' => 'ܥܠܬܐ:',
 'revertmove' => 'ܐܦܢܝ',
@@ -1322,7 +1322,7 @@ Do you want to change the settings?',
 
 # Export
 'export' => 'ܐܦܩ ܦܐܬܬ̈ܐ',
-'exportall' => 'ܐܦܩ ܟܠ ܕ̈ܦܐ',
+'exportall' => 'ܐܦܩ ܟܠ ܦܐܬܬ̈ܐ',
 'export-submit' => 'ܐܦܩ',
 'export-addcattext' => 'ܐܘܣܦ ܦܐܬܬ̈ܐ ܡܢ ܣܕܪܐ:',
 'export-addcat' => 'ܐܘܣܦ',
@@ -1512,7 +1512,7 @@ $1',
 'table_pager_prev' => 'ܦܐܬܐ ܩܕܝܡܬܐ',
 'table_pager_first' => 'ܦܐܬܐ ܩܕܡܝܬܐ',
 'table_pager_last' => 'ܦܐܬܐ ܐܚܪܝܬܐ',
-'table_pager_limit_label' => 'ܡܕܡ ܠܟܠ ܕܦܐ:',
+'table_pager_limit_label' => 'ܡܕ̈ܡܐ ܠܟܠ ܦܐܬܐ:',
 'table_pager_limit_submit' => 'ܙܠ',
 'table_pager_empty' => 'ܠܝܬ ܦܠܛ̈ܐ',
 
@@ -1572,8 +1572,8 @@ $1',
 'tags-hitcount' => '$1 {{PLURAL:$1|ܫܘܚܠܦܐ|ܫܘܚܠܦ̈ܐ}}',
 
 # Special:ComparePages
-'compare-page1' => 'ܕܦܐ 1',
-'compare-page2' => 'ܕܦܐ 2',
+'compare-page1' => 'ܦܐܬܐ 1',
+'compare-page2' => 'ܦܐܬܐ 2',
 'compare-rev1' => 'ܬܢܝܬܐ 1',
 'compare-rev2' => 'ܬܢܝܬܐ 2',
 'compare-submit' => 'ܦܚܘܡ',
@@ -1584,11 +1584,11 @@ $1',
 'htmlform-selectorother-other' => 'ܐܚܪܢܐ',
 
 # New logging system
-'logentry-delete-delete' => '$1 ܫܦ ܕܦܐ ܕ $3',
-'logentry-move-move' => '$1 ܫܢܐ ܕܦܐ ܕ $3 ܠ $4',
-'logentry-move-move-noredirect' => '$1 ܫܢܐ ܕܦܐ ܕ $3 ܠ $4 ܕܠܐ ܫܒܩܐ ܕܕܦܐ ܕܨܘܝܒܐ',
-'logentry-move-move_redir' => '$1 ܫܢܐ ܕܦܐ ܕ $3 ܠ $4 ܕܐܝܬܘܗܝ ܗܘܐ ܕܦܐ ܕܨܘܝܒܐ',
-'logentry-move-move_redir-noredirect' => '$1 ܫܢܐ ܕܦܐ ܕ $3 ܠ $4 ܕܐܝܬܘܗܝ ܗܘܐ ܕܦܐ ܕܨܘܝܒܐ ܘܕܠܐ ܫܒܩܐ ܕܕܦܐ ܕܨܘܝܒܐ',
+'logentry-delete-delete' => '$1 ܫܦ ܦܐܬܐ ܕ $3',
+'logentry-move-move' => '$1 ܫܢܐ ܦܐܬܐ ܕ $3 ܠ $4',
+'logentry-move-move-noredirect' => '$1 ܫܢܐ ܦܐܬܐ ܕ $3 ܠ $4 ܕܠܐ ܫܒܩܐ ܦܐܬܐ ܕܨܘܝܒܐ',
+'logentry-move-move_redir' => '$1 ܫܢܐ ܦܐܬܐ ܕ $3 ܠ $4 ܕܐܝܬܘܗܝ ܦܐܬܐ ܕܨܘܝܒܐ',
+'logentry-move-move_redir-noredirect' => '$1 ܫܢܐ ܦܐܬܐ ܕ $3 ܠ $4 ܕܐܝܬܘܗܝ ܦܐܬܐ ܕܨܘܝܒܐ ܘܕܠܐ ܫܒܩܐ ܦܐܬܐ ܕܨܘܝܒܐ',
 'logentry-newusers-newusers' => '$1 ܒܪܐ ܚܘܫܒܢܐ ܕܡܦܠܚܢܐ',
 'logentry-newusers-create' => '$1 ܒܪܐ ܚܘܫܒܢܐ ܕܡܦܠܚܢܐ',
 'logentry-newusers-create2' => '$1 ܒܪܐ ܚܘܫܒܢܐ ܕܡܦܠܚܢܐ $3',

@@ -359,7 +359,7 @@ $messages = array(
 'tog-hidepatrolled' => 'הסתרת שינויים בדוקים ברשימת השינויים האחרונים',
 'tog-newpageshidepatrolled' => 'הסתרת דפים בדוקים ברשימת הדפים החדשים',
 'tog-extendwatchlist' => 'הרחבת רשימת המעקב כך שתציג את כל השינויים, לא רק את השינויים האחרונים בכל דף',
-'tog-usenewrc' => 'שימוש ברשימת שינויים אחרונים משופרת (דרוש JavaScript)',
+'tog-usenewrc' => 'קיבוץ השינויים לפי דף בשינויים האחרונים וברשימת המעקב (דרוש JavaScript)',
 'tog-numberheadings' => 'מספור כותרות אוטומטי',
 'tog-showtoolbar' => 'הצגת סרגל העריכה (דרוש JavaScript)',
 'tog-editondblclick' => 'עריכת דפים בלחיצה כפולה (דרוש JavaScript)',
@@ -1912,9 +1912,9 @@ $1',
 'lockmanager-fail-acquirelock' => 'לא הייתה אפשרות לקבל נעילה עבור "$1".',
 'lockmanager-fail-openlock' => 'לא הייתה אפשרות לפתוח את קובץ הנעילה עבור "$1".',
 'lockmanager-fail-releaselock' => 'לא הייתה אפשרות לשחרר את הנעילה עבור "$1".',
-'lockmanager-fail-db-bucket' => 'לא הייתה אפשרות לקבל מספיק מסדי נתונים של נעילות בדלי $1',
-'lockmanager-fail-db-release' => 'לא הייתה אפשרות לשחרר נעילות על מסד הנתונים $1',
-'lockmanager-fail-svr-release' => 'לא הייתה אפשרות לשחרר נעילות על השרת $1',
+'lockmanager-fail-db-bucket' => 'לא הייתה אפשרות לקבל מספיק מסדי נתונים של נעילות בדלי $1.',
+'lockmanager-fail-db-release' => 'לא הייתה אפשרות לשחרר נעילות על מסד הנתונים $1.',
+'lockmanager-fail-svr-release' => 'לא הייתה אפשרות לשחרר נעילות על השרת $1.',
 
 # ZipDirectoryReader
 'zip-file-open-error' => 'אירעה שגיאה במהלך פתיחת הקובץ לבדיקות ZIP.',
@@ -4106,4 +4106,6 @@ $5
 'duration-centuries' => '{{PLURAL:$1|מאה שנה|$1 מאות שנים|מאתיים שנה}}',
 'duration-millennia' => '{{PLURAL:$1|אלף שנה|$1 אלפי שנים|אלפיים שנה}}',
 
+# Unknown messages
+'lockmanager-fail-svr-acquire' => 'לא הייתה אפשרות לבצע נעילות על השרת $1.',
 );

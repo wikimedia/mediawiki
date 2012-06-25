@@ -229,7 +229,7 @@ $messages = array(
 'tog-hidepatrolled' => 'Agochar as edicións patrulladas nos cambios recentes',
 'tog-newpageshidepatrolled' => 'Agochar as páxinas revisadas da lista de páxinas novas',
 'tog-extendwatchlist' => 'Expandir a lista de vixilancia para mostrar todos os cambios e non só os máis recentes',
-'tog-usenewrc' => 'Usar os cambios recentes avanzados (cómpre JavaScript)',
+'tog-usenewrc' => 'Agrupar as modificacións por páxina nos cambios recentes e na lista de vixilancia (cómpre JavaScript)',
 'tog-numberheadings' => 'Numerar automaticamente as cabeceiras',
 'tog-showtoolbar' => 'Mostrar a caixa de ferramentas de edición (cómpre JavaScript)',
 'tog-editondblclick' => 'Editar as páxinas logo de facer dobre clic (cómpre JavaScript)',
@@ -1309,7 +1309,7 @@ Note que os seus índices do contido de {{SITENAME}} poden estar desactualizados
 'prefs-watchlist-token' => 'Pase para a lista de vixilancia:',
 'prefs-misc' => 'Preferencias varias',
 'prefs-resetpass' => 'Cambiar o contrasinal',
-'prefs-changeemail' => 'Cambiar o correo electrónico',
+'prefs-changeemail' => 'Cambiar o enderezo de correo electrónico',
 'prefs-setemail' => 'Establecer un enderezo de correo electrónico',
 'prefs-email' => 'Opcións de correo electrónico',
 'prefs-rendering' => 'Aparencia',
@@ -3508,7 +3508,7 @@ Os demais agocharanse por omisión.
 
 'exif-isospeedratings-overflow' => 'Superior a 65535',
 
-'exif-iimcategory-ace' => 'Arte, cultura e entretemento',
+'exif-iimcategory-ace' => 'Arte, cultura e lecer',
 'exif-iimcategory-clj' => 'Crime e dereito',
 'exif-iimcategory-dis' => 'Desastres e accidentes',
 'exif-iimcategory-fin' => 'Economía e negocios',
@@ -3938,4 +3938,6 @@ En caso contrario, pode empregar o formulario sinxelo inferior. O seu comentario
 'duration-centuries' => '$1 {{PLURAL:$1|século|séculos}}',
 'duration-millennia' => '$1 {{PLURAL:$1|milenio|milenios}}',
 
+# Unknown messages
+'lockmanager-fail-svr-acquire' => 'Non se puideron obter os peches no servidor $1.',
 );

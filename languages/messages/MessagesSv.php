@@ -47,6 +47,7 @@
  * @author Thurs
  * @author Tobulos1
  * @author VickyC
+ * @author Warrakkk
  * @author Where next Columbus
  * @author Where next Columbus?
  * @author WikiPhoenix
@@ -1088,6 +1089,8 @@ Dessa parametrar har uteslutits.',
 'node-count-exceeded-warning' => 'Sidan har överskridit antalet nodar',
 'expansion-depth-exceeded-category' => 'Sidor där expansionsdjupet överskrids',
 'expansion-depth-exceeded-warning' => 'Sidan överskrider expansionsdjupet',
+'parser-unstrip-loop-warning' => 'Tagavskalningsloop upptäcktes',
+'parser-unstrip-recursion-limit' => 'Tagavskalningsloop överskred rekursionsgränsen ($1)',
 
 # "Undo" feature
 'undo-success' => 'Redigeringen kan göras ogjord.
@@ -1835,13 +1838,14 @@ Om problemet kvarstår, kontakta en [[Special:ListUsers/sysop|administratör]].'
 'backend-fail-closetemp' => 'Kunde inte stänga temporär fil.',
 'backend-fail-read' => 'Kunde inte läsa filen $1.',
 'backend-fail-create' => 'Kunde inte skapa filen $1.',
-'backend-fail-maxsize' => 'Kunde inte skapa filen $1, eftersom den är större än {{PLURAL:$2|$2|$2}} byte.',
+'backend-fail-maxsize' => 'Kunde inte skapa filen $1 eftersom den är större än {{PLURAL:$2|en byte|$2 bytes}}.',
 'backend-fail-readonly' => 'Lagringssystemet "$1" är för närvarande skrivskyddad. Den angivna anledningen är: "$2"',
 'backend-fail-synced' => 'Filen "$1" är i ett inkonsekvent tillstånd inom de interna lagringssystemen',
 'backend-fail-connect' => 'Kunde inte ansluta till lagringssystemet "$1".',
 'backend-fail-internal' => 'Ett okänt fel uppstod i lagringssystemet "$1".',
 'backend-fail-contenttype' => 'Kunde inte bestämma innehållstypen för filen att spara på "$1".',
 'backend-fail-batchsize' => 'Lagringssystemet gav en batch på $1 fil{{PLURAL:$1|operation|operationer}}; gränsen är $2 {{PLURAL:$2|operation|operationer}}.',
+'backend-fail-usable' => 'Kunde inte skriva filen $1 beroende på otillräckliga behörigheter eller saknade kataloger/containrar.',
 
 # File journal errors
 'filejournal-fail-dbconnect' => 'Kunde inte ansluta till journaldatabasen för lagringssystemet "$1".',
@@ -2160,6 +2164,7 @@ Lägg märke till att andra webbplatser kan länka till en fil med en direkt URL
 Du kan avgränsa sökningen och få färre träffar genom att ange typ av logg, användarnamn (skiftlägeskänsligt), eller berörd sida (också skiftlägeskänsligt).',
 'logempty' => 'Inga matchande träffar i loggen.',
 'log-title-wildcard' => 'Sök efter sidtitlar som börjar med texten',
+'showhideselectedlogentries' => 'Visa/Dölj markerade loggposter',
 
 # Special:AllPages
 'allpages' => 'Alla sidor',
@@ -3066,6 +3071,7 @@ Detta orsakades troligen av en länk till en svartlistad webbplats.',
 'spambot_username' => 'MediaWikis spampatrull',
 'spam_reverting' => 'Återställer till den senaste versionen som inte innehåller länkar till $1',
 'spam_blanking' => 'Alla versioner innehöll en länk till $1, blankar',
+'spam_deleting' => 'Alla ändringar innehöll länkar till $1, raderar',
 
 # Info page
 'pageinfo-title' => 'Information om "$1"',
@@ -3982,4 +3988,6 @@ Annars kan du använda det enkla formuläret nedan. Din kommentar kommer att lä
 'duration-centuries' => '$1 {{PLURAL:$1|sekel|sekel}}',
 'duration-millennia' => '$1 {{PLURAL:$1|millennium|millennier}}',
 
+# Unknown messages
+'lockmanager-fail-svr-acquire' => 'Kunde inte erhålla lås på servern $1 .',
 );

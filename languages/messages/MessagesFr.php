@@ -371,7 +371,7 @@ $messages = array(
 'tog-hidepatrolled' => 'Masquer les modifications surveillées dans les modifications récentes',
 'tog-newpageshidepatrolled' => 'Masquer les pages surveillées parmi les nouvelles pages',
 'tog-extendwatchlist' => 'Étendre la liste de suivi pour afficher toutes les modifications et non seulement les plus récentes',
-'tog-usenewrc' => 'Utiliser les modifications récentes améliorées (nécessite JavaScript)',
+'tog-usenewrc' => 'Grouper les changements dans les modifications récentes et la liste de suivi (nécessite JavaScript)',
 'tog-numberheadings' => 'Numéroter automatiquement les titres de section',
 'tog-showtoolbar' => "Montrer la barre d'outils de modification (nécessite JavaScript)",
 'tog-editondblclick' => 'Modifier des pages sur double-clic (nécessite JavaScript)',
@@ -4053,4 +4053,6 @@ Sinon, vous pouvez utiliser le formulaire simplifié ci-dessous. Votre commentai
 'duration-centuries' => '$1 {{PLURAL:$1|siècle|siècles}}',
 'duration-millennia' => '$1 {{PLURAL:$1|millénaire|millénaires}}',
 
+# Unknown messages
+'lockmanager-fail-svr-acquire' => "Impossible d'acquérir des verrous sur le serveur $1.",
 );

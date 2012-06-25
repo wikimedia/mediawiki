@@ -655,21 +655,9 @@ return array(
 	'mediawiki.action.view.rightClickEdit' => array(
 		'scripts' => 'resources/mediawiki.action/mediawiki.action.view.rightClickEdit.js',
 	),
+	// Alias for backwards compatibility
 	'mediawiki.action.watch.ajax' => array(
-		'scripts' => 'resources/mediawiki.action/mediawiki.action.watch.ajax.js',
-		'dependencies' => array(
-			'mediawiki.api.watch',
-			'mediawiki.util',
-		),
-		'messages' => array(
-			'watch',
-			'unwatch',
-			'watching',
-			'unwatching',
-			'tooltip-ca-watch',
-			'tooltip-ca-unwatch',
-			'watcherrortext',
-		),
+		'dependencies' => 'mediawiki.page.watch.ajax'
 	),
 
 	/* MediaWiki Language */
@@ -708,12 +696,9 @@ return array(
 			'mk' => 'resources/mediawiki.language/languages/mk.js',
 			'mo' => 'resources/mediawiki.language/languages/mo.js',
 			'mt' => 'resources/mediawiki.language/languages/mt.js',
-			'nl' => 'resources/mediawiki.language/languages/nl.js',
 			'nso' => 'resources/mediawiki.language/languages/nso.js',
 			'os' => 'resources/mediawiki.language/languages/os.js',
 			'pl' => 'resources/mediawiki.language/languages/pl.js',
-			'pt' => 'resources/mediawiki.language/languages/pt.js',
-			'pt-br' => 'resources/mediawiki.language/languages/pt-br.js',
 			'ro' => 'resources/mediawiki.language/languages/ro.js',
 			'ru' => 'resources/mediawiki.language/languages/ru.js',
 			'se' => 'resources/mediawiki.language/languages/se.js',
@@ -770,7 +755,23 @@ return array(
 		),
 		'position' => 'top',
 	),
-
+	'mediawiki.page.watch.ajax' => array(
+		'scripts' => 'resources/mediawiki.page/mediawiki.page.watch.ajax.js',
+		'dependencies' => array(
+			'mediawiki.page.startup',
+			'mediawiki.api.watch',
+			'mediawiki.util'
+		),
+		'messages' => array(
+			'watch',
+			'unwatch',
+			'watching',
+			'unwatching',
+			'tooltip-ca-watch',
+			'tooltip-ca-unwatch',
+			'watcherrortext',
+		),
+	),
 
 	/* MediaWiki Special pages */
 

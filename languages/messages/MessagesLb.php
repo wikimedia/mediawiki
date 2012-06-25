@@ -568,11 +568,11 @@ $2',
 'virus-unknownscanner' => 'onbekannten Antivirus:',
 
 # Login and logout pages
-'logouttext' => "'''Dir sidd elo ofgemellt.'''
+'logouttext' => "'''Dir sidd elo ausgeloggt.'''
 
-Dir kënnt {{SITENAME}} elo anonym benotzen, oder Iech [[Special:UserLogin|erëm umellen]].
+Dir kënnt {{SITENAME}} elo anonym benotzen, oder Iech [[Special:UserLogin|erëm aloggen]].
 
-Opgepasst: Op verschiddene Säite gesäit et nach esou aus, wéi wann Dir nach ugemellt wiert, bis Dir Ärem Browser säin Tëschespäicher (cache) eidel maacht.",
+Opgepasst: Op verschiddene Säite kann et nach esou aus gesinn, wéi wann Dir nach ageloggt wiert, bis Dir Ärem Browser säin Tëschespäicher (cache) eidel maacht.",
 'welcomecreation' => '== Wëllkomm, $1! ==
 Äre Kont gouf kreéiert.
 Denkt drun, Är [[Special:Preferences|{{SITENAME}}-Astellungen]] unzepassen.',
@@ -583,7 +583,7 @@ Denkt drun, Är [[Special:Preferences|{{SITENAME}}-Astellungen]] unzepassen.',
 'securelogin-stick-https' => 'Nom Umelle mat HTTPS verbonn bleiwen',
 'yourdomainname' => 'Ären Domain',
 'externaldberror' => 'Entweder ass e Feeler bei der externer Authentifizéierung geschitt, oder Dir däerft Ären externe Benotzerkont net aktualiséieren.',
-'login' => 'Umellen',
+'login' => 'Aloggen',
 'nav-login-createaccount' => 'Aloggen / Benotzerkont uleeën',
 'loginprompt' => "Fir sech op {{SITENAME}} aloggen ze kënnen, mussen d'Cookien aktivéiert sinn.",
 'userlogin' => 'Aloggen / Benotzerkont uleeën',
@@ -682,7 +682,7 @@ Fir är Umeldung ofzeschléissen, musst Dir elo hei een neit Passwuert uginn:',
 'oldpassword' => 'Aalt Passwuert:',
 'newpassword' => 'Neit Passwuert:',
 'retypenew' => 'Neit Passwuert nach eemol antippen:',
-'resetpass_submit' => 'Passwuert aginn an umellen',
+'resetpass_submit' => 'Passwuert aginn an aloggen',
 'resetpass_success' => 'Äert Passwuert gouf geännert!
 Loggt Iech elo an ...',
 'resetpass_forbidden' => 'Passwierder kënnen net geännert ginn.',
@@ -1672,6 +1672,9 @@ Wann de Problem weider besteet, dann un de [[Special:ListUsers/sysop|Administrat
 'lockmanager-notlocked' => '"$1" konnt net fräigeschalt ginn; $1 ass net gespaart.',
 'lockmanager-fail-closelock' => 'De Spärfichier fir "$1" konnt net zougemaach ginn.',
 'lockmanager-fail-deletelock' => 'De Spärfichier fir "$1" konnt net geläscht ginn.',
+'lockmanager-fail-acquirelock' => '"$1" konnt net gespaart ginn.',
+'lockmanager-fail-openlock' => 'De Spärfichier fir "$1" konnt net opgemaach ginn.',
+'lockmanager-fail-releaselock' => 'D\'Spär fir "$1" konnt net opgehuewe ginn.',
 'lockmanager-fail-db-release' => "D'Spären op der Datebank $1 konnten net fräigeschalt ginn.",
 'lockmanager-fail-svr-release' => "D'Spären um Server $1 konnten net fräigeschalt ginn.",
 
@@ -1728,8 +1731,8 @@ Kuckt w.e.g. no op kee Feeler an der URL ass an op de Site och online ass.',
 'upload-curl-error28' => "D'Eroplueden huet ze laang gedauert (timeout)",
 'upload-curl-error28-text' => "Dëse Site huet ze laang gebraucht fir z'äntwerten. Kuckt w. e. g. no, ob dëse Site online ass, waart een Ament a probéiert et dann nach eng Kéier. Et ka sënnvoll sinn, et nach eng Kéier méi spéit ze versichen.",
 
-'license' => 'Lizenzéiert:',
-'license-header' => 'Lizenzéieren',
+'license' => 'Lizenz',
+'license-header' => 'Lizenz',
 'nolicense' => 'Keng Lizenz ausgewielt',
 'license-nopreview' => '(Kucken ouni ofzespäichere geet net)',
 'upload_source_url' => ' (gëlteg, ëffentlech zougänglech URL)',
@@ -3747,4 +3750,6 @@ Soss kënnt Dir den einfache Formulär hei drënner benotzen. Är Bemierkung gë
 'duration-centuries' => '$1 {{PLURAL:$1|Joerhonnert|Joerhonnerten}}',
 'duration-millennia' => '$1 {{PLURAL:$1|Millenaire|Millenairen}}',
 
+# Unknown messages
+'lockmanager-fail-svr-acquire' => "D'Spären um Server $1 konnten net ofgefrot ginn.",
 );

@@ -12,6 +12,7 @@
  * @author Kolonahe
  * @author Node ue
  * @author Singularity
+ * @author Xqt
  */
 
 $namespaceNames = array(
@@ -299,7 +300,7 @@ $messages = array(
 'red-link-title' => '$1 (ʻaʻole i kākau ʻia)',
 
 # Short words for each namespace, by default used in the namespace tab in monobook
-'nstab-main' => 'ʻaoʻao',
+'nstab-main' => 'ʻAoʻao',
 'nstab-user' => 'Inoa mea ho‘ohana',
 'nstab-media' => 'Pāpaho',
 'nstab-special' => 'Papa nui',
@@ -588,6 +589,8 @@ E ʻoluʻolu, e hōʻoia i ka hoʻokūkū ʻana i lalo, a laila, e mālama i nā
 
 # Statistics
 'statistics' => 'Papa helu',
+
+'disambiguationspage' => 'Template:Huaʻōlelo puana like',
 
 'brokenredirects-edit' => 'e ho‘ololi',
 'brokenredirects-delete' => 'e kāpae',

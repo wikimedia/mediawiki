@@ -124,7 +124,7 @@ $messages = array(
 'tog-hidepatrolled' => 'Cuddio golygiadau sydd wedi derbyn ymweliad patrôl rhag y rhestr newidiadau diweddar',
 'tog-newpageshidepatrolled' => 'Cuddio tudalennau sydd wedi derbyn ymweliad patrôl rhag y rhestr dudalennau newydd',
 'tog-extendwatchlist' => "Ehangu'r rhestr wylio i ddangos pob golygiad yn hytrach na'r diweddaraf yn unig",
-'tog-usenewrc' => 'Defnyddio newidiadau diweddar gwell (angen JavaScript)',
+'tog-usenewrc' => "Yn dangos newidiadau i un dudalen gyda'i gilydd - ar 'newidiadau diweddar' a'r 'rhestr wylio' (angen JavaScript)",
 'tog-numberheadings' => "Rhifo penawdau'n awtomatig",
 'tog-showtoolbar' => 'Dangos y bar offer golygu (angen JavaScript)',
 'tog-editondblclick' => 'Golygu tudalennau wrth glicio ddwywaith (angen JavaScript)',
@@ -1936,6 +1936,7 @@ Gallwch weld chwiliad mwy penodol trwy ddewis y math o lòg, enw'r defnyddiwr, n
 Sylwer bod llythrennau mawr neu fach o bwys i'r chwiliad.",
 'logempty' => 'Does dim eitemau yn cyfateb yn y lòg.',
 'log-title-wildcard' => "Chwilio am deitlau'n dechrau gyda'r geiriau hyn",
+'showhideselectedlogentries' => 'Dewis dangos neu guddio cofnodion lòg',
 
 # Special:AllPages
 'allpages' => 'Pob tudalen',
@@ -2789,7 +2790,7 @@ Mae ffolder dros dro yn eisiau.',
 'tooltip-rollback' => "Yn troi golygiad(au) y defnyddiwr diwethaf i'r dudalen hon yn ôl gydag un clic.",
 'tooltip-undo' => 'Mae "dadwneud" yn troi\'r golygiad hwn yn ôl ac yn dangos rhagolwg o\'r golygiad adferedig.
 Gellir ychwanegu rheswm dros y dadwneud yn y crynodeb.',
-'tooltip-preferences-save' => "Rhoi'r dewisiadau ar gadw",
+'tooltip-preferences-save' => 'Rhodder y dewisiadau ar gadw',
 'tooltip-summary' => 'Rhowch grynodeb byr',
 
 # Metadata
@@ -2815,6 +2816,7 @@ Achos hyn yn fwy na thebyg yw presenoldeb cysylltiad i wefan ar y rhestr wahardd
 'spambot_username' => 'Teclyn clirio sbam MediaWiki',
 'spam_reverting' => "Yn troi nôl i'r diwygiad diweddaraf sydd ddim yn cynnwys cysylltiadau i $1",
 'spam_blanking' => 'Roedd cysylltiadau i $1 gan bob golygiad, yn blancio',
+'spam_deleting' => "Roedd pob diwygiad yn cynnwys cysylltiadau â $1, wrthi'n dileu",
 
 # Info page
 'pageinfo-title' => 'Manylion "$1"',
@@ -3710,4 +3712,6 @@ Dangosir delweddau ar eu maint llawn, dechreuir ffeiliau o fathau eraill yn unio
 'duration-centuries' => '$1 {{PLURAL:$1|canmlwydd|ganmlwydd|ganmlwydd|canmlwydd|chanmlwydd|canmlwydd}}',
 'duration-millennia' => '$1 {{PLURAL:$1|milflwydd|filflwydd|filflwydd|milflwydd|milflwydd|milflwydd}}',
 
+# Unknown messages
+'lockmanager-fail-svr-acquire' => 'Wedi methu sicrhau cloion ar y gweinydd $1.',
 );

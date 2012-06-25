@@ -4168,4 +4168,6 @@ MediaWiki распространяется в надежде, что она бу
 'duration-centuries' => '$1 {{PLURAL:$1|век|века|веков}}',
 'duration-millennia' => '$1 {{PLURAL:$1|тысячелетие|тысячелетия|тысячелетий}}',
 
+# Unknown messages
+'lockmanager-fail-svr-acquire' => 'Не удалось получить блокировку на сервере  $1.',
 );

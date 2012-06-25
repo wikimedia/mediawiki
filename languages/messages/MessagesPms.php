@@ -2618,12 +2618,12 @@ Për piasì, ch'a vìsita la [//www.mediawiki.org/wiki/Localisation Localisassio
 'import-interwiki-text' => "Che a selession-a na wiki e ël tìtol dla pàgina da amporté.
 Date dle revision e stranòm dj'editor a resteran piàjit sù 'cò lor.
 Tute j'amportassion antra wiki diferente a resto marcà ant ël [[Special:Log/import|Registr dj'amportassion]].",
-'import-interwiki-source' => 'Sorziss wiki/pàgina:',
-'import-interwiki-history' => 'Còpia tute le version stòriche dë sta pàgina-sì',
-'import-interwiki-templates' => 'Ansëriss tùit jë stamp',
+'import-interwiki-source' => 'Wiki e pàgina sorgiss:',
+'import-interwiki-history' => 'Copié tute le revision ëd la stòria ëd costa pàgina',
+'import-interwiki-templates' => 'Anserì tùit jë stamp',
 'import-interwiki-submit' => 'Amporté',
 'import-interwiki-namespace' => 'Spassi nominal ëd destinassion:',
-'import-upload-filename' => 'Nòm dël file:',
+'import-upload-filename' => "Nòm ëd l'archivi:",
 'import-comment' => 'Oget:',
 'importtext' => "Për piasì, che as espòrta l'archivi da 'nt la sorgiss wiki ën dovrand l'[[Special:Export|utiss d'esportassion]]. 
 Che as lo salva ansima a sò ordinator e peui che a lo caria ambelessì.",
@@ -2634,8 +2634,8 @@ Che as lo salva ansima a sò ordinator e peui che a lo caria ambelessì.",
 'importfailed' => 'Amportassion falìa: $1',
 'importunknownsource' => "Sorgiss d'amportassion ëd na sòrt nen conossùa",
 'importcantopen' => "L'archivi da amporté a l'é pa podusse deurbe",
-'importbadinterwiki' => 'Anliura antra wiki diferente malfaita',
-'importnotext' => 'Veujd ò sensa pa gnun test',
+'importbadinterwiki' => 'Liura antra wiki diferente cioca',
+'importnotext' => 'Veujd ò con gnun test',
 'importsuccess' => 'Amportassion andaita a bon fin!',
 'importhistoryconflict' => "A-i son dle stòrie dë sta pàgina-sì che as contradisso un-a con l'àutra (a peul esse che sta pàgina-sì a l'avèissa già amportala)",
 'importnosources' => "A l'é pa staita definìa gnun-a sorgiss d'amportassion da na wiki diferenta, e carié mach le stòrie as peul nen.",
@@ -2777,7 +2777,7 @@ Sòn a l'é motobin belfé che a sia rivà përchè a-i era n'anliura a un sit e
 'spambot_username' => 'MediaWiki - trigomiro che a-j dà deuit a la rumenta',
 'spam_reverting' => "Buta andaré a l'ùltima version che a l'avèissa pa andrinta dj'anliure a $1",
 'spam_blanking' => "Pàgina dësveujdà, che tute le version a l'avìo andrinta dj'anliure a $1",
-'spam_deleting' => 'Tute le revision a contenìo colegament a $1, scanselé',
+'spam_deleting' => 'Tute le revision a contnisìo dle liure a $1, scancelament',
 
 # Info page
 'pageinfo-title' => 'Anformassion për "$1"',

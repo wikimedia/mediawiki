@@ -608,7 +608,7 @@ class ApiMain extends ApiBase {
 			if ( !isset( $moduleParams['token'] ) ) {
 				$this->dieUsageMsg( array( 'missingparam', 'token' ) );
 			} else {
-				if ( !$this->getUser()->matchEditToken( $moduleParams['token'], $salt ) ) {
+				if ( !$this->getUser()->matchEditToken( $moduleParams['token'], $salt, $this->getContext()->getRequest() ) ) {
 					$this->dieUsageMsg( 'sessionfailure' );
 				}
 			}

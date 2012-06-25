@@ -1,5 +1,5 @@
 <?php
-/** Uzbek (Oʻzbek)
+/** Uzbek (Oʻzbekcha)
  *
  * See MessagesQqq.php for message documentation incl. usage of parameters
  * To improve a translation please visit http://translatewiki.net
@@ -50,6 +50,10 @@ $namespaceAliases = array(
 $linkTrail = '/^([a-zʻʼ“»]+)(.*)$/sDu';
 
 $messages = array(
+# User preference toggles
+'tog-oldsig' => 'Mavjud imzo:',
+'tog-fancysig' => 'Imzoni wikimatn sifatida qara (avtomatik ishoratsiz)',
+
 'underline-always' => 'Har doim',
 'underline-never' => 'Hech qachon',
 
@@ -420,6 +424,10 @@ Bu yerda: (joriy) = hozirgi koʻrinish bilan farq,
 # Recent changes
 'recentchanges' => 'Yangi o‘zgartirishlar',
 'recentchanges-summary' => "Bu sahifada siz oxirgi o'zgartirishlarni ko'rishingiz mumkin.",
+'recentchanges-label-newpage' => 'Bu tahrir yangi sahifani yaratdi',
+'recentchanges-label-minor' => 'Bu kichik tahrir',
+'recentchanges-label-bot' => 'Bu tahrirni bot bajardi',
+'recentchanges-label-unpatrolled' => 'Bu tahrir hali tekshirilmadi',
 'rcnote' => "Quyida $5, $4ga koʻra oxirgi {{PLURAL:$2|kun|'''$2''' kun}} davomida sodir boʻlgan {{PLURAL:$1|'''1''' oʻzgartirish|'''$1''' oʻzgartirishlar}} koʻrsatilgan.",
 'rclistfrom' => "$1dan boshlab yangi o'zgartirishlarni ko'rsat.",
 'rcshowhideminor' => 'Kichik tahrirlarni $1',

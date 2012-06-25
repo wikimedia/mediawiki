@@ -1,5 +1,5 @@
 <?php
-/** Belarusian (Taraškievica orthography) (‪Беларуская (тарашкевіца)‬)
+/** Belarusian (Taraškievica orthography) (‪беларуская (тарашкевіца)‬)
  *
  * See MessagesQqq.php for message documentation incl. usage of parameters
  * To improve a translation please visit http://translatewiki.net
@@ -261,7 +261,7 @@ $messages = array(
 'tog-hidepatrolled' => 'Хаваць патруляваныя зьмены ў сьпісе апошніх зьменаў',
 'tog-newpageshidepatrolled' => 'Хаваць правераныя старонкі ў сьпісе новых старонак',
 'tog-extendwatchlist' => 'Пашырыць сьпіс назіраньня, каб ён паказваў усе зьмены, а ня толькі апошнія',
-'tog-usenewrc' => 'Выкарыстоўваць удасканалены сьпіс апошніх зьменаў (патрабуе JavaScript)',
+'tog-usenewrc' => 'Групаваць зьмены старонкі ў сьпісах апошніх зьменаў і назіраньняў (патрабуе JavaScript)',
 'tog-numberheadings' => 'Аўтаматычная нумарацыя загалоўкаў',
 'tog-showtoolbar' => 'Паказваць панэль інструмэнтаў рэдагаваньня (патрабуе JavaScript)',
 'tog-editondblclick' => 'Рэдагаваць старонкі па падвойным пстрыку (JavaScript)',
@@ -3895,4 +3895,6 @@ MediaWiki распаўсюджваецца з надзеяй, што будзе 
 'duration-centuries' => '$1 {{PLURAL:$1|стагодзьдзе|стагодзьдзі|стагодзьдзяў}}',
 'duration-millennia' => '$1 {{PLURAL:$1|тысячагодзьдзе|тысячагодзьдзі|тысячагодзьдзяў}}',
 
+# Unknown messages
+'lockmanager-fail-svr-acquire' => 'Немагчыма запытаць блякаваньні на сэрвэры $1.',
 );

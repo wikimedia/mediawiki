@@ -63,10 +63,7 @@ class SpecialChangePassword extends UnlistedSpecialPage {
 
 		if( $request->wasPosted() && $user->matchEditToken( $request->getVal( 'token' ) ) ) {
 			try {
-				if ( isset( $_SESSION['wsDomain'] ) ) {
-					$this->mDomain = $_SESSION['wsDomain'];
-				}
-				$wgAuth->setDomain( $this->mDomain );
+				$this->mDomain = $wgAuth->getDomain();
 				if( !$wgAuth->allowPasswordChange() ) {
 					$this->error( $this->msg( 'resetpass_forbidden' )->text() );
 					return;

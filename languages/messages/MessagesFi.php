@@ -689,12 +689,13 @@ $2',
 'customcssprotected' => 'Sinulla ei ole oikeutta muuttaa tätä CSS-sivua, koska se sisältää toisen käyttäjän henkilökohtaisia asetuksia.',
 'customjsprotected' => 'Sinulla ei ole oikeutta muuttaa tätä JavaScript-sivua, koska se sisältää toisen käyttäjän henkilökohtaisia asetuksia.',
 'ns-specialprotected' => 'Toimintosivuja ei voi muokata.',
-'titleprotected' => "Käyttäjä [[User:$1|$1]] on asettanut tämän sivun luontikieltoon: ''$2''.",
+'titleprotected' => "Käyttäjä [[User:$1|$1]] on suojannut tämän sivunimen, ja sivua ei voi luoda.
+Syynä on: ''$2''.",
 'filereadonlyerror' => 'Tiedostoa "$1" ei voi muuttaa, koska jaettu mediavarasto "$2" on "vain luku" -tilassa.
 
 Lukituksen asettanut ylläpitäjä on antanut seuraavan syyn toimenpiteelle: "$3".',
-'invalidtitle-knownnamespace' => 'Virheellinen nimike nimitilaan "$2" ja teksti "$3"',
-'invalidtitle-unknownnamespace' => 'Virheellinen nimi tuntemattomassa nimitilassa $1 ja tekstissä $2',
+'invalidtitle-knownnamespace' => 'Virheellinen sivunimi, nimiavaruus "$2" ja teksti "$3"',
+'invalidtitle-unknownnamespace' => 'Virheellinen sivunimi, tuntematon nimiavaruus numero $1 ja teksti $2',
 
 # Virus scanner
 'virus-badscanner' => "Virheellinen asetus: Tuntematon virustutka: ''$1''",
@@ -1006,7 +1007,7 @@ Alla on viimeisin lokitapahtuma:",
 'semiprotectedpagewarning' => 'Tämä sivu on lukittu siten, että vain rekisteröityneet käyttäjät voivat muokata sitä.
 Alla on viimeisin lokitapahtuma:',
 'cascadeprotectedwarning' => '<strong>Vain ylläpitäjät voivat muokata tätä sivua, koska se on sisällytetty alla {{PLURAL:$1|olevaan laajennetusti suojattuun sivuun|oleviin laajennetusti suojattuihin sivuihin}}</strong>:',
-'titleprotectedwarning' => "'''Tämä sivun luominen on rajoitettu vain osalle käyttäjistä [[Special:ListGroupRights|tietyillä oikeuksilla]].'''
+'titleprotectedwarning' => "'''Varoitus: Tämä sivunimi on suojattu niin, että sivun luomiseen tarvitaan [[Special:ListGroupRights|erityisiä oikeuksia]].'''
 Alla on viimeisin lokitapahtuma:",
 'templatesused' => 'Tällä sivulla {{PLURAL:$1|käytetty malline|käytetyt mallineet}}:',
 'templatesusedpreview' => 'Esikatselussa mukana {{PLURAL:$1|oleva malline|olevat mallineet}}:',
@@ -1140,7 +1141,7 @@ Voit silti nähdä tämän muutoksen. Lisätietoja löytyy [{{fullurl:{{#Special
 'revdelete-no-file' => 'Määritettyä tiedostoa ei ole olemassa.',
 'revdelete-show-file-confirm' => 'Haluatko varmasti nähdä poistetun version tiedostosta <nowiki>$1</nowiki>, joka on tallennettu $2 kello $3?',
 'revdelete-show-file-submit' => 'Kyllä',
-'revdelete-selected' => "'''{{PLURAL:$2|Valittu versio|Valitut versiot}} sivusta '''$1:''''''",
+'revdelete-selected' => "'''{{PLURAL:$2|Valittu versio|Valitut versiot}} sivusta [[:$1]]'''",
 'logdelete-selected' => "'''{{PLURAL:$1|Valittu lokimerkintä|Valitut lokimerkinnät}}:'''",
 'revdelete-text' => "'''Poistetut versiot ja lokitapahtumat näkyvät edelleen sivun historiassa ja lokeissa, mutta osa niiden sisällöstä ei ole julkisesti saatavilla.'''
 Muut ylläpitäjät {{GRAMMAR:inessive|{{SITENAME}}}} voivat silti tarkastella piilotettua sisältöä, ja he voivat palauttaa sen näkyviin tämän käyttöliittymän kautta, ellei tätä ole erikseen rajoitettu.",
@@ -1148,17 +1149,17 @@ Muut ylläpitäjät {{GRAMMAR:inessive|{{SITENAME}}}} voivat silti tarkastella p
 'revdelete-suppress-text' => "Häivytystä pitäisi käyttää '''vain''' seuraavissa tapauksissa:
 * Sopimattomat henkilötiedot
 *: ''kotiosoitteet, puhelinnumerot, sosiaaliturvatunnukset ja muut.''",
-'revdelete-legend' => 'Version rajoitukset',
-'revdelete-hide-text' => 'Piilota version sisältö',
+'revdelete-legend' => 'Aseta version näkyvyyden rajoitukset',
+'revdelete-hide-text' => 'Piilota version tekstisisältö',
 'revdelete-hide-image' => 'Piilota tiedoston sisältö',
 'revdelete-hide-name' => 'Piilota toiminto ja kohde',
 'revdelete-hide-comment' => 'Piilota yhteenveto',
 'revdelete-hide-user' => 'Piilota tekijän tunnus tai IP-osoite',
-'revdelete-hide-restricted' => 'Piilota tiedot ylläpitäjiltä kuten muilta',
+'revdelete-hide-restricted' => 'Häivytä tiedot sekä ylläpitäjien että muiden käyttäjien näkyviltä',
 'revdelete-radio-same' => '(älä muuta)',
 'revdelete-radio-set' => 'Kyllä',
 'revdelete-radio-unset' => 'Ei',
-'revdelete-suppress' => 'Piilota myös ylläpitäjiltä',
+'revdelete-suppress' => 'Häivytä tiedot myös ylläpitäjien näkyviltä samalla kun piilotat ne muilta käyttäjiltä',
 'revdelete-unsuppress' => 'Poista rajoitukset palautetuilta versiolta',
 'revdelete-log' => 'Syy',
 'revdelete-submit' => 'Toteuta {{PLURAL:$1|valittuun versioon|valittuihin versioihin}}',
@@ -1296,7 +1297,7 @@ Kokeile lisätä haun alkuun ''all:'', niin haku kohdistuu kaikkeen sisältöön
 'powersearch-ns' => 'Hae nimiavaruuksista:',
 'powersearch-redir' => 'Luettele ohjaukset',
 'powersearch-field' => 'Etsi',
-'powersearch-togglelabel' => 'Muuta valinta',
+'powersearch-togglelabel' => 'Muuta valintaa',
 'powersearch-toggleall' => 'Valitse kaikki',
 'powersearch-togglenone' => 'Valitse ei mitään',
 'search-external' => 'Ulkoinen haku',
@@ -1478,7 +1479,7 @@ Tässä satunnaisesti tuotettu arvo, jota voit käyttää: $1',
 # Rights
 'right-read' => 'Lukea sivuja',
 'right-edit' => 'Muokata sivuja',
-'right-createpage' => 'Luoda sivuja pois lukien keskustelusivut',
+'right-createpage' => 'Luoda sivuja (jotka eivät ole keskustelusivuja)',
 'right-createtalk' => 'Luoda keskustelusivuja',
 'right-createaccount' => 'Luoda uusia käyttäjätunnuksia',
 'right-minoredit' => 'Merkitä muokkauksensa pieniksi',
@@ -2096,6 +2097,7 @@ Huomaa, että muut verkkosivut saattavat viitata tiedostoon suoran URL:n avulla,
 Voit rajoittaa listaa valitsemalla lokityypin, käyttäjän tai sivun johon muutos on kohdistunut. Jälkimmäiset ovat kirjainkokoherkkiä.',
 'logempty' => 'Ei tapahtumia lokissa.',
 'log-title-wildcard' => 'Kohde alkaa merkkijonolla',
+'showhideselectedlogentries' => 'Näytä tai piilota valitut lokimerkinnät',
 
 # Special:AllPages
 'allpages' => 'Kaikki sivut',
@@ -2403,16 +2405,18 @@ Viimeisimmän muokkauksen on tehnyt käyttäjä [[User:$3|$3]] ([[User talk:$3|k
 
 # Undelete
 'undelete' => 'Palauta poistettuja sivuja',
-'undeletepage' => 'Poistettujen sivujen selaus',
+'undeletepage' => 'Katsele ja palauta poistettuja sivuja',
 'undeletepagetitle' => "'''Poistetut versiot sivusta [[:$1]]'''.",
 'viewdeletedpage' => 'Poistettujen sivujen selaus',
 'undeletepagetext' => '{{PLURAL:$1|Seuraava sivu|Seuraavat sivut}} on poistettu, mutta {{PLURAL:$1|se löytyy|ne löytyvät}} vielä arkistosta, joten {{PLURAL:$1|se on|ne ovat}} palautettavissa. Arkisto saatetaan tyhjentää aika ajoin.',
 'undelete-fieldset-title' => 'Palauta versiot',
-'undeleteextrahelp' => "Palauttaaksesi sivun koko muutoshistorian, jätä kaikki valintalaatikot tyhjiksi ja napsauta '''''{{int:undeletebtn}}'''''.
-Voit palauttaa versiota valikoivasti valitsemalla vain niiden versioiden valintalaatikot, jotka haluat palauttaa.",
+'undeleteextrahelp' => "Palauttaaksesi sivun koko muutoshistorian jätä kaikki valintalaatikot tyhjiksi ja napsauta '''''{{int:undeletebtn}}'''''.
+Voit palauttaa versioita valikoivasti valitsemalla vain niiden versioiden valintalaatikot, jotka haluat palauttaa.",
 'undeleterevisions' => '{{PLURAL:$1|Versio|$1 versiota}} arkistoitu.',
 'undeletehistory' => 'Jos palautat sivun, kaikki versiot lisätään sivun historiaan. Jos uusi sivu samalla nimellä on luotu poistamisen jälkeen, palautetut versiot lisätään sen historiaan.',
-'undeleterevdel' => 'Palautusta ei tehdä, jos sen seurauksena sivun uusin versio olisi osittain poistettu. Tässä tilanteessa poista uusimman poistettavan version piilotus. Tiedostoversioita, joihin sinulla ei ole katseluoikeutta ei palauteta.',
+'undeleterevdel' => "Palautusta ei tehdä, jos sen seurauksena sivun uusin versio olisi osittain piilotettu. 
+Tässä tilanteessa älä valitse palautettavaksi näkyviin viimeisintä poistettua versiota tai poista version piilotus.<br />
+Tiedostoversioita, joihin sinulla ei ole katseluoikeutta (''häivytetyt versiot''), ei palauteta.",
 'undeletehistorynoadmin' => 'Tämä sivu on poistettu. Syy sivun poistamiseen näkyy yhteenvedossa, jossa on myös tiedot, ketkä ovat muokanneet tätä sivua ennen poistamista. Sivujen varsinainen sisältö on vain ylläpitäjien luettavissa.',
 'undelete-revision' => 'Poistettu sivu $1 hetkellä $4 kello $5. Tekijä: $3.',
 'undeleterevision-missing' => 'Virheellinen tai puuttuva versio. Se on saatettu palauttaa tai poistaa arkistosta.',
