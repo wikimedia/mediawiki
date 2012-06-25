@@ -527,15 +527,7 @@ class DifferenceEngine extends ContextSource {
 					$wikiPage = WikiPage::factory( $this->mNewPage );
 				}
 
-				$parserOptions = ParserOptions::newFromContext( $this->getContext() );
-				$parserOptions->enableLimitReport();
-				$parserOptions->setTidy( true );
-
-				if ( !$this->mNewRev->isCurrent() ) {
-					$parserOptions->setEditSection( false );
-				}
-
-				$parserOutput = $wikiPage->getParserOutput( $parserOptions, $this->mNewid );
+				$parserOutput = $this->getParserOutput( $wikiPage, $this->mNewRev );
 
 				# WikiPage::getParserOutput() should not return false, but just in case
 				if( $parserOutput ) {
@@ -547,6 +539,19 @@ class DifferenceEngine extends ContextSource {
 		$out->addHTML( $this->markPatrolledLink() );
 
 		wfProfileOut( __METHOD__ );
+	}
+
+	protected function getParserOutput( WikiPage $page, Revision $rev ) {
+		$parserOptions = ParserOptions::newFromContext( $this->getContext() );
+		$parserOptions->enableLimitReport();
+		$parserOptions->setTidy( true );
+
+		if ( !$rev->isCurrent() || !$rev->getTitle()->quickUserCan( "edit" ) ) {
+			$parserOptions->setEditSection( false );
+		}
+
+		$parserOutput = $page->getParserOutput( $parserOptions, $rev->getId() );
+		return $parserOutput;
 	}
 
 	/**
