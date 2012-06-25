@@ -23,11 +23,11 @@
 
 /**
  * Class to both describe a background job and handle jobs.
+ * This queue aspects of this class are now deprecated.
  *
  * @ingroup JobQueue
  */
 abstract class Job {
-
 	/**
 	 * @var Title
 	 */
@@ -54,161 +54,6 @@ abstract class Job {
 	 *------------------------------------------------------------------------*/
 
 	/**
-	 * Pop a job of a certain type.  This tries less hard than pop() to
-	 * actually find a job; it may be adversely affected by concurrent job
-	 * runners.
-	 *
-	 * @param $type string
-	 *
-	 * @return Job
-	 */
-	static function pop_type( $type ) {
-		wfProfilein( __METHOD__ );
-
-		$dbw = wfGetDB( DB_MASTER );
-
-		$dbw->begin( __METHOD__ );
-
-		$row = $dbw->selectRow(
-			'job',
-			'*',
-			array( 'job_cmd' => $type ),
-			__METHOD__,
-			array( 'LIMIT' => 1, 'FOR UPDATE' )
-		);
-
-		if ( $row === false ) {
-			$dbw->commit( __METHOD__ );
-			wfProfileOut( __METHOD__ );
-			return false;
-		}
-
-		/* Ensure we "own" this row */
-		$dbw->delete( 'job', array( 'job_id' => $row->job_id ), __METHOD__ );
-		$affected = $dbw->affectedRows();
-		$dbw->commit( __METHOD__ );
-
-		if ( $affected == 0 ) {
-			wfProfileOut( __METHOD__ );
-			return false;
-		}
-
-		wfIncrStats( 'job-pop' );
-		$namespace = $row->job_namespace;
-		$dbkey = $row->job_title;
-		$title = Title::makeTitleSafe( $namespace, $dbkey );
-		$job = Job::factory( $row->job_cmd, $title, Job::extractBlob( $row->job_params ),
-			$row->job_id );
-
-		$job->removeDuplicates();
-
-		wfProfileOut( __METHOD__ );
-		return $job;
-	}
-
-	/**
-	 * Pop a job off the front of the queue
-	 *
-	 * @param $offset Integer: Number of jobs to skip
-	 * @return Job or false if there's no jobs
-	 */
-	static function pop( $offset = 0 ) {
-		wfProfileIn( __METHOD__ );
-
-		$dbr = wfGetDB( DB_SLAVE );
-
-		/* Get a job from the slave, start with an offset,
-			scan full set afterwards, avoid hitting purged rows
-
-			NB: If random fetch previously was used, offset
-				will always be ahead of few entries
-		*/
-
-		$conditions = self::defaultQueueConditions();
-
-		$offset = intval( $offset );
-		$options = array( 'ORDER BY' => 'job_id', 'USE INDEX' => 'PRIMARY' );
-
-		$row = $dbr->selectRow( 'job', '*',
-			array_merge( $conditions, array( "job_id >= $offset" ) ),
-			__METHOD__,
-			$options
-		);
-
-		// Refetching without offset is needed as some of job IDs could have had delayed commits
-		// and have lower IDs than jobs already executed, blame concurrency :)
-		//
-		if ( $row === false ) {
-			if ( $offset != 0 ) {
-				$row = $dbr->selectRow( 'job', '*', $conditions, __METHOD__, $options );
-			}
-
-			if ( $row === false ) {
-				wfProfileOut( __METHOD__ );
-				return false;
-			}
-		}
-
-		// Try to delete it from the master
-		$dbw = wfGetDB( DB_MASTER );
-		$dbw->delete( 'job', array( 'job_id' => $row->job_id ), __METHOD__ );
-		$affected = $dbw->affectedRows();
-		$dbw->commit( __METHOD__ );
-
-		if ( !$affected ) {
-			// Failed, someone else beat us to it
-			// Try getting a random row
-			$row = $dbw->selectRow( 'job', array( 'minjob' => 'MIN(job_id)',
-				'maxjob' => 'MAX(job_id)' ), '1=1', __METHOD__ );
-			if ( $row === false || is_null( $row->minjob ) || is_null( $row->maxjob ) ) {
-				// No jobs to get
-				wfProfileOut( __METHOD__ );
-				return false;
-			}
-			// Get the random row
-			$row = $dbw->selectRow( 'job', '*',
-				'job_id >= ' . mt_rand( $row->minjob, $row->maxjob ), __METHOD__ );
-			if ( $row === false ) {
-				// Random job gone before we got the chance to select it
-				// Give up
-				wfProfileOut( __METHOD__ );
-				return false;
-			}
-			// Delete the random row
-			$dbw->delete( 'job', array( 'job_id' => $row->job_id ), __METHOD__ );
-			$affected = $dbw->affectedRows();
-			$dbw->commit( __METHOD__ );
-
-			if ( !$affected ) {
-				// Random job gone before we exclusively deleted it
-				// Give up
-				wfProfileOut( __METHOD__ );
-				return false;
-			}
-		}
-
-		// If execution got to here, there's a row in $row that has been deleted from the database
-		// by this thread. Hence the concurrent pop was successful.
-		wfIncrStats( 'job-pop' );
-		$namespace = $row->job_namespace;
-		$dbkey = $row->job_title;
-		$title = Title::makeTitleSafe( $namespace, $dbkey );
-
-		if ( is_null( $title ) ) {
-			wfProfileOut( __METHOD__ );
-			return false;
-		}
-
-		$job = Job::factory( $row->job_cmd, $title, Job::extractBlob( $row->job_params ), $row->job_id );
-
-		// Remove any duplicates it may have later in the queue
-		$job->removeDuplicates();
-
-		wfProfileOut( __METHOD__ );
-		return $job;
-	}
-
-	/**
 	 * Create the appropriate object to handle a specific job
 	 *
 	 * @param $command String: Job command
@@ -230,6 +75,7 @@ abstract class Job {
 	/**
 	 * @param $params
 	 * @return string
+	 * @deprecated 1.20
 	 */
 	static function makeBlob( $params ) {
 		if ( $params !== false ) {
@@ -242,6 +88,7 @@ abstract class Job {
 	/**
 	 * @param $blob
 	 * @return bool|mixed
+	 * @deprecated 1.20
 	 */
 	static function extractBlob( $blob ) {
 		if ( (string)$blob !== '' ) {
@@ -259,33 +106,10 @@ abstract class Job {
 	 * removed later on, when the first one is popped.
 	 *
 	 * @param $jobs array of Job objects
+	 * @deprecated 1.20
 	 */
 	static function batchInsert( $jobs ) {
-		if ( !count( $jobs ) ) {
-			return;
-		}
-		$dbw = wfGetDB( DB_MASTER );
-		$rows = array();
-
-		/**
-		 * @var $job Job
-		 */
-		foreach ( $jobs as $job ) {
-			$rows[] = $job->insertFields();
-			if ( count( $rows ) >= 50 ) {
-				# Do a small transaction to avoid slave lag
-				$dbw->begin( __METHOD__ );
-				$dbw->insert( 'job', $rows, __METHOD__, 'IGNORE' );
-				$dbw->commit( __METHOD__ );
-				$rows = array();
-			}
-		}
-		if ( $rows ) { // last chunk
-			$dbw->begin( __METHOD__ );
-			$dbw->insert( 'job', $rows, __METHOD__, 'IGNORE' );
-			$dbw->commit( __METHOD__ );
-		}
-		wfIncrStats( 'job-insert', count( $jobs ) );
+		return JobQueueGroup::singleton()->push( $jobs );
 	}
 
 	/**
@@ -296,6 +120,7 @@ abstract class Job {
 	 * large batches of jobs can cause slave lag.
 	 *
 	 * @param $jobs array of Job objects
+	 * @deprecated 1.20
 	 */
 	static function safeBatchInsert( $jobs ) {
 		if ( !count( $jobs ) ) {
@@ -316,7 +141,6 @@ abstract class Job {
 		wfIncrStats( 'job-insert', count( $jobs ) );
 	}
 
-
 	/**
 	 * SQL conditions to apply on most JobQueue queries
 	 *
@@ -324,6 +148,7 @@ abstract class Job {
 	 * sure that queries to the job queue actually ignore them.
 	 *
 	 * @return array SQL conditions suitable for Database:: methods
+	 * @deprecated 1.20
 	 */
 	static function defaultQueueConditions( ) {
 		global $wgJobTypesExcludedFromDefaultQueue;
@@ -359,22 +184,47 @@ abstract class Job {
 	}
 
 	/**
+	 * @return integer May be 0 for jobs stored outside the DB
+	 */
+	public function getId() {
+		return $this->id;
+	}
+
+	/**
+	 * @return string
+	 */
+	public function getType() {
+		return $this->command;
+	}
+
+	/**
+	 * @return Title
+	 */
+	public function getTitle() {
+		return $this->title;
+	}
+
+	/**
+	 * @return array
+	 */
+	public function getParams() {
+		return $this->params;
+	}
+
+	/**
+	 * @return bool
+	 */
+	public function ignoreDuplicates() {
+		return $this->removeDuplicates;
+	}
+
+	/**
 	 * Insert a single job into the queue.
 	 * @return bool true on success
+	 * @deprecated 1.20
 	 */
 	function insert() {
-		$fields = $this->insertFields();
-
-		$dbw = wfGetDB( DB_MASTER );
-
-		if ( $this->removeDuplicates ) {
-			$res = $dbw->select( 'job', array( '1' ), $fields, __METHOD__ );
-			if ( $dbw->numRows( $res ) ) {
-				return true;
-			}
-		}
-		wfIncrStats( 'job-insert' );
-		return $dbw->insert( 'job', $fields, __METHOD__ );
+		return JobQueueGroup::singleton()->push( $this );
 	}
 
 	/**
@@ -395,8 +245,9 @@ abstract class Job {
 	/**
 	 * Remove jobs in the job queue which are duplicates of this job.
 	 * This is deadlock-prone and so starts its own transaction.
+	 * @deprecated 1.20
 	 */
-	function removeDuplicates() {
+	protected function removeDuplicates() {
 		if ( !$this->removeDuplicates ) {
 			return;
 		}
