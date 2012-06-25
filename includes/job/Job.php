@@ -358,6 +358,41 @@ abstract class Job {
 	}
 
 	/**
+	 * @return integer May be 0 for jobs stored outside the DB
+	 */
+	public function getId() {
+		return $this->id;
+	}
+
+	/**
+	 * @return string
+	 */
+	public function getType() {
+		return $this->command;
+	}
+
+	/**
+	 * @return Title
+	 */
+	public function getTitle() {
+		return $this->title;
+	}
+
+	/**
+	 * @return array
+	 */
+	public function getParams() {
+		return $this->params;
+	}
+
+	/**
+	 * @return bool
+	 */
+	public function ignoreDuplicates() {
+		return $this->removeDuplicates;
+	}
+
+	/**
 	 * Insert a single job into the queue.
 	 * @return bool true on success
 	 */
