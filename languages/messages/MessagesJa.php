@@ -1757,7 +1757,7 @@ $1 {{PLURAL:$1|文字}}以下である必要があります。',
 'recentchangeslinked-title' => '「$1」と関連する変更',
 'recentchangeslinked-noresult' => '指定期間中に指定ページのリンク先に変更はありませんでした。',
 'recentchangeslinked-summary' => "これは、指定したページからリンクされている（または指定したカテゴリに含まれている）ページへの最近の変更の一覧です。
-[[Special:Watchlist|自分のウォッチリスト]]にあるページは'''太字'''で表示されています。",
+[[Special:Watchlist|自分のウォッチリスト]]にあるページは'''太字'''になります。",
 'recentchangeslinked-page' => 'ページ名：',
 'recentchangeslinked-to' => '代わりに、指定したページへのリンク元での変更を表示',
 

@@ -15,6 +15,7 @@
  * @author Dnik
  * @author Ex13
  * @author Excaliboor
+ * @author FriedrickMILBarbarossa
  * @author Herr Mlinka
  * @author Kaganer
  * @author Luka Krstulovic
@@ -2266,7 +2267,7 @@ Molim potvrdite svoju namjeru, da razumijete posljedice i da ovo radite u skladu
 'actionfailed' => 'Radnja nije uspjela',
 'deletedtext' => '"$1" je izbrisana.
 Vidi $2 za evidenciju nedavnih brisanja.',
-'dellogpage' => 'Evidencija_brisanja',
+'dellogpage' => 'Evidencija brisanja',
 'dellogpagetext' => 'Dolje je popis nedavnih brisanja.
 Sva vremena su prema poslužiteljevom vremenu.',
 'deletionlog' => 'evidencija brisanja',

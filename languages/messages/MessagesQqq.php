@@ -3359,7 +3359,12 @@ See also {{msg-mw|Anonuser}} and {{msg-mw|Siteusers}}.',
 'nocredits' => 'This message is shown when viewing the credits of a page (example: {{fullurl:Main Page|action=credits}}) but when there are no credits available. Note that the credits action is disabled by default (currently enabled on translatewiki.net).',
 
 # Spam protection
-'spam_reverting' => '{{Identical|Revert}}',
+'spam_reverting' => 'Edit summary for spam cleanup script. Used when a page is reverted because all later revisions contained a particular link. Parameters:
+* $1 is a spammed domain name.',
+'spam_blanking' => 'Edit summary for spam cleanup script. Used when a page is blanked (made to have no content, but still exist) because the script could not find an appropriate revision to set the page to. Parameters:
+* $1 is a spammed domain name.',
+'spam_deleting' => 'Edit summary for spam cleanup script. Used when a page is deleted because all revisions contained a particular link. Parameters:
+* $1 is a spammed domain name.',
 
 # Info page
 'pageinfo-title' => 'Page title for action=info.

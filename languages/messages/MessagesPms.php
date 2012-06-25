@@ -48,7 +48,7 @@ $messages = array(
 'tog-hidepatrolled' => "Stërma le modìfiche verificà ant j'ùltime modìfiche",
 'tog-newpageshidepatrolled' => 'Stërma le pàgine verificà da la lista dle pàgine neuve',
 'tog-extendwatchlist' => 'Slarga la funsion "ten sot euj" an manera che a la smon-a tute le modìfiche, nen mach l\'ùltima',
-'tog-usenewrc' => "Deuvra j'ùltime modìfiche an bela forma (a-i va JavaScript)",
+'tog-usenewrc' => "Deuvra j'ùltime modìfiche ameliorà (a-i và JavaScript)",
 'tog-numberheadings' => 'Tìtoj ëd paràgraf<br />che as nùmero daspërlor',
 'tog-showtoolbar' => "Mostra la bara dj'utiss (a-i va Javascript)",
 'tog-editondblclick' => "Dobia sgnacà për modifiché l'artìcol<br />(a-i va JavaScript)",
@@ -2635,7 +2635,7 @@ Che as lo salva ansima a sò ordinator e peui che a lo caria ambelessì.",
 'importunknownsource' => "Sorgiss d'amportassion ëd na sòrt nen conossùa",
 'importcantopen' => "L'archivi da amporté a l'é pa podusse deurbe",
 'importbadinterwiki' => 'Liura antra wiki diferente cioca',
-'importnotext' => 'Veujd ò con gnun test',
+'importnotext' => 'Veujd o con gnun test',
 'importsuccess' => 'Amportassion andaita a bon fin!',
 'importhistoryconflict' => "A-i son dle stòrie dë sta pàgina-sì che as contradisso un-a con l'àutra (a peul esse che sta pàgina-sì a l'avèissa già amportala)",
 'importnosources' => "A l'é pa staita definìa gnun-a sorgiss d'amportassion da na wiki diferenta, e carié mach le stòrie as peul nen.",
@@ -3708,4 +3708,6 @@ Dësnò, a peule dovré ël formlari semplificà sì-sota. Sò coment a sarà gi
 'duration-centuries' => '$1 {{PLURAL:$1|sécol|sécoj}}',
 'duration-millennia' => '$1 {{PLURAL:$1|milenari|milenari}}',
 
+# Unknown messages
+'lockmanager-fail-svr-acquire' => 'As peul pa butesse le saradure an sël servent $1.',
 );

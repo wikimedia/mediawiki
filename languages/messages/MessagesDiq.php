@@ -1662,7 +1662,7 @@ wexta şima qayîl e yew peli re dosya bierzî, formanê cêrinan ra yewi bişux
 'fileuploadsummary' => 'Xulasa:',
 'filereuploadsummary' => 'Vurnayîşê dosyayî:',
 'filestatus' => 'Weziyetê heqê telifiye:',
-'filesource' => 'Çımey:',
+'filesource' => 'Çıme:',
 'uploadedfiles' => 'Dosyayê ke bar biye',
 'ignorewarning' => 'Îkazi kebul meke u dosya reyna bar bike',
 'ignorewarnings' => 'Îkazi kebul meke',

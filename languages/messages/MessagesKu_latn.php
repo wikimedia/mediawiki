@@ -2022,7 +2022,7 @@ Ji kerema xwe zanibe ku tu bi rastî dixwazî vê rûpelê dîsa çêkî.",
 'recreate' => 'Dîsa çêke',
 
 # action=purge
-'confirm_purge_button' => 'Temam',
+'confirm_purge_button' => 'Baş e',
 'confirm-purge-top' => 'Bîra vê rûpelê jêbîbe ?',
 
 # Multipage image navigation

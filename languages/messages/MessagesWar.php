@@ -70,7 +70,7 @@ $messages = array(
 'tog-hidepatrolled' => 'Tago-a in mga gin-patrol o binantayan nga mga pagliwat ha mga dipala naiha nga mga kabag-ohan',
 'tog-newpageshidepatrolled' => 'Tago-a an mga gin-patrol o binantayan nga mga pakli tikang han talaan hin bag-o nga pakli',
 'tog-extendwatchlist' => 'Padako-a an angay timan-an agod makita an tanan nga kabag-ohan, diri la an gibag-ohi',
-'tog-usenewrc' => 'Gamit hin mga gin-enhans o gindugngan nga gibag-ohi nga mga kabag-ohan (nakinahanglan hin JavaScript)',
+'tog-usenewrc' => 'Gamita in mga gin-enhans o gindugngan nga gibag-ohi nga mga kabag-ohan (nakinahanglan hin JavaScript)',
 'tog-numberheadings' => 'Auto-nga-ihap nga mga pagngaran',
 'tog-showtoolbar' => 'Igpakita an edit toolbar (nakinahanglan hin JavaScript)',
 'tog-editondblclick' => 'Igliwat in mga pakli ha doble nga klik (nakinahanglan hin JavaScript)',
@@ -542,14 +542,18 @@ Kun pidliton mo an \"{{int:savearticle}}\" utro, an imo ginliwat in matitipig bi
 'accmailtitle' => 'Ginpadara na an tigaman-pagsulod.',
 'newarticle' => '(Bag-o)',
 'newarticletext' => "Ginsunod mo an pakli nga waray pa kahihimo.  Para ighimo an pakli, tikanga pagmakinilya ha kahon nga aada ha ubos (kitaa an [[{{MediaWiki:Helppage}}|nabulig nga pakli]] para han kadugangan nga pananabutan).  Kun sayop an imo pagkanhi, igpidlit an imo kanan panngaykay (''browser'') '''balik''' (''back'') nga piridlitan.",
+'noarticletext' => 'Waray yana nahasurat hini nga pakli.
+Puyde hi ikaw [[Special:Search/{{PAGENAME}}|magbiling para han ngaran hini nga pakli]] ha iba nga mga pakli,
+<span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} binga an mga nanginginlabot nga mga log],
+o [{{fullurl:{{FULLPAGENAME}}|action=edit}} igliwat ini nga pakli]</span>.',
 'noarticletext-nopermission' => 'Ha yana waray surat ini nga pakli.
 Puydi nimo [[Special:Search/{{PAGENAME}}|pamilngon ini nga titulo han pakli]] ha iba nga mga pakli,
 o <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} pamilngon ha mga kasumpay nga talaan]</span>.',
 'userpage-userdoesnotexist-view' => "An akawnt han gumaramit ni ''$1'' in diri nakarehistro.",
 'updated' => '(Ginbag-ohan)',
 'note' => "'''Pahibaro:'''",
-'previewnote' => "'''Hinumdumi nga pahiuna-nga-paggawas la ini.'''
-An imo mga ginbag-o in waray pa katipig!",
+'previewnote' => "'''Hinumdumi nga pahiuna-nga-paggawas pa la ini.'''
+¡Waray pa katipig an imo mga ginbag-o!",
 'editing' => 'Ginliliwat an $1',
 'editingsection' => 'Ginliliwat an $1 (bahin)',
 'editingcomment' => 'Ginliliwat an $1 (bag-o nga bahin)',
@@ -1349,6 +1353,8 @@ An bisan ano nga masunod nga mga sumpay ha kapareho nga bagis in igtratrato nga 
 
 # Metadata
 'metadata' => 'Metadata',
+'metadata-help' => 'Iní nga paypay mayda dugang nga pagpasabot, nga bangin gindugáng tikang han digital nga camera o iskaner nga gin-gamit paghimo o pag-digitar hini.
+Kon an paypay ginliwat tikang han orihinal nga kamutangan, mayda mga detalye nga bangin diri magpakita han ginliwat nga paypay',
 'metadata-fields' => 'An mga rumbay han hulagway han metadato nga nakatala dinhi nga mensahe in iglalakip ha padayag hin hulagway nga pakli kun an taramdan metadato in nakalukot.
 An iba in daan nakatago.
 * make
@@ -1504,6 +1510,16 @@ An iba in daan nakatago.
 # Special:BlankPage
 'blankpage' => 'Blanko nga pakli',
 'intentionallyblankpage' => 'Ini nga pakli gintuyo pagpabilin nga blanko.',
+
+# External image whitelist
+'external_image_whitelist' => '#Pabay-i ini nga linea nga sugad gud la <pre>
+#Igbutang in mga regular nga expresyon nga mga fragment (iton bahin nga ada ha butnga han //) ha ubos
+#Ini igpapadis han mga URL han mga ha gawas (gin-hotlink) nga mga hulagway
+#An mga nasakto igpapakita nga mga hulagway, kon diri, sumpay la ngadto han hulagway an igpapakita
+#Mga linea nga natikang hin  # ginta-tratar nga mga komento
+# Case-insensitive ini
+
+#Igbutang an mga regex nga fragment ha igbaw hini nga linea. Pabay-i ini nga linea nga sugad gud la</pre>',
 
 # Special:Tags
 'tag-filter' => '[[Special:Tags|Tag]] panara:',

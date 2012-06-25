@@ -2856,6 +2856,7 @@ Dette skyldes sandsynligvis en henvisning til et sortlistet eksternt websted.',
 'spambot_username' => 'MediaWiki spam-rensning',
 'spam_reverting' => 'Sidste version uden henvisning til $1 gendannet.',
 'spam_blanking' => 'Alle versioner, som indeholdt henvisninger til $1, er renset.',
+'spam_deleting' => 'Alle versioner indeholder henvisninger til $1, sletter',
 
 # Info page
 'pageinfo-title' => 'Information om "$1"',

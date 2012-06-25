@@ -402,7 +402,7 @@ I [[Special:Preferences|{{SITENAME}}duhdàn]] siam danglam theihnghilh suh ang c
 'yourname' => 'Hmangtuhming:',
 'yourpassword' => 'Thurûk:',
 'yourpasswordagain' => 'Thurûk ziak nawn leh rawh le:',
-'remembermypassword' => 'He ka rangpuifanna hman mék (browser)-ah hian ka luhna (a rei berah ni {{PLURAL:$1||}}) min vawnsak rawh, thurûk ziah nawn ngai lo tùrin.',
+'remembermypassword' => 'He ka rangpuifanna hman mék (browser)-ah hian ka luhna (a rei berah ni {{PLURAL:$1||}}$1) min vawnsak rawh, thurûk ziah nawn ngai lo tùrin.',
 'securelogin-stick-https' => 'Luh hnuah HTTPS-ah hian chëng reng rawh.',
 'yourdomainname' => 'I ram:',
 'externaldberror' => 'Insawifiahna felfai lo a awm lo a nih loh vëk pawhin i pawnlam siangchan tihdanglam phalsak i ni lo a ni ang.',
