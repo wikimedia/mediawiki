@@ -9504,6 +9504,24 @@ abc
 </p>
 !! end
 
+!!test
+{{#iffunction:}}
+!! input
+{{#iffunction:int|true|false}} {{#iffunction:nosuchfunction|true|false}}
+!! result
+<p>true false
+</p>
+!! end
+
+!!test
+{{#iftag:}}
+!! input
+{{#iftag:gallery|true|false}} {{#iftag:nosuchtag|true|false}}
+!! result
+<p>true false
+</p>
+!! end
+
 TODO:
 more images
 more tables
