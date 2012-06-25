@@ -23,6 +23,12 @@
 
 require_once( dirname( __FILE__ ) . '/Maintenance.php' );
 
+/**
+ * Maintenance script to cleans up old database tables, dropping old indexes
+ * and fields.
+ *
+ * @ingroup Maintenance
+ */
 class CleanupAncientTables extends Maintenance {
 
 	public function __construct() {
