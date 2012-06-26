@@ -364,3 +364,6 @@
 [submodule "extensions/EducationProgram"]
 	path = extensions/EducationProgram
 	url = https://gerrit.wikimedia.org/r/p/mediawiki/extensions/EducationProgram.git
+[submodule "extensions/WikimediaShopLink"]
+	path = extensions/WikimediaShopLink
+	url = https://gerrit.wikimedia.org/r/p/mediawiki/extensions/WikimediaShopLink.git
