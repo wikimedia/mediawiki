@@ -339,6 +339,33 @@ class MWNamespace {
 			return $wgContentNamespaces;
 		}
 	}
+
+	/**
+	 * List all namespace indices which are considered subject, aka not a talk
+	 * or special namespace. See also MWNamespace::isSubject
+	 *
+	 * @return array of namespace indices
+	 */
+	public static function getSubjectNamespaces() {
+		return array_filter(
+			MWNamespace::getValidNamespaces(),
+			'MWNamespace::isSubject'
+		);
+	}
+
+	/**
+	 * List all namespace indices which are considered talks, aka not a subject
+	 * or special namespace. See also MWNamespace::isTalk
+	 *
+	 * @return array of namespace indices
+	 */
+	public static function getTalkNamespaces() {
+		return array_filter(
+			MWNamespace::getValidNamespaces(),
+			'MWNamespace::isTalk'
+		);
+	}
+
 	/**
 	 * Is the namespace first-letter capitalized?
 	 *
