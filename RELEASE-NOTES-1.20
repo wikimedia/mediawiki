@@ -74,7 +74,6 @@ upgrade PHP if you have not done so prior to upgrading MediaWiki.
 * Added new function getDomain to AuthPlugin for getting a user's domain
 * (bug 23427) New magic word {{PAGEID}} which gives the current page ID.
   Will be null on previewing a page being created.
-* Added ContribsPager::reallyDoQuery hook allowing extensions to data to MyContribs
 
 === Bug fixes in 1.20 ===
 * (bug 30245) Use the correct way to construct a log page title.
