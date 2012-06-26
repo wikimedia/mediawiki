@@ -558,6 +558,29 @@ abstract class ContentHandler {
 	}
 
 	/**
+	 * Get the language in which the content of the given page is written.
+	 *
+	 * This default implementation returns $wgContLang->getCode().
+	 *
+	 * Note that a page's language must be permanent and cacheable, that is, it must not depend
+	 * on user preferences, request parameters or session state.
+	 *
+	 * Also note that the page language may or may not depend on the actual content of the page,
+	 * that is, this method may load the content in order to determine the language.
+	 *
+	 * @since 1.WD
+	 *
+	 * @param Title        $title the page to determine the language for.
+	 * @param Content|null $content the page's content, if you have it handy, to avoid reloading it.
+	 *
+	 * @return Language the page's language code
+	 */
+	public function getPageLanguage( Title $title, Content $content = null ) {
+		global $wgContLang;
+		return $wgContLang;
+	}
+
+	/**
 	 * Returns the name of the diff engine to use.
 	 *
 	 * @since WD.1
@@ -1126,6 +1149,17 @@ class JavaScriptContentHandler extends TextContentHandler {
 		return new JavaScriptContent( '' );
 	}
 
+	/**
+	 * Returns the english language, because JS is english, and should be handled as such.
+	 *
+	 * @return Language wfGetLangObj( 'en' )
+	 *
+	 * @see ContentHandler::getPageLanguage()
+	 */
+	public function getPageLanguage( Title $title, Content $content = null ) {
+		return wfGetLangObj( 'en' );
+	}
+
 	protected function getHtml( Content $content ) {
 		$html = "";
 		$html .= "<pre class=\"mw-code mw-js\" dir=\"ltr\">\n";
@@ -1155,6 +1189,16 @@ class CssContentHandler extends TextContentHandler {
 		return new CssContent( '' );
 	}
 
+	/**
+	 * Returns the english language, because CSS is english, and should be handled as such.
+	 *
+	 * @return Language wfGetLangObj( 'en' )
+	 *
+	 * @see ContentHandler::getPageLanguage()
+	 */
+	public function getPageLanguage( Title $title, Content $content = null ) {
+		return wfGetLangObj( 'en' );
+	}
 
 	protected function getHtml( Content $content ) {
 		$html = "";

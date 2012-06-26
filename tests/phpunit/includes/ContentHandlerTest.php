@@ -121,6 +121,38 @@ class ContentHandlerTest extends MediaWikiTestCase {
 		}
 	}
 
+	public function dataGetPageLanguage() {
+		global $wgLanguageCode;
+
+		return array(
+			array( "Main", $wgLanguageCode ),
+			array( "Dummy:Foo", $wgLanguageCode ),
+			array( "MediaWiki:common.js", 'en' ),
+			array( "User:Foo/common.js", 'en' ),
+			array( "MediaWiki:common.css", 'en' ),
+			array( "User:Foo/common.css", 'en' ),
+			array( "User:Foo", $wgLanguageCode ),
+
+			array( CONTENT_MODEL_JAVASCRIPT, 'javascript' ),
+		);
+	}
+
+	/**
+	 * @dataProvider dataGetPageLanguage
+	 */
+	public function testGetPageLanguage( $title, $expected ) {
+		if ( is_string( $title ) ) {
+			$title = Title::newFromText( $title );
+		}
+
+		$expected = wfGetLangObj( $expected );
+
+		$handler = ContentHandler::getForTitle( $title );
+		$lang = $handler->getPageLanguage( $title );
+
+		$this->assertEquals( $expected->getCode(), $lang->getCode() );
+	}
+
 	public function testGetContentText_Null( ) {
 		global $wgContentHandlerTextFallback;
 

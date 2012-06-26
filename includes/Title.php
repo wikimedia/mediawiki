@@ -4548,17 +4548,17 @@ class Title {
 		if ( $this->isSpecialPage() ) {
 			// special pages are in the user language
 			return $wgLang;
-		} elseif ( $this->isCssOrJsPage() || $this->isCssJsSubpage() ) {
-			// css/js should always be LTR and is, in fact, English
-			return wfGetLangObj( 'en' );
 		} elseif ( $this->getNamespace() == NS_MEDIAWIKI ) {
 			// Parse mediawiki messages with correct target language
 			list( /* $unused */, $lang ) = MessageCache::singleton()->figureMessage( $this->getText() );
 			return wfGetLangObj( $lang );
 		}
-		global $wgContLang;
-		// If nothing special, it should be in the wiki content language
-		$pageLang = $wgContLang;
+
+		//TODO: use the LinkCache to cache this!
+		//NOTE: ContentHandler::getPageLanguage() may need to load the content to determine the page language!
+		$contentHandler = ContentHandler::getForTitle( $this );
+		$pageLang = $contentHandler->getPageLanguage( $this );
+
 		// Hook at the end because we don't want to override the above stuff
 		wfRunHooks( 'PageContentLanguage', array( $this, &$pageLang, $wgLang ) );
 		return wfGetLangObj( $pageLang );
