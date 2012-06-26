@@ -645,7 +645,7 @@ class ContribsPager extends ReverseChronologicalPager {
 			krsort( $result );
 		}
 
-		// enfore limit
+		// enforce limit
 		$result = array_slice( $result, 0, $limit );
 
 		// get rid of array keys
