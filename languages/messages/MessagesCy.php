@@ -2816,9 +2816,9 @@ Gellir ychwanegu rheswm dros y dadwneud yn y crynodeb.',
 Achos hyn yn fwy na thebyg yw presenoldeb cysylltiad i wefan ar y rhestr waharddedig.',
 'spamprotectionmatch' => "Dyma'r testun gyneuodd ein hidlydd amddiffyn rhag sbam: $1",
 'spambot_username' => 'Teclyn clirio sbam MediaWiki',
-'spam_reverting' => "Yn troi nôl i'r diwygiad diweddaraf sydd ddim yn cynnwys cysylltiadau i $1",
-'spam_blanking' => 'Roedd cysylltiadau i $1 gan bob golygiad, yn blancio',
-'spam_deleting' => "Roedd pob diwygiad yn cynnwys cysylltiadau â $1, wrthi'n dileu",
+'spam_reverting' => 'Wedi adfer y diwygiad diweddaraf na sydd yn cynnwys cysylltiadau i $1',
+'spam_blanking' => 'Roedd cysylltiadau i $1 gan bob golygiad, felly gwacawyd y dudalen',
+'spam_deleting' => 'Roedd pob diwygiad yn cynnwys cysylltiadau â $1, felly fe ddilëwyd y dudalen',
 
 # Info page
 'pageinfo-title' => 'Manylion "$1"',

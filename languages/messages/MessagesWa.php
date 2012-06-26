@@ -1145,9 +1145,9 @@ Les pådjes ki [[Special:Watchlist|vos shuvoz]] sont-st e '''cråssès letes'''.
 'uploadnologintext' => 'I vs fåt esse [[Special:UserLogin|elodjî]] por vos pleur eberweter des fitchîs.',
 'upload_directory_read_only' => "Li sierveu waibe èn pout nén scrire sol ridant d' eberwetaedje ($1).",
 'uploaderror' => "Aroke d' eberwetaedje",
-'uploadtext' => "Eployîz les boesses d' intrêye chal pa dzo po-z eberweter des noveas fitchîs.
-Po håyner ou cweri des fitchîs k' ont ddja stî rçuvous, alez sol [[Special:FileList|djivêye des fitchîs ddja eberweté]].
-Les (r)eberwetaedjes sont eto metos sol [[Special:Log/uplozf|djournå des eberwetaedjes]], les disfaçaedjes sol [[Special:Log/upload|ci des disfaçaedjes]].
+'uploadtext' => "Eployîz les boesses d' intrêye chal pa dzo po-z eberweter des fitchîs.
+Po håyner ou cweri des fitchîs k' ont ddja stî rçuvous, alez sol [[Special:FileList|djivêye des fitchîs ddja eberwetés]].
+Les (r)eberwetaedjes sont eto metos sol [[Special:Log/upload|djournå des eberwetaedjes]], les disfaçaedjes sol [[Special:Log/delete|ci des disfaçaedjes]].
 
 Po mete on fitchî dins ene pådje, eployîz on loyén del fôme:
 * '''<tt><nowiki>[[</nowiki>{{ns:file}}<nowiki>:Fitchî.jpg]]</nowiki></tt>''' po-z eployî l' modêye e grandeu oridjinnåle do fitchî
@@ -1963,7 +1963,7 @@ Dj' ô bén, ça permete di disfé l' candjmint et d' mete on messaedje dins l' 
 # Attribution
 'anonymous' => '{{PLURAL:$1|Uzeu anonime|Uzeus anonimes}} di {{SITENAME}}',
 'siteuser' => "$1, {{GENDER:$2|uzeu d'|uzeuse di}} {{SITENAME}}",
-'anonuser' => '$1, {{GENDER:$2|uzeu|uzeuse}} anonime di {{SITENAME}}',
+'anonuser' => '$1, uzeu anonime di {{SITENAME}}',
 'lastmodifiedatby' => 'Cisse pådje a stî candjeye pol dierin côp li $2, $1 pa $3.',
 'othercontribs' => "Båzé so l' ovraedje da $1.",
 'others' => 'co ds ôtes',

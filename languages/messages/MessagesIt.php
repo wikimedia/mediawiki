@@ -1297,7 +1297,7 @@ Vedi l'[[Special:BlockList|elenco dei blocchi]] per l'elenco dei bandi e dei blo
 'prefs-watchlist-days-max' => 'Massimo $1 {{PLURAL:$1|giorno|giorni}}',
 'prefs-watchlist-edits' => 'Numero di modifiche da mostrare con le funzioni avanzate:',
 'prefs-watchlist-edits-max' => 'Numero massimo: 1000',
-'prefs-watchlist-token' => 'Token Osservati speciali:',
+'prefs-watchlist-token' => 'Token osservati speciali:',
 'prefs-misc' => 'Varie',
 'prefs-resetpass' => 'Cambia password',
 'prefs-changeemail' => 'Modifica e-mail',

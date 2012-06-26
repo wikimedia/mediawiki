@@ -789,6 +789,8 @@ Die Sperre wurde durch [[User:$1|$1]] mit der Begründung ''„$2“'' eingerich
 Der Administrator, der den Schreibzugriff sperrte, gab folgenden Grund an: „$3“.',
 'invalidtitle-knownnamespace' => 'Ungültiger Titel mit Namensraum „$2“ und Text „$3“',
 'invalidtitle-unknownnamespace' => 'Ungültiger Titel mit unbekannter Namensraumnummer $1 und Text „$2“',
+'exception-nologin' => 'Nicht angemeldet',
+'exception-nologin-text' => 'Diese Seite oder Aktion erfordert, dass du auf diesem Wiki angemeldet bist.',
 
 # Virus scanner
 'virus-badscanner' => "Fehlerhafte Konfiguration: unbekannter Virenscanner: ''$1''",
