@@ -9902,7 +9902,284 @@ Definition Lists: Weird Ones: Test 1
 
 !! end
 
+###
+### 2-quote opening sequence tests
+###
+!! test
+2-quote opening sequence: (2,2)
+!! input
+''foo''
+!! result
+<p><i>foo</i>
+</p>
+!!end
 
+
+!! test
+2-quote opening sequence: (2,3)
+!! input
+''foo'''
+!! result
+<p><i>foo'</i>
+</p>
+!!end
+
+
+!! test
+2-quote opening sequence: (2,4)
+!! input
+''foo''''
+!! result
+<p><i>foo''</i>
+</p>
+!!end
+
+
+!! test
+2-quote opening sequence: (2,5)
+!! input
+''foo'''''
+!! result
+<p><i>foo</i>
+</p>
+!!end
+
+
+###
+### 3-quote opening sequence tests
+###
+
+!! test
+3-quote opening sequence: (3,2)
+!! input
+'''foo''
+!! result
+<p>'<i>foo</i>
+</p>
+!!end
+
+
+!! test
+3-quote opening sequence: (3,3)
+!! input
+'''foo'''
+!! result
+<p><b>foo</b>
+</p>
+!!end
+
+
+!! test
+3-quote opening sequence: (3,4)
+!! input
+'''foo''''
+!! result
+<p><b>foo'</b>
+</p>
+!!end
+
+
+!! test
+3-quote opening sequence: (3,5)
+!! input
+'''foo'''''
+!! result
+<p><b>foo</b>
+</p>
+!!end
+
+
+###
+### 4-quote opening sequence tests
+###
+
+!! test
+4-quote opening sequence: (4,2)
+!! input
+''''foo''
+!! result
+<p>''<i>foo</i>
+</p>
+!!end
+
+
+!! test
+4-quote opening sequence: (4,3)
+!! input
+''''foo'''
+!! result
+<p>'<b>foo</b>
+</p>
+!!end
+
+
+!! test
+4-quote opening sequence: (4,4)
+!! input
+''''foo''''
+!! result
+<p>'<b>foo'</b>
+</p>
+!!end
+
+
+!! test
+4-quote opening sequence: (4,5)
+!! input
+''''foo'''''
+!! result
+<p>'<b>foo</b>
+</p>
+!!end
+
+
+###
+### 5-quote opening sequence tests
+###
+
+!! test
+5-quote opening sequence: (5,2)
+!! input
+'''''foo''
+!! result
+<p><b><i>foo</i></b>
+</p>
+!!end
+
+
+!! test
+5-quote opening sequence: (5,3)
+!! input
+'''''foo'''
+!! result
+<p><i><b>foo</b></i>
+</p>
+!!end
+
+
+!! test
+5-quote opening sequence: (5,4)
+!! input
+'''''foo''''
+!! result
+<p><i><b>foo'</b></i>
+</p>
+!!end
+
+
+!! test
+5-quote opening sequence: (5,5)
+!! input
+'''''foo'''''
+!! result
+<p><i><b>foo</b></i>
+</p>
+!!end
+
+###
+### multiple quote sequences in a line
+###
+!! test
+multiple quote sequences: (2,4,2)
+!! input
+''foo''''bar''
+!! result
+<p><i>foo'<b>bar</b></i>
+</p>
+!!end
+
+
+!! test
+multiple quote sequences: (2,4,3)
+!! input
+''foo''''bar'''
+!! result
+<p><i>foo'<b>bar</b></i>
+</p>
+!!end
+
+
+!! test
+multiple quote sequences: (2,4,4)
+!! input
+''foo''''bar''''
+!! result
+<p><i>foo'<b>bar'</b></i>
+</p>
+!!end
+
+
+!! test
+multiple quote sequences: (3,4,2)
+!! input
+'''foo''''bar''
+!! result
+<p><b>foo'</b>bar
+</p>
+!!end
+
+
+!! test
+multiple quote sequences: (3,4,3)
+!! input
+'''foo''''bar'''
+!! result
+<p><b>foo'</b>bar
+</p>
+!!end
+
+###
+### other quote tests
+###
+!! test
+other quote tests: (2,3,5)
+!! input
+''this is about '''foo's family'''''
+!! result
+<p><i>this is about <b>foo's family</b></i>
+</p>
+!!end
+
+
+!! test
+other quote tests: (2,(3,3),2)
+!! input
+''this is about '''foo's''' family''
+!! result
+<p><i>this is about <b>foo's</b> family</i>
+</p>
+!!end
+
+
+!! test
+other quote tests: (3,2,3,2)
+!! input
+'''this is about ''foo'''s family''
+!! result
+<p><b>this is about <i>foo</i></b><i>s family</i>
+</p>
+!!end
+
+
+!! test
+other quote tests: (3,2,3,3)
+!! input
+'''this is about ''foo'''s family'''
+!! result
+<p>'<i>this is about </i>foo<b>s family</b>
+</p>
+!!end
+
+
+
+!! test
+other quote tests: (3,(2,2),3)
+!! input
+'''this is about ''foo's'' family'''
+!! result
+<p><b>this is about <i>foo's</i> family</b>
+</p>
+!!end
 TODO:
 more images
 more tables
