@@ -815,6 +815,8 @@ class ContribsPager extends ReverseChronologicalPager {
 	function formatRow( $row ) {
 		wfProfileIn( __METHOD__ );
 
+		$classes = array();
+
 		if ( isset( $row->rev_id ) ) {
 			$rev = new Revision( $row );
 			$classes = array();
@@ -927,13 +929,14 @@ class ContribsPager extends ReverseChronologicalPager {
 			list( $tagSummary, $newClasses ) = ChangeTags::formatSummaryRow( $row->ts_tags, 'contributions' );
 			$classes = array_merge( $classes, $newClasses );
 			$ret .= " $tagSummary";
-
-			$classes = implode( ' ', $classes );
-			$ret = "<li class=\"$classes\">$ret</li>\n";
 		}
 
 		// Let extensions add data
 		wfRunHooks( 'ContributionsLineEnding', array( &$this, &$ret, $row ) );
+
+		$classes = implode( ' ', $classes );
+		$ret = "<li class=\"$classes\">$ret</li>\n";
+
 		wfProfileOut( __METHOD__ );
 		return $ret;
 	}
