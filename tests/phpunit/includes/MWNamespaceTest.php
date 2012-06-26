@@ -438,6 +438,36 @@ class MWNamespaceTest extends MediaWikiTestCase {
 	}
 
 	/**
+	 */
+	public function testGetSubjectNamespaces() {
+		$subjectsNS = MWNamespace::getSubjectNamespaces();
+		$this->assertContains(    NS_MAIN, $subjectsNS,
+			"Talk namespaces should have NS_MAIN" );
+		$this->assertNotContains( NS_TALK, $subjectsNS,
+			"Talk namespaces should have NS_TALK" );
+
+		$this->assertNotContains( NS_MEDIA, $subjectsNS,
+			"Talk namespaces should not have NS_MEDIA" );
+		$this->assertNotContains( NS_SPECIAL, $subjectsNS,
+			"Talk namespaces should not have NS_SPECIAL" );
+	}
+
+	/**
+	 */
+	public function testGetTalkNamespaces() {
+		$talkNS = MWNamespace::getTalkNamespaces();
+		$this->assertContains(    NS_TALK, $talkNS,
+			"Subject namespaces should have NS_TALK" );
+		$this->assertNotContains( NS_MAIN, $talkNS,
+			"Subject namespaces should not have NS_MAIN" );
+
+		$this->assertNotContains( NS_MEDIA, $talkNS,
+			"Subject namespaces should not have NS_MEDIA" );
+		$this->assertNotContains( NS_SPECIAL, $talkNS,
+			"Subject namespaces should not have NS_SPECIAL" );
+	}
+
+	/**
 	 * Some namespaces are always capitalized per code definition
 	 * in MWNamespace::$alwaysCapitalizedNamespaces
 	 */
