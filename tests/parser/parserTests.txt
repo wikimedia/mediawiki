@@ -2240,6 +2240,36 @@ Nested lists 6 (both elements empty)
 
 !! end
 
+!! test
+Nested lists 7 (skip initial nesting levels)
+!! input
+*** foo
+!! result
+<ul><li><ul><li><ul><li> foo
+</li></ul>
+</li></ul>
+</li></ul>
+
+!! end
+
+!! test
+Nested lists 8 (multiple nesting transitions)
+!! input
+* foo
+*** bar
+** baz
+* boo
+!! result
+<ul><li> foo
+<ul><li><ul><li> bar
+</li></ul>
+</li><li> baz
+</li></ul>
+</li><li> boo
+</li></ul>
+
+!! end
+
 
 !! test
 List items are not parsed correctly following a <pre> block (bug 785)
@@ -9505,7 +9535,7 @@ abc
 !! end
 
 !! test
-DL Tests: No nesting: Multiple dd's
+Definition Lists: No nesting: Multiple dd's
 !! input
 ;x
 :a
@@ -9519,7 +9549,7 @@ DL Tests: No nesting: Multiple dd's
 !! end
 
 !! test
-DL Tests: Indentation: Regular
+Definition Lists: Indentation: Regular
 !! input
 :i1
 ::i2
@@ -9535,7 +9565,7 @@ DL Tests: Indentation: Regular
 !! end
 
 !! test
-DL Tests: Indentation: Missing 1st level
+Definition Lists: Indentation: Missing 1st level
 !! input
 ::i2
 :::i3
@@ -9549,7 +9579,7 @@ DL Tests: Indentation: Missing 1st level
 !! end
 
 !! test
-DL Tests: Indentation: Multi-level indent 
+Definition Lists: Indentation: Multi-level indent
 !! input
 :::i3
 !! result
@@ -9560,8 +9590,40 @@ DL Tests: Indentation: Multi-level indent
 
 !! end
 
+## The PHP parser treats : items (dd) without a corresponding ; item (dt)
+## as an empty dt item.  It also ignores all but the last ";" when followed
+## by ":" later on.  So, ";" are not ignored in ";;;t3" but are ignored  in
+## ";;;t3 :d1".  So, PHP parser behavior is a little inconsistent wrt multiple
+## ";"s.
+##
+## Ex: ";;t2 ::d2" is transformed into:
+##
+## <dl>
+##   <dt>t2 </dt>
+##   <dd>
+##     <dl>
+##       <dt></dt>
+##       <dd>d2</dd>
+##     </dl>
+##   </dd>
+## </dl>
+##
+## But, Parsoid treats "; :" as a tight atomic unit and excess ":" as plain text
+## So, the same wikitext above (;;t2 ::d2) is transformed into:
+##
+## <dl>
+##   <dt>
+##     <dl>
+##       <dt>t2 </dt>
+##       <dd>:d2</dd>
+##     </dl>
+##    </dt>
+## </dl>
+##
+## All Parsoid only definition list tests have this difference.
+
 !! test
-DL Tests: Nesting: Multi-level (Parsoid only)
+Definition Lists: Nesting: Multi-level (Parsoid only)
 !! options
 disabled
 !! input
@@ -9570,23 +9632,28 @@ disabled
 ;;;t3 :::d3
 !! result
 <dl>
-<dt>t1 </dt>
-<dd>d1</dd>
-<dt>
-<dl>
-<dt>t2 </dt>
-<dd>:d2</dd>
-<dt>
-<dl>
-<dt>t3 </dt>
-<dd>::d3</dd></dl></dt></dl></dt></dl>
+  <dt>t1 </dt>
+  <dd>d1</dd>
+  <dt>
+    <dl>
+      <dt>t2 </dt>
+      <dd>:d2</dd>
+      <dt>
+        <dl>
+          <dt>t3 </dt>
+          <dd>::d3</dd>
+        </dl>
+      </dt>
+    </dl>
+  </dt>
+</dl>
 
 
 !! end
 
 
 !! test
-DL Tests: Nesting: Test 2 (Parsoid only)
+Definition Lists: Nesting: Test 2 (Parsoid only)
 !! options
 disabled
 !! input
@@ -9594,16 +9661,47 @@ disabled
 ::d2
 !! result
 <dl>
-<dt>t1</dt>
-<dd>
-<dl>
-<dd>d2</dd></dl></dd></dl>
+  <dt>t1</dt>
+  <dd>
+    <dl>
+      <dd>d2</dd>
+    </dl>
+  </dd>
+</dl>
 
 !! end
 
 
 !! test
-DL Tests: Nesting: Test 3
+Definition Lists: Nesting: Test 3 (Parsoid only)
+!! options
+disabled
+!! input
+:;t1
+::::d2
+!! result
+<dl>
+  <dd>
+    <dl>
+      <dt>t1</dt>
+      <dd>
+        <dl>
+          <dd>
+            <dl>
+              <dd>d2</dd>
+            </dl>
+          </dd>
+        </dl>
+      </dd>
+    </dl>
+  </dd>
+</dl>
+
+!! end
+
+
+!! test
+Definition Lists: Nesting: Test 4
 !! input
 ::;t3
 :::d3
@@ -9618,28 +9716,7 @@ DL Tests: Nesting: Test 3
 
 
 !! test
-DL Tests: Nesting: Test 4 (Parsoid only)
-!! options
-disabled
-!! input
-:;t1
-::::d2
-!! result
-<dl>
-<dd>
-<dl>
-<dt>t1</dt>
-<dd>
-<dl>
-<dd>
-<dl>
-<dd>d2</dd></dl></dd></dl></dd></dl></dd></dl>
-
-!! end
-
-
-!! test
-DL Tests: Mixed Lists: Test 1
+Definition Lists: Mixed Lists: Test 1
 !! input
 :;* foo
 ::* bar
@@ -9657,7 +9734,7 @@ DL Tests: Mixed Lists: Test 1
 
 
 !! test
-DL Tests: Mixed Lists: Test 2
+Definition Lists: Mixed Lists: Test 2
 !! input
 *: d1
 *: d2
@@ -9671,7 +9748,7 @@ DL Tests: Mixed Lists: Test 2
 
 
 !! test
-DL Tests: Mixed Lists: Test 3
+Definition Lists: Mixed Lists: Test 3
 !! input
 *::: d1
 *::: d2
@@ -9687,7 +9764,7 @@ DL Tests: Mixed Lists: Test 3
 
 
 !! test
-DL Tests: Mixed Lists: Test 4
+Definition Lists: Mixed Lists: Test 4
 !! input
 *;d1 :d2
 *;d3 :d4
@@ -9701,7 +9778,7 @@ DL Tests: Mixed Lists: Test 4
 
 
 !! test
-DL Tests: Mixed Lists: Test 5
+Definition Lists: Mixed Lists: Test 5
 !! input
 *:d1
 *:: d2
@@ -9716,7 +9793,7 @@ DL Tests: Mixed Lists: Test 5
 
 
 !! test
-DL Tests: Mixed Lists: Test 6
+Definition Lists: Mixed Lists: Test 6
 !! input
 #*:d1
 #*::: d3
@@ -9733,7 +9810,7 @@ DL Tests: Mixed Lists: Test 6
 
 
 !! test
-DL Tests: Mixed Lists: Test 7
+Definition Lists: Mixed Lists: Test 7
 !! input
 :* d1
 :* d2
@@ -9747,7 +9824,7 @@ DL Tests: Mixed Lists: Test 7
 
 
 !! test
-DL Tests: Mixed Lists: Test 8
+Definition Lists: Mixed Lists: Test 8
 !! input
 :* d1
 ::* d2
@@ -9763,7 +9840,7 @@ DL Tests: Mixed Lists: Test 8
 
 
 !! test
-DL Tests: Mixed Lists: Test 9
+Definition Lists: Mixed Lists: Test 9
 !! input
 *;foo :bar
 !! result
@@ -9775,7 +9852,7 @@ DL Tests: Mixed Lists: Test 9
 
 
 !! test
-DL Tests: Mixed Lists: Test 10
+Definition Lists: Mixed Lists: Test 10
 !! input
 *#;foo :bar
 !! result
@@ -9788,7 +9865,7 @@ DL Tests: Mixed Lists: Test 10
 
 
 !! test
-DL Tests: Mixed Lists: Test 11
+Definition Lists: Mixed Lists: Test 11
 !! input
 *#*#;*;;foo :bar
 *#*#;boo :baz
@@ -9809,7 +9886,7 @@ DL Tests: Mixed Lists: Test 11
 
 
 !! test
-DL Tests: Weird Ones: Test 1
+Definition Lists: Weird Ones: Test 1
 !! input
 *#;*::;; foo : bar (who uses this?)
 !! result
