@@ -95,32 +95,6 @@ class ContentHandlerTest extends MediaWikiTestCase {
 		}
 	}
 
-	public function dataGetModelName() {
-		return array(
-			array( null, null ),
-			array( "xyzzy", null ),
-
-			array( CONTENT_MODEL_JAVASCRIPT, 'javascript' ),
-		);
-	}
-
-	/**
-	 * @dataProvider dataGetModelName
-	 */
-	public function testGetModelName( $id, $expected ) {
-		try {
-			$handler = ContentHandler::getForModelID( $id );
-			$name = $handler->getModelID();
-
-			if ( !$expected ) $this->fail("should not have a name for content id #$id");
-
-			$this->assertNotNull( $name, "no name found for content model #$id" );
-			$this->assertEquals( $expected, $name);
-		} catch (MWException $e) {
-			if ( $expected ) $this->fail("failed to get name for content id #$id");
-		}
-	}
-
 	public function dataGetPageLanguage() {
 		global $wgLanguageCode;
 
