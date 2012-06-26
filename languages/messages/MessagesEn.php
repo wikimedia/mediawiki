@@ -1087,7 +1087,7 @@ Do not forget to change your [[Special:Preferences|{{SITENAME}} preferences]].',
 Please choose a different name.',
 'loginerror'                 => 'Login error',
 'createaccounterror'         => 'Could not create account: $1',
-'exception-nologin'          => 'Not logged in.',
+'exception-nologin'          => 'Not logged in',
 'exception-nologin-text'     => 'This page or action requires you to be logged in on this wiki.',
 'nocookiesnew'               => 'The user account was created, but you are not logged in.
 {{SITENAME}} uses cookies to log in users.
