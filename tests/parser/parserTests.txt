@@ -9906,7 +9906,6 @@ Definition Lists: Weird Ones: Test 1
 TODO:
 more images
 more tables
-math
 character entities
 and much more
 Try for 100% code coverage
