@@ -93,6 +93,11 @@ if ( $maintenance->getDbType() === Maintenance::DB_ADMIN &&
 {
 	require( MWInit::interpretedPath( 'AdminSettings.php' ) );
 }
+
+if ( $maintenance->getDbType() === Maintenance::DB_NONE ) {
+	if ( $wgLocalisationCacheConf['storeClass'] === false && ( $wgLocalisationCacheConf['store'] == 'db' || ( $wgLocalisationCacheConf['store'] == 'detect' && !$wgCacheDirectory ) ) )
+		$wgLocalisationCacheConf['storeClass'] = 'LCStore_Null';
+}
 $maintenance->finalSetup();
 // Some last includes
 require_once( MWInit::compiledPath( 'includes/Setup.php' ) );
