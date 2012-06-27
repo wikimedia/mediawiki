@@ -17,8 +17,6 @@ project.index
 static*
 tags
 cache/*.cdb
-images/[0-9a-f]
-images/archive
 images/deleted
 images/temp
 images/thumb
