@@ -1413,7 +1413,7 @@ If you save it, any changes made since this revision will be lost.",
 'yourdiff'                         => 'Differences',
 'copyrightwarning'                 => "Please note that all contributions to {{SITENAME}} are considered to be released under the $2 (see $1 for details).
 If you do not want your writing to be edited mercilessly and redistributed at will, then do not submit it here.<br />
-You are also promising us that you wrote this yourself, or copied it from a public domain or similar free resource.
+You are also promising us that you wrote this yourself, or copied editpageit from a public domain or similar free resource.
 '''Do not submit copyrighted work without permission!'''",
 'copyrightwarning2'                => "Please note that all contributions to {{SITENAME}} may be edited, altered, or removed by other contributors.
 If you do not want your writing to be edited mercilessly, then do not submit it here.<br />
@@ -1469,6 +1469,7 @@ It already exists.',
 'addsection-preload'               => '', # do not translate or duplicate this message to other languages
 'addsection-editintro'             => '', # do not translate or duplicate this message to other languages
 'defaultmessagetext'               => 'Default message text',
+'invalid-content-data'             => 'Invalid content data',
 
 # Parser/template warnings
 'expensive-parserfunction-warning'        => "'''Warning:''' This page contains too many expensive parser function calls.

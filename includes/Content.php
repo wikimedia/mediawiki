@@ -357,6 +357,27 @@ interface Content {
 	 */
 	public function preloadTransform( Title $title, ParserOptions $popts );
 
+	/**
+	 * Prepare Content for saving. Called before Content is saved by WikiPage::doEditContent().
+	 * This may be used to store additional information in the database, or check the content's
+	 * consistency with global state.
+	 *
+	 * Note that this method will be called inside the same transaction bracket that will be used
+	 * to save the new revision.
+	 *
+	 * @param WikiPage $page The page to be saved.
+	 * @param int      $flags bitfield for use with EDIT_XXX constants, see WikiPage::doEditContent()
+	 * @param int      $baseRevId the ID of the current revision
+	 * @param User     $user
+	 *
+	 * @return Status A status object indicating whether the content was successfully prepared for saving.
+	 *                If the returned status indicates an error, a rollback will be performed and the
+	 *                transaction aborted.
+	 *
+	 * @see see WikiPage::doEditContent()
+	 */
+	public function prepareSave( WikiPage $page, $flags, $baseRevId, User $user );
+
 	# TODO: handle ImagePage and CategoryPage
 	# TODO: make sure we cover lucene search / wikisearch.
 	# TODO: make sure ReplaceTemplates still works
@@ -610,6 +631,17 @@ abstract class AbstractContent implements Content {
 	 */
 	public function preloadTransform( Title $title, ParserOptions $popts ) {
 		return $this;
+	}
+
+	/**
+	 * @see  Content::prepareSave()
+	 */
+	public function prepareSave( WikiPage $page, $flags, $baseRevId, User $user ) {
+		if ( $this->isValid() ) {
+			return Status::newGood();
+		} else {
+			return Status::newFatal( "invalid-content-data" );
+		}
 	}
 }
 
