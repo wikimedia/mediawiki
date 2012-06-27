@@ -931,6 +931,377 @@ Paragraph text
 </p>
 !! end
 
+!! test
+Definition Lists: No nesting: Multiple dd's
+!! input
+;x
+:a
+:b
+!! result
+<dl><dt>x
+</dt><dd>a
+</dd><dd>b
+</dd></dl>
+
+!! end
+
+!! test
+Definition Lists: Indentation: Regular
+!! input
+:i1
+::i2
+:::i3
+!! result
+<dl><dd>i1
+<dl><dd>i2
+<dl><dd>i3
+</dd></dl>
+</dd></dl>
+</dd></dl>
+
+!! end
+
+!! test
+Definition Lists: Indentation: Missing 1st level
+!! input
+::i2
+:::i3
+!! result
+<dl><dd><dl><dd>i2
+<dl><dd>i3
+</dd></dl>
+</dd></dl>
+</dd></dl>
+
+!! end
+
+!! test
+Definition Lists: Indentation: Multi-level indent
+!! input
+:::i3
+!! result
+<dl><dd><dl><dd><dl><dd>i3
+</dd></dl>
+</dd></dl>
+</dd></dl>
+
+!! end
+
+## The PHP parser treats : items (dd) without a corresponding ; item (dt)
+## as an empty dt item.  It also ignores all but the last ";" when followed
+## by ":" later on.  So, ";" are not ignored in ";;;t3" but are ignored  in
+## ";;;t3 :d1".  So, PHP parser behavior is a little inconsistent wrt multiple
+## ";"s.
+##
+## Ex: ";;t2 ::d2" is transformed into:
+##
+## <dl>
+##   <dt>t2 </dt>
+##   <dd>
+##     <dl>
+##       <dt></dt>
+##       <dd>d2</dd>
+##     </dl>
+##   </dd>
+## </dl>
+##
+## But, Parsoid treats "; :" as a tight atomic unit and excess ":" as plain text
+## So, the same wikitext above (;;t2 ::d2) is transformed into:
+##
+## <dl>
+##   <dt>
+##     <dl>
+##       <dt>t2 </dt>
+##       <dd>:d2</dd>
+##     </dl>
+##    </dt>
+## </dl>
+##
+## All Parsoid only definition list tests have this difference.
+##
+## See also: https://bugzilla.wikimedia.org/show_bug.cgi?id=6569 
+## and http://lists.wikimedia.org/pipermail/wikitext-l/2011-November/000483.html
+
+!! test
+Definition Lists: Nesting: Multi-level (Parsoid only)
+!! options
+disabled
+!! input
+;t1 :d1
+;;t2 ::d2
+;;;t3 :::d3
+!! result
+<dl>
+  <dt>t1 </dt>
+  <dd>d1</dd>
+  <dt>
+    <dl>
+      <dt>t2 </dt>
+      <dd>:d2</dd>
+      <dt>
+        <dl>
+          <dt>t3 </dt>
+          <dd>::d3</dd>
+        </dl>
+      </dt>
+    </dl>
+  </dt>
+</dl>
+
+
+!! end
+
+
+!! test
+Definition Lists: Nesting: Test 2 (Parsoid only)
+!! options
+disabled
+!! input
+;t1
+::d2
+!! result
+<dl>
+  <dt>t1</dt>
+  <dd>
+    <dl>
+      <dd>d2</dd>
+    </dl>
+  </dd>
+</dl>
+
+!! end
+
+
+!! test
+Definition Lists: Nesting: Test 3 (Parsoid only)
+!! options
+disabled
+!! input
+:;t1
+::::d2
+!! result
+<dl>
+  <dd>
+    <dl>
+      <dt>t1</dt>
+      <dd>
+        <dl>
+          <dd>
+            <dl>
+              <dd>d2</dd>
+            </dl>
+          </dd>
+        </dl>
+      </dd>
+    </dl>
+  </dd>
+</dl>
+
+!! end
+
+
+!! test
+Definition Lists: Nesting: Test 4
+!! input
+::;t3
+:::d3
+!! result
+<dl><dd><dl><dd><dl><dt>t3
+</dt><dd>d3
+</dd></dl>
+</dd></dl>
+</dd></dl>
+
+!! end
+
+
+!! test
+Definition Lists: Mixed Lists: Test 1
+!! input
+:;* foo
+::* bar
+:; baz
+!! result
+<dl><dd><dl><dt><ul><li> foo
+</li><li> bar
+</li></ul>
+</dt></dl>
+<dl><dt> baz
+</dt></dl>
+</dd></dl>
+
+!! end
+
+
+!! test
+Definition Lists: Mixed Lists: Test 2
+!! input
+*: d1
+*: d2
+!! result
+<ul><li><dl><dd> d1
+</dd><dd> d2
+</dd></dl>
+</li></ul>
+
+!! end
+
+
+!! test
+Definition Lists: Mixed Lists: Test 3
+!! input
+*::: d1
+*::: d2
+!! result
+<ul><li><dl><dd><dl><dd><dl><dd> d1
+</dd><dd> d2
+</dd></dl>
+</dd></dl>
+</dd></dl>
+</li></ul>
+
+!! end
+
+
+!! test
+Definition Lists: Mixed Lists: Test 4
+!! input
+*;d1 :d2
+*;d3 :d4
+!! result
+<ul><li><dl><dt>d1&#160;</dt><dd>d2
+</dd><dt>d3&#160;</dt><dd>d4
+</dd></dl>
+</li></ul>
+
+!! end
+
+
+!! test
+Definition Lists: Mixed Lists: Test 5
+!! input
+*:d1
+*:: d2
+!! result
+<ul><li><dl><dd>d1
+<dl><dd> d2
+</dd></dl>
+</dd></dl>
+</li></ul>
+
+!! end
+
+
+!! test
+Definition Lists: Mixed Lists: Test 6
+!! input
+#*:d1
+#*::: d3
+!! result
+<ol><li><ul><li><dl><dd>d1
+<dl><dd><dl><dd> d3
+</dd></dl>
+</dd></dl>
+</dd></dl>
+</li></ul>
+</li></ol>
+
+!! end
+
+
+!! test
+Definition Lists: Mixed Lists: Test 7
+!! input
+:* d1
+:* d2
+!! result
+<dl><dd><ul><li> d1
+</li><li> d2
+</li></ul>
+</dd></dl>
+
+!! end
+
+
+!! test
+Definition Lists: Mixed Lists: Test 8
+!! input
+:* d1
+::* d2
+!! result
+<dl><dd><ul><li> d1
+</li></ul>
+<dl><dd><ul><li> d2
+</li></ul>
+</dd></dl>
+</dd></dl>
+
+!! end
+
+
+!! test
+Definition Lists: Mixed Lists: Test 9
+!! input
+*;foo :bar
+!! result
+<ul><li><dl><dt>foo&#160;</dt><dd>bar
+</dd></dl>
+</li></ul>
+
+!! end
+
+
+!! test
+Definition Lists: Mixed Lists: Test 10
+!! input
+*#;foo :bar
+!! result
+<ul><li><ol><li><dl><dt>foo&#160;</dt><dd>bar
+</dd></dl>
+</li></ol>
+</li></ul>
+
+!! end
+
+
+!! test
+Definition Lists: Mixed Lists: Test 11
+!! input
+*#*#;*;;foo :bar
+*#*#;boo :baz
+!! result
+<ul><li><ol><li><ul><li><ol><li><dl><dt>foo&#160;</dt><dd><ul><li><dl><dt><dl><dt>bar
+</dt></dl>
+</dd></dl>
+</li></ul>
+</dd></dl>
+<dl><dt>boo&#160;</dt><dd>baz
+</dd></dl>
+</li></ol>
+</li></ul>
+</li></ol>
+</li></ul>
+
+!! end
+
+
+!! test
+Definition Lists: Weird Ones: Test 1
+!! input
+*#;*::;; foo : bar (who uses this?)
+!! result
+<ul><li><ol><li><dl><dt> foo&#160;</dt><dd><ul><li><dl><dd><dl><dd><dl><dt><dl><dt> bar (who uses this?)
+</dt></dl>
+</dd></dl>
+</dd></dl>
+</dd></dl>
+</li></ul>
+</dd></dl>
+</li></ol>
+</li></ul>
+
+!! end
+
 ###
 ### External links
 ###
@@ -9813,373 +10184,6 @@ abc
 </p>
 !! end
 
-!! test
-Definition Lists: No nesting: Multiple dd's
-!! input
-;x
-:a
-:b
-!! result
-<dl><dt>x
-</dt><dd>a
-</dd><dd>b
-</dd></dl>
-
-!! end
-
-!! test
-Definition Lists: Indentation: Regular
-!! input
-:i1
-::i2
-:::i3
-!! result
-<dl><dd>i1
-<dl><dd>i2
-<dl><dd>i3
-</dd></dl>
-</dd></dl>
-</dd></dl>
-
-!! end
-
-!! test
-Definition Lists: Indentation: Missing 1st level
-!! input
-::i2
-:::i3
-!! result
-<dl><dd><dl><dd>i2
-<dl><dd>i3
-</dd></dl>
-</dd></dl>
-</dd></dl>
-
-!! end
-
-!! test
-Definition Lists: Indentation: Multi-level indent
-!! input
-:::i3
-!! result
-<dl><dd><dl><dd><dl><dd>i3
-</dd></dl>
-</dd></dl>
-</dd></dl>
-
-!! end
-
-## The PHP parser treats : items (dd) without a corresponding ; item (dt)
-## as an empty dt item.  It also ignores all but the last ";" when followed
-## by ":" later on.  So, ";" are not ignored in ";;;t3" but are ignored  in
-## ";;;t3 :d1".  So, PHP parser behavior is a little inconsistent wrt multiple
-## ";"s.
-##
-## Ex: ";;t2 ::d2" is transformed into:
-##
-## <dl>
-##   <dt>t2 </dt>
-##   <dd>
-##     <dl>
-##       <dt></dt>
-##       <dd>d2</dd>
-##     </dl>
-##   </dd>
-## </dl>
-##
-## But, Parsoid treats "; :" as a tight atomic unit and excess ":" as plain text
-## So, the same wikitext above (;;t2 ::d2) is transformed into:
-##
-## <dl>
-##   <dt>
-##     <dl>
-##       <dt>t2 </dt>
-##       <dd>:d2</dd>
-##     </dl>
-##    </dt>
-## </dl>
-##
-## All Parsoid only definition list tests have this difference.
-
-!! test
-Definition Lists: Nesting: Multi-level (Parsoid only)
-!! options
-disabled
-!! input
-;t1 :d1
-;;t2 ::d2
-;;;t3 :::d3
-!! result
-<dl>
-  <dt>t1 </dt>
-  <dd>d1</dd>
-  <dt>
-    <dl>
-      <dt>t2 </dt>
-      <dd>:d2</dd>
-      <dt>
-        <dl>
-          <dt>t3 </dt>
-          <dd>::d3</dd>
-        </dl>
-      </dt>
-    </dl>
-  </dt>
-</dl>
-
-
-!! end
-
-
-!! test
-Definition Lists: Nesting: Test 2 (Parsoid only)
-!! options
-disabled
-!! input
-;t1
-::d2
-!! result
-<dl>
-  <dt>t1</dt>
-  <dd>
-    <dl>
-      <dd>d2</dd>
-    </dl>
-  </dd>
-</dl>
-
-!! end
-
-
-!! test
-Definition Lists: Nesting: Test 3 (Parsoid only)
-!! options
-disabled
-!! input
-:;t1
-::::d2
-!! result
-<dl>
-  <dd>
-    <dl>
-      <dt>t1</dt>
-      <dd>
-        <dl>
-          <dd>
-            <dl>
-              <dd>d2</dd>
-            </dl>
-          </dd>
-        </dl>
-      </dd>
-    </dl>
-  </dd>
-</dl>
-
-!! end
-
-
-!! test
-Definition Lists: Nesting: Test 4
-!! input
-::;t3
-:::d3
-!! result
-<dl><dd><dl><dd><dl><dt>t3
-</dt><dd>d3
-</dd></dl>
-</dd></dl>
-</dd></dl>
-
-!! end
-
-
-!! test
-Definition Lists: Mixed Lists: Test 1
-!! input
-:;* foo
-::* bar
-:; baz
-!! result
-<dl><dd><dl><dt><ul><li> foo
-</li><li> bar
-</li></ul>
-</dt></dl>
-<dl><dt> baz
-</dt></dl>
-</dd></dl>
-
-!! end
-
-
-!! test
-Definition Lists: Mixed Lists: Test 2
-!! input
-*: d1
-*: d2
-!! result
-<ul><li><dl><dd> d1
-</dd><dd> d2
-</dd></dl>
-</li></ul>
-
-!! end
-
-
-!! test
-Definition Lists: Mixed Lists: Test 3
-!! input
-*::: d1
-*::: d2
-!! result
-<ul><li><dl><dd><dl><dd><dl><dd> d1
-</dd><dd> d2
-</dd></dl>
-</dd></dl>
-</dd></dl>
-</li></ul>
-
-!! end
-
-
-!! test
-Definition Lists: Mixed Lists: Test 4
-!! input
-*;d1 :d2
-*;d3 :d4
-!! result
-<ul><li><dl><dt>d1&#160;</dt><dd>d2
-</dd><dt>d3&#160;</dt><dd>d4
-</dd></dl>
-</li></ul>
-
-!! end
-
-
-!! test
-Definition Lists: Mixed Lists: Test 5
-!! input
-*:d1
-*:: d2
-!! result
-<ul><li><dl><dd>d1
-<dl><dd> d2
-</dd></dl>
-</dd></dl>
-</li></ul>
-
-!! end
-
-
-!! test
-Definition Lists: Mixed Lists: Test 6
-!! input
-#*:d1
-#*::: d3
-!! result
-<ol><li><ul><li><dl><dd>d1
-<dl><dd><dl><dd> d3
-</dd></dl>
-</dd></dl>
-</dd></dl>
-</li></ul>
-</li></ol>
-
-!! end
-
-
-!! test
-Definition Lists: Mixed Lists: Test 7
-!! input
-:* d1
-:* d2
-!! result
-<dl><dd><ul><li> d1
-</li><li> d2
-</li></ul>
-</dd></dl>
-
-!! end
-
-
-!! test
-Definition Lists: Mixed Lists: Test 8
-!! input
-:* d1
-::* d2
-!! result
-<dl><dd><ul><li> d1
-</li></ul>
-<dl><dd><ul><li> d2
-</li></ul>
-</dd></dl>
-</dd></dl>
-
-!! end
-
-
-!! test
-Definition Lists: Mixed Lists: Test 9
-!! input
-*;foo :bar
-!! result
-<ul><li><dl><dt>foo&#160;</dt><dd>bar
-</dd></dl>
-</li></ul>
-
-!! end
-
-
-!! test
-Definition Lists: Mixed Lists: Test 10
-!! input
-*#;foo :bar
-!! result
-<ul><li><ol><li><dl><dt>foo&#160;</dt><dd>bar
-</dd></dl>
-</li></ol>
-</li></ul>
-
-!! end
-
-
-!! test
-Definition Lists: Mixed Lists: Test 11
-!! input
-*#*#;*;;foo :bar
-*#*#;boo :baz
-!! result
-<ul><li><ol><li><ul><li><ol><li><dl><dt>foo&#160;</dt><dd><ul><li><dl><dt><dl><dt>bar
-</dt></dl>
-</dd></dl>
-</li></ul>
-</dd></dl>
-<dl><dt>boo&#160;</dt><dd>baz
-</dd></dl>
-</li></ol>
-</li></ul>
-</li></ol>
-</li></ul>
-
-!! end
-
-
-!! test
-Definition Lists: Weird Ones: Test 1
-!! input
-*#;*::;; foo : bar (who uses this?)
-!! result
-<ul><li><ol><li><dl><dt> foo&#160;</dt><dd><ul><li><dl><dd><dl><dd><dl><dt><dl><dt> bar (who uses this?)
-</dt></dl>
-</dd></dl>
-</dd></dl>
-</dd></dl>
-</li></ul>
-</dd></dl>
-</li></ol>
-</li></ul>
-
-!! end
 
 TODO:
 more images
