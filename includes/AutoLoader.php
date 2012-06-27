@@ -1065,6 +1065,9 @@ $wgAutoloadLocalClasses = array(
 	'DummyContentHandlerForTesting' => 'tests/phpunit/includes/ContentHandlerTest.php',
 	'DummyContentForTesting' => 'tests/phpunit/includes/ContentHandlerTest.php',
 
+	# tests/phpunit/includes/db
+	'ORMRowTest' => 'tests/phpunit/includes/db/ORMRowTest.php',
+
 	# tests/parser
 	'ParserTest' => 'tests/parser/parserTest.inc',
 	'ParserTestParserHook' => 'tests/parser/parserTestsParserHook.php',
