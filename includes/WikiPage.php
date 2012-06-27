@@ -500,7 +500,7 @@ class WikiPage extends Page {
 	 * Will use the revisions actual content model if the page exists,
 	 * and the page's default if the page doesn't exist yet.
 	 *
-	 * @return int
+	 * @return String
 	 *
 	 * @since 1.WD
 	 */
@@ -1729,6 +1729,17 @@ class WikiPage extends Page {
 				}
 
 				$dbw->begin( __METHOD__ );
+
+				$prepStatus = $content->prepareSave( $this, $flags, $baseRevId, $user );
+				$status->merge( $prepStatus );
+
+				if ( !$status->isOK() ) {
+					$dbw->rollback();
+
+					wfProfileOut( __METHOD__ );
+					return $status;
+				}
+
 				$revisionId = $revision->insertOn( $dbw );
 
 				# Update page
@@ -1802,6 +1813,18 @@ class WikiPage extends Page {
 			$status->value['new'] = true;
 
 			$dbw->begin( __METHOD__ );
+
+			$prepStatus = $content->prepareSave( $this, $flags, $baseRevId, $user );
+			$status->merge( $prepStatus );
+
+			if ( !$status->isOK() ) {
+				$dbw->rollback();
+
+				wfProfileOut( __METHOD__ );
+				return $status;
+			}
+
+			$status->merge( $prepStatus );
 
 			# Add the page record; stake our claim on this title!
 			# This will return false if the article already exists

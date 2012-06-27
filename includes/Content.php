@@ -71,7 +71,7 @@ interface Content {
 	 *
 	 * @since WD.1
 	 *
-	 * @return int The model id
+	 * @return String The model id
 	 */
 	public function getModel();
 
@@ -95,7 +95,7 @@ interface Content {
 	 *
 	 * @since WD.1
 	 *
-	 * @return ContentHandler
+	 * @return String
 	 */
 	public function getDefaultFormat();
 
@@ -357,6 +357,27 @@ interface Content {
 	 */
 	public function preloadTransform( Title $title, ParserOptions $popts );
 
+	/**
+	 * Prepare Content for saving. Called before Content is saved by WikiPage::doEditContent().
+	 * This may be used to store additional information in the database, or check the content's
+	 * consistency with global state.
+	 *
+	 * Note that this method will be called inside the same transaction bracket that will be used
+	 * to save the new revision.
+	 *
+	 * @param WikiPage $page The page to be saved.
+	 * @param int      $flags bitfield for use with EDIT_XXX constants, see WikiPage::doEditContent()
+	 * @param int      $baseRevId the ID of the current revision
+	 * @param User     $user
+	 *
+	 * @return Status A status object indicating whether the content was successfully prepared for saving.
+	 *                If the returned status indicates an error, a rollback will be performed and the
+	 *                transaction aborted.
+	 *
+	 * @see see WikiPage::doEditContent()
+	 */
+	public function prepareSave( WikiPage $page, $flags, $baseRevId, User $user );
+
 	# TODO: handle ImagePage and CategoryPage
 	# TODO: make sure we cover lucene search / wikisearch.
 	# TODO: make sure ReplaceTemplates still works
@@ -375,9 +396,6 @@ interface Content {
 	# FUTURE: special type for redirects?!
 	# FUTURE: MultipartMultipart < WikipageContent (Main + Links + X)
 	# FUTURE: LinksContent < LanguageLinksContent, CategoriesContent
-
-	// @TODO: add support for ar_content_format, ar_content_model, 
-	// rev_content_format, rev_content_model to API
 }
 
 
@@ -398,7 +416,7 @@ abstract class AbstractContent implements Content {
 	protected $model_id;
 
 	/**
-	 * @param $model_id int
+	 * @param String $model_id
 	 */
 	public function __construct( $model_id = null ) {
 		$this->model_id = $model_id;
@@ -421,12 +439,9 @@ abstract class AbstractContent implements Content {
 	 */
 	protected function checkModelID( $model_id ) {
 		if ( $model_id !== $this->model_id ) {
-			$model_name = ContentHandler::getContentModelName( $model_id );
-			$own_model_name = ContentHandler::getContentModelName( $this->model_id );
-
-			throw new MWException( "Bad content model: " . 
-				"expected {$this->model_id} ($own_model_name) " . 
-				"but got $model_id ($model_name)." );
+			throw new MWException( "Bad content model: " .
+				"expected {$this->model_id}  " .
+				"but got $model_id." );
 		}
 	}
 
@@ -617,6 +632,17 @@ abstract class AbstractContent implements Content {
 	public function preloadTransform( Title $title, ParserOptions $popts ) {
 		return $this;
 	}
+
+	/**
+	 * @see  Content::prepareSave()
+	 */
+	public function prepareSave( WikiPage $page, $flags, $baseRevId, User $user ) {
+		if ( $this->isValid() ) {
+			return Status::newGood();
+		} else {
+			return Status::newFatal( "invalid-content-data" );
+		}
+	}
 }
 
 /**
@@ -777,12 +803,9 @@ class WikitextContent extends TextContent {
 		$sectionModelId = $with->getModel();
 
 		if ( $sectionModelId != $myModelId  ) {
-			$myModelName = ContentHandler::getContentModelName( $myModelId );
-			$sectionModelName = ContentHandler::getContentModelName( $sectionModelId );
-
-			throw new MWException( "Incompatible content model for section: " . 
-				"document uses $myModelId ($myModelName), " .
-				"section uses $sectionModelId ($sectionModelName)." );
+			throw new MWException( "Incompatible content model for section: " .
+				"document uses $myModelId but " .
+				"section uses $sectionModelId." );
 		}
 
 		$oldtext = $this->getNativeData();

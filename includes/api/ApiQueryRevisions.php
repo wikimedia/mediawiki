@@ -161,13 +161,7 @@ class ApiQueryRevisions extends ApiQueryBase {
 		$this->token = $params['token'];
 
 		if ( !empty( $params['contentformat'] ) ) {
-			$n = ContentHandler::getContentFormatID( $params['contentformat'] );
-
-			if ( is_int( $n ) ) {
-				$this->contentFormat = $n;
-			} else {
-				$this->dieUsage( "Unknown format " . $params['contentformat'], 'badformat' );
-			}
+			$this->contentFormat = $params['contentformat'];
 		}
 
 		// Possible indexes used
@@ -516,8 +510,7 @@ class ApiQueryRevisions extends ApiQueryBase {
 				} else {
 					$this->setWarning( "Conversion to XML is supported for wikitext only, " .
 										$title->getPrefixedDBkey() .
-										" uses content model #" . $content->getModel() .
-										" (" . ContentHandler::getContentModelName( $content->getModel() ). ")" );
+										" uses content model " . $content->getModel() . ")" );
 				}
 			}
 
@@ -530,8 +523,7 @@ class ApiQueryRevisions extends ApiQueryBase {
 				} else {
 					$this->setWarning( "Template expansion is supported for wikitext only, " .
 						$title->getPrefixedDBkey() .
-						" uses content model #" . $content->getModel() .
-						" (" . ContentHandler::getContentModelName( $content->getModel() ). ")" );
+						" uses content model " . $content->getModel() . ")" );
 
 					$text = false;
 				}
@@ -546,15 +538,13 @@ class ApiQueryRevisions extends ApiQueryBase {
 
 				if ( !$content->isSupportedFormat( $format ) ) {
 					$model = $content->getModel();
-					$formatName = ContentHandler::getContentFormatMimeType( $format );
-					$modelName = ContentHandler::getContentModelName( $model );
 					$name = $title->getPrefixedDBkey();
 
-					$this->dieUsage( "The requested format #{$this->contentFormat} ($formatName) is not supported for content model #$model ($modelName) used by $name", 'badformat' );
+					$this->dieUsage( "The requested format {$this->contentFormat} is not supported for content model $model used by $name", 'badformat' );
 				}
 
 				$text = $content->serialize( $format );
-				$vals['contentformat'] = ContentHandler::getContentFormatMimeType( $format );
+				$vals['contentformat'] = $format;
 			}
 
 			if ( $text !== false ) {
@@ -577,11 +567,9 @@ class ApiQueryRevisions extends ApiQueryBase {
 					$model = $title->getContentModel();
 
 					if ( $this->contentFormat && !ContentHandler::getForModelID( $model )->isSupportedFormat( $this->contentFormat ) ) {
-						$formatName = ContentHandler::getContentFormatMimeType( $this->contentFormat );
-						$modelName = ContentHandler::getContentModelName( $model );
 						$name = $title->getPrefixedDBkey();
 
-						$this->dieUsage( "The requested format #{$this->contentFormat} ($formatName) is not supported for content model #$model ($modelName) used by $name", 'badformat' );
+						$this->dieUsage( "The requested format {$this->contentFormat} is not supported for content model $model used by $name", 'badformat' );
 					}
 
 					$difftocontent = ContentHandler::makeContent( $this->difftotext, $title, $model, $this->contentFormat );
@@ -680,7 +668,7 @@ class ApiQueryRevisions extends ApiQueryBase {
 			'diffto' => null,
 			'difftotext' => null,
 			'contentformat' => array(
-				ApiBase::PARAM_TYPE => array_values( $GLOBALS[ 'wgContentFormatMimeTypes' ] ),
+				ApiBase::PARAM_TYPE => ContentHandler::getAllContentFormats(),
 				ApiBase::PARAM_DFLT => null
 			),
 		);

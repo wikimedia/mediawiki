@@ -295,8 +295,8 @@ abstract class DumpTestCase extends MediaWikiLangTestCase {
 	 * @param $text_sha1 string: the base36 SHA-1 of the revision's text
 	 * @param $text string|false: (optional) The revision's string, or false to check for a
 	 *            revision stub
-	 * @param $model int: the expected content model id (default: CONTENT_MODEL_WIKITEXT)
-	 * @param $format int: the expected format model id (default: CONTENT_FORMAT_WIKITEXT)
+	 * @param $model String: the expected content model id (default: CONTENT_MODEL_WIKITEXT)
+	 * @param $format String: the expected format model id (default: CONTENT_FORMAT_WIKITEXT)
 	 * @param $parentid int|false: (optional) id of the parent revision
 	 */
 	protected function assertRevision( $id, $summary, $text_id, $text_bytes, $text_sha1, $text = false, $parentid = false,

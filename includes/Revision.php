@@ -487,13 +487,13 @@ class Revision {
 			if( !isset( $row->rev_content_model ) || is_null( $row->rev_content_model ) ) {
 				$this->mContentModel = null; # determine on demand if needed
 			} else {
-				$this->mContentModel = intval( $row->rev_content_model );
+				$this->mContentModel = strval( $row->rev_content_model );
 			}
 
 			if( !isset( $row->rev_content_format ) || is_null( $row->rev_content_format ) ) {
 				$this->mContentFormat = null; # determine on demand if needed
 			} else {
-				$this->mContentFormat = intval( $row->rev_content_format );
+				$this->mContentFormat = strval( $row->rev_content_format );
 			}
 
 			// Lazy extraction...
@@ -542,15 +542,17 @@ class Revision {
 			$this->mParentId  = isset( $row['parent_id']  ) ? intval( $row['parent_id']  ) : null;
 			$this->mSha1      = isset( $row['sha1']  )      ? strval( $row['sha1']  )      : null;
 
-			$this->mContentModel = isset( $row['content_model']  )  ? intval( $row['content_model'] )  : null;
-			$this->mContentFormat    = isset( $row['content_format']  ) ? intval( $row['content_format'] ) : null;
+			$this->mContentModel = isset( $row['content_model']  )  ? strval( $row['content_model'] )  : null;
+			$this->mContentFormat    = isset( $row['content_format']  ) ? strval( $row['content_format'] ) : null;
 
 			// Enforce spacing trimming on supplied text
 			$this->mComment   = isset( $row['comment']    ) ?  trim( strval( $row['comment'] ) ) : null;
 			$this->mText      = isset( $row['text']       ) ? rtrim( strval( $row['text']    ) ) : null;
 			$this->mTextRow   = null;
 
-			# if we have a content object, override mText and mContentModel
+			$this->mTitle     = isset( $row['title']      ) ? $row['title'] : null;
+
+			// if we have a Content object, override mText and mContentModel
 			if ( !empty( $row['content'] ) ) {
 				$handler = $this->getContentHandler();
 				$this->mContent = $row['content'];
@@ -564,10 +566,17 @@ class Revision {
 				$this->mContent = $handler->unserializeContent( $this->mText );
 			}
 
-			$this->mTitle     = null; # Load on demand if needed
-			$this->mCurrent   = false; # XXX: really? we are about to create a revision. it will usually then be the current one.
+			// if we have a Title object, override mPage. Useful for testing and convenience.
+			if ( isset( $row['title'] ) ) {
+				$this->mTitle     = $row['title'];
+				$this->mPage      = $this->mTitle->getArticleID();
+			} else {
+				$this->mTitle     = null; // Load on demand if needed
+			}
 
-			# If we still have no length, see it we have the text to figure it out
+			$this->mCurrent   = false; // @todo: XXX: really? we are about to create a revision. it will usually then be the current one.
+
+			// If we still have no length, see it we have the text to figure it out
 			if ( !$this->mSize ) {
 				if ( !is_null( $this->mContent ) ) {
 					$this->mSize = $this->mContent->getSize();
@@ -577,13 +586,14 @@ class Revision {
 				}
 			}
 
-			# Same for sha1
+			// Same for sha1
 			if ( $this->mSha1 === null ) {
 				$this->mSha1 = is_null( $this->mText ) ? null : self::base36Sha1( $this->mText );
 			}
 
-			$this->getContentModel(); # force lazy init
-			$this->getContentFormat();    # force lazy init
+			// force lazy init
+			$this->getContentModel();
+			$this->getContentFormat();
 		} else {
 			throw new MWException( 'Revision constructor passed invalid row format.' );
 		}
@@ -669,7 +679,10 @@ class Revision {
 			}
 		}
 
-		//@todo: as a last resort, perhaps load from page table, if $this->mPage is given?!
+		if ( !$this->mTitle && !is_null( $this->mPage ) && $this->mPage > 0 ) {
+			$this->mTitle = Title::newFromID( $this->mPage );
+		}
+
 		return $this->mTitle;
 	}
 
@@ -949,7 +962,7 @@ class Revision {
 	 * used to determine the content model to use. If no title is know, CONTENT_MODEL_WIKITEXT
 	 * is used as a last resort.
 	 *
-	 * @return int the content model id associated with this revision, see the CONTENT_MODEL_XXX constants.
+	 * @return String the content model id associated with this revision, see the CONTENT_MODEL_XXX constants.
 	 **/
 	public function getContentModel() {
 		if ( !$this->mContentModel ) {
@@ -968,7 +981,7 @@ class Revision {
 	 * If no content format was stored in the database, the default format for this
 	 * revision's content model is returned.
 	 *
-	 * @return int the content format id associated with this revision, see the CONTENT_FORMAT_XXX constants.
+	 * @return String the content format id associated with this revision, see the CONTENT_FORMAT_XXX constants.
 	 **/
 	public function getContentFormat() {
 		if ( !$this->mContentFormat ) {
@@ -994,10 +1007,7 @@ class Revision {
 			$format = $this->getContentFormat();
 
 			if ( !$this->mContentHandler->isSupportedFormat( $format ) ) {
-				$formatName = ContentHandler::getContentFormatMimeType( $format );
-				$modelName = ContentHandler::getContentModelName( $model );
-
-				throw new MWException( "Oops, the content format #$format ($formatName) is not supported for this content model, #$model ($modelName)" );
+				throw new MWException( "Oops, the content format $format is not supported for this content model, $model" );
 			}
 		}
 
@@ -1190,6 +1200,8 @@ class Revision {
 
 		wfProfileIn( __METHOD__ );
 
+		$this->checkContentModel();
+
 		$data = $this->mText;
 		$flags = Revision::compressRevisionText( $data );
 
@@ -1246,11 +1258,18 @@ class Revision {
 		);
 
 		if ( $wgContentHandlerUseDB ) {
-			$row[ 'rev_content_model' ] = $this->getContentModel();
-			$row[ 'rev_content_format' ] = $this->getContentFormat();
-		}
+			//NOTE: Store null for the default model and format, to save space.
+			//XXX: Makes the DB sensitive to changed defaults. Make this behaviour optional? Only in miser mode?
 
-		$this->checkContentModel();
+			$model = $this->getContentModel();
+			$format = $this->getContentFormat();
+
+			$defaultModel = ContentHandler::getDefaultModelFor( $this->getTitle() );
+			$defaultFormat = ContentHandler::getForModelID( $defaultModel )->getDefaultFormat();
+
+			$row[ 'rev_content_model' ] = ( $model === $defaultModel ) ? null : $model;
+			$row[ 'rev_content_format' ] = ( $format === $defaultFormat ) ? null : $format;
+		}
 
 		$dbw->insert( 'revision', $row, __METHOD__ );
 
@@ -1265,7 +1284,7 @@ class Revision {
 	protected function checkContentModel() {
 		global $wgContentHandlerUseDB;
 
-		$title = $this->getTitle(); //note: returns null for revisions that have not yet been inserted.
+		$title = $this->getTitle(); //note: may return null for revisions that have not yet been inserted.
 
 		$model = $this->getContentModel();
 		$format = $this->getContentFormat();
@@ -1273,10 +1292,8 @@ class Revision {
 
 		if ( !$handler->isSupportedFormat( $format ) ) {
 			$t = $title->getPrefixedDBkey();
-			$modelName = ContentHandler::getContentModelName( $model );
-			$formatName = ContentHandler::getContentFormatMimeType( $format );
 
-			throw new MWException( "Can't use format #$format ($formatName) with content model #$model ($modelName) on $t" );
+			throw new MWException( "Can't use format $format with content model $model on $t" );
 		}
 
 		if ( !$wgContentHandlerUseDB && $title ) {
@@ -1287,19 +1304,15 @@ class Revision {
 			$defaultFormat = $defaultHandler->getDefaultFormat();
 
 			if ( $this->getContentModel() != $defaultModel ) {
-				$defaultModelName = ContentHandler::getContentModelName( $defaultModel );
-				$modelName = ContentHandler::getContentModelName( $model );
 				$t = $title->getPrefixedDBkey();
 
-				throw new MWException( "Can't save non-default content model with \$wgContentHandlerUseDB disabled: model is #$model ($modelName), default for $t is #$defaultModel ($defaultModelName)" );
+				throw new MWException( "Can't save non-default content model with \$wgContentHandlerUseDB disabled: model is $model , default for $t is $defaultModel" );
 			}
 
 			if ( $this->getContentFormat() != $defaultFormat ) {
-				$defaultFormatName = ContentHandler::getContentFormatMimeType( $defaultFormat );
-				$formatName = ContentHandler::getContentFormatMimeType( $format );
 				$t = $title->getPrefixedDBkey();
 
-				throw new MWException( "Can't use non-default content format with \$wgContentHandlerUseDB disabled: format is #$format ($formatName), default for $t is #$defaultFormat ($defaultFormatName)" );
+				throw new MWException( "Can't use non-default content format with \$wgContentHandlerUseDB disabled: format is $format, default for $t is $defaultFormat" );
 			}
 		}
 
@@ -1307,9 +1320,8 @@ class Revision {
 
 		if ( !$content->isValid() ) {
 			$t = $title->getPrefixedDBkey();
-			$modelName = ContentHandler::getContentModelName( $model );
 
-			throw new MWException( "Content of $t is not valid! Content model is #$model ($modelName)" );
+			throw new MWException( "Content of $t is not valid! Content model is $model" );
 		}
 	}
 

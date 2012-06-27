@@ -128,7 +128,7 @@ class LinkCache {
 			'length' => intval( $row->page_len ),
 			'redirect' => intval( $row->page_is_redirect ),
 			'revision' => intval( $row->page_latest ),
-			'model' => !empty( $row->page_content_model ) ? intval( $row->page_content_model ) : null,
+			'model' => !empty( $row->page_content_model ) ? strval( $row->page_content_model ) : null,
 		);
 	}
 

@@ -16,8 +16,8 @@ class ContentHandlerTest extends MediaWikiTestCase {
 		$wgExtraNamespaces[ 12312 ] = 'Dummy';
 		$wgExtraNamespaces[ 12313 ] = 'Dummy_talk';
 
-		$wgNamespaceContentModels[ 12312 ] = 999999;
-		$wgContentHandlers[ 999999 ] = 'DummyContentHandlerForTesting';
+		$wgNamespaceContentModels[ 12312 ] = "testing";
+		$wgContentHandlers[ "testing" ] = 'DummyContentHandlerForTesting';
 
 		MWNamespace::getCanonicalNamespaces( true ); # reset namespace cache
 		$wgContLang->resetNamespaces(); # reset namespace cache
@@ -30,7 +30,7 @@ class ContentHandlerTest extends MediaWikiTestCase {
 		unset( $wgExtraNamespaces[ 12313 ] );
 
 		unset( $wgNamespaceContentModels[ 12312 ] );
-		unset( $wgContentHandlers[ 999999 ] );
+		unset( $wgContentHandlers[ "testing" ] );
 
 		MWNamespace::getCanonicalNamespaces( true ); # reset namespace cache
 		$wgContLang->resetNamespaces(); # reset namespace cache
@@ -72,121 +72,59 @@ class ContentHandlerTest extends MediaWikiTestCase {
 		$this->assertEquals( $expectedContentModel, $handler->getModelID() );
 	}
 
-	public function dataGetContentFormatMimeType( ) {
+	public function dataGetLocalizedName() {
 		return array(
-			array( 0, null ),
 			array( null, null ),
-			array( 99887766, null ),
-
-			array( CONTENT_FORMAT_WIKITEXT, 'text/x-wiki' ),
-			array( CONTENT_FORMAT_JAVASCRIPT, 'text/javascript' ),
-			array( CONTENT_FORMAT_CSS, 'text/css' ),
-			array( CONTENT_FORMAT_JSON, 'application/json' ),
-			array( CONTENT_FORMAT_XML, 'application/xml' ),
-			array( CONTENT_FORMAT_SERIALIZED, 'application/vnd.php.serialized' ),
-		);
-	}
-
-	/**
-	 * @dataProvider dataGetContentFormatMimeType
-	 */
-	public function testGetContentFormatMimeType( $id, $expectedMime ) {
-		$mime = ContentHandler::getContentFormatMimeType( $id );
-
-		$this->assertEquals( $expectedMime, $mime );
-	}
-
-	public function dataGetContentFormatID( ) {
-		return array(
-			array( '', null ),
-			array( 'foo', null ),
-			array( null, null ),
-
-			array( 'text/x-wiki', CONTENT_FORMAT_WIKITEXT ),
-			array( 'text/javascript', CONTENT_FORMAT_JAVASCRIPT ),
-			array( 'text/css', CONTENT_FORMAT_CSS ),
-			array( 'application/json', CONTENT_FORMAT_JSON ),
-			array( 'application/xml', CONTENT_FORMAT_XML ),
-			array( 'application/vnd.php.serialized', CONTENT_FORMAT_SERIALIZED ),
-		);
-	}
-
-	/**
-	 * @dataProvider dataGetContentFormatID
-	 */
-	public function testGetContentFormatID( $mime, $expectedId ) {
-		$id = ContentHandler::getContentFormatID( $mime );
-
-		$this->assertEquals( $expectedId, $id );
-	}
-
-	public function dataGetLocalizedNameName() {
-		return array(
-			array( 0, null ),
-			array( null, null ),
-			array( 99887766, null ),
+			array( "xyzzy", null ),
 
 			array( CONTENT_MODEL_JAVASCRIPT, '/javascript/i' ), //XXX: depends on content language
 		);
 	}
 
 	/**
-	 * @dataProvider dataGetLocalizedNameName
+	 * @dataProvider dataGetLocalizedName
 	 */
 	public function testGetLocalizedName( $id, $expected ) {
-		try{
-			$name = ContentHandler::getLocalizedName( $id );
+		$name = ContentHandler::getLocalizedName( $id );
 
-			if ( !$expected ) $this->fail("should not have a name for content id #$id");
-
-			$this->assertNotNull( $name, "no name found for content model #$id" );
+		if ( $expected ) {
+			$this->assertNotNull( $name, "no name found for content model $id" );
 			$this->assertTrue( preg_match( $expected, $name ) > 0 , "content model name for #$id did not match pattern $expected" );
-		} catch (MWException $e) {
-			if ( $expected ) $this->fail("failed to get name for content id #$id");
+		} else {
+			$this->assertEquals( $id, $name, "localization of unknown model $id should have fallen back to use the model id directly." );
 		}
 	}
 
-	public function dataGetContentModelName() {
+	public function dataGetPageLanguage() {
+		global $wgLanguageCode;
+
 		return array(
-			array( 0, null ),
-			array( null, null ),
-			array( 99887766, null ),
+			array( "Main", $wgLanguageCode ),
+			array( "Dummy:Foo", $wgLanguageCode ),
+			array( "MediaWiki:common.js", 'en' ),
+			array( "User:Foo/common.js", 'en' ),
+			array( "MediaWiki:common.css", 'en' ),
+			array( "User:Foo/common.css", 'en' ),
+			array( "User:Foo", $wgLanguageCode ),
 
 			array( CONTENT_MODEL_JAVASCRIPT, 'javascript' ),
 		);
 	}
 
 	/**
-	 * @dataProvider dataGetContentModelName
+	 * @dataProvider dataGetPageLanguage
 	 */
-	public function testGetContentModelName( $id, $expected ) {
-		try {
-			$name = ContentHandler::getContentModelName( $id );
-
-			if ( !$expected ) $this->fail("should not have a name for content id #$id");
-
-			$this->assertNotNull( $name, "no name found for content model #$id" );
-			$this->assertEquals( $expected, $name);
-		} catch (MWException $e) {
-			if ( $expected ) $this->fail("failed to get name for content id #$id");
+	public function testGetPageLanguage( $title, $expected ) {
+		if ( is_string( $title ) ) {
+			$title = Title::newFromText( $title );
 		}
-	}
 
-	/**
-	 * @dataProvider dataGetContentModelName
-	 */
-	public function testGetModelName( $id, $expected ) {
-		try {
-			$handler = ContentHandler::getForModelID( $id );
-			$name = $handler->getModelName();
+		$expected = wfGetLangObj( $expected );
 
-			if ( !$expected ) $this->fail("should not have a name for content id #$id");
+		$handler = ContentHandler::getForTitle( $title );
+		$lang = $handler->getPageLanguage( $title );
 
-			$this->assertNotNull( $name, "no name found for content model #$id" );
-			$this->assertEquals( $expected, $name);
-		} catch (MWException $e) {
-			if ( $expected ) $this->fail("failed to get name for content id #$id");
-		}
+		$this->assertEquals( $expected->getCode(), $lang->getCode() );
 	}
 
 	public function testGetContentText_Null( ) {
@@ -255,19 +193,19 @@ class ContentHandlerTest extends MediaWikiTestCase {
 		return array(
 			array( 'hallo', 'Test', null, null, CONTENT_MODEL_WIKITEXT, 'hallo', false ),
 			array( 'hallo', 'MediaWiki:Test.js', null, null, CONTENT_MODEL_JAVASCRIPT, 'hallo', false ),
-			array( serialize('hallo'), 'Dummy:Test', null, null, 999999, 'hallo', false ),
+			array( serialize('hallo'), 'Dummy:Test', null, null, "testing", 'hallo', false ),
 
 			array( 'hallo', 'Test', null, CONTENT_FORMAT_WIKITEXT, CONTENT_MODEL_WIKITEXT, 'hallo', false ),
 			array( 'hallo', 'MediaWiki:Test.js', null, CONTENT_FORMAT_JAVASCRIPT, CONTENT_MODEL_JAVASCRIPT, 'hallo', false ),
-			array( serialize('hallo'), 'Dummy:Test', null, 999999, 999999, 'hallo', false ),
+			array( serialize('hallo'), 'Dummy:Test', null, "testing", "testing", 'hallo', false ),
 
 			array( 'hallo', 'Test', CONTENT_MODEL_CSS, null, CONTENT_MODEL_CSS, 'hallo', false ),
 			array( 'hallo', 'MediaWiki:Test.js', CONTENT_MODEL_CSS, null, CONTENT_MODEL_CSS, 'hallo', false ),
 			array( serialize('hallo'), 'Dummy:Test', CONTENT_MODEL_CSS, null, CONTENT_MODEL_CSS, serialize('hallo'), false ),
 
-			array( 'hallo', 'Test', CONTENT_MODEL_WIKITEXT, 999999, null, null, true ),
-			array( 'hallo', 'MediaWiki:Test.js', CONTENT_MODEL_CSS, 999999, null, null, true ),
-			array( 'hallo', 'Dummy:Test', CONTENT_MODEL_JAVASCRIPT, 999999, null, null, true ),
+			array( 'hallo', 'Test', CONTENT_MODEL_WIKITEXT, "testing", null, null, true ),
+			array( 'hallo', 'MediaWiki:Test.js', CONTENT_MODEL_CSS, "testing", null, null, true ),
+			array( 'hallo', 'Dummy:Test', CONTENT_MODEL_JAVASCRIPT, "testing", null, null, true ),
 		);
 	}
 
@@ -408,7 +346,7 @@ class ContentHandlerTest extends MediaWikiTestCase {
 class DummyContentHandlerForTesting extends ContentHandler {
 
 	public function __construct( $dataModel ) {
-		parent::__construct( $dataModel, array( 999999 ) );
+		parent::__construct( $dataModel, array( "testing" ) );
 	}
 
 	/**
@@ -465,7 +403,7 @@ class DummyContentHandlerForTesting extends ContentHandler {
 class DummyContentForTesting extends AbstractContent {
 
 	public function __construct( $data ) {
-		parent::__construct( 999999 );
+		parent::__construct( "testing" );
 
 		$this->data = $data;
 	}

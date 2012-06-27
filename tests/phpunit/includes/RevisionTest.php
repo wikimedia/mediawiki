@@ -29,8 +29,8 @@ class RevisionTest extends MediaWikiTestCase {
 		$wgExtraNamespaces[ 12312 ] = 'Dummy';
 		$wgExtraNamespaces[ 12313 ] = 'Dummy_talk';
 
-		$wgNamespaceContentModels[ 12312 ] = 999999;
-		$wgContentHandlers[ 999999 ] = 'DummyContentHandlerForTesting';
+		$wgNamespaceContentModels[ 12312 ] = "testing";
+		$wgContentHandlers[ "testing" ] = 'DummyContentHandlerForTesting';
 
 		MWNamespace::getCanonicalNamespaces( true ); # reset namespace cache
 		$wgContLang->resetNamespaces(); # reset namespace cache
@@ -186,7 +186,7 @@ class RevisionTest extends MediaWikiTestCase {
 		return array(
 			array( 'hello world', 'Hello', null, null, CONTENT_MODEL_WIKITEXT ),
 			array( 'hello world', 'User:hello/there.css', null, null, CONTENT_MODEL_CSS ),
-			array( serialize('hello world'), 'Dummy:Hello', null, null, 999999 ),
+			array( serialize('hello world'), 'Dummy:Hello', null, null, "testing" ),
 		);
 	}
 
@@ -204,7 +204,7 @@ class RevisionTest extends MediaWikiTestCase {
 			array( 'hello world', 'Hello', null, null, CONTENT_FORMAT_WIKITEXT ),
 			array( 'hello world', 'Hello', CONTENT_MODEL_CSS, null, CONTENT_FORMAT_CSS ),
 			array( 'hello world', 'User:hello/there.css', null, null, CONTENT_FORMAT_CSS ),
-			array( serialize('hello world'), 'Dummy:Hello', null, null, 999999 ),
+			array( serialize('hello world'), 'Dummy:Hello', null, null, "testing" ),
 		);
 	}
 
@@ -237,7 +237,7 @@ class RevisionTest extends MediaWikiTestCase {
 	function dataGetContent() {
 		return array(
 			array( 'hello world', 'Hello', null, null, Revision::FOR_PUBLIC, 'hello world' ),
-			array( serialize('hello world'), 'Hello', 999999, null, Revision::FOR_PUBLIC, serialize('hello world') ),
+			array( serialize('hello world'), 'Hello', "testing", null, Revision::FOR_PUBLIC, serialize('hello world') ),
 			array( serialize('hello world'), 'Dummy:Hello', null, null, Revision::FOR_PUBLIC, serialize('hello world') ),
 		);
 	}
@@ -255,7 +255,7 @@ class RevisionTest extends MediaWikiTestCase {
 	function dataGetText() {
 		return array(
 			array( 'hello world', 'Hello', null, null, Revision::FOR_PUBLIC, 'hello world' ),
-			array( serialize('hello world'), 'Hello', 999999, null, Revision::FOR_PUBLIC, null ),
+			array( serialize('hello world'), 'Hello', "testing", null, Revision::FOR_PUBLIC, null ),
 			array( serialize('hello world'), 'Dummy:Hello', null, null, Revision::FOR_PUBLIC, null ),
 		);
 	}
@@ -282,7 +282,7 @@ class RevisionTest extends MediaWikiTestCase {
 	public function dataGetSize( ) {
 		return array(
 			array( "hello world.", null, 12 ),
-			array( serialize( "hello world." ), 999999, 12 ),
+			array( serialize( "hello world." ), "testing", 12 ),
 		);
 	}
 
@@ -299,7 +299,7 @@ class RevisionTest extends MediaWikiTestCase {
 	public function dataGetSha1( ) {
 		return array(
 			array( "hello world.", null, Revision::base36Sha1( "hello world." ) ),
-			array( serialize( "hello world." ), 999999, Revision::base36Sha1( serialize( "hello world." ) ) ),
+			array( serialize( "hello world." ), "testing", Revision::base36Sha1( serialize( "hello world." ) ) ),
 		);
 	}
 

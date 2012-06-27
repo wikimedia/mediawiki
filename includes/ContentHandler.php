@@ -272,7 +272,7 @@ abstract class ContentHandler {
 	 * @since WD.1
 	 *
 	 * @static
-	 * @param $modelId int The ID of the content model for which to get a
+	 * @param $modelId String The ID of the content model for which to get a
 	 *    handler. Use CONTENT_MODEL_XXX constants.
 	 * @return ContentHandler The ContentHandler singleton for handling the
 	 *    model given by $modelId
@@ -311,95 +311,42 @@ abstract class ContentHandler {
 	}
 
 	/**
-	 * Returns the appropriate MIME type for a given content format,
-	 * or null if no MIME type is known for this format.
-	 *
-	 * MIME types can be registered in the global array $wgContentFormatMimeTypes.
-	 *
-	 * @static
-	 * @param $id int The content format id, as given by a CONTENT_FORMAT_XXX
-	 *    constant or returned by Revision::getContentFormat().
-	 *
-	 * @return string|null The content format's MIME type.
-	 */
-	public static function getContentFormatMimeType( $id ) {
-		global $wgContentFormatMimeTypes;
-
-		if ( !isset( $wgContentFormatMimeTypes[ $id ] ) ) {
-			return null;
-		}
-
-		return $wgContentFormatMimeTypes[ $id ];
-	}
-
-	/**
-	 * Returns the content format if for a given MIME type,
-	 * or null if no format ID if known for this MIME type.
-	 *
-	 * Mime types can be registered in the global array $wgContentFormatMimeTypes.
-	 *
-	 * @static
-	 * @param $mime string the MIME type
-	 *
-	 * @return int|null The format ID, as defined by a CONTENT_FORMAT_XXX constant
-	 */
-	public static function getContentFormatID( $mime ) {
-		global $wgContentFormatMimeTypes;
-
-		static $format_ids = null;
-
-		if ( $format_ids === null ) {
-			$format_ids = array_flip( $wgContentFormatMimeTypes );
-		}
-
-		if ( !isset( $format_ids[ $mime ] ) ) {
-			return null;
-		}
-
-		return $format_ids[ $mime ];
-	}
-
-	/**
-	 * Returns the symbolic name for a given content model.
-	 *
-	 * @param $id int The content model ID, as given by a CONTENT_MODEL_XXX
-	 *    constant or returned by Revision::getContentModel().
-	 *
-	 * @return string The content model's symbolic name.
-	 * @throws MWException if the model id isn't known.
-	 */
-	public static function getContentModelName( $id ) {
-		$handler = self::getForModelID( $id );
-		return $handler->getModelName();
-	}
-
-
-	/**
 	 * Returns the localized name for a given content model.
 	 *
 	 * Model names are localized using system messages. Message keys
 	 * have the form content-model-$name, where $name is getContentModelName( $id ).
 	 *
 	 * @static
-	 * @param $id int The content model ID, as given by a CONTENT_MODEL_XXX
+	 * @param $name String The content model ID, as given by a CONTENT_MODEL_XXX
 	 *    constant or returned by Revision::getContentModel().
-	 * @todo also accept a symbolic name instead of a numeric id
 	 *
 	 * @return string The content format's localized name.
 	 * @throws MWException if the model id isn't known.
 	 */
-	public static function getLocalizedName( $id ) {
-		$name = self::getContentModelName( $id );
+	public static function getLocalizedName( $name ) {
 		$key = "content-model-$name";
 
 		if ( wfEmptyMsg( $key ) ) return $name;
 		else return wfMsg( $key );
 	}
 
+	public static function getAllContentFormats() {
+		global $wgContentHandlers;
+
+		$formats = array();
+
+		foreach ( $wgContentHandlers as $model => $class ) {
+			$handler = ContentHandler::getForModelID( $model );
+			$formats = array_merge( $formats, $handler->getSupportedFormats() );
+		}
+
+		$formats = array_unique( $formats );
+		return $formats;
+	}
+
 	// ------------------------------------------------------------------------
 
 	protected $mModelID;
-	protected $mModelName;
 	protected $mSupportedFormats;
 
 	/**
@@ -407,7 +354,7 @@ abstract class ContentHandler {
 	 * and a list of supported formats. Values for the parameters are typically
 	 * provided as literals by subclass's constructors.
 	 *
-	 * @param $modelId int (use CONTENT_MODEL_XXX constants).
+	 * @param $modelId String (use CONTENT_MODEL_XXX constants).
 	 * @param $formats array List for supported serialization formats
 	 *    (typically as MIME types)
 	 */
@@ -427,7 +374,7 @@ abstract class ContentHandler {
 	 *
 	 * @abstract
 	 * @param $content Content The Content object to serialize
-	 * @param $format null The desired serialization format
+	 * @param $format null|String The desired serialization format
 	 * @return string Serialized form of the content
 	 */
 	public abstract function serializeContent( Content $content, $format = null );
@@ -439,7 +386,7 @@ abstract class ContentHandler {
 	 *
 	 * @abstract
 	 * @param $blob string serialized form of the content
-	 * @param $format null the format used for serialization
+	 * @param $format null|String the format used for serialization
 	 * @return Content the Content object created by deserializing $blob
 	 */
 	public abstract function unserializeContent( $blob, $format = null );
@@ -460,24 +407,10 @@ abstract class ContentHandler {
 	 *
 	 * @since WD.1
 	 *
-	 * @return int The model ID
+	 * @return String The model ID
 	 */
 	public function getModelID() {
 		return $this->mModelID;
-	}
-
-	/**
-	 * Returns the content model's symbolic name.
-	 *
-	 * The symbolic name is is this object's class name in lower case with the trailing "ContentHandler"
-	 * and and special characters removed.
-	 *
-	 * @since WD.1
-	 *
-	 * @return String The content model's name
-	 */
-	public function getModelName() {
-		return $this->mModelName;
 	}
 
 	/**
@@ -486,18 +419,15 @@ abstract class ContentHandler {
 	 *
 	 * @since WD.1
 	 *
-	 * @param $model_id int The model to check
+	 * @param String $model_id The model to check
 	 *
 	 * @throws MWException
 	 */
 	protected function checkModelID( $model_id ) {
 		if ( $model_id !== $this->mModelID ) {
-			$model_name = ContentHandler::getContentModelName( $model_id );
-			$own_model_name = ContentHandler::getContentModelName( $this->mModelID );
-
 			throw new MWException( "Bad content model: " .
-				"expected {$this->mModelID} ($own_model_name) " .
-				"but got $model_id ($model_name)." );
+				"expected {$this->mModelID} " .
+				"but got $model_id." );
 		}
 	}
 
@@ -569,24 +499,6 @@ abstract class ContentHandler {
 	}
 
 	/**
-	 * Returns true if the content is consistent with the database, that is if
-	 * saving it to the database would not violate any global constraints.
-	 *
-	 * Content needs to be valid using this method before it can be saved.
-	 *
-	 * This default implementation always returns true.
-	 *
-	 * @since WD.1
-	 *
-	 * @param $content \Content
-	 *
-	 * @return boolean
-	 */
-	public function isConsistentWithDatabase( Content $content ) {
-		return true;
-	}
-
-	/**
 	 * Returns overrides for action handlers.
 	 * Classes listed here will be used instead of the default one when
 	 * (and only when) $wgActions[$action] === true. This allows subclasses
@@ -625,6 +537,29 @@ abstract class ContentHandler {
 		$diffEngineClass = $this->getDiffEngineClass();
 
 		return new $diffEngineClass( $context, $old, $new, $rcid, $refreshCache, $unhide );
+	}
+
+	/**
+	 * Get the language in which the content of the given page is written.
+	 *
+	 * This default implementation returns $wgContLang->getCode().
+	 *
+	 * Note that a page's language must be permanent and cacheable, that is, it must not depend
+	 * on user preferences, request parameters or session state.
+	 *
+	 * Also note that the page language may or may not depend on the actual content of the page,
+	 * that is, this method may load the content in order to determine the language.
+	 *
+	 * @since 1.WD
+	 *
+	 * @param Title        $title the page to determine the language for.
+	 * @param Content|null $content the page's content, if you have it handy, to avoid reloading it.
+	 *
+	 * @return Language the page's language code
+	 */
+	public function getPageLanguage( Title $title, Content $content = null ) {
+		global $wgContLang;
+		return $wgContLang;
 	}
 
 	/**
@@ -1196,6 +1131,17 @@ class JavaScriptContentHandler extends TextContentHandler {
 		return new JavaScriptContent( '' );
 	}
 
+	/**
+	 * Returns the english language, because JS is english, and should be handled as such.
+	 *
+	 * @return Language wfGetLangObj( 'en' )
+	 *
+	 * @see ContentHandler::getPageLanguage()
+	 */
+	public function getPageLanguage( Title $title, Content $content = null ) {
+		return wfGetLangObj( 'en' );
+	}
+
 	protected function getHtml( Content $content ) {
 		$html = "";
 		$html .= "<pre class=\"mw-code mw-js\" dir=\"ltr\">\n";
@@ -1225,6 +1171,16 @@ class CssContentHandler extends TextContentHandler {
 		return new CssContent( '' );
 	}
 
+	/**
+	 * Returns the english language, because CSS is english, and should be handled as such.
+	 *
+	 * @return Language wfGetLangObj( 'en' )
+	 *
+	 * @see ContentHandler::getPageLanguage()
+	 */
+	public function getPageLanguage( Title $title, Content $content = null ) {
+		return wfGetLangObj( 'en' );
+	}
 
 	protected function getHtml( Content $content ) {
 		$html = "";

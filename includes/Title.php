@@ -300,7 +300,7 @@ class Title {
 			if ( isset( $row->page_latest ) )
 				$this->mLatestID = (int)$row->page_latest;
 			if ( isset( $row->page_content_model ) )
-				$this->mContentModel = intval( $row->page_content_model );
+				$this->mContentModel = strval( $row->page_content_model );
 			else
 				$this->mContentModel = false; # initialized lazily in getContentModel()
 		} else { // page not found
@@ -670,7 +670,7 @@ class Title {
 	/**
 	 * Get the page's content model id, see the CONTENT_MODEL_XXX constants.
 	 *
-	 * @return Integer: Content model id
+	 * @return String: Content model id
 	 */
 	public function getContentModel() {
 		if ( !$this->mContentModel ) {
@@ -3819,7 +3819,7 @@ class Title {
 		$this->mArticleID = $row ? intval( $row->page_id ) : 0;
 		$this->mRedirect = $row ? (bool)$row->page_is_redirect : false;
 		$this->mLatestID = $row ? intval( $row->page_latest ) : false;
-		$this->mContentModel = $row && isset( $row->page_content_model ) ? intval( $row->page_content_model ) : false;
+		$this->mContentModel = $row && isset( $row->page_content_model ) ? strval( $row->page_content_model ) : false;
 		if ( !$this->mRedirect ) {
 			return false;
 		}
@@ -4548,17 +4548,17 @@ class Title {
 		if ( $this->isSpecialPage() ) {
 			// special pages are in the user language
 			return $wgLang;
-		} elseif ( $this->isCssOrJsPage() || $this->isCssJsSubpage() ) {
-			// css/js should always be LTR and is, in fact, English
-			return wfGetLangObj( 'en' );
 		} elseif ( $this->getNamespace() == NS_MEDIAWIKI ) {
 			// Parse mediawiki messages with correct target language
 			list( /* $unused */, $lang ) = MessageCache::singleton()->figureMessage( $this->getText() );
 			return wfGetLangObj( $lang );
 		}
-		global $wgContLang;
-		// If nothing special, it should be in the wiki content language
-		$pageLang = $wgContLang;
+
+		//TODO: use the LinkCache to cache this!
+		//NOTE: ContentHandler::getPageLanguage() may need to load the content to determine the page language!
+		$contentHandler = ContentHandler::getForTitle( $this );
+		$pageLang = $contentHandler->getPageLanguage( $this );
+
 		// Hook at the end because we don't want to override the above stuff
 		wfRunHooks( 'PageContentLanguage', array( $this, &$pageLang, $wgLang ) );
 		return wfGetLangObj( $pageLang );

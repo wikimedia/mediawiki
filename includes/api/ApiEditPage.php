@@ -54,6 +54,23 @@ class ApiEditPage extends ApiBase {
 			$this->dieUsageMsg( array( 'invalidtitle', $params['title'] ) );
 		}
 
+		$contentHandler = $pageObj->getContentHandler();
+
+		// @todo ask handler whether direct editing is supported at all! make allowFlatEdit() method or some such
+
+		if ( !isset( $params['contentformat'] ) || $params['contentformat'] == '' ) {
+			$params['contentformat'] = $contentHandler->getDefaultFormat();
+		}
+
+		$contentFormat = $params['contentformat'];
+
+		if ( !$contentHandler->isSupportedFormat( $contentFormat ) ) {
+			$name = $titleObj->getPrefixedDBkey();
+			$model = $contentHandler->getModelID();
+
+			$this->dieUsage( "The requested format $contentFormat is not supported for content model $model used by $name", 'badformat' );
+		}
+
 		$apiResult = $this->getResult();
 
 		if ( $params['redirect'] ) {
@@ -99,32 +116,52 @@ class ApiEditPage extends ApiBase {
 			$this->dieUsageMsg( $errors[0] );
 		}
 
-		$articleObj = Article::newFromTitle( $titleObj, $this->getContext() );
-
 		$toMD5 = $params['text'];
 		if ( !is_null( $params['appendtext'] ) || !is_null( $params['prependtext'] ) )
 		{
-			// For non-existent pages, Article::getContent()
-			// returns an interface message rather than ''
-			// We do want getContent()'s behavior for non-existent
-			// MediaWiki: pages, though
-			if ( $articleObj->getID() == 0 && $titleObj->getNamespace() != NS_MEDIAWIKI ) {
-				$content = null;
-				$text = '';
-			} else {
-				$content = $articleObj->getContentObject();
-				$text = ContentHandler::getContentText( $content ); #FIXME: serialize?! get format from params?...
+			$content = $pageObj->getContent();
+
+			if ( !( $content instanceof TextContent ) ) {
+				// @todo: ContentHandler should have an isFlat() method or some such
+				// @todo: XXX: or perhaps there should be Content::append(), Content::prepend() and Content::supportsConcatenation()
+				$mode = $contentHandler->getModelID();
+				$this->dieUsage( "Can't append to pages using content model $mode", 'appendnotsupported' );
+			}
+
+			if ( !$content ) {
+				# If this is a MediaWiki:x message, then load the messages
+				# and return the message value for x.
+				if ( $titleObj->getNamespace() == NS_MEDIAWIKI ) {
+					$text = $titleObj->getDefaultMessageText();
+					if ( $text === false ) {
+						$text = '';
+					}
+
+					$content = ContentHandler::makeContent( $text, $this->getTitle() );
+				}
 			}
 
 			if ( !is_null( $params['section'] ) ) {
+				if ( !$contentHandler->supportsSections() ) {
+					$modelName = $contentHandler->getModelID();
+					$this->dieUsage( "Sections are not supported for this content model: $modelName.", 'sectionsnotsupported' );
+				}
+
 				// Process the content for section edits
 				$section = intval( $params['section'] );
-				$sectionContent = $content->getSection( $section );
-				$text = ContentHandler::getContentText( $sectionContent ); #FIXME: serialize?! get format from params?...
-				if ( $text === false || $text === null ) {
+				$content = $content->getSection( $section );
+
+				if ( !$content ) {
 					$this->dieUsage( "There is no section {$section}.", 'nosuchsection' );
 				}
 			}
+
+			if ( !$content ) {
+				$text = '';
+			} else {
+				$text = $content->serialize( $contentFormat );
+			}
+
 			$params['text'] = $params['prependtext'] . $text . $params['appendtext'];
 			$toMD5 = $params['prependtext'] . $params['appendtext'];
 		}
@@ -149,18 +186,21 @@ class ApiEditPage extends ApiBase {
 				$this->dieUsageMsg( array( 'nosuchrevid', $params['undoafter'] ) );
 			}
 
-			if ( $undoRev->getPage() != $articleObj->getID() ) {
+			if ( $undoRev->getPage() != $pageObj->getID() ) {
 				$this->dieUsageMsg( array( 'revwrongpage', $undoRev->getID(), $titleObj->getPrefixedText() ) );
 			}
-			if ( $undoafterRev->getPage() != $articleObj->getID() ) {
+			if ( $undoafterRev->getPage() != $pageObj->getID() ) {
 				$this->dieUsageMsg( array( 'revwrongpage', $undoafterRev->getID(), $titleObj->getPrefixedText() ) );
 			}
 
-			$newtext = $articleObj->getUndoText( $undoRev, $undoafterRev );
-			if ( $newtext === false ) {
+			$newContent = $contentHandler->getUndoContent( $undoRev, $undoafterRev );
+			if ( !$newContent ) {
 				$this->dieUsageMsg( 'undo-failure' );
 			}
-			$params['text'] = $newtext;
+
+			$params['contentformat'] = $contentHandler->getDefaultFormat();
+			$params['text'] = $newContent->serialize( $params['contentformat'] );
+
 			// If no summary was given and we only undid one rev,
 			// use an autosummary
 			if ( is_null( $params['summary'] ) && $titleObj->getNextRevisionID( $undoafterRev->getID() ) == $params['undo'] ) {
@@ -177,6 +217,8 @@ class ApiEditPage extends ApiBase {
 		// That interface kind of sucks, but it's workable
 		$requestArray = array(
 			'wpTextbox1' => $params['text'],
+			'format' => $contentFormat,
+			'model' => $contentHandler->getModelID(),
 			'wpEditToken' => $params['token'],
 			'wpIgnoreBlankSummary' => ''
 		);
@@ -194,7 +236,7 @@ class ApiEditPage extends ApiBase {
 		if ( !is_null( $params['basetimestamp'] ) && $params['basetimestamp'] != '' ) {
 			$requestArray['wpEdittime'] = wfTimestamp( TS_MW, $params['basetimestamp'] );
 		} else {
-			$requestArray['wpEdittime'] = $articleObj->getTimestamp();
+			$requestArray['wpEdittime'] = $pageObj->getTimestamp();
 		}
 
 		if ( !is_null( $params['starttimestamp'] ) && $params['starttimestamp'] != '' ) {
@@ -242,8 +284,8 @@ class ApiEditPage extends ApiBase {
 		// TODO: Make them not or check if they still do
 		$wgTitle = $titleObj;
 
-		$handler = ContentHandler::getForTitle( $titleObj );
-		$ep = $handler->createEditPage( $articleObj );
+		$articleObject = new Article( $titleObj );
+		$ep = new EditPage( $articleObject );
 
 		$ep->setContextTitle( $titleObj );
 		$ep->importFormData( $req );
@@ -262,7 +304,7 @@ class ApiEditPage extends ApiBase {
 		}
 
 		// Do the actual save
-		$oldRevId = $articleObj->getRevIdFetched();
+		$oldRevId = $articleObject->getRevIdFetched();
 		$result = null;
 		// Fake $wgRequest for some hooks inside EditPage
 		// @todo FIXME: This interface SUCKS
@@ -329,14 +371,15 @@ class ApiEditPage extends ApiBase {
 				$r['result'] = 'Success';
 				$r['pageid'] = intval( $titleObj->getArticleID() );
 				$r['title'] = $titleObj->getPrefixedText();
-				$newRevId = $articleObj->getLatest();
+				$r['contentmodel'] = $titleObj->getContentModel();
+				$newRevId = $articleObject->getLatest();
 				if ( $newRevId == $oldRevId ) {
 					$r['nochange'] = '';
 				} else {
 					$r['oldrevid'] = intval( $oldRevId );
 					$r['newrevid'] = intval( $newRevId );
 					$r['newtimestamp'] = wfTimestamp( TS_ISO_8601,
-						$articleObj->getTimestamp() );
+						$pageObj->getTimestamp() );
 				}
 				break;
 
@@ -397,6 +440,10 @@ class ApiEditPage extends ApiBase {
 				array( 'unknownerror', 'retval' ),
 				array( 'code' => 'nosuchsection', 'info' => 'There is no section section.' ),
 				array( 'code' => 'invalidsection', 'info' => 'The section parameter must be set to an integer or \'new\'' ),
+				array( 'code' => 'sectionsnotsupported', 'info' => 'Sections are not supported for this type of page.' ),
+				array( 'code' => 'editnotsupported', 'info' => 'Editing of this type of page is not supported using the text based edit API.' ),
+				array( 'code' => 'appendnotsupported', 'info' => 'This type of page can not be edited by appending or prepending text.' ),
+				array( 'code' => 'badformat', 'info' => 'The requested serialization format can not be applied to the page\'s content model' ),
 				array( 'customcssprotected' ),
 				array( 'customjsprotected' ),
 			)

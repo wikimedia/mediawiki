@@ -271,37 +271,31 @@ define( 'PROTO_INTERNAL', 2 );
 /**@}*/
 
 /**@{
- * Content model ids, used by Content and ContentHandler
+ * Content model ids, used by Content and ContentHandler.
+ * These IDs will be exposed in the API and XML dumps.
  *
- * Extensions that define their own content models shall use IDs
- * larger than 100 and register the ids they use at
- * <http://mediawiki.org/ContentHandler/registry>
- * to avoid conflicts with other extensions.
+ * Extensions that define their own content model IDs should take
+ * care to avoid conflicts. Using the extension name as a prefix is recommended.
  */
-define( 'CONTENT_MODEL_WIKITEXT', 1 );
-define( 'CONTENT_MODEL_JAVASCRIPT', 2 );
-define( 'CONTENT_MODEL_CSS', 3 );
-define( 'CONTENT_MODEL_TEXT', 4 );
+define( 'CONTENT_MODEL_WIKITEXT', 'wikitext' );
+define( 'CONTENT_MODEL_JAVASCRIPT', 'javascript' );
+define( 'CONTENT_MODEL_CSS', 'css' );
+define( 'CONTENT_MODEL_TEXT', 'text' );
 /**@}*/
 
 /**@{
- * Content format ids, used by Content and ContentHandler.
- * Use ContentHander::getFormatMimeType() to get the associated mime type.
- * Register mime types in $wgContentFormatMimeTypes.
+ * Content formats, used by Content and ContentHandler.
+ * These should be MIME types, and will be exposed in the API and XML dumps.
  *
- * Extensions that define their own content formats shall use IDs
- * larger than 100 and register the ids they use at
- * <http://mediawiki.org/ContentHandler/registry>
- * to avoid conflicts with other extensions.
+ * Extensions are free to use the below formats, or define their own.
+ * It is recommended to stick with the conventions for MIME types.
  */
-define( 'CONTENT_FORMAT_WIKITEXT', 1 ); // wikitext
-define( 'CONTENT_FORMAT_JAVASCRIPT', 2 ); // for js pages
-define( 'CONTENT_FORMAT_CSS', 3 );  // for css pages
-define( 'CONTENT_FORMAT_TEXT', 4 ); // for future use, e.g. with some plain-html messages.
-define( 'CONTENT_FORMAT_HTML', 5 ); // for future use, e.g. with some plain-html messages.
-define( 'CONTENT_FORMAT_SERIALIZED', 11 ); // for future use with the api, and for use by extensions
-define( 'CONTENT_FORMAT_JSON', 12 ); // for future use with the api, and for use by extensions
-define( 'CONTENT_FORMAT_XML', 13 ); // for future use with the api, and for use by extensions
+define( 'CONTENT_FORMAT_WIKITEXT', 'text/x-wiki' ); // wikitext
+define( 'CONTENT_FORMAT_JAVASCRIPT', 'text/javascript' ); // for js pages
+define( 'CONTENT_FORMAT_CSS', 'text/css' );  // for css pages
+define( 'CONTENT_FORMAT_TEXT', 'text/plain' ); // for future use, e.g. with some plain-html messages.
+define( 'CONTENT_FORMAT_HTML', 'text/html' ); // for future use, e.g. with some plain-html messages.
+define( 'CONTENT_FORMAT_SERIALIZED', 'application/vnd.php.serialized' ); // for future use with the api, and for use by extensions
+define( 'CONTENT_FORMAT_JSON', 'application/json' ); // for future use with the api, and for use by extensions
+define( 'CONTENT_FORMAT_XML', 'application/xml' ); // for future use with the api, and for use by extensions
 /**@}*/
-
-
