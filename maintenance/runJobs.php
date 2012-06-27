@@ -79,6 +79,7 @@ class RunJobs extends Maintenance {
 				wfWaitForSlaves();
 				$t = microtime( true );
 				$offset = $job->id;
+				$this->runJobsLog( $job->toString() . " STARTING" );
 				$status = $job->run();
 				$t = microtime( true ) - $t;
 				$timeMs = intval( $t * 1000 );
