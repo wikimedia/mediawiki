@@ -677,6 +677,7 @@ $wgAutoloadLocalClasses = array(
 	'BitmapHandler_ClientOnly' => 'includes/media/Bitmap_ClientOnly.php',
 	'BitmapMetadataHandler' => 'includes/media/BitmapMetadataHandler.php',
 	'BmpHandler' => 'includes/media/BMP.php',
+	'BmpUncompressedHandler' => 'includes/media/BMPUncompressed.php',
 	'DjVuHandler' => 'includes/media/DjVu.php',
 	'DjVuImage' => 'includes/media/DjVuImage.php',
 	'Exif' => 'includes/media/Exif.php',
