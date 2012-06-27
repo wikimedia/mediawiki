@@ -65,7 +65,7 @@ $messages = array(
 'tog-hidepatrolled' => 'Anubrir les ediciones vixilaes nos cambeos recientes',
 'tog-newpageshidepatrolled' => 'Anubrir les páxines vixilaes na llista de páxines nueves',
 'tog-extendwatchlist' => "Espander la llista de vixilancia p'amosar tolos cambeos, non solo los más recientes.",
-'tog-usenewrc' => 'Cambeos recientes ameyoraos (necesita JavaScript)',
+'tog-usenewrc' => 'Agrupar los cambeos por páxina nos cambeos recientes y na llista de vixilancia (necesita JavaScript)',
 'tog-numberheadings' => 'Autonumberar los encabezaos',
 'tog-showtoolbar' => "Amosar la barra de ferramientes d'edición (JavaScript)",
 'tog-editondblclick' => 'Editar páxines con doble clic (necesita JavaScript)',
@@ -452,6 +452,8 @@ El motivu conseñáu ye «''$2''».",
 L'alministrador que lu bloquió dio esti motivu: «$3».",
 'invalidtitle-knownnamespace' => 'Títulu non válidu col espaciu de nomes «$2» y el testu «$3»',
 'invalidtitle-unknownnamespace' => "Titulu non válidu col númberu $1 d'espaciu de nomes desconocíu y el testu «$2»",
+'exception-nologin' => 'Non identificáu',
+'exception-nologin-text' => "Esta páxina o aición necesita qu'anicies sesión nesta wiki.",
 
 # Virus scanner
 'virus-badscanner' => "Fallu de configuración: Escáner de virus desconocíu: ''$1''",

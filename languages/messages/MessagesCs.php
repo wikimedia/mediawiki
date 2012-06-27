@@ -742,6 +742,8 @@ $2',
 Správce serveru, který úložiště zamkl, poskytl toto zdůvodnění: „''$3''“.",
 'invalidtitle-knownnamespace' => 'Neplatný název se jmenným prostorem „$2“ a textem „$3“',
 'invalidtitle-unknownnamespace' => 'Neplatný název s neznámým číslem jmenného prostoru $1 a textem „$2“',
+'exception-nologin' => 'Nejste přihlášen(a)',
+'exception-nologin-text' => 'Tato stránka nebo akce vyžaduje, abyste byli na této wiki přihlášeni.',
 
 # Virus scanner
 'virus-badscanner' => "Špatná konfigurace: neznámý antivirový program: ''$1''",

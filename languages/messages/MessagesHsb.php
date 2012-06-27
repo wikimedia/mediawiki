@@ -540,6 +540,8 @@ Podata přičina je \'\'"$2"\'\'.',
 Administrator, kiž je jón zawrěł, je tule přičinu podał: "$3".',
 'invalidtitle-knownnamespace' => 'Njepłaćiwy titul z mjenowym rumom "$2" a tekstom "$3"',
 'invalidtitle-unknownnamespace' => 'Njepłaćiwy titul z njeznatym mjenowym rumom $1 a tekstom "$2"',
+'exception-nologin' => 'Njejsy přizjewjeny',
+'exception-nologin-text' => 'Tuta strona abo akcija sej wužaduje, zo sy na tutym wikiju přizjewjeny.',
 
 # Virus scanner
 'virus-badscanner' => "Špatna konfiguracija: Njeznaty wirusowy skener: ''$1''",

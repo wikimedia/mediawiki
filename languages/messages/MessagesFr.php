@@ -754,6 +754,8 @@ Le motif avancé est « ''$2'' ».",
 L’administrateur qui l’a verrouillé a fourni ce motif: « $3 ».',
 'invalidtitle-knownnamespace' => 'Titre invalide avec l’espace de noms « $2 » et l’intitulé « $3 »',
 'invalidtitle-unknownnamespace' => 'Titre invalide avec le numéro d’espace de noms $1 et l’intitulé « $2 » inconnus',
+'exception-nologin' => 'Non connecté',
+'exception-nologin-text' => "Cette page ou cette action nécessite d'être connecté sur ce wiki.",
 
 # Virus scanner
 'virus-badscanner' => "Mauvaise configuration : scanneur de virus inconnu : ''$1''",

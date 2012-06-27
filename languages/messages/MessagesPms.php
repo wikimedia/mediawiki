@@ -429,6 +429,8 @@ Coma rason a l'ha butà: ''$2''.",
 L'aministrator ch'a l'ha blocalo a l'ha lassà sta spiegassion: «$3».",
 'invalidtitle-knownnamespace' => 'Tìtol pa bon con spassi nominal "$2" e test "$3"',
 'invalidtitle-unknownnamespace' => 'Tìtol pa bon con spassi nominal sconossù nùmer $1 e test "$2"',
+'exception-nologin' => 'Nen rintrà ant ël sistema',
+'exception-nologin-text' => "Sta pagina o assion a veul ch'it sie intrà dzora a sta wiki.",
 
 # Virus scanner
 'virus-badscanner' => "Configurassion falà: antivìrus nen conossù: ''$1''",

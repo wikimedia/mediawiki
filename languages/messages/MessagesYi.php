@@ -1676,6 +1676,8 @@ $1",
 
 # Special:UploadStash
 'uploadstash' => 'אַרויפֿלאָד רעזערוו',
+'uploadstash-clear' => 'אויסמעקן טעקעס פון זאפאס',
+'uploadstash-nofiles' => 'איר האט נישט קיין טעקעס אין זאפאס.',
 'uploadstash-refresh' => 'דערפֿרישן די רשימה פון טעקעס',
 
 # img_auth script messages
@@ -2691,6 +2693,8 @@ $1',
 'javascripttest-disabled' => 'די  פֿונקציע איז אומאַקטיווירט אין דער דאזיקער וויקי.',
 'javascripttest-title' => 'דורכפירנדיק $1 בדיקות',
 'javascripttest-pagetext-skins' => 'קלויבט א באניצער־אייבערפלאך מיט וואס דורכצופירן די בדיקות:',
+'javascripttest-qunit-intro' => 'זעט [$1 דאקומענטאציע פאר טעסטן] בײַ mediawiki.org.',
+'javascripttest-qunit-heading' => 'מעדיעוויקי JavaScript QUnit קאנטראל־פראגראם',
 
 # Tooltip help for the actions
 'tooltip-pt-userpage' => 'אייער באניצער בלאט',

@@ -652,6 +652,8 @@ La motivazione è la seguente: ''$2''.",
 L\'amministratore che lo ha bloccato ha fornito questa motivazione: "$3".',
 'invalidtitle-knownnamespace' => 'Titolo non valido con namespace "$2" e testo "$3"',
 'invalidtitle-unknownnamespace' => 'Titolo non valido con namespace sconosciuto "$1" e testo "$2"',
+'exception-nologin' => 'Accesso non effettuato',
+'exception-nologin-text' => "Questa pagina o azione richiede che tu abbia effettuato l'accesso su questo wiki.",
 
 # Virus scanner
 'virus-badscanner' => "Errore di configurazione: antivirus sconosciuto: ''$1''",

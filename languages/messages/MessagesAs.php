@@ -119,7 +119,7 @@ $messages = array(
 'tog-hidepatrolled' => 'সাম্প্ৰতিক সাল-সলনিত তহলদাৰী সম্পাদনা নেদেখুৱাব',
 'tog-newpageshidepatrolled' => 'নতুন পৃষ্ঠা তালিকাত তহলদাৰী পৃষ্ঠাসমূহ নেদেখুৱাব',
 'tog-extendwatchlist' => 'কেৱল সাম্প্ৰতিকেই নহয, লক্ষ্য-তালিকাৰ সকলো সাল-সলনি বহলাই দেখুৱাওক',
-'tog-usenewrc' => 'বৰ্দ্ধিত সাম্প্ৰতিক সাল-সলনি ব্যবহাৰ কৰক (জাভাস্ক্ৰিপ্টৰ দৰকাৰ)',
+'tog-usenewrc' => 'বৰ্দ্ধিত সাম্প্ৰতিক সাল-সলনি ব্যবহাৰ কৰক (জাভাস্ক্ৰিপ্টৰ প্ৰয়োজন)',
 'tog-numberheadings' => 'শীৰ্ষকত স্বয়ংক্ৰিয়ভাৱে ক্ৰমিক নং দিয়ক',
 'tog-showtoolbar' => 'সম্পাদনা দণ্ডিকা দেখুৱাওক (জাভাস্ক্ৰিপ্টৰ দৰকাৰ)',
 'tog-editondblclick' => 'একেলগে দুবাৰ টিপা মাৰিলে পৃষ্ঠা সম্পাদনা কৰক (জাভাস্ক্ৰিপ্টৰ দৰকাৰ)',
@@ -498,6 +498,8 @@ $2',
 যিজন প্ৰশাসকে এইটো বন্ধ কৰিছে তেওঁ দৰ্শোৱা কাৰণ হৈছে: \'\'$3\'\'।',
 'invalidtitle-knownnamespace' => 'নামস্থান "$2" আৰু পাঠ্য "$3" থকা অবৈধ শিৰোনাম',
 'invalidtitle-unknownnamespace' => 'অজ্ঞাত নামস্থান সংখ্যা $1 আৰু পাঠ্য "$2" থকা অবৈধ শিৰোনাম',
+'exception-nologin' => 'প্ৰৱেশ কৰা নাই',
+'exception-nologin-text' => 'এই পৃষ্ঠা অথবা কামৰ বাবে আপুনি প্ৰৱেশ কৰা বাধ্যতামূলক',
 
 # Virus scanner
 'virus-badscanner' => "ভুল কনফিগাৰেচন: অজ্ঞাত ভাইৰাছ স্কেনাৰ: ''$1''",
@@ -946,42 +948,42 @@ $3 য়ে আগবঢ়োৱা ইয়াৰ কাৰণ হৈছে 
 # Revision deletion
 'rev-deleted-comment' => "(সম্পাদনা সাৰাংশ আঁতৰোৱা হ'ল)",
 'rev-deleted-user' => '(সদস্যনাম আঁতৰোৱা হ’ল)',
-'rev-deleted-event' => "(ল'গ কাৰ্য্য আঁতৰোৱা হ'ল)",
+'rev-deleted-event' => "(অভিলেখ কাৰ্য আঁতৰোৱা হ'ল)",
 'rev-deleted-user-contribs' => "[সদস্যনাম বা আই-পি ঠিকনা আঁতৰোৱা হ'ল - সম্পাদনা বৰঙনিসমূহৰ পৰা আঁৰ কৰা হৈছে]",
 'rev-deleted-text-permission' => "পৃষ্ঠাৰ এই সংশোধনটি '''বিলোপ''' কৰা হ'ল ।
-সবিশেষ পাব [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} অবলুপ্তি ল'গত]",
+সবিশেষ পাব [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} অবলুপ্তি অভিলেখত]",
 'rev-deleted-text-unhide' => "পৃষ্ঠাখনৰ এই সংশোধনটো '''বিলোপ''' কৰা হৈছে | 
-সবিশেষ পাব [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} অৱলুপ্তি ল’গ]ত।
+সবিশেষ পাব [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} অৱলুপ্তি অভিলেখত]।
 আপুনি মন কৰিলে [$1 এই সংশোধনটো চাব পাৰে]।",
 'rev-suppressed-text-unhide' => "পৃষ্ঠাখনৰ এই সংশোধনটো '''নিবাৰণ''' কৰা হৈছে ।
-সবিশেষ পাব [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} নিবাৰণ ল’গত]।
+সবিশেষ পাব [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} নিবাৰণ অভিলেখত]।
 আপুনি মন কৰিলে [$1 এই সংশোধনটো চাব পাৰে]।",
 'rev-deleted-text-view' => "পৃষ্ঠাৰ এই সংশোধনটো '''বিলোপ''' কৰা হ'ল ।
-আপুনি এইটো চাব পাৰে; সবিশেষ পাব [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} অবলুপ্তি ল’গত]।",
+আপুনি এইটো চাব পাৰে; সবিশেষ পাব [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} অবলুপ্তি অভিলেখত]।",
 'rev-suppressed-text-view' => "পৃষ্ঠাৰ এই সংশোধনটো '''নিবাৰণ''' কৰা হ’ল।
-আপুনি এইটো চাব পাৰে; সবিশেষ পাব [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} নিবাৰণ ল’গত]।",
+আপুনি এইটো চাব পাৰে; সবিশেষ পাব [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} নিবাৰণ অভিলেখত]।",
 'rev-deleted-no-diff' => "আপুনি এই পাৰ্থক্য চাব নোৱাৰে কাৰণ এটা সংস্কৰণ '''বিলোপ''' কৰা হৈছে ।
-সবিশেষ পাব [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} অৱলুপ্তি ল'গ] ত ।",
+সবিশেষ পাব [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} অৱলুপ্তি অভিলেখত]।",
 'rev-suppressed-no-diff' => "আপুনি এই পাৰ্থক্য চাব নোৱাৰে কাৰণ এটা সংস্কৰণ '''বিলোপ''' কৰা হৈছে ।",
 'rev-deleted-unhide-diff' => "এই পাৰ্থক্যৰ এটা সংস্কৰণ '''বিলোপ''' কৰা হৈছে ।
-বিস্তাৰিত কাৰণ [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} অৱলুপ্তি ল’গ] ত পাব ।
+বিস্তাৰিত কাৰণ [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} অৱলুপ্তি অভিলেখত] পাব ।
 আপুনি মন কৰিলে [$1 এই পাৰ্থক্য চাওক] ।",
 'rev-suppressed-unhide-diff' => "এই পাৰ্থক্যৰ এটা সংশোধন '''নিবাৰণ''' কৰা হৈছে ।
-সবিশেষ পাব [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} নিবাৰণ ল’গত] ।
+সবিশেষ পাব [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} নিবাৰণ অভিলেখত] ।
 আপুনি মন কৰিলে [$1 এই সংশোধনটো চাব পাৰে] ।",
 'rev-deleted-diff-view' => "এই পাৰ্থক্যৰ এটা সংশোধন '''বিলোপ''' কৰা হ'ল ।
-আপুনি এই পাৰ্থক্য চাব পাৰে; সবিশেষ পাব [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} অৱলুপ্তি ল’গত]",
+আপুনি এই পাৰ্থক্য চাব পাৰে; সবিশেষ পাব [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} অৱলুপ্তি অভিলেখত]",
 'rev-suppressed-diff-view' => "এই পাৰ্থক্যৰ এটা সংশোধন '''নিবাৰণ''' কৰা হ’ল ।
-আপুনি এই পাৰ্থক্য চাব পাৰে; সবিশেষ পাব [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} নিবাৰণ ল’গত] ।",
+আপুনি এই পাৰ্থক্য চাব পাৰে; সবিশেষ পাব [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} নিবাৰণ অভিলেখত] ।",
 'rev-delundel' => 'দেখুৱাওক/নেদেখুৱাব',
 'rev-showdeleted' => 'দেখুৱাওক',
-'revisiondelete' => 'সংকলন বিলোপন কৰক / পুণৰ্স্থাপিত কৰক',
+'revisiondelete' => 'সংকলন বিলোপ কৰক / পুণৰ স্থাপন কৰক',
 'revdelete-nooldid-title' => 'লক্ষ্য সংশোধন যুক্তিসংগত নহয়',
 'revdelete-nooldid-text' => 'কামটো কৰাৰ বাবে আপুনি লক্ষ্য সংশোধন নিৰ্বাচন কৰা নাই, নিৰ্বাচিত সংশোধন নাই, অথবা আপুনি বৰ্তমানৰ সংশোধন লুকুৱাব বিচাৰিছে ।',
-'revdelete-nologtype-title' => 'কোনো ল’গ প্ৰকাৰ দিয়া হোৱা নাই',
-'revdelete-nologtype-text' => 'এই কামটো কৰাৰ বাবে আপুনি কোনো ল’গ প্ৰকাৰ নিৰ্বাচন কৰা নাই ।',
-'revdelete-nologid-title' => 'অযুক্তিসংগত ল’গ ভৰ্তি',
-'revdelete-nologid-text' => 'আপুনি এইটো কৰাৰ বাবে কোনো ল’গ ভৰ্তি নিৰ্বাচন কৰা নাই অথবা নিৰ্বাচিত ল’গ ভৰ্তিটো নাই ।',
+'revdelete-nologtype-title' => 'কোনো অভিলেখ প্ৰকাৰ দিয়া হোৱা নাই',
+'revdelete-nologtype-text' => 'এই কামটো কৰাৰ বাবে আপুনি কোনো অভিলেখ  প্ৰকাৰ নিৰ্বাচন কৰা নাই ।',
+'revdelete-nologid-title' => 'অযুক্তিসংগত অভিলেখ ভৰ্তি',
+'revdelete-nologid-text' => 'আপুনি এইটো কৰাৰ বাবে কোনো অভিলেখ ভৰ্তি নিৰ্বাচন কৰা নাই অথবা নিৰ্বাচিত অভিলেখ ভৰ্তিটো নাই ।',
 'revdelete-no-file' => 'নিৰ্ধাৰিত ফাইলটি নাই ।',
 'revdelete-show-file-confirm' => 'আপুনি "<nowiki>$1</nowiki>"  ফাইলৰ বিলোপ কৰা কৰা সংশোধন $2 তাৰিখৰ পৰা $3 সময়ত চাব বিচাৰিছে নেকি?',
 'revdelete-show-file-submit' => 'হয়',

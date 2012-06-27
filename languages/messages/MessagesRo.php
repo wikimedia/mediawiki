@@ -695,6 +695,8 @@ Motivul invocat este ''$2''.",
 Administratorul care a efectuat blocarea a furnizat explicația: „$3”.',
 'invalidtitle-knownnamespace' => 'Titlu invalid cu spațiul de nume „$2” și textul „$3”',
 'invalidtitle-unknownnamespace' => 'Titlu invalid cu numărul spațiului de nume $1 necunoscut și textul „$2”',
+'exception-nologin' => 'Neautentificat{{GENDER:||ă}}.',
+'exception-nologin-text' => 'Această pagină sau acțiune necesită ca dumneavoastră să fiți autentificat{{GENDER:||ă}} pe acest wiki.',
 
 # Virus scanner
 'virus-badscanner' => "Configurație greșită: scaner de virus necunoscut: ''$1''",
@@ -2762,7 +2764,7 @@ automat odată cu aceasta '''afară de cazul că''':
 manual paginile de discuții, dacă dorești acest lucru.",
 'movearticle' => 'Pagina de redenumit:',
 'moveuserpage-warning' => "'''Atenție''': sunteți pe cale să redenumiți o pagină de utilizator. Vă rugăm să rețineți că singura redenumită va fi pagina, nu și utilizatorul.",
-'movenologin' => 'Nu ești autentificat',
+'movenologin' => 'Nu sunteți autentificat{{GENDER:||ă}}.',
 'movenologintext' => 'Trebuie să fii un utilizator înregistrat și să te [[Special:UserLogin|autentifici]] pentru a muta o pagină.',
 'movenotallowed' => 'Nu ai permisiunea să muți pagini.',
 'movenotallowedfile' => 'Nu ai permisiunea de a muta fișiere.',

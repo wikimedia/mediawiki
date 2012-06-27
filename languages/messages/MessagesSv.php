@@ -706,6 +706,8 @@ Den uppgivna anledningen är "\'\'$2\'\'".',
 Den administratören som låste den gav denna anledning: "\'\'$3\'\'".',
 'invalidtitle-knownnamespace' => 'Ogiltig titel med namnrymden "$2" och texten "$3"',
 'invalidtitle-unknownnamespace' => 'Ogiltig titel med okänt namnrymdsnummer $1 och texten "$2"',
+'exception-nologin' => 'Inte inloggad',
+'exception-nologin-text' => 'Denna sida eller åtgärd kräver att du måste vara inloggad på denna wiki.',
 
 # Virus scanner
 'virus-badscanner' => "Dålig konfigurering: okänd virusskanner: ''$1''",

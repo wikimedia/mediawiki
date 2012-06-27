@@ -576,6 +576,8 @@ Podani razlog je bil »''$2''«.",
 Administrator, ki ga je zaklenil, je podal naslednje pojasnilo: »$3«.',
 'invalidtitle-knownnamespace' => 'Neveljaven naslov z imenskim prostorom »$2« in besedilom »$3«',
 'invalidtitle-unknownnamespace' => 'Neveljaven naslov z neznano številko imenskega prostora $1 in besedilom »$2«',
+'exception-nologin' => 'Niste prijavljeni',
+'exception-nologin-text' => 'Izbrana stran ali dejanje zahteva, da ste na tem wikiju prijavljeni.',
 
 # Virus scanner
 'virus-badscanner' => "Slaba konfiguracija: neznani virus skener: ''$1''",

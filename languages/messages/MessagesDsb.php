@@ -544,6 +544,8 @@ Wótpšašanje: $2',
 Administrator, kenž jo jen zastajił, jo toś tu pśicynu pódał: "$3".',
 'invalidtitle-knownnamespace' => 'Njepłaśiwy titel z mjenjowym rumom "$2" a tekstom "$3"',
 'invalidtitle-unknownnamespace' => 'Njepłaśiwy titel z njeznatym mjenjowym rumom $1 a tekstom "$2"',
+'exception-nologin' => 'Njejsy se pśizjawił',
+'exception-nologin-text' => 'Toś ten bok abo toś ta akcija pomina, až sy na toś tom wikiju pśizjawjony.',
 
 # Virus scanner
 'virus-badscanner' => "Špatna konfiguracija: njeznaty wirusowy scanner: ''$1''",

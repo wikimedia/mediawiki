@@ -683,6 +683,8 @@ Lý do được cung cấp là ''$2''.",
 Bảo quản viên khóa nó đưa lý do là: “$3”.',
 'invalidtitle-knownnamespace' => 'Tựa trang không hợp lệ có không gian tên “$2” và văn bản “$3”',
 'invalidtitle-unknownnamespace' => 'Tựa trang không hợp lệ có không gian tên số $1 không rõ và văn bản “$2”',
+'exception-nologin' => 'Chưa đăng nhập',
+'exception-nologin-text' => 'Bạn cần phải đăng nhập để truy cập trang hoặc thực hiện tác vụ này tại wiki này.',
 
 # Virus scanner
 'virus-badscanner' => "Cấu hình sau: không nhận ra bộ quét virus: ''$1''",
