@@ -1,0 +1,9 @@
+Change-Id: I804f5ad85cc9bf0b86c83d4d7db71037398a9725
+Code-Review+2: Reedy <reedy@wikimedia.org>
+Verified+1: Reedy <reedy@wikimedia.org>
+Verified+1: jenkins-bot
+Submitted-by: Reedy <reedy@wikimedia.org>
+Submitted-at: Wed, 27 Jun 2012 16:42:21 +0000
+Reviewed-on: https://gerrit.wikimedia.org/r/13060
+Project: mediawiki/core
+Branch: refs/heads/wmf/1.20wmf5
