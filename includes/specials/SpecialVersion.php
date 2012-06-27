@@ -165,6 +165,9 @@ class SpecialVersion extends SpecialPage {
 		$svnInfo = self::getSvnInfo( $IP );
 		if ( !$svnInfo && !$gitInfo ) {
 			$version = $wgVersion;
+		} elseif ( $gitInfo && $flags === 'nodb' ) {
+			$shortSha1 = substr( $gitInfo, 0, 7 );
+			$version = "$wgVersion ($shortSha1)";
 		} elseif ( $gitInfo ) {
 			$shortSha1 = substr( $gitInfo, 0, 7 );
 			$shortSha1 = wfMessage( 'parentheses' )->params( $shortSha1 )->escaped();
