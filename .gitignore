@@ -12,7 +12,6 @@ LocalSettings.php
 StartProfiler.php
 cscope.files
 cscope.out
-favicon.ico
 nbproject*
 project.index
 static*
