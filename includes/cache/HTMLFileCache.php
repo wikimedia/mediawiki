@@ -142,6 +142,8 @@ class HTMLFileCache extends FileCacheBase {
 				wfDebug( __METHOD__ . " uncompressing cache file and sending it\n" );
 				readgzfile( $filename );
 			}
+		} else {
+			readfile( $filename );
 		}
 		$context->getOutput()->disable(); // tell $wgOut that output is taken care of
 	}
