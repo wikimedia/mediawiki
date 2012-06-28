@@ -1,6 +1,6 @@
 <?php
 
-class ParserLesserFunctionsTest extends MediaWikiLangTestCase {
+class ParserMethodsTest extends MediaWikiLangTestCase {
 
 	public function dataPreSaveTransform() {
 		return array(
