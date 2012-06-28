@@ -143,7 +143,7 @@ class SpecialBookSources extends SpecialPage {
 		$page = $this->msg( 'booksources' )->inContentLanguage()->text();
 		$title = Title::makeTitleSafe( NS_PROJECT, $page ); # Show list in content language
 		if( is_object( $title ) && $title->exists() ) {
-			$rev = Revision::newFromTitle( $title );
+			$rev = Revision::newFromTitle( $title, false, Revision::AVOID_MASTER );
 			$this->getOutput()->addWikiText( str_replace( 'MAGICNUMBER', $this->isbn, $rev->getText() ) );
 			return true;
 		}
