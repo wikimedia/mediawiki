@@ -615,6 +615,8 @@ O motivo achegado é ''$2''.",
 O administrador que bloqueou o repositorio achegou este motivo: "$3".',
 'invalidtitle-knownnamespace' => 'Título inválido co espazo de nomes "$2" e o texto "$3"',
 'invalidtitle-unknownnamespace' => 'Título inválido cun número de espazo de nomes, $1, descoñecido e o texto "$2"',
+'exception-nologin' => 'Non accedeu ao sistema',
+'exception-nologin-text' => 'Esta páxina ou acción necesita que vostede acceda ao sistema neste wiki.',
 
 # Virus scanner
 'virus-badscanner' => "Configuración errónea: escáner de virus descoñecido: ''$1''",

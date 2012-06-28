@@ -733,6 +733,8 @@ El motivo dado fue: "\'\'$2\'\'".',
 El administrador que lo ha bloqueado ofrece esta explicación: "$3".',
 'invalidtitle-knownnamespace' => 'Título no válido con el espacio de nombres "$2" y el texto "$3"',
 'invalidtitle-unknownnamespace' => 'Título no válido con número de espacio de nombres desconocido  $1  y el texto "$2"',
+'exception-nologin' => 'No has iniciado sesión',
+'exception-nologin-text' => 'Esta página o acción requiere que inicies sesión en este wiki.',
 
 # Virus scanner
 'virus-badscanner' => "Error de configuración: Antivirus desconocido: ''$1''",

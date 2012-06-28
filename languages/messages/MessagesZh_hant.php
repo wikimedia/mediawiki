@@ -596,6 +596,8 @@ $2',
 管理員鎖定它的解釋是：" $3 "。',
 'invalidtitle-knownnamespace' => '使用名字空間“$2”和文本“$3”的無效標題',
 'invalidtitle-unknownnamespace' => '使用未知名字空間編號$1和文本“$2”的無效標題',
+'exception-nologin' => '未登入',
+'exception-nologin-text' => '你需要登錄此wiki查閲此頁或進行操作。',
 
 # Virus scanner
 'virus-badscanner' => "損壞設定: 未知的病毒掃瞄器: ''$1''",

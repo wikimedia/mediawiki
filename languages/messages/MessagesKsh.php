@@ -619,6 +619,8 @@ $2',
 Dä Wiki_Köbes dovun hät beim Deeschmaache als Jrond aanjejovve: „$3“',
 'invalidtitle-knownnamespace' => '„$3“ es ene onjöltijje Tittel för em Appachtemang „$2“',
 'invalidtitle-unknownnamespace' => '„$2“ es ene onjöltijje Tittel för e Appachtemang met dä verkehte Nommer $1.',
+'exception-nologin' => 'Nit enjelogg',
+'exception-nologin-text' => 'Heh di Sigg udder heh dä Opdraach jeiht blooß, wann De heh em Wiki enjelogg bes.',
 
 # Virus scanner
 'virus-badscanner' => "Fääler en de Enstellunge: Dat Projramm ''$1'' fö noh Kompjuterwiere ze söke, dat kenne mer nit.",
