@@ -23,6 +23,7 @@
 	Fix type for <ns> from "positiveInteger" to "nonNegativeInteger" to allow 0
 	Moves <logitem> to its right location.
 	Add parentid to revision.
+	Fix type for <id> within <contributor> to "nonNegativeInteger"
 
 	The canonical URL to the schema document is:
 	http://www.mediawiki.org/xml/export-0.7.xsd
@@ -227,7 +228,7 @@
 	<complexType name="ContributorType">
 		<sequence>
 			<element name="username" type="string" minOccurs="0" />
-			<element name="id" type="positiveInteger" minOccurs="0" />
+			<element name="id" type="nonNegativeInteger" minOccurs="0" />
 
 			<element name="ip" type="string" minOccurs="0" />
 		</sequence>
