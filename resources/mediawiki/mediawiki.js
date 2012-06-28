@@ -637,10 +637,12 @@ var mw = ( function ( $, undefined ) {
 				var console = window.console;
 				if ( console && console.log ) {
 					console.log( msg );
-					// console.error triggers the proper handling of exception objects in
-					// consoles that support it. Fallback to passing as plain object to log().
-					if ( e ) {
-						(console.error || console.log).call( console, e );
+					// If we have an exception object, log it through .error() to trigger
+					// proper stacktraces in browsers that support it. There are no (known)
+					// browsers that don't support .error(), that do support .log() and
+					// have useful exception handling through .log().
+					if ( e && console.error ) {
+						console.error( e );
 					}
 				}
 			}
@@ -697,7 +699,7 @@ var mw = ( function ( $, undefined ) {
 								} catch ( ex ) {
 									// A user-defined operation raised an exception. Swallow to protect
 									// our state machine!
-									log( 'mw.loader::handlePending> Exception thrown by job.error()', ex );
+									log( 'Exception thrown by job.error()', ex );
 								}
 							}
 						}
