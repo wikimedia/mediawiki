@@ -24,7 +24,7 @@ class MediaWikiParserTest {
 			 */
 			$className = str_replace( '.', '_',  ucfirst( basename( $filename, '.txt' ) ) );
 			
-			eval( "/** @group Database\n@group Parser\n*/ class $className extends NewParserTest { protected \$file = '" . strtr( $filename, array( "'" => "\\'", '\\' => '\\\\' ) ) . "'; } " );
+			eval( "/** @group Database\n@group Broken\n@group Parser\n*/ class $className extends NewParserTest { protected \$file = '" . strtr( $filename, array( "'" => "\\'", '\\' => '\\\\' ) ) . "'; } " );
 
 			$parserTester = new $className( $testsName );
 			$suite->addTestSuite( new ReflectionClass ( $parserTester ) );

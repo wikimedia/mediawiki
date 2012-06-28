@@ -255,6 +255,7 @@ class WikiPageTest extends MediaWikiLangTestCase {
 
 	/**
 	 * @dataProvider dataGetRedirectTarget
+	 * @group Broken
 	 */
 	public function testGetRedirectTarget( $title, $text, $target ) {
 		$page = $this->createPage( $title, $text );

@@ -89,7 +89,7 @@ class Parser {
 	# as well as U+3000 is IDEOGRAPHIC SPACE for bug 19052
 	const EXT_LINK_URL_CLASS = '[^][<>"\\x00-\\x20\\x7F\p{Zs}]';
 	const EXT_IMAGE_REGEX = '/^(http:\/\/|https:\/\/)([^][<>"\\x00-\\x20\\x7F\p{Zs}]+)
-		\\/([A-Za-z0-9_.,~%\\-+&;#*?!=()@\\x80-\\xFF]+)\\.((?i)gif|png|jpg|jpeg)$/Sxu';
+		\\/([A-Za-z0-9_.,~%\\-+&;#*?!=()@\\x80-\\xFF]+)\\.((?i)gif|png|jpg|jpeg)$/Sxui';
 
 	# State constants for the definition list colon extraction
 	const COLON_STATE_TEXT = 0;
@@ -206,7 +206,7 @@ class Parser {
 		$this->mConf = $conf;
 		$this->mUrlProtocols = wfUrlProtocols();
 		$this->mExtLinkBracketedRegex = '/\[((' . $this->mUrlProtocols . ')'.
-			self::EXT_LINK_URL_CLASS.'+)\p{Zs}*([^\]\\x00-\\x08\\x0a-\\x1F]*?)\]/Su';
+			self::EXT_LINK_URL_CLASS.'+)\p{Zs}*([^\]\\x00-\\x08\\x0a-\\x1F]*?)\]/Sui';
 		if ( isset( $conf['preprocessorClass'] ) ) {
 			$this->mPreprocessorClass = $conf['preprocessorClass'];
 		} elseif ( defined( 'MW_COMPILED' ) ) {
@@ -1252,7 +1252,7 @@ class Parser {
 		# removeHTMLtags()) should not be included in
 		# URLs, per RFC 2396.
 		$m2 = array();
-		if ( preg_match( '/&(lt|gt);/', $url, $m2, PREG_OFFSET_CAPTURE ) ) {
+		if ( preg_match( '/&(lt|gt);/i', $url, $m2, PREG_OFFSET_CAPTURE ) ) {
 			$trail = substr( $url, $m2[0][1] ) . $trail;
 			$url = substr( $url, 0, $m2[0][1] );
 		}
@@ -1303,7 +1303,7 @@ class Parser {
 		for ( $i = 6; $i >= 1; --$i ) {
 			$h = str_repeat( '=', $i );
 			$text = preg_replace( "/^$h(.+)$h\\s*$/m",
-			  "<h$i>\\1</h$i>", $text );
+			  "<H$i>\\1</H$i>", $text );
 		}
 		wfProfileOut( __METHOD__ );
 		return $text;
@@ -1521,7 +1521,7 @@ class Parser {
 			# removeHTMLtags()) should not be included in
 			# URLs, per RFC 2396.
 			$m2 = array();
-			if ( preg_match( '/&(lt|gt);/', $url, $m2, PREG_OFFSET_CAPTURE ) ) {
+			if ( preg_match( '/&(lt|gt);/i', $url, $m2, PREG_OFFSET_CAPTURE ) ) {
 				$text = substr( $url, $m2[0][1] ) . ' ' . $text;
 				$url = substr( $url, 0, $m2[0][1] );
 			}

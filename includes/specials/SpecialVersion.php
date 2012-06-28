@@ -110,7 +110,6 @@ class SpecialVersion extends SpecialPage {
 			'Victor Vasiliev', 'Rotem Liss', 'Platonides', 'Antoine Musso',
 			wfMsg( 'version-poweredby-others' )
 		);
-
 		return wfMsg( 'version-poweredby-credits', date( 'Y' ),
 			$wgLang->listToText( $authorList ) );
 	}

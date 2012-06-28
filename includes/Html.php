@@ -226,7 +226,7 @@ class Html {
 			unset( $attribs['maxlength'] );
 		}
 
-		return "<$element" . self::expandAttributes(
+		return "<" . strtoupper($element ) . self::expandAttributes(
 			self::dropDefaults( $element, $attribs ) ) . '>';
 	}
 
@@ -258,7 +258,7 @@ class Html {
 		) ) ) {
 			return '';
 		}
-		return "</$element>";
+		return "</" . strtoupper( $element ) . ">";
 	}
 
 	/**
