@@ -128,10 +128,10 @@ class MWException extends Exception {
 				'</p><p>Backtrace:</p><p>' . nl2br( htmlspecialchars( $this->getTraceAsString() ) ) .
 				"</p>\n";
 		} else {
-			return 
+			return
 				"<div class=\"errorbox\">" .
 				'[' . $this->getLogId() . '] ' .
-				gmdate( 'Y-m-d H:i:s' ) . 
+				gmdate( 'Y-m-d H:i:s' ) .
 				": Fatal exception of type " . get_class( $this ) . "</div>\n" .
 				"<!-- Set \$wgShowExceptionDetails = true; " .
 				"at the bottom of LocalSettings.php to show detailed " .
@@ -213,13 +213,18 @@ class MWException extends Exception {
 			$wgOut->output();
 		} else {
 			header( "Content-Type: text/html; charset=utf-8" );
+			echo "<!doctype html>\n" .
+				'<html><head><title>' . $this->getPageTitle() . "</title></head><body>\n";
+
 			$hookResult = $this->runHooks( get_class( $this ) . "Raw" );
 			if ( $hookResult ) {
-				die( $hookResult );
+				echo $hookResult;
+			} else {
+				echo $this->getHTML();
 			}
 
-			echo $this->getHTML();
-			die(1);
+			echo "</body></html>\n";
+			die( 1 );
 		}
 	}
 
