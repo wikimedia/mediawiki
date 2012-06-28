@@ -10188,7 +10188,6 @@ abc
 TODO:
 more images
 more tables
-math
 character entities
 and much more
 Try for 100% code coverage
