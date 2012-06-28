@@ -1046,6 +1046,9 @@ $wgAutoloadLocalClasses = array(
 	'TestFileIterator' => 'tests/testHelpers.inc',
 	'TestRecorder' => 'tests/testHelpers.inc',
 
+	# tests/phpunit/includes/db
+	'ORMRowTest' => 'tests/phpunit/includes/db/ORMRowTest.php',
+
 	# tests/parser
 	'ParserTest' => 'tests/parser/parserTest.inc',
 	'ParserTestParserHook' => 'tests/parser/parserTestsParserHook.php',
