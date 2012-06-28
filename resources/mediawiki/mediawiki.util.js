@@ -426,44 +426,87 @@
 		 * something, replacing any previous message.
 		 * Calling with no arguments, with an empty string or null will hide the message
 		 *
-		 * @param message {mixed} The DOM-element, jQuery object or HTML-string to be put inside the message box.
-		 * @param className {String} Used in adding a class; should be different for each call
-		 * to allow CSS/JS to hide different boxes. null = no class used.
+		 * @param message {mixed} The DOM-element, jQuery object or
+		 * HTML-string to be put inside the message box.
+		 * @param component {String} If present, will be used to
+		 * generate a class name for the element.
+		 * @param purge {Boolean} If true and a component has been
+		 * specified, clear that component's messages. If true and no
+		 * component has been specified, clear all messages.
 		 * @return {Boolean} True on success, false on failure.
 		 */
-		jsMessage: function ( message, className ) {
-			if ( !arguments.length || message === '' || message === null ) {
-				$( '#mw-js-message' ).empty().hide();
-				return true; // Emptying and hiding message is intended behaviour, return true
+		jsMessage: function ( message, component, purge ) {
 
-			} else {
-				// We special-case skin structures provided by the software. Skins that
-				// choose to abandon or significantly modify our formatting can just define
-				// an mw-js-message div to start with.
-				var $messageDiv = $( '#mw-js-message' );
-				if ( !$messageDiv.length ) {
-					$messageDiv = $( '<div id="mw-js-message"></div>' );
-					if ( util.$content.parent().length ) {
-						util.$content.parent().prepend( $messageDiv );
-					} else {
-						return false;
-					}
+			var $containerDiv;
+			var $messageDiv;
+
+			// -------
+			// Setup
+			//
+
+			// Grab or create a container div for jsMessage messages. We
+			// special-case skin structures provided by the software. Skins
+			// that choose to abandon or significantly modify our formatting
+			// can just define an mw-js-message div to start with.
+
+			$containerDiv = $( '#mw-js-messages' );
+			if ( !$containerDiv.length ) {
+				if ( !util.$content.parent().length ) {
+					// No container present and nowhere to insert a new one.
+					return false;
 				}
 
-				if ( className ) {
-					$messageDiv.prop( 'class', 'mw-js-message-' + className );
-				}
+				$containerDiv = $( '<div id="mw-js-messages"></div>' );
+				util.$content.parent().prepend( $containerDiv );
+			}
 
-				if ( typeof message === 'object' ) {
-					$messageDiv.empty();
-					$messageDiv.append( message );
+			if ( !arguments.length || !message ) {
+				// Calling jsMessage() with no arguments or with an empty
+				// message is equivalent to requesting a purge.
+				purge = true;
+			}
+
+			// -------
+			// Purge
+			//
+
+			if ( purge ) {
+				if ( component ) {
+					// If a component was specified, purge its messages. 
+					$containerDiv.children( '.mw-js-message-' + component ).remove();
 				} else {
-					$messageDiv.html( message );
+					// If no component was specified, purge all messages.
+					$containerDiv.empty();
 				}
+			}
 
-				$messageDiv.slideDown();
+			if ( !message ) {
 				return true;
 			}
+
+			// -------------
+			// Add Message
+			//
+
+			if ( typeof message === 'object' ) {
+				// If message is a DOM node or a jQuery object, use it as
+				// the message element.
+				$messageDiv = $( message );
+			} else {
+				// Otherwise construct a new div element for the message.
+				$messageDiv = $( '<div class="js-messagebox"></div>' );
+				$messageDiv.html( message );
+			}
+
+			if ( component ) {
+				// If a component has been specified, use it to generate
+				// a component-specific class for the element.
+				$messageDiv.addClass( 'mw-js-message-' + component );
+			}
+
+			$messageDiv.hide().appendTo( $containerDiv ).slideDown();
+
+			return true;
 		},
 
 		/**
