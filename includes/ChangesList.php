@@ -123,7 +123,7 @@ class ChangesList extends ContextSource {
 		if( !isset( $this->message ) ) {
 			foreach ( explode( ' ', 'cur diff hist last blocklink history ' .
 			'semicolon-separator pipe-separator' ) as $msg ) {
-				$this->message[$msg] = wfMsgExt( $msg, array( 'escapenoentities' ) );
+				$this->message[$msg] = $this->msg( $msg )->escaped();
 			}
 		}
 	}
@@ -199,22 +199,29 @@ class ChangesList extends ContextSource {
 	 * Show formatted char difference
 	 * @param $old Integer: bytes
 	 * @param $new Integer: bytes
+	 * @param $context IContextSource context to use
 	 * @return String
 	 */
-	public static function showCharacterDifference( $old, $new ) {
-		global $wgRCChangedSizeThreshold, $wgLang, $wgMiserMode;
-		$szdiff = $new - $old;
+	public static function showCharacterDifference( $old, $new, IContextSource $context = null ) {
+		global $wgRCChangedSizeThreshold, $wgMiserMode;
 
-		$code = $wgLang->getCode();
-		static $fastCharDiff = array();
-		if ( !isset($fastCharDiff[$code]) ) {
-			$fastCharDiff[$code] = $wgMiserMode || wfMsgNoTrans( 'rc-change-size' ) === '$1';
+		if ( !$context ) {
+			$context = RequestContext::getMain();
 		}
 
-		$formattedSize = $wgLang->formatNum($szdiff);
+		$szdiff = $new - $old;
+
+		$lang = $context->getLanguage();
+		$code = $lang->getCode();
+		static $fastCharDiff = array();
+		if ( !isset($fastCharDiff[$code]) ) {
+			$fastCharDiff[$code] = $wgMiserMode || $context->msg( 'rc-change-size' )->plain() === '$1';
+		}
+
+		$formattedSize = $lang->formatNum( $szdiff );
 
 		if ( !$fastCharDiff[$code] ) {
-			$formattedSize = wfMsgExt( 'rc-change-size', array( 'parsemag' ), $formattedSize );
+			$formattedSize = $context->msg( 'rc-change-size', $formattedSize )->text();
 		}
 
 		if( abs( $szdiff ) > abs( $wgRCChangedSizeThreshold ) ) {
@@ -234,11 +241,34 @@ class ChangesList extends ContextSource {
 			$formattedSizeClass = 'mw-plusminus-neg';
 		}
 
-		$formattedTotalSize = wfMsgExt( 'rc-change-size-new', 'parsemag', $wgLang->formatNum( $new ) );
+		$formattedTotalSize = $context->msg( 'rc-change-size-new' )->numParams( $new )->text();
 
 		return Html::element( $tag,
 			array( 'dir' => 'ltr', 'class' => $formattedSizeClass, 'title' => $formattedTotalSize ),
-			wfMessage( 'parentheses', $formattedSize )->plain() ) . $wgLang->getDirMark();
+			$context->msg( 'parentheses', $formattedSize )->plain() ) . $lang->getDirMark();
+	}
+
+	/**
+	 * Format the character difference of one or several changes.
+	 *
+	 * @param $old RecentChange
+	 * @param $new RecentChange last change to use, if not provided, $old will be used
+	 * @return string HTML fragment
+	 */
+	public function formatCharacterDifference( RecentChange $old, RecentChange $new = null ) {
+		$oldlen = $old->mAttribs['rc_old_len'];
+
+		if ( $new ) {
+			$newlen = $new->mAttribs['rc_new_len'];
+		} else {
+			$newlen = $old->mAttribs['rc_new_len'];
+		}
+
+		if( $oldlen === null || $newlen === null ) {
+			return '';
+		}
+
+		return self::showCharacterDifference( $oldlen, $newlen, $this->getContext() );
 	}
 
 	/**
@@ -255,7 +285,7 @@ class ChangesList extends ContextSource {
 
 	public function insertDateHeader( &$s, $rc_timestamp ) {
 		# Make date header if necessary
-		$date = $this->getLanguage()->date( $rc_timestamp, true, true );
+		$date = $this->getLanguage()->userDate( $rc_timestamp, $this->getUser() );
 		if( $date != $this->lastdate ) {
 			if( $this->lastdate != '' ) {
 				$s .= "</ul>\n";
@@ -358,7 +388,7 @@ class ChangesList extends ContextSource {
 	 */
 	public function insertTimestamp( &$s, $rc ) {
 		$s .= $this->message['semicolon-separator'] .
-			$this->getLanguage()->time( $rc->mAttribs['rc_timestamp'], true, true ) . ' . . ';
+			$this->getLanguage()->userTime( $rc->mAttribs['rc_timestamp'], $this->getUser() ) . ' . . ';
 	}
 
 	/**
@@ -369,7 +399,7 @@ class ChangesList extends ContextSource {
 	 */
 	public function insertUserRelatedLinks( &$s, &$rc ) {
 		if( $this->isDeleted( $rc, Revision::DELETED_USER ) ) {
-			$s .= ' <span class="history-deleted">' . wfMsgHtml( 'rev-deleted-user' ) . '</span>';
+			$s .= ' <span class="history-deleted">' . $this->msg( 'rev-deleted-user' )->escaped() . '</span>';
 		} else {
 			$s .= $this->getLanguage()->getDirMark() . Linker::userLink( $rc->mAttribs['rc_user'],
 				$rc->mAttribs['rc_user_text'] );
@@ -385,12 +415,13 @@ class ChangesList extends ContextSource {
 	 */
 	public function insertLogEntry( $rc ) {
 		$formatter = LogFormatter::newFromRow( $rc->mAttribs );
+		$formatter->setContext( $this->getContext() );
 		$formatter->setShowUserToolLinks( true );
 		$mark = $this->getLanguage()->getDirMark();
 		return $formatter->getActionText() . " $mark" . $formatter->getComment();
 	}
 
-	/** 
+	/**
 	 * Insert a formatted comment
 	 * @param $rc RecentChange
 	 * @return string
@@ -398,7 +429,7 @@ class ChangesList extends ContextSource {
 	public function insertComment( $rc ) {
 		if( $rc->mAttribs['rc_type'] != RC_MOVE && $rc->mAttribs['rc_type'] != RC_MOVE_OVER_REDIRECT ) {
 			if( $this->isDeleted( $rc, Revision::DELETED_COMMENT ) ) {
-				return ' <span class="history-deleted">' . wfMsgHtml( 'rev-deleted-comment' ) . '</span>';
+				return ' <span class="history-deleted">' . $this->msg( 'rev-deleted-comment' )->escaped() . '</span>';
 			} else {
 				return Linker::commentBlock( $rc->mAttribs['rc_comment'], $rc->getTitle() );
 			}
@@ -422,8 +453,7 @@ class ChangesList extends ContextSource {
 		static $cache = array();
 		if( $count > 0 ) {
 			if( !isset( $cache[$count] ) ) {
-				$cache[$count] = wfMsgExt( 'number_of_watching_users_RCview',
-					array('parsemag', 'escape' ), $this->getLanguage()->formatNum( $count ) );
+				$cache[$count] = $this->msg( 'number_of_watching_users_RCview' )->numParams( $count )->escaped();
 			}
 			return $cache[$count];
 		} else {
@@ -588,9 +618,9 @@ class OldChangesList extends ChangesList {
 		# Edit/log timestamp
 		$this->insertTimestamp( $s, $rc );
 		# Bytes added or removed
-		if( $wgRCShowChangedSize ) {
-			$cd = $rc->getCharacterDifference();
-			if( $cd != '' ) {
+		if ( $wgRCShowChangedSize ) {
+			$cd = $this->formatCharacterDifference( $rc );
+			if ( $cd !== '' ) {
 				$s .= "$cd  . . ";
 			}
 		}
@@ -614,8 +644,7 @@ class OldChangesList extends ChangesList {
 
 		# How many users watch this page
 		if( $rc->numberofWatchingusers > 0 ) {
-			$s .= ' ' . wfMsgExt( 'number_of_watching_users_RCview',
-				array( 'parsemag', 'escape' ), $this->getLanguage()->formatNum( $rc->numberofWatchingusers ) );
+			$s .= ' ' . $this->numberofWatchingusers( $rc->numberofWatchingusers );
 		}
 
 		if( $this->watchlist ) {
@@ -667,7 +696,7 @@ class EnhancedChangesList extends ChangesList {
 		$curIdEq = array( 'curid' => $rc->mAttribs['rc_cur_id'] );
 
 		# If it's a new day, add the headline and flush the cache
-		$date = $this->getLanguage()->date( $rc->mAttribs['rc_timestamp'], true );
+		$date = $this->getLanguage()->userDate( $rc->mAttribs['rc_timestamp'], $this->getUser() );
 		$ret = '';
 		if( $date != $this->lastdate ) {
 			# Process current cache
@@ -715,7 +744,7 @@ class EnhancedChangesList extends ChangesList {
 			$showdifflinks = false;
 		}
 
-		$time = $this->getLanguage()->time( $rc->mAttribs['rc_timestamp'], true, true );
+		$time = $this->getLanguage()->userTime( $rc->mAttribs['rc_timestamp'], $this->getUser() );
 		$rc->watched = $watched;
 		$rc->link = $clink;
 		$rc->timestamp = $time;
@@ -764,7 +793,7 @@ class EnhancedChangesList extends ChangesList {
 
 		# Make user links
 		if( $this->isDeleted( $rc, Revision::DELETED_USER ) ) {
-			$rc->userlink = ' <span class="history-deleted">' . wfMsgHtml( 'rev-deleted-user' ) . '</span>';
+			$rc->userlink = ' <span class="history-deleted">' . $this->msg( 'rev-deleted-user' )->escaped() . '</span>';
 		} else {
 			$rc->userlink = Linker::userLink( $rc->mAttribs['rc_user'], $rc->mAttribs['rc_user_text'] );
 			$rc->usertalklink = Linker::userToolLinks( $rc->mAttribs['rc_user'], $rc->mAttribs['rc_user_text'] );
@@ -895,7 +924,7 @@ class EnhancedChangesList extends ChangesList {
 
 		# Article link
 		if( $namehidden ) {
-			$r .= ' <span class="history-deleted">' . wfMsgHtml( 'rev-deleted-event' ) . '</span>';
+			$r .= ' <span class="history-deleted">' . $this->msg( 'rev-deleted-event' )->escaped() . '</span>';
 		} elseif( $allLogs ) {
 			$r .= $this->maybeWatchedLink( $block[0]->link, $block[0]->watched );
 		} else {
@@ -909,7 +938,7 @@ class EnhancedChangesList extends ChangesList {
 		$n = count($block);
 		static $nchanges = array();
 		if ( !isset( $nchanges[$n] ) ) {
-			$nchanges[$n] = wfMsgExt( 'nchanges', array( 'parsemag', 'escape' ), $this->getLanguage()->formatNum( $n ) );
+			$nchanges[$n] = $this->msg( 'nchanges' )->numParams( $n )->escaped();
 		}
 		# Total change link
 		$r .= ' ';
@@ -970,8 +999,7 @@ class EnhancedChangesList extends ChangesList {
 				$first--;
 			}
 			# Get net change
-			$chardiff = $rcObj->getCharacterDifference( $block[$first]->mAttribs['rc_old_len'],
-				$block[$last]->mAttribs['rc_new_len'] );
+			$chardiff = $this->formatCharacterDifference( $block[$first], $block[$last] );
 
 			if( $chardiff == '' ) {
 				$r .= ' ';
@@ -1032,8 +1060,11 @@ class EnhancedChangesList extends ChangesList {
 			$r .= ' . . ';
 
 			# Character diff
-			if( $wgRCShowChangedSize && $rcObj->getCharacterDifference() ) {
-				$r .= $rcObj->getCharacterDifference() . ' . . ' ;
+			if ( $wgRCShowChangedSize ) {
+				$cd = $this->formatCharacterDifference( $rcObj );
+				if ( $cd !== '' ) {
+					$r .= "$cd . . ";
+				}
 			}
 
 			if ( $rcObj->mAttribs['rc_type'] == RC_LOG ) {
@@ -1082,9 +1113,8 @@ class EnhancedChangesList extends ChangesList {
 	 * @return String: HTML <img> tag
 	 */
 	protected function sideArrow() {
-		global $wgLang;
-		$dir = $wgLang->isRTL() ? 'l' : 'r';
-		return $this->arrow( $dir, '+', wfMsg( 'rc-enhanced-expand' ) );
+		$dir = $this->getLanguage()->isRTL() ? 'l' : 'r';
+		return $this->arrow( $dir, '+', $this->msg( 'rc-enhanced-expand' )->text() );
 	}
 
 	/**
@@ -1093,7 +1123,7 @@ class EnhancedChangesList extends ChangesList {
 	 * @return String: HTML <img> tag
 	 */
 	protected function downArrow() {
-		return $this->arrow( 'd', '-', wfMsg( 'rc-enhanced-hide' ) );
+		return $this->arrow( 'd', '-', $this->msg( 'rc-enhanced-hide' )->text() );
 	}
 
 	/**
@@ -1162,13 +1192,16 @@ class EnhancedChangesList extends ChangesList {
 		}
 		$r .= ' . . ';
 		# Character diff
-		if( $wgRCShowChangedSize && ($cd = $rcObj->getCharacterDifference()) ) {
-			$r .= "$cd . . ";
+		if ( $wgRCShowChangedSize ) {
+			$cd = $this->formatCharacterDifference( $rcObj );
+			if ( $cd !== '' ) {
+				$r .= "$cd . . ";
+			}
 		}
 
 		if ( $type == RC_LOG ) {
 			$r .= $this->insertLogEntry( $rcObj );
-		} else { 
+		} else {
 			$r .= ' '.$rcObj->userlink . $rcObj->usertalklink;
 			$r .= $this->insertComment( $rcObj );
 			$this->insertRollback( $r, $rcObj );
