@@ -247,6 +247,9 @@ class Language {
 	public static function isValidCode( $code ) {
 		return
 			strcspn( $code, ":/\\\000" ) === strlen( $code )
+			// People think language codes are html safe, so enforce it.
+			// Ideally we should only allow a-zA-Z0-9-
+			&& htmlspecialchars( $code ) === $code
 			&& !preg_match( Title::getTitleInvalidRegex(), $code );
 	}
 
