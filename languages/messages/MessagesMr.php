@@ -28,6 +28,7 @@
  * @author Rahuldeshmukh101
  * @author Rdeshmuk
  * @author Sankalpdravid
+ * @author Sau6402
  * @author Shantanoo
  * @author Shreewiki
  * @author Shreyas19
@@ -958,6 +959,7 @@ $2',
 'updated' => '(बदल झाला आहे.)',
 'note' => "'''सूचना:'''",
 'previewnote' => "'''लक्षात ठेवा की ही फक्त झलक आहे''', बदल अजून जतन करण्यात आलेले नाहीत.",
+'continue-editing' => 'संपादन चालु राहुदे',
 'previewconflict' => 'वरील संपादन क्षेत्रातील मजकूर जतन केल्यावर या झलकेप्रमाणे दिसेल.',
 'session_fail_preview' => "'''क्षमस्व! सत्र विदेच्या क्षयामुळे आम्ही तुमची संपादन प्रक्रीया पार पाडू शकलो नाही.कृपया पुन्हा प्रयत्न करा.जर एवढ्याने काम झाले नाही तर सदस्य खात्यातून बाहेर पडून पुन्हा प्रवेश करून पहा.'''",
 'session_fail_preview_html' => "'''क्षमस्व! सत्र विदेच्या क्षयामुळे आम्ही तुमची संपादन प्रक्रीया पार पाडू शकलो नाही.'''
@@ -970,6 +972,7 @@ $2',
 असे कदाचित तुम्ही अनामिक proxy वापरत असल्याने होऊ शकते.'''",
 'edit_form_incomplete' => '”’तुमच्या संपादनाचा काही भाग सर्व्हरपर्यंत पोचला नाही; तुमचे संपादन पूर्ण आहे का याची पुन्हा खात्री करा.',
 'editing' => '$1 चे संपादन होत आहे.',
+'creating' => '$1 ची निर्मिती सुरु आहे',
 'editingsection' => '$1 (विभाग) संपादन',
 'editingcomment' => '$1 चे संपादन (प्रतिक्रिया)',
 'editconflict' => 'वादग्रस्त संपादन: $1',
@@ -1219,6 +1222,8 @@ $1",
 
 # Diffs
 'history-title' => '"$1" चा संपादन इतिहास',
+'difference-title' => '"$1" च्या विविध उजळण्या',
+'difference-title-multipage' => '"$1" व "$2" या पानान मधला फरक',
 'difference-multipage' => '(पानांमधील फरक)',
 'lineno' => 'ओळ $1:',
 'compareselectedversions' => 'निवडलेल्या आवृत्त्यांमधील बदल पहा',
@@ -2085,6 +2090,9 @@ Input:contenttype/subtype, e.g. <tt>image/jpeg</tt>.',
 'allpagesprefix' => 'पुढील शब्दाने सुरू होणारी पाने दाखवा:',
 'allpagesbadtitle' => 'दिलेले शीर्षक चुकीचे किंवा आंतरभाषीय किंवा आंतरविकि शब्दाने सुरू होणारे होते. त्यात एक किंवा अधिक शीर्षकात न वापरता येणारी अक्षरे असावीत.',
 'allpages-bad-ns' => '{{SITENAME}}मध्ये "$1" हे नामविश्व नाही.',
+
+# SpecialCachedPage
+'cachedspecial-refresh-now' => 'आखेरचे दृश्य',
 
 # Special:Categories
 'categories' => 'वर्ग',
@@ -3626,6 +3634,9 @@ $5
 'version-software' => 'स्थापित संगणक प्रणाली (Installed software)',
 'version-software-product' => 'उत्पादन',
 'version-software-version' => 'आवृत्ती',
+'version-entrypoints' => 'आत येणारी यू॰आर॰एल',
+'version-entrypoints-header-entrypoint' => 'आत येण्याचा मार्ग',
+'version-entrypoints-header-url' => 'यू॰आर॰एल',
 
 # Special:FilePath
 'filepath' => 'संचिका मार्ग',
@@ -3809,4 +3820,16 @@ $5
 'api-error-uploaddisabled' => 'चढवण्याचे कार्य ह्या विकिवर अवरुद्ध करण्यात आले आहे',
 'api-error-verification-error' => 'ही संचिका भ्रष्ट(करप्ट) झाली किंवा चुकिचा विस्तार(एक्सटेंशन) असलेली असू शकते.',
 
+# Durations
+'duration-seconds' => '$1 {{PLURAL:$1|सेकंदापूर्वी|सेकंदांपूर्वी}}',
+'duration-minutes' => '$1 {{PLURAL:$1|मिनिटापूर्वी|मिनिटांपूर्वी}}',
+'duration-hours' => '$1 {{PLURAL:$1|तासापूर्वी|तासांपूर्वी}}',
+'duration-days' => '$1 {{PLURAL:$1|दिवसापूर्वी|दिवसांपूर्वी}}',
+'duration-weeks' => '$1 {{PLURAL:$1|आठवड्यापूर्वी | आठवड्यांपूर्वी}}',
+'duration-years' => '$1 {{PLURAL:$1|वर्षापूर्वी|वर्षांपूर्वी}}',
+'duration-decades' => '$1 {{PLURAL:$1|दशकापूर्वी|दशकांपूर्वी }}',
+'duration-centuries' => '$1 {{PLURAL:$1|शतकापूर्वी|शतकांपूर्वी }}',
+
+# Unknown messages
+'lockmanager-fail-svr-acquire' => 'सर्व्हर "$1" वरील कुलूप उघडू शकत नाही',
 );

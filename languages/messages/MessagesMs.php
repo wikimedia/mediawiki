@@ -585,6 +585,8 @@ Pertanyaan: $2',
 Pentadbir yang menguncinya memberikan penjelasan yang berikut: "$3".',
 'invalidtitle-knownnamespace' => 'Tajuk tidak sah dengan ruang nama "$2" dan teks "$3"',
 'invalidtitle-unknownnamespace' => 'Tajuk tidak sah dengan nombor ruang nama tidak dikenali $1 dan teks "$2"',
+'exception-nologin' => 'Belum log masuk',
+'exception-nologin-text' => 'Halaman atau tindakan ini memerlukan anda untuk log masuk ke dalam wiki ini.',
 
 # Virus scanner
 'virus-badscanner' => "Konfigurasi rosak: pengimbas virus yang tidak diketahui: ''$1''",

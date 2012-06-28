@@ -3652,9 +3652,8 @@ MediaWiki是基于使用目的而加以发布，然而不负任何担保责任�
 # Special:SpecialPages
 'specialpages' => '特殊页面',
 'specialpages-note' => '----
-* 常规特殊页面。
-* <span class="mw-specialpagerestricted">受限特殊页面。</span>
-* <span class="mw-specialpagecached">已缓存特殊页面（可能已过时）。</span>',
+*普通特殊页面。
+*<span class="mw-specialpagerestricted">非公开特殊页面。</span>',
 'specialpages-group-maintenance' => '维护报告',
 'specialpages-group-other' => '其它特殊页面',
 'specialpages-group-login' => '登录/注册',
