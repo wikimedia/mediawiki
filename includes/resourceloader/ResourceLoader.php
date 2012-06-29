@@ -752,7 +752,11 @@ class ResourceLoader {
 						}
 						break;
 					case 'styles':
-						$out .= $styles['']; // Code above has set $styles['']
+						// We no longer seperate into media, they are all concatenated now with
+						// custom media type groups into @media .. {} sections.
+						// Module returns either an empty array or an array with '' (no media type) as
+						// only key.
+						$out .= isset( $styles[''] ) ? $styles[''] : '';
 						break;
 					case 'messages':
 						$out .= self::makeMessageSetScript( new XmlJsCode( $messagesBlob ) );
