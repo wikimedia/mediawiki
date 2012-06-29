@@ -117,7 +117,7 @@ abstract class ORMTable implements IORMTable {
 		$objects = array();
 
 		foreach ( $result as $record ) {
-			$objects[] = $this->newFromArray( $record );
+			$objects[] = $this->newRow( $record );
 		}
 
 		return $objects;
@@ -618,6 +618,20 @@ abstract class ORMTable implements IORMTable {
 	}
 
 	/**
+	 * @see ORMTable::newRowFromFromDBResult
+	 *
+	 * @deprecated use newRowFromFromDBResult instead
+	 * @since 1.20
+	 *
+	 * @param stdClass $result
+	 *
+	 * @return IORMRow
+	 */
+	public function newFromDBResult( stdClass $result ) {
+		return self::newRowFromFromDBResult( $result );
+	}
+
+	/**
 	 * Get a new instance of the class from a database result.
 	 *
 	 * @since 1.20
@@ -626,8 +640,23 @@ abstract class ORMTable implements IORMTable {
 	 *
 	 * @return IORMRow
 	 */
-	public function newFromDBResult( stdClass $result ) {
-		return $this->newFromArray( $this->getFieldsFromDBResult( $result ) );
+	public function newRowFromFromDBResult( stdClass $result ) {
+		return $this->newRow( $this->getFieldsFromDBResult( $result ) );
+	}
+
+	/**
+	 * @see ORMTable::newRow
+	 *
+	 * @deprecated use newRow instead
+	 * @since 1.20
+	 *
+	 * @param array $data
+	 * @param boolean $loadDefaults
+	 *
+	 * @return IORMRow
+	 */
+	public function newFromArray( array $data, $loadDefaults = false ) {
+		return static::newRow( $data, $loadDefaults );
 	}
 
 	/**
@@ -640,7 +669,7 @@ abstract class ORMTable implements IORMTable {
 	 *
 	 * @return IORMRow
 	 */
-	public function newFromArray( array $data, $loadDefaults = false ) {
+	public function newRow( array $data, $loadDefaults = false ) {
 		$class = $this->getRowClass();
 		return new $class( $this, $data, $loadDefaults );
 	}
