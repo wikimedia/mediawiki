@@ -2512,13 +2512,15 @@ $templates
 	protected function makeResourceLoaderLink( $modules, $only, $useESI = false, array $extraQuery = array(), $loadCall = false ) {
 		global $wgResourceLoaderUseESI;
 
+		$modules = (array) $modules;
+
 		if ( !count( $modules ) ) {
 			return '';
 		}
 
 		if ( count( $modules ) > 1 ) {
 			// Remove duplicate module requests
-			$modules = array_unique( (array) $modules );
+			$modules = array_unique( $modules );
 			// Sort module names so requests are more uniform
 			sort( $modules );
 
@@ -2535,7 +2537,7 @@ $templates
 		// Create keyed-by-group list of module objects from modules list
 		$groups = array();
 		$resourceLoader = $this->getResourceLoader();
-		foreach ( (array) $modules as $name ) {
+		foreach ( $modules as $name ) {
 			$module = $resourceLoader->getModule( $name );
 			# Check that we're allowed to include this module on this page
 			if ( !$module
@@ -2556,7 +2558,7 @@ $templates
 		}
 
 		$links = '';
-		foreach ( $groups as $group => $modules ) {
+		foreach ( $groups as $group => $grpModules ) {
 			// Special handling for user-specific groups
 			$user = null;
 			if ( ( $group === 'user' || $group === 'private' ) && $this->getUser()->isLoggedIn() ) {
@@ -2580,10 +2582,10 @@ $templates
 			$context = new ResourceLoaderContext( $resourceLoader, new FauxRequest( $query ) );
 			// Extract modules that know they're empty
 			$emptyModules = array ();
-			foreach ( $modules as $key => $module ) {
+			foreach ( $grpModules as $key => $module ) {
 				if ( $module->isKnownEmpty( $context ) ) {
 					$emptyModules[$key] = 'ready';
-					unset( $modules[$key] );
+					unset( $grpModules[$key] );
 				}
 			}
 			// Inline empty modules: since they're empty, just mark them as 'ready'
@@ -2601,7 +2603,7 @@ $templates
 			}
 
 			// If there are no modules left, skip this group
-			if ( $modules === array() ) {
+			if ( count( $grpModules ) === 0 ) {
 				continue;
 			}
 
@@ -2612,12 +2614,12 @@ $templates
 			if ( $group === 'private' ) {
 				if ( $only == ResourceLoaderModule::TYPE_STYLES ) {
 					$links .= Html::inlineStyle(
-						$resourceLoader->makeModuleResponse( $context, $modules )
+						$resourceLoader->makeModuleResponse( $context, $grpModules )
 					);
 				} else {
 					$links .= Html::inlineScript(
 						ResourceLoader::makeLoaderConditionalScript(
-							$resourceLoader->makeModuleResponse( $context, $modules )
+							$resourceLoader->makeModuleResponse( $context, $grpModules )
 						)
 					);
 				}
@@ -2633,7 +2635,7 @@ $templates
 			if ( $group === 'user' ) {
 				// Get the maximum timestamp
 				$timestamp = 1;
-				foreach ( $modules as $module ) {
+				foreach ( $grpModules as $module ) {
 					$timestamp = max( $timestamp, $module->getModifiedTime( $context ) );
 				}
 				// Add a version parameter so cache will break when things change
@@ -2641,7 +2643,7 @@ $templates
 			}
 
 			$url = ResourceLoader::makeLoaderURL(
-				array_keys( $modules ),
+				array_keys( $grpModules ),
 				$this->getLanguage()->getCode(),
 				$this->getSkin()->getSkinName(),
 				$user,
