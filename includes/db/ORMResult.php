@@ -67,7 +67,7 @@ class ORMResult implements ORMIterator {
 		if ( $row === false ) {
 			$this->current = false;
 		} else {
-			$this->current = $this->table->newFromDBResult( $row );
+			$this->current = $this->table->newRowFromDBResult( $row );
 		}
 	}
 
