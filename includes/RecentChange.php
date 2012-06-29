@@ -19,7 +19,7 @@
  *
  * @file
  */
- 
+
 /**
  * Utility class for creating new RC entries
  *
@@ -108,13 +108,7 @@ class RecentChange {
 	 * @return RecentChange
 	 */
 	public static function newFromId( $rcid ) {
-		$dbr = wfGetDB( DB_SLAVE );
-		$row = $dbr->selectRow( 'recentchanges', '*', array( 'rc_id' => $rcid ), __METHOD__ );
-		if( $row !== false ) {
-			return self::newFromRow( $row );
-		} else {
-			return null;
-		}
+		return self::newFromConds( array( 'rc_id' => $rcid ), __METHOD__ );
 	}
 
 	/**
@@ -126,18 +120,12 @@ class RecentChange {
 	 */
 	public static function newFromConds( $conds, $fname = __METHOD__ ) {
 		$dbr = wfGetDB( DB_SLAVE );
-		$res = $dbr->select(
-			'recentchanges',
-			'*',
-			$conds,
-			$fname
-		);
-		if( $res instanceof ResultWrapper && $res->numRows() > 0 ) {
-			$row = $res->fetchObject();
-			$res->free();
+		$row = $dbr->selectRow( 'recentchanges', '*', $conds, $fname );
+		if ( $row !== false ) {
 			return self::newFromRow( $row );
+		} else {
+			return null;
 		}
-		return null;
 	}
 
 	# Accessors
@@ -781,7 +769,7 @@ class RecentChange {
 			}
 		} else {
 			$ip = $wgRequest->getIP();
-			if( !$ip ) 
+			if( !$ip )
 				$ip = '';
 		}
 		return $ip;
