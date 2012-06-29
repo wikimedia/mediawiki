@@ -343,43 +343,50 @@ test( 'mw.loader missing dependency', function() {
 	);
 } );
 
-test( 'mw.loader real missing dependency', function() {
-	expect( 6 );
+test( 'mw.loader dependency handling', function () {
+	expect( 5 );
 
 	mw.loader.addSource(
-		'test',
-		{'loadScript' : QUnit.fixurl( mw.config.get( 'wgScriptPath' ) + '/tests/qunit/data/testloader.php' )}
+		'testloader',
+		{
+			loadScript: QUnit.fixurl( mw.config.get( 'wgScriptPath' ) + '/tests/qunit/data/load.mock.php' )
+		}
 	);
+
 	mw.loader.register( [
-		['test.missing', '0', [], null, 'test'], ['test.missing2', '0', [], null, 'test'],
-		['test.use_missing', '0', ['test.missing'], null, 'test'],
-		['test.use_missing2', '0', ['test.missing2'], null, 'test']
+		// [module, version, dependencies, group, source]
+		['testMissing', '1', [], null, 'testloader'],
+		['testUsesMissing', '1', ['testMissing'], null, 'testloader'],
+		['testUsesNestedMissing', '1', ['testUsesMissing'], null, 'testloader']
 	] );
 
-	stop();
-	// Asynch ahead
-
-	mw.loader.load( ['test.use_missing'] );
-
 	function verifyModuleStates() {
-		strictEqual( mw.loader.getState( 'test.missing' ), 'missing', 'Module "test.missing" must have state "missing"' );
-		strictEqual( mw.loader.getState( 'test.missing2' ), 'missing', 'Module "test.missing2" must have state "missing"' );
-		strictEqual( mw.loader.getState( 'test.use_missing' ), 'error', 'Module "test.use_missing" must have state "error"' );
-		strictEqual( mw.loader.getState( 'test.use_missing2' ), 'error', 'Module "test.use_missing2" must have state "error"' );
+		equal( mw.loader.getState( 'testMissing' ), 'missing', 'Module not known to server must have state "missing"' );
+		equal( mw.loader.getState( 'testUsesMissing' ), 'error', 'Module with missing dependency must have state "error"' );
+		equal( mw.loader.getState( 'testUsesNestedMissing' ), 'error', 'Module with indirect missing dependency must have state "error"' );
 	}
 
-	mw.loader.using( ['test.use_missing2'],
-		function() {
-			start();
-			ok( false, "Success called wrongly." );
-			ok( true , "QUnit expected() count dummy" );
+	stop();
+
+	mw.loader.using( ['testUsesNestedMissing'],
+		function () {
+			ok( false, 'Error handler should be invoked.' );
+			ok( true ); // Dummy to reach QUnit expect()
+
 			verifyModuleStates();
+
+			start();
 		},
-		function( e, dependencies ) {
-			start();
-			ok( true, "Error handler called correctly." );
-			deepEqual( dependencies, ['test.missing2'], "Dependencies correct." );
+		function ( e, badmodules ) {
+			ok( true, 'Error handler should be invoked.' );
+			// As soon as server spits out state('testMissing', 'missing');
+			// it will bubble up and trigger the error callback.
+			// Therefor the badmodules array is not testUsesMissing or testUsesNestedMissing.
+			deepEqual( badmodules, ['testMissing'], 'Bad modules as expected.' );
+
 			verifyModuleStates();
+
+			start();
 		}
 	);
 } );
