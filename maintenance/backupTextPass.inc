@@ -171,10 +171,6 @@ class TextPassDumper extends BackupDumper {
 		$input = fopen( $this->input, "rt" );
 		$result = $this->readDump( $input );
 
-		if ( WikiError::isError( $result ) ) {
-			throw new MWException( $result->getMessage() );
-		}
-
 		if ( $this->spawnProc ) {
 			$this->closeSpawn();
 		}
@@ -328,6 +324,10 @@ class TextPassDumper extends BackupDumper {
 		}
 	}
 
+	/**
+	 * @throws MWException Failure to parse XML input
+	 * @return true
+	 */
 	function readDump( $input ) {
 		$this->buffer = "";
 		$this->openElement = false;
@@ -352,7 +352,18 @@ class TextPassDumper extends BackupDumper {
 			$chunk = fread( $input, $bufferSize );
 			if ( !xml_parse( $parser, $chunk, feof( $input ) ) ) {
 				wfDebug( "TextDumpPass::readDump encountered XML parsing error\n" );
-				return new WikiXmlError( $parser, 'XML import parse failure', $chunk, $offset );
+
+				$byte = xml_get_current_byte_index( $parser );
+				$msg = wfMsgHtml( 'xml-error-string',
+					'XML import parse failure',
+					xml_get_current_line_number( $parser ),
+					xml_get_current_column_number( $parser ),
+					$byte . ( is_null( $chunk ) ? null : ( '; "' . substr( $chunk, $byte -$offset, 16 ) . '"' ) ),
+					xml_error_string( xml_get_error_code( $parser ) ) );
+
+				xml_parser_free( $parser );
+
+				throw new MWException( $msg );
 			}
 			$offset += strlen( $chunk );
 		} while ( $chunk !== false && !feof( $input ) );
