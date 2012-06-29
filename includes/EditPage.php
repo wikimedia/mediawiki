@@ -2414,7 +2414,16 @@ HTML
 			'</div>' );
 	}
 
+	/**
+	 * Get the copyright warning
+	 *
+	 * Renamed to getCopyrightWarning(), old name kept around for backwards compatibility
+	 */
 	protected function getCopywarn() {
+		return self::getCopyrightWarning( $this->mTitle );
+	}
+
+	public static function getCopyrightWarning( $title ) {
 		global $wgRightsText;
 		if ( $wgRightsText ) {
 			$copywarnMsg = array( 'copyrightwarning',
@@ -2425,7 +2434,7 @@ HTML
 				'[[' . wfMsgForContent( 'copyrightpage' ) . ']]' );
 		}
 		// Allow for site and per-namespace customization of contribution/copyright notice.
-		wfRunHooks( 'EditPageCopyrightWarning', array( $this->mTitle, &$copywarnMsg ) );
+		wfRunHooks( 'EditPageCopyrightWarning', array( $title, &$copywarnMsg ) );
 
 		return "<div id=\"editpage-copywarn\">\n" .
 			call_user_func_array( "wfMsgNoTrans", $copywarnMsg ) . "\n</div>";
