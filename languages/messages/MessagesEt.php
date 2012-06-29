@@ -295,7 +295,7 @@ $messages = array(
 'tog-hidepatrolled' => 'Peida viimaste muudatuste loetelus jälgimisloendis esitatavad muudatused',
 'tog-newpageshidepatrolled' => 'Peida uute lehtede loendis kontrollitud leheküljed',
 'tog-extendwatchlist' => 'Laienda jälgimisloendit, et näha kõiki muudatusi, mitte vaid kõige värskemaid',
-'tog-usenewrc' => 'Laiendatud viimased muudatused (nõutav JavaScripti olemasolu)',
+'tog-usenewrc' => 'Rühmita viimased muudatused ja muudatused jälgimisloendis lehekülje järgi (vaja JavaScripti)',
 'tog-numberheadings' => 'Pealkirjade automaatnummerdus',
 'tog-showtoolbar' => 'Redigeerimise tööriistariba näitamine',
 'tog-editondblclick' => 'Artiklite redigeerimine topeltklõpsu peale (JavaScript)',
@@ -558,7 +558,7 @@ Vaata [[Special:Version|versiooni lehekülge]].',
 'viewsourceold' => 'vaata lähteteksti',
 'editlink' => 'redigeeri',
 'viewsourcelink' => 'vaata lähteteksti',
-'editsectionhint' => 'Redigeeri alaosa $1',
+'editsectionhint' => 'Redigeeri alaosa "$1"',
 'toc' => 'Sisukord',
 'showtoc' => 'näita',
 'hidetoc' => 'peida',
@@ -677,6 +677,8 @@ $2',
 Administraator lukustas selle järgmisel põhjusel: "$3".',
 'invalidtitle-knownnamespace' => 'Vigane pealkiri nimeruumis "$2" tekstiga "$3"',
 'invalidtitle-unknownnamespace' => 'Vigane pealkiri nimeruuminumbriga $1 ja tekstiga "$2"',
+'exception-nologin' => 'Sisse logimata',
+'exception-nologin-text' => 'Selle lehekülje või toimingu jaoks pead selles vikis olema sisse loginud.',
 
 # Virus scanner
 'virus-badscanner' => "Viga konfiguratsioonis: tundmatu viirusetõrje: ''$1''",
@@ -2103,6 +2105,7 @@ Pane tähele, et teised võrgukohad võivad viidata failile otselingiga ja seega
 Valiku kitsendamiseks vali logitüüp, sisesta kasutajanimi (tõstutundlik) või huvipakkuva lehekülje pealkiri (samuti tõstutundlik).',
 'logempty' => 'Logis puuduvad vastavad kirjed.',
 'log-title-wildcard' => 'Selle tekstiga algavad pealkirjad',
+'showhideselectedlogentries' => 'Näita valitud logisissekandeid või peida need',
 
 # Special:AllPages
 'allpages' => 'Kõik leheküljed',
@@ -2991,6 +2994,7 @@ See on ilmselt põhjustatud linkimisest mustas nimekirjas olevasse välisvõrguk
 'spambot_username' => 'MediaWiki spämmieemaldus',
 'spam_reverting' => 'Taastan viimase versiooni, mis ei sisalda linke aadressile $1.',
 'spam_blanking' => 'Kõik versioonid sisaldasid linke veebilehele $1. Lehekülg tühjendatud.',
+'spam_deleting' => 'Kustutatud kõik redaktsioonid, mis viitasid aadressile $1.',
 
 # Info page
 'pageinfo-title' => 'Teave lehekülje "$1" kohta',

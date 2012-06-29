@@ -8,6 +8,7 @@
  * @file
  *
  * @author Filipinayzd
+ * @author Geopoet
  * @author Kaganer
  * @author Steven*fung
  * @author Urhixidur
@@ -122,6 +123,7 @@ $messages = array(
 'tog-enotifminoredits' => 'E-koreohan man giraray ako para sa saradit na paghirá kan mga pahina',
 'tog-enotifrevealaddr' => 'Ibunyág an adres kan sakuyang e-koreo sa mga surat na pag-abiso',
 'tog-shownumberswatching' => 'Ipahilíng an bilang kan nagbabantay na mga parágamit',
+'tog-oldsig' => 'Tugmadong pirma',
 'tog-fancysig' => 'Mga bàgong pirma (mayò nin tolos na pantakod)',
 'tog-externaleditor' => 'Gamíton mùna an panluwas na editor',
 'tog-externaldiff' => 'Gamíton mùna an diff na panluwás',
@@ -139,6 +141,9 @@ $messages = array(
 'underline-always' => 'Pirmi',
 'underline-never' => 'Nungka',
 'underline-default' => 'Browser na normal',
+
+# Font style option in Special:Preferences
+'editfont-default' => 'Kilyawang tugmad',
 
 # Dates
 'sunday' => 'Domingo',
@@ -293,6 +298,7 @@ $messages = array(
 'jumpto' => 'Maglukso sa:',
 'jumptonavigation' => 'paglibotlíbot',
 'jumptosearch' => 'hanápon',
+'pool-errorunknown' => 'Bakong bistadong sala',
 
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
 'aboutsite' => 'Dapít sa {{SITENAME}}',
@@ -336,6 +342,8 @@ $messages = array(
 'toc' => 'Mga laóg',
 'showtoc' => 'ipahilíng',
 'hidetoc' => 'tagóon',
+'collapsible-collapse' => 'Pinahalipot',
+'collapsible-expand' => 'Pinahalawig',
 'thisisdeleted' => 'Hilingón o isulít an $1?',
 'viewdeleted' => 'Hilingón an $1?',
 'restorelink' => '{{PLURAL:$1|sarong pinarang paghirá|$1 na pinarang paghirá}}',
@@ -348,6 +356,8 @@ $messages = array(
 'page-atom-feed' => '"$1" Hungit na Atomo',
 'feed-atom' => 'Atomo',
 'red-link-title' => '$1 (daí pa naisusurat)',
+'sort-descending' => 'Suysoy paibaba',
+'sort-ascending' => 'Suysoy paitaas',
 
 # Short words for each namespace, by default used in the namespace tab in monobook
 'nstab-main' => 'Pahina',
@@ -424,6 +434,8 @@ For translations, please consider using [//translatewiki.net/wiki/Main_Page?setl
 $2',
 'namespaceprotected' => "Mayô kang permisong maghirá kan mga páhina sa '''$1''' ngaran-espacio.",
 'ns-specialprotected' => 'An mga páhinang nasa {{ns:special}} na ngaran-espacio dai pwedeng hirahón.',
+'exception-nologin' => 'Dae ka nakalaog',
+'exception-nologin-text' => 'Ining pahina o aksyon minakaipo saimo na maglaog kaining wiki.',
 
 # Virus scanner
 'virus-badscanner' => "Saláng konfigurasyon: dai aram an virus scanner: ''$1''",
@@ -447,6 +459,7 @@ Nagibo na an ''account'' mo. Giromdomon tabi na ribayán an saimong mga kabôtan
 'nav-login-createaccount' => 'Maglaog / maggibo nin account',
 'loginprompt' => 'Kaipuhan may cookies ka para makalaog sa {{SITENAME}}.',
 'userlogin' => 'Maglaog / maggibo nin account',
+'userloginnocreate' => 'Maglaog ka',
 'logout' => 'Magluwas',
 'userlogout' => 'Magluwás',
 'notloggedin' => 'Mayò sa laog',
@@ -455,7 +468,9 @@ Nagibo na an ''account'' mo. Giromdomon tabi na ribayán an saimong mga kabôtan
 'createaccount' => 'Maggibo nin account',
 'gotaccount' => "Igwa ka na nin account? '''$1'''.",
 'gotaccountlink' => 'Maglaog',
+'userlogin-resetlink' => 'Nakalingaw ka sa panlaog mong detalye?',
 'createaccountmail' => 'sa e-koreo',
+'createaccountreason' => 'Rason:',
 'badretype' => 'Dai parehas an pigtaták mong mga sekretong panlaog.',
 'userexists' => 'Piggagamit na kan iba an pangaran. Magpili tabî nin iba.',
 'loginerror' => 'Salâ an paglaog',
@@ -497,6 +512,8 @@ $1 na oras.',
 'invalidemailaddress' => "Dai matogotan ining ''e''-surat ta garo salâ an ''format'' kaini. Magkaag tabî nin tamâ o dai pagkaagan.",
 'accountcreated' => "Nagibo na an ''account''.",
 'accountcreatedtext' => "Ginibo na an ''account'' para ki $1.",
+'usernamehasherror' => 'Paragamit na ngaran dae puwede na igwang simbolikong mga kabtang',
+'login-abort-generic' => 'An saimong paglaog dae nakadagos - Pinundo',
 'loginlanguagelabel' => 'Tataramon: $1',
 
 # Change password dialog

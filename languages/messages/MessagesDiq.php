@@ -11,6 +11,7 @@
  * @author Aspar
  * @author Belekvor
  * @author Erdemaslancan
+ * @author George Animal
  * @author Kaganer
  * @author Mirzali
  * @author Reedy
@@ -276,7 +277,7 @@ $messages = array(
 'tog-hidepatrolled' => 'Vurnayışanê qontrolkerdeyan pela vurnayışê peyêni de bınımne',
 'tog-newpageshidepatrolled' => 'Pelanê qontrolkerdeyan lista pelanê neweyan de bınımne',
 'tog-extendwatchlist' => 'Lista seyrkerdışi hera bıke ke vurnayışi pêro bıasê, tenya tewr peyêni nê',
-'tog-usenewrc' => 'Vurnayışanê peyniya hera kerdeyan bıxebetne (JavaScript lazımo)',
+'tog-usenewrc' => 'Vurnayışanê peyênanê herakerdeyan bıxebetne (JavaScript lazımo)',
 'tog-numberheadings' => 'Sernuşteyan be xo numre cı şane',
 'tog-showtoolbar' => 'Goceganê hacetanê vurnayışi bımocne (JavaScript lazımo)',
 'tog-editondblclick' => 'Pê dı rey tıknayış pele sero bıxebetiye (JavaScript lazımo)',

@@ -1098,6 +1098,7 @@ Ciste infôrmacion serè publike po tertos.",
 'recentchanges' => 'Dierins candjmints',
 'recentchanges-legend' => 'Tchuzes po les dierins candjmints',
 'recentchanges-summary' => "Shuvoz chal les dierins candjmints k' i gn a yeu dsu {{SITENAME}}.",
+'recentchanges-feed-description' => "Shuvoz so ç' canå ci les dierins candjmints k' i gn a yeu sol wiki.",
 'recentchanges-label-newpage' => "Ci candjmint la est èn ahivaedje d' ene nouve pådje",
 'recentchanges-label-minor' => "Ci n' est k' on ptit candjmint",
 'recentchanges-label-bot' => 'Ci candjmint la a stî fwait pa on robot',
@@ -1192,6 +1193,7 @@ Rivnoz s' i vs plait en erî et s' reberwetez l' fitchî dizo èn ôte no si vos
 'upload-file-error' => 'Divintrinne aroke',
 
 'license' => 'Licince:',
+'license-header' => 'Licince',
 'nolicense' => 'Nole licince tchoezeye',
 'upload_source_file' => ' (on fitchî sol copiutrece da vosse)',
 

@@ -528,6 +528,8 @@ Ang ibinigay na dahilan ay ''$2''.",
 Ang tagapangasiwang nagkandado nito ay nag-alok ng ganitong paliwanag: "$3".',
 'invalidtitle-knownnamespace' => 'Hindi katanggap-tanggap na pamagat na may puwang na pampangalang "$2" at tekstong "$3"',
 'invalidtitle-unknownnamespace' => 'Hindi katanggap-tanggap na pamagat na mayroong hindi nalalamang bilang na pampuwang ng pangalan na $1 at tekstong "$2"',
+'exception-nologin' => 'Hindi nakalagda',
+'exception-nologin-text' => 'Ang pahina o kilos na ito ay nangangailangan ng paglagda mo sa wiking ito.',
 
 # Virus scanner
 'virus-badscanner' => "Masamang kompigurasyon: hindi kilalang tagahagilap (iskaner) ng birus: ''$1''",

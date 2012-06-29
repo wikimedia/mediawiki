@@ -2154,7 +2154,7 @@ Jede Zeile enthält Links zur ersten und zweiten Weiterleitung sowie dem Ziel de
 'fewestrevisions' => 'Seiten mit den wenigsten Versionen',
 
 # Miscellaneous special pages
-'nbytes' => '$1 {{PLURAL:$1|Byte|Bytes}}',
+'nbytes' => '$1 {{PLURAL:$1|Byte|Byte}}',
 'ncategories' => '$1 {{PLURAL:$1|Kategorie|Kategorien}}',
 'nlinks' => '{{PLURAL:$1|1 Link|$1 Links}}',
 'nmembers' => '{{PLURAL:$1|1 Eintrag|$1 Einträge}}',

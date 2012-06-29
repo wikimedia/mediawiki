@@ -316,7 +316,7 @@ $messages = array(
 'tog-hidepatrolled' => 'Cachiér los changements survelyês des dèrriérs changements',
 'tog-newpageshidepatrolled' => 'Cachiér les pâges survelyês de la lista de les pâges novèles',
 'tog-extendwatchlist' => 'Ètendre la lista de survelyence por fâre vêre tôs los changements et pas solament los ples novéls',
-'tog-usenewrc' => 'Utilisar los dèrriérs changements mèlyorâs (at fôta de JavaScript)',
+'tog-usenewrc' => 'Rassemblar los changements per pâge dedens los dèrriérs changements et la lista de survelyence (at fôta de JavaScript)',
 'tog-numberheadings' => 'Numerotar ôtomaticament los titros de sèccions',
 'tog-showtoolbar' => 'Montrar la bârra d’outils d’èdicion (at fôta de JavaScript)',
 'tog-editondblclick' => 'Doblo-clicar pèrmèt de changiér una pâge (at fôta de JavaScript)',
@@ -671,8 +671,8 @@ La suprèssion at pôt-étre ja étâ fêta per quârqu’un d’ôtro.',
 'badtitle' => 'Crouyo titro',
 'badtitletext' => 'Lo titro de pâge demandâ est fôx, vouedo, ou ben o est un titro entèrlengoua ou entèrvouiqui mâl-liyê.
 Contint sûrement yon ou ben un mouél de caractèros que pôvont pas étre utilisâs dens los titros.',
-'perfcached' => 'Cetes balyês sont en cache et pôvont pas étre a jorn. A maximum of {{PLURAL:$1|one result is|$1 results are}} available in the cache.',
-'perfcachedts' => 'Cetes balyês sont en cache, sont vêr pas forciêment a jorn. La dèrriére actualisacion dâte du $1. A maximum of {{PLURAL:$4|one result is|$4 results are}} available in the cache.',
+'perfcached' => 'Cetes balyês sont en cache et pôvont pas étre a jorn. {{PLURAL:$1|Yon rèsultat|$1 rèsultats}} u més {{PLURAL:$1|est disponiblo|sont disponiblos}} dedens lo cache.',
+'perfcachedts' => 'Cetes balyês sont en cache et ont étâ betâs a jorn por lo dèrriér côp a $1. {{PLURAL:$4|Yon rèsultat|$4 rèsultats}} u més {{PLURAL:$1|est disponiblo|sont disponiblos}} dedens lo cache.',
 'querypage-no-updates' => 'Ora, les mises a jorn por ceta pâge sont dèsactivâs.
 Les balyês ce-desot sont pas betâs a jorn.',
 'wrong_wfQuery_params' => 'Paramètres fôx dessus wfQuery()<br />
@@ -699,6 +699,7 @@ $2',
 'ns-specialprotected' => 'Les pâges dens l’èspâço de noms « {{ns:special}} » pôvont pas étre changiês.',
 'titleprotected' => "Cél titro at étâ protègiê a la crèacion per [[User:$1|$1]].
 La rêson balyê est « ''$2'' ».",
+'exception-nologin' => 'Pas branchiê',
 
 # Virus scanner
 'virus-badscanner' => "Crouye configuracion : scanor de virus encognu : ''$1''",
@@ -796,6 +797,7 @@ Nion mèssâjo serat mandâ por châcuna de cetes fonccions.',
 'invalidemailaddress' => 'Ceta adrèce èlèctronica pôt pas étre accèptâ perce que semble avêr un format fôx.
 Volyéd buchiér una adrèce bien formatâ ou ben lèssiér cél champ vouedo.',
 'cannotchangeemail' => 'Les adrèces èlèctroniques des comptos pôvont pas étre changiês sur ceti vouiqui.',
+'emaildisabled' => 'Ceti seto pôt pas mandar des mèssâjos.',
 'accountcreated' => 'Compto fêt.',
 'accountcreatedtext' => 'Lo compto usanciér por $1 at étâ fêt.',
 'createaccount-title' => 'Crèacion d’un compto por {{SITENAME}}',
@@ -1006,8 +1008,9 @@ La dèrriére entrâ du jornal des blocâjos est disponibla ce-desot :',
 Rapelâd-vos que les pâges a sè avouéc èxtensions .css et .js utilisont des titros en petiôtes lètres, per ègzemplo {{ns:user}}:Foo/vector.css et pas {{ns:user}}:Foo/Vector.css.",
 'updated' => '(Betâ a jorn)',
 'note' => "'''Nota :'''",
-'previewnote' => "'''Rapelâd-vos que ceti tèxto est ren qu’una prèvisualisacion.'''
-'''Il at p’oncor étâ sôvâ !'''",
+'previewnote' => "'''Rapelâd-vos qu’o est ren qu’una prèvisualisacion.'''
+Voutros changements ont p’oncor étâ sôvâ !",
+'continue-editing' => 'Continuar lo changement',
 'previewconflict' => 'Ceta prèvisualisacion montre lo tèxto de la bouèta d’èdicion de d’amont coment aparètrat se vos chouèsésséd de lo sôvar.',
 'session_fail_preview' => "'''Dèsolâ ! Nos povens pas encartar voutron changement a côsa d’una pèrta d’enformacions en rapôrt avouéc voutra sèance.'''
 Volyéd tornar èprovar.
@@ -1048,7 +1051,7 @@ Vos nos assurâd asse-ben que vos éd cen ècrit vos-mémo, ou ben que vos l’�
 Se vos voléd pas que voutros ècrits seyont changiês sen gins de rèstriccion, adonc los volyéd pas sometre ique.<br />
 Vos nos assurâd asse-ben que vos éd cen ècrit vos-mémo, ou ben que vos l’éd copiyê d’una sôrsa que vint du domêno publico, ou ben d’una ressôrsa libra (vêde $1 por més de dètalys).
 '''Utilisâd gins d’ôvra desot drêt d’ôtor sen pèrmission èxprèssa !'''",
-'longpageerror' => "'''ÈRROR : lo tèxto que vos éd somês fât $1 Kio, cen que dèpâsse la limita fixâ a $2 Kio.'''
+'longpageerror' => "'''ÈRROR : lo tèxto que vos éd somês fât {{PLURAL:$1|yon Kio|$1 Kio}}, cen que dèpâsse la limita fixâ a {{PLURAL:$2|yon Kio|$2 Kio}}.'''
 Lo tèxto pôt pas étre sôvâ.",
 'readonlywarning' => "'''Atencion : la bâsa de balyês at étâ vèrrolyê por mantegnence, vos porréd vêr pas sôvar voutros changements d’abôrd.'''
 Vos pouede copiyér lo tèxto dens un fichiér tèxto et pués lo sôvar por ples târd.
@@ -1093,6 +1096,7 @@ Semble qu’el èye étâ suprimâ.',
 'edit-no-change' => 'Voutron changement at étâ ignorâ perce que nion changement at étâ fêt u tèxto.',
 'edit-already-exists' => 'La pâge novèla at pas possu étre fêta.
 Ègziste ja.',
+'defaultmessagetext' => 'Mèssâjo per dèfôt',
 
 # Parser/template warnings
 'expensive-parserfunction-warning' => 'Atencion : ceta pâge contint trop d’apèls que revegnont chiers de fonccions du parsor.
@@ -1252,7 +1256,7 @@ Volyéd controlar los jornals.',
 # Suppression log
 'suppressionlog' => 'Jornal de les suprèssions',
 'suppressionlogtext' => 'Vê-que la lista de les suprèssions et des blocâjos qu’ont de contegnu cachiê ux administrators.
-Vêde la [[Special:BlockList|lista ux usanciérs et a les adrèces IP blocâs]] por vêre los banissements et los blocâjos que sont ora opèracionèls.',
+Vêde la [[Special:BlockList|lista des blocâjos]] por vêre los banissements et los blocâjos que sont ora opèracionèls.',
 
 # History merging
 'mergehistory' => 'Fusionar los historicos de les pâges',
@@ -1287,6 +1291,8 @@ Notâd bien que l’usâjo des lims de navigacion tornerat inicialisar cela colo
 
 # Diffs
 'history-title' => 'Historico de les vèrsions de « $1 »',
+'difference-title' => 'Difèrences entre les vèrsions de « $1 »',
+'difference-title-multipage' => 'Difèrences entre les pâges « $1 » et « $2 »',
 'difference-multipage' => '(Difèrences entre les pâges)',
 'lineno' => 'Legne $1 :',
 'compareselectedversions' => 'Comparar les vèrsions chouèsies',
@@ -1384,6 +1390,7 @@ Atencion, lor endèxacion du contegnu de {{SITENAME}} pôt pas étre a jorn.',
 'prefs-beta' => 'Fonccionalitâts « Bèta »',
 'prefs-datetime' => 'Dâta et hora',
 'prefs-labs' => 'Fonccionalitâts « Laboratiors »',
+'prefs-user-pages' => 'Pâges utilisator',
 'prefs-personal' => 'Enformacions a sè',
 'prefs-rc' => 'Dèrriérs changements',
 'prefs-watchlist' => 'Lista de survelyence',
@@ -1864,7 +1871,7 @@ Se lo problèmo continue, veriéd-vos vers un [[Special:ListUsers/sysop|administ
 'backend-fail-writetemp' => 'Empossiblo d’ècrire dedens lo fichiér temporèro.',
 'backend-fail-closetemp' => 'Empossiblo de cllôre lo fichiér temporèro.',
 'backend-fail-read' => 'Empossiblo de liére lo fichiér $1.',
-'backend-fail-create' => 'Empossiblo de fâre lo fichiér $1.',
+'backend-fail-create' => 'Empossiblo d’ècrire lo fichiér $1.',
 
 # Lock manager
 'lockmanager-notlocked' => 'Empossiblo de dèvèrrolyér « $1 » ; el est pas vèrrolyê.',
@@ -1900,7 +1907,7 @@ Pôt pas étre controlâ tot drêt por la sècuritât.',
 'img-auth-nopathinfo' => 'PATH_INFO manquent.
 Voutron sèrvor est pas dèfeni por passar cela enformacion.
 Fonccione pôt-étre en CGI et pués recognêt pas img_auth.
-[https://www.mediawiki.org/wiki/Manual:Image_Authorization Vêde los drêts d’émâge.]',
+Vêde https://www.mediawiki.org/wiki/Manual:Image_Authorization.',
 'img-auth-notindir' => 'Lo chemin demandâ est pas lo rèpèrtouèro de tèlèchargement configurâ.',
 'img-auth-badtitle' => 'Empossiblo de construire un titro valido dês « $1 ».',
 'img-auth-nologinnWL' => 'Vos éte pas branchiê et pués « $1 » est pas dens la lista blanche.',
@@ -2200,6 +2207,9 @@ Vos pouede rètrendre la vua en chouèséssent un tipo de jornal, un nom d’usa
 Contint sûrement yon ou ben un mouél de caractèros que pôvont pas étre utilisâs dens los titros.',
 'allpages-bad-ns' => '{{SITENAME}} at gins d’èspâço de noms « $1 ».',
 'allpages-hide-redirects' => 'Cachiér les redirèccions',
+
+# SpecialCachedPage
+'cachedspecial-refresh-now' => 'Vêre lo ples novél.',
 
 # Special:Categories
 'categories' => 'Catègories',
@@ -2650,7 +2660,7 @@ Balyéd ce-desot una rêson justa (per ègzemplo en citent les pâges qu’ont �
 'badipaddress' => 'L’adrèce IP est fôssa.',
 'blockipsuccesssub' => 'Blocâjo reussi',
 'blockipsuccesstext' => '[[Special:Contributions/$1|$1]] at étâ blocâ.<br />
-Vêde la [[Special:BlockList|lista a les adrèces IP blocâs]] por revêre los blocâjos.',
+Vêde la [[Special:BlockList|lista des blocâjos]] por revêre los blocâjos.',
 'ipb-blockingself' => 'Vos éte prèst a vos blocar vos-mémo !  Éte-vos de sûr de lo volêr fâre ?',
 'ipb-confirmhideuser' => 'Vos éte prèst a blocar un usanciér avouéc « cachiér l’usanciér » activâ.  Cen suprime lo nom a l’usanciér dens totes les listes et les entrâs du jornal.  Éte-vos de sûr de lo volêr fâre ?',
 'ipb-edit-dropdown' => 'Changiér les rêsons de blocâjo',
@@ -2705,7 +2715,7 @@ Lo jornal de les suprèssions est disponiblo ce-desot :',
 'reblock-logentry' => 'at changiê los paramètres du blocâjo a [[$1]] avouéc una èxpiracion u $2 $3',
 'blocklogtext' => 'O est lo jornal des blocâjos et des dèblocâjos ux usanciérs.
 Les adrèces IP blocâs ôtomaticament sont pas listâs.
-Vêde la [[Special:BlockList|lista ux usanciérs et a les adrèces IP blocâs]] por vêre los banissements et los blocâjos que sont ora opèracionèls.',
+Vêde la [[Special:BlockList|lista des blocâjos]] por vêre los banissements et los blocâjos que sont ora opèracionèls.',
 'unblocklogentry' => 'at dèblocâ $1',
 'block-log-flags-anononly' => 'solament los usanciérs pas encartâs',
 'block-log-flags-nocreate' => 'crèacion de compto dèfendua',
@@ -2868,6 +2878,7 @@ lo rèsultat pôt adonc étre importâ dens un ôtro vouiqui qu’utilise la pro
 Por èxportar des pâges, buchiéd lors titros dens la bouèta de tèxto ce-desot, yon titro per legne, et pués chouèsésséd se vos voléd ou pas la vèrsion d’ora avouéc totes les vielyes vèrsions, avouéc les legnes de l’historico de la pâge, ou ben simplament la pâge d’ora avouéc des enformacions sur lo dèrriér changement.
 
 Dens cél dèrriér câs, vos pouede asse-ben utilisar un lim, coment [[{{#Special:Export}}/{{MediaWiki:Mainpage}}]] por la pâge « [[{{MediaWiki:Mainpage}}]] ».',
+'exportall' => 'Èxportar totes les pâges',
 'exportcuronly' => 'Èxportar ren que la vèrsion d’ora, sen l’historico complèt',
 'exportnohistory' => "----
 '''Nota :''' l’èxportacion de l’historico complèt de les pâges avouéc ceti formulèro at étâ dèsactivâ por des rêsons de capacitât.",
@@ -2884,7 +2895,7 @@ Dens cél dèrriér câs, vos pouede asse-ben utilisar un lim, coment [[{{#Speci
 # Namespace 8 related
 'allmessages' => 'Mèssâjos sistèmo',
 'allmessagesname' => 'Nom du mèssâjo',
-'allmessagesdefault' => 'Tèxto per dèfôt',
+'allmessagesdefault' => 'Mèssâjo per dèfôt',
 'allmessagescurrent' => 'Tèxto d’ora',
 'allmessagestext' => 'O est la lista des mèssâjos sistèmo disponiblos dens l’èspâço MediaWiki.
 Volyéd visitar la [//www.mediawiki.org/wiki/Localisation localisacion de MediaWiki] et pués [//translatewiki.net translatewiki.net] se vos voléd contribuar a la localisacion g·ènèrica de MediaWiki.',
@@ -2964,6 +2975,12 @@ Volyéd tornar èprovar.',
 'import-logentry-upload-detail' => '$1 vèrsion{{PLURAL:$1||s}}',
 'import-logentry-interwiki' => 'at importâ $1 per entèrvouiqui',
 'import-logentry-interwiki-detail' => '$1 vèrsion{{PLURAL:$1||s}} dês $2',
+
+# JavaScriptTest
+'javascripttest' => 'Èprôva de JavaScript',
+'javascripttest-title' => 'Èprôves de $1 en cors',
+'javascripttest-qunit-intro' => 'Vêde la [$1 documentacion de les èprôves] dessus mediawiki.org.',
+'javascripttest-qunit-heading' => 'Suita d’èprôva QUnit de JavaScript dessus MediaWiki',
 
 # Tooltip help for the actions
 'tooltip-pt-userpage' => 'Voutra pâge usanciér',
@@ -3095,6 +3112,7 @@ O est probâblament diu a un lim de vers un seto de defôr qu’aparêt sur la l
 'spambot_username' => 'Neteyâjo de spame per MediaWiki',
 'spam_reverting' => 'Rètablissement de la dèrriére vèrsion que contint gins de lim de vers $1',
 'spam_blanking' => 'Totes les vèrsions que contegnont des lims de vers $1 sont blanchies',
+'spam_deleting' => 'Totes les vèrsions que contegnont des lims de vers $1 sont suprimâs',
 
 # Info page
 'pageinfo-title' => 'Enformacions por « $1 »',
@@ -3889,6 +3907,9 @@ Vos devriâd avêr reçu un [{{SERVER}}{{SCRIPTPATH}}/COPYING ègzemplèro de la
 'version-software' => 'Programeries enstalâs',
 'version-software-product' => 'Marchandie',
 'version-software-version' => 'Vèrsion',
+'version-entrypoints' => 'URL de pouent d’entrâ',
+'version-entrypoints-header-entrypoint' => 'Pouent d’entrâ',
+'version-entrypoints-header-url' => 'URL',
 
 # Special:FilePath
 'filepath' => 'Chemin d’accès du fichiér',
@@ -4076,5 +4097,16 @@ Les émâges sont montrâs dens lor plêna rèsolucion, los ôtros fichiérs son
 'api-error-unknownerror' => 'Èrror encognua : « $1 ».',
 'api-error-uploaddisabled' => 'Lo tèlèchargement est dèsactivâ sur ceti vouiqui.',
 'api-error-verification-error' => 'Cél fichiér pôt étre corrompu, ou ben son èxtension est fôssa.',
+
+# Durations
+'duration-seconds' => '$1 second{{PLURAL:$1|a|es}}',
+'duration-minutes' => '$1 menut{{PLURAL:$1|a|es}}',
+'duration-hours' => '$1 hor{{PLURAL:$1|a|es}}',
+'duration-days' => '$1 jorn{{PLURAL:$1||s}}',
+'duration-weeks' => '$1 seman{{PLURAL:$1|a|es}}',
+'duration-years' => '$1 an{{PLURAL:$1||s}}',
+'duration-decades' => '$1 dècèni{{PLURAL:$1|a|es}}',
+'duration-centuries' => '$1 sièclo{{PLURAL:$1||s}}',
+'duration-millennia' => '$1 milènèro{{PLURAL:$1||s}}',
 
 );

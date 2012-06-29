@@ -173,7 +173,7 @@ $messages = array(
 'february-gen' => 'Reşemî',
 'march-gen' => 'Adar',
 'april-gen' => 'Avrêl',
-'may-gen' => 'Gulan',
+'may-gen' => 'gulan',
 'june-gen' => 'pûşper',
 'july-gen' => 'Tîrmeh',
 'august-gen' => 'Gelawêj',
@@ -185,7 +185,7 @@ $messages = array(
 'feb' => 'reş',
 'mar' => 'adr',
 'apr' => 'avr',
-'may' => 'gul',
+'may' => 'gulan',
 'jun' => 'pûş',
 'jul' => 'tîr',
 'aug' => 'teb',
@@ -529,7 +529,7 @@ Ji bo xelaskirina tomarkirinê, divê tu niha şîfreyeke nû binivîsî:',
 'resetpass_success' => 'Şîfreya te hate guherandin! Niha tu tê qeydkirin...',
 'resetpass_forbidden' => 'Şîfre nikarin werin guhertin',
 'resetpass-submit-loggedin' => 'Şîfre biguherîne',
-'resetpass-submit-cancel' => 'Betalkirin',
+'resetpass-submit-cancel' => 'Betal bike',
 'resetpass-temp-password' => 'Şîfreya niha:',
 
 # Special:PasswordReset
@@ -1738,7 +1738,7 @@ da bikarî navê wê rûpelê biguherînî.',
 'delete_and_move_text' => '== Jêbirin gireke ==
 
 Rûpela "[[:$1]]" berê heye. Tu rast dixazê wê jêbibê ji bo navguherandinê ra?',
-'delete_and_move_confirm' => 'Erê, wê rûpelê jêbibe',
+'delete_and_move_confirm' => 'Erê, rûpelê jê bibe',
 'delete_and_move_reason' => 'Jêbir ji bo navguherandinê',
 'immobile-source-page' => 'Navê vê rûpelê nikare were guherandin.',
 

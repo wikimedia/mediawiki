@@ -536,6 +536,8 @@ Le motivo specificate es ''$2''.",
 Le administrator qui lo blocava offereva iste explication: "$3".',
 'invalidtitle-knownnamespace' => 'Titulo invalide con spatio de nomines "$2" e texto "$3"',
 'invalidtitle-unknownnamespace' => 'Titulo invalide con spatio de nomines incognite $1 e texto "$2"',
+'exception-nologin' => 'Non identificate',
+'exception-nologin-text' => 'Iste pagina o action necessita que tu aperi session in iste wiki.',
 
 # Virus scanner
 'virus-badscanner' => "Configuration incorrecte: programma antivirus non cognoscite: ''$1''",

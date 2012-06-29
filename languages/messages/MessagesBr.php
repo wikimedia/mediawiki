@@ -566,6 +566,8 @@ Setu amañ perak ''$2''.",
 "\'\'$3\'\'" eo an abeg roet gant ar merour en deus prennet anezhi.',
 'invalidtitle-knownnamespace' => 'Titl direizh gant an esaouenn anv "$2" hag an destenn "$3"',
 'invalidtitle-unknownnamespace' => 'Titl direizh gant an niverenn esaouenn anv $1 hag an destenn "$2" dianav',
+'exception-nologin' => "N'oc'h ket kevreet",
+'exception-nologin-text' => "Ar bajenn-mañ pe an ober-mañ a c'houlenn e vefec'h kevreet er wiki-mañ.",
 
 # Virus scanner
 'virus-badscanner' => "Kefluniadur fall : skanner viruzoù dianav : ''$1''",
