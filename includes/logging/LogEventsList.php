@@ -33,11 +33,6 @@ class LogEventsList extends ContextSource {
 	/**
 	 * @var Array
 	 */
-	protected $message;
-
-	/**
-	 * @var Array
-	 */
 	protected $mDefaultQuery;
 
 	/**
@@ -59,7 +54,6 @@ class LogEventsList extends ContextSource {
 		}
 
 		$this->flags = $flags;
-		$this->preCacheMessages();
 	}
 
 	/**
@@ -70,22 +64,6 @@ class LogEventsList extends ContextSource {
 	 */
 	public function getDisplayTitle() {
 		return $this->getTitle();
-	}
-
-	/**
-	 * As we use the same small set of messages in various methods and that
-	 * they are called often, we call them once and save them in $this->message
-	 */
-	private function preCacheMessages() {
-		// Precache various messages
-		if( !isset( $this->message ) ) {
-			$messages = array( 'revertmerge', 'protect_change', 'unblocklink', 'change-blocklink',
-				'revertmove', 'undeletelink', 'undeleteviewlink', 'revdel-restore', 'hist', 'diff',
-				'pipe-separator', 'revdel-restore-deleted', 'revdel-restore-visible' );
-			foreach( $messages as $msg ) {
-				$this->message[$msg] = $this->msg( $msg )->escaped();
-			}
-		}
 	}
 
 	/**
@@ -329,157 +307,37 @@ class LogEventsList extends ContextSource {
 		$formatter->setContext( $this->getContext() );
 		$formatter->setShowUserToolLinks( !( $this->flags & self::NO_EXTRA_USER_LINKS ) );
 
-		$action = $formatter->getActionText();
-		$comment = $formatter->getComment();
-
-		$classes = array( 'mw-logline-' . $entry->getType() );
 		$title = $entry->getTarget();
-		$time = $this->logTimestamp( $entry );
+		$time = htmlspecialchars( $this->getLanguage()->userTimeAndDate(
+			$entry->getTimestamp(), $this->getUser() ) );
 
-		// Extract extra parameters
-		$paramArray = LogPage::extractParams( $row->log_params );
-		// Add review/revert links and such...
-		$revert = $this->logActionLinks( $row, $title, $paramArray, $comment );
+		$action = $formatter->getActionText();
+
+		if ( $this->flags & self::NO_ACTION_LINK ) {
+			$revert = '';
+		} else {
+			$revert = $formatter->getActionLinks();
+			if ( $revert != '' ) {
+				$revert = '<span class="mw-logevent-actionlink">' . $revert . '</span>';
+			}
+		}
+
+		// This has to be called after getActionLinks() so that the LogLine
+		// hook can modify the comment
+		$comment = $formatter->getComment();
 
 		// Some user can hide log items and have review links
 		$del = $this->getShowHideLinks( $row );
-		if( $del != '' ) $del .= ' ';
 
 		// Any tags...
 		list( $tagDisplay, $newClasses ) = ChangeTags::formatSummaryRow( $row->ts_tags, 'logevent' );
-		$classes = array_merge( $classes, $newClasses );
+		$classes = array_merge(
+			array( 'mw-logline-' . $entry->getType() ),
+			$newClasses
+		);
 
-		return Xml::tags( 'li', array( "class" => implode( ' ', $classes ) ),
-			$del . "$time $action $comment $revert $tagDisplay" ) . "\n";
-	}
-
-	private function logTimestamp( LogEntry $entry ) {
-		return htmlspecialchars( $this->getLanguage()->userTimeAndDate(
-			$entry->getTimestamp(), $this->getUser() ) );
-	}
-
-	/**
-	 * @TODO: split up!
-	 *
-	 * @param  $row
-	 * @param Title $title
-	 * @param Array $paramArray
-	 * @param  $comment
-	 * @return String
-	 */
-	private function logActionLinks( $row, $title, $paramArray, &$comment ) {
-		if( ( $this->flags & self::NO_ACTION_LINK ) // we don't want to see the action
-			|| self::isDeleted( $row, LogPage::DELETED_ACTION ) ) // action is hidden
-		{
-			return '';
-		}
-		$revert = '';
-		if( self::typeAction( $row, 'move', 'move', 'move' ) && !empty( $paramArray[0] ) ) {
-			$destTitle = Title::newFromText( $paramArray[0] );
-			if( $destTitle ) {
-				$revert = Linker::linkKnown(
-					SpecialPage::getTitleFor( 'Movepage' ),
-					$this->message['revertmove'],
-					array(),
-					array(
-						'wpOldTitle' => $destTitle->getPrefixedDBkey(),
-						'wpNewTitle' => $title->getPrefixedDBkey(),
-						'wpReason'   => $this->msg( 'revertmove' )->inContentLanguage()->text(),
-						'wpMovetalk' => 0
-					)
-				);
-				$revert = $this->msg( 'parentheses' )->rawParams( $revert )->escaped();
-			}
-		// Show undelete link
-		} elseif( self::typeAction( $row, array( 'delete', 'suppress' ), 'delete', 'deletedhistory' ) ) {
-			if( !$this->getUser()->isAllowed( 'undelete' ) ) {
-				$viewdeleted = $this->message['undeleteviewlink'];
-			} else {
-				$viewdeleted = $this->message['undeletelink'];
-			}
-			$revert = Linker::linkKnown(
-				SpecialPage::getTitleFor( 'Undelete' ),
-				$viewdeleted,
-				array(),
-				array( 'target' => $title->getPrefixedDBkey() )
-			 );
-			$revert = $this->msg( 'parentheses' )->rawParams( $revert )->escaped();
-		// Show unblock/change block link
-		} elseif( self::typeAction( $row, array( 'block', 'suppress' ), array( 'block', 'reblock' ), 'block' ) ) {
-			$revert = Linker::linkKnown(
-					SpecialPage::getTitleFor( 'Unblock', $row->log_title ),
-					$this->message['unblocklink']
-				) .
-				$this->message['pipe-separator'] .
-				Linker::linkKnown(
-					SpecialPage::getTitleFor( 'Block', $row->log_title ),
-					$this->message['change-blocklink']
-				);
-				$revert = $this->msg( 'parentheses' )->rawParams( $revert )->escaped();
-		// Show change protection link
-		} elseif( self::typeAction( $row, 'protect', array( 'modify', 'protect', 'unprotect' ) ) ) {
-			$revert .= Linker::link( $title,
-					$this->message['hist'],
-					array(),
-					array(
-						'action' => 'history',
-						'offset' => $row->log_timestamp
-					)
-				);
-			if( $this->getUser()->isAllowed( 'protect' ) ) {
-				$revert .= $this->message['pipe-separator'] .
-					Linker::link( $title,
-						$this->message['protect_change'],
-						array(),
-						array( 'action' => 'protect' ),
-						'known' );
-			}
-			$revert = ' ' . $this->msg( 'parentheses' )->rawParams( $revert )->escaped();
-		// Show unmerge link
-		} elseif( self::typeAction( $row, 'merge', 'merge', 'mergehistory' ) ) {
-			$revert = Linker::linkKnown(
-				SpecialPage::getTitleFor( 'MergeHistory' ),
-				$this->message['revertmerge'],
-				array(),
-				array(
-					'target' => $paramArray[0],
-					'dest' => $title->getPrefixedDBkey(),
-					'mergepoint' => $paramArray[1]
-				)
-			);
-			$revert = $this->msg( 'parentheses' )->rawParams( $revert )->escaped();
-		// If an edit was hidden from a page give a review link to the history
-		} elseif( self::typeAction( $row, array( 'delete', 'suppress' ), 'revision', 'deletedhistory' ) ) {
-			$revert = RevisionDeleter::getLogLinks( $title, $paramArray,
-								$this->message );
-		// Hidden log items, give review link
-		} elseif( self::typeAction( $row, array( 'delete', 'suppress' ), 'event', 'deletedhistory' ) ) {
-			if( count($paramArray) >= 1 ) {
-				$revdel = SpecialPage::getTitleFor( 'Revisiondelete' );
-				// $paramArray[1] is a CSV of the IDs
-				$query = $paramArray[0];
-				// Link to each hidden object ID, $paramArray[1] is the url param
-				$revert = Linker::linkKnown(
-					$revdel,
-					$this->message['revdel-restore'],
-					array(),
-					array(
-						'target' => $title->getPrefixedText(),
-						'type' => 'logging',
-						'ids' => $query
-					)
-				);
-				$revert = $this->msg( 'parentheses' )->rawParams( $revert )->escaped();
-			}
-		// Do nothing. The implementation is handled by the hook modifiying the passed-by-ref parameters.
-		} else {
-			wfRunHooks( 'LogLine', array( $row->log_type, $row->log_action, $title, $paramArray,
-				&$comment, &$revert, $row->log_timestamp ) );
-		}
-		if( $revert != '' ) {
-			$revert = '<span class="mw-logevent-actionlink">' . $revert . '</span>';
-		}
-		return $revert;
+		return Html::rawElement( 'li', array( 'class' => $classes ),
+			"$del $time $action $comment $revert $tagDisplay" ) . "\n";
 	}
 
 	/**
