@@ -2948,6 +2948,7 @@ $templates
 			'wgAction' => Action::getActionName( $this->getContext() ),
 			'wgUserName' => $this->getUser()->isAnon() ? null : $this->getUser()->getName(),
 			'wgUserGroups' => $this->getUser()->getEffectiveGroups(),
+			'wgUserRights' => $this->getUser()->getRights(),
 			'wgCategories' => $this->getCategories(),
 			'wgBreakFrames' => $this->getFrameOptions() == 'DENY',
 			'wgPageContentLanguage' => $lang->getCode(),
