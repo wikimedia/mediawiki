@@ -360,6 +360,11 @@ class ChangesList extends ContextSource {
 			$params['rcid'] = $rc->mAttribs['rc_id'];
 		}
 
+		$isRedirect = Title::newFromText( $rc->getTitle()->getPrefixedText() )->isRedirect(); // For some reason $rc->getTitle()->isRedirect() always returns false here.
+		if ( $isRedirect && $this->watchlist ) {
+			$params['redirect'] = 'no';
+		}
+
 		$articlelink = Linker::linkKnown(
 			$rc->getTitle(),
 			null,
