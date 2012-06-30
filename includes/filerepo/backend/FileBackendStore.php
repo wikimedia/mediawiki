@@ -38,13 +38,10 @@
 abstract class FileBackendStore extends FileBackend {
 	/** @var BagOStuff */
 	protected $memCache;
-
-	/** @var Array Map of paths to small (RAM/disk) cache items */
-	protected $cache = array(); // (storage path => key => value)
-	protected $maxCacheSize = 300; // integer; max paths with entries
-	/** @var Array Map of paths to large (RAM/disk) cache items */
-	protected $expensiveCache = array(); // (storage path => key => value)
-	protected $maxExpensiveCacheSize = 5; // integer; max paths with entries
+	/** @var ProcessCacheLRU */
+	protected $cheapCache; // Map of paths to small (RAM/disk) cache items
+	/** @var ProcessCacheLRU */
+	protected $expensiveCache; // Map of paths to large (RAM/disk) cache items
 
 	/** @var Array Map of container names to sharding settings */
 	protected $shardViaHashLevels = array(); // (container name => config array)
@@ -58,7 +55,9 @@ abstract class FileBackendStore extends FileBackend {
 	 */
 	public function __construct( array $config ) {
 		parent::__construct( $config );
-		$this->memCache = new EmptyBagOStuff(); // disabled by default
+		$this->memCache       = new EmptyBagOStuff(); // disabled by default
+		$this->cheapCache     = new ProcessCacheLRU( 300 );
+		$this->expensiveCache = new ProcessCacheLRU( 5 );
 	}
 
 	/**
@@ -539,17 +538,17 @@ abstract class FileBackendStore extends FileBackend {
 		wfProfileIn( __METHOD__ );
 		wfProfileIn( __METHOD__ . '-' . $this->name );
 		$latest = !empty( $params['latest'] ); // use latest data?
-		if ( !isset( $this->cache[$path]['stat'] ) ) {
+		if ( !$this->cheapCache->has( $path, 'stat' ) ) {
 			$this->primeFileCache( array( $path ) ); // check persistent cache
 		}
-		if ( isset( $this->cache[$path]['stat'] ) ) {
+		if ( $this->cheapCache->has( $path, 'stat' ) ) {
+			$stat = $this->cheapCache->get( $path, 'stat' );
 			// If we want the latest data, check that this cached
 			// value was in fact fetched with the latest available data.
-			if ( !$latest || $this->cache[$path]['stat']['latest'] ) {
-				$this->pingCache( $path ); // LRU
+			if ( !$latest || $stat['latest'] ) {
 				wfProfileOut( __METHOD__ . '-' . $this->name );
 				wfProfileOut( __METHOD__ );
-				return $this->cache[$path]['stat'];
+				return $stat;
 			}
 		}
 		wfProfileIn( __METHOD__ . '-miss' );
@@ -559,13 +558,11 @@ abstract class FileBackendStore extends FileBackend {
 		wfProfileOut( __METHOD__ . '-miss' );
 		if ( is_array( $stat ) ) { // don't cache negatives
 			$stat['latest'] = $latest;
-			$this->trimCache(); // limit memory
-			$this->cache[$path]['stat'] = $stat;
+			$this->cheapCache->set( $path, 'stat', $stat );
 			$this->setFileCache( $path, $stat ); // update persistent cache
 			if ( isset( $stat['sha1'] ) ) { // some backends store SHA-1 as metadata
-				$this->trimCache(); // limit memory
-				$this->cache[$path]['sha1'] =
-					array( 'hash' => $stat['sha1'], 'latest' => $latest );
+				$this->cheapCache->set( $path, 'sha1',
+					array( 'hash' => $stat['sha1'], 'latest' => $latest ) );
 			}
 		} else {
 			wfDebug( __METHOD__ . ": File $path does not exist.\n" );
@@ -613,14 +610,14 @@ abstract class FileBackendStore extends FileBackend {
 		wfProfileIn( __METHOD__ );
 		wfProfileIn( __METHOD__ . '-' . $this->name );
 		$latest = !empty( $params['latest'] ); // use latest data?
-		if ( isset( $this->cache[$path]['sha1'] ) ) {
+		if ( $this->cheapCache->has( $path, 'sha1' ) ) {
+			$stat = $this->cheapCache->get( $path, 'sha1' );
 			// If we want the latest data, check that this cached
 			// value was in fact fetched with the latest available data.
-			if ( !$latest || $this->cache[$path]['sha1']['latest'] ) {
-				$this->pingCache( $path ); // LRU
+			if ( !$latest || $stat['latest'] ) {
 				wfProfileOut( __METHOD__ . '-' . $this->name );
 				wfProfileOut( __METHOD__ );
-				return $this->cache[$path]['sha1']['hash'];
+				return $stat['hash'];
 			}
 		}
 		wfProfileIn( __METHOD__ . '-miss' );
@@ -629,8 +626,8 @@ abstract class FileBackendStore extends FileBackend {
 		wfProfileOut( __METHOD__ . '-miss-' . $this->name );
 		wfProfileOut( __METHOD__ . '-miss' );
 		if ( $hash ) { // don't cache negatives
-			$this->trimCache(); // limit memory
-			$this->cache[$path]['sha1'] = array( 'hash' => $hash, 'latest' => $latest );
+			$this->cheapCache->set( $path, 'sha1',
+				array( 'hash' => $hash, 'latest' => $latest ) );
 		}
 		wfProfileOut( __METHOD__ . '-' . $this->name );
 		wfProfileOut( __METHOD__ );
@@ -676,21 +673,20 @@ abstract class FileBackendStore extends FileBackend {
 		wfProfileIn( __METHOD__ );
 		wfProfileIn( __METHOD__ . '-' . $this->name );
 		$latest = !empty( $params['latest'] ); // use latest data?
-		if ( isset( $this->expensiveCache[$path]['localRef'] ) ) {
+		if ( $this->expensiveCache->has( $path, 'localRef' ) ) {
+			$val = $this->expensiveCache->get( $path, 'localRef' );
 			// If we want the latest data, check that this cached
 			// value was in fact fetched with the latest available data.
-			if ( !$latest || $this->expensiveCache[$path]['localRef']['latest'] ) {
-				$this->pingExpensiveCache( $path );
+			if ( !$latest || $val['latest'] ) {
 				wfProfileOut( __METHOD__ . '-' . $this->name );
 				wfProfileOut( __METHOD__ );
-				return $this->expensiveCache[$path]['localRef']['object'];
+				return $val['object'];
 			}
 		}
 		$tmpFile = $this->getLocalCopy( $params );
 		if ( $tmpFile ) { // don't cache negatives
-			$this->trimExpensiveCache(); // limit memory
-			$this->expensiveCache[$path]['localRef'] =
-				array( 'object' => $tmpFile, 'latest' => $latest );
+			$this->expensiveCache->set( $path, 'localRef',
+				array( 'object' => $tmpFile, 'latest' => $latest ) );
 		}
 		wfProfileOut( __METHOD__ . '-' . $this->name );
 		wfProfileOut( __METHOD__ );
@@ -1079,12 +1075,12 @@ abstract class FileBackendStore extends FileBackend {
 			$paths = array_filter( $paths, 'strlen' ); // remove nulls
 		}
 		if ( $paths === null ) {
-			$this->cache = array();
-			$this->expensiveCache = array();
+			$this->cheapCache->clear();
+			$this->expensiveCache->clear();
 		} else {
 			foreach ( $paths as $path ) {
-				unset( $this->cache[$path] );
-				unset( $this->expensiveCache[$path] );
+				$this->cheapCache->clear( $path );
+				$this->expensiveCache->clear( $path );
 			}
 		}
 		$this->doClearCache( $paths );
@@ -1108,58 +1104,6 @@ abstract class FileBackendStore extends FileBackend {
 	 * @return bool
 	 */
 	abstract protected function directoriesAreVirtual();
-
-	/**
-	 * Move a cache entry to the top (such as when accessed)
-	 *
-	 * @param $path string Storage path
-	 * @return void
-	 */
-	protected function pingCache( $path ) {
-		if ( isset( $this->cache[$path] ) ) {
-			$tmp = $this->cache[$path];
-			unset( $this->cache[$path] );
-			$this->cache[$path] = $tmp;
-		}
-	}
-
-	/**
-	 * Prune the inexpensive cache if it is too big to add an item
-	 *
-	 * @return void
-	 */
-	protected function trimCache() {
-		if ( count( $this->cache ) >= $this->maxCacheSize ) {
-			reset( $this->cache );
-			unset( $this->cache[key( $this->cache )] );
-		}
-	}
-
-	/**
-	 * Move a cache entry to the top (such as when accessed)
-	 *
-	 * @param $path string Storage path
-	 * @return void
-	 */
-	protected function pingExpensiveCache( $path ) {
-		if ( isset( $this->expensiveCache[$path] ) ) {
-			$tmp = $this->expensiveCache[$path];
-			unset( $this->expensiveCache[$path] );
-			$this->expensiveCache[$path] = $tmp;
-		}
-	}
-
-	/**
-	 * Prune the expensive cache if it is too big to add an item
-	 *
-	 * @return void
-	 */
-	protected function trimExpensiveCache() {
-		if ( count( $this->expensiveCache ) >= $this->maxExpensiveCacheSize ) {
-			reset( $this->expensiveCache );
-			unset( $this->expensiveCache[key( $this->expensiveCache )] );
-		}
-	}
 
 	/**
 	 * Check if a container name is valid.
@@ -1515,12 +1459,10 @@ abstract class FileBackendStore extends FileBackend {
 		foreach ( $values as $cacheKey => $val ) {
 			if ( is_array( $val ) ) {
 				$path = $pathNames[$cacheKey];
-				$this->trimCache(); // limit memory
-				$this->cache[$path]['stat'] = $val;
+				$this->cheapCache->set( $path, 'stat', $val );
 				if ( isset( $val['sha1'] ) ) { // some backends store SHA-1 as metadata
-					$this->trimCache(); // limit memory
-					$this->cache[$path]['sha1'] =
-						array( 'hash' => $val['sha1'], 'latest' => $val['latest'] );
+					$this->cheapCache->set( $path, 'sha1',
+						array( 'hash' => $val['sha1'], 'latest' => $val['latest'] ) );
 				}
 			}
 		}
