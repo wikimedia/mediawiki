@@ -109,24 +109,24 @@ class LogFormatter {
 
 	/**
 	 * Set the visibility restrictions for displaying content.
-	 * If set to public, and an item is deleted, then it will be replaced 
+	 * If set to public, and an item is deleted, then it will be replaced
 	 * with a placeholder even if the context user is allowed to view it.
 	 * @param $audience integer self::FOR_THIS_USER or self::FOR_PUBLIC
 	 */
 	public function setAudience( $audience ) {
 		$this->audience = ( $audience == self::FOR_THIS_USER )
-			? self::FOR_THIS_USER 
+			? self::FOR_THIS_USER
 			: self::FOR_PUBLIC;
 	}
 
 	/**
 	 * Check if a log item can be displayed
 	 * @param $field integer LogPage::DELETED_* constant
-	 * @return bool 
+	 * @return bool
 	 */
 	protected function canView( $field ) {
 		if ( $this->audience == self::FOR_THIS_USER ) {
-			return LogEventsList::userCanBitfield( 
+			return LogEventsList::userCanBitfield(
 				$this->entry->getDeleted(), $field, $this->context->getUser() );
 		} else {
 			return !$this->entry->isDeleted( $field );
@@ -279,7 +279,7 @@ class LogFormatter {
 						break;
 				}
 				break;
-			
+
 
 			// case 'suppress' --private log -- aaron  (sign your messages so we know who to blame in a few years :-D)
 			// default:
@@ -338,6 +338,15 @@ class LogFormatter {
 		$subtype = $this->entry->getSubtype();
 
 		return "logentry-$type-$subtype";
+	}
+
+	/**
+	 * Returns extra links that comes after the action text, like "revert", etc.
+	 *
+	 * @return string
+	 */
+	public function getActionLinks() {
+		return '';
 	}
 
 	/**
@@ -537,6 +546,23 @@ class LogFormatter {
  * @since 1.19
  */
 class LegacyLogFormatter extends LogFormatter {
+
+	/**
+	 * Backward compatibility for extension changing the comment from
+	 * the LogLine hook.
+	 *
+	 * @var string|null
+	 */
+	private $comment = null;
+
+	public function getComment() {
+		if ( $this->comment === null ) {
+			$this->comment = parent::getComment();
+		}
+
+		return $this->comment;
+	}
+
 	protected function getActionMessage() {
 		$entry = $this->entry;
 		$action = LogPage::actionText(
@@ -556,6 +582,84 @@ class LegacyLogFormatter extends LogFormatter {
 		return $action;
 	}
 
+	public function getActionLinks() {
+		if ( $this->entry->isDeleted( LogPage::DELETED_ACTION ) ) {
+			return '';
+		}
+
+		$title = $this->entry->getTarget();
+		$type = $this->entry->getType();
+		$subtype = $this->entry->getSubtype();
+
+		// Show unblock/change block link
+		if ( ( $type == 'block' || $type == 'suppress' ) && ( $subtype == 'block' || $subtype == 'reblock' ) ) {
+			if ( !$this->context->getUser()->isAllowed( 'block' ) ) {
+				return '';
+			}
+
+			$links = array(
+				Linker::linkKnown(
+					SpecialPage::getTitleFor( 'Unblock', $title->getDBkey() ),
+					$this->msg( 'unblocklink' )->escaped()
+				),
+				Linker::linkKnown(
+					SpecialPage::getTitleFor( 'Block', $title->getDBkey() ),
+					$this->msg( 'change-blocklink' )->escaped()
+				)
+			);
+			return $this->msg( 'parentheses' )->rawParams(
+				$this->context->getLanguage()->pipeList( $links ) )->escaped();
+		// Show change protection link
+		} elseif ( $type == 'protect' && ( $subtype == 'protect' || $subtype == 'modify' || $subtype == 'unprotect' ) ) {
+			$links = array(
+				Linker::link( $title,
+					$this->msg( 'hist' )->escaped(),
+					array(),
+					array(
+						'action' => 'history',
+						'offset' => $this->entry->getTimestamp()
+					)
+				)
+			);
+			if ( $this->context->getUser()->isAllowed( 'protect' ) ) {
+				$links[] = Linker::linkKnown(
+					$title,
+					$this->msg( 'protect_change' )->escaped(),
+					array(),
+					array( 'action' => 'protect' )
+				);
+			}
+			return $this->msg( 'parentheses' )->rawParams(
+				$this->context->getLanguage()->pipeList( $links ) )->escaped();
+		// Show unmerge link
+		} elseif( $type == 'merge' && $subtype == 'merge' ) {
+			if ( !$this->context->getUser()->isAllowed( 'mergehistory' ) ) {
+				return '';
+			}
+
+			$params = $this->extractParameters();
+			$revert = Linker::linkKnown(
+				SpecialPage::getTitleFor( 'MergeHistory' ),
+				$this->msg( 'revertmerge' )->escaped(),
+				array(),
+				array(
+					'target' => $params[3],
+					'dest' => $title->getPrefixedDBkey(),
+					'mergepoint' => $params[4]
+				)
+			);
+			return $this->msg( 'parentheses' )->rawParams( $revert )->escaped();
+		}
+
+		// Do nothing. The implementation is handled by the hook modifiying the passed-by-ref parameters.
+		$params = $this->entry->getParameters();
+		$revert = '';
+
+		wfRunHooks( 'LogLine', array( $type, $subtype, $title, $params,
+			&$this->comment, &$revert, $this->entry->getTimestamp() ) );
+
+		return $revert;
+	}
 }
 
 /**
@@ -584,6 +688,34 @@ class MoveLogFormatter extends LogFormatter {
 		$params[2] = Message::rawParam( $oldname );
 		$params[3] = Message::rawParam( $newname );
 		return $params;
+	}
+
+	public function getActionLinks() {
+		if ( $this->entry->isDeleted( LogPage::DELETED_ACTION ) // Action is hidden
+			|| $this->entry->getSubtype() !== 'move'
+			|| !$this->context->getUser()->isAllowed( 'move' ) )
+		{
+			return '';
+		}
+
+		$params = $this->extractParameters();
+		$destTitle = Title::newFromText( $params[3] );
+		if ( !$destTitle ) {
+			return '';
+		}
+
+		$revert = Linker::linkKnown(
+			SpecialPage::getTitleFor( 'Movepage' ),
+			$this->msg( 'revertmove' )->escaped(),
+			array(),
+			array(
+				'wpOldTitle' => $destTitle->getPrefixedDBkey(),
+				'wpNewTitle' => $this->entry->getTarget()->getPrefixedDBkey(),
+				'wpReason'   => $this->msg( 'revertmove' )->inContentLanguage()->text(),
+				'wpMovetalk' => 0
+			)
+		);
+		return $this->msg( 'parentheses' )->rawParams( $revert )->escaped();
 	}
 }
 
@@ -652,6 +784,107 @@ class DeleteLogFormatter extends LogFormatter {
 			return (int) $field;
 		} else {
 			return (int) $string;
+		}
+	}
+
+	public function getActionLinks() {
+		$user = $this->context->getUser();
+		if ( !$user->isAllowed( 'deletedhistory' ) || $this->entry->isDeleted( LogPage::DELETED_ACTION ) ) {
+			return '';
+		}
+
+		switch ( $this->entry->getSubtype() ) {
+		case 'delete': // Show undelete link
+			if( $user->isAllowed( 'undelete' ) ) {
+				$message = 'undeletelink';
+			} else {
+				$message = 'undeleteviewlink';
+			}
+			$revert = Linker::linkKnown(
+				SpecialPage::getTitleFor( 'Undelete' ),
+				$this->msg( $message )->escaped(),
+				array(),
+				array( 'target' => $this->entry->getTarget()->getPrefixedDBkey() )
+			 );
+			return $this->msg( 'parentheses' )->rawParams( $revert )->escaped();
+
+		case 'revision': // If an edit was hidden from a page give a review link to the history
+			$params = $this->extractParameters();
+			if ( !isset( $params[3] ) || !isset( $params[4] ) ) {
+				return '';
+			}
+
+			// Different revision types use different URL params...
+			$key = $params[3];
+			// This is a CSV of the IDs
+			$ids = explode( ',', $params[4] );
+
+			$links = array();
+
+			// If there's only one item, we can show a diff link
+			if ( count( $ids ) == 1 ) {
+				// Live revision diffs...
+				if ( $key == 'oldid' || $key == 'revision' ) {
+					$links[] = Linker::linkKnown(
+						$this->entry->getTarget(),
+						$this->msg( 'diff' )->escaped(),
+						array(),
+						array(
+							'diff' => intval( $ids[0] ),
+							'unhide' => 1
+						)
+					);
+				// Deleted revision diffs...
+				} elseif ( $key == 'artimestamp' || $key == 'archive' ) {
+					$links[] = Linker::linkKnown(
+						SpecialPage::getTitleFor( 'Undelete' ),
+						$this->msg( 'diff' )->escaped(),
+						array(),
+						array(
+							'target'    => $this->entry->getTarget()->getPrefixedDBKey(),
+							'diff'      => 'prev',
+							'timestamp' => $ids[0]
+						)
+					);
+				}
+			}
+
+			// View/modify link...
+			$links[] = Linker::linkKnown(
+				SpecialPage::getTitleFor( 'Revisiondelete' ),
+				$this->msg( 'revdel-restore' )->escaped(),
+				array(),
+				array(
+					'target' => $this->entry->getTarget()->getPrefixedText(),
+					'type' => $key,
+					'ids' => implode( ',', $ids ),
+				)
+			);
+
+			return $this->msg( 'parentheses' )->rawParams(
+				$this->context->getLanguage()->pipeList( $links ) )->escaped();
+
+		case 'event': // Hidden log items, give review link
+			$params = $this->extractParameters();
+			if ( !isset( $params[3] ) ) {
+				return '';
+			}
+			// This is a CSV of the IDs
+			$query = $params[3];
+			// Link to each hidden object ID, $params[1] is the url param
+			$revert = Linker::linkKnown(
+				SpecialPage::getTitleFor( 'Revisiondelete' ),
+				$this->msg( 'revdel-restore' )->escaped(),
+				array(),
+				array(
+					'target' => $this->entry->getTarget()->getPrefixedText(),
+					'type' => 'logging',
+					'ids' => $query
+				)
+			);
+			return $this->msg( 'parentheses' )->rawParams( $revert )->escaped();
+		default:
+			return '';
 		}
 	}
 }
