@@ -59,6 +59,14 @@ class WikiExporter {
 	var $sink;
 
 	/**
+	 * Returns the export schema version.
+	 * @return string
+	 */
+	public static function schemaVersion() {
+		return "0.7";
+	}
+
+	/**
 	 * If using WikiExporter::STREAM to stream a large amount of data,
 	 * provide a database connection which is not managed by
 	 * LoadBalancer to read from: some history blob types will
@@ -465,10 +473,12 @@ class WikiExporter {
 class XmlDumpWriter {
 	/**
 	 * Returns the export schema version.
+	 * @deprecated in 1.20; use WikiExporter::schemaVersion() instead
 	 * @return string
 	 */
 	function schemaVersion() {
-		return "0.7";
+		wfDeprecated( __METHOD__, '1.20' );
+		return WikiExporter::schemaVersion();
 	}
 
 	/**
@@ -483,7 +493,7 @@ class XmlDumpWriter {
 	 */
 	function openStream() {
 		global $wgLanguageCode;
-		$ver = $this->schemaVersion();
+		$ver = WikiExporter::schemaVersion();
 		return Xml::element( 'mediawiki', array(
 			'xmlns'              => "http://www.mediawiki.org/xml/export-$ver/",
 			'xmlns:xsi'          => "http://www.w3.org/2001/XMLSchema-instance",
