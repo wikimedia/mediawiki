@@ -22,13 +22,17 @@
 
 /**
  * Class to expand PHP execution time for a function call.
+ * Use this when performing changes that should not be interrupted.
+ *
  * On construction, set_time_limit() is called and set to $seconds.
+ * If the client aborts the connection, PHP will continue to run.
  * When the object goes out of scope, the timer is restarted, with
  * the original time limit minus the time the object existed.
  */
 class ScopedPHPTimeout {
 	protected $startTime; // float; seconds
 	protected $oldTimeout; // integer; seconds
+	protected $oldIgnoreAbort; // boolean
 
 	protected static $stackDepth = 0; // integer
 	protected static $totalCalls = 0; // integer
@@ -50,6 +54,7 @@ class ScopedPHPTimeout {
 			} elseif ( self::$stackDepth > 0 ) { // recursion guard
 				trigger_error( "Resursive invocation of " . __CLASS__ . " attempted." );
 			} else {
+				$this->oldIgnoreAbort = ignore_user_abort( true );
 				$this->oldTimeout = ini_set( 'max_execution_time', $seconds );
 				$this->startTime = microtime( true );
 				++self::$stackDepth;
@@ -73,6 +78,7 @@ class ScopedPHPTimeout {
 			// take some measures to prevent this. Track total time and calls.
 			self::$totalElapsed += $elapsed;
 			--self::$stackDepth;
+			ignore_user_abort( $this->oldIgnoreAbort );
 		}
 	}
 }
