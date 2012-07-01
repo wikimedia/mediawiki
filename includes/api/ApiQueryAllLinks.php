@@ -80,12 +80,13 @@ class ApiQueryAllLinks extends ApiQueryGeneratorBase {
 			if ( count( $continueArr ) != 2 ) {
 				$this->dieUsage( 'Invalid continue parameter', 'badcontinue' );
 			}
+			$op = $params['dir'] == 'descending' ? '<' : '>';
 			$continueTitle = $db->addQuotes( $this->titleToKey( $continueArr[0] ) );
 			$continueFrom = intval( $continueArr[1] );
 			$this->addWhere(
-				"pl_title > $continueTitle OR " .
+				"pl_title $op $continueTitle OR " .
 				"(pl_title = $continueTitle AND " .
-				"pl_from > $continueFrom)"
+				"pl_from $op= $continueFrom)"
 			);
 		}
 
@@ -104,12 +105,13 @@ class ApiQueryAllLinks extends ApiQueryGeneratorBase {
 		$limit = $params['limit'];
 		$this->addOption( 'LIMIT', $limit + 1 );
 
+		$sort = ( $params['dir'] == 'descending' ? ' DESC' : '' );
+		$orderBy = array();
+		$orderBy[] = 'pl_title' . $sort;
 		if ( !$params['unique'] ) {
-			$this->addOption( 'ORDER BY', array(
-				'pl_title',
-				'pl_from'
-			));
+			$orderBy[] = 'pl_from' . $sort;
 		}
+		$this->addOption( 'ORDER BY', $orderBy );
 
 		$res = $this->select( __METHOD__ );
 
@@ -183,7 +185,14 @@ class ApiQueryAllLinks extends ApiQueryGeneratorBase {
 				ApiBase::PARAM_MIN => 1,
 				ApiBase::PARAM_MAX => ApiBase::LIMIT_BIG1,
 				ApiBase::PARAM_MAX2 => ApiBase::LIMIT_BIG2
-			)
+			),
+			'dir' => array(
+				ApiBase::PARAM_DFLT => 'ascending',
+				ApiBase::PARAM_TYPE => array(
+					'ascending',
+					'descending'
+				)
+			),
 		);
 	}
 
@@ -202,6 +211,7 @@ class ApiQueryAllLinks extends ApiQueryGeneratorBase {
 			'namespace' => 'The namespace to enumerate',
 			'limit' => 'How many total links to return',
 			'continue' => 'When more results are available, use this to continue',
+			'dir' => 'The direction in which to list',
 		);
 	}
 
