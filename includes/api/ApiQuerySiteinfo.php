@@ -121,9 +121,14 @@ class ApiQuerySiteinfo extends ApiQueryBase {
 		$data['dbtype'] = $GLOBALS['wgDBtype'];
 		$data['dbversion'] = $this->getDB()->getServerVersion();
 
-		$svn = SpecialVersion::getSvnRevision( $GLOBALS['IP'] );
-		if ( $svn ) {
-			$data['rev'] = $svn;
+		$git = SpecialVersion::getGitHeadSha1( $GLOBALS['IP'] );
+		if ( $git ) {
+			$data['git-hash'] = $git;
+		} else {
+			$svn = SpecialVersion::getSvnRevision( $GLOBALS['IP'] );
+			if ( $svn ) {
+				$data['rev'] = $svn;
+			}
 		}
 
 		// 'case-insensitive' option is reserved for future
