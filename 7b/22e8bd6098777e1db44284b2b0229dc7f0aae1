@@ -1,0 +1,8 @@
+Verified+1: jenkins-bot
+Code-Review+2: Siebrand <s.mazeland@xs4all.nl>
+Code-Review+1: Daniel Kinzler <daniel.kinzler@wikimedia.de>
+Submitted-by: Siebrand <s.mazeland@xs4all.nl>
+Submitted-at: Sun, 01 Jul 2012 14:54:05 +0000
+Reviewed-on: https://gerrit.wikimedia.org/r/11670
+Project: mediawiki/core
+Branch: refs/heads/master
