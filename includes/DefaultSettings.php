@@ -475,6 +475,7 @@ $wgCacheSharedUploads = true;
 /**
 * Allow for upload to be copied from an URL. Requires Special:Upload?source=web
 * The timeout for copy uploads is set by $wgHTTPTimeout.
+* You have to assign the user right 'upload_by_url' to a user group, to use this.
 */
 $wgAllowCopyUploads = false;
 /**
@@ -3605,7 +3606,6 @@ $wgGroupPermissions['sysop']['reupload']         = true;
 $wgGroupPermissions['sysop']['reupload-shared']  = true;
 $wgGroupPermissions['sysop']['unwatchedpages']   = true;
 $wgGroupPermissions['sysop']['autoconfirmed']    = true;
-$wgGroupPermissions['sysop']['upload_by_url']    = true;
 $wgGroupPermissions['sysop']['ipblock-exempt']   = true;
 $wgGroupPermissions['sysop']['blockemail']       = true;
 $wgGroupPermissions['sysop']['markbotedits']     = true;
@@ -3615,6 +3615,7 @@ $wgGroupPermissions['sysop']['noratelimit']      = true;
 $wgGroupPermissions['sysop']['movefile']         = true;
 $wgGroupPermissions['sysop']['unblockself']      = true;
 $wgGroupPermissions['sysop']['suppressredirect'] = true;
+#$wgGroupPermissions['sysop']['upload_by_url']    = true;
 #$wgGroupPermissions['sysop']['mergehistory']     = true;
 
 // Permission to change users' group assignments
