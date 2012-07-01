@@ -62,7 +62,7 @@ class TimeAdjustTest extends MediaWikiLangTestCase {
 	function testUserAdjustWithTimezone( $inputDate, $timezone, $expectedDate ) {
 		global $wgLocalTZoffset, $wgLocaltimezone;
 
-		$wgContLang = $en = Language::factory( 'en' );
+		$en = Language::factory( 'en' );
 
 		$wgLocaltimezone = $timezone;
 		$wgLocalTZoffset = 0;
