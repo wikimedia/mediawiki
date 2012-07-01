@@ -1522,7 +1522,8 @@ class Article extends Page {
 	public function doDelete( $reason, $suppress = false ) {
 		$error = '';
 		$outputPage = $this->getContext()->getOutput();
-		if ( $this->mPage->doDeleteArticle( $reason, $suppress, 0, true, $error ) ) {
+		$status = $this->mPage->doDeleteArticleReal( $reason, $suppress, 0, true, $error );
+		if ( $status->isGood() ) {
 			$deleted = $this->getTitle()->getPrefixedText();
 
 			$outputPage->setPageTitle( wfMessage( 'actioncomplete' ) );
@@ -1535,8 +1536,9 @@ class Article extends Page {
 		} else {
 			$outputPage->setPageTitle( wfMessage( 'cannotdelete-title', $this->getTitle()->getPrefixedText() ) );
 			if ( $error == '' ) {
+				$errors = $status->getErrorsArray();
 				$outputPage->wrapWikiMsg( "<div class=\"error mw-error-cannotdelete\">\n$1\n</div>",
-					array( 'cannotdelete', wfEscapeWikiText( $this->getTitle()->getPrefixedText() ) )
+					$errors[0]
 				);
 				$outputPage->addHTML( Xml::element( 'h2', null, LogPage::logName( 'delete' ) ) );
 

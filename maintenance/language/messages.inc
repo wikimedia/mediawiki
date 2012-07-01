@@ -387,6 +387,7 @@ $wgMessageStructure = array(
 		'badarticleerror',
 		'cannotdelete',
 		'cannotdelete-title',
+		'delete-hook-aborted',
 		'badtitle',
 		'badtitletext',
 		'perfcached',

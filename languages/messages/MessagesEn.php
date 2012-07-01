@@ -1008,6 +1008,8 @@ Please report this to an [[Special:ListUsers/sysop|administrator]], making note 
 'cannotdelete'         => 'The page or file "$1" could not be deleted.
 It may have already been deleted by someone else.',
 'cannotdelete-title'   => 'Cannot delete page "$1"',
+'delete-hook-aborted'  => 'Deletion aborted by hook.
+It gave no explanation.',
 'badtitle'             => 'Bad title',
 'badtitletext'         => 'The requested page title was invalid, empty, or an incorrectly linked inter-language or inter-wiki title.
 It may contain one or more characters which cannot be used in titles.',

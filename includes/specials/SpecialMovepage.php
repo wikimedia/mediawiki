@@ -440,8 +440,9 @@ class MovePageForm extends UnlistedSpecialPage {
 
 			$error = ''; // passed by ref
 			$page = WikiPage::factory( $nt );
-			if ( !$page->doDeleteArticle( $reason, false, 0, true, $error, $user ) ) {
-				$this->showForm( array( array( 'cannotdelete', wfEscapeWikiText( $nt->getPrefixedText() ) ) ) );
+			$deleteStatus = $page->doDeleteArticleReal( $reason, false, 0, true, $error, $user );
+			if ( !$deleteStatus->isGood() ) {
+				$this->showForm( $deleteStatus->getErrorsArray() );
 				return;
 			}
 		}

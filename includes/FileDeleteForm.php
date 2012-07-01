@@ -172,7 +172,10 @@ class FileDeleteForm {
 			try {
 				// delete the associated article first
 				$error = '';
-				if ( $page->doDeleteArticleReal( $reason, $suppress, 0, false, $error, $user ) >= WikiPage::DELETE_SUCCESS ) {
+				$deleteStatus = $page->doDeleteArticleReal( $reason, $suppress, 0, false, $error, $user );
+				// doDeleteArticleReal() returns a non-fatal error status if the page
+				// or revision is missing, so check for isOK() rather than isGood()
+				if ( $deleteStatus->isOK() ) {
 					$status = $file->delete( $reason, $suppress );
 					if( $status->isOK() ) {
 						$dbw->commit( __METHOD__ );
