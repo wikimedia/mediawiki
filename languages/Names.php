@@ -105,6 +105,7 @@
 	'dv' => 'ދިވެހިބަސް',		# Dhivehi
 	'dz' => 'ཇོང་ཁ',		# Dzongkha (Bhutan)
 	'ee' => 'eʋegbe',	# Éwé
+	'egl' => 'Emiliàn',	# Emilian
 	'el' => 'Ελληνικά',	# Greek
 	'eml' => 'emiliàn e rumagnòl',	# Emiliano-Romagnolo / Sammarinese
 	'en' => 'English',		# English

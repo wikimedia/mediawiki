@@ -2142,8 +2142,9 @@ Ayrıca [[Special:WantedCategories|İstenen kategoriler]]'e bakınız.",
 'linksearch-pat' => 'Motif ara:',
 'linksearch-ns' => 'Ad alanı:',
 'linksearch-ok' => 'Ara',
-'linksearch-text' => '"*.wikipedia.org" gibi jokerler kullanılabilir.<br />
-Desteklenen iletişim kuralları: <tt>$1</tt>',
+'linksearch-text' => '"*.wikipedia.org" gibi jokerler kullanılabilir.
+En az bir üst-seviye alan gerekir, örneğin "*.org".<br />
+Desteklenen iletişim kuralları: <tt>$1</tt> (bunların hiçbirini aramanıza eklemeyin).',
 'linksearch-line' => "$1'e $2'den bağlantı verilmiş",
 'linksearch-error' => 'Jokerler sadece ana makine adının başında görünebilir.',
 

@@ -2743,11 +2743,11 @@ To perform a selective restoration, check the boxes corresponding to the revisio
 # Special:Import
 'import' => 'પાના આયાત કરો',
 'importinterwiki' => 'ટ્રાંસ વિકિ આયાત',
-'import-interwiki-text' => 'આયાત કરવાના વિકિ અને પાનાનું શીર્ષક પસંદ કરો.
-ફેરફરની તારીખ અને લેખકો વિષે ની માહિતી સચવાશે.
-આંતર વિકિ આયાત આદિ [[Special:Log/import|import log]] માં અંકિત થાય છે.',
+'import-interwiki-text' => 'આયાત કરવા માટેનાં પાનાનું શીર્ષક અને વિકિ પસંદ કરો.
+ફેરફારની તારીખ અને લેખકો વિષેની માહિતી જેમની તેમ રાખવામાં આવશે.
+બધા જ આંતરવિકિ આયાતની નોંધ [[Special:Log/import|import log]]માં રખાય છે.',
 'import-interwiki-source' => 'સ્રોત વિકિ/પાનું:',
-'import-interwiki-history' => 'આ પાના બધા ઐતિહાસીક ફેરફારોની નકલ કરો',
+'import-interwiki-history' => 'આ પાનું બધા ફેરફારોના ઇતિહાસ સાથે આયાત કરો',
 'import-interwiki-templates' => 'બધા ઢાંચા શામિલ કરો',
 'import-interwiki-submit' => 'આયાત કરો',
 'import-interwiki-namespace' => 'લક્ષ્ય નામ સ્થળ',

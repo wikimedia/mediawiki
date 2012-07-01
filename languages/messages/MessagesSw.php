@@ -945,8 +945,8 @@ Bado unaweza [$1 kutazama sahihisho hili] iwapo utapenda kuendelea.",
 'rev-suppressed-text-unhide' => "Pitio la ukurasa huu '''limefichwa'''.
 Maelezo yanaweza kupatikana kwenye [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} kumbukumbu ya ufichaji].
 Bado unaweza [$1 kutazama sahihisho hili] iwapo utapenda kuendelea.",
-'rev-deleted-text-view' => "Pitio la ukurasa huu '''limefutwa'''.
-Uunaweza kulitazama; maelezo mengine yapo kwenye [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} kumbukumbu ya ufutaji].",
+'rev-deleted-text-view' => "Pitio hilo la ukurasa huu '''limefutwa'''.
+Unaweza kulitazama; maelezo mengine yapo kwenye [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} kumbukumbu ya ufutaji].",
 'rev-suppressed-text-view' => "Pitio la ukurasa huu '''limefichwa'''.
 Unaweza kulitazama; maelezo mengine yapo kwenye [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} kumbukumbu ya ufichaji].",
 'rev-delundel' => 'onyesha/ficha',
@@ -1197,7 +1197,7 @@ Hutaweza kulibatilisha tendo hili baadaye.',
 'prefs-registration' => 'Wakati wa kusajili:',
 'yourrealname' => 'Jina lako halisi:',
 'yourlanguage' => 'Lugha:',
-'yourvariant' => 'Kadiri ya lugha mbalimbali:',
+'yourvariant' => 'Kadiri ya lugha ya wiki:',
 'yournick' => 'Sahihi:',
 'prefs-help-signature' => 'Unapoandika kwenye kurasa za majadiliano tafadhali utie sahihi kwa kuandika "<nowiki>~~~~</nowiki>"; itaonekana jina lako pamoja na saa na tarehe ya kuhifadhi.',
 'badsig' => 'Umeweka sahihi batili.
@@ -1818,7 +1818,7 @@ Sasa unaelekeza kwa [[$2]].',
 
 # Special:Log
 'specialloguserlabel' => 'Mtendaji:',
-'speciallogtitlelabel' => 'Kusudio:',
+'speciallogtitlelabel' => 'Kusudio (jina la ukurasa au mtumiaji):',
 'log' => 'Kumbukumbu',
 'all-logs-page' => 'Kumbukumbu zote zilizo wazi',
 'alllogstext' => 'Hapa panaonyeshwa kumbukumbu zote za {{SITENAME}} kwa pamoja.

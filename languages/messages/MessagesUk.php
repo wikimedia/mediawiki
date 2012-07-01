@@ -1320,7 +1320,7 @@ $1",
 
 # Diffs
 'history-title' => '$1: Історія змін',
-'difference-title' => '$1: Відмінності між версіями',
+'difference-title' => 'Відмінності між версіями «$1»',
 'difference-title-multipage' => 'Різниця між сторінками «$1» та «$2»',
 'difference-multipage' => '(Різниця між сторінками)',
 'lineno' => 'Рядок $1:',

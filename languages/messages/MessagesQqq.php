@@ -1125,6 +1125,7 @@ Used in History and [[Special:Contributions]].',
 'rev-deleted-user-contribs' => 'Part of revision deletion.',
 'rev-deleted-text-unhide' => 'This message is very similar to {{msg-mw|rev-suppressed-unhide-diff}}. Parameters:
 * $1 is a HTML link to the diff',
+'rev-deleted-text-view' => 'I believe this is an error message which appears if a user tries to view a past revision of a page, where the revision has been hidden from view, although later revisions of the page still exist.',
 'rev-suppressed-unhide-diff' => 'This message is very similar to {{msg-mw|rev-deleted-unhide-diff}} and to {{msg-mw|rev-suppressed-text-unhide}}. Parameters:
 * $1 is a HTML link to the diff',
 'rev-delundel' => 'Link in page history for oversight (see also {{msg-mw|rev-showdeleted}})',

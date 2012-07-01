@@ -594,8 +594,13 @@ Probeer asseblief weer oor 'n paar minute.",
 'ns-specialprotected' => 'Spesiale bladsye kan nie geredigeer word nie.',
 'titleprotected' => "Hierdie titel is beskerm teen skepping deur [[User:$1|$1]].
 Die rede gegee is ''$2''.",
+'filereadonlyerror' => 'Dit was nie moontlik om die lêer "$1" te wysig nie lêerstoor tans lees-alleen is.
+
+Die rede hiervoor is "\'\'$3\'\'".',
 'invalidtitle-knownnamespace' => 'Ongeldige titel met naamruimte "$2" en teks "$3"',
 'invalidtitle-unknownnamespace' => 'Ongeldige titel met onbekende naamruimtenummer $1 en teks "$2"',
+'exception-nologin' => 'Nie aangeteken nie',
+'exception-nologin-text' => 'U moet eers op hierdie wiki aanteken alvorens u hierdie bladsy kan sien of handeling kan uitvoer.',
 
 # Virus scanner
 'virus-badscanner' => "Slegte konfigurasie: onbekende virusskandeerder: ''$1''",
@@ -881,6 +886,7 @@ Onthou dat u eie .css- en .js-bladsye met 'n kleinletter begin, byvoorbeeld {{ns
 'note' => "'''Nota:'''",
 'previewnote' => "'''Onthou dat hierdie slegs 'n voorskou is.'''
 U teks is nog nie gestoor nie!",
+'continue-editing' => 'Wysig verder',
 'previewconflict' => 'Hierdie voorskou vertoon die teks in die boonste teksarea soos dit sou lyk indien u die bladsy stoor.',
 'session_fail_preview' => "'''Jammer! Weens verlies aan sessie-inligting is die wysiging nie verwerk nie.
 Probeer asseblief weer. As dit steeds nie werk nie, probeer om [[Special:UserLogout|af te teken]] en dan weer aan te teken.'''",
@@ -974,6 +980,12 @@ Hierdie parameters is uitgelaat.",
 'parser-template-loop-warning' => "Sjablone is in 'n oneindige lus: [[$1]]",
 'parser-template-recursion-depth-warning' => 'Die rekursiediepte vir sjablone is oorskry ($1)',
 'language-converter-depth-warning' => 'Die dieptelimiet vir die taalomskakelaar is oorskrei ($1)',
+'node-count-exceeded-category' => 'Bladsye waar die maksimum aantal nodes oorskry is',
+'node-count-exceeded-warning' => 'Hierdie bladsy oorskry die maksimum aantal nodes',
+'expansion-depth-exceeded-category' => 'Bladsye waar die uitbreidingsdiepte oorskry is',
+'expansion-depth-exceeded-warning' => 'Die bladsy bevat te veel sjablone',
+'parser-unstrip-loop-warning' => '\'n "Unstrip"-lus is bespreur.',
+'parser-unstrip-recursion-limit' => 'Die rekursielimiet ($1) vir "unstrip" is oorskry',
 
 # "Undo" feature
 'undo-success' => 'Die wysiging kan ongedaan gemaak word.
@@ -2789,6 +2801,9 @@ Die lêer is slegs gedeeltelik opgelaai.',
 'import-invalid-interwiki' => 'Kan nie vanaf die gespesifiseerde importeer nie.',
 'import-error-edit' => 'Die bladsy "$1" is nie geïmporteer nie omdat u nie die regte het om dit te wysig nie.',
 'import-error-create' => 'Die bladsy "$1" is nie geïmporteer nie omdat u nie die regte het om dit te skep nie.',
+'import-error-interwiki' => 'Die bladsy "$1" is nie geïmporteer nie omdat sy naam vir eksterne skakeling (interwiki) gereserveer is.',
+'import-error-special' => 'Die bladsy "$1" is nie geïmporteer nie omdat dit aan \'n spesiale naamruimte behoort waarin geen bladsye geplaas kan word nie.',
+'import-error-invalid' => 'Die bladsy "$1" is nie geïmporteer nie omdat die naam ongeldig is.',
 
 # Import log
 'importlogpage' => 'Invoer logboek',
@@ -2802,6 +2817,11 @@ Die lêer is slegs gedeeltelik opgelaai.',
 'javascripttest' => 'JavaScript toetsing',
 'javascripttest-disabled' => 'Die funksie is nie op hierdie wiki geaktiveer nie.',
 'javascripttest-title' => 'Voer toetse uit vir $1',
+'javascripttest-pagetext-noframework' => 'Hierdie bladsy is gereserveer vir die uitvoer van JavaScript-toetse.',
+'javascripttest-pagetext-unknownframework' => 'Onbekende toetsraamwerk "$1".',
+'javascripttest-pagetext-frameworks' => 'Kies een van die volgende toetsraamwerke: $1',
+'javascripttest-pagetext-skins' => "Kies 'n omslag waarmee die toets uitgevoer moet word:",
+'javascripttest-qunit-intro' => 'Sien die [$1 toetsdokumentasie] op mediawiki.org.',
 
 # Tooltip help for the actions
 'tooltip-pt-userpage' => 'U gebruikerbladsy',
@@ -2899,6 +2919,7 @@ Hierdie situasie was waarskynlik deur 'n skakel na 'n eksterne webtuiste op ons 
 'spambot_username' => 'MediaWiki opruiming van spam',
 'spam_reverting' => 'Besig met terugrol na die laaste weergawe wat nie skakels na $1 bevat nie',
 'spam_blanking' => "Alle weergawes met 'n skakel na $1 word verwyder",
+'spam_deleting' => 'Alle weergawes bevat verwysings na $1. Bladsy verwyder',
 
 # Info page
 'pageinfo-title' => 'Inligting oor "$1"',

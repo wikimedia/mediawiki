@@ -126,6 +126,7 @@ $messages = array(
 'subcategories' => 'Unnerabdeeling',
 'category-media-header' => 'Media in Abdeeling „$1“',
 'category-empty' => "''Die Abdeeling hot zu daere Zeit kene Bledder oder Feils.''",
+'hidden-categories' => '{{PLURAL:$1|Versteckelte Abdeeling|Verstecktelte Abdeelinge}}',
 'category-article-count-limited' => '{{PLURAL:$1|Sell Blatt iss|Selle $1 Bledder sin}} in daer Abdeeling drin:',
 'category-file-count-limited' => '{{PLURAL:$1|Sell Feil iss|Selle $1 Feils sin}} in daer Abdeeling drin:',
 'listingcontinuesabbrev' => '(weider)',
@@ -276,6 +277,7 @@ Wenns des net iss, hoscht verleicht en Fehler in de Daadebank gfunne. Bitte meld
 'missingarticle-diff' => '(Unnerschidd zwische Versione: $1, $2)',
 'internalerror' => 'Interner Fehler',
 'internalerror_info' => 'Interner Fehler: $1',
+'badtitle' => 'Tidl net gildich',
 'ns-specialprotected' => 'Besunnere Bledder sinn net zum Ennere.',
 
 # Virus scanner

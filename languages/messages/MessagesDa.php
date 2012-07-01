@@ -574,6 +574,8 @@ $2',
 Administratoren, som skrivebeskyttede den, gav følgende begrundelse: "$3".',
 'invalidtitle-knownnamespace' => 'Ugyldig titel med navnerummet "$2" og teksten "$3"',
 'invalidtitle-unknownnamespace' => 'Ugyldig titel med ukendt navnerum nummer $1 og tekst "$2"',
+'exception-nologin' => 'Ikke logget på',
+'exception-nologin-text' => 'Denne side eller handling kræver, at du er logget på denne wiki.',
 
 # Virus scanner
 'virus-badscanner' => "Konfigurationsfejl: ukendt virus-scanner: ''$1''",

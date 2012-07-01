@@ -277,7 +277,7 @@ $messages = array(
 'tog-hidepatrolled' => '在最近更改中隐藏已巡查编辑',
 'tog-newpageshidepatrolled' => '在新页面列表中隐藏已巡查页面',
 'tog-extendwatchlist' => '扩大监视列表以显示所有更改而不仅是最近更改',
-'tog-usenewrc' => '启用增强最近更改（需要JavaScript）',
+'tog-usenewrc' => '根据页面分组最近更改和监视列表（需要JavaScript）',
 'tog-numberheadings' => '标题自动编号',
 'tog-showtoolbar' => '显示编辑工具条（需要JavaScript）',
 'tog-editondblclick' => '双击时编辑页面（需要JavaScript）',
@@ -651,6 +651,8 @@ $2',
 管理员对锁定它给出的解释是：“$3”。',
 'invalidtitle-knownnamespace' => '使用名字空间“$2”和文本“$3”的无效标题',
 'invalidtitle-unknownnamespace' => '使用未知名字空间编号$1和文本“$2”的无效标题',
+'exception-nologin' => '未登陆',
+'exception-nologin-text' => '此动作需要先登陆到此 wiki',
 
 # Virus scanner
 'virus-badscanner' => "错误的配置：未知的病毒扫描程序：''$1''",
@@ -2107,8 +2109,7 @@ $1',
 'mailnologintext' => '你必须[[Special:UserLogin|登录]]并在你的[[Special:Preferences|系统设置]]中拥有有效的电子邮件地址才能向其他用户发送电子邮件。',
 'emailuser' => '电邮联系',
 'emailpage' => '电邮联系',
-'emailpagetext' => '您可以用下面的表格去寄一封电邮给这位用户。
-您在[[Special:Preferences|您的参数设置]]中所输入的电子邮箱地址将出现在邮件“发件人”一栏中，这样该用户就可以回复您。',
+'emailpagetext' => '你可以使用下面的表格向该用户发送电子邮件信息。你在[[Special:Preferences|你的系统设置]]中输入的电子邮件地址将显示为邮件的“发件人”地址，所以该用户将可以直接回复你。',
 'usermailererror' => 'Mail 对象返回错误：',
 'defemailsubject' => '{{SITENAME}}来自用户“$1”的电子邮件',
 'usermaildisabled' => '用户电邮已停用',
@@ -3828,4 +3829,6 @@ MediaWiki是基于使用目的而加以发布，然而不负任何担保责任�
 'duration-centuries' => '$1个世纪',
 'duration-millennia' => '$1千年',
 
+# Unknown messages
+'lockmanager-fail-svr-acquire' => '无法在服务器 $1 上获得锁',
 );

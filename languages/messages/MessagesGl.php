@@ -1918,7 +1918,7 @@ Poida que queira editar a descrición da [$2 páxina de descrición do ficheiro]
 'filepage.css' => '/** O CSS que se coloque aquí será incluído na páxina de descrición do ficheiro, así como nos wikis de clientes estranxeiros */',
 
 # File reversion
-'filerevert' => 'Desfacer $1',
+'filerevert' => 'Reverter $1',
 'filerevert-legend' => 'Reverter o ficheiro',
 'filerevert-intro' => 'Está a piques de reverter o ficheiro "\'\'\'[[Media:$1|$1]]\'\'\'" ata a [$4 versión do $2 ás $3].',
 'filerevert-comment' => 'Motivo:',
@@ -2584,7 +2584,7 @@ Olle a [[Special:BlockList|lista de bloqueos]] para revisalo.',
 'unblockip' => 'Desbloquear o usuario',
 'unblockiptext' => 'Use o seguinte formulario para dar de novo acceso de escritura a un enderezo IP ou usuario que estea bloqueado.',
 'ipusubmit' => 'Retirar este bloqueo',
-'unblocked' => '"[[User:$1|$1]]" foi desbloqueado',
+'unblocked' => '[[User:$1|$1]] foi {{GENDER:$1|desbloqueado|desbloqueada}}',
 'unblocked-range' => '$1 foi desbloqueado',
 'unblocked-id' => 'O bloqueo $1 foi eliminado',
 'blocklist' => 'Usuarios bloqueados',
@@ -2797,7 +2797,7 @@ No último caso, pode usar tamén unha ligazón, por exemplo [[{{#Special:Export
 'export-pagelinks' => 'Engadir as páxinas ligadas a unha profundidade de:',
 
 # Namespace 8 related
-'allmessages' => 'Todas as mensaxes do sistema',
+'allmessages' => 'Mensaxes do sistema',
 'allmessagesname' => 'Nome',
 'allmessagesdefault' => 'Texto predeterminado',
 'allmessagescurrent' => 'Texto actual',

@@ -1,5 +1,5 @@
 <?php
-/** Cornish (Kernowek)
+/** Cornish (kernowek)
  *
  * See MessagesQqq.php for message documentation incl. usage of parameters
  * To improve a translation please visit http://translatewiki.net

@@ -505,6 +505,8 @@ Rhoddwyd y rheswm hwn - ''$2''.",
 Y rheswm a roddwyd gan y gweinyddwr a roddodd y ffeil dan glo yw "\'\'$3\'\'".',
 'invalidtitle-knownnamespace' => 'Teitl annilys o\'r enw "$3" yn y parth "$2"',
 'invalidtitle-unknownnamespace' => 'Teitl annilys ag iddi\'r rhif parth anhysbys $1 a\'r enw "$2"',
+'exception-nologin' => 'Nid ydych wedi mewngofnodi',
+'exception-nologin-text' => "Rhaid mewngofnodi i'r wici er mwyn gweld y dudalen neu gyflawni'r weithred.",
 
 # Virus scanner
 'virus-badscanner' => "Cyfluniad gwael: sganiwr firysau anhysbys: ''$1''",
