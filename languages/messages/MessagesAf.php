@@ -2777,6 +2777,9 @@ Die lêer is slegs gedeeltelik opgelaai.',
 'import-invalid-interwiki'   => 'Kan nie vanaf die gespesifiseerde importeer nie.',
 'import-error-edit'          => 'Die bladsy "$1" is nie geïmporteer nie omdat u nie die regte het om dit te wysig nie.',
 'import-error-create'        => 'Die bladsy "$1" is nie geïmporteer nie omdat u nie die regte het om dit te skep nie.',
+'import-error-interwiki'     => 'Die bladsy "$1" is nie geïmporteer nie omdat sy naam vir eksterne skakeling (interwiki) gereserveer is.',
+'import-error-special'       => 'Die bladsy "$1" is nie geïmporteer nie omdat dit aan \'n spesiale naamruimte behoort waarin geen bladsye geplaas kan word nie.',
+'import-error-invalid'       => 'Die bladsy "$1" is nie geïmporteer nie omdat die naam ongeldig is.',
 
 # Import log
 'importlogpage'                    => 'Invoer logboek',
@@ -2787,9 +2790,14 @@ Die lêer is slegs gedeeltelik opgelaai.',
 'import-logentry-interwiki-detail' => '$1 {{PLURAL:$1|weergawe|weergawes}} vanaf $2',
 
 # JavaScriptTest
-'javascripttest'          => 'JavaScript toetsing',
-'javascripttest-disabled' => 'Die funksie is nie op hierdie wiki geaktiveer nie.',
-'javascripttest-title'    => 'Voer toetse uit vir $1',
+'javascripttest'                           => 'JavaScript toetsing',
+'javascripttest-disabled'                  => 'Die funksie is nie op hierdie wiki geaktiveer nie.',
+'javascripttest-title'                     => 'Voer toetse uit vir $1',
+'javascripttest-pagetext-noframework'      => 'Hierdie bladsy is gereserveer vir die uitvoer van JavaScript-toetse.',
+'javascripttest-pagetext-unknownframework' => 'Onbekende toetsraamwerk "$1".',
+'javascripttest-pagetext-frameworks'       => 'Kies een van die volgende toetsraamwerke: $1',
+'javascripttest-pagetext-skins'            => "Kies 'n omslag waarmee die toets uitgevoer moet word:",
+'javascripttest-qunit-intro'               => 'Sien die [$1 toetsdokumentasie] op mediawiki.org.',
 
 # Tooltip help for the actions
 'tooltip-pt-userpage'                 => 'U gebruikerbladsy',

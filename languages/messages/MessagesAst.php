@@ -11,6 +11,7 @@
  * @author Kaganer
  * @author Mikel
  * @author Remember the dot
+ * @author Savh
  * @author Xuacu
  * @author לערי ריינהארט
  */
@@ -65,7 +66,7 @@ $messages = array(
 'tog-hidepatrolled'           => 'Anubrir les ediciones vixilaes nos cambeos recientes',
 'tog-newpageshidepatrolled'   => 'Anubrir les páxines vixilaes na llista de páxines nueves',
 'tog-extendwatchlist'         => "Espander la llista de vixilancia p'amosar tolos cambeos, non solo los más recientes.",
-'tog-usenewrc'                => 'Cambeos recientes ameyoraos (necesita JavaScript)',
+'tog-usenewrc'                => 'Agrupar los cambeos por páxina nos cambeos recientes y na llista de vixilancia (necesita JavaScript)',
 'tog-numberheadings'          => 'Autonumberar los encabezaos',
 'tog-showtoolbar'             => "Amosar la barra de ferramientes d'edición (JavaScript)",
 'tog-editondblclick'          => 'Editar páxines con doble clic (necesita JavaScript)',
@@ -1725,7 +1726,7 @@ Hai disponible una [[Special:WhatLinksHere/$2|llista completa]].",
 'sharedupload-desc-there'   => 'Esti ficheru ye de $1 y puen usalu otros proyeutos.
 Llee la [páxina de descripción del ficheru $2] pa más información.',
 'sharedupload-desc-here'    => "Esti ficheru ye de $1 y puen usalu otros proyeutos.
-La descripción de la [páxina de descripción del ficheru $2] s'amuesa darréu.",
+La descripción de la [$2 páxina de descripción del ficheru] s'amuesa darréu.",
 'filepage-nofile'           => 'Nun esiste dengún ficheru con esti nome.',
 'filepage-nofile-link'      => 'Nun esiste ficheru dalu con esti nome, pero pues [$1 xubilu].',
 'uploadnewversion-linktext' => "Xubir una nueva versión d'esta imaxe",

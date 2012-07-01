@@ -8,6 +8,7 @@
  * @file
  *
  * @author Itsmine
+ * @author Justincheng12345
  * @author Omnipaedista
  * @author Shinjiman
  */
@@ -85,6 +86,8 @@ $messages = array(
 'tog-rememberpassword'        => '符節通越（達至$1日）',
 'tog-watchcreations'          => '哨己撰',
 'tog-watchdefault'            => '哨己纂',
+'tog-watchmoves'              => '派哨予吾遷之頁',
+'tog-watchdeletion'           => '派哨予吾除之頁',
 'tog-minordefault'            => '慣為校',
 'tog-previewontop'            => '頂草覽',
 'tog-previewonfirst'          => '覽首修',
@@ -194,6 +197,7 @@ $messages = array(
 'listingcontinuesabbrev'         => '續',
 'index-category'                 => '已索之頁',
 'noindex-category'               => '未索之頁',
+'broken-file-category'           => '帶壞檔之頁',
 
 'about'         => '述',
 'article'       => '文',
@@ -460,6 +464,7 @@ $2',
 'createaccount'              => '增簿',
 'gotaccount'                 => '有簿矣哉？往$1。',
 'gotaccountlink'             => '登簿',
+'userlogin-resetlink'        => '君忘登簿所需爾？',
 'createaccountmail'          => '同郵',
 'createaccountreason'        => '因：',
 'badretype'                  => '符節不合也。',

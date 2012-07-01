@@ -29,6 +29,7 @@
  * @author R-Joe
  * @author Samat
  * @author Sucy
+ * @author TK-999
  * @author Terik
  * @author Tgr
  * @author Xbspiro
@@ -319,7 +320,7 @@ $messages = array(
 'tog-hidepatrolled'           => 'Az ellenőrzött szerkesztések elrejtése a friss változtatások lapon',
 'tog-newpageshidepatrolled'   => 'Ellenőrzött lapok elrejtése az új lapok listájáról',
 'tog-extendwatchlist'         => 'A figyelőlistán az összes változtatás látszódjon, ne csak az utolsó',
-'tog-usenewrc'                => 'Fejlettebb friss változások listája (JavaScript-alapú)',
+'tog-usenewrc'                => 'Fejlettebb friss változások használata (JavaScript-alapú)',
 'tog-numberheadings'          => 'Fejezetcímek automatikus számozása',
 'tog-showtoolbar'             => 'Szerkesztőeszközsor megjelenítése (JavaScript-alapú)',
 'tog-editondblclick'          => 'A lapok szerkesztése dupla kattintásra (JavaScript-alapú)',

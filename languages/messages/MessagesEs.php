@@ -352,7 +352,7 @@ $messages = array(
 'tog-hidepatrolled'           => 'Ocultar ediciones patrulladas en los cambios recientes',
 'tog-newpageshidepatrolled'   => 'Ocultar páginas patrulladas de la lista de páginas nuevas',
 'tog-extendwatchlist'         => 'Expandir la lista de seguimiento a todos los cambios, no sólo a los más recientes.',
-'tog-usenewrc'                => 'Cambios recientes mejorados (requiere JavaScript)',
+'tog-usenewrc'                => 'Agrupar los cambios por página en los cambios recientes y en la lista de vigilancia (requiere JavaScript)',
 'tog-numberheadings'          => 'Numerar automáticamente los encabezados',
 'tog-showtoolbar'             => 'Mostrar la barra de edición (requiere JavaScript)',
 'tog-editondblclick'          => 'Editar páginas con doble clic (requiere JavaScript)',
@@ -837,7 +837,7 @@ Puedes ignorar este mensaje si esta cuenta fue creada por error.',
 'suspicious-userlogout'      => 'Tu solicitud de desconexión ha sido denegada, pues parece haber sido enviada desde un navegador defectuoso o un proxy caché.',
 
 # E-mail sending
-'php-mail-error-unknown' => 'Error desconocido en la función mail() de PHP',
+'php-mail-error-unknown' => 'Error desconocido en la función mail() de PHP.',
 'user-mail-no-addy'      => 'Se ha intentado enviar correo electrónico sin una dirección de correo electrónico.',
 
 # Change password dialog

@@ -8,6 +8,7 @@
  * @file
  *
  * @author Filipinayzd
+ * @author Geopoet
  * @author Kaganer
  * @author Steven*fung
  * @author Urhixidur
@@ -123,6 +124,7 @@ $messages = array(
 'tog-enotifminoredits'        => 'E-koreohan man giraray ako para sa saradit na paghirá kan mga pahina',
 'tog-enotifrevealaddr'        => 'Ibunyág an adres kan sakuyang e-koreo sa mga surat na pag-abiso',
 'tog-shownumberswatching'     => 'Ipahilíng an bilang kan nagbabantay na mga parágamit',
+'tog-oldsig'                  => 'Tugmadong pirma',
 'tog-fancysig'                => 'Mga bàgong pirma (mayò nin tolos na pantakod)',
 'tog-externaleditor'          => 'Gamíton mùna an panluwas na editor',
 'tog-externaldiff'            => 'Gamíton mùna an diff na panluwás',
@@ -140,6 +142,9 @@ $messages = array(
 'underline-always'  => 'Pirmi',
 'underline-never'   => 'Nungka',
 'underline-default' => 'Browser na normal',
+
+# Font style option in Special:Preferences
+'editfont-default' => 'Kilyawang tugmad',
 
 # Dates
 'sunday'        => 'Domingo',
@@ -269,12 +274,12 @@ $messages = array(
 'unprotectthispage' => 'Bawion an proteksyon kaining pahina',
 'newpage'           => 'Bàgong pahina',
 'talkpage'          => 'Pag-olayan ining pahina',
-'talkpagelinktext'  => 'Pag-oláyan',
+'talkpagelinktext'  => 'Pag-ulayan',
 'specialpage'       => 'Espesyal na Pahina',
 'personaltools'     => 'Mga gamit na personal',
 'postcomment'       => 'Magkomento',
 'articlepage'       => 'Hilingón an pahina kan laog',
-'talk'              => 'Orólay',
+'talk'              => 'Urulay',
 'views'             => 'Mga hilíng',
 'toolbox'           => 'Kagamitan',
 'userpage'          => 'Hilingón an pahina kan parágamit',
@@ -284,31 +289,32 @@ $messages = array(
 'templatepage'      => 'Hilingón an pahina kan templato',
 'viewhelppage'      => 'Hilingón an pahina kan tabang',
 'categorypage'      => 'Hilingón an pahina kan kategorya',
-'viewtalkpage'      => 'Hilingón an orólay',
+'viewtalkpage'      => 'Hilingón an urulay',
 'otherlanguages'    => 'Sa ibáng mga tatarámon',
 'redirectedfrom'    => '(Piglikay halì sa $1)',
 'redirectpagesub'   => 'Ilikáy an pahina',
 'lastmodifiedat'    => 'Huring pigbàgo an pahinang iní $2 kan $1.',
 'viewcount'         => 'Binukasán ining pahina nin {{PLURAL:$1|sarong beses|nin $1 beses}}.',
 'protectedpage'     => 'Protektadong pahina',
-'jumpto'            => 'Maglukso sa:',
-'jumptonavigation'  => 'paglibotlíbot',
-'jumptosearch'      => 'hanápon',
+'jumpto'            => 'Magluksó sa:',
+'jumptonavigation'  => 'paglibotlibot',
+'jumptosearch'      => 'hanapon',
+'pool-errorunknown' => 'Bakong bistadong sala',
 
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
 'aboutsite'            => 'Dapít sa {{SITENAME}}',
 'aboutpage'            => 'Project:Manonongód',
 'copyright'            => 'Makukua an laog sa $1.',
 'copyrightpage'        => '{{ns:project}}:Mga derechos nin parásurat',
-'currentevents'        => 'Mga panyayári sa ngonyán',
-'currentevents-url'    => 'Project:Mga panyayari sa ngonyan',
+'currentevents'        => 'Mga pangyayari sa ngunyán',
+'currentevents-url'    => 'Project:Mga pangyayari sa ngunyán',
 'disclaimers'          => 'Mga pagpabayà',
-'disclaimerpage'       => 'Project:Pankagabsán na pagpabayà',
+'disclaimerpage'       => 'Project:Pangkagabsán na pagpabayà',
 'edithelp'             => 'Paghirá kan pagtabang',
 'edithelppage'         => 'Help:Pagliwát',
 'helppage'             => 'Help:Mga laóg',
-'mainpage'             => 'Pangenot na Pahina',
-'mainpage-description' => 'Pangenot na Pahina',
+'mainpage'             => 'Panginot na Pahina',
+'mainpage-description' => 'Panginot na Pahina',
 'policy-url'           => 'Project:Palakáw',
 'portal'               => 'Portal kan komunidad',
 'portal-url'           => 'Project:Portal kan Komunidad',
@@ -337,6 +343,8 @@ $messages = array(
 'toc'                     => 'Mga laóg',
 'showtoc'                 => 'ipahilíng',
 'hidetoc'                 => 'tagóon',
+'collapsible-collapse'    => 'Pinahalipot',
+'collapsible-expand'      => 'Pinahalawig',
 'thisisdeleted'           => 'Hilingón o isulít an $1?',
 'viewdeleted'             => 'Hilingón an $1?',
 'restorelink'             => '{{PLURAL:$1|sarong pinarang paghirá|$1 na pinarang paghirá}}',
@@ -349,6 +357,8 @@ $messages = array(
 'page-atom-feed'          => '"$1" Hungit na Atomo',
 'feed-atom'               => 'Atomo',
 'red-link-title'          => '$1 (daí pa naisusurat)',
+'sort-descending'         => 'Suysoy paibaba',
+'sort-ascending'          => 'Suysoy paitaas',
 
 # Short words for each namespace, by default used in the namespace tab in monobook
 'nstab-main'      => 'Pahina',
@@ -392,7 +402,7 @@ AnSQL ko nagbalik nin salâ na"$3: $4"',
 Ini an eksplikasyon kan tagamató na nagkandado kaini: $1',
 'missingarticle-rev'   => '(pagbàgo#: $1)',
 'missingarticle-diff'  => '(Kaibhán: $1, $2)',
-'readonly_lag'         => 'Enseguidang nakandado an base nin datos mientras makaabot an base nin datos na esklabo saiyang amo.',
+'readonly_lag'         => 'Tulostulos na pagkandado an base nin datos mantang makaabot an base nin datos na esklabo saiyang amo.',
 'internalerror'        => 'Panlaog na salâ',
 'internalerror_info'   => 'Panlaog na salâ: $1',
 'filecopyerror'        => 'Dai naarog an mga file na "$1" hasta "$2".',
@@ -424,10 +434,10 @@ For translations, please consider using [//translatewiki.net/wiki/Main_Page?setl
 'cascadeprotected'     => 'Pinoprotehirán ining páhina sa mga paghirá, ta sarô ini sa mga minasunod na {{PLURAL:$1|páhina|mga páhina}} na pinoprotehiran kan opsyón na "katarata" na nakabuká:
 $2',
 'namespaceprotected'   => "Mayô kang permisong maghirá kan mga páhina sa '''$1''' ngaran-espacio.",
-'ns-specialprotected'  => 'An mga páhinang nasa {{ns:special}} na ngaran-espacio dai pwedeng hirahón.',
+'ns-specialprotected'  => 'An mga pahinang nasa {{ns:special}} na liang-liang dai pwedeng hirahón.',
 
 # Virus scanner
-'virus-badscanner'     => "Saláng konfigurasyon: dai aram an virus scanner: ''$1''",
+'virus-badscanner'     => "Saláng konpigurasyon: dai aram an virus scanner: ''$1''",
 'virus-unknownscanner' => 'dai aram an antivirus:',
 
 # Login and logout pages
@@ -448,6 +458,7 @@ Nagibo na an ''account'' mo. Giromdomon tabi na ribayán an saimong mga kabôtan
 'nav-login-createaccount'    => 'Maglaog / maggibo nin account',
 'loginprompt'                => 'Kaipuhan may cookies ka para makalaog sa {{SITENAME}}.',
 'userlogin'                  => 'Maglaog / maggibo nin account',
+'userloginnocreate'          => 'Maglaog ka',
 'logout'                     => 'Magluwas',
 'userlogout'                 => 'Magluwás',
 'notloggedin'                => 'Mayò sa laog',
@@ -456,7 +467,9 @@ Nagibo na an ''account'' mo. Giromdomon tabi na ribayán an saimong mga kabôtan
 'createaccount'              => 'Maggibo nin account',
 'gotaccount'                 => "Igwa ka na nin account? '''$1'''.",
 'gotaccountlink'             => 'Maglaog',
+'userlogin-resetlink'        => 'Nakalingaw ka sa panlaog mong detalye?',
 'createaccountmail'          => 'sa e-koreo',
+'createaccountreason'        => 'Rason:',
 'badretype'                  => 'Dai parehas an pigtaták mong mga sekretong panlaog.',
 'userexists'                 => 'Piggagamit na kan iba an pangaran. Magpili tabî nin iba.',
 'loginerror'                 => 'Salâ an paglaog',
@@ -470,7 +483,7 @@ Nagibo na an ''account'' mo. Giromdomon tabi na ribayán an saimong mga kabôtan
 'nosuchusershort'            => 'Mayong paragamit sa nagngangaran na "$1". Reparohon an pigsurat mo.',
 'nouserspecified'            => 'Kaipuhan mong kaagan nin pangaran.',
 'wrongpassword'              => 'Salâ an pigtaták na sekretong panlaog. Probaran giraray tabì.',
-'wrongpasswordempty'         => 'Mayong pigkaag na sekretong panlaog. Probaran giraray tabì.',
+'wrongpasswordempty'         => 'Mayong pigkaág na sekretong panlaog. Probaran giraray tabì.',
 'passwordtooshort'           => 'Salâ o halìpoton an saimong sekretong panlaog. Igwa dapat ining dai mababà sa {{PLURAL:$1|1 karakter|$1 karakter}} asin iba man sa pinilì mong pangaran.',
 'mailmypassword'             => 'Ipadara sa e-koreo an sekretong panlaog',
 'passwordremindertitle'      => 'Panpaísi nin sekretong panlaog halì sa {{SITENAME}}',
@@ -498,6 +511,8 @@ $1 na oras.',
 'invalidemailaddress'        => "Dai matogotan ining ''e''-surat ta garo salâ an ''format'' kaini. Magkaag tabî nin tamâ o dai pagkaagan.",
 'accountcreated'             => "Nagibo na an ''account''.",
 'accountcreatedtext'         => "Ginibo na an ''account'' para ki $1.",
+'usernamehasherror'          => 'Paragamit na ngaran dae puwede na igwang simbolikong mga kabtang',
+'login-abort-generic'        => 'An saimong paglaog dae nakadagos - Pinundo',
 'loginlanguagelabel'         => 'Tataramon: $1',
 
 # Change password dialog

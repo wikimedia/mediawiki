@@ -125,7 +125,7 @@ $messages = array(
 'tog-hidepatrolled'           => 'Cuddio golygiadau sydd wedi derbyn ymweliad patrôl rhag y rhestr newidiadau diweddar',
 'tog-newpageshidepatrolled'   => 'Cuddio tudalennau sydd wedi derbyn ymweliad patrôl rhag y rhestr dudalennau newydd',
 'tog-extendwatchlist'         => "Ehangu'r rhestr wylio i ddangos pob golygiad yn hytrach na'r diweddaraf yn unig",
-'tog-usenewrc'                => 'Defnyddio newidiadau diweddar gwell (angen JavaScript)',
+'tog-usenewrc'                => "Yn dangos newidiadau i un dudalen gyda'i gilydd - ar 'newidiadau diweddar' a'r 'rhestr wylio' (angen JavaScript)",
 'tog-numberheadings'          => "Rhifo penawdau'n awtomatig",
 'tog-showtoolbar'             => 'Dangos y bar offer golygu (angen JavaScript)',
 'tog-editondblclick'          => 'Golygu tudalennau wrth glicio ddwywaith (angen JavaScript)',
@@ -2758,7 +2758,7 @@ Mae ffolder dros dro yn eisiau.',
 'tooltip-rollback'                    => "Yn troi golygiad(au) y defnyddiwr diwethaf i'r dudalen hon yn ôl gydag un clic.",
 'tooltip-undo'                        => 'Mae "dadwneud" yn troi\'r golygiad hwn yn ôl ac yn dangos rhagolwg o\'r golygiad adferedig.
 Gellir ychwanegu rheswm dros y dadwneud yn y crynodeb.',
-'tooltip-preferences-save'            => "Rhoi'r dewisiadau ar gadw",
+'tooltip-preferences-save'            => 'Rhodder y dewisiadau ar gadw',
 'tooltip-summary'                     => 'Rhowch grynodeb byr',
 
 # Metadata
@@ -2782,8 +2782,8 @@ Gellir ychwanegu rheswm dros y dadwneud yn y crynodeb.',
 Achos hyn yn fwy na thebyg yw presenoldeb cysylltiad i wefan ar y rhestr waharddedig.',
 'spamprotectionmatch' => "Dyma'r testun gyneuodd ein hidlydd amddiffyn rhag sbam: $1",
 'spambot_username'    => 'Teclyn clirio sbam MediaWiki',
-'spam_reverting'      => "Yn troi nôl i'r diwygiad diweddaraf sydd ddim yn cynnwys cysylltiadau i $1",
-'spam_blanking'       => 'Roedd cysylltiadau i $1 gan bob golygiad, yn blancio',
+'spam_reverting'      => 'Wedi adfer y diwygiad diweddaraf na sydd yn cynnwys cysylltiadau i $1',
+'spam_blanking'       => 'Roedd cysylltiadau i $1 gan bob golygiad, felly gwacawyd y dudalen',
 
 # Info page
 'pageinfo-title'            => 'Manylion "$1"',

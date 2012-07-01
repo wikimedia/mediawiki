@@ -199,7 +199,7 @@ $messages = array(
 'tog-hidepatrolled'           => 'Sorokkan suntingan yang telah dironda daripada senarai perubahan terkini',
 'tog-newpageshidepatrolled'   => 'Sorokkan laman yang telah dironda daripada senarai laman baru',
 'tog-extendwatchlist'         => 'Kembangkan senarai pantau untuk memaparkan semua perubahan, bukan hanya yang terkini',
-'tog-usenewrc'                => 'Guna peningkatan perubahan terkini (perlukan JavaScript)',
+'tog-usenewrc'                => 'Perubahan kumpulan mengikut laman dalam perubahan terkini dan senarai pantau (memerlukan JavaScript)',
 'tog-numberheadings'          => 'Nomborkan tajuk secara automatik',
 'tog-showtoolbar'             => 'Tunjukkan bar sunting (JavaScript)',
 'tog-editondblclick'          => 'Klik ganda untuk sunting halaman (JavaScript)',
@@ -2847,7 +2847,7 @@ Simpan dalam komputer anda dan muat naiknya di sini.',
 'tooltip-rollback'                    => 'Balikkan semua suntingan oleh penyumbang terakhir pada laman ini dengan satu klik.',
 'tooltip-undo'                        => 'Balikkan suntingan ini dan buka borang sunting dalam mod pralihat. Sebab boleh dinyatakan dalam ruangan ringkasan.',
 'tooltip-preferences-save'            => 'Simpan keutamaan',
-'tooltip-summary'                     => 'Masukkan ringkasan pendek',
+'tooltip-summary'                     => 'Berikan ringkasan',
 
 # Stylesheets
 'common.css'      => '/* CSS yang terletak di sini akan digunakan pada semua kulit */',

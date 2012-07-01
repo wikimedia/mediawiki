@@ -50,6 +50,10 @@ $namespaceAliases = array(
 $linkTrail = '/^([a-zʻʼ“»]+)(.*)$/sDu';
 
 $messages = array(
+# User preference toggles
+'tog-oldsig'   => 'Mavjud imzo:',
+'tog-fancysig' => 'Imzoni wikimatn sifatida qara (avtomatik ishoratsiz)',
+
 'underline-always' => 'Har doim',
 'underline-never'  => 'Hech qachon',
 
@@ -419,23 +423,27 @@ Bu yerda: (joriy) = hozirgi koʻrinish bilan farq,
 'action-edit' => 'ushbu sahifani tahrirlash',
 
 # Recent changes
-'recentchanges'     => 'Yangi o‘zgartirishlar',
-'recentchangestext' => 'Ushbu sahifada siz eng so‘nggi o‘zgartirishlarni ko‘rishingiz mumkin.',
-'rcnote'            => "Quyida $5, $4ga koʻra oxirgi {{PLURAL:$2|kun|'''$2''' kun}} davomida sodir boʻlgan {{PLURAL:$1|'''1''' oʻzgartirish|'''$1''' oʻzgartirishlar}} koʻrsatilgan.",
-'rclistfrom'        => "$1dan boshlab yangi o'zgartirishlarni ko'rsat.",
-'rcshowhideminor'   => 'Kichik tahrirlarni $1',
-'rcshowhidebots'    => '$1 ta bot',
-'rcshowhideliu'     => 'Ro‘yxatdan o‘tgan foydalanuvchilar: $1 ta',
-'rcshowhideanons'   => 'Anonim foydalanuvchilar: $1 ta',
-'rcshowhidepatr'    => 'Tekshirilgan tahrirlarni $1',
-'rcshowhidemine'    => "O'z tahrirlarimni $1",
-'rclinks'           => "Oxirgi $2 kun davomida sodir bo'lgan $1 o'zgartirishlarni ko'rsat.<br />$3",
-'diff'              => 'farq',
-'hist'              => 'tarix',
-'hide'              => 'yashirish',
-'show'              => 'koʻrsat',
-'minoreditletter'   => 'k',
-'newpageletter'     => 'Y',
+'recentchanges'                   => 'Yangi o‘zgartirishlar',
+'recentchangestext'               => 'Ushbu sahifada siz eng so‘nggi o‘zgartirishlarni ko‘rishingiz mumkin.',
+'recentchanges-label-newpage'     => 'Bu tahrir yangi sahifani yaratdi',
+'recentchanges-label-minor'       => 'Bu kichik tahrir',
+'recentchanges-label-bot'         => 'Bu tahrirni bot bajardi',
+'recentchanges-label-unpatrolled' => 'Bu tahrir hali tekshirilmadi',
+'rcnote'                          => "Quyida $5, $4ga koʻra oxirgi {{PLURAL:$2|kun|'''$2''' kun}} davomida sodir boʻlgan {{PLURAL:$1|'''1''' oʻzgartirish|'''$1''' oʻzgartirishlar}} koʻrsatilgan.",
+'rclistfrom'                      => "$1dan boshlab yangi o'zgartirishlarni ko'rsat.",
+'rcshowhideminor'                 => 'Kichik tahrirlarni $1',
+'rcshowhidebots'                  => '$1 ta bot',
+'rcshowhideliu'                   => 'Ro‘yxatdan o‘tgan foydalanuvchilar: $1 ta',
+'rcshowhideanons'                 => 'Anonim foydalanuvchilar: $1 ta',
+'rcshowhidepatr'                  => 'Tekshirilgan tahrirlarni $1',
+'rcshowhidemine'                  => "O'z tahrirlarimni $1",
+'rclinks'                         => "Oxirgi $2 kun davomida sodir bo'lgan $1 o'zgartirishlarni ko'rsat.<br />$3",
+'diff'                            => 'farq',
+'hist'                            => 'tarix',
+'hide'                            => 'yashirish',
+'show'                            => 'koʻrsat',
+'minoreditletter'                 => 'k',
+'newpageletter'                   => 'Y',
 
 # Recent changes linked
 'recentchangeslinked'          => "Bog'langan o'zgarishlar",

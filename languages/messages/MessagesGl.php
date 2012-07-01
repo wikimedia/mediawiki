@@ -1,5 +1,5 @@
 <?php
-/** Galician (Galego)
+/** Galician (galego)
  *
  * See MessagesQqq.php for message documentation incl. usage of parameters
  * To improve a translation please visit http://translatewiki.net
@@ -229,7 +229,7 @@ $messages = array(
 'tog-hidepatrolled'           => 'Agochar as edicións patrulladas nos cambios recentes',
 'tog-newpageshidepatrolled'   => 'Agochar as páxinas revisadas da lista de páxinas novas',
 'tog-extendwatchlist'         => 'Expandir a lista de vixilancia para mostrar todos os cambios e non só os máis recentes',
-'tog-usenewrc'                => 'Usar os cambios recentes avanzados (cómpre JavaScript)',
+'tog-usenewrc'                => 'Agrupar as modificacións por páxina nos cambios recentes e na lista de vixilancia (cómpre JavaScript)',
 'tog-numberheadings'          => 'Numerar automaticamente as cabeceiras',
 'tog-showtoolbar'             => 'Mostrar a caixa de ferramentas de edición (cómpre JavaScript)',
 'tog-editondblclick'          => 'Editar as páxinas logo de facer dobre clic (cómpre JavaScript)',
@@ -1292,7 +1292,7 @@ Note que os seus índices do contido de {{SITENAME}} poden estar desactualizados
 'prefs-watchlist-token'         => 'Pase para a lista de vixilancia:',
 'prefs-misc'                    => 'Preferencias varias',
 'prefs-resetpass'               => 'Cambiar o contrasinal',
-'prefs-changeemail'             => 'Cambiar o correo electrónico',
+'prefs-changeemail'             => 'Cambiar o enderezo de correo electrónico',
 'prefs-setemail'                => 'Establecer un enderezo de correo electrónico',
 'prefs-email'                   => 'Opcións de correo electrónico',
 'prefs-rendering'               => 'Aparencia',
@@ -1888,7 +1888,7 @@ A descrición da [$2 páxina de descrición do ficheiro] móstrase a continuaci�
 'filepage.css'              => '/** O CSS que se coloque aquí será incluído na páxina de descrición do ficheiro, así como nos wikis de clientes estranxeiros */',
 
 # File reversion
-'filerevert'                => 'Desfacer $1',
+'filerevert'                => 'Reverter $1',
 'filerevert-legend'         => 'Reverter o ficheiro',
 'filerevert-intro'          => 'Está a piques de reverter o ficheiro "\'\'\'[[Media:$1|$1]]\'\'\'" ata a [$4 versión do $2 ás $3].',
 'filerevert-comment'        => 'Motivo:',
@@ -2547,7 +2547,7 @@ Olle a [[Special:BlockList|lista de bloqueos]] para revisalo.',
 'unblockip'                       => 'Desbloquear o usuario',
 'unblockiptext'                   => 'Use o seguinte formulario para dar de novo acceso de escritura a un enderezo IP ou usuario que estea bloqueado.',
 'ipusubmit'                       => 'Retirar este bloqueo',
-'unblocked'                       => '"[[User:$1|$1]]" foi desbloqueado',
+'unblocked'                       => '[[User:$1|$1]] foi {{GENDER:$1|desbloqueado|desbloqueada}}',
 'unblocked-range'                 => '$1 foi desbloqueado',
 'unblocked-id'                    => 'O bloqueo $1 foi eliminado',
 'blocklist'                       => 'Usuarios bloqueados',
@@ -2760,7 +2760,7 @@ No último caso, pode usar tamén unha ligazón, por exemplo [[{{#Special:Export
 'export-pagelinks'  => 'Engadir as páxinas ligadas a unha profundidade de:',
 
 # Namespace 8 related
-'allmessages'                   => 'Todas as mensaxes do sistema',
+'allmessages'                   => 'Mensaxes do sistema',
 'allmessagesname'               => 'Nome',
 'allmessagesdefault'            => 'Texto predeterminado',
 'allmessagescurrent'            => 'Texto actual',
@@ -2813,7 +2813,7 @@ Gárdeo no seu disco duro e cárgueo aquí.',
 'importunknownsource'        => 'Fonte de importación descoñecida',
 'importcantopen'             => 'Non se pode abrir o ficheiro importado',
 'importbadinterwiki'         => 'Ligazón interwiki incorrecta',
-'importnotext'               => 'Texto baleiro ou inexistente',
+'importnotext'               => 'Baleiro ou sen texto',
 'importsuccess'              => 'A importación rematou!',
 'importhistoryconflict'      => 'Existe un conflito no historial de revisións (por ter importado esta páxina antes)',
 'importnosources'            => 'Non se defininiu ningunha fonte de importación transwiki e os envíos directos dos historiais están desactivados.',
@@ -2823,8 +2823,8 @@ Gárdeo no seu disco duro e cárgueo aquí.',
 'importuploaderrortemp'      => 'Fallou o envío do ficheiro de importación. Falta un cartafol temporal.',
 'import-parse-failure'       => 'Fallo de análise da importación de XML',
 'import-noarticle'           => 'Ningunha páxina para importar!',
-'import-nonewrevisions'      => 'Todas as revisións son previamente importadas.',
-'xml-error-string'           => '$1 na liña $2, col $3 (byte $4): $5',
+'import-nonewrevisions'      => 'Todas as revisións foron importadas previamente.',
+'xml-error-string'           => '$1 na liña $2, columna $3 (byte $4): $5',
 'import-upload'              => 'Cargar datos XML',
 'import-token-mismatch'      => 'Perdéronse os datos da sesión. Por favor, inténteo de novo.',
 'import-invalid-interwiki'   => 'Non se pode importar desde o wiki escificado.',
@@ -2979,7 +2979,7 @@ Pode ver o código fonte.',
 Isto, probabelmente, se debe a unha ligazón cara a un sitio externo que está na lista negra.',
 'spamprotectionmatch' => 'O seguinte texto foi o que activou o noso filtro de spam: $1',
 'spambot_username'    => 'Limpeza de spam de MediaWiki',
-'spam_reverting'      => 'Revertida á última edición sen ligazóns a $1',
+'spam_reverting'      => 'Revertida á última edición sen ligazóns a "$1"',
 'spam_blanking'       => 'Limpáronse todas as revisións con ligazóns a "$1"',
 
 # Info page
@@ -3472,7 +3472,7 @@ Os demais agocharanse por omisión.
 
 'exif-isospeedratings-overflow' => 'Superior a 65535',
 
-'exif-iimcategory-ace' => 'Arte, cultura e entretemento',
+'exif-iimcategory-ace' => 'Arte, cultura e lecer',
 'exif-iimcategory-clj' => 'Crime e dereito',
 'exif-iimcategory-dis' => 'Desastres e accidentes',
 'exif-iimcategory-fin' => 'Economía e negocios',
