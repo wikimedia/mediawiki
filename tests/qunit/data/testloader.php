@@ -24,7 +24,8 @@
  */
 header( 'Content-Type: text/javascript; charset=utf-8' );
 
-require_once "../../../includes/Xml.php";
+require_once dirname( __FILE__ ) . "/../../../includes/Xml.php";
+require_once dirname( __FILE__ ) . "/../../../includes/resourceloader/ResourceLoaderContext.php";
 
 $modules = array (
 	'test.use_missing' => array (
@@ -37,39 +38,7 @@ $modules = array (
 	)
 );
 
-// Copied from ResourceLoaderContext
-function expandModuleNames( $modules ) {
-	$retval = array();
-	// For backwards compatibility with an earlier hack, replace ! with .
-	$modules = str_replace( '!', '.', $modules );
-	$exploded = explode( '|', $modules );
-	foreach ( $exploded as $group ) {
-		if ( strpos( $group, ',' ) === false ) {
-			// This is not a set of modules in foo.bar,baz notation
-			// but a single module
-			$retval[] = $group;
-		} else {
-			// This is a set of modules in foo.bar,baz notation
-			$pos = strrpos( $group, '.' );
-			if ( $pos === false ) {
-				// Prefixless modules, i.e. without dots
-				$retval = explode( ',', $group );
-			} else {
-				// We have a prefix and a bunch of suffixes
-				$prefix = substr( $group, 0, $pos ); // 'foo'
-				$suffixes = explode( ',', substr( $group, $pos + 1 ) ); // array( 'bar', 'baz' )
-				foreach ( $suffixes as $suffix ) {
-					$retval[] = "$prefix.$suffix";
-				}
-			}
-		}
-	}
-	return $retval;
-}
-
-function addModule ( $moduleName, &$gotten ) {
-	global $modules;
-
+function addModule ( $modules, $moduleName, &$gotten ) {
 	$result = "";
 	if ( isset( $gotten[$moduleName] ) ) {
 		return $result;
@@ -90,10 +59,10 @@ function addModule ( $moduleName, &$gotten ) {
 $result = "";
 
 if ( isset( $_GET['modules'] ) ) {
-	$toGet = expandModuleNames( $_GET['modules'] );
+	$toGet = ResourceLoaderContext::expandModuleNames( $_GET['modules'] );
 	$gotten = array();
 	foreach ( $toGet as $moduleName ) {
-		$result .= addModule( $moduleName, $gotten );
+		$result .= addModule( $modules, $moduleName, $gotten );
 	}
 }
 
