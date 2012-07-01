@@ -156,12 +156,19 @@ class FileDeleteForm {
 			$status = $file->deleteOld( $oldimage, $reason, $suppress );
 			if( $status->ok ) {
 				// Need to do a log item
-				$log = new LogPage( 'delete' );
 				$logComment = wfMsgForContent( 'deletedrevision', $oldimage );
 				if( trim( $reason ) != '' ) {
 					$logComment .= wfMsgForContent( 'colon-separator' ) . $reason;
 				}
-				$log->addEntry( 'delete', $title, $logComment );
+
+				$logtype = $suppress ? 'suppress' : 'delete';
+
+				$logEntry = new ManualLogEntry( $logtype, 'delete' );
+				$logEntry->setPerformer( $user );
+				$logEntry->setTarget( $title );
+				$logEntry->setComment( $logComment );
+				$logid = $logEntry->insert();
+				$logEntry->publish( $logid );
 			}
 		} else {
 			$status = Status::newFatal( 'cannotdelete',
