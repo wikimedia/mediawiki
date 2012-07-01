@@ -1758,13 +1758,25 @@ class Language {
 	 * @return int
 	 */
 	function userAdjust( $ts, $tz = false ) {
-		global $wgUser, $wgLocalTZoffset;
+		global $wgUser, $wgLocaltimezone, $wgLocalTZoffset;
 
 		if ( $tz === false ) {
 			$tz = $wgUser->getOption( 'timecorrection' );
 		}
 
 		$data = explode( '|', $tz, 3 );
+
+		if ( $data[0] == 'System' || $tz == '' ) {
+			# Global timezone
+			if ( isset( $wgLocaltimezone ) ) {
+				$data[0] = 'ZoneInfo';
+				$data[2] = $wgLocaltimezone;
+			}
+			#  Global offset in minutes.
+			if ( isset( $wgLocalTZoffset ) ) {
+				$data[1] = $wgLocalTZoffset;
+			}
+		}
 
 		if ( $data[0] == 'ZoneInfo' ) {
 			wfSuppressWarnings();
@@ -1781,12 +1793,7 @@ class Language {
 		}
 
 		$minDiff = 0;
-		if ( $data[0] == 'System' || $tz == '' ) {
-			#  Global offset in minutes.
-			if ( isset( $wgLocalTZoffset ) ) {
-				$minDiff = $wgLocalTZoffset;
-			}
-		} elseif ( $data[0] == 'Offset' ) {
+		if ( $data[0] == 'Offset' ) {
 			$minDiff = intval( $data[1] );
 		} else {
 			$data = explode( ':', $tz );

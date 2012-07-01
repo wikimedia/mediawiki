@@ -643,8 +643,10 @@ class TitlePermissionTest extends MediaWikiLangTestCase {
 		// quickUserCan should ignore user blocks
 		$this->assertEquals( true, $this->title->quickUserCan( 'move-target' ) );
 
-		global $wgLocalTZoffset;
+		global $wgLocalTZoffset, $wgLocaltimezone;
 		$wgLocalTZoffset = -60;
+		$wgLocaltimezone = 'DummyTimezoneSoUserAdjustWillUseTzOffset';
+
 		$this->user->mBlockedby = $this->user->getName();
 		$this->user->mBlock = new Block( '127.0.8.1', 0, 1, 'no reason given', $now, 0, 10 );
 		$this->assertEquals( array( array( 'blockedtext',
