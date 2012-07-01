@@ -129,21 +129,28 @@ class SpecialEditWatchlist extends UnlistedSpecialPage {
 	 * @return array
 	 */
 	private function extractTitles( $list ) {
-		$titles = array();
 		$list = explode( "\n", trim( $list ) );
 		if( !is_array( $list ) ) {
 			return array();
 		}
+		$titles = array();
 		foreach( $list as $text ) {
 			$text = trim( $text );
 			if( strlen( $text ) > 0 ) {
 				$title = Title::newFromText( $text );
 				if( $title instanceof Title && $title->isWatchable() ) {
-					$titles[] = $title->getPrefixedText();
+					$titles[] = $title;
 				}
 			}
 		}
-		return array_unique( $titles );
+
+		GenderCache::singleton()->doTitlesArray( $titles );
+
+		$list = array();
+		foreach( $titles as $title ) {
+			$list[] = $title->getPrefixedText();
+		}
+		return array_unique( $list );
 	}
 
 	public function submitRaw( $data ){
@@ -249,15 +256,22 @@ class SpecialEditWatchlist extends UnlistedSpecialPage {
 			__METHOD__
 		);
 		if( $res->numRows() > 0 ) {
+			$titles = array();
 			foreach ( $res as $row ) {
 				$title = Title::makeTitleSafe( $row->wl_namespace, $row->wl_title );
 				if ( $this->checkTitle( $title, $row->wl_namespace, $row->wl_title )
 					&& !$title->isTalkPage()
 				) {
-					$list[] = $title->getPrefixedText();
+					$titles[] = $title;
 				}
 			}
 			$res->free();
+
+			GenderCache::singleton()->doTitlesArray( $titles );
+
+			foreach( $titles as $title ) {
+				$list[] = $title->getPrefixedText();
+			}
 		}
 		$this->cleanupWatchlist();
 		return $list;
