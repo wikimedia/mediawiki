@@ -646,6 +646,9 @@ class MysqlUpdater extends DatabaseUpdater {
 	 */
 	protected function doWatchlistNull() {
 		$info = $this->db->fieldInfo( 'watchlist', 'wl_notificationtimestamp' );
+		if ( !$info ) {
+			return;
+		}
 		if ( $info->isNullable() ) {
 			$this->output( "...wl_notificationtimestamp is already nullable.\n" );
 			return;
@@ -785,9 +788,10 @@ class MysqlUpdater extends DatabaseUpdater {
 
 	protected function doMaybeProfilingMemoryUpdate() {
 		if ( !$this->db->tableExists( 'profiling', __METHOD__ ) ) {
-			// Simply ignore
+			return true;
 		} elseif ( $this->db->fieldExists( 'profiling', 'pf_memory', __METHOD__ ) ) {
 			$this->output( "...profiling table has pf_memory field.\n" );
+			return true;
 		} else {
 			$this->output( "Adding pf_memory field to table profiling..." );
 			$this->applyPatch( 'patch-profiling-memory.sql' );
@@ -798,22 +802,33 @@ class MysqlUpdater extends DatabaseUpdater {
 	protected function doFilearchiveIndicesUpdate() {
 		$info = $this->db->indexInfo( 'filearchive', 'fa_user_timestamp', __METHOD__ );
 		if ( !$info ) {
+			if ( $this->skipSchema ) {
+				$this->output( "...skipping schema change (Updating filearchive indices).\n" );
+				return false;
+			}
+
 			$this->output( "Updating filearchive indices..." );
 			$this->applyPatch( 'patch-filearchive-user-index.sql' );
 			$this->output( "done.\n" );
 		}
+		return true;
 	}
 
 	protected function doUniquePlTlIl() {
 		$info = $this->db->indexInfo( 'pagelinks', 'pl_namespace' );
 		if ( is_array( $info ) && !$info[0]->Non_unique ) {
 			$this->output( "...pl_namespace, tl_namespace, il_to indices are already UNIQUE.\n" );
-			return;
+			return true;
+		}
+		if ( $this->skipSchema ) {
+			$this->output( "...skipping schema change (making pl_namespace, tl_namespace and il_to indices UNIQUE).\n" );
+			return false;
 		}
 
 		$this->output( "Making pl_namespace, tl_namespace and il_to indices UNIQUE... " );
 		$this->applyPatch( 'patch-pl-tl-il-unique.sql' );
 		$this->output( "done.\n" );
+		return true;
 	}
 
 	protected function renameEuWikiId() {
@@ -865,6 +880,9 @@ class MysqlUpdater extends DatabaseUpdater {
 
 	protected function doUserNewTalkTimestampNotNull() {
 		$info = $this->db->fieldInfo( 'user_newtalk', 'user_last_timestamp' );
+		if ( $info === false ) {
+			return;
+		}
 		if ( $info->isNullable() ) {
 			$this->output( "...user_last_timestamp is already nullable.\n" );
 			return;
