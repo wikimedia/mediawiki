@@ -314,9 +314,9 @@ class TestFileIterator implements Iterator {
 
 	function __construct( $file, $parserTest ) {
 		$this->file = $file;
-		$this->fh = fopen( $this->file, "rt" );
+		$this->fileHandle = fopen( $this->file, "rt" );
 
-		if ( !$this->fh ) {
+		if ( !$this->fileHandle ) {
 			throw new MWException( "Couldn't open file '$file'\n" );
 		}
 
@@ -326,7 +326,7 @@ class TestFileIterator implements Iterator {
 	}
 
 	function rewind() {
-		if ( fseek( $this->fh, 0 ) ) {
+		if ( fseek( $this->fileHandle, 0 ) ) {
 			throw new MWException( "Couldn't fseek to the start of '$this->file'\n" );
 		}
 
@@ -366,7 +366,7 @@ class TestFileIterator implements Iterator {
 		# asked to do so. This will avoid running hooks for a disabled test
 		$delayedParserTest = new DelayedParserTest();
 
-		while ( false !== ( $line = fgets( $this->fh ) ) ) {
+		while ( false !== ( $line = fgets( $this->fileHandle ) ) ) {
 			$this->lineNum++;
 			$matches = array();
 
@@ -483,7 +483,7 @@ class TestFileIterator implements Iterator {
 	private function clearSection() {
 		$this->sectionData = array();
 		$this->section = null;
-		
+
 	}
 
 	/**
@@ -492,7 +492,7 @@ class TestFileIterator implements Iterator {
 	 * Throw an exception if it is not set, referencing current section
 	 * and adding the current file name and line number
 	 *
-	 * @param $token String: expected token that should have been mentionned before closing this section 
+	 * @param $token String: expected token that should have been mentionned before closing this section
 	 */
 	private function checkSection( $token ) {
 		if( is_null( $this->section ) ) {
@@ -536,7 +536,7 @@ class DelayedParserTest {
 
 	/**
 	 * Called whenever we actually want to run the hook.
-	 * Should be the case if we found the parserTest is not disabled 
+	 * Should be the case if we found the parserTest is not disabled
 	 */
 	public function unleash( &$parserTest ) {
 		if( !($parserTest instanceof ParserTest || $parserTest instanceof NewParserTest
