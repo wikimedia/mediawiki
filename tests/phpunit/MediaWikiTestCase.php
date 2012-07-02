@@ -388,6 +388,35 @@ abstract class MediaWikiTestCase extends PHPUnit_Framework_TestCase {
 	}
 
 	/**
+	 * Assert that two arrays are equal. By default this means that both arrays need to hold
+	 * the same set of values. Using additional arguments, order and associated key can also
+	 * be set as relevant.
+	 *
+	 * @since 1.20
+	 *
+	 * @param array $expected
+	 * @param array $actual
+	 * @param boolean $ordered If the order of the values should match
+	 * @param boolean $named If the keys should match
+	 */
+	protected function assertArrayEquals( array $expected, array $actual, $ordered = false, $named = false ) {
+		if ( !$named ) {
+			$expected = array_values( $expected );
+			$actual = array_values( $actual );
+		}
+
+		if ( !$ordered ) {
+			asort( $expected );
+			asort( $actual );
+		}
+
+		call_user_func_array(
+			array( $this, 'assertEquals' ),
+			array_merge( array( $expected, $actual ), array_slice( func_get_args(), 4 ) )
+		);
+	}
+
+	/**
 	 * Utility function for eliminating all string keys from an array.
 	 * Useful to turn a database result row as returned by fetchRow() into
 	 * a pure indexed array.
