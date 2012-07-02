@@ -797,9 +797,9 @@ $2',
 他の名前を選んでください。',
 'loginerror' => 'ログインのエラー',
 'createaccounterror' => 'アカウントを作成できませんでした： $1',
-'nocookiesnew' => '利用者アカウントを作成しましたが、ログインしていません。
+'nocookiesnew' => '利用者アカウントは作成されましたが、ログインしていません。
 {{SITENAME}}ではログインにCookieを使用します。
-Cookieを無効にしているようです。
+ご使用のブラウザではCookieが無効になっています。
 Cookieを有効にしてから、新しい利用者名とパスワードでログインしてください。',
 'nocookieslogin' => '{{SITENAME}}ではログインにCookieを使用します。
 Cookieを無効にしているようです。
@@ -2529,9 +2529,9 @@ $2による直前の版へ変更されました。',
 'protectlogpage' => '保護記録',
 'protectlogtext' => '以下はページ保護に対する変更の記録です。
 現在、保護レベルを変更できるページについては[[Special:ProtectedPages|保護ページ一覧]]を参照してください。',
-'protectedarticle' => ' が「[[$1]]」を保護しました',
-'modifiedarticleprotection' => ' が「[[$1]]」の保護レベルを変更しました',
-'unprotectedarticle' => ' が「[[$1]]」の保護を解除しました',
+'protectedarticle' => '「[[$1]]」を保護しました',
+'modifiedarticleprotection' => '「[[$1]]」の保護レベルを変更しました',
+'unprotectedarticle' => '「[[$1]]」の保護を解除しました',
 'movedarticleprotection' => ' が保護の設定を「[[$2]]」から「[[$1]]」へ移動しました',
 'protect-title' => '「$1」の保護レベルを変更',
 'protect-title-notallowed' => '「$1」の保護レベルを表示',

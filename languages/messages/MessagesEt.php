@@ -3834,6 +3834,8 @@ Kui ei, kasuta allolevat lihtsat vormi. Sinu kommentaar lisatakse koos kasutajan
 'api-error-empty-file' => 'Üleslaaditav fail on tühi.',
 'api-error-emptypage' => 'Uute tühjade lehekülgede loomine pole lubatud.',
 'api-error-fetchfileerror' => 'Sisemine tõrge: Midagi läks faili kättesaamisel valesti.',
+'api-error-fileexists-forbidden' => 'Fail nimega "$1" on juba olemas ja seda ei saa üle kirjutada.',
+'api-error-fileexists-shared-forbidden' => 'Fail nimega "$1" on jagatud failivaramus juba olemas ja seda ei saa üle kirjutada.',
 'api-error-file-too-large' => 'Üleslaaditav fail on liiga suur.',
 'api-error-filename-tooshort' => 'Failinimi on liiga lühike.',
 'api-error-filetype-banned' => 'Antud failitüüp on keelatud.',

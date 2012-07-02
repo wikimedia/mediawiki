@@ -705,6 +705,8 @@ Maak hiervan melding bij een [[Special:ListUsers/sysop|beheerder]] van {{SITENAM
 'cannotdelete' => 'De pagina of het bestand "$1" kon niet verwijderd worden.
 Mogelijk is deze al door iemand anders verwijderd.',
 'cannotdelete-title' => 'Pagina "$1" kan niet verwijderd worden',
+'delete-hook-aborted' => 'Het verwijderen is afgebroken door een hook.
+Er is geen toelichting beschikbaar.',
 'badtitle' => 'Ongeldige paginanaam',
 'badtitletext' => 'De naam van de opgevraagde pagina was ongeldig, leeg of bevatte een verkeerde intertaal- of interwikinaamverwijzing.
 Wellicht bevat de paginanaam niet toegestane tekens.',
@@ -4086,6 +4088,8 @@ Anders kunt u ook het eenvoudige formulier hieronder gebruiken. Uw reactie wordt
 'api-error-empty-file' => 'Het bestand dat u hebt geüpload is leeg.',
 'api-error-emptypage' => "Het aanmaken van nieuwe, lege pagina's is niet toegestaan.",
 'api-error-fetchfileerror' => 'Interne fout: er is iets misgegaan bij het ophalen van het bestand.',
+'api-error-fileexists-forbidden' => 'Er bestaat al een bestand met de naam "$1" dat niet overschreven kan worden.',
+'api-error-fileexists-shared-forbidden' => 'Er bestaat al een bestand met de naam "$1" in de gedeelde repository dat niet overschreven kan worden.',
 'api-error-file-too-large' => 'Het bestand dat u hebt geüpload is te groot.',
 'api-error-filename-tooshort' => 'De bestandsnaam is te kort.',
 'api-error-filetype-banned' => 'Dit bestandstype mag niet geüpload worden.',

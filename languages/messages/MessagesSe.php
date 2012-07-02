@@ -170,13 +170,13 @@ $messages = array(
 'mar' => 'njuk',
 'apr' => 'cuoŋ',
 'may' => 'mies',
-'jun' => 'geassemánnu',
-'jul' => 'suoidnemánnu',
-'aug' => 'borgemánnu',
-'sep' => 'čakčamánnu',
-'oct' => 'golggotmánnu',
-'nov' => 'skábmamánnu',
-'dec' => 'juovlamánnu',
+'jun' => 'geas',
+'jul' => 'suoi',
+'aug' => 'borg',
+'sep' => 'čakč',
+'oct' => 'golg',
+'nov' => 'skáb',
+'dec' => 'juov',
 
 # Categories related messages
 'pagecategories' => '{{PLURAL:$1|Luohkká|Luohkát}}',
@@ -309,7 +309,7 @@ $messages = array(
 'nstab-main' => 'Siidu',
 'nstab-user' => 'Geavaheaddjisiidu',
 'nstab-media' => 'Media',
-'nstab-special' => 'Erenomáš',
+'nstab-special' => 'Erenoamáš',
 'nstab-project' => 'Prošeaktasiidu',
 'nstab-image' => 'Fiila',
 'nstab-mediawiki' => 'Dieđáhus',
@@ -348,9 +348,9 @@ $messages = array(
 'sqlhidden' => '(SQL-jearahallan lea čihkojuvvon)',
 
 # Login and logout pages
-'logouttext' => "'''Leat dál čálligoahtán olggos {{GRAMMAR:elative|{{SITENAME}}}}.'''
+'logouttext' => "'''Don leat dál loggen olggos {{GRAMMAR:elative|{{SITENAME}}}}s.'''
 
-Sáhtát joatkit {{GRAMMAR:genitive|{{SITENAME}}}} geavaheami anonyman, dahje čálligoahtit ođđasit sisa.",
+Sáhtát joatkit {{GRAMMAR:genitive|{{SITENAME}}}} geavaheami anonyman dahje logget ođđasit sisa",
 'welcomecreation' => '== Bures boahtin, $1! ==
 Du geavaheaddjidovddaldat lea dál anus.
 Ále vajáldahte rievdadit {{GRAMMAR:genitive|{{SITENAME}}}} iežat ásahusaid.',
@@ -447,7 +447,7 @@ Du geavaheaddjidovddaldat lea dál anus.
 'showpreview' => 'Geahča ovdalgiihtii',
 'showlivepreview' => 'Ovdalgeahčastan',
 'showdiff' => 'Čájet rievdadusaid',
-'anoneditwarning' => "'''Váruhus:''' It leat čálligoahtán sisa. Du IP-čujuhus báhcá dán siiddu ođasmahttinhistorjái.",
+'anoneditwarning' => "'''Váruhus:''' It leat loggen sisa. Du IP-čujuhus báhcá dán siiddu rievdadushistorjái.",
 'missingsummary' => 'It leat čállán čoahkkáigeasu. Jus válljet Vurke ođđasit, de rievdadusat maid ráhkadit vurkejuvvo čoahkkáigeasuhaga.',
 'missingcommenttext' => 'Čále čoahkkáigeasu vuollái.',
 'missingcommentheader' => 'It leat čállán bajilčállaga du oaivilii. Vállje <em>Vurke</em>, jus it hálit čállit bajilčállaga.',
@@ -552,12 +552,13 @@ Eará bajasdoallit sáhtet lohkat čihkojuvvon sisdoalu ja máhcahit dan.",
 'history-title' => 'Siiddu «$1» historjá',
 'lineno' => 'Gurgadas $1:',
 'compareselectedversions' => 'Veardde válljejuvvon veršuvnnaid',
+'showhideselectedversions' => 'Čájet/čiega válljejuvvon veršuvnnaid',
 'editundo' => 'šluhtte',
 'diff-multi' => '(Veršuvnnaid gaskas {{PLURAL:$1|okta rievdadus|$1 eará rievdadusa}}.)',
 
 # Search results
 'searchresults' => 'Ohcanbohtosat',
-'searchresults-title' => 'Ohcanbohtosat: "$1"',
+'searchresults-title' => 'Ohcanbohtosat: «$1»',
 'searchsubtitle' => 'Ohcan tearpmain [[:$1]]',
 'searchsubtitleinvalid' => 'Ohcan tearpmain $1',
 'notitlematches' => 'Ohcansátni ii dihtton ovttasge bájilčállagis',
@@ -566,6 +567,7 @@ Eará bajasdoallit sáhtet lohkat čihkojuvvon sisdoalu ja máhcahit dan.",
 'viewprevnext' => 'Čájet [$3] oktanaga.
 
 $1 {{int:pipe-separator}} $2',
+'searchmenu-new' => "'''Álggat siiddu ''[[:$1]]'' dán Wikipediai'''",
 'searchhelp-url' => 'Help:Rávvagat',
 'searchprofile-articles' => 'Sisdoallosiiddut',
 'searchprofile-project' => 'Veahkke- ja prošeaktasiiddut',
@@ -606,7 +608,7 @@ $1 {{int:pipe-separator}} $2',
 'saveprefs' => 'Vurke ásahusaid',
 'resetprefs' => 'Máhcat vurkejuvvon ásahusaid',
 'prefs-editing' => 'Rievdadeapmi',
-'rows' => 'Gurgadasat',
+'rows' => 'Gurgadasa:',
 'columns' => 'Kolumnat',
 'searchresultshead' => 'Ohcan',
 'resultsperpage' => 'Bohtosa juohke siiddus',
@@ -621,14 +623,20 @@ $1 {{int:pipe-separator}} $2',
 'allowemail' => 'Suova e-postta sádden čujuhussii',
 'prefs-files' => 'Fiillat',
 'youremail' => 'E-poastačujuhus',
-'username' => 'Dovddaldat',
-'uid' => 'Nummir',
+'username' => 'Geavaheaddjenamma:',
+'uid' => 'Geavaheaddji-ID:',
+'prefs-memberingroups' => 'Miellahttu/lahttu {{PLURAL:$1|joavkkus|joavkkuin}}:',
+'prefs-registration' => 'Registrerenáigi:',
 'yourrealname' => 'Rivttes namma',
 'yourlanguage' => 'Geavahanvuođu giella',
 'yourvariant' => 'Giellavarianta:',
 'yournick' => 'Vuolláičálus',
 'badsig' => 'Vuolláičálus ii dohke.',
 'badsiglength' => 'Vuolláičálus lea menddo guhki - vuolláičálus sáhttá leat eanemusta $1 mearka.',
+'yourgender' => 'Sohkabealli:',
+'gender-unknown' => 'Ii diehtu',
+'gender-male' => 'Dievdu',
+'gender-female' => 'Nisson',
 'email' => 'E-poastadoaimmat',
 'prefs-help-realname' => 'Eaktodahtolaš. Du namma čájehuvvo geavaheaddjidovddaldaga sajis siiddu dahkkilogahallamis.',
 'prefs-help-email' => 'Eaktodahtolaš. Eará geavaheaddjit sáhttet váldit dunnje oktavuođa e-poasttain nu ahte du e-poastačujuhus ii dihtto.',
@@ -722,6 +730,7 @@ $1 {{int:pipe-separator}} $2',
 'uploadwarning' => 'Lasihanvaruhus',
 'savefile' => 'Vurke',
 'uploadedimage' => 'vurkii fiilla [[$1]]',
+'overwroteimage' => 'vurkii ođđa veršuvnna fiillas «[[$1]]»',
 'uploaddisabled' => '{{GRAMMAR:genitive|{{SITENAME}}}} ii sáhte lasihit fiillaid.',
 'uploaddisabledtext' => 'Fiillaid vurken lea váldojuvvon eret anus.',
 'uploadscripted' => 'Dát fiila sisdisdoalla HTML-koda dahje skriptaid, maid neahttabláđejeaddji sáhttá vahagis dahkat.',
@@ -899,7 +908,7 @@ $1 {{int:pipe-separator}} $2',
 'booksources-text' => 'Vuolábealde leat liŋkkat olggobeal siidduide, main vuvdojuvvot ođđa ja boares girjjid. Siiddui sáhttá maid leat lassedieđut girjjiin.',
 
 # Special:Log
-'specialloguserlabel' => 'Geavaheaddji',
+'specialloguserlabel' => 'Geavaheaddji:',
 'speciallogtitlelabel' => 'Mearri',
 'log' => 'Loggat',
 'all-logs-page' => 'Buot loggat',
@@ -925,6 +934,9 @@ $1 {{int:pipe-separator}} $2',
 'categoriespagetext' => '{{GRAMMAR:inessive|{{SITENAME}}}} lea čuovvovaš luohkát.
 [[Special:UnusedCategories|Unused categories]] are not shown here.
 Also see [[Special:WantedCategories|wanted categories]].',
+
+# Special:LinkSearch
+'linksearch-ok' => 'Oza',
 
 # Special:ListUsers
 'listusers-submit' => 'Oza',
@@ -960,6 +972,7 @@ Also see [[Special:WantedCategories|wanted categories]].',
 'emailccsubject' => 'Kopiija sáddejuvvon sánis čujuhussii $1: $2',
 'emailsent' => 'E-poastasátni lea sáddejuvvon',
 'emailsenttext' => 'E-poastasátni lea sáddejuvvon.',
+'emailuserfooter' => 'Dán e-poastta sáddii geavaheaddji $1 geavaheaddjái $2 {{SITENAME}} "E-mailUser"-doaimmain.',
 
 # Watchlist
 'watchlist' => 'Čuovvunlistu',
@@ -1005,7 +1018,7 @@ Also see [[Special:WantedCategories|wanted categories]].',
 'deletepage' => 'Sihko siiddu',
 'confirm' => 'Daga',
 'excontent' => 'sisdisdolii: ”$1”',
-'exbeforeblank' => 'sisdoallu ovdal gurrema: ”$1”',
+'exbeforeblank' => 'sisdoallu ovdal gurrema: «$1»',
 'exblank' => 'lei guoros',
 'historywarning' => 'Siiddu, man aiggot sihkut, lea rievdaduvvon dávjit go oktii:',
 'confirmdeletetext' => 'Leat sihkumin siiddu dahje fiilla ja buot dan historjjá. Ádde dagu váikkuhsaid ja sihko {{GRAMMAR:genitive|{{SITENAME}}}} [[{{MediaWiki:Policy-url}}|geavahaid]] mielde.',
@@ -1063,7 +1076,7 @@ Siiddus $2 lea listu maŋimus sihkomiin.',
 
 # Restrictions (nouns)
 'restriction-edit' => 'rievdádeapmi',
-'restriction-move' => 'sirdin',
+'restriction-move' => 'Sirdin',
 'restriction-upload' => 'Fiilla vurken',
 
 # Restriction levels
@@ -1143,7 +1156,7 @@ Siiddus $2 lea listu maŋimus sihkomiin.',
 'ipbsubmit' => 'Eastte',
 'ipbother' => 'Eará áigi',
 'ipboptions' => '2 diimma:2 hours,1 beaivi:1 day,3 beaivve:3 days,1 vahkku:1 week,2 vahkku:2 weeks,1 mánotbádji:1 month,3 mánotbaji:3 months,6 mánotbaji:6 months,1 jahki:1 year,bissovaš:infinite',
-'ipbotheroption' => 'Eará',
+'ipbotheroption' => 'eará',
 'ipbotherreason' => 'Eará sivva',
 'badipaddress' => 'IP-čujuhus lea boastut.',
 'blockipsuccesssub' => 'Easttan lihkosmuvai',
@@ -1203,7 +1216,7 @@ Siiddus $2 lea listu maŋimus sihkomiin.',
 
 # Special:Import
 'import-comment' => 'Sivva',
-'import-revision-count' => '$1 {{PLURAL:$1|veršuvdna|veršuvnna}}',
+'import-revision-count' => '$1 {{PLURAL:$1|veršuvdna|veršuvnnat}}',
 
 # Import log
 'import-logentry-upload-detail' => '$1 veršuvdna/veršuvnna',
@@ -1288,6 +1301,7 @@ Siiddus $2 lea listu maŋimus sihkomiin.',
 # Special:NewFiles
 'newimages' => 'Ođđa govat',
 'imagelisttext' => "Vuolábealde lea '''$1''' fiilla ordnejuvvon $2.",
+'noimages' => 'Ii oaidnámus.',
 'ilsubmit' => 'Oza',
 'bydate' => 'beaivemeari mielde',
 'sp-newimages-showfrom' => 'Čájet ođđa govaid $1 rájes',
@@ -1414,6 +1428,7 @@ Siiddus $2 lea listu maŋimus sihkomiin.',
 
 # New logging system
 'logentry-delete-delete' => '$1 sihkui siiddu $3',
+'logentry-delete-restore' => '$1 máhcahii siiddu $3',
 'logentry-move-move' => '$1 sirddii siiddu $3 nammii $4',
 'logentry-move-move_redir-noredirect' => '$1 sirddii siiddu $3 nammii $4 iige ráhkadan ođđasitstivrema',
 'logentry-newusers-create' => '$1 ráhkadii dovddaldaga',

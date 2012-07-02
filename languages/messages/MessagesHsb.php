@@ -509,6 +509,8 @@ Zdźěl to prošu [[Special:ListUsers/sysop|admininistratorej]] podawajo wotpow�
 'cannotdelete' => 'Strona abo dataja "$1" njeje so dała wušmórnyć.
 Móže być, zo je hižo wot někoho druheho wušmórnjena.',
 'cannotdelete-title' => 'Strona "$1" njehodźi so zhašeć',
+'delete-hook-aborted' => 'Zhašenje přez hoku přetorhnjene.
+Njeje žane wujasnjenje podała.',
 'badtitle' => 'Wopačny titul',
 'badtitletext' => 'Požadane mjeno strony běše njepłaćiwy, prózdny abo njekorektny titul z mjezyrěčneho abo interwikijoweho wotkaza. Snano wobsahuje jedne znamješko abo wjacore znamješka, kotrež w titulach dowolene njejsu.',
 'perfcached' => 'Slědowace daty pochadźeja z pufrowaka a njejsu snano cyle aktualne. Maksimalnje {{PLURAL:$1|jedyn wuslědk|$1 wuslědkaj|$1 wuslědki|$1 wuslědkow}} w pufrowaku k dispoziciji {{PLURAL:$1|steji|stejitej|steja|steji}}.',
@@ -3680,6 +3682,8 @@ Hewak móžeš slědowacy jednory formular wužiwać. Twój komentar přida so s
 'api-error-empty-file' => 'Dataja, kotruž sy nahrał, je prózdna.',
 'api-error-emptypage' => 'Wutworjenje nowych, prózdnych stronow njeje dowolene.',
 'api-error-fetchfileerror' => 'Nutřkowny zmylk: při wobstarowanju dataje je so něšto nimokuliło.',
+'api-error-fileexists-forbidden' => 'Dataja z mjenom "$1" hižo eksistuje, a njeda so přepisać.',
+'api-error-fileexists-shared-forbidden' => 'Dataja z mjenom "$1" hižo eksistuje w zhromadnym datajowym repozitoriju a njeda so přepisác.',
 'api-error-file-too-large' => 'Dataja, kotruž sy nahrał, bě přewulka.',
 'api-error-filename-tooshort' => 'Datajowe mjeno překrótko',
 'api-error-filetype-banned' => 'Tutón datajowy typ je zawrjeny.',

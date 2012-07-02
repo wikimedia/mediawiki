@@ -580,6 +580,8 @@ Por favor, comuníquello a un [[Special:ListUsers/sysop|administrador]] tomando 
 'cannotdelete' => 'Non se puido borrar a páxina ou imaxe "$1".
 Se cadra, xa a borrou alguén.',
 'cannotdelete-title' => 'Non se pode borrar a páxina "$1"',
+'delete-hook-aborted' => 'O borrado foi abortado polo asociador.
+Este non deu ningunha explicación.',
 'badtitle' => 'Título incorrecto',
 'badtitletext' => 'O título da páxina pedida non era válido, estaba baleiro ou proviña dunha ligazón interlingua ou interwiki incorrecta.
 Pode conter un ou máis caracteres dos que non se poden empregar nos títulos.',
@@ -3902,6 +3904,8 @@ En caso contrario, pode empregar o formulario sinxelo inferior. O seu comentario
 'api-error-empty-file' => 'O ficheiro que enviou estaba baleiro.',
 'api-error-emptypage' => 'Non está permitida a creación de páxinas novas que estean baleiras.',
 'api-error-fetchfileerror' => 'Erro interno: Houbo un problema ao buscar o ficheiro.',
+'api-error-fileexists-forbidden' => 'Xa existe un ficheiro co nome "$1". Non se pode sobrescribir.',
+'api-error-fileexists-shared-forbidden' => 'Xa existe un ficheiro co nome "$1" no repositorio de ficheiros compartidos. Non se pode sobrescribir.',
 'api-error-file-too-large' => 'O ficheiro que enviou era grande de máis.',
 'api-error-filename-tooshort' => 'O nome do ficheiro é curto de máis.',
 'api-error-filetype-banned' => 'Este tipo de ficheiro está prohibido.',

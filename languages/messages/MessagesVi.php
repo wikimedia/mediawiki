@@ -652,6 +652,8 @@ Xin hãy báo nó cho một [[Special:ListUsers/sysop|bảo quản viên]], tron
 'badarticleerror' => 'Không thể thực hiện được tác vụ như thế tại trang này.',
 'cannotdelete' => 'Không thể xóa trang hay tập tin “$1”. Có thể nó đã bị ai đó xóa rồi.',
 'cannotdelete-title' => 'Không thể xóa trang “$1”',
+'delete-hook-aborted' => 'Một phần bổ trợ phần mềm đã bỏ qua việc xóa này.
+Không có lý do nào được đưa ra.',
 'badtitle' => 'Tựa trang sai',
 'badtitletext' => 'Tựa trang yêu cầu không đúng, rỗng, hoặc là một liên kết ngôn ngữ hoặc liên kết wiki sai. Nó có thể chứa một hoặc nhiều ký tự mà tựa trang không thể sử dụng.',
 'perfcached' => 'Dữ liệu sau được lấy từ bộ nhớ đệm và có thể đã lỗi thời. Tối đa có sẵn {{PLURAL:$1|một kết quả|$1 kết quả}} trong bộ nhớ đệm.',
@@ -4020,6 +4022,8 @@ Nếu không thì bạn có thể điền biểu mẫu đơn giản ở dưới.
 'api-error-empty-file' => 'Bạn đã gửi tập tin rỗng.',
 'api-error-emptypage' => 'Không cho phép tạo mới các trang rỗng.',
 'api-error-fetchfileerror' => 'Lỗi nội bộ: Việc tải tập tin bị thất bại.',
+'api-error-fileexists-forbidden' => 'Một tập tin với tên “$1” đã tồn tại; không thể ghi đè nó.',
+'api-error-fileexists-shared-forbidden' => 'Một tập tin với tên “$1” đã tồn tại ở kho tập tin dùng chung; không thể ghi đè nó.',
 'api-error-file-too-large' => 'Bạn đã gửi tập tin lớn quá hạn.',
 'api-error-filename-tooshort' => 'Tên tập tin ngắn quá.',
 'api-error-filetype-banned' => 'Kiểu tập tin này đã bị cấm.',
