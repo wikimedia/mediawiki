@@ -246,6 +246,8 @@ abstract class DatabaseBase implements DatabaseType {
 
 	protected $delimiter = ';';
 
+	protected $fh = null;
+
 # ------------------------------------------------------------------------------
 # Accessors
 # ------------------------------------------------------------------------------
@@ -352,15 +354,22 @@ abstract class DatabaseBase implements DatabaseType {
 	}
 
 	/**
-	 * Get properties passed down from the server info array of the load
-	 * balancer.
-	 *
-	 * @param $name string The entry of the info array to get, or null to get the
-	 *   whole array
-	 *
-	 * @return LoadBalancer|null
+	 * Set the filehandle to copy write statements to.
 	 */
-	public function getLBInfo( $name = null ) {
+	public function setFh( $fh ) {
+		$this->fh = $fh;
+	}
+
+	 /**
+	  * Get properties passed down from the server info array of the load
+	  * balancer.
+	  *
+	  * @param $name string The entry of the info array to get, or null to get the
+	  *   whole array
+	  *
+	  * @return LoadBalancer|null
+	  */
+	function getLBInfo( $name = null ) {
 		if ( is_null( $name ) ) {
 			return $this->mLBInfo;
 		} else {
@@ -1620,6 +1629,10 @@ abstract class DatabaseBase implements DatabaseType {
 			$options = array( $options );
 		}
 
+		$fh = null;
+		if ( isset( $options['fileHandle'] ) ) {
+			$fh = $options['fileHandle'];
+		}
 		$options = $this->makeInsertOptions( $options );
 
 		if ( isset( $a[0] ) && is_array( $a[0] ) ) {
@@ -1645,6 +1658,12 @@ abstract class DatabaseBase implements DatabaseType {
 			}
 		} else {
 			$sql .= '(' . $this->makeList( $a ) . ')';
+		}
+		if ( $fh !== null ) {
+			if ( false === fwrite( $fh, $sql ) ) {
+				return false;
+			}
+			return true;
 		}
 
 		return (bool)$this->query( $sql, $fname );
@@ -3032,23 +3051,21 @@ abstract class DatabaseBase implements DatabaseType {
 	 *      generated dynamically using $filename
 	 * @return bool|string
 	 */
-	public function sourceFile(
-		$filename, $lineCallback = false, $resultCallback = false, $fname = false
-	) {
+	function sourceFile( $filename, $lineCallback = false, $resultCallback = false, $fname = false, $inputCallback = false ) {
 		wfSuppressWarnings();
 		$fp = fopen( $filename, 'r' );
 		wfRestoreWarnings();
 
 		if ( false === $fp ) {
-			throw new MWException( "Could not open \"{$filename}\".\n" );
+					throw new MWException( "Could not open \"{$filename}\".\n" );
 		}
 
 		if ( !$fname ) {
-			$fname = __METHOD__ . "( $filename )";
+					$fname = __METHOD__ . "( $filename )";
 		}
 
 		try {
-			$error = $this->sourceStream( $fp, $lineCallback, $resultCallback, $fname );
+			$error = $this->sourceStream( $fp, $lineCallback, $resultCallback, $fname, $inputCallback );
 		}
 		catch ( MWException $e ) {
 			fclose( $fp );
@@ -3133,18 +3150,22 @@ abstract class DatabaseBase implements DatabaseType {
 
 			if ( $done || feof( $fp ) ) {
 				$cmd = $this->replaceVars( $cmd );
+				$continue = true;
 				if ( $inputCallback ) {
-					call_user_func( $inputCallback, $cmd );
-				}
-				$res = $this->query( $cmd, $fname );
-
-				if ( $resultCallback ) {
-					call_user_func( $resultCallback, $res, $this );
+					$continue = call_user_func( $inputCallback, $cmd );
 				}
 
-				if ( false === $res ) {
-					$err = $this->lastError();
-					return "Query \"{$cmd}\" failed with error code \"$err\".\n";
+				if ( $continue ) {
+					$res = $this->query( $cmd, $fname );
+
+					if ( $resultCallback ) {
+						call_user_func( $resultCallback, $res, $this );
+					}
+
+					if ( false === $res ) {
+						$err = $this->lastError();
+						return "Query \"{$cmd}\" failed with error code \"$err\".\n";
+					}
 				}
 
 				$cmd = '';
