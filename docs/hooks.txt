@@ -703,10 +703,18 @@ $user: user (object) whose email is being confirmed
 &$pager: Pager object for contributions
 &$queryInfo: The query for the contribs Pager
 
+'ContribsPager::reallyDoQuery': Called before really executing the query for My Contributions
+&$data: an array of results of all contribs queries
+$pager: The ContribsPager object hooked into
+$offset: Index offset, inclusive
+$limit: Exact query limit
+$descending: Query direction, false for ascending, true for descending
+
 'ContributionsLineEnding': Called before a contributions HTML line is finished
 $page: SpecialPage object for contributions
-$ret: the HTML line
+&$ret: the HTML line
 $row: the DB row for this line
+&$classes: the classes to add to the surrounding <li>
 
 'ContributionsToolLinks': Change tool links above Special:Contributions
 $id: User identifier
