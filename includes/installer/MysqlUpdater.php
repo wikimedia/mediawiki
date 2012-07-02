@@ -646,6 +646,9 @@ class MysqlUpdater extends DatabaseUpdater {
 	 */
 	protected function doWatchlistNull() {
 		$info = $this->db->fieldInfo( 'watchlist', 'wl_notificationtimestamp' );
+		if ( !$info ) {
+			return;
+		}
 		if ( $info->isNullable() ) {
 			$this->output( "...wl_notificationtimestamp is already nullable.\n" );
 			return;
@@ -798,6 +801,11 @@ class MysqlUpdater extends DatabaseUpdater {
 	protected function doFilearchiveIndicesUpdate() {
 		$info = $this->db->indexInfo( 'filearchive', 'fa_user_timestamp', __METHOD__ );
 		if ( !$info ) {
+			if ( $this->skipSchema ) {
+				$this->output( "...skipping schema change (Updating filearchive indices).\n" );
+				return false;
+			}
+
 			$this->output( "Updating filearchive indices..." );
 			$this->applyPatch( 'patch-filearchive-user-index.sql' );
 			$this->output( "done.\n" );
@@ -810,6 +818,10 @@ class MysqlUpdater extends DatabaseUpdater {
 			$this->output( "...pl_namespace, tl_namespace, il_to indices are already UNIQUE.\n" );
 			return;
 		}
+		if ( $this->skipSchema ) {
+					$this->output( "...skipping schema change (making pl_namespace, tl_namespace and il_to indices UNIQUE).\n" );
+					return false;
+				}
 
 		$this->output( "Making pl_namespace, tl_namespace and il_to indices UNIQUE... " );
 		$this->applyPatch( 'patch-pl-tl-il-unique.sql' );
@@ -865,6 +877,9 @@ class MysqlUpdater extends DatabaseUpdater {
 
 	protected function doUserNewTalkTimestampNotNull() {
 		$info = $this->db->fieldInfo( 'user_newtalk', 'user_last_timestamp' );
+		if ( $info === false ) {
+			return;
+		}
 		if ( $info->isNullable() ) {
 			$this->output( "...user_last_timestamp is already nullable.\n" );
 			return;
