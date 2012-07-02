@@ -3352,7 +3352,7 @@ $5
 'version-version' => '(பதிப்பு $1)',
 'version-license' => 'அனுமதி',
 'version-poweredby-credits' => "இந்த் விக்கி '''[//www.mediawiki.org/ MediaWiki]''' இதன் மூலம் வழங்கப்படுகிறது, காப்புரிமை © 2001-$1 $2.",
-'version-poweredby-others' => 'பிறர்',
+'version-poweredby-others' => '[{{SERVER}}{{SCRIPTPATH}}/CREDITS பிறர்]',
 'version-license-info' => 'மீடியாவிக்கியானது இலவச மென்பொருள்.இதை நீங்கள் மற்றவர்களுக்கு கொடுப்பது அல்லது திருத்தம் செய்வது இலவச மென்பொருள் அறக்கட்டளை வழங்கிய   GNUவின் பொது உரிம விதிகளுக்குட்பட்டது;உரிமத்தின் இரண்டாவது பதிப்பு அல்லது அதற்கு மேற்பட்ட பதிப்பு (உங்கள் விருப்பத்திற்க்கேற்றவாறு).
 மீடியா உபயோகப்படக்கூடியது என்ற நம்பிக்கையில் வெளியிடப்பட்டுள்ளது, ஆனால் இதற்க்கு உத்தரவாதம் கிடையாது.மேலும் வணிகத்தன்மைக்கான அல்லது ஒரு குறிப்பிட்ட செயலுக்காகவும் உத்தரவாதம் கிடையாது.மேலும் விவரங்களுக்கு GNU பொது உரிமத்தை பார்க்கவும்.
 நீங்கள் இந்த  மென்பொருளுடன் [{{SERVER}}{{SCRIPTPATH}}/COPYING a copy of the GNU General Public License] பெற்றீருப்பிர்கள்;இல்லையெனில் , Free Software Foundation, Inc.,51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA க்கு எழுதவும்.அல்லது [//www.gnu.org/licenses/old-licenses/gpl-2.0.html read it online].',

@@ -1773,7 +1773,7 @@ $2
 'version' => 'आवृत्तिः',
 'version-skins' => 'छादन',
 'version-other' => 'अन्यत्',
-'version-poweredby-others' => 'अन्य',
+'version-poweredby-others' => '[{{SERVER}}{{SCRIPTPATH}}/CREDITS अन्य]',
 'version-software-product' => 'उत्पाद',
 'version-software-version' => 'आवृत्ति',
 

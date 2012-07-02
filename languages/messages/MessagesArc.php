@@ -1558,7 +1558,7 @@ $1',
 'version-specialpages' => 'ܦܐܬܬ̈ܐ ܕ̈ܝܠܢܝܬܐ',
 'version-other' => 'ܐܚܪܢܐ',
 'version-version' => '(ܨܚܚܐ $1)',
-'version-poweredby-others' => 'ܐܚܪ̈ܢܐ',
+'version-poweredby-others' => '[{{SERVER}}{{SCRIPTPATH}}/CREDITS ܐܚܪ̈ܢܐ]',
 'version-software-version' => 'ܨܚܚܐ',
 
 # Special:FilePath

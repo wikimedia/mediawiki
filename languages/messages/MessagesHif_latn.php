@@ -2901,7 +2901,7 @@ Wahii line pe aur koi jorr exception consider karaa jai i.e. jahaan pe panna sak
 'version' => 'Badlao',
 'version-specialpages' => 'Khaas panna',
 'version-other' => 'Duusra',
-'version-poweredby-others' => 'duusra waala',
+'version-poweredby-others' => '[{{SERVER}}{{SCRIPTPATH}}/CREDITS duusra waala]',
 
 # Special:FilePath
 'filepath-submit' => 'Jaao',

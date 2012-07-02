@@ -2625,7 +2625,7 @@ $5
 'version-hook-subscribedby' => 'Ὑπογεγραφυῖα ὑπὸ',
 'version-version' => '(Ἔκδοσις $1)',
 'version-license' => 'Ἄδεια',
-'version-poweredby-others' => 'ἄλλα',
+'version-poweredby-others' => '[{{SERVER}}{{SCRIPTPATH}}/CREDITS ἄλλα]',
 'version-software' => 'Ἐγκατεστημένον λογισμικόν',
 'version-software-product' => 'Προϊόν',
 'version-software-version' => 'Ἔκδοσις',

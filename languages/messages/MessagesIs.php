@@ -3480,7 +3480,7 @@ einn titil í hverri línu.
 'version-version' => '(Útgáfa $1)',
 'version-license' => 'Leyfi',
 'version-poweredby-credits' => "Þessi wiki er knúin af '''[//www.mediawiki.org/ MediaWiki]''', höfundaréttur © 2001-$1 $2.",
-'version-poweredby-others' => 'aðrir',
+'version-poweredby-others' => '[{{SERVER}}{{SCRIPTPATH}}/CREDITS aðrir]',
 'version-license-info' => 'MediaWiki er frjáls hugbúnaður; þú mátt endurútgefa hann og/eða breyta honum undir GNU General Public leyfi eins og það er gefið út af Free Software stofnuninni, annaðhvort útgáfu 2 eða (að þínu mati) hvaða nýrri útgáfa sem er.
 
 MediaWiki er útgefin í þeirri von að hann sé gagnlegur, en ÁN ALLRAR ÁBYRGÐAR; þar meðtalið er undanskilin ábyrgð við MARKAÐSETNINGU og að hugbúnaðurinn VIRKI Í ÁKVEÐNUM TILGANGI. Sjá GNU General Public leyfið fyrir frekari upplýsingar.

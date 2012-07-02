@@ -4022,7 +4022,7 @@ Možete da [[Special:EditWatchlist|koristite i običan uređivač]].',
 'version-svn-revision' => '(izm. $2)',
 'version-license' => 'Licenca',
 'version-poweredby-credits' => "Ovaj viki pokreće '''[//www.mediawiki.org/ Medijaviki]''', autorska prava © 2001-$1 $2.",
-'version-poweredby-others' => 'ostali',
+'version-poweredby-others' => '[{{SERVER}}{{SCRIPTPATH}}/CREDITS ostali]',
 'version-license-info' => 'Medijaviki je slobodan softver; možete ga raspodeljivati i menjati pod uslovima GNU-ove opšte javne licence (OJL) koju je objavila Zadužbina za slobodan softver, bilo da je u pitanju drugo ili novije izdanje licence.
 
 Medijaviki se nudi u nadi da će biti od koristi, ali BEZ IKAKVE GARANCIJE; čak i bez podrazumevane garancije o PRODAJNOJ VREDNOSTI ili POGODNOSTI ZA ODREĐENE NAMENE. Pogledajte GNU-ovu opštu javnu licencu za više informacija.

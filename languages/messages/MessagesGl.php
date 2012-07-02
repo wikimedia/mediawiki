@@ -3728,7 +3728,7 @@ Tamén pode [[Special:EditWatchlist|empregar o editor normal]].',
 'version-version' => '(Versión $1)',
 'version-license' => 'Licenza',
 'version-poweredby-credits' => "Este wiki está desenvolvido por '''[//www.mediawiki.org/wiki/MediaWiki/gl MediaWiki]''', dereitos de autor © 2001-$1 $2.",
-'version-poweredby-others' => 'outros',
+'version-poweredby-others' => '[{{SERVER}}{{SCRIPTPATH}}/CREDITS outros]',
 'version-license-info' => 'MediaWiki é software libre; pode redistribuílo e/ou modificalo segundo os termos da licenza pública xeral GNU publicada pola Free Software Foundation; versión 2 ou (na súa escolla) calquera outra posterior.
 
 MediaWiki distribúese coa esperanza de que poida ser útil, pero SEN GARANTÍA NINGUNHA; nin sequera a garantía implícita de COMERCIALIZACIÓN ou ADECUACIÓN A UNHA FINALIDADE ESPECÍFICA. Olle a licenza pública xeral GNU para obter máis detalles.

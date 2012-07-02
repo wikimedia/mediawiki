@@ -662,7 +662,7 @@ Vadä la pàgina dal file',
 'version-other' => 'Ätar',
 'version-version' => '(Version $1)',
 'version-license' => 'Licinza',
-'version-poweredby-others' => 'ätar',
+'version-poweredby-others' => '[{{SERVER}}{{SCRIPTPATH}}/CREDITS ätar]',
 
 # Special:FilePath
 'filepath-page' => 'Immàgin:',

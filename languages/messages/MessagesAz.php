@@ -2886,7 +2886,7 @@ Variants for Chinese language
 'version-version' => '(Versiya $1)',
 'version-license' => 'Lisenziya',
 'version-poweredby-credits' => "Bu wiki '''[//www.mediawiki.org/ MediaWiki]''' proqramı istifadə edilərək yaradılmışdır, müəlliflik © 2001-$1 $2.",
-'version-poweredby-others' => 'digərləri',
+'version-poweredby-others' => '[{{SERVER}}{{SCRIPTPATH}}/CREDITS digərləri]',
 'version-software-product' => 'Məhsul',
 'version-software-version' => 'Versiya',
 'version-entrypoints-header-url' => 'URL',

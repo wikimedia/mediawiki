@@ -825,7 +825,7 @@ Yu inap lukim as tok bilong em',
 # Special:Version
 'version-other' => 'Narapela',
 'version-license' => 'Laisens',
-'version-poweredby-others' => 'ol narapela',
+'version-poweredby-others' => '[{{SERVER}}{{SCRIPTPATH}}/CREDITS ol narapela]',
 
 # Special:FilePath
 'filepath-page' => 'Fail:',

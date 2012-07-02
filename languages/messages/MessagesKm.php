@@ -3366,7 +3366,7 @@ $5
 'version-version' => '(កំណែ $1)',
 'version-license' => 'អាជ្ញាប័ណ្ណ',
 'version-poweredby-credits' => "វិគីនេះឧបត្ថម្ភដោយ '''[//www.mediawiki.org/ មេឌាវិគី]''', រក្សាសិទ្ធ © ២០០១-$1 $2។",
-'version-poweredby-others' => 'អ្នកដទៃទៀត',
+'version-poweredby-others' => '[{{SERVER}}{{SCRIPTPATH}}/CREDITS អ្នកដទៃទៀត]',
 'version-software' => 'ផ្នែកទន់​ដែល​បានដំឡើង',
 'version-software-product' => 'ផលិតផល',
 'version-software-version' => 'កំណែ',

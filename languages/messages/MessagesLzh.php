@@ -2734,7 +2734,7 @@ $5
 'version-version' => '（版 $1）',
 'version-license' => '牌',
 'version-poweredby-credits' => "此 Wiki 以 '''[//www.mediawiki.org/ MediaWiki]''' 之驅，權 © 2001-$1 $2。",
-'version-poweredby-others' => '其他',
+'version-poweredby-others' => '[{{SERVER}}{{SCRIPTPATH}}/CREDITS 其他]',
 'version-license-info' => 'MediaWiki乃自由軟件；爾依自由軟件基金會之GNU通用公共授權之款，就此本程序再發佈及／或修；依之二版（自選之）或後之。
 
 MediaWiki乃為用之發，無擔之責也；亦無售目之默擔也。參GNU通用公共授權之詳。

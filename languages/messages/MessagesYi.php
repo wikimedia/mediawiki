@@ -3410,7 +3410,7 @@ $5
 'version-other' => 'אנדער',
 'version-version' => '(ווערסיע $1)',
 'version-license' => 'ליצענץ',
-'version-poweredby-others' => 'אַנדערע',
+'version-poweredby-others' => '[{{SERVER}}{{SCRIPTPATH}}/CREDITS אַנדערע]',
 'version-software' => 'אינסטאַלירט ווייכוואַרג',
 'version-software-product' => 'פראדוקט',
 'version-software-version' => 'ווערסיע',

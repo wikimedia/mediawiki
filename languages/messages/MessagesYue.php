@@ -3265,7 +3265,7 @@ $5
 'version-version' => '(版本 $1)',
 'version-license' => '牌照',
 'version-poweredby-credits' => "呢個 Wiki 係由 '''[//www.mediawiki.org/ MediaWiki]''' 驅動，版權所有 © 2001-$1 $2。",
-'version-poweredby-others' => '其他',
+'version-poweredby-others' => '[{{SERVER}}{{SCRIPTPATH}}/CREDITS 其他]',
 'version-license-info' => 'MediaWiki係自由軟件；你可以根據Free Software Foundation所發表嘅GNU General Public License條款規定，就本程式再發佈同／或修改；無論你根據嘅係呢個牌照嘅第二版或（任你揀）任一日之後發行嘅版本。
 
 MediaWiki是基於使用目的而加以發佈，但係就唔會負上任何嘅責任；亦都唔會對適售性或都係特定目的適用性嘅默示性擔保。詳情請目睇GNU General Public License。

@@ -3725,7 +3725,7 @@ $5
 'version-version' => '(Έκδοση $1)',
 'version-license' => 'Άδεια χρήσης',
 'version-poweredby-credits' => "Αυτό το βίκι λειτουργεί χάρις στο '''[//www.mediawiki.org/ MediaWiki]''', πνευματική ιδιοκτησία © 2001-$1 $2.",
-'version-poweredby-others' => 'άλλοι',
+'version-poweredby-others' => '[{{SERVER}}{{SCRIPTPATH}}/CREDITS άλλοι]',
 'version-license-info' => "Το MediaWiki είναι ελεύθερο λογισμικό. Μπορείτε να το αναδιανείμετε ή/και να το τροποποιήσετε υπό τους όρους της άδειας GNU General Public License όπως αυτή εκδόθηκε από το Free Software Foundation· είτε της δεύτερης έκδοσης της άδειας, είτε (κατ' επιλογή σας) οποιασδήποτε επόμενης έκδοσης.
 
 Το MediaWiki διανέμεται με την ελπίδα ότι θα είναι χρήσιμο, αλλά ΧΩΡΙΣ ΚΑΜΙΑ ΕΓΓΥΗΣΗ· ούτε καν την σιωπηρή εγγύηση ΕΜΠΟΡΕΥΣΙΜΟΤΗΤΑΣ ή ΚΑΤΑΛΛΗΛΟΤΗΤΑΣ ΓΙΑ ΕΝΑ ΣΥΓΚΕΚΡΙΜΕΝΟ ΣΚΟΠΟ. Βλ. GNU General Public License για περισσότερες λεπτομέρειες.

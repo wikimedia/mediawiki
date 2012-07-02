@@ -3655,7 +3655,7 @@ $5
 'version-version' => '(अवतरण $1)',
 'version-license' => 'अनुज्ञापत्र',
 'version-poweredby-credits' => "इस विकि संचालित है  '''[//www.mediawiki.org/ MediaWiki]''', कॉपीराइट © 2001 - $1  $2 ।",
-'version-poweredby-others' => 'अन्य',
+'version-poweredby-others' => '[{{SERVER}}{{SCRIPTPATH}}/CREDITS अन्य]',
 'version-software' => 'इन्स्टॉल की हुई प्रणाली',
 'version-software-product' => 'प्रोडक्ट',
 'version-software-version' => 'अवतरण',

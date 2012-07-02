@@ -3193,7 +3193,7 @@ $5
 'version-version' => '(Хувилбар $1)',
 'version-license' => 'Лиценз',
 'version-poweredby-credits' => "Энэхүү викиг '''[//www.mediawiki.org/ MediaWiki]''' програмаар ажиллуулдаг, зохиогчийн эрх © 2001-$1 $2.",
-'version-poweredby-others' => 'бусад',
+'version-poweredby-others' => '[{{SERVER}}{{SCRIPTPATH}}/CREDITS бусад]',
 'version-software' => 'Суулгасан программ',
 'version-software-product' => 'Бүтээгдэхүүн',
 'version-software-version' => 'Хувилбар',
