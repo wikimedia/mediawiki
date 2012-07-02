@@ -620,6 +620,8 @@ Si prega di segnalare l\'accaduto a un [[Special:ListUsers/sysop|amministratore]
 'cannotdelete' => 'Non è stato possibile cancellare il file "$1".
 Potrebbe essere stato già cancellato da qualcun altro.',
 'cannotdelete-title' => 'Impossibile eliminare la pagina "$1"',
+'delete-hook-aborted' => "La cancellazione è stata annullata dall'hook.
+Non è stata restituita alcuna spiegazione.",
 'badtitle' => 'Titolo non corretto',
 'badtitletext' => 'Il titolo della pagina richiesta è vuoto, errato o con caratteri non ammessi oppure deriva da un errore nei collegamenti tra siti wiki diversi o versioni in lingue diverse dello stesso sito.',
 'perfcached' => "I dati che seguono sono estratti da una copia ''cache'' del database, e potrebbero non essere aggiornati. Un massimo di {{PLURAL:$1|un risultato è disponibile|$1 risultati sono disponibili}} in cache.",
@@ -3828,6 +3830,8 @@ Le immagini vengono mostrate alla massima risoluzione disponibile, per gli altri
 'api-error-empty-file' => 'Il file selezionato era vuoto.',
 'api-error-emptypage' => 'La creazione di nuove pagine vuote non è consentita.',
 'api-error-fetchfileerror' => "Errore interno: c'è stato un problema durante il recupero del documento.",
+'api-error-fileexists-forbidden' => 'Un file di nome "$1" già esiste e non può essere sovrascritto.',
+'api-error-fileexists-shared-forbidden' => 'Un file di nome "$1" già esiste nel repository condiviso e non può essere sovrascritto.',
 'api-error-file-too-large' => 'Il file selezionato era troppo grande.',
 'api-error-filename-tooshort' => 'Il nome del file è troppo breve.',
 'api-error-filetype-banned' => 'Questo tipo di file non è accettato.',

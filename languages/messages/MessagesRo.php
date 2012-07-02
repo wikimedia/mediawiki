@@ -659,6 +659,8 @@ Te rog anunță acest aspect unui [[Special:ListUsers/sysop|administrator]], ind
 'cannotdelete' => 'Pagina sau fișierul „$1” nu a putut fi șters.
 S-ar putea ca acesta să fi fost deja șters de altcineva.',
 'cannotdelete-title' => 'Imposibil de șters pagina „$1”',
+'delete-hook-aborted' => 'Ștergerea a fost abandonată din cauza unui hook.
+Nicio explicație furnizată.',
 'badtitle' => 'Titlu incorect',
 'badtitletext' => 'Titlul căutat a fost invalid, gol sau o legătură invalidă inter-linguală sau inter-wiki.
 
@@ -1060,7 +1062,7 @@ Jurnalul ștergerilor și al mutărilor pentru această pagină este disponibil:
 Jurnalul ștergerilor și al mutărilor este disponibil mai jos.',
 'log-fulllog' => 'Vezi tot jurnalul',
 'edit-hook-aborted' => 'Modificarea a fost abandonată din cauza unui hook.
-Fără nicio explicație.',
+Nicio explicație furnizată.',
 'edit-gone-missing' => 'Pagina nu s-a putut actualiza.
 Se pare că a fost ștearsă.',
 'edit-conflict' => 'Conflict de modificare.',
@@ -3915,6 +3917,8 @@ Imaginile sunt afișate la rezoluția lor maximă, în timp ce alte tipuri de fi
 'api-error-empty-file' => 'Fișierul încărcat de dumneavoastră este gol.',
 'api-error-emptypage' => 'Crearea paginilor noi, goale nu este permisă.',
 'api-error-fetchfileerror' => 'Eroare internă: ceva nu a funcționat corect la prelucrarea fișierului.',
+'api-error-fileexists-forbidden' => 'Un fișier cu numele „$1” există deja și nu poate fi suprascris.',
+'api-error-fileexists-shared-forbidden' => 'Un fișier cu numele „$1” există deja în depozitul de fișiere partajate, și nu poate fi suprascris.',
 'api-error-file-too-large' => 'Fișierul pe care l-ați trimis este prea mare.',
 'api-error-filename-tooshort' => 'Numele fișierului este prea scurt.',
 'api-error-filetype-banned' => 'Acest tip de fișiere este interzis.',

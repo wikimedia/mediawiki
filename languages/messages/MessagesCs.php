@@ -712,6 +712,7 @@ Pokud toto není váš případ, možná jste nalezli chybu v software. Prosíme
 'cannotdelete' => 'Nebylo možné smazat stránku nebo soubor „$1“.
 Možná už byl(a) smazán(a) někým jiným.',
 'cannotdelete-title' => 'Stránku „$1“ nelze smazat',
+'delete-hook-aborted' => 'Smazání bylo bez bližšího vysvětlení zrušeno přípojným bodem.',
 'badtitle' => 'Neplatný název',
 'badtitletext' => 'Požadovaný název stránky byl neplatný, prázdný nebo obsahoval nesprávnou předponu mezijazykového či interwiki odkazu. Možná obsahoval znaky, které v názvu nejsou dovoleny.',
 'perfcached' => 'Následující data jsou z cache a nemusí být plně aktuální. Cache může obsahovat maximálně {{PLURAL:$1|jeden výsledek|$1 výsledky|$1 výsledků}}.',
@@ -1097,7 +1098,7 @@ Níže vidíte soupis přesunů a smazání této stránky:",
 'moveddeleted-notice' => 'Tato stránka byla smazána.
 Podrobnosti si můžete prohlédnout v níže zobrazeném seznamu provedených přesunů a smazání této stránky.',
 'log-fulllog' => 'Zobrazit všechny záznamy',
-'edit-hook-aborted' => 'Editace byla zrušena přípojným bodem bez bližšího vysvětlení.',
+'edit-hook-aborted' => 'Editace byla bez bližšího vysvětlení zrušena přípojným bodem.',
 'edit-gone-missing' => 'Stránku se nepodařilo aktualizovat.
 Zřejmě byla smazána.',
 'edit-conflict' => 'Editační konflikt.',
@@ -4003,6 +4004,8 @@ Jinak můžete využít jednoduchý formulář níže. Váš komentář bude př
 'api-error-empty-file' => 'Načtený soubor je prázdný.',
 'api-error-emptypage' => 'Zakládání prázdných stránek není dovoleno.',
 'api-error-fetchfileerror' => 'Vnitřní chyba: došlo k chybě při stahování souboru.',
+'api-error-fileexists-forbidden' => 'Soubor s názvem „$1“ už existuje a nelze ho přepsat.',
+'api-error-fileexists-shared-forbidden' => 'Soubor s názvem „$1“ už existuje ve sdíleném úložišti a nelze ho přepsat.',
 'api-error-file-too-large' => 'Načtený soubor je příliš velký.',
 'api-error-filename-tooshort' => 'Název souboru je příliš krátký.',
 'api-error-filetype-banned' => 'Tento typ souboru je zakázán.',

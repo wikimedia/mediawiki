@@ -670,6 +670,7 @@ Udaný dôvod: ''$2''.",
 Správca, ktorý ho zamkol ponúkol toto vysvetlenie: „$3“.',
 'invalidtitle-knownnamespace' => 'Neplatný názov s menným priestorom „$2“ a textom „$3“',
 'invalidtitle-unknownnamespace' => 'Neplatný názov s neznámym číslom menného priestoru „$1“ a textom „$2“',
+'exception-nologin' => 'Nie ste prihlásený/á',
 
 # Virus scanner
 'virus-badscanner' => "Chybná konfigurácia: neznámy antivírus: ''$1''",
@@ -2130,6 +2131,7 @@ na ktorý/-ého chcete aplikovať túto funkciu.',
 Môžete zúžiť rozsah, ak zvolíte typ záznamu, používateľské meno alebo dotyčnú stránku (záleží na veľkosti písmen).',
 'logempty' => 'V zázname neboli nájdené zodpovedajúce položky.',
 'log-title-wildcard' => 'Hľadať názvy začínajúce týmto textom',
+'showhideselectedlogentries' => 'Zobraziť/skryť vybraté položky denníka',
 
 # Special:AllPages
 'allpages' => 'Všetky stránky',
@@ -3923,6 +3925,7 @@ V opačnom prípade môžete použiť zjednodušený formulár nižšie. Váš k
 'api-error-empty-file' => 'Súbor, ktorý ste poslali bol prázdny.',
 'api-error-emptypage' => 'Vytváranie nových, prázdnych stránok nie je dovolené.',
 'api-error-fetchfileerror' => 'Vnútorná chyba: Niečo pokazilo počas sťahovania súboru.',
+'api-error-fileexists-forbidden' => 'Súbor s názvom "$1" už existuje, a nemôže byť prepísaný.',
 'api-error-file-too-large' => 'Súbor, ktorý ste poslali bol príliš veľký.',
 'api-error-filename-tooshort' => 'Názov súboru je príliš krátky.',
 'api-error-filetype-banned' => 'Tento typ súboru je zakázaný.',

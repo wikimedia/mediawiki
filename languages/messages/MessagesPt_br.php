@@ -704,6 +704,8 @@ Quem o protegeu foi [[User:$1|$1]], com a justificativa: ''$2''.",
 O administrador que bloqueou ofereceu a seguinte explicação: "$3".',
 'invalidtitle-knownnamespace' => 'Título inválido para o espaço nominal "$2" e texto "$3"',
 'invalidtitle-unknownnamespace' => 'Título inválido para o espaço nominal de número desconhecido ($1) e texto "$2"',
+'exception-nologin' => 'Não está autenticado',
+'exception-nologin-text' => 'Esta página ou ação requer que você esteja autenticado neste wiki.',
 
 # Virus scanner
 'virus-badscanner' => "Má configuração: antivírus desconhecido: ''$1''",
@@ -3048,6 +3050,7 @@ Tal bloqueio foi provavelmente causado por uma ligação para um ''website'' ext
 'spambot_username' => 'MediaWiki limpeza de spam',
 'spam_reverting' => 'Revertendo para a última versão que não contém links para $1',
 'spam_blanking' => 'Todas revisões contendo links para $1, limpando',
+'spam_deleting' => 'Eliminada por todas as suas edições conterem links para $1',
 
 # Info page
 'pageinfo-title' => 'Informações sobre "$1"',

@@ -541,6 +541,8 @@ Prosimo, da o tem obvestite [[Special:ListUsers/sysop|administratorja]] (ne poza
 'cannotdelete' => 'Strani ali datoteke »$1« ni mogoče izbrisati.
 Morda jo je izbrisal že kdo drug.',
 'cannotdelete-title' => 'Ne morem izbrisati strani »$1«',
+'delete-hook-aborted' => 'Zanka je prekinila brisanje.
+Vrnila ni nobene razlage.',
 'badtitle' => 'Nepravilen naslov',
 'badtitletext' => 'Navedeni naslov strani je neveljaven, prazen, napačno povezan k drugim jezikom oziroma wikiprojektom.
 Morda vsebuje enega ali več nepodprtih znakov.',
@@ -3838,6 +3840,8 @@ V nasprotnem primeru lahko uporabite preprost obrazec spodaj. Vašo pripombo bom
 'api-error-empty-file' => 'Poslana datoteka je prazna.',
 'api-error-emptypage' => 'Ustvarjanje novih, praznih strani ni dovoljeno.',
 'api-error-fetchfileerror' => 'Notranja napaka: pri pridobivanju datoteke je nekaj šlo narobe.',
+'api-error-fileexists-forbidden' => 'Datoteka »$1« že obstaja in je ni mogoče prepisati.',
+'api-error-fileexists-shared-forbidden' => 'Datoteka »$1« že obstaja v skupnem skladišču datotek in je ni mogoče prepisati.',
 'api-error-file-too-large' => 'Poslana datoteka je prevelika.',
 'api-error-filename-tooshort' => 'Ime datoteke je prekratko.',
 'api-error-filetype-banned' => 'Ta vrsta datoteke je prepovedana.',

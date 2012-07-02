@@ -1258,6 +1258,7 @@ Gezinti bağlantılarının bu sütunu sıfırlayacağını unutmayın.',
 
 # Diffs
 'history-title' => '"$1" sayfasının geçmişi',
+'difference-title' => '"$1" sayfasının sürümleri arasındaki fark',
 'difference-multipage' => '(Sayfalar arasındaki fark)',
 'lineno' => '$1. satır:',
 'compareselectedversions' => 'Seçilen sürümleri karşılaştır',

@@ -754,6 +754,8 @@ Falls dies nicht  zutrifft, hast du eventuell einen Fehler in der Software gefun
 'cannotdelete' => 'Die Seite oder Datei „$1“ kann nicht gelöscht werden.
 Möglicherweise wurde sie bereits von jemand anderem gelöscht.',
 'cannotdelete-title' => 'Seite „$1“ kann nicht gelöscht werden',
+'delete-hook-aborted' => 'Die Löschung wurde von einer Softwareerweiterung zu MediaWiki verhindert.
+Es ist hierzu keine Erklärung verfügbar.',
 'badtitle' => 'Ungültiger Titel',
 'badtitletext' => 'Der Titel der angeforderten Seite ist ungültig, leer oder ein ungültiger Sprachlink von einem anderen Wiki.',
 'perfcached' => 'Die folgenden Daten stammen aus dem Cache und sind möglicherweise nicht aktuell. Maximal {{PLURAL:$1|ein Ergebnis ist|$1 Ergebnisse sind}} im Cache verfügbar.',
@@ -4024,6 +4026,8 @@ Anderenfalls kannst du auch das untenstehende einfache Formular nutzen. Dein Kom
 'api-error-empty-file' => 'Die hochgeladene Datei war leer.',
 'api-error-emptypage' => 'Es ist nicht erlaubt, neue leere Seiten zu erstellen.',
 'api-error-fetchfileerror' => 'Interner Fehler: Beim Abrufen der Datei ist ein Fehler aufgetreten.',
+'api-error-fileexists-forbidden' => 'Eine Datei namens „$1“ ist bereits vorhanden und kann nicht überschrieben werden.',
+'api-error-fileexists-shared-forbidden' => 'Eine Datei namens „$1“ ist bereits im gemeinsamen Dateirepositorium vorhanden und kann daher nicht überschrieben werden.',
 'api-error-file-too-large' => 'Die hochgeladene Datei war zu groß.',
 'api-error-filename-tooshort' => 'Der Dateiname ist zu kurz.',
 'api-error-filetype-banned' => 'Diese Dateiendung ist gesperrt.',

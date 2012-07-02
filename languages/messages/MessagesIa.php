@@ -501,6 +501,8 @@ Per favor reporta isto a un [[Special:ListUsers/sysop|administrator]], faciente 
 'cannotdelete' => 'Le pagina o file "$1" non poteva esser delite.
 Es possibile que un altere persona lo ha ja delite.',
 'cannotdelete-title' => 'Non pote deler le pagina "$1"',
+'delete-hook-aborted' => 'Le deletion ha essite abortate per un extension.
+Nulle explication es disponibile.',
 'badtitle' => 'Titulo invalide',
 'badtitletext' => 'Le titulo de pagina requestate es invalide, vacue, o un titulo interlingual o interwiki incorrectemente ligate.
 Es possibile que illo contine un o plure characteres que non pote esser usate in titulos.',
@@ -3848,6 +3850,8 @@ Si non, tu pote usar le formulario facile hic infra. Tu commento essera addite a
 'api-error-empty-file' => 'Le file que tu submitteva es vacue.',
 'api-error-emptypage' => 'Le creation de nove paginas vacue non es permittite.',
 'api-error-fetchfileerror' => 'Error interne: qualcosa errava durante le obtention del file.',
+'api-error-fileexists-forbidden' => 'Un file con le nomine "$1" jam existe, e non pote esser superscribite.',
+'api-error-fileexists-shared-forbidden' => 'Un file con le nomine "$1" jam existe in le deposito commun de files, e non pote esser superscribite.',
 'api-error-file-too-large' => 'Le file que tu submitteva es troppo grande.',
 'api-error-filename-tooshort' => 'Le nomine del file es troppo curte.',
 'api-error-filetype-banned' => 'Iste typo de file es prohibite.',
