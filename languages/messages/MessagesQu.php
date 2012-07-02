@@ -3596,7 +3596,7 @@ Sapsilla ñawpaq qhawariyta tukuykachay.',
 'version-version' => '(Musuqchasqa $1)',
 'version-license' => 'Saqillay',
 'version-poweredby-credits' => "Kay wikitaqa '''[//www.mediawiki.org/ MediaWiki-m]''' atichin, copyright © 2001-$1 $2.",
-'version-poweredby-others' => 'hukkuna',
+'version-poweredby-others' => '[{{SERVER}}{{SCRIPTPATH}}/CREDITS hukkuna]',
 'version-license-info' => "MediaWiki llamp'u kaqqa qispim; mast'ariytam icha wakinchaytam atinki GNU General Public License nisqa saqillaypa kamachisqankama, Free Software Foundation nisqap uyaychasqan; saqillaypa iskay ñiqin musuqchasqan, munaspaykiqa aswan musuq musuqchasqan.
 
 MediaWikitaqa mast'ariyku runakunata yanapanapaqmi, ichataq MANAM FIYAKUYTA ATIYKUCHU; manapas ch'aqtasqa RURANALLA FIYAKUYTACHU manapas ima SAPAQ TUKUYNINPAQCHU. GNU General Public License nisqa saqillayta qhaway aswan yuyaykunapaq.

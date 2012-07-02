@@ -3473,7 +3473,7 @@ Du chasch au d [[Special:EditWatchlist|Standard-Bearbeitigssyte]] bruuche.',
 'version-version' => '(Version $1)',
 'version-license' => 'Lizänz',
 'version-poweredby-credits' => "Die Websyte nutzt '''[//www.mediawiki.org/wiki/MediaWiki/de MediaWiki]''', Copyright © 2001–$1 $2.",
-'version-poweredby-others' => 'anderi',
+'version-poweredby-others' => '[{{SERVER}}{{SCRIPTPATH}}/CREDITS anderi]',
 'version-license-info' => 'MediaWiki isch e freji Software, d. h. s cha, no dr Bedingige vu dr GNU General Public-Lizänz, wu vu dr Free Software Foundation vereffentligt woren isch, wyterverteilt un/oder modifiziert wäre. Doderbyy cha d Version 2, oder no eigenem Ermässe, jedi nejeri Version vu dr Lizänz brucht wäre.
 
 Des Programm wird in dr Hoffnig verteilt, ass es nitzli isch, aber OHNI JEDI GARANTI un sogar ohni di impliziert Garanti vun ere MÄRTGÄNGIGKEIT oder EIGNIG FIR E BSTIMMTE ZWÄCK. Doderzue git meh Hiiwys in dr GNU General Public-Lizänz.

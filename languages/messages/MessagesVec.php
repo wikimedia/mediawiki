@@ -3240,7 +3240,7 @@ Nota che te pol anca [[Special:EditWatchlist|modificar la lista con l'interfacia
 'version-version' => '(Version $1)',
 'version-license' => 'Licensa',
 'version-poweredby-credits' => "Sta wiki la va con '''[//www.mediawiki.org/ MediaWiki]''', copyright © 2001-$1 $2.",
-'version-poweredby-others' => 'altri',
+'version-poweredby-others' => '[{{SERVER}}{{SCRIPTPATH}}/CREDITS altri]',
 'version-license-info' => "MediaWiki xe un software lìbaro; te pol redistribuirlo e/o modificarlo secondo i termini de la Licensa Publica Zeneral GNU publicà da la Free Software Foundation; secondo la version 2 de la Licensa, o (a scelta tua) una qualunque altra version sucessiva.
 
 MediaWiki el xe distribuìo sperando che el possa vegner utile, ma SENSA NISSUNA GARANSIA; sensa gnanca la garansia inplicita de COMERCIALIZASSION o de ADATAMENTO A UN USO PARTICOLARE. Varda la Licensa Publica Zeneral GNU par ulteriori detagli.

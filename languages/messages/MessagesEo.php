@@ -3727,7 +3727,7 @@ Vi povas ankaŭ [[Special:EditWatchlist|redakti norme]].',
 'version-version' => '(Versio $1)',
 'version-license' => 'Permesilo',
 'version-poweredby-credits' => "Ĉi tiu vikio funkcias per '''[//www.mediawiki.org/ MediaWiki]''', aŭtorrajto ©&thinsp;2001–$1 $2.",
-'version-poweredby-others' => 'aliaj',
+'version-poweredby-others' => '[{{SERVER}}{{SCRIPTPATH}}/CREDITS aliaj]',
 'version-license-info' => 'MediaWiki estas libera programaro. Vi povas redistribui ĝin kaj/aŭ modifi ĝin sub la kondiĉoj de la GNU General Public Licens (GNU Ĝenerala Publika Permesilo) en ties eldono de la Free Software Foundation (Libera Softvara Fondaĵo) - aŭ versio 2 de la Permesilo, aŭ (laŭ via elekto) iu ajn posta versio.
 
 Tiun ĉi verkon ni distribuas esperante, ke ĝi utilos, sed SEN IA AJN GARANTIO; eĉ sen la implica garantio de SURMERKATIGEBLECO aŭ TAŬGECO POR IA DIFINITA CELO. Vidu GNU General Public License por pliaj detaloj.

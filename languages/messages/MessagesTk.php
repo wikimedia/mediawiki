@@ -3033,7 +3033,7 @@ Bolanyňyzdan soňra "{{int:Watchlistedit-raw-submit}}" düwmesine basyň.
 'version-version' => '(Wersiýa $1)',
 'version-license' => 'Ygtyýarnama',
 'version-poweredby-credits' => "Bu wiki '''[//www.mediawiki.org/ MediaWiki]''' arkaly üpjün edilýär, awtorlyk hukugy © 2001-$1 $2.",
-'version-poweredby-others' => 'beýlekiler',
+'version-poweredby-others' => '[{{SERVER}}{{SCRIPTPATH}}/CREDITS beýlekiler]',
 'version-license-info' => 'MediaWiki erkin programmadyr; MediaWiki-ni Erkin programma fondy tarapyndan çazp edilen GNU General Public License lisenziýasynyň ikini wersiýasynyň ýa-da (islegiňize görä) has täzeki bir wersiýasynyň şertlerine laýyklykda täzeden paýlap we/ýa-da üýtgedip bilersiňiz.
 
 MediaWiki programmasy peýdaly bolar diýen umyt bilen paýlanylýar, emma onuň üçin hatda TÄJIRÇILIK GYMMATY ýa-da KESGITLENILEN MAKSADA ÝARAMLYLYK boýunça hem hiç hili KEPILLIK BERILMEÝÄR. Has giňişleýin maglumat üçin GNU General Public License lisenziýasyna serediň. 

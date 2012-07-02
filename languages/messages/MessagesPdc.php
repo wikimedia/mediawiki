@@ -982,7 +982,7 @@ Guck $2 fer e Lischt vun de letscht Leschunge.',
 'version-other' => 'Anneres',
 'version-mediahandlers' => 'Media-Haendlers',
 'version-version' => '(Version $1)',
-'version-poweredby-others' => 'annere',
+'version-poweredby-others' => '[{{SERVER}}{{SCRIPTPATH}}/CREDITS annere]',
 'version-software-version' => 'Version',
 
 # Special:FilePath

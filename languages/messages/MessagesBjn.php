@@ -3534,7 +3534,7 @@ Pian kawa jua [[Special:EditWatchlist|mamuruk si pambabak standar]].',
 'version-version' => '(Pirsi $1)',
 'version-license' => 'Lisansi',
 'version-poweredby-credits' => "Wiki ngini disukung ulih '''[//www.mediawiki.org/ MediaWiki]''', hak salin © 2001-$1 $2.",
-'version-poweredby-others' => 'lainnya',
+'version-poweredby-others' => '[{{SERVER}}{{SCRIPTPATH}}/CREDITS lainnya]',
 'version-license-info' => 'MediaWiki adalah parangkat lunak bibas; Pian kawa manyabarakan wan/atawa maubahi ngini di bawah syarat Lisansi Publik Umum sawagai tarbitan ulih Free Software Foundation; apakah Lisansi virsi 2, atawa (pilihan Pian) tahanyar.
 
 MediaWiki disabarakan awan harapan akan baguna, tagal KADA BAJAMINAN; kada jaminan PANIAGAAN atawa KATAPATAN HAGAN TUJUAN TARTANTU. Janaki Lisansi Publik Umum GNU gasan panjalasan rinci.

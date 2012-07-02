@@ -891,7 +891,7 @@ Puorejī lauki, piec nūklusiejuma, byus nūglobuoti.
 'version-specialpages' => 'Specialuos puslopys',
 'version-version' => '(Verseja $1)',
 'version-license' => 'Liceņceja',
-'version-poweredby-others' => 'cyti',
+'version-poweredby-others' => '[{{SERVER}}{{SCRIPTPATH}}/CREDITS cyti]',
 'version-software-product' => 'Produkts',
 'version-software-version' => 'Verseja',
 

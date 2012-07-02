@@ -3615,7 +3615,7 @@ U kan ook die [[Special:EditWatchlist|standaard opdaterigskerm gebruik]].',
 'version-version' => '(Weergawe $1)',
 'version-license' => 'Lisensie',
 'version-poweredby-credits' => "Hierdie wiki word aangedryf deur '''[//www.mediawiki.org/ MediaWiki]''', kopiereg © 2001-$1 $2.",
-'version-poweredby-others' => 'andere',
+'version-poweredby-others' => '[{{SERVER}}{{SCRIPTPATH}}/CREDITS andere]',
 'version-license-info' => 'MediaWiki is vrye sagteware, u kan MediaWiki versprei en/of wysig onder die voorwaardes van die "GNU Algemene Publieke Lisensie", soos deur die "Free Software Foundation" gepubliseer; óf weergawe 2 van die lisensie, of (as u wil) enige latere weergawe daarvan.
 
 MediaWiki word versprei met die hoop dat dit nuttig sal wees, maar SONDER ENIGE WAARBORGE, selfs sonder geïmpliseerde waarborg van VERHANDELBAARHEID of GESKIKTHEID VIR \'N SPESIFIEKE DOEL. Verwys na die "GNU Algemene Publieke Lisensie" vir meer besonderhede.

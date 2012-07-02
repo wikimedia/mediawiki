@@ -3771,7 +3771,7 @@ Anda juga dapat [[Special:EditWatchlist|menggunakan penyunting standar Anda]].',
 'version-version' => '(Versi $1)',
 'version-license' => 'Lisensi',
 'version-poweredby-credits' => "Wiki ini didukung oleh '''[//www.mediawiki.org/ MediaWiki]''', hak cipta © 2001-$1 $2.",
-'version-poweredby-others' => 'lainnya',
+'version-poweredby-others' => '[{{SERVER}}{{SCRIPTPATH}}/CREDITS lainnya]',
 'version-license-info' => 'MediaWiki adalah perangkat lunak bebas; Anda diperbolehkan untuk mendistribusikan dan/atau memodfikasinya dengan persyaratan Lisensi Publik Umum GNU yang diterbitkan oleh Free Software Foundation; versi 2 atau terbaru.
 
 MediaWiki didistribusikan dengan harapan dapat digunakan, tetapi TANPA JAMINAN APA PUN; tanpa jaminan PERDAGANGAN atau KECOCOKAN UNTUK TUJUAN TERTENTU. Lihat Lisensi Publik Umum GNU untuk informasi lebih lanjut.

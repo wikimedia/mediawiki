@@ -3574,7 +3574,7 @@ Jūs taip pat galite [[Special:EditWatchlist|naudoti standartinį redaktorių]].
 'version-version' => '(Versija $1)',
 'version-license' => 'Licencija',
 'version-poweredby-credits' => "Šis projektas naudoja '''[//www.mediawiki.org/ MediaWiki]''', autorystės teisės © 2001-$1 $2.",
-'version-poweredby-others' => 'kiti',
+'version-poweredby-others' => '[{{SERVER}}{{SCRIPTPATH}}/CREDITS kiti]',
 'version-license-info' => 'MediaWiki yra nemokama programinė įranga; galite ją platinti ir/arba modifikuoti pagal GNU General Public License, kurią publikuoja Free Software Foundation; taikoma 2-oji licenzijos versija arba (Jūsų pasirinkimu) bet kuri vėlesnė versija. 
 
 MediaWiki yra platinama su viltimi, kad ji bus naudinga, bet BE JOKIOS GARANTIJOS; be jokios numanomos PARDAVIMO arba TINKAMUMO TAM TIKRAM TIKSLUI garantijos. Daugiau informacijos galite sužinoti GNU General Public License. 

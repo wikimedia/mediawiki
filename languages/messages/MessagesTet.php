@@ -928,7 +928,7 @@ Ita-nia mudansa la armazenadu seidauk!",
 'version-other' => 'Seluk',
 'version-version' => '(Versaun $1)',
 'version-license' => 'Lisensa',
-'version-poweredby-others' => 'ema seluk',
+'version-poweredby-others' => '[{{SERVER}}{{SCRIPTPATH}}/CREDITS ema seluk]',
 'version-software-product' => 'Produtu',
 'version-software-version' => 'Versaun',
 

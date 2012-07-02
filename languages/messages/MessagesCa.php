@@ -3592,7 +3592,7 @@ També podeu [[Special:EditWatchlist|utilitzar l'editor estàndard]].",
 'version-version' => '(Versió $1)',
 'version-license' => 'Llicència',
 'version-poweredby-credits' => "El wiki funciona gràcies a '''[//www.mediawiki.org/ MediaWiki]''', copyright © 2001-$1 $2.",
-'version-poweredby-others' => 'altres',
+'version-poweredby-others' => '[{{SERVER}}{{SCRIPTPATH}}/CREDITS altres]',
 'version-license-info' => "MediaWiki és programari lliure, podeu redistribuir-lo i/o modificar-lo sota els termes de la Llicència Pública General GNU publicada per la Free Software Foundation, ja sigui de la seva versió 2 o (a elecció vostra) qualsevol versió posterior. 
 
 MediaWiki es distribueix en l'esperança de ser d'utilitat, però SENSE CAP GARANTIA; ni tan sols la garantia implícita de COMERCIALITZACIÓ o ADEQUACIÓ A UNA FINALITAT DETERMINADA. En trobareu més detalls a  la Llicència Pública General GNU.

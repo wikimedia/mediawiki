@@ -3661,7 +3661,7 @@ Sa võid [[Special:EditWatchlist|kasutada ka harilikku tekstiredaktorit]].',
 'version-version' => '(Versioon $1)',
 'version-license' => 'Litsents',
 'version-poweredby-credits' => "See viki kasutab '''[//www.mediawiki.org/ MediaWiki]''' tarkvara. Autoriõigus © 2001–$1 $2.",
-'version-poweredby-others' => 'teised',
+'version-poweredby-others' => '[{{SERVER}}{{SCRIPTPATH}}/CREDITS teised]',
 'version-license-info' => "MediaWiki on vaba tarkvara; tohid seda taaslevitada ja/või selle põhjal teisendeid luua vastavalt Vaba Tarkvara Fondi avaldatud GNU Üldise Avaliku Litsentsi versioonis 2 või hilisemas seatud tingimustele.
 
 MediaWiki tarkvara levitatakse lootuses, et see on kasulik, aga '''igasuguse tagatiseta''', ka kaudse tagatiseta teose '''turustatavuse''' või '''müügikõlblikkuse''' kohta. Üksikasjad leiad GNU Üldisest Avalikust Litsentsist.

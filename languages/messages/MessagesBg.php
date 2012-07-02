@@ -3483,7 +3483,7 @@ $5
 'version-version' => '(Версия $1)',
 'version-license' => 'Лиценз',
 'version-poweredby-credits' => "Това уики се задвиждва от '''[//www.mediawiki.org/ MediaWiki]''', copyright © 2001-$1 $2.",
-'version-poweredby-others' => 'други',
+'version-poweredby-others' => '[{{SERVER}}{{SCRIPTPATH}}/CREDITS други]',
 'version-license-info' => 'MediaWiki е свободен софтуер, можете да го разпространявате и/или променяте съгласно условията на GNU General Public License, както е публикуван от Free Software Foundation, версия 2 на лиценза или (по ваше усмотрение) която и да е следваща версия.
 
 MediaWiki се разпространява с надеждата, че ще бъде полезен, но БЕЗ НИКАКВИ ГАРАНЦИИ, без дори косвена гаранция за ПРОДАВАЕМОСТ или ПРИГОДНОСТ ЗА КОНКРЕТНА УПОТРЕБА. Вижте GNU General Public License за повече подробности.

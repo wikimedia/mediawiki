@@ -3953,7 +3953,7 @@ Dä Shtanndat-Zoot-Schlößel „$1“ övverschriif dä älldere Zoot-Schlöße
 'version-version' => '(Version $1)',
 'version-license' => 'Lizänz',
 'version-poweredby-credits' => "Dat Wiki heh löp met '''[//www.mediawiki.org/ MediaWiki]''', copyright © 2001–$1 $2.",
-'version-poweredby-others' => 'sönß wää',
+'version-poweredby-others' => '[{{SERVER}}{{SCRIPTPATH}}/CREDITS sönß wää]',
 'version-license-info' => 'MediaWiki es e frei Projramm. Mer kann et unmolesteet wigger verdeile, un mer kann et verändere, wi mer löstich es, wam_mer sesch dobei aan de <i lang="en">GNU General Public License</i> (jenerälle öffentlesche Lizänz noh GNU) hallde deiht, wi se vun der <i lang="en">Free Software Foundation</i> (Steftung för frei Soffwäer) veröffentlesch woode es. Dobei kam_mer sesch ußsöhke of mer sesch aan de Version 2 dovun hallde deiht, udder öhnz en späädere Fassung.
 
 MediaWiki weed verdeilt met dä Hoffnung, dat et för jet jood es, ävver <span style="text-transform:uppercase">der ohne jeede Jarantie</span>, un esujaa ohne ene unjesaate Jedangke, et künnt <span style="text-transform:uppercase">ze verkoufe</span> sin udder <span style="text-transform:uppercase;">för öhndsene bestemmpte Zweck ze jebruche</span>. Loor Der de jenannte Lizänz aan, wann De mieh Einzelheite weße wells.

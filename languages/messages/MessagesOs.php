@@ -1421,7 +1421,7 @@ $3',
 'version-other' => 'Æндæр',
 'version-version' => '(Фæлтæр $1)',
 'version-license' => 'Лицензи',
-'version-poweredby-others' => 'æндæртæ',
+'version-poweredby-others' => '[{{SERVER}}{{SCRIPTPATH}}/CREDITS æндæртæ]',
 'version-software-version' => 'Верси',
 
 # Special:FilePath

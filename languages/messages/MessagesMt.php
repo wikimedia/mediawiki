@@ -3591,7 +3591,7 @@ Inti tista' wkoll tuża' l-[[Special:EditWatchlist|editur bl-interfaċċa standa
 'version-version' => '(Verżjoni $1)',
 'version-license' => 'Liċenzja',
 'version-poweredby-credits' => "Din il-wiki hija operata minn '''[//www.mediawiki.org/ MediaWiki]''', copyright © 2001-$1 $2.",
-'version-poweredby-others' => 'oħrajn',
+'version-poweredby-others' => '[{{SERVER}}{{SCRIPTPATH}}/CREDITS oħrajn]',
 'version-license-info' => "MediaWiki huwa softwer b'xejn; inti tista' tqassmu mill-ġdid u/jew timmodifikah taħt it-termini tal-GNU General Public License, kif ippubblikata mill-Free Software Foundation; jew it-2 verżjoni tal-Liċenzja, jew (skont l-għażla tiegħek) kwalunkwe verżjoni suċċessiva.
 
 MediaWiki hi distribwita bl-iskop li din tkun utli, imma MINGĦAJR EBDA GARANZIJA; mingħajr lanqas il-garanzija impliċita ta' NEGOZJABILITÀ jew ta' ADEGWATEZZA GĦAL SKOP PARTIKULARI. Ara l-GNU General Public License għal aktar dettalji.

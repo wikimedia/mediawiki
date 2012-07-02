@@ -3306,7 +3306,7 @@ $5
 'version-version' => '(Версия $1)',
 'version-license' => 'Лицензия',
 'version-poweredby-credits' => "Бу вики '''[//www.mediawiki.org/ MediaWiki]''' программа бла ишлейди, copyright © 2001-$1 $2.",
-'version-poweredby-others' => 'башхала',
+'version-poweredby-others' => '[{{SERVER}}{{SCRIPTPATH}}/CREDITS башхала]',
 'version-license-info' => 'MediaWiki эркин программа джазыуду, сиз аны GNU General Public License лицензияны (эркин программа джазыуланы фонду чыгъаргъан; экинчи версиясы неда андан кеч къайсысы да) шартларына кёре джаяргъа эмда/неда тюрлендирирге боллукъсуз.
 
 MediaWiki хайырлы боллукъду деген умут бла джайылады, алай а БИР ТЮРЛЮ БИР ГАРАНТИЯСЫЗДЫ, КОММЕРЦИЯЛЫКЪ неда ЭНЧИ БИР НЮЗЮРГЕ ДЖАРАРЫКЪ гаратияласыз огъунады. Толуракъ билгиле кёрюр ючюн GNU General Public License лицензиягъа къарагъыз.

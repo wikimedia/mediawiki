@@ -3544,7 +3544,7 @@ Dir kënnt och [[Special:EditWatchlist|de Standard Editeur benotzen]].",
 'version-version' => '(Versioun $1)',
 'version-license' => 'Lizenz',
 'version-poweredby-credits' => "Dës Wiki fonctionnéiert mat '''[//www.mediawiki.org/ MediaWiki]''', Copyright © 2001-$1 $2.",
-'version-poweredby-others' => 'anerer',
+'version-poweredby-others' => '[{{SERVER}}{{SCRIPTPATH}}/CREDITS anerer]',
 'version-license-info' => "MediaWiki ass fräi Software; Dir kënnt se weiderginn an/oder s'änneren ënnert de Bedingungen vun der GNU-General Public License esou wéi se vun der Free Softare Foundation publizéiert ass; entweder ënner der Versioun 2 vun der Lizenz, oder (no Ärem Choix) enger spéiderer Versioun.
 
 MediaWiki gëtt verdeelt an der Hoffnung datt se nëtzlech ass, awer OUNI IERGENDENG GARANTIE; ouni eng implizit Garantie vu Commercialisatioun oder Eegnung fir e bestëmmte Gebrauch. Kuckt d'GPU Geral Public License fir méi Informatiounen.

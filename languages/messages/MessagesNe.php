@@ -3329,7 +3329,7 @@ $5
 'version-svn-revision' => '(r$2)',
 'version-license' => 'इजाजतपत्र',
 'version-poweredby-credits' => "यो विकी '''[//www.mediawiki.org/ मिडियाविकि]''' द्वारा सशक्तिकरण गरिएको छ, copyright © सन् २००१-$1 $2.",
-'version-poweredby-others' => 'अन्य',
+'version-poweredby-others' => '[{{SERVER}}{{SCRIPTPATH}}/CREDITS अन्य]',
 'version-software' => 'स्थापना गरिएको सफ्टवेयर',
 'version-software-product' => 'उत्पादन',
 'version-software-version' => 'संस्करण',

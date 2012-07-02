@@ -3669,7 +3669,7 @@ Voit myös muokata listaa [[Special:EditWatchlist|tavalliseen tapaan]].',
 'version-version' => '(Versio $1)',
 'version-license' => 'Lisenssi',
 'version-poweredby-credits' => "Tämä wiki käyttää '''[//www.mediawiki.org/ MediaWikiä]'''. Copyright © 2001–$1 $2.",
-'version-poweredby-others' => 'muut',
+'version-poweredby-others' => '[{{SERVER}}{{SCRIPTPATH}}/CREDITS muut]',
 'version-license-info' => 'MediaWiki on vapaa ohjelmisto – voit levittää sitä ja/tai muokata sitä Free Software Foundationin GNU General Public Licensen ehdoilla, joko version 2 tai halutessasi minkä tahansa myöhemmän version mukaisesti.
 
 MediaWikiä levitetään siinä toivossa, että se olisi hyödyllinen, mutta ilman mitään takuuta; ilman edes hiljaista takuuta kaupallisesti hyväksyttävästä laadusta tai soveltuvuudesta tiettyyn tarkoitukseen. Katso GPL-lisenssistä lisää yksityiskohtia.

@@ -1642,7 +1642,7 @@ Bittscheh d' noraale Vurschau bnutzen.",
 'version-version' => '(Versión $1)',
 'version-license' => 'Lizenz',
 'version-poweredby-credits' => "Dé Nétzseiten braucht '''[//www.mediawiki.org/wiki/MediaWiki/de MediaWiki]''', Copyright © 2001–$1 $2.",
-'version-poweredby-others' => 'åndre',
+'version-poweredby-others' => '[{{SERVER}}{{SCRIPTPATH}}/CREDITS åndre]',
 
 # Special:FileDuplicateSearch
 'fileduplicatesearch' => 'Dóppéde Daatein suachen',

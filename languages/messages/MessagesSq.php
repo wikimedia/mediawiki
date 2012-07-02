@@ -3589,7 +3589,7 @@ Ju gjithashtu mund [[Special:EditWatchlist|të përdorni redaktuesin standart]].
 'version-version' => '(Versioni $1)',
 'version-license' => 'Licensa',
 'version-poweredby-credits' => "Ky wiki është mundësuar nga '''[//www.mediawiki.org/ MediaWiki]''', copyright © 2001-$1 $2.",
-'version-poweredby-others' => 'të tjerë',
+'version-poweredby-others' => '[{{SERVER}}{{SCRIPTPATH}}/CREDITS të tjerë]',
 'version-license-info' => 'MediaWiki është një softuer i lirë; ju mund ta shpërndani dhe redakatoni atë nën kushtet GNU General Public License si e publikuar nga fondacioni Free Software; ose versioni 2 i licensës, ose çdo version më i vonshëm.
 
 MediaWiki është shpërndarë me shpresën se do të jetë i dobishëm, por PA ASNJË GARANCI; as garancinë e shprehur të SHITJES apo PËRDORIMIT PËR NJË QËLLIM TË CAKTUAR. Shikoni GNU General Public License  për më shumë detaje.

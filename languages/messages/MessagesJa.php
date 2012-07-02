@@ -4033,7 +4033,7 @@ $5
 'version-version' => '（バージョン$1）',
 'version-license' => 'ライセンス',
 'version-poweredby-credits' => "このウィキは、'''[//www.mediawiki.org/ MediaWiki]'''(copyright © 2001-$1 $2)で動作しています。",
-'version-poweredby-others' => 'その他',
+'version-poweredby-others' => '[{{SERVER}}{{SCRIPTPATH}}/CREDITS その他]',
 'version-license-info' => 'MediaWikiはフリーソフトウェアです。あなたは、フリーソフトウェア財団の発行するGNU一般公衆利用許諾書 (GNU General Public License)（バージョン2、またはそれ以降のライセンス）の規約に基づき、このライブラリを再配布および改変できます。
 
 MediaWikiは、有用であることを期待して配布されていますが、商用あるいは特定の目的に適するかどうかも含めて、暗黙的にも、一切保証されません。詳しくは、GNU一般公衆利用許諾書をご覧ください。

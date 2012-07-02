@@ -3163,7 +3163,7 @@ Ti pos era utilisar [[Special:EditWatchlist|la pagina da standard]].',
 'version-version' => '(Versiun $1)',
 'version-license' => 'Licenza',
 'version-poweredby-credits' => "Questa wiki utilisescha '''[//www.mediawiki.org/ MediaWiki]''', copyright © 2001-$1 $2.",
-'version-poweredby-others' => 'auters',
+'version-poweredby-others' => '[{{SERVER}}{{SCRIPTPATH}}/CREDITS auters]',
 'version-license-info' => "MediaWiki è software liba; ti la pos redistribuir e/u la modifitgar tenor ils terms da la GNU General Public License sco ch'ella vegn publitgada da la Free Software Foundation; ti pos utilisar la versiun 2 da la licenza u (sche ti vul) mintga versiun che succeda. 
 
 MediaWiki vegn distribuì en la speranza che questa software saja utila, dentant SENZA MINTGA GARANZIA; era senza garanzia implizita da NEGOZIABILITAD u ADDATAZIUN PER IN INTENT SPECIAL. Guarda la GNU General Public License per ulteriurs detagls. 

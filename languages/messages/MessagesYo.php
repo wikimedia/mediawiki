@@ -2886,7 +2886,7 @@ Tóbájẹ́pé fáìlì ọ̀hún ti jẹ́ títúnṣe sí bóṣewà ní bẹ
 'version-version' => '(Àtẹ̀jáde $1)',
 'version-license' => 'Ìwé àṣẹ',
 'version-poweredby-credits' => "Agbára ìṣiṣẹ́ wiki yìí wá látọwọ́ '''[//www.mediawiki.org/ MediaWiki]''', copyright © 2001-$1 $2.",
-'version-poweredby-others' => 'àwọn mìíràn',
+'version-poweredby-others' => '[{{SERVER}}{{SCRIPTPATH}}/CREDITS àwọn mìíràn]',
 'version-software-version' => 'Àtẹ̀jáde',
 'version-entrypoints-header-url' => 'URL',
 

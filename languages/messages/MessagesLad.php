@@ -1193,7 +1193,7 @@ Los otros campos se van a guardar por defecto.
 'version-specialpages' => 'Pajinas espesiales',
 'version-other' => 'Otros',
 'version-version' => '(Versión $1)',
-'version-poweredby-others' => 'otros',
+'version-poweredby-others' => '[{{SERVER}}{{SCRIPTPATH}}/CREDITS otros]',
 'version-software-version' => 'Versión',
 
 # Special:FilePath

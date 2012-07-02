@@ -3830,7 +3830,7 @@ Seznam editovaných stránek můžete také [[Special:EditWatchlist|editovat ve 
 'version-version' => '(Verze $1)',
 'version-license' => 'Licence',
 'version-poweredby-credits' => "Tato wiki běží na '''[//www.mediawiki.org/ MediaWiki]''', copyright © 2001–$1 $2.",
-'version-poweredby-others' => 'další',
+'version-poweredby-others' => '[{{SERVER}}{{SCRIPTPATH}}/CREDITS další]',
 'version-license-info' => 'MediaWiki je svobodný software; můžete jej šířit nebo modifikovat podle podmínek GNU General Public License, vydávané Free Software Foundation; buď verze 2 této licence anebo (podle vašeho uvážení) kterékoli pozdější verze.
 
 MediaWiki je distribuována v naději, že bude užitečná, avšak BEZ JAKÉKOLI ZÁRUKY; neposkytují se ani odvozené záruky PRODEJNOSTI anebo VHODNOSTI PRO URČITÝ ÚČEL. Podrobnosti se dočtete v textu GNU General Public License.

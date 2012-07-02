@@ -3518,7 +3518,7 @@ Móžoš teke [[Special:EditWatchlist|standardny wobźěłowański bok wužywaś
 'version-version' => '(Wersija $1)',
 'version-license' => 'Licenca',
 'version-poweredby-credits' => "Toś ten wiki spěchujo se wót '''[//www.mediawiki.org/ MediaWiki]''', copyright © 2001-$1 $2.",
-'version-poweredby-others' => 'druge',
+'version-poweredby-others' => '[{{SERVER}}{{SCRIPTPATH}}/CREDITS druge]',
 'version-license-info' => 'MediaWiki jo licha softwara: móžoš ju pód wuměnjenjami licence GNU General Public License, wózjawjeneje wót załožby Free Software Foundation, rozdźěliś a/abo změniś: pak pód wersiju 2 licence pak pód někakeju pózdźejšeju wersiju.
 
 MediaWiki rozdźěla se w naźeji, až buźo wužitny, ale BŹEZ GARANTIJE: samo bźez wopśimjoneje garantije PŚEDAWAJOBNOSĆI abo PŚIGÓDNOSĆI ZA WĚSTY ZAMĚR. Glědaj GNU general Public License za dalšne drobnostki.

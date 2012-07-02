@@ -3625,7 +3625,7 @@ $5
 'version-version' => '(आवृत्ती $1)',
 'version-license' => 'परवाना',
 'version-poweredby-credits' => "हा विकी '''[//www.mediawiki.org/ मीडियाविकी]'''द्वारे संचालित आहे, प्रताधिकारित © २००१-$1 $2.",
-'version-poweredby-others' => 'इतर',
+'version-poweredby-others' => '[{{SERVER}}{{SCRIPTPATH}}/CREDITS इतर]',
 'version-license-info' => 'मिडियाविकि हे  मुक्त संगणक प्रणाली विकि पॅकेज आहे.Free Software Foundation प्रकाशित  GNU General Public परवान्याच्या अटीस अनुसरून तुम्ही त्यात बदल आणि/अथवा त्याचे  पुर्नवितरण  करू शकता.
 
 मिडियाविकि  संगणक प्रणाली उपयूक्त ठरेल या आशेने वितरीत केली जात असली तरी;कोणत्याही वितरणास अथवा विशीष्ट उद्देशाकरिता योग्यतेची अगदी कोणतीही अप्रत्यक्ष अथवा उपलक्षित   अथवा  निहित अशा अथवा कोणत्याही प्रकारच्या केवळ  कोणत्याही प्राश्वासनाशिवायच (WITHOUT ANY WARRANTY) उपलब्ध आहे.अधिक माहिती करिता   GNU General Public License पहावे.

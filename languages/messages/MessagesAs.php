@@ -3565,7 +3565,7 @@ $5
 'version-version' => '(সংস্কৰণ $1)',
 'version-license' => 'অনুজ্ঞাপত্ৰ',
 'version-poweredby-credits' => "এই ৱিকি '''[//www.mediawiki.org/ মিডিয়াৱিকিৰ]''' দ্বাৰা প্ৰচলিত , কপিৰাইট © ২০০১-$1 $2.",
-'version-poweredby-others' => 'অন্য',
+'version-poweredby-others' => '[{{SERVER}}{{SCRIPTPATH}}/CREDITS অন্য]',
 'version-license-info' => "মিডিয়াৱিকি এটা বিনামূলীয়া চফ্টৱেৰ; আপুনি Free Software Foundation -ৰ দ্বাৰা প্ৰকাশিত GNU General Public License -ৰ চুক্তিসমূহৰ অন্তৰ্গত ইয়াক পুনৰ বিতৰণ কৰিব পাৰিব অথবা সলনি কৰিব পাৰিব; হয়তো অনুজ্ঞাপত্ৰৰ সংস্কৰণ ২ 
 অথবা (আপোনাৰ বিকল্পত) যিকোনো পৰৱৰ্তী সংস্কৰণ।
 

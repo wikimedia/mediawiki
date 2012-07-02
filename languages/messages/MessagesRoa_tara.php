@@ -3731,7 +3731,7 @@ Tu puè pure [[Special:EditWatchlist|ausà 'u cangiatore standàrd]].",
 'version-svn-revision' => '(r$2)',
 'version-license' => 'Licenze',
 'version-poweredby-credits' => "Sta Uicchi jè fatte da '''[//www.mediawiki.org/ MediaWiki]''', copyright © 2001-$1 $2.",
-'version-poweredby-others' => 'otre',
+'version-poweredby-others' => '[{{SERVER}}{{SCRIPTPATH}}/CREDITS otre]',
 'version-license-info' => "MediaUicchi jè 'nu softuare libbere, tu 'u puè redestribbuì  e/o cangiarle sotte le termine d'a GNU (Licenze Pubbleche Generale) cumme pubblecate da 'a Free Software Foundation; endrambe le versiune 2 d'a Licenze, o (a scelta toje) 'le versiune cchiù nnove.
 
 Mediauicchi jè destribbuite cu 'a speranze ca jè utile, ma SENZE NISCIUNA GARANZIE; senze nemmanghe 'a garanzie imblicite de COMMERCIABBELETÀ o IDONIETÀ PE 'NU SCOPE PARTICOLARE. Vatte a vide 'a GNU (Licenze Pubbleche Generale) pe cchiù 'mbormaziune.

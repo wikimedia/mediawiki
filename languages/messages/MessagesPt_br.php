@@ -3753,7 +3753,7 @@ Você também pode [[Special:EditWatchlist|editar a lista da maneira convenciona
 'version-version' => '(Versão $1)',
 'version-license' => 'Licença',
 'version-poweredby-credits' => "Este é um wiki '''[//www.mediawiki.org/ MediaWiki]''', copyright © 2001-$1 $2.",
-'version-poweredby-others' => 'outros',
+'version-poweredby-others' => '[{{SERVER}}{{SCRIPTPATH}}/CREDITS outros]',
 'version-license-info' => 'O MediaWiki é software livre; pode redistribuí-lo e/ou modificá-lo nos termos da licença GNU General Public License, tal como publicada pela Free Software Foundation; tanto a versão 2 da Licença, como (por opção sua) qualquer versão posterior.
 
 O MediaWiki é distribuído na esperança de que seja útil, mas SEM QUALQUER GARANTIA; inclusive, sem a garantia implícita da POSSIBILIDADE DE SER COMERCIALIZADO ou de ADEQUAÇÂO PARA QUALQUER FINALIDADE ESPECÍFICA. Consulte a licença GNU General Public License para mais detalhes.

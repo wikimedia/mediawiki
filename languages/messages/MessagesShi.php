@@ -1296,7 +1296,7 @@ Wiyyaḍ raggis ḥbun s ɣiklli sttin kkan gantn.
 'version-extension-functions' => 'lkhdaym n limtidad',
 'version-parser-extensiontags' => 'imarkiwn n limtidad n lmohalil',
 'version-parser-function-hooks' => 'lkhtatif ndala',
-'version-poweredby-others' => 'wiyyad',
+'version-poweredby-others' => '[{{SERVER}}{{SCRIPTPATH}}/CREDITS wiyyad]',
 'version-software-product' => 'lmntoj',
 'version-software-version' => 'noskha',
 

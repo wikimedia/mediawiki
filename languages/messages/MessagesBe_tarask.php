@@ -3686,7 +3686,7 @@ $5
 'version-svn-revision' => '(r$2)',
 'version-license' => 'Ліцэнзія',
 'version-poweredby-credits' => "{{SITENAME}} працуе на праграмным забесьпячэньні '''[//www.mediawiki.org/ MediaWiki]''', copyright © 2001-$1 $2.",
-'version-poweredby-others' => 'іншыя',
+'version-poweredby-others' => '[{{SERVER}}{{SCRIPTPATH}}/CREDITS іншыя]',
 'version-license-info' => 'MediaWiki зьяўляецца вольным праграмным забесьпячэньнем, якое Вы можаце распаўсюджваць і/ці зьмяняць на ўмовах ліцэнзіі GNU General Public License вэрсіі 2 ці болей позьняй, апублікаванай Фундацыяй вольнага праграмнага забесьпячэньня (Free Software Foundation).
 
 MediaWiki распаўсюджваецца з надзеяй, што будзе карысным, але БЕЗ АНІЯКІХ ГАРАНТЫЯЎ, нават без меркаваных гарантыяў КАМЭРЦЫЙНАЙ КАШТОЎНАСЬЦІ ці ПРЫДАТНАСЬЦІ ДА ПЭЎНАЙ МЭТЫ. Глядзіце ліцэнзію GNU General Public License для болей падрабязных зьвестак.

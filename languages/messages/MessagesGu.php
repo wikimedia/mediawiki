@@ -3586,7 +3586,7 @@ $5
 'version-version' => '(આવૃત્તિ $1)',
 'version-license' => 'પરવાનો',
 'version-poweredby-credits' => "આ વિકિ  '''[//www.mediawiki.org/ MediaWiki]''' દ્વારા ચાલે છે, પ્રકાશનાધિકાર © 2001-$1 $2.",
-'version-poweredby-others' => 'અન્યો',
+'version-poweredby-others' => '[{{SERVER}}{{SCRIPTPATH}}/CREDITS અન્યો]',
 'version-license-info' => 'મિડિયાવિકિ એક મુક્ત સોફ્ટવેર છે. તમે તેનું પુનઃવિતરણ કરી શકો છો અને/અથવા તેને the Free Software Foundation દ્વારા પ્રકાશિત  GNU General Public License હેઠળ તેના સંસ્કરણ 2 ને કે તે પછીના સંસ્કરણ   મઠારી શકો છો . 
 
 મિડિયા વિકિ ને તે આશાથી વિતરીત કરાયું છે કે તે લોકોને ઉપયોગિ થશે કોઇ વોરેંટી વિના અથવા કોઇ કાર્ય સંબધી વેચાણકે તેની યોગ્યતા બદ્દલ ખાત્રી સિવાય. વધારે  માહિતે માટે GNU General Public Licens જુઓ.

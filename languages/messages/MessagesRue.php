@@ -3362,7 +3362,7 @@ $5
 'version-version' => '(Верзія $1)',
 'version-license' => 'Ліценція',
 'version-poweredby-credits' => "Тота вікі біжыть на '''[//www.mediawiki.org/ MediaWiki]''', copyright © 2001–$1 $2.",
-'version-poweredby-others' => 'іншы',
+'version-poweredby-others' => '[{{SERVER}}{{SCRIPTPATH}}/CREDITS іншы]',
 'version-license-info' => 'MediaWiki є слободный софтвер; можете го шырити або управляти подля условій GNU General Public License, выдаваной Free Software Foundation; будь верзія 2 той ліценції або (подля вашого уважіня) будьяка пізнїша верзія.
 
 MediaWiki є дістрібуована в надїї, же буде хосновна, але БЕЗ БУДЬЯКОЙ ЗАРУКЫ; не давають ся ани зарукы ПРОДАЙНОСТИ або ВАЛУШНОСТИ ПРО СТАНОВЛЕНЫЙ ЦІЛЬ. Детайлы ся дочітате в текстї  GNU General Public License.

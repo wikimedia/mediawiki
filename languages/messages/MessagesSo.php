@@ -1368,7 +1368,7 @@ Hadii faylka wax laga badalay sida oo markiisa hore ahaa, waxaa laga yaabaa in e
 'watchlisttools-raw' => 'Badal liiska waardiyeenta ceeriinka ah',
 
 # Special:Version
-'version-poweredby-others' => 'kuwa kale',
+'version-poweredby-others' => '[{{SERVER}}{{SCRIPTPATH}}/CREDITS kuwa kale]',
 
 # Special:FilePath
 'filepath-page' => 'Fayl:',

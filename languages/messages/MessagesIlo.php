@@ -3493,7 +3493,7 @@ Mabalinmo pay nga [[Special:EditWatchlist|usaren ti dati a panagurnos]].',
 'version-version' => '(Bersion $1)',
 'version-license' => 'Lisensia',
 'version-poweredby-credits' => "Daytoy a wiki ket pinaandar ti '''[//www.mediawiki.org/ MediaWiki]''', karbengan a kopia © 2001-$1 $2.",
-'version-poweredby-others' => 'dadduma pay',
+'version-poweredby-others' => '[{{SERVER}}{{SCRIPTPATH}}/CREDITS dadduma pay]',
 'version-license-info' => 'Ti MediaWiki ket nawaya a software; maiwaras mo ken/wenno mabaliwam babaen ti banag iti GNU General Public License a naipablaak babaen ti Free Software Foundation; nupay iti bersion 2 iti Lisensia, wenno (ti panagpilim) ti  ania man a bersion.
 
 Ti MediaWiki ket naiwarwaras nga addaan ti namnama a makatulong, ngem AWAN TI ANIA MAN A GARANTIA; nga awan pay ti naibagbaga a PANAKAILAKO wenno KALAINGAN NA ITI DAYTOY A PANGGEP. Kitaen ti GNU Sapasap a  Publiko a Lisensia para kadagiti adu pay a salaysay.

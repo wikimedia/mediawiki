@@ -3775,7 +3775,7 @@ $5
 'version-version' => '(버전 $1)',
 'version-license' => '라이선스',
 'version-poweredby-credits' => "이 위키는 '''[//www.mediawiki.org/ MediaWiki]'''를 기반으로 작동합니다. Copyright © 2001-$1 $2.",
-'version-poweredby-others' => '그 외 다른 개발자',
+'version-poweredby-others' => '[{{SERVER}}{{SCRIPTPATH}}/CREDITS 그 외 다른 개발자]',
 'version-license-info' => "미디어위키는 자유 소프트웨어입니다. 당신은 자유 소프트웨어 재단이 발표한 GNU 일반 공중 사용 허가서 버전 2나 그 이후 버전에 따라 이 파일을 재배포하거나 수정할 수 있습니다.
 
 미디어위키가 유용하게 사용될 수 있기를 바라지만 '''상용으로 사용'''되거나 '''특정 목적에 맞을 것'''이라는 것을 '''보증하지 않습니다'''. 자세한 내용은 GNU 일반 공중 사용 허가서 전문을 참고하십시오.
