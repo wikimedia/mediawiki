@@ -40,6 +40,13 @@ abstract class DatabaseUpdater {
 	protected $updates = array();
 
 	/**
+	 * Array of updates that were skipped
+	 *
+	 * @var array
+	 */
+	protected $updatesSkipped = array();
+
+	/**
 	 * List of extension-provided database updates
 	 * @var array
 	 */
@@ -63,6 +70,20 @@ abstract class DatabaseUpdater {
 	);
 
 	/**
+	 * File handle for SQL output.
+	 *
+	 * @var Filehandle
+	 */
+	protected $fileHandle = null;
+
+	/**
+	 * Flag specifying whether or not to skip schema (e.g. SQL-only) updates.
+	 *
+	 * @var bool
+	 */
+	protected $skipSchema = false;
+
+	/**
 	 * Constructor
 	 *
 	 * @param $db DatabaseBase object to perform updates on
@@ -75,6 +96,7 @@ abstract class DatabaseUpdater {
 		$this->shared = $shared;
 		if ( $maintenance ) {
 			$this->maintenance = $maintenance;
+			$this->fileHandle = $maintenance->fileHandle;
 		} else {
 			$this->maintenance = new FakeMaintenance;
 		}
@@ -253,9 +275,9 @@ abstract class DatabaseUpdater {
 
 	/**
 	 * Add a maintenance script to be run after the database updates are complete.
-	 * 
+	 *
 	 * @since 1.19
-	 * 
+	 *
 	 * @param $class string Name of a Maintenance subclass
 	 */
 	public function addPostDatabaseUpdateMaintenance( $class ) {
@@ -273,11 +295,27 @@ abstract class DatabaseUpdater {
 
 	/**
 	 * @since 1.17
-	 * 
+	 *
 	 * @return array
 	 */
 	public function getPostDatabaseUpdateMaintenance() {
 		return $this->postDatabaseUpdateMaintenance;
+	}
+
+	/**
+	 * Writes the schema updates desired to a the DB Admin to run.
+	 */
+	private function writeSchemaUpdateFile( $schemaUpdate = array() ) {
+		$updates = $this->updatesSkipped;
+		$this->updatesSkipped = array();
+
+		while ( $funcList = array_shift( $updates ) ) {
+			$func = $funcList[0];
+			$arg = $funcList[1];
+			$ret = call_user_func_array( $func, $arg );
+			flush();
+			$this->updatesSkipped[] = $arg;
+		}
 	}
 
 	/**
@@ -290,6 +328,7 @@ abstract class DatabaseUpdater {
 
 		$this->db->begin( __METHOD__ );
 		$what = array_flip( $what );
+		$this->skipSchema = isset( $what['noschema'] ) || $this->fileHandle !== null;
 		if ( isset( $what['core'] ) ) {
 			$this->runUpdates( $this->getCoreUpdateList(), false );
 		}
@@ -297,8 +336,6 @@ abstract class DatabaseUpdater {
 			$this->runUpdates( $this->getOldGlobalUpdates(), false );
 			$this->runUpdates( $this->getExtensionUpdates(), true );
 		}
-
-		$this->setAppliedUpdates( $wgVersion, $this->updates );
 
 		if ( isset( $what['stats'] ) ) {
 			$this->checkStats();
@@ -311,6 +348,15 @@ abstract class DatabaseUpdater {
 				$this->rebuildLocalisationCache();
 			}
 		}
+
+		$this->setAppliedUpdates( $wgVersion, $this->updates );
+
+		if( $this->fileHandle ) {
+			$this->skipSchema = false;
+			$this->writeSchemaUpdateFile( );
+			$this->setAppliedUpdates( "$wgVersion-schema", $this->updatesSkipped );
+		}
+
 		$this->db->commit( __METHOD__ );
 	}
 
@@ -322,6 +368,8 @@ abstract class DatabaseUpdater {
 	 *                  functions
 	 */
 	private function runUpdates( array $updates, $passSelf ) {
+		$updatesDone = array();
+		$updatesSkipped = array();
 		foreach ( $updates as $params ) {
 			$func = array_shift( $params );
 			if( !is_array( $func ) && method_exists( $this, $func ) ) {
@@ -329,10 +377,16 @@ abstract class DatabaseUpdater {
 			} elseif ( $passSelf ) {
 				array_unshift( $params, $this );
 			}
-			call_user_func_array( $func, $params );
+			$ret = call_user_func_array( $func, $params );
 			flush();
+			if( $ret !== false ) {
+				$updatesDone[] = $params;
+			} else {
+				$updatesSkipped[] = array( $func, $params );
+			}
 		}
-		$this->updates = array_merge( $this->updates, $updates );
+		$this->updatesSkipped = array_merge( $this->updatesSkipped, $updatesSkipped );
+		$this->updates = array_merge( $this->updates, $updatesDone );
 	}
 
 	/**
@@ -347,7 +401,7 @@ abstract class DatabaseUpdater {
 		$key = "updatelist-$version-" . time();
 		$this->db->insert( 'updatelog',
 			array( 'ul_key' => $key, 'ul_value' => serialize( $updates ) ),
-			 __METHOD__ );
+			__METHOD__ );
 		$this->db->setFlag( DBO_DDLMODE );
 	}
 
@@ -460,15 +514,48 @@ abstract class DatabaseUpdater {
 	protected abstract function getCoreUpdateList();
 
 	/**
+	 * Append an SQL fragment to the open file handle.
+	 *
+	 * @param $filename String: File name to open
+	 */
+	public function copyFile( $filename ) {
+		$this->db->sourceFile( $filename, false, false, false,
+			array( $this, 'appendLine' )
+		);
+	}
+
+	/**
+	 * Append a line to the open filehandle.  The line is assumed to
+	 * be a complete SQL statement.
+	 *
+	 * @parm $line String: text to append to the file
+	 * @returns true to skip actually executing the file
+	 */
+	public function appendLine( $line ) {
+		$line = rtrim( $line ) . ";\n";
+		if( fwrite( $this->fileHandle, $line ) === false ) {
+			throw new MWException( "trouble writing file" );
+		}
+		return false;
+	}
+
+	/**
 	 * Applies a SQL patch
 	 * @param $path String Path to the patch file
 	 * @param $isFullPath Boolean Whether to treat $path as a relative or not
 	 */
 	protected function applyPatch( $path, $isFullPath = false ) {
-		if ( $isFullPath ) {
-			$this->db->sourceFile( $path );
+		if ( $this->skipSchema ) {
+			$this->output( "...skipping schema change (Applying the $path patch).\n" );
+			return false;
+		}
+		if ( !$isFullPath ) {
+			$path = $this->db->patchPath( $path );
+		}
+		if( $this->fileHandle !== null ) {
+			$this->copyFile( $path, $this->fileHandle );
 		} else {
-			$this->db->sourceFile( $this->db->patchPath( $path ) );
+			$this->db->sourceFile( $path );
 		}
 	}
 
@@ -482,6 +569,10 @@ abstract class DatabaseUpdater {
 		if ( $this->db->tableExists( $name, __METHOD__ ) ) {
 			$this->output( "...$name table already exists.\n" );
 		} else {
+			if ( $this->skipSchema ) {
+				$this->output( "...skipping schema change (Creating $name table).\n" );
+				return false;
+			}
 			$this->output( "Creating $name table..." );
 			$this->applyPatch( $patch, $fullpath );
 			$this->output( "done.\n" );
@@ -501,6 +592,10 @@ abstract class DatabaseUpdater {
 		} elseif ( $this->db->fieldExists( $table, $field, __METHOD__ ) ) {
 			$this->output( "...have $field field in $table table.\n" );
 		} else {
+			if ( $this->skipSchema ) {
+				$this->output( "...skipping schema change (adding the '$field' field to the '$table' table).\n" );
+				return false;
+			}
 			$this->output( "Adding $field field to table $table..." );
 			$this->applyPatch( $patch, $fullpath );
 			$this->output( "done.\n" );
@@ -515,9 +610,16 @@ abstract class DatabaseUpdater {
 	 * @param $fullpath Boolean Whether to treat $patch path as a relative or not
 	 */
 	protected function addIndex( $table, $index, $patch, $fullpath = false ) {
-		if ( $this->db->indexExists( $table, $index, __METHOD__ ) ) {
+		if ( !$this->db->tableExists( $table, __METHOD__ ) ) {
+			$this->output( "...skipping: '$table' table doesn't exist yet.\n" );
+			return false;
+		} else if ( $this->db->indexExists( $table, $index, __METHOD__ ) ) {
 			$this->output( "...index $index already set on $table table.\n" );
 		} else {
+			if ( $this->skipSchema ) {
+				$this->output( "...skipping schema change (adding the '$index' index to the '$table' table).\n" );
+				return false;
+			}
 			$this->output( "Adding index $index to table $table... " );
 			$this->applyPatch( $patch, $fullpath );
 			$this->output( "done.\n" );
@@ -533,7 +635,14 @@ abstract class DatabaseUpdater {
 	 * @param $fullpath Boolean Whether to treat $patch path as a relative or not
 	 */
 	protected function dropField( $table, $field, $patch, $fullpath = false ) {
-		if ( $this->db->fieldExists( $table, $field, __METHOD__ ) ) {
+		if ( !$this->db->tableExists( $table, __METHOD__ ) ) {
+			$this->output( "...skipping: '$table' table doesn't exist yet.\n" );
+			return false;
+		} else if ( $this->db->fieldExists( $table, $field, __METHOD__ ) ) {
+			if ( $this->skipSchema ) {
+				$this->output( "...skipping schema change (dropping the '$field' field from the '$table' table).\n" );
+				return false;
+			}
 			$this->output( "Table $table contains $field field. Dropping... " );
 			$this->applyPatch( $patch, $fullpath );
 			$this->output( "done.\n" );
@@ -551,7 +660,14 @@ abstract class DatabaseUpdater {
 	 * @param $fullpath Boolean: Whether to treat $patch path as a relative or not
 	 */
 	protected function dropIndex( $table, $index, $patch, $fullpath = false ) {
-		if ( $this->db->indexExists( $table, $index, __METHOD__ ) ) {
+		if ( !$this->db->tableExists( $table, __METHOD__ ) ) {
+			$this->output( "...skipping: '$table' table doesn't exist yet.\n" );
+			return false;
+		} else if ( $this->db->indexExists( $table, $index, __METHOD__ ) ) {
+			if ( $this->skipSchema ) {
+				$this->output( "...skipping schema change (dropping the '$index' index from the '$table' table).\n" );
+				return false;
+			}
 			$this->output( "Dropping $index index from table $table... " );
 			$this->applyPatch( $patch, $fullpath );
 			$this->output( "done.\n" );
@@ -567,6 +683,10 @@ abstract class DatabaseUpdater {
 	 */
 	protected function dropTable( $table, $patch, $fullpath = false ) {
 		if ( $this->db->tableExists( $table, __METHOD__ ) ) {
+			if ( $this->skipSchema ) {
+				$this->output( "...skipping schema change (dropping the '$table' table).\n" );
+				return false;
+			}
 			$this->output( "Dropping table $table... " );
 			$this->applyPatch( $patch, $fullpath );
 			$this->output( "done.\n" );
@@ -592,6 +712,10 @@ abstract class DatabaseUpdater {
 		} elseif( $this->updateRowExists( $updateKey ) ) {
 			$this->output( "...$field in table $table already modified by patch $patch.\n" );
 		} else {
+			if ( $this->skipSchema ) {
+				$this->output( "...skipping schema change (modifying the '$field' field to the '$table' table).\n" );
+				return false;
+			}
 			$this->output( "Modifying $field field of table $table..." );
 			$this->applyPatch( $patch, $fullpath );
 			$this->insertUpdateRow( $updateKey );
@@ -633,18 +757,20 @@ abstract class DatabaseUpdater {
 	 * Sets the number of active users in the site_stats table
 	 */
 	protected function doActiveUsersInit() {
-		$activeUsers = $this->db->selectField( 'site_stats', 'ss_active_users', false, __METHOD__ );
-		if ( $activeUsers == -1 ) {
-			$activeUsers = $this->db->selectField( 'recentchanges',
-				'COUNT( DISTINCT rc_user_text )',
-				array( 'rc_user != 0', 'rc_bot' => 0, "rc_log_type != 'newusers'" ), __METHOD__
-			);
-			$this->db->update( 'site_stats',
-				array( 'ss_active_users' => intval( $activeUsers ) ),
-				array( 'ss_row_id' => 1 ), __METHOD__, array( 'LIMIT' => 1 )
-			);
+		if ( $this->db->fieldExists( 'site_stats', 'ss_active_users', __METHOD__ ) ) {
+			$activeUsers = $this->db->selectField( 'site_stats', 'ss_active_users', false, __METHOD__ );
+			if ( $activeUsers == -1 ) {
+				$activeUsers = $this->db->selectField( 'recentchanges',
+					'COUNT( DISTINCT rc_user_text )',
+					array( 'rc_user != 0', 'rc_bot' => 0, "rc_log_type != 'newusers'" ), __METHOD__
+				);
+				$this->db->update( 'site_stats',
+					array( 'ss_active_users' => intval( $activeUsers ) ),
+					array( 'ss_row_id' => 1 ), __METHOD__, array( 'LIMIT' => 1 )
+				);
+				$this->output( "...ss_active_users user count set...\n" );
+			}
 		}
-		$this->output( "...ss_active_users user count set...\n" );
 	}
 
 	/**
@@ -652,14 +778,18 @@ abstract class DatabaseUpdater {
 	 */
 	protected function doLogUsertextPopulation() {
 		if ( !$this->updateRowExists( 'populate log_usertext' ) ) {
-			$this->output(
-			"Populating log_user_text field, printing progress markers. For large\n" .
-			"databases, you may want to hit Ctrl-C and do this manually with\n" .
-			"maintenance/populateLogUsertext.php.\n" );
+			if ( !$this->db->fieldExists( 'logging', 'log_user_text' ) ) {
+				$this->output('...skipping populating log_user_text field');
+			} else {
+				$this->output(
+					"Populating log_user_text field, printing progress markers. For large\n" .
+					"databases, you may want to hit Ctrl-C and do this manually with\n" .
+					"maintenance/populateLogUsertext.php.\n" );
 
-			$task = $this->maintenance->runChild( 'PopulateLogUsertext' );
-			$task->execute();
-			$this->output( "done.\n" );
+				$task = $this->maintenance->runChild( 'PopulateLogUsertext' );
+				$task->execute();
+				$this->output( "done.\n" );
+			}
 		}
 	}
 
@@ -698,20 +828,22 @@ abstract class DatabaseUpdater {
 	 */
 	protected function doCollationUpdate() {
 		global $wgCategoryCollation;
-		if ( $this->db->selectField(
-			'categorylinks',
-			'COUNT(*)',
-			'cl_collation != ' . $this->db->addQuotes( $wgCategoryCollation ),
-			__METHOD__
-		) == 0 ) {
-			$this->output( "...collations up-to-date.\n" );
-			return;
-		}
+		if ( $this->db->fieldExists( 'categorylinks', 'cl_collation', __METHOD__ ) ) {
+			if ( $this->db->selectField(
+					'categorylinks',
+					'COUNT(*)',
+					'cl_collation != ' . $this->db->addQuotes( $wgCategoryCollation ),
+					__METHOD__
+				) == 0 ) {
+				$this->output( "...collations up-to-date.\n" );
+				return;
+			}
 
-		$this->output( "Updating category collations..." );
-		$task = $this->maintenance->runChild( 'UpdateCollation' );
-		$task->execute();
-		$this->output( "...done.\n" );
+			$this->output( "Updating category collations..." );
+			$task = $this->maintenance->runChild( 'UpdateCollation' );
+			$task->execute();
+			$this->output( "...done.\n" );
+		}
 	}
 
 	/**
