@@ -25,6 +25,9 @@ upgrade PHP if you have not done so prior to upgrading MediaWiki.
 * Removed f-prot support from $wgAntivirusSetup.
 
 === New features in 1.20 ===
+* (bug 38110) It is now possible to run update.php even if schema updates are not
+  allowed by $wgAllowSchemaUpdates.  Schema changes can be run
+  seperately.  See the file UPGRADE for more information.
 * Added TitleIsAlwaysKnown hook which gets called when determining if a page exists.
 * Added NamespaceIsMovable hook which gets called when determining if pages in a
   certain namespace can be moved.
