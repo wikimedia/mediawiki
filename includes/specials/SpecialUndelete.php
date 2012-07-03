@@ -321,11 +321,14 @@ class PageArchive {
 	 * @param $comment String
 	 * @param $fileVersions Array
 	 * @param $unsuppress Boolean
+	 * @param $user User doing the action, or null to use $wgUser
 	 *
 	 * @return array(number of file revisions restored, number of image revisions restored, log message)
 	 * on success, false on failure
 	 */
-	function undelete( $timestamps, $comment = '', $fileVersions = array(), $unsuppress = false ) {
+	function undelete( $timestamps, $comment = '', $fileVersions = array(), $unsuppress = false, User $user = null ) {
+		global $wgContLang, $wgUser;
+
 		// If both the set of text revisions and file revisions are empty,
 		// restore everything. Otherwise, just restore the requested items.
 		$restoreAll = empty( $timestamps ) && empty( $fileVersions );
@@ -354,8 +357,6 @@ class PageArchive {
 		}
 
 		// Touch the log!
-		global $wgContLang;
-		$log = new LogPage( 'delete' );
 
 		if( $textRestored && $filesRestored ) {
 			$reason = wfMsgExt( 'undeletedrevisions-files', array( 'content', 'parsemag' ),
@@ -375,7 +376,17 @@ class PageArchive {
 		if( trim( $comment ) != '' ) {
 			$reason .= wfMsgForContent( 'colon-separator' ) . $comment;
 		}
-		$log->addEntry( 'restore', $this->title, $reason );
+
+		if ( $user === null ) {
+			$user = $wgUser;
+		}
+
+		$logEntry = new ManualLogEntry( 'delete', 'restore' );
+		$logEntry->setPerformer( $user );
+		$logEntry->setTarget( $this->title );
+		$logEntry->setComment( $reason );
+		$logid = $logEntry->insert();
+		$logEntry->publish( $logid );
 
 		return array( $textRestored, $filesRestored, $reason );
 	}
@@ -1387,7 +1398,9 @@ class SpecialUndelete extends SpecialPage {
 			$this->mTargetTimestamp,
 			$this->mComment,
 			$this->mFileVersions,
-			$this->mUnsuppress );
+			$this->mUnsuppress,
+			$this->getUser()
+		);
 
 		if( is_array( $ok ) ) {
 			if ( $ok[1] ) { // Undeleted file count
