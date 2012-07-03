@@ -3802,6 +3802,8 @@ MediaWiki是基於使用目的而加以發佈，然而不負任何擔保責任�
 'api-error-empty-file' => '您提交的檔案是空的。',
 'api-error-emptypage' => '不許創建沒有內容的新頁面。',
 'api-error-fetchfileerror' => '內部錯誤：獲取文件時發生錯誤。',
+'api-error-fileexists-forbidden' => '以" $1 "命名的檔案已經存在，並且不能被重寫。',
+'api-error-fileexists-shared-forbidden' => '以" $1 "命名的檔案已經存在於共用檔案儲存庫上，並且不能被重寫。',
 'api-error-file-too-large' => '您提交的檔案太大了。',
 'api-error-filename-tooshort' => '檔案名過短。',
 'api-error-filetype-banned' => '這種類型的檔案是被禁止的。',

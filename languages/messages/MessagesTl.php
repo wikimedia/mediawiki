@@ -492,6 +492,8 @@ Pakiulat ito sa isang [[Special:ListUsers/sysop|tagapangasiwa]], na ibinibigay a
 'cannotdelete' => 'Hindi mabura ang pahina o talaksang "$1".
 Maaaring ibinura na ito ng iba.',
 'cannotdelete-title' => 'Hindi maibura ang pahinang "$1"',
+'delete-hook-aborted' => 'Pinigil ng sungkit ang pagbura.
+Walang ibinigay na paliwanag.',
 'badtitle' => 'Hindi kanais-nais na pamagat',
 'badtitletext' => 'Ang hiniling na pamagat ng pahina ay hindi katanggap-tanggap, wala, o isang may-maling kawing na pamagat na pangugnayang-wika (interwika) o pangugnayang wiki (interwiki).
 Maaaring naglalaman ito ng isa o higit pang mga panitik (karakter) na hindi maaaring gamitin para sa mga pamagat.',
@@ -3811,6 +3813,8 @@ O kaya, maaari mong gamitin ang maginhawang pormularyo sa ibaba. Ang iyong pagpu
 'api-error-empty-file' => 'Walang laman ang ipinasa mong talaksan.',
 'api-error-emptypage' => 'Lumilikha ng bago, hindi pinapayagan ang mga pahinang walang laman.',
 'api-error-fetchfileerror' => 'Panloob na kamalian: may naganap na pagkakamali habang kinukuha ang talaksan.',
+'api-error-fileexists-forbidden' => 'Isang talaksan na may pangalang "$1" ang umiiral na, at hindi maaaring patungan ng muling pagsusulat.',
+'api-error-fileexists-shared-forbidden' => 'Isang talaksang may pangalang "$1" ang umiiral na sa loob ng repository ng pinagsasaluhang talaksan, at hindi maaaring patungan ng muling pagsusulat.',
 'api-error-file-too-large' => 'Napakalaki ng talaksang ipinasa mo.',
 'api-error-filename-tooshort' => 'Napakaiksi ng pangalan ng talaksan.',
 'api-error-filetype-banned' => 'Ipinagbabawal ang ganitong uri ng talaksan.',

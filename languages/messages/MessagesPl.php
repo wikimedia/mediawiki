@@ -293,7 +293,7 @@ $messages = array(
 # User preference toggles
 'tog-underline' => 'Podkreślenie linków',
 'tog-justify' => 'Wyrównuj tekst w akapitach do obu marginesów',
-'tog-hideminor' => 'Ukryj drobne modyfikacje w ostatnich zmianach',
+'tog-hideminor' => 'Ukryj drobne edycje w ostatnich zmianach',
 'tog-hidepatrolled' => 'Ukryj sprawdzone edycje w ostatnich zmianach',
 'tog-newpageshidepatrolled' => 'Ukryj sprawdzone strony na liście nowych stron',
 'tog-extendwatchlist' => 'Pokaż na liście obserwowanych wszystkie zmiany, nie tylko ostatnie',
@@ -309,12 +309,12 @@ $messages = array(
 'tog-watchdefault' => 'Dodaj do obserwowanych strony, które edytuję',
 'tog-watchmoves' => 'Dodaj do obserwowanych strony, które przenoszę',
 'tog-watchdeletion' => 'Dodaj do obserwowanych strony, które usuwam',
-'tog-minordefault' => 'Wszystkie zmiany oznaczaj domyślnie jako drobne',
+'tog-minordefault' => 'Wszystkie edycje domyślnie oznaczaj jako drobne',
 'tog-previewontop' => 'Pokazuj podgląd powyżej obszaru edycji',
 'tog-previewonfirst' => 'Pokazuj podgląd strony podczas pierwszej edycji',
 'tog-nocache' => 'Wyłącz pamięć podręczną przeglądarki',
-'tog-enotifwatchlistpages' => 'Wyślij do mnie e‐mail, jeśli strona z listy moich obserwowanych zostanie zmodyfikowana',
-'tog-enotifusertalkpages' => 'Wyślij do mnie e‐mail, jeśli moja strona dyskusji zostanie zmodyfikowana',
+'tog-enotifwatchlistpages' => 'Wyślij do mnie e‐mail kiedy strona z mojej listy obserwowanych zostanie zmodyfikowana',
+'tog-enotifusertalkpages' => 'Wyślij do mnie e‐mail kiedy moja strona dyskusji zostanie zmodyfikowana',
 'tog-enotifminoredits' => 'Wyślij e‐mail także w przypadku drobnych zmian na stronach',
 'tog-enotifrevealaddr' => 'Nie ukrywaj mojego adresu e‐mail w powiadomieniach',
 'tog-shownumberswatching' => 'Pokaż liczbę użytkowników obserwujących stronę',
@@ -327,7 +327,7 @@ $messages = array(
 'tog-forceeditsummary' => 'Informuj o niewypełnieniu opisu zmian',
 'tog-watchlisthideown' => 'Ukryj moje edycje na liście obserwowanych',
 'tog-watchlisthidebots' => 'Ukryj edycje botów na liście obserwowanych',
-'tog-watchlisthideminor' => 'Ukrywaj drobne zmiany na liście obserwowanych',
+'tog-watchlisthideminor' => 'Ukryj drobne zmiany na liście obserwowanych',
 'tog-watchlisthideliu' => 'Ukryj edycje zalogowanych użytkowników na liście obserwowanych',
 'tog-watchlisthideanons' => 'Ukryj edycje anonimowych użytkowników na liście obserwowanych',
 'tog-watchlisthidepatrolled' => 'Ukryj sprawdzone edycje na liście obserwowanych',
@@ -648,6 +648,8 @@ Można zgłosić ten fakt [[Special:ListUsers/sysop|administratorowi]], podając
 'cannotdelete' => 'Strona lub plik „$1” nie mogą zostać usunięte.
 Możliwe, że zostały już usunięte przez kogoś innego.',
 'cannotdelete-title' => 'Nie można usunąć strony „$1”.',
+'delete-hook-aborted' => 'Usuwanie przerwane przez zaczep.
+Przyczyna nieokreślona.',
 'badtitle' => 'Niepoprawny tytuł',
 'badtitletext' => 'Podano niepoprawny tytuł strony. Prawdopodobnie jest pusty lub zawiera znaki, których użycie jest zabronione.',
 'perfcached' => 'Poniższe dane są kopią z pamięci podręcznej i mogą być nieaktualne. Maksymalnie {{PLURAL:$1|jeden wynik jest|$1 wyniki są|$1 wyników jest}} w pamięci podręcznej.',
@@ -681,6 +683,8 @@ Uzasadnienie blokady: ''$2''.",
 Administrator blokujący go podał następujący powód "\'\'$3\'\'".',
 'invalidtitle-knownnamespace' => 'Nieprawidłowa nazwa w obszarze nazw "$2" o treści "$3"',
 'invalidtitle-unknownnamespace' => 'Nieprawidłowa nazwa z nieznaną liczbą przestrzeni nazw  $1  o treści "$2"',
+'exception-nologin' => 'Nie jesteś zalogowany/a',
+'exception-nologin-text' => 'Ta strona lub akcja wymaga bycia zalogowanym na tej wiki.',
 
 # Virus scanner
 'virus-badscanner' => "Zła konfiguracja – nieznany skaner antywirusowy ''$1''",
@@ -3062,6 +3066,7 @@ Najprawdopodobniej zostało to spowodowane przez link do zewnętrznej strony int
 'spambot_username' => 'MediaWiki – usuwanie spamu',
 'spam_reverting' => 'Przywracanie ostatniej wersji nie zawierającej linków do $1',
 'spam_blanking' => 'Wszystkie wersje zawierały odnośniki do $1. Czyszczenie strony.',
+'spam_deleting' => 'Wszystkie wersje zawierały linki do $1, usuwam.',
 
 # Info page
 'pageinfo-title' => 'Informacje o „$1“',
@@ -3995,6 +4000,8 @@ W przeciwnym wypadku można użyć prostego formularza poniżej. Komentarz zosta
 'api-error-empty-file' => 'Przesłany przez Ciebie plik jest pusty.',
 'api-error-emptypage' => 'Tworzenie nowych, pustych stron jest niedozwolone.',
 'api-error-fetchfileerror' => 'Błąd wewnętrzny – wystąpił błąd w trakcie pobierania pliku.',
+'api-error-fileexists-forbidden' => 'Plik o nazwie "$1" już istnieje i nie może być nadpisany.',
+'api-error-fileexists-shared-forbidden' => 'Plik o nazwie "$1" już istnieje we współdzielonym repozytorium i nie może być nadpisany.',
 'api-error-file-too-large' => 'Przesłany przez Ciebie plik jest zbyt duży.',
 'api-error-filename-tooshort' => 'Nazwa pliku jest zbyt krótka.',
 'api-error-filetype-banned' => 'Zabroniony format pliku.',
@@ -4033,4 +4040,6 @@ W przeciwnym wypadku można użyć prostego formularza poniżej. Komentarz zosta
 'duration-centuries' => '$1 {{PLURAL:$1|stulecie|stulecia|stuleci}}',
 'duration-millennia' => '$1 {{PLURAL:$1|tysiąclecie|tysiąclecia|tysiącleci}}',
 
+# Unknown messages
+'lockmanager-fail-svr-acquire' => 'Nie udało się uzyskać blokady na serwerze $1.',
 );

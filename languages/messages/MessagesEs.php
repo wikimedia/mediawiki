@@ -7,6 +7,7 @@
  * @ingroup Language
  * @file
  *
+ * @author -jem-
  * @author Aleator
  * @author Alhen
  * @author Alpertron
@@ -768,7 +769,7 @@ No olvides personalizar [[Special:Preferences|tus preferencias]].',
 'notloggedin' => 'No has iniciado sesión',
 'nologin' => '¿No tienes una cuenta? $1.',
 'nologinlink' => 'Crear una cuenta',
-'createaccount' => 'Crear cuenta',
+'createaccount' => 'Crear una cuenta',
 'gotaccount' => '¿Ya tienes una cuenta? $1.',
 'gotaccountlink' => 'Entrar',
 'userlogin-resetlink' => '¿Olvidaste tus datos de acceso?',

@@ -288,7 +288,7 @@ $messages = array(
 'tog-hidepatrolled' => 'Skryť strážené úpravy v Posledných úpravách',
 'tog-newpageshidepatrolled' => 'Skryť strážené stránky zo zoznamu nových stránok',
 'tog-extendwatchlist' => 'Rozšíriť zoznam sledovaných, aby zobrazoval všetky zmeny, nie len posledné',
-'tog-usenewrc' => 'Použiť rozšírené zobrazenie posledných úprav (vyžaduje JavaScript)',
+'tog-usenewrc' => 'Zoskupiť zmeny v posledných úpravách a zoznamoch sledovaných (vyžaduje JavaScript)',
 'tog-numberheadings' => 'Automaticky číslovať nadpisy',
 'tog-showtoolbar' => 'Zobraziť panel nástrojov úprav',
 'tog-editondblclick' => 'Upravovať stránky po dvojitom kliknutí (JavaScript)',
@@ -639,6 +639,8 @@ Oznámte to prosím [[Special:ListUsers/sysop|správcovi]] a uveďte URL.',
 'cannotdelete' => 'Nebolo možné zmazať stránku alebo súbor „$1“.
 Možno ju už zmazal nieto iný.',
 'cannotdelete-title' => 'Nemôžete zmazať stránku "$1"',
+'delete-hook-aborted' => 'Zmazanie zrušila prídavná funkcia (prípojný bod syntaktického analyzátora).
+Neudala vysvetlenie.',
 'badtitle' => 'Neplatný nadpis',
 'badtitletext' => 'Požadovaný nadpis bol neplatný, nezadaný, alebo nesprávne odkazovaný z inej jazykovej verzie {{GRAMMAR:genitív|{{SITENAME}}}}. Mohol tiež obsahovať jeden alebo viac znakov, ktoré nie je možné použiť v nadpisoch.',
 'perfcached' => 'Nasledujúce údaje pochádzajú z vyrovnávacej pamäte a nemusia byť úplne aktuálne. Vo vyrovnávacej pamäti {{PLURAL:$1|je dostupný|sú dostupné|je dostupných}} najviac {{PLURAL:$1|jeden výsledok|$1 výsledky|$1 výsledkov}}.',
@@ -670,7 +672,8 @@ Udaný dôvod: ''$2''.",
 Správca, ktorý ho zamkol ponúkol toto vysvetlenie: „$3“.',
 'invalidtitle-knownnamespace' => 'Neplatný názov s menným priestorom „$2“ a textom „$3“',
 'invalidtitle-unknownnamespace' => 'Neplatný názov s neznámym číslom menného priestoru „$1“ a textom „$2“',
-'exception-nologin' => 'Nie ste prihlásený/á',
+'exception-nologin' => 'Nie ste prihlásený',
+'exception-nologin-text' => 'Táto stránka alebo operácia vyžaduje, aby ste boli na tejto wiki prihlásení.',
 
 # Virus scanner
 'virus-badscanner' => "Chybná konfigurácia: neznámy antivírus: ''$1''",
@@ -2131,7 +2134,7 @@ na ktorý/-ého chcete aplikovať túto funkciu.',
 Môžete zúžiť rozsah, ak zvolíte typ záznamu, používateľské meno alebo dotyčnú stránku (záleží na veľkosti písmen).',
 'logempty' => 'V zázname neboli nájdené zodpovedajúce položky.',
 'log-title-wildcard' => 'Hľadať názvy začínajúce týmto textom',
-'showhideselectedlogentries' => 'Zobraziť/skryť vybraté položky denníka',
+'showhideselectedlogentries' => 'Zobraziť/skryť vybraté položky záznamu',
 
 # Special:AllPages
 'allpages' => 'Všetky stránky',
@@ -3044,6 +3047,7 @@ Pravdepodobne to spôsobil odkaz na externú internetovú lokalitu, ktorá sa na
 'spambot_username' => 'MediaWiki čistenie spamu',
 'spam_reverting' => 'Vraciam poslednú verziu, ktorá neobsahuje odkazy na $1',
 'spam_blanking' => 'Všetky revízie obsahovali odkaz na $1, odstraňujem obsah',
+'spam_deleting' => 'Všetky revízie obsahovali odkaz na $1, odstraňuje sa',
 
 # Info page
 'pageinfo-title' => 'Informácie o „$1“',
@@ -3925,7 +3929,8 @@ V opačnom prípade môžete použiť zjednodušený formulár nižšie. Váš k
 'api-error-empty-file' => 'Súbor, ktorý ste poslali bol prázdny.',
 'api-error-emptypage' => 'Vytváranie nových, prázdnych stránok nie je dovolené.',
 'api-error-fetchfileerror' => 'Vnútorná chyba: Niečo pokazilo počas sťahovania súboru.',
-'api-error-fileexists-forbidden' => 'Súbor s názvom "$1" už existuje, a nemôže byť prepísaný.',
+'api-error-fileexists-forbidden' => 'Súbor s názvom „$1“ už existuje a nie je možné prepísať ho.',
+'api-error-fileexists-shared-forbidden' => 'Súbor s názvom „$1“ už neexistuje v repozitári zdieľaných súborov a nie je možné prepísať ho.',
 'api-error-file-too-large' => 'Súbor, ktorý ste poslali bol príliš veľký.',
 'api-error-filename-tooshort' => 'Názov súboru je príliš krátky.',
 'api-error-filetype-banned' => 'Tento typ súboru je zakázaný.',
@@ -3964,4 +3969,6 @@ V opačnom prípade môžete použiť zjednodušený formulár nižšie. Váš k
 'duration-centuries' => '$1 {{PLURAL:$1|storočie|storočia|storočí}}',
 'duration-millennia' => '$1 {{PLURAL:$1|tisícročie|tisícročia|tisícročí}}',
 
+# Unknown messages
+'lockmanager-fail-svr-acquire' => 'Nepodarilo sa získať zámky na serveri $1.',
 );

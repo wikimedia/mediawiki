@@ -868,7 +868,7 @@ $2
 'yourtext' => 'તમારું લખાણ',
 'storedversion' => 'રક્ષિત પુનરાવર્તન',
 'nonunicodebrowser' => "'''ચેતવણી: તમારું બ્રાઉઝર યુનિકોડ ઉકેલવા સક્ષમ નથી.'''
-અહીં તમે સુરક્ષીત રીતે ફેરફરો નહીં કરી શકો: ASCII સિવાયના અક્ષરો ફેરફાર ચોકઠામાં હેક્સાડેસિમલ સ્વરૂપે દેખાશે.",
+અહીં તમે સુરક્ષિત રીતે ફેરફારો નહીં કરી શકો: ASCII સિવાયના અક્ષરો સંપાદન ચોકઠામાં હેક્સાડેસિમલ સ્વરૂપે દેખાશે.",
 'editingold' => "'''ચેતવણી: તમે કાલાતિત ફેરફારો ને બદલી રહ્યાં છો.'''
 જો તમે તેને સાચવશો , વચમાં થયેલ ફેરફારો સાચવી ન શકાય.",
 'yourdiff' => 'ભેદ',
@@ -890,9 +890,9 @@ $2
 તમારા સંદર્ભ માટે તાજેતરની લોગ યાદિ આપી છે:",
 'semiprotectedpagewarning' => "'''નોંધ : આ પાના પર સંરક્ષણ વિકલ્પ સક્રીય છે અને માત્ર પ્રબંધકો જ આમાં ફેરફાર કરી શકે.'''
 તમારા સંદર્ભ માટે તાજેતરની લોગ યાદિ આપી છે:",
-'cascadeprotectedwarning' => "'''ચેતવણી:''' આ પાનું સંરક્ષીત છે.  પ્રબંધન અધિકાર ધરાવતા સભ્યોજ આમાં ફેરફાર કરી શકે છે. આ પાનાને નીચેના પગથિયામય સંરક્ષણ{{PLURAL:$1|page|pages}} દ્વારા સુરક્ષીત છે.",
-'titleprotectedwarning' => "'''ચેતવણી:  આ પાનું સંરક્ષીત છે  આની રચના માટે [[Special:ListGroupRights|specific rights]] ની જરૂર છે.'''
-તે સંબંધી તાજેતરની ફેરફાર યાદિ તમારા સંદર્ભ માટે આપેલી છે:",
+'cascadeprotectedwarning' => "'''ચેતવણી:''' આ પાનું સંરક્ષિત છે. પ્રબંધન અધિકાર ધરાવતા સભ્યો જ આમાં ફેરફાર કરી શકે છે. આ પાનું નીચેના પગથિયામય સંરક્ષણ{{PLURAL:$1|પાના|પાનાઓ}} દ્વારા સુરક્ષિત છે.",
+'titleprotectedwarning' => "'''ચેતવણી: આ પાનું સંરક્ષિત છે આથી આની રચના માટે [[Special:ListGroupRights|વિશેષ અધિકારો]]ની જરૂર છે.'''
+તે સંબંધી તાજેતરની ફેરફાર યાદી તમારા સંદર્ભ માટે આપેલી છે:",
 'templatesused' => 'આ પાનામાં વપરાયેલ {{PLURAL:$1|ઢાંચો|ઢાંચાઓ}}:',
 'templatesusedpreview' => 'આ પૂર્વાવલોકનમાં વપરાયેલ {{PLURAL:$1|ઢાંચો|ઢાંચાઓ}}:',
 'templatesusedsection' => 'આ ખંડ માં વપરાયેલા {{PLURAL:$1|ઢાંચો|ઢાંચા}} :',
@@ -1409,7 +1409,7 @@ HTML નાકું ચકાસો',
 'right-ipblock-exempt' => 'IP દ્વારા, સ્વયં ચાલિત રીતે અને સમૂહ રોકને અવગનીને આગળ વધો',
 'right-proxyunbannable' => 'અવેજીના અવયંચાલિત ખંડોને ટાળો',
 'right-unblockself' => 'તેમને જાતે અપ્રતિબંધિત થવા દો',
-'right-protect' => 'સંરક્ષણ સ્તર બદલો અને સંરક્ષીત પાનામાં ફેરફાર કરો.',
+'right-protect' => 'સંરક્ષણ સ્તર બદલો અને સંરક્ષિત પાનાઓમાં ફેરફાર કરો.',
 'right-editprotected' => 'સંરક્ષિત પાનામાં ફેરફાર કરો (પગથિયામય સુરક્ષા વગર)',
 'right-editinterface' => 'સભ્ય સંભાષણ પટલમાં ફેરફાર કરો',
 'right-editusercssjs' => 'અન્ય સભ્યોની CSS અને JavaScript ફાઇલમાં ફેરફાર કરો',
@@ -1959,8 +1959,8 @@ https://www.mediawiki.org/wiki/Manual:Image_Authorization. જુઓ',
 'protectedpages-indef' => 'ફક્ત અનિશ્ચિત સુરક્ષા ધરાવતા પાના',
 'protectedpages-cascade' => 'માત્ર પગથિયામય સુરક્ષા વાળા પગ',
 'protectedpagestext' => 'નીચેના પાના કોઈ ફેરફાર કે હટાવવા થી સુરકક્ષીત કરાયા છે',
-'protectedpagesempty' => 'આ વિકલ્પો દ્વારા કોઈ પાના સુરક્ષીત કરાયા નથી',
-'protectedtitles' => 'સંરક્ષીત શીર્ષકો',
+'protectedpagesempty' => 'આ વિકલ્પો દ્વારા કોઈ પાના સુરક્ષિત કરાયા નથી.',
+'protectedtitles' => 'સંરક્ષિત શીર્ષકો',
 'protectedtitlestext' => 'આ શીર્ષકો રચના માટે આરક્ષીત છે',
 'protectedtitlesempty' => 'આ પરિબળો દ્વારા કોઇ પણ શીર્ષકો સચવાયા નથી.',
 'listusers' => 'સભ્યોની યાદી',
@@ -2325,8 +2325,8 @@ Deleting it may disrupt database operations of {{SITENAME}};',
 'restriction-upload' => 'ફાઇલ ચઢાવો',
 
 # Restriction levels
-'restriction-level-sysop' => 'સંપૂર્ણા સંરક્ષીત',
-'restriction-level-autoconfirmed' => 'અર્ધ સંરક્ષીત',
+'restriction-level-sysop' => 'સંપૂર્ણ સંરક્ષિત',
+'restriction-level-autoconfirmed' => 'અર્ધ સંરક્ષિત',
 'restriction-level-all' => 'કોઈ પણ સ્તર',
 
 # Undelete
@@ -3196,7 +3196,7 @@ To perform a selective restoration, check the boxes corresponding to the revisio
 'exif-compression-3' => 'CCITT સમૂહ 3 ફેક્સ ઍનકોડિંગ',
 'exif-compression-4' => 'CCITT સમૂહ 3 ફેક્સ ઍનકોડિંગ',
 
-'exif-copyrighted-true' => 'પ્રકશન અધિકારથી સુરક્ષીત',
+'exif-copyrighted-true' => 'પ્રકાશન અધિકારથી સુરક્ષિત',
 'exif-copyrighted-false' => 'સાર્વજનિક ડોમેન',
 
 'exif-unknowndate' => 'અજ્ઞાત તારીખ',

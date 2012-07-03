@@ -101,11 +101,15 @@ $messages = array(
 'faqpage' => 'Project:FAQ',
 
 # Vector skin
+'vector-action-addsection' => 'Vassõn teema',
 'vector-action-delete' => 'Pühi',
 'vector-action-move' => 'Liikut',
 'vector-action-protect' => 'Varjaa',
+'vector-view-create' => 'Loo cülci',
 'vector-view-edit' => 'Muuttaa',
+'vector-view-history' => 'Istori',
 'vector-view-view' => 'Lukõa',
+'vector-view-viewsource' => 'Lähtekoodi',
 
 'errorpagetitle' => 'Vika',
 'returnto' => 'Mee takaz cüľľelle $1.',
@@ -153,8 +157,10 @@ $messages = array(
 'edithelp' => 'Muutuzavid',
 'edithelppage' => 'Help:Kui muuttaa cülciä',
 'helppage' => 'Help:Sisälto',
-'mainpage' => 'Esitšültši',
+'mainpage' => 'Esicülci',
 'mainpage-description' => 'Esicülci',
+'portal' => 'Foorum',
+'portal-url' => 'Project:Foorum',
 'privacy' => 'Salaštrahuituz',
 'privacypage' => 'Project:Salaštrahuituz',
 
@@ -167,6 +173,7 @@ $messages = array(
 'newmessagesdifflink' => 'viimõin muutuz',
 'editsection' => 'muuttaa',
 'editold' => 'muuttaa',
+'viewsourceold' => 'lähtekoodi',
 'editlink' => 'muuttaa',
 'viewsourcelink' => 'lähtekoodi',
 'editsectionhint' => 'Muutta alajakkoa $1',
@@ -183,7 +190,7 @@ $messages = array(
 'nstab-main' => 'Artikkeli',
 'nstab-user' => 'Cäüttijäcülci',
 'nstab-special' => 'Osoobennoi cülci',
-'nstab-project' => 'Projektitšültši',
+'nstab-project' => 'Projekticülci',
 'nstab-image' => 'Faili',
 'nstab-template' => 'Šablooni',
 'nstab-category' => 'Gruppa',
@@ -309,6 +316,7 @@ Võitta loovva cüľľee cirjuttamall alla õlõvasõõ tilaa. Kui että taho lo
 'prevn' => '{{PLURAL:$1|edellinen|$1 entiiss}}',
 'nextn' => '{{PLURAL:$1|$1}} vahtiaava →',
 'viewprevnext' => 'Näüt ($1 {{int:pipe-separator}} $2) ($3)',
+'searchprofile-images' => 'Multimedia',
 'search-result-size' => '$1 ({{PLURAL:$2|1 sõna|$2 sõna}})',
 'search-redirect' => '(mešaituz $1)',
 'search-section' => '(alajako $1)',
@@ -348,6 +356,7 @@ Proovvi lizät etsün alkuu ''all:'', nii ettsü etsib kõikkõõ sisältoo (taa
 'userrights-reason' => 'Süü:',
 
 # Groups
+'group-user' => 'Сäüttijäd',
 'group-sysop' => 'Praviťeľad',
 
 'grouppage-sysop' => '{{ns:project}}:Praviťeľad',
@@ -384,7 +393,8 @@ Proovvi lizät etsün alkuu ''all:'', nii ettsü etsib kõikkõõ sisältoo (taa
 
 # Recent changes linked
 'recentchangeslinked' => 'Sukulaizõd muutussõd.',
-'recentchangeslinked-title' => 'Cüľľelt $1 linkitettüďďe cültšije muutuhsõd.',
+'recentchangeslinked-toolbox' => 'Sukulaizõd muutussõd',
+'recentchangeslinked-title' => 'Cüľľelt $1 linkitettüďďe cülcije muutuhsõd.',
 'recentchangeslinked-summary' => "Kase osoobennoi cülci näütteb muutusõd cülcillä, kummalõõ on seltä cüľľeltä näüteltü.
 Cüľľed, kummad õmad teďďellä [[Special:Watchlist|kattsõspiizgalla]] on cirjuttõnnu '''pimmiässi'''.",
 'recentchangeslinked-page' => 'Cüľľee nimi:',
@@ -392,13 +402,22 @@ Cüľľed, kummad õmad teďďellä [[Special:Watchlist|kattsõspiizgalla]] on c
 
 # Upload
 'upload' => 'Laajõngoit failia ülez',
+'uploadbtn' => 'Laajõngoit failia ülez',
 'uploadlogpage' => 'Faililogi',
+'filedesc' => 'Turvotuz',
 'uploadedimage' => '"[[$1]]" on laajõngoitõttu ülez',
+
+# Special:ListFiles
+'imgfile' => 'faili',
+'listfiles_name' => 'Nimi',
+'listfiles_user' => 'Сäüttijä',
 
 # File description page
 'file-anchor-link' => 'Faili',
 'filehist' => 'Failii istori',
-'filehist-help' => 'Štšolkoittõga Päiväcisla/Celloaika näe miltäin faili õli sell aiga pilkall.',
+'filehist-help' => 'Šcolkoittõga Päiväcisla/Celloaika näe miltäin faili õli sell aiga pilkall.',
+'filehist-deleteone' => 'pühi',
+'filehist-revert' => 'kummut',
 'filehist-current' => 'nücüin',
 'filehist-datetime' => 'Päiväсisla/Сelloaika',
 'filehist-thumb' => 'Peenikuva',
@@ -423,6 +442,7 @@ Cüľľed, kummad õmad teďďellä [[Special:Watchlist|kattsõspiizgalla]] on c
 
 # Statistics
 'statistics' => 'Staťisťikka',
+'statistics-pages' => 'Cülcid',
 
 # Miscellaneous special pages
 'nbytes' => '$1 {{PLURAL:$1|baitti|baittia}}',
@@ -451,6 +471,9 @@ Cüľľed, kummad õmad teďďellä [[Special:Watchlist|kattsõspiizgalla]] on c
 'allarticles' => 'Kõikõd cüľľed',
 'allpagessubmit' => 'Mee',
 
+# Special:Categories
+'categories' => 'Gruppad',
+
 # Special:DeletedContributions
 'sp-deletedcontributions-contribs' => 'Minu avittamizõd',
 
@@ -464,19 +487,19 @@ Cüľľed, kummad õmad teďďellä [[Special:Watchlist|kattsõspiizgalla]] on c
 'listgrouprights-members' => '(selttsilainspiiska)',
 
 # E-mail user
-'emailuser' => 'Lähettega elektropoštia selle tšäüttijälle',
+'emailuser' => 'Lähettega elektropoštia selle cäüttijälle',
 
 # Watchlist
 'watchlist' => 'Minu kattsõspiiska',
 'mywatchlist' => 'Minu kattsõspiiska',
-'addedwatchtext' => "Tšültši \"[[:\$1]]\" on lisättü Teďďee [[Special:Watchlist|kattsospiizgallõ]].
-Tšültšese ja sene juttutšültšese tehäväd tulõvaizõd muutuhsõd leeväd tšisloitõtud siäll.
-Tšültši leeb tširjutõttu '''pimmiässi''' [[Special:RecentChanges|spiizgall viimeizije muutuhsijõ]].",
-'removedwatchtext' => 'Tšültši "[[:$1]]" on pantu [[Special:Watchlist|teďďee kattsõspiizgalt]] poiz.',
+'addedwatchtext' => "Cülci \"[[:\$1]]\" on lisättü Teďďee [[Special:Watchlist|kattsospiizgallõ]].
+Cülcese ja sene juttutšültšese tehäväd tulõvaizõd muutuhsõd leeväd tšisloitõtud siäll.
+Cülci leeb cirjutõttu '''pimmiässi''' [[Special:RecentChanges|spiizgall viimeizije muutuhsijõ]].",
+'removedwatchtext' => 'Cültši "[[:$1]]" on pantu [[Special:Watchlist|teďďee kattsõspiizgalt]] poiz.',
 'watch' => 'Katso',
-'watchthispage' => 'Katso sitä tšültšiä',
+'watchthispage' => 'Katso sitä cülciä',
 'unwatch' => 'Lõpõt kattsõõmin',
-'watchlist-details' => 'Kattsõspiizgall on {{PLURAL:$1|$1 tšültši|$1 tšültšiä}} (ilma juttutšültšiit).',
+'watchlist-details' => 'Kattsõspiizgall on {{PLURAL:$1|$1 cülci|$1 cülciä}} (ilma juttucülciit).',
 'wlshowlast' => 'Näüt viimeized $1 tunnia vai $2 päivää $3',
 'watchlist-options' => 'Kattsõspiizgaa valimizõd',
 
@@ -485,12 +508,12 @@ Tšültši leeb tširjutõttu '''pimmiässi''' [[Special:RecentChanges|spiizgall
 'unwatching' => 'Kattsõõmizõõ lõpõttõmin…',
 
 # Delete
-'deletepage' => 'Pühi tšültši',
-'confirmdeletetext' => 'Õlõtta pühtšimässä tšüľľee vai failii ja kõigõ sene istorii. Õlka nii üvä, kõvissõga jot tahotta sitä tehä, jot saatta arvoa sledstvijäd jot pühtšimüz on [[{{MediaWiki:Policy-url}}|poolissaa]] mukka.',
+'deletepage' => 'Pühi cülci',
+'confirmdeletetext' => 'Õlõtta pühcimässä cüľľee vai failii ja kõigõ sene istorii. Õlka nii üvä, kõvissõga jot tahotta sitä tehä, jot saatta arvoa sledstvijäd jot pühcimüz on [[{{MediaWiki:Policy-url}}|poolissaa]] mukka.',
 'actioncomplete' => 'Töö tehtü lõppuu',
 'deletedtext' => '"$1" on pühittü.
-Tšüľľellä $2 on spiiska viimeiziss pühtšimühsiiss.',
-'dellogpage' => 'Pühitüd tšüľľed',
+Cüľľellä $2 on spiiska viimeiziss pühcimühsiiss.',
+'dellogpage' => 'Pühitüd cüľľed',
 'deletecomment' => 'Süü',
 'deleteotherreason' => 'Muu vai lisä süü',
 'deletereasonotherlist' => 'Muu süü',
@@ -499,62 +522,70 @@ Tšüľľellä $2 on spiiska viimeiziss pühtšimühsiiss.',
 'rollbacklink' => 'vääntega',
 
 # Protect
-'protectlogpage' => 'Varjõtud tšüľľed',
+'protectlogpage' => 'Varjõtud cüľľed',
 'protectedarticle' => '"[[$1]]" on nüd varjõttu',
-'modifiedarticleprotection' => 'muuti tšüľľee [[$1]] varjauztasoa',
+'modifiedarticleprotection' => 'muuti cüľľee [[$1]] varjauztasoa',
 'protectcomment' => 'Süü',
 'protectexpiry' => 'Lõpub:',
 'protect_expiry_invalid' => 'Lõppuaika eb kõlpa.',
 'protect_expiry_old' => 'Lõppuaika on meneväz.',
-'protect-text' => "Võitta kattsoa ja muuttaa tšüľľee '''$1''' lupoit.",
-'protect-locked-access' => "Että või muuttaa tšüľľee varjauztasoa. All on tšüľľee \"'''\$1'''\" nütšüized varjauztazod:",
-'protect-cascadeon' => 'Kase tšültši on varjõttu, ku on sisällütettü all {{PLURAL:$1|õlõvaa jadgotussi varjõttuhõõ tšültšese|õlõvii jadgotussi varjõttuisõ tšültšiise}}. Võitta muuttaa sene tšüľľee varjuztasoa, mutta se eb vaikuta jadgotõttuu varjuhsiise.',
-'protect-default' => 'Salli kõik tšäüttijäd',
+'protect-text' => "Võitta kattsoa ja muuttaa cüľľee '''$1''' lupoit.",
+'protect-locked-access' => "Että või muuttaa cüľľee varjauztasoa. All on cüľľee \"'''\$1'''\" nücüized varjauztazod:",
+'protect-cascadeon' => 'Kase cülci on varjõttu, ku on sisällütettü all {{PLURAL:$1|õlõvaa jadgotussi varjõttuhõõ cülcese|õlõvii jadgotussi varjõttuisõ cülciise}}. Võitta muuttaa sene cüľľee varjuztasoa, mutta se eb vaikuta jadgotõttuu varjuhsiise.',
+'protect-default' => 'Salli kõik cäüttijäd',
 'protect-fallback' => 'Treebuit $1-õikuz',
-'protect-level-autoconfirmed' => 'Piättee uuvvõd ja anonüümed tšäüttijäd',
+'protect-level-autoconfirmed' => 'Piättee uuvvõd ja anonüümed cäüttijäd',
 'protect-level-sysop' => 'Ainult praviťeľad',
 'protect-summary-cascade' => 'jadgotõltu',
 'protect-expiring' => 'lõpub $1',
-'protect-cascade' => 'Varjaa jõka tšültši, kumpa on tänne tšültšesee sisällütennü.',
-'protect-cantedit' => 'Että või muuttaa tšüľľee varjauztasoa, ku tüü että saa muuttaa tšültšiä.',
+'protect-cascade' => 'Varjaa jõka cülci, kumpa on tänne cülcesee sisällütennü.',
+'protect-cantedit' => 'Että või muuttaa cüľľee varjauztasoa, ku tüü että saa muuttaa cülciä.',
 'restriction-type' => 'Rajauz',
 'restriction-level' => 'Varjauz',
 
+# Restrictions (nouns)
+'restriction-edit' => 'Muuttaa',
+'restriction-move' => 'Liikut',
+'restriction-create' => 'Loo cülci',
+
 # Undelete
 'undeletelink' => 'näüt/vääntee',
+'undeleteviewlink' => 'prestavleńńõd',
+'undeletecomment' => 'Süü:',
+'undelete-show-file-submit' => 'Daa',
 
 # Namespace form on various pages
 'namespace' => 'Nimiruumi:',
-'invert' => 'Tšäänn nimiruumivalimin päävassaizõssi',
+'invert' => 'Cäänn nimiruumivalimin päävassaizõssi',
 'blanknamespace' => '(Artikkelid)',
 
 # Contributions
-'contributions' => 'Tšäüttijää avittamizõd',
-'contributions-title' => 'Tšäüttijää $1 avittamizõd',
+'contributions' => 'Cäüttijää avittamizõd',
+'contributions-title' => 'Cäüttijää $1 avittamizõd',
 'mycontris' => 'Minu avittamizõd',
-'contribsub2' => 'Tšäüttijää $1 ($2) avittamizõd',
+'contribsub2' => 'Cäüttijää $1 ($2) avittamizõd',
 'uctop' => '(ülez)',
 'month' => 'Kuu',
 'year' => 'Voosi:',
 
-'sp-contributions-newbies' => 'Näüt uusijõõ tšäüttijee muutuhsõd',
+'sp-contributions-newbies' => 'Näüt uusijõõ cäüttijee muutuhsõd',
 'sp-contributions-blocklog' => 'piättelemized',
 'sp-contributions-logs' => 'logid',
 'sp-contributions-talk' => 'Juttu',
 'sp-contributions-search' => 'Etsi avittamisiit',
-'sp-contributions-username' => 'IP-adressi vai tšäüttijänimi',
+'sp-contributions-username' => 'IP-adressi vai cäüttijänimi',
 'sp-contributions-submit' => 'Etsi',
 
 # What links here
 'whatlinkshere' => 'Linkid tänne',
-'whatlinkshere-title' => 'Tšüľľed, kummad näütellä tšüľľelle "$1"',
-'whatlinkshere-page' => 'Tšültši:',
-'linkshere' => "Vahtiaavilt tšültšiilt on linkki tšüľľelle '''[[:$1]]''':",
-'isredirect' => 'mešaituztšültši',
+'whatlinkshere-title' => 'Cüľľed, kummad näütellä cüľľelle "$1"',
+'whatlinkshere-page' => 'Cülci:',
+'linkshere' => "Vahtiaavilt cülciilt on linkki cüľľelle '''[[:$1]]''':",
+'isredirect' => 'mešaituzcülci',
 'istemplate' => 'sisällütüz šabloonii',
 'isimage' => 'kuvalinkki',
-'whatlinkshere-prev' => '{{PLURAL:$1|entiin tšültši|$1 entiiss tšültšiä}}',
-'whatlinkshere-next' => '{{PLURAL:$1|vahtiaava tšültši|$1 vahtiaava tšültšiä}}',
+'whatlinkshere-prev' => '{{PLURAL:$1|entiin cülci|$1 entiiss cülciä}}',
+'whatlinkshere-next' => '{{PLURAL:$1|vahtiaava cülci|$1 vahtiaava cülciä}}',
 'whatlinkshere-links' => '← linkid',
 'whatlinkshere-hideredirs' => '$1 mešaituhsõd',
 'whatlinkshere-hidetrans' => '$1 sisällütühsed',
@@ -562,113 +593,125 @@ Tšüľľellä $2 on spiiska viimeiziss pühtšimühsiiss.',
 'whatlinkshere-filters' => 'Fiľtrad',
 
 # Block/unblock
-'blockip' => 'Piättee tšäüttijää',
-'ipboptions' => '2 tunnia:2 hours,1 päivä:1 day,3 päivää:3 days,1 näteľi:1 week,2 näteľiä:2 weeks,1 kuu:1 month,3 kuut:3 months,6 kuut:6 months,1 voosi:1 year,itšiin:infinite',
+'blockip' => 'Piättee cäüttijää',
+'ipbreason' => 'Süü:',
+'ipboptions' => '2 tunnia:2 hours,1 päivä:1 day,3 päivää:3 days,1 näteľi:1 week,2 näteľiä:2 weeks,1 kuu:1 month,3 kuut:3 months,6 kuut:6 months,1 voosi:1 year,iciin:infinite',
 'ipblocklist' => 'Piäteltüd IP-adressid ja cäüttijänimed',
+'blocklist-reason' => 'Süü',
+'infiniteblock' => 'iciin',
 'blocklink' => 'piättee',
-'unblocklink' => 'rootši piäsüss',
+'unblocklink' => 'rooci piäsüss',
 'change-blocklink' => 'muutu piätüss',
 'contribslink' => 'avittamizõd',
 'blocklogpage' => 'Piätüzlogi',
-'blocklogentry' => 'piätteli tšäüttijää vai IP-tšislaa [[$1]]. Piättelemin lõpub $2 $3',
-'unblocklogentry' => 'rootši tšäüttijält $1 muutuzpiäsüss',
+'blocklogentry' => 'piätteli cäüttijää vai IP-cislaa [[$1]]. Piättelemin lõpub $2 $3',
+'unblocklogentry' => 'rooci cäüttijält $1 muutuzpiäsüss',
 'block-log-flags-nocreate' => 'lukuloomin piäteltü',
 
 # Move page
-'movepagetext' => "Alla õlõvall ruumõll võitta anta tšüľľelle uutt nimiä; kõik tšüľľee istori leeb liikutõttu uuvvõ nimee alle.
-Vanass tšüľľess nõizõb tulõma mešaituztšültši, kumpa näütteeb uuvvõsõ tšültšese.
-Võitta obnovoittaa tšültšese silmell lüüvvävä mešaituhsõd avtomaattisessi uuvõllõ nimelle.
-Kui että taho sitä tehävää avtomaattisessi, mälehtega ettsiää [[Special:DoubleRedirects|kahskõrtaissit]] vai [[Special:BrokenRedirects|kattšiit]] mešaituhsiit.
+'movepagetext' => "Alla õlõvall ruumõll võitta anta cüľľelle uutt nimiä; kõik cüľľee istori leeb liikutõttu uuvvõ nimee alle.
+Vanass cüľľess nõizõb tulõma mešaituzcülci, kumpa näütteeb uuvvõsõ cülcese.
+Võitta obnovoittaa cülcese silmell lüüvvävä mešaituhsõd avtomaattisessi uuvõllõ nimelle.
+Kui että taho sitä tehävää avtomaattisessi, mälehtega ettsiää [[Special:DoubleRedirects|kahskõrtaissit]] vai [[Special:BrokenRedirects|katciit]] mešaituhsiit.
 Õlõtta vastuussa sihee, jot linkid näütteeväd sinne, kuhõõ ned pitäiziväd näütellää.
 
-Tšültšiä '''eb''' nõizõ liikuttama, kui uusi nimi on jo tšäütennü, muut kuiva kui tšültši on tühjä vai on mešaituz, kummall ebõõ muutuzistoria.
-See täheteb sitä, jot võitta liikuttaa tšüľľee takaz vanalle nimelle kui öhsünettä, mutta että või tširjuttaa eloz õlõvaa tšüľľee päälle.
+Cülciä '''eb''' nõizõ liikuttama, kui uusi nimi on jo cäütennü, muut kuiva kui cülci on tühjä vai on mešaituz, kummall ebõõ muutuzistoria.
+See täheteb sitä, jot võitta liikuttaa cüľľee takaz vanalle nimelle kui öhsünettä, mutta että või cirjuttaa eloz õlõvaa cüľľee päälle.
 
-See saattab õlla suuri ja oottõmizõtoi muutuz populaarnoille tšüľľelle. Õlka nii üvä, obespetšoittõga, jot saatta arvoa sledstvijäd ennee kui liikutta tšüľľee.",
-'movepagetalktext' => "Tšültši ja sene juttutšültši leeväd liikutõtud ühez, '''va kui''':
-*Tseeľitšüľľell on eloz juttutšültši, kumpa ebõõ tühjä, vai
+See saattab õlla suuri ja oottõmizõtoi muutuz populaarnoille cüľľelle. Õlka nii üvä, obespecoittõga, jot saatta arvoa sledstvijäd ennee kui liikutta cüľľee.",
+'movepagetalktext' => "Cülci ja sene juttucülci leeväd liikutõtud ühez, '''va kui''':
+*Tseeľicüľľell on eloz juttucülci, kumpa ebõõ tühjä, vai
 *Jätättä all õlõvaa ruuoo merkkittämättä.
 
-Neill kõhtoill piättä liikuttaa vai ühissää tšüľľee tšäzi.",
-'movearticle' => 'Liikut tšültši',
-'newtitle' => 'Uusi nimi tšüľľelee',
-'move-watch' => 'Katso sitä tšültšiä',
-'movepagebtn' => 'Liikut tšültši',
+Neill kõhtoill piättä liikuttaa vai ühissää cüľľee cäzi.",
+'movearticle' => 'Liikut cülci',
+'newtitle' => 'Uusi nimi cüľľelee',
+'move-watch' => 'Katso sitä cülciä',
+'movepagebtn' => 'Liikut cülci',
 'pagemovedsub' => 'Liikka tuli valmessi',
 'movepage-moved' => '\'\'\'"$1" on liikuttu nimelee "$2"\'\'\'',
-'articleexists' => 'Tseeľitšültši on jo eloz, vai võõbornoi nimi eb kõlpa. Õlka nii üvä ja valittsõga uusi nimi.',
-'talkexists' => "'''Tšüľľee liikka tuli valmessi, a juttitšültšiä eb õli liikutõttu, ku uuvvõ zagolofkaa all on jo juttutšültši. Juttutšültšije sisälto piättä ühinessä tšäzi.'''",
+'articleexists' => 'Tseeľicülci on jo eloz, vai võõbornoi nimi eb kõlpa. Õlka nii üvä ja valittsõga uusi nimi.',
+'talkexists' => "'''Cüľľee liikka tuli valmessi, a jutticülciä eb õli liikutõttu, ku uuvvõ zagolofkaa all on jo juttucülci. Juttucülcije sisälto piättä ühinessä cäzi.'''",
 'movedto' => 'liikutõttu',
-'movetalk' => 'Liikut toož juttutšültši',
+'movetalk' => 'Liikut toož juttucülci',
 'movelogpage' => 'Liikkalogi',
 'movereason' => 'Süü',
 'revertmove' => 'kummut',
 
 # Export
-'export' => 'Tšültšiďďee väľľää veto',
+'export' => 'Cülciďďee väľľää veto',
 
 # Namespace 8 related
 'allmessagesname' => 'Nimi',
+'allmessages-language' => 'Ceeli:',
+'allmessages-filter-submit' => 'Mee',
 
 # Thumbnails
 'thumbnail-more' => 'Suurõt',
 
+# Special:Import
+'import-upload-filename' => 'Failinimi:',
+'import-comment' => 'Zamecańńa:',
+
 # Tooltip help for the actions
-'tooltip-pt-userpage' => 'Teďďee tšäüttijätšültši',
-'tooltip-pt-mytalk' => 'Teďďee juttu-tšültši',
+'tooltip-pt-userpage' => 'Teďďee cäüttijäcülci',
+'tooltip-pt-mytalk' => 'Teďďee juttu-cülci',
 'tooltip-pt-preferences' => 'Teďďee koozid',
-'tooltip-pt-watchlist' => 'Spiiska tšültšissä, kummad muutussia kattsõõtta',
+'tooltip-pt-watchlist' => 'Spiiska cülcissä, kummad muutussia kattsõõtta',
 'tooltip-pt-mycontris' => 'Spiiska teďďee avittamisiit',
-'tooltip-pt-login' => 'Müü taritsõmmõ teit süäme tširjuttõma, a ebõõ tarvitõttõva',
-'tooltip-pt-logout' => 'Tširjut uloz',
+'tooltip-pt-login' => 'Müü taritsõmmõ teit süäme cirjuttõma, a ebõõ tarvitõttõva',
+'tooltip-pt-logout' => 'Cirjut uloz',
 'tooltip-ca-talk' => 'Juttu sisällossa',
-'tooltip-ca-edit' => 'Tüü võittõ muuttaa sitä tšültšiä.
+'tooltip-ca-edit' => 'Tüü võittõ muuttaa sitä cülciä.
 Õõ nii üvä, ennee salvomiss, retsenziroittiga!',
 'tooltip-ca-addsection' => 'Lissä uusi alaõsa',
-'tooltip-ca-viewsource' => 'Kase tšültši on varjõttu.
-Että või muuttaa tšültšia, mutta võittõ kattsoa sene lähtekoodi.',
-'tooltip-ca-history' => 'Sene tšüľľee vanad verzijad',
-'tooltip-ca-protect' => 'Varjaa kase tšültši',
-'tooltip-ca-delete' => 'Pühi kase tšültši',
-'tooltip-ca-move' => 'Liikut kase tšültši',
-'tooltip-ca-watch' => 'Lissä kase tšültši kattsõspiiskalõõ',
-'tooltip-ca-unwatch' => 'Paa kase tšültši Teďďee kattsõspiizgalt poiz',
+'tooltip-ca-viewsource' => 'Kase cülci on varjõttu.
+Että või muuttaa cülcia, mutta võittõ kattsoa sene lähtekoodi.',
+'tooltip-ca-history' => 'Sene cüľľee vanad verzijad',
+'tooltip-ca-protect' => 'Varjaa kase cülci',
+'tooltip-ca-delete' => 'Pühi kase cülci',
+'tooltip-ca-move' => 'Liikut kase cülci',
+'tooltip-ca-watch' => 'Lissä kase cülci kattsõspiiskalõõ',
+'tooltip-ca-unwatch' => 'Paa kase cülci Teďďee kattsõspiizgalt poiz',
 'tooltip-search' => 'Etsi vikissa',
-'tooltip-search-go' => 'Mee tšüľľelee, kummall on vakurat sesama nimi (kui eloz on)',
-'tooltip-search-fulltext' => 'Etsi tšültšiltä sitä tekstiä',
-'tooltip-n-mainpage' => 'Mee esitšüľľelee',
-'tooltip-n-mainpage-description' => 'Mee esitšüľľelee',
+'tooltip-search-go' => 'Mee cüľľelee, kummall on vakurat sesama nimi (kui eloz on)',
+'tooltip-search-fulltext' => 'Etsi cülciltä sitä tekstiä',
+'tooltip-n-mainpage' => 'Mee esicüľľelee',
+'tooltip-n-mainpage-description' => 'Mee esicüľľelee',
 'tooltip-n-portal' => 'Juttua projektissa: Mitä tüü võittõ tehä, kuza levvette mitä',
-'tooltip-n-currentevents' => 'Lugõ soobšeńńad nütšüizess kõhtoiss',
+'tooltip-n-currentevents' => 'Lugõ soobšeńńad nücüizess kõhtoiss',
 'tooltip-n-recentchanges' => 'Spiiska uusissa muutussissa',
-'tooltip-n-randompage' => 'Avaa tšültšia kõhtõissi',
+'tooltip-n-randompage' => 'Avaa cülcia kõhtõissi',
 'tooltip-n-help' => 'Praavila',
-'tooltip-t-whatlinkshere' => 'Spiiska kõikkissa tšültšissä, kummad tänne näütellä',
-'tooltip-t-recentchangeslinked' => 'Viimõizõd muuttussõd tšültšillä, kummalõõ on siittä näüteltü',
-'tooltip-feed-rss' => 'RSS-söötte selle tšüľľelle',
-'tooltip-feed-atom' => 'Atom-söötte selle tšüľľelle',
-'tooltip-t-contributions' => 'Näüt spiiska sene tšäüttijää avittamiss',
-'tooltip-t-emailuser' => 'Lähettega elektropoštia selle tšäüttijälle',
-'tooltip-t-upload' => 'Laajõngoit failia ülez (загружать файл)',
-'tooltip-t-specialpages' => 'Spiiska kõikkissa osoobenoissa tšültšissä',
-'tooltip-t-print' => 'Sene tšüľľee petšatoittõva verzija',
-'tooltip-t-permalink' => 'Postojannoi linkki tšüľľee selle verzijalõõ',
+'tooltip-t-whatlinkshere' => 'Spiiska kõikkissa cülcissä, kummad tänne näütellä',
+'tooltip-t-recentchangeslinked' => 'Viimõizõd muuttussõd cülcillä, kummalõõ on siittä näüteltü',
+'tooltip-feed-rss' => 'RSS-söötte selle cüľľelle',
+'tooltip-feed-atom' => 'Atom-söötte selle cüľľelle',
+'tooltip-t-contributions' => 'Näüt spiiska sene cäüttijää avittamiss',
+'tooltip-t-emailuser' => 'Lähettega elektropoštia selle cäüttijälle',
+'tooltip-t-upload' => 'Laajõngoit failia ülez',
+'tooltip-t-specialpages' => 'Spiiska kõikkissa osoobenoissa cülcissä',
+'tooltip-t-print' => 'Sene cüľľee pecatoittõva verzija',
+'tooltip-t-permalink' => 'Postojannoi linkki cüľľee selle verzijalõõ',
 'tooltip-ca-nstab-main' => 'Näüt artikkelia',
-'tooltip-ca-nstab-user' => 'Näüt tšäüttijätšültši',
-'tooltip-ca-nstab-special' => 'Kase on osoobennoi tšültši, tüü ed saa sitä muuttõma',
-'tooltip-ca-nstab-project' => 'Näüt projektitšültši',
-'tooltip-ca-nstab-image' => 'Näüt failitšültši',
+'tooltip-ca-nstab-user' => 'Näüt cäüttijäcülci',
+'tooltip-ca-nstab-special' => 'Kase on osoobennoi cülci, tüü ed saa sitä muuttõma',
+'tooltip-ca-nstab-project' => 'Näüt projekticülci',
+'tooltip-ca-nstab-image' => 'Näüt failicülci',
 'tooltip-ca-nstab-template' => 'Näüt šablooni',
-'tooltip-ca-nstab-category' => 'Näüt gruppatšültši',
+'tooltip-ca-nstab-category' => 'Näüt gruppacülci',
 'tooltip-minoredit' => 'Merkit kase peenessi muutuhsõssi',
 'tooltip-save' => 'Salvo muutussõd',
 'tooltip-preview' => 'Retsenziroitta muutuss. Õõ nii üvä, ennee salvomiss, retsenziroittiga!',
 'tooltip-diff' => 'Näüt tehtüd muutuhsõd',
 'tooltip-compareselectedversions' => 'Näütää vahõd 2 valitsõttuďďõ verzijoďďõ väliz',
-'tooltip-watch' => 'Lissä kase tšültši kattsõspiizgallõ',
-'tooltip-rollback' => 'Vääntega tšüľľee teksti vanõmpi verzijalõõ',
+'tooltip-watch' => 'Lissä kase cülci kattsõspiizgallõ',
+'tooltip-rollback' => 'Vääntega cüľľee teksti vanõmpi verzijalõõ',
 'tooltip-undo' => '"Kummut" väänteeb kasene muutusõõ ja avab artikkelii prestavleńńaa.
 Toož, võittõ tširjutta väänteüssee süü.',
+
+# Info page
+'pageinfo-subjectpage' => 'Cülci',
 
 # Browsing diffs
 'previousdiff' => '← Vanõpi muutuz',
@@ -693,7 +736,7 @@ Kõik muud linkid leeväd pantu panõlõõ nii ku ero.',
 Kui faili on muutõttu, siiz detaaľid võivad õlla kahõllaizõd muutõtull failill.',
 'metadata-expand' => 'Näüt lontsõkait detaaľiit',
 'metadata-collapse' => 'Salauta lontsõkait detaaľiit',
-'metadata-fields' => 'Vahtiaavad platsid õvad vällez kuvatšüľľell, ku sisältotabľittsa on peenettettü.
+'metadata-fields' => 'Vahtiaavad platsid õvad vällez kuvacüľľell, ku sisältotabľittsa on peenettettü.
 * make
 * model
 * datetimeoriginal
@@ -708,6 +751,13 @@ Kui faili on muutõttu, siiz detaaľid võivad õlla kahõllaizõd muutõtull fa
 * gpslongitude
 * gpsaltitude',
 
+# EXIF tags
+'exif-languagecode' => 'Ceeli',
+'exif-iimcategory' => 'Gruppa',
+
+'exif-iimcategory-hth' => 'Terveüz',
+'exif-iimcategory-wea' => 'Ilma',
+
 # External editor support
 'edit-externally' => 'Muuttaa sitä failia ulkopoolizõõ prograammiikaa.',
 'edit-externally-help' => '(Kattsoga [//www.mediawiki.org/wiki/Manual:External_editors praavilõd], kui tahotta lisäinformaattsia.)',
@@ -716,13 +766,31 @@ Kui faili on muutõttu, siiz detaaľid võivad õlla kahõllaizõd muutõtull fa
 'watchlistall2' => 'koko istori',
 'namespacesall' => 'kõik',
 'monthsall' => 'kõik',
+'limitall' => 'kõik',
+
+# action=purge
+'confirm_purge_button' => 'OK',
+
+# action=watch/unwatch
+'confirm-watch-button' => 'OK',
+'confirm-unwatch-button' => 'OK',
 
 # Watchlist editing tools
 'watchlisttools-view' => 'Näüt muutuhsõd',
 'watchlisttools-edit' => 'Muuttaa spiiskaa',
 'watchlisttools-raw' => 'Muut lähtefaili',
 
+# Special:FilePath
+'filepath-page' => 'Faili:',
+'filepath-submit' => 'Mee',
+
 # Special:SpecialPages
-'specialpages' => 'Osoobenoid tšüľľed',
+'specialpages' => 'Osoobenoid cüľľed',
+
+# Special:Tags
+'tags-edit' => 'muuttaa',
+
+# Feedback
+'feedback-cancel' => 'Otmeńoit',
 
 );

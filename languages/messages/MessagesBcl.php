@@ -286,14 +286,14 @@ $messages = array(
 'talkpagelinktext' => 'Pag-ulayan',
 'specialpage' => 'Espesyal na Pahina',
 'personaltools' => 'Mga gamit na personal',
-'postcomment' => 'Magkomento',
+'postcomment' => 'Baguhong seksyon',
 'articlepage' => 'Hilingón an pahina kan laog',
 'talk' => 'Urulay',
 'views' => 'Mga hilíng',
 'toolbox' => 'Kagamitan',
 'userpage' => 'Hilingón an pahina kan parágamit',
 'projectpage' => 'Hilingón an pahina kan proyekto',
-'imagepage' => 'Hilingón an pahina kan ladawan',
+'imagepage' => 'Hilngón an pahina nin sagunson (file)',
 'mediawikipage' => 'Hilingón an pahina kan mensahe',
 'templatepage' => 'Hilingón an pahina kan templato',
 'viewhelppage' => 'Hilingón an pahina kan tabang',
@@ -313,6 +313,7 @@ Grabe kadakol an mga paragamit na pinagprubaran mahiling an pahinang ini.
 Makihalat tabi nin kadikit na panahon bago ka magprubara na makapaglaog sa pahinang ini.
 
 $1',
+'pool-timeout' => 'Timeout naghahalat para makapanugpon',
 'pool-queuefull' => 'An grupong panproseso panoon',
 'pool-errorunknown' => 'Bakong bistadong sala',
 
@@ -417,17 +418,19 @@ An datos-sarayan nagbalik nin sala na "<tt>$3: $4</tt>".',
 'readonlytext' => 'Sarado mùna an base nin datos sa mga bàgong entrada asin iba pang mga pagribay, pwede gayod sa rutinang pagmantenir kan base nin datos, despues, mabalik na ini sa normal.
 
 Ini an eksplikasyon kan tagamató na nagkandado kaini: $1',
-'missing-article' => 'An datos-sarayan dae nakanagbo nin teksto nin sarong pahina na dapat niya kutang managboan, pinagngaran na "$2" S2.
+'missing-article' => 'An datos-sarayan dae nakanagbo nin teksto nin sarong pahina na dapat niya kutang managboan, pinagngaran na "$1" S2.
 
 Ini pirmeng pinagkakausa sa paagi nin pagsusunod nin sarong lumang diff o historiyang kilyawan na yaon sa sarong pahinang pinagpura na.
 
 Kun iyo ini an kaso, ika nakanagbo nin sarong kubol (bug) sa software.
-Pakireport tabi ini sa [[Special:ListUsers/sysop|administrator]], na naka-antabay sa kilyawan.',
+Pakireport tabi ini sa [[Special:ListUsers/sysop|administrador]], na naka-antabay sa kilyawan.',
 'missingarticle-rev' => '(pagbàgo#: $1)',
 'missingarticle-diff' => '(Kaibhán: $1, $2)',
 'readonly_lag' => 'Tulostulos na pagkandado an base nin datos mantang makaabot an base nin datos na esklabo saiyang amo.',
 'internalerror' => 'Panlaog na salâ',
 'internalerror_info' => 'Panlaog na salâ: $1',
+'fileappenderrorread' => 'Dae nakakabasa nin "$1" habang pinagdadagdag.',
+'fileappenderror' => 'Dae nakakapagdagdag nin "$1" sagkod "$2".',
 'filecopyerror' => 'Dai naarog an mga file na "$1" hasta "$2".',
 'filerenameerror' => 'Dai natàwan nin bàgong ngaran an file na "$1" sa "$2".',
 'filedeleteerror' => 'Dai naparà an file na "$1".',
@@ -481,20 +484,22 @@ An administrador na iyo an nagkandado kaini nagpahayag kaining kapaliwanagan: "$
 
 # Virus scanner
 'virus-badscanner' => "Saláng konpigurasyon: dai aram an virus scanner: ''$1''",
+'virus-scanfailed' => 'An paghingipid kan kopya nagpalya',
 'virus-unknownscanner' => 'dai aram an antivirus:',
 
 # Login and logout pages
-'logouttext' => "'''Nakaluwas ka na.'''
+'logouttext' => "'''Ika po sa ngunyan nakaluwas na.'''
 
-Pwede mo pang gamiton an {{SITENAME}} na dai nagpapabisto, o pwede ka giraray lumaog
-bilang pareho o ibang parágamit. Giromdomon tabî na an ibang mga páhina pwedeng mahiling pa na garo nakalaog ka pa, hasta limpyarón mo an abang kan ''browser'' mo.",
-'welcomecreation' => "== Maogmang Pagdagos, $1! ==
-
-Nagibo na an ''account'' mo. Giromdomon tabi na ribayán an saimong mga kabôtan sa {{SITENAME}}.",
+Ika makakadagos pa sa paggamit kan {{SITENAME}} na dai nagpapabisto, o ika [[Special:UserLogin|Maglaog giraray]] bilang pareho o bilang ibang paragamit.
+Giromdoma na an ibang mga pahina mapuwedeng padagos na magpapahiling siring baga na kun ika garo yaon man sana sa laog, sagkod na saimong malinigan mo an sarayan sa kilyawan.",
+'welcomecreation' => '== Maogmang Pag-abot, $1! ==
+An saimong panindog (account) naimukna na tabi.
+Dae ka man tabi malingaw na ribayan an saimong [[Special:Preferences|{{SITENAME}} mga kabôtan]].',
 'yourname' => 'Pangaran kan paragamit:',
 'yourpassword' => 'Sekretong panlaog:',
 'yourpasswordagain' => 'Itaták giraray an sekretong panlaog:',
 'remembermypassword' => 'Giromdomon an paglaog ko sa kompyuter na ini(for a maximum of $1 {{PLURAL:$1|day|days}})',
+'securelogin-stick-https' => 'Magpirmeng konektado sa HTTPS matapos kang maglaog',
 'yourdomainname' => "An saimong ''domain'':",
 'externaldberror' => "Igwang nin salang panluwas pantunay kan base nin datos o dai ka pigtotogotan na bâgohon an saimong panluwas na ''account''.",
 'login' => 'Maglaog',
@@ -505,7 +510,7 @@ Nagibo na an ''account'' mo. Giromdomon tabi na ribayán an saimong mga kabôtan
 'logout' => 'Magluwas',
 'userlogout' => 'Magluwás',
 'notloggedin' => 'Mayò sa laog',
-'nologin' => "Mayò ka pa nin entrada? '''$1'''.",
+'nologin' => 'Mayò ka pa nin panindog (account)? $1.',
 'nologinlink' => 'Maggibo nin account',
 'createaccount' => 'Maggibo nin account',
 'gotaccount' => "Igwa ka na nin account? '''$1'''.",
@@ -514,7 +519,8 @@ Nagibo na an ''account'' mo. Giromdomon tabi na ribayán an saimong mga kabôtan
 'createaccountmail' => 'sa e-koreo',
 'createaccountreason' => 'Rason:',
 'badretype' => 'Dai parehas an pigtaták mong mga sekretong panlaog.',
-'userexists' => 'Piggagamit na kan iba an pangaran. Magpili tabî nin iba.',
+'userexists' => 'Paragamit na ngarang piglaog may naggagamit na.
+Pakipili nin ibang ngaran tabi.',
 'loginerror' => 'Salâ an paglaog',
 'createaccounterror' => 'Daí maggíbo an account: $1.',
 'nocookiesnew' => 'Nagibo na an account kan parágamit, alagad dai ka pa nakalaog. Naggagamit nin cookies an {{SITENAME}} para magpalaog sa mga parágamit. Nakapondo an cookies mo. Paandaron tabì ini, dangan, maglaog gamit an bàgo mong pangaran asin sekretong panlaog.',

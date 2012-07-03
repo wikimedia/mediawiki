@@ -399,6 +399,8 @@ Për piasì, fa rapòrt a n'[[Special:ListUsers/sysop|aministrator]], pijand nò
 'cannotdelete' => "La pàgina o l'archivi \"\$1\" a peul pa esse scancelà.
 Peul desse ch'a l'é già stàit ëscancelà da cheidun d'àutr.",
 'cannotdelete-title' => 'A peul pa scancelesse la pàgina «$1»',
+'delete-hook-aborted' => "Modìfica anulà da un hook.
+A l'ha pa dàit gnun-e spiegassion.",
 'badtitle' => 'Tìtol nen giust',
 'badtitletext' => "La pàgina che a l'ha ciamà a peul pa esse mostrà. A podrìa tratesse ëd na pàgina nen bon-a, veujda, ò pura a podrìa ëdcò esse n'eror ant n'anliura antra lenghe diferente ò tra diferente version ëd {{SITENAME}}.",
 'perfcached' => "Ij dat sì-dapress a sòn ëstàit memorisà an local e a peulo esse nen agiornà. Al pi {{PLURAL:$1|n'arzultà a l'é disponìbil|$1 arzultà a son disponìbij}} ant la memòria local.",
@@ -3672,6 +3674,8 @@ Dësnò, a peule dovré ël formlari semplificà sì-sota. Sò coment a sarà gi
 'api-error-empty-file' => "L'archivi ch'a l'ha mandà a l'era veuid.",
 'api-error-emptypage' => "La creassion ëd pagine neuve veujde a l'é pa përmëttùa.",
 'api-error-fetchfileerror' => "Eror antern: quaicòs a l'é andàit mal an mente as arcuperava l'archivi",
+'api-error-fileexists-forbidden' => 'N\'archivi cn nòm "$1" a esist già, e a peul pa esse dzorascrivù.',
+'api-error-fileexists-shared-forbidden' => 'N\'archivi con nòm "$1" a esist già ant ël depòsit condivis ëd j\'archivi, e a peul pa esse dzorascrivù.',
 'api-error-file-too-large' => "L'archivi ch'a l'ha mandà a l'era tròp gròss.",
 'api-error-filename-tooshort' => "Ël nòm ëd l'archivi a l'é tròp curt.",
 'api-error-filetype-banned' => "Costa sòrt d'archivi a l'é proibìa.",

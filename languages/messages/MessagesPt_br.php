@@ -3928,6 +3928,8 @@ Caso contrário, você poderá usar o formulário simplificado a seguir. Seu com
 'api-error-empty-file' => 'O arquivo que você enviou está vazio.',
 'api-error-emptypage' => 'Não é permitido criar páginas novas vazias.',
 'api-error-fetchfileerror' => 'Erro interno: ocorreu um problema indeterminado ao acessar o arquivo.',
+'api-error-fileexists-forbidden' => 'Já existe um arquivo com o nome "$1". Não é possível substituí-lo.',
+'api-error-fileexists-shared-forbidden' => 'Já existe, no repositório de arquivos partilhados, um arquivo com o nome "$1". Não é possível substituí-lo.',
 'api-error-file-too-large' => 'O arquivo que você enviou é muito grande.',
 'api-error-filename-tooshort' => 'O nome do arquivo é curto demais.',
 'api-error-filetype-banned' => 'Este tipo do arquivo é proibido.',

@@ -15,6 +15,7 @@
  * @author Togaed
  * @author Vacio
  * @author Xelgen
+ * @author Համլետ
  * @author לערי ריינהארט
  */
 
@@ -739,6 +740,9 @@ $2',
 Խնդրում ենք սպասել որոշ ժամանակ կրկին փորձելուց առաջ։',
 'loginlanguagelabel' => 'Լեզու. $1',
 
+# E-mail sending
+'php-mail-error-unknown' => 'Անհայտ սխալ PHP-ի mail() ֆունկցիայում',
+
 # Change password dialog
 'resetpass' => 'Փոխել գաղտնաբառը',
 'resetpass_announce' => 'Դուք ներկայացել եք էլ-փոստով ստացված ժամանակավոր գաղտնաբառով։ Համակարգ մուտքի համար անհրաժեշտ է նոր գաղտնաբառ ընտրել այստեղ.',
@@ -758,12 +762,15 @@ $2',
 'resetpass-temp-password' => 'Ժամանակավոր գաղտնաբառ.',
 
 # Special:PasswordReset
+'passwordreset-legend' => 'Վերականգնել գաղտնաբառը',
 'passwordreset-username' => 'Մասնակցի անուն.',
 'passwordreset-emailelement' => 'Մասնակցային անուն. $1
 Ժամանակավոր գաղտնաբառ. $2',
 
 # Special:ChangeEmail
 'changeemail' => 'Փոխել էլ. հասցեն',
+'changeemail-submit' => 'Խմբագրել էլ․ հասցեն',
+'changeemail-cancel' => 'Չեղարկել',
 
 # Edit page toolbar
 'bold_sample' => 'Թավատառ տեքստ',
@@ -939,6 +946,7 @@ $2',
 'log-fulllog' => 'Դիտել ամբողջական տեղեկամատյանը',
 'edit-conflict' => 'Խմբագրման ընհարում։',
 'edit-no-change' => 'Ձեր խմբագրումը անտեսվել է, քանի որ ոչ մի փոփոխություն չի կատարվել տեքստի մեջ։',
+'defaultmessagetext' => 'Լռելյան տեքստը',
 
 # "Undo" feature
 'undo-success' => 'Խմբագրումը կարող է հետ շրջվել։ Ստուգեք տարբերակների համեմատությունը ստորև, որպեսզի համոզվեք, որ դա է ձեզ հետաքրքրող փոփոխությունը և մատնահարեք «Հիշել էջը»՝ գործողությունն ավարտելու համար։',
