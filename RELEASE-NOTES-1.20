@@ -145,6 +145,9 @@ upgrade PHP if you have not done so prior to upgrading MediaWiki.
 * (bug 36991) jquery.tablesorter should extract date sort format from date
   string instead of global config. Dates like "April 1 2012" and "1 April 2012"
   now sort correctly regardless of the content language's DefaultDateFormat.
+* (bug 38152) jquery.tablesorter: Use .data() instead of .attr(), so that live
+  values are used instead of just the fixed values from when the tablesorter
+  was initialized.
 
 === API changes in 1.20 ===
 * (bug 34316) Add ability to retrieve maximum upload size from MediaWiki API.
