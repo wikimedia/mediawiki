@@ -4,7 +4,19 @@
 		"jQuery",
 		"QUnit"
 	],
-	"browser": true,
+
+	"bitwise": true,
+	"curly": true,
+	"eqeqeq": true,
+	"immed": true,
+	"latedef": true,
+	"newcap": true,
+	"noempty": true,
+	"undef": true,
+	"trailing": true,
+
+	"laxbreak": true,
 	"smarttabs": true,
-	"laxbreak": true
+
+	"browser": true
 }

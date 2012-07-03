@@ -18,7 +18,7 @@
  *			<img src="something.jpg" title="My Title Message" alt="My Alt Message" />
  *		</p>
  */
-( function( $ ) {
+( function ( $, mw ) {
 /**
  * Localizes a DOM selection by replacing <html:msg /> elements with localized text and adding
  * localized title and alt attributes to elements with title-msg and alt-msg attributes
@@ -28,14 +28,20 @@
  *  * prefix: Message prefix to use when localizing elements and attributes
  */
 
-$.fn.localize = function( options ) {
-	options = $.extend( { 'prefix': '', 'keys': {}, 'params': {} }, options );
+$.fn.localize = function ( options ) {
+	options = $.extend( {
+		prefix: '',
+		keys: {},
+		params: {}
+	}, options );
+
 	function msg( key ) {
 		var args = key in options.params ? options.params[key] : [];
 		// Format: mw.msg( key [, p1, p2, ...] )
 		args.unshift( options.prefix + ( key in options.keys ? options.keys[key] : key ) );
 		return mw.msg.apply( mw, args );
-	};
+	}
+
 	return $(this)
 		// Ok, so here's the story on this selector.
 		// In IE 6/7, searching for 'msg' turns up the 'html:msg', but searching for 'html:msg' does not.
@@ -43,11 +49,11 @@ $.fn.localize = function( options ) {
 		// So searching for both 'msg' and 'html:msg' seems to get the job done.
 		// This feels pretty icky, though.
 		.find( 'msg,html\\:msg' )
-			.each( function() {
+			.each( function () {
 				var $el = $(this);
 				var msgText = msg( $el.attr( 'key' ) );
 
-				if ( $el.attr('raw') ) {
+				if ( $el.attr( 'raw' ) ) {
 					$el.html(msgText);
 				} else {
 					$el.text(msgText);
@@ -58,7 +64,7 @@ $.fn.localize = function( options ) {
 			} )
 			.end()
 		.find( '[title-msg]' )
-			.each( function() {
+			.each( function () {
 				var $el = $(this);
 				$el
 					.attr( 'title', msg( $el.attr( 'title-msg' ) ) )
@@ -66,7 +72,7 @@ $.fn.localize = function( options ) {
 			} )
 			.end()
 		.find( '[alt-msg]' )
-			.each( function() {
+			.each( function () {
 				var $el = $(this);
 				$el
 					.attr( 'alt', msg( $el.attr( 'alt-msg' ) ) )
@@ -77,4 +83,5 @@ $.fn.localize = function( options ) {
 
 // Let IE know about the msg tag before it's used...
 document.createElement( 'msg' );
-} )( jQuery );
+
+}( jQuery, mediaWiki ) );
