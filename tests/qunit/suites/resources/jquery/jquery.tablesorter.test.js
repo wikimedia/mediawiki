@@ -408,7 +408,8 @@ test( 'bug 32047 - caption must be before thead', function() {
 test( 'data-sort-value attribute, when available, should override sorting position', function() {
 	var $table, data;
 
-	// Simple example, one without data-sort-value which should be sorted at it's text.
+	// Example 1: All cells except one cell without data-sort-value,
+	// which should be sorted at it's text content value.
 	$table = $(
 		'<table class="sortable"><thead><tr><th>Data</th></tr></thead>' +
 			'<tbody>' +
@@ -424,30 +425,33 @@ test( 'data-sort-value attribute, when available, should override sorting positi
 	data = [];
 	$table.find( 'tbody > tr' ).each( function( i, tr ) {
 		$( tr ).find( 'td' ).each( function( i, td ) {
-			data.push( { data: $( td ).data( 'sort-value' ), text: $( td ).text() } );
+			data.push( {
+				data: $( td ).data( 'sortValue' ),
+				text: $( td ).text()
+			} );
 		});
 	});
 
 	deepEqual( data, [
 		{
-			"data": "Apple",
-			"text": "Bird"
+			data: 'Apple',
+			text: 'Bird'
 		}, {
-			"data": "Bananna",
-			"text": "Ferret"
+			data: 'Bananna',
+			text: 'Ferret'
 		}, {
-			"data": undefined,
-			"text": "Cheetah"
+			data: undefined,
+			text: 'Cheetah'
 		}, {
-			"data": "Cherry",
-			"text": "Dolphin"
+			data: 'Cherry',
+			text: 'Dolphin'
 		}, {
-			"data": "Drupe",
-			"text": "Elephant"
+			data: 'Drupe',
+			text: 'Elephant'
 		}
-	] );
+	], 'Order matches expected order (based on data-sort-value attribute values)' );
 
-	// Another example
+	// Example 2
 	$table = $(
 		'<table class="sortable"><thead><tr><th>Data</th></tr></thead>' +
 			'<tbody>' +
@@ -463,28 +467,89 @@ test( 'data-sort-value attribute, when available, should override sorting positi
 	data = [];
 	$table.find( 'tbody > tr' ).each( function( i, tr ) {
 		$( tr ).find( 'td' ).each( function( i, td ) {
-			data.push( { data: $( td ).data( 'sort-value' ), text: $( td ).text() } );
+			data.push( {
+				data: $( td ).data( 'sortValue' ),
+				text: $( td ).text()
+			} );
 		});
 	});
 
 	deepEqual( data, [
 		{
-			"data": undefined,
-			"text": "B"
+			data: undefined,
+			text: 'B'
 		}, {
-			"data": undefined,
-			"text": "D"
+			data: undefined,
+			text: 'D'
 		}, {
-			"data": "E",
-			"text": "A"
+			data: 'E',
+			text: 'A'
 		}, {
-			"data": "F",
-			"text": "C"
+			data: 'F',
+			text: 'C'
 		}, {
-			"data": undefined,
-			"text": "G"
+			data: undefined,
+			text: 'G'
 		}
-	] );
+	], 'Order matches expected order (based on data-sort-value attribute values)' );
+
+	// Example 3: Test that live changes are used from data-sort-value,
+	// even if they change after the tablesorter is constructed (bug 38152).
+	$table = $(
+		'<table class="sortable"><thead><tr><th>Data</th></tr></thead>' +
+			'<tbody>' +
+			'<tr><td>D</td></tr>' +
+			'<tr><td data-sort-value="1">A</td></tr>' +
+			'<tr><td>B</td></tr>' +
+			'<tr><td data-sort-value="2">G</td></tr>' +
+			'<tr><td>C</td></tr>' +
+		'</tbody></table>'
+	);
+	// initialize table sorter and sort once
+	$table
+		.tablesorter()
+		.find( '.headerSort:eq(0)' ).click();
+
+	// Change the sortValue data properties (bug 38152)
+	// - change data
+	$table.find( 'td:contains(A)' ).data( 'sortValue', 3 );
+	// - add data
+	$table.find( 'td:contains(B)' ).data( 'sortValue', 1 );
+	// - remove data, bring back attribtue: 2
+	$table.find( 'td:contains(G)' ).removeData( 'sortValue' );
+
+	// Now sort again (twice, so it is back at Ascending)
+	$table.find( '.headerSort:eq(0)' ).click();
+	$table.find( '.headerSort:eq(0)' ).click();
+
+	data = [];
+	$table.find( 'tbody > tr' ).each( function( i, tr ) {
+		$( tr ).find( 'td' ).each( function( i, td ) {
+			data.push( {
+				data: $( td ).data( 'sortValue' ),
+				text: $( td ).text()
+			} );
+		});
+	});
+
+	deepEqual( data, [
+		{
+			data: 1,
+			text: "B"
+		}, {
+			data: 2,
+			text: "G"
+		}, {
+			data: 3,
+			text: "A"
+		}, {
+			data: undefined,
+			text: "C"
+		}, {
+			data: undefined,
+			text: "D"
+		}
+	], 'Order matches expected orde, using the current sortValue in $.data()' );
 
 });
 
@@ -527,8 +592,8 @@ test( 'bug 32888 - Tables inside a tableheader cell', function() {
 
 	var $table;
 	$table = $(
-		'<table class="sortable" id="32888">' +
-		'<tr><th>header<table id="32888-2">'+
+		'<table class="sortable" id="mw-bug-32888">' +
+		'<tr><th>header<table id="mw-bug-32888-2">'+
 			'<tr><th>1</th><th>2</th></tr>' +
 		'</table></th></tr>' +
 		'<tr><td>A</td></tr>' +
@@ -543,11 +608,12 @@ test( 'bug 32888 - Tables inside a tableheader cell', function() {
 		'Child tables inside a headercell should not interfere with sortable headers (bug 32888)'
 	);
 	equals(
-		$('#32888-2').find('th.headerSort').length,
+		$( '#mw-bug-32888-2' ).find('th.headerSort').length,
 		0,
 		'The headers of child tables inside a headercell should not be sortable themselves (bug 32888)'
 	);
 });
+
 
 var correctDateSorting1 = [
 	['01 January 2010'],
