@@ -1,0 +1,20 @@
+# upstream libs
+resources/jquery/jquery.appear.js
+resources/jquery/jquery.async.js
+resources/jquery/jquery.cycle.all.js
+resources/jquery/jquery.cookie.js
+resources/jquery/jquery.farbtastic.js
+resources/jquery/jquery.form.js
+resources/jquery/jquery.js
+resources/jquery/jquery.json.js
+resources/jquery/jquery.mockjax.js
+resources/jquery/jquery.qunit.js
+resources/jquery/jquery.validate.js
+resources/jquery/jquery.xmldom.js
+resources/jquery.effects
+resources/jquery.ui
+tests/jasmine/lib/jasmine-1.0.1/jasmine-html.js
+tests/jasmine/lib/jasmine-1.0.1/jasmine.js
+
+# legacy stuff
+skins/common

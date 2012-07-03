@@ -1,0 +1,10 @@
+{
+	"predef": [
+		"mediaWiki",
+		"jQuery",
+		"QUnit"
+	],
+	"browser": true,
+	"smarttabs": true,
+	"laxbreak": true
+}
