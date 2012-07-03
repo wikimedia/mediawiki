@@ -866,7 +866,7 @@ class ContribsPager extends ReverseChronologicalPager {
 		$ret .= " $tagSummary";
 
 		// Let extensions add data
-		wfRunHooks( 'ContributionsLineEnding', array( &$this, &$ret, $row ) );
+		wfRunHooks( 'ContributionsLineEnding', array( $this, &$ret, $row, &$classes ) );
 
 		$classes = implode( ' ', $classes );
 		$ret = "<li class=\"$classes\">$ret</li>\n";
