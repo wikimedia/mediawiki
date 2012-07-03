@@ -22,6 +22,7 @@ upgrade PHP if you have not done so prior to upgrading MediaWiki.
   path info from REQUEST_URI if it's available.
 * The user right 'upload_by_url' is no longer given to sysops by default.
   This only affects installations which have $wgAllowCopyUploads set to true.
+* Removed f-prot support from $wgAntivirusSetup.
 
 === New features in 1.20 ===
 * Added TitleIsAlwaysKnown hook which gets called when determining if a page exists.
