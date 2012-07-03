@@ -1215,7 +1215,6 @@ class EnhancedChangesList extends ChangesList {
 		}
 
 		# Tags
-		$classes = explode( ' ', $classes );
 		$this->insertTags( $r, $rcObj, $classes );
 		# Show how many people are watching this if enabled
 		$r .= $this->numberofWatchingusers($rcObj->numberofWatchingusers);
