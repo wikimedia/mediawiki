@@ -141,7 +141,7 @@ test( '$content', function() {
  * one element can have a given id. 
  */
 test( 'addPortletLink', function () {
-	var pTestTb, vectorTabs, tbRL, cuQuux, $cuQuux, tbMW, $tbMW, tbRLDM, caFoo;
+	var pTestTb, pCustom, vectorTabs, tbRL, cuQuux, $cuQuux, tbMW, $tbMW, tbRLDM, caFoo;
 	expect( 8 );
 
 	pTestTb = '\

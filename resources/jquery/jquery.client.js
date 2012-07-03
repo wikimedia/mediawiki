@@ -32,6 +32,8 @@
 		 *  }
 		 */
 		profile: function ( nav ) {
+			/*jshint boss:true */
+
 			if ( nav === undefined ) {
 				nav = window.navigator;
 			}
@@ -189,6 +191,8 @@
 		 * @return Boolean true if browser known or assumed to be supported, false if blacklisted
 		 */
 		test: function ( map, profile ) {
+			/*jshint evil:true */
+
 			var conditions, dir, i, op, val;
 			profile = $.isPlainObject( profile ) ? profile : $.client.profile();
 

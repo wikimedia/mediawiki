@@ -4,7 +4,7 @@
  * @author Jan Paul Posma, 2011
  * @author Timo Tijhof, 2011-2012
  */
-( function ( $, undefined ) {
+( function ( $ ) {
 
 	/**
 	 * Enforces a byte limit to a textbox, so that UTF-8 entries are counted as well, when, for example,
@@ -59,7 +59,7 @@
 			}
 	
 			// Save function for reference
-			$el.data( 'byteLimit-callback', fn );
+			$el.data( 'byteLimitCallback', fn );
 	
 			// We've got something, go for it:
 			$el.keypress( function ( e ) {

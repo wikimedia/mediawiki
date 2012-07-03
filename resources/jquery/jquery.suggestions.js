@@ -41,15 +41,15 @@
  * highlightInput: Whether to hightlight matched portions of the input or not
  *		Type: Boolean, Default: false
  */
-( function( $ ) {
+( function ( $ ) {
 
 $.suggestions = {
 	/**
 	 * Cancel any delayed updateSuggestions() call and inform the user so
 	 * they can cancel their result fetching if they use AJAX or something
 	 */
-	cancel: function( context ) {
-		if ( context.data.timerID != null ) {
+	cancel: function ( context ) {
+		if ( context.data.timerID !== null ) {
 			clearTimeout( context.data.timerID );
 		}
 		if ( $.isFunction( context.config.cancel ) ) {
@@ -61,7 +61,7 @@ $.suggestions = {
 	 * restores the value the currently displayed suggestions are based on, rather than the value just before
 	 * highlight() overwrote it; the former is arguably slightly more sensible.
 	 */
-	restore: function( context ) {
+	restore: function ( context ) {
 		context.data.$textbox.val( context.data.prevText );
 	},
 	/**
@@ -70,7 +70,7 @@ $.suggestions = {
 	 * function does nothing.
 	 * @param {Boolean} delayed Whether or not to delay this by the currently configured amount of time
 	 */
-	update: function( context, delayed ) {
+	update: function ( context, delayed ) {
 		// Only fetch if the value in the textbox changed and is not empty
 		// if the textbox is empty then clear the result div, but leave other settings intouched
 		function maybeFetch() {
@@ -86,7 +86,7 @@ $.suggestions = {
 		}
 
 		// Cancel previous call
-		if ( context.data.timerID != null ) {
+		if ( context.data.timerID !== null ) {
 			clearTimeout( context.data.timerID );
 		}
 		if ( delayed ) {
@@ -97,11 +97,11 @@ $.suggestions = {
 		}
 		$.suggestions.special( context );
 	},
-	special: function( context ) {
+	special: function ( context ) {
 		// Allow custom rendering - but otherwise don't do any rendering
 		if ( typeof context.config.special.render === 'function' ) {
 			// Wait for the browser to update the value
-			setTimeout( function() {
+			setTimeout( function () {
 				// Render special
 				var $special = context.data.$container.find( '.suggestions-special' );
 				context.config.special.render.call( $special, context.data.$textbox.val() );
@@ -113,7 +113,7 @@ $.suggestions = {
 	 * @param property String Name of property
 	 * @param value Mixed Value to set property with
 	 */
-	configure: function( context, property, value ) {
+	configure: function ( context, property, value ) {
 		// Validate creation using fallback values
 		switch( property ) {
 			case 'fetch':
@@ -154,12 +154,13 @@ $.suggestions = {
 						var $autoEllipseMe = $( [] );
 						var matchedText = null;
 						for ( var i = 0; i < context.config.suggestions.length; i++ ) {
+							/*jshint loopfunc:true */
 							var text = context.config.suggestions[i];
 							var $result = $( '<div>' )
 								.addClass( 'suggestions-result' )
 								.attr( 'rel', i )
 								.data( 'text', context.config.suggestions[i] )
-								.mousemove( function( e ) {
+								.mousemove( function ( e ) {
 									context.data.selectedWithMouse = true;
 									$.suggestions.highlight(
 										context, $(this).closest( '.suggestions-results div' ), false
@@ -220,9 +221,9 @@ $.suggestions = {
 	 * @param result <tr> to highlight: jQuery object, or 'prev' or 'next'
 	 * @param updateTextbox If true, put the suggestion in the textbox
 	 */
-	highlight: function( context, result, updateTextbox ) {
+	highlight: function ( context, result, updateTextbox ) {
 		var selected = context.data.$container.find( '.suggestions-result-current' );
-		if ( !result.get || selected.get( 0 ) != result.get( 0 ) ) {
+		if ( !result.get || selected.get( 0 ) !== result.get( 0 ) ) {
 			if ( result === 'prev' ) {
 				if( selected.is( '.suggestions-special' ) ) {
 					result = context.data.$container.find( '.suggestions-result:last' );
@@ -277,8 +278,8 @@ $.suggestions = {
 	 * Respond to keypress event
 	 * @param key Integer Code of key pressed
 	 */
-	keypress: function( e, context, key ) {
-		var	wasVisible = context.data.$container.is( ':visible' ),
+	keypress: function ( e, context, key ) {
+		var wasVisible = context.data.$container.is( ':visible' ),
 			preventDefault = false;
 		switch ( key ) {
 			// Arrow down
@@ -340,13 +341,13 @@ $.suggestions = {
 		}
 	}
 };
-$.fn.suggestions = function() {
+$.fn.suggestions = function () {
 
 	// Multi-context fields
-	var returnValue = null;
+	var returnValue;
 	var args = arguments;
 
-	$(this).each( function() {
+	$(this).each( function () {
 
 		/* Construction / Loading */
 
@@ -354,8 +355,8 @@ $.fn.suggestions = function() {
 		if ( context === undefined || context === null ) {
 			context = {
 				config: {
-					'fetch' : function() {},
-					'cancel': function() {},
+					'fetch' : function () {},
+					'cancel': function () {},
 					'special': {},
 					'result': {},
 					'$region': $(this),
@@ -383,7 +384,7 @@ $.fn.suggestions = function() {
 				if ( args.length > 1 ) {
 					// Set property values
 					$.suggestions.configure( context, args[0], args[1] );
-				} else if ( returnValue == null ) {
+				} else if ( returnValue === null || returnValue === undefined ) {
 					// Get property values, but don't give access to internal data - returns only the first
 					returnValue = ( args[0] in context.config ? undefined : context.config[args[0]] );
 				}
@@ -395,15 +396,18 @@ $.fn.suggestions = function() {
 		if ( context.data === undefined ) {
 			context.data = {
 				// ID of running timer
-				'timerID': null,
+				timerID: null,
+
 				// Text in textbox when suggestions were last fetched
-				'prevText': null,
+				prevText: null,
+
 				// Number of results visible without scrolling
-				'visibleResults': 0,
+				visibleResults: 0,
+
 				// Suggestion the last mousedown event occured on
-				'mouseDownOn': $( [] ),
-				'$textbox': $(this),
-				'selectedWithMouse': false
+				mouseDownOn: $( [] ),
+				$textbox: $(this),
+				selectedWithMouse: false
 			};
 			// Setup the css for positioning the results box
 			var newCSS = {
@@ -426,14 +430,14 @@ $.fn.suggestions = function() {
 					$( '<div>' ).addClass( 'suggestions-results' )
 						// Can't use click() because the container div is hidden when the textbox loses focus. Instead,
 						// listen for a mousedown followed by a mouseup on the same div
-						.mousedown( function( e ) {
+						.mousedown( function ( e ) {
 							context.data.mouseDownOn = $( e.target ).closest( '.suggestions-results div' );
 						} )
-						.mouseup( function( e ) {
+						.mouseup( function ( e ) {
 							var $result = $( e.target ).closest( '.suggestions-results div' );
 							var $other = context.data.mouseDownOn;
 							context.data.mouseDownOn = $( [] );
-							if ( $result.get( 0 ) != $other.get( 0 ) ) {
+							if ( $result.get( 0 ) !== $other.get( 0 ) ) {
 								return;
 							}
 							$.suggestions.highlight( context, $result, true );
@@ -448,14 +452,14 @@ $.fn.suggestions = function() {
 					$( '<div>' ).addClass( 'suggestions-special' )
 						// Can't use click() because the container div is hidden when the textbox loses focus. Instead,
 						// listen for a mousedown followed by a mouseup on the same div
-						.mousedown( function( e ) {
+						.mousedown( function ( e ) {
 							context.data.mouseDownOn = $( e.target ).closest( '.suggestions-special' );
 						} )
-						.mouseup( function( e ) {
+						.mouseup( function ( e ) {
 							var $special = $( e.target ).closest( '.suggestions-special' );
 							var $other = context.data.mouseDownOn;
 							context.data.mouseDownOn = $( [] );
-							if ( $special.get( 0 ) != $other.get( 0 ) ) {
+							if ( $special.get( 0 ) !== $other.get( 0 ) ) {
 								return;
 							}
 							context.data.$container.hide();
@@ -464,7 +468,7 @@ $.fn.suggestions = function() {
 							}
 							context.data.$textbox.focus();
 						} )
-						.mousemove( function( e ) {
+						.mousemove( function ( e ) {
 							context.data.selectedWithMouse = true;
 							$.suggestions.highlight(
 								context, $( e.target ).closest( '.suggestions-special' ), false
@@ -475,9 +479,9 @@ $.fn.suggestions = function() {
 			$(this)
 				// Stop browser autocomplete from interfering
 				.attr( 'autocomplete', 'off')
-				.keydown( function( e ) {
+				.keydown( function ( e ) {
 					// Store key pressed to handle later
-					context.data.keypressed = ( e.keyCode === undefined ) ? e.which : e.keyCode;
+					context.data.keypressed = e.which;
 					context.data.keypressedCount = 0;
 
 					switch ( context.data.keypressed ) {
@@ -496,18 +500,18 @@ $.fn.suggestions = function() {
 							}
 					}
 				} )
-				.keypress( function( e ) {
+				.keypress( function ( e ) {
 					context.data.keypressedCount++;
 					$.suggestions.keypress( e, context, context.data.keypressed );
 				} )
-				.keyup( function( e ) {
+				.keyup( function ( e ) {
 					// Some browsers won't throw keypress() for arrow keys. If we got a keydown and a keyup without a
 					// keypress in between, solve it
 					if ( context.data.keypressedCount === 0 ) {
 						$.suggestions.keypress( e, context, context.data.keypressed );
 					}
 				} )
-				.blur( function() {
+				.blur( function () {
 					// When losing focus because of a mousedown
 					// on a suggestion, don't hide the suggestions
 					if ( context.data.mouseDownOn.length > 0 ) {
@@ -520,6 +524,7 @@ $.fn.suggestions = function() {
 		// Store the context for next time
 		$(this).data( 'suggestions-context', context );
 	} );
-	return returnValue !== null ? returnValue : $(this);
+	return returnValue !== undefined ? returnValue : $(this);
 };
-} )( jQuery );
+
+}( jQuery ) );
