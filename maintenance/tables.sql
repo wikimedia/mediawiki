@@ -637,11 +637,15 @@ CREATE TABLE /*_*/langlinks (
   ll_lang varbinary(20) NOT NULL default '',
 
   -- Title of the target, including namespace
-  ll_title varchar(255) binary NOT NULL default ''
+  ll_title varchar(255) binary NOT NULL default '',
+
+  -- Indicates if the link is defined locally.
+  ll_local bool NOT NULL DEFAULT true
 ) /*$wgDBTableOptions*/;
 
 CREATE UNIQUE INDEX /*i*/ll_from ON /*_*/langlinks (ll_from, ll_lang);
 CREATE INDEX /*i*/ll_lang ON /*_*/langlinks (ll_lang, ll_title);
+CREATE INDEX /*i*/ll_local ON /*_*/langlinks (ll_local);
 
 
 --
