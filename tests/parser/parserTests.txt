@@ -2730,6 +2730,44 @@ foo <hr /> bar
 
 !! end
 
+!! test 
+Horizontal ruler -- 4+ dashes render hr
+!! input 
+----
+!! result 
+<hr />
+
+!! end
+
+!! test 
+Horizontal ruler -- eats additional dashes on the same line
+!! input 
+---------
+!! result 
+<hr />
+
+!! end
+
+!! test 
+Horizontal ruler -- does not collaps dashes on consecutive lines
+!! input 
+----
+----
+!! result 
+<hr />
+<hr />
+
+!! end
+
+!! test 
+Horizontal ruler -- <4 dashes render as plain text
+!! input 
+---
+!! result 
+<p>---
+</p>
+!! end
+
 ###
 ### Block-level elements
 ###
