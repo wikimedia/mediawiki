@@ -3,9 +3,9 @@
  *
  * Calculate the byte length of a string (accounting for UTF-8).
  *
- * @author Jan Paul Posma
+ * @author Jan Paul Posma, 2011
  */
-jQuery.byteLength = function( str ) {
+jQuery.byteLength = function ( str ) {
 
 	// This basically figures out how many bytes a UTF-16 string (which is what js sees)
 	// will take in UTF-8 by replacing a 2 byte character with 2 *'s, etc, and counting that.
@@ -16,4 +16,4 @@ jQuery.byteLength = function( str ) {
 		.replace( /[\u0080-\u07FF\uD800-\uDFFF]/g, '**' )
 		.replace( /[\u0800-\uD7FF\uE000-\uFFFF]/g, '***' )
 		.length;
-}
+};
