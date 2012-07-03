@@ -45,24 +45,20 @@ class PatrolLog {
 			}
 		}
 
-		$title = Title::makeTitleSafe( $rc->getAttribute( 'rc_namespace' ), $rc->getAttribute( 'rc_title' ) );
-		if( $title ) {
-			if ( !$user ) {
-				global $wgUser;
-				$user = $wgUser;
-			}
-
-			$entry = new ManualLogEntry( 'patrol', 'patrol' );
-			$entry->setTarget( $title );
-			$entry->setParameters( self::buildParams( $rc, $auto ) );
-			$entry->setPerformer( $user );
-			$logid = $entry->insert();
-			if ( !$auto ) {
-				$entry->publish( $logid, 'udp' );
-			}
-			return true;
+		if ( !$user ) {
+			global $wgUser;
+			$user = $wgUser;
 		}
-		return false;
+
+		$entry = new ManualLogEntry( 'patrol', 'patrol' );
+		$entry->setTarget( $rc->getTitle() );
+		$entry->setParameters( self::buildParams( $rc, $auto ) );
+		$entry->setPerformer( $user );
+		$logid = $entry->insert();
+		if ( !$auto ) {
+			$entry->publish( $logid, 'udp' );
+		}
+		return true;
 	}
 
 	/**
