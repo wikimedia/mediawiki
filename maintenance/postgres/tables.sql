@@ -236,10 +236,12 @@ CREATE UNIQUE INDEX eu_external_id ON external_user (eu_external_id);
 CREATE TABLE langlinks (
   ll_from    INTEGER  NOT NULL  REFERENCES page (page_id) ON DELETE CASCADE DEFERRABLE INITIALLY DEFERRED,
   ll_lang    TEXT,
-  ll_title   TEXT
+  ll_title   TEXT,
+  ll_local   BOOLEAN NOT NULL DEFAULT '1'
 );
 CREATE UNIQUE INDEX langlinks_unique ON langlinks (ll_from,ll_lang);
 CREATE INDEX langlinks_lang_title    ON langlinks (ll_lang,ll_title);
+CREATE INDEX langlinks_ll_local    ON langlinks (ll_local);
 
 
 CREATE TABLE site_stats (
