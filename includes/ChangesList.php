@@ -210,6 +210,8 @@ class ChangesList extends ContextSource {
 			$context = RequestContext::getMain();
 		}
 
+		$new = (int)$new;
+		$old = (int)$old;
 		$szdiff = $new - $old;
 
 		$lang = $context->getLanguage();
