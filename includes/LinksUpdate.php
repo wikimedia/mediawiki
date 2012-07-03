@@ -39,9 +39,15 @@ class LinksUpdate extends SqlDataUpdate {
 		$mCategories,    //!< Map of category names to sort keys
 		$mInterlangs,    //!< Map of language codes to titles
 		$mProperties,    //!< Map of arbitrary name to value
-		$mDb,            //!< Database connection reference
 		$mOptions,       //!< SELECT options to be used (array)
 		$mRecursive;     //!< Whether to queue jobs for recursive updates
+
+	/**
+	 * Database connection reference.
+	 *
+	 * @var DatabaseBase
+	 */
+	public $mDb;
 
 	/**
 	 * Constructor
@@ -724,8 +730,16 @@ class LinksUpdate extends SqlDataUpdate {
 	 * @return array
 	 */
 	private function getExistingInterlangs() {
-		$res = $this->mDb->select( 'langlinks', array( 'll_lang', 'll_title' ),
-			array( 'll_from' => $this->mId ), __METHOD__, $this->mOptions );
+		$res = $this->mDb->select(
+			'langlinks',
+			array( 'll_lang', 'll_title' ),
+			array(
+				'll_from' => $this->mId,
+				'll_local' => 1,
+			),
+			__METHOD__,
+			$this->mOptions
+		);
 		$arr = array();
 		foreach ( $res as $row ) {
 			$arr[$row->ll_lang] = $row->ll_title;
@@ -862,7 +876,7 @@ class LinksDeletionUpdate extends SqlDataUpdate {
 			$this->mDb->delete( 'categorylinks', array( 'cl_from' => $id ), __METHOD__ );
 			$this->mDb->delete( 'templatelinks', array( 'tl_from' => $id ), __METHOD__ );
 			$this->mDb->delete( 'externallinks', array( 'el_from' => $id ), __METHOD__ );
-			$this->mDb->delete( 'langlinks', array( 'll_from' => $id ), __METHOD__ );
+			$this->mDb->delete( 'langlinks', array( 'll_from' => $id, 'll_local' => 1 ), __METHOD__ );
 			$this->mDb->delete( 'iwlinks', array( 'iwl_from' => $id ), __METHOD__ );
 			$this->mDb->delete( 'redirect', array( 'rd_from' => $id ), __METHOD__ );
 			$this->mDb->delete( 'page_props', array( 'pp_page' => $id ), __METHOD__ );
