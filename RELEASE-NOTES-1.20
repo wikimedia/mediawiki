@@ -149,6 +149,9 @@ upgrade PHP if you have not done so prior to upgrading MediaWiki.
 * (bug 31895) mw.loader mode now correct when triggered from a $.fn.ready
   handler that is bound before mediawiki.js's handler (e.g. browser-userscripts
   like greasemonkey).
+* (bug 38152) jquery.tablesorter: Use .data() instead of .attr(), so that live
+  values are used instead of just the fixed values from when the tablesorter
+  was initialized.
 
 === API changes in 1.20 ===
 * (bug 34316) Add ability to retrieve maximum upload size from MediaWiki API.
