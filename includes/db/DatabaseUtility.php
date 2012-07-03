@@ -242,7 +242,11 @@ class FakeResultWrapper extends ResultWrapper {
 			$this->currentRow = false;
 		}
 		$this->pos++;
-		return $this->currentRow;
+		if ( is_object( $this->currentRow ) ) {
+			return get_object_vars( $this->currentRow );
+		} else {
+			return $this->currentRow;
+		}
 	}
 
 	function seek( $row ) {
