@@ -765,8 +765,8 @@ class SpecialUndelete extends SpecialPage {
 				);
 			} else {
 				// The title is no longer valid, show as text
-				$title = Title::makeTitle( $row->ar_namespace, $row->ar_title );
-				$item = htmlspecialchars( $title->getPrefixedText() );
+				$item = Html::element( 'span', array( 'class' => 'mw-invalidtitle' ),
+					Linker::getInvalidTitleDescription( $this->getContext(), $row->ar_namespace, $row->ar_title ) );
 			}
 			$revs = $this->msg( 'undeleterevisions' )->numParams( $row->count )->parse();
 			$out->addHTML( "<li>{$item} ({$revs})</li>\n" );
