@@ -66,7 +66,7 @@ class CLIParser extends Maintenance {
 		$input_file = $this->getArg( 0, $php_stdin );
 
 		if( $input_file === $php_stdin ) {
-			$this->error( basename(__FILE__) .": warning: reading wikitext from STDIN\n" );
+			$this->error( basename(__FILE__) .": warning: reading wikitext from STDIN. Press CTRL+D to parse.\n" );
 		}
 
 		return file_get_contents( $input_file );
