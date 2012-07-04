@@ -214,6 +214,7 @@ class MysqlUpdater extends DatabaseUpdater {
 			array( 'addField', 'ipblocks',      'ipb_parent_block_id',           'patch-ipb-parent-block-id.sql' ),
 			array( 'addIndex', 'ipblocks',      'ipb_parent_block_id',           'patch-ipb-parent-block-id-index.sql' ),
 			array( 'addField', 'langlinks',      'll_local',           'patch-langlinks-local.sql' ),
+			array( 'addTable', 'sites',                           'patch-sites-table.sql' ),
 		);
 	}
 
