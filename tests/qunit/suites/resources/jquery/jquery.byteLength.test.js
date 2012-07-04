@@ -5,7 +5,7 @@ test( '-- Initial check', function() {
 	ok( $.byteLength, 'jQuery.byteLength defined' );
 } );
 
-test( 'Simple text', function () {
+test( 'Simple text', function() {
 	expect(5);
 
 	var	azLc = 'abcdefghijklmnopqrstuvwxyz',
@@ -22,7 +22,7 @@ test( 'Simple text', function () {
 
 } );
 
-test( 'Special text', function () {
+test( 'Special text', window.foo = function() {
 	expect(5);
 
 	// http://en.wikipedia.org/wiki/UTF-8

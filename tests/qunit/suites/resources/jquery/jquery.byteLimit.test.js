@@ -1,72 +1,75 @@
 ( function ( $ ) {
-	var sample20simple, sample1mb, sample22mixed;
+	var simpleSample, U_20AC, mbSample;
 
 	module( 'jquery.byteLimit', QUnit.newMwEnvironment() );
 
 	// Simple sample (20 chars, 20 bytes)
-	sample20simple = '1234567890abcdefghij';
+	simpleSample = '12345678901234567890';
 
-	// Euro-symbol (1 char, 3 bytes)
-	sample1mb = '\u20AC';
+	// 3 bytes (euro-symbol)
+	U_20AC = '\u20AC';
 
 	// Multi-byte sample (22 chars, 26 bytes)
-	sample22mixed = '1234567890' + sample1mb + 'abcdefghij' + sample1mb;
+	mbSample = '1234567890' + U_20AC + '1234567890' + U_20AC;
 
-	/**
-	 * Basic emulation of character-by-charater insertion
-	 * and triggering of keyup event after each character.
-	 */
-	function simulateKeyUps( $input, charstr ) {
-		var i, code, event, liveVal,
-			len = charstr.length;
+	// Basic sendkey-implementation
+	function addChars( $input, charstr ) {
+		var len, i, prevVal, code, event;
+		len = charstr.length;
 		for ( i = 0; i < len; i += 1 ) {
-			// Always use the live value as base
-			liveVal = $input.val();
+			// Keep track of the previous value
+			prevVal = $input.val();
 
-			// Get the key code for the to-be-inserted character
+			// Get the key code
 			code = charstr.charCodeAt( i );
 
-			$input.val( liveVal + charstr.charAt( i ) );
-
-			// Trigger keyup event
-			event = new jQuery.Event( 'keyup', {
+			// Trigger event and undo if prevented
+			event = new jQuery.Event( 'keypress', {
+				which: code,
 				keyCode: code,
 				charCode: code
 			} );
 			$input.trigger( event );
+			if ( !event.isDefaultPrevented() ) {
+				$input.val( prevVal + charstr.charAt( i ) );
+			}
 		}
 	}
 
 	/**
 	 * Test factory for $.fn.byteLimit
 	 *
-	 * @param Object options
+	 * @param $input {jQuery} jQuery object in an input element
+	 * @param hasLimit {Boolean} Wether a limit should apply at all
+	 * @param limit {Number} Limit (if used) otherwise undefined
+	 * The limit should be less than 20 (the sample data's length)
 	 */
 	function byteLimitTest( options ) {
 		var opt = $.extend({
 			description: '',
 			$input: null,
 			sample: '',
-			limit: false,
-			expected: ''
+			hasLimit: false,
+			expected: '',
+			limit: null
 		}, options);
 
 		test( opt.description, function () {
-			var rawVal, fn, useVal;
+			var rawVal, fn, newVal;
 
 			opt.$input.appendTo( '#qunit-fixture' );
 
-			simulateKeyUps( opt.$input, opt.sample );
-
+			// Simulate pressing keys for each of the sample characters
+			addChars( opt.$input, opt.sample );
 			rawVal = opt.$input.val();
-			fn = opt.$input.data( 'byteLimitCallback' );
-			useVal = $.isFunction( fn ) ? fn( rawVal ) : rawVal;
+			fn = opt.$input.data( 'byteLimit-callback' );
+			newVal = $.isFunction( fn ) ? fn( rawVal ) : rawVal;
 
-			if ( opt.limit ) {
-				expect( 3 );
+			if ( opt.hasLimit ) {
+				expect(3);
 
 				QUnit.ltOrEq(
-					$.byteLength( useVal ),
+					$.byteLength( newVal ),
 					opt.limit,
 					'Prevent keypresses after byteLimit was reached, length never exceeded the limit'
 				);
@@ -78,10 +81,10 @@
 				equal( rawVal, opt.expected, 'New value matches the expected string' );
 
 			} else {
-				expect( 2 );
-				equal( useVal, opt.expected, 'New value matches the expected string' );
+				expect(2);
+				equal( newVal, opt.expected, 'New value matches the expected string' );
 				equal(
-					$.byteLength( useVal ),
+					$.byteLength( newVal ),
 					$.byteLength( opt.expected ),
 					'Unlimited scenarios are not affected, expected length reached'
 				);
@@ -98,101 +101,99 @@
 		description: 'Plain text input',
 		$input: $( '<input>' )
 			.attr( 'type', 'text' ),
-		sample: sample20simple,
-		expected: sample20simple
+		sample: simpleSample,
+		hasLimit: false,
+		expected: simpleSample
 	});
 
 	byteLimitTest({
-		description: 'No .byteLimit() parameters and no maxLength property - should not throw exceptions (bug 36310)',
+		description: 'Plain text input. Calling byteLimit with no parameters and no maxLength property (bug 36310)',
 		$input: $( '<input>' )
 			.attr( 'type', 'text' )
 			.byteLimit(),
-		sample: sample20simple,
-		expected: sample20simple
+		sample: simpleSample,
+		hasLimit: false,
+		expected: simpleSample
 	});
 
 	byteLimitTest({
-		description: 'maxLength property',
+		description: 'Limit using the maxlength attribute',
 		$input: $( '<input>' )
 			.attr( 'type', 'text' )
 			.prop( 'maxLength', '10' )
 			.byteLimit(),
-		sample: sample20simple,
+		sample: simpleSample,
+		hasLimit: true,
 		limit: 10,
 		expected: '1234567890'
 	});
 
 	byteLimitTest({
-		description: '.byteLimit( limit )',
+		description: 'Limit using a custom value',
 		$input: $( '<input>' )
 			.attr( 'type', 'text' )
 			.byteLimit( 10 ),
-		sample: sample20simple,
+		sample: simpleSample,
+		hasLimit: true,
 		limit: 10,
 		expected: '1234567890'
 	});
 
 	byteLimitTest({
-		description: 'Limit passed to .byteLimit() takes precedence over maxLength property',
+		description: 'Limit using a custom value, overriding maxlength attribute',
 		$input: $( '<input>' )
 			.attr( 'type', 'text' )
 			.prop( 'maxLength', '10' )
 			.byteLimit( 15 ),
-		sample: sample20simple,
+		sample: simpleSample,
+		hasLimit: true,
 		limit: 15,
-		expected: '1234567890abcde'
+		expected: '123456789012345'
 	});
 
 	byteLimitTest({
-		description: '.byteLimit( limit ) - mixed - cut in simplepart',
+		description: 'Limit using a custom value (multibyte)',
 		$input: $( '<input>' )
 			.attr( 'type', 'text' )
 			.byteLimit( 14 ),
-		sample: sample22mixed,
+		sample: mbSample,
+		hasLimit: true,
 		limit: 14,
-		expected: '1234567890' + sample1mb + 'a'
+		expected: '1234567890' + U_20AC + '1'
 	});
 
 	byteLimitTest({
-		description: '.byteLimit( limit ) - mixed - cut in multibyte',
+		description: 'Limit using a custom value (multibyte) overlapping a byte',
 		$input: $( '<input>' )
 			.attr( 'type', 'text' )
 			.byteLimit( 12 ),
-		sample: sample22mixed,
+		sample: mbSample,
+		hasLimit: true,
 		limit: 12,
-		// The 3-byte symbol after 0 would have exceeded the 12 byte limit.
-		// Later when the simulation resumed typing, the two simple characters
-		// were allowed.
-		expected: '1234567890' + 'ab'
+		expected: '1234567890' + '12'
 	});
 
 	byteLimitTest({
-		description: '.byteLimit( limit, fn ) callback can alter the value to be checked against',
+		description: 'Pass the limit and a callback as input filter',
 		$input: $( '<input>' )
 			.attr( 'type', 'text' )
 			.byteLimit( 6, function ( val ) {
-				// Only construct mw.Title if the string is non-empty,
-				// since mw.Title throws an exception on invalid titles.
+				// Invalid title
 				if ( val === '' ) {
 					return '';
 				}
 
-				// Example: Use value without namespace prefix.
+				// Return without namespace prefix
 				return new mw.Title( String( val ) ).getMain();
 			} ),
-		sample: 'User:John',
-		// Limit is 6, text "User:Sample" would normally be too long,
-		// but in this case we test the callback's ability to only
-		// apply the limit to part of the input. The part "John" in this
-		// case is within the limit.
-		limit: 6,
-		// The callback only affects the comparison, the actual input field
-		// should still contain the full value.
-		expected: 'User:John'
+		sample: 'User:Sample',
+		hasLimit: true,
+		limit: 6, // 'Sample' length
+		expected: 'User:Sample'
 	});
 
 	byteLimitTest({
-		description: '.byteLimit( fn ) combined with maxLength property',
+		description: 'Limit using the maxlength attribute and pass a callback as input filter',
 		$input: $( '<input>' )
 			.attr( 'type', 'text' )
 			.prop( 'maxLength', '6' )
@@ -206,8 +207,56 @@
 				return new mw.Title( String( val ) ).getMain();
 			} ),
 		sample: 'User:Sample',
+		hasLimit: true,
 		limit: 6, // 'Sample' length
 		expected: 'User:Sample'
+	});
+
+	test( 'Confirm properties and attributes set', function () {
+		var $el, $elA, $elB;
+
+		expect(5);
+
+		$el = $( '<input>' )
+			.attr( 'type', 'text' )
+			.prop( 'maxLength', '7' )
+			.appendTo( '#qunit-fixture' )
+			.byteLimit();
+
+		strictEqual( $el.prop( 'maxLength' ), 7, 'Pre-set maxLength property unchanged' );
+
+		$el = $( '<input>' )
+			.attr( 'type', 'text' )
+			.prop( 'maxLength', '7' )
+			.appendTo( '#qunit-fixture' )
+			.byteLimit( 12 );
+
+		strictEqual( $el.prop( 'maxLength' ), 12, 'maxLength property updated if value was passed to $.fn.byteLimit' );
+
+		$elA = $( '<input>' )
+			.addClass( 'mw-test-byteLimit-foo' )
+			.attr( 'type', 'text' )
+			.prop( 'maxLength', '7' )
+			.appendTo( '#qunit-fixture' );
+
+		$elB = $( '<input>' )
+			.addClass( 'mw-test-byteLimit-foo' )
+			.attr( 'type', 'text' )
+			.prop( 'maxLength', '12' )
+			.appendTo( '#qunit-fixture' );
+
+		$el = $( '.mw-test-byteLimit-foo' );
+
+		strictEqual( $el.length, 2, 'Verify that there are no other elements clashing with this test suite' );
+
+		$el.byteLimit();
+
+		// Before bug 35294 was fixed, both $elA and $elB had maxLength set to 7,
+		// because $.fn.byteLimit sets:
+		// `limit = limitArg || this.prop( 'maxLength' ); this.prop( 'maxLength', limit )`
+		// and did so outside the each() loop.
+		strictEqual( $elA.prop( 'maxLength' ), 7, 'maxLength was not incorrectly set on #1 when calling byteLimit on multiple elements (bug 35294)' );
+		strictEqual( $elB.prop( 'maxLength' ), 12, 'maxLength was not incorrectly set on #2 when calling byteLimit on multiple elements (bug 35294)' );
 	});
 
 }( jQuery ) );
