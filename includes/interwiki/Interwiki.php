@@ -66,22 +66,7 @@ class Interwiki {
 			return null;
 		}
 		$prefix = $wgContLang->lc( $prefix );
-		if( isset( self::$smCache[$prefix] ) ) {
-			return self::$smCache[$prefix];
-		}
-		global $wgInterwikiCache;
-		if( $wgInterwikiCache ) {
-			$iw = Interwiki::getInterwikiCached( $prefix );
-		} else {
-			$iw = Interwiki::load( $prefix );
-			if( !$iw ) {
-				$iw = false;
-			}
-		}
-		if( self::CACHE_LIMIT && count( self::$smCache ) >= self::CACHE_LIMIT ) {
-			reset( self::$smCache );
-			unset( self::$smCache[key( self::$smCache )] );
-		}
+		$iw =
 		self::$smCache[$prefix] = $iw;
 		return $iw;
 	}
