@@ -268,3 +268,21 @@ define( 'PROTO_RELATIVE', '//' );
 define( 'PROTO_CURRENT', null );
 define( 'PROTO_CANONICAL', 1 );
 define( 'PROTO_INTERNAL', 2 );
+
+/**
+ * Site types for in sites.site_type
+ */
+define( 'SITE_TYPE_MEDIAWIKI', 0 );
+define( 'SITE_TYPE_UNKNOWN', 1 );
+
+/**
+ * Site groups for in sites.site_group
+ */
+define( 'SITE_GROUP_NONE', -1 );
+define( 'SITE_GROUP_WIKIPEDIA', 0 );
+define( 'SITE_GROUP_WIKTIONARY', 1 );
+define( 'SITE_GROUP_WIKIBOOKS', 2 );
+define( 'SITE_GROUP_WIKIQUOTE', 3 );
+define( 'SITE_GROUP_WIKISOURCE', 4 );
+define( 'SITE_GROUP_WIKIVERSITY', 5 );
+define( 'SITE_GROUP_WIKINEWS', 6 );
