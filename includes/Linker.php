@@ -978,7 +978,7 @@ class Linker {
 	 * @param $userName String: user name in database.
 	 * @param $altUserName String: text to display instead of the user name (optional)
 	 * @return String: HTML fragment
-	 * @since 1.19 Method exists for a long time. $displayText was added in 1.19.
+	 * @since 1.19 Method exists for a long time. $altUserName was added in 1.19.
 	 */
 	public static function userLink( $userId, $userName, $altUserName = false ) {
 		if ( $userId == 0 ) {
