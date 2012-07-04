@@ -283,9 +283,9 @@ class SpecialEditWatchlist extends UnlistedSpecialPage {
 	private function getWatchlistInfo() {
 		$titles = array();
 		$where = array( 'wl_user' => $this->getUser()->getId() );
-		if( $this->groupname ){
-			$where['wl_group'] = $this->groupname;
-		}
+//		if( WatchlistGroup::isGroup( $this->groupname, $this->getUser()->getId() ){
+//			$where['wl_group'] = $this->groupname;
+//		}
 
 		$dbr = wfGetDB( DB_SLAVE );
 		$res = $dbr->select(
@@ -458,7 +458,7 @@ class SpecialEditWatchlist extends UnlistedSpecialPage {
 			foreach( $data as $titles ) {
 				WatchlistGroup::regroupTitles( $titles, $group, $this->getContext() );
 			}
-			$this->successMessage = 'Titles were successfully regrouped!';
+			$this->successMessage = $this->msg( 'watchlistedit-normal-donegrouping' )->escaped();
 			return true;
 		}
 
@@ -530,7 +530,7 @@ class SpecialEditWatchlist extends UnlistedSpecialPage {
 
 		$groups = WatchlistGroup::getGroups( $this->getContext()->getUser()->getId() );
 		foreach( $groups as &$g ){
-			$g = 'Change group to "' . $g . '"';
+			$g =  $this->msg( 'watchlistedit-normal-change' )->rawParams( $g )->escaped();
 		}
 
 		$gsOptions = array_merge( array( $this->msg( 'watchlistedit-normal-remove' )->escaped() => -1,
@@ -586,7 +586,7 @@ class SpecialEditWatchlist extends UnlistedSpecialPage {
 
 		wfRunHooks( 'WatchlistEditorBuildRemoveLine', array( &$tools, $title, $title->isRedirect(), $this->getSkin() ) );
 
-		return $link . " (" . $this->getLanguage()->pipeList( $tools ) . ") (Group: " . $wgrouplink . ")";
+		return $link . " (" . $this->getLanguage()->pipeList( $tools ) . ") (" . $wgrouplink . ")";
 	}
 
 	/**

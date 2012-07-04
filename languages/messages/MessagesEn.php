@@ -4522,30 +4522,32 @@ Try normal preview.',
 'lag-warn-high'   => 'Due to high database server lag, changes newer than $1 {{PLURAL:$1|second|seconds}} may not be shown in this list.',
 
 # Watchlist editor
-'editwatchlist-summary'        => '', # do not translate or duplicate this message to other languages
-'watchlistedit-numitems'       => 'Your watchlist contains {{PLURAL:$1|1 title|$1 titles}}, excluding talk pages.',
-'watchlistedit-noitems'        => 'Your watchlist contains no titles.',
-'watchlistedit-normal-title'   => 'Edit watchlist',
-'watchlistedit-normal-legend'  => 'Edit titles in watchlist',
-'watchlistedit-normal-explain' => 'Titles on your watchlist are shown below.
+'editwatchlist-summary'             => '', # do not translate or duplicate this message to other languages
+'watchlistedit-numitems'            => 'Your watchlist contains {{PLURAL:$1|1 title|$1 titles}}, excluding talk pages.',
+'watchlistedit-noitems'             => 'Your watchlist contains no titles.',
+'watchlistedit-normal-title'        => 'Edit watchlist',
+'watchlistedit-normal-legend'       => 'Edit titles in watchlist',
+'watchlistedit-normal-explain'      => 'Titles on your watchlist are shown below.
 To edit a title, check the box next to it, select an action to regroup or remove the titles, and click "{{int:Watchlistedit-normal-submit}}".
 You can also [[Special:EditWatchlist/raw|edit the raw list]].',
-'watchlistedit-normal-ungroup' => 'Ungroup titles',
-'watchlistedit-normal-remove'  => 'Remove titles',
-'watchlistedit-normal-action'  => 'Action:',
-'watchlistedit-normal-submit'  => 'Update watchlist',
-'watchlistedit-normal-done'    => '{{PLURAL:$1|1 title was|$1 titles were}} removed from your watchlist:',
-'watchlistedit-raw-title'      => 'Edit raw watchlist',
-'watchlistedit-raw-legend'     => 'Edit raw watchlist',
-'watchlistedit-raw-explain'    => 'Titles on your watchlist are shown below, and can be edited by adding to and removing from the list;
+'watchlistedit-normal-ungroup'      => 'Ungroup titles',
+'watchlistedit-normal-remove'       => 'Remove titles',
+'watchlistedit-normal-change'       => 'Change group to "$1"',
+'watchlistedit-normal-action'       => 'Action:',
+'watchlistedit-normal-submit'       => 'Update watchlist',
+'watchlistedit-normal-done'         => '{{PLURAL:$1|1 title was|$1 titles were}} removed from your watchlist:',
+'watchlistedit-normal-donegrouping' => 'Titles were successfully regrouped!',
+'watchlistedit-raw-title'           => 'Edit raw watchlist',
+'watchlistedit-raw-legend'          => 'Edit raw watchlist',
+'watchlistedit-raw-explain'         => 'Titles on your watchlist are shown below, and can be edited by adding to and removing from the list;
 one title per line.
 When finished, click "{{int:Watchlistedit-raw-submit}}".
 You can also [[Special:EditWatchlist|use the standard editor]].',
-'watchlistedit-raw-titles'     => 'Titles:',
-'watchlistedit-raw-submit'     => 'Update watchlist',
-'watchlistedit-raw-done'       => 'Your watchlist has been updated.',
-'watchlistedit-raw-added'      => '{{PLURAL:$1|1 title was|$1 titles were}} added:',
-'watchlistedit-raw-removed'    => '{{PLURAL:$1|1 title was|$1 titles were}} removed:',
+'watchlistedit-raw-titles'          => 'Titles:',
+'watchlistedit-raw-submit'          => 'Update watchlist',
+'watchlistedit-raw-done'            => 'Your watchlist has been updated.',
+'watchlistedit-raw-added'           => '{{PLURAL:$1|1 title was|$1 titles were}} added:',
+'watchlistedit-raw-removed'         => '{{PLURAL:$1|1 title was|$1 titles were}} removed:',
 
 # Watchlist group editor
 'wlgroup-title'     => 'Edit watchlist groups',
@@ -4558,10 +4560,11 @@ When finished, click "{{int:Wlgroup-submit}}".',
 'wlgroup-noaction'  => 'Take no action',
 'wlgroup-rename'    => 'Rename',
 'wlgroup-delete'    => 'Delete',
+'wlgroup-renameto'  => 'Rename "$1" to:',
 'wlgroup-newname'   => 'New group name:',
 'wlgroup-createnew' => 'Create a new watchlist group:',
 'wlgroup-submit'    => 'Save groups',
-'wlgroup-success'   => 'Your watchlist groups were uploaded successfully',
+'wlgroup-success'   => 'Your watchlist groups were updated successfully.',
 
 # Watchlist editing tools
 'watchlisttools-view'  => 'View relevant changes',

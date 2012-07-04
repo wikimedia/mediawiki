@@ -83,13 +83,15 @@ class SpecialEditWatchlistGroup extends UnlistedSpecialPage {
 
 			$fields['groupaction_' . $id] = array(
 				'type' => 'select',
-				'options' => array( 'Take no action' => 0, 'Rename' => 1, 'Delete' => -1 ),
+				'options' => array( $this->msg('wlgroup-noaction')->parse() => 0,
+									$this->msg('wlgroup-rename')->parse() => 1,
+									$this->msg('wlgroup-delete')->parse() => -1 ),
 				'label' => $name . ':'
 			);
 
 			$fields['grouprename_' . $id] = array(
 				'type' => 'text',
-				'label' => 'Rename '.$name.' to:',
+				'label' => $this->msg( 'wlgroup-renameto' )->rawParams( $name )->parse(),
 				'size' => '15'
 			);
 		}
