@@ -5879,6 +5879,12 @@ $wgDBtestuser = ''; //db user that has permission to create and drop the test da
 $wgDBtestpassword = '';
 
 /**
+ * Registration of handlers for specific site types.
+ */
+$wgSiteTypes = array();
+$wgSiteTypes[SITE_TYPE_MEDIAWIKI] = 'MW\MediaWikiSite';
+
+/**
  * For really cool vim folding this needs to be at the end:
  * vim: foldmarker=@{,@} foldmethod=marker
  * @}
