@@ -154,7 +154,7 @@ $messages = array(
 'tog-hidepatrolled' => 'હાલના સલામતી માટે કરવામાં આવેલાં થયેલા ફેરફારો છુપાવો.',
 'tog-newpageshidepatrolled' => 'નવાં પાનાંની યાદીમાંથી દેખરેખ હેઠળનાં પાનાં છુપાવો',
 'tog-extendwatchlist' => 'ધ્યાનસૂચિને વિસ્તૃત કરો જેથી,ફક્ત તાજેતરનાજ નહીં, બધા આનુષાંગિક ફેરફારો જોઇ શકાય',
-'tog-usenewrc' => 'તાજેતરનાં વર્ધિત ફેરફારો (જાવાસ્ક્રીપ્ટ જરૂરી)',
+'tog-usenewrc' => 'તાજેતરનાં વર્ધિત ફેરફારો વાપરો(જાવાસ્ક્રીપ્ટ જરૂરી)',
 'tog-numberheadings' => 'મથાળાંઓને આપો-આપ ક્રમ (ઑટો નંબર) આપો',
 'tog-showtoolbar' => 'ફેરફારો માટેનો ટૂલબાર બતાવો (જાવા સ્ક્રિપ્ટ)',
 'tog-editondblclick' => 'ડબલ ક્લિક દ્વારા ફેરફાર કરો (જાવાસ્ક્રિપ્ટ જરૂરી)',
@@ -1083,8 +1083,8 @@ $1",
 
 # Suppression log
 'suppressionlog' => 'દાબ નોંધ',
-'suppressionlogtext' => 'નીચે પ્રબંધકોથી છુપાયેલ એવા હટાવ અને રોકની યાદિ આપેલી છે.
-હાલમાં સક્રીય એવા  પ્રતિબંધ અને રોકની યાદિ અહીં [[Special:BlockList|IP block list]]  આપેલ છે.',
+'suppressionlogtext' => 'નીચે પ્રબંધકોથી છુપાયેલ એવા હટાવ અને રોકની યાદી આપેલી છે.
+હાલમાં સક્રીય એવા પ્રતિબંધ અને રોકની યાદિ [[Special:BlockList|અહીં]] આપેલ છે.',
 
 # History merging
 'mergehistory' => 'પાનાનાં ઇતિહાસોનું વિલીનીકરણ',
@@ -2476,8 +2476,8 @@ To perform a selective restoration, check the boxes corresponding to the revisio
 'ipb-confirm' => 'પ્રતિબંધ પુષ્ટિ',
 'badipaddress' => 'અવૈધ IP સરનામું',
 'blockipsuccesssub' => 'સફળ પ્રતિબંધ મુકાયો',
-'blockipsuccesstext' => '[[Special:Contributions/$1|$1]] પરા રોક લગાવાઈ છે<br />
-રોક લગાવેલ સભ્યોની યાદિ [[Special:BlockList|IP block list]].',
+'blockipsuccesstext' => '[[Special:Contributions/$1|$1]] પર રોક લગાવાઈ છે.<br />
+સમીક્ષા માટે [[Special:BlockList|રોક લગાવાયેલ સભ્યોની યાદી]] જુઓ.',
 'ipb-blockingself' => 'તમે પોતાના પર પ્રતિબંધ મુકવા જાઓ છો! શું તમે સાચેજમાં આ કરવા માગો છો?',
 'ipb-confirmhideuser' => 'તમે "સભ્ય છુપાવો" સક્રિય રાખીને આ સભ્ય પર પ્રતિબંધ મુકવા જઇ રહ્યાં છો. આના કારણે કોઇપણ યાદી કે નોંધમાં સભ્યનું નામ જોઇ નહી શકાય. શું તમે ખરેખર આમ કરવા માંગો છો?',
 'ipb-edit-dropdown' => 'પ્રતિબંધ કારણોમાં ફેરફાર કરો',
@@ -2530,9 +2530,9 @@ To perform a selective restoration, check the boxes corresponding to the revisio
 રોક લગાવાયેલા સભ્યોની યાદિ આ મુજબ છે',
 'blocklogentry' => '[[$1]] પર પ્રતિબંધ $2 $3 સુધી મુકવામાં આવ્યો છે.',
 'reblock-logentry' => '[[$1]] ની પ્રતિબંધ વિકલ્પો બદલ્યા જે નો કલાતિત સમય છે   $2 $3',
-'blocklogtext' => 'આ સભ્યો પર રોક લગાવવા અને હટાવવા સંબંધિત યાદિ છે.
-સ્વયંચાલિત રીતે રોક લગાવાયેલ IP સરનામાની યાદિ અહીં નથી આપી.
-હાલમાં પ્રવર્તમાન રોક ની યાદિ અહીં જુઓ [[Special:BlockList|IP block list]].',
+'blocklogtext' => 'આ સભ્યો પર રોક લગાવવા અને હટાવવા સંબંધિત યાદી છે.
+સ્વયંચાલિત રીતે રોક લગાવાયેલ IP સરનામાની યાદી અહીં નથી આપી.
+હાલમાં પ્રવર્તમાન પ્રતિબંધ અને રોક ની [[Special:BlockList|યાદી અહીં જુઓ]].',
 'unblocklogentry' => '$1 પરનો પ્રતિબંધ ઉઠાવ્યો',
 'block-log-flags-anononly' => 'માત્ર અજ્ઞાત સભ્ય',
 'block-log-flags-nocreate' => 'ખાતું ખોલવા પર પ્રતિબંધ છે',
@@ -2798,7 +2798,7 @@ To perform a selective restoration, check the boxes corresponding to the revisio
 
 # JavaScriptTest
 'javascripttest' => 'જાવા સ્ક્રીપ્ટ પરીક્ષણ',
-'javascripttest-disabled' => 'આ સૂત્ર (ફંકશન) નિષ્ક્રીય કરાયો',
+'javascripttest-disabled' => 'આ સૂત્ર (ફંકશન) આ વિકિ પર કાર્યરત કરાયેલું નથી.',
 'javascripttest-title' => '$1 પરીક્ષણ જારી',
 'javascripttest-pagetext-noframework' => 'આ પાનું જાવા સ્ક્રીપ્ટ ચલાવવા આરક્ષિત છે.',
 'javascripttest-pagetext-unknownframework' => 'અજાણ ચકાસણી ફ્રેમવર્ક "$1".',
@@ -3595,6 +3595,7 @@ $5
 'version-software' => 'બેસાડેલા સોફ્ટવેર',
 'version-software-product' => 'ઉત્પાદ',
 'version-software-version' => 'આવૃત્તિ',
+'version-entrypoints-header-entrypoint' => 'પ્રવેશ સ્થળ',
 
 # Special:FilePath
 'filepath' => 'ફાઈલ પથ',
@@ -3788,6 +3789,10 @@ $5
 'duration-minutes' => '$1 {{PLURAL:$1|મિનિટ|મિનિટો}}',
 'duration-hours' => '$1 {{PLURAL:$1|કલાક|કલાકો}}',
 'duration-days' => '$1 {{PLURAL:$1|દિવસ|દિવસો}}',
+'duration-weeks' => '$1 {{PLURAL:$1|અઠવાડિયું|અઠવાડિયા}}',
 'duration-years' => '$1 {{PLURAL:$1|વર્ષ|વર્ષો}}',
+'duration-decades' => '$1 {{PLURAL:$1|દાયકો|દાયકાઓ}}',
+'duration-centuries' => '$1 {{PLURAL:$1|શતાબ્દી|શતાબ્દીઓ}}',
+'duration-millennia' => '$1 {{PLURAL:$1|સહસ્ત્રાબ્દી|સહસ્ત્રાબ્દીઓ}}',
 
 );

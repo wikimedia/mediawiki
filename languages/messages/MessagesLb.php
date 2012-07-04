@@ -562,6 +562,7 @@ $2',
 'invalidtitle-knownnamespace' => 'Net valabelen Titel mam Nummraum "$2" a mam Text "$3"',
 'invalidtitle-unknownnamespace' => 'Net valabelen Titel mat der onbekannter Nummraum-Zuel $1 a mam Text "$2"',
 'exception-nologin' => 'Net ageloggt',
+'exception-nologin-text' => 'Dës Säit oder Aktioun erfuerdert datt Dir op dëser Wiki ageloggt sidd.',
 
 # Virus scanner
 'virus-badscanner' => "Schlecht Configuratioun: onbekannte  Virescanner: ''$1''",
@@ -3713,6 +3714,7 @@ Soss kënnt Dir den einfache Formulär hei drënner benotzen. Är Bemierkung gë
 'api-error-empty-file' => 'De Fichier deen Dir geschéckt hutt war eidel.',
 'api-error-emptypage' => 'Et ass net erlaabt nei, eidel Säiten unzeleeën.',
 'api-error-fetchfileerror' => 'Interne Feeler: beim Opruffe vum Fichier huet eppes net fonctionnéiert.',
+'api-error-fileexists-forbidden' => 'E Fichier mam Numm "$1" gëtt et schonn an e kann net iwwerschriwwe ginn.',
 'api-error-file-too-large' => 'De Fichier deen Dir geschéckt hutt war ze grouss.',
 'api-error-filename-tooshort' => 'Den Numm vum Fichier ass ze kuerz.',
 'api-error-filetype-banned' => 'Dësen Typ vu Fichier ass net zougelooss.',

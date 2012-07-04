@@ -581,7 +581,7 @@ $1',
 'nstab-mediawiki' => 'Mesac',
 'nstab-template' => 'Şablon',
 'nstab-help' => 'Pela peşti',
-'nstab-category' => 'Kategori',
+'nstab-category' => 'Kategoriye',
 
 # Main script and global functions
 'nosuchaction' => 'Fealiyeto wınasi çıniyo',
@@ -2108,7 +2108,7 @@ Xo vira mekerê ke, sıteyê webiê bini şenê direkt ebe URLi yew dosya ra gı
 'booksources-invalid-isbn' => 'ISBN raşt nêasena bıewnê çımeyê orjinali, raşt kopya biya nê nêbiyaya?',
 
 # Special:Log
-'specialloguserlabel' => 'Karber:',
+'specialloguserlabel' => 'Kerdoğ:',
 'speciallogtitlelabel' => 'Menzil (sernuşte yana karber):',
 'log' => 'Qeydi',
 'all-logs-page' => 'Loganê umum yê hemî',
@@ -3330,7 +3330,7 @@ Eg ena dosya, kondisyonê orcinali ra bıvuriya, belki detayanê hemi nıeseno.'
 'exif-writer' => 'Nuştekar',
 'exif-languagecode' => 'Zıwan',
 'exif-iimversion' => 'Verqaydê IIM',
-'exif-iimcategory' => 'Kategori',
+'exif-iimcategory' => 'Kategoriye',
 'exif-iimsupplementalcategory' => 'Oleyê Kategoriyan',
 'exif-datetimeexpires' => 'No peyra mekarênê',
 'exif-datetimereleased' => 'Bıroşe',

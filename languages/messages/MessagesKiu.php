@@ -1062,7 +1062,7 @@ Cêr [$2 pela arezekerdena dosya de] arezekerdene asnina.',
 'booksources-go' => 'So',
 
 # Special:Log
-'specialloguserlabel' => 'Karber:',
+'specialloguserlabel' => 'Kerdoğ:',
 'speciallogtitlelabel' => 'Sernuste:',
 'log' => 'Qeydi',
 

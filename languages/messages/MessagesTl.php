@@ -2844,7 +2844,7 @@ Sagipin mo ito sa iyong kompyuter at papaitaas na ikarga ito rito.',
 'tooltip-upload' => 'Simulan ang pagkarga',
 'tooltip-rollback' => 'Ibinabalik ng "Pagulungin pabalik sa dati" ang (mga) pagbabago sa pahinang ito patungo sa huling bersyon ng huling tagapagambag sa pamamagitan ng isang pindot lamang.',
 'tooltip-undo' => 'Ibinabalit ng "Ibalik" ang pagbabagong ito at binubuksan ang pahinang gawaan ng pagbabago sa anyong paunang-tingin muna.  Nagpapahintulot na makapagdagdag ng dahilan sa buod.',
-'tooltip-preferences-save' => 'Itakda ang mga kagustuhan',
+'tooltip-preferences-save' => 'Sagipin ang mga nais',
 'tooltip-summary' => 'Magbigay ng maikling buod',
 
 # Stylesheets

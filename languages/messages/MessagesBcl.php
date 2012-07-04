@@ -218,6 +218,8 @@ $messages = array(
 'category-subcat-count-limited' => 'Igwa nin {{PLURAL:$1|sub-kategorya|$1 mga sub-kategorya}} an artikulong ini.',
 'category-article-count' => '{{PLURAL:$2|An mga minasunod na pahina sana an laog kan kategoryang ini|An mga minasunod na {{PLURAL:$1|pahina|$1 pahina}} an yaon sa kategoryang ini, sa $2 gabos.}}',
 'category-article-count-limited' => 'Yaon sa presenteng kategorya an mga minasunod na {{PLURAL:$1|pahina|$1 pahina}}.',
+'category-file-count' => '{{PLURAL:$2|Ining kategorya naglalaman sana kan minasunod na sagunson.|An minasunod {{PLURAL:$1|sagunson iyo|$1 na mga sagunson iyo}} sa kategoryang ini, na ginahi sa $2 sa kabilogan.}}',
+'category-file-count-limited' => 'An minasunod {{PLURAL:$1|na sagunson|$1 na mga sagunson}} yaon sa presenteng kategorya.',
 'listingcontinuesabbrev' => 'sunód',
 
 'about' => 'Manonongod',
@@ -534,8 +536,9 @@ Pakipili nin ibang ngaran tabi.',
 'wrongpassword' => 'Salâ an pigtaták na sekretong panlaog. Probaran giraray tabì.',
 'wrongpasswordempty' => 'Mayong pigkaág na sekretong panlaog. Probaran giraray tabì.',
 'passwordtooshort' => 'Salâ o halìpoton an saimong sekretong panlaog. Igwa dapat ining dai mababà sa {{PLURAL:$1|1 karakter|$1 karakter}} asin iba man sa pinilì mong pangaran.',
-'mailmypassword' => 'Ipadara sa e-koreo an sekretong panlaog',
-'passwordremindertitle' => 'Panpaísi nin sekretong panlaog halì sa {{SITENAME}}',
+'password-name-match' => 'An saimong sekretong panlaog dapat laen sa saimong paragamit na ngaran.',
+'mailmypassword' => 'Paki-koreo an bagong sekretong panlaog',
+'passwordremindertitle' => 'Bagong temporaryo na sekretong panlaog para sa {{SITENAME}}',
 'passwordremindertext' => 'Sarong paragamit (pwedeng ika, halì sa IP na $1)
 an naghagad nin bàgong sekretong panlaog para sa {{SITENAME}} ($4).
 "$3" na an bàgong sekretong panlaog ni "$2".
