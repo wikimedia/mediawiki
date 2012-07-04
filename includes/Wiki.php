@@ -153,10 +153,7 @@ class MediaWiki {
 		$title = $this->context->getTitle();
 		$output = $this->context->getOutput();
 		$user = $this->context->getUser();
-
-		if ( $request->getVal( 'printable' ) === 'yes' ) {
-			$output->setPrintable();
-		}
+		$this->context->setViewType();
 
 		$unused = null; // To pass it by reference
 		wfRunHooks( 'BeforeInitialize', array( &$title, &$unused, &$output, &$user, $request, $this ) );
