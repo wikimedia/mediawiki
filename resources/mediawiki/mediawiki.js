@@ -351,7 +351,7 @@ var mw = ( function ( $, undefined ) {
 			 *		}
 			 *	}
 			 */
-			var	registry = {},
+			var registry = {},
 				/**
 				 * Mapping of sources, keyed by source-id, values are objects.
 				 * Format:
@@ -368,16 +368,8 @@ var mw = ( function ( $, undefined ) {
 				queue = [],
 				// List of callback functions waiting for modules to be ready to be called
 				jobs = [],
-				// Flag indicating that document ready has occured
-				ready = false,
 				// Selector cache for the marker element. Use getMarker() to get/use the marker!
 				$marker = null;
-
-			/* Cache document ready status */
-
-			$(document).ready( function () {
-				ready = true;
-			} );
 
 			/* Private methods */
 
@@ -725,8 +717,12 @@ var mw = ( function ( $, undefined ) {
 			 * @param callback Function: Optional callback which will be run when the script is done
 			 */
 			function addScript( src, callback, async ) {
-				var done = false, script, head;
-				if ( ready || async ) {
+				var script, head,
+					done = false;
+
+				// Using isReady directly instead of storing it locally from
+				// a $.fn.ready callback (bug 31895).
+				if ( $.isReady || async ) {
 					// jQuery's getScript method is NOT better than doing this the old-fashioned way
 					// because jQuery will eval the script's code, and errors will not have sane
 					// line numbers.
