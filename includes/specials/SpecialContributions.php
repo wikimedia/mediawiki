@@ -842,17 +842,17 @@ class ContribsPager extends ReverseChronologicalPager {
 			);
 			# Mark current revisions
 			$topmarktext = '';
+			$user = $this->getUser();
 			if ( $row->rev_id == $row->page_latest ) {
 				$topmarktext .= '<span class="mw-uctop">' . $this->messages['uctop'] . '</span>';
 				# Add rollback link
-				if ( !$row->page_is_new && $page->quickUserCan( 'rollback' )
-					&& $page->quickUserCan( 'edit' ) )
+				if ( !$row->page_is_new && $page->quickUserCan( 'rollback', $user )
+					&& $page->quickUserCan( 'edit', $user ) )
 				{
 					$this->preventClickjacking();
 					$topmarktext .= ' ' . Linker::generateRollback( $rev );
 				}
 			}
-			$user = $this->getUser();
 			# Is there a visible previous revision?
 			if ( $rev->userCan( Revision::DELETED_TEXT, $user ) && $rev->getParentId() !== 0 ) {
 				$difftext = Linker::linkKnown(
@@ -882,7 +882,7 @@ class ContribsPager extends ReverseChronologicalPager {
 			} else {
 				$parentLen = isset( $this->mParentLens[$row->rev_parent_id] ) ? $this->mParentLens[$row->rev_parent_id] : 0;
 				$chardiff = ' . . ' . ChangesList::showCharacterDifference(
-						$parentLen, $row->rev_len ) . ' . . ';
+						$parentLen, $row->rev_len, $this->getContext() ) . ' . . ';
 			}
 
 			$lang = $this->getLanguage();
