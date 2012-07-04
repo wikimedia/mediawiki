@@ -1,0 +1,9 @@
+Change-Id: I1fe6a6c6e5505e52b505d9ccfcf0ed14374b21c3
+Code-Review+2: Hashar <hashar@free.fr>
+Verified+1: Hashar <hashar@free.fr>
+Verified+1: jenkins-bot
+Submitted-by: Hashar <hashar@free.fr>
+Submitted-at: Wed, 04 Jul 2012 09:01:33 +0000
+Reviewed-on: https://gerrit.wikimedia.org/r/14175
+Project: mediawiki/core
+Branch: refs/heads/master
