@@ -6191,6 +6191,14 @@ $wgDBtestpassword = '';
 $wgRequirePasswordforEmailChange = true;
 
 /**
+ * Registration of handlers for specific site types.
+ */
+$wgSiteTypes = array(
+	Site::TYPE_MEDIAWIKI => 'MediaWikiSite',
+);
+
+
+/**
  * For really cool vim folding this needs to be at the end:
  * vim: foldmarker=@{,@} foldmethod=marker
  * @}
