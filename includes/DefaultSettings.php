@@ -912,20 +912,6 @@ $wgAntivirusSetup = array(
 
 		'messagepattern' => '/.*?:(.*)/sim',
 	),
-
-	#setup for f-prot
-	'f-prot' => array (
-		'command' => "f-prot ",
-
-		'codemap' => array (
-			"0" => AV_NO_VIRUS, # no virus
-			"3" => AV_VIRUS_FOUND, # virus found
-			"6" => AV_VIRUS_FOUND, # virus found
-			"*" => AV_SCAN_FAILED, # else scan failed
-		),
-
-		'messagepattern' => '/.*?Infection:(.*)$/m',
-	),
 );
 
 
