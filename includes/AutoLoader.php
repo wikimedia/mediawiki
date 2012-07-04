@@ -258,7 +258,6 @@ $wgAutoloadLocalClasses = array(
 	'ViewCountUpdate' => 'includes/ViewCountUpdate.php',
 	'WantedQueryPage' => 'includes/QueryPage.php',
 	'WatchedItem' => 'includes/WatchedItem.php',
-	'WatchlistGroup' => 'includes/WatchlistGroup.php',
 	'WebRequest' => 'includes/WebRequest.php',
 	'WebRequestUpload' => 'includes/WebRequest.php',
 	'WebResponse' => 'includes/WebResponse.php',
