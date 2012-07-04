@@ -7,20 +7,23 @@
 ( function ( $, undefined ) {
 
 	/**
-	 * Enforces a byte limit to a textbox, so that UTF-8 entries are counted as well, when, for example,
-	 * a database field has a byte limit rather than a character limit.
-	 * Plugin rationale: Browser has native maxlength for number of characters, this plugin exists to
-	 * limit number of bytes instead.
+	 * Enforces a byte limit on an input field, so that UTF-8 entries are counted
+	 * as well, when, for example, a database field has a byte limit rather than
+	 * a character limit.
+	 * Plugin rationale: Browser has native maxlength for number of characters,
+	 * this plugin exists to limit number of bytes instead.
 	 *
-	 * Can be called with a custom limit (to use that limit instead of the maxlength attribute value),
-	 * a filter function (in case the limit should apply to something other than the exact input value),
-	 * or both. Order of arguments is important!
+	 * Can be called with a custom limit (to use that limit instead of the
+	 * maxlength attribute value), a filter function (in case the limit should
+	 * apply to something other than the exact input value), or both.
+	 * Order of parameters is important!
 	 *
-	 * @context {jQuery} Instance of jQuery for one or more input elements
-	 * @param limit {Number} [optional] Limit to enforce, fallsback to maxLength-attribute,
-	 * called with fetched value as argument.
-	 * @param fn {Function} [optional] Function to call on the input string before assessing the length
-	 * @return {jQuery} The context
+	 * @context {jQuery} Instance of jQuery for one or more input elements.
+	 * @param limit {Number} [optional] Limit to enforce, fallsback to
+	 * maxLength-attribute, called with fetched value as argument.
+	 * @param fn {Function} [optional] Function to call on the input string
+	 *  before assessing the length.
+	 * @return {jQuery} The context.
 	 */
 	$.fn.byteLimit = function ( limit, fn ) {
 		// If the first argument is the function,
@@ -48,49 +51,41 @@
 				return;
 			}
 
-			// Update/set attribute value, but only if there is no callback set.
 			// If there's a callback set, it's possible that the limit being enforced
-			// is too low (ie. if the callback would return "Foo" for "User:Foo").
+			// is lower or higher (ie. if the callback would return "Foo" for "User:Foo").
 			// Usually this isn't a problem since browsers ignore maxLength when setting
-			// the value property through JavaScript, but Safari 4 violates that rule, so
-			// we have to remove or not set the property if we have a callback.
-			if ( fn === undefined ) {
-				$el.prop( 'maxLength', elLimit );
-			} else {
-				$el.removeProp( 'maxLength' );
-			}
+			// the value property through JavaScript, but Safari 4 violates that rule,
+			// and makes sense to generally make sure the native browser limit doesn't
+			// interfere
+			$el.removeProp( 'maxLength' );
 	
 			// Save function for reference
-			$el.data( 'byteLimit-callback', fn );
+			$el.data( 'byteLimitCallback', fn );
 	
-			// We've got something, go for it:
-			$el.keypress( function ( e ) {
-				var val, len, charLen;
-				// First check to see if this is actually a character key
-				// being pressed.
-				// Based on key-event info from http://unixpapa.com/js/key.html
-				// jQuery should also normalize e.which to be consistent cross-browser,
-				// however the same check is still needed regardless of jQuery.
-	
-				// Note: At the moment, for some older opera versions (~< 10.5)
-				// some special keys won't be recognized (aka left arrow key).
-				// Backspace will be, so not big issue.
-	
-				if ( e.which === 0 || e.charCode === 0 || e.which === 8 ||
-					e.ctrlKey || e.altKey || e.metaKey )
-				{
-					// A special key (backspace, etc) so don't interfere
-					return true;
-				}
-	
-				val = fn !== undefined ? fn( $( this ).val() ): $( this ).val();
-				len = $.byteLength( val );
-				// Note that keypress returns a character code point, not a keycode.
-				// However, this may not be super reliable depending on how keys come in...
-				charLen = $.byteLength( String.fromCharCode( e.which ) );
-	
-				if ( ( len + charLen ) > elLimit ) {
-					e.preventDefault();
+			// Using keyup instead of keypress so that we don't have to account
+			// for the infinite number of methods for character insertion (typing,
+			// holding down for multiple characters, special characters inserted
+			// with shift/alt, backspace, drag/drop, cut/copy/paste, selecting
+			// text and replacing).
+			// Also using onchange. Usually only triggered when field loses focus,
+			// (incl. before submission), which seems redundant. But this is used
+			// to allow other JavaScript libraries (e.g. for custom input methods of
+			// special characters) which tend to trigger onchange as convienience for
+			// plugins like these.
+			$el.on( 'keyup change', function ( e ) {
+				var len,
+					$el = $( this ),
+					curVal = $el.val(),
+					val = curVal;
+
+				// Run any value modifier (e.g. a function to apply the limit to
+				// "Foo" in value "User:Foo").
+				while ( $.byteLength( fn ? fn( val ) : val ) > elLimit ) {
+					val = val.substr( 0, val.length - 1 );
+				};
+
+				if ( val !== curVal ) {
+					$el.val( val );
 				}
 			});
 		});
