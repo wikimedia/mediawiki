@@ -41,6 +41,13 @@
 			// that affects the next each() iteration as well.
 			elLimit = limit === undefined ? $el.prop( 'maxLength' ) : limit;
 	
+			// If there is no (valid) limit passed or found in the property,
+			// skip this. The < 0 check is required for Firefox, which returns
+			// -1  (instead of undefined) for maxLength if it is not set.
+			if ( !elLimit || elLimit < 0 ) {
+				return;
+			}
+
 			// Update/set attribute value, but only if there is no callback set.
 			// If there's a callback set, it's possible that the limit being enforced
 			// is too low (ie. if the callback would return "Foo" for "User:Foo").
@@ -51,11 +58,6 @@
 				$el.prop( 'maxLength', elLimit );
 			} else {
 				$el.removeProp( 'maxLength' );
-			}
-	
-			// Nothing passed and/or empty attribute, return without binding an event.
-			if ( elLimit === undefined ) {
-				return;
 			}
 	
 			// Save function for reference

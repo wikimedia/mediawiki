@@ -107,6 +107,16 @@
 	});
 
 	byteLimitTest({
+		description: 'Plain text input. Calling byteLimit with no parameters and no maxLength property (bug 36310)',
+		$input: $( '<input>' )
+			.attr( 'type', 'text' )
+			.byteLimit(),
+		sample: simpleSample,
+		hasLimit: false,
+		expected: simpleSample
+	});
+
+	byteLimitTest({
 		description: 'Limit using the maxlength attribute',
 		$input: $( '<input>' )
 			.attr( 'type', 'text' )
