@@ -25,7 +25,7 @@
 		 * Generates a random user session ID (32 alpha-numeric characters).
 		 *
 		 * This information would potentially be stored in a cookie to identify a user during a
-		 * session or series of sessions. It's uniqueness should not be depended on.
+		 * session or series of sessions. Its uniqueness should not be depended on.
 		 *
 		 * @return String: Random set of 32 alpha-numeric characters
 		 */
