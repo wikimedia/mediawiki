@@ -279,6 +279,11 @@ $article: Article object
 $user: the User object that was created. (Parameter added in 1.7)
 $byEmail: true when account was created "by email" (added in 1.12)
 
+'AfterFinalPageOutput': At the end of OutputPage::output() but before
+final ob_end_flush() which will send the buffered output to the client.
+This allows for last-minute modification of the output within the buffer
+by using ob_get_clean().
+
 'AfterImportPage': When a page import is completed
 $title: Title under which the revisions were imported
 $origTitle: Title provided by the XML file
