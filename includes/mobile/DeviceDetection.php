@@ -363,13 +363,15 @@ class DeviceDetection implements IDeviceDetector {
 			$deviceName = 'android';
 			if ( strpos( $userAgent, 'Opera Mini' ) !== false ) {
 				$deviceName = 'operamini';
+			} elseif ( strpos( $userAgent, 'Opera Mobi' ) !== false ) {
+				$deviceName = 'operamobile';
 			}
-		} else if ( preg_match( '/MSIE 9.0/', $userAgent ) ||
+		} elseif ( preg_match( '/MSIE 9.0/', $userAgent ) ||
 				preg_match( '/MSIE 8.0/', $userAgent ) ) {
 			$deviceName = 'ie';
-		} else if( preg_match( '/MSIE/', $userAgent ) ) {
+		} elseif( preg_match( '/MSIE/', $userAgent ) ) {
 			$deviceName = 'html';
-		} else if ( strpos( $userAgent, 'Opera Mobi' ) !== false ) {
+		} elseif ( strpos( $userAgent, 'Opera Mobi' ) !== false ) {
 			$deviceName = 'operamobile';
 		} elseif ( preg_match( '/iPad.* Safari/', $userAgent ) ) {
 			$deviceName = 'iphone';
@@ -398,10 +400,8 @@ class DeviceDetection implements IDeviceDetector {
 				$deviceName = 'wii';
 			} elseif ( strpos( $userAgent, 'Opera Mini' ) !== false ) {
 				$deviceName = 'operamini';
-			} elseif ( strpos( $userAgent, 'Opera Mobi' ) !== false ) {
-				$deviceName = 'iphone';
 			} else {
-				$deviceName = 'webkit';
+				$deviceName = 'operamobile';
 			}
 		} elseif ( preg_match( '/Kindle\/1.0/', $userAgent ) ) {
 			$deviceName = 'kindle';
