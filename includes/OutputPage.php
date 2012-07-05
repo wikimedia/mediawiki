@@ -1998,6 +1998,9 @@ class OutputPage extends ContextSource {
 			wfProfileOut( 'Output-skin' );
 		}
 
+		// Hook that allows last minute changes to final overall output by modifying output buffer
+		wfRunHooks( 'AfterFinalPageOutput', array( &$this ) );
+
 		$this->sendCacheControl();
 		ob_end_flush();
 		wfProfileOut( __METHOD__ );
