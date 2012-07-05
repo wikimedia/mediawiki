@@ -613,6 +613,7 @@ return array(
 		'scripts' => 'resources/mediawiki/mediawiki.user.js',
 		'dependencies' => array(
 			'jquery.cookie',
+			'mediawiki.api',
 		),
 	),
 	'mediawiki.util' => array(

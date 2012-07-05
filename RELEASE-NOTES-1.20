@@ -105,6 +105,9 @@ upgrade PHP if you have not done so prior to upgrading MediaWiki.
   and 'subcats'
 * (bug 38362) Make Special:Listuser includeable on wiki pages.
 * Added support in jquery.localize for placeholder attributes.
+* (bug 38151) Implemented mw.user.getRights for getting and caching the current
+  user's user rights.
+* Implemented mw.user.getGroups for getting and caching user groups.
 
 === Bug fixes in 1.20 ===
 * (bug 30245) Use the correct way to construct a log page title.
@@ -238,6 +241,8 @@ changes to languages because of Bugzilla reports.
   and only applies to MyISAM or similar DBs. Those should only be used
   for archived sites anyway. We can't get edit conflicts on such sites,
   so the WikiPage code wasn't useful there either.
+* Deprecated mw.user.name in favour of mw.user.getName.
+* Deprecated mw.user.anonymous in favour of mw.user.isAnon.
 
 == Compatibility ==
 
