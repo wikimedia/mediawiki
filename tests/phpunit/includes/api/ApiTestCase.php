@@ -118,6 +118,80 @@ abstract class ApiTestCase extends MediaWikiLangTestCase {
 		return $data;
 	}
 
+	### Helpers to login / get a session ###
+	/**
+	 * FIXME need to factor out ApiUploadTest::testLogin there
+	 * Test login as a sysop, return a sysop session you could use
+	 * in other tests by just depending upon this test.
+	 *
+	 * To use it in a child class, you will need to extends this
+	 * method locally by doing:
+	 * @code
+	 * function testLoginSysop() {
+	 * 	return ApiTestCase::testLoginSysop();
+	 * }
+	 * @endcode
+	 *
+	 * Then any test that need a session could be made to depends from it
+	 * and will receive a session as a first argument:
+	 * @code
+	 * /**
+	 *  * \depends testLoginSysop
+	 *  *\/
+	 * function testSomethingThatNeedSysopSession( $session ) {
+	 * 	doApiRequestWithToken( $params, $session );
+	 * }
+	 * @endcode
+	 */
+	public function testLoginSysop() {
+		// Login as sysop
+		return $this->internalLogin(
+			self::$users['sysop']
+		);
+	}
+
+	/**
+	 * @see testLoginSysop
+	 */
+	public function testLoginUploader() {
+		// Login as uploader
+		return $this->internalLogin(
+			self::$users['uploader']
+		);
+	}
+
+	/**
+	 * Internal helper for testLoginSysop and testLoginUploader
+	 */
+	private function internalLogin( ApiTestUser $user ) {
+		list( $result, , $session ) = $this->doApiRequest( array(
+			'action'     => 'login',
+			'lgname'     => $user->username,
+			'lgpassword' => $user->password,
+		) );
+		$this->assertArrayHasKey( "login", $result );
+		$this->assertArrayHasKey( "result", $result['login'] );
+		$this->assertEquals( "NeedToken", $result['login']['result'] );
+
+		// Verify token is valid
+		$token = $result['login']['token'];
+		list( $result, , $session ) = $this->doApiRequest( array(
+			'action' => 'login',
+			'lgtoken' => $token,
+			'lgname' => $user->username,
+			'lgpassword' => $user->password
+		) );
+		$this->assertArrayHasKey( "login", $result );
+		$this->assertArrayHasKey( "result", $result['login'] );
+		$this->assertEquals( "Success", $result['login']['result'] );
+		$this->assertArrayHasKey( 'lgtoken', $result['login'] );
+
+		$this->assertNotEmpty( $session, 'API Login must returns a session' );
+
+		return $session;
+
+	}
+
 	protected function getTokenList( $user, $session = null ) {
 		$data = $this->doApiRequest( array(
 			'action' => 'query',

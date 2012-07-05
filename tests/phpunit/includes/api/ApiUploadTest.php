@@ -31,40 +31,17 @@ class ApiUploadTest extends ApiTestCaseUpload {
 	/**
 	 * Testing login
 	 * XXX this is a funny way of getting session context
+	 *
+	 * Used as a dependeny by other tests, simply a callback
+	 * to the parent test which cannote be used as a dependency
+	 * in the child class.
 	 */
-	function testLogin() {
-		$user = self::$users['uploader'];
-
-		$params = array(
-			'action' => 'login',
-			'lgname' => $user->username,
-			'lgpassword' => $user->password
-		);
-		list( $result, , $session ) = $this->doApiRequest( $params );
-		$this->assertArrayHasKey( "login", $result );
-		$this->assertArrayHasKey( "result", $result['login'] );
-		$this->assertEquals( "NeedToken", $result['login']['result'] );
-		$token = $result['login']['token'];
-
-		$params = array(
-			'action' => 'login',
-			'lgtoken' => $token,
-			'lgname' => $user->username,
-			'lgpassword' => $user->password
-		);
-		list( $result, , $session ) = $this->doApiRequest( $params, $session );
-		$this->assertArrayHasKey( "login", $result );
-		$this->assertArrayHasKey( "result", $result['login'] );
-		$this->assertEquals( "Success", $result['login']['result'] );
-		$this->assertArrayHasKey( 'lgtoken', $result['login'] );
-
-		$this->assertNotEmpty( $session, 'API Login must return a session' );
-		return $session;
-
+	function testLoginUploader() {
+		return parent::testLoginUploader();
 	}
 
 	/**
-	 * @depends testLogin
+	 * @depends testLoginUploader
 	 */
 	public function testUploadRequiresToken( $session ) {
 		$exception = false;
@@ -80,7 +57,7 @@ class ApiUploadTest extends ApiTestCaseUpload {
 	}
 
 	/**
-	 * @depends testLogin
+	 * @depends testLoginUploader
 	 */
 	public function testUploadMissingParams( $session ) {
 		$exception = false;
@@ -98,7 +75,7 @@ class ApiUploadTest extends ApiTestCaseUpload {
 
 
 	/**
-	 * @depends testLogin
+	 * @depends testLoginUploader
 	 */
 	public function testUpload( $session ) {
 		$extension = 'png';
@@ -152,7 +129,7 @@ class ApiUploadTest extends ApiTestCaseUpload {
 
 
 	/**
-	 * @depends testLogin
+	 * @depends testLoginUploader
 	 */
 	public function testUploadZeroLength( $session ) {
 		$mimeType = 'image/png';
@@ -190,7 +167,7 @@ class ApiUploadTest extends ApiTestCaseUpload {
 
 
 	/**
-	 * @depends testLogin
+	 * @depends testLoginUploader
 	 */
 	public function testUploadSameFileName( $session ) {
 		$extension = 'png';
@@ -263,7 +240,7 @@ class ApiUploadTest extends ApiTestCaseUpload {
 
 
 	/**
-	 * @depends testLogin
+	 * @depends testLoginUploader
 	 */
 	public function testUploadSameContent( $session ) {
 		$extension = 'png';
@@ -346,7 +323,7 @@ class ApiUploadTest extends ApiTestCaseUpload {
 
 
 	/**
-	 * @depends testLogin
+	 * @depends testLoginUploader
 	 */
 	public function testUploadStash( $session ) {
 		global $wgUser;
@@ -430,7 +407,7 @@ class ApiUploadTest extends ApiTestCaseUpload {
 	
 	
 	/**
-	 * @depends testLogin
+	 * @depends testLoginUploader
 	 */
 	public function testUploadChunks( $session ) {
 		global $wgUser;
