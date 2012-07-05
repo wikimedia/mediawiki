@@ -12,6 +12,9 @@
 		/* Private Members */
 
 		var that = this;
+		var api = new mw.Api();
+		var groupsDeferred;
+		var rightsDeferred;
 
 		/* Public Members */
 
@@ -44,9 +47,16 @@
 		 *
 		 * @return Mixed: User name string or null if users is anonymous
 		 */
-		this.name = function() {
+		this.getName = function() {
 			return mw.config.get( 'wgUserName' );
 		};
+
+		/**
+		 * @deprecated since 1.20 use mw.user.getName() instead
+		 */
+		this.name = function() {
+			return this.getName();
+		}
 
 		/**
 		 * Checks if the current user is anonymous.
@@ -54,7 +64,7 @@
 		 * @return Boolean
 		 */
 		this.anonymous = function() {
-			return that.name() ? false : true;
+			return that.getName() ? false : true;
 		};
 
 		/**
@@ -84,7 +94,7 @@
 		 * @return String: User name or random session ID
 		 */
 		this.id = function() {
-			var name = that.name();
+			var name = that.getName();
 			if ( name ) {
 				return name;
 			}
@@ -173,6 +183,58 @@
 				);
 			}
 			return bucket;
+		};
+
+		/**
+		 * Gets the current user's groups.
+		 */
+		this.getGroups = function( callback ) {
+			if ( groupsDeferred ) {
+				groupsDeferred.always( callback );
+				return;
+			}
+
+			groupsDeferred = $.Deferred();
+			groupsDeferred.always( callback );
+			api.get( {
+				action: 'query',
+				meta: 'userinfo',
+				uiprop: 'groups'
+			} ).done( function( data ) {
+				try {
+					groupsDeferred.resolve( data.query.userinfo.groups );
+				} catch ( e ) {
+					groupsDeferred.reject( [] );
+				}
+			} ).fail( function( data ) {
+					groupsDeferred.reject( [] );
+			} );
+		};
+
+		/**
+		 * Gets the current user's rights.
+		 */
+		this.getRights = function( callback ) {
+			if ( rightsDeferred ) {
+				rightsDeferred.always( callback );
+				return;
+			}
+
+			rightsDeferred = $.Deferred();
+			rightsDeferred.always( callback );
+			api.get( {
+				action: 'query',
+				meta: 'userinfo',
+				uiprop: 'rights'
+			} ).done( function( data ) {
+				try {
+					rightsDeferred.resolve( data.query.userinfo.rights );
+				} catch ( e ) {
+					rightsDeferred.reject( [] );
+				}
+			} ).fail( function( data ) {
+				rightsDeferred.reject( [] );
+			} );
 		};
 	}
 
