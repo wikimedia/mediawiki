@@ -1181,7 +1181,7 @@ class WikiPage extends Page {
 			$conditions,
 			__METHOD__ );
 
-		$result = $dbw->affectedRows() != 0;
+		$result = $dbw->affectedRows() > 0;
 		if ( $result ) {
 			$this->updateRedirectOn( $dbw, $rt, $lastRevIsRedirect );
 			$this->setLastEdit( $revision );
