@@ -490,7 +490,7 @@ class SpecialPageFactory {
 		// Execute special page
 		$profName = 'Special:' . $page->getName();
 		wfProfileIn( $profName );
-		$page->execute( $par );
+		$page->run( $par );
 		wfProfileOut( $profName );
 		wfProfileOut( __METHOD__ );
 		return true;

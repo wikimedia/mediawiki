@@ -590,6 +590,15 @@ class SpecialPage {
 	}
 
 	/**
+	 * Entry point.
+	 *
+	 * @param $par String subpage string, if one was specified
+	 */
+	public final function run( $par ) {
+		$this->execute( $par );
+	}
+
+	/**
 	 * Default execute method
 	 * Checks user permissions, calls the function given in mFunction
 	 *
@@ -597,7 +606,7 @@ class SpecialPage {
 	 *
 	 * @param $par String subpage string, if one was specified
 	 */
-	function execute( $par ) {
+	public function execute( $par ) {
 		$this->setHeaders();
 		$this->checkPermissions();
 
