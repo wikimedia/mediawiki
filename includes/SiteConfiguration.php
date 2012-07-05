@@ -138,6 +138,7 @@ class SiteConfiguration {
 
 	/**
 	 * Optional callback to load full configuration data.
+	 * @var string|array
 	 */
 	public $fullLoadCallback = null;
 
@@ -155,6 +156,8 @@ class SiteConfiguration {
 	 * argument and the wiki in the second one.
 	 * if suffix and lang are passed they will be used for the return value of
 	 * self::siteFromDB() and self::$suffixes will be ignored
+	 *
+	 * @var string|array
 	 */
 	public $siteParamsCallback = null;
 
@@ -189,7 +192,7 @@ class SiteConfiguration {
 				if( array_key_exists( $wiki, $thisSetting ) ) {
 					$retval = $thisSetting[$wiki];
 					break;
-				} elseif( array_key_exists( "+$wiki", $thisSetting ) && is_array( $thisSetting["+$wiki"] ) ) {
+				} elseif ( array_key_exists( "+$wiki", $thisSetting ) && is_array( $thisSetting["+$wiki"] ) ) {
 					$retval = $thisSetting["+$wiki"];
 				}
 
@@ -203,8 +206,9 @@ class SiteConfiguration {
 						}
 						break 2;
 					} elseif( array_key_exists( "+$tag", $thisSetting ) && is_array($thisSetting["+$tag"]) ) {
-						if( !isset( $retval ) )
+						if( !isset( $retval ) ) {
 							$retval = array();
+						}
 						$retval = self::arrayMerge( $retval, $thisSetting["+$tag"] );
 					}
 				}
@@ -218,9 +222,10 @@ class SiteConfiguration {
 							$retval = $thisSetting[$suffix];
 						}
 						break;
-					} elseif( array_key_exists( "+$suffix", $thisSetting ) && is_array($thisSetting["+$suffix"]) ) {
-						if (!isset($retval))
+					} elseif ( array_key_exists( "+$suffix", $thisSetting ) && is_array($thisSetting["+$suffix"]) ) {
+						if ( !isset( $retval ) ) {
 							$retval = array();
+						}
 						$retval = self::arrayMerge( $retval, $thisSetting["+$suffix"] );
 					}
 				}
@@ -287,8 +292,9 @@ class SiteConfiguration {
 			}
 
 			$value = $this->getSetting( $varname, $wiki, $params );
-			if ( $append && is_array( $value ) && is_array( $GLOBALS[$var] ) )
+			if ( $append && is_array( $value ) && is_array( $GLOBALS[$var] ) ) {
 				$value = self::arrayMerge( $value, $GLOBALS[$var] );
+			}
 			if ( !is_null( $value ) ) {
 				$localSettings[$var] = $value;
 			}
@@ -408,8 +414,9 @@ class SiteConfiguration {
 		}
 
 		foreach( $default as $name => $def ){
-			if( !isset( $ret[$name] ) || ( is_array( $default[$name] ) && !is_array( $ret[$name] ) ) )
+			if( !isset( $ret[$name] ) || ( is_array( $default[$name] ) && !is_array( $ret[$name] ) ) ) {
 				$ret[$name] = $default[$name];
+			}
 		}
 
 		return $ret;
@@ -430,18 +437,21 @@ class SiteConfiguration {
 	protected function mergeParams( $wiki, $suffix, /*array*/ $params, /*array*/ $wikiTags ){
 		$ret = $this->getWikiParams( $wiki );
 
-		if( is_null( $ret['suffix'] ) )
+		if( is_null( $ret['suffix'] ) ) {
 			$ret['suffix'] = $suffix;
+		}
 
 		$ret['tags'] = array_unique( array_merge( $ret['tags'], $wikiTags ) );
 
 		$ret['params'] += $params;
 
 		// Automatically fill that ones if needed
-		if( !isset( $ret['params']['lang'] ) && !is_null( $ret['lang'] ) )
+		if( !isset( $ret['params']['lang'] ) && !is_null( $ret['lang'] ) ){
 			$ret['params']['lang'] = $ret['lang'];
-		if( !isset( $ret['params']['site'] ) && !is_null( $ret['suffix'] ) )
+		}
+		if( !isset( $ret['params']['site'] ) && !is_null( $ret['suffix'] ) ) {
 			$ret['params']['site'] = $ret['suffix'];
+		}
 
 		return $ret;
 	}
@@ -455,8 +465,9 @@ class SiteConfiguration {
 	public function siteFromDB( $db ) {
 		// Allow override
 		$def = $this->getWikiParams( $db );
-		if( !is_null( $def['suffix'] ) && !is_null( $def['lang'] ) )
+		if( !is_null( $def['suffix'] ) && !is_null( $def['lang'] ) ) {
 			return array( $def['suffix'], $def['lang'] );
+		}
 
 		$site = null;
 		$lang = null;
@@ -513,7 +524,7 @@ class SiteConfiguration {
 	}
 
 	public function loadFullData() {
-		if ($this->fullLoadCallback && !$this->fullLoadDone) {
+		if ( $this->fullLoadCallback && !$this->fullLoadDone ) {
 			call_user_func( $this->fullLoadCallback, $this );
 			$this->fullLoadDone = true;
 		}
