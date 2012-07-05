@@ -28,7 +28,11 @@
 class SquidUpdate {
 	var $urlArr, $mMaxTitles;
 
-	function __construct( $urlArr = Array(), $maxTitles = false ) {
+	/**
+	 * @param $urlArr array
+	 * @param $maxTitles bool|int
+	 */
+	function __construct( $urlArr = array(), $maxTitles = false ) {
 		global $wgMaxSquidPurgeTitles;
 		if ( $maxTitles === false ) {
 			$this->mMaxTitles = $wgMaxSquidPurgeTitles;
@@ -120,11 +124,6 @@ class SquidUpdate {
 	 */
 	static function purge( $urlArr ) {
 		global $wgSquidServers, $wgHTCPMulticastRouting;
-
-		/*if ( (@$wgSquidServers[0]) == 'echo' ) {
-			echo implode("<br />\n", $urlArr) . "<br />\n";
-			return;
-		}*/
 
 		if( !$urlArr ) {
 			return;
