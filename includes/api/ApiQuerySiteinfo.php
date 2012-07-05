@@ -93,6 +93,9 @@ class ApiQuerySiteinfo extends ApiQueryBase {
 				case 'showhooks':
 					$fit = $this->appendSubscribedHooks( $p );
 					break;
+				case 'variables':
+					$fit = $this->appendVariables( $p );
+					break;
 				default:
 					ApiBase::dieDebug( __METHOD__, "Unknown prop=$p" );
 			}
@@ -532,6 +535,12 @@ class ApiQuerySiteinfo extends ApiQueryBase {
 		return $this->getResult()->addValue( 'query', $property, $hooks );
 	}
 
+	public function appendVariables( $property ) {
+		$variables = MagicWord::getVariableIDs();
+		$this->getResult()->setIndexedTagName( $variables, 'v' );
+		return $this->getResult()->addValue( 'query', $property, $variables );
+	}
+
 	private function formatParserTags( $item ) {
 		return "<{$item}>";
 	}
@@ -583,6 +592,7 @@ class ApiQuerySiteinfo extends ApiQueryBase {
 					'extensiontags',
 					'functionhooks',
 					'showhooks',
+					'variables',
 				)
 			),
 			'filteriw' => array(
@@ -618,7 +628,8 @@ class ApiQuerySiteinfo extends ApiQueryBase {
 				' skins                 - Returns a list of all enabled skins',
 				' extensiontags         - Returns a list of parser extension tags',
 				' functionhooks         - Returns a list of parser function hooks',
-				' showhooks             - Returns a list of all subscribed hooks (contents of $wgHooks)'
+				' showhooks             - Returns a list of all subscribed hooks (contents of $wgHooks)',
+				' variables             - Returns a list of variable IDs',
 			),
 			'filteriw' =>  'Return only local or only nonlocal entries of the interwiki map',
 			'showalldb' => 'List all database servers, not just the one lagging the most',

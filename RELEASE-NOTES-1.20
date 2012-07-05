@@ -180,6 +180,7 @@ upgrade PHP if you have not done so prior to upgrading MediaWiki.
 * (bug 32382) Allow descending order for list=iwbacklinks
 * (bug 32381) Allow descending order for list=backlinks, list=embeddedin and list=imageusage
 * (bug 32383) Allow descending order for list=langbacklinks
+* API meta=siteinfo can now return the list of known variable IDs
 
 === Languages updated in 1.20 ===
 
