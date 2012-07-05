@@ -44,9 +44,16 @@
 		 *
 		 * @return Mixed: User name string or null if users is anonymous
 		 */
-		this.name = function() {
+		this.getName = function() {
 			return mw.config.get( 'wgUserName' );
 		};
+
+		/**
+		 * @deprecated since 1.20 use mw.user.getName() instead
+		 */
+		this.name = function() {
+			return this.getName();
+		}
 
 		/**
 		 * Checks if the current user is anonymous.
@@ -54,7 +61,7 @@
 		 * @return Boolean
 		 */
 		this.anonymous = function() {
-			return that.name() ? false : true;
+			return that.getName() ? false : true;
 		};
 
 		/**
@@ -84,7 +91,7 @@
 		 * @return String: User name or random session ID
 		 */
 		this.id = function() {
-			var name = that.name();
+			var name = that.getName();
 			if ( name ) {
 				return name;
 			}
@@ -173,6 +180,63 @@
 				);
 			}
 			return bucket;
+		};
+
+		/**
+		 * Gets the current user's groups.
+		 *
+		 * @return Array: The groups which this user is in.
+		 */
+		this.groupsDeferred = $.Deferred();
+		this.getGroups = function(successCallback, errorCallback) {
+			this.groupsDeferred.done(successCallback);
+			this.groupsDeferred.fail(errorCallback);
+
+			var api = new mw.Api();
+			api.get( {
+				action: 'query',
+				meta: 'userinfo',
+				uiprop: 'groups|implicitgroups'
+			}, {
+				ok: function(data) {
+					try {
+						that.groupsDeferred.resolve(data.query.userinfo.groups);
+					} catch (e) {
+						that.groupsDeferred.reject(e);
+					}
+				},
+				error: function(data) {
+					that.groupsDeferred.reject(data);
+				}
+			} );
+		};
+
+		/**
+		 * Gets the current user's rights.
+		 *
+		 * @return Array: The rights which this user holds.
+		 */
+		this.rightsDeferred = $.Deferred();
+		this.getRights = function(successCallback, errorCallback) {
+			this.rightsDeferred.done(successCallback);
+			this.rightsDeferred.fail(errorCallback);
+
+			new mw.Api().get( {
+				action: 'query',
+				meta: 'userinfo',
+				uiprop: 'rights'
+			}, {
+				ok: function(data) {
+					try {
+						that.rightsDeferred.resolve(data.query.userinfo.rights);
+					} catch (e) {
+						that.rightsDeferred.reject(e);
+					}
+				},
+				error: function(data) {
+					that.rightsDeferred.reject(data);
+				}
+			} );
 		};
 	}
 
