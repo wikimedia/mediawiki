@@ -101,6 +101,8 @@ upgrade PHP if you have not done so prior to upgrading MediaWiki.
   the new deletelogentry permission is required for this.
 * (bug 14237) Allow PAGESINCATEGORY to distinguish between 'all', 'pages', 'files'
   and 'subcats'
+* (bug 38151) Add support for getting and caching user rights in javascript
+* Deprecated mw.user.name in favour of mw.user.getName
 
 === Bug fixes in 1.20 ===
 * (bug 30245) Use the correct way to construct a log page title.
