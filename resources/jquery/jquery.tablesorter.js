@@ -60,7 +60,7 @@
 
 	/* Local scope */
 
-	var	ts,
+	var ts,
 		parsers = [];
 
 	/* Parser utility functions */
@@ -77,9 +77,15 @@
 
 	function getElementText( node ) {
 		var $node = $( node ),
-			data = $node.attr( 'data-sort-value' );
-		if ( data !== undefined ) {
-			return data;
+			// Use data-sort-value attribute.
+			// Use data() instead of attr() so that live value changes
+			// are processed as well (bug 38152).
+			data = $node.data( 'sortValue' );
+
+		if ( data !== null && data !== undefined ) {
+			// Cast any numbers or other stuff to a string, methods
+			// like charAt, toLowerCase and split are expected.
+			return String( data );
 		} else {
 			return $node.text();
 		}
@@ -611,9 +617,16 @@
 							explodeRowspans( $table );
 							// try to auto detect column type, and store in tables config
 							table.config.parsers = buildParserCache( table, $headers );
-							// build the cache for the tbody cells
-							cache = buildCache( table );
 						}
+
+						// Build the cache for the tbody cells
+						// to share between calculations for this sort action.
+						// Re-calculated each time a sort action is performed due to possiblity
+						// that sort values change. Shouldn't be too expensive, but if it becomes
+						// too slow an event based system should be implemented somehow where
+						// cells get event .change() and bubbles up to the <table> here
+						cache = buildCache( table );
+
 						var totalRows = ( $table[0].tBodies[0] && $table[0].tBodies[0].rows.length ) || 0;
 						if ( !table.sortDisabled && totalRows > 0 ) {
 
