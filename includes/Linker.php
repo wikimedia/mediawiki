@@ -1646,11 +1646,17 @@ class Linker {
 	 * other users.
 	 *
 	 * @param $rev Revision object
+	 * @param $context IContextSource context to use or null for the main context.
 	 * @return string
 	 */
-	public static function generateRollback( $rev ) {
+	public static function generateRollback( $rev, IContextSource $context = null ) {
+		if ( $context === null ) {
+			$context = RequestContext::getMain();
+		}
+
 		return '<span class="mw-rollback-link">'
-			. wfMessage( 'brackets' )->rawParams( self::buildRollbackLink( $rev ) )->plain()
+			. $context->msg( 'brackets' )->rawParams(
+				self::buildRollbackLink( $rev, $context ) )->plain()
 			. '</span>';
 	}
 
@@ -1658,24 +1664,28 @@ class Linker {
 	 * Build a raw rollback link, useful for collections of "tool" links
 	 *
 	 * @param $rev Revision object
+	 * @param $context IContextSource context to use or null for the main context.
 	 * @return String: HTML fragment
 	 */
-	public static function buildRollbackLink( $rev ) {
-		global $wgRequest, $wgUser;
+	public static function buildRollbackLink( $rev, IContextSource $context = null ) {
+		if ( $context === null ) {
+			$context = RequestContext::getMain();
+		}
+
 		$title = $rev->getTitle();
 		$query = array(
 			'action' => 'rollback',
 			'from' => $rev->getUserText(),
-			'token' => $wgUser->getEditToken( array( $title->getPrefixedText(), $rev->getUserText() ) ),
+			'token' => $context->getUser()->getEditToken( array( $title->getPrefixedText(), $rev->getUserText() ) ),
 		);
-		if ( $wgRequest->getBool( 'bot' ) ) {
+		if ( $context->getRequest()->getBool( 'bot' ) ) {
 			$query['bot'] = '1';
 			$query['hidediff'] = '1'; // bug 15999
 		}
 		return self::link(
 			$title,
-			wfMsgHtml( 'rollbacklink' ),
-			array( 'title' => wfMsg( 'tooltip-rollback' ) ),
+			$context->msg( 'rollbacklink' )->escaped(),
+			array( 'title' => $context->msg( 'tooltip-rollback' )->text() ),
 			$query,
 			array( 'known', 'noclasses' )
 		);

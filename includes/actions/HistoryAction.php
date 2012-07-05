@@ -647,7 +647,7 @@ class HistoryPager extends ReverseChronologicalPager {
 			if ( $latest && !count( $this->getTitle()->getUserPermissionsErrors( 'rollback', $this->getUser() ) ) ) {
 				$this->preventClickjacking();
 				$tools[] = '<span class="mw-rollback-link">' .
-					Linker::buildRollbackLink( $rev ) . '</span>';
+					Linker::buildRollbackLink( $rev, $this->getContext() ) . '</span>';
 			}
 
 			if ( !$rev->isDeleted( Revision::DELETED_TEXT )

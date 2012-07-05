@@ -278,7 +278,7 @@ class DifferenceEngine extends ContextSource {
 			if ( $samePage && $this->mNewPage->quickUserCan( 'edit', $user ) ) {
 				if ( $this->mNewRev->isCurrent() && $this->mNewPage->userCan( 'rollback', $user ) ) {
 					$out->preventClickjacking();
-					$rollback = '&#160;&#160;&#160;' . Linker::generateRollback( $this->mNewRev );
+					$rollback = '&#160;&#160;&#160;' . Linker::generateRollback( $this->mNewRev, $this->getContext() );
 				}
 				if ( !$this->mOldRev->isDeleted( Revision::DELETED_TEXT ) && !$this->mNewRev->isDeleted( Revision::DELETED_TEXT ) ) {
 					$undoLink = ' ' . $this->msg( 'parentheses' )->rawParams(
