@@ -555,6 +555,8 @@ Sila catat URL bagi laman ini dan laporkan perkara ini kepada seorang [[Special:
 'cannotdelete' => 'Laman atau fail $1 tidak dapat dihapuskan.
 Ia mungkin telah pun dihapuskan oleh orang lain.',
 'cannotdelete-title' => 'Laman "$1" tidak dapat dihapuskan',
+'delete-hook-aborted' => 'Penghapusan dibatalkan oleh penyangkuk.
+Tiada sebab diberikan.',
 'badtitle' => 'Tajuk tidak sah',
 'badtitletext' => 'Tajuk laman yang diminta tidak sah, kosong, ataupun tajuk antara bahasa atau tajuk antara wiki yang salah dipaut. Ia mungkin mengandungi aksara yang tidak dibenarkan.',
 'perfcached' => 'Data yang berikut disimpan dalam cache dan mungkin tidak terkemas kini. Semaksimum {{PLURAL:$1|satu hasil|$1 hasil}} terdapat dalam cache.',
@@ -3805,6 +3807,8 @@ Ataupun, anda boleh menggunakan borang yang mudah di bawah. Ulasan anda akan dic
 'api-error-empty-file' => 'Fail yang anda serahkan adalah kosong.',
 'api-error-emptypage' => 'Anda tidak dibenarkan membuat laman baru yang kosong.',
 'api-error-fetchfileerror' => 'Ralat dalaman: ada malasah ketika mengambil fail itu.',
+'api-error-fileexists-forbidden' => 'Fail bernama "$1" sudah wujud, dan tidak boleh ditulis ganti.',
+'api-error-fileexists-shared-forbidden' => 'Fail bernama "$1" sudah wujud dalam repositori fail kongsian, dan tidak boleh ditulis ganti.',
 'api-error-file-too-large' => 'Fail yang anda serahkan adalah terlalu besar.',
 'api-error-filename-tooshort' => 'Nama fail ini terlalu pendek.',
 'api-error-filetype-banned' => 'Fail jenis ini adalah dilarang.',

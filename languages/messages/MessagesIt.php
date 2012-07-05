@@ -3474,7 +3474,7 @@ I collegamenti successivi, sulla stessa riga, sono considerati come eccezioni (o
 'limitall' => 'tutti',
 
 # E-mail address confirmation
-'confirmemail' => 'Conferma indirizzo e-mail',
+'confirmemail' => 'Conferma indirizzo email',
 'confirmemail_noemail' => 'Non è stato indicato un indirizzo e-mail valido nelle proprie [[Special:Preferences|preferenze]].',
 'confirmemail_text' => "{{SITENAME}} richiede la verifica dell'indirizzo e-mail prima di poter usare le relative funzioni. Premere il pulsante qui sotto per inviare una richiesta di conferma al proprio indirizzo; nel messaggio è presente un collegamento che contiene un codice. Visitare il collegamento con il proprio browser per confermare che l'indirizzo e-mail è valido.",
 'confirmemail_pending' => "Il codice di conferma è già stato spedito via posta elettronica; se l'account è stato

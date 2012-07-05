@@ -424,8 +424,8 @@ Zapytańy: $2',
 'viewsource-title' => 'Uobocz zdrzůdło lo $1',
 'actionthrottled' => 'Akcyjo wstřimano',
 'actionthrottledtext' => 'Mechańizm uobrůny před spamym uograńičo ličba wykonań tyj čynnośći we jednostce času. Průbowoužeś go uocygańić. Proša, sprůbuj na nowo za pora minut.',
-'protectedpagetext' => 'Ta zajta je zawarto před sprowjańym.',
-'viewsourcetext' => 'We tekst zdřůduowy tyj zajty možno dali filować, idźe go tyž kopjować.',
+'protectedpagetext' => 'Ta zajta je zawarto przed sprowjańym.',
+'viewsourcetext' => 'We tekst zdrzůduowy tyj zajty możno dali filować, idźe go tyż kopjyrować.',
 'viewyourtext' => 'We tekst zdrzůduowy tyj zajty możno dali filować, idźe go tyż kopjować.',
 'protectedinterface' => 'Na tyj zajće znojduje śe tekst interfejsu uoprogramowańo, bestož uůna je zawarto uod sprowjańo.',
 'editinginterface' => "''''Dej pozůr:''' Sprowjosz zajta, na keryj je tekst interfejsu uoprogramowańo. Pomjyńyńa na tyj zajće zmjyńům wyglůnd interfejsu lo inkšych užytkowńikůw.",
@@ -1339,7 +1339,7 @@ Idź nazod i wćepej tyn plik pod inkšym mjanym. [[File:$1|thumb|center|$1]]',
 'uploadwarning' => 'Uostřežyńe uo wćepywańu',
 'savefile' => 'Spamjyntej plik',
 'uploadedimage' => 'wćepano "[[$1]]"',
-'overwroteimage' => 'wćepano nowšo wersyjo "[[$1]]"',
+'overwroteimage' => 'wćepano nowszo wersyjo "[[$1]]"',
 'uploaddisabled' => 'Wćepywanie sam plikůw je zawarte',
 'uploaddisabledtext' => 'Wćepywańe plikůw je zawarte.',
 'uploadscripted' => 'Tyn plik zawjyro kod HTML abo skrypt kery može zostać felerńe zinterpretowany bez přyglůndarka internetowo.',
@@ -1436,9 +1436,9 @@ Niżyj sům informacyje ze [$2 zajty popisu] tygo pliku.',
 'filedelete-nofile-old' => "Ńy ma sam zarchiwizowanyj wersje '''$1''' o atrybutach jake žeś podou.",
 'filedelete-otherreason' => 'Inkšy powůd:',
 'filedelete-reason-otherlist' => 'Inkszy powůd',
-'filedelete-reason-dropdown' => '* Nojčynstše powody wyćepańa
-** Narušyńy praw autorskych
-** Kopja plika kery juž sam jest',
+'filedelete-reason-dropdown' => '* Nojczynstsze powody wyćepańa
+** Naruszyńy praw autorskych
+** Kopja plika kery już sam jest',
 'filedelete-edit-reasonlist' => 'Sprowjańe powodůw wyćepańo zajty',
 
 # MIME search
@@ -1771,9 +1771,9 @@ Pomoc:
 'deletecomment' => 'Čymu:',
 'deleteotherreason' => 'Inkšy powůd:',
 'deletereasonotherlist' => 'Inkszy powůd',
-'deletereason-dropdown' => '* Nojčynstše přičyny wyćepańa
+'deletereason-dropdown' => '* Nojczynstsze prziczyny wyćepańa
 ** Prośba autora
-** Narušyńy praw autorskych
+** Naruszyńy praw autorskych
 ** Wandalizm',
 'delete-edit-reasonlist' => 'Sprowjańe listy powodůw wyćepańo zajty',
 'delete-toobig' => 'Ta zajta mo fest dugo historyja sprowjyń, wjyncyj jak $1 {{PLURAL:$1|půmjyńańy|půmjyńańo|půmjyńań}}.

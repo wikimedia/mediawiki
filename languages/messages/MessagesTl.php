@@ -898,7 +898,7 @@ Ang pinakahuling entrada sa talaan ay ibinigay sa baba para sa inyong pagsasangg
 'nocreatetitle' => 'May hangganan ang paglikha ng pahina',
 'nocreatetext' => 'Naglagay ng hangganan (restriksyon/limitasyon) ang {{SITENAME}} sa kakayahang makalikha ng bagong mga pahina.
 Maaari kang bumalik at magbago ng isang umiiral na pahina, o kaya [[Special:UserLogin|lumagda o lumikha ng kuwenta/akawnt]].',
-'nocreate-loggedin' => 'Walang kang pahintulot para lumikha ng bagong mga pahina.',
+'nocreate-loggedin' => 'Wala kang pahintulot para lumikha ng bagong mga pahina.',
 'sectioneditnotsupported-title' => 'Hindi sinusuportahan ang pagpapatnugot ng seksyon',
 'sectioneditnotsupported-text' => 'Hindi sinusuportahan ang pagpapatnugot ng seksyon sa pahinang ito.',
 'permissionserrors' => 'Mga kamalian sa mga pahintulot',

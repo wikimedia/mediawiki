@@ -1370,6 +1370,7 @@ indekso pro troŝarĝita servilo. Intertempe, vi povas serĉi per <i>guglo</i> a
 'prefs-beta' => 'Ecoj de Beta',
 'prefs-datetime' => 'Dato kaj horo',
 'prefs-labs' => 'Ecoj el Laboratorio',
+'prefs-user-pages' => 'Uzanto paĝoj',
 'prefs-personal' => 'Uzanta profilo',
 'prefs-rc' => 'Lastaj ŝanĝoj',
 'prefs-watchlist' => 'Atentaro',

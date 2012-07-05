@@ -890,7 +890,7 @@ Parolă temporară: $2',
 # Edit pages
 'summary' => 'Rezumat:',
 'subject' => 'Subiect / titlu:',
-'minoredit' => 'Aceasta este o editare minoră',
+'minoredit' => 'Aceasta este o modificare minoră',
 'watchthis' => 'Monitorizează această pagină',
 'savearticle' => 'Salvare pagină',
 'preview' => 'Previzualizare',
@@ -1101,7 +1101,7 @@ Acsete argumente au fost omise.',
 Motivul invocat de $3 este ''$2''",
 
 # History pages
-'viewpagelogs' => 'Vezi jurnalele pentru această pagină',
+'viewpagelogs' => 'Afișează jurnalele paginii',
 'nohistory' => 'Nu există istoric pentru această pagină.',
 'currentrev' => 'Versiunea curentă',
 'currentrev-asof' => 'Versiunea curentă din $1',
@@ -1473,7 +1473,7 @@ Dacă decideți furnizarea sa, acesta va fi folosit pentru a vă atribui munca.'
 # User rights
 'userrights' => 'Administrare permisiuni de utilizator',
 'userrights-lookup-user' => 'Administrare grupuri de utilizatori',
-'userrights-user-editname' => 'Introdu un nume de utilizator:',
+'userrights-user-editname' => 'Introduceți un nume de utilizator:',
 'editusergroup' => 'Modificare grup de utilizatori',
 'editinguser' => "Modificare permisiuni de utilizator pentru '''[[User:$1|$1]]''' $2",
 'userrights-editusergroup' => 'Modificare grup de utilizatori',
@@ -1580,7 +1580,7 @@ Dacă decideți furnizarea sa, acesta va fi folosit pentru a vă atribui munca.'
 # User rights log
 'rightslog' => 'Jurnal permisiuni de utilizator',
 'rightslogtext' => 'Acest jurnal cuprinde modificările permisiunilor utilizatorilor.',
-'rightslogentry' => 'a schimbat pentru $1 apartenența la un grup de la $2 la $3',
+'rightslogentry' => 'a schimbat permisiunile pentru $1 de la $2 la $3',
 'rightslogentry-autopromote' => 'a fost promovat în mod automat de la $2 la $3',
 'rightsnone' => '(niciunul)',
 
@@ -2280,7 +2280,7 @@ Adresa de e-mail introdusă de tine în [[Special:Preferences|preferințele de u
 'mywatchlist' => 'Pagini urmărite',
 'watchlistfor2' => 'Pentru $1 $2',
 'nowatchlist' => 'Nu ați ales să urmăriți nici o pagină.',
-'watchlistanontext' => 'Te rugăm să $1 pentru a vizualiza sau edita itemii de pe lista ta de urmărire.',
+'watchlistanontext' => 'Vă rugăm să vă $1 pentru a vizualiza sau edita elementele din lista dumneavoastră de pagini urmărite.',
 'watchnologin' => 'Nu sunteți autentificat',
 'watchnologintext' => 'Trebuie să fiți [[Special:UserLogin|autentificat]] pentru a vă modifica lista de pagini urmărite.',
 'addwatch' => 'Adăugă la lista de pagini urmărite',
@@ -2554,7 +2554,7 @@ Iată aici ultima înregistrare relevantă din jurnalul blocărilor:',
 'sp-contributions-search' => 'Căutare contribuții',
 'sp-contributions-username' => 'Adresă IP sau nume de utilizator:',
 'sp-contributions-toponly' => 'Afișează numai versiunile recente',
-'sp-contributions-submit' => 'Caută',
+'sp-contributions-submit' => 'Căutare',
 
 # What links here
 'whatlinkshere' => 'Ce trimite aici',
@@ -3670,7 +3670,7 @@ Vă rugăm să confirmați faptul că într-adevăr doriți să recreați acest 
 'table_pager_prev' => 'Pagina anterioară',
 'table_pager_first' => 'Prima pagină',
 'table_pager_last' => 'Ultima pagină',
-'table_pager_limit' => 'Arată $1 itemi pe pagină',
+'table_pager_limit' => 'Arată $1 elemente pe pagină',
 'table_pager_limit_label' => 'Elemente pe pagină:',
 'table_pager_limit_submit' => 'Du-te',
 'table_pager_empty' => 'Niciun rezultat',

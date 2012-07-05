@@ -479,7 +479,7 @@ $messages = array(
 
 # Preferences page
 'preferences' => 'Чичсә печыније',
-'mypreferences' => 'Печыније',
+'mypreferences' => 'Кукон',
 'prefsnologin' => 'Ыштәни едаштәнијоне',
 'prefsnologintext' => 'Шымә бәбе <span class="plainlinks">[{{fullurl:{{#Special:UserLogin}}|returnto=$1}} ыштәни едәштән]</span> бо иштирокәкә пеғәндон дәгиш кардеј.',
 'changepassword' => 'Пароли дәгиш кардеј',
@@ -509,7 +509,7 @@ $messages = array(
 # Recent changes
 'nchanges' => '$1 {{PLURAL:$1|дәгиши|дәгишон}}',
 'recentchanges' => 'Ән нујә дәгишон',
-'recentchanges-legend' => 'Ән нујә дәгишон печыније',
+'recentchanges-legend' => 'Ән нујә дәгишон кукон',
 'recentchanges-summary' => 'Тәмшо быкән бы сәһифәдә че вики охоминә дәгишон нишо доә быән.',
 'recentchanges-feed-description' => 'Ым каналәдә быә охонә дәгишон дығғәтәдә огәт.',
 'recentchanges-label-newpage' => 'Де ым дәгиши тожә сәһифә сохтә бе',
@@ -737,7 +737,7 @@ $messages = array(
 # Tooltip help for the actions
 'tooltip-pt-userpage' => 'Шымә иштирокәкә сәһифә',
 'tooltip-pt-mytalk' => 'Шымә мызокирон сәһифә',
-'tooltip-pt-preferences' => 'Шымә печынијәјоне',
+'tooltip-pt-preferences' => 'Шымә кукон',
 'tooltip-pt-watchlist' => 'Сәһифон сијоһи, конҹо шымә де дығғәти дијә кардејдәјон бә дәгишон',
 'tooltip-pt-mycontris' => 'Шымә гәнҹон сијоһи',
 'tooltip-pt-login' => 'Ијо бәбе ыштәни ғејд кардовнијеј системәдә, интаси ым һукман ни',

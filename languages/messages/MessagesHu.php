@@ -314,7 +314,7 @@ $linkTrail = '/^([a-záéíóúöüőűÁÉÍÓÚÖÜŐŰ]+)(.*)$/sDu';
 $messages = array(
 # User preference toggles
 'tog-underline' => 'Hivatkozások aláhúzása:',
-'tog-justify' => 'Sorkizárt fejezetek',
+'tog-justify' => 'Bekezdések sorkizárása',
 'tog-hideminor' => 'Apró változtatások elrejtése a friss változtatások lapon',
 'tog-hidepatrolled' => 'Az ellenőrzött szerkesztések elrejtése a friss változtatások lapon',
 'tog-newpageshidepatrolled' => 'Ellenőrzött lapok elrejtése az új lapok listájáról',
