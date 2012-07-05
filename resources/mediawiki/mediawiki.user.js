@@ -12,6 +12,8 @@
 		/* Private Members */
 
 		var that = this;
+		var groups;
+		var rights;
 
 		/* Public Members */
 
@@ -44,9 +46,10 @@
 		 *
 		 * @return Mixed: User name string or null if users is anonymous
 		 */
-		this.name = function() {
+		this.getName = function() {
 			return mw.config.get( 'wgUserName' );
 		};
+		this.name = this.getName;
 
 		/**
 		 * Checks if the current user is anonymous.
@@ -54,7 +57,7 @@
 		 * @return Boolean
 		 */
 		this.anonymous = function() {
-			return that.name() ? false : true;
+			return that.getName() ? false : true;
 		};
 
 		/**
@@ -84,7 +87,7 @@
 		 * @return String: User name or random session ID
 		 */
 		this.id = function() {
-			var name = that.name();
+			var name = that.getName();
 			if ( name ) {
 				return name;
 			}
@@ -173,6 +176,54 @@
 				);
 			}
 			return bucket;
+		};
+
+		/**
+		 * Gets the current user's groups.
+		 *
+		 * @return Array: The groups which this user is in.
+		 */
+		this.getGroups = function() {
+			if ( groups != undefined ) {
+				return groups;
+			}
+
+			var api = new mw.Api();
+			api.get( {
+				action: 'query',
+				meta: 'userinfo',
+				uiprop: 'groups|implicitgroups'
+			}, {
+				async: false,
+				ok: function(obj, result) {
+					groups = arguments[0].query.userinfo.groups;
+				}
+			} );
+			return groups;
+		};
+
+		/**
+		 * Gets the current user's rights.
+		 *
+		 * @return Array: The rights which this user holds.
+		 */
+		this.getRights = function() {
+			if ( rights != undefined ) {
+				return rights;
+			}
+
+			var api = new mw.Api();
+			api.get( {
+				action: 'query',
+				meta: 'userinfo',
+				uiprop: 'rights',
+			}, {
+				async: false,
+				ok: function() {
+					rights = arguments[0].query.userinfo.rights;
+				}
+			} );
+			return rights;
 		};
 	}
 
