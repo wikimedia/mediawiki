@@ -90,6 +90,8 @@ upgrade PHP if you have not done so prior to upgrading MediaWiki.
   replacement, and so on.
 * (bug 34678) Added InternalParseBeforeSanitize hook which gets called during Parser's
   internalParse method just before the parser removes unwanted/dangerous HTML tags.
+* Added new hook AfterFinalPageOutput to allow modifications to buffered page output before sent
+  to the client.
 
 === Bug fixes in 1.20 ===
 * (bug 30245) Use the correct way to construct a log page title.

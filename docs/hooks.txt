@@ -286,6 +286,12 @@ $revCount: Number of revisions in the XML file
 $sRevCount: Number of sucessfully imported revisions
 $pageInfo: associative array of page information
 
+'AfterFinalPageOutput': At the end of OutputPage::output() but before
+final ob_end_flush() which will send the buffered output to the client.
+This allows for last-minute modification of the output within the buffer
+by using ob_get_clean().
+$output: The OutputPage object, output() has been called on.
+
 'AjaxAddScript': Called in output page just before the initialisation
 of the javascript ajax engine. The hook is only called when ajax
 is enabled ( $wgUseAjax = true; ).
