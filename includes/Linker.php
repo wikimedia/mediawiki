@@ -198,6 +198,11 @@ class Linker {
 			wfProfileOut( __METHOD__ );
 			return "<!-- ERROR -->$html";
 		}
+
+		if( is_string( $query ) ) {
+			// for compatibility and because some functions using this still allow to hand over query strings
+			$query = wfCgiToArray( $query );
+		}
 		$options = (array)$options;
 
 		$dummy = new DummyLinker; // dummy linker instance for bc on the hooks
