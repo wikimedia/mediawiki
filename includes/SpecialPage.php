@@ -590,14 +590,49 @@ class SpecialPage {
 	}
 
 	/**
+	 * Entry point.
+	 *
+	 * @since 1.20
+	 *
+	 * @param $subPage string|null
+	 */
+	public final function run( $subPage ) {
+		$this->beforeExecute( $subPage );
+		$this->execute( $subPage );
+		$this->afterExecute( $subPage );
+	}
+
+	/**
+	 * Gets called before @see SpecialPage::execute.
+	 *
+	 * @since 1.20
+	 *
+	 * @param $subPage string|null
+	 */
+	protected function beforeExecute( $subPage ) {
+		// No-op
+	}
+
+	/**
+	 * Gets called after @see SpecialPage::execute.
+	 *
+	 * @since 1.20
+	 *
+	 * @param $subPage string|null
+	 */
+	protected function afterExecute( $subPage ) {
+		// No-op
+	}
+
+	/**
 	 * Default execute method
 	 * Checks user permissions, calls the function given in mFunction
 	 *
 	 * This must be overridden by subclasses; it will be made abstract in a future version
 	 *
-	 * @param $par String subpage string, if one was specified
+	 * @param $subPage string|null
 	 */
-	function execute( $par ) {
+	public function execute( $subPage ) {
 		$this->setHeaders();
 		$this->checkPermissions();
 
@@ -607,7 +642,7 @@ class SpecialPage {
 			require_once( $this->mFile );
 		}
 		$this->outputHeader();
-		call_user_func( $func, $par, $this );
+		call_user_func( $func, $subPage, $this );
 	}
 
 	/**
