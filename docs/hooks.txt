@@ -1843,6 +1843,14 @@ $opts: FormOptions object containing special page options
 &$fields: array of columns to select
 &$join_conds: join conditions for the tables
 
+'SpecialPageAfterExecute': called after SpecialPage::execute
+$special: the SpecialPage object
+$subPage: the subpage string or null if no subpage was specified
+
+'SpecialPageBeforeExecute': called before SpecialPage::execute
+$special: the SpecialPage object
+$subPage: the subpage string or null if no subpage was specified
+
 'SpecialNewPagesFilters': called after building form options at NewPages
 $special: the special page object
 &$filters: associative array of filter definitions. The keys are the HTML name/URL parameters.

@@ -597,9 +597,29 @@ class SpecialPage {
 	 * @param $subPage string|null
 	 */
 	public final function run( $subPage ) {
+		/**
+		 * Gets called before @see SpecialPage::execute.
+		 *
+		 * @since 1.20
+		 *
+		 * @param SpecialPage $this
+		 * @param $subPage string|null
+		 */
+		wfRunHooks( 'SpecialPageBeforeExecute', array( &$this, $subPage ) );
+
 		$this->beforeExecute( $subPage );
 		$this->execute( $subPage );
 		$this->afterExecute( $subPage );
+
+		/**
+		 * Gets called after @see SpecialPage::execute.
+		 *
+		 * @since 1.20
+		 *
+		 * @param SpecialPage $this
+		 * @param $subPage string|null
+		 */
+		wfRunHooks( 'SpecialPageAfterExecute', array( &$this, $subPage ) );
 	}
 
 	/**
