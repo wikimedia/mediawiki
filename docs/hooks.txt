@@ -1852,6 +1852,14 @@ Each key maps to an associative array with a 'msg' (message key) and a 'default'
 hook to remove a core special page
 $list: list (array) of core special pages
 
+'SpecialPageAfterExecute': called after SpecialPage::execute
+$special: the SpecialPage object
+$subPage: the subpage string or null if no subpage was specified
+
+'SpecialPageBeforeExecute': called before SpecialPage::execute
+$special: the SpecialPage object
+$subPage: the subpage string or null if no subpage was specified
+
 'SpecialPasswordResetOnSubmit': when executing a form submission on Special:PasswordReset
 $users: array of User objects
 $data: array of data submitted by the user
