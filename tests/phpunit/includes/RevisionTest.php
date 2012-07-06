@@ -191,6 +191,7 @@ class RevisionTest extends MediaWikiTestCase {
 	}
 
 	/**
+	 * @group Database
 	 * @dataProvider dataGetContentModel
 	 */
 	function testGetContentModel( $text, $title, $model, $format, $expectedModel ) {
@@ -209,6 +210,7 @@ class RevisionTest extends MediaWikiTestCase {
 	}
 
 	/**
+	 * @group Database
 	 * @dataProvider dataGetContentFormat
 	 */
 	function testGetContentFormat( $text, $title, $model, $format, $expectedFormat ) {
@@ -226,6 +228,7 @@ class RevisionTest extends MediaWikiTestCase {
 	}
 
 	/**
+	 * @group Database
 	 * @dataProvider dataGetContentHandler
 	 */
 	function testGetContentHandler( $text, $title, $model, $format, $expectedClass ) {
@@ -243,6 +246,7 @@ class RevisionTest extends MediaWikiTestCase {
 	}
 
 	/**
+	 * @group Database
 	 * @dataProvider dataGetContent
 	 */
 	function testGetContent( $text, $title, $model, $format, $audience, $expectedSerialization ) {
@@ -261,6 +265,7 @@ class RevisionTest extends MediaWikiTestCase {
 	}
 
 	/**
+	 * @group Database
 	 * @dataProvider dataGetText
 	 */
 	function testGetText( $text, $title, $model, $format, $audience, $expectedText ) {
@@ -270,6 +275,7 @@ class RevisionTest extends MediaWikiTestCase {
 	}
 
 	/**
+	 * @group Database
 	 * @dataProvider dataGetText
 	 */
 	function testGetRawText( $text, $title, $model, $format, $audience, $expectedText ) {
@@ -288,6 +294,7 @@ class RevisionTest extends MediaWikiTestCase {
 
 	/**
 	 * @covers Revision::getSize
+	 * @group Database
 	 * @dataProvider dataGetSize
 	 */
 	public function testGetSize( $text, $model, $expected_size )
@@ -305,6 +312,7 @@ class RevisionTest extends MediaWikiTestCase {
 
 	/**
 	 * @covers Revision::getSha1
+	 * @group Database
 	 * @dataProvider dataGetSha1
 	 */
 	public function testGetSha1( $text, $model, $expected_hash )
