@@ -263,6 +263,33 @@ class RepoGroup {
 	}
 
 	/**
+	 * Find all instances of files with this keys
+	 *
+	 * @param $hashes Array base 36 SHA-1 hashes
+	 * @return Array of array of File objects
+	 */
+	function findBySha1s( array $hashes ) {
+		if ( !$this->reposInitialised ) {
+			$this->initialiseRepos();
+		}
+
+		$result = $this->localRepo->findBySha1s( $hashes );
+		foreach ( $this->foreignRepos as $repo ) {
+			$result = array_merge_recursive( $result, $repo->findBySha1s( $hashes ) );
+		}
+		//sort the merged (and presorted) sublist of each hash
+		foreach( $result as $hash => $files ) {
+			$filesToSort = array();
+			foreach( $files as $file ) {
+				$filesToSort[$file->getName()] = $file;
+			}
+			ksort( $filesToSort );
+			$result[$hash] = array_values( $filesToSort );
+		}
+		return $result;
+	}
+
+	/**
 	 * Get the repo instance with a given key.
 	 * @param $index string|int
 	 * @return bool|LocalRepo
