@@ -94,6 +94,24 @@
 		// Make sure edit summary does not exceed byte limit
 		$( '#wpSummary' ).byteLimit( 250 );
 
+		// Update the state of the watch checkbox by hooking
+		// onto the 'watchpage.mw' event fired in mediawiki.page.watch.ajax.js
+		// NOTE: for reasons unknown to me, the following borks the checkbox:
+		// $( '#wpWatchthis' ).prop( 'checked', action === 'watch' );
+		// Using click() as a hack around this.
+		$( '#ca-watch, #ca-unwatch' )
+			.on(
+				'watchpage.mw',
+				function( e, action ) {
+					if ( action === 'watch' ) {
+						// Only check if not already checked
+						$( '#wpWatchthis:not(:checked)').click();
+					} else if ( action === 'unwatch') {
+						// Uncheck if checked
+						$( '#wpWatchthis:checked').click();
+					}
+				}
+			);
 		/**
 		 * Restore the edit box scroll state following a preview operation,
 		 * and set up a form submission handler to remember this state
