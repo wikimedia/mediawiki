@@ -628,7 +628,7 @@ abstract class ORMTable implements IORMTable {
 	 * @return IORMRow
 	 */
 	public function newFromDBResult( stdClass $result ) {
-		return self::newRowFromFromDBResult( $result );
+		return self::newRowFromDBResult( $result );
 	}
 
 	/**
