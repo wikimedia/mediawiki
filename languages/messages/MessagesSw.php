@@ -1965,7 +1965,7 @@ Ukitaka kufuta ukurasa huo kutoka maangalizi yako baadaye, bonyeza \"Acha kufuat
 'watchnochange' => 'Hakuna kitu kati ya maangalizi yako kilichohaririwa katika kipindi kilichotajwa.',
 'watchlist-details' => 'Unafuatilia {{PLURAL:$1|ukurasa $1|kurasa $1}} bila kuzingatia kurasa za majadiliano.',
 'wlheader-enotif' => '* Huduma ya kuarifu kwa barua pepe imewezeshwa.',
-'wlheader-showupdated' => "* Kurasa zilizobadilika tangu ulipoziona mwishoni zinaonyeshwa '''kooze'''",
+'wlheader-showupdated' => "* Kurasa zilizobadilika tangu ulivyotembelea mara ya mwisho zinaonyeshwa katika hali ya '''kukooza'''",
 'watchmethod-recent' => 'kupitia madabiliko ya karibuni ili kupata kurasa za maangalizi',
 'watchmethod-list' => 'kupitia kurasa za maangalizi ili kupata madabiliko ya karibuni',
 'watchlistcontains' => 'Orodha ya maangalizi yako ina {{PLURAL:$1|kitu|vitu}} $1.',

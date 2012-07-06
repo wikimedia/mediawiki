@@ -533,7 +533,7 @@ $2',
 'ns-specialprotected' => 'Le paginas special non es modificabile.',
 'titleprotected' => "Iste titulo ha essite protegite contra creation per [[User:$1|$1]].
 Le motivo specificate es ''$2''.",
-'filereadonlyerror' => 'Impossibile modificar le file "$1" perque le deposito de files "$2" es in modo de lectura sol.
+'filereadonlyerror' => 'Impossibile modificar le file "$1" perque le repositorio de files "$2" es in modo de lectura sol.
 
 Le administrator qui lo blocava offereva iste explication: "$3".',
 'invalidtitle-knownnamespace' => 'Titulo invalide con spatio de nomines "$2" e texto "$3"',
@@ -1470,7 +1470,7 @@ Si tu opta pro dar lo, isto essera usate pro dar te attribution pro tu contribut
 'action-movefile' => 'renominar iste file',
 'action-upload' => 'incargar iste file',
 'action-reupload' => 'superscriber iste file existente',
-'action-reupload-shared' => 'supplantar iste file in un deposito commun',
+'action-reupload-shared' => 'supplantar iste file in un repositorio commun',
 'action-upload_by_url' => 'incargar iste file ab un adresse URL',
 'action-writeapi' => 'usar le API de scriptura',
 'action-delete' => 'deler iste pagina',
@@ -1627,7 +1627,7 @@ Illo pare esser un imagine a grandor reducite ''(miniatura)''.
 Si tu possede iste imagine in plen resolution, incarga lo, alteremente cambia le nomine del file per favor.",
 'fileexists-forbidden' => 'Un file con iste nomine existe ja, e non pote esser superscribite.
 Si tu vole ancora incargar iste file, per favor retorna e usa un nove nomine. [[File:$1|thumb|center|$1]]',
-'fileexists-shared-forbidden' => 'Un file con iste nomine existe ja in le deposito de files commun.
+'fileexists-shared-forbidden' => 'Un file con iste nomine existe ja in le repositorio de files commun.
 Si tu vole totevia incargar iste file, per favor retorna e usa un nove nomine. [[File:$1|thumb|center|$1]]',
 'file-exists-duplicate' => 'Iste file es un duplicato del sequente {{PLURAL:$1|file|files}}:',
 'file-deleted-duplicate' => 'Un file identic a iste file ([[:$1]]) esseva ja delite anteriormente. Tu deberea verificar le registro de deletiones concernente iste file ante de re-incargar lo.',
@@ -1851,7 +1851,7 @@ Tu vole forsan modificar le description in le [$2 pagina de description del file
 'filepage-nofile-link' => 'Nulle file con iste nomine existe, ma tu pote [$1 incargar lo].',
 'uploadnewversion-linktext' => 'Incargar un nove version de iste file',
 'shared-repo-from' => 'ab $1',
-'shared-repo' => 'un deposito pro uso in commun',
+'shared-repo' => 'un repositorio partite',
 
 # File reversion
 'filerevert' => 'Reverter $1',
@@ -1980,8 +1980,8 @@ Le entratas <del>cancellate</del> ha essite resolvite.',
 'wantedpages' => 'Paginas plus demandate',
 'wantedpages-badtitle' => 'Titulo invalide in le gruppo de resultatos: $1',
 'wantedfiles' => 'Files desirate',
-'wantedfiletext-cat' => 'Le sequente files es usate ma non existe. Le files ab depositos distante pote esser listate malgrado que illos existe. Omne tal false positives essera <del>cancellate</del>. In addition, paginas que incorpora files que non existe es listate in [[:$1]].',
-'wantedfiletext-nocat' => 'Le sequente files es usate ma non existe. Files ab depositos distante pote esser listate malgrado que illos existe. Omne tal false positives essera <del>cancellate</del>.',
+'wantedfiletext-cat' => 'Le sequente files es usate ma non existe. Le files ab repositorios externe pote esser listate malgrado que illos existe. Omne tal false positivos essera <del>cancellate</del>. In addition, paginas que incorpora files que non existe es listate in [[:$1]].',
+'wantedfiletext-nocat' => 'Le sequente files es usate ma non existe. Files ab repositorios externe pote esser listate malgrado que illos existe. Omne tal false positivos essera <del>cancellate</del>.',
 'wantedtemplates' => 'Patronos desirate',
 'mostlinked' => 'Paginas le plus ligate',
 'mostlinkedcategories' => 'Categorias le plus ligate',
@@ -2730,8 +2730,8 @@ non pote renominar un pagina al mesme titulo.',
 'protectedpagemovewarning' => "'''Attention:''' Iste pagina ha essite protegite de sorta que solmente usatores con privilegios de administrator pote renominar lo. Le ultime entrata del registro es fornite hic infra pro referentia:",
 'semiprotectedpagemovewarning' => "'''Nota:''' Iste pagina ha essite protegite de sorta que solmente usatores registrate pote renominar lo. Le ultime entrata del registro es fornite hic infra pro referentia:",
 'move-over-sharedrepo' => '== File existe ==
-[[:$1]] existe ja in un deposito usate in commun. Si tu renomina le file a iste titulo, illo supplantara le file del deposito.',
-'file-exists-sharedrepo' => 'Le nomine de file seligite es ja in uso in un deposito usate in commun.
+[[:$1]] existe in un repositorio partite. Si le file es renominate a iste titulo, illo supplantara le file partite.',
+'file-exists-sharedrepo' => 'Le nomine de file seligite es ja in uso in un repositorio partite.
 Per favor selige un altere nomine.',
 
 # Export
@@ -3851,7 +3851,7 @@ Si non, tu pote usar le formulario facile hic infra. Tu commento essera addite a
 'api-error-emptypage' => 'Le creation de nove paginas vacue non es permittite.',
 'api-error-fetchfileerror' => 'Error interne: qualcosa errava durante le obtention del file.',
 'api-error-fileexists-forbidden' => 'Un file con le nomine "$1" jam existe, e non pote esser superscribite.',
-'api-error-fileexists-shared-forbidden' => 'Un file con le nomine "$1" jam existe in le deposito commun de files, e non pote esser superscribite.',
+'api-error-fileexists-shared-forbidden' => 'Un file con le nomine "$1" jam existe in le repositorio commun de files, e non pote esser superscribite.',
 'api-error-file-too-large' => 'Le file que tu submitteva es troppo grande.',
 'api-error-filename-tooshort' => 'Le nomine del file es troppo curte.',
 'api-error-filetype-banned' => 'Iste typo de file es prohibite.',

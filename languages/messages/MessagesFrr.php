@@ -379,6 +379,7 @@ Wan dåt ai di fål as, hääst dü eewäntuäl en fäägel önj e software fün
 'cannotdelete' => 'Jü sid unti dootäi "$1" köö ai straagen wårde.
 Dåt as flicht ål straagen foon huum ouders.',
 'cannotdelete-title' => 'Sidj „$1“ koon ei stregen wurd.',
+'delete-hook-aborted' => 'Det striken as faan en software-feranerang faan MediaWiki ferhanert wurden. Di grünj as ei bekäänd.',
 'badtitle' => 'Ferkiirde tiitel',
 'badtitletext' => 'Di tiitel foon jü anfrååged sid as üngülti, lääsi unti n üngültigen spräklink foon en ouder wiki.',
 'perfcached' => 'Jodiar dooten kem faan a cache an san ferlicht ei muar aktuel. Huuchstens {{PLURAL:$1|ian resultoot as|$1 resultooten san}} uun a cache.',
@@ -411,6 +412,7 @@ Jü späre wörd döör [[User:$1|$1]] ma grün "$2" inruchted.',
 Di grünj faan di administraator as: „$3“.',
 'invalidtitle-knownnamespace' => 'Ferkiard auerskraft uun di nöömrüm „$2“ an tekst „$3“',
 'invalidtitle-unknownnamespace' => 'Ferkiard auerskraft uun di ünbekäänd nöömrüm „$1“ an tekst „$2“',
+'exception-nologin' => 'Ei uunmeldet',
 
 # Virus scanner
 'virus-badscanner' => "Hiinje konfigurasjoon: ünbekånde fiirusscanner: ''$1''",
@@ -1245,10 +1247,12 @@ Do san jo ual iinstelangen wech.',
 'right-delete' => 'Sidjen strik',
 'right-bigdelete' => 'Sidjen mä föl wersjuunen strik',
 'right-deleterevision' => 'Enkelt wersjuunen faan en sidj strik of turaghaale',
+'right-browsearchive' => 'Sjük stregen sidjen',
 'right-sendemail' => 'E-mails tu oudere brükere schake',
 
 # User rights log
 'rightslog' => 'Ruchte-logbök',
+'rightsnone' => '(-)',
 
 # Associated actions - in the sentence "You do not have permission to X"
 'action-read' => 'jüdeer sid leese',
@@ -1259,7 +1263,12 @@ Do san jo ual iinstelangen wech.',
 'action-minoredit' => 'detdiar feranrang üs letj kääntiakne',
 'action-move' => 'jüdeer sid ferschüwe',
 'action-move-subpages' => 'jüdeer sid än unerside ferschüwe',
+'action-move-rootuserpages' => 'hood-brükersidj fersküüw',
 'action-movefile' => 'jüdeer sid ferschüwe',
+'action-delete' => 'detdiar sidj strik',
+'action-browsearchive' => 'sjük stregen sidjen',
+'action-undelete' => 'detdiar sidj weder iinstel',
+'action-sendemail' => 'e-mails sjüür',
 
 # Recent changes
 'nchanges' => '$1 {{PLURAL:$1|änring|änringe}}',
@@ -1304,14 +1313,31 @@ Do san jo ual iinstelangen wech.',
 
 # Upload
 'upload' => 'Huuchschake',
+'uploadbtn' => 'Datei huuchsjüür',
 'uploadnologin' => 'Ai önjmälded',
 'uploadnologintext' => 'Dü möist [[Special:UserLogin|önjmälded weese]], am dat dü dootäie huuchsiinje koost.',
 'upload_directory_missing' => 'Dåt aplees-fertiiknis ($1) breecht än köö ai foon di wäbsärwer mååged wårde.',
 'upload_directory_read_only' => 'Dåt aplees-fertiiknis ($1) koon ai foon e wäbsärver beschraawen wårde.',
 'uploaderror' => 'Aplees-fäägel',
+'uploadlog' => 'datei logbuk',
 'uploadlogpage' => 'Dåtäi-logbök',
 'filedesc' => 'Beskriiwang',
+'fileuploadsummary' => 'Beskriiwang',
+'filesource' => 'Kwel',
+'uploadedfiles' => 'Huuchsjüürd dateien',
 'uploadedimage' => 'heet "[[$1]]" huuchsånd',
+'watchthisupload' => 'Luke efter detdiar datei',
+
+'upload-file-error' => 'Diar as wat skiaf gingen',
+
+# File backend
+'backend-fail-stream' => 'Det datei $1 küd ei auerdraanj wurd.',
+'backend-fail-delete' => 'Det datei $1 küd ei stregen wurd.',
+'backend-fail-store' => 'Det datei $1 küd ei oner $2 seekert wurd.',
+'backend-fail-copy' => 'Det datei $1 küd ei efter $2 kopiaret wurd.',
+'backend-fail-move' => 'Det datei $1 küd ei efter $2 fersköwen wurd.',
+'backend-fail-read' => 'Det datei $1 küd ei leesen wurd.',
+'backend-fail-create' => 'Det datei $1 küd ei seekert wurd.',
 
 'license' => 'Lisens:',
 'license-header' => 'Lisens',

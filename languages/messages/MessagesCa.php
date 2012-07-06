@@ -580,6 +580,8 @@ Els seus motius han estat: «''$2''».",
 L\'administrador que l\'ha bloquejat ha donat aquesta explicació: "$3".',
 'invalidtitle-knownnamespace' => "El títol amb l'espai de noms «$2» i text «$3» no és vàlid",
 'invalidtitle-unknownnamespace' => 'Títol no vàlid amb espai de noms desconegut de número «$1» i text «$2»',
+'exception-nologin' => 'No has iniciat sessió',
+'exception-nologin-text' => 'Aquesta pàgina o acció requereix que iniciïs sessió a aquest wiki.',
 
 # Virus scanner
 'virus-badscanner' => "Mala configuració: antivirus desconegut: ''$1''",

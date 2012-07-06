@@ -3683,7 +3683,7 @@ Hewak móžeš slědowacy jednory formular wužiwać. Twój komentar přida so s
 'api-error-emptypage' => 'Wutworjenje nowych, prózdnych stronow njeje dowolene.',
 'api-error-fetchfileerror' => 'Nutřkowny zmylk: při wobstarowanju dataje je so něšto nimokuliło.',
 'api-error-fileexists-forbidden' => 'Dataja z mjenom "$1" hižo eksistuje, a njeda so přepisać.',
-'api-error-fileexists-shared-forbidden' => 'Dataja z mjenom "$1" hižo eksistuje w zhromadnym datajowym repozitoriju a njeda so přepisác.',
+'api-error-fileexists-shared-forbidden' => 'Dataja z mjenom "$1" hižo eksistuje w zhromadnym datajowym repozitoriju a njeda so přepisać.',
 'api-error-file-too-large' => 'Dataja, kotruž sy nahrał, bě přewulka.',
 'api-error-filename-tooshort' => 'Datajowe mjeno překrótko',
 'api-error-filetype-banned' => 'Tutón datajowy typ je zawrjeny.',

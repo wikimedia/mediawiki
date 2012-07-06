@@ -1314,6 +1314,7 @@ Tu dikarî ji xwe re têketinekê hilbijêrî, navê bikarhêneriyê an navê r�
 'allpagesprefix' => 'Rûpelên bi pêşbendik nîşan bide:',
 'allpagesbadtitle' => 'Sernavê rûpelê qedexe bû ya "interwiki"- ya "interlanguage"-pêşnavekî xwe hebû. Meqûle ku zêdertirî tiştekî nikanin werin bikaranîn di sernavê da.',
 'allpages-bad-ns' => 'Namespace\'a "$1" di {{SITENAME}} da tune ye.',
+'allpages-hide-redirects' => 'Beralîkirinan nîşan bide',
 
 # Special:Categories
 'categories' => 'Kategorî',

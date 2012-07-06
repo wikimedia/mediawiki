@@ -7,6 +7,7 @@
  * @ingroup Language
  * @file
  *
+ * @author Joemaza
  * @author Kaganer
  * @author Lam-ang
  * @author Saluyot
@@ -37,11 +38,11 @@ $messages = array(
 # User preference toggles
 'tog-underline' => 'Pinag-ugisan ti silpo:',
 'tog-justify' => 'Limpiaen dagiti parapo',
-'tog-hideminor' => 'Ilemmeng dagiti babassit a panag-urnos kadagiti naudi a sinuk-sukatan',
+'tog-hideminor' => 'Ilemmeng dagiti babassit a panagbaliw kadagiti naudi a panagisukat',
 'tog-hidepatrolled' => 'Ilemmeng dagiti napatruliaan nga inurnos kadagiti naudi a sinuk-sukatan',
 'tog-newpageshidepatrolled' => 'Ilemmeng dagiti napatruliaan a panid idiay baro a listaan ti panid',
 'tog-extendwatchlist' => 'Ipalawa ti listaan ti bambantayan tapno maipakita amin a nasukatan, tapno saan laeng a dagiti nabiit',
-'tog-usenewrc' => 'Usaren ti napasayaat a kinaudi a sinuk-sukatan (masapul ti JavaScript)',
+'tog-usenewrc' => 'Pannakabaliw ti grupo babaen ti panid iti kaudian a panagbaliw ken pakabantayan (masapul ti JavaScript)',
 'tog-numberheadings' => 'Automatiko a pabilangan dagiti paulo',
 'tog-showtoolbar' => 'Ipakita ti ramit ti panag-urnos (masapul ti JavaScript)',
 'tog-editondblclick' => 'Urnosen dagiti panid iti mamindua a panagtakla (masapul ti JavaScript)',
@@ -391,6 +392,8 @@ Panngaasi nga  ibagam kadagiti [[Special:ListUsers/sysop|administrador]], isurat
 'cannotdelete' => 'Ti panid wenno ti papeles "$1" ket saan a maikkat.
 Amangan no addan sabali a nangikkat.',
 'cannotdelete-title' => 'Saan a maikkat ti panid  "$1"',
+'delete-hook-aborted' => 'Naukasen ti kawit ti panagborra.
+Awan ti palawag.',
 'badtitle' => 'Madi a titulo',
 'badtitletext' => 'Ti nakiddaw a titulo ti panid ket imbalido, blanko, wenno saan nga umno a naisilpo a titulo a maki-pagsasao wenno maki-wiki.
 Adda ngata nagyan a maysa wenno ad-adu pay a kababalin a saan a mausar iti titulo.',
@@ -427,6 +430,7 @@ Ti naited a rason ket ''$2''.",
 Ti administrador a nagserra ket nagited iti daytoy a panagilawlawag "\'\'$3\'\'".',
 'invalidtitle-knownnamespace' => 'Imbalido a titulo nga adda ti nagan ti lugar "$2" ken testo "$3"',
 'invalidtitle-unknownnamespace' => 'Imbalido a titulo nga adda di-amammo a nagan ti lugar a numero $1 ken testo "$2"',
+'exception-nologin-text' => 'Masapol daytoy a panid wenno aramid ket nakastrekkayo kadaytoy a wiki.',
 
 # Virus scanner
 'virus-badscanner' => 'Madi di panaka-aramidna: Di am-ammo a birus a panagskan: "$1"',
@@ -1592,6 +1596,7 @@ No ti parikut ket agsubli latta, kontaken ti [[Special:ListUsers/sysop|administr
 'backend-fail-connect' => 'Saan a makaikapet idiay pagidulinan a kalikudan  "$1".',
 'backend-fail-internal' => 'Adda di amammo a biddut ti napasamak idiay pagidulinan a kalikudan "$1".',
 'backend-fail-contenttype' => 'Saan a maammoan ti kita ti linaon ti papeles nga idulin idiay "$1".',
+'backend-fail-batchsize' => 'Naidatag nga {{PLURAL:$1|aramid|aramid}} iti intar: $1; beddeng nga {{PLURAL:$2|aramid|aramid}}: $2.',
 'backend-fail-usable' => 'Saan a masuratan ti papeles $1 gapu ta awan ti makaanay a pammalubos wenno awan dagiti direktorio/pangikabilan.',
 
 # Lock manager

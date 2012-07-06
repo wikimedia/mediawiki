@@ -515,6 +515,8 @@ Pšosym daj to a pśisłušny URL [[Special:ListUsers/sysop|administratoroju]] k
 'badarticleerror' => 'Akcija njedajo se na toś tom boku wuwjasć.',
 'cannotdelete' => 'Njejo móžno było bok abo dataju "$1" wulašowaś. Snaź jo to južo něchten drugi cynił.',
 'cannotdelete-title' => 'Bok "$1" njedajo se lašowaś',
+'delete-hook-aborted' => 'Wulašowanje pśez kokulu pśetergnjone.
+Njejo žedno wujasnjenje.',
 'badtitle' => 'Njepłaśecy nadpis',
 'badtitletext' => 'Nadpis pominanego boka jo był njepłaśecy, prozny abo njekorektny nadpis, póchadajucy z mjazyrěcnego abo interwikijowego wótkaza. Snaź wopśimjejo jadno abo wěcej znamuškow, kótarež njejsu w nadpisach dowólone.',
 'perfcached' => 'Toś te daty póchadaju z pufrowaka a mógu snaź njeaktualne byś. Maksimalnje {{PLURAL:$1|jaden wuslědk stoj|$1 wuslědka stojtej|$1 wuslědki stoje|$1 wuslědkow stoj}} w pufrowaku k dispoziciji.',
@@ -878,7 +880,7 @@ Pšosym pśespytuj kradosćiwje, lěc jo gódnje z wobźěłowanim boka pokšaco
 Protokol wulašowanjow a pśesunjenjow za toś ten bok so how za informaciju pódawa:",
 'moveddeleted-notice' => 'Toś ten bok jo se wulašował. Protokol wulašowanjow a pśesunjenjow za toś ten bok pódawa se dołojce ako referenca.',
 'log-fulllog' => 'Dopołny protokol se woglědaś',
-'edit-hook-aborted' => 'Wobźěłanje pśez kokulu pśetergnjony.
+'edit-hook-aborted' => 'Wobźěłanje pśez kokulu pśetergnjone.
 Njejo žedno wujasnjenje.',
 'edit-gone-missing' => 'Njejo móžno było bok aktualizěrowaś.
 Zda sem až jo wulašowany.',
@@ -3690,6 +3692,8 @@ Hować móžoš slědujucy jadnory formular wužywaś. Twój komentar pśidajo s
 'api-error-empty-file' => 'Dataja, kótaruž sy nagrał, jo prozna była.',
 'api-error-emptypage' => 'Napóranje nowych, proznych bokow njejo dowólone.',
 'api-error-fetchfileerror' => 'Nutśikowna zmólka: Pśii wobstarowanju dataje jo se něco njeraźiło.',
+'api-error-fileexists-forbidden' => 'Dataja z mjenim "$1" južo eksistěrujo, a njedajo se pśepisaś.',
+'api-error-fileexists-shared-forbidden' => 'Dataja z mjenim "$1" južo eksistěrujo w zgromadnem datajowem repozitoriumje a njedajo se pśepisaś.',
 'api-error-file-too-large' => 'Dataja, kótaruž sy nagrał, jo pśewjelika była.',
 'api-error-filename-tooshort' => 'Datajowe mě jo pśekrotke.',
 'api-error-filetype-banned' => 'Toś ten datajowy typ jo zakazany.',

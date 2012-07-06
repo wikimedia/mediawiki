@@ -24,7 +24,7 @@ $messages = array(
 'tog-hidepatrolled' => 'Pahraa dewa gais badlao ke nawaa badlao me se lukao',
 'tog-newpageshidepatrolled' => 'Pahraa dewa gais badlao ke nawaa panna me se lukao',
 'tog-extendwatchlist' => 'Dhyaan suchi ke khol ke sab badlao ke dekhao, khaali nawaa waala nai',
-'tog-usenewrc' => 'Sadasya se enhance karaa gais nawaa badlao (reguires Javascript)',
+'tog-usenewrc' => 'Dher jan se badla gais panna, haali ke badlao aur dhyan suchi me (Javascript maange hae)',
 'tog-numberheadings' => 'Sab heading ke apne se number karo',
 'tog-showtoolbar' => 'Badle waala aujaar ke toolbar ke dekhao (JavaScript ke jarurat hai)',
 'tog-editondblclick' => 'Dugnaa click pe panna ke badlo (JavaScript ke jarurat hai)',
@@ -373,6 +373,8 @@ Iske, URL ke likh ke, koi administrator ke report karo.',
 'badarticleerror' => 'Ii chij ke ii panna me nai karaa jae sake hai.',
 'cannotdelete' => '{{PLURAL:$1|Template|Template}} ke ii jhalak me kaam me lawa gais hae:',
 'cannotdelete-title' => 'Panna "$1" ke mitae nai saktaa hae',
+'delete-hook-aborted' => 'Mitae ke kisis ke hook rok diis hae.
+Uu koi kaaran nai dis hae.',
 'badtitle' => 'Kharaab title',
 'badtitletext' => 'Jon panna aap mangta hai uske page title invalid, galat, nai to an incorrectly linked inter-language or inter-wiki title. Isme sait ek yah jaada character hoi jon ki title me nai kaam me lawa jae sake hai.',
 'perfcached' => 'Niche likha data ke cache karaa gais hai aur sait purana hoi. Jaada se jaada {{PLURAL:$1|ek result |$1 results}} cache me hae.',
@@ -402,6 +404,12 @@ $2',
 'ns-specialprotected' => 'Khaas panna ke badla nai jae sake hai.',
 'titleprotected' => "Ii title ke banae se [[User:$1|$1]] rokis hai.
 Iske kaaran hai ''$2''.",
+'filereadonlyerror' => 'File "$1" ke nai badle sakaa hae, kaahe ki ii file repository "$2" me hae aur iske khaali parrha jaae sake hae.
+Jon administrator iske lock karis hae, koi kaaran nai diis hae: "$3"',
+'invalidtitle-knownnamespace' => 'Namespace "$2" aur text "$3" ke kharaab title hae.',
+'invalidtitle-unknownnamespace' => 'Title gaer kaanuni hae aur iske namespace number "$1" aur text "$2" ke nai jaana jaawe hae',
+'exception-nologin' => 'Logged in nai hae',
+'exception-nologin-text' => 'Ii panna nai to aap ke action ke khatir ii wiki me login hoe ke jarurui hae',
 
 # Virus scanner
 'virus-badscanner' => "Kharaab ruup dewa gais hae: virus khoje waala software nawaa hae: ''$1''",

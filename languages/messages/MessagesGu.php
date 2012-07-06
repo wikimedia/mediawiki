@@ -1871,7 +1871,7 @@ https://www.mediawiki.org/wiki/Manual:Image_Authorization. જુઓ',
 'randomredirect-nopages' => 'નામ સ્થળ "$1" માં કોઇ દિશા નિર્દેશન નથી',
 
 # Statistics
-'statistics' => 'આંકડાકિય માહિતિ',
+'statistics' => 'આંકડાકીય માહિતી',
 'statistics-header-pages' => 'પાના સંબંધી આંકડાકીય માહિતી',
 'statistics-header-edits' => 'આંકડાકીય માહિતી બદલો',
 'statistics-header-views' => 'આંકડાકીય માહિતી જુઓ',
@@ -3403,7 +3403,7 @@ To perform a selective restoration, check the boxes corresponding to the revisio
 
 # External editor support
 'edit-externally' => 'બાહ્ય સોફ્ટવેર વાપરીને આ ફાઇલમાં ફેરફાર કરો',
-'edit-externally-help' => '(વધુ માહિતિ માટે [//www.mediawiki.org/wiki/Manual:External_editors સેટ-અપ સુચનાઓ] જુઓ)',
+'edit-externally-help' => '(વધુ માહિતી માટે [//www.mediawiki.org/wiki/Manual:External_editors સેટ-અપ સૂચનાઓ] જુઓ)',
 
 # 'all' in various places, this might be different for inflected languages
 'watchlistall2' => 'બધા',

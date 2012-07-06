@@ -1155,7 +1155,7 @@ $1",
 'mergelog' => '合并日志',
 'pagemerge-logentry' => '合并[[$1]]至[[$2]]（版本截至$3）',
 'revertmerge' => '解除合并',
-'mergelogpagetext' => '以下是一个最近由一个页面的修订历史合并到另一个页面的列表。',
+'mergelogpagetext' => '下面是最近的页面历史合并的列表。',
 
 # Diffs
 'history-title' => '“$1”的版本历史',
@@ -2009,14 +2009,13 @@ $1',
 'booksources-invalid-isbn' => '提供的ISBN号码并不正确，请检查原始复制来源号码是否有误。',
 
 # Special:Log
-'specialloguserlabel' => '操作者：',
+'specialloguserlabel' => '执行者：',
 'speciallogtitlelabel' => '目标（标题或用户）：',
 'log' => '日志',
 'all-logs-page' => '所有公开日志',
-'alllogstext' => '综合显示{{SITENAME}}所有的可用日志。
-您可以选择日志类型，用户名（区分大小写）或者相关页面（区分大小写）来缩小查询范围。',
+'alllogstext' => '所有{{SITENAME}}公开日志的联合展示。你可以通过选择日志类型、输入用户名（区分大小写）或相关页面（区分大小写）筛选日志条目。',
 'logempty' => '在日志中不存在匹配项。',
-'log-title-wildcard' => '搜索以这个文字开始的标题',
+'log-title-wildcard' => '搜索以该文字开头的标题',
 'showhideselectedlogentries' => '显示/隐藏所选日志项',
 
 # Special:AllPages
@@ -2083,7 +2082,7 @@ $1',
 
 # Special:Log/newusers
 'newuserlogpage' => '用户创建日志',
-'newuserlogpagetext' => '本日志是显示新注册用户的日志',
+'newuserlogpagetext' => '这是用户创建的日志。',
 
 # Special:ListGroupRights
 'listgrouprights' => '用户组权限',
@@ -2226,7 +2225,7 @@ $UNWATCHURL
 'actionfailed' => '操作失败',
 'deletedtext' => '“$1”已经被删除。最近删除的记录请参见$2。',
 'dellogpage' => '删除日志',
-'dellogpagetext' => '以下是最近的删除的列表。',
+'dellogpagetext' => '下面是最近的删除的列表。',
 'deletionlog' => '删除记录',
 'reverted' => '恢复到早期版本',
 'deletecomment' => '原因：',
@@ -2262,9 +2261,9 @@ $UNWATCHURL
 
 # Protect
 'protectlogpage' => '保护日志',
-'protectlogtext' => '以下是页面保护的更改日志。[[Special:ProtectedPages|保护页列表]]列出目前存在的页面保护。',
+'protectlogtext' => '下面是页面保护更改的列表。请见[[Special:ProtectedPages|受保护页面列表]]查看目前正在进行的页面保护的列表。',
 'protectedarticle' => '保护“[[$1]]”',
-'modifiedarticleprotection' => '更改“[[$1]]”的保护级别',
+'modifiedarticleprotection' => '更改“[[$1]]”的保护等级',
 'unprotectedarticle' => '删除“[[$1]]”的保护',
 'movedarticleprotection' => '移动保护设置自“[[$2]]”至“[[$1]]”',
 'protect-title' => '更改“$1”的保护等级',
@@ -2425,7 +2424,7 @@ $1',
 'whatlinkshere-filters' => '过滤器',
 
 # Block/unblock
-'autoblockid' => '自动查封 #$1',
+'autoblockid' => '自动封禁#$1',
 'block' => '封禁用户',
 'unblock' => '解封用户',
 'blockip' => '封禁用户',
@@ -2484,26 +2483,26 @@ $1',
 'blocklist-tempblocks' => '隐藏临时封禁',
 'blocklist-addressblocks' => '隐藏单个IP封禁',
 'blocklist-rangeblocks' => '隐藏IP段封禁',
-'blocklist-timestamp' => '时间戳',
+'blocklist-timestamp' => '时间',
 'blocklist-target' => '目标',
-'blocklist-expiry' => '过期',
-'blocklist-by' => '执行者',
-'blocklist-params' => '封禁设置',
+'blocklist-expiry' => '到期',
+'blocklist-by' => '封禁管理员',
+'blocklist-params' => '封禁范围',
 'blocklist-reason' => '原因',
 'ipblocklist-submit' => '搜索',
 'ipblocklist-localblock' => '本地封禁',
 'ipblocklist-otherblocks' => '其他{{PLURAL:$1|封禁}}',
 'infiniteblock' => '无限期',
 'expiringblock' => '$1 $2到期',
-'anononlyblock' => '仅限匿名用户',
-'noautoblockblock' => '禁用自动封禁',
-'createaccountblock' => '禁止创建账户',
-'emailblock' => '禁止电子邮件',
-'blocklist-nousertalk' => '禁止编辑自己的用户讨论页',
+'anononlyblock' => '仅匿名用户',
+'noautoblockblock' => '自动封禁停用',
+'createaccountblock' => '账户创建停用',
+'emailblock' => '电子邮件停用',
+'blocklist-nousertalk' => '不能编辑自己的讨论页面',
 'ipblocklist-empty' => '封禁列表为空。',
 'ipblocklist-no-results' => '请求的IP地址或用户名没有被封禁。',
 'blocklink' => '封禁',
-'unblocklink' => '解除封禁',
+'unblocklink' => '解封',
 'change-blocklink' => '更改封禁',
 'contribslink' => '贡献',
 'emaillink' => '发送电邮',
@@ -2511,16 +2510,16 @@ $1',
 $1被封禁的理由是：“$2”',
 'blocklogpage' => '封禁日志',
 'blocklog-showlog' => '该用户曾被封禁。下面提供封禁日志以供参考：',
-'blocklog-showsuppresslog' => '此用户曾被封禁并隐藏。以下列出隐藏日志以供参考：',
-'blocklogentry' => '封禁[[$1]]，终止时间为$2$3',
-'reblock-logentry' => '更改[[$1]]的封禁终止时间 $2 $3',
-'blocklogtext' => '此处给出了封禁和解封用户的操作日志，被自动封禁的IP地址不在此表。请查看[[Special:BlockList|封禁列表]]获知当前被封禁的用户和IP地址。',
-'unblocklogentry' => '已解封 $1',
+'blocklog-showsuppresslog' => '该用户曾被封禁并隐藏。下面提供封锁日志以供参考：',
+'blocklogentry' => '封禁[[$1]]，到期时间为$2后$3',
+'reblock-logentry' => '更改[[$1]]的封禁设置，到期时间为$2后$3',
+'blocklogtext' => '这是用户封禁和解封操作的日志。自动封禁IP地址没有列出。请见[[Special:BlockList|封禁列表]]查看目前正在进行的阻止和封禁的列表。',
+'unblocklogentry' => '解封$1',
 'block-log-flags-anononly' => '仅限匿名用户',
-'block-log-flags-nocreate' => '停用账户创建',
-'block-log-flags-noautoblock' => '禁用自动封禁',
-'block-log-flags-noemail' => '禁止电子邮件',
-'block-log-flags-nousertalk' => '禁止编辑自己的用户讨论页',
+'block-log-flags-nocreate' => '账户创建停用',
+'block-log-flags-noautoblock' => '自动封禁停用',
+'block-log-flags-noemail' => '电子邮件停用',
+'block-log-flags-nousertalk' => '不能编辑自己的讨论页面',
 'block-log-flags-angry-autoblock' => '已启用增强型自动封禁',
 'block-log-flags-hiddenname' => '隐藏用户名',
 'range_block_disabled' => '管理员执行段封禁的权限已被禁用。',
@@ -2758,10 +2757,10 @@ $1被封禁的理由是：“$2”',
 
 # Import log
 'importlogpage' => '导入日志',
-'importlogpagetext' => '由管理员从其他wiki导入的带有编辑历史的页面。',
+'importlogpagetext' => '管理性的有编辑历史的页面自其他维基的导入。',
 'import-logentry-upload' => '以文件上传导入[[$1]]',
 'import-logentry-upload-detail' => '$1个版本',
-'import-logentry-interwiki' => '跨站导入 $1',
+'import-logentry-interwiki' => '跨维基$1',
 'import-logentry-interwiki-detail' => '来自$2的$1个修订',
 
 # JavaScriptTest
@@ -2933,7 +2932,7 @@ $1被封禁的理由是：“$2”',
 
 # Patrol log
 'patrol-log-page' => '巡查日志',
-'patrol-log-header' => '这是已巡查的修订版本的日志。',
+'patrol-log-header' => '这是已巡查版本的日志。',
 'log-show-hide-patrol' => '$1巡查纪录',
 
 # Image deletion
@@ -3673,27 +3672,27 @@ MediaWiki是基于使用目的而加以发布，然而不负任何担保责任�
 'intentionallyblankpage' => '这个页面被故意留为空白',
 
 # External image whitelist
-'external_image_whitelist' => ' #请保留此行文本<pre>
-#在下方书写正则表达式（//中间的部份）
+'external_image_whitelist' => ' #请原样保留本行文字<pre>
+#在下方书写正则表达式片段（//中间的部份）
 #这些规则将与外部（盗链）图像的URL匹配
 #匹配的URL将被显示为图像，否则只会显示链向图像的链接
-#以#开头的行会被视为注释
-#大小写不敏感
+#以#开头的行视为评论
+#不区分大小写
 
-#在此行上方输入所有的正则表达式。请保留此行文本</pre>',
+#在本行上面输入所有正则表达式。请原样保留本行文字</pre>',
 
 # Special:Tags
 'tags' => '有效的更改标签',
 'tag-filter' => '[[Special:Tags|标签]]过滤器：',
 'tag-filter-submit' => '过滤器',
 'tags-title' => '标签',
-'tags-intro' => '本页面列出了建站软件可能用来标记编辑的标签及它们的含义。',
+'tags-intro' => '本页面列出了软件可能用于标记编辑的标签和它们的含义。',
 'tags-tag' => '标签名称',
 'tags-display-header' => '更改列表中的表现形式',
 'tags-description-header' => '完整含义说明',
-'tags-hitcount-header' => '标记的更改',
+'tags-hitcount-header' => '标记的更改数',
 'tags-edit' => '编辑',
-'tags-hitcount' => '$1次更改',
+'tags-hitcount' => '$1个更改',
 
 # Special:ComparePages
 'comparepages' => '对比页面',
