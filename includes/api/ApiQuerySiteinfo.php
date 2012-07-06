@@ -257,8 +257,9 @@ class ApiQuerySiteinfo extends ApiQueryBase {
 	protected function appendSpecialPageAliases( $property ) {
 		global $wgContLang;
 		$data = array();
-		foreach ( $wgContLang->getSpecialPageAliases() as $specialpage => $aliases ) {
-			$arr = array( 'realname' => $specialpage, 'aliases' => $aliases );
+		$aliases = $wgContLang->getSpecialPageAliases();
+		foreach ( SpecialPageFactory::getList() as $specialpage => $stuff ) {
+			$arr = array( 'realname' => $specialpage, 'aliases' => $aliases[$specialpage] );
 			$this->getResult()->setIndexedTagName( $arr['aliases'], 'alias' );
 			$data[] = $arr;
 		}
