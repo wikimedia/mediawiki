@@ -79,13 +79,19 @@ TEXT;
 					$collationConds,
 					__METHOD__
 				);
-
-				if ( $count == 0 ) {
-					$this->output( "Collations up-to-date.\n" );
-					return;
-				}
-				$this->output( "Fixing collation for $count rows.\n" );
+			} else {
+				$count = $dbw->estimateRowCount(
+					'categorylinks',
+					'',
+					$collationConds,
+					__METHOD__
+				);
 			}
+			if ( $count == 0 ) {
+				$this->output( "Collations up-to-date.\n" );
+				return;
+			}
+			$this->output( "Fixing collation for $count rows.\n" );
 		}
 
 		$count = 0;
