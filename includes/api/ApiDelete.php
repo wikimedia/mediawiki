@@ -180,7 +180,10 @@ class ApiDelete extends ApiBase {
 			'pageid' => array(
 				ApiBase::PARAM_TYPE => 'integer'
 			),
-			'token' => null,
+			'token' => array(
+				ApiBase::PARAM_TYPE => 'string',
+				ApiBase::PARAM_REQUIRED => true
+			),
 			'reason' => null,
 			'watch' => array(
 				ApiBase::PARAM_DFLT => false,

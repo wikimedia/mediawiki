@@ -193,6 +193,7 @@ upgrade PHP if you have not done so prior to upgrading MediaWiki.
 * (bug 35980) list=deletedrevs now honors drdir correctly in "all" mode (mode #3).
 * (bug 29290) API avoids mangling fields in continuation parameters
 * (bug 36987) API avoids mangling fields in continuation parameters
+* (bug 38190) Add "required" flag to some token params for hint in api docs 
 
 === Languages updated in 1.20 ===
 

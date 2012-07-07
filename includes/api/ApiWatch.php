@@ -88,7 +88,10 @@ class ApiWatch extends ApiBase {
 				ApiBase::PARAM_REQUIRED => true
 			),
 			'unwatch' => false,
-			'token' => null,
+			'token' => array(
+				ApiBase::PARAM_TYPE => 'string',
+				ApiBase::PARAM_REQUIRED => true
+			),
 		);
 	}
 
