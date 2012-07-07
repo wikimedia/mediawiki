@@ -3062,7 +3062,7 @@ It may have already been undeleted.',
 $1',
 'undelete-show-file-confirm'   => 'Are you sure you want to view the deleted revision of the file "<nowiki>$1</nowiki>" from $2 at $3?',
 'undelete-show-file-submit'    => 'Yes',
-'undelete-revisionrow'        => "$1 $2 $3 $4 . . $5 $6 $7",
+'undelete-revisionrow'        => "$1 $2 ($3) $4 . . $5 $6 $7",
 
 # Namespace form on various pages
 'namespace'                     => 'Namespace:',
