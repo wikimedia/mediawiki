@@ -187,7 +187,7 @@ class CliInstaller extends Installer {
 
 		if ( !$status->isOk() ) {
 			echo "\n";
-			exit;
+			exit( 1 );
 		}
 	}
 
