@@ -289,6 +289,18 @@ class ApiParse extends ApiBase {
 			$result_array['properties'] = $this->formatProperties( $p_result->getProperties() );
 		}
 
+		if ( $params['generatexml'] ) {
+			$wgParser->startExternalParse( $titleObj, $popts, OT_PREPROCESS );
+			$dom = $wgParser->preprocessToDom( $this->text );
+			if ( is_callable( array( $dom, 'saveXML' ) ) ) {
+				$xml = $dom->saveXML();
+			} else {
+				$xml = $dom->__toString();
+			}
+			$result_array['parsetree'] = array();
+			$result->setContent( $result_array['parsetree'], $xml );
+		}
+
 		$result_mapping = array(
 			'redirects' => 'r',
 			'langlinks' => 'll',
@@ -541,6 +553,7 @@ class ApiParse extends ApiBase {
 			'uselang' => null,
 			'section' => null,
 			'disablepp' => false,
+			'generatexml' => false,
 		);
 	}
 
@@ -585,6 +598,7 @@ class ApiParse extends ApiBase {
 			'uselang' => 'Which language to parse the request in',
 			'section' => 'Only retrieve the content of this section number',
 			'disablepp' => 'Disable the PP Report from the parser output',
+			'generatexml' => 'Generate XML parse tree',
 		);
 	}
 
