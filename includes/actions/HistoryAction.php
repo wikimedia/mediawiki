@@ -418,32 +418,9 @@ class HistoryPager extends ReverseChronologicalPager {
 				$batch->add( NS_USER_TALK, $row->rev_user_text );
 			}
 		}
-		$this->parentLens = $this->getParentLengths( $revIds );
+		$this->parentLens = Revision::getParentLengths( $this->mDb, $revIds );
 		$batch->execute();
 		$this->mResult->seek( 0 );
-	}
-
-	/**
-	 * Do a batched query to get the parent revision lengths
-	 * @param $revIds array
-	 * @return array
-	 * @TODO: stolen from Contributions, refactor
-	 */
-	private function getParentLengths( array $revIds ) {
-		$revLens = array();
-		if ( !$revIds ) {
-			return $revLens; // empty
-		}
-		wfProfileIn( __METHOD__ );
-		$res = $this->mDb->select( 'revision',
-			array( 'rev_id', 'rev_len' ),
-			array( 'rev_id' => $revIds ),
-			__METHOD__ );
-		foreach ( $res as $row ) {
-			$revLens[$row->rev_id] = $row->rev_len;
-		}
-		wfProfileOut( __METHOD__ );
-		return $revLens;
 	}
 
 	/**
