@@ -1,4 +1,4 @@
-﻿<?php
+<?php
 /**
  * Description: This script takes $wgHiddenPrefs and removes their preference from the DB. [[bugzilla:30976]]
  * @author TyA <tya.wiki@gmail.com>
