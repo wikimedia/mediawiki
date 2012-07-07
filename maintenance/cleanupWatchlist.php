@@ -1,12 +1,12 @@
 <?php
 /**
- * Script to remove broken, unparseable titles in the Watchlist.
+ * Remove broken, unparseable titles in the watchlist table.
  *
  * Usage: php cleanupWatchlist.php [--fix]
  * Options:
  *   --fix  Actually remove entries; without will only report.
  *
- * Copyright (C) 2005,2006 Brion Vibber <brion@pobox.com>
+ * Copyright © 2005,2006 Brion Vibber <brion@pobox.com>
  * http://www.mediawiki.org/
  *
  * This program is free software; you can redistribute it and/or modify
@@ -31,6 +31,11 @@
 
 require_once( dirname( __FILE__ ) . '/cleanupTable.inc' );
 
+/**
+ * Maintenance script to remove broken, unparseable titles in the watchlist table.
+ *
+ * @ingroup Maintenance
+ */
 class WatchlistCleanup extends TableCleanup {
 	protected $defaultParams = array(
 		'table' => 'watchlist',

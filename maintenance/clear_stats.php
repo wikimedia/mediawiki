@@ -1,6 +1,6 @@
 <?php
 /**
- * This script remove all statistics tracking from the cache
+ * Removes all statistics tracking from the cache.
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -23,6 +23,11 @@
 
 require_once( dirname( __FILE__ ) . '/Maintenance.php' );
 
+/**
+ * Maintenance script to remove all statistics tracking from the cache.
+ *
+ * @ingroup Maintenance
+ */
 class clear_stats extends Maintenance {
 
 	public function __construct() {
