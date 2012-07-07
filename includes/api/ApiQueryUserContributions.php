@@ -513,6 +513,12 @@ class ApiQueryContributions extends ApiQueryBase {
 					ApiBase::PROP_TYPE => 'integer',
 					ApiBase::PROP_NULLABLE => true
 				)
+			),
+			'sizediff' => array(
+				'sizediff' => array(
+					ApiBase::PROP_TYPE => 'integer',
+					ApiBase::PROP_NULLABLE => true
+				)
 			)
 		);
 	}

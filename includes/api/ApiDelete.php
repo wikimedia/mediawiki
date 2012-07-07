@@ -221,7 +221,8 @@ class ApiDelete extends ApiBase {
 		return array(
 			'' => array(
 				'title' => 'string',
-				'reason' => 'string'
+				'reason' => 'string',
+				'logid' => 'integer'
 			)
 		);
 	}
