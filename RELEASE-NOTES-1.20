@@ -169,21 +169,21 @@ upgrade PHP if you have not done so prior to upgrading MediaWiki.
 * (bug 32497) API now allows changing of protection level using pageid.
 * (bug 32498) API now allows comparing pages using pageids.
 * (bug 30975) API import of pages with invalid characters in this wiki leads to Fatal Error.
-* (bug 30488) API now allows listing of backlinks/embeddedin/imageusage per pageid
-* (bug 34927) Output media_type for list=filearchive
-* (bug 28814) add properties to output of action=parse
-* (bug 33224) add variants of content language to meta=siteinfo
-* (bug 36761) "Mark pages as visited" now submits previously established filter options
-* (bug 32643) action=purge with forcelinkupdate no longer crashes when ratelimit is reached
-* The paraminfo module now also contains result properties for most modules
-* (bug 32348) Allow descending order for list=alllinks
-* (bug 31777) Upload unknown error ``fileexists-forbidden''
-* (bug 32382) Allow descending order for list=iwbacklinks
-* (bug 32381) Allow descending order for list=backlinks, list=embeddedin and list=imageusage
-* (bug 32383) Allow descending order for list=langbacklinks
-* API meta=siteinfo can now return the list of known variable IDs
-* (bug 30836) siteinfo prop=specialpagealiases will no longer return nonexistent special pages
-* (bug 35980) list=deletedrevs now honors drdir correctly in "all" mode (mode #3)
+* (bug 30488) API now allows listing of backlinks/embeddedin/imageusage per pageid.
+* (bug 34927) Output media_type for list=filearchive.
+* (bug 28814) add properties to output of action=parse.
+* (bug 33224) add variants of content language to meta=siteinfo.
+* (bug 36761) "Mark pages as visited" now submits previously established filter options.
+* (bug 32643) action=purge with forcelinkupdate no longer crashes when ratelimit is reached.
+* The paraminfo module now also contains result properties for most modules.
+* (bug 32348) Allow descending order for list=alllinks.
+* (bug 31777) Upload unknown error ``fileexists-forbidden''.
+* (bug 32382) Allow descending order for list=iwbacklinks.
+* (bug 32381) Allow descending order for list=backlinks, list=embeddedin and list=imageusage.
+* (bug 32383) Allow descending order for list=langbacklinks.
+* API meta=siteinfo can now return the list of known variable IDs.
+* (bug 30836) siteinfo prop=specialpagealiases will no longer return nonexistent special pages.
+* (bug 35980) list=deletedrevs now honors drdir correctly in "all" mode (mode #3).
 
 === Languages updated in 1.20 ===
 
