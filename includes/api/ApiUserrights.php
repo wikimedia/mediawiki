@@ -100,7 +100,10 @@ class ApiUserrights extends ApiBase {
 				ApiBase::PARAM_TYPE => User::getAllGroups(),
 				ApiBase::PARAM_ISMULTI => true
 			),
-			'token' => null,
+			'token' => array(
+				ApiBase::PARAM_TYPE => 'string',
+				ApiBase::PARAM_REQUIRED => true
+			),
 			'reason' => array(
 				ApiBase::PARAM_DFLT => ''
 			)

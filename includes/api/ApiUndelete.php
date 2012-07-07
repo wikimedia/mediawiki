@@ -94,7 +94,10 @@ class ApiUndelete extends ApiBase {
 				ApiBase::PARAM_TYPE => 'string',
 				ApiBase::PARAM_REQUIRED => true
 			),
-			'token' => null,
+			'token' => array(
+				ApiBase::PARAM_TYPE => 'string',
+				ApiBase::PARAM_REQUIRED => true
+			),
 			'reason' => '',
 			'timestamps' => array(
 				ApiBase::PARAM_TYPE => 'timestamp',

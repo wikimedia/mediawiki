@@ -184,6 +184,7 @@ upgrade PHP if you have not done so prior to upgrading MediaWiki.
 * API meta=siteinfo can now return the list of known variable IDs
 * (bug 30836) siteinfo prop=specialpagealiases will no longer return nonexistent special pages
 * (bug 35980) list=deletedrevs now honors drdir correctly in "all" mode (mode #3)
+* (bug 38190) Add "required" flag to some token params for hint in api docs 
 
 === Languages updated in 1.20 ===
 
