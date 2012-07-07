@@ -52,7 +52,6 @@ class ApiDelete extends ApiBase {
 		}
 
 		$titleObj = $pageObj->getTitle();
-		$reason = ( isset( $params['reason'] ) ? $params['reason'] : null );
 		$user = $this->getUser();
 
 		if ( $titleObj->getNamespace() == NS_FILE ) {

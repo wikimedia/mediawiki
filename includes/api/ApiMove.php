@@ -37,9 +37,6 @@ class ApiMove extends ApiBase {
 	public function execute() {
 		$user = $this->getUser();
 		$params = $this->extractRequestParams();
-		if ( is_null( $params['reason'] ) ) {
-			$params['reason'] = '';
-		}
 
 		$this->requireOnlyOneParameter( $params, 'from', 'fromid' );
 
@@ -181,7 +178,7 @@ class ApiMove extends ApiBase {
 				ApiBase::PARAM_REQUIRED => true
 			),
 			'token' => null,
-			'reason' => null,
+			'reason' => '',
 			'movetalk' => false,
 			'movesubpages' => false,
 			'noredirect' => false,
@@ -213,7 +210,7 @@ class ApiMove extends ApiBase {
 			'fromid' => "Page ID of the page you want to move. Cannot be used together with {$p}from",
 			'to' => 'Title you want to rename the page to',
 			'token' => 'A move token previously retrieved through prop=info',
-			'reason' => 'Reason for the move (optional)',
+			'reason' => 'Reason for the move',
 			'movetalk' => 'Move the talk page, if it exists',
 			'movesubpages' => 'Move subpages, if applicable',
 			'noredirect' => 'Don\'t create a redirect',
