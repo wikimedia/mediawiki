@@ -2537,7 +2537,7 @@ $1',
 'tooltip-invert' => 'Zaznacz to pole, aby ukryć zmiany na stronach w wybranych przestrzeniach nazw (oraz związanych z nimi innymi przestrzeniami nazw, jeśli zaznaczono)',
 'namespace_association' => 'powiązana przestrzeń nazw',
 'tooltip-namespace_association' => 'Zaznacz to pole, aby uwzględnić strony dyskusji i tematu związane z wybranymi przestrzeniami nazw',
-'blanknamespace' => '(główna)',
+'blanknamespace' => '(Główna)',
 
 # Contributions
 'contributions' => 'Wkład użytkownika',

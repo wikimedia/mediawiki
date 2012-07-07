@@ -11,6 +11,7 @@
  * @author Centerlink
  * @author Cimon Avaro
  * @author Crt
+ * @author ElmA
  * @author Harriv
  * @author Jaakonam
  * @author Jack Phoenix
@@ -696,6 +697,7 @@ Syynä on: ''$2''.",
 Lukituksen asettanut ylläpitäjä on antanut seuraavan syyn toimenpiteelle: "$3".',
 'invalidtitle-knownnamespace' => 'Virheellinen sivunimi, nimiavaruus "$2" ja teksti "$3"',
 'invalidtitle-unknownnamespace' => 'Virheellinen sivunimi, tuntematon nimiavaruus numero $1 ja teksti $2',
+'exception-nologin' => 'Et ole kirjautuneena',
 
 # Virus scanner
 'virus-badscanner' => "Virheellinen asetus: Tuntematon virustutka: ''$1''",
@@ -1226,7 +1228,7 @@ Uuden ja vanhan sivun muutoksien pitää muodostaa jatkumo – ne eivät saa men
 
 # Diffs
 'history-title' => 'Sivun "$1" muutoshistoria',
-'difference-title' => 'Ero sivun "$1" versioiden välillä',
+'difference-title' => 'Ero sivun ”$1” versioiden välillä',
 'difference-title-multipage' => 'Erot sivujen "$1" ja "$2" välillä',
 'difference-multipage' => '(Sivujen välinen eroavaisuus)',
 'lineno' => 'Rivi $1:',
@@ -2405,7 +2407,7 @@ Viimeisimmän muokkauksen on tehnyt käyttäjä [[User:$3|$3]] ([[User talk:$3|k
 
 # Undelete
 'undelete' => 'Palauta poistettuja sivuja',
-'undeletepage' => 'Katsele ja palauta poistettuja sivuja',
+'undeletepage' => 'Tarkastele ja palauta poistettuja sivuja',
 'undeletepagetitle' => "'''Poistetut versiot sivusta [[:$1]]'''.",
 'viewdeletedpage' => 'Poistettujen sivujen selaus',
 'undeletepagetext' => '{{PLURAL:$1|Seuraava sivu|Seuraavat sivut}} on poistettu, mutta {{PLURAL:$1|se löytyy|ne löytyvät}} vielä arkistosta, joten {{PLURAL:$1|se on|ne ovat}} palautettavissa. Arkisto saatetaan tyhjentää aika ajoin.',
