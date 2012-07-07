@@ -256,7 +256,7 @@ class ApiQueryContributions extends ApiQueryBase {
 		$this->addFieldsIf( 'page_latest', $this->fld_flags );
 		// $this->addFieldsIf( 'rev_text_id', $this->fld_ids ); // Should this field be exposed?
 		$this->addFieldsIf( 'rev_comment', $this->fld_comment || $this->fld_parsedcomment );
-		$this->addFieldsIf( 'rev_len', $this->fld_size );
+		$this->addFieldsIf( 'rev_len', $this->fld_size || $this->fld_sizediff );
 		$this->addFieldsIf( 'rev_minor_edit', $this->fld_flags );
 		$this->addFieldsIf( 'rev_parent_id', $this->fld_flags || $this->fld_sizediff );
 		$this->addFieldsIf( 'rc_patrolled', $this->fld_patrolled );
