@@ -314,25 +314,25 @@ $messages = array(
 'tog-hidepatrolled' => 'Wiezigingen die emarkeerd bin verbargen in leste wiezigingen',
 'tog-newpageshidepatrolled' => "Pagina's die emarkeerd bin, verbargen in de lieste mit nieje artikels",
 'tog-extendwatchlist' => 'Volglieste uutbreien, zodat alle wiezigingen zichtbaor bin, en niet allinnig de leste wieziging',
-'tog-usenewrc' => "Gebruuk de pagina uutebreiden leste wiezigingen (hierveur he'j JavaScript neudig)",
+'tog-usenewrc' => "Groepeer wiezigingen per pagina in de liesten leste wiezigingen en mien volglieste (hierveur he'j JavaScript neudig)",
 'tog-numberheadings' => 'Koppen vanzelf nummeren',
 'tog-showtoolbar' => 'Laot de warkbalke zien',
 'tog-editondblclick' => 'Mit dubbelklik bewarken (JavaScript)',
 'tog-editsection' => 'Mit bewarkgedeeltes',
 'tog-editsectiononrightclick' => 'Bewarkgedeelte mit rechtermuusknoppe bewarken (JavaScript)',
-'tog-showtoc' => 'Samenvatting van de onderwarpen laoten zien (mit meer as dree onderwarpen)',
+'tog-showtoc' => 'Samenvatting laoten zien van de zaken die an bod koemen (mit meer as dree onderwarpen)',
 'tog-rememberpassword' => 'Vanzelf anmelden (hooguut $1 {{PLURAL:$1|dag|dagen}})',
-'tog-watchcreations' => "Pagina's die'k anmake op mien volglieste zetten",
-'tog-watchdefault' => "Pagina's die'k wiezige op mien volglieste zetten",
-'tog-watchmoves' => "Pagina's die'k herneume op mien volglieste zetten",
-'tog-watchdeletion' => "Pagina's die'k vortdo op mien volglieste zetten",
+'tog-watchcreations' => "Pagina's die'k anmake en bestaanden die'k opsture op mien volglieste zetten",
+'tog-watchdefault' => "Pagina's en bestaanden die'k wiezige op mien volglieste zetten",
+'tog-watchmoves' => "Pagina's en bestaanden die'k herneume op mien volglieste zetten",
+'tog-watchdeletion' => "Pagina's en bestaanden die'k vortdo op mien volglieste zetten",
 'tog-minordefault' => "Markeer alle veraanderingen as 'kleine wieziging'",
 'tog-previewontop' => 'De naokiekpagina boven t bewarkingsveld zetten',
 'tog-previewonfirst' => 'Naokieken bie eerste wieziging',
 'tog-nocache' => 'De tussenopslag van de webkieker uutzetten',
-'tog-enotifwatchlistpages' => 'Stuur mien n berichjen over paginawiezigingen.',
+'tog-enotifwatchlistpages' => 'Stuur mien n berichjen over pagina- of bestaandswiezigingen uut mien volglieste.',
 'tog-enotifusertalkpages' => 'Stuur mien n berichjen as mien overlegpagina ewiezigd is.',
-'tog-enotifminoredits' => 'Stuur mien oek n berichjen bie kleine bewarkingen',
+'tog-enotifminoredits' => "Stuur mien oek n berichjen bie kleine bewarkingen van pagina's en bestaanden",
 'tog-enotifrevealaddr' => 'Mien netpostadres laoten zien in netposttiejigen',
 'tog-shownumberswatching' => 't Antal gebrukers bekieken die disse pagina volgt',
 'tog-oldsig' => 'Bestaonde haandtekening:',
@@ -579,7 +579,7 @@ $1",
 'editlink' => 'bewark',
 'viewsourcelink' => 'brontekste bekieken',
 'editsectionhint' => 'Bewarkingsveld: $1',
-'toc' => 'Onderwarpen',
+'toc' => 'Kömp an bod',
 'showtoc' => 'Bekieken',
 'hidetoc' => 'Verbarg',
 'collapsible-collapse' => 'Inklappen',
@@ -665,10 +665,12 @@ Meld t dan effen bie n [[Special:ListUsers/sysop|systeembeheerder]] van {{SITENA
 'cannotdelete' => 'De pagina of t bestaand "$1" kon niet vortedaon wörden.
 t Kan ween dat n aander t al vortedaon hef.',
 'cannotdelete-title' => 'Pagina "$1" kan niet vortedaon wörden',
+'delete-hook-aborted' => 't Vortdoon wörden in t wiere eschopt deur n MediaWiki-programmatuuruutbreiding.
+Der is gien veerdere informasie beschikbaor.',
 'badtitle' => 'Ongeldige naam',
 'badtitletext' => 'De naam van de op-evreugen pagina is niet geldig, leeg, of n interwiki-verwiezing naor n onbekende of ongeldige wiki.',
-'perfcached' => 'Disse gegevens koemen uut t tussengeheugen en bin misschien niet aktueel. Der {{PLURAL:$1|is maximaal een resultaot|bin maximaal $1 resultaoten}} beschikbaor in t tussengeheugen.',
-'perfcachedts' => 'Disse gegevens koemen uut t tussengeheugen die veur t lest bie-ewörken is op $2 um $3. Der {{PLURAL:$4|is maximaal een resultaot|bin maximaal $4 resultaoten}} beschikbaor in t tussengeheugen.',
+'perfcached' => 'Disse gegevens koemen uut t tussengeheugen en bin misschien niet aktueel. Der {{PLURAL:$1|is hooguut een resultaot|bin hooguut $1 resultaoten}} beschikbaor in t tussengeheugen.',
+'perfcachedts' => 'Disse gegevens koemen uut t tussengeheugen die veur t lest bie-ewörken is op $2 um $3. Der {{PLURAL:$4|is hooguut een resultaot|bin hooguut $4 resultaoten}} beschikbaor in t tussengeheugen.',
 'querypage-no-updates' => "'''Disse pagina wörden niet meer bie-ewörken.'''",
 'wrong_wfQuery_params' => 'Parameters veur wfQuery() waren verkeerd<br />
 Funksie: $1<br />
@@ -691,9 +693,13 @@ $2',
 'ns-specialprotected' => "Spesiale pagina's kunnen niet bewarkt wörden.",
 'titleprotected' => "t Anmaken van disse pagina is beveiligd deur [[User:$1|$1]].
 De op-egeven reden is ''$2''.",
-'filereadonlyerror' => 'Kon t bestaand "$1" niet anpassen umdat de bestaandsmap "$2" op dit moment allinnig-lezen is.
+'filereadonlyerror' => 'Kon t bestaand "$1" niet anpassen umdat de bestaandsmap "$2" op dit moment op allinnig-lezen steet.
 
-De op-egeven reden is "\'\'$3\'\'".',
+De beheerder gaf hierveur de volgende reden: "$3".',
+'invalidtitle-knownnamespace' => 'Ongeldige titel mit naamruumte "$2" en tekste "$3"',
+'invalidtitle-unknownnamespace' => 'Ongeldige titel mit onbekend naamruumtenummer $1 en tekste "$2"',
+'exception-nologin' => 'Niet an-emeld',
+'exception-nologin-text' => "Um disse pagina te bekieken of disse haandeling uut te kunnen voeren mu'j an-emeld ween bie disse wiki.",
 
 # Virus scanner
 'virus-badscanner' => "Slichte konfigurasie: onbekend antivirusprogramma: ''$1''",
@@ -785,6 +791,7 @@ Um misbruuk te veurkoemen wörden der mer één wachtwoordherinnering per {{PLUR
 'invalidemailaddress' => 't Netpostadres kon niet aksepteerd wörden umdat de opmaak ongeldig is.
 Voer de juuste opmaak van t adres in of laot t veld leeg.',
 'cannotchangeemail' => 't Netpostadres veur n gebruker kan op disse wiki niet ewiezigd wörden.',
+'emaildisabled' => 'Disse webstee kan gien netpost versturen.',
 'accountcreated' => 'Gebrukersprofiel is an-emaakt',
 'accountcreatedtext' => 'De gebrukersnaam veur $1 is an-emaakt.',
 'createaccount-title' => 'Gebrukers anmaken veur {{SITENAME}}',
@@ -980,7 +987,9 @@ De leste regel uut t blokkeerlogboek steet hieronder as referensie:',
 'userinvalidcssjstitle' => "'''Waorschuwing:''' der is gien uutvoering mit de naam \"\$1\". Vergeet niet dat joew eigen .css- en .js-pagina's beginnen mit n kleine letter, bv. \"{{ns:user}}:Naam/'''v'''ector\" in plaotse van \"{{ns:user}}:Naam/'''V'''ector.css\".",
 'updated' => '(Bewark)',
 'note' => "'''Opmarking:'''",
-'previewnote' => "'''NB: je bin de pagina allinnig nog mer an t naokieken; de tekste is nog niet op-esleugen!'''",
+'previewnote' => "'''Waort je: dit is n kontrolepagina.'''
+Joew tekste is niet op-esleugen!",
+'continue-editing' => 'Deurgaon mit bewarken',
 'previewconflict' => "Disse versie laot zien hoe de tekste in t bovenste veld deruut kump te zien a'j de tekste opslaon.",
 'session_fail_preview' => "'''De bewarking kan niet verwarkt wörden wegens n verlies an data.'''
 Probeer t laoter weer.
@@ -994,6 +1003,7 @@ As t dan nog problemen geef, probeer dan um [[Special:UserLogout|opniej an te me
 'token_suffix_mismatch' => "'''De bewarking is eweigerd umdat de webkieker de leestekens in t bewarkingstoken verkeerd behaandeld hef. De bewarking is eweigerd um verminking van de paginatekste te veurkoemen. Dit gebeurt soms as der n web-ebaseerden proxydienst gebruukt wörden waor fouten in zitten.'''",
 'edit_form_incomplete' => "'''Partie delen van t bewarkingsformulier hebben de server niet bereikt. Kiek eers nao of de bewarkingen kloppen en probeer t opniej.'''",
 'editing' => 'Bewark: $1',
+'creating' => 'Bezig mit t anmaken van $1',
 'editingsection' => 'Bewark: $1 (deelpagina)',
 'editingcomment' => 'Bewark: $1 (niej onderwarp)',
 'editconflict' => 'Bewarkingskonflikt: $1',
@@ -1057,6 +1067,7 @@ t Schient dat t vortedaon is.',
 'edit-no-change' => 'Joew bewarking is enegeerd, umdat der gien wieziging an de tekste edaon is.',
 'edit-already-exists' => 'De pagina kon niet an-emaakt wörden.
 t Besteet al.',
+'defaultmessagetext' => 'Standardtekste',
 
 # Parser/template warnings
 'expensive-parserfunction-warning' => 'Waorschuwing: disse pagina gebruukt te veule kostbaore parserfunksies.
@@ -1071,6 +1082,12 @@ Sommigen mallen wörden niet in-evoegd.',
 'parser-template-loop-warning' => 'Der is n kringloop in mallen waoreneumen: [[$1]]',
 'parser-template-recursion-depth-warning' => 'Der is over de rekursiediepte veur mallen is hinne gaon ($1)',
 'language-converter-depth-warning' => 'Je hebben t dieptelimiet veur de taalumzetter bereikt ($1)',
+'node-count-exceeded-category' => "Pagina's die t knuppenantal overschrejen hebben.",
+'node-count-exceeded-warning' => 'Op de pagina is t maximale antal nodes overschrejen',
+'expansion-depth-exceeded-category' => "Pagina's waor de expansiediepte overschrejen is",
+'expansion-depth-exceeded-warning' => 'In disse pagina staon te veul mallen',
+'parser-unstrip-loop-warning' => 'Der is n "unstrip"-lusse evunnen',
+'parser-unstrip-recursion-limit' => 'De rekursielimiet ($1) veur "unstrip" is overschrejen',
 
 # "Undo" feature
 'undo-success' => 'De bewarking kan weerummedreid wörden. Kiek de vergelieking hieronder nao um der wisse van de ween dat alles goed is, en slao de de pagina op um de bewarking weerumme te dreien.',
@@ -1210,7 +1227,8 @@ Kiek de logboeken nao.',
 
 # Suppression log
 'suppressionlog' => 'Verbargingslogboek',
-'suppressionlogtext' => "In de onderstaande lieste staon de vortedaone pagina's en blokkeringen die veur beheerders verbörgen bin. In de [[Special:BlockList|IP-blokkeerlieste]] bin de blokkeringen, die noen van toepassing bin, te bekieken.",
+'suppressionlogtext' => "In de onderstaande lieste staon de vortedaone pagina's en blokkeringen die veur beheerders verbörgen bin. 
+In de [[Special:BlockList|blokkeerlieste]] bin de blokkeringen, die noen van toepassige bin, te bekieken.",
 
 # History merging
 'mergehistory' => "Geschiedenisse van pagina's bie mekaar doon",
@@ -1241,7 +1259,9 @@ Kiek de logboeken nao.',
 'mergelogpagetext' => "Hieronder zie'j n lieste van de leste samenvoegingen van n paginageschiedenisse naor n aandere.",
 
 # Diffs
-'history-title' => 'Geschiedenisse van "$1"',
+'history-title' => 'Versiegeschiedenisse van "$1"',
+'difference-title' => 'Verschil tussen versies van "$1"',
+'difference-title-multipage' => 'Verschil tussen pagina\'s "$1" en "$2"',
 'difference-multipage' => "(Verschil tussen pagina's)",
 'lineno' => 'Regel $1:',
 'compareselectedversions' => 'Vergeliek de ekeuzen versies',
@@ -1336,11 +1356,12 @@ Kiek de logboeken nao.',
 'prefs-beta' => 'Bètafunksies',
 'prefs-datetime' => 'Daotum en tied',
 'prefs-labs' => 'Alphafunksies',
+'prefs-user-pages' => "Gebrukerspagina's",
 'prefs-personal' => 'Gebrukersgegevens',
 'prefs-rc' => 'Leste wiezigingen',
 'prefs-watchlist' => 'Volglieste',
 'prefs-watchlist-days' => 'Antal dagen in de volglieste bekieken:',
-'prefs-watchlist-days-max' => 'Maximaal $1 {{PLURAL:$1|dag|dagen}}',
+'prefs-watchlist-days-max' => 'Hooguut $1 {{PLURAL:$1|dag|dagen}}',
 'prefs-watchlist-edits' => 'Antal wiezigingen in de uutebreiden volglieste:',
 'prefs-watchlist-edits-max' => 'Maximale antal: 1.000',
 'prefs-watchlist-token' => 'Volgliestesleutel',
@@ -1362,7 +1383,7 @@ Kiek de logboeken nao.',
 'stub-threshold' => 'Verwiezingsformattering van <a href="#" class="stub">beginnetjes</a>:',
 'stub-threshold-disabled' => 'uuteschakeld',
 'recentchangesdays' => 'Antal dagen die de lieste "leste wiezigingen" laot zien:',
-'recentchangesdays-max' => '(maximaal $1 {{PLURAL:$1|dag|dagen}})',
+'recentchangesdays-max' => '(hooguut $1 {{PLURAL:$1|dag|dagen}})',
 'recentchangescount' => 'Standard antal bewarkingen um te laoten zien:',
 'prefs-help-recentchangescount' => "Dit geldt veur leste wiezigingen, paginageschiedenisse en logboekpagina's",
 'prefs-help-watchlist-token' => "A'j in dit veld n geheime kode invullen, dan maakt t RSS-voer an veur joew volglieste.
@@ -1792,14 +1813,15 @@ As t probleem zo blif, neem dan kontakt op mit één van de [[Special:ListUsers/
 'backend-fail-writetemp' => 'Kon niet naor n tiedelik bestaand schrieven.',
 'backend-fail-closetemp' => 'Kon niet n tiedelik bestaand sluten.',
 'backend-fail-read' => 'Kon t bestaand $1 niet lezen.',
-'backend-fail-create' => 'Kon t bestaand $1 niet anmaken.',
-'backend-fail-maxsize' => 'Kon t bestaand $1 niet anmaken umdat t groter is as {{PLURAL:$2|één byte|$2 bytes}}.',
+'backend-fail-create' => 'Kon t bestaand $1 niet schrieven.',
+'backend-fail-maxsize' => 'Kon t bestaand $1 niet schrieven umdat t groter is as {{PLURAL:$2|één byte|$2 bytes}}.',
 'backend-fail-readonly' => 'Van de opslag "$1" kan op dit moment allinnig elezen wörden. De op-egeven reden was: "$2"',
 'backend-fail-synced' => 't Bestaand "$1" bevient zich in n inkonsistente toestaand in de interne opslagbackends.',
 'backend-fail-connect' => 'Kon gien verbiending maken mit t opslagbackend "$1".',
 'backend-fail-internal' => 'Der is n onbekende fout op-etreden in t opslagbackend "$1".',
 'backend-fail-contenttype' => 'Kon t inhoudstype van t bestaand um op "$1" op te slaon niet bepaolen.',
 'backend-fail-batchsize' => 'Reeks van $1 bestaands{{PLURAL:$1|operasie|operasies}} in de opslagbackend; de limiet is $2 {{PLURAL:$2|operasie|operasies}}.',
+'backend-fail-usable' => 'Kon t bestaand $1 niet schrieven vanwegen te min rechten of niet-anwezige mappen of houwers.',
 
 # File journal errors
 'filejournal-fail-dbconnect' => 'Kon gien verbiending maken mit de journaaldatabanke veur t opslagbackend "$1".',
@@ -1919,6 +1941,10 @@ De [[Special:WhatLinksHere/$2|hele lieste]] is oek beschikbaor.',
 'sharedupload' => "Dit is n edeeld bestaand op $1 en ku'j oek gebruken veur aandere projekten.",
 'sharedupload-desc-there' => "Dit is n edeeld bestaand op $1 en ku'j oek gebruken veur aandere projekten. Bekiek de [$2 beschrieving van t bestaand] veur meer informasie.",
 'sharedupload-desc-here' => "Dit is n edeeld bestaand op $1 en ku'j oek gebruken veur aandere projekten. De [$2 beschrieving van t bestaand] dergindse, steet hieronder.",
+'sharedupload-desc-edit' => 'Dit besatand kömp van $1 en kan oek in aandere projekten gebruukt wörden.
+Je kunnen de [$2 pagina mit de bestaandsbeschrieving] daor bewarken.',
+'sharedupload-desc-create' => 'Dit besatand kömp van $1 en kan oek in aandere projekten gebruukt wörden.
+Je kunnen de [$2 pagina mit de bestaandsbeschrieving] daor bewarken.',
 'filepage-nofile' => 'Der besteet gien bestaand mit disse naam.',
 'filepage-nofile-link' => 'Der besteet gien bestaand mit disse naam, mer je kunnen t [$1 opsturen].',
 'uploadnewversion-linktext' => 'n Niejere versie van dit bestaand opsturen.',
@@ -2115,6 +2141,7 @@ n Bestaand kan hier dus verkeerd op-eneumen ween.",
 Je kunnen oek kiezen veur bepaolde logboeken en filteren op gebruker (heufdlettergeveulig) en titel (heufdlettergeveulig).',
 'logempty' => 'Der steet gien passende informasie in t logboek.',
 'log-title-wildcard' => 'Zeuk naor titels die beginnen mit disse tekste:',
+'showhideselectedlogentries' => 'Ekeuzen logboekregels laoten zien of verbargen',
 
 # Special:AllPages
 'allpages' => "Alle pagina's",
@@ -2132,6 +2159,12 @@ Je kunnen oek kiezen veur bepaolde logboeken en filteren op gebruker (heufdlette
 'allpagesprefix' => "Pagina's bekieken die beginnen mit:",
 'allpagesbadtitle' => 'De op-egeven paginanaam is ongeldig of der steet n interwikiveurvoegsel in. Meugelikerwieze staon der karakters in de naam die niet gebruukt maggen wörden in paginanamen.',
 'allpages-bad-ns' => '{{SITENAME}} hef gien "$1"-naamruumte.',
+'allpages-hide-redirects' => 'Deurverwiezingen verbargen',
+
+# SpecialCachedPage
+'cachedspecial-viewing-cached-ttl' => 'Je bekieken noen n versie uut t tussengeheugen van disse pagina, die hooguut $1 oud is.',
+'cachedspecial-viewing-cached-ts' => 'Je bekieken noen n versie uut t tussengeheugen van disse pagina, t kan ween dat t niet helemaole bie de tied is.',
+'cachedspecial-refresh-now' => 'Leste bekieken.',
 
 # Special:Categories
 'categories' => 'Kategorieën',
@@ -2567,7 +2600,7 @@ De leste regel uut t blokkeerlogboek steet as referensie',
 'badipaddress' => 'Ongeldig IP-adres of onbestaonde gebrukersnaam',
 'blockipsuccesssub' => 'Suksesvol eblokkeerd',
 'blockipsuccesstext' => '[[Special:Contributions/$1|$1]] is noen eblokkeerd.<br />
-Op de [[Special:BlockList|IP-blokkeerlieste]] steet n lieste mit alle blokkeringen.',
+Op de [[Special:BlockList|blokkeerlieste]] steet n lieste mit alle blokkeringen.',
 'ipb-blockingself' => "Hiermee blokkeer je je eigen. Wi'j dat?",
 'ipb-confirmhideuser' => "Hiermee blokkeer je n verbörgen gebruker. Hierveur wörden gebrukersnamen in alle liesten en logboekregels verbörgen. Wi'j dat?",
 'ipb-edit-dropdown' => 'Blokkeerredens bewarken',
@@ -2619,7 +2652,7 @@ t Blokkeerlogboek steet hieronder as referensie:',
 t Logboek mit onderdrokten versies steet hieronder as referensie:',
 'blocklogentry' => 'blokkeren "[[$1]]" veur $2 $3',
 'reblock-logentry' => 'hef de instellingen veur de blokkering van [[$1]] ewiezigd t Löp noen of over $2 $3',
-'blocklogtext' => "Hier zie'j n lieste van de leste blokkeringen en deblokkeringen. Automatiese blokkeringen en deblokkeringen koemen niet in t logboek te staon. Zie de [[Special:BlockList|IP-blokkeerlieste]] veur de lieste van adressen die noen eblokkeerd bin.",
+'blocklogtext' => "Hier zie'j n lieste van de leste blokkeringen en deblokkeringen. Automatiese blokkeringen en deblokkeringen koemen niet in t logboek te staon. Zie de [[Special:BlockList|blokkeerlieste]] veur de lieste van adressen die noen eblokkeerd bin.",
 'unblocklogentry' => 'blokkering van $1 is op-eheven',
 'block-log-flags-anononly' => 'allinnig anoniemen',
 'block-log-flags-nocreate' => 'anmaken van gebrukersprofielen uuteschakeld',
@@ -2976,6 +3009,7 @@ Meestentieds kump dit deur n uutgaonde verwiezing die op de zwarte lieste steet.
 'spambot_username' => 'MediaWiki ongewunste zooi oprumen',
 'spam_reverting' => 'Bezig mit t weerummezetten naor de leste versie die gien verwiezing hef naor $1',
 'spam_blanking' => 'Alle wiezigingen mit n verwiezing naor $1 wörden vortehaold',
+'spam_deleting' => 'In alle versies staon verwiezingen naor $1. Pagina vortedaon',
 
 # Info page
 'pageinfo-title' => 'Informasie over "$1"',
@@ -3269,8 +3303,8 @@ Aandere velden wörden verbörgen.
 'exif-contentwarning' => 'Waorschuwing over inhoud',
 'exif-giffilecomment' => 'Opmarking bie GIF-bestaand',
 'exif-intellectualgenre' => 'Soort onderwarp',
-'exif-subjectnewscode' => 'Onderwarpcode',
-'exif-scenecode' => 'IPTC-scènecode',
+'exif-subjectnewscode' => 'Onderwarpkode',
+'exif-scenecode' => 'IPTC-scènekode',
 'exif-event' => 'Aofebeelden gebeurtenisse',
 'exif-organisationinimage' => 'Aofebeelden organisasie',
 'exif-personinimage' => 'Aofebeeld persoon',
@@ -3591,8 +3625,8 @@ De bevestigingskode zal verlopen op $4.',
 'table_pager_prev' => 'Veurige',
 'table_pager_first' => 'Eerste pagina',
 'table_pager_last' => 'Leste pagina',
-'table_pager_limit' => 'Laot $1 onderwarpen per pagina zien',
-'table_pager_limit_label' => 'Onderwarpen per pagina:',
+'table_pager_limit' => 'Laot $1 resultaoten per pagina zien',
+'table_pager_limit_label' => 'Zaken per pagina:',
 'table_pager_limit_submit' => 'Zeuk',
 'table_pager_empty' => 'Gien resultaoten',
 
@@ -3601,6 +3635,9 @@ De bevestigingskode zal verlopen op $4.',
 'autosumm-replace' => "Tekste vervöngen deur '$1'",
 'autoredircomment' => 'deurverwiezing naor [[$1]]',
 'autosumm-new' => "Nieje pagina: '$1'",
+
+# Size units
+'size-kilobytes' => '$1 kB',
 
 # Live preview
 'livepreview-loading' => 'An t laojen…',
@@ -3677,6 +3714,9 @@ Samen mit dit programma heur je n [{{SERVER}}{{SCRIPTPATH}}/COPYING kopie van de
 'version-software' => 'Programmatuur die installeerd is',
 'version-software-product' => 'Produkt',
 'version-software-version' => 'Versie',
+'version-entrypoints' => 'Webadressen veur ingangen',
+'version-entrypoints-header-entrypoint' => 'Ingang',
+'version-entrypoints-header-url' => 'Webadres',
 
 # Special:FilePath
 'filepath' => 'Bestaandslokasie',
@@ -3839,6 +3879,8 @@ Aanders ku\'j oek t eenvoudige formulier hieronder gebruken. Joew opmarkingen zu
 'api-error-empty-file' => "t Bestaand da'j op-estuurd hebben is leeg.",
 'api-error-emptypage' => "Je maggen gien lege nieje pagina's anmaken.",
 'api-error-fetchfileerror' => 'Interne fout: der is iets verkeerd egaon mit t ophaolen van t bestaand.',
+'api-error-fileexists-forbidden' => 'Der besteet al n bestaand mit de naam "$1" die niet overschreven kan wörden.',
+'api-error-fileexists-shared-forbidden' => 'Der besteet al n bestaand mit de naam "$1" in de edeelden bestaandsarchief dat niet overschreven kan wörden.',
 'api-error-file-too-large' => "t Bestaand da'j op-estuurd hebben is te groot.",
 'api-error-filename-tooshort' => 'De bestaandsnaam is te kort.',
 'api-error-filetype-banned' => 'Dit bestaandstype is niet toe-estaon.',
@@ -3866,4 +3908,17 @@ Aanders ku\'j oek t eenvoudige formulier hieronder gebruken. Joew opmarkingen zu
 'api-error-uploaddisabled' => 'Je kunnen gien bestaanden opsturen in deze wiki.',
 'api-error-verification-error' => 'Dit bestaand is meugelik beschaodigd of hef n onjuuste extensie.',
 
+# Durations
+'duration-seconds' => '$1 {{PLURAL:$1|sekonde|sekonden}}',
+'duration-minutes' => '$1 {{PLURAL:$1|minuut|minuten}}',
+'duration-hours' => '$1 {{PLURAL:$1|uur|uren}}',
+'duration-days' => '$1 {{PLURAL:$1|dag|dagen}}',
+'duration-weeks' => '$1 {{PLURAL:$1|weke|weken}}',
+'duration-years' => '$1 {{PLURAL:$1|jaor|jaoren}}',
+'duration-decades' => '$1 {{PLURAL:$1|desennium|desennia}}',
+'duration-centuries' => '$1 {{PLURAL:$1|eeuw|eeuwen}}',
+'duration-millennia' => '$1 {{PLURAL:$1|millennium|millennia}}',
+
+# Unknown messages
+'lockmanager-fail-svr-acquire' => 'Kon gien vergrendeling op server $1 zetten.',
 );

@@ -38,11 +38,11 @@ $messages = array(
 # User preference toggles
 'tog-underline' => 'Pinag-ugisan ti silpo:',
 'tog-justify' => 'Limpiaen dagiti parapo',
-'tog-hideminor' => 'Ilemmeng dagiti babassit a panagbaliw kadagiti naudi a panagisukat',
+'tog-hideminor' => 'Ilemmeng dagiti bassit a panagbaliw kadagiti naudi a panagisukat',
 'tog-hidepatrolled' => 'Ilemmeng dagiti napatruliaan nga inurnos kadagiti naudi a sinuk-sukatan',
 'tog-newpageshidepatrolled' => 'Ilemmeng dagiti napatruliaan a panid idiay baro a listaan ti panid',
 'tog-extendwatchlist' => 'Ipalawa ti listaan ti bambantayan tapno maipakita amin a nasukatan, tapno saan laeng a dagiti nabiit',
-'tog-usenewrc' => 'Pannakabaliw ti grupo babaen ti panid iti kaudian a panagbaliw ken pakabantayan (masapul ti JavaScript)',
+'tog-usenewrc' => 'Dagiti grupo panagbaliw babaen ti panid kadagiti kinaudi a panagbaliw ken banbantayan  (masapul ti JavaScript)',
 'tog-numberheadings' => 'Automatiko a pabilangan dagiti paulo',
 'tog-showtoolbar' => 'Ipakita ti ramit ti panag-urnos (masapul ti JavaScript)',
 'tog-editondblclick' => 'Urnosen dagiti panid iti mamindua a panagtakla (masapul ti JavaScript)',
@@ -51,7 +51,7 @@ $messages = array(
 'tog-showtoc' => 'Ipakita ti tabla dagiti linaon (para kadagiti panid nga addan ti ad-adu ngem dagiti 3 a paulo)',
 'tog-rememberpassword' => 'Laglagipem ti iseserrekko iti daytoy a pagbasabasa (iti kaadu nga $1 {{PLURAL:$1|aldaw|al-aldaw}})',
 'tog-watchcreations' => 'Inayon dagiti inaramidko a pampanid iti listaan ti bambantayak',
-'tog-watchdefault' => 'Inayon dagiti inurnos ko a pampanid iti listaan ti bambantayak',
+'tog-watchdefault' => 'Inayon dagiti inurnosko a pampanid iti listaan ti bambantayak',
 'tog-watchmoves' => 'Inayon dagiti inyalisko a pampanid iti listaan ti bambantayak',
 'tog-watchdeletion' => 'Inayon dagiti inikkatko a pampanid iti listaan ti bambantayak',
 'tog-minordefault' => 'Markaan amin nga  inurnos a kas sigud a bassit',
@@ -70,7 +70,7 @@ $messages = array(
 'tog-showjumplinks' => 'Ikkan ti pakabaelan  a  "mapan iti"  agpalaka a sumrek kadagiti panagsilpo',
 'tog-uselivepreview' => 'Usaren ti panag-padas tattan (masapul ti JavaScript) (suuten laeng)',
 'tog-forceeditsummary' => 'Pakaammuannak no sumrek ti blanko a pakabuklan ti panag-urnos',
-'tog-watchlisthideown' => 'Ilemmeng idiay listaan ti bambantayan dagiti inurnos ko',
+'tog-watchlisthideown' => 'Ilemmeng idiay listaan ti bambantayan dagiti inurnosko',
 'tog-watchlisthidebots' => 'Ilemmeng idiay listaan ti bambantayan dagiti inurnos ti bot',
 'tog-watchlisthideminor' => 'Ilemmeng idiay listaan ti bambantayan dagiti bassit nga  inurnos',
 'tog-watchlisthideliu' => 'Ilemmeng idiay listaan ti bambantayan dagiti inurnos ti nakastrek nga agar-aramat',
@@ -392,8 +392,8 @@ Panngaasi nga  ibagam kadagiti [[Special:ListUsers/sysop|administrador]], isurat
 'cannotdelete' => 'Ti panid wenno ti papeles "$1" ket saan a maikkat.
 Amangan no addan sabali a nangikkat.',
 'cannotdelete-title' => 'Saan a maikkat ti panid  "$1"',
-'delete-hook-aborted' => 'Naukasen ti kawit ti panagborra.
-Awan ti palawag.',
+'delete-hook-aborted' => 'Inukas ti kawit ti panagborra.
+Awan ti intedna a palawag.',
 'badtitle' => 'Madi a titulo',
 'badtitletext' => 'Ti nakiddaw a titulo ti panid ket imbalido, blanko, wenno saan nga umno a naisilpo a titulo a maki-pagsasao wenno maki-wiki.
 Adda ngata nagyan a maysa wenno ad-adu pay a kababalin a saan a mausar iti titulo.',
@@ -430,7 +430,8 @@ Ti naited a rason ket ''$2''.",
 Ti administrador a nagserra ket nagited iti daytoy a panagilawlawag "\'\'$3\'\'".',
 'invalidtitle-knownnamespace' => 'Imbalido a titulo nga adda ti nagan ti lugar "$2" ken testo "$3"',
 'invalidtitle-unknownnamespace' => 'Imbalido a titulo nga adda di-amammo a nagan ti lugar a numero $1 ken testo "$2"',
-'exception-nologin-text' => 'Masapol daytoy a panid wenno aramid ket nakastrekkayo kadaytoy a wiki.',
+'exception-nologin' => 'Saan a nakastrek',
+'exception-nologin-text' => 'Daytoy a panid wenno aramid ket makasapul kenka ti sumrek iti daytoy a wiki.',
 
 # Virus scanner
 'virus-badscanner' => 'Madi di panaka-aramidna: Di am-ammo a birus a panagskan: "$1"',
@@ -1596,7 +1597,7 @@ No ti parikut ket agsubli latta, kontaken ti [[Special:ListUsers/sysop|administr
 'backend-fail-connect' => 'Saan a makaikapet idiay pagidulinan a kalikudan  "$1".',
 'backend-fail-internal' => 'Adda di amammo a biddut ti napasamak idiay pagidulinan a kalikudan "$1".',
 'backend-fail-contenttype' => 'Saan a maammoan ti kita ti linaon ti papeles nga idulin idiay "$1".',
-'backend-fail-batchsize' => 'Naidatag nga {{PLURAL:$1|aramid|aramid}} iti intar: $1; beddeng nga {{PLURAL:$2|aramid|aramid}}: $2.',
+'backend-fail-batchsize' => 'Nagited ti nagipenpenan ti bunggoy iti $1 a papeles {{PLURAL:$1|nga aramid|nga ar-aramid}}; ti patingga ket $2 {{PLURAL:$2|nga aramid|nga ar-aramid}}.',
 'backend-fail-usable' => 'Saan a masuratan ti papeles $1 gapu ta awan ti makaanay a pammalubos wenno awan dagiti direktorio/pangikabilan.',
 
 # Lock manager
@@ -3672,6 +3673,8 @@ Nupay kasta, mau-sarmo ti nakabuklan dita baba. Ti komentario nga itedmo ket mai
 'api-error-empty-file' => 'Ti papeles nga intedmo ket awan ti nagyan na.',
 'api-error-emptypage' => 'Agar-aramid ti baro, dagiti awan ti linaon na a panid ket saan a maipalubos.',
 'api-error-fetchfileerror' => 'Kinauneg a biddut: Addaan ti dakes a napasamak idi agalala ti papeles.',
+'api-error-fileexists-forbidden' => 'Ti papeles nga agnagan ti "$1" ket addan, ken saan a mabalin a masuratan manen.',
+'api-error-fileexists-shared-forbidden' => 'Ti papeles nga agnagan ti "$1" ket adda idiay pagbibingayan a repositorio ti papeles, ken saan a mabalin a masuratan manen.',
 'api-error-file-too-large' => 'Ti papeles nga intedmo ket dakkel unay.',
 'api-error-filename-tooshort' => 'Ti nagan daytoy a papeles ket bassit unay.',
 'api-error-filetype-banned' => 'Ti kita daytoy a papeles ket maiparit.',
@@ -3710,4 +3713,6 @@ Nupay kasta, mau-sarmo ti nakabuklan dita baba. Ti komentario nga itedmo ket mai
 'duration-centuries' => '$1 {{PLURAL:$1|siglo|sig-siglo}}',
 'duration-millennia' => '$1 {{PLURAL:$1|milenio|mil-milenio}}',
 
+# Unknown messages
+'lockmanager-fail-svr-acquire' => 'Saan a makaala kadagiti kandado ti server $1.',
 );
