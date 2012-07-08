@@ -757,7 +757,7 @@ EOT
 		$count = 0;
 
 		// Sort the list by namespace:title
-		usort( $rows, array( $this, 'compare' ) );
+		usort( $rows, 'Title::compare' );
 
 		// Create links for every element
 		$currentCount = 0;
@@ -878,11 +878,13 @@ EOT
 	 * Callback for usort() to do link sorts by (namespace, title)
 	 * Function copied from Title::compare()
 	 *
+	 * @deprecated 1.20 use Title::compare() instead
 	 * @param $a object page to compare with
 	 * @param $b object page to compare with
 	 * @return Integer: result of string comparison, or namespace comparison
 	 */
 	protected function compare( $a, $b ) {
+		wfDeprecated( __METHOD__, '1.20' );
 		if ( $a->page_namespace == $b->page_namespace ) {
 			return strcmp( $a->page_title, $b->page_title );
 		} else {
