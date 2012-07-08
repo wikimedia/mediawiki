@@ -605,7 +605,7 @@ class SpecialPage {
 		 * @param $special SpecialPage
 		 * @param $subPage string|null
 		 */
-		wfRunHooks( 'SpecialPageBeforeExecute', array( &$this, $subPage ) );
+		wfRunHooks( 'SpecialPageBeforeExecute', array( $this, $subPage ) );
 
 		$this->beforeExecute( $subPage );
 		$this->execute( $subPage );
@@ -619,7 +619,7 @@ class SpecialPage {
 		 * @param $special SpecialPage
 		 * @param $subPage string|null
 		 */
-		wfRunHooks( 'SpecialPageAfterExecute', array( &$this, $subPage ) );
+		wfRunHooks( 'SpecialPageAfterExecute', array( $this, $subPage ) );
 	}
 
 	/**
