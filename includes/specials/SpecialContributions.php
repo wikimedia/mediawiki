@@ -709,8 +709,13 @@ class ContribsPager extends ReverseChronologicalPager {
 			$condition[] = 'rev_user >' . (int)( $max - $max / 100 );
 			$condition[] = 'ug_group IS NULL';
 			$index = 'user_timestamp';
-			# @todo FIXME: Other groups may have 'bot' rights
-			$join_conds['user_groups'] = array( 'LEFT JOIN', "ug_user = rev_user AND ug_group = 'bot'" );
+			// ignore groups with the bot right
+			$join_conds['user_groups'] = array(
+				'LEFT JOIN', array(
+					'ug_user = rev_user',
+					'ug_group' => User::getGroupsWithPermission( 'bot' )
+				)
+			);
 		} else {
 			$uid = User::idFromName( $this->target );
 			if ( $uid ) {
