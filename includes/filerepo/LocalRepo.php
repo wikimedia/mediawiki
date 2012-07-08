@@ -235,7 +235,8 @@ class LocalRepo extends FileRepo {
 			'image',
 			LocalFile::selectFields(),
 			array( 'img_sha1' => $hash ),
-			__METHOD__
+			__METHOD__,
+			array( 'ORDER BY' => 'img_name' )
 		);
 		
 		$result = array();
