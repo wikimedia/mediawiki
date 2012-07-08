@@ -144,7 +144,10 @@ abstract class IndexPager extends ContextSource implements Pager {
 
 		# Use consistent behavior for the limit options
 		$this->mDefaultLimit = intval( $this->getUser()->getOption( 'rclimit' ) );
-		list( $this->mLimit, /* $offset */ ) = $this->mRequest->getLimitOffset();
+		if ( !$this->mLimit ) {
+			// Don't override if a subclass calls $this->setLimit() in its constructor.
+			list( $this->mLimit, /* $offset */ ) = $this->mRequest->getLimitOffset();
+		}
 
 		$this->mIsBackwards = ( $this->mRequest->getVal( 'dir' ) == 'prev' );
 		$this->mDb = wfGetDB( DB_SLAVE );
@@ -236,10 +239,19 @@ abstract class IndexPager extends ContextSource implements Pager {
 	/**
 	 * Set the limit from an other source than the request
 	 *
+	 * Verifies limit is between 1 and 5000
+	 *
 	 * @param $limit Int|String
 	 */
 	function setLimit( $limit ) {
-		$this->mLimit = $limit;
+		$limit = (int) $limit;
+		// WebRequest::getLimitOffset() puts a cap of 5000, so do same here.
+		if ( $limit > 5000 ) {
+			$limit = 5000;
+		}
+		if ( $limit > 0 ) {
+			$this->mLimit = $limit;
+		}
 	}
 
 	/**
