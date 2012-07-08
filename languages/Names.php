@@ -46,7 +46,7 @@
 	'arz' => 'مصرى',	# Egyptian Spoken Arabic
 	'as' => 'অসমীয়া',	# Assamese
 	'ast' => 'asturianu',	# Asturian
-	'av' => 'Авар',	# Avar
+	'av' => 'авар',	# Avar
 	'avk' => 'Kotava', # Kotava
 	'ay' => 'Aymar aru',	# Aymara
 	'az' => 'azərbaycanca',	# Azerbaijani
@@ -76,7 +76,7 @@
 	'ca' => 'català',	# Catalan
 	'cbk-zam' => 'Chavacano de Zamboanga',	# Zamboanga Chavacano
 	'cdo' => 'Mìng-dĕ̤ng-ngṳ̄',	# Min Dong
-	'ce' => 'Нохчийн',	# Chechen
+	'ce' => 'нохчийн',	# Chechen
 	'ceb' => 'Cebuano',     # Cebuano
 	'ch' => 'Chamoru',		# Chamorro
 	'cho' => 'Choctaw',		# Choctaw
@@ -217,8 +217,8 @@
 	'la' => 'Latina',		# Latin
 	'lad' => 'Ladino',	# Ladino
 	'lb' => 'Lëtzebuergesch',	# Luxemburguish
-	'lbe' => 'Лакку',	# Lak
-	'lez' => 'Лезги',	# Lezgi
+	'lbe' => 'лакку',	# Lak
+	'lez' => 'лезги',	# Lezgi
 	'lfn' => 'Lingua Franca Nova',	# Lingua Franca Nova
 	'lg' => 'Luganda',		# Ganda
 	'li' => 'Limburgs',	# Limburgian
