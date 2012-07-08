@@ -101,22 +101,16 @@ class SqliteUpdater extends DatabaseUpdater {
 			$this->output( "...have initial indexes\n" );
 			return;
 		}
-		$this->output( "Adding initial indexes..." );
-		$this->applyPatch( 'initial-indexes.sql' );
-		$this->output( "done\n" );
+		$this->applyPatch( 'initial-indexes.sql', false, "Adding initial indexes" );
 	}
 
 	protected function sqliteSetupSearchindex() {
 		$module = DatabaseSqlite::getFulltextSearchModule();
 		$fts3tTable = $this->updateRowExists( 'fts3' );
 		if ( $fts3tTable &&  !$module ) {
-			$this->output( '...PHP is missing FTS3 support, downgrading tables...' );
-			$this->applyPatch( 'searchindex-no-fts.sql' );
-			$this->output( "done\n" );
+			$this->applyPatch( 'searchindex-no-fts.sql', false, 'PHP is missing FTS3 support, downgrading tables' );
 		} elseif ( !$fts3tTable && $module == 'FTS3' ) {
-			$this->output( '...adding FTS3 search capabilities...' );
-			$this->applyPatch( 'searchindex-fts3.sql' );
-			$this->output( "done\n" );
+			$this->applyPatch( 'searchindex-fts3.sql', false, "Adding FTS3 search capabilities" );
 		} else {
 			$this->output( "...fulltext search table appears to be in order.\n" );
 		}

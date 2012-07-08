@@ -253,9 +253,9 @@ abstract class DatabaseUpdater {
 
 	/**
 	 * Add a maintenance script to be run after the database updates are complete.
-	 * 
+	 *
 	 * @since 1.19
-	 * 
+	 *
 	 * @param $class string Name of a Maintenance subclass
 	 */
 	public function addPostDatabaseUpdateMaintenance( $class ) {
@@ -273,7 +273,7 @@ abstract class DatabaseUpdater {
 
 	/**
 	 * @since 1.17
-	 * 
+	 *
 	 * @return array
 	 */
 	public function getPostDatabaseUpdateMaintenance() {
@@ -463,13 +463,20 @@ abstract class DatabaseUpdater {
 	 * Applies a SQL patch
 	 * @param $path String Path to the patch file
 	 * @param $isFullPath Boolean Whether to treat $path as a relative or not
+	 * @param $msg String Description of the patch
 	 */
-	protected function applyPatch( $path, $isFullPath = false ) {
-		if ( $isFullPath ) {
-			$this->db->sourceFile( $path );
-		} else {
-			$this->db->sourceFile( $this->db->patchPath( $path ) );
+	protected function applyPatch( $path, $isFullPath = false, $msg = null ) {
+		if ( $msg === null ) {
+			$msg = "Applying $path patch";
 		}
+
+		if ( !$isFullPath ) {
+			$path = $this->db->patchPath( $path );
+		}
+
+		$this->output( "$msg ..." );
+		$this->db->sourceFile( $path );
+		$this->output( "done.\n" );
 	}
 
 	/**
@@ -482,9 +489,7 @@ abstract class DatabaseUpdater {
 		if ( $this->db->tableExists( $name, __METHOD__ ) ) {
 			$this->output( "...$name table already exists.\n" );
 		} else {
-			$this->output( "Creating $name table..." );
-			$this->applyPatch( $patch, $fullpath );
-			$this->output( "done.\n" );
+			$this->applyPatch( $patch, $fullpath, "Creating $name table" );
 		}
 	}
 
@@ -501,9 +506,7 @@ abstract class DatabaseUpdater {
 		} elseif ( $this->db->fieldExists( $table, $field, __METHOD__ ) ) {
 			$this->output( "...have $field field in $table table.\n" );
 		} else {
-			$this->output( "Adding $field field to table $table..." );
-			$this->applyPatch( $patch, $fullpath );
-			$this->output( "done.\n" );
+			$this->applyPatch( $patch, $fullpath, "Adding $field field to table $table" );
 		}
 	}
 
@@ -518,9 +521,7 @@ abstract class DatabaseUpdater {
 		if ( $this->db->indexExists( $table, $index, __METHOD__ ) ) {
 			$this->output( "...index $index already set on $table table.\n" );
 		} else {
-			$this->output( "Adding index $index to table $table... " );
-			$this->applyPatch( $patch, $fullpath );
-			$this->output( "done.\n" );
+			$this->applyPatch( $patch, $fullpath, "Adding index $index to table $table" );
 		}
 	}
 
@@ -534,9 +535,7 @@ abstract class DatabaseUpdater {
 	 */
 	protected function dropField( $table, $field, $patch, $fullpath = false ) {
 		if ( $this->db->fieldExists( $table, $field, __METHOD__ ) ) {
-			$this->output( "Table $table contains $field field. Dropping... " );
-			$this->applyPatch( $patch, $fullpath );
-			$this->output( "done.\n" );
+			$this->applyPatch( $patch, $fullpath, "Table $table contains $field field. Dropping" );
 		} else {
 			$this->output( "...$table table does not contain $field field.\n" );
 		}
@@ -552,9 +551,7 @@ abstract class DatabaseUpdater {
 	 */
 	protected function dropIndex( $table, $index, $patch, $fullpath = false ) {
 		if ( $this->db->indexExists( $table, $index, __METHOD__ ) ) {
-			$this->output( "Dropping $index index from table $table... " );
-			$this->applyPatch( $patch, $fullpath );
-			$this->output( "done.\n" );
+			$this->applyPatch( $patch, $fullpath, "Dropping $index index from table $table" );
 		} else {
 			$this->output( "...$index key doesn't exist.\n" );
 		}
@@ -567,9 +564,7 @@ abstract class DatabaseUpdater {
 	 */
 	protected function dropTable( $table, $patch, $fullpath = false ) {
 		if ( $this->db->tableExists( $table, __METHOD__ ) ) {
-			$this->output( "Dropping table $table... " );
-			$this->applyPatch( $patch, $fullpath );
-			$this->output( "done.\n" );
+			$this->applyPatch( $patch, $fullpath, "Dropping table $table" );
 		} else {
 			$this->output( "...$table doesn't exist.\n" );
 		}
@@ -592,10 +587,8 @@ abstract class DatabaseUpdater {
 		} elseif( $this->updateRowExists( $updateKey ) ) {
 			$this->output( "...$field in table $table already modified by patch $patch.\n" );
 		} else {
-			$this->output( "Modifying $field field of table $table..." );
-			$this->applyPatch( $patch, $fullpath );
+			$this->applyPatch( $patch, $fullpath, "Modifying $field field of table $table" );
 			$this->insertUpdateRow( $updateKey );
-			$this->output( "done.\n" );
 		}
 	}
 
@@ -688,9 +681,7 @@ abstract class DatabaseUpdater {
 			return;
 		}
 
-		$this->output( "Converting tc_time from UNIX epoch to MediaWiki timestamp... " );
-		$this->applyPatch( 'patch-tc-timestamp.sql' );
-		$this->output( "done.\n" );
+		$this->applyPatch( 'patch-tc-timestamp.sql', false, "Converting tc_time from UNIX epoch to MediaWiki timestamp" );
 	}
 
 	/**
