@@ -58,6 +58,9 @@ class NewFilesPager extends ReverseChronologicalPager {
 	function __construct( IContextSource $context, $par = null ) {
 		$this->like = $context->getRequest()->getText( 'like' );
 		$this->showbots = $context->getRequest()->getBool( 'showbots' , 0 );
+		if ( is_numeric( $par ) ) {
+			$this->setLimit( $par );
+		}
 
 		parent::__construct( $context );
 	}
@@ -145,7 +148,7 @@ class NewFilesPager extends ReverseChronologicalPager {
 			),
 			'limit' => array(
 				'type' => 'hidden',
-				'default' => $this->getRequest()->getText( 'limit' ),
+				'default' => $this->mLimit,
 				'name' => 'limit',
 			),
 			'offset' => array(
