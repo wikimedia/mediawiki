@@ -341,7 +341,7 @@ $messages = array(
 'tog-nocache' => 'Stäng av cachelagring för sidor',
 'tog-enotifwatchlistpages' => 'Skicka e-post till mig när en sida på min bevakningslista ändras',
 'tog-enotifusertalkpages' => 'Skicka e-post till mig när något händer på min diskussionssida',
-'tog-enotifminoredits' => 'Skicka mig e-post även för mindre ändringar',
+'tog-enotifminoredits' => 'Skicka mig e-post även för mindre ändringar av sidor och filer',
 'tog-enotifrevealaddr' => 'Visa min e-postadress i e-postmeddelanden om ändringar som skickas till andra',
 'tog-shownumberswatching' => 'Visa antalet användare som bevakar',
 'tog-oldsig' => 'Nuvarande signatur:',
@@ -675,6 +675,8 @@ Rapportera gärna problemet till någon [[Special:ListUsers/sysop|administratör
 'cannotdelete' => 'Sidan eller filen "$1" kunde inte raderas.
 Den kanske redan har raderats av någon annan.',
 'cannotdelete-title' => 'Sidan "$1" kan inte raderas',
+'delete-hook-aborted' => 'Borttagning avbruten av hook.
+Den gav ingen förklaring.',
 'badtitle' => 'Felaktig titel',
 'badtitletext' => 'Den begärda sidtiteln är antingen ogiltig eller tom, eller så är titeln felaktigt länkad från en annan wiki.
 Den kan innehålla ett eller flera tecken som inte får användas i sidtitlar.',
@@ -3952,6 +3954,8 @@ Annars kan du använda det enkla formuläret nedan. Din kommentar kommer att lä
 'api-error-empty-file' => 'Filen du skickade var tom.',
 'api-error-emptypage' => 'Det är inte tillåtet att skapa nya, tomma sidor.',
 'api-error-fetchfileerror' => 'Internt fel: något gick fel vid hämtningen av filen.',
+'api-error-fileexists-forbidden' => 'En fil med namnet "$1" finns redan och kan inte skrivas över.',
+'api-error-fileexists-shared-forbidden' => 'En fil med namnet "$1" finns redan i det delade filarkivet och kan inte skrivas över.',
 'api-error-file-too-large' => 'Filen du skickade var för stor.',
 'api-error-filename-tooshort' => 'Filnamnet är för kort.',
 'api-error-filetype-banned' => 'Denna typ av fil är förbjuden.',

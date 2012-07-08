@@ -705,8 +705,8 @@ Maak hiervan melding bij een [[Special:ListUsers/sysop|beheerder]] van {{SITENAM
 'cannotdelete' => 'De pagina of het bestand "$1" kon niet verwijderd worden.
 Mogelijk is deze al door iemand anders verwijderd.',
 'cannotdelete-title' => 'Pagina "$1" kan niet verwijderd worden',
-'delete-hook-aborted' => 'Het verwijderen is afgebroken door een hook.
-Er is geen toelichting beschikbaar.',
+'delete-hook-aborted' => 't Vortdoon is aofebreuken deur n haak.
+Der is gien informasie over beschikbaor.',
 'badtitle' => 'Ongeldige paginanaam',
 'badtitletext' => 'De naam van de opgevraagde pagina was ongeldig, leeg of bevatte een verkeerde intertaal- of interwikinaamverwijzing.
 Wellicht bevat de paginanaam niet toegestane tekens.',

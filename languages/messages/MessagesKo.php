@@ -351,17 +351,17 @@ $messages = array(
 'tog-editsectiononrightclick' => '제목을 오른쪽 클릭해서 부분 편집하기 (자바스크립트 필요)',
 'tog-showtoc' => '문서의 차례 보여주기 (머릿글이 4개 이상인 경우)',
 'tog-rememberpassword' => '이 브라우저에서 로그인 상태를 저장하기 (최대 $1일)',
-'tog-watchcreations' => '내가 처음 만드는 문서를 주시문서 목록에 추가',
-'tog-watchdefault' => '내가 편집하는 문서를 주시문서 목록에 추가',
-'tog-watchmoves' => '내가 이동하는 문서를 주시문서 목록에 추가',
-'tog-watchdeletion' => '내가 삭제하는 문서를 주시문서 목록에 추가',
+'tog-watchcreations' => '내가 만드는 문서와 내가 올린 파일을 주시문서 목록에 추가',
+'tog-watchdefault' => '내가 편집하는 문서와 파일을 주시문서 목록에 추가',
+'tog-watchmoves' => '내가 이동하는 문서와 파일을 주시문서 목록에 추가',
+'tog-watchdeletion' => '내가 삭제하는 문서와 파일을 주시문서 목록에 추가',
 'tog-minordefault' => '사소한 편집을 기본적으로 선택하기',
 'tog-previewontop' => '편집 상자 앞에 미리 보기 보기',
 'tog-previewonfirst' => '처음 편집할 때 미리 보기 보기',
 'tog-nocache' => '브라우저의 문서 캐시 끄기',
-'tog-enotifwatchlistpages' => '주시문서가 바뀌면 이메일로 알림',
+'tog-enotifwatchlistpages' => '주시문서 목록에 속한 문서나 파일이 바뀌면 이메일로 알림',
 'tog-enotifusertalkpages' => '내 토론 문서가 바뀌면 이메일로 알림',
-'tog-enotifminoredits' => '사소한 편집도 이메일로 알림',
+'tog-enotifminoredits' => '문서나 파일의 사소한 편집도 이메일로 알림',
 'tog-enotifrevealaddr' => '알림 메일에 내 이메일 주소를 밝히기',
 'tog-shownumberswatching' => '주시 사용자 수 보기',
 'tog-oldsig' => '현재 서명:',
@@ -1909,7 +1909,7 @@ URL이 올바르고 접근 가능한지를 확인하고 다시 시도해주세�
 'backend-fail-connect' => '"$1" 저장 백엔드에 접속하지 못했습니다.',
 'backend-fail-internal' => '"$1" 저장 백엔드에 알 수 없는 오류가 발생했습니다.',
 'backend-fail-contenttype' => '"$1"에 저장하기 위한 파일의 내용 유형을 판별하지 못했습니다.',
-'backend-fail-batchsize' => '저장 백엔드에서 파일 {{PLURAL:$1|작업}} $1개가 쌓여 있습니다; 한계는 $2개입니다.',
+'backend-fail-batchsize' => '저장 백엔드에서 파일 {{PLURAL:$1|작업}} $1개가 쌓여 있습니다. 한계는 $2개입니다.',
 'backend-fail-usable' => '파일 저장 권한이 없거나 저장 위치가 빠졌기 때문에 $1 파일을 저장할 수 없습니다.',
 
 # File journal errors
@@ -1917,12 +1917,12 @@ URL이 올바르고 접근 가능한지를 확인하고 다시 시도해주세�
 'filejournal-fail-dbquery' => '저장소 백엔드 "$1"에 대한 저널 데이터베이스에서 새로 고칠 수 없습니다.',
 
 # Lock manager
-'lockmanager-notlocked' => '‘$1’ 경로의 잠금을 풀 수 없습니다. 해당 경로는 잠겨 있지 않습니다.',
-'lockmanager-fail-closelock' => '‘$1’에 대한 잠금 파일을 닫지 못했습니다.',
-'lockmanager-fail-deletelock' => '‘$1’에 대한 잠금 파일을 삭제하지 못했습니다.',
-'lockmanager-fail-acquirelock' => '‘$1’에 대한 잠금이 실패했습니다.',
-'lockmanager-fail-openlock' => '‘$1’에 대한 잠금 파일을 열지 못했습니다.',
-'lockmanager-fail-releaselock' => '‘$1’에 대한 잠금을 해제하지 못했습니다.',
+'lockmanager-notlocked' => '"$1" 경로의 잠금을 풀 수 없습니다. 해당 경로는 잠겨 있지 않습니다.',
+'lockmanager-fail-closelock' => '"$1"에 대한 잠금 파일을 닫지 못했습니다.',
+'lockmanager-fail-deletelock' => '"$1"에 대한 잠금 파일을 삭제하지 못했습니다.',
+'lockmanager-fail-acquirelock' => '"$1"에 대한 잠금이 실패했습니다.',
+'lockmanager-fail-openlock' => '"$1"에 대한 잠금 파일을 열지 못했습니다.',
+'lockmanager-fail-releaselock' => '"$1"에 대한 잠금을 해제하지 못했습니다.',
 'lockmanager-fail-db-bucket' => '데이터베이스의 버킷 $1의 잠금을 풀지 못했습니다.',
 'lockmanager-fail-db-release' => '데이터베이스 $1의 잠금을 풀지 못했습니다.',
 'lockmanager-fail-svr-release' => '서버 $1의 잠금을 풀지 못했습니다.',
@@ -1937,21 +1937,22 @@ URL이 올바르고 접근 가능한지를 확인하고 다시 시도해주세�
 
 # Special:UploadStash
 'uploadstash' => '파일 올리기 임시 저장',
-'uploadstash-summary' => '이 페이지는 위키에 등록되지는 않았지만 올리는 과정 중에 있는 파일을 열람할 수 있습니다. 이 파일들은 올린이 외에는 볼 수 없습니다.',
+'uploadstash-summary' => '이 문서는 위키에 등록되지는 않았지만 올리는 과정 중에 있는 파일을 열람할 수 있습니다. 이 파일들은 올린이 외에는 볼 수 없습니다.',
 'uploadstash-clear' => '임시 저장한 파일 제거하기',
 'uploadstash-nofiles' => '임시 저장한 파일이 없습니다.',
-'uploadstash-badtoken' => '이 동작을 수행하는 데 실패했습니다. 편집 토큰이 만료되었을 가능성이 있습니다. 다시 시도해 보십시오.',
+'uploadstash-badtoken' => '이 동작을 수행하는 데 실패했습니다. 편집 토큰이 만료되었을 가능성이 있습니다. 다시 시도하세요.',
 'uploadstash-errclear' => '파일을 제거하는 데 실패했습니다.',
 'uploadstash-refresh' => '파일 목록을 새로고침',
 'invalid-chunk-offset' => '청크 오프셋이 잘못되었습니다.',
 
 # img_auth script messages
 'img-auth-accessdenied' => '접근 거부됨',
-'img-auth-nopathinfo' => '서버가 이 정보를 받을 수 있도록 설정되어 있지 않습니다.
+'img-auth-nopathinfo' => 'PATH_INFO를 잃었습니다.
+서버가 이 정보를 받을 수 있도록 설정되어 있지 않습니다.
 이러한 경우는 서버가 CGI 기반이고 img_auth를 지원하지 않을 때 나타날 수 있습니다.
 https://www.mediawiki.org/wiki/Manual:Image_Authorization 을 참고하십시오.',
-'img-auth-notindir' => '요청한 경로가 설정한 업로드 디렉토리에 없습니다.',
-'img-auth-badtitle' => '"$1"에서 바른 제목을 만들 수 없습니다.',
+'img-auth-notindir' => '요청한 경로가 설정한 올리기 디렉토리에 없습니다.',
+'img-auth-badtitle' => '"$1"에서 올바른 제목을 만들 수 없습니다.',
 'img-auth-nologinnWL' => '당신은 로그인하지 않았으며 "$1" 파일은 화이트리스트에 존재하지 않습니다.',
 'img-auth-nofile' => '"$1" 파일이 없습니다.',
 'img-auth-isdir' => '"$1" 디렉토리에 접근을 시도했습니다.
@@ -2040,7 +2041,7 @@ URL이 맞고 해당 웹사이트가 작동하는지 확인해주세요.',
 'shared-repo-from' => '($1)',
 'shared-repo' => '공용 저장소',
 'shared-repo-name-wikimediacommons' => '위키미디어 공용',
-'filepage.css' => '/* 이 CSS 설정은 파일 설명 페이지에 포함되며, 또한 해외 클라이언트 위키에 포함됩니다 */',
+'filepage.css' => '/* 이 CSS 설정은 파일 설명 문서에 포함되며, 또한 해외 클라이언트 위키에 포함됩니다 */',
 
 # File reversion
 'filerevert' => '$1 되돌리기',
@@ -3094,7 +3095,7 @@ $1 사용자가 차단된 이유는 다음과 같습니다: "$2"',
 'simple.css' => '/* 이 CSS 설정은 모든 심플 스킨에 적용됩니다 */',
 'modern.css' => '/* 이 CSS 설정은 모든 모던 스킨에 적용됩니다 */',
 'vector.css' => '/* 이 CSS 설정은 모든 벡터 스킨에 적용됩니다 */',
-'print.css' => '/* 이 CSS 설정은 출력/인쇄 화면에 적용됩니다 */',
+'print.css' => '/* 이 CSS 설정은 인쇄 출력 화면에 적용됩니다 */',
 'handheld.css' => '/* 이 CSS 설정은 $wgHandheldStyle에 설정한 스킨을 기반으로 한 휴대 기기에 적용됩니다 */',
 'noscript.css' => '/* 이 CSS 설정은 자바스크립트를 비활성화한 사용자에 적용됩니다 */',
 'group-autoconfirmed.css' => '/* 이 CSS 설정은 자동 인증된 사용자에만 적용됩니다 */',

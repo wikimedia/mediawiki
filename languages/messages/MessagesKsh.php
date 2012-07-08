@@ -2336,7 +2336,7 @@ Mieh övver de einzel Rääschte fenkt Er op de [[{{MediaWiki:Listgrouprights-he
 Adress en Dinge [[Special:Preferences|ming Enstellunge]] stonn han, öm en E-Mail aan andere Metmaacher ze
 schecke.',
 'emailuser' => 'E-mail aan dä Metmaacher',
-'emailpage' => 'E-mail aan ene Metmaacher',
+'emailpage' => 'Verscheck <i lang="en">e-mail</i> aan ene Metmaacher',
 'emailpagetext' => 'Wann heh dä Metmaacher en Adräß för sing <i lang="en">e-mail</i> aanjejovve hätt en singe Enstellunge,
 un die deit et och, dann kanns De met däm Fomular hee unge en einzel <i lang="en">e-mail</i> aan dä Metmaacher schecke.
 
@@ -2364,7 +2364,7 @@ Alles klor?',
 'emailsend' => 'Avschecke',
 'emailccme' => 'Scheck mer en Kopie vun dä E-Mail.',
 'emailccsubject' => 'En Kopie vun Dinger E-Mail aan $1: $2',
-'emailsent' => 'E-Mail es ungerwähs',
+'emailsent' => 'De <i lang="en">e-mail</i> es ongerwähs',
 'emailsenttext' => 'Ding E-Mail es jetz lossjescheck woode.',
 'emailuserfooter' => 'Hee di e-mail hät dä „$1“ an dä „$2“ jescheck, un doför {{GRAMMAR:en dative|{{SITENAME}}}} dat „{{int:emailuser}}“ jebruch.',
 
