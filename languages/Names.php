@@ -187,13 +187,13 @@
 	'ki' => 'Gĩkũyũ',	# Gikuyu
 	'kiu' => 'Kırmancki',	# Kirmanjki
 	'kj' => 'Kwanyama',	# Kwanyama
-	'kk' => 'Қазақша',	# Kazakh (multiple scripts - defaults to Cyrillic)
+	'kk' => 'қазақша',	# Kazakh (multiple scripts - defaults to Cyrillic)
 	'kk-arab' => "\xE2\x80\xABقازاقشا (تٴوتە)\xE2\x80\xAC",	# Kazakh Arabic
-	'kk-cyrl' => "\xE2\x80\xAAҚазақша (кирил)\xE2\x80\xAC",	# Kazakh Cyrillic
-	'kk-latn' => "\xE2\x80\xAAQazaqşa (latın)\xE2\x80\xAC",	# Kazakh Latin
+	'kk-cyrl' => "\xE2\x80\xAAқазақша (кирил)\xE2\x80\xAC",	# Kazakh Cyrillic
+	'kk-latn' => "\xE2\x80\xAAqazaqşa (latın)\xE2\x80\xAC",	# Kazakh Latin
 	'kk-cn' => "\xE2\x80\xABقازاقشا (جۇنگو)\xE2\x80\xAC",	# Kazakh (China)
-	'kk-kz' => "\xE2\x80\xAAҚазақша (Қазақстан)\xE2\x80\xAC",	# Kazakh (Kazakhstan)
-	'kk-tr' => "\xE2\x80\xAAQazaqşa (Türkïya)\xE2\x80\xAC",	# Kazakh (Turkey)
+	'kk-kz' => "\xE2\x80\xAAқазақша (Қазақстан)\xE2\x80\xAC",	# Kazakh (Kazakhstan)
+	'kk-tr' => "\xE2\x80\xAAqazaqşa (Türkïya)\xE2\x80\xAC",	# Kazakh (Turkey)
 	'kl' => 'kalaallisut',	# Inuktitut, Greenlandic/Greenlandic/Kalaallisut (kal)
 	'km' => 'ភាសាខ្មែរ',	# Khmer, Central
 	'kn' => 'ಕನ್ನಡ',	# Kannada
@@ -383,7 +383,7 @@
 	'ug-latn' => 'Uyghurche', # Uyghur (Latin script)
 	'uk' => 'українська',	# Ukrainian
 	'ur' => 'اردو',	# Urdu
-	'uz' => 'Oʻzbekcha',	# Uzbek
+	'uz' => 'oʻzbekcha',	# Uzbek
 	've' => 'Tshivenda',		# Venda
 	'vec' => 'vèneto',	# Venetian
 	'vep' => 'Vepsän kel’',	# Veps
