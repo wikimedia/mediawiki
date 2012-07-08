@@ -3,7 +3,7 @@
  * Quickie page name dump script for SisterSites usage.
  * http://www.eekim.com/cgi-bin/wiki.pl?SisterSites
  *
- * Copyright (C) 2006 Brion Vibber <brion@pobox.com>
+ * Copyright © 2006 Brion Vibber <brion@pobox.com>
  * http://www.mediawiki.org/
  *
  * This program is free software; you can redistribute it and/or modify
@@ -21,11 +21,17 @@
  * 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
  * http://www.gnu.org/copyleft/gpl.html
  *
+ * @file
  * @ingroup Maintenance
  */
 
 require_once( dirname( __FILE__ ) . '/Maintenance.php' );
 
+/**
+ * Maintenance script that generates a page name dump for SisterSites usage.
+ *
+ * @ingroup Maintenance
+ */
 class DumpSisterSites extends Maintenance {
 	public function __construct() {
 		parent::__construct();
