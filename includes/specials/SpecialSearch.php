@@ -653,13 +653,14 @@ class SpecialSearch extends SpecialPage {
 			);
 		}
 
-		// Include a thumbnail for media files...
+		// Include a thumbnail and last uploader for media files...
 		if( $t->getNamespace() == NS_FILE ) {
 			$img = wfFindFile( $t );
 			if( $img ) {
 				$thumb = $img->transform( array( 'width' => 120, 'height' => 120 ) );
 				if( $thumb ) {
 					$desc = $this->msg( 'parentheses' )->rawParams( $img->getShortDesc() )->escaped();
+					$lastuploader = $this->msg( 'search-lastuploadedby' )->rawParams( $img->user_text )->escaped();
 					wfProfileOut( __METHOD__ );
 					// Float doesn't seem to interact well with the bullets.
 					// Table messes up vertical alignment of the bullets.
@@ -673,7 +674,7 @@ class SpecialSearch extends SpecialPage {
 						'<td valign="top">' .
 						$link .
 						$extract .
-						"<div class='mw-search-result-data'>{$score}{$desc} - {$date}{$related}</div>" .
+						"<div class='mw-search-result-data'>{$score}{$desc} - {$date}{$related} - {$lastuploader}</div>" .
 						'</td>' .
 						'</tr>' .
 						'</table>' .
