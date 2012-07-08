@@ -60,21 +60,13 @@
 		 */
 		getEditToken: function( tokenCallback, err ) {
 			var parameters = {
-					prop: 'info',
-					intoken: 'edit',
-					// we need some kind of dummy page to get a token from. This will return a response
-					// complaining that the page is missing, but we should also get an edit token
-					titles: 'DummyPageForEditToken'
+					action: 'tokens',
+					type: 'edit'
 				},
 				ok = function( data ) {
 					var token;
-					$.each( data.query.pages, function( i, page ) {
-						if ( page.edittoken ) {
-							token = page.edittoken;
-							return false;
-						}
-					} );
-					if ( token !== undefined ) {
+					if ( data.tokens !== undefined && data.tokens.edittoken ) {
+						token = data.tokens.edittoken;
 						cachedToken = token;
 						tokenCallback( token );
 					} else {
