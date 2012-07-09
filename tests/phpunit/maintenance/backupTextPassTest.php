@@ -420,10 +420,10 @@ class TextPassDumperTest extends DumpTestCase {
 	 *           file is generated that is automatically removed upon
 	 *           tearDown.
 	 * @param $iterations integer: (Optional) specifies how often the block
-	 *           of 3 pages should go into the stub file. The page id
-	 *           increase further and further, while the revision and text
-	 *           ids of the first iteration are reused. The pages of
-	 *           iteration > 1 have no corresponding representation in the
+	 *           of 3 pages should go into the stub file. The page and
+	 *           revision id increase further and further, while the text
+	 *           id of the first iteration is reused. The pages and revision
+	 *           of iteration > 1 have no corresponding representation in the
 	 *           database.
 	 * @return string absolute filename of the stub
 	 */
