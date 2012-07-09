@@ -1511,6 +1511,10 @@ class WikiPage extends Page {
 
 				wfProfileOut( __METHOD__ );
 				return $status;
+			} elseif ( $oldtext === false ) {
+				# Sanity check for bug 37225
+				wfProfileOut( __METHOD__ );
+				throw new MWException( "Could not find text for current revision {$oldid}." );
 			}
 
 			$revision = new Revision( array(
