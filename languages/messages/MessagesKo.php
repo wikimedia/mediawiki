@@ -1957,14 +1957,16 @@ https://www.mediawiki.org/wiki/Manual:Image_Authorization 을 참고하십시오
 'img-auth-nofile' => '"$1" 파일이 없습니다.',
 'img-auth-isdir' => '"$1" 디렉토리에 접근을 시도했습니다.
 파일에만 접근할 수 있습니다.',
-'img-auth-streaming' => '‘$1’ 파일을 전송하는 중입니다.',
-'img-auth-public' => 'img_auth.php는 개인 위키 파일을 외부 사이트로 전송하는 기능입니다. 이 기능은 기본적으로 공개적인 위키에서 사용하도록 설계되어 있으며, 보안적인 문제로 기본적으로 img_auth.php 기능은 비활성화되어 있습니다.',
-'img-auth-noread' => '‘$1’ 파일을 볼 권한이 없습니다.',
+'img-auth-streaming' => '"$1" 파일을 전송하는 중입니다.',
+'img-auth-public' => 'img_auth.php는 개인 위키 파일을 외부 사이트로 전송하는 기능입니다.
+이 기능은 기본적으로 공개적인 위키에서 사용하도록 설계되어 있습니다.
+보안적인 문제로 기본적으로 img_auth.php 기능은 비활성화되어 있습니다.',
+'img-auth-noread' => '"$1" 파일을 볼 권한이 없습니다.',
 'img-auth-bad-query-string' => 'URL에 잘못된 쿼리 문자열이 있습니다.',
 
 # HTTP errors
 'http-invalid-url' => '잘못된 URL: $1',
-'http-invalid-scheme' => '‘$1’로 시작하는 URL은 지원되지 않습니다.',
+'http-invalid-scheme' => '"$1"로 시작하는 URL은 지원되지 않습니다.',
 'http-request-error' => '알 수 없는 오류로 HTTP 요청에 실패했습니다.',
 'http-read-error' => 'HTTP 읽기 오류.',
 'http-timed-out' => 'HTTP 요청 시간 초과.',
@@ -1977,7 +1979,9 @@ https://www.mediawiki.org/wiki/Manual:Image_Authorization 을 참고하십시오
 'upload-curl-error6-text' => 'URL에 접근할 수 없습니다.
 URL이 맞고 해당 웹사이트가 작동하는지 확인해주세요.',
 'upload-curl-error28' => '업로드 시간 초과',
-'upload-curl-error28-text' => '사이트에서 응답하는 시간이 너무 깁니다. 사이트 접속이 가능한지 확인한 다음 다시 시도해주세요. 해당 사이트에 접속이 많을 경우, 접속이 원활한 시간대에 시도해주세요.',
+'upload-curl-error28-text' => '사이트에서 응답하는 시간이 너무 깁니다.
+사이트 접속이 가능한지 확인한 다음 다시 시도해주세요.
+해당 사이트에 접속이 많을 경우 접속이 원활한 시간대에 시도해주세요.',
 
 'license' => '라이선스:',
 'license-header' => '라이선스',
@@ -2075,7 +2079,8 @@ URL이 맞고 해당 웹사이트가 작동하는지 확인해주세요.',
 
 # MIME search
 'mimesearch' => 'MIME 찾기',
-'mimesearch-summary' => 'MIME 타입에 해당하는 파일을 검색합니다. MIME 값을 <tt>image/jpeg</tt> 형태로 입력해주세요.',
+'mimesearch-summary' => 'MIME 타입에 해당하는 파일을 찾습니다.
+다음 형태로 입력해주세요: 내용종류/하위종류, 예를 들어 <tt>image/jpeg</tt>',
 'mimetype' => 'MIME 종류:',
 'download' => '다운로드',
 
@@ -2088,7 +2093,6 @@ URL이 맞고 해당 웹사이트가 작동하는지 확인해주세요.',
 # Unused templates
 'unusedtemplates' => '사용하지 않는 틀 목록',
 'unusedtemplatestext' => '다른 문서에서 사용하지 않는 {{ns:template}} 이름공간 문서의 목록입니다.
-
 삭제하기 전에 사용 여부를 다시 확인해 주세요.',
 'unusedtemplateswlh' => '다른 링크',
 
@@ -2109,12 +2113,12 @@ URL이 맞고 해당 웹사이트가 작동하는지 확인해주세요.',
 'statistics-header-hooks' => '기타 통계',
 'statistics-articles' => '일반 문서',
 'statistics-pages' => '전체 문서',
-'statistics-pages-desc' => '토론 문서, 넘겨주기 문서 등을 포함.',
+'statistics-pages-desc' => '토론 문서, 넘겨주기 문서 등을 포함하는 모든 문서.',
 'statistics-files' => '올려져 있는 파일',
 'statistics-edits' => '{{SITENAME}} 설치 후 문서의 전체 편집 횟수',
 'statistics-edits-average' => '문서당 평균 편집 횟수',
 'statistics-views-total' => '총 방문 수',
-'statistics-views-total-desc' => '존재하지 않는 문서나 특수 문서에 대한 방문수는 집계되지 않았습니다.',
+'statistics-views-total-desc' => '존재하지 않는 문서나 특수 문서에 대한 방문수는 집계하지 않았습니다.',
 'statistics-views-peredit' => '편집당 방문 횟수',
 'statistics-users' => '등록된 [[Special:ListUsers|사용자]]',
 'statistics-users-active' => '활동적인 사용자',
@@ -2122,7 +2126,7 @@ URL이 맞고 해당 웹사이트가 작동하는지 확인해주세요.',
 'statistics-mostpopular' => '가장 많이 읽힌 문서',
 
 'disambiguations' => '동음이의 문서를 가리키는 문서 목록',
-'disambiguationspage' => 'Template:Disambig',
+'disambiguationspage' => 'Template:disambig',
 'disambiguations-text' => "다음의 문서들은 '''동음이의 문서'''를 가리키고 있습니다.
 그 링크를 다른 적절한 문서로 연결해 주어야 합니다.<br />
 [[MediaWiki:Disambiguationspage]]에서 링크된 틀을 사용하는 문서를 동음이의 문서로 간주합니다.",
@@ -2131,7 +2135,8 @@ URL이 맞고 해당 웹사이트가 작동하는지 확인해주세요.',
 'doubleredirectstext' => '이 문서는 다른 넘겨주기 문서로 넘겨주고 있는 문서의 목록입니다.
 매 줄에는 첫 번째 문서와 두 번째 문서의 링크가 있습니다. 그리고 보통 첫 번째 문서가 넘겨주어야 할 "실제" 문서인 두 번째 넘겨주기의 대상이 있습니다.
 <del>취소선이 그인</del> 부분은 이미 해결되었습니다.',
-'double-redirect-fixed-move' => '[[$1]] 문서를 옮겼습니다. 이 문서는 이제 [[$2]] 문서로 넘겨줍니다.',
+'double-redirect-fixed-move' => '[[$1]] 문서를 옮겼습니다.
+이 문서는 이제 [[$2]] 문서로 넘겨줍니다.',
 'double-redirect-fixed-maintenance' => '[[$1]]에서 [[$2]]로 이중 넘겨주기를 고치는 중',
 'double-redirect-fixer' => '넘겨주기 수리꾼',
 
@@ -2197,7 +2202,7 @@ URL이 맞고 해당 웹사이트가 작동하는지 확인해주세요.',
 'listusers-editsonly' => '기여가 있는 사용자만 보기',
 'listusers-creationsort' => '계정 등록일 순으로 정렬',
 'usereditcount' => '편집 $1회',
-'usercreated' => '$1 $2에 계정 {{GENDER:$3|생성됨}}',
+'usercreated' => '$1 $2에 계정 {{GENDER:$3|만들어짐}}',
 'newpages' => '새 문서 목록',
 'newpages-username' => '이름:',
 'ancientpages' => '오래된 문서 목록',
@@ -2220,7 +2225,7 @@ URL이 맞고 해당 웹사이트가 작동하는지 확인해주세요.',
 'booksources-search-legend' => '책 찾기',
 'booksources-go' => '찾기',
 'booksources-text' => '아래의 목록은 새 책이나 중고 책을 판매하는 외부 사이트로, 원하는 책의 정보를 얻을 수 있습니다:',
-'booksources-invalid-isbn' => '입력한 ISBN이 잘못된 것으로 보입니다; 원본과 대조해 보십시오.',
+'booksources-invalid-isbn' => '입력한 ISBN이 잘못된 것으로 보입니다. 원본과 대조해 보세요.',
 
 # Special:Log
 'specialloguserlabel' => '작업 수행자:',
@@ -2247,8 +2252,9 @@ URL이 맞고 해당 웹사이트가 작동하는지 확인해주세요.',
 'allpagesnext' => '다음',
 'allpagessubmit' => '표시',
 'allpagesprefix' => '다음으로 시작하는 문서 보기:',
-'allpagesbadtitle' => '문서 제목이 잘못되었거나 다른 사이트로 연결되는 인터위키를 가지고 있습니다. 문서 제목에 사용할 수 없는 문자를 사용했을 수 있습니다.',
-'allpages-bad-ns' => '{{SITENAME}}에서는 ‘$1’ 이름공간을 사용하지 않습니다.',
+'allpagesbadtitle' => '문서 제목이 잘못되었거나 다른 사이트로 연결되는 인터위키를 가지고 있습니다.
+문서 제목에 사용할 수 없는 문자를 사용했을 수 있습니다.',
+'allpages-bad-ns' => '{{SITENAME}}에서는 "$1" 이름공간을 사용하지 않습니다.',
 'allpages-hide-redirects' => '넘겨주기 숨기기',
 
 # SpecialCachedPage
@@ -2310,18 +2316,18 @@ URL이 맞고 해당 웹사이트가 작동하는지 확인해주세요.',
 'listgrouprights-rights' => '권한',
 'listgrouprights-helppage' => 'Help:사용자 권한 그룹',
 'listgrouprights-members' => '(사용자 목록)',
-'listgrouprights-addgroup' => '{{PLURAL:$2}}권한 부여: $1',
-'listgrouprights-removegroup' => '{{PLURAL:$2}}권한 회수: $1',
+'listgrouprights-addgroup' => '{{PLURAL:$2|권한}} 부여: $1',
+'listgrouprights-removegroup' => '{{PLURAL:$2|권한}} 회수: $1',
 'listgrouprights-addgroup-all' => '모든 권한을 부여',
 'listgrouprights-removegroup-all' => '모든 권한을 회수',
-'listgrouprights-addgroup-self' => '자신에게 다음 {{PLURAL:$2|권한|권한}}을 부여: $1',
-'listgrouprights-removegroup-self' => '자신에게서 다음 {{PLURAL:$2|권한|권한}}을 해제: $1',
+'listgrouprights-addgroup-self' => '자신에게 다음 {{PLURAL:$2|권한}}을 부여: $1',
+'listgrouprights-removegroup-self' => '자신에게서 다음 {{PLURAL:$2|권한}}을 해제: $1',
 'listgrouprights-addgroup-self-all' => '자신에게 모든 권한을 부여',
 'listgrouprights-removegroup-self-all' => '자신의 계정에서 모든 권한을 해제',
 
 # E-mail user
 'mailnologin' => '보낼 이메일 주소가 없음',
-'mailnologintext' => '다른 사용자에게 이메일을 보내려면, [[Special:UserLogin|로그인]]한 다음 [[Special:Preferences|사용자 환경 설정]]에서 자신의 이메일 주소를 저장해야 합니다.',
+'mailnologintext' => '다른 사용자에게 이메일을 보내려면 [[Special:UserLogin|로그인]]한 다음 [[Special:Preferences|사용자 환경 설정]]에서 자신의 이메일 주소를 저장해야 합니다.',
 'emailuser' => '이메일 보내기',
 'emailpage' => '사용자에게 이메일 보내기',
 'emailpagetext' => '이 사용자가 환경 설정에 올바른 이메일 주소를 적었다면, 아래 양식을 통해 이메일을 보낼 수 있습니다.
@@ -2335,7 +2341,7 @@ URL이 맞고 해당 웹사이트가 작동하는지 확인해주세요.',
 'nowikiemailtitle' => '이메일이 허용되지 않음',
 'nowikiemailtext' => '이 사용자는 다른 사용자로부터의 이메일을 받지 않도록 설정하였습니다.',
 'emailnotarget' => '수신자로 없는 사용자를 지정하였거나 계정 이름이 잘못되었습니다.',
-'emailtarget' => '수신자 계정명 입력',
+'emailtarget' => '수신자 계정 이름 입력',
 'emailusername' => '계정 이름:',
 'emailusernamesubmit' => '확인',
 'email-legend' => '{{SITENAME}}의 다른 사용자에게 이메일을 보내기',
@@ -2348,7 +2354,7 @@ URL이 맞고 해당 웹사이트가 작동하는지 확인해주세요.',
 'emailccsubject' => '$1에게 보낸 메일 사본: $2',
 'emailsent' => '이메일 보냄',
 'emailsenttext' => '이메일을 보냈습니다.',
-'emailuserfooter' => '이 이메일은 {{SITENAME}}의 $1 사용자가 $2 사용자에게 "이메일 보내기" 기능을 통해 전송되었습니다.',
+'emailuserfooter' => '이 이메일은 {{SITENAME}}의 $1 사용자가 $2 사용자에게 "이메일 보내기" 기능을 통해 보냈습니다.',
 
 # User Messenger
 'usermessage-summary' => '시스템 메시지 남기기',
@@ -2383,7 +2389,7 @@ URL이 맞고 해당 웹사이트가 작동하는지 확인해주세요.',
 'watchlistcontains' => '문서 $1개를 주시하고 있습니다.',
 'iteminvalidname' => '"$1" 항목에 문제가 발생했습니다. 이름이 잘못되었습니다...',
 'wlnote' => "다음은 최근 '''$2'''시간 동안 바뀐 문서 '''$1'''개 입니다. ($3 $4 기준)",
-'wlshowlast' => '최근 $1 시간 $2 일 또는 $3 동안에 바뀐 문서',
+'wlshowlast' => '최근 $1시간 $2일 또는 $3 동안에 바뀐 문서',
 'watchlist-options' => '주시문서 목록 설정',
 
 # Displayed when you click the "watch" button and it is in the process of watching
@@ -2416,7 +2422,7 @@ $NEWPAGE
 이 문서를 열기 전에는 다른 알림 이메일을 더 이상 보내지 않습니다.
 모든 주시 문서의 알림 딱지를 초기화할 수도 있습니다.
 
-             {{SITENAME}} 알림 시스템
+{{SITENAME}} 알림 시스템
 
 --
 이메일 알림 설정을 바꾸시려면 이곳을 방문해주세요:
@@ -2434,19 +2440,21 @@ $UNWATCHURL
 # Delete
 'deletepage' => '문서 삭제하기',
 'confirm' => '확인',
-'excontent' => '내용: ‘$1’',
-'excontentauthor' => "내용: ‘$1’ (유일한 편집자는 '[[Special:Contributions/$2|$2]]')",
-'exbeforeblank' => '비우기 전의 내용: ‘$1’',
+'excontent' => '내용: "$1"',
+'excontentauthor' => '내용: "$1" (유일한 편집자는 "[[Special:Contributions/$2|$2]]")',
+'exbeforeblank' => '비우기 전의 내용: "$1"',
 'exblank' => '빈 문서',
-'delete-confirm' => '‘$1’ 삭제',
+'delete-confirm' => '"$1" 삭제',
 'delete-legend' => '삭제',
 'historywarning' => "'''주의:''' 삭제하려는 문서에 과거 편집 내역 약 $1개가 있습니다:",
-'confirmdeletetext' => '문서와 문서 역사를 삭제하려고 합니다. 삭제하려는 문서가 맞는지, 이 문서를 삭제하는 것이 [[{{MediaWiki:Policy-url}}|정책]]에 맞는 행동인지를 확인해 주세요.',
+'confirmdeletetext' => '문서와 문서 역사를 삭제하려고 합니다.
+삭제하려는 문서가 맞는지, 이 문서를 삭제하는 것이 [[{{MediaWiki:Policy-url}}|정책]]에 맞는 행동인지를 확인해 주세요.',
 'actioncomplete' => '명령 완료',
 'actionfailed' => '명령 실패',
-'deletedtext' => '‘$1’ 문서를 삭제했습니다. 최근 삭제 기록은 $2에 있습니다.',
+'deletedtext' => '"$1" 문서를 삭제했습니다.
+최근 삭제 기록은 $2에 있습니다.',
 'dellogpage' => '삭제 기록',
-'dellogpagetext' => '아래의 목록은 최근에 삭제된 문서들입니다.',
+'dellogpagetext' => '아래의 목록은 최근에 삭제된 문서입니다.',
 'deletionlog' => '삭제 기록',
 'reverted' => '이전 버전으로 되돌렸습니다.',
 'deletecomment' => '이유:',
@@ -2455,9 +2463,10 @@ $UNWATCHURL
 'deletereason-dropdown' => '*일반적인 삭제 이유
 ** 작성자의 요청
 ** 저작권 침해
-** 잘못된 문서',
+** 훼손 행위',
 'delete-edit-reasonlist' => '삭제 이유 편집',
-'delete-toobig' => '이 문서에는 편집 역사가 $1개 있습니다. 편집 역사가 긴 문서를 삭제하면 {{SITENAME}}에 큰 혼란을 줄 수 있기 때문에 삭제할 수 없습니다.',
+'delete-toobig' => '이 문서에는 편집 역사가 $1개 있습니다.
+편집 역사가 긴 문서를 삭제하면 {{SITENAME}}에 큰 혼란을 줄 수 있기 때문에 삭제할 수 없습니다.',
 'delete-warning-toobig' => '이 문서에는 편집 역사가 $1개 있습니다.
 편집 역사가 긴 문서를 삭제하면 {{SITENAME}} 데이터베이스 동작에 큰 영향을 줄 수 있습니다.
 주의해 주세요.',
@@ -2467,29 +2476,33 @@ $UNWATCHURL
 'rollback_short' => '되돌리기',
 'rollbacklink' => '되돌리기',
 'rollbackfailed' => '되돌리기 실패',
-'cantrollback' => '편집을 되돌릴 수 없습니다. 문서를 편집한 사용자가 한명뿐입니다.',
-'alreadyrolled' => '[[:$1]]에서 [[User:$2|$2]] ([[User talk:$2|토론]]{{int:pipe-separator}}[[Special:Contributions/$2|{{int:contribslink}}]]) 의 편집을 되돌릴 수 없습니다; 누군가가 이미 문서를 고치거나 되돌렸습니다.
+'cantrollback' => '편집을 되돌릴 수 없습니다.
+문서를 편집한 사용자가 한명뿐입니다.',
+'alreadyrolled' => '[[:$1]]에서 [[User:$2|$2]] ([[User talk:$2|토론]]{{int:pipe-separator}}[[Special:Contributions/$2|{{int:contribslink}}]])의 편집을 되돌릴 수 없습니다.
+누군가가 이미 문서를 고치거나 되돌렸습니다.
 
-마지막으로 이 문서를 편집한 사용자는 [[User:$3|$3]] ([[User talk:$3|토론]]{{int:pipe-separator}}[[Special:Contributions/$3|{{int:contribslink}}]]) 입니다.',
-'editcomment' => "편집 요약: ''$1''",
+마지막으로 이 문서를 편집한 사용자는 [[User:$3|$3]] ([[User talk:$3|토론]]{{int:pipe-separator}}[[Special:Contributions/$3|{{int:contribslink}}]])입니다.',
+'editcomment' => '편집 요약: "$1"',
 'revertpage' => '[[Special:Contributions/$2|$2]]([[User talk:$2|토론]])의 편집을 [[User:$1|$1]]의 마지막 버전으로 되돌림',
 'revertpage-nouser' => '(계정 이름 삭제됨)의 편집을 [[User:$1|$1]]의 마지막 편집으로 되돌림',
 'rollback-success' => '$1의 편집을 $2의 마지막 버전으로 되돌렸습니다.',
 
 # Edit tokens
 'sessionfailure-title' => '세션 손실',
-'sessionfailure' => '로그인 세션에 문제가 발생한 것 같습니다. 세션 하이재킹을 막기 위해 동작이 취소되었습니다. 브라우저의 "뒤로" 버튼을 누르고 문서를 새로고침한 후에 다시 시도해 주세요.',
+'sessionfailure' => '로그인 세션에 문제가 발생한 것 같습니다.
+세션 하이재킹을 막기 위해 동작이 취소되었습니다.
+브라우저의 뒤로 버튼을 누르고 문서를 새로 고침한 후에 다시 시도해 주세요.',
 
 # Protect
 'protectlogpage' => '문서 보호 기록',
-'protectlogtext' => '아래의 목록은 문서 보호에 관한 변경 사항에 대한 기록입니다.
+'protectlogtext' => '아래의 목록은 문서 보호에 관한 바뀜 사항에 대한 기록입니다.
 현재 보호된 문서의 목록에 대해서는 [[Special:ProtectedPages|보호된 문서 목록]]을 참고하십시오.',
-'protectedarticle' => '‘[[$1]]’ 문서를 보호함',
-'modifiedarticleprotection' => '‘[[$1]]’ 문서의 보호 설정을 변경함',
-'unprotectedarticle' => '‘[[$1]]’ 문서를 보호 해제함',
+'protectedarticle' => '"[[$1]]" 문서를 보호함',
+'modifiedarticleprotection' => '"[[$1]]" 문서의 보호 설정을 바꿈',
+'unprotectedarticle' => '"[[$1]]" 문서를 보호 해제함',
 'movedarticleprotection' => '문서의 보호 설정을 "[[$2]]"에서 "[[$1]]"으로 옮김',
-'protect-title' => '‘$1’ 보호하기',
-'protect-title-notallowed' => '‘$1’ 문서의 보호 수준 보기',
+'protect-title' => '"$1" 보호하기',
+'protect-title-notallowed' => '"$1" 문서의 보호 수준 보기',
 'prot_1movedto2' => '[[$1]] 문서를 [[$2]] 문서로 이동함',
 'protect-badnamespace-title' => '보호할 수 없는 이름공간',
 'protect-badnamespace-text' => '이 이름공간에 있는 문서는 보호할 수 없습니다.',
@@ -2499,14 +2512,17 @@ $UNWATCHURL
 'protect_expiry_invalid' => '보호 기간이 잘못되었습니다.',
 'protect_expiry_old' => '기한을 과거로 입력했습니다.',
 'protect-unchain-permissions' => '다른 보호 설정을 수동으로 설정하기',
-'protect-text' => "'''$1''' 문서의 보호 수준을 보거나 변경할 수 있습니다.",
-'protect-locked-blocked' => "차단된 동안에는 보호 설정을 바꿀 수 없습니다. '''$1''' 문서의 보호 설정은 다음과 같습니다:",
-'protect-locked-dblock' => "데이터베이스가 잠겨 문서 보호 설정을 바꿀 수 없습니다. '''$1''' 문서의 현재 설정은 다음과 같습니다:",
-'protect-locked-access' => "문서 보호 수준을 변경할 권한이 없습니다. '''$1''' 문서의 권한은 다음과 같습니다.",
+'protect-text' => "'''$1''' 문서의 보호 수준을 보거나 바꿀 수 있습니다.",
+'protect-locked-blocked' => "차단된 동안에는 보호 설정을 바꿀 수 없습니다.
+'''$1''' 문서의 보호 설정은 다음과 같습니다:",
+'protect-locked-dblock' => "데이터베이스가 잠겨 문서 보호 설정을 바꿀 수 없습니다.
+'''$1''' 문서의 현재 설정은 다음과 같습니다:",
+'protect-locked-access' => "문서 보호 수준을 바꿀 권한이 없습니다.
+'''$1''' 문서의 권한은 다음과 같습니다.",
 'protect-cascadeon' => '다음 {{PLURAL:$1|문서}}에 연쇄적 보호가 작동하고 있어 그 문서에 속한 이 문서도 현재 보호됩니다.
-사용자께서는 이 문서의 보호 설정을 바꾸실 수 있지만, 연쇄적 보호에는 영향을 주지 않습니다.',
+사용자는 이 문서의 보호 설정을 바꾸실 수 있지만 연쇄적 보호에는 영향을 주지 않습니다.',
 'protect-default' => '모든 사용자에게 허용',
-'protect-fallback' => '‘$1’ 권한 필요',
+'protect-fallback' => '"$1" 권한 필요',
 'protect-level-autoconfirmed' => '등록된 사용자만 가능',
 'protect-level-sysop' => '관리자만 가능',
 'protect-summary-cascade' => '연쇄적',
@@ -2557,7 +2573,8 @@ $UNWATCHURL
 'undeleterevisions' => '판 $1개 보관중',
 'undeletehistory' => '문서를 되살리면 모든 역사가 같이 복구됩니다.
 문서가 삭제된 뒤 같은 이름의 문서가 만들어졌다면, 복구되는 역사는 지금 역사의 과거 부분에 나타날 것입니다.',
-'undeleterevdel' => '복구하려는 문서의 최신판이 삭제되어 있는 경우 문서를 복구시킬 수 없습니다. 이러한 경우, 삭제된 최신판 문서의 체크박스를 선택 해제하거나 숨김을 해제해야 합니다.',
+'undeleterevdel' => '복구하려는 문서의 최신판이 삭제되어 있는 경우 문서를 복구시킬 수 없습니다.
+이러한 경우, 삭제된 최신판 문서의 체크박스를 선택 해제하거나 숨김을 해제해야 합니다.',
 'undeletehistorynoadmin' => '이 문서는 삭제되었습니다.
 삭제된 이유와 삭제되기 전에 이 문서를 편집한 사용자들이 아래에 나와 있습니다.
 삭제된 문서의 내용을 보려면 관리자 권한이 필요합니다.',
@@ -2578,7 +2595,7 @@ $UNWATCHURL
 다른 사용자가 이미 복구했을 수도 있습니다.',
 'undeletedpage' => "'''$1 문서가 복구되었습니다.'''
 
-[[Special:Log/delete|삭제 기록]]에서 최근의 삭제/복구 기록을 볼 수 있습니다.",
+[[Special:Log/delete|삭제 기록]]에서 최근의 삭제와 복구 기록을 볼 수 있습니다.",
 'undelete-header' => '최근에 삭제한 문서에 대한 기록은 [[Special:Log/delete|여기]]에서 볼 수 있습니다.',
 'undelete-search-title' => '삭제된 문서 찾기',
 'undelete-search-box' => '삭제된 문서 찾기',
@@ -2592,7 +2609,7 @@ $UNWATCHURL
 이미 복구되었을 수 있습니다.',
 'undelete-error' => '문서 복구 중 오류',
 'undelete-error-short' => '파일 복구 오류: $1',
-'undelete-error-long' => '파일을 복구하는 중 오류 발생:
+'undelete-error-long' => '파일을 복구하는 중 오류가 발생했습니다:
 
 $1',
 'undelete-show-file-confirm' => '정말 "<nowiki>$1</nowiki>" 파일의 삭제된 $2 $3 버전을 보시겠습니까?',
@@ -2603,7 +2620,7 @@ $1',
 'invert' => '선택 반전',
 'tooltip-invert' => '선택한 이름공간에 있는 문서의 바뀜을 숨기려면 이 상자에 체크해주세요.',
 'namespace_association' => '관련된 이름공간',
-'tooltip-namespace_association' => '선택한 이름공간과 관련된 토론/본문 이름공간을 같이 선택합니다.',
+'tooltip-namespace_association' => '선택한 이름공간과 관련된 토론이나 본문 이름공간을 같이 선택합니다.',
 'blanknamespace' => '(일반)',
 
 # Contributions
@@ -2625,10 +2642,11 @@ $1',
 'sp-contributions-logs' => '기록',
 'sp-contributions-talk' => '토론',
 'sp-contributions-userrights' => '사용자 권한 관리',
-'sp-contributions-blocked-notice' => '이 사용자는 현재 차단되어 있습니다. 해당 사용자의 차단 기록은 다음과 같습니다.',
+'sp-contributions-blocked-notice' => '이 사용자는 현재 차단되어 있습니다.
+해당 사용자의 차단 기록은 다음과 같습니다:',
 'sp-contributions-blocked-notice-anon' => '이 IP 주소는 현재 차단되어 있습니다.
-아래의 최근 차단 기록을 참고하십시오.',
-'sp-contributions-search' => '기여 검색',
+차단 기록은 다음과 같습니다:',
+'sp-contributions-search' => '기여 찾기',
 'sp-contributions-username' => 'IP 주소 혹은 계정 이름:',
 'sp-contributions-toponly' => '최신판만 보기',
 'sp-contributions-submit' => '찾기',
@@ -2685,19 +2703,19 @@ $1',
 'ipbotheroption' => '수동으로 지정',
 'ipbotherreason' => '다른 이유/추가적인 이유:',
 'ipbhidename' => '사용자 이름을 편집 역사에서 숨기기',
-'ipbwatchuser' => '이 사용자 문서와 사용자토론 문서를 주시하기',
-'ipb-disableusertalk' => '차단된 동안 자신의 사용자토론 문서를 편집하지 못하도록 막기',
+'ipbwatchuser' => '이 사용자 문서와 사용자 토론 문서를 주시하기',
+'ipb-disableusertalk' => '차단된 동안 자신의 사용자 토론 문서를 편집하지 못하도록 막기',
 'ipb-change-block' => '이 설정으로 이 사용자를 다시 차단합니다',
 'ipb-confirm' => '차단 확인',
 'badipaddress' => '잘못된 IP 주소',
 'blockipsuccesssub' => '차단 완료',
 'blockipsuccesstext' => '[[Special:Contributions/$1|$1]] 사용자가 차단되었습니다.<br />
 차단된 사용자 목록은 [[Special:BlockList|여기]]에서 볼 수 있습니다.',
-'ipb-blockingself' => '자기 자신을 차단하려고 합니다. 정말로 실행할까요?',
+'ipb-blockingself' => '자기 자신을 차단하려고 합니다! 정말로 실행할까요?',
 'ipb-confirmhideuser' => '당신은 사용자를 차단하면서 "계정 숨기기" 설정을 선택했습니다. 이로써 모든 기록에서 이 사용자의 계정 이름을 숨기게 됩니다. 정말로 계정을 숨기시겠습니까?',
 'ipb-edit-dropdown' => '차단 이유 목록 편집하기',
 'ipb-unblock-addr' => '$1 차단 해제하기',
-'ipb-unblock' => '사용자/IP 주소 차단 해제하기',
+'ipb-unblock' => '사용자 또는 IP 주소 차단 해제하기',
 'ipb-blocklist' => '현재 차단 기록 보기',
 'ipb-blocklist-contribs' => '$1의 기여',
 'unblockip' => '사용자 차단 해제',
@@ -2713,7 +2731,7 @@ $1',
 'blocklist-tempblocks' => '기한이 정해진 차단을 숨기기',
 'blocklist-addressblocks' => '당일 IP 차단을 숨기기',
 'blocklist-rangeblocks' => '광역 차단을 숨기기',
-'blocklist-timestamp' => '날짜/시각',
+'blocklist-timestamp' => '날짜·시각',
 'blocklist-target' => '차단 대상',
 'blocklist-expiry' => '차단 기한',
 'blocklist-by' => '차단한 관리자',
@@ -2721,34 +2739,36 @@ $1',
 'blocklist-reason' => '이유',
 'ipblocklist-submit' => '찾기',
 'ipblocklist-localblock' => '로컬 차단',
-'ipblocklist-otherblocks' => '다른 {{PLURAL:$1|}}차단 기록',
+'ipblocklist-otherblocks' => '다른 {{PLURAL:$1|차단}} 기록',
 'infiniteblock' => '무기한',
 'expiringblock' => '$1 $2에 해제',
 'anononlyblock' => '익명 사용자만',
 'noautoblockblock' => '자동 차단 비활성화됨',
-'createaccountblock' => '계정 생성 금지됨',
+'createaccountblock' => '계정 만들기 금지됨',
 'emailblock' => '이메일 차단됨',
 'blocklist-nousertalk' => '자신의 토론 문서 편집 불가',
 'ipblocklist-empty' => '차단된 사용자가 없습니다.',
 'ipblocklist-no-results' => '당신이 입력한 IP 주소나 사용자는 차단되지 않았습니다.',
 'blocklink' => '차단',
 'unblocklink' => '차단 해제',
-'change-blocklink' => '차단 설정 변경',
+'change-blocklink' => '차단 설정 바꾸기',
 'contribslink' => '기여',
 'emaillink' => '이메일 보내기',
 'autoblocker' => '당신의 IP 주소는 최근에 "[[User:$1|$1]]" 사용자가 사용하였기 때문에 자동으로 차단되었습니다.
 $1 사용자가 차단된 이유는 다음과 같습니다: "$2"',
 'blocklogpage' => '차단 기록',
-'blocklog-showlog' => '이 사용자는 과거에 차단된 기록이 있습니다. 해당 사용자의 차단 기록은 다음과 같습니다.',
-'blocklog-showsuppresslog' => '이 사용자는 과거에 차단된 적이 있으며, 그 기록이 숨겨져 있습니다. 해당 사용자의 차단 기록은 다음과 같습니다.',
+'blocklog-showlog' => '이 사용자는 과거에 차단된 기록이 있습니다.
+해당 사용자의 차단 기록은 다음과 같습니다:',
+'blocklog-showsuppresslog' => '이 사용자는 과거에 차단된 적이 있으며, 그 기록이 숨겨져 있습니다.
+해당 사용자의 차단 기록은 다음과 같습니다:',
 'blocklogentry' => '[[$1]] 사용자를 $2 차단함 $3',
-'reblock-logentry' => '[[$1]] 사용자의 차단 기간을 $2(으)로 변경 $3',
+'reblock-logentry' => '[[$1]] 사용자의 차단 기간을 $2(으)로 바꿈 $3',
 'blocklogtext' => '이 목록은 사용자 차단/차단 해제 기록입니다.
 자동으로 차단된 IP 주소는 여기에 나오지 않습니다.
 [[Special:BlockList|여기]]에서 현재 차단된 사용자 목록을 볼 수 있습니다.',
 'unblocklogentry' => '$1을 차단 해제했습니다.',
 'block-log-flags-anononly' => 'IP만 막음',
-'block-log-flags-nocreate' => '계정 생성 금지됨',
+'block-log-flags-nocreate' => '계정 만들기 금지됨',
 'block-log-flags-noautoblock' => '자동 차단 비활성화됨',
 'block-log-flags-noemail' => '이메일 막음',
 'block-log-flags-nousertalk' => '자신의 토론 문서 편집 불가',
@@ -2760,10 +2780,9 @@ $1 사용자가 차단된 이유는 다음과 같습니다: "$2"',
 'ipb_hide_invalid' => '해당 계정은 막을 수 없습니다. 기여량이 너무 많습니다.',
 'ipb_already_blocked' => '"$1" 사용자는 이미 차단됨',
 'ipb-needreblock' => '$1 사용자는 이미 차단되었습니다. 차단 설정을 바꾸시겠습니까?',
-'ipb-otherblocks-header' => '다른 {{PLURAL:$1|}}차단 기록',
+'ipb-otherblocks-header' => '다른 {{PLURAL:$1|차단}} 기록',
 'unblock-hideuser' => '이 계정 이름이 숨겨져 있기 때문에 이 사용자를 차단 해제할 수 없습니다.',
-'ipb_cant_unblock' => '오류: 차단 ID $1이(가) 존재하지 않습니다.
-이미 차단 해제되었을 수 있습니다.',
+'ipb_cant_unblock' => '오류: 차단 ID $1이(가) 존재하지 않습니다. 이미 차단 해제되었을 수 있습니다.',
 'ipb_blocked_as_range' => '오류: IP 주소 $1은 직접 차단되지 않았기 때문에 차단 해제할 수 없습니다.
 하지만 $2로 광역 차단되었기 때문에, 광역 차단 해제로 차단을 해제할 수 있습니다.',
 'ip_range_invalid' => 'IP 범위가 잘못되었습니다.',
@@ -2771,55 +2790,59 @@ $1 사용자가 차단된 이유는 다음과 같습니다: "$2"',
 'blockme' => '자가 차단',
 'proxyblocker' => '프록시 차단',
 'proxyblocker-disabled' => '이 기능은 비활성되어 있습니다.',
-'proxyblockreason' => '당신의 IP 주소는 공개 프록시로 밝혀져 자동으로 차단됩니다. 만약 인터넷 사용에 문제가 있다면 인터넷 서비스 공급자에게 문의해주세요.',
+'proxyblockreason' => '당신의 IP 주소는 공개 프록시로 밝혀져 자동으로 차단됩니다.
+만약 인터넷 사용에 문제가 있다면 인터넷 서비스 공급자나 기술 지원팀에게 문의해주세요.',
 'proxyblocksuccess' => '완료.',
 'sorbsreason' => '당신의 IP 주소는 {{SITENAME}}에서 사용하는 DNSBL 공개 프록시 목록에 들어 있습니다.',
-'sorbs_create_account_reason' => '당신의 IP 주소는 {{SITENAME}}에서 사용하는 DNSBL 공개 프록시 목록에 들어 있습니다. 계정을 만들 수 없습니다.',
+'sorbs_create_account_reason' => '당신의 IP 주소는 {{SITENAME}}에서 사용하는 DNSBL 공개 프록시 목록에 들어 있습니다.
+계정을 만들 수 없습니다.',
 'cant-block-while-blocked' => '당신이 차단되어 있는 동안에는 다른 사용자를 차단할 수 없습니다.',
-'cant-see-hidden-user' => '당신이 차단하려 하는 사용자는 이미 차단되었고 계정 숨김 처리되었습니다. 당신이 계정 숨기기 권한을 갖고 있지 않기 때문에, 이 사용자의 차단 기록을 보거나 차단 설정을 변경할 수 없습니다.',
+'cant-see-hidden-user' => '당신이 차단하려 하는 사용자는 이미 차단되었고 계정 숨김 처리되었습니다.
+당신이 계정 숨기기 권한을 갖고 있지 않기 때문에, 이 사용자의 차단 기록을 보거나 차단 설정을 바꿀 수 없습니다.',
 'ipbblocked' => '당신은 차단되어 있기 때문에 다른 사용자를 차단하거나 차단을 해제할 수 없습니다.',
 'ipbnounblockself' => '당신은 자기 스스로를 차단 해제할 수 없습니다.',
 
 # Developer tools
 'lockdb' => '데이터베이스 잠그기',
 'unlockdb' => '데이터베이스 잠금 해제',
-'lockdbtext' => '데이터베이스를 잠그면 모든 사용자의 편집, 환경 설정 변경, 주시문서 편집 등 데이터베이스를 요구하는 모든 기능이 정지됩니다.
+'lockdbtext' => '데이터베이스를 잠그면 모든 사용자의 편집, 환경 설정 바꾸기, 주시문서 편집 등 데이터베이스를 요구하는 모든 기능이 정지됩니다.
 정말로 잠가야 하는지를 다시 한번 확인해주세요. 관리 작업이 끝난 뒤에는 데이터베이스 잠금을 풀어야 합니다.',
-'unlockdbtext' => '데이터베이스를 잠금 해제하면 모든 사용자의 편집, 환경 설정 변경, 주시문서 편집 등 데이터베이스를 요구하는 모든 기능이 복구됩니다.
+'unlockdbtext' => '데이터베이스를 잠금 해제하면 모든 사용자의 편집, 환경 설정 바꾸기, 주시문서 편집 등 데이터베이스를 요구하는 모든 기능이 복구됩니다.
 정말로 잠금을 해제하려는지를 다시 한번 확인해주세요.',
 'lockconfirm' => '네, 데이터베이스를 잠급니다.',
 'unlockconfirm' => '네, 데이터베이스를 잠금 해제합니다.',
 'lockbtn' => '데이터베이스 잠그기',
 'unlockbtn' => '데이터베이스 잠금 해제',
-'locknoconfirm' => '확인 체크박스를 선택하지 않았습니다.',
+'locknoconfirm' => '확인 상자를 선택하지 않았습니다.',
 'lockdbsuccesssub' => '데이터베이스 잠김',
 'unlockdbsuccesssub' => '데이터베이스 잠금 해제됨',
 'lockdbsuccesstext' => '데이터베이스가 잠겼습니다.<br />
 관리가 끝나면 잊지 말고 [[Special:UnlockDB|잠금을 풀어]] 주세요.',
 'unlockdbsuccesstext' => '데이터베이스 잠금 상태가 해제되었습니다.',
-'lockfilenotwritable' => '데이터베이스 잠금 파일에 쓰기 권한이 없습니다. 데이터베이스를 잠그거나 잠금 해제하려면, 웹 서버에서 이 파일의 쓰기 권한을 설정해야 합니다.',
+'lockfilenotwritable' => '데이터베이스 잠금 파일에 쓰기 권한이 없습니다.
+데이터베이스를 잠그거나 잠금 해제하려면, 웹 서버에서 이 파일의 쓰기 권한을 설정해야 합니다.',
 'databasenotlocked' => '데이터베이스가 잠겨 있지 않습니다.',
 'lockedbyandtime' => '($1이 $2 $3에 잠금)',
 
 # Move page
 'move-page' => '이동 $1',
 'move-page-legend' => '문서 이동하기',
-'movepagetext' => "아래 양식을 채워 문서의 이름을 바꾸고 모든 역사를 새 이름으로 옮길 수 있습니다.
-기존의 문서는 새 문서로 넘겨주는 문서가 됩니다.
-원래 이름을 가리키는 넘겨주기를 자동으로 갱신할 수 있습니다.
+'movepagetext' => "아래의 양식을 사용해 문서의 이름을 바꾸고 문서의 모든 역사를 옮깁니다.
+이전의 제목은 새 제목으로 넘겨줄 것입니다.
+원래 이름을 가리키는 넘겨주기를 자동으로 새로 고칠 수 있습니다.
 만약 이 설정을 선택하지 않았다면 [[Special:DoubleRedirects|이중 넘겨주기]]와 [[Special:BrokenRedirects|끊긴 넘겨주기]]를 확인해주세요.
-당신은 링크가 의도한 문서를 가리키게 할 책임이 있습니다.
+당신은 넘겨주기 링크가 제대로 향할 책임이 있습니다.
 
 만약 문서의 새 이름으로 된 문서가 존재할 때, 그 문서가 비었거나 넘겨주기 문서이고 문서 역사가 없을 때에만 이동합니다. 그렇지 않을 경우에는 이동하지 '''않습니다'''.
 이것은 실수로 이동한 문서를 되돌릴 수는 있지만, 이미 존재하는 문서 위에 덮어씌울 수는 없다는 것을 의미합니다.
 
 '''주의!'''
-자주 사용하는 문서를 이동하면 위험한 결과를 가져올 수 있습니다.
-이동하기 전에, 이 문서를 이동해도 문제가 없다는 것을 확인해주세요.",
-'movepagetext-noredirectfixer' => "이 양식을 이용해 문서의 이름을 바꾸고 문서의 모든 역사를 옮길 것입니다.
+인기 있는 문서일 경우 심각하고 예상하지 못한 문제를 초래할 수 있습니다.
+문서를 이동하기 전에 이러한 행동이 초래할 수 있는 결과에 대해 숙지하시기 바랍니다.",
+'movepagetext-noredirectfixer' => "아래의 양식을 사용해 문서의 이름을 바꾸고 문서의 모든 역사를 옮깁니다.
 이전의 제목은 새 제목으로 넘겨줄 것입니다.
-[[Special:DoubleRedirects|이중 넘겨주기]]나 [[Special:BrokenRedirects|끊긴 넘겨주기]]가 있는지 확인해주십시오.
-당신은 넘겨주기 링크가 제대로 향하고 있는지 확인하여야 합니다.
+[[Special:DoubleRedirects|이중 넘겨주기]]나 [[Special:BrokenRedirects|끊긴 넘겨주기]]가 있는지 확인해주세요.
+당신은 넘겨주기 링크가 제대로 향할 책임이 있습니다.
 
 참고로 새 제목을 가진 문서가 이미 있다면 다음 경우에 해당하지 않으면 이 문서는 옮겨지지 '''않을''' 것입니다.
 * 비어 있거나,
@@ -2828,7 +2851,7 @@ $1 사용자가 차단된 이유는 다음과 같습니다: "$2"',
 이는 당신이 실수로 문서를 옮겼을 때 되돌릴 수 있으며 이미 있는 문서를 덮어쓸 수 없음을 의미합니다.
 
 '''경고!'''
-방문 수나 이 문서를 향하는 링크가 많은 문서일 경우 심각한 문제를 초래할 수 있습니다.
+인기 있는 문서일 경우 심각하고 예상하지 못한 문제를 초래할 수 있습니다.
 문서를 이동하기 전에 이러한 행동이 초래할 수 있는 결과에 대해 숙지하시기 바랍니다.",
 'movepagetalktext' => "딸린 토론 문서도 자동으로 이동합니다. 하지만 다음의 경우는 '''이동하지 않습니다''':
 * 이동할 이름으로 된 문서가 이미 있는 경우
@@ -2836,7 +2859,7 @@ $1 사용자가 차단된 이유는 다음과 같습니다: "$2"',
 
 이 경우에는 문서를 직접 이동하거나 두 문서를 합쳐야 합니다.",
 'movearticle' => '문서 이동하기',
-'moveuserpage-warning' => "'''경고:''' 당신은 사용자 문서를 옮기려 하고 있습니다. 사용자 문서만 이동되며 계정 이름이 바뀌지 않는다는 점을 명심해주시기 바랍니다.",
+'moveuserpage-warning' => "'''경고:''' 당신은 사용자 문서를 옮기려 하고 있습니다. 사용자 문서만 이동되며 계정 이름이 바뀌지 '''않는다'''는 점을 명심해주시기 바랍니다.",
 'movenologin' => '로그인하지 않음',
 'movenologintext' => '문서를 이동하려면 [[Special:UserLogin|로그인]]해야 합니다.',
 'movenotallowed' => '문서를 이동할 권한이 없습니다.',
@@ -2847,7 +2870,7 @@ $1 사용자가 차단된 이유는 다음과 같습니다: "$2"',
 'move-watch' => '문서 주시하기',
 'movepagebtn' => '이동',
 'pagemovedsub' => '문서 이동함',
-'movepage-moved' => "'''‘$1’ 문서를 ‘$2’ 문서로 이동했습니다.'''",
+'movepage-moved' => '\'\'\'"$1" 문서를 "$2" 문서로 이동했습니다.\'\'\'',
 'movepage-moved-redirect' => '넘겨주기 문서를 만들었습니다.',
 'movepage-moved-noredirect' => '넘겨주기 문서를 남기지 않았습니다.',
 'articleexists' => '문서가 이미 존재하거나 이름이 올바르지 않습니다.
@@ -2858,25 +2881,25 @@ $1 사용자가 차단된 이유는 다음과 같습니다: "$2"',
 'movetalk' => '딸린 토론도 함께 이동합니다.',
 'move-subpages' => '하위 문서도 함께 ($1개 이하) 이동합니다.',
 'move-talk-subpages' => '토론 문서의 하위 문서도 ($1개까지) 함께 이동합니다.',
-'movepage-page-exists' => '이동할 수 없습니다. ‘$1’ 문서가 이미 존재합니다.',
-'movepage-page-moved' => '‘$1’ 문서를 ‘$2’ 문서로 이동했습니다.',
-'movepage-page-unmoved' => '‘$1’ 문서를 ‘$2’ 문서로 이동할 수 없습니다.',
+'movepage-page-exists' => '이동할 수 없습니다. "$1" 문서가 이미 존재합니다.',
+'movepage-page-moved' => '"$1" 문서를 "$2" 문서로 이동했습니다.',
+'movepage-page-unmoved' => '"$1" 문서를 "$2" 문서로 이동할 수 없습니다.',
 'movepage-max-pages' => '문서를 최대 $1개 이동했습니다. 나머지 문서는 자동 이동하지 않습니다.',
 'movelogpage' => '이동 기록',
-'movelogpagetext' => '아래는 옮겨진 문서의 목록입니다.',
-'movesubpage' => '{{PLURAL:$1}}하위 문서',
+'movelogpagetext' => '아래는 이동한 문서의 목록입니다.',
+'movesubpage' => '{{PLURAL:$1|하위 문서}}',
 'movesubpagetext' => '이 문서에는 다음 하위 문서 $1개가 있습니다.',
 'movenosubpage' => '이 문서에는 하위 문서가 존재하지 않습니다.',
 'movereason' => '이유:',
 'revertmove' => '되돌리기',
 'delete_and_move' => '삭제하고 이동',
 'delete_and_move_text' => '== 삭제 필요 ==
-
-이동하려는 제목으로 된 ‘[[:$1]]’ 문서가 이미 존재합니다.
+이동하려는 제목으로 된 "[[:$1]]" 문서가 이미 존재합니다.
 삭제하고 이동할까요?',
 'delete_and_move_confirm' => '네. 문서를 삭제합니다',
 'delete_and_move_reason' => '"[[$1]]"에서 문서를 이동하기 위해 삭제함',
-'selfmove' => '이동하려는 제목이 원래 제목과 같습니다. 이동할 수 없습니다.',
+'selfmove' => '이동하려는 제목이 원래 제목과 같습니다.
+이동할 수 없습니다.',
 'immobile-source-namespace' => '"$1" 이름공간에 속한 문서는 이동시킬 수 없습니다.',
 'immobile-target-namespace' => '"$1" 이름공간에 속한 문서는 이동시킬 수 없습니다.',
 'immobile-target-namespace-iw' => '인터위키 링크를 넘어 문서를 이동할 수 없습니다.',
@@ -2886,13 +2909,13 @@ $1 사용자가 차단된 이유는 다음과 같습니다: "$2"',
 'nonfile-cannot-move-to-file' => '파일이 아닌 문서를 파일 이름공간으로 옮길 수 없습니다.',
 'imagetypemismatch' => '새 파일의 확장자가 원래의 확장자와 일치하지 않습니다.',
 'imageinvalidfilename' => '새 파일 이름이 잘못되었습니다.',
-'fix-double-redirects' => '기존 이름을 가리키는 넘겨주기를 갱신',
+'fix-double-redirects' => '기존 이름을 가리키는 넘겨주기를 새로 고침',
 'move-leave-redirect' => '이동 후 넘겨주기를 남기기',
 'protectedpagemovewarning' => "'''경고:''' 이 문서는 관리자만이 이동할 수 있도록 잠겨 있습니다.
-최근의 기록을 참조용으로 제공합니다:",
+최근의 기록을 참고용으로 제공합니다:",
 'semiprotectedpagemovewarning' => "'''알림:''' 이 문서는 등록된 사용자만이 이동할 수 있도록 잠겨 있습니다.
-최근 기록 내용이 참조용으로 제공됩니다:",
-'move-over-sharedrepo' => '== 파일이 존재합니다 ==
+최근 기록 내용을 참고용로 제공합니다:",
+'move-over-sharedrepo' => '== 파일이 존재함 ==
 [[:$1]] 파일이 공용 저장소에 있습니다. 이 이름으로 파일을 옮기면 공용의 파일을 덮어쓰게 될 것입니다.',
 'file-exists-sharedrepo' => '당신이 선택한 파일 이름은 공용 저장소에서 사용 중입니다.
 다른 이름을 선택해주세요.',
@@ -2903,7 +2926,7 @@ $1 사용자가 차단된 이유는 다음과 같습니다: "$2"',
 
 문서를 내보내려면, 내보내려는 문서 제목을 한 줄에 하나씩 입력해주세요. 그리고 문서의 전체 역사가 필요한지, 혹은 현재 버전만이 필요한지를 선택해 주세요.
 
-특정 문서를 내보내려면, 예를 들어 ‘[[{{MediaWiki:Mainpage}}]]’ 문서를 내보내려면 [[{{#Special:Export}}/{{MediaWiki:Mainpage}}]] 링크를 사용할 수도 있습니다.',
+특정 문서를 내보내려면, 예를 들어 "[[{{MediaWiki:Mainpage}}]]" 문서를 내보내려면 [[{{#Special:Export}}/{{MediaWiki:Mainpage}}]] 링크를 사용할 수도 있습니다.',
 'exportall' => '모든 문서를 내보내기',
 'exportcuronly' => '현재 버전만 포함하고, 전체 역사는 포함하지 않음',
 'exportnohistory' => "----
@@ -2923,8 +2946,9 @@ $1 사용자가 차단된 이유는 다음과 같습니다: "$2"',
 'allmessagesname' => '이름',
 'allmessagesdefault' => '기본 내용',
 'allmessagescurrent' => '현재 문자열',
-'allmessagestext' => '미디어위키 이름공간에 있는 모든 시스템 메시지의 목록입니다. 미디어위키의 번역 작업에 관심이 있으면 [//www.mediawiki.org/wiki/Localisation 미디어위키 지역화]나 [//translatewiki.net translatewiki.net]에 참가해주세요.',
-'allmessagesnotsupportedDB' => "'''\$wgUseDatabaseMessages'''가 해제되어 있어서 이 문서는 쓸 수 없습니다.",
+'allmessagestext' => '미디어위키 이름공간에 있는 모든 시스템 메시지의 목록입니다.
+미디어위키의 번역 작업에 관심이 있으면 [//www.mediawiki.org/wiki/Localisation 미디어위키 지역화]나 [//translatewiki.net translatewiki.net]에 참가해주세요.',
+'allmessagesnotsupportedDB' => "'''\$wgUseDatabaseMessages'''가 비활성화되어 있어서 이 문서를 사용할 수 없습니다.",
 'allmessages-filter-legend' => '필터',
 'allmessages-filter' => '수정 상태로 거르기:',
 'allmessages-filter-unmodified' => '수정되지 않음',
@@ -2940,18 +2964,18 @@ $1 사용자가 차단된 이유는 다음과 같습니다: "$2"',
 'thumbnail_error' => '섬네일을 만드는 중 오류 발생: $1',
 'djvu_page_error' => 'DjVu 페이지 범위 벗어남',
 'djvu_no_xml' => 'DjVu 파일의 XML 정보를 읽을 수 없음',
-'thumbnail-temp-create' => '임시 섬네일 파일을 생성할 수 없습니다.',
+'thumbnail-temp-create' => '임시 섬네일 파일을 만들 수 없습니다.',
 'thumbnail-dest-create' => '대상 경로에 섬네일을 저장할 수 없습니다.',
 'thumbnail_invalid_params' => '섬네일 매개변수가 잘못되었습니다.',
-'thumbnail_dest_directory' => '새 목적 디렉토리를 생성할 수 없습니다.',
+'thumbnail_dest_directory' => '새 목적 디렉토리를 만들 수 없습니다.',
 'thumbnail_image-type' => '해당 파일 형식은 지원하지 않습니다',
-'thumbnail_gd-library' => 'GD 라이브러리 설정이 잘못되었습니다. $1 함수를 찾을 수 없습니다.',
+'thumbnail_gd-library' => 'GD 라이브러리 설정이 잘못되었습니다: $1 함수를 찾을 수 없습니다.',
 'thumbnail_image-missing' => '파일을 찾을 수 없습니다: $1',
 
 # Special:Import
 'import' => '문서 가져오기',
 'importinterwiki' => '다른 위키에서 문서 가져오기',
-'import-interwiki-text' => '문서를 가져올 위키를 선택하고, 문서 제목을 입력해주세요.
+'import-interwiki-text' => '문서를 가져올 위키를 선택하고 문서 제목을 입력해주세요.
 편집 날짜와 편집자의 이름이 보존될 것입니다.
 모든 가져오기는 [[Special:Log/import|가져오기 기록]]에 기록될 것입니다.',
 'import-interwiki-source' => '원본 위키/문서:',
@@ -2961,12 +2985,12 @@ $1 사용자가 차단된 이유는 다음과 같습니다: "$2"',
 'import-interwiki-namespace' => '새 이름공간:',
 'import-upload-filename' => '파일 이름:',
 'import-comment' => '이유:',
-'importtext' => '원본 위키에서 [[Special:Export|내보내기]] 기능을 사용해 파일을 내려받으십시오.
+'importtext' => '원본 위키에서 [[Special:Export|내보내기]] 기능을 사용해 파일을 내려받으세요.
 그리고 당신의 컴퓨터에 저장해 둔 후 여기에 올려주세요.',
 'importstart' => '문서를 가져오는 중...',
 'import-revision-count' => '판 $1개',
 'importnopages' => '가져올 문서가 없습니다.',
-'imported-log-entries' => '로그 항목 $1개를 가져왔습니다.',
+'imported-log-entries' => '기록 항목 $1개를 가져왔습니다.',
 'importfailed' => '가져오기 실패: <nowiki>$1</nowiki>',
 'importunknownsource' => '알 수 없는 가져오기 자료 유형',
 'importcantopen' => '파일을 열 수 없습니다.',
@@ -2975,11 +2999,11 @@ $1 사용자가 차단된 이유는 다음과 같습니다: "$2"',
 'importsuccess' => '가져오기 완료!',
 'importhistoryconflict' => '문서 역사가 충돌하는 판이 있습니다. (이전에 이 문서를 가져온 적이 있을 수도 있습니다)',
 'importnosources' => '문서를 가져올 출처가 정의되지 않았고, 문서 역사 올리기가 비활성화되었습니다.',
-'importnofile' => '가져오기용 파일이 업로드되지 않았습니다.',
+'importnofile' => '가져오기용 파일이 올려지지 않았습니다.',
 'importuploaderrorsize' => '파일 올리기를 통한 가져오기에 실패했습니다.
 파일이 허용된 크기 제한보다 큽니다.',
 'importuploaderrorpartial' => '가져오기 파일을 올리는 데 실패하였습니다.
-파일이 부분적으로만 업로드되었습니다.',
+파일이 부분적으로만 올려졌습니다.',
 'importuploaderrortemp' => '가져오기 파일을 올리는 데 실패했습니다.
 임시 폴더가 존재하지 않습니다.',
 'import-parse-failure' => 'XML 문서 분석 실패',
@@ -2998,7 +3022,7 @@ $1 사용자가 차단된 이유는 다음과 같습니다: "$2"',
 # Import log
 'importlogpage' => '가져오기 기록',
 'importlogpagetext' => '다른 위키에서 가져온 문서 기록입니다.',
-'import-logentry-upload' => ' 사용자가 파일 올리기를 통해 [[$1]] 문서를 가져왔습니다.',
+'import-logentry-upload' => '사용자가 파일 올리기를 통해 [[$1]] 문서를 가져왔습니다.',
 'import-logentry-upload-detail' => '판 $1개',
 'import-logentry-interwiki' => '$1 문서를 다른 위키에서 가져왔습니다.',
 'import-logentry-interwiki-detail' => '$2에서 판 $1개를 가져옴',

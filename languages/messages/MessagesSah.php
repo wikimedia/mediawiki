@@ -824,6 +824,9 @@ IP-аадырыһа эрэ көстөр.
 'parser-template-recursion-depth-warning' => '($1) халыып рекурсиятын муҥура бүппүт (Превышен предел глубины рекурсии)',
 'language-converter-depth-warning' => 'Тыл конвертерын дириҥин хааччаҕа куоһарыллыбыт ($1)',
 'node-count-exceeded-category' => 'Түмүктэрин ахсаана аһара барбыт сирэйдэр',
+'node-count-exceeded-warning' => 'Сирэй түмүгүн ахсаана таһынан барбыт',
+'expansion-depth-exceeded-warning' => 'Сирэйгэ угуллубут билэлэр аһара элбээбиттэр',
+'parser-unstrip-recursion-limit' => 'Рекурсия ахсаана таһынан барбыт ($1)',
 
 # "Undo" feature
 'undo-success' => 'Правка может быть отменена. Пожалуйста, просмотрите сравнение версий, чтобы убедиться, что это именно те изменения, которые вас интересуют, и нажмите «Записать страницу», чтобы изменения вступили в силу.',
@@ -1003,6 +1006,8 @@ $1",
 
 # Diffs
 'history-title' => 'Көннөрүү сурунаала "$1"',
+'difference-title' => '$1 — барыллар ыккардыларынааҕы ураты',
+'difference-title-multipage' => '"$1" сирэйдэр "$2" уратылара',
 'difference-multipage' => '(Сирэйдэр ыккардыларынааҕы уратылар)',
 'lineno' => '$1 строка:',
 'compareselectedversions' => 'Талыллыбыт торумнары тэҥнээ',
@@ -1097,6 +1102,7 @@ $1",
 'prefs-beta' => 'Бета-туруоруулар',
 'prefs-datetime' => 'Күнэ-дьыла уонна кэмэ',
 'prefs-labs' => 'Тургутуллар туруоруулар',
+'prefs-user-pages' => 'Кыттааччы сирэйдэрэ',
 'prefs-personal' => 'Кыттааччы туруоруулара',
 'prefs-rc' => 'Кэлиҥҥи уларытыылар',
 'prefs-watchlist' => 'Кэтээһин',
@@ -1389,6 +1395,7 @@ $1 {{PLURAL:$1|бэлиэттэн|бэлиэттэн (буукубаттан)}} 
 'newsectionsummary' => '/* $1 */ саҥа сиэксийэ',
 'rc-enhanced-expand' => 'Сиһилии көрдөр (JavaScript туһаныллар)',
 'rc-enhanced-hide' => 'Сиһилиитин көрдөрүмэ',
+'rc-old-title' => 'бастаан бу аатынан суруллубут "$1"',
 
 # Recent changes linked
 'recentchangeslinked' => 'Сигэнэр уларытыылар',
@@ -3462,6 +3469,7 @@ MediaWiki туһалаах буоллун диэн тарҕатыллар, ол 
 'version-software' => 'Туруоруллубут бырагырааммалар',
 'version-software-product' => 'Бородуукта',
 'version-software-version' => 'Барыл (торум)',
+'version-entrypoints-header-url' => 'URL',
 
 # Special:FilePath
 'filepath' => 'Билэ суола',
@@ -3623,6 +3631,7 @@ MediaWiki туһалаах буоллун диэн тарҕатыллар, ол 
 'api-error-empty-file' => 'Ыыппыт билэҥ кураанах.',
 'api-error-emptypage' => 'Саҥа кураанах сирэйи оҥорор табыллыбат.',
 'api-error-fetchfileerror' => 'Ис алҕас: билэни ыларга туох эрэ сатаммата.',
+'api-error-fileexists-forbidden' => 'Маннык "$1" ааттаах билэ хайыы үйэ баар уонна хат суруллар кыаҕа суох эбит.',
 'api-error-file-too-large' => 'Ыыппыт билэҥ наһаа улахан эбит.',
 'api-error-filename-tooshort' => 'Билэҥ аата наһаа кылгас.',
 'api-error-filetype-banned' => 'Маннык көрүҥнээх билэлэр бобуулаахтар.',
@@ -3649,5 +3658,16 @@ MediaWiki туһалаах буоллун диэн тарҕатыллар, ол 
 'api-error-unknownerror' => 'Биллибэт алҕас: $1',
 'api-error-uploaddisabled' => 'Бу биикигэ хачайдыыр араарыллыбыт эбит.',
 'api-error-verification-error' => 'Бу билэ алдьаммыт эбэтэр табыгаһа суох кэҥэтиилээх.',
+
+# Durations
+'duration-seconds' => '$1 сөкүүндэ',
+'duration-minutes' => '$1 мүнүүтэ',
+'duration-hours' => '$1 чаас',
+'duration-days' => '$1 хонук',
+'duration-weeks' => '$1 нэдиэлэ',
+'duration-years' => '$1 сыл',
+'duration-decades' => '$1 декаада',
+'duration-centuries' => '$1 үйэ',
+'duration-millennia' => '$1 тыһыынча сыл',
 
 );

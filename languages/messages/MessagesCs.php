@@ -1110,7 +1110,7 @@ Zřejmě byla smazána.',
 'expensive-parserfunction-warning' => 'Varování: Tato stránka obsahuje příliš mnoho volání výkonnostně náročných funkcí parseru.
 
 Povolený limit je $2, v současné chvíli však {{PLURAL:$1|zde jedno volání je|zde jsou $2 volání|zde je $2 volání}}.',
-'expensive-parserfunction-category' => 'Stránky s příliš vysokým počtem volání funkcí parseru.',
+'expensive-parserfunction-category' => 'Stránky s příliš mnoho voláními náročných funkcí parseru',
 'post-expand-template-inclusion-warning' => 'Varování: Objem vkládaných šablon je příliš velký.
 Některé šablony nebudou vloženy.',
 'post-expand-template-inclusion-category' => 'Stránky překračující povolenou velikost vložených šablon',

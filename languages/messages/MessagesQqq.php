@@ -169,7 +169,7 @@ Is only shown if {{msg-mw|tog-enotifusertalkpages}} or/and {{msg-mw|tog-enotifwa
 'tog-fancysig' => 'In user preferences under the signature box.  {{Gender}}',
 'tog-externaleditor' => "[[Special:Preferences]], tab 'Edit'. Offers user to use an external editor by default. {{Gender}}",
 'tog-externaldiff' => "[[Special:Preferences]], tab 'Edit'. Offers user to use an external diff program by default. {{Gender}}",
-'tog-showjumplinks' => 'Toggle option used in [[Special:Preferences]]. The "jump to" part should be the same with {{msg-mw|jumpto}} (or you can use <nowiki>{{int:jumpto}}</nowiki>). Thess links are shown in some of the older skins as "jump to: navigation, search" but they are hidden by default (you can enable them with this option). {{Gender}}',
+'tog-showjumplinks' => 'Toggle option used in [[Special:Preferences]]. The "jump to" part should be the same with {{msg-mw|jumpto}} (or you can use <nowiki>{{int:jumpto}}</nowiki>). These links are shown in some of the older skins as "jump to: navigation, search" but they are hidden by default (you can enable them with this option). {{Gender}}',
 'tog-uselivepreview' => 'Toggle option used in [[Special:Preferences]]. Live preview is an experimental feature (unavailable by default) to use edit preview without loading the page again. {{Gender}}',
 'tog-forceeditsummary' => "Toggle option used in [[Special:Preferences]] to force an edit ''{{msg-mw|summary}}''. {{Gender}}",
 'tog-watchlisthideown' => "[[Special:Preferences]], tab 'Watchlist'. Offers user to hide own edits from watchlist. {{Gender}}",
