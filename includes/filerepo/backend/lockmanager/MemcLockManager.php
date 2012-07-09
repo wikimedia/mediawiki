@@ -92,7 +92,7 @@ class MemcLockManager extends QuorumLockManager {
 		$met = ini_get( 'max_execution_time' ); // this is 0 in CLI mode
 		$this->lockExpiry = $met ? 2*(int)$met : 2*3600;
 
-		$this->session = wfRandomString( 31 );
+		$this->session = wfRandomString( 32 );
 	}
 
 	/**
@@ -264,11 +264,24 @@ class MemcLockManager extends QuorumLockManager {
 	protected function acquireMutexes( MemcachedBagOStuff $memc, array $keys ) {
 		$lockedKeys = array();
 
+		// Acquire the keys in lexicographical order, to avoid deadlock problems.
+		// If P1 is waiting to acquire a key P2 has, P2 can't also be waiting for a key P1 has.
+		sort( $keys );
+
+		// Try to quickly loop to acquire the keys, but back off after a few rounds.
+		// This reduces memcached spam, especially in the rare case where a server acquires
+		// some lock keys and dies without releasing them. Lock keys expire after a few minutes.
+		$rounds = 0;
 		$start = microtime( true );
 		do {
+			if ( ( ++$rounds % 4 ) == 0 ) {
+				usleep( 1000*50 ); // 50 ms
+			}
 			foreach ( array_diff( $keys, $lockedKeys ) as $key ) {
 				if ( $memc->add( "$key:mutex", 1, 180 ) ) { // lock record
 					$lockedKeys[] = $key;
+				} else {
+					continue; // acquire in order
 				}
 			}
 		} while ( count( $lockedKeys ) < count( $keys ) && ( microtime( true ) - $start ) <= 6 );
