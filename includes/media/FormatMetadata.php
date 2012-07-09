@@ -309,7 +309,7 @@ class FormatMetadata {
 						'redeye'   => ( $val & bindec( '01000000' ) ) >> 6,
 //						'reserved' => ($val & bindec( '10000000' )) >> 7,
 					);
-
+					$flashMsgs = array();
 					# We do not need to handle unknown values since all are used.
 					foreach ( $flashDecode as $subTag => $subValue ) {
 						# We do not need any message for zeroed values.
@@ -640,7 +640,7 @@ class FormatMetadata {
 						}
 					}
 					break;
-
+					
 				case 'iimCategory':
 					switch( strtolower( $val ) ) {
 						// See pg 29 of IPTC photo
@@ -802,7 +802,7 @@ class FormatMetadata {
 					break;
 
 				case 'LanguageCode':
-					$lang = Language::fetchLanguageName( strtolower( $val ), $wgLang->getCode() );
+					$lang = Language::fetchLanguageName( strtolower( $val ), $wgLang );
 					if ($lang) {
 						$val = htmlspecialchars( $lang );
 					} else {
@@ -827,14 +827,14 @@ class FormatMetadata {
 	* This turns an array of (for example) authors into a bulleted list.
 	*
 	* This is public on the basis it might be useful outside of this class.
-	*
+	* 
 	* @param $vals Array array of values
 	* @param $type String Type of array (either lang, ul, ol).
 	* lang = language assoc array with keys being the lang code
 	* ul = unordered list, ol = ordered list
 	* type can also come from the '_type' member of $vals.
 	* @param $noHtml Boolean If to avoid returning anything resembling
-	* html. (Ugly hack for backwards compatibility with old mediawiki).
+	* html. (Ugly hack for backwards compatibility with old mediawiki). 
 	* @return String single value (in wiki-syntax).
 	*/
 	public static function flattenArray( $vals, $type = 'ul', $noHtml = false ) {
@@ -876,7 +876,7 @@ class FormatMetadata {
 				// If default is set, save it for later,
 				// as we don't know if it's equal to
 				// one of the lang codes. (In xmp
-				// you specify the language for a
+				// you specify the language for a 
 				// default property by having both
 				// a default prop, and one in the language
 				// that are identical)
@@ -939,8 +939,9 @@ class FormatMetadata {
 	 * @param $lang String lang code of item or false
 	 * @param $default Boolean if it is default value.
 	 * @param $noHtml Boolean If to avoid html (for back-compat)
-	 * @return language item (Note: despite how this looks,
-	 * 	this is treated as wikitext not html).
+	 * @throws MWException
+	 * @return string language item (Note: despite how this looks,
+	 * this is treated as wikitext not html).
 	 */
 	private static function langItem( $value, $lang, $default = false, $noHtml = false ) {
 		if ( $lang === false && $default === false) {
@@ -1019,10 +1020,8 @@ class FormatMetadata {
 	 * Format a number, convert numbers from fractions into floating point
 	 * numbers, joins arrays of numbers with commas.
 	 *
-	 * @private
-	 *
 	 * @param $num Mixed: the value to format
-	 * @param $round float|int digits to round to or false.
+	 * @param $round float|int|bool digits to round to or false.
 	 * @return mixed A floating point number or whatever we were fed
 	 */
 	static function formatNum( $num, $round = false ) {
@@ -1105,7 +1104,7 @@ class FormatMetadata {
 
 	/**
 	 * Fetch the human readable version of a news code.
-	 * A news code is an 8 digit code. The first two
+	 * A news code is an 8 digit code. The first two 
 	 * digits are a general classification, so we just
 	 * translate that.
 	 *
@@ -1113,7 +1112,7 @@ class FormatMetadata {
 	 * a string, not an int.
 	 *
 	 * @param $val String: The 8 digit news code.
-	 * @return srting The human readable form
+	 * @return string The human readable form
 	 */
 	static private function convertNewsCode( $val ) {
 		if ( !preg_match( '/^\d{8}$/D', $val ) ) {
@@ -1185,7 +1184,7 @@ class FormatMetadata {
 	 * Format a coordinate value, convert numbers from floating point
 	 * into degree minute second representation.
 	 *
-	 * @param $coord Array: degrees, minutes and seconds
+	 * @param $coord int degrees, minutes and seconds
 	 * @param $type String: latitude or longitude (for if its a NWS or E)
 	 * @return mixed A floating point number or whatever we were fed
 	 */
@@ -1195,17 +1194,14 @@ class FormatMetadata {
 			$nCoord = -$coord;
 			if ( $type === 'latitude' ) {
 				$ref = 'S';
-			}
-			elseif ( $type === 'longitude' ) {
+			} elseif ( $type === 'longitude' ) {
 				$ref = 'W';
 			}
-		}
-		else {
+		} else {
 			$nCoord = $coord;
 			if ( $type === 'latitude' ) {
 				$ref = 'N';
-			}
-			elseif ( $type === 'longitude' ) {
+			} elseif ( $type === 'longitude' ) {
 				$ref = 'E';
 			}
 		}
@@ -1276,7 +1272,7 @@ class FormatMetadata {
 				// Todo: This can potentially be multi-line.
 				// Need to check how that works in XMP.
 				$street = '<span class="extended-address">'
-					. htmlspecialchars(
+					. htmlspecialchars( 
 						$vals['CiAdrExtadr'] )
 					. '</span>';
 			}
@@ -1323,7 +1319,7 @@ class FormatMetadata {
 			}
 			if ( isset( $vals['CiAdrPcode'] ) ) {
 				$postal = '<span class="postal-code">'
-					. htmlspecialchars(
+					. htmlspecialchars( 
 						$vals['CiAdrPcode'] )
 					. '</span>';
 			}
@@ -1354,12 +1350,19 @@ class FormatMetadata {
 **/
 class FormatExif {
 	var $meta;
-	function FormatExif ( $meta ) {
+
+	/**
+	 * @param $meta array
+	 */
+	function FormatExif( $meta ) {
 		wfDeprecated(__METHOD__);
 		$this->meta = $meta;
 	}
 
-	function getFormattedData ( ) {
+	/**
+	 * @return array
+	 */
+	function getFormattedData() {
 		return FormatMetadata::getFormattedData( $this->meta );
 	}
 }
