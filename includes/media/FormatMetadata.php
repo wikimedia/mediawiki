@@ -309,7 +309,7 @@ class FormatMetadata {
 						'redeye'   => ( $val & bindec( '01000000' ) ) >> 6,
 //						'reserved' => ($val & bindec( '10000000' )) >> 7,
 					);
-	
+
 					# We do not need to handle unknown values since all are used.
 					foreach ( $flashDecode as $subTag => $subValue ) {
 						# We do not need any message for zeroed values.
@@ -640,7 +640,7 @@ class FormatMetadata {
 						}
 					}
 					break;
-					
+
 				case 'iimCategory':
 					switch( strtolower( $val ) ) {
 						// See pg 29 of IPTC photo
@@ -802,7 +802,7 @@ class FormatMetadata {
 					break;
 
 				case 'LanguageCode':
-					$lang = Language::fetchLanguageName( strtolower( $val ), $wgLang );
+					$lang = Language::fetchLanguageName( strtolower( $val ), $wgLang->getCode() );
 					if ($lang) {
 						$val = htmlspecialchars( $lang );
 					} else {
@@ -827,14 +827,14 @@ class FormatMetadata {
 	* This turns an array of (for example) authors into a bulleted list.
 	*
 	* This is public on the basis it might be useful outside of this class.
-	* 
+	*
 	* @param $vals Array array of values
 	* @param $type String Type of array (either lang, ul, ol).
 	* lang = language assoc array with keys being the lang code
 	* ul = unordered list, ol = ordered list
 	* type can also come from the '_type' member of $vals.
 	* @param $noHtml Boolean If to avoid returning anything resembling
-	* html. (Ugly hack for backwards compatibility with old mediawiki). 
+	* html. (Ugly hack for backwards compatibility with old mediawiki).
 	* @return String single value (in wiki-syntax).
 	*/
 	public static function flattenArray( $vals, $type = 'ul', $noHtml = false ) {
@@ -876,7 +876,7 @@ class FormatMetadata {
 				// If default is set, save it for later,
 				// as we don't know if it's equal to
 				// one of the lang codes. (In xmp
-				// you specify the language for a 
+				// you specify the language for a
 				// default property by having both
 				// a default prop, and one in the language
 				// that are identical)
@@ -1105,7 +1105,7 @@ class FormatMetadata {
 
 	/**
 	 * Fetch the human readable version of a news code.
-	 * A news code is an 8 digit code. The first two 
+	 * A news code is an 8 digit code. The first two
 	 * digits are a general classification, so we just
 	 * translate that.
 	 *
@@ -1276,7 +1276,7 @@ class FormatMetadata {
 				// Todo: This can potentially be multi-line.
 				// Need to check how that works in XMP.
 				$street = '<span class="extended-address">'
-					. htmlspecialchars( 
+					. htmlspecialchars(
 						$vals['CiAdrExtadr'] )
 					. '</span>';
 			}
@@ -1323,7 +1323,7 @@ class FormatMetadata {
 			}
 			if ( isset( $vals['CiAdrPcode'] ) ) {
 				$postal = '<span class="postal-code">'
-					. htmlspecialchars( 
+					. htmlspecialchars(
 						$vals['CiAdrPcode'] )
 					. '</span>';
 			}
