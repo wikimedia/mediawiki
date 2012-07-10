@@ -3521,7 +3521,7 @@ class Parser {
 	 * Static function to get a template
 	 * Can be overridden via ParserOptions::setTemplateCallback().
 	 *
-	 * @parma $title Title
+	 * @param $title  Title
 	 * @param $parser Parser
 	 *
 	 * @return array
@@ -3695,7 +3695,7 @@ class Parser {
 	 * Triple brace replacement -- used for template arguments
 	 * @private
 	 *
-	 * @param $peice array
+	 * @param $piece array
 	 * @param $frame PPFrame
 	 *
 	 * @return array

@@ -804,7 +804,7 @@ class OutputPage extends ContextSource {
 	/**
 	 * Set $mRedirectedFrom, the Title of the page which redirected us to the current page.
 	 *
-	 * param @t Title
+	 * @param $t Title
 	 */
 	public function setRedirectedFrom( $t ) {
 		$this->mRedirectedFrom = $t;
@@ -2880,7 +2880,7 @@ $templates
 	/**
 	 * Add one or more variables to be set in mw.config in JavaScript.
 	 *
-	 * @param $key {String|Array} Key or array of key/value pars.
+	 * @param $keys {String|Array} Key or array of key/value pairs.
 	 * @param $value {Mixed} [optional] Value of the configuration variable.
 	 */
 	public function addJsConfigVars( $keys, $value = null ) {

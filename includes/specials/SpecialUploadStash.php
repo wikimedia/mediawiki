@@ -273,8 +273,8 @@ class SpecialUploadStash extends UnlistedSpecialPage {
 	/**
 	 * Output HTTP response of raw content
 	 * Side effect: writes HTTP response to STDOUT.
-	 * @param String $content: content
-	 * @param String $mimeType: mime type
+	 * @param $content String content
+	 * @param $contentType String mime type
 	 * @return bool
 	 */
 	private function outputContents( $content, $contentType ) {
@@ -322,7 +322,7 @@ class SpecialUploadStash extends UnlistedSpecialPage {
 	/**
 	 * Default action when we don't have a subpage -- just show links to the uploads we have,
 	 * Also show a button to clear stashed files
-	 * @param Status : $status - the result of processRequest
+	 * @param $status [optional] Status: the result of processRequest
 	 * @return bool
 	 */
 	private function showUploads( $status = null ) {

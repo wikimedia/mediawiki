@@ -822,9 +822,7 @@ class LinksDeletionUpdate extends SqlDataUpdate {
 	/**
 	 * Constructor
 	 *
-	 * @param $title Title of the page we're updating
-	 * @param $parserOutput ParserOutput: output from a full parse of this page
-	 * @param $recursive Boolean: queue jobs for recursive updates?
+	 * @param $page WikiPage Page we are updating
 	 */
 	function __construct( WikiPage $page ) {
 		parent::__construct( );

@@ -726,6 +726,7 @@ class XmlDumpWriter {
 
 	/**
 	 * @param $timestamp string
+	 * @param $indent string Default to six spaces
 	 * @return string
 	 */
 	function writeTimestamp( $timestamp, $indent = "      " ) {
@@ -736,6 +737,7 @@ class XmlDumpWriter {
 	/**
 	 * @param $id
 	 * @param $text string
+	 * @param $indent string Default to six spaces
 	 * @return string
 	 */
 	function writeContributor( $id, $text, $indent = "      " ) {

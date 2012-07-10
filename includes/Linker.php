@@ -407,6 +407,11 @@ class Linker {
 	 * despite $query not being used.
 	 *
 	 * @param $nt Title
+	 * @param $html String [optional]
+	 * @param $query String [optional]
+	 * @param $trail String [optional]
+	 * @param $prefix String [optional]
+	 *
 	 *
 	 * @return string
 	 */
@@ -1923,10 +1928,10 @@ class Linker {
 	 * Creates a (show/hide) link for deleting revisions/log entries
 	 *
 	 * @param $query Array: query parameters to be passed to link()
-	 * @param $restricted Boolean: set to true to use a <strong> instead of a <span>
+	 * @param $restricted Boolean: set to true to use a "<strong>" instead of a "<span>"
 	 * @param $delete Boolean: set to true to use (show/hide) rather than (show)
 	 *
-	 * @return String: HTML <a> link to Special:Revisiondelete, wrapped in a
+	 * @return String: HTML "<a>" link to Special:Revisiondelete, wrapped in a
 	 * span to allow for customization of appearance with CSS
 	 */
 	public static function revDeleteLink( $query = array(), $restricted = false, $delete = true ) {

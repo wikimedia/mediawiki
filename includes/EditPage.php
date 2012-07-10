@@ -1515,7 +1515,7 @@ class EditPage {
 	 * @private
 	 * @todo document
 	 *
-	 * @parma $editText string
+	 * @param $editText string
 	 *
 	 * @return bool
 	 */
@@ -1582,7 +1582,7 @@ class EditPage {
 	/**
 	 * Check given input text against $wgSpamRegex, and return the text of the first match.
 	 *
-	 * @parma $text string
+	 * @param $text string
 	 *
 	 * @return string|bool  matching string or false
 	 */

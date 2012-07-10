@@ -364,7 +364,7 @@ class LogEventsList extends ContextSource {
 	 * @param  $row
 	 * @param Title $title
 	 * @param Array $paramArray
-	 * @param  $comment
+	 * @param String $comment Passed by reference
 	 * @return String
 	 */
 	private function logActionLinks( $row, $title, $paramArray, &$comment ) {
