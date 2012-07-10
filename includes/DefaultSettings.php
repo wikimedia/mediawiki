@@ -347,7 +347,7 @@ $wgImgAuthPublicTest = true;
  *                          container : backend container name the zone is in
  *                          directory : root path within container for the zone
  *                          url       : base URL to the root of the zone
- *                      Zones default to using <repo name>-<zone name> as the container name
+ *                      Zones default to using "<repo name>-<zone name>" as the container name
  *                      and default to using the container root as the zone's root directory.
  *                      Nesting of zone locations within other zones should be avoided.
  *   - url              Public zone URL. The 'zones' settings take precedence.
@@ -367,8 +367,8 @@ $wgImgAuthPublicTest = true;
  *                      is 0644.
  *   - directory        The local filesystem directory where public files are stored. Not used for
  *                      some remote repos.
- *   - thumbDir         The base thumbnail directory. Defaults to <directory>/thumb.
- *   - thumbUrl         The base thumbnail URL. Defaults to <url>/thumb.
+ *   - thumbDir         The base thumbnail directory. Defaults to "<directory>/thumb".
+ *   - thumbUrl         The base thumbnail URL. Defaults to "<url>/thumb".
  *
  *
  * These settings describe a foreign MediaWiki installation. They are optional, and will be ignored
@@ -533,7 +533,7 @@ $wgUploadNavigationUrl = false;
 
 /**
  * Point the upload link for missing files to an external URL, as with
- * $wgUploadNavigationUrl. The URL will get (?|&)wpDestFile=<filename>
+ * $wgUploadNavigationUrl. The URL will get "(?|&)wpDestFile=<filename>"
  * appended to it as appropriate.
  */
 $wgUploadMissingFileUrl = false;
@@ -769,7 +769,7 @@ $wgSVGMetadataCutoff = 262144;
 /**
  * MediaWiki will reject HTMLesque tags in uploaded files due to idiotic browsers which can't
  * perform basic stuff like MIME detection and which are vulnerable to further idiots uploading
- * crap files as images. When this directive is on, <title> will be allowed in files with
+ * crap files as images. When this directive is on, "<title>" will be allowed in files with
  * an "image/svg+xml" MIME type. You should leave this disabled if your web server is misconfigured
  * and doesn't send appropriate MIME types for SVG images.
  */
@@ -998,7 +998,7 @@ $wgThumbLimits = array(
 );
 
 /**
- * Default parameters for the <gallery> tag
+ * Default parameters for the "<gallery>" tag
  */
 $wgGalleryOptions = array (
 	'imagesPerRow' => 0, // Default number of images per-row in the gallery. 0 -> Adapt to screensize
@@ -2748,7 +2748,7 @@ $wgResourceLoaderValidateJS = true;
 $wgResourceLoaderValidateStaticJS = false;
 
 /**
- * If set to true, asynchronous loading of bottom-queue scripts in the <head>
+ * If set to true, asynchronous loading of bottom-queue scripts in the "<head>"
  * will be enabled. This is an experimental feature that's supposed to make
  * JavaScript load faster.
  */
@@ -3105,7 +3105,7 @@ $wgTidyInternal = extension_loaded( 'tidy' );
  */
 $wgDebugTidy = false;
 
-/** Allow raw, unchecked HTML in <html>...</html> sections.
+/** Allow raw, unchecked HTML in "<html>...</html>" sections.
  * THIS IS VERY DANGEROUS on a publicly editable site, so USE wgGroupPermissions
  * TO RESTRICT EDITING to only those that you trust
  */
@@ -5184,7 +5184,7 @@ $wgLogRestrictions = array(
  * hidden by default unless the link is clicked. Import logs will be shown by
  * default, and hidden when the link is clicked.
  *
- * A message of the form log-show-hide-<type> should be added, and will be used
+ * A message of the form log-show-hide-[type] should be added, and will be used
  * for the link text.
  */
 $wgFilterLogTypes = array(
@@ -5434,7 +5434,7 @@ $wgMaxRedirectLinksRetrieved = 500;
  */
 
 /**
- * Array of allowed values for the title=foo&action=<action> parameter. Syntax is:
+ * Array of allowed values for the "title=foo&action=<action>" parameter. Syntax is:
  *     'foo' => 'ClassName'    Load the specified class which subclasses Action
  *     'foo' => true           Load the class FooAction which subclasses Action
  *                             If something is specified in the getActionOverrides()

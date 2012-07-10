@@ -232,7 +232,7 @@ class WebInstaller_Language extends WebInstallerPage {
 	}
 
 	/**
-	 * Get a <select> for selecting languages.
+	 * Get a "<select>" for selecting languages.
 	 *
 	 * @param $name
 	 * @param $label

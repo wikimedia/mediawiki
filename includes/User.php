@@ -527,7 +527,7 @@ class User {
 	 * as 300.300.300.300 will return true because it looks like an IP
 	 * address, despite not being strictly valid.
 	 *
-	 * We match \d{1,3}\.\d{1,3}\.\d{1,3}\.xxx as an anonymous IP
+	 * We match "\d{1,3}\.\d{1,3}\.\d{1,3}\.xxx" as an anonymous IP
 	 * address because the usemod software would "cloak" anonymous IP
 	 * addresses like this, if we allowed accounts like this to be created
 	 * new users could get the old edits of these anonymous users.

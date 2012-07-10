@@ -1421,7 +1421,7 @@ class Sanitizer {
 	/**
 	 * If the named entity is defined in the HTML 4.0/XHTML 1.0 DTD,
 	 * return the UTF-8 encoding of that character. Otherwise, returns
-	 * pseudo-entity source (eg &foo;)
+	 * pseudo-entity source (eg "&foo;")
 	 *
 	 * @param $name String
 	 * @return String

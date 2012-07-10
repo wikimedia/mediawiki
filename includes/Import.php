@@ -1,6 +1,6 @@
 <?php
 /**
- * MediaWiki page data importer
+ * MediaWiki page data importer.
  *
  * Copyright © 2003,2005 Brion Vibber <brion@pobox.com>
  * http://www.mediawiki.org/
@@ -275,7 +275,7 @@ class WikiImporter {
 	}
 
 	/**
-	 * Notify the callback function when a new <page> is reached.
+	 * Notify the callback function when a new "<page>" is reached.
 	 * @param $title Title
 	 */
 	function pageCallback( $title ) {
@@ -285,7 +285,7 @@ class WikiImporter {
 	}
 
 	/**
-	 * Notify the callback function when a </page> is closed.
+	 * Notify the callback function when a "</page>" is closed.
 	 * @param $title Title
 	 * @param $origTitle Title
 	 * @param $revCount Integer

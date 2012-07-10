@@ -108,7 +108,7 @@ class ChangesList extends ContextSource {
 	}
 
 	/**
-	 * Sets the list to use a <li class="watchlist-(namespace)-(page)"> tag
+	 * Sets the list to use a "<li class='watchlist-(namespace)-(page)'>" tag
 	 * @param $value Boolean
 	 */
 	public function setWatchlistDivs( $value = true ) {
@@ -145,7 +145,7 @@ class ChangesList extends ContextSource {
 	}
 
 	/**
-	 * Provide the <abbr> element appropriate to a given abbreviated flag,
+	 * Provide the "<abbr>" element appropriate to a given abbreviated flag,
 	 * namely the flag indicating a new page, a minor edit, a bot edit, or an
 	 * unpatrolled edit.  By default in English it will contain "N", "m", "b",
 	 * "!" respectively, plus it will have an appropriate title and class.

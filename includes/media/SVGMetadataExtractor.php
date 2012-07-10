@@ -255,7 +255,7 @@ class SVGReader {
 	/**
 	 * Parse the attributes of an SVG element
 	 *
-	 * The parser has to be in the start element of <svg>
+	 * The parser has to be in the start element of "<svg>"
 	 */
 	private function handleSVGAttribs( ) {
 		$defaultWidth = self::DEFAULT_WIDTH;

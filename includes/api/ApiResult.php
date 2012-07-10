@@ -165,7 +165,7 @@ class ApiResult extends ApiBase {
 	 * @param $value Mixed
 	 * @param $subElemName string when present, content element is created
 	 *  as a sub item of $arr. Use this parameter to create elements in
-	 *  format <elem>text</elem> without attributes
+	 *  format "<elem>text</elem>" without attributes.
 	 */
 	public static function setContent( &$arr, $value, $subElemName = null ) {
 		if ( is_array( $value ) ) {

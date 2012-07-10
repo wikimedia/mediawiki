@@ -95,7 +95,7 @@ class LegacyTemplate extends BaseTemplate {
 	}
 
 	/**
-	 * This will be called immediately after the <body> tag.  Split into
+	 * This will be called immediately after the "<body>" tag.  Split into
 	 * two functions to make it easier to subclass.
 	 * @return string
 	 */
@@ -159,8 +159,8 @@ class LegacyTemplate extends BaseTemplate {
 	}
 
 	/**
-	 * This gets called shortly before the </body> tag.
-	 * @return String HTML to be put before </body>
+	 * This gets called shortly before the "</body>" tag.
+	 * @return String HTML to be put before "</body>"
 	 */
 	function afterContent() {
 		return $this->doAfterContent();

@@ -37,8 +37,9 @@
  * Outside callers can assume that all backends will have these functions.
  *
  * All "storage paths" are of the format "mwstore://<backend>/<container>/<path>".
- * The <path> portion is a relative path that uses UNIX file system (FS) notation,
- * though any particular backend may not actually be using a local filesystem.
+ * The "<path>" portion is a relative path that uses UNIX file system (FS)
+ * notation, though any particular backend may not actually be using a local
+ * filesystem.
  * Therefore, the relative paths are only virtual.
  *
  * Backend contents are stored under wiki-specific container names by default.

@@ -2063,7 +2063,7 @@ function wfCheckLimits( $deflimit = 50, $optionname = 'rclimit' ) {
  * Escapes the given text so that it may be output using addWikiText()
  * without any linking, formatting, etc. making its way through. This
  * is achieved by substituting certain characters with HTML entities.
- * As required by the callers, <nowiki> is not used.
+ * As required by the callers, "<nowiki>" is not used.
  *
  * @param $text String: text to be escaped
  * @return String
