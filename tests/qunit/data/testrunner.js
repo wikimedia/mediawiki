@@ -147,6 +147,24 @@ QUnit.newMwEnvironment = ( function () {
 	};
 }() );
 
+// $.when stops as soon as one fails, which makes sense in most
+// practical scenarios, but not in a unit test where we really do
+// need to wait until all of them are finished.
+QUnit.whenPromisesComplete = function () {
+	var altPromises = [];
+
+	$.each( arguments, function ( i, arg ) {
+		var alt = $.Deferred();
+		altPromises.push( alt );
+
+		// Whether this one fails or not, forwards it to
+		// the 'done' (resolve) callback of the alternative promise.
+		arg.always( alt.resolve );
+	});
+
+	return $.when.apply( $, altPromises );
+};
+
 /**
  * Add-on assertion helpers
  */
