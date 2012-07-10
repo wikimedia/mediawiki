@@ -1362,11 +1362,11 @@ class OutputPage extends ContextSource {
 	 * Set the timestamp of the revision which will be displayed. This is used
 	 * to avoid a extra DB call in Skin::lastModified().
 	 *
-	 * @param $revid Mixed: string, or null
+	 * @param $timestamp Mixed: string, or null
 	 * @return Mixed: previous value
 	 */
-	public function setRevisionTimestamp( $timestmap ) {
-		return wfSetVar( $this->mRevisionTimestamp, $timestmap );
+	public function setRevisionTimestamp( $timestamp) {
+		return wfSetVar( $this->mRevisionTimestamp, $timestamp );
 	}
 
 	/**
