@@ -1989,7 +1989,7 @@ class Title {
 	 * @return Array list of errors
 	 */
 	private function checkReadPermissions( $action, $user, $errors, $doExpensiveQueries, $short ) {
-		global $wgWhitelistRead, $wgGroupPermissions, $wgRevokePermissions;
+		global $wgWhitelistRead, $wgWhitelistReadRegexp, $wgGroupPermissions, $wgRevokePermissions;
 		static $useShortcut = null;
 
 		# Initialize the $useShortcut boolean, to determine if we can skip quite a bit of code below
@@ -2022,40 +2022,53 @@ class Title {
 		} elseif ( $user->isAllowed( 'read' ) ) {
 			# If the user is allowed to read pages, he is allowed to read all pages
 			$whitelisted = true;
-		} elseif ( $this->isSpecial( 'Userlogin' )
-			|| $this->isSpecial( 'ChangePassword' )
-			|| $this->isSpecial( 'PasswordReset' )
-		) {
-			# Always grant access to the login page.
-			# Even anons need to be able to log in.
-			$whitelisted = true;
-		} elseif ( is_array( $wgWhitelistRead ) && count( $wgWhitelistRead ) ) {
+                } elseif ( $this->isSpecial( 'Userlogin' )
+                        || $this->isSpecial( 'ChangePassword' )
+                        || $this->isSpecial( 'PasswordReset' )
+                ) {
+                        # Always grant access to the login page.
+                        # Even anons need to be able to log in.
+                        $whitelisted = true;
+                } elseif ( is_array( $wgWhitelistRead ) && count( $wgWhitelistRead ) ) {
 			# Time to check the whitelist
-			# Only do these checks is there's something to check against
+                        # Only do these checks is there's something to check against
 			$name = $this->getPrefixedText();
 			$dbName = $this->getPrefixedDBKey();
-
-			// Check for explicit whitelisting with and without underscores
-			if ( in_array( $name, $wgWhitelistRead, true ) || in_array( $dbName, $wgWhitelistRead, true ) ) {
-				$whitelisted = true;
-			} elseif ( $this->getNamespace() == NS_MAIN ) {
-				# Old settings might have the title prefixed with
-				# a colon for main-namespace pages
-				if ( in_array( ':' . $name, $wgWhitelistRead ) ) {
-					$whitelisted = true;
-				}
-			} elseif ( $this->isSpecialPage() ) {
-				# If it's a special page, ditch the subpage bit and check again
-				$name = $this->getDBkey();
-				list( $name, /* $subpage */ ) = SpecialPageFactory::resolveAlias( $name );
-				if ( $name !== false ) {
-					$pure = SpecialPage::getTitleFor( $name )->getPrefixedText();
-					if ( in_array( $pure, $wgWhitelistRead, true ) ) {
-						$whitelisted = true;
-					}
-				}
-			}
-		}
+                        // Check for explicit whitelisting with and without underscores
+                        if ( in_array( $name, $wgWhitelistRead, true ) || in_array( $dbName, $wgWhitelistRead, true ) ) {
+                                $whitelisted = true;
+                        } elseif ( $this->getNamespace() == NS_MAIN ) {
+                                # Old settings might have the title prefixed with
+                                # a colon for main-namespace pages
+                                if ( in_array( ':' . $name, $wgWhitelistRead ) ) {
+                                        $whitelisted = true;
+                                }
+                        } elseif ( $this->isSpecialPage() ) {
+                                # If it's a special page, ditch the subpage bit and check again
+                                $name = $this->getDBkey();
+                                list( $name, /* $subpage */ ) = SpecialPageFactory::resolveAlias( $name );
+                                if ( $name !== false ) {
+                                        $pure = SpecialPage::getTitleFor( $name )->getPrefixedText();
+                                        if ( in_array( $pure, $wgWhitelistRead, true ) ) {
+                                                $whitelisted = true;
+                                        }
+                                }
+                        }
+                } elseif ( is_array( $wgWhitelistReadRegexp ) && count( $wgWhitelistReadRegexp ) ) {
+			$name = $this->getPrefixedText();
+			$dbName = $this->getPrefixedDBKey();
+                        // Check for regex whitelisting
+                        foreach ( $wgWhitelistReadRegexp as $listItem ) {
+                                // If the listItem starts and ends with forward slashes, we assume
+                                // it is intended to be a regex match
+                                if ( preg_match( '/^\/.*\/[ui]*$/', $listItem ) ) {
+                                        if ( preg_match( $listItem.'u' , $name )
+                                        || preg_match( $listItem.'u' , $dbName ) ) {
+                                                $whitelisted = true;
+                                        }
+                                }
+                        }
+                }
 
 		if ( !$whitelisted ) {
 			# If the title is not whitelisted, give extensions a chance to do so...
