@@ -127,12 +127,15 @@ class CopyFileBackend extends Maintenance {
 				'src' => $fsFile->getPath(), 'dst' => $dstPath, 'overwrite' => 1 );
 		}
 
+		$t_start = microtime( true );
 		$status = $dst->doOperations( $ops, array( 'nonJournaled' => 1 ) );
+		$ellapsed_ms = floor( ( microtime( true ) - $t_start ) * 1000 );
 		if ( !$status->isOK() ) {
 			$this->error( print_r( $status->getErrorsArray(), true ) );
 			$this->error( "Could not copy file batch.", 1 ); // die
 		} else {
-			$this->output( "Copied these file(s):\n" . implode( "\n", $srcPathsRel ) . "\n\n" );
+			$this->output( "\nCopied these file(s) [{$ellapsed_ms}ms]:\n" .
+				implode( "\n", $srcPathsRel ) . "\n\n" );
 		}
 	}
 
