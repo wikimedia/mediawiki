@@ -42,6 +42,7 @@ class CopyFileBackend extends Maintenance {
 		$this->addOption( 'dst', 'Backend where files should be copied to', true, true );
 		$this->addOption( 'containers', 'Pipe separated list of containers', true, true );
 		$this->addOption( 'subdir', 'Only do items in this child directory', false, true );
+		$this->addOption( 'ratefile', 'File to check periodically for batch size.', false, true );
 		$this->setBatchSize( 50 );
 	}
 
@@ -50,6 +51,8 @@ class CopyFileBackend extends Maintenance {
 		$dst = FileBackendGroup::singleton()->get( $this->getOption( 'dst' ) );
 		$containers = explode( '|', $this->getOption( 'containers' ) );
 		$subDir = $this->getOption( rtrim( 'subdir', '/' ), '' );
+
+		$rateFile = $this->getOption( 'ratefile' );
 
 		$count = 0;
 		foreach ( $containers as $container ) {
@@ -69,6 +72,11 @@ class CopyFileBackend extends Maintenance {
 
 			$batchPaths = array();
 			foreach ( $srcPathsRel as $srcPathRel ) {
+				// Check up on the rate file periodically to adjust the concurrency
+				if ( $rateFile && ( !$count || ( $count % 500 ) == 0 ) ) {
+					$this->mBatchSize = max( 1, (int)file_get_contents( $rateFile ) );
+					$this->output( "Batch size is now {$this->mBatchSize}.\n" );
+				}
 				$batchPaths[$srcPathRel] = 1; // remove duplicates
 				if ( count( $batchPaths ) >= $this->mBatchSize ) {
 					$this->copyFileBatch( array_keys( $batchPaths ), $backendRel, $src, $dst );
