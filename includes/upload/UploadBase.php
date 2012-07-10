@@ -22,7 +22,7 @@
  */
 
 /**
- * @defgroup Upload
+ * @defgroup Upload Upload related
  */
 
 /**

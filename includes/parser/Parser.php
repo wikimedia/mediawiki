@@ -31,36 +31,38 @@
  * transformation of that wiki markup it into XHTML output / markup
  * (which in turn the browser understands, and can display).
  *
- * <pre>
- * There are five main entry points into the Parser class:
- * parse()
+ * There are seven main entry points into the Parser class:
+ *
+ * - Parser::parse()
  *     produces HTML output
- * preSaveTransform().
+ * - Parser::preSaveTransform().
  *     produces altered wiki markup.
- * preprocess()
+ * - Parser::preprocess()
  *     removes HTML comments and expands templates
- * cleanSig() / cleanSigInSig()
+ * - Parser::cleanSig() and Parser::cleanSigInSig()
  *     Cleans a signature before saving it to preferences
- * getSection()
+ * - Parser::getSection()
  *     Return the content of a section from an article for section editing
- * replaceSection()
+ * - Parser::replaceSection()
  *     Replaces a section by number inside an article
- * getPreloadText()
+ * - Parser::getPreloadText()
  *     Removes <noinclude> sections, and <includeonly> tags.
  *
  * Globals used:
  *    object: $wgContLang
  *
- * NOT $wgUser or $wgTitle or $wgRequest or $wgLang. Keep them away!
+ * @warning $wgUser or $wgTitle or $wgRequest or $wgLang. Keep them away!
  *
- * settings:
- *  $wgUseDynamicDates*, $wgInterwikiMagic*,
- *  $wgNamespacesWithSubpages, $wgAllowExternalImages*,
- *  $wgLocaltimezone, $wgAllowSpecialInclusion*,
- *  $wgMaxArticleSize*
+ * @par Settings:
+ * $wgLocaltimezone
+ * $wgNamespacesWithSubpages
  *
- *  * only within ParserOptions
- * </pre>
+ * @par Settings only within ParserOptions:
+ * $wgAllowExternalImages
+ * $wgAllowSpecialInclusion
+ * $wgInterwikiMagic
+ * $wgMaxArticleSize
+ * $wgUseDynamicDates
  *
  * @ingroup Parser
  */
