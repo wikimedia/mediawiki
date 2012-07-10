@@ -184,11 +184,6 @@ class FeedItem {
  * @ingroup Feed
  */
 class ChannelFeed extends FeedItem {
-	/**#@+
-	 * Abstract function, override!
-	 * @abstract
-	 */
-
 	/**
 	 * Generate Header of the feed
 	 */
