@@ -509,11 +509,11 @@ abstract class FileBackend {
 	 * The target path should refer to a file that is already locked or
 	 * otherwise safe from modification from other processes. Normally,
 	 * the file will be a new temp file, which should be adequate.
-	 * $params include:
-	 *     srcs : ordered source storage paths (e.g. chunk1, chunk2, ...)
-	 *     dst  : file system path to 0-byte temp file
 	 *
 	 * @param $params Array Operation parameters
+	 * $params include:
+	 *   - srcs : ordered source storage paths (e.g. chunk1, chunk2, ...)
+	 *   - dst  : file system path to 0-byte temp file
 	 * @return Status
 	 */
 	abstract public function concatenate( array $params );
@@ -523,10 +523,9 @@ abstract class FileBackend {
 	 * This will create any required containers and parent directories.
 	 * Backends using key/value stores only need to create the container.
 	 *
-	 * $params include:
-	 *     dir : storage directory
-	 *
 	 * @param $params Array
+	 * $params include:
+	 *   - dir : storage directory
 	 * @return Status
 	 */
 	final public function prepare( array $params ) {
@@ -548,12 +547,11 @@ abstract class FileBackend {
 	 * access to the auth user that represents end-users in web request.
 	 * This is not guaranteed to actually do anything.
 	 *
-	 * $params include:
-	 *     dir       : storage directory
-	 *     noAccess  : try to deny file access
-	 *     noListing : try to deny file listing
-	 *
 	 * @param $params Array
+	 * $params include:
+	 *   - dir       : storage directory
+	 *   - noAccess  : try to deny file access
+	 *   - noListing : try to deny file listing
 	 * @return Status
 	 */
 	final public function secure( array $params ) {
@@ -577,11 +575,10 @@ abstract class FileBackend {
 	 * Backends using key/value stores may do nothing unless the directory
 	 * is that of an empty container, in which case it should be deleted.
 	 *
+	 * @param $params Array
 	 * $params include:
 	 *     dir       : storage directory
 	 *     recursive : recursively delete empty subdirectories first (@since 1.20)
-	 *
-	 * @param $params Array
 	 * @return Status
 	 */
 	final public function clean( array $params ) {
@@ -600,11 +597,10 @@ abstract class FileBackend {
 	 * Check if a file exists at a storage path in the backend.
 	 * This returns false if only a directory exists at the path.
 	 *
+	 * @param $params Array
 	 * $params include:
 	 *     src    : source storage path
 	 *     latest : use the latest available data
-	 *
-	 * @param $params Array
 	 * @return bool|null Returns null on failure
 	 */
 	abstract public function fileExists( array $params );
@@ -612,11 +608,10 @@ abstract class FileBackend {
 	/**
 	 * Get the last-modified timestamp of the file at a storage path.
 	 *
+	 * @param $params Array
 	 * $params include:
 	 *     src    : source storage path
 	 *     latest : use the latest available data
-	 *
-	 * @param $params Array
 	 * @return string|bool TS_MW timestamp or false on failure
 	 */
 	abstract public function getFileTimestamp( array $params );
@@ -625,11 +620,10 @@ abstract class FileBackend {
 	 * Get the contents of a file at a storage path in the backend.
 	 * This should be avoided for potentially large files.
 	 *
+	 * @param $params Array
 	 * $params include:
 	 *     src    : source storage path
 	 *     latest : use the latest available data
-	 *
-	 * @param $params Array
 	 * @return string|bool Returns false on failure
 	 */
 	abstract public function getFileContents( array $params );
@@ -637,11 +631,10 @@ abstract class FileBackend {
 	/**
 	 * Get the size (bytes) of a file at a storage path in the backend.
 	 *
+	 * @param $params Array
 	 * $params include:
 	 *     src    : source storage path
 	 *     latest : use the latest available data
-	 *
-	 * @param $params Array
 	 * @return integer|bool Returns false on failure
 	 */
 	abstract public function getFileSize( array $params );
@@ -654,11 +647,10 @@ abstract class FileBackend {
 	 *     size   : the file size (bytes)
 	 * Additional values may be included for internal use only.
 	 *
+	 * @param $params Array
 	 * $params include:
 	 *     src    : source storage path
 	 *     latest : use the latest available data
-	 *
-	 * @param $params Array
 	 * @return Array|bool|null Returns null on failure
 	 */
 	abstract public function getFileStat( array $params );
@@ -666,11 +658,10 @@ abstract class FileBackend {
 	/**
 	 * Get a SHA-1 hash of the file at a storage path in the backend.
 	 *
+	 * @param $params Array
 	 * $params include:
 	 *     src    : source storage path
 	 *     latest : use the latest available data
-	 *
-	 * @param $params Array
 	 * @return string|bool Hash string or false on failure
 	 */
 	abstract public function getFileSha1Base36( array $params );
@@ -679,11 +670,10 @@ abstract class FileBackend {
 	 * Get the properties of the file at a storage path in the backend.
 	 * Returns FSFile::placeholderProps() on failure.
 	 *
+	 * @param $params Array
 	 * $params include:
 	 *     src    : source storage path
 	 *     latest : use the latest available data
-	 *
-	 * @param $params Array
 	 * @return Array
 	 */
 	abstract public function getFileProps( array $params );
@@ -695,12 +685,11 @@ abstract class FileBackend {
 	 * must be sent if streaming began, while none should be sent otherwise.
 	 * Implementations should flush the output buffer before sending data.
 	 *
+	 * @param $params Array
 	 * $params include:
 	 *     src     : source storage path
 	 *     headers : additional HTTP headers to send on success
 	 *     latest  : use the latest available data
-	 *
-	 * @param $params Array
 	 * @return Status
 	 */
 	abstract public function streamFile( array $params );
@@ -718,11 +707,10 @@ abstract class FileBackend {
 	 * In that later case, there are copies of the file that must stay in sync.
 	 * Additionally, further calls to this function may return the same file.
 	 *
+	 * @param $params Array
 	 * $params include:
 	 *     src    : source storage path
 	 *     latest : use the latest available data
-	 *
-	 * @param $params Array
 	 * @return FSFile|null Returns null on failure
 	 */
 	abstract public function getLocalReference( array $params );
@@ -732,11 +720,10 @@ abstract class FileBackend {
 	 * The temporary copy will have the same file extension as the source.
 	 * Temporary files may be purged when the file object falls out of scope.
 	 *
+	 * @param $params Array
 	 * $params include:
 	 *     src    : source storage path
 	 *     latest : use the latest available data
-	 *
-	 * @param $params Array
 	 * @return TempFSFile|null Returns null on failure
 	 */
 	abstract public function getLocalCopy( array $params );
@@ -748,10 +735,9 @@ abstract class FileBackend {
 	 *
 	 * Storage backends with eventual consistency might return stale data.
 	 *
+	 * @param $params array
 	 * $params include:
 	 *     dir : storage directory
-	 *
-	 * @param $params array
 	 * @return bool|null Returns null on failure
 	 * @since 1.20
 	 */
@@ -767,11 +753,10 @@ abstract class FileBackend {
 	 *
 	 * Storage backends with eventual consistency might return stale data.
 	 *
+	 * @param $params array
 	 * $params include:
 	 *     dir     : storage directory
 	 *     topOnly : only return direct child dirs of the directory
-	 *
-	 * @param $params array
 	 * @return Traversable|Array|null Returns null on failure
 	 * @since 1.20
 	 */
@@ -783,10 +768,9 @@ abstract class FileBackend {
 	 *
 	 * Storage backends with eventual consistency might return stale data.
 	 *
+	 * @param $params array
 	 * $params include:
 	 *     dir : storage directory
-	 *
-	 * @param $params array
 	 * @return Traversable|Array|null Returns null on failure
 	 * @since 1.20
 	 */
@@ -804,11 +788,10 @@ abstract class FileBackend {
 	 *
 	 * Storage backends with eventual consistency might return stale data.
 	 *
+	 * @param $params array
 	 * $params include:
 	 *     dir     : storage directory
 	 *     topOnly : only return direct child files of the directory (@since 1.20)
-	 *
-	 * @param $params array
 	 * @return Traversable|Array|null Returns null on failure
 	 */
 	abstract public function getFileList( array $params );
@@ -819,10 +802,9 @@ abstract class FileBackend {
 	 *
 	 * Storage backends with eventual consistency might return stale data.
 	 *
+	 * @param $params array
 	 * $params include:
 	 *     dir : storage directory
-	 *
-	 * @param $params array
 	 * @return Traversable|Array|null Returns null on failure
 	 * @since 1.20
 	 */
