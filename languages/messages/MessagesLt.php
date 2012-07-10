@@ -906,10 +906,10 @@ Jūs galite grįžti ir redaguoti jau esantį puslapį, arba [[Special:UserLogin
 'permissionserrorstext-withaction' => 'Jūs neturite leidimo $2 dėl {{PLURAL:$1|šios priežasties|šių priežasčių}}:',
 'recreate-moveddeleted-warn' => "'''Dėmesio: Jūs atkuriate puslapį, kuris anksčiau buvo ištrintas.'''
 
-Jūs turite nuspręsti, ar reikėtų toliau redaguoti šį puslapį.
-Dėl patogumo čia pateikta šio puslapio šalinimų ir perkėlimų istorija:",
+Turėtumėte nuspręsti, ar reikėtų toliau redaguoti šį puslapį.
+Jūsų patogumui čia pateikiamas šio puslapio šalinimų ir perkėlimų sąrašas:",
 'moveddeleted-notice' => 'Šis puslapis buvo ištrintas.
-Žemiau pateikta puslapio šalinimų ir pervadinimų istorija.',
+Žemiau pateikiamas puslapio šalinimų ir pervadinimų sąrašas.',
 'log-fulllog' => 'Rodyti visą istoriją',
 'edit-hook-aborted' => 'Keitimas nutrauktas užlūžimo.
 Tam nėra paaiškinimo.',
@@ -1026,8 +1026,8 @@ Kaip administratorius, jūs galite ją pamatyti; daugiau detalių gali būti [{{
 'revdelete-show-file-submit' => 'Taip',
 'revdelete-selected' => "'''{{PLURAL:$2|Pasirinkta [[:$1]] versija|Pasirinktos [[:$1]] versijos}}:'''",
 'logdelete-selected' => "'''{{PLURAL:$1|Pasirinktas istorijos įvykis|Pasirinkti istorijos įvykiai}}:'''",
-'revdelete-text' => "'''Ištrintos versijos bei įvykiai vistiek dar bus rodomi puslapio istorijoje ir specialiųjų veiksmų istorijoje, bet jų turinio dalys nebus viešai prieinamos.'''
-Kiti administratoriai iš {{SITENAME}} vistiek galės pasiekti paslėptą turinį ir galės jį atkurti vėl per tą pačią sąsają, nebent yra nustatyti papildomi apribojimai.",
+'revdelete-text' => "'''Ištrintos versijos bei įvykiai vis tiek dar bus rodomi puslapio istorijoje ir specialiųjų veiksmų sąraše, bet jų turinio dalys nebus viešai prieinamos.'''
+Kiti administratoriai iš {{SITENAME}} vis tiek galės pasiekti paslėptą turinį ir galės jį atkurti per tą pačią sąsają, nebent yra nustatyti papildomi apribojimai.",
 'revdelete-confirm' => 'Prašome patvirtinti, kad jūs tai ketinate padaryti, kad jūs suprantate padarinius, ir kad jūs tai darote pagal [[{{MediaWiki:Policy-url}}|politiką]].',
 'revdelete-suppress-text' => "Ištrynimas turėtų būti taikomas '''tik''' šiais atvejais:
 * Netinkama asmeninė informacija
@@ -1078,7 +1078,7 @@ Prašome patikrinti sąrašus.',
 'revdelete-offender' => 'Versijos autorius:',
 
 # Suppression log
-'suppressionlog' => 'Trynimo istorija',
+'suppressionlog' => 'Trynimo sąrašas',
 'suppressionlogtext' => 'Žemiau yra trynimų ir blokavimų sąrašas, įtraukiant turinį, paslėptą nuo administratorių.
 Žiūrėkite [[Special:BlockList|blokavimų sąrašą]], kad rastumėte dabar veikiančius draudimus ir blokavimus.',
 
@@ -1107,7 +1107,7 @@ Prašome patikrinti sąrašus.',
 'mergehistory-reason' => 'Priežastis:',
 
 # Merge log
-'mergelog' => 'Sujungimų istorija',
+'mergelog' => 'Sujungimų sąrašas',
 'pagemerge-logentry' => 'sujungė [[$1]] su [[$2]] (versijos iki $3)',
 'revertmerge' => 'Atskirti',
 'mergelogpagetext' => 'Žemiau yra paskiausių vieno su kitu puslapių sujungimų sąrašas.',
@@ -1227,7 +1227,7 @@ Prašome patikrinti sąrašus.',
 'prefs-rendering' => 'Išvaizda',
 'saveprefs' => 'Išsaugoti',
 'resetprefs' => 'Išvalyti neišsaugotus pakeitimus',
-'restoreprefs' => 'Atstatyti visus numatytuosius nustatymus',
+'restoreprefs' => 'Grąžinti visus numatytuosius nustatymus',
 'prefs-editing' => 'Redagavimas',
 'prefs-edit-boxsize' => 'Redagavimo lango dydis.',
 'rows' => 'Eilutės:',
@@ -1239,7 +1239,7 @@ Prašome patikrinti sąrašus.',
 'recentchangesdays' => 'Rodomos dienos paskutinių keitimų sąraše:',
 'recentchangesdays-max' => '(daugiausiai $1 {{PLURAL:$1|diena|dienos|dienų}})',
 'recentchangescount' => 'Numatytasis rodomas keitimų skaičius:',
-'prefs-help-recentchangescount' => 'Į tai įeina naujausi keitimai, puslapių istorijos ir specialiųjų veiksmų istorijos.',
+'prefs-help-recentchangescount' => 'Į tai įeina naujausi keitimai, puslapių istorijos ir specialiųjų veiksmų sąrašai.',
 'prefs-help-watchlist-token' => 'Įrašius slaptą raktą į šį laukelį, bus sugeneruotas RSS srautas su jūsų stebimųjų sąrašu.
 Bet kas, žinantis šio lauko raktą, galės matyti jūsų stebimų sąrašą, todėl pasirinkite saugią reikšmę.
 Galite panaudoti šią atsitiktinai sugeneruotą reikšmę: $1',
@@ -1270,7 +1270,7 @@ Galite panaudoti šią atsitiktinai sugeneruotą reikšmę: $1',
 'prefs-custom-css' => 'Asmeninis CSS',
 'prefs-custom-js' => 'Asmeninis JavaSript',
 'prefs-common-css-js' => 'Bendras CSS/JS visoms išvaizdoms:',
-'prefs-reset-intro' => 'Jūs galite pasinaudoti šiuo puslapiu atstatyti jūsų nustatymus į svetainės numatytuosius.
+'prefs-reset-intro' => 'Jūs galite pasinaudoti šiuo puslapiu, kad grąžintumėte savo nustatymus į svetainės numatytuosius.
 Tai nebeatšaukiama.',
 'prefs-emailconfirm-label' => 'El. pašto patvirtinimas:',
 'prefs-textboxsize' => 'Redagavimo lango dydis',
@@ -1392,7 +1392,7 @@ teisės",
 'right-delete' => 'Trinti puslapius',
 'right-bigdelete' => 'Ištrinti puslapius su ilga istorija',
 'right-deleterevision' => 'Ištrinti ir atkurti specifines puslapių versijas',
-'right-deletedhistory' => 'Žiūrėti ištrintų puslapių istoriją nerodant susieto teksto',
+'right-deletedhistory' => 'Žiūrėti ištrintų puslapių istoriją, nerodant susieto teksto',
 'right-deletedtext' => 'Peržiūrėti ištrintą tekstą ir skirtumus tarp ištrintų puslapio versijų.',
 'right-browsearchive' => 'Ieškoti ištrintų puslapių',
 'right-undelete' => 'Atkurti puslapį',
@@ -1428,7 +1428,7 @@ teisės",
 'right-passwordreset' => 'Peržiūrėti slaptažodžio pakeitimo e-mail laiškus',
 
 # User rights log
-'rightslog' => 'Naudotojų teisių istorija',
+'rightslog' => 'Naudotojų teisių pakeitimai',
 'rightslogtext' => 'Pateikiamas naudotojų teisių pakeitimų sąrašas.',
 'rightslogentry' => 'pakeista $1 grupės narystė iš $2 į $3',
 'rightslogentry-autopromote' => 'buvo automatiškai paaukštintas iš $2 į $3',
@@ -1455,7 +1455,7 @@ teisės",
 'action-deletedhistory' => 'žiūrėti šio ištrinto puslapio istoriją',
 'action-browsearchive' => 'ieškoti ištrintų puslapių',
 'action-undelete' => 'atkurti šį puslapį',
-'action-suppressrevision' => 'peržiūrėti ir atstatyti šią paslėptą reviziją',
+'action-suppressrevision' => 'peržiūrėti ir atkurti šią paslėptą versiją',
 'action-suppressionlog' => 'peržiūrėti šį privatų registrą',
 'action-block' => 'neleisti šiam naudotojui redaguoti',
 'action-protect' => 'pakeisti apsaugos lygius šiam puslapiui',
@@ -1531,8 +1531,8 @@ Puslapiai iš jūsų [[Special:Watchlist|stebimųjų sąrašo]] yra '''paryškin
 'upload-recreate-warning' => "'''Dėmėsio: Failas šiuo pavadinimu buvo ištrintas arba pervadintas.'''
 
 Jūsų patogumui pateiktas įrašas apie šio puslapio trynimą ar pervadinimą:",
-'uploadtext' => "Naudokitės žemiau pateikta forma failų įkėlimui.
-Norėdami peržiūrėti ar ieškoti anksčiau įkeltų paveikslėlių, eikite į [[Special:FileList|įkeltų failų sąrašą]], įkėlimai yra registruojami [[Special:Log/upload|įkėlimų istorijoje]], trynimai — [[Special:Log/delete|trynimų istorijoje]].
+'uploadtext' => "Kad įkeltumėte failą, naudokitės žemiau pateikta forma.
+Norėdami peržiūrėti ar ieškoti anksčiau įkeltų paveikslėlių, eikite į [[Special:FileList|įkeltų failų sąrašą]], įkėlimai yra registruojami [[Special:Log/upload|įkėlimų sąraše]], trynimai — [[Special:Log/delete|trynimų sąraše]].
 
 Norėdami panaudoti įkeltą failą puslapyje, naudokite tokias nuorodas:
 * '''<tt><nowiki>[[</nowiki>{{ns:file}}<nowiki>:Failas.jpg]]</nowiki></tt>''' norėdami naudoti pilną failo versiją
@@ -1541,9 +1541,10 @@ Norėdami panaudoti įkeltą failą puslapyje, naudokite tokias nuorodas:
 'upload-permitted' => 'Leidžiami failų tipai: $1.',
 'upload-preferred' => 'Pageidautini failų tipai: $1.',
 'upload-prohibited' => 'Uždrausti failų tipai: $1.',
-'uploadlog' => 'įkėlimų istorija',
-'uploadlogpage' => 'Įkėlimų istorija',
-'uploadlogpagetext' => 'Žemiau pateikiamas paskutinių failų įkėlimų istorija.',
+'uploadlog' => 'įkėlimų sąrašas',
+'uploadlogpage' => 'Įkėlimų sąrašas',
+'uploadlogpagetext' => 'Žemiau pateikiamas paskutinių failų įkėlimų sąrašas.
+Taip pat galite peržvelgti [[Special:NewFiles|naujausių failų galeriją]].',
 'filename' => 'Failo vardas',
 'filedesc' => 'Aprašymas',
 'fileuploadsummary' => 'Komentaras:',
@@ -1737,8 +1738,8 @@ Dėl saugumo, img_auth.php yra išjungtas.',
 'upload_source_file' => ' (failas jūsų kompiuteryje)',
 
 # Special:ListFiles
-'listfiles-summary' => 'This special page shows all uploaded files.
-When filtered by user, only files where that user uploaded the most recent version of the file are shown.',
+'listfiles-summary' => 'Šiame specialiame puslapyje rodomi visi įkelti failai.
+Kai sąrašas susiaurinamas pagal naudotoją, rodomi tik tie failai, kurių naujausią versiją jis yra įkėlęs.',
 'listfiles_search_for' => 'Ieškoti failo pavadinimo:',
 'imgfile' => 'failas',
 'listfiles' => 'Failų sąrašas',
@@ -1968,12 +1969,13 @@ Primename, kad kitos svetainės gali turėti tiesioginę nuorodą į failą, bet
 # Special:Log
 'specialloguserlabel' => 'Naudotojas:',
 'speciallogtitlelabel' => 'Pavadinimas:',
-'log' => 'Specialiųjų veiksmų istorija',
-'all-logs-page' => 'Visos viešosios istorijos',
-'alllogstext' => 'Bendras visų galimų „{{SITENAME}}“ specialiųjų veiksmų istorijų rodinys.
-Galima sumažinti rezultatų skaičių patikslinant veiksmo rūšį, naudotoją ar susijusį puslapį.',
-'logempty' => 'Istorijoje nėra jokių atitinkančių įvykių.',
+'log' => 'Specialiųjų veiksmų sąrašas',
+'all-logs-page' => 'Visi viešieji sąrašai',
+'alllogstext' => 'Bendrai pateikiamas visų galimų „{{SITENAME}}“ specialiųjų veiksmų sąrašas.
+Galima sumažinti rezultatų skaičių, patikslinant veiksmo rūšį, naudotoją ar susijusį puslapį.',
+'logempty' => 'Sąraše nėra jokių atitinkančių įvykių.',
 'log-title-wildcard' => 'Ieškoti pavadinimų, prasidedančių šiuo tekstu',
+'showhideselectedlogentries' => 'Rodyti/slėpti pasirinktus sąrašo elementus',
 
 # Special:AllPages
 'allpages' => 'Visi puslapiai',
@@ -2120,7 +2122,7 @@ taip pat bus '''paryškinti''' [[Special:RecentChanges|naujausių keitimų sąra
 'watchlist-details' => 'Stebima {{PLURAL:$1|$1 puslapis|$1 puslapiai|$1 puslapių}} neskaičiuojant aptarimų puslapių.',
 'wlheader-enotif' => '* El. pašto priminimai yra įjungti.',
 'wlheader-showupdated' => "* Puslapiai pakeisti nuo tada, kai paskutinį kartą apsilankėte juose, yra pažymėti '''pastorintai'''",
-'watchmethod-recent' => 'tikrinami paskutiniai keitimai stebimiems puslapiams',
+'watchmethod-recent' => 'tikrinami naujausi stebimųjų puslapių pakeitimai',
 'watchmethod-list' => 'ieškoma naujausių keitimų stebimuose puslapiuose',
 'watchlistcontains' => 'Jūsų stebimųjų sąraše yra $1 {{PLURAL:$1|puslapis|puslapiai|puslapių}}.',
 'iteminvalidname' => 'Problema su elementu „$1“, neteisingas vardas...',
@@ -2185,14 +2187,14 @@ Atsiliepimai ir pagalba:
 'delete-legend' => 'Trynimas',
 'historywarning' => "'''Dėmesio:''' Trinamas puslapis turi istoriją su maždaug $1 {{PLURAL:$1|versija|versijomis|versijų}}:",
 'confirmdeletetext' => 'Jūs pasirinkote ištrinti puslapį ar paveikslėlį kartu su visa jo istorija.
-Prašome patvirtinti, kad jūs tikrai norite tai padaryti, žinote apie galimus padarinius, ir kad jūs tai darote atsižvelgdami į [[{{MediaWiki:Policy-url}}|politiką]].',
+Prašome patvirtinti, kad jūs tikrai norite tai padaryti, žinote apie galimus padarinius ir kad tai darote pagal [[{{MediaWiki:Policy-url}}|taisykles]].',
 'actioncomplete' => 'Veiksmas atliktas',
 'actionfailed' => 'Veiksmas atšauktas',
 'deletedtext' => '„$1“ ištrintas.
 Paskutinių šalinimų istorija - $2.',
-'dellogpage' => 'Šalinimų istorija',
+'dellogpage' => 'Šalinimų sąrašas',
 'dellogpagetext' => 'Žemiau pateikiamas paskutinių trynimų sąrašas.',
-'deletionlog' => 'šalinimų istorija',
+'deletionlog' => 'šalinimų sąrašas',
 'reverted' => 'Atkurta į ankstesnę versiją',
 'deletecomment' => 'Priežastis:',
 'deleteotherreason' => 'Kita/papildoma priežastis:',
@@ -2227,8 +2229,8 @@ grąžinta prieš tai buvusi $2 versija.',
 Prašome paspausti „atgal“ ir perkraukite puslapį iš kurio atėjote, ir pamėginkite vėl.',
 
 # Protect
-'protectlogpage' => 'Rakinimų istorija',
-'protectlogtext' => 'Žemiau yra puslapių užrakinimų bei atrakinimų istorija.
+'protectlogpage' => 'Rakinimų sąrašas',
+'protectlogtext' => 'Žemiau yra puslapių užrakinimų bei atrakinimų sąrašas.
 Dabar veikiančių puslapių apsaugų sąrašą rasite [[Special:ProtectedPages|apsaugotų puslapių sąraše]].',
 'protectedarticle' => 'užrakino „[[$1]]“',
 'modifiedarticleprotection' => 'pakeistas „[[$1]]“ apsaugos lygis',
@@ -2325,7 +2327,7 @@ Tokiais atvejais, jums reikia atžymėti arba atslėpti naujausią ištrintą ve
 'undeletedpage' => "'''$1 buvo atkurtas'''
 
 Peržiūrėkite [[Special:Log/delete|trynimų sąrašą]], norėdami rasti paskutinių trynimų ir atkūrimų sąrašą.",
-'undelete-header' => 'Žiūrėkite [[Special:Log/delete|trynimo istorijoje]] paskiausiai ištrintų puslapių.',
+'undelete-header' => 'Kad sužinotumėte, kurie puslapiai paskiausiai ištrinti, žiūrėkite [[Special:Log/delete|šalinimų sąrašą]].',
 'undelete-search-title' => 'Panaikintų puslapių paieška',
 'undelete-search-box' => 'Ieškoti ištrintų puslapių',
 'undelete-search-prefix' => 'Rodyti puslapius pradedant su:',
@@ -2346,9 +2348,9 @@ $1',
 # Namespace form on various pages
 'namespace' => 'Vardų sritis:',
 'invert' => 'Žymėti priešingai',
-'tooltip-invert' => 'Įjunkite šią parinktį jei norite paslėpti nurodytos vardų srities (ir susijusių, jei įjungta parinktis) puslapių pakeitimus',
-'namespace_association' => 'Susiję vardų',
-'tooltip-namespace_association' => 'Įjunkite šią parinktį, kad taipogi įtrauktumėte pokalbių arba temos sritį, susieta su pasirinkta sritimi',
+'tooltip-invert' => 'Įjunkite šią parinktį, jei norite paslėpti nurodytos vardų srities (ir susijusių, jei įjungta parinktis) puslapių pakeitimus',
+'namespace_association' => 'Susijusi vardų sritis',
+'tooltip-namespace_association' => 'Įjunkite šią parinktį, kad taip pat įtrauktumėte aptarimų arba temos sritį, susijusią su pasirinkta sritimi',
 'blanknamespace' => '(Pagrindinė)',
 
 # Contributions
@@ -2361,13 +2363,13 @@ $1',
 'month' => 'Nuo mėnesio (ir anksčiau):',
 'year' => 'Nuo metų (ir anksčiau):',
 
-'sp-contributions-newbies' => 'Rodyti tik naujų paskyrų įnašus',
-'sp-contributions-newbies-sub' => 'Naujoms paskyroms',
-'sp-contributions-newbies-title' => 'Naudotojų keitimai naujoms paskyroms',
-'sp-contributions-blocklog' => 'Blokavimų istorija',
+'sp-contributions-newbies' => 'Rodyti tik naujų paskyrų keitimus',
+'sp-contributions-newbies-sub' => 'Neseniai prisiregistravusieji',
+'sp-contributions-newbies-title' => 'Naujai užsiregistravusių naudotojų indėlis',
+'sp-contributions-blocklog' => 'Blokavimų sąrašas',
 'sp-contributions-deleted' => 'ištrintas naudotojo indėlis',
 'sp-contributions-uploads' => 'nuotraukos',
-'sp-contributions-logs' => 'Specialiųjų veiksmų istorija',
+'sp-contributions-logs' => 'Specialiųjų veiksmų sąrašas',
 'sp-contributions-talk' => 'Aptarimas',
 'sp-contributions-userrights' => 'naudotojų teisių valdymas',
 'sp-contributions-blocked-notice' => 'Šis naudotojas šiuo metu užblokuotas.
@@ -2482,7 +2484,7 @@ ankščiau užblokuotam IP adresui ar naudotojui.',
 'contribslink' => 'įnašas',
 'emaillink' => 'siųsti el. laišką',
 'autoblocker' => 'Jūs buvote automatiškai užblokuotas, nes jūsų IP adresą neseniai naudojo „[[User:$1|$1]]“. Nurodyta naudotojo $1 blokavimo priežastis: „$2“.',
-'blocklogpage' => 'Blokavimų istorija',
+'blocklogpage' => 'Blokavimų sąrašas',
 'blocklog-showlog' => 'Šis naudotojas buvo užblokuotas.
 Pateikiamas paskutinis blokavimo istorijos įrašas.',
 'blocklog-showsuppresslog' => 'Šis naudotojas buvo užblokuotas ir paslėptas anksčiau.
@@ -2619,7 +2621,7 @@ Prašome sujungti šiuos puslapius.'''",
 'movepage-page-moved' => 'Puslapis $1 perkeltas į $2.',
 'movepage-page-unmoved' => 'Puslapio $1 negalima perkelti į $2.',
 'movepage-max-pages' => 'Daugiausiai $1 {{PLURAL:$1|puslapis buvo perkeltas|puslapiai buvo perkelti|puslapių buvo perkelta}} ir daugiau nebus perkelta automatiškai.',
-'movelogpage' => 'Pervardinimų istorija',
+'movelogpage' => 'Perkėlimų sąrašas',
 'movelogpagetext' => 'Pervardintų puslapių sąrašas.',
 'movesubpage' => '{{PLURAL:$1|Subpuslapis|Subpuslapiai}}',
 'movesubpagetext' => 'Žemiau yra šio puslapio $1 {{PLURAL:$1|subpuslapis|subpuslapiai|subpuslapių}}.',
@@ -2751,7 +2753,7 @@ Išsaugokite jį savo kompiuteryje ir įkelkite jį čia.',
 'import-error-invalid' => 'Puslapis "$1" nebuvo įkeltas, kadangi jo vardas yra neteisingas.',
 
 # Import log
-'importlogpage' => 'Importo istorija',
+'importlogpage' => 'Importavimų sąrašas',
 'importlogpagetext' => 'Administraciniai puslapių importai su keitimų istorija iš kitų wiki projektų.',
 'import-logentry-upload' => 'importuota $1 įkeliant failą',
 'import-logentry-upload-detail' => '$1 {{PLURAL:$1|keitimas|keitimai|keitimų}}',
@@ -2906,7 +2908,7 @@ Leidžia pridėti atmetimo priežastį komentaruose',
 'markedaspatrollederror-noautopatrol' => 'Jums neleidžiama pažymėti savo paties keitimų kaip patikrintų.',
 
 # Patrol log
-'patrol-log-page' => 'Patikrinimo istorija',
+'patrol-log-page' => 'Patikrinimų sąrašas',
 'patrol-log-header' => 'Tai patvirtintų versijų sąrašas.',
 'log-show-hide-patrol' => '$1 patvirtinimų sąrašą',
 
@@ -3688,8 +3690,8 @@ Paveikslėliai yra rodomi pilna raiška, kiti failų tipai paleidžiami tiesiogi
 'sqlite-no-fts' => '$1 be visatekstės paieškos palaikymo',
 
 # New logging system
-'logentry-delete-delete' => '$1 panaikino puslapį $3',
-'logentry-delete-restore' => '$1 atstatė puslapį $3',
+'logentry-delete-delete' => '$1 ištrynė puslapį $3',
+'logentry-delete-restore' => '$1 atkūrė puslapį $3',
 'revdelete-content-hid' => 'turinys paslėptas',
 'revdelete-summary-hid' => 'paslėptas keitimo komentaras',
 'revdelete-uname-hid' => 'paslėptas naudotojo vardas',

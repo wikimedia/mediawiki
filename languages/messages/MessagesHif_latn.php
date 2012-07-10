@@ -32,17 +32,17 @@ $messages = array(
 'tog-editsectiononrightclick' => 'Bhaag ke title pe right click kare pe bhaag ke badle ke laabu karo  (JavaScript)',
 'tog-showtoc' => 'Dhyan suchi dekhao (uu panna khatir jon me tiin se jaada heading hai)',
 'tog-rememberpassword' => 'Ii browser me (jaada se jaada $1 {{PLURAL:$1|din|din}}) talak hamaar login ke yaad rakho.',
-'tog-watchcreations' => 'Hamaar banawa waala panna ke hamaar dhyaan suchi me jorro',
-'tog-watchdefault' => 'Ham se badla gae panna ke hamaar dhyaan suchi me jorro',
-'tog-watchmoves' => 'Uu panna jiske naam ham badla hai ke hamaar dhyaan suchi me jorro',
-'tog-watchdeletion' => 'Uu panna jiske ham mitaya hai ke hamaar dhyaan suchi me jorro',
+'tog-watchcreations' => 'Hamaar banawa waala panna aur upload karaa gais file ke hamaar dhyaan suchi me jorro',
+'tog-watchdefault' => 'Ham se badla gais panna aur file ke hamaar dhyaan suchi me jorro',
+'tog-watchmoves' => 'Uu panna aur file jiske naam ham badla hai ke hamaar dhyaan suchi me jorro',
+'tog-watchdeletion' => 'Uu panna, aur file jiske ham mitaya hai ke hamaar dhyaan suchi me jorro',
 'tog-minordefault' => 'Mamuli badlao ke apne se nishaan lagao',
 'tog-previewontop' => 'Badlao waala dabba se pahile ek jhalak dekhao',
 'tog-previewonfirst' => 'Hamaar pahila badlao pe jhalak dekhao',
 'tog-nocache' => 'Browser pe panna ke bachae me rok lagao',
-'tog-enotifwatchlistpages' => 'Jab hamaar dhyaan suchi ke koi panna ke badla jae tab hame E-mail karo',
+'tog-enotifwatchlistpages' => 'Jab hamaar dhyaan suchi ke koi panna, nai to file, ke badla jae tab hame E-mail karo',
 'tog-enotifusertalkpages' => 'Jab hamaar baat waala panna ke badla jae tab hame E-mail karo',
-'tog-enotifminoredits' => 'Panna me mamuli badlao khatir bhi hame E-mail karo',
+'tog-enotifminoredits' => 'Panna aur file me mamuli badlao khatir bhi hame E-mail karo',
 'tog-enotifrevealaddr' => 'Notification E-mail me hamaar E-mail address ke dekhao.',
 'tog-shownumberswatching' => 'Ketna sadasya dekhe hai ke number dekhao',
 'tog-oldsig' => 'Abhi ke signature:',
@@ -503,6 +503,7 @@ Ii sab feature khatir koi e-mail nai bheja jaai.',
 'invalidemailaddress' => 'E-mail address ke nai lewa jae sake hai kahe ki iske format kharaab hai.
 Meharbaani kar ke achchha address ke enter karo nai to uu field ke khali kar do.',
 'cannotchangeemail' => 'Ii wiki me account e-mail ke badla nai jaawe sake hae',
+'emaildisabled' => 'Ii site e-mail nai bheje sake hae.',
 'accountcreated' => 'Account banae dewa gais hai',
 'accountcreatedtext' => '$1 khatir user account banae dewa gais hai.',
 'createaccount-title' => '{{SITENAME}} khatir account creation',
@@ -702,7 +703,8 @@ Yaad rakhna ki custom .css aur .js panna owercase title use kare hai, jaise ki {
 'updated' => '(Update kar dewa gais hai)',
 'note' => "'''Dhyan rakkho:'''",
 'previewnote' => "'''Ii khaali ek jhalak dekhae hai'''
-Tumar badlao abhi save nai bhais hai!",
+Tumar badlao abhi bachawa nai gais hai!",
+'continue-editing' => 'Badalte raho',
 'previewconflict' => 'Ii preview uu text dekhae hai jon ki uppar ke text editing area me dekhai agar aap iske save karaa.',
 'session_fail_preview' => "''' Maaf karna! Ham log aap ke badlao ke process nai kare paya hai due to a loss of session data.
 Fir se kosis karna.
@@ -718,6 +720,7 @@ Ii badlao ke reject kar dewa gais hai to prevent corruption of the page text.
 Ii kabhi kabhi hoe hai jab aap ek buggy web-based anonymous proxy service ke use karta hai.'''",
 'edit_form_incomplete' => 'Edit form ke kuchh hissa server ke lage nai pahunche paais hae; fir se check karo ki aap ke badlao form me hae, aur fir se form ke bhejo.',
 'editing' => '$1 badlawa jae hai',
+'creating' => '$1 banaata hae',
 'editingsection' => 'Sampadan $1 (bhaag)',
 'editingcomment' => '$1 ke badla jae hai (nawaa section)',
 'editconflict' => 'Badle me conflict: $1',
@@ -784,6 +787,7 @@ Janae hai ki iske koi mitae dii hai.',
 'edit-no-change' => 'Aap ke badle ke kosis ke ignore kar dewa gais hai, kahe ki text ke badla nai gais hai.',
 'edit-already-exists' => 'Nawaa panna nai banae sakaa hai.
 Ii naam ke panna abhi hai.',
+'defaultmessagetext' => 'Default message text',
 
 # Parser/template warnings
 'expensive-parserfunction-warning' => "'''Chetauni''': Ii panna me bahut jaada expensive parser function calls hai.
@@ -799,6 +803,12 @@ Ii sab arguments ke omit kar dewa gais hai.',
 'parser-template-loop-warning' => 'Template loop ke pawa gais hai: [[$1]]',
 'parser-template-recursion-depth-warning' => 'Template recursion depth limit se jaada hoe gais hae ($1)',
 'language-converter-depth-warning' => 'Bhasa anuwaad ke gahiraai ijajat se jaada hoe gais hae ($1)',
+'node-count-exceeded-category' => 'Panna jahaan pe node-count bahut jaada hoe gais hae',
+'node-count-exceeded-warning' => 'Panna, node-count se jaada hae',
+'expansion-depth-exceeded-category' => 'Panna jahaan pe expansion depth ke exceed karaa gais hae',
+'expansion-depth-exceeded-warning' => 'Panna expansion depth ke exceed karis hae',
+'parser-unstrip-loop-warning' => 'Unstrip loop ke pawa gai shae',
+'parser-unstrip-recursion-limit' => 'Unstrip recursion limit ke exceed karaa gais hae ($1)',
 
 # "Undo" feature
 'undo-success' => 'Ii badlao ke pahile jaise karaa jaae sake hai.
@@ -943,7 +953,7 @@ Meharbani ka ke logs ke check karo.',
 # Suppression log
 'suppressionlog' => 'Dabae waala log',
 'suppressionlogtext' => 'Niche ke suchi me administrators se lukawa gais deletions au rukawat hae.
-Abhi ke laabu rukawat ke suchi ke khatir [[Special:BlockList|IP block list]] ke dekho.',
+Abhi ke laabu rukawat ke suchi ke khatir [[Special:BlockList|block list]] ke dekho.',
 
 # History merging
 'mergehistory' => 'Panna ke itihass ke jorro',
@@ -978,6 +988,8 @@ Ii baat ke dhyan me rakhna ki navigation jorr ke kaam me laae se ii column reset
 
 # Diffs
 'history-title' => '"$1" ke sansodhan ke itihaas',
+'difference-title' => '"$1" ke revisions ke biich ke antar',
+'difference-title-multipage' => 'Panna "$1" aur "$2" ke biich ke antar',
 'difference-multipage' => '(Panna ke biich ke antar)',
 'lineno' => 'Rekha $1:',
 'compareselectedversions' => 'Chuna gae version ke compare karo',
@@ -1075,6 +1087,7 @@ Yaad rakhna ki uu log ke {{SITENAME}} ke index saait purana hoi.',
 'prefs-beta' => 'Nawaa features',
 'prefs-datetime' => 'Tarik aur time',
 'prefs-labs' => 'Try kare waala features',
+'prefs-user-pages' => 'Sadasya ke panna',
 'prefs-personal' => 'Sadasya ke profile',
 'prefs-rc' => 'Nawaa badlao',
 'prefs-watchlist' => 'Dhyan suchi',

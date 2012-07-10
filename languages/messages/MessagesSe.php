@@ -364,7 +364,7 @@ Du geavaheaddjidovddaldat lea dál anus.
 'loginprompt' => 'Sisačállimii dárbbašuvvojit geavssat (cookies).',
 'userlogin' => 'Logge sisa dahje ráhkat dovddaldaga',
 'logout' => 'Čálligoađe olggos',
-'userlogout' => 'Čálligoađe olggos',
+'userlogout' => 'Logge olggos',
 'notloggedin' => 'It leat čálligoahttan sisa',
 'nologin' => "Jus dus ii vel leat geavaheaddjidovddaldat, sáhtát '''$1''' dakkára.",
 'nologinlink' => 'ráhkadit',
