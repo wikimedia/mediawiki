@@ -237,8 +237,8 @@ abstract class ResourceLoaderModule {
 
 	/**
 	 * Where on the HTML page should this module's JS be loaded?
-	 * 'top': in the <head>
-	 * 'bottom': at the bottom of the <body>
+	 *  - 'top': in the "<head>"
+	 *  - 'bottom': at the bottom of the "<body>"
 	 *
 	 * @return string
 	 */

@@ -91,7 +91,7 @@ class SkinTemplate extends Skin {
 	var $template = 'QuickTemplate';
 
 	/**
-	 * Whether this skin use OutputPage::headElement() to generate the <head>
+	 * Whether this skin use OutputPage::headElement() to generate the "<head>"
 	 * tag
 	 */
 	var $useHeadElement = false;

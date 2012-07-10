@@ -1587,7 +1587,7 @@ class PreferencesForm extends HTMLForm {
 	}
 
 	/**
-	 * Get the <legend> for a given section key. Normally this is the
+	 * Get the "<legend>" for a given section key. Normally this is the
 	 * prefs-$key message but we'll allow extensions to override it.
 	 * @param $key string
 	 * @return string

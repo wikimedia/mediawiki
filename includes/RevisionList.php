@@ -245,7 +245,7 @@ abstract class RevisionItemBase {
 	abstract public function canViewContent();
 
 	/**
-	 * Get the HTML of the list item. Should be include <li></li> tags.
+	 * Get the HTML of the list item. Should be include "<li></li>" tags.
 	 * This is used to show the list in HTML form, by the special page.
 	 */
 	abstract public function getHTML();

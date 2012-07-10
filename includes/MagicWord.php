@@ -24,7 +24,7 @@
  */
 
 /**
- * This class encapsulates "magic words" such as #redirect, __NOTOC__, etc.
+ * This class encapsulates "magic words" such as "#redirect", __NOTOC__, etc.
  *
  * @par Usage:
  * @code
@@ -42,7 +42,7 @@
  *
  * To add magic words in an extension, use $magicWords in a file listed in
  * $wgExtensionMessagesFiles[].
- * 
+ *
  * @par Example:
  * @code
  * $magicWords = array();

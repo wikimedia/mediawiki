@@ -231,7 +231,7 @@ interface PPNode {
 	function getName();
 
 	/**
-	 * Split a <part> node into an associative array containing:
+	 * Split a "<part>" node into an associative array containing:
 	 *    name          PPNode name
 	 *    index         String index
 	 *    value         PPNode value
@@ -239,13 +239,13 @@ interface PPNode {
 	function splitArg();
 
 	/**
-	 * Split an <ext> node into an associative array containing name, attr, inner and close
+	 * Split an "<ext>" node into an associative array containing name, attr, inner and close
 	 * All values in the resulting array are PPNodes. Inner and close are optional.
 	 */
 	function splitExt();
 
 	/**
-	 * Split an <h> node
+	 * Split an "<h>" node
 	 */
 	function splitHeading();
 }

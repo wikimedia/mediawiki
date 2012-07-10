@@ -84,7 +84,7 @@ abstract class MediaTransformOutput {
 	 *     custom-url-link    Custom URL to link to
 	 *     custom-title-link  Custom Title object to link to
 	 *     valign       vertical-align property, if the output is an inline element
-	 *     img-class    Class applied to the <img> tag, if there is such a tag
+	 *     img-class    Class applied to the "<img>" tag, if there is such a tag
 	 *
 	 * For images, desc-link and file-link are implemented as a click-through. For
 	 * sounds and videos, they may be displayed in other ways.

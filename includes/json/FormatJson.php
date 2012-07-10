@@ -60,7 +60,7 @@ class FormatJson {
 	 *
 	 * @return Mixed: the value encoded in json in appropriate PHP type.
 	 * Values true, false and null (case-insensitive) are returned as true, false
-	 * and &null; respectively. &null; is returned if the json cannot be
+	 * and "&null;" respectively. "&null;" is returned if the json cannot be
 	 * decoded or if the encoded data is deeper than the recursion limit.
 	 */
 	public static function decode( $value, $assoc = false ) {

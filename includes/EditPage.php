@@ -2992,8 +2992,8 @@ HTML
 	 * failure, etc).
 	 *
 	 * @todo This doesn't include category or interlanguage links.
-	 *       Would need to enhance it a bit, <s>maybe wrap them in XML
-	 *       or something...</s> that might also require more skin
+	 *       Would need to enhance it a bit, "<s>maybe wrap them in XML
+	 *       or something...</s>" that might also require more skin
 	 *       initialization, so check whether that's a problem.
 	 */
 	function livePreview() {

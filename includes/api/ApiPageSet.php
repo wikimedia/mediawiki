@@ -266,8 +266,8 @@ class ApiPageSet extends ApiQueryBase {
 	}
 
 	/**
-	 * Returns the number of revisions (requested with revids= parameter)\
-	 * @return int
+	 * Returns the number of revisions (requested with revids= parameter).
+	 * @return int Number of revisions.
 	 */
 	public function getRevisionCount() {
 		return count( $this->getRevisionIDs() );

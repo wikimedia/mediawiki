@@ -1873,7 +1873,7 @@ abstract class DatabaseBase implements DatabaseType {
 	 * The keys on each level may be either integers or strings.
 	 *
 	 * @param $data Array: organized as 2-d
-	 *              array(baseKeyVal => array(subKeyVal => <ignored>, ...), ...)
+	 *              array(baseKeyVal => array(subKeyVal => [ignored], ...), ...)
 	 * @param $baseKey String: field name to match the base-level keys to (eg 'pl_namespace')
 	 * @param $subKey String: field name to match the sub-level keys to (eg 'pl_title')
 	 * @return Mixed: string SQL fragment, or false if no items in array.
