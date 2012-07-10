@@ -10343,6 +10343,33 @@ abc
 </p>
 !! end
 
+!!test
+Bug 34939 - Case insensitive link parsing ([HttP://])
+!! input
+[HttP://MediaWiki.Org/]
+!! result
+<p><a rel="nofollow" class="external autonumber" href="HttP://MediaWiki.Org/">[1]</a>
+</p>
+!! end
+
+!!test
+Bug 34939 - Case insensitive link parsing ([HttP:// title])
+!! input
+[HttP://MediaWiki.Org/ MediaWiki]
+!! result
+<p><a rel="nofollow" class="external text" href="HttP://MediaWiki.Org/">MediaWiki</a>
+</p>
+!! end
+
+!!test
+Bug 34939 - Case insensitive link parsing (HttP://)
+!! input
+HttP://MediaWiki.Org/
+!! result
+<p><a rel="nofollow" class="external free" href="HttP://MediaWiki.Org/">HttP://MediaWiki.Org/</a>
+</p>
+!! end
+
 
 TODO:
 more images

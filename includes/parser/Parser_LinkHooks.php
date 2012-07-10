@@ -226,7 +226,7 @@ class Parser_LinkHooks extends Parser {
 		# Don't allow internal links to pages containing
 		# PROTO: where PROTO is a valid URL protocol; these
 		# should be external links.
-		if( preg_match('/^\b(?:' . wfUrlProtocols() . ')/', $titleText) ) {
+		if( preg_match('/^\b(?i:' . wfUrlProtocols() . ')/', $titleText) ) {
 			wfProfileOut( __METHOD__ );
 			return $wt;
 		}

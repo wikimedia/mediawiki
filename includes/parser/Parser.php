@@ -207,7 +207,7 @@ class Parser {
 	public function __construct( $conf = array() ) {
 		$this->mConf = $conf;
 		$this->mUrlProtocols = wfUrlProtocols();
-		$this->mExtLinkBracketedRegex = '/\[((' . $this->mUrlProtocols . ')'.
+		$this->mExtLinkBracketedRegex = '/\[(((?i)' . $this->mUrlProtocols . ')'.
 			self::EXT_LINK_URL_CLASS.'+)\p{Zs}*([^\]\\x00-\\x08\\x0a-\\x1F]*?)\]/Su';
 		if ( isset( $conf['preprocessorClass'] ) ) {
 			$this->mPreprocessorClass = $conf['preprocessorClass'];
@@ -1187,7 +1187,7 @@ class Parser {
 			'!(?:                           # Start cases
 				(<a[ \t\r\n>].*?</a>) |     # m[1]: Skip link text
 				(<.*?>) |                   # m[2]: Skip stuff inside HTML elements' . "
-				(\\b(?:$prots)$urlChar+) |  # m[3]: Free external links" . '
+				(\\b(?i:$prots)$urlChar+) |  # m[3]: Free external links" . '
 				(?:RFC|PMID)\s+([0-9]+) |   # m[4]: RFC or PMID, capture number
 				ISBN\s+(\b                  # m[5]: ISBN, capture number
 					(?: 97[89] [\ \-]? )?   # optional 13-digit ISBN prefix
@@ -1853,7 +1853,7 @@ class Parser {
 			# Don't allow internal links to pages containing
 			# PROTO: where PROTO is a valid URL protocol; these
 			# should be external links.
-			if ( preg_match( '/^(?:' . $this->mUrlProtocols . ')/', $m[1] ) ) {
+			if ( preg_match( '/^(?i:' . $this->mUrlProtocols . ')/', $m[1] ) ) {
 				$s .= $prefix . '[[' . $line ;
 				wfProfileOut( __METHOD__."-misc" );
 				continue;
@@ -2090,7 +2090,7 @@ class Parser {
 	 * @return String: less-or-more HTML with NOPARSE bits
 	 */
 	function armorLinks( $text ) {
-		return preg_replace( '/\b(' . $this->mUrlProtocols . ')/',
+		return preg_replace( '/\b((?i)' . $this->mUrlProtocols . ')/',
 			"{$this->mUniqPrefix}NOPARSE$1", $text );
 	}
 
@@ -5095,8 +5095,8 @@ class Parser {
 								$paramName = 'no-link';
 								$value = true;
 								$validated = true;
-							} elseif ( preg_match( "/^$prots/", $value ) ) {
-								if ( preg_match( "/^($prots)$chars+$/u", $value, $m ) ) {
+							} elseif ( preg_match( "/^(?i)$prots/", $value ) ) {
+								if ( preg_match( "/^((?i)$prots)$chars+$/u", $value, $m ) ) {
 									$paramName = 'link-url';
 									$this->mOutput->addExternalLink( $value );
 									if ( $this->mOptions->getExternalLinkTarget() ) {
@@ -5622,7 +5622,7 @@ class Parser {
 		# @todo FIXME: Not tolerant to blank link text
 		# I.E. [http://www.mediawiki.org] will render as [1] or something depending
 		# on how many empty links there are on the page - need to figure that out.
-		$text = preg_replace( '/\[(?:' . $this->mUrlProtocols . ')([^ ]+?) ([^[]+)\]/', '$2', $text );
+		$text = preg_replace( '/\[(?i:' . $this->mUrlProtocols . ')([^ ]+?) ([^[]+)\]/', '$2', $text );
 
 		# Parse wikitext quotes (italics & bold)
 		$text = $this->doQuotes( $text );
