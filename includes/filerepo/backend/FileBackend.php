@@ -154,16 +154,27 @@ abstract class FileBackend {
 	 * $ops is an array of arrays. The outer array holds a list of operations.
 	 * Each inner array is a set of key value pairs that specify an operation.
 	 *
-	 * Supported operations and their parameters:
+	 * Supported operations and their parameters. The supported actions are:
+	 *  - create
+	 *  - store
+	 *  - copy
+	 *  - move
+	 *  - delete
+	 *  - null
+	 *
 	 * a) Create a new file in storage with the contents of a string
+	 * @code
 	 *     array(
 	 *         'op'                  => 'create',
 	 *         'dst'                 => <storage path>,
 	 *         'content'             => <string of new file contents>,
 	 *         'overwrite'           => <boolean>,
 	 *         'overwriteSame'       => <boolean>
-	 *     )
+	 *     );
+	 * @endcode
+	 *
 	 * b) Copy a file system file into storage
+	 * @code
 	 *     array(
 	 *         'op'                  => 'store',
 	 *         'src'                 => <file system path>,
@@ -171,7 +182,10 @@ abstract class FileBackend {
 	 *         'overwrite'           => <boolean>,
 	 *         'overwriteSame'       => <boolean>
 	 *     )
+	 * @endcode
+	 *
 	 * c) Copy a file within storage
+	 * @code
 	 *     array(
 	 *         'op'                  => 'copy',
 	 *         'src'                 => <storage path>,
@@ -179,7 +193,10 @@ abstract class FileBackend {
 	 *         'overwrite'           => <boolean>,
 	 *         'overwriteSame'       => <boolean>
 	 *     )
+	 * @endcode
+	 *
 	 * d) Move a file within storage
+	 * @code
 	 *     array(
 	 *         'op'                  => 'move',
 	 *         'src'                 => <storage path>,
@@ -187,16 +204,23 @@ abstract class FileBackend {
 	 *         'overwrite'           => <boolean>,
 	 *         'overwriteSame'       => <boolean>
 	 *     )
+	 * @endcode
+	 *
 	 * e) Delete a file within storage
+	 * @code
 	 *     array(
 	 *         'op'                  => 'delete',
 	 *         'src'                 => <storage path>,
 	 *         'ignoreMissingSource' => <boolean>
 	 *     )
+	 * @endcode
+	 *
 	 * f) Do nothing (no-op)
+	 * @code
 	 *     array(
 	 *         'op'                  => 'null',
 	 *     )
+	 * @endcode
 	 *
 	 * Boolean flags for operations (operation-specific):
 	 * 'ignoreMissingSource' : The operation will simply succeed and do
@@ -220,15 +244,18 @@ abstract class FileBackend {
 	 *                         This limits the ability of recovery scripts.
 	 * 'parallelize'         : Try to do operations in parallel when possible.
 	 *
-	 * Remarks on locking:
+	 * @remarks Remarks on locking:
 	 * File system paths given to operations should refer to files that are
 	 * already locked or otherwise safe from modification from other processes.
 	 * Normally these files will be new temp files, which should be adequate.
 	 *
-	 * Return value:
+	 * @par Return value:
+	 *
 	 * This returns a Status, which contains all warnings and fatals that occured
 	 * during the operation. The 'failCount', 'successCount', and 'success' members
-	 * will reflect each operation attempted. The status will be "OK" unless:
+	 * will reflect each operation attempted.
+	 *
+	 * The status will be "OK" unless:
 	 *     a) unexpected operation errors occurred (network partitions, disk full...)
 	 *     b) significant operation errors occured and 'force' was not set
 	 *
@@ -355,46 +382,64 @@ abstract class FileBackend {
 	 * This should *only* be used on non-original files, like cache files.
 	 *
 	 * Supported operations and their parameters:
+	 *  - create
+	 *  - store
+	 *  - copy
+	 *  - move
+	 *  - delete
+	 *  - null
 	 * a) Create a new file in storage with the contents of a string
+	 * @code
 	 *     array(
 	 *         'op'                  => 'create',
 	 *         'dst'                 => <storage path>,
 	 *         'content'             => <string of new file contents>
 	 *     )
+	 * @endcode
 	 * b) Copy a file system file into storage
+	 * @code
 	 *     array(
 	 *         'op'                  => 'store',
 	 *         'src'                 => <file system path>,
 	 *         'dst'                 => <storage path>
 	 *     )
+	 * @endcode
 	 * c) Copy a file within storage
+	 * @code
 	 *     array(
 	 *         'op'                  => 'copy',
 	 *         'src'                 => <storage path>,
 	 *         'dst'                 => <storage path>
 	 *     )
+	 * @endcode
 	 * d) Move a file within storage
+	 * @code
 	 *     array(
 	 *         'op'                  => 'move',
 	 *         'src'                 => <storage path>,
 	 *         'dst'                 => <storage path>
 	 *     )
+	 * @endcode
 	 * e) Delete a file within storage
+	 * @code
 	 *     array(
 	 *         'op'                  => 'delete',
 	 *         'src'                 => <storage path>,
 	 *         'ignoreMissingSource' => <boolean>
 	 *     )
+	 * @endcode
 	 * f) Do nothing (no-op)
+	 * @code
 	 *     array(
 	 *         'op'                  => 'null',
 	 *     )
+	 * @endcode
 	 *
-	 * Boolean flags for operations (operation-specific):
+	 * @par Boolean flags for operations (operation-specific):
 	 * 'ignoreMissingSource' : The operation will simply succeed and do
 	 *                         nothing if the source file does not exist.
 	 *
-	 * Return value:
+	 * @par Return value:
 	 * This returns a Status, which contains all warnings and fatals that occured
 	 * during the operation. The 'failCount', 'successCount', and 'success' members
 	 * will reflect each operation attempted for the given files. The status will be

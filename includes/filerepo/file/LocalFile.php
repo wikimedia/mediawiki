@@ -633,7 +633,7 @@ class LocalFile extends File {
 
 	/**
 	 * Fix thumbnail files from 1.4 or before, with extreme prejudice
-	 * @TODO: do we still care about this? Perhaps a maintenance script
+	 * @todo : do we still care about this? Perhaps a maintenance script
 	 *        can be made instead. Enabling this code results in a serious
 	 *        RTT regression for wikis without 404 handling.
 	 */
