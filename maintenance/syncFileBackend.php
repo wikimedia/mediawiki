@@ -39,12 +39,11 @@ class SyncFileBackend extends Maintenance {
 		$src = FileBackendGroup::singleton()->get( $this->getOption( 'src' ) );
 		$dst = FileBackendGroup::singleton()->get( $this->getOption( 'dst' ) );
 
-		$posFile = $this->getOption( 'posdir' )
-			? $this->getOption( 'posdir' ) . '/' . wfWikiID()
-			: false;
+		$posDir = $this->getOption( 'posdir' );
+		$posFile = $posDir ? $posDir . '/' . wfWikiID() : false;
 
 		$start = $this->getOption( 'start', 0 );
-		if ( !$start && $posFile ) {
+		if ( !$start && $posFile && is_dir( $posDir ) ) {
 			$start = is_file( $posFile )
 				? (int)trim( file_get_contents( $posFile ) )
 				: 0;
@@ -66,8 +65,11 @@ class SyncFileBackend extends Maintenance {
 
 		// Update the sync position file
 		if ( $startFromPosFile && $lastOKPos >= $start ) { // successfully advanced
-			file_put_contents( $posFile, $lastOKPos, LOCK_EX );
-			$this->output( "Updated journal position file.\n" );
+			if ( file_put_contents( $posFile, $lastOKPos, LOCK_EX ) !== false ) {
+				$this->output( "Updated journal position file.\n" );
+			} else {
+				$this->output( "Could not update journal position file.\n" );
+			}
 		}
 
 		if ( $lastOKPos === false ) {
@@ -198,10 +200,13 @@ class SyncFileBackend extends Maintenance {
 			}
 		}
 
+		$t_start = microtime( true );
 		$status->merge( $dst->doOperations( $ops,
 			array( 'nonLocking' => 1, 'nonJournaled' => 1 ) ) );
+		$ellapsed_ms = floor( ( microtime( true ) - $t_start ) * 1000 );
 		if ( $status->isOK() && $this->getOption( 'verbose' ) ) {
-			$this->output( "Synchronized these file(s):\n" . implode( "\n", $dPaths ) . "\n" );
+			$this->output( "Synchronized these file(s) [{$ellapsed_ms}ms]:\n" .
+				implode( "\n", $dPaths ) . "\n" );
 		}
 
 		return $status;
