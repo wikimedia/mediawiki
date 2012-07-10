@@ -183,16 +183,11 @@ class FeedItem {
  * @todo document (needs one-sentence top-level class description).
  * @ingroup Feed
  */
-class ChannelFeed extends FeedItem {
-	/**#@+
-	 * Abstract function, override!
-	 * @abstract
-	 */
-
+abstract class ChannelFeed extends FeedItem {
 	/**
 	 * Generate Header of the feed
 	 */
-	function outHeader() {
+	abstract public function outHeader() {
 		# print "<feed>";
 	}
 
@@ -200,17 +195,16 @@ class ChannelFeed extends FeedItem {
 	 * Generate an item
 	 * @param $item
 	 */
-	function outItem( $item ) {
+	abstract public function outItem( $item ) {
 		# print "<item>...</item>";
 	}
 
 	/**
 	 * Generate Footer of the feed
 	 */
-	function outFooter() {
+	abstract public function outFooter() {
 		# print "</feed>";
 	}
-	/**#@-*/
 
 	/**
 	 * Setup and send HTTP headers. Don't send any content;
