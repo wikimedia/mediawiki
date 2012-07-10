@@ -36,7 +36,7 @@ class DoubleRedirectJob extends Job {
 
 	/**
 	 * Insert jobs into the job queue to fix redirects to the given title
-	 * @param $reason String: the reason for the fix, see message double-redirect-fixed-<reason>
+	 * @param $reason String: the reason for the fix, see message "double-redirect-fixed-<reason>"
 	 * @param $redirTitle Title: the title which has changed, redirects pointing to this title are fixed
 	 * @param $destTitle bool Not used
 	 */

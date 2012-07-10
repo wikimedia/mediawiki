@@ -1184,7 +1184,7 @@ abstract class ApiBase extends ContextSource {
 	 * @param $errorCode string Brief, arbitrary, stable string to allow easy
 	 *   automated identification of the error, e.g., 'unknown_action'
 	 * @param $httpRespCode int HTTP response code
-	 * @param $extradata array Data to add to the <error> element; array in ApiResult format
+	 * @param $extradata array Data to add to the "<error>" element; array in ApiResult format
 	 */
 	public function dieUsage( $description, $errorCode, $httpRespCode = 0, $extradata = null ) {
 		Profiler::instance()->close();

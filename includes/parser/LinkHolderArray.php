@@ -209,6 +209,10 @@ class LinkHolderArray {
 	 * article length checks (for stub links) to be bundled into a single query.
 	 *
 	 * @param $nt Title
+	 * @param $text String
+	 * @param $query Array [optional]
+	 * @param $trail String [optional]
+	 * @param $prefix String [optional]
 	 * @return string
 	 */
 	function makeHolder( $nt, $text = '', $query = array(), $trail = '', $prefix = ''  ) {

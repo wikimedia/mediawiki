@@ -478,7 +478,7 @@ more stuff
 		$this->assertEquals( $expected, $text );
 	}
 
-	/* @FIXME: fix this!
+	/* @todo FIXME: fix this!
 	public function testGetUndoText() {
 		global $wgDiff3;
 

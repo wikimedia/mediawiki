@@ -993,7 +993,7 @@ abstract class TablePager extends IndexPager {
 	 * @protected
 	 *
 	 * @param $row Object: the database result row
-	 * @return Array of <attr> => <value>
+	 * @return Array of attribute => value
 	 */
 	function getRowAttrs( $row ) {
 		$class = $this->getRowClass( $row );
@@ -1108,7 +1108,7 @@ abstract class TablePager extends IndexPager {
 	}
 
 	/**
-	 * Get a <select> element which has options for each of the allowed limits
+	 * Get a "<select>" element which has options for each of the allowed limits
 	 *
 	 * @return String: HTML fragment
 	 */
@@ -1138,7 +1138,7 @@ abstract class TablePager extends IndexPager {
 	}
 
 	/**
-	 * Get <input type="hidden"> elements for use in a method="get" form.
+	 * Get \<input type="hidden"\> elements for use in a method="get" form.
 	 * Resubmits all defined elements of the query string, except for a
 	 * blacklist, passed in the $blacklist parameter.
 	 *

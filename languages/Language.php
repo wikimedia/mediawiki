@@ -3907,7 +3907,7 @@ class Language {
 	/**
 	 * Decode an expiry (block, protection, etc) which has come from the DB
 	 *
-	 * @FIXME: why are we returnings DBMS-dependent strings???
+	 * @todo FIXME: why are we returnings DBMS-dependent strings???
 	 *
 	 * @param $expiry String: Database expiry String
 	 * @param $format Bool|Int true to process using language functions, or TS_ constant

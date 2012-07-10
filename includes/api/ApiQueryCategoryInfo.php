@@ -25,7 +25,8 @@
  */
 
 /**
- * This query adds the <categories> subelement to all pages with the list of categories the page is in
+ * This query adds the "<categories>" subelement to all pages with the list of
+ * categories the page is in.
  *
  * @ingroup API
  */

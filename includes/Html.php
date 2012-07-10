@@ -548,9 +548,10 @@ class Html {
 	}
 
 	/**
-	 * Output a <script> tag with the given contents.  TODO: do some useful
-	 * escaping as well, like if $contents contains literal '</script>' or (for
-	 * XML) literal "]]>".
+	 * Output a "<script>" tag with the given contents.
+	 *
+	 * @todo do some useful escaping as well, like if $contents contains
+	 * literal "</script>" or (for XML) literal "]]>".
 	 *
 	 * @param $contents string JavaScript
 	 * @return string Raw HTML
@@ -572,8 +573,8 @@ class Html {
 	}
 
 	/**
-	 * Output a <script> tag linking to the given URL, e.g.,
-	 * <script src=foo.js></script>.
+	 * Output a "<script>" tag linking to the given URL, e.g.,
+	 * "<script src=foo.js></script>".
 	 *
 	 * @param $url string
 	 * @return string Raw HTML
@@ -591,9 +592,9 @@ class Html {
 	}
 
 	/**
-	 * Output a <style> tag with the given contents for the given media type
+	 * Output a "<style>" tag with the given contents for the given media type
 	 * (if any).  TODO: do some useful escaping as well, like if $contents
-	 * contains literal '</style>' (admittedly unlikely).
+	 * contains literal "</style>" (admittedly unlikely).
 	 *
 	 * @param $contents string CSS
 	 * @param $media mixed A media type string, like 'screen'
@@ -613,7 +614,7 @@ class Html {
 	}
 
 	/**
-	 * Output a <link rel=stylesheet> linking to the given URL for the given
+	 * Output a "<link rel=stylesheet>" linking to the given URL for the given
 	 * media type (if any).
 	 *
 	 * @param $url string
@@ -630,7 +631,7 @@ class Html {
 	}
 
 	/**
-	 * Convenience function to produce an <input> element.  This supports the
+	 * Convenience function to produce an "<input>" element.  This supports the
 	 * new HTML5 input types and attributes, and will silently strip them if
 	 * $wgHtml5 is false.
 	 *
@@ -663,11 +664,12 @@ class Html {
 	}
 
 	/**
-	 * Convenience function to produce an <input> element.  This supports leaving
-	 * out the cols= and rows= which Xml requires and are required by HTML4/XHTML
-	 * but not required by HTML5 and will silently set cols="" and rows="" if
-	 * $wgHtml5 is false and cols and rows are omitted (HTML4 validates present
-	 * but empty cols="" and rows="" as valid).
+	 * Convenience function to produce an "<input>" element.
+	 *
+	 * This supports leaving out the cols= and rows= which Xml requires and are
+	 * required by HTML4/XHTML but not required by HTML5 and will silently set
+	 * cols="" and rows="" if $wgHtml5 is false and cols and rows are omitted
+	 * (HTML4 validates present but empty cols="" and rows="" as valid).
 	 *
 	 * @param $name    string name attribute
 	 * @param $value   string value attribute
@@ -706,7 +708,7 @@ class Html {
 	 *
 	 * @param $params array:
 	 * - selected: [optional] Id of namespace which should be pre-selected
-	 * - all: [optional] Value of item for "all namespaces". If null or unset, no <option> is generated to select all namespaces
+	 * - all: [optional] Value of item for "all namespaces". If null or unset, no "<option>" is generated to select all namespaces
 	 * - label: text for label to add before the field
 	 * - exclude: [optional] Array of namespace ids to exclude
 	 * - disable: [optional] Array of namespace ids for which the option should be disabled in the selector

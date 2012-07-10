@@ -158,7 +158,7 @@ class RecentChange {
 	}
 
 	/**
-	 * @return bool|\Title
+	 * @return bool|Title
 	 */
 	public function getMovedToTitle() {
 		if( $this->mMovedToTitle === false ) {

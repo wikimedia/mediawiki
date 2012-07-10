@@ -56,12 +56,12 @@ class MemcLockManager extends QuorumLockManager {
 	 * Construct a new instance from configuration.
 	 *
 	 * $config paramaters include:
-	 *     'lockServers'  : Associative array of server names to <IP>:<port> strings.
-	 *     'srvsByBucket' : Array of 1-16 consecutive integer keys, starting from 0,
+	 *   - 'lockServers'  : Associative array of server names to "<IP>:<port>" strings.
+	 *   - 'srvsByBucket' : Array of 1-16 consecutive integer keys, starting from 0,
 	 *                      each having an odd-numbered list of server names (peers) as values.
-	 *     'memcConfig'   : Configuration array for ObjectCache::newFromParams. [optional]
+	 *   - 'memcConfig'   : Configuration array for ObjectCache::newFromParams. [optional]
 	 *                      If set, this must use one of the memcached classes.
-	 *     'wikiId'       : Wiki ID string that all resources are relative to. [optional]
+	 *   - 'wikiId'       : Wiki ID string that all resources are relative to. [optional]
 	 *
 	 * @param Array $config
 	 */

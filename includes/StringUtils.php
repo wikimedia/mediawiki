@@ -213,7 +213,7 @@ class StringUtils {
 	 * Returns an Iterator
 	 * @param $separator
 	 * @param $subject
-	 * @return ArrayIterator|\ExplodeIterator
+	 * @return ArrayIterator|ExplodeIterator
 	 */
 	static function explode( $separator, $subject ) {
 		if ( substr_count( $subject, $separator ) > 1000 ) {

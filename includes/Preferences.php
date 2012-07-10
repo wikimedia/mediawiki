@@ -939,7 +939,7 @@ class Preferences {
 
 		if ( $wgEnableAPI ) {
 			# Some random gibberish as a proposed default
-			// @fixme This should use CryptRand but we may not want to read urandom on every view
+			// @todo Fixme: this should use CryptRand but we may not want to read urandom on every view
 			$hash = sha1( mt_rand() . microtime( true ) );
 
 			$defaultPreferences['watchlisttoken'] = array(
@@ -1587,7 +1587,7 @@ class PreferencesForm extends HTMLForm {
 	}
 
 	/**
-	 * Get the <legend> for a given section key. Normally this is the
+	 * Get the "<legend>" for a given section key. Normally this is the
 	 * prefs-$key message but we'll allow extensions to override it.
 	 * @param $key string
 	 * @return string

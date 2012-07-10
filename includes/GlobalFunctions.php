@@ -2063,7 +2063,7 @@ function wfCheckLimits( $deflimit = 50, $optionname = 'rclimit' ) {
  * Escapes the given text so that it may be output using addWikiText()
  * without any linking, formatting, etc. making its way through. This
  * is achieved by substituting certain characters with HTML entities.
- * As required by the callers, <nowiki> is not used.
+ * As required by the callers, "<nowiki>" is not used.
  *
  * @param $text String: text to be escaped
  * @return String
@@ -3192,7 +3192,7 @@ function wfUseMW( $req_ver ) {
 
 /**
  * Return the final portion of a pathname.
- * Reimplemented because PHP5's basename() is buggy with multibyte text.
+ * Reimplemented because PHP5's "basename()" is buggy with multibyte text.
  * http://bugs.php.net/bug.php?id=33898
  *
  * PHP's basename() only considers '\' a pathchar on Windows and Netware.

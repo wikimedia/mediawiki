@@ -1606,7 +1606,7 @@ abstract class File {
 	}
 
 	/**
-	 * Get the deletion archive key, <sha1>.<ext>
+	 * Get the deletion archive key, "<sha1>.<ext>"
 	 *
 	 * @return string
 	 */

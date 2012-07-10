@@ -153,7 +153,7 @@ class WebInstallerOutput {
 	}
 
 	/**
-	 * <link> to index.php?css=foobar for the <head>
+	 * "<link>" to index.php?css=foobar for the "<head>"
 	 * @return String
 	 */
 	private function getCssUrl( ) {

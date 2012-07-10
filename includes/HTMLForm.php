@@ -546,7 +546,7 @@ class HTMLForm extends ContextSource {
 	}
 
 	/**
-	 * Wrap the form innards in an actual <form> element
+	 * Wrap the form innards in an actual "<form>" element
 	 * @param $html String HTML contents to wrap.
 	 * @return String wrapped HTML.
 	 */
@@ -761,16 +761,16 @@ class HTMLForm extends ContextSource {
 		$this->mId = $id;
 	}
 	/**
-	 * Prompt the whole form to be wrapped in a <fieldset>, with
-	 * this text as its <legend> element.
-	 * @param $legend String HTML to go inside the <legend> element.
+	 * Prompt the whole form to be wrapped in a "<fieldset>", with
+	 * this text as its "<legend>" element.
+	 * @param $legend String HTML to go inside the "<legend>" element.
 	 *	 Will be escaped
 	 */
 	public function setWrapperLegend( $legend ) { $this->mWrapperLegend = $legend; }
 
 	/**
-	 * Prompt the whole form to be wrapped in a <fieldset>, with
-	 * this message as its <legend> element.
+	 * Prompt the whole form to be wrapped in a "<fieldset>", with
+	 * this message as its "<legend>" element.
 	 * @since 1.19
 	 * @param $msg String message key
 	 */
@@ -780,7 +780,7 @@ class HTMLForm extends ContextSource {
 
 	/**
 	 * Set the prefix for various default messages
-	 * TODO: currently only used for the <fieldset> legend on forms
+	 * @todo currently only used for the "<fieldset>" legend on forms
 	 * with multiple sections; should be used elsewhre?
 	 * @param $p String
 	 */
@@ -819,10 +819,10 @@ class HTMLForm extends ContextSource {
 	}
 
 	/**
-	 * TODO: Document
+	 * @todo Document
 	 * @param $fields array[]|HTMLFormField[] array of fields (either arrays or objects)
-	 * @param $sectionName string ID attribute of the <table> tag for this section, ignored if empty
-	 * @param $fieldsetIDPrefix string ID prefix for the <fieldset> tag of each subsection, ignored if empty
+	 * @param $sectionName string ID attribute of the "<table>" tag for this section, ignored if empty
+	 * @param $fieldsetIDPrefix string ID prefix for the "<fieldset>" tag of each subsection, ignored if empty
 	 * @return String
 	 */
 	public function displaySection( $fields, $sectionName = '', $fieldsetIDPrefix = '' ) {
@@ -938,8 +938,8 @@ class HTMLForm extends ContextSource {
 	}
 
 	/**
-	 * Get a string to go in the <legend> of a section fieldset.  Override this if you
-	 * want something more complicated
+	 * Get a string to go in the "<legend>" of a section fieldset.
+	 * Override this if you want something more complicated.
 	 * @param $key String
 	 * @return String
 	 */
@@ -1350,7 +1350,7 @@ abstract class HTMLFormField {
 
 	/**
 	 * flatten an array of options to a single array, for instance,
-	 * a set of <options> inside <optgroups>.
+	 * a set of "<options>" inside "<optgroups>".
 	 * @param $options array Associative Array with values either Strings
 	 *	 or Arrays
 	 * @return Array flattened input
@@ -1889,7 +1889,7 @@ class HTMLMultiSelectField extends HTMLFormField {
  *     ** <option value>
  *     * New Optgroup header
  * Plus a text field underneath for an additional reason.  The 'value' of the field is
- * ""<select>: <extra reason>"", or "<extra reason>" if nothing has been selected in the
+ * "<select>: <extra reason>", or "<extra reason>" if nothing has been selected in the
  * select dropdown.
  * @todo FIXME: If made 'required', only the text field should be compulsory.
  */

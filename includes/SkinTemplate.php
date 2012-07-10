@@ -91,7 +91,7 @@ class SkinTemplate extends Skin {
 	var $template = 'QuickTemplate';
 
 	/**
-	 * Whether this skin use OutputPage::headElement() to generate the <head>
+	 * Whether this skin use OutputPage::headElement() to generate the "<head>"
 	 * tag
 	 */
 	var $useHeadElement = false;
@@ -1605,26 +1605,39 @@ abstract class BaseTemplate extends QuickTemplate {
 	 * Makes a link, usually used by makeListItem to generate a link for an item
 	 * in a list used in navigation lists, portlets, portals, sidebars, etc...
 	 *
-	 * $key is a string, usually a key from the list you are generating this link from
-	 * $item is an array containing some of a specific set of keys.
-	 * The text of the link will be generated either from the contents of the "text"
-	 * key in the $item array, if a "msg" key is present a message by that name will
-	 * be used, and if neither of those are set the $key will be used as a message name.
+	 * @param $key string usually a key from the list you are generating this
+	 * link from.
+	 * @param $item array contains some of a specific set of keys.
+	 *
+	 * The text of the link will be generated either from the contents of the
+	 * "text" key in the $item array, if a "msg" key is present a message by
+	 * that name will be used, and if neither of those are set the $key will be
+	 * used as a message name.
+	 *
 	 * If a "href" key is not present makeLink will just output htmlescaped text.
-	 * The href, id, class, rel, and type keys are used as attributes for the link if present.
-	 * If an "id" or "single-id" (if you don't want the actual id to be output on the link)
-	 * is present it will be used to generate a tooltip and accesskey for the link.
+	 * The "href", "id", "class", "rel", and "type" keys are used as attributes
+	 * for the link if present.
+	 *
+	 * If an "id" or "single-id" (if you don't want the actual id to be output
+	 * on the link) is present it will be used to generate a tooltip and
+	 * accesskey for the link.
+	 *
 	 * If you don't want an accesskey, set $item['tooltiponly'] = true;
-	 * $options can be used to affect the output of a link:
-	 *   You can use a text-wrapper key to specify a list of elements to wrap the
-	 *     text of a link in. This should be an array of arrays containing a 'tag' and
-	 *     optionally an 'attributes' key. If you only have one element you don't need
-	 *     to wrap it in another array. eg: To use <a><span>...</span></a> in all links
-	 *     use array( 'text-wrapper' => array( 'tag' => 'span' ) ) for your options.
-	 *   A link-class key can be used to specify additional classes to apply to all links.
-	 *   A link-fallback can be used to specify a tag to use instead of <a> if there is
-	 *   no link. eg: If you specify 'link-fallback' => 'span' than any non-link will
-	 *   output a <span> instead of just text.
+	 *
+	 * @param $options array can be used to affect the output of a link.
+	 * Possible options are:
+	 *   - 'text-wrapper' key to specify a list of elements to wrap the text of
+	 *   a link in. This should be an array of arrays containing a 'tag' and
+	 *   optionally an 'attributes' key. If you only have one element you don't
+	 *   need to wrap it in another array. eg: To use <a><span>...</span></a>
+	 *   in all links use array( 'text-wrapper' => array( 'tag' => 'span' ) )
+	 *   for your options.
+	 *   - 'link-class' key can be used to specify additional classes to apply
+	 *   to all links.
+	 *   - 'link-fallback' can be used to specify a tag to use instead of "<a>"
+	 *   if there is no link. eg: If you specify 'link-fallback' => 'span' than
+	 *   any non-link will output a "<span>" instead of just text.
+	 *
 	 * @return string
 	 */
 	function makeLink( $key, $item, $options = array() ) {

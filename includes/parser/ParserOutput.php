@@ -348,7 +348,7 @@ class ParserOutput extends CacheTime {
 	}
 
 	/**
-	 * Add some text to the <head>.
+	 * Add some text to the "<head>".
 	 * If $tag is set, the section with that tag will only be included once
 	 * in a given page.
 	 */

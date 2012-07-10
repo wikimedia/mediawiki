@@ -1515,7 +1515,7 @@ class EditPage {
 	 * @private
 	 * @todo document
 	 *
-	 * @parma $editText string
+	 * @param $editText string
 	 *
 	 * @return bool
 	 */
@@ -1582,7 +1582,7 @@ class EditPage {
 	/**
 	 * Check given input text against $wgSpamRegex, and return the text of the first match.
 	 *
-	 * @parma $text string
+	 * @param $text string
 	 *
 	 * @return string|bool  matching string or false
 	 */
@@ -2992,8 +2992,8 @@ HTML
 	 * failure, etc).
 	 *
 	 * @todo This doesn't include category or interlanguage links.
-	 *       Would need to enhance it a bit, <s>maybe wrap them in XML
-	 *       or something...</s> that might also require more skin
+	 *       Would need to enhance it a bit, "<s>maybe wrap them in XML
+	 *       or something...</s>" that might also require more skin
 	 *       initialization, so check whether that's a problem.
 	 */
 	function livePreview() {

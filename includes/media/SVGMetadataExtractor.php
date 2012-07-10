@@ -19,7 +19,7 @@
  *
  * @file
  * @ingroup Media
- * @author Derk-Jan Hartman <hartman _at_ videolan d0t org>
+ * @author "Derk-Jan Hartman <hartman _at_ videolan d0t org>"
  * @author Brion Vibber
  * @copyright Copyright © 2010-2010 Brion Vibber, Derk-Jan Hartman
  * @license http://www.gnu.org/copyleft/gpl.html GNU General Public License
@@ -255,7 +255,7 @@ class SVGReader {
 	/**
 	 * Parse the attributes of an SVG element
 	 *
-	 * The parser has to be in the start element of <svg>
+	 * The parser has to be in the start element of "<svg>"
 	 */
 	private function handleSVGAttribs( ) {
 		$defaultWidth = self::DEFAULT_WIDTH;

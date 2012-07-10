@@ -108,7 +108,7 @@ class ChangesList extends ContextSource {
 	}
 
 	/**
-	 * Sets the list to use a <li class="watchlist-(namespace)-(page)"> tag
+	 * Sets the list to use a "<li class='watchlist-(namespace)-(page)'>" tag
 	 * @param $value Boolean
 	 */
 	public function setWatchlistDivs( $value = true ) {
@@ -145,7 +145,7 @@ class ChangesList extends ContextSource {
 	}
 
 	/**
-	 * Provide the <abbr> element appropriate to a given abbreviated flag,
+	 * Provide the "<abbr>" element appropriate to a given abbreviated flag,
 	 * namely the flag indicating a new page, a minor edit, a bot edit, or an
 	 * unpatrolled edit.  By default in English it will contain "N", "m", "b",
 	 * "!" respectively, plus it will have an appropriate title and class.
@@ -564,7 +564,9 @@ class OldChangesList extends ChangesList {
 	/**
 	 * Format a line using the old system (aka without any javascript).
 	 *
-	 * @param $rc RecentChange
+	 * @param $rc RecentChange, passed by reference
+	 * @param $watched Bool (default false)
+	 * @param $linenumber Int (default null)
 	 * @return string
 	 */
 	public function recentChangesLine( &$rc, $watched = false, $linenumber = null ) {
@@ -1104,7 +1106,7 @@ class EnhancedChangesList extends ChangesList {
 	 * @param $dir String: one of '', 'd', 'l', 'r'
 	 * @param $alt String: text
 	 * @param $title String: text
-	 * @return String: HTML <img> tag
+	 * @return String: HTML "<img>" tag
 	 */
 	protected function arrow( $dir, $alt='', $title='' ) {
 		global $wgStylePath;
@@ -1117,7 +1119,7 @@ class EnhancedChangesList extends ChangesList {
 	/**
 	 * Generate HTML for a right- or left-facing arrow,
 	 * depending on language direction.
-	 * @return String: HTML <img> tag
+	 * @return String: HTML "<img>" tag
 	 */
 	protected function sideArrow() {
 		$dir = $this->getLanguage()->isRTL() ? 'l' : 'r';
@@ -1127,7 +1129,7 @@ class EnhancedChangesList extends ChangesList {
 	/**
 	 * Generate HTML for a down-facing arrow
 	 * depending on language direction.
-	 * @return String: HTML <img> tag
+	 * @return String: HTML "<img>" tag
 	 */
 	protected function downArrow() {
 		return $this->arrow( 'd', '-', $this->msg( 'rc-enhanced-hide' )->text() );
@@ -1135,7 +1137,7 @@ class EnhancedChangesList extends ChangesList {
 
 	/**
 	 * Generate HTML for a spacer image
-	 * @return String: HTML <img> tag
+	 * @return String: HTML "<img>" tag
 	 */
 	protected function spacerArrow() {
 		return $this->arrow( '', codepointToUtf8( 0xa0 ) ); // non-breaking space

@@ -282,6 +282,7 @@ abstract class MediaHandler {
 	 * Returns false if unknown or if the document is not multi-page.
 	 *
 	 * @param $image File
+	 * @param $page Unused, left for backcompatibility?
 	 * @return array
 	 */
 	function getPageDimensions( $image, $page ) {

@@ -156,7 +156,7 @@ class Http {
 	 *
 	 * file:// should not be allowed here for security purpose (r67684)
 	 *
-	 * @fixme this is wildly inaccurate and fails to actually check most stuff
+	 * @todo FIXME this is wildly inaccurate and fails to actually check most stuff
 	 *
 	 * @param $uri Mixed: URI to check for validity
 	 * @return Boolean

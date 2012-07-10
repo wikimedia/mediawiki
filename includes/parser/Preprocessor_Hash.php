@@ -24,7 +24,7 @@
 /**
  * Differences from DOM schema:
  *   * attribute nodes are children
- *   * <h> nodes that aren't at the top are replaced with <possible-h>
+ *   * "<h>" nodes that aren't at the top are replaced with <possible-h>
  * @ingroup Parser
  */
 class Preprocessor_Hash implements Preprocessor {
@@ -91,7 +91,7 @@ class Preprocessor_Hash implements Preprocessor {
 	 *
 	 * @param $text String: the text to parse
 	 * @param $flags Integer: bitwise combination of:
-	 *          Parser::PTD_FOR_INCLUSION    Handle <noinclude>/<includeonly> as if the text is being
+	 *          Parser::PTD_FOR_INCLUSION    Handle "<noinclude>" and "<includeonly>" as if the text is being
 	 *                                     included. Default is to assume a direct page view.
 	 *
 	 * The generated DOM tree must depend only on the input text and the flags.
@@ -1603,10 +1603,10 @@ class PPNode_Hash_Tree implements PPNode {
 	}
 
 	/**
-	 * Split a <part> node into an associative array containing:
-	 *    name          PPNode name
-	 *    index         String index
-	 *    value         PPNode value
+	 * Split a "<part>" node into an associative array containing:
+	 *  - name          PPNode name
+	 *  - index         String index
+	 *  - value         PPNode value
 	 *
 	 * @return array
 	 */
@@ -1638,7 +1638,7 @@ class PPNode_Hash_Tree implements PPNode {
 	}
 
 	/**
-	 * Split an <ext> node into an associative array containing name, attr, inner and close
+	 * Split an "<ext>" node into an associative array containing name, attr, inner and close
 	 * All values in the resulting array are PPNodes. Inner and close are optional.
 	 *
 	 * @return array
@@ -1666,7 +1666,7 @@ class PPNode_Hash_Tree implements PPNode {
 	}
 
 	/**
-	 * Split an <h> node
+	 * Split an "<h>" node
 	 *
 	 * @return array
 	 */
@@ -1692,7 +1692,7 @@ class PPNode_Hash_Tree implements PPNode {
 	}
 
 	/**
-	 * Split a <template> or <tplarg> node
+	 * Split a "<template>" or "<tplarg>" node
 	 *
 	 * @return array
 	 */

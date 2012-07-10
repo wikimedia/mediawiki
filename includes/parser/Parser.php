@@ -31,36 +31,38 @@
  * transformation of that wiki markup it into XHTML output / markup
  * (which in turn the browser understands, and can display).
  *
- * <pre>
- * There are five main entry points into the Parser class:
- * parse()
+ * There are seven main entry points into the Parser class:
+ *
+ * - Parser::parse()
  *     produces HTML output
- * preSaveTransform().
+ * - Parser::preSaveTransform().
  *     produces altered wiki markup.
- * preprocess()
+ * - Parser::preprocess()
  *     removes HTML comments and expands templates
- * cleanSig() / cleanSigInSig()
+ * - Parser::cleanSig() and Parser::cleanSigInSig()
  *     Cleans a signature before saving it to preferences
- * getSection()
+ * - Parser::getSection()
  *     Return the content of a section from an article for section editing
- * replaceSection()
+ * - Parser::replaceSection()
  *     Replaces a section by number inside an article
- * getPreloadText()
+ * - Parser::getPreloadText()
  *     Removes <noinclude> sections, and <includeonly> tags.
  *
  * Globals used:
  *    object: $wgContLang
  *
- * NOT $wgUser or $wgTitle or $wgRequest or $wgLang. Keep them away!
+ * @warning $wgUser or $wgTitle or $wgRequest or $wgLang. Keep them away!
  *
- * settings:
- *  $wgUseDynamicDates*, $wgInterwikiMagic*,
- *  $wgNamespacesWithSubpages, $wgAllowExternalImages*,
- *  $wgLocaltimezone, $wgAllowSpecialInclusion*,
- *  $wgMaxArticleSize*
+ * @par Settings:
+ * $wgLocaltimezone
+ * $wgNamespacesWithSubpages
  *
- *  * only within ParserOptions
- * </pre>
+ * @par Settings only within ParserOptions:
+ * $wgAllowExternalImages
+ * $wgAllowSpecialInclusion
+ * $wgInterwikiMagic
+ * $wgMaxArticleSize
+ * $wgUseDynamicDates
  *
  * @ingroup Parser
  */
@@ -557,10 +559,11 @@ class Parser {
 	}
 
 	/**
-	 * Process the wikitext for the ?preload= feature. (bug 5210)
+	 * Process the wikitext for the "?preload=" feature. (bug 5210)
 	 *
-	 * <noinclude>, <includeonly> etc. are parsed as for template transclusion,
-	 * comments, templates, arguments, tags hooks and parser functions are untouched.
+	 * "<noinclude>", "<includeonly>" etc. are parsed as for template
+	 * transclusion, comments, templates, arguments, tags hooks and parser
+	 * functions are untouched.
 	 *
 	 * @param $text String
 	 * @param $title Title
@@ -788,11 +791,14 @@ class Parser {
 	 * in the text with a random marker and returns the next text. The output
 	 * parameter $matches will be an associative array filled with data in
 	 * the form:
+	 *
+	 * @code
 	 *   'UNIQ-xxxxx' => array(
 	 *     'element',
 	 *     'tag content',
 	 *     array( 'param' => 'x' ),
 	 *     '<element param="x">tag content</element>' ) )
+	 * @endcode
 	 *
 	 * @param $elements array list of element names. Comments are always extracted.
 	 * @param $text string Source text string.
@@ -2940,7 +2946,7 @@ class Parser {
 	 *
 	 * @param $text String: The text to parse
 	 * @param $flags Integer: bitwise combination of:
-	 *          self::PTD_FOR_INCLUSION    Handle <noinclude>/<includeonly> as if the text is being
+	 *          self::PTD_FOR_INCLUSION    Handle "<noinclude>" and "<includeonly>" as if the text is being
 	 *                                     included. Default is to assume a direct page view.
 	 *
 	 * The generated DOM tree must depend only on the input text and the flags.
@@ -3517,7 +3523,7 @@ class Parser {
 	 * Static function to get a template
 	 * Can be overridden via ParserOptions::setTemplateCallback().
 	 *
-	 * @parma $title Title
+	 * @param $title  Title
 	 * @param $parser Parser
 	 *
 	 * @return array
@@ -3691,7 +3697,7 @@ class Parser {
 	 * Triple brace replacement -- used for template arguments
 	 * @private
 	 *
-	 * @param $peice array
+	 * @param $piece array
 	 * @param $frame PPFrame
 	 *
 	 * @return array
@@ -4324,7 +4330,7 @@ class Parser {
 	}
 
 	/**
-	 * Transform wiki markup when saving a page by doing \r\n -> \n
+	 * Transform wiki markup when saving a page by doing "\r\n" -> "\n"
 	 * conversion, substitting signatures, {{subst:}} templates, etc.
 	 *
 	 * @param $text String: the text to transform
@@ -4620,7 +4626,7 @@ class Parser {
 	}
 
 	/**
-	 * Create an HTML-style tag, e.g. <yourtag>special text</yourtag>
+	 * Create an HTML-style tag, e.g. "<yourtag>special text</yourtag>"
 	 * The callback should have the following form:
 	 *    function myParserHook( $text, $params, $parser, $frame ) { ... }
 	 *
@@ -4638,7 +4644,7 @@ class Parser {
 	 * this interface, as it is not documented and injudicious use could smash
 	 * private variables.**
 	 *
-	 * @param $tag Mixed: the tag to use, e.g. 'hook' for <hook>
+	 * @param $tag Mixed: the tag to use, e.g. 'hook' for "<hook>"
 	 * @param $callback Mixed: the callback function (and object) to use for the tag
 	 * @return Mixed|null The old value of the mTagHooks array associated with the hook
 	 */
@@ -4668,7 +4674,7 @@ class Parser {
 	 * @since 1.10
 	 * @todo better document or deprecate this
 	 *
-	 * @param $tag Mixed: the tag to use, e.g. 'hook' for <hook>
+	 * @param $tag Mixed: the tag to use, e.g. 'hook' for "<hook>"
 	 * @param $callback Mixed: the callback function (and object) to use for the tag
 	 * @return Mixed|null The old value of the mTagHooks array associated with the hook
 	 */
@@ -4776,7 +4782,7 @@ class Parser {
 	}
 
 	/**
-	 * Create a tag function, e.g. <test>some stuff</test>.
+	 * Create a tag function, e.g. "<test>some stuff</test>".
 	 * Unlike tag hooks, tag functions are parsed at preprocessor level.
 	 * Unlike parser functions, their content is not preprocessed.
 	 * @return null
@@ -4797,7 +4803,7 @@ class Parser {
 
 	/**
 	 * @todo FIXME: Update documentation. makeLinkObj() is deprecated.
-	 * Replace <!--LINK--> link placeholders with actual links, in the buffer
+	 * Replace "<!--LINK-->" link placeholders with actual links, in the buffer
 	 * Placeholders created in Skin::makeLinkObj()
 	 *
 	 * @param $text string
@@ -4810,7 +4816,7 @@ class Parser {
 	}
 
 	/**
-	 * Replace <!--LINK--> link placeholders with plain text of links
+	 * Replace "<!--LINK-->" link placeholders with plain text of links
 	 * (not HTML-formatted).
 	 *
 	 * @param $text String
@@ -5282,13 +5288,13 @@ class Parser {
 	 *
 	 * @param $text String: Page wikitext
 	 * @param $section String: a section identifier string of the form:
-	 *   <flag1> - <flag2> - ... - <section number>
+	 *   "<flag1> - <flag2> - ... - <section number>"
 	 *
 	 * Currently the only recognised flag is "T", which means the target section number
 	 * was derived during a template inclusion parse, in other words this is a template
 	 * section edit link. If no flags are given, it was an ordinary section edit link.
 	 * This flag is required to avoid a section numbering mismatch when a section is
-	 * enclosed by <includeonly> (bug 6563).
+	 * enclosed by "<includeonly>" (bug 6563).
 	 *
 	 * The section number 0 pulls the text before the first heading; other numbers will
 	 * pull the given section along with its lower-level subsections. If the section is

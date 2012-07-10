@@ -597,6 +597,9 @@ class SpecialRevisionDelete extends UnlistedSpecialPage {
 
 	/**
 	 * Do the write operations. Simple wrapper for RevDel_*List::setVisibility().
+	 * @param $bitfield
+	 * @param $reason
+	 * @param $title
 	 * @return
 	 */
 	protected function save( $bitfield, $reason, $title ) {

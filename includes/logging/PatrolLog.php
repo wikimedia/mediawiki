@@ -33,7 +33,7 @@ class PatrolLog {
 	 *
 	 * @param $rc Mixed: change identifier or RecentChange object
 	 * @param $auto Boolean: was this patrol event automatic?
-	 * @param $performer User: user performing the action or null to use $wgUser
+	 * @param $user User: user performing the action or null to use $wgUser
 	 *
 	 * @return bool
 	 */

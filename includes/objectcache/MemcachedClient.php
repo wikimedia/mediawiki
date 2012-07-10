@@ -573,10 +573,10 @@ class MWMemcached {
 	 * output as an array (null array if no output)
 	 *
 	 * NOTE: due to a possible bug in how PHP reads while using fgets(), each
-	 *       line may not be terminated by a \r\n.  More specifically, my testing
+	 *       line may not be terminated by a "\r\n".  More specifically, my testing
 	 *       has shown that, on FreeBSD at least, each line is terminated only
-	 *       with a \n.  This is with the PHP flag auto_detect_line_endings set
-	 *       to falase (the default).
+	 *       with a "\n".  This is with the PHP flag auto_detect_line_endings set
+	 *       to false (the default).
 	 *
 	 * @param $sock Resource: socket to send command on
 	 * @param $cmd String: command to run

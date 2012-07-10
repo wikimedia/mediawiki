@@ -86,6 +86,7 @@ class MemcachedBagOStuff extends BagOStuff {
 	/**
 	 * @param $key string
 	 * @param $value int
+	 * @param $exptime int (default 0)
 	 * @return Mixed
 	 */
 	public function add( $key, $value, $exptime = 0 ) {

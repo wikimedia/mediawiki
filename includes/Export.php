@@ -472,7 +472,7 @@ class XmlDumpWriter {
 	}
 
 	/**
-	 * Opens the XML output stream's root <mediawiki> element.
+	 * Opens the XML output stream's root "<mediawiki>" element.
 	 * This does not include an xml directive, so is safe to include
 	 * as a subelement in a larger XML stream. Namespace and XML Schema
 	 * references are included.
@@ -572,7 +572,7 @@ class XmlDumpWriter {
 	}
 
 	/**
-	 * Opens a <page> section on the output stream, with data
+	 * Opens a "<page>" section on the output stream, with data
 	 * from the given database row.
 	 *
 	 * @param $row object
@@ -604,7 +604,7 @@ class XmlDumpWriter {
 	}
 
 	/**
-	 * Closes a <page> section on the output stream.
+	 * Closes a "<page>" section on the output stream.
 	 *
 	 * @access private
 	 * @return string
@@ -614,7 +614,7 @@ class XmlDumpWriter {
 	}
 
 	/**
-	 * Dumps a <revision> section on the output stream, with
+	 * Dumps a "<revision>" section on the output stream, with
 	 * data filled in from the given database row.
 	 *
 	 * @param $row object
@@ -678,7 +678,7 @@ class XmlDumpWriter {
 	}
 
 	/**
-	 * Dumps a <logitem> section on the output stream, with
+	 * Dumps a "<logitem>" section on the output stream, with
 	 * data filled in from the given database row.
 	 *
 	 * @param $row object
@@ -726,6 +726,7 @@ class XmlDumpWriter {
 
 	/**
 	 * @param $timestamp string
+	 * @param $indent string Default to six spaces
 	 * @return string
 	 */
 	function writeTimestamp( $timestamp, $indent = "      " ) {
@@ -736,6 +737,7 @@ class XmlDumpWriter {
 	/**
 	 * @param $id
 	 * @param $text string
+	 * @param $indent string Default to six spaces
 	 * @return string
 	 */
 	function writeContributor( $id, $text, $indent = "      " ) {
@@ -815,7 +817,7 @@ class XmlDumpWriter {
 	 * Return prefixed text form of title, but using the content language's
 	 * canonical namespace. This skips any special-casing such as gendered
 	 * user namespaces -- which while useful, are not yet listed in the
-	 * XML <siteinfo> data so are unsafe in export.
+	 * XML "<siteinfo>" data so are unsafe in export.
 	 *
 	 * @param Title $title
 	 * @return string
