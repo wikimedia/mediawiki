@@ -359,7 +359,7 @@ class LogEventsList extends ContextSource {
 	}
 
 	/**
-	 * @TODO: split up!
+	 * @todo split up!
 	 *
 	 * @param  $row
 	 * @param Title $title

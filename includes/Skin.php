@@ -363,7 +363,7 @@ abstract class Skin extends ContextSource {
 	 * inside ->getOutput() is deprecated. The $out arg is kept
 	 * for compatibility purposes with skins.
 	 * @param $out OutputPage
-	 * @delete
+	 * @todo delete
 	 */
 	abstract function setupSkinUserCss( OutputPage $out );
 
