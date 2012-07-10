@@ -10222,6 +10222,15 @@ abc
 </p>
 !! end
 
+!!test
+Bug 34939 - Case insensitive link parsing
+!! input
+[HttP://MediaWiki.Org/]
+!! result
+<p><a rel="nofollow" class="external autonumber" href="HttP://MediaWiki.Org/">[1]</a>
+</p>
+!! end
+
 
 TODO:
 more images

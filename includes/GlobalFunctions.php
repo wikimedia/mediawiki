@@ -786,6 +786,9 @@ function wfParseUrl( $url ) {
 		return false;
 	}
 
+	// parse_url() incorrectly handles schemes case-sensitively. Convert it to lowercase.
+	$bits['scheme'] = strtolower( $bits['scheme'] );
+
 	// most of the protocols are followed by ://, but mailto: and sometimes news: not, check for it
 	if ( in_array( $bits['scheme'] . '://', $wgUrlProtocols ) ) {
 		$bits['delimiter'] = '://';
