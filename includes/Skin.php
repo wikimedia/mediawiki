@@ -1063,7 +1063,7 @@ abstract class Skin extends ContextSource {
 	 * @return String URL
 	 */
 	static function makeInternalOrExternalUrl( $name ) {
-		if ( preg_match( '/^(?:' . wfUrlProtocols() . ')/', $name ) ) {
+		if ( preg_match( '/^(?i:' . wfUrlProtocols() . ')/', $name ) ) {
 			return $name;
 		} else {
 			return self::makeUrl( $name );
@@ -1227,7 +1227,7 @@ abstract class Skin extends ContextSource {
 						$text = $line[1];
 					}
 
-					if ( preg_match( '/^(?:' . wfUrlProtocols() . ')/', $link ) ) {
+					if ( preg_match( '/^(?i:' . wfUrlProtocols() . ')/', $link ) ) {
 						$href = $link;
 
 						// Parser::getExternalLinkAttribs won't work here because of the Namespace things

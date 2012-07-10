@@ -1026,7 +1026,7 @@ class Sanitizer {
 
 		# Stupid hack
 		$encValue = preg_replace_callback(
-			'/(' . wfUrlProtocols() . ')/',
+			'/((?i)' . wfUrlProtocols() . ')/',
 			array( 'Sanitizer', 'armorLinksCallback' ),
 			$encValue );
 		return $encValue;
