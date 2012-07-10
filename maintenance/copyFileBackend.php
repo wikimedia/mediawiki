@@ -104,6 +104,7 @@ class CopyFileBackend extends Maintenance {
 	) {
 		$ops = array();
 		$fsFiles = array();
+		$copiedRel = array(); // for output message
 		foreach ( $srcPathsRel as $srcPathRel ) {
 			$srcPath = $src->getRootStoragePath() . "/$backendRel/$srcPathRel";
 			$dstPath = $dst->getRootStoragePath() . "/$backendRel/$srcPathRel";
@@ -125,6 +126,7 @@ class CopyFileBackend extends Maintenance {
 			}
 			$ops[] = array( 'op' => 'store',
 				'src' => $fsFile->getPath(), 'dst' => $dstPath, 'overwrite' => 1 );
+			$copiedRel[] = $srcPathRel;
 		}
 
 		$t_start = microtime( true );
@@ -133,9 +135,9 @@ class CopyFileBackend extends Maintenance {
 		if ( !$status->isOK() ) {
 			$this->error( print_r( $status->getErrorsArray(), true ) );
 			$this->error( "Could not copy file batch.", 1 ); // die
-		} else {
+		} elseif ( count( $copiedRel ) ) {
 			$this->output( "\nCopied these file(s) [{$ellapsed_ms}ms]:\n" .
-				implode( "\n", $srcPathsRel ) . "\n\n" );
+				implode( "\n", $copiedRel ) . "\n\n" );
 		}
 	}
 
