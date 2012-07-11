@@ -412,12 +412,11 @@ class ImagePage extends Article {
 
 					if ( $page > 1 ) {
 						$label = $out->parse( wfMsg( 'imgmultipageprev' ), false );
-						$link = Linker::link(
+						$link = Linker::linkKnown(
 							$this->getTitle(),
 							$label,
 							array(),
-							array( 'page' => $page - 1 ),
-							array( 'known', 'noclasses' )
+							array( 'page' => $page - 1 )
 						);
 						$thumb1 = Linker::makeThumbLinkObj( $this->getTitle(), $this->displayImg, $link, $label, 'none',
 							array( 'page' => $page - 1 ) );
@@ -427,12 +426,11 @@ class ImagePage extends Article {
 
 					if ( $page < $count ) {
 						$label = wfMsg( 'imgmultipagenext' );
-						$link = Linker::link(
+						$link = Linker::linkKnown(
 							$this->getTitle(),
 							$label,
 							array(),
-							array( 'page' => $page + 1 ),
-							array( 'known', 'noclasses' )
+							array( 'page' => $page + 1 )
 						);
 						$thumb2 = Linker::makeThumbLinkObj( $this->getTitle(), $this->displayImg, $link, $label, 'none',
 							array( 'page' => $page + 1 ) );
@@ -644,7 +642,7 @@ EOT
 
 		# External editing link
 		if ( $wgUseExternalEditor ) {
-			$elink = Linker::link(
+			$elink = Linker::linkKnown(
 				$this->getTitle(),
 				wfMsgHtml( 'edit-externally' ),
 				array(),
@@ -652,8 +650,7 @@ EOT
 					'action' => 'edit',
 					'externaledit' => 'true',
 					'mode' => 'file'
-				),
-				array( 'known', 'noclasses' )
+				)
 			);
 			$out->addHTML(
 				'<li id="mw-imagepage-edit-external">' . $elink . ' <small>' .
@@ -828,13 +825,7 @@ EOT
 		foreach ( $dupes as $file ) {
 			$fromSrc = '';
 			if ( $file->isLocal() ) {
-				$link = Linker::link(
-					$file->getTitle(),
-					null,
-					array(),
-					array(),
-					array( 'known', 'noclasses' )
-				);
+				$link = Linker::linkKnown( $file->getTitle() );
 			} else {
 				$link = Linker::makeExternalLink( $file->getDescriptionUrl(),
 					$file->getTitle()->getPrefixedText() );
@@ -1004,10 +995,10 @@ class ImageHistoryList extends ContextSource {
 				if ( !$iscur ) {
 					$q['oldimage'] = $img;
 				}
-				$row .= Linker::link(
+				$row .= Linker::linkKnown(
 					$this->title,
 					wfMsgHtml( $iscur ? 'filehist-deleteall' : 'filehist-deleteone' ),
-					array(), $q, array( 'known' )
+					array(), $q
 				);
 			}
 			# Link to hide content. Don't show useless link to people who cannot hide revisions.
@@ -1044,7 +1035,7 @@ class ImageHistoryList extends ContextSource {
 			if ( $file->isDeleted( File::DELETED_FILE ) ) {
 				$row .= wfMsgHtml( 'filehist-revert' );
 			} else {
-				$row .= Linker::link(
+				$row .= Linker::linkKnown(
 					$this->title,
 					wfMsgHtml( 'filehist-revert' ),
 					array(),
@@ -1052,8 +1043,7 @@ class ImageHistoryList extends ContextSource {
 						'action' => 'revert',
 						'oldimage' => $img,
 						'wpEditToken' => $user->getEditToken( $img )
-					),
-					array( 'known', 'noclasses' )
+					)
 				);
 			}
 		}
@@ -1072,7 +1062,7 @@ class ImageHistoryList extends ContextSource {
 				$this->preventClickjacking();
 				$revdel = SpecialPage::getTitleFor( 'Revisiondelete' );
 				# Make a link to review the image
-				$url = Linker::link(
+				$url = Linker::linkKnown(
 					$revdel,
 					$lang->timeanddate( $timestamp, true ),
 					array(),
@@ -1080,8 +1070,7 @@ class ImageHistoryList extends ContextSource {
 						'target' => $this->title->getPrefixedText(),
 						'file' => $img,
 						'token' => $user->getEditToken( $img )
-					),
-					array( 'known', 'noclasses' )
+					)
 				);
 			} else {
 				$url = $lang->timeanddate( $timestamp, true );
