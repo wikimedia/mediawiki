@@ -898,7 +898,7 @@ Kaberê bini ke şıma de kewti irtıbat, adresa e-postey şıma eşkera nêbena
 'nchanges'                        => '$1 {{PLURAL:$1|tedil|tedili}}',
 'recentchanges'                   => 'Vurnaisê peyêni',
 'recentchanges-legend'            => 'Alternatifê vurnaisunê peyênu',
-'recentchangestext'               => 'Na weiyekerdena wiki de vurnaisê tewrpeyêne ke biyê ine teqib ke.',
+'recentchangestext'               => 'Vurnaisê çulpeyêne ke na pela wiki de biyê, ine teqib ke.',
 'recentchanges-feed-description'  => 'Na weiyekerdena wiki de vurnaisê tewrpeyêne ke biyê ine teqib ke.',
 'recentchanges-label-newpage'     => 'Nê vurnaişi pelê da newiye afernê.',
 'recentchanges-label-minor'       => 'No zu vurnaiso qıckeko',
@@ -1065,7 +1065,7 @@ Cêr [$2 pela arezekerdena dosya de] arezekerdene asnina.',
 'booksources-go'            => 'So',
 
 # Special:Log
-'specialloguserlabel'  => 'Karber:',
+'specialloguserlabel'  => 'Kerdoğ:',
 'speciallogtitlelabel' => 'Sernuste:',
 'log'                  => 'Qeydi',
 

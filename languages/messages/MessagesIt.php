@@ -57,6 +57,7 @@
  * @author Una giornata uggiosa '94
  * @author Vajotwo
  * @author Valepert
+ * @author Ximo17
  * @author Xpensive
  * @author ZioNicco
  * @author לערי ריינהארט
@@ -274,17 +275,17 @@ $messages = array(
 'tog-editsectiononrightclick' => 'Modifica delle sezioni tramite clic destro sul titolo (richiede JavaScript)',
 'tog-showtoc'                 => "Mostra l'indice per le pagine con più di 3 sezioni",
 'tog-rememberpassword'        => 'Ricorda la password su questo browser (per un massimo di $1 {{PLURAL:$1|giorno|giorni}})',
-'tog-watchcreations'          => 'Aggiungi le pagine create agli osservati speciali',
-'tog-watchdefault'            => 'Aggiungi le pagine modificate agli osservati speciali',
-'tog-watchmoves'              => 'Aggiungi le pagine spostate agli osservati speciali',
-'tog-watchdeletion'           => 'Aggiungi le pagine cancellate agli osservati speciali',
+'tog-watchcreations'          => 'Aggiungi le pagine create e i file caricati agli osservati speciali',
+'tog-watchdefault'            => 'Aggiungi le pagine e i file modificati agli osservati speciali',
+'tog-watchmoves'              => 'Aggiungi le pagine e i file spostati agli osservati speciali',
+'tog-watchdeletion'           => 'Aggiungi le pagine e i file cancellati agli osservati speciali',
 'tog-minordefault'            => 'Indica ogni modifica come minore (solo come predefinito)',
 'tog-previewontop'            => "Mostra l'anteprima sopra la casella di modifica e non sotto",
 'tog-previewonfirst'          => "Mostra l'anteprima per la prima modifica",
 'tog-nocache'                 => 'Disabilitare la cache delle pagine del browser',
-'tog-enotifwatchlistpages'    => 'Segnalami via e-mail le modifiche alle pagine osservate',
+'tog-enotifwatchlistpages'    => 'Inviami una email quando viene modificata una pagina o un file presente tra gli osservati speciali',
 'tog-enotifusertalkpages'     => 'Segnalami via e-mail le modifiche alla mia pagina di discussione',
-'tog-enotifminoredits'        => 'Segnalami via e-mail anche le modifiche minori',
+'tog-enotifminoredits'        => 'Inviami una email anche per le modifiche minori di pagine e file',
 'tog-enotifrevealaddr'        => 'Rivela il mio indirizzo e-mail nei messaggi di avviso',
 'tog-shownumberswatching'     => 'Mostra il numero di utenti che hanno la pagina in osservazione',
 'tog-oldsig'                  => 'Firma attuale:',
@@ -3431,7 +3432,7 @@ I collegamenti successivi, sulla stessa riga, sono considerati come eccezioni (o
 'limitall'      => 'tutti',
 
 # E-mail address confirmation
-'confirmemail'              => 'Conferma indirizzo e-mail',
+'confirmemail'              => 'Conferma indirizzo email',
 'confirmemail_noemail'      => 'Non è stato indicato un indirizzo e-mail valido nelle proprie [[Special:Preferences|preferenze]].',
 'confirmemail_text'         => "{{SITENAME}} richiede la verifica dell'indirizzo e-mail prima di poter usare le relative funzioni. Premere il pulsante qui sotto per inviare una richiesta di conferma al proprio indirizzo; nel messaggio è presente un collegamento che contiene un codice. Visitare il collegamento con il proprio browser per confermare che l'indirizzo e-mail è valido.",
 'confirmemail_pending'      => "Il codice di conferma è già stato spedito via posta elettronica; se l'account è stato

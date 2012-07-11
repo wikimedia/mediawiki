@@ -21,6 +21,7 @@
  * @author Kaganer
  * @author Lajsikonik
  * @author Lampak
+ * @author Lazowik
  * @author Leinad
  * @author Maikking
  * @author Marcin Łukasz Kiejzik
@@ -293,11 +294,11 @@ $messages = array(
 'tog-underline'               => 'Podkreślenie linków',
 'tog-highlightbroken'         => 'Oznacz <a href="" class="new">tak</a> linki do brakujących stron (alternatywa – dołączany znak zapytania<a href="" class="internal">?</a>).',
 'tog-justify'                 => 'Wyrównuj tekst w akapitach do obu marginesów',
-'tog-hideminor'               => 'Ukryj drobne modyfikacje w ostatnich zmianach',
+'tog-hideminor'               => 'Ukryj drobne edycje w ostatnich zmianach',
 'tog-hidepatrolled'           => 'Ukryj sprawdzone edycje w ostatnich zmianach',
 'tog-newpageshidepatrolled'   => 'Ukryj sprawdzone strony na liście nowych stron',
 'tog-extendwatchlist'         => 'Pokaż na liście obserwowanych wszystkie zmiany, nie tylko ostatnie',
-'tog-usenewrc'                => 'Zastosuj rozbudowany widok ostatnich zmian (JavaScript)',
+'tog-usenewrc'                => 'Grupuj zmiany według stron na liście ostatnich zmian i obserwowanych (Wymaga JavaScript)',
 'tog-numberheadings'          => 'Automatyczna numeracja nagłówków',
 'tog-showtoolbar'             => 'Pokaż pasek narzędzi (JavaScript)',
 'tog-editondblclick'          => 'Podwójne kliknięcie rozpoczyna edycję (JavaScript)',
@@ -309,12 +310,12 @@ $messages = array(
 'tog-watchdefault'            => 'Dodaj do obserwowanych strony, które edytuję',
 'tog-watchmoves'              => 'Dodaj do obserwowanych strony, które przenoszę',
 'tog-watchdeletion'           => 'Dodaj do obserwowanych strony, które usuwam',
-'tog-minordefault'            => 'Wszystkie zmiany oznaczaj domyślnie jako drobne',
+'tog-minordefault'            => 'Wszystkie edycje domyślnie oznaczaj jako drobne',
 'tog-previewontop'            => 'Pokazuj podgląd powyżej obszaru edycji',
 'tog-previewonfirst'          => 'Pokazuj podgląd strony podczas pierwszej edycji',
 'tog-nocache'                 => 'Wyłącz pamięć podręczną przeglądarki',
-'tog-enotifwatchlistpages'    => 'Wyślij do mnie e‐mail, jeśli strona z listy moich obserwowanych zostanie zmodyfikowana',
-'tog-enotifusertalkpages'     => 'Wyślij do mnie e‐mail, jeśli moja strona dyskusji zostanie zmodyfikowana',
+'tog-enotifwatchlistpages'    => 'Wyślij do mnie e‐mail kiedy strona z mojej listy obserwowanych zostanie zmodyfikowana',
+'tog-enotifusertalkpages'     => 'Wyślij do mnie e‐mail kiedy moja strona dyskusji zostanie zmodyfikowana',
 'tog-enotifminoredits'        => 'Wyślij e‐mail także w przypadku drobnych zmian na stronach',
 'tog-enotifrevealaddr'        => 'Nie ukrywaj mojego adresu e‐mail w powiadomieniach',
 'tog-shownumberswatching'     => 'Pokaż liczbę użytkowników obserwujących stronę',
@@ -327,7 +328,7 @@ $messages = array(
 'tog-forceeditsummary'        => 'Informuj o niewypełnieniu opisu zmian',
 'tog-watchlisthideown'        => 'Ukryj moje edycje na liście obserwowanych',
 'tog-watchlisthidebots'       => 'Ukryj edycje botów na liście obserwowanych',
-'tog-watchlisthideminor'      => 'Ukrywaj drobne zmiany na liście obserwowanych',
+'tog-watchlisthideminor'      => 'Ukryj drobne zmiany na liście obserwowanych',
 'tog-watchlisthideliu'        => 'Ukryj edycje zalogowanych użytkowników na liście obserwowanych',
 'tog-watchlisthideanons'      => 'Ukryj edycje anonimowych użytkowników na liście obserwowanych',
 'tog-watchlisthidepatrolled'  => 'Ukryj sprawdzone edycje na liście obserwowanych',
@@ -2498,7 +2499,7 @@ $1',
 'tooltip-invert'                => 'Zaznacz to pole, aby ukryć zmiany na stronach w wybranych przestrzeniach nazw (oraz związanych z nimi innymi przestrzeniami nazw, jeśli zaznaczono)',
 'namespace_association'         => 'powiązana przestrzeń nazw',
 'tooltip-namespace_association' => 'Zaznacz to pole, aby uwzględnić strony dyskusji i tematu związane z wybranymi przestrzeniami nazw',
-'blanknamespace'                => '(główna)',
+'blanknamespace'                => '(Główna)',
 
 # Contributions
 'contributions'       => 'Wkład użytkownika',
@@ -2940,7 +2941,7 @@ Brak katalogu dla plików tymczasowych.',
 'tooltip-n-currentevents'             => 'Informacje o aktualnych wydarzeniach',
 'tooltip-n-recentchanges'             => 'Lista ostatnich zmian na {{GRAMMAR:MS.lp|{{SITENAME}}}}.',
 'tooltip-n-randompage'                => 'Pokaż stronę wybraną losowo',
-'tooltip-n-help'                      => 'Tutaj możesz się wielu rzeczy dowiedzieć.',
+'tooltip-n-help'                      => 'Tutaj możesz się dowiedzieć wielu rzeczy.',
 'tooltip-t-whatlinkshere'             => 'Pokaż listę wszystkich stron linkujących do tej strony',
 'tooltip-t-recentchangeslinked'       => 'Ostatnie zmiany w stronach, do których ta strona linkuje',
 'tooltip-feed-rss'                    => 'Kanał RSS dla tej strony',

@@ -1,5 +1,5 @@
 <?php
-/** Norwegian Bokmål (‪Norsk (bokmål)‬)
+/** Norwegian Bokmål (‪norsk (bokmål)‬)
  *
  * See MessagesQqq.php for message documentation incl. usage of parameters
  * To improve a translation please visit http://translatewiki.net
@@ -11,12 +11,15 @@
  * @author Boivie
  * @author Brik
  * @author Byrial
+ * @author Danmichaelo
+ * @author Dittaeva
  * @author Eirik
  * @author EivindJ
  * @author Event
  * @author Finnrind
  * @author Guaca
  * @author H92
+ * @author Haakon K
  * @author Harald Khan
  * @author Jóna Þórunn
  * @author Kph
@@ -314,8 +317,8 @@ $messages = array(
 'tog-extendwatchlist'         => 'Utvid overvåkningslisten til å vise alle endringer, ikke bare de siste',
 'tog-usenewrc'                => 'Bruk forbedret siste endringer (krever JavaScript)',
 'tog-numberheadings'          => 'Autonummerer overskrifter',
-'tog-showtoolbar'             => 'Vis verktøylinje (JavaScript)',
-'tog-editondblclick'          => 'Rediger sider ved å dobbeltklikke (JavaScript)',
+'tog-showtoolbar'             => 'Vis verktøylinje (krever JavaScript)',
+'tog-editondblclick'          => 'Rediger sider ved å dobbeltklikke (krever JavaScript)',
 'tog-editsection'             => 'Rediger avsnitt ved hjelp av [rediger]-lenke',
 'tog-editsectiononrightclick' => 'Rediger avsnitt ved å høyreklikke på avsnittsoverskrift (JavaScript)',
 'tog-showtoc'                 => 'Vis innholdsfortegnelse (for sider med flere enn tre avsnitt)',
@@ -325,16 +328,16 @@ $messages = array(
 'tog-watchmoves'              => 'Overvåk sider jeg flytter',
 'tog-watchdeletion'           => 'Overvåk sider jeg sletter',
 'tog-minordefault'            => 'Merk i utgangspunktet alle redigeringer som mindre',
-'tog-previewontop'            => 'Flytt forhåndsvisningen foran redigeringsboksen',
-'tog-previewonfirst'          => 'Vis forhåndsvisning ved første redigering av en side',
+'tog-previewontop'            => 'Vis forhåndsvisningen ovenfor redigeringsboksen',
+'tog-previewonfirst'          => 'Vis forhåndsvisning når du begynner å redigere',
 'tog-nocache'                 => 'Deaktiver nettlesermellomlagring av sider («caching»)',
-'tog-enotifwatchlistpages'    => 'Send meg en e-post når sider på overvåkningslisten blir endret',
-'tog-enotifusertalkpages'     => 'Send meg en e-post ved endringer av brukerdiskusjonssiden min',
-'tog-enotifminoredits'        => 'Send meg en e-post også ved mindre sideendringer',
+'tog-enotifwatchlistpages'    => 'Send meg en e-post når sider på overvåkningslisten min blir endret',
+'tog-enotifusertalkpages'     => 'Send meg en e-post når brukerdiskusjonssiden min endres',
+'tog-enotifminoredits'        => 'Send meg e-post også ved mindre endringer',
 'tog-enotifrevealaddr'        => 'Vis min e-postadresse i utgående meldinger',
-'tog-shownumberswatching'     => 'Vis antall overvåkende brukere',
+'tog-shownumberswatching'     => 'Vis antall brukere som overvåker',
 'tog-oldsig'                  => 'Nåværende signatur:',
-'tog-fancysig'                => 'Håndter signatur som wikitekst (uten automatisk lenke)',
+'tog-fancysig'                => 'Behandle signaturen som wikitekst (uten automatisk lenke)',
 'tog-externaleditor'          => 'Bruk ekstern behandler som standard (kun for viderekomne brukere, krever spesielle innstillinger på din datamaskin. [//www.mediawiki.org/wiki/Manual:External_editors Mer informasjon.])',
 'tog-externaldiff'            => 'Bruk ekstern differanse som standard (kun for viderekomne brukere, krever spesielle innstillinger på din datamaskin. [//www.mediawiki.org/wiki/Manual:External_editors Mer informasjon.])',
 'tog-showjumplinks'           => 'Slå på «gå til»-lenker',
@@ -346,7 +349,7 @@ $messages = array(
 'tog-watchlisthideliu'        => 'Skjul endringer av innloggede brukere fra overvåkningslisten',
 'tog-watchlisthideanons'      => 'Skjul endringer av anonyme brukere fra overvåkningslisten',
 'tog-watchlisthidepatrolled'  => 'Skjul patruljerte endringer fra overvåkningslisten',
-'tog-nolangconversion'        => 'Slå av variantkonvertering',
+'tog-nolangconversion'        => 'Slå av konvertering mellom språkvarianter',
 'tog-ccmeonemails'            => 'Send meg kopier av e-poster jeg sender til andre brukere',
 'tog-diffonly'                => 'Ikke vis sideinnhold under differ',
 'tog-showhiddencats'          => 'Vis skjulte kategorier',
@@ -425,7 +428,7 @@ $messages = array(
 'hidden-category-category'       => 'Skjulte kategorier',
 'category-subcat-count'          => '{{PLURAL:$2|Denne kategorien har kun følgende underkategori.|Denne kategorien har følgende {{PLURAL:$1|underkategori|$1 underkategorier}}, av totalt $2.}}',
 'category-subcat-count-limited'  => 'Kategorien har følgende {{PLURAL:$1|underkategori|$1 underkategorier}}.',
-'category-article-count'         => '{{PLURAL:$2|Denne kategorien inneholder kun følgende side.|Følgende {{PLURAL:$1|side|$1 sider}} er i denne kategorien, av totalt $2.}}',
+'category-article-count'         => '{{PLURAL:$2|Denne kategorien inneholder kun følgende side.|Under vises $1 av totalt $2 sider som befinner seg i denne kategorien.}}',
 'category-article-count-limited' => 'Følgende {{PLURAL:$1|side|$1 sider}} er i denne kategorien.',
 'category-file-count'            => '{{PLURAL:$2|Denne kategorien inneholder kun den følgende filen.|Følgende {{PLURAL:$1|fil|$1 filer}} er i denne kategorien, av totalt $2.}}',
 'category-file-count-limited'    => 'Følgende {{PLURAL:$1|fil|$1 filer}} er i denne kategorien.',
@@ -1218,7 +1221,7 @@ Vennligst sjekk loggen.',
 # Suppression log
 'suppressionlog'     => 'Sideskjulingslogg',
 'suppressionlogtext' => 'Under er en liste over sider som er slettet eller blokkert med innhold skjult fra administratorer.
-Se [[Special:BlockList|IP-blokkeringsliste]] for oversikt over aktuelle utelukkelser og blokkeringer.',
+Se [[Special:BlockList|blokkeringslisten]] for oversikt over aktuelle utelukkelser og blokkeringer.',
 
 # History merging
 'mergehistory'                     => 'Flett sidehistorikker',
@@ -1639,6 +1642,7 @@ Den kan maks inneholde $1 {{PLURAL:$1|tegn|tegn}}.',
 'newsectionsummary'                 => '/* $1 */ ny seksjon',
 'rc-enhanced-expand'                => 'Vis detaljer (krever JavaScript)',
 'rc-enhanced-hide'                  => 'Skjul detaljer',
+'rc-old-title'                      => 'opprinnelig opprettet som «$1»',
 
 # Recent changes linked
 'recentchangeslinked'          => 'Relaterte endringer',
@@ -1689,7 +1693,7 @@ Se [[Special:NewFiles|galleriet over nye filer]] for en mer visuell visning',
 'ignorewarnings'              => 'Ignorer eventuelle advarsler',
 'minlength1'                  => 'Filnavn må være på minst én bokstav.',
 'illegalfilename'             => 'Filnavnet «$1» inneholder ugyldige tegn. Gi filen et nytt navn og prøv igjen.',
-'filename-toolong'            => 'Filnavn kan ikke overstige 240 bytes.',
+'filename-toolong'            => 'Filnavn kan ikke overstige 240 byte.',
 'badfilename'                 => 'Navnet på filen er blitt endret til «$1».',
 'filetype-mime-mismatch'      => 'Filendelsen «.$1» tilsvarer ikke MIME-typen som oppgis i filen ($2).',
 'filetype-badmime'            => 'Filer av typen «$1» kan ikke lastes opp.',
@@ -2625,7 +2629,7 @@ Blokkeringsloggen vises nedenfor.',
 Skjulingsloggen vises nedenfor.',
 'blocklogentry'                   => 'blokkerte [[$1]] med en varighet på $2 $3',
 'reblock-logentry'                => 'endret blokkeringsinnstillinger for [[$1]] med en varighet på $2 $3',
-'blocklogtext'                    => 'Dette er en logg som viser hvilke brukere som har blitt blokkert og avblokkert. Automatisk blokkerte IP-adresser vises ikke. Se [[Special:BlockList|blokkeringslisten]] for en liste over IP-adresser som er blokkert akkurat nå.',
+'blocklogtext'                    => 'Dette er en logg som viser hvilke brukere som har blitt blokkert og avblokkert. Automatisk blokkerte IP-adresser vises ikke. Se [[Special:BlockList|blokkeringslisten]] for alle aktive blokkeringer.',
 'unblocklogentry'                 => 'opphevet blokkeringen av $1',
 'block-log-flags-anononly'        => 'kun uregistrerte brukere',
 'block-log-flags-nocreate'        => 'kontooppretting deaktivert',
@@ -2806,7 +2810,7 @@ Dersom du bare vil ha nåværende versjon, kan du også bruke en lenke, for ekse
 Besøk [//translatewiki.net translatewiki.net] om du ønsker å bidra med oversettelse av MediaWiki.',
 'allmessagesnotsupportedDB'     => "''{{ns:special}}:Allmessages'' kan ikke brukes fordi '''\$wgUseDatabaseMessages''' er slått av.",
 'allmessages-filter-legend'     => 'Filtrér',
-'allmessages-filter'            => 'Filtrér etter tilpassningsgrad',
+'allmessages-filter'            => 'Filtrér etter tilpasningsgrad',
 'allmessages-filter-unmodified' => 'Uendret',
 'allmessages-filter-all'        => 'Alle',
 'allmessages-filter-modified'   => 'Endret',
@@ -2880,7 +2884,7 @@ Lagre den på din egen datamaskin og last den opp her.',
 
 # JavaScriptTest
 'javascripttest'                           => 'JavaScript-testing',
-'javascripttest-disabled'                  => 'Denne funksjonen er deaktivert.',
+'javascripttest-disabled'                  => 'Denne funksjonen er ikke aktivert på denne wikien.',
 'javascripttest-title'                     => 'Kjører $1 tester',
 'javascripttest-pagetext-noframework'      => 'Denne siden er reservert for å kjøre JavaScript-tester.',
 'javascripttest-pagetext-unknownframework' => 'Ukjent testerammeverk "$1".',
@@ -3148,7 +3152,7 @@ Andre vil skjules som standard.
 'exif-jpeginterchangeformatlength' => 'Byte med JPEG-data',
 'exif-whitepoint'                  => 'Hvitpunktkromatisitet',
 'exif-primarychromaticities'       => 'Primærfargenes renhet',
-'exif-ycbcrcoefficients'           => 'Koeffisienter fr fargeromstransformasjonsmatrise',
+'exif-ycbcrcoefficients'           => 'Koeffisienter for fargeromstransformasjonsmatrise',
 'exif-referenceblackwhite'         => 'Par av svarte og hvite referanseverdier',
 'exif-datetime'                    => 'Dato og tid for filendring',
 'exif-imagedescription'            => 'Bildetittel',
@@ -3863,7 +3867,7 @@ Bilder vises med full oppløsning, mens andre filtyper startes direkte gjennom s
 'logentry-patrol-patrol'              => '$1 markerte revisjon $4 av siden $3 som patruljert',
 'logentry-patrol-patrol-auto'         => '$1 markerte automatisk revisjon $4 av siden $3 som patruljert',
 'logentry-newusers-newusers'          => '$1 opprettet en brukerkonto',
-'logentry-newusers-create'            => '$1 oppretteten brukerkonto',
+'logentry-newusers-create'            => '$1 opprettet en brukerkonto',
 'logentry-newusers-create2'           => '$1 opprettet en brukerkonto $3',
 'logentry-newusers-autocreate'        => 'Konto $1 ble opprettet automatisk',
 'newuserlog-byemail'                  => 'passord sendt på e-post',

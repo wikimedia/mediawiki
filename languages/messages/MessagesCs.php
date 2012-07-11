@@ -368,8 +368,8 @@ $messages = array(
 'tog-editsectiononrightclick' => 'Zapnout možnost editace části stránky pomocí kliknutí pravým tlačítkem na nadpisy stránky (JavaScript)',
 'tog-showtoc'                 => 'Zobrazovat obsah (na stránkách s více než třemi nadpisy)',
 'tog-rememberpassword'        => 'Zapamatovat si mé přihlášení v tomto prohlížeči (maximálně $1 {{PLURAL:$1|den|dny|dní}})',
-'tog-watchcreations'          => 'Přidávat mnou založené stránky ke sledovaným',
-'tog-watchdefault'            => 'Přidávat mnou editované stránky ke sledovaným',
+'tog-watchcreations'          => 'Přidávat mnou založené stránky a načtené soubory ke sledovaným',
+'tog-watchdefault'            => 'Přidávat mnou editované stránky a soubory ke sledovaným',
 'tog-watchmoves'              => 'Přidávat mnou přesouvané stránky mezi sledované',
 'tog-watchdeletion'           => 'Přidávat stránky, které smažu, mezi sledované',
 'tog-minordefault'            => 'Označit editaci implicitně jako malá editace',
@@ -1086,7 +1086,7 @@ Níže vidíte soupis přesunů a smazání této stránky:",
 'moveddeleted-notice'              => 'Tato stránka byla smazána.
 Podrobnosti si můžete prohlédnout v níže zobrazeném seznamu provedených přesunů a smazání této stránky.',
 'log-fulllog'                      => 'Zobrazit všechny záznamy',
-'edit-hook-aborted'                => 'Editace byla zrušena přípojným bodem bez bližšího vysvětlení.',
+'edit-hook-aborted'                => 'Editace byla bez bližšího vysvětlení zrušena přípojným bodem.',
 'edit-gone-missing'                => 'Stránku se nepodařilo aktualizovat.
 Zřejmě byla smazána.',
 'edit-conflict'                    => 'Editační konflikt.',
@@ -1097,7 +1097,7 @@ Zřejmě byla smazána.',
 'expensive-parserfunction-warning'        => 'Varování: Tato stránka obsahuje příliš mnoho volání výkonnostně náročných funkcí parseru.
 
 Povolený limit je $2, v současné chvíli však {{PLURAL:$1|zde jedno volání je|zde jsou $2 volání|zde je $2 volání}}.',
-'expensive-parserfunction-category'       => 'Stránky s příliš vysokým počtem volání funkcí parseru.',
+'expensive-parserfunction-category'       => 'Stránky s příliš mnoho voláními náročných funkcí parseru',
 'post-expand-template-inclusion-warning'  => 'Varování: Objem vkládaných šablon je příliš velký.
 Některé šablony nebudou vloženy.',
 'post-expand-template-inclusion-category' => 'Stránky překračující povolenou velikost vložených šablon',

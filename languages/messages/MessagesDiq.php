@@ -331,7 +331,7 @@ $1',
 'nstab-mediawiki' => 'Mesac',
 'nstab-template'  => 'Şablon',
 'nstab-help'      => 'Pela peşti',
-'nstab-category'  => 'Kategori',
+'nstab-category'  => 'Kategoriye',
 
 # Main script and global functions
 'nosuchaction'      => 'Fealiyeto wınasi çıniyo',
@@ -1319,7 +1319,7 @@ Kaberê bini ke şıma de kewti irtıbat, adresa e-postey şıma eşkera nêbena
 'nchanges'                          => '$1 {{PLURAL:$1|fın vurna|fıni vurna}}',
 'recentchanges'                     => 'Vurnayışê peyêni',
 'recentchanges-legend'              => 'Tercihê vurnayışanê peniyan',
-'recentchangestext'                 => 'eno pele de ser wîkî de vurnayîşî penîyî teqib bike',
+'recentchangestext'                 => 'Vurnayışê tewrpeyêne ke na pela wiki de biyê, inan teqib ke.',
 'recentchanges-feed-description'    => 'Ena feed dı vurnayişanê tewr peniyan teqip bık.',
 'recentchanges-label-newpage'       => 'Enê vurnayışi pelaya newi vıraşt',
 'recentchanges-label-minor'         => 'Eno yew edîto qickek o',
@@ -1829,7 +1829,7 @@ Xo vira mekerê ke, sıteyê webiê bini şenê direkt ebe URLi yew dosya ra gı
 'booksources-invalid-isbn'  => 'ISBN raşt nêasena bıewnê çımeyê orjinali, raşt kopya biya nê nêbiyaya?',
 
 # Special:Log
-'specialloguserlabel'  => 'Weskedar:',
+'specialloguserlabel'  => 'Kerdoğ:',
 'speciallogtitlelabel' => 'Menzil (sernuşte yana karber):',
 'log'                  => 'Qeydi',
 'all-logs-page'        => 'Loganê umum yê hemî',
@@ -3042,7 +3042,7 @@ Eg ena dosya, kondisyonê orcinali ra bıvuriya, belki detayanê hemi nıeseno.'
 'exif-writer'                      => 'Nuştekar',
 'exif-languagecode'                => 'Zıwan',
 'exif-iimversion'                  => 'Verqaydê IIM',
-'exif-iimcategory'                 => 'Kategori',
+'exif-iimcategory'                 => 'Kategoriye',
 'exif-iimsupplementalcategory'     => 'Oleyê Kategoriyan',
 'exif-datetimeexpires'             => 'No peyra mekarênê',
 'exif-datetimereleased'            => 'Bıroşe',

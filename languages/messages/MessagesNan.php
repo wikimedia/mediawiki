@@ -497,6 +497,7 @@ Lîm-sî ê bi̍t-bé: $2',
 'anoneditwarning'                  => "'''Kéng-kò:''' Lí bô teng-ji̍p. Lí ê IP chū-chí ē kì tī pún ia̍h ê pian-chi̍p le̍k-sú lāi-bīn.",
 'summary-preview'                  => 'Khài-iàu ê preview:',
 'subject-preview'                  => 'Ū-lám tê-bo̍k/piau-tê:',
+'blockednoreason'                  => '無寫理由',
 'whitelistedittext'                => 'Lí ài $1 chiah ē-sái siu-kái.',
 'nosuchsectiontitle'               => 'Chhoé bô toān-lo̍h',
 'loginreqtitle'                    => 'Su-iàu Teng-ji̍p',
@@ -507,9 +508,9 @@ Lîm-sî ê bi̍t-bé: $2',
 'newarticle'                       => '(Sin)',
 'newarticletext'                   => "Lí tòe 1 ê liân-kiat lâi kàu 1 bīn iáu-bōe chûn-chāi ê ia̍h. Beh khai-sí pian-chi̍p chit ia̍h, chhiáⁿ tī ē-kha ê bûn-jī keh-á lāi-té phah-jī. ([[{{MediaWiki:Helppage}}|Bo̍k-lio̍k]] kà lí án-choáⁿ chìn-hêng.) Ká-sú lí bô-tiuⁿ-tî lâi kàu chia, ē-sai chhi̍h liû-lám-khì ê '''téng-1-ia̍h''' tńg--khì.",
 'anontalkpagetext'                 => "----''Pún thó-lūn-ia̍h bô kò·-tēng ê kháu-chō/hō·-thâu, kan-na ū 1 ê IP chū-chí (chhin-chhiūⁿ 123.456.789.123). In-ūi bô kāng lâng tī bô kāng sî-chūn ū khó-lêng tú-hó kong-ke kāng-ê IP, lâu tī chia ê oē ū khó-lêng hō· bô kāng lâng ê! Beh pī-bián chit khoán būn-tê, ē-sái khì [[Special:UserLogin|khui 1 ê hō·-thâu a̍h-sī teng-ji̍p]].''",
-'clearyourcache'                   => "'''Chù-ì:''' Pó-chûn liáu-āu, tio̍h ē-kì leh kā liû-lám-khì ê cache piàⁿ tiāu chiah khoàⁿ-ē-tio̍h kái-piàn: *'''Firefox / Safari:''' chhi̍h tiâu \"Shift\" kâng-sî-chūn tiám-kik ''Reload/têng-sin chài-ji̍p'' a̍h-sī chhi̍h ''Ctrl-F5'' \"Ctrl-R\" kî-tiong chi̍t ê (''Command-R'' tī Mac)
+'clearyourcache'                   => "'''Chù-ì:''' Pó-chûn liáu-āu, tio̍h ē-kì leh kā liû-lám-khì ê cache piàⁿ tiāu chiah khoàⁿ-ē-tio̍h kái-piàn: *'''Firefox / Safari:''' chhi̍h tiâu \"Shift\" kâng-sî-chūn tiám-kik ''Reload/têng-sin chài-ji̍p'' a̍h-sī chhi̍h ''Ctrl-F5'' \"Ctrl-R\" kî-tiong chi̍t ê (''Command-R'' tī Mac) 
 * '''Google Chrome:''' chhi̍h ''Ctrl-Shift-R'' (''Command-Shift-R'' tī Mac)
-'''Internet Explorer :'''chhi̍h tiâu \"Ctrl\" kâng-sî-chūn tiám-kek ''Refresh/têng-sin chài-ji̍p'' a̍h-sī chhi̍h \"Ctrl-F5\"
+'''Internet Explorer :'''chhi̍h tiâu \"Ctrl\" kâng-sî-chūn tiám-kek ''Refresh/têng-sin chài-ji̍p'' a̍h-sī chhi̍h \"Ctrl-F5\" 
 * '''Konqueror:'''  tiám-kek ''Reload/têng-sin chài-ji̍p'' a̍h-sī chhi̍h ''F5''
 * '''Opera:''' piàⁿ-tiāu cache tī ''Tools(ke-si) → Preferences(siat-piān)''",
 'usercssyoucanpreview'             => "'''Phiat-pō·''': Pó-chûn chìn-chêng ē-sái chhi̍h 'Seng khoàⁿ-māi' kiám-cha sin ê CSS a̍h-sī JavaScript.",
@@ -561,6 +562,7 @@ Lí ê kái-piàn tī ē-kha ê bûn-jī-keh. Lí su-iàu chiōng lí chò ê k�
 'nextrevision'        => 'Khah sin ê siu-tēng-pún→',
 'currentrevisionlink' => 'khoàⁿ siōng sin ê siu-tēng-pún',
 'cur'                 => 'taⁿ',
+'next'                => '下一个',
 'last'                => 'chêng',
 'page_first'          => 'Tùi thâu-chêng',
 'page_last'           => 'Tùi āu-piah',
@@ -722,6 +724,7 @@ Tī pat-lâng liân-lo̍k lí ê sî-chūn bē kā e-mail tsū-tsí siá chhut--
 'listfiles_user'        => 'Iōng-chiá',
 'listfiles_size'        => 'Toā-sè',
 'listfiles_description' => 'Soat-bêng',
+'listfiles_count'       => '版本',
 
 # File description page
 'file-anchor-link'  => 'Tóng-àn',
@@ -904,19 +907,21 @@ Also see [[Special:WantedCategories|wanted categories]].',
 'editcomment'    => "Siu-kái phêng-lūn sī: \"''\$1''\".",
 
 # Protect
-'protect-title'   => 'Pó-hō· "$1"',
-'prot_1movedto2'  => '[[$1]] sóa khì tī [[$2]]',
-'protect-legend'  => 'Khak-tēng beh pó-hō·',
-'protectcomment'  => 'Lí-iû:',
-'protect-cascade' => 'Cascading protection - pó-hō͘ jīm-hô pau-hâm tī chit ia̍h ê ia̍h.',
+'protectedarticle' => 'pó-hō͘ "[[$1]]"',
+'protect-title'    => 'Pó-hō· "$1"',
+'prot_1movedto2'   => '[[$1]] sóa khì tī [[$2]]',
+'protect-legend'   => 'Khak-tēng beh pó-hō·',
+'protectcomment'   => 'Lí-iû:',
+'protect-cascade'  => 'Cascading protection - pó-hō͘ jīm-hô pau-hâm tī chit ia̍h ê ia̍h.',
 
 # Restrictions (nouns)
 'restriction-edit' => 'Siu-kái',
 'restriction-move' => 'Sóa khì',
 
 # Undelete
-'undelete'     => 'Kiù thâi tiāu ê ia̍h',
-'undeletepage' => 'Khoàⁿ kap kiù thâi tiāu ê ia̍h',
+'undelete'         => 'Kiù thâi tiāu ê ia̍h',
+'undeletepage'     => 'Khoàⁿ kap kiù thâi tiāu ê ia̍h',
+'undeleteviewlink' => 'Khoàⁿ',
 
 # Namespace form on various pages
 'namespace'      => 'Miâ-khong-kan:',
@@ -1058,6 +1063,7 @@ Lí ē-sái khoàⁿ i ê goân-sú-bé.',
 'tooltip-save'                   => 'Pó-chhûn lí chò ê kái-piàn',
 'tooltip-preview'                => 'Chhiáⁿ tī pó-chûn chìn-chêng,  sian khoàⁿ lí chò ê kái-piàn !',
 'tooltip-rollback'               => 'Ji̍h "Hoê-choán" ē-sái thè tńg-khì téng-chi̍t-ê kái ê lâng ê ia̍h.',
+'tooltip-preferences-save'       => '保存設定',
 'tooltip-summary'                => 'Siá chi̍t-ê kán-tan soat-bêng',
 
 # Attribution
@@ -1080,6 +1086,7 @@ Lí ē-sái khoàⁿ i ê goân-sú-bé.',
 # Media information
 'imagemaxsize' => 'Iáⁿ-siōng biô-su̍t-ia̍h ê tô· ke̍k-ke hián-sī jōa tōa tiuⁿ:',
 'thumbsize'    => 'Sok-tô· (thumbnail) jōa tōa tiuⁿ:',
+'file-nohires' => 'Bô khah koân ê kái-sek-tō͘.',
 
 # Special:NewFiles
 'newimages'     => 'Sin iáⁿ-siōng oē-lóng',

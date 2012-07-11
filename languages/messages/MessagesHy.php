@@ -15,6 +15,7 @@
  * @author Togaed
  * @author Vacio
  * @author Xelgen
+ * @author Համլետ
  * @author לערי ריינהארט
  */
 
@@ -740,6 +741,9 @@ $2',
 Խնդրում ենք սպասել որոշ ժամանակ կրկին փորձելուց առաջ։',
 'loginlanguagelabel'         => 'Լեզու. $1',
 
+# E-mail sending
+'php-mail-error-unknown' => 'Անհայտ սխալ PHP-ի mail() ֆունկցիայում',
+
 # Change password dialog
 'resetpass'                 => 'Փոխել գաղտնաբառը',
 'resetpass_announce'        => 'Դուք ներկայացել եք էլ-փոստով ստացված ժամանակավոր գաղտնաբառով։ Համակարգ մուտքի համար անհրաժեշտ է նոր գաղտնաբառ ընտրել այստեղ.',
@@ -759,12 +763,15 @@ $2',
 'resetpass-temp-password'   => 'Ժամանակավոր գաղտնաբառ.',
 
 # Special:PasswordReset
+'passwordreset-legend'       => 'Վերականգնել գաղտնաբառը',
 'passwordreset-username'     => 'Մասնակցի անուն.',
 'passwordreset-emailelement' => 'Մասնակցային անուն. $1
 Ժամանակավոր գաղտնաբառ. $2',
 
 # Special:ChangeEmail
-'changeemail' => 'Փոխել էլ. հասցեն',
+'changeemail'        => 'Փոխել էլ. հասցեն',
+'changeemail-submit' => 'Խմբագրել էլ․ հասցեն',
+'changeemail-cancel' => 'Չեղարկել',
 
 # Edit page toolbar
 'bold_sample'     => 'Թավատառ տեքստ',
@@ -2555,7 +2562,7 @@ $3
 'revdelete-summary-hid'               => 'անտեսանելի դարձվեց խմբագրման ամփոփումը',
 'revdelete-uname-hid'                 => 'անտեսանելի դարձվեց մասնակցի անունը',
 'revdelete-content-unhid'             => 'տեսանելի դարձվեց բովանդակությունը',
-'revdelete-summary-unhid'             => 'տեսնելի դարձվեց խմագրման ամփոփումը',
+'revdelete-summary-unhid'             => 'տեսնելի դարձվեց խմբագրման ամփոփումը',
 'revdelete-uname-unhid'               => 'տեսանելի դարձվեց մասնակցի անունը',
 'logentry-move-move'                  => '$1 տեղափոխեց էջը «$3»-ից «$4»',
 'logentry-move-move-noredirect'       => '$1 տեղափոխեց էջը «$3»-ից «$4» առանց վերահղում թողնելու',

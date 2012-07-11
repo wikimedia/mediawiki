@@ -233,8 +233,8 @@ Zum die Said aaleche, kannscht do in dem Käschtel unne aafange mid schraiwe (gu
 Wenn do nid hin hoscht welle, no druck in Daim Browser uff '''Zrick'''.",
 'noarticletext'                    => 'Uff derre Said gebbt\'s noch kää Text. Du kannscht uff annere Saide [[Special:Search/{{PAGENAME}}|den Aitrach suche]], <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} de Logbuchaidrach suche, wu dezu ghert],
 orrer [{{fullurl:{{FULLPAGENAME}}|action=edit}} die Said bearwaide]</span>.',
-'previewnote'                      => "'''Denk dran, dass des numme e Vorschau isch.'''
-Dai Ännerunge sinn no nid gspaichert worre!",
+'previewnote'                      => "'''Deng'g droa, dass des numme e Vorschau isch.'''
+Doi Ännerunge sinn no nid gschbaichert worre!",
 'editing'                          => 'Am $1 bearwaide',
 'editingsection'                   => '$1 bearwaide (Abschnitt)',
 'yourtext'                         => 'Doin Tegschd',
@@ -250,7 +250,7 @@ du gebbscht do au zu, dass Du des selwerscht gschriwwe hoscht orrer vun ere effe
 'hiddencategories'                 => 'Die Said ghert zu {{PLURAL:$1|1 versteckelte Kategorie|$1 versteckelte Kategorie}}:',
 'permissionserrorstext-withaction' => 'Du därfscht nid $2, aus {{PLURAL:$1|dem Grund|denne Grind}}:',
 'moveddeleted-notice'              => 'Die Said isch glescht worre.
-De Leschaidrach fer die Said isch do unne aagewwe als Quell.',
+De Leschaidrach fa die Said isch do unne als Kwell aagewwe.',
 
 # History pages
 'viewpagelogs'           => 'D Lochbiecher fer die Said aagucke',

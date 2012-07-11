@@ -11,6 +11,7 @@
  * @author Centerlink
  * @author Cimon Avaro
  * @author Crt
+ * @author ElmA
  * @author Harriv
  * @author Jaakonam
  * @author Jack Phoenix
@@ -325,15 +326,15 @@ $messages = array(
 'tog-editsectiononrightclick' => 'Muokkaa osioita napsauttamalla otsikkoa hiiren oikealla painikkeella (JavaScript)',
 'tog-showtoc'                 => 'Näytä sisällysluettelo sivuille, joilla yli 3 otsikkoa',
 'tog-rememberpassword'        => 'Muista kirjautumisen tässä selaimessa (enintään $1 {{PLURAL:$1|päivä|päivää}})',
-'tog-watchcreations'          => 'Lisää luomani sivut tarkkailulistalle',
-'tog-watchdefault'            => 'Lisää muokkaamani sivut tarkkailulistalle',
-'tog-watchmoves'              => 'Lisää siirtämäni sivut tarkkailulistalle',
-'tog-watchdeletion'           => 'Lisää poistamani sivut tarkkailulistalle',
+'tog-watchcreations'          => 'Lisää luomani sivut tarkkailulistalleni',
+'tog-watchdefault'            => 'Lisää muokkaamani sivut tarkkailulistalleni',
+'tog-watchmoves'              => 'Lisää siirtämäni sivut tarkkailulistalleni',
+'tog-watchdeletion'           => 'Lisää poistamani sivut tarkkailulistalleni',
 'tog-minordefault'            => 'Muutokset ovat oletuksena pieniä',
 'tog-previewontop'            => 'Näytä esikatselu muokkauskentän yläpuolella',
 'tog-previewonfirst'          => 'Näytä esikatselu heti, kun muokkaus aloitetaan',
 'tog-nocache'                 => 'Älä tallenna sivuja selaimen välimuistiin',
-'tog-enotifwatchlistpages'    => 'Lähetä sähköpostiviesti tarkkailtujen sivujen muutoksista',
+'tog-enotifwatchlistpages'    => 'Lähetä sähköpostiviesti tarkkailulistallani olevien sivujen muutoksista',
 'tog-enotifusertalkpages'     => 'Lähetä sähköpostiviesti, kun käyttäjäsivun keskustelusivu muuttuu',
 'tog-enotifminoredits'        => 'Lähetä sähköpostiviesti myös pienistä muokkauksista',
 'tog-enotifrevealaddr'        => 'Näytä sähköpostiosoitteeni muille lähetetyissä ilmoituksissa',
@@ -1765,8 +1766,12 @@ $1',
 'backend-fail-closetemp'     => 'Väliaikaista tiedostoa ei voitu sulkea.',
 'backend-fail-read'          => 'Tiedostoa $1 ei voitu lukea.',
 'backend-fail-create'        => 'Tiedostoa $1 ei voitu luoda.',
+'backend-fail-readonly'      => 'Taustajärjestelmä "$1" on tällä hetkellä vain lukutilassa. Syy tähän on: "\'\'$2\'\'"',
+'backend-fail-synced'        => 'Tiedoston "$1" tila ei vastaa tiedoston tilaa sisäisissä taustajärjestelmissä.',
 'backend-fail-connect'       => 'Varastojärjestelmään "$1" ei saada yhteyttä.',
+'backend-fail-internal'      => 'Tuntematon virhe taustajärjestelmässä "$1".',
 'backend-fail-contenttype'   => 'Tiedostoa ei voitu tallentaa kohteeseen $1, koska tiedostomuotoa ei voitu määrittää.',
+'backend-fail-batchsize'     => 'Taustajärjestelmälle on annettu $1 {{PLURAL:$1|tiedostotoiminto|toimintoa}}; enimmäismäärä on $2 {{PLURAL:$2|tiedostotoiminto|toimintoa}}.',
 
 # Lock manager
 'lockmanager-notlocked'        => 'Kohteen $1 lukitusta ei voitu poistaa, koska se ei ole lukittu.',
@@ -2376,7 +2381,7 @@ Viimeisimmän muokkauksen on tehnyt käyttäjä [[User:$3|$3]] ([[User talk:$3|k
 
 # Undelete
 'undelete'                     => 'Palauta poistettuja sivuja',
-'undeletepage'                 => 'Katsele ja palauta poistettuja sivuja',
+'undeletepage'                 => 'Tarkastele ja palauta poistettuja sivuja',
 'undeletepagetitle'            => "'''Poistetut versiot sivusta [[:$1]]'''.",
 'viewdeletedpage'              => 'Poistettujen sivujen selaus',
 'undeletepagetext'             => '{{PLURAL:$1|Seuraava sivu|Seuraavat sivut}} on poistettu, mutta {{PLURAL:$1|se löytyy|ne löytyvät}} vielä arkistosta, joten {{PLURAL:$1|se on|ne ovat}} palautettavissa. Arkisto saatetaan tyhjentää aika ajoin.',

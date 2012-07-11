@@ -7,6 +7,7 @@
  * @ingroup Language
  * @file
  *
+ * @author -jem-
  * @author Aleator
  * @author Alhen
  * @author Alpertron
@@ -368,7 +369,7 @@ $messages = array(
 'tog-previewontop'            => 'Mostrar previsualización antes del cuadro de edición',
 'tog-previewonfirst'          => 'Mostrar previsualización en la primera edición',
 'tog-nocache'                 => 'Desactivar la caché de páginas del navegador',
-'tog-enotifwatchlistpages'    => 'Enviarme un correo electrónico cuando se modifique una página en mi lista de seguimiento',
+'tog-enotifwatchlistpages'    => 'Enviarme un correo electrónico cuando se modifique una página o un archivo de mi lista de seguimiento',
 'tog-enotifusertalkpages'     => 'Enviarme un correo electrónico cuando se modifique mi página de discusión',
 'tog-enotifminoredits'        => 'Notificarme también los cambios menores de páginas',
 'tog-enotifrevealaddr'        => 'Revelar mi dirección de correo electrónico en los correos de notificación',
@@ -762,7 +763,7 @@ No olvides personalizar [[Special:Preferences|tus preferencias]].',
 'notloggedin'                => 'No has iniciado sesión',
 'nologin'                    => '¿No tienes una cuenta? $1.',
 'nologinlink'                => 'Crear una cuenta',
-'createaccount'              => 'Crear cuenta',
+'createaccount'              => 'Crear una cuenta',
 'gotaccount'                 => '¿Ya tienes una cuenta? $1.',
 'gotaccountlink'             => 'Entrar',
 'userlogin-resetlink'        => '¿Olvidaste tus datos de acceso?',
@@ -3259,11 +3260,11 @@ Existen otros campos que se mantendrán ocultos por defecto.
 'exif-meteringmode'                => 'Modo de medición',
 'exif-lightsource'                 => 'Fuente de luz',
 'exif-flash'                       => 'Flash',
-'exif-focallength'                 => 'Longitud de la lente focal',
+'exif-focallength'                 => 'Longitud focal de la lente',
 'exif-subjectarea'                 => 'Área del sujeto',
 'exif-flashenergy'                 => 'Energía del flash',
-'exif-focalplanexresolution'       => 'Resolución X plano focal',
-'exif-focalplaneyresolution'       => 'Resolución Y plano focal',
+'exif-focalplanexresolution'       => 'Resolución X del plano focal',
+'exif-focalplaneyresolution'       => 'Resolución Y del plano focal',
 'exif-focalplaneresolutionunit'    => 'Unidad de resolución del plano focal',
 'exif-subjectlocation'             => 'Localización del sujeto',
 'exif-exposureindex'               => 'Índice de exposición',
@@ -3300,7 +3301,7 @@ Existen otros campos que se mantendrán ocultos por defecto.
 'exif-gpstrackref'                 => 'Referencia para la dirección del movimiento',
 'exif-gpstrack'                    => 'Dirección del movimiento',
 'exif-gpsimgdirectionref'          => 'Referencia de la dirección de imágen',
-'exif-gpsimgdirection'             => 'Dirección de imágen',
+'exif-gpsimgdirection'             => 'Dirección de imagen',
 'exif-gpsmapdatum'                 => 'Utilizados datos de medición geodésica',
 'exif-gpsdestlatituderef'          => 'Referencia para la latitud del destino',
 'exif-gpsdestlatitude'             => 'Destino de latitud',
@@ -3385,7 +3386,7 @@ Existen otros campos que se mantendrán ocultos por defecto.
 'exif-compression-3' => 'Codificación de fax CCITT grupo 3',
 'exif-compression-4' => 'Codificación de fax CCITT grupo 4',
 
-'exif-copyrighted-true'  => 'Copyrighted',
+'exif-copyrighted-true'  => 'Con derechos de autor',
 'exif-copyrighted-false' => 'Dominio público',
 
 'exif-unknowndate' => 'Fecha desconocida',

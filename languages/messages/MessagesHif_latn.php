@@ -25,7 +25,7 @@ $messages = array(
 'tog-hidepatrolled'           => 'Pahraa dewa gais badlao ke nawaa badlao me se lukao',
 'tog-newpageshidepatrolled'   => 'Pahraa dewa gais badlao ke nawaa panna me se lukao',
 'tog-extendwatchlist'         => 'Dhyaan suchi ke khol ke sab badlao ke dekhao, khaali nawaa waala nai',
-'tog-usenewrc'                => 'Sadasya se enhance karaa gais nawaa badlao (reguires Javascript)',
+'tog-usenewrc'                => 'Dher jan se badla gais panna, haali ke badlao aur dhyan suchi me (Javascript maange hae)',
 'tog-numberheadings'          => 'Sab heading ke apne se number karo',
 'tog-showtoolbar'             => 'Badle waala aujaar ke toolbar ke dekhao (JavaScript ke jarurat hai)',
 'tog-editondblclick'          => 'Dugnaa click pe panna ke badlo (JavaScript ke jarurat hai)',
@@ -33,17 +33,17 @@ $messages = array(
 'tog-editsectiononrightclick' => 'Bhaag ke title pe right click kare pe bhaag ke badle ke laabu karo  (JavaScript)',
 'tog-showtoc'                 => 'Dhyan suchi dekhao (uu panna khatir jon me tiin se jaada heading hai)',
 'tog-rememberpassword'        => 'Ii browser me (jaada se jaada $1 {{PLURAL:$1|din|din}}) talak hamaar login ke yaad rakho.',
-'tog-watchcreations'          => 'Hamaar banawa waala panna ke hamaar dhyaan suchi me jorro',
-'tog-watchdefault'            => 'Ham se badla gae panna ke hamaar dhyaan suchi me jorro',
-'tog-watchmoves'              => 'Uu panna jiske naam ham badla hai ke hamaar dhyaan suchi me jorro',
-'tog-watchdeletion'           => 'Uu panna jiske ham mitaya hai ke hamaar dhyaan suchi me jorro',
+'tog-watchcreations'          => 'Hamaar banawa waala panna aur upload karaa gais file ke hamaar dhyaan suchi me jorro',
+'tog-watchdefault'            => 'Ham se badla gais panna aur file ke hamaar dhyaan suchi me jorro',
+'tog-watchmoves'              => 'Uu panna aur file jiske naam ham badla hai ke hamaar dhyaan suchi me jorro',
+'tog-watchdeletion'           => 'Uu panna, aur file jiske ham mitaya hai ke hamaar dhyaan suchi me jorro',
 'tog-minordefault'            => 'Mamuli badlao ke apne se nishaan lagao',
 'tog-previewontop'            => 'Badlao waala dabba se pahile ek jhalak dekhao',
 'tog-previewonfirst'          => 'Hamaar pahila badlao pe jhalak dekhao',
 'tog-nocache'                 => 'Browser pe panna ke bachae me rok lagao',
-'tog-enotifwatchlistpages'    => 'Jab hamaar dhyaan suchi ke koi panna ke badla jae tab hame E-mail karo',
+'tog-enotifwatchlistpages'    => 'Jab hamaar dhyaan suchi ke koi panna, nai to file, ke badla jae tab hame E-mail karo',
 'tog-enotifusertalkpages'     => 'Jab hamaar baat waala panna ke badla jae tab hame E-mail karo',
-'tog-enotifminoredits'        => 'Panna me mamuli badlao khatir bhi hame E-mail karo',
+'tog-enotifminoredits'        => 'Panna aur file me mamuli badlao khatir bhi hame E-mail karo',
 'tog-enotifrevealaddr'        => 'Notification E-mail me hamaar E-mail address ke dekhao.',
 'tog-shownumberswatching'     => 'Ketna sadasya dekhe hai ke number dekhao',
 'tog-oldsig'                  => 'Abhi ke signature:',
@@ -695,7 +695,7 @@ Yaad rakhna ki custom .css aur .js panna owercase title use kare hai, jaise ki {
 'updated'                          => '(Update kar dewa gais hai)',
 'note'                             => "'''Dhyan rakkho:'''",
 'previewnote'                      => "'''Ii khaali ek jhalak dekhae hai'''
-Tumar badlao abhi save nai bhais hai!",
+Tumar badlao abhi bachawa nai gais hai!",
 'previewconflict'                  => 'Ii preview uu text dekhae hai jon ki uppar ke text editing area me dekhai agar aap iske save karaa.',
 'session_fail_preview'             => "''' Maaf karna! Ham log aap ke badlao ke process nai kare paya hai due to a loss of session data.
 Fir se kosis karna.
@@ -936,7 +936,7 @@ Meharbani ka ke logs ke check karo.',
 # Suppression log
 'suppressionlog'     => 'Dabae waala log',
 'suppressionlogtext' => 'Niche ke suchi me administrators se lukawa gais deletions au rukawat hae.
-Abhi ke laabu rukawat ke suchi ke khatir [[Special:BlockList|IP block list]] ke dekho.',
+Abhi ke laabu rukawat ke suchi ke khatir [[Special:BlockList|block list]] ke dekho.',
 
 # History merging
 'mergehistory'                     => 'Panna ke itihass ke jorro',
@@ -1525,12 +1525,18 @@ Agar jo problem fir nai khatam hoe tab [[Special:ListUsers/sysop|administrator]]
 'backend-fail-writetemp'     => 'Temporary file me nai likhe sakaa hae.',
 'backend-fail-closetemp'     => 'Temporary file ke nai band kare sakaa hae.',
 'backend-fail-read'          => 'File $1 ke nai parrhe sakaa hae.',
-'backend-fail-create'        => 'File $1 ke nai banae sakaa hae.',
+'backend-fail-create'        => 'File $1 pe nai likha jaae sake hae.',
 'backend-fail-readonly'      => 'Storage backend "$1" abhi khaali read-only hae. Iske kaaran hae: "$2"',
 'backend-fail-synced'        => 'File "$1" internal storage backends me ek inconsistent state me hae',
 'backend-fail-connect'       => 'Storage backend "$1" se connect nai kare sakaa hae.',
 'backend-fail-internal'      => 'Storage backend "$1" me ek unknown error hoe gais hae.',
 'backend-fail-contenttype'   => 'Ii nai pataa lagae sakaa hae ki "$1" me bachae ke khaatir file kon rakam ke hae.',
+'backend-fail-batchsize'     => 'Storage backend ke  $1 file {{PLURAL:$1|operation|operations}} ke ek batch ke dewa gais hae ; limit  $2 {{PLURAL:$2|operation|operation}} hae.',
+
+# Lock manager
+'lockmanager-notlocked'       => '"$1" ke  nai khole sakaa hae; ii lock nai hae.',
+'lockmanager-fail-closelock'  => '"$1" ke khatir lock file ke nai band kare sakaa hae.',
+'lockmanager-fail-deletelock' => '"$1" ke khatir lock file ke nai mitae sakaa hae.',
 
 # Special:UploadStash
 'uploadstash'          => 'Gupt file ke upload karo',
