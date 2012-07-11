@@ -2657,8 +2657,8 @@ Për piasì, ch'a preuva torna.",
 'import-invalid-interwiki' => 'As peul pa amportesse da la wiki spessificà.',
 'import-error-edit' => "La pàgina «$1» a l'é pa stàita amportà përchè chiel a peul pa modifichela.",
 'import-error-create' => "La pàgina «$1» a l'é pa stàita amportà përchè chiel a peul pa creela.",
-'import-error-interwiki' => 'La pàgina "$1" a l\'é pa amportà përchè sò nòm a l\'é arzervà për na liura esterna (antërwiki).',
-'import-error-special' => 'La pàgina "$1" a l\'é pa amportà përchè a ponta a në spassi nominal ch\'a përmët pa dle pàgine.',
+'import-error-interwiki' => "La pàgina «$1» a l'é pa amportà përchè sò nòm a l'é arzervà për na liura esterna (antërwiki).",
+'import-error-special' => "La pàgina «$1» a l'é pa amportà përchè a ponta a në spassi nominal ch'a përmët pa dle pàgine.",
 'import-error-invalid' => "La pàgina «$1» a l'é pa amportà përchè sò nòm a l'é pa bon.",
 
 # Import log

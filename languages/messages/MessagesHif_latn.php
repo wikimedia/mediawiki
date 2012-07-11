@@ -1527,6 +1527,7 @@ Agar jo problem fir nai khatam hoe tab [[Special:ListUsers/sysop|administrator]]
 'upload-too-many-redirects' => 'Ii URL me bahut jaada redirects hae.',
 'upload-unknown-size' => 'Nai pataa ki ketnaa barraa hae',
 'upload-http-error' => 'Ek HTTP galti hoe gais hae: $1',
+'upload-copy-upload-invalid-domain' => 'Ii domain se copy upload nai karaa jaae sake hae.',
 
 # File backend
 'backend-fail-stream' => 'File $1 ke stream nai kare sakaa hae.',
@@ -1544,12 +1545,24 @@ Agar jo problem fir nai khatam hoe tab [[Special:ListUsers/sysop|administrator]]
 'backend-fail-writetemp' => 'Temporary file me nai likhe sakaa hae.',
 'backend-fail-closetemp' => 'Temporary file ke nai band kare sakaa hae.',
 'backend-fail-read' => 'File $1 ke nai parrhe sakaa hae.',
-'backend-fail-create' => 'File $1 ke nai banae sakaa hae.',
+'backend-fail-create' => 'File $1 pe nai likha jaae sake hae.',
+'backend-fail-maxsize' => 'File $1 ke nai likhe sakaa hae kaahe ki ii {{PLURAL:$2|ek byte|$2 byte}} se barraa hae.',
 'backend-fail-readonly' => 'Storage backend "$1" abhi khaali read-only hae. Iske kaaran hae: "$2"',
 'backend-fail-synced' => 'File "$1" internal storage backends me ek inconsistent state me hae',
 'backend-fail-connect' => 'Storage backend "$1" se connect nai kare sakaa hae.',
 'backend-fail-internal' => 'Storage backend "$1" me ek unknown error hoe gais hae.',
 'backend-fail-contenttype' => 'Ii nai pataa lagae sakaa hae ki "$1" me bachae ke khaatir file kon rakam ke hae.',
+'backend-fail-batchsize' => 'Storage backend ke  $1 file {{PLURAL:$1|operation|operations}} ke ek batch ke dewa gais hae ; limit  $2 {{PLURAL:$2|operation|operation}} hae.',
+'backend-fail-usable' => 'File $1 ke nai likhe sakaa hae kaahe ki iske khatir jaruri ijajat nai hae, nai to directories/containers nai hae.',
+
+# File journal errors
+'filejournal-fail-dbconnect' => 'Storage backend "$1" ke khatir journal database se nai jorre sakaa hae.',
+'filejournal-fail-dbquery' => 'Storage backend "$1" ke khatir journal database ke nai badle sakaa hae.',
+
+# Lock manager
+'lockmanager-notlocked' => '"$1" ke  nai khole sakaa hae; ii lock nai hae.',
+'lockmanager-fail-closelock' => '"$1" ke khatir lock file ke nai band kare sakaa hae.',
+'lockmanager-fail-deletelock' => '"$1" ke khatir lock file ke nai mitae sakaa hae.',
 
 # Special:UploadStash
 'uploadstash' => 'Gupt file ke upload karo',
