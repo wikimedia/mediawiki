@@ -60,7 +60,10 @@ class SwiftFileBackend extends FileBackendStore {
 	 *    swiftUser          : Swift user used by MediaWiki (account:username)
 	 *    swiftKey           : Swift authentication key for the above user
 	 *    swiftAuthTTL       : Swift authentication TTL (seconds)
-	 *    swiftAnonUser      : Swift user used for end-user requests (account:username)
+	 *    swiftAnonUser      : Swift user used for end-user requests (account:username).
+	 *                         If set, then views of public containers are assumed to go
+	 *                         through this user. If not set, then public containers are
+	 *                         accessible to unauthenticated requests via ".r:*" in the ACL.
 	 *    swiftUseCDN        : Whether a Cloud Files Content Delivery Network is set up
 	 *    swiftCDNExpiry     : How long (in seconds) to store content in the CDN.
 	 *                         If files may likely change, this should probably not exceed
@@ -1051,7 +1054,7 @@ class SwiftFileBackend extends FileBackendStore {
 	 * access to write to a container. Each item is of the following format:
 	 *   account:user       - Grants access if the request is by this user
 	 *
-	 * $readGrps is a list of the possible criteria for a request to have
+	 * $writeGrps is a list of the possible criteria for a request to have
 	 * access to read a container. Each item is one of the following formats:
 	 *   .r:<regex>         - Grants access if the request is from a referrer host that
 	 *                        matches the expression and the request is not for a listing.
