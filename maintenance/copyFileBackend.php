@@ -42,7 +42,8 @@ class CopyFileBackend extends Maintenance {
 		$this->addOption( 'dst', 'Backend where files should be copied to', true, true );
 		$this->addOption( 'containers', 'Pipe separated list of containers', true, true );
 		$this->addOption( 'subdir', 'Only do items in this child directory', false, true );
-		$this->addOption( 'ratefile', 'File to check periodically for batch size.', false, true );
+		$this->addOption( 'ratefile', 'File to check periodically for batch size', false, true );
+		$this->addOption( 'skiphash', 'Skip SHA-1 sync checks for files' );
 		$this->setBatchSize( 50 );
 	}
 
@@ -142,14 +143,15 @@ class CopyFileBackend extends Maintenance {
 	}
 
 	protected function filesAreSame( FileBackend $src, FileBackend $dst, $sPath, $dPath ) {
+		$skipHash = $this->hasOption( 'skiphash' );
 		return (
 			( $src->fileExists( array( 'src' => $sPath, 'latest' => 1 ) )
 				=== $dst->fileExists( array( 'src' => $dPath, 'latest' => 1 ) ) // short-circuit
 			) && ( $src->getFileSize( array( 'src' => $sPath, 'latest' => 1 ) )
 				=== $dst->getFileSize( array( 'src' => $dPath, 'latest' => 1 ) ) // short-circuit
-			) && ( $src->getFileSha1Base36( array( 'src' => $sPath, 'latest' => 1 ) )
+			) && ( $skipHash || ( $src->getFileSha1Base36( array( 'src' => $sPath, 'latest' => 1 ) )
 				=== $dst->getFileSha1Base36( array( 'src' => $dPath, 'latest' => 1 ) )
-			)
+			) )
 		);
 	}
 }
