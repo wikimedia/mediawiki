@@ -32,6 +32,8 @@ class UpdateCollation extends Maintenance {
 	const BATCH_SIZE = 50; // Number of rows to process in one batch
 	const SYNC_INTERVAL = 20; // Wait for slaves after this many batches
 
+	var $sizeHistogram = array();
+
 	public function __construct() {
 		parent::__construct();
 
@@ -50,6 +52,13 @@ TEXT;
 			'categorylinks table is large. This will only update rows with that ' .
 			'collation, though, so it may miss out-of-date rows with a different, ' .
 			'even older collation.', false, true );
+		$this->addOption( 'target-collation', 'Set this to the new collation type to ' .
+			'use instead of $wgCategoryCollation. Usually you should not use this, ' . 
+			'you should just update $wgCategoryCollation in LocalSettings.php.', 
+			false, true );
+		$this->addOption( 'dry-run', 'Don\'t actually change the collations, just ' .
+			'compile statistics.' );
+		$this->addOption( 'verbose-stats', 'Show more statistics.' );
 	}
 
 	public function execute() {
@@ -57,6 +66,15 @@ TEXT;
 
 		$dbw = $this->getDB( DB_MASTER );
 		$force = $this->getOption( 'force' );
+		$dryRun = $this->getOption( 'dry-run' );
+		$verboseStats = $this->getOption( 'verbose-stats' );
+		if ( $this->hasOption( 'target-collation' ) ) {
+			$collationName = $this->getOption( 'target-collation' );
+			$collation = Collation::factory( $collationName );
+		} else {
+			$collationName = $wgCategoryCollation;
+			$collation = Collation::singleton();
+		}
 
 		$options = array( 'LIMIT' => self::BATCH_SIZE, 'STRAIGHT_JOIN' );
 
@@ -68,7 +86,7 @@ TEXT;
 				$collationConds['cl_collation'] = $this->getOption( 'previous-collation' );
 			} else {
 				$collationConds = array( 0 =>
-					'cl_collation != ' . $dbw->addQuotes( $wgCategoryCollation )
+					'cl_collation != ' . $dbw->addQuotes( $collationName )
 				);
 			}
 
@@ -110,7 +128,9 @@ TEXT;
 			);
 			$this->output( " processing..." );
 
-			$dbw->begin( __METHOD__ );
+			if ( !$dryRun ) {
+				$dbw->begin( __METHOD__ );
+			}
 			foreach ( $res as $row ) {
 				$title = Title::newFromRow( $row );
 				if ( !$row->cl_collation ) {
@@ -135,21 +155,30 @@ TEXT;
 				} else {
 					$type = 'page';
 				}
-				$dbw->update(
-					'categorylinks',
-					array(
-						'cl_sortkey' => Collation::singleton()->getSortKey(
-							$title->getCategorySortkey( $prefix ) ),
-						'cl_sortkey_prefix' => $prefix,
-						'cl_collation' => $wgCategoryCollation,
-						'cl_type' => $type,
-						'cl_timestamp = cl_timestamp',
-					),
-					array( 'cl_from' => $row->cl_from, 'cl_to' => $row->cl_to ),
-					__METHOD__
-				);
+				$newSortKey = $collation->getSortKey(
+					$title->getCategorySortkey( $prefix ) );
+				if ( $verboseStats ) {
+					$this->updateSortKeySizeHistogram( $newSortKey );
+				}
+
+				if ( !$dryRun ) {
+					$dbw->update(
+						'categorylinks',
+						array(
+							'cl_sortkey' => $newSortKey,
+							'cl_sortkey_prefix' => $prefix,
+							'cl_collation' => $collationName,
+							'cl_type' => $type,
+							'cl_timestamp = cl_timestamp',
+						),
+						array( 'cl_from' => $row->cl_from, 'cl_to' => $row->cl_to ),
+						__METHOD__
+					);
+				}
 			}
-			$dbw->commit( __METHOD__ );
+			if ( !$dryRun ) {
+				$dbw->commit( __METHOD__ );
+			}
 
 			if ( $force && $row ) {
 				$encFrom = $dbw->addQuotes( $row->cl_from );
@@ -162,12 +191,80 @@ TEXT;
 			$count += $res->numRows();
 			$this->output( "$count done.\n" );
 
-			if ( ++$batchCount % self::SYNC_INTERVAL == 0 ) {
+			if ( !$dryRun && ++$batchCount % self::SYNC_INTERVAL == 0 ) {
 				$this->output( "Waiting for slaves ... " );
 				wfWaitForSlaves();
 				$this->output( "done\n" );
 			}
 		} while ( $res->numRows() == self::BATCH_SIZE );
+
+		$this->output( "$count rows processed\n" );
+
+		if ( $verboseStats ) {
+			$this->output( "\n" );
+			$this->showSortKeySizeHistogram();
+		}
+	}
+
+	function updateSortKeySizeHistogram( $key ) {
+		$length = strlen( $key );
+		if ( !isset( $this->sizeHistogram[$length] ) ) {
+			$this->sizeHistogram[$length] = 0;
+		}
+		$this->sizeHistogram[$length]++;
+	}
+
+	function showSortKeySizeHistogram() {
+		$maxLength = max( array_keys( $this->sizeHistogram ) );
+		$numBins = 20;
+		$coarseHistogram = array_fill( 0, $numBins, 0 );
+		$coarseBoundaries = array();
+		$boundary = 0;
+		for ( $i = 0; $i < $numBins - 1; $i++ ) {
+			$boundary += $maxLength / $numBins;
+			$coarseBoundaries[$i] = round( $boundary );
+		}
+		$coarseBoundaries[$numBins - 1] = $maxLength + 1;
+		$raw = '';
+		for ( $i = 0; $i < $maxLength; $i++ ) {
+			if ( $raw !== '' ) {
+				$raw .= ', ';
+			}
+			if ( !isset( $this->sizeHistogram[$i] ) ) {
+				$val = 0;
+			} else {
+				$val = $this->sizeHistogram[$i];
+			}
+			for ( $coarseIndex = 0; $coarseIndex < $numBins - 1; $coarseIndex++ ) {
+				if ( $coarseBoundaries[$coarseIndex] > $i ) {
+					$coarseHistogram[$coarseIndex] += $val;
+					break;
+				}
+			}
+			if ( $coarseIndex == $numBins - 1 ) {
+				$coarseHistogram[$coarseIndex]++;
+			}
+			$raw .= $val;
+		}
+
+		$this->output( "Sort key size histogram\nRaw data: $raw\n\n" );
+
+		$maxBinVal = max( $coarseHistogram );
+		$scale = 60 / $maxBinVal;
+		$prevBoundary = 0;
+		for ( $coarseIndex = 0; $coarseIndex < $numBins; $coarseIndex++ ) {
+			if ( !isset( $coarseHistogram[$coarseIndex] ) ) {
+				$val = 0;
+			} else {
+				$val = $coarseHistogram[$coarseIndex];
+			}
+			$boundary = $coarseBoundaries[$coarseIndex];
+			$this->output( sprintf( "%-10s %-10d |%s\n",
+				$prevBoundary . '-' . ( $boundary - 1 ) . ': ',
+				$val,
+				str_repeat( '*', $scale * $val ) ) );
+			$prevBoundary = $boundary;
+		}
 	}
 }
 
