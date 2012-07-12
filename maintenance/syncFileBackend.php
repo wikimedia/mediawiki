@@ -185,7 +185,8 @@ class SyncFileBackend extends Maintenance {
 				}
 				$fsFiles[] = $fsFile; // keep TempFSFile objects alive as needed
 				// Note: prepare() is usually fast for key/value backends
-				$status->merge( $dst->prepare( array( 'dir' => dirname( $dPath ) ) ) );
+				$status->merge( $dst->prepare( array(
+					'dir' => dirname( $dPath ), 'bypassReadOnly' => 1 ) ) );
 				if ( !$status->isOK() ) {
 					return $status;
 				}
@@ -201,8 +202,7 @@ class SyncFileBackend extends Maintenance {
 		}
 
 		$t_start = microtime( true );
-		$status->merge( $dst->doOperations( $ops,
-			array( 'nonLocking' => 1, 'nonJournaled' => 1 ) ) );
+		$status->merge( $dst->doQuickOperations( $ops, array( 'bypassReadOnly' => 1 ) ) );
 		$ellapsed_ms = floor( ( microtime( true ) - $t_start ) * 1000 );
 		if ( $status->isOK() && $this->getOption( 'verbose' ) ) {
 			$this->output( "Synchronized these file(s) [{$ellapsed_ms}ms]:\n" .
