@@ -42,7 +42,9 @@ class CopyFileBackend extends Maintenance {
 		$this->addOption( 'dst', 'Backend where files should be copied to', true, true );
 		$this->addOption( 'containers', 'Pipe separated list of containers', true, true );
 		$this->addOption( 'subdir', 'Only do items in this child directory', false, true );
-		$this->addOption( 'ratefile', 'File to check periodically for batch size.', false, true );
+		$this->addOption( 'ratefile', 'File to check periodically for batch size', false, true );
+		$this->addOption( 'skiphash', 'Skip SHA-1 sync checks for files' );
+		$this->addOption( 'missingonly', 'Only copy files missing from destination listing' );
 		$this->setBatchSize( 50 );
 	}
 
@@ -64,10 +66,30 @@ class CopyFileBackend extends Maintenance {
 				$this->output( "Doing container '$container'...\n" );
 			}
 
-			$dir = $src->getRootStoragePath() . "/$backendRel";
-			$srcPathsRel = $src->getFileList( array( 'dir' => $dir ) );
+			$srcPathsRel = $src->getFileList( array(
+				'dir' => $src->getRootStoragePath() . "/$backendRel" ) );
 			if ( $srcPathsRel === null ) {
 				$this->error( "Could not list files in $container.", 1 ); // die
+			}
+
+			// Do a listing comparison if specified
+			if ( $this->hasOption( 'missingonly' ) ) {
+				$relFilesSrc = array();
+				$relFilesDst = array();
+				foreach ( $srcPathsRel as $srcPathRel ) {
+					$relFilesSrc[] = $srcPathRel;
+				}
+				$dstPathsRel = $dst->getFileList( array(
+					'dir' => $dst->getRootStoragePath() . "/$backendRel" ) );
+				if ( $dstPathsRel === null ) {
+					$this->error( "Could not list files in $container.", 1 ); // die
+				}
+				foreach ( $dstPathsRel as $dstPathRel ) {
+					$relFilesDst[] = $dstPathRel;
+				}
+				// Only copy the missing files over in the next loop
+				$srcPathsRel = array_diff( $relFilesSrc, $relFilesDst );
+				$this->output( count( $srcPathsRel ) . " file(s) need to be copied.\n" );
 			}
 
 			$batchPaths = array();
@@ -130,7 +152,7 @@ class CopyFileBackend extends Maintenance {
 		}
 
 		$t_start = microtime( true );
-		$status = $dst->doOperations( $ops, array( 'nonJournaled' => 1 ) );
+		$status = $dst->doQuickOperations( $ops );
 		$ellapsed_ms = floor( ( microtime( true ) - $t_start ) * 1000 );
 		if ( !$status->isOK() ) {
 			$this->error( print_r( $status->getErrorsArray(), true ) );
@@ -142,14 +164,15 @@ class CopyFileBackend extends Maintenance {
 	}
 
 	protected function filesAreSame( FileBackend $src, FileBackend $dst, $sPath, $dPath ) {
+		$skipHash = $this->hasOption( 'skiphash' );
 		return (
 			( $src->fileExists( array( 'src' => $sPath, 'latest' => 1 ) )
 				=== $dst->fileExists( array( 'src' => $dPath, 'latest' => 1 ) ) // short-circuit
 			) && ( $src->getFileSize( array( 'src' => $sPath, 'latest' => 1 ) )
 				=== $dst->getFileSize( array( 'src' => $dPath, 'latest' => 1 ) ) // short-circuit
-			) && ( $src->getFileSha1Base36( array( 'src' => $sPath, 'latest' => 1 ) )
+			) && ( $skipHash || ( $src->getFileSha1Base36( array( 'src' => $sPath, 'latest' => 1 ) )
 				=== $dst->getFileSha1Base36( array( 'src' => $dPath, 'latest' => 1 ) )
-			)
+			) )
 		);
 	}
 }
