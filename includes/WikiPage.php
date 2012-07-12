@@ -1379,6 +1379,21 @@ class WikiPage extends Page {
 		return $ret;
 	}
 
+    /**
+     * Get the content that needs to be saved in order to undo all revisions
+     * between $undo and $undoafter. Revisions must belong to the same page,
+     * must exist and must not be deleted
+     * @param $undo Revision
+     * @param $undoafter Revision Must be an earlier revision than $undo
+     * @return mixed string on success, false on failure
+     * @since 1.WD
+     * Before we had the Content object, this was done in getUndoText
+     */
+    public function getUndoContent( Revision $undo, Revision $undoafter = null ) {
+        $handler = $undo->getContentHandler();
+        return $handler->getUndoContent( $this->getRevision(), $undo, $undoafter );
+    }
+
 	/**
 	 * Get the text that needs to be saved in order to undo all revisions
 	 * between $undo and $undoafter. Revisions must belong to the same page,
