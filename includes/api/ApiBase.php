@@ -134,7 +134,7 @@ abstract class ApiBase extends ContextSource {
 	/**
 	 * Get the name of the module as shown in the profiler log
 	 *
-	 * @param $db DatabaseBase
+	 * @param $db DatabaseBase|bool
 	 *
 	 * @return string
 	 */
@@ -1185,6 +1185,7 @@ abstract class ApiBase extends ContextSource {
 	 *   automated identification of the error, e.g., 'unknown_action'
 	 * @param $httpRespCode int HTTP response code
 	 * @param $extradata array Data to add to the "<error>" element; array in ApiResult format
+	 * @throws UsageException
 	 */
 	public function dieUsage( $description, $errorCode, $httpRespCode = 0, $extradata = null ) {
 		Profiler::instance()->close();
