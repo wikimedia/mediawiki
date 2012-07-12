@@ -24,6 +24,11 @@
 /**
  * Abstract base class for update jobs that put some secondary data extracted
  * from article content into the database.
+ *
+ * @note: subclasses should NOT start or commit transactions in their doUpdate() method,
+ *        a transaction will automatically be wrapped around the update. Starting another
+ *        one would break the outer transaction bracket. If need be, subclasses can override
+ *        the beginTransaction() and commitTransaction() methods.
  */
 abstract class SqlDataUpdate extends DataUpdate {
 
