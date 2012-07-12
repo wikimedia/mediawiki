@@ -243,6 +243,7 @@ abstract class FileBackend {
 	 * 'nonJournaled'        : Don't log this operation batch in the file journal.
 	 *                         This limits the ability of recovery scripts.
 	 * 'parallelize'         : Try to do operations in parallel when possible.
+	 * 'bypassReadOnly'      : Allow writes in read-only mode (@since 1.20)
 	 *
 	 * @remarks Remarks on locking:
 	 * File system paths given to operations should refer to files that are
@@ -264,7 +265,7 @@ abstract class FileBackend {
 	 * @return Status
 	 */
 	final public function doOperations( array $ops, array $opts = array() ) {
-		if ( $this->isReadOnly() ) {
+		if ( empty( $opts['bypassReadOnly'] ) && $this->isReadOnly() ) {
 			return Status::newFatal( 'backend-fail-readonly', $this->name, $this->readOnly );
 		}
 		if ( empty( $opts['force'] ) ) { // sanity
@@ -439,6 +440,9 @@ abstract class FileBackend {
 	 * 'ignoreMissingSource' : The operation will simply succeed and do
 	 *                         nothing if the source file does not exist.
 	 *
+	 * $opts is an associative of boolean flags, including:
+	 * 'bypassReadOnly'      : Allow writes in read-only mode (@since 1.20)
+	 *
 	 * @par Return value:
 	 * This returns a Status, which contains all warnings and fatals that occured
 	 * during the operation. The 'failCount', 'successCount', and 'success' members
@@ -446,11 +450,12 @@ abstract class FileBackend {
 	 * considered "OK" as long as no fatal errors occured.
 	 *
 	 * @param $ops Array Set of operations to execute
+	 * @param $opts Array Batch operation options
 	 * @return Status
 	 * @since 1.20
 	 */
-	final public function doQuickOperations( array $ops ) {
-		if ( $this->isReadOnly() ) {
+	final public function doQuickOperations( array $ops, array $opts = array() ) {
+		if ( empty( $opts['bypassReadOnly'] ) && $this->isReadOnly() ) {
 			return Status::newFatal( 'backend-fail-readonly', $this->name, $this->readOnly );
 		}
 		foreach ( $ops as &$op ) {
@@ -573,15 +578,16 @@ abstract class FileBackend {
 	 * These flags should always be set for directories that have private files.
 	 *
 	 * $params include:
-	 *     dir       : storage directory
-	 *     noAccess  : try to deny file access (@since 1.20)
-	 *     noListing : try to deny file listing (@since 1.20)
+	 *   - dir            : storage directory
+	 *   - noAccess       : try to deny file access (@since 1.20)
+	 *   - noListing      : try to deny file listing (@since 1.20)
+	 *   - bypassReadOnly : allow writes in read-only mode (@since 1.20)
 	 *
 	 * @param $params Array
 	 * @return Status
 	 */
 	final public function prepare( array $params ) {
-		if ( $this->isReadOnly() ) {
+		if ( empty( $params['bypassReadOnly'] ) && $this->isReadOnly() ) {
 			return Status::newFatal( 'backend-fail-readonly', $this->name, $this->readOnly );
 		}
 		return $this->doPrepare( $params );
@@ -601,13 +607,14 @@ abstract class FileBackend {
 	 *
 	 * @param $params Array
 	 * $params include:
-	 *   - dir       : storage directory
-	 *   - noAccess  : try to deny file access
-	 *   - noListing : try to deny file listing
+	 *   - dir            : storage directory
+	 *   - noAccess       : try to deny file access
+	 *   - noListing      : try to deny file listing
+	 *   - bypassReadOnly : allow writes in read-only mode (@since 1.20)
 	 * @return Status
 	 */
 	final public function secure( array $params ) {
-		if ( $this->isReadOnly() ) {
+		if ( empty( $params['bypassReadOnly'] ) && $this->isReadOnly() ) {
 			return Status::newFatal( 'backend-fail-readonly', $this->name, $this->readOnly );
 		}
 		return $this->doSecure( $params );
@@ -626,16 +633,17 @@ abstract class FileBackend {
 	 * This essentially can undo the result of secure() calls.
 	 *
 	 * $params include:
-	 *     dir     : storage directory
-	 *     access  : try to allow file access
-	 *     listing : try to allow file listing
+	 *   - dir            : storage directory
+	 *   - access         : try to allow file access
+	 *   - listing        : try to allow file listing
+	 *   - bypassReadOnly : allow writes in read-only mode (@since 1.20)
 	 *
 	 * @param $params Array
 	 * @return Status
 	 * @since 1.20
 	 */
 	final public function publish( array $params ) {
-		if ( $this->isReadOnly() ) {
+		if ( empty( $params['bypassReadOnly'] ) && $this->isReadOnly() ) {
 			return Status::newFatal( 'backend-fail-readonly', $this->name, $this->readOnly );
 		}
 		return $this->doPublish( $params );
@@ -653,12 +661,13 @@ abstract class FileBackend {
 	 *
 	 * @param $params Array
 	 * $params include:
-	 *     dir       : storage directory
-	 *     recursive : recursively delete empty subdirectories first (@since 1.20)
+	 *   - dir            : storage directory
+	 *   - recursive      : recursively delete empty subdirectories first (@since 1.20)
+	 *   - bypassReadOnly : allow writes in read-only mode (@since 1.20)
 	 * @return Status
 	 */
 	final public function clean( array $params ) {
-		if ( $this->isReadOnly() ) {
+		if ( empty( $params['bypassReadOnly'] ) && $this->isReadOnly() ) {
 			return Status::newFatal( 'backend-fail-readonly', $this->name, $this->readOnly );
 		}
 		return $this->doClean( $params );

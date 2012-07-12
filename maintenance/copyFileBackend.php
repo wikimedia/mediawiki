@@ -141,7 +141,7 @@ class CopyFileBackend extends Maintenance {
 			}
 			$fsFiles[] = $fsFile; // keep TempFSFile objects alive as needed
 			// Note: prepare() is usually fast for key/value backends
-			$status = $dst->prepare( array( 'dir' => dirname( $dstPath ) ) );
+			$status = $dst->prepare( array( 'dir' => dirname( $dstPath ), 'bypassReadOnly' => 1 ) );
 			if ( !$status->isOK() ) {
 				$this->error( print_r( $status->getErrorsArray(), true ) );
 				$this->error( "Could not copy $srcPath to $dstPath.", 1 ); // die
@@ -152,7 +152,7 @@ class CopyFileBackend extends Maintenance {
 		}
 
 		$t_start = microtime( true );
-		$status = $dst->doQuickOperations( $ops );
+		$status = $dst->doQuickOperations( $ops, array( 'bypassReadOnly' => 1 ) );
 		$ellapsed_ms = floor( ( microtime( true ) - $t_start ) * 1000 );
 		if ( !$status->isOK() ) {
 			$this->error( print_r( $status->getErrorsArray(), true ) );
