@@ -153,6 +153,10 @@ class CopyFileBackend extends Maintenance {
 
 		$t_start = microtime( true );
 		$status = $dst->doQuickOperations( $ops );
+		if ( !$status->isOK() ) {
+			sleep( 10 ); // wait and retry copy again
+			$status = $dst->doQuickOperations( $ops );
+		}
 		$ellapsed_ms = floor( ( microtime( true ) - $t_start ) * 1000 );
 		if ( !$status->isOK() ) {
 			$this->error( print_r( $status->getErrorsArray(), true ) );
