@@ -34,7 +34,7 @@
  */
 class UsersPager extends AlphabeticPager {
 
-	function __construct( IContextSource $context = null, $par = null ) {
+	function __construct( IContextSource $context = null, $par = null, $including = null ) {
 		if ( $context ) {
 			$this->setContext( $context );
 		}
@@ -58,6 +58,7 @@ class UsersPager extends AlphabeticPager {
 		}
 		$this->editsOnly = $request->getBool( 'editsOnly' );
 		$this->creationSort = $request->getBool( 'creationSort' );
+		$this->including = $including;
 
 		$this->requestedUser = '';
 		if ( $un != '' ) {
@@ -139,14 +140,13 @@ class UsersPager extends AlphabeticPager {
 
 		$lang = $this->getLanguage();
 
+		$groups = '';
 		$groups_list = self::getGroups( $row->user_id );
-		if( count( $groups_list ) > 0 ) {
+		if( $this->including && count( $groups_list ) > 0 ) {
 			$list = array();
 			foreach( $groups_list as $group )
 				$list[] = self::buildGroupLink( $group, $userName );
 			$groups = $lang->commaList( $list );
-		} else {
-			$groups = '';
 		}
 
 		$item = $lang->specialList( $ulinks, $groups );
@@ -154,16 +154,15 @@ class UsersPager extends AlphabeticPager {
 			$item = "<span class=\"deleted\">$item</span>";
 		}
 
+		$edits = '';
 		global $wgEdititis;
-		if ( $wgEdititis ) {
+		if ( $this->including && $wgEdititis ) {
 			$edits = ' [' . $this->msg( 'usereditcount' )->numParams( $row->edits )->escaped() . ']';
-		} else {
-			$edits = '';
 		}
 
 		$created = '';
 		# Some rows may be NULL
-		if( $row->creation ) {
+		if( $this->including && $row->creation ) {
 			$user = $this->getUser();
 			$d = $lang->userDate( $row->creation, $user );
 			$t = $lang->userTime( $row->creation, $user );
@@ -296,12 +295,16 @@ class SpecialListUsers extends SpecialPage {
 		$this->setHeaders();
 		$this->outputHeader();
 
-		$up = new UsersPager( $this->getContext(), $par );
+		$up = new UsersPager( $this->getContext(), $par, $this->including() );
 
 		# getBody() first to check, if empty
 		$usersbody = $up->getBody();
 
-		$s = $up->getPageHeader();
+		$s = '';
+		if ( !$this->including ) {
+			$s = $up->getPageHeader();
+		}
+
 		if( $usersbody ) {
 			$s .= $up->getNavigationBar();
 			$s .= Html::rawElement( 'ul', array(), $usersbody );
