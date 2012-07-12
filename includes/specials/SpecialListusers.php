@@ -34,6 +34,10 @@
  */
 class UsersPager extends AlphabeticPager {
 
+	/**
+	 * @param $context IContextSource
+	 * @param $par null|array
+	 */
 	function __construct( IContextSource $context = null, $par = null ) {
 		if ( $context ) {
 			$this->setContext( $context );
@@ -69,10 +73,16 @@ class UsersPager extends AlphabeticPager {
 		parent::__construct();
 	}
 
+	/**
+	 * @return string
+	 */
 	function getIndexField() {
 		return $this->creationSort ? 'user_id' : 'user_name';
 	}
 
+	/**
+	 * @return Array
+	 */
 	function getQueryInfo() {
 		$dbr = wfGetDB( DB_SLAVE );
 		$conds = array();
@@ -125,17 +135,19 @@ class UsersPager extends AlphabeticPager {
 		return $query;
 	}
 
+	/**
+	 * @param $row Object
+	 * @return String
+	 */
 	function formatRow( $row ) {
-		if ($row->user_id == 0) #Bug 16487
+		if ( $row->user_id == 0 ) { #Bug 16487
 			return '';
+		}
 
 		$userName = $row->user_name;
 
 		$ulinks = Linker::userLink( $row->user_id, $userName );
 		$ulinks .= Linker::userToolLinks( $row->user_id, $userName );
-
-		$userPage = Title::makeTitle( NS_USER, $row->user_name );
-		$name = Linker::link( $userPage, htmlspecialchars( $userPage->getText() ) );
 
 		$lang = $this->getLanguage();
 
@@ -186,9 +198,12 @@ class UsersPager extends AlphabeticPager {
 		$this->mResult->rewind();
 	}
 
+	/**
+	 * @return string
+	 */
 	function getPageHeader( ) {
 		global $wgScript;
-		// @todo Add a PrefixedBaseDBKey
+
 		list( $self ) = explode( '/', $this->getTitle()->getPrefixedDBkey() );
 
 		# Form tag
@@ -243,10 +258,12 @@ class UsersPager extends AlphabeticPager {
 	 */
 	function getDefaultQuery() {
 		$query = parent::getDefaultQuery();
-		if( $this->requestedGroup != '' )
+		if( $this->requestedGroup != '' ) {
 			$query['group'] = $this->requestedGroup;
-		if( $this->requestedUser != '' )
+		}
+		if( $this->requestedUser != '' ) {
 			$query['username'] = $this->requestedUser;
+		}
 		wfRunHooks( 'SpecialListusersDefaultQuery', array( $this, &$query ) );
 		return $query;
 	}
