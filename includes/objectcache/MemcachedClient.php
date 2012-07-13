@@ -895,7 +895,10 @@ class MWMemcached {
 	function _load_items( $sock, &$ret ) {
 		while ( 1 ) {
 			$decl = fgets( $sock );
-			if ( $decl == "END\r\n" ) {
+			if( $decl === false ) {
+				$this->_debugprint( "Error reading socket for a memcached response\n" );
+				return 0;
+			} elseif ( $decl == "END\r\n" ) {
 				return true;
 			} elseif ( preg_match( '/^VALUE (\S+) (\d+) (\d+)\r\n$/', $decl, $match ) ) {
 				list( $rkey, $flags, $len ) = array( $match[1], $match[2], $match[3] );
@@ -939,7 +942,8 @@ class MWMemcached {
 				}
 
 			} else {
-				$this->_debugprint( "Error parsing memcached response\n" );
+				$peer = stream_socket_get_name( $sock, true /** remote **/ );
+				$this->_debugprint( "Error parsing memcached response from [{$peer}]\n" );
 				return 0;
 			}
 		}
