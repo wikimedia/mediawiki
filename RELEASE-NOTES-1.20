@@ -20,6 +20,8 @@ upgrade PHP if you have not done so prior to upgrading MediaWiki.
 * `$wgUsePathInfo = true;` is no longer needed to make $wgArticlePath work on servers
   using like nginx, lighttpd, and apache over fastcgi. MediaWiki now always extracts
   path info from REQUEST_URI if it's available.
+* $wgDBerrorLogInUTC to log error in $wgDBerrorLog using an UTC date instead
+  of the wiki timezone set by $wgLocalTimezone.
 
 === New features in 1.20 ===
 * Added TitleIsAlwaysKnown hook which gets called when determining if a page exists.
