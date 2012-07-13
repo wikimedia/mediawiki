@@ -187,6 +187,7 @@ upgrade PHP if you have not done so prior to upgrading MediaWiki.
 * (bug 36073) Avoid duplicate element IDs on File pages
 * (bug 25095) Special:Categories should also include the first relevant item
   when "from" is filled.
+* (bug 35526) jquery.tablesorter now uses a stable sort.
 
 === API changes in 1.20 ===
 * (bug 34316) Add ability to retrieve maximum upload size from MediaWiki API.
