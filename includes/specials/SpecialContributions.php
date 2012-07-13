@@ -704,13 +704,22 @@ class ContribsPager extends ReverseChronologicalPager {
 		$join_conds = array();
 		$tables = array( 'revision', 'page', 'user' );
 		if ( $this->contribs == 'newbie' ) {
-			$tables[] = 'user_groups';
 			$max = $this->mDb->selectField( 'user', 'max(user_id)', false, __METHOD__ );
 			$condition[] = 'rev_user >' . (int)( $max - $max / 100 );
-			$condition[] = 'ug_group IS NULL';
 			$index = 'user_timestamp';
-			# @todo FIXME: Other groups may have 'bot' rights
-			$join_conds['user_groups'] = array( 'LEFT JOIN', "ug_user = rev_user AND ug_group = 'bot'" );
+			# ignore local groups with the bot right
+			# @todo FIXME: Global groups may have 'bot' rights
+			$groupsWithBotPermission = User::getGroupsWithPermission( 'bot' );
+			if( count( $groupsWithBotPermission ) ) {
+				$tables[] = 'user_groups';
+				$condition[] = 'ug_group IS NULL';
+				$join_conds['user_groups'] = array(
+					'LEFT JOIN', array(
+						'ug_user = rev_user',
+						'ug_group' => $groupsWithBotPermission
+					)
+				);
+			}
 		} else {
 			$uid = User::idFromName( $this->target );
 			if ( $uid ) {
