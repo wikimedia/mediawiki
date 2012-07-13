@@ -1053,17 +1053,17 @@ function wfDebugLog( $logGroup, $text, $public = true ) {
  * @param $text String: database error message.
  */
 function wfLogDBError( $text ) {
-	global $wgDBerrorLog, $wgDBerrorLogInUtc;
+	global $wgDBerrorLog, $wgDBerrorLogInUTC;
 	if ( $wgDBerrorLog ) {
 		$host = wfHostname();
 		$wiki = wfWikiID();
 
-		if( $wgDBerrorLogInUtc ) {
+		if( $wgDBerrorLogInUTC ) {
 			$wikiTimezone = date_default_timezone_get();
 			date_default_timezone_set( 'UTC' );
 		}
 		$date = date( 'D M j G:i:s T Y' );
-		if( $wgDBerrorLogInUtc ) {
+		if( $wgDBerrorLogInUTC ) {
 			// Restore timezone
 			date_default_timezone_set( $wikiTimezone );
 		}
