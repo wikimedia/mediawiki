@@ -1381,11 +1381,13 @@ $wgMasterWaitTimeout = 10;
 
 /** File to log database errors to */
 $wgDBerrorLog = false;
+
 /**
- * Override wiki timezone to UTC for wgDBerrorLog
+ * Timezone to use in the error log.
+ * Defaults to the wiki timezone ($wgLocalTimezone).
  * @since 1.20
  */
-$wgDBerrorLogInUTC = false;
+$wgDBerrorLogTZ = false;
 
 /** When to give an error message */
 $wgDBClusterTimeout = 10;

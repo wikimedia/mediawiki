@@ -1053,20 +1053,20 @@ function wfDebugLog( $logGroup, $text, $public = true ) {
  * @param $text String: database error message.
  */
 function wfLogDBError( $text ) {
-	global $wgDBerrorLog, $wgDBerrorLogInUTC;
+	global $wgDBerrorLog, $wgDBerrorLogTZ;
+	static $logDBErrorTimeZoneObject = null;
+
 	if ( $wgDBerrorLog ) {
 		$host = wfHostname();
 		$wiki = wfWikiID();
 
-		if( $wgDBerrorLogInUTC ) {
-			$wikiTimezone = date_default_timezone_get();
-			date_default_timezone_set( 'UTC' );
+		if ( $wgDBerrorLogTZ && !$logDBErrorTimeZoneObject ) {
+			$logDBErrorTimeZoneObject = new DateTimeZone( $wgDBerrorLogTZ );
 		}
-		$date = date( 'D M j G:i:s T Y' );
-		if( $wgDBerrorLogInUTC ) {
-			// Restore timezone
-			date_default_timezone_set( $wikiTimezone );
-		}
+
+		$d = date_create( "now",  $logDBErrorTimeZoneObject ) );
+
+		$date = $d->format( 'D M j G:i:s T Y' );
 
 		$text = "$date\t$host\t$wiki\t$text";
 		wfErrorLog( $text, $wgDBerrorLog );
