@@ -36,21 +36,30 @@ abstract class MediaTransformOutput {
 	protected $storagePath = false;
 
 	/**
-	 * Get the width of the output box
+	 * @return integer Width of the output box
 	 */
 	public function getWidth() {
 		return $this->width;
 	}
 
 	/**
-	 * Get the height of the output box
+	 * @return integer Height of the output box
 	 */
 	public function getHeight() {
 		return $this->height;
 	}
 
 	/**
-	 * @return string The thumbnail URL
+	 * Get the final extension of the thumbnail.
+	 * Returns false for scripted transformations.
+	 * @return string|false
+	 */
+	public function getExtension() {
+		return $this->path ? FileBackend::extensionFromPath( $this->path ) : false;
+	}
+
+	/**
+	 * @return string|false The thumbnail URL
 	 */
 	public function getUrl() {
 		return $this->url;
@@ -106,7 +115,7 @@ abstract class MediaTransformOutput {
 	 * This will return false if there was an error, the
 	 * thumbnail is to be handled client-side only, or if
 	 * transformation was deferred via TRANSFORM_LATER.
-	 * 
+	 *
 	 * @return Bool
 	 */
 	public function hasFile() {
@@ -198,7 +207,7 @@ class ThumbnailImage extends MediaTransformOutput {
 	 * Get a thumbnail object from a file and parameters.
 	 * If $path is set to null, the output file is treated as a source copy.
 	 * If $path is set to false, no output file will be created.
-	 * 
+	 *
 	 * @param $file File object
 	 * @param $url String: URL path to the thumb
 	 * @param $width Integer: file's width
