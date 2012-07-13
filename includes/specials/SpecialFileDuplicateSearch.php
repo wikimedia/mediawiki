@@ -157,8 +157,22 @@ class FileDuplicateSearchPage extends QueryPage {
 				);
 			}
 
+			$this->doBatchLookups( $dupes );
 			$this->showList( $dupes );
 		}
+	}
+
+	function doBatchLookups( $list ) {
+		$batch = new LinkBatch();
+		foreach( $list as $file ) {
+			$batch->addObj( $file->getTitle() );
+			if( $file->isLocal() ) {
+				$userName = $file->getUser( 'text' );
+				$batch->add( NS_USER, $userName );
+				$batch->add( NS_USER_TALK, $userName );
+			}
+		}
+		$batch->execute();
 	}
 
 	/**
@@ -178,7 +192,17 @@ class FileDuplicateSearchPage extends QueryPage {
 		);
 
 		$userText = $result->getUser( 'text' );
-		$user = Linker::link( Title::makeTitle( NS_USER, $userText ), $userText );
+		if ( $result->isLocal() ) {
+			$userId = $result->getUser( 'id' );
+			$user = Linker::userLink( $userId, $userText );
+			$user .= $this->getContext()->msg( 'word-separator' )->plain();
+			$user .= '<span style="white-space: nowrap;">';
+			$user .= Linker::userToolLinks( $userId, $userText );
+			$user .= '</span>';
+		} else {
+			$user = htmlspecialchars( $userText );
+		}
+
 		$time = $this->getLanguage()->userTimeAndDate( $result->getTimestamp(), $this->getUser() );
 
 		return "$plink . . $user . . $time";
