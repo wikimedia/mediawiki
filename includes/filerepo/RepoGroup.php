@@ -259,6 +259,7 @@ class RepoGroup {
 		foreach ( $this->foreignRepos as $repo ) {
 			$result = array_merge( $result, $repo->findBySha1( $hash ) );
 		}
+		usort( $result, 'File::compare' );
 		return $result;
 	}
 
