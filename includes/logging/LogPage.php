@@ -255,9 +255,12 @@ class LogPage {
 					$rightsnone = wfMsgExt( 'rightsnone', array( 'parsemag', 'language' => $langObj ) );
 
 					if( $skin ) {
+						$username = $title->getText();
 						foreach ( $params as &$param ) {
 							$groupArray = array_map( 'trim', explode( ',', $param ) );
-							$groupArray = array_map( array( 'User', 'getGroupMember' ), $groupArray );
+							foreach( $groupArray as &$group ) {
+								$group = User::getGroupMember( $group, $username );
+							}
 							$param = $wgLang->listToText( $groupArray );
 						}
 					}
