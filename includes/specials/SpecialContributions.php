@@ -768,21 +768,15 @@ class ContribsPager extends ReverseChronologicalPager {
 	}
 
 	function doBatchLookups() {
-		$this->mResult->rewind();
+		# Do a link batch query
+		$this->mResult->seek( 0 );
 		$revIds = array();
+		$batch = new LinkBatch();
+		# Give some pointers to make (last) links
 		foreach ( $this->mResult as $row ) {
 			if( isset( $row->rev_parent_id ) && $row->rev_parent_id ) {
 				$revIds[] = $row->rev_parent_id;
 			}
-		}
-		$this->mParentLens = Revision::getParentLengths( $this->getDatabase(), $revIds );
-		$this->mResult->rewind(); // reset
-
-		# Do a link batch query
-		$this->mResult->seek( 0 );
-		$batch = new LinkBatch();
-		# Give some pointers to make (last) links
-		foreach ( $this->mResult as $row ) {
 			if ( isset( $row->rev_id ) ) {
 				if ( $this->contribs === 'newbie' ) { // multiple users
 					$batch->add( NS_USER, $row->user_name );
@@ -791,6 +785,7 @@ class ContribsPager extends ReverseChronologicalPager {
 				$batch->add( $row->page_namespace, $row->page_title );
 			}
 		}
+		$this->mParentLens = Revision::getParentLengths( $this->getDatabase(), $revIds );
 		$batch->execute();
 		$this->mResult->seek( 0 );
 	}
