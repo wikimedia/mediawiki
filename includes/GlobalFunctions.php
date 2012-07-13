@@ -1053,11 +1053,22 @@ function wfDebugLog( $logGroup, $text, $public = true ) {
  * @param $text String: database error message.
  */
 function wfLogDBError( $text ) {
-	global $wgDBerrorLog;
+	global $wgDBerrorLog, $wgDBerrorLogInUtc;
 	if ( $wgDBerrorLog ) {
 		$host = wfHostname();
 		$wiki = wfWikiID();
-		$text = date( 'D M j G:i:s T Y' ) . "\t$host\t$wiki\t$text";
+
+		if( $wgDBerrorLogInUtc ) {
+			$wikiTimezone = date_default_timezone_get();
+			date_default_timezone_set( 'UTC' );
+		}
+		$date = date( 'D M j G:i:s T Y' );
+		if( $wgDBerrorLogInUtc ) {
+			// Restore timezone
+			date_default_timezone_set( $wikiTimezone );
+		}
+
+		$text = "$date\t$host\t$wiki\t$text";
 		wfErrorLog( $text, $wgDBerrorLog );
 	}
 }

@@ -23,6 +23,8 @@ upgrade PHP if you have not done so prior to upgrading MediaWiki.
 * The user right 'upload_by_url' is no longer given to sysops by default.
   This only affects installations which have $wgAllowCopyUploads set to true.
 * Removed f-prot support from $wgAntivirusSetup.
+* $wgDBerrorLogInUTC to log error in $wgDBerrorLog using an UTC date instead
+  of the wiki timezone set by $wgLocalTimezone.
 
 === New features in 1.20 ===
 * Added TitleIsAlwaysKnown hook which gets called when determining if a page exists.
