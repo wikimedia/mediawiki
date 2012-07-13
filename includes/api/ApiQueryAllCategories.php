@@ -57,6 +57,7 @@ class ApiQueryAllCategories extends ApiQueryGeneratorBase {
 
 		$this->addTables( 'category' );
 		$this->addFields( 'cat_title' );
+		$this->addWhere( 'cat_pages > 0' );
 
 		$dir = ( $params['dir'] == 'descending' ? 'older' : 'newer' );
 		$from = ( is_null( $params['from'] ) ? null : $this->titlePartToKey( $params['from'] ) );
