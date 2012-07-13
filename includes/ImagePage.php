@@ -155,7 +155,7 @@ class ImagePage extends Article {
 			# should be in page content language
 			$pageLang = $this->getTitle()->getPageLanguage();
 			$out->addHTML( Xml::openElement( 'div', array( 'id' => 'mw-imagepage-content',
-				'lang' => $pageLang->getCode(), 'dir' => $pageLang->getDir(),
+				'lang' => $pageLang->getHtmlCode(), 'dir' => $pageLang->getDir(),
 				'class' => 'mw-content-'.$pageLang->getDir() ) ) );
 			parent::view();
 			$out->addHTML( Xml::closeElement( 'div' ) );
