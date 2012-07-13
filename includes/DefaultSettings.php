@@ -1436,11 +1436,26 @@ $wgMasterWaitTimeout = 10;
 
 /** File to log database errors to */
 $wgDBerrorLog = false;
+
 /**
- * Override wiki timezone to UTC for wgDBerrorLog
+ * Timezone to use in the error log.
+ * Defaults to the wiki timezone ($wgLocalTimezone).
+ *
+ * A list of useable timezones can found at:
+ * http://php.net/manual/en/timezones.php
+ *
+ * @par Examples:
+ * @code
+ * $wgLocaltimezone = 'UTC';
+ * $wgLocaltimezone = 'GMT';
+ * $wgLocaltimezone = 'PST8PDT';
+ * $wgLocaltimezone = 'Europe/Sweden';
+ * $wgLocaltimezone = 'CET';
+ * @endcode
+ *
  * @since 1.20
  */
-$wgDBerrorLogInUTC = false;
+$wgDBerrorLogTZ = false;
 
 /** When to give an error message */
 $wgDBClusterTimeout = 10;
@@ -2333,8 +2348,12 @@ $wgForceUIMsgAsContentMsg = array();
  * Timezones can be translated by editing MediaWiki messages of type
  * timezone-nameinlowercase like timezone-utc.
  *
+ * A list of useable timezones can found at:
+ * http://php.net/manual/en/timezones.php
+ *
  * @par Examples:
  * @code
+ * $wgLocaltimezone = 'UTC';
  * $wgLocaltimezone = 'GMT';
  * $wgLocaltimezone = 'PST8PDT';
  * $wgLocaltimezone = 'Europe/Sweden';
