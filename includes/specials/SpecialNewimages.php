@@ -68,15 +68,18 @@ class NewFilesPager extends ReverseChronologicalPager {
 		$tables = array( 'image' );
 
 		if( !$this->showbots ) {
-			$tables[] = 'user_groups';
-			$conds[] = 'ug_group IS NULL';
-			$jconds['user_groups'] = array(
-				'LEFT JOIN',
-				array(
-					'ug_group' => User::getGroupsWithPermission( 'bot' ),
-					'ug_user = img_user'
-				)
-			);
+			$groupsWithBotPermission = User::getGroupsWithPermission( 'bot' );
+			if( count( $groupsWithBotPermission ) ) {
+				$tables[] = 'user_groups';
+				$conds[] = 'ug_group IS NULL';
+				$jconds['user_groups'] = array(
+					'LEFT JOIN',
+					array(
+						'ug_group' => $groupsWithBotPermission,
+						'ug_user = img_user'
+					)
+				);
+			}
 		}
 
 		if( !$wgMiserMode && $this->like !== null ){
