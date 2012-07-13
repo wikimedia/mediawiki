@@ -491,7 +491,7 @@ class ApiQueryImageInfo extends ApiQueryBase {
 	 *
 	 * @return array
 	 */
-	private static function getProperties() {
+	private static function getProperties( $modulePrefix = '' ) {
 		return array(
 			'timestamp' =>      ' timestamp     - Adds timestamp for the uploaded version',
 			'user' =>           ' user          - Adds the user who uploaded the image version',
@@ -503,7 +503,8 @@ class ApiQueryImageInfo extends ApiQueryBase {
 			'dimensions' =>     ' dimensions    - Alias for size', // For backwards compatibility with Allimages
 			'sha1' =>           ' sha1          - Adds SHA-1 hash for the image',
 			'mime' =>           ' mime          - Adds MIME type of the image',
-			'thumbmime' =>      ' thumbmime     - Adds MIME type of the image thumbnail (requires url)',
+			'thumbmime' =>      ' thumbmime     - Adds MIME type of the image thumbnail' .
+				' (requires property url and param ' . $modulePrefix . 'urlwidth)',
 			'mediatype' =>      ' mediatype     - Adds the media type of the image',
 			'metadata' =>       ' metadata      - Lists EXIF metadata for the version of the image',
 			'archivename' =>    ' archivename   - Adds the file name of the archive version for non-latest versions',
@@ -518,10 +519,10 @@ class ApiQueryImageInfo extends ApiQueryBase {
 	 *
 	 * @return array
 	 */
-	public static function getPropertyDescriptions( $filter = array() ) {
+	public static function getPropertyDescriptions( $filter = array(), $modulePrefix = '' ) {
 		return array_merge(
 			array( 'What image information to get:' ),
-			array_values( array_diff_key( self::getProperties(), array_flip( $filter ) ) )
+			array_values( array_diff_key( self::getProperties( $modulePrefix ), array_flip( $filter ) ) )
 		);
 	}
 
@@ -532,7 +533,7 @@ class ApiQueryImageInfo extends ApiQueryBase {
 	public function getParamDescription() {
 		$p = $this->getModulePrefix();
 		return array(
-			'prop' => self::getPropertyDescriptions(),
+			'prop' => self::getPropertyDescriptions( $p ),
 			'urlwidth' => array( "If {$p}prop=url is set, a URL to an image scaled to this width will be returned.",
 					    'Only the current version of the image can be scaled' ),
 			'urlheight' => "Similar to {$p}urlwidth. Cannot be used without {$p}urlwidth",
