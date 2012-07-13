@@ -1728,7 +1728,7 @@ class Linker {
 			}
 			$outText .= "</div><ul>\n";
 
-			usort( $templates, array( 'Title', 'compare' ) );
+			usort( $templates, 'Title::compare' );
 			foreach ( $templates as $titleObj ) {
 				$r = $titleObj->getRestrictions( 'edit' );
 				if ( in_array( 'sysop', $r ) ) {
