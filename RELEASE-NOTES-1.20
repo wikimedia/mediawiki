@@ -95,6 +95,8 @@ upgrade PHP if you have not done so prior to upgrading MediaWiki.
 * (bug 34678) Added InternalParseBeforeSanitize hook which gets called during Parser's
   internalParse method just before the parser removes unwanted/dangerous HTML tags.
 * (bug 36783) Implement jQuery Promise interface in mediawiki.api module.
+* Make dates in sortable tables sort according to the page content language
+  instead of the site content language
 
 === Bug fixes in 1.20 ===
 * (bug 30245) Use the correct way to construct a log page title.

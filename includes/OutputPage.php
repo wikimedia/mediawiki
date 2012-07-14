@@ -2963,6 +2963,9 @@ $templates
 			'wgPageContentLanguage' => $lang->getCode(),
 			'wgSeparatorTransformTable' => $compactSeparatorTransTable,
 			'wgDigitTransformTable' => $compactDigitTransTable,
+			'wgDefaultDateFormat' => $lang->getDefaultDateFormat(),
+			'wgMonthNames' => $lang->getMonthNamesArray(),
+			'wgMonthNamesShort' => $lang->getMonthAbbreviationsArray(),
 			'wgRelevantPageName' => $relevantTitle->getPrefixedDBKey(),
 		);
 		if ( $wgContLang->hasVariants() ) {
