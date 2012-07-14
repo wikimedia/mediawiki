@@ -62,7 +62,7 @@ class ApiDelete extends ApiBase {
 		}
 
 		if ( !$status->isGood() ) {
-			$errors = $this->getErrorsArray();
+			$errors = $status->getErrorsArray();
 			$this->dieUsageMsg( $errors[0] ); // We don't care about multiple errors, just report one of them
 		}
 
