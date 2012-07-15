@@ -457,7 +457,7 @@ class LinkHolderArray {
 			foreach ( $entries as $index => $entry ) {
 				$pdbk = $entry['pdbk'];
 				// we only deal with new links (in its first query)
-				if ( !isset( $colours[$pdbk] ) ) {
+				if ( !isset( $colours[$pdbk] ) || $colours[$pdbk] === 'new' ) {
 					$title = $entry['title'];
 					$titleText = $title->getText();
 					$titlesAttrs[] = array(
@@ -473,7 +473,7 @@ class LinkHolderArray {
 		}
 
 		// Now do the conversion and explode string to text of titles
-		$titlesAllVariants = $wgContLang->autoConvertToAllVariants( $titlesToBeConverted );
+		$titlesAllVariants = $wgContLang->autoConvertToAllVariants( rtrim( $titlesToBeConverted, "\0" ) );
 		$allVariantsName = array_keys( $titlesAllVariants );
 		foreach ( $titlesAllVariants as &$titlesVariant ) {
 			$titlesVariant = explode( "\0", $titlesVariant );
@@ -541,7 +541,7 @@ class LinkHolderArray {
 					$entry =& $this->internals[$ns][$index];
 					$pdbk = $entry['pdbk'];
 
-					if(!isset($colours[$pdbk])){
+					if ( !isset( $colours[$pdbk] ) || $colours[$pdbk] === 'new' ) {
 						// found link in some of the variants, replace the link holder data
 						$entry['title'] = $variantTitle;
 						$entry['pdbk'] = $varPdbk;
