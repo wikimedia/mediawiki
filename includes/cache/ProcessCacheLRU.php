@@ -32,7 +32,7 @@ class ProcessCacheLRU {
 	protected $maxCacheKeys; // integer; max entries
 
 	/**
-	 * @param $maxEntries integer Maximum number of entries allowed (min 1).
+	 * @param $maxKeys integer Maximum number of entries allowed (min 1).
 	 * @throws MWException When $maxCacheKeys is not an int or =< 0.
 	 */
 	public function __construct( $maxKeys ) {

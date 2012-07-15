@@ -3207,7 +3207,7 @@ function wfUseMW( $req_ver ) {
  * http://bugs.php.net/bug.php?id=33898
  *
  * PHP's basename() only considers '\' a pathchar on Windows and Netware.
- * We'll consider it so always, as we don't want \s in our Unix paths either.
+ * We'll consider it so always, as we don't want '\s' in our Unix paths either.
  *
  * @param $path String
  * @param $suffix String: to remove if present

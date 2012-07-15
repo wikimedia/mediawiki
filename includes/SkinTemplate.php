@@ -1699,17 +1699,22 @@ abstract class BaseTemplate extends QuickTemplate {
 	}
 
 	/**
-	 * Generates a list item for a navigation, portlet, portal, sidebar... etc list
-	 * $key is a string, usually a key from the list you are generating this link from
-	 * $item is an array of list item data containing some of a specific set of keys.
+	 * Generates a list item for a navigation, portlet, portal, sidebar... list
+	 *
+	 * @param $key string, usually a key from the list you are generating this link from.
+	 * @param $item array, of list item data containing some of a specific set of keys.
 	 * The "id" and "class" keys will be used as attributes for the list item,
 	 * if "active" contains a value of true a "active" class will also be appended to class.
-	 * If you want something other than a <li> you can pass a tag name such as
+	 *
+	 * @param $options array
+	 *
+	 * If you want something other than a "<li>" you can pass a tag name such as
 	 * "tag" => "span" in the $options array to change the tag used.
 	 * link/content data for the list item may come in one of two forms
 	 * A "links" key may be used, in which case it should contain an array with
-	 * a list of links to include inside the list item, see makeLink for the format
-	 * of individual links array items.
+	 * a list of links to include inside the list item, see makeLink for the
+	 * format of individual links array items.
+	 *
 	 * Otherwise the relevant keys from the list item $item array will be passed
 	 * to makeLink instead. Note however that "id" and "class" are used by the
 	 * list item directly so they will not be passed to makeLink
@@ -1717,6 +1722,7 @@ abstract class BaseTemplate extends QuickTemplate {
 	 * If you need an id or class on a single link you should include a "links"
 	 * array with just one link item inside of it.
 	 * $options is also passed on to makeLink calls
+	 *
 	 * @return string
 	 */
 	function makeListItem( $key, $item, $options = array() ) {

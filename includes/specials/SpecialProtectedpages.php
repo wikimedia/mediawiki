@@ -71,7 +71,7 @@ class SpecialProtectedpages extends SpecialPage {
 	/**
 	 * Callback function to output a restriction
 	 * @param Title $row Protected title
-	 * @return string Formatted <li> element
+	 * @return string Formatted "<li>" element
 	 */
 	public function formatRow( $row ) {
 		wfProfileIn( __METHOD__ );

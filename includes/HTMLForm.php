@@ -688,7 +688,7 @@ class HTMLForm extends ContextSource {
 	/**
 	 * Format a stack of error messages into a single HTML string
 	 * @param $errors Array of message keys/values
-	 * @return String HTML, a <ul> list of errors
+	 * @return String HTML, a "<ul>" list of errors
 	 */
 	public static function formatErrors( $errors ) {
 		$errorstr = '';
@@ -1991,7 +1991,7 @@ class HTMLSelectAndOtherField extends HTMLSelectField {
 
 	/**
 	 * @param  $request WebRequest
-	 * @return Array( <overall message>, <select value>, <text field value> )
+	 * @return Array("<overall message>","<select value>","<text field value>")
 	 */
 	function loadDataFromRequest( $request ) {
 		if ( $request->getCheck( $this->mName ) ) {
