@@ -217,6 +217,7 @@ changes to languages because of Bugzilla reports.
 * (bug 35541) Namespace gender aliases for Croatian (hr).
 * (bug 36012) Space in $separatorTransformTable should be non-breaking in
   Portuguese, Esperanto and Udmurt.
+* Cyrillic-Latin language converter added for Uzbek (uz).
 
 === Other changes in 1.20 ===
 * The user_token field is now left empty until a user attempts to login and
