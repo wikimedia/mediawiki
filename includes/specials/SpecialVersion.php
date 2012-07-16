@@ -108,6 +108,7 @@ class SpecialVersion extends SpecialPage {
 			'Alexandre Emsenhuber', 'Siebrand Mazeland', 'Chad Horohoe',
 			'Roan Kattouw', 'Trevor Parscal', 'Bryan Tong Minh', 'Sam Reed',
 			'Victor Vasiliev', 'Rotem Liss', 'Platonides', 'Antoine Musso',
+			'TImo Tijhof',
 			wfMsg( 'version-poweredby-others' )
 		);
 
