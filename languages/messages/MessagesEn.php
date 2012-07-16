@@ -3803,6 +3803,11 @@ By executing it, your system may be compromised.",
 'days'           => '{{PLURAL:$1|$1 day|$1 days}}',
 'ago'            => '$1 ago',
 
+'dayofweek-at'   => '$1 at $2',
+'today-at'       => '$1',
+'yesterday-at'   => 'Yesterday at $1',
+'just-now'       => 'Just now',
+
 # Bad image list
 'bad_image_list' => 'The format is as follows:
 
