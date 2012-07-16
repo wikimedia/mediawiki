@@ -108,7 +108,7 @@ class CacheHelper implements ICacheHelper {
 	 * The time to live for the cache, in seconds or a unix timestamp indicating the point of expiry.
 	 *
 	 * @since 1.20
-	 * @var integer
+	 * @var Integer $cacheExpiry
 	 */
 	protected $cacheExpiry = 3600;
 
@@ -118,7 +118,7 @@ class CacheHelper implements ICacheHelper {
 	 * if it as cached already, chunks are removed from this list as they are needed.
 	 *
 	 * @since 1.20
-	 * @var array
+	 * @var Array $cachedChunks
 	 */
 	protected $cachedChunks;
 
@@ -127,7 +127,7 @@ class CacheHelper implements ICacheHelper {
 	 * Null if this information is not available yet.
 	 *
 	 * @since 1.20
-	 * @var boolean|null
+	 * @var boolean|null $hasCached
 	 */
 	protected $hasCached = null;
 
@@ -135,7 +135,7 @@ class CacheHelper implements ICacheHelper {
 	 * If the cache is enabled or not.
 	 *
 	 * @since 1.20
-	 * @var boolean
+	 * @var boolean $cacheEnabled
 	 */
 	protected $cacheEnabled = true;
 
@@ -143,7 +143,7 @@ class CacheHelper implements ICacheHelper {
 	 * Function that gets called when initialization is done.
 	 *
 	 * @since 1.20
-	 * @var function
+	 * @var function $onInitHandler
 	 */
 	protected $onInitHandler = false;
 

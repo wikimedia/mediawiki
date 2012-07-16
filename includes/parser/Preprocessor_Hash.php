@@ -29,7 +29,7 @@
  */
 class Preprocessor_Hash implements Preprocessor {
 	/**
-	 * @var Parser
+	 * @var Parser $parser
 	 */
 	var $parser;
 
@@ -838,19 +838,20 @@ class PPDAccum_Hash {
 class PPFrame_Hash implements PPFrame {
 
 	/**
-	 * @var Parser
+	 * @var Parser $parser
 	 */
 	var $parser;
 
 	/**
-	 * @var Preprocessor
+	 * @var Preprocessor $preprocessor
 	 */
 	var $preprocessor;
 
 	/**
-	 * @var Title
+	 * @var Title $title
 	 */
 	var $title;
+
 	var $titleCache;
 
 	/**

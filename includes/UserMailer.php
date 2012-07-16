@@ -399,12 +399,12 @@ class EmailNotification {
 	protected $mailTargets = array();
 
 	/**
-	 * @var Title
+	 * @var Title $title
 	 */
 	protected $title;
 
 	/**
-	 * @var User
+	 * @var User $editor
 	 */
 	protected $editor;
 

@@ -57,7 +57,7 @@ class WikiPage extends Page {
 	const DATA_FOR_UPDATE = 3;
 
 	/**
-	 * @var Title
+	 * @var Title $mTitle
 	 */
 	public $mTitle = null;
 
@@ -71,32 +71,34 @@ class WikiPage extends Page {
 	/**@}}*/
 
 	/**
-	 * @var int; one of the DATA_* constants
+	 * @var int $mDataLoadedFrom
+	 * One of the DATA_* constants
 	 */
 	protected $mDataLoadedFrom = self::DATA_NOT_LOADED;
 
 	/**
-	 * @var Title
+	 * @var Title $mRedirectTarget
 	 */
 	protected $mRedirectTarget = null;
 
 	/**
-	 * @var Revision
+	 * @var Revision $mLastRevision
 	 */
 	protected $mLastRevision = null;
 
 	/**
-	 * @var string; timestamp of the current revision or empty string if not loaded
+	 * @var string $mTimestamp
+	 * Timestamp of the current revision or empty string if not loaded
 	 */
 	protected $mTimestamp = '';
 
 	/**
-	 * @var string
+	 * @var string $mTouched
 	 */
 	protected $mTouched = '19700101000000';
 
 	/**
-	 * @var int|null
+	 * @var int|null $mCounter
 	 */
 	protected $mCounter = null;
 
@@ -2980,42 +2982,42 @@ class WikiPage extends Page {
 class PoolWorkArticleView extends PoolCounterWork {
 
 	/**
-	 * @var Page
+	 * @var Page $page
 	 */
 	private $page;
 
 	/**
-	 * @var string
+	 * @var string $cacheKey
 	 */
 	private $cacheKey;
 
 	/**
-	 * @var integer
+	 * @var integer $revid
 	 */
 	private $revid;
 
 	/**
-	 * @var ParserOptions
+	 * @var ParserOptions $parserOptions
 	 */
 	private $parserOptions;
 
 	/**
-	 * @var string|null
+	 * @var string|null $text
 	 */
 	private $text;
 
 	/**
-	 * @var ParserOutput|bool
+	 * @var ParserOutput|bool $parserOutput
 	 */
 	private $parserOutput = false;
 
 	/**
-	 * @var bool
+	 * @var bool $isDirty
 	 */
 	private $isDirty = false;
 
 	/**
-	 * @var Status|bool
+	 * @var Status|bool $error
 	 */
 	private $error = false;
 

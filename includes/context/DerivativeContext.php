@@ -32,37 +32,37 @@
 class DerivativeContext extends ContextSource {
 
 	/**
-	 * @var WebRequest
+	 * @var WebRequest $request
 	 */
 	private $request;
 
 	/**
-	 * @var Title
+	 * @var Title $title
 	 */
 	private $title;
 
 	/**
-	 * @var WikiPage
+	 * @var WikiPage $wikipage
 	 */
 	private $wikipage;
 
 	/**
-	 * @var OutputPage
+	 * @var OutputPage $output
 	 */
 	private $output;
 
 	/**
-	 * @var User
+	 * @var User $user
 	 */
 	private $user;
 
 	/**
-	 * @var Language
+	 * @var Language $lang
 	 */
 	private $lang;
 
 	/**
-	 * @var Skin
+	 * @var Skin $skin
 	 */
 	private $skin;
 

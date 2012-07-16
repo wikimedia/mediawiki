@@ -28,7 +28,7 @@
 class DBError extends MWException {
 
 	/**
-	 * @var DatabaseBase
+	 * @var DatabaseBase $db
 	 */
 	public $db;
 

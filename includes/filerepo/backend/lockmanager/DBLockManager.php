@@ -38,18 +38,43 @@
  * @since 1.19
  */
 class DBLockManager extends LockManager {
-	/** @var Array Map of DB names to server config */
-	protected $dbServers; // (DB name => server config array)
-	/** @var Array Map of bucket indexes to peer DB lists */
-	protected $dbsByBucket; // (bucket index => (ldb1, ldb2, ...))
-	/** @var BagOStuff */
+	/**
+	 * @var Array $dbServers
+	 * Map of DB names to server config
+	 * (DB name => server config array )
+	 */
+	protected $dbServers;
+	/**
+	 * @var Array $dbsByBucket
+	 * Map of bucket indexes to peer DB lists
+	 * (bucket index => (ldb1, ldb2, ...))
+	 */
+	protected $dbsByBucket;
+	/**
+	 * @var BagOStuff $statusCache
+	 */
 	protected $statusCache;
 
-	protected $lockExpiry; // integer number of seconds
-	protected $safeDelay; // integer number of seconds
+	/**
+	 * @var Integer $lockExpiry
+	 * Lock expiration in number of seconds
+	 */
+	protected $lockExpiry;
+	/**
+	 * @var Integer $safeDelay
+	 */
+	protected $safeDelay;
 
-	protected $session = 0; // random integer
-	/** @var Array Map Database connections (DB name => Database) */
+	/**
+	 * @var Integer $session
+	 * Random integer
+	 */
+	protected $session = 0;
+
+	/**
+	 * @var Array $conns
+	 * Map Database connections (DB name => Database)
+	 */
 	protected $conns = array();
 
 	/**
@@ -435,7 +460,10 @@ class DBLockManager extends LockManager {
  * @ingroup LockManager
  */
 class MySqlLockManager extends DBLockManager {
-	/** @var Array Mapping of lock types to the type actually used */
+	/**
+	 * @var Array $lockTypeMap
+	 * Mapping of lock types to the type actually used
+	 */
 	protected $lockTypeMap = array(
 		self::LOCK_SH => self::LOCK_SH,
 		self::LOCK_UW => self::LOCK_SH,

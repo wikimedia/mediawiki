@@ -25,7 +25,7 @@
  */
 abstract class RevisionListBase extends ContextSource {
 	/**
-	 * @var Title
+	 * @var Title $title
 	 */
 	var $title;
 

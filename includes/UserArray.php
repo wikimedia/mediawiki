@@ -64,9 +64,10 @@ abstract class UserArray implements Iterator {
 class UserArrayFromResult extends UserArray {
 
 	/**
-	 * @var ResultWrapper
+	 * @var ResultWrapper $res
 	 */
 	var $res;
+
 	var $key, $current;
 
 	/**

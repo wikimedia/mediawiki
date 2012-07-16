@@ -52,12 +52,12 @@ class LoginForm extends SpecialPage {
 	private $mLoaded = false;
 
 	/**
-	 * @var ExternalUser
+	 * @var ExternalUser $mExtUser
 	 */
 	private $mExtUser = null;
 
 	/**
-	 * @ var WebRequest
+	 * @var WebRequest $mOverrideRequest
 	 */
 	private $mOverrideRequest = null;
 

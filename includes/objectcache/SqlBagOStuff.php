@@ -29,14 +29,15 @@
 class SqlBagOStuff extends BagOStuff {
 
 	/**
-	 * @var LoadBalancer
+	 * @var LoadBalancer $lb
 	 */
 	var $lb;
 
 	/**
-	 * @var DatabaseBase
+	 * @var DatabaseBase $db
 	 */
 	var $db;
+
 	var $serverInfo;
 	var $lastExpireAll = 0;
 	var $purgePeriod = 100;

@@ -29,7 +29,7 @@ class MediaWiki {
 
 	/**
 	 * TODO: fold $output, etc, into this
-	 * @var IContextSource
+	 * @var IContextSource $context
 	 */
 	private $context;
 

@@ -36,7 +36,7 @@
 class AuthPlugin {
 
 	/**
-	 * @var string
+	 * @var String $domain
 	 */
 	protected $domain;
 

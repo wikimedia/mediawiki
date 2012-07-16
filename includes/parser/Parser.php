@@ -134,31 +134,33 @@ class Parser {
 	# Initialised by initialiseVariables()
 
 	/**
-	 * @var MagicWordArray
+	 * @var MagicWordArray $mVariables
 	 */
 	var $mVariables;
 
 	/**
-	 * @var MagicWordArray
+	 * @var MagicWordArray $mSubstWords
 	 */
 	var $mSubstWords;
+
 	var $mConf, $mPreprocessor, $mExtLinkBracketedRegex, $mUrlProtocols; # Initialised in constructor
 
 	# Cleared with clearState():
 	/**
-	 * @var ParserOutput
+	 * @var ParserOutput $mOutput
 	 */
 	var $mOutput;
+
 	var $mAutonumber, $mDTopen;
 
 	/**
-	 * @var StripState
+	 * @var StripState $mStripState
 	 */
 	var $mStripState;
 
 	var $mIncludeCount, $mArgStack, $mLastSection, $mInPre;
 	/**
-	 * @var LinkHolderArray
+	 * @var LinkHolderArray $mLinkHolders
 	 */
 	var $mLinkHolders;
 
@@ -170,7 +172,7 @@ class Parser {
 	var $mShowToc, $mForceTocPosition;
 
 	/**
-	 * @var User
+	 * @var User $mUser
 	 */
 	var $mUser; # User object; only used when doing pre-save transform
 
@@ -178,7 +180,7 @@ class Parser {
 	# These are variables reset at least once per parse regardless of $clearState
 
 	/**
-	 * @var ParserOptions
+	 * @var ParserOptions $mOptions
 	 */
 	var $mOptions;
 
@@ -195,7 +197,7 @@ class Parser {
 	var $mRevIdForTs;   # The revision ID which was used to fetch the timestamp
 
 	/**
-	 * @var string
+	 * @var string $mUniqPrefix
 	 */
 	var $mUniqPrefix;
 

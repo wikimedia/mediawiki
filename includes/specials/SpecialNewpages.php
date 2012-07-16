@@ -31,9 +31,10 @@ class SpecialNewpages extends IncludableSpecialPage {
 	// Stored objects
 
 	/**
-	 * @var FormOptions
+	 * @var FormOptions $opts
 	 */
 	protected $opts;
+
 	protected $customFilters;
 
 	// Some internal settings
@@ -477,7 +478,7 @@ class NewPagesPager extends ReverseChronologicalPager {
 	protected $opts;
 
 	/**
-	 * @var HtmlForm
+	 * @var HtmlForm $mForm
 	 */
 	protected $mForm;
 

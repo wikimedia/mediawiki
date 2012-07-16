@@ -30,7 +30,7 @@
 class ApiParamInfo extends ApiBase {
 
 	/**
-	 * @var ApiQuery
+	 * @var ApiQuery $queryObj
 	 */
 	protected $queryObj;
 

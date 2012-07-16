@@ -73,7 +73,7 @@
 class PathRouter {
 
 	/**
-	 * @var array
+	 * @var Array $patterns
 	 */
 	private $patterns = array();
 

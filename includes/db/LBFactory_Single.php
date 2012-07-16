@@ -88,7 +88,7 @@ class LBFactory_Single extends LBFactory {
 class LoadBalancer_Single extends LoadBalancer {
 
 	/**
-	 * @var DatabaseBase
+	 * @var DatabaseBase $db
 	 */
 	var $db;
 

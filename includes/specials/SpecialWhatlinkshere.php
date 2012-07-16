@@ -29,17 +29,20 @@
 class SpecialWhatLinksHere extends SpecialPage {
 
 	/**
-	 * @var FormOptions
+	 * @var FormOptions $opts
 	 */
 	protected $opts;
 
 	protected $selfTitle;
 
 	/**
-	 * @var Title
+	 * @var Title $target
 	 */
 	protected $target;
 
+	/**
+	 * @var Array $limits
+	 */
 	protected $limits = array( 20, 50, 100, 250, 500 );
 
 	public function __construct() {

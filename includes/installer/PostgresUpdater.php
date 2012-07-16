@@ -31,7 +31,7 @@
 class PostgresUpdater extends DatabaseUpdater {
 
 	/**
-	 * @var DatabasePostgres
+	 * @var DatabasePostgres $db
 	 */
 	protected $db;
 

@@ -37,7 +37,7 @@
  */
 class FeedItem {
 	/**
-	 * @var Title
+	 * @var Title $title
 	 */
 	var $title;
 

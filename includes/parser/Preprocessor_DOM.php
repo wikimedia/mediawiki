@@ -27,7 +27,7 @@
 class Preprocessor_DOM implements Preprocessor {
 
 	/**
-	 * @var Parser
+	 * @var Parser $parser
 	 */
 	var $parser;
 
@@ -700,9 +700,10 @@ class PPDStack {
 	var $stack, $rootAccum;
 
 	/**
-	 * @var PPDStack
+	 * @var PPDStack $top
 	 */
 	var $top;
+
 	var $out;
 	var $elementClass = 'PPDStackElement';
 
@@ -879,19 +880,20 @@ class PPDPart {
 class PPFrame_DOM implements PPFrame {
 
 	/**
-	 * @var Preprocessor
+	 * @var Preprocessor $preprocessor
 	 */
 	var $preprocessor;
 
 	/**
-	 * @var Parser
+	 * @var Parser $parser
 	 */
 	var $parser;
 
 	/**
-	 * @var Title
+	 * @var Title $title
 	 */
 	var $title;
+
 	var $titleCache;
 
 	/**
@@ -1389,9 +1391,10 @@ class PPTemplateFrame_DOM extends PPFrame_DOM {
 	var $numberedArgs, $namedArgs;
 
 	/**
-	 * @var PPFrame_DOM
+	 * @var PPFrame_DOM $parent
 	 */
 	var $parent;
+
 	var $numberedExpansionCache, $namedExpansionCache;
 
 	/**
@@ -1565,9 +1568,10 @@ class PPCustomFrame_DOM extends PPFrame_DOM {
 class PPNode_DOM implements PPNode {
 
 	/**
-	 * @var DOMElement
+	 * @var DOMElement $node
 	 */
 	var $node;
+
 	var $xpath;
 
 	function __construct( $node, $xpath = false ) {

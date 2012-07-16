@@ -41,12 +41,13 @@ class LogPage {
 	var $type, $action, $comment, $params;
 
 	/**
-	 * @var User
+	 * @var User $doer
+	 * @todo FIXME rename $doer to $performer?
 	 */
 	var $doer;
 
 	/**
-	 * @var Title
+	 * @var Title $target
 	 */
 	var $target;
 

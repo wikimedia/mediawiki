@@ -175,7 +175,7 @@ class ParserOptions {
 	var $mUserLang;
 
 	/**
-	 * @var User 
+	 * @var User $mUser
 	 * Stored user object
 	 */
 	var $mUser;

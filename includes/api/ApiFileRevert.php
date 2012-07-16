@@ -30,7 +30,7 @@
 class ApiFileRevert extends ApiBase {
 
 	/**
-	 * @var File
+	 * @var File $file
 	 */
 	protected $file;
 	protected $archiveName;

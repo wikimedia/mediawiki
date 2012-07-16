@@ -34,16 +34,26 @@
  * @since 1.19
  */
 class FSLockManager extends LockManager {
-	/** @var Array Mapping of lock types to the type actually used */
+	/**
+	 * @var Array $lockTypeMap
+	 * Mapping of lock types to the type actually used
+	 */
 	protected $lockTypeMap = array(
 		self::LOCK_SH => self::LOCK_SH,
 		self::LOCK_UW => self::LOCK_SH,
 		self::LOCK_EX => self::LOCK_EX
 	);
 
-	protected $lockDir; // global dir for all servers
+	/**
+	 * @var String $lockDir
+	 * Global dir for all servers
+	 */
+	protected $lockDir;
 
-	/** @var Array Map of (locked key => lock type => lock file handle) */
+	/**
+	 * @var Array $handles
+	 * Map of (locked key => lock type => lock file handle)
+	 */
 	protected $handles = array();
 
 	/**

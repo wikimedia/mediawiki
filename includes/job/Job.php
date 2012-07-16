@@ -29,7 +29,7 @@
 abstract class Job {
 
 	/**
-	 * @var Title
+	 * @var Title $title
 	 */
 	var $title;
 

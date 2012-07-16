@@ -37,7 +37,7 @@ class UnregisteredLocalFile extends File {
 	var $title, $path, $mime, $dims, $metadata;
 
 	/**
-	 * @var MediaHandler
+	 * @var MediaHandler $handler
 	 */
 	var $handler;
 

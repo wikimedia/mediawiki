@@ -56,7 +56,7 @@ class SpecialPage {
 
 	/**
 	 * Current request context
-	 * @var IContextSource
+	 * @var IContextSource $mContext
 	 */
 	protected $mContext;
 

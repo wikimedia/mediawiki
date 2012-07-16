@@ -324,14 +324,39 @@ class RCDatabaseLogEntry extends DatabaseLogEntry {
  * @since 1.19
  */
 class ManualLogEntry extends LogEntryBase {
-	protected $type; ///!< @var string
-	protected $subtype; ///!< @var string
-	protected $parameters = array(); ///!< @var array
-	protected $performer; ///!< @var User
-	protected $target; ///!< @var Title
-	protected $timestamp; ///!< @var string
-	protected $comment = ''; ///!< @var string
-	protected $deleted; ///!< @var int
+	/**
+	 * @var string $type
+	 */
+	protected $type;
+	/**
+	 * @var string $subtype
+	 */
+	protected $subtype;
+
+	/**
+	 * @var Array $parameters
+	 */
+	protected $parameters = array();
+	/**
+	 * @var User $performer
+	 */
+	protected $performer;
+	/**
+	 * @var Title $target
+	 */
+	protected $target;
+	/**
+	 * @var String $timestamp
+	 */
+	protected $timestamp;
+	/**
+	 * @var String $comment
+	 */
+	protected $comment = '';
+	/**
+	 * @var Integer $deleted
+	 */
+	protected $deleted;
 
 	/**
 	 * Constructor.

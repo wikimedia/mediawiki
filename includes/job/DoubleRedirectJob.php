@@ -30,7 +30,7 @@ class DoubleRedirectJob extends Job {
 	var $reason, $redirTitle, $destTitleText;
 
 	/**
-	 * @var User
+	 * @var User $user
 	 */
 	static $user;
 

@@ -52,7 +52,7 @@ class Categoryfinder {
 	var $mode; # "AND" or "OR"
 
 	/**
-	 * @var DatabaseBase
+	 * @var DatabaseBase $dbr
 	 */
 	var $dbr; # Read-DB slave
 

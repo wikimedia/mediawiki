@@ -51,7 +51,7 @@ class SpecialNewFiles extends IncludableSpecialPage {
 class NewFilesPager extends ReverseChronologicalPager {
 
 	/**
-	 * @var ImageGallery
+	 * @var ImageGallery $gallery
 	 */
 	var $gallery;
 

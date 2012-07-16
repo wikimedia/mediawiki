@@ -32,7 +32,7 @@ class OracleUpdater extends DatabaseUpdater {
 	/**
 	 * Handle to the database subclass
 	 *
-	 * @var DatabaseOracle
+	 * @var DatabaseOracle $db
 	 */
 	protected $db;
 

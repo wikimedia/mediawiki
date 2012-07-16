@@ -31,30 +31,44 @@ class Block {
 		$mCreateAccount,
 		$mParentBlockId;
 
-	/// @var User|String
+	/**
+	 * @var User|String $target
+	 */
 	protected $target;
 
-	// @var Integer Hack for foreign blocking (CentralAuth)
+	/**
+	 * @var Integer $forcedTargetID
+	 * Hack for foreign blocking (CentralAuth)
+	 */
 	protected $forcedTargetID;
 
-	/// @var Block::TYPE_ constant.  Can only be USER, IP or RANGE internally
+	/**
+	 * @var Constant $type
+	 * Block::TYPE_ constant.  Can only be USER, IP or RANGE internally
+	 */
 	protected $type;
 
-	/// @var User
+	/**
+	 * @var User $blocker
+	 */
 	protected $blocker;
 
-	/// @var Bool
+	/**
+	 * @var Bool $isHardblock
+	 */
 	protected $isHardblock = true;
 
-	/// @var Bool
+	/**
+	 * @var Bool $isAutoblocking
+	 */
 	protected $isAutoblocking = true;
 
 	# TYPE constants
-	const TYPE_USER = 1;
-	const TYPE_IP = 2;
+	const TYPE_USER  = 1;
+	const TYPE_IP    = 2;
 	const TYPE_RANGE = 3;
-	const TYPE_AUTO = 4;
-	const TYPE_ID = 5;
+	const TYPE_AUTO  = 4;
+	const TYPE_ID    = 5;
 
 	/**
 	 * Constructor

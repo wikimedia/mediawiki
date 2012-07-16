@@ -34,28 +34,28 @@ abstract class DatabaseInstaller {
 	 *
 	 * TODO: naming this parent is confusing, 'installer' would be clearer.
 	 *
-	 * @var WebInstaller
+	 * @var WebInstaller $parent
 	 */
 	public $parent;
 
 	/**
 	 * The database connection.
 	 *
-	 * @var DatabaseBase
+	 * @var DatabaseBase $db
 	 */
 	public $db = null;
 
 	/**
 	 * Internal variables for installation.
 	 *
-	 * @var array
+	 * @var array $internalDefaults
 	 */
 	protected $internalDefaults = array();
 
 	/**
 	 * Array of MW configuration globals this class uses.
 	 *
-	 * @var array
+	 * @var array $globalNames
 	 */
 	protected $globalNames = array();
 

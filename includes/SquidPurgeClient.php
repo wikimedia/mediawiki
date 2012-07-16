@@ -359,9 +359,11 @@ class SquidPurgeClient {
 class SquidPurgeClientPool {
 
 	/**
-	 * @var array of SquidPurgeClient
+	 * @var Array $clients
+	 * Array of SquidPurgeClient
 	 */
 	var $clients = array();
+
 	var $timeout = 5;
 
 	/**

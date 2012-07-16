@@ -965,9 +965,10 @@ class WikiRevision {
 	var $importer = null;
 
 	/**
-	 * @var Title
+	 * @var Title $title
 	 */
 	var $title = null;
+
 	var $id = 0;
 	var $timestamp = "20010115000000";
 	var $user = 0;

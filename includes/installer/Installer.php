@@ -42,35 +42,35 @@ abstract class Installer {
 	const MINIMUM_PHP_VERSION = '5.3.2';
 
 	/**
-	 * @var array
+	 * @var array $settings
 	 */
 	protected $settings;
 
 	/**
 	 * Cached DB installer instances, access using getDBInstaller().
 	 *
-	 * @var array
+	 * @var array $dbInstallers
 	 */
 	protected $dbInstallers = array();
 
 	/**
 	 * Minimum memory size in MB.
 	 *
-	 * @var integer
+	 * @var integer $minMemorySize
 	 */
 	protected $minMemorySize = 50;
 
 	/**
 	 * Cached Title, used by parse().
 	 *
-	 * @var Title
+	 * @var Title $parserTitle
 	 */
 	protected $parserTitle;
 
 	/**
 	 * Cached ParserOptions, used by parse().
 	 *
-	 * @var ParserOptions
+	 * @var ParserOptions $parserOptions
 	 */
 	protected $parserOptions;
 
@@ -81,7 +81,7 @@ abstract class Installer {
 	 * To add a new type, create a <type>Installer class and a Database<type>
 	 * class, and add a config-type-<type> message to MessagesEn.php.
 	 *
-	 * @var array
+	 * @var array $dbTypes
 	 */
 	protected static $dbTypes = array(
 		'mysql',
@@ -96,7 +96,7 @@ abstract class Installer {
 	 * These may output warnings using showMessage(), and/or abort the
 	 * installation process by returning false.
 	 *
-	 * @var array
+	 * @var array $envChecks
 	 */
 	protected $envChecks = array(
 		'envCheckDB',
@@ -130,7 +130,7 @@ abstract class Installer {
 	 * to LocalSettings.php. The names only are given here, the defaults
 	 * typically come from DefaultSettings.php.
 	 *
-	 * @var array
+	 * @var array $defaultVarNames
 	 */
 	protected $defaultVarNames = array(
 		'wgSitename',
@@ -169,7 +169,7 @@ abstract class Installer {
 	 * configuration of the installation process aside from the MediaWiki
 	 * configuration. Map of names to defaults.
 	 *
-	 * @var array
+	 * @var array $internalDefaults
 	 */
 	protected $internalDefaults = array(
 		'_UserLang' => 'en',
@@ -202,21 +202,21 @@ abstract class Installer {
 	/**
 	 * The actual list of installation steps. This will be initialized by getInstallSteps()
 	 *
-	 * @var array
+	 * @var array $installSteps
 	 */
 	private $installSteps = array();
 
 	/**
 	 * Extra steps for installation, for things like DatabaseInstallers to modify
 	 *
-	 * @var array
+	 * @var array $extraInstallSteps
 	 */
 	protected $extraInstallSteps = array();
 
 	/**
 	 * Known object cache types and the functions used to test for their existence.
 	 *
-	 * @var array
+	 * @var array $objectCaches
 	 */
 	protected $objectCaches = array(
 		'xcache' => 'xcache_get',
@@ -227,7 +227,7 @@ abstract class Installer {
 	/**
 	 * User rights profiles.
 	 *
-	 * @var array
+	 * @var array $rightsProfiles
 	 */
 	public $rightsProfiles = array(
 		'wiki' => array(),
@@ -252,7 +252,7 @@ abstract class Installer {
 	/**
 	 * License types.
 	 *
-	 * @var array
+	 * @var array $licenses
 	 */
 	public $licenses = array(
 		'cc-by' => array(

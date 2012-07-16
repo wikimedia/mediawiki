@@ -197,7 +197,7 @@ class MWHttpRequest {
 	protected $followRedirects = false;
 
 	/**
-	 * @var  CookieJar
+	 * @var CookieJar $cookieJar
 	 */
 	protected $cookieJar;
 

@@ -61,7 +61,7 @@ class LocalisationCache {
 	/**
 	 * The persistent store object. An instance of LCStore.
 	 *
-	 * @var LCStore
+	 * @var LCStore $store
 	 */
 	var $store;
 
@@ -897,9 +897,10 @@ class LCStore_DB implements LCStore {
 	var $writesDone = false;
 
 	/**
-	 * @var DatabaseBase
+	 * @var DatabaseBase $dbw
 	 */
 	var $dbw;
+
 	var $batch;
 	var $readOnly = false;
 

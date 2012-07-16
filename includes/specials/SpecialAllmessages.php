@@ -30,7 +30,7 @@
 class SpecialAllmessages extends SpecialPage {
 
 	/**
-	 * @var AllmessagesTablePager
+	 * @var AllmessagesTablePager $table
 	 */
 	protected $table;
 
@@ -90,12 +90,12 @@ class AllmessagesTablePager extends TablePager {
 	public $mLimitsShown;
 
 	/**
-	 * @var Language
+	 * @var Language $lang
 	 */
 	public $lang;
 
 	/**
-	 * @var null|bool
+	 * @var null|bool $custom
 	 */
 	public $custom;
 

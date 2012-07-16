@@ -42,15 +42,25 @@ class DifferenceEngine extends ContextSource {
 	protected $mDiffLang;
 
 	/**
-	 * @var Title
+	 * @var Title $mOldPage
 	 */
-	var $mOldPage, $mNewPage;
+	var $mOldPage;
+	/**
+	 * @var Title $mNewPage
+	 */
+	var $mNewPage;
+
 	var $mRcidMarkPatrolled;
 
 	/**
-	 * @var Revision
+	 * @var Revision $mOldRev
 	 */
-	var $mOldRev, $mNewRev;
+	var $mOldRev;
+	/**
+	 * @var Revision $mNewRev
+	 */
+	var $mNewRev;
+
 	private $mRevisionsIdsLoaded = false; // Have the revisions IDs been loaded
 	var $mRevisionsLoaded = false; // Have the revisions been loaded
 	var $mTextLoaded = 0; // How many text blobs have been loaded, 0, 1 or 2?

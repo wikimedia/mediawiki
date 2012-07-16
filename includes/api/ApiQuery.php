@@ -40,7 +40,7 @@ class ApiQuery extends ApiBase {
 	private $mPropModuleNames, $mListModuleNames, $mMetaModuleNames;
 
 	/**
-	 * @var ApiPageSet
+	 * @var ApiPageSet $mPageSet
 	 */
 	private $mPageSet;
 

@@ -36,7 +36,7 @@ class LocalSettingsGenerator {
 	protected $safeMode = false;
 
 	/**
-	 * @var Installer
+	 * @var Installer $installer
 	 */
 	protected $installer;
 

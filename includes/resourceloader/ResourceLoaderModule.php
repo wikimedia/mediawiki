@@ -396,8 +396,12 @@ abstract class ResourceLoaderModule {
 	}
 
 
-	/** @var JSParser lazy-initialized; use self::javaScriptParser() */
+	/**
+	 * @var JSParser $jsParser
+	 * lazy-initialized; use self::javaScriptParser()
+	 */
 	private static $jsParser;
+
 	private static $parseCacheVersion = 1;
 
 	/**

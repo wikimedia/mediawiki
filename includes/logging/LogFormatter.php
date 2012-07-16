@@ -74,7 +74,9 @@ class LogFormatter {
 
 	// Nonstatic->
 
-	/// @var LogEntry
+	/**
+	 * @var LogEntry $entry
+	 */
 	protected $entry;
 
 	/// Integer constant for handling log_deleted
@@ -88,7 +90,7 @@ class LogFormatter {
 	 * be included in page history or send to IRC feed. Links are replaced
 	 * with plaintext or with [[pagename]] kind of syntax, that is parsed
 	 * by page histories and IRC feeds.
-	 * @var boolean
+	 * @var boolean $plaintext
 	 */
 	protected $plaintext = false;
 

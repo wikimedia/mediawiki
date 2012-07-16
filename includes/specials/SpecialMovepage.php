@@ -29,10 +29,20 @@
 class MovePageForm extends UnlistedSpecialPage {
 
 	/**
-	 * @var Title
+	 * @var Title $oldTitle
 	 */
-	var $oldTitle, $newTitle; # Objects
-	var $reason; # Text input
+	var $oldTitle;
+	/**
+	 * @var Title $oldTitle
+	 */
+	var $newTitle;
+
+	/**
+	 * @var String $reason
+	 * Text input
+	 */
+	var $reason;
+
 	var $moveTalk, $deleteAndMove, $moveSubpages, $fixRedirects, $leaveRedirect, $moveOverShared; # Checks
 
 	private $watch = false;

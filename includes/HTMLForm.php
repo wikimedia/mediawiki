@@ -104,7 +104,10 @@ class HTMLForm extends ContextSource {
 
 	protected $mMessagePrefix;
 
-	/** @var HTMLFormField[] */
+	/**
+	 * @var HTMLFormField $mFlatFields
+	 * Array of HTMLFormFields
+	 */
 	protected $mFlatFields;
 
 	protected $mFieldTree;
@@ -133,7 +136,7 @@ class HTMLForm extends ContextSource {
 	/**
 	 * Form action URL. false means we will use the URL to set Title
 	 * @since 1.19
-	 * @var bool|string
+	 * @var bool|string $mAction
 	 */
 	protected $mAction = false;
 
@@ -155,13 +158,13 @@ class HTMLForm extends ContextSource {
 	/**
 	 * Format in which to display form. For viable options,
 	 * @see $availableDisplayFormats
-	 * @var String
+	 * @var String $displayFormat
 	 */
 	protected $displayFormat = 'table';
 
 	/**
 	 * Available formats in which to display the form
-	 * @var Array
+	 * @var Array $availableDisplayFormats
 	 */
 	protected $availableDisplayFormats = array(
 		'table',
@@ -977,7 +980,7 @@ abstract class HTMLFormField {
 	protected $mDefault;
 
 	/**
-	 * @var HTMLForm
+	 * @var HTMLForm $mParent
 	 */
 	public $mParent;
 

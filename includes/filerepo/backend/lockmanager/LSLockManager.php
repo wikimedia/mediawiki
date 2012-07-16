@@ -37,17 +37,27 @@
  * @since 1.19
  */
 class LSLockManager extends QuorumLockManager {
-	/** @var Array Mapping of lock types to the type actually used */
+	/**
+	 * @var Array $lockTypeMap
+	 * Mapping of lock types to the type actually used
+	 */
 	protected $lockTypeMap = array(
 		self::LOCK_SH => self::LOCK_SH,
 		self::LOCK_UW => self::LOCK_SH,
 		self::LOCK_EX => self::LOCK_EX
 	);
 
-	/** @var Array Map of server names to server config */
-	protected $lockServers; // (server name => server config array)
+	/**
+	 * @var Array $lockServers
+	 * Map of server names to server config
+	 * (server name => server config array)
+	 */
+	protected $lockServers;
 
-	/** @var Array Map Server connections (server name => resource) */
+	/**
+	 * @var Array $conns
+	 * Map Server connections (server name => resource)
+	 */
 	protected $conns = array();
 
 	protected $connTimeout; // float number of seconds

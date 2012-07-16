@@ -54,7 +54,7 @@ class WikiExporter {
 	var $text;
 
 	/**
-	 * @var DumpOutput
+	 * @var DumpOutput $sink
 	 */
 	var $sink;
 
@@ -1186,14 +1186,14 @@ class Dump7ZipOutput extends DumpPipeOutput {
 class DumpFilter {
 
 	/**
-	 * @var DumpOutput
+	 * @var DumpOutput $sink
 	 * FIXME will need to be made protected whenever legacy code
 	 * is updated.
 	 */
 	public $sink;
 
 	/**
-	 * @var bool
+	 * @var bool $sendingThisPage
 	 */
 	protected $sendingThisPage;
 

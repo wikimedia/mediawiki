@@ -28,7 +28,7 @@
  */
 class RepoGroup {
 	/**
-	 * @var LocalRepo
+	 * @var LocalRepo $localRepo
 	 */
 	var $localRepo;
 
@@ -37,7 +37,7 @@ class RepoGroup {
 	var $cache;
 
 	/**
-	 * @var RepoGroup
+	 * @var RepoGroup $instance
 	 */
 	protected static $instance;
 	const MAX_CACHE_SIZE = 500;

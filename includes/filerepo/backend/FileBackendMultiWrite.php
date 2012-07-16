@@ -40,10 +40,23 @@
  * @since 1.19
  */
 class FileBackendMultiWrite extends FileBackend {
-	/** @var Array Prioritized list of FileBackendStore objects */
-	protected $backends = array(); // array of (backend index => backends)
-	protected $masterIndex = -1; // integer; index of master backend
-	protected $syncChecks = 0; // integer bitfield
+	/**
+	 * @var Array $backends
+	 * Prioritized list of FileBackendStore objects
+	 * array of (backend index => backends)
+	 */
+	protected $backends = array();
+
+	/**
+	 * @var Int $masterIndex
+	 * Index of master backend
+	 */
+	protected $masterIndex = -1;
+	/**
+	 * @var Int $syncChecks
+	 * bitfield
+	 */
+	protected $syncChecks = 0;
 
 	/* Possible internal backend consistency checks */
 	const CHECK_SIZE = 1;

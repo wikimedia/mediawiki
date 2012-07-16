@@ -205,27 +205,27 @@ class User {
 		$mLocked, $mHideName, $mOptions;
 
 	/**
-	 * @var WebRequest
+	 * @var WebRequest $mRequest
 	 */
 	private $mRequest;
 
 	/**
-	 * @var Block
+	 * @var Block $mBlock
 	 */
 	var $mBlock;
 
 	/**
-	 * @var bool
+	 * @var bool $mAllowUsertalk
 	 */
 	var $mAllowUsertalk;
 
 	/**
-	 * @var Block
+	 * @var Block $mBlockedFromCreateAccount
 	 */
 	private $mBlockedFromCreateAccount = false;
 
 	/**
-	 * @var Array
+	 * @var Array $mWatchedItems
 	 */
 	private $mWatchedItems = array();
 

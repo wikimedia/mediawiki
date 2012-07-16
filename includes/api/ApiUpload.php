@@ -30,7 +30,7 @@
 class ApiUpload extends ApiBase {
 
 	/**
-	 * @var UploadBase
+	 * @var UploadBase $mUpload
 	 */
 	protected $mUpload = null;
 

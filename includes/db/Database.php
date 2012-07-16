@@ -226,7 +226,7 @@ abstract class DatabaseBase implements DatabaseType {
 	protected $mServer, $mUser, $mPassword, $mDBname;
 
 	/**
-	 * @var DatabaseBase
+	 * @var DatabaseBase $mConn
 	 */
 	protected $mConn = null;
 	protected $mOpened = false;

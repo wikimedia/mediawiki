@@ -44,7 +44,7 @@ abstract class SpecialCachedPage extends SpecialPage implements ICacheHelper {
 	 * Initialized in startCache.
 	 *
 	 * @since 1.20
-	 * @var CacheHelper
+	 * @var CacheHelper $cacheHelper
 	 */
 	protected $cacheHelper;
 
@@ -52,7 +52,7 @@ abstract class SpecialCachedPage extends SpecialPage implements ICacheHelper {
 	 * If the cache is enabled or not.
 	 *
 	 * @since 1.20
-	 * @var boolean
+	 * @var boolean $cacheEnabled
 	 */
 	protected $cacheEnabled = true;
 

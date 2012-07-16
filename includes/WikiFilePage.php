@@ -27,9 +27,10 @@
  */
 class WikiFilePage extends WikiPage {
 	/**
-	 * @var File
+	 * @var File $mFile
 	 */
 	protected $mFile = false; 				// !< File object
+
 	protected $mRepo = null;			    // !<
 	protected $mFileLoaded = false;		    // !<
 	protected $mDupes = null;				// !<

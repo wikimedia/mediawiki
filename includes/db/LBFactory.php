@@ -28,7 +28,7 @@
 abstract class LBFactory {
 
 	/**
-	 * @var LBFactory
+	 * @var LBFactory $instance
 	 */
 	static $instance;
 
@@ -169,9 +169,13 @@ abstract class LBFactory {
 class LBFactory_Simple extends LBFactory {
 
 	/**
-	 * @var LoadBalancer
+	 * @var LoadBalancer $mainLB
 	 */
 	var $mainLB;
+	/**
+	 * @var Array $extLBs
+	 * Array of LoadBalancer objects
+	 */
 	var $extLBs = array();
 
 	# Chronology protector

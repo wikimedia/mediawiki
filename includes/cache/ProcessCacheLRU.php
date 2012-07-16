@@ -26,10 +26,17 @@
  * @ingroup Cache
  */
 class ProcessCacheLRU {
-	/** @var Array */
-	protected $cache = array(); // (key => prop => value)
+	/**
+	 * @var Array $cache
+	 * (key => prop => value)
+	 */
+	protected $cache = array();
 
-	protected $maxCacheKeys; // integer; max entries
+	/**
+	 * @var Integer $maxCacheKeys
+	 * Maximum number of entries in cache.
+	 */
+	protected $maxCacheKeys;
 
 	/**
 	 * @param $maxKeys integer Maximum number of entries allowed (min 1).

@@ -22,7 +22,7 @@ class ExternalEdit extends ContextSource {
 
 	/**
 	 * Array of URLs to link to
-	 * @var Array
+	 * @var Array $urls
 	 */
 	private $urls;
 

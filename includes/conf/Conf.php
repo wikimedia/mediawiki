@@ -38,22 +38,31 @@ abstract class Conf {
 
 	/**
 	 * The Wiki ID (usually $wgDBname)
-	 * @var String
+	 * @var String $wikiId
 	 */
 	private $wikiId;
 
 	/**
 	 * Singleton
-	 * @var Conf
+	 * @var Conf $__instance
 	 */
 	private static $__instance;
 
 	/**
-	 * Stores of the core defaults, extension defaults and wiki overrides
-	 *
-	 * @var array
+	 * Store core defaults
+	 * @var Array $defaults
 	 */
-	protected $defaults, $extensionDefaults, $values = array();
+	protected $defaults;
+	/**
+	 * Store extension defaults
+	 * @var Array $extensionDefaults
+	 */
+	protected $extensionDefaults;
+	/**
+	 * Store wiki overrides
+	 * @var Array $values
+	 */
+	protected $values = array();
 
 	/**
 	 * Constructor. Children should call this if implementing.

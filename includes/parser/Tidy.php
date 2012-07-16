@@ -36,7 +36,7 @@
 class MWTidyWrapper {
 
 	/**
-	 * @var ReplacementArray
+	 * @var ReplacementArray $mTokens
 	 */
 	protected $mTokens;
 

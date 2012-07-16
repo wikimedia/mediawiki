@@ -66,15 +66,21 @@ class RecentChange {
 	var $mAttribs = array(), $mExtra = array();
 
 	/**
-	 * @var Title
+	 * @var Title $mTitle
 	 */
 	var $mTitle = false;
 
 	/**
-	 * @var Title
+	 * @var Title $mMovedToTitle
 	 */
 	var $mMovedToTitle = false;
-	var $numberofWatchingusers = 0 ; # Dummy to prevent error message in SpecialRecentchangeslinked
+
+	/**
+	 * Dummy to prevent error message in SpecialRecentchangeslinked
+	 * @var Integer $numberofWatchingusers
+	 */
+	var $numberofWatchingusers = 0 ;
+
 	var $notificationtimestamp;
 
 	# Factory methods

@@ -30,22 +30,22 @@
 class ORMResult implements ORMIterator {
 
 	/**
-	 * @var ResultWrapper
+	 * @var ResultWrapper $res
 	 */
 	protected $res;
 
 	/**
-	 * @var integer
+	 * @var integer $key
 	 */
 	protected $key;
 
 	/**
-	 * @var IORMRow
+	 * @var IORMRow $current
 	 */
 	protected $current;
 
 	/**
-	 * @var IORMTable
+	 * @var IORMTable $table
 	 */
 	protected $table;
 

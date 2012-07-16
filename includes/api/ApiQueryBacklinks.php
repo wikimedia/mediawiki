@@ -35,7 +35,7 @@
 class ApiQueryBacklinks extends ApiQueryGeneratorBase {
 
 	/**
-	 * @var Title
+	 * @var Title $rootTitle
 	 */
 	private $rootTitle;
 
@@ -45,7 +45,7 @@ class ApiQueryBacklinks extends ApiQueryGeneratorBase {
 	/**
 	 * Maps ns and title to pageid
 	 *
-	 * @var array
+	 * @var array $pageMap
 	 */
 	private $pageMap = array();
 	private $resultArr;

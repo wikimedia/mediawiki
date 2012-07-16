@@ -124,7 +124,7 @@ class ApiMain extends ApiBase {
 	);
 
 	/**
-	 * @var ApiFormatBase
+	 * @var ApiFormatBase $mPrinter
 	 */
 	private $mPrinter;
 

@@ -36,13 +36,13 @@ abstract class ORMRow implements IORMRow {
 	 * field name (w/o prefix) => value
 	 *
 	 * @since 1.20
-	 * @var array
+	 * @var array $fields
 	 */
 	protected $fields = array( 'id' => null );
 
 	/**
 	 * @since 1.20
-	 * @var ORMTable
+	 * @var ORMTable $table
 	 */
 	protected $table;
 
@@ -53,7 +53,7 @@ abstract class ORMRow implements IORMRow {
 	 * such as deleting a university, which will then delete all it's courses.
 	 *
 	 * @since 1.20
-	 * @var bool
+	 * @var bool $updateSummaries
 	 */
 	protected $updateSummaries = true;
 
@@ -63,7 +63,7 @@ abstract class ORMRow implements IORMRow {
 	 * which allows for optimizations.
 	 *
 	 * @since 1.20
-	 * @var bool
+	 * @var bool $inSummaryMode
 	 */
 	protected $inSummaryMode = false;
 

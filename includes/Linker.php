@@ -1179,9 +1179,12 @@ class Linker {
 	}
 
 	/**
-	 * @var Title
+	 * @var Title $autocommentTitle
 	 */
 	static $autocommentTitle;
+	/**
+	 * @var Title $autocommentLocal
+	 */
 	static $autocommentLocal;
 
 	/**
@@ -1264,9 +1267,12 @@ class Linker {
 	}
 
 	/**
-	 * @var Title
+	 * @var Title $commentContextTitle
 	 */
 	static $commentContextTitle;
+	/**
+	 * @var Title $commentLocal
+	 */
 	static $commentLocal;
 
 	/**

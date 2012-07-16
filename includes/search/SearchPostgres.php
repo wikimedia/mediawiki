@@ -31,7 +31,7 @@
 class SearchPostgres extends SearchEngine {
 
 	/**
-	 * @var DatabasePostgres
+	 * @var DatabasePostgres $db
 	 */
 	protected $db;
 	/**

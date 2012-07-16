@@ -46,7 +46,7 @@
  */
 class HTMLCacheUpdate implements DeferrableUpdate {
 	/**
-	 * @var Title
+	 * @var Title $mTitle
 	 */
 	public $mTitle;
 

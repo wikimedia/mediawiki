@@ -64,9 +64,13 @@ abstract class FileBackend {
 	protected $parallelize; // string; when to do operations in parallel
 	protected $concurrency; // integer; how many operations can be done in parallel
 
-	/** @var LockManager */
+	/**
+	 * @var LockManager $lockManager
+	 */
 	protected $lockManager;
-	/** @var FileJournal */
+	/**
+	 * @var FileJournal $fileJournal
+	 */
 	protected $fileJournal;
 
 	/**

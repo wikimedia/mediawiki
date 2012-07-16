@@ -50,7 +50,7 @@ class UploadStash {
 	 * repository that this uses to store temp files
 	 * public because we sometimes need to get a LocalFile within the same repo.
 	 *
-	 * @var LocalRepo
+	 * @var LocalRepo $repo
 	 */
 	public $repo;
 

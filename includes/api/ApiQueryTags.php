@@ -32,7 +32,7 @@
 class ApiQueryTags extends ApiQueryBase {
 
 	/**
-	 * @var ApiResult
+	 * @var ApiResult $result
 	 */
 	private $result;
 

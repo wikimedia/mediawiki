@@ -30,27 +30,27 @@
 class WebInstaller extends Installer {
 
 	/**
-	 * @var WebInstallerOutput
+	 * @var WebInstallerOutput $output
 	 */
 	public $output;
 
 	/**
 	 * WebRequest object.
 	 *
-	 * @var WebRequest
+	 * @var WebRequest $request
 	 */
 	public $request;
 
 	/**
 	 * Cached session array.
 	 *
-	 * @var array
+	 * @var array $session
 	 */
 	protected $session;
 
 	/**
 	 * Captured PHP error text. Temporary.
-	 * @var array
+	 * @var array $phpErrors
 	 */
 	protected $phpErrors;
 
@@ -60,7 +60,7 @@ class WebInstaller extends Installer {
 	 *    * Add it here
 	 *    * Add a config-page-<name> message
 	 *    * Add a WebInstaller_<name> class
-	 * @var array
+	 * @var array $pageSequence
 	 */
 	public $pageSequence = array(
 		'Language',
@@ -77,7 +77,7 @@ class WebInstaller extends Installer {
 
 	/**
 	 * Out of sequence pages, selectable by the user at any time.
-	 * @var array
+	 * @var array $otherPages
 	 */
 	protected $otherPages = array(
 		'Restart',
@@ -90,7 +90,7 @@ class WebInstaller extends Installer {
 	/**
 	 * Array of pages which have declared that they have been submitted, have validated
 	 * their input, and need no further processing.
-	 * @var array
+	 * @var array $happyPages
 	 */
 	protected $happyPages;
 
@@ -98,25 +98,25 @@ class WebInstaller extends Installer {
 	 * List of "skipped" pages. These are pages that will automatically continue
 	 * to the next page on any GET request. To avoid breaking the "back" button,
 	 * they need to be skipped during a back operation.
-	 * @var array
+	 * @var array $skippedPages
 	 */
 	protected $skippedPages;
 
 	/**
 	 * Flag indicating that session data may have been lost.
-	 * @var bool
+	 * @var bool $showSessionWarning
 	 */
 	public $showSessionWarning = false;
 
 	/**
 	 * Numeric index of the page we're on
-	 * @var int
+	 * @var int $tabIndex
 	 */
 	protected $tabIndex = 1;
 
 	/**
 	 * Name of the page we're on
-	 * @var string
+	 * @var string $currentPageName
 	 */
 	protected $currentPageName;
 

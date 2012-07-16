@@ -43,14 +43,20 @@
  * @since 1.19
  */
 abstract class LockManager {
-	/** @var Array Mapping of lock types to the type actually used */
+	/**
+	 * @var Array $lockTypeMap
+	 * Mapping of lock types to the type actually used
+	 */
 	protected $lockTypeMap = array(
 		self::LOCK_SH => self::LOCK_SH,
 		self::LOCK_UW => self::LOCK_EX, // subclasses may use self::LOCK_SH
 		self::LOCK_EX => self::LOCK_EX
 	);
 
-	/** @var Array Map of (resource path => lock type => count) */
+	/**
+	 * @var Array $locksHeld
+	 * Map of (resource path => lock type => count)
+	 */
 	protected $locksHeld = array();
 
 	/* Lock types; stronger locks have higher values */
@@ -132,11 +138,18 @@ abstract class LockManager {
  * @since 1.19
  */
 class ScopedLock {
-	/** @var LockManager */
+	/**
+	 * @var LockManager $manager
+	 */
 	protected $manager;
-	/** @var Status */
+	/**
+	 * @var Status $status
+	 */
 	protected $status;
-	/** @var Array List of resource paths*/
+	/**
+	 * @var Array $paths
+	 * List of resource paths
+	 */
 	protected $paths;
 
 	protected $type; // integer lock type
@@ -196,8 +209,12 @@ class ScopedLock {
  * @since 1.20
  */
 abstract class QuorumLockManager extends LockManager {
-	/** @var Array Map of bucket indexes to peer server lists */
-	protected $srvsByBucket = array(); // (bucket index => (lsrv1, lsrv2, ...))
+	/**
+	 * @var Array $srvsByBucket
+	 * Map of bucket indexes to peer server lists
+	 * (bucket index => (lsrv1, lsrv2, ...))
+	 */
+	protected $srvsByBucket = array();
 
 	/**
 	 * @see LockManager::doLock()

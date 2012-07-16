@@ -28,11 +28,11 @@
 class ImagePage extends Article {
 
 	/**
-	 * @var File
+	 * @var File $displayImg
 	 */
 	private $displayImg;
 	/**
-	 * @var FileRepo
+	 * @var FileRepo $repo
 	 */
 	private $repo;
 	private $fileLoaded;
@@ -890,22 +890,22 @@ EOT
 class ImageHistoryList extends ContextSource {
 
 	/**
-	 * @var Title
+	 * @var Title $title
 	 */
 	protected $title;
 
 	/**
-	 * @var File
+	 * @var File $img
 	 */
 	protected $img;
 
 	/**
-	 * @var ImagePage
+	 * @var ImagePage $imagePage
 	 */
 	protected $imagePage;
 
 	/**
-	 * @var File
+	 * @var File $current
 	 */
 	protected $current;
 
@@ -1179,12 +1179,12 @@ class ImageHistoryPseudoPager extends ReverseChronologicalPager {
 	protected $preventClickjacking = false;
 
 	/**
-	 * @var File
+	 * @var File $mImg
 	 */
 	protected $mImg;
 
 	/**
-	 * @var Title
+	 * @var Title $mTitle
 	 */
 	protected $mTitle;
 

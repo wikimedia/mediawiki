@@ -40,9 +40,14 @@ class FileRepo {
 	const OVERWRITE_SAME = 4;
 	const SKIP_LOCKING = 8;
 
-	/** @var FileBackend */
+	/**
+	 * @var FileBackend $backend
+	 */
 	protected $backend;
-	/** @var Array Map of zones to config */
+	/**
+	 * @var Array $zones
+	 * Map of zones to config
+	 */
 	protected $zones = array();
 
 	var $thumbScriptUrl, $transformVia404;

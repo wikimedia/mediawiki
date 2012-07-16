@@ -103,7 +103,7 @@ class MWMemcached {
 	/**
 	 * Command statistics
 	 *
-	 * @var     array
+	 * @var     array $stats
 	 * @access  public
 	 */
 	var $stats;
@@ -114,7 +114,7 @@ class MWMemcached {
 	/**
 	 * Cached Sockets that are connected
 	 *
-	 * @var     array
+	 * @var     array $_cache_sock
 	 * @access  private
 	 */
 	var $_cache_sock;
@@ -122,7 +122,7 @@ class MWMemcached {
 	/**
 	 * Current debug status; 0 - none to 9 - profiling
 	 *
-	 * @var     boolean
+	 * @var     boolean $_debug
 	 * @access  private
 	 */
 	var $_debug;
@@ -130,7 +130,7 @@ class MWMemcached {
 	/**
 	 * Dead hosts, assoc array, 'host'=>'unixtime when ok to check again'
 	 *
-	 * @var     array
+	 * @var     array  $_host_dead
 	 * @access  private
 	 */
 	var $_host_dead;
@@ -138,7 +138,7 @@ class MWMemcached {
 	/**
 	 * Is compression available?
 	 *
-	 * @var     boolean
+	 * @var     boolean $_have_zlib
 	 * @access  private
 	 */
 	var $_have_zlib;
@@ -146,7 +146,7 @@ class MWMemcached {
 	/**
 	 * Do we want to use compression?
 	 *
-	 * @var     boolean
+	 * @var     boolean $_compress_enable
 	 * @access  private
 	 */
 	var $_compress_enable;
@@ -154,7 +154,7 @@ class MWMemcached {
 	/**
 	 * At how many bytes should we compress?
 	 *
-	 * @var     integer
+	 * @var     integer $_compress_threshold
 	 * @access  private
 	 */
 	var $_compress_threshold;
@@ -162,7 +162,7 @@ class MWMemcached {
 	/**
 	 * Are we using persistent links?
 	 *
-	 * @var     boolean
+	 * @var     boolean $_persistent
 	 * @access  private
 	 */
 	var $_persistent;
@@ -170,7 +170,7 @@ class MWMemcached {
 	/**
 	 * If only using one server; contains ip:port to connect to
 	 *
-	 * @var     string
+	 * @var     string $_single_sock
 	 * @access  private
 	 */
 	var $_single_sock;
@@ -178,7 +178,7 @@ class MWMemcached {
 	/**
 	 * Array containing ip:port or array(ip:port, weight)
 	 *
-	 * @var     array
+	 * @var     array $_servers
 	 * @access  private
 	 */
 	var $_servers;
@@ -186,7 +186,7 @@ class MWMemcached {
 	/**
 	 * Our bit buckets
 	 *
-	 * @var     array
+	 * @var     array $_buckets
 	 * @access  private
 	 */
 	var $_buckets;
@@ -194,7 +194,7 @@ class MWMemcached {
 	/**
 	 * Total # of bit buckets we have
 	 *
-	 * @var     integer
+	 * @var     integer $_bucketcount
 	 * @access  private
 	 */
 	var $_bucketcount;
@@ -202,7 +202,7 @@ class MWMemcached {
 	/**
 	 * # of total servers we have
 	 *
-	 * @var     integer
+	 * @var     integer $_active
 	 * @access  private
 	 */
 	var $_active;
@@ -210,7 +210,7 @@ class MWMemcached {
 	/**
 	 * Stream timeout in seconds. Applies for example to fread()
 	 *
-	 * @var     integer
+	 * @var     integer $_timeout_seconds
 	 * @access  private
 	 */
 	var $_timeout_seconds;
@@ -218,18 +218,24 @@ class MWMemcached {
 	/**
 	 * Stream timeout in microseconds
 	 *
-	 * @var     integer
+	 * @var     integer $_timeout_microseconds
 	 * @access  private
 	 */
 	var $_timeout_microseconds;
 
 	/**
 	 * Connect timeout in seconds
+	 *
+	 * @var     integer $_connect_timeout
+	 * @access  private
 	 */
 	var $_connect_timeout;
 
 	/**
 	 * Number of connection attempts for each server
+	 *
+	 * @var     integer $_connect_attempts
+	 * @access  private
 	 */
 	var $_connect_attempts;
 

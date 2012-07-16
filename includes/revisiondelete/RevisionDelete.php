@@ -515,7 +515,7 @@ class RevDel_FileList extends RevDel_List {
 class RevDel_FileItem extends RevDel_Item {
 
 	/**
-	 * @var File
+	 * @var File $file
 	 */
 	var $file;
 

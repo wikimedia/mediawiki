@@ -82,16 +82,21 @@ abstract class QueryPage extends SpecialPage {
 	/**
 	 * Whether or not we want plain listoutput rather than an ordered list
 	 *
-	 * @var bool
+	 * @var bool $listoutput
 	 */
 	var $listoutput = false;
 
 	/**
-	 * The offset and limit in use, as passed to the query() function
+	 * The offset in use, as passed to the query() function
 	 *
-	 * @var integer
+	 * @var integer $offset
 	 */
 	var $offset = 0;
+	/**
+	 * The limit in use, as passed to the query() function
+	 *
+	 * @var integer $offset
+	 */
 	var $limit = 0;
 
 	/**

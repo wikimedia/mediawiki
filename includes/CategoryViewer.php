@@ -29,39 +29,39 @@ class CategoryViewer extends ContextSource {
 		$imgsNoGallery;
 
 	/**
-	 * @var Array
+	 * @var Array $nextPage
 	 */
 	var $nextPage;
 
 	/**
-	 * @var Array
+	 * @var Array $flip
 	 */
 	var $flip;
 
 	/**
-	 * @var Title
+	 * @var Title $title
 	 */
 	var $title;
 
 	/**
-	 * @var Collation
+	 * @var Collation $collation
 	 */
 	var $collation;
 
 	/**
-	 * @var ImageGallery
+	 * @var ImageGallery $gallery
 	 */
 	var $gallery;
 
 	/**
 	 * Category object for this page
-	 * @var Category
+	 * @var Category $cat
 	 */
 	private $cat;
 
 	/**
 	 * The original query array, to be used in generating paging links.
-	 * @var array
+	 * @var array $query
 	 */
 	private $query;
 

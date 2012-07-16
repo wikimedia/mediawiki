@@ -30,11 +30,14 @@
  */
 class FileBackendGroup {
 	/**
-	 * @var FileBackendGroup
+	 * @var FileBackendGroup $instance
 	 */
 	protected static $instance = null;
 
-	/** @var Array (name => ('class' => string, 'config' => array, 'instance' => object)) */
+	/**
+	 * @var Array $backends
+	 * (name => ('class' => string, 'config' => array, 'instance' => object))
+	 */
 	protected $backends = array();
 
 	protected function __construct() {}

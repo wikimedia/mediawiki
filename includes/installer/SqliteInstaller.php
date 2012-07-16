@@ -31,7 +31,7 @@ class SqliteInstaller extends DatabaseInstaller {
 	const MINIMUM_VERSION = '3.3.7';
 
 	/**
-	 * @var DatabaseSqlite
+	 * @var DatabaseSqlite $db
 	 */
 	public $db;
 

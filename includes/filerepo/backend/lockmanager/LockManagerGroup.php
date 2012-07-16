@@ -30,11 +30,14 @@
  */
 class LockManagerGroup {
 	/**
-	 * @var LockManagerGroup
+	 * @var LockManagerGroup $instance
 	 */
 	protected static $instance = null;
 
-	/** @var Array of (name => ('class' =>, 'config' =>, 'instance' =>)) */
+	/**
+	 * @var Array $managers
+	 * of (name => ('class' =>, 'config' =>, 'instance' =>))
+	 */
 	protected $managers = array();
 
 	protected function __construct() {}

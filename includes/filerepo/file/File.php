@@ -88,41 +88,45 @@ abstract class File {
 	 */
 
 	/**
-	 * @var FileRepo|bool
+	 * @var FileRepo|bool $repo
 	 */
 	var $repo;
 
 	/**
-	 * @var Title
+	 * @var Title $title
 	 */
 	var $title;
 
 	var $lastError, $redirected, $redirectedTitle;
 
 	/**
-	 * @var FSFile|bool False if undefined
+	 * @var FSFile|bool $fsFile
+	 * False if undefined
 	 */
 	protected $fsFile;
 
 	/**
-	 * @var MediaHandler
+	 * @var MediaHandler $handler
 	 */
 	protected $handler;
 
-	/**
-	 * @var string
-	 */
+	// strings
 	protected $url, $extension, $name, $path, $hashPath, $pageCount, $transformScript;
 
 	protected $redirectTitle;
 
 	/**
-	 * @var bool
+	 * @var bool $canRender
 	 */
-	protected $canRender, $isSafeFile;
+	protected $canRender;
+	/**
+	 * @var bool $isSafeFile
+	 */
+	protected $isSafeFile;
 
 	/**
-	 * @var string Required Repository class type
+	 * @var string $repoClass
+	 * Required Repository class type
 	 */
 	protected $repoClass = 'FileRepo';
 

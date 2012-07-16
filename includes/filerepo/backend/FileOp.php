@@ -34,12 +34,20 @@
  * @since 1.19
  */
 abstract class FileOp {
-	/** @var Array */
+	/**
+	 * @var Array $params
+	 */
 	protected $params = array();
-	/** @var FileBackendStore */
+	/**
+	 * @var FileBackendStore $backend
+	 */
 	protected $backend;
 
-	protected $state = self::STATE_NEW; // integer
+	/**
+	 * @var Int $state
+	 * One the STATE_ constants
+	 */
+	protected $state = self::STATE_NEW;
 	protected $failed = false; // boolean
 	protected $async = false; // boolean
 	protected $useLatest = true; // boolean

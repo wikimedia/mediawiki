@@ -34,12 +34,12 @@ class ApiRollback extends ApiBase {
 	}
 
 	/**
-	 * @var Title
+	 * @var Title $mTitleObj
 	 */
 	private $mTitleObj = null;
 
 	/**
-	 * @var User
+	 * @var User $mUser
 	 */
 	private $mUser = null;
 

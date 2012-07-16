@@ -30,7 +30,7 @@
 abstract class ContextSource implements IContextSource {
 
 	/**
-	 * @var IContextSource
+	 * @var IContextSource $context
 	 */
 	private $context;
 

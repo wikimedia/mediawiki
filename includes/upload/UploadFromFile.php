@@ -30,7 +30,7 @@
 class UploadFromFile extends UploadBase {
 
 	/**
-	 * @var WebRequestUpload
+	 * @var WebRequestUpload $mUpload
 	 */
 	protected $mUpload = null;
 

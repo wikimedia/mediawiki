@@ -30,7 +30,10 @@
 class TempFSFile extends FSFile {
 	protected $canDelete = false; // bool; garbage collect the temp file
 
-	/** @var Array of active temp files to purge on shutdown */
+	/**
+	 * @var Array $instances
+	 * of active temp files to purge on shutdown
+	 */
 	protected static $instances = array();
 
 	/**

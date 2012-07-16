@@ -171,7 +171,7 @@ class OutputPage extends ContextSource {
 
 	/**
 	 * lazy initialised, use parserOptions()
-	 * @var ParserOptions
+	 * @var ParserOptions $mParserOptions
 	 */
 	protected $mParserOptions = null;
 
@@ -243,7 +243,7 @@ class OutputPage extends ContextSource {
 	 * If the current page was reached through a redirect, $mRedirectedFrom contains the Title
 	 * of the redirect.
 	 *
-	 * @var Title
+	 * @var Title $mRedirectedFrom
 	 */
 	private $mRedirectedFrom = null;
 

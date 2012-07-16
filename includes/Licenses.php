@@ -29,17 +29,17 @@
  */
 class Licenses extends HTMLFormField {
 	/**
-	 * @var string
+	 * @var string $msg
 	 */
 	protected $msg;
 
 	/**
-	 * @var array
+	 * @var array $licenses
 	 */
 	protected $licenses = array();
 
 	/**
-	 * @var string
+	 * @var string $html
 	 */
 	protected $html;
 	/**#@-*/
@@ -203,12 +203,12 @@ class Licenses extends HTMLFormField {
  */
 class License {
 	/**
-	 * @var string
+	 * @var string $template
 	 */
 	var $template;
 
 	/**
-	 * @var string
+	 * @var string $text
 	 */
 	var $text;
 

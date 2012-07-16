@@ -167,7 +167,7 @@ class Message {
 	 * In which language to get this message. Overrides the $interface
 	 * variable.
 	 *
-	 * @var Language
+	 * @var Language $language
 	 */
 	protected $language = null;
 
@@ -203,7 +203,7 @@ class Message {
 	protected $title = null;
 
 	/**
-	 * @var string
+	 * @var string $message
 	 */
 	protected $message;
 

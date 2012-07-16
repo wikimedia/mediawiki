@@ -35,7 +35,7 @@ class DatabaseSqlite extends DatabaseBase {
 	var $mName;
 
 	/**
-	 * @var PDO
+	 * @var PDO $mConn
 	 */
 	protected $mConn;
 

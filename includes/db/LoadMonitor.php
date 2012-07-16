@@ -100,7 +100,7 @@ class LoadMonitor_Null implements LoadMonitor {
 class LoadMonitor_MySQL implements LoadMonitor {
 
 	/**
-	 * @var LoadBalancer
+	 * @var LoadBalancer $parent
 	 */
 	var $parent;
 

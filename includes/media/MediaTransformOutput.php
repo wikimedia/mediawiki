@@ -28,7 +28,7 @@
  */
 abstract class MediaTransformOutput {
 	/**
-	 * @var File
+	 * @var File $file
 	 */
 	var $file;
 

@@ -121,7 +121,7 @@ abstract class IndexPager extends ContextSource implements Pager {
 	/**
 	 * Result object for the query. Warning: seek before use.
 	 *
-	 * @var ResultWrapper
+	 * @var ResultWrapper $mResult
 	 */
 	public $mResult;
 

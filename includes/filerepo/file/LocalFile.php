@@ -76,7 +76,7 @@ class LocalFile extends File {
 	/**#@-*/
 
 	/**
-	 * @var LocalRepo
+	 * @var LocalRepo $repo
 	 */
 	var $repo;
 
@@ -1579,7 +1579,7 @@ class LocalFile extends File {
 class LocalFileDeleteBatch {
 
 	/**
-	 * @var LocalFile
+	 * @var LocalFile $file
 	 */
 	var $file;
 
@@ -1921,7 +1921,7 @@ class LocalFileDeleteBatch {
  */
 class LocalFileRestoreBatch {
 	/**
-	 * @var LocalFile
+	 * @var LocalFile $file
 	 */
 	var $file;
 
@@ -2279,19 +2279,19 @@ class LocalFileRestoreBatch {
 class LocalFileMoveBatch {
 
 	/**
-	 * @var LocalFile
+	 * @var LocalFile $file
 	 */
 	var $file;
 
 	/**
-	 * @var Title
+	 * @var Title $target
 	 */
 	var $target;
 
 	var $cur, $olds, $oldCount, $archive;
 
 	/**
-	 * @var DatabaseBase
+	 * @var DatabaseBase $db
 	 */
 	var $db;
 

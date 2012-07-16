@@ -53,7 +53,7 @@ class ExternalUser_MediaWiki extends ExternalUser {
 	private $mRow;
 
 	/**
-	 * @var DatabaseBase
+	 * @var DatabaseBase $mDb
 	 */
 	private $mDb;
 

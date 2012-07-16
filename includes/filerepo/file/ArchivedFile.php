@@ -51,11 +51,11 @@ class ArchivedFile {
 		$archive_name;
 
 	/**
-	 * @var MediaHandler
+	 * @var MediaHandler $handler
 	 */
 	var $handler;
 	/**
-	 * @var Title
+	 * @var Title $title
 	 */
 	var $title; # image title
 

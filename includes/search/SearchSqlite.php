@@ -28,7 +28,7 @@
 class SearchSqlite extends SearchEngine {
 
 	/**
-	 * @var DatabaseSqlite
+	 * @var DatabaseSqlite $db
 	 */
 	protected $db;
 

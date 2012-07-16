@@ -28,31 +28,31 @@ class CloneDatabase {
 
 	/**
 	 * Table prefix for cloning
-	 * @var String
+	 * @var String $newTablePrefix
 	 */
 	private $newTablePrefix = '';
 
 	/**
 	 * Current table prefix
-	 * @var String
+	 * @var String $oldTablePrefix
 	 */
 	private $oldTablePrefix = '';
 
 	/**
 	 * List of tables to be cloned
-	 * @var Array
+	 * @var Array $tablesToClone
 	 */
 	private $tablesToClone = array();
 
 	/**
 	 * Should we DROP tables containing the new names?
-	 * @var Bool
+	 * @var Bool $dropCurrentTables
 	 */
 	private $dropCurrentTables = true;
 
 	/**
 	 * Whether to use temporary tables or not
-	 * @var Bool
+	 * @var Bool $useTemporaryTables
 	 */
 	private $useTemporaryTables = true;
 

@@ -42,7 +42,10 @@ class CSSMin {
 
 	/* Protected Static Members */
 
-	/** @var array List of common image files extensions and mime-types */
+	/**
+	 * @var array $mimeTypes
+	 * List of common image files extensions and mime-types
+	 */
 	protected static $mimeTypes = array(
 		'gif' => 'image/gif',
 		'jpe' => 'image/jpeg',

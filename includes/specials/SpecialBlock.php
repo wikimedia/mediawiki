@@ -32,23 +32,39 @@ class SpecialBlock extends FormSpecialPage {
 	 * TODO: config setting? */
 	const HIDEUSER_CONTRIBLIMIT = 1000;
 
-	/** @var User user to be blocked, as passed either by parameter (url?wpTarget=Foo)
-	 * or as subpage (Special:Block/Foo) */
+	/**
+	 * @var User $target
+	 * User to be blocked, as passed either by parameter (url?wpTarget=Foo)
+	 * or as subpage (Special:Block/Foo)
+	 */
 	protected $target;
 
-	/// @var Block::TYPE_ constant
+	/**
+	 * @var Int $type
+	 * Block::TYPE_ constant
+	 */
 	protected $type;
 
-	/// @var  User|String the previous block target
+	/**
+	 * @var  User|String $previousTarget
+	 * The previous block target
+	 */
 	protected $previousTarget;
 
-	/// @var Bool whether the previous submission of the form asked for HideUser
+	/**
+	 * @var Bool $requestedHideUser
+	 * Whether the previous submission of the form asked for HideUser
+	 */
 	protected $requestedHideUser;
 
-	/// @var Bool
+	/**
+	 * @var Bool $alreadyBlocked
+	 */
 	protected $alreadyBlocked;
 
-	/// @var Array
+	/**
+	 * @var Array $preErrors
+	 */
 	protected $preErrors = array();
 
 	public function __construct() {

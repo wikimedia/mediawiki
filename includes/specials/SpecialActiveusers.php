@@ -33,17 +33,17 @@
 class ActiveUsersPager extends UsersPager {
 
 	/**
-	 * @var FormOptions
+	 * @var FormOptions $opts
 	 */
 	protected $opts;
 
 	/**
-	 * @var Array
+	 * @var Array $hideGroups
 	 */
 	protected $hideGroups = array();
 
 	/**
-	 * @var Array
+	 * @var Array $hideRights
 	 */
 	protected $hideRights = array();
 

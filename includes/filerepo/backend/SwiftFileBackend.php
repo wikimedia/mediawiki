@@ -37,8 +37,12 @@
  * @since 1.19
  */
 class SwiftFileBackend extends FileBackendStore {
-	/** @var CF_Authentication */
-	protected $auth; // Swift authentication handler
+	/**
+	 * @var CF_Authentication $auth
+	 * Swift authentication handler
+	 */
+	protected $auth;
+
 	protected $authTTL; // integer seconds
 	protected $swiftAnonUser; // string; username to handle unauthenticated requests
 	protected $swiftUseCDN; // boolean; whether CloudFiles CDN is enabled
@@ -47,8 +51,11 @@ class SwiftFileBackend extends FileBackendStore {
 
 	protected $maxContCacheSize = 300; // integer; max containers with entries
 
-	/** @var CF_Connection */
-	protected $conn; // Swift connection handle
+	/**
+	 * @var CF_Connection $conn
+	 * Swift connection handle
+	 */
+	protected $conn;
 	protected $connStarted = 0; // integer UNIX timestamp
 	protected $connContainers = array(); // container object cache
 	protected $connException; // CloudFiles exception
@@ -1261,9 +1268,13 @@ class SwiftFileBackend extends FileBackendStore {
  * @see FileBackendStoreOpHandle
  */
 class SwiftFileOpHandle extends FileBackendStoreOpHandle {
-	/** @var CF_Async_Op */
+	/**
+	 * @var CF_Async_Op $cfOp
+	 */
 	public $cfOp;
-	/** @var Array */
+	/**
+	 * @var Array $affectedObjects
+	 */
 	public $affectedObjects = array();
 
 	public function __construct( $backend, array $params, $call, CF_Async_Op $cfOp ) {
@@ -1282,14 +1293,17 @@ class SwiftFileOpHandle extends FileBackendStoreOpHandle {
  * @ingroup FileBackend
  */
 abstract class SwiftFileBackendList implements Iterator {
-	/** @var Array */
+	/**
+	 * @var Array $bufferIter
+	 */
 	protected $bufferIter = array();
 	protected $bufferAfter = null; // string; list items *after* this path
 	protected $pos = 0; // integer
-	/** @var Array */
 	protected $params = array();
 
-	/** @var SwiftFileBackend */
+	/**
+	 * @var SwiftFileBackend $backend
+	 */
 	protected $backend;
 	protected $container; // string; container name
 	protected $dir; // string; storage directory

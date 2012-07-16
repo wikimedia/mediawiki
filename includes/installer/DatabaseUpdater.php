@@ -35,20 +35,20 @@ abstract class DatabaseUpdater {
 	/**
 	 * Array of updates to perform on the database
 	 *
-	 * @var array
+	 * @var array $updates
 	 */
 	protected $updates = array();
 
 	/**
 	 * List of extension-provided database updates
-	 * @var array
+	 * @var array $extensionUpdates
 	 */
 	protected $extensionUpdates = array();
 
 	/**
 	 * Handle to the database subclass
 	 *
-	 * @var DatabaseBase
+	 * @var DatabaseBase $db
 	 */
 	protected $db;
 

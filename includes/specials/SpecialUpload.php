@@ -43,14 +43,15 @@ class SpecialUpload extends SpecialPage {
 	public $mSourceType;
 
 	/**
-	 * @var UploadBase
+	 * @var UploadBase $mUpload
 	 */
 	public $mUpload;
 
 	/**
-	 * @var LocalFile
+	 * @var LocalFile $mLocalFile
 	 */
 	public $mLocalFile;
+
 	public $mUploadClicked;
 
 	/** User input variables from the "description" section **/

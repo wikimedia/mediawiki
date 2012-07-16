@@ -558,7 +558,7 @@ class ContribsPager extends ReverseChronologicalPager {
 	var $preventClickjacking = false;
 
 	/**
-	 * @var array
+	 * @var array $mParentLens
 	 */
 	protected $mParentLens;
 

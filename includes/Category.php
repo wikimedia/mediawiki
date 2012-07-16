@@ -34,7 +34,7 @@ class Category {
 	private $mID = null;
 	/**
 	 * Category page title
-	 * @var Title
+	 * @var Title $mTitle
 	 */
 	private $mTitle = null;
 	/** Counts of membership (cat_pages, cat_subcats, cat_files) */

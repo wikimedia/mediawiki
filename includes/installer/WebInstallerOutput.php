@@ -36,19 +36,19 @@ class WebInstallerOutput {
 	/**
 	 * The WebInstaller object this WebInstallerOutput is used by.
 	 *
-	 * @var WebInstaller
+	 * @var WebInstaller $parent
 	 */
 	public $parent;
 
 	/**
 	 * Buffered contents that haven't been output yet
-	 * @var String
+	 * @var String $contents
 	 */
 	private $contents = '';
 
 	/**
 	 * Has the header (or short header) been output?
-	 * @var bool
+	 * @var bool $headerDone
 	 */
 	private $headerDone = false;
 
@@ -58,13 +58,13 @@ class WebInstallerOutput {
 	 * Does the current page need to allow being used as a frame?
 	 * If not, X-Frame-Options will be output to forbid it.
 	 *
-	 * @var bool
+	 * @var bool $allowFrames
 	 */
 	public $allowFrames = false;
 
 	/**
 	 * Whether to use the limited header (used during CC license callbacks)
-	 * @var bool
+	 * @var bool $useShortHeader
 	 */
 	private $useShortHeader = false;
 

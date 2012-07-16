@@ -40,8 +40,10 @@ abstract class ORMTable implements IORMTable {
 	/**
 	 * Cache for instances, used by the singleton method.
 	 *
+	 * Array of DBTable
+	 *
 	 * @since 1.20
-	 * @var array of DBTable
+	 * @var array $instanceCache
 	 */
 	protected static $instanceCache = array();
 
@@ -49,8 +51,10 @@ abstract class ORMTable implements IORMTable {
 	 * The database connection to use for read operations.
 	 * Can be changed via @see setReadDb.
 	 *
+	 * A DB_ enum
+	 *
 	 * @since 1.20
-	 * @var integer DB_ enum
+	 * @var integer $readDb
 	 */
 	protected $readDb = DB_SLAVE;
 

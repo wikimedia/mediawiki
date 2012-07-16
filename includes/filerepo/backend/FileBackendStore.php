@@ -36,17 +36,33 @@
  * @since 1.19
  */
 abstract class FileBackendStore extends FileBackend {
-	/** @var BagOStuff */
+	/**
+	 * @var BagOStuff $memCache
+	 */
 	protected $memCache;
-	/** @var ProcessCacheLRU */
-	protected $cheapCache; // Map of paths to small (RAM/disk) cache items
-	/** @var ProcessCacheLRU */
-	protected $expensiveCache; // Map of paths to large (RAM/disk) cache items
+	/**
+	 * @var ProcessCacheLRU $cheapCache
+	 * Map of paths to small (RAM/disk) cache items
+	 */
+	protected $cheapCache;
+	/**
+	 * @var ProcessCacheLRU $expensiveCache
+	 * Map of paths to large (RAM/disk) cache item
+	 */
+	protected $expensiveCache;
 
-	/** @var Array Map of container names to sharding settings */
-	protected $shardViaHashLevels = array(); // (container name => config array)
+	/**
+	 * @var Array $shardViaHashLevels
+	 * Map of container names to sharding settings
+	 * (container name => config array)
+	 */
+	protected $shardViaHashLevels = array();
 
-	protected $maxFileSize = 4294967296; // integer bytes (4GiB)
+	/**
+	 * @var Integer $maxFileSize
+	 * Maxium file size in bytes, default 4GiB.
+	 */
+	protected $maxFileSize = 4294967296;
 
 	/**
 	 * @see FileBackend::__construct()
@@ -1521,14 +1537,24 @@ abstract class FileBackendStore extends FileBackend {
  * passed to FileBackendStore::executeOpHandlesInternal().
  */
 abstract class FileBackendStoreOpHandle {
-	/** @var Array */
-	public $params = array(); // params to caller functions
-	/** @var FileBackendStore */
+	/**
+	 * @var Array $params
+	 * parameters to caller functions.
+	 */
+	public $params = array();
+	/**
+	 * @var FileBackendStore $backend
+	 */
 	public $backend;
-	/** @var Array */
+	/**
+	 * @var Array $resourcesToClose
+	 */
 	public $resourcesToClose = array();
-
-	public $call; // string; name that identifies the function called
+	/**
+	 * @var String $call
+	 * Name that identifies the function called
+	 */
+	public $call;
 
 	/**
 	 * Close all open file handles
@@ -1547,22 +1573,47 @@ abstract class FileBackendStoreOpHandle {
  * @ingroup FileBackend
  */
 abstract class FileBackendStoreShardListIterator implements Iterator {
-	/** @var FileBackendStore */
+	/**
+	 * @var FileBackendStore $backend
+	 */
 	protected $backend;
-	/** @var Array */
+	/**
+	 * @var Array $params
+	 */
 	protected $params;
-	/** @var Array */
+	/**
+	 * @var Array $shardSuffixes
+	 */
 	protected $shardSuffixes;
-	protected $container; // string; full container name
-	protected $directory; // string; resolved relative path
+	/**
+	 * @var String $container
+	 * Full container name
+	 */
+	protected $container;
+	/**
+	 * @var String $directory
+	 * Resolved relative path
+	 */
+	protected $directory;
 
-	/** @var Traversable */
+	/**
+	 * @var Traversable $iter
+	 */
 	protected $iter;
-	protected $curShard = 0; // integer
-	protected $pos = 0; // integer
+	/**
+	 * @var Integer $curShard
+	 */
+	protected $curShard = 0;
+	/**
+	 * @var Integer $pos
+	 */
+	protected $pos = 0;
 
-	/** @var Array */
-	protected $multiShardPaths = array(); // (rel path => 1)
+	/**
+	 * @var Array $multiShardPaths
+	 * (rel path => 1)
+	 */
+	protected $multiShardPaths = array();
 
 	/**
 	 * @param $backend FileBackendStore

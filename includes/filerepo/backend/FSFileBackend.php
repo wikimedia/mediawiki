@@ -40,10 +40,21 @@
  */
 class FSFileBackend extends FileBackendStore {
 	protected $basePath; // string; directory holding the container directories
-	/** @var Array Map of container names to root paths */
-	protected $containerPaths = array(); // for custom container paths
-	protected $fileMode; // integer; file permission mode
+	/**
+	 * @var Array $containerPaths
+	 * Map of container names to root paths
+	 * for custom container paths
+	 */
+	protected $containerPaths = array();
+	/**
+	 * @var Integer $fileMode
+	 * File permission mode
+	 */
+	protected $fileMode;
 
+	/**
+	 * @var Array $hadWarningErrors
+	 */
 	protected $hadWarningErrors = array();
 
 	/**
@@ -837,11 +848,15 @@ class FSFileOpHandle extends FileBackendStoreOpHandle {
  * @ingroup FileBackend
  */
 abstract class FSFileBackendList implements Iterator {
-	/** @var Iterator */
+	/**
+	 * @var Iterator $iter
+	 */
 	protected $iter;
 	protected $suffixStart; // integer
 	protected $pos = 0; // integer
-	/** @var Array */
+	/**
+	 * @var Array $params
+	 */
 	protected $params = array();
 
 	/**

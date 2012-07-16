@@ -138,7 +138,7 @@ class SiteConfiguration {
 
 	/**
 	 * Optional callback to load full configuration data.
-	 * @var string|array
+	 * @var string|array $fullLoadCallback
 	 */
 	public $fullLoadCallback = null;
 
@@ -157,7 +157,7 @@ class SiteConfiguration {
 	 * if suffix and lang are passed they will be used for the return value of
 	 * self::siteFromDB() and self::$suffixes will be ignored
 	 *
-	 * @var string|array
+	 * @var string|array $siteParamsCallback
 	 */
 	public $siteParamsCallback = null;
 

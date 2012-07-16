@@ -51,7 +51,7 @@ class RCCacheEntry extends RecentChange {
 class ChangesList extends ContextSource {
 
 	/**
-	 * @var Skin
+	 * @var Skin $skin
 	 */
 	public $skin;
 

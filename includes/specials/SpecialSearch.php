@@ -49,25 +49,35 @@ class SpecialSearch extends SpecialPage {
 	protected $mPrefix;
 
 	/**
-	 * @var int
+	 * @var int $limit
 	 */
-	protected $limit, $offset;
+	protected $limit;
+	/**
+	 * @var int $offset
+	 */
+	protected $offset;
 
 	/**
-	 * @var array
+	 * @var array $namespaces
 	 */
 	protected $namespaces;
+
 	function getNamespaces() { return $this->namespaces; }
 
 	/**
-	 * @var bool
+	 * @var bool $searchRedirects
 	 */
 	protected $searchRedirects;
 
 	/**
-	 * @var string
+	 * @var string $didYouMeanHtml
 	 */
-	protected $didYouMeanHtml, $fulltext;
+	protected $didYouMeanHtml;
+
+	/**
+	 * @var string $fulltext
+	 */
+	protected $fulltext;
 
 	const NAMESPACES_CURRENT = 'sense';
 

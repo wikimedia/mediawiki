@@ -30,19 +30,23 @@
 class FileDeleteForm {
 
 	/**
-	 * @var Title
+	 * @var Title $title
 	 */
 	private $title = null;
 
 	/**
-	 * @var File
+	 * @var File $file
 	 */
 	private $file = null;
 
 	/**
-	 * @var File
+	 * @var File $oldfile
 	 */
 	private $oldfile = null;
+
+	/**
+	 * @var File $oldimage
+	 */
 	private $oldimage = '';
 
 	/**

@@ -41,7 +41,7 @@ class SearchEngine {
 	protected $features = array();
 
 	/**
-	 * @var DatabaseBase
+	 * @var DatabaseBase $db
 	 */
 	protected $db;
 
@@ -692,18 +692,19 @@ class SearchResultTooMany {
 class SearchResult {
 
 	/**
-	 * @var Revision
+	 * @var Revision $mRevision
 	 */
 	var $mRevision = null;
+
 	var $mImage = null;
 
 	/**
-	 * @var Title
+	 * @var Title $mTitle
 	 */
 	var $mTitle;
 
 	/**
-	 * @var String
+	 * @var String $mText
 	 */
 	var $mText;
 

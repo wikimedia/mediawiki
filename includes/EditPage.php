@@ -161,15 +161,19 @@ class EditPage {
 	const EDITFORM_ID                  = 'editform';
 
 	/**
-	 * @var Article
+	 * @var Article $mArticle
 	 */
 	var $mArticle;
 
 	/**
-	 * @var Title
+	 * @var Title $mTitle
 	 */
 	var $mTitle;
+	/**
+	 * @var Title $mContextTitle
+	 */
 	private $mContextTitle = null;
+
 	var $action = 'submit';
 	var $isConflict = false;
 	var $isCssJsSubpage = false;
@@ -195,13 +199,13 @@ class EditPage {
 	#var $mPreviewTemplates;
 
 	/**
-	 * @var ParserOutput
+	 * @var ParserOutput $mParserOutput
 	 */
 	var $mParserOutput;
 
 	/**
 	 * Has a summary been preset using GET parameter &summary= ?
-	 * @var Bool
+	 * @var Bool $hasPresetSummary
 	 */
 	var $hasPresetSummary = false;
 

@@ -32,7 +32,7 @@ abstract class WebInstallerPage {
 	/**
 	 * The WebInstaller object this WebInstallerPage belongs to.
 	 *
-	 * @var WebInstaller
+	 * @var WebInstaller $parent
 	 */
 	public $parent;
 

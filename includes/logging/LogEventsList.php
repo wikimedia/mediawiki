@@ -31,12 +31,12 @@ class LogEventsList extends ContextSource {
 	public $flags;
 
 	/**
-	 * @var Array
+	 * @var Array $message
 	 */
 	protected $message;
 
 	/**
-	 * @var Array
+	 * @var Array $mDefaultQuery
 	 */
 	protected $mDefaultQuery;
 

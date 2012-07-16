@@ -36,17 +36,26 @@
  * @since 1.20
  */
 class MemcLockManager extends QuorumLockManager {
-	/** @var Array Mapping of lock types to the type actually used */
+	/**
+	 * @var Array $lockTypeMap
+	 * Mapping of lock types to the type actually used
+	 */
 	protected $lockTypeMap = array(
 		self::LOCK_SH => self::LOCK_SH,
 		self::LOCK_UW => self::LOCK_SH,
 		self::LOCK_EX => self::LOCK_EX
 	);
 
-	/** @var Array Map server names to MemcachedBagOStuff objects */
+	/**
+	 * @var Array $bagOStuffs
+	 * Map server names to MemcachedBagOStuff objects
+	 */
 	protected $bagOStuffs = array();
-	/** @var Array */
-	protected $serversUp = array(); // (server name => bool)
+	/**
+	 * @var Array $serversUp
+	 * (server name => bool)
+	 */
+	protected $serversUp = array();
 
 	protected $lockExpiry; // integer; maximum time locks can be held
 	protected $session = ''; // string; random SHA-1 UUID

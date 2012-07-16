@@ -32,7 +32,8 @@ class FileDuplicateSearchPage extends QueryPage {
 	protected $hash = '', $filename = '';
 
 	/**
-	 * @var File $file selected reference file, if present
+	 * @var File $file
+	 * Selected reference file, if present
 	 */
 	protected $file = null;
 

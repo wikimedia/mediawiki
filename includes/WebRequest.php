@@ -40,13 +40,13 @@ class WebRequest {
 
 	/**
 	 * Lazy-init response object
-	 * @var WebResponse
+	 * @var WebResponse $response
 	 */
 	private $response;
 
 	/**
 	 * Cached client IP address
-	 * @var String
+	 * @var String $ip
 	 */
 	private $ip;
 

@@ -34,12 +34,12 @@ class UploadFromUrlJob extends Job {
 	const SESSION_KEYNAME = 'wsUploadFromUrlJobData';
 
 	/**
-	 * @var UploadFromUrl
+	 * @var UploadFromUrl $upload
 	 */
 	public $upload;
 
 	/**
-	 * @var User
+	 * @var User $user
 	 */
 	protected $user;
 

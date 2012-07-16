@@ -29,12 +29,12 @@
 class SpecialPasswordReset extends FormSpecialPage {
 
 	/**
-	 * @var Message
+	 * @var Message $email
 	 */
 	private $email;
 
 	/**
-	 * @var Status
+	 * @var Status $result
 	 */
 	private $result;
 

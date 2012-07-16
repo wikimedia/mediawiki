@@ -29,9 +29,10 @@
 class PageArchive {
 
 	/**
-	 * @var Title
+	 * @var Title $title
 	 */
 	protected $title;
+
 	var $fileStatus;
 
 	function __construct( $title ) {
@@ -585,7 +586,7 @@ class SpecialUndelete extends SpecialPage {
 	var $mTargetTimestamp, $mAllowed, $mCanView, $mComment, $mToken;
 
 	/**
-	 * @var Title
+	 * @var Title $mTargetObj
 	 */
 	var $mTargetObj;
 

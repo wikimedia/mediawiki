@@ -82,12 +82,12 @@ class MessageCache {
 	/**
 	 * Singleton instance
 	 *
-	 * @var MessageCache
+	 * @var MessageCache $instance
 	 */
 	private static $instance;
 
 	/**
-	 * @var bool
+	 * @var bool $mInParser
 	 */
 	protected $mInParser = false;
 

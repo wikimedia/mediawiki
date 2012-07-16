@@ -334,7 +334,7 @@ class HistoryPager extends ReverseChronologicalPager {
 	protected $oldIdChecked;
 	protected $preventClickjacking = false;
 	/**
-	 * @var array
+	 * @var array $parentLens
 	 */
 	protected $parentLens;
 

@@ -59,9 +59,10 @@ abstract class TitleArray implements Iterator {
 class TitleArrayFromResult extends TitleArray {
 
 	/**
-	 * @var ResultWrapper
+	 * @var ResultWrapper $res
 	 */
 	var $res;
+
 	var $key, $current;
 
 	function __construct( $res ) {
