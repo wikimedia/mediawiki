@@ -778,7 +778,7 @@ EOT
 					$link2 = Linker::linkKnown( Title::makeTitle( $row->page_namespace, $row->page_title ) );
 					$ul .= Html::rawElement(
 						'li',
-						array( 'id' => 'mw-imagepage-linkstoimage-ns' . $element->page_namespace ),
+						array( 'class' => 'mw-imagepage-linkstoimage-ns' . $element->page_namespace ),
 						$link2
 						) . "\n";
 				}
@@ -788,7 +788,7 @@ EOT
 			}
 			$out->addHTML( Html::rawElement(
 					'li',
-					array( 'id' => 'mw-imagepage-linkstoimage-ns' . $element->page_namespace ),
+					array( 'class' => 'mw-imagepage-linkstoimage-ns' . $element->page_namespace ),
 					$liContents
 				) . "\n"
 			);
