@@ -3534,6 +3534,21 @@ Part of variable $1 in {{msg-mw|Ago}}
 *{{msg-mw|Hours}}
 *{{msg-mw|Days}}',
 
+'hours-ago'      => 'Phrase for indicating that something occurred a certain number of hours ago',
+'minutes-ago'    => 'Phrase for indicating that something occurred a certain number of minutes ago',
+'seconds-ago'    => 'Phrase for indicating that something occurred a certain number of seconds ago',
+
+'monday-at'   => 'Phrase for indicating that something occurred at a particular time on the most recent Monday. $1 is the time.',
+'tuesday-at'   => 'Phrase for indicating that something occurred at a particular time on the most recent Tuesday. $1 is the time.',
+'wednesday-at'   => 'Phrase for indicating that something occurred at a particular time on the most recent Wednesday. $1 is the time.',
+'thursday-at'   => 'Phrase for indicating that something occurred at a particular time on the most recent Thursday. $1 is the time.',
+'friday-at'   => 'Phrase for indicating that something occurred at a particular time on the most recent Friday. $1 is the time.',
+'saturday-at'   => 'Phrase for indicating that something occurred at a particular time on the most recent Saturday. $1 is the time.',
+'sunday-at'   => 'Phrase for indicating that something occurred at a particular time on the most recent Sunday. $1 is the time.',
+'today-at'       => 'Phrase for indicating that something occurred at a particular time today. $1 is the time.',
+'yesterday-at'   => 'Phrase for indicating that something occurred at a particular time yesterday. $1 is the time.',
+'just-now'       => 'Phrase for indicating that something occurred very recently (for example, less than 30 seconds ago)',
+
 # Bad image list
 'bad_image_list' => 'This message only appears to guide administrators to add links with the right format. This will not appear anywhere else in MediaWiki.',
 
