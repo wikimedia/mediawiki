@@ -138,6 +138,12 @@ $wgMessageStructure = array(
 		'nov',
 		'dec',
 	),
+	'pretty-timestamps' => array(
+		'dayofweek-at',
+		'today-at',
+		'yesterday-at',
+		'just-now',
+	),
 	'categorypages' => array(
 		'pagecategories',
 		'pagecategorieslink',
