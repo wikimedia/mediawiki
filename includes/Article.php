@@ -1075,8 +1075,9 @@ class Article extends Page {
 		}
 
 		$outputPage = $this->getContext()->getOutput();
+		$user = $this->getContext()->getUser();
 		// If the user is not allowed to see it...
-		if ( !$this->mRevision->userCan( Revision::DELETED_TEXT ) ) {
+		if ( !$this->mRevision->userCan( Revision::DELETED_TEXT, $user ) ) {
 			$outputPage->wrapWikiMsg( "<div class='mw-warning plainlinks'>\n$1\n</div>\n",
 				'rev-deleted-text-permission' );
 
