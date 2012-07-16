@@ -108,10 +108,10 @@ upgrade PHP if you have not done so prior to upgrading MediaWiki.
 * Added support in jquery.localize for placeholder attributes.
 * (bug 38151) Implemented mw.user.getRights for getting and caching the current
   user's user rights.
-* Session storage can now configured independently of general object cache 
-  storage, by using $wgSessionCacheType. $wgSessionsInMemcached has been 
+* Session storage can now configured independently of general object cache
+  storage, by using $wgSessionCacheType. $wgSessionsInMemcached has been
   renamed to $wgSessionsInObjectCache, with the old name retained for backwards
-  compatibility. When this feature is enabled, the expiry time can now be 
+  compatibility. When this feature is enabled, the expiry time can now be
   configured with $wgObjectCacheSessionExpiry.
 * Added a Redis client for object caching.
 * Implemented mw.user.getGroups for getting and caching user groups.
@@ -201,6 +201,8 @@ upgrade PHP if you have not done so prior to upgrading MediaWiki.
 * (bug 38953) --memory-limit switch not working for runJobs.php.
 * (bug 33037) Make subpage of Special:newfiles control how many files
   are returned, like in previous versions.
+* (bug 36524) "Show" options on Special:RecentChanges and Special:RecentChangesLinked
+  are now remembered between successive clicks.
 
 === API changes in 1.20 ===
 * (bug 34316) Add ability to retrieve maximum upload size from MediaWiki API.
