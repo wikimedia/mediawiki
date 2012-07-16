@@ -1759,13 +1759,18 @@ class Language {
 	 * @param $ts Int the time in date('YmdHis') format
 	 * @param $tz Mixed: adjust the time by this amount (default false, mean we
 	 *            get user timecorrection setting)
+	 * @param $user User object: user to get time adjustment from.
 	 * @return int
 	 */
-	function userAdjust( $ts, $tz = false ) {
+	function userAdjust( $ts, $tz = false, $user = false ) {
 		global $wgUser, $wgLocalTZoffset;
 
+		if ( $user === false ) {
+			$user = $wgUser;
+		}
+
 		if ( $tz === false ) {
-			$tz = $wgUser->getOption( 'timecorrection' );
+			$tz = $user->getOption( 'timecorrection' );
 		}
 
 		$data = explode( '|', $tz, 3 );
@@ -1844,6 +1849,7 @@ class Language {
 	 * @param $usePrefs Mixed: if true, the user's preference is used
 	 *                         if false, the site/language default is used
 	 *                         if int/string, assumed to be a format.
+	 *			   if User object, assumed to be a User to get preference from
 	 * @return string
 	 */
 	function dateFormat( $usePrefs = true ) {
@@ -1855,6 +1861,8 @@ class Language {
 			} else {
 				$datePreference = (string)User::getDefaultOption( 'date' );
 			}
+		} elseif ( $usePrefs instanceof User ) {
+			$datePreference = $usePrefs->getDatePreference();
 		} else {
 			$datePreference = (string)$usePrefs;
 		}
@@ -1881,11 +1889,17 @@ class Language {
 				$df = self::$dataCache->getSubitem( $this->mCode, 'dateFormats', "$pref $type" );
 			} else {
 				$df = self::$dataCache->getSubitem( $this->mCode, 'dateFormats', "$pref $type" );
+
+				if ( $type === 'shortdate' && is_null($df) ) {
+					$df = $this->getDateFormatString( 'date', $pref );
+				}
+
 				if ( is_null( $df ) ) {
 					$pref = $this->getDefaultDateFormat();
 					$df = self::$dataCache->getSubitem( $this->mCode, 'dateFormats', "$pref $type" );
 				}
 			}
+
 			$this->dateFormatStrings[$type][$pref] = $df;
 		}
 		return $this->dateFormatStrings[$type][$pref];
@@ -2112,6 +2126,94 @@ class Language {
 	 */
 	public function userTimeAndDate( $ts, User $user, array $options = array() ) {
 		return $this->internalUserTimeAndDate( 'both', $ts, $user, $options );
+	}
+
+	/**
+	 * Formats a timestamp in a pretty, human-readable format.
+	 * Instead of "13:04, 16 July 2012", we have:
+	 * - Just now
+	 * - 35 minutes ago
+	 * - At 13:04
+	 * - Yesterday at 13:04
+	 * - Wednesday at 13:04
+	 * - July 16, 13:04
+	 * - July 16 2012 at 13:04
+	 *
+	 * @todo Port to JavaScript
+	 *
+	 * @param $ts Mixed: the time format which needs to be turned into a
+	 *            date('YmdHis') format with wfTimestamp(TS_MW,$ts)
+	 * @param $relativeTo Mixed: The timestamp to use as "now"
+	 * @param $user User: The user to format for (needed for timezone information)
+	 * @since 1.20
+	 * @return string Formatted timestamp
+	 */
+	public function prettyTimestamp( $ts, $relativeTo = false, $user = false ) {
+		if ( $relativeTo === false ) {
+			$relativeTo = wfTimestampNow();
+		}
+
+		if ( $user === false ) {
+			global $wgUser;
+			$user = $wgUser;
+		}
+
+		$now = wfTimestamp( TS_UNIX, $relativeTo );
+		$nowMW = wfTimestamp( TS_MW, $now );
+		$then = wfTimestamp( TS_UNIX, $ts );
+		$timeAgo = $now - $then;
+
+		$adjustedNow = $this->userAdjust( wfTimestamp( TS_MW, $now ), false, $user );
+		$nowYear = substr( $adjustedNow, 0, 4 );
+		$nowMonth = substr( $adjustedNow, 4, 2 );
+		$nowDay = substr( $adjustedNow, 6, 2 );
+		$adjustedNow = wfTimestamp( TS_UNIX, $adjustedNow );
+
+		$adjustedThen = $this->userAdjust( wfTimestamp( TS_MW, $ts ), false, $user );
+		$thenYear = substr( $adjustedThen, 0, 4 );
+		$thenMonth = substr( $adjustedThen, 4, 2 );
+		$thenDay = substr( $adjustedThen, 6, 2 );
+		$adjustedThen = wfTimestamp( TS_UNIX, $adjustedThen );
+
+		if ( $timeAgo < 0 ) {
+			throw new MWException( "Future timestamps not currently supported" );
+		} elseif ( $timeAgo < 30 ) {
+			return wfMessage( 'just-now' )->inLanguage( $this )->text();
+		} elseif ( $timeAgo < 5400 ) {
+			// Less than 90 minutes ago. Return number of hours, minutes or seconds ago.
+			if ( $timeAgo < 60 ) {
+				$intervals = array( 'seconds' );
+			} elseif ( $timeAgo < 3600 ) {
+				$intervals = array( 'minutes' );
+			} else {
+				$intervals = array( 'hours' );
+			}
+
+			$duration = $this->formatDuration( $timeAgo, $intervals );
+
+			return wfMessage( 'ago' )->inLanguage( $this )->params( $duration )->text();
+		} elseif ( intval( $adjustedNow / 86400 ) === intval( $adjustedThen / 86400 ) ) {
+			// Today at XX:XX
+			$time = $this->time( $adjustedThen );
+			return wfMessage( 'today-at' )->inLanguage( $this )->params( $time )->text();
+		} elseif ( intval( $adjustedNow / 86400 ) === ( intval( $adjustedThen / 86400 ) + 1 ) ) {
+			// Yesterday at XX:XX
+			$time = $this->time( $adjustedThen );
+			return wfMessage( 'yesterday-at' )->inLanguage( $this )->params( $time )->text();
+		} elseif ( $timeAgo < ( 86400 * 5 ) ) {
+			// Xday at XX:XX
+			$day = date( 'w', $adjustedThen ) + 1;
+			$dayName = $this->getWeekdayName( $day );
+			$time = $this->time( $adjustedThen );
+			return wfMessage( 'dayofweek-at' )->inLanguage( $this )->params( $dayName, $time );
+		} elseif ( $nowYear == $thenYear ) {
+			// XX XMonth
+			$df = $this->getDateFormatString( 'shortdate', $this->dateFormat( $user ) );
+			return $this->sprintfDate( $df, $ts );
+		} else {
+			// Full timestamp
+			return $this->userDate( $ts, $user );
+		}
 	}
 
 	/**
