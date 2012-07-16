@@ -154,6 +154,10 @@ class Language {
 		'hijri-calendar-m10', 'hijri-calendar-m11', 'hijri-calendar-m12'
 	);
 
+	// For pretty timestamps
+	// Cutoff for specifying "weekday at XX:XX" format
+	protected $mWeekdayAtCutoff = 432000; // 5 days
+
 	/**
 	 * @since 1.20
 	 * @var array
@@ -1759,13 +1763,18 @@ class Language {
 	 * @param $ts Int the time in date('YmdHis') format
 	 * @param $tz Mixed: adjust the time by this amount (default false, mean we
 	 *            get user timecorrection setting)
+	 * @param $user User object: user to get time adjustment from.
 	 * @return int
 	 */
-	function userAdjust( $ts, $tz = false ) {
+	function userAdjust( $ts, $tz = false, $user = false ) {
 		global $wgUser, $wgLocalTZoffset;
 
+		if ( $user === false ) {
+			$user = $wgUser;
+		}
+
 		if ( $tz === false ) {
-			$tz = $wgUser->getOption( 'timecorrection' );
+			$tz = $user->getOption( 'timecorrection' );
 		}
 
 		$data = explode( '|', $tz, 3 );
@@ -1844,6 +1853,7 @@ class Language {
 	 * @param $usePrefs Mixed: if true, the user's preference is used
 	 *                         if false, the site/language default is used
 	 *                         if int/string, assumed to be a format.
+	 *                         if User object, assumed to be a User to get preference from
 	 * @return string
 	 */
 	function dateFormat( $usePrefs = true ) {
@@ -1855,6 +1865,8 @@ class Language {
 			} else {
 				$datePreference = (string)User::getDefaultOption( 'date' );
 			}
+		} elseif ( $usePrefs instanceof User ) {
+			$datePreference = $usePrefs->getDatePreference();
 		} else {
 			$datePreference = (string)$usePrefs;
 		}
@@ -1881,11 +1893,17 @@ class Language {
 				$df = self::$dataCache->getSubitem( $this->mCode, 'dateFormats', "$pref $type" );
 			} else {
 				$df = self::$dataCache->getSubitem( $this->mCode, 'dateFormats', "$pref $type" );
+
+				if ( $type === 'shortdate' && is_null( $df ) ) {
+					$df = $this->getDateFormatString( 'date', $pref );
+				}
+
 				if ( is_null( $df ) ) {
 					$pref = $this->getDefaultDateFormat();
 					$df = self::$dataCache->getSubitem( $this->mCode, 'dateFormats', "$pref $type" );
 				}
 			}
+
 			$this->dateFormatStrings[$type][$pref] = $df;
 		}
 		return $this->dateFormatStrings[$type][$pref];
@@ -2112,6 +2130,139 @@ class Language {
 	 */
 	public function userTimeAndDate( $ts, User $user, array $options = array() ) {
 		return $this->internalUserTimeAndDate( 'both', $ts, $user, $options );
+	}
+
+	/**
+	 * Formats a timestamp in a pretty, human-readable format.
+	 * Instead of "13:04, 16 July 2012", we have:
+	 * - Just now
+	 * - 35 minutes ago
+	 * - At 13:04
+	 * - Yesterday at 13:04
+	 * - Wednesday at 13:04
+	 * - July 16, 13:04
+	 * - July 16 2012 at 13:04
+	 *
+	 * @todo Port to JavaScript
+	 *
+	 * @param $ts Mixed: the time format which needs to be turned into a
+	 *            date('YmdHis') format with wfTimestamp(TS_MW,$ts)
+	 * @param $relativeTo Mixed: The timestamp to use as "now"
+	 * @param $user User: The user to format for (needed for timezone information)
+	 * @since 1.20
+	 * @return string Formatted timestamp
+	 */
+	public function prettyTimestamp( $timestamp, $relativeTo = false, $user = false ) {
+		// Parameter defaults
+		if ( $relativeTo === false ) {
+			$relativeTo = wfTimestampNow();
+		}
+
+		if ( $user === false ) {
+			global $wgUser;
+			$user = $wgUser;
+		}
+
+		// Normalise input to UNIX time
+		$relativeTo = wfTimestamp( TS_UNIX, $relativeTo );
+		$timestamp = wfTimestamp( TS_UNIX, $timestamp );
+		$timeAgo = $relativeTo - $timestamp;
+
+		$adjustedRelativeTo = $this->userAdjust( wfTimestamp( TS_MW, $relativeTo ), false, $user );
+		$adjustedRelativeTo = wfTimestamp( TS_UNIX, $adjustedRelativeTo );
+		$relativeToYear = gmdate( 'Y', $adjustedRelativeTo );
+
+		$adjustedTimestamp = $this->userAdjust( wfTimestamp( TS_MW, $timestamp ), false, $user );
+		$adjustedTimestamp = wfTimestamp( TS_UNIX, $adjustedTimestamp );
+		$timestampYear = gmdate( 'Y', $adjustedTimestamp );
+
+		if ( $timeAgo < 0 ) {
+			throw new MWException( "Future timestamps not currently supported" );
+		} elseif ( $timeAgo < 30 ) {
+			return wfMessage( 'just-now' )
+				->inLanguage( $this )
+				->text();
+		} elseif ( $timeAgo < 5400 ) {
+			// Less than 90 minutes ago. Return number of hours, minutes or seconds ago.
+			return $this->formatRelativeTime( $timeAgo );
+		} elseif ( // Same day
+			intval( $adjustedRelativeTo / (24*60*60) ) ===
+			intval( $adjustedTimestamp / (24*60*60) )
+		) {
+			// Today at XX:XX
+			$time = $this->time( $adjustedTimestamp );
+			return wfMessage( 'today-at' )
+				->inLanguage( $this )
+				->params( $time )
+				->text();
+		} elseif ( // Previous day
+			intval( $adjustedRelativeTo / (24*60*60) ) ===
+			( intval( $adjustedTimestamp / (24*60*60) ) + 1 )
+		) {
+			// Yesterday at XX:XX
+			$time = $this->time( $adjustedTimestamp );
+
+			return wfMessage( 'yesterday-at' )
+				->inLanguage( $this )
+				->params( $time )
+				->text();
+		} elseif ( $timeAgo < ( $this->mWeekdayAtCutoff ) ) { // Less than 5 days ago
+			// Xday at XX:XX
+			return $this->formatPastWeekTimestamp( $adjustedTimestamp, $adjustedRelativeTo );
+		} elseif ( $relativeToYear == $timestampYear ) {
+			// XX XMonth
+			$df = $this->getDateFormatString( 'shortdate', $this->dateFormat( $user ) );
+			$mwTimestamp = wfTimestamp( TS_MW, $timestamp );
+			return $this->sprintfDate( $df, $mwTimestamp );
+		} else {
+			// Full timestamp
+			$mwTimestamp = wfTimestamp( TS_MW, $timestamp );
+			return $this->userDate( $mwTimestamp, $user );
+		}
+	}
+
+	/**
+	 * For pretty timestamps: Formats the "X {hours,minutes,seconds} ago" message.
+	 *
+	 * @param $timeAgo The number of seconds ago the event occurred
+	 * @return Formatted string
+	 */
+	protected function formatRelativeTime( $timeAgo ) {
+		$count = false;
+		if ( $timeAgo < 60 ) {
+			$unit = 'seconds';
+			$count = $timeAgo;
+		} elseif ( $timeAgo < 3600 ) {
+			$unit = 'minutes';
+			$count = intval( $timeAgo / 60 );
+		} else {
+			$unit = 'hours';
+			$count = intval( $timeAgo / 3600 );
+		}
+
+		return wfMessage( "{$unit}-ago" )->inLanguage( $this )->params( $count )->text();
+	}
+
+	/**
+	 * For pretty timestamps: Formats the timestamp for events that occurred
+	 * "in the last few days".
+	 * (cutoff is configurable by the member variable $mWeekdayAtCutoff)
+	 * 
+	 * @param $eventTimestamp The timestamp of the event, adjusted to
+	 *  the user's local timezone, in UNIX format (# of seconds since epoch)
+	 * @param $relativeTo The timestamp to format relative to, adjusted to
+	 *  the user's local timezone, in UNIX format (# of seconds since epoch)
+	 * @return String: The date formatted in a human-friendly way.
+	 */
+	protected function formatPastWeekTimestamp( $adjustedTimestamp, $relativeTo ) {
+		$day = date( 'w', $adjustedTimestamp );
+		$weekday = self::$mWeekdayMsgs[$day];
+		$time = $this->time( $adjustedTimestamp );
+
+		return wfMessage( "$weekday-at" )
+			->inLanguage( $this )
+			->params( $time )
+			->text();
 	}
 
 	/**
