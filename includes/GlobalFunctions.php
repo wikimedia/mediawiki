@@ -2885,9 +2885,10 @@ function wfEscapeShellArg( ) {
  *                 (non-zero is usually failure)
  * @param $environ Array optional environment variables which should be
  *                 added to the executed command environment.
+ * @param $limits Array optional array with limits(filesize, memory, time)
  * @return string collected stdout as a string (trailing newlines stripped)
  */
-function wfShellExec( $cmd, &$retval = null, $environ = array() ) {
+function wfShellExec( $cmd, &$retval = null, $environ = array(), $limits = array() ) {
 	global $IP, $wgMaxShellMemory, $wgMaxShellFileSize, $wgMaxShellTime;
 
 	static $disabled;
@@ -2935,9 +2936,9 @@ function wfShellExec( $cmd, &$retval = null, $environ = array() ) {
 	$cmd = $envcmd . $cmd;
 
 	if ( php_uname( 's' ) == 'Linux' ) {
-		$time = intval( $wgMaxShellTime );
-		$mem = intval( $wgMaxShellMemory );
-		$filesize = intval( $wgMaxShellFileSize );
+		$time = intval ( isset($limits['time']) ? $limits['time'] : $wgMaxShellTime );
+		$mem = intval ( isset($limits['memory']) ? $limits['memory'] : $wgMaxShellmemory );
+		$filesize = intval ( isset($limits['filesize']) ? $limits['filesize'] : $wgMaxShellfilesize );
 
 		if ( $time > 0 && $mem > 0 ) {
 			$script = "$IP/bin/ulimit4.sh";
