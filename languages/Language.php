@@ -2115,6 +2115,94 @@ class Language {
 	}
 
 	/**
+	 * Formats a timestamp in a pretty, human-readable format.
+	 * Instead of "13:04, 16 July 2012", we have:
+	 * - Just now
+	 * - 35 minutes ago
+	 * - At 13:04
+	 * - Yesterday at 13:04
+	 * - Wednesday at 13:04
+	 * - July 16, 13:04
+	 * - July 16 2012 at 13:04
+	 *
+	 * @todo Port to JavaScript
+	 *
+	 * @param $ts Mixed: the time format which needs to be turned into a
+	 *            date('YmdHis') format with wfTimestamp(TS_MW,$ts)
+	 * @param $relativeTo Mixed: The timestamp to use as "now"
+	 * @since 1.20
+	 * @return string Formatted timestamp
+	 */
+	public function prettyTimestamp( $ts, $relativeTo = false ) {
+		if ( $relativeTo === false ) {
+			$relativeTo = wfTimestampNow();
+		}
+
+		$now = wfTimestamp( TS_UNIX, $relativeTo );
+		$nowMW = wfTimestamp( TS_MW, $now );
+		$then = wfTimestamp( TS_UNIX, $ts );
+		$timeAgo = $now - $then;
+
+		$adjustedNow = $this->userAdjust( wfTimestamp( TS_MW, $now ) );
+		$nowYear = substr( $adjustedNow, 0, 4 );
+		$nowMonth = substr( $adjustedNow, 4, 2 );
+		$nowDay = substr( $adjustedNow, 6, 2 );
+		$adjustedNow = wfTimestamp( TS_UNIX, $adjustedNow );
+
+		$adjustedThen = $this->userAdjust( wfTimestamp( TS_MW, $ts ) );
+		$thenYear = substr( $adjustedThen, 0, 4 );
+		$thenMonth = substr( $adjustedThen, 4, 2 );
+		$thenDay = substr( $adjustedThen, 6, 2 );
+		$adjustedThen = wfTimestamp( TS_UNIX, $adjustedThen );
+
+		if ( $timeAgo < 0 ) {
+			throw new MWException( "Future timestamps not currently supported" );
+		} elseif ( $timeAgo < 30 ) {
+			return wfMessage( 'just-now' )->inLanguage( $this )->text();
+		} elseif ( $timeAgo < 5400 ) {
+			// Less than 90 minutes ago. Return number of hours, minutes or seconds ago.
+			if ( $timeAgo < 60 ) {
+				$intervals = array( 'seconds' );
+			} elseif ( $timeAgo < 3600 ) {
+				$intervals = array( 'minutes' );
+			} else {
+				$intervals = array( 'hours' );
+			}
+
+			$duration = $this->formatDuration( $timeAgo, $intervals );
+
+			return wfMessage( 'ago' )->inLanguage( $this )->params( $duration )->text();
+		} elseif ( intval( $adjustedNow / 86400 ) === intval( $adjustedThen / 86400 ) ) {
+			// Today at XX:XX
+			$time = $this->time( $adjustedThen );
+			return wfMessage( 'today-at' )->inLanguage( $this )->params( $time )->text();
+		} elseif ( intval( $adjustedNow / 86400 ) === ( intval( $adjustedThen / 86400 ) + 1 ) ) {
+			// Yesterday at XX:XX
+			$time = $this->time( $adjustedThen );
+			return wfMessage( 'yesterday-at' )->inLanguage( $this )->params( $time )->text();
+		} elseif ( $timeAgo < ( 86400 * 5 ) ) {
+			// Xday at XX:XX
+			$day = date( 'w', $adjustedThen ) + 1;
+			$dayName = $this->getWeekdayName( $day );
+			$time = $this->time( $adjustedThen );
+			return wfMessage( 'dayofweek-at' )->inLanguage( $this )->params( $dayName, $time );
+		} elseif ( $nowYear == $thenYear ) {
+			// XX XMonth
+			global $wgUser;
+
+			$df = $this->getDateFormatString( 'date', $this->dateFormat( true ) );
+			// Hack: Delete the year from the date format string
+			$df = str_replace( 'Y', '', $df );
+			$df = preg_replace( '/\ +/', ' ', $df );
+			return $this->sprintfDate( $df, $ts );
+		} else {
+			// Full timestamp
+			global $wgUser;
+			return $this->userDate( $ts, $wgUser );
+		}
+	}
+
+	/**
 	 * @param $key string
 	 * @return array|null
 	 */
