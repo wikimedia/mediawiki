@@ -1065,5 +1065,120 @@ class LanguageTest extends MediaWikiTestCase {
 			array( 10000, 'MMMMMMMMMM' ),
 		);
 	}
-}
 
+	/**
+	 * @test
+	 * @dataProvider providePrettyTimestampTests
+	 */
+	public function testPrettyTimestamp(
+		$tsTime, // The timestamp to format
+		$currentTime, // The time to consider "now"
+		$timeCorrection, // The time offset to use
+		$dateFormat, // The date preference to use
+		$expectedOutput, // The expected output
+		$desc // Description
+	) {
+		$user = new User;
+		$user->setOption( 'timecorrection', $timeCorrection );
+		$user->setOption( 'date', $dateFormat );
+
+		$this->assertEquals(
+			$expectedOutput,
+			$this->lang->prettyTimestamp( $tsTime, $currentTime, $user ),
+			$desc
+		);
+	}
+
+	public function providePrettyTimestampTests() {
+		return array(
+			array(
+				'20111231170000',
+				'20120101000000',
+				'Offset|0',
+				'mdy',
+				'Yesterday at 17:00',
+				'"Yesterday" across years',
+			),
+			array(
+				'20120717190900',
+				'20120717190929',
+				'Offset|0',
+				'mdy',
+				'Just now',
+				'"Just now"',
+			),
+			array(
+				'20120717190900',
+				'20120717191530',
+				'Offset|0',
+				'mdy',
+				'6 minutes ago',
+				'X minutes ago',
+			),
+			array(
+				'20120617190900',
+				'20120717190900',
+				'Offset|0',
+				'mdy',
+				'June 17',
+				'Another month'
+			),
+			array(
+				'19910130151500',
+				'20120716193700',
+				'Offset|0',
+				'mdy',
+				'January 30, 1991',
+				'Different year',
+			),
+			array(
+				'20120101050000',
+				'20120101080000',
+				'Offset|-360',
+				'mdy',
+				'Yesterday at 23:00',
+				'"Yesterday" across years with time correction',
+			),
+			array(
+				'20120714184300',
+				'20120716184300',
+				'Offset|-420',
+				'mdy',
+				'Saturday at 11:43',
+				'Recent weekday with time correction',
+			),
+			array(
+				'20120714184300',
+				'20120715040000',
+				'Offset|-420',
+				'mdy',
+				'11:43',
+				'Today at another time with time correction',
+			),
+			array(
+				'20120617190900',
+				'20120717190900',
+				'Offset|0',
+				'dmy',
+				'17 June',
+				'Another month with dmy'
+			),
+			array(
+				'20120617190900',
+				'20120717190900',
+				'Offset|0',
+				'ISO 8601',
+				'2012-06-17',
+				'Another month with ISO-8601'
+			),
+			array(
+				'19910130151500',
+				'20120716193700',
+				'Offset|0',
+				'ISO 8601',
+				'1991-01-30',
+				'Different year with ISO-8601',
+			),
+		);
+	}
+}
