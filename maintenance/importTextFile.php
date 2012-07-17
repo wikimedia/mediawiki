@@ -1,8 +1,6 @@
 <?php
-
 /**
- * Maintenance script allows creating or editing pages using
- * the contents of a text file
+ * Create or edit pages using the contents of a text file.
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by

@@ -1,6 +1,7 @@
 <?php
-
 /**
+ * CLI-based MediaWiki installation and configuration.
+ *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2 of the License, or
@@ -16,8 +17,8 @@
  * 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
  * http://www.gnu.org/copyleft/gpl.html
  *
+ * @file
  * @ingroup Maintenance
- * @see wfWaitForSlaves()
  */
 
 if ( !function_exists( 'version_compare' ) || ( version_compare( phpversion(), '5.3.2' ) < 0 ) ) {
@@ -31,6 +32,11 @@ define( 'MEDIAWIKI_INSTALL', true );
 
 require_once( dirname( dirname( __FILE__ ) )."/maintenance/Maintenance.php" );
 
+/**
+ * Maintenance script to install and configure MediaWiki
+ *
+ * @ingroup Maintenance
+ */
 class CommandLineInstaller extends Maintenance {
 	function __construct() {
 		parent::__construct();
