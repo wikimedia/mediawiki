@@ -2996,6 +2996,7 @@ class Language {
 	 * Take a list of strings and build a locale-friendly comma-separated
 	 * list, using the local comma-separator message.
 	 * The last two strings are chained with an "and".
+	 * NOTE: This function will only work with standard numeric array keys (0, 1, 2…)
 	 *
 	 * @param $l Array
 	 * @return string
@@ -3003,7 +3004,10 @@ class Language {
 	function listToText( array $l ) {
 		$s = '';
 		$m = count( $l ) - 1;
-		if ( $m == 1 ) {
+		
+		if ( $m === 0 ) {
+			return $l[0];
+		} elseif ( $m === 1 ) {
 			return $l[0] . $this->getMessageFromDB( 'and' ) . $this->getMessageFromDB( 'word-separator' ) . $l[1];
 		} else {
 			for ( $i = $m; $i >= 0; $i-- ) {
