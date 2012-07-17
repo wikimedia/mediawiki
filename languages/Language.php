@@ -3003,7 +3003,10 @@ class Language {
 	function listToText( array $l ) {
 		$s = '';
 		$m = count( $l ) - 1;
-		if ( $m == 1 ) {
+		
+		if ( $m == 0 ) {
+			return $l[0];
+		} elseif ( $m == 1 ) {
 			return $l[0] . $this->getMessageFromDB( 'and' ) . $this->getMessageFromDB( 'word-separator' ) . $l[1];
 		} else {
 			for ( $i = $m; $i >= 0; $i-- ) {
