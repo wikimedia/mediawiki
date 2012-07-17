@@ -67,6 +67,17 @@ class ApiQueryAllPages extends ApiQueryGeneratorBase {
 		// Page filters
 		$this->addTables( 'page' );
 
+		if ( !is_null( $params['continue'] ) ) {
+			$cont = explode( '|', $params['continue'] );
+			if ( count( $cont ) != 1 ) {
+				$this->dieUsage( "Invalid continue param. You should pass the " .
+					"original value returned by the previous query", "_badcontinue" );
+			}
+			$op = $params['dir'] == 'descending' ? '<' : '>';
+			$cont_from = $db->addQuotes( $cont[0] );
+			$this->addWhere( "page_title $op= $cont_from" );
+		}
+
 		if ( $params['filterredir'] == 'redirects' ) {
 			$this->addWhereFld( 'page_is_redirect', 1 );
 		} elseif ( $params['filterredir'] == 'nonredirects' ) {
@@ -180,8 +191,7 @@ class ApiQueryAllPages extends ApiQueryGeneratorBase {
 		foreach ( $res as $row ) {
 			if ( ++ $count > $limit ) {
 				// We've reached the one extra which shows that there are additional pages to be had. Stop here...
-				// TODO: Security issue - if the user has no right to view next title, it will still be shown
-				$this->setContinueEnumParameter( 'from', $this->keyToTitle( $row->page_title ) );
+				$this->setContinueEnumParameter( 'continue', $row->page_title );
 				break;
 			}
 
@@ -194,7 +204,7 @@ class ApiQueryAllPages extends ApiQueryGeneratorBase {
 				);
 				$fit = $result->addValue( array( 'query', $this->getModuleName() ), null, $vals );
 				if ( !$fit ) {
-					$this->setContinueEnumParameter( 'from', $this->keyToTitle( $row->page_title ) );
+					$this->setContinueEnumParameter( 'continue', $row->page_title );
 					break;
 				}
 			} else {
@@ -212,6 +222,7 @@ class ApiQueryAllPages extends ApiQueryGeneratorBase {
 
 		return array(
 			'from' => null,
+			'continue' => null,
 			'to' => null,
 			'prefix' => null,
 			'namespace' => array(
@@ -285,6 +296,7 @@ class ApiQueryAllPages extends ApiQueryGeneratorBase {
 		$p = $this->getModulePrefix();
 		return array(
 			'from' => 'The page title to start enumerating from',
+			'continue' => 'When more results are available, use this to continue',
 			'to' => 'The page title to stop enumerating at',
 			'prefix' => 'Search for all page titles that begin with this value',
 			'namespace' => 'The namespace to enumerate',
@@ -324,6 +336,7 @@ class ApiQueryAllPages extends ApiQueryGeneratorBase {
 		return array_merge( parent::getPossibleErrors(), array(
 			array( 'code' => 'params', 'info' => 'Use "gapfilterredir=nonredirects" option instead of "redirects" when using allpages as a generator' ),
 			array( 'code' => 'params', 'info' => 'prlevel may not be used without prtype' ),
+			array( 'code' => '_badcontinue', 'info' => 'Invalid continue param. You should pass the original value returned by the previous query' ),
 		) );
 	}
 
