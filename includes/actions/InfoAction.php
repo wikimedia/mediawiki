@@ -107,6 +107,7 @@ class InfoAction extends FormlessAction {
 	 * @return mixed array or boolean false
 	 */
 	public static function pageCountInfo( $title ) {
+		wfProfileIn( __METHOD__ );
 		$id = $title->getArticleID();
 		$dbr = wfGetDB( DB_SLAVE );
 
@@ -141,6 +142,7 @@ class InfoAction extends FormlessAction {
 			__METHOD__
 		);
 
+		wfProfileOut( __METHOD__ );
 		return array( 'watchers' => $watchers, 'edits' => $edits,
 			'authors' => $authors, 'views' => $views );
 	}
