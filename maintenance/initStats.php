@@ -1,6 +1,6 @@
 <?php
 /**
- * Maintenance script to re-initialise or update the site statistics table
+ * Re-initialise or update the site statistics table.
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -25,6 +25,11 @@
 
 require_once( dirname( __FILE__ ) . '/Maintenance.php' );
 
+/**
+ * Maintenance script to re-initialise or update the site statistics table
+ *
+ * @ingroup Maintenance
+ */
 class InitStats extends Maintenance {
 	public function __construct() {
 		parent::__construct();

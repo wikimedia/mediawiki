@@ -1,8 +1,7 @@
 <?php
-
 /**
- * Maintenance script to import one or more images from the local file system into
- * the wiki without using the web-based interface.
+ * Import one or more images from the local file system into the wiki without
+ * using the web-based interface.
  *
  * "Smart import" additions:
  * - aim: preserve the essential metadata (user, description) when importing medias from an existing wiki
