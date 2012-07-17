@@ -245,6 +245,10 @@ $block: The block from which the autoblock is coming.
 'AbortDiffCache': Can be used to cancel the caching of a diff
 &$diffEngine: DifferenceEngine object
 
+'AbortEmailNotification': Can be used to cancel email notifications for an edit.
+$editor: The User who made the change.
+$title: The Title of the page that was edited.
+
 'AbortLogin': Return false to cancel account login.
 $user: the User object being authenticated against
 $password: the password being submitted, not yet checked for validity
