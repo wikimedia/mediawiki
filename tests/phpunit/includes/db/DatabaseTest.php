@@ -57,6 +57,102 @@ class DatabaseTest extends MediaWikiTestCase {
 			$this->db->addQuotes( "string's cause trouble" ) );
 	}
 
+	private function getSharedTableName( $table, $database, $prefix, $format = 'quoted' ) {
+		global $wgSharedDB, $wgSharedTables, $wgSharedPrefix;
+
+		$oldName = $wgSharedDB;
+		$oldTables = $wgSharedTables;
+		$oldPrefix = $wgSharedPrefix;
+
+		$wgSharedDB = $database;
+		$wgSharedTables = array( $table );
+		$wgSharedPrefix = $prefix;
+
+		$ret = $this->db->tableName( $table, $format );
+
+		$wgSharedDB = $oldName;
+		$wgSharedTables = $oldTables;
+		$wgSharedPrefix = $oldPrefix;
+
+		return $ret;
+	}
+
+	private function prefixAndQuote( $table, $database = null, $prefix = null, $format = 'quoted' ) {
+		if ( $this->db->getType() === 'sqlite' || $format !== 'quoted' ) {
+			$quote = '';
+		} elseif ( $this->db->getType() === 'mysql' ) {
+			$quote = '`';
+		} else {
+			$quote = '"';
+		}
+
+		if ( $database !== null ) {
+			$database = $quote . $database . $quote . '.';
+		}
+
+		if ( $prefix === null ) {
+			if ( $this->db->getType() === 'sqlite' ) {
+				$prefix = '';
+			} else {
+				$prefix = $this->dbPrefix();
+			}
+		}
+
+		return $database . $quote . $prefix . $table . $quote;
+	}
+
+	function testTableNameLocal() {
+		$this->assertEquals(
+			$this->prefixAndQuote( 'tablename' ),
+			$this->db->tableName( 'tablename' )
+		);
+	}
+
+	function testTableNameRawLocal() {
+		$this->assertEquals(
+			$this->prefixAndQuote( 'tablename', null, null, 'raw' ),
+			$this->db->tableName( 'tablename', 'raw' )
+		);
+	}
+
+	function testTableNameShared() {
+		$this->assertEquals(
+			$this->prefixAndQuote( 'tablename', 'sharedatabase', 'sh_' ),
+			$this->getSharedTableName( 'tablename', 'sharedatabase', 'sh_' )
+		);
+
+		$this->assertEquals(
+			$this->prefixAndQuote( 'tablename', 'sharedatabase', null ),
+			$this->getSharedTableName( 'tablename', 'sharedatabase', null )
+		);
+	}
+
+	function testTableNameRawShared() {
+		$this->assertEquals(
+			$this->prefixAndQuote( 'tablename', 'sharedatabase', 'sh_', 'raw' ),
+			$this->getSharedTableName( 'tablename', 'sharedatabase', 'sh_', 'raw' )
+		);
+
+		$this->assertEquals(
+			$this->prefixAndQuote( 'tablename', 'sharedatabase', null, 'raw' ),
+			$this->getSharedTableName( 'tablename', 'sharedatabase', null, 'raw' )
+		);
+	}
+
+	function testTableNameForeign() {
+		$this->assertEquals(
+			$this->prefixAndQuote( 'tablename', 'databasename', '' ),
+			$this->db->tableName( 'databasename.tablename' )
+		);
+	}
+
+	function testTableNameRawForeign() {
+		$this->assertEquals(
+			$this->prefixAndQuote( 'tablename', 'databasename', '', 'raw' ),
+			$this->db->tableName( 'databasename.tablename', 'raw' )
+		);
+	}
+
 	function testFillPreparedEmpty() {
 		$sql = $this->db->fillPrepared(
 			'SELECT * FROM interwiki', array() );
