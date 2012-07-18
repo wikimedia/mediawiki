@@ -139,7 +139,10 @@ class ApiProtect extends ApiBase {
 			'pageid' => array(
 				ApiBase::PARAM_TYPE => 'integer',
 			),
-			'token' => null,
+			'token' => array(
+				ApiBase::PARAM_TYPE => 'string',
+				ApiBase::PARAM_REQUIRED => true
+			),
 			'protections' => array(
 				ApiBase::PARAM_ISMULTI => true,
 				ApiBase::PARAM_REQUIRED => true,
