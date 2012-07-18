@@ -1837,6 +1837,10 @@ class EditPage {
 			$wgOut->addHTML( Html::hidden( 'wpIgnoreBlankSummary', true ) );
 		}
 
+		if ( $this->undidRev ) {
+			$wgOut->addHTML( Html::hidden( 'wpUndidRevision', $this->undidRev ) );
+		}
+
 		if ( $this->hasPresetSummary ) {
 			// If a summary has been preset using &summary= we dont want to prompt for
 			// a different summary. Only prompt for a summary if the summary is blanked.
