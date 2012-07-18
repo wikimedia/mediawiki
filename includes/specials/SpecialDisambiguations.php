@@ -32,14 +32,21 @@ class DisambiguationsPage extends QueryPage {
 		parent::__construct( $name );
 	}
 
-	function isExpensive() { return true; }
-	function isSyndicated() { return false; }
+	function isExpensive() {
+		return true;
+	}
+	function isSyndicated() {
+		return false;
+	}
 
 	function getPageHeader() {
 		return $this->msg( 'disambiguations-text' )->parseAsBlock();
 	}
 
-	function getQueryInfo() {
+	/**
+	 * @return string|bool False on failure
+	 */
+	function getQueryFromLinkBatch() {
 		$dbr = wfGetDB( DB_SLAVE );
 		$dMsgText = $this->msg( 'disambiguationspage' )->inContentLanguage()->text();
 		$linkBatch = new LinkBatch;
@@ -71,25 +78,33 @@ class DisambiguationsPage extends QueryPage {
 				}
 		}
 		$set = $linkBatch->constructSet( 'tl', $dbr );
+
 		if( $set === false ) {
 			# We must always return a valid SQL query, but this way
 			# the DB will always quickly return an empty result
 			$set = 'FALSE';
-			wfDebug("Mediawiki:disambiguationspage message does not link to any templates!\n");
+			wfDebug( "Mediawiki:disambiguationspage message does not link to any templates!\n" );
 		}
+		return $set;
+	}
 
+	function getQueryInfo() {
 		// @todo FIXME: What are pagelinks and p2 doing here?
 		return array (
 			'tables' => array( 'templatelinks', 'p1' => 'page', 'pagelinks', 'p2' => 'page' ),
-			'fields' => array( 'p1.page_namespace AS namespace',
+			'fields' => array(
+				'p1.page_namespace AS namespace',
 					'p1.page_title AS title',
-					'pl_from AS value' ),
-			'conds' => array( $set,
+					'pl_from AS value'
+			),
+			'conds' => array(
+				$this->getQueryFromLinkBatch(),
 					'p1.page_id = tl_from',
 					'pl_namespace = p1.page_namespace',
 					'pl_title = p1.page_title',
 					'p2.page_id = pl_from',
-					'p2.page_namespace' => MWNamespace::getContentNamespaces() )
+					'p2.page_namespace' => MWNamespace::getContentNamespaces()
+			)
 		);
 	}
 
@@ -126,10 +141,14 @@ class DisambiguationsPage extends QueryPage {
 		$dp = Title::makeTitle( $result->namespace, $result->title );
 
 		$from = Linker::link( $title );
-		$edit = Linker::link( $title, $this->msg( 'parentheses', $this->msg( 'editlink' )->text() )->escaped(),
-			array(), array( 'redirect' => 'no', 'action' => 'edit' ) );
-		$arr  = $this->getLanguage()->getArrow();
-		$to   = Linker::link( $dp );
+		$edit = Linker::link(
+			$title,
+			$this->msg( 'parentheses', $this->msg( 'editlink' )->text() )->escaped(),
+			array(),
+			array( 'redirect' => 'no', 'action' => 'edit' )
+		);
+		$arr = $this->getLanguage()->getArrow();
+		$to = Linker::link( $dp );
 
 		return "$from $edit $arr $to";
 	}
