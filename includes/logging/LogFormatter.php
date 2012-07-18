@@ -509,11 +509,9 @@ class LogFormatter {
 			);
 
 			if ( $this->linkFlood ) {
-				$element .= Linker::userToolLinks(
+				$element .= Linker::userToolLinksRedContribs(
 					$user->getId(),
 					$user->getName(),
-					true, // Red if no edits
-					0, // Flags
 					$user->getEditCount()
 				);
 			}
