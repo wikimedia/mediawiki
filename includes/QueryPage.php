@@ -361,6 +361,7 @@ abstract class QueryPage extends SpecialPage {
 	 */
 	function reallyDoQuery( $limit, $offset = false ) {
 		$fname = get_class( $this ) . "::reallyDoQuery";
+		wfProfileIn( $fname );
 		$dbr = wfGetDB( DB_SLAVE );
 		$query = $this->getQueryInfo();
 		$order = $this->getOrderFields();
@@ -395,6 +396,7 @@ abstract class QueryPage extends SpecialPage {
 			$sql = $dbr->limitResult( $sql, $limit, $offset );
 			$res = $dbr->query( $sql, $fname );
 		}
+		wfProfileOut( $fname );
 		return $dbr->resultObject( $res );
 	}
 
@@ -418,6 +420,7 @@ abstract class QueryPage extends SpecialPage {
 	 * @since 1.18
 	 */
 	function fetchFromCache( $limit, $offset = false ) {
+		wfProfileIn( __METHOD__ );
 		$dbr = wfGetDB( DB_SLAVE );
 		$options = array ();
 		if ( $limit !== false ) {
@@ -438,6 +441,7 @@ abstract class QueryPage extends SpecialPage {
 				array( 'qc_type' => $this->getName() ),
 				__METHOD__, $options
 		);
+		wfProfileOut( __METHOD__ );
 		return $dbr->resultObject( $res );
 	}
 
