@@ -57,14 +57,14 @@ class LSLockManager extends QuorumLockManager {
 	 * Construct a new instance from configuration.
 	 *
 	 * $config paramaters include:
-	 *     'lockServers'  : Associative array of server names to configuration.
-	 *                      Configuration is an associative array that includes:
-	 *                      'host'    - IP address/hostname
-	 *                      'port'    - TCP port
-	 *                      'authKey' - Secret string the lock server uses
-	 *     'srvsByBucket' : Array of 1-16 consecutive integer keys, starting from 0,
-	 *                      each having an odd-numbered list of server names (peers) as values.
-	 *     'connTimeout'  : Lock server connection attempt timeout. [optional]
+	 *   - lockServers  : Associative array of server names to configuration.
+	 *                    Configuration is an associative array that includes:
+	 *                      - host    : IP address/hostname
+	 *                      - port    : TCP port
+	 *                      - authKey : Secret string the lock server uses
+	 *   - srvsByBucket : Array of 1-16 consecutive integer keys, starting from 0,
+	 *                    each having an odd-numbered list of server names (peers) as values.
+	 *   - connTimeout  : Lock server connection attempt timeout. [optional]
 	 *
 	 * @param Array $config
 	 */
@@ -82,7 +82,7 @@ class LSLockManager extends QuorumLockManager {
 			$this->connTimeout = 3; // use some sane amount
 		}
 
-		$this->session = wfRandomString( 31 );
+		$this->session = wfRandomString( 32 ); // 128 bits
 	}
 
 	/**
