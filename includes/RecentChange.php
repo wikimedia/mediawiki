@@ -231,13 +231,15 @@ class RecentChange {
 			}
 			$title = Title::makeTitle( $this->mAttribs['rc_namespace'], $this->mAttribs['rc_title'] );
 
-			# @todo FIXME: This would be better as an extension hook
-			$enotif = new EmailNotification();
-			$status = $enotif->notifyOnPageChange( $editor, $title,
-				$this->mAttribs['rc_timestamp'],
-				$this->mAttribs['rc_comment'],
-				$this->mAttribs['rc_minor'],
-				$this->mAttribs['rc_last_oldid'] );
+			if ( wfRunHooks( 'AbortEmailNotification', array($editor, $title) ) ) {
+				# @todo FIXME: This would be better as an extension hook
+				$enotif = new EmailNotification();
+				$status = $enotif->notifyOnPageChange( $editor, $title,
+					$this->mAttribs['rc_timestamp'],
+					$this->mAttribs['rc_comment'],
+					$this->mAttribs['rc_minor'],
+					$this->mAttribs['rc_last_oldid'] );
+			}
 		}
 	}
 
