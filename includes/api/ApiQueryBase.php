@@ -571,6 +571,11 @@ abstract class ApiQueryGeneratorBase extends ApiQueryBase {
 
 	private $mIsGenerator;
 
+	/**
+	 * @param $query ApiBase
+	 * @param $moduleName string
+	 * @param $paramPrefix string
+	 */
 	public function __construct( $query, $moduleName, $paramPrefix = '' ) {
 		parent::__construct( $query, $moduleName, $paramPrefix );
 		$this->mIsGenerator = false;

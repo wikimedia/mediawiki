@@ -1160,8 +1160,18 @@ class ApiMain extends ApiBase {
 class UsageException extends MWException {
 
 	private $mCodestr;
+
+	/**
+	 * @var null|array
+	 */
 	private $mExtraData;
 
+	/**
+	 * @param $message string
+	 * @param $codestr string
+	 * @param $code int
+	 * @param $extradata array|null
+	 */
 	public function __construct( $message, $codestr, $code = 0, $extradata = null ) {
 		parent::__construct( $message, $code );
 		$this->mCodestr = $codestr;
