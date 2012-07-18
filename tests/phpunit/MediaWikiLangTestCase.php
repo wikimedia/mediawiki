@@ -10,6 +10,8 @@ abstract class MediaWikiLangTestCase extends MediaWikiTestCase {
 	public function setUp() {
 		global $wgLanguageCode, $wgLang, $wgContLang;
 
+		parent::setUp();
+
 		self::$oldLang = $wgLang;
 		self::$oldContLang = $wgContLang;
 
@@ -23,6 +25,7 @@ abstract class MediaWikiLangTestCase extends MediaWikiTestCase {
 
 		$wgContLang = $wgLang = Language::factory( $wgLanguageCode );
 		MessageCache::singleton()->disable();
+
 	}
 
 	public function tearDown() {
@@ -32,6 +35,8 @@ abstract class MediaWikiLangTestCase extends MediaWikiTestCase {
 		$wgContLang = self::$oldContLang;
 		$wgLanguageCode = $wgContLang->getCode();
 		self::$oldContLang = self::$oldLang = null;
+
+		parent::tearDown();
 	}
 
 }
