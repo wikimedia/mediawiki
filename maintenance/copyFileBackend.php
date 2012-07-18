@@ -90,6 +90,8 @@ class CopyFileBackend extends Maintenance {
 				// Only copy the missing files over in the next loop
 				$srcPathsRel = array_diff( $relFilesSrc, $relFilesDst );
 				$this->output( count( $srcPathsRel ) . " file(s) need to be copied.\n" );
+				unset( $relFilesSrc );
+				unset( $relFilesDst );
 			}
 
 			$batchPaths = array();
