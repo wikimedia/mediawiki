@@ -89,6 +89,7 @@ class FileBackendMultiWrite extends FileBackend {
 			// Alter certain sub-backend settings for sanity
 			unset( $config['readOnly'] ); // use proxy backend setting
 			unset( $config['fileJournal'] ); // use proxy backend journal
+			$config['wikiId'] = $this->wikiId; // use the proxy backend wiki ID
 			$config['lockManager'] = 'nullLockManager'; // lock under proxy backend
 			if ( !empty( $config['isMultiMaster'] ) ) {
 				if ( $this->masterIndex >= 0 ) {
