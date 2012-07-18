@@ -113,7 +113,7 @@ class ApiQueryStashImageInfo extends ApiQueryImageInfo {
 	public function getParamDescription() {
 		$p = $this->getModulePrefix();
 		return array(
-			'prop' => self::getPropertyDescriptions( $this->propertyFilter ),
+			'prop' => self::getPropertyDescriptions( $this->propertyFilter, $p ),
 			'filekey' => 'Key that identifies a previous upload that was stashed temporarily.',
 			'sessionkey' => 'Alias for filekey, for backward compatibility.',
 			'urlwidth' => "If {$p}prop=url is set, a URL to an image scaled to this width will be returned.",

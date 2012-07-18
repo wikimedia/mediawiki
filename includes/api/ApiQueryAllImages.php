@@ -240,7 +240,7 @@ class ApiQueryAllImages extends ApiQueryGeneratorBase {
 		);
 	}
 
-	private $propertyFilter = array( 'archivename' );
+	private $propertyFilter = array( 'archivename', 'thumbmime' );
 
 	public function getResultProperties() {
 		return array_merge(
