@@ -49,10 +49,10 @@ class FSFileBackend extends FileBackendStore {
 	/**
 	 * @see FileBackendStore::__construct()
 	 * Additional $config params include:
-	 *    basePath       : File system directory that holds containers.
-	 *    containerPaths : Map of container names to custom file system directories.
-	 *                     This should only be used for backwards-compatibility.
-	 *    fileMode       : Octal UNIX file permissions to use on files stored.
+	 *   - basePath       : File system directory that holds containers.
+	 *   - containerPaths : Map of container names to custom file system directories.
+	 *                      This should only be used for backwards-compatibility.
+	 *   - fileMode       : Octal UNIX file permissions to use on files stored.
 	 */
 	public function __construct( array $config ) {
 		parent::__construct( $config );
