@@ -245,7 +245,7 @@ abstract class FileBackend {
 	 *   - nonJournaled        : Don't log this operation batch in the file journal.
 	 *                           This limits the ability of recovery scripts.
 	 *   - parallelize         : Try to do operations in parallel when possible.
-	 *   - bypassReadOnly      : Allow writes in read-only mode (@since 1.20).
+	 *   - bypassReadOnly      : Allow writes in read-only mode (since 1.20).
 	 *
 	 * @remarks Remarks on locking:
 	 * File system paths given to operations should refer to files that are
@@ -391,6 +391,7 @@ abstract class FileBackend {
 	 *  - move
 	 *  - delete
 	 *  - null
+	 *
 	 * a) Create a new file in storage with the contents of a string
 	 * @code
 	 *     array(
@@ -443,7 +444,7 @@ abstract class FileBackend {
 	 *                           nothing if the source file does not exist.
 	 *
 	 * $opts is an associative of boolean flags, including:
-	 *   - bypassReadOnly      : Allow writes in read-only mode (@since 1.20)
+	 *   - bypassReadOnly      : Allow writes in read-only mode (since 1.20)
 	 *
 	 * @par Return value:
 	 * This returns a Status, which contains all warnings and fatals that occured
@@ -581,9 +582,9 @@ abstract class FileBackend {
 	 *
 	 * $params include:
 	 *   - dir            : storage directory
-	 *   - noAccess       : try to deny file access (@since 1.20)
-	 *   - noListing      : try to deny file listing (@since 1.20)
-	 *   - bypassReadOnly : allow writes in read-only mode (@since 1.20)
+	 *   - noAccess       : try to deny file access (since 1.20)
+	 *   - noListing      : try to deny file listing (since 1.20)
+	 *   - bypassReadOnly : allow writes in read-only mode (since 1.20)
 	 *
 	 * @param $params Array
 	 * @return Status
@@ -612,7 +613,7 @@ abstract class FileBackend {
 	 *   - dir            : storage directory
 	 *   - noAccess       : try to deny file access
 	 *   - noListing      : try to deny file listing
-	 *   - bypassReadOnly : allow writes in read-only mode (@since 1.20)
+	 *   - bypassReadOnly : allow writes in read-only mode (since 1.20)
 	 * @return Status
 	 */
 	final public function secure( array $params ) {
@@ -638,7 +639,7 @@ abstract class FileBackend {
 	 *   - dir            : storage directory
 	 *   - access         : try to allow file access
 	 *   - listing        : try to allow file listing
-	 *   - bypassReadOnly : allow writes in read-only mode (@since 1.20)
+	 *   - bypassReadOnly : allow writes in read-only mode (since 1.20)
 	 *
 	 * @param $params Array
 	 * @return Status
@@ -664,8 +665,8 @@ abstract class FileBackend {
 	 * @param $params Array
 	 * $params include:
 	 *   - dir            : storage directory
-	 *   - recursive      : recursively delete empty subdirectories first (@since 1.20)
-	 *   - bypassReadOnly : allow writes in read-only mode (@since 1.20)
+	 *   - recursive      : recursively delete empty subdirectories first (since 1.20)
+	 *   - bypassReadOnly : allow writes in read-only mode (since 1.20)
 	 * @return Status
 	 */
 	final public function clean( array $params ) {
@@ -878,7 +879,7 @@ abstract class FileBackend {
 	 * @param $params array
 	 * $params include:
 	 *   - dir     : storage directory
-	 *   - topOnly : only return direct child files of the directory (@since 1.20)
+	 *   - topOnly : only return direct child files of the directory (since 1.20)
 	 * @return Traversable|Array|null Returns null on failure
 	 */
 	abstract public function getFileList( array $params );
