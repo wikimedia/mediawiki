@@ -13,6 +13,9 @@ this version.
 Our thanks go to everyone who helped to improve MediaWiki by testing the beta
 release and submitting bug reports.
 
+=== Changes since 1.19.1 ===
+* (bug 38406) Properly quote table names in DatabaseBase::tableName()
+
 === Changes since 1.19.0 ===
 * (bug 36568) Fixed "Illegal string offset 'LIMIT'" warnings in updater
 * (bug 36938) Correctly escape uselang attribute to prevent xss
@@ -35,14 +38,14 @@ release and submitting bug reports.
   "movepage-moved"
 * (bug 34841) Edit links are no longer displayed when display old page versions
 * (bug 34889) User name should be normalized on Special:Contributions
-* (bug 35051) If heading has a trailing space after == then its name is not 
+* (bug 35051) If heading has a trailing space after == then its name is not
   preloaded into edit summary on section edit
 * (bug 31417) New ID mw-content-text around the actual page text, without categories,
   contentSub, ... The same div often also contains the class mw-content-ltr/rtl.
 * (bug 35303) Proxy and DNS blacklist blocking works again
-* (bug 22555) Remove or skip strip markers from tag hooks like &lt;nowiki&gt; in 
+* (bug 22555) Remove or skip strip markers from tag hooks like &lt;nowiki&gt; in
   core parser functions which operate on strings, such as padleft.
-* (bug 18295) Don't expose strip markers when a tag appears inside a link 
+* (bug 18295) Don't expose strip markers when a tag appears inside a link
   inside a heading.
 * (bug 34212) ApiBlock/ApiUnblock allow action to take place without a token
   parameter present.
@@ -143,7 +146,7 @@ release and submitting bug reports.
 * Extensions can use the 'Language::getMessagesFileName' hook to define new
   languages using messages files outside of core.
 * (bug 32512) Add 'Associated namespace' checkbox to Special:Contributions.
-* Added $wgSend404Code, true by default, which can be set to false to send a 
+* Added $wgSend404Code, true by default, which can be set to false to send a
   200 status code instead of 404 for nonexistent articles.
 * (bug 33447) Link to the broken image tracking category from Special:Wantedfiles.
 * (bug 27724) Add timestamp to job queue.
@@ -256,7 +259,7 @@ release and submitting bug reports.
   cssText after DOM insertion.
 * (bug 30711) When adding a new section to a page with section=new, the text is
   now always added to the current version of the page.
-* (bug 31719) Fix uploads of SVGs exported by Adobe Illustrator by expanding 
+* (bug 31719) Fix uploads of SVGs exported by Adobe Illustrator by expanding
   XML entities correctly.
 * (bug 30914) Embeddable ResourceLoader modules (user.options, user.tokens)
   should be loaded in <head> for proper dependency resolution.
@@ -302,7 +305,7 @@ release and submitting bug reports.
    on Windows
 * (bug 25095) Special:Categories should also include the first relevant item
    when "from" is filled.
-* (bug 34972) An error occurred while changing your watchlist settings for 
+* (bug 34972) An error occurred while changing your watchlist settings for
   [[Special:WhatLinksHere/Example]]
 
 === API changes in 1.19 ===
