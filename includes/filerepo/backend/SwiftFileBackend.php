@@ -56,25 +56,25 @@ class SwiftFileBackend extends FileBackendStore {
 	/**
 	 * @see FileBackendStore::__construct()
 	 * Additional $config params include:
-	 *    swiftAuthUrl       : Swift authentication server URL
-	 *    swiftUser          : Swift user used by MediaWiki (account:username)
-	 *    swiftKey           : Swift authentication key for the above user
-	 *    swiftAuthTTL       : Swift authentication TTL (seconds)
-	 *    swiftAnonUser      : Swift user used for end-user requests (account:username).
-	 *                         If set, then views of public containers are assumed to go
-	 *                         through this user. If not set, then public containers are
-	 *                         accessible to unauthenticated requests via ".r:*" in the ACL.
-	 *    swiftUseCDN        : Whether a Cloud Files Content Delivery Network is set up
-	 *    swiftCDNExpiry     : How long (in seconds) to store content in the CDN.
-	 *                         If files may likely change, this should probably not exceed
-	 *                         a few days. For example, deletions may take this long to apply.
-	 *                         If object purging is enabled, however, this is not an issue.
-	 *    swiftCDNPurgable   : Whether object purge requests are allowed by the CDN.
-	 *    shardViaHashLevels : Map of container names to sharding config with:
-	 *                         'base'   : base of hash characters, 16 or 36
-	 *                         'levels' : the number of hash levels (and digits)
-	 *                         'repeat' : hash subdirectories are prefixed with all the
-	 *                                    parent hash directory names (e.g. "a/ab/abc")
+	 *   - swiftAuthUrl       : Swift authentication server URL
+	 *   - swiftUser          : Swift user used by MediaWiki (account:username)
+	 *   - swiftKey           : Swift authentication key for the above user
+	 *   - swiftAuthTTL       : Swift authentication TTL (seconds)
+	 *   - swiftAnonUser      : Swift user used for end-user requests (account:username).
+	 *                          If set, then views of public containers are assumed to go
+	 *                          through this user. If not set, then public containers are
+	 *                          accessible to unauthenticated requests via ".r:*" in the ACL.
+	 *   - swiftUseCDN        : Whether a Cloud Files Content Delivery Network is set up
+	 *   - swiftCDNExpiry     : How long (in seconds) to store content in the CDN.
+	 *                          If files may likely change, this should probably not exceed
+	 *                          a few days. For example, deletions may take this long to apply.
+	 *                          If object purging is enabled, however, this is not an issue.
+	 *   - swiftCDNPurgable   : Whether object purge requests are allowed by the CDN.
+	 *   - shardViaHashLevels : Map of container names to sharding config with:
+	 *                             - base   : base of hash characters, 16 or 36
+	 *                             - levels : the number of hash levels (and digits)
+	 *                             - repeat : hash subdirectories are prefixed with all the
+	 *                                        parent hash directory names (e.g. "a/ab/abc")
 	 */
 	public function __construct( array $config ) {
 		parent::__construct( $config );
@@ -1052,15 +1052,16 @@ class SwiftFileBackend extends FileBackendStore {
 	 *
 	 * $readGrps is a list of the possible criteria for a request to have
 	 * access to read a container. Each item is one of the following formats:
-	 *   account:user       - Grants access if the request is by the given user
-	 *   .r:<regex>         - Grants access if the request is from a referrer host that
-	 *                        matches the expression and the request is not for a listing.
-	 *                        Setting this to '*' effectively makes a container public.
-	 *   .rlistings:<regex> - Grants access if the request is from a referrer host that
-	 *                        matches the expression and the request for a listing.
+	 *   - account:user       : Grants access if the request is by the given user
+	 *   - .r:<regex>         : Grants access if the request is from a referrer host that
+	 *                          matches the expression and the request is not for a listing.
+	 *                          Setting this to '*' effectively makes a container public.
+	 *   - .rlistings:<regex> : Grants access if the request is from a referrer host that
+	 *                          matches the expression and the request for a listing.
+	 * 
 	 * $writeGrps is a list of the possible criteria for a request to have
 	 * access to write to a container. Each item is of the following format:
-	 *   account:user       - Grants access if the request is by the given user
+	 *   - account:user       : Grants access if the request is by the given user
 	 *
 	 * @see http://swift.openstack.org/misc.html#acls
 	 *

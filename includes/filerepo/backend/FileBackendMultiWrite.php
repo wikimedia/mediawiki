@@ -55,18 +55,18 @@ class FileBackendMultiWrite extends FileBackend {
 	 * Locking, journaling, and read-only checks are handled by the proxy backend.
 	 *
 	 * Additional $config params include:
-	 *     'backends'    : Array of backend config and multi-backend settings.
-	 *                     Each value is the config used in the constructor of a
-	 *                     FileBackendStore class, but with these additional settings:
-	 *                         'class'         : The name of the backend class
-	 *                         'isMultiMaster' : This must be set for one backend.
-	 *                         'template:      : If given a backend name, this will use
-	 *                                           the config of that backend as a template.
-	 *                                           Values specified here take precedence.
-	 *     'syncChecks'  : Integer bitfield of internal backend sync checks to perform.
-	 *                     Possible bits include the FileBackendMultiWrite::CHECK_* constants.
-	 *                     There are constants for SIZE, TIME, and SHA1.
-	 *                     The checks are done before allowing any file operations.
+	 *   - backends   : Array of backend config and multi-backend settings.
+	 *                  Each value is the config used in the constructor of a
+	 *                  FileBackendStore class, but with these additional settings:
+	 *                    - class         : The name of the backend class
+	 *                    - isMultiMaster : This must be set for one backend.
+	 *                    - template:     : If given a backend name, this will use
+	 *                                      the config of that backend as a template.
+	 *                                      Values specified here take precedence.
+	 *   - syncChecks : Integer bitfield of internal backend sync checks to perform.
+	 *                  Possible bits include the FileBackendMultiWrite::CHECK_* constants.
+	 *                  There are constants for SIZE, TIME, and SHA1.
+	 *                  The checks are done before allowing any file operations.
 	 * @param $config Array
 	 * @throws MWException
 	 */
@@ -78,7 +78,7 @@ class FileBackendMultiWrite extends FileBackend {
 		foreach ( $config['backends'] as $index => $config ) {
 			if ( isset( $config['template'] ) ) {
 				// Config is just a modified version of a registered backend's.
-				// This should only be used when that config is used only be this backend.
+				// This should only be used when that config is used only by this backend.
 				$config = $config + FileBackendGroup::singleton()->config( $config['template'] );
 			}
 			$name = $config['name'];

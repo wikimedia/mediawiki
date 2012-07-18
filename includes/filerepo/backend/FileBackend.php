@@ -259,8 +259,8 @@ abstract class FileBackend {
 	 * will reflect each operation attempted.
 	 *
 	 * The status will be "OK" unless:
-	 *     a) unexpected operation errors occurred (network partitions, disk full...)
-	 *     b) significant operation errors occured and 'force' was not set
+	 *   - a) unexpected operation errors occurred (network partitions, disk full...)
+	 *   - b) significant operation errors occured and 'force' was not set
 	 *
 	 * @param $ops Array List of operations to execute in order
 	 * @param $opts Array Batch operation options
