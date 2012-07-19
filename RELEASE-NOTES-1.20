@@ -25,6 +25,11 @@ upgrade PHP if you have not done so prior to upgrading MediaWiki.
 * Removed f-prot support from $wgAntivirusSetup.
 * $wgDBerrorLogInUTC to log error in $wgDBerrorLog using an UTC date instead
   of the wiki timezone set by $wgLocalTimezone.
+* $wgPasswordHash will set the name of the hashing algorithm to use for passwords.
+  Default is PBKDF2, but MWSalted or MWOldCrypt can be used to restore old-style hashing.
+* $wgPasswordHashOptions sets the parameters for password hashing. In old MediaWiki
+  hashes, the salt size can be changed. In PBKDF2, the iterations, key length, salt length,
+  and underlying hash function can be changed.
 
 === New features in 1.20 ===
 * Added TitleIsAlwaysKnown hook which gets called when determining if a page exists.
@@ -97,6 +102,8 @@ upgrade PHP if you have not done so prior to upgrading MediaWiki.
 * (bug 36783) Implement jQuery Promise interface in mediawiki.api module.
 * Make dates in sortable tables sort according to the page content language
   instead of the site content language
+* (bug 28419) A new pluggable password hashing system has been added. The new default
+  password hashing algorithm is PBKDF2.
 
 === Bug fixes in 1.20 ===
 * (bug 30245) Use the correct way to construct a log page title.

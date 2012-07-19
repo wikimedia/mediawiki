@@ -3394,6 +3394,23 @@ $wgPasswordSalt = true;
 $wgMinimalPasswordLength = 1;
 
 /**
+ * Default password hashing class to use.
+ */
+$wgPasswordHash = 'PBKDF2';
+
+/**
+ * Options for generating password hashes.
+ */
+$wgPasswordHashOptions = array(
+	'PBKDF2' => array(
+		'hash' => 'sha256',
+		'iterations' => 100000,
+		'saltbits' => 64 ),
+	'MWSalted' => array(
+		'saltbits' => 64 ),
+);
+
+/**
  * Whether to allow password resets ("enter some identifying data, and we'll send an email
  * with a temporary password you can use to get back into the account") identified by
  * various bits of data.  Setting all of these to false (or the whole variable to false)
