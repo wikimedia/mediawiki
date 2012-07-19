@@ -529,10 +529,6 @@ class ApiEditPage extends ApiBase {
 		);
 	}
 
-	public function needsToken() {
-		return true;
-	}
-
 	public function getTokenSalt() {
 		return '';
 	}
