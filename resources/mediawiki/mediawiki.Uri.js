@@ -105,6 +105,8 @@
 		 * @constructor
 		 * @param {Object|String} URI string, or an Object with appropriate properties (especially another URI object to clone).
 		 * Object must have non-blank 'protocol', 'host', and 'path' properties.
+		 * This parameter is optional. If omitted (or set to undefined, null or empty string), then an object will be created
+		 * for the default uri of this constructor (e.g. document.location for mw.Uri in MediaWiki core).
 		 * @param {Object|Boolean} Object with options, or (backwards compatibility) a boolean for strictMode
 		 * - strictMode {Boolean} Trigger strict mode parsing of the url. Default: false
 		 * - overrideKeys {Boolean} Wether to let duplicate query parameters override eachother (true) or automagically
@@ -117,7 +119,7 @@
 				overrideKeys: false
 			}, options );
 
-			if ( uri !== undefined && uri !== null || uri !== '' ) {
+			if ( uri !== undefined && uri !== null && uri !== '' ) {
 				if ( typeof uri === 'string' ) {
 					this.parse( uri, options );
 				} else if ( typeof uri === 'object' ) {
@@ -137,6 +139,9 @@
 						this.query = {};
 					}
 				}
+			} else {
+				// If we didn't get a URI in the constructor, use the default one.
+				return defaultUri.clone();
 			}
 
 			// protocol-relative URLs

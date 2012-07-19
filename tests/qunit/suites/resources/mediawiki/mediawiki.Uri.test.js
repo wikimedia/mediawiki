@@ -344,27 +344,7 @@ test( 'Handle protocol-relative URLs', function () {
 
 test( 'Bad calls', function () {
 	var uri;
-	expect( 5 );
-
-	raises(
-		function () {
-			new mw.Uri();
-		},
-		function ( e ) {
-			return e.message === 'Bad constructor arguments';
-		},
-		'throw error on no arguments to constructor'
-	);
-
-	raises(
-		function () {
-			new mw.Uri( '' );
-		},
-		function ( e ) {
-			return e.message === 'Bad constructor arguments';
-		},
-		'throw error on empty string as argument to constructor'
-	);
+	expect( 3 );
 
 	raises(
 		function () {
@@ -414,4 +394,24 @@ test( 'bug 35658', function () {
 	href = uri.toString();
 	equal( href, testProtocol + testServer + ':' + testPort + testPath, 'Root-relative URL gets host, protocol, and port supplied' );
 
+} );
+
+QUnit.test( 'Constructor falls back to default location', function (assert) {
+	var testuri, MyUri, uri;
+	QUnit.expect( 4 );
+
+	testuri = 'http://example.org/w/index.php';
+	MyUri = mw.UriRelative( testuri );
+
+	uri = new MyUri();
+	assert.equal( uri.toString(), testuri, 'no arguments' );
+
+	uri = new MyUri( undefined );
+	assert.equal( uri.toString(), testuri, 'undefined' );
+
+	uri = new MyUri( null );
+	assert.equal( uri.toString(), testuri, 'null' );
+
+	uri = new MyUri( '' );
+	assert.equal( uri.toString(), testuri, 'empty string' );
 } );
