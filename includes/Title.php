@@ -3474,6 +3474,10 @@ class Title {
 			$wgUser->spreadAnyEditBlock();
 			return $err;
 		}
+		// Check suppressredirect permission
+		if ( $auth && !$wgUser->isAllowed( 'suppressredirect' ) ) {
+			$createRedirect = true;
+		}
 
 		// If it is a file, move it first.
 		// It is done before all other moving stuff is done because it's hard to revert.
@@ -3585,7 +3589,7 @@ class Title {
 			$logType = 'move';
 		}
 
-		$redirectSuppressed = !$createRedirect && $wgUser->isAllowed( 'suppressredirect' );
+		$redirectSuppressed = !$createRedirect;
 
 		$logEntry = new ManualLogEntry( 'move', $logType );
 		$logEntry->setPerformer( $wgUser );
