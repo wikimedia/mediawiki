@@ -661,6 +661,9 @@ $image: File
 &$params: Array of parameters
 &$checkImageAreaHookResult: null, set to true or false to override the $wgMaxImageArea check result
 
+'PasswordHashInit': called by Hash::init the first time a password hash is requested to initialize registration of hash functions.
+&$default: The class name for the default hash algorithm.
+
 'PerformRetroactiveAutoblock': called before a retroactive autoblock is applied to a user
 $block: Block object (which is set to be autoblocking)
 &$blockIds: Array of block IDs of the autoblock

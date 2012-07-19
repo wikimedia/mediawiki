@@ -876,7 +876,8 @@ class User {
 		$this->mId = 0;
 		$this->mName = $name;
 		$this->mRealName = '';
-		$this->mPassword = $this->mNewpassword = '';
+		$this->mPassword = new Password();
+		$this->mNewpassword = new Password();
 		$this->mNewpassTime = null;
 		$this->mEmail = '';
 		$this->mOptionOverrides = null;
@@ -1096,8 +1097,20 @@ class User {
 		}
 
 		if ( isset( $row->user_password ) ) {
-			$this->mPassword = $row->user_password;
-			$this->mNewpassword = $row->user_newpassword;
+			if( preg_match( '/^[0-9a-f]{32}$/', $row->user_password ) ) {
+				// Old-style hash
+				global $wgPasswordSalt;
+				if( $wgPasswordSalt ) {
+					$password = ":A:{$this->mId}:{$row->user_password}";
+				} else {
+					$password = ":A:{$row->user_password}";
+				}
+			} else {
+				$password = $row->user_password;
+			}
+		
+			$this->mPassword = new Password( $password );
+			$this->mNewpassword = new Password( $row->user_newpassword );
 			$this->mNewpassTime = wfTimestampOrNull( TS_MW, $row->user_newpass_time );
 			$this->mEmail = $row->user_email;
 			if ( isset( $row->user_options ) ) {
@@ -2030,13 +2043,11 @@ class User {
 		$this->load();
 		$this->setToken();
 
-		if( $str === null ) {
-			// Save an invalid hash...
-			$this->mPassword = '';
-		} else {
-			$this->mPassword = self::crypt( $str );
+		$this->mPassword = new Password();
+		if( $str !== null ) {
+			$this->mPassword->update( $str );
 		}
-		$this->mNewpassword = '';
+		$this->mNewpassword = new Password();
 		$this->mNewpassTime = null;
 	}
 
@@ -2076,7 +2087,7 @@ class User {
 	 */
 	public function setNewpassword( $str, $throttle = true ) {
 		$this->load();
-		$this->mNewpassword = self::crypt( $str );
+		$this->mNewpassword->update( $str );
 		if ( $throttle ) {
 			$this->mNewpassTime = wfTimestampNow();
 		}
@@ -2879,8 +2890,8 @@ class User {
 		$dbw->update( 'user',
 			array( /* SET */
 				'user_name' => $this->mName,
-				'user_password' => $this->mPassword,
-				'user_newpassword' => $this->mNewpassword,
+				'user_password' => (string) $this->mPassword,
+				'user_newpassword' => (string) $this->mNewpassword,
 				'user_newpass_time' => $dbw->timestampOrNull( $this->mNewpassTime ),
 				'user_real_name' => $this->mRealName,
 				'user_email' => $this->mEmail,
@@ -2983,8 +2994,8 @@ class User {
 			array(
 				'user_id' => $seqVal,
 				'user_name' => $this->mName,
-				'user_password' => $this->mPassword,
-				'user_newpassword' => $this->mNewpassword,
+				'user_password' => (string) $this->mPassword,
+				'user_newpassword' => (string) $this->mNewpassword,
 				'user_newpass_time' => $dbw->timestampOrNull( $this->mNewpassTime ),
 				'user_email' => $this->mEmail,
 				'user_email_authenticated' => $dbw->timestampOrNull( $this->mEmailAuthenticated ),
@@ -3181,15 +3192,21 @@ class User {
 			/* Auth plugin doesn't allow local authentication for this user name */
 			return false;
 		}
-		if ( self::comparePasswords( $this->mPassword, $password, $this->mId ) ) {
+		if ( $this->mPassword->compare( $password ) ) {
+			if( $this->mPassword->needsUpdate() ) {
+				$this->mPassword->update( $password );
+				$this->saveSettings();
+			}
 			return true;
 		} elseif ( $wgLegacyEncoding ) {
 			# Some wikis were converted from ISO 8859-1 to UTF-8, the passwords can't be converted
 			# Check for this with iconv
 			$cp1252Password = iconv( 'UTF-8', 'WINDOWS-1252//TRANSLIT', $password );
-			if ( $cp1252Password != $password &&
-				self::comparePasswords( $this->mPassword, $cp1252Password, $this->mId ) )
-			{
+			if ( $cp1252Password != $password && $this->mPassword->compare( $cp1252Password ) ) {
+        	                if( $this->mPassword->needsUpdate() ) {
+	                                $this->mPassword->update( $cp1252Password );
+                                	$this->saveSettings();
+                        	}
 				return true;
 			}
 		}
@@ -3208,7 +3225,7 @@ class User {
 		global $wgNewPasswordExpiry;
 
 		$this->load();
-		if( self::comparePasswords( $this->mNewpassword, $plaintext, $this->getId() ) ) {
+		if( $this->mNewpassword->compare( $plaintext ) ) {
 			if ( is_null( $this->mNewpassTime ) ) {
 				return true;
 			}
@@ -3898,46 +3915,19 @@ class User {
 	}
 
 	/**
-	 * Make an old-style password hash
-	 *
-	 * @param $password String Plain-text password
-	 * @param $userId String User ID
-	 * @return String Password hash
-	 */
-	public static function oldCrypt( $password, $userId ) {
-		global $wgPasswordSalt;
-		if ( $wgPasswordSalt ) {
-			return md5( $userId . '-' . md5( $password ) );
-		} else {
-			return md5( $password );
-		}
-	}
-
-	/**
 	 * Make a new-style password hash
 	 *
 	 * @param $password String Plain-text password
 	 * @param bool|string $salt Optional salt, may be random or the user ID.
 
 	 *                     If unspecified or false, will generate one automatically
+	 * @deprecated
 	 * @return String Password hash
 	 */
 	public static function crypt( $password, $salt = false ) {
-		global $wgPasswordSalt;
-
-		$hash = '';
-		if( !wfRunHooks( 'UserCryptPassword', array( &$password, &$salt, &$wgPasswordSalt, &$hash ) ) ) {
-			return $hash;
-		}
-
-		if( $wgPasswordSalt ) {
-			if ( $salt === false ) {
-				$salt = MWCryptRand::generateHex( 8 );
-			}
-			return ':B:' . $salt . ':' . md5( $salt . '-' . md5( $password ) );
-		} else {
-			return ':A:' . md5( $password );
-		}
+		$password = new Password();
+		$password->update( $password );
+		return $password;
 	}
 
 	/**
@@ -3951,24 +3941,8 @@ class User {
 	 * @return Boolean
 	 */
 	public static function comparePasswords( $hash, $password, $userId = false ) {
-		$type = substr( $hash, 0, 3 );
-
-		$result = false;
-		if( !wfRunHooks( 'UserComparePasswords', array( &$hash, &$password, &$userId, &$result ) ) ) {
-			return $result;
-		}
-
-		if ( $type == ':A:' ) {
-			# Unsalted
-			return md5( $password ) === substr( $hash, 3 );
-		} elseif ( $type == ':B:' ) {
-			# Salted
-			list( $salt, $realHash ) = explode( ':', substr( $hash, 3 ), 2 );
-			return md5( $salt.'-'.md5( $password ) ) === $realHash;
-		} else {
-			# Old-style
-			return self::oldCrypt( $password, $userId ) === $hash;
-		}
+		$password = new Password( $hash );
+		return $password->compare( $password );
 	}
 
 	/**
