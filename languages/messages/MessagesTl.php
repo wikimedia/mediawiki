@@ -3818,6 +3818,7 @@ O kaya, maaari mong gamitin ang maginhawang pormularyo sa ibaba. Ang iyong pagpu
 'api-error-file-too-large' => 'Napakalaki ng talaksang ipinasa mo.',
 'api-error-filename-tooshort' => 'Napakaiksi ng pangalan ng talaksan.',
 'api-error-filetype-banned' => 'Ipinagbabawal ang ganitong uri ng talaksan.',
+'api-error-filetype-banned-type'=> 'Ang $1 {{PLURAL:$4|ay isang hindi pinapahintulutang uri ng talaksan|ay mga hindi pinapahintulutang mga uri ng talaksan}}. Ang mga pinapayagang {{PLURAL:$3|uri ng talaksan ay ang|mga uri ng talaksan ay ang mga}} $2.',
 'api-error-filetype-missing' => 'Kulang ng karugtong ang talaksan.',
 'api-error-hookaborted' => 'Ang pagbabagong sinubok mong gawin ay hindi itinuloy ng isang kawil ng dugtong.',
 'api-error-http' => 'Panloob na kamalian: hindi makaugnay sa tagahain.',

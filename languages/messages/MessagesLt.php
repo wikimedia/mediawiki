@@ -3736,6 +3736,7 @@ Kitu atveju, galite naudotis žemiau esančia paprastesne forma. Jūsų komentar
 'api-error-file-too-large' => 'Failą, kurį pateikėte buvo per didelis.',
 'api-error-filename-tooshort' => 'Failo vardas yra per trumpas.',
 'api-error-filetype-banned' => 'Šis failų tipas yra uždraustas.',
+'api-error-filetype-banned-type'=> "$1 nėra {{PLURAL:$4|leistinas failo tipas|leistini failo tipai}}. {{PLURAL:$3|Leistinas failų tipas|Leistini failų tipai}} yra $2.",
 'api-error-filetype-missing' => 'Failas neturi galūnės.',
 'api-error-hookaborted' => 'Pakeitimą, kurį bandėte atlikti, nutraukė priedas.',
 'api-error-http' => 'Vidinė klaida: nepavyko prisijungti prie serverio.',

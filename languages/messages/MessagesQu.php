@@ -3771,6 +3771,7 @@ Mana chayqa, kay qatiqpi kaq hunt'ana p'anqatam llamk'achiyta atinki. Willapuyni
 'api-error-file-too-large' => 'Kachasqayki willañiqiqa nisyu hatunmi.',
 'api-error-filename-tooshort' => 'Kay willañiqi sutiqa nisyu pisillam.',
 'api-error-filetype-banned' => 'Kay willañiqi layaqa manam saqillasqachu.',
+'api-error-filetype-banned-type'=> '$1 nisqaqa manam saqillasqachu willañiqi {{PLURAL:$4|laya|layakuna}}.  Saqillasqa willañiqi {{PLURAL:$3|layaqa|layakunaqa}} kaymi: $2.',
 'api-error-filetype-missing' => "Kay willañiqi sutiqa manam k'askaqniyuqchu.",
 'api-error-hookaborted' => "Wakinchaykachasqaykitaqa mast'ari ch'iwinam puchukachirqan.",
 'api-error-http' => "Ukhupi pantasqa: Manam sirwiqwan t'inkinakuyta atinichu.",

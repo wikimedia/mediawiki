@@ -3835,6 +3835,7 @@ Le immagini vengono mostrate alla massima risoluzione disponibile, per gli altri
 'api-error-file-too-large' => 'Il file selezionato era troppo grande.',
 'api-error-filename-tooshort' => 'Il nome del file è troppo breve.',
 'api-error-filetype-banned' => 'Questo tipo di file non è accettato.',
+'api-error-filetype-banned-type'=> '$1 {{PLURAL:$4|non è un tipo di file consentito|non sono tipi di file consentiti}}. {{PLURAL:$3|Il tipo di file consentito è|I tipi di file consentiti sono}} $2.',
 'api-error-filetype-missing' => "Al file manca l'estensione.",
 'api-error-hookaborted' => "La modifica hai tentato di fare è stata interrotta da un passaggio dell'estensione.",
 'api-error-http' => 'Errore interno: impossibile connettersi al server.',

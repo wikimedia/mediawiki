@@ -4031,6 +4031,7 @@ Anderenfalls kannst du auch das untenstehende einfache Formular nutzen. Dein Kom
 'api-error-file-too-large' => 'Die hochgeladene Datei war zu groß.',
 'api-error-filename-tooshort' => 'Der Dateiname ist zu kurz.',
 'api-error-filetype-banned' => 'Diese Dateiendung ist gesperrt.',
+'api-error-filetype-banned-type'=> "$1 {{PLURAL:$4|ist ein nicht erlaubter Dateityp|sind nicht erlaubte Dateitypen}}. {{PLURAL:$3|Erlaubter Dateityp ist|Erlaubte Dateitypen sind}} $2.",
 'api-error-filetype-missing' => 'Die hochzuladende Datei hat keine Dateiendung.',
 'api-error-hookaborted' => 'Die von dir vorgesehene Anpassung kann nicht durchgeführt werden (Unterbrechung durch eine Programmschnittstelle).',
 'api-error-http' => 'Interner Fehler: Es konnte keine Verbindung zum Server hergestellt werden.',

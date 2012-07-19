@@ -4009,6 +4009,7 @@ Jinak můžete využít jednoduchý formulář níže. Váš komentář bude př
 'api-error-file-too-large' => 'Načtený soubor je příliš velký.',
 'api-error-filename-tooshort' => 'Název souboru je příliš krátký.',
 'api-error-filetype-banned' => 'Tento typ souboru je zakázán.',
+'api-error-filetype-banned-type'=> "$1 {{PLURAL:$4|je nedovolený formát souborů|jsou nedovolené formáty souborů}}. {{PLURAL:$3|Povolený formát souborů je|Povolené formáty souborů jsou}} $2.",
 'api-error-filetype-missing' => 'Tento soubor nemá příponu.',
 'api-error-hookaborted' => 'Zamýšlená úprava byla zakázána rozšiřujícím modulem.',
 'api-error-http' => 'Vnitřní chyba: nepodařilo se připojit k serveru.',

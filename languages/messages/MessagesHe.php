@@ -4077,6 +4077,7 @@ $5
 'api-error-file-too-large' => 'הקובץ ששלחתם היה גדול מדי.',
 'api-error-filename-tooshort' => 'שם הקובץ קצר מדי.',
 'api-error-filetype-banned' => 'סוג קובץ זה חסום.',
+'api-error-filetype-banned-type'=> '$1 {{PLURAL:$4|הוא סוג קובץ אסור להעלאה|הם סוגי קבצים אסורים להעלאה}}. {{PLURAL:$3|סוג הקובץ המותר הוא|סוגי הקבצים המותרים הם}} $2.',
 'api-error-filetype-missing' => 'חסרה סיומת לשם הקובץ.',
 'api-error-hookaborted' => 'השינוי שניסיתם לעשות נחסם על ידי הרחבה.',
 'api-error-http' => 'שגיאה פנימית: לא ניתן להתחבר לשרת.',

@@ -3909,6 +3909,7 @@ A képek teljes méretben jelennek meg, más fájltípusok közvetlenül a hozz�
 'api-error-file-too-large' => 'Az általad elküldött fájl túl nagy.',
 'api-error-filename-tooshort' => 'A fájlnév túl rövid.',
 'api-error-filetype-banned' => 'Tiltott fájltípus.',
+'api-error-filetype-banned-type'=> "A következő {{PLURAL:$4|fájltípus nem engedélyezett|fájltípusok nem engedélyezettek}}: $1 Engedélyezett {{PLURAL:$3|típus|típusok}}: $2.",
 'api-error-filetype-missing' => 'Hiányzik a fájl kiterjesztése.',
 'api-error-hookaborted' => 'Az általad kezdeményezett módosítást nem lehet végrehajtani. (Egy bővítmény megakadályozta.)',
 'api-error-http' => 'Belső hiba: nem sikerült kapcsolódni a kiszolgálóhoz.',
