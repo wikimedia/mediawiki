@@ -105,6 +105,7 @@
 		 * @constructor
 		 * @param {Object|String} URI string, or an Object with appropriate properties (especially another URI object to clone).
 		 * Object must have non-blank 'protocol', 'host', and 'path' properties.
+		 * If this parameter is not provided, or if it is null or empty string (''), the new URI object will represent the current window location.
 		 * @param {Object|Boolean} Object with options, or (backwards compatibility) a boolean for strictMode
 		 * - strictMode {Boolean} Trigger strict mode parsing of the url. Default: false
 		 * - overrideKeys {Boolean} Wether to let duplicate query parameters override eachother (true) or automagically
@@ -117,7 +118,7 @@
 				overrideKeys: false
 			}, options );
 
-			if ( uri !== undefined && uri !== null || uri !== '' ) {
+			if ( uri !== undefined && uri !== null && uri !== '' ) {
 				if ( typeof uri === 'string' ) {
 					this.parse( uri, options );
 				} else if ( typeof uri === 'object' ) {
@@ -137,6 +138,9 @@
 						this.query = {};
 					}
 				}
+			} else {
+				// If we didn't get a URI in the constructor, use the default one.
+				return defaultUri.clone();
 			}
 
 			// protocol-relative URLs
