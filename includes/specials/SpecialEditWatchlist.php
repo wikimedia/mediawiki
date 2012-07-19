@@ -120,13 +120,19 @@ class SpecialEditWatchlist extends UnlistedSpecialPage {
 
 			case self::EDIT_NORMAL:
 			default:
-				$out->setPageTitle( $this->msg( 'watchlistedit-normal-title' ) );
-				$form = $this->getNormalForm();
-				if( $form->show() ){
-					$out->addHTML( $this->successMessage );
-					$out->returnToMain();
-				} elseif ( $this->toc !== false ) {
-					$out->prependHTML( $this->toc );
+				if( $this->getWatchlistInfo() == array() ){
+					$out->setPageTitle( $this->msg( 'watchlistedit-normal-title' ) );
+					$out->addHTML( $this->msg('watchlistedit-noitems') );
+				}
+				else {
+					$out->setPageTitle( $this->msg( 'watchlistedit-normal-title' ) );
+					$form = $this->getNormalForm();
+					if( $form->show() ){
+						$out->addHTML( $this->successMessage );
+						$out->returnToMain();
+					} elseif ( $this->toc !== false ) {
+						$out->prependHTML( $this->toc );
+					}
 				}
 				break;
 		}
@@ -455,8 +461,15 @@ class SpecialEditWatchlist extends UnlistedSpecialPage {
 		$group = intval( $data['group'] );
 		unset($data['group']);
 		if( $group > -1 ){
-			foreach( $data as $titles ) {
-				WatchlistGroup::regroupTitles( $titles, $group, $this->getContext() );
+			foreach( $data as $ns => $title_strings ) {
+				$nsid = intval( str_replace( 'TitlesNs', '', $ns ) );
+				$titles = array();
+				foreach( $title_strings as $t ){
+					$titles[] = Title::newFromText( $t );
+				}
+				if( count( $titles ) > 0 ){
+					WatchlistGroup::regroupTitles( $titles, $group, $this->getContext()->getUser()->getId() );
+				}
 			}
 			$this->successMessage = $this->msg( 'watchlistedit-normal-donegrouping' )->escaped();
 			return true;
@@ -530,7 +543,7 @@ class SpecialEditWatchlist extends UnlistedSpecialPage {
 
 		$groups = WatchlistGroup::getGroups( $this->getContext()->getUser()->getId() );
 		foreach( $groups as &$g ){
-			$g =  $this->msg( 'watchlistedit-normal-change' )->rawParams( $g )->escaped();
+			$g =  $this->msg( 'watchlistedit-normal-change' )->rawParams( $g )->parse();
 		}
 
 		$gsOptions = array_merge( array( $this->msg( 'watchlistedit-normal-remove' )->escaped() => -1,
@@ -542,7 +555,7 @@ class SpecialEditWatchlist extends UnlistedSpecialPage {
 			'label' => $this->msg( 'watchlistedit-normal-action' )->escaped()
 		);
 
-		$form = new EditWatchlistNormalHTMLForm( $fields, $this->getContext() );
+		$form = new EditWatchlistNormalHTMLForm( $fields, $this->getContext()->getUser()->getId() );
 		$form->setTitle( $this->getTitle() );
 		$form->setSubmitTextMsg( 'watchlistedit-normal-submit' );
 		# Used message keys: 'accesskey-watchlistedit-normal-submit', 'tooltip-watchlistedit-normal-submit'

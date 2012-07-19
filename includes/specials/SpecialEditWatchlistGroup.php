@@ -79,27 +79,38 @@ class SpecialEditWatchlistGroup extends UnlistedSpecialPage {
 		$groups = WatchlistGroup::getGroups( $this->getContext()->getUser()->getId() );
 
 		// fields for each of the existing groups
-		foreach( $groups as $id => $name ) {
+		foreach( $groups as $id => $info ) {
 
 			$fields['groupaction_' . $id] = array(
 				'type' => 'select',
-				'options' => array( $this->msg('wlgroup-noaction')->parse() => 0,
-									$this->msg('wlgroup-rename')->parse() => 1,
-									$this->msg('wlgroup-delete')->parse() => -1 ),
-				'label' => $name . ':'
+				'options' => array( $this->msg( 'wlgroup-noaction' )->parse() => 0,
+									$this->msg( 'wlgroup-rename' )->parse() => 1,
+									$this->msg( 'wlgroup-changeperm' )->parse() => 2,
+									$this->msg( 'wlgroup-delete' )->parse() => -1 ),
+				'label' => $info[0] . ':'
 			);
 
 			$fields['grouprename_' . $id] = array(
 				'type' => 'text',
-				'label' => $this->msg( 'wlgroup-renameto' )->rawParams( $name )->parse(),
+				'label' => $this->msg( 'wlgroup-renameto' )->rawParams( $info[0] )->parse(),
 				'size' => '15'
 			);
+
+			$fields['groupperm_' . $id] = array(
+				'type' => 'select',
+				'options' => array( $this->msg( 'wlgroup-permprivate' )->parse() => 0,
+									$this->msg( 'wlgroup-permpublic' )->parse() => 1 ),
+				'default' => $info[1],
+				'label' => $this->msg( 'wlgroup-perm' )->parse()
+			);			
+
+			// leave space
+			$fields['blank' . $id] = array(
+					'type' => 'info',
+					'label' => '&nbsp;'
+			);
 		}
-		// leave space
-		$fields['blank'] = array(
-				'type' => 'info',
-				'label' => '&nbsp;'
-		);
+
 		// field for new group
 		$fields['groupnew'] = array(
 				'type' => 'text',
@@ -129,13 +140,13 @@ class SpecialEditWatchlistGroup extends UnlistedSpecialPage {
 			// for now, group names are limited to a-z, 0-9 - discuss tech. restrictions
 			$name = WatchlistGroup::checkValidGroupName( $data['groupnew'] );
 			if( $name ){
-				$status = WatchlistGroup::createGroup( $name, $this->getContext() );
+				$status = WatchlistGroup::createGroup( $name, $this->getContext()->getUser()->getId() );
 			}
 			else{
 				$status = false;
 			}
 		}
-		// rename or delete groups if requested
+		// rename, change permissions, or delete groups if requested
 		foreach( $data as $key => $val ){
 			if( substr( $key, 0, 12 ) == 'groupaction_' && intval( $val ) != 0 ){
 				$group = intval( substr( $key, 12 ) );
@@ -143,7 +154,17 @@ class SpecialEditWatchlistGroup extends UnlistedSpecialPage {
 				if( intval( $val ) === 1 ){
 					$name = WatchlistGroup::checkValidGroupName( $data['grouprename_' . $group] );
 					if($name){
-						$status = WatchlistGroup::renameGroup( $group, $name, $this->getContext() );
+						$status = WatchlistGroup::renameGroup( $group, $name, $this->getContext()->getUser()->getId() );
+					}
+					else{
+						$status = false;
+					}
+				}
+				// change perms
+				if( intval( $val ) === 2 ){
+					$permval = intval( $data['groupperm_' . $group] );
+					if( $permval === 0 || $permval === 1 ){
+						$status = WatchlistGroup::changePerm( $group, $permval, $this->getContext()->getUser()->getId() );
 					}
 					else{
 						$status = false;
@@ -151,7 +172,7 @@ class SpecialEditWatchlistGroup extends UnlistedSpecialPage {
 				}
 				// delete
 				else if( intval( $val ) === -1 ){
-					$status = WatchlistGroup::deleteGroup( $group, $this->getContext() );
+					$status = WatchlistGroup::deleteGroup( $group, $this->getContext()->getUser()->getId() );
 				}
 			}
 		}

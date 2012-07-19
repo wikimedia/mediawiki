@@ -2831,6 +2831,10 @@ Future changes to this page and its associated talk page will be listed there, a
 'wlnote'               => "Below {{PLURAL:$1|is the last change|are the last '''$1''' changes}} in the last {{PLURAL:$2|hour|'''$2''' hours}}, as of $3, $4.",
 'wlshowlast'           => 'Show last $1 hours $2 days $3',
 'watchlist-options'    => 'Watchlist options',
+'wlfilter-permdenied'  => 'You do not have sufficient privileges to view these watchlist items.',
+'wlfilter'             => "Showing only pages in $1's watchlist.",
+'wlfilter-group'       => 'Pages belong to the group "$1".',
+
 
 'watchlist-selection'  => 'Watchlist selection',
 'watchlist-user'       => 'User:',
@@ -4525,11 +4529,13 @@ Try normal preview.',
 'editwatchlist-summary'             => '', # do not translate or duplicate this message to other languages
 'watchlistedit-numitems'            => 'Your watchlist contains {{PLURAL:$1|1 title|$1 titles}}, excluding talk pages.',
 'watchlistedit-noitems'             => 'Your watchlist contains no titles.',
+'watchlistedit-nogroup'             => 'None',
 'watchlistedit-normal-title'        => 'Edit watchlist',
 'watchlistedit-normal-legend'       => 'Edit titles in watchlist',
 'watchlistedit-normal-explain'      => 'Titles on your watchlist are shown below.
 To edit a title, check the box next to it, select an action to regroup or remove the titles, and click "{{int:Watchlistedit-normal-submit}}".
 You can also [[Special:EditWatchlist/raw|edit the raw list]].',
+'watchlistedit-normal-onlygroup'    => 'Only showing watchlist titles in the "$1" group.',
 'watchlistedit-normal-ungroup'      => 'Ungroup titles',
 'watchlistedit-normal-remove'       => 'Remove titles',
 'watchlistedit-normal-change'       => 'Change group to "$1"',
@@ -4550,21 +4556,25 @@ You can also [[Special:EditWatchlist|use the standard editor]].',
 'watchlistedit-raw-removed'         => '{{PLURAL:$1|1 title was|$1 titles were}} removed:',
 
 # Watchlist group editor
-'wlgroup-title'     => 'Edit watchlist groups',
-'wlgroup-legend'    => 'Edit watchlist groups',
-'wlgroup-explain'   => 'Groups of your watchlist are shown below.
+'wlgroup-title'       => 'Edit watchlist groups',
+'wlgroup-legend'      => 'Edit watchlist groups',
+'wlgroup-explain'     => 'Groups of your watchlist are shown below.
 To rename a group, select "{{int:Wlgroup-rename}}" and fill in the new group name below the old one.
 To delete a group, select "{{int:Wlgroup-delete}}".
 To add a group, fill in the name of the new group in the last field.
 When finished, click "{{int:Wlgroup-submit}}".',
-'wlgroup-noaction'  => 'Take no action',
-'wlgroup-rename'    => 'Rename',
-'wlgroup-delete'    => 'Delete',
-'wlgroup-renameto'  => 'Rename "$1" to:',
-'wlgroup-newname'   => 'New group name:',
-'wlgroup-createnew' => 'Create a new watchlist group:',
-'wlgroup-submit'    => 'Save groups',
-'wlgroup-success'   => 'Your watchlist groups were updated successfully.',
+'wlgroup-noaction'    => 'Take no action',
+'wlgroup-rename'      => 'Rename',
+'wlgroup-changeperm'  => 'Change permission',
+'wlgroup-delete'      => 'Delete',
+'wlgroup-renameto'    => 'Rename "$1" to:',
+'wlgroup-newname'     => 'New group name:',
+'wlgroup-perm'        => 'Permission:',
+'wlgroup-permprivate' => 'Private',
+'wlgroup-permpublic'  => 'Public',
+'wlgroup-createnew'   => 'Create a new watchlist group:',
+'wlgroup-submit'      => 'Save groups',
+'wlgroup-success'     => 'Your watchlist groups were updated successfully.',
 
 # Watchlist editing tools
 'watchlisttools-view'  => 'View relevant changes',

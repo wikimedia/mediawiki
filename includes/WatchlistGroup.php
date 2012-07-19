@@ -2,7 +2,7 @@
 /**
  * Accessor and mutator for watchlist groups.
  *
- * Note that (for security) mutators require the context, while accessors just take user IDs.
+ * Note that (for security) mutators require the User object, while accessors just take user IDs.
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -24,19 +24,23 @@
 
 class WatchlistGroup {
 	/**
-	 * Gets the watchlist groups of a user
+	 * Returns a two dimensional array containing a user's watchlist groups in the following format:
+	 * array(
+	 *     id => array( name, perm )
+	 * )
+	 *
 	 * @param $user int
 	 *
-	 * @return bool
+	 * @return array
 	 */
 	public static function getGroups( $user ){
 		$dbr = wfGetDB( DB_SLAVE );
-		$res = $dbr->select( 'watchlist_groups', array( 'wg_id', 'wg_name' ),
-			array( 'wg_user' => $user), __METHOD__ 
+		$res = $dbr->select( 'watchlist_groups', array( 'wg_id', 'wg_name', 'wg_perm' ),
+			array( 'wg_user' => $user), __METHOD__
 		);
 		$groups = array();
 		foreach ( $res as $s ) {
-			$groups[$s->wg_id] = $s->wg_name;
+			$groups[$s->wg_id] = array( $s->wg_name, $s->wg_perm );
 		}
 		return $groups;
 	}
@@ -51,15 +55,15 @@ class WatchlistGroup {
 	public static function getGroupFromUserTitle( $title, $user ){
 		$dbr = wfGetDB( DB_SLAVE );
 		$res = $dbr->selectRow( 'watchlist', array( 'wl_group' ),
-			array( 'wl_title' => $title->getDBKey(), 'wl_namespace' => $title->getNamespace(), 'wl_user' => $user), __METHOD__ 
+			 array( 'wl_title' => $title->getDBkey(), 'wl_namespace' => $title->getNamespace(), 'wl_user' => $user ), __METHOD__
 		);
-		$gid = intval($res->wl_group);
+		$gid = intval( $res->wl_group );
 
 		if($gid == 0){
-			$gname = 'None';
+			$gname = wfMsg( 'watchlistedit-nogroup' );
 		} else {
 			$res = $dbr->selectRow( 'watchlist_groups', array( 'wg_name' ),
-				array( 'wg_id' => $gid ), __METHOD__ 
+				array( 'wg_id' => $gid ), __METHOD__
 			);
 			$gname = $res->wg_name;
 		}
@@ -77,10 +81,29 @@ class WatchlistGroup {
 	public static function getGroupFromName( $name, $user ){
 		$dbr = wfGetDB( DB_SLAVE );
 		$res = $dbr->selectRow( 'watchlist_groups', array( 'wg_id' ),
-			array( 'wg_name' => $name, 'wg_user' => $user), __METHOD__ 
+			array( 'wg_name' => $name, 'wg_user' => $user), __METHOD__
 		);
 		if(isset($res->wg_id)){
 			return intval($res->wg_id);
+		}
+		else{
+			return false;
+		}
+	}
+
+	/**
+	 * Gets the group name for a group ID in a user's watchlist
+	 * @param $id int
+	 *
+	 * @return String
+	 */
+	public static function getGroupNameFromID( $id ){
+		$dbr = wfGetDB( DB_SLAVE );
+		$res = $dbr->selectRow( 'watchlist_groups', array( 'wg_name' ),
+			array( 'wg_id' => $id ), __METHOD__
+		);
+		if(isset($res->wg_name)){
+			return $res->wg_name;
 		}
 		else{
 			return false;
@@ -104,29 +127,48 @@ class WatchlistGroup {
 	}
 
 	/**
-	 * Changes the group associated with titles in a watchlist
-	 * @param $titles array: strings of page names
-	 * @param $group int: the group ID of the new desired group
-	 * @param $context ContextSource
+	 * Existance/permission-checking method for watchlist groups.
+	 * @param $user int
+	 * @param $name string: the name of the new group
+	 * @param $id int: the group ID
+	 * @param $perm bool: if true, the group must also be viewable by the given user to return true
+	 *
+	 * @return bool
 	 */
-	public static function regroupTitles( $titles, $group, $context ){
+	public static function isGroup( $user, $id = 0, $perm = false ){
+		$dbw = wfGetDB( DB_SLAVE );
+		$res = $dbw->selectRow( 'watchlist_groups', array( 'wg_name', 'wg_user', 'wg_perm' ), array( 'wg_id' => $id, ), __METHOD__ );
+		return $res && ( !$perm || ( $perm && $res->wg_perm ) || $user == $res->wg_user );
+	}
+
+	/**
+	 * Mutators
+	 **/
+
+	/**
+	 * Changes the group associated with titles in a watchlist
+	 * @param $titles array: titles to be regrouped
+	 * @param $group int: the group ID of the new desired group
+	 * @param $user int
+	 */
+	public static function regroupTitles( $titles, $group, $user ){
 		$dbw = wfGetDB( DB_MASTER );
-		foreach($titles as $t){
-			$res = $dbw->update( 'watchlist', array( 'wl_group' => $group ), array( 'wl_title' => Title::newFromText($t)->getDBKey(),
-				'wl_namespace' => Title::newFromText($t)->getNamespace(), 'wl_user' => $context->getUser()->getId() ), __METHOD__ );
-		}
+		$lb = new LinkBatch( $titles );
+		$where_titles = $lb->constructSet( 'wl', $dbw );
+		$res = $dbw->update( 'watchlist', array( 'wl_group' => $group ), array( $where_titles,
+				 'wl_user' => $user ), __METHOD__ );
 	}
 
 	/**
 	 * Create a watchlist group
 	 * @param $name string: the name of the new group
-	 * @param $context ContextSource
+	 * @param $user int
 	 *
 	 * @return bool
 	 */
 	public static function createGroup( $name, $context ){
 		$dbw = wfGetDB( DB_MASTER );
-		$res = $dbw->insert( 'watchlist_groups', array( 'wg_name' => $name, 'wg_user' => $context->getUser()->getId() ), __METHOD__ );
+		$res = $dbw->insert( 'watchlist_groups', array( 'wg_name' => $name, 'wg_user' => $user ), __METHOD__ );
 		return $res;
 	}
 
@@ -134,28 +176,43 @@ class WatchlistGroup {
 	 * Rename a watchlist group
 	 * @param $group int: the group ID
 	 * @param $name string: the new name of the group
-	 * @param $context ContextSource
+	 * @param $user int
 	 *
 	 * @return bool
 	 */
 	public static function renameGroup( $group, $name, $context ){
 		$dbw = wfGetDB( DB_MASTER );
 		$res = $dbw->update( 'watchlist_groups', array( 'wg_name' => $name ),
-			array( 'wg_id' => $group, 'wg_user' => $context->getUser()->getId() ), __METHOD__ );
+			array( 'wg_id' => $group, 'wg_user' => $user ), __METHOD__ );
+		return $res;
+	}
+
+	/**
+	 * Change the permissions for a watchlist group
+	 * @param $group int: the group ID
+	 * @param $perm int: 0 (private) or 1 (public)
+	 * @param $user int
+	 *
+	 * @return bool
+	 */
+	public static function changePerm( $group, $perm, $context ){
+		$dbw = wfGetDB( DB_MASTER );
+		$res = $dbw->update( 'watchlist_groups', array( 'wg_perm' => $user ),
+			array( 'wg_id' => $group, 'wg_user' => $user ), __METHOD__ );
 		return $res;
 	}
 
 	/**
 	 * Delete a watchlist group
 	 * @param $group int: the group ID
-	 * @param $context ContextSource
+	 * @param $user int
 	 *
 	 * @return bool
 	 */
-	public static function deleteGroup( $group, $context ){
+	public static function deleteGroup( $group, $user ){
 		$dbw = wfGetDB( DB_MASTER );
 		$dbw->update( 'watchlist', array( 'wl_group' => 0 ), array( 'wl_group' => $group ), __METHOD__ );
-		$res = $dbw->delete( 'watchlist_groups', array( 'wg_id' => $group, 'wg_user' => $context->getUser()->getId() ), __METHOD__ );
+		$res = $dbw->delete( 'watchlist_groups', array( 'wg_id' => $group, 'wg_user' => $user ), __METHOD__ );
 		return $res;
 	}
 }

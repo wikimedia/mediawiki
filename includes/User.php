@@ -2626,6 +2626,7 @@ class User {
 	/**
 	 * Watch an article.
 	 * @param $title Title of the article to look at
+	 * @param $group ID of the watchlist group
 	 */
 	public function addWatch( $title, $group = 0 ) {
 		$wl = WatchedItem::fromUserTitle( $this, $title, $group );

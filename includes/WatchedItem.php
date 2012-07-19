@@ -27,7 +27,7 @@
  * @ingroup Watchlist
  */
 class WatchedItem {
-	var $mTitle, $mUser, $id, $gr, $ns, $ti;
+	var $mTitle, $mUser, $id, $group, $ns, $ti;
 	private $loaded = false, $watched, $timestamp;
 
 	/**
@@ -49,7 +49,7 @@ class WatchedItem {
 
 		$wl->ti = $title->getDBkey();
 
-		$wl->gr = $group;
+		$wl->group = $group;
 		return $wl;
 	}
 
@@ -147,7 +147,7 @@ class WatchedItem {
 		$dbw->insert( 'watchlist',
 		  array(
 			'wl_user' => $this->id,
-			'wl_group' => $this->gr,
+			'wl_group' => $this->group,
 			'wl_namespace' => MWNamespace::getSubject($this->ns),
 			'wl_title' => $this->ti,
 			'wl_notificationtimestamp' => null
@@ -158,7 +158,7 @@ class WatchedItem {
 		$dbw->insert( 'watchlist',
 		  array(
 			'wl_user' => $this->id,
-			'wl_group' => $this->gr,
+			'wl_group' => $this->group,
 			'wl_namespace' => MWNamespace::getTalk($this->ns),
 			'wl_title' => $this->ti,
 			'wl_notificationtimestamp' => null
