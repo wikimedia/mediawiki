@@ -112,6 +112,8 @@ upgrade PHP if you have not done so prior to upgrading MediaWiki.
 * (bug 37830) Added $wgRequirePasswordforEmailChange to control whether password
   confirmation is required for changing an email address or not.
 * HTMLForm mutators can now be chained (they return $this)
+* A new message, "api-error-filetype-banned-type", is available for formatting
+  API upload errors due to the file extension blacklist.
 
 === Bug fixes in 1.20 ===
 * (bug 30245) Use the correct way to construct a log page title.
@@ -225,6 +227,7 @@ upgrade PHP if you have not done so prior to upgrading MediaWiki.
 * Watchlist notification timestamp may be queried by page and may be updated via the API.
 * (bug 38904) prop=revisions&rvstart=... no longer blows up when continuing.
 * (bug 39032) ApiQuery generates help in constructor.
+* (bug 11142) Improve file extension blacklist error reporting in API upload
 
 === Languages updated in 1.20 ===
 

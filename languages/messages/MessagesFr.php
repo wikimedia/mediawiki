@@ -4032,6 +4032,7 @@ Sinon, vous pouvez utiliser le formulaire simplifié ci-dessous. Votre commentai
 'api-error-file-too-large' => 'Le fichier que vous avez soumis était trop grand.',
 'api-error-filename-tooshort' => 'Le nom du fichier est trop court.',
 'api-error-filetype-banned' => 'Ce type de fichier est interdit.',
+'api-error-filetype-banned-type'=> "''' « $1 » '''{{PLURAL:$4|n’est pas un type de fichier autorisé|ne sont pas des types de fichiers autorisés}}.  {{PLURAL:$3|le type de fichier autorisé est |les types de fichiers autorisés sont}} $2.",
 'api-error-filetype-missing' => 'L’extension du fichier est manquante.',
 'api-error-hookaborted' => 'La modification que vous avez essayé de faire a été arrêtée par un crochet d’une extension.',
 'api-error-http' => 'Erreur interne : ne peut se connecter au serveur.',

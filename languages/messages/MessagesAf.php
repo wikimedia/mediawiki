@@ -3786,6 +3786,7 @@ Beelde word in hulle volle resolusie gewys. Ander lêertipes word direk met hull
 'api-error-file-too-large' => 'Die lêer wat u probeer oplaai is te groot.',
 'api-error-filename-tooshort' => 'Die lêernaam is te kort.',
 'api-error-filetype-banned' => 'Hierdie tipe lêer is verban en word nie toegelaat nie.',
+'api-error-filetype-banned-type'=> 'Die {{PLURAL:$4|lêertipe|lêertipes}} word $1 nie toegelaat nie. Toelaatbare {{PLURAL:$3|lêertipes|lêertipes}} is $2.',
 'api-error-filetype-missing' => "Die lêer het nie 'n uitbreiding nie.",
 'api-error-hookaborted' => "Die wysiging wat jy probeer maak, is deur 'n uitbreiding haak geaborteer.",
 'api-error-http' => "Interne fout: Kan nie 'n verbinding met die bediener maak nie.",

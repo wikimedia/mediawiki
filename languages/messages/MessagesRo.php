@@ -3923,6 +3923,7 @@ Imaginile sunt afișate la rezoluția lor maximă, în timp ce alte tipuri de fi
 'api-error-file-too-large' => 'Fișierul pe care l-ați trimis este prea mare.',
 'api-error-filename-tooshort' => 'Numele fișierului este prea scurt.',
 'api-error-filetype-banned' => 'Acest tip de fișiere este interzis.',
+'api-error-filetype-banned-type'=> "$1 {{PLURAL:$4|este un tip de fișier nepermis|sunt tipuri de fișier nepermise}}. {{PLURAL:$3|Tip de fișier permis:|Tipuri de fișier permise:}} $2.",
 'api-error-filetype-missing' => 'Fișierului îi lipsește extensia.',
 'api-error-hookaborted' => 'Modificarea pe care ați încercat să o faceți a fost oprită de sesizarea unei extensii.',
 'api-error-http' => 'Eroare internă: nu s-a reușit conectarea la server.',

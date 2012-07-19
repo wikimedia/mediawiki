@@ -4074,6 +4074,7 @@ Les émâges sont montrâs dens lor plêna rèsolucion, los ôtros fichiérs son
 'api-error-file-too-large' => 'Lo fichiér que vos éd somês ére trop grant.',
 'api-error-filename-tooshort' => 'Lo nom du fichiér est trop côrt.',
 'api-error-filetype-banned' => 'Cél tipo de fichiér est dèfendu.',
+'api-error-filetype-banned-type'=> "'''« $1 »''' {{PLURAL:$4|est pas un tipo de fichiérs ôtorisâ|sont pas des tipos de fichiérs ôtorisâs}}. {{PLURAL:$3|Lo tipo de fichiérs accèptâ est|Los tipos de fichiérs accèptâs sont}} $2.",
 'api-error-filetype-missing' => 'L’èxtension du fichiér est manquenta.',
 'api-error-hookaborted' => 'Lo changement que vos éd tâchiê de fâre at étâ arrètâ per un grèfon d’una èxtension.',
 'api-error-http' => 'Èrror de dedens : sè pôt pas branchiér u sèrvor.',

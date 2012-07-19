@@ -428,11 +428,21 @@ class ApiUpload extends ApiBase {
 				break;
 
 			case UploadBase::FILETYPE_BADTYPE:
-				$this->dieUsage( 'This type of file is banned', 'filetype-banned',
-						0, array(
-							'filetype' => $verification['finalExt'],
-							'allowed' => $wgFileExtensions
-						) );
+				$extradata = array(
+					'filetype' => $verification['finalExt'],
+					'allowed' => $wgFileExtensions
+				);
+				$this->getResult()->setIndexedTagName( $extradata['allowed'], 'ext' );
+
+				$msg = "Filetype not permitted: ";
+				if ( isset( $verification['blacklistedExt'] ) ) {
+					$msg .= join( ', ', $verification['blacklistedExt'] );
+					$extradata['blacklisted'] = array_values( $verification['blacklistedExt'] );
+					$this->getResult()->setIndexedTagName( $extradata['blacklisted'], 'ext' );
+				} else {
+					$msg .= $verification['finalExt'];
+				}
+				$this->dieUsage( $msg, 'filetype-banned', 0, $extradata );
 				break;
 			case UploadBase::VERIFICATION_ERROR:
 				$this->getResult()->setIndexedTagName( $verification['details'], 'detail' );

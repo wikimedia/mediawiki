@@ -3826,6 +3826,7 @@ Resimler tam çözünürlükte görüntülenir, diğer dosya tipleri ilgili prog
 'api-error-file-too-large' => 'Gönderdiğiniz dosya çok büyük.',
 'api-error-filename-tooshort' => 'Dosya adı çok kısa.',
 'api-error-filetype-banned' => 'Bu dosya biçimi yasaklanmıştır.',
+'api-error-filetype-banned-type'=> '$1 {{PLURAL:$4|izin verilen bir dosya türü değil|izin verilen bir dosya türü değil}}. İzin verilen {{PLURAL:$3|dosya türü|dosya türleri}} $2.',
 'api-error-filetype-missing' => 'Dosya uzantısı eksik.',
 'api-error-http' => 'İç hata: sunucu ile bağlantı kurulamıyor.',
 'api-error-illegal-filename' => 'Bu dosya adına izin verilmiyor.',

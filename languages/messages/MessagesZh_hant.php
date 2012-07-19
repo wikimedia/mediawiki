@@ -3812,6 +3812,7 @@ MediaWiki是基於使用目的而加以發佈，然而不負任何擔保責任�
 'api-error-file-too-large' => '您提交的檔案太大了。',
 'api-error-filename-tooshort' => '檔案名過短。',
 'api-error-filetype-banned' => '這種類型的檔案是被禁止的。',
+'api-error-filetype-banned-type'=> "$1{{PLURAL:$4|不是允許的檔案類型|是不允許的檔案類型}}。  允許的{{PLURAL:$3|檔案類型|檔案類型}} $2。",
 'api-error-filetype-missing' => '本檔案缺少了副檔名。',
 'api-error-hookaborted' => '你試圖進行的修改被一個擴展鉤子終止。',
 'api-error-http' => '內部錯誤：無法連接到伺服器。',

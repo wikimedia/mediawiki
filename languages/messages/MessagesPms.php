@@ -3680,6 +3680,7 @@ Dësnò, a peule dovré ël formlari semplificà sì-sota. Sò coment a sarà gi
 'api-error-file-too-large' => "L'archivi ch'a l'ha mandà a l'era tròp gròss.",
 'api-error-filename-tooshort' => "Ël nòm ëd l'archivi a l'é tròp curt.",
 'api-error-filetype-banned' => "Costa sòrt d'archivi a l'é proibìa.",
+'api-error-filetype-banned-type'=> "\$1 {{PLURAL:\$4|a l'é na sòrt d'archivi proibìa|a son ëd sòrt d'archivi proibìe}}. {{PLURAL:\$3|Sòrt d'archivi consentìa a l'é|Sòrt d'archivi consentìe a son}} \$2.",
 'api-error-filetype-missing' => "L'archivi a l'é sensa estension.",
 'api-error-hookaborted' => "La modìfica ch'a l'ha provà a fé a l'é stàita blocà dal gancio ëd n'estension.",
 'api-error-http' => 'Eror antern: as peul pa coleghesse al sërvent.',

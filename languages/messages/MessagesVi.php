@@ -4028,6 +4028,7 @@ Nếu không thì bạn có thể điền biểu mẫu đơn giản ở dưới.
 'api-error-file-too-large' => 'Bạn đã gửi tập tin lớn quá hạn.',
 'api-error-filename-tooshort' => 'Tên tập tin ngắn quá.',
 'api-error-filetype-banned' => 'Kiểu tập tin này đã bị cấm.',
+'api-error-filetype-banned-type'=> "{{PLURAL:$4|Định dạng|Các định dạng}} $1 không được chấp nhận. Chỉ chấp nhận {{PLURAL:$3|loại tập tin|các loại tập tin}} sau: $2.",
 'api-error-filetype-missing' => 'Tên tập tin bị thiếu phần mở rộng.',
 'api-error-hookaborted' => 'Sửa đổi của bạn bị hook phần mở rộng hủy bỏ.',
 'api-error-http' => 'Lỗi nội bộ: Không thể kết nối với dịch vụ.',

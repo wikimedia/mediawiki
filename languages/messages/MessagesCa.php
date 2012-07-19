@@ -3780,6 +3780,7 @@ Altrament, podeu fer servir un senzill formulari a continuació. El vostre comen
 'api-error-file-too-large' => 'El fitxer que heu tramès és massa gran.',
 'api-error-filename-tooshort' => 'El nom del fitxer és massa curt.',
 'api-error-filetype-banned' => 'Aquest tipus de fitxer està prohibit.',
+'api-error-filetype-banned-type'=> "{{PLURAL:$4|Els fitxers del tipus $1|Els fitxers dels tipus $1}} no estan permesos. {{PLURAL:$3|Només s'admeten els fitxers del tipus|Els tipus de fitxer permesos són}} $2.",
 'api-error-filetype-missing' => 'El nom de fitxer no té extensió.',
 'api-error-hookaborted' => "La modificació que heu intentat fer ha estat canceŀlada per un mòdul d'extensió.",
 'api-error-http' => 'Error intern: no es pot connectar al servidor.',

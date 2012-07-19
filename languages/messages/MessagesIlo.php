@@ -3681,6 +3681,7 @@ Nupay kasta, mau-sarmo ti nakabuklan dita baba. Ti komentario nga itedmo ket mai
 'api-error-file-too-large' => 'Ti papeles nga intedmo ket dakkel unay.',
 'api-error-filename-tooshort' => 'Ti nagan daytoy a papeles ket bassit unay.',
 'api-error-filetype-banned' => 'Ti kita daytoy a papeles ket maiparit.',
+'api-error-filetype-banned-type'=> 'Ti $1 {{PLURAL:$4|ket saan a mapalubusan a kita ti papeles|ket dagiti saan a mapalubusan a kita ti papeles}}. Ti mapalubusan{{PLURAL:$3|a kita ti papeles ket|kadagiti kita ti papeles ket}} $2.',
 'api-error-filetype-missing' => 'Ti papeles ket agkurang ti pagpa-atiddog.',
 'api-error-hookaborted' => 'Ti panagbabaro a pinadasmo ket napasardeng iti pangpa-atiddog a kawit.',
 'api-error-http' => 'Kinauneg a biddut: Saan a makaikabit idiay server.',

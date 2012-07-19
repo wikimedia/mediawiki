@@ -3963,6 +3963,7 @@ Annars kan du använda det enkla formuläret nedan. Din kommentar kommer att lä
 'api-error-file-too-large' => 'Filen du skickade var för stor.',
 'api-error-filename-tooshort' => 'Filnamnet är för kort.',
 'api-error-filetype-banned' => 'Denna typ av fil är förbjuden.',
+'api-error-filetype-banned-type'=> '$1 är inte {{PLURAL:$4|en tillåten filtyp|tillåtna filtyper}}. {{PLURAL:$3|Tillåtna filtyper|Tillåten filtyp}} är $2.',
 'api-error-filetype-missing' => 'Filen saknar en filändelse.',
 'api-error-hookaborted' => 'Ändringen du försökte göra avbröts av en extension hook.',
 'api-error-http' => 'Internt fel: Det gick inte att ansluta till servern.',

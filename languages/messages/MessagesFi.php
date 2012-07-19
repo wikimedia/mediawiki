@@ -3854,6 +3854,7 @@ Muussa tapauksessa voit käyttää alla olevaa helpompaa lomaketta. Kommenttisi 
 'api-error-file-too-large' => 'Määrittämäsi tiedosto on liian iso.',
 'api-error-filename-tooshort' => 'Tiedoston nimi on liian lyhyt.',
 'api-error-filetype-banned' => 'Tämän tyyppisiä tiedosta ei voi tallentaa.',
+'api-error-filetype-banned-type'=> "$1 {{PLURAL:$4|ei ole sallittu tiedostomuoto|eivät ole sallittuja tiedostomuotoja}}. {{PLURAL:$3|Sallittu tiedostomuoto on|Sallittuja tiedostomuotoja ovat}} $2.",
 'api-error-filetype-missing' => 'Tiedostolta puuttuu tiedostopääte.',
 'api-error-hookaborted' => 'Laajennuskoodi esti yrittämäsi muutoksen.',
 'api-error-http' => 'Sisäinen virhe: palvelimeen ei saatu yhteyttä.',

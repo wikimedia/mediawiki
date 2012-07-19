@@ -3850,6 +3850,7 @@ V nasprotnem primeru lahko uporabite preprost obrazec spodaj. Vašo pripombo bom
 'api-error-file-too-large' => 'Poslana datoteka je prevelika.',
 'api-error-filename-tooshort' => 'Ime datoteke je prekratko.',
 'api-error-filetype-banned' => 'Ta vrsta datoteke je prepovedana.',
+'api-error-filetype-banned-type'=> "$1 {{PLURAL:$4|ni dovoljena datotečna vrsta|nista dovoljeni datotečni vrsti|niso dovoljene datotečne vrste}}. {{PLURAL:$3|Dovoljena datotečna vrsta je|Dovoljeni datotečni vrsti sta|Dovoljene datotečne vrste so|Dovoljene datotečne vrste so}} $2.",
 'api-error-filetype-missing' => 'Datoteki manjka končnica.',
 'api-error-hookaborted' => 'Spremembo, ki ste jo poskušali narediti, je prekinila razširitev.',
 'api-error-http' => 'Notranja napaka: ni mogoče vzpostaviti povezave s strežnikom.',

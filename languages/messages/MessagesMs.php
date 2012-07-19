@@ -3816,6 +3816,7 @@ Ataupun, anda boleh menggunakan borang yang mudah di bawah. Ulasan anda akan dic
 'api-error-file-too-large' => 'Fail yang anda serahkan adalah terlalu besar.',
 'api-error-filename-tooshort' => 'Nama fail ini terlalu pendek.',
 'api-error-filetype-banned' => 'Fail jenis ini adalah dilarang.',
+'api-error-filetype-banned-type'=> '$1 adalah {{PLURAL:$4|jenis|jenis-jenis}} fail yang dilarang. {{PLURAL:$3|Jenis|Jenis-jenis}} fail yang dibenarkan ialah $2.',
 'api-error-filetype-missing' => 'Fail ini tiada sambungannya.',
 'api-error-hookaborted' => 'Pengubahsuaian yang anda buat telah disekat oleh cangkuk sambungan.',
 'api-error-http' => 'Ralat dalaman: tidak dapat bersambung dengan pelayan.',
