@@ -420,11 +420,29 @@ class ApiUpload extends ApiBase {
 				break;
 
 			case UploadBase::FILETYPE_BADTYPE:
-				$this->dieUsage( 'This type of file is banned', 'filetype-banned',
-						0, array(
-							'filetype' => $verification['finalExt'],
-							'allowed' => $wgFileExtensions
-						) );
+				$extradata = array(
+					'filetype' => $verification['finalExt'],
+					'allowed' => $wgFileExtensions
+				);
+				$this->getResult()->setIndexedTagName( $extradata['allowed'], 'ext' );
+
+				if ( isset( $verification['blacklistedExt'] ) ) {
+					$extradata['blacklisted'] = array_values( $verification['blacklistedExt'] );
+					if ( count( $extradata['blacklisted'] ) == 1 ) {
+						$msg = $extradata['blacklisted'][0] . ' is not a permitted file type.';
+					} else {
+						$msg = join( ', ', $extradata['blacklisted'] ) . ' are not permitted file types.';
+					}
+					$this->getResult()->setIndexedTagName( $extradata['blacklisted'], 'ext' );
+				} else {
+					$msg = $verification['finalExt'] . ' is not a permitted file type.';
+				}
+				if ( count( $wgFileExtensions ) == 1 ) {
+					$msg .= ' Permitted file type is ' . $wgFileExtensions[0] . '.';
+				} else {
+					$msg .= ' Permitted file types are ' . join( ', ', $wgFileExtensions ) . '.';
+				}
+				$this->dieUsage( $msg, 'filetype-banned', 0, $extradata );
 				break;
 			case UploadBase::VERIFICATION_ERROR:
 				$this->getResult()->setIndexedTagName( $verification['details'], 'detail' );

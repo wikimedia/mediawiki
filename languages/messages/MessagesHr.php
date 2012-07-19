@@ -3833,6 +3833,7 @@ Inače, možete ispuniti jednostavan obrazac u nastavku. Vaš komentar biti će 
 'api-error-file-too-large' => 'Datoteka koju ste poslali bila je prevelika.',
 'api-error-filename-tooshort' => 'Ime datoteke je prekratko.',
 'api-error-filetype-banned' => 'Ova vrsta datoteke je zabranjena.',
+'api-error-filetype-banned-type'=> '$1 {{PLURAL:$4|je nedopušteni tip datoteke|su nedopušteni tipovi datoteke}}. Dopušteni {{PLURAL:$3|tip datoteke je|tipovi datoteke su}} $2.',
 'api-error-filetype-missing' => 'Datoteci nedostaje nastavak.',
 'api-error-hookaborted' => 'Izmjena koji ste pokušali načiniti je otkazana preko "kuke" proširenja mediawiki softvera.',
 'api-error-http' => 'Interna pogreška: Ne može se povezati na poslužitelj.',

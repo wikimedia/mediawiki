@@ -3726,6 +3726,7 @@ Ellers kan du bruge den enkle formular nedenfor. Din kommentar vil blive tilføj
 'api-error-file-too-large' => 'Den fil du indsendte var for stor.',
 'api-error-filename-tooshort' => 'Filnavnet er for kort.',
 'api-error-filetype-banned' => 'Denne type fil er ikke tilladt.',
+'api-error-filetype-banned-type'=> '$1 er {{PLURAL:$4|en uønsket filtype|uønskede filtyper}}. {{PLURAL:$3|Den tilladte filtype|De tilladte filtyper}} er $2.',
 'api-error-filetype-missing' => 'Filen mangler en filendelse.',
 'api-error-hookaborted' => 'Ændringen, du forsøgte at gøre, blev afbrudt af en udvidelsestilkobling.',
 'api-error-http' => 'Intern fejl: Kan ikke forbinde til serveren.',

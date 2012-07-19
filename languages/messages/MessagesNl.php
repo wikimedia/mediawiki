@@ -4093,6 +4093,7 @@ Anders kunt u ook het eenvoudige formulier hieronder gebruiken. Uw reactie wordt
 'api-error-file-too-large' => 'Het bestand dat u hebt geüpload is te groot.',
 'api-error-filename-tooshort' => 'De bestandsnaam is te kort.',
 'api-error-filetype-banned' => 'Dit bestandstype mag niet geüpload worden.',
+'api-error-filetype-banned-type'=> "{{PLURAL:\$4|Het bestandstype \$1 wordt|De bestandstypes \$1 worden}} niet toegelaten. {{PLURAL:\$3|Het toegelaten bestandstype is|De toegelaten bestandstypes zijn}} \$2.",
 'api-error-filetype-missing' => 'Het bestand heeft geen extensie.',
 'api-error-hookaborted' => 'De wijziging die u probeert te maken is afgebroken door een uitbreiding.',
 'api-error-http' => 'Interne fout: er kon geen verbinding gemaakt worden met de server.',

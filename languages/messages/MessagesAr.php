@@ -4258,6 +4258,7 @@ $5
 'api-error-file-too-large' => 'الملف الذي أرسلته كان كبيرا جدا.',
 'api-error-filename-tooshort' => 'اسم الملف قصير جدا.',
 'api-error-filetype-banned' => 'نوع الملف هذا ممنوع.',
+'api-error-filetype-banned-type'=> '$1 {{PLURAL:$4|ليس نوع ملف مسموح به|ليسوا أنواع ملفات مسموح بها}}. {{PLURAL:$3|نوع الملف المسموح به هو|أنواع الملفات المسموح بها هي}} $2.',
 'api-error-filetype-missing' => 'يفتقد الملفّ ملحق نوعيّته.',
 'api-error-hookaborted' => 'التعديل الذي تحاول أن تقوم به تم إحباطه',
 'api-error-http' => 'خطأ داخلي: تعذر الاتصال بالخادوم.',

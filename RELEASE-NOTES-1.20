@@ -97,6 +97,8 @@ upgrade PHP if you have not done so prior to upgrading MediaWiki.
 * (bug 36783) Implement jQuery Promise interface in mediawiki.api module.
 * Make dates in sortable tables sort according to the page content language
   instead of the site content language
+* A new message, "api-error-filetype-banned-type", is available for formatting
+  API upload errors due to the file extension blacklist.
 
 === Bug fixes in 1.20 ===
 * (bug 30245) Use the correct way to construct a log page title.
@@ -194,6 +196,7 @@ upgrade PHP if you have not done so prior to upgrading MediaWiki.
 * (bug 29290) API avoids mangling fields in continuation parameters
 * (bug 36987) API avoids mangling fields in continuation parameters
 * (bug 30836) siteinfo prop=specialpagealiases will no longer return nonexistent special pages
+* (bug 11142) Improve file extension blacklist error reporting in API upload
 
 === Languages updated in 1.20 ===
 

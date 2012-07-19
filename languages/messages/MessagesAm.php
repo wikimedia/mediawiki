@@ -2278,6 +2278,7 @@ $3
 'api-error-file-too-large' => 'የላኩት ፋይል በጣም ትልቅ ነበር።',
 'api-error-filename-tooshort' => 'የፋይሉ ስም በጣም ትንሽ ነው።',
 'api-error-filetype-banned' => 'የዚህ ዓይነት ፋይል ተከልክሏል።',
+'api-error-filetype-banned-type'=> "$1 ያልተፈቀደ ፋይል አይነት ነው። የተፈቀዱት ፋይል አይነቶች $2 ናቸው።",
 'api-error-filetype-missing' => 'ፋይሉ ቅጥያ ይጎለዋል።',
 'api-error-illegal-filename' => 'የፋይሉ ስም የተፈቀደ አይደለም።',
 'api-error-invalid-file-key' => 'የውስጥ ስህተት: ፍይሉ የጊዜያዊ ማስቀመጫ ውስጥ አልተገኘም።',

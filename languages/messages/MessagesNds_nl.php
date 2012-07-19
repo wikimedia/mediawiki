@@ -3884,6 +3884,7 @@ Aanders ku\'j oek t eenvoudige formulier hieronder gebruken. Joew opmarkingen zu
 'api-error-file-too-large' => "t Bestaand da'j op-estuurd hebben is te groot.",
 'api-error-filename-tooshort' => 'De bestaandsnaam is te kort.',
 'api-error-filetype-banned' => 'Dit bestaandstype is niet toe-estaon.',
+'api-error-filetype-banned-type'=> "{{PLURAL:\$4|t Bestaandstype \$1 wordt|De bestandstypes \$1 worden}} niet toegelaten. {{PLURAL:\$3|t Toe-estaone bestaandstype is|De toe-estaone bestaandstypen bin}} \$2.",
 'api-error-filetype-missing' => 't Bestaand hef gien extensie.',
 'api-error-hookaborted' => "De wieziging die'j proberen deur te voeren is aofebreuken deur n extra uutbreiding.",
 'api-error-http' => 'Interne fout: der kon gien verbiending emaakt wörden mit de server.',

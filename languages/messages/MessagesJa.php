@@ -4211,6 +4211,7 @@ MediaWikiは、有用であることを期待して配布されていますが�
 'api-error-file-too-large' => '送信されたファイルは大きすぎます。',
 'api-error-filename-tooshort' => 'ファイル名が短すぎます。',
 'api-error-filetype-banned' => 'この形式のファイルは禁止されています。',
+'api-error-filetype-banned-type'=> "$1 は許可されていないファイル形式です{{PLURAL:$4|}}。 許可されているファイル形式{{PLURAL:$3|}}は$2です。",
 'api-error-filetype-missing' => 'ファイルに拡張子がありません。',
 'api-error-hookaborted' => '拡張機能のフックによって、修正が中断されました。',
 'api-error-http' => '内部エラー：サービスへの接続で問題が発生しました。',

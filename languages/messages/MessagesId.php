@@ -3946,6 +3946,7 @@ Jika tidak, Anda dapat menggunakan formulir mudah di bawah ini. Komentar Anda ak
 'api-error-file-too-large' => 'Berkas yang Anda kirim terlalu besar.',
 'api-error-filename-tooshort' => 'Nama berkas terlalu pendek.',
 'api-error-filetype-banned' => 'Jenis berkas ini dilarang.',
+'api-error-filetype-banned-type'=> '$1 {{PLURAL:$4|adalah ekstensi berkas yang tidak diizinkan|adalah ekstensi berkas yang tidak diizinkan}}. {{PLURAL:$3|Jenis berkas yang diperolehkan adalah|Jenis berkas yang diperolehkan adalah}} $2.',
 'api-error-filetype-missing' => 'Berkas tidak memiliki ekstensi.',
 'api-error-hookaborted' => 'Modifikasi yang Anda coba lakukan dibatalkan oleh suatu kaitan ekstensi.',
 'api-error-http' => 'Kesalahan internal: tidak dapat menghubungkan ke peladen.',

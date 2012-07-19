@@ -4198,6 +4198,7 @@ U suprotnom, poslužite se jednostavnim obrascem ispod. Vaš komentar će stajat
 'api-error-file-too-large' => 'Poslata datoteka je prevelika.',
 'api-error-filename-tooshort' => 'Naziv datoteke je prekratak.',
 'api-error-filetype-banned' => 'Ova vrsta datoteke je zabranjena.',
+'api-error-filetype-banned-type'=> '$1 {{PLURAL:$4|je zabranjena vrsta datoteke|su zabranjene vrste datoteka}}. {{PLURAL:$3|Dozvoljena vrsta datoteke je|Dozvoljene vrste datoteka su}} $2.',
 'api-error-filetype-missing' => 'Datoteci nedostaje nastavak.',
 'api-error-hookaborted' => 'Izmena je odbačena od kuke za proširenja.',
 'api-error-http' => 'Unutrašnja greška: ne mogu da se povežem sa serverom.',

@@ -3697,6 +3697,7 @@ Hować móžoš slědujucy jadnory formular wužywaś. Twój komentar pśidajo s
 'api-error-file-too-large' => 'Dataja, kótaruž sy nagrał, jo pśewjelika była.',
 'api-error-filename-tooshort' => 'Datajowe mě jo pśekrotke.',
 'api-error-filetype-banned' => 'Toś ten datajowy typ jo zakazany.',
+'api-error-filetype-banned-type'=> '$1 {{PLURAL:$4|njejo dowólony datajowy typ|njejstej dowólenej datajowej typa|njejsu dowólone datajowe typy|njejsu dowólone datajowe typy}}. {{PLURAL:$3|Dowólony datajowy typ jo|Dowólenej datajowej typa stej|Dowólone datajowe typy su}} $2.',
 'api-error-filetype-missing' => 'Dataja njama datajowu kóńcowku.',
 'api-error-hookaborted' => 'Změna, kótaruž sy wopytał pśewjasć, jo se pśetergnuła pśez rozšyrjenje.',
 'api-error-http' => 'Nutśikowna zmólka: Zwisk ze serwerom njemóžno.',

@@ -3909,6 +3909,7 @@ En caso contrario, pode empregar o formulario sinxelo inferior. O seu comentario
 'api-error-file-too-large' => 'O ficheiro que enviou era grande de máis.',
 'api-error-filename-tooshort' => 'O nome do ficheiro é curto de máis.',
 'api-error-filetype-banned' => 'Este tipo de ficheiro está prohibido.',
+'api-error-filetype-banned-type'=> '$1 non {{PLURAL:$4|é un tipo de ficheiro permitido|son tipos de ficheiro permitidos}}. {{PLURAL:$3|O tipo de ficheiro permitido é|Os tipos de ficheiro permitidos son}} $2.',
 'api-error-filetype-missing' => 'Fáltalle a extensión ao ficheiro.',
 'api-error-hookaborted' => 'O asociador da extensión cancelou a modificación que intentou realizar.',
 'api-error-http' => 'Erro interno: Non se puido conectar co servidor.',

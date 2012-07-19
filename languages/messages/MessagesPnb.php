@@ -3580,6 +3580,7 @@ the Free Software Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 
 'api-error-file-too-large' => 'جیڑی فائل تسی دسی اے اوہ بوت وڈی اے۔',
 'api-error-filename-tooshort' => 'اس فائل دا ناں بوت چھوٹا اے۔',
 'api-error-filetype-banned' => 'اس قسم دی فائل تے پابندی اے۔',
+'api-error-filetype-banned-type'=> '$1 {{PLURAL:$4|اینج دی فائل دی اجازت نئیں|اینج دیاں فائلاں دی اجازت نئیں}} اجازت دتی {{PLURAL:$3|فائل ٹائپ اے|فائل ٹائپ نیں}} $2۔',
 'api-error-filetype-missing' => 'فائل چ ایکسٹنشن نئیں اے۔',
 'api-error-hookaborted' => 'جیڑی تبدیلی تسی کرنا چاہی اے، اونوں اک ایکسٹنشن کنڈے نیں بند کردتا اے۔',
 'api-error-http' => 'انٹرنیٹ ئلطی: سرور نال کوئی جوڑ نئیں۔',

@@ -4849,6 +4849,7 @@ Otherwise, you can use the easy form below. Your comment will be added to the pa
 'api-error-file-too-large'                => 'The file you submitted was too large.',
 'api-error-filename-tooshort'             => 'The filename is too short.',
 'api-error-filetype-banned'               => 'This type of file is banned.',
+'api-error-filetype-banned-type'          => '$1 {{PLURAL:$4|is not a permitted file type|are not permitted file types}}. Permitted {{PLURAL:$3|file type is|file types are}} $2.',
 'api-error-filetype-missing'              => 'The filename is missing an extension.',
 'api-error-hookaborted'                   => 'The modification you tried to make was aborted by an extension.',
 'api-error-http'                          => 'Internal error: Unable to connect to server.',

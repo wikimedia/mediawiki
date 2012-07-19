@@ -3744,6 +3744,7 @@ D\'otra miente, pues usar el formulariu cenciellu d\'abaxo. El to comentariu apa
 'api-error-file-too-large' => "El ficheru qu'unviasti yera demasiao grande.",
 'api-error-filename-tooshort' => 'El nome de ficheru ye demasiao curtiu.',
 'api-error-filetype-banned' => 'Esta triba de ficheru ta torgada.',
+'api-error-filetype-banned-type'=> '$1 {{PLURAL:$4|nun ye una triba de ficheru permitida|nun son tribes de ficheru permitíes}}. {{PLURAL:$3|La triba de ficheru permitida ye|Les tribes de ficheru permitíes son}} $2.',
 'api-error-filetype-missing' => 'Al ficheru falta-y una estensión.',
 'api-error-hookaborted' => 'La conexón con una estensión encaboxó el cambéu que tentasti facer.',
 'api-error-http' => 'Fallu internu: Nun se pudo coneutar col sirvidor.',

@@ -221,6 +221,7 @@
 		'file-too-large',
 		'filetype-missing',
 		'filetype-banned',
+		'filetype-banned-type',
 		'filename-tooshort',
 		'illegal-filename',
 		'verification-error',

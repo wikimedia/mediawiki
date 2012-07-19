@@ -3690,6 +3690,7 @@ Anges kin se-n ouch \'t einvawdig formeleer hieónger gebroeke. Dien commentaar 
 'api-error-file-too-large' => 't Bestandj det se perbeers te uploade waas te groet.',
 'api-error-filename-tooshort' => "t Bestandj det se perbeers te uploade had 'ne te kórte bestandjsnaam.",
 'api-error-filetype-banned' => 't Bestandj det se perbeers te uploade waas van e neet-toegelaote bestandjstype.',
+'api-error-filetype-banned-type'=> "{{PLURAL:\$4|'t bestandjstype \$1 weurt|De bestandjstypes \$1 waere}} neet toegelaote. {{PLURAL:\$3|'t Toegelaote bestandjstype is|De toegelaote bestandjstypes zeen}} \$2.",
 'api-error-filetype-missing' => "'t Bestandj haet gein extensie.",
 'api-error-hookaborted' => "De wieziging die se perbeers te make is aafgebraoke door 'nen oetbreidingshook.",
 'api-error-http' => "Intern fout: d'r kós gein verbinjing gemaak waere mitte server.",
