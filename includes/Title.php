@@ -3474,6 +3474,10 @@ class Title {
 			$wgUser->spreadAnyEditBlock();
 			return $err;
 		}
+		// Check suppressredirect permission
+		if ( $auth && !$wgUser->isAllowed( 'suppressredirect' ) ) {
+			$createRedirect = true;
+		}
 
 		// If it is a file, move it first.
 		// It is done before all other moving stuff is done because it's hard to revert.
@@ -3570,8 +3574,8 @@ class Title {
 	 *
 	 * @param $nt Title the page to move to, which should be a redirect or nonexistent
 	 * @param $reason String The reason for the move
-	 * @param $createRedirect Bool Whether to leave a redirect at the old title.  Ignored
-	 *   if the user doesn't have the suppressredirect right
+	 * @param $createRedirect Bool Whether to leave a redirect at the old title. Does not check
+	 *   if the user has the suppressredirect right
 	 * @throws MWException
 	 */
 	private function moveToInternal( &$nt, $reason = '', $createRedirect = true ) {
@@ -3585,7 +3589,7 @@ class Title {
 			$logType = 'move';
 		}
 
-		$redirectSuppressed = !$createRedirect && $wgUser->isAllowed( 'suppressredirect' );
+		$redirectSuppressed = !$createRedirect;
 
 		$logEntry = new ManualLogEntry( 'move', $logType );
 		$logEntry->setPerformer( $wgUser );
