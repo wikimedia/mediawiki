@@ -117,7 +117,7 @@
 				overrideKeys: false
 			}, options );
 
-			if ( uri !== undefined && uri !== null || uri !== '' ) {
+			if ( uri !== undefined && uri !== null && uri !== '' ) {
 				if ( typeof uri === 'string' ) {
 					this.parse( uri, options );
 				} else if ( typeof uri === 'object' ) {
@@ -137,6 +137,9 @@
 						this.query = {};
 					}
 				}
+			} else if ( location && location.href ) {
+				// If we didn't get a URI in the constructor, use the default one.
+				return defaultUri.clone();
 			}
 
 			// protocol-relative URLs
