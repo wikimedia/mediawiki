@@ -194,6 +194,7 @@ upgrade PHP if you have not done so prior to upgrading MediaWiki.
 * (bug 29290) API avoids mangling fields in continuation parameters
 * (bug 36987) API avoids mangling fields in continuation parameters
 * (bug 30836) siteinfo prop=specialpagealiases will no longer return nonexistent special pages
+* (bug 27610) Add archivename for non-latest image version to list=filearchive
 
 === Languages updated in 1.20 ===
 
