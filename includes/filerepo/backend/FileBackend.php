@@ -580,13 +580,12 @@ abstract class FileBackend {
 	 * except they are only applied *if* the directory/container had to be created.
 	 * These flags should always be set for directories that have private files.
 	 *
+	 * @param $params Array
 	 * $params include:
 	 *   - dir            : storage directory
 	 *   - noAccess       : try to deny file access (since 1.20)
 	 *   - noListing      : try to deny file listing (since 1.20)
 	 *   - bypassReadOnly : allow writes in read-only mode (since 1.20)
-	 *
-	 * @param $params Array
 	 * @return Status
 	 */
 	final public function prepare( array $params ) {
@@ -635,13 +634,12 @@ abstract class FileBackend {
 	 * access to the storage user representing end-users in web requests.
 	 * This essentially can undo the result of secure() calls.
 	 *
+	 * @param $params Array
 	 * $params include:
 	 *   - dir            : storage directory
 	 *   - access         : try to allow file access
 	 *   - listing        : try to allow file listing
 	 *   - bypassReadOnly : allow writes in read-only mode (since 1.20)
-	 *
-	 * @param $params Array
 	 * @return Status
 	 * @since 1.20
 	 */
@@ -785,9 +783,9 @@ abstract class FileBackend {
 	/**
 	 * Returns a file system file, identical to the file at a storage path.
 	 * The file returned is either:
-	 * a) A local copy of the file at a storage path in the backend.
-	 *    The temporary copy will have the same extension as the source.
-	 * b) An original of the file at a storage path in the backend.
+	 *   - a) A local copy of the file at a storage path in the backend.
+	 *        The temporary copy will have the same extension as the source.
+	 *   - b) An original of the file at a storage path in the backend.
 	 * Temporary files may be purged when the file object falls out of scope.
 	 *
 	 * Write operations should *never* be done on this file as some backends
