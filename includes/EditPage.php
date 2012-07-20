@@ -3140,12 +3140,14 @@ HTML
 	 * @private
 	 */
 	function checkUnicodeCompliantBrowser() {
-		global $wgBrowserBlackList;
-		if ( empty( $_SERVER["HTTP_USER_AGENT"] ) ) {
+		global $wgBrowserBlackList, $wgRequest;
+
+		$currentbrowser = $wgRequest->getHeader( 'User-Agent' );
+		if ( $currentbrowser === false ) {
 			// No User-Agent header sent? Trust it by default...
 			return true;
 		}
-		$currentbrowser = $_SERVER["HTTP_USER_AGENT"];
+
 		foreach ( $wgBrowserBlackList as $browser ) {
 			if ( preg_match( $browser, $currentbrowser ) ) {
 				return false;
