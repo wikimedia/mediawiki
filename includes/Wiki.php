@@ -393,23 +393,6 @@ class MediaWiki {
 	}
 
 	/**
-	 * Cleaning up request by doing deferred updates, DB transaction, and the output
-	 */
-	public function finalCleanup() {
-		wfProfileIn( __METHOD__ );
-		// Now commit any transactions, so that unreported errors after
-		// output() don't roll back the whole DB transaction
-		$factory = wfGetLBFactory();
-		$factory->commitMasterChanges();
-		// Output everything!
-		$this->context->getOutput()->output();
-		// Do any deferred jobs
-		DeferredUpdates::doUpdates( 'commit' );
-		$this->doJobs();
-		wfProfileOut( __METHOD__ );
-	}
-
-	/**
 	 * Do a job from the job queue
 	 */
 	private function doJobs() {
@@ -447,12 +430,23 @@ class MediaWiki {
 	 * Ends this task peacefully
 	 */
 	public function restInPeace() {
+		// Do any deferred jobs
+		DeferredUpdates::doUpdates( 'commit' );
+
+		// Execute a job from the queue
+		$this->doJobs();
+
+		// Log message usage, if $wgAdaptiveMessageCache is set to true
 		MessageCache::logMessages();
+
+		// Log profiling data, e.g. in the database or UDP
 		wfLogProfilingData();
+
 		// Commit and close up!
 		$factory = wfGetLBFactory();
 		$factory->commitMasterChanges();
 		$factory->shutdown();
+
 		wfDebug( "Request ended normally\n" );
 	}
 
@@ -599,7 +593,13 @@ class MediaWiki {
 		}
 
 		$this->performRequest();
-		$this->finalCleanup();
+
+		// Now commit any transactions, so that unreported errors after
+		// output() don't roll back the whole DB transaction
+		wfGetLBFactory()->commitMasterChanges();
+
+		// Output everything!
+		$this->context->getOutput()->output();
 
 		wfProfileOut( __METHOD__ );
 	}
