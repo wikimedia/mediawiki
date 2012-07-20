@@ -144,10 +144,6 @@ class ApiRollback extends ApiBase {
 		) );
 	}
 
-	public function needsToken() {
-		return true;
-	}
-
 	public function getTokenSalt() {
 		return array( $this->getRbTitle()->getPrefixedText(), $this->getRbUser() );
 	}

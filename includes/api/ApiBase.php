@@ -1441,15 +1441,20 @@ abstract class ApiBase extends ContextSource {
 
 	/**
 	 * Returns whether this module requires a Token to execute
+	 * @deprecated Use getTokenSalt only
 	 * @return bool
 	 */
 	public function needsToken() {
+		wfDeprecated( __METHOD__, '1.20' );
 		return false;
 	}
 
 	/**
-	 * Returns the token salt if there is one, '' if the module doesn't require a salt, else false if the module doesn't need a token
-	 * @return bool|string
+	 * Returns the token salt if there is one,
+	 * '' if the module doesn't require a salt,
+	 * else false if the module doesn't need a token.
+	 * Value is passed to User::getEditToken
+	 * @return bool|string|array
 	 */
 	public function getTokenSalt() {
 		return false;
@@ -1516,7 +1521,7 @@ abstract class ApiBase extends ContextSource {
 			$ret[] = array( 'writedisabled' );
 		}
 
-		if ( $this->needsToken() ) {
+		if ( $this->getTokenSalt() !== false ) {
 			$ret[] = array( 'missingparam', 'token' );
 			$ret[] = array( 'sessionfailure' );
 		}
