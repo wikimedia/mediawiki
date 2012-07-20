@@ -69,15 +69,20 @@ class UploadFromChunks extends UploadFromFile {
 		// Stash file is the called on creating a new chunk session: 
 		$this->mChunkIndex = 0;
 		$this->mOffset = 0;
+
 		// Create a local stash target
 		$this->mLocalFile = parent::stashFile();
+
 		// Update the initial file offset ( based on file size ) 
 		$this->mOffset = $this->mLocalFile->getSize();
 		$this->mFileKey = $this->mLocalFile->getFileKey();
 
-		// Output a copy of this first to chunk 0 location:
-		$status = $this->outputChunk( $this->mLocalFile->getPath() );
-		
+		// Output a copy of this first to chunk 0 location
+		// We have to use getLocalRefPath here to make sure
+		// the location exists. some file repositories do not
+		// have the files available right after stashing
+		$status = $this->outputChunk( $this->mLocalFile->getLocalRefPath() );
+
 		// Update db table to reflect initial "chunk" state 
 		$this->updateChunkStatus();
 		return $this->mLocalFile;
@@ -273,7 +278,6 @@ class UploadFromChunks extends UploadFromFile {
 		// Store the chunk per its indexed fileKey: 
 		$hashPath = $this->repo->getHashPath( $fileKey );
 		$storeStatus = $this->repo->store( $chunkPath, 'temp', "$hashPath$fileKey" );
-		
 		// Check for error in stashing the chunk:
 		if ( ! $storeStatus->isOK() ) {
 			$error = $storeStatus->getErrorsArray();
@@ -285,7 +289,7 @@ class UploadFromChunks extends UploadFromFile {
 					$error = array( 'unknown', 'no error recorded' );
 				}
 			}
-			throw new UploadChunkFileException( "error storing file in '$chunkPath': " . implode( '; ', $error ) );
+			throw new UploadChunkFileException( "error storing '$chunkPath' in '$hashPath$fileKey': " . implode( '; ', $error ) );
 		}
 		return $storeStatus;
 	}
