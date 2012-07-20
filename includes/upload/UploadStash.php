@@ -243,6 +243,9 @@ class UploadStash {
 		}
 		$stashPath = $storeStatus->value;
 
+		// we have renamed the file so we have to cleanup once done
+		unlink($path);
+
 		// fetch the current user ID
 		if ( !$this->isLoggedIn ) {
 			throw new UploadStashNotLoggedInException( __METHOD__ . ' No user is logged in, files must belong to users' );
