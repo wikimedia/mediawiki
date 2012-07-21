@@ -97,6 +97,8 @@ class SqliteUpdater extends DatabaseUpdater {
 			// 1.21
 			array( 'dropField', 'site_stats',   'ss_admins',        'patch-drop-ss_admins.sql' ),
 			array( 'dropField', 'recentchanges', 'rc_moved_to_title', 'patch-rc_moved.sql' ),
+			array( 'addTable', 'watchlist_groups', 'patch-watchlist_groups.sql' ),
+			array( 'addField', 'watchlist', 'wl_group', 'patch-watchlist_groups_newfield.sql' ),
 		);
 	}
 
