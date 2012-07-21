@@ -40,7 +40,7 @@ class SpecialWatchlist extends SpecialPage {
 		$user = $this->getUser();
 		$output = $this->getOutput();
 
-		# Anons don't get a watchlist
+		# Anons don't get a watchlist - but let them through for public watchlists
 		if( $user->isAnon() ) {
 			$output->setPageTitle( $this->msg( 'watchnologin' ) );
 			$output->setRobotPolicy( 'noindex,nofollow' );
@@ -112,6 +112,10 @@ class SpecialWatchlist extends SpecialPage {
 		/* ?     */ 'namespace' => '', //means all
 		/* ?     */ 'invert'    => false,
 		/* bool  */ 'associated' => false,
+		/* int    */ 'user_id'          => $user->getId(),
+		/* string */ 'user'     => $user->getName(),
+		/* int    */ 'group'         => null,
+		/* string */ 'group_name'    => null,
 		);
 		$this->customFilters = array();
 		wfRunHooks( 'SpecialWatchlistFilters', array( $this, &$this->customFilters ) );
@@ -122,14 +126,40 @@ class SpecialWatchlist extends SpecialPage {
 		# Extract variables from the request, falling back to user preferences or
 		# other default values if these don't exist
 		$values = array();
-		$values['days'] = $request->getVal( 'days', $defaults['days'] );
-		$values['hideMinor'] = (int)$request->getBool( 'hideMinor', $defaults['hideMinor'] );
-		$values['hideBots'] = (int)$request->getBool( 'hideBots', $defaults['hideBots'] );
-		$values['hideAnons'] = (int)$request->getBool( 'hideAnons', $defaults['hideAnons'] );
-		$values['hideLiu'] = (int)$request->getBool( 'hideLiu', $defaults['hideLiu'] );
-		$values['hideOwn'] = (int)$request->getBool( 'hideOwn', $defaults['hideOwn'] );
-		$values['hidePatrolled'] = (int)$request->getBool( 'hidePatrolled', $defaults['hidePatrolled'] );
+		$values['user'] = $request->getText( 'user', $defaults['user'] );
+		if( empty( $values['user'] ) ) {
+			$values['user'] = $user->getName();
+		}
+
+		$values['group_name'] = $request->getText( 'group', $defaults['group'] );
+
+		// Look for subpage parameters passed in the URL
+		$subpages = explode( '/', $par );
+
+		if( !empty( $subpages[0] ) ) {
+			$values['user'] = $subpages[0];
+		}
+		if( isset( $subpages[1] ) && !empty( $subpages[1] ) ) {
+			$values['group_name'] = $subpages[1];
+		}
+
+		$user_obj = User::newFromName( $values['user'] );
+		$wg_obj = WatchlistGroup::newFromUser( $user_obj );
+		$values['user_id'] = $user_obj->getId();
+		$values['group'] = $wg_obj->getGroupFromName( $values['group_name'] );
+		// for non existing group set the name to default
+		if ( !$values['group'] ) {
+			$values['group_name'] = $defaults['group'];
+		}
+		$values['days']      	 = $request->getVal( 'days', $prefs['days'] );
+		$values['hideMinor'] 	 = (int)$request->getBool( 'hideMinor', $prefs['hideminor'] );
+		$values['hideBots']  	 = (int)$request->getBool( 'hideBots' , $prefs['hidebots'] );
+		$values['hideAnons'] 	 = (int)$request->getBool( 'hideAnons', $prefs['hideanons'] );
+		$values['hideLiu']   	 = (int)$request->getBool( 'hideLiu'  , $prefs['hideliu'] );
+		$values['hideOwn']   	 = (int)$request->getBool( 'hideOwn'  , $prefs['hideown'] );
+		$values['hidePatrolled'] = (int)$request->getBool( 'hidePatrolled', $prefs['hidepatrolled'] );
 		$values['extended'] = (int)$request->getBool( 'extended', $defaults['extended'] );
+
 		foreach( $this->customFilters as $key => $params ) {
 			$values[$key] = (int)$request->getBool( $key );
 		}
@@ -188,6 +218,12 @@ class SpecialWatchlist extends SpecialPage {
 		# Possible where conditions
 		$conds = array();
 
+		// Backup conditions to restrict access
+		$conds[] = 'wl_group = 0 OR wg_perm = 1 OR (wg_perm = 0 AND wg_user = ' . $user->getId() . ')';
+		if( intval( $values['group'] ) > 0 || $values['group'] === 0 ) {
+			$conds[] = 'wl_group = '. intval( $values['group'] );
+		}
+
 		if( $values['days'] > 0 ) {
 			$conds[] = 'rc_timestamp > ' . $dbr->addQuotes( $dbr->timestamp( time() - intval( $values['days'] * 86400 ) ) );
 		}
@@ -241,6 +277,18 @@ class SpecialWatchlist extends SpecialPage {
 			$output->showLagWarning( $lag );
 		}
 
+		# ADD USER WATCHLIST/GROUP SELECTION
+		$fields['user'] = array(
+			'type' => 'text',
+			'label' => $this->msg( 'watchlist-user' )->escaped(),
+			'value' => $values['user_id']
+		);
+		$fields['group'] = array(
+			'type' => 'text',
+			'label' => $this->msg( 'watchlist-group' )->escaped(),
+			'value' => $values['group']
+		);
+
 		# Create output form
 		$form = Xml::fieldset( $this->msg( 'watchlist-options' )->text(), false, array( 'id' => 'mw-watchlist-options' ) );
 
@@ -264,18 +312,26 @@ class SpecialWatchlist extends SpecialPage {
 		}
 		$form .= "<hr />\n";
 
-		$tables = array( 'recentchanges', 'watchlist' );
-		$fields = RecentChange::selectFields();
+		$tables = array( 'recentchanges', 'watchlist', 'watchlist_groups' );
+		$fields = array_merge( RecentChange::selectFields(), array( $dbr->tableName( 'watchlist_groups' ) . '.*' ) );
+
 		$join_conds = array(
 			'watchlist' => array(
 				'INNER JOIN',
 				array(
-					'wl_user' => $user->getId(),
+					'wl_user' => $values['user_id'],
 					'wl_namespace=rc_namespace',
 					'wl_title=rc_title'
 				),
 			),
+			'watchlist_groups' => array(
+				'LEFT JOIN',
+				array(
+					'wg_id=wl_group'
+				),
+			)
 		);
+
 		$options = array( 'ORDER BY' => 'rc_timestamp DESC' );
 		if( $wgShowUpdatedMarker ) {
 			$fields[] = 'wl_notificationtimestamp';
@@ -369,20 +425,54 @@ class SpecialWatchlist extends SpecialPage {
 			$associated,
 			array( 'title' => $this->msg( 'tooltip-namespace_association' )->text() )
 		) . '&#160;';
+
+		$form .= '</p><p>';
+		$form .= Xml::openElement( 'label', array( 'for' => 'user_search' ) ) . $this->msg( 'watchlist-user' )->escaped() . Xml::closeElement( 'label' );
+		$form .= Html::input( 'user', $values['user'], 'text', array( 'id' => 'user_search' ) ) . '&#160;';
+		$form .= Xml::openElement( 'label', array( 'for' => 'group_search' ) ) . $this->msg( 'watchlist-group' )->escaped() . Xml::closeElement( 'label' );
+		$form .= Html::input( 'group', $values['group_name'], 'text', array( 'id' => 'group_search' ) ) . '&#160;';
+
 		$form .= Xml::submitButton( $this->msg( 'allpagessubmit' )->text() ) . "</p>\n";
-		foreach ( $hiddenFields as $key => $value ) {
-			$form .= Html::hidden( $key, $value ) . "\n";
+		$form .= Html::hidden( 'days', $values['days'] ) . "\n";
+		foreach ( $filters as $key => $msg ) {
+			if ( $values[$key] ) {
+				$form .= Html::hidden( $key, 1 ) . "\n";
+			}
 		}
 		$form .= Xml::closeElement( 'form' ) . "\n";
 		$form .= Xml::closeElement( 'fieldset' ) . "\n";
+
 		$output->addHTML( $form );
 
-		# If there's nothing to show, stop here
-		if( $numRows == 0 ) {
-			$output->addWikiMsg( 'watchnochange' );
+		if( $values['user_id'] == 0 ) {
+			$output->addWikiMsg( 'wlfilter-nouser' );
 			return;
+		} else {
+			// Check permissions
+			$hasPerm = ( $values['user_id'] == $user->getId() ) // if the user is self
+			          || $wg_obj->isGroup( $values['group'], true );
+			// If the user doesn't have permission or there's nothing to show, stop here
+			if( !$hasPerm ) {
+				$output->addWikiMsg( 'wlfilter-permdenied' );
+				return;
+			}
+			// No changes for the given criteria
+			if( $numRows == 0 ) {
+				$output->addWikiMsg( 'watchnochange' );
+				return;
+			}
 		}
 
+		// The filter message might be repetitive since this info is already available in the filter form fields.
+		/*$filter_status = '<p>';
+		if( isset( $values['user'] ) ) {
+			$filter_status .= $this->msg( 'wlfilter' )->rawParams( $values['user'] )->escaped();
+		}
+		if( isset( $values['group_name'] ) ) {
+		    $filter_status .= ' ' . $this->msg( 'wlfilter-group' )->rawParams( $values['group_name'] )->escaped();
+		}
+		$filter_status .= '</p>';
+		$output->addHTML( $filter_status );*/
 		/* End bottom header */
 
 		/* Do link batch query */
