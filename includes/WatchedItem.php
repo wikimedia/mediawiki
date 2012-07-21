@@ -27,7 +27,19 @@
  * @ingroup Watchlist
  */
 class WatchedItem {
-	var $mTitle, $mUser, $id, $ns, $ti;
+	var $mTitle, $mUser, $id, $ns;
+
+	/**
+	 * Internal identifier for the group (default: 0, means the general watchlist group).
+	 * @var Integer
+	 */
+	protected $group = 0;
+
+	/**
+	 * Title of the watched item.
+	 * @var Title
+	 */
+	protected $title;
 	private $loaded = false, $watched, $timestamp;
 
 	/**
@@ -36,7 +48,7 @@ class WatchedItem {
 	 * @param $title Title: the title we're going to (un)watch
 	 * @return WatchedItem object
 	 */
-	public static function fromUserTitle( $user, $title ) {
+	public static function fromUserTitle( $user, $title, $group = 0 ) {
 		$wl = new WatchedItem;
 		$wl->mUser = $user;
 		$wl->mTitle = $title;
@@ -47,7 +59,9 @@ class WatchedItem {
 		# $wl->ns = $title->getNamespace() & ~1;
 		$wl->ns = $title->getNamespace();
 
-		$wl->ti = $title->getDBkey();
+		$wl->title = $title->getDBkey();
+
+		$wl->group = $group;
 		return $wl;
 	}
 
@@ -58,7 +72,7 @@ class WatchedItem {
 	 * @return array
 	 */
 	private function dbCond() {
-		return array( 'wl_user' => $this->id, 'wl_namespace' => $this->ns, 'wl_title' => $this->ti );
+		return array( 'wl_user' => $this->id, 'wl_namespace' => $this->ns, 'wl_title' => $this->title );
 	}
 
 	/**
@@ -131,6 +145,19 @@ class WatchedItem {
 		$this->timestamp = null;
 	}
 
+
+	/**
+	 * Sets the group of the watched item.
+	 * @return WatchedItem
+	 */
+	public function setGroup( $group ) {
+		$isGroup = is_int( $group );
+		if( $isGroup ){
+			$this->group = $group;
+		}
+		return $this;
+	}
+
 	/**
 	 * Given a title and user (assumes the object is setup), add the watch to the
 	 * database.
@@ -145,8 +172,9 @@ class WatchedItem {
 		$dbw->insert( 'watchlist',
 		  array(
 			'wl_user' => $this->id,
+			'wl_group' => $this->group,
 			'wl_namespace' => MWNamespace::getSubject($this->ns),
-			'wl_title' => $this->ti,
+			'wl_title' => $this->title,
 			'wl_notificationtimestamp' => null
 		  ), __METHOD__, 'IGNORE' );
 
@@ -155,8 +183,9 @@ class WatchedItem {
 		$dbw->insert( 'watchlist',
 		  array(
 			'wl_user' => $this->id,
+			'wl_group' => $this->group,
 			'wl_namespace' => MWNamespace::getTalk($this->ns),
-			'wl_title' => $this->ti,
+			'wl_title' => $this->title,
 			'wl_notificationtimestamp' => null
 		  ), __METHOD__, 'IGNORE' );
 
@@ -179,7 +208,7 @@ class WatchedItem {
 			array(
 				'wl_user' => $this->id,
 				'wl_namespace' => MWNamespace::getSubject($this->ns),
-				'wl_title' => $this->ti
+				'wl_title' => $this->title
 			), __METHOD__
 		);
 		if ( $dbw->affectedRows() ) {
@@ -194,7 +223,7 @@ class WatchedItem {
 			array(
 				'wl_user' => $this->id,
 				'wl_namespace' => MWNamespace::getTalk($this->ns),
-				'wl_title' => $this->ti
+				'wl_title' => $this->title
 			), __METHOD__
 		);
 

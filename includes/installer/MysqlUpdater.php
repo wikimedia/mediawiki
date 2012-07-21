@@ -226,6 +226,8 @@ class MysqlUpdater extends DatabaseUpdater {
 			array( 'addTable', 'sites',                            'patch-sites.sql' ),
 			array( 'addField', 'filearchive',   'fa_sha1',          'patch-fa_sha1.sql' ),
 			array( 'addField', 'job',           'job_token',         'patch-job_token.sql' ),
+			array( 'addTable', 'watchlist_groups', 'patch-watchlist_groups.sql' ),
+			array( 'addField', 'watchlist', 'wl_group', 'patch-watchlist_groups_newfield.sql' ),
 		);
 	}
 
