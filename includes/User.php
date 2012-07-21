@@ -119,7 +119,6 @@ class User {
 		'delete',
 		'deletedhistory',
 		'deletedtext',
-		'deletelogentry',
 		'deleterevision',
 		'edit',
 		'editinterface',
@@ -2289,11 +2288,9 @@ class User {
 		$this->loadOptions();
 
 		// Explicitly NULL values should refer to defaults
-		if( is_null( $val ) ) {
-			$defaultOption = self::getDefaultOption( $oname );
-			if( !is_null( $defaultOption ) ) {
-				$val = $defaultOption;
-			}
+		global $wgDefaultUserOptions;
+		if( is_null( $val ) && isset( $wgDefaultUserOptions[$oname] ) ) {
+			$val = $wgDefaultUserOptions[$oname];
 		}
 
 		$this->mOptions[$oname] = $val;
@@ -2659,9 +2656,10 @@ class User {
 	/**
 	 * Watch an article.
 	 * @param $title Title of the article to look at
+	 * @param $group ID of the watchlist group
 	 */
-	public function addWatch( $title ) {
-		$this->getWatchedItem( $title )->addWatch();
+	public function addWatch( $title, $group = 0 ) {
+		$this->getWatchedItem( $title )->setGroup( $group )->addWatch();
 		$this->invalidateCache();
 	}
 
