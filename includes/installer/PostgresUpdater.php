@@ -91,6 +91,7 @@ class PostgresUpdater extends DatabaseUpdater {
 			array( 'addTable', 'user_former_groups','patch-user_former_groups.sql' ),
 			array( 'addTable', 'config',            'patch-config.sql' ),
 			array( 'addTable', 'external_user',     'patch-external_user.sql' ),
+			array( 'addTable', 'watchlist_groups',  'patch-watchlist_groups.sql' ),
 
 			# Needed before new field
 			array( 'convertArchive2' ),
@@ -149,6 +150,7 @@ class PostgresUpdater extends DatabaseUpdater {
 			array( 'addPgField', 'archive',       'ar_sha1',              "TEXT NOT NULL DEFAULT ''" ),
 			array( 'addPgField', 'uploadstash',   'us_chunk_inx',         "INTEGER NULL" ),
 			array( 'addPgField', 'job',           'job_timestamp',        "TIMESTAMPTZ" ),
+			array( 'addPgField', 'watchlist',     'wl_group',             "INTEGER NOT NULL DEFAULT 0" ),
 
 			# type changes
 			array( 'changeField', 'archive',       'ar_deleted',      'smallint', '' ),

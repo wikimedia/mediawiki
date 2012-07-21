@@ -389,6 +389,7 @@ $specialPageAliases = array(
 	'Disambiguations'           => array( 'Disambiguations' ),
 	'DoubleRedirects'           => array( 'DoubleRedirects' ),
 	'EditWatchlist'             => array( 'EditWatchlist' ),
+	'EditWatchlistGroup'        => array( 'EditWatchlistGroup' ),
 	'Emailuser'                 => array( 'EmailUser' ),
 	'Export'                    => array( 'Export' ),
 	'Fewestrevisions'           => array( 'FewestRevisions' ),
@@ -637,7 +638,7 @@ XHTML id names.
 'tog-hidepatrolled'           => 'Hide patrolled edits in recent changes',
 'tog-newpageshidepatrolled'   => 'Hide patrolled pages from new page list',
 'tog-extendwatchlist'         => 'Expand watchlist to show all changes, not just the most recent',
-'tog-usenewrc'                => 'Group changes by page in recent changes and watchlist (requires JavaScript)',
+'tog-usenewrc'                => 'Use enhanced recent changes (requires JavaScript)',
 'tog-numberheadings'          => 'Auto-number headings',
 'tog-showtoolbar'             => 'Show edit toolbar (requires JavaScript)',
 'tog-editondblclick'          => 'Edit pages on double click (requires JavaScript)',
@@ -645,17 +646,17 @@ XHTML id names.
 'tog-editsectiononrightclick' => 'Enable section editing by right clicking on section titles (requires JavaScript)',
 'tog-showtoc'                 => 'Show table of contents (for pages with more than 3 headings)',
 'tog-rememberpassword'        => 'Remember my login on this browser (for a maximum of $1 {{PLURAL:$1|day|days}})',
-'tog-watchcreations'          => 'Add pages I create and files I upload to my watchlist',
-'tog-watchdefault'            => 'Add pages and files I edit to my watchlist',
-'tog-watchmoves'              => 'Add pages and files I move to my watchlist',
-'tog-watchdeletion'           => 'Add pages and files I delete to my watchlist',
+'tog-watchcreations'          => 'Add pages I create to my watchlist',
+'tog-watchdefault'            => 'Add pages I edit to my watchlist',
+'tog-watchmoves'              => 'Add pages I move to my watchlist',
+'tog-watchdeletion'           => 'Add pages I delete to my watchlist',
 'tog-minordefault'            => 'Mark all edits minor by default',
 'tog-previewontop'            => 'Show preview before edit box',
 'tog-previewonfirst'          => 'Show preview on first edit',
 'tog-nocache'                 => 'Disable browser page caching',
-'tog-enotifwatchlistpages'    => 'E-mail me when a page or file on my watchlist is changed',
+'tog-enotifwatchlistpages'    => 'E-mail me when a page on my watchlist is changed',
 'tog-enotifusertalkpages'     => 'E-mail me when my user talk page is changed',
-'tog-enotifminoredits'        => 'E-mail me also for minor edits of pages and files',
+'tog-enotifminoredits'        => 'E-mail me also for minor edits of pages',
 'tog-enotifrevealaddr'        => 'Reveal my e-mail address in notification e-mails',
 'tog-shownumberswatching'     => 'Show the number of watching users',
 'tog-oldsig'                  => 'Existing signature:',
@@ -760,7 +761,7 @@ XHTML id names.
 'index-category'                 => 'Indexed pages',
 'noindex-category'               => 'Noindexed pages',
 'broken-file-category'           => 'Pages with broken file links',
-'categoryviewer-pagedlinks'      => '($1) ($2)', # only translate this message to other languages if you have to change it
+'categoryviewer-pagedlinks'      => '($1) ($2)',
 
 'linkprefix' => '/^(.*?)([a-zA-Z\\x80-\\xff]+)$/sD', # only translate this message to other languages if you have to change it
 
@@ -964,90 +965,86 @@ This might also indicate a bug in the software used by {{SITENAME}}.',
 A list of valid special pages can be found at [[Special:SpecialPages|{{int:specialpages}}]].',
 
 # General errors
-'error'                         => 'Error',
-'databaseerror'                 => 'Database error',
-'dberrortext'                   => 'A database query syntax error has occurred.
+'error'                => 'Error',
+'databaseerror'        => 'Database error',
+'dberrortext'          => 'A database query syntax error has occurred.
 This may indicate a bug in the software.
 The last attempted database query was:
 <blockquote><tt>$1</tt></blockquote>
 from within function "<tt>$2</tt>".
 Database returned error "<tt>$3: $4</tt>".',
-'dberrortextcl'                 => 'A database query syntax error has occurred.
+'dberrortextcl'        => 'A database query syntax error has occurred.
 The last attempted database query was:
 "$1"
 from within function "$2".
 Database returned error "$3: $4"',
-'laggedslavemode'               => "'''Warning:''' Page may not contain recent updates.",
-'readonly'                      => 'Database locked',
-'enterlockreason'               => 'Enter a reason for the lock, including an estimate of when the lock will be released',
-'readonlytext'                  => 'The database is currently locked to new entries and other modifications, probably for routine database maintenance, after which it will be back to normal.
+'laggedslavemode'      => "'''Warning:''' Page may not contain recent updates.",
+'readonly'             => 'Database locked',
+'enterlockreason'      => 'Enter a reason for the lock, including an estimate of when the lock will be released',
+'readonlytext'         => 'The database is currently locked to new entries and other modifications, probably for routine database maintenance, after which it will be back to normal.
 
 The administrator who locked it offered this explanation: $1',
-'missing-article'               => 'The database did not find the text of a page that it should have found, named "$1" $2.
+'missing-article'      => 'The database did not find the text of a page that it should have found, named "$1" $2.
 
 This is usually caused by following an outdated diff or history link to a page that has been deleted.
 
 If this is not the case, you may have found a bug in the software.
 Please report this to an [[Special:ListUsers/sysop|administrator]], making note of the URL.',
-'missingarticle-rev'            => '(revision#: $1)',
-'missingarticle-diff'           => '(Diff: $1, $2)',
-'readonly_lag'                  => 'The database has been automatically locked while the slave database servers catch up to the master',
-'internalerror'                 => 'Internal error',
-'internalerror_info'            => 'Internal error: $1',
-'fileappenderrorread'           => 'Could not read "$1" during append.',
-'fileappenderror'               => 'Could not append "$1" to "$2".',
-'filecopyerror'                 => 'Could not copy file "$1" to "$2".',
-'filerenameerror'               => 'Could not rename file "$1" to "$2".',
-'filedeleteerror'               => 'Could not delete file "$1".',
-'directorycreateerror'          => 'Could not create directory "$1".',
-'filenotfound'                  => 'Could not find file "$1".',
-'fileexistserror'               => 'Unable to write to file "$1": File exists.',
-'unexpected'                    => 'Unexpected value: "$1"="$2".',
-'formerror'                     => 'Error: Could not submit form.',
-'badarticleerror'               => 'This action cannot be performed on this page.',
-'cannotdelete'                  => 'The page or file "$1" could not be deleted.
+'missingarticle-rev'   => '(revision#: $1)',
+'missingarticle-diff'  => '(Diff: $1, $2)',
+'readonly_lag'         => 'The database has been automatically locked while the slave database servers catch up to the master',
+'internalerror'        => 'Internal error',
+'internalerror_info'   => 'Internal error: $1',
+'fileappenderrorread'  => 'Could not read "$1" during append.',
+'fileappenderror'      => 'Could not append "$1" to "$2".',
+'filecopyerror'        => 'Could not copy file "$1" to "$2".',
+'filerenameerror'      => 'Could not rename file "$1" to "$2".',
+'filedeleteerror'      => 'Could not delete file "$1".',
+'directorycreateerror' => 'Could not create directory "$1".',
+'filenotfound'         => 'Could not find file "$1".',
+'fileexistserror'      => 'Unable to write to file "$1": File exists.',
+'unexpected'           => 'Unexpected value: "$1"="$2".',
+'formerror'            => 'Error: Could not submit form.',
+'badarticleerror'      => 'This action cannot be performed on this page.',
+'cannotdelete'         => 'The page or file "$1" could not be deleted.
 It may have already been deleted by someone else.',
-'cannotdelete-title'            => 'Cannot delete page "$1"',
-'delete-hook-aborted'           => 'Deletion aborted by hook.
-It gave no explanation.',
-'badtitle'                      => 'Bad title',
-'badtitletext'                  => 'The requested page title was invalid, empty, or an incorrectly linked inter-language or inter-wiki title.
+'cannotdelete-title'   => 'Cannot delete page "$1"',
+'badtitle'             => 'Bad title',
+'badtitletext'         => 'The requested page title was invalid, empty, or an incorrectly linked inter-language or inter-wiki title.
 It may contain one or more characters which cannot be used in titles.',
-'perfcached'                    => 'The following data is cached and may not be up to date. A maximum of {{PLURAL:$1|one result is|$1 results are}} available in the cache.',
-'perfcachedts'                  => 'The following data is cached, and was last updated $1. A maximum of {{PLURAL:$4|one result is|$4 results are}} available in the cache.',
-'querypage-no-updates'          => 'Updates for this page are currently disabled.
+'perfcached'           => 'The following data is cached and may not be up to date. A maximum of {{PLURAL:$1|one result is|$1 results are}} available in the cache.',
+'perfcachedts'         => 'The following data is cached, and was last updated $1. A maximum of {{PLURAL:$4|one result is|$4 results are}} available in the cache.',
+'querypage-no-updates' => 'Updates for this page are currently disabled.
 Data here will not presently be refreshed.',
-'wrong_wfQuery_params'          => 'Incorrect parameters to wfQuery()<br />
+'wrong_wfQuery_params' => 'Incorrect parameters to wfQuery()<br />
 Function: $1<br />
 Query: $2',
-'viewsource'                    => 'View source',
-'viewsource-title'              => 'View source for $1',
-'actionthrottled'               => 'Action throttled',
-'actionthrottledtext'           => 'As an anti-spam measure, you are limited from performing this action too many times in a short space of time, and you have exceeded this limit.
+'viewsource'           => 'View source',
+'viewsource-title'     => 'View source for $1',
+'actionthrottled'      => 'Action throttled',
+'actionthrottledtext'  => 'As an anti-spam measure, you are limited from performing this action too many times in a short space of time, and you have exceeded this limit.
 Please try again in a few minutes.',
-'protectedpagetext'             => 'This page has been protected to prevent editing.',
-'viewsourcetext'                => 'You can view and copy the source of this page:',
-'viewyourtext'                  => "You can view and copy the source of '''your edits''' to this page:",
-'protectedinterface'            => 'This page provides interface text for the software, and is protected to prevent abuse.',
-'editinginterface'              => "'''Warning:''' You are editing a page which is used to provide interface text for the software.
+'protectedpagetext'    => 'This page has been protected to prevent editing.',
+'viewsourcetext'       => 'You can view and copy the source of this page:',
+'viewyourtext'         => "You can view and copy the source of '''your edits''' to this page:",
+'protectedinterface'   => 'This page provides interface text for the software, and is protected to prevent abuse.',
+'editinginterface'     => "'''Warning:''' You are editing a page which is used to provide interface text for the software.
 Changes to this page will affect the appearance of the user interface for other users.
 For translations, please consider using [//translatewiki.net/wiki/Main_Page?setlang=en translatewiki.net], the MediaWiki localisation project.",
-'sqlhidden'                     => '(SQL query hidden)',
-'cascadeprotected'              => 'This page has been protected from editing, because it is included in the following {{PLURAL:$1|page, which is|pages, which are}} protected with the "cascading" option turned on:
+'sqlhidden'            => '(SQL query hidden)',
+'cascadeprotected'     => 'This page has been protected from editing, because it is included in the following {{PLURAL:$1|page, which is|pages, which are}} protected with the "cascading" option turned on:
 $2',
-'namespaceprotected'            => "You do not have permission to edit pages in the '''$1''' namespace.",
-'customcssprotected'            => "You do not have permission to edit this CSS page, because it contains another user's personal settings.",
-'customjsprotected'             => "You do not have permission to edit this JavaScript page, because it contains another user's personal settings.",
-'ns-specialprotected'           => 'Special pages cannot be edited.',
-'titleprotected'                => 'This title has been protected from creation by [[User:$1|$1]].
+'namespaceprotected'   => "You do not have permission to edit pages in the '''$1''' namespace.",
+'customcssprotected'   => "You do not have permission to edit this CSS page, because it contains another user's personal settings.",
+'customjsprotected'    => "You do not have permission to edit this JavaScript page, because it contains another user's personal settings.",
+'ns-specialprotected'  => 'Special pages cannot be edited.',
+'titleprotected'       => 'This title has been protected from creation by [[User:$1|$1]].
 The reason given is "\'\'$2\'\'".',
-'filereadonlyerror'             => 'Unable to modify the file "$1" because the file repository "$2" is in read-only mode.
+'filereadonlyerror'    => 'Unable to modify the file "$1" because the file repository "$2" is in read-only mode.
 
 The administrator who locked it offered this explanation: "$3".',
 'invalidtitle-knownnamespace'   => 'Invalid title with namespace "$2" and text "$3"',
 'invalidtitle-unknownnamespace' => 'Invalid title with unknown namespace number $1 and text "$2"',
-'exception-nologin'             => 'Not logged in',
-'exception-nologin-text'        => 'This page or action requires you to be logged in on this wiki.',
 
 # Virus scanner
 'virus-badscanner'     => "Bad configuration: Unknown virus scanner: ''$1''",
@@ -1382,7 +1379,7 @@ Custom .css and .js pages use a lowercase title, e.g. {{ns:user}}:Foo/vector.css
 'note'                             => "'''Note:'''",
 'previewnote'                      => "'''Remember that this is only a preview.'''
 Your changes have not yet been saved!",
-'continue-editing'                 => 'Continue editing',
+'continue-editing'                 => "Continue editing",
 'previewconflict'                  => 'This preview reflects the text in the upper text editing area as it will appear if you choose to save.',
 'session_fail_preview'             => "'''Sorry! We could not process your edit due to a loss of session data.'''
 Please try again.
@@ -1668,7 +1665,7 @@ Note that using the navigation links will reset this column.',
 'mergehistory-comment'             => 'Merged [[:$1]] into [[:$2]]: $3',
 'mergehistory-same-destination'    => 'Source and destination pages cannot be the same',
 'mergehistory-reason'              => 'Reason:',
-'mergehistory-revisionrow'         => '$1 ($2) $3 . . $4 $5 $6', # only translate this message to other languages if you have to change it
+'mergehistory-revisionrow'         => '$1 ($2) $3 . . $4 $5 $6',
 
 # Merge log
 'mergelog'           => 'Merge log',
@@ -1985,7 +1982,6 @@ Your e-mail address is not revealed when other users contact you.',
 'right-writeapi'              => 'Use of the write API',
 'right-delete'                => 'Delete pages',
 'right-bigdelete'             => 'Delete pages with large histories',
-'right-deletelogentry'        => 'Delete and undelete specific log entries',
 'right-deleterevision'        => 'Delete and undelete specific revisions of pages',
 'right-deletedhistory'        => 'View deleted history entries, without their associated text',
 'right-deletedtext'           => 'View deleted text and changes between deleted revisions',
@@ -2296,15 +2292,14 @@ If the problem persists, contact an [[Special:ListUsers/sysop|administrator]].',
 'backend-fail-read'          => 'Could not read file $1.',
 'backend-fail-create'        => 'Could not write file $1.',
 'backend-fail-maxsize'       => 'Could not write file $1 because it is larger than {{PLURAL:$2|one byte|$2 bytes}}.',
+'backend-fail-usable'        => 'Could not write file $1 due to insufficient permissions or missing directories/containers.',
 'backend-fail-readonly'      => 'The storage backend "$1" is currently read-only. The reason given is: "\'\'$2\'\'"',
 'backend-fail-synced'        => 'The file "$1" is in an inconsistent state within the internal storage backends',
 'backend-fail-connect'       => 'Could not connect to storage backend "$1".',
 'backend-fail-internal'      => 'An unknown error occurred in storage backend "$1".',
 'backend-fail-contenttype'   => 'Could not determine the content type of the file to store at "$1".',
 'backend-fail-batchsize'     => 'Storage backend given a batch of $1 file {{PLURAL:$1|operation|operations}}; the limit is $2 {{PLURAL:$2|operation|operations}}.',
-'backend-fail-usable'        => 'Could not write file $1 due to insufficient permissions or missing directories/containers.',
 
-# File journal errors
 'filejournal-fail-dbconnect' => 'Could not connect to the journal database for storage backend "$1".',
 'filejournal-fail-dbquery'   => 'Could not update the journal database for storage backend "$1".',
 
@@ -2317,7 +2312,6 @@ If the problem persists, contact an [[Special:ListUsers/sysop|administrator]].',
 'lockmanager-fail-releaselock' => 'Could not release lock for "$1".',
 'lockmanager-fail-db-bucket'   => 'Could not contact enough lock databases in bucket $1.',
 'lockmanager-fail-db-release'  => 'Could not release locks on database $1.',
-'lockmanager-fail-svr-acquire' => 'Could not acquire locks on server $1.',
 'lockmanager-fail-svr-release' => 'Could not release locks on server $1.',
 
 # ZipDirectoryReader
@@ -2698,8 +2692,8 @@ It may contain one or more characters which cannot be used in titles.',
 
 # SpecialCachedPage
 'cachedspecial-viewing-cached-ttl' => 'You are viewing a cached version of this page, which can be up to $1 old.',
-'cachedspecial-viewing-cached-ts'  => 'You are viewing a cached version of this page, which might not be completely actual.',
-'cachedspecial-refresh-now'        => 'View latest.',
+'cachedspecial-viewing-cached-ts' => 'You are viewing a cached version of this page, which might not be completely actual.',
+'cachedspecial-refresh-now' => 'View latest.',
 
 # Special:Categories
 'categories'                    => 'Categories',
@@ -2838,6 +2832,11 @@ Future changes to this page and its associated talk page will be listed there, a
 'wlnote'               => "Below {{PLURAL:$1|is the last change|are the last '''$1''' changes}} in the last {{PLURAL:$2|hour|'''$2''' hours}}, as of $3, $4.",
 'wlshowlast'           => 'Show last $1 hours $2 days $3',
 'watchlist-options'    => 'Watchlist options',
+'wlfilter-permdenied'  => 'You do not have sufficient privileges to view these watchlist items.',
+'wlfilter'             => "Showing only pages in $1's watchlist.",
+'wlfilter-group'       => 'Pages belong to the group "$1".',
+'watchlist-user'       => 'User:',
+'watchlist-group'      => 'Group:',
 
 # Displayed when you click the "watch" button and it is in the process of watching
 'watching'       => 'Watching...',
@@ -3064,7 +3063,7 @@ It may have already been undeleted.',
 $1',
 'undelete-show-file-confirm'   => 'Are you sure you want to view the deleted revision of the file "<nowiki>$1</nowiki>" from $2 at $3?',
 'undelete-show-file-submit'    => 'Yes',
-'undelete-revisionrow'         => '$1 $2 ($3) $4 . . $5 $6 $7', # only translate this message to other languages if you have to change it
+'undelete-revisionrow'        => "$1 $2 $3 $4 . . $5 $6 $7",
 
 # Namespace form on various pages
 'namespace'                     => 'Namespace:',
@@ -3202,8 +3201,8 @@ See the [[Special:BlockList|block list]] to review blocks.',
 'expiringblock'                   => 'expires on $1 at $2',
 'anononlyblock'                   => 'anon. only',
 'noautoblockblock'                => 'autoblock disabled',
-'createaccountblock'              => 'account creation disabled',
-'emailblock'                      => 'e-mail disabled',
+'createaccountblock'              => 'account creation blocked',
+'emailblock'                      => 'e-mail blocked',
 'blocklist-nousertalk'            => 'cannot edit own talk page',
 'ipblocklist-empty'               => 'The block list is empty.',
 'ipblocklist-no-results'          => 'The requested IP address or username is not blocked.',
@@ -3228,7 +3227,7 @@ See the [[Special:BlockList|block list]] for the list of currently operational b
 'block-log-flags-anononly'        => 'anonymous users only',
 'block-log-flags-nocreate'        => 'account creation disabled',
 'block-log-flags-noautoblock'     => 'autoblock disabled',
-'block-log-flags-noemail'         => 'e-mail disabled',
+'block-log-flags-noemail'         => 'e-mail blocked',
 'block-log-flags-nousertalk'      => 'cannot edit own talk page',
 'block-log-flags-angry-autoblock' => 'enhanced autoblock enabled',
 'block-log-flags-hiddenname'      => 'username hidden',
@@ -3700,7 +3699,6 @@ This is probably caused by a link to a blacklisted external site.',
 'spambot_username'    => 'MediaWiki spam cleanup',
 'spam_reverting'      => 'Reverting to last revision not containing links to $1',
 'spam_blanking'       => 'All revisions contained links to $1, blanking',
-'spam_deleting'       => 'All revisions contained links to $1, deleting',
 
 # Info page
 'pageinfo-title'            => 'Information for "$1"',
@@ -4525,32 +4523,62 @@ Try normal preview.',
 'lag-warn-high'   => 'Due to high database server lag, changes newer than $1 {{PLURAL:$1|second|seconds}} may not be shown in this list.',
 
 # Watchlist editor
-'editwatchlist-summary'        => '', # do not translate or duplicate this message to other languages
-'watchlistedit-numitems'       => 'Your watchlist contains {{PLURAL:$1|1 title|$1 titles}}, excluding talk pages.',
-'watchlistedit-noitems'        => 'Your watchlist contains no titles.',
-'watchlistedit-normal-title'   => 'Edit watchlist',
-'watchlistedit-normal-legend'  => 'Remove titles from watchlist',
-'watchlistedit-normal-explain' => 'Titles on your watchlist are shown below.
-To remove a title, check the box next to it, and click "{{int:Watchlistedit-normal-submit}}".
+'editwatchlist-summary'             => '', # do not translate or duplicate this message to other languages
+'watchlistedit-numitems'            => 'Your watchlist contains {{PLURAL:$1|1 title|$1 titles}}, excluding talk pages.',
+'watchlistedit-noitems'             => 'Your watchlist contains no titles.',
+'watchlistedit-nogroup'             => 'None',
+'watchlistedit-normal-title'        => 'Edit watchlist',
+'watchlistedit-normal-legend'       => 'Edit titles in watchlist',
+'watchlistedit-normal-explain'      => 'Titles on your watchlist are shown below.
+To edit a title, check the box next to it, select an action to regroup or remove the titles, and click "{{int:Watchlistedit-normal-submit}}".
 You can also [[Special:EditWatchlist/raw|edit the raw list]].',
-'watchlistedit-normal-submit'  => 'Remove titles',
-'watchlistedit-normal-done'    => '{{PLURAL:$1|1 title was|$1 titles were}} removed from your watchlist:',
-'watchlistedit-raw-title'      => 'Edit raw watchlist',
-'watchlistedit-raw-legend'     => 'Edit raw watchlist',
-'watchlistedit-raw-explain'    => 'Titles on your watchlist are shown below, and can be edited by adding to and removing from the list;
+'watchlistedit-normal-onlygroup'    => 'Only showing watchlist titles in the "$1" group.',
+'watchlistedit-normal-ungroup'      => 'Ungroup titles',
+'watchlistedit-normal-remove'       => 'Remove titles',
+'watchlistedit-normal-change'       => 'Change group to "$1"',
+'watchlistedit-normal-action'       => 'Action:',
+'watchlistedit-normal-submit'       => 'Update watchlist',
+'watchlistedit-normal-done'         => '{{PLURAL:$1|1 title was|$1 titles were}} removed from your watchlist:',
+'watchlistedit-normal-donegrouping' => 'Titles were successfully regrouped!',
+'watchlistedit-raw-title'           => 'Edit raw watchlist',
+'watchlistedit-raw-legend'          => 'Edit raw watchlist',
+'watchlistedit-raw-explain'         => 'Titles on your watchlist are shown below, and can be edited by adding to and removing from the list;
 one title per line.
 When finished, click "{{int:Watchlistedit-raw-submit}}".
 You can also [[Special:EditWatchlist|use the standard editor]].',
-'watchlistedit-raw-titles'     => 'Titles:',
-'watchlistedit-raw-submit'     => 'Update watchlist',
-'watchlistedit-raw-done'       => 'Your watchlist has been updated.',
-'watchlistedit-raw-added'      => '{{PLURAL:$1|1 title was|$1 titles were}} added:',
-'watchlistedit-raw-removed'    => '{{PLURAL:$1|1 title was|$1 titles were}} removed:',
+'watchlistedit-raw-ungrouped'       => 'Ungrouped',
+'watchlistedit-raw-titles'          => 'Titles:',
+'watchlistedit-raw-submit'          => 'Update watchlist',
+'watchlistedit-raw-done'            => 'Your watchlist has been updated.',
+'watchlistedit-raw-added'           => '{{PLURAL:$1|1 title was|$1 titles were}} added:',
+'watchlistedit-raw-removed'         => '{{PLURAL:$1|1 title was|$1 titles were}} removed:',
+
+# Watchlist group editor
+'editwatchlistgroup'  => 'Edit watchlist groups',
+'wlgroup-legend'      => 'Edit watchlist groups',
+'wlgroup-explain'     => 'Groups of your watchlist are shown below.
+To rename a group, select "{{int:Wlgroup-rename}}" and fill in the new group name below the old one.
+To delete a group, select "{{int:Wlgroup-delete}}".
+To add a group, fill in the name of the new group in the last field.
+When finished, click "{{int:Wlgroup-submit}}".',
+'wlgroup-noaction'    => 'Take no action',
+'wlgroup-rename'      => 'Rename',
+'wlgroup-changeperm'  => 'Change permission',
+'wlgroup-delete'      => 'Delete',
+'wlgroup-renameto'    => 'Rename "$1" to:',
+'wlgroup-newname'     => 'New group name:',
+'wlgroup-perm'        => 'Permission:',
+'wlgroup-permprivate' => 'Private',
+'wlgroup-permpublic'  => 'Public',
+'wlgroup-createnew'   => 'Create a new watchlist group:',
+'wlgroup-submit'      => 'Save groups',
+'wlgroup-success'     => 'Your watchlist groups were updated successfully.',
 
 # Watchlist editing tools
-'watchlisttools-view' => 'View relevant changes',
-'watchlisttools-edit' => 'View and edit watchlist',
-'watchlisttools-raw'  => 'Edit raw watchlist',
+'watchlisttools-view'  => 'View relevant changes',
+'watchlisttools-edit'  => 'View and edit watchlist',
+'watchlisttools-raw'   => 'Edit raw watchlist',
+'watchlisttools-group' => 'View and edit watchlist groups',
 
 # Iranian month names
 'iranian-calendar-m1'  => 'Farvardin', # only translate this message to other languages if you have to change it
@@ -4620,44 +4648,44 @@ You can also [[Special:EditWatchlist|use the standard editor]].',
 'duplicate-defaultsort' => '\'\'\'Warning:\'\'\' Default sort key "$2" overrides earlier default sort key "$1".',
 
 # Special:Version
-'version'                               => 'Version',
-'version-summary'                       => '', # do not translate or duplicate this message to other languages
-'version-extensions'                    => 'Installed extensions',
-'version-specialpages'                  => 'Special pages',
-'version-parserhooks'                   => 'Parser hooks',
-'version-variables'                     => 'Variables',
-'version-antispam'                      => 'Spam prevention',
-'version-skins'                         => 'Skins',
-'version-api'                           => 'API', # only translate this message to other languages if you have to change it
-'version-other'                         => 'Other',
-'version-mediahandlers'                 => 'Media handlers',
-'version-hooks'                         => 'Hooks',
-'version-extension-functions'           => 'Extension functions',
-'version-parser-extensiontags'          => 'Parser extension tags',
-'version-parser-function-hooks'         => 'Parser function hooks',
-'version-hook-name'                     => 'Hook name',
-'version-hook-subscribedby'             => 'Subscribed by',
-'version-version'                       => '(Version $1)',
-'version-svn-revision'                  => '(r$2)', # only translate this message to other languages if you have to change it
-'version-license'                       => 'License',
-'version-poweredby-credits'             => "This wiki is powered by '''[//www.mediawiki.org/ MediaWiki]''', copyright © 2001-$1 $2.",
-'version-poweredby-others'              => '[{{SERVER}}{{SCRIPTPATH}}/CREDITS others]',
-'version-license-info'                  => 'MediaWiki is free software; you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation; either version 2 of the License, or (at your option) any later version.
+'version'                       => 'Version',
+'version-summary'               => '', # do not translate or duplicate this message to other languages
+'version-extensions'            => 'Installed extensions',
+'version-specialpages'          => 'Special pages',
+'version-parserhooks'           => 'Parser hooks',
+'version-variables'             => 'Variables',
+'version-antispam'              => 'Spam prevention',
+'version-skins'                 => 'Skins',
+'version-api'                   => 'API', # only translate this message to other languages if you have to change it
+'version-other'                 => 'Other',
+'version-mediahandlers'         => 'Media handlers',
+'version-hooks'                 => 'Hooks',
+'version-extension-functions'   => 'Extension functions',
+'version-parser-extensiontags'  => 'Parser extension tags',
+'version-parser-function-hooks' => 'Parser function hooks',
+'version-hook-name'             => 'Hook name',
+'version-hook-subscribedby'     => 'Subscribed by',
+'version-version'               => '(Version $1)',
+'version-svn-revision'          => '(r$2)', # only translate this message to other languages if you have to change it
+'version-license'               => 'License',
+'version-poweredby-credits'     => "This wiki is powered by '''[//www.mediawiki.org/ MediaWiki]''', copyright © 2001-$1 $2.",
+'version-poweredby-others'      => 'others',
+'version-license-info'          => 'MediaWiki is free software; you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation; either version 2 of the License, or (at your option) any later version.
 
 MediaWiki is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for more details.
 
 You should have received [{{SERVER}}{{SCRIPTPATH}}/COPYING a copy of the GNU General Public License] along with this program; if not, write to the Free Software Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA or [//www.gnu.org/licenses/old-licenses/gpl-2.0.html read it online].',
-'version-software'                      => 'Installed software',
-'version-software-product'              => 'Product',
-'version-software-version'              => 'Version',
-'version-entrypoints'                   => 'Entry point URLs',
+'version-software'              => 'Installed software',
+'version-software-product'      => 'Product',
+'version-software-version'      => 'Version',
+'version-entrypoints'           => 'Entry point URLs',
 'version-entrypoints-header-entrypoint' => 'Entry point',
-'version-entrypoints-header-url'        => 'URL',
-'version-entrypoints-articlepath'       => '[https://www.mediawiki.org/wiki/Manual:$wgArticlePath Article path]', # only translate this message to other languages if you have to change it
-'version-entrypoints-scriptpath'        => '[https://www.mediawiki.org/wiki/Manual:$wgScriptPath Script path]', # only translate this message to other languages if you have to change it
-'version-entrypoints-index-php'         => '[https://www.mediawiki.org/wiki/Manual:index.php index.php]', # do not translate or duplicate this message to other languages
-'version-entrypoints-api-php'           => '[https://www.mediawiki.org/wiki/Manual:api.php api.php]', # do not translate or duplicate this message to other languages
-'version-entrypoints-load-php'          => '[https://www.mediawiki.org/wiki/Manual:load.php load.php]', # do not translate or duplicate this message to other languages
+'version-entrypoints-header-url' => 'URL',
+'version-entrypoints-articlepath' => '[https://www.mediawiki.org/wiki/Manual:$wgArticlePath Article path]',
+'version-entrypoints-scriptpath' => '[https://www.mediawiki.org/wiki/Manual:$wgScriptPath Script path]',
+'version-entrypoints-index-php' => '[https://www.mediawiki.org/wiki/Manual:index.php index.php]',
+'version-entrypoints-api-php'   => '[https://www.mediawiki.org/wiki/Manual:api.php api.php]',
+'version-entrypoints-load-php'  => '[https://www.mediawiki.org/wiki/Manual:load.php load.php]',
 
 # Special:FilePath
 'filepath'         => 'File path',
@@ -4845,8 +4873,6 @@ Otherwise, you can use the easy form below. Your comment will be added to the pa
 'api-error-empty-file'                    => 'The file you submitted was empty.',
 'api-error-emptypage'                     => 'Creating new, empty pages is not allowed.',
 'api-error-fetchfileerror'                => 'Internal error: Something went wrong while fetching the file.',
-'api-error-fileexists-forbidden'          => 'A file with name "$1" already exists, and cannot be overwritten.',
-'api-error-fileexists-shared-forbidden'   => 'A file with name "$1" already exists in the shared file repository, and cannot be overwritten.',
 'api-error-file-too-large'                => 'The file you submitted was too large.',
 'api-error-filename-tooshort'             => 'The filename is too short.',
 'api-error-filetype-banned'               => 'This type of file is banned.',
