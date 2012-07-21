@@ -27,7 +27,7 @@
  * @ingroup Watchlist
  */
 class WatchedItem {
-	var $mTitle, $mUser, $id, $ns, $ti;
+	var $mTitle, $mUser, $id, $group, $ns, $ti;
 	private $loaded = false, $watched, $timestamp;
 
 	/**
@@ -36,7 +36,7 @@ class WatchedItem {
 	 * @param $title Title: the title we're going to (un)watch
 	 * @return WatchedItem object
 	 */
-	public static function fromUserTitle( $user, $title ) {
+	public static function fromUserTitle( $user, $title, $group = 0 ) {
 		$wl = new WatchedItem;
 		$wl->mUser = $user;
 		$wl->mTitle = $title;
@@ -48,6 +48,8 @@ class WatchedItem {
 		$wl->ns = $title->getNamespace();
 
 		$wl->ti = $title->getDBkey();
+
+		$wl->group = $group;
 		return $wl;
 	}
 
@@ -131,6 +133,15 @@ class WatchedItem {
 		$this->timestamp = null;
 	}
 
+
+	/**
+	 * Sets the group of the watched item.
+	 * @return bool (always true)
+	 */	
+	public function setGroup( $group ) {
+		$this->group = $group;
+	}
+
 	/**
 	 * Given a title and user (assumes the object is setup), add the watch to the
 	 * database.
@@ -145,6 +156,7 @@ class WatchedItem {
 		$dbw->insert( 'watchlist',
 		  array(
 			'wl_user' => $this->id,
+			'wl_group' => $this->group,
 			'wl_namespace' => MWNamespace::getSubject($this->ns),
 			'wl_title' => $this->ti,
 			'wl_notificationtimestamp' => null
@@ -155,6 +167,7 @@ class WatchedItem {
 		$dbw->insert( 'watchlist',
 		  array(
 			'wl_user' => $this->id,
+			'wl_group' => $this->group,
 			'wl_namespace' => MWNamespace::getTalk($this->ns),
 			'wl_title' => $this->ti,
 			'wl_notificationtimestamp' => null
