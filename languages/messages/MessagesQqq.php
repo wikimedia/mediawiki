@@ -4325,6 +4325,13 @@ See also:
 * {{msg-mw|Wlheader-enotif|watchlist header}}
 * {{msg-mw|enotif reset|Submit button text}}',
 
+'wlfilter-nouser' => '',
+'wlfilter-permdenied' => '',
+'wlfilter' => '',
+'wlfilter-group' => '',
+'watchlist-user' => '',
+'watchlist-group' => '',
+
 # Displayed when you click the "watch" button and it is in the process of watching
 'watching' => 'Text displayed when clicked on the watch tab: [[MediaWiki:Watch/{{SUBPAGENAME}}|{{int:watch}}]]. It means the wiki is adding that page to your watchlist.',
 'unwatching' => 'Text displayed when clicked on the unwatch tab: [[MediaWiki:Unwatch/{{SUBPAGENAME}}|{{int:unwatch}}]]. It means the wiki is removing that page from your watchlist.',
@@ -8092,16 +8099,23 @@ See also:
 # Watchlist editor
 'watchlistedit-numitems' => 'Message on [[Special:EditWatchlist]]. This is paired with the message {{Msg-mw|Watchlistedit-noitems}} which appears instead of this message when $1 is 0.',
 'watchlistedit-noitems' => "Message on [[Special:EditWatchlist]], which only appears when a user's watchlist is empty.",
+'watchlistedit-nogroup' => '',
 'watchlistedit-normal-title' => 'Title of [[Special:Watchlist/edit|special page]].',
 'watchlistedit-normal-legend' => 'Heading of dialogue box on [[Special:Watchlist/edit]]',
 'watchlistedit-normal-explain' => 'An introduction/explanation about the [[Special:Watchlist/edit|normal edit watchlist function]].
 Hint: the text "Remove Titles" is in {{msg-mw|watchlistedit-normal-submit}}',
+'watchlistedit-normal-onlygroup' => '',
+'watchlistedit-normal-ungroup' => '',
+'watchlistedit-normal-remove' => '',
+'watchlistedit-normal-change' => '',
+'watchlistedit-normal-action' => '',
 'watchlistedit-normal-submit' => 'Text of submit button on [[Special:Watchlist/edit]].
 
 See also:
 * {{msg-mw|Watchlistedit-normal-submit}}
 * {{msg-mw|Accesskey-watchlistedit-normal-submit}}
 * {{msg-mw|Tooltip-watchlistedit-normal-submit}}',
+'watchlistedit-normal-donegrouping' => '',
 'watchlistedit-normal-done' => 'Message on [[Special:EditWatchlist]] after pages are removed from the watchlist.',
 'watchlistedit-raw-title' => 'Title of [[Special:Watchlist/raw|Special page]].
 
@@ -8110,6 +8124,7 @@ See also:
 
 {{Identical|Edit raw watchlist}}',
 'watchlistedit-raw-explain' => 'An introduction/explanation about the [[Special:Watchlist/raw|raw edit watchlist function]].',
+'watchlistedit-raw-ungrouped' => '',
 'watchlistedit-raw-titles' => 'Text above edit box containing items being watched on [[Special:Watchlist/raw]].',
 'watchlistedit-raw-submit' => 'Text of submit button on [[Special:Watchlist/raw]].
 
@@ -8120,6 +8135,23 @@ See also:
 'watchlistedit-raw-done' => 'A message which appears after the raw watchlist has been updated using [[Special:Watchlist/raw]].',
 'watchlistedit-raw-added' => 'Message on [[Special:EditWatchlist/raw]]. The message appears after at least 1 message is added to the raw watchlist.',
 'watchlistedit-raw-removed' => 'Message on [[Special:EditWatchlist/raw]]. The message appears after at least 1 message is deleted from the raw watchlist.',
+
+# Watchlist group editor
+'editwatchlistgroup' => '',
+'wlgroup-legend' => '',
+'wlgroup-explain' => '',
+'wlgroup-noaction' => '',
+'wlgroup-rename' => '',
+'wlgroup-changeperm' => '',
+'wlgroup-delete' => '',
+'wlgroup-renameto' => '',
+'wlgroup-newname' => '',
+'wlgroup-perm' => '',
+'wlgroup-permprivate' => '',
+'wlgroup-permpublic' => '',
+'wlgroup-createnew' => '',
+'wlgroup-submit' => '',
+'wlgroup-success' => '',
 
 # Watchlist editing tools
 'watchlisttools-view' => '[[Special:Watchlist]]: Navigation link under the title.
@@ -8138,6 +8170,7 @@ See also:
 * {{msg-mw|watchlisttools-view}}
 * {{msg-mw|watchlisttools-edit}}
 {{Identical|Edit raw watchlist}}',
+'watchlisttools-group' => '',
 
 # Iranian month names
 'iranian-calendar-m1' => '{{optional}}
