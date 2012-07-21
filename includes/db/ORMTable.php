@@ -1,6 +1,7 @@
 <?php
 /**
  * Abstract base class for representing a single database table.
+ * Documentation inline and at https://www.mediawiki.org/wiki/Manual:ORMTable
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -590,7 +591,7 @@ abstract class ORMTable implements IORMTable {
 	/**
 	 * @see ORMTable::newRowFromFromDBResult
 	 *
-	 * @deprecated use newRowFromFromDBResult instead
+	 * @deprecated use newRowFromDBResult instead
 	 * @since 1.20
 	 *
 	 * @param stdClass $result

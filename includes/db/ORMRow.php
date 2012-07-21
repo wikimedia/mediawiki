@@ -5,6 +5,8 @@
  * aims to be both simple and very flexible. It is centered around an associative
  * array of fields and various methods to do common interaction with the database.
  *
+ * Documentation inline and at https://www.mediawiki.org/wiki/Manual:ORMTable
+ *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2 of the License, or
