@@ -101,6 +101,7 @@ class SpecialPageFactory {
 		'Activeusers'               => 'SpecialActiveUsers',
 		'Userrights'                => 'UserrightsPage',
 		'EditWatchlist'             => 'SpecialEditWatchlist',
+		'EditWatchlistGroup'        => 'SpecialEditWatchlistGroup',
 
 		// Recent changes and logs
 		'Newimages'                 => 'SpecialNewFiles',
