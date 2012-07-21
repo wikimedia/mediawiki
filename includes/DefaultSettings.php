@@ -5776,11 +5776,6 @@ $wgActions = array(
  */
 $wgDisabledActions = array();
 
-/**
- * Allow the "info" action, very inefficient at the moment
- */
-$wgAllowPageInfo = false;
-
 /** @} */ # end actions }
 
 /*************************************************************************//**
