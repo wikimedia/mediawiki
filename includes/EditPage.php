@@ -1201,9 +1201,9 @@ class EditPage {
 
 		wfProfileOut( __METHOD__ . '-checks' );
 
-		// Use SELECT FOR UPDATE here to avoid transaction collision in
-		// WikiPage::updateRevisionOn() and ending in the self::AS_END case.
-		$this->mArticle->loadPageData( 'forupdate' );
+		# Load the page data from the master. If anything changes in the meantime,
+		# we detect it by using page_latest like a token in a 1 try compare-and-swap.
+		$this->mArticle->loadPageData( 'fromdbmaster' );
 		$new = !$this->mArticle->exists();
 
 		if ( $new ) {
