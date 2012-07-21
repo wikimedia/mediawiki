@@ -426,12 +426,22 @@ CREATE INDEX rc_ip              ON recentchanges (rc_ip);
 
 CREATE TABLE watchlist (
   wl_user                   INTEGER     NOT NULL  REFERENCES mwuser(user_id) ON DELETE CASCADE DEFERRABLE INITIALLY DEFERRED,
+  wl_group                  INTEGER     NOT NULL  DEFAULT 0,
   wl_namespace              SMALLINT    NOT NULL  DEFAULT 0,
   wl_title                  TEXT        NOT NULL,
   wl_notificationtimestamp  TIMESTAMPTZ
 );
 CREATE UNIQUE INDEX wl_user_namespace_title ON watchlist (wl_namespace, wl_title, wl_user);
 CREATE INDEX wl_user ON watchlist (wl_user);
+
+
+CREATE SEQUENCE 'watchlist_groups_wg_id_seq';
+CREATE TABLE watchlist_groups (
+  wg_id     INTEGER  NOT NULL  PRIMARY KEY DEFAULT nextval('watchlist_groups_wg_id_seq'),
+  wg_name   TEXT     NOT NULL,
+  wg_user   INTEGER  NOT NULL  REFERENCES mwuser(user_id) ON DELETE CASCADE DEFERRABLE INITIALLY DEFERRED,
+  wg_perm   SMALLINT NOT NULL  DEFAULT 0,
+);
 
 
 CREATE TABLE interwiki (
