@@ -266,6 +266,10 @@ class MysqlUpdater extends DatabaseUpdater {
 				'patch-oi_major_mime-chemical.sql' ),
 			array( 'modifyField', 'filearchive', 'fa_major_mime',
 				'patch-fa_major_mime-chemical.sql' ),
+
+			// 1.25
+			array( 'addTable', 'watchlist_groups', 'patch-watchlist_groups.sql' ),
+			array( 'addField', 'watchlist', 'wl_group', 'patch-watchlist_groups_newfield.sql' ),
 		);
 	}
 

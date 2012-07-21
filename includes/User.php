@@ -3234,9 +3234,10 @@ class User implements IDBAccessObject {
 	 * @param Title $title Title of the article to look at
 	 * @param int $checkRights Whether to check 'viewmywatchlist'/'editmywatchlist' rights.
 	 *     Pass WatchedItem::CHECK_USER_RIGHTS or WatchedItem::IGNORE_USER_RIGHTS.
+	 * * @param int $group ID of the watchlist group
 	 */
-	public function addWatch( $title, $checkRights = WatchedItem::CHECK_USER_RIGHTS ) {
-		$this->getWatchedItem( $title, $checkRights )->addWatch();
+	public function addWatch( $title, $checkRights = WatchedItem::CHECK_USER_RIGHTS, $group = 0 ) {
+		$this->getWatchedItem( $title, $checkRights )->setGroup( $group )->addWatch();
 		$this->invalidateCache();
 	}
 

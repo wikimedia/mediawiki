@@ -60,21 +60,36 @@ class WatchedItem {
 	private $timestamp;
 
 	/**
-	 * Create a WatchedItem object with the given user and title
+	 * Internal identifier for the group,
+	 * default: WatchlistGroup::DEFAULT_GROUP
+	 *
+	 * @var Integer
+	 */
+	protected $group = WatchlistGroup::DEFAULT_GROUP;
+
+	/**
+	 * Create a WatchedItem object with the given user and title.
+	 *
 	 * @since 1.22 $checkRights parameter added
+	 *
 	 * @param User $user The user to use for (un)watching
 	 * @param Title $title The title we're going to (un)watch
 	 * @param int $checkRights Whether to check the 'viewmywatchlist' and 'editmywatchlist' rights.
 	 *     Pass either WatchedItem::IGNORE_USER_RIGHTS or WatchedItem::CHECK_USER_RIGHTS.
+	 * @param $group Int: (default WatchlistGroup::DEFAULT_GROUP)
 	 * @return WatchedItem
 	 */
-	public static function fromUserTitle( $user, $title,
-		$checkRights = WatchedItem::CHECK_USER_RIGHTS
+	public static function fromUserTitle(
+		$user,
+		$title,
+		$checkRights = WatchedItem::CHECK_USER_RIGHTS,
+		$group = WatchlistGroup::DEFAULT_GROUP
 	) {
 		$wl = new WatchedItem;
 		$wl->mUser = $user;
 		$wl->mTitle = $title;
 		$wl->mCheckRights = $checkRights;
+		$wl->setGroup( $group );
 
 		return $wl;
 	}
@@ -271,10 +286,22 @@ class WatchedItem {
 	}
 
 	/**
+	 * Sets the group of the watched item.
+	 * @return WatchedItem
+	 */
+	public function setGroup( $group ) {
+		$isGroup = is_int( $group );
+		if( $isGroup ){
+			$this->group = $group;
+		}
+		return $this;
+	}
+
+	/**
 	 * @param WatchedItem[] $items
 	 * @return bool
 	 */
-	public static function batchAddWatch( array $items ) {
+	public function batchAddWatch( array $items ) {
 		$section = new ProfileSection( __METHOD__ );
 
 		if ( wfReadOnly() ) {
@@ -289,6 +316,7 @@ class WatchedItem {
 			}
 			$rows[] = array(
 				'wl_user' => $item->getUserId(),
+				'wl_group' => $this->group,
 				'wl_namespace' => MWNamespace::getSubject( $item->getTitleNs() ),
 				'wl_title' => $item->getTitleDBkey(),
 				'wl_notificationtimestamp' => null,
@@ -297,6 +325,7 @@ class WatchedItem {
 			// namespace:page and namespace_talk:page need separate entries:
 			$rows[] = array(
 				'wl_user' => $item->getUserId(),
+				'wl_group' => $this->group,
 				'wl_namespace' => MWNamespace::getTalk( $item->getTitleNs() ),
 				'wl_title' => $item->getTitleDBkey(),
 				'wl_notificationtimestamp' => null
@@ -323,7 +352,7 @@ class WatchedItem {
 	 * @return bool
 	 */
 	public function addWatch() {
-		return self::batchAddWatch( array( $this ) );
+		return $this->batchAddWatch( array( $this ) );
 	}
 
 	/**
