@@ -27,16 +27,36 @@
  * @ingroup Watchlist
  */
 class WatchedItem {
-	var $mTitle, $mUser, $id, $ns, $ti;
+	var $mTitle, $mUser, $id, $ns;
+
+	/**
+	 * Internal identifier for the group,
+	 * default: WatchlistGroup::DEFAULT_GROUP
+	 *
+	 * @var Integer
+	 */
+	protected $group = WatchlistGroup::DEFAULT_GROUP;
+
+	/**
+	 * Title of the watched item.
+	 * @var Title
+	 */
+	protected $title;
 	private $loaded = false, $watched, $timestamp;
 
 	/**
-	 * Create a WatchedItem object with the given user and title
+	 * Create a WatchedItem object with the given user and title.
+	 *
 	 * @param $user User: the user to use for (un)watching
 	 * @param $title Title: the title we're going to (un)watch
+	 * @param $group Int: (default WatchlistGroup::DEFAULT_GROUP)
 	 * @return WatchedItem object
 	 */
-	public static function fromUserTitle( $user, $title ) {
+	public static function fromUserTitle(
+		$user,
+		$title,
+		$group = WatchlistGroup::DEFAULT_GROUP
+	) {
 		$wl = new WatchedItem;
 		$wl->mUser = $user;
 		$wl->mTitle = $title;
@@ -46,8 +66,9 @@ class WatchedItem {
 		# The change results in talk-pages not automatically included in watchlists, when their parent page is included
 		# $wl->ns = $title->getNamespace() & ~1;
 		$wl->ns = $title->getNamespace();
+		$wl->title = $title->getDBkey();
+		$wl->setGroup( $group );
 
-		$wl->ti = $title->getDBkey();
 		return $wl;
 	}
 
@@ -58,7 +79,7 @@ class WatchedItem {
 	 * @return array
 	 */
 	private function dbCond() {
-		return array( 'wl_user' => $this->id, 'wl_namespace' => $this->ns, 'wl_title' => $this->ti );
+		return array( 'wl_user' => $this->id, 'wl_namespace' => $this->ns, 'wl_title' => $this->title );
 	}
 
 	/**
@@ -131,6 +152,19 @@ class WatchedItem {
 		$this->timestamp = null;
 	}
 
+
+	/**
+	 * Sets the group of the watched item.
+	 * @return WatchedItem
+	 */
+	public function setGroup( $group ) {
+		$isGroup = is_int( $group );
+		if( $isGroup ){
+			$this->group = $group;
+		}
+		return $this;
+	}
+
 	/**
 	 * Given a title and user (assumes the object is setup), add the watch to the
 	 * database.
@@ -145,8 +179,9 @@ class WatchedItem {
 		$dbw->insert( 'watchlist',
 		  array(
 			'wl_user' => $this->id,
+			'wl_group' => $this->group,
 			'wl_namespace' => MWNamespace::getSubject($this->ns),
-			'wl_title' => $this->ti,
+			'wl_title' => $this->title,
 			'wl_notificationtimestamp' => null
 		  ), __METHOD__, 'IGNORE' );
 
@@ -155,8 +190,9 @@ class WatchedItem {
 		$dbw->insert( 'watchlist',
 		  array(
 			'wl_user' => $this->id,
+			'wl_group' => $this->group,
 			'wl_namespace' => MWNamespace::getTalk($this->ns),
-			'wl_title' => $this->ti,
+			'wl_title' => $this->title,
 			'wl_notificationtimestamp' => null
 		  ), __METHOD__, 'IGNORE' );
 
@@ -179,7 +215,7 @@ class WatchedItem {
 			array(
 				'wl_user' => $this->id,
 				'wl_namespace' => MWNamespace::getSubject($this->ns),
-				'wl_title' => $this->ti
+				'wl_title' => $this->title
 			), __METHOD__
 		);
 		if ( $dbw->affectedRows() ) {
@@ -194,7 +230,7 @@ class WatchedItem {
 			array(
 				'wl_user' => $this->id,
 				'wl_namespace' => MWNamespace::getTalk($this->ns),
-				'wl_title' => $this->ti
+				'wl_title' => $this->title
 			), __METHOD__
 		);
 

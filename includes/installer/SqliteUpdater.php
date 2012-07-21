@@ -107,6 +107,8 @@ class SqliteUpdater extends DatabaseUpdater {
 			array( 'addField', 'job',           'job_token',         'patch-job_token.sql' ),
 			array( 'addField', 'job',           'job_attempts',      'patch-job_attempts.sql' ),
 			array( 'doEnableProfiling' ),
+			array( 'addTable', 'watchlist_groups', 'patch-watchlist_groups.sql' ),
+			array( 'addField', 'watchlist', 'wl_group', 'patch-watchlist_groups_newfield.sql' ),
 		);
 	}
 
