@@ -57,7 +57,6 @@ class ApiQueryAllCategories extends ApiQueryGeneratorBase {
 
 		$this->addTables( 'category' );
 		$this->addFields( 'cat_title' );
-		$this->addWhere( 'cat_pages > 0' );
 
 		if ( !is_null( $params['continue'] ) ) {
 			$cont = explode( '|', $params['continue'] );
