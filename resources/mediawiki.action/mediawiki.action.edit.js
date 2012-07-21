@@ -1,42 +1,74 @@
-( function ( $, mw ) {
-	var isReady, toolbar, currentFocused;
+( function ( mw, $ ) {
+	var isReady, toolbar, currentFocused, queue, $toolbar, slice;
 
 	isReady = false;
+	queue = [];
+	$toolbar = false;
+	slice = Array.prototype.slice;
+
+	/**
+	 * Internal helper that does the actual insertion
+	 * of the button into the toolbar.
+	 * See mw.toolbar.addButton for parameter documentation.
+	 */
+	function insertButton( b /* imageFile */, speedTip, tagOpen, tagClose, sampleText, imageId, selectText ) {
+		// Backwards compatibility
+		if ( typeof b !== 'object' ) {
+			b = {
+				imageFile: b,
+				speedTip: speedTip,
+				tagOpen: tagOpen,
+				tagClose: tagClose,
+				sampleText: sampleText,
+				imageId: imageId,
+				selectText: selectText
+			};
+		}
+		var $image = $('<img>', {
+			width : 23,
+			height: 22,
+			src   : b.imageFile,
+			alt   : b.speedTip,
+			title : b.speedTip,
+			id    : b.imageId || undefined,
+			'class': 'mw-toolbar-editbutton'
+		} ).click( function () {
+			toolbar.insertTags( b.tagOpen, b.tagClose, b.sampleText, b.selectText );
+			return false;
+		} );
+
+		$toolbar.append( $image );
+		return true;
+	}
 
 	toolbar = {
-		$toolbar: false,
-		buttons: [],
 		/**
-		 * If you want to add buttons, use
-		 * mw.toolbar.addButton( imageFile, speedTip, tagOpen, tagClose, sampleText, imageId, selectText );
+		 * Add buttons to the toolbar.
+		 * Takes care of race conditions and time-based dependencies
+		 * by placing buttons in a queue if this method is called before
+		 * the toolbar is created.
+		 * @param {Object} button: Object with the following properties:
+		 * - imageFile
+		 * - speedTip
+		 * - tagOpen
+		 * - tagClose
+		 * - sampleText
+		 * - imageId
+		 * - selectText
+		 * For compatiblity, passing the above as separate arguments
+		 * (in the listed order) is also supported.
 		 */
 		addButton: function () {
 			if ( isReady ) {
-				toolbar.insertButton.apply( toolbar, arguments );
+				insertButton.apply( toolbar, arguments );
 			} else {
-				toolbar.buttons.push( [].slice.call( arguments ) );
-			}	
-		},
-		insertButton: function ( imageFile, speedTip, tagOpen, tagClose, sampleText, imageId, selectText ) {
-			var image = $('<img>', {
-				width : 23,
-				height: 22,
-				src   : imageFile,
-				alt   : speedTip,
-				title : speedTip,
-				id    : imageId || '',
-				'class': 'mw-toolbar-editbutton'
-			} ).click( function () {
-				mw.toolbar.insertTags( tagOpen, tagClose, sampleText, selectText );
-				return false;
-			} );
-
-			toolbar.$toolbar.append( image );
-			return true;
+				// Convert arguments list to array
+				queue.push( slice.call( arguments ) );
+			}
 		},
 
 		/**
-		 * apply tagOpen/tagClose to selection in textarea,
+		 * Apply tagOpen/tagClose to selection in textarea,
 		 * use sampleText instead of selection if there is none.
 		 */
 		insertTags: function ( tagOpen, tagClose, sampleText, selectText ) {
@@ -59,29 +91,30 @@
 	window.addButton = toolbar.addButton;
 	window.insertTags = toolbar.insertTags;
 
-	// Explose publicly
+	// Explose API publicly
 	mw.toolbar = toolbar;
 
 	$( document ).ready( function () {
-		var buttons, i, c, iframe;
+		var buttons, i, b, iframe;
 
 		// currentFocus is used to determine where to insert tags
 		currentFocused = $( '#wpTextbox1' );
 
-		// Populate the selector cache for $toolbar 
-		toolbar.$toolbar = $( '#toolbar' );
+		// Populate the selector cache for $toolbar
+		$toolbar = $( '#toolbar' );
 
 		// Legacy: Merge buttons from mwCustomEditButtons
-		buttons = [].concat( toolbar.buttons, window.mwCustomEditButtons );
+		buttons = [].concat( queue, window.mwCustomEditButtons );
+		// Clear queue
+		queue.length = 0;
 		for ( i = 0; i < buttons.length; i++ ) {
-			if ( $.isArray( buttons[i] ) ) {
-				// Passes our button array as arguments
-				toolbar.insertButton.apply( toolbar, buttons[i] );
+			b = buttons[i];
+			if ( $.isArray( b ) ) {
+				// Forwarded arguments array from mw.toolbar.addButton
+				insertButton.apply( toolbar, b );
 			} else {
-				// Legacy mwCustomEditButtons is an object
-				c = buttons[i];
-				toolbar.insertButton( c.imageFile, c.speedTip, c.tagOpen, 
-					c.tagClose, c.sampleText, c.imageId, c.selectText );
+				// Raw object from legacy mwCustomEditButtons
+				insertButton( b );
 			}
 		}
 
@@ -131,4 +164,4 @@
 		}
 	});
 
-}( jQuery, mediaWiki ) );
+}( mediaWiki, jQuery ) );
