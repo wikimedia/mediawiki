@@ -1134,6 +1134,7 @@ $wgMessageStructure = array(
 		'right-writeapi',
 		'right-delete',
 		'right-bigdelete',
+		'right-deletelogentry',
 		'right-deleterevision',
 		'right-deletedhistory',
 		'right-deletedtext',
