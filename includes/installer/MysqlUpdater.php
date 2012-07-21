@@ -228,6 +228,8 @@ class MysqlUpdater extends DatabaseUpdater {
 			array( 'addField', 'job',           'job_attempts',       'patch-job_attempts.sql' ),
 			array( 'doEnableProfiling' ),
 			array( 'addField', 'uploadstash',      'us_props',      'patch-uploadstash-us_props.sql' ),
+			array( 'addTable', 'watchlist_groups', 'patch-watchlist_groups.sql' ),
+			array( 'addField', 'watchlist', 'wl_group', 'patch-watchlist_groups_newfield.sql' ),
 		);
 	}
 
