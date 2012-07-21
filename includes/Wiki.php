@@ -134,6 +134,34 @@ class MediaWiki {
 	}
 
 	/**
+	 * Returns the name of the action that will be executed.
+	 *
+	 * @return string: action
+	 */
+	public function getAction() {
+		static $action = null;
+
+		if ( $action === null ) {
+			$action = Action::getActionName( $this->context );
+		}
+
+		return $action;
+	}
+
+	/**
+	 * Create an Article object of the appropriate class for the given page.
+	 *
+	 * @deprecated in 1.18; use Article::newFromTitle() instead
+	 * @param $title Title
+	 * @param $context IContextSource
+	 * @return Article object
+	 */
+	public static function articleFromTitle( $title, IContextSource $context ) {
+		wfDeprecated( __METHOD__, '1.18' );
+		return Article::newFromTitle( $title, $context );
+	}
+
+	/**
 	 * Performs the request.
 	 * - bad titles
 	 * - read restriction
@@ -292,34 +320,6 @@ class MediaWiki {
 	}
 
 	/**
-	 * Create an Article object of the appropriate class for the given page.
-	 *
-	 * @deprecated in 1.18; use Article::newFromTitle() instead
-	 * @param $title Title
-	 * @param $context IContextSource
-	 * @return Article object
-	 */
-	public static function articleFromTitle( $title, IContextSource $context ) {
-		wfDeprecated( __METHOD__, '1.18' );
-		return Article::newFromTitle( $title, $context );
-	}
-
-	/**
-	 * Returns the name of the action that will be executed.
-	 *
-	 * @return string: action
-	 */
-	public function getAction() {
-		static $action = null;
-		
-		if ( $action === null ) {
-			$action = Action::getActionName( $this->context );
-		}
-
-		return $action;
-	}
-
-	/**
 	 * Initialize the main Article object for "standard" actions (view, etc)
 	 * Create an Article object for the page, following redirects if needed.
 	 *
@@ -390,64 +390,6 @@ class MediaWiki {
 
 		wfProfileOut( __METHOD__ );
 		return $article;
-	}
-
-	/**
-	 * Do a job from the job queue
-	 */
-	private function doJobs() {
-		global $wgJobRunRate;
-
-		if ( $wgJobRunRate <= 0 || wfReadOnly() ) {
-			return;
-		}
-		if ( $wgJobRunRate < 1 ) {
-			$max = mt_getrandmax();
-			if ( mt_rand( 0, $max ) > $max * $wgJobRunRate ) {
-				return;
-			}
-			$n = 1;
-		} else {
-			$n = intval( $wgJobRunRate );
-		}
-
-		while ( $n-- && false != ( $job = Job::pop() ) ) {
-			$output = $job->toString() . "\n";
-			$t = - microtime( true );
-			$success = $job->run();
-			$t += microtime( true );
-			$t = round( $t * 1000 );
-			if ( !$success ) {
-				$output .= "Error: " . $job->getLastError() . ", Time: $t ms\n";
-			} else {
-				$output .= "Success, Time: $t ms\n";
-			}
-			wfDebugLog( 'jobqueue', $output );
-		}
-	}
-
-	/**
-	 * Ends this task peacefully
-	 */
-	public function restInPeace() {
-		// Do any deferred jobs
-		DeferredUpdates::doUpdates( 'commit' );
-
-		// Execute a job from the queue
-		$this->doJobs();
-
-		// Log message usage, if $wgAdaptiveMessageCache is set to true
-		MessageCache::logMessages();
-
-		// Log profiling data, e.g. in the database or UDP
-		wfLogProfilingData();
-
-		// Commit and close up!
-		$factory = wfGetLBFactory();
-		$factory->commitMasterChanges();
-		$factory->shutdown();
-
-		wfDebug( "Request ended normally\n" );
 	}
 
 	/**
@@ -602,5 +544,63 @@ class MediaWiki {
 		$this->context->getOutput()->output();
 
 		wfProfileOut( __METHOD__ );
+	}
+
+	/**
+	 * Ends this task peacefully
+	 */
+	public function restInPeace() {
+		// Do any deferred jobs
+		DeferredUpdates::doUpdates( 'commit' );
+
+		// Execute a job from the queue
+		$this->doJobs();
+
+		// Log message usage, if $wgAdaptiveMessageCache is set to true
+		MessageCache::logMessages();
+
+		// Log profiling data, e.g. in the database or UDP
+		wfLogProfilingData();
+
+		// Commit and close up!
+		$factory = wfGetLBFactory();
+		$factory->commitMasterChanges();
+		$factory->shutdown();
+
+		wfDebug( "Request ended normally\n" );
+	}
+
+	/**
+	 * Do a job from the job queue
+	 */
+	private function doJobs() {
+		global $wgJobRunRate;
+
+		if ( $wgJobRunRate <= 0 || wfReadOnly() ) {
+			return;
+		}
+		if ( $wgJobRunRate < 1 ) {
+			$max = mt_getrandmax();
+			if ( mt_rand( 0, $max ) > $max * $wgJobRunRate ) {
+				return;
+			}
+			$n = 1;
+		} else {
+			$n = intval( $wgJobRunRate );
+		}
+
+		while ( $n-- && false != ( $job = Job::pop() ) ) {
+			$output = $job->toString() . "\n";
+			$t = - microtime( true );
+			$success = $job->run();
+			$t += microtime( true );
+			$t = round( $t * 1000 );
+			if ( !$success ) {
+				$output .= "Error: " . $job->getLastError() . ", Time: $t ms\n";
+			} else {
+				$output .= "Success, Time: $t ms\n";
+			}
+			wfDebugLog( 'jobqueue', $output );
+		}
 	}
 }
