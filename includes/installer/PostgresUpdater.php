@@ -91,6 +91,7 @@ class PostgresUpdater extends DatabaseUpdater {
 			array( 'addTable', 'user_former_groups','patch-user_former_groups.sql' ),
 			array( 'addTable', 'external_user',     'patch-external_user.sql' ),
 			array( 'addTable', 'sites',             'patch-sites.sql' ),
+			array( 'addTable', 'watchlist_groups',  'patch-watchlist_groups.sql' ),
 
 			# Needed before new field
 			array( 'convertArchive2' ),
@@ -160,6 +161,7 @@ class PostgresUpdater extends DatabaseUpdater {
 			array( 'addPgField', 'job',           'job_token',            "TEXT NOT NULL DEFAULT ''" ),
 			array( 'addPgField', 'job',           'job_token_timestamp',  "TIMESTAMPTZ" ),
 			array( 'addPgField', 'job',           'job_sha1',             "TEXT NOT NULL DEFAULT ''" ),
+			array( 'addPgField', 'watchlist',     'wl_group',             "INTEGER NOT NULL DEFAULT 0" ),
 
 			# type changes
 			array( 'changeField', 'archive',       'ar_deleted',      'smallint', '' ),

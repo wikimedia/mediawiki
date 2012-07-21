@@ -28,18 +28,32 @@
  */
 class WatchedItem {
 	var $mTitle, $mUser;
+	/**
+	 * Internal identifier for the group,
+	 * default: WatchlistGroup::DEFAULT_GROUP
+	 *
+	 * @var Integer
+	 */
+	protected $group = WatchlistGroup::DEFAULT_GROUP;
 	private $loaded = false, $watched, $timestamp;
 
 	/**
-	 * Create a WatchedItem object with the given user and title
+	 * Create a WatchedItem object with the given user and title.
+	 *
 	 * @param $user User: the user to use for (un)watching
 	 * @param $title Title: the title we're going to (un)watch
+	 * @param $group Int: (default WatchlistGroup::DEFAULT_GROUP)
 	 * @return WatchedItem object
 	 */
-	public static function fromUserTitle( $user, $title ) {
+	public static function fromUserTitle(
+		$user,
+		$title,
+		$group = WatchlistGroup::DEFAULT_GROUP
+	) {
 		$wl = new WatchedItem;
 		$wl->mUser = $user;
 		$wl->mTitle = $title;
+		$wl->setGroup( $group );
 
 		return $wl;
 	}
@@ -150,6 +164,19 @@ class WatchedItem {
 		$this->timestamp = null;
 	}
 
+
+	/**
+	 * Sets the group of the watched item.
+	 * @return WatchedItem
+	 */
+	public function setGroup( $group ) {
+		$isGroup = is_int( $group );
+		if( $isGroup ){
+			$this->group = $group;
+		}
+		return $this;
+	}
+
 	/**
 	 * Given a title and user (assumes the object is setup), add the watch to the
 	 * database.
@@ -164,7 +191,8 @@ class WatchedItem {
 		$dbw->insert( 'watchlist',
 			array(
 				'wl_user' => $this->getUserId(),
-				'wl_namespace' => MWNamespace::getSubject( $this->getTitleNs() ),
+				'wl_group' => $this->group,
+				'wl_namespace' => MWNamespace::getSubject($this->getTitleNs()),
 				'wl_title' => $this->getTitleDBkey(),
 				'wl_notificationtimestamp' => null
 			), __METHOD__, 'IGNORE' );
@@ -174,6 +202,7 @@ class WatchedItem {
 		$dbw->insert( 'watchlist',
 			array(
 				'wl_user' => $this->getUserId(),
+				'wl_group' => $this->group,
 				'wl_namespace' => MWNamespace::getTalk( $this->getTitleNs() ),
 				'wl_title' => $this->getTitleDBkey(),
 				'wl_notificationtimestamp' => null
