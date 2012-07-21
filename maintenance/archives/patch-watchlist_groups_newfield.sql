@@ -1,0 +1,1 @@
+ALTER TABLE /*$wgDBprefix*/watchlist ADD wl_group int unsigned NOT NULL default 0;

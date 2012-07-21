@@ -48,6 +48,7 @@ class SpecialEditWatchlist extends UnlistedSpecialPage {
 	protected $toc;
 
 	private $badItems = array();
+	private $groupname;
 
 	public function __construct(){
 		parent::__construct( 'EditWatchlist' );
@@ -56,9 +57,19 @@ class SpecialEditWatchlist extends UnlistedSpecialPage {
 	/**
 	 * Main execution point
 	 *
-	 * @param $mode int
+	 * @param $par string: This could be the mode OR a watchlist query by user/group
 	 */
-	public function execute( $mode ) {
+	public function execute( $par ) {
+		// Set the mode
+		if( $par == 'clear' || $par == 'raw' || $par == 'edit'
+			|| $par == '0' || $par == '1' || $par == '2' ){
+			$mode = $par;
+		}
+		else{
+			$mode = '';
+			$this->groupname = WatchlistGroup::getGroupFromName( $par, $this->getUser()->getId() );
+		}
+
 		$this->setHeaders();
 
 		$out = $this->getOutput();
@@ -109,13 +120,19 @@ class SpecialEditWatchlist extends UnlistedSpecialPage {
 
 			case self::EDIT_NORMAL:
 			default:
-				$out->setPageTitle( $this->msg( 'watchlistedit-normal-title' ) );
-				$form = $this->getNormalForm();
-				if( $form->show() ){
-					$out->addHTML( $this->successMessage );
-					$out->returnToMain();
-				} elseif ( $this->toc !== false ) {
-					$out->prependHTML( $this->toc );
+				if( $this->getWatchlistInfo() == array() ){
+					$out->setPageTitle( $this->msg( 'watchlistedit-normal-title' ) );
+					$out->addWikiMsg( 'watchlistedit-noitems' );
+				}
+				else {
+					$out->setPageTitle( $this->msg( 'watchlistedit-normal-title' ) );
+					$form = $this->getNormalForm();
+					if( $form->show() ){
+						$out->addHTML( $this->successMessage );
+						$out->returnToMain();
+					} elseif ( $this->toc !== false ) {
+						$out->prependHTML( $this->toc );
+					}
 				}
 				break;
 		}
@@ -129,32 +146,25 @@ class SpecialEditWatchlist extends UnlistedSpecialPage {
 	 * @return array
 	 */
 	private function extractTitles( $list ) {
+		$titles = array();
 		$list = explode( "\n", trim( $list ) );
 		if( !is_array( $list ) ) {
 			return array();
 		}
-		$titles = array();
 		foreach( $list as $text ) {
 			$text = trim( $text );
 			if( strlen( $text ) > 0 ) {
 				$title = Title::newFromText( $text );
 				if( $title instanceof Title && $title->isWatchable() ) {
-					$titles[] = $title;
+					$titles[] = $title->getPrefixedText();
 				}
 			}
 		}
-
-		GenderCache::singleton()->doTitlesArray( $titles );
-
-		$list = array();
-		foreach( $titles as $title ) {
-			$list[] = $title->getPrefixedText();
-		}
-		return array_unique( $list );
+		return array_unique( $titles );
 	}
 
 	public function submitRaw( $data ){
-		$wanted = $this->extractTitles( $data['Titles'] );
+		$wanted = $this->extractTitlesAndGroups( $data['Titles'] );
 		$current = $this->getWatchlist();
 
 		if( count( $wanted ) > 0 ) {
@@ -256,22 +266,15 @@ class SpecialEditWatchlist extends UnlistedSpecialPage {
 			__METHOD__
 		);
 		if( $res->numRows() > 0 ) {
-			$titles = array();
 			foreach ( $res as $row ) {
 				$title = Title::makeTitleSafe( $row->wl_namespace, $row->wl_title );
 				if ( $this->checkTitle( $title, $row->wl_namespace, $row->wl_title )
 					&& !$title->isTalkPage()
 				) {
-					$titles[] = $title;
+					$list[] = $title->getPrefixedText();
 				}
 			}
 			$res->free();
-
-			GenderCache::singleton()->doTitlesArray( $titles );
-
-			foreach( $titles as $title ) {
-				$list[] = $title->getPrefixedText();
-			}
 		}
 		$this->cleanupWatchlist();
 		return $list;
@@ -285,12 +288,13 @@ class SpecialEditWatchlist extends UnlistedSpecialPage {
 	 */
 	private function getWatchlistInfo() {
 		$titles = array();
-		$dbr = wfGetDB( DB_MASTER );
+		$where = array( 'wl_user' => $this->getUser()->getId() );
 
+		$dbr = wfGetDB( DB_SLAVE );
 		$res = $dbr->select(
 			array( 'watchlist' ),
-			array( 'wl_namespace',  'wl_title' ),
-			array( 'wl_user' => $this->getUser()->getId() ),
+			array( 'wl_namespace', 'wl_group', 'wl_title' ),
+			$where,
 			__METHOD__,
 			array( 'ORDER BY' => array( 'wl_namespace', 'wl_title' ) )
 		);
@@ -299,7 +303,7 @@ class SpecialEditWatchlist extends UnlistedSpecialPage {
 		foreach ( $res as $row ) {
 			$lb->add( $row->wl_namespace, $row->wl_title );
 			if ( !MWNamespace::isTalk( $row->wl_namespace ) ) {
-				$titles[$row->wl_namespace][$row->wl_title] = 1;
+				$titles[$row->wl_namespace][$row->wl_title] = intval($row->wl_group);
 			}
 		}
 
@@ -450,6 +454,24 @@ class SpecialEditWatchlist extends UnlistedSpecialPage {
 	public function submitNormal( $data ) {
 		$removed = array();
 
+		// Regrouping submission
+		$group = intval( $data['group'] );
+		unset($data['group']);
+		if( $group > -1 ){
+			foreach( $data as $ns => $title_strings ) {
+				$nsid = intval( str_replace( 'TitlesNs', '', $ns ) );
+				$titles = array();
+				foreach( $title_strings as $t ){
+					$titles[] = Title::newFromText( $t );
+				}
+				if( count( $titles ) > 0 ){
+					WatchlistGroup::regroupTitles( $titles, $group, $this->getContext()->getUser()->getId() );
+				}
+			}
+			$this->successMessage = $this->msg( 'watchlistedit-normal-donegrouping' )->escaped();
+			return true;
+		}
+
 		foreach( $data as $titles ) {
 			$this->unwatchTitles( $titles );
 			$removed = array_merge( $removed, $titles );
@@ -474,6 +496,7 @@ class SpecialEditWatchlist extends UnlistedSpecialPage {
 		global $wgContLang;
 
 		$fields = array();
+
 		$count = 0;
 
 		foreach( $this->getWatchlistInfo() as $namespace => $pages ){
@@ -515,11 +538,25 @@ class SpecialEditWatchlist extends UnlistedSpecialPage {
 			$this->toc = false;
 		}
 
-		$form = new EditWatchlistNormalHTMLForm( $fields, $this->getContext() );
+		$groups = WatchlistGroup::getGroups( $this->getContext()->getUser()->getId() );
+		foreach( $groups as &$g ){
+			$g = $this->msg( 'watchlistedit-normal-change' )->rawParams( $g )->parse();
+		}
+
+		$gsOptions = array_merge( array( $this->msg( 'watchlistedit-normal-remove' )->escaped() => -1,
+						$this->msg( 'watchlistedit-normal-ungroup' )->escaped() => 0 ), array_flip( $groups ) );
+
+		$fields['group'] = array(
+			'type' => 'select',
+			'options' => $gsOptions,
+			'label' => $this->msg( 'watchlistedit-normal-action' )->escaped()
+		);
+
+		$form = new EditWatchlistNormalHTMLForm( $fields, $this->getContext()->getUser()->getId() );
 		$form->setTitle( $this->getTitle() );
 		$form->setSubmitTextMsg( 'watchlistedit-normal-submit' );
 		# Used message keys: 'accesskey-watchlistedit-normal-submit', 'tooltip-watchlistedit-normal-submit'
-		$form->setSubmitTooltip('watchlistedit-normal-submit');
+		$form->setSubmitTooltip( 'watchlistedit-normal-submit' );
 		$form->setWrapperLegendMsg( 'watchlistedit-normal-legend' );
 		$form->addHeaderText( $this->msg( 'watchlistedit-normal-explain' )->parse() );
 		$form->setSubmitCallback( array( $this, 'submitNormal' ) );
@@ -554,9 +591,12 @@ class SpecialEditWatchlist extends UnlistedSpecialPage {
 			);
 		}
 
+		$wgroup = WatchlistGroup::getGroupFromUserTitle( $title, $this->getContext()->getUser()->getId() );
+		$wgrouplink = $wgroup[0];
+
 		wfRunHooks( 'WatchlistEditorBuildRemoveLine', array( &$tools, $title, $title->isRedirect(), $this->getSkin() ) );
 
-		return $link . " (" . $this->getLanguage()->pipeList( $tools ) . ")";
+		return $link . " (" . $this->getLanguage()->pipeList( $tools ) . ") (" . $wgrouplink . ")";
 	}
 
 	/**
@@ -627,6 +667,7 @@ class SpecialEditWatchlist extends UnlistedSpecialPage {
 			'view' => array( 'Watchlist', false ),
 			'edit' => array( 'EditWatchlist', false ),
 			'raw' => array( 'EditWatchlist', 'raw' ),
+			'group' => array( 'EditWatchlistGroup', false )
 		);
 		foreach( $modes as $mode => $arr ) {
 			// can use messages 'watchlisttools-view', 'watchlisttools-edit', 'watchlisttools-raw'

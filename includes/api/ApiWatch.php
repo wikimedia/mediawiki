@@ -35,7 +35,7 @@ class ApiWatch extends ApiBase {
 		parent::__construct( $main, $action );
 	}
 
-	public function execute() {
+	public function execute() {die(var_dump($params['group']));
 		$user = $this->getUser();
 		if ( !$user->isLoggedIn() ) {
 			$this->dieUsage( 'You must be logged-in to have a watchlist', 'notloggedin' );
@@ -57,7 +57,7 @@ class ApiWatch extends ApiBase {
 		} else {
 			$res['watched'] = '';
 			$res['message'] = $this->msg( 'addedwatchtext', $title->getPrefixedText() )->title( $title )->parseAsBlock();
-			$success = WatchAction::doWatch( $title, $user );
+			$success = WatchAction::doWatch( $title, $user, $params['group'] );
 		}
 		if ( !$success ) {
 			$this->dieUsageMsg( 'hookaborted' );
