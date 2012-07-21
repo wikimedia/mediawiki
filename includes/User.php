@@ -2659,9 +2659,10 @@ class User {
 	/**
 	 * Watch an article.
 	 * @param $title Title of the article to look at
+	 * @param $group ID of the watchlist group
 	 */
-	public function addWatch( $title ) {
-		$this->getWatchedItem( $title )->addWatch();
+	public function addWatch( $title, $group = 0 ) {
+		$this->getWatchedItem( $title )->setGroup( $group )->addWatch();
 		$this->invalidateCache();
 	}
 

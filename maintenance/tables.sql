@@ -1093,6 +1093,9 @@ CREATE TABLE /*_*/watchlist (
   -- Key to user.user_id
   wl_user int unsigned NOT NULL,
 
+  -- Key to watchlist_groups.wg_id
+  wl_group int unsigned NOT NULL default 0,
+
   -- Key to page_namespace/page_title
   -- Note that users may watch pages which do not exist yet,
   -- or existed in the past but have been deleted.
@@ -1105,9 +1108,23 @@ CREATE TABLE /*_*/watchlist (
 
 ) /*$wgDBTableOptions*/;
 
-CREATE UNIQUE INDEX /*i*/wl_user ON /*_*/watchlist (wl_user, wl_namespace, wl_title);
+CREATE UNIQUE INDEX /*i*/wl_user ON /*_*/watchlist (wl_user, wl_group, wl_namespace, wl_title);
 CREATE INDEX /*i*/namespace_title ON /*_*/watchlist (wl_namespace, wl_title);
 
+
+CREATE TABLE /*_*/watchlist_groups (
+  wg_id int unsigned NOT NULL PRIMARY KEY AUTO_INCREMENT,
+  wg_name varchar(255) binary NOT NULL,
+
+  -- Key to user.user_id for owner of the watchlist
+  wg_user int unsigned NOT NULL,
+
+  -- Permissions bool
+  wg_perm tinyint NOT NULL default 0
+
+) /*$wgDBTableOptions*/;
+
+CREATE UNIQUE INDEX /*i*/wg_user ON /*_*/watchlist_groups (wg_id, wg_name, wg_user, wg_perm);
 
 --
 -- When using the default MySQL search backend, page titles
