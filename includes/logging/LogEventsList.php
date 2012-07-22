@@ -496,7 +496,7 @@ class LogEventsList extends ContextSource {
 		// Don't show useless checkbox to people who cannot hide log entries
 		if( $user->isAllowed( 'deletedhistory' ) ) {
 			if( $row->log_deleted || $user->isAllowed( 'deletelogentry' ) ) {
-				$canHide = $user->isAllowed( 'deleterevision' );
+				$canHide = $user->isAllowed( 'deletelogentry' );
 				if ( $this->flags & self::USE_REVDEL_CHECKBOXES ) { // Show checkboxes instead of links.
 					if ( !self::userCan( $row, LogPage::DELETED_RESTRICTED, $user ) ) { // If event was hidden from sysops
 						$del = Xml::check( 'deleterevisions', false, array( 'disabled' => 'disabled' ) );
