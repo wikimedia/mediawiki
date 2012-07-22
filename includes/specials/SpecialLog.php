@@ -162,7 +162,7 @@ class SpecialLog extends SpecialPage {
 
 	private function getRevisionButton( $formcontents ) {
 		# If the user doesn't have the ability to delete log entries, don't bother showing him/her the button.
-		if ( !$this->getUser()->isAllowed( 'deletelogentry' ) ) {
+		if ( !$this->getUser()->isAllowedAll( 'deletedhistory', 'deletelogentry' ) ) {
 			return $formcontents;
 		}
 
