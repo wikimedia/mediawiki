@@ -2289,9 +2289,11 @@ class User {
 		$this->loadOptions();
 
 		// Explicitly NULL values should refer to defaults
-		global $wgDefaultUserOptions;
-		if( is_null( $val ) && isset( $wgDefaultUserOptions[$oname] ) ) {
-			$val = $wgDefaultUserOptions[$oname];
+		if( is_null( $val ) ) {
+			$defaultOption = self::getDefaultOption( $oname );
+			if( !is_null( $defaultOption ) ) {
+				$val = $defaultOption;
+			}
 		}
 
 		$this->mOptions[$oname] = $val;
