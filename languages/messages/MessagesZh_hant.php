@@ -567,6 +567,8 @@ $1',
 'cannotdelete' => '無法刪除頁面或圖片"$1"。
 它可能已經被其他人刪除了。',
 'cannotdelete-title' => '無法刪除“$1”',
+'delete-hook-aborted' => '刪除被勾點中止。
+它沒有提供解釋。',
 'badtitle' => '錯誤的標題',
 'badtitletext' => '所請求頁面的標題是無效的、不存在，跨語言或跨wiki連結的標題錯誤。它可能包含一個或更多的不能用於標題的字符。',
 'perfcached' => '下列是快取資料，因此可能不是最新的。最多{{PLURAL:$1|只有1個結果|$1個結果}}可用。',
@@ -1697,6 +1699,7 @@ $1',
 'lockmanager-fail-releaselock' => '無法為「$1」釋放鎖。',
 'lockmanager-fail-db-bucket' => '不能在$1池中聯繫到足夠鎖數據庫。',
 'lockmanager-fail-db-release' => '不能在數據庫$1上釋放鎖。',
+'lockmanager-fail-svr-acquire' => '無法取得伺服器$1上的鎖。',
 'lockmanager-fail-svr-release' => '不能在服務器$1上釋放鎖。',
 
 # ZipDirectoryReader
@@ -1805,9 +1808,9 @@ $1',
 'sharedupload-desc-here' => '該檔案來自於$1，它可能在其它計劃項目中被應用。
 它在[$2 檔案描述頁面]那邊上的描述於下面顯示。',
 'sharedupload-desc-edit' => '該檔案來自$1，它可能在其它計劃項目中被使用。
-或許您可以在其[$2 檔𣗈描述頁面]上編輯說明。',
+或許您可以在其[$2 檔案描述頁面]上編輯說明。',
 'sharedupload-desc-create' => '該檔案來自$1，它可能在其它計劃項目中被使用。
-或許您可以在那邊的[$2 檔𣗈描述頁面]上編輯其說明。',
+或許您可以在那邊的[$2 檔案描述頁面]上編輯其說明。',
 'filepage-nofile' => '不存在此名稱的檔案。',
 'filepage-nofile-link' => '不存在此名稱的檔案，但您可以[$1 上傳它]。',
 'uploadnewversion-linktext' => '上傳該檔案的新版本',
@@ -2515,8 +2518,8 @@ $1被封禁的理由是“$2”',
 'blocklogpage' => '查封日誌',
 'blocklog-showlog' => '這位用戶曾經被封鎖過。在下列提供封鎖記錄以便參考：',
 'blocklog-showsuppresslog' => '這位用戶曾經被封鎖和隱藏過。在下列提供廢止記錄以便參考：',
-'blocklogentry' => '已封禁“[[$1]]” $3而終止時間為$2',
-'reblock-logentry' => '更改[[$1]]的封禁設定時間 $2 $3',
+'blocklogentry' => '封禁[[$1]]，到期時間爲$2$3',
+'reblock-logentry' => '更改[[$1]]的封禁設置，到期時間爲$2$3',
 'blocklogtext' => '這是關於用戶封禁和解除封禁操作的記錄。被自動封禁的IP地址沒有被列出。請參閱[[Special:BlockList|被查封的IP地址和用戶列表]]。',
 'unblocklogentry' => '已解封 $1',
 'block-log-flags-anononly' => '僅限匿名用戶',
@@ -3842,6 +3845,4 @@ MediaWiki是基於使用目的而加以發佈，然而不負任何擔保責任�
 'duration-centuries' => '$1世紀',
 'duration-millennia' => '$1千年',
 
-# Unknown messages
-'lockmanager-fail-svr-acquire' => '無法取得伺服器$1上的鎖。',
 );

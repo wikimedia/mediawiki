@@ -27,6 +27,7 @@
  * @author Pxos
  * @author Silvonen
  * @author Str4nd
+ * @author Stryn
  * @author Tarmo
  * @author Tofu II
  * @author Veikk0.ma
@@ -325,7 +326,7 @@ $messages = array(
 'tog-editsection' => 'Näytä muokkauslinkit jokaisen osion yläpuolella',
 'tog-editsectiononrightclick' => 'Muokkaa osioita napsauttamalla otsikkoa hiiren oikealla painikkeella (JavaScript)',
 'tog-showtoc' => 'Näytä sisällysluettelo sivuille, joilla yli 3 otsikkoa',
-'tog-rememberpassword' => 'Muista kirjautumisen tässä selaimessa (enintään $1 {{PLURAL:$1|päivä|päivää}})',
+'tog-rememberpassword' => 'Muista kirjautumiseni tässä selaimessa (enintään $1 {{PLURAL:$1|päivä|päivää}})',
 'tog-watchcreations' => 'Lisää luomani sivut tarkkailulistalleni',
 'tog-watchdefault' => 'Lisää muokkaamani sivut tarkkailulistalleni',
 'tog-watchmoves' => 'Lisää siirtämäni sivut tarkkailulistalleni',

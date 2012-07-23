@@ -1383,43 +1383,75 @@ Ini dae tabi matitingkog.',
 'recentchangeslinked-toolbox' => 'Mga angay na pagbabàgo',
 'recentchangeslinked-title' => 'Mga pagbabàgong angay sa "$1"',
 'recentchangeslinked-noresult' => 'Warang mga pagbabago sa mga pahinang nakatakod sa itinaong pagkalawig.',
-'recentchangeslinked-summary' => "Ini an lista nin mga pagsangli na ginibo pa sana sa mga pahinang nakatakod halì sa sarong espesyal na pahina (o sa mga myembro nin sarong espesyal na kategorya).
-'''Maitom''' an mga pahinang [[Special:Pigbabantayan|pigbabantayan mo]].",
+'recentchangeslinked-summary' => "Ini an listahan kan mga pagbabagong ginibo kan dae pa sana nahaloy sa mga pahina na nakatakod gikan sa sarong pinagsambit na pahina (o sa mga miyembro kan sarong pinagsambit na kategorya).
+An mga pahina na yaon sa [[Special:Watchlist|saimong Bantay-listahan]] na '''tekstong mahibog'''.",
+'recentchangeslinked-page' => 'Pahinang ngaran:',
+'recentchangeslinked-to' => 'Ipahiling an mga pagbabago sa mga pahina na nakatakod sa pinagtaong pahina lugod',
 
 # Upload
 'upload' => 'Isàngat an file',
 'uploadbtn' => 'Ikargá an file',
-'reuploaddesc' => 'Magbalik sa pormulario kan pagkarga.',
+'reuploaddesc' => 'Ikansela an pagkarga asin magbalik sa porma kan pagkakarga',
+'upload-tryagain' => 'Isumite an modipikadong deskripsyon kan sagunson',
 'uploadnologin' => 'Dai nakalaog',
 'uploadnologintext' => "Kaipuhan ika si [[Special:UserLogin|nakadagos]]
 para makakarga nin mga ''file''.",
+'upload_directory_missing' => 'An direktoriyo nin pagkarga ($1) nawawara tabi asin dae maikapagmukna sa paagi kan webserver.',
 'upload_directory_read_only' => 'An directoriong pagkarga na ($1) dai puedeng suratan kan serbidor nin web.',
 'uploaderror' => 'Salâ an pagkarga',
-'uploadtext' => "Gamiton tabî an pormulario sa babâ para magkarga nin mga ''file'', para maghiling o maghanap kan mga ladawan na dating kinarga magduman tabi sa [[Special:FileList|lista nin mga pigkargang ''file'']], an mga kinarga asin mga pinarâ nakalista man sa [[Special:Log/upload|historial nin pagkarga]].
+'upload-recreate-warning' => "'''Patanid tabi: An sagunson sa pangaran kaini pinagpura o pinagbalyo na tabi.'''
 
-Kun boot mong ikaag an ladawan sa páhina, gamiton tabî an takod arog kan
-'''<nowiki>[[</nowiki>{{ns:file}}<nowiki>:File.jpg]]</nowiki>''',
-'''<nowiki>[[</nowiki>{{ns:file}}<nowiki>:File.png|alt text]]</nowiki>''' o
-'''<nowiki>[[</nowiki>{{ns:media}}<nowiki>:File.ogg]]</nowiki>''' para sa direktong pagtakod sa ''file''.",
+An talaan kan pagkapura asin pagkabalyo para sa pahinang ini yaon digde para sa saimong konbenyensiya:",
+'uploadtext' => "Gamita an porma sa ibaba tanganing makapagkarga nin mga sagunson.
+Para hilngon o hanapon an dati nang pinagkargang mga sagunson, magduman tabi sa [[Special:FileList|listahan kan pinagkargang mga sagunson]], mga pagkarga asin pagkarga otro pinagtala man sa [[Special:Log/upload|talaan nin pagkakarga]], mga pinagpura na yaon sa [[Special:Log/delete|talaan nin pagkapura]].
+
+Sa pagbali nin sarong sagunson sa sarong pahina, gamita tabi an takod kan saro sa mga minasunod na mga porma:
+* '''<tt><nowiki>[[</nowiki>{{ns:file}}<nowiki>:File.jpg]]</nowiki></tt>''' sa paggamit kan bilog na bersyon kan sagunson
+* '''<tt><nowiki>[[</nowiki>{{ns:file}}<nowiki>:File.png|200px|thumb|left|alt text]]</nowiki></tt>''' sa paggamit kan 200 pixel na lawig kan pagkakua sa sarong kahon na yaon sa parteng wala nin gaygayan na yaon an 'alt text' bilang deskripsyon
+* '''<tt><nowiki>[[</nowiki>{{ns:media}}<nowiki>:File.ogg]]</nowiki></tt>''' para sa direktang nakakatakod sa sagunson na dae pinagpapahiling na sarong sagunson",
+'upload-permitted' => 'Pinagtutugutang mga tipo nin sagunson: $1',
+'upload-preferred' => 'Pinagpapaurog na mga tipo nin sagunson: $1',
+'upload-prohibited' => 'Pinagbabawal na mga tipo nin sagunson: $1.',
 'uploadlog' => 'historial nin pagkarga',
 'uploadlogpage' => 'Ikarga an usip',
-'uploadlogpagetext' => "Mahihiling sa babâ an lista kan mga pinakahuring ''file'' na kinarga.",
+'uploadlogpagetext' => 'Yaon sa ibaba an sarong listahan kan dae pa sanang nahahaloy na pinagkargang mga sagunson.
+Hilngon tabi an [[Special:NewFiles|galleriya kan mga bagong sagunson]] para sa mas biswal na lantawon.',
 'filename' => 'Pangaran kan dokumento',
 'filedesc' => 'Kagabsan',
 'fileuploadsummary' => 'Kagabsan:',
-'filestatus' => 'Estatutong derechos nin paragamit:',
-'filesource' => 'Ginikanan',
+'filereuploadsummary' => 'Mga pagbabago kan sagunson:',
+'filestatus' => 'Kamugtakan sa karapatan nin panurat:',
+'filesource' => 'Gikanan:',
 'uploadedfiles' => "Mga ''file'' na ikinargá",
 'ignorewarning' => 'Dai pagintiendehon an mga patanid asin itagama pa man an file',
 'ignorewarnings' => 'Paliman-limanon an mga tanid',
 'minlength1' => "An pangaran kan mga ''file'' dapat na dai mababâ sa sarong letra.",
 'illegalfilename' => "An ''filename'' na \"\$1\" igwang mga ''character'' na dai pwede sa mga titulo nin páhina. Tâwan tabî nin bâgong pangaran an ''file'' asin probaran na ikarga giraray.",
+'filename-toolong' => 'Mga pangaran nin sagunson dae dapat maglawig na sobra sa 240 bytes.',
 'badfilename' => "Rinibayan an ''filename'' nin \"\$1\".",
+'filetype-mime-mismatch' => 'An ekstensyon kan sagunson na ".$1" bakong langkap sa detektadong tipo kan MIME nin sagunson ($2).',
 'filetype-badmime' => "Dai pigtotogotan na ikarga an mga ''file'' na MIME na \"\$1\" tipo.",
+'filetype-bad-ie-mime' => 'Dae makakapagkarga kaining sagunson nin huli ta an Internet Explorer minamansay kaini bilang "$1", na bakong pinagtutugutan asin potensyal na delikadong tipo nin sagunson.',
+'filetype-unwanted-type' => "'''\".\$1\"''' bakong aprubadong tipo nin sagunson.
+Pinapaurog an {{PLURAL:\$3|tipo nin sagunson na|tipo nin sagunson an}} \$2.",
+'filetype-banned-type' => '\'\'\'".$1"\'\'\' {{PLURAL:$4|bakong tinutugutan na tipo nin sagunson|bakong tinutugutan na mga tipo nin mga sagunson}}.
+An pinagtutugutan na {{PLURAL:$3|tipo nin sagunson|mga tipo nin mga sagunson}} $2.',
 'filetype-missing' => "Mayong ekstensyón an ''file'' (arog kan \".jpg\").",
+'empty-file' => 'An sagunson na saimong pinagsumite blangko.',
+'file-too-large' => 'An sagunson na saimong pinagsumite grabe kadakula.',
+'filename-tooshort' => 'An ngaran kan sagunson grabe kahalipot.',
+'filetype-banned' => 'Ining tipo nin sagunson pinagbabawal.',
+'verification-error' => 'Ining sagunson dae nag-agi sa beripikasyon.',
+'hookaborted' => 'An modipikasyon na saimong pinagprubaran na gibohon pinag-untok bilang sarong ekstensyon.',
+'illegal-filename' => 'An ngaran kan sagunson dae pinagtutugot.',
+'overwrite' => 'An pagpatungan an sarong eksistidong sagunson dae pinagtutugot.',
+'unknown-error' => 'May dae aram na kasalaan an nangyari.',
+'tmp-create-error' => 'Dae makapagmukna nin temporaryong sagunson.',
+'tmp-write-error' => 'An kasalaan nagsusurat nin temporaryong sagunson.',
 'large-file' => "Pigrerekomendár na dapat an mga ''file'' bakong mas dakula sa $1; $2 an sokol kaining ''file''.",
 'largefileserver' => "Mas dakula an ''file'' sa pigtotogotan na sokol kan ''server''.",
 'emptyfile' => "Garo mayong laog an ''file'' na kinarga mo. Pwede ser na salâ ining tipo nin ''filename''. Isegurado tabî kun talagang boot mong ikarga ining ''file''.",
+'windows-nonascii-filename' => 'Ining wiki dae tabi nagsusuporta kan mga pangaran kan sagunson na igwang espesyal na mga karakter.',
 'fileexists' => "Igwa nang ''file'' na may parehong pangaran sa ini, sosogon tabî an '''<tt>[[:$1]]</tt>''' kun dai ka seguradong ribayan ini.
 [[$1|thumb]]",
 'fileexists-extension' => "May ''file'' na may parehong pangaran: [[$2|thumb]]
@@ -1441,19 +1473,63 @@ Kun igwa ka nin ladawan na may resolusyón na maximo ikarga tabî ini, kun dai, 
 'uploaddisabledtext' => "Pigpopogolan an pagkarga nin mga ''file'' o sa ining wiki.",
 'uploadscripted' => "Ining ''file'' igwang HTML o kodang eskritura na pwede ser na salang mainterpretar kan ''browser''.",
 'uploadvirus' => "May virus an ''file''! Mga detalye: $1",
-'sourcefilename' => 'Ginikanan kan pangaran kan dokumento',
-'destfilename' => "''Filename'' kan destinasyón",
-'watchthisupload' => 'Bantayan ining pahina',
+'sourcefilename' => 'Ginikanan kan pangaran nin sagunson:',
+'sourceurl' => 'Ginikanan kan kilyawan:',
+'destfilename' => 'Destinasyon kan pangaran nin sagunson:',
+'upload-maxfilesize' => 'Pinakahalangkaw na kadakulaan nin sagunson: $1',
+'upload-description' => 'Deskripsyon kan Sagunson',
+'upload-options' => 'Pagpipilian kan pagkukupkop',
+'watchthisupload' => 'Bantayi ining sagunson',
 'filewasdeleted' => "May sarong ''file'' na kapangaran kaini na dating pigkarga tapos pigparâ man sana. Sosogon muna tabî an $1 bago ikarga giraray ini.",
 'filename-bad-prefix' => "An pangaran nin ''file'' na pigkakarga mo nagpopoon sa '''\"\$1\"''', sarong pangaran na dai makapaladawan na normalmente enseguidang pigtatao kan mga kamerang digital. Magpili tabî nin pangaran nin ''file'' na mas makapaladawan.",
 'upload-success-subj' => 'Nakarga na',
+'upload-success-msg' => 'An saimong pagkukupkop na gikan sa [$2] matrayumpo. Ini makukua digde: [[:{{ns:file}}:$1]]',
+'upload-failure-subj' => 'Problema sa pangupkop',
+'upload-failure-msg' => 'Nagkaigwa nin problema sa saimong pagkukupkop gikan sa [$2]:
+
+$1',
+'upload-warning-subj' => 'Patanid tabi sa pagkukupkop',
+'upload-warning-msg' => 'Nagkaigwa nin problema sa saimong pagkukupkop gikan sa [$2]. Ika puwedeng magbalik sa [[Special:Upload/stash/$1|upload form]] tanganing korehiran ining problema.',
 
 'upload-proto-error' => 'Salang protocolo',
 'upload-proto-error-text' => 'An pagkargang panharayo kaipuhan nin mga URLs na nagpopoon sa  <code>http://</code> o <code>ftp://</code>.',
 'upload-file-error' => 'Panlaog na salâ',
-'upload-file-error-text' => "May panlaog na salâ kan pagprobar na maggibo nin temporaryong ''file'' sa ''server''.  Apodon tabî an administrador nin sistema.",
+'upload-file-error-text' => 'Sarong internal na kasalaan an nangyari kunsoarin na pinagprubaran na magmukna in sarong temporaryong sagunson sa tagapagsirbe. Pakikontak lang tabi nin sarong [[Special:ListUsers/sysop|administrador]].',
 'upload-misc-error' => 'Dai naaaram na error sa pagkarga',
-'upload-misc-error-text' => 'May salang panyayari na dai aram kan pagkarga.  Sosogon tabî kun tamâ an URL asin probaran giraray.  Kun an problema nagpeperseguir, apodon tabî an sarong administrador nin sistema.',
+'upload-misc-error-text' => 'Sarong dae maiwasan na kasalaan an nangyari kan ika nagkukupkop.
+Paki arama tabi na an kilyawan balido asin nagagamit asin pakiotro giraray.
+Kun an problema yaon pa, pakikontak tabi nin sarong [[Special:ListUsers/sysop|administrador]].',
+'upload-too-many-redirects' => 'An kilyawan nagkaigwa nin kadakol na mga kaliwatan',
+'upload-unknown-size' => 'Dae aram an kadakulaan',
+'upload-http-error' => 'Sarong HTTP na kasalaan an nangyari: $1',
+'upload-copy-upload-invalid-domain' => 'Pangungupkop nin kopya bakong puwede gikan sa kinasakupan kaini.',
+
+# File backend
+'backend-fail-stream' => 'Dae maipakupsit an sagunson $1.',
+'backend-fail-backup' => 'Dae makapagtago nin saro pang kopya an sagunson $1.',
+'backend-fail-notexists' => 'An sagunson na $1 bakong eksistido.',
+'backend-fail-hashes' => 'Dae nakakakua nin kaputol kan sagunson para ipagkumpara.',
+'backend-fail-notsame' => 'Bakong magkakaparehong sagunson yaon na po sa $1.',
+'backend-fail-invalidpath' => '$1 bakong balidong agihan sa pagsasaray.',
+'backend-fail-delete' => 'Dae makakapura kan sagunson $1.',
+'backend-fail-alreadyexists' => 'An sagunson $1 eksistido na po.',
+'backend-fail-store' => 'Dae makakapagsaray nin sagunson an $1 sa $2.',
+'backend-fail-copy' => 'Dae makakakopya nin sagunson $1 pasiring sa $2.',
+'backend-fail-move' => 'Dae makakabalyo nin sagunson $1 pasiring sa $2.',
+'backend-fail-opentemp' => 'Dae makakapagbukas nin temporaryong sagunson.',
+'backend-fail-writetemp' => 'Dae makakapagsurat sa temporaryong sagunson.',
+'backend-fail-closetemp' => 'Dae makakapagsarado nin temporaryong sagunson.',
+'backend-fail-read' => 'Dae makakabasa nin sagunson $1.',
+'backend-fail-create' => 'Dae makakapagsurat nin sagunson $1.',
+'backend-fail-maxsize' => 'Dae makakapagsuat nin sagunson $1 nin huli ta ini grabe kadakula nin {{PLURAL:$2|sarong byte|$2 bytes}}.',
+'backend-fail-usable' => 'Dae makakapagsurat nin sagunson $1 sa dahilan na kulang an permiso o nawawara an mga direktoryo/kaaganan.',
+
+# img_auth script messages
+'img-auth-accessdenied' => 'Paggamit dae pinagtugot',
+'img-auth-notindir' => 'An hinahagad na agihan bakong naka-akma sa pankargang direktoryo.',
+'img-auth-badtitle' => 'Dae nakakapaggibo in sarong balidong titulog gikan sa "$1".',
+'img-auth-nologinnWL' => 'Dae ka nakalaog asin "$1" mayo sa aprubadong listahan.',
+'img-auth-nofile' => 'An sagunson "$1" bakong eksistido.',
 
 # Some likely curl errors. More could be added from <http://curl.haxx.se/libcurl/c/libcurl-errors.html>
 'upload-curl-error6' => 'Dai naabot an URL',

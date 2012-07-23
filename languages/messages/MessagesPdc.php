@@ -8,6 +8,7 @@
  * @file
  *
  * @author Kaganer
+ * @author Krinkle
  * @author Xqt
  * @author לערי ריינהארט
  */
@@ -426,7 +427,7 @@ Paesswatt fer nau: $2',
 'qbsettings-none' => 'Ken',
 
 # Preferences page
-'preferences' => 'paerseenlich Profil',
+'preferences' => 'Paerseenlich Profil',
 'mypreferences' => 'Mei Uffschtelling',
 'changepassword' => 'Paesswatt ennere',
 'skin-preview' => 'Aagucke',

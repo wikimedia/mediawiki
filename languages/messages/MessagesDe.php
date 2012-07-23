@@ -754,7 +754,7 @@ Falls dies nicht  zutrifft, hast du eventuell einen Fehler in der Software gefun
 'cannotdelete' => 'Die Seite oder Datei „$1“ kann nicht gelöscht werden.
 Möglicherweise wurde sie bereits von jemand anderem gelöscht.',
 'cannotdelete-title' => 'Seite „$1“ kann nicht gelöscht werden',
-'delete-hook-aborted' => 'Die Löschung wurde von einer Softwareerweiterung zu MediaWiki verhindert.
+'delete-hook-aborted' => 'Die Löschung wurde von einer Programmerweiterung zu MediaWiki verhindert.
 Es ist hierzu keine Erklärung verfügbar.',
 'badtitle' => 'Ungültiger Titel',
 'badtitletext' => 'Der Titel der angeforderten Seite ist ungültig, leer oder ein ungültiger Sprachlink von einem anderen Wiki.',
@@ -1622,6 +1622,7 @@ Dies kann nicht mehr rückgängig gemacht werden.',
 'right-writeapi' => 'Benutzung der writeAPI',
 'right-delete' => 'Seiten löschen',
 'right-bigdelete' => 'Seiten mit großer Versionsgeschichte löschen',
+'right-deletelogentry' => 'Einzelne Logbuch-Einträge löschen und wiederherstellen',
 'right-deleterevision' => 'Einzelne Versionen einer Seite löschen und wiederherstellen',
 'right-deletedhistory' => 'Gelöschte Versionen in der Versionsgeschichte ansehen, ohne zugehörigen Text',
 'right-deletedtext' => 'Gelöschte Texte und Versionsunterschiede zwischen gelöschten Versionen ansehen',
@@ -1935,6 +1936,7 @@ Wenn das Problem weiter besteht, informiere einen [[Special:ListUsers/sysop|Syst
 'lockmanager-fail-releaselock' => 'Die Sperre für „$1“ konnte nicht freigegeben werden.',
 'lockmanager-fail-db-bucket' => 'Es konnte mit Sammelabruf $1 keine ausreichende Anzahl an Verbindungen zu Sperrdatenbanken hergestellt werden.',
 'lockmanager-fail-db-release' => 'Die Sperren auf Datenbank $1 konnten nicht freigegeben werden.',
+'lockmanager-fail-svr-acquire' => 'Die Sperren auf Server $1 konnte nicht abgerufen werden.',
 'lockmanager-fail-svr-release' => 'Die Sperren auf Server $1 konnten nicht freigegeben werden.',
 
 # ZipDirectoryReader
@@ -3788,7 +3790,7 @@ Bitte nutze die reguläre Vorschau.',
 
 # Friendlier slave lag warnings
 'lag-warn-normal' => 'Bearbeitungen der letzten {{PLURAL:$1|Sekunde|$1 Sekunden}} werden in dieser Liste noch nicht angezeigt.',
-'lag-warn-high' => 'Auf Grund hoher Datenbankauslastung werden die Bearbeitungen der letzten {{PLURAL:$1|Sekunde|$1 Sekunden}} in dieser Liste noch nicht angezeigt.',
+'lag-warn-high' => 'Auf Grund hoher Datenbankauslastung werden die Bearbeitungen der letzten {{PLURAL:$1|Sekunde|$1 Sekunden}} noch nicht in dieser Liste angezeigt.',
 
 # Watchlist editor
 'watchlistedit-numitems' => 'Deine Beobachtungsliste enthält {{PLURAL:$1|einen Eintrag|$1 Einträge}}. Die Diskussionsseiten wurden dabei nicht mitgezählt.',
@@ -3861,8 +3863,8 @@ Eine [{{SERVER}}{{SCRIPTPATH}}/COPYING Kopie der ''GNU General Public License'']
 'version-software' => 'Installierte Software',
 'version-software-product' => 'Software',
 'version-software-version' => 'Version',
-'version-entrypoints' => 'Eingangspunkt-URLs',
-'version-entrypoints-header-entrypoint' => 'Eingangspunkt',
+'version-entrypoints' => 'URLs der Einstiegspunkte',
+'version-entrypoints-header-entrypoint' => 'Einstiegspunkt',
 'version-entrypoints-header-url' => 'URL',
 'version-entrypoints-articlepath' => '[https://www.mediawiki.org/wiki/Manual:$wgArticlePath Artikelpfad]',
 'version-entrypoints-scriptpath' => '[https://www.mediawiki.org/wiki/Manual:$wgScriptPath Skriptpfad]',
@@ -4066,6 +4068,4 @@ Anderenfalls kannst du auch das untenstehende einfache Formular nutzen. Dein Kom
 'duration-centuries' => '$1 {{PLURAL:$1|Jahrhundert|Jahrhunderte}}',
 'duration-millennia' => '$1 {{PLURAL:$1|Jahrtausend|Jahrtausende}}',
 
-# Unknown messages
-'lockmanager-fail-svr-acquire' => 'Die Sperren auf Server $1 konnte nicht abgerufen werden.',
 );

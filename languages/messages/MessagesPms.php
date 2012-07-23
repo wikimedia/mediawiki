@@ -1588,6 +1588,7 @@ Se a-i riva sossì n'àotra vira, ch'as buta an comunicassion con n'[[Special:Li
 'lockmanager-fail-releaselock' => 'As peul pa gavé la saradura për «$1».',
 'lockmanager-fail-db-bucket' => 'As peul pa contatesse a basta ëd base ëd dàit ëd saradura ant ël sëstin $1.',
 'lockmanager-fail-db-release' => 'As peulo pa gavesse le saradure an sla base ëd dàit $1.',
+'lockmanager-fail-svr-acquire' => 'As peul pa butesse le saradure an sël servent $1.',
 'lockmanager-fail-svr-release' => 'As peulo pa arlassesse le saradure an sël servent $1.',
 
 # ZipDirectoryReader
@@ -2664,24 +2665,24 @@ Për piasì, ch'a preuva torna.",
 # Import log
 'importlogpage' => "Registr dj'amportassion",
 'importlogpagetext' => "Amportassion aministrative ëd pàgine e ëd soa stòria da dj'àutre wiki.",
-'import-logentry-upload' => "amportà [[$1]] con un càrich d'archivi",
+'import-logentry-upload' => "a l'ha amportà [[$1]] con un càrich d'archivi",
 'import-logentry-upload-detail' => '$1 {{PLURAL:$1|revision|revision}}',
 'import-logentry-interwiki' => "Amportà da n'àutra wiki $1",
 'import-logentry-interwiki-detail' => '$1 {{PLURAL:$1|revision|revision}} da $2',
 
 # JavaScriptTest
 'javascripttest' => 'Preuva ëd JavaScript',
-'javascripttest-disabled' => "Sta funsion-sì a l'é pa stàita abilità dzora sta wiki-sì.",
+'javascripttest-disabled' => "Sta funsion-sì a l'é pa stàita abilità ansima a costa wiki.",
 'javascripttest-title' => 'Fé dle preuve $1',
 'javascripttest-pagetext-noframework' => "Costa pàgina a l'é arservà për fé dle preuve JavaScript.",
-'javascripttest-pagetext-unknownframework' => 'Utiss ëd preuva pa conossù "$1".',
-'javascripttest-pagetext-frameworks' => "Për piasì, ch'a serna un-a dle struture ëd test sì-dapress: $1",
+'javascripttest-pagetext-unknownframework' => 'Strutura ëd preuva pa conossùa «$1».',
+'javascripttest-pagetext-frameworks' => "Për piasì, ch'a serna un-a dle struture ëd preuva sì-dapress: $1",
 'javascripttest-pagetext-skins' => "Ch'a serna na pel për fé le preuve:",
-'javascripttest-qunit-intro' => 'Varda [$1 la documentassion dle preuve] dzora a mediawiki.org.',
+'javascripttest-qunit-intro' => 'Vëdde [$1 la documentassion dle preuve] dzora a mediawiki.org.',
 'javascripttest-qunit-heading' => 'Sequensa ëd preuve QUnit ëd JavaScript su MediaWiki',
 
 # Tooltip help for the actions
-'tooltip-pt-userpage' => 'Toa pàgina utent',
+'tooltip-pt-userpage' => 'Soa pàgina utent',
 'tooltip-pt-anonuserpage' => 'Pàgina Utent për l',
 'tooltip-pt-mytalk' => 'Toa pàgina ëd discussion e ciaciarade.',
 'tooltip-pt-anontalk' => 'Pàgina ëd ciaciarade për l',
@@ -3714,6 +3715,4 @@ Dësnò, a peule dovré ël formlari semplificà sì-sota. Sò coment a sarà gi
 'duration-centuries' => '$1 {{PLURAL:$1|sécol|sécoj}}',
 'duration-millennia' => '$1 {{PLURAL:$1|milenari|milenari}}',
 
-# Unknown messages
-'lockmanager-fail-svr-acquire' => 'As peul pa butesse le saradure an sël servent $1.',
 );

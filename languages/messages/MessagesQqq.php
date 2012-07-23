@@ -1020,7 +1020,7 @@ This text will be shown below upload forms. It will default to the contents of e
 'sectioneditnotsupported-title' => 'Page title of special page, which presumably appears when someone tries to edit a section, and section editing is disabled. Explanation of section editing on [http://meta.wikimedia.org/wiki/Help:Section_editing#Section_editing meta].',
 'sectioneditnotsupported-text' => 'I think this is the text of an error message, which presumably appears when someone tries to edit a section, and section editing is disabled. Explanation of section editing on [http://meta.wikimedia.org/wiki/Help:Section_editing#Section_editing meta].',
 'permissionserrorstext-withaction' => '* $1 is the number of reasons that were found why the action cannot be performed.
-* $2 is one of the action-* messages (for example {{msg|action-edit}}).
+* $2 is one of the action-* messages (for example {{msg|action-edit}}) or other such messages tagged with {{tl|doc-action}} in their documentation.
 
 Please report at [[Support]] if you are unable to properly translate this message. Also see [[bugzilla:14246]]',
 'recreate-moveddeleted-warn' => 'Warning shown when creating a page which has already been deleted. See for example [[Test]].',
@@ -1054,11 +1054,16 @@ When templates are expanded, there is a size limit for the number of bytes yield
 * <tt>$2</tt> is the value of the max depth limit',
 'parser-unstrip-loop-warning' => 'This error is shown when a parser extension tag such as &lt;pre> includes a reference to itself in its own output.
 The reference must be to the exact same invocation of the tag at the same location in the source, merely writing &lt;pre>&lt;pre>&lt;/pre>&lt;/pre> will not do it.
-This is usually impossible and unlikely to happen by accident, so translation is not essential.',
+This is usually impossible and unlikely to happen by accident, so translation is not essential.
+"Unstrip" refers to the internal function of the parser, called \'unstrip\', which recursively puts the output of parser functions in the place of the parser function call and which would enter an infinite loop in the situation above. See also:
+*{{msg-mw|Parser-unstrip-recursion-limit}}',
 'parser-unstrip-recursion-limit' => 'This message is shown when the recursion limit for nested parser extension tags is exceeded.
 This warning may be encountered due to input text like &lt;ref>&lt;ref>&lt;ref>...&lt;/ref>&lt;/ref>&lt;/ref>.
 
-* <tt>$1</tt> is the depth limit',
+* <tt>$1</tt> is the depth limit
+
+"Unstrip" refers to the internal function of the parser, called \'unstrip\', which recursively puts the output of parser functions in the place of the parser function call and which would enter an infinite loop in the situation above. See also:
+*{{msg-mw|Parser-unstrip-loop-warning}}',
 
 # "Undo" feature
 'undo-success' => 'Text on special page to confirm edit revert. You arrive on this page by clicking on the "undo" link on a revision history special page.
@@ -1123,6 +1128,8 @@ Used in History and [[Special:Contributions]].',
 * '''$4''' - time.",
 
 # Revision deletion
+'rev-deleted-comment' => 'Apparently this can also be about the reason of a log action, not only an edit summary. See also:
+*{{msg-mw|revdelete-hide-comment}}',
 'rev-deleted-user-contribs' => 'Part of revision deletion.',
 'rev-deleted-text-unhide' => 'This message is very similar to {{msg-mw|rev-suppressed-unhide-diff}}. Parameters:
 * $1 is a HTML link to the diff',
@@ -1820,10 +1827,10 @@ Similar to {{msg-mw|wlnote}} which is used on [[Special:Watchlist]].
  Example: "\'\'{{int:rcnote/en|50|7||24 January 2008|14:48}}\'\'"',
 'rcnotefrom' => 'This message is displayed at [[Special:RecentChanges]] when viewing recentchanges from some specific time. The corrosponding message is {{msg-mw|Rclistfrom}} (without split of date and time, [[bugzilla:19104|Bug 19104]]).
 
-Parameter $1 is the maximum number of changes that are displayed.
-Parameter $2 is a date and time.
-Parameter $3 is a date.
-Parameter $4 is a time.',
+* Parameter $1 is the maximum number of changes that are displayed.
+* Parameter $2 is a date and time. (alternative to $3 and $4)
+* Parameter $3 is a date. (alternative to $1)
+* Parameter $4 is a time. (alternative to $1)',
 'rclistfrom' => 'Used on [[Special:RecentChanges]]. Parameter $1 is a link to the revision of a specific date and time. The date and the time are the link description (without split of date and time, [[bugzilla:19104|Bug 19104]]). The corrosponding message is {{msg-mw|Rcnotefrom}}.',
 'rcshowhideminor' => "Option text in [[Special:RecentChanges]]. Parameters:
 * $1 is the 'show/hide' command, with the text taken from either {{msg-mw|show}} or {{msg-mw|hide}}.",

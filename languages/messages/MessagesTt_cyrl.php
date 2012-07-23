@@ -329,14 +329,14 @@ $messages = array(
 'hidden-category-category' => 'Яшерен төркемнәр',
 'category-subcat-count' => '{{PLURAL:$2|Бу төркемдә түбәндәге төркемчә генә бар.|$2 төркемчәдән {{PLURAL:$1|$1 төркемчә күрсәтелгән}}.}}',
 'category-subcat-count-limited' => 'Бу төркемдә {{PLURAL:$1|$1 төркемчә}} бар.',
-'category-article-count' => '{{PLURAL:$2|Бу төркемдә бер генә бит бар.|Төркемдәге $2 битнең {{PLURAL:$1|$1 бите күрсәтелгән}}.}}',
+'category-article-count' => '{{PLURAL:$2|Бу төркемдә бер генә бит бар.|Төркемдәге $2 биттән {{PLURAL:$1|$1 күрсәтелде}}.}}',
 'category-article-count-limited' => 'Бу төркемдә {{PLURAL:$1|$1 бит}} бар.',
-'category-file-count' => '{{PLURAL:$2|Бу төркемдә бер генә файл бар.|Төркемдәге $2 файлның {{PLURAL:$1|$1 файлы күрсәтелгән}}.}}',
+'category-file-count' => '{{PLURAL:$2|Бу төркемдә бер генә файл бар.|Төркемдәге $2 файлдан {{PLURAL:$1|$1 күрсәтелде}}.}}',
 'category-file-count-limited' => 'Бу төркемдә {{PLURAL:$1|$1 файл}} бар.',
 'listingcontinuesabbrev' => 'дәвамы',
 'index-category' => 'Индексланган битләр',
 'noindex-category' => 'Индексланмаган битләр',
-'broken-file-category' => 'Эшләми торган файл сылтамаларлы битләр',
+'broken-file-category' => 'Файлларга эшләми торган сылтамалар булган битләр',
 
 'linkprefix' => '/^(.*?)([a-zA-Z\\x80-\\xff]+)$/sD',
 

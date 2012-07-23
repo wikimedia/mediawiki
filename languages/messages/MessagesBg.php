@@ -11,6 +11,7 @@
  * @author Borislav
  * @author DCLXVI
  * @author Daggerstab
+ * @author Dimi z
  * @author Kaganer
  * @author Spiritia
  * @author Stanqo
@@ -2741,7 +2742,7 @@ $1',
 'import-logentry-interwiki-detail' => '{{PLURAL:$1|една версия|$1 версии}} на $2 бяха внесени',
 
 # JavaScriptTest
-'javascripttest-disabled' => 'Тази функция е изключена.',
+'javascripttest-disabled' => 'Тази функция не е достъпна в това уики.',
 'javascripttest-pagetext-noframework' => 'Тази страница е запазена за изпълнение на Джаваскрипт тестове.',
 'javascripttest-qunit-intro' => 'Вижте [$1 тестовата документация] на mediawiki.org.',
 

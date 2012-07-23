@@ -37,6 +37,7 @@
  * @author Marzedu
  * @author McDutchie
  * @author Melos
+ * @author Minerva Titani
  * @author Nemo bis
  * @author Nick1915
  * @author Ninniuz
@@ -655,7 +656,7 @@ L\'amministratore che lo ha bloccato ha fornito questa motivazione: "$3".',
 'invalidtitle-knownnamespace' => 'Titolo non valido con namespace "$2" e testo "$3"',
 'invalidtitle-unknownnamespace' => 'Titolo non valido con namespace sconosciuto "$1" e testo "$2"',
 'exception-nologin' => 'Accesso non effettuato',
-'exception-nologin-text' => "Questa pagina o azione richiede che tu abbia effettuato l'accesso su questo wiki.",
+'exception-nologin-text' => "Questa pagina o azione richiede che tu abbia effettuato l'accesso su questa wiki.",
 
 # Virus scanner
 'virus-badscanner' => "Errore di configurazione: antivirus sconosciuto: ''$1''",
@@ -673,31 +674,31 @@ L'account è stato creato correttamente. Non dimenticare di personalizzare le [[
 'yourname' => 'Nome utente:',
 'yourpassword' => 'Password:',
 'yourpasswordagain' => 'Ripeti la password:',
-'remembermypassword' => 'Ricorda la password su questo computer (per un massimo di $1 {{PLURAL:$1|giorno|giorni}})',
+'remembermypassword' => 'Ricorda la password su questo browser (per un massimo di $1 {{PLURAL:$1|giorno|giorni}})',
 'securelogin-stick-https' => 'Resta connesso attraverso HTTPS dopo il login',
 'yourdomainname' => 'Specificare il dominio',
 'externaldberror' => 'Si è verificato un errore con il server di autenticazione esterno, oppure non si dispone delle autorizzazioni necessarie per aggiornare il proprio accesso esterno.',
 'login' => 'Entra',
-'nav-login-createaccount' => 'Entra / Registrati',
+'nav-login-createaccount' => 'Entra / registrati',
 'loginprompt' => 'Per accedere a {{SITENAME}} è necessario abilitare i cookie.',
-'userlogin' => 'Entra / Registrati',
+'userlogin' => 'Entra / registrati',
 'userloginnocreate' => 'Entra',
 'logout' => 'Esci',
-'userlogout' => 'esci',
+'userlogout' => 'Esci',
 'notloggedin' => 'Accesso non effettuato',
-'nologin' => "Non hai ancora un accesso? '''$1'''.",
-'nologinlink' => 'Crealo ora',
-'createaccount' => 'Crea un nuovo utente',
-'gotaccount' => "Hai già un accesso? '''$1'''.",
+'nologin' => "Non hai ancora un account? '''$1'''.",
+'nologinlink' => 'Registrati',
+'createaccount' => 'Crea un account',
+'gotaccount' => "Hai già un account? '''$1'''.",
 'gotaccountlink' => 'Entra',
 'userlogin-resetlink' => 'Hai dimenticato i tuoi dati di accesso?',
-'createaccountmail' => 'via e-mail',
+'createaccountmail' => 'Tramite email',
 'createaccountreason' => 'Motivo:',
 'badretype' => 'Le password inserite non coincidono tra loro.',
 'userexists' => 'Il nome utente inserito è già utilizzato.
 Scegliere un nome utente diverso.',
-'loginerror' => "Errore nell'accesso",
-'createaccounterror' => "Impossìbile creare s'account: $1",
+'loginerror' => "Errore durante l'accesso",
+'createaccounterror' => "Impossibile creare l'account: $1",
 'nocookiesnew' => "La registrazione è stata completata, ma non è stato possibile accedere a {{SITENAME}} perché i cookie sono disattivati. Riprovare l'accesso con il nome utente e la password appena creati dopo aver attivato i cookie nel proprio browser.",
 'nocookieslogin' => "L'accesso a {{SITENAME}} richiede l'uso dei cookie, che risultano disattivati. Riprovare l'accesso dopo aver attivato i cookie nel proprio browser.",
 'nocookiesfornew' => "L'account utente non è stato creato, poiché non abbiamo potuto confermare la sua fonte.
@@ -1770,6 +1771,7 @@ $1',
 'lockmanager-fail-releaselock' => 'Non riuscito rilascio del blocco per "$1".',
 'lockmanager-fail-db-bucket' => 'Impossibile contattare i necessari database di blocco nel bucket $1.',
 'lockmanager-fail-db-release' => 'Impossibile revocare i blocchi sul database $1.',
+'lockmanager-fail-svr-acquire' => 'Impossibile acquisire blocchi sul server $1.',
 'lockmanager-fail-svr-release' => 'Impossibile revocare i blocchi sul server $1.',
 
 # ZipDirectoryReader
@@ -3034,6 +3036,10 @@ $1',
 'sp-newimages-showfrom' => 'Mostra i file più recenti a partire dalle ore $2 del $1',
 
 # Video information, used by Language::formatTimePeriod() to format lengths in the above messages
+'seconds-abbrev' => '$1&nbsp;s',
+'minutes-abbrev' => '$1nbsp;min',
+'hours-abbrev' => '$1nbsp;h',
+'days-abbrev' => '$1nbsp;gg.',
 'seconds' => '{{PLURAL:$1|un secondo|$1 secondi}}',
 'minutes' => '{{PLURAL:$1|un minuto|$1 minuti}}',
 'hours' => "{{PLURAL:$1|un'ora|$1 ore}}",
@@ -3870,6 +3876,4 @@ Le immagini vengono mostrate alla massima risoluzione disponibile, per gli altri
 'duration-centuries' => '$1 {{PLURAL:$1|secolo|secoli}}',
 'duration-millennia' => '$1 {{PLURAL:$1|millennio|millenni}}',
 
-# Unknown messages
-'lockmanager-fail-svr-acquire' => 'Impossibile acquisire blocchi sul server $1.',
 );

@@ -210,6 +210,7 @@ Ussassi se johtub ustaŕeloi sravńoi- vai istorilinkissä roocittulõõ cüľľ
 
 Kui cüsümüssessä ebõõ roocittu cülci, võib õlla õlõttõ löütännü ošipkaa sistemalla. Õõ nii üvä ilmuttõma cüľľee adressia vikii [[Special:ListUsers/sysop|praviťeľalõõ]].',
 'missingarticle-rev' => '(verzija: $1)',
+'badtitle' => 'Paha zagolofkka',
 'badtitletext' => 'Cüzüttü artikkelizagolofkka õli vilpilliin, tühjä vai väärii linkitettü ceelijeväliin vai vikiiväliin linkki.',
 'viewsource' => 'Lähtekoodi',
 
@@ -302,6 +303,9 @@ Võitta loovva cüľľee cirjuttamall alla õlõvasõõ tilaa. Kui että taho lo
 'history-fieldset-title' => 'Ľistvoit muutuzistoria',
 'histfirst' => 'Kõikkõa varaizõpid',
 'histlast' => 'Kõikkõa viimõizõpid',
+
+# Revision feed
+'history-feed-item-nocomment' => '$1 .. $2',
 
 # Revision deletion
 'rev-delundel' => 'näüt/salauta',
@@ -547,6 +551,7 @@ Cüľľed, kummad õmad teďďellä [[Special:Watchlist|kattsõspiizgalla]] on c
 # Watchlist
 'watchlist' => 'Minu kattsõspiiska',
 'mywatchlist' => 'Minu kattsõspiiska',
+'watchlistfor2' => '$2 - $1 vart',
 'addedwatchtext' => "Cülci \"[[:\$1]]\" on lisättü Teďďee [[Special:Watchlist|kattsospiizgallõ]].
 Cülcese ja sene juttucülcese tehäväd tulõvaizõd muutuhsõd leeväd cisloitõtud siäll.
 Cülci leeb cirjutõttu '''pimmiässi''' [[Special:RecentChanges|spiizgall viimeizije muutuhsijõ]].",

@@ -42,7 +42,7 @@ $messages = array(
 'tog-hidepatrolled' => 'Falaich mùthaidhean fo fhaire ann an liosta nam mùthaidhean ùra',
 'tog-newpageshidepatrolled' => 'Falaich duilleagan fo fhaire ann an liosta nan duilleagan ùra',
 'tog-extendwatchlist' => "Leudaich an clàr-faire gus an seall e gach mùthadh 's chan ann an fheadhainn as ùire a-mhàin",
-'tog-usenewrc' => 'Cleachd mùthaidhean ùra leasaichte (feumaidh seo JavaScript)',
+'tog-usenewrc' => "Buidhnich na h-atharraichean a-rèir duilleige sna mùthaidhean ùra agus air a' chlàr-fhaire (feumaidh seo JavaScript)",
 'tog-numberheadings' => 'Cuir àireamhan ri ceann-sgrìobhaidhean leis fhèin',
 'tog-showtoolbar' => 'Seall am bàr-inneil deasachaidh (feumaidh seo JavaScript)',
 'tog-editondblclick' => 'Tòisich air deasachadh duilleige le briogadh dùbailt (feumaidh seo JavaScript)',
@@ -50,17 +50,17 @@ $messages = array(
 'tog-editsectiononrightclick' => "Cuir an comas deasachadh earainn le briogadh deas air tiotal de dh'earrainn (feumaidh seo JavaScript)",
 'tog-showtoc' => 'Seall an clàr-innse (air duilleagan air a bheil barrachd air 3 ceann-sgrìobhaidhean)',
 'tog-rememberpassword' => "Cuimhnich gu bheil mi air logadh a-steach air a' choimpiutair seo (suas gu $1 {{PLURAL:$1|latha|latha|latha|latha|làithean|latha}})",
-'tog-watchcreations' => 'Cuir duilleagan a chruthaicheas mi air mo chlàr-faire',
-'tog-watchdefault' => 'Cuir duilleagan a dheasaicheas mi air mo chlàr-faire',
-'tog-watchmoves' => 'Cuir duilleagan a ghluaiseas mi air mo chlàr-faire',
-'tog-watchdeletion' => 'Cuir duilleagan a sguabas mi às air mo chlàr-faire',
+'tog-watchcreations' => "Cuir duilleagan a chruthaicheas mi air a' chlàr-fhaire agam",
+'tog-watchdefault' => "Cuir duilleagan a dheasaicheas mi air a' chlàr-fhaire agam",
+'tog-watchmoves' => "Cuir duilleagan a ghluaiseas mi air a' chlàr-fhaire agam",
+'tog-watchdeletion' => "Cuir duilleagan a sguabas mi às air a' chlàr-fhaire agam",
 'tog-minordefault' => 'Comharraich gach mùthadh mar mhùthadh beag a ghnàth',
 'tog-previewontop' => "Nochd an ro-shealladh os cionn a' bhogsa deasachaidh",
 'tog-previewonfirst' => "Nochd an ro-shealladh nuair a nithear a' chiad deasachadh",
 'tog-nocache' => 'Cuir à comas tasgadh nan duilleagan',
-'tog-enotifwatchlistpages' => 'Cuir post-dealain thugam nuair a chuirear mùthadh air duilleag a tha air mo chlàr-faire',
+'tog-enotifwatchlistpages' => "Cuir post-dealain thugam nuair a mhùthar duilleag a tha air a' chlàr-fhaire agam",
 'tog-enotifusertalkpages' => 'Cuir post-dealain thugam nuair a mhùthaichear duilleag mo chonaltraidh',
-'tog-enotifminoredits' => 'Cuir post-dealain thugam nuair a chuirear mùthadh beag air duilleagan cuideachd',
+'tog-enotifminoredits' => 'Cuir post-dealain thugam nuair a nithear mùthadh beag air duilleagan cuideachd',
 'tog-enotifrevealaddr' => 'Nochd an seòladh puist-dhealain agam ann am teachdaireachdan fiosrachaidh',
 'tog-shownumberswatching' => "Nochd àireamh nan cleachdaichean a tha a' cumail sùil air",
 'tog-oldsig' => 'An t-earr-sgrìobhadh làithreach:',
@@ -131,18 +131,18 @@ $messages = array(
 'october-gen' => 'dhen Dàmhair',
 'november-gen' => 'dhen t-Samhain',
 'december-gen' => 'dhen Dùbhlachd',
-'jan' => 'faoi',
-'feb' => 'gibl',
-'mar' => 'màrt',
-'apr' => 'gibl',
-'may' => 'cèit',
-'jun' => 'ògmh',
-'jul' => 'iuch',
-'aug' => 'lùna',
-'sep' => 'sult',
-'oct' => 'dàmh',
-'nov' => 'samh',
-'dec' => 'dùbh',
+'jan' => 'Faoi',
+'feb' => 'Gearr',
+'mar' => 'Màrt',
+'apr' => 'Gibl',
+'may' => 'Cèit',
+'jun' => 'Ògmh',
+'jul' => 'Iuch',
+'aug' => 'Lùna',
+'sep' => 'Sult',
+'oct' => 'Dàmh',
+'nov' => 'Samh',
+'dec' => 'Dùbh',
 
 # Categories related messages
 'pagecategories' => '{{PLURAL:$1|Roinn-seòrsa|Roinn-seòrsa|Roinn-seòrsa|Roinn-seòrsa|Roinnean-seòrsa|Roinn-seòrsa}}',
@@ -564,8 +564,22 @@ Saoil an do dh'atharraich thu am facal-faire agad mu thràth no an do dh'iarr th
 'passwordreset-pretext' => '{{PLURAL:$1||Cuir a-steach aon dhe na pìosan dàta gu h-ìosal}}',
 'passwordreset-username' => 'Ainm-cleachdaiche:',
 'passwordreset-domain' => 'Àrainn-lìn:',
+'passwordreset-capture' => "A bheil thu airson coimhead air a' phost-d?",
+'passwordreset-capture-help' => 'Ma chuireas tu cromag sa bhogsa seo, chì thusa am post-d (leis an fhacal-fhaire sealach) agus gheibh an cleachdaiche e cuideachd.',
 'passwordreset-email' => 'Seòladh puist-d:',
 'passwordreset-emailtitle' => "Dàta a' chunntais air {{SITENAME}}",
+'passwordreset-emailtext-ip' => "Dh'iarr cuideigin (thu fhèin, 's mathaid, on t-seòladh IP $1) cuimhneachan air an fhiosrachadh a tha co-cheangailte ris a' chunntas air {{SITENAME}} ($4). Tha {{PLURAL:$3|an cunntas|an dà chunntas|na cunntasan|na cunntasan|na cunntasan|na cunntasan}} a leanas co-cheangailte ris a' phost-d seo:
+
+$2
+
+Falbhaidh an ùine air {{PLURAL:$3|an fhacal-fhaire|an dà fhacal-faire|na faclan-faire|na faclan-faire|na faclan-faire|na faclan-faire}} sealach seo ann an {{PLURAL:$5|latha|$5 latha|$5 latha|$5 latha|$5 làithean|$5 latha}}.
+Bu chòir dhut clàradh a-steach agus facal-faire ùr a thaghadh an-dràsta. Ma dh'iarr cuideigin eile seo no ma chuimhnich thu air an fhacal-fhaire agad 's mur eil thu airson atharrachadh tuilleadh, leig seachad an teachdaireachd seo 's lean ort leis an t-seann fhacal-fhaire.",
+'passwordreset-emailtext-user' => "Dh'iarr an cleachdaiche $1 air {{SITENAME}} cuimhneachan air an fhiosrachadh a tha co-cheangailte ris a' chunntas agad air {{SITENAME}} ($4). Tha {{PLURAL:$3|an cunntas-cleachdaiche|an dà chunntas-cleachdaiche|na cunntasan-cleachdaiche|na cunntasan-cleachdaiche|na cunntasan-cleachdaiche|na cunntasan-cleachdaiche}} a leanas co-cheangailte ris a' phost-d seo:
+
+$2
+
+Falbhaidh an ùine air {{PLURAL:$3|an fhacal-fhaire|an dà fhacal-faire|na faclan-faire|na faclan-faire|na faclan-faire|na faclan-faire}} sealach seo ann an {{PLURAL:$5|latha|$5 latha|$5 latha|$5 latha|$5 làithean|$5 latha}}.
+Bu chòir dhut clàradh a-steach agus facal-faire ùr a thaghadh an-dràsta. Ma dh'iarr cuideigin eile seo no ma chuimhnich thu air an fhacal-fhaire agad 's mur eil thu airson atharrachadh tuilleadh, leig seachad an teachdaireachd seo 's lean ort leis an t-seann fhacal-fhaire.",
 
 # Edit page toolbar
 'bold_sample' => 'Teacs trom',

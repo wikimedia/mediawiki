@@ -417,11 +417,11 @@ $messages = array(
 'underline-default' => 'Valeur par défaut du navigateur',
 
 # Font style option in Special:Preferences
-'editfont-style' => 'Style de police de la zone d’édition :',
-'editfont-default' => 'Celui par défaut du navigateur',
+'editfont-style' => 'Style de police de la zone de modification :',
+'editfont-default' => 'Police du navigateur par défaut',
 'editfont-monospace' => 'Police de chasse fixe',
 'editfont-sansserif' => 'Police sans empattement',
-'editfont-serif' => 'Police avec empattements',
+'editfont-serif' => 'Police avec empattement',
 
 # Dates
 'sunday' => 'dimanche',
@@ -600,7 +600,7 @@ $1',
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
 'aboutsite' => 'À propos de {{SITENAME}}',
 'aboutpage' => 'Project:À propos',
-'copyright' => 'Contenu disponible sous $1.',
+'copyright' => 'Sous licence $1',
 'copyrightpage' => '{{ns:project}}:Copyrights',
 'currentevents' => 'Actualités',
 'currentevents-url' => 'Project:Actualités',
@@ -1901,6 +1901,7 @@ Si le problème persiste, contactez un [[Special:ListUsers/sysop|administrateur]
 'lockmanager-fail-releaselock' => 'Impossible de relâcher le verrou pour « $1 ».',
 'lockmanager-fail-db-bucket' => 'Impossible de contacter suffisamment de bases de données de verrouillage dans le godet $1.',
 'lockmanager-fail-db-release' => 'Impossible de relâcher les verrous sur la base de données $1.',
+'lockmanager-fail-svr-acquire' => "Impossible d'acquérir des verrous sur le serveur $1.",
 'lockmanager-fail-svr-release' => 'Impossible de relâcher les verrous sur le serveur $1.',
 
 # ZipDirectoryReader
@@ -4059,6 +4060,4 @@ Sinon, vous pouvez utiliser le formulaire simplifié ci-dessous. Votre commentai
 'duration-centuries' => '$1 {{PLURAL:$1|siècle|siècles}}',
 'duration-millennia' => '$1 {{PLURAL:$1|millénaire|millénaires}}',
 
-# Unknown messages
-'lockmanager-fail-svr-acquire' => "Impossible d'acquérir des verrous sur le serveur $1.",
 );

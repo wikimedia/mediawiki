@@ -17,10 +17,12 @@
  * @author EivindJ
  * @author Event
  * @author Finnrind
+ * @author Geitost
  * @author Guaca
  * @author H92
  * @author Haakon K
  * @author Harald Khan
+ * @author Jeblad
  * @author Jóna Þórunn
  * @author Kph
  * @author Kph-no
@@ -318,7 +320,7 @@ $messages = array(
 'tog-hidepatrolled' => 'Skjul patruljerte redigeringer i siste endringer',
 'tog-newpageshidepatrolled' => 'Skjul patruljerte sider fra listen over nye sider',
 'tog-extendwatchlist' => 'Utvid overvåkningslisten til å vise alle endringer, ikke bare de siste',
-'tog-usenewrc' => 'Bruk forbedret siste endringer (krever JavaScript)',
+'tog-usenewrc' => 'Grupper endringer i siste endringer og overvåkingslistte (krever JavaScript)',
 'tog-numberheadings' => 'Autonummerer overskrifter',
 'tog-showtoolbar' => 'Vis verktøylinje (krever JavaScript)',
 'tog-editondblclick' => 'Rediger sider ved å dobbeltklikke (krever JavaScript)',
@@ -326,17 +328,17 @@ $messages = array(
 'tog-editsectiononrightclick' => 'Rediger avsnitt ved å høyreklikke på avsnittsoverskrift (JavaScript)',
 'tog-showtoc' => 'Vis innholdsfortegnelse (for sider med flere enn tre avsnitt)',
 'tog-rememberpassword' => 'Husk meg i denne nettleseren (i høyst $1 {{PLURAL:$1|dag|dager}})',
-'tog-watchcreations' => 'Overvåk sider jeg oppretter',
-'tog-watchdefault' => 'Overvåk alle sider jeg redigerer',
-'tog-watchmoves' => 'Overvåk sider jeg flytter',
-'tog-watchdeletion' => 'Overvåk sider jeg sletter',
+'tog-watchcreations' => 'Legg til sider jeg oppretter og filer jeg laster opp i min overvåkingsliste',
+'tog-watchdefault' => 'Legg til sider og filer jeg endrer på i min overvåkingsliste',
+'tog-watchmoves' => 'Legg til sider og filer jeg flytter til min overvåkingsliste',
+'tog-watchdeletion' => 'Legg til sider og filer jeg sletter i min overvåkingsliste',
 'tog-minordefault' => 'Merk i utgangspunktet alle redigeringer som mindre',
 'tog-previewontop' => 'Vis forhåndsvisningen ovenfor redigeringsboksen',
 'tog-previewonfirst' => 'Vis forhåndsvisning når du begynner å redigere',
 'tog-nocache' => 'Deaktiver nettlesermellomlagring av sider («caching»)',
-'tog-enotifwatchlistpages' => 'Send meg en e-post når sider på overvåkningslisten min blir endret',
+'tog-enotifwatchlistpages' => 'Send meg en e-post når sider og filer på overvåkningslisten min blir endret',
 'tog-enotifusertalkpages' => 'Send meg en e-post når brukerdiskusjonssiden min endres',
-'tog-enotifminoredits' => 'Send meg e-post også ved mindre endringer',
+'tog-enotifminoredits' => 'Send meg e-post også ved mindre endringer av sider og filer',
 'tog-enotifrevealaddr' => 'Vis min e-postadresse i utgående meldinger',
 'tog-shownumberswatching' => 'Vis antall brukere som overvåker',
 'tog-oldsig' => 'Nåværende signatur:',
@@ -668,6 +670,8 @@ Vennligst rapporter dette til en [[Special:ListUsers/sysop|administrator]], oppg
 'cannotdelete' => 'Siden eller fila «$1» kunne ikke slettes.
 Den kan ha blitt slettet av noen andre.',
 'cannotdelete-title' => 'Kan ikke slette siden «$1»',
+'delete-hook-aborted' => 'Sletting avbrutt av en funksjon.
+Den ga ingen forklaring.',
 'badtitle' => 'Ugyldig tittel',
 'badtitletext' => 'Den ønskede tittelen var ugyldig, tom eller feilaktig lenket fra en annen wiki.
 Den inneholder kanskje ett eller flere tegn som ikke kan brukes i titler.',
@@ -702,6 +706,8 @@ Den angitte grunnen er «''$2''».",
 Administrators nærmere begrunnelse: «$3».',
 'invalidtitle-knownnamespace' => 'Ugyldig tittel med navnerommet «$2» og teksten «$3»',
 'invalidtitle-unknownnamespace' => 'Ugyldig tittel med ukjent navneromsnummer $1 og teksten «$2»',
+'exception-nologin' => 'Ikke innlogget',
+'exception-nologin-text' => 'Denne siden eller handlingen krever at du er innlogget på denne wikien.',
 
 # Virus scanner
 'virus-badscanner' => "Dårlig konfigurasjon: Ukjent virusskanner: ''$1''",
@@ -1158,7 +1164,7 @@ Du kan fortsatt se den; detaljer finnes i [{{fullurl:{{#Special:Log}}/delete|pag
 Som administrator kan du se den; detaljer kan finnes i [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} skjulingsloggen].",
 'rev-deleted-no-diff' => "Du kan ikke vise forskjellen fordi en av versjonene har blitt '''slettet'''.
 Det kan finnes flere detaljer i [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} slettingsloggen].",
-'rev-suppressed-no-diff' => "Du kanne ikke se revisjonsforskjellen fordi en av revisjonene har blitt '''slettet'''.",
+'rev-suppressed-no-diff' => "Du kan ikke se revisjonsforskjellen fordi en av revisjonene har blitt '''slettet.'''",
 'rev-deleted-unhide-diff' => "Én av revisjonene i denne diffen har blitt '''slettet'''.
 Det finnes flere detaljer i [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} slettingsloggen].
 Du kan fortsatt [$1 se diffen] om du ønsker å gå videre.",
@@ -1857,6 +1863,7 @@ Om problemet fortsetter, kontakt en [[Special:ListUsers/sysop|administrator]].',
 'lockmanager-fail-releaselock' => 'Kunne ikke frigi låsen for «$1».',
 'lockmanager-fail-db-bucket' => 'Kunne ikke kontakte nok låsedatabaser i bøtten $1.',
 'lockmanager-fail-db-release' => 'Kunne ikke frigi låser på databasen $1.',
+'lockmanager-fail-svr-acquire' => 'Kunne ikke hente lås på server $1.',
 'lockmanager-fail-svr-release' => 'Kunne ikke frigi låser på tjeneren $1.',
 
 # ZipDirectoryReader
@@ -2160,6 +2167,7 @@ Merk at andre sider kanskje lenker til en fil med en direkte lenke, så filen li
 Du kan minske antallet resultater ved å velge loggtype, brukernavn eller den siden som er påvirket (husk å skille mellom store og små bokstaver).',
 'logempty' => 'Ingen elementer i loggen.',
 'log-title-wildcard' => 'Søk i titler som starter med denne teksten',
+'showhideselectedlogentries' => 'Vis/skjul de valgte logghendelsene',
 
 # Special:AllPages
 'allpages' => 'Alle sider',

@@ -396,7 +396,7 @@ Tazama [[Special:Version|ukurasa wa toleo]].',
 'viewsourceold' => 'view source',
 'editlink' => 'hariri',
 'viewsourcelink' => 'onyesha kodi za ukurasa',
-'editsectionhint' => 'Hariri fungu: $1',
+'editsectionhint' => 'Hariri sehemu: $1',
 'toc' => 'Yaliyomo',
 'showtoc' => 'fichua',
 'hidetoc' => 'ficha',
@@ -2532,6 +2532,9 @@ Tafadhali jaribu tena.',
 # Image deletion
 'deletedrevision' => 'Pitio la awali lililofutwa $1',
 'filedeleteerror-short' => 'Hitilafu wakati wa kufuta faili: $1',
+'filedeleteerror-long' => 'Hitilafu zilitokea wakati wa kufuta faili:
+
+$1',
 'filedelete-missing' => 'Faili "$1" haliwezi kufutwa, kwa sababu halipo.',
 'filedelete-old-unregistered' => 'The specified file revision "$1" is not in the database.',
 'filedelete-current-unregistered' => 'Faili lilotajwa la "$1" halipo katika hifadhidata.',
@@ -2648,10 +2651,12 @@ likifupishwa. Nyuga zingine zitafichwa kama chaguo-msingi.
 'exif-objectname' => 'Jina fupi',
 'exif-specialinstructions' => 'Maelekezo maalum',
 'exif-headline' => 'Kichwa cha habari',
+'exif-source' => 'Chanzo',
 'exif-urgency' => 'Umuhimu',
 'exif-writer' => 'Mwandishi',
 'exif-languagecode' => 'Lugha',
 'exif-iimcategory' => 'Jamii',
+'exif-datetimeexpires' => 'Usitumie baada ya',
 'exif-cameraownername' => 'Mwenye kamera',
 'exif-copyrighted' => 'Hali ya hakimiliki',
 'exif-copyrightowner' => 'Mwenye hatimiliki',
@@ -2744,6 +2749,8 @@ likifupishwa. Nyuga zingine zitafichwa kama chaguo-msingi.
 # Pseudotags used for GPSTrackRef, GPSImgDirectionRef and GPSDestBearingRef
 'exif-gpsdirection-t' => 'Mwelekeo halisi',
 'exif-gpsdirection-m' => 'Mwelekeo wa sumaku',
+
+'exif-ycbcrpositioning-1' => 'Katikati',
 
 'exif-dc-contributor' => 'Wengine waliochangia',
 'exif-dc-date' => 'Tarehe',

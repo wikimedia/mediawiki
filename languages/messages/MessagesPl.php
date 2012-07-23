@@ -33,6 +33,7 @@
  * @author Odder
  * @author Olgak85
  * @author Przemub
+ * @author Reedy
  * @author Remedios44
  * @author Remember the dot
  * @author Rzuwig
@@ -305,17 +306,17 @@ $messages = array(
 'tog-editsectiononrightclick' => 'Kliknięcie prawym klawiszem myszy na tytule sekcji rozpoczyna jej edycję (JavaScript)',
 'tog-showtoc' => 'Pokazuj spis treści (na stronach z więcej niż 3 nagłówkami)',
 'tog-rememberpassword' => 'Zapamiętaj moje hasło w przeglądarce (maksymalnie przez $1 {{PLURAL:$1|dzień|dni}})',
-'tog-watchcreations' => 'Dodaj do obserwowanych strony tworzone przeze mnie',
-'tog-watchdefault' => 'Dodaj do obserwowanych strony, które edytuję',
-'tog-watchmoves' => 'Dodaj do obserwowanych strony, które przenoszę',
-'tog-watchdeletion' => 'Dodaj do obserwowanych strony, które usuwam',
+'tog-watchcreations' => 'Dodawaj do obserwowanych tworzone przeze mnie strony oraz wgrywane przeze mnie pliki',
+'tog-watchdefault' => 'Dodawaj do obserwowanych strony i pliki, które edytuję',
+'tog-watchmoves' => 'Dodawaj do obserwowanych strony i pliki, które przenoszę',
+'tog-watchdeletion' => 'Dodawaj do obserwowanych strony i pliki, które usuwam',
 'tog-minordefault' => 'Wszystkie edycje domyślnie oznaczaj jako drobne',
 'tog-previewontop' => 'Pokazuj podgląd powyżej obszaru edycji',
 'tog-previewonfirst' => 'Pokazuj podgląd strony podczas pierwszej edycji',
 'tog-nocache' => 'Wyłącz pamięć podręczną przeglądarki',
-'tog-enotifwatchlistpages' => 'Wyślij do mnie e‐mail kiedy strona z mojej listy obserwowanych zostanie zmodyfikowana',
+'tog-enotifwatchlistpages' => 'Wyślij do mnie e‐mail, gdy strona lub plik z mojej listy obserwowanych zostaną zmodyfikowane',
 'tog-enotifusertalkpages' => 'Wyślij do mnie e‐mail kiedy moja strona dyskusji zostanie zmodyfikowana',
-'tog-enotifminoredits' => 'Wyślij e‐mail także w przypadku drobnych zmian na stronach',
+'tog-enotifminoredits' => 'Wyślij e‐mail także w przypadku drobnych zmian na stronach lub w plikach',
 'tog-enotifrevealaddr' => 'Nie ukrywaj mojego adresu e‐mail w powiadomieniach',
 'tog-shownumberswatching' => 'Pokaż liczbę użytkowników obserwujących stronę',
 'tog-oldsig' => 'Twój obecny podpis',
@@ -648,7 +649,7 @@ Można zgłosić ten fakt [[Special:ListUsers/sysop|administratorowi]], podając
 'cannotdelete' => 'Strona lub plik „$1” nie mogą zostać usunięte.
 Możliwe, że zostały już usunięte przez kogoś innego.',
 'cannotdelete-title' => 'Nie można usunąć strony „$1”.',
-'delete-hook-aborted' => 'Usuwanie przerwane przez zaczep.
+'delete-hook-aborted' => 'Usuwanie przerwane przez hak.
 Przyczyna nieokreślona.',
 'badtitle' => 'Niepoprawny tytuł',
 'badtitletext' => 'Podano niepoprawny tytuł strony. Prawdopodobnie jest pusty lub zawiera znaki, których użycie jest zabronione.',
@@ -1855,6 +1856,7 @@ Jeśli problem będzie się powtarzał, skontaktuj się z [[Special:ListUsers/sy
 'lockmanager-fail-releaselock' => 'Nie może zwolnić blokady dla " $1 ".',
 'lockmanager-fail-db-bucket' => 'Nie można powiązać wystarczającej ilości zablokowanych baz danych w segmencie $1 .',
 'lockmanager-fail-db-release' => 'Nie udało się zwolnić blokad w bazie danych $1.',
+'lockmanager-fail-svr-acquire' => 'Nie udało się uzyskać blokady na serwerze $1.',
 'lockmanager-fail-svr-release' => 'Nie udało się zwolnić blokady na serwerze $1.',
 
 # ZipDirectoryReader
@@ -4040,6 +4042,4 @@ W przeciwnym wypadku można użyć prostego formularza poniżej. Komentarz zosta
 'duration-centuries' => '$1 {{PLURAL:$1|stulecie|stulecia|stuleci}}',
 'duration-millennia' => '$1 {{PLURAL:$1|tysiąclecie|tysiąclecia|tysiącleci}}',
 
-# Unknown messages
-'lockmanager-fail-svr-acquire' => 'Nie udało się uzyskać blokady na serwerze $1.',
 );

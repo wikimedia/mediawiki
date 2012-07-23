@@ -1352,8 +1352,8 @@ teisės",
 'group-suppress' => 'Peržiūrėtojai',
 'group-all' => '(visi)',
 
-'group-user-member' => 'Naudotojas',
-'group-autoconfirmed-member' => 'Automatiškai patvirtintas naudotojas',
+'group-user-member' => '{{GENDER:$1|naudotojas|naudotoja}}',
+'group-autoconfirmed-member' => '{{GENDER:$1|automatiškai patvirtintas naudotojas|automatiškai patvirtinta naudotoja}}',
 'group-bot-member' => 'Botas',
 'group-sysop-member' => 'Administratorius',
 'group-bureaucrat-member' => 'Biurokratas',
@@ -2218,7 +2218,7 @@ kažkas jau pakeitė puslapį arba suspėjo pirmas atmesti keitimą.
 
 Paskutimas keitimas darytas naudotojo [[User:$3|$3]] ([[User talk:$3|Aptarimas]]{{int:pipe-separator}}[[Special:Contributions/$3|{{int:contribslink}}]]).',
 'editcomment' => "Redagavimo komentaras: „''$1''“.",
-'revertpage' => 'Atmestas [[Special:Contributions/$2|$2]] ([[User talk:$2|Aptarimas]]) pakeitimas; sugrąžinta naudotojo [[User:$1|$1]] versija',
+'revertpage' => 'Atmestas [[Special:Contributions/$2|$2]] ([[User talk:$2|Aptarimas]]) pakeitimas; sugrąžinta [[User:$1|$1]] versija',
 'revertpage-nouser' => 'Atmesti (naudotojo vardas pašalintas) pakeitimai, grąžinta prieš tai buvusi [[User:$1|$1]] versija',
 'rollback-success' => 'Atmesti $1 pakeitimai;
 grąžinta prieš tai buvusi $2 versija.',
@@ -2354,8 +2354,8 @@ $1',
 'blanknamespace' => '(Pagrindinė)',
 
 # Contributions
-'contributions' => 'Naudotojo įnašas',
-'contributions-title' => 'Naudotojo $1 indėlis',
+'contributions' => 'Naudotojo indėlis',
+'contributions-title' => '{{GENDER:$1|Naudotojo|Naudotojos}} $1 indėlis',
 'mycontris' => 'Mano įnašas',
 'contribsub2' => 'Naudotojo $1 ($2)',
 'nocontribs' => 'Jokie keitimai neatitiko šių kriterijų.',
@@ -2853,7 +2853,7 @@ Leidžia pridėti atmetimo priežastį komentaruose',
 
 # Attribution
 'anonymous' => '{{SITENAME}} {{PLURAL:$1|anoniminis naudotojas|anoniminiai naudotojai}}',
-'siteuser' => '{{SITENAME}} naudotojas $1',
+'siteuser' => '{{SITENAME}} {{GENDER:$2|naudotojas|naudotoja}} $1',
 'anonuser' => '{{SITENAME}} anoniminis naudotojas $1',
 'lastmodifiedatby' => 'Šį puslapį paskutinį kartą redagavo $3 $2, $1.',
 'othercontribs' => 'Paremta $1 darbu.',
@@ -3468,10 +3468,10 @@ $5
 
 # Delete conflict
 'deletedwhileediting' => 'Dėmesio: Šis puslapis ištrintas po to, kai pradėjote redaguoti!',
-'confirmrecreate' => "Naudotojas [[User:$1|$1]] ([[User talk:$1|aptarimas]]) ištrynė šį puslapį po to, kai pradėjote jį redaguoti. Trynimo priežastis:
+'confirmrecreate' => "{{GENDER:$1|Naudotojas&nbsp;|Naudotoja&nbsp;|}}[[User:$1|$1]] ([[User talk:$1|aptarimas]]) ištrynė šį puslapį po to, kai pradėjote jį redaguoti. Trynimo priežastis:
 : ''$2''
 Prašome patvirtinti, kad tikrai norite iš naujo sukurti puslapį.",
-'confirmrecreate-noreason' => 'Naudotojas [[User:$1|$1]] ([[User talk:$1|aptarimas]]) ištrynė šį puslapį po to, kai jūs pradėjote redaguoti. Prašome patvirtinti, jog jūs tikrai norite atkurti šį puslapį.',
+'confirmrecreate-noreason' => '{{GENDER:$1|Naudotojas&nbsp;|Naudotoja&nbsp;|}}[[User:$1|$1]] ([[User talk:$1|aptarimas]]) ištrynė šį puslapį po to, kai jūs pradėjote redaguoti. Prašome patvirtinti, jog jūs tikrai norite atkurti šį puslapį.',
 'recreate' => 'Atkurti',
 
 # action=purge

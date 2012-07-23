@@ -165,7 +165,7 @@ $messages = array(
 'tog-hidepatrolled' => 'په وروستيو بدلونونو کې څارل شوې سمونونه پټول',
 'tog-newpageshidepatrolled' => 'د نوؤ مخونو په لړليک کې کتل شوي مخونه پټول',
 'tog-extendwatchlist' => 'يوازې د وروستني بدلونونو د ښکاره کولو لپاره نه بلکه د ټولو بدلونونو د ښکاره کولو لپاره کتنلړ غځول',
-'tog-usenewrc' => 'د وروستي بدلونو پرمختللې بڼه کارول (جاوا سکرېپټ ته اړتيا ده)',
+'tog-usenewrc' => 'په کتنلړ او وروستي بدلونو مخ باندې ډله ايز بدلونونه (جاوا سکرېپټ ته اړتيا ده)',
 'tog-numberheadings' => 'د سرليکونو خپلکاره شمېرايښودنه',
 'tog-showtoolbar' => 'د سمولو توکپټه ښکاره کول (جاواسکرېپټ)',
 'tog-editondblclick' => 'په دوه کلېک سره د مخونو سمون (د جاواسکرېپټ اړتيا ده)',
@@ -173,17 +173,17 @@ $messages = array(
 'tog-editsectiononrightclick' => 'د ښي کلېک سره د سرليکونو د برخې سمون چارنول (جاواسکرېپټ ته اړتيا)',
 'tog-showtoc' => 'نيوليک ښکاره کول (د هغو مخونو لپاره چې له ۳ نه ډېر سرليکونه لري)',
 'tog-rememberpassword' => 'زما کارن-نوم په دې کتنمل (تر $1 {{PLURAL:$1|ورځې|ورځو}}) په ياد وساته!',
-'tog-watchcreations' => 'هغه مخونه چې زه يې جوړوم، زما کتنلړ کې ورګډ کړه',
-'tog-watchdefault' => 'هغه مخونه چې زه يې سموم، زما کتنلړ کې ورګډ کړه',
-'tog-watchmoves' => 'هغه مخونه چې زه يې لېږدوم، زما کتنلړ کې ورګډ کړه',
-'tog-watchdeletion' => 'هغه مخونه چې زه يې ړنګوم، زما کتنلړ کې ورګډ کړه',
+'tog-watchcreations' => 'زما کتنلړ کې دې هغه مخونه چې زه يې جوړوم او هغه دوتنې چې زه يې پورته کوم ورګډې شي',
+'tog-watchdefault' => 'زما کتنلړ کې دې هغه مخونه او دوتنې ورګډې شي چې زه يې سموم',
+'tog-watchmoves' => 'زما کتنلړ کې دې هغه مخونه او دوتنې ورګډې شي چې زه يې لېږدوم',
+'tog-watchdeletion' => 'زما کتنلړ کې دې هغه مخونه او دوتنې ورګډې شي چې زه يې ړنګوم',
 'tog-minordefault' => 'په تلواليزه توګه ټول سمونونه واړه په نخښه کول',
 'tog-previewontop' => 'د سمون بکس نه دمخه مخکتنه ښکاره کول',
 'tog-previewonfirst' => 'په لومړي سمون کې مخکتنه ښکاره کول',
 'tog-nocache' => 'د کتنمل د مخ ياده ساتنې چار ناچارندول',
-'tog-enotifwatchlistpages' => 'کله چې زما کتنلړ کې يو مخ بدلون مومي نو ما ته دې برېښليک راشي',
+'tog-enotifwatchlistpages' => 'کله چې زما د کتنلړ په يوې دوتنې يا يو مخ کې بدلون راځي نو ما ته دې د بدلون په اړه برېښليک راشي',
 'tog-enotifusertalkpages' => 'کله چې زما د خبرو اترو په مخ کې بدلون پېښېږي نو ما ته دې يو برېښليک ولېږلی شي.',
-'tog-enotifminoredits' => 'کله چې په مخونو کې وړې سمونې کېږي نو ماته دې برېښليک ولېږل شي',
+'tog-enotifminoredits' => 'کله چې په مخونو او دوتنو کې وړې سمونې کېږي نو ماته دې د بدلون په اړه برېښليک راشي',
 'tog-enotifrevealaddr' => 'په يادښت برېښليک کې زما برېښليک پته ښکاره کول',
 'tog-shownumberswatching' => 'د کتونکو کارنانو شمېر ښکاره کول',
 'tog-oldsig' => 'اوسنی لاسليک:',
@@ -267,7 +267,7 @@ $messages = array(
 # Categories related messages
 'pagecategories' => '{{PLURAL:$1|وېشنيزه|وېشنيزې}}',
 'category_header' => 'د "$1" په وېشنيزه کې شته مخونه',
-'subcategories' => 'وړې-وېشنيزې',
+'subcategories' => 'څېرمه وېشنيزې',
 'category-media-header' => 'د "$1" په وېشنيزه کې شته رسنۍ',
 'category-empty' => "''تر اوسه پورې همدا وېشنيزه هېڅ کوم مخ يا کومه رسنيزه دوتنه نلري.''",
 'hidden-categories' => '{{PLURAL:$1|پټه وېشنيزه|پټې وېشنيزې}}',
@@ -798,6 +798,7 @@ $1',
 'edit-no-change' => 'ستاسې سمون بابېزه وګڼل شو، دا ځکه چې تاسې په متن کې کوم بدلون نه دی راوستلی.',
 'edit-already-exists' => 'په دې نوم يو نوی مخ جوړ نه شو.
 پدې نوم د پخوا نه يو مخ شته.',
+'defaultmessagetext' => 'تلوالیزه پيغام متن',
 
 # Parser/template warnings
 'post-expand-template-inclusion-warning' => "'''ګواښنه:''' دا کينډۍ د خپل ټاکلي بريد نه ډېره لويه ده.
@@ -891,7 +892,7 @@ $1',
 'revertmerge' => 'بېلول',
 
 # Diffs
-'history-title' => 'د "$1" د پېښليک بڼه',
+'history-title' => 'د "$1" د مخليدنې پېښليک',
 'difference-multipage' => '(د مخونو تر مېنځ توپير)',
 'lineno' => '$1 کرښه:',
 'compareselectedversions' => 'ټاکلې بڼې سره پرتلل',
@@ -1171,7 +1172,7 @@ $1',
 'nchanges' => '$1 {{PLURAL:$1|بدلون|بدلونونه}}',
 'recentchanges' => 'وروستي بدلونونه',
 'recentchanges-legend' => 'د ورستي بدلونو خوښنې',
-'recentchanges-summary' => 'په همدې مخ باندې د ويکي ترټولو تازه وروستي بدلونونه وڅارۍ.',
+'recentchanges-summary' => 'په دې مخ د ويکي ترټولو تازه وروستي بدلونونه وڅارۍ.',
 'recentchanges-feed-description' => 'همدلته د ويکي ترټولو تازه وروستي بدلونونه وڅارۍ او وګورۍ چې څه پېښ شوي.',
 'recentchanges-label-newpage' => 'دغه سمون يو نوی مخ جوړ کړی',
 'recentchanges-label-minor' => 'دا يوه وړه سمونه ده',
@@ -1248,6 +1249,8 @@ $1',
 'file-too-large' => 'کومه دوتنه چې تاسې دلته سپارلې ډېره لويه ده.',
 'filename-tooshort' => 'د دوتنې نوم ډېر لنډ دی',
 'filetype-banned' => 'په دې ډول دوتنې بنديز دی.',
+'illegal-filename' => 'د دوتنې نوم نه دی پرېښل شوی.',
+'unknown-error' => 'يوه ناڅرګنده تېروتنه رامېنځته شوه.',
 'tmp-create-error' => 'لنډمهاله دوتنه جوړېدای نه شي',
 'fileexists' => "د پخوا نه پدې نوم يوه دوتنه شته، که تاسو ډاډه نه ياست او يا هم که تاسو غواړۍ چې بدلون پکې راولۍ، لطفاً '''<tt>[[:$1]]</tt>''' وګورۍ.
 [[$1|thumb]]",
@@ -1279,10 +1282,11 @@ $1',
 'upload-http-error' => 'د HTTP يوه ستونزه رامېنځ ته شوې: $1',
 
 # File backend
+'backend-fail-notexists' => 'د $1 په نوم دوتنه نشته.',
 'backend-fail-delete' => 'د "$1" دوتنه ړنګه نه شوه.',
 'backend-fail-alreadyexists' => 'د $1 دوتنه له پخوا نه شته.',
 'backend-fail-read' => 'د "$1" دوتنه نه شي لوستل کېدای.',
-'backend-fail-create' => 'د "$1" دوتنه نه شي جوړېدای.',
+'backend-fail-create' => 'د "$1" په دوتنه کې نور څه و نه ليکل شول.',
 
 # ZipDirectoryReader
 'zip-wrong-format' => 'ځانګړې شوې دوتنه يوه ZIP دوتنه نه وه.',
@@ -1757,6 +1761,7 @@ $UNWATCHURL  نه ليدنه وکړۍ
 # Namespace form on various pages
 'namespace' => 'نوم-تشيال:',
 'invert' => 'ټاکنې سرچپه کول',
+'namespace_association' => 'مل نومتشيال',
 'blanknamespace' => '(آرنی)',
 
 # Contributions
@@ -1836,6 +1841,7 @@ $UNWATCHURL  نه ليدنه وکړۍ
 'unblockip' => 'کارن له بنديزه وېستل',
 'ipusubmit' => 'دا بنديز ليرې کول',
 'unblocked' => 'له [[User:$1|$1]] بنديز ليري شو',
+'unblocked-range' => 'له $1 بنديز ليرې شو',
 'blocklist' => 'بنديز لګېدلي کارنان',
 'ipblocklist' => 'بنديز لګېدلي کارنان',
 'ipblocklist-legend' => 'يو بنديز شوی کارن موندل',
@@ -1879,6 +1885,7 @@ $UNWATCHURL  نه ليدنه وکړۍ
 
 # Developer tools
 'lockdb' => 'توکبنسټ تړل',
+'unlockdb' => 'توکبنسټ پرانيستل',
 'lockconfirm' => 'هو، زه د توکبنسټ تړل غواړم.',
 'lockbtn' => 'توکبنسټ تړل',
 'unlockbtn' => 'توکبنسټ پرانيستل',
@@ -2543,6 +2550,7 @@ $5
 'api-error-filename-tooshort' => 'د دوتنې نوم ډېر لنډ دی.',
 'api-error-filetype-banned' => 'په دې ډول دوتنې بنديز دی.',
 'api-error-illegal-filename' => 'د دوتنې نوم نه دی پرېښل شوی.',
+'api-error-unclassified' => 'يوه ناڅرګنده تېروتنه رامېنځته شوه.',
 'api-error-unknown-code' => 'ناڅرګنده تېروتنه: "$1"',
 'api-error-unknown-warning' => 'ناڅرګنده ګواښنه: "$1".',
 'api-error-unknownerror' => 'ناڅرګنده تېروتنه: "$1".',
