@@ -126,6 +126,13 @@ class WikiReference {
 	private $mServer; ///< server URL, may be protocol-relative, e.g. '//www.mediawiki.org'
 	private $mPath;   ///< path, '/wiki/$1'
 
+	/**
+	 * @param $major string
+	 * @param $minor string
+	 * @param $canonicalServer string
+	 * @param $path string
+	 * @param $server null|string
+	 */
 	public function __construct( $major, $minor, $canonicalServer, $path, $server = null ) {
 		$this->mMajor = $major;
 		$this->mMinor = $minor;
@@ -187,7 +194,16 @@ class WikiReference {
 	}
 
 	/**
+	 * Get a canonical server URL
+	 * @return string
+	 */
+	public function getCanonicalServer() {
+		return $this->mCanonicalServer;
+	}
+
+	/**
 	 * Alias for getCanonicalUrl(), for backwards compatibility.
+	 * @param $page string
 	 * @return String
 	 */
 	public function getUrl( $page ) {

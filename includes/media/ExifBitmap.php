@@ -199,7 +199,8 @@ class ExifBitmapHandler extends BitmapHandler {
 	 *
 	 * @param string $data
 	 * @return int 0, 90, 180 or 270
-	 * @fixme orientation can include flipping as well; see if this is an issue!
+	 * @todo FIXME orientation can include flipping as well; see if this is an
+	 * issue!
 	 */
 	protected function getRotationForExif( $data ) {
 		if ( !$data ) {

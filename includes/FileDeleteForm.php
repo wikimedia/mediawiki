@@ -119,10 +119,12 @@ class FileDeleteForm {
 				// file, otherwise go back to the description page
 				$wgOut->addReturnTo( $this->oldimage ? $this->title : Title::newMainPage() );
 
-				if ( $wgRequest->getCheck( 'wpWatch' ) && $wgUser->isLoggedIn() ) {
-					WatchAction::doWatch( $this->title, $wgUser );
-				} elseif ( $this->title->userIsWatching() ) {
-					WatchAction::doUnwatch( $this->title, $wgUser );
+				if ( $wgUser->isLoggedIn() && $wgRequest->getCheck( 'wpWatch' ) != $wgUser->isWatched( $this->title ) ) {
+					if ( $wgRequest->getCheck( 'wpWatch' ) ) {
+						WatchAction::doWatch( $this->title, $wgUser );
+					} else {
+						WatchAction::doUnwatch( $this->title, $wgUser );
+					}
 				}
 			}
 			return;
@@ -154,12 +156,19 @@ class FileDeleteForm {
 			$status = $file->deleteOld( $oldimage, $reason, $suppress );
 			if( $status->ok ) {
 				// Need to do a log item
-				$log = new LogPage( 'delete' );
 				$logComment = wfMsgForContent( 'deletedrevision', $oldimage );
 				if( trim( $reason ) != '' ) {
 					$logComment .= wfMsgForContent( 'colon-separator' ) . $reason;
 				}
-				$log->addEntry( 'delete', $title, $logComment );
+
+				$logtype = $suppress ? 'suppress' : 'delete';
+
+				$logEntry = new ManualLogEntry( $logtype, 'delete' );
+				$logEntry->setPerformer( $user );
+				$logEntry->setTarget( $title );
+				$logEntry->setComment( $logComment );
+				$logid = $logEntry->insert();
+				$logEntry->publish( $logid );
 			}
 		} else {
 			$status = Status::newFatal( 'cannotdelete',
@@ -170,7 +179,10 @@ class FileDeleteForm {
 			try {
 				// delete the associated article first
 				$error = '';
-				if ( $page->doDeleteArticleReal( $reason, $suppress, 0, false, $error, $user ) >= WikiPage::DELETE_SUCCESS ) {
+				$deleteStatus = $page->doDeleteArticleReal( $reason, $suppress, 0, false, $error, $user );
+				// doDeleteArticleReal() returns a non-fatal error status if the page
+				// or revision is missing, so check for isOK() rather than isGood()
+				if ( $deleteStatus->isOK() ) {
 					$status = $file->delete( $reason, $suppress );
 					if( $status->isOK() ) {
 						$dbw->commit( __METHOD__ );
@@ -210,7 +222,7 @@ class FileDeleteForm {
 			$suppress = '';
 		}
 
-		$checkWatch = $wgUser->getBoolOption( 'watchdeletion' ) || $this->title->userIsWatching();
+		$checkWatch = $wgUser->getBoolOption( 'watchdeletion' ) || $wgUser->isWatched( $this->title );
 		$form = Xml::openElement( 'form', array( 'method' => 'post', 'action' => $this->getAction(),
 			'id' => 'mw-img-deleteconfirm' ) ) .
 			Xml::openElement( 'fieldset' ) .

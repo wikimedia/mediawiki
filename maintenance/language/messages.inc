@@ -387,6 +387,7 @@ $wgMessageStructure = array(
 		'badarticleerror',
 		'cannotdelete',
 		'cannotdelete-title',
+		'delete-hook-aborted',
 		'badtitle',
 		'badtitletext',
 		'perfcached',
@@ -412,6 +413,8 @@ $wgMessageStructure = array(
 		'filereadonlyerror',
 		'invalidtitle-knownnamespace',
 		'invalidtitle-unknownnamespace',
+		'exception-nologin',
+		'exception-nologin-text',
 	),
 	'virus' => array(
 		'virus-badscanner',
@@ -1131,6 +1134,7 @@ $wgMessageStructure = array(
 		'right-writeapi',
 		'right-delete',
 		'right-bigdelete',
+		'right-deletelogentry',
 		'right-deleterevision',
 		'right-deletedhistory',
 		'right-deletedtext',
@@ -1411,6 +1415,7 @@ $wgMessageStructure = array(
 		'lockmanager-fail-releaselock',
 		'lockmanager-fail-db-bucket',
 		'lockmanager-fail-db-release',
+		'lockmanager-fail-svr-acquire',
 		'lockmanager-fail-svr-release'
 	),
 
@@ -3699,6 +3704,8 @@ $wgMessageStructure = array(
 		'api-error-empty-file',
 		'api-error-emptypage',
 		'api-error-fetchfileerror',
+		'api-error-fileexists-forbidden',
+		'api-error-fileexists-shared-forbidden',
 		'api-error-file-too-large',
 		'api-error-filename-tooshort',
 		'api-error-filetype-banned',

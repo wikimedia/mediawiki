@@ -246,7 +246,11 @@ class Language {
 	 */
 	public static function isValidCode( $code ) {
 		return
-			strcspn( $code, ":/\\\000" ) === strlen( $code )
+			// People think language codes are html safe, so enforce it.
+			// Ideally we should only allow a-zA-Z0-9-
+			// but, .+ and other chars are often used for {{int:}} hacks
+			// see bugs 37564, 37587, 36938
+			strcspn( $code, ":/\\\000&<>'\"" ) === strlen( $code )
 			&& !preg_match( Title::getTitleInvalidRegex(), $code );
 	}
 
@@ -1278,7 +1282,7 @@ class Language {
 					$s .= $num;
 					$raw = false;
 				} elseif ( $roman ) {
-					$s .= self::romanNumeral( $num );
+					$s .= Language::romanNumeral( $num );
 					$roman = false;
 				} elseif ( $hebrewNum ) {
 					$s .= self::hebrewNumeral( $num );
@@ -1667,7 +1671,7 @@ class Language {
 	}
 
 	/**
-	 * Roman number formatting up to 3000
+	 * Roman number formatting up to 10000
 	 *
 	 * @param $num int
 	 *
@@ -1678,11 +1682,11 @@ class Language {
 			array( '', 'I', 'II', 'III', 'IV', 'V', 'VI', 'VII', 'VIII', 'IX', 'X' ),
 			array( '', 'X', 'XX', 'XXX', 'XL', 'L', 'LX', 'LXX', 'LXXX', 'XC', 'C' ),
 			array( '', 'C', 'CC', 'CCC', 'CD', 'D', 'DC', 'DCC', 'DCCC', 'CM', 'M' ),
-			array( '', 'M', 'MM', 'MMM' )
+			array( '', 'M', 'MM', 'MMM', 'MMMM', 'MMMMM', 'MMMMMM', 'MMMMMMM', 'MMMMMMMM', 'MMMMMMMMM', 'MMMMMMMMMM' )
 		);
 
 		$num = intval( $num );
-		if ( $num > 3000 || $num <= 0 ) {
+		if ( $num > 10000 || $num <= 0 ) {
 			return $num;
 		}
 
@@ -3917,7 +3921,7 @@ class Language {
 	/**
 	 * Decode an expiry (block, protection, etc) which has come from the DB
 	 *
-	 * @FIXME: why are we returnings DBMS-dependent strings???
+	 * @todo FIXME: why are we returnings DBMS-dependent strings???
 	 *
 	 * @param $expiry String: Database expiry String
 	 * @param $format Bool|Int true to process using language functions, or TS_ constant

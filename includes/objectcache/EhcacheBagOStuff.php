@@ -33,6 +33,9 @@ class EhcacheBagOStuff extends BagOStuff {
 	
 	var $curls = array();
 
+	/**
+	 * @param $params array
+	 */
 	function __construct( $params ) {
 		if ( !defined( 'CURLOPT_TIMEOUT_MS' ) ) {
 			throw new MWException( __CLASS__.' requires curl version 7.16.2 or later.' );
@@ -59,6 +62,10 @@ class EhcacheBagOStuff extends BagOStuff {
 		);
 	}
 
+	/**
+	 * @param $key string
+	 * @return bool|mixed
+	 */
 	public function get( $key ) {
 		wfProfileIn( __METHOD__ );
 		$response = $this->doItemRequest( $key );
@@ -93,6 +100,12 @@ class EhcacheBagOStuff extends BagOStuff {
 		return $data;
 	}
 
+	/**
+	 * @param $key string
+	 * @param $value mixed
+	 * @param $expiry int
+	 * @return bool
+	 */
 	public function set( $key, $value, $expiry = 0 ) {
 		wfProfileIn( __METHOD__ );
 		$expiry = $this->convertExpiry( $expiry );
@@ -130,6 +143,11 @@ class EhcacheBagOStuff extends BagOStuff {
 		return $result;
 	}
 
+	/**
+	 * @param $key string
+	 * @param $time int
+	 * @return bool
+	 */
 	public function delete( $key, $time = 0 ) {
 		wfProfileIn( __METHOD__ );
 		$response = $this->doItemRequest( $key,
@@ -145,6 +163,10 @@ class EhcacheBagOStuff extends BagOStuff {
 		return $result;
 	}
 
+	/**
+	 * @param $key string
+	 * @return string
+	 */
 	protected function getCacheUrl( $key ) {
 		if ( count( $this->servers ) == 1 ) {
 			$server = reset( $this->servers );
@@ -172,6 +194,13 @@ class EhcacheBagOStuff extends BagOStuff {
 		return $this->curls[$cacheUrl];
 	}
 
+	/**
+	 * @param $key string
+	 * @param $data
+	 * @param $type
+	 * @param $ttl
+	 * @return int
+	 */
 	protected function attemptPut( $key, $data, $type, $ttl ) {
 		// In initial benchmarking, it was 30 times faster to use CURLOPT_POST 
 		// than CURLOPT_UPLOAD with CURLOPT_READFUNCTION. This was because
@@ -196,6 +225,10 @@ class EhcacheBagOStuff extends BagOStuff {
 		}
 	}
 
+	/**
+	 * @param $key string
+	 * @return bool
+	 */
 	protected function createCache( $key ) {
 		wfDebug( __METHOD__.": creating cache for $key\n" );
 		$response = $this->doCacheRequest( $key, 
@@ -208,21 +241,26 @@ class EhcacheBagOStuff extends BagOStuff {
 			wfDebug( __CLASS__.": failed to create cache for $key\n" );
 			return false;
 		}
-		if ( $response['http_code'] == 201 /* created */ 
-			|| $response['http_code'] == 409 /* already there */ ) 
-		{
-			return true;
-		} else {
-			return false;
-		}			
+		return ( $response['http_code'] == 201 /* created */
+			|| $response['http_code'] == 409 /* already there */ );
 	}
 
+	/**
+	 * @param $key string
+	 * @param $curlOptions array
+	 * @return array|bool|mixed
+	 */
 	protected function doCacheRequest( $key, $curlOptions = array() ) {
 		$cacheUrl = $this->getCacheUrl( $key );
 		$curl = $this->getCurl( $cacheUrl );
 		return $this->doRequest( $curl, $cacheUrl, $curlOptions );
 	}
 
+	/**
+	 * @param $key string
+	 * @param $curlOptions array
+	 * @return array|bool|mixed
+	 */
 	protected function doItemRequest( $key, $curlOptions = array() ) {
 		$cacheUrl = $this->getCacheUrl( $key );
 		$curl = $this->getCurl( $cacheUrl );
@@ -230,6 +268,13 @@ class EhcacheBagOStuff extends BagOStuff {
 		return $this->doRequest( $curl, $url, $curlOptions );
 	}
 
+	/**
+	 * @param $curl
+	 * @param $url string
+	 * @param $curlOptions array
+	 * @return array|bool|mixed
+	 * @throws MWException
+	 */
 	protected function doRequest( $curl, $url, $curlOptions = array() ) {
 		if ( array_diff_key( $curlOptions, $this->curlOptions ) ) {
 			// var_dump( array_diff_key( $curlOptions, $this->curlOptions ) );

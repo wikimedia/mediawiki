@@ -4,7 +4,7 @@
  *
  * Created on Sep 7, 2006
  *
- * Copyright © 2006 Yuri Astrakhan <Firstname><Lastname>@gmail.com
+ * Copyright © 2006 Yuri Astrakhan "<Firstname><Lastname>@gmail.com"
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -571,6 +571,11 @@ abstract class ApiQueryGeneratorBase extends ApiQueryBase {
 
 	private $mIsGenerator;
 
+	/**
+	 * @param $query ApiBase
+	 * @param $moduleName string
+	 * @param $paramPrefix string
+	 */
 	public function __construct( $query, $moduleName, $paramPrefix = '' ) {
 		parent::__construct( $query, $moduleName, $paramPrefix );
 		$this->mIsGenerator = false;

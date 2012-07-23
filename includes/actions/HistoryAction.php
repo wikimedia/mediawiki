@@ -418,32 +418,9 @@ class HistoryPager extends ReverseChronologicalPager {
 				$batch->add( NS_USER_TALK, $row->rev_user_text );
 			}
 		}
-		$this->parentLens = $this->getParentLengths( $revIds );
+		$this->parentLens = Revision::getParentLengths( $this->mDb, $revIds );
 		$batch->execute();
 		$this->mResult->seek( 0 );
-	}
-
-	/**
-	 * Do a batched query to get the parent revision lengths
-	 * @param $revIds array
-	 * @return array
-	 * @TODO: stolen from Contributions, refactor
-	 */
-	private function getParentLengths( array $revIds ) {
-		$revLens = array();
-		if ( !$revIds ) {
-			return $revLens; // empty
-		}
-		wfProfileIn( __METHOD__ );
-		$res = $this->mDb->select( 'revision',
-			array( 'rev_id', 'rev_len' ),
-			array( 'rev_id' => $revIds ),
-			__METHOD__ );
-		foreach ( $res as $row ) {
-			$revLens[$row->rev_id] = $row->rev_len;
-		}
-		wfProfileOut( __METHOD__ );
-		return $revLens;
 	}
 
 	/**
@@ -635,18 +612,17 @@ class HistoryPager extends ReverseChronologicalPager {
 
 		if ( $notificationtimestamp && ( $row->rev_timestamp >= $notificationtimestamp ) ) {
 			$s2 .= ' <span class="updatedmarker">' .  $this->msg( 'updatedmarker' )->escaped() . '</span>';
+			$classes[] = 'mw-history-line-updated';
 		}
 
 		$tools = array();
 
 		# Rollback and undo links
-		if ( $prevRev &&
-			!count( $this->getTitle()->getUserPermissionsErrors( 'edit', $this->getUser() ) ) )
-		{
-			if ( $latest && !count( $this->getTitle()->getUserPermissionsErrors( 'rollback', $this->getUser() ) ) ) {
+		if ( $prevRev && $this->getTitle()->quickUserCan( 'edit', $user ) ) {
+			if ( $latest && $this->getTitle()->quickUserCan( 'rollback', $user ) ) {
 				$this->preventClickjacking();
 				$tools[] = '<span class="mw-rollback-link">' .
-					Linker::buildRollbackLink( $rev ) . '</span>';
+					Linker::buildRollbackLink( $rev, $this->getContext() ) . '</span>';
 			}
 
 			if ( !$rev->isDeleted( Revision::DELETED_TEXT )

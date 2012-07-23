@@ -4,7 +4,7 @@
  *
  * Created on Oct 16, 2006
  *
- * Copyright © 2006 Yuri Astrakhan <Firstname><Lastname>@gmail.com
+ * Copyright © 2006 Yuri Astrakhan "<Firstname><Lastname>@gmail.com"
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -256,7 +256,7 @@ class ApiQueryContributions extends ApiQueryBase {
 		$this->addFieldsIf( 'page_latest', $this->fld_flags );
 		// $this->addFieldsIf( 'rev_text_id', $this->fld_ids ); // Should this field be exposed?
 		$this->addFieldsIf( 'rev_comment', $this->fld_comment || $this->fld_parsedcomment );
-		$this->addFieldsIf( 'rev_len', $this->fld_size );
+		$this->addFieldsIf( 'rev_len', $this->fld_size || $this->fld_sizediff );
 		$this->addFieldsIf( 'rev_minor_edit', $this->fld_flags );
 		$this->addFieldsIf( 'rev_parent_id', $this->fld_flags || $this->fld_sizediff );
 		$this->addFieldsIf( 'rc_patrolled', $this->fld_patrolled );
@@ -510,6 +510,12 @@ class ApiQueryContributions extends ApiQueryBase {
 			),
 			'size' => array(
 				'size' => array(
+					ApiBase::PROP_TYPE => 'integer',
+					ApiBase::PROP_NULLABLE => true
+				)
+			),
+			'sizediff' => array(
+				'sizediff' => array(
 					ApiBase::PROP_TYPE => 'integer',
 					ApiBase::PROP_NULLABLE => true
 				)

@@ -1,30 +1,34 @@
-/*
+/**
  * Collapsible tabs jQuery Plugin
  */
-( function( $ ) {
-	$.fn.collapsibleTabs = function( options ) {
+( function ( $ ) {
+	$.fn.collapsibleTabs = function ( options ) {
 		// return if the function is called on an empty jquery object
-		if( !this.length ) return this;
-		//merge options into the defaults
+		if ( !this.length ) {
+			return this;
+		}
+		// Merge options into the defaults
 		var $settings = $.extend( {}, $.collapsibleTabs.defaults, options );
 
-		this.each( function() {
-			var $this = $( this );
+		this.each( function () {
+			var $el = $( this );
 			// add the element to our array of collapsible managers
-			$.collapsibleTabs.instances = ( $.collapsibleTabs.instances.length == 0 ?
-				$this : $.collapsibleTabs.instances.add( $this ) );
+			$.collapsibleTabs.instances = ( $.collapsibleTabs.instances.length === 0 ?
+				$el : $.collapsibleTabs.instances.add( $el ) );
 			// attach the settings to the elements
-			$this.data( 'collapsibleTabsSettings', $settings );
+			$el.data( 'collapsibleTabsSettings', $settings );
 			// attach data to our collapsible elements
-			$this.children( $settings.collapsible ).each( function() {
+			$el.children( $settings.collapsible ).each( function () {
 				$.collapsibleTabs.addData( $( this ) );
 			} );
 		} );
 
 		// if we haven't already bound our resize hanlder, bind it now
-		if( !$.collapsibleTabs.boundEvent ) {
+		if ( !$.collapsibleTabs.boundEvent ) {
 			$( window )
-				.delayedBind( '500', 'resize', function( ) { $.collapsibleTabs.handleResize(); } );
+				.delayedBind( '500', 'resize', function ( ) {
+					$.collapsibleTabs.handleResize();
+				} );
 		}
 		// call our resize handler to setup the page
 		$.collapsibleTabs.handleResize();
@@ -38,63 +42,67 @@
 			collapsedContainer: '#p-cactions ul',
 			collapsible: 'li.collapsible',
 			shifting: false,
-			expandCondition: function( eleWidth ) {
+			expandCondition: function ( eleWidth ) {
 				return ( $( '#left-navigation' ).position().left + $( '#left-navigation' ).width() )
 					< ( $( '#right-navigation' ).position().left - eleWidth );
 			},
-			collapseCondition: function() {
+			collapseCondition: function () {
 				return ( $( '#left-navigation' ).position().left + $( '#left-navigation' ).width() )
 					> $( '#right-navigation' ).position().left;
 			}
 		},
-		addData: function( $collapsible ) {
+		addData: function ( $collapsible ) {
 			var $settings = $collapsible.parent().data( 'collapsibleTabsSettings' );
-			if ( $settings != null ) {
+			if ( $settings !== null ) {
 				$collapsible.data( 'collapsibleTabsSettings', {
-					'expandedContainer': $settings.expandedContainer,
-					'collapsedContainer': $settings.collapsedContainer,
-					'expandedWidth': $collapsible.width(),
-					'prevElement': $collapsible.prev()
+					expandedContainer: $settings.expandedContainer,
+					collapsedContainer: $settings.collapsedContainer,
+					expandedWidth: $collapsible.width(),
+					prevElement: $collapsible.prev()
 				} );
 			}
 		},
-		getSettings: function( $collapsible ) {
+		getSettings: function ( $collapsible ) {
 			var $settings = $collapsible.data( 'collapsibleTabsSettings' );
-			if ( typeof $settings == 'undefined' ) {
+			if ( $settings === undefined ) {
 				$.collapsibleTabs.addData( $collapsible );
 				$settings = $collapsible.data( 'collapsibleTabsSettings' );
 			}
 			return $settings;
 		},
-		handleResize: function( e ){
-			$.collapsibleTabs.instances.each( function() {
-				var $this = $( this ), data = $.collapsibleTabs.getSettings( $this );
-				if( data.shifting ) return;
+		handleResize: function ( e ) {
+			$.collapsibleTabs.instances.each( function () {
+				var $el = $( this ),
+					data = $.collapsibleTabs.getSettings( $el );
+
+				if ( data.shifting ) {
+					return;
+				}
 
 				// if the two navigations are colliding
-				if( $this.children( data.collapsible ).length > 0 && data.collapseCondition() ) {
+				if ( $el.children( data.collapsible ).length > 0 && data.collapseCondition() ) {
 
-					$this.trigger( "beforeTabCollapse" );
+					$el.trigger( 'beforeTabCollapse' );
 					// move the element to the dropdown menu
-					$.collapsibleTabs.moveToCollapsed( $this.children( data.collapsible + ':last' ) );
+					$.collapsibleTabs.moveToCollapsed( $el.children( data.collapsible + ':last' ) );
 				}
 
 				// if there are still moveable items in the dropdown menu,
 				// and there is sufficient space to place them in the tab container
-				if( $( data.collapsedContainer + ' ' + data.collapsible ).length > 0
+				if ( $( data.collapsedContainer + ' ' + data.collapsible ).length > 0
 						&& data.expandCondition( $.collapsibleTabs.getSettings( $( data.collapsedContainer ).children(
-								data.collapsible+":first" ) ).expandedWidth ) ) {
+								data.collapsible + ':first' ) ).expandedWidth ) ) {
 					//move the element from the dropdown to the tab
-					$this.trigger( "beforeTabExpand" );
+					$el.trigger( 'beforeTabExpand' );
 					$.collapsibleTabs
-						.moveToExpanded( data.collapsedContainer + " " + data.collapsible + ':first' );
+						.moveToExpanded( data.collapsedContainer + ' ' + data.collapsible + ':first' );
 				}
 			});
 		},
-		moveToCollapsed: function( ele ) {
-			var $moving = $( ele );
-			var data = $.collapsibleTabs.getSettings( $moving );
-			var dataExp = $.collapsibleTabs.getSettings( data.expandedContainer );
+		moveToCollapsed: function ( ele ) {
+			var $moving = $( ele ),
+				data = $.collapsibleTabs.getSettings( $moving ),
+				dataExp = $.collapsibleTabs.getSettings( data.expandedContainer );
 			dataExp.shifting = true;
 			$moving
 				.detach()
@@ -103,10 +111,10 @@
 			dataExp.shifting = false;
 			$.collapsibleTabs.handleResize();
 		},
-		moveToExpanded: function( ele ) {
-			var $moving = $( ele );
-			var data = $.collapsibleTabs.getSettings( $moving );
-			var dataExp = $.collapsibleTabs.getSettings( data.expandedContainer );
+		moveToExpanded: function ( ele ) {
+			var $moving = $( ele ),
+				data = $.collapsibleTabs.getSettings( $moving ),
+				dataExp = $.collapsibleTabs.getSettings( data.expandedContainer );
 			dataExp.shifting = true;
 			// remove this element from where it's at and put it in the dropdown menu
 			$moving.detach().insertAfter( data.prevElement ).data( 'collapsibleTabsSettings', data );
@@ -114,4 +122,5 @@
 			$.collapsibleTabs.handleResize();
 		}
 	};
-} )( jQuery );
+
+}( jQuery ) );

@@ -505,6 +505,8 @@ Rhoddwyd y rheswm hwn - ''$2''.",
 Y rheswm a roddwyd gan y gweinyddwr a roddodd y ffeil dan glo yw "\'\'$3\'\'".',
 'invalidtitle-knownnamespace' => 'Teitl annilys o\'r enw "$3" yn y parth "$2"',
 'invalidtitle-unknownnamespace' => 'Teitl annilys ag iddi\'r rhif parth anhysbys $1 a\'r enw "$2"',
+'exception-nologin' => 'Nid ydych wedi mewngofnodi',
+'exception-nologin-text' => "Rhaid mewngofnodi i'r wici er mwyn gweld y dudalen neu gyflawni'r weithred.",
 
 # Virus scanner
 'virus-badscanner' => "Cyfluniad gwael: sganiwr firysau anhysbys: ''$1''",
@@ -876,6 +878,8 @@ Cafodd yr argiau hyn eu hepgor.",
 'node-count-exceeded-warning' => 'Mae nifer y nodau yn y dudalen yn ormod',
 'expansion-depth-exceeded-category' => "Tudalennau â dyfnder ehangu tu hwnt i'r terfyn",
 'expansion-depth-exceeded-warning' => "Mae dyfnder ehangu'r dudalen y tu hwnt i'r terfyn",
+'parser-unstrip-loop-warning' => 'Wedi darganfod dolen dad-blicio (unstrip loop)',
+'parser-unstrip-recursion-limit' => 'Wedi mynd dros ben y terfyn ar ddychweliad dad-blicio (unstrip recursion) ($1)',
 
 # "Undo" feature
 'undo-success' => "Gellir dadwneud y golygiad. Byddwch gystal â gwirio'r gymhariaeth isod i sicrhau mai dyma sydd arnoch eisiau gwneud, ac yna rhowch y newidiadau ar gadw i gwblhau'r gwaith o ddadwneud y golygiad.",
@@ -2814,9 +2818,9 @@ Gellir ychwanegu rheswm dros y dadwneud yn y crynodeb.',
 Achos hyn yn fwy na thebyg yw presenoldeb cysylltiad i wefan ar y rhestr waharddedig.',
 'spamprotectionmatch' => "Dyma'r testun gyneuodd ein hidlydd amddiffyn rhag sbam: $1",
 'spambot_username' => 'Teclyn clirio sbam MediaWiki',
-'spam_reverting' => "Yn troi nôl i'r diwygiad diweddaraf sydd ddim yn cynnwys cysylltiadau i $1",
-'spam_blanking' => 'Roedd cysylltiadau i $1 gan bob golygiad, yn blancio',
-'spam_deleting' => "Roedd pob diwygiad yn cynnwys cysylltiadau â $1, wrthi'n dileu",
+'spam_reverting' => 'Wedi adfer y diwygiad diweddaraf na sydd yn cynnwys cysylltiadau i $1',
+'spam_blanking' => 'Roedd cysylltiadau i $1 gan bob golygiad, felly gwacawyd y dudalen',
+'spam_deleting' => 'Roedd pob diwygiad yn cynnwys cysylltiadau â $1, felly fe ddilëwyd y dudalen',
 
 # Info page
 'pageinfo-title' => 'Manylion "$1"',

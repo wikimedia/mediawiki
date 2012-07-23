@@ -4,7 +4,7 @@
  *
  * Created on Sep 25, 2006
  *
- * Copyright © 2006 Yuri Astrakhan <Firstname><Lastname>@gmail.com
+ * Copyright © 2006 Yuri Astrakhan "<Firstname><Lastname>@gmail.com"
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -93,6 +93,9 @@ class ApiQuerySiteinfo extends ApiQueryBase {
 				case 'showhooks':
 					$fit = $this->appendSubscribedHooks( $p );
 					break;
+				case 'variables':
+					$fit = $this->appendVariables( $p );
+					break;
 				default:
 					ApiBase::dieDebug( __METHOD__, "Unknown prop=$p" );
 			}
@@ -121,9 +124,14 @@ class ApiQuerySiteinfo extends ApiQueryBase {
 		$data['dbtype'] = $GLOBALS['wgDBtype'];
 		$data['dbversion'] = $this->getDB()->getServerVersion();
 
-		$svn = SpecialVersion::getSvnRevision( $GLOBALS['IP'] );
-		if ( $svn ) {
-			$data['rev'] = $svn;
+		$git = SpecialVersion::getGitHeadSha1( $GLOBALS['IP'] );
+		if ( $git ) {
+			$data['git-hash'] = $git;
+		} else {
+			$svn = SpecialVersion::getSvnRevision( $GLOBALS['IP'] );
+			if ( $svn ) {
+				$data['rev'] = $svn;
+			}
 		}
 
 		// 'case-insensitive' option is reserved for future
@@ -249,10 +257,13 @@ class ApiQuerySiteinfo extends ApiQueryBase {
 	protected function appendSpecialPageAliases( $property ) {
 		global $wgContLang;
 		$data = array();
-		foreach ( $wgContLang->getSpecialPageAliases() as $specialpage => $aliases ) {
-			$arr = array( 'realname' => $specialpage, 'aliases' => $aliases );
-			$this->getResult()->setIndexedTagName( $arr['aliases'], 'alias' );
-			$data[] = $arr;
+		$aliases = $wgContLang->getSpecialPageAliases();
+		foreach ( SpecialPageFactory::getList() as $specialpage => $stuff ) {
+			if ( isset( $aliases[$specialpage] ) ) {
+				$arr = array( 'realname' => $specialpage, 'aliases' => $aliases[$specialpage] );
+				$this->getResult()->setIndexedTagName( $arr['aliases'], 'alias' );
+				$data[] = $arr;
+			}
 		}
 		$this->getResult()->setIndexedTagName( $data, 'specialpage' );
 		return $this->getResult()->addValue( 'query', $property, $data );
@@ -527,6 +538,12 @@ class ApiQuerySiteinfo extends ApiQueryBase {
 		return $this->getResult()->addValue( 'query', $property, $hooks );
 	}
 
+	public function appendVariables( $property ) {
+		$variables = MagicWord::getVariableIDs();
+		$this->getResult()->setIndexedTagName( $variables, 'v' );
+		return $this->getResult()->addValue( 'query', $property, $variables );
+	}
+
 	private function formatParserTags( $item ) {
 		return "<{$item}>";
 	}
@@ -578,6 +595,7 @@ class ApiQuerySiteinfo extends ApiQueryBase {
 					'extensiontags',
 					'functionhooks',
 					'showhooks',
+					'variables',
 				)
 			),
 			'filteriw' => array(
@@ -613,7 +631,8 @@ class ApiQuerySiteinfo extends ApiQueryBase {
 				' skins                 - Returns a list of all enabled skins',
 				' extensiontags         - Returns a list of parser extension tags',
 				' functionhooks         - Returns a list of parser function hooks',
-				' showhooks             - Returns a list of all subscribed hooks (contents of $wgHooks)'
+				' showhooks             - Returns a list of all subscribed hooks (contents of $wgHooks)',
+				' variables             - Returns a list of variable IDs',
 			),
 			'filteriw' =>  'Return only local or only nonlocal entries of the interwiki map',
 			'showalldb' => 'List all database servers, not just the one lagging the most',

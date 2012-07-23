@@ -22,7 +22,7 @@
  */
 
 /**
- * @defgroup Upload
+ * @defgroup Upload Upload related
  */
 
 /**
@@ -614,6 +614,9 @@ abstract class UploadBase {
 	 * Really perform the upload. Stores the file in the local repo, watches
 	 * if necessary and runs the UploadComplete hook.
 	 *
+	 * @param $comment
+	 * @param $pageText
+	 * @param $watch
 	 * @param $user User
 	 *
 	 * @return Status indicating the whether the upload succeeded.

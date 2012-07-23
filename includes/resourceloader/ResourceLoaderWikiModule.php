@@ -42,7 +42,6 @@ abstract class ResourceLoaderWikiModule extends ResourceLoaderModule {
 	/* Abstract Protected Methods */
 
 	/**
-	 * @abstract
 	 * @param $context ResourceLoaderContext
 	 */
 	abstract protected function getPages( ResourceLoaderContext $context );

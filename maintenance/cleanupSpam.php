@@ -1,6 +1,6 @@
 <?php
 /**
- * Cleanup all spam from a given hostname
+ * Cleanup all spam from a given hostname.
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -23,6 +23,11 @@
 
 require_once( dirname( __FILE__ ) . '/Maintenance.php' );
 
+/**
+ * Maintenance script to cleanup all spam from a given hostname.
+ *
+ * @ingroup Maintenance
+ */
 class CleanupSpam extends Maintenance {
 
 	public function __construct() {

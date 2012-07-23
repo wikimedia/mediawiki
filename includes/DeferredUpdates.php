@@ -88,10 +88,19 @@ class DeferredUpdates {
 		}
 
 		foreach ( $updates as $update ) {
-			$update->doUpdate();
+			try {
+				$update->doUpdate();
 
-			if ( $doCommit && $dbw->trxLevel() ) {
-				$dbw->commit( __METHOD__ );
+				if ( $doCommit && $dbw->trxLevel() ) {
+					$dbw->commit( __METHOD__ );
+				}
+			} catch ( MWException $e ) {
+				// We don't want exceptions thrown during deferred updates to
+				// be reported to the user since the output is already sent.
+				// Instead we just log them.
+				if ( !$e instanceof ErrorPageError ) {
+					wfDebugLog( 'exception', $e->getLogMessage() );
+				}
 			}
 		}
 

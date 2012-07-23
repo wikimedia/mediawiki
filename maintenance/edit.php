@@ -1,6 +1,6 @@
 <?php
 /**
- * Make an edit
+ * Make a page edit.
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -22,6 +22,11 @@
 
 require_once( dirname( __FILE__ ) . '/Maintenance.php' );
 
+/**
+ * Maintenance script to make a page edit.
+ *
+ * @ingroup Maintenance
+ */
 class EditCLI extends Maintenance {
 	public function __construct() {
 		parent::__construct();

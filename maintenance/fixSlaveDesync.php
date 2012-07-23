@@ -1,5 +1,7 @@
 <?php
 /**
+ * Fix erroneous page_latest values due to slave desynchronisation.
+ *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2 of the License, or
@@ -20,6 +22,12 @@
 
 require_once( dirname( __FILE__ ) . '/Maintenance.php' );
 
+/**
+ * Maintenance script that fixes erroneous page_latest values
+ * due to slave desynchronisation.
+ *
+ * @ingroup Maintenance
+ */
 class FixSlaveDesync extends Maintenance {
 	public function __construct() {
 		parent::__construct();

@@ -85,6 +85,17 @@ class ApiQueryAllImages extends ApiQueryGeneratorBase {
 
 		$params = $this->extractRequestParams();
 
+		if ( !is_null( $params['continue'] ) ) {
+			$cont = explode( '|', $params['continue'] );
+			if ( count( $cont ) != 1 ) {
+				$this->dieUsage( "Invalid continue param. You should pass the " .
+					"original value returned by the previous query", "_badcontinue" );
+			}
+			$op = $params['dir'] == 'descending' ? '<' : '>';
+			$cont_from = $db->addQuotes( $cont[0] );
+			$this->addWhere( "img_name $op= $cont_from" );
+		}
+
 		// Image filters
 		$dir = ( $params['dir'] == 'descending' ? 'older' : 'newer' );
 		$from = ( is_null( $params['from'] ) ? null : $this->titlePartToKey( $params['from'] ) );
@@ -148,8 +159,7 @@ class ApiQueryAllImages extends ApiQueryGeneratorBase {
 		foreach ( $res as $row ) {
 			if ( ++ $count > $limit ) {
 				// We've reached the one extra which shows that there are additional pages to be had. Stop here...
-				// TODO: Security issue - if the user has no right to view next title, it will still be shown
-				$this->setContinueEnumParameter( 'from', $this->keyToTitle( $row->img_name ) );
+				$this->setContinueEnumParameter( 'continue', $row->img_name );
 				break;
 			}
 
@@ -161,11 +171,11 @@ class ApiQueryAllImages extends ApiQueryGeneratorBase {
 
 				$fit = $result->addValue( array( 'query', $this->getModuleName() ), null, $info );
 				if ( !$fit ) {
-					$this->setContinueEnumParameter( 'from', $this->keyToTitle( $row->img_name ) );
+					$this->setContinueEnumParameter( 'continue', $row->img_name );
 					break;
 				}
 			} else {
-				$titles[] = Title::makeTitle( NS_IMAGE, $row->img_name );
+				$titles[] = Title::makeTitle( NS_FILE, $row->img_name );
 			}
 		}
 
@@ -179,6 +189,7 @@ class ApiQueryAllImages extends ApiQueryGeneratorBase {
 	public function getAllowedParams() {
 		return array (
 			'from' => null,
+			'continue' => null,
 			'to' => null,
 			'prefix' => null,
 			'minsize' => array(
@@ -215,6 +226,7 @@ class ApiQueryAllImages extends ApiQueryGeneratorBase {
 	public function getParamDescription() {
 		return array(
 			'from' => 'The image title to start enumerating from',
+			'continue' => 'When more results are available, use this to continue',
 			'to' => 'The image title to stop enumerating at',
 			'prefix' => 'Search for all image titles that begin with this value',
 			'dir' => 'The direction in which to list',
@@ -228,7 +240,7 @@ class ApiQueryAllImages extends ApiQueryGeneratorBase {
 		);
 	}
 
-	private $propertyFilter = array( 'archivename' );
+	private $propertyFilter = array( 'archivename', 'thumbmime' );
 
 	public function getResultProperties() {
 		return array_merge(
@@ -254,6 +266,7 @@ class ApiQueryAllImages extends ApiQueryGeneratorBase {
 			array( 'code' => 'mimesearchdisabled', 'info' => 'MIME search disabled in Miser Mode' ),
 			array( 'code' => 'invalidsha1hash', 'info' => 'The SHA1 hash provided is not valid' ),
 			array( 'code' => 'invalidsha1base36hash', 'info' => 'The SHA1Base36 hash provided is not valid' ),
+			array( 'code' => '_badcontinue', 'info' => 'Invalid continue param. You should pass the original value returned by the previous query' ),
 		) );
 	}
 

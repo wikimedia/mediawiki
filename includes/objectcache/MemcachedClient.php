@@ -573,10 +573,10 @@ class MWMemcached {
 	 * output as an array (null array if no output)
 	 *
 	 * NOTE: due to a possible bug in how PHP reads while using fgets(), each
-	 *       line may not be terminated by a \r\n.  More specifically, my testing
+	 *       line may not be terminated by a "\r\n".  More specifically, my testing
 	 *       has shown that, on FreeBSD at least, each line is terminated only
-	 *       with a \n.  This is with the PHP flag auto_detect_line_endings set
-	 *       to falase (the default).
+	 *       with a "\n".  This is with the PHP flag auto_detect_line_endings set
+	 *       to false (the default).
 	 *
 	 * @param $sock Resource: socket to send command on
 	 * @param $cmd String: command to run
@@ -895,7 +895,10 @@ class MWMemcached {
 	function _load_items( $sock, &$ret ) {
 		while ( 1 ) {
 			$decl = fgets( $sock );
-			if ( $decl == "END\r\n" ) {
+			if( $decl === false ) {
+				$this->_debugprint( "Error reading socket for a memcached response\n" );
+				return 0;
+			} elseif ( $decl == "END\r\n" ) {
 				return true;
 			} elseif ( preg_match( '/^VALUE (\S+) (\d+) (\d+)\r\n$/', $decl, $match ) ) {
 				list( $rkey, $flags, $len ) = array( $match[1], $match[2], $match[3] );
@@ -939,7 +942,12 @@ class MWMemcached {
 				}
 
 			} else {
-				$this->_debugprint( "Error parsing memcached response\n" );
+				$peer = $peerAddress = $peerPort = '';
+				$gotPeer = socket_getpeername( $sock, $peerAddress, $peerPort );
+				if( $gotPeer ) {
+					$peer = " from [$peerAddress:$peerPort";
+				}
+				$this->_debugprint( "Error parsing memcached response{$peer}\n" );
 				return 0;
 			}
 		}

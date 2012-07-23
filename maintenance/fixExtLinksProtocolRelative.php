@@ -19,11 +19,18 @@
  * 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
  * http://www.gnu.org/copyleft/gpl.html
  *
+ * @file
  * @ingroup Maintenance
  */
 
 require_once( dirname( __FILE__ ) . '/Maintenance.php' );
 
+/**
+ * Maintenance script that fixes any entriy for protocol-relative URLs
+ * in the externallinks table.
+ *
+ * @ingroup Maintenance
+ */
 class FixExtLinksProtocolRelative extends LoggedUpdateMaintenance {
 	public function __construct() {
 		parent::__construct();

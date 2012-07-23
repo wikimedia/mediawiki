@@ -1,5 +1,5 @@
 <?php
-/** Lezghian (Лезги)
+/** Lezghian (лезги)
  *
  * See MessagesQqq.php for message documentation incl. usage of parameters
  * To improve a translation please visit http://translatewiki.net
@@ -30,7 +30,7 @@ $messages = array(
 'tog-hidepatrolled' => 'Мукьвара хьайи дегишвилера авай къаравулвал авунвай дуьзар хъувунар чуьнуьхун',
 'tog-newpageshidepatrolled' => 'ЦIийи ччинрин сиягьда къаравулвал авунвай ччинар чуьнуьхун',
 'tog-extendwatchlist' => 'ЧӀехи сиягь килигунин, кутазвай вири дегишунар, амма са эхирбур туш',
-'tog-usenewrc' => 'ЦIийи дегишвилерин сиягь кардик кутун (JavaScript герекзава)',
+'tog-usenewrc' => 'Мукьвара хьайи масакIавилерин ччина ва вилив хуьнин сиягьда  дуьзар хъувунар кIеретIриз ччара авун. (JavaScript герекзава)',
 'tog-numberheadings' => 'Кьилин цӀарариз автоматдаказ номерар эцигун',
 'tog-showtoolbar' => 'Дуьзар хъувунин алатрин кьвати къалура (JavaScript)',
 'tog-editondblclick' => 'Ччинар кьве тIампIуналди дуьзар хъувун (JavaScript герекзава)',
@@ -448,7 +448,7 @@ $messages = array(
 Квевай и ччинин туьхкlуьрунин гереквилиз килигиз тIалабзава.
 Агъадихъ и ччинин алудун ва тIвар эхцигунин журнал къалурнава.",
 'moveddeleted-notice' => 'И ччин алуднава. 
-Агъадихъ малумат патал и ччинин алудун ва тIвар эхцигунин журнал къалурнава.',
+Агъадихъ малумат патал и ччинин алудунин ва тIвар эхцигунин журнал къалурнава.',
 'log-fulllog' => 'Вири журналдиз килигун',
 'edit-conflict' => 'Дуьзар хъувунрин акьунар',
 
@@ -1025,7 +1025,7 @@ $messages = array(
 
 # Contributions
 'contributions' => 'Уртахди кутур крар',
-'contributions-title' => '$1 уртахдин кутур крар',
+'contributions-title' => '$1 уртахди кутур крар',
 'mycontris' => 'За кутур кар',
 'contribsub2' => '($1)-ин кутур пай  ($2)',
 'uctop' => '(вини кьил)',

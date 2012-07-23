@@ -3627,8 +3627,8 @@ Gambar ditampaiakan dalam risulusi hibak, janis barakas lain dimula lawan prugra
 Situs ngini mangalami kangalihan teknik.',
 'dberr-again' => 'Cuba hadangi babarapa manit wan muat-pulang.',
 'dberr-info' => '(Kada kawa tasambung ka server databasis: $1)',
-'dberr-usegoogle' => 'Pian kawa cuba manggagai lung Google wayah samantara ni.',
-'dberr-outofdate' => 'Catat nang sidin indiks matan isi kami pina kawa kadaluarsa.',
+'dberr-usegoogle' => 'Pian kawa mancuba manggagai lung Google wayah pahadangan ngini.',
+'dberr-outofdate' => 'Catat nang sidin indéks matan isi kami pinanya hudah kadaluarsa.',
 'dberr-cachederror' => 'Ngini adalah sabuah rekap timbuluk tungkaran nang dipinta, wan pinanya kada pahanyarnya.',
 
 # HTML forms

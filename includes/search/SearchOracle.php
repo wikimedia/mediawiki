@@ -124,7 +124,7 @@ class SearchOracle extends SearchEngine {
 	/**
 	 * Return a LIMIT clause to limit results on the query.
 	 *
-	 * @param string
+	 * @param $sql string
 	 *
 	 * @return String
 	 */

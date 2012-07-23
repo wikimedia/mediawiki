@@ -245,6 +245,10 @@ $block: The block from which the autoblock is coming.
 'AbortDiffCache': Can be used to cancel the caching of a diff
 &$diffEngine: DifferenceEngine object
 
+'AbortEmailNotification': Can be used to cancel email notifications for an edit.
+$editor: The User who made the change.
+$title: The Title of the page that was edited.
+
 'AbortLogin': Return false to cancel account login.
 $user: the User object being authenticated against
 $password: the password being submitted, not yet checked for validity
@@ -437,6 +441,8 @@ $user: the user (object) deleting the article
 $reason: the reason (string) the article is being deleted
 $error: if the deletion was prohibited, the (raw HTML) error message to display
   (added in 1.13)
+$status: Status object, modify this to throw an error. Overridden by $error
+  (added in 1.20)
 
 'ArticleDeleteComplete': after an article is deleted
 $article: the WikiPage that was deleted
@@ -762,10 +768,18 @@ $modeName: the requested content model name
 &$pager: Pager object for contributions
 &$queryInfo: The query for the contribs Pager
 
+'ContribsPager::reallyDoQuery': Called before really executing the query for My Contributions
+&$data: an array of results of all contribs queries
+$pager: The ContribsPager object hooked into
+$offset: Index offset, inclusive
+$limit: Exact query limit
+$descending: Query direction, false for ascending, true for descending
+
 'ContributionsLineEnding': Called before a contributions HTML line is finished
 $page: SpecialPage object for contributions
-$ret: the HTML line
+&$ret: the HTML line
 $row: the DB row for this line
+&$classes: the classes to add to the surrounding <li>
 
 'ContributionsToolLinks': Change tool links above Special:Contributions
 $id: User identifier
@@ -1201,8 +1215,16 @@ $prefix: interwiki prefix we are looking for.
 &$iwData: output array describing the interwiki with keys iw_url, iw_local,
   iw_trans and optionally iw_api and iw_wikiid.
 
+'InternalParseBeforeSanitize': during Parser's internalParse method just before the
+parser removes unwanted/dangerous HTML tags and after nowiki/noinclude/includeonly/
+onlyinclude and other processings. Ideal for syntax-extensions after template/parser
+function execution which respect nowiki and HTML-comments.
+&$parser: Parser object
+&$text: string containing partially parsed text
+&$stripState: Parser's internal StripState object
+
 'InternalParseBeforeLinks': during Parser's internalParse method before links
-but after noinclude/includeonly/onlyinclude and other processing.
+but after nowiki/noinclude/includeonly/onlyinclude and other processings.
 &$parser: Parser object
 &$text: string containing partially parsed text
 &$stripState: Parser's internal StripState object
@@ -1542,6 +1564,12 @@ A parser extension which depends on user options should install
 this hook and append its values to the key.
 $hash: reference to a hash key string which can be modified
 
+'ParserAfterParse': Called from Parser::parse() just after the call to
+Parser::internalParse() returns
+$parser: parser object
+$text: text being parsed
+$stripState: stripState used (object)
+
 'ParserAfterStrip': Same as ParserBeforeStrip
 
 'ParserAfterTidy': Called after Parser::tidy() in Parser::parse()
@@ -1679,6 +1707,11 @@ $out: OutputPage object
 
 'RecentChange_save': called at the end of RecentChange::save()
 $recentChange: RecentChange object
+
+'RedirectSpecialArticleRedirectParams': lets you alter the set of
+parameter names such as "oldid" that are preserved when using
+redirecting special pages such as Special:MyPage and Special:MyTalk.
+&$redirectParams: An array of parameters preserved by redirecting special pages.
 
 'RequestContextCreateSkin': Called when RequestContext::getSkin creates a skin instance.
 Can be used by an extension override what skin is used in certain contexts.
@@ -1910,6 +1943,14 @@ Each key maps to an associative array with a 'msg' (message key) and a 'default'
 'SpecialPage_initList': called when setting up SpecialPage::$mList, use this
 hook to remove a core special page
 $list: list (array) of core special pages
+
+'SpecialPageAfterExecute': called after SpecialPage::execute
+$special: the SpecialPage object
+$subPage: the subpage string or null if no subpage was specified
+
+'SpecialPageBeforeExecute': called before SpecialPage::execute
+$special: the SpecialPage object
+$subPage: the subpage string or null if no subpage was specified
 
 'SpecialPasswordResetOnSubmit': when executing a form submission on Special:PasswordReset
 $users: array of User objects

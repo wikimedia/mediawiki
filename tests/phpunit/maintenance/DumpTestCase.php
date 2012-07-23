@@ -306,7 +306,7 @@ abstract class DumpTestCase extends MediaWikiLangTestCase {
 		$this->skipWhitespace();
 
 		$this->assertTextNode( "id", $id );
-		if( $parentid ) {
+		if ( $parentid !== false ) {
 			$this->assertTextNode( "parentid", $parentid );
 		}
 		$this->assertTextNode( "timestamp", false );

@@ -461,13 +461,15 @@ class XMPReader {
 	* generally means we've finished processing a nested structure.
 	* resets some internal variables to indicate that.
 	*
-	* Note this means we hit the </closing element> not the </rdf:Seq>.
+	* Note this means we hit the closing element not the "</rdf:Seq>".
 	*
-	* For example, when processing:
+	* @par For example, when processing:
+	* @code{,xml}
 	* <exif:ISOSpeedRatings> <rdf:Seq> <rdf:li>64</rdf:li>
 	*   </rdf:Seq> </exif:ISOSpeedRatings>
+	* @endcode
 	*
-	* This method is called when we hit the </exif:ISOSpeedRatings> tag.
+	* This method is called when we hit the "</exif:ISOSpeedRatings>" tag.
 	*
 	* @param $elm String namespace . space . tag name.
 	*/
@@ -523,15 +525,17 @@ class XMPReader {
 	* Hit a closing element in MODE_LI (either rdf:Seq, or rdf:Bag )
 	* Add information about what type of element this is.
 	*
-	* Note we still have to hit the outer </property>
+	* Note we still have to hit the outer "</property>"
 	*
-	* For example, when processing:
+	* @par For example, when processing:
+	* @code{,xml}
 	* <exif:ISOSpeedRatings> <rdf:Seq> <rdf:li>64</rdf:li>
 	*   </rdf:Seq> </exif:ISOSpeedRatings>
+	* @endcode
 	*
-	* This method is called when we hit the </rdf:Seq>.
+	* This method is called when we hit the "</rdf:Seq>".
 	* (For comparison, we call endElementModeSimple when we
-	* hit the </rdf:li>)
+	* hit the "</rdf:li>")
 	*
 	* @param $elm String namespace . ' ' . element name
 	*/
@@ -1010,7 +1014,7 @@ class XMPReader {
 	* Also does some initial set up for the wrapper element
 	*
 	* @param $parser XMLParser
-	* @param $elm String namespace <space> element
+	* @param $elm String namespace "<space>" element
 	* @param $attribs Array attribute name => value
 	*/
 	function startElement( $parser, $elm, $attribs ) {
@@ -1093,11 +1097,13 @@ class XMPReader {
 	* Process attributes.
 	* Simple values can be stored as either a tag or attribute
 	*
-	* Often the initial <rdf:Description> tag just has all the simple
+	* Often the initial "<rdf:Description>" tag just has all the simple
 	* properties as attributes.
 	*
-	* Example:
+	* @par Example:
+	* @code
 	* <rdf:Description rdf:about="" xmlns:exif="http://ns.adobe.com/exif/1.0/" exif:DigitalZoomRatio="0/10">
+	* @endcode
 	*
 	* @param $attribs Array attribute=>value array.
 	*/

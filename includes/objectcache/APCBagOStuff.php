@@ -27,6 +27,11 @@
  * @ingroup Cache
  */
 class APCBagOStuff extends BagOStuff {
+
+	/**
+	 * @param $key string
+	 * @return mixed
+	 */
 	public function get( $key ) {
 		$val = apc_fetch( $key );
 
@@ -37,18 +42,32 @@ class APCBagOStuff extends BagOStuff {
 		return $val;
 	}
 
+	/**
+	 * @param $key string
+	 * @param $value mixed
+	 * @param $exptime int
+	 * @return bool
+	 */
 	public function set( $key, $value, $exptime = 0 ) {
 		apc_store( $key, serialize( $value ), $exptime );
 
 		return true;
 	}
 
+	/**
+	 * @param $key string
+	 * @param $time int
+	 * @return bool
+	 */
 	public function delete( $key, $time = 0 ) {
 		apc_delete( $key );
 
 		return true;
 	}
 
+	/**
+	 * @return Array
+	 */
 	public function keys() {
 		$info = apc_cache_info( 'user' );
 		$list = $info['cache_list'];

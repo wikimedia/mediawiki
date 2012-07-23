@@ -131,7 +131,7 @@ class SpecialLog extends SpecialPage {
 
 	private function show( FormOptions $opts, array $extraConds ) {
 		# Create a LogPager item to get the results and a LogEventsList item to format them...
-		$loglist = new LogEventsList( $this->getSkin(), $this->getOutput(), LogEventsList::USE_REVDEL_CHECKBOXES );
+		$loglist = new LogEventsList( $this->getContext(), null, LogEventsList::USE_REVDEL_CHECKBOXES );
 		$pager = new LogPager( $loglist, $opts->getValue( 'type' ), $opts->getValue( 'user' ),
 			$opts->getValue( 'page' ), $opts->getValue( 'pattern' ), $extraConds, $opts->getValue( 'year' ),
 			$opts->getValue( 'month' ), $opts->getValue( 'tagfilter' ) );
@@ -161,8 +161,8 @@ class SpecialLog extends SpecialPage {
 	}
 
 	private function getRevisionButton( $formcontents ) {
-		# If the user doesn't have the ability to delete revisions, don't bother showing him/her the button.
-		if ( !$this->getUser()->isAllowed( 'deleterevision' ) ) {
+		# If the user doesn't have the ability to delete log entries, don't bother showing him/her the button.
+		if ( !$this->getUser()->isAllowed( 'deletelogentry' ) ) {
 			return $formcontents;
 		}
 

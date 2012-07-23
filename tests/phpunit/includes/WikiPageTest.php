@@ -626,7 +626,7 @@ more stuff
 		$this->assertEquals( $expected, is_null( $c ) ? null : trim( $c->getNativeData() ) );
 	}
 	
-	/* @FIXME: fix this!
+	/* @todo FIXME: fix this!
 	public function testGetUndoText() {
 		global $wgDiff3;
 

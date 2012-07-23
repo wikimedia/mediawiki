@@ -48,22 +48,27 @@ class FileBackendMultiWrite extends FileBackend {
 	/* Possible internal backend consistency checks */
 	const CHECK_SIZE = 1;
 	const CHECK_TIME = 2;
+	const CHECK_SHA1 = 4;
 
 	/**
 	 * Construct a proxy backend that consists of several internal backends.
+	 * Locking, journaling, and read-only checks are handled by the proxy backend.
+	 *
 	 * Additional $config params include:
-	 *     'backends'    : Array of backend config and multi-backend settings.
-	 *                     Each value is the config used in the constructor of a
-	 *                     FileBackendStore class, but with these additional settings:
-	 *                         'class'         : The name of the backend class
-	 *                         'isMultiMaster' : This must be set for one backend.
-	 *                         'template:      : If given a backend name, this will use
-	 *                                           the config of that backend as a template.
-	 *                                           Values specified here take precedence.
-	 *     'syncChecks'  : Integer bitfield of internal backend sync checks to perform.
-	 *                     Possible bits include self::CHECK_SIZE and self::CHECK_TIME.
-	 *                     The checks are done before allowing any file operations.
+	 *   - backends   : Array of backend config and multi-backend settings.
+	 *                  Each value is the config used in the constructor of a
+	 *                  FileBackendStore class, but with these additional settings:
+	 *                    - class         : The name of the backend class
+	 *                    - isMultiMaster : This must be set for one backend.
+	 *                    - template:     : If given a backend name, this will use
+	 *                                      the config of that backend as a template.
+	 *                                      Values specified here take precedence.
+	 *   - syncChecks : Integer bitfield of internal backend sync checks to perform.
+	 *                  Possible bits include the FileBackendMultiWrite::CHECK_* constants.
+	 *                  There are constants for SIZE, TIME, and SHA1.
+	 *                  The checks are done before allowing any file operations.
 	 * @param $config Array
+	 * @throws MWException
 	 */
 	public function __construct( array $config ) {
 		parent::__construct( $config );
@@ -73,7 +78,7 @@ class FileBackendMultiWrite extends FileBackend {
 		foreach ( $config['backends'] as $index => $config ) {
 			if ( isset( $config['template'] ) ) {
 				// Config is just a modified version of a registered backend's.
-				// This should only be used when that config is used only be this backend.
+				// This should only be used when that config is used only by this backend.
 				$config = $config + FileBackendGroup::singleton()->config( $config['template'] );
 			}
 			$name = $config['name'];
@@ -81,17 +86,24 @@ class FileBackendMultiWrite extends FileBackend {
 				throw new MWException( "Two or more backends defined with the name $name." );
 			}
 			$namesUsed[$name] = 1;
+			// Alter certain sub-backend settings for sanity
+			unset( $config['readOnly'] ); // use proxy backend setting
+			unset( $config['fileJournal'] ); // use proxy backend journal
+			$config['wikiId'] = $this->wikiId; // use the proxy backend wiki ID
+			$config['lockManager'] = 'nullLockManager'; // lock under proxy backend
+			if ( !empty( $config['isMultiMaster'] ) ) {
+				if ( $this->masterIndex >= 0 ) {
+					throw new MWException( 'More than one master backend defined.' );
+				}
+				$this->masterIndex = $index; // this is the "master"
+				$config['fileJournal'] = $this->fileJournal; // log under proxy backend
+			}
+			// Create sub-backend object
 			if ( !isset( $config['class'] ) ) {
 				throw new MWException( 'No class given for a backend config.' );
 			}
 			$class = $config['class'];
 			$this->backends[$index] = new $class( $config );
-			if ( !empty( $config['isMultiMaster'] ) ) {
-				if ( $this->masterIndex >= 0 ) {
-					throw new MWException( 'More than one master backend defined.' );
-				}
-				$this->masterIndex = $index;
-			}
 		}
 		if ( $this->masterIndex < 0 ) { // need backends and must have a master
 			throw new MWException( 'No master backend defined.' );
@@ -108,27 +120,14 @@ class FileBackendMultiWrite extends FileBackend {
 	final protected function doOperationsInternal( array $ops, array $opts ) {
 		$status = Status::newGood();
 
-		$performOps = array(); // list of FileOp objects
-		$paths = array(); // storage paths read from or written to
-		// Build up a list of FileOps. The list will have all the ops
-		// for one backend, then all the ops for the next, and so on.
-		// These batches of ops are all part of a continuous array.
-		// Also build up a list of files read/changed...
-		foreach ( $this->backends as $index => $backend ) {
-			$backendOps = $this->substOpBatchPaths( $ops, $backend );
-			// Add on the operation batch for this backend
-			$performOps = array_merge( $performOps,
-				$backend->getOperationsInternal( $backendOps ) );
-			if ( $index == 0 ) { // first batch
-				// Get the files used for these operations. Each backend has a batch of
-				// the same operations, so we only need to get them from the first batch.
-				$paths = $backend->getPathsToLockForOpsInternal( $performOps );
-				// Get the paths under the proxy backend's name
-				$paths['sh'] = $this->unsubstPaths( $paths['sh'] );
-				$paths['ex'] = $this->unsubstPaths( $paths['ex'] );
-			}
-		}
+		$mbe = $this->backends[$this->masterIndex]; // convenience
 
+		// Get the paths to lock from the master backend
+		$realOps = $this->substOpBatchPaths( $ops, $mbe );
+		$paths = $mbe->getPathsToLockForOpsInternal( $mbe->getOperationsInternal( $realOps ) );
+		// Get the paths under the proxy backend's name
+		$paths['sh'] = $this->unsubstPaths( $paths['sh'] );
+		$paths['ex'] = $this->unsubstPaths( $paths['ex'] );
 		// Try to lock those files for the scope of this function...
 		if ( empty( $opts['nonLocking'] ) ) {
 			// Try to lock those files for the scope of this function...
@@ -138,46 +137,29 @@ class FileBackendMultiWrite extends FileBackend {
 				return $status; // abort
 			}
 		}
-
 		// Clear any cache entries (after locks acquired)
 		$this->clearCache();
-
 		// Do a consistency check to see if the backends agree
-		if ( count( $this->backends ) > 1 ) {
-			$status->merge( $this->consistencyCheck( array_merge( $paths['sh'], $paths['ex'] ) ) );
-			if ( !$status->isOK() ) {
-				return $status; // abort
+		$status->merge( $this->consistencyCheck( array_merge( $paths['sh'], $paths['ex'] ) ) );
+		if ( !$status->isOK() ) {
+			return $status; // abort
+		}
+		// Actually attempt the operation batch on the master backend...
+		$masterStatus = $mbe->doOperations( $realOps, $opts );
+		$status->merge( $masterStatus );
+		// Propagate the operations to the clone backends...
+		foreach ( $this->backends as $index => $backend ) {
+			if ( $index !== $this->masterIndex ) { // not done already
+				$realOps = $this->substOpBatchPaths( $ops, $backend );
+				$status->merge( $backend->doOperations( $realOps, $opts ) );
 			}
 		}
-
-		// Actually attempt the operation batch...
-		$subStatus = FileOpBatch::attempt( $performOps, $opts, $this->fileJournal );
-
-		$success = array();
-		$failCount = 0;
-		$successCount = 0;
 		// Make 'success', 'successCount', and 'failCount' fields reflect
 		// the overall operation, rather than all the batches for each backend.
 		// Do this by only using success values from the master backend's batch.
-		$batchStart = $this->masterIndex * count( $ops );
-		$batchEnd = $batchStart + count( $ops ) - 1;
-		for ( $i = $batchStart; $i <= $batchEnd; $i++ ) {
-			if ( !isset( $subStatus->success[$i] ) ) {
-				break; // failed out before trying this op
-			} elseif ( $subStatus->success[$i] ) {
-				++$successCount;
-			} else {
-				++$failCount;
-			}
-			$success[] = $subStatus->success[$i];
-		}
-		$subStatus->success = $success;
-		$subStatus->successCount = $successCount;
-		$subStatus->failCount = $failCount;
-
-		// Merge errors into status fields
-		$status->merge( $subStatus );
-		$status->success = $subStatus->success; // not done in merge()
+		$status->success = $masterStatus->success;
+		$status->successCount = $masterStatus->successCount;
+		$status->failCount = $masterStatus->failCount;
 
 		return $status;
 	}
@@ -190,21 +172,29 @@ class FileBackendMultiWrite extends FileBackend {
 	 */
 	public function consistencyCheck( array $paths ) {
 		$status = Status::newGood();
-		if ( $this->syncChecks == 0 ) {
+		if ( $this->syncChecks == 0 || count( $this->backends ) <= 1 ) {
 			return $status; // skip checks
 		}
 
 		$mBackend = $this->backends[$this->masterIndex];
 		foreach ( array_unique( $paths ) as $path ) {
 			$params = array( 'src' => $path, 'latest' => true );
+			$mParams = $this->substOpPaths( $params, $mBackend );
 			// Stat the file on the 'master' backend
-			$mStat = $mBackend->getFileStat( $this->substOpPaths( $params, $mBackend ) );
+			$mStat = $mBackend->getFileStat( $mParams );
+			if ( $this->syncChecks & self::CHECK_SHA1 ) {
+				$mSha1 = $mBackend->getFileSha1( $mParams );
+			} else {
+				$mSha1 = false;
+			}
+			$mUsable = $mBackend->isPathUsableInternal( $mParams['src'] );
 			// Check of all clone backends agree with the master...
 			foreach ( $this->backends as $index => $cBackend ) {
 				if ( $index === $this->masterIndex ) {
 					continue; // master
 				}
-				$cStat = $cBackend->getFileStat( $this->substOpPaths( $params, $cBackend ) );
+				$cParams = $this->substOpPaths( $params, $cBackend );
+				$cStat = $cBackend->getFileStat( $cParams );
 				if ( $mStat ) { // file is in master
 					if ( !$cStat ) { // file should exist
 						$status->fatal( 'backend-fail-synced', $path );
@@ -224,10 +214,19 @@ class FileBackendMultiWrite extends FileBackend {
 							continue;
 						}
 					}
+					if ( $this->syncChecks & self::CHECK_SHA1 ) {
+						if ( $cBackend->getFileSha1( $cParams ) !== $mSha1 ) { // wrong SHA1
+							$status->fatal( 'backend-fail-synced', $path );
+							continue;
+						}
+					}
 				} else { // file is not in master
 					if ( $cStat ) { // file should not exist
 						$status->fatal( 'backend-fail-synced', $path );
 					}
+				}
+				if ( $mUsable !== $cBackend->isPathUsableInternal( $cParams['src'] ) ) {
+					$status->fatal( 'backend-fail-synced', $path );
 				}
 			}
 		}
@@ -302,10 +301,12 @@ class FileBackendMultiWrite extends FileBackend {
 	 * @see FileBackend::doQuickOperationsInternal()
 	 * @return Status
 	 */
-	public function doQuickOperationsInternal( array $ops ) {
+	protected function doQuickOperationsInternal( array $ops ) {
+		$status = Status::newGood();
 		// Do the operations on the master backend; setting Status fields...
 		$realOps = $this->substOpBatchPaths( $ops, $this->backends[$this->masterIndex] );
-		$status = $this->backends[$this->masterIndex]->doQuickOperations( $realOps );
+		$masterStatus = $this->backends[$this->masterIndex]->doQuickOperations( $realOps );
+		$status->merge( $masterStatus );
 		// Propagate the operations to the clone backends...
 		foreach ( $this->backends as $index => $backend ) {
 			if ( $index !== $this->masterIndex ) { // not done already
@@ -313,6 +314,12 @@ class FileBackendMultiWrite extends FileBackend {
 				$status->merge( $backend->doQuickOperations( $realOps ) );
 			}
 		}
+		// Make 'success', 'successCount', and 'failCount' fields reflect
+		// the overall operation, rather than all the batches for each backend.
+		// Do this by only using success values from the master backend's batch.
+		$status->success = $masterStatus->success;
+		$status->successCount = $masterStatus->successCount;
+		$status->failCount = $masterStatus->failCount;
 		return $status;
 	}
 
@@ -339,6 +346,20 @@ class FileBackendMultiWrite extends FileBackend {
 		foreach ( $this->backends as $backend ) {
 			$realParams = $this->substOpPaths( $params, $backend );
 			$status->merge( $backend->doSecure( $realParams ) );
+		}
+		return $status;
+	}
+
+	/**
+	 * @see FileBackend::doPublish()
+	 * @param $params array
+	 * @return Status
+	 */
+	protected function doPublish( array $params ) {
+		$status = Status::newGood();
+		foreach ( $this->backends as $backend ) {
+			$realParams = $this->substOpPaths( $params, $backend );
+			$status->merge( $backend->doPublish( $realParams ) );
 		}
 		return $status;
 	}

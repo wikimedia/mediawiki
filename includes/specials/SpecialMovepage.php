@@ -358,7 +358,7 @@ class MovePageForm extends UnlistedSpecialPage {
 		}
 
 		$watchChecked = $user->isLoggedIn() && ($this->watch || $user->getBoolOption( 'watchmoves' )
-			|| $this->oldTitle->userIsWatching());
+			|| $user->isWatched( $this->oldTitle ) );
 		# Don't allow watching if user is not logged in
 		if( $user->isLoggedIn() ) {
 			$out->addHTML( "
@@ -440,8 +440,9 @@ class MovePageForm extends UnlistedSpecialPage {
 
 			$error = ''; // passed by ref
 			$page = WikiPage::factory( $nt );
-			if ( !$page->doDeleteArticle( $reason, false, 0, true, $error, $user ) ) {
-				$this->showForm( array( array( 'cannotdelete', wfEscapeWikiText( $nt->getPrefixedText() ) ) ) );
+			$deleteStatus = $page->doDeleteArticleReal( $reason, false, 0, true, $error, $user );
+			if ( !$deleteStatus->isGood() ) {
+				$this->showForm( $deleteStatus->getErrorsArray() );
 				return;
 			}
 		}

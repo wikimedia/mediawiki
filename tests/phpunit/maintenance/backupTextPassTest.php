@@ -114,16 +114,16 @@ class TextPassDumperTest extends DumpTestCase {
 		$this->assertPageStart( $this->pageId2, NS_MAIN, "BackupDumperTestP2" );
 		$this->assertRevision( $this->revId2_1, "BackupDumperTestP2Summary1",
 			$this->textId2_1, false, "jprywrymfhysqllua29tj3sc7z39dl2",
-			"BackupDumperTestP2Text1", $this->revId2_2 );
+			"BackupDumperTestP2Text1" );
 		$this->assertRevision( $this->revId2_2, "BackupDumperTestP2Summary2",
 			$this->textId2_2, false, "b7vj5ks32po5m1z1t1br4o7scdwwy95",
-			"BackupDumperTestP2Text2", $this->revId2_3 );
+			"BackupDumperTestP2Text2", $this->revId2_1 );
 		$this->assertRevision( $this->revId2_3, "BackupDumperTestP2Summary3",
 			$this->textId2_3, false, "jfunqmh1ssfb8rs43r19w98k28gg56r",
-			"BackupDumperTestP2Text3", $this->revId2_4 );
+			"BackupDumperTestP2Text3", $this->revId2_2 );
 		$this->assertRevision( $this->revId2_4, "BackupDumperTestP2Summary4 extra",
 			$this->textId2_4, false, "6o1ciaxa6pybnqprmungwofc4lv00wv",
-			"BackupDumperTestP2Text4 some additional Text" );
+			"BackupDumperTestP2Text4 some additional Text", $this->revId2_3 );
 		$this->assertPageEnd();
 
 		// Page 3
@@ -180,18 +180,18 @@ class TextPassDumperTest extends DumpTestCase {
 		$this->assertPageStart( $this->pageId2, NS_MAIN, "BackupDumperTestP2" );
 		$this->assertRevision( $this->revId2_1, "BackupDumperTestP2Summary1",
 			$this->textId2_1, false, "jprywrymfhysqllua29tj3sc7z39dl2",
-			"BackupDumperTestP2Text1", $this->revId2_2 );
+			"BackupDumperTestP2Text1" );
 		$this->assertRevision( $this->revId2_2, "BackupDumperTestP2Summary2",
 			$this->textId2_2, false, "b7vj5ks32po5m1z1t1br4o7scdwwy95",
-			"BackupDumperTestP2Text2", $this->revId2_3 );
+			"BackupDumperTestP2Text2", $this->revId2_1 );
 		// Prefetch kicks in. This is still the SHA-1 of the original text,
 		// But the actual text (with different SHA-1) comes from prefetch.
 		$this->assertRevision( $this->revId2_3, "BackupDumperTestP2Summary3",
 			$this->textId2_3, false, "jfunqmh1ssfb8rs43r19w98k28gg56r",
-			"Prefetch_________2Text3", $this->revId2_4 );
+			"Prefetch_________2Text3", $this->revId2_2 );
 		$this->assertRevision( $this->revId2_4, "BackupDumperTestP2Summary4 extra",
 			$this->textId2_4, false, "6o1ciaxa6pybnqprmungwofc4lv00wv",
-			"BackupDumperTestP2Text4 some additional Text" );
+			"BackupDumperTestP2Text4 some additional Text", $this->revId2_3 );
 		$this->assertPageEnd();
 
 		// Page 3
@@ -332,17 +332,18 @@ class TextPassDumperTest extends DumpTestCase {
 					"BackupDumperTestP2" );
 				$this->assertRevision( $this->revId2_1 + $i * self::$numOfRevs, "BackupDumperTestP2Summary1",
 					$this->textId2_1, false, "jprywrymfhysqllua29tj3sc7z39dl2",
-					"BackupDumperTestP2Text1", $this->revId2_2 + $i * self::$numOfRevs );
+					"BackupDumperTestP2Text1" );
 				$this->assertRevision( $this->revId2_2 + $i * self::$numOfRevs, "BackupDumperTestP2Summary2",
 					$this->textId2_2, false, "b7vj5ks32po5m1z1t1br4o7scdwwy95",
-					"BackupDumperTestP2Text2", $this->revId2_3 + $i * self::$numOfRevs );
+					"BackupDumperTestP2Text2", $this->revId2_1 + $i * self::$numOfRevs );
 				$this->assertRevision( $this->revId2_3 + $i * self::$numOfRevs, "BackupDumperTestP2Summary3",
 					$this->textId2_3, false, "jfunqmh1ssfb8rs43r19w98k28gg56r",
-					"BackupDumperTestP2Text3", $this->revId2_4 + $i * self::$numOfRevs );
+					"BackupDumperTestP2Text3", $this->revId2_2 + $i * self::$numOfRevs );
 				$this->assertRevision( $this->revId2_4 + $i * self::$numOfRevs,
 					"BackupDumperTestP2Summary4 extra",
 					$this->textId2_4, false, "6o1ciaxa6pybnqprmungwofc4lv00wv",
-					"BackupDumperTestP2Text4 some additional Text" );
+					"BackupDumperTestP2Text4 some additional Text",
+					$this->revId2_3 + $i * self::$numOfRevs );
 				$this->assertPageEnd();
 
 				$lookingForPage = 4;
@@ -419,10 +420,10 @@ class TextPassDumperTest extends DumpTestCase {
 	 *           file is generated that is automatically removed upon
 	 *           tearDown.
 	 * @param $iterations integer: (Optional) specifies how often the block
-	 *           of 3 pages should go into the stub file. The page id
-	 *           increase further and further, while the revision and text
-	 *           ids of the first iteration are reused. The pages of
-	 *           iteration > 1 have no corresponding representation in the
+	 *           of 3 pages should go into the stub file. The page and
+	 *           revision id increase further and further, while the text
+	 *           id of the first iteration is reused. The pages and revision
+	 *           of iteration > 1 have no corresponding representation in the
 	 *           database.
 	 * @return string absolute filename of the stub
 	 */
@@ -492,7 +493,6 @@ class TextPassDumperTest extends DumpTestCase {
     <id>' . ( $this->pageId2 + $i * self::$numOfPages ) . '</id>
     <revision>
       <id>' . ( $this->revId2_1 + $i * self::$numOfRevs ) . '</id>
-      <parentid>' . ( $this->revId2_2 + $i * self::$numOfRevs ) . '</parentid>
       <timestamp>2012-04-01T16:46:05Z</timestamp>
       <contributor>
         <ip>127.0.0.1</ip>
@@ -505,7 +505,7 @@ class TextPassDumperTest extends DumpTestCase {
     </revision>
     <revision>
       <id>' . ( $this->revId2_2 + $i * self::$numOfRevs ) . '</id>
-      <parentid>' . ( $this->revId2_3 + $i * self::$numOfRevs ) . '</parentid>
+      <parentid>' . ( $this->revId2_1 + $i * self::$numOfRevs ) . '</parentid>
       <timestamp>2012-04-01T16:46:05Z</timestamp>
       <contributor>
         <ip>127.0.0.1</ip>
@@ -518,7 +518,7 @@ class TextPassDumperTest extends DumpTestCase {
     </revision>
     <revision>
       <id>' . ( $this->revId2_3 + $i * self::$numOfRevs ) . '</id>
-      <parentid>' . ( $this->revId2_4 + $i * self::$numOfRevs ) . '</parentid>
+      <parentid>' . ( $this->revId2_2 + $i * self::$numOfRevs ) . '</parentid>
       <timestamp>2012-04-01T16:46:05Z</timestamp>
       <contributor>
         <ip>127.0.0.1</ip>
@@ -531,6 +531,7 @@ class TextPassDumperTest extends DumpTestCase {
     </revision>
     <revision>
       <id>' . ( $this->revId2_4 + $i * self::$numOfRevs ) . '</id>
+      <parentid>' . ( $this->revId2_3 + $i * self::$numOfRevs ) . '</parentid>
       <timestamp>2012-04-01T16:46:05Z</timestamp>
       <contributor>
         <ip>127.0.0.1</ip>

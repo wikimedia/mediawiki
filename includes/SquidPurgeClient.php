@@ -44,7 +44,15 @@ class SquidPurgeClient {
 	 * The socket resource, or null for unconnected, or false for disabled due to error
 	 */
 	var $socket;
-	
+
+	var $readBuffer;
+
+	var $bodyRemaining;
+
+	/**
+	 * @param $server string
+	 * @param $options array
+	 */
 	public function __construct( $server, $options = array() ) {
 		$parts = explode( ':', $server, 2 );
 		$this->host = $parts[0];
@@ -340,6 +348,9 @@ class SquidPurgeClient {
 		$this->bodyRemaining = null;
 	}
 
+	/**
+	 * @param $msg string
+	 */
 	protected function log( $msg ) {
 		wfDebugLog( 'squid', __CLASS__." ($this->host): $msg\n" );
 	}
@@ -353,6 +364,9 @@ class SquidPurgeClientPool {
 	var $clients = array();
 	var $timeout = 5;
 
+	/**
+	 * @param $options array
+	 */
 	function __construct( $options = array() ) {
 		if ( isset( $options['timeout'] ) ) {
 			$this->timeout = $options['timeout'];
@@ -372,6 +386,9 @@ class SquidPurgeClientPool {
 		$startTime = microtime( true );
 		while ( !$done ) {
 			$readSockets = $writeSockets = array();
+			/**
+			 * @var $client SquidPurgeClient
+			 */
 			foreach ( $this->clients as $clientIndex => $client ) {
 				$sockets = $client->getReadSocketsForSelect();
 				foreach ( $sockets as $i => $socket ) {

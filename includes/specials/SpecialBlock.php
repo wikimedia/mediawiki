@@ -338,6 +338,8 @@ class SpecialBlock extends FormSpecialPage {
 	 * @return string
 	 */
 	protected function postText(){
+		$links = array();
+
 		# Link to the user's contributions, if applicable
 		if( $this->target instanceof User ){
 			$contribsPage = SpecialPage::getTitleFor( 'Contributions', $this->target->getName() );

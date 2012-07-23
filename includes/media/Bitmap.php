@@ -261,7 +261,7 @@ class BitmapHandler extends ImageHandler {
 	 * @param $params array Array with scaler params
 	 * @return ThumbnailImage
 	 *
-	 * @fixme no rotation support
+	 * @todo fixme: no rotation support
 	 */
 	protected function getClientScalingThumbnailImage( $image, $params ) {
 		return new ThumbnailImage( $image, $image->getURL(),

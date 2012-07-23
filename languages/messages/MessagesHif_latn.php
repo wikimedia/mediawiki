@@ -24,7 +24,7 @@ $messages = array(
 'tog-hidepatrolled' => 'Pahraa dewa gais badlao ke nawaa badlao me se lukao',
 'tog-newpageshidepatrolled' => 'Pahraa dewa gais badlao ke nawaa panna me se lukao',
 'tog-extendwatchlist' => 'Dhyaan suchi ke khol ke sab badlao ke dekhao, khaali nawaa waala nai',
-'tog-usenewrc' => 'Sadasya se enhance karaa gais nawaa badlao (reguires Javascript)',
+'tog-usenewrc' => 'Dher jan se badla gais panna, haali ke badlao aur dhyan suchi me (Javascript maange hae)',
 'tog-numberheadings' => 'Sab heading ke apne se number karo',
 'tog-showtoolbar' => 'Badle waala aujaar ke toolbar ke dekhao (JavaScript ke jarurat hai)',
 'tog-editondblclick' => 'Dugnaa click pe panna ke badlo (JavaScript ke jarurat hai)',
@@ -32,17 +32,17 @@ $messages = array(
 'tog-editsectiononrightclick' => 'Bhaag ke title pe right click kare pe bhaag ke badle ke laabu karo  (JavaScript)',
 'tog-showtoc' => 'Dhyan suchi dekhao (uu panna khatir jon me tiin se jaada heading hai)',
 'tog-rememberpassword' => 'Ii browser me (jaada se jaada $1 {{PLURAL:$1|din|din}}) talak hamaar login ke yaad rakho.',
-'tog-watchcreations' => 'Hamaar banawa waala panna ke hamaar dhyaan suchi me jorro',
-'tog-watchdefault' => 'Ham se badla gae panna ke hamaar dhyaan suchi me jorro',
-'tog-watchmoves' => 'Uu panna jiske naam ham badla hai ke hamaar dhyaan suchi me jorro',
-'tog-watchdeletion' => 'Uu panna jiske ham mitaya hai ke hamaar dhyaan suchi me jorro',
+'tog-watchcreations' => 'Hamaar banawa waala panna aur upload karaa gais file ke hamaar dhyaan suchi me jorro',
+'tog-watchdefault' => 'Ham se badla gais panna aur file ke hamaar dhyaan suchi me jorro',
+'tog-watchmoves' => 'Uu panna aur file jiske naam ham badla hai ke hamaar dhyaan suchi me jorro',
+'tog-watchdeletion' => 'Uu panna, aur file jiske ham mitaya hai ke hamaar dhyaan suchi me jorro',
 'tog-minordefault' => 'Mamuli badlao ke apne se nishaan lagao',
 'tog-previewontop' => 'Badlao waala dabba se pahile ek jhalak dekhao',
 'tog-previewonfirst' => 'Hamaar pahila badlao pe jhalak dekhao',
 'tog-nocache' => 'Browser pe panna ke bachae me rok lagao',
-'tog-enotifwatchlistpages' => 'Jab hamaar dhyaan suchi ke koi panna ke badla jae tab hame E-mail karo',
+'tog-enotifwatchlistpages' => 'Jab hamaar dhyaan suchi ke koi panna, nai to file, ke badla jae tab hame E-mail karo',
 'tog-enotifusertalkpages' => 'Jab hamaar baat waala panna ke badla jae tab hame E-mail karo',
-'tog-enotifminoredits' => 'Panna me mamuli badlao khatir bhi hame E-mail karo',
+'tog-enotifminoredits' => 'Panna aur file me mamuli badlao khatir bhi hame E-mail karo',
 'tog-enotifrevealaddr' => 'Notification E-mail me hamaar E-mail address ke dekhao.',
 'tog-shownumberswatching' => 'Ketna sadasya dekhe hai ke number dekhao',
 'tog-oldsig' => 'Abhi ke signature:',
@@ -373,6 +373,8 @@ Iske, URL ke likh ke, koi administrator ke report karo.',
 'badarticleerror' => 'Ii chij ke ii panna me nai karaa jae sake hai.',
 'cannotdelete' => '{{PLURAL:$1|Template|Template}} ke ii jhalak me kaam me lawa gais hae:',
 'cannotdelete-title' => 'Panna "$1" ke mitae nai saktaa hae',
+'delete-hook-aborted' => 'Mitae ke kisis ke hook rok diis hae.
+Uu koi kaaran nai dis hae.',
 'badtitle' => 'Kharaab title',
 'badtitletext' => 'Jon panna aap mangta hai uske page title invalid, galat, nai to an incorrectly linked inter-language or inter-wiki title. Isme sait ek yah jaada character hoi jon ki title me nai kaam me lawa jae sake hai.',
 'perfcached' => 'Niche likha data ke cache karaa gais hai aur sait purana hoi. Jaada se jaada {{PLURAL:$1|ek result |$1 results}} cache me hae.',
@@ -402,6 +404,12 @@ $2',
 'ns-specialprotected' => 'Khaas panna ke badla nai jae sake hai.',
 'titleprotected' => "Ii title ke banae se [[User:$1|$1]] rokis hai.
 Iske kaaran hai ''$2''.",
+'filereadonlyerror' => 'File "$1" ke nai badle sakaa hae, kaahe ki ii file repository "$2" me hae aur iske khaali parrha jaae sake hae.
+Jon administrator iske lock karis hae, koi kaaran nai diis hae: "$3"',
+'invalidtitle-knownnamespace' => 'Namespace "$2" aur text "$3" ke kharaab title hae.',
+'invalidtitle-unknownnamespace' => 'Title gaer kaanuni hae aur iske namespace number "$1" aur text "$2" ke nai jaana jaawe hae',
+'exception-nologin' => 'Logged in nai hae',
+'exception-nologin-text' => 'Ii panna nai to aap ke action ke khatir ii wiki me login hoe ke jarurui hae',
 
 # Virus scanner
 'virus-badscanner' => "Kharaab ruup dewa gais hae: virus khoje waala software nawaa hae: ''$1''",
@@ -495,6 +503,7 @@ Ii sab feature khatir koi e-mail nai bheja jaai.',
 'invalidemailaddress' => 'E-mail address ke nai lewa jae sake hai kahe ki iske format kharaab hai.
 Meharbaani kar ke achchha address ke enter karo nai to uu field ke khali kar do.',
 'cannotchangeemail' => 'Ii wiki me account e-mail ke badla nai jaawe sake hae',
+'emaildisabled' => 'Ii site e-mail nai bheje sake hae.',
 'accountcreated' => 'Account banae dewa gais hai',
 'accountcreatedtext' => '$1 khatir user account banae dewa gais hai.',
 'createaccount-title' => '{{SITENAME}} khatir account creation',
@@ -694,7 +703,8 @@ Yaad rakhna ki custom .css aur .js panna owercase title use kare hai, jaise ki {
 'updated' => '(Update kar dewa gais hai)',
 'note' => "'''Dhyan rakkho:'''",
 'previewnote' => "'''Ii khaali ek jhalak dekhae hai'''
-Tumar badlao abhi save nai bhais hai!",
+Tumar badlao abhi bachawa nai gais hai!",
+'continue-editing' => 'Badalte raho',
 'previewconflict' => 'Ii preview uu text dekhae hai jon ki uppar ke text editing area me dekhai agar aap iske save karaa.',
 'session_fail_preview' => "''' Maaf karna! Ham log aap ke badlao ke process nai kare paya hai due to a loss of session data.
 Fir se kosis karna.
@@ -710,6 +720,7 @@ Ii badlao ke reject kar dewa gais hai to prevent corruption of the page text.
 Ii kabhi kabhi hoe hai jab aap ek buggy web-based anonymous proxy service ke use karta hai.'''",
 'edit_form_incomplete' => 'Edit form ke kuchh hissa server ke lage nai pahunche paais hae; fir se check karo ki aap ke badlao form me hae, aur fir se form ke bhejo.',
 'editing' => '$1 badlawa jae hai',
+'creating' => '$1 banaata hae',
 'editingsection' => 'Sampadan $1 (bhaag)',
 'editingcomment' => '$1 ke badla jae hai (nawaa section)',
 'editconflict' => 'Badle me conflict: $1',
@@ -776,6 +787,7 @@ Janae hai ki iske koi mitae dii hai.',
 'edit-no-change' => 'Aap ke badle ke kosis ke ignore kar dewa gais hai, kahe ki text ke badla nai gais hai.',
 'edit-already-exists' => 'Nawaa panna nai banae sakaa hai.
 Ii naam ke panna abhi hai.',
+'defaultmessagetext' => 'Default message text',
 
 # Parser/template warnings
 'expensive-parserfunction-warning' => "'''Chetauni''': Ii panna me bahut jaada expensive parser function calls hai.
@@ -791,6 +803,12 @@ Ii sab arguments ke omit kar dewa gais hai.',
 'parser-template-loop-warning' => 'Template loop ke pawa gais hai: [[$1]]',
 'parser-template-recursion-depth-warning' => 'Template recursion depth limit se jaada hoe gais hae ($1)',
 'language-converter-depth-warning' => 'Bhasa anuwaad ke gahiraai ijajat se jaada hoe gais hae ($1)',
+'node-count-exceeded-category' => 'Panna jahaan pe node-count bahut jaada hoe gais hae',
+'node-count-exceeded-warning' => 'Panna, node-count se jaada hae',
+'expansion-depth-exceeded-category' => 'Panna jahaan pe expansion depth ke exceed karaa gais hae',
+'expansion-depth-exceeded-warning' => 'Panna expansion depth ke exceed karis hae',
+'parser-unstrip-loop-warning' => 'Unstrip loop ke pawa gai shae',
+'parser-unstrip-recursion-limit' => 'Unstrip recursion limit ke exceed karaa gais hae ($1)',
 
 # "Undo" feature
 'undo-success' => 'Ii badlao ke pahile jaise karaa jaae sake hai.
@@ -935,7 +953,7 @@ Meharbani ka ke logs ke check karo.',
 # Suppression log
 'suppressionlog' => 'Dabae waala log',
 'suppressionlogtext' => 'Niche ke suchi me administrators se lukawa gais deletions au rukawat hae.
-Abhi ke laabu rukawat ke suchi ke khatir [[Special:BlockList|IP block list]] ke dekho.',
+Abhi ke laabu rukawat ke suchi ke khatir [[Special:BlockList|block list]] ke dekho.',
 
 # History merging
 'mergehistory' => 'Panna ke itihass ke jorro',
@@ -970,6 +988,8 @@ Ii baat ke dhyan me rakhna ki navigation jorr ke kaam me laae se ii column reset
 
 # Diffs
 'history-title' => '"$1" ke sansodhan ke itihaas',
+'difference-title' => '"$1" ke revisions ke biich ke antar',
+'difference-title-multipage' => 'Panna "$1" aur "$2" ke biich ke antar',
 'difference-multipage' => '(Panna ke biich ke antar)',
 'lineno' => 'Rekha $1:',
 'compareselectedversions' => 'Chuna gae version ke compare karo',
@@ -1067,6 +1087,7 @@ Yaad rakhna ki uu log ke {{SITENAME}} ke index saait purana hoi.',
 'prefs-beta' => 'Nawaa features',
 'prefs-datetime' => 'Tarik aur time',
 'prefs-labs' => 'Try kare waala features',
+'prefs-user-pages' => 'Sadasya ke panna',
 'prefs-personal' => 'Sadasya ke profile',
 'prefs-rc' => 'Nawaa badlao',
 'prefs-watchlist' => 'Dhyan suchi',
@@ -1506,6 +1527,7 @@ Agar jo problem fir nai khatam hoe tab [[Special:ListUsers/sysop|administrator]]
 'upload-too-many-redirects' => 'Ii URL me bahut jaada redirects hae.',
 'upload-unknown-size' => 'Nai pataa ki ketnaa barraa hae',
 'upload-http-error' => 'Ek HTTP galti hoe gais hae: $1',
+'upload-copy-upload-invalid-domain' => 'Ii domain se copy upload nai karaa jaae sake hae.',
 
 # File backend
 'backend-fail-stream' => 'File $1 ke stream nai kare sakaa hae.',
@@ -1523,12 +1545,24 @@ Agar jo problem fir nai khatam hoe tab [[Special:ListUsers/sysop|administrator]]
 'backend-fail-writetemp' => 'Temporary file me nai likhe sakaa hae.',
 'backend-fail-closetemp' => 'Temporary file ke nai band kare sakaa hae.',
 'backend-fail-read' => 'File $1 ke nai parrhe sakaa hae.',
-'backend-fail-create' => 'File $1 ke nai banae sakaa hae.',
+'backend-fail-create' => 'File $1 pe nai likha jaae sake hae.',
+'backend-fail-maxsize' => 'File $1 ke nai likhe sakaa hae kaahe ki ii {{PLURAL:$2|ek byte|$2 byte}} se barraa hae.',
 'backend-fail-readonly' => 'Storage backend "$1" abhi khaali read-only hae. Iske kaaran hae: "$2"',
 'backend-fail-synced' => 'File "$1" internal storage backends me ek inconsistent state me hae',
 'backend-fail-connect' => 'Storage backend "$1" se connect nai kare sakaa hae.',
 'backend-fail-internal' => 'Storage backend "$1" me ek unknown error hoe gais hae.',
 'backend-fail-contenttype' => 'Ii nai pataa lagae sakaa hae ki "$1" me bachae ke khaatir file kon rakam ke hae.',
+'backend-fail-batchsize' => 'Storage backend ke  $1 file {{PLURAL:$1|operation|operations}} ke ek batch ke dewa gais hae ; limit  $2 {{PLURAL:$2|operation|operation}} hae.',
+'backend-fail-usable' => 'File $1 ke nai likhe sakaa hae kaahe ki iske khatir jaruri ijajat nai hae, nai to directories/containers nai hae.',
+
+# File journal errors
+'filejournal-fail-dbconnect' => 'Storage backend "$1" ke khatir journal database se nai jorre sakaa hae.',
+'filejournal-fail-dbquery' => 'Storage backend "$1" ke khatir journal database ke nai badle sakaa hae.',
+
+# Lock manager
+'lockmanager-notlocked' => '"$1" ke  nai khole sakaa hae; ii lock nai hae.',
+'lockmanager-fail-closelock' => '"$1" ke khatir lock file ke nai band kare sakaa hae.',
+'lockmanager-fail-deletelock' => '"$1" ke khatir lock file ke nai mitae sakaa hae.',
 
 # Special:UploadStash
 'uploadstash' => 'Gupt file ke upload karo',

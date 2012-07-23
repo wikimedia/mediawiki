@@ -4,7 +4,7 @@
  *
  * Created on Jul 2, 2007
  *
- * Copyright © 2007 Roan Kattouw <Firstname>.<Lastname>@gmail.com
+ * Copyright © 2007 Roan Kattouw "<Firstname>.<Lastname>@gmail.com"
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -164,7 +164,7 @@ class ApiQueryDeletedrevs extends ApiQueryBase {
 				$this->dieUsage( 'Invalid continue param. You should pass the original value returned by the previous query', 'badcontinue' );
 			}
 			$ns = intval( $cont[0] );
-			$title = $db->addQuotes( $this->titleToKey( $cont[1] ) );
+			$title = $db->addQuotes( $cont[1] );
 			$ts = $db->addQuotes( $db->timestamp( $cont[2] ) );
 			$op = ( $dir == 'newer' ? '>' : '<' );
 			$this->addWhere( "ar_namespace $op $ns OR " .
@@ -180,9 +180,10 @@ class ApiQueryDeletedrevs extends ApiQueryBase {
 			if ( $params['unique'] ) {
 				$this->addOption( 'GROUP BY', 'ar_title' );
 			} else {
+				$sort = ( $dir == 'newer' ? '' : ' DESC' );
 				$this->addOption( 'ORDER BY', array(
-					'ar_title',
-					'ar_timestamp'
+					'ar_title' . $sort,
+					'ar_timestamp' . $sort
 				));
 			}
 		} else {
@@ -202,7 +203,7 @@ class ApiQueryDeletedrevs extends ApiQueryBase {
 				// We've had enough
 				if ( $mode == 'all' || $mode == 'revs' ) {
 					$this->setContinueEnumParameter( 'continue', intval( $row->ar_namespace ) . '|' .
-						$this->keyToTitle( $row->ar_title ) . '|' . $row->ar_timestamp );
+						$row->ar_title . '|' . $row->ar_timestamp );
 				} else {
 					$this->setContinueEnumParameter( 'start', wfTimestamp( TS_ISO_8601, $row->ar_timestamp ) );
 				}
@@ -268,7 +269,7 @@ class ApiQueryDeletedrevs extends ApiQueryBase {
 			if ( !$fit ) {
 				if ( $mode == 'all' || $mode == 'revs' ) {
 					$this->setContinueEnumParameter( 'continue', intval( $row->ar_namespace ) . '|' .
-						$this->keyToTitle( $row->ar_title ) . '|' . $row->ar_timestamp );
+						$row->ar_title . '|' . $row->ar_timestamp );
 				} else {
 					$this->setContinueEnumParameter( 'start', wfTimestamp( TS_ISO_8601, $row->ar_timestamp ) );
 				}

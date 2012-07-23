@@ -73,9 +73,23 @@ class ApiQueryFilearchive extends ApiQueryBase {
 		$this->addFieldsIf( 'fa_metadata', $fld_metadata );
 		$this->addFieldsIf( 'fa_bits', $fld_bitdepth );
 
+		if ( !is_null( $params['continue'] ) ) {
+			$cont = explode( '|', $params['continue'] );
+			if ( count( $cont ) != 1 ) {
+				$this->dieUsage( "Invalid continue param. You should pass the " .
+					"original value returned by the previous query", "_badcontinue" );
+			}
+			$op = $params['dir'] == 'descending' ? '<' : '>';
+			$cont_from = $db->addQuotes( $cont[0] );
+			$this->addWhere( "fa_name $op= $cont_from" );
+		}
+
 		// Image filters
 		$dir = ( $params['dir'] == 'descending' ? 'older' : 'newer' );
 		$from = ( is_null( $params['from'] ) ? null : $this->titlePartToKey( $params['from'] ) );
+		if ( !is_null( $params['continue'] ) ) {
+			$from = $params['continue'];
+		}
 		$to = ( is_null( $params['to'] ) ? null : $this->titlePartToKey( $params['to'] ) );
 		$this->addWhereRange( 'fa_name', $dir, $from, $to );
 		if ( isset( $params['prefix'] ) ) {
@@ -129,8 +143,7 @@ class ApiQueryFilearchive extends ApiQueryBase {
 		foreach ( $res as $row ) {
 			if ( ++$count > $limit ) {
 				// We've reached the one extra which shows that there are additional pages to be had. Stop here...
-				// TODO: Security issue - if the user has no right to view next title, it will still be shown
-				$this->setContinueEnumParameter( 'from', $this->keyToTitle( $row->fa_name ) );
+				$this->setContinueEnumParameter( 'continue', $row->fa_name );
 				break;
 			}
 
@@ -199,7 +212,7 @@ class ApiQueryFilearchive extends ApiQueryBase {
 
 			$fit = $result->addValue( array( 'query', $this->getModuleName() ), null, $file );
 			if ( !$fit ) {
-				$this->setContinueEnumParameter( 'from', $this->keyToTitle( $row->fa_name ) );
+				$this->setContinueEnumParameter( 'continue', $row->fa_name );
 				break;
 			}
 		}
@@ -210,6 +223,7 @@ class ApiQueryFilearchive extends ApiQueryBase {
 	public function getAllowedParams() {
 		return array (
 			'from' => null,
+			'continue' => null,
 			'to' => null,
 			'prefix' => null,
 			'limit' => array(
@@ -251,6 +265,7 @@ class ApiQueryFilearchive extends ApiQueryBase {
 	public function getParamDescription() {
 		return array(
 			'from' => 'The image title to start enumerating from',
+			'continue' => 'When more results are available, use this to continue',
 			'to' => 'The image title to stop enumerating at',
 			'prefix' => 'Search for all image titles that begin with this value',
 			'dir' => 'The direction in which to list',
@@ -345,6 +360,7 @@ class ApiQueryFilearchive extends ApiQueryBase {
 			array( 'code' => 'hashsearchdisabled', 'info' => 'Search by hash disabled in Miser Mode' ),
 			array( 'code' => 'invalidsha1hash', 'info' => 'The SHA1 hash provided is not valid' ),
 			array( 'code' => 'invalidsha1base36hash', 'info' => 'The SHA1Base36 hash provided is not valid' ),
+			array( 'code' => '_badcontinue', 'info' => 'Invalid continue param. You should pass the original value returned by the previous query' ),
 		) );
 	}
 

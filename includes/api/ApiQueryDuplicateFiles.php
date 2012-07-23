@@ -4,7 +4,7 @@
  *
  * Created on Sep 27, 2008
  *
- * Copyright © 2008 Roan Kattouw <Firstname>.<Lastname>@gmail.com
+ * Copyright © 2008 Roan Kattouw "<Firstname>.<Lastname>@gmail.com"
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -82,8 +82,8 @@ class ApiQueryDuplicateFiles extends ApiQueryGeneratorBase {
 			}
 			$op = $params['dir'] == 'descending' ? '<' : '>';
 			$db = $this->getDB();
-			$orig = $db->addQuotes( $this->titleTokey( $cont[0] ) );
-			$dup = $db->addQuotes( $this->titleToKey( $cont[1] ) );
+			$orig = $db->addQuotes( $cont[0] );
+			$dup = $db->addQuotes( $cont[1] );
 			$this->addWhere(
 				"i1.img_name $op $orig OR " .
 				"(i1.img_name = $orig AND " .
@@ -110,9 +110,7 @@ class ApiQueryDuplicateFiles extends ApiQueryGeneratorBase {
 			if ( ++$count > $params['limit'] ) {
 				// We've reached the one extra which shows that
 				// there are additional pages to be had. Stop here...
-				$this->setContinueEnumParameter( 'continue',
-					$this->keyToTitle( $row->orig_name ) . '|' .
-					$this->keyToTitle( $row->dup_name ) );
+				$this->setContinueEnumParameter( 'continue', $row->orig_name . '|' . $row->dup_name );
 				break;
 			}
 			if ( !is_null( $resultPageSet ) ) {
@@ -125,9 +123,7 @@ class ApiQueryDuplicateFiles extends ApiQueryGeneratorBase {
 				);
 				$fit = $this->addPageSubItem( $images[$row->orig_name], $r );
 				if ( !$fit ) {
-					$this->setContinueEnumParameter( 'continue',
-							$this->keyToTitle( $row->orig_name ) . '|' .
-							$this->keyToTitle( $row->dup_name ) );
+					$this->setContinueEnumParameter( 'continue', $row->orig_name . '|' . $row->dup_name );
 					break;
 				}
 			}

@@ -692,6 +692,16 @@ class Sanitizer {
 				}
 			}
 
+			if ( $attribute === 'align' && !in_array( $element, $cells ) ) {
+				if ( $value === 'center' ) {
+					$style .= ' margin-left: auto;';
+					$property = 'margin-right';
+					$value = 'auto';
+				} else {
+					$property = 'float';
+				}
+			}
+
 			$style .= " $property: $value;";
 
 			unset( $attribs[$attribute] );
@@ -1243,7 +1253,7 @@ class Sanitizer {
 	 * a. named char refs can only be &lt; &gt; &amp; &quot;, others are
 	 *   numericized (this way we're well-formed even without a DTD)
 	 * b. any numeric char refs must be legal chars, not invalid or forbidden
-	 * c. use &#x, not &#X
+	 * c. use lower cased "&#x", not "&#X"
 	 * d. fix or reject non-valid attributes
 	 *
 	 * @param $text String
@@ -1411,7 +1421,7 @@ class Sanitizer {
 	/**
 	 * If the named entity is defined in the HTML 4.0/XHTML 1.0 DTD,
 	 * return the UTF-8 encoding of that character. Otherwise, returns
-	 * pseudo-entity source (eg &foo;)
+	 * pseudo-entity source (eg "&foo;")
 	 *
 	 * @param $name String
 	 * @return String

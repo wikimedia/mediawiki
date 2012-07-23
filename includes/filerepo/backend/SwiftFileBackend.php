@@ -56,22 +56,25 @@ class SwiftFileBackend extends FileBackendStore {
 	/**
 	 * @see FileBackendStore::__construct()
 	 * Additional $config params include:
-	 *    swiftAuthUrl       : Swift authentication server URL
-	 *    swiftUser          : Swift user used by MediaWiki (account:username)
-	 *    swiftKey           : Swift authentication key for the above user
-	 *    swiftAuthTTL       : Swift authentication TTL (seconds)
-	 *    swiftAnonUser      : Swift user used for end-user requests (account:username)
-	 *    swiftUseCDN        : Whether a Cloud Files Content Delivery Network is set up
-	 *    swiftCDNExpiry     : How long (in seconds) to store content in the CDN.
-	 *                         If files may likely change, this should probably not exceed
-	 *                         a few days. For example, deletions may take this long to apply.
-	 *                         If object purging is enabled, however, this is not an issue.
-	 *    swiftCDNPurgable   : Whether object purge requests are allowed by the CDN.
-	 *    shardViaHashLevels : Map of container names to sharding config with:
-	 *                         'base'   : base of hash characters, 16 or 36
-	 *                         'levels' : the number of hash levels (and digits)
-	 *                         'repeat' : hash subdirectories are prefixed with all the
-	 *                                    parent hash directory names (e.g. "a/ab/abc")
+	 *   - swiftAuthUrl       : Swift authentication server URL
+	 *   - swiftUser          : Swift user used by MediaWiki (account:username)
+	 *   - swiftKey           : Swift authentication key for the above user
+	 *   - swiftAuthTTL       : Swift authentication TTL (seconds)
+	 *   - swiftAnonUser      : Swift user used for end-user requests (account:username).
+	 *                          If set, then views of public containers are assumed to go
+	 *                          through this user. If not set, then public containers are
+	 *                          accessible to unauthenticated requests via ".r:*" in the ACL.
+	 *   - swiftUseCDN        : Whether a Cloud Files Content Delivery Network is set up
+	 *   - swiftCDNExpiry     : How long (in seconds) to store content in the CDN.
+	 *                          If files may likely change, this should probably not exceed
+	 *                          a few days. For example, deletions may take this long to apply.
+	 *                          If object purging is enabled, however, this is not an issue.
+	 *   - swiftCDNPurgable   : Whether object purge requests are allowed by the CDN.
+	 *   - shardViaHashLevels : Map of container names to sharding config with:
+	 *                             - base   : base of hash characters, 16 or 36
+	 *                             - levels : the number of hash levels (and digits)
+	 *                             - repeat : hash subdirectories are prefixed with all the
+	 *                                        parent hash directory names (e.g. "a/ab/abc")
 	 */
 	public function __construct( array $config ) {
 		parent::__construct( $config );
@@ -524,13 +527,12 @@ class SwiftFileBackend extends FileBackendStore {
 		// (b) Create container as needed
 		try {
 			$contObj = $this->createContainer( $fullCont );
-			// Make container public to end-users...
-			if ( $this->swiftAnonUser != '' ) {
-				$status->merge( $this->setContainerAccess(
-					$contObj,
-					array( $this->auth->username, $this->swiftAnonUser ), // read
-					array( $this->auth->username ) // write
-				) );
+			if ( !empty( $params['noAccess'] ) ) {
+				// Make container private to end-users...
+				$status->merge( $this->doSecureInternal( $fullCont, $dir, $params ) );
+			} else {
+				// Make container public to end-users...
+				$status->merge( $this->doPublishInternal( $fullCont, $dir, $params ) );
 			}
 			if ( $this->swiftUseCDN ) { // Rackspace style CDN
 				$contObj->make_public( $this->swiftCDNExpiry );
@@ -551,6 +553,9 @@ class SwiftFileBackend extends FileBackendStore {
 	 */
 	protected function doSecureInternal( $fullCont, $dir, array $params ) {
 		$status = Status::newGood();
+		if ( empty( $params['noAccess'] ) ) {
+			return $status; // nothing to do
+		}
 
 		// Restrict container from end-users...
 		try {
@@ -560,18 +565,53 @@ class SwiftFileBackend extends FileBackendStore {
 			// NoSuchContainerException not thrown: container must exist
 
 			// Make container private to end-users...
-			if ( $this->swiftAnonUser != '' && !isset( $contObj->mw_wasSecured ) ) {
-				$status->merge( $this->setContainerAccess(
-					$contObj,
-					array( $this->auth->username ), // read
-					array( $this->auth->username ) // write
-				) );
-				// @TODO: when php-cloudfiles supports container
-				// metadata, we can make use of that to avoid RTTs
-				$contObj->mw_wasSecured = true; // avoid useless RTTs
-			}
+			$status->merge( $this->setContainerAccess(
+				$contObj,
+				array( $this->auth->username ), // read
+				array( $this->auth->username ) // write
+			) );
 			if ( $this->swiftUseCDN && $contObj->is_public() ) { // Rackspace style CDN
 				$contObj->make_private();
+			}
+		} catch ( CDNNotEnabledException $e ) {
+			// CDN not enabled; nothing to see here
+		} catch ( CloudFilesException $e ) { // some other exception?
+			$this->handleException( $e, $status, __METHOD__, $params );
+		}
+
+		return $status;
+	}
+
+	/**
+	 * @see FileBackendStore::doPublishInternal()
+	 * @return Status
+	 */
+	protected function doPublishInternal( $fullCont, $dir, array $params ) {
+		$status = Status::newGood();
+
+		// Unrestrict container from end-users...
+		try {
+			// doPrepareInternal() should have been called,
+			// so the Swift container should already exist...
+			$contObj = $this->getContainer( $fullCont ); // normally a cache hit
+			// NoSuchContainerException not thrown: container must exist
+
+			// Make container public to end-users...
+			if ( $this->swiftAnonUser != '' ) {
+				$status->merge( $this->setContainerAccess(
+					$contObj,
+					array( $this->auth->username, $this->swiftAnonUser ), // read
+					array( $this->auth->username, $this->swiftAnonUser ) // write
+				) );
+			} else {
+				$status->merge( $this->setContainerAccess(
+					$contObj,
+					array( $this->auth->username, '.r:*' ), // read
+					array( $this->auth->username ) // write
+				) );
+			}
+			if ( $this->swiftUseCDN && !$contObj->is_public() ) { // Rackspace style CDN
+				$contObj->make_public();
 			}
 		} catch ( CDNNotEnabledException $e ) {
 			// CDN not enabled; nothing to see here
@@ -1008,11 +1048,29 @@ class SwiftFileBackend extends FileBackendStore {
 	}
 
 	/**
-	 * Set read/write permissions for a Swift container
+	 * Set read/write permissions for a Swift container.
+	 *
+	 * $readGrps is a list of the possible criteria for a request to have
+	 * access to read a container. Each item is one of the following formats:
+	 *   - account:user       : Grants access if the request is by the given user
+	 *   - .r:<regex>         : Grants access if the request is from a referrer host that
+	 *                          matches the expression and the request is not for a listing.
+	 *                          Setting this to '*' effectively makes a container public.
+	 *   - .rlistings:<regex> : Grants access if the request is from a referrer host that
+	 *                          matches the expression and the request for a listing.
+	 * 
+	 * $writeGrps is a list of the possible criteria for a request to have
+	 * access to write to a container. Each item is of the following format:
+	 *   - account:user       : Grants access if the request is by the given user
+	 *
+	 * @see http://swift.openstack.org/misc.html#acls
+	 *
+	 * In general, we don't allow listings to end-users. It's not useful, isn't well-defined
+	 * (lists are truncated to 10000 item with no way to page), and is just a performance risk.
 	 *
 	 * @param $contObj CF_Container Swift container
-	 * @param $readGrps Array Swift users who can read (account:user)
-	 * @param $writeGrps Array Swift users who can write (account:user)
+	 * @param $readGrps Array List of read access routes
+	 * @param $writeGrps Array List of write access routes
 	 * @return Status
 	 */
 	protected function setContainerAccess(

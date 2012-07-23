@@ -274,7 +274,7 @@ class LoginForm extends SpecialPage {
 
 	/**
 	 * @private
-	 * @return bool|\User
+	 * @return bool|User
 	 */
 	function addNewAccountInternal() {
 		global $wgAuth, $wgMemc, $wgAccountCreationThrottle,

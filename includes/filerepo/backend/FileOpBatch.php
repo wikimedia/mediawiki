@@ -40,17 +40,17 @@ class FileOpBatch {
 	 * Callers are responsible for handling file locking.
 	 *
 	 * $opts is an array of options, including:
-	 * 'force'        : Errors that would normally cause a rollback do not.
-	 *                  The remaining operations are still attempted if any fail.
-	 * 'allowStale'   : Don't require the latest available data.
-	 *                  This can increase performance for non-critical writes.
-	 *                  This has no effect unless the 'force' flag is set.
-	 * 'nonJournaled' : Don't log this operation batch in the file journal.
-	 * 'concurrency'  : Try to do this many operations in parallel when possible.
+	 *   - force        : Errors that would normally cause a rollback do not.
+	 *                    The remaining operations are still attempted if any fail.
+	 *   - allowStale   : Don't require the latest available data.
+	 *                    This can increase performance for non-critical writes.
+	 *                    This has no effect unless the 'force' flag is set.
+	 *   - nonJournaled : Don't log this operation batch in the file journal.
+	 *   - concurrency  : Try to do this many operations in parallel when possible.
 	 *
 	 * The resulting Status will be "OK" unless:
-	 *     a) unexpected operation errors occurred (network partitions, disk full...)
-	 *     b) significant operation errors occured and 'force' was not set
+	 *   - a) unexpected operation errors occurred (network partitions, disk full...)
+	 *   - b) significant operation errors occured and 'force' was not set
 	 *
 	 * @param $performOps Array List of FileOp operations
 	 * @param $opts Array Batch operation options

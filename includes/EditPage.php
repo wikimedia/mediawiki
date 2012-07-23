@@ -603,8 +603,8 @@ class EditPage {
 				wfProfileOut( get_class( $this ) . "::importContentFormData" );
 			}
 
-			# Truncate for whole multibyte characters. +5 bytes for ellipsis
-			$this->summary = $wgLang->truncate( $request->getText( 'wpSummary' ), 250 );
+			# Truncate for whole multibyte characters
+			$this->summary = $wgLang->truncate( $request->getText( 'wpSummary' ), 255 );
 
 			# If the summary consists of a heading, e.g. '==Foobar==', extract the title from the
 			# header syntax, e.g. 'Foobar'. This is mainly an issue when we are using wpSummary for
@@ -616,7 +616,7 @@ class EditPage {
 			# currently doing double duty as both edit summary and section title. Right now this
 			# is just to allow API edits to work around this limitation, but this should be
 			# incorporated into the actual edit form when EditPage is rewritten (Bugs 18654, 26312).
-			$this->sectiontitle = $wgLang->truncate( $request->getText( 'wpSectionTitle' ), 250 );
+			$this->sectiontitle = $wgLang->truncate( $request->getText( 'wpSectionTitle' ), 255 );
 			$this->sectiontitle = preg_replace( '/^\s*=+\s*(.*?)\s*=+\s*$/', '$1', $this->sectiontitle );
 
 			$this->edittime = $request->getVal( 'wpEdittime' );
@@ -778,7 +778,7 @@ class EditPage {
 		} elseif ( $wgUser->getOption( 'watchcreations' ) && !$this->mTitle->exists() ) {
 			# Watch creations
 			$this->watchthis = true;
-		} elseif ( $this->mTitle->userIsWatching() ) {
+		} elseif ( $wgUser->isWatched( $this->mTitle ) ) {
 			# Already watched
 			$this->watchthis = true;
 		}
@@ -1306,9 +1306,9 @@ class EditPage {
 
 		wfProfileOut( __METHOD__ . '-checks' );
 
-		// Use SELECT FOR UPDATE here to avoid transaction collision in
-		// WikiPage::updateRevisionOn() and ending in the self::AS_END case.
-		$this->mArticle->loadPageData( 'forupdate' );
+		# Load the page data from the master. If anything changes in the meantime,
+		# we detect it by using page_latest like a token in a 1 try compare-and-swap.
+		$this->mArticle->loadPageData( 'fromdbmaster' );
 		$new = !$this->mArticle->exists();
 
 		try {
@@ -1594,7 +1594,7 @@ class EditPage {
 	 */
 	protected function commitWatch() {
 		global $wgUser;
-		if ( $this->watchthis xor $this->mTitle->userIsWatching() ) {
+		if ( $wgUser->isLoggedIn() && $this->watchthis != $wgUser->isWatched( $this->mTitle ) ) {
 			$dbw = wfGetDB( DB_MASTER );
 			$dbw->begin( __METHOD__ );
 			if ( $this->watchthis ) {
@@ -1639,7 +1639,7 @@ class EditPage {
 	 * @private
 	 * @todo document
 	 *
-	 * @parma $editText string
+	 * @param $editText string
 	 *
 	 * @return bool
 	 * @deprecated since 1.WD, use mergeChangesIntoContent() instead
@@ -1734,7 +1734,7 @@ class EditPage {
 	/**
 	 * Check given input text against $wgSpamRegex, and return the text of the first match.
 	 *
-	 * @parma $text string
+	 * @param $text string
 	 *
 	 * @return string|bool  matching string or false
 	 */
@@ -1988,6 +1988,10 @@ class EditPage {
 		# automatic one and pass that in the hidden field wpAutoSummary.
 		if ( $this->missingSummary || ( $this->section == 'new' && $this->nosummary ) ) {
 			$wgOut->addHTML( Html::hidden( 'wpIgnoreBlankSummary', true ) );
+		}
+
+		if ( $this->undidRev ) {
+			$wgOut->addHTML( Html::hidden( 'wpUndidRevision', $this->undidRev ) );
 		}
 
 		if ( $this->hasPresetSummary ) {
@@ -2267,7 +2271,7 @@ class EditPage {
 	 * @return array An array in the format array( $label, $input )
 	 */
 	function getSummaryInput( $summary = "", $labelText = null, $inputAttrs = null, $spanLabelAttrs = null ) {
-		// Note: the maxlength is overriden in JS to 250 and to make it use UTF-8 bytes, not characters.
+		// Note: the maxlength is overriden in JS to 255 and to make it use UTF-8 bytes, not characters.
 		$inputAttrs = ( is_array( $inputAttrs ) ? $inputAttrs : array() ) + array(
 			'id' => 'wpSummary',
 			'maxlength' => '200',
@@ -2591,7 +2595,16 @@ HTML
 			'</div>' );
 	}
 
+	/**
+	 * Get the copyright warning
+	 *
+	 * Renamed to getCopyrightWarning(), old name kept around for backwards compatibility
+	 */
 	protected function getCopywarn() {
+		return self::getCopyrightWarning( $this->mTitle );
+	}
+
+	public static function getCopyrightWarning( $title ) {
 		global $wgRightsText;
 		if ( $wgRightsText ) {
 			$copywarnMsg = array( 'copyrightwarning',
@@ -2602,7 +2615,7 @@ HTML
 				'[[' . wfMsgForContent( 'copyrightpage' ) . ']]' );
 		}
 		// Allow for site and per-namespace customization of contribution/copyright notice.
-		wfRunHooks( 'EditPageCopyrightWarning', array( $this->mTitle, &$copywarnMsg ) );
+		wfRunHooks( 'EditPageCopyrightWarning', array( $title, &$copywarnMsg ) );
 
 		return "<div id=\"editpage-copywarn\">\n" .
 			call_user_func_array( "wfMsgNoTrans", $copywarnMsg ) . "\n</div>";
@@ -3181,8 +3194,8 @@ HTML
 	 * failure, etc).
 	 *
 	 * @todo This doesn't include category or interlanguage links.
-	 *       Would need to enhance it a bit, <s>maybe wrap them in XML
-	 *       or something...</s> that might also require more skin
+	 *       Would need to enhance it a bit, "<s>maybe wrap them in XML
+	 *       or something...</s>" that might also require more skin
 	 *       initialization, so check whether that's a problem.
 	 */
 	function livePreview() {
@@ -3325,12 +3338,14 @@ HTML
 	 * @private
 	 */
 	function checkUnicodeCompliantBrowser() {
-		global $wgBrowserBlackList;
-		if ( empty( $_SERVER["HTTP_USER_AGENT"] ) ) {
+		global $wgBrowserBlackList, $wgRequest;
+
+		$currentbrowser = $wgRequest->getHeader( 'User-Agent' );
+		if ( $currentbrowser === false ) {
 			// No User-Agent header sent? Trust it by default...
 			return true;
 		}
-		$currentbrowser = $_SERVER["HTTP_USER_AGENT"];
+
 		foreach ( $wgBrowserBlackList as $browser ) {
 			if ( preg_match( $browser, $currentbrowser ) ) {
 				return false;

@@ -1,6 +1,6 @@
 <?php
 /**
- * Maintenance script to test fileop performance
+ * Test for fileop performance.
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -27,6 +27,11 @@ error_reporting( E_ALL );
 
 require_once( dirname( __FILE__ ) . '/Maintenance.php' );
 
+/**
+ * Maintenance script to test fileop performance.
+ *
+ * @ingroup Maintenance
+ */
 class TestFileOpPerformance extends Maintenance {
 	public function __construct() {
 		parent::__construct();

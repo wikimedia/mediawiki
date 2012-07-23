@@ -107,6 +107,7 @@ class InfoAction extends FormlessAction {
 	 * @return mixed array or boolean false
 	 */
 	public static function pageCountInfo( $title ) {
+		wfProfileIn( __METHOD__ );
 		$id = $title->getArticleID();
 		$dbr = wfGetDB( DB_SLAVE );
 
@@ -114,8 +115,8 @@ class InfoAction extends FormlessAction {
 			'watchlist',
 			'COUNT(*)',
 			array(
+				'wl_namespace' => $title->getNamespace(),
 				'wl_title'     => $title->getDBkey(),
-				'wl_namespace' => $title->getNamespace()
 			),
 			__METHOD__
 		);
@@ -133,15 +134,21 @@ class InfoAction extends FormlessAction {
 			array( 'rev_page' => $id ),
 			__METHOD__
 		);
+		$result = array( 'watchers' => $watchers, 'edits' => $edits,
+			'authors' => $authors );
 
-		$views = (int)$dbr->selectField(
-			'page',
-			'page_counter',
-			array( 'page_id' => $id ),
-			__METHOD__
-		);
+		global $wgDisableCounters;
+		if ( !$wgDisableCounters ) {
+			$views = (int)$dbr->selectField(
+				'page',
+				'page_counter',
+				array( 'page_id' => $id ),
+				__METHOD__
+			);
+			$result['views'] = $views;
+		}
 
-		return array( 'watchers' => $watchers, 'edits' => $edits,
-			'authors' => $authors, 'views' => $views );
+		wfProfileOut( __METHOD__ );
+		return $result;
 	}
 }

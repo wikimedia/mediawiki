@@ -37,6 +37,7 @@
  * @author Marzedu
  * @author McDutchie
  * @author Melos
+ * @author Minerva Titani
  * @author Nemo bis
  * @author Nick1915
  * @author Ninniuz
@@ -269,7 +270,7 @@ $messages = array(
 'tog-hidepatrolled' => 'Nascondi le modifiche verificate nelle ultime modifiche',
 'tog-newpageshidepatrolled' => "Nascondi le pagine verificate dall'elenco delle pagine più recenti",
 'tog-extendwatchlist' => "Mostra tutte le modifiche agli osservati speciali, non solo l'ultima",
-'tog-usenewrc' => 'Utilizza le ultime modifiche avanzate (richiede JavaScript)',
+'tog-usenewrc' => 'Raggruppa le modifiche per pagina nelle ultime modifiche e negli osservati speciali (richiede JavaScript)',
 'tog-numberheadings' => 'Numerazione automatica dei titoli di sezione',
 'tog-showtoolbar' => 'Mostra barra degli strumenti di modifica (richiede JavaScript)',
 'tog-editondblclick' => 'Modifica delle pagine tramite doppio clic (richiede JavaScript)',
@@ -277,17 +278,17 @@ $messages = array(
 'tog-editsectiononrightclick' => 'Modifica delle sezioni tramite clic destro sul titolo (richiede JavaScript)',
 'tog-showtoc' => "Mostra l'indice per le pagine con più di 3 sezioni",
 'tog-rememberpassword' => 'Ricorda la password su questo browser (per un massimo di $1 {{PLURAL:$1|giorno|giorni}})',
-'tog-watchcreations' => 'Aggiungi le pagine create agli osservati speciali',
-'tog-watchdefault' => 'Aggiungi le pagine modificate agli osservati speciali',
-'tog-watchmoves' => 'Aggiungi le pagine spostate agli osservati speciali',
-'tog-watchdeletion' => 'Aggiungi le pagine cancellate agli osservati speciali',
+'tog-watchcreations' => 'Aggiungi le pagine create e i file caricati agli osservati speciali',
+'tog-watchdefault' => 'Aggiungi le pagine e i file modificati agli osservati speciali',
+'tog-watchmoves' => 'Aggiungi le pagine e i file spostati agli osservati speciali',
+'tog-watchdeletion' => 'Aggiungi le pagine e i file cancellati agli osservati speciali',
 'tog-minordefault' => 'Indica ogni modifica come minore (solo come predefinito)',
 'tog-previewontop' => "Mostra l'anteprima sopra la casella di modifica e non sotto",
 'tog-previewonfirst' => "Mostra l'anteprima per la prima modifica",
 'tog-nocache' => 'Disabilitare la cache delle pagine del browser',
-'tog-enotifwatchlistpages' => 'Segnalami via e-mail le modifiche alle pagine osservate',
+'tog-enotifwatchlistpages' => 'Inviami una email quando viene modificata una pagina o un file presente tra gli osservati speciali',
 'tog-enotifusertalkpages' => 'Segnalami via e-mail le modifiche alla mia pagina di discussione',
-'tog-enotifminoredits' => 'Segnalami via e-mail anche le modifiche minori',
+'tog-enotifminoredits' => 'Inviami una email anche per le modifiche minori di pagine e file',
 'tog-enotifrevealaddr' => 'Rivela il mio indirizzo e-mail nei messaggi di avviso',
 'tog-shownumberswatching' => 'Mostra il numero di utenti che hanno la pagina in osservazione',
 'tog-oldsig' => 'Firma attuale:',
@@ -620,6 +621,8 @@ Si prega di segnalare l\'accaduto a un [[Special:ListUsers/sysop|amministratore]
 'cannotdelete' => 'Non è stato possibile cancellare il file "$1".
 Potrebbe essere stato già cancellato da qualcun altro.',
 'cannotdelete-title' => 'Impossibile eliminare la pagina "$1"',
+'delete-hook-aborted' => "La cancellazione è stata annullata dall'hook.
+Non è stata restituita alcuna spiegazione.",
 'badtitle' => 'Titolo non corretto',
 'badtitletext' => 'Il titolo della pagina richiesta è vuoto, errato o con caratteri non ammessi oppure deriva da un errore nei collegamenti tra siti wiki diversi o versioni in lingue diverse dello stesso sito.',
 'perfcached' => "I dati che seguono sono estratti da una copia ''cache'' del database, e potrebbero non essere aggiornati. Un massimo di {{PLURAL:$1|un risultato è disponibile|$1 risultati sono disponibili}} in cache.",
@@ -652,6 +655,8 @@ La motivazione è la seguente: ''$2''.",
 L\'amministratore che lo ha bloccato ha fornito questa motivazione: "$3".',
 'invalidtitle-knownnamespace' => 'Titolo non valido con namespace "$2" e testo "$3"',
 'invalidtitle-unknownnamespace' => 'Titolo non valido con namespace sconosciuto "$1" e testo "$2"',
+'exception-nologin' => 'Accesso non effettuato',
+'exception-nologin-text' => "Questa pagina o azione richiede che tu abbia effettuato l'accesso su questa wiki.",
 
 # Virus scanner
 'virus-badscanner' => "Errore di configurazione: antivirus sconosciuto: ''$1''",
@@ -669,31 +674,31 @@ L'account è stato creato correttamente. Non dimenticare di personalizzare le [[
 'yourname' => 'Nome utente:',
 'yourpassword' => 'Password:',
 'yourpasswordagain' => 'Ripeti la password:',
-'remembermypassword' => 'Ricorda la password su questo computer (per un massimo di $1 {{PLURAL:$1|giorno|giorni}})',
+'remembermypassword' => 'Ricorda la password su questo browser (per un massimo di $1 {{PLURAL:$1|giorno|giorni}})',
 'securelogin-stick-https' => 'Resta connesso attraverso HTTPS dopo il login',
 'yourdomainname' => 'Specificare il dominio',
 'externaldberror' => 'Si è verificato un errore con il server di autenticazione esterno, oppure non si dispone delle autorizzazioni necessarie per aggiornare il proprio accesso esterno.',
 'login' => 'Entra',
-'nav-login-createaccount' => 'Entra / Registrati',
+'nav-login-createaccount' => 'Entra / registrati',
 'loginprompt' => 'Per accedere a {{SITENAME}} è necessario abilitare i cookie.',
-'userlogin' => 'Entra / Registrati',
+'userlogin' => 'Entra / registrati',
 'userloginnocreate' => 'Entra',
 'logout' => 'Esci',
-'userlogout' => 'esci',
+'userlogout' => 'Esci',
 'notloggedin' => 'Accesso non effettuato',
-'nologin' => "Non hai ancora un accesso? '''$1'''.",
-'nologinlink' => 'Crealo ora',
-'createaccount' => 'Crea un nuovo utente',
-'gotaccount' => "Hai già un accesso? '''$1'''.",
+'nologin' => "Non hai ancora un account? '''$1'''.",
+'nologinlink' => 'Registrati',
+'createaccount' => 'Crea un account',
+'gotaccount' => "Hai già un account? '''$1'''.",
 'gotaccountlink' => 'Entra',
 'userlogin-resetlink' => 'Hai dimenticato i tuoi dati di accesso?',
-'createaccountmail' => 'via e-mail',
+'createaccountmail' => 'Tramite email',
 'createaccountreason' => 'Motivo:',
 'badretype' => 'Le password inserite non coincidono tra loro.',
 'userexists' => 'Il nome utente inserito è già utilizzato.
 Scegliere un nome utente diverso.',
-'loginerror' => "Errore nell'accesso",
-'createaccounterror' => "Impossìbile creare s'account: $1",
+'loginerror' => "Errore durante l'accesso",
+'createaccounterror' => "Impossibile creare l'account: $1",
 'nocookiesnew' => "La registrazione è stata completata, ma non è stato possibile accedere a {{SITENAME}} perché i cookie sono disattivati. Riprovare l'accesso con il nome utente e la password appena creati dopo aver attivato i cookie nel proprio browser.",
 'nocookieslogin' => "L'accesso a {{SITENAME}} richiede l'uso dei cookie, che risultano disattivati. Riprovare l'accesso dopo aver attivato i cookie nel proprio browser.",
 'nocookiesfornew' => "L'account utente non è stato creato, poiché non abbiamo potuto confermare la sua fonte.
@@ -1297,7 +1302,7 @@ Vedi l'[[Special:BlockList|elenco dei blocchi]] per l'elenco dei bandi e dei blo
 'prefs-watchlist-days-max' => 'Massimo $1 {{PLURAL:$1|giorno|giorni}}',
 'prefs-watchlist-edits' => 'Numero di modifiche da mostrare con le funzioni avanzate:',
 'prefs-watchlist-edits-max' => 'Numero massimo: 1000',
-'prefs-watchlist-token' => 'Token Osservati speciali:',
+'prefs-watchlist-token' => 'Token osservati speciali:',
 'prefs-misc' => 'Varie',
 'prefs-resetpass' => 'Cambia password',
 'prefs-changeemail' => 'Modifica e-mail',
@@ -1766,6 +1771,7 @@ $1',
 'lockmanager-fail-releaselock' => 'Non riuscito rilascio del blocco per "$1".',
 'lockmanager-fail-db-bucket' => 'Impossibile contattare i necessari database di blocco nel bucket $1.',
 'lockmanager-fail-db-release' => 'Impossibile revocare i blocchi sul database $1.',
+'lockmanager-fail-svr-acquire' => 'Impossibile acquisire blocchi sul server $1.',
 'lockmanager-fail-svr-release' => 'Impossibile revocare i blocchi sul server $1.',
 
 # ZipDirectoryReader
@@ -3030,6 +3036,10 @@ $1',
 'sp-newimages-showfrom' => 'Mostra i file più recenti a partire dalle ore $2 del $1',
 
 # Video information, used by Language::formatTimePeriod() to format lengths in the above messages
+'seconds-abbrev' => '$1&nbsp;s',
+'minutes-abbrev' => '$1nbsp;min',
+'hours-abbrev' => '$1nbsp;h',
+'days-abbrev' => '$1nbsp;gg.',
 'seconds' => '{{PLURAL:$1|un secondo|$1 secondi}}',
 'minutes' => '{{PLURAL:$1|un minuto|$1 minuti}}',
 'hours' => "{{PLURAL:$1|un'ora|$1 ore}}",
@@ -3470,7 +3480,7 @@ I collegamenti successivi, sulla stessa riga, sono considerati come eccezioni (o
 'limitall' => 'tutti',
 
 # E-mail address confirmation
-'confirmemail' => 'Conferma indirizzo e-mail',
+'confirmemail' => 'Conferma indirizzo email',
 'confirmemail_noemail' => 'Non è stato indicato un indirizzo e-mail valido nelle proprie [[Special:Preferences|preferenze]].',
 'confirmemail_text' => "{{SITENAME}} richiede la verifica dell'indirizzo e-mail prima di poter usare le relative funzioni. Premere il pulsante qui sotto per inviare una richiesta di conferma al proprio indirizzo; nel messaggio è presente un collegamento che contiene un codice. Visitare il collegamento con il proprio browser per confermare che l'indirizzo e-mail è valido.",
 'confirmemail_pending' => "Il codice di conferma è già stato spedito via posta elettronica; se l'account è stato
@@ -3826,6 +3836,8 @@ Le immagini vengono mostrate alla massima risoluzione disponibile, per gli altri
 'api-error-empty-file' => 'Il file selezionato era vuoto.',
 'api-error-emptypage' => 'La creazione di nuove pagine vuote non è consentita.',
 'api-error-fetchfileerror' => "Errore interno: c'è stato un problema durante il recupero del documento.",
+'api-error-fileexists-forbidden' => 'Un file di nome "$1" già esiste e non può essere sovrascritto.',
+'api-error-fileexists-shared-forbidden' => 'Un file di nome "$1" già esiste nel repository condiviso e non può essere sovrascritto.',
 'api-error-file-too-large' => 'Il file selezionato era troppo grande.',
 'api-error-filename-tooshort' => 'Il nome del file è troppo breve.',
 'api-error-filetype-banned' => 'Questo tipo di file non è accettato.',
@@ -3864,6 +3876,4 @@ Le immagini vengono mostrate alla massima risoluzione disponibile, per gli altri
 'duration-centuries' => '$1 {{PLURAL:$1|secolo|secoli}}',
 'duration-millennia' => '$1 {{PLURAL:$1|millennio|millenni}}',
 
-# Unknown messages
-'lockmanager-fail-svr-acquire' => 'Impossibile acquisire blocchi sul server $1.',
 );

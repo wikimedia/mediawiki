@@ -412,24 +412,24 @@ $messages = array(
 'tog-editsectiononrightclick' => 'Einzelne Abschnitte per Rechtsklick bearbeiten (benötigt JavaScript)',
 'tog-showtoc' => 'Anzeige eines Inhaltsverzeichnisses auf Seiten mit mehr als drei Überschriften',
 'tog-rememberpassword' => 'Mit diesem Browser dauerhaft angemeldet bleiben (maximal $1 {{PLURAL:$1|Tag|Tage}})',
-'tog-watchcreations' => 'Selbst erstellte Seiten automatisch beobachten',
-'tog-watchdefault' => 'Selbst geänderte Seiten automatisch beobachten',
-'tog-watchmoves' => 'Selbst verschobene Seiten automatisch beobachten',
-'tog-watchdeletion' => 'Selbst gelöschte Seiten automatisch beobachten',
+'tog-watchcreations' => 'Selbst erstellte Seiten und hochgeladene Dateien automatisch beobachten',
+'tog-watchdefault' => 'Selbst geänderte Seiten und Dateien automatisch beobachten',
+'tog-watchmoves' => 'Selbst verschobene Seiten und Dateien automatisch beobachten',
+'tog-watchdeletion' => 'Selbst gelöschte Seiten und Dateien automatisch beobachten',
 'tog-minordefault' => 'Eigene Änderungen standardmäßig als geringfügig markieren',
 'tog-previewontop' => 'Vorschau oberhalb des Bearbeitungsfensters anzeigen',
 'tog-previewonfirst' => 'Beim ersten Bearbeiten immer die Vorschau anzeigen',
 'tog-nocache' => 'Seitencache des Browsers deaktivieren',
-'tog-enotifwatchlistpages' => 'Bei Änderungen an beobachteten Seiten E-Mails senden',
+'tog-enotifwatchlistpages' => 'Bei Änderungen an beobachteten Seiten oder Dateien E-Mails senden',
 'tog-enotifusertalkpages' => 'Bei Änderungen an meiner Benutzer-Diskussionsseite E-Mails senden',
-'tog-enotifminoredits' => 'Auch bei kleinen Änderungen an Seiten E-Mails senden',
+'tog-enotifminoredits' => 'Auch bei kleinen Änderungen an Seiten und Dateien E-Mails senden',
 'tog-enotifrevealaddr' => 'Meine E-Mail-Adresse in Benachrichtigungs-E-Mails anzeigen',
 'tog-shownumberswatching' => 'Anzahl der beobachtenden Benutzer anzeigen',
 'tog-oldsig' => 'Vorhandene Signatur:',
 'tog-fancysig' => 'Signatur als Wikitext behandeln (ohne automatische Verlinkung)',
 'tog-externaleditor' => 'Externen Editor standardmäßig nutzen (nur für Experten, erfordert spezielle Einstellungen auf dem eigenen Computer. [//www.mediawiki.org/wiki/Manual:External_editors Weitere Informationen hierzu.])',
 'tog-externaldiff' => 'Externes Programm standardmäßig für Versionsunterschiede nutzen (nur für Experten, erfordert spezielle Einstellungen auf dem eigenen Computer. [//www.mediawiki.org/wiki/Manual:External_editors Weitere Informationen hierzu.])',
-'tog-showjumplinks' => '„Wechseln zu“-Links aktivieren',
+'tog-showjumplinks' => '„Wechseln-zu“-Links aktivieren',
 'tog-uselivepreview' => 'Vorschau sofort anzeigen (benötigt JavaScript) (experimentell)',
 'tog-forceeditsummary' => 'Warnen, sofern beim Speichern die Zusammenfassung fehlt',
 'tog-watchlisthideown' => 'Eigene Bearbeitungen in der Beobachtungsliste ausblenden',
@@ -754,6 +754,8 @@ Falls dies nicht  zutrifft, hast du eventuell einen Fehler in der Software gefun
 'cannotdelete' => 'Die Seite oder Datei „$1“ kann nicht gelöscht werden.
 Möglicherweise wurde sie bereits von jemand anderem gelöscht.',
 'cannotdelete-title' => 'Seite „$1“ kann nicht gelöscht werden',
+'delete-hook-aborted' => 'Die Löschung wurde von einer Programmerweiterung zu MediaWiki verhindert.
+Es ist hierzu keine Erklärung verfügbar.',
 'badtitle' => 'Ungültiger Titel',
 'badtitletext' => 'Der Titel der angeforderten Seite ist ungültig, leer oder ein ungültiger Sprachlink von einem anderen Wiki.',
 'perfcached' => 'Die folgenden Daten stammen aus dem Cache und sind möglicherweise nicht aktuell. Maximal {{PLURAL:$1|ein Ergebnis ist|$1 Ergebnisse sind}} im Cache verfügbar.',
@@ -775,7 +777,7 @@ Bitte versuche es in ein paar Minuten erneut.',
 'editinginterface' => "'''Warnung:''' Diese Seite enthält von der MediaWiki-Software genutzten Text.
 Änderungen auf dieser Seite wirken sich auf die Benutzeroberfläche aus.
 Ziehe bitte im Fall von Übersetzungen in Betracht, diese bei [//translatewiki.net/wiki/Main_Page?setlang=de translatewiki.net], der Lokalisierungsplattform für MediaWiki, durchzuführen.",
-'sqlhidden' => '(SQL-Abfrage versteckt)',
+'sqlhidden' => "''Die SQL-Datenbankabfrage ist verborgen.''",
 'cascadeprotected' => 'Diese Seite ist zur Bearbeitung gesperrt. Sie ist in die {{PLURAL:$1|folgende Seite|folgenden Seiten}} eingebunden, die mittels der Kaskadensperroption geschützt {{PLURAL:$1|ist|sind}}:
 $2',
 'namespaceprotected' => "Du hast nicht die erforderliche Berechtigung, um Seiten im Namensraum '''$1''' bearbeiten zu können.",
@@ -789,6 +791,8 @@ Die Sperre wurde durch [[User:$1|$1]] mit der Begründung ''„$2“'' eingerich
 Der Administrator, der den Schreibzugriff sperrte, gab folgenden Grund an: „$3“.',
 'invalidtitle-knownnamespace' => 'Ungültiger Titel mit Namensraum „$2“ und Text „$3“',
 'invalidtitle-unknownnamespace' => 'Ungültiger Titel mit unbekannter Namensraumnummer $1 und Text „$2“',
+'exception-nologin' => 'Nicht angemeldet',
+'exception-nologin-text' => 'Diese Seite oder Aktion erfordert, dass du auf diesem Wiki angemeldet bist.',
 
 # Virus scanner
 'virus-badscanner' => "Fehlerhafte Konfiguration: unbekannter Virenscanner: ''$1''",
@@ -1618,6 +1622,7 @@ Dies kann nicht mehr rückgängig gemacht werden.',
 'right-writeapi' => 'Benutzung der writeAPI',
 'right-delete' => 'Seiten löschen',
 'right-bigdelete' => 'Seiten mit großer Versionsgeschichte löschen',
+'right-deletelogentry' => 'Einzelne Logbuch-Einträge löschen und wiederherstellen',
 'right-deleterevision' => 'Einzelne Versionen einer Seite löschen und wiederherstellen',
 'right-deletedhistory' => 'Gelöschte Versionen in der Versionsgeschichte ansehen, ohne zugehörigen Text',
 'right-deletedtext' => 'Gelöschte Texte und Versionsunterschiede zwischen gelöschten Versionen ansehen',
@@ -1931,6 +1936,7 @@ Wenn das Problem weiter besteht, informiere einen [[Special:ListUsers/sysop|Syst
 'lockmanager-fail-releaselock' => 'Die Sperre für „$1“ konnte nicht freigegeben werden.',
 'lockmanager-fail-db-bucket' => 'Es konnte mit Sammelabruf $1 keine ausreichende Anzahl an Verbindungen zu Sperrdatenbanken hergestellt werden.',
 'lockmanager-fail-db-release' => 'Die Sperren auf Datenbank $1 konnten nicht freigegeben werden.',
+'lockmanager-fail-svr-acquire' => 'Die Sperren auf Server $1 konnte nicht abgerufen werden.',
 'lockmanager-fail-svr-release' => 'Die Sperren auf Server $1 konnten nicht freigegeben werden.',
 
 # ZipDirectoryReader
@@ -2152,7 +2158,7 @@ Jede Zeile enthält Links zur ersten und zweiten Weiterleitung sowie dem Ziel de
 'fewestrevisions' => 'Seiten mit den wenigsten Versionen',
 
 # Miscellaneous special pages
-'nbytes' => '$1 {{PLURAL:$1|Byte|Bytes}}',
+'nbytes' => '$1 {{PLURAL:$1|Byte|Byte}}',
 'ncategories' => '$1 {{PLURAL:$1|Kategorie|Kategorien}}',
 'nlinks' => '{{PLURAL:$1|1 Link|$1 Links}}',
 'nmembers' => '{{PLURAL:$1|1 Eintrag|$1 Einträge}}',
@@ -3784,7 +3790,7 @@ Bitte nutze die reguläre Vorschau.',
 
 # Friendlier slave lag warnings
 'lag-warn-normal' => 'Bearbeitungen der letzten {{PLURAL:$1|Sekunde|$1 Sekunden}} werden in dieser Liste noch nicht angezeigt.',
-'lag-warn-high' => 'Auf Grund hoher Datenbankauslastung werden die Bearbeitungen der letzten {{PLURAL:$1|Sekunde|$1 Sekunden}} in dieser Liste noch nicht angezeigt.',
+'lag-warn-high' => 'Auf Grund hoher Datenbankauslastung werden die Bearbeitungen der letzten {{PLURAL:$1|Sekunde|$1 Sekunden}} noch nicht in dieser Liste angezeigt.',
 
 # Watchlist editor
 'watchlistedit-numitems' => 'Deine Beobachtungsliste enthält {{PLURAL:$1|einen Eintrag|$1 Einträge}}. Die Diskussionsseiten wurden dabei nicht mitgezählt.',
@@ -3857,8 +3863,8 @@ Eine [{{SERVER}}{{SCRIPTPATH}}/COPYING Kopie der ''GNU General Public License'']
 'version-software' => 'Installierte Software',
 'version-software-product' => 'Software',
 'version-software-version' => 'Version',
-'version-entrypoints' => 'Eingangspunkt-URLs',
-'version-entrypoints-header-entrypoint' => 'Eingangspunkt',
+'version-entrypoints' => 'URLs der Einstiegspunkte',
+'version-entrypoints-header-entrypoint' => 'Einstiegspunkt',
 'version-entrypoints-header-url' => 'URL',
 'version-entrypoints-articlepath' => '[https://www.mediawiki.org/wiki/Manual:$wgArticlePath Artikelpfad]',
 'version-entrypoints-scriptpath' => '[https://www.mediawiki.org/wiki/Manual:$wgScriptPath Skriptpfad]',
@@ -4022,6 +4028,8 @@ Anderenfalls kannst du auch das untenstehende einfache Formular nutzen. Dein Kom
 'api-error-empty-file' => 'Die hochgeladene Datei war leer.',
 'api-error-emptypage' => 'Es ist nicht erlaubt, neue leere Seiten zu erstellen.',
 'api-error-fetchfileerror' => 'Interner Fehler: Beim Abrufen der Datei ist ein Fehler aufgetreten.',
+'api-error-fileexists-forbidden' => 'Eine Datei namens „$1“ ist bereits vorhanden und kann nicht überschrieben werden.',
+'api-error-fileexists-shared-forbidden' => 'Eine Datei namens „$1“ ist bereits im gemeinsamen Dateirepositorium vorhanden und kann daher nicht überschrieben werden.',
 'api-error-file-too-large' => 'Die hochgeladene Datei war zu groß.',
 'api-error-filename-tooshort' => 'Der Dateiname ist zu kurz.',
 'api-error-filetype-banned' => 'Diese Dateiendung ist gesperrt.',
@@ -4060,6 +4068,4 @@ Anderenfalls kannst du auch das untenstehende einfache Formular nutzen. Dein Kom
 'duration-centuries' => '$1 {{PLURAL:$1|Jahrhundert|Jahrhunderte}}',
 'duration-millennia' => '$1 {{PLURAL:$1|Jahrtausend|Jahrtausende}}',
 
-# Unknown messages
-'lockmanager-fail-svr-acquire' => 'Die Sperren auf Server $1 konnte nicht abgerufen werden.',
 );

@@ -4,7 +4,7 @@
  *
  * Created on Oct 4, 2008
  *
- * Copyright © 2008 Roan Kattouw <Firstname>.<Lastname>@gmail.com
+ * Copyright © 2008 Roan Kattouw "<Firstname>.<Lastname>@gmail.com"
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -76,7 +76,7 @@ class ApiQueryWatchlistRaw extends ApiQueryGeneratorBase {
 					"original value returned by the previous query", "_badcontinue" );
 			}
 			$ns = intval( $cont[0] );
-			$title = $this->getDB()->addQuotes( $this->titleToKey( $cont[1] ) );
+			$title = $this->getDB()->addQuotes( $cont[1] );
 			$op = $params['dir'] == 'ascending' ? '>' : '<';
 			$this->addWhere(
 				"wl_namespace $op $ns OR " .
@@ -103,8 +103,7 @@ class ApiQueryWatchlistRaw extends ApiQueryGeneratorBase {
 		foreach ( $res as $row ) {
 			if ( ++$count > $params['limit'] ) {
 				// We've reached the one extra which shows that there are additional pages to be had. Stop here...
-				$this->setContinueEnumParameter( 'continue', $row->wl_namespace . '|' .
-									$this->keyToTitle( $row->wl_title ) );
+				$this->setContinueEnumParameter( 'continue', $row->wl_namespace . '|' . $row->wl_title );
 				break;
 			}
 			$t = Title::makeTitle( $row->wl_namespace, $row->wl_title );
@@ -118,8 +117,7 @@ class ApiQueryWatchlistRaw extends ApiQueryGeneratorBase {
 				}
 				$fit = $this->getResult()->addValue( $this->getModuleName(), null, $vals );
 				if ( !$fit ) {
-					$this->setContinueEnumParameter( 'continue', $row->wl_namespace . '|' .
-									$this->keyToTitle( $row->wl_title ) );
+					$this->setContinueEnumParameter( 'continue', $row->wl_namespace . '|' . $row->wl_title );
 					break;
 				}
 			} else {

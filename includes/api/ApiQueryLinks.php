@@ -4,7 +4,7 @@
  *
  * Created on May 12, 2007
  *
- * Copyright © 2006 Yuri Astrakhan <Firstname><Lastname>@gmail.com
+ * Copyright © 2006 Yuri Astrakhan "<Firstname><Lastname>@gmail.com"
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -119,7 +119,7 @@ class ApiQueryLinks extends ApiQueryGeneratorBase {
 			$op = $params['dir'] == 'descending' ? '<' : '>';
 			$plfrom = intval( $cont[0] );
 			$plns = intval( $cont[1] );
-			$pltitle = $this->getDB()->addQuotes( $this->titleToKey( $cont[2] ) );
+			$pltitle = $this->getDB()->addQuotes( $cont[2] );
 			$this->addWhere(
 				"{$this->prefix}_from $op $plfrom OR " .
 				"({$this->prefix}_from = $plfrom AND " .
@@ -157,8 +157,7 @@ class ApiQueryLinks extends ApiQueryGeneratorBase {
 					// We've reached the one extra which shows that
 					// there are additional pages to be had. Stop here...
 					$this->setContinueEnumParameter( 'continue',
-						"{$row->pl_from}|{$row->pl_namespace}|" .
-						$this->keyToTitle( $row->pl_title ) );
+						"{$row->pl_from}|{$row->pl_namespace}|{$row->pl_title}" );
 					break;
 				}
 				$vals = array();
@@ -166,8 +165,7 @@ class ApiQueryLinks extends ApiQueryGeneratorBase {
 				$fit = $this->addPageSubItem( $row->pl_from, $vals );
 				if ( !$fit ) {
 					$this->setContinueEnumParameter( 'continue',
-						"{$row->pl_from}|{$row->pl_namespace}|" .
-						$this->keyToTitle( $row->pl_title ) );
+						"{$row->pl_from}|{$row->pl_namespace}|{$row->pl_title}" );
 					break;
 				}
 			}
@@ -179,8 +177,7 @@ class ApiQueryLinks extends ApiQueryGeneratorBase {
 					// We've reached the one extra which shows that
 					// there are additional pages to be had. Stop here...
 					$this->setContinueEnumParameter( 'continue',
-						"{$row->pl_from}|{$row->pl_namespace}|" .
-						$this->keyToTitle( $row->pl_title ) );
+						"{$row->pl_from}|{$row->pl_namespace}|{$row->pl_title}" );
 					break;
 				}
 				$titles[] = Title::makeTitle( $row->pl_namespace, $row->pl_title );

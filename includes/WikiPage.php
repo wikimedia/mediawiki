@@ -34,30 +34,6 @@ abstract class Page {}
  * @internal documentation reviewed 15 Mar 2010
  */
 class WikiPage extends Page {
-	// doDeleteArticleReal() return values. Values less than zero indicate fatal errors,
-	// values greater than zero indicate that there were problems not resulting in page
-	// not being deleted
-
-	/**
-	 * Delete operation aborted by hook
-	 */
-	const DELETE_HOOK_ABORTED = -1;
-
-	/**
-	 * Deletion successful
-	 */
-	const DELETE_SUCCESS = 0;
-
-	/**
-	 * Page not found
-	 */
-	const DELETE_NO_PAGE = 1;
-
-	/**
-	 * No revisions found to delete
-	 */
-	const DELETE_NO_REVISIONS = 2;
-
 	// Constants for $mDataLoadedFrom and related
 
 	/**
@@ -606,7 +582,14 @@ class WikiPage extends Page {
 			return; // page doesn't exist or is missing page_latest info
 		}
 
-		$revision = Revision::newFromPageId( $this->getId(), $latest );
+		// Bug 37225: if session S1 loads the page row FOR UPDATE, the result always includes the
+		// latest changes committed. This is true even within REPEATABLE-READ transactions, where
+		// S1 normally only sees changes committed before the first S1 SELECT. Thus we need S1 to
+		// also gets the revision row FOR UPDATE; otherwise, it may not find it since a page row
+		// UPDATE and revision row INSERT by S2 may have happened after the first S1 SELECT.
+		// http://dev.mysql.com/doc/refman/5.0/en/set-transaction.html#isolevel_repeatable-read.
+		$flags = ( $this->mDataLoadedFrom == self::DATA_FOR_UPDATE ) ? Revision::LOCKING_READ : 0;
+		$revision = Revision::newFromPageId( $this->getId(), $latest, $flags );
 		if ( $revision ) { // sanity
 			$this->setLastEdit( $revision );
 		}
@@ -1288,7 +1271,7 @@ class WikiPage extends Page {
 			$conditions,
 			__METHOD__ );
 
-		$result = $dbw->affectedRows() != 0;
+		$result = $dbw->affectedRows() > 0;
 		if ( $result ) {
 			$this->updateRedirectOn( $dbw, $rt, $lastRevIsRedirect );
 			$this->setLastEdit( $revision );
@@ -1724,6 +1707,10 @@ class WikiPage extends Page {
 
 				wfProfileOut( __METHOD__ );
 				return $status;
+			} elseif ( !$old_content ) {
+				# Sanity check for bug 37225
+				wfProfileOut( __METHOD__ );
+				throw new MWException( "Could not find text for current revision {$oldid}." );
 			}
 
 			$revision = new Revision( array(
@@ -1739,6 +1726,10 @@ class WikiPage extends Page {
 				'content_model' => $content->getModel(),
 				'content_format' => $serialisation_format,
 			) ); #XXX: pass content object?!
+
+			# Bug 37225: use accessor to get the text as Revision may trim it.
+			# After trimming, the text may be a duplicate of the current text.
+			$content = $revision->getContent(); // sanity; EditPage should trim already
 
 			$changed = !$content->equals( $old_content );
 
@@ -1871,6 +1862,9 @@ class WikiPage extends Page {
 				'content_format' => $serialisation_format,
 			) );
 			$revisionId = $revision->insertOn( $dbw );
+
+			# Bug 37225: use accessor to get the text as Revision may trim it
+			$text = $revision->getText(); // sanity; EditPage should trim already
 
 			# Update the page record with revision data
 			$this->updateRevisionOn( $dbw, $revision, 0 );
@@ -2423,7 +2417,10 @@ class WikiPage extends Page {
 	}
 
 	/**
-	 * Same as doDeleteArticleReal(), but returns more detailed success/failure status
+	 * Same as doDeleteArticleReal(), but returns a simple boolean. This is kept around for
+	 * backwards compatibility, if you care about error reporting you should use
+	 * doDeleteArticleReal() instead.
+	 *
 	 * Deletes the article with database consistency, writes logs, purges caches
 	 *
 	 * @param $reason string delete reason for deletion log
@@ -2441,8 +2438,8 @@ class WikiPage extends Page {
 	public function doDeleteArticle(
 		$reason, $suppress = false, $id = 0, $commit = true, &$error = '', User $user = null
 	) {
-		return $this->doDeleteArticleReal( $reason, $suppress, $id, $commit, $error, $user )
-			== WikiPage::DELETE_SUCCESS;
+		$status = $this->doDeleteArticleReal( $reason, $suppress, $id, $commit, $error, $user );
+		return $status->isGood();
 	}
 
 	/**
@@ -2459,7 +2456,9 @@ class WikiPage extends Page {
 	 * @param $commit boolean defaults to true, triggers transaction end
 	 * @param &$error Array of errors to append to
 	 * @param $user User The deleting user
-	 * @return int: One of WikiPage::DELETE_* constants
+	 * @return Status: Status object; if successful, $status->value is the log_id of the
+	 *                 deletion log entry. If the page couldn't be deleted because it wasn't
+	 *                 found, $status is a non-fatal 'cannotdelete' error
 	 */
 	public function doDeleteArticleReal(
 		$reason, $suppress = false, $id = 0, $commit = true, &$error = '', User $user = null
@@ -2468,20 +2467,28 @@ class WikiPage extends Page {
 
 		wfDebug( __METHOD__ . "\n" );
 
+		$status = Status::newGood();
+
 		if ( $this->mTitle->getDBkey() === '' ) {
-			return WikiPage::DELETE_NO_PAGE;
+			$status->error( 'cannotdelete', wfEscapeWikiText( $this->getTitle()->getPrefixedText() ) );
+			return $status;
 		}
 
 		$user = is_null( $user ) ? $wgUser : $user;
-		if ( ! wfRunHooks( 'ArticleDelete', array( &$this, &$user, &$reason, &$error ) ) ) {
-			return WikiPage::DELETE_HOOK_ABORTED;
+		if ( ! wfRunHooks( 'ArticleDelete', array( &$this, &$user, &$reason, &$error, &$status ) ) ) {
+			if ( $status->isOK() ) {
+				// Hook aborted but didn't set a fatal status
+				$status->fatal( 'delete-hook-aborted' );
+			}
+			return $status;
 		}
 
 		if ( $id == 0 ) {
 			$this->loadPageData( 'forupdate' );
 			$id = $this->getID();
 			if ( $id == 0 ) {
-				return WikiPage::DELETE_NO_PAGE;
+				$status->error( 'cannotdelete', wfEscapeWikiText( $this->getTitle()->getPrefixedText() ) );
+				return $status;
 			}
 		}
 
@@ -2551,7 +2558,8 @@ class WikiPage extends Page {
 
 		if ( !$ok ) {
 			$dbw->rollback( __METHOD__ );
-			return WikiPage::DELETE_NO_REVISIONS;
+			$status->error( 'cannotdelete', wfEscapeWikiText( $this->getTitle()->getPrefixedText() ) );
+			return $status;
 		}
 
 		$this->doDeleteUpdates( $id, $content );
@@ -2571,7 +2579,8 @@ class WikiPage extends Page {
 		}
 
 		wfRunHooks( 'ArticleDeleteComplete', array( &$this, &$user, $reason, $id ) );
-		return WikiPage::DELETE_SUCCESS;
+		$status->value = $logid;
+		return $status;
 	}
 
 	/**

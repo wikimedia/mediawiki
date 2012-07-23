@@ -35,7 +35,7 @@ class JSParseHelper extends Maintenance {
 		if ( $this->hasArg() ) {
 			$files = $this->mArgs;
 		} else {
-			$this->maybeHelp( true ); // @fixme this is a lame API :)
+			$this->maybeHelp( true ); // @todo fixme this is a lame API :)
 			exit( 1 ); // it should exit from the above first...
 		}
 

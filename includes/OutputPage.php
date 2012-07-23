@@ -36,10 +36,10 @@
  * @todo document
  */
 class OutputPage extends ContextSource {
-	/// Should be private. Used with addMeta() which adds <meta>
+	/// Should be private. Used with addMeta() which adds "<meta>"
 	var $mMetatags = array();
 
-	/// <meta keywords="stuff"> most of the time the first 10 links to an article
+	/// "<meta keywords='stuff'>" most of the time the first 10 links to an article
 	var $mKeywords = array();
 
 	var $mLinktags = array();
@@ -50,7 +50,7 @@ class OutputPage extends ContextSource {
 	/// Should be private - has getter and setter. Contains the HTML title
 	var $mPagetitle = '';
 
-	/// Contains all of the <body> content. Should be private we got set/get accessors and the append() method.
+	/// Contains all of the "<body>" content. Should be private we got set/get accessors and the append() method.
 	var $mBodytext = '';
 
 	/**
@@ -60,7 +60,7 @@ class OutputPage extends ContextSource {
 	 */
 	public $mDebugtext = ''; // TODO: we might want to replace it by wfDebug() wfDebugLog()
 
-	/// Should be private. Stores contents of <title> tag
+	/// Should be private. Stores contents of "<title>" tag
 	var $mHTMLtitle = '';
 
 	/// Should be private. Is the displayed content related to the source of the corresponding wiki article.
@@ -116,8 +116,8 @@ class OutputPage extends ContextSource {
 	/**
 	 * Should be private. Used for JavaScript (pre resource loader)
 	 * We should split js / css.
-	 * mScripts content is inserted as is in <head> by Skin. This might contains
-	 * either a link to a stylesheet or inline css.
+	 * mScripts content is inserted as is in "<head>" by Skin. This might
+	 * contains either a link to a stylesheet or inline css.
 	 */
 	var $mScripts = '';
 
@@ -135,7 +135,7 @@ class OutputPage extends ContextSource {
 	 */
 	var $mPageLinkTitle = '';
 
-	/// Array of elements in <head>. Parser might add its own headers!
+	/// Array of elements in "<head>". Parser might add its own headers!
 	var $mHeadItems = array();
 
 	// @todo FIXME: Next variables probably comes from the resource loader
@@ -197,7 +197,7 @@ class OutputPage extends ContextSource {
 
 	/**
 	 * Comes from the parser. This was probably made to load CSS/JS only
-	 * if we had <gallery>. Used directly in CategoryPage.php
+	 * if we had "<gallery>". Used directly in CategoryPage.php
 	 * Looks like resource loader can replace this.
 	 */
 	var $mNoGallery = false;
@@ -237,7 +237,6 @@ class OutputPage extends ContextSource {
 	private $mFollowPolicy = 'follow';
 	private $mVaryHeader = array(
 		'Accept-Encoding' => array( 'list-contains=gzip' ),
-		'Cookie' => null
 	);
 
 	/**
@@ -293,7 +292,7 @@ class OutputPage extends ContextSource {
 	}
 
 	/**
-	 * Add a new <meta> tag
+	 * Add a new "<meta>" tag
 	 * To add an http-equiv meta tag, precede the name with "http:"
 	 *
 	 * @param $name String tag name
@@ -406,7 +405,7 @@ class OutputPage extends ContextSource {
 	/**
 	 * Add a self-contained script tag with the given contents
 	 *
-	 * @param $script String: JavaScript text, no <script> tags
+	 * @param $script String: JavaScript text, no "<script>" tags
 	 */
 	public function addInlineScript( $script ) {
 		$this->mScripts .= Html::inlineScript( "\n$script\n" ) . "\n";
@@ -780,7 +779,7 @@ class OutputPage extends ContextSource {
 	}
 
 	/**
-	 * "HTML title" means the contents of <title>.
+	 * "HTML title" means the contents of "<title>".
 	 * It is stored as plain, unescaped text and will be run through htmlspecialchars in the skin file.
 	 *
 	 * @param $name string
@@ -794,7 +793,7 @@ class OutputPage extends ContextSource {
 	}
 
 	/**
-	 * Return the "HTML title", i.e. the content of the <title> tag.
+	 * Return the "HTML title", i.e. the content of the "<title>" tag.
 	 *
 	 * @return String
 	 */
@@ -805,7 +804,7 @@ class OutputPage extends ContextSource {
 	/**
 	 * Set $mRedirectedFrom, the Title of the page which redirected us to the current page.
 	 *
-	 * param @t Title
+	 * @param $t Title
 	 */
 	public function setRedirectedFrom( $t ) {
 		$this->mRedirectedFrom = $t;
@@ -1363,11 +1362,11 @@ class OutputPage extends ContextSource {
 	 * Set the timestamp of the revision which will be displayed. This is used
 	 * to avoid a extra DB call in Skin::lastModified().
 	 *
-	 * @param $revid Mixed: string, or null
+	 * @param $timestamp Mixed: string, or null
 	 * @return Mixed: previous value
 	 */
-	public function setRevisionTimestamp( $timestmap ) {
-		return wfSetVar( $this->mRevisionTimestamp, $timestmap );
+	public function setRevisionTimestamp( $timestamp) {
+		return wfSetVar( $this->mRevisionTimestamp, $timestamp );
 	}
 
 	/**
@@ -1723,6 +1722,16 @@ class OutputPage extends ContextSource {
 	}
 
 	/**
+	 * Return a Vary: header on which to vary caches. Based on the keys of $mVaryHeader,
+	 * such as Accept-Encoding or Cookie
+	 * 
+	 * @return String
+	 */
+	public function getVaryHeader() {
+		return 'Vary: ' . join( ', ', array_keys( $this->mVaryHeader ) );
+	}
+
+	/**
 	 * Get a complete X-Vary-Options header
 	 *
 	 * @return String
@@ -1834,11 +1843,12 @@ class OutputPage extends ContextSource {
 			$response->header( "ETag: $this->mETag" );
 		}
 
+		$this->addVaryHeader( 'Cookie' );
 		$this->addAcceptLanguage();
 
 		# don't serve compressed data to clients who can't handle it
 		# maintain different caches for logged-in users and non-logged in ones
-		$response->header( 'Vary: ' . join( ', ', array_keys( $this->mVaryHeader ) ) );
+		$response->header( $this->getVaryHeader() );
 
 		if ( $wgUseXVO ) {
 			# Add an X-Vary-Options header for Squid with Wikimedia patches
@@ -2017,11 +2027,11 @@ class OutputPage extends ContextSource {
 	/**
 	 * Prepare this object to display an error page; disable caching and
 	 * indexing, clear the current text and redirect, set the page's title
-	 * and optionally an custom HTML title (content of the <title> tag).
+	 * and optionally an custom HTML title (content of the "<title>" tag).
 	 *
 	 * @param $pageTitle String|Message will be passed directly to setPageTitle()
 	 * @param $htmlTitle String|Message will be passed directly to setHTMLTitle();
-	 *                   optional, if not passed the <title> attribute will be
+	 *                   optional, if not passed the "<title>" attribute will be
 	 *                   based on $pageTitle
 	 */
 	public function prepareErrorPage( $pageTitle, $htmlTitle = false ) {
@@ -2385,7 +2395,7 @@ $templates
 	/**
 	 * @param $sk Skin The given Skin
 	 * @param $includeStyle Boolean: unused
-	 * @return String: The doctype, opening <html>, and head element.
+	 * @return String: The doctype, opening "<html>", and head element.
 	 */
 	public function headElement( Skin $sk, $includeStyle = true ) {
 		global $wgContLang;
@@ -2510,11 +2520,13 @@ $templates
 	 * @param $only String ResourceLoaderModule TYPE_ class constant
 	 * @param $useESI boolean
 	 * @param $extraQuery Array with extra query parameters to add to each request. array( param => value )
-	 * @param $loadCall boolean If true, output an (asynchronous) mw.loader.load() call rather than a <script src="..."> tag
-	 * @return string html <script> and <style> tags
+	 * @param $loadCall boolean If true, output an (asynchronous) mw.loader.load() call rather than a "<script src='...'>" tag
+	 * @return string html "<script>" and "<style>" tags
 	 */
 	protected function makeResourceLoaderLink( $modules, $only, $useESI = false, array $extraQuery = array(), $loadCall = false ) {
 		global $wgResourceLoaderUseESI;
+
+		$modules = (array) $modules;
 
 		if ( !count( $modules ) ) {
 			return '';
@@ -2522,7 +2534,7 @@ $templates
 
 		if ( count( $modules ) > 1 ) {
 			// Remove duplicate module requests
-			$modules = array_unique( (array) $modules );
+			$modules = array_unique( $modules );
 			// Sort module names so requests are more uniform
 			sort( $modules );
 
@@ -2539,7 +2551,7 @@ $templates
 		// Create keyed-by-group list of module objects from modules list
 		$groups = array();
 		$resourceLoader = $this->getResourceLoader();
-		foreach ( (array) $modules as $name ) {
+		foreach ( $modules as $name ) {
 			$module = $resourceLoader->getModule( $name );
 			# Check that we're allowed to include this module on this page
 			if ( !$module
@@ -2560,7 +2572,7 @@ $templates
 		}
 
 		$links = '';
-		foreach ( $groups as $group => $modules ) {
+		foreach ( $groups as $group => $grpModules ) {
 			// Special handling for user-specific groups
 			$user = null;
 			if ( ( $group === 'user' || $group === 'private' ) && $this->getUser()->isLoggedIn() ) {
@@ -2584,10 +2596,10 @@ $templates
 			$context = new ResourceLoaderContext( $resourceLoader, new FauxRequest( $query ) );
 			// Extract modules that know they're empty
 			$emptyModules = array ();
-			foreach ( $modules as $key => $module ) {
+			foreach ( $grpModules as $key => $module ) {
 				if ( $module->isKnownEmpty( $context ) ) {
 					$emptyModules[$key] = 'ready';
-					unset( $modules[$key] );
+					unset( $grpModules[$key] );
 				}
 			}
 			// Inline empty modules: since they're empty, just mark them as 'ready'
@@ -2605,7 +2617,7 @@ $templates
 			}
 
 			// If there are no modules left, skip this group
-			if ( $modules === array() ) {
+			if ( count( $grpModules ) === 0 ) {
 				continue;
 			}
 
@@ -2616,12 +2628,12 @@ $templates
 			if ( $group === 'private' ) {
 				if ( $only == ResourceLoaderModule::TYPE_STYLES ) {
 					$links .= Html::inlineStyle(
-						$resourceLoader->makeModuleResponse( $context, $modules )
+						$resourceLoader->makeModuleResponse( $context, $grpModules )
 					);
 				} else {
 					$links .= Html::inlineScript(
 						ResourceLoader::makeLoaderConditionalScript(
-							$resourceLoader->makeModuleResponse( $context, $modules )
+							$resourceLoader->makeModuleResponse( $context, $grpModules )
 						)
 					);
 				}
@@ -2637,7 +2649,7 @@ $templates
 			if ( $group === 'user' ) {
 				// Get the maximum timestamp
 				$timestamp = 1;
-				foreach ( $modules as $module ) {
+				foreach ( $grpModules as $module ) {
 					$timestamp = max( $timestamp, $module->getModifiedTime( $context ) );
 				}
 				// Add a version parameter so cache will break when things change
@@ -2645,7 +2657,7 @@ $templates
 			}
 
 			$url = ResourceLoader::makeLoaderURL(
-				array_keys( $modules ),
+				array_keys( $grpModules ),
 				$this->getLanguage()->getCode(),
 				$this->getSkin()->getSkinName(),
 				$user,
@@ -2688,7 +2700,7 @@ $templates
 	}
 
 	/**
-	 * JS stuff to put in the <head>. This is the startup module, config
+	 * JS stuff to put in the "<head>". This is the startup module, config
 	 * vars and modules marked with position 'top'
 	 *
 	 * @return String: HTML fragment
@@ -2736,12 +2748,12 @@ $templates
 	}
 
 	/**
-	 * JS stuff to put at the 'bottom', which can either be the bottom of the <body>
-	 * or the bottom of the <head> depending on $wgResourceLoaderExperimentalAsyncLoading:
+	 * JS stuff to put at the 'bottom', which can either be the bottom of the "<body>"
+	 * or the bottom of the "<head>" depending on $wgResourceLoaderExperimentalAsyncLoading:
 	 * modules marked with position 'bottom', legacy scripts ($this->mScripts),
 	 * user preferences, site JS and user JS
 	 *
-	 * @param $inHead boolean If true, this HTML goes into the <head>, if false it goes into the <body>
+	 * @param $inHead boolean If true, this HTML goes into the "<head>", if false it goes into the "<body>"
 	 * @return string
 	 */
 	function getScriptsForBottomQueue( $inHead ) {
@@ -2857,7 +2869,7 @@ $templates
 	}
 
 	/**
-	 * JS stuff to put at the bottom of the <body>
+	 * JS stuff to put at the bottom of the "<body>"
 	 * @return string
 	 */
 	function getBottomScripts() {
@@ -2872,7 +2884,7 @@ $templates
 	/**
 	 * Add one or more variables to be set in mw.config in JavaScript.
 	 *
-	 * @param $key {String|Array} Key or array of key/value pars.
+	 * @param $keys {String|Array} Key or array of key/value pairs.
 	 * @param $value {Mixed} [optional] Value of the configuration variable.
 	 */
 	public function addJsConfigVars( $keys, $value = null ) {
@@ -2955,6 +2967,9 @@ $templates
 			'wgPageContentLanguage' => $lang->getCode(),
 			'wgSeparatorTransformTable' => $compactSeparatorTransTable,
 			'wgDigitTransformTable' => $compactDigitTransTable,
+			'wgDefaultDateFormat' => $lang->getDefaultDateFormat(),
+			'wgMonthNames' => $lang->getMonthNamesArray(),
+			'wgMonthNamesShort' => $lang->getMonthAbbreviationsArray(),
 			'wgRelevantPageName' => $relevantTitle->getPrefixedDBKey(),
 		);
 		if ( $wgContLang->hasVariants() ) {
@@ -3008,7 +3023,7 @@ $templates
 	}
 
 	/**
-	 * @param $addContentType bool: Whether <meta> specifying content type should be returned
+	 * @param $addContentType bool: Whether "<meta>" specifying content type should be returned
 	 *
 	 * @return array in format "link name or number => 'link html'".
 	 */
@@ -3242,7 +3257,7 @@ $templates
 
 	/**
 	 * @param $unused
-	 * @param $addContentType bool: Whether <meta> specifying content type should be returned
+	 * @param $addContentType bool: Whether "<meta>" specifying content type should be returned
 	 *
 	 * @return string HTML tag links to be put in the header.
 	 */
@@ -3251,7 +3266,7 @@ $templates
 	}
 
 	/**
-	 * Generate a <link rel/> for a feed.
+	 * Generate a "<link rel/>" for a feed.
 	 *
 	 * @param $type String: feed type
 	 * @param $url String: URL to the feed
@@ -3306,7 +3321,7 @@ $templates
 	}
 
 	/**
-	 * Build a set of <link>s for the stylesheets specified in the $this->styles array.
+	 * Build a set of "<link>" elements for the stylesheets specified in the $this->styles array.
 	 * These will be applied to various media & IE conditionals.
 	 *
 	 * @return string

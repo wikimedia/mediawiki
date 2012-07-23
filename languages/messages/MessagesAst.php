@@ -65,7 +65,7 @@ $messages = array(
 'tog-hidepatrolled' => 'Anubrir les ediciones vixilaes nos cambeos recientes',
 'tog-newpageshidepatrolled' => 'Anubrir les páxines vixilaes na llista de páxines nueves',
 'tog-extendwatchlist' => "Espander la llista de vixilancia p'amosar tolos cambeos, non solo los más recientes.",
-'tog-usenewrc' => 'Cambeos recientes ameyoraos (necesita JavaScript)',
+'tog-usenewrc' => 'Agrupar los cambeos por páxina nos cambeos recientes y na llista de vixilancia (necesita JavaScript)',
 'tog-numberheadings' => 'Autonumberar los encabezaos',
 'tog-showtoolbar' => "Amosar la barra de ferramientes d'edición (JavaScript)",
 'tog-editondblclick' => 'Editar páxines con doble clic (necesita JavaScript)',
@@ -73,17 +73,17 @@ $messages = array(
 'tog-editsectiononrightclick' => 'Activar la edición de seiciones calcando col botón drechu nos títulos de seición (necesita JavaScript)',
 'tog-showtoc' => 'Amosar índiz (pa páxines con más de 3 encabezaos)',
 'tog-rememberpassword' => 'Recordar la mio identificación nesti ordenador (hasta un máximu de $1 {{PLURAL:$1|día|díes}})',
-'tog-watchcreations' => 'Amestar les páxines que creo a la mio llista de vixilancia',
-'tog-watchdefault' => "Amestar les páxines qu'edito a la mio llista de vixilancia",
-'tog-watchmoves' => 'Amestar les páxines que muevo a la mio llista de vixilancia',
-'tog-watchdeletion' => 'Amestar les páxines que desanicio a la mio llista de vixilancia',
+'tog-watchcreations' => 'Amestar les páxines que creo y los ficheros que cargo a la mio llista de vixilancia',
+'tog-watchdefault' => "Amestar les páxines y ficheros qu'edito a la mio llista de vixilancia",
+'tog-watchmoves' => 'Amestar les páxines y ficheros que muevo a la mio llista de vixilancia',
+'tog-watchdeletion' => 'Amestar les páxines y ficheros que desanicio a la mio llista de vixilancia',
 'tog-minordefault' => 'Marcar toles ediciones como menores por defeutu',
 'tog-previewontop' => "Amosar previsualización enantes de la caxa d'edición",
 'tog-previewonfirst' => 'Amosar previsualización na primer edición',
 'tog-nocache' => 'Desactivar la caché de páxines del restolador',
-'tog-enotifwatchlistpages' => 'Mandame un corréu cuando camude una páxina de la mio llista de vixilancia',
+'tog-enotifwatchlistpages' => 'Mandame un corréu cuando camude una páxina o ficheru de la mio llista de vixilancia',
 'tog-enotifusertalkpages' => "Mandame un corréu cuando camude la mio páxina d'alderique",
-'tog-enotifminoredits' => 'Mandame tamién un corréu cuando heba ediciones menores de les páxines',
+'tog-enotifminoredits' => 'Mandame tamién un corréu cuando heba ediciones menores de les páxines y ficheros',
 'tog-enotifrevealaddr' => 'Amosar la mio direición de corréu nos correos de notificación',
 'tog-shownumberswatching' => "Amosar el númberu d'usuarios que tán vixilando la páxina",
 'tog-oldsig' => 'Firma esistente:',
@@ -416,6 +416,8 @@ Por favor informa d'esto a un [[Special:ListUsers/sysop|alministrador]], anotand
 'cannotdelete' => "Nun pudo desaniciase la páxina o'l ficheru «$1».
 Seique daquién yá lo desaniciara.",
 'cannotdelete-title' => 'Nun se pue desaniciar la páxina «$1»',
+'delete-hook-aborted' => 'Desaniciu albortáu pol hook.
+Nun conseñó esplicación.',
 'badtitle' => 'Títulu incorreutu',
 'badtitletext' => 'El títulu de páxina solicitáu nun ye válidu, ta baleru o tien enllaces interllingua o interwiki incorreutos.
 Pue contener ún o más carauteres que nun se puen usar nos títulos.',
@@ -452,6 +454,8 @@ El motivu conseñáu ye «''$2''».",
 L'alministrador que lu bloquió dio esti motivu: «$3».",
 'invalidtitle-knownnamespace' => 'Títulu non válidu col espaciu de nomes «$2» y el testu «$3»',
 'invalidtitle-unknownnamespace' => "Titulu non válidu col númberu $1 d'espaciu de nomes desconocíu y el testu «$2»",
+'exception-nologin' => 'Non identificáu',
+'exception-nologin-text' => "Esta páxina o aición necesita qu'anicies sesión nesta wiki.",
 
 # Virus scanner
 'virus-badscanner' => "Fallu de configuración: Escáner de virus desconocíu: ''$1''",
@@ -1643,6 +1647,7 @@ Si'l problema persiste, contauta con un [[Special:ListUsers/sysop|alministrador]
 'lockmanager-fail-releaselock' => 'Nun se pudo lliberar el bloquéu pa "$1".',
 'lockmanager-fail-db-bucket' => 'Nun se pudo contautar con bloqueos de bases de datos bastantes nel conxuntu $1.',
 'lockmanager-fail-db-release' => 'Nun se pudieron lliberar los bloqueos na base de datos $1.',
+'lockmanager-fail-svr-acquire' => 'Nun se pudieron afitar los bloqueos nel sirvidor $1.',
 'lockmanager-fail-svr-release' => 'Nun se pudieron lliberar los bloqueos nel sirvidor $1.',
 
 # ZipDirectoryReader
@@ -3739,6 +3744,8 @@ D\'otra miente, pues usar el formulariu cenciellu d\'abaxo. El to comentariu apa
 'api-error-empty-file' => "El ficheru qu'unviasti taba baleru.",
 'api-error-emptypage' => 'Nun se permite la creación de páxines nueves baleres.',
 'api-error-fetchfileerror' => 'Fallu internu: daqué nun funcionó al buscar el ficheru.',
+'api-error-fileexists-forbidden' => 'Yá esiste un ficheru col nome «$1» y nun se pue sobrescribir.',
+'api-error-fileexists-shared-forbidden' => 'Yá esiste un ficheru col nome «$1» nel repositoriu de ficheros compartíos, y nun se pue sobrescribir.',
 'api-error-file-too-large' => "El ficheru qu'unviasti yera demasiao grande.",
 'api-error-filename-tooshort' => 'El nome de ficheru ye demasiao curtiu.',
 'api-error-filetype-banned' => 'Esta triba de ficheru ta torgada.',
@@ -3777,6 +3784,4 @@ D\'otra miente, pues usar el formulariu cenciellu d\'abaxo. El to comentariu apa
 'duration-centuries' => '$1 {{PLURAL:$1|sieglu|sieglos}}',
 'duration-millennia' => '$1 {{PLURAL:$1|mileniu|milenios}}',
 
-# Unknown messages
-'lockmanager-fail-svr-acquire' => 'Nun se pudieron afitar los bloqueos nel sirvidor $1.',
 );

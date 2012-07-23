@@ -37,8 +37,9 @@
  * Outside callers can assume that all backends will have these functions.
  *
  * All "storage paths" are of the format "mwstore://<backend>/<container>/<path>".
- * The <path> portion is a relative path that uses UNIX file system (FS) notation,
- * though any particular backend may not actually be using a local filesystem.
+ * The "<path>" portion is a relative path that uses UNIX file system (FS)
+ * notation, though any particular backend may not actually be using a local
+ * filesystem.
  * Therefore, the relative paths are only virtual.
  *
  * Backend contents are stored under wiki-specific container names by default.
@@ -73,19 +74,19 @@ abstract class FileBackend {
 	 * This should only be called from within FileBackendGroup.
 	 *
 	 * $config includes:
-	 *     'name'        : The unique name of this backend.
-	 *                     This should consist of alphanumberic, '-', and '_' characters.
-	 *                     This name should not be changed after use.
-	 *     'wikiId'      : Prefix to container names that is unique to this wiki.
-	 *                     It should only consist of alphanumberic, '-', and '_' characters.
-	 *     'lockManager' : Registered name of a file lock manager to use.
-	 *     'fileJournal' : File journal configuration; see FileJournal::factory().
-	 *                     Journals simply log changes to files stored in the backend.
-	 *     'readOnly'    : Write operations are disallowed if this is a non-empty string.
-	 *                     It should be an explanation for the backend being read-only.
-	 *     'parallelize' : When to do file operations in parallel (when possible).
-	 *                     Allowed values are "implicit", "explicit" and "off".
-	 *     'concurrency' : How many file operations can be done in parallel.
+	 *   - name        : The unique name of this backend.
+	 *                   This should consist of alphanumberic, '-', and '_' characters.
+	 *                   This name should not be changed after use.
+	 *   - wikiId      : Prefix to container names that is unique to this wiki.
+	 *                   It should only consist of alphanumberic, '-', and '_' characters.
+	 *   - lockManager : Registered name of a file lock manager to use.
+	 *   - fileJournal : File journal configuration; see FileJournal::factory().
+	 *                   Journals simply log changes to files stored in the backend.
+	 *   - readOnly    : Write operations are disallowed if this is a non-empty string.
+	 *                   It should be an explanation for the backend being read-only.
+	 *   - parallelize : When to do file operations in parallel (when possible).
+	 *                   Allowed values are "implicit", "explicit" and "off".
+	 *   - concurrency : How many file operations can be done in parallel.
 	 *
 	 * @param $config Array
 	 * @throws MWException
@@ -102,7 +103,9 @@ abstract class FileBackend {
 			? $config['lockManager']
 			: LockManagerGroup::singleton()->get( $config['lockManager'] );
 		$this->fileJournal = isset( $config['fileJournal'] )
-			? FileJournal::factory( $config['fileJournal'], $this->name )
+			? ( ( $config['fileJournal'] instanceof FileJournal )
+				? $config['fileJournal']
+				: FileJournal::factory( $config['fileJournal'], $this->name ) )
 			: FileJournal::factory( array( 'class' => 'NullFileJournal' ), $this->name );
 		$this->readOnly = isset( $config['readOnly'] )
 			? (string)$config['readOnly']
@@ -153,16 +156,27 @@ abstract class FileBackend {
 	 * $ops is an array of arrays. The outer array holds a list of operations.
 	 * Each inner array is a set of key value pairs that specify an operation.
 	 *
-	 * Supported operations and their parameters:
+	 * Supported operations and their parameters. The supported actions are:
+	 *  - create
+	 *  - store
+	 *  - copy
+	 *  - move
+	 *  - delete
+	 *  - null
+	 *
 	 * a) Create a new file in storage with the contents of a string
+	 * @code
 	 *     array(
 	 *         'op'                  => 'create',
 	 *         'dst'                 => <storage path>,
 	 *         'content'             => <string of new file contents>,
 	 *         'overwrite'           => <boolean>,
 	 *         'overwriteSame'       => <boolean>
-	 *     )
+	 *     );
+	 * @endcode
+	 *
 	 * b) Copy a file system file into storage
+	 * @code
 	 *     array(
 	 *         'op'                  => 'store',
 	 *         'src'                 => <file system path>,
@@ -170,7 +184,10 @@ abstract class FileBackend {
 	 *         'overwrite'           => <boolean>,
 	 *         'overwriteSame'       => <boolean>
 	 *     )
+	 * @endcode
+	 *
 	 * c) Copy a file within storage
+	 * @code
 	 *     array(
 	 *         'op'                  => 'copy',
 	 *         'src'                 => <storage path>,
@@ -178,7 +195,10 @@ abstract class FileBackend {
 	 *         'overwrite'           => <boolean>,
 	 *         'overwriteSame'       => <boolean>
 	 *     )
+	 * @endcode
+	 *
 	 * d) Move a file within storage
+	 * @code
 	 *     array(
 	 *         'op'                  => 'move',
 	 *         'src'                 => <storage path>,
@@ -186,57 +206,68 @@ abstract class FileBackend {
 	 *         'overwrite'           => <boolean>,
 	 *         'overwriteSame'       => <boolean>
 	 *     )
+	 * @endcode
+	 *
 	 * e) Delete a file within storage
+	 * @code
 	 *     array(
 	 *         'op'                  => 'delete',
 	 *         'src'                 => <storage path>,
 	 *         'ignoreMissingSource' => <boolean>
 	 *     )
+	 * @endcode
+	 *
 	 * f) Do nothing (no-op)
+	 * @code
 	 *     array(
 	 *         'op'                  => 'null',
 	 *     )
+	 * @endcode
 	 *
 	 * Boolean flags for operations (operation-specific):
-	 * 'ignoreMissingSource' : The operation will simply succeed and do
-	 *                         nothing if the source file does not exist.
-	 * 'overwrite'           : Any destination file will be overwritten.
-	 * 'overwriteSame'       : An error will not be given if a file already
-	 *                         exists at the destination that has the same
-	 *                         contents as the new contents to be written there.
+	 *   - ignoreMissingSource : The operation will simply succeed and do
+	 *                           nothing if the source file does not exist.
+	 *   - overwrite           : Any destination file will be overwritten.
+	 *   - overwriteSame       : An error will not be given if a file already
+	 *                           exists at the destination that has the same
+	 *                           contents as the new contents to be written there.
 	 *
 	 * $opts is an associative of boolean flags, including:
-	 * 'force'               : Operation precondition errors no longer trigger an abort.
-	 *                         Any remaining operations are still attempted. Unexpected
-	 *                         failures may still cause remaning operations to be aborted.
-	 * 'nonLocking'          : No locks are acquired for the operations.
-	 *                         This can increase performance for non-critical writes.
-	 *                         This has no effect unless the 'force' flag is set.
-	 * 'allowStale'          : Don't require the latest available data.
-	 *                         This can increase performance for non-critical writes.
-	 *                         This has no effect unless the 'force' flag is set.
-	 * 'nonJournaled'        : Don't log this operation batch in the file journal.
-	 *                         This limits the ability of recovery scripts.
-	 * 'parallelize'         : Try to do operations in parallel when possible.
+	 *   - force               : Operation precondition errors no longer trigger an abort.
+	 *                           Any remaining operations are still attempted. Unexpected
+	 *                           failures may still cause remaning operations to be aborted.
+	 *   - nonLocking          : No locks are acquired for the operations.
+	 *                           This can increase performance for non-critical writes.
+	 *                           This has no effect unless the 'force' flag is set.
+	 *   - allowStale          : Don't require the latest available data.
+	 *                           This can increase performance for non-critical writes.
+	 *                           This has no effect unless the 'force' flag is set.
+	 *   - nonJournaled        : Don't log this operation batch in the file journal.
+	 *                           This limits the ability of recovery scripts.
+	 *   - parallelize         : Try to do operations in parallel when possible.
+	 *   - bypassReadOnly      : Allow writes in read-only mode (since 1.20).
 	 *
-	 * Remarks on locking:
+	 * @remarks Remarks on locking:
 	 * File system paths given to operations should refer to files that are
 	 * already locked or otherwise safe from modification from other processes.
 	 * Normally these files will be new temp files, which should be adequate.
 	 *
-	 * Return value:
+	 * @par Return value:
+	 *
 	 * This returns a Status, which contains all warnings and fatals that occured
 	 * during the operation. The 'failCount', 'successCount', and 'success' members
-	 * will reflect each operation attempted. The status will be "OK" unless:
-	 *     a) unexpected operation errors occurred (network partitions, disk full...)
-	 *     b) significant operation errors occured and 'force' was not set
+	 * will reflect each operation attempted.
+	 *
+	 * The status will be "OK" unless:
+	 *   - a) unexpected operation errors occurred (network partitions, disk full...)
+	 *   - b) significant operation errors occured and 'force' was not set
 	 *
 	 * @param $ops Array List of operations to execute in order
 	 * @param $opts Array Batch operation options
 	 * @return Status
 	 */
 	final public function doOperations( array $ops, array $opts = array() ) {
-		if ( $this->isReadOnly() ) {
+		if ( empty( $opts['bypassReadOnly'] ) && $this->isReadOnly() ) {
 			return Status::newFatal( 'backend-fail-readonly', $this->name, $this->readOnly );
 		}
 		if ( empty( $opts['force'] ) ) { // sanity
@@ -354,57 +385,80 @@ abstract class FileBackend {
 	 * This should *only* be used on non-original files, like cache files.
 	 *
 	 * Supported operations and their parameters:
+	 *  - create
+	 *  - store
+	 *  - copy
+	 *  - move
+	 *  - delete
+	 *  - null
+	 *
 	 * a) Create a new file in storage with the contents of a string
+	 * @code
 	 *     array(
 	 *         'op'                  => 'create',
 	 *         'dst'                 => <storage path>,
 	 *         'content'             => <string of new file contents>
 	 *     )
+	 * @endcode
 	 * b) Copy a file system file into storage
+	 * @code
 	 *     array(
 	 *         'op'                  => 'store',
 	 *         'src'                 => <file system path>,
 	 *         'dst'                 => <storage path>
 	 *     )
+	 * @endcode
 	 * c) Copy a file within storage
+	 * @code
 	 *     array(
 	 *         'op'                  => 'copy',
 	 *         'src'                 => <storage path>,
 	 *         'dst'                 => <storage path>
 	 *     )
+	 * @endcode
 	 * d) Move a file within storage
+	 * @code
 	 *     array(
 	 *         'op'                  => 'move',
 	 *         'src'                 => <storage path>,
 	 *         'dst'                 => <storage path>
 	 *     )
+	 * @endcode
 	 * e) Delete a file within storage
+	 * @code
 	 *     array(
 	 *         'op'                  => 'delete',
 	 *         'src'                 => <storage path>,
 	 *         'ignoreMissingSource' => <boolean>
 	 *     )
+	 * @endcode
 	 * f) Do nothing (no-op)
+	 * @code
 	 *     array(
 	 *         'op'                  => 'null',
 	 *     )
+	 * @endcode
 	 *
-	 * Boolean flags for operations (operation-specific):
-	 * 'ignoreMissingSource' : The operation will simply succeed and do
-	 *                         nothing if the source file does not exist.
+	 * @par Boolean flags for operations (operation-specific):
+	 *   - ignoreMissingSource : The operation will simply succeed and do
+	 *                           nothing if the source file does not exist.
 	 *
-	 * Return value:
+	 * $opts is an associative of boolean flags, including:
+	 *   - bypassReadOnly      : Allow writes in read-only mode (since 1.20)
+	 *
+	 * @par Return value:
 	 * This returns a Status, which contains all warnings and fatals that occured
 	 * during the operation. The 'failCount', 'successCount', and 'success' members
 	 * will reflect each operation attempted for the given files. The status will be
 	 * considered "OK" as long as no fatal errors occured.
 	 *
 	 * @param $ops Array Set of operations to execute
+	 * @param $opts Array Batch operation options
 	 * @return Status
 	 * @since 1.20
 	 */
-	final public function doQuickOperations( array $ops ) {
-		if ( $this->isReadOnly() ) {
+	final public function doQuickOperations( array $ops, array $opts = array() ) {
+		if ( empty( $opts['bypassReadOnly'] ) && $this->isReadOnly() ) {
 			return Status::newFatal( 'backend-fail-readonly', $this->name, $this->readOnly );
 		}
 		foreach ( $ops as &$op ) {
@@ -508,11 +562,11 @@ abstract class FileBackend {
 	 * The target path should refer to a file that is already locked or
 	 * otherwise safe from modification from other processes. Normally,
 	 * the file will be a new temp file, which should be adequate.
-	 * $params include:
-	 *     srcs : ordered source storage paths (e.g. chunk1, chunk2, ...)
-	 *     dst  : file system path to 0-byte temp file
 	 *
 	 * @param $params Array Operation parameters
+	 * $params include:
+	 *   - srcs : ordered source storage paths (e.g. chunk1, chunk2, ...)
+	 *   - dst  : file system path to 0-byte temp file
 	 * @return Status
 	 */
 	abstract public function concatenate( array $params );
@@ -522,14 +576,20 @@ abstract class FileBackend {
 	 * This will create any required containers and parent directories.
 	 * Backends using key/value stores only need to create the container.
 	 *
-	 * $params include:
-	 *     dir : storage directory
+	 * The 'noAccess' and 'noListing' parameters works the same as in secure(),
+	 * except they are only applied *if* the directory/container had to be created.
+	 * These flags should always be set for directories that have private files.
 	 *
 	 * @param $params Array
+	 * $params include:
+	 *   - dir            : storage directory
+	 *   - noAccess       : try to deny file access (since 1.20)
+	 *   - noListing      : try to deny file listing (since 1.20)
+	 *   - bypassReadOnly : allow writes in read-only mode (since 1.20)
 	 * @return Status
 	 */
 	final public function prepare( array $params ) {
-		if ( $this->isReadOnly() ) {
+		if ( empty( $params['bypassReadOnly'] ) && $this->isReadOnly() ) {
 			return Status::newFatal( 'backend-fail-readonly', $this->name, $this->readOnly );
 		}
 		return $this->doPrepare( $params );
@@ -543,27 +603,23 @@ abstract class FileBackend {
 	/**
 	 * Take measures to block web access to a storage directory and
 	 * the container it belongs to. FS backends might add .htaccess
-	 * files whereas key/value store backends might restrict container
-	 * access to the auth user that represents end-users in web request.
+	 * files whereas key/value store backends might revoke container
+	 * access to the storage user representing end-users in web requests.
 	 * This is not guaranteed to actually do anything.
 	 *
-	 * $params include:
-	 *     dir       : storage directory
-	 *     noAccess  : try to deny file access
-	 *     noListing : try to deny file listing
-	 *
 	 * @param $params Array
+	 * $params include:
+	 *   - dir            : storage directory
+	 *   - noAccess       : try to deny file access
+	 *   - noListing      : try to deny file listing
+	 *   - bypassReadOnly : allow writes in read-only mode (since 1.20)
 	 * @return Status
 	 */
 	final public function secure( array $params ) {
-		if ( $this->isReadOnly() ) {
+		if ( empty( $params['bypassReadOnly'] ) && $this->isReadOnly() ) {
 			return Status::newFatal( 'backend-fail-readonly', $this->name, $this->readOnly );
 		}
-		$status = $this->doPrepare( $params ); // dir must exist to restrict it
-		if ( $status->isOK() ) {
-			$status->merge( $this->doSecure( $params ) );
-		}
-		return $status;
+		return $this->doSecure( $params );
 	}
 
 	/**
@@ -572,19 +628,47 @@ abstract class FileBackend {
 	abstract protected function doSecure( array $params );
 
 	/**
+	 * Remove measures to block web access to a storage directory and
+	 * the container it belongs to. FS backends might remove .htaccess
+	 * files whereas key/value store backends might grant container
+	 * access to the storage user representing end-users in web requests.
+	 * This essentially can undo the result of secure() calls.
+	 *
+	 * @param $params Array
+	 * $params include:
+	 *   - dir            : storage directory
+	 *   - access         : try to allow file access
+	 *   - listing        : try to allow file listing
+	 *   - bypassReadOnly : allow writes in read-only mode (since 1.20)
+	 * @return Status
+	 * @since 1.20
+	 */
+	final public function publish( array $params ) {
+		if ( empty( $params['bypassReadOnly'] ) && $this->isReadOnly() ) {
+			return Status::newFatal( 'backend-fail-readonly', $this->name, $this->readOnly );
+		}
+		return $this->doPublish( $params );
+	}
+
+	/**
+	 * @see FileBackend::publish()
+	 */
+	abstract protected function doPublish( array $params );
+
+	/**
 	 * Delete a storage directory if it is empty.
 	 * Backends using key/value stores may do nothing unless the directory
 	 * is that of an empty container, in which case it should be deleted.
 	 *
-	 * $params include:
-	 *     dir       : storage directory
-	 *     recursive : recursively delete empty subdirectories first (@since 1.20)
-	 *
 	 * @param $params Array
+	 * $params include:
+	 *   - dir            : storage directory
+	 *   - recursive      : recursively delete empty subdirectories first (since 1.20)
+	 *   - bypassReadOnly : allow writes in read-only mode (since 1.20)
 	 * @return Status
 	 */
 	final public function clean( array $params ) {
-		if ( $this->isReadOnly() ) {
+		if ( empty( $params['bypassReadOnly'] ) && $this->isReadOnly() ) {
 			return Status::newFatal( 'backend-fail-readonly', $this->name, $this->readOnly );
 		}
 		return $this->doClean( $params );
@@ -599,11 +683,10 @@ abstract class FileBackend {
 	 * Check if a file exists at a storage path in the backend.
 	 * This returns false if only a directory exists at the path.
 	 *
-	 * $params include:
-	 *     src    : source storage path
-	 *     latest : use the latest available data
-	 *
 	 * @param $params Array
+	 * $params include:
+	 *   - src    : source storage path
+	 *   - latest : use the latest available data
 	 * @return bool|null Returns null on failure
 	 */
 	abstract public function fileExists( array $params );
@@ -611,11 +694,10 @@ abstract class FileBackend {
 	/**
 	 * Get the last-modified timestamp of the file at a storage path.
 	 *
-	 * $params include:
-	 *     src    : source storage path
-	 *     latest : use the latest available data
-	 *
 	 * @param $params Array
+	 * $params include:
+	 *   - src    : source storage path
+	 *   - latest : use the latest available data
 	 * @return string|bool TS_MW timestamp or false on failure
 	 */
 	abstract public function getFileTimestamp( array $params );
@@ -624,11 +706,10 @@ abstract class FileBackend {
 	 * Get the contents of a file at a storage path in the backend.
 	 * This should be avoided for potentially large files.
 	 *
-	 * $params include:
-	 *     src    : source storage path
-	 *     latest : use the latest available data
-	 *
 	 * @param $params Array
+	 * $params include:
+	 *   - src    : source storage path
+	 *   - latest : use the latest available data
 	 * @return string|bool Returns false on failure
 	 */
 	abstract public function getFileContents( array $params );
@@ -636,11 +717,10 @@ abstract class FileBackend {
 	/**
 	 * Get the size (bytes) of a file at a storage path in the backend.
 	 *
-	 * $params include:
-	 *     src    : source storage path
-	 *     latest : use the latest available data
-	 *
 	 * @param $params Array
+	 * $params include:
+	 *   - src    : source storage path
+	 *   - latest : use the latest available data
 	 * @return integer|bool Returns false on failure
 	 */
 	abstract public function getFileSize( array $params );
@@ -649,15 +729,14 @@ abstract class FileBackend {
 	 * Get quick information about a file at a storage path in the backend.
 	 * If the file does not exist, then this returns false.
 	 * Otherwise, the result is an associative array that includes:
-	 *     mtime  : the last-modified timestamp (TS_MW)
-	 *     size   : the file size (bytes)
+	 *   - mtime  : the last-modified timestamp (TS_MW)
+	 *   - size   : the file size (bytes)
 	 * Additional values may be included for internal use only.
 	 *
-	 * $params include:
-	 *     src    : source storage path
-	 *     latest : use the latest available data
-	 *
 	 * @param $params Array
+	 * $params include:
+	 *   - src    : source storage path
+	 *   - latest : use the latest available data
 	 * @return Array|bool|null Returns null on failure
 	 */
 	abstract public function getFileStat( array $params );
@@ -665,11 +744,10 @@ abstract class FileBackend {
 	/**
 	 * Get a SHA-1 hash of the file at a storage path in the backend.
 	 *
-	 * $params include:
-	 *     src    : source storage path
-	 *     latest : use the latest available data
-	 *
 	 * @param $params Array
+	 * $params include:
+	 *   - src    : source storage path
+	 *   - latest : use the latest available data
 	 * @return string|bool Hash string or false on failure
 	 */
 	abstract public function getFileSha1Base36( array $params );
@@ -678,11 +756,10 @@ abstract class FileBackend {
 	 * Get the properties of the file at a storage path in the backend.
 	 * Returns FSFile::placeholderProps() on failure.
 	 *
-	 * $params include:
-	 *     src    : source storage path
-	 *     latest : use the latest available data
-	 *
 	 * @param $params Array
+	 * $params include:
+	 *   - src    : source storage path
+	 *   - latest : use the latest available data
 	 * @return Array
 	 */
 	abstract public function getFileProps( array $params );
@@ -694,12 +771,11 @@ abstract class FileBackend {
 	 * must be sent if streaming began, while none should be sent otherwise.
 	 * Implementations should flush the output buffer before sending data.
 	 *
-	 * $params include:
-	 *     src     : source storage path
-	 *     headers : additional HTTP headers to send on success
-	 *     latest  : use the latest available data
-	 *
 	 * @param $params Array
+	 * $params include:
+	 *   - src     : source storage path
+	 *   - headers : additional HTTP headers to send on success
+	 *   - latest  : use the latest available data
 	 * @return Status
 	 */
 	abstract public function streamFile( array $params );
@@ -707,9 +783,9 @@ abstract class FileBackend {
 	/**
 	 * Returns a file system file, identical to the file at a storage path.
 	 * The file returned is either:
-	 * a) A local copy of the file at a storage path in the backend.
-	 *    The temporary copy will have the same extension as the source.
-	 * b) An original of the file at a storage path in the backend.
+	 *   - a) A local copy of the file at a storage path in the backend.
+	 *        The temporary copy will have the same extension as the source.
+	 *   - b) An original of the file at a storage path in the backend.
 	 * Temporary files may be purged when the file object falls out of scope.
 	 *
 	 * Write operations should *never* be done on this file as some backends
@@ -717,11 +793,10 @@ abstract class FileBackend {
 	 * In that later case, there are copies of the file that must stay in sync.
 	 * Additionally, further calls to this function may return the same file.
 	 *
-	 * $params include:
-	 *     src    : source storage path
-	 *     latest : use the latest available data
-	 *
 	 * @param $params Array
+	 * $params include:
+	 *   - src    : source storage path
+	 *   - latest : use the latest available data
 	 * @return FSFile|null Returns null on failure
 	 */
 	abstract public function getLocalReference( array $params );
@@ -731,11 +806,10 @@ abstract class FileBackend {
 	 * The temporary copy will have the same file extension as the source.
 	 * Temporary files may be purged when the file object falls out of scope.
 	 *
-	 * $params include:
-	 *     src    : source storage path
-	 *     latest : use the latest available data
-	 *
 	 * @param $params Array
+	 * $params include:
+	 *   - src    : source storage path
+	 *   - latest : use the latest available data
 	 * @return TempFSFile|null Returns null on failure
 	 */
 	abstract public function getLocalCopy( array $params );
@@ -747,10 +821,9 @@ abstract class FileBackend {
 	 *
 	 * Storage backends with eventual consistency might return stale data.
 	 *
-	 * $params include:
-	 *     dir : storage directory
-	 *
 	 * @param $params array
+	 * $params include:
+	 *   - dir : storage directory
 	 * @return bool|null Returns null on failure
 	 * @since 1.20
 	 */
@@ -766,11 +839,10 @@ abstract class FileBackend {
 	 *
 	 * Storage backends with eventual consistency might return stale data.
 	 *
-	 * $params include:
-	 *     dir     : storage directory
-	 *     topOnly : only return direct child dirs of the directory
-	 *
 	 * @param $params array
+	 * $params include:
+	 *   - dir     : storage directory
+	 *   - topOnly : only return direct child dirs of the directory
 	 * @return Traversable|Array|null Returns null on failure
 	 * @since 1.20
 	 */
@@ -782,10 +854,9 @@ abstract class FileBackend {
 	 *
 	 * Storage backends with eventual consistency might return stale data.
 	 *
-	 * $params include:
-	 *     dir : storage directory
-	 *
 	 * @param $params array
+	 * $params include:
+	 *   - dir : storage directory
 	 * @return Traversable|Array|null Returns null on failure
 	 * @since 1.20
 	 */
@@ -803,11 +874,10 @@ abstract class FileBackend {
 	 *
 	 * Storage backends with eventual consistency might return stale data.
 	 *
-	 * $params include:
-	 *     dir     : storage directory
-	 *     topOnly : only return direct child files of the directory (@since 1.20)
-	 *
 	 * @param $params array
+	 * $params include:
+	 *   - dir     : storage directory
+	 *   - topOnly : only return direct child files of the directory (since 1.20)
 	 * @return Traversable|Array|null Returns null on failure
 	 */
 	abstract public function getFileList( array $params );
@@ -818,10 +888,9 @@ abstract class FileBackend {
 	 *
 	 * Storage backends with eventual consistency might return stale data.
 	 *
-	 * $params include:
-	 *     dir : storage directory
-	 *
 	 * @param $params array
+	 * $params include:
+	 *   - dir : storage directory
 	 * @return Traversable|Array|null Returns null on failure
 	 * @since 1.20
 	 */

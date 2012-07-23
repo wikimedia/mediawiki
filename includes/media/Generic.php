@@ -282,6 +282,7 @@ abstract class MediaHandler {
 	 * Returns false if unknown or if the document is not multi-page.
 	 *
 	 * @param $image File
+	 * @param $page Unused, left for backcompatibility?
 	 * @return array
 	 */
 	function getPageDimensions( $image, $page ) {
@@ -536,7 +537,7 @@ abstract class MediaHandler {
 
 	/**
 	 * Remove files from the purge list
-	 * 
+	 *
 	 * @param array $files
 	 * @param array $options
 	 */
@@ -716,7 +717,8 @@ abstract class ImageHandler extends MediaHandler {
 		$page = isset( $params['page'] ) ? $params['page'] : false;
 
 		if( $image->mustRender() || $params['width'] < $image->getWidth() ) {
-			return new ThumbnailImage( $image, $url, $params['width'], $params['height'], $page );
+			return new ThumbnailImage( $image,
+				$url, $params['width'], $params['height'], false, $page );
 		}
 	}
 

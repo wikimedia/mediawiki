@@ -555,6 +555,8 @@ Sila catat URL bagi laman ini dan laporkan perkara ini kepada seorang [[Special:
 'cannotdelete' => 'Laman atau fail $1 tidak dapat dihapuskan.
 Ia mungkin telah pun dihapuskan oleh orang lain.',
 'cannotdelete-title' => 'Laman "$1" tidak dapat dihapuskan',
+'delete-hook-aborted' => 'Penghapusan dibatalkan oleh penyangkuk.
+Tiada sebab diberikan.',
 'badtitle' => 'Tajuk tidak sah',
 'badtitletext' => 'Tajuk laman yang diminta tidak sah, kosong, ataupun tajuk antara bahasa atau tajuk antara wiki yang salah dipaut. Ia mungkin mengandungi aksara yang tidak dibenarkan.',
 'perfcached' => 'Data yang berikut disimpan dalam cache dan mungkin tidak terkemas kini. Semaksimum {{PLURAL:$1|satu hasil|$1 hasil}} terdapat dalam cache.',
@@ -585,6 +587,8 @@ Pertanyaan: $2',
 Pentadbir yang menguncinya memberikan penjelasan yang berikut: "$3".',
 'invalidtitle-knownnamespace' => 'Tajuk tidak sah dengan ruang nama "$2" dan teks "$3"',
 'invalidtitle-unknownnamespace' => 'Tajuk tidak sah dengan nombor ruang nama tidak dikenali $1 dan teks "$2"',
+'exception-nologin' => 'Belum log masuk',
+'exception-nologin-text' => 'Halaman atau tindakan ini memerlukan anda untuk log masuk ke dalam wiki ini.',
 
 # Virus scanner
 'virus-badscanner' => "Konfigurasi rosak: pengimbas virus yang tidak diketahui: ''$1''",
@@ -3803,6 +3807,8 @@ Ataupun, anda boleh menggunakan borang yang mudah di bawah. Ulasan anda akan dic
 'api-error-empty-file' => 'Fail yang anda serahkan adalah kosong.',
 'api-error-emptypage' => 'Anda tidak dibenarkan membuat laman baru yang kosong.',
 'api-error-fetchfileerror' => 'Ralat dalaman: ada malasah ketika mengambil fail itu.',
+'api-error-fileexists-forbidden' => 'Fail bernama "$1" sudah wujud, dan tidak boleh ditulis ganti.',
+'api-error-fileexists-shared-forbidden' => 'Fail bernama "$1" sudah wujud dalam repositori fail kongsian, dan tidak boleh ditulis ganti.',
 'api-error-file-too-large' => 'Fail yang anda serahkan adalah terlalu besar.',
 'api-error-filename-tooshort' => 'Nama fail ini terlalu pendek.',
 'api-error-filetype-banned' => 'Fail jenis ini adalah dilarang.',

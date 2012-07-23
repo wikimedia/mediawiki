@@ -1370,6 +1370,7 @@ indekso pro troŝarĝita servilo. Intertempe, vi povas serĉi per <i>guglo</i> a
 'prefs-beta' => 'Ecoj de Beta',
 'prefs-datetime' => 'Dato kaj horo',
 'prefs-labs' => 'Ecoj el Laboratorio',
+'prefs-user-pages' => 'Uzanto paĝoj',
 'prefs-personal' => 'Uzanta profilo',
 'prefs-rc' => 'Lastaj ŝanĝoj',
 'prefs-watchlist' => 'Atentaro',
@@ -3134,7 +3135,7 @@ La komenca ligilo de linio devas esti ligilo al malbona bildo.
 Sekvaj ligilo en la sama linio estas konsiderata kiel esceptoj (paĝoj kiel la bildo rajtas esti montrata.)',
 
 # Metadata
-'metadata' => 'Metadatenoj',
+'metadata' => 'Metadatumoj',
 'metadata-help' => 'Ĉi tiu dosiero enhavas plian informon, verŝajne aldonitan de la cifereca fotilo aŭ skanilo uzita por krei aŭ skani ĝin. Se la dosiero estis modifita de sia originala stato, iuj detaloj eble ne konformos al efektiva stato de la modifita bildo.',
 'metadata-expand' => 'Montri etendajn detalojn',
 'metadata-collapse' => 'Kaŝi etendajn detalojn',

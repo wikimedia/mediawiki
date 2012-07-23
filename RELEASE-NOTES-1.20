@@ -20,11 +20,18 @@ upgrade PHP if you have not done so prior to upgrading MediaWiki.
 * `$wgUsePathInfo = true;` is no longer needed to make $wgArticlePath work on servers
   using like nginx, lighttpd, and apache over fastcgi. MediaWiki now always extracts
   path info from REQUEST_URI if it's available.
+* The user right 'upload_by_url' is no longer given to sysops by default.
+  This only affects installations which have $wgAllowCopyUploads set to true.
+* Removed f-prot support from $wgAntivirusSetup.
+* $wgDBerrorLogInUTC to log error in $wgDBerrorLog using an UTC date instead
+  of the wiki timezone set by $wgLocalTimezone.
 
 === New features in 1.20 ===
 * Added TitleIsAlwaysKnown hook which gets called when determining if a page exists.
 * Added NamespaceIsMovable hook which gets called when determining if pages in a
   certain namespace can be moved.
+* Added SpecialPageBeforeExecute hook which gets called before SpecialPage::execute.
+* Added SpecialPageAfterExecute hook which gets called after SpecialPage::execute.
 * (bug 32341) Add upload by URL domain limitation.
 * &useskin=default will now always display the default skin. Useful for users with a
   preference for the non-default skin to look at something using the default skin.
@@ -55,6 +62,8 @@ upgrade PHP if you have not done so prior to upgrading MediaWiki.
 * Edit notices can now be translated.
 * (bug 35680) jQuery upgraded to 1.7.2.
 * jQuery UI upgraded to 1.8.21.
+* (bug 35705) QUnit upgraded from v1.2.0 to v1.8.0.
+* (bug 37604) jquery.cookie upgraded to 2011 version.
 * (bug 22887) Add warning and tracking category for preprocessor errors
 * (bug 31704) Allow selection of associated namespace on the watchlist
 * (bug 5445) Now remove autoblocks when a user is unblocked.
@@ -67,7 +76,6 @@ upgrade PHP if you have not done so prior to upgrading MediaWiki.
 * New getCreator and getOldestRevision methods added to WikiPage class
 * (bug 4220) the XML dump format schema now have unique identity constraints
   for page and revision identifiers. Patch by Elvis Stansvik.
-* (bug 35705) QUnit upgraded from v1.2.0 to v1.8.0.
 * cleanupSpam.php now can delete spam pages if --delete was specified instead of blanking
   them.
 * Added new hook ChangePasswordForm to allow adding of additional fields in Special:ChangePassword
@@ -76,6 +84,23 @@ upgrade PHP if you have not done so prior to upgrading MediaWiki.
   Will be null on previewing a page being created.
 * Added new hook AfterFinalPageOutput to allow modifications to buffered page output before sent
   to the client.
+* (bug 37627) UserNotLoggedIn() exception to show a generic error page whenever
+  a user is not logged in.
+* Watched status in changes lists are no longer indicated by <strong></strong>
+  tags with class "mw-watched". Instead, each line now has a class
+  "mw-changeslist-line-watched" or "mw-changeslist-line-not-watched", and the
+  title itself is surrounded by <span></span> tags with class "mw-title".
+* Added ContribsPager::reallyDoQuery hook allowing extensions to data to MyContribs
+* Added new hook ParserAfterParse to allow extensions to affect parsed output
+  after the parse is complete but before block level processing, link holder
+  replacement, and so on.
+* (bug 34678) Added InternalParseBeforeSanitize hook which gets called during Parser's
+  internalParse method just before the parser removes unwanted/dangerous HTML tags.
+* (bug 36783) Implement jQuery Promise interface in mediawiki.api module.
+* Make dates in sortable tables sort according to the page content language
+  instead of the site content language
+* (bug 37926) Deleterevision will no longer allow users to delete log entries,
+  the new deletelogentry permission is required for this.
 
 === Bug fixes in 1.20 ===
 * (bug 30245) Use the correct way to construct a log page title.
@@ -118,16 +143,34 @@ upgrade PHP if you have not done so prior to upgrading MediaWiki.
 * (bug 35572) Blocks appear to succeed even if query fails due to wrong DB structure
 * (bug 31757) Add a word-separator between help-messages in HTMLForm
 * (bug 30410) Removed deprecated $wgFilterCallback and the 'filtered' API error.
-* (bug 32604) Some messages needs escaping of wikitext inside username
+* (bug 32604) Some messages needs escaping of wikitext inside username.
 * (bug 36537) Rename wfArrayToCGI to wfArrayToCgi for consistency with wfCgiToArray.
-* (bug 25946) The message on the top of Special:RecentChanges is now displayed
+* (bug 25946) The message on the top of Special:RecentChanges is now displayed.
   in user language instead of content language.
 * (bug 35264) Wrong type used for <ns> in export.xsd
 * (bug 24985) Use $wgTmpDirectory as the default temp directory so that people
   who don't have access to /tmp can specify an alternative.
 * (bug 27283) SqlBagOStuff breaks PostgreSQL transactions.
 * (bug 35727) mw.Api ajax() should put token parameter last.
+* (bug 260) Handle <pre> overflow automatically with a scroll bar.
 * (bug 37708) mw.Uri.clone() should make a deep copy.
+* (bug 38024) ResourceLoader should not create empty stylesheets for modules
+  that don't have stylesheets.
+* (bug 36812) Special:ActiveUsers "Hide bots" should hide users from any group
+  having the "bot" user right, instead of just the default "bot" user group.
+* (bug 35082) mw.util.addPortletLink incorrectly adds link to mutiple <ul> tags.
+* (bug 36495) Sanitizer::fixDeprecatedAttributes should convert "align"
+  attribute to margin or float instead of text-align (for non-table-cells).
+* (bug 36991) jquery.tablesorter should extract date sort format from date
+  string instead of global config. Dates like "April 1 2012" and "1 April 2012"
+  now sort correctly regardless of the content language's DefaultDateFormat.
+* (bug 31895) mw.loader mode now correct when triggered from a $.fn.ready
+  handler that is bound before mediawiki.js's handler (e.g. browser-userscripts
+  like greasemonkey).
+* (bug 38152) jquery.tablesorter: Use .data() instead of .attr(), so that live
+  values are used instead of just the fixed values from when the tablesorter
+  was initialized.
+* (bug 38093) Gender of changed user groups missing in Special:Log/rights
 
 === API changes in 1.20 ===
 * (bug 34316) Add ability to retrieve maximum upload size from MediaWiki API.
@@ -139,13 +182,24 @@ upgrade PHP if you have not done so prior to upgrading MediaWiki.
 * (bug 32497) API now allows changing of protection level using pageid.
 * (bug 32498) API now allows comparing pages using pageids.
 * (bug 30975) API import of pages with invalid characters in this wiki leads to Fatal Error.
-* (bug 30488) API now allows listing of backlinks/embeddedin/imageusage per pageid
-* (bug 34927) Output media_type for list=filearchive
-* (bug 28814) add properties to output of action=parse
-* (bug 33224) add variants of content language to meta=siteinfo
-* (bug 36761) "Mark pages as visited" now submits previously established filter options
-* (bug 32643) action=purge with forcelinkupdate no longer crashes when ratelimit is reached
-* The paraminfo module now also contains result properties for most modules
+* (bug 30488) API now allows listing of backlinks/embeddedin/imageusage per pageid.
+* (bug 34927) Output media_type for list=filearchive.
+* (bug 28814) add properties to output of action=parse.
+* (bug 33224) add variants of content language to meta=siteinfo.
+* (bug 36761) "Mark pages as visited" now submits previously established filter options.
+* (bug 32643) action=purge with forcelinkupdate no longer crashes when ratelimit is reached.
+* The paraminfo module now also contains result properties for most modules.
+* (bug 32348) Allow descending order for list=alllinks.
+* (bug 31777) Upload unknown error ``fileexists-forbidden''.
+* (bug 32382) Allow descending order for list=iwbacklinks.
+* (bug 32381) Allow descending order for list=backlinks, list=embeddedin and list=imageusage.
+* (bug 32383) Allow descending order for list=langbacklinks.
+* API meta=siteinfo can now return the list of known variable IDs.
+* (bug 35980) list=deletedrevs now honors drdir correctly in "all" mode (mode #3).
+* (bug 29290) API avoids mangling fields in continuation parameters
+* (bug 36987) API avoids mangling fields in continuation parameters
+* (bug 30836) siteinfo prop=specialpagealiases will no longer return nonexistent special pages
+* (bug 38190) Add "required" flag to some token params for hint in api docs.
 
 === Languages updated in 1.20 ===
 
@@ -153,6 +207,7 @@ MediaWiki supports over 350 languages. Many localisations are updated
 regularly. Below only new and removed languages are listed, as well as
 changes to languages because of Bugzilla reports.
 
+* Emilian (egl) added.
 * Tornedalen Finnish (fit) added.
 * Mizo (lus) added.
 * Santali (sat) added.

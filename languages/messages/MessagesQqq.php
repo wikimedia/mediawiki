@@ -74,6 +74,7 @@
  * @author Mihai
  * @author Mormegil
  * @author Mpradeep
+ * @author Murma174
  * @author Najami
  * @author Nemo bis
  * @author Niels
@@ -138,7 +139,7 @@ $messages = array(
 'tog-hidepatrolled' => 'Option in Recent changes tab of [[Special:Preferences]] (if [[mw:Manual:$wgUseRCPatrol|$wgUseRCPatrol]] is enabled). {{Gender}}',
 'tog-newpageshidepatrolled' => 'Toggle in [[Special:Preferences]], section "Recent changes" (if [[mw:Manual:$wgUseRCPatrol|$wgUseRCPatrol]] is enabled). {{Gender}}',
 'tog-extendwatchlist' => "[[Special:Preferences]], tab 'Watchlist'. Offers user to show all applicable changes in watchlist (by default only the last change to a page on the watchlist is shown). {{Gender}}",
-'tog-usenewrc' => "[[Special:Preferences]], tab 'Recent changes'. Offers user to use alternative reprsentation of [[Special:RecentChanges]] and watchlist. {{Gender}}",
+'tog-usenewrc' => "[[Special:Preferences]], tab 'Recent changes'. Offers user to use alternative representation of [[Special:RecentChanges]] and watchlist. {{Gender}}",
 'tog-numberheadings' => "[[Special:Preferences]], tab 'Misc'. Offers numbered headings on content pages to user. {{Gender}}",
 'tog-showtoolbar' => "[[Special:Preferences]], tab 'Edit'. Offers user to show edit toolbar in page edit screen. {{Gender}}
 
@@ -168,7 +169,7 @@ Is only shown if {{msg-mw|tog-enotifusertalkpages}} or/and {{msg-mw|tog-enotifwa
 'tog-fancysig' => 'In user preferences under the signature box.  {{Gender}}',
 'tog-externaleditor' => "[[Special:Preferences]], tab 'Edit'. Offers user to use an external editor by default. {{Gender}}",
 'tog-externaldiff' => "[[Special:Preferences]], tab 'Edit'. Offers user to use an external diff program by default. {{Gender}}",
-'tog-showjumplinks' => 'Toggle option used in [[Special:Preferences]]. The "jump to" part should be the same with {{msg-mw|jumpto}} (or you can use <nowiki>{{int:jumpto}}</nowiki>). Thess links are shown in some of the older skins as "jump to: navigation, search" but they are hidden by default (you can enable them with this option). {{Gender}}',
+'tog-showjumplinks' => 'Toggle option used in [[Special:Preferences]]. The "jump to" part should be the same with {{msg-mw|jumpto}} (or you can use <nowiki>{{int:jumpto}}</nowiki>). These links are shown in some of the older skins as "jump to: navigation, search" but they are hidden by default (you can enable them with this option). {{Gender}}',
 'tog-uselivepreview' => 'Toggle option used in [[Special:Preferences]]. Live preview is an experimental feature (unavailable by default) to use edit preview without loading the page again. {{Gender}}',
 'tog-forceeditsummary' => "Toggle option used in [[Special:Preferences]] to force an edit ''{{msg-mw|summary}}''. {{Gender}}",
 'tog-watchlisthideown' => "[[Special:Preferences]], tab 'Watchlist'. Offers user to hide own edits from watchlist. {{Gender}}",
@@ -664,6 +665,7 @@ HTML markup cannot be used.
 $1 is a filename, I think.',
 'cannotdelete-title' => 'Title of error page when the user cannot delete a page
 * $1 is the page name',
+'delete-hook-aborted' => 'Error message shown when an extension hook prevents a page deletion, but does not provide an error message.',
 'badtitle' => 'The page title when a user requested a page with invalid page name. The content will be {{msg-mw|badtitletext}}.',
 'badtitletext' => 'The message shown when a user requested a page with invalid page name. The page title will be {{msg-mw|badtitle}}.',
 'perfcached' => 'Like {{msg-mw|perfcachedts}} but used when we do not know how long ago page was cached (unlikely to happen). Parameters:
@@ -696,6 +698,8 @@ $1 is a filename, I think.',
 'invalidtitle-unknownnamespace' => 'Displayed when an invalid title was encountered (generally in a list) and the namespace number is unknown.
 * $1 is the namespace number
 * $2 is the part of the title after the namespace (e.g. SomeName for the page User:SomeName)',
+'exception-nologin' => 'Generic page title used on error page when a user is not logged in. Message used by the UserNotLoggedIn exception.',
+'exception-nologin-text' => 'Generic reason displayed on error page when a user is not logged in. Message used by the UserNotLoggedIn exception.',
 
 # Login and logout pages
 'logouttext' => 'Log out message',
@@ -1016,7 +1020,7 @@ This text will be shown below upload forms. It will default to the contents of e
 'sectioneditnotsupported-title' => 'Page title of special page, which presumably appears when someone tries to edit a section, and section editing is disabled. Explanation of section editing on [http://meta.wikimedia.org/wiki/Help:Section_editing#Section_editing meta].',
 'sectioneditnotsupported-text' => 'I think this is the text of an error message, which presumably appears when someone tries to edit a section, and section editing is disabled. Explanation of section editing on [http://meta.wikimedia.org/wiki/Help:Section_editing#Section_editing meta].',
 'permissionserrorstext-withaction' => '* $1 is the number of reasons that were found why the action cannot be performed.
-* $2 is one of the action-* messages (for example {{msg|action-edit}}).
+* $2 is one of the action-* messages (for example {{msg|action-edit}}) or other such messages tagged with {{tl|doc-action}} in their documentation.
 
 Please report at [[Support]] if you are unable to properly translate this message. Also see [[bugzilla:14246]]',
 'recreate-moveddeleted-warn' => 'Warning shown when creating a page which has already been deleted. See for example [[Test]].',
@@ -1051,11 +1055,16 @@ When templates are expanded, there is a size limit for the number of bytes yield
 * <tt>$2</tt> is the value of the max depth limit',
 'parser-unstrip-loop-warning' => 'This error is shown when a parser extension tag such as &lt;pre> includes a reference to itself in its own output.
 The reference must be to the exact same invocation of the tag at the same location in the source, merely writing &lt;pre>&lt;pre>&lt;/pre>&lt;/pre> will not do it.
-This is usually impossible and unlikely to happen by accident, so translation is not essential.',
+This is usually impossible and unlikely to happen by accident, so translation is not essential.
+"Unstrip" refers to the internal function of the parser, called \'unstrip\', which recursively puts the output of parser functions in the place of the parser function call and which would enter an infinite loop in the situation above. See also:
+*{{msg-mw|Parser-unstrip-recursion-limit}}',
 'parser-unstrip-recursion-limit' => 'This message is shown when the recursion limit for nested parser extension tags is exceeded.
 This warning may be encountered due to input text like &lt;ref>&lt;ref>&lt;ref>...&lt;/ref>&lt;/ref>&lt;/ref>.
 
-* <tt>$1</tt> is the depth limit',
+* <tt>$1</tt> is the depth limit
+
+"Unstrip" refers to the internal function of the parser, called \'unstrip\', which recursively puts the output of parser functions in the place of the parser function call and which would enter an infinite loop in the situation above. See also:
+*{{msg-mw|Parser-unstrip-loop-warning}}',
 
 # "Undo" feature
 'undo-success' => 'Text on special page to confirm edit revert. You arrive on this page by clicking on the "undo" link on a revision history special page.
@@ -1120,9 +1129,12 @@ Used in History and [[Special:Contributions]].',
 * '''$4''' - time.",
 
 # Revision deletion
+'rev-deleted-comment' => 'Apparently this can also be about the reason of a log action, not only an edit summary. See also:
+*{{msg-mw|revdelete-hide-comment}}',
 'rev-deleted-user-contribs' => 'Part of revision deletion.',
 'rev-deleted-text-unhide' => 'This message is very similar to {{msg-mw|rev-suppressed-unhide-diff}}. Parameters:
 * $1 is a HTML link to the diff',
+'rev-deleted-text-view' => 'I believe this is an error message which appears if a user tries to view a past revision of a page, where the revision has been hidden from view, although later revisions of the page still exist.',
 'rev-suppressed-unhide-diff' => 'This message is very similar to {{msg-mw|rev-deleted-unhide-diff}} and to {{msg-mw|rev-suppressed-text-unhide}}. Parameters:
 * $1 is a HTML link to the diff',
 'rev-delundel' => 'Link in page history for oversight (see also {{msg-mw|rev-showdeleted}})',
@@ -1651,6 +1663,15 @@ If someone with this right (bots by default) edits a user talk page and marks it
 'right-writeapi' => '{{doc-right|writeapi}}',
 'right-delete' => '{{doc-right|delete}}',
 'right-bigdelete' => '{{doc-right|bigdelete}}',
+'right-deletelogentry' => '{{doc-right|deletelogentry}}
+This user right is part of the [[mw:RevisionDelete|RevisionDelete]] feature.
+It can be given to the group {{msg|group-sysop|pl=yes}}, although this right is disabled by default.
+
+See also
+* {{msg|right-suppressionlog|pl=yes}}
+* {{msg|right-hideuser|pl=yes}}
+* {{msg|right-suppressrevision|pl=yes}}
+* {{msg|right-deleterevision|pl=yes}}',
 'right-deleterevision' => '{{doc-right|deleterevision}}
 This user right is part of the [[mw:RevisionDelete|RevisionDelete]] feature.
 It can be given to the group {{msg|group-sysop|pl=yes}}, although this right is disabled by default.
@@ -1658,7 +1679,8 @@ It can be given to the group {{msg|group-sysop|pl=yes}}, although this right is 
 See also
 * {{msg|right-suppressionlog|pl=yes}}
 * {{msg|right-hideuser|pl=yes}}
-* {{msg|right-suppressrevision|pl=yes}}',
+* {{msg|right-suppressrevision|pl=yes}}
+* {{msg|right-deletelogentry|pl=yes}}',
 'right-deletedhistory' => '{{doc-right|deletedhistory}}',
 'right-deletedtext' => '{{doc-right|deletedtext}}',
 'right-browsearchive' => '{{doc-right|browsearchive}}',
@@ -1670,6 +1692,7 @@ It can be given to the group {{msg|group-suppress|pl=yes}}, although that group 
 See also
 * {{msg|right-suppressionlog|pl=yes}}
 * {{msg|right-hideuser|pl=yes}}
+* {{msg|right-deletelogentry|pl=yes}}
 * {{msg|right-deleterevision|pl=yes}}',
 'right-suppressionlog' => '{{doc-right|suppressionlog}}
 This user right is part of the [[mw:RevisionDelete|RevisionDelete]] feature.
@@ -1678,6 +1701,7 @@ It can be given to the group {{msg|group-suppress|pl=yes}}, although that group 
 See also
 * {{msg|right-suppressrevision|pl=yes}}
 * {{msg|right-hideuser|pl=yes}}
+* {{msg|right-deletelogentry|pl=yes}}
 * {{msg|right-deleterevision|pl=yes}}',
 'right-block' => '{{doc-right|block}}',
 'right-blockemail' => '{{doc-right|blockemail}}',
@@ -1688,6 +1712,7 @@ It can be given to the group {{msg|group-suppress|pl=yes}}, although that group 
 See also
 * {{msg|right-suppressionlog|pl=yes}}
 * {{msg|right-suppressrevision|pl=yes}}
+* {{msg|right-deletelogentry|pl=yes}}
 * {{msg|right-deleterevision|pl=yes}}',
 'right-ipblock-exempt' => '{{doc-right|ipblock-exempt}}
 This user automatically bypasses IP blocks, auto-blocks and range blocks - so I presume - but I am uncertain',
@@ -1803,10 +1828,10 @@ Similar to {{msg-mw|wlnote}} which is used on [[Special:Watchlist]].
  Example: "\'\'{{int:rcnote/en|50|7||24 January 2008|14:48}}\'\'"',
 'rcnotefrom' => 'This message is displayed at [[Special:RecentChanges]] when viewing recentchanges from some specific time. The corrosponding message is {{msg-mw|Rclistfrom}} (without split of date and time, [[bugzilla:19104|Bug 19104]]).
 
-Parameter $1 is the maximum number of changes that are displayed.
-Parameter $2 is a date and time.
-Parameter $3 is a date.
-Parameter $4 is a time.',
+* Parameter $1 is the maximum number of changes that are displayed.
+* Parameter $2 is a date and time. (alternative to $3 and $4)
+* Parameter $3 is a date. (alternative to $1)
+* Parameter $4 is a time. (alternative to $1)',
 'rclistfrom' => 'Used on [[Special:RecentChanges]]. Parameter $1 is a link to the revision of a specific date and time. The date and the time are the link description (without split of date and time, [[bugzilla:19104|Bug 19104]]). The corrosponding message is {{msg-mw|Rcnotefrom}}.',
 'rcshowhideminor' => "Option text in [[Special:RecentChanges]]. Parameters:
 * $1 is the 'show/hide' command, with the text taken from either {{msg-mw|show}} or {{msg-mw|hide}}.",
@@ -3360,7 +3385,12 @@ See also {{msg-mw|Anonuser}} and {{msg-mw|Siteusers}}.',
 'nocredits' => 'This message is shown when viewing the credits of a page (example: {{fullurl:Main Page|action=credits}}) but when there are no credits available. Note that the credits action is disabled by default (currently enabled on translatewiki.net).',
 
 # Spam protection
-'spam_reverting' => '{{Identical|Revert}}',
+'spam_reverting' => 'Edit summary for spam cleanup script. Used when a page is reverted because all later revisions contained a particular link. Parameters:
+* $1 is a spammed domain name.',
+'spam_blanking' => 'Edit summary for spam cleanup script. Used when a page is blanked (made to have no content, but still exist) because the script could not find an appropriate revision to set the page to. Parameters:
+* $1 is a spammed domain name.',
+'spam_deleting' => 'Edit summary for spam cleanup script. Used when a page is deleted because all revisions contained a particular link. Parameters:
+* $1 is a spammed domain name.',
 
 # Info page
 'pageinfo-title' => 'Page title for action=info.
@@ -4711,6 +4741,8 @@ $4 is the gender of the target user.',
 'api-error-empty-file' => 'API error message that can be used for client side localisation of API errors.',
 'api-error-emptypage' => 'API error message that can be used for client side localisation of API errors.',
 'api-error-fetchfileerror' => 'API error message that can be used for client side localisation of API errors.',
+'api-error-fileexists-forbidden' => 'API error message that can be used for client side localisation of API errors.',
+'api-error-fileexists-shared-forbidden' => 'API error message that can be used for client side localisation of API errors.',
 'api-error-file-too-large' => 'API error message that can be used for client side localisation of API errors.',
 'api-error-filename-tooshort' => 'API error message that can be used for client side localisation of API errors.',
 'api-error-filetype-banned' => 'API error message that can be used for client side localisation of API errors.',

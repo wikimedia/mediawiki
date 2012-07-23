@@ -1,6 +1,6 @@
 <?php
 /**
- * Script to clean up broken page links when somebody turns on $wgCapitalLinks.
+ * Clean up broken page links when somebody turns on $wgCapitalLinks.
  *
  * Usage: php cleanupCaps.php [--dry-run]
  * Options:
@@ -31,6 +31,11 @@
 
 require_once( dirname( __FILE__ ) . '/cleanupTable.inc' );
 
+/**
+ * Maintenance script to clean up broken page links when somebody turns on $wgCapitalLinks.
+ *
+ * @ingroup Maintenance
+ */
 class CapsCleanup extends TableCleanup {
 	public function __construct() {
 		parent::__construct();

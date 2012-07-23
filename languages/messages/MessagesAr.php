@@ -15,6 +15,7 @@
  * @author Ali1
  * @author Alnokta
  * @author Antime
+ * @author Avocato
  * @author Bassem JARKAS
  * @author Chaos
  * @author Ciphers
@@ -465,31 +466,31 @@ $messages = array(
 'tog-hidepatrolled' => 'أخف التعديلات المراجعة في أحدث التغييرات',
 'tog-newpageshidepatrolled' => 'أخف الصفحات المراجعة من قائمة الصفحات الجديدة',
 'tog-extendwatchlist' => 'مدد قائمة المراقبة لعرض كل التغييرات، وليس الأحدث فقط',
-'tog-usenewrc' => 'استخدم أحدث التغييرات المحسنة (يتطلب جافاسكربت)',
-'tog-numberheadings' => 'رقم العناوين تلقائيا',
+'tog-usenewrc' => 'جمّع التعديلات حسب الصفحة في أحدث التغييرات وقائمة المراقبة (يتطلب جافاسكربت)',
+'tog-numberheadings' => 'رقم العناوين تلقائياً',
 'tog-showtoolbar' => 'أظهر شريط التحرير (يتطلب جافاسكربت)',
 'tog-editondblclick' => 'عدل الصفحات عند الضغط المزدوج (جافاسكربت)',
 'tog-editsection' => 'مكن تعديل الأقسام عن طريق وصلات [عدل]',
 'tog-editsectiononrightclick' => 'فعل تعديل الأقسام بواسطة كبسة الفأرة اليمين على عناوين الأقسام (جافاسكريبت)',
 'tog-showtoc' => 'اعرض فهرس المحتويات (للصفحات التي تحتوي على أكثر من 3 عناوين)',
 'tog-rememberpassword' => 'تذكر دخولي على هذا المتصفح (إلى {{PLURAL:$1||يوم واحد|يومين|$1 أيام|$1 يومًا|$1 يوم}} كحد أقصى)',
-'tog-watchcreations' => 'أضف الصفحات التي أنشئها إلى قائمة مراقبتي',
-'tog-watchdefault' => 'أضف الصفحات التي أعدلها إلى قائمة مراقبتي',
-'tog-watchmoves' => 'أضف الصفحات التي أنقلها إلى قائمة مراقبتي',
-'tog-watchdeletion' => 'أضف الصفحات التي أحذفها إلى قائمة مراقبتي',
+'tog-watchcreations' => 'أضف الصفحات التي أنشئها والملفات التي أرفعها إلى قائمة مراقبتي.',
+'tog-watchdefault' => '!!أضف الصفحات والملفات التي أعدلها إلى قائمة مراقبتي',
+'tog-watchmoves' => 'أضف الصفحات والملفات التي أنقلها إلى قائمة مراقبتي',
+'tog-watchdeletion' => 'أضف الصفحات والملفات التي أحذفها إلى قائمة مراقبتي',
 'tog-minordefault' => 'علم كل التعديلات طفيفة افتراضيا',
 'tog-previewontop' => 'أظهر العرض المسبق قبل صندوق التحرير',
 'tog-previewonfirst' => 'أظهر معاينة مع أول تعديل',
 'tog-nocache' => 'عطّل تخزين المتصفح للصفحة',
-'tog-enotifwatchlistpages' => 'أرسل لي رسالة إلكترونية عندما يتم تغيير صفحة في قائمة مراقبتي',
+'tog-enotifwatchlistpages' => 'أرسل لي رسالة إلكترونية عندما تُغيّر صفحة أو ملف في قائمة مراقبتي',
 'tog-enotifusertalkpages' => 'أرسل لي رسالة إلكترونية عندما تعدل صفحة نقاشي',
-'tog-enotifminoredits' => 'أرسل لي رسالة إلكترونية عن التعديلات الطفيفة للصفحات أيضا',
+'tog-enotifminoredits' => 'أرسل لي رسالة إلكترونية عن التعديلات الطفيفة للصفحات والملفات أيضا',
 'tog-enotifrevealaddr' => 'أظهر عنوان بريدي الإلكتروني في رسائل الإخطار',
 'tog-shownumberswatching' => 'اعرض عدد المستخدمين المراقبين',
 'tog-oldsig' => 'التوقيع الحالي:',
 'tog-fancysig' => 'عامل التوقيع كنص ويكي (بدون وصلة أوتوماتيكية)',
-'tog-externaleditor' => 'استخدم محررا خارجيا بشكل افتراضي (للخبراء فقط، يحتاج إعدادات خاصة على حاسوبك) ([//www.mediawiki.org/wiki/Manual:External_editors مزيد من المعلومات.])',
-'tog-externaldiff' => 'استخدم فرقا خارجيا بشكل افتراضي (للخبراء فقط، يحتاج إعدادات خاصة على حاسوبك) ([//www.mediawiki.org/wiki/Manual:External_editors للمزيد من المعلومات.])',
+'tog-externaleditor' => 'استخدم محرراً خارجياً بشكل افتراضي (للخبراء فقط، يحتاج إعدادات خاصة على حاسوبك) ([//www.mediawiki.org/wiki/Manual:External_editors لمزيد من المعلومات].)',
+'tog-externaldiff' => 'استخدم فرقاً خارجياً بشكل افتراضي (للخبراء فقط، يحتاج إعدادات خاصة على حاسوبك) ([//www.mediawiki.org/wiki/Manual:External_editors للمزيد من المعلومات].)',
 'tog-showjumplinks' => 'مكن وصلات "اذهب إلى" المساعدة',
 'tog-uselivepreview' => 'استخدم الاستعراض السريع (جافاسكريبت) (تجريبي)',
 'tog-forceeditsummary' => 'نبهني عند إدخال ملخص تعديل فارغ',
@@ -753,7 +754,7 @@ $1',
 
 # Short words for each namespace, by default used in the namespace tab in monobook
 'nstab-main' => 'صفحة',
-'nstab-user' => 'صفحة مستخدم',
+'nstab-user' => 'صفحة {{GENDER:{{BASEPAGENAME}}|مستخدم|مستخدمة}}',
 'nstab-media' => 'صفحة وسيط',
 'nstab-special' => 'صفحة خاصة',
 'nstab-project' => 'صفحة مشروع',
@@ -1028,8 +1029,8 @@ $2
 'changeemail-oldemail' => 'عنوان البريد الإلكتروني الحالي:',
 'changeemail-newemail' => 'عنوان البريد الإلكتروني الجديد:',
 'changeemail-none' => '(لا شيء)',
-'changeemail-submit' => 'تغيير البريد الإلكتروني',
-'changeemail-cancel' => 'إلغاء',
+'changeemail-submit' => 'غيّر البريد الإلكتروني',
+'changeemail-cancel' => 'ألغِ',
 
 # Edit page toolbar
 'bold_sample' => 'نص غليظ',
@@ -1083,8 +1084,8 @@ $2
 لا يمكنك استخدام خاصية 'مراسلة هذا المستخدم' إلا إذا كنت قد وضعت عنوان بريدي صحيح في [[Special:Preferences|تفضيلات حسابك]] ولم يتم منعك من استخدامها.
 عنوان الأيبي الخاص بك حاليا هو $3، ورقم المنع هو #$5.
 من فضلك اذكر كل التفاصيل بالأعلى في أي استعلامات تقوم بها.",
-'autoblockedtext' => 'تم منع عنوان آيبيك تلقائيا لأن مستخدما آخرا ممنوعا بواسطة $1 استخدمه.
-السبب الممنوح هو التالي:
+'autoblockedtext' => 'مُنِع عنوان آيبيك تلقائيا لأن مستخدما آخرا منعه $1 استخدمه.
+السبب المعطى هو التالي:
 
 :\'\'$2\'\'
 
@@ -1840,7 +1841,7 @@ $1",
 'recentchangeslinked-title' => 'التغييرات المرتبطة ب "$1"',
 'recentchangeslinked-noresult' => 'لم تحدث تعديلات في الصفحات التي لها وصلات هنا خلال الفترة المحددة.',
 'recentchangeslinked-summary' => "هذه قائمة بالتغييرات التي تمت حديثا للصفحات الموصولة من صفحة معينة (أو إلى الأعضاء ضمن تصنيف معين).
-الصفحات في [[Special:Watchlist|قائمة مراقبتك]] '''عريضة'''",
+الصفحات في [[Special:Watchlist|قائمة مراقبتك]] '''مغلظة'''",
 'recentchangeslinked-page' => 'اسم الصفحة:',
 'recentchangeslinked-to' => 'أظهر التغييرات للصفحات الموصولة للصفحة المعطاة عوضا عن ذلك',
 
@@ -2733,7 +2734,7 @@ $1',
 
 # Contributions
 'contributions' => 'مساهمات المستخدم',
-'contributions-title' => 'مساهمات المستخدم $1',
+'contributions-title' => 'مساهمات {{GENDER:$1|المستخدم|المستخدمة}} $1',
 'mycontris' => 'مساهماتي',
 'contribsub2' => 'ل$1 ($2)',
 'nocontribs' => 'لم يتم العثور على تغييرات تطابق هذه المحددات.',
@@ -3140,8 +3141,8 @@ $1',
 'javascripttest-pagetext-unknownframework' => 'إطار اختبار غير معروف "$1".',
 'javascripttest-pagetext-frameworks' => 'الرجاء اختيار أحد أطر الاختبارات التالية: $1',
 'javascripttest-pagetext-skins' => 'قم باختيار الواجهة لإجراء الإحتبارات بها:',
-'javascripttest-qunit-intro' => 'راجع [$1 وثيقة الإختبار] على mediawiki.org.',
-'javascripttest-qunit-heading' => 'جناح أختبار MediaWiki JavaScript QUnit',
+'javascripttest-qunit-intro' => 'راجع [$1 وثيقة الاختبار] على mediawiki.org.',
+'javascripttest-qunit-heading' => 'جناح اختبار MediaWiki JavaScript QUnit',
 
 # Tooltip help for the actions
 'tooltip-pt-userpage' => 'صفحة المستخدم الخاصة بك',
@@ -3256,7 +3257,7 @@ $1',
 'anonymous' => '{{PLURAL:$1|مستخدم مجهول|مستخدمون مجهولون}} ل{{SITENAME}}',
 'siteuser' => 'مستخدم {{SITENAME}} $1',
 'anonuser' => 'مستخدم {{SITENAME}}  المجهول $1',
-'lastmodifiedatby' => 'أجرى آخر تعديل لهذه الصفحة $3 في $2، $1.',
+'lastmodifiedatby' => '{{GENDER:$4|أجرى|أجرت}} $3 آخر تعديل لهذه الصفحة في $2، $1.',
 'othercontribs' => 'بناء على عمل $1.',
 'others' => 'أخرون',
 'siteusers' => '{{PLURAL:$2||مستخدم|مستخدمي}} {{SITENAME}} $1',
@@ -4197,9 +4198,9 @@ $5
 'sqlite-no-fts' => '$1 بدون دعم البحث في كامل النص',
 
 # New logging system
-'logentry-delete-delete' => 'حذف $1 صفحة $3',
+'logentry-delete-delete' => '{{GENDER:$2|حذف|حذفت}} $1 صفحة $3',
 'logentry-delete-restore' => 'استعاد $1 صفحة $3',
-'logentry-delete-event' => 'غيّر $1 إمكانية مشاهدة {{PLURAL:$5||حدث|حدثين|$5 أحداث|$5 حدثًا|$5 حدث}} في سجل $3: $4',
+'logentry-delete-event' => '{{GENDER:$2|غيّر|غيّرت}} $1 إمكانية مشاهدة {{PLURAL:$5||حدث|حدثين|$5 أحداث|$5 حدثًا|$5 حدث}} في سجل $3: $4',
 'logentry-delete-revision' => 'غيّر $1 إمكانية مشاهدة {{PLURAL:$5||مراجعة واحدة|مراجعتين|$5 مراجعات|$5 مراجعة}} في صفحة $3: $4',
 'logentry-delete-event-legacy' => 'غيّر $1 إمكانية رؤية أحداث سجل $3',
 'logentry-delete-revision-legacy' => 'غيّر $1 إمكانية رؤية مراجعات صفحة $3',
@@ -4255,6 +4256,8 @@ $5
 'api-error-empty-file' => 'كان ملف الذي قمت بإرسال فارغة.',
 'api-error-emptypage' => 'إنشاء صفحات فارغة جديدة، غير مسموح به.',
 'api-error-fetchfileerror' => 'خطأ داخلي: قد حدث خطأ أثناء إحضار الملف.',
+'api-error-fileexists-forbidden' => 'يوجد مسبقا ملف باسم "$1"، ولا يمكن استبداله.',
+'api-error-fileexists-shared-forbidden' => 'يوجد مسبقا ملف باسم "$1" في مستودع الملفات المشتركة، ولا يمكن استبداله.',
 'api-error-file-too-large' => 'الملف الذي أرسلته كان كبيرا جدا.',
 'api-error-filename-tooshort' => 'اسم الملف قصير جدا.',
 'api-error-filetype-banned' => 'نوع الملف هذا ممنوع.',

@@ -73,7 +73,8 @@ interface ICacheHelper {
 	function saveCache();
 
 	/**
-	 * Sets the time to live for the cache, in seconds or a unix timestamp indicating the point of expiry..
+	 * Sets the time to live for the cache, in seconds or a unix timestamp
+	 * indicating the point of expiry...
 	 *
 	 * @since 1.20
 	 *
@@ -319,7 +320,8 @@ class CacheHelper implements ICacheHelper {
 	}
 
 	/**
-	 * Sets the time to live for the cache, in seconds or a unix timestamp indicating the point of expiry..
+	 * Sets the time to live for the cache, in seconds or a unix timestamp
+	 * indicating the point of expiry...
 	 *
 	 * @since 1.20
 	 *

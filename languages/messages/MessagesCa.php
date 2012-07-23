@@ -207,8 +207,8 @@ $messages = array(
 'tog-editsectiononrightclick' => "Habilita l'edició per seccions en clicar amb el botó dret sobre els títols de les seccions (cal JavaScript)",
 'tog-showtoc' => 'Mostra la taula de continguts (per pàgines amb més de 3 seccions)',
 'tog-rememberpassword' => 'Recorda la sessió al navegador (per un màxim de {{PLURAL:$1|dia|dies}})',
-'tog-watchcreations' => 'Vigila les pàgines que he creat',
-'tog-watchdefault' => 'Afegeix les pàgines que edito a la meua llista de seguiment',
+'tog-watchcreations' => 'Afegeix les pàgines que vagi creant a la llista de seguiment',
+'tog-watchdefault' => 'Afegeix les pàgines que vagi creant a la llista de seguiment',
 'tog-watchmoves' => 'Afegeix les pàgines que reanomeni a la llista de seguiment',
 'tog-watchdeletion' => 'Afegeix les pàgines que elimini a la llista de seguiment',
 'tog-minordefault' => 'Marca totes les contribucions com a edicions menors per defecte',
@@ -550,6 +550,8 @@ Aviseu-ho llavors a un [[Special:ListUsers/sysop|administrador]], deixant-li cla
 'cannotdelete' => "No s'ha pogut esborrar la pàgina o fitxer «$1».
 Potser ja ha estat esborrat per algú altre.",
 'cannotdelete-title' => 'No es pot suprimir la pàgina " $1 "',
+'delete-hook-aborted' => 'Un «hook» ha interromput la supressió.
+No ha donat cap explicació.',
 'badtitle' => 'El títol no és correcte',
 'badtitletext' => 'El títol de la pàgina que heu introduït no és correcte, és en blanc o conté un enllaç trencat amb un altre projecte. També podria contenir algun caràcter no acceptat als títols de pàgina.',
 'perfcached' => "Les dades següents es troben a la memòria cau i podrien no estar al dia. Hi ha un màxim {{PLURAL:$1|d'un resultat|de $1 resultats}} disponibles a la memòria cau.",
@@ -580,6 +582,8 @@ Els seus motius han estat: «''$2''».",
 L\'administrador que l\'ha bloquejat ha donat aquesta explicació: "$3".',
 'invalidtitle-knownnamespace' => "El títol amb l'espai de noms «$2» i text «$3» no és vàlid",
 'invalidtitle-unknownnamespace' => 'Títol no vàlid amb espai de noms desconegut de número «$1» i text «$2»',
+'exception-nologin' => 'No has iniciat sessió',
+'exception-nologin-text' => 'Aquesta pàgina o acció requereix que iniciïs sessió a aquest wiki.',
 
 # Virus scanner
 'virus-badscanner' => "Mala configuració: antivirus desconegut: ''$1''",
@@ -2046,7 +2050,7 @@ Vegeu també [[Special:WantedCategories|les categories soŀlicitades]].",
 'sp-deletedcontributions-contribs' => 'contribucions',
 
 # Special:LinkSearch
-'linksearch' => "Recerca d'enllaços externs",
+'linksearch' => "Cerca d'enllaços externs",
 'linksearch-pat' => 'Patró de cerca:',
 'linksearch-ns' => 'Espai de noms:',
 'linksearch-ok' => 'Cerca',
@@ -3765,6 +3769,8 @@ Altrament, podeu fer servir un senzill formulari a continuació. El vostre comen
 'api-error-empty-file' => 'El fitxer que heu tramès està buit.',
 'api-error-emptypage' => 'No es permet la creació de pàgines noves en blanc.',
 'api-error-fetchfileerror' => 'Error intern: quelcom no ha funcionat en accedir al fitxer.',
+'api-error-fileexists-forbidden' => "Ja existeix un fitxer amb el nom «$1» i no pot sobreescriure's.",
+'api-error-fileexists-shared-forbidden' => "Ja existeix un fitxer amb el nom «$1» al repositori de fitxers compartits i no pot sobreescriure's.",
 'api-error-file-too-large' => 'El fitxer que heu tramès és massa gran.',
 'api-error-filename-tooshort' => 'El nom del fitxer és massa curt.',
 'api-error-filetype-banned' => 'Aquest tipus de fitxer està prohibit.',

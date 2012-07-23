@@ -4,7 +4,7 @@
  *
  * Created on May 13, 2007
  *
- * Copyright © 2006 Yuri Astrakhan <Firstname><Lastname>@gmail.com
+ * Copyright © 2006 Yuri Astrakhan "<Firstname><Lastname>@gmail.com"
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -91,7 +91,7 @@ class ApiQueryCategories extends ApiQueryGeneratorBase {
 			}
 			$op = $params['dir'] == 'descending' ? '<' : '>';
 			$clfrom = intval( $cont[0] );
-			$clto = $this->getDB()->addQuotes( $this->titleToKey( $cont[1] ) );
+			$clto = $this->getDB()->addQuotes( $cont[1] );
 			$this->addWhere(
 				"cl_from $op $clfrom OR " .
 				"(cl_from = $clfrom AND " .
@@ -143,8 +143,7 @@ class ApiQueryCategories extends ApiQueryGeneratorBase {
 				if ( ++$count > $params['limit'] ) {
 					// We've reached the one extra which shows that
 					// there are additional pages to be had. Stop here...
-					$this->setContinueEnumParameter( 'continue', $row->cl_from .
-							'|' . $this->keyToTitle( $row->cl_to ) );
+					$this->setContinueEnumParameter( 'continue', $row->cl_from . '|' . $row->cl_to );
 					break;
 				}
 
@@ -164,8 +163,7 @@ class ApiQueryCategories extends ApiQueryGeneratorBase {
 
 				$fit = $this->addPageSubItem( $row->cl_from, $vals );
 				if ( !$fit ) {
-					$this->setContinueEnumParameter( 'continue', $row->cl_from .
-							'|' . $this->keyToTitle( $row->cl_to ) );
+					$this->setContinueEnumParameter( 'continue', $row->cl_from . '|' . $row->cl_to );
 					break;
 				}
 			}
@@ -175,8 +173,7 @@ class ApiQueryCategories extends ApiQueryGeneratorBase {
 				if ( ++$count > $params['limit'] ) {
 					// We've reached the one extra which shows that
 					// there are additional pages to be had. Stop here...
-					$this->setContinueEnumParameter( 'continue', $row->cl_from .
-							'|' . $this->keyToTitle( $row->cl_to ) );
+					$this->setContinueEnumParameter( 'continue', $row->cl_from . '|' . $row->cl_to );
 					break;
 				}
 

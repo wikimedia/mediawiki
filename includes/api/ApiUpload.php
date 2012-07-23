@@ -560,7 +560,10 @@ class ApiUpload extends ApiBase {
 				ApiBase::PARAM_DFLT => ''
 			),
 			'text' => null,
-			'token' => null,
+			'token' => array(
+				ApiBase::PARAM_TYPE => 'string',
+				ApiBase::PARAM_REQUIRED => true
+			),
 			'watch' => array(
 				ApiBase::PARAM_DFLT => false,
 				ApiBase::PARAM_DEPRECATED => true,
@@ -687,6 +690,8 @@ class ApiUpload extends ApiBase {
 				array( 'code' => 'stashfailed', 'info' => 'Stashing temporary file failed' ),
 				array( 'code' => 'internal-error', 'info' => 'An internal error occurred' ),
 				array( 'code' => 'asynccopyuploaddisabled', 'info' => 'Asynchronous copy uploads disabled' ),
+				array( 'fileexists-forbidden' ),
+				array( 'fileexists-shared-forbidden' ),
 			)
 		);
 	}

@@ -4,7 +4,7 @@
  *
  * Created on July 6, 2007
  *
- * Copyright © 2006 Yuri Astrakhan <Firstname><Lastname>@gmail.com
+ * Copyright © 2006 Yuri Astrakhan "<Firstname><Lastname>@gmail.com"
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -81,14 +81,14 @@ class ApiQueryImageInfo extends ApiQueryBase {
 				}
 
 				$start = $skip ? $fromTimestamp : $params['start'];
-				$pageId = $pageIds[NS_IMAGE][ $img->getOriginalTitle()->getDBkey() ];
+				$pageId = $pageIds[NS_FILE][ $img->getOriginalTitle()->getDBkey() ];
 
 				$fit = $result->addValue(
 					array( 'query', 'pages', intval( $pageId ) ),
 					'imagerepository', $img->getRepoName()
 				);
 				if ( !$fit ) {
-					if ( count( $pageIds[NS_IMAGE] ) == 1 ) {
+					if ( count( $pageIds[NS_FILE] ) == 1 ) {
 						// The user is screwed. imageinfo can't be solely
 						// responsible for exceeding the limit in this case,
 						// so set a query-continue that just returns the same
@@ -119,7 +119,7 @@ class ApiQueryImageInfo extends ApiQueryBase {
 						self::getInfo( $img, $prop, $result,
 							$finalThumbParams, $params['metadataversion'] ) );
 					if ( !$fit ) {
-						if ( count( $pageIds[NS_IMAGE] ) == 1 ) {
+						if ( count( $pageIds[NS_FILE] ) == 1 ) {
 							// See the 'the user is screwed' comment above
 							$this->setContinueEnumParameter( 'start',
 								wfTimestamp( TS_ISO_8601, $img->getTimestamp() ) );
@@ -149,7 +149,7 @@ class ApiQueryImageInfo extends ApiQueryBase {
 						self::getInfo( $oldie, $prop, $result,
 							$finalThumbParams, $params['metadataversion'] ) );
 					if ( !$fit ) {
-						if ( count( $pageIds[NS_IMAGE] ) == 1 ) {
+						if ( count( $pageIds[NS_FILE] ) == 1 ) {
 							$this->setContinueEnumParameter( 'start',
 								wfTimestamp( TS_ISO_8601, $oldie->getTimestamp() ) );
 						} else {
@@ -356,8 +356,7 @@ class ApiQueryImageInfo extends ApiQueryBase {
 
 					if ( isset( $prop['thumbmime'] ) && $file->getHandler() ) {
 						list( $ext, $mime ) = $file->getHandler()->getThumbType(
-							substr( $mto->getPath(), strrpos( $mto->getPath(), '.' ) + 1 ),
-							$file->getMimeType(), $thumbParams );
+							$mto->getExtension(), $file->getMimeType(), $thumbParams );
 						$vals['thumbmime'] = $mime;
 					}
 				} elseif ( $mto && $mto->isError() ) {
@@ -491,7 +490,7 @@ class ApiQueryImageInfo extends ApiQueryBase {
 	 *
 	 * @return array
 	 */
-	private static function getProperties() {
+	private static function getProperties( $modulePrefix = '' ) {
 		return array(
 			'timestamp' =>      ' timestamp     - Adds timestamp for the uploaded version',
 			'user' =>           ' user          - Adds the user who uploaded the image version',
@@ -503,7 +502,8 @@ class ApiQueryImageInfo extends ApiQueryBase {
 			'dimensions' =>     ' dimensions    - Alias for size', // For backwards compatibility with Allimages
 			'sha1' =>           ' sha1          - Adds SHA-1 hash for the image',
 			'mime' =>           ' mime          - Adds MIME type of the image',
-			'thumbmime' =>      ' thumbmime     - Adds MIME type of the image thumbnail (requires url)',
+			'thumbmime' =>      ' thumbmime     - Adds MIME type of the image thumbnail' .
+				' (requires url and param ' . $modulePrefix . 'urlwidth)',
 			'mediatype' =>      ' mediatype     - Adds the media type of the image',
 			'metadata' =>       ' metadata      - Lists EXIF metadata for the version of the image',
 			'archivename' =>    ' archivename   - Adds the file name of the archive version for non-latest versions',
@@ -518,10 +518,10 @@ class ApiQueryImageInfo extends ApiQueryBase {
 	 *
 	 * @return array
 	 */
-	public static function getPropertyDescriptions( $filter = array() ) {
+	public static function getPropertyDescriptions( $filter = array(), $modulePrefix = '' ) {
 		return array_merge(
 			array( 'What image information to get:' ),
-			array_values( array_diff_key( self::getProperties(), array_flip( $filter ) ) )
+			array_values( array_diff_key( self::getProperties( $modulePrefix ), array_flip( $filter ) ) )
 		);
 	}
 
@@ -532,7 +532,7 @@ class ApiQueryImageInfo extends ApiQueryBase {
 	public function getParamDescription() {
 		$p = $this->getModulePrefix();
 		return array(
-			'prop' => self::getPropertyDescriptions(),
+			'prop' => self::getPropertyDescriptions( array(), $p ),
 			'urlwidth' => array( "If {$p}prop=url is set, a URL to an image scaled to this width will be returned.",
 					    'Only the current version of the image can be scaled' ),
 			'urlheight' => "Similar to {$p}urlwidth. Cannot be used without {$p}urlwidth",

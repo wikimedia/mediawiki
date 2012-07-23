@@ -558,7 +558,7 @@ abstract class Installer {
 	 * write your messages. This appears to work well enough. Basic formatting and
 	 * external links work just fine.
 	 *
-	 * But in case a translator decides to throw in a #ifexist or internal link or
+	 * But in case a translator decides to throw in a "#ifexist" or internal link or
 	 * whatever, this function is guarded to catch the attempted DB access and to present
 	 * some fallback text.
 	 *

@@ -4,7 +4,7 @@
  *
  * Created on Sep 4, 2007
  *
- * Copyright © 2007 Roan Kattouw <Firstname>.<Lastname>@gmail.com
+ * Copyright © 2007 Roan Kattouw "<Firstname>.<Lastname>@gmail.com"
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -72,9 +72,9 @@ class ApiBlock extends ApiBase {
 		$data = array(
 			'Target' => $params['user'],
 			'Reason' => array(
-				is_null( $params['reason'] ) ? '' : $params['reason'],
+				$params['reason'],
 				'other',
-				is_null( $params['reason'] ) ? '' : $params['reason']
+				$params['reason']
 			),
 			'Expiry' => $params['expiry'] == 'never' ? 'infinite' : $params['expiry'],
 			'HardBlock' => !$params['anononly'],
@@ -156,7 +156,7 @@ class ApiBlock extends ApiBase {
 				ApiBase::PARAM_DEPRECATED => true,
 			),
 			'expiry' => 'never',
-			'reason' => null,
+			'reason' => '',
 			'anononly' => false,
 			'nocreate' => false,
 			'autoblock' => false,
@@ -174,7 +174,7 @@ class ApiBlock extends ApiBase {
 			'token' => 'A block token previously obtained through prop=info',
 			'gettoken' => 'If set, a block token will be returned, and no other action will be taken',
 			'expiry' => 'Relative expiry time, e.g. \'5 months\' or \'2 weeks\'. If set to \'infinite\', \'indefinite\' or \'never\', the block will never expire.',
-			'reason' => 'Reason for block (optional)',
+			'reason' => 'Reason for block',
 			'anononly' => 'Block anonymous users only (i.e. disable anonymous edits for this IP)',
 			'nocreate' => 'Prevent account creation',
 			'autoblock' => 'Automatically block the last used IP address, and any subsequent IP addresses they try to login from',

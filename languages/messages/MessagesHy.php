@@ -15,6 +15,7 @@
  * @author Togaed
  * @author Vacio
  * @author Xelgen
+ * @author Համլետ
  * @author לערי ריינהארט
  */
 
@@ -739,6 +740,9 @@ $2',
 Խնդրում ենք սպասել որոշ ժամանակ կրկին փորձելուց առաջ։',
 'loginlanguagelabel' => 'Լեզու. $1',
 
+# E-mail sending
+'php-mail-error-unknown' => 'Անհայտ սխալ PHP-ի mail() ֆունկցիայում',
+
 # Change password dialog
 'resetpass' => 'Փոխել գաղտնաբառը',
 'resetpass_announce' => 'Դուք ներկայացել եք էլ-փոստով ստացված ժամանակավոր գաղտնաբառով։ Համակարգ մուտքի համար անհրաժեշտ է նոր գաղտնաբառ ընտրել այստեղ.',
@@ -758,12 +762,15 @@ $2',
 'resetpass-temp-password' => 'Ժամանակավոր գաղտնաբառ.',
 
 # Special:PasswordReset
+'passwordreset-legend' => 'Վերականգնել գաղտնաբառը',
 'passwordreset-username' => 'Մասնակցի անուն.',
 'passwordreset-emailelement' => 'Մասնակցային անուն. $1
 Ժամանակավոր գաղտնաբառ. $2',
 
 # Special:ChangeEmail
 'changeemail' => 'Փոխել էլ. հասցեն',
+'changeemail-submit' => 'Խմբագրել էլ․ հասցեն',
+'changeemail-cancel' => 'Չեղարկել',
 
 # Edit page toolbar
 'bold_sample' => 'Թավատառ տեքստ',
@@ -939,6 +946,7 @@ $2',
 'log-fulllog' => 'Դիտել ամբողջական տեղեկամատյանը',
 'edit-conflict' => 'Խմբագրման ընհարում։',
 'edit-no-change' => 'Ձեր խմբագրումը անտեսվել է, քանի որ ոչ մի փոփոխություն չի կատարվել տեքստի մեջ։',
+'defaultmessagetext' => 'Լռելյան տեքստը',
 
 # "Undo" feature
 'undo-success' => 'Խմբագրումը կարող է հետ շրջվել։ Ստուգեք տարբերակների համեմատությունը ստորև, որպեսզի համոզվեք, որ դա է ձեզ հետաքրքրող փոփոխությունը և մատնահարեք «Հիշել էջը»՝ գործողությունն ավարտելու համար։',
@@ -1044,7 +1052,7 @@ $3 մասնակիցը տվել է հետևյալ պատճառը. ''$2''",
 
 # Diffs
 'history-title' => '«$1» էջի փոփոխումների պատմություն',
-'difference-title' => '$1: Խմագրումների տարբերություն',
+'difference-title' => '$1: Խմբագրումների տարբերություն',
 'difference-title-multipage' => '$1 և $2: Խմբագրումների տարբերություն',
 'difference-multipage' => '(Էջերի տարերություն)',
 'lineno' => 'Տող  $1.',
@@ -2557,7 +2565,7 @@ $3
 'revdelete-summary-hid' => 'անտեսանելի դարձվեց խմբագրման ամփոփումը',
 'revdelete-uname-hid' => 'անտեսանելի դարձվեց մասնակցի անունը',
 'revdelete-content-unhid' => 'տեսանելի դարձվեց բովանդակությունը',
-'revdelete-summary-unhid' => 'տեսնելի դարձվեց խմագրման ամփոփումը',
+'revdelete-summary-unhid' => 'տեսնելի դարձվեց խմբագրման ամփոփումը',
 'revdelete-uname-unhid' => 'տեսանելի դարձվեց մասնակցի անունը',
 'logentry-move-move' => '$1 տեղափոխեց էջը «$3»-ից «$4»',
 'logentry-move-move-noredirect' => '$1 տեղափոխեց էջը «$3»-ից «$4» առանց վերահղում թողնելու',

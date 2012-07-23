@@ -176,6 +176,15 @@ abstract class IndexPager extends ContextSource implements Pager {
 	}
 
 	/**
+	 * Get the Database object in use
+	 *
+	 * @return DatabaseBase
+	 */
+	public function getDatabase() {
+		return $this->mDb;
+	}
+
+	/**
 	 * Do the query, using information from the object context. This function
 	 * has been kept minimal to make it overridable if necessary, to allow for
 	 * result sets formed from multiple DB queries.
@@ -194,6 +203,7 @@ abstract class IndexPager extends ContextSource implements Pager {
 			$queryLimit,
 			$descending
 		);
+
 		$this->extractResultInfo( $this->mOffset, $queryLimit, $this->mResult );
 		$this->mQueryDone = true;
 
@@ -303,7 +313,20 @@ abstract class IndexPager extends ContextSource implements Pager {
 	 * @param $descending Boolean: query direction, false for ascending, true for descending
 	 * @return ResultWrapper
 	 */
-	function reallyDoQuery( $offset, $limit, $descending ) {
+	public function reallyDoQuery( $offset, $limit, $descending ) {
+		list( $tables, $fields, $conds, $fname, $options, $join_conds ) = $this->buildQueryInfo( $offset, $limit, $descending );
+		return $this->mDb->select( $tables, $fields, $conds, $fname, $options, $join_conds );
+	}
+
+	/**
+	 * Build variables to use by the database wrapper.
+	 *
+	 * @param $offset String: index offset, inclusive
+	 * @param $limit Integer: exact query limit
+	 * @param $descending Boolean: query direction, false for ascending, true for descending
+	 * @return array
+	 */
+	protected function buildQueryInfo( $offset, $limit, $descending ) {
 		$fname = __METHOD__ . ' (' . $this->getSqlComment() . ')';
 		$info = $this->getQueryInfo();
 		$tables = $info['tables'];
@@ -327,8 +350,7 @@ abstract class IndexPager extends ContextSource implements Pager {
 			$conds[] = $this->mIndexField . $operator . $this->mDb->addQuotes( $offset );
 		}
 		$options['LIMIT'] = intval( $limit );
-		$res = $this->mDb->select( $tables, $fields, $conds, $fname, $options, $join_conds );
-		return new ResultWrapper( $this->mDb, $res );
+		return array( $tables, $fields, $conds, $fname, $options, $join_conds );
 	}
 
 	/**
@@ -980,7 +1002,7 @@ abstract class TablePager extends IndexPager {
 	 * @protected
 	 *
 	 * @param $row Object: the database result row
-	 * @return Array of <attr> => <value>
+	 * @return Array of attribute => value
 	 */
 	function getRowAttrs( $row ) {
 		$class = $this->getRowClass( $row );
@@ -1095,7 +1117,7 @@ abstract class TablePager extends IndexPager {
 	}
 
 	/**
-	 * Get a <select> element which has options for each of the allowed limits
+	 * Get a "<select>" element which has options for each of the allowed limits
 	 *
 	 * @return String: HTML fragment
 	 */
@@ -1125,7 +1147,7 @@ abstract class TablePager extends IndexPager {
 	}
 
 	/**
-	 * Get <input type="hidden"> elements for use in a method="get" form.
+	 * Get \<input type="hidden"\> elements for use in a method="get" form.
 	 * Resubmits all defined elements of the query string, except for a
 	 * blacklist, passed in the $blacklist parameter.
 	 *

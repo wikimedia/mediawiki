@@ -4,7 +4,7 @@
  *
  * Created on Sep 24, 2006
  *
- * Copyright © 2006 Yuri Astrakhan <Firstname><Lastname>@gmail.com
+ * Copyright © 2006 Yuri Astrakhan "<Firstname><Lastname>@gmail.com"
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -52,7 +52,7 @@ class ApiPageSet extends ApiQueryBase {
 
 	/**
 	 * Constructor
-	 * @param $query ApiQueryBase
+	 * @param $query ApiBase
 	 * @param $resolveRedirects bool Whether redirects should be resolved
 	 * @param $convertTitles bool
 	 */
@@ -266,8 +266,8 @@ class ApiPageSet extends ApiQueryBase {
 	}
 
 	/**
-	 * Returns the number of revisions (requested with revids= parameter)\
-	 * @return int
+	 * Returns the number of revisions (requested with revids= parameter).
+	 * @return int Number of revisions.
 	 */
 	public function getRevisionCount() {
 		return count( $this->getRevisionIDs() );

@@ -92,7 +92,7 @@
 		isReady = true;
 
 		// Make sure edit summary does not exceed byte limit
-		$( '#wpSummary' ).byteLimit( 250 );
+		$( '#wpSummary' ).byteLimit( 255 );
 
 		/**
 		 * Restore the edit box scroll state following a preview operation,

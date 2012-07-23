@@ -4,7 +4,7 @@
  *
  * Created on May 13, 2007
  *
- * Copyright © 2006 Yuri Astrakhan <Firstname><Lastname>@gmail.com
+ * Copyright © 2006 Yuri Astrakhan "<Firstname><Lastname>@gmail.com"
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -25,7 +25,8 @@
  */
 
 /**
- * This query adds the <categories> subelement to all pages with the list of categories the page is in
+ * This query adds the "<categories>" subelement to all pages with the list of
+ * categories the page is in.
  *
  * @ingroup API
  */

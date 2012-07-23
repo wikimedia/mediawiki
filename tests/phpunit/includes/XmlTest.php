@@ -251,6 +251,15 @@ class XmlTest extends MediaWikiTestCase {
 		);
 	}
 
+	function testLanguageSelector() {
+		$select = Xml::languageSelector( 'en', true, null,
+			array( 'id' => 'testlang' ), wfMessage( 'yourlanguage' ) );
+		$this->assertEquals(
+			'<label for="testlang">Language:</label>',
+			$select[0]
+		);
+	}
+
 	#
 	# JS
 	#

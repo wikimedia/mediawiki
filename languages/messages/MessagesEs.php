@@ -7,6 +7,7 @@
  * @ingroup Language
  * @file
  *
+ * @author -jem-
  * @author Aleator
  * @author Alhen
  * @author Alpertron
@@ -367,7 +368,7 @@ $messages = array(
 'tog-previewontop' => 'Mostrar previsualización antes del cuadro de edición',
 'tog-previewonfirst' => 'Mostrar previsualización en la primera edición',
 'tog-nocache' => 'Desactivar la caché de páginas del navegador',
-'tog-enotifwatchlistpages' => 'Enviarme un correo electrónico cuando se modifique una página en mi lista de seguimiento',
+'tog-enotifwatchlistpages' => 'Enviarme un correo electrónico cuando se modifique una página o un archivo de mi lista de seguimiento',
 'tog-enotifusertalkpages' => 'Enviarme un correo electrónico cuando se modifique mi página de discusión',
 'tog-enotifminoredits' => 'Notificarme también los cambios menores de páginas',
 'tog-enotifrevealaddr' => 'Revelar mi dirección de correo electrónico en los correos de notificación',
@@ -702,6 +703,7 @@ Por favor, avisa a un [[Special:ListUsers/sysop|administrador]], tomando nota de
 'cannotdelete' => 'La página o archivo «$1» no se pudo borrar.
 Puede que ya haya sido borrado por alguien más.',
 'cannotdelete-title' => 'No se puede borrar la página «$1»',
+'delete-hook-aborted' => 'La modificación que intentaste hacer fue cancelada por un gancho de extensión. No hay explicación disponible.',
 'badtitle' => 'Título incorrecto',
 'badtitletext' => 'El título de la página solicitada está vacío, no es válido, o es un enlace interidioma o interwiki incorrecto.
 Puede que contenga uno o más caracteres que no se pueden usar en los títulos.',
@@ -733,6 +735,8 @@ El motivo dado fue: "\'\'$2\'\'".',
 El administrador que lo ha bloqueado ofrece esta explicación: "$3".',
 'invalidtitle-knownnamespace' => 'Título no válido con el espacio de nombres "$2" y el texto "$3"',
 'invalidtitle-unknownnamespace' => 'Título no válido con número de espacio de nombres desconocido  $1  y el texto "$2"',
+'exception-nologin' => 'No has iniciado sesión',
+'exception-nologin-text' => 'Esta página o acción requiere que inicies sesión en este wiki.',
 
 # Virus scanner
 'virus-badscanner' => "Error de configuración: Antivirus desconocido: ''$1''",
@@ -765,7 +769,7 @@ No olvides personalizar [[Special:Preferences|tus preferencias]].',
 'notloggedin' => 'No has iniciado sesión',
 'nologin' => '¿No tienes una cuenta? $1.',
 'nologinlink' => 'Crear una cuenta',
-'createaccount' => 'Crear cuenta',
+'createaccount' => 'Crear una cuenta',
 'gotaccount' => '¿Ya tienes una cuenta? $1.',
 'gotaccountlink' => 'Entrar',
 'userlogin-resetlink' => '¿Olvidaste tus datos de acceso?',
@@ -3293,11 +3297,11 @@ Existen otros campos que se mantendrán ocultos por defecto.
 'exif-meteringmode' => 'Modo de medición',
 'exif-lightsource' => 'Fuente de luz',
 'exif-flash' => 'Flash',
-'exif-focallength' => 'Longitud de la lente focal',
+'exif-focallength' => 'Longitud focal de la lente',
 'exif-subjectarea' => 'Área del sujeto',
 'exif-flashenergy' => 'Energía del flash',
-'exif-focalplanexresolution' => 'Resolución X plano focal',
-'exif-focalplaneyresolution' => 'Resolución Y plano focal',
+'exif-focalplanexresolution' => 'Resolución X del plano focal',
+'exif-focalplaneyresolution' => 'Resolución Y del plano focal',
 'exif-focalplaneresolutionunit' => 'Unidad de resolución del plano focal',
 'exif-subjectlocation' => 'Localización del sujeto',
 'exif-exposureindex' => 'Índice de exposición',
@@ -3334,7 +3338,7 @@ Existen otros campos que se mantendrán ocultos por defecto.
 'exif-gpstrackref' => 'Referencia para la dirección del movimiento',
 'exif-gpstrack' => 'Dirección del movimiento',
 'exif-gpsimgdirectionref' => 'Referencia de la dirección de imágen',
-'exif-gpsimgdirection' => 'Dirección de imágen',
+'exif-gpsimgdirection' => 'Dirección de imagen',
 'exif-gpsmapdatum' => 'Utilizados datos de medición geodésica',
 'exif-gpsdestlatituderef' => 'Referencia para la latitud del destino',
 'exif-gpsdestlatitude' => 'Destino de latitud',
@@ -3419,7 +3423,7 @@ Existen otros campos que se mantendrán ocultos por defecto.
 'exif-compression-3' => 'Codificación de fax CCITT grupo 3',
 'exif-compression-4' => 'Codificación de fax CCITT grupo 4',
 
-'exif-copyrighted-true' => 'Copyrighted',
+'exif-copyrighted-true' => 'Con derechos de autor',
 'exif-copyrighted-false' => 'Dominio público',
 
 'exif-unknowndate' => 'Fecha desconocida',
@@ -3985,6 +3989,8 @@ En otro caso, puedes usar el siguiente formulario. Tu comentario será añadido 
 'api-error-empty-file' => 'El archivo que enviaste estaba vacío.',
 'api-error-emptypage' => 'No se pueden crear páginas nuevas que estén vacías.',
 'api-error-fetchfileerror' => 'Error interno: Algo salió mal mientras se obtenía el archivo.',
+'api-error-fileexists-forbidden' => 'Ya existe el archivo "$1" y no se puede sobreescribir.',
+'api-error-fileexists-shared-forbidden' => 'Ya existe "$1" en el repositorio de archivos compartidos y no se puede sobreescribir.',
 'api-error-file-too-large' => 'El archivo que enviaste era demasiado grande.',
 'api-error-filename-tooshort' => 'El nombre de archivo es demasiado corto.',
 'api-error-filetype-banned' => 'Este tipo de archivo está prohibido.',

@@ -1,0 +1,22 @@
+{
+	"predef": [
+		"mediaWiki",
+		"jQuery",
+		"QUnit"
+	],
+
+	"bitwise": true,
+	"curly": true,
+	"eqeqeq": true,
+	"immed": true,
+	"latedef": true,
+	"newcap": true,
+	"noempty": true,
+	"undef": true,
+	"trailing": true,
+
+	"laxbreak": true,
+	"smarttabs": true,
+
+	"browser": true
+}

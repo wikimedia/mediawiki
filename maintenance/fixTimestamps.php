@@ -1,10 +1,10 @@
 <?php
 /**
- * This script fixes timestamp corruption caused by one or more webservers
- * temporarily being set to the wrong time. The time offset must be known and
- * consistent. Start and end times (in 14-character format) restrict the search,
- * and must bracket the damage. There must be a majority of good timestamps in the
- * search period.
+ * Fixes timestamp corruption caused by one or more webservers temporarily
+ * being set to the wrong time.
+ * The time offset must be known and consistent. Start and end times
+ * (in 14-character format) restrict the search, and must bracket the damage.
+ * There must be a majority of good timestamps in the search period.
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -21,11 +21,18 @@
  * 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
  * http://www.gnu.org/copyleft/gpl.html
  *
+ * @file
  * @ingroup Maintenance
  */
 
 require_once( dirname( __FILE__ ) . '/Maintenance.php' );
 
+/**
+ * Maintenance script that fixes timestamp corruption caused by one or
+ * more webservers temporarily being set to the wrong time.
+ *
+ * @ingroup Maintenance
+ */
 class FixTimestamps extends Maintenance {
 	public function __construct() {
 		parent::__construct();

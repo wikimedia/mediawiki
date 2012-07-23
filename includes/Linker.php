@@ -407,6 +407,11 @@ class Linker {
 	 * despite $query not being used.
 	 *
 	 * @param $nt Title
+	 * @param $html String [optional]
+	 * @param $query String [optional]
+	 * @param $trail String [optional]
+	 * @param $prefix String [optional]
+	 *
 	 *
 	 * @return string
 	 */
@@ -978,7 +983,7 @@ class Linker {
 	 * @param $userName String: user name in database.
 	 * @param $altUserName String: text to display instead of the user name (optional)
 	 * @return String: HTML fragment
-	 * @since 1.19 Method exists for a long time. $displayText was added in 1.19.
+	 * @since 1.19 Method exists for a long time. $altUserName was added in 1.19.
 	 */
 	public static function userLink( $userId, $userName, $altUserName = false ) {
 		if ( $userId == 0 ) {
@@ -1646,11 +1651,17 @@ class Linker {
 	 * other users.
 	 *
 	 * @param $rev Revision object
+	 * @param $context IContextSource context to use or null for the main context.
 	 * @return string
 	 */
-	public static function generateRollback( $rev ) {
+	public static function generateRollback( $rev, IContextSource $context = null ) {
+		if ( $context === null ) {
+			$context = RequestContext::getMain();
+		}
+
 		return '<span class="mw-rollback-link">'
-			. wfMessage( 'brackets' )->rawParams( self::buildRollbackLink( $rev ) )->plain()
+			. $context->msg( 'brackets' )->rawParams(
+				self::buildRollbackLink( $rev, $context ) )->plain()
 			. '</span>';
 	}
 
@@ -1658,24 +1669,28 @@ class Linker {
 	 * Build a raw rollback link, useful for collections of "tool" links
 	 *
 	 * @param $rev Revision object
+	 * @param $context IContextSource context to use or null for the main context.
 	 * @return String: HTML fragment
 	 */
-	public static function buildRollbackLink( $rev ) {
-		global $wgRequest, $wgUser;
+	public static function buildRollbackLink( $rev, IContextSource $context = null ) {
+		if ( $context === null ) {
+			$context = RequestContext::getMain();
+		}
+
 		$title = $rev->getTitle();
 		$query = array(
 			'action' => 'rollback',
 			'from' => $rev->getUserText(),
-			'token' => $wgUser->getEditToken( array( $title->getPrefixedText(), $rev->getUserText() ) ),
+			'token' => $context->getUser()->getEditToken( array( $title->getPrefixedText(), $rev->getUserText() ) ),
 		);
-		if ( $wgRequest->getBool( 'bot' ) ) {
+		if ( $context->getRequest()->getBool( 'bot' ) ) {
 			$query['bot'] = '1';
 			$query['hidediff'] = '1'; // bug 15999
 		}
 		return self::link(
 			$title,
-			wfMsgHtml( 'rollbacklink' ),
-			array( 'title' => wfMsg( 'tooltip-rollback' ) ),
+			$context->msg( 'rollbacklink' )->escaped(),
+			array( 'title' => $context->msg( 'tooltip-rollback' )->text() ),
 			$query,
 			array( 'known', 'noclasses' )
 		);
@@ -1713,7 +1728,7 @@ class Linker {
 			}
 			$outText .= "</div><ul>\n";
 
-			usort( $templates, array( 'Title', 'compare' ) );
+			usort( $templates, 'Title::compare' );
 			foreach ( $templates as $titleObj ) {
 				$r = $titleObj->getRestrictions( 'edit' );
 				if ( in_array( 'sysop', $r ) ) {
@@ -1913,10 +1928,10 @@ class Linker {
 	 * Creates a (show/hide) link for deleting revisions/log entries
 	 *
 	 * @param $query Array: query parameters to be passed to link()
-	 * @param $restricted Boolean: set to true to use a <strong> instead of a <span>
+	 * @param $restricted Boolean: set to true to use a "<strong>" instead of a "<span>"
 	 * @param $delete Boolean: set to true to use (show/hide) rather than (show)
 	 *
-	 * @return String: HTML <a> link to Special:Revisiondelete, wrapped in a
+	 * @return String: HTML "<a>" link to Special:Revisiondelete, wrapped in a
 	 * span to allow for customization of appearance with CSS
 	 */
 	public static function revDeleteLink( $query = array(), $restricted = false, $delete = true ) {

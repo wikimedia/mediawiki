@@ -27,14 +27,30 @@
  * @ingroup Cache
  */
 class EmptyBagOStuff extends BagOStuff {
+
+	/**
+	 * @param $key string
+	 * @return bool
+	 */
 	function get( $key ) {
 		return false;
 	}
 
+	/**
+	 * @param $key string
+	 * @param $value mixed
+	 * @param $exp int
+	 * @return bool
+	 */
 	function set( $key, $value, $exp = 0 ) {
 		return true;
 	}
 
+	/**
+	 * @param $key string
+	 * @param $time int
+	 * @return bool
+	 */
 	function delete( $key, $time = 0 ) {
 		return true;
 	}

@@ -4,7 +4,7 @@
  *
  * Created on May 13, 2007
  *
- * Copyright © 2006 Yuri Astrakhan <Firstname><Lastname>@gmail.com
+ * Copyright © 2006 Yuri Astrakhan "<Firstname><Lastname>@gmail.com"
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -25,7 +25,8 @@
  */
 
 /**
- * This query adds an <images> subelement to all pages with the list of images embedded into those pages.
+ * This query adds an "<images>" subelement to all pages with the list of
+ * images embedded into those pages.
  *
  * @ingroup API
  */
@@ -67,7 +68,7 @@ class ApiQueryImages extends ApiQueryGeneratorBase {
 			}
 			$op = $params['dir'] == 'descending' ? '<' : '>';
 			$ilfrom = intval( $cont[0] );
-			$ilto = $this->getDB()->addQuotes( $this->titleToKey( $cont[1] ) );
+			$ilto = $this->getDB()->addQuotes( $cont[1] );
 			$this->addWhere(
 				"il_from $op $ilfrom OR " .
 				"(il_from = $ilfrom AND " .
@@ -108,16 +109,14 @@ class ApiQueryImages extends ApiQueryGeneratorBase {
 				if ( ++$count > $params['limit'] ) {
 					// We've reached the one extra which shows that
 					// there are additional pages to be had. Stop here...
-					$this->setContinueEnumParameter( 'continue', $row->il_from .
-							'|' . $this->keyToTitle( $row->il_to ) );
+					$this->setContinueEnumParameter( 'continue', $row->il_from . '|' . $row->il_to );
 					break;
 				}
 				$vals = array();
 				ApiQueryBase::addTitleInfo( $vals, Title::makeTitle( NS_FILE, $row->il_to ) );
 				$fit = $this->addPageSubItem( $row->il_from, $vals );
 				if ( !$fit ) {
-					$this->setContinueEnumParameter( 'continue', $row->il_from .
-							'|' . $this->keyToTitle( $row->il_to ) );
+					$this->setContinueEnumParameter( 'continue', $row->il_from . '|' . $row->il_to );
 					break;
 				}
 			}
@@ -128,8 +127,7 @@ class ApiQueryImages extends ApiQueryGeneratorBase {
 				if ( ++$count > $params['limit'] ) {
 					// We've reached the one extra which shows that
 					// there are additional pages to be had. Stop here...
-					$this->setContinueEnumParameter( 'continue', $row->il_from .
-							'|' . $this->keyToTitle( $row->il_to ) );
+					$this->setContinueEnumParameter( 'continue', $row->il_from . '|' . $row->il_to );
 					break;
 				}
 				$titles[] = Title::makeTitle( NS_FILE, $row->il_to );

@@ -4,7 +4,7 @@
  *
  * Created on Sep 7, 2006
  *
- * Copyright © 2006 Yuri Astrakhan <Firstname><Lastname>@gmail.com
+ * Copyright © 2006 Yuri Astrakhan "<Firstname><Lastname>@gmail.com"
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -103,6 +103,10 @@ class ApiQuery extends ApiBase {
 
 	protected $mAllowedGenerators = array();
 
+	/**
+	 * @param $main ApiMain
+	 * @param $action string
+	 */
 	public function __construct( $main, $action ) {
 		parent::__construct( $main, $action );
 
@@ -202,6 +206,9 @@ class ApiQuery extends ApiBase {
 		return null;
 	}
 
+	/**
+	 * @return ApiFormatRaw|null
+	 */
 	public function getCustomPrinter() {
 		// If &exportnowrap is set, use the raw formatter
 		if ( $this->getParameter( 'export' ) &&
@@ -258,6 +265,9 @@ class ApiQuery extends ApiBase {
 		$this->outputGeneralPageInfo();
 
 		// Execute all requested modules.
+		/**
+		 * @var $module ApiQueryBase
+		 */
 		foreach ( $modules as $module ) {
 			$params = $module->extractRequestParams();
 			$cacheMode = $this->mergeCacheMode(
@@ -303,6 +313,9 @@ class ApiQuery extends ApiBase {
 	 */
 	private function addCustomFldsToPageSet( $modules, $pageSet ) {
 		// Query all requested modules.
+		/**
+		 * @var $module ApiQueryBase
+		 */
 		foreach ( $modules as $module ) {
 			$module->requestExtraData( $pageSet );
 		}
@@ -384,6 +397,9 @@ class ApiQuery extends ApiBase {
 
 		// Show redirect information
 		$redirValues = array();
+		/**
+		 * @var $titleTo Title
+		 */
 		foreach ( $pageSet->getRedirectTitles() as $titleStrFrom => $titleTo ) {
 			$r = array(
 				'from' => strval( $titleStrFrom ),

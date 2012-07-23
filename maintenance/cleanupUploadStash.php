@@ -27,6 +27,12 @@
 
 require_once( dirname( __FILE__ ) . '/Maintenance.php' );
 
+/**
+ * Maintenance script to remove old or broken uploads from temporary uploaded
+ * file storage and clean up associated database records.
+ *
+ * @ingroup Maintenance
+ */
 class UploadStashCleanup extends Maintenance {
 
 	public function __construct() {

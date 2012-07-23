@@ -1448,10 +1448,12 @@ class Article extends Page {
 
 			$this->doDelete( $reason, $suppress );
 
-			if ( $request->getCheck( 'wpWatch' ) && $user->isLoggedIn() ) {
-				WatchAction::doWatch( $title, $user );
-			} elseif ( $title->userIsWatching() ) {
-				WatchAction::doUnwatch( $title, $user );
+			if ( $user->isLoggedIn() && $request->getCheck( 'wpWatch' ) != $user->isWatched( $title ) ) {
+				if ( $request->getCheck( 'wpWatch' ) ) {
+					WatchAction::doWatch( $title, $user );
+				} else {
+					WatchAction::doUnwatch( $title, $user );
+				}
 			}
 
 			return;
@@ -1521,7 +1523,7 @@ class Article extends Page {
 		} else {
 			$suppress = '';
 		}
-		$checkWatch = $user->getBoolOption( 'watchdeletion' ) || $this->getTitle()->userIsWatching();
+		$checkWatch = $user->getBoolOption( 'watchdeletion' ) || $user->isWatched( $this->getTitle() );
 
 		$form = Xml::openElement( 'form', array( 'method' => 'post',
 			'action' => $this->getTitle()->getLocalURL( 'action=delete' ), 'id' => 'deleteconfirm' ) ) .
@@ -1605,7 +1607,8 @@ class Article extends Page {
 	public function doDelete( $reason, $suppress = false ) {
 		$error = '';
 		$outputPage = $this->getContext()->getOutput();
-		if ( $this->mPage->doDeleteArticle( $reason, $suppress, 0, true, $error ) ) {
+		$status = $this->mPage->doDeleteArticleReal( $reason, $suppress, 0, true, $error );
+		if ( $status->isGood() ) {
 			$deleted = $this->getTitle()->getPrefixedText();
 
 			$outputPage->setPageTitle( wfMessage( 'actioncomplete' ) );
@@ -1618,8 +1621,9 @@ class Article extends Page {
 		} else {
 			$outputPage->setPageTitle( wfMessage( 'cannotdelete-title', $this->getTitle()->getPrefixedText() ) );
 			if ( $error == '' ) {
+				$errors = $status->getErrorsArray();
 				$outputPage->wrapWikiMsg( "<div class=\"error mw-error-cannotdelete\">\n$1\n</div>",
-					array( 'cannotdelete', wfEscapeWikiText( $this->getTitle()->getPrefixedText() ) )
+					$errors[0]
 				);
 				$outputPage->addHTML( Xml::element( 'h2', null, LogPage::logName( 'delete' ) ) );
 

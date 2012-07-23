@@ -1053,11 +1053,22 @@ function wfDebugLog( $logGroup, $text, $public = true ) {
  * @param $text String: database error message.
  */
 function wfLogDBError( $text ) {
-	global $wgDBerrorLog;
+	global $wgDBerrorLog, $wgDBerrorLogInUTC;
 	if ( $wgDBerrorLog ) {
 		$host = wfHostname();
 		$wiki = wfWikiID();
-		$text = date( 'D M j G:i:s T Y' ) . "\t$host\t$wiki\t$text";
+
+		if( $wgDBerrorLogInUTC ) {
+			$wikiTimezone = date_default_timezone_get();
+			date_default_timezone_set( 'UTC' );
+		}
+		$date = date( 'D M j G:i:s T Y' );
+		if( $wgDBerrorLogInUTC ) {
+			// Restore timezone
+			date_default_timezone_set( $wikiTimezone );
+		}
+
+		$text = "$date\t$host\t$wiki\t$text";
 		wfErrorLog( $text, $wgDBerrorLog );
 	}
 }
@@ -1758,6 +1769,15 @@ function wfDebugDieBacktrace( $msg = '' ) {
 function wfHostname() {
 	static $host;
 	if ( is_null( $host ) ) {
+
+		# Hostname overriding
+		global $wgOverrideHostname;
+		if( $wgOverrideHostname !== false ) {
+			# Set static and skip any detection
+			$host = $wgOverrideHostname;
+			return $host;
+		}
+
 		if ( function_exists( 'posix_uname' ) ) {
 			// This function not present on Windows
 			$uname = posix_uname();
@@ -2054,7 +2074,7 @@ function wfCheckLimits( $deflimit = 50, $optionname = 'rclimit' ) {
  * Escapes the given text so that it may be output using addWikiText()
  * without any linking, formatting, etc. making its way through. This
  * is achieved by substituting certain characters with HTML entities.
- * As required by the callers, <nowiki> is not used.
+ * As required by the callers, "<nowiki>" is not used.
  *
  * @param $text String: text to be escaped
  * @return String
@@ -2865,9 +2885,11 @@ function wfEscapeShellArg( ) {
  *                 (non-zero is usually failure)
  * @param $environ Array optional environment variables which should be
  *                 added to the executed command environment.
+ * @param $limits Array optional array with limits(filesize, memory, time)
+ *                 this overwrites the global wgShellMax* limits.
  * @return string collected stdout as a string (trailing newlines stripped)
  */
-function wfShellExec( $cmd, &$retval = null, $environ = array() ) {
+function wfShellExec( $cmd, &$retval = null, $environ = array(), $limits = array() ) {
 	global $IP, $wgMaxShellMemory, $wgMaxShellFileSize, $wgMaxShellTime;
 
 	static $disabled;
@@ -2915,9 +2937,9 @@ function wfShellExec( $cmd, &$retval = null, $environ = array() ) {
 	$cmd = $envcmd . $cmd;
 
 	if ( php_uname( 's' ) == 'Linux' ) {
-		$time = intval( $wgMaxShellTime );
-		$mem = intval( $wgMaxShellMemory );
-		$filesize = intval( $wgMaxShellFileSize );
+		$time = intval ( isset($limits['time']) ? $limits['time'] : $wgMaxShellTime );
+		$mem = intval ( isset($limits['memory']) ? $limits['memory'] : $wgMaxShellMemory );
+		$filesize = intval ( isset($limits['filesize']) ? $limits['filesize'] : $wgMaxShellFileSize );
 
 		if ( $time > 0 && $mem > 0 ) {
 			$script = "$IP/bin/ulimit4.sh";
@@ -3183,11 +3205,11 @@ function wfUseMW( $req_ver ) {
 
 /**
  * Return the final portion of a pathname.
- * Reimplemented because PHP5's basename() is buggy with multibyte text.
+ * Reimplemented because PHP5's "basename()" is buggy with multibyte text.
  * http://bugs.php.net/bug.php?id=33898
  *
  * PHP's basename() only considers '\' a pathchar on Windows and Netware.
- * We'll consider it so always, as we don't want \s in our Unix paths either.
+ * We'll consider it so always, as we don't want '\s' in our Unix paths either.
  *
  * @param $path String
  * @param $suffix String: to remove if present

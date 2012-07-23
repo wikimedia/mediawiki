@@ -379,17 +379,17 @@ $messages = array(
 'tog-editsectiononrightclick' => 'Activer la modification de sections par clic droit sur leurs titres (nécessite JavaScript)',
 'tog-showtoc' => 'Afficher la table des matières (pour les pages ayant plus de 3 sections)',
 'tog-rememberpassword' => 'Se souvenir de mon identification avec ce navigateur (au maximum $1 {{PLURAL:$1|jour|jours}})',
-'tog-watchcreations' => 'Ajouter les pages que je crée à ma liste de suivi',
-'tog-watchdefault' => 'Ajouter les pages que je modifie à ma liste de suivi',
-'tog-watchmoves' => 'Ajouter les pages que je renomme à ma liste de suivi',
-'tog-watchdeletion' => 'Ajouter les pages que je supprime à ma liste de suivi',
+'tog-watchcreations' => 'Ajouter les pages que je crée et les fichiers que j’importe à ma liste de suivi',
+'tog-watchdefault' => 'Ajouter les pages et les fichiers que je modifie à ma liste de suivi',
+'tog-watchmoves' => 'Ajouter les pages et les fichiers que je renomme à ma liste de suivi',
+'tog-watchdeletion' => 'Ajouter les pages et les fichiers que je supprime à ma liste de suivi',
 'tog-minordefault' => 'Marquer mes modifications comme mineures par défaut',
 'tog-previewontop' => 'Afficher la prévisualisation au-dessus de la zone de modification',
 'tog-previewonfirst' => 'Afficher la prévisualisation lors de la première modification',
 'tog-nocache' => 'Désactiver le cache des pages par le navigateur',
-'tog-enotifwatchlistpages' => 'M’avertir par courriel lorsqu’une page de ma liste de suivi est modifiée',
+'tog-enotifwatchlistpages' => 'M’avertir par courriel lorsqu’une page ou un fichier de ma liste de suivi est modifiée',
 'tog-enotifusertalkpages' => 'M’avertir par courriel si ma page de discussion est modifiée',
-'tog-enotifminoredits' => "M'avertir par courriel même en cas de modifications mineures des pages",
+'tog-enotifminoredits' => "M'avertir par courriel même en cas de modifications mineures des pages ou des fichiers",
 'tog-enotifrevealaddr' => 'Afficher mon adresse de courriel dans les courriels de notification',
 'tog-shownumberswatching' => 'Afficher le nombre d’utilisateurs qui suivent cette page',
 'tog-oldsig' => 'Signature existante :',
@@ -417,11 +417,11 @@ $messages = array(
 'underline-default' => 'Valeur par défaut du navigateur',
 
 # Font style option in Special:Preferences
-'editfont-style' => 'Style de police de la zone d’édition :',
-'editfont-default' => 'Celui par défaut du navigateur',
+'editfont-style' => 'Style de police de la zone de modification :',
+'editfont-default' => 'Police du navigateur par défaut',
 'editfont-monospace' => 'Police de chasse fixe',
 'editfont-sansserif' => 'Police sans empattement',
-'editfont-serif' => 'Police avec empattements',
+'editfont-serif' => 'Police avec empattement',
 
 # Dates
 'sunday' => 'dimanche',
@@ -600,7 +600,7 @@ $1',
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
 'aboutsite' => 'À propos de {{SITENAME}}',
 'aboutpage' => 'Project:À propos',
-'copyright' => 'Contenu disponible sous $1.',
+'copyright' => 'Sous licence $1',
 'copyrightpage' => '{{ns:project}}:Copyrights',
 'currentevents' => 'Actualités',
 'currentevents-url' => 'Project:Actualités',
@@ -722,6 +722,8 @@ Veuillez le signaler à un [[Special:ListUsers/sysop|administrateur]] sans oubli
 'cannotdelete' => 'Impossible de supprimer la page ou le fichier « $1 ».
 La suppression a peut-être déjà été effectuée par quelqu’un d’autre.',
 'cannotdelete-title' => 'Impossible de supprimer la page « $1 »',
+'delete-hook-aborted' => "Suppression annulée par une extension.
+Aucune explication n'a été fournie.",
 'badtitle' => 'Mauvais titre',
 'badtitletext' => 'Le titre de la page demandée est invalide, vide, ou il s’agit d’un titre inter-langue ou inter-projet mal lié. Il contient peut-être un ou plusieurs caractères qui ne peuvent pas être utilisés dans les titres.',
 'perfcached' => 'Les données suivantes sont en cache et peuvent ne pas être à jour. Un maximum de {{PLURAL:$1|un résultat|$1 résultats}} est disponible dans le cache.',
@@ -754,6 +756,8 @@ Le motif avancé est « ''$2'' ».",
 L’administrateur qui l’a verrouillé a fourni ce motif: « $3 ».',
 'invalidtitle-knownnamespace' => 'Titre invalide avec l’espace de noms « $2 » et l’intitulé « $3 »',
 'invalidtitle-unknownnamespace' => 'Titre invalide avec le numéro d’espace de noms $1 et l’intitulé « $2 » inconnus',
+'exception-nologin' => 'Non connecté',
+'exception-nologin-text' => "Cette page ou cette action nécessite d'être connecté sur ce wiki.",
 
 # Virus scanner
 'virus-badscanner' => "Mauvaise configuration : scanneur de virus inconnu : ''$1''",
@@ -1897,6 +1901,7 @@ Si le problème persiste, contactez un [[Special:ListUsers/sysop|administrateur]
 'lockmanager-fail-releaselock' => 'Impossible de relâcher le verrou pour « $1 ».',
 'lockmanager-fail-db-bucket' => 'Impossible de contacter suffisamment de bases de données de verrouillage dans le godet $1.',
 'lockmanager-fail-db-release' => 'Impossible de relâcher les verrous sur la base de données $1.',
+'lockmanager-fail-svr-acquire' => "Impossible d'acquérir des verrous sur le serveur $1.",
 'lockmanager-fail-svr-release' => 'Impossible de relâcher les verrous sur le serveur $1.',
 
 # ZipDirectoryReader
@@ -4015,6 +4020,8 @@ Sinon, vous pouvez utiliser le formulaire simplifié ci-dessous. Votre commentai
 'api-error-empty-file' => 'Le fichier que vous avez soumis était vide.',
 'api-error-emptypage' => "Création de pages vide n'est pas autorisée.",
 'api-error-fetchfileerror' => 'Erreur interne : Quelque chose s’est mal passé lors de la récupération du fichier.',
+'api-error-fileexists-forbidden' => 'Un fichier nommé "$1" existe déjà, et ne peut pas être écrasé.',
+'api-error-fileexists-shared-forbidden' => 'Un fichier nommé "$1" existe déjà dans le répertoire des fichiers partagés, et ne peut pas être écrasé.',
 'api-error-file-too-large' => 'Le fichier que vous avez soumis était trop grand.',
 'api-error-filename-tooshort' => 'Le nom du fichier est trop court.',
 'api-error-filetype-banned' => 'Ce type de fichier est interdit.',
@@ -4053,6 +4060,4 @@ Sinon, vous pouvez utiliser le formulaire simplifié ci-dessous. Votre commentai
 'duration-centuries' => '$1 {{PLURAL:$1|siècle|siècles}}',
 'duration-millennia' => '$1 {{PLURAL:$1|millénaire|millénaires}}',
 
-# Unknown messages
-'lockmanager-fail-svr-acquire' => "Impossible d'acquérir des verrous sur le serveur $1.",
 );

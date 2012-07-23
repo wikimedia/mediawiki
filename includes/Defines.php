@@ -25,7 +25,7 @@
  */
 
 /**
- * @defgroup Constants
+ * @defgroup Constants MediaWiki constants
  */
 
 /**

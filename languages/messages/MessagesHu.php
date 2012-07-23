@@ -29,6 +29,7 @@
  * @author R-Joe
  * @author Samat
  * @author Sucy
+ * @author TK-999
  * @author Terik
  * @author Tgr
  * @author Xbspiro
@@ -313,12 +314,12 @@ $linkTrail = '/^([a-záéíóúöüőűÁÉÍÓÚÖÜŐŰ]+)(.*)$/sDu';
 $messages = array(
 # User preference toggles
 'tog-underline' => 'Hivatkozások aláhúzása:',
-'tog-justify' => 'Sorkizárt fejezetek',
+'tog-justify' => 'Bekezdések sorkizárása',
 'tog-hideminor' => 'Apró változtatások elrejtése a friss változtatások lapon',
 'tog-hidepatrolled' => 'Az ellenőrzött szerkesztések elrejtése a friss változtatások lapon',
 'tog-newpageshidepatrolled' => 'Ellenőrzött lapok elrejtése az új lapok listájáról',
 'tog-extendwatchlist' => 'A figyelőlistán az összes változtatás látszódjon, ne csak az utolsó',
-'tog-usenewrc' => 'Fejlettebb friss változások listája (JavaScript-alapú)',
+'tog-usenewrc' => 'Fejlettebb friss változások használata (JavaScript-alapú)',
 'tog-numberheadings' => 'Fejezetcímek automatikus számozása',
 'tog-showtoolbar' => 'Szerkesztőeszközsor megjelenítése (JavaScript-alapú)',
 'tog-editondblclick' => 'A lapok szerkesztése dupla kattintásra (JavaScript-alapú)',
@@ -334,9 +335,9 @@ $messages = array(
 'tog-previewontop' => 'Előnézet megjelenítése a szerkesztőablak előtt',
 'tog-previewonfirst' => 'Előnézet első szerkesztésnél',
 'tog-nocache' => 'A lapok gyorstárazásának letiltása a böngészőben',
-'tog-enotifwatchlistpages' => 'Kapjak értesítést e-mailben, ha egy általam figyelt lap megváltozik',
+'tog-enotifwatchlistpages' => 'Kapjak értesítést e-mailben, ha egy általam figyelt lap vagy fájl megváltozik',
 'tog-enotifusertalkpages' => 'Kapjak értesítést e-mailben, ha megváltozik a vitalapom',
-'tog-enotifminoredits' => 'Kapjak értesítést e-mailben a lapok apró változtatásairól',
+'tog-enotifminoredits' => 'Kapjak értesítést e-mailben a lapok és fájlok apró változtatásairól',
 'tog-enotifrevealaddr' => 'Jelenjen meg az e-mail címem a figyelmeztető e-mailekben',
 'tog-shownumberswatching' => 'A lapot figyelő szerkesztők számának megjelenítése',
 'tog-oldsig' => 'A jelenlegi aláírás:',

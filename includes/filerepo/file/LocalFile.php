@@ -633,7 +633,7 @@ class LocalFile extends File {
 
 	/**
 	 * Fix thumbnail files from 1.4 or before, with extreme prejudice
-	 * @TODO: do we still care about this? Perhaps a maintenance script
+	 * @todo : do we still care about this? Perhaps a maintenance script
 	 *        can be made instead. Enabling this code results in a serious
 	 *        RTT regression for wikis without 404 handling.
 	 */
@@ -1456,7 +1456,7 @@ class LocalFile extends File {
 	 */
 	function getDescriptionText() {
 		global $wgParser;
-		$revision = Revision::newFromTitle( $this->title );
+		$revision = Revision::newFromTitle( $this->title, false, Revision::AVOID_MASTER );
 		if ( !$revision ) return false;
 		$content = $revision->getContent();
 		if ( !$content ) return false;

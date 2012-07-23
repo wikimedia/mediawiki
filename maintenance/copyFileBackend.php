@@ -1,6 +1,6 @@
 <?php
 /**
- * Copy all files in one container of one backend to another.
+ * Copy all files in some containers of one backend to another.
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -37,61 +37,149 @@ require_once( dirname( __FILE__ ) . '/Maintenance.php' );
 class CopyFileBackend extends Maintenance {
 	public function __construct() {
 		parent::__construct();
-		$this->mDescription = "Copy all the files in one backend to another.";
+		$this->mDescription = "Copy files in one backend to another.";
 		$this->addOption( 'src', 'Backend containing the source files', true, true );
 		$this->addOption( 'dst', 'Backend where files should be copied to', true, true );
 		$this->addOption( 'containers', 'Pipe separated list of containers', true, true );
-		$this->addOption( 'fast', 'Skip SHA-1 checks on pre-existing files' );
+		$this->addOption( 'subdir', 'Only do items in this child directory', false, true );
+		$this->addOption( 'ratefile', 'File to check periodically for batch size', false, true );
+		$this->addOption( 'skiphash', 'Skip SHA-1 sync checks for files' );
+		$this->addOption( 'missingonly', 'Only copy files missing from destination listing' );
+		$this->setBatchSize( 50 );
 	}
 
 	public function execute() {
 		$src = FileBackendGroup::singleton()->get( $this->getOption( 'src' ) );
 		$dst = FileBackendGroup::singleton()->get( $this->getOption( 'dst' ) );
-
 		$containers = explode( '|', $this->getOption( 'containers' ) );
-		foreach ( $containers as $container ) {
-			$this->output( "Doing container $container...\n" );
+		$subDir = $this->getOption( rtrim( 'subdir', '/' ), '' );
 
-			$srcPathsRel = $src->getFileList(
-				array( 'dir' => $src->getRootStoragePath() . "/$container" ) );
+		$rateFile = $this->getOption( 'ratefile' );
+
+		$count = 0;
+		foreach ( $containers as $container ) {
+			if ( $subDir != '' ) {
+				$backendRel = "$container/$subDir";
+				$this->output( "Doing container '$container', directory '$subDir'...\n" );
+			} else {
+				$backendRel = $container;
+				$this->output( "Doing container '$container'...\n" );
+			}
+
+			$srcPathsRel = $src->getFileList( array(
+				'dir' => $src->getRootStoragePath() . "/$backendRel" ) );
 			if ( $srcPathsRel === null ) {
 				$this->error( "Could not list files in $container.", 1 ); // die
 			}
+
+			// Do a listing comparison if specified
+			if ( $this->hasOption( 'missingonly' ) ) {
+				$relFilesSrc = array();
+				$relFilesDst = array();
+				foreach ( $srcPathsRel as $srcPathRel ) {
+					$relFilesSrc[] = $srcPathRel;
+				}
+				$dstPathsRel = $dst->getFileList( array(
+					'dir' => $dst->getRootStoragePath() . "/$backendRel" ) );
+				if ( $dstPathsRel === null ) {
+					$this->error( "Could not list files in $container.", 1 ); // die
+				}
+				foreach ( $dstPathsRel as $dstPathRel ) {
+					$relFilesDst[] = $dstPathRel;
+				}
+				// Only copy the missing files over in the next loop
+				$srcPathsRel = array_diff( $relFilesSrc, $relFilesDst );
+				$this->output( count( $srcPathsRel ) . " file(s) need to be copied.\n" );
+				unset( $relFilesSrc );
+				unset( $relFilesDst );
+			}
+
+			$batchPaths = array();
 			foreach ( $srcPathsRel as $srcPathRel ) {
-				$srcPath = $src->getRootStoragePath() . "/$container/$srcPathRel";
-				$dstPath = $dst->getRootStoragePath() . "/$container/$srcPathRel";
-
-				if ( $dst->fileExists( array( 'src' => $dstPath, 'latest' => 1 ) ) ) {
-					if ( $this->hasOption( 'fast' ) ) {
-						$this->output( "Already have $dstPath.\n" );
-						continue; // assume already copied...
-					}
-					$srcSha1 = $src->getFileSha1Base36( array( 'src' => $srcPath ) );
-					$dstSha1 = $dst->getFileSha1Base36( array( 'src' => $dstPath ) );
-					if ( $srcSha1 && $srcSha1 === $dstSha1 ) {
-						$this->output( "Already have $dstPath.\n" );
-						continue; // already copied...
-					}
+				// Check up on the rate file periodically to adjust the concurrency
+				if ( $rateFile && ( !$count || ( $count % 500 ) == 0 ) ) {
+					$this->mBatchSize = max( 1, (int)file_get_contents( $rateFile ) );
+					$this->output( "Batch size is now {$this->mBatchSize}.\n" );
 				}
-
-				$fsFile = $src->getLocalReference( array( 'src' => $srcPath, 'latest' => 1 ) );
-				if ( !$fsFile ) {
-					$this->error( "Could not get local copy of $srcPath.", 1 ); // die
+				$batchPaths[$srcPathRel] = 1; // remove duplicates
+				if ( count( $batchPaths ) >= $this->mBatchSize ) {
+					$this->copyFileBatch( array_keys( $batchPaths ), $backendRel, $src, $dst );
+					$batchPaths = array(); // done
 				}
+				++$count;
+			}
+			if ( count( $batchPaths ) ) { // left-overs
+				$this->copyFileBatch( array_keys( $batchPaths ), $backendRel, $src, $dst );
+				$batchPaths = array(); // done
+			}
 
-				$status = $dst->prepare( array( 'dir' => dirname( $dstPath ) ) );
-				$status->merge( $dst->store(
-					array( 'src' => $fsFile->getPath(), 'dst' => $dstPath ),
-					array( 'nonLocking' => 1, 'nonJournaled' => 1 )
-				) );
-				if ( !$status->isOK() ) {
-					print_r( $status->getErrorsArray() );
-					$this->error( "Could not copy $srcPath to $dstPath.", 1 ); // die
-				}
-
-				$this->output( "Copied $srcPath to $dstPath.\n" );
+			if ( $subDir != '' ) {
+				$this->output( "Finished container '$container', directory '$subDir'.\n" );
+			} else {
+				$this->output( "Finished container '$container'.\n" );
 			}
 		}
+
+		$this->output( "Done [$count file(s)].\n" );
+	}
+
+	protected function copyFileBatch(
+		array $srcPathsRel, $backendRel, FileBackend $src, FileBackend $dst
+	) {
+		$ops = array();
+		$fsFiles = array();
+		$copiedRel = array(); // for output message
+		foreach ( $srcPathsRel as $srcPathRel ) {
+			$srcPath = $src->getRootStoragePath() . "/$backendRel/$srcPathRel";
+			$dstPath = $dst->getRootStoragePath() . "/$backendRel/$srcPathRel";
+			if ( $this->filesAreSame( $src, $dst, $srcPath, $dstPath ) ) {
+				$this->output( "Already have $srcPathRel.\n" );
+				continue; // assume already copied...
+			}
+			// Note: getLocalReference() is fast for FS backends
+			$fsFile = $src->getLocalReference( array( 'src' => $srcPath, 'latest' => 1 ) );
+			if ( !$fsFile ) {
+				$this->error( "Could not get local copy of $srcPath.", 1 ); // die
+			}
+			$fsFiles[] = $fsFile; // keep TempFSFile objects alive as needed
+			// Note: prepare() is usually fast for key/value backends
+			$status = $dst->prepare( array( 'dir' => dirname( $dstPath ), 'bypassReadOnly' => 1 ) );
+			if ( !$status->isOK() ) {
+				$this->error( print_r( $status->getErrorsArray(), true ) );
+				$this->error( "Could not copy $srcPath to $dstPath.", 1 ); // die
+			}
+			$ops[] = array( 'op' => 'store',
+				'src' => $fsFile->getPath(), 'dst' => $dstPath, 'overwrite' => 1 );
+			$copiedRel[] = $srcPathRel;
+		}
+
+		$t_start = microtime( true );
+		$status = $dst->doQuickOperations( $ops, array( 'bypassReadOnly' => 1 ) );
+		if ( !$status->isOK() ) {
+			sleep( 10 ); // wait and retry copy again
+			$status = $dst->doQuickOperations( $ops, array( 'bypassReadOnly' => 1 ) );
+		}
+		$ellapsed_ms = floor( ( microtime( true ) - $t_start ) * 1000 );
+		if ( !$status->isOK() ) {
+			$this->error( print_r( $status->getErrorsArray(), true ) );
+			$this->error( "Could not copy file batch.", 1 ); // die
+		} elseif ( count( $copiedRel ) ) {
+			$this->output( "\nCopied these file(s) [{$ellapsed_ms}ms]:\n" .
+				implode( "\n", $copiedRel ) . "\n\n" );
+		}
+	}
+
+	protected function filesAreSame( FileBackend $src, FileBackend $dst, $sPath, $dPath ) {
+		$skipHash = $this->hasOption( 'skiphash' );
+		return (
+			( $src->fileExists( array( 'src' => $sPath, 'latest' => 1 ) )
+				=== $dst->fileExists( array( 'src' => $dPath, 'latest' => 1 ) ) // short-circuit
+			) && ( $src->getFileSize( array( 'src' => $sPath, 'latest' => 1 ) )
+				=== $dst->getFileSize( array( 'src' => $dPath, 'latest' => 1 ) ) // short-circuit
+			) && ( $skipHash || ( $src->getFileSha1Base36( array( 'src' => $sPath, 'latest' => 1 ) )
+				=== $dst->getFileSha1Base36( array( 'src' => $dPath, 'latest' => 1 ) )
+			) )
+		);
 	}
 }
 

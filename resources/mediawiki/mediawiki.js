@@ -351,7 +351,7 @@ var mw = ( function ( $, undefined ) {
 			 *		}
 			 *	}
 			 */
-			var	registry = {},
+			var registry = {},
 				/**
 				 * Mapping of sources, keyed by source-id, values are objects.
 				 * Format:
@@ -368,16 +368,8 @@ var mw = ( function ( $, undefined ) {
 				queue = [],
 				// List of callback functions waiting for modules to be ready to be called
 				jobs = [],
-				// Flag indicating that document ready has occured
-				ready = false,
 				// Selector cache for the marker element. Use getMarker() to get/use the marker!
 				$marker = null;
-
-			/* Cache document ready status */
-
-			$(document).ready( function () {
-				ready = true;
-			} );
 
 			/* Private methods */
 
@@ -637,10 +629,12 @@ var mw = ( function ( $, undefined ) {
 				var console = window.console;
 				if ( console && console.log ) {
 					console.log( msg );
-					// console.error triggers the proper handling of exception objects in
-					// consoles that support it. Fallback to passing as plain object to log().
-					if ( e ) {
-						(console.error || console.log).call( console, e );
+					// If we have an exception object, log it through .error() to trigger
+					// proper stacktraces in browsers that support it. There are no (known)
+					// browsers that don't support .error(), that do support .log() and
+					// have useful exception handling through .log().
+					if ( e && console.error ) {
+						console.error( e );
 					}
 				}
 			}
@@ -697,7 +691,7 @@ var mw = ( function ( $, undefined ) {
 								} catch ( ex ) {
 									// A user-defined operation raised an exception. Swallow to protect
 									// our state machine!
-									log( 'mw.loader::handlePending> Exception thrown by job.error()', ex );
+									log( 'Exception thrown by job.error()', ex );
 								}
 							}
 						}
@@ -723,8 +717,12 @@ var mw = ( function ( $, undefined ) {
 			 * @param callback Function: Optional callback which will be run when the script is done
 			 */
 			function addScript( src, callback, async ) {
-				var done = false, script, head;
-				if ( ready || async ) {
+				var script, head,
+					done = false;
+
+				// Using isReady directly instead of storing it locally from
+				// a $.fn.ready callback (bug 31895).
+				if ( $.isReady || async ) {
 					// jQuery's getScript method is NOT better than doing this the old-fashioned way
 					// because jQuery will eval the script's code, and errors will not have sane
 					// line numbers.

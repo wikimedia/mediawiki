@@ -713,23 +713,27 @@ class ResourceLoader {
 				// Styles
 				$styles = array();
 				if ( $context->shouldIncludeStyles() ) {
-					// If we are in debug mode without &only= set, we'll want to return an array of URLs
-					// See comment near shouldIncludeScripts() for more details
-					if ( $context->getDebug() && !$context->getOnly() && $module->supportsURLLoading() ) {
-						$styles = $module->getStyleURLsForDebug( $context );
-					} else {
-						$styles = $module->getStyles( $context );
-						// Minify CSS before embedding in mw.loader.implement call
-						// (unless in debug mode)
-						if ( !$context->getDebug() ) {
-							foreach ( $styles as $media => $style ) {
-								if ( is_string( $style ) ) {
-									$styles[$media] = $this->filter( 'minify-css', $style );
+					// Don't create empty stylesheets like array( '' => '' ) for modules
+					// that don't *have* any stylesheets (bug 38024).
+					$stylePairs = $module->getStyles( $context );
+					if ( count ( $stylePairs ) ) {
+						// If we are in debug mode without &only= set, we'll want to return an array of URLs
+						// See comment near shouldIncludeScripts() for more details
+						if ( $context->getDebug() && !$context->getOnly() && $module->supportsURLLoading() ) {
+							$styles = $module->getStyleURLsForDebug( $context );
+						} else {
+							// Minify CSS before embedding in mw.loader.implement call
+							// (unless in debug mode)
+							if ( !$context->getDebug() ) {
+								foreach ( $stylePairs as $media => $style ) {
+									if ( is_string( $style ) ) {
+										$stylePairs[$media] = $this->filter( 'minify-css', $style );
+									}
 								}
 							}
+							// Combine styles into @media groups as one big string
+							$styles = array( '' => self::makeCombinedStyles( $stylePairs ) );
 						}
-						// Combine styles for all media types
-						$styles = array( '' => self::makeCombinedStyles( $styles ) );
 					}
 				}
 
@@ -748,7 +752,11 @@ class ResourceLoader {
 						}
 						break;
 					case 'styles':
-						$out .= $styles['']; // Code above has set $styles['']
+						// We no longer seperate into media, they are all concatenated now with
+						// custom media type groups into @media .. {} sections.
+						// Module returns either an empty array or an array with '' (no media type) as
+						// only key.
+						$out .= isset( $styles[''] ) ? $styles[''] : '';
 						break;
 					case 'messages':
 						$out .= self::makeMessageSetScript( new XmlJsCode( $messagesBlob ) );
@@ -850,7 +858,7 @@ class ResourceLoader {
 
 	/**
 	 * Combines an associative array mapping media type to CSS into a
-	 * single stylesheet with @media blocks.
+	 * single stylesheet with "@media" blocks.
 	 *
 	 * @param $styles Array: List of CSS strings keyed by media type
 	 *

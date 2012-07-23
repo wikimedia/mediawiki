@@ -475,7 +475,7 @@ $1',
 'helppage' => 'Help:Efnisyfirlit',
 'mainpage' => 'Forsíða',
 'mainpage-description' => 'Forsíða',
-'policy-url' => 'Project:Stjórnarstefnur',
+'policy-url' => 'Project:Samþykktir',
 'portal' => 'Samfélagsgátt',
 'portal-url' => 'Project:Samfélagsgátt',
 'privacy' => 'Meðferð persónuupplýsinga',
@@ -871,7 +871,7 @@ Hlutinn gæti hafa verið fluttur til eða hent á meðan þú varst að skoða 
 
 Hægt er að breyta lykilorðinu fyrir aðganginn á ''[[Special:ChangePassword|change password]]'' þegar notandinn hefur skráð sig inn.",
 'newarticle' => '(Ný)',
-'newarticletext' => "Þú hefur fylgt tengli á síðu sem ekki er til.
+'newarticletext' => "Þú hefur fylgt tengli á síðu sem ekki er til ennþá.
 Þú getur búið til síðu með þessu nafni með því að skrifa í formið fyrir neðan
 (meiri upplýsingar í [[{{MediaWiki:Helppage}}|hjálpinni]]).
 Ef þú hefur óvart villst hingað geturðu notað '''til baka'''-hnappinn í vafranum þínum.",
