@@ -256,7 +256,7 @@ class SpecialVersion extends SpecialPage {
 		if ( $viewerUrl !== false ) {
 			$shortSHA1 = "[$viewerUrl $shortSHA1]";
 		}
-		return "$wgVersion $shortSHA1";
+		return "[https://www.mediawiki.org/wiki/Release_notes/$wgVersion $wgVersion] $shortSHA1";
 	}
 
 	/**
