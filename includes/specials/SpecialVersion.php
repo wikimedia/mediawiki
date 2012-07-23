@@ -231,19 +231,27 @@ class SpecialVersion extends SpecialPage {
 		);
 
 		if ( isset( $info['viewvc-url'] ) ) {
-			$version = "$wgVersion [{$info['viewvc-url']} $linkText]";
+			$version = "[{$info['viewvc-url']} $linkText]";
 		} else {
-			$version = "$wgVersion $linkText";
+			$version = "$linkText";
 		}
 
-		return $version;
+		return self::getwgVersionLinked() . " $version";
+	}
+
+	/**
+	 * @return string
+	 */
+	private static function getwgVersionLinked() {
+		global $wgVersion;
+		return "[https://www.mediawiki.org/wiki/Release_notes/$wgVersion $wgVersion]";
 	}
 
 	/**
 	 * @return bool|string wgVersion + HEAD sha1 stripped to the first 7 chars. False on failure
 	 */
 	private static function getVersionLinkedGit() {
-		global $wgVersion, $IP;
+		global $IP;
 
 		$gitInfo = new GitInfo( $IP );
 		$headSHA1 = $gitInfo->getHeadSHA1();
@@ -254,9 +262,9 @@ class SpecialVersion extends SpecialPage {
 		$shortSHA1 = '(' . substr( $headSHA1, 0, 7 ) . ')';
 		$viewerUrl = $gitInfo->getHeadViewUrl();
 		if ( $viewerUrl !== false ) {
-			$shortSHA1 = "[$viewerUrl $shortSHA1]";
+			$shortSHA1 = "[$viewerUrl $shortSHA1] ";
 		}
-		return "$wgVersion $shortSHA1";
+		return self::getwgVersionLinked() . " $shortSHA1";
 	}
 
 	/**
