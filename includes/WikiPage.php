@@ -1423,8 +1423,13 @@ class WikiPage extends Page {
 	public function replaceSection( $section, $text, $sectionTitle = '', $edittime = null ) {
 		wfDeprecated( __METHOD__, '1.WD' );
 
+		if ( strval( $section ) == '' ) { //NOTE: keep condition in sync with condition in replaceSectionContent!
+			// Whole-page edit; let the whole text through
+			return $text;
+		}
+
 		if ( !$this->supportsSections() ) {
-			return null;
+			throw new MWException( "sections not supported for content model " . $this->getContentHandler()->getModelID() );
 		}
 
 		$sectionContent = ContentHandler::makeContent( $text, $this->getTitle() ); # could even make section title, but that's not required.
@@ -1459,15 +1464,14 @@ class WikiPage extends Page {
 	public function replaceSectionContent( $section, Content $sectionContent, $sectionTitle = '', $edittime = null ) {
 		wfProfileIn( __METHOD__ );
 
-		if ( !$this->supportsSections() ) {
-			#XXX: log this?
-			return null;
-		}
-
 		if ( strval( $section ) == '' ) {
 			// Whole-page edit; let the whole text through
 			$newContent = $sectionContent;
 		} else {
+			if ( !$this->supportsSections() ) {
+				throw new MWException( "sections not supported for content model " . $this->getContentHandler()->getModelID() );
+			}
+
 			// Bug 30711: always use current version when adding a new section
 			if ( is_null( $edittime ) || $section == 'new' ) {
 				$oldContent = $this->getContent();

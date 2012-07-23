@@ -2531,8 +2531,8 @@ HTML
 														$this->content_model, $this->content_format ); #XXX: handle parse errors ?
 
 		$newContent = $this->mArticle->replaceSectionContent(
-													$this->section, $textboxContent,
-													$this->summary, $this->edittime );
+											$this->section, $textboxContent,
+											$this->summary, $this->edittime );
 
 		# hanlde legacy text-based hook
 		$newtext_orig = $newContent->serialize( $this->content_format );
