@@ -1058,7 +1058,7 @@ class SwiftFileBackend extends FileBackendStore {
 	 *                          Setting this to '*' effectively makes a container public.
 	 *   - .rlistings:<regex> : Grants access if the request is from a referrer host that
 	 *                          matches the expression and the request for a listing.
-	 * 
+	 *
 	 * $writeGrps is a list of the possible criteria for a request to have
 	 * access to write to a container. Each item is of the following format:
 	 *   - account:user       : Grants access if the request is by the given user
@@ -1296,7 +1296,7 @@ abstract class SwiftFileBackendList implements Iterator {
 	protected $dir; // string; storage directory
 	protected $suffixStart; // integer
 
-	const PAGE_SIZE = 5000; // file listing buffer size
+	const PAGE_SIZE = 9000; // file listing buffer size
 
 	/**
 	 * @param $backend SwiftFileBackend
