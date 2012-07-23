@@ -218,8 +218,7 @@ class RefreshLinks extends Maintenance {
 		$dbw = wfGetDB( DB_MASTER );
 		$dbw->begin( __METHOD__ );
 
-		$contentHandler = $content->getContentHandler();
-		$updates = $contentHandler->getSecondaryDataUpdates( $content, $page->getTitle() );
+		$updates = $content->getSecondaryDataUpdates( $page->getTitle() );
 		DataUpdate::runUpdates( $updates );
 
 		$dbw->commit( __METHOD__ );

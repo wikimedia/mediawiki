@@ -96,7 +96,7 @@ class ApiPurge extends ApiBase {
 					$p_result = $content->getParserOutput( $title, $page->getLatest(), $popts, $wgEnableParserCache );
 
 					# Update the links tables
-					$updates = $content->getContentHandler()->getSecondaryDataUpdates( $content, $title, null, true, $p_result );
+					$updates = $content->getSecondaryDataUpdates( $title, null, true, $p_result );
 					DataUpdate::runUpdates( $updates );
 
 					$r['linkupdate'] = '';

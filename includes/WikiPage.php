@@ -2046,8 +2046,7 @@ class WikiPage extends Page {
 		}
 
 		# Update the links tables and other secondary data
-		$contentHandler = $revision->getContentHandler();
-		$updates = $contentHandler->getSecondaryDataUpdates( $content, $this->getTitle(), null, true, $editInfo->output );
+		$updates = $content->getSecondaryDataUpdates( $this->getTitle(), null, true, $editInfo->output );
 		DataUpdate::runUpdates( $updates );
 
 		wfRunHooks( 'ArticleEditUpdates', array( &$this, &$editInfo, $options['changed'] ) );

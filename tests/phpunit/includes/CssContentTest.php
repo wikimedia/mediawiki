@@ -12,7 +12,7 @@ class CssContentTest extends JavascriptContentTest {
 
 	public function dataGetParserOutput() {
 		return array(
-			array("hello <world>\n", "<pre class=\"mw-code mw-css\" dir=\"ltr\">\nhello &lt;world&gt;\n\n</pre>\n"),
+			array("MediaWiki:Test.css", "hello <world>\n", "<pre class=\"mw-code mw-css\" dir=\"ltr\">\nhello &lt;world&gt;\n\n</pre>\n"),
 			// @todo: more...?
 		);
 	}

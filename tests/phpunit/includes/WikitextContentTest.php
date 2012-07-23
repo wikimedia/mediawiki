@@ -14,9 +14,10 @@ class WikitextContentTest extends MediaWikiTestCase {
 		return new WikitextContent( $text );
 	}
 
+
 	public function dataGetParserOutput() {
 		return array(
-			array("hello ''world''\n", "<p>hello <i>world</i>\n</p>"),
+			array("WikitextContentTest_testGetParserOutput", "hello ''world''\n", "<p>hello <i>world</i>\n</p>"),
 			// @todo: more...?
 		);
 	}
@@ -24,14 +25,60 @@ class WikitextContentTest extends MediaWikiTestCase {
 	/**
 	 * @dataProvider dataGetParserOutput
 	 */
-	public function testGetParserOutput( $text, $expectedHtml ) {
-		$content = $this->newContent( $text );
+	public function testGetParserOutput( $title, $text, $expectedHtml ) {
+		$title = Title::newFromText( $title );
+		$content = ContentHandler::makeContent( $text, $title );
 
-		$po = $content->getParserOutput( $this->context->getTitle() );
+		$po = $content->getParserOutput( $title );
 
 		$this->assertEquals( $expectedHtml, $po->getText() );
-		return $po;
+		// @todo: assert more properties
 	}
+
+	public function dataGetSecondaryDataUpdates() {
+		return array(
+			array("WikitextContentTest_testGetSecondaryDataUpdates_1", "hello ''world''\n",
+				array( 'LinksUpdate' => array(  'mRecursive' => true,
+				                                'mLinks' => array() ) )
+			),
+			array("WikitextContentTest_testGetSecondaryDataUpdates_2", "hello [[world test 21344]]\n",
+				array( 'LinksUpdate' => array(  'mRecursive' => true,
+				                                'mLinks' => array( array( 'World_test_21344' => 0 ) ) ) )
+			),
+			// @todo: more...?
+		);
+	}
+
+	/**
+	 * @dataProvider dataGetSecondaryDataUpdates
+	 */
+	public function testGetSecondaryDataUpdates( $title, $text, $expectedStuff ) {
+		$title = Title::newFromText( $title );
+		$title->resetArticleID( 2342 ); //dummy id. fine as long as we don't try to execute the updates!
+
+		$handler = ContentHandler::getForModelID( $title->getContentModel() );
+		$content = ContentHandler::makeContent( $text, $title );
+
+		$updates = $content->getSecondaryDataUpdates( $title );
+
+		// make updates accessible by class name
+		foreach ( $updates as $update ) {
+			$class = get_class( $update );
+			$updates[ $class ] = $update;
+		}
+
+		foreach ( $expectedStuff as $class => $fieldValues ) {
+			$this->assertArrayHasKey( $class, $updates, "missing an update of type $class" );
+
+			$update = $updates[ $class ];
+
+			foreach ( $fieldValues as $field => $value ) {
+				$v = $update->$field; #if the field doesn't exist, just crash and burn
+				$this->assertEquals( $value, $v, "unexpected value for field $field in instance of $class" );
+			}
+		}
+	}
+
 
 	static $sections =
 

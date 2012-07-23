@@ -231,71 +231,6 @@ class ContentHandlerTest extends MediaWikiTestCase {
 
 	}
 
-	public function dataGetParserOutput() {
-		return array(
-			array("ContentHandlerTest_testGetParserOutput", "hello ''world''\n", "<p>hello <i>world</i>\n</p>"),
-			// @todo: more...?
-		);
-	}
-
-	/**
-	 * @dataProvider dataGetParserOutput
-	 */
-	public function testGetParserOutput( $title, $text, $expectedHtml ) {
-		$title = Title::newFromText( $title );
-		$handler = ContentHandler::getForModelID( $title->getContentModel() );
-		$content = ContentHandler::makeContent( $text, $title );
-
-		$po = $handler->getParserOutput( $content, $title );
-
-		$this->assertEquals( $expectedHtml, $po->getText() );
-		// @todo: assert more properties
-	}
-
-	public function dataGetSecondaryDataUpdates() {
-		return array(
-			array("ContentHandlerTest_testGetSecondaryDataUpdates_1", "hello ''world''\n",
-				array( 'LinksUpdate' => array(  'mRecursive' => true,
-				                                'mLinks' => array() ) )
-			),
-			array("ContentHandlerTest_testGetSecondaryDataUpdates_2", "hello [[world test 21344]]\n",
-				array( 'LinksUpdate' => array(  'mRecursive' => true,
-				                                'mLinks' => array( array( 'World_test_21344' => 0 ) ) ) )
-			),
-			// @todo: more...?
-		);
-	}
-
-	/**
-	 * @dataProvider dataGetSecondaryDataUpdates
-	 */
-	public function testGetSecondaryDataUpdates( $title, $text, $expectedStuff ) {
-		$title = Title::newFromText( $title );
-		$title->resetArticleID( 2342 ); //dummy id. fine as long as we don't try to execute the updates!
-
-		$handler = ContentHandler::getForModelID( $title->getContentModel() );
-		$content = ContentHandler::makeContent( $text, $title );
-
-		$updates = $handler->getSecondaryDataUpdates( $content, $title );
-
-		// make updates accessible by class name
-		foreach ( $updates as $update ) {
-			$class = get_class( $update );
-			$updates[ $class ] = $update;
-		}
-
-		foreach ( $expectedStuff as $class => $fieldValues ) {
-			$this->assertArrayHasKey( $class, $updates, "missing an update of type $class" );
-
-			$update = $updates[ $class ];
-
-			foreach ( $fieldValues as $field => $value ) {
-				$v = $update->$field; #if the field doesn't exist, just crash and burn
-				$this->assertEquals( $value, $v, "unexpected value for field $field in instance of $class" );
-			}
-		}
-	}
-
 	public function testSupportsSections() {
 		$this->markTestIncomplete( "not yet implemented" );
 	}
@@ -339,22 +274,6 @@ class DummyContentHandlerForTesting extends ContentHandler {
 	public function makeEmptyContent()
 	{
 		return new DummyContentForTesting( '' );
-	}
-
-	/**
-	 * @param Content $content
-	 * @param Title $title
-	 * @param null $revId
-	 * @param null|ParserOptions $options
-	 * @param Boolean $generateHtml whether to generate Html (default: true). If false,
-	 *        the result of calling getText() on the ParserOutput object returned by
-	 *        this method is undefined.
-	 *
-	 * @return ParserOutput
-	 */
-	public function getParserOutput( Content $content, Title $title, $revId = null, ParserOptions $options = NULL, $generateHtml = true )
-	{
-		return new ParserOutput( $content->getNativeData() );
 	}
 }
 
@@ -451,6 +370,21 @@ class DummyContentForTesting extends AbstractContent {
 	public function isCountable( $hasLinks = null )
 	{
 		return false;
+	}
+
+	/**
+	 * @param Title $title
+	 * @param null $revId
+	 * @param null|ParserOptions $options
+	 * @param Boolean $generateHtml whether to generate Html (default: true). If false,
+	 *        the result of calling getText() on the ParserOutput object returned by
+	 *        this method is undefined.
+	 *
+	 * @return ParserOutput
+	 */
+	public function getParserOutput( Title $title, $revId = null, ParserOptions $options = NULL, $generateHtml = true )
+	{
+		return new ParserOutput( $this->getNativeData() );
 	}
 }
 

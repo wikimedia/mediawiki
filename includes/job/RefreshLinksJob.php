@@ -63,7 +63,7 @@ class RefreshLinksJob extends Job {
 		wfProfileOut( __METHOD__.'-parse' );
 		wfProfileIn( __METHOD__.'-update' );
 
-		$updates = $content->getContentHandler()->getSecondaryDataUpdates( $content, $this->title, null, false, $parserOutput  );
+		$updates = $content->getSecondaryDataUpdates( $this->title, null, false, $parserOutput  );
 		DataUpdate::runUpdates( $updates );
 
 		wfProfileOut( __METHOD__.'-update' );
@@ -139,7 +139,7 @@ class RefreshLinksJob2 extends Job {
 			wfProfileOut( __METHOD__.'-parse' );
 			wfProfileIn( __METHOD__.'-update' );
 
-			$updates = $content->getContentHandler()->getSecondaryDataUpdates( $content, $title, null, false, $parserOutput  );
+			$updates = $content->getSecondaryDataUpdates( $title, null, false, $parserOutput  );
 			DataUpdate::runUpdates( $updates );
 
 			wfProfileOut( __METHOD__.'-update' );

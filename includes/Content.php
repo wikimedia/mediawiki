@@ -221,26 +221,62 @@ interface Content {
 	 */
 	public function isCountable( $hasLinks = null ) ;
 
+
 	/**
-	 * Convenience method, shorthand for
-	 * $this->getContentHandler()->getParserOutput( $this, $title, $revId, $options, $generateHtml )
+	 * Parse the Content object and generate a ParserOutput from the result.
+	 * $result->getText() can be used to obtain the generated HTML. If no HTML
+	 * is needed, $generateHtml can be set to false; in that case,
+	 * $result->getText() may return null.
 	 *
-	 * @note: subclasses should NOT override this to provide custom rendering.
-	 *        Override ContentHandler::getParserOutput() instead!
-	 *
-	 * @param $title Title
-	 * @param $revId null
-	 * @param $options null|ParserOptions
-	 * @param $generateHtml Boolean Whether to generate HTML (default: true).
-	 *    If false, the result of calling getText() on the ParserOutput object
-	 *    returned by this method is undefined.
+	 * @param $title Title The page title to use as a context for rendering
+	 * @param $revId null|int The revision being rendered (optional)
+	 * @param $options null|ParserOptions Any parser options
+	 * @param $generateHtml Boolean Whether to generate HTML (default: true). If false,
+	 *        the result of calling getText() on the ParserOutput object returned by
+	 *        this method is undefined.
 	 *
 	 * @since WD.1
 	 *
 	 * @return ParserOutput
 	 */
-	public function getParserOutput( Title $title, $revId = null, ParserOptions $options = null, 
-		$generateHtml = true );
+	public function getParserOutput( Title $title,
+		$revId = null,
+		ParserOptions $options = null, $generateHtml = true );
+	# TODO: make RenderOutput and RenderOptions base classes
+
+	/**
+	 * Returns a list of DataUpdate objects for recording information about this
+	 * Content in some secondary data store. If the optional second argument,
+	 * $old, is given, the updates may model only the changes that need to be
+	 * made to replace information about the old content with information about
+	 * the new content.
+	 *
+	 * This default implementation calls
+	 * $this->getParserOutput( $content, $title, null, null, false ),
+	 * and then calls getSecondaryDataUpdates( $title, $recursive ) on the
+	 * resulting ParserOutput object.
+	 *
+	 * Subclasses may implement this to determine the necessary updates more
+	 * efficiently, or make use of information about the old content.
+	 *
+	 * @param $title Title The context for determining the necessary updates
+	 * @param $old Content|null An optional Content object representing the
+	 *    previous content, i.e. the content being replaced by this Content
+	 *    object.
+	 * @param $recursive boolean Whether to include recursive updates (default:
+	 *    false).
+	 * @param $parserOutput ParserOutput|null Optional ParserOutput object.
+	 *    Provide if you have one handy, to avoid re-parsing of the content.
+	 *
+	 * @return Array. A list of DataUpdate objects for putting information
+	 *    about this content object somewhere.
+	 *
+	 * @since WD.1
+	 */
+	public function getSecondaryDataUpdates( Title $title,
+		Content $old = null,
+		$recursive = true, ParserOutput $parserOutput = null
+	);
 
 	/**
 	 * Construct the redirect destination from this content and return an
@@ -549,15 +585,46 @@ abstract class AbstractContent implements Content {
 		return $this->getNativeData() === $that->getNativeData();
 	}
 
+
 	/**
-	 * @see Content::getParserOutput()
+	 * Returns a list of DataUpdate objects for recording information about this
+	 * Content in some secondary data store.
+	 *
+	 * This default implementation calls
+	 * $this->getParserOutput( $content, $title, null, null, false ),
+	 * and then calls getSecondaryDataUpdates( $title, $recursive ) on the
+	 * resulting ParserOutput object.
+	 *
+	 * Subclasses may override this to determine the secondary data updates more
+	 * efficiently, preferrably without the need to generate a parser output object.
+	 *
+	 * @see Content::getSecondaryDataUpdates()
+	 *
+	 * @param $title Title The context for determining the necessary updates
+	 * @param $old Content|null An optional Content object representing the
+	 *    previous content, i.e. the content being replaced by this Content
+	 *    object.
+	 * @param $recursive boolean Whether to include recursive updates (default:
+	 *    false).
+	 * @param $parserOutput ParserOutput|null Optional ParserOutput object.
+	 *    Provide if you have one handy, to avoid re-parsing of the content.
+	 *
+	 * @return Array. A list of DataUpdate objects for putting information
+	 *    about this content object somewhere.
+	 *
+	 * @since WD.1
 	 */
-	public function getParserOutput( Title $title, $revId = null, ParserOptions $options = null, 
-		$generateHtml = true ) 
-	{
-		return $this->getContentHandler()->getParserOutput( 
-			$this, $title, $revId, $options, $generateHtml );
+	public function getSecondaryDataUpdates( Title $title,
+		Content $old = null,
+		$recursive = true, ParserOutput $parserOutput = null
+	) {
+		if ( !$parserOutput ) {
+			$parserOutput = $this->getParserOutput( $title, null, null, false );
+		}
+
+		return $parserOutput->getSecondaryDataUpdates( $title, $recursive );
 	}
+
 
 	/**
 	 * @see Content::getRedirectChain()
@@ -810,6 +877,60 @@ abstract class TextContent extends AbstractContent {
 		return $diff;
 	}
 
+
+	/**
+	 * Returns a generic ParserOutput object, wrapping the HTML returned by
+	 * getHtml().
+	 *
+	 * @param $title Title Context title for parsing
+	 * @param $revId int|null Revision ID (for {{REVISIONID}})
+	 * @param $options ParserOptions|null Parser options
+	 * @param $generateHtml bool Whether or not to generate HTML
+	 *
+	 * @return ParserOutput representing the HTML form of the text
+	 */
+	public function getParserOutput( Title $title,
+		$revId = null,
+		ParserOptions $options = null, $generateHtml = true
+	) {
+		# Generic implementation, relying on $this->getHtml()
+
+		if ( $generateHtml ) {
+			$html = $this->getHtml();
+		} else {
+			$html = '';
+		}
+
+		$po = new ParserOutput( $html );
+		return $po;
+	}
+
+	/**
+	 * Generates an HTML version of the content, for display. Used by
+	 * getParserOutput() to construct a ParserOutput object.
+	 *
+	 * This default implementation just calls getHighlightHtml(). Content
+	 * models that have another mapping to HTML (as is the case for markup
+	 * languages like wikitext) should override this method to generate the
+	 * appropriate HTML.
+	 *
+	 * @return string An HTML representation of the content
+	 */
+	protected function getHtml() {
+		return $this->getHighlightHtml();
+	}
+
+	/**
+	 * Generates a syntax-highlighted version of the content, as HTML.
+	 * Used by the default implementation of getHtml().
+	 *
+	 * @return string an HTML representation of the content's markup
+	 */
+	protected function getHighlightHtml( ) {
+		# TODO: make Highlighter interface, use highlighter here, if available
+		return htmlspecialchars( $this->getNativeData() );
+	}
+
 }
 
 /**
@@ -1024,6 +1145,44 @@ class WikitextContent extends TextContent {
 		return $truncatedtext;
 	}
 
+
+	/**
+	 * Returns a ParserOutput object resulting from parsing the content's text
+	 * using $wgParser.
+	 *
+	 * @since    WD.1
+	 *
+	 * @param $content Content the content to render
+	 * @param $title \Title
+	 * @param $revId null
+	 * @param $options null|ParserOptions
+	 * @param $generateHtml bool
+	 *
+	 * @internal param \IContextSource|null $context
+	 * @return ParserOutput representing the HTML form of the text
+	 */
+	public function getParserOutput( Title $title,
+		$revId = null,
+		ParserOptions $options = null, $generateHtml = true
+	) {
+		global $wgParser;
+
+		if ( !$options ) {
+			$options = new ParserOptions();
+		}
+
+		$po = $wgParser->parse( $this->getNativeData(), $title, $options, true, true, $revId );
+		return $po;
+	}
+
+	protected function getHtml() {
+		throw new MWException(
+			"getHtml() not implemented for wikitext. "
+				. "Use getParserOutput()->getText()."
+		);
+	}
+
+
 }
 
 /**
@@ -1103,6 +1262,15 @@ class JavaScriptContent extends TextContent {
 		return new JavaScriptContent( $pst );
 	}
 
+
+	protected function getHtml( ) {
+		$html = "";
+		$html .= "<pre class=\"mw-code mw-js\" dir=\"ltr\">\n";
+		$html .= $this->getHighlightHtml( );
+		$html .= "\n</pre>\n";
+
+		return $html;
+	}
 }
 
 /**
@@ -1132,4 +1300,13 @@ class CssContent extends TextContent {
 		return new CssContent( $pst );
 	}
 
+
+	protected function getHtml( ) {
+		$html = "";
+		$html .= "<pre class=\"mw-code mw-css\" dir=\"ltr\">\n";
+		$html .= $this->getHighlightHtml( );
+		$html .= "\n</pre>\n";
+
+		return $html;
+	}
 }

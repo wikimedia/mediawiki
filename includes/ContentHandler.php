@@ -767,71 +767,6 @@ abstract class ContentHandler {
 	}
 
 	/**
-	 * Parse the Content object and generate a ParserOutput from the result.
-	 * $result->getText() can be used to obtain the generated HTML. If no HTML
-	 * is needed, $generateHtml can be set to false; in that case,
-	 * $result->getText() may return null.
-	 *
-	 * @param $content Content the content to render
-	 * @param $title Title The page title to use as a context for rendering
-	 * @param $revId null|int The revision being rendered (optional)
-	 * @param $options null|ParserOptions Any parser options
-	 * @param $generateHtml Boolean Whether to generate HTML (default: true). If false,
-	 *        the result of calling getText() on the ParserOutput object returned by
-	 *        this method is undefined.
-	 *
-	 * @since WD.1
-	 *
-	 * @return ParserOutput
-	 */
-	public abstract function getParserOutput( Content $content, Title $title,
-		$revId = null,
-		ParserOptions $options = null, $generateHtml = true );
-	# TODO: make RenderOutput and RenderOptions base classes
-
-	/**
-	 * Returns a list of DataUpdate objects for recording information about this
-	 * Content in some secondary data store. If the optional second argument,
-	 * $old, is given, the updates may model only the changes that need to be
-	 * made to replace information about the old content with information about
-	 * the new content.
-	 *
-	 * This default implementation calls
-	 * $this->getParserOutput( $content, $title, null, null, false ),
-	 * and then calls getSecondaryDataUpdates( $title, $recursive ) on the
-	 * resulting ParserOutput object.
-	 *
-	 * Subclasses may implement this to determine the necessary updates more
-	 * efficiently, or make use of information about the old content.
-	 *
-	 * @param $content Content The content for determining the necessary updates
-	 * @param $title Title The context for determining the necessary updates
-	 * @param $old Content|null An optional Content object representing the
-	 *    previous content, i.e. the content being replaced by this Content
-	 *    object.
-	 * @param $recursive boolean Whether to include recursive updates (default:
-	 *    false).
-	 * @param $parserOutput ParserOutput|null Optional ParserOutput object.
-	 *    Provide if you have one handy, to avoid re-parsing of the content.
-	 *
-	 * @return Array. A list of DataUpdate objects for putting information
-	 *    about this content object somewhere.
-	 *
-	 * @since WD.1
-	 */
-	public function getSecondaryDataUpdates( Content $content, Title $title,
-		Content $old = null,
-		$recursive = true, ParserOutput $parserOutput = null
-	) {
-		if ( !$parserOutput ) {
-			$parserOutput = $this->getParserOutput( $content, $title, null, null, false );
-		}
-
-		return $parserOutput->getSecondaryDataUpdates( $title, $recursive );
-	}
-
-
-	/**
 	 * Get the Content object that needs to be saved in order to undo all revisions
 	 * between $undo and $undoafter. Revisions must belong to the same page,
 	 * must exist and must not be deleted.
@@ -953,71 +888,6 @@ abstract class TextContentHandler extends ContentHandler {
 		return $mergedContent;
 	}
 
-	/**
-	 * Returns a generic ParserOutput object, wrapping the HTML returned by
-	 * getHtml().
-	 *
-	 * @param $content Content The content to render
-	 * @param $title Title Context title for parsing
-	 * @param $revId int|null Revision ID (for {{REVISIONID}})
-	 * @param $options ParserOptions|null Parser options
-	 * @param $generateHtml bool Whether or not to generate HTML
-	 *
-	 * @return ParserOutput representing the HTML form of the text
-	 */
-	public function getParserOutput( Content $content, Title $title,
-		$revId = null,
-		ParserOptions $options = null, $generateHtml = true
-	) {
-		$this->checkModelID( $content->getModel() );
-
-		# Generic implementation, relying on $this->getHtml()
-
-		if ( $generateHtml ) {
-			$html = $this->getHtml( $content );
-		} else {
-			$html = '';
-		}
-
-		$po = new ParserOutput( $html );
-		return $po;
-	}
-
-	/**
-	 * Generates an HTML version of the content, for display. Used by
-	 * getParserOutput() to construct a ParserOutput object.
-	 *
-	 * This default implementation just calls getHighlightHtml(). Content
-	 * models that have another mapping to HTML (as is the case for markup
-	 * languages like wikitext) should override this method to generate the
-	 * appropriate HTML.
-	 *
-	 * @param $content Content The content to render
-	 *
-	 * @return string An HTML representation of the content
-	 */
-	protected function getHtml( Content $content ) {
-		$this->checkModelID( $content->getModel() );
-
-		return $this->getHighlightHtml( $content );
-	}
-
-	/**
-	 * Generates a syntax-highlighted version the content, as HTML.
-	 * Used by the default implementation of getHtml().
-	 *
-	 * @param $content Content the content to render
-	 *
-	 * @return string an HTML representation of the content's markup
-	 */
-	protected function getHighlightHtml( Content $content ) {
-		$this->checkModelID( $content->getModel() );
-
-		# TODO: make Highlighter interface, use highlighter here, if available
-		return htmlspecialchars( $content->getNativeData() );
-	}
-
-
 }
 
 /**
@@ -1037,44 +907,6 @@ class WikitextContentHandler extends TextContentHandler {
 
 	public function makeEmptyContent() {
 		return new WikitextContent( '' );
-	}
-
-	/**
-	 * Returns a ParserOutput object resulting from parsing the content's text
-	 * using $wgParser.
-	 *
-	 * @since    WD.1
-	 *
-	 * @param $content Content the content to render
-	 * @param $title \Title
-	 * @param $revId null
-	 * @param $options null|ParserOptions
-	 * @param $generateHtml bool
-	 *
-	 * @internal param \IContextSource|null $context
-	 * @return ParserOutput representing the HTML form of the text
-	 */
-	public function getParserOutput( Content $content, Title $title,
-		$revId = null,
-		ParserOptions $options = null, $generateHtml = true
-	) {
-		global $wgParser;
-
-		$this->checkModelID( $content->getModel() );
-
-		if ( !$options ) {
-			$options = new ParserOptions();
-		}
-
-		$po = $wgParser->parse( $content->getNativeData(), $title, $options, true, true, $revId );
-		return $po;
-	}
-
-	protected function getHtml( Content $content ) {
-		throw new MWException(
-			"getHtml() not implemented for wikitext. "
-			. "Use getParserOutput()->getText()."
-		);
 	}
 
 	/**
@@ -1118,15 +950,6 @@ class JavaScriptContentHandler extends TextContentHandler {
 	public function getPageLanguage( Title $title, Content $content = null ) {
 		return wfGetLangObj( 'en' );
 	}
-
-	protected function getHtml( Content $content ) {
-		$html = "";
-		$html .= "<pre class=\"mw-code mw-js\" dir=\"ltr\">\n";
-		$html .= $this->getHighlightHtml( $content );
-		$html .= "\n</pre>\n";
-
-		return $html;
-	}
 }
 
 /**
@@ -1157,14 +980,5 @@ class CssContentHandler extends TextContentHandler {
 	 */
 	public function getPageLanguage( Title $title, Content $content = null ) {
 		return wfGetLangObj( 'en' );
-	}
-
-	protected function getHtml( Content $content ) {
-		$html = "";
-		$html .= "<pre class=\"mw-code mw-css\" dir=\"ltr\">\n";
-		$html .= $this->getHighlightHtml( $content );
-		$html .= "\n</pre>\n";
-
-		return $html;
 	}
 }
