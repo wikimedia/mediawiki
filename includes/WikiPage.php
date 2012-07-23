@@ -540,7 +540,14 @@ class WikiPage extends Page {
 			return; // page doesn't exist or is missing page_latest info
 		}
 
-		$revision = Revision::newFromPageId( $this->getId(), $latest );
+		// Bug 37225: if session S1 loads the page row FOR UPDATE, the result always includes the
+		// latest changes committed. This is true even within REPEATABLE-READ transactions, where
+		// S1 normally only sees changes committed before the first S1 SELECT. Thus we need S1 to
+		// also gets the revision row FOR UPDATE; otherwise, it may not find it since a page row
+		// UPDATE and revision row INSERT by S2 may have happened after the first S1 SELECT.
+		// http://dev.mysql.com/doc/refman/5.0/en/set-transaction.html#isolevel_repeatable-read.
+		$flags = ( $this->mDataLoadedFrom == self::DATA_FOR_UPDATE ) ? Revision::LOCKING_READ : 0;
+		$revision = Revision::newFromPageId( $this->getId(), $latest, $flags );
 		if ( $revision ) { // sanity
 			$this->setLastEdit( $revision );
 		}
