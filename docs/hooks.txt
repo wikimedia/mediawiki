@@ -2407,7 +2407,7 @@ One, and only one hook should set this, and return false.
 'WikiPageDeletionUpdates': manipulate the list of DataUpdates to be applied when
 	a page is deleted. Called in WikiPage::getDeletionUpdates().
 	Note that updates specific to a content model should be provided by the
-	respective ContentHandler's getDeletionUpdates() method.
+	respective Content's getDeletionUpdates() method.
 $page: the WikiPage
 &$updates: the array of DataUpdate objects. Hook function may want to add to it.
 

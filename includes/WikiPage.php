@@ -3202,7 +3202,7 @@ class WikiPage extends Page {
 			$content = $this->getContent( Revision::RAW );
 		}
 
-		$updates = $this->getContentHandler()->getDeletionUpdates( $content, $this->mTitle );
+		$updates = $this->getContent()->getDeletionUpdates( $this->mTitle );
 
 		wfRunHooks( 'WikiPageDeletionUpdates', array( $this, &$updates ) );
 		return $updates;

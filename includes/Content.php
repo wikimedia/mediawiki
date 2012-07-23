@@ -378,6 +378,24 @@ interface Content {
 	 */
 	public function prepareSave( WikiPage $page, $flags, $baseRevId, User $user );
 
+	/**
+	 * Returns a list of updates to perform when this content is deleted.
+	 * The necessary updates may be taken from the Content object, or depend on
+	 * the current state of the database.
+	 *
+	 * @since WD.1
+	 *
+	 * @param $title \Title the title of the deleted page
+	 * @param $parserOutput null|\ParserOutput optional parser output object
+	 *    for efficient access to meta-information about the content object.
+	 *    Provide if you have one handy.
+	 *
+	 * @return array A list of DataUpdate instances that will clean up the
+	 *    database after deletion.
+	 */
+	public function getDeletionUpdates( Title $title,
+		ParserOutput $parserOutput = null );
+
 	# TODO: handle ImagePage and CategoryPage
 	# TODO: make sure we cover lucene search / wikisearch.
 	# TODO: make sure ReplaceTemplates still works
@@ -643,6 +661,29 @@ abstract class AbstractContent implements Content {
 			return Status::newFatal( "invalid-content-data" );
 		}
 	}
+
+	/**
+	 * Returns a list of updates to perform when this content is deleted.
+	 * The necessary updates may be taken from the Content object, or depend on
+	 * the current state of the database.
+	 *
+	 * @since WD.1
+	 *
+	 * @param $title \Title the title of the deleted page
+	 * @param $parserOutput null|\ParserOutput optional parser output object
+	 *    for efficient access to meta-information about the content object.
+	 *    Provide if you have one handy.
+	 *
+	 * @return array A list of DataUpdate instances that will clean up the
+	 *    database after deletion.
+	 */
+	public function getDeletionUpdates( Title $title,
+		ParserOutput $parserOutput = null )
+	{
+		return array(
+			new LinksDeletionUpdate( $title ),
+		);
+	}
 }
 
 /**
@@ -768,7 +809,6 @@ abstract class TextContent extends AbstractContent {
 		$diff = new Diff( $ota, $nta );
 		return $diff;
 	}
-
 
 }
 

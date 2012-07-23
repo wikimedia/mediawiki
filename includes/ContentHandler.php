@@ -50,6 +50,7 @@ abstract class ContentHandler {
 	 * - otherwise, the behaviour is undefined.
 	 *
 	 * @since WD.1
+	 * @deprecated since WD.1. Always try to use the content object.
 	 *
 	 * @static
 	 * @param $content Content|null
@@ -877,30 +878,6 @@ abstract class ContentHandler {
 	 */
 	public function isParserCacheSupported() {
 		return true;
-	}
-
-	/**
-	 * Returns a list of updates to perform when the given content is deleted.
-	 * The necessary updates may be taken from the Content object, or depend on
-	 * the current state of the database.
-	 *
-	 * @since WD.1
-	 *
-	 * @param $content \Content the Content object for deletion
-	 * @param $title \Title the title of the deleted page
-	 * @param $parserOutput null|\ParserOutput optional parser output object
-	 *    for efficient access to meta-information about the content object.
-	 *    Provide if you have one handy.
-	 *
-	 * @return array A list of DataUpdate instances that will clean up the
-	 *    database after deletion.
-	 */
-	public function getDeletionUpdates( Content $content, Title $title,
-		ParserOutput $parserOutput = null )
-	{
-		return array(
-			new LinksDeletionUpdate( $title ),
-		);
 	}
 
 	/**

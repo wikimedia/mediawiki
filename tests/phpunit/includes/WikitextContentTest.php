@@ -418,4 +418,46 @@ just a test"
 		$this->assertEquals( $equal, $a->equals( $b ) );
 	}
 
+	public function dataGetDeletionUpdates() {
+		return array(
+			array("WikitextContentTest_testGetSecondaryDataUpdates_1", "hello ''world''\n",
+				array( 'LinksDeletionUpdate' => array( ) )
+			),
+			array("WikitextContentTest_testGetSecondaryDataUpdates_2", "hello [[world test 21344]]\n",
+				array( 'LinksDeletionUpdate' => array( ) )
+			),
+			// @todo: more...?
+		);
+	}
+
+	/**
+	 * @dataProvider dataGetDeletionUpdates
+	 */
+	public function testDeletionUpdates( $title, $text, $expectedStuff ) {
+		$title = Title::newFromText( $title );
+		$title->resetArticleID( 2342 ); //dummy id. fine as long as we don't try to execute the updates!
+
+		$handler = ContentHandler::getForModelID( $title->getContentModel() );
+		$content = ContentHandler::makeContent( $text, $title );
+
+		$updates = $content->getDeletionUpdates( $title );
+
+		// make updates accessible by class name
+		foreach ( $updates as $update ) {
+			$class = get_class( $update );
+			$updates[ $class ] = $update;
+		}
+
+		foreach ( $expectedStuff as $class => $fieldValues ) {
+			$this->assertArrayHasKey( $class, $updates, "missing an update of type $class" );
+
+			$update = $updates[ $class ];
+
+			foreach ( $fieldValues as $field => $value ) {
+				$v = $update->$field; #if the field doesn't exist, just crash and burn
+				$this->assertEquals( $value, $v, "unexpected value for field $field in instance of $class" );
+			}
+		}
+	}
+
 }
