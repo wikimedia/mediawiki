@@ -440,6 +440,24 @@ class FileRepo {
 	}
 
 	/**
+	 * Get an array of arrays or iterators of file objects for files that
+	 * have the given SHA-1 content hashes.
+	 *
+	 * @param $hashes array An array of hashes
+	 * @return array An Array of arrays or iterators of file objects and the hash as key
+	 */
+	public function findBySha1s( array $hashes ) {
+		$result = array();
+		foreach ( $hashes as $hash ) {
+			$files = $this->findBySha1( $hash );
+			if ( count( $files ) ) {
+				$result[$hash] = $files;
+			}
+		}
+		return $result;
+	}
+
+	/**
 	 * Get the public root URL of the repository
 	 *
 	 * @deprecated since 1.20
