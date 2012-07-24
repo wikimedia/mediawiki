@@ -374,7 +374,7 @@ class PageArchive {
 		}
 
 		if( trim( $comment ) != '' ) {
-			$reason .= wfMsgForContent( 'colon-separator' ) . $comment;
+			$reason .= wfMessage( 'colon-separator' )->inContentLanguage()->text() . $comment;
 		}
 
 		if ( $user === null ) {

@@ -185,7 +185,7 @@ class RevisionDeleter {
 			);
 
 			// Pipe links
-			return wfMsg( 'parentheses', $wgLang->pipeList( $revert ) );
+			return wfMessage( 'parentheses', $wgLang->pipeList( $revert ) )->text();
 		}
 		return '';
 	}

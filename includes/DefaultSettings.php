@@ -2317,16 +2317,16 @@ $wgVariantArticlePath = false;
 $wgLoginLanguageSelector = false;
 
 /**
- * When translating messages with wfMsg(), it is not always clear what should
- * be considered UI messages and what should be content messages.
+ * When translating messages with wfMessage(), it is not always clear what 
+ * should be considered UI messages and what should be content messages.
  *
  * For example, for the English Wikipedia, there should be only one 'mainpage',
  * so when getting the link for 'mainpage', we should treat it as site content
- * and call wfMsgForContent(), but for rendering the text of the link, we call
- * wfMsg(). The code behaves this way by default. However, sites like the
- * Wikimedia Commons do offer different versions of 'mainpage' and the like for
- * different languages. This array provides a way to override the default
- * behavior.
+ * and call ->inContentLanguage()->text(), but for rendering the text of the
+ * link, we call ->text(). The code behaves this way by default. However,
+ * sites like the Wikimedia Commons do offer different versions of 'mainpage'
+ * and the like for different languages. This array provides a way to override
+ * the default behavior.
  *
  * @par Example:
  * To allow language-specific main page and community

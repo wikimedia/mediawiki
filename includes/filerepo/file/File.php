@@ -804,7 +804,7 @@ abstract class File {
 			return $this->handler->getTransform( $this, $thumbPath, $thumbUrl, $params );
 		} else {
 			return new MediaTransformError( 'thumbnail_error',
-				$params['width'], 0, wfMsg( 'thumbnail-dest-create' ) );
+				$params['width'], 0, wfMessage( 'thumbnail-dest-create' )->text() );
 		}
 	}
 
