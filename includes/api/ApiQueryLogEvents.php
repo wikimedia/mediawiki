@@ -367,7 +367,7 @@ class ApiQueryLogEvents extends ApiQueryBase {
 	}
 
 	public function getAllowedParams() {
-		global $wgLogTypes, $wgLogActions;
+		global $wgLogTypes, $wgLogActions, $wgLogActionsHandlers;
 		return array(
 			'prop' => array(
 				ApiBase::PARAM_ISMULTI => true,
@@ -389,7 +389,7 @@ class ApiQueryLogEvents extends ApiQueryBase {
 				ApiBase::PARAM_TYPE => $wgLogTypes
 			),
 			'action' => array(
-				ApiBase::PARAM_TYPE => array_keys( $wgLogActions )
+				ApiBase::PARAM_TYPE => array_keys( array_merge( $wgLogActions, $wgLogActionsHandlers ) )
 			),
 			'start' => array(
 				ApiBase::PARAM_TYPE => 'timestamp'
