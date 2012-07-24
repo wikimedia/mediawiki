@@ -1,16 +1,16 @@
-/*
+/**
  * JavaScript for Special:Upload
  * Note that additional code still lives in skins/common/upload.js
  */
-
+( function ( mw, $ ) {
 /**
  * Add a preview to the upload form
  */
-jQuery( function( $ ) {
+$( function ( $ ) {
 	/**
 	 * Is the FileAPI available with sufficient functionality?
 	 */
-	function hasFileAPI(){
+	function hasFileAPI() {
 		return typeof window.FileReader !== 'undefined';
 	}
 
@@ -63,7 +63,7 @@ jQuery( function( $ ) {
 				rotation = 0;
 
 			if ( meta && meta.tiff && meta.tiff.Orientation ) {
-				rotation = (360 - function () {
+				rotation = ( 360 - ( function () {
 					// See includes/media/Bitmap.php
 					switch ( meta.tiff.Orientation.value ) {
 						case 8:
@@ -75,10 +75,10 @@ jQuery( function( $ ) {
 						default:
 							return 0;
 					}
-				}() ) % 360;
+				}() ) ) % 360;
 			}
 
-			img.onload = function() {
+			img.onload = function () {
 				var width, height, x, y, dx, dy, logicalWidth, logicalHeight;
 				// Fit the image within the previewSizexpreviewSize box
 				if ( img.width > img.height ) {
@@ -158,7 +158,7 @@ jQuery( function( $ ) {
 		var reader = new FileReader();
 		if ( callbackBinary && 'readAsBinaryString' in reader ) {
 			// To fetch JPEG metadata we need a binary string; start there.
-			// todo: 
+			// todo:
 			reader.onload = function() {
 				callbackBinary( reader.result );
 
@@ -211,12 +211,12 @@ jQuery( function( $ ) {
 	 * @return string
 	 */
 	function prettySize( s ) {
-		var sizes = ['size-bytes', 'size-kilobytes', 'size-megabytes', 'size-gigabytes'];
-		while ( s >= 1024 && sizes.length > 1 ) {
+		var sizeMsgs = ['size-bytes', 'size-kilobytes', 'size-megabytes', 'size-gigabytes'];
+		while ( s >= 1024 && sizeMsgs.length > 1 ) {
 			s /= 1024;
-			sizes = sizes.slice( 1 );
+			sizeMsgs = sizeMsgs.slice( 1 );
 		}
-		return mw.msg( sizes[0], Math.round( s ) );
+		return mw.msg( sizeMsgs[0], Math.round( s ) );
 	}
 
 	/**
@@ -255,7 +255,7 @@ jQuery( function( $ ) {
 	 */
 	if ( hasFileAPI() ) {
 		// Update thumbnail when the file selection control is updated.
-		$( '#wpUploadFile' ).change( function() {
+		$( '#wpUploadFile' ).change( function () {
 			clearPreview();
 			if ( this.files && this.files.length ) {
 				// Note: would need to be updated to handle multiple files.
@@ -276,22 +276,24 @@ jQuery( function( $ ) {
 /**
  * Disable all upload source fields except the selected one
  */
-jQuery( function ( $ ) {
-	var rows = $( '.mw-htmlform-field-UploadSourceField' );
-	for ( var i = rows.length; i; i-- ) {
-		var row = rows[i - 1];
-		$( 'input[name="wpSourceType"]', row ).change( function () {
+$( function ( $ ) {
+	var i, row,
+		rows = $( '.mw-htmlform-field-UploadSourceField' );
+	for ( i = rows.length; i; i-- ) {
+		row = rows[i - 1];
+		$( 'input[name="wpSourceType"]', row ).change( ( function () {
 			var currentRow = row; // Store current row in our own scope
 			return function () {
 				$( '.mw-upload-source-error' ).remove();
 				if ( this.checked ) {
 					// Disable all inputs
-					$( 'input[name!="wpSourceType"]', rows ).prop( 'disabled', 'disabled' );
+					$( 'input[name!="wpSourceType"]', rows ).prop( 'disabled', true );
 					// Re-enable the current one
 					$( 'input', currentRow ).prop( 'disabled', false );
 				}
 			};
-		}() );
+		}() ) );
 	}
 } );
 
+}( mediaWiki, jQuery ) );
