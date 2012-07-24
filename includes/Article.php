@@ -245,7 +245,8 @@ class Article extends Page {
 					$text = '';
 				}
 			} else {
-				$text = wfMsgExt( $this->getContext()->getUser()->isLoggedIn() ? 'noarticletext' : 'noarticletextanon', 'parsemag' );
+				$message = $this->getContext()->getUser()->isLoggedIn() ? 'noarticletext' : 'noarticletextanon';
+				$text = wfMessage( $message )->text();
 			}
 			wfProfileOut( __METHOD__ );
 
@@ -961,21 +962,20 @@ class Article extends Page {
 		$token = $user->getEditToken( $rcid );
 		$outputPage->preventClickjacking();
 
+		$link = Linker::linkKnown(
+			$this->getTitle(),
+			wfMessage( 'markaspatrolledtext' )->escaped(),
+			array(),
+			array(
+				'action' => 'markpatrolled',
+				'rcid' => $rcid,
+				'token' => $token,
+			)
+		);
+
 		$outputPage->addHTML(
 			"<div class='patrollink'>" .
-				wfMsgHtml(
-					'markaspatrolledlink',
-					Linker::linkKnown(
-						$this->getTitle(),
-						wfMsgHtml( 'markaspatrolledtext' ),
-						array(),
-						array(
-							'action' => 'markpatrolled',
-							'rcid' => $rcid,
-							'token' => $token,
-						)
-					)
-				) .
+				wfMessage( 'markaspatrolledlink', $link )->escaped() .
 			'</div>'
 		);
 	}
@@ -1148,18 +1148,18 @@ class Article extends Page {
 			$tdtime, $revision->getUser() )->parse() . "</div>" );
 
 		$lnk = $current
-			? wfMsgHtml( 'currentrevisionlink' )
+			? wfMessage( 'currentrevisionlink' )->escaped()
 			: Linker::linkKnown(
 				$this->getTitle(),
-				wfMsgHtml( 'currentrevisionlink' ),
+				wfMessage( 'currentrevisionlink' )->escaped(),
 				array(),
 				$extraParams
 			);
 		$curdiff = $current
-			? wfMsgHtml( 'diff' )
+			? wfMessage( 'diff' )->escaped()
 			: Linker::linkKnown(
 				$this->getTitle(),
-				wfMsgHtml( 'diff' ),
+				wfMessage( 'diff' )->escaped(),
 				array(),
 				array(
 					'diff' => 'cur',
@@ -1170,30 +1170,30 @@ class Article extends Page {
 		$prevlink = $prev
 			? Linker::linkKnown(
 				$this->getTitle(),
-				wfMsgHtml( 'previousrevision' ),
+				wfMessage( 'previousrevision' )->escaped(),
 				array(),
 				array(
 					'direction' => 'prev',
 					'oldid' => $oldid
 				) + $extraParams
 			)
-			: wfMsgHtml( 'previousrevision' );
+			: wfMessage( 'previousrevision' )->escaped();
 		$prevdiff = $prev
 			? Linker::linkKnown(
 				$this->getTitle(),
-				wfMsgHtml( 'diff' ),
+				wfMessage( 'diff' )->escaped(),
 				array(),
 				array(
 					'diff' => 'prev',
 					'oldid' => $oldid
 				) + $extraParams
 			)
-			: wfMsgHtml( 'diff' );
+			: wfMessage( 'diff' )->escaped();
 		$nextlink = $current
-			? wfMsgHtml( 'nextrevision' )
+			? wfMessage( 'nextrevision' )->escaped()
 			: Linker::linkKnown(
 				$this->getTitle(),
-				wfMsgHtml( 'nextrevision' ),
+				wfMessage( 'nextrevision' )->escaped(),
 				array(),
 				array(
 					'direction' => 'next',
@@ -1201,10 +1201,10 @@ class Article extends Page {
 				) + $extraParams
 			);
 		$nextdiff = $current
-			? wfMsgHtml( 'diff' )
+			? wfMessage( 'diff' )->escaped()
 			: Linker::linkKnown(
 				$this->getTitle(),
-				wfMsgHtml( 'diff' ),
+				wfMessage( 'diff' )->escaped(),
 				array(),
 				array(
 					'diff' => 'next',
@@ -1241,7 +1241,8 @@ class Article extends Page {
 		$imageDir = $lang->getDir();
 
 		if ( $appendSubtitle ) {
-			$this->getContext()->getOutput()->appendSubtitle( wfMsgHtml( 'redirectpagesub' ) );
+			$out = $this->getContext()->getOutput();
+			$out->appendSubtitle( wfMessage( 'redirectpagesub' )->escaped() );
 		}
 
 		// the loop prepends the arrow image before the link, so the first case needs to be outside
@@ -1344,7 +1345,8 @@ class Article extends Page {
 			$reason = $deleteReason;
 		} elseif ( $deleteReason != '' ) {
 			// Entry from drop down menu + additional comment
-			$reason = $deleteReasonList . wfMsgForContent( 'colon-separator' ) . $deleteReason;
+			$colonseparator = wfMessage( 'colon-separator' )->inContentLanguage()->text();
+			$reason = $deleteReasonList . $colonseparator . $deleteReason;
 		} else {
 			$reason = $deleteReasonList;
 		}
@@ -1379,9 +1381,9 @@ class Article extends Page {
 			$revisions = $this->mTitle->estimateRevisionCount();
 			// @todo FIXME: i18n issue/patchwork message
 			$this->getContext()->getOutput()->addHTML( '<strong class="mw-delete-warning-revisions">' .
-				wfMsgExt( 'historywarning', array( 'parseinline' ), $this->getContext()->getLanguage()->formatNum( $revisions ) ) .
-				wfMsgHtml( 'word-separator' ) . Linker::linkKnown( $title,
-					wfMsgHtml( 'history' ),
+				wfMessage( 'historywarning', $this->getContext()->getLanguage()->formatNum( $revisions ) )->parse() .
+				wfMessage( 'word-separator' )->plain() . Linker::linkKnown( $title,
+					wfMessage( 'history' )->escaped(),
 					array( 'rel' => 'archives' ),
 					array( 'action' => 'history' ) ) .
 				'</strong>'
@@ -1419,7 +1421,7 @@ class Article extends Page {
 			$suppress = "<tr id=\"wpDeleteSuppressRow\">
 					<td></td>
 					<td class='mw-input'><strong>" .
-						Xml::checkLabel( wfMsg( 'revdelete-suppress' ),
+						Xml::checkLabel( wfMessage( 'revdelete-suppress' )->text(),
 							'wpSuppress', 'wpSuppress', false, array( 'tabindex' => '4' ) ) .
 					"</strong></td>
 				</tr>";
@@ -1435,17 +1437,17 @@ class Article extends Page {
 			Xml::openElement( 'table', array( 'id' => 'mw-deleteconfirm-table' ) ) .
 			"<tr id=\"wpDeleteReasonListRow\">
 				<td class='mw-label'>" .
-					Xml::label( wfMsg( 'deletecomment' ), 'wpDeleteReasonList' ) .
+					Xml::label( wfMessage( 'deletecomment' )->text(), 'wpDeleteReasonList' ) .
 				"</td>
 				<td class='mw-input'>" .
 					Xml::listDropDown( 'wpDeleteReasonList',
-						wfMsgForContent( 'deletereason-dropdown' ),
-						wfMsgForContent( 'deletereasonotherlist' ), '', 'wpReasonDropDown', 1 ) .
+						wfMessage( 'deletereason-dropdown' )->inContentLanguage()->text(),
+						wfMessage( 'deletereasonotherlist' )->inContentLanguage()->text(), '', 'wpReasonDropDown', 1 ) .
 				"</td>
 			</tr>
 			<tr id=\"wpDeleteReasonRow\">
 				<td class='mw-label'>" .
-					Xml::label( wfMsg( 'deleteotherreason' ), 'wpReason' ) .
+					Xml::label( wfMessage( 'deleteotherreason' )->text(), 'wpReason' ) .
 				"</td>
 				<td class='mw-input'>" .
 				Html::input( 'wpReason', $reason, 'text', array(
@@ -1464,7 +1466,7 @@ class Article extends Page {
 			<tr>
 				<td></td>
 				<td class='mw-input'>" .
-					Xml::checkLabel( wfMsg( 'watchthis' ),
+					Xml::checkLabel( wfMessage( 'watchthis' )->text(),
 						'wpWatch', 'wpWatch', $checkWatch, array( 'tabindex' => '3' ) ) .
 				"</td>
 			</tr>";
@@ -1475,7 +1477,7 @@ class Article extends Page {
 			<tr>
 				<td></td>
 				<td class='mw-submit'>" .
-					Xml::submitButton( wfMsg( 'deletepage' ),
+					Xml::submitButton( wfMessage( 'deletepage' )->text(),
 						array( 'name' => 'wpConfirmB', 'id' => 'wpConfirmB', 'tabindex' => '5' ) ) .
 				"</td>
 			</tr>" .
@@ -1488,7 +1490,7 @@ class Article extends Page {
 				$title = Title::makeTitle( NS_MEDIAWIKI, 'Deletereason-dropdown' );
 				$link = Linker::link(
 					$title,
-					wfMsgHtml( 'delete-edit-reasonlist' ),
+					wfMessage( 'delete-edit-reasonlist' )->escaped(),
 					array(),
 					array( 'action' => 'edit' )
 				);

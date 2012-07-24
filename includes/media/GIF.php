@@ -142,11 +142,11 @@ class GIFHandler extends BitmapHandler {
 		$info[] = $original;
 		
 		if ( $metadata['looped'] ) {
-			$info[] = wfMsgExt( 'file-info-gif-looped', 'parseinline' );
+			$info[] = wfMessage( 'file-info-gif-looped' )->parse();
 		}
 		
 		if ( $metadata['frameCount'] > 1 ) {
-			$info[] = wfMsgExt( 'file-info-gif-frames', 'parseinline', $metadata['frameCount'] );
+			$info[] = wfMessage( 'file-info-gif-frames', $metadata['frameCount'] )->parse();
 		}
 		
 		if ( $metadata['duration'] ) {

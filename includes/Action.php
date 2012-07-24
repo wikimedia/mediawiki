@@ -341,7 +341,7 @@ abstract class Action {
 	 * @return String
 	 */
 	protected function getDescription() {
-		return wfMsgHtml( strtolower( $this->getName() ) );
+		return $this->msg( strtolower( $this->getName() ) )->escaped();
 	}
 
 	/**

@@ -526,7 +526,7 @@ class CategoryViewer extends ContextSource {
 				if ( $first && $char === $prevchar ) {
 					# We're continuing a previous chunk at the top of a new
 					# column, so add " cont." after the letter.
-					$ret .= ' ' . wfMsgHtml( 'listingcontinuesabbrev' );
+					$ret .= ' ' . wfMessage( 'listingcontinuesabbrev' )->escaped();
 				}
 				$ret .= "</h3>\n";
 

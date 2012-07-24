@@ -749,7 +749,7 @@ class Html {
 		if ( isset( $params['all'] ) ) {
 			// add an option that would let the user select all namespaces.
 			// Value is provided by user, the name shown is localized for the user.
-			$options[$params['all']] = wfMsg( 'namespacesall' );
+			$options[$params['all']] = wfMessage( 'namespacesall' )->text();
 		}
 		// Add all namespaces as options (in the content langauge)
 		$options += $wgContLang->getFormattedNamespaces();
@@ -763,7 +763,7 @@ class Html {
 			if ( $nsId === 0 ) {
 				// For other namespaces use use the namespace prefix as label, but for
 				// main we don't use "" but the user message descripting it (e.g. "(Main)" or "(Article)")
-				$nsName = wfMsg( 'blanknamespace' );
+				$nsName = wfMessage( 'blanknamespace' )->text();
 			}
 			$optionsHtml[] = Html::element(
 				'option', array(
@@ -859,7 +859,7 @@ class Html {
 	/**
 	 * Get HTML for an info box with an icon.
 	 *
-	 * @param $text String: wikitext, get this with wfMsgNoTrans()
+	 * @param $text String: wikitext, get this with wfMessage()->plain()
 	 * @param $icon String: icon name, file in skins/common/images
 	 * @param $alt String: alternate text for the icon
 	 * @param $class String: additional class name to add to the wrapper div

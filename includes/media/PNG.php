@@ -128,13 +128,13 @@ class PNGHandler extends BitmapHandler {
 		$info[] = $original;
 		
 		if ( $metadata['loopCount'] == 0 ) {
-			$info[] = wfMsgExt( 'file-info-png-looped', 'parseinline' );
+			$info[] = wfMessage( 'file-info-png-looped' )->parse();
 		} elseif ( $metadata['loopCount'] > 1 ) {
-			$info[] = wfMsgExt( 'file-info-png-repeat', 'parseinline', $metadata['loopCount'] );
+			$info[] = wfMessage( 'file-info-png-repeat', $metadata['loopCount'] )->parse();
 		}
 		
 		if ( $metadata['frameCount'] > 0 ) {
-			$info[] = wfMsgExt( 'file-info-png-frames', 'parseinline', $metadata['frameCount'] );
+			$info[] = wfMessage( 'file-info-png-frames', $metadata['frameCount'] )->parse();
 		}
 		
 		if ( $metadata['duration'] ) {

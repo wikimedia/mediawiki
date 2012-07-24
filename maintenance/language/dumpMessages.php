@@ -35,7 +35,7 @@ class DumpMessages extends Maintenance {
 
 		$messages = array();
 		foreach ( array_keys( Language::getMessagesFor( 'en' ) ) as $key ) {
-			$messages[$key] = wfMsg( $key );
+			$messages[$key] = wfMessage( $key )->text();
 		}
 		$this->output( "MediaWiki $wgVersion language file\n" );
 		$this->output( serialize( $messages ) );
