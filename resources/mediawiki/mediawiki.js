@@ -852,8 +852,9 @@ var mw = ( function ( $, undefined ) {
 						registry[module].state = 'loading';
 						nestedAddScript( script, markModuleReady, registry[module].async, 0 );
 					} else if ( $.isFunction( script ) ) {
+						registry[module].state = 'ready';
 						script( $ );
-						markModuleReady();
+						handlePending( module );
 					}
 				} catch ( e ) {
 					// This needs to NOT use mw.log because these errors are common in production mode
