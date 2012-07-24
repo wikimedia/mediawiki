@@ -198,7 +198,7 @@ test( 'mw.loader.implement', function () {
 			strictEqual( isJsExecuted, undefined, 'javascript not executed multiple times' );
 			isJsExecuted = true;
 
-			equal( mw.loader.getState( 'test.implement' ), 'loaded', 'module state is "loaded" while implement() is executing javascript' );
+			equal( mw.loader.getState( 'test.implement' ), 'ready', 'module state is "ready" while implement() is executing javascript' );
 
 			$element = $( '<div class="mw-test-loaderimplement">Foo bar</div>' ).appendTo( '#qunit-fixture' );
 
