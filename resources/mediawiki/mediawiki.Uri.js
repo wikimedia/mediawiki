@@ -272,7 +272,7 @@
 				var args = [];
 				$.each( this.query, function ( key, val ) {
 					var k = Uri.encode( key ),
-						vals = val === null ? [ null ] : $.makeArray( val );
+						vals = $.isArray( val ) ? val : [ val ];
 					$.each( vals, function ( i, v ) {
 						args.push( k + ( v === null ? '' : '=' + Uri.encode( v ) ) );
 					} );
@@ -317,11 +317,11 @@
 
 		defaultUri = new Uri( documentLocation );
 
-		return Uri;	
+		return Uri;
 	};
 
 	// if we are running in a browser, inject the current document location, for relative URLs
-	if ( document && document.location && document.location.href ) { 
+	if ( document && document.location && document.location.href ) {
 		mw.Uri = mw.UriRelative( document.location.href );
 	}
 
