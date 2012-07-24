@@ -3188,7 +3188,7 @@ class WikiPage extends Page {
 	}
 
 	/**
-	 * Returns a list of updates to be performed when this page is deleted. The updates should remove any infomration
+	 * Returns a list of updates to be performed when this page is deleted. The updates should remove any information
 	 * about this page from secondary data stores such as links tables.
 	 *
 	 * @param Content|null $content optional Content object for determining the necessary updates
@@ -3201,9 +3201,13 @@ class WikiPage extends Page {
 			$content = $this->getContent( Revision::RAW );
 		}
 
-		$updates = $this->getContent()->getDeletionUpdates( $this->mTitle );
+		if ( !$content ) {
+			$updates = array();
+		} else {
+			$updates = $content->getDeletionUpdates( $this->mTitle );
+		}
 
-		wfRunHooks( 'WikiPageDeletionUpdates', array( $this, &$updates ) );
+		wfRunHooks( 'WikiPageDeletionUpdates', array( $this, $content, &$updates ) );
 		return $updates;
 	}
 

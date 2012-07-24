@@ -2409,6 +2409,7 @@ One, and only one hook should set this, and return false.
 	Note that updates specific to a content model should be provided by the
 	respective Content's getDeletionUpdates() method.
 $page: the WikiPage
+$content: the Content to generate updates for
 &$updates: the array of DataUpdate objects. Hook function may want to add to it.
 
 'wfShellWikiCmd': Called when generating a shell-escaped command line
