@@ -316,6 +316,12 @@ class WikiPageTest extends MediaWikiLangTestCase {
 	}
 
 	public function testGetContentModel() {
+		global $wgContentHandlerUseDB;
+
+		if ( !$wgContentHandlerUseDB ) {
+			$this->markTestSkipped( '$wgContentHandlerUseDB is disabled' );
+		}
+
 		$page = $this->createPage( "WikiPageTest_testGetContentModel", "some text", CONTENT_MODEL_JAVASCRIPT );
 
 		$page = new WikiPage( $page->getTitle() );
@@ -323,6 +329,12 @@ class WikiPageTest extends MediaWikiLangTestCase {
 	}
 
 	public function testGetContentHandler() {
+		global $wgContentHandlerUseDB;
+
+		if ( !$wgContentHandlerUseDB ) {
+			$this->markTestSkipped( '$wgContentHandlerUseDB is disabled' );
+		}
+
 		$page = $this->createPage( "WikiPageTest_testGetContentHandler", "some text", CONTENT_MODEL_JAVASCRIPT );
 
 		$page = new WikiPage( $page->getTitle() );

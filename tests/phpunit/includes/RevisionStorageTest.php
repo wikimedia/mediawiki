@@ -9,6 +9,9 @@
  */
 class RevisionStorageTest extends MediaWikiTestCase {
 
+	/**
+	 * @var WikiPage $the_page
+	 */
 	var $the_page;
 
 	function  __construct( $name = null, array $data = array(), $dataName = '' ) {
@@ -204,6 +207,8 @@ class RevisionStorageTest extends MediaWikiTestCase {
 	 */
 	public function testSelectFields()
 	{
+		global $wgContentHandlerUseDB;
+
 		$fields = Revision::selectFields();
 
 		$this->assertTrue( in_array( 'rev_id', $fields ), 'missing rev_id in list of fields');
@@ -211,8 +216,12 @@ class RevisionStorageTest extends MediaWikiTestCase {
 		$this->assertTrue( in_array( 'rev_timestamp', $fields ), 'missing rev_timestamp in list of fields');
 		$this->assertTrue( in_array( 'rev_user', $fields ), 'missing rev_user in list of fields');
 
-		$this->assertTrue( in_array( 'rev_content_model', $fields ), 'missing rev_content_model in list of fields');
-		$this->assertTrue( in_array( 'rev_content_format', $fields ), 'missing rev_content_format in list of fields');
+		if ( $wgContentHandlerUseDB ) {
+			$this->assertTrue( in_array( 'rev_content_model', $fields ), 'missing rev_content_model in list of fields');
+			$this->assertTrue( in_array( 'rev_content_format', $fields ), 'missing rev_content_format in list of fields');
+		} else {
+			$this->markTestSkipped( '$wgContentHandlerUseDB is disabled' );
+		}
 	}
 
 	/**
@@ -277,6 +286,12 @@ class RevisionStorageTest extends MediaWikiTestCase {
 	 */
 	public function testGetContentModel()
 	{
+		global $wgContentHandlerUseDB;
+
+		if ( !$wgContentHandlerUseDB ) {
+			$this->markTestSkipped( '$wgContentHandlerUseDB is disabled' );
+		}
+
 		$orig = $this->makeRevision( array( 'text' => 'hello hello.', 'content_model' => CONTENT_MODEL_JAVASCRIPT ) );
 		$rev = Revision::newFromId( $orig->getId() );
 
@@ -288,6 +303,12 @@ class RevisionStorageTest extends MediaWikiTestCase {
 	 */
 	public function testGetContentFormat()
 	{
+		global $wgContentHandlerUseDB;
+
+		if ( !$wgContentHandlerUseDB ) {
+			$this->markTestSkipped( '$wgContentHandlerUseDB is disabled' );
+		}
+
 		$orig = $this->makeRevision( array( 'text' => 'hello hello.', 'content_model' => CONTENT_MODEL_JAVASCRIPT, 'content_format' => CONTENT_FORMAT_JAVASCRIPT ) );
 		$rev = Revision::newFromId( $orig->getId() );
 
