@@ -3,7 +3,7 @@
  * Language.php in MediaWiki.
  * This adds methods for transforming message text.
  */
-( function( $, mw ) {
+( function ( mw, $ ) {
 
 var language = {
 
@@ -12,13 +12,13 @@ var language = {
 	 *
 	 * @param {object} template Template object
 	 * @format template
-	 * 	{
-	 * 		'title': [title of template],
-	 * 		'parameters': [template parameters]
-	 * 	}
+	 *  {
+	 *      'title': [title of template],
+	 *      'parameters': [template parameters]
+	 *  }
 	 * @example {{Template:title|params}}
 	 */
-	'procPLURAL': function( template ) {
+	procPLURAL: function ( template ) {
 		if ( template.title && template.parameters && mw.language.convertPlural ) {
 			// Check if we have forms to replace
 			if ( template.parameters.length === 0 ) {
@@ -35,6 +35,7 @@ var language = {
 		}
 		return '';
 	},
+
 	/**
 	 * Plural form transformations, needed for some languages.
 	 *
@@ -42,12 +43,13 @@ var language = {
 	 * @param forms array List of plural forms
 	 * @return string Correct form for quantifier in this language
 	 */
-	'convertPlural': function( count, forms ){
+	convertPlural: function ( count, forms ){
 		if ( !forms || forms.length === 0 ) {
 			return '';
 		}
-		return ( parseInt( count, 10 ) == 1 ) ? forms[0] : forms[1];
+		return ( parseInt( count, 10 ) === 1 ) ? forms[0] : forms[1];
 	},
+
 	/**
 	 * Pads an array to a specific length by copying the last one element.
 	 *
@@ -55,38 +57,41 @@ var language = {
 	 * @param count integer Number of forms required
 	 * @return array Padded array of forms
 	 */
-	'preConvertPlural': function( forms, count ) {
+	preConvertPlural: function ( forms, count ) {
 		while ( forms.length < count ) {
 			forms.push( forms[ forms.length-1 ] );
 		}
 		return forms;
 	},
+
 	/**
 	 * Converts a number using digitTransformTable.
 	 *
 	 * @param {num} number Value to be converted
 	 * @param {boolean} integer Convert the return value to an integer
 	 */
-	'convertNumber': function( num, integer ) {
+	convertNumber: function( num, integer ) {
+		var i, tmp, transformTable;
+
 		if ( !mw.language.digitTransformTable ) {
 			return num;
 		}
 		// Set the target Transform table:
-		var transformTable = mw.language.digitTransformTable;
+		transformTable = mw.language.digitTransformTable;
 		// Check if the "restore" to Latin number flag is set:
 		if ( integer ) {
-			if ( parseInt( num, 10 ) == num ) {
+			if ( parseInt( num, 10 ) === num ) {
 				return num;
 			}
-			var tmp = [];
-			for ( var i in transformTable ) {
+			tmp = [];
+			for ( i in transformTable ) {
 				tmp[ transformTable[ i ] ] = i;
 			}
 			transformTable = tmp;
 		}
-		var numberString =  '' + num;
+		var numberString = '' + num;
 		var convertedNumber = '';
-		for ( var i = 0; i < numberString.length; i++ ) {
+		for ( i = 0; i < numberString.length; i++ ) {
 			if ( transformTable[ numberString[i] ] ) {
 				convertedNumber += transformTable[numberString[i]];
 			} else {
@@ -95,6 +100,7 @@ var language = {
 		}
 		return integer ? parseInt( convertedNumber, 10 ) : convertedNumber;
 	},
+
 	/**
 	 * Provides an alternative text depending on specified gender.
 	 * Usage {{gender:[gender|user object]|masculine|feminine|neutral}}.
@@ -107,7 +113,7 @@ var language = {
 	 *
 	 * @return string
 	 */
-	'gender': function( gender, forms ) {
+	gender: function( gender, forms ) {
 		if ( !forms || forms.length === 0 ) {
 			return '';
 		}
@@ -140,9 +146,9 @@ var language = {
 	},
 
 	// Digit Transform Table, populated by language classes where applicable
-	'digitTransformTable': mw.language.getData( mw.config.get( 'wgUserLanguage' ), 'digitTransformTable' )
+	digitTransformTable: mw.language.getData( mw.config.get( 'wgUserLanguage' ), 'digitTransformTable' )
 };
 
 $.extend( mw.language, language );
 
-} )( jQuery, mediaWiki );
+}( mediaWiki, jQuery ) );

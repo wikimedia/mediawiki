@@ -1,8 +1,8 @@
 /**
  * Implements mediaWiki.util library
  */
-( function ( $, mw ) {
-	"use strict";
+( function ( mw, $ ) {
+	'use strict';
 
 	// Local cache and alias
 	var util = {
@@ -601,4 +601,4 @@
 
 	mw.util = util;
 
-} )( jQuery, mediaWiki );
+}( mediaWiki, jQuery ) );
