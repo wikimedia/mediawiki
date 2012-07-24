@@ -11,8 +11,12 @@
 	"immed": true,
 	"latedef": true,
 	"newcap": true,
+	"noarg": true,
 	"noempty": true,
+	"nonew": true,
+	"regexp": false,
 	"undef": true,
+	"strict": false,
 	"trailing": true,
 
 	"laxbreak": true,
@@ -21,4 +25,7 @@
 
 	"browser": true,
 	"jquery": true
+
+	"nomen": true,
+	"onevar": false
 }
