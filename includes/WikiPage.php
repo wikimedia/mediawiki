@@ -1864,7 +1864,7 @@ class WikiPage extends Page {
 			$revisionId = $revision->insertOn( $dbw );
 
 			# Bug 37225: use accessor to get the text as Revision may trim it
-			//$text = $revision->getText(); // sanity; EditPage should trim already
+			$content = $revision->getContent(); // sanity; get normalized version
 
 			# Update the page record with revision data
 			$this->updateRevisionOn( $dbw, $revision, 0 );
