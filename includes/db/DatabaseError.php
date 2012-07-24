@@ -318,7 +318,7 @@ class DBQueryError extends DBError {
 				$fname = $this->fname;
 				$error = $this->error;
 			}
-			return wfMsg( $msg, $sql, $fname, $this->errno, $error );
+			return wfMessage( $msg, $sql, $fname, $this->errno, $error )->text();
 		} else {
 			return parent::getContentMessage( $html );
 		}

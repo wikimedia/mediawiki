@@ -52,7 +52,7 @@ class Licenses extends HTMLFormField {
 	public function __construct( $params ) {
 		parent::__construct( $params );
 
-		$this->msg = empty( $params['licenses'] ) ? wfMsgForContent( 'licenses' ) : $params['licenses'];
+		$this->msg = empty( $params['licenses'] ) ? wfMessage( 'licenses' )->inContentLanguage()->plain() : $params['licenses'];
 		$this->selected = null;
 
 		$this->makeLicenses();
@@ -182,7 +182,7 @@ class Licenses extends HTMLFormField {
 	public function getInputHTML( $value ) {
 		$this->selected = $value;
 
-		$this->html = $this->outputOption( wfMsg( 'nolicense' ), '',
+		$this->html = $this->outputOption( wfMessage( 'nolicense' )->text(), '',
 			(bool)$this->selected ? null : array( 'selected' => 'selected' ) );
 		$this->makeHtml( $this->getLicenses() );
 

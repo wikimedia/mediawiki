@@ -1168,7 +1168,7 @@ abstract class UploadBase {
 			$wgOut->wrapWikiMsg( "<div class=\"error\">\n$1\n</div>",
 				array( 'virus-badscanner', $wgAntivirus ) );
 			wfProfileOut( __METHOD__ );
-			return wfMsg( 'virus-unknownscanner' ) . " $wgAntivirus";
+			return wfMessage( 'virus-unknownscanner' )->text() . " $wgAntivirus";
 		}
 
 		# look up scanner configuration

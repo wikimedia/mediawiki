@@ -80,13 +80,13 @@ class SpecialVersion extends SpecialPage {
 	 * @return string
 	 */
 	private static function getMediaWikiCredits() {
-		$ret = Xml::element( 'h2', array( 'id' => 'mw-version-license' ), wfMsg( 'version-license' ) );
+		$ret = Xml::element( 'h2', array( 'id' => 'mw-version-license' ), wfMessage( 'version-license' )->text() );
 
 		// This text is always left-to-right.
 		$ret .= '<div>';
 		$ret .= "__NOTOC__
 		" . self::getCopyrightAndAuthorList() . "\n
-		" . wfMsg( 'version-license-info' );
+		" . wfMessage( 'version-license-info' )->text();
 		$ret .= '</div>';
 
 		return str_replace( "\t\t", '', $ret ) . "\n";
@@ -109,11 +109,11 @@ class SpecialVersion extends SpecialPage {
 			'Roan Kattouw', 'Trevor Parscal', 'Bryan Tong Minh', 'Sam Reed',
 			'Victor Vasiliev', 'Rotem Liss', 'Platonides', 'Antoine Musso',
 			'Timo Tijhof',
-			wfMsg( 'version-poweredby-others' )
+			wfMessage( 'version-poweredby-others' )->text()
 		);
 
-		return wfMsg( 'version-poweredby-credits', date( 'Y' ),
-			$wgLang->listToText( $authorList ) );
+		return wfMessage( 'version-poweredby-credits', date( 'Y' ),
+			$wgLang->listToText( $authorList ) )->text();
 	}
 
 	/**
@@ -125,8 +125,8 @@ class SpecialVersion extends SpecialPage {
 		$dbr = wfGetDB( DB_SLAVE );
 
 		// Put the software in an array of form 'name' => 'version'. All messages should
-		// be loaded here, so feel free to use wfMsg*() in the 'name'. Raw HTML or wikimarkup
-		// can be used.
+		// be loaded here, so feel free to use wfMessage() in the 'name'. Raw HTML or
+		// wikimarkup can be used.
 		$software = array();
 		$software['[https://www.mediawiki.org/ MediaWiki]'] = self::getVersionLinked();
 		$software['[http://www.php.net/ PHP]'] = phpversion() . " (" . php_sapi_name() . ")";
@@ -135,11 +135,11 @@ class SpecialVersion extends SpecialPage {
 		// Allow a hook to add/remove items.
 		wfRunHooks( 'SoftwareInfo', array( &$software ) );
 
-		$out = Xml::element( 'h2', array( 'id' => 'mw-version-software' ), wfMsg( 'version-software' ) ) .
+		$out = Xml::element( 'h2', array( 'id' => 'mw-version-software' ), wfMessage( 'version-software' )->text() ) .
 			   Xml::openElement( 'table', array( 'class' => 'wikitable', 'id' => 'sv-software' ) ) .
 				"<tr>
-					<th>" . wfMsg( 'version-software-product' ) . "</th>
-					<th>" . wfMsg( 'version-software-version' ) . "</th>
+					<th>" . wfMessage( 'version-software-product' )->text() . "</th>
+					<th>" . wfMessage( 'version-software-version' )->text() . "</th>
 				</tr>\n";
 
 		foreach( $software as $name => $version ) {
@@ -174,11 +174,11 @@ class SpecialVersion extends SpecialPage {
 			$version = "$wgVersion (r{$svnInfo['checkout-rev']})";
 		} else {
 			$version = $wgVersion . ' ' .
-				wfMsg(
+				wfMessage(
 					'version-svn-revision',
 					isset( $info['directory-rev'] ) ? $info['directory-rev'] : '',
 					$info['checkout-rev']
-				);
+				)->text();
 		}
 
 		wfProfileOut( __METHOD__ );
@@ -224,11 +224,11 @@ class SpecialVersion extends SpecialPage {
 			return false;
 		}
 
-		$linkText = wfMsg(
+		$linkText = wfMessage(
 			'version-svn-revision',
 			isset( $info['directory-rev'] ) ? $info['directory-rev'] : '',
 			$info['checkout-rev']
-		);
+		)->text();
 
 		if ( isset( $info['viewvc-url'] ) ) {
 			$version = "$wgVersion [{$info['viewvc-url']} $linkText]";
@@ -274,14 +274,14 @@ class SpecialVersion extends SpecialPage {
 	public static function getExtensionTypes() {
 		if ( self::$extensionTypes === false ) {
 			self::$extensionTypes = array(
-				'specialpage' => wfMsg( 'version-specialpages' ),
-				'parserhook' => wfMsg( 'version-parserhooks' ),
-				'variable' => wfMsg( 'version-variables' ),
-				'media' => wfMsg( 'version-mediahandlers' ),
-				'antispam' => wfMsg( 'version-antispam' ),
-				'skin' => wfMsg( 'version-skins' ),
-				'api' => wfMsg( 'version-api' ),
-				'other' => wfMsg( 'version-other' ),
+				'specialpage' => wfMessage( 'version-specialpages' )->text(),
+				'parserhook' => wfMessage( 'version-parserhooks' )->text(),
+				'variable' => wfMessage( 'version-variables' )->text(),
+				'media' => wfMessage( 'version-mediahandlers' )->text(),
+				'antispam' => wfMessage( 'version-antispam' )->text(),
+				'skin' => wfMessage( 'version-skins' )->text(),
+				'api' => wfMessage( 'version-api' )->text(),
+				'other' => wfMessage( 'version-other' )->text(),
 			);
 
 			wfRunHooks( 'ExtensionTypes', array( &self::$extensionTypes ) );
@@ -323,7 +323,7 @@ class SpecialVersion extends SpecialPage {
 		 */
 		wfRunHooks( 'SpecialVersionExtensionTypes', array( &$this, &$extensionTypes ) );
 
-		$out = Xml::element( 'h2', array( 'id' => 'mw-version-ext' ), wfMsg( 'version-extensions' ) ) .
+		$out = Xml::element( 'h2', array( 'id' => 'mw-version-ext' ), wfMessage( 'version-extensions' )->text() ) .
 			Xml::openElement( 'table', array( 'class' => 'wikitable', 'id' => 'sv-ext' ) );
 
 		// Make sure the 'other' type is set to an array.
@@ -349,7 +349,7 @@ class SpecialVersion extends SpecialPage {
 		$out .= $this->getExtensionCategory( 'other', $extensionTypes['other'] );
 
 		if ( count( $wgExtensionFunctions ) ) {
-			$out .= $this->openExtType( wfMsg( 'version-extension-functions' ), 'extension-functions' );
+			$out .= $this->openExtType( wfMessage( 'version-extension-functions' )->text(), 'extension-functions' );
 			$out .= '<tr><td colspan="4">' . $this->listToText( $wgExtensionFunctions ) . "</td></tr>\n";
 		}
 
@@ -360,13 +360,13 @@ class SpecialVersion extends SpecialPage {
 			for ( $i = 0; $i < $cnt; ++$i ) {
 				$tags[$i] = "&lt;{$tags[$i]}&gt;";
 			}
-			$out .= $this->openExtType( wfMsg( 'version-parser-extensiontags' ), 'parser-tags' );
+			$out .= $this->openExtType( wfMessage( 'version-parser-extensiontags' )->text(), 'parser-tags' );
 			$out .= '<tr><td colspan="4">' . $this->listToText( $tags ). "</td></tr>\n";
 		}
 
 		$fhooks = $wgParser->getFunctionHooks();
 		if( count( $fhooks ) ) {
-			$out .= $this->openExtType( wfMsg( 'version-parser-function-hooks' ), 'parser-function-hooks' );
+			$out .= $this->openExtType( wfMessage( 'version-parser-function-hooks' )->text(), 'parser-function-hooks' );
 			$out .= '<tr><td colspan="4">' . $this->listToText( $fhooks ) . "</td></tr>\n";
 		}
 
@@ -445,7 +445,7 @@ class SpecialVersion extends SpecialPage {
 				# Make subversion text/link.
 				if ( $svnInfo !== false ) {
 					$directoryRev = isset( $svnInfo['directory-rev'] ) ? $svnInfo['directory-rev'] : null;
-					$vcsText = wfMsg( 'version-svn-revision', $directoryRev, $svnInfo['checkout-rev'] );
+					$vcsText = wfMessage( 'version-svn-revision', $directoryRev, $svnInfo['checkout-rev'] )->text();
 					$vcsText = isset( $svnInfo['viewvc-url'] ) ? '[' . $svnInfo['viewvc-url'] . " $vcsText]" : $vcsText;
 				}
 			}
@@ -460,7 +460,7 @@ class SpecialVersion extends SpecialPage {
 
 		if ( isset( $extension['version'] ) ) {
 			$versionText = '<span class="mw-version-ext-version">' .
-				wfMsg( 'version-version', $extension['version'] ) .
+				wfMessage( 'version-version', $extension['version'] )->text() .
 				'</span>';
 		} else {
 			$versionText = '';
@@ -477,9 +477,9 @@ class SpecialVersion extends SpecialPage {
 				$descriptionMsgKey = $descriptionMsg[0]; // Get the message key
 				array_shift( $descriptionMsg ); // Shift out the message key to get the parameters only
 				array_map( "htmlspecialchars", $descriptionMsg ); // For sanity
-				$description = wfMsg( $descriptionMsgKey, $descriptionMsg );
+				$description = wfMessage( $descriptionMsgKey, $descriptionMsg )->text();
 			} else {
-				$description = wfMsg( $descriptionMsg );
+				$description = wfMessage( $descriptionMsg )->text();
 			}
 		}
 
@@ -512,11 +512,11 @@ class SpecialVersion extends SpecialPage {
 			$myWgHooks = $wgHooks;
 			ksort( $myWgHooks );
 
-			$ret = Xml::element( 'h2', array( 'id' => 'mw-version-hooks' ), wfMsg( 'version-hooks' ) ) .
+			$ret = Xml::element( 'h2', array( 'id' => 'mw-version-hooks' ), wfMessage( 'version-hooks' )->text() ) .
 				Xml::openElement( 'table', array( 'class' => 'wikitable', 'id' => 'sv-hooks' ) ) .
 				"<tr>
-					<th>" . wfMsg( 'version-hook-name' ) . "</th>
-					<th>" . wfMsg( 'version-hook-subscribedby' ) . "</th>
+					<th>" . wfMessage( 'version-hook-name' )->text() . "</th>
+					<th>" . wfMessage( 'version-hook-subscribedby' )->text() . "</th>
 				</tr>\n";
 
 			foreach ( $myWgHooks as $hook => $hooks ) {
@@ -572,7 +572,7 @@ class SpecialVersion extends SpecialPage {
 		$list = array();
 		foreach( (array)$authors as $item ) {
 			if( $item == '...' ) {
-				$list[] = wfMsg( 'version-poweredby-others' );
+				$list[] = wfMessage( 'version-poweredby-others' )->text();
 			} else {
 				$list[] = $item;
 			}
@@ -756,7 +756,7 @@ class SpecialVersion extends SpecialPage {
 			'version-entrypoints-load-php' => wfScript( 'load' ),
 		);
 
-		$out = Html::element( 'h2', array( 'id' => 'mw-version-entrypoints' ), wfMsg( 'version-entrypoints' ) ) .
+		$out = Html::element( 'h2', array( 'id' => 'mw-version-entrypoints' ), wfMessage( 'version-entrypoints' )->text() ) .
 			Html::openElement( 'table', array( 'class' => 'wikitable', 'id' => 'mw-version-entrypoints-table' ) ) .
 			Html::openElement( 'tr' ) .
 			Html::element( 'th', array(), wfMessage( 'version-entrypoints-header-entrypoint' )->text() ) .

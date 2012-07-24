@@ -60,7 +60,7 @@ class ApiFeedContributions extends ApiBase {
 			$this->dieUsage( 'Size difference is disabled in Miser Mode', 'sizediffdisabled' );
 		}
 
-		$msg = wfMsgForContent( 'Contributions' );
+		$msg = wfMessage( 'Contributions' )->inContentLanguage()->text();
 		$feedTitle = $wgSitename . ' - ' . $msg . ' [' . $wgLanguageCode . ']';
 		$feedUrl = SpecialPage::getTitleFor( 'Contributions', $params['user'] )->getFullURL();
 
@@ -129,7 +129,8 @@ class ApiFeedContributions extends ApiBase {
 	 */
 	protected function feedItemDesc( $revision ) {
 		if( $revision ) {
-			return '<p>' . htmlspecialchars( $revision->getUserText() ) . wfMsgForContent( 'colon-separator' ) .
+			$msg = wfMessage( 'colon-separator' )->inContentLanguage()->text();
+			return '<p>' . htmlspecialchars( $revision->getUserText() ) . $msg .
 				htmlspecialchars( FeedItem::stripComment( $revision->getComment() ) ) .
 				"</p>\n<hr />\n<div>" .
 				nl2br( htmlspecialchars( $revision->getText() ) ) . "</div>";
