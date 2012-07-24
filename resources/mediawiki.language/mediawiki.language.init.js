@@ -2,7 +2,7 @@
  * Base language object with methods for storing and getting
  * language data.
  */
-( function( $, mw ) {
+( function ( mw, $ ) {
 
 	var language = {
 		/**
@@ -58,4 +58,4 @@
 
 	mw.language = language;
 
-} )( jQuery, mediaWiki );
+}( mediaWiki, jQuery ) );

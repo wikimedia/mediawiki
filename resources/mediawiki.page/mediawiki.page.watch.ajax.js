@@ -2,16 +2,12 @@
  * Animate watch/unwatch links to use asynchronous API requests to
  * watch pages, rather than navigating to a different URI.
  */
-( function ( $, mw, undefined ) {
+( function ( mw, $ ) {
 	/**
 	 * The name of the page to watch or unwatch.
 	 */
 	var title = mw.config.get( 'wgRelevantPageName', mw.config.get( 'wgPageName' ) );
 
-	// Expose local methods
-	mw.page.watch = {
-		'updateWatchLink': updateWatchLink
-	};
 	/**
 	 * Update the link text, link href attribute and (if applicable)
 	 * "loading" class.
@@ -98,6 +94,11 @@
 		return 'view';
 	}
 
+	// Expose local methods
+	mw.page.watch = {
+		'updateWatchLink': updateWatchLink
+	};
+
 	$( document ).ready( function () {
 		var $links = $( '.mw-watchlink a, a.mw-watchlink, ' +
 			'#ca-watch a, #ca-unwatch a, #mw-unwatch-link1, ' +
@@ -171,4 +172,4 @@
 		});
 	});
 
-}( jQuery, mediaWiki ) );
+}( mediaWiki, jQuery ) );

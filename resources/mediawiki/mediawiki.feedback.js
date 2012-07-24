@@ -22,22 +22,22 @@
  * Minimal example in how to use it:
  *
  *    var feedback = new mw.Feedback();
- *    $( '#myButton' ).click( function() { feedback.launch(); } );
+ *    $( '#myButton' ).click( function () { feedback.launch(); } );
  *
  * You can also launch the feedback form with a prefilled subject and body.
  * See the docs for the launch() method.
  */
-( function( mw, $, undefined ) {
+( function ( mw, $ ) {
 	/**
 	 * Thingy for collecting user feedback on a wiki page
 	 * @param {Array} options -- optional, all properties optional.
-	 * 		api: {mw.Api} if omitted, will just create a standard API
-	 * 		title: {mw.Title} the title of the page where you collect feedback. Defaults to "Feedback".
-	 * 		dialogTitleMessageKey: {String} message key for the title of the dialog box
-	 * 		bugsLink: {mw.Uri|String} url where bugs can be posted
-	 * 		bugsListLink: {mw.Uri|String} url where bugs can be listed
+	 *  api: {mw.Api} if omitted, will just create a standard API
+	 *  title: {mw.Title} the title of the page where you collect feedback. Defaults to "Feedback".
+	 *  dialogTitleMessageKey: {String} message key for the title of the dialog box
+	 *  bugsLink: {mw.Uri|String} url where bugs can be posted
+	 *  bugsListLink: {mw.Uri|String} url where bugs can be listed
 	 */
-	mw.Feedback = function( options ) {
+	mw.Feedback = function ( options ) {
 		if ( options === undefined ) {
 			options = {};
 		}
@@ -67,36 +67,38 @@
 	};
 
 	mw.Feedback.prototype = {
-		setup: function() {
-			var _this = this;
+		setup: function () {
+			var fb = this;
 
-			var $feedbackPageLink = $( '<a></a>' )
-				.attr( { 'href': _this.title.getUrl(), 'target': '_blank' } )
+			var $feedbackPageLink = $( '<a>' )
+				.attr( { 'href': fb.title.getUrl(), 'target': '_blank' } )
 				.css( { 'white-space': 'nowrap' } );
 
-			var $bugNoteLink = $( '<a></a>' ).attr( { 'href': '#' } ).click( function() { _this.displayBugs(); } );
+			var $bugNoteLink = $( '<a>' ).attr( { 'href': '#' } ).click( function () {
+				fb.displayBugs();
+			} );
 
-			var $bugsListLink = $( '<a></a>' ).attr( { 'href': _this.bugsListLink, 'target': '_blank' } );
+			var $bugsListLink = $( '<a>' ).attr( { 'href': fb.bugsListLink, 'target': '_blank' } );
 
 			this.$dialog =
-				$( '<div style="position:relative;"></div>' ).append(
+				$( '<div style="position: relative;"></div>' ).append(
 					$( '<div class="feedback-mode feedback-form"></div>' ).append(
-						$( '<small></small>' ).append(
-							$( '<p></p>' ).msg(
+						$( '<small>' ).append(
+							$( '<p>' ).msg(
 								'feedback-bugornote',
 								$bugNoteLink,
-								_this.title.getNameText(),
+								fb.title.getNameText(),
 								$feedbackPageLink.clone()
 							)
 						),
-						$( '<div style="margin-top:1em;"></div>' ).append(
+						$( '<div style="margin-top: 1em;"></div>' ).append(
 							mw.msg( 'feedback-subject' ),
-							$( '<br/>' ),
+							$( '<br>' ),
 							$( '<input type="text" class="feedback-subject" name="subject" maxlength="60" style="width:99%;"/>' )
 						),
-						$( '<div style="margin-top:0.4em;"></div>' ).append(
+						$( '<div style="margin-top: 0.4em;"></div>' ).append(
 							mw.msg( 'feedback-message' ),
-							$( '<br/>' ),
+							$( '<br>' ),
 							$( '<textarea name="message" class="feedback-message" style="width:99%;" rows="5" cols="60"></textarea>' )
 						)
 					),
@@ -109,7 +111,7 @@
 						$( '<span class="feedback-spinner"></span>' )
 					),
 					$( '<div class="feedback-mode feedback-thanks" style="text-align:center;margin:1em"></div>' ).msg(
-						'feedback-thanks', _this.title.getNameText(), $feedbackPageLink.clone()
+						'feedback-thanks', fb.title.getNameText(), $feedbackPageLink.clone()
 					),
 					$( '<div class="feedback-mode feedback-error" style="position:relative;"></div>' ).append(
 						$( '<div class="feedback-error-msg style="color:#990000;margin-top:0.4em;"></div>' )
@@ -117,14 +119,16 @@
 				);
 
 				// undo some damage from dialog css
-				this.$dialog.find( 'a' ).css( { 'color': '#0645ad' } );
+				this.$dialog.find( 'a' ).css( {
+					color: '#0645ad'
+				} );
 
 				this.$dialog.dialog({
 					width: 500,
 					autoOpen: false,
 					title: mw.msg( this.dialogTitleMessageKey ),
 					modal: true,
-					buttons: _this.buttons
+					buttons: fb.buttons
 				});
 
 			this.subjectInput = this.$dialog.find( 'input.feedback-subject' ).get(0);
@@ -132,31 +136,41 @@
 
 		},
 
-		display: function( s ) {
+		display: function ( s ) {
 			this.$dialog.dialog( { buttons:{} } ); // hide the buttons
 			this.$dialog.find( '.feedback-mode' ).hide(); // hide everything
 			this.$dialog.find( '.feedback-' + s ).show(); // show the desired div
 		},
 
-		displaySubmitting: function() {
+		displaySubmitting: function () {
 			this.display( 'submitting' );
 		},
 
-		displayBugs: function() {
-			var _this = this;
+		displayBugs: function () {
+			var fb = this;
 			this.display( 'bugs' );
 			var bugsButtons = {};
-			bugsButtons[ mw.msg( 'feedback-bugnew' ) ] = function() { window.open( _this.bugsLink, '_blank' ); };
-			bugsButtons[ mw.msg( 'feedback-cancel' ) ] = function() { _this.cancel(); };
-			this.$dialog.dialog( { buttons: bugsButtons } );
+			bugsButtons[ mw.msg( 'feedback-bugnew' ) ] = function () {
+				window.open( fb.bugsLink, '_blank' );
+			};
+			bugsButtons[ mw.msg( 'feedback-cancel' ) ] = function () {
+				fb.cancel();
+			};
+			this.$dialog.dialog( {
+				buttons: bugsButtons
+			} );
 		},
 
-		displayThanks: function() {
-			var _this = this;
+		displayThanks: function () {
+			var fb = this;
 			this.display( 'thanks' );
 			var closeButton = {};
-			closeButton[ mw.msg( 'feedback-close' ) ] = function() { _this.$dialog.dialog( 'close' ); };
-			this.$dialog.dialog( { buttons: closeButton } );
+			closeButton[ mw.msg( 'feedback-close' ) ] = function () {
+				fb.$dialog.dialog( 'close' );
+			};
+			this.$dialog.dialog( {
+				buttons: closeButton
+			} );
 		},
 
 		/**
@@ -165,8 +179,8 @@
 		 *						subject: {String}
 		 *						message: {String}
 		 */
-		displayForm: function( contents ) {
-			var _this = this;
+		displayForm: function ( contents ) {
+			var fb = this;
 			this.subjectInput.value = (contents && contents.subject) ? contents.subject : '';
 			this.messageInput.value = (contents && contents.message) ? contents.message : '';
 
@@ -174,52 +188,61 @@
 
 			// Set up buttons for dialog box. We have to do it the hard way since the json keys are localized
 			var formButtons = {};
-			formButtons[ mw.msg( 'feedback-submit' ) ] = function() { _this.submit(); };
-			formButtons[ mw.msg( 'feedback-cancel' ) ] = function() { _this.cancel(); };
+			formButtons[ mw.msg( 'feedback-submit' ) ] = function () {
+				fb.submit();
+			};
+			formButtons[ mw.msg( 'feedback-cancel' ) ] = function () {
+				fb.cancel();
+			};
 			this.$dialog.dialog( { buttons: formButtons } ); // put the buttons back
 		},
 
-		displayError: function( message ) {
-			var _this = this;
+		displayError: function ( message ) {
+			var fb = this;
 			this.display( 'error' );
 			this.$dialog.find( '.feedback-error-msg' ).msg( message );
 			var closeButton = {};
-			closeButton[ mw.msg( 'feedback-close' ) ] = function() { _this.$dialog.dialog( 'close' ); };
+			closeButton[ mw.msg( 'feedback-close' ) ] = function () {
+				fb.$dialog.dialog( 'close' );
+			};
 			this.$dialog.dialog( { buttons: closeButton } );
 		},
 
-		cancel: function() {
+		cancel: function () {
 			this.$dialog.dialog( 'close' );
 		},
 
-		submit: function() {
-			var _this = this;
+		submit: function () {
+			var fb = this;
 
 			// get the values to submit
 			var subject = this.subjectInput.value;
 
-			var message = "<small>User agent: " + navigator.userAgent + "</small>\n\n"
+			var message = '<small>User agent: ' + navigator.userAgent + "</small>\n\n"
 				 + this.messageInput.value;
-			if ( message.indexOf( '~~~' ) == -1 ) {
+			if ( message.indexOf( '~~~' ) === -1 ) {
 				message += " ~~~~";
 			}
 
 			this.displaySubmitting();
 
-			var ok = function( result ) {
+			var ok = function ( result ) {
 				if ( result.edit !== undefined ) {
 					if ( result.edit.result === 'Success' ) {
-						_this.displayThanks();
+						fb.displayThanks();
 					} else {
-						_this.displayError( 'feedback-error1' ); // unknown API result
+						// unknown API result
+						fb.displayError( 'feedback-error1' );
 					}
 				} else {
-					_this.displayError( 'feedback-error2' ); // edit failed
+					// edit failed
+					fb.displayError( 'feedback-error2' );
 				}
 			};
 
-			var err = function( code, info ) {
-				_this.displayError( 'feedback-error3' ); // ajax request failed
+			var err = function ( code, info ) {
+				// ajax request failed
+				fb.displayError( 'feedback-error3' );
 			};
 
 			this.api.newSection( this.title, subject, message, ok, err );
@@ -231,7 +254,7 @@
 		 *						subject: {String}
 		 *						message: {String}
 		 */
-		launch: function( contents ) {
+		launch: function ( contents ) {
 			this.displayForm( contents );
 			this.$dialog.dialog( 'open' );
 			this.subjectInput.focus();
@@ -239,4 +262,4 @@
 
 	};
 
-} )( window.mediaWiki, jQuery );
+}( mediaWiki, jQuery ) );
