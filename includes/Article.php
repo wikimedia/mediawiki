@@ -1251,7 +1251,7 @@ class Article extends Page {
 		$imageDir = $lang->getDir();
 
 		if ( $appendSubtitle ) {
-			$this->getContext()->getOutput()->appendSubtitle( wfMsgHtml( 'redirectpagesub' ) );
+			$this->getContext()->getOutput()->appendSubtitle( wfMessage( 'redirectpagesub' )->escaped() );
 		}
 
 		// the loop prepends the arrow image before the link, so the first case needs to be outside
@@ -1356,7 +1356,7 @@ class Article extends Page {
 			$reason = $deleteReason;
 		} elseif ( $deleteReason != '' ) {
 			// Entry from drop down menu + additional comment
-			$reason = $deleteReasonList . wfMsgForContent( 'colon-separator' ) . $deleteReason;
+			$reason = $deleteReasonList . wfMessage( 'colon-separator' )->inContentLanguage()->text() . $deleteReason;
 		} else {
 			$reason = $deleteReasonList;
 		}
