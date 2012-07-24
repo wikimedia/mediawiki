@@ -1906,13 +1906,7 @@ function wfFormatStackFrame( $frame ) {
  * @return String
  */
 function wfShowingResults( $offset, $limit ) {
-	global $wgLang;
-	return wfMsgExt(
-		'showingresults',
-		array( 'parseinline' ),
-		$wgLang->formatNum( $limit ),
-		$wgLang->formatNum( $offset + 1 )
-	);
+	return wfMessage( 'showingresults' )->numParams( $limit, $offset + 1 )->parse();
 }
 
 /**
@@ -3969,7 +3963,7 @@ function wfIsBadImage( $name, $contextTitle = false, $blacklist = null ) {
 		$badImages = $badImageCache;
 	} else { // cache miss
 		if ( $blacklist === null ) {
-			$blacklist = wfMsgForContentNoTrans( 'bad_image_list' ); // site list
+			$blacklist = wfMessage( 'bad_image_list' )->inContentLanguage()->plain(); // site list
 		}
 		# Build the list now
 		$badImages = array();

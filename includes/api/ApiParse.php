@@ -413,7 +413,7 @@ class ApiParse extends ApiBase {
 			return '';
 		}
 
-		$s = htmlspecialchars( wfMsg( 'otherlanguages' ) . wfMsg( 'colon-separator' ) );
+		$s = htmlspecialchars( wfMessage( 'otherlanguages' )->text() . wfMessage( 'colon-separator' )->text() );
 
 		$langs = array();
 		foreach ( $languages as $l ) {

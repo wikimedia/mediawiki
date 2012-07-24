@@ -99,8 +99,8 @@ class NostalgiaTemplate extends LegacyTemplate {
 		} else {
 			/* show user page and user talk links */
 			$user = $this->getSkin()->getUser();
-			$s .= $sep . Linker::link( $user->getUserPage(), wfMsgHtml( 'mypage' ) );
-			$s .= $sep . Linker::link( $user->getTalkPage(), wfMsgHtml( 'mytalk' ) );
+			$s .= $sep . Linker::link( $user->getUserPage(), $this->msg( 'mypage' )->escaped() );
+			$s .= $sep . Linker::link( $user->getTalkPage(), $this->msg( 'mytalk' )->escaped() );
 			if ( $user->getNewtalk() ) {
 				$s .= ' *';
 			}
@@ -109,7 +109,7 @@ class NostalgiaTemplate extends LegacyTemplate {
 			/* show my contributions link */
 			$s .= $sep . Linker::link(
 				SpecialPage::getSafeTitleFor( 'Contributions', $this->data['username'] ),
-				wfMsgHtml( 'mycontris' ) );
+				$this->msg( 'mycontris' )->escaped() );
 			/* show my preferences link */
 			$s .= $sep . Linker::specialLink( 'Preferences' );
 			/* show upload file link */
