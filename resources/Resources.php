@@ -632,6 +632,7 @@ return array(
 			'jquery.textSelection',
 			'jquery.byteLimit',
 		),
+		'position' => 'top',
 	),
 	'mediawiki.action.history' => array(
 		'scripts' => 'resources/mediawiki.action/mediawiki.action.history.js',
