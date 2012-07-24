@@ -880,15 +880,6 @@ var mw = ( function ( $, undefined ) {
 				// Allow calling by single module name
 				if ( typeof dependencies === 'string' ) {
 					dependencies = [dependencies];
-					if ( registry[dependencies[0]] !== undefined ) {
-						// Cache repetitively accessed deep level object member
-						regItemDeps = registry[dependencies[0]].dependencies;
-						// Cache to avoid looped access to length property
-						regItemDepLen = regItemDeps.length;
-						for ( n = 0; n < regItemDepLen; n += 1 ) {
-							dependencies[dependencies.length] = regItemDeps[n];
-						}
-					}
 				}
 
 				// Add ready and error callbacks if they were given
