@@ -198,6 +198,7 @@ upgrade PHP if you have not done so prior to upgrading MediaWiki.
 * (bug 36987) API avoids mangling fields in continuation parameters
 * (bug 30836) siteinfo prop=specialpagealiases will no longer return nonexistent special pages
 * (bug 38190) Add "required" flag to some token params for hint in api docs.
+* (bug 27567) Add file repo support to prop=duplicatefiles.
 
 === Languages updated in 1.20 ===
 
