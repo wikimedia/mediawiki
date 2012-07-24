@@ -1334,7 +1334,7 @@ var mw = ( function ( $, undefined ) {
 						}
 					}
 
-					if (filtered.length === 0) {
+					if ( filtered.length === 0 ) {
 						return;
 					}
 					// Resolve entire dependency map
