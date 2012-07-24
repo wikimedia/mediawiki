@@ -2,7 +2,7 @@
  * Implementation for mediaWiki.user
  */
 
-(function( $ ) {
+(function ( mw, $ ) {
 
 	/**
 	 * User object
@@ -44,7 +44,7 @@
 		 *
 		 * @return Mixed: User name string or null if users is anonymous
 		 */
-		this.name = function() {
+		this.name = function () {
 			return mw.config.get( 'wgUserName' );
 		};
 
@@ -53,7 +53,7 @@
 		 *
 		 * @return Boolean
 		 */
-		this.anonymous = function() {
+		this.anonymous = function () {
 			return that.name() ? false : true;
 		};
 
@@ -67,7 +67,7 @@
 		 */
 		this.sessionId = function () {
 			var sessionId = $.cookie( 'mediaWiki.user.sessionId' );
-			if ( typeof sessionId == 'undefined' || sessionId === null ) {
+			if ( typeof sessionId === 'undefined' || sessionId === null ) {
 				sessionId = generateId();
 				$.cookie( 'mediaWiki.user.sessionId', sessionId, { 'expires': null, 'path': '/' } );
 			}
@@ -83,17 +83,20 @@
 		 *
 		 * @return String: User name or random session ID
 		 */
-		this.id = function() {
+		this.id = function () {
 			var name = that.name();
 			if ( name ) {
 				return name;
 			}
 			var id = $.cookie( 'mediaWiki.user.id' );
-			if ( typeof id == 'undefined' || id === null ) {
+			if ( typeof id === 'undefined' || id === null ) {
 				id = generateId();
 			}
 			// Set cookie if not set, or renew it if already set
-			$.cookie( 'mediaWiki.user.id', id, { 'expires': 365, 'path': '/' } );
+			$.cookie( 'mediaWiki.user.id', id, {
+				expires: 365,
+				path: '/'
+			} );
 			return id;
 		};
 
@@ -120,7 +123,7 @@
 		 *         'expires': 7
 		 *     } );
 		 */
-		this.bucket = function( key, options ) {
+		this.bucket = function ( key, options ) {
 			options = $.extend( {
 				'buckets': {},
 				'version': 0,
@@ -133,7 +136,7 @@
 			// Bucket information is stored as 2 integers, together as version:bucket like: "1:2"
 			if ( typeof cookie === 'string' && cookie.length > 2 && cookie.indexOf( ':' ) > 0 ) {
 				var parts = cookie.split( ':' );
-				if ( parts.length > 1 && parts[0] == options.version ) {
+				if ( parts.length > 1 && Number( parts[0] ) === options.version ) {
 					version = Number( parts[0] );
 					bucket = String( parts[1] );
 				}
@@ -160,7 +163,7 @@
 					}
 				}
 				if ( options.tracked ) {
-					mw.loader.using( 'jquery.clickTracking', function() {
+					mw.loader.using( 'jquery.clickTracking', function () {
 						$.trackAction(
 							'mediaWiki.user.bucket:' + key + '@' + version + ':' + bucket
 						);
@@ -180,4 +183,4 @@
 	// This is kind of ugly but we're stuck with this for b/c reasons
 	mw.user = new User( mw.user.options, mw.user.tokens );
 
-})(jQuery);
+}( mediaWiki, jQuery ) );
