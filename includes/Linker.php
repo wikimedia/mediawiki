@@ -139,9 +139,9 @@ class Linker {
 		if ( $t->isRedirect() ) {
 			# Page is a redirect
 			$colour = 'mw-redirect';
-		} elseif ( $threshold > 0 &&
-			   $t->exists() && $t->getLength() < $threshold &&
-			   $t->isContentPage() ) {
+		} elseif ( $threshold > 0 && $t->isContentPage() &&
+			$t->exists() && $t->getLength() < $threshold
+		) {
 			# Page is a stub
 			$colour = 'stub';
 		}
