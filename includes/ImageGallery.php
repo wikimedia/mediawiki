@@ -339,7 +339,7 @@ class ImageGallery {
 				if( $img ) {
 					$fileSize = htmlspecialchars( $wgLang->formatSize( $img->getSize() ) );
 				} else {
-					$fileSize = wfMsgHtml( 'filemissing' );
+					$fileSize = wfMessage( 'filemissing' )->escaped();
 				}
 				$fileSize = "$fileSize<br />\n";
 			} else {

@@ -632,12 +632,12 @@ class SpecialEditWatchlist extends UnlistedSpecialPage {
 			// can use messages 'watchlisttools-view', 'watchlisttools-edit', 'watchlisttools-raw'
 			$tools[] = Linker::linkKnown(
 				SpecialPage::getTitleFor( $arr[0], $arr[1] ),
-				wfMsgHtml( "watchlisttools-{$mode}" )
+				$this->msg( "watchlisttools-{$mode}" )->escaped()
 			);
 		}
 		return Html::rawElement( 'span',
 					array( 'class' => 'mw-watchlist-toollinks' ),
-					wfMsg( 'parentheses', $wgLang->pipeList( $tools ) ) );
+					$this->msg( 'parentheses', $wgLang->pipeList( $tools ) )->text() );
 	}
 }
 

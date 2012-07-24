@@ -206,7 +206,7 @@ class ChangesFeed {
 				FeedUtils::formatDiff( $obj ),
 				$url,
 				$obj->rc_timestamp,
-				($obj->rc_deleted & Revision::DELETED_USER) ? wfMsgHtml('rev-deleted-user') : $obj->rc_user_text,
+				( $obj->rc_deleted & Revision::DELETED_USER ) ? wfMessage( 'rev-deleted-user' )->escaped() : $obj->rc_user_text,
 				$talkpage
 			);
 			$feed->outItem( $item );

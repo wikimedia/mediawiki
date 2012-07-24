@@ -3515,7 +3515,7 @@ $templates
 	 * Add a wikitext-formatted message to the output.
 	 * This is equivalent to:
 	 *
-	 *    $wgOut->addWikiText( wfMsgNoTrans( ... ) )
+	 *    $wgOut->addWikiText( wfMessage( ... )->plain() )
 	 */
 	public function addWikiMsg( /*...*/ ) {
 		$args = func_get_args();
