@@ -144,8 +144,8 @@ define( 'AV_SCAN_FAILED', false );  #scan failed (scanner not found or error in 
  * Anti-lock flags
  * See DefaultSettings.php for a description
  */
-define( 'ALF_PRELOAD_LINKS', 1 );
-define( 'ALF_PRELOAD_EXISTENCE', 2 );
+define( 'ALF_PRELOAD_LINKS', 1 ); // unused
+define( 'ALF_PRELOAD_EXISTENCE', 2 ); // unused
 define( 'ALF_NO_LINK_LOCK', 4 );
 define( 'ALF_NO_BLOCK_LOCK', 8 );
 /**@}*/

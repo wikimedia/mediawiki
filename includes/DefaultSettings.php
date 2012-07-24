@@ -1584,17 +1584,10 @@ $wgUseDumbLinkUpdate = false;
 
 /**
  * Anti-lock flags - bitfield
- *   - ALF_PRELOAD_LINKS:
- *       Preload links during link update for save
- *   - ALF_PRELOAD_EXISTENCE:
- *       Preload cur_id during replaceLinkHolders
  *   - ALF_NO_LINK_LOCK:
  *       Don't use locking reads when updating the link table. This is
  *       necessary for wikis with a high edit rate for performance
  *       reasons, but may cause link table inconsistency
- *   - ALF_NO_BLOCK_LOCK:
- *       As for ALF_LINK_LOCK, this flag is a necessity for high-traffic
- *       wikis.
  */
 $wgAntiLockFlags = 0;
 
