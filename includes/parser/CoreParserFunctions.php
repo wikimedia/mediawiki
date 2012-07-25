@@ -565,29 +565,64 @@ class CoreParserFunctions {
 	}
 
 	/**
-	 * Return the number of pages in the given category, or 0 if it's nonexis-
-	 * tent.  This is an expensive parser function and can't be called too many
-	 * times per page.
+	 * Return the number of pages, files or subcats in the given category,
+	 * or 0 if it's nonexistent. This is an expensive parser function and
+	 * can't be called too many times per page.
 	 * @return string
 	 */
-	static function pagesincategory( $parser, $name = '', $raw = null ) {
+	static function pagesincategory( $parser, $name = '', $arg1 = null, $arg2 = null ) {
+		static $magicWords = null;
+		if ( is_null( $magicWords ) ) {
+			$magicWords = new MagicWordArray( array(
+				'pagesincategory_all',
+				'pagesincategory_pages',
+				'pagesincategory_subcats',
+				'pagesincategory_files'
+			) );
+		}
 		static $cache = array();
-		$category = Category::newFromName( $name );
 
-		if( !is_object( $category ) ) {
-			$cache[$name] = 0;
+		// split the given option to its variable
+		if( self::isRaw( $arg1 ) ) {
+			//{{pagesincategory:|raw[|type]}}
+			$raw = $arg1;
+			$type = $magicWords->matchStartToEnd( $arg2 );
+		} else {
+			//{{pagesincategory:[|type[|raw]]}}
+			$type = $magicWords->matchStartToEnd( $arg1 );
+			$raw = $arg2;
+		}
+		if( !$type ) { //backward compatibility
+			$type = 'pagesincategory_all';
+		}
+
+		$title = Title::makeTitleSafe( NS_CATEGORY, $name );
+		if( !$title ) { # invalid title
 			return self::formatRaw( 0, $raw );
 		}
 
-		# Normalize name for cache
-		$name = $category->getName();
+		// Normalize name for cache
+		$name = $title->getDBkey();
 
-		$count = 0;
-		if( isset( $cache[$name] ) ) {
-			$count = $cache[$name];
-		} elseif( $parser->incrementExpensiveFunctionCount() ) {
-			$count = $cache[$name] = (int)$category->getPageCount();
+		if( !isset( $cache[$name] ) ) {
+			$category = Category::newFromTitle( $title );
+
+			$allCount = $subcatCount = $fileCount = $pagesCount = 0;
+			if( $parser->incrementExpensiveFunctionCount() ) {
+				// $allCount is the total number of cat members,
+				// not the count of how many members are normal pages.
+				$allCount = (int)$category->getPageCount();
+				$subcatCount = (int)$category->getSubcatCount();
+				$fileCount = (int)$category->getFileCount();
+				$pagesCount = $allCount - $subcatCount - $fileCount;
+			}
+			$cache[$name]['pagesincategory_all'] = $allCount;
+			$cache[$name]['pagesincategory_pages'] = $pagesCount;
+			$cache[$name]['pagesincategory_subcats'] = $subcatCount;
+			$cache[$name]['pagesincategory_files'] = $fileCount;
 		}
+
+		$count = $cache[$name][$type];
 		return self::formatRaw( $count, $raw );
 	}
 
