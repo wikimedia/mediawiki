@@ -964,84 +964,84 @@ This might also indicate a bug in the software used by {{SITENAME}}.',
 A list of valid special pages can be found at [[Special:SpecialPages|{{int:specialpages}}]].',
 
 # General errors
-'error'                         => 'Error',
-'databaseerror'                 => 'Database error',
-'dberrortext'                   => 'A database query syntax error has occurred.
+'error'                => 'Error',
+'databaseerror'        => 'Database error',
+'dberrortext'          => 'A database query syntax error has occurred.
 This may indicate a bug in the software.
 The last attempted database query was:
 <blockquote><tt>$1</tt></blockquote>
 from within function "<tt>$2</tt>".
 Database returned error "<tt>$3: $4</tt>".',
-'dberrortextcl'                 => 'A database query syntax error has occurred.
+'dberrortextcl'        => 'A database query syntax error has occurred.
 The last attempted database query was:
 "$1"
 from within function "$2".
 Database returned error "$3: $4"',
-'laggedslavemode'               => "'''Warning:''' Page may not contain recent updates.",
-'readonly'                      => 'Database locked',
-'enterlockreason'               => 'Enter a reason for the lock, including an estimate of when the lock will be released',
-'readonlytext'                  => 'The database is currently locked to new entries and other modifications, probably for routine database maintenance, after which it will be back to normal.
+'laggedslavemode'      => "'''Warning:''' Page may not contain recent updates.",
+'readonly'             => 'Database locked',
+'enterlockreason'      => 'Enter a reason for the lock, including an estimate of when the lock will be released',
+'readonlytext'         => 'The database is currently locked to new entries and other modifications, probably for routine database maintenance, after which it will be back to normal.
 
 The administrator who locked it offered this explanation: $1',
-'missing-article'               => 'The database did not find the text of a page that it should have found, named "$1" $2.
+'missing-article'      => 'The database did not find the text of a page that it should have found, named "$1" $2.
 
 This is usually caused by following an outdated diff or history link to a page that has been deleted.
 
 If this is not the case, you may have found a bug in the software.
 Please report this to an [[Special:ListUsers/sysop|administrator]], making note of the URL.',
-'missingarticle-rev'            => '(revision#: $1)',
-'missingarticle-diff'           => '(Diff: $1, $2)',
-'readonly_lag'                  => 'The database has been automatically locked while the slave database servers catch up to the master',
-'internalerror'                 => 'Internal error',
-'internalerror_info'            => 'Internal error: $1',
-'fileappenderrorread'           => 'Could not read "$1" during append.',
-'fileappenderror'               => 'Could not append "$1" to "$2".',
-'filecopyerror'                 => 'Could not copy file "$1" to "$2".',
-'filerenameerror'               => 'Could not rename file "$1" to "$2".',
-'filedeleteerror'               => 'Could not delete file "$1".',
-'directorycreateerror'          => 'Could not create directory "$1".',
-'filenotfound'                  => 'Could not find file "$1".',
-'fileexistserror'               => 'Unable to write to file "$1": File exists.',
-'unexpected'                    => 'Unexpected value: "$1"="$2".',
-'formerror'                     => 'Error: Could not submit form.',
-'badarticleerror'               => 'This action cannot be performed on this page.',
-'cannotdelete'                  => 'The page or file "$1" could not be deleted.
+'missingarticle-rev'   => '(revision#: $1)',
+'missingarticle-diff'  => '(Diff: $1, $2)',
+'readonly_lag'         => 'The database has been automatically locked while the slave database servers catch up to the master',
+'internalerror'        => 'Internal error',
+'internalerror_info'   => 'Internal error: $1',
+'fileappenderrorread'  => 'Could not read "$1" during append.',
+'fileappenderror'      => 'Could not append "$1" to "$2".',
+'filecopyerror'        => 'Could not copy file "$1" to "$2".',
+'filerenameerror'      => 'Could not rename file "$1" to "$2".',
+'filedeleteerror'      => 'Could not delete file "$1".',
+'directorycreateerror' => 'Could not create directory "$1".',
+'filenotfound'         => 'Could not find file "$1".',
+'fileexistserror'      => 'Unable to write to file "$1": File exists.',
+'unexpected'           => 'Unexpected value: "$1"="$2".',
+'formerror'            => 'Error: Could not submit form.',
+'badarticleerror'      => 'This action cannot be performed on this page.',
+'cannotdelete'         => 'The page or file "$1" could not be deleted.
 It may have already been deleted by someone else.',
-'cannotdelete-title'            => 'Cannot delete page "$1"',
-'delete-hook-aborted'           => 'Deletion aborted by hook.
+'cannotdelete-title'   => 'Cannot delete page "$1"',
+'delete-hook-aborted'  => 'Deletion aborted by hook.
 It gave no explanation.',
-'badtitle'                      => 'Bad title',
-'badtitletext'                  => 'The requested page title was invalid, empty, or an incorrectly linked inter-language or inter-wiki title.
+'badtitle'             => 'Bad title',
+'badtitletext'         => 'The requested page title was invalid, empty, or an incorrectly linked inter-language or inter-wiki title.
 It may contain one or more characters which cannot be used in titles.',
-'perfcached'                    => 'The following data is cached and may not be up to date. A maximum of {{PLURAL:$1|one result is|$1 results are}} available in the cache.',
-'perfcachedts'                  => 'The following data is cached, and was last updated $1. A maximum of {{PLURAL:$4|one result is|$4 results are}} available in the cache.',
-'querypage-no-updates'          => 'Updates for this page are currently disabled.
+'perfcached'           => 'The following data is cached and may not be up to date. A maximum of {{PLURAL:$1|one result is|$1 results are}} available in the cache.',
+'perfcachedts'         => 'The following data is cached, and was last updated $1. A maximum of {{PLURAL:$4|one result is|$4 results are}} available in the cache.',
+'querypage-no-updates' => 'Updates for this page are currently disabled.
 Data here will not presently be refreshed.',
-'wrong_wfQuery_params'          => 'Incorrect parameters to wfQuery()<br />
+'wrong_wfQuery_params' => 'Incorrect parameters to wfQuery()<br />
 Function: $1<br />
 Query: $2',
-'viewsource'                    => 'View source',
-'viewsource-title'              => 'View source for $1',
-'actionthrottled'               => 'Action throttled',
-'actionthrottledtext'           => 'As an anti-spam measure, you are limited from performing this action too many times in a short space of time, and you have exceeded this limit.
+'viewsource'           => 'View source',
+'viewsource-title'     => 'View source for $1',
+'actionthrottled'      => 'Action throttled',
+'actionthrottledtext'  => 'As an anti-spam measure, you are limited from performing this action too many times in a short space of time, and you have exceeded this limit.
 Please try again in a few minutes.',
-'protectedpagetext'             => 'This page has been protected to prevent editing.',
-'viewsourcetext'                => 'You can view and copy the source of this page:',
-'viewyourtext'                  => "You can view and copy the source of '''your edits''' to this page:",
-'protectedinterface'            => 'This page provides interface text for the software, and is protected to prevent abuse.',
-'editinginterface'              => "'''Warning:''' You are editing a page which is used to provide interface text for the software.
+'protectedpagetext'    => 'This page has been protected to prevent editing.',
+'viewsourcetext'       => 'You can view and copy the source of this page:',
+'viewyourtext'         => "You can view and copy the source of '''your edits''' to this page:",
+'protectedinterface'   => 'This page provides interface text for the software, and is protected to prevent abuse.',
+'editinginterface'     => "'''Warning:''' You are editing a page which is used to provide interface text for the software.
 Changes to this page will affect the appearance of the user interface for other users.
 For translations, please consider using [//translatewiki.net/wiki/Main_Page?setlang=en translatewiki.net], the MediaWiki localisation project.",
-'sqlhidden'                     => '(SQL query hidden)',
-'cascadeprotected'              => 'This page has been protected from editing, because it is included in the following {{PLURAL:$1|page, which is|pages, which are}} protected with the "cascading" option turned on:
+'sqlhidden'            => '(SQL query hidden)',
+'cascadeprotected'     => 'This page has been protected from editing, because it is included in the following {{PLURAL:$1|page, which is|pages, which are}} protected with the "cascading" option turned on:
 $2',
-'namespaceprotected'            => "You do not have permission to edit pages in the '''$1''' namespace.",
-'customcssprotected'            => "You do not have permission to edit this CSS page, because it contains another user's personal settings.",
-'customjsprotected'             => "You do not have permission to edit this JavaScript page, because it contains another user's personal settings.",
-'ns-specialprotected'           => 'Special pages cannot be edited.',
-'titleprotected'                => 'This title has been protected from creation by [[User:$1|$1]].
+'namespaceprotected'   => "You do not have permission to edit pages in the '''$1''' namespace.",
+'customcssprotected'   => "You do not have permission to edit this CSS page, because it contains another user's personal settings.",
+'customjsprotected'    => "You do not have permission to edit this JavaScript page, because it contains another user's personal settings.",
+'ns-specialprotected'  => 'Special pages cannot be edited.',
+'titleprotected'       => 'This title has been protected from creation by [[User:$1|$1]].
 The reason given is "\'\'$2\'\'".',
-'filereadonlyerror'             => 'Unable to modify the file "$1" because the file repository "$2" is in read-only mode.
+'filereadonlyerror'    => 'Unable to modify the file "$1" because the file repository "$2" is in read-only mode.
 
 The administrator who locked it offered this explanation: "$3".',
 'invalidtitle-knownnamespace'   => 'Invalid title with namespace "$2" and text "$3"',
@@ -1068,6 +1068,7 @@ Do not forget to change your [[Special:Preferences|{{SITENAME}} preferences]].',
 'remembermypassword'         => 'Remember my login on this browser (for a maximum of $1 {{PLURAL:$1|day|days}})',
 'securelogin-stick-https'    => 'Stay connected to HTTPS after login',
 'yourdomainname'             => 'Your domain:',
+'password-change-forbidden'  => 'You cannot change passwords on this wiki.',
 'externaldberror'            => 'There was either an authentication database error or you are not allowed to update your external account.',
 'login'                      => 'Log in',
 'nav-login-createaccount'    => 'Log in / create account',
@@ -2698,8 +2699,8 @@ It may contain one or more characters which cannot be used in titles.',
 
 # SpecialCachedPage
 'cachedspecial-viewing-cached-ttl' => 'You are viewing a cached version of this page, which can be up to $1 old.',
-'cachedspecial-viewing-cached-ts'  => 'You are viewing a cached version of this page, which might not be completely actual.',
-'cachedspecial-refresh-now'        => 'View latest.',
+'cachedspecial-viewing-cached-ts' => 'You are viewing a cached version of this page, which might not be completely actual.',
+'cachedspecial-refresh-now' => 'View latest.',
 
 # Special:Categories
 'categories'                    => 'Categories',
@@ -4620,36 +4621,36 @@ You can also [[Special:EditWatchlist|use the standard editor]].',
 'duplicate-defaultsort' => '\'\'\'Warning:\'\'\' Default sort key "$2" overrides earlier default sort key "$1".',
 
 # Special:Version
-'version'                               => 'Version',
-'version-summary'                       => '', # do not translate or duplicate this message to other languages
-'version-extensions'                    => 'Installed extensions',
-'version-specialpages'                  => 'Special pages',
-'version-parserhooks'                   => 'Parser hooks',
-'version-variables'                     => 'Variables',
-'version-antispam'                      => 'Spam prevention',
-'version-skins'                         => 'Skins',
-'version-api'                           => 'API', # only translate this message to other languages if you have to change it
-'version-other'                         => 'Other',
-'version-mediahandlers'                 => 'Media handlers',
-'version-hooks'                         => 'Hooks',
-'version-extension-functions'           => 'Extension functions',
-'version-parser-extensiontags'          => 'Parser extension tags',
-'version-parser-function-hooks'         => 'Parser function hooks',
-'version-hook-name'                     => 'Hook name',
-'version-hook-subscribedby'             => 'Subscribed by',
-'version-version'                       => '(Version $1)',
-'version-svn-revision'                  => '(r$2)', # only translate this message to other languages if you have to change it
-'version-license'                       => 'License',
-'version-poweredby-credits'             => "This wiki is powered by '''[//www.mediawiki.org/ MediaWiki]''', copyright © 2001-$1 $2.",
-'version-poweredby-others'              => '[{{SERVER}}{{SCRIPTPATH}}/CREDITS others]',
-'version-license-info'                  => 'MediaWiki is free software; you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation; either version 2 of the License, or (at your option) any later version.
+'version'                       => 'Version',
+'version-summary'               => '', # do not translate or duplicate this message to other languages
+'version-extensions'            => 'Installed extensions',
+'version-specialpages'          => 'Special pages',
+'version-parserhooks'           => 'Parser hooks',
+'version-variables'             => 'Variables',
+'version-antispam'              => 'Spam prevention',
+'version-skins'                 => 'Skins',
+'version-api'                   => 'API', # only translate this message to other languages if you have to change it
+'version-other'                 => 'Other',
+'version-mediahandlers'         => 'Media handlers',
+'version-hooks'                 => 'Hooks',
+'version-extension-functions'   => 'Extension functions',
+'version-parser-extensiontags'  => 'Parser extension tags',
+'version-parser-function-hooks' => 'Parser function hooks',
+'version-hook-name'             => 'Hook name',
+'version-hook-subscribedby'     => 'Subscribed by',
+'version-version'               => '(Version $1)',
+'version-svn-revision'          => '(r$2)', # only translate this message to other languages if you have to change it
+'version-license'               => 'License',
+'version-poweredby-credits'     => "This wiki is powered by '''[//www.mediawiki.org/ MediaWiki]''', copyright © 2001-$1 $2.",
+'version-poweredby-others'      => '[{{SERVER}}{{SCRIPTPATH}}/CREDITS others]',
+'version-license-info'          => 'MediaWiki is free software; you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation; either version 2 of the License, or (at your option) any later version.
 
 MediaWiki is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for more details.
 
 You should have received [{{SERVER}}{{SCRIPTPATH}}/COPYING a copy of the GNU General Public License] along with this program; if not, write to the Free Software Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA or [//www.gnu.org/licenses/old-licenses/gpl-2.0.html read it online].',
-'version-software'                      => 'Installed software',
-'version-software-product'              => 'Product',
-'version-software-version'              => 'Version',
+'version-software'              => 'Installed software',
+'version-software-product'      => 'Product',
+'version-software-version'      => 'Version',
 'version-entrypoints'                   => 'Entry point URLs',
 'version-entrypoints-header-entrypoint' => 'Entry point',
 'version-entrypoints-header-url'        => 'URL',
