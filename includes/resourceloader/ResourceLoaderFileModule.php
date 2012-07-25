@@ -634,7 +634,8 @@ class ResourceLoaderFileModule extends ResourceLoaderModule {
 		// Get and register local file references
 		$this->localFileRefs = array_merge(
 			$this->localFileRefs,
-			CSSMin::getLocalFileReferences( $style, $dir ) );
+			CSSMin::getLocalFileReferences( $style, $dir )
+		);
 		return CSSMin::remap(
 			$style, $dir, $remoteDir, true
 		);
