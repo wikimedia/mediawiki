@@ -172,7 +172,9 @@ abstract class ResourceLoaderModule {
 	 * Get all CSS for this module for a given skin.
 	 *
 	 * @param $context ResourceLoaderContext: Context object
-	 * @return Array: List of CSS strings keyed by media type
+	 * @return Array: List of CSS strings or array of CSS strings keyed by media type.
+	 *  like array( 'screen' => '.foo { width: 0 }' );
+	 *  or array( 'screen' => array( '.foo { width: 0 }' ) );
 	 */
 	public function getStyles( ResourceLoaderContext $context ) {
 		// Stub, override expected
