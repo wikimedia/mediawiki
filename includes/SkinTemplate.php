@@ -420,25 +420,28 @@ class SkinTemplate extends Skin {
 		$language_urls = array();
 
 		if ( !$wgHideInterlanguageLinks ) {
-			foreach( $out->getLanguageLinks() as $l ) {
-				$tmp = explode( ':', $l, 2 );
-				$class = 'interwiki-' . $tmp[0];
-				unset( $tmp );
-				$nt = Title::newFromText( $l );
-				if ( $nt ) {
-					$ilLangName = Language::fetchLanguageName( $nt->getInterwiki() );
+			foreach( $out->getLanguageLinks() as $languageLinkText ) {
+				$languageLinkParts = explode( ':', $languageLinkText, 2 );
+				$class = 'interwiki-' . $languageLinkParts[0];
+				unset( $languageLinkParts );
+				$languageLinkTitle = Title::newFromText( $languageLinkText );
+				if ( $languageLinkTitle ) {
+					$ilInterwikiCode = $languageLinkTitle->getInterwiki();
+					$ilLanguage = Language::factory( $ilInterwikiCode );
+					$ilLangName = Language::fetchLanguageName( $ilInterwikiCode );
 					if ( strval( $ilLangName ) === '' ) {
-						$ilLangName = $l;
+						$ilLangName = $languageLinkText;
 					} else {
 						$ilLangName = $this->getLanguage()->ucfirst( $ilLangName );
 					}
 					$language_urls[] = array(
-						'href' => $nt->getFullURL(),
+						'href' => $languageLinkTitle->getFullURL(),
 						'text' => $ilLangName,
-						'title' => $nt->getText(),
+						'title' => $languageLinkTitle->getText(),
 						'class' => $class,
-						'lang' => $nt->getInterwiki(),
-						'hreflang' => $nt->getInterwiki(),
+						'lang' => $ilInterwikiCode,
+						'hreflang' => $ilInterwikiCode,
+						'dir' => $ilLanguage->getDir(),
 					);
 				}
 			}
