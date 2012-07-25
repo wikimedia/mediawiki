@@ -716,6 +716,8 @@ class ApiMain extends ApiBase {
 
 				$response->header( 'Retry-After: ' . max( intval( $maxLag ), 5 ) );
 				$response->header( 'X-Database-Lag: ' . intval( $lag ) );
+				# RFC 6684 deprecates the "X-" prefix
+				$response->header( 'MediaWiki-Database-Lag: ' . intval( $lag ) );
 
 				if ( $wgShowHostnames ) {
 					$this->dieUsage( "Waiting for $host: $lag seconds lagged", 'maxlag' );
