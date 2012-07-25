@@ -356,6 +356,10 @@ $magicWords = array(
 	'url_query'              => array( 0,    'QUERY' ),
 	'defaultsort_noerror'    => array( 0,    'noerror' ),
 	'defaultsort_noreplace'  => array( 0,    'noreplace' ),
+	'pagesincategory_all'    => array( 0,    'all' ),
+	'pagesincategory_pages'  => array( 0,    'pages' ),
+	'pagesincategory_subcats' => array( 0,   'subcats' ),
+	'pagesincategory_files'  => array( 0,    'files' ),
 );
 
 /**
