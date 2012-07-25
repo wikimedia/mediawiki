@@ -716,6 +716,7 @@ $1 is a filename, I think.',
 'remembermypassword' => 'A check box in [[Special:UserLogin]]
 
 {{Identical|Remember my login on this computer}}',
+'password-change-forbidden' => 'Error message shown when an external authentication source does not allow the password to be changed.',
 'externaldberror' => 'This message is thrown when a valid attempt to change the wiki password for a user fails because of a database error or an error from an external system.',
 'login' => "Shown as the caption of the button at [[Special:UserLogin]], and also to anonymous users in the upper right corner of the page when they can't create an account (otherwise the message {{msg|nav-login-createaccount}} is shown there).
 
@@ -2069,7 +2070,7 @@ Used on [[Special:UploadWizard]].',
 'http-invalid-scheme' => 'The message appears in the Mediawiki code as follows:
 
  if ( $this->parsedUrl[\'scheme\'] != \'http\' ) {
-    $this->status->fatal( \'http-invalid-scheme\', $this->parsedUrl[\'scheme\'] );
+	$this->status->fatal( \'http-invalid-scheme\', $this->parsedUrl[\'scheme\'] );
  }
 
 Siebrand think this has to do with allowing MediaWiki to fetch remote URLs, and in that not allowing anything but "http://" request. So if this for example is "irc://" or "https://", $1 would be "irc" or "https" respectively.
