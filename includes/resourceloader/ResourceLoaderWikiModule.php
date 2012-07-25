@@ -138,12 +138,12 @@ abstract class ResourceLoaderWikiModule extends ResourceLoaderModule {
 			}
 			$style = CSSMin::remap( $style, false, $wgScriptPath, true );
 			if ( !isset( $styles[$media] ) ) {
-				$styles[$media] = '';
+				$styles[$media] = array();
 			}
 			if ( strpos( $titleText, '*/' ) === false ) {
-				$styles[$media] .=  "/* $titleText */\n";
+				$style =  "/* $titleText */\n" . $style;
 			}
-			$styles[$media] .= $style . "\n";
+			$styles[$media][] = $style;
 		}
 		return $styles;
 	}

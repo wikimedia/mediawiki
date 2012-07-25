@@ -248,6 +248,9 @@ upgrade PHP if you have not done so prior to upgrading MediaWiki.
 * (bug 40214) Category pages no longer use deprecated "width" HTML attribute.
 * (bug 39941) Add missing stylesheets to the installer pages
 * In HTML5 mode, allow new input element types values (such as color, range..)
+* (bug 31676) ResourceLoader should work around IE stylesheet limit.
+* (bug 40498) ResourceLoader should not output an empty "@media print { }" block.
+* (bug 40500) ResourceLoader should not ignore media-type for urls in debug mode.
 
 === API changes in 1.20 ===
 * (bug 34316) Add ability to retrieve maximum upload size from MediaWiki API.
