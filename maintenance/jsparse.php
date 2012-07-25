@@ -1,6 +1,6 @@
 <?php
 /**
- * Maintenance script to do test JavaScript validity parses using jsmin+'s parser
+ * Test JavaScript validity parses using jsmin+'s parser
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -17,11 +17,17 @@
  * 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
  * http://www.gnu.org/copyleft/gpl.html
  *
+ * @file
  * @ingroup Maintenance
  */
 
 require_once( dirname( __FILE__ ) . '/Maintenance.php' );
 
+/**
+ * Maintenance script to do test JavaScript validity parses using jsmin+'s parser
+ *
+ * @ingroup Maintenance
+ */
 class JSParseHelper extends Maintenance {
 	var $errs = 0;
 
