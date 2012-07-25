@@ -3917,6 +3917,7 @@ class Language {
 	 * @param $format Bool|Int true to process using language functions, or TS_ constant
 	 *     to return the expiry in a given timestamp
 	 * @return String
+	 * @since 1.18
 	 */
 	public function formatExpiry( $expiry, $format = true ) {
 		static $infinity, $infinityMsg;
