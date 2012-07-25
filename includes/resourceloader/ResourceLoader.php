@@ -163,11 +163,11 @@ class ResourceLoader {
 						$wgResourceLoaderMinifierStatementsOnOwnLine,
 						$wgResourceLoaderMinifierMaxLineLength
 					);
-					$result .= "\n\n/* cache key: $key */\n";
+					$result .= "\n/* cache key: $key */";
 					break;
 				case 'minify-css':
 					$result = CSSMin::minify( $data );
-					$result .= "\n\n/* cache key: $key */\n";
+					$result .= "\n/* cache key: $key */";
 					break;
 			}
 
@@ -703,7 +703,7 @@ class ResourceLoader {
 						$scripts = $module->getScriptURLsForDebug( $context );
 					} else {
 						$scripts = $module->getScript( $context );
-						if ( is_string( $scripts ) ) {
+						if ( is_string( $scripts ) && strlen( $scripts ) && substr( $scripts, -1 ) !== ';' ) {
 							// bug 27054: Append semicolon to prevent weird bugs
 							// caused by files not terminating their statements right
 							$scripts .= ";\n";
@@ -720,19 +720,31 @@ class ResourceLoader {
 						// If we are in debug mode without &only= set, we'll want to return an array of URLs
 						// See comment near shouldIncludeScripts() for more details
 						if ( $context->getDebug() && !$context->getOnly() && $module->supportsURLLoading() ) {
-							$styles = $module->getStyleURLsForDebug( $context );
+							$styles = array(
+								'url' => $module->getStyleURLsForDebug( $context )
+							);
 						} else {
 							// Minify CSS before embedding in mw.loader.implement call
 							// (unless in debug mode)
 							if ( !$context->getDebug() ) {
 								foreach ( $stylePairs as $media => $style ) {
-									if ( is_string( $style ) ) {
+									// Can be either a string or an array of strings.
+									if ( is_array( $style ) ) {
+										$stylePairs[$media] = array();
+										foreach ( $style as $i => $cssText ) {
+											if ( is_string( $cssText ) ) {
+												$stylePairs[$media][] = $this->filter( 'minify-css', $cssText );
+											}
+										}
+									} elseif ( is_string( $style ) ) {
 										$stylePairs[$media] = $this->filter( 'minify-css', $style );
 									}
 								}
 							}
-							// Combine styles into @media groups as one big string
-							$styles = array( '' => self::makeCombinedStyles( $stylePairs ) );
+							// Wrap styles into @media groups as needed and flatten into a numerical array
+							$styles = array(
+								'css' => self::makeCombinedStyles( $stylePairs )
+							);
 						}
 					}
 				}
@@ -752,11 +764,10 @@ class ResourceLoader {
 						}
 						break;
 					case 'styles':
-						// We no longer seperate into media, they are all concatenated now with
-						// custom media type groups into @media .. {} sections.
-						// Module returns either an empty array or an array with '' (no media type) as
-						// only key.
-						$out .= isset( $styles[''] ) ? $styles[''] : '';
+						// We no longer seperate into media, they are all combied now with
+						// custom media type groups into @media .. {} sections as part of the css string.
+						// Module returns either an empty array or a numerical array with css strings.
+						$out .= isset( $styles['css'] ) ? implode( '', $styles['css'] ) : '';
 						break;
 					case 'messages':
 						$out .= self::makeMessageSetScript( new XmlJsCode( $messagesBlob ) );
@@ -860,24 +871,34 @@ class ResourceLoader {
 	 * Combines an associative array mapping media type to CSS into a
 	 * single stylesheet with "@media" blocks.
 	 *
-	 * @param $styles Array: List of CSS strings keyed by media type
+	 * @param $styles Array: Array keyed by media type containing (arrays of) CSS strings.
 	 *
-	 * @return string
+	 * @return Array
 	 */
-	public static function makeCombinedStyles( array $styles ) {
-		$out = '';
-		foreach ( $styles as $media => $style ) {
-			// Transform the media type based on request params and config
-			// The way that this relies on $wgRequest to propagate request params is slightly evil
-			$media = OutputPage::transformCssMedia( $media );
+	private static function makeCombinedStyles( array $stylePairs ) {
+		$out = array();
+		foreach ( $stylePairs as $media => $styles ) {
+			// ResourceLoaderFileModule::getStyle can return the styles
+			// as a string or an array of strings. This is to allow separation in
+			// the front-end.
+			if ( !is_array( $styles ) ) {
+				$styles = array( $styles );
+			}
+			foreach ( $styles as $style ) {
+				$style = trim( $style );
+				// Don't output an empty "@media print { }" block (bug 40498)
+				if ( $style !== '' ) {
+					// Transform the media type based on request params and config
+					// The way that this relies on $wgRequest to propagate request params is slightly evil
+					$media = OutputPage::transformCssMedia( $media );
 
-			if ( $media === null ) {
-				// Skip
-			} elseif ( $media === '' || $media == 'all' ) {
-				// Don't output invalid or frivolous @media statements
-				$out .= "$style\n";
-			} else {
-				$out .= "@media $media {\n" . str_replace( "\n", "\n\t", "\t" . $style ) . "\n}\n";
+					if ( $media === '' || $media == 'all' ) {
+						$out[] = $style;
+					} else if ( is_string( $media ) ) {
+						$out[] = "@media $media {\n" . str_replace( "\n", "\n\t", "\t" . $style ) . "}";
+					}
+					// else: skip
+				}
 			}
 		}
 		return $out;

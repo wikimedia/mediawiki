@@ -393,48 +393,81 @@ var mw = ( function ( $, undefined ) {
 			 * Create a new style tag and add it to the DOM.
 			 *
 			 * @param text String: CSS text
-			 * @param $nextnode mixed: [optional] An Element or jQuery object for an element where
+			 * @param nextnode mixed: [optional] An Element or jQuery object for an element where
 			 * the style tag should be inserted before. Otherwise appended to the <head>.
 			 * @return HTMLStyleElement
 			 */
-			function addStyleTag( text, $nextnode ) {
+			function addStyleTag( text, nextnode ) {
 				var s = document.createElement( 'style' );
-				s.type = 'text/css';
-				s.rel = 'stylesheet';
 				// Insert into document before setting cssText (bug 33305)
-				if ( $nextnode ) {
-					// If a raw element, create a jQuery object, otherwise use directly
-					if ( $nextnode.nodeType ) {
-						$nextnode = $( $nextnode );
+				if ( nextnode ) {
+					// Must be inserteed with native insertBefore, not $.fn.before.
+					// When using jQuery to insert it, like $nextnode.before( s ),
+					// then IE6 will throw "Access is denied" when trying to append
+					// to .cssText later. Some kind of weird security measure.
+					// http://stackoverflow.com/q/12586482/319266
+					// Works: jsfiddle.net/zJzMy/1
+					// Fails: jsfiddle.net/uJTQz
+					// Works again: http://jsfiddle.net/Azr4w/ (diff: the next 3 lines)
+					if ( nextnode.jquery ) {
+						nextnode = nextnode.get( 0 );
 					}
-					$nextnode.before( s );
+					nextnode.parentNode.insertBefore( s, nextnode );
 				} else {
-					document.getElementsByTagName('head')[0].appendChild( s );
+					document.getElementsByTagName( 'head' )[0].appendChild( s );
 				}
 				if ( s.styleSheet ) {
-					s.styleSheet.cssText = text; // IE
+					// IE
+					s.styleSheet.cssText = text;
 				} else {
-					// Safari sometimes borks on null
+					// Other browsers.
+					// (Safari sometimes borks on non-string values,
+					// play safe by casting to a string, just in case.)
 					s.appendChild( document.createTextNode( String( text ) ) );
 				}
 				return s;
 			}
 
-			function addInlineCSS( css ) {
-				var $style, style, $newStyle;
+			/**
+			 * Checks if certain cssText is safe to append to
+			 * a stylesheet.
+			 * Right now only makes sure that cssText that has
+			 * @import rules end up in a new stylesheet (since those
+			 * only work on top of a stylesheet - bug ###). Can be
+			 * expanded later to take care of other bugs in this area
+			 * (such as the IE cssRules limit, as opposed to the
+			 * IE styleSheets limit).
+			 */
+			function canExpandStylesheetWith( $style, cssText ) {
+				return cssText.indexOf( '@import' ) === -1;
+			}
+
+			function addInlineCSS( cssText ) {
+				var $style, styleEl;
 				$style = getMarker().prev();
-				// Disable <style> tag recycling/concatenation because of bug 34669
-				if ( false && $style.is( 'style' ) && $style.data( 'ResourceLoaderDynamicStyleTag' ) === true ) {
-					// There's already a dynamic <style> tag present, append to it. This recycling of
-					// <style> tags is for bug 31676 (can't have more than 32 <style> tags in IE)
-					style = $style.get( 0 );
-					if ( style.styleSheet ) {
-						style.styleSheet.cssText += css; // IE
+				// Re-use <style> tags if possible, this to try to stay
+				// under the IE stylesheet limit (bug 31676).
+				// Also verify that the style tag in this position is actually
+				// one that came from ResourceLoader, and not a style tag that
+				// some a different script inserted before our marker.
+				if (
+					$style.data( 'ResourceLoaderDynamicStyleTag' ) === true &&
+					canExpandStylesheetWith( $style, cssText )
+				) {
+					// There's already a dynamic <style> tag present and
+					// canExpandStylesheetWith() qgave a green light to append more to it.
+					styleEl = $style.get( 0 );
+					if ( styleEl.styleSheet ) {
+						try {
+							styleEl.styleSheet.cssText += cssText; // IE
+						} catch ( e ) {
+							log( 'addInlineCSS fail\ne.message: ' + e.message, e );
+						}
 					} else {
-						style.appendChild( document.createTextNode( String( css ) ) );
+						styleEl.appendChild( document.createTextNode( String( cssText ) ) );
 					}
 				} else {
-					$newStyle = $( addStyleTag( css, getMarker() ) )
+					$( addStyleTag( cssText, getMarker() ) )
 						.data( 'ResourceLoaderDynamicStyleTag', true );
 				}
 			}
@@ -794,7 +827,7 @@ var mw = ( function ( $, undefined ) {
 			 * @param module string module name to execute
 			 */
 			function execute( module ) {
-				var style, media, i, script, markModuleReady, nestedAddScript;
+				var style, media, key, i, el, script, markModuleReady, nestedAddScript;
 
 				if ( registry[module] === undefined ) {
 					throw new Error( 'Module has not been registered yet: ' + module );
@@ -806,28 +839,71 @@ var mw = ( function ( $, undefined ) {
 					throw new Error( 'Module has already been loaded: ' + module );
 				}
 
-				// Add styles
+				/**
+				 * Define loop-function here for efficiency
+				 * and to avoid re-using badly scoped variables.
+				 */
+				function addLink( media, url ) {
+					el = document.createElement( 'link' );
+					getMarker().before( el ); // IE: Insert in dom before setting href
+					el.rel = 'stylesheet';
+					if ( media && media !== 'all' ) {
+						el.media = media;
+					}
+					el.href = url;
+				}
+
+				// Add styles (see mw.loader.implement)
 				if ( $.isPlainObject( registry[module].style ) ) {
-					// 'media' type ignored, see documentation of mw.loader.implement
-					for ( media in registry[module].style ) {
-						style = registry[module].style[media];
+					for ( key in registry[module].style ) {
+						style = registry[module].style[key];
+
+						if ( key !== 'url' && key !== 'css' ) {
+							// Backwards compatibility, `key` is a media-type
+							// (which we only support/expect for urls).
+							// `style` is either an array of urls or a concatenated css string.
+							if ( typeof style === 'string' ) {
+								// { "": text.. }
+								addInlineCSS( style );
+							} else {
+								// back-compat: { "screen": [ url, .. ] }
+								media = key;
+								key = 'url';
+							}
+						}
+
+						// Array of css strings in key 'css',
+						// or back-compat array of urls from media-type
 						if ( $.isArray( style ) ) {
 							for ( i = 0; i < style.length; i += 1 ) {
-								getMarker().before( mw.html.element( 'link', {
-									'type': 'text/css',
-									'rel': 'stylesheet',
-									'href': style[i]
-								} ) );
+								if ( key === 'url' ) {
+									// back-compat: { "screen": [ url, .. ] }
+									el = document.createElement( 'link' );
+									getMarker().before( el ); // IE: Insert in dom before setting href
+									el.rel = 'stylesheet';
+									if ( media && media !== 'all' ) {
+										el.media = media;
+									}
+									el.href = style[i];
+								} else if ( key === 'css' ) {
+									// { css: [ text, .. ] }
+									addInlineCSS( style[i] );
+								}
 							}
-						} else if ( typeof style === 'string' ) {
-							addInlineCSS( style );
+						// Not an array, but a regular object
+						// Array of urls inside media-type key
+						} else if ( typeof style === 'object' ) {
+							// { url: { screen: [ url, .. ] } }
+							$.each( style, addLink );
 						}
 					}
 				}
+
 				// Add localizations to message system
 				if ( $.isPlainObject( registry[module].messages ) ) {
 					mw.messages.set( registry[module].messages );
 				}
+
 				// Execute script
 				try {
 					script = registry[module].script;
@@ -860,7 +936,7 @@ var mw = ( function ( $, undefined ) {
 				} catch ( e ) {
 					// This needs to NOT use mw.log because these errors are common in production mode
 					// and not in debug mode, such as when a symbol that should be global isn't exported
-					log('mw.loader::execute> Exception thrown by ' + module + ': ' + e.message, e);
+					log( 'Exception thrown by ' + module + ': ' + e.message, e );
 					registry[module].state = 'error';
 					handlePending( module );
 				}
@@ -1182,17 +1258,20 @@ var mw = ( function ( $, undefined ) {
 				 *
 				 * All arguments are required.
 				 *
-				 * @param module String: Name of module
-				 * @param script Mixed: Function of module code or String of URL to be used as the src
-				 *  attribute when adding a script element to the body
-				 * @param style Object: Object of CSS strings keyed by media-type or Object of lists of URLs
-				 *  keyed by media-type. Media-type should be "all" or "", actual types are not supported
-				 *  right now due to the way execute() processes the stylesheets (they are concatenated
-				 *  into a single <style> tag). In the past these weren't concatenated together (which is
-				 *  these are keyed by media-type),  but bug 31676 forces us to. In practice this is not a
-				 *  problem because ResourceLoader only generates stylesheets for media-type all (e.g. print
-				 *  stylesheets are wrapped in @media print {} and concatenated with the others).
-				 * @param msgs Object: List of key/value pairs to be passed through mw.messages.set
+				 * @param {String} module Name of module
+				 * @param {mixed} script Function with module code or String of URL to be used as the
+				 *  src attribute of a new <script> tag in the body.
+				 * @param {Object} style Should have one or more of the following keys (or no keys at all):
+				 *  - urls: Array of urls
+				 *  - css: Array of CSS strings (if it needs a media-type,
+				 *    it has to be pre-wrapped in a @media section)
+				 *  For backwards compatibility `style` can also be keyed by media-type containing
+				 *  either a css string, or an array of urls.
+				 *  The reason css strings are not concatenated together anymore is for bug 31676,
+				 *  so that we can determine whether it is safe to extend the stylesheet (see also
+				 *  the canExpandStylesheetWith() function).
+				 *
+				 * @param {Object} msgs List of key/value pairs to be passed through mw.messages.set
 				 */
 				implement: function ( module, script, style, msgs ) {
 					// Validate input
