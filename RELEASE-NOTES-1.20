@@ -254,6 +254,9 @@ upgrade PHP if you have not done so prior to upgrading MediaWiki.
 * (bug 38158) jquery.byteLimit sometimes causes an unexpected 0 maxLength being enforced.
 * (bug 38163) jquery.byteLimit incorrectly limits input when using methods other than
   basic per-char typing.
+* (bug 31676) ResourceLoader should work around IE stylesheet limit.
+* (bug 40498) ResourceLoader should not output an empty "@media print { }" block.
+* (bug 40500) ResourceLoader should not ignore media-type for urls in debug mode.
 
 === API changes in 1.20 ===
 * (bug 34316) Add ability to retrieve maximum upload size from MediaWiki API.
