@@ -116,6 +116,7 @@ CREATE INDEX &mw_prefix.revision_i01 ON &mw_prefix.revision (rev_timestamp);
 CREATE INDEX &mw_prefix.revision_i02 ON &mw_prefix.revision (rev_page,rev_timestamp);
 CREATE INDEX &mw_prefix.revision_i03 ON &mw_prefix.revision (rev_user,rev_timestamp);
 CREATE INDEX &mw_prefix.revision_i04 ON &mw_prefix.revision (rev_user_text,rev_timestamp);
+CREATE INDEX &mw_prefix.revision_i05 ON &mw_prefix.revision (rev_page,rev_user,rev_timestamp);
 
 CREATE SEQUENCE text_old_id_seq;
 CREATE TABLE &mw_prefix.pagecontent ( -- replaces reserved word 'text'
@@ -283,6 +284,7 @@ CREATE INDEX &mw_prefix.ipblocks_i01 ON &mw_prefix.ipblocks (ipb_user);
 CREATE INDEX &mw_prefix.ipblocks_i02 ON &mw_prefix.ipblocks (ipb_range_start, ipb_range_end);
 CREATE INDEX &mw_prefix.ipblocks_i03 ON &mw_prefix.ipblocks (ipb_timestamp);
 CREATE INDEX &mw_prefix.ipblocks_i04 ON &mw_prefix.ipblocks (ipb_expiry);
+CREATE INDEX &mw_prefix.ipblocks_i05 ON &mw_prefix.ipblocks (ipb_parent_block_id);
 
 CREATE TABLE &mw_prefix.image (
   img_name         VARCHAR2(255)      NOT NULL,
@@ -565,8 +567,9 @@ CREATE TABLE &mw_prefix.page_restrictions (
   pr_user    NUMBER          NULL,
   pr_expiry  TIMESTAMP(6) WITH TIME ZONE      NULL
 );
-ALTER TABLE &mw_prefix.page_restrictions ADD CONSTRAINT &mw_prefix.page_restrictions_pk PRIMARY KEY (pr_page,pr_type);
+ALTER TABLE &mw_prefix.page_restrictions ADD CONSTRAINT &mw_prefix.page_restrictions_pk PRIMARY KEY (pr_id);
 ALTER TABLE &mw_prefix.page_restrictions ADD CONSTRAINT &mw_prefix.page_restrictions_fk1 FOREIGN KEY (pr_page) REFERENCES &mw_prefix.page(page_id) ON DELETE CASCADE DEFERRABLE INITIALLY DEFERRED;
+CREATE UNIQUE INDEX &mw_prefix.page_restrictions_u01 ON &mw_prefix.page_restrictions (pr_page,pr_type);
 CREATE INDEX &mw_prefix.page_restrictions_i01 ON &mw_prefix.page_restrictions (pr_type,pr_level);
 CREATE INDEX &mw_prefix.page_restrictions_i02 ON &mw_prefix.page_restrictions (pr_level);
 CREATE INDEX &mw_prefix.page_restrictions_i03 ON &mw_prefix.page_restrictions (pr_cascade);
