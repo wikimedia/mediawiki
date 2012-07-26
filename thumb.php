@@ -65,19 +65,22 @@ function wfThumbHandle404() {
 	# that to the 404 handler, and puts the original request in REDIRECT_URL.
 	if ( isset( $_SERVER['REDIRECT_URL'] ) ) {
 		# The URL is un-encoded, so put it back how it was
-		$uri = str_replace( "%2F", "/", urlencode( $_SERVER['REDIRECT_URL'] ) );
-		# Just get the URI path (REDIRECT_URL is either a full URL or a path)
-		if ( $uri[0] !== '/' ) {
-			$bits = wfParseUrl( $uri );
-			if ( $bits && isset( $bits['path'] ) ) {
-				$uri = $bits['path'];
-			}
-		}
+		$uriPath = str_replace( "%2F", "/", urlencode( $_SERVER['REDIRECT_URL'] ) );
 	} else {
-		$uri = $_SERVER['REQUEST_URI'];
+		$uriPath = $_SERVER['REQUEST_URI'];
+	}
+	# Just get the URI path (REDIRECT_URL/REQUEST_URI is either a full URL or a path)
+	if ( substr( $uriPath, 0, 1 ) !== '/' ) {
+		$bits = wfParseUrl( $uriPath );
+		if ( $bits && isset( $bits['path'] ) ) {
+			$uriPath = $bits['path'];
+		} else {
+			wfThumbError( 404, 'The source file for the specified thumbnail does not exist.' );
+			return;
+		}
 	}
 
-	$params = wfExtractThumbParams( $uri ); // basic wiki URL param extracting
+	$params = wfExtractThumbParams( $uriPath ); // basic wiki URL param extracting
 	if ( $params == null ) {
 		wfThumbError( 404, 'The source file for the specified thumbnail does not exist.' );
 		return;
@@ -265,22 +268,22 @@ function wfStreamThumb( array $params ) {
  * Extract the required params for thumb.php from the thumbnail request URI.
  * At least 'width' and 'f' should be set if the result is an array.
  *
- * @param $uri String Thumbnail request URI path
+ * @param $uriPath String Thumbnail request URI path
  * @return Array|null associative params array or null
  */
-function wfExtractThumbParams( $uri ) {
+function wfExtractThumbParams( $uriPath ) {
 	$repo = RepoGroup::singleton()->getLocalRepo();
 
-	$zoneURI = $repo->getZoneUrl( 'thumb' );
-	if ( substr( $zoneURI, 0, 1 ) !== '/' ) {
-		$bits = wfParseUrl( $zoneURI );
-		if ( $bits && isset( $bits['path'] ) ) {
-			$zoneURI = $bits['path'];
-		} else {
-			return null;
-		}
+	$zoneUriPath = $repo->getZoneHandlerUrl( 'thumb' )
+		? $repo->getZoneHandlerUrl( 'thumb' ) // custom URL
+		: $repo->getZoneUrl( 'thumb' ); // default to main URL
+	// URL might be relative ("/images") or protocol-relative ("//lang.site/image")
+	$bits = wfParseUrl( wfExpandUrl( $zoneUriPath, PROTO_INTERNAL ) );
+	if ( $bits && isset( $bits['path'] ) ) {
+		$zoneUriPath = $bits['path'];
+	} else {
+		return null;
 	}
-	$zoneUrlRegex = preg_quote( $zoneURI );
 
 	$hashDirRegex = $subdirRegex = '';
 	for ( $i = 0; $i < $repo->getHashLevels(); $i++ ) {
@@ -288,10 +291,11 @@ function wfExtractThumbParams( $uri ) {
 		$hashDirRegex .= "$subdirRegex/";
 	}
 
-	$thumbUrlRegex = "!^$zoneUrlRegex/((archive/|temp/)?$hashDirRegex([^/]*)/([^/]*))$!";
+	$thumbPathRegex = "!^" . preg_quote( $zoneUriPath ) .
+		"/((archive/|temp/)?$hashDirRegex([^/]*)/([^/]*))$!";
 
 	// Check if this is a valid looking thumbnail request...
-	if ( preg_match( $thumbUrlRegex, $uri, $matches ) ) {
+	if ( preg_match( $thumbPathRegex, $uriPath, $matches ) ) {
 		list( /* all */, $rel, $archOrTemp, $filename, $thumbname ) = $matches;
 		$filename = urldecode( $filename );
 		$thumbname = urldecode( $thumbname );
