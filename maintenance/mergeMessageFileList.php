@@ -28,6 +28,13 @@ define( 'MW_NO_EXTENSION_MESSAGES', 1 );
 require_once( dirname( __FILE__ ) . '/Maintenance.php' );
 $maintClass = 'MergeMessageFileList';
 $mmfl = false;
+
+/**
+ * Maintenance script that merges $wgExtensionMessagesFiles from various
+ * extensions to produce a single array containing all message files.
+ *
+ * @ingroup Maintenance
+ */
 class MergeMessageFileList extends Maintenance {
 
 	function __construct() {
