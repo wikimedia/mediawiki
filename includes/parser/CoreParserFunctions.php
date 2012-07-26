@@ -754,40 +754,34 @@ class CoreParserFunctions {
 	}
 
 	// Usage {{filepath|300}}, {{filepath|nowiki}}, {{filepath|nowiki|300}} or {{filepath|300|nowiki}}
+	// or {{filepath|300px}}, {{filepath|200x300px}}, {{filepath|nowiki|200x300px}}, {{filepath|200x300px|nowiki}}
 	public static function filepath( $parser, $name='', $argA='', $argB='' ) {
 		$file = wfFindFile( $name );
-		$size = '';
-		$argA_int = intval( $argA );
-		$argB_int = intval( $argB );
+		$isNowiki = false;
 
-		if ( $argB_int > 0 ) {
-			// {{filepath: | option | size }}
-			$size = $argB_int;
-			$option = $argA;
-
-		} elseif ( $argA_int > 0 ) {
-			// {{filepath: | size [|option] }}
-			$size = $argA_int;
-			$option = $argB;
-
+		if( $argA == 'nowiki' ) {
+			// {{filepath: | option [| size] }}
+			$isNowiki = true;
+			$parsedWidthParam = $parser->parseWidthParam( $argB );
 		} else {
-			// {{filepath: [|option] }}
-			$option = $argA;
+			// {{filepath: [| size [|option]] }}
+			$parsedWidthParam = $parser->parseWidthParam( $argA );
+			$isNowiki = ($argB == 'nowiki');
 		}
 
 		if ( $file ) {
 			$url = $file->getFullUrl();
 
 			// If a size is requested...
-			if ( is_integer( $size ) ) {
-				$mto = $file->transform( array( 'width' => $size ) );
+			if ( count( $parsedWidthParam ) ) {
+				$mto = $file->transform( $parsedWidthParam );
 				// ... and we can
 				if ( $mto && !$mto->isError() ) {
 					// ... change the URL to point to a thumbnail.
 					$url = wfExpandUrl( $mto->getUrl(), PROTO_RELATIVE );
 				}
 			}
-			if ( $option == 'nowiki' ) {
+			if ( $isNowiki ) {
 				return array( $url, 'nowiki' => true );
 			}
 			return $url;
