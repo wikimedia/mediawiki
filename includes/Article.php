@@ -1330,10 +1330,8 @@ class Article extends Page {
 		}
 
 		# Better double-check that it hasn't been deleted yet!
-		$dbw = wfGetDB( DB_MASTER );
-		$conds = $title->pageCond();
-		$latest = $dbw->selectField( 'page', 'page_latest', $conds, __METHOD__ );
-		if ( $latest === false ) {
+		$this->mPage->loadPageData( 'fromdbmaster' );
+		if ( !$this->mPage->exists() ) {
 			$outputPage = $this->getContext()->getOutput();
 			$outputPage->setPageTitle( wfMessage( 'cannotdelete-title', $title->getPrefixedText() ) );
 			$outputPage->wrapWikiMsg( "<div class=\"error mw-error-cannotdelete\">\n$1\n</div>",
