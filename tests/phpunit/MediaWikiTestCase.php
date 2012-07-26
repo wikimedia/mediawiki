@@ -400,14 +400,14 @@ abstract class MediaWikiTestCase extends PHPUnit_Framework_TestCase {
 	 * @param boolean $named If the keys should match
 	 */
 	protected function assertArrayEquals( array $expected, array $actual, $ordered = false, $named = false ) {
-		if ( !$named ) {
-			$expected = array_values( $expected );
-			$actual = array_values( $actual );
-		}
-
 		if ( !$ordered ) {
 			asort( $expected );
 			asort( $actual );
+		}
+
+		if ( !$named ) {
+			$expected = array_values( $expected );
+			$actual = array_values( $actual );
 		}
 
 		call_user_func_array(
