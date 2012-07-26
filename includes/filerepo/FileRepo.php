@@ -229,6 +229,28 @@ class FileRepo {
 	}
 
 	/**
+	 * Get the thumb zone URL configured to be handled by scripts like thumb_handler.php.
+	 * This is probably only useful for internal requests, such as from a fast frontend server
+	 * to a slower backend server.
+	 *
+	 * Large sites may use a different host name for uploads than for wikis. In any case, the
+	 * wiki configuration is needed in order to use thumb.php. To avoid extracting the wiki ID
+	 * from the URL path, one can configure thumb_handler.php to recognize a special path on the
+	 * same host name as the wiki that is used for viewing thumbnails.
+	 *
+	 * @param $zone String: one of: public, deleted, temp, thumb
+	 * @return String or false
+	 */
+	public function getZoneHandlerUrl( $zone ) {
+		if ( isset( $this->zones[$zone]['handlerUrl'] )
+			&& in_array( $zone, array( 'public', 'temp', 'thumb' ) ) )
+		{
+			return $this->zones[$zone]['handlerUrl'];
+		}
+		return false;
+	}
+
+	/**
 	 * Get the backend storage path corresponding to a virtual URL.
 	 * Use this function wisely.
 	 *
