@@ -606,6 +606,18 @@ return array(
 		'scripts' => 'resources/mediawiki/mediawiki.Title.js',
 		'dependencies' => 'mediawiki.util',
 	),
+	'mediawiki.Time' => array(
+		'messages' => array(
+			'seconds',
+			'minutes',
+			'hours',
+			'days',
+			'ago',
+			'just-now',
+		),
+		'scripts' => 'resources/mediawiki/mediawiki.Time.js',
+		'dependencies' => 'mediawiki.jqueryMsg',
+	),
 	'mediawiki.Uri' => array(
 		'scripts' => 'resources/mediawiki/mediawiki.Uri.js',
 	),
