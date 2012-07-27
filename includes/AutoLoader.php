@@ -1060,6 +1060,9 @@ $wgAutoloadLocalClasses = array(
 	# tests/phpunit/includes
 	'GenericArrayObjectTest' => 'tests/phpunit/includes/libs/GenericArrayObjectTest.php',
 
+	# tests/phpunit
+	'AbstractTestCase' => 'tests/phpunit/AbstractTestCase.php',
+
 	# tests/phpunit/includes/db
 	'ORMRowTest' => 'tests/phpunit/includes/db/ORMRowTest.php',
 
