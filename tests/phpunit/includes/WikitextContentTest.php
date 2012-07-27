@@ -51,6 +51,7 @@ class WikitextContentTest extends MediaWikiTestCase {
 
 	/**
 	 * @dataProvider dataGetSecondaryDataUpdates
+	 * @group Database
 	 */
 	public function testGetSecondaryDataUpdates( $title, $text, $expectedStuff ) {
 		$title = Title::newFromText( $title );
@@ -342,6 +343,7 @@ just a test"
 
 	/**
 	 * @dataProvider dataIsCountable
+	 * @group Database
 	 */
 	public function testIsCountable( $text, $hasLinks, $mode, $expected ) {
 		global $wgArticleCountMethod;
