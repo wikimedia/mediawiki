@@ -663,6 +663,7 @@ $wgAutoloadLocalClasses = array(
 	'CSSJanus' => 'includes/libs/CSSJanus.php',
 	'CSSJanus_Tokenizer' => 'includes/libs/CSSJanus.php',
 	'CSSMin' => 'includes/libs/CSSMin.php',
+	'GenericArrayObject' => 'includes/libs/GenericArrayObject.php',
 	'HttpStatus' => 'includes/libs/HttpStatus.php',
 	'IEContentAnalyzer' => 'includes/libs/IEContentAnalyzer.php',
 	'IEUrlExtension' => 'includes/libs/IEUrlExtension.php',
@@ -1069,6 +1070,10 @@ $wgAutoloadLocalClasses = array(
 	'JavascriptContentTest' => 'tests/phpunit/includes/JavascriptContentTest.php',
 	'DummyContentHandlerForTesting' => 'tests/phpunit/includes/ContentHandlerTest.php',
 	'DummyContentForTesting' => 'tests/phpunit/includes/ContentHandlerTest.php',
+
+	# tests/phpunit/includes
+	'GenericArrayObjectTest' => 'tests/phpunit/includes/libs/GenericArrayObjectTest.php',
+
 
 	# tests/phpunit/includes/db
 	'ORMRowTest' => 'tests/phpunit/includes/db/ORMRowTest.php',
