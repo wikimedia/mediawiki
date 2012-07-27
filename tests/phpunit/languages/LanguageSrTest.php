@@ -14,7 +14,7 @@
 
 require_once dirname( dirname( __FILE__ ) ) . '/bootstrap.php';
 
-/** Tests for MediaWiki languages/LanguageTr.php */
+/** Tests for MediaWiki languages/LanguageSr.php */
 class LanguageSrTest extends MediaWikiTestCase {
 	/* Language object. Initialized before each test */
 	private $lang;
