@@ -1,5 +1,5 @@
 /*!
- * jQuery UI Dialog 1.8.21
+ * jQuery UI Dialog 1.8.22
  *
  * Copyright 2012, AUTHORS.txt (http://jqueryui.com/about)
  * Dual licensed under the MIT or GPL Version 2 licenses.
@@ -702,7 +702,7 @@ $.widget("ui.dialog", {
 });
 
 $.extend($.ui.dialog, {
-	version: "1.8.21",
+	version: "1.8.22",
 
 	uuid: 0,
 	maxZ: 0,

@@ -1,5 +1,5 @@
 /*!
- * jQuery UI Effects 1.8.21
+ * jQuery UI Effects 1.8.22
  *
  * Copyright 2012, AUTHORS.txt (http://jqueryui.com/about)
  * Dual licensed under the MIT or GPL Version 2 licenses.
@@ -75,7 +75,8 @@ function getColor(elem, attr) {
 		var color;
 
 		do {
-				color = $.curCSS(elem, attr);
+				// jQuery <1.4.3 uses curCSS, in 1.4.3 - 1.7.2 curCSS = css, 1.8+ only has css
+				color = ($.curCSS || $.css)(elem, attr);
 
 				// Keep going until we find an element that has color, or we hit the body
 				if ( color != '' && color != 'transparent' || $.nodeName(elem, "body") )
@@ -306,7 +307,7 @@ $.fn.extend({
 /******************************************************************************/
 
 $.extend($.effects, {
-	version: "1.8.21",
+	version: "1.8.22",
 
 	// Saves a set of properties in a data storage
 	save: function(element, set) {
