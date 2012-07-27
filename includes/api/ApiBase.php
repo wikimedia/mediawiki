@@ -1440,7 +1440,9 @@ abstract class ApiBase extends ContextSource {
 	}
 
 	/**
-	 * Returns whether this module requires a Token to execute
+	 * Returns whether this module requires a token to execute
+	 * It is used to show possible errors in action=paraminfo
+	 * see bug 25248
 	 * @return bool
 	 */
 	public function needsToken() {
@@ -1448,8 +1450,12 @@ abstract class ApiBase extends ContextSource {
 	}
 
 	/**
-	 * Returns the token salt if there is one, '' if the module doesn't require a salt, else false if the module doesn't need a token
-	 * @return bool|string
+	 * Returns the token salt if there is one,
+	 * '' if the module doesn't require a salt,
+	 * else false if the module doesn't need a token
+	 * You have also to override needsToken()
+	 * Value is passed to User::getEditToken
+	 * @return bool|string|array
 	 */
 	public function getTokenSalt() {
 		return false;
