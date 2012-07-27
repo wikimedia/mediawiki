@@ -3584,6 +3584,7 @@ Part of variable $1 in {{msg-mw|Ago}}
 *{{msg-mw|Minutes}}
 *{{msg-mw|Hours}}
 *{{msg-mw|Days}}',
+'justnow' => 'Phrase for indicating that something happened less than a second ago. c.f. {{msg-mw|Ago}}',
 
 # Bad image list
 'bad_image_list' => 'This message only appears to guide administrators to add links with the right format. This will not appear anywhere else in MediaWiki.',
