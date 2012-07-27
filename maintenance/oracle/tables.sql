@@ -39,7 +39,7 @@ CREATE INDEX &mw_prefix.user_groups_i01 ON &mw_prefix.user_groups (ug_group);
 
 CREATE TABLE &mw_prefix.user_former_groups (
   ufg_user   NUMBER      DEFAULT 0 NOT NULL,
-  ufg_group  VARCHAR2(16)     NOT NULL
+  ufg_group  VARCHAR2(32)     NOT NULL
 );
 ALTER TABLE &mw_prefix.user_former_groups ADD CONSTRAINT &mw_prefix.user_former_groups_fk1 FOREIGN KEY (ufg_user) REFERENCES &mw_prefix.mwuser(user_id) ON DELETE CASCADE DEFERRABLE INITIALLY DEFERRED;
 CREATE UNIQUE INDEX &mw_prefix.user_former_groups_u01 ON &mw_prefix.user_former_groups (ufg_user,ufg_group);
@@ -564,8 +564,9 @@ CREATE TABLE &mw_prefix.page_restrictions (
   pr_user    NUMBER          NULL,
   pr_expiry  TIMESTAMP(6) WITH TIME ZONE      NULL
 );
-ALTER TABLE &mw_prefix.page_restrictions ADD CONSTRAINT &mw_prefix.page_restrictions_pk PRIMARY KEY (pr_page,pr_type);
+ALTER TABLE &mw_prefix.page_restrictions ADD CONSTRAINT &mw_prefix.page_restrictions_pk PRIMARY KEY (pr_id);
 ALTER TABLE &mw_prefix.page_restrictions ADD CONSTRAINT &mw_prefix.page_restrictions_fk1 FOREIGN KEY (pr_page) REFERENCES &mw_prefix.page(page_id) ON DELETE CASCADE DEFERRABLE INITIALLY DEFERRED;
+CREATE UNIQUE INDEX &mw_prefix.page_restrictions_u01 ON &mw_prefix.page_restrictions (pr_page,pr_type);
 CREATE INDEX &mw_prefix.page_restrictions_i01 ON &mw_prefix.page_restrictions (pr_type,pr_level);
 CREATE INDEX &mw_prefix.page_restrictions_i02 ON &mw_prefix.page_restrictions (pr_level);
 CREATE INDEX &mw_prefix.page_restrictions_i03 ON &mw_prefix.page_restrictions (pr_cascade);
