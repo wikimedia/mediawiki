@@ -3807,6 +3807,7 @@ By executing it, your system may be compromised.",
 'hours'          => '{{PLURAL:$1|$1 hour|$1 hours}}',
 'days'           => '{{PLURAL:$1|$1 day|$1 days}}',
 'ago'            => '$1 ago',
+'just-now'        => 'Just now',
 
 # Bad image list
 'bad_image_list' => 'The format is as follows:
