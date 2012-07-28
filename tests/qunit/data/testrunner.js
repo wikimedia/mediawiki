@@ -26,7 +26,11 @@ QUnit.fixurl = function ( value ) {
 QUnit.config.testTimeout = 10 * 1000;
 
 // Add a checkbox to QUnit header to toggle MediaWiki ResourceLoader debug mode.
-QUnit.config.urlConfig.push( 'debug' );
+QUnit.config.urlConfig.push( {
+	id: 'debug',
+	label: 'Enable ResourceLoaderDebug',
+	tooltip: 'Enable debug mode in ResourceLoader'
+} );
 
 /**
  * Load TestSwarm agent
@@ -45,7 +49,11 @@ if ( QUnit.urlParams.swarmURL && mw.config.get( 'QUnitTestSwarmInjectJSPath' ) )
  * CompletenessTest
  */
 // Adds toggle checkbox to header
-QUnit.config.urlConfig.push( 'completenesstest' );
+QUnit.config.urlConfig.push( {
+	id: 'completenesstest',
+	label: 'Run CompletenessTest',
+	tooltip: 'Run the completeness test'
+} );
 
 // Initiate when enabled
 if ( QUnit.urlParams.completenesstest ) {
