@@ -140,6 +140,9 @@ class CopyFileBackend extends Maintenance {
 			$fsFile = $src->getLocalReference( array( 'src' => $srcPath, 'latest' => 1 ) );
 			if ( !$fsFile ) {
 				$this->error( "Could not get local copy of $srcPath.", 1 ); // die
+			} elseif ( !$fsFile->exists() ) {
+				$this->error( "Detected possible illegal path for $srcPath." );
+				continue;
 			}
 			$fsFiles[] = $fsFile; // keep TempFSFile objects alive as needed
 			// Note: prepare() is usually fast for key/value backends
