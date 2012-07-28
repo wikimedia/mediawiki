@@ -1220,7 +1220,7 @@ You may have already successfully changed your password or requested a new tempo
 'passwordreset-email'              => 'E-mail address:',
 'passwordreset-emailtitle'         => 'Account details on {{SITENAME}}',
 'passwordreset-emailtext-ip'       => 'Someone (probably you, from IP address $1) requested a reminder of your
-account details for {{SITENAME}} ($4). The following user {{PLURAL:$3|account is|accounts are}}
+account details for {{SITENAME}} (<$4>). The following user {{PLURAL:$3|account is|accounts are}}
 associated with this e-mail address:
 
 $2
@@ -1231,7 +1231,7 @@ request, or if you have remembered your original password, and you no longer
 wish to change it, you may ignore this message and continue using your old
 password.',
 'passwordreset-emailtext-user'     => 'User $1 on {{SITENAME}} requested a reminder of your account details for {{SITENAME}}
-($4). The following user {{PLURAL:$3|account is|accounts are}} associated with this e-mail address:
+(<$4>). The following user {{PLURAL:$3|account is|accounts are}} associated with this e-mail address:
 
 $2
 
