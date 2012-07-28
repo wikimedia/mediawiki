@@ -111,6 +111,23 @@ class GitInfo {
 
 		return $sha1;
 	}
+	
+	/**
+	 * Return the date of last log entry in HEAD of the repo
+	 * @return string of date or false
+	 */
+	 public function getHeadDate() {
+	 	$LOGfile = $this->basedir . 'logs/HEAD';
+		if ( !is_readable( $LOGfile ) ) {
+			return false;
+		}
+		$filearray = file($LOGfile);
+		$lastline = end($filearray);
+		$lastlinearray = explode(' ', $lastline);
+		$rawdate = $lastlinearray[4] . $lastlinearray[5];
+		$datestring = date("d.m.Y H:i",$rawdate);
+		return $datestring;
+	 }
 
 	/**
 	 * Return the name of the current branch, or HEAD if not found

@@ -443,6 +443,10 @@ class SpecialVersion extends SpecialPage {
 				if ( $gitViewerUrl !== false ) {
 					$vcsText = "[$gitViewerUrl $vcsText]";
 				}
+				$gitHeadDate = $gitInfo->getHeadDate();
+				if ( $gitHeadDate !== false ) {
+					$vcsText .= ' (' . $gitHeadDate . ')';
+				}
 			} else {
 				$svnInfo = self::getSvnInfo( dirname( $extension['path'] ) );
 				# Make subversion text/link.
@@ -743,6 +747,15 @@ class SpecialVersion extends SpecialPage {
 	public static function getGitHeadSha1( $dir ) {
 		$repo = new GitInfo( $dir );
 		return $repo->getHeadSHA1();
+	}
+	
+	/**
+	 * @param $dir String: directory of the git checkout
+	 * @return bool|String date of commit HEAD points to
+	 */
+	public static function getGitHeadDate( $dir ) {
+		$repo = new GitInfo( $dir );
+		return $repo->getHeadDate();
 	}
 
 	/**
