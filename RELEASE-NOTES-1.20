@@ -125,6 +125,7 @@ upgrade PHP if you have not done so prior to upgrading MediaWiki.
 * jsMessage: Redesigned in Vector/Monobook as floating bubble with auto-hide.
 * New hook 'ParserTestGlobals' allows to set globals before running parser tests.
 * Allow importing pages as subpage.
+* Add lang and hreflang attributes to language links on Login page.
 
 === Bug fixes in 1.20 ===
 * (bug 30245) Use the correct way to construct a log page title.

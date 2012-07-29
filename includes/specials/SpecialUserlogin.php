@@ -1269,19 +1269,24 @@ class LoginForm extends SpecialPage {
 			// no link for currently used language
 			return htmlspecialchars( $text );
 		}
-		$attr = array( 'uselang' => $lang );
+		$query = array( 'uselang' => $lang );
 		if( $this->mType == 'signup' ) {
-			$attr['type'] = 'signup';
+			$query['type'] = 'signup';
 		}
 		if( $this->mReturnTo !== '' ) {
-			$attr['returnto'] = $this->mReturnTo;
-			$attr['returntoquery'] = $this->mReturnToQuery;
+			$query['returnto'] = $this->mReturnTo;
+			$query['returntoquery'] = $this->mReturnToQuery;
 		}
+
+		$attr = array();
+		$targetLanguage = Language::factory( $lang );
+		$attr['lang'] = $attr['hreflang'] = $targetLanguage->getHtmlCode();
+
 		return Linker::linkKnown(
 			$this->getTitle(),
 			htmlspecialchars( $text ),
-			array(),
-			$attr
+			$attr,
+			$query
 		);
 	}
 }
