@@ -99,7 +99,7 @@
 		var buttons, i, b, iframe;
 
 		// currentFocus is used to determine where to insert tags
-		currentFocused = $( '#wpTextbox1' );
+		currentFocused = $( 'textarea, input:text' ).eq(0);
 
 		// Populate the selector cache for $toolbar
 		$toolbar = $( '#toolbar' );
