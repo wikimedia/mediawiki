@@ -1673,6 +1673,8 @@ class Linker {
 	 * @return String: HTML fragment
 	 */
 	public static function buildRollbackLink( $rev, IContextSource $context = null ) {
+		global $wgShowRollbackEditCount;
+	
 		if ( $context === null ) {
 			$context = RequestContext::getMain();
 		}
@@ -1687,13 +1689,54 @@ class Linker {
 			$query['bot'] = '1';
 			$query['hidediff'] = '1'; // bug 15999
 		}
-		return self::link(
-			$title,
-			$context->msg( 'rollbacklink' )->escaped(),
-			array( 'title' => $context->msg( 'tooltip-rollback' )->text() ),
-			$query,
-			array( 'known', 'noclasses' )
-		);
+		
+		if( $wgShowRollbackEditCount ) {
+			$dbr = wfGetDB( DB_SLAVE );			
+			
+			// Up to 10 revisions are counted
+			$res = $dbr->select( 'revision',
+				array( 'rev_id', 'rev_user_text' ),
+				array( 'rev_page' => $rev->getPage() ), 
+				__METHOD__, 
+				array(  'USE INDEX' => 'page_timestamp',
+					'ORDER BY' => 'rev_timestamp DESC',
+					'LIMIT' => 11 )
+			);
+			
+			$editCount = 0;
+			while( $row = $dbr->fetchObject( $res ) ) {
+				if( $rev->getUserText() != $row->rev_user_text ) {
+					break;
+				}
+				$editCount++;
+			}
+
+			if( $editCount > 10 ) {
+				$editCount_prefix = $context->msg( 'rollbackmorethan' )->escaped().' ';
+				$editCount = 10;
+			} else {
+				$editCount_prefix = '';
+			}
+			
+			$formattedNum = $context->getLanguage()->formatNum( $editCount );
+			$editCount_output = $editCount_prefix.$formattedNum;
+			
+			return self::link(
+				$title,
+				$context->msg( 'rollbacklinkcount', $editCount_output, $editCount )->parse(),
+				array( 'title' => $context->msg( 'tooltip-rollback' )->text() ),
+				$query,
+				array( 'known', 'noclasses' )
+			);
+		} else {
+			return self::link(
+				$title,
+				$context->msg( 'rollbacklink' )->escaped(),
+				array( 'title' => $context->msg( 'tooltip-rollback' )->text() ),
+				$query,
+				array( 'known', 'noclasses' )
+			);
+		}
 	}
 
 	/**
