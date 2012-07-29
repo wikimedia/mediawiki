@@ -123,7 +123,7 @@ class ApiOptions extends ApiBase {
 		return array(
 			'token' => 'An options token previously obtained through the action=tokens',
 			'reset' => 'Resets all preferences to the site defaults',
-			'change' => 'Pipe-separated list of changes, formatted name=value (e.g. skin=vector), value cannot contain pipe characters',
+			'change' => 'List of changes, formatted name=value (e.g. skin=vector), value cannot contain pipe characters',
 			'optionname' => 'A name of a option which should have an optionvalue set',
 			'optionvalue' => 'A value of the option specified by the optionname, can contain pipe characters',
 		);

@@ -401,7 +401,9 @@ abstract class ApiBase extends ContextSource {
 
 				$type = isset( $paramSettings[self::PARAM_TYPE] ) ? $paramSettings[self::PARAM_TYPE] : null;
 				if ( isset( $type ) ) {
-					if ( isset( $paramSettings[self::PARAM_ISMULTI] ) && $paramSettings[self::PARAM_ISMULTI] ) {
+					$hintPipeSeparated = true;
+					$multi = isset( $paramSettings[self::PARAM_ISMULTI] ) ? $paramSettings[self::PARAM_ISMULTI] : false;
+					if ( $multi ) {
 						$prompt = 'Values (separate with \'|\'): ';
 					} else {
 						$prompt = 'One value: ';
@@ -409,7 +411,7 @@ abstract class ApiBase extends ContextSource {
 
 					if ( is_array( $type ) ) {
 						$choices = array();
-						$nothingPrompt = false;
+						$nothingPrompt = '';
 						foreach ( $type as $t ) {
 							if ( $t === '' ) {
 								$nothingPrompt = 'Can be empty, or ';
@@ -420,6 +422,7 @@ abstract class ApiBase extends ContextSource {
 						$desc .= $paramPrefix . $nothingPrompt . $prompt;
 						$choicesstring = implode( ', ', $choices );
 						$desc .= wordwrap( $choicesstring, 100, $descWordwrap );
+						$hintPipeSeparated = false;
 					} else {
 						switch ( $type ) {
 							case 'namespace':
@@ -427,6 +430,7 @@ abstract class ApiBase extends ContextSource {
 								$desc .= $paramPrefix . $prompt;
 								$desc .= wordwrap( implode( ', ', MWNamespace::getValidNamespaces() ),
 									100, $descWordwrap );
+								$hintPipeSeparated = false;
 								break;
 							case 'limit':
 								$desc .= $paramPrefix . "No more than {$paramSettings[self :: PARAM_MAX]}";
@@ -436,15 +440,16 @@ abstract class ApiBase extends ContextSource {
 								$desc .= ' allowed';
 								break;
 							case 'integer':
+								$s = $multi ? 's' : '';
 								$hasMin = isset( $paramSettings[self::PARAM_MIN] );
 								$hasMax = isset( $paramSettings[self::PARAM_MAX] );
 								if ( $hasMin || $hasMax ) {
 									if ( !$hasMax ) {
-										$intRangeStr = "The value must be no less than {$paramSettings[self::PARAM_MIN]}";
+										$intRangeStr = "The value$s must be no less than {$paramSettings[self::PARAM_MIN]}";
 									} elseif ( !$hasMin ) {
-										$intRangeStr = "The value must be no more than {$paramSettings[self::PARAM_MAX]}";
+										$intRangeStr = "The value$s must be no more than {$paramSettings[self::PARAM_MAX]}";
 									} else {
-										$intRangeStr = "The value must be between {$paramSettings[self::PARAM_MIN]} and {$paramSettings[self::PARAM_MAX]}";
+										$intRangeStr = "The value$s must be between {$paramSettings[self::PARAM_MIN]} and {$paramSettings[self::PARAM_MAX]}";
 									}
 
 									$desc .= $paramPrefix . $intRangeStr;
@@ -453,9 +458,12 @@ abstract class ApiBase extends ContextSource {
 						}
 					}
 
-					if ( isset( $paramSettings[self::PARAM_ISMULTI] ) && $paramSettings[self::PARAM_ISMULTI] ) {
-						$isArray = is_array( $type );
+					if ( $multi ) {
+						if ( $hintPipeSeparated ) {
+							$desc .= $paramPrefix . "Separate values with '|'";
+						}
 
+						$isArray = is_array( $type );
 						if ( !$isArray
 								|| $isArray && count( $type ) > self::LIMIT_SML1 ) {
 							$desc .= $paramPrefix . "Maximum number of values " .
