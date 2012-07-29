@@ -2693,6 +2693,9 @@ $1 is the <b>approximate</b> number of revisions that the page has, the message 
 'rollback_short' => '{{Identical|Rollback}}',
 'rollbacklink' => '{{Identical|Rollback}}
 This message has a tooltip {{msg-mw|tooltip-rollback}}',
+'rollbacklinkcount'=> '* $1: the number of edit that will be rollbacked (over 10 with prefix [[MediaWiki:Rollbackmorethan/en|rollbackmorethan]])
+* $2: the number of edit that will be rollbacked for PLURAL',
+'rollbackmorethan' => 'Prefix for [[MediaWiki:Rollbacklinkcount/en|rollbacklinkcount]] if [[MediaWiki:Rollbacklinkcount/qqq|$1]] is 10 or more',
 'rollbackfailed' => '{{Identical|Rollback}}',
 'cantrollback' => '{{Identical|Revert}}
 {{Identical|Rollback}}',

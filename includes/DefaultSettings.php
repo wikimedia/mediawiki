@@ -3320,6 +3320,12 @@ $wgEnableScaryTranscluding = false;
  */
 $wgTranscludeCacheExpiry = 3600;
 
+/**
+ * The $wgShowRollbackEditCount variable is used to show how many edits will be
+ * rollback. 
+ */ 
+$wgShowRollbackEditCount = true;
+
 /** @} */ # end of parser settings }
 
 /************************************************************************//**
