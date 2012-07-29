@@ -103,6 +103,7 @@ upgrade PHP if you have not done so prior to upgrading MediaWiki.
   the new deletelogentry permission is required for this.
 * (bug 14237) Allow PAGESINCATEGORY to distinguish between 'all', 'pages', 'files'
   and 'subcats'
+* Add lang and hreflang attributes to language links on Login page.
 
 === Bug fixes in 1.20 ===
 * (bug 30245) Use the correct way to construct a log page title.
