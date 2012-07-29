@@ -446,13 +446,13 @@ class LegacyTemplate extends BaseTemplate {
 
 		if ( $wgOut->isArticleRelated() ) {
 			if ( $title->getNamespace() == NS_FILE ) {
-				$name = $title->getDBkey();
 				$image = wfFindFile( $title );
 
 				if ( $image ) {
-					$link = htmlspecialchars( $image->getURL() );
-					$style = Linker::getInternalLinkAttributes( $link, $name );
-					$s[] = "<a href=\"{$link}\"{$style}>{$name}</a>";
+					$href = $image->getURL();
+					$s[] = Html::element( 'a', array( 'href' => $href,
+						'title' => $href ), $title->getText() );
+
 				}
 			}
 		}
