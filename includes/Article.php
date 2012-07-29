@@ -967,7 +967,7 @@ class Article extends Page {
 			"<div class='patrollink'>" .
 				wfMsgHtml(
 					'markaspatrolledlink',
-					Linker::link(
+					Linker::linkKnown(
 						$this->getTitle(),
 						wfMsgHtml( 'markaspatrolledtext' ),
 						array(),
@@ -975,8 +975,7 @@ class Article extends Page {
 							'action' => 'markpatrolled',
 							'rcid' => $rcid,
 							'token' => $token,
-						),
-						array( 'known', 'noclasses' )
+						)
 					)
 				) .
 			'</div>'
@@ -1154,73 +1153,67 @@ class Article extends Page {
 
 		$lnk = $current
 			? wfMsgHtml( 'currentrevisionlink' )
-			: Linker::link(
+			: Linker::linkKnown(
 				$this->getTitle(),
 				wfMsgHtml( 'currentrevisionlink' ),
 				array(),
-				$extraParams,
-				array( 'known', 'noclasses' )
+				$extraParams
 			);
 		$curdiff = $current
 			? wfMsgHtml( 'diff' )
-			: Linker::link(
+			: Linker::linkKnown(
 				$this->getTitle(),
 				wfMsgHtml( 'diff' ),
 				array(),
 				array(
 					'diff' => 'cur',
 					'oldid' => $oldid
-				) + $extraParams,
-				array( 'known', 'noclasses' )
+				) + $extraParams
 			);
 		$prev = $this->getTitle()->getPreviousRevisionID( $oldid ) ;
 		$prevlink = $prev
-			? Linker::link(
+			? Linker::linkKnown(
 				$this->getTitle(),
 				wfMsgHtml( 'previousrevision' ),
 				array(),
 				array(
 					'direction' => 'prev',
 					'oldid' => $oldid
-				) + $extraParams,
-				array( 'known', 'noclasses' )
+				) + $extraParams
 			)
 			: wfMsgHtml( 'previousrevision' );
 		$prevdiff = $prev
-			? Linker::link(
+			? Linker::linkKnown(
 				$this->getTitle(),
 				wfMsgHtml( 'diff' ),
 				array(),
 				array(
 					'diff' => 'prev',
 					'oldid' => $oldid
-				) + $extraParams,
-				array( 'known', 'noclasses' )
+				) + $extraParams
 			)
 			: wfMsgHtml( 'diff' );
 		$nextlink = $current
 			? wfMsgHtml( 'nextrevision' )
-			: Linker::link(
+			: Linker::linkKnown(
 				$this->getTitle(),
 				wfMsgHtml( 'nextrevision' ),
 				array(),
 				array(
 					'direction' => 'next',
 					'oldid' => $oldid
-				) + $extraParams,
-				array( 'known', 'noclasses' )
+				) + $extraParams
 			);
 		$nextdiff = $current
 			? wfMsgHtml( 'diff' )
-			: Linker::link(
+			: Linker::linkKnown(
 				$this->getTitle(),
 				wfMsgHtml( 'diff' ),
 				array(),
 				array(
 					'diff' => 'next',
 					'oldid' => $oldid
-				) + $extraParams,
-				array( 'known', 'noclasses' )
+				) + $extraParams
 			);
 
 		$cdel = Linker::getRevDeleteLink( $user, $revision, $this->getTitle() );
