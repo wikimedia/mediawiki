@@ -97,7 +97,7 @@ class AjaxDispatcher {
 	 * request.
 	 */
 	function performAction() {
-		global $wgAjaxExportList, $wgOut, $wgUser;
+		global $wgAjaxExportList, $wgUser;
 
 		if ( empty( $this->mode ) ) {
 			return;
@@ -157,7 +157,6 @@ class AjaxDispatcher {
 			}
 		}
 
-		$wgOut = null;
 		wfProfileOut( __METHOD__ );
 	}
 }
