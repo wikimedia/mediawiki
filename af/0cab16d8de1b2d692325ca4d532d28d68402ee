@@ -1,0 +1,9 @@
+Code-Review+1: Hashar <hashar@free.fr>
+Verified+1: jenkins-bot
+Code-Review+2: Siebrand <siebrand@wikimedia.org>
+Code-Review+1: Nikerabbit <niklas.laxstrom@gmail.com>
+Submitted-by: Siebrand <siebrand@wikimedia.org>
+Submitted-at: Mon, 30 Jul 2012 15:40:26 +0000
+Reviewed-on: https://gerrit.wikimedia.org/r/15544
+Project: mediawiki/core
+Branch: refs/heads/master
