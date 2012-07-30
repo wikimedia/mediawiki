@@ -62,7 +62,6 @@ class MediaWiki {
 		}
 
 		$this->context = $context;
-		$this->context->setTitle( $this->parseTitle() );
 	}
 
 	/**
