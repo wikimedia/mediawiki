@@ -42,10 +42,12 @@ class SpecialChangeEmail extends UnlistedSpecialPage {
 	function execute( $par ) {
 		global $wgAuth;
 
-		$this->checkReadOnly();
-
 		$this->setHeaders();
 		$this->outputHeader();
+
+		$out = $this->getOutput();
+		$out->disallowUserJs();
+		$out->addModules( 'mediawiki.special.changeemail' );
 
 		if ( !$wgAuth->allowPropChange( 'emailaddress' ) ) {
 			$this->error( 'cannotchangeemail' );
@@ -65,9 +67,7 @@ class SpecialChangeEmail extends UnlistedSpecialPage {
 			return;
 		}
 
-		$out = $this->getOutput();
-		$out->disallowUserJs();
-		$out->addModules( 'mediawiki.special.changeemail' );
+		$this->checkReadOnly();
 
 		$this->mPassword = $request->getVal( 'wpPassword' );
 		$this->mNewEmail = $request->getVal( 'wpNewEmail' );

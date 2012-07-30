@@ -37,7 +37,9 @@ class SpecialChangePassword extends UnlistedSpecialPage {
 	function execute( $par ) {
 		global $wgAuth;
 
-		$this->checkReadOnly();
+		$this->setHeaders();
+		$this->outputHeader();
+		$this->getOutput()->disallowUserJs();
 
 		$request = $this->getRequest();
 		$this->mUserName = trim( $request->getVal( 'wpName' ) );
@@ -45,10 +47,6 @@ class SpecialChangePassword extends UnlistedSpecialPage {
 		$this->mNewpass = $request->getVal( 'wpNewPassword' );
 		$this->mRetype = $request->getVal( 'wpRetype' );
 		$this->mDomain = $request->getVal( 'wpDomain' );
-
-		$this->setHeaders();
-		$this->outputHeader();
-		$this->getOutput()->disallowUserJs();
 
 		$user = $this->getUser();
 		if( !$request->wasPosted() && !$user->isLoggedIn() ) {
@@ -60,6 +58,8 @@ class SpecialChangePassword extends UnlistedSpecialPage {
 			$this->doReturnTo();
 			return;
 		}
+
+		$this->checkReadOnly();
 
 		if( $request->wasPosted() && $user->matchEditToken( $request->getVal( 'token' ) ) ) {
 			try {
