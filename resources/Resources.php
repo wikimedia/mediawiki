@@ -106,6 +106,10 @@ return array(
 		'scripts' => 'resources/jquery/jquery.autoEllipsis.js',
 		'dependencies' => 'jquery.highlightText',
 	),
+	'jquery.badge' => array(
+		'scripts' => 'resources/jquery/jquery.badge.js',
+		'styles' => 'resources/jquery/jquery.badge.css',
+	),
 	'jquery.byteLength' => array(
 		'scripts' => 'resources/jquery/jquery.byteLength.js',
 	),
