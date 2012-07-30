@@ -2706,6 +2706,7 @@ class Language {
 	 *
 	 * @param $opposite Boolean Get the direction mark opposite to your language
 	 * @return string
+	 * @since 1.20
 	 */
 	function getDirMarkEntity( $opposite = false ) {
 		if ( $opposite ) { return $this->isRTL() ? '&lrm;' : '&rlm;'; }
