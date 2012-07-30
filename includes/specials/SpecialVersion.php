@@ -259,6 +259,10 @@ class SpecialVersion extends SpecialPage {
 		if ( $viewerUrl !== false ) {
 			$shortSHA1 = "[$viewerUrl $shortSHA1]";
 		}
+		$gitHeadDate = $gitInfo->getHeadDate();
+		if ( $gitHeadDate !== false ) {
+		$shortSHA1 .= ' (' . $gitHeadDate . ')';
+		}
 		return "$wgVersion $shortSHA1";
 	}
 

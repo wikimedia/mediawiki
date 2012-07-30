@@ -123,9 +123,8 @@ class GitInfo {
 		}
 		$filearray = file($LOGfile);
 		$lastline = end($filearray);
-		$lastlinearray = explode(' ', $lastline);
-		$rawdate = $lastlinearray[4] . $lastlinearray[5];
-		$datestring = date("d.m.Y H:i",$rawdate);
+		$lastlinearray = preg_split('[\s]', $lastline);
+		$datestring = date(wfMessage($d),$lastlinearray[4]);
 		return $datestring;
 	 }
 
