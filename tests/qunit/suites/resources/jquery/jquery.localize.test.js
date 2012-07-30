@@ -1,13 +1,6 @@
-module( 'jquery.localize', QUnit.newMwEnvironment() );
+QUnit.module( 'jquery.localize', QUnit.newMwEnvironment() );
 
-test( '-- Initial check', function() {
-	expect(1);
-	ok( $.fn.localize, 'jQuery.fn.localize defined' );
-} );
-
-test( 'Handle basic replacements', function() {
-	expect(3);
-
+QUnit.test( 'Handle basic replacements', 3, function ( assert ) {
 	var html, $lc;
 	mw.messages.set( 'basic', 'Basic stuff' );
 
@@ -15,24 +8,22 @@ test( 'Handle basic replacements', function() {
 	html = '<div><span><html:msg key="basic" /></span></div>';
 	$lc = $( html ).localize().find( 'span' );
 
-	strictEqual( $lc.text(), 'Basic stuff', 'Tag: html:msg' );
+	assert.strictEqual( $lc.text(), 'Basic stuff', 'Tag: html:msg' );
 
 	// Attribute: title-msg
 	html = '<div><span title-msg="basic" /></span></div>';
 	$lc = $( html ).localize().find( 'span' );
 
-	strictEqual( $lc.attr( 'title' ), 'Basic stuff', 'Attribute: title-msg' );
+	assert.strictEqual( $lc.attr( 'title' ), 'Basic stuff', 'Attribute: title-msg' );
 
 	// Attribute: alt-msg
 	html = '<div><span alt-msg="basic" /></span></div>';
 	$lc = $( html ).localize().find( 'span' );
 
-	strictEqual( $lc.attr( 'alt' ), 'Basic stuff', 'Attribute: alt-msg' );
+	assert.strictEqual( $lc.attr( 'alt' ), 'Basic stuff', 'Attribute: alt-msg' );
 } );
 
-test( 'Proper escaping', function() {
-	expect(2);
-
+QUnit.test( 'Proper escaping', 2, function ( assert ) {
 	var html, $lc;
 	mw.messages.set( 'properfoo', '<proper esc="test">' );
 
@@ -43,18 +34,16 @@ test( 'Proper escaping', function() {
 	html = '<div><span><html:msg key="properfoo" /></span></div>';
 	$lc = $( html ).localize().find( 'span' );
 
-	strictEqual( $lc.text(), mw.msg( 'properfoo' ), 'Content is inserted as text, not as html.' );
+	assert.strictEqual( $lc.text(), mw.msg( 'properfoo' ), 'Content is inserted as text, not as html.' );
 
 	// Attribute escaping
 	html = '<div><span title-msg="properfoo" /></span></div>';
 	$lc = $( html ).localize().find( 'span' );
 
-	strictEqual( $lc.attr( 'title' ), mw.msg( 'properfoo' ), 'Attributes are not inserted raw.' );
+	assert.strictEqual( $lc.attr( 'title' ), mw.msg( 'properfoo' ), 'Attributes are not inserted raw.' );
 } );
 
-test( 'Options', function() {
-	expect(7);
-
+QUnit.test( 'Options', 7, function ( assert ) {
 	mw.messages.set( {
 		'foo-lorem': 'Lorem',
 		'foo-ipsum': 'Ipsum',
@@ -72,8 +61,8 @@ test( 'Options', function() {
 		prefix: 'foo-'
 	} ).find( 'span' );
 
-	strictEqual( $lc.attr( 'title' ), 'Lorem', 'Message key prefix - attr' );
-	strictEqual( $lc.text(), 'Ipsum', 'Message key prefix - text' );
+	assert.strictEqual( $lc.attr( 'title' ), 'Lorem', 'Message key prefix - attr' );
+	assert.strictEqual( $lc.text(), 'Ipsum', 'Message key prefix - text' );
 
 	// Variable keys mapping
 	x = 'bar';
@@ -85,8 +74,8 @@ test( 'Options', function() {
 		}
 	} ).find( 'span' );
 
-	strictEqual( $lc.attr( 'title' ), 'Read more about bars', 'Variable keys mapping - attr' );
-	strictEqual( $lc.text(), 'The Bars', 'Variable keys mapping - text' );
+	assert.strictEqual( $lc.attr( 'title' ), 'Read more about bars', 'Variable keys mapping - attr' );
+	assert.strictEqual( $lc.text(), 'The Bars', 'Variable keys mapping - text' );
 
 	// Passing parameteters to mw.msg
 	html = '<div><span><html:msg key="foo-welcome" /></span></div>';
@@ -96,7 +85,7 @@ test( 'Options', function() {
 		}
 	} ).find( 'span' );
 
-	strictEqual( $lc.text(), 'Welcome to Wikipedia! (last visit: yesterday)', 'Passing parameteters to mw.msg' );
+	assert.strictEqual( $lc.text(), 'Welcome to Wikipedia! (last visit: yesterday)', 'Passing parameteters to mw.msg' );
 
 	// Combination of options prefix, params and keys
 	x = 'bazz';
@@ -114,6 +103,6 @@ test( 'Options', function() {
 		}
 	} ).find( 'span' );
 
-	strictEqual( $lc.text(), 'The Bazz (Wikipedia)', 'Combination of options prefix, params and keys - text' );
-	strictEqual( $lc.attr( 'title' ), 'Read more about bazz at Wikipedia (last modified: 3 minutes ago)', 'Combination of options prefix, params and keys - attr' );
+	assert.strictEqual( $lc.text(), 'The Bazz (Wikipedia)', 'Combination of options prefix, params and keys - text' );
+	assert.strictEqual( $lc.attr( 'title' ), 'Read more about bazz at Wikipedia (last modified: 3 minutes ago)', 'Combination of options prefix, params and keys - attr' );
 } );

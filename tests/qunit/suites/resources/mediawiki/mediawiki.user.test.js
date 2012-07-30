@@ -1,21 +1,12 @@
-module( 'mediawiki.user', QUnit.newMwEnvironment() );
+( function ( mw ) {
 
-test( '-- Initial check', function() {
-	expect(1);
+QUnit.module( 'mediawiki.user', QUnit.newMwEnvironment() );
 
-	ok( mw.user, 'mw.user defined' );
+QUnit.test( 'options', 1, function ( assert ) {
+	assert.ok( mw.user.options instanceof mw.Map, 'options instance of mw.Map' );
 });
 
-
-test( 'options', function() {
-	expect(1);
-
-	ok( mw.user.options instanceof mw.Map, 'options instance of mw.Map' );
-});
-
-test( 'User login status', function() {
-	expect(5);
-
+QUnit.test( 'User login status', 5, function ( assert ) {
 	/**
 	 * Tests can be run under three different conditions:
 	 *   1) From tests/qunit/index.html, user will be anonymous.
@@ -26,14 +17,16 @@ test( 'User login status', function() {
 	// Forge an anonymous user:
 	mw.config.set( 'wgUserName', null);
 
-	strictEqual( mw.user.name(), null, 'user.name should return null when anonymous' );
-	ok( mw.user.anonymous(), 'user.anonymous should reutrn true when anonymous' );
+	assert.strictEqual( mw.user.name(), null, 'user.name should return null when anonymous' );
+	assert.ok( mw.user.anonymous(), 'user.anonymous should reutrn true when anonymous' );
 
 	// Not part of startUp module
 	mw.config.set( 'wgUserName', 'John' );
 
-	equal( mw.user.name(), 'John', 'user.name returns username when logged-in' );
-	ok( !mw.user.anonymous(), 'user.anonymous returns false when logged-in' );
+	assert.equal( mw.user.name(), 'John', 'user.name returns username when logged-in' );
+	assert.ok( !mw.user.anonymous(), 'user.anonymous returns false when logged-in' );
 
-	equal( mw.user.id(), 'John', 'user.id Returns username when logged-in' );
+	assert.equal( mw.user.id(), 'John', 'user.id Returns username when logged-in' );
 });
+
+}( mediaWiki ) );

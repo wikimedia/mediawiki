@@ -7,12 +7,7 @@ var config = {
 	wgContentLanguage: 'en'
 };
 
-module( 'jquery.tablesorter', QUnit.newMwEnvironment({ config: config }) );
-
-test( '-- Initial check', function() {
-	expect(1);
-	ok( $.tablesorter, '$.tablesorter defined' );
-});
+QUnit.module( 'jquery.tablesorter', QUnit.newMwEnvironment({ config: config }) );
 
 /**
  * Create an HTML table from an array of row arrays containing text strings.
@@ -22,28 +17,29 @@ test( '-- Initial check', function() {
  * @param {String[][]} data
  * @return jQuery
  */
-var tableCreate = function( header, data ) {
-	var $table = $( '<table class="sortable"><thead></thead><tbody></tbody></table>' ),
+function tableCreate(  header, data ) {
+	var i,
+		$table = $( '<table class="sortable"><thead></thead><tbody></tbody></table>' ),
 		$thead = $table.find( 'thead' ),
 		$tbody = $table.find( 'tbody' ),
 		$tr = $( '<tr>' );
 
-	$.each( header, function( i, str ) {
+	$.each( header, function ( i, str ) {
 		var $th = $( '<th>' );
 		$th.text( str ).appendTo( $tr );
 	});
 	$tr.appendTo( $thead );
 
-	for (var i = 0; i < data.length; i++) {
+	for ( i = 0; i < data.length; i++ ) {
 		$tr = $( '<tr>' );
-		$.each( data[i], function( j, str ) {
+		$.each( data[i], function ( j, str ) {
 			var $td = $( '<td>' );
 			$td.text( str ).appendTo( $tr );
 		});
 		$tr.appendTo( $tbody );
 	}
 	return $table;
-};
+}
 
 /**
  * Extract text from table.
@@ -51,7 +47,7 @@ var tableCreate = function( header, data ) {
  * @param {jQuery} $table
  * @return String[][]
  */
-var tableExtract = function( $table ) {
+function tableExtract( $table ) {
 	var data = [];
 
 	$table.find( 'tbody' ).find( 'tr' ).each( function( i, tr ) {
@@ -62,7 +58,7 @@ var tableExtract = function( $table ) {
 		data.push( row );
 	});
 	return data;
-};
+}
 
 /**
  * Run a table test by building a table with the given data,
@@ -74,10 +70,8 @@ var tableExtract = function( $table ) {
  * @param {String[][]} expected rows/cols to compare against at end
  * @param {function($table)} callback something to do with the table before we compare
  */
-var tableTest = function( msg, header, data, expected, callback ) {
-	test( msg, function() {
-		expect(1);
-
+function tableTest( msg, header, data, expected, callback ) {
+	QUnit.test( msg, 1, function ( assert ) {
 		var $table = tableCreate( header, data );
 
 		// Give caller a chance to set up sorting and manipulate the table.
@@ -86,15 +80,18 @@ var tableTest = function( msg, header, data, expected, callback ) {
 		// Table sorting is done synchronously; if it ever needs to change back
 		// to asynchronous, we'll need a timeout or a callback here.
 		var extracted = tableExtract( $table );
-		deepEqual( extracted, expected, msg );
+		assert.deepEqual( extracted, expected, msg );
 	});
-};
+}
 
-var reversed = function(arr) {
+function reversed(arr) {
+	// Clone array
 	var arr2 = arr.slice(0);
+
 	arr2.reverse();
+
 	return arr2;
-};
+}
 
 // Sample data set using planets named and their radius
 var header  = [ 'Planet' , 'Radius (km)'],
@@ -115,7 +112,7 @@ tableTest(
 	header,
 	planets,
 	ascendingName,
-	function( $table ) {
+	function ( $table ) {
 		$table.tablesorter();
 		$table.find( '.headerSort:eq(0)' ).click();
 	}
@@ -125,7 +122,7 @@ tableTest(
 	header,
 	planets,
 	ascendingName,
-	function( $table ) {
+	function ( $table ) {
 		$table.tablesorter();
 		$table.find( '.headerSort:eq(0)' ).click();
 	}
@@ -135,7 +132,7 @@ tableTest(
 	header,
 	planets,
 	reversed(ascendingName),
-	function( $table ) {
+	function ( $table ) {
 		$table.tablesorter();
 		$table.find( '.headerSort:eq(0)' ).click().click();
 	}
@@ -145,7 +142,7 @@ tableTest(
 	header,
 	planets,
 	ascendingRadius,
-	function( $table ) {
+	function ( $table ) {
 		$table.tablesorter();
 		$table.find( '.headerSort:eq(1)' ).click();
 	}
@@ -155,7 +152,7 @@ tableTest(
 	header,
 	planets,
 	reversed(ascendingRadius),
-	function( $table ) {
+	function ( $table ) {
 		$table.tablesorter();
 		$table.find( '.headerSort:eq(1)' ).click().click();
 	}
@@ -180,7 +177,7 @@ tableTest(
 		['09.11.2011'],
 		['11.11.2011']
 	],
-	function( $table ) {
+	function ( $table ) {
 		mw.config.set( 'wgDefaultDateFormat', 'dmy' );
 		mw.config.set( 'wgContentLanguage', 'de' );
 
@@ -206,7 +203,7 @@ tableTest(
 		['09.11.2011'],
 		['11.11.2011']
 	],
-	function( $table ) {
+	function ( $table ) {
 		mw.config.set( 'wgDefaultDateFormat', 'mdy' );
 
 		$table.tablesorter();
@@ -242,7 +239,7 @@ tableTest(
 	['IP'],
 	ipv4,
 	ipv4Sorted,
-	function( $table ) {
+	function ( $table ) {
 		$table.tablesorter();
 		$table.find( '.headerSort:eq(0)' ).click();
 	}
@@ -252,7 +249,7 @@ tableTest(
 	['IP'],
 	ipv4,
 	reversed(ipv4Sorted),
-	function( $table ) {
+	function ( $table ) {
 		$table.tablesorter();
 		$table.find( '.headerSort:eq(0)' ).click().click();
 	}
@@ -287,7 +284,7 @@ tableTest(
 	['Name'],
 	umlautWords,
 	umlautWordsSorted,
-	function( $table ) {
+	function ( $table ) {
 		mw.config.set( 'tableSorterCollation', {
 			'ä': 'ae',
 			'ö': 'oe',
@@ -308,7 +305,7 @@ tableTest(
 	header,
 	planets,
 	planetsRowspan,
-	function( $table ) {
+	function ( $table ) {
 		// Modify the table to have a multiuple-row-spanning cell:
 		// - Remove 2nd cell of 4th row, and, 2nd cell or 5th row.
 		$table.find( 'tr:eq(3) td:eq(1), tr:eq(4) td:eq(1)' ).remove();
@@ -325,7 +322,7 @@ tableTest(
 	header,
 	planets,
 	planetsRowspanII,
-	function( $table ) {
+	function ( $table ) {
 		// Modify the table to have a multiuple-row-spanning cell:
 		// - Remove 1st cell of 4th row, and, 1st cell or 5th row.
 		$table.find( 'tr:eq(3) td:eq(0), tr:eq(4) td:eq(0)' ).remove();
@@ -360,7 +357,7 @@ tableTest(
 	['date'],
 	complexMDYDates,
 	complexMDYSorted,
-	function( $table ) {
+	function ( $table ) {
 		mw.config.set( 'wgDefaultDateFormat', 'mdy' );
 
 		$table.tablesorter();
@@ -385,7 +382,7 @@ tableTest(
 );
 
 /** FIXME: the diff output is not very readeable. */
-test( 'bug 32047 - caption must be before thead', function() {
+QUnit.test( 'bug 32047 - caption must be before thead', function ( assert ) {
 	var $table;
 	$table = $(
 		'<table class="sortable">' +
@@ -398,14 +395,14 @@ test( 'bug 32047 - caption must be before thead', function() {
 		);
 	$table.tablesorter();
 
-	equals(
+	assert.equal(
 		$table.children( ).get( 0 ).nodeName,
 		'CAPTION',
 		'First element after <thead> must be <caption> (bug 32047)'
 	);
 });
 
-test( 'data-sort-value attribute, when available, should override sorting position', function() {
+QUnit.test( 'data-sort-value attribute, when available, should override sorting position', function ( assert ) {
 	var $table, data;
 
 	// Example 1: All cells except one cell without data-sort-value,
@@ -432,7 +429,7 @@ test( 'data-sort-value attribute, when available, should override sorting positi
 		});
 	});
 
-	deepEqual( data, [
+	assert.deepEqual( data, [
 		{
 			data: 'Apple',
 			text: 'Bird'
@@ -465,8 +462,8 @@ test( 'data-sort-value attribute, when available, should override sorting positi
 	$table.tablesorter().find( '.headerSort:eq(0)' ).click();
 
 	data = [];
-	$table.find( 'tbody > tr' ).each( function( i, tr ) {
-		$( tr ).find( 'td' ).each( function( i, td ) {
+	$table.find( 'tbody > tr' ).each( function ( i, tr ) {
+		$( tr ).find( 'td' ).each( function ( i, td ) {
 			data.push( {
 				data: $( td ).data( 'sortValue' ),
 				text: $( td ).text()
@@ -474,7 +471,7 @@ test( 'data-sort-value attribute, when available, should override sorting positi
 		});
 	});
 
-	deepEqual( data, [
+	assert.deepEqual( data, [
 		{
 			data: undefined,
 			text: 'B'
@@ -532,7 +529,7 @@ test( 'data-sort-value attribute, when available, should override sorting positi
 		});
 	});
 
-	deepEqual( data, [
+	assert.deepEqual( data, [
 		{
 			data: 1,
 			text: "B"
@@ -587,9 +584,7 @@ tableTest( 'bug 8115: sort numbers with commas (descending)',
 );
 // TODO add numbers sorting tests for bug 8115 with a different language
 
-test( 'bug 32888 - Tables inside a tableheader cell', function() {
-	expect(2);
-
+QUnit.test( 'bug 32888 - Tables inside a tableheader cell', 2, function ( assert ) {
 	var $table;
 	$table = $(
 		'<table class="sortable" id="mw-bug-32888">' +
@@ -602,12 +597,12 @@ test( 'bug 32888 - Tables inside a tableheader cell', function() {
 		);
 	$table.tablesorter();
 
-	equals(
+	assert.equal(
 		$table.find('> thead:eq(0) > tr > th.headerSort').length,
 		1,
 		'Child tables inside a headercell should not interfere with sortable headers (bug 32888)'
 	);
-	equals(
+	assert.equal(
 		$( '#mw-bug-32888-2' ).find('th.headerSort').length,
 		0,
 		'The headers of child tables inside a headercell should not be sortable themselves (bug 32888)'
@@ -618,13 +613,13 @@ test( 'bug 32888 - Tables inside a tableheader cell', function() {
 var correctDateSorting1 = [
 	['01 January 2010'],
 	['05 February 2010'],
-	['16 January 2010'],
+	['16 January 2010']
 ];
 
 var correctDateSortingSorted1 = [
 	['01 January 2010'],
 	['16 January 2010'],
-	['05 February 2010'],
+	['05 February 2010']
 ];
 
 tableTest(
@@ -643,13 +638,13 @@ tableTest(
 var correctDateSorting2 = [
 	['January 01 2010'],
 	['February 05 2010'],
-	['January 16 2010'],
+	['January 16 2010']
 ];
 
 var correctDateSortingSorted2 = [
 	['January 01 2010'],
 	['January 16 2010'],
-	['February 05 2010'],
+	['February 05 2010']
 ];
 
 tableTest(
@@ -665,4 +660,4 @@ tableTest(
 	}
 );
 
-})( jQuery );
+}( jQuery ) );
