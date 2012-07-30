@@ -9,7 +9,7 @@ QUnit.asyncTest( 'Simple', function ( assert ) {
 	api.parse( "'''Hello world'''" )
 		.done( function ( html ) {
 			// Html also contains "NewPP report", so only check the first part
-			assert.equal( html.substr( 0, 26 ), '<p><b>Hello world</b>\n</p>',
+			assert.equal( html.substr( 0, 25 ), '<p><b>Hello world</b></p>',
 				'Wikitext to html parsing works.'
 			);
 

@@ -55,147 +55,127 @@ var config = {
 	"wgCaseSensitiveNamespaces": []
 };
 
-module( 'mediawiki.Title', QUnit.newMwEnvironment({ config: config }) );
+QUnit.module( 'mediawiki.Title', QUnit.newMwEnvironment({ config: config }) );
 
-test( '-- Initial check', function () {
-	expect(1);
-	ok( mw.Title, 'mw.Title defined' );
-});
 
-test( 'Transformation', function () {
-	expect(8);
-
+QUnit.test( 'Transformation', 8, function ( assert ) {
 	var title;
 
 	title = new mw.Title( 'File:quux pif.jpg' );
-	equal( title.getName(), 'Quux_pif' );
+	assert.equal( title.getName(), 'Quux_pif' );
 
 	title = new mw.Title( 'File:Glarg_foo_glang.jpg' );
-	equal( title.getNameText(), 'Glarg foo glang' );
+	assert.equal( title.getNameText(), 'Glarg foo glang' );
 
 	title = new mw.Title( 'User:ABC.DEF' );
-	equal( title.toText(), 'User:ABC.DEF' );
-	equal( title.getNamespaceId(), 2 );
-	equal( title.getNamespacePrefix(), 'User:' );
+	assert.equal( title.toText(), 'User:ABC.DEF' );
+	assert.equal( title.getNamespaceId(), 2 );
+	assert.equal( title.getNamespacePrefix(), 'User:' );
 
 	title = new mw.Title( 'uSEr:hAshAr' );
-	equal( title.toText(), 'User:HAshAr' );
-	equal( title.getNamespaceId(), 2 );
+	assert.equal( title.toText(), 'User:HAshAr' );
+	assert.equal( title.getNamespaceId(), 2 );
 
 	title = new mw.Title( '   MediaWiki:  Foo   bar   .js   ' );
 	// Don't ask why, it's the way the backend works. One space is kept of each set
-	equal( title.getName(), 'Foo_bar_.js', "Merge multiple spaces to a single space." );
+	assert.equal( title.getName(), 'Foo_bar_.js', "Merge multiple spaces to a single space." );
 });
 
-test( 'Main text for filename', function () {
-	expect(8);
-
+QUnit.test( 'Main text for filename', 8, function ( assert ) {
 	var title = new mw.Title( 'File:foo_bar.JPG' );
 
-	equal( title.getNamespaceId(), 6 );
-	equal( title.getNamespacePrefix(), 'File:' );
-	equal( title.getName(), 'Foo_bar' );
-	equal( title.getNameText(), 'Foo bar' );
-	equal( title.getMain(), 'Foo_bar.JPG' );
-	equal( title.getMainText(), 'Foo bar.JPG' );
-	equal( title.getExtension(), 'JPG' );
-	equal( title.getDotExtension(), '.JPG' );
+	assert.equal( title.getNamespaceId(), 6 );
+	assert.equal( title.getNamespacePrefix(), 'File:' );
+	assert.equal( title.getName(), 'Foo_bar' );
+	assert.equal( title.getNameText(), 'Foo bar' );
+	assert.equal( title.getMain(), 'Foo_bar.JPG' );
+	assert.equal( title.getMainText(), 'Foo bar.JPG' );
+	assert.equal( title.getExtension(), 'JPG' );
+	assert.equal( title.getDotExtension(), '.JPG' );
 });
 
-test( 'Namespace detection and conversion', function () {
-	expect(6);
-
+QUnit.test( 'Namespace detection and conversion', 6, function ( assert ) {
 	var title;
 
 	title = new mw.Title( 'something.PDF', 6 );
-	equal( title.toString(), 'File:Something.PDF' );
+	assert.equal( title.toString(), 'File:Something.PDF' );
 
 	title = new mw.Title( 'NeilK', 3 );
-	equal( title.toString(), 'User_talk:NeilK' );
-	equal( title.toText(), 'User talk:NeilK' );
+	assert.equal( title.toString(), 'User_talk:NeilK' );
+	assert.equal( title.toText(), 'User talk:NeilK' );
 
 	title = new mw.Title( 'Frobisher', 100 );
-	equal( title.toString(), 'Penguins:Frobisher' );
+	assert.equal( title.toString(), 'Penguins:Frobisher' );
 
 	title = new mw.Title( 'antarctic_waterfowl:flightless_yet_cute.jpg' );
-	equal( title.toString(), 'Penguins:Flightless_yet_cute.jpg' );
+	assert.equal( title.toString(), 'Penguins:Flightless_yet_cute.jpg' );
 
 	title = new mw.Title( 'Penguins:flightless_yet_cute.jpg' );
-	equal( title.toString(), 'Penguins:Flightless_yet_cute.jpg' );
+	assert.equal( title.toString(), 'Penguins:Flightless_yet_cute.jpg' );
 });
 
-test( 'Throw error on invalid title', function () {
-	expect(1);
-
-	raises(function () {
+QUnit.test( 'Throw error on invalid title', 1, function ( assert ) {
+	assert.throws(function () {
 		var title = new mw.Title( '' );
 	}, 'Throw error on empty string' );
 });
 
-test( 'Case-sensivity', function () {
-	expect(3);
-
+QUnit.test( 'Case-sensivity', 3, function ( assert ) {
 	var title;
 
 	// Default config
 	mw.config.set( 'wgCaseSensitiveNamespaces', [] );
 
 	title = new mw.Title( 'article' );
-	equal( title.toString(), 'Article', 'Default config: No sensitive namespaces by default. First-letter becomes uppercase' );
+	assert.equal( title.toString(), 'Article', 'Default config: No sensitive namespaces by default. First-letter becomes uppercase' );
 
 	// $wgCapitalLinks = false;
 	mw.config.set( 'wgCaseSensitiveNamespaces', [0, -2, 1, 4, 5, 6, 7, 10, 11, 12, 13, 14, 15] );
 
 	title = new mw.Title( 'article' );
-	equal( title.toString(), 'article', '$wgCapitalLinks=false: Article namespace is sensitive, first-letter case stays lowercase' );
+	assert.equal( title.toString(), 'article', '$wgCapitalLinks=false: Article namespace is sensitive, first-letter case stays lowercase' );
 
 	title = new mw.Title( 'john', 2 );
-	equal( title.toString(), 'User:John', '$wgCapitalLinks=false: User namespace is insensitive, first-letter becomes uppercase' );
+	assert.equal( title.toString(), 'User:John', '$wgCapitalLinks=false: User namespace is insensitive, first-letter becomes uppercase' );
 });
 
-test( 'toString / toText', function () {
-	expect(2);
-
+QUnit.test( 'toString / toText', 2, function ( assert ) {
 	var title = new mw.Title( 'Some random page' );
 
-	equal( title.toString(), title.getPrefixedDb() );
-	equal( title.toText(), title.getPrefixedText() );
+	assert.equal( title.toString(), title.getPrefixedDb() );
+	assert.equal( title.toText(), title.getPrefixedText() );
 });
 
-test( 'Exists', function () {
-	expect(3);
-
+QUnit.test( 'Exists', 3, function ( assert ) {
 	var title;
 
 	// Empty registry, checks default to null
 
 	title = new mw.Title( 'Some random page', 4 );
-	strictEqual( title.exists(), null, 'Return null with empty existance registry' );
+	assert.strictEqual( title.exists(), null, 'Return null with empty existance registry' );
 
 	// Basic registry, checks default to boolean
 	mw.Title.exist.set( ['Does_exist', 'User_talk:NeilK', 'Wikipedia:Sandbox_rules'], true );
 	mw.Title.exist.set( ['Does_not_exist', 'User:John', 'Foobar'], false );
 
 	title = new mw.Title( 'Project:Sandbox rules' );
-	assertTrue( title.exists(), 'Return true for page titles marked as existing' );
+	assert.assertTrue( title.exists(), 'Return true for page titles marked as existing' );
 	title = new mw.Title( 'Foobar' );
-	assertFalse( title.exists(), 'Return false for page titles marked as nonexistent' );
+	assert.assertFalse( title.exists(), 'Return false for page titles marked as nonexistent' );
 
 });
 
-test( 'Url', function () {
-	expect(2);
-
+QUnit.test( 'Url', 2, function ( assert ) {
 	var title;
 
 	// Config
 	mw.config.set( 'wgArticlePath', '/wiki/$1' );
 
 	title = new mw.Title( 'Foobar' );
-	equal( title.getUrl(), '/wiki/Foobar', 'Basic functionally, toString passing to wikiGetlink' );
+	assert.equal( title.getUrl(), '/wiki/Foobar', 'Basic functionally, toString passing to wikiGetlink' );
 
 	title = new mw.Title( 'John Doe', 3 );
-	equal( title.getUrl(), '/wiki/User_talk:John_Doe', 'Escaping in title and namespace for urls' );
+	assert.equal( title.getUrl(), '/wiki/User_talk:John_Doe', 'Escaping in title and namespace for urls' );
 });
 
 }() );
