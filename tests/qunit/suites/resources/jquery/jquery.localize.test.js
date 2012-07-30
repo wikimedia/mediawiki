@@ -6,7 +6,7 @@ test( '-- Initial check', function() {
 } );
 
 test( 'Handle basic replacements', function() {
-	expect(3);
+	expect(4);
 
 	var html, $lc;
 	mw.messages.set( 'basic', 'Basic stuff' );
@@ -18,16 +18,22 @@ test( 'Handle basic replacements', function() {
 	strictEqual( $lc.text(), 'Basic stuff', 'Tag: html:msg' );
 
 	// Attribute: title-msg
-	html = '<div><span title-msg="basic" /></span></div>';
+	html = '<div><span title-msg="basic"></span></div>';
 	$lc = $( html ).localize().find( 'span' );
 
 	strictEqual( $lc.attr( 'title' ), 'Basic stuff', 'Attribute: title-msg' );
 
 	// Attribute: alt-msg
-	html = '<div><span alt-msg="basic" /></span></div>';
+	html = '<div><span alt-msg="basic"></span></div>';
 	$lc = $( html ).localize().find( 'span' );
 
 	strictEqual( $lc.attr( 'alt' ), 'Basic stuff', 'Attribute: alt-msg' );
+
+	// Attribute: placeholder-msg
+	html = '<div><input placeholder-msg="basic" /></div>';
+	$lc = $( html ).localize().find( 'input' );
+
+	strictEqual( $lc.attr( 'placeholder' ), 'Basic stuff', 'Attribute: placeholder-msg' );
 } );
 
 test( 'Proper escaping', function() {
