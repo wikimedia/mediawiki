@@ -11,16 +11,22 @@ QUnit.test( 'Handle basic replacements', 3, function ( assert ) {
 	assert.strictEqual( $lc.text(), 'Basic stuff', 'Tag: html:msg' );
 
 	// Attribute: title-msg
-	html = '<div><span title-msg="basic" /></span></div>';
+	html = '<div><span title-msg="basic"></span></div>';
 	$lc = $( html ).localize().find( 'span' );
 
 	assert.strictEqual( $lc.attr( 'title' ), 'Basic stuff', 'Attribute: title-msg' );
 
 	// Attribute: alt-msg
-	html = '<div><span alt-msg="basic" /></span></div>';
+	html = '<div><span alt-msg="basic"></span></div>';
 	$lc = $( html ).localize().find( 'span' );
 
 	assert.strictEqual( $lc.attr( 'alt' ), 'Basic stuff', 'Attribute: alt-msg' );
+
+	// Attribute: placeholder-msg
+	html = '<div><input placeholder-msg="basic" /></div>';
+	$lc = $( html ).localize().find( 'input' );
+
+	assert.strictEqual( $lc.attr( 'placeholder' ), 'Basic stuff', 'Attribute: placeholder-msg' );
 } );
 
 QUnit.test( 'Proper escaping', 2, function ( assert ) {
@@ -31,13 +37,13 @@ QUnit.test( 'Proper escaping', 2, function ( assert ) {
 	// making sure it is actually using text() and attr() (or something with the same effect)
 
 	// Text escaping
-	html = '<div><span><html:msg key="properfoo" /></span></div>';
+	html = '<div><span><html:msg key="properfoo"></span></div>';
 	$lc = $( html ).localize().find( 'span' );
 
 	assert.strictEqual( $lc.text(), mw.msg( 'properfoo' ), 'Content is inserted as text, not as html.' );
 
 	// Attribute escaping
-	html = '<div><span title-msg="properfoo" /></span></div>';
+	html = '<div><span title-msg="properfoo"></span></div>';
 	$lc = $( html ).localize().find( 'span' );
 
 	assert.strictEqual( $lc.attr( 'title' ), mw.msg( 'properfoo' ), 'Attributes are not inserted raw.' );
@@ -56,7 +62,7 @@ QUnit.test( 'Options', 7, function ( assert ) {
 	var html, $lc, attrs, x, sitename = 'Wikipedia';
 
 	// Message key prefix
-	html = '<div><span title-msg="lorem"><html:msg key="ipsum" /></span></div>';
+	html = '<div><span title-msg="lorem"><html:msg key="ipsum"></span></div>';
 	$lc = $( html ).localize( {
 		prefix: 'foo-'
 	} ).find( 'span' );
@@ -66,7 +72,7 @@ QUnit.test( 'Options', 7, function ( assert ) {
 
 	// Variable keys mapping
 	x = 'bar';
-	html = '<div><span title-msg="title"><html:msg key="label" /></span></div>';
+	html = '<div><span title-msg="title"><html:msg key="label"></span></div>';
 	$lc = $( html ).localize( {
 		keys: {
 			'title': 'foo-' + x + '-title',
@@ -78,7 +84,7 @@ QUnit.test( 'Options', 7, function ( assert ) {
 	assert.strictEqual( $lc.text(), 'The Bars', 'Variable keys mapping - text' );
 
 	// Passing parameteters to mw.msg
-	html = '<div><span><html:msg key="foo-welcome" /></span></div>';
+	html = '<div><span><html:msg key="foo-welcome"></span></div>';
 	$lc = $( html ).localize( {
 		params: {
 			'foo-welcome': [sitename, 'yesterday']
@@ -89,7 +95,7 @@ QUnit.test( 'Options', 7, function ( assert ) {
 
 	// Combination of options prefix, params and keys
 	x = 'bazz';
-	html = '<div><span title-msg="title"><html:msg key="label" /></span></div>';
+	html = '<div><span title-msg="title"><html:msg key="label"></span></div>';
 	$lc = $( html ).localize( {
 		prefix: 'foo-',
 		keys: {
