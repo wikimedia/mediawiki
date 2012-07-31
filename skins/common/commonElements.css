@@ -126,6 +126,20 @@ h6 .editsection {
 	font-weight: normal;
 }
 
+/* Within content area */
+h1#firstHeading {
+	border: none;
+	padding-bottom: 0;
+}
+#firstHeadingAddendum {
+	line-height: 1em;
+	margin-bottom: 0.4em;
+}
+#bodyContent {
+	padding-top: .2em;
+	border-top: 1px solid #aaaaaa;
+}
+
 /* Some space under the headers in the content area */
 h1,
 h2 {
