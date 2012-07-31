@@ -167,6 +167,11 @@ class VectorTemplate extends BaseTemplate {
 			<!-- firstHeading -->
 			<h1 id="firstHeading" class="firstHeading"><span dir="auto"><?php $this->html( 'title' ) ?></span></h1>
 			<!-- /firstHeading -->
+			<?php if ( $this->data['titleaddendum'] ): ?>
+			<!-- firstHeadingAddendum -->
+			<div id="firstHeadingAddendum"><?php $this->html( 'titleaddendum' ) ?></div>
+			<!-- /firstHeadingAddendum -->
+			<?php endif; ?>
 			<!-- bodyContent -->
 			<div id="bodyContent">
 				<?php if ( $this->data['isarticle'] ): ?>

@@ -85,6 +85,9 @@ class MonoBookTemplate extends BaseTemplate {
 	<?php if($this->data['sitenotice']) { ?><div id="siteNotice"><?php $this->html('sitenotice') ?></div><?php } ?>
 
 	<h1 id="firstHeading" class="firstHeading"><span dir="auto"><?php $this->html('title') ?></span></h1>
+<?php if($this->data['titleaddendum']) { ?>
+	<div id="firstHeadingAddendum"><?php $this->html('titleaddendum') ?></div>
+<?php } ?>
 	<div id="bodyContent" class="mw-body">
 		<div id="siteSub"><?php $this->msg('tagline') ?></div>
 		<div id="contentSub"<?php $this->html('userlangattributes') ?>><?php $this->html('subtitle') ?></div>
