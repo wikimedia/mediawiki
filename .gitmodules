@@ -367,3 +367,6 @@
 [submodule "extensions/FlaggedRevs"]
 	path = extensions/FlaggedRevs
 	url = https://gerrit.wikimedia.org/r/p/mediawiki/extensions/FlaggedRevs.git
+[submodule "extensions/TimedMediaHandler"]
+	path = extensions/TimedMediaHandler
+	url = https://gerrit.wikimedia.org/r/p/mediawiki/extensions/TimedMediaHandler.git
