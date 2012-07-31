@@ -195,8 +195,8 @@ $messages = array(
 'helppage' => 'Help:დინორე',
 'mainpage' => 'დუდხასჷლა',
 'mainpage-description' => 'დუდხასჷლა',
-'portal' => 'საზოგადოებაშ ხასჷლეფი',
-'portal-url' => 'Project:საზოგადოებაშ ხასილეფ',
+'portal' => 'ჯარალუაშ ხასჷლეფი',
+'portal-url' => 'Project:ჯარალუაშ ხასჷლეფი',
 'privacy' => 'ანონიმურობაშ პოლიტიკა',
 'privacypage' => 'Project:ანონიმურობაშ პოლიტიკა',
 
@@ -910,7 +910,7 @@ $messages = array(
 'version' => 'ვერსია',
 
 # Special:SpecialPages
-'specialpages' => 'სპეციალურ ხასილეფ',
+'specialpages' => 'გჷშაკერძაფილი ხასჷლეფი',
 
 # External image whitelist
 'external_image_whitelist' => '"#ქჷდიტე თე ღოზი კოკობო მუჭო რენ თეში<pre>

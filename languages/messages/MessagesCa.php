@@ -321,6 +321,7 @@ $messages = array(
 'index-category' => 'Pàgines indexades',
 'noindex-category' => 'Pàgines no indexades',
 'broken-file-category' => 'Pàgines amb enllaços a fitxer trencats',
+'categoryviewer-pagedlinks' => '($1) ($2)',
 
 'about' => 'Quant a',
 'article' => 'Pàgina de contingut',
@@ -390,7 +391,7 @@ $messages = array(
 'unprotect' => 'Desprotecció',
 'unprotectthispage' => 'Desprotegeix aquesta pàgina',
 'newpage' => 'Pàgina nova',
-'talkpage' => 'Discussió de la pàgina',
+'talkpage' => 'Discussió',
 'talkpagelinktext' => 'Discussió',
 'specialpage' => 'Pàgina especial',
 'personaltools' => "Eines de l'usuari",
@@ -1415,6 +1416,7 @@ Ha de tenir com a molt {{PLURAL:$1|un caràcter|$1 caràcters}}.',
 'right-writeapi' => "Fer servir l'escriptura a l'API",
 'right-delete' => 'Esborrar pàgines',
 'right-bigdelete' => 'Esborrar pàgines amb historials grans',
+'right-deletelogentry' => "Suprimeix o desfés la supressió d'entrades de registre específiques",
 'right-deleterevision' => 'Esborrar i restaurar versions específiques de pàgines',
 'right-deletedhistory' => 'Veure els historials esborrats sense consultar-ne el text',
 'right-deletedtext' => 'Veure el text esborrat i els canvis entre revisions esborrades',
@@ -1708,6 +1710,7 @@ $1',
 'lockmanager-fail-releaselock' => "No s'ha pogut alliberar el bloqueig de «$1».",
 'lockmanager-fail-db-bucket' => "No s'han pogut contactar un nombre suficient de bases de bloqueig en el cubell $1.",
 'lockmanager-fail-db-release' => "No s'han pogut alliberar els bloquejos a la base de dades $1.",
+'lockmanager-fail-svr-acquire' => "No s'han pogut aconseguir els bloquejos al servidor $1.",
 'lockmanager-fail-svr-release' => "No s'han pogut alliberar els bloquejos al servidor $1.",
 
 # ZipDirectoryReader
@@ -3809,6 +3812,4 @@ Altrament, podeu fer servir un senzill formulari a continuació. El vostre comen
 'duration-centuries' => '$1 {{PLURAL:$1|segle|segles}}',
 'duration-millennia' => '$1 {{PLURAL:$1|mil·leni|mil·lenis}}',
 
-# Unknown messages
-'lockmanager-fail-svr-acquire' => "No s'han pogut aconseguir els bloquejos al servidor $1.",
 );

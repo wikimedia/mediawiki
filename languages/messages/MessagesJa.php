@@ -2515,7 +2515,7 @@ $UNWATCHURL
 このページの最後の編集は[[User:$3|$3]]（[[User talk:$3|トーク]]{{int:pipe-separator}}[[Special:Contributions/$3|{{int:contribslink}}]]）によるものです。',
 'editcomment' => "編集内容の要約：「''$1''」",
 'revertpage' => '[[Special:Contributions/$2|$2]]（[[User talk:$2|トーク]]）による編集を[[User:$1|$1]]による直前の版へ差し戻しました',
-'revertpage-nouser' => '（利用者名削除）による編集を[[User:$1|$1]]による最新版へ差し戻しました',
+'revertpage-nouser' => '（利用者名削除）による編集を[[User:$1|$1]]による直前の版へ差し戻しました',
 'rollback-success' => '$1による編集を差し戻しました。
 $2による直前の版へ変更されました。',
 
@@ -2532,7 +2532,7 @@ $2による直前の版へ変更されました。',
 'protectedarticle' => '「[[$1]]」を保護しました',
 'modifiedarticleprotection' => '「[[$1]]」の保護レベルを変更しました',
 'unprotectedarticle' => '「[[$1]]」の保護を解除しました',
-'movedarticleprotection' => ' が保護の設定を「[[$2]]」から「[[$1]]」へ移動しました',
+'movedarticleprotection' => 'が保護の設定を「[[$2]]」から「[[$1]]」へ移動しました',
 'protect-title' => '「$1」の保護レベルを変更',
 'protect-title-notallowed' => '「$1」の保護レベルを表示',
 'prot_1movedto2' => '[[$1]] を [[$2]] へ移動',
@@ -2792,8 +2792,8 @@ $1のブロックの理由は「''$2''」です。",
 参考のため、ブロックの記録を以下に示します：',
 'blocklog-showsuppresslog' => 'この利用者は以前にブロックされ、隠されたことがあります。
 参考のため、秘匿記録を以下に示します：',
-'blocklogentry' => ' が [[$1]] を$2ブロックしました。ブロックの詳細：$3',
-'reblock-logentry' => ' が [[$1]] のブロック設定を$2に変更しました。ブロックの詳細：$3',
+'blocklogentry' => 'が [[$1]] を$2ブロックしました。ブロックの詳細：$3',
+'reblock-logentry' => 'が [[$1]] のブロック設定を$2に変更しました。ブロックの詳細：$3',
 'blocklogtext' => 'このページは利用者のブロックと解除の記録です。
 自動的にブロックされたIPアドレスは表示されていません。
 現時点で有効なブロックは[[Special:BlockList|ブロックの一覧]]をご覧ください。',

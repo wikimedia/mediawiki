@@ -3692,6 +3692,7 @@ Paveikslėliai yra rodomi pilna raiška, kiti failų tipai paleidžiami tiesiogi
 # New logging system
 'logentry-delete-delete' => '$1 ištrynė puslapį $3',
 'logentry-delete-restore' => '$1 atkūrė puslapį $3',
+'logentry-delete-revision' => '$1 pakeitė puslapio „$3“ {{PLURAL:$5|versijos|$5 versijų}} matomumą: $4',
 'revdelete-content-hid' => 'turinys paslėptas',
 'revdelete-summary-hid' => 'paslėptas keitimo komentaras',
 'revdelete-uname-hid' => 'paslėptas naudotojo vardas',

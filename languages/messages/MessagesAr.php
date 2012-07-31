@@ -819,6 +819,8 @@ $1',
 'cannotdelete' => 'تعذر حذف الصفحة أو الملف "$1".
 ربما حذفها شحص آخر.',
 'cannotdelete-title' => 'لا يمكن حذف الصفحة "$1"',
+'delete-hook-aborted' => 'إحباط الحذف من قبل هوك.
+لم يقدم أي توضيح.',
 'badtitle' => 'عنوان سيء',
 'badtitletext' => 'عنوان الصفحة المطلوب إما غير صحيح أو فارغ، وربما الوصلة بين اللغات أو بين المشاريع خاطئة.
 ومن الممكن وجود رموز لا تصلح للاستخدام في العناوين.',
@@ -855,6 +857,8 @@ $2',
 المدير الذي قام بغلقه قدم التفسير التالي: "$3".',
 'invalidtitle-knownnamespace' => 'عنوان غير صالح في النطاق «$2» مع نص «$3»',
 'invalidtitle-unknownnamespace' => 'عنوان غير صالح ذو نطاق غير معروف رقم $1 ونص «$2»',
+'exception-nologin' => 'غير مسجل الدخول',
+'exception-nologin-text' => 'تتطلب هذه الصفحة أو الفعل منك القيام بتسجيل الدخول على هذه الويكي أولا.',
 
 # Virus scanner
 'virus-badscanner' => "ضبط سيء: ماسح فيروسات غير معروف: ''$1''",
@@ -1718,6 +1722,7 @@ $1",
 'right-writeapi' => 'استخدام API للكتابة',
 'right-delete' => 'حذف الصفحات',
 'right-bigdelete' => 'حذف الصفحات ذات التواريخ الكبيرة',
+'right-deletelogentry' => 'حذف والغاء حذف إدخالات سجل معين',
 'right-deleterevision' => 'حذف واسترجاع مراجعات معينة من الصفحات',
 'right-deletedhistory' => 'رؤية مدخلات التاريخ المحذوفة، بدون نصوصها المصاحبة',
 'right-deletedtext' => 'عرض النص المحذوف والتغييرات بين المراجعات المحذوفة',
@@ -2036,6 +2041,7 @@ $1',
 'lockmanager-fail-releaselock' => 'تعذر تحرير التأمين لـ "$1"..',
 'lockmanager-fail-db-bucket' => 'تعذر الإتصال بعدد كافي من قواعد تأمين البيانات في الحزمة $1.',
 'lockmanager-fail-db-release' => 'تعذر تحرير الأقفال في  قاعدة البيانات $1.',
+'lockmanager-fail-svr-acquire' => 'لم يمكن فرض أقفال على المخدم $1.',
 'lockmanager-fail-svr-release' => 'تعذر تحرير الأقفال على الخادم $1.',
 
 # ZipDirectoryReader
@@ -3273,6 +3279,7 @@ $1',
 'spambot_username' => 'تنظيف سبام ميدياويكي',
 'spam_reverting' => 'استرجاع آخر نسخة ليس بها وصلات إلى $1',
 'spam_blanking' => 'كل النسخ احتوت على وصلات ل $1، إفراغ',
+'spam_deleting' => 'جميع النسخ تحوي رابطا إلى $1، يتم الحذف',
 
 # Info page
 'pageinfo-title' => 'المعلومات ل"$1"',
@@ -4198,9 +4205,9 @@ $5
 'sqlite-no-fts' => '$1 بدون دعم البحث في كامل النص',
 
 # New logging system
-'logentry-delete-delete' => '{{GENDER:$2|حذف|حذفت}} $1 صفحة $3',
+'logentry-delete-delete' => '$1 حذف الصفحة $3',
 'logentry-delete-restore' => 'استعاد $1 صفحة $3',
-'logentry-delete-event' => '{{GENDER:$2|غيّر|غيّرت}} $1 إمكانية مشاهدة {{PLURAL:$5||حدث|حدثين|$5 أحداث|$5 حدثًا|$5 حدث}} في سجل $3: $4',
+'logentry-delete-event' => '$1 غير خاصية العرض لـ {{PLURAL:$5|مدخل السجل|$5 مدخلات السجل}} في $3: $4',
 'logentry-delete-revision' => 'غيّر $1 إمكانية مشاهدة {{PLURAL:$5||مراجعة واحدة|مراجعتين|$5 مراجعات|$5 مراجعة}} في صفحة $3: $4',
 'logentry-delete-event-legacy' => 'غيّر $1 إمكانية رؤية أحداث سجل $3',
 'logentry-delete-revision-legacy' => 'غيّر $1 إمكانية رؤية مراجعات صفحة $3',

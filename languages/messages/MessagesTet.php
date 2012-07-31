@@ -8,6 +8,7 @@
  * @file
  *
  * @author MF-Warburg
+ * @author Nemo bis
  * @author Reedy
  */
 
@@ -426,7 +427,7 @@ Ita-nia mudansa la armazenadu seidauk!",
 'timezoneregion-europe' => 'Europa',
 'youremail' => 'Korreiu eletróniku:',
 'username' => "Naran uza-na'in:",
-'uid' => "Uza-na'in ID:",
+'uid' => "Númeru uza-na'in:",
 'yourlanguage' => 'Lian:',
 'gender-male' => 'Mane',
 'gender-female' => 'Feto',

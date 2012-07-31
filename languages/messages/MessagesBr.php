@@ -813,7 +813,7 @@ Merkit mat an titouroù-se war kement goulenn savet ganeoc'h.
 'nosuchsectiontext' => "Klasket hoc'h eus kemmañ ur rann n'eus ket anezhi.
 Moarvat ez eo bet dilerc'hiet pe dilamet abaoe ma oa bet lennet ganeoc'h.",
 'loginreqtitle' => 'Anv implijer rekis',
-'loginreqlink' => 'Kevreañ',
+'loginreqlink' => 'kevreañ',
 'loginreqpagetext' => "Ret eo deoc'h $1 evit gwelet pajennoù all.",
 'accmailtitle' => 'Ger-tremen kaset.',
 'accmailtext' => "Kaset ez eus bet ur ger-tremen dargouezhek evit [[User talk:$1|$1]] da $2.
@@ -1134,7 +1134,7 @@ Gwiriit ne vo ket torret red istor ar bajenn gant ar c'hemm-mañ.",
 'lineno' => 'Linenn $1:',
 'compareselectedversions' => 'Keñveriañ ar stummoù diuzet',
 'showhideselectedversions' => 'Diskouez/Kuzhat ar stummoù diuzet',
-'editundo' => 'disteuler',
+'editundo' => 'dizober',
 'diff-multi' => "({{PLURAL:$1|Ur reizhadenn da c'hortoz|$1 reizhadenn da c'hortoz}} gant {{PLURAL:$2|un implijer|$2 implijer}} kuzhet.)",
 'diff-multi-manyusers' => "({{PLURAL:$1|Ur reizhadenn da c'hortoz|$1 reizhadenn da c'hortoz}} gant muioc'h eget $2 {{PLURAL:$2|implijer|implijer}} kuzhet.)",
 
@@ -1715,6 +1715,7 @@ Ma talc'h ar gudenn, kit e darempred gant [[Special:ListUsers/sysop|merourien ar
 'lockmanager-fail-releaselock' => 'Dibosupl leuskel ar prenn digor evit "$1".',
 'lockmanager-fail-db-bucket' => "Dibosupl mont e darempred gant diazoù roadennoù a-walc'h evit ar c'helornad $1.",
 'lockmanager-fail-db-release' => 'Dibosupl da leuskel ar prennoù digor war an diaz roadennoù $1.',
+'lockmanager-fail-svr-acquire' => 'Dibosupl eo bet tapout ar prennoù war ar servijer $1.',
 'lockmanager-fail-svr-release' => 'Dibosupl da leuskel ar prennoù digor war ar servijer $1.',
 
 # ZipDirectoryReader
@@ -2079,7 +2080,7 @@ Protokoloù skoret : <tt>$1</tt> (na lakait hini ebet eus ar re-se en ho klask)'
 # Special:ActiveUsers
 'activeusers' => 'Roll an implijerien oberiant',
 'activeusers-intro' => 'Setu aze ur roll eus an implijerien zo bet oberiant mui pe vui e-pad an $1 {{PLURAL:$1|deiz|deiz}} diwezhañ.',
-'activeusers-count' => '$1 {{PLURAL:$1|degasadenn}} abaoe an {{PLURAL:$3|deiz}} diwezhañ',
+'activeusers-count' => '$1 {{PLURAL:$1|degasadenn}} abaoe an {{PLURAL:$3|deiz|$3 deiz}} diwezhañ',
 'activeusers-from' => 'Diskouez an implijerien adal :',
 'activeusers-hidebots' => 'Kuzhat ar robotoù',
 'activeusers-hidesysops' => 'Kuzhat ar verourien',
@@ -3849,6 +3850,4 @@ A-hend-all e c'hallit ober gant ar furmskrid eeunaet dindan. Ouzhpennet e vo hoc
 'duration-centuries' => "$1 {{PLURAL:$1|c'hantved|kantved}}",
 'duration-millennia' => '$1 {{PLURAL:$1|milvloaz|milvoaz}}',
 
-# Unknown messages
-'lockmanager-fail-svr-acquire' => 'Dibosupl eo bet tapout ar prennoù war ar servijer $1.',
 );

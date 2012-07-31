@@ -8,6 +8,7 @@
  * @file
  *
  * @author ILVI
+ * @author Jewbask
  * @author Remember the dot
  * @author Runningfridgesrule
  * @author Taichi
@@ -654,6 +655,7 @@ Leyenda: (act) = diferencias con la versión actual,
 'nextn-title' => '$1 {{PLURAL:$1|resultado|resultados}} venideros',
 'shown-title' => 'Àmostrar $1 {{PLURAL:$1|resultado|resultados}} por hoja',
 'viewprevnext' => 'Ver ($1 {{int:pipe-separator}} $2) ($3).',
+'searchmenu-exists' => 'Egziste una oja yamada "[[:$1]]" en esta viki',
 'searchmenu-new' => "'''Crîar la hoja «[[:$1]]» en esta viki!'''",
 'searchhelp-url' => 'Help:Ayudo',
 'searchprofile-articles' => 'Hojas de contènido',
@@ -789,6 +791,7 @@ Las hojas en tu [[Special:Watchlist|lista de akavidamiento]] son escritas '''con
 'file-anchor-link' => 'Archivo',
 'filehist' => 'La storia del dosya',
 'filehist-help' => 'Klika encima de una data/ora para vel el arxivo de esta data.',
+'filehist-revert' => 'aboltar',
 'filehist-current' => 'actual',
 'filehist-datetime' => 'Data/Ora',
 'filehist-thumb' => 'Minyatura',

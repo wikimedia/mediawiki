@@ -1680,6 +1680,7 @@ Wann de Problem weider besteet, dann un de [[Special:ListUsers/sysop|Administrat
 'lockmanager-fail-openlock' => 'De Spärfichier fir "$1" konnt net opgemaach ginn.',
 'lockmanager-fail-releaselock' => 'D\'Spär fir "$1" konnt net opgehuewe ginn.',
 'lockmanager-fail-db-release' => "D'Spären op der Datebank $1 konnten net fräigeschalt ginn.",
+'lockmanager-fail-svr-acquire' => "D'Spären um Server $1 konnten net ofgefrot ginn.",
 'lockmanager-fail-svr-release' => "D'Spären um Server $1 konnten net fräigeschalt ginn.",
 
 # ZipDirectoryReader
@@ -1949,7 +1950,7 @@ An all Rei sti Linken zur éischter an zweeter Viruleedung, souwéi d\'Zil vun d
 'protectedtitlesempty' => 'Zur Zäit si mat de Parameteren déi Dir uginn hutt keng Säite fir neit Uleeë gespaart.',
 'listusers' => 'Benotzerlëscht',
 'listusers-editsonly' => 'Nëmme Benotzer mat Ännerunge weisen',
-'listusers-creationsort' => 'No dem Datum vum Uleeë sortéieren',
+'listusers-creationsort' => 'Nom Datum vum Uleeën zortéieren',
 'usereditcount' => '$1 {{PLURAL:$1|Ännerung|Ännerungen}}',
 'usercreated' => "{{GENDER:$3|De(n)|D'}} $1 ëm $2 Auer ugeluecht",
 'newpages' => 'Nei Säiten',
@@ -2015,8 +2016,8 @@ Dir kënnt d'Siche limitéieren wann Dir e Log-Typ, e Benotzernumm (case-senisit
 [[Special:UnusedCategories|Netbenotzt Kategorië]] ginn hei net gewisen.
 Kuckt och [[Special:WantedCategories|Gewënscht Kategorien]].',
 'categoriesfrom' => 'Weis Kategorien ugefaang bei:',
-'special-categories-sort-count' => 'No der Zuel sortéieren',
-'special-categories-sort-abc' => 'alphabetesch sortéieren',
+'special-categories-sort-count' => 'No der Zuel zortéieren',
+'special-categories-sort-abc' => 'alphabetesch zortéieren',
 
 # Special:DeletedContributions
 'deletedcontributions' => 'Geläschte Kontributiounen',
@@ -3717,6 +3718,7 @@ Soss kënnt Dir den einfache Formulär hei drënner benotzen. Är Bemierkung gë
 'api-error-emptypage' => 'Et ass net erlaabt nei, eidel Säiten unzeleeën.',
 'api-error-fetchfileerror' => 'Interne Feeler: beim Opruffe vum Fichier huet eppes net fonctionnéiert.',
 'api-error-fileexists-forbidden' => 'E Fichier mam Numm "$1" gëtt et schonn an e kann net iwwerschriwwe ginn.',
+'api-error-fileexists-shared-forbidden' => 'E Fichier mam Numm "$1" gëtt et schonn am gedeelte Repertoire an e kann net iwwerschriwwe ginn.',
 'api-error-file-too-large' => 'De Fichier deen Dir geschéckt hutt war ze grouss.',
 'api-error-filename-tooshort' => 'Den Numm vum Fichier ass ze kuerz.',
 'api-error-filetype-banned' => 'Dësen Typ vu Fichier ass net zougelooss.',
@@ -3755,6 +3757,4 @@ Soss kënnt Dir den einfache Formulär hei drënner benotzen. Är Bemierkung gë
 'duration-centuries' => '$1 {{PLURAL:$1|Joerhonnert|Joerhonnerten}}',
 'duration-millennia' => '$1 {{PLURAL:$1|Millenaire|Millenairen}}',
 
-# Unknown messages
-'lockmanager-fail-svr-acquire' => "D'Spären um Server $1 konnten net ofgefrot ginn.",
 );

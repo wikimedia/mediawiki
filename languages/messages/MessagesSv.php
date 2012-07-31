@@ -1551,6 +1551,7 @@ Om du väljer att ange ditt riktiga namn, kommer det att användas för att till
 'right-writeapi' => 'Använda skriv-API:t',
 'right-delete' => 'Radera sidor',
 'right-bigdelete' => 'Radera sidor med stor historik',
+'right-deletelogentry' => 'Radera och återställ specifika loggposter',
 'right-deleterevision' => 'Radera och återställa enskilda sidversioner',
 'right-deletedhistory' => 'Se raderad historik utan tillhörande sidtext',
 'right-deletedtext' => 'Visa raderad text och ändringar mellan raderade versioner',
@@ -1864,6 +1865,7 @@ Om problemet kvarstår, kontakta en [[Special:ListUsers/sysop|administratör]].'
 'lockmanager-fail-releaselock' => 'Kunde inte att frigöra låset för "$1".',
 'lockmanager-fail-db-bucket' => 'Kunde inte kontakta tillräckligt många låsdatabaser i hinken $1.',
 'lockmanager-fail-db-release' => 'Kunde inte frigöra låsen på databasen $1 .',
+'lockmanager-fail-svr-acquire' => 'Kunde inte erhålla lås på servern $1 .',
 'lockmanager-fail-svr-release' => 'Kunde inte frigöra låsen på servern $1.',
 
 # ZipDirectoryReader
@@ -3994,6 +3996,4 @@ Annars kan du använda det enkla formuläret nedan. Din kommentar kommer att lä
 'duration-centuries' => '$1 {{PLURAL:$1|sekel|sekel}}',
 'duration-millennia' => '$1 {{PLURAL:$1|millennium|millennier}}',
 
-# Unknown messages
-'lockmanager-fail-svr-acquire' => 'Kunde inte erhålla lås på servern $1 .',
 );

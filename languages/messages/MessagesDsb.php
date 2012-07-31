@@ -162,14 +162,14 @@ $messages = array(
 # User preference toggles
 'tog-underline' => 'Wótkaze pódšmarnuś:',
 'tog-justify' => 'Tekst do bloka zrownaś',
-'tog-hideminor' => 'Małe změny schowaś',
+'tog-hideminor' => 'Małe změny w aktualnych změnach schowaś',
 'tog-hidepatrolled' => 'Doglědowane změny w aktualnych změnach schowaś',
 'tog-newpageshidepatrolled' => 'Doglědowane boki z lisćiny nowych bokow schowaś',
 'tog-extendwatchlist' => 'Wobglědowańku wócyniś, aby wšě změny pokazał, nic jano nejnowše',
 'tog-usenewrc' => 'Kupkowe změny pó boku w aktualnych změnach a wobglědowanjach (trjeba JavaScript)',
 'tog-numberheadings' => 'Nadpisma awtomatiski numerěrowaś',
-'tog-showtoolbar' => 'Wobźěłańsku lejstwu pokazaś (JavaScript)',
-'tog-editondblclick' => 'Boki z dwójnym kliknjenim wobźěłaś (JavaScript)',
+'tog-showtoolbar' => 'Wobźěłańsku lejstwu pokazaś (pótrjebujo JavaScript)',
+'tog-editondblclick' => 'Boki z dwójnym kliknjenim wobźěłaś (pótrjebujo JavaScript)',
 'tog-editsection' => 'Wobźěłanje wótstawkow pśez wótkaze [wobźěłaś] zmóžniś',
 'tog-editsectiononrightclick' => 'Wobźěłanje wótstawkow pśez kliknjenje z pšaweju tastu myški zmóžniś (JavaScript)',
 'tog-showtoc' => 'Wopśimjeśe pokazaś, jolic ma bok wěcej nježli 3 nadpisma',
@@ -1357,6 +1357,7 @@ Móžoš toś ten bok wužywaś, aby slědk stajił swóje nastajenja na standar
 'right-writeapi' => 'writeAPI wužywaś',
 'right-delete' => 'Boki wulašowaś',
 'right-bigdelete' => 'lašowaś boki, kótarež maju wjelike stawizny',
+'right-deletelogentry' => 'Jadnotliwe protokolowe zapiski wulašowaś a wótnowiś',
 'right-deleterevision' => 'Specifiske boki lašowaś a wótnowiś',
 'right-deletedhistory' => 'Wulašowane wersiji w stawiznach se bśez pśisłušnego teksta wobglědaś',
 'right-deletedtext' => 'Wulašowany tekst a změny mjazy wulašowanymi wersijami se woglědaś',
@@ -1665,6 +1666,7 @@ $1',
 'lockmanager-fail-releaselock' => 'Zastajenje za "$1" njedajo se dopušćiś.',
 'lockmanager-fail-db-bucket' => 'W zběrniku $1 njedajo se dosć zastajeńskich datowych bankow kontaktěrowaś',
 'lockmanager-fail-db-release' => 'Zastajenja na datowu banku $1 njedaju se dopušćiś.',
+'lockmanager-fail-svr-acquire' => 'Zastajenja na serwer $1 njedaju se wótwołaś.',
 'lockmanager-fail-svr-release' => 'Zastajenja na serwer $1 njedaju se dopušćiś.',
 
 # ZipDirectoryReader
@@ -3732,6 +3734,4 @@ Hować móžoš slědujucy jadnory formular wužywaś. Twój komentar pśidajo s
 'duration-centuries' => '$1 {{PLURAL:$1|stolěśe|stolěśi|stolěśa|stolěśow}}',
 'duration-millennia' => '$1 {{PLURAL:$1|lěttysac|lěttysaca|lěttysace|lěttysacow}}',
 
-# Unknown messages
-'lockmanager-fail-svr-acquire' => 'Zastajenja na serwer $1 njedaju se wótwołaś.',
 );

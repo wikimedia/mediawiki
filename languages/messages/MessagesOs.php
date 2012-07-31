@@ -1569,4 +1569,30 @@ $3',
 'feedback-message' => 'Фыстæг:',
 'feedback-close' => 'Æххæст',
 
+# API errors
+'api-error-noimageinfo' => 'Æвгæд æххæст у, фæлæ нын сервер ницыуал рабæрæг кодта файлы тыххæй.',
+'api-error-nomodule' => 'Мидæггаг рæдыд: Бавгæнæн модуль нæу æвæрд.',
+'api-error-ok-but-empty' => 'Мидæггаг рæдыд: Серверæй дзуапп нæй.',
+'api-error-overwrite' => 'Уæвгæ файл ногæй фыссын нæй гæнæн.',
+'api-error-stashfailed' => 'Мидæггаг рæдыд: Серверæн нæ рауадис рæстæгмæ файл фæдарын.',
+'api-error-timeout' => 'Сервер нæ радта дзуапп бадзырд рæстæгмæ.',
+'api-error-unclassified' => 'Нæзонгæ рæдыд æрцыд.',
+'api-error-unknown-code' => 'Нæзонгæ рæдыд: "$1".',
+'api-error-unknown-error' => 'Мидæггаг рæдыд: Цыдæр раст нæ ацыдис, файл куы æвгæдтай, уæд.',
+'api-error-unknown-warning' => 'Нæзонгæ фæдзæхст: "$1".',
+'api-error-unknownerror' => 'Нæзонгæ рæдыд: "$1".',
+'api-error-uploaddisabled' => 'Ацы викийы бавгæныны фадат хицæн у.',
+'api-error-verification-error' => 'Ацы файл гæнæн ис хæлд у, кæнæ йæ номы фæстаг хай раст нæу.',
+
+# Durations
+'duration-seconds' => '$1 {{PLURAL:$1|секунд|секунды}}',
+'duration-minutes' => '$1 {{PLURAL:$1|минут|минуты}}',
+'duration-hours' => '$1 {{PLURAL:$1|сахат|сахаты}}',
+'duration-days' => '$1 {{PLURAL:$1|бон|боны}}',
+'duration-weeks' => '$1 {{PLURAL:$1|къуыри|къуырийы}}',
+'duration-years' => '$1 {{PLURAL:$1|аз|азы}}',
+'duration-decades' => '$1 {{PLURAL:$1|дæсадз|дæсадзы}}',
+'duration-centuries' => '$1 {{PLURAL:$1|æнус|æнусы}}',
+'duration-millennia' => '$1 {{PLURAL:$1|мин аз|мин азы}}',
+
 );

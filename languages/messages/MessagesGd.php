@@ -580,6 +580,22 @@ $2
 
 Falbhaidh an ùine air {{PLURAL:$3|an fhacal-fhaire|an dà fhacal-faire|na faclan-faire|na faclan-faire|na faclan-faire|na faclan-faire}} sealach seo ann an {{PLURAL:$5|latha|$5 latha|$5 latha|$5 latha|$5 làithean|$5 latha}}.
 Bu chòir dhut clàradh a-steach agus facal-faire ùr a thaghadh an-dràsta. Ma dh'iarr cuideigin eile seo no ma chuimhnich thu air an fhacal-fhaire agad 's mur eil thu airson atharrachadh tuilleadh, leig seachad an teachdaireachd seo 's lean ort leis an t-seann fhacal-fhaire.",
+'passwordreset-emailelement' => 'Ainm-cleachdaiche: $1
+Facal-faire sealach: $2',
+'passwordreset-emailsent' => "Chaidh cuimhneachan a chur air a' phost-d.",
+'passwordreset-emailsent-capture' => "Chaidh cuimhneachan a chur air a' phost-d agus chì thu sin gu h-ìosal.",
+'passwordreset-emailerror-capture' => "Chaidh cuimhneachan a chur air a' phost-d agus chì thu sin gu h-ìosal ach cha b' urrainn dhuinn a chur dhan chleachdaiche: $1",
+
+# Special:ChangeEmail
+'changeemail' => 'Atharraich am post-d',
+'changeemail-header' => "Atharraich cunntas a' phuist-d",
+'changeemail-text' => 'Lìon am foirm seo gus am post-d agad atharrachadh. Feumaidh tu am facal-faire agad a chur a-steach a-rithist gus a dhearbhadh.',
+'changeemail-no-info' => 'Feumaidh tu clàradh a-steach mus dèan thu inntrigeadh dìreach dhan duilleag seo.',
+'changeemail-oldemail' => 'An seòladh puist-d làithreach:',
+'changeemail-newemail' => 'An seòladh puist-d ùr:',
+'changeemail-none' => '(chan eil gin)',
+'changeemail-submit' => 'Atharraich am post-d',
+'changeemail-cancel' => 'Sguir dheth',
 
 # Edit page toolbar
 'bold_sample' => 'Teacs trom',
@@ -609,11 +625,47 @@ Bu chòir dhut clàradh a-steach agus facal-faire ùr a thaghadh an-dràsta. Ma 
 'savearticle' => 'Sàbhail an duilleag',
 'preview' => 'Ro-shealladh',
 'showpreview' => 'Seall an ro-shealladh',
+'showlivepreview' => 'Ro-shealladh beò',
 'showdiff' => 'Seall na mùthaidhean',
 'anoneditwarning' => "'''Rabhadh:''' Chan eil thu air logadh a-steach.
 Thèid an seòladh IP agad a chlàrachadh ann an eachdraidh na duilleige seo.",
+'anonpreviewwarning' => "''Chan eil thu air clàradh a-steach. Ma nì thu sàbhaladh, thèid an seòladh IP agad a chlàradh ann an eachdraidh deasachadh na duilleige seo.''",
+'missingsummary' => "'''Cuimhnich:''' Cha dug thu seachad gearr-chunntas air na dh'atharraich thu.
+Ma bhriogas tu air \"{{int:savearticle}}\" a-rithist, thèid na dheasaich thu a shàbhaladh as aonais gearr-chunntais.",
+'missingcommenttext' => 'Cuir a-steach beachd gu h-ìosal.',
+'missingcommentheader' => "'''Cuimhnich:''' Cha dug thu seachad cuspair/ceann airson a' bheachd seo.
+Ma bhriogas tu air \"{{int:savearticle}}\" a-rithist, thèid na dheasaich thu a shàbhaladh as aonais.",
 'summary-preview' => "Ro-shealladh a' ghearr-chunntais:",
+'subject-preview' => "Ro-shealladh air a' chuspair/air a' cheann:",
 'blockedtitle' => 'Tha an cleachdair air a bhacadh',
+'blockedtext' => "''Chaidh an t-ainm-cleachdaiche no an seòladh IP agad a bhacadh.'''
+
+'S e \$1 a chur am bacadh seo ort.
+Thug iad an cèill gun do rinn iad sinn air sgàth an adhbhair seo: ''\$2''.
+
+* Toiseach a' bhacaidh: \$8
+* Deireadh a' bhacaidh: \$6
+* An neach air a bheil am bacadh: \$7
+
+'S urrainn dhut fios a chur gu \$1 no [[{{MediaWiki:Grouppage-sysop}}|rianair]] eile gus am bacadh seo a dheasbad.
+Chan urrainn dhut am feart \"Cuir post-d dhan chleachdaiche seo\" a chleachdadh ach ma tha seòladh puist-d dligheach ann an [[Special:Preferences|roghainnean a' chunntais agad]] agus mura deach bacadh a chur air a chleachdadh.
+'S e \$3 an seòladh IP làithreach agus agus 's e #\$5 ID a' bhacaidh.
+Thoir iomradh air a' mhion-fhiosrachadh gu h-àrd ma chuireas tu ceist sam bith mu dhèidhinn.",
+'autoblockedtext' => "''Chaidh an seòladh IP agad a bhacadh gu fèin-obrachail a chionn 's gun deach a chleachdadh le cuideigin eile a chaidh a bhacadh le \$1.'''
+Thug iad an cèill gun do rinn iad sinn air sgàth an adhbhair seo: 
+
+:''\$2''.
+
+* Toiseach a' bhacaidh: \$8
+* Deireadh a' bhacaidh: \$6
+* An neach air a bheil am bacadh: \$7
+
+'S urrainn dhut fios a chur gu \$1 no [[{{MediaWiki:Grouppage-sysop}}|rianair]] eile gus am bacadh seo a dheasbad.
+
+Dh'fhaoidte nach urrainn dhut am feart \"Cuir post-d dhan chleachdaiche seo\" a chleachdadh ach ma tha seòladh puist-d dligheach ann an [[Special:Preferences|roghainnean a' chunntais agad]] agus mura deach bacadh a chur air a chleachdadh.
+
+'S e \$3 an seòladh IP làithreach agus agus 's e #\$5 ID a' bhacaidh.
+Thoir iomradh air a' mhion-fhiosrachadh gu h-àrd ma chuireas tu ceist sam bith mu dhèidhinn.",
 'loginreqlink' => 'log a-steach',
 'accmailtitle' => 'Facal-faire air a chur.',
 'accmailtext' => "Chaidh facal-faire a chruthachadh air thuaiream airson [[User talk:$1|$1]] 's a chur gu $2.

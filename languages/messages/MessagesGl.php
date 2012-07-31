@@ -1480,6 +1480,7 @@ Ha de ter menos {{PLURAL:$1|dun carácter|de $1 caracteres}}.',
 'right-writeapi' => 'Usar a API para modificar o wiki',
 'right-delete' => 'Borrar páxinas',
 'right-bigdelete' => 'Borrar páxinas con historiais grandes',
+'right-deletelogentry' => 'Borrar e restaurar entradas de rexistro específicas',
 'right-deleterevision' => 'Borrar e restaurar versións específicas de páxinas',
 'right-deletedhistory' => 'Ver as entradas borradas do historial, sen o seu texto asociado',
 'right-deletedtext' => 'Ver texto borrado e cambios entre revisións eliminadas',
@@ -1799,6 +1800,7 @@ Se o problema persiste, póñase en contacto cun [[Special:ListUsers/sysop|admin
 'lockmanager-fail-releaselock' => 'Non se puido liberar o peche de "$1".',
 'lockmanager-fail-db-bucket' => 'Non se puido contactar cos peches de bases de datos suficientes no cubo $1.',
 'lockmanager-fail-db-release' => 'Non se puideron liberar os peches na base de datos $1.',
+'lockmanager-fail-svr-acquire' => 'Non se puideron obter os peches no servidor $1.',
 'lockmanager-fail-svr-release' => 'Non se puideron liberar os peches no servidor $1.',
 
 # ZipDirectoryReader
@@ -3944,6 +3946,4 @@ En caso contrario, pode empregar o formulario sinxelo inferior. O seu comentario
 'duration-centuries' => '$1 {{PLURAL:$1|século|séculos}}',
 'duration-millennia' => '$1 {{PLURAL:$1|milenio|milenios}}',
 
-# Unknown messages
-'lockmanager-fail-svr-acquire' => 'Non se puideron obter os peches no servidor $1.',
 );

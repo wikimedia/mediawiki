@@ -2683,8 +2683,8 @@ Për piasì, ch'a preuva torna.",
 
 # Tooltip help for the actions
 'tooltip-pt-userpage' => 'Soa pàgina utent',
-'tooltip-pt-anonuserpage' => 'Pàgina Utent për l',
-'tooltip-pt-mytalk' => 'Toa pàgina ëd discussion e ciaciarade.',
+'tooltip-pt-anonuserpage' => "La pàgina utent për l'IP con ël qual chiel a contribuiss",
+'tooltip-pt-mytalk' => 'Soa pàgina ëd discussion e ciaciarade',
 'tooltip-pt-anontalk' => 'Pàgina ëd ciaciarade për l',
 'tooltip-pt-preferences' => 'Coma che i veuj mia {{SITENAME}}.',
 'tooltip-pt-watchlist' => 'Lista dle pàgine che chiel as ten sot euj.',

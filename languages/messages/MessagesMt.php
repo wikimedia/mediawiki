@@ -948,6 +948,7 @@ Jekk jogħġbok, erġa' pprova. Jekk xorta tibqa' ma taħdimx, ipprova [[Special
 Din il-modifika ma ġietx aċċettata sabiex ma jkunx hemm żballji fit-test tal-paġna. Dan xi kultant jiġri minħabba li qiegħed tuża servizz difettuż anonimu li huwa bbażat fuq il-web ta' prokura.'''",
 'edit_form_incomplete' => "'''Ċerti parti tal-formola tal-modifika ma laħqux is-server; iċċekkja jekk il-modifiki tiegħek humiex intatti u erġa' pprova.'''",
 'editing' => "Modifika ta' $1",
+'creating' => 'Qiegħed toħloq $1',
 'editingsection' => "Modifika ta' $1 (sezzjoni)",
 'editingcomment' => 'Qed jiġi editjat $1 (sezzjoni ġdida)',
 'editconflict' => "Kunflitt t'editjar: $1",

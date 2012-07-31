@@ -7,6 +7,7 @@
  * @ingroup Language
  * @file
  *
+ * @author Amahoney
  * @author Andrew Dalby
  * @author Dferg
  * @author Esteban97
@@ -171,15 +172,15 @@ $messages = array(
 'tog-editsectiononrightclick' => 'Paginarum segmenta dextero percussu in titulis redigenda (JavaScript poscitur)',
 'tog-showtoc' => 'Indicem plurium quam III segmentorum paginis praebere',
 'tog-rememberpassword' => 'Memorare tesserae meae hoc in navigatro inter conventa ({{PLURAL:$1|die|diebus}} $1 tenus)',
-'tog-watchcreations' => 'Paginas quas creo in paginarum custoditarum indicem addere',
-'tog-watchdefault' => 'Paginas quas recenseo in paginarum custoditarum indicem addere',
-'tog-watchmoves' => 'Paginas quas moveo in paginarum custoditarum indicem addere',
-'tog-watchdeletion' => 'Paginas quas deleo in paginarum custoditarum indicem addere',
+'tog-watchcreations' => 'Paginas quas creo et fasciculos quos impono in paginarum custoditarum indicem addere',
+'tog-watchdefault' => 'Paginas et fasciculos quos recenseo in paginarum custoditarum indicem addere',
+'tog-watchmoves' => 'Paginas et fasciculos quos moveo in paginarum custoditarum indicem addere',
+'tog-watchdeletion' => 'Paginas et fasciculos quos deleo in paginarum custoditarum indicem addere',
 'tog-minordefault' => 'Notare omnes recensiones quasi minores',
 'tog-previewontop' => 'Monstrare praevisum ante capsam recensiti, non post ipsam',
 'tog-previewonfirst' => 'Praevisum monstrare recensione incipiente',
 'tog-nocache' => 'Sistere paginas apothecare',
-'tog-enotifwatchlistpages' => 'Mittere mihi litteras electronicas si pagina a me custodita mutatur',
+'tog-enotifwatchlistpages' => 'Mittere mihi litteras electronicas si pagina a me custodita vel fasciculus a me custoditus mutatur',
 'tog-enotifusertalkpages' => 'Mittere mihi litteras electronicas si mea disputatio mutatur',
 'tog-enotifminoredits' => 'Mittere mihi litteras electronicas etiam pro recensionibus minoribus',
 'tog-enotifrevealaddr' => 'Monstrare inscriptio mea electronica in nuntiis notificantibus',
@@ -512,7 +513,7 @@ Noli oblivisci [[Special:Preferences|praeferentias tuas]] apud {{grammar:accusat
 'createaccount' => 'Rationem novam creare',
 'gotaccount' => "Habesne iam rationem? '''$1'''.",
 'gotaccountlink' => 'Conventum aperi',
-'userlogin-resetlink' => 'Tesserae tuae oblitus esne?',
+'userlogin-resetlink' => 'Num tesserae tuae oblitus es?',
 'createaccountmail' => 'ab inscriptione electronica',
 'createaccountreason' => 'Causa:',
 'badretype' => 'Tesserae quas scripsisti inter se non congruunt.',
@@ -521,7 +522,7 @@ Nomen usoris alium selige.',
 'loginerror' => 'Error factus est in aperiendo conventum',
 'nocookiesnew' => "Ratio usoris creata est, sed conventum non apertum est. {{SITENAME}} ''Cookies'' utitur in usorum conventa aperiendo. Cookies tua debiles sunt. Eis potestatem fac, tum conventum aperi cum nomine usoris tesseraque tua nova.",
 'nocookieslogin' => "{{SITENAME}} ''Cookies'' utitur in usorum conventa aperiendo. Cookies tua debiles sunt. Eis potestatem fac, tum conare denuo.",
-'noname' => 'Nominem usoris ratum non designavisti.',
+'noname' => 'Nomen usoris ratum non designavisti.',
 'loginsuccesstitle' => 'Conventum prospere apertum est',
 'loginsuccess' => "'''Apud {{grammar:accusative|{{SITENAME}}}} agnosceris nomine \"\$1\".'''",
 'nosuchuser' => 'Usor "$1" non est.
