@@ -245,6 +245,7 @@ $wgAutoloadLocalClasses = array(
 	'StubObject' => 'includes/StubObject.php',
 	'StubUserLang' => 'includes/StubObject.php',
 	'TablePager' => 'includes/Pager.php',
+	'MWTimestamp' => 'includes/Timestamp.php',
 	'Title' => 'includes/Title.php',
 	'TitleArray' => 'includes/TitleArray.php',
 	'TitleArrayFromResult' => 'includes/TitleArray.php',
