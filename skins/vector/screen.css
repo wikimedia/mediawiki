@@ -670,7 +670,7 @@ div#footer #footer-places li {
 div#content {
 	line-height: 1.5em;
 }
-#bodyContent {
+#bodyContent, #firstHeadingAddendum {
 	font-size: 0.8em;
 }
 
