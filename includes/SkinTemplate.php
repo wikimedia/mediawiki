@@ -220,6 +220,7 @@ class SkinTemplate extends Skin {
 		if ( $subpagestr !== '' ) {
 			$subpagestr = '<span class="subpages">' . $subpagestr . '</span>';
 		}
+		$tpl->set( 'titleaddendum',  false );
 		$tpl->set( 'subtitle',  $subpagestr . $out->getSubtitle() );
 
 		$undelete = $this->getUndeleteLink();
