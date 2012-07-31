@@ -105,6 +105,8 @@ upgrade PHP if you have not done so prior to upgrading MediaWiki.
   and 'subcats'
 * (bug 38362) Make Special:Listuser includeable on wiki pages.
 * Added support in jquery.localize for placeholder attributes.
+* added new optional node #firstHeadingAddendum under the titles <h1/> element. This can be used by
+  extensions to display information directly under the title in 'monobook' and 'vector' skins
 * (bug 38151) Implemented mw.user.getRights for getting and caching the current
   user's user rights.
 * Implemented mw.user.getGroups for getting and caching user groups.
