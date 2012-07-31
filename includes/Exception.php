@@ -289,6 +289,7 @@ class MWException extends Exception {
  * Exception class which takes an HTML error message, and does not
  * produce a backtrace. Replacement for OutputPage::fatalError().
  *
+ * @since 1.7
  * @ingroup Exception
  */
 class FatalError extends MWException {
@@ -311,6 +312,7 @@ class FatalError extends MWException {
 /**
  * An error page which can definitely be safely rendered using the OutputPage.
  *
+ * @since 1.7
  * @ingroup Exception
  */
 class ErrorPageError extends MWException {
@@ -350,6 +352,7 @@ class ErrorPageError extends MWException {
  * Similar to ErrorPage, but emit a 400 HTTP error code to let mobile
  * browser it is not really a valid content.
  *
+ * @since 1.19
  * @ingroup Exception
  */
 class BadTitleError extends ErrorPageError {
@@ -381,6 +384,7 @@ class BadTitleError extends ErrorPageError {
  * Show an error when a user tries to do something they do not have the necessary
  * permissions for.
  *
+ * @since 1.18
  * @ingroup Exception
  */
 class PermissionsError extends ErrorPageError {
@@ -419,6 +423,7 @@ class PermissionsError extends ErrorPageError {
  * Show an error when the wiki is locked/read-only and the user tries to do
  * something that requires write access.
  *
+ * @since 1.18
  * @ingroup Exception
  */
 class ReadOnlyError extends ErrorPageError {
@@ -434,6 +439,7 @@ class ReadOnlyError extends ErrorPageError {
 /**
  * Show an error when the user hits a rate limit.
  *
+ * @since 1.18
  * @ingroup Exception
  */
 class ThrottledError extends ErrorPageError {
@@ -454,6 +460,7 @@ class ThrottledError extends ErrorPageError {
 /**
  * Show an error when the user tries to do something whilst blocked.
  *
+ * @since 1.18
  * @ingroup Exception
  */
 class UserBlockedError extends ErrorPageError {
@@ -500,6 +507,7 @@ class UserBlockedError extends ErrorPageError {
  * This is essentially an ErrorPageError exception which by default use the
  * 'exception-nologin' as a title and 'exception-nologin-text' for the message.
  * @see bug 37627
+ * @since 1.20
  *
  * @par Example:
  * @code
@@ -544,6 +552,7 @@ class UserNotLoggedIn extends ErrorPageError {
  * Show an error that looks like an HTTP server error.
  * Replacement for wfHttpError().
  *
+ * @since 1.19
  * @ingroup Exception
  */
 class HttpError extends MWException {
