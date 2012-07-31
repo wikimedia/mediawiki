@@ -105,6 +105,7 @@ upgrade PHP if you have not done so prior to upgrading MediaWiki.
   and 'subcats'
 * (bug 38362) Make Special:Listuser includeable on wiki pages.
 * Added support in jquery.localize for placeholder attributes.
+* (bug 22749) Create Special:MostInterwikis.
 
 === Bug fixes in 1.20 ===
 * (bug 30245) Use the correct way to construct a log page title.
