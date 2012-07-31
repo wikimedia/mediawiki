@@ -48,6 +48,12 @@ $namespaceNames = array(
 	NS_CATEGORY_TALK    => 'Kategorijos_aptarimas',
 );
 
+$namespaceGenderAliases = array(
+	NS_USER      => array( 'male' => 'Naudotojas', 'female' => 'Naudotoja' ),
+	NS_USER_TALK => array( 'male' => 'Naudotojo_aptarimas', 'female' => 'Naudotojos_aptarimas' ),
+);
+
+
 $specialPageAliases = array(
 	'Allmessages'               => array( 'Visi_pranešimai' ),
 	'Allpages'                  => array( 'Visi_puslapiai' ),
