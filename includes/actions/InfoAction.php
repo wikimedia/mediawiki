@@ -87,7 +87,7 @@ class InfoAction extends FormlessAction {
 				);
 		}
 
-		if ( $wgDisableCounters ) {
+		if ( !$wgDisableCounters ) {
 			$content .= Html::rawElement( 'tr', array(),
 				Html::element( 'th', array( 'colspan' => 3 ), $this->msg( 'pageinfo-header-views' )->text() )
 			) .
