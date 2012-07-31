@@ -173,6 +173,8 @@ upgrade PHP if you have not done so prior to upgrading MediaWiki.
   was initialized.
 * (bug 38093) Gender of changed user groups missing in Special:Log/rights
 * (bug 35893) Special:Block needs to load mediawiki.special.block.js.
+* (bug 31644) GlobalUsage, CentralAuth and AbuseLog extensions should not use
+  insecure links to foreign wikis in the WikiMap.
 
 === API changes in 1.20 ===
 * (bug 34316) Add ability to retrieve maximum upload size from MediaWiki API.

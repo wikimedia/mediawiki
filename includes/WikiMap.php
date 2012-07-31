@@ -109,7 +109,7 @@ class WikiMap {
 		$wiki = WikiMap::getWiki( $wikiID );
 
 		if ( $wiki ) {
-			return $wiki->getUrl( $page );
+			return $wiki->getFullUrl( $page );
 		}
 
 		return false;
