@@ -367,3 +367,6 @@
 [submodule "extensions/E3Experiments"]
 	path = extensions/E3Experiments
 	url = https://gerrit.wikimedia.org/r/p/mediawiki/extensions/E3Experiments.git
+[submodule "extensions/TimedMediaHandler"]
+	path = extensions/TimedMediaHandler
+	url = https://gerrit.wikimedia.org/r/p/mediawiki/extensions/TimedMediaHandler.git
