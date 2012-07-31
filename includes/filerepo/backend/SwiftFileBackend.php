@@ -188,6 +188,9 @@ class SwiftFileBackend extends FileBackendStore {
 			$obj->set_etag( md5( $params['content'] ) );
 			// Use the same content type as StreamFile for security
 			$obj->content_type = StreamFile::contentTypeFromPath( $params['dst'] );
+			if ( !strlen( $obj->content_type ) ) { // special case
+				$obj->content_type = 'unknown/unknown';
+			}
 			if ( !empty( $params['async'] ) ) { // deferred
 				$handle = $obj->write_async( $params['content'] );
 				$status->value = new SwiftFileOpHandle( $this, $params, 'Create', $handle );
@@ -267,6 +270,9 @@ class SwiftFileBackend extends FileBackendStore {
 			$obj->set_etag( md5_file( $params['src'] ) );
 			// Use the same content type as StreamFile for security
 			$obj->content_type = StreamFile::contentTypeFromPath( $params['dst'] );
+			if ( !strlen( $obj->content_type ) ) { // special case
+				$obj->content_type = 'unknown/unknown';
+			}
 			if ( !empty( $params['async'] ) ) { // deferred
 				wfSuppressWarnings();
 				$fp = fopen( $params['src'], 'rb' );
