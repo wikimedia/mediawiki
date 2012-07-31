@@ -165,7 +165,14 @@ class VectorTemplate extends BaseTemplate {
 			<!-- /sitenotice -->
 			<?php endif; ?>
 			<!-- firstHeading -->
-			<h1 id="firstHeading" class="firstHeading"><span dir="auto"><?php $this->html( 'title' ) ?></span></h1>
+			<h1 id="firstHeading" class="firstHeading">
+				<span dir="auto"><?php $this->html( 'title' ) ?></span>
+				<?php if ( $this->data['titleaddendum'] ): ?>
+				<!-- firstHeadingAddendum -->
+				<span id="firstHeadingAddendum" dir="auto"><?php $this->html( 'titleaddendum' ) ?></span>
+				<!-- /firstHeadingAddendum -->
+				<?php endif; ?>
+			</h1>
 			<!-- /firstHeading -->
 			<!-- bodyContent -->
 			<div id="bodyContent">
