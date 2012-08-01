@@ -3406,6 +3406,7 @@ $wgMessageStructure = array(
 		'watchlistedit-normal-legend',
 		'watchlistedit-normal-explain',
 		'watchlistedit-normal-submit',
+		'watchlistedit-normal-submiting',
 		'watchlistedit-normal-done',
 		'watchlistedit-raw-title',
 		'watchlistedit-raw-legend',
