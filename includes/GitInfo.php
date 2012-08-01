@@ -121,6 +121,25 @@ class GitInfo {
 	}
 
 	/**
+	 * Return the author and commit date of last log entry in HEAD of the repo
+	 * @return commit-date or false
+	 */
+	public function getHeadCommitDate() {
+
+		// THIS SHELLS OUT -- USUALLY IT IS UNWANTED
+		$environment = array( "GIT_DIR" => $this->basedir );
+		$cmd = "git show -s --format=format:%ct HEAD";
+		$commitDate = wfShellExec( $cmd, $retc, $environment );
+
+		if ( !isset( $retc ) || ( $retc !== 0 ) ) {
+			return false;
+		} else {
+			return $commitDate;
+		}
+
+	 }
+
+	/**
 	 * Return the name of the current branch, or HEAD if not found
 	 * @return string The branch name, HEAD, or false
 	 */
