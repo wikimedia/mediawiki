@@ -1069,6 +1069,7 @@ This warning may be encountered due to input text like &lt;ref>&lt;ref>&lt;ref>.
 
 "Unstrip" refers to the internal function of the parser, called \'unstrip\', which recursively puts the output of parser functions in the place of the parser function call and which would enter an infinite loop in the situation above. See also:
 *{{msg-mw|Parser-unstrip-loop-warning}}',
+'parser-unstrip-recursion-limit' => 'This message is shown when a manual conversion rule for the language converter has errors. For example it\'s not using the correct syntax, or not supplying text in all variants.',
 
 # "Undo" feature
 'undo-success' => 'Text on special page to confirm edit revert. You arrive on this page by clicking on the "undo" link on a revision history special page.
