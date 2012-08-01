@@ -274,10 +274,11 @@ class SpecialVersion extends SpecialPage {
 	}
 
 	/**
-	 * @return bool|string wgVersion + HEAD sha1 stripped to the first 7 chars. False on failure
+	 * @since 1.22 Returns the HEAD date in addition to the sha1 and link
+	 * @return bool|string wgVersion + HEAD sha1 stripped to the first 7 chars with link and date, or false on failure
 	 */
 	private static function getVersionLinkedGit() {
-		global $IP;
+		global $IP, $wgLang;
 
 		$gitInfo = new GitInfo( $IP );
 		$headSHA1 = $gitInfo->getHeadSHA1();
@@ -286,10 +287,17 @@ class SpecialVersion extends SpecialPage {
 		}
 
 		$shortSHA1 = '(' . substr( $headSHA1, 0, 7 ) . ')';
-		$viewerUrl = $gitInfo->getHeadViewUrl();
-		if ( $viewerUrl !== false ) {
-			$shortSHA1 = "[$viewerUrl $shortSHA1]";
+
+		$gitHeadUrl = $gitInfo->getHeadViewUrl();
+		if ( $gitHeadUrl !== false ) {
+			$shortSHA1 = "[$gitHeadUrl $shortSHA1]";
 		}
+
+		$gitHeadCommitDate = $gitInfo->getHeadCommitDate();
+		if ( $gitHeadCommitDate ) {
+			$shortSHA1 .= "<br/>" . $wgLang->timeanddate( $gitHeadCommitDate, true );
+		}
+
 		return self::getwgVersionLinked() . " $shortSHA1";
 	}
 
@@ -461,6 +469,8 @@ class SpecialVersion extends SpecialPage {
 	 * @return string
 	 */
 	function getCreditsForExtension( array $extension ) {
+		global $wgLang;
+
 		$name = isset( $extension['name'] ) ? $extension['name'] : '[no name]';
 
 		$vcsText = false;
@@ -473,6 +483,10 @@ class SpecialVersion extends SpecialPage {
 				$gitViewerUrl = $gitInfo->getHeadViewUrl();
 				if ( $gitViewerUrl !== false ) {
 					$vcsText = "[$gitViewerUrl $vcsText]";
+				}
+				$gitHeadCommitDate = $gitInfo->getHeadCommitDate();
+				if ( $gitHeadCommitDate ) {
+					$vcsText .= "<br/>" .  $wgLang->timeanddate( $gitHeadCommitDate, true );
 				}
 			} else {
 				$svnInfo = self::getSvnInfo( dirname( $extension['path'] ) );
