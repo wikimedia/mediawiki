@@ -82,7 +82,12 @@ class ApiQueryDuplicateFiles extends ApiQueryGeneratorBase {
 			}
 		}
 
-		$files = RepoGroup::singleton()->findFiles( array_keys( $images ) );
+		$filesToFind = array_keys( $images );
+		if( $params['localonly'] ) {
+			$files = RepoGroup::singleton()->getLocalRepo()->findFiles( $filesToFind );
+		} else {
+			$files = RepoGroup::singleton()->findFiles( $filesToFind );
+		}
 
 		$fit = true;
 		$count = 0;
@@ -94,7 +99,12 @@ class ApiQueryDuplicateFiles extends ApiQueryGeneratorBase {
 		}
 
 		// find all files with the hashes, result format is: array( hash => array( dup1, dup2 ), hash1 => ... )
-		$filesBySha1s = RepoGroup::singleton()->findBySha1s( array_unique( array_values( $sha1s ) ) );
+		$filesToFindBySha1s = array_unique( array_values( $sha1s ) );
+		if( $params['localonly'] ) {
+			$filesBySha1s = RepoGroup::singleton()->getLocalRepo()->findBySha1s( $filesToFindBySha1s );
+		} else {
+			$filesBySha1s = RepoGroup::singleton()->findBySha1s( $filesToFindBySha1s );
+		}
 
 		// iterate over $images to handle continue param correct
 		foreach( $images as $image => $pageId ) {
@@ -163,6 +173,7 @@ class ApiQueryDuplicateFiles extends ApiQueryGeneratorBase {
 					'descending'
 				)
 			),
+			'localonly' => false,
 		);
 	}
 
@@ -171,6 +182,7 @@ class ApiQueryDuplicateFiles extends ApiQueryGeneratorBase {
 			'limit' => 'How many duplicate files to return',
 			'continue' => 'When more results are available, use this to continue',
 			'dir' => 'The direction in which to list',
+			'localonly' => 'Look only for files in the local repository',
 		);
 	}
 
