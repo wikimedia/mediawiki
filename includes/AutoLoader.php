@@ -256,6 +256,7 @@ $wgAutoloadLocalClasses = array(
 	'UserArray' => 'includes/UserArray.php',
 	'UserArrayFromResult' => 'includes/UserArray.php',
 	'UserBlockedError' => 'includes/Exception.php',
+	'UserNotLoggedIn' => 'includes/Exception.php',
 	'UserMailer' => 'includes/UserMailer.php',
 	'UserRightsProxy' => 'includes/UserRightsProxy.php',
 	'ViewCountUpdate' => 'includes/ViewCountUpdate.php',
