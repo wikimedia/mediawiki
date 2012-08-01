@@ -121,6 +121,61 @@ class GitInfo {
 	}
 
 	/**
+	 * Return the date of last log entry in HEAD of the repo
+	 * @return string of date or false
+	 */
+	public function getHeadHash() {
+
+		$LOGfile = $this->basedir . '/logs/HEAD';
+		if ( !is_readable( $LOGfile ) ) {
+			return false;
+		}
+		$filearray = file( $LOGfile );
+		$lastline = end( $filearray );
+
+		$lastlinearray = explode( ' ', $lastline );
+		return $lastlinearray[1];
+	 }
+
+	/**
+	 * Return the date of last log entry in HEAD of the repo
+	 * @return array of author-date, commit-date or returns false
+	 */
+	public function getHeadObject() {
+
+		$hash = $this->getHeadHash();
+
+		$out = array();
+		$out['hash'] = $hash;
+		$out['basedir'] = $this->basedir;
+
+		// shell out -- this is unwanted
+		exec( "cd " . $this->basedir . " ; git cat-file -p $hash", $out );
+
+		// author Translation updater bot <l10n-bot@translatewiki.net> 1341991516 +0000
+		if ( preg_match( "! ([\d]+) [-+\d]{4,5}$!", $out[2], $authorDateRes) ) {
+			$out['author-date'] = gmdate( "Y-m-d H:i:s", $authorDateRes[1] ) . " UTC";
+		} else {
+			$out['author-date'] = false;
+		}
+
+		if ( preg_match( "! ([\d]+) [-+\d]{4,5}$!", $out[3], $commitDateRes ) ) {
+			$out['commit-date'] = gmdate( "Y-m-d H:i:s", $commitDateRes[1] ) . " UTC";
+		} else {
+			$out['commit-date'] = false;
+		}
+
+		wfDebug( "GitInfo::getHeadObject " . print_r( $out, true ) . "\n" );
+
+		if ( $out['author-date'] && $out['commit-date'] ) {
+			return $out;
+		} else {
+			return false;
+		}
+
+	 }
+
+	/**
 	 * Return the name of the current branch, or HEAD if not found
 	 * @return string The branch name, HEAD, or false
 	 */
