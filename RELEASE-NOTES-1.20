@@ -209,6 +209,7 @@ upgrade PHP if you have not done so prior to upgrading MediaWiki.
 * (bug 38190) Add "required" flag to some token params for hint in api docs.
 * (bug 27567) Add file repo support to prop=duplicatefiles.
 * (bug 27610) Add archivename for non-latest image version to list=filearchive
+* (bug 38904) prop=revisions&rvstart=... no longer blows up when continuing.
 
 === Languages updated in 1.20 ===
 
