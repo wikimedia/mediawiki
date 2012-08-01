@@ -246,15 +246,15 @@ abstract class File {
 	}
 
 	/**
-	 * Callback for usort() to do file sorts by title
+	 * Callback for usort() to do file sorts by name
 	 *
 	 * @param $a File
 	 * @param $b File
 	 *
-	 * @return Integer: result of title comparison
+	 * @return Integer: result of name comparison
 	 */
 	public static function compare( File $a, File $b ) {
-		return Title::compare( $a->getTitle(), $b->getTitle() );
+		return strcmp( $a->getName(), $b->getName() );
 	}
 
 	/**
