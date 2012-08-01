@@ -40,14 +40,29 @@ class ApiWatch extends ApiBase {
 		if ( !$user->isLoggedIn() ) {
 			$this->dieUsage( 'You must be logged-in to have a watchlist', 'notloggedin' );
 		}
-
 		$params = $this->extractRequestParams();
-		$title = Title::newFromText( $params['title'] );
-
-		if ( !$title || $title->getNamespace() < 0 ) {
-			$this->dieUsageMsg( array( 'invalidtitle', $params['title'] ) );
+		// titles can handle basic request of 1 title,
+		// but title is still supported for backward compatability
+		if ( isset( $params['titles'] ) ) {
+			$pageSet = new ApiPageSet( $this );
+			$pageSet->execute();
+			$res = array();
+			foreach ( $pageSet->getTitles() as $title ) {
+				$r = $this->watchTitle( $title, $user, $params);
+				$res[] = $r;
+			}
+			$this->getResult()->setIndexedTagName( $res, 'w' );
+		} else {
+			$title = Title::newFromText( $params['title'] );
+			if ( !$title || $title->getNamespace() < 0 ) {
+				$this->dieUsageMsg( array( 'invalidtitle', $params['title'] ) );
+			}
+			$res = $this->watchTitle( $title, $user, $params );			
 		}
+		$this->getResult()->addValue( null, $this->getModuleName(), $res );
+	}
 
+	private function watchTitle( $title, $user, $params ) {
 		$res = array( 'title' => $title->getPrefixedText() );
 
 		if ( $params['unwatch'] ) {
@@ -62,7 +77,7 @@ class ApiWatch extends ApiBase {
 		if ( !$success ) {
 			$this->dieUsageMsg( 'hookaborted' );
 		}
-		$this->getResult()->addValue( null, $this->getModuleName(), $res );
+		return $res;
 	}
 
 	public function mustBePosted() {
@@ -85,7 +100,10 @@ class ApiWatch extends ApiBase {
 		return array(
 			'title' => array(
 				ApiBase::PARAM_TYPE => 'string',
-				ApiBase::PARAM_REQUIRED => true
+			),
+			'titles' => array(
+				ApiBase::PARAM_TYPE => 'string',
+				ApiBase::PARAM_ISMULTI => true
 			),
 			'unwatch' => false,
 			'token' => array(
@@ -97,7 +115,8 @@ class ApiWatch extends ApiBase {
 
 	public function getParamDescription() {
 		return array(
-			'title' => 'The page to (un)watch',
+			'titles' => 'A list of titles to (un)watch.',
+			'title' => 'The page to (un)watch. DEPRECATED! use titles instead',
 			'unwatch' => 'If set the page will be unwatched rather than watched',
 			'token' => 'A token previously acquired via prop=info',
 		);
@@ -128,8 +147,8 @@ class ApiWatch extends ApiBase {
 
 	public function getExamples() {
 		return array(
-			'api.php?action=watch&title=Main_Page' => 'Watch the page "Main Page"',
-			'api.php?action=watch&title=Main_Page&unwatch=' => 'Unwatch the page "Main Page"',
+			'api.php?action=watch&titles=Main_Page' => 'Watch the page "Main Page"',
+			'api.php?action=watch&titles=Main_Page&unwatch=' => 'Unwatch the page "Main Page"',
 		);
 	}
 
