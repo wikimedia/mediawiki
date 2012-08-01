@@ -1051,9 +1051,9 @@ $result: User permissions error to add. If none, return true.
 &$title: Title object of the image
 &$file: File object, or false if it doesn't exist
 &$frameParams: Various parameters with special meanings; see documentation in
-	includes/Linker.php for Linker::makeImageLink2
+	includes/Linker.php for Linker::makeImageLink
 &$handlerParams: Various parameters with special meanings; see documentation in
-	includes/Linker.php for Linker::makeImageLink2
+	includes/Linker.php for Linker::makeImageLink
 &$time: Timestamp of file in 'YYYYMMDDHHIISS' string form, or false for current
 &$res: Final HTML output, used if you return false
 
