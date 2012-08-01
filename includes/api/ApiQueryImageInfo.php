@@ -73,7 +73,12 @@ class ApiQueryImageInfo extends ApiQueryBase {
 			}
 
 			$result = $this->getResult();
-			$images = RepoGroup::singleton()->findFiles( $titles );
+			//search only inside the local repo
+			if( $params['localonly'] ) {
+				$images = RepoGroup::singleton()->getLocalRepo()->findFiles( $titles );
+			} else {
+				$images = RepoGroup::singleton()->findFiles( $titles );
+			}
 			foreach ( $images as $img ) {
 				// Skip redirects
 				if ( $img->getOriginalTitle()->isRedirect() ) {
@@ -471,6 +476,7 @@ class ApiQueryImageInfo extends ApiQueryBase {
 				ApiBase::PARAM_TYPE => 'string',
 			),
 			'continue' => null,
+			'localonly' => false,
 		);
 	}
 
@@ -543,7 +549,8 @@ class ApiQueryImageInfo extends ApiQueryBase {
 			'end' => 'Timestamp to stop listing at',
 			'metadataversion' => array( "Version of metadata to use. if 'latest' is specified, use latest version.",
 						"Defaults to '1' for backwards compatibility" ),
-			'continue' => 'If the query response includes a continue value, use it here to get another page of results'
+			'continue' => 'If the query response includes a continue value, use it here to get another page of results',
+			'localonly' => 'Look only for files in the local repository',
 		);
 	}
 
