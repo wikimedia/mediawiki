@@ -1962,6 +1962,8 @@ $wgMessageStructure = array(
 		'rollback',
 		'rollback_short',
 		'rollbacklink',
+		'rollbacklinkcount',
+		'rollbacklinkcount-morethan',
 		'rollbackfailed',
 		'cantrollback',
 		'alreadyrolled',

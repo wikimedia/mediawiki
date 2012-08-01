@@ -2685,6 +2685,14 @@ $wgBetterDirectionality = true;
  */
 $wgSend404Code = true;
 
+
+/**
+ * The $wgShowRollbackEditCount variable is used to show how many edits will be
+ * rollback. The numeric value of the varible are the limit up to are counted.
+ * If the value is false or 0, the edits are not counted.
+ */
+$wgShowRollbackEditCount = 10;
+
 /** @} */ # End of output format settings }
 
 /*************************************************************************//**
