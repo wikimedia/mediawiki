@@ -221,6 +221,7 @@ upgrade PHP if you have not done so prior to upgrading MediaWiki.
 * (bug 27610) Add archivename for non-latest image version to list=filearchive
 * (bug 38231) Add xml parse tree to action=parse.
 * Watchlist notification timestamp may be queried by page and may be updated via the API.
+* (bug 38904) prop=revisions&rvstart=... no longer blows up when continuing.
 
 === Languages updated in 1.20 ===
 
