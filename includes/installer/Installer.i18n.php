@@ -142,6 +142,10 @@ Object caching is not enabled.",
 	'config-mod-security'             => "'''Warning:''' Your web server has [http://modsecurity.org/ mod_security] enabled. If misconfigured, it can cause problems for MediaWiki or other software that allows users to post arbitrary content.
 Refer to [http://modsecurity.org/documentation/ mod_security documentation] or contact your host's support if you encounter random errors.",
 	'config-diff3-bad'                => 'GNU diff3 not found.',
+	'config-git'                      => 'Found the Git version control system software: <code>$1</code>.
+In addition to static author-supplied information, the Special:Version page is able to report the original Git version control system "upstream" commit dates for those software modules (MediaWiki core, extensions) which were installed from Git repositories.',
+	'config-git-bad'                  => 'Git version control software not found.
+In consequence, the Special:Version page cannot report Git version control system commit dates of the MediaWiki core and the loaded extensions.',
 	'config-imagemagick'              => 'Found ImageMagick: <code>$1</code>.
 Image thumbnailing will be enabled if you enable uploads.',
 	'config-gd'                       => 'Found GD graphics library built-in.
