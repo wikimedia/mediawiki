@@ -121,6 +121,27 @@ class GitInfo {
 	}
 
 	/**
+	 * Return the date of last log entry in HEAD of the repo
+	 * @return string of date or false
+	 */
+	public function getHeadDate() {
+
+		$LOGfile = $this->basedir . '/logs/HEAD';
+		if ( !is_readable( $LOGfile ) ) {
+			return false;
+		}
+		$filearray = file( $LOGfile );
+		$lastline = end( $filearray );
+
+		$lastlinearray = explode( ' ', $lastline );
+		$tempTimezone = date_default_timezone_get();
+		date_default_timezone_set( 'UTC' );
+		$datestring = date( 'YmdHis', $lastlinearray[4] ) . "Z";
+		date_default_timezone_set( $tempTimezone );
+		return $datestring;
+	 }
+
+	/**
 	 * Return the name of the current branch, or HEAD if not found
 	 * @return string The branch name, HEAD, or false
 	 */
