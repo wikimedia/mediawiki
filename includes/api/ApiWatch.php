@@ -40,27 +40,14 @@ class ApiWatch extends ApiBase {
 		if ( !$user->isLoggedIn() ) {
 			$this->dieUsage( 'You must be logged-in to have a watchlist', 'notloggedin' );
 		}
+
 		$params = $this->extractRequestParams();
-		// titles can handle basic request of 1 title,
-		// but title is still supported for backward compatability
-		if ( isset( $params['title'] ) ) {
-			$title = Title::newFromText( $params['title'] );
-			if ( !$title || $title->getNamespace() < 0 ) {
-				$this->dieUsageMsg( array( 'invalidtitle', $params['title'] ) );
-			}
-			$res = $this->watchTitle( $title, $user, $params);
-		} else {
-			$pageSet = new ApiPageSet( $this );
-			$pageSet->execute();
-			$res = array();
-			foreach ( $pageSet->getTitles() as $title ) {
-				$r = $this->watchTitle( $title, $user, $params);
-				$res[] = $r;
-			}
+		$title = Title::newFromText( $params['title'] );
+
+		if ( !$title || $title->getNamespace() < 0 ) {
+			$this->dieUsageMsg( array( 'invalidtitle', $params['title'] ) );
 		}
-		$this->getResult()->addValue( null, $this->getModuleName(), $res );
-	}
-	private function watchTitle( $title, $user, $params ) {
+
 		$res = array( 'title' => $title->getPrefixedText() );
 
 		if ( $params['unwatch'] ) {
@@ -75,7 +62,7 @@ class ApiWatch extends ApiBase {
 		if ( !$success ) {
 			$this->dieUsageMsg( 'hookaborted' );
 		}
-		return $res;
+		$this->getResult()->addValue( null, $this->getModuleName(), $res );
 	}
 
 	public function mustBePosted() {
@@ -98,10 +85,7 @@ class ApiWatch extends ApiBase {
 		return array(
 			'title' => array(
 				ApiBase::PARAM_TYPE => 'string',
-			),
-			'titles' => array(
-				ApiBase::PARAM_TYPE => 'string',
-				ApiBase::PARAM_ISMULTI => true
+				ApiBase::PARAM_REQUIRED => true
 			),
 			'unwatch' => false,
 			'token' => null,

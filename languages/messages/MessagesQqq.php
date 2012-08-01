@@ -4300,7 +4300,6 @@ Bitrate (of a file, typically) in yottabits (1 yottabits = 1000×1000×1000×100
 Hint: the text "Remove Titles" is in {{msg-mw|watchlistedit-normal-submit}}',
 'watchlistedit-normal-submit' => 'Text of submit button on [[Special:Watchlist/edit]].',
 'watchlistedit-normal-done' => 'Message on [[Special:EditWatchlist]] after pages are removed from the watchlist.',
-'watchlistedit-normal-submitting' => 'Text of submit button on [[Special:Watchlist/edit]] when submiting an AJAX request',
 'watchlistedit-raw-title' => 'Title of [[Special:Watchlist/raw|Special page]].
 
 {{Identical|Edit raw watchlist}}',
