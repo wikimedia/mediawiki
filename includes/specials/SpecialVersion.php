@@ -259,6 +259,12 @@ class SpecialVersion extends SpecialPage {
 		if ( $viewerUrl !== false ) {
 			$shortSHA1 = "[$viewerUrl $shortSHA1]";
 		}
+
+		$gitHeadDate = $gitInfo->getHeadDate();
+		if ( $gitHeadDate !== false ) {
+			$shortSHA1 .= ' (' . $gitHeadDate . ')';
+		}
+
 		return "$wgVersion $shortSHA1";
 	}
 
@@ -442,6 +448,10 @@ class SpecialVersion extends SpecialPage {
 				$gitViewerUrl = $gitInfo->getHeadViewUrl();
 				if ( $gitViewerUrl !== false ) {
 					$vcsText = "[$gitViewerUrl $vcsText]";
+				}
+				$gitHeadDate = $gitInfo->getHeadDate();
+				if ( $gitHeadDate !== false ) {
+					$vcsText .= ' (' . $gitHeadDate . ')';
 				}
 			} else {
 				$svnInfo = self::getSvnInfo( dirname( $extension['path'] ) );
@@ -743,6 +753,15 @@ class SpecialVersion extends SpecialPage {
 	public static function getGitHeadSha1( $dir ) {
 		$repo = new GitInfo( $dir );
 		return $repo->getHeadSHA1();
+	}
+
+	/**
+	 * @param $dir String: directory of the git checkout
+	 * @return bool|String date of commit HEAD points to
+	 */
+	public static function getGitHeadDate( $dir ) {
+		$repo = new GitInfo( $dir );
+		return $repo->getHeadDate();
 	}
 
 	/**
