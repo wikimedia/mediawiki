@@ -805,6 +805,14 @@ return array(
 		'styles' => 'resources/mediawiki.special/mediawiki.special.changeslist.css',
 		'dependencies' => array( 'jquery.makeCollapsible' ),
 	),
+	'mediawiki.special.editWatchlist' => array(
+		'scripts' => 'resources/mediawiki.special/mediawiki.special.editWatchlist.js',
+		'dependencies' => array(
+			'mediawiki.api',
+			'user.tokens'
+		),
+		'messages' => array( 'watchlistedit-normal-submit', 'watchlistedit-normal-submiting' )
+	),
 	'mediawiki.special.movePage' => array(
 		'scripts' => 'resources/mediawiki.special/mediawiki.special.movePage.js',
 		'dependencies' => 'jquery.byteLimit',
