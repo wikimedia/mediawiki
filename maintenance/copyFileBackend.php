@@ -140,6 +140,12 @@ class CopyFileBackend extends Maintenance {
 			$fsFile = $src->getLocalReference( array( 'src' => $srcPath, 'latest' => 1 ) );
 			if ( !$fsFile ) {
 				$this->error( "Could not get local copy of $srcPath.", 1 ); // die
+			} elseif ( !$fsFile->exists() ) {
+				// FSFileBackends just return the path for getLocalReference() and paths with
+				// illegal slashes may get normalized to a different path. This can cause the
+				// local reference to not exist...skip these broken files.
+				$this->error( "Detected possible illegal path for $srcPath." );
+				continue;
 			}
 			$fsFiles[] = $fsFile; // keep TempFSFile objects alive as needed
 			// Note: prepare() is usually fast for key/value backends
