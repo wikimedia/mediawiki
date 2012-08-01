@@ -138,6 +138,7 @@ production.
 * (bug 43137) Don't return the sha1 of revisions through the API if the content is
   revision-deleted.
 * ApiQueryImageInfo now also returns imageinfo for redirects.
+* (bug 32151) ApiWatch now supports list of pages (titles/pageids). Title parameter is now deprecated.
 
 === Languages updated in 1.21 ===
 
