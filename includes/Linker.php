@@ -1673,7 +1673,10 @@ class Linker {
 	 * @return String: HTML fragment
 	 */
 	public static function buildRollbackLink( $rev, IContextSource $context = null ) {
-		global $wgShowRollbackEditCount;
+		global $wgShowRollbackEditCount, $wgMiserMode;
+		
+		// To config which pages are effected by miser mode
+		$disableRollbackEditCountSpecialPage = array( 'Recentchanges', 'Watchlist' );
 
 		if ( $context === null ) {
 			$context = RequestContext::getMain();
@@ -1690,13 +1693,24 @@ class Linker {
 			$query['hidediff'] = '1'; // bug 15999
 		}
 
-		if( is_int( $wgShowRollbackEditCount ) && $wgShowRollbackEditCount > 0 ) {
+		$disableRollbackEditCount = false;
+		if( $wgMiserMode ) {
+			foreach( $disableRollbackEditCountSpecialPage as $specialPage ) {
+				if( $context->getTitle()->isSpecial( $specialPage ) ) {
+					$disableRollbackEditCount = true;
+					break;
+				}
+			}
+		}
+
+		if( !$disableRollbackEditCount && is_int( $wgShowRollbackEditCount ) && $wgShowRollbackEditCount > 0 ) {
 			$dbr = wfGetDB( DB_SLAVE );
 
 			// Up to the value of $wgShowRollbackEditCount revisions are counted
 			$res = $dbr->select( 'revision',
 				array( 'rev_id', 'rev_user_text' ),
-				array( 'rev_page' => $rev->getPage() ),
+				// $rev->getPage() returns null sometimes
+				array( 'rev_page' => $rev->getTitle()->getArticleID() ),
 				__METHOD__,
 				array(  'USE INDEX' => 'page_timestamp',
 					'ORDER BY' => 'rev_timestamp DESC',
