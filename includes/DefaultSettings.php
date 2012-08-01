@@ -2693,6 +2693,11 @@ $wgSend404Code = true;
  */
 $wgShowRollbackEditCount = 10;
 
+/**
+ * Disable the rollback edit count on these special pages (Internal names).
+ */
+$wgDisableRollbackEditCountSpecialPages = array( 'Recentchanges', 'Watchlist' );
+
 /** @} */ # End of output format settings }
 
 /*************************************************************************//**

@@ -1673,7 +1673,7 @@ class Linker {
 	 * @return String: HTML fragment
 	 */
 	public static function buildRollbackLink( $rev, IContextSource $context = null ) {
-		global $wgShowRollbackEditCount;
+		global $wgShowRollbackEditCount, $wgDisableRollbackEditCountSpecialPages;
 
 		if ( $context === null ) {
 			$context = RequestContext::getMain();
@@ -1691,12 +1691,28 @@ class Linker {
 		}
 
 		if( is_int( $wgShowRollbackEditCount ) && $wgShowRollbackEditCount > 0 ) {
+			if( is_array( $wgDisableRollbackEditCountSpecialPages ) &&
+				count( $wgDisableRollbackEditCountSpecialPages ) > 0 ) {
+				foreach( $wgDisableRollbackEditCountSpecialPages as $specialPage ) {
+					if( $context->getTitle()->isSpecial( $specialPage ) ) {
+						return self::link(
+							$title,
+							$context->msg( 'rollbacklink' )->escaped(),
+							array( 'title' => $context->msg( 'tooltip-rollback' )->text() ),
+							$query,
+							array( 'known', 'noclasses' )
+						);
+					}
+				}
+			}
+
 			$dbr = wfGetDB( DB_SLAVE );
 
 			// Up to the value of $wgShowRollbackEditCount revisions are counted
 			$res = $dbr->select( 'revision',
 				array( 'rev_id', 'rev_user_text' ),
-				array( 'rev_page' => $rev->getPage() ),
+				// $rev->getPage() returns null sometimes
+				array( 'rev_page' => $rev->getTitle()->getArticleID() ),
 				__METHOD__,
 				array(  'USE INDEX' => 'page_timestamp',
 					'ORDER BY' => 'rev_timestamp DESC',
