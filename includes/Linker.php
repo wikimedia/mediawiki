@@ -1696,7 +1696,8 @@ class Linker {
 			// Up to the value of $wgShowRollbackEditCount revisions are counted
 			$res = $dbr->select( 'revision',
 				array( 'rev_id', 'rev_user_text' ),
-				array( 'rev_page' => $rev->getPage() ),
+				// $rev->getPage() returns null sometimes
+				array( 'rev_page' => $rev->getTitle()->getArticleID() ),
 				__METHOD__,
 				array(  'USE INDEX' => 'page_timestamp',
 					'ORDER BY' => 'rev_timestamp DESC',
