@@ -121,6 +121,47 @@ class GitInfo {
 	}
 
 	/**
+	 * Return the date of last log entry in HEAD of the repo
+	 * @return string of date or false
+	 */
+	public function getHeadHash() {
+
+		$LOGfile = $this->basedir . '/logs/HEAD';
+		if ( !is_readable( $LOGfile ) ) {
+			return false;
+		}
+		$filearray = file( $LOGfile );
+		$lastline = end( $filearray );
+
+		$lastlinearray = explode( ' ', $lastline );
+		return $lastlinearray[1];
+	 }
+
+	/**
+	 * Return the author and commit date of last log entry in HEAD of the repo
+	 * @return array of author-date, commit-date or returns false
+	 */
+	public function getHeadObject() {
+
+		$hash = $this->getHeadHash();
+
+		$out = array();
+		$out['hash'] = $hash;
+		$out['basedir'] = $this->basedir;
+
+		// THIS SHELLS OUT -- USUALLY IT IS UNWANTED
+		$cmd = "git --git-dir " . wfEscapeShellArg( $this->basedir ) . " show -s --format=format:%ai HEAD";
+		$out['author-date'] = wfShellExec( $cmd, $retc );
+
+		// THIS SHELLS OUT -- USUALLY IT IS UNWANTED
+		$cmd = "git --git-dir " . wfEscapeShellArg( $this->basedir ) . " show -s --format=format:%ci HEAD";
+		$out['commit-date'] = wfShellExec( $cmd, $retc );
+
+		return $out;
+
+	 }
+
+	/**
 	 * Return the name of the current branch, or HEAD if not found
 	 * @return string The branch name, HEAD, or false
 	 */
