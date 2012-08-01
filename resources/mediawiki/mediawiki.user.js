@@ -13,8 +13,45 @@
 
 		var that = this;
 		var api = new mw.Api();
-		var groupsDeferred;
-		var rightsDeferred;
+		var deffereds = {};
+
+		/**
+		 * Gets the current user's groups or rights.
+		 */
+		var getUserGroupsOrRights = function ( info, callback ) {
+			if ( deffereds[info] ) {
+				deffereds[info].always( callback );
+				return;
+			}
+
+			var	userRightsDfd = deffereds.rights = $.Deferred(),
+				userGroupsDfd = deffereds.groups = $.Deferred();
+			deffereds[info].always( callback );
+			api.get( {
+				action: 'query',
+				meta: 'userinfo',
+				uiprop: 'rights|groups'
+			} ).done( function ( data ) {
+				if ( data.query && data.query.userinfo ) {
+					if ( data.query.userinfo.rights ){
+						userRightsDfd.resolve( data.query.userinfo.rights );
+					} else {
+						userRightsDfd.reject( [] );
+					}
+					if ( data.query.userinfo.groups ){
+						userGroupsDfd.resolve( data.query.userinfo.groups );
+					} else {
+						userGroupsDfd.reject( [] );
+					}
+				} else {
+					userRightsDfd.reject( [] );
+					userGroupsDfd.reject( [] );
+				}
+			} ).fail( function ( data ) {
+				userRightsDfd.reject( [] );
+				userGroupsDfd.reject( [] );
+			} );
+		};
 
 		/* Public Members */
 
@@ -196,52 +233,14 @@
 		 * Gets the current user's groups.
 		 */
 		this.getGroups = function ( callback ) {
-			if ( groupsDeferred ) {
-				groupsDeferred.always( callback );
-				return;
-			}
-
-			groupsDeferred = $.Deferred();
-			groupsDeferred.always( callback );
-			api.get( {
-				action: 'query',
-				meta: 'userinfo',
-				uiprop: 'groups'
-			} ).done( function ( data ) {
-				if ( data.query && data.query.userinfo && data.query.userinfo.groups ) {
-					groupsDeferred.resolve( data.query.userinfo.groups );
-				} else {
-					groupsDeferred.reject( [] );
-				}
-			} ).fail( function ( data ) {
-					groupsDeferred.reject( [] );
-			} );
+			getUserGroupsOrRights( 'groups', callback );
 		};
 
 		/**
 		 * Gets the current user's rights.
 		 */
 		this.getRights = function ( callback ) {
-			if ( rightsDeferred ) {
-				rightsDeferred.always( callback );
-				return;
-			}
-
-			rightsDeferred = $.Deferred();
-			rightsDeferred.always( callback );
-			api.get( {
-				action: 'query',
-				meta: 'userinfo',
-				uiprop: 'rights'
-			} ).done( function ( data ) {
-				if ( data.query && data.query.userinfo && data.query.userinfo.rights ) {
-					rightsDeferred.resolve( data.query.userinfo.rights );
-				} else {
-					rightsDeferred.reject( [] );
-				}
-			} ).fail( function ( data ) {
-				rightsDeferred.reject( [] );
-			} );
+			getUserGroupsOrRights( 'rights', callback );
 		};
 	}
 
