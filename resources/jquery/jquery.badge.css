@@ -27,7 +27,8 @@
 }
 
 .mw-badge-inline {
-	display: inline;
+	display: inline-block;
+	margin-left: 3px;
 }
 
 .mw-badge-overlay {
