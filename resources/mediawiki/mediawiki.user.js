@@ -2,7 +2,7 @@
  * Implementation for mediaWiki.user
  */
 
-(function( $ ) {
+( function ( $ ) {
 
 	/**
 	 * User object
@@ -12,9 +12,37 @@
 		/* Private Members */
 
 		var that = this;
-		var api = new mw.Api();
-		var groupsDeferred;
-		var rightsDeferred;
+		var callbacks = {};
+
+		/**
+		 * Gets the current user's groups or rights.
+		 * @param {String} info: One of 'groups' or 'rights'.
+		 * @param {Function} callback
+		 */
+		function getUserInfo( info, callback ) {
+			var api;
+			if ( callbacks[info] ) {
+				callbacks[info].add( callback );
+				return;
+			}
+			callbacks.rights = $.Callbacks('once memory');
+			callbacks.groups = $.Callbacks('once memory');
+			callbacks[info].add( callback );
+			api = new mw.Api();
+			api.get( {
+				action: 'query',
+				meta: 'userinfo',
+				uiprop: 'rights|groups'
+			} ).always( function ( data ) {
+				var rights, groups;
+				if ( data.query && data.query.userinfo ) {
+					rights = data.query.userinfo.rights;
+					groups = data.query.userinfo.groups;
+				}
+				callbacks.rights.fire( rights || [] );
+				callbacks.groups.fire( groups || [] );
+			} );
+		}
 
 		/* Public Members */
 
@@ -84,7 +112,7 @@
 		 */
 		this.sessionId = function () {
 			var sessionId = $.cookie( 'mediaWiki.user.sessionId' );
-			if ( typeof sessionId == 'undefined' || sessionId === null ) {
+			if ( typeof sessionId === 'undefined' || sessionId === null ) {
 				sessionId = generateId();
 				$.cookie( 'mediaWiki.user.sessionId', sessionId, { 'expires': null, 'path': '/' } );
 			}
@@ -106,7 +134,7 @@
 				return name;
 			}
 			var id = $.cookie( 'mediaWiki.user.id' );
-			if ( typeof id == 'undefined' || id === null ) {
+			if ( typeof id === 'undefined' || id === null ) {
 				id = generateId();
 			}
 			// Set cookie if not set, or renew it if already set
@@ -196,52 +224,14 @@
 		 * Gets the current user's groups.
 		 */
 		this.getGroups = function ( callback ) {
-			if ( groupsDeferred ) {
-				groupsDeferred.always( callback );
-				return;
-			}
-
-			groupsDeferred = $.Deferred();
-			groupsDeferred.always( callback );
-			api.get( {
-				action: 'query',
-				meta: 'userinfo',
-				uiprop: 'groups'
-			} ).done( function ( data ) {
-				if ( data.query && data.query.userinfo && data.query.userinfo.groups ) {
-					groupsDeferred.resolve( data.query.userinfo.groups );
-				} else {
-					groupsDeferred.reject( [] );
-				}
-			} ).fail( function ( data ) {
-					groupsDeferred.reject( [] );
-			} );
+			getUserInfo( 'groups', callback );
 		};
 
 		/**
 		 * Gets the current user's rights.
 		 */
 		this.getRights = function ( callback ) {
-			if ( rightsDeferred ) {
-				rightsDeferred.always( callback );
-				return;
-			}
-
-			rightsDeferred = $.Deferred();
-			rightsDeferred.always( callback );
-			api.get( {
-				action: 'query',
-				meta: 'userinfo',
-				uiprop: 'rights'
-			} ).done( function ( data ) {
-				if ( data.query && data.query.userinfo && data.query.userinfo.rights ) {
-					rightsDeferred.resolve( data.query.userinfo.rights );
-				} else {
-					rightsDeferred.reject( [] );
-				}
-			} ).fail( function ( data ) {
-				rightsDeferred.reject( [] );
-			} );
+			getUserInfo( 'rights', callback );
 		};
 	}
 
@@ -249,4 +239,4 @@
 	// This is kind of ugly but we're stuck with this for b/c reasons
 	mw.user = new User( mw.user.options, mw.user.tokens );
 
-})(jQuery);
+}( jQuery ) );
