@@ -183,6 +183,7 @@ upgrade PHP if you have not done so prior to upgrading MediaWiki.
 * (bug 37331) ResourceLoader modules sometimes execute twice in Firefox
 * (bug 31644) GlobalUsage, CentralAuth and AbuseLog extensions should not use
   insecure links to foreign wikis in the WikiMap.
+* (bug 36073) Avoid duplicate element IDs on File pages
 
 === API changes in 1.20 ===
 * (bug 34316) Add ability to retrieve maximum upload size from MediaWiki API.
