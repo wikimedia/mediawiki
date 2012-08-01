@@ -22,7 +22,7 @@ production.
 
 === API changes in 1.21 ===
 * (bug 35693) ApiQueryImageInfo now suppresses errors when unserializing metadata.
-
+* (bug 32151) ApiWatch now supports list of pages (titles/pageids). Title parameter is now deprecated.
 === Languages updated in 1.21 ===
 
 MediaWiki supports over 350 languages. Many localisations are updated
