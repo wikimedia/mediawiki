@@ -114,6 +114,7 @@ abstract class Installer {
 		'envCheckModSecurity',
 		'envCheckDiff3',
 		'envCheckGraphics',
+		'envCheckGit',
 		'envCheckServer',
 		'envCheckPath',
 		'envCheckExtension',
@@ -147,6 +148,7 @@ abstract class Installer {
 		'wgDBtype',
 		'wgDiff3',
 		'wgImageMagickConvertCommand',
+		'wgGitBin',
 		'IP',
 		'wgServer',
 		'wgScriptPath',
@@ -910,6 +912,26 @@ abstract class Installer {
 
 		} else {
 			$this->showMessage( 'config-no-scaling' );
+		}
+		return true;
+	}
+
+	/**
+	 * Search for git.
+	 * @return bool
+	 */
+	protected function envCheckGit() {
+		$names = array( wfIsWindows() ? 'git.exe' : 'git' );
+		$versionInfo = array( '$1 --version 2>&1', 'Git' );
+
+		$git = self::locateExecutableInDefaultPaths( $names, $versionInfo );
+
+		if ( $git ) {
+			$this->setVar( 'wgGitBin', $git );
+			$this->showMessage( 'config-git', $git );
+		} else {
+			$this->setVar( 'wgGitBin', false );
+			$this->showMessage( 'config-git-bad' );
 		}
 		return true;
 	}
