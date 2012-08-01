@@ -37,9 +37,8 @@ $namespaceNames = array(
 );
 
 /**
-  * Aliases from the fallback language 'lt' to avoid breakage of links
-  */
-
+ * Aliases from the fallback language 'lt' to avoid breakage of links
+ */
 $namespaceAliases = array(
 	'Specialus'             => NS_SPECIAL,
 	'Aptarimas'             => NS_TALK,
@@ -56,6 +55,8 @@ $namespaceAliases = array(
 	'Kategorija'            => NS_CATEGORY,
 	'Kategorijos_aptarimas' => NS_CATEGORY_TALK,
 );
+
+$namespaceGenderAliases = array();
 
 $messages = array(
 # User preference toggles
