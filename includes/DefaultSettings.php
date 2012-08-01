@@ -5011,6 +5011,11 @@ $wgReadOnlyFile = false;
 $wgUpgradeKey = false;
 
 /**
+ * Fully specified path to git binary
+ */
+$wgGitBin = '/usr/bin/git';
+
+/**
  * Map GIT repository URLs to viewer URLs to provide links in Special:Version
  *
  * Key is a pattern passed to preg_match() and preg_replace(),
