@@ -12,9 +12,36 @@
 		/* Private Members */
 
 		var that = this;
-		var api = new mw.Api();
-		var groupsDeferred;
-		var rightsDeferred;
+		var callbacks = {};
+
+		/**
+		 * Gets the current user's groups or rights.
+		 */
+		var getUserGroupsOrRights = function ( info, callback ) {
+			var api;
+			if ( callbacks[info] ) {
+				callbacks[info].add( callback );
+				return;
+			}
+			callbacks.rights = $.Callbacks('once memory');
+			callbacks.groups = $.Callbacks('once memory');
+			callbacks[info].add( callback );
+			api = new mw.Api();
+			api.get( {
+				action: 'query',
+				meta: 'userinfo',
+				uiprop: 'rights|groups'
+			} ).always( function ( data ) {
+				var	rights = [],
+					groups = [];
+				if ( data.query && data.query.userinfo ) {
+					rights = data.query.userinfo.rights || rights;
+					groups = data.query.userinfo.groups || groups;
+				}
+				callbacks.rights.fire( rights );
+				callbacks.groups.fire( groups );
+			} );
+		};
 
 		/* Public Members */
 
@@ -196,52 +223,14 @@
 		 * Gets the current user's groups.
 		 */
 		this.getGroups = function ( callback ) {
-			if ( groupsDeferred ) {
-				groupsDeferred.always( callback );
-				return;
-			}
-
-			groupsDeferred = $.Deferred();
-			groupsDeferred.always( callback );
-			api.get( {
-				action: 'query',
-				meta: 'userinfo',
-				uiprop: 'groups'
-			} ).done( function ( data ) {
-				if ( data.query && data.query.userinfo && data.query.userinfo.groups ) {
-					groupsDeferred.resolve( data.query.userinfo.groups );
-				} else {
-					groupsDeferred.reject( [] );
-				}
-			} ).fail( function ( data ) {
-					groupsDeferred.reject( [] );
-			} );
+			getUserGroupsOrRights( 'groups', callback );
 		};
 
 		/**
 		 * Gets the current user's rights.
 		 */
 		this.getRights = function ( callback ) {
-			if ( rightsDeferred ) {
-				rightsDeferred.always( callback );
-				return;
-			}
-
-			rightsDeferred = $.Deferred();
-			rightsDeferred.always( callback );
-			api.get( {
-				action: 'query',
-				meta: 'userinfo',
-				uiprop: 'rights'
-			} ).done( function ( data ) {
-				if ( data.query && data.query.userinfo && data.query.userinfo.rights ) {
-					rightsDeferred.resolve( data.query.userinfo.rights );
-				} else {
-					rightsDeferred.reject( [] );
-				}
-			} ).fail( function ( data ) {
-				rightsDeferred.reject( [] );
-			} );
+			getUserGroupsOrRights( 'rights', callback );
 		};
 	}
 
