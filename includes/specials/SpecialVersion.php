@@ -288,10 +288,17 @@ class SpecialVersion extends SpecialPage {
 		}
 
 		$shortSHA1 = '(' . substr( $headSHA1, 0, 7 ) . ')';
-		$viewerUrl = $gitInfo->getHeadViewUrl();
-		if ( $viewerUrl !== false ) {
-			$shortSHA1 = "[$viewerUrl $shortSHA1]";
+
+		$gitHeadUrl = $gitInfo->getHeadViewUrl();
+		if ( $gitHeadUrl !== false ) {
+			$shortSHA1 = "[$gitHeadUrl $shortSHA1]";
 		}
+
+		$gitHeadCommitDate = $gitInfo->getHeadCommitDate();
+		if ( $gitHeadCommitDate ) {
+			$shortSHA1 .= "<br/>" . $gitHeadCommitDate;
+		}
+
 		return self::getwgVersionLinked() . " $shortSHA1";
 	}
 
@@ -475,6 +482,10 @@ class SpecialVersion extends SpecialPage {
 				$gitViewerUrl = $gitInfo->getHeadViewUrl();
 				if ( $gitViewerUrl !== false ) {
 					$vcsText = "[$gitViewerUrl $vcsText]";
+				}
+				$gitHeadCommitDate = $gitInfo->getHeadCommitDate();
+				if ( $gitHeadCommitDate ) {
+					$vcsText .= "<br/>" . $gitHeadCommitDate;
 				}
 			} else {
 				$svnInfo = self::getSvnInfo( dirname( $extension['path'] ) );
