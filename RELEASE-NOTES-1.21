@@ -11,6 +11,11 @@ MediaWiki 1.21 is an alpha-quality branch and is not recommended for use in
 production.
 
 === Configuration changes in 1.21 ===
+* "/index.php/Article" style urls are no output by default. Please configure real short urls
+  on your wiki instead of relying on this behaviour. If you simply wish to start outputting
+  these links again you can manually set `$wgArticlePath = "{$wgServer}/$1";`.
+  Note that old 3rd party links and bookmarks to "/index.php/Article" style URLs will
+  continue to work as long as your webserver supports them.
 
 === New features in 1.21 ===
 

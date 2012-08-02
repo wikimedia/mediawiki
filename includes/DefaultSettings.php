@@ -117,10 +117,6 @@ $wgScriptPath       = '/wiki';
  *
  * Override this to false if $_SERVER['PATH_INFO'] contains unexpectedly
  * incorrect garbage, or to true if it is really correct.
- *
- * The default $wgArticlePath will be set based on this value at runtime, but if
- * you have customized it, having this incorrectly set to true can cause
- * redirect loops when "pretty URLs" are used.
  */
 $wgUsePathInfo =
 	( strpos( php_sapi_name(), 'cgi' ) === false ) &&
@@ -209,8 +205,7 @@ $wgStyleDirectory = false;
  * The URL path for primary article page views. This path should contain $1,
  * which is replaced by the article title.
  *
- * Defaults to "{$wgScript}/$1" or "{$wgScript}?title=$1",
- * depending on $wgUsePathInfo.
+ * Defaults to the standard url pattern "{$wgScript}?title=$1",
  */
 $wgArticlePath = false;
 
