@@ -1323,6 +1323,19 @@ abstract class QuickTemplate {
 		$text = $this->translator->translate( $str );
 		echo $wgOut->parse( $text );
 	}
+	
+	/**
+	 * Get text from a template parameter.
+	 * @private
+	 */
+	function template( $str ) {
+		$template = $this->data[$str];
+		if( !is_subclass_of( $template, 'QuickTemplate' ) ) {
+			throw new MWException( __METHOD__ . ' : Template requested from non-template parameter.' );
+		}
+		
+		$template->execute();
+	}
 
 	/**
 	 * @private
