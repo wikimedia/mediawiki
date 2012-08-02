@@ -1,6 +1,6 @@
 QUnit.module( 'jquery.localize', QUnit.newMwEnvironment() );
 
-QUnit.test( 'Handle basic replacements', 3, function ( assert ) {
+QUnit.test( 'Handle basic replacements', 4, function ( assert ) {
 	var html, $lc;
 	mw.messages.set( 'basic', 'Basic stuff' );
 
