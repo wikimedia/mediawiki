@@ -1388,11 +1388,11 @@ class User {
 				$ipList = gethostbynamel( $host );
 
 				if( $ipList ) {
-					wfDebug( "Hostname $host is {$ipList[0]}, it's a proxy says $base!\n" );
+					wfDebugLog( 'dnsblacklist', "Hostname $host is {$ipList[0]}, it's a proxy says $base!\n" );
 					$found = true;
 					break;
 				} else {
-					wfDebug( "Requested $host, not found in $base.\n" );
+					wfDebugLog( 'dnsblacklist', "Requested $host, not found in $base.\n" );
 				}
 			}
 		}
