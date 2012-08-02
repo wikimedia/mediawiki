@@ -25,6 +25,11 @@ upgrade PHP if you have not done so prior to upgrading MediaWiki.
 * Removed f-prot support from $wgAntivirusSetup.
 * New variable $wgDBerrorLogTZ to provide dates in the error log in a
   different timezone than the wiki timezone set by $wgLocalTimezone.
+* "/index.php/Article" style urls are no output by default. Please configure real short urls
+  on your wiki instead of relying on this behaviour. If you simply wish to start outputting
+  these links again you can manually set `$wgArticlePath = "{$wgServer}/$1";`.
+  Note that old 3rd party links and bookmarks to "/index.php/Article" style URLs will
+  continue to work as long as your webserver supports them.
 
 === New features in 1.20 ===
 * Added TitleIsAlwaysKnown hook which gets called when determining if a page exists.
