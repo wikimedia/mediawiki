@@ -65,7 +65,6 @@ audio/basic au snd
 audio/midi mid midi kar
 audio/mpeg mpga mp2 mp3
 audio/ogg oga ogg spx
-audio/webm webm
 audio/x-aiff aif aiff aifc
 audio/x-matroska mka mkv
 audio/x-mpegurl m3u
