@@ -1384,7 +1384,7 @@ class Article extends Page {
 			// @todo FIXME: i18n issue/patchwork message
 			$this->getContext()->getOutput()->addHTML( '<strong class="mw-delete-warning-revisions">' .
 				wfMsgExt( 'historywarning', array( 'parseinline' ), $this->getContext()->getLanguage()->formatNum( $revisions ) ) .
-				wfMsgHtml( 'word-separator' ) . Linker::link( $title,
+				wfMsgHtml( 'word-separator' ) . Linker::linkKnown( $title,
 					wfMsgHtml( 'history' ),
 					array( 'rel' => 'archives' ),
 					array( 'action' => 'history' ) ) .
