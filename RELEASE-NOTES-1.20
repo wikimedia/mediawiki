@@ -184,6 +184,8 @@ upgrade PHP if you have not done so prior to upgrading MediaWiki.
 * (bug 31644) GlobalUsage, CentralAuth and AbuseLog extensions should not use
   insecure links to foreign wikis in the WikiMap.
 * (bug 36073) Avoid duplicate element IDs on File pages
+* (bug 25095) Special:Categories should also include the first relevant item
+  when "from" is filled.
 
 === API changes in 1.20 ===
 * (bug 34316) Add ability to retrieve maximum upload size from MediaWiki API.
