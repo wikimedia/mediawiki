@@ -368,9 +368,9 @@ $wgMessageStructure = array(
 		'readonly',
 		'enterlockreason',
 		'readonlytext',
-		'missing-article',
-		'missingarticle-rev',
-		'missingarticle-diff',
+		'missing-article', // not used anymore in core, but kept for extensions
+		'missingarticle-rev', // not used anymore in core, but kept for extensions
+		'missingarticle-diff', // not used anymore in core, but kept for extensions
 		'readonly_lag',
 		'internalerror',
 		'internalerror_info',
@@ -616,6 +616,7 @@ $wgMessageStructure = array(
 		'noarticletext',
 		'noarticletext-nopermission',
 		'noarticletextanon',
+		'missing-revision',
 		'userpage-userdoesnotexist',
 		'userpage-userdoesnotexist-view',
 		'blocked-notice-logextract',
@@ -857,6 +858,7 @@ $wgMessageStructure = array(
 		'editundo',
 		'diff-multi',
 		'diff-multi-manyusers',
+		'difference-missing-revision',
 	),
 	'search' => array(
 		'search-summary',
