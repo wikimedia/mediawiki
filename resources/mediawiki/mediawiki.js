@@ -852,8 +852,9 @@ var mw = ( function ( $, undefined ) {
 						registry[module].state = 'loading';
 						nestedAddScript( script, markModuleReady, registry[module].async, 0 );
 					} else if ( $.isFunction( script ) ) {
+						registry[module].state = 'ready';
 						script( $ );
-						markModuleReady();
+						handlePending( module );
 					}
 				} catch ( e ) {
 					// This needs to NOT use mw.log because these errors are common in production mode
@@ -880,15 +881,6 @@ var mw = ( function ( $, undefined ) {
 				// Allow calling by single module name
 				if ( typeof dependencies === 'string' ) {
 					dependencies = [dependencies];
-					if ( registry[dependencies[0]] !== undefined ) {
-						// Cache repetitively accessed deep level object member
-						regItemDeps = registry[dependencies[0]].dependencies;
-						// Cache to avoid looped access to length property
-						regItemDepLen = regItemDeps.length;
-						for ( n = 0; n < regItemDepLen; n += 1 ) {
-							dependencies[dependencies.length] = regItemDeps[n];
-						}
-					}
 				}
 
 				// Add ready and error callbacks if they were given
@@ -1334,7 +1326,7 @@ var mw = ( function ( $, undefined ) {
 						}
 					}
 
-					if (filtered.length === 0) {
+					if ( filtered.length === 0 ) {
 						return;
 					}
 					// Resolve entire dependency map

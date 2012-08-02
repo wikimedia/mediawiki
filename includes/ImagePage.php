@@ -780,7 +780,7 @@ EOT
 					$link2 = Linker::linkKnown( Title::makeTitle( $row->page_namespace, $row->page_title ) );
 					$ul .= Html::rawElement(
 						'li',
-						array( 'id' => 'mw-imagepage-linkstoimage-ns' . $element->page_namespace ),
+						array( 'class' => 'mw-imagepage-linkstoimage-ns' . $element->page_namespace ),
 						$link2
 						) . "\n";
 				}
@@ -790,7 +790,7 @@ EOT
 			}
 			$out->addHTML( Html::rawElement(
 					'li',
-					array( 'id' => 'mw-imagepage-linkstoimage-ns' . $element->page_namespace ),
+					array( 'class' => 'mw-imagepage-linkstoimage-ns' . $element->page_namespace ),
 					$liContents
 				) . "\n"
 			);
@@ -946,18 +946,18 @@ class ImageHistoryList extends ContextSource {
 	 * @return string
 	 */
 	public function beginImageHistoryList( $navLinks = '' ) {
-		return Xml::element( 'h2', array( 'id' => 'filehistory' ), wfMsg( 'filehist' ) ) . "\n"
+		return Xml::element( 'h2', array( 'id' => 'filehistory' ), $this->msg( 'filehist' )->text() ) . "\n"
 			. "<div id=\"mw-imagepage-section-filehistory\">\n"
-			. $this->getOutput()->parse( wfMsgNoTrans( 'filehist-help' ) )
+			. $this->msg( 'filehist-help' )->parseAsBlock()
 			. $navLinks . "\n"
 			. Xml::openElement( 'table', array( 'class' => 'wikitable filehistory' ) ) . "\n"
 			. '<tr><td></td>'
 			. ( $this->current->isLocal() && ( $this->getUser()->isAllowedAny( 'delete', 'deletedhistory' ) ) ? '<td></td>' : '' )
-			. '<th>' . wfMsgHtml( 'filehist-datetime' ) . '</th>'
-			. ( $this->showThumb ? '<th>' . wfMsgHtml( 'filehist-thumb' ) . '</th>' : '' )
-			. '<th>' . wfMsgHtml( 'filehist-dimensions' ) . '</th>'
-			. '<th>' . wfMsgHtml( 'filehist-user' ) . '</th>'
-			. '<th>' . wfMsgHtml( 'filehist-comment' ) . '</th>'
+			. '<th>' . $this->msg( 'filehist-datetime' )->escaped() . '</th>'
+			. ( $this->showThumb ? '<th>' . $this->msg( 'filehist-thumb' )->escaped() . '</th>' : '' )
+			. '<th>' . $this->msg( 'filehist-dimensions' )->escaped() . '</th>'
+			. '<th>' . $this->msg( 'filehist-user' )->escaped() . '</th>'
+			. '<th>' . $this->msg( 'filehist-comment' )->escaped() . '</th>'
 			. "</tr>\n";
 	}
 
@@ -999,7 +999,7 @@ class ImageHistoryList extends ContextSource {
 				}
 				$row .= Linker::linkKnown(
 					$this->title,
-					wfMsgHtml( $iscur ? 'filehist-deleteall' : 'filehist-deleteone' ),
+					$this->msg( $iscur ? 'filehist-deleteall' : 'filehist-deleteone' )->escaped(),
 					array(), $q
 				);
 			}
@@ -1010,7 +1010,7 @@ class ImageHistoryList extends ContextSource {
 					$row .= '<br />';
 				}
 				// If file is top revision or locked from this user, don't link
-				if ( $iscur || !$file->userCan( File::DELETED_RESTRICTED ) ) {
+				if ( $iscur || !$file->userCan( File::DELETED_RESTRICTED, $user ) ) {
 					$del = Linker::revDeleteLinkDisabled( $canHide );
 				} else {
 					list( $ts, ) = explode( '!', $img, 2 );
@@ -1030,16 +1030,16 @@ class ImageHistoryList extends ContextSource {
 		// Reversion link/current indicator
 		$row .= '<td>';
 		if ( $iscur ) {
-			$row .= wfMsgHtml( 'filehist-current' );
-		} elseif ( $local && $this->title->quickUserCan( 'edit' )
-			&& $this->title->quickUserCan( 'upload' )
+			$row .= $this->msg( 'filehist-current' )->escaped();
+		} elseif ( $local && $this->title->quickUserCan( 'edit', $user )
+			&& $this->title->quickUserCan( 'upload', $user )
 		) {
 			if ( $file->isDeleted( File::DELETED_FILE ) ) {
-				$row .= wfMsgHtml( 'filehist-revert' );
+				$row .= $this->msg( 'filehist-revert' )->escaped();
 			} else {
 				$row .= Linker::linkKnown(
 					$this->title,
-					wfMsgHtml( 'filehist-revert' ),
+					$this->msg( 'filehist-revert' )->escaped(),
 					array(),
 					array(
 						'action' => 'revert',
@@ -1056,9 +1056,9 @@ class ImageHistoryList extends ContextSource {
 			$selected = "class='filehistory-selected'";
 		}
 		$row .= "<td $selected style='white-space: nowrap;'>";
-		if ( !$file->userCan( File::DELETED_FILE ) ) {
+		if ( !$file->userCan( File::DELETED_FILE, $user ) ) {
 			# Don't link to unviewable files
-			$row .= '<span class="history-deleted">' . $lang->timeanddate( $timestamp, true ) . '</span>';
+			$row .= '<span class="history-deleted">' . $lang->userTimeAndDate( $timestamp, $user ) . '</span>';
 		} elseif ( $file->isDeleted( File::DELETED_FILE ) ) {
 			if ( $local ) {
 				$this->preventClickjacking();
@@ -1066,7 +1066,7 @@ class ImageHistoryList extends ContextSource {
 				# Make a link to review the image
 				$url = Linker::linkKnown(
 					$revdel,
-					$lang->timeanddate( $timestamp, true ),
+					$lang->userTimeAndDate( $timestamp, $user ),
 					array(),
 					array(
 						'target' => $this->title->getPrefixedText(),
@@ -1075,12 +1075,12 @@ class ImageHistoryList extends ContextSource {
 					)
 				);
 			} else {
-				$url = $lang->timeanddate( $timestamp, true );
+				$url = $lang->userTimeAndDate( $timestamp, $user );
 			}
 			$row .= '<span class="history-deleted">' . $url . '</span>';
 		} else {
 			$url = $iscur ? $this->current->getUrl() : $this->current->getArchiveUrl( $img );
-			$row .= Xml::element( 'a', array( 'href' => $url ), $lang->timeanddate( $timestamp, true ) );
+			$row .= Xml::element( 'a', array( 'href' => $url ), $lang->userTimeAndDate( $timestamp, $user ) );
 		}
 		$row .= "</td>";
 
@@ -1092,9 +1092,9 @@ class ImageHistoryList extends ContextSource {
 		// Image dimensions + size
 		$row .= '<td>';
 		$row .= htmlspecialchars( $file->getDimensionsString() );
-		$row .= $this->getContext()->msg( 'word-separator' )->plain();
+		$row .= $this->msg( 'word-separator' )->plain();
 		$row .= '<span style="white-space: nowrap;">';
-		$row .= $this->getContext()->msg( 'parentheses' )->rawParams( Linker::formatSize( $file->getSize() ) )->plain();
+		$row .= $this->msg( 'parentheses' )->rawParams( Linker::formatSize( $file->getSize() ) )->plain();
 		$row .= '</span>';
 		$row .= '</td>';
 
@@ -1102,11 +1102,11 @@ class ImageHistoryList extends ContextSource {
 		$row .= '<td>';
 		// Hide deleted usernames
 		if ( $file->isDeleted( File::DELETED_USER ) ) {
-			$row .= '<span class="history-deleted">' . wfMsgHtml( 'rev-deleted-user' ) . '</span>';
+			$row .= '<span class="history-deleted">' . $this->msg( 'rev-deleted-user' )->escaped() . '</span>';
 		} else {
 			if ( $local ) {
 				$row .= Linker::userLink( $userId, $userText );
-				$row .= $this->getContext()->msg( 'word-separator' )->plain();
+				$row .= $this->msg( 'word-separator' )->plain();
 				$row .= '<span style="white-space: nowrap;">';
 				$row .= Linker::userToolLinks( $userId, $userText );
 				$row .= '</span>';
@@ -1118,7 +1118,7 @@ class ImageHistoryList extends ContextSource {
 
 		// Don't show deleted descriptions
 		if ( $file->isDeleted( File::DELETED_COMMENT ) ) {
-			$row .= '<td><span class="history-deleted">' . wfMsgHtml( 'rev-deleted-comment' ) . '</span></td>';
+			$row .= '<td><span class="history-deleted">' . $this->msg( 'rev-deleted-comment' )->escaped() . '</span></td>';
 		} else {
 			$row .= '<td dir="' . $wgContLang->getDir() . '">' . Linker::formatComment( $description, $this->title ) . '</td>';
 		}
@@ -1136,7 +1136,10 @@ class ImageHistoryList extends ContextSource {
 	 */
 	protected function getThumbForLine( $file ) {
 		$lang = $this->getLanguage();
-		if ( $file->allowInlineDisplay() && $file->userCan( File::DELETED_FILE ) && !$file->isDeleted( File::DELETED_FILE ) ) {
+		$user = $this->getUser();
+		if ( $file->allowInlineDisplay() && $file->userCan( File::DELETED_FILE,$user )
+			&& !$file->isDeleted( File::DELETED_FILE ) )
+		{
 			$params = array(
 				'width' => '120',
 				'height' => '120',
@@ -1145,20 +1148,20 @@ class ImageHistoryList extends ContextSource {
 
 			$thumbnail = $file->transform( $params );
 			$options = array(
-				'alt' => wfMsg( 'filehist-thumbtext',
-					$lang->timeanddate( $timestamp, true ),
-					$lang->date( $timestamp, true ),
-					$lang->time( $timestamp, true ) ),
+				'alt' => $this->msg( 'filehist-thumbtext',
+					$lang->userTimeAndDate( $timestamp, $user ),
+					$lang->userDate( $timestamp, $user ),
+					$lang->userTime( $timestamp, $user ) )->text(),
 				'file-link' => true,
 			);
 
 			if ( !$thumbnail ) {
-				return wfMsgHtml( 'filehist-nothumb' );
+				return $this->msg( 'filehist-nothumb' )->escaped();
 			}
 
 			return $thumbnail->toHtml( $options );
 		} else {
-			return wfMsgHtml( 'filehist-nothumb' );
+			return $this->msg( 'filehist-nothumb' )->escaped();
 		}
 	}
 

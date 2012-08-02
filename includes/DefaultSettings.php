@@ -358,9 +358,11 @@ $wgImgAuthPublicTest = true;
  *
  * For most core repos:
  *   - zones            Associative array of zone names that each map to an array with:
- *                          container : backend container name the zone is in
- *                          directory : root path within container for the zone
- *                          url       : base URL to the root of the zone
+ *                          container  : backend container name the zone is in
+ *                          directory  : root path within container for the zone
+ *                          url        : base URL to the root of the zone
+ *                          handlerUrl : base script handled URL to the root of the zone
+ *                                       (see FileRepo::getZoneHandlerUrl() function)
  *                      Zones default to using "<repo name>-<zone name>" as the container name
  *                      and default to using the container root as the zone's root directory.
  *                      Nesting of zone locations within other zones should be avoided.
@@ -1594,17 +1596,10 @@ $wgUseDumbLinkUpdate = false;
 
 /**
  * Anti-lock flags - bitfield
- *   - ALF_PRELOAD_LINKS:
- *       Preload links during link update for save
- *   - ALF_PRELOAD_EXISTENCE:
- *       Preload cur_id during replaceLinkHolders
  *   - ALF_NO_LINK_LOCK:
  *       Don't use locking reads when updating the link table. This is
  *       necessary for wikis with a high edit rate for performance
  *       reasons, but may cause link table inconsistency
- *   - ALF_NO_BLOCK_LOCK:
- *       As for ALF_LINK_LOCK, this flag is a necessity for high-traffic
- *       wikis.
  */
 $wgAntiLockFlags = 0;
 
@@ -2699,6 +2694,14 @@ $wgBetterDirectionality = true;
  * this configuration variable is ignored.
  */
 $wgSend404Code = true;
+
+
+/**
+ * The $wgShowRollbackEditCount variable is used to show how many edits will be
+ * rollback. The numeric value of the varible are the limit up to are counted.
+ * If the value is false or 0, the edits are not counted.
+ */
+$wgShowRollbackEditCount = 10;
 
 /** @} */ # End of output format settings }
 
@@ -5520,10 +5523,12 @@ $wgLogActions = array(
  * @see LogFormatter
  */
 $wgLogActionsHandlers = array(
-	// move, move_redir
-	'move/*'            => 'MoveLogFormatter',
-	// delete, restore, revision, event
-	'delete/*'          => 'DeleteLogFormatter',
+	'move/move'         => 'MoveLogFormatter',
+	'move/move_redir'  => 'MoveLogFormatter',
+	'delete/delete'     => 'DeleteLogFormatter',
+	'delete/restore'    => 'DeleteLogFormatter',
+	'delete/revision'   => 'DeleteLogFormatter',
+	'delete/event'      => 'DeleteLogFormatter',
 	'suppress/revision' => 'DeleteLogFormatter',
 	'suppress/event'    => 'DeleteLogFormatter',
 	'suppress/delete'   => 'DeleteLogFormatter',
@@ -6174,6 +6179,11 @@ $wgContentHandlerTextFallback = 'ignore';
  *             get rid of it in the next version.
  */
 $wgContentHandlerUseDB = true;
+
+/**
+ * Whether the user must enter their password to change their e-mail address
+ */
+$wgRequirePasswordforEmailChange = true;
 
 /**
  * For really cool vim folding this needs to be at the end:

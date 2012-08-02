@@ -1346,7 +1346,7 @@ Li [[Special:WantedCategories|kategoriyên xwestî]] binêre.',
 'activeusers-noresult' => 'Tu bikarhêner nehate dîtin.',
 
 # Special:Log/newusers
-'newuserlogpage' => 'Çêkirina hesabê nû',
+'newuserlogpage' => 'çêkirina hesabê nû',
 
 # Special:ListGroupRights
 'listgrouprights' => 'Mafên koma bikarhêner',
@@ -1650,7 +1650,7 @@ Sedemekê binivîse!',
 'blocklist-tempblocks' => 'Astengkirinên demkî veşêre',
 'blocklist-rangeblocks' => 'Astengkirinên cur bi cur veşêre',
 'blocklist-by' => 'Astengkirina rêveber',
-'blocklist-params' => 'Parametreyan asteng bike',
+'blocklist-params' => 'Parametreyên astengkirinê',
 'blocklist-reason' => 'Sedem',
 'ipblocklist-submit' => 'Lêgerîn',
 'ipblocklist-localblock' => 'Astengkirina herêmî',

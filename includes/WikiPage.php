@@ -1621,7 +1621,7 @@ class WikiPage extends Page {
 	 */
 	public function doEditContent( Content $content, $summary, $flags = 0, $baseRevId = false,
 								   User $user = null, $serialisation_format = null ) {
-		global $wgUser, $wgDBtransactions, $wgUseAutomaticEditSummaries;
+		global $wgUser, $wgUseAutomaticEditSummaries, $wgUseRCPatrol, $wgUseNPPatrol;
 
 		# Low-level sanity check
 		if ( $this->mTitle->getText() === '' ) {
@@ -1762,43 +1762,38 @@ class WikiPage extends Page {
 				$ok = $this->updateRevisionOn( $dbw, $revision, $oldid, $oldIsRedirect );
 
 				if ( !$ok ) {
-					/* Belated edit conflict! Run away!! */
+					# Belated edit conflict! Run away!!
 					$status->fatal( 'edit-conflict' );
 
-					$revisionId = 0;
 					$dbw->rollback( __METHOD__ );
-				} else {
-					global $wgUseRCPatrol;
-					wfRunHooks( 'NewRevisionFromEditComplete', array( $this, $revision, $baseRevId, $user ) );
-					# Update recentchanges
-					if ( !( $flags & EDIT_SUPPRESS_RC ) ) {
-						# Mark as patrolled if the user can do so
-						$patrolled = $wgUseRCPatrol && !count(
-							$this->mTitle->getUserPermissionsErrors( 'autopatrol', $user ) );
-						# Add RC row to the DB
-						$rc = RecentChange::notifyEdit( $now, $this->mTitle, $isminor, $user, $summary,
-							$oldid, $this->getTimestamp(), $bot, '', $oldsize, $newsize,
-							$revisionId, $patrolled
-						);
 
-						# Log auto-patrolled edits
-						if ( $patrolled ) {
-							PatrolLog::record( $rc, true, $user );
-						}
-					}
-					$user->incEditCount();
-					$dbw->commit( __METHOD__ );
+					wfProfileOut( __METHOD__ );
+					return $status;
 				}
+
+				wfRunHooks( 'NewRevisionFromEditComplete', array( $this, $revision, $baseRevId, $user ) );
+				# Update recentchanges
+				if ( !( $flags & EDIT_SUPPRESS_RC ) ) {
+					# Mark as patrolled if the user can do so
+					$patrolled = $wgUseRCPatrol && !count(
+						$this->mTitle->getUserPermissionsErrors( 'autopatrol', $user ) );
+					# Add RC row to the DB
+					$rc = RecentChange::notifyEdit( $now, $this->mTitle, $isminor, $user, $summary,
+						$oldid, $this->getTimestamp(), $bot, '', $oldsize, $newsize,
+						$revisionId, $patrolled
+					);
+
+					# Log auto-patrolled edits
+					if ( $patrolled ) {
+						PatrolLog::record( $rc, true, $user );
+					}
+				}
+				$user->incEditCount();
+				$dbw->commit( __METHOD__ );
 			} else {
 				// Bug 32948: revision ID must be set to page {{REVISIONID}} and
 				// related variables correctly
 				$revision->setId( $this->getLatest() );
-			}
-
-			// Now that ignore_user_abort is restored, we can respond to fatal errors
-			if ( !$status->isOK() ) {
-				wfProfileOut( __METHOD__ );
-				return $status;
 			}
 
 			# Update links tables, site stats, etc.
@@ -1873,8 +1868,6 @@ class WikiPage extends Page {
 
 			# Update recentchanges
 			if ( !( $flags & EDIT_SUPPRESS_RC ) ) {
-				global $wgUseRCPatrol, $wgUseNPPatrol;
-
 				# Mark as patrolled if the user can do so
 				$patrolled = ( $wgUseRCPatrol || $wgUseNPPatrol ) && !count(
 					$this->mTitle->getUserPermissionsErrors( 'autopatrol', $user ) );

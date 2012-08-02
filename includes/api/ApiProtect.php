@@ -176,7 +176,7 @@ class ApiProtect extends ApiBase {
 			'title' => "Title of the page you want to (un)protect. Cannot be used together with {$p}pageid",
 			'pageid' => "ID of the page you want to (un)protect. Cannot be used together with {$p}title",
 			'token' => 'A protect token previously retrieved through prop=info',
-			'protections' => 'Pipe-separated list of protection levels, formatted action=group (e.g. edit=sysop)',
+			'protections' => 'List of protection levels, formatted action=group (e.g. edit=sysop)',
 			'expiry' => array( 'Expiry timestamps. If only one timestamp is set, it\'ll be used for all protections.',
 					'Use \'infinite\', \'indefinite\' or \'never\', for a neverexpiring protection.' ),
 			'reason' => 'Reason for (un)protecting',

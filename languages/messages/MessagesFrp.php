@@ -445,8 +445,8 @@ $messages = array(
 'cancel' => 'Anular',
 'moredotdotdot' => 'Més...',
 'mypage' => 'Ma pâge',
-'mytalk' => 'Pâge de discussion',
-'anontalk' => 'Discussion avouéc ceta adrèce IP',
+'mytalk' => 'Ma pâge de discussion',
+'anontalk' => 'Discussion avouéc cet’adrèce IP',
 'navigation' => 'Navigacion',
 'and' => '&#32;et',
 
@@ -458,8 +458,8 @@ $messages = array(
 'qbpageinfo' => 'Contèxto',
 'qbmyoptions' => 'Mes pâges',
 'qbspecialpages' => 'Pâges spèciâles',
-'faq' => 'FDQ',
-'faqpage' => 'Project:FDQ',
+'faq' => 'Quèstions sovent posâyes',
+'faqpage' => 'Project:Quèstions sovent posâyes',
 
 # Vector skin
 'vector-action-addsection' => 'Apondre un sujèt',
@@ -480,10 +480,10 @@ $messages = array(
 
 'errorpagetitle' => 'Fôta',
 'returnto' => 'Tornar a la pâge $1.',
-'tagline' => 'De {{SITENAME}}.',
+'tagline' => 'De {{SITENAME}}',
 'help' => 'Éde',
 'search' => 'Rechèrche',
-'searchbutton' => 'Chèrchiér',
+'searchbutton' => 'Rechèrchiér',
 'go' => 'Alar trovar',
 'searcharticle' => 'Liére',
 'history' => 'Historico de la pâge',
@@ -507,7 +507,7 @@ $messages = array(
 'unprotect' => 'Changiér la protèccion',
 'unprotectthispage' => 'Changiér la protèccion de ceta pâge',
 'newpage' => 'Pâge novèla',
-'talkpage' => 'Pâge de discussion',
+'talkpage' => 'Discussion sur ceta pâge',
 'talkpagelinktext' => 'discutar',
 'specialpage' => 'Pâge spèciâla',
 'personaltools' => 'Outils a sè',
@@ -516,66 +516,66 @@ $messages = array(
 'talk' => 'Discussion',
 'views' => 'Visualisacions',
 'toolbox' => 'Bouèta d’outils',
-'userpage' => 'Pâge utilisator',
+'userpage' => 'Vêde la pâge utilisator',
 'projectpage' => 'Vêde la pâge du projèt',
 'imagepage' => 'Vêde la pâge du fichiér',
 'mediawikipage' => 'Vêde la pâge du mèssâjo',
 'templatepage' => 'Vêde la pâge du modèlo',
 'viewhelppage' => 'Vêde la pâge d’éde',
 'categorypage' => 'Vêde la pâge de catègorie',
-'viewtalkpage' => 'Pâge de discussion',
+'viewtalkpage' => 'Vêde la pâge de discussion',
 'otherlanguages' => 'Ôtres lengoues',
 'redirectedfrom' => '(Redirigiê dês $1)',
 'redirectpagesub' => 'Pâge de redirèccion',
 'lastmodifiedat' => 'Dèrriér changement de ceta pâge lo $1 a $2.',
-'viewcount' => 'Ceta pâge at étâye vua {{PLURAL:$1|yon côp|$1 côps}}.',
+'viewcount' => 'Ceta pâge est étâye vua {{PLURAL:$1|yon côp|$1 côps}}.',
 'protectedpage' => 'Pâge protègiêye',
 'jumpto' => 'Alar a :',
 'jumptonavigation' => 'navigacion',
 'jumptosearch' => 'rechèrche',
 'view-pool-error' => 'Dèconsolâ, los sèrviors sont lapidâs d’ôvra cetos temps.
-Trop d’utilisators chèrchont a vêre ceta pâge.
+Trop d’utilisators tâchont de vêre ceta pâge.
 Volyéd atendre un moment devant que tornar tâchiér d’arrevar a ceta pâge.
 
 $1',
-'pool-timeout' => 'Dèpassement du dèlê pendent l’atenta du vèrrolyâjo',
-'pool-queuefull' => 'La fela d’ôvra est plêna',
-'pool-errorunknown' => 'Èrror encognua',
+'pool-timeout' => 'Dèlê dèpassâ pendent l’atenta du vèrroly',
+'pool-queuefull' => 'La renche d’ôvra est plêna',
+'pool-errorunknown' => 'Fôta encognua',
 
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
 'aboutsite' => 'A propôs de {{SITENAME}}',
 'aboutpage' => 'Project:A propôs',
-'copyright' => 'Lo contegnu est disponiblo desot $1.',
-'copyrightpage' => '{{ns:project}}:Drêt d’ôtor',
+'copyright' => 'Lo contegnu est disponiblo desot licence $1.',
+'copyrightpage' => '{{ns:project}}:Drêts a ôtor',
 'currentevents' => 'Novèles',
 'currentevents-url' => 'Project:Novèles',
 'disclaimers' => 'Avèrtissements',
 'disclaimerpage' => 'Project:Avèrtissements g·ènèrals',
 'edithelp' => 'Éde',
-'edithelppage' => 'Help:Coment changiér una pâge',
+'edithelppage' => 'Help:Coment changiér na pâge',
 'helppage' => 'Help:Somèro',
 'mainpage' => 'Reçua',
 'mainpage-description' => 'Reçua',
 'policy-url' => 'Project:Règlles de dedens',
 'portal' => 'Comunôtât',
-'portal-url' => 'Project:Reçua',
+'portal-url' => 'Project:Reçua de la comunôtât',
 'privacy' => 'Politica de confidencialitât',
 'privacypage' => 'Project:Politica de confidencialitât',
 
-'badaccess' => 'Èrror de pèrmission',
-'badaccess-group0' => 'Vos avéd pas los drêts sufisents por rèalisar l’accion que vos demandâd.',
-'badaccess-groups' => 'L’accion que vos tâchiéd de rèalisar est accèssibla ren qu’ux usanciérs a {{PLURAL:$2|la tropa|les tropes}} : $1.',
+'badaccess' => 'Fôta de pèrmission',
+'badaccess-group0' => 'Vos avéd pas los drêts sufisents por rèalisar l’accion demandâye.',
+'badaccess-groups' => 'L’accion que vos tâchiéd de rèalisar est accèssibla ren qu’ux utilisators a {{PLURAL:$2|la tropa|les tropes}} : $1.',
 
 'versionrequired' => 'Vèrsion $1 de MediaWiki nècèssèra',
-'versionrequiredtext' => 'La vèrsion $1 de MediaWiki est nècèssèra por utilisar ceta pâge.
+'versionrequiredtext' => 'La vèrsion $1 de MediaWiki est nècèssèra por empleyér ceta pâge.
 Vêde la [[Special:Version|pâge de les vèrsions]].',
 
 'ok' => 'D’acôrd',
-'retrievedfrom' => 'Rècupèrâ de « $1 »',
+'retrievedfrom' => 'Rècupèrâye de « $1 »',
 'youhavenewmessages' => 'Vos avéd de $1 ($2).',
 'newmessageslink' => 'mèssâjos novéls',
 'newmessagesdifflink' => 'dèrriér changement',
-'youhavenewmessagesmulti' => 'Vos avéd de mèssâjos novéls dessus $1.',
+'youhavenewmessagesmulti' => 'Vos avéd de mèssâjos novéls sur $1',
 'editsection' => 'changiér',
 'editold' => 'changiér',
 'viewsourceold' => 'vêre lo tèxto sôrsa',
@@ -585,8 +585,8 @@ Vêde la [[Special:Version|pâge de les vèrsions]].',
 'toc' => 'Somèro',
 'showtoc' => 'fâre vêre',
 'hidetoc' => 'cachiér',
-'collapsible-collapse' => 'Recllôre',
-'collapsible-expand' => 'Dèvelopar',
+'collapsible-collapse' => 'repleyér',
+'collapsible-expand' => 'dèpleyér',
 'thisisdeleted' => 'Voléd-vos fâre vêre ou ben refâre $1 ?',
 'viewdeleted' => 'Fâre vêre $1 ?',
 'restorelink' => '{{PLURAL:$1|yon changement suprimâ|$1 changements suprimâs}}',
@@ -598,12 +598,12 @@ Vêde la [[Special:Version|pâge de les vèrsions]].',
 'page-rss-feed' => 'Flux RSS de « $1 »',
 'page-atom-feed' => 'Flux Atom de « $1 »',
 'red-link-title' => '$1 (pâge pas ègzistenta)',
-'sort-descending' => 'Triyér per ôrdre dècrèssent',
-'sort-ascending' => 'Triyér per ôrdre crèssent',
+'sort-descending' => 'Betar per ôrdre dèscendent',
+'sort-ascending' => 'Betar per ôrdre montent',
 
 # Short words for each namespace, by default used in the namespace tab in monobook
 'nstab-main' => 'Pâge',
-'nstab-user' => 'Pâge usanciér',
+'nstab-user' => 'Pâge utilisator',
 'nstab-media' => 'Pâge de mèdia',
 'nstab-special' => 'Pâge spèciâla',
 'nstab-project' => 'Pâge du projèt',
@@ -615,45 +615,45 @@ Vêde la [[Special:Version|pâge de les vèrsions]].',
 
 # Main script and global functions
 'nosuchaction' => 'Accion encognua',
-'nosuchactiontext' => 'L’accion spècefiâ dens l’URL est envalida.
+'nosuchactiontext' => 'L’accion spècifiâye dens l’URL est envalida.
 Vos éd pôt-étre mâl-buchiê l’URL ou ben siuvu un lim fôx.
-Pôt asse-ben étre quèstion d’una cofierie dens la programeria utilisâ per {{SITENAME}}.',
+Pôt asse-ben étre quèstion d’una cofierie dedens la programeria empleyêye per {{SITENAME}}.',
 'nosuchspecialpage' => 'Pâge spèciâla pas ègzistenta',
-'nospecialpagetext' => '<strong>Vos éd demandâ una pâge spèciâla qu’ègziste pas.</strong>
+'nospecialpagetext' => '<strong>Vos éd demandâ na pâge spèciâla qu’ègziste pas.</strong>
 
-Una lista de les pâges spèciâles valides sè trove dessus [[Special:SpecialPages|{{int:specialpages}}]].',
+Na lista de les pâges spèciâles valides sè trove dessus [[Special:SpecialPages|{{int:specialpages}}]].',
 
 # General errors
-'error' => 'Èrror',
-'databaseerror' => 'Èrror de la bâsa de balyês',
-'dberrortext' => 'Una èrror de sintaxa de la requéta dens la bâsa de balyês est arrevâ.
-Cen pôt endicar una cofierie dens la programeria.
-La dèrriére requéta trètâ per la bâsa de balyês ére :
+'error' => 'Fôta',
+'databaseerror' => 'Fôta de la bâsa de donâs',
+'dberrortext' => 'Na fôta de sintaxa de la requéta dens la bâsa de donâs est arrevâye.
+Cen pôt endicar na cofierie dedens la programeria.
+La dèrriére requéta trètâye per la bâsa de donâs ére :
 <blockquote><tt>$1</tt></blockquote>
 dês la fonccion « <tt>$2</tt> ».
-La bâsa de balyês at retornâ l’èrror « <tt>$3 : $4</tt> ».',
-'dberrortextcl' => 'Una èrror de sintaxa de la requéta dens la bâsa de balyês est arrevâ.
-La dèrriére requéta trètâ per la bâsa de balyês ére :
+La bâsa de donâs at retornâ la fôta « <tt>$3 : $4</tt> ».',
+'dberrortextcl' => 'Na fôta de sintaxa de la requéta dens la bâsa de donâs est arrevâye.
+La dèrriére requéta trètâye per la bâsa de donâs ére :
 « $1 »
 dês la fonccion « $2 ».
-La bâsa de balyês at retornâ l’èrror « $3 : $4 ».',
+La bâsa de donâs at retornâ la fôta « $3 : $4 ».',
 'laggedslavemode' => "'''Atencion :''' cela pâge pôt pas contegnir tôs los dèrriérs changements fêts.",
-'readonly' => 'Bâsa de balyês vèrrolyê',
-'enterlockreason' => 'Balyéd la rêson du vèrrolyâjo et pués una èstimacion de son temps',
-'readonlytext' => 'Ora, la bâsa de balyês est vèrrolyê por d’entrâs novèles et d’ôtros changements, probâblament por pèrmetre la mantegnence de la bâsa de balyês, aprés què tot tornerat a la normala.
+'readonly' => 'Bâsa de donâs vèrrolyêye',
+'enterlockreason' => 'Balyéd la rêson du vèrroly et pués un’èstimacion de la sina durâ',
+'readonlytext' => 'Ora, la bâsa de donâs est vèrrolyêye por les entrâs novèles et los ôtros changements, probâblament por pèrmetre la sina mantegnence, dês cen tot tornerat en ôrdre.
 
-L’administrator que l’at vèrrolyê at balyê ceta èxplicacion : $1',
-'missing-article' => 'La bâsa de balyês at pas trovâ lo tèxto d’una pâge qu’el arêt diu trovar, avouéc lo titro « $1 » $2.
+L’administrator que l’at vèrrolyê at balyê cet’èxplicacion : $1',
+'missing-article' => 'La bâsa de donâs at pas trovâ lo tèxto d’una pâge qu’el arêt diu trovar, avouéc lo titro « $1 » $2.
 
-En g·ènèral, cen arreve en siuvent un lim de vers un dif dèpassâ ou ben de vers l’historico d’una pâge suprimâ.
+En g·ènèral, cen arreve en siuvent un lim de vers un dif dèpassâ ou ben de vers l’historico d’una pâge suprimâye.
 
-S’o est pas lo câs, pôt étre quèstion d’una cofierie dens la programeria.
+S’o est pas lo câs, pôt étre quèstion d’una cofierie dedens la programeria.
 La volyéd signalar a un [[Special:ListUsers/sysop|administrator]] sen oubliar de lui endicar l’URL du lim.',
-'missingarticle-rev' => '(numerô de la vèrsion : $1)',
-'missingarticle-diff' => '(Dif : $1, $2)',
-'readonly_lag' => 'La bâsa de balyês at étâ vèrrolyê ôtomaticament pendent que los sèrvors secondèros ratrapont lor retârd sur lo sèrvor principâl.',
-'internalerror' => 'Èrror de dedens',
-'internalerror_info' => 'Èrror de dedens : $1',
+'missingarticle-rev' => '(numerô de vèrsion : $1)',
+'missingarticle-diff' => '(dif : $1, $2)',
+'readonly_lag' => 'La bâsa de donâs est étâye vèrrolyêye ôtomaticament pendent que los sèrviors secondèros ratrapont lor retârd sur lo sèrvior principâl.',
+'internalerror' => 'Fôta de dedens',
+'internalerror_info' => 'Fôta de dedens : $1',
 'fileappenderrorread' => 'Empossiblo de liére « $1 » pendent l’aponsa.',
 'fileappenderror' => 'Empossiblo d’apondre « $1 » a « $2 ».',
 'filecopyerror' => 'Empossiblo de copiyér lo fichiér « $1 » vers « $2 ».',
@@ -661,26 +661,26 @@ La volyéd signalar a un [[Special:ListUsers/sysop|administrator]] sen oubliar d
 'filedeleteerror' => 'Empossiblo de suprimar lo fichiér « $1 ».',
 'directorycreateerror' => 'Empossiblo de fâre lo dossiér « $1 ».',
 'filenotfound' => 'Empossiblo de trovar lo fichiér « $1 ».',
-'fileexistserror' => 'Empossiblo d’ècrire dens lo dossiér « $1 » : lo fichiér ègziste.',
+'fileexistserror' => 'Empossiblo d’ècrire lo fichiér « $1 » : lo fichiér ègziste.',
 'unexpected' => 'Valor emprèvua : « $1 » = « $2 ».',
-'formerror' => 'Èrror : empossiblo de sometre lo formulèro',
+'formerror' => 'Fôta : empossiblo de sometre lo formulèro.',
 'badarticleerror' => 'Cela accion pôt pas étre fêta sur ceta pâge.',
 'cannotdelete' => 'Empossiblo de suprimar la pâge ou ben lo fichiér « $1 ».
-La suprèssion at pôt-étre ja étâ fêta per quârqu’un d’ôtro.',
+Pôt-étre la suprèssion est ja étâye fêta per quârqu’un d’ôtro.',
 'cannotdelete-title' => 'Empossiblo de suprimar la pâge « $1 »',
 'badtitle' => 'Crouyo titro',
-'badtitletext' => 'Lo titro de pâge demandâ est fôx, vouedo, ou ben o est un titro entèrlengoua ou entèrvouiqui mâl-liyê.
-Contint sûrement yon ou ben un mouél de caractèros que pôvont pas étre utilisâs dens los titros.',
-'perfcached' => 'Cetes balyês sont en cache et pôvont pas étre a jorn. {{PLURAL:$1|Yon rèsultat|$1 rèsultats}} u més {{PLURAL:$1|est disponiblo|sont disponiblos}} dedens lo cache.',
-'perfcachedts' => 'Cetes balyês sont en cache et ont étâ betâs a jorn por lo dèrriér côp a $1. {{PLURAL:$4|Yon rèsultat|$4 rèsultats}} u més {{PLURAL:$1|est disponiblo|sont disponiblos}} dedens lo cache.',
-'querypage-no-updates' => 'Ora, les mises a jorn por ceta pâge sont dèsactivâs.
-Les balyês ce-desot sont pas betâs a jorn.',
-'wrong_wfQuery_params' => 'Paramètres fôx dessus wfQuery()<br />
+'badtitletext' => 'Lo titro de la pâge demandâye est envalido, vouedo, ou ben o est un titro entèrlengoua ou entèrvouiqui mâl-liyê.
+Contint sûrament yon ou ben un mouél de caractèros que pôvont pas étre empleyês dedens los titros.',
+'perfcached' => 'Cetes donâs sont en cacho et pôvont pas étre a jorn. Por lo més {{PLURAL:$1|yon rèsultat est disponiblo|$1 rèsultats sont disponiblos}} dedens lo cacho.',
+'perfcachedts' => 'Cetes donâs sont en cacho et sont étâyes betâyes a jorn por lo dèrriér côp a $1. Por lo més {{PLURAL:$1|yon rèsultat est disponiblo|$1 rèsultats sont disponiblos}} dedens lo cacho.',
+'querypage-no-updates' => 'Ora, les mises a jorn por ceta pâge sont dèsactivâyes.
+Les donâs ce-desot sont pas betâyes a jorn.',
+'wrong_wfQuery_params' => 'Paramètros fôx dessus wfQuery()<br />
 Fonccion : $1<br />
 Requéta : $2',
 'viewsource' => 'Vêre lo tèxto sôrsa',
-'viewsource-title' => 'Vêre la sôrsa de $1',
-'actionthrottled' => 'Accion limitâ',
+'viewsource-title' => 'Vêre lo tèxto sôrsa de $1',
+'actionthrottled' => 'Accion limitâye',
 'actionthrottledtext' => 'Por combatre lo spame, la frèquence d’ègzécucion de cela accion est limitâ dens un moment prod côrt, et vos éd dèpassâ ceta limita.
 Volyéd tornar èprovar dens doux-três menutes.',
 'protectedpagetext' => 'Ceta pâge at étâ protègiê por empachiér son changement.',

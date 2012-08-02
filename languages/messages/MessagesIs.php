@@ -1374,7 +1374,7 @@ Tölvupóstfang þitt er ekki gefið upp þegar aðrir notendur hafa samband vi�
 # Groups
 'group' => 'Hópur:',
 'group-user' => 'Notendur',
-'group-autoconfirmed' => 'Sjálfkrafa staðfesting notenda',
+'group-autoconfirmed' => 'Sjálfkrafa staðfestir notendur',
 'group-bot' => 'Vélmenni',
 'group-sysop' => 'Stjórnendur',
 'group-bureaucrat' => 'Möppudýr',
@@ -1389,7 +1389,7 @@ Tölvupóstfang þitt er ekki gefið upp þegar aðrir notendur hafa samband vi�
 'group-suppress-member' => '{{GENDER:$1|Umsjón}}',
 
 'grouppage-user' => '{{ns:project}}:Notendur',
-'grouppage-autoconfirmed' => '{{ns:project}}:Sjálfkrafa staðfesting notenda',
+'grouppage-autoconfirmed' => '{{ns:project}}:Sjálfkrafa staðfestir notendur',
 'grouppage-bot' => '{{ns:project}}:Vélmenni',
 'grouppage-sysop' => '{{ns:project}}:Stjórnendur',
 'grouppage-bureaucrat' => '{{ns:project}}:Möppudýr',

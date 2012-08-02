@@ -32,6 +32,8 @@ upgrade PHP if you have not done so prior to upgrading MediaWiki.
   certain namespace can be moved.
 * Added SpecialPageBeforeExecute hook which gets called before SpecialPage::execute.
 * Added SpecialPageAfterExecute hook which gets called after SpecialPage::execute.
+* Added ORMTable, ORMRow and ORMResult classes for additional abstraction of
+  database interaction.
 * (bug 32341) Add upload by URL domain limitation.
 * &useskin=default will now always display the default skin. Useful for users with a
   preference for the non-default skin to look at something using the default skin.
@@ -61,7 +63,7 @@ upgrade PHP if you have not done so prior to upgrading MediaWiki.
   Special:Version
 * Edit notices can now be translated.
 * (bug 35680) jQuery upgraded to 1.7.2.
-* jQuery UI upgraded to 1.8.21.
+* jQuery UI upgraded to 1.8.22.
 * (bug 35705) QUnit upgraded from v1.2.0 to v1.8.0.
 * (bug 37604) jquery.cookie upgraded to 2011 version.
 * (bug 22887) Add warning and tracking category for preprocessor errors
@@ -101,6 +103,15 @@ upgrade PHP if you have not done so prior to upgrading MediaWiki.
   instead of the site content language
 * (bug 37926) Deleterevision will no longer allow users to delete log entries,
   the new deletelogentry permission is required for this.
+* (bug 14237) Allow PAGESINCATEGORY to distinguish between 'all', 'pages', 'files'
+  and 'subcats'
+* (bug 38362) Make Special:Listuser includeable on wiki pages.
+* Added support in jquery.localize for placeholder attributes.
+* (bug 38151) Implemented mw.user.getRights for getting and caching the current
+  user's user rights.
+* Implemented mw.user.getGroups for getting and caching user groups.
+* (bug 37830) Added $wgRequirePasswordforEmailChange to control whether password
+  confirmation is required for changing an email address or not.
 
 === Bug fixes in 1.20 ===
 * (bug 30245) Use the correct way to construct a log page title.
@@ -152,7 +163,6 @@ upgrade PHP if you have not done so prior to upgrading MediaWiki.
   who don't have access to /tmp can specify an alternative.
 * (bug 27283) SqlBagOStuff breaks PostgreSQL transactions.
 * (bug 35727) mw.Api ajax() should put token parameter last.
-* (bug 260) Handle <pre> overflow automatically with a scroll bar.
 * (bug 37708) mw.Uri.clone() should make a deep copy.
 * (bug 38024) ResourceLoader should not create empty stylesheets for modules
   that don't have stylesheets.
@@ -171,6 +181,11 @@ upgrade PHP if you have not done so prior to upgrading MediaWiki.
   values are used instead of just the fixed values from when the tablesorter
   was initialized.
 * (bug 38093) Gender of changed user groups missing in Special:Log/rights
+* (bug 35893) Special:Block needs to load mediawiki.special.block.js.
+* (bug 37331) ResourceLoader modules sometimes execute twice in Firefox
+* (bug 31644) GlobalUsage, CentralAuth and AbuseLog extensions should not use
+  insecure links to foreign wikis in the WikiMap.
+* (bug 36073) Avoid duplicate element IDs on File pages
 
 === API changes in 1.20 ===
 * (bug 34316) Add ability to retrieve maximum upload size from MediaWiki API.
@@ -200,6 +215,8 @@ upgrade PHP if you have not done so prior to upgrading MediaWiki.
 * (bug 36987) API avoids mangling fields in continuation parameters
 * (bug 30836) siteinfo prop=specialpagealiases will no longer return nonexistent special pages
 * (bug 38190) Add "required" flag to some token params for hint in api docs.
+* (bug 27567) Add file repo support to prop=duplicatefiles.
+* (bug 27610) Add archivename for non-latest image version to list=filearchive
 
 === Languages updated in 1.20 ===
 
@@ -215,6 +232,8 @@ changes to languages because of Bugzilla reports.
 * (bug 35541) Namespace gender aliases for Croatian (hr).
 * (bug 36012) Space in $separatorTransformTable should be non-breaking in
   Portuguese, Esperanto and Udmurt.
+* Turoyo (tru) added.
+* Cyrillic-Latin language converter added for Uzbek (uz).
 
 === Other changes in 1.20 ===
 * The user_token field is now left empty until a user attempts to login and
@@ -227,6 +246,8 @@ changes to languages because of Bugzilla reports.
   and only applies to MyISAM or similar DBs. Those should only be used
   for archived sites anyway. We can't get edit conflicts on such sites,
   so the WikiPage code wasn't useful there either.
+* Deprecated mw.user.name in favour of mw.user.getName.
+* Deprecated mw.user.anonymous in favour of mw.user.isAnon.
 
 == Compatibility ==
 

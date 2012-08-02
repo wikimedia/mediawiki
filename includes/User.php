@@ -2715,8 +2715,7 @@ class User {
 			$force = 'force';
 		}
 
-		$wi = WatchedItem::fromUserTitle( $this, $title );
-		$wi->resetNotificationTimestamp( $force );
+		$this->getWatchedItem( $title )->resetNotificationTimestamp( $force );
 	}
 
 	/**

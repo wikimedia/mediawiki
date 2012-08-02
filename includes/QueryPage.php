@@ -483,10 +483,11 @@ abstract class QueryPage extends SpecialPage {
 
 		// TODO: Use doQuery()
 		if ( !$this->isCached() ) {
-			$res = $this->reallyDoQuery( $this->limit, $this->offset );
+			# select one extra row for navigation
+			$res = $this->reallyDoQuery( $this->limit + 1, $this->offset );
 		} else {
-			# Get the cached result
-			$res = $this->fetchFromCache( $this->limit, $this->offset );
+			# Get the cached result, select one extra row for navigation
+			$res = $this->fetchFromCache( $this->limit + 1, $this->offset );
 			if ( !$this->listoutput ) {
 
 				# Fetch the timestamp of this update
@@ -528,7 +529,7 @@ abstract class QueryPage extends SpecialPage {
 					$this->numRows, $this->offset + 1 )->parseAsBlock() );
 				# Disable the "next" link when we reach the end
 				$paging = $this->getLanguage()->viewPrevNext( $this->getTitle( $par ), $this->offset,
-					$this->limit, $this->linkParameters(), ( $this->numRows < $this->limit ) );
+					$this->limit, $this->linkParameters(), ( $this->numRows <= $this->limit ) );
 				$out->addHTML( '<p>' . $paging . '</p>' );
 			} else {
 				# No results to show, so don't bother with "showing X of Y" etc.
@@ -546,7 +547,7 @@ abstract class QueryPage extends SpecialPage {
 			$this->getSkin(),
 			$dbr, # Should use a ResultWrapper for this
 			$res,
-			$this->numRows,
+			min( $this->numRows, $this->limit ), # do not format the one extra row, if exist
 			$this->offset );
 
 		# Repeat the paging links at the bottom

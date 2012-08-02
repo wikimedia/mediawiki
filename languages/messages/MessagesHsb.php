@@ -1357,6 +1357,7 @@ Smě mjenje hač $1 {{PLURAL:$1|znamješko|znamješce|znamješka|znamješkow}} d
 'right-writeapi' => 'writeAPI wužiwać',
 'right-delete' => 'Strony zhašeć',
 'right-bigdelete' => 'Strony z dołhimi stawiznami zničić',
+'right-deletelogentry' => 'Jednotliwe protokolowe zapiski zhašeć a wobnowić',
 'right-deleterevision' => 'Jednotliwe wersije wušmórnyć a wobnowić',
 'right-deletedhistory' => 'Wušmórnjene zapiski stawiznow bjez přisłušneho teksta wobhladać',
 'right-deletedtext' => 'Wušmórnjeny tekst a změny mjez wušmórnjenymi wersijemi sej wobhladać',
@@ -1668,6 +1669,7 @@ $1',
 'lockmanager-fail-releaselock' => 'Zawěra za "$1" njeda so dopušćić.',
 'lockmanager-fail-db-bucket' => 'W zběrniku $1 njeda so dosć zawrjenskich datowych bankow kontaktować',
 'lockmanager-fail-db-release' => 'Zawěry na datowu banku $1 njedadźa so dopušćić',
+'lockmanager-fail-svr-acquire' => 'Zawěry na serwer $1 njehodźa so wotwołać.',
 'lockmanager-fail-svr-release' => 'Zawěry na serwer $1 njedadźa so dopušćić',
 
 # ZipDirectoryReader
@@ -3722,6 +3724,4 @@ Hewak móžeš slědowacy jednory formular wužiwać. Twój komentar přida so s
 'duration-centuries' => '$1 {{PLURAL:$1|lětstotk|lětstotkaj|lětstotki|lětstotkow}}',
 'duration-millennia' => '$1 {{PLURAL:$1|lěttysac|lěttysacaj|lěttysacy|lěttysacow}}',
 
-# Unknown messages
-'lockmanager-fail-svr-acquire' => 'Zawěry na serwer $1 njehodźa so wotwołać.',
 );

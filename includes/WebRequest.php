@@ -88,7 +88,9 @@ class WebRequest {
 			if ( !preg_match( '!^https?://!', $url ) ) {
 				$url = 'http://unused' . $url;
 			}
+			wfSuppressWarnings();
 			$a = parse_url( $url );
+			wfRestoreWarnings();
 			if( $a ) {
 				$path = isset( $a['path'] ) ? $a['path'] : '';
 

@@ -300,6 +300,8 @@ class SpecialBlock extends FormSpecialPage {
 	 * @return String
 	 */
 	protected function preText(){
+		$this->getOutput()->addModules( 'mediawiki.special.block' );
+
 		$text = $this->msg( 'blockiptext' )->parse();
 
 		$otherBlockMessages = array();

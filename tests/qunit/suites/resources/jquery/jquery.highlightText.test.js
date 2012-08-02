@@ -1,12 +1,7 @@
-module( 'jquery.highlightText', QUnit.newMwEnvironment() );
+QUnit.module( 'jquery.highlightText', QUnit.newMwEnvironment() );
 
-test( '-- Initial check', function() {
-	expect(1);
-	ok( $.fn.highlightText, 'jQuery.fn.highlightText defined' );
-} );
-
-test( 'Check', function() {
-	var cases = [
+QUnit.test( 'Check', function ( assert ) {
+	var $fixture, cases = [
 		{
 		        desc: 'Test 001',
 			text: 'Blue Öyster Cult',
@@ -224,16 +219,14 @@ test( 'Check', function() {
 			expected: '<span class="highlight">بو</span>ل إيردوس'
 		}
 	];
-	expect(cases.length);
-	var $fixture;
+	QUnit.expect( cases.length );
 
-	$.each(cases, function( i, item ) {
-		$fixture = $( '<p></p>' ).text( item.text );
-		$fixture.highlightText( item.highlight );
-		equals(
+	$.each( cases, function ( i, item ) {
+		$fixture = $( '<p>' ).text( item.text ).highlightText( item.highlight );
+		assert.equal(
 			$fixture.html(),
-			$('<p>' + item.expected + '</p>').html(), // re-parse to normalize!
+			$( '<p>' ).html( item.expected ).html(), // re-parse to normalize!
 			item.desc || undefined
-			);
+		);
 	} );
 } );

@@ -942,12 +942,8 @@ class MWMemcached {
 				}
 
 			} else {
-				$peer = $peerAddress = $peerPort = '';
-				$gotPeer = socket_getpeername( $sock, $peerAddress, $peerPort );
-				if( $gotPeer ) {
-					$peer = " from [$peerAddress:$peerPort";
-				}
-				$this->_debugprint( "Error parsing memcached response{$peer}\n" );
+				$peer = stream_socket_get_name( $sock, true /** remote **/ );
+				$this->_debugprint( "Error parsing memcached response from [{$peer}]\n" );
 				return 0;
 			}
 		}

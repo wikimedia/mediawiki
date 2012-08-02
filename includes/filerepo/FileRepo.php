@@ -217,6 +217,28 @@ class FileRepo {
 	}
 
 	/**
+	 * Get the thumb zone URL configured to be handled by scripts like thumb_handler.php.
+	 * This is probably only useful for internal requests, such as from a fast frontend server
+	 * to a slower backend server.
+	 *
+	 * Large sites may use a different host name for uploads than for wikis. In any case, the
+	 * wiki configuration is needed in order to use thumb.php. To avoid extracting the wiki ID
+	 * from the URL path, one can configure thumb_handler.php to recognize a special path on the
+	 * same host name as the wiki that is used for viewing thumbnails.
+	 *
+	 * @param $zone String: one of: public, deleted, temp, thumb
+	 * @return String or false
+	 */
+	public function getZoneHandlerUrl( $zone ) {
+		if ( isset( $this->zones[$zone]['handlerUrl'] )
+			&& in_array( $zone, array( 'public', 'temp', 'thumb' ) ) )
+		{
+			return $this->zones[$zone]['handlerUrl'];
+		}
+		return false;
+	}
+
+	/**
 	 * Get the backend storage path corresponding to a virtual URL.
 	 * Use this function wisely.
 	 *
@@ -437,6 +459,24 @@ class FileRepo {
 	 */
 	public function findBySha1( $hash ) {
 		return array();
+	}
+
+	/**
+	 * Get an array of arrays or iterators of file objects for files that
+	 * have the given SHA-1 content hashes.
+	 *
+	 * @param $hashes array An array of hashes
+	 * @return array An Array of arrays or iterators of file objects and the hash as key
+	 */
+	public function findBySha1s( array $hashes ) {
+		$result = array();
+		foreach ( $hashes as $hash ) {
+			$files = $this->findBySha1( $hash );
+			if ( count( $files ) ) {
+				$result[$hash] = $files;
+			}
+		}
+		return $result;
 	}
 
 	/**

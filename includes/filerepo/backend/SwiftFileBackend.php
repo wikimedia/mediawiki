@@ -188,6 +188,9 @@ class SwiftFileBackend extends FileBackendStore {
 			$obj->set_etag( md5( $params['content'] ) );
 			// Use the same content type as StreamFile for security
 			$obj->content_type = StreamFile::contentTypeFromPath( $params['dst'] );
+			if ( !strlen( $obj->content_type ) ) { // special case
+				$obj->content_type = 'unknown/unknown';
+			}
 			if ( !empty( $params['async'] ) ) { // deferred
 				$handle = $obj->write_async( $params['content'] );
 				$status->value = new SwiftFileOpHandle( $this, $params, 'Create', $handle );
@@ -267,6 +270,9 @@ class SwiftFileBackend extends FileBackendStore {
 			$obj->set_etag( md5_file( $params['src'] ) );
 			// Use the same content type as StreamFile for security
 			$obj->content_type = StreamFile::contentTypeFromPath( $params['dst'] );
+			if ( !strlen( $obj->content_type ) ) { // special case
+				$obj->content_type = 'unknown/unknown';
+			}
 			if ( !empty( $params['async'] ) ) { // deferred
 				wfSuppressWarnings();
 				$fp = fopen( $params['src'], 'rb' );
@@ -1058,7 +1064,7 @@ class SwiftFileBackend extends FileBackendStore {
 	 *                          Setting this to '*' effectively makes a container public.
 	 *   - .rlistings:<regex> : Grants access if the request is from a referrer host that
 	 *                          matches the expression and the request for a listing.
-	 * 
+	 *
 	 * $writeGrps is a list of the possible criteria for a request to have
 	 * access to write to a container. Each item is of the following format:
 	 *   - account:user       : Grants access if the request is by the given user
@@ -1296,7 +1302,7 @@ abstract class SwiftFileBackendList implements Iterator {
 	protected $dir; // string; storage directory
 	protected $suffixStart; // integer
 
-	const PAGE_SIZE = 5000; // file listing buffer size
+	const PAGE_SIZE = 9000; // file listing buffer size
 
 	/**
 	 * @param $backend SwiftFileBackend

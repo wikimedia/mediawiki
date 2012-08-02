@@ -913,9 +913,44 @@ $2
 'revdelete-hide-image' => 'أخف محتوى الملف',
 'revdelete-hide-name' => 'أخف الفعل والهدف',
 'revdelete-hide-comment' => 'أخف تعليق التعديل',
+'revdelete-hide-user' => 'أخف اسم/آيبي المستخدم',
+'revdelete-hide-restricted' => 'أخف البيانات عن الإداريين إضافة إلى الآخرين',
+'revdelete-radio-same' => '(لا تغير)',
+'revdelete-radio-set' => 'نعم',
+'revdelete-radio-unset' => 'لا',
+'revdelete-suppress' => 'أخف البيانات عن مديري النظام والبقية',
+'revdelete-unsuppress' => 'إزالة الضوابط من المراجعات المسترجعة',
+'revdelete-log' => 'السبب:',
+'revdelete-submit' => 'طبق على {{PLURAL:$1||المراجعة المختارة|المراجعتين المختارتين|المراجعات المختارة}}',
+'revdelete-success' => "'''تم تحديث رؤية المراجعات بنجاح.'''",
+'revdelete-failure' => "'''تعذر تحديث رؤية المراجعة:'''
+$1",
+'logdelete-success' => "'''تم ضبط رؤية السجلات بنجاح.'''",
+'logdelete-failure' => "'''تعذر ضبط رؤية السجل:'''
+$1",
 'revdel-restore' => 'تغيير الرؤية',
 'revdel-restore-deleted' => 'مراجعات محذوفة',
 'revdel-restore-visible' => 'مراجعات مرئية',
+'pagehist' => 'تاريخ الصفحة',
+'deletedhist' => 'التاريخ المحذوف',
+'revdelete-hide-current' => 'خطأ عند إحفاء العنصر المؤرخ في $2 $1: هذه هي المراجعة الحالية.
+لا يمكن إخفاؤها.',
+'revdelete-show-no-access' => 'خطأ في إظهار العنصر ذا التاريخ $2 $1: هذا العنصر معلم ك"مقيد".
+ليس لك صلاحية الوصول إليه.',
+'revdelete-modify-no-access' => 'خطأ في تعديل العنصر ذا التاريخ $2 $1: هذا العنصر معلم ك"مقيد".
+ليس لك صلاحية الوصول إليه.',
+'revdelete-modify-missing' => 'خطأ في تعديل العنصر ذا الهوية $1: العنصر مفقود من قاعدة البيانات!',
+'revdelete-no-change' => "'''تحذير:''' العنصر ذو التاريخ $2 $1 لديه أصلا إعدادات الظهور المطلوبة.",
+'revdelete-concurrent-change' => 'خطأ في تعديل العنصر ذي التاريخ $2 $1: تظهر حالته أن شخصا آخر عدله أثناء محاولتك تعديله.
+من فضلك راجع السجلات.',
+'revdelete-only-restricted' => 'خطأ إخفاء العنصر المؤرخ $2, $1: لا تستطيع تنحية العناصر من عرض الإداريين بدون أن تحدد أيضا إحدى خيارات التنحية الأخرى.',
+'revdelete-reason-dropdown' => '* أسباب حذف عامة
+** خرق لحقوق النشر
+** معلومات شخصية غير ملائمة
+**معلومات تشهيرية محتملة',
+'revdelete-otherreason' => 'سبب آخر/إضافي:',
+'revdelete-reasonotherlist' => 'سبب آخر',
+'revdelete-edit-reasonlist' => 'عدل أسباب الحذف',
 
 # Merge log
 'revertmerge' => 'إلغاء الدمج',

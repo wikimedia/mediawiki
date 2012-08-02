@@ -1,7 +1,7 @@
 {
 	"predef": [
 		"mediaWiki",
-		"jQuery",
+		"mw",
 		"QUnit"
 	],
 
@@ -17,6 +17,8 @@
 
 	"laxbreak": true,
 	"smarttabs": true,
+	"multistr": true,
 
-	"browser": true
+	"browser": true,
+	"jquery": true
 }

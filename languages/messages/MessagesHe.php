@@ -375,9 +375,9 @@ $messages = array(
 'tog-previewontop' => 'הצגת תצוגה מקדימה לפני תיבת העריכה (או: אחריה)',
 'tog-previewonfirst' => 'הצגת תצוגה מקדימה בעריכה ראשונה',
 'tog-nocache' => 'מניעת אחסון הדפים בזיכרון המטמון בדפדפן',
-'tog-enotifwatchlistpages' => 'שליחת דוא"ל אליך כאשר נעשה שינוי בדף או בקובץ ברשימת המעקב שלך',
-'tog-enotifusertalkpages' => 'שליחת דוא"ל אליך כאשר נעשה שינוי בדף שיחת המשתמש שלך',
-'tog-enotifminoredits' => 'שליחת דוא"ל אליך גם על עריכות משניות של דפים וקבצים',
+'tog-enotifwatchlistpages' => 'לשלוח אליי דואר אלקטרוני כאשר נעשה שינוי בדף או בקובץ ברשימת המעקב שלי',
+'tog-enotifusertalkpages' => 'לשלוח אליי דואר אלקטרוני כאשר נעשה שינוי בדף שיחת המשתמש שלי',
+'tog-enotifminoredits' => 'לשלוח אליי דואר אלקטרוני גם על עריכות משניות של דפים וקבצים',
 'tog-enotifrevealaddr' => 'חשיפת כתובת הדוא"ל שלך בהודעות דוא"ל',
 'tog-shownumberswatching' => 'הצגת מספר המשתמשים העוקבים אחרי הדף',
 'tog-oldsig' => 'החתימה הקיימת:',
@@ -394,7 +394,7 @@ $messages = array(
 'tog-watchlisthideanons' => 'הסתרת עריכות של משתמשים אנונימיים ברשימת המעקב',
 'tog-watchlisthidepatrolled' => 'הסתרת עריכות בדוקות ברשימת המעקב',
 'tog-nolangconversion' => 'ביטול המרת גרסאות שפה',
-'tog-ccmeonemails' => 'קבלת העתקים של הודעות דוא"ל הנשלחות ממני למשתמשים אחרים',
+'tog-ccmeonemails' => 'לשלוח אליי העתקים של הודעות דואר אלקטרוני ששלחתי למשתמשים אחרים',
 'tog-diffonly' => 'ביטול הצגת תוכן הדף מתחת להשוואות הגרסאות',
 'tog-showhiddencats' => 'הצגת קטגוריות מוסתרות',
 'tog-noconvertlink' => 'ביטול המרת קישורים לכותרות',
@@ -1602,7 +1602,8 @@ $1",
 'right-writeapi' => 'שימוש ב־API לשינוי דפים',
 'right-delete' => 'מחיקת דפים',
 'right-bigdelete' => 'מחיקת דפים עם היסטוריית דף ארוכה',
-'right-deleterevision' => 'מחיקת גרסאות מסוימות של דפים',
+'right-deletelogentry' => 'מחיקת ושחזור פעולות מסוימות ביומן',
+'right-deleterevision' => 'מחיקת ושחזור גרסאות מסוימות של דפים',
 'right-deletedhistory' => 'צפייה בגרסאות מחוקות ללא הטקסט השייך להן',
 'right-deletedtext' => 'צפייה בטקסט מחוק ובהבדלים בין גרסאות מחוקות',
 'right-browsearchive' => 'חיפוש דפים מחוקים',
@@ -1918,6 +1919,7 @@ $1',
 'lockmanager-fail-releaselock' => 'לא הייתה אפשרות לשחרר את הנעילה עבור "$1".',
 'lockmanager-fail-db-bucket' => 'לא הייתה אפשרות לקבל מספיק מסדי נתונים של נעילות בדלי $1.',
 'lockmanager-fail-db-release' => 'לא הייתה אפשרות לשחרר נעילות על מסד הנתונים $1.',
+'lockmanager-fail-svr-acquire' => 'לא הייתה אפשרות לבצע נעילות על השרת $1.',
 'lockmanager-fail-svr-release' => 'לא הייתה אפשרות לשחרר נעילות על השרת $1.',
 
 # ZipDirectoryReader
@@ -2339,7 +2341,7 @@ $1',
 'emailsubject' => 'נושא:',
 'emailmessage' => 'הודעה:',
 'emailsend' => 'שליחה',
-'emailccme' => 'נא לשלוח לי בדואר האלקטרוני העתק של הודעתי.',
+'emailccme' => 'נא לשלוח לי בדואר אלקטרוני העתק של הודעתי.',
 'emailccsubject' => 'העתק של הודעתך למשתמש $1: $2',
 'emailsent' => 'הדואר נשלח',
 'emailsenttext' => 'הודעת הדואר האלקטרוני שלך נשלחה.',
@@ -2464,7 +2466,7 @@ $UNWATCHURL
 'rollbackfailed' => 'השחזור נכשל',
 'cantrollback' => 'לא ניתן לשחזר את העריכה;
 התורם האחרון הוא היחיד שכתב בדף זה.',
-'alreadyrolled' => 'לא ניתן לשחזר את עריכת הדף [[:$1]] על ידי [[User:$2|$2]] ([[User talk:$2|שיחה]]{{int:pipe-separator}}[[Special:Contributions/$2|{{int:contribslink}}]]); מישהו אחר כבר ערך או שחזר דף זה.
+'alreadyrolled' => 'לא ניתן לשחזר את העריכה של [[User:$2|$2]] ([[User talk:$2|שיחה]]{{int:pipe-separator}}[[Special:Contributions/$2|{{int:contribslink}}]]) בדף [[:$1]]; מישהו אחר כבר ערך או שחזר את הדף.
 
 העריכה האחרונה הייתה של [[User:$3|$3]] ([[User talk:$3|שיחה]]{{int:pipe-separator}}[[Special:Contributions/$3|{{int:contribslink}}]]).',
 'editcomment' => "תקציר העריכה היה: \"'''\$1'''\".",
@@ -4112,6 +4114,4 @@ $5
 'duration-centuries' => '{{PLURAL:$1|מאה שנה|$1 מאות שנים|מאתיים שנה}}',
 'duration-millennia' => '{{PLURAL:$1|אלף שנה|$1 אלפי שנים|אלפיים שנה}}',
 
-# Unknown messages
-'lockmanager-fail-svr-acquire' => 'לא הייתה אפשרות לבצע נעילות על השרת $1.',
 );

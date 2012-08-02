@@ -1,5 +1,7 @@
 ( function ( $, mw, QUnit, undefined ) {
-"use strict";
+/*global CompletenessTest */
+/*jshint evil:true */
+'use strict';
 
 var mwTestIgnore, mwTester, addons;
 
@@ -26,7 +28,11 @@ QUnit.fixurl = function ( value ) {
 QUnit.config.testTimeout = 10 * 1000;
 
 // Add a checkbox to QUnit header to toggle MediaWiki ResourceLoader debug mode.
-QUnit.config.urlConfig.push( 'debug' );
+QUnit.config.urlConfig.push( {
+	id: 'debug',
+	label: 'Enable ResourceLoaderDebug',
+	tooltip: 'Enable debug mode in ResourceLoader'
+} );
 
 /**
  * Load TestSwarm agent
@@ -45,7 +51,11 @@ if ( QUnit.urlParams.swarmURL && mw.config.get( 'QUnitTestSwarmInjectJSPath' ) )
  * CompletenessTest
  */
 // Adds toggle checkbox to header
-QUnit.config.urlConfig.push( 'completenesstest' );
+QUnit.config.urlConfig.push( {
+	id: 'completenesstest',
+	label: 'Run CompletenessTest',
+	tooltip: 'Run the completeness test'
+} );
 
 // Initiate when enabled
 if ( QUnit.urlParams.completenesstest ) {
@@ -130,7 +140,7 @@ QUnit.newMwEnvironment = ( function () {
 				mw.config.values = freshConfigCopy( localEnv.config );
 				mw.messages.values = freshMessagesCopy( localEnv.messages );
 
-				localEnv.setup()
+				localEnv.setup();
 			},
 
 			teardown: function () {
@@ -173,12 +183,12 @@ addons = {
 
 	// Expect boolean true
 	assertTrue: function ( actual, message ) {
-		strictEqual( actual, true, message );
+		QUnit.push( actual === true, actual, true, message );
 	},
 
 	// Expect boolean false
 	assertFalse: function ( actual, message ) {
-		strictEqual( actual, false, message );
+		QUnit.push( actual === false, actual, false, message );
 	},
 
 	// Expect numerical value less than X
@@ -199,22 +209,17 @@ addons = {
 	// Expect numerical value greater than or equal to X
 	gtOrEq: function ( actual, expected, message ) {
 		QUnit.push( actual >= expected, actual, 'greater than or equal to ' + expected, message );
-	},
-
-	// Backwards compatible with new verions of QUnit
-	equals: window.equal,
-	same: window.deepEqual
+	}
 };
 
-$.extend( QUnit, addons );
-$.extend( window, addons );
+$.extend( QUnit.assert, addons );
 
 /**
  * Small test suite to confirm proper functionality of the utilities and
  * initializations in this file.
  */
 var envExecCount = 0;
-module( 'mediawiki.tests.qunit.testrunner', QUnit.newMwEnvironment({
+QUnit.module( 'mediawiki.tests.qunit.testrunner', QUnit.newMwEnvironment({
 	setup: function () {
 		envExecCount += 1;
 		this.mwHtmlLive = mw.html;
@@ -235,33 +240,27 @@ module( 'mediawiki.tests.qunit.testrunner', QUnit.newMwEnvironment({
 	}
 }) );
 
-test( 'Setup', function () {
-	expect( 3 );
-
-	equal( mw.html.escape( 'foo' ), 'mocked-1', 'extra setup() callback was ran.' );
-	equal( mw.config.get( 'testVar' ), 'foo', 'config object applied' );
-	equal( mw.messages.get( 'testMsg' ), 'Foo.', 'messages object applied' );
+QUnit.test( 'Setup', 3, function ( assert ) {
+	assert.equal( mw.html.escape( 'foo' ), 'mocked-1', 'extra setup() callback was ran.' );
+	assert.equal( mw.config.get( 'testVar' ), 'foo', 'config object applied' );
+	assert.equal( mw.messages.get( 'testMsg' ), 'Foo.', 'messages object applied' );
 
 	mw.config.set( 'testVar', 'bar' );
 	mw.messages.set( 'testMsg', 'Bar.' );
 });
 
-test( 'Teardown', function () {
-	expect( 3 );
-
-	equal( mw.html.escape( 'foo' ), 'mocked-2', 'extra setup() callback was re-ran.' );
-	equal( mw.config.get( 'testVar' ), 'foo', 'config object restored and re-applied after test()' );
-	equal( mw.messages.get( 'testMsg' ), 'Foo.', 'messages object restored and re-applied after test()' );
+QUnit.test( 'Teardown', 3, function ( assert ) {
+	assert.equal( mw.html.escape( 'foo' ), 'mocked-2', 'extra setup() callback was re-ran.' );
+	assert.equal( mw.config.get( 'testVar' ), 'foo', 'config object restored and re-applied after test()' );
+	assert.equal( mw.messages.get( 'testMsg' ), 'Foo.', 'messages object restored and re-applied after test()' );
 });
 
-module( 'mediawiki.tests.qunit.testrunner-after', QUnit.newMwEnvironment() );
+QUnit.module( 'mediawiki.tests.qunit.testrunner-after', QUnit.newMwEnvironment() );
 
-test( 'Teardown', function () {
-	expect( 3 );
-
-	equal( mw.html.escape( '<' ), '&lt;', 'extra teardown() callback was ran.' );
-	equal( mw.config.get( 'testVar' ), null, 'config object restored to live in next module()' );
-	equal( mw.messages.get( 'testMsg' ), null, 'messages object restored to live in next module()' );
+QUnit.test( 'Teardown', 3, function ( assert ) {
+	assert.equal( mw.html.escape( '<' ), '&lt;', 'extra teardown() callback was ran.' );
+	assert.equal( mw.config.get( 'testVar' ), null, 'config object restored to live in next module()' );
+	assert.equal( mw.messages.get( 'testMsg' ), null, 'messages object restored to live in next module()' );
 });
 
-})( jQuery, mediaWiki, QUnit );
+}( jQuery, mediaWiki, QUnit ) );

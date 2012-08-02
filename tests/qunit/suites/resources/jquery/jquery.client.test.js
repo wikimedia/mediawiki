@@ -1,14 +1,9 @@
-module( 'jquery.client', QUnit.newMwEnvironment() );
-
-test( '-- Initial check', function() {
-	expect(1);
-	ok( jQuery.client, 'jQuery.client defined' );
-});
+QUnit.module( 'jquery.client', QUnit.newMwEnvironment() );
 
 /** Number of user-agent defined */
 var uacount = 0;
 
-var uas = (function() {
+var uas = (function () {
 
 	// Object keyed by userAgent. Value is an array (human-readable name, client-profile object, navigator.platform value)
 	// Info based on results from http://toolserver.org/~krinkle/testswarm/job/174/
@@ -225,40 +220,39 @@ var uas = (function() {
 			}
 		}
 	};
-	$.each( uas, function() { uacount++ });
+	$.each( uas, function () {
+		uacount++;
+	});
 	return uas;
-})();
+}());
 
-test( 'profile userAgent support', function() {
-	expect(uacount);
-
+QUnit.test( 'profile userAgent support', uacount, function ( assert ) {
 	// Generate a client profile object and compare recursively
 	var uaTest = function( rawUserAgent, data ) {
 		var ret = $.client.profile( {
 			userAgent: rawUserAgent,
 			platform: data.platform
 		} );
-		deepEqual( ret, data.profile, 'Client profile support check for ' + data.title + ' (' + data.platform + '): ' + rawUserAgent );
+		assert.deepEqual( ret, data.profile, 'Client profile support check for ' + data.title + ' (' + data.platform + '): ' + rawUserAgent );
 	};
 
 	// Loop through and run tests
 	$.each( uas, uaTest );
 } );
 
-test( 'profile return validation for current user agent', function() {
-	expect(7);
+QUnit.test( 'profile return validation for current user agent', 7, function ( assert ) {
 	var p = $.client.profile();
-	var unknownOrType = function( val, type, summary ) {
-		return ok( typeof val === type || val === 'unknown', summary );
-	};
+	function unknownOrType( val, type, summary ) {
+		assert.ok( typeof val === type || val === 'unknown', summary );
+	}
 
-	equal( typeof p, 'object', 'profile returns an object' );
+	assert.equal( typeof p, 'object', 'profile returns an object' );
 	unknownOrType( p.layout, 'string', 'p.layout is a string (or "unknown")' );
 	unknownOrType( p.layoutVersion, 'number', 'p.layoutVersion is a number (or "unknown")' );
 	unknownOrType( p.platform, 'string', 'p.platform is a string (or "unknown")' );
 	unknownOrType( p.version, 'string', 'p.version is a string (or "unknown")' );
 	unknownOrType( p.versionBase, 'string', 'p.versionBase is a string (or "unknown")' );
-	equal( typeof p.versionNumber, 'number', 'p.versionNumber is a number' );
+	assert.equal( typeof p.versionNumber, 'number', 'p.versionNumber is a number' );
 });
 
 // Example from WikiEditor
@@ -289,20 +283,16 @@ var testMap = {
 	}
 };
 
-test( 'test', function() {
-	expect(1);
-
+QUnit.test( 'test', 1, function ( assert ) {
 	// .test() uses eval, make sure no exceptions are thrown
 	// then do a basic return value type check
 	var testMatch = $.client.test( testMap );
 
-	equal( typeof testMatch, 'boolean', 'test returns a boolean value' );
+	assert.equal( typeof testMatch, 'boolean', 'test returns a boolean value' );
 
 });
 
-test( 'User-agent matches against WikiEditor\'s compatibility map', function() {
-	expect( uacount * 2 ); // double since we test both LTR and RTL
-
+QUnit.test( 'User-agent matches against WikiEditor\'s compatibility map', uacount * 2, function ( assert ) {
 	var	$body = $( 'body' ),
 		bodyClasses = $body.attr( 'class' );
 
@@ -317,7 +307,7 @@ test( 'User-agent matches against WikiEditor\'s compatibility map', function() {
 			var testMatch = $.client.test( testMap, profile );
 			$body.removeClass( dir );
 
-			equal( testMatch, data.wikiEditor[dir], 'testing comparison based on ' + dir + ', ' + agent );
+			assert.equal( testMatch, data.wikiEditor[dir], 'testing comparison based on ' + dir + ', ' + agent );
 		});
 	});
 

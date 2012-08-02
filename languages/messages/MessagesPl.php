@@ -19,6 +19,7 @@
  * @author Holek
  * @author Jwitos
  * @author Kaganer
+ * @author Karol007
  * @author Lajsikonik
  * @author Lampak
  * @author Lazowik
@@ -1960,10 +1961,10 @@ Dostępna jest też [[Special:WhatLinksHere/$2|pełna lista]].',
 'morelinkstoimage' => 'Pokaż [[Special:WhatLinksHere/$1|więcej odnośników]] do tego pliku.',
 'linkstoimage-redirect' => '$1 (przekierowanie do pliku) $2',
 'duplicatesoffile' => '{{PLURAL:$1|Następujący plik jest kopią|Następujące pliki są kopiami}} pliku ([[Special:FileDuplicateSearch/$2|więcej informacji]]):',
-'sharedupload' => 'Ten plik znajduje się na $1 i może być używany w innych projektach.',
-'sharedupload-desc-there' => 'Ten plik znajduje się na $1 i może być używany w innych projektach.
+'sharedupload' => 'Ten plik znajduje się w $1 i może być używany w innych projektach.',
+'sharedupload-desc-there' => 'Ten plik znajduje się w $1 i może być używany w innych projektach.
 Więcej informacji odnajdziesz na [$2 stronie opisu pliku].',
-'sharedupload-desc-here' => 'Ten plik znajduje się na $1 i może być używany w innych projektach.
+'sharedupload-desc-here' => 'Ten plik znajduje się w $1 i może być używany w innych projektach.
 Poniżej znajdują się informacje ze [$2 strony opisu] tego pliku.',
 'sharedupload-desc-edit' => 'Plik ten pochodzi z $1 i może być wykorzystany w innych projektach.
 Być może zechcesz zmienić opis na tej [$2 stronie opisu pliku].',
@@ -3863,9 +3864,9 @@ Grafiki są pokazywane w pełnej rozdzielczości. Inne typy plików są otwieran
 
 # Special:SpecialPages
 'specialpages' => 'Strony specjalne',
-'specialpages-note' => '* Typowe strony specjalne.
-* <span class="mw-specialpagerestricted">Strony specjalne o ograniczonym dostępie.</span>
-* <span class="mw-specialpagecached">Buforowane strony specjalne (mogą być nieaktualne).</span>',
+'specialpages-note' => '----
+* Normalne strony specjalne.
+* <span class="mw-specialpagerestricted">Zastrzeżone strony specjalne.</span>',
 'specialpages-group-maintenance' => 'Raporty konserwacyjne',
 'specialpages-group-other' => 'Inne strony specjalne',
 'specialpages-group-login' => 'Logowanie i rejestracja',

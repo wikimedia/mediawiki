@@ -369,6 +369,7 @@
 	'tokipona' => 'Toki Pona',      # Toki Pona
 	'tpi' => 'Tok Pisin',	# Tok Pisin
 	'tr' => 'Türkçe',	# Turkish
+	'tru' => 'Ṫuroyo', # Turoyo
 	'ts' => 'Xitsonga',		# Tsonga
 	'tt' => 'татарча/tatarça',	# Tatar (multiple scripts - defaults to Cyrillic)
 	'tt-cyrl' => 'татарча',	# Tatar (Cyrillic script) (default)

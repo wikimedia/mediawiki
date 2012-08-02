@@ -1,6 +1,8 @@
 <?php
 /**
- * Copyright (C) 2005 Brion Vibber <brion@pobox.com>
+ * Import XML dump files into the current wiki.
+ *
+ * Copyright © 2005 Brion Vibber <brion@pobox.com>
  * http://www.mediawiki.org/
  *
  * This program is free software; you can redistribute it and/or modify
@@ -25,6 +27,8 @@
 require_once( dirname( __FILE__ ) . '/Maintenance.php' );
 
 /**
+ * Maintenance script that imports XML dump files into the current wiki.
+ *
  * @ingroup Maintenance
  */
 class BackupReader extends Maintenance {

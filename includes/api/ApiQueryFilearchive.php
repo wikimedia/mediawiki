@@ -59,6 +59,7 @@ class ApiQueryFilearchive extends ApiQueryBase {
 		$fld_mediatype = isset( $prop['mediatype'] );
 		$fld_metadata = isset( $prop['metadata'] );
 		$fld_bitdepth = isset( $prop['bitdepth'] );
+		$fld_archivename = isset( $prop['archivename'] );
 
 		$this->addTables( 'filearchive' );
 
@@ -72,6 +73,7 @@ class ApiQueryFilearchive extends ApiQueryBase {
 		$this->addFieldsIf( 'fa_media_type', $fld_mediatype );
 		$this->addFieldsIf( 'fa_metadata', $fld_metadata );
 		$this->addFieldsIf( 'fa_bits', $fld_bitdepth );
+		$this->addFieldsIf( 'fa_archive_name', $fld_archivename );
 
 		if ( !is_null( $params['continue'] ) ) {
 			$cont = explode( '|', $params['continue'] );
@@ -194,6 +196,9 @@ class ApiQueryFilearchive extends ApiQueryBase {
 			if ( $fld_mime ) {
 				$file['mime'] = "$row->fa_major_mime/$row->fa_minor_mime";
 			}
+			if ( $fld_archivename && !is_null( $row->fa_archive_name ) ) {
+				$file['archivename'] = $row->fa_archive_name;
+			}
 
 			if ( $row->fa_deleted & File::DELETED_FILE ) {
 				$file['filehidden'] = '';
@@ -256,7 +261,8 @@ class ApiQueryFilearchive extends ApiQueryBase {
 					'mime',
 					'mediatype',
 					'metadata',
-					'bitdepth'
+					'bitdepth',
+					'archivename',
 				),
 			),
 		);
@@ -285,6 +291,7 @@ class ApiQueryFilearchive extends ApiQueryBase {
 				' mediatype         - Adds the media type of the image',
 				' metadata          - Lists EXIF metadata for the version of the image',
 				' bitdepth          - Adds the bit depth of the version',
+				' archivename       - Adds the file name of the archive version for non-latest versions'
 			),
 		);
 	}
@@ -346,7 +353,10 @@ class ApiQueryFilearchive extends ApiQueryBase {
 			),
 			'mediatype' => array(
 				'mediatype' => 'string'
-			)
+			),
+			'archivename' => array(
+				'archivename' => 'string'
+			),
 		);
 	}
 

@@ -48,6 +48,11 @@ $namespaceNames = array(
 	NS_CATEGORY_TALK    => 'Kategorijos_aptarimas',
 );
 
+$namespaceGenderAliases = array(
+	NS_USER      => array( 'male' => 'Naudotojas', 'female' => 'Naudotoja' ),
+	NS_USER_TALK => array( 'male' => 'Naudotojo_aptarimas', 'female' => 'Naudotojos_aptarimas' ),
+);
+
 $specialPageAliases = array(
 	'Allmessages'               => array( 'Visi_pranešimai' ),
 	'Allpages'                  => array( 'Visi_puslapiai' ),
@@ -3692,6 +3697,7 @@ Paveikslėliai yra rodomi pilna raiška, kiti failų tipai paleidžiami tiesiogi
 # New logging system
 'logentry-delete-delete' => '$1 ištrynė puslapį $3',
 'logentry-delete-restore' => '$1 atkūrė puslapį $3',
+'logentry-delete-revision' => '$1 pakeitė puslapio „$3“ {{PLURAL:$5|versijos|$5 versijų}} matomumą: $4',
 'revdelete-content-hid' => 'turinys paslėptas',
 'revdelete-summary-hid' => 'paslėptas keitimo komentaras',
 'revdelete-uname-hid' => 'paslėptas naudotojo vardas',

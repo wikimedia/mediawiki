@@ -139,9 +139,9 @@ class Linker {
 		if ( $t->isRedirect() ) {
 			# Page is a redirect
 			$colour = 'mw-redirect';
-		} elseif ( $threshold > 0 &&
-			   $t->exists() && $t->getLength() < $threshold &&
-			   $t->isContentPage() ) {
+		} elseif ( $threshold > 0 && $t->isContentPage() &&
+			$t->exists() && $t->getLength() < $threshold
+		) {
 			# Page is a stub
 			$colour = 'stub';
 		}
@@ -1673,6 +1673,8 @@ class Linker {
 	 * @return String: HTML fragment
 	 */
 	public static function buildRollbackLink( $rev, IContextSource $context = null ) {
+		global $wgShowRollbackEditCount;
+
 		if ( $context === null ) {
 			$context = RequestContext::getMain();
 		}
@@ -1687,13 +1689,50 @@ class Linker {
 			$query['bot'] = '1';
 			$query['hidediff'] = '1'; // bug 15999
 		}
-		return self::link(
-			$title,
-			$context->msg( 'rollbacklink' )->escaped(),
-			array( 'title' => $context->msg( 'tooltip-rollback' )->text() ),
-			$query,
-			array( 'known', 'noclasses' )
-		);
+
+		if( is_int( $wgShowRollbackEditCount ) && $wgShowRollbackEditCount > 0 ) {
+			$dbr = wfGetDB( DB_SLAVE );
+
+			// Up to the value of $wgShowRollbackEditCount revisions are counted
+			$res = $dbr->select( 'revision',
+				array( 'rev_id', 'rev_user_text' ),
+				array( 'rev_page' => $rev->getPage() ),
+				__METHOD__,
+				array(  'USE INDEX' => 'page_timestamp',
+					'ORDER BY' => 'rev_timestamp DESC',
+					'LIMIT' => $wgShowRollbackEditCount + 1 )
+			);
+
+			$editCount = 0;
+			while( $row = $dbr->fetchObject( $res ) ) {
+				if( $rev->getUserText() != $row->rev_user_text ) {
+					break;
+				}
+				$editCount++;
+			}
+
+			if( $editCount > $wgShowRollbackEditCount ) {
+				$editCount_output = $context->msg( 'rollbacklinkcount-morethan' )->numParams( $wgShowRollbackEditCount )->parse();
+			} else {
+				$editCount_output = $context->msg( 'rollbacklinkcount' )->numParams( $editCount )->parse();
+			}
+
+			return self::link(
+				$title,
+				$editCount_output,
+				array( 'title' => $context->msg( 'tooltip-rollback' )->text() ),
+				$query,
+				array( 'known', 'noclasses' )
+			);
+		} else {
+			return self::link(
+				$title,
+				$context->msg( 'rollbacklink' )->escaped(),
+				array( 'title' => $context->msg( 'tooltip-rollback' )->text() ),
+				$query,
+				array( 'known', 'noclasses' )
+			);
+		}
 	}
 
 	/**

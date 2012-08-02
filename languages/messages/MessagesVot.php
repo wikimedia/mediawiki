@@ -114,6 +114,7 @@ $messages = array(
 'vector-view-viewsource' => 'Lähtekoodi',
 'actions' => 'Tekod',
 'namespaces' => 'Nimiruumid',
+'variants' => 'Variandid',
 
 'errorpagetitle' => 'Vika',
 'returnto' => 'Mee takaz cüľľelle $1.',
@@ -195,6 +196,7 @@ $messages = array(
 # Short words for each namespace, by default used in the namespace tab in monobook
 'nstab-main' => 'Artikkeli',
 'nstab-user' => 'Cäüttijäcülci',
+'nstab-media' => 'Media-cülci',
 'nstab-special' => 'Osoobennoi cülci',
 'nstab-project' => 'Projekticülci',
 'nstab-image' => 'Faili',
@@ -226,6 +228,7 @@ Kui cüsümüssessä ebõõ roocittu cülci, võib õlla õlõttõ löütännü 
 'userlogout' => 'Cirjut uloz',
 'nologin' => "Kui Teille veel ebõõ cäüttijänimi, '''$1'''.",
 'nologinlink' => 'võitta loovva luguu',
+'createaccount' => 'Uusi cäüttijää',
 'gotaccountlink' => 'Cirjut süäme',
 'createaccountreason' => 'Süü:',
 'mailmypassword' => 'Lähet uusi salasõna elektropoštiikaa',
@@ -353,6 +356,7 @@ Võitta loovva cüľľee cirjuttamall alla õlõvasõõ tilaa. Kui että taho lo
 'search-interwiki-more' => '(lisä)',
 'search-mwsuggest-enabled' => 'tarittsõmisijõkaa',
 'search-mwsuggest-disabled' => 'tarittsõmizõtta',
+'searchrelated' => 'sittu',
 'searchall' => 'kõik',
 'nonefound' => "'''Zametšańńa''': Ettsü etsib anult osiss nimiruumii.
 Proovvi lizät etsün alkuu ''all:'', nii ettsü etsib kõikkõõ sisältoo (taas juttucüľľeekaa, sablooniikaa, jne.), vai tarvittõga nimiruumi niku prefiksi.",
@@ -394,6 +398,7 @@ Proovvi lizät etsün alkuu ''all:'', nii ettsü etsib kõikkõõ sisältoo (taa
 # Groups
 'group-user' => 'Сäüttijäd',
 'group-sysop' => 'Praviťeľad',
+'group-all' => '{kõik)',
 
 'group-user-member' => 'cäüttijä',
 
@@ -450,6 +455,9 @@ Cüľľed, kummad õmad teďďellä [[Special:Watchlist|kattsõspiizgalla]] on c
 'fileuploadsummary' => 'Turvotuz:',
 'uploadedimage' => '"[[$1]]" on laajõngoitõttu ülez',
 
+'license' => 'Litseenttsija:',
+'license-header' => 'Litseenttsija',
+
 # Special:ListFiles
 'imgfile' => 'faili',
 'listfiles_thumb' => 'Peenikuva',
@@ -489,6 +497,8 @@ Cüľľed, kummad õmad teďďellä [[Special:Watchlist|kattsõspiizgalla]] on c
 # Statistics
 'statistics' => 'Staťisťikka',
 'statistics-pages' => 'Cülcid',
+
+'disambiguationspage' => 'Template:disambig',
 
 'brokenredirects-edit' => 'muuttaa',
 'brokenredirects-delete' => 'pühi',
@@ -574,6 +584,7 @@ Cülci leeb cirjutõttu '''pimmiässi''' [[Special:RecentChanges|spiizgall viime
 'delete-legend' => 'Pühi',
 'confirmdeletetext' => 'Õlõtta pühcimässä cüľľee vai failii ja kõigõ sene istorii. Õlka nii üvä, kõvissõga jot tahotta sitä tehä, jot saatta arvoa sledstvijäd jot pühcimüz on [[{{MediaWiki:Policy-url}}|poolissaa]] mukka.',
 'actioncomplete' => 'Töö tehtü lõppuu',
+'actionfailed' => 'Vika',
 'deletedtext' => '"$1" on pühittü.
 Cüľľellä $2 on spiiska viimeiziss pühcimühsiiss.',
 'dellogpage' => 'Pühitüd cüľľed',
@@ -720,6 +731,7 @@ Neill kõhtoill piättä liikuttaa vai ühissää cüľľee cäzi.",
 
 # Thumbnails
 'thumbnail-more' => 'Suurõt',
+'thumbnail_error' => 'Vika: $1',
 
 # Special:Import
 'import-upload-filename' => 'Failinimi:',

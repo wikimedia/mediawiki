@@ -212,7 +212,7 @@ class MWHttpRequest {
 	 * @param $url String: url to use. If protocol-relative, will be expanded to an http:// URL
 	 * @param $options Array: (optional) extra params to pass (see Http::request())
 	 */
-	function __construct( $url, $options = array() ) {
+	protected function __construct( $url, $options = array() ) {
 		global $wgHTTPTimeout;
 
 		$this->url = wfExpandUrl( $url, PROTO_HTTP );

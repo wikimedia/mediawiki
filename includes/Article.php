@@ -1046,7 +1046,7 @@ class Article extends Page {
 			"<div class='patrollink'>" .
 				wfMsgHtml(
 					'markaspatrolledlink',
-					Linker::link(
+					Linker::linkKnown(
 						$this->getTitle(),
 						wfMsgHtml( 'markaspatrolledtext' ),
 						array(),
@@ -1054,8 +1054,7 @@ class Article extends Page {
 							'action' => 'markpatrolled',
 							'rcid' => $rcid,
 							'token' => $token,
-						),
-						array( 'known', 'noclasses' )
+						)
 					)
 				) .
 			'</div>'
@@ -1154,8 +1153,9 @@ class Article extends Page {
 		}
 
 		$outputPage = $this->getContext()->getOutput();
+		$user = $this->getContext()->getUser();
 		// If the user is not allowed to see it...
-		if ( !$this->mRevision->userCan( Revision::DELETED_TEXT ) ) {
+		if ( !$this->mRevision->userCan( Revision::DELETED_TEXT, $user ) ) {
 			$outputPage->wrapWikiMsg( "<div class='mw-warning plainlinks'>\n$1\n</div>\n",
 				'rev-deleted-text-permission' );
 
@@ -1232,73 +1232,67 @@ class Article extends Page {
 
 		$lnk = $current
 			? wfMsgHtml( 'currentrevisionlink' )
-			: Linker::link(
+			: Linker::linkKnown(
 				$this->getTitle(),
 				wfMsgHtml( 'currentrevisionlink' ),
 				array(),
-				$extraParams,
-				array( 'known', 'noclasses' )
+				$extraParams
 			);
 		$curdiff = $current
 			? wfMsgHtml( 'diff' )
-			: Linker::link(
+			: Linker::linkKnown(
 				$this->getTitle(),
 				wfMsgHtml( 'diff' ),
 				array(),
 				array(
 					'diff' => 'cur',
 					'oldid' => $oldid
-				) + $extraParams,
-				array( 'known', 'noclasses' )
+				) + $extraParams
 			);
 		$prev = $this->getTitle()->getPreviousRevisionID( $oldid ) ;
 		$prevlink = $prev
-			? Linker::link(
+			? Linker::linkKnown(
 				$this->getTitle(),
 				wfMsgHtml( 'previousrevision' ),
 				array(),
 				array(
 					'direction' => 'prev',
 					'oldid' => $oldid
-				) + $extraParams,
-				array( 'known', 'noclasses' )
+				) + $extraParams
 			)
 			: wfMsgHtml( 'previousrevision' );
 		$prevdiff = $prev
-			? Linker::link(
+			? Linker::linkKnown(
 				$this->getTitle(),
 				wfMsgHtml( 'diff' ),
 				array(),
 				array(
 					'diff' => 'prev',
 					'oldid' => $oldid
-				) + $extraParams,
-				array( 'known', 'noclasses' )
+				) + $extraParams
 			)
 			: wfMsgHtml( 'diff' );
 		$nextlink = $current
 			? wfMsgHtml( 'nextrevision' )
-			: Linker::link(
+			: Linker::linkKnown(
 				$this->getTitle(),
 				wfMsgHtml( 'nextrevision' ),
 				array(),
 				array(
 					'direction' => 'next',
 					'oldid' => $oldid
-				) + $extraParams,
-				array( 'known', 'noclasses' )
+				) + $extraParams
 			);
 		$nextdiff = $current
 			? wfMsgHtml( 'diff' )
-			: Linker::link(
+			: Linker::linkKnown(
 				$this->getTitle(),
 				wfMsgHtml( 'diff' ),
 				array(),
 				array(
 					'diff' => 'next',
 					'oldid' => $oldid
-				) + $extraParams,
-				array( 'known', 'noclasses' )
+				) + $extraParams
 			);
 
 		$cdel = Linker::getRevDeleteLink( $user, $revision, $this->getTitle() );
@@ -1408,10 +1402,8 @@ class Article extends Page {
 		}
 
 		# Better double-check that it hasn't been deleted yet!
-		$dbw = wfGetDB( DB_MASTER );
-		$conds = $title->pageCond();
-		$latest = $dbw->selectField( 'page', 'page_latest', $conds, __METHOD__ );
-		if ( $latest === false ) {
+		$this->mPage->loadPageData( 'fromdbmaster' );
+		if ( !$this->mPage->exists() ) {
 			$outputPage = $this->getContext()->getOutput();
 			$outputPage->setPageTitle( wfMessage( 'cannotdelete-title', $title->getPrefixedText() ) );
 			$outputPage->wrapWikiMsg( "<div class=\"error mw-error-cannotdelete\">\n$1\n</div>",

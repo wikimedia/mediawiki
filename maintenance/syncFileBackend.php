@@ -129,7 +129,7 @@ class SyncFileBackend extends Maintenance {
 			if ( $status->isOK() ) {
 				$lastOKPos = max( $lastOKPos, $lastPosInBatch );
 			} else {
-				$this->output( print_r( $status->getErrorsArray(), true ) );
+				$this->error( print_r( $status->getErrorsArray(), true ) );
 				break; // no gaps; everything up to $lastPos must be OK
 			}
 

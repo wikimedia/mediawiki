@@ -129,7 +129,8 @@ class CoreParserFunctions {
 	 * @return mixed|string
 	 */
 	static function formatDate( $parser, $date, $defaultPref = null ) {
-		$df = DateFormatter::getInstance();
+		$lang = $parser->getFunctionLang();
+		$df = DateFormatter::getInstance( $lang );
 
 		$date = trim( $date );
 
@@ -565,29 +566,64 @@ class CoreParserFunctions {
 	}
 
 	/**
-	 * Return the number of pages in the given category, or 0 if it's nonexis-
-	 * tent.  This is an expensive parser function and can't be called too many
-	 * times per page.
+	 * Return the number of pages, files or subcats in the given category,
+	 * or 0 if it's nonexistent. This is an expensive parser function and
+	 * can't be called too many times per page.
 	 * @return string
 	 */
-	static function pagesincategory( $parser, $name = '', $raw = null ) {
+	static function pagesincategory( $parser, $name = '', $arg1 = null, $arg2 = null ) {
+		static $magicWords = null;
+		if ( is_null( $magicWords ) ) {
+			$magicWords = new MagicWordArray( array(
+				'pagesincategory_all',
+				'pagesincategory_pages',
+				'pagesincategory_subcats',
+				'pagesincategory_files'
+			) );
+		}
 		static $cache = array();
-		$category = Category::newFromName( $name );
 
-		if( !is_object( $category ) ) {
-			$cache[$name] = 0;
+		// split the given option to its variable
+		if( self::isRaw( $arg1 ) ) {
+			//{{pagesincategory:|raw[|type]}}
+			$raw = $arg1;
+			$type = $magicWords->matchStartToEnd( $arg2 );
+		} else {
+			//{{pagesincategory:[|type[|raw]]}}
+			$type = $magicWords->matchStartToEnd( $arg1 );
+			$raw = $arg2;
+		}
+		if( !$type ) { //backward compatibility
+			$type = 'pagesincategory_all';
+		}
+
+		$title = Title::makeTitleSafe( NS_CATEGORY, $name );
+		if( !$title ) { # invalid title
 			return self::formatRaw( 0, $raw );
 		}
 
-		# Normalize name for cache
-		$name = $category->getName();
+		// Normalize name for cache
+		$name = $title->getDBkey();
 
-		$count = 0;
-		if( isset( $cache[$name] ) ) {
-			$count = $cache[$name];
-		} elseif( $parser->incrementExpensiveFunctionCount() ) {
-			$count = $cache[$name] = (int)$category->getPageCount();
+		if( !isset( $cache[$name] ) ) {
+			$category = Category::newFromTitle( $title );
+
+			$allCount = $subcatCount = $fileCount = $pagesCount = 0;
+			if( $parser->incrementExpensiveFunctionCount() ) {
+				// $allCount is the total number of cat members,
+				// not the count of how many members are normal pages.
+				$allCount = (int)$category->getPageCount();
+				$subcatCount = (int)$category->getSubcatCount();
+				$fileCount = (int)$category->getFileCount();
+				$pagesCount = $allCount - $subcatCount - $fileCount;
+			}
+			$cache[$name]['pagesincategory_all'] = $allCount;
+			$cache[$name]['pagesincategory_pages'] = $pagesCount;
+			$cache[$name]['pagesincategory_subcats'] = $subcatCount;
+			$cache[$name]['pagesincategory_files'] = $fileCount;
 		}
+
+		$count = $cache[$name][$type];
 		return self::formatRaw( $count, $raw );
 	}
 
@@ -754,40 +790,34 @@ class CoreParserFunctions {
 	}
 
 	// Usage {{filepath|300}}, {{filepath|nowiki}}, {{filepath|nowiki|300}} or {{filepath|300|nowiki}}
+	// or {{filepath|300px}}, {{filepath|200x300px}}, {{filepath|nowiki|200x300px}}, {{filepath|200x300px|nowiki}}
 	public static function filepath( $parser, $name='', $argA='', $argB='' ) {
 		$file = wfFindFile( $name );
-		$size = '';
-		$argA_int = intval( $argA );
-		$argB_int = intval( $argB );
+		$isNowiki = false;
 
-		if ( $argB_int > 0 ) {
-			// {{filepath: | option | size }}
-			$size = $argB_int;
-			$option = $argA;
-
-		} elseif ( $argA_int > 0 ) {
-			// {{filepath: | size [|option] }}
-			$size = $argA_int;
-			$option = $argB;
-
+		if( $argA == 'nowiki' ) {
+			// {{filepath: | option [| size] }}
+			$isNowiki = true;
+			$parsedWidthParam = $parser->parseWidthParam( $argB );
 		} else {
-			// {{filepath: [|option] }}
-			$option = $argA;
+			// {{filepath: [| size [|option]] }}
+			$parsedWidthParam = $parser->parseWidthParam( $argA );
+			$isNowiki = ($argB == 'nowiki');
 		}
 
 		if ( $file ) {
 			$url = $file->getFullUrl();
 
 			// If a size is requested...
-			if ( is_integer( $size ) ) {
-				$mto = $file->transform( array( 'width' => $size ) );
+			if ( count( $parsedWidthParam ) ) {
+				$mto = $file->transform( $parsedWidthParam );
 				// ... and we can
 				if ( $mto && !$mto->isError() ) {
 					// ... change the URL to point to a thumbnail.
 					$url = wfExpandUrl( $mto->getUrl(), PROTO_RELATIVE );
 				}
 			}
-			if ( $option == 'nowiki' ) {
+			if ( $isNowiki ) {
 				return array( $url, 'nowiki' => true );
 			}
 			return $url;

@@ -12,6 +12,7 @@
  * @author Ahonc
  * @author Aleator
  * @author AlexSm
+ * @author Amahoney
  * @author Amire80
  * @author AnakngAraw
  * @author Ans
@@ -744,6 +745,7 @@ It is also used on the top of the page for logged out users, where it appears ne
 'gotaccountlink' => 'Text of the link to the log in form. Before that link, the message [[MediaWiki:Gotaccount/{{SUBPAGENAME}}]] appears.
 
 {{Identical|Log in}}',
+'userlogin-resetlink' => 'Used on the login page.',
 'createaccountmail' => 'Button text for creating a new account and sending the new password to the specified e-mail address directly, as used on [[Special:UserLogin/signup]] if creating accounts by e-mail is allowed.',
 'createaccountreason' => '{{Identical|Reason}}',
 'createaccounterror' => 'Parameters:
@@ -836,7 +838,10 @@ Used on [[Special:ResetPass]]',
 {{Identical|Reset password}}',
 'passwordreset-text' => 'Text on [[Special:PasswordReset]]',
 'passwordreset-legend' => '{{Identical|Reset password}}',
-'passwordreset-pretext' => 'Parameters:
+'passwordreset-pretext' => 'These instructions are shown on the password reset dialogue, which can, in principle, take the user\'s email address as well as, or instead of, their username. This text displays above one or more fields, at least one of which needs to be completed, and the message does not know which routes are available, so it needs to refer to some vague noun rather than specifically "username". 
+"One of the pieces of data" means "an info"/"a datum" (probably to be translatea with a singular noun in your language if available).
+
+Parameters:
 * $1 is the number of password reset routes. This is never 1, but always two or more. Thus, the first plural option is empty in English.',
 'passwordreset-username' => '{{Identical|Username}}',
 'passwordreset-domain' => 'A domain like used in Domain Name System (DNS) or more specifically like a domain component in the Lightweight Directory Access Protocol (LDAP)',
@@ -2694,6 +2699,9 @@ $1 is the <b>approximate</b> number of revisions that the page has, the message 
 'rollback_short' => '{{Identical|Rollback}}',
 'rollbacklink' => '{{Identical|Rollback}}
 This message has a tooltip {{msg-mw|tooltip-rollback}}',
+'rollbacklinkcount' => '* $1: the number of edit that will be rollbacked
+If $1 is over the value of $wgShowRollbackEditCount (default: 10) [[MediaWiki:Rollbacklinkcount-morethan/en|rollbacklinkcount-morethan]] is used',
+'rollbacklinkcount-morethan' => 'Similar to [[MediaWiki:Rollbacklinkcount/en|rollbacklinkcount]] but with prefix more than',
 'rollbackfailed' => '{{Identical|Rollback}}',
 'cantrollback' => '{{Identical|Revert}}
 {{Identical|Rollback}}',

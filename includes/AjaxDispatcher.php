@@ -97,7 +97,7 @@ class AjaxDispatcher {
 	 * request.
 	 */
 	function performAction() {
-		global $wgAjaxExportList, $wgOut, $wgUser;
+		global $wgAjaxExportList, $wgUser;
 
 		if ( empty( $this->mode ) ) {
 			return;
@@ -113,7 +113,7 @@ class AjaxDispatcher {
 				'Bad Request',
 				"unknown function " . (string) $this->func_name
 			);
-		} elseif ( !in_array( 'read', User::getGroupPermissions( array( '*' ) ), true ) 
+		} elseif ( !in_array( 'read', User::getGroupPermissions( array( '*' ) ), true )
 			&& !$wgUser->isAllowed( 'read' ) )
 		{
 			wfHttpError(
@@ -123,14 +123,8 @@ class AjaxDispatcher {
 		} else {
 			wfDebug( __METHOD__ . ' dispatching ' . $this->func_name . "\n" );
 
-			if ( strpos( $this->func_name, '::' ) !== false ) {
-				$func = explode( '::', $this->func_name, 2 );
-			} else {
-				$func = $this->func_name;
-			}
-
 			try {
-				$result = call_user_func_array( $func, $this->args );
+				$result = call_user_func_array( $this->func_name, $this->args );
 
 				if ( $result === false || $result === null ) {
 					wfDebug( __METHOD__ . ' ERROR while dispatching '
@@ -163,7 +157,6 @@ class AjaxDispatcher {
 			}
 		}
 
-		$wgOut = null;
 		wfProfileOut( __METHOD__ );
 	}
 }

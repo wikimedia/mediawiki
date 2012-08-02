@@ -1,6 +1,6 @@
 <?php
 /**
- * Creates a sitemap for the site
+ * Creates a sitemap for the site.
  *
  * Copyright © 2005, Ævar Arnfjörð Bjarmason, Jens Frank <jeluf@gmx.de> and
  * Brion Vibber <brion@pobox.com>
@@ -28,6 +28,11 @@
 
 require_once( dirname( __FILE__ ) . '/Maintenance.php' );
 
+/**
+ * Maintenance script that generates a sitemap for the site.
+ *
+ * @ingroup Maintenance
+ */
 class GenerateSitemap extends Maintenance {
 	const GS_MAIN = -2;
 	const GS_TALK = -1;
