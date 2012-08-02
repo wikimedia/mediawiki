@@ -34,6 +34,10 @@
  * object, and typically implement at least getInputHTML, which generates
  * the HTML for the input field to be placed in the table.
  *
+ * You can find extensive documentation on the www.mediawiki.org wiki:
+ *  - http://www.mediawiki.org/wiki/HTMLForm
+ *  - http://www.mediawiki.org/wiki/HTMLForm/tutorial
+ *
  * The constructor input is an associative array of $fieldname => $info,
  * where $info is an Associative Array with any of the following:
  *
