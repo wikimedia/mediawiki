@@ -198,22 +198,6 @@ pre, .mw-code {
 	border: 1px dashed #2f6fab;
 	color: black;
 	background-color: #f9f9f9;
-
-	/*
-	 * Wrap properly.
-	 * - pre-wrap: causes the browser to naturally wrap by displaying
-	 *   words on the next line if they don't fit on the same line
-	 *   within the box (does not cut off words).
-	 * - break-word: forces the browser to wrap anywhere (even within
-	 *   a word) if it is (still) too long for the line.
-	 * When only using break-word in a <pre>, the browser only uses
-	 * the force behavior and as a result almost always cuts half-way
-	 * a word. When only using pre-wrap, too-long words will still
-	 * cause the page layout to break. The combination is magic :).
-	 * See also https://bugzilla.wikimedia.org/show_bug.cgi?id=260#c20
-	 */
-	white-space: pre-wrap;
-	word-wrap: break-word;
 }
 
 /* Tables */
