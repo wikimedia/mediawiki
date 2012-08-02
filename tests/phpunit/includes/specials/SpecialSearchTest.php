@@ -84,7 +84,7 @@ class SpecialSearchTest extends MediaWikiTestCase {
 			),
 			array(
 				$EMPTY_REQUEST, array( 'searchNs2' => 1, 'searchNs14' => 1 ),
-				'advanced', array( 2, 14 ),
+				'advanced', array( 0, 2, 14 ),
 				'Bug 33583: search with no option should honor User search preferences'
 			),
 		);

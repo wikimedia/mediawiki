@@ -2203,13 +2203,6 @@ class User {
 		global $wgHiddenPrefs;
 		$this->loadOptions();
 
-		if ( is_null( $this->mOptions ) ) {
-			if($defaultOverride != '') {
-				return $defaultOverride;
-			}
-			$this->mOptions = User::getDefaultOptions();
-		}
-
 		# We want 'disabled' preferences to always behave as the default value for
 		# users, even if they have set the option explicitly in their settings (ie they
 		# set it, and then it was disabled removing their ability to change it).  But
@@ -2285,15 +2278,11 @@ class User {
 	 * @param $val mixed New value to set
 	 */
 	public function setOption( $oname, $val ) {
-		$this->load();
 		$this->loadOptions();
 
 		// Explicitly NULL values should refer to defaults
 		if( is_null( $val ) ) {
-			$defaultOption = self::getDefaultOption( $oname );
-			if( !is_null( $defaultOption ) ) {
-				$val = $defaultOption;
-			}
+			$val = self::getDefaultOption( $oname );
 		}
 
 		$this->mOptions[$oname] = $val;
@@ -4030,13 +4019,15 @@ class User {
 	 */
 	protected function loadOptions() {
 		$this->load();
-		if ( $this->mOptionsLoaded || !$this->getId() )
+		if ( $this->mOptionsLoaded )
 			return;
 
 		$this->mOptions = self::getDefaultOptions();
 
 		// Maybe load from the object
-		if ( !is_null( $this->mOptionOverrides ) ) {
+		if( !$this->getID() ) {
+			// User is anonymous and has no options.
+		} elseif( !is_null( $this->mOptionOverrides ) ) {
 			wfDebug( "User: loading options for user " . $this->getId() . " from override cache.\n" );
 			foreach( $this->mOptionOverrides as $key => $value ) {
 				$this->mOptions[$key] = $value;
