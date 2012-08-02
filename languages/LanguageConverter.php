@@ -43,6 +43,7 @@ class LanguageConverter {
 		'shi',
 		'sr',
 		'tg',
+		'uz',
 		'zh',
 	);
 
