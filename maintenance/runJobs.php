@@ -37,6 +37,9 @@ class RunJobs extends Maintenance {
 	}
 
 	public function memoryLimit() {
+		if ( $this->hasOption( 'memory-limit' ) ) {
+			return parent::memoryLimit();
+		}
 		// Don't eat all memory on the machine if we get a bad job.
 		return "150M";
 	}
