@@ -213,8 +213,9 @@ abstract class Job {
 	 *
 	 * @param $command String: Job command
 	 * @param $title Title: Associated title
-	 * @param $params Array: Job parameters
+	 * @param $params Array|bool: Job parameters
 	 * @param $id Int: Job identifier
+	 * @throws MWException
 	 * @return Job
 	 */
 	static function factory( $command, Title $title, $params = false, $id = 0 ) {
@@ -343,8 +344,8 @@ abstract class Job {
 	/**
 	 * @param $command
 	 * @param $title
-	 * @param $params array
-	 * @param int $id
+	 * @param $params array|bool
+	 * @param $id int
 	 */
 	function __construct( $command, $title, $params = false, $id = 0 ) {
 		$this->command = $command;

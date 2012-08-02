@@ -60,11 +60,11 @@ class RunJobs extends Maintenance {
 		$wgTitle = Title::newFromText( 'RunJobs.php' );
 		$dbw = wfGetDB( DB_MASTER );
 		$n = 0;
-		$conds = '';
+
 		if ( $type === false ) {
 			$conds = Job::defaultQueueConditions( );
 		} else {
-			$conds = "job_cmd = " . $dbw->addQuotes( $type );
+			$conds = array( 'job_cmd' => $type );
 		}
 
 		while ( $dbw->selectField( 'job', 'job_id', $conds, 'runJobs.php' ) ) {
