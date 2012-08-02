@@ -80,6 +80,10 @@ $wgGlobalCollectGatewayAllowedHtmlForms['cc-damv'] = $wgGlobalCollectGatewayHtml
 $wgGlobalCollectGatewayAllowedHtmlForms['cc-US'] = $wgGlobalCollectGatewayHtmlFormDir .'/cc/cc-vmad.html';
 $wgGlobalCollectGatewayAllowedHtmlForms['cc-CA'] = $wgGlobalCollectGatewayHtmlFormDir .'/cc/cc-vm.html';
 
+// name and email-only test
+$wgGlobalCollectGatewayAllowedHtmlForms['email-cc-vm'] = $wgGlobalCollectGatewayHtmlFormDir .'/cc-emailonly/cc-vm.html';
+$wgGlobalCollectGatewayAllowedHtmlForms['email-cc-vma'] = $wgGlobalCollectGatewayHtmlFormDir .'/cc-emailonly/cc-vma.html';
+$wgGlobalCollectGatewayAllowedHtmlForms['email-cc-vmaj'] = $wgGlobalCollectGatewayHtmlFormDir .'/cc-emailonly/cc-vmaj.html';
 
 /**
  * PayflowPro RapidHTML whitelist additions
