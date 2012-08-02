@@ -49,11 +49,7 @@ if ( $wgRedirectScript === false ) $wgRedirectScript = "$wgScriptPath/redirect$w
 if ( $wgLoadScript === false ) $wgLoadScript = "$wgScriptPath/load$wgScriptExtension";
 
 if ( $wgArticlePath === false ) {
-	if ( $wgUsePathInfo ) {
-		$wgArticlePath      = "$wgScript/$1";
-	} else {
-		$wgArticlePath      = "$wgScript?title=$1";
-	}
+	$wgArticlePath      = "$wgScript?title=$1";
 }
 
 if ( !empty($wgActionPaths) && !isset($wgActionPaths['view']) ) {
