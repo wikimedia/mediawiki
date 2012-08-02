@@ -253,14 +253,16 @@ class ApiQueryUsers extends ApiQueryBase {
 	* @return array
 	*/
 	public static function getAutoGroups( $user ) {
+		// FIXME this logic is duplicated from User::getEffectiveGroups(), centralize this
 		$groups = array();
 		$groups[] = '*';
 
 		if ( !$user->isAnon() ) {
 			$groups[] = 'user';
+			$groups = array_merge( $groups, Autopromote::getAutopromoteGroups( $user ) );
 		}
 
-		return array_merge( $groups, Autopromote::getAutopromoteGroups( $user ) );
+		return $groups;
 	}
 
 	public function getCacheMode( $params ) {
