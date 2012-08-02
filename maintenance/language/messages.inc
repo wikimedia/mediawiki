@@ -616,6 +616,7 @@ $wgMessageStructure = array(
 		'noarticletext',
 		'noarticletext-nopermission',
 		'noarticletextanon',
+		'missing-revision',
 		'userpage-userdoesnotexist',
 		'userpage-userdoesnotexist-view',
 		'blocked-notice-logextract',
@@ -857,6 +858,7 @@ $wgMessageStructure = array(
 		'editundo',
 		'diff-multi',
 		'diff-multi-manyusers',
+		'difference-missing-revision',
 	),
 	'search' => array(
 		'search-summary',

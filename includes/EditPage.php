@@ -877,7 +877,7 @@ class EditPage {
 	 *
 	 * This difers from Article::getContent() that when a missing revision is
 	 * encountered the result will be an empty string and not the
-	 * 'missing-article' message.
+	 * 'missing-revision' message.
 	 *
 	 * @since 1.19
 	 * @return string
@@ -2020,8 +2020,7 @@ class EditPage {
 					// Something went wrong
 
 					$wgOut->wrapWikiMsg( "<div class='errorbox'>\n$1\n</div>\n",
-						array( 'missing-article', $this->mTitle->getPrefixedText(),
-						wfMsgNoTrans( 'missingarticle-rev', $this->oldid ) ) );
+						array( 'missing-revision', $this->oldid ) );
 				}
 			}
 		}
