@@ -1325,6 +1325,36 @@ abstract class QuickTemplate {
 	}
 
 	/**
+	 * Get text from an HTMLForm parameter.
+	 * @private
+	 */
+	function form( $str ) {
+		$form = $this->data[$str];
+		if( !is_subclass_of( $form, 'QuickTemplate' ) ) {
+			throw new MWException( __METHOD__ . ' : Form requested from non-form parameter.' );
+		}
+
+		$form->prepareForm();
+		$res = $form->tryAuthorizedSubmit();
+		if ( $result === true || ( $result instanceof Status && $result->isGood() ) ) {
+			echo $result;
+		}
+	}
+
+	/**
+	 * Get text from a template parameter.
+	 * @private
+	 */
+	function template( $str ) {
+		$template = $this->data[$str];
+		if( !is_subclass_of( $template, 'HTMLForm' ) ) {
+			throw new MWException( __METHOD__ . ' : Template requested from non-template parameter.' );
+		}
+
+		$template->execute();
+	}
+
+	/**
 	 * @private
 	 * @return bool
 	 */
