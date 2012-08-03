@@ -5,7 +5,9 @@
 	'use strict';
 
 	// Local cache and alias
-	var util = {
+	var hideMessageTimeout,
+		messageBoxEvents = false,
+		util = {
 
 		/**
 		 * Initialisation
@@ -432,15 +434,16 @@
 		 * @return {Boolean} True on success, false on failure.
 		 */
 		jsMessage: function ( message, className ) {
-			if ( !arguments.length || message === '' || message === null ) {
-				$( '#mw-js-message' ).empty().hide();
-				return true; // Emptying and hiding message is intended behaviour, return true
+			var $messageDiv = $( '#mw-js-message' );
 
+			if ( !arguments.length || message === '' || message === null ) {
+				$messageDiv.empty().hide();
+				stopHideMessageTimeout();
+				return true; // Emptying and hiding message is intended behaviour, return true
 			} else {
 				// We special-case skin structures provided by the software. Skins that
 				// choose to abandon or significantly modify our formatting can just define
 				// an mw-js-message div to start with.
-				var $messageDiv = $( '#mw-js-message' );
 				if ( !$messageDiv.length ) {
 					$messageDiv = $( '<div id="mw-js-message"></div>' );
 					if ( util.$content.parent().length ) {
@@ -448,6 +451,22 @@
 					} else {
 						return false;
 					}
+				}
+
+				if ( !messageBoxEvents ) {
+					$messageDiv
+						.on( {
+							'mouseenter': stopHideMessageTimeout,
+							'mouseleave': startHideMessageTimeout,
+							'click': function() {
+								$(this).fadeOut( 'slow' );
+							}
+						} )
+						.on( 'click', 'a', function ( e ) {
+							// Prevent links, even those that don't exist yet, from causing the
+							// message box to close when clicked
+							e.stopPropagation();
+						} );
 				}
 
 				if ( className ) {
@@ -462,6 +481,7 @@
 				}
 
 				$messageDiv.slideDown();
+				startHideMessageTimeout();
 				return true;
 			}
 		},
@@ -598,6 +618,18 @@
 				&& address.search( /::/ ) !== -1 && address.search( /::.*::/ ) === -1;
 		}
 	};
+
+	// Message auto-hide helpers
+	function hideMessage() {
+		$( '#mw-js-message' ).fadeOut( 'slow' );
+	}
+	function stopHideMessageTimeout() {
+		clearTimeout( hideMessageTimeout );
+	}
+	function startHideMessageTimeout() {
+		clearTimeout( hideMessageTimeout );
+		hideMessageTimeout = setTimeout( hideMessage, 5000 );
+	}
 
 	mw.util = util;
 
