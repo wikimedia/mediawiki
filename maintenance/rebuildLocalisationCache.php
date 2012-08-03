@@ -41,6 +41,9 @@ class RebuildLocalisationCache extends Maintenance {
 	}
 
 	public function memoryLimit() {
+		if ( $this->hasOption( 'memory-limit' ) ) {
+			return parent::memoryLimit();
+		}
 		return '1000M';
 	}
 
