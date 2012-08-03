@@ -2158,10 +2158,15 @@ class EditPage {
 				return;
 			}
 		}
-		$summary = $wgContLang->recodeForEdit( $summary );
-		$labelText = wfMsgExt( $isSubjectPreview ? 'subject' : 'summary', 'parseinline' );
+
+		$summary = $wgContLang->truncate( $wgContLang->recodeForEdit( $summary ), 255 );
+		$charRemainMsg = wfMessage( 'characters-remaining', 255 - strlen( $summary ) );
+		$charRemainDiv = Html::element( 'span', array( 'id' => 'summaryRemaining' ), $charRemainMsg  );
+		$labelText = wfMsgExt( $isSubjectPreview ? 'subject' : 'summary', 'parseinline', $charRemainDiv );
+
 		list( $label, $input ) = $this->getSummaryInput( $summary, $labelText, array( 'class' => $summaryClass ), array() );
-		$wgOut->addHTML( "{$label} {$input}" );
+		$break = Html::element( 'br' );
+		$wgOut->addHTML( "{$label}{$break}{$input}" );
 	}
 
 	/**
