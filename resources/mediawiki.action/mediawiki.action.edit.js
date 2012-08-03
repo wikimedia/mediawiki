@@ -126,7 +126,13 @@
 		isReady = true;
 
 		// Make sure edit summary does not exceed byte limit
-		$( '#wpSummary' ).byteLimit( 255 );
+		var editSummary = $( '#wpSummary' );
+		editSummary.byteLimit();
+		editSummary.keyup( function() {
+			var max = parseInt( $(this).prop( 'maxlength' ), 10 );
+			var remaining = max - $.byteLength( $(this).val() );
+			$( '#wpSummaryRemaining' ).text( mw.msg( 'characters-remaining', remaining ) );
+		});
 
 		/**
 		 * Restore the edit box scroll state following a preview operation,

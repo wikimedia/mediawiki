@@ -161,6 +161,11 @@ class EditPage {
 	const EDITFORM_ID                  = 'editform';
 
 	/**
+	 * The maximum length of an edit summary.
+	 */
+	private static $summaryMaxlength = 255;
+
+	/**
 	 * @var Article
 	 */
 	var $mArticle;
@@ -2116,7 +2121,7 @@ class EditPage {
 		// Note: the maxlength is overriden in JS to 255 and to make it use UTF-8 bytes, not characters.
 		$inputAttrs = ( is_array( $inputAttrs ) ? $inputAttrs : array() ) + array(
 			'id' => 'wpSummary',
-			'maxlength' => '200',
+			'maxlength' => self::$summaryMaxlength,
 			'tabindex' => '1',
 			'size' => 60,
 			'spellcheck' => 'true',
@@ -2158,8 +2163,18 @@ class EditPage {
 				return;
 			}
 		}
+
+		$length = strlen( $summary );
+		if( $length > self::$summaryMaxlength ) {
+			$summary = '';
+			$length = 0;
+		}
+
 		$summary = $wgContLang->recodeForEdit( $summary );
-		$labelText = wfMsgExt( $isSubjectPreview ? 'subject' : 'summary', 'parseinline' );
+		$charRemainMsg = wfMessage( 'characters-remaining', (string) (self::$summaryMaxlength - $length) );
+		$charRemainDiv = Html::element( 'span', array( 'id' => 'wpSummaryRemaining' ), $charRemainMsg  );
+		$labelText = wfMsgExt( $isSubjectPreview ? 'subject' : 'summary', 'parseinline', $charRemainDiv );
+
 		list( $label, $input ) = $this->getSummaryInput( $summary, $labelText, array( 'class' => $summaryClass ), array() );
 		$wgOut->addHTML( "{$label} {$input}" );
 	}
