@@ -72,7 +72,7 @@ class RebuildRecentchanges extends Maintenance {
 				'rc_comment'    => 'rev_comment',
 				'rc_minor'      => 'rev_minor_edit',
 				'rc_bot'        => 0,
-				'rc_new'        => 'page_is_new',
+				'rc_new'        => 'page_is_new', # obsolete
 				'rc_cur_id'     => 'page_id',
 				'rc_this_oldid' => 'rev_id',
 				'rc_last_oldid' => 0, // is this ok?
@@ -136,7 +136,7 @@ class RebuildRecentchanges extends Maintenance {
 				$dbw->update( 'recentchanges',
 					array(
 						'rc_last_oldid' => $lastOldId,
-						'rc_new'        => $new,
+						'rc_new'        => $new, # obsolete
 						'rc_type'       => $new,
 						'rc_old_len'    => $lastSize,
 						'rc_new_len'    => $size,
@@ -187,7 +187,7 @@ class RebuildRecentchanges extends Maintenance {
 				'rc_minor'      => 0,
 				'rc_bot'        => 0,
 				'rc_patrolled'  => 1,
-				'rc_new'        => 0,
+				'rc_new'        => 0, # obsolete
 				'rc_this_oldid' => 0,
 				'rc_last_oldid' => 0,
 				'rc_type'       => RC_LOG,
