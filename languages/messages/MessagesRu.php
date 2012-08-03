@@ -2501,6 +2501,8 @@ $UNWATCHURL
 'rollback' => 'Откатить изменения',
 'rollback_short' => 'Откат',
 'rollbacklink' => 'откатить',
+'rollbacklinkcount' => 'откатить $1 {{PLURAL:$1|правку|правки|правок}}',
+'rollbacklinkcount-morethan' => 'откатить больше, чем $1 {{PLURAL:$1|правку|правки|правок}}',
 'rollbackfailed' => 'Ошибка при совершении отката',
 'cantrollback' => 'Невозможно откатить изменения. Последний, кто вносил изменения, является единственным автором этой страницы.',
 'alreadyrolled' => 'Невозможно откатить последние изменения страницы «[[:$1]]», совершённые [[User:$2|$2]] ([[User talk:$2|обсуждение]]{{int:pipe-separator}}[[Special:Contributions/$2|{{int:contribslink}}]]),

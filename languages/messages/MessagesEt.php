@@ -2344,6 +2344,8 @@ Ettevaatust, selle kustutamine võib esile kutsuda häireid {{GRAMMAR:genitive|{
 'rollback' => 'Tühista muudatused',
 'rollback_short' => 'Tühista',
 'rollbacklink' => 'tühista',
+'rollbacklinkcount' => 'tühista {{PLURAL:$1|üks muudatus|$1 muudatust}}',
+'rollbacklinkcount-morethan' => 'tühista üle {{PLURAL:$1|ühe muudatuse|10 muudatuse}}',
 'rollbackfailed' => 'Muudatuste tühistamine ebaõnnestus',
 'cantrollback' => 'Ei saa muudatusi eemaldada, sest viimane kaastööline on artikli ainus autor.',
 'alreadyrolled' => 'Muudatust, mille tegi lehele [[:$1]] kasutaja [[User:$2|$2]] ([[User talk:$2|arutelu]]{{int:pipe-separator}}[[Special:Contributions/$2|{{int:contribslink}}]]), ei saa tühistada, sest keegi teine on seda lehte vahepeal muutnud.

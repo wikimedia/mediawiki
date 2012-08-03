@@ -1996,6 +1996,7 @@ $1',
 'lockmanager-fail-releaselock' => 'Не могу да ослободим катанац за „$1“.',
 'lockmanager-fail-db-bucket' => 'Не могу да контактирам с довољно катанаца у канти $1.',
 'lockmanager-fail-db-release' => 'Не могу да ослободим катанце у бази $1.',
+'lockmanager-fail-svr-acquire' => 'Не могу да добијем катанце на серверу $1.',
 'lockmanager-fail-svr-release' => 'Не могу да ослободим катанце на серверу $1.',
 
 # ZipDirectoryReader
@@ -4239,7 +4240,7 @@ $5
 # New logging system
 'logentry-delete-delete' => '$1 {{GENDER:|је обрисао|је обрисала|је обрисао}} $3',
 'logentry-delete-restore' => '$1 {{GENDER:|је вратио|је вратила|је вратио}} страницу $3',
-'logentry-delete-event' => '$1 {{GENDER:|је променио|је променила|је променио}} видљивост {{PLURAL:$5|догађаја|$5 догађаја|$5 догађаја}} у дневнику на $3: $4',
+'logentry-delete-event' => '$1 {{GENDER:$2|је променио|је променила|је променио}} видљивост {{PLURAL:$5|догађаја|$5 догађаја|$5 догађаја}} у дневнику на $3: $4',
 'logentry-delete-revision' => '$1 {{GENDER:|је променио|је променила|је променио}} видљивост {{PLURAL:$5|измене|$5 измене|$5 измена}} на страници $3: $4',
 'logentry-delete-event-legacy' => '$1 {{GENDER:|је променио|је променила|је променио}} видљивост догађајâ у дневнику на $3',
 'logentry-delete-revision-legacy' => '$1 {{GENDER:|је променио|је променила|је променио}} видљивост изменâ на страници $3',
@@ -4335,6 +4336,4 @@ $5
 'duration-centuries' => '$1 {{PLURAL:$1|век|века|векова}}',
 'duration-millennia' => '$1 {{PLURAL:$1|миленијум|миленијума|миленијума}}',
 
-# Unknown messages
-'lockmanager-fail-svr-acquire' => 'Не могу да добијем катанце на серверу $1.',
 );

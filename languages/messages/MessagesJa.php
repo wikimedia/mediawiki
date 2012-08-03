@@ -7,6 +7,7 @@
  * @ingroup Language
  * @file
  *
+ * @author 2nd-player
  * @author Akaniji
  * @author Alexsh
  * @author Ant176
@@ -755,6 +756,7 @@ $2',
 'filereadonlyerror' => 'ファイルリポジトリ「$2」が読み取り専用の状態にあるため、ファイル「$1」を変更できません。
 
 読み取り専用に設定した管理者からの説明：「$3」',
+'exception-nologin' => 'ログインしていません',
 
 # Virus scanner
 'virus-badscanner' => "環境設定が不適合です：不明なウイルス検知ソフトウェア：''$1''",

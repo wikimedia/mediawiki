@@ -2245,6 +2245,8 @@ $UNWATCHURL
 'rollback' => '恢復編輯',
 'rollback_short' => '恢復',
 'rollbacklink' => '恢復',
+'rollbacklinkcount' => '恢復 $1 次編輯',
+'rollbacklinkcount-morethan' => '恢復多過 $1 次編輯',
 'rollbackfailed' => '無法恢復',
 'cantrollback' => '無法恢復編輯；最後的貢獻者是本文的唯一作者。',
 'alreadyrolled' => '無法回退由[[User:$2|$2]]（[[User talk:$2|討論]]{{int:pipe-separator}}[[Special:Contributions/$2|{{int:contribslink}}]]在[[:$1]]上的編輯；其他人已經編輯或者回退了該頁。
@@ -2676,13 +2678,11 @@ $1被封禁的理由是“$2”',
 
 # Export
 'export' => '匯出頁面',
-'exporttext' => '您可以將特定頁面或一組頁面的文字以及編輯歷史以 XML 格式匯出；這樣可以將有關頁面透過「[[Special:Import|匯入頁面]]」頁面匯入到另一個執行 MediaWiki 的網站。
+'exporttext' => '您可以將特定頁面或一組頁面的文字以及編輯歷史以XML格式匯出；這樣可以將有關頁面透過「[[Special:Import|匯入頁面]]」頁面匯入到另一個執行MediaWiki的網站。
 
-要匯出頁面，請在下面的文字框中輸入頁面標題，每行一個標題，
-並選擇{{GENDER:|你|妳|你}}是否需要匯出帶有頁面歷史的以前的修訂版本，
-或是只選擇匯出帶有最後一次編輯訊息的目前修訂版本。
+要匯出頁面，請在下面的文字框中輸入頁面標題，每行一個標題，並選擇{{GENDER:|你|妳|你}}是否需要匯出帶有頁面歷史的以前的修訂版本，或是只選擇匯出帶有最後一次編輯訊息的目前修訂版本。
 
-此外{{GENDER:|你|妳|你}}還可以利用連結匯出檔案，例如{{GENDER:|你|妳|你}}可以使用 [[{{#Special:Export}}/{{MediaWiki:Mainpage}}]] 匯出「[[{{MediaWiki:Mainpage}}]]」頁面。',
+此外{{GENDER:|你|妳|你}}還可以利用連結匯出檔案，例如{{GENDER:|你|妳|你}}可以使用[[{{#Special:Export}}/{{MediaWiki:Mainpage}}]]匯出「[[{{MediaWiki:Mainpage}}]]」頁面。',
 'exportall' => '導出所有頁面',
 'exportcuronly' => '僅包含目前的修訂，而不是全部的歷史。',
 'exportnohistory' => "----

@@ -2463,6 +2463,8 @@ $UNWATCHURL
 'rollback' => 'שחזור עריכות',
 'rollback_short' => 'שחזור',
 'rollbacklink' => 'שחזור',
+'rollbacklinkcount' => 'שחזור {{PLURAL:$1|עריכה אחת|$1 עריכות}}',
+'rollbacklinkcount-morethan' => 'שחזור יותר מ{{PLURAL:$1|עריכה אחת|־$1 עריכות}}',
 'rollbackfailed' => 'השחזור נכשל',
 'cantrollback' => 'לא ניתן לשחזר את העריכה;
 התורם האחרון הוא היחיד שכתב בדף זה.',

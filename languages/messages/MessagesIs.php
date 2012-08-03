@@ -244,15 +244,15 @@ $messages = array(
 'tog-editsectiononrightclick' => 'Virkja hlutabreytingu með því að hægrismella á hlutafyrirsagnir (JavaScript)',
 'tog-showtoc' => 'Sýna efnisyfirlit (fyrir síður með meira en 3 fyrirsagnir)',
 'tog-rememberpassword' => 'Muna innskráninguna mína í þessum vafra (í allt að $1 {{PLURAL:$1|dag|daga}})',
-'tog-watchcreations' => 'Bæta síðum sem ég bý til á vaktlistann minn',
-'tog-watchdefault' => 'Bæta síðum sem ég breyti á vaktlistann minn',
-'tog-watchmoves' => 'Bæta síðum sem ég færi á vaktlistann minn',
-'tog-watchdeletion' => 'Bæta síðum sem ég eyði á vaktlistann minn',
+'tog-watchcreations' => 'Bæta síðum sem ég bý til og skrám sem ég hleð inn á vaktlistann minn',
+'tog-watchdefault' => 'Bæta síðum og skrám sem ég breyti á vaktlistann minn',
+'tog-watchmoves' => 'Bæta síðum og skrám sem ég færi á vaktlistann minn',
+'tog-watchdeletion' => 'Bæta síðum og skrám sem ég eyði á vaktlistann minn',
 'tog-minordefault' => 'Merkja allar breytingar sem minniháttar sjálfgefið',
 'tog-previewontop' => 'Sýna forskoðun á undan breytingarkassanum',
 'tog-previewonfirst' => 'Sýna forskoðun með fyrstu breytingu',
 'tog-nocache' => 'Slökkva á flýtiminni vafrans',
-'tog-enotifwatchlistpages' => 'Senda mér tölvupóst þegar síðu á vaktlistanum mínu er breytt',
+'tog-enotifwatchlistpages' => 'Senda mér tölvupóst þegar síðu eða skrá á vaktlistanum mínu er breytt',
 'tog-enotifusertalkpages' => 'Senda mér tölvupóst þegar notandaspjallinu mínu er breytt',
 'tog-enotifminoredits' => 'Senda mér einnig tölvupóst vegna minniháttar breytinga á síðum',
 'tog-enotifrevealaddr' => 'Gefa upp netfang mitt í tilkynningarpóstum',
@@ -617,6 +617,10 @@ $2',
 'filereadonlyerror' => 'Ekki var hægt að breyta skránni "$1" því skráin í skráarsafninu "$2" er engöngu hægt að lesa.
 
 Möppudýrið sem læsti skránni gaf þessa ástæðu: "\'\'$3\'\'".',
+'invalidtitle-knownnamespace' => 'Ógildur titill í nafnrými "$2" og með textann "$3"',
+'invalidtitle-unknownnamespace' => 'Ógildur titill með óþekkt nafnrými númer $1 og texta "$2"',
+'exception-nologin' => 'Óinnskráð(ur)',
+'exception-nologin-text' => 'Þessi síða eða aðgerð krefst þess að þú sért skráður inn á þessum wiki.',
 
 # Virus scanner
 'virus-badscanner' => "Slæm stilling: óþekktur veiruskannari: ''$1''",
@@ -984,6 +988,7 @@ Svo virðist sem henni hafi verið eytt.',
 'edit-no-change' => 'Breyting þín var hunsuð, því engin breyting var á textanum.',
 'edit-already-exists' => 'Gat ekki skapað nýja síðu.
 Hún er nú þegar til.',
+'defaultmessagetext' => 'Sjálfgefinn skilaboða texti',
 
 # Parser/template warnings
 'expensive-parserfunction-warning' => "'''Viðvörun:''' Þessi síða inniheldur of mörg vinnslufrek aðgerðar þáttunar köll.
@@ -1242,6 +1247,7 @@ Athugaðu að skrár þeirra yfir {{SITENAME}}-efni kunna að vera úreltar.',
 'prefs-beta' => 'Stillingar á prufustigi',
 'prefs-datetime' => 'Tímasnið og tímabelti',
 'prefs-labs' => 'Stillingar á tilraunastigi',
+'prefs-user-pages' => 'Notendasíður',
 'prefs-personal' => 'Notandaupplýsingar',
 'prefs-rc' => 'Nýlegar breytingar',
 'prefs-watchlist' => 'Vaktlistinn',
@@ -1420,6 +1426,7 @@ Tölvupóstfang þitt er ekki gefið upp þegar aðrir notendur hafa samband vi�
 'right-writeapi' => 'Nota API skrifun',
 'right-delete' => 'Eyða síðum',
 'right-bigdelete' => 'Eyða síðum með stórum breytingaskrám',
+'right-deletelogentry' => 'Eyða og endurvekja sérstakar aðgerða færslur',
 'right-deleterevision' => 'Eyða og endurvekja sérstaka breytignar á síðum',
 'right-deletedhistory' => 'Skoða eyddar færslur úr breytingarskrá, án efnis þeirra',
 'right-deletedtext' => 'Sjá eyddan texta og breytingar á milli eyddra útgáfna',
@@ -1700,8 +1707,8 @@ Ef vandamálið lagast ekki, hafðu samband við [[Special:ListUsers/sysop|stjó
 'backend-fail-writetemp' => 'Gat ekki skrifað í tímabundna skrá.',
 'backend-fail-closetemp' => 'Mistókst að loka tímabundinni skrá.',
 'backend-fail-read' => 'Mistókst að lesa skrá $1.',
-'backend-fail-create' => 'Mistókst að búa til skrá $1.',
-'backend-fail-maxsize' => 'Mistókst að búa til skránna $1 því hún er stærri en {{PLURAL:$2|eitt bæti|$2 bæti}}.',
+'backend-fail-create' => 'Mistókst að skrifa skrá $1.',
+'backend-fail-maxsize' => 'Mistókst að skrifa skránna $1 því hún er stærri en {{PLURAL:$2|eitt bæti|$2 bæti}}.',
 'backend-fail-readonly' => 'Gagnabankann "$1" er engöngu hægt að lesa í augnablikinu. Ástæðan sem var gefin er: "\'\'$2\'\'"',
 'backend-fail-connect' => 'Mistókst að tengjast gagnabankanum "$1".',
 'backend-fail-internal' => 'Óþekkt villa átti sér stað í gagnabankanum "$1".',
@@ -2005,6 +2012,7 @@ Vinsamlegast athugið að aðrar vefsíður gætu tengt beint í skrár héðan,
 Þú getur takmarkað listann með því að velja tegund aðgerðaskráar, notandanafn, eða síðu.',
 'logempty' => 'Engin slík aðgerð fannst.',
 'log-title-wildcard' => 'Leita að titlum sem byrja á þessum texta',
+'showhideselectedlogentries' => 'Sýna/fela valdar aðgerða færslur',
 
 # Special:AllPages
 'allpages' => 'Allar síður',
@@ -2024,6 +2032,10 @@ Vinsamlegast athugið að aðrar vefsíður gætu tengt beint í skrár héðan,
 'allpages-bad-ns' => '{{SITENAME}} hefur ekki nafnrými „$1“.',
 'allpages-hide-redirects' => 'Fela tilvísanir',
 
+# SpecialCachedPage
+'cachedspecial-viewing-cached-ttl' => 'Þú ert að skoða útgáfu síðunnar úr skyndiminni, sem getur verið allt að $1 gömul.',
+'cachedspecial-refresh-now' => 'Skoða síðustu',
+
 # Special:Categories
 'categories' => 'Flokkar',
 'categoriespagetext' => 'Eftirfarandi {{PLURAL:$1|flokkur inniheldur|flokkar innihalda}} síður eða skrár.
@@ -2031,7 +2043,7 @@ Vinsamlegast athugið að aðrar vefsíður gætu tengt beint í skrár héðan,
 Sjá einnig [[Special:WantedCategories|eftirsótta flokka]].',
 'categoriesfrom' => 'Sýna flokka frá:',
 'special-categories-sort-count' => 'raða eftir fjölda',
-'special-categories-sort-abc' => 'raða eftir stafrófinu',
+'special-categories-sort-abc' => 'raða í stafrófsröð',
 
 # Special:DeletedContributions
 'deletedcontributions' => 'Eyddar breytingar notanda',
@@ -2235,6 +2247,8 @@ Eyðing síðunnar gæti truflað vinnslu gangnasafns {{SITENAME}}; haltu áfram
 'rollback' => 'Taka aftur breytingar',
 'rollback_short' => 'Taka aftur',
 'rollbacklink' => 'taka aftur',
+'rollbacklinkcount' => 'taka aftur $1 {{PLURAL:$1|breytingu|breytingar}}',
+'rollbacklinkcount-morethan' => 'taka aftur fleiri en $1 {{PLURAL:$1|breytingu|breytingar}}',
 'rollbackfailed' => 'Mistókst að taka aftur',
 'cantrollback' => 'Ekki hægt að taka aftur breytingu, síðasti höfundur er eini höfundur þessarar síðu.',
 'alreadyrolled' => 'Ekki var hægt að taka síðustu breytingu [[:$1]] eftir [[User:$2|$2]] ([[User talk:$2|talk]]{{int:pipe-separator}}[[Special:Contributions/$2|{{int:contribslink}}]]) til baka;
@@ -2301,7 +2315,7 @@ Núverandi staða síðunnar er '''$1''':",
 ** Breytingarstríð
 ** Síða með margar heimsóknir',
 'protect-edit-reasonlist' => 'Breyta verndarástæðum',
-'protect-expiry-options' => '1 tím:1 hour,1 dag:1 day,1 viku:1 week,2 vikur:2 weeks,1 mánuð:1 month,3 mánuði:3 months,6 mánuði:6 months,1 ár:1 year,aldrei:infinite',
+'protect-expiry-options' => '1 tími:1 hour,1 dag:1 day,1 viku:1 week,2 vikur:2 weeks,1 mánuð:1 month,3 mánuði:3 months,6 mánuði:6 months,1 ár:1 year,aldrei:infinite',
 'restriction-type' => 'Réttindi:',
 'restriction-level' => 'Takmarkaði við:',
 'minimum-size' => 'Lágmarksstærð',
@@ -2466,7 +2480,7 @@ Gefðu nákvæma skýringu að neðan (til dæmis, með því að vísa í þær
 'badipaddress' => 'Ógilt vistfang',
 'blockipsuccesssub' => 'Bann tókst',
 'blockipsuccesstext' => '[[Special:Contributions/$1|$1]] hefur verið bannaður/bönnuð.<br />
-Sjá [[Special:BlockList|bannaðar notendur og vistföng]] fyrir yfirlit yfir núverandi bönn.',
+Sjá [[Special:BlockList|bannaðir notendur og vistföng]] fyrir yfirlit yfir núverandi bönn.',
 'ipb-blockingself' => 'Þú ert í þann mund að banna sjálfan þig! Ertu viss um að þú viljir gera það?',
 'ipb-confirmhideuser' => 'Þú ert í þann mund að banna notenda sem er falinn. Notendanafn hans mun ekki birtast í listum og aðgerðarskrám. Ertu viss um að þú viljir gera það?',
 'ipb-edit-dropdown' => 'Breyta ástæðu fyrir banni',
@@ -2684,7 +2698,7 @@ Ef síðari möguleikinn á við getur þú einnig notað tengil, til dæmis
 # Namespace 8 related
 'allmessages' => 'Meldingar',
 'allmessagesname' => 'Titill',
-'allmessagesdefault' => 'Sjálfgefinn texti',
+'allmessagesdefault' => 'Sjálfgefinn skilaboða texti',
 'allmessagescurrent' => 'Núverandi texti',
 'allmessagestext' => 'Þetta er listi yfir kerfismeldingar í Melding-nafnrýminu.
 Gjörðu svo vel og heimsæktu [//www.mediawiki.org/wiki/Localisation MediaWiki-staðfæringuna] og [//translatewiki.net translatewiki.net] ef þú vilt taka þátt í almennri MediaWiki-staðfæringu.',
@@ -2751,6 +2765,9 @@ Vinsamlegast reyndu aftur.',
 'import-invalid-interwiki' => 'Get ekki flutt inn frá þessum wiki.',
 'import-error-edit' => 'Síðan "$1" var ekki flutt inn því þú hefur ekki réttindi til að breyta henni.',
 'import-error-create' => 'Síðan "$1" var ekki flutt inn því þú hefur ekki réttindi til að stofna hana.',
+'import-error-interwiki' => 'Síðan "$1" var ekki flutt inn því nafn hennar er frátekið fyrir ytri tengla (tungumálatengla).',
+'import-error-special' => 'Síðan "$1" var ekki flutt inn því hún tilheyrir ákveðnu nafnrými sem leyfir ekki síður.',
+'import-error-invalid' => 'Síðan "$1" var ekki flutt inn því nafn hennar er ógilt.',
 
 # Import log
 'importlogpage' => 'Innflutningsskrá',
@@ -2761,6 +2778,8 @@ Vinsamlegast reyndu aftur.',
 'import-logentry-interwiki-detail' => '$1 {{PLURAL:$1|breyting|breytingar}} frá $2',
 
 # JavaScriptTest
+'javascripttest' => 'JavaScript prófun',
+'javascripttest-disabled' => 'Þessi möguleiki hefur ekki verið virkjaður á þessum wiki.',
 'javascripttest-pagetext-skins' => 'Veldu þema sem á að keyra prófanirnar á:',
 
 # Tooltip help for the actions
@@ -3648,7 +3667,9 @@ Ef ekki, þá getur þú notað einfalt eyðublað hér fyrir neðan. Athugasemd
 'api-error-duplicate-archive-popup-title' => 'Eins {{PLURAL:$1|skrá|skrár}} sem {{PLURAL:$1|hefur|hafa}} þegar verið eytt.',
 'api-error-duplicate-popup-title' => '{{PLURAL:$1|Afrituð skrá|Afritaðar skrár}}',
 'api-error-empty-file' => 'Skráin sem þú valdir er tóm.',
+'api-error-emptypage' => 'Stofnun nýrra, tómra síðna er óheimil.',
 'api-error-fetchfileerror' => 'Innri villa: Mistókst að sækja skránna.',
+'api-error-fileexists-forbidden' => 'Skrá með nafninu "$1" er þegar til og ekki er hægt að yfirskrifa hana.',
 'api-error-file-too-large' => 'Skráin sem þú valdir er of stór.',
 'api-error-filename-tooshort' => 'Skráarnafnið er of stutt',
 'api-error-filetype-banned' => 'Þessi gerð skráar er bönnuð.',
@@ -3672,6 +3693,7 @@ Ef ekki, þá getur þú notað einfalt eyðublað hér fyrir neðan. Athugasemd
 'api-error-unknown-code' => 'Óþekkt villa: "$1"',
 'api-error-unknown-error' => 'Innri villa: Eitthvað fór úrskeiðis þegar að skráinni þinni var hlaðið inn.',
 'api-error-unknown-warning' => 'Óþekkt viðvörun: $1',
+'api-error-unknownerror' => 'Óþekkt villa: "$1".',
 'api-error-uploaddisabled' => 'Ekki er leyft að hlaða inn á þessum wiki.',
 'api-error-verification-error' => 'Þessi skrá gæti verið skemmd, eða með vitlausa skráarendingu.',
 
@@ -3684,5 +3706,6 @@ Ef ekki, þá getur þú notað einfalt eyðublað hér fyrir neðan. Athugasemd
 'duration-years' => '$1 {{PLURAL:$1|ár|ár}}',
 'duration-decades' => '$1 {{PLURAL:$1|áratugur|áratugir}}',
 'duration-centuries' => '$1 {{PLURAL:$1|öld|aldir}}',
+'duration-millennia' => '$1 {{PLURAL:$1|árþúsund}}',
 
 );

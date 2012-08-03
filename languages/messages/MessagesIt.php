@@ -2309,6 +2309,8 @@ Consultare il log delle $2 per un elenco delle pagine cancellate di recente.',
 'rollback' => 'Annulla le modifiche',
 'rollback_short' => 'Rollback',
 'rollbacklink' => 'rollback',
+'rollbacklinkcount' => 'rollback di {{PLURAL:$1|una modifica|$1 modifiche}}',
+'rollbacklinkcount-morethan' => 'rollback di più di {{PLURAL:$1|una modifica|$1 modifiche}}',
 'rollbackfailed' => 'Rollback fallito',
 'cantrollback' => "Impossibile annullare le modifiche; l'utente che le ha effettuate è l'unico ad aver contribuito alla pagina.",
 'alreadyrolled' => 'Non è possibile annullare le modifiche apportate alla pagina [[:$1]] da parte di [[User:$2|$2]] ([[User talk:$2|discussione]]{{int:pipe-separator}}[[Special:Contributions/$2|{{int:contribslink}}]]); un altro utente ha già modificato la pagina oppure ha effettuato il rollback.

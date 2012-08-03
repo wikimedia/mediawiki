@@ -285,17 +285,17 @@ $messages = array(
 'tog-editsectiononrightclick' => '启用右击段落标题编辑段落（需要JavaScript）',
 'tog-showtoc' => '显示目录（对于有多于3个标题的页面）',
 'tog-rememberpassword' => '在浏览器上记住我的登录状态（最长$1天）',
-'tog-watchcreations' => '添加我创建的页面至我的监视列表',
-'tog-watchdefault' => '添加我编辑的页面至我的监视列表',
+'tog-watchcreations' => '添加我创建的页面和上传的文件至我的监视列表',
+'tog-watchdefault' => '添加我编辑的页面和文件至我的监视列表',
 'tog-watchmoves' => '将我移动的页面和文件添加到我的监视列表',
-'tog-watchdeletion' => '添加我删除的页面至我的监视列表',
+'tog-watchdeletion' => '添加我删除的页面和文件至我的监视列表',
 'tog-minordefault' => '默认标记编辑为小编辑',
 'tog-previewontop' => '在编辑框上方显示预览',
 'tog-previewonfirst' => '首次编辑时显示预览',
 'tog-nocache' => '停用浏览器页面缓存',
-'tog-enotifwatchlistpages' => '当我的监视列表中的页面更改时发送电子邮件通知我',
+'tog-enotifwatchlistpages' => '当我的监视列表中的页面或文件更改时发送电子邮件通知我',
 'tog-enotifusertalkpages' => '当我的讨论页更改时发送电子邮件通知我',
-'tog-enotifminoredits' => '当页面有小编辑时发送电子邮件通知我',
+'tog-enotifminoredits' => '当页面和文件有小编辑时发送电子邮件通知我',
 'tog-enotifrevealaddr' => '在通知电子邮件中显示我的电子邮件地址',
 'tog-shownumberswatching' => '显示监视用户数',
 'tog-oldsig' => '当前签名：',
@@ -2664,11 +2664,9 @@ $1被封禁的理由是：“$2”',
 
 # Export
 'export' => '导出页面',
-'exporttext' => '您可以将特定页面或一组页面的文本以及编辑历史以 XML 格式导出；这样可以将有关页面通过“[[Special:Import|导入页面]]”页面导入到另一个运行 MediaWiki 的网站。
+'exporttext' => '您可以将特定页面或一组页面的文本以及编辑历史以XML格式导出；这样可以将有关页面通过“[[Special:Import|导入页面]]”页面导入到另一个运行MediaWiki的网站。
 
-要导出页面，请在下面的文本框中输入页面标题，每行一个标题，
-并选择你是否需要导出带有页面历史的以前的修订本，
-或是只选择导出带有最后一次编辑信息的当前修订版本。
+要导出页面，请在下面的文本框中输入页面标题，每行一个标题，并选择你是否需要导出带有页面历史的以前的修订本，或是只选择导出带有最后一次编辑信息的当前修订版本。
 
 此外你还可以利用链接导出文件，例如你可以使用[[{{#Special:Export}}/{{MediaWiki:Mainpage}}]]导出“[[{{MediaWiki:Mainpage}}]]”页面。',
 'exportall' => '导出所有页面',

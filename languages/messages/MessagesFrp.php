@@ -329,7 +329,7 @@ $messages = array(
 'tog-watchmoves' => 'Apondre les pâges et los fichiérs que renomo a ma lista de survelyence',
 'tog-watchdeletion' => 'Apondre les pâges et los fichiérs que suprimo a ma lista de survelyence',
 'tog-minordefault' => 'Marcar per dèfôt tôs los changements coment petiôts',
-'tog-previewontop' => 'Fâre vêre la prèvisualisacion en-dessus de la zona de changement',
+'tog-previewontop' => 'Fâre vêre la prèvisualisacion d’amont la zona de changement',
 'tog-previewonfirst' => 'Fâre vêre la prèvisualisacion pendent lo premiér changement',
 'tog-nocache' => 'Dèsactivar lo cacho de les pâges per lo navigator',
 'tog-enotifwatchlistpages' => 'Mè mandar un mèssâjo quand na pâge ou ben un fichiér de ma lista de survelyence est changiê(ye)',
@@ -546,7 +546,7 @@ $1',
 'aboutsite' => 'A propôs de {{SITENAME}}',
 'aboutpage' => 'Project:A propôs',
 'copyright' => 'Lo contegnu est disponiblo desot licence $1.',
-'copyrightpage' => '{{ns:project}}:Drêts a ôtor',
+'copyrightpage' => '{{ns:project}}:Drêts d’ôtor',
 'currentevents' => 'Novèles',
 'currentevents-url' => 'Project:Novèles',
 'disclaimers' => 'Avèrtissements',
@@ -564,7 +564,7 @@ $1',
 
 'badaccess' => 'Fôta de pèrmission',
 'badaccess-group0' => 'Vos avéd pas los drêts sufisents por rèalisar l’accion demandâye.',
-'badaccess-groups' => 'L’accion que vos tâchiéd de rèalisar est accèssibla ren qu’ux utilisators a {{PLURAL:$2|la tropa|les tropes}} : $1.',
+'badaccess-groups' => 'L’accion que vos tâchiéd de rèalisar est accèssibla ren qu’ux utilisators de {{PLURAL:$2|la tropa|les tropes}} : $1.',
 
 'versionrequired' => 'Vèrsion $1 de MediaWiki nècèssèra',
 'versionrequiredtext' => 'La vèrsion $1 de MediaWiki est nècèssèra por empleyér ceta pâge.
@@ -604,7 +604,7 @@ Vêde la [[Special:Version|pâge de les vèrsions]].',
 # Short words for each namespace, by default used in the namespace tab in monobook
 'nstab-main' => 'Pâge',
 'nstab-user' => 'Pâge utilisator',
-'nstab-media' => 'Pâge de mèdia',
+'nstab-media' => 'Fichiér mèdia',
 'nstab-special' => 'Pâge spèciâla',
 'nstab-project' => 'Pâge du projèt',
 'nstab-image' => 'Fichiér',
@@ -639,7 +639,7 @@ dês la fonccion « $2 ».
 La bâsa de donâs at retornâ la fôta « $3 : $4 ».',
 'laggedslavemode' => "'''Atencion :''' cela pâge pôt pas contegnir tôs los dèrriérs changements fêts.",
 'readonly' => 'Bâsa de donâs vèrrolyêye',
-'enterlockreason' => 'Balyéd la rêson du vèrroly et pués un’èstimacion de la sina durâ',
+'enterlockreason' => 'Balyéd la rêson du vèrroly et pués n’èstimacion de la sina durâ',
 'readonlytext' => 'Ora, la bâsa de donâs est vèrrolyêye por les entrâs novèles et los ôtros changements, probâblament por pèrmetre la sina mantegnence, dês cen tot tornerat en ôrdre.
 
 L’administrator que l’at vèrrolyê at balyê cet’èxplicacion : $1',
@@ -664,7 +664,7 @@ La volyéd signalar a un [[Special:ListUsers/sysop|administrator]] sen oubliar d
 'fileexistserror' => 'Empossiblo d’ècrire lo fichiér « $1 » : lo fichiér ègziste.',
 'unexpected' => 'Valor emprèvua : « $1 » = « $2 ».',
 'formerror' => 'Fôta : empossiblo de sometre lo formulèro.',
-'badarticleerror' => 'Cela accion pôt pas étre fêta sur ceta pâge.',
+'badarticleerror' => 'Cel’accion pôt pas étre fêta sur ceta pâge.',
 'cannotdelete' => 'Empossiblo de suprimar la pâge ou ben lo fichiér « $1 ».
 Pôt-étre la suprèssion est ja étâye fêta per quârqu’un d’ôtro.',
 'cannotdelete-title' => 'Empossiblo de suprimar la pâge « $1 »',
@@ -681,12 +681,12 @@ Requéta : $2',
 'viewsource' => 'Vêre lo tèxto sôrsa',
 'viewsource-title' => 'Vêre lo tèxto sôrsa de $1',
 'actionthrottled' => 'Accion limitâye',
-'actionthrottledtext' => 'Por combatre lo spame, la frèquence d’ègzécucion de cela accion est limitâ dens un moment prod côrt, et vos éd dèpassâ ceta limita.
-Volyéd tornar èprovar dens doux-três menutes.',
-'protectedpagetext' => 'Ceta pâge at étâ protègiê por empachiér son changement.',
-'viewsourcetext' => 'Vos pouede vêre et copiyér lo tèxto sôrsa de la pâge :',
-'viewyourtext' => "Vos pouede vêre et copiyér lo contegnu de '''voutros changements''' a ceta pâge :",
-'protectedinterface' => 'Ceta pâge fât de tèxto d’entèrface por la programeria et est protègiê por èvitar los abus.',
+'actionthrottledtext' => 'Por combatre lo spame, l’usâjo de cel’accion est limitâ a doux-três côps dens un moment prod côrt. S’acomplét que vos éd dèpassâ ceta limita.
+Volyéd tornar èprovar dens un tôrn.',
+'protectedpagetext' => 'Ceta pâge est étâye protègiêye por empachiér son changement.',
+'viewsourcetext' => 'Vos pouede vêre et pués copiyér lo tèxto sôrsa de ceta pâge :',
+'viewyourtext' => "Vos pouede vêre et pués copiyér lo tèxto sôrsa de '''voutros changements''' a ceta pâge :",
+'protectedinterface' => 'Ceta pâge balye de tèxto d’entèrface por la programeria et est protègiêye por èvitar los abus.',
 'editinginterface' => "'''Atencion :''' vos éte aprés changiér una pâge utilisâ por fâre lo tèxto d’entèrface por la programeria.
 Los changements sè cognetront, d’aprés lo contèxto, sur totes ou ben quârques pâges visibles per los ôtros usanciérs.
 Por les traduccions, nos vos envitens a utilisar lo seto [//translatewiki.net/wiki/Main_Page?setlang=frp translatewiki.net], lo projèt de localisacion de MediaWiki.",

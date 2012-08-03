@@ -361,17 +361,17 @@ $messages = array(
 'tog-editsectiononrightclick' => 'Bewerken van deelpagina’s mogelijk maken met een rechtermuisklik op een tussenkop (vereist JavaScript)',
 'tog-showtoc' => 'Inhoudsopgave weergeven (voor pagina’s met minstens 3 tussenkoppen)',
 'tog-rememberpassword' => 'Aanmeldgegevens onthouden (maximaal $1 {{PLURAL:$1|dag|dagen}})',
-'tog-watchcreations' => 'Pagina’s die ik aanmaak automatisch volgen',
-'tog-watchdefault' => 'Pagina’s die ik bewerk automatisch volgen',
-'tog-watchmoves' => 'Pagina’s die ik hernoem automatisch volgen',
-'tog-watchdeletion' => 'Pagina’s die ik verwijder automatisch volgen',
+'tog-watchcreations' => "Pagina's die ik aanmaak en bestanden die ik upload automatisch volgen",
+'tog-watchdefault' => 'Pagina’s en bestanden die ik bewerk automatisch volgen',
+'tog-watchmoves' => 'Pagina’s en bestanden die ik hernoem automatisch volgen',
+'tog-watchdeletion' => 'Pagina’s en bestanden die ik verwijder automatisch volgen',
 'tog-minordefault' => 'Mijn bewerkingen als ‘klein’ markeren',
 'tog-previewontop' => 'Voorvertoning boven bewerkingsveld weergeven',
 'tog-previewonfirst' => 'Voorvertoning bij eerste bewerking weergeven',
 'tog-nocache' => "Cachen van pagina's door de browser uitschakelen",
-'tog-enotifwatchlistpages' => 'Mij e-mailen bij bewerkingen van pagina’s op mijn volglijst',
+'tog-enotifwatchlistpages' => 'Mij e-mailen bij bewerkingen van pagina’s of bestanden op mijn volglijst',
 'tog-enotifusertalkpages' => 'Mij e-mailen als iemand mijn overlegpagina wijzigt',
-'tog-enotifminoredits' => 'Mij e-mailen bij kleine bewerkingen van pagina’s op mijn volglijst',
+'tog-enotifminoredits' => 'Mij e-mailen bij kleine bewerkingen van pagina’s en bestanden op mijn volglijst',
 'tog-enotifrevealaddr' => 'Mijn e-mailadres weergeven in e-mailberichten',
 'tog-shownumberswatching' => 'Het aantal gebruikers weergeven dat deze pagina volgt',
 'tog-oldsig' => 'Bestaande ondertekening:',
@@ -508,7 +508,7 @@ $messages = array(
 'vector-simplesearch-preference' => 'Verbeterde zoeksuggesties inschakelen (alleen voor het uiterlijk Vector)',
 'vector-view-create' => 'Aanmaken',
 'vector-view-edit' => 'Bewerken',
-'vector-view-history' => 'Geschiedenis bekijken',
+'vector-view-history' => 'Geschiedenis weergeven',
 'vector-view-view' => 'Lezen',
 'vector-view-viewsource' => 'Brontekst bekijken',
 'actions' => 'Handelingen',
@@ -705,8 +705,8 @@ Maak hiervan melding bij een [[Special:ListUsers/sysop|beheerder]] van {{SITENAM
 'cannotdelete' => 'De pagina of het bestand "$1" kon niet verwijderd worden.
 Mogelijk is deze al door iemand anders verwijderd.',
 'cannotdelete-title' => 'Pagina "$1" kan niet verwijderd worden',
-'delete-hook-aborted' => 't Vortdoon is aofebreuken deur n haak.
-Der is gien informasie over beschikbaor.',
+'delete-hook-aborted' => 'Het verwijderen is afgebroken door een hook.
+Er is geen toelichting beschikbaar.',
 'badtitle' => 'Ongeldige paginanaam',
 'badtitletext' => 'De naam van de opgevraagde pagina was ongeldig, leeg of bevatte een verkeerde intertaal- of interwikinaamverwijzing.
 Wellicht bevat de paginanaam niet toegestane tekens.',
@@ -1625,6 +1625,7 @@ Als u deze opgeeft, kan deze naam gebruikt worden om u erkenning te geven voor u
 'right-writeapi' => 'Bewerken via de API',
 'right-delete' => "Pagina's verwijderen",
 'right-bigdelete' => "Pagina's met een grote geschiedenis verwijderen",
+'right-deletelogentry' => 'Specifieke logboekregels verwijderen en terugplaatsen',
 'right-deleterevision' => "Versies van pagina's verbergen",
 'right-deletedhistory' => 'Verwijderde versies bekijken, zonder te kunnen zien wat verwijderd is',
 'right-deletedtext' => 'Verwijderde tekst en wijzigingen tussen verwijderde versies bekijken',
@@ -1950,6 +1951,7 @@ Als het probleem aanhoudt, neem dan contact op met een [[Special:ListUsers/sysop
 'lockmanager-fail-releaselock' => 'Het was niet mogelijk vergrendeling van "$1" op te heffen.',
 'lockmanager-fail-db-bucket' => 'Het was niet mogelijk om in contact te komen met voldoende vergrendelingsdatabases in de bucket $1.',
 'lockmanager-fail-db-release' => 'Het was niet mogelijk om de vergrendeling voor de database $1 op te heffen.',
+'lockmanager-fail-svr-acquire' => 'Het was niet mogelijk een vergrendeling te krijgen op server $1.',
 'lockmanager-fail-svr-release' => 'Het was niet mogelijk om de vergrendeling voor de server $1 op te heffen.',
 
 # ZipDirectoryReader
@@ -2502,6 +2504,8 @@ Wees voorzichtig.',
 'rollback' => 'Wijzigingen ongedaan maken',
 'rollback_short' => 'Terugdraaien',
 'rollbacklink' => 'terugdraaien',
+'rollbacklinkcount' => '{{PLURAL:$1|één bewerking|$1 bewerkingen}} terugdraaien',
+'rollbacklinkcount-morethan' => 'Meer dan {{PLURAL:$1|één bewerking|$1 bewerkingen}} terugdraaien',
 'rollbackfailed' => 'Ongedaan maken van wijzigingen mislukt.',
 'cantrollback' => 'Ongedaan maken van wijzigingen onmogelijk: deze pagina heeft slechts 1 auteur.',
 'alreadyrolled' => 'Het is niet mogelijk om de bewerking van de pagina [[:$1]] door [[User:$2|$2]] ([[User talk:$2|overleg]]{{int:pipe-separator}}[[Special:Contributions/$2|bijdragen]]) ongedaan te maken.
@@ -4128,6 +4132,4 @@ Anders kunt u ook het eenvoudige formulier hieronder gebruiken. Uw reactie wordt
 'duration-centuries' => '$1 {{PLURAL:$1|eeuw|eeuwen}}',
 'duration-millennia' => '$1 {{PLURAL:$1|millennium|millennia}}',
 
-# Unknown messages
-'lockmanager-fail-svr-acquire' => 'Het was niet mogelijk een vergrendeling te krijgen op server $1.',
 );

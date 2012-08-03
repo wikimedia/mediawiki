@@ -666,7 +666,7 @@ aut [{{fullurl:{{FULLPAGENAME}}|action=edit}} hanc paginam creare]</span>.',
 'userpage-userdoesnotexist' => 'Usor "<nowiki>$1</nowiki>" non est. Visne re vera hanc paginam creare vel recensere?',
 'updated' => '(Novata)',
 'note' => "'''Nota:'''",
-'previewnote' => "'''Memento hanc paginam solum praevisum esse, neque iam servatam!'''",
+'previewnote' => "'''Memento hanc paginam solum praevisam esse, neque iam servatam!'''",
 'editing' => 'Recensio paginae "$1"',
 'creating' => 'Creans $1',
 'editingsection' => 'Recensens $1 (partem)',
@@ -808,6 +808,7 @@ Titulus: '''({{int:cur}})''' = dissimilis ab emendatione novissima,
 'compareselectedversions' => 'Conferre emendationes selectas',
 'showhideselectedversions' => 'Monstrare/celare emendationes selectas',
 'editundo' => 'abrogare',
+'diff-multi' => '(Inter has {{PLURAL:$1|una emendatio|$1 emendationes}} ab {{PLURAL:$2|uno usore|$2 usoribus}} {{PLURAL:$1|facta|factae}} non {{PLURAL:$1|videtur|videntur}})',
 
 # Search results
 'searchresults' => 'Eventum investigationis',
@@ -1163,7 +1164,7 @@ Vide etiam [[Special:NewFiles|pinacothecam fasciculorum recentissimorum imposito
 'upload-unknown-size' => 'Magnitudo ignota',
 
 'license' => 'Typus permissionis:',
-'license-header' => 'Typus permissionis:',
+'license-header' => 'Potestas usoris',
 'nolicense' => 'Nulla selecta',
 'license-nopreview' => '(Praevisum monstrari non potest)',
 

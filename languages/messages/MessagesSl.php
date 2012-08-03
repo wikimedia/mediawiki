@@ -1441,6 +1441,7 @@ Ko vas drugi uporabniki kontaktirajo, jim vašega e-poštnega naslova ne bomo ra
 'right-writeapi' => 'Uporaba napisanega API-ja',
 'right-delete' => 'Brisanje strani',
 'right-bigdelete' => 'Brisanje strani z obsežno zgodovino',
+'right-deletelogentry' => 'Brisanje in obnavljanje izbranih dnevniških vnosov',
 'right-deleterevision' => 'Brisanje in obnova posebnih redakcij strani',
 'right-deletedhistory' => 'Ogled zgodovine brisanja, brez besedila izbrisanih strani',
 'right-deletedtext' => 'Ogled izbrisanega besedila in primerjava med izbrisanimi redakcijami',
@@ -1761,6 +1762,7 @@ Prosimo, preverite veljavnost in dostopnost naslova URL ter poskusite ponovno.
 'lockmanager-fail-releaselock' => 'Ne morem sprostiti zaklepa »$1«.',
 'lockmanager-fail-db-bucket' => 'Ne morem kontaktirati zadostnega števila zaklenitvenih zbirk podatkov v vedru $1.',
 'lockmanager-fail-db-release' => 'Ne morem sprostiti zaklepov zbirke podatkov $1.',
+'lockmanager-fail-svr-acquire' => 'Ne morem pridobiti zaklepov na strežniku $1.',
 'lockmanager-fail-svr-release' => 'Ne morem sprostiti zaklepov strežnika $1.',
 
 # ZipDirectoryReader
@@ -2309,6 +2311,8 @@ nadaljujte s previdnostjo.',
 'rollback' => 'Vrni spremembe',
 'rollback_short' => 'Vrni',
 'rollbacklink' => 'vrni',
+'rollbacklinkcount' => 'vrni $1 {{PLURAL:$1|urejanje|urejanji|urejanja|urejanj}}',
+'rollbacklinkcount-morethan' => 'vrni več kot $1 {{PLURAL:$1|urejanje|urejanji|urejanja|urejanj}}',
 'rollbackfailed' => 'Vrnitev ni uspela',
 'cantrollback' => 'Urejanja ne morem vrniti; zadnji urejevalec je hkrati edini.',
 'alreadyrolled' => 'Zadnje spremembe [[:$1]] uporabnika [[User:$2|$2]] ([[User talk:$2|pogovor]]{{int:pipe-separator}}[[Special:Contributions/$2|{{int:contribslink}}]]) ne morem vrniti;
@@ -3880,6 +3884,4 @@ V nasprotnem primeru lahko uporabite preprost obrazec spodaj. Vašo pripombo bom
 'duration-centuries' => '$1 {{PLURAL:$1|stoletje|stoletji|stoletja|stoletij}}',
 'duration-millennia' => '$1 {{PLURAL:$1|tisočletje|tisočletji|tisočletja|tisočletij}}',
 
-# Unknown messages
-'lockmanager-fail-svr-acquire' => 'Ne morem pridobiti zaklepov na strežniku $1.',
 );

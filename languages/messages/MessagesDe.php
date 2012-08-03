@@ -2469,6 +2469,8 @@ Rückmeldungen und weitere Hilfe: {{canonicalurl:{{MediaWiki:Helppage}}}}',
 'rollback' => 'Zurücksetzen der Änderungen',
 'rollback_short' => 'Zurücksetzen',
 'rollbacklink' => 'Zurücksetzen',
+'rollbacklinkcount' => '{{PLURAL:$1|Eine Version|$1 Versionen}} zurücksetzen',
+'rollbacklinkcount-morethan' => 'Mehr als {{PLURAL:$1|eine Version|$1 Versionen}} zurücksetzen',
 'rollbackfailed' => 'Zurücksetzen gescheitert',
 'cantrollback' => 'Die Änderung kann nicht zurückgesetzt werden, da es keine früheren Autoren gibt.',
 'alreadyrolled' => 'Das Zurücksetzen der Änderungen von [[User:$2|$2]] ([[User talk:$2|Diskussion]]{{int:pipe-separator}}[[Special:Contributions/$2|{{int:contribslink}}]]) an [[:$1]] ist gescheitert, da in der Zwischenzeit ein anderer Benutzer die Seite geändert hat.

@@ -2203,6 +2203,8 @@ Prošu potwjerdź, zo maš wotpohlad to činić, zo rozumiš sćěwki a zo to wo
 'rollback' => 'Změny cofnyć',
 'rollback_short' => 'Cofnyć',
 'rollbacklink' => 'Cofnyć',
+'rollbacklinkcount' => '$1 {{PLURAL:$1|změnu|změnje|změny|změnow}} cofnyć',
+'rollbacklinkcount-morethan' => 'přez $1 {{PLURAL:$1|změnu|změnje|změny|změnow}} cofnyć',
 'rollbackfailed' => 'Cofnjenje njeporadźiło',
 'cantrollback' => 'Njemóžno změnu cofnyć; strona nima druhich awtorow.',
 'alreadyrolled' => 'Njemóžno poslednu změnu [[:$1]] přez wužiwarja [[User:$2|$2]] ([[User talk:$2|Diskusija]]{{int:pipe-separator}}[[Special:Contributions/$2|{{int:contribslink}}]]) cofnyć; něchtó druhi je stronu wobdźěłał abo změnu hižo cofnył.

@@ -2404,6 +2404,8 @@ Se $2 för noteringar om de senaste raderingarna.',
 'rollback' => 'Rulla tillbaka ändringar',
 'rollback_short' => 'Återställning',
 'rollbacklink' => 'rulla tillbaka',
+'rollbacklinkcount' => 'rulla tillbaka $1 {{PLURAL:$1|redigering|redigeringar}}',
+'rollbacklinkcount-morethan' => 'rulla tillbaka mer än $1 {{PLURAL:$1|redigering|redigeringar}}',
 'rollbackfailed' => 'Tillbakarullning misslyckades',
 'cantrollback' => 'Det gick inte att rulla tillbaka, då sidan endast redigerats av en användare.',
 'alreadyrolled' => 'Det gick inte att rulla tillbaka den senaste redigeringen av [[User:$2|$2]] ([[User talk:$2|diskussion]]{{int:pipe-separator}}[[Special:Contributions/$2|{{int:contribslink}}]]) på sidan [[:$1|$1]]. Någon annan har redan rullat tillbaka eller redigerat sidan.

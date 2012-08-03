@@ -327,7 +327,7 @@ $messages = array(
 'tog-hidepatrolled' => 'Son değişikliklerde gözden geçirilen düzenlemeleri gizle',
 'tog-newpageshidepatrolled' => 'Kontrol edilmiş sayfaları yeni sayfalar listesinde gizle',
 'tog-extendwatchlist' => 'İzleme listesini sadece son değil, tüm değişiklikleri görmek için genişlet',
-'tog-usenewrc' => 'Gelişmiş son değişiklikleri kullan (JavaScript gerekir)',
+'tog-usenewrc' => 'Son değişiklikler sayfasındaki ve izleme listesindeki değişiklikleri gruplandırma (JavaScript gerektirir)',
 'tog-numberheadings' => 'Başlıkları otomatik numaralandır',
 'tog-showtoolbar' => 'Düzenleme yaparken araç çubuğunu göster (JavaScript gerekir)',
 'tog-editondblclick' => 'Çift tıklayarak sayfayı düzenle (JavaScript gerekir)',
@@ -335,17 +335,17 @@ $messages = array(
 'tog-editsectiononrightclick' => 'Bölümleri bölüm başlığına sağ tıklayarak değiştirebilme olanağı ver (JavaScript)',
 'tog-showtoc' => 'İçindekiler tablosunu göster (3 taneden fazla başlığı olan sayfalar için)',
 'tog-rememberpassword' => 'Girişimi bu tarayıcıda hatırla (en fazla $1 {{PLURAL:$1|gün|gün}} için)',
-'tog-watchcreations' => 'Oluşturmuş olduğum sayfaları izleme listeme ekle',
-'tog-watchdefault' => 'Değişiklik yapılan sayfayı izleme listesine ekle',
-'tog-watchmoves' => 'Taşıdığım sayfaları izleme listeme ekle',
-'tog-watchdeletion' => 'Sildiğim sayfaları izleme listeme ekle',
+'tog-watchcreations' => 'Açtığım sayfaları ve yüklediğim dosyaları izleme listeme ekle',
+'tog-watchdefault' => 'Düzenleme yaptığım sayfaları ve dosyaları izleme listeme ekle',
+'tog-watchmoves' => 'Taşıdığım sayfaları ve dosyaları izleme listeme ekle',
+'tog-watchdeletion' => 'Sildiğim sayfaları ve dosyaları izleme listeme ekle',
 'tog-minordefault' => "Değişikliği 'küçük değişiklik' olarak seçili getir",
 'tog-previewontop' => 'Önizlemeyi yazma alanın üstünde göster',
 'tog-previewonfirst' => 'Değiştirmede önizlemeyi göster',
 'tog-nocache' => 'Tarayıcı sayfalarını bellekleme',
-'tog-enotifwatchlistpages' => 'Sayfa değişikliklerinde bana e-posta gönder',
+'tog-enotifwatchlistpages' => 'İzleme listemdeki bir sayfanın ya da dosyanın değiştirilmesi durumunda bana e-posta gönder',
 'tog-enotifusertalkpages' => 'Kullanıcı sayfamda değişiklik olduğunda bana e-posta gönder',
-'tog-enotifminoredits' => 'Sayfalardaki küçük değişikliklerde de bana e-posta gönder',
+'tog-enotifminoredits' => 'Sayfalardaki ve dosyalardaki küçük değişikliklerde bana e-posta gönder',
 'tog-enotifrevealaddr' => 'E-posta adresimi bildiri postalarımda göster.',
 'tog-shownumberswatching' => 'İzleyen kullanıcı sayısını göster',
 'tog-oldsig' => 'Mevcut imza:',
@@ -565,7 +565,7 @@ $1',
 'edithelp' => 'Nasıl değiştirilir?',
 'edithelppage' => 'Help:Sayfa nasıl değiştirilir',
 'helppage' => 'Help:İçindekiler',
-'mainpage' => 'Ana sayfa',
+'mainpage' => 'Ana Sayfa',
 'mainpage-description' => 'Ana sayfa',
 'policy-url' => 'Project:Politika',
 'portal' => 'Topluluk portali',
@@ -592,7 +592,7 @@ $1',
 'viewsourceold' => 'kaynağı gör',
 'editlink' => 'değiştir',
 'viewsourcelink' => 'kaynağı gör',
-'editsectionhint' => '$1 bölümünü değiştir',
+'editsectionhint' => 'Değiştirilen bölüm: $1',
 'toc' => 'Konu başlıkları',
 'showtoc' => 'göster',
 'hidetoc' => 'gizle',
@@ -678,6 +678,8 @@ Lütfen URL\'yi not ederek bunu bir [[Special:ListUsers/sysop|hizmetliye]] ileti
 'cannotdelete' => '"$1" sayfa ya da dosyası silinemedi.
 Başka bir kullanıcı tarafından silinmiş olabilir.',
 'cannotdelete-title' => '"$1" sayfasını silemezsiniz',
+'delete-hook-aborted' => 'Silme işlemi kanca tarafından durduruldu. 
+Hiçbir açıklama yapılmadı.',
 'badtitle' => 'Geçersiz başlık',
 'badtitletext' => 'Girilen sayfa adı ya hatalı ya boş ya da diller arası bağlantı veya vikiler arası bağlantı içerdiğinden geçerli değil. Başlıklarda kullanılması yasak olan bir ya da daha çok karakter içeriyor olabilir.',
 'perfcached' => 'Veriler daha önceden hazırlanmış olabilir. Bu sebeple güncel olmayabilir! A maximum of {{PLURAL:$1|one result is|$1 results are}} available in the cache.',
@@ -714,7 +716,7 @@ Verilen sebep: ''$2''.",
 # Login and logout pages
 'logouttext' => "'''Oturumu kapattınız.'''
 
-Şimdi kimliğinizi belirtmeksizin {{SITENAME}} sitesini kullanmaya devam edebilirsiniz ya da aynı kullanıcı adıyla ya da ister başka bir kullanıcı adıyla [[Special:UserLogin|yeniden oturum açabilirsiniz]].
+Şimdi anonim olarak {{SITENAME}} sitesini kullanmaya devam edebilirsiniz ya da aynı kullanıcı adıyla ya da ister başka bir kullanıcı adıyla [[Special:UserLogin|yeniden oturum açabilirsiniz]].
 Tarayıcınızın önbelleğini temizleyene kadar bazı sayfalar sanki hâlâ oturumunuz açıkmış gibi görünebilir.",
 'welcomecreation' => '== Hoş geldin, $1! ==
 
@@ -757,7 +759,7 @@ Lütfen çerez kullanımını açınız ve yeni kullanıcı adınız ve şifreni
 Çerezlerin açık olduğundan emin olun ve bu sayfayı yeniden yükleyip tekrar deneyin.',
 'noname' => 'Geçerli bir kullanıcı adı girmediniz.',
 'loginsuccesstitle' => 'Oturum açıldı',
-'loginsuccess' => '{{SITENAME}} sitesinde "$1" kullanıcı adıyla oturum açmış bulunmaktasınız.',
+'loginsuccess' => "'''{{SITENAME}} üzerinde \"\$1\" kullanıcı adıyla oturum açtınız.'''",
 'nosuchuser' => '"$1" adında bir kullanıcı bulunmamaktadır.
 Kullanıcı adları büyük-küçük harf duyarlıdır.
 Yazılışı kontrol edin veya [[Special:UserLogin/signup|yeni bir hesap açın]].',
@@ -785,7 +787,7 @@ Hizmeti kötüye kullanmayı önlemek için, her {{PLURAL:$1|bir saatte|$1 saatt
 'mailerror' => 'E-posta gönderim hatası: $1',
 'acct_creation_throttle_hit' => 'Sizin IP adresinizi kullanarak bu vikiyi ziyaret edenler son günde {{PLURAL:$1|1 hesap|$1 hesap}} oluşturdu, bu sayı bu zaman aralığında izin verilen azami sayıdır.
 Sonuç olarak, bu IP adresini kullanan ziyaretçiler şu anda daha fazla hesap açamazlar.',
-'emailauthenticated' => 'E-posta adresiniz $2 $3 tarihinde doğrulanmıştı.',
+'emailauthenticated' => 'E-posta adresiniz $2 $3 tarihinde doğrulandı.',
 'emailnotauthenticated' => 'E-posta adresiniz henüz onaylanmadı.
 Aşağıdaki işlevlerin hiçbiri için e-posta gönderilmeyecektir.',
 'noemailprefs' => 'Bu özelliklerin çalışması için bir e-posta adresi belirtiniz.',
@@ -793,6 +795,7 @@ Aşağıdaki işlevlerin hiçbiri için e-posta gönderilmeyecektir.',
 'invalidemailaddress' => 'Geçersiz bir formatta yazıldığından dolayı bu e-posta adresi kabul edilemez.
 Lütfen geçerli bir formatta e-posta adresi yazın veya bu bölümü boş bırakın.',
 'cannotchangeemail' => 'Hesabın e-posta adresi bu wiki üzerinden değiştirilemez.',
+'emaildisabled' => 'Bu siteden e-posta gönderemezsiniz.',
 'accountcreated' => 'Hesap açıldı',
 'accountcreatedtext' => '$1 için bir kullanıcı hesabı açıldı.',
 'createaccount-title' => '{{SITENAME}} için yeni kullanıcı hesabı oluşturulması',
@@ -1354,6 +1357,7 @@ Aramanızın başına '''all:''' önekini ekleyerek tüm içeriği aramayı (tar
 'prefs-beta' => 'Beta özellikleri',
 'prefs-datetime' => 'Tarih ve saat',
 'prefs-labs' => 'Lab özellikleri',
+'prefs-user-pages' => 'Kullanıcı sayfaları',
 'prefs-personal' => 'Kullanıcı bilgileri',
 'prefs-rc' => 'Son değişiklikler',
 'prefs-watchlist' => 'İzleme listesi',
@@ -1386,7 +1390,7 @@ Aramanızın başına '''all:''' önekini ekleyerek tüm içeriği aramayı (tar
 'prefs-help-watchlist-token' => 'Bu alanı gizli bir anahtarla doldurmak, izleme listeniz için bir RSS beslemesi oluşturur.
 Bu alandaki anahtarı bilen herkes izleme listenizi okuyabilir, bu yüzden güvenli bir değer seçin.
 Kullanabileceğiniz rastgele-üretilmiş bir değer: $1',
-'savedprefs' => 'Ayarlar kaydedildi.',
+'savedprefs' => 'Tercihleriniz kaydedildi.',
 'timezonelegend' => 'Zaman dilimi:',
 'localtime' => 'Yerel saat:',
 'timezoneuseserverdefault' => 'Viki varsayılanını kullanın ($1)',
@@ -1809,7 +1813,7 @@ Eğer sorun tekrarlanırsa, bir [[Special:ListUsers/sysop|hizmetli]] ile temasa 
 'backend-fail-opentemp' => 'Geçici dosya açılamadı.',
 'backend-fail-closetemp' => 'Geçici dosya kapanamadı.',
 'backend-fail-read' => '$1 dosyası okunamadı.',
-'backend-fail-create' => '$1 dosyası oluşturulamadı.',
+'backend-fail-create' => '$1 dosyası yazılamadı.',
 
 # ZipDirectoryReader
 'zip-file-open-error' => 'Dosya ZIP denetimleri için açılırken bir hata ile karşılaşıldı.',

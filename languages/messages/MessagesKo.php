@@ -1480,7 +1480,7 @@ $1",
 'prefs-files' => '파일',
 'prefs-custom-css' => '사용자 CSS',
 'prefs-custom-js' => '사용자 자바스크립트',
-'prefs-common-css-js' => '모든 스킨에 적용되는 공통 CSS/자바스크립트:',
+'prefs-common-css-js' => '모든 스킨에 대한 공통 CSS/JavaScript:',
 'prefs-reset-intro' => '이 사이트의 기본값으로 환경 설정을 되돌릴 수 있습니다.
 복구할 수 없습니다.',
 'prefs-emailconfirm-label' => '이메일 인증:',
@@ -2282,7 +2282,7 @@ URL이 맞고 해당 웹사이트가 작동하는지 확인해주세요.',
 'linksearch' => '외부 링크 찾기',
 'linksearch-pat' => '검색 패턴:',
 'linksearch-ns' => '이름공간:',
-'linksearch-ok' => '검색',
+'linksearch-ok' => '찾기',
 'linksearch-text' => '"*.wikipedia.org"와 같이 와일드카드를 사용할 수 있습니다.
 적어도 "*.org"와 같이 최상위 도메인을 입력해야 합니다.<br />
 지원하는 프로토콜 목록: <tt>$1</tt> (검색할 때 이것을 추가하지 마세요)',
@@ -2477,6 +2477,8 @@ $UNWATCHURL
 'rollback' => '편집 되돌리기',
 'rollback_short' => '되돌리기',
 'rollbacklink' => '되돌리기',
+'rollbacklinkcount' => '되돌리기 편집 $1회',
+'rollbacklinkcount-morethan' => '되돌리기 편집 $1회 이상',
 'rollbackfailed' => '되돌리기 실패',
 'cantrollback' => '편집을 되돌릴 수 없습니다.
 문서를 편집한 사용자가 한명뿐입니다.',
@@ -2595,7 +2597,7 @@ $UNWATCHURL
 'undeletedfiles' => '파일 $1개를 복구했습니다',
 'cannotundelete' => '복구에 실패했습니다.
 다른 사용자가 이미 복구했을 수도 있습니다.',
-'undeletedpage' => "'''$1 문서가 복구되었습니다.'''
+'undeletedpage' => "'''$1 문서를 복구했습니다.'''
 
 [[Special:Log/delete|삭제 기록]]에서 최근의 삭제와 복구 기록을 볼 수 있습니다.",
 'undelete-header' => '최근에 삭제한 문서에 대한 기록은 [[Special:Log/delete|여기]]에서 볼 수 있습니다.',

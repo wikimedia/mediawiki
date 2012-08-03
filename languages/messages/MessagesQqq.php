@@ -2698,9 +2698,11 @@ $1 is the <b>approximate</b> number of revisions that the page has, the message 
 'rollback_short' => '{{Identical|Rollback}}',
 'rollbacklink' => '{{Identical|Rollback}}
 This message has a tooltip {{msg-mw|tooltip-rollback}}',
-'rollbacklinkcount' => '* $1: the number of edit that will be rollbacked
-If $1 is over the value of $wgShowRollbackEditCount (default: 10) [[MediaWiki:Rollbacklinkcount-morethan/en|rollbacklinkcount-morethan]] is used',
-'rollbacklinkcount-morethan' => 'Similar to [[MediaWiki:Rollbacklinkcount/en|rollbacklinkcount]] but with prefix more than',
+'rollbacklinkcount' => 'Text of the rollback link showing the number of edits to be rolled back. See also {{msg-mw|rollbacklink}}.
+* $1: the number of edits that will be rollbacked. If $1 is over the value of $wgShowRollbackEditCount (default: 10) {{msg-mw|rollbacklinkcount-morethan}} is used.',
+'rollbacklinkcount-morethan' => 'Text of the rollback link when a greater number of edits is to be rolled back. See also {{msg-mw|rollbacklink}}.
+
+When the number of edits rolled back is smaller than [[mw:Manual:$wgShowRollbackEditCount|$wgShowRollbackEditCount]], {{msg-mw|rollbacklinkcount}} is used instead.',
 'rollbackfailed' => '{{Identical|Rollback}}',
 'cantrollback' => '{{Identical|Revert}}
 {{Identical|Rollback}}',

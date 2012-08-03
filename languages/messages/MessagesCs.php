@@ -2420,6 +2420,8 @@ Rady a kontakt:
 'rollback' => 'Vrátit zpět editace',
 'rollback_short' => 'Vrátit zpět',
 'rollbacklink' => 'vrácení zpět',
+'rollbacklinkcount' => 'vrácení $1 {{PLURAL:$1|editace|editací}} zpět',
+'rollbacklinkcount-morethan' => 'vrácení více než $1 {{PLURAL:$1|editace|editací}} zpět',
 'rollbackfailed' => 'Nešlo vrátit zpět',
 'cantrollback' => 'Nelze vrátit zpět poslední editaci, neboť poslední přispěvatel je jediným autorem této stránky.',
 'alreadyrolled' => 'Nelze vrátit zpět poslední editaci [[:$1]] od uživatele [[User:$2|$2]] ([[User talk:$2|diskuse]]{{int:pipe-separator}}[[Special:Contributions/$2|{{int:contribslink}}]]), protože někdo jiný již stránku editoval nebo vrátil tuto změnu zpět.

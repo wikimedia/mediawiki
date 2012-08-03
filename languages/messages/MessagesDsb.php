@@ -2198,6 +2198,8 @@ póstupujśo z glědanim.',
 'rollback' => 'Wobźěłanja slědk wześ',
 'rollback_short' => 'anulěrowaś',
 'rollbacklink' => 'anulěrowaś',
+'rollbacklinkcount' => '$1 {{PLURAL:$1|změnu|změnje|změny|změnow}} slědk wześ',
+'rollbacklinkcount-morethan' => 'wěcej ako $1 {{PLURAL:$1|změnu|změnje|změny|změnow}} slědk wześ',
 'rollbackfailed' => 'Slědkwześe njejo se raźiło.',
 'cantrollback' => 'Njejo móžno změnu slědk wześ, slědny pśinosowaŕ jo jadnučki awtor boka.',
 'alreadyrolled' => 'Njejo móžno slědnu změnu w nastawku [[:$1]] wót [[User:$2|$2]] ([[User talk:$2|diskusija]]{{int:pipe-separator}}[[Special:Contributions/$2|{{int:contribslink}}]]) slědk wześ; drugi wužywaŕ jo mjaztym bok změnił abo južo slědk stajił .

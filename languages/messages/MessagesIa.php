@@ -1414,6 +1414,7 @@ Si tu opta pro dar lo, isto essera usate pro dar te attribution pro tu contribut
 'right-writeapi' => 'Uso del API pro modificar le wiki',
 'right-delete' => 'Deler paginas',
 'right-bigdelete' => 'Deler paginas con historias longe',
+'right-deletelogentry' => 'Deler e restaurar specific entratas del registro',
 'right-deleterevision' => 'Deler e restaurar versiones specific de paginas',
 'right-deletedhistory' => 'Vider entratas de historia delite, sin lor texto associate',
 'right-deletedtext' => 'Vider texto delite e differentias inter versiones delite',
@@ -1733,6 +1734,7 @@ Si le problema persiste, contacta un [[Special:ListUsers/sysop|administrator]].'
 'lockmanager-fail-releaselock' => 'Non poteva liberar le file de serratura pro "$1".',
 'lockmanager-fail-db-bucket' => 'Non poteva contactar sufficiente bases de datos de serratura in situla $1.',
 'lockmanager-fail-db-release' => 'Non poteva liberar le serraturas sur le base de datos $1.',
+'lockmanager-fail-svr-acquire' => 'Non poteva acquirer le serraturas sur le servitor $1.',
 'lockmanager-fail-svr-release' => 'Non poteva liberar le serraturas sur le servitor $1.',
 
 # ZipDirectoryReader
@@ -2287,6 +2289,8 @@ procede con caution.',
 'rollback' => 'Revocar modificationes',
 'rollback_short' => 'Revocar',
 'rollbacklink' => 'revocar',
+'rollbacklinkcount' => 'revocar $1 {{PLURAL:$1|modification|modificationes}}',
+'rollbacklinkcount-morethan' => 'revocar plus de $1 {{PLURAL:$1|modification|modificationes}}',
 'rollbackfailed' => 'Revocation fallite',
 'cantrollback' => 'Impossibile revocar le modification;
 le ultime contributor es le sol autor de iste pagina.',
@@ -3890,6 +3894,4 @@ Si non, tu pote usar le formulario facile hic infra. Tu commento essera addite a
 'duration-centuries' => '$1 {{PLURAL:$1|seculo|seculos}}',
 'duration-millennia' => '$1 {{PLURAL:$1|millennio|millennios}}',
 
-# Unknown messages
-'lockmanager-fail-svr-acquire' => 'Non poteva acquirer le serraturas sur le servitor $1.',
 );

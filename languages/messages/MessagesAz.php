@@ -1452,7 +1452,11 @@ $1',
 'filedelete-reason-otherlist' => 'Başqa səbəb',
 'filedelete-reason-dropdown' => '*Əsas silmə səbəbi
 ** Müəllif hüququ pozuntusu
-** Dublikat fayl',
+** Dublikat fayl
+** Keyfiyyətsiz şəkil
+** İstifadəsiz fayl
+** Qeyri-ensiklopedik şəxs
+** Lisenziyasız fayl',
 'filedelete-edit-reasonlist' => 'Silmə səbəblərini redaktə et',
 
 # MIME search
