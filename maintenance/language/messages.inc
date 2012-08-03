@@ -1643,6 +1643,7 @@ $wgMessageStructure = array(
 	'specialpages' => array(
 		'nbytes',
 		'ncategories',
+		'ninterwikis',
 		'nlinks',
 		'nmembers',
 		'nrevisions',
@@ -1689,6 +1690,8 @@ $wgMessageStructure = array(
 		'mostcategories-summary',
 		'mostimages',
 		'mostimages-summary',
+		'mostinterwikis',
+		'mostinterwikis-summary',
 		'mostrevisions',
 		'mostrevisions-summary',
 		'prefixindex',

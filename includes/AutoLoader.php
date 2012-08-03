@@ -887,6 +887,7 @@ $wgAutoloadLocalClasses = array(
 	'MIMEsearchPage' => 'includes/specials/SpecialMIMEsearch.php',
 	'MostcategoriesPage' => 'includes/specials/SpecialMostcategories.php',
 	'MostimagesPage' => 'includes/specials/SpecialMostimages.php',
+	'MostinterwikisPage' => 'includes/specials/SpecialMostinterwikis.php',
 	'MostlinkedCategoriesPage' => 'includes/specials/SpecialMostlinkedcategories.php',
 	'MostlinkedPage' => 'includes/specials/SpecialMostlinked.php',
 	'MostlinkedTemplatesPage' => 'includes/specials/SpecialMostlinkedtemplates.php',
