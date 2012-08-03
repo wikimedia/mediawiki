@@ -49,10 +49,10 @@ class ApiUnblock extends ApiBase {
 			return;
 		}
 
-		if ( is_null( $params['id'] ) && is_null( $params['user'] ) ) {
+		if ( is_null( $params['id'] ) && is_null( $params['user'] ) && is_null( $params['userid'] ) ) {
 			$this->dieUsageMsg( 'unblock-notarget' );
 		}
-		if ( !is_null( $params['id'] ) && !is_null( $params['user'] ) ) {
+		if ( !is_null( $params['id'] ) && ( !is_null( $params['user'] ) || !is_null( $params['userid'] ) ) ) {
 			$this->dieUsageMsg( 'unblock-idanduser' );
 		}
 
@@ -67,8 +67,16 @@ class ApiUnblock extends ApiBase {
 			}
 		}
 
+		if( !is_null( $params['id'] ) ) {
+			$target = "#{$params['id']}";
+		} elseif( !is_null( $params['userid'] ) ) {
+			$target = User::newFromId( $params['userid'] );
+		} else {
+			$target = $params['user'];
+		}
+
 		$data = array(
-			'Target' => is_null( $params['id'] ) ? $params['user'] : "#{$params['id']}",
+			'Target' => $target,
 			'Reason' => $params['reason']
 		);
 		$block = Block::newFromTarget( $data['Target'] );
@@ -99,6 +107,9 @@ class ApiUnblock extends ApiBase {
 				ApiBase::PARAM_TYPE => 'integer',
 			),
 			'user' => null,
+			'userid' => array(
+				ApiBase::PARAM_TYPE => 'integer'
+			),
 			'token' => null,
 			'gettoken' => array(
 				ApiBase::PARAM_DFLT => false,
@@ -113,6 +124,7 @@ class ApiUnblock extends ApiBase {
 		return array(
 			'id' => "ID of the block you want to unblock (obtained through list=blocks). Cannot be used together with {$p}user",
 			'user' => "Username, IP address or IP range you want to unblock. Cannot be used together with {$p}id",
+			'userid' => "User ID you want to unblock. Takes precedence over {$p}user and cannot be used together with {$p}id",
 			'token' => "An unblock token previously obtained through prop=info",
 			'gettoken' => 'If set, an unblock token will be returned, and no other action will be taken',
 			'reason' => 'Reason for unblock',
