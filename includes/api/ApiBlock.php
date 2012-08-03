@@ -69,8 +69,15 @@ class ApiBlock extends ApiBase {
 			$this->dieUsageMsg( 'cantblock-email' );
 		}
 
+		$user = null;
+		if( !is_null( $params['userid'] ) ) {
+			$user = User::newFromId( $params['userid'] );
+		} elseif( !is_null( $params['user'] ) ) {
+			$user = $params['user'];
+		}
+
 		$data = array(
-			'Target' => $params['user'],
+			'Target' => $user,
 			'Reason' => array(
 				$params['reason'],
 				'other',
@@ -94,9 +101,9 @@ class ApiBlock extends ApiBase {
 			$this->dieUsageMsg( $retval );
 		}
 
-		list( $target, /*...*/ ) = SpecialBlock::getTargetAndType( $params['user'] );
-		$res['user'] = $params['user'];
-		$res['userID'] = $target instanceof User ? $target->getId() : 0;
+		list( $target, /*...*/ ) = SpecialBlock::getTargetAndType( $user );
+		$res['user'] = $target->getName();
+		$res['userID'] = $target->getId();
 
 		$block = Block::newFromTarget( $target );
 		if( $block instanceof Block ){
@@ -148,7 +155,9 @@ class ApiBlock extends ApiBase {
 		return array(
 			'user' => array(
 				ApiBase::PARAM_TYPE => 'string',
-				ApiBase::PARAM_REQUIRED => true
+			),
+			'userid' => array(
+				ApiBase::PARAM_TYPE => 'integer',
 			),
 			'token' => null,
 			'gettoken' => array(
@@ -171,6 +180,7 @@ class ApiBlock extends ApiBase {
 	public function getParamDescription() {
 		return array(
 			'user' => 'Username, IP address or IP range you want to block',
+			'userid' => 'User ID you want to block (takes precedence over user)',
 			'token' => 'A block token previously obtained through prop=info',
 			'gettoken' => 'If set, a block token will be returned, and no other action will be taken',
 			'expiry' => 'Relative expiry time, e.g. \'5 months\' or \'2 weeks\'. If set to \'infinite\', \'indefinite\' or \'never\', the block will never expire.',
@@ -233,6 +243,7 @@ class ApiBlock extends ApiBase {
 			array( 'cantblock' ),
 			array( 'canthide' ),
 			array( 'cantblock-email' ),
+			array( 'cantblock-nouser' ),
 			array( 'ipbblocked' ),
 			array( 'ipbnounblockself' ),
 		) );
