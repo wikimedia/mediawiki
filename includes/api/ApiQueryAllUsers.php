@@ -252,7 +252,7 @@ class ApiQueryAllUsers extends ApiQueryBase {
 			if ( $fld_groups ) {
 				if ( !isset( $lastUserData['groups'] ) ) {
 					if ( $lastUserObj ) {
-						$lastUserData['groups'] = ApiQueryUsers::getAutoGroups( $lastUserObj );
+						$lastUserData['groups'] = $lastUserObj->getAutomaticGroups();
 					} else {
 						// This should not normally happen
 						$lastUserData['groups'] = array();
@@ -267,7 +267,7 @@ class ApiQueryAllUsers extends ApiQueryBase {
 			}
 
 			if ( $fld_implicitgroups && !isset( $lastUserData['implicitgroups'] ) && $lastUserObj ) {
-				$lastUserData['implicitgroups'] = ApiQueryUsers::getAutoGroups( $lastUserObj );
+				$lastUserData['implicitgroups'] = $lastUserObj->getAutomaticGroups();
 				$result->setIndexedTagName( $lastUserData['implicitgroups'], 'g' );
 			}
 			if ( $fld_rights ) {
