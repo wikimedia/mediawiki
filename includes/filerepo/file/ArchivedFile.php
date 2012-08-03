@@ -47,6 +47,7 @@ class ArchivedFile {
 		$timestamp, # time of upload
 		$dataLoaded, # Whether or not all this has been loaded from the database (loadFromXxx)
 		$deleted, # Bitfield akin to rev_deleted
+		$sha1, # sha1 hash of file content
 		$pageCount,
 		$archive_name;
 
@@ -152,7 +153,8 @@ class ArchivedFile {
 					'fa_user',
 					'fa_user_text',
 					'fa_timestamp',
-					'fa_deleted' ),
+					'fa_deleted',
+					'fa_sha1' ),
 				$conds,
 				__METHOD__,
 				array( 'ORDER BY' => 'fa_timestamp DESC' ) );
@@ -217,6 +219,12 @@ class ArchivedFile {
 		$file->user_text = $row->fa_user_text;
 		$file->timestamp = $row->fa_timestamp;
 		$file->deleted = $row->fa_deleted;
+		if( isset( $row->fa_sha1 ) ) {
+			$file->sha1 = $row->fa_sha1;
+		} else {
+			// old row, populate from key
+			$file->sha1 = LocalRepo::getHashFromKey( $file->key );
+		}
 
 		return $file;
 	}
@@ -378,6 +386,16 @@ class ArchivedFile {
 	public function getTimestamp() {
 		$this->load();
 		return wfTimestamp( TS_MW, $this->timestamp );
+	}
+
+	/**
+	 * Get the SHA-1 base 36 hash of the file
+	 *
+	 * @return string
+	 */
+	function getSha1() {
+		$this->load();
+		return $this->sha1;
 	}
 
 	/**
