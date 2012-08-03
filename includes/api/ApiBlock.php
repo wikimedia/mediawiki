@@ -55,22 +55,31 @@ class ApiBlock extends ApiBase {
 		if ( !$user->isAllowed( 'block' ) ) {
 			$this->dieUsageMsg( 'cantblock' );
 		}
-		# bug 15810: blocked admins should have limited access here
-		if ( $user->isBlocked() ) {
-			$status = SpecialBlock::checkUnblockSelf( $params['user'], $user );
-			if ( $status !== true ) {
-				$this->dieUsageMsg( array( $status ) );
-			}
-		}
+
+		$this->requireOnlyOneParameter( $params, 'user', 'userid' );
+
 		if ( $params['hidename'] && !$user->isAllowed( 'hideuser' ) ) {
 			$this->dieUsageMsg( 'canthide' );
-		}
-		if ( $params['noemail'] && !SpecialBlock::canBlockEmail( $user ) ) {
+		} elseif ( $params['noemail'] && !SpecialBlock::canBlockEmail( $user ) ) {
 			$this->dieUsageMsg( 'cantblock-email' );
 		}
 
+		$target = null;
+		if ( $params['userid'] !== null ) {
+			$target = User::newFromId( $params['userid'] );
+		} else {
+			$target = $params['user'];
+		}
+
+		// Validate target (also checks when unblocking self)
+		$status = SpecialBlock::validateTarget( $target, $user );
+		if ( !$status->isOK() ) {
+			$errors = $status->getErrorsArray();
+			$this->dieUsageMsg( $status[0][0] );
+		}
+
 		$data = array(
-			'Target' => $params['user'],
+			'Target' => $target,
 			'Reason' => array(
 				$params['reason'],
 				'other',
@@ -94,9 +103,9 @@ class ApiBlock extends ApiBase {
 			$this->dieUsageMsg( $retval );
 		}
 
-		list( $target, /*...*/ ) = SpecialBlock::getTargetAndType( $params['user'] );
-		$res['user'] = $params['user'];
-		$res['userID'] = $target instanceof User ? $target->getId() : 0;
+		list( $target, /*...*/ ) = SpecialBlock::getTargetAndType( $target );
+		$res['user'] = $target->getName();
+		$res['userID'] = $target->getId();
 
 		$block = Block::newFromTarget( $target );
 		if( $block instanceof Block ){
@@ -148,7 +157,9 @@ class ApiBlock extends ApiBase {
 		return array(
 			'user' => array(
 				ApiBase::PARAM_TYPE => 'string',
-				ApiBase::PARAM_REQUIRED => true
+			),
+			'userid' => array(
+				ApiBase::PARAM_TYPE => 'integer',
 			),
 			'token' => null,
 			'gettoken' => array(
@@ -170,7 +181,8 @@ class ApiBlock extends ApiBase {
 
 	public function getParamDescription() {
 		return array(
-			'user' => 'Username, IP address or IP range you want to block',
+			'user' => 'Username, IP address or IP range you want to block; cannot be used with userid',
+			'userid' => 'User ID you want to block; cannot be used with user.',
 			'token' => 'A block token previously obtained through prop=info',
 			'gettoken' => 'If set, a block token will be returned, and no other action will be taken',
 			'expiry' => 'Relative expiry time, e.g. \'5 months\' or \'2 weeks\'. If set to \'infinite\', \'indefinite\' or \'never\', the block will never expire.',
@@ -229,13 +241,18 @@ class ApiBlock extends ApiBase {
 	}
 
 	public function getPossibleErrors() {
-		return array_merge( parent::getPossibleErrors(), array(
-			array( 'cantblock' ),
-			array( 'canthide' ),
-			array( 'cantblock-email' ),
-			array( 'ipbblocked' ),
-			array( 'ipbnounblockself' ),
-		) );
+		return array_merge(
+			parent::getPossibleErrors(),
+			getRequireOnlyOneParameterErrorMessages( 'user', 'userid' ),
+			array(
+				array( 'cantblock' ),
+				array( 'canthide' ),
+				array( 'cantblock-email' ),
+				array( 'cantblock-nouser' ),
+				array( 'ipbblocked' ),
+				array( 'ipbnounblockself' ),
+			)
+		);
 	}
 
 	public function needsToken() {

@@ -49,29 +49,32 @@ class ApiUnblock extends ApiBase {
 			return;
 		}
 
-		if ( is_null( $params['id'] ) && is_null( $params['user'] ) ) {
-			$this->dieUsageMsg( 'unblock-notarget' );
-		}
-		if ( !is_null( $params['id'] ) && !is_null( $params['user'] ) ) {
-			$this->dieUsageMsg( 'unblock-idanduser' );
-		}
+		$this->requireOnlyOneParameter( $params, 'id', 'user', 'userid' );
 
 		if ( !$user->isAllowed( 'block' ) ) {
 			$this->dieUsageMsg( 'cantunblock' );
 		}
-		# bug 15810: blocked admins should have limited access here
-		if ( $user->isBlocked() ) {
-			$status = SpecialBlock::checkUnblockSelf( $params['user'], $user );
-			if ( $status !== true ) {
-				$this->dieUsageMsg( $status );
-			}
+
+		if( $params['id'] !== null ) {
+			$target = "#{$params['id']}";
+		} elseif( $params['userid'] !== null ) {
+			$target = User::newFromId( $params['userid'] );
+		} else {
+			$target = $params['user'];
 		}
 
 		$data = array(
-			'Target' => is_null( $params['id'] ) ? $params['user'] : "#{$params['id']}",
+			'Target' => $target,
 			'Reason' => $params['reason']
 		);
 		$block = Block::newFromTarget( $data['Target'] );
+
+		// bug 15810: blocked admins should have limited access here.
+		$status = SpecialBlock::checkUnblockSelf( $block->getTarget(), $user );
+		if ( $status !== true ) {
+			$this->dieUsageMsg( $status );
+		}
+
 		$retval = SpecialUnblock::processUnblock( $data, $this->getContext() );
 		if ( $retval !== true ) {
 			$this->dieUsageMsg( $retval[0] );
@@ -99,6 +102,9 @@ class ApiUnblock extends ApiBase {
 				ApiBase::PARAM_TYPE => 'integer',
 			),
 			'user' => null,
+			'userid' => array(
+				ApiBase::PARAM_TYPE => 'integer'
+			),
 			'token' => null,
 			'gettoken' => array(
 				ApiBase::PARAM_DFLT => false,
@@ -111,8 +117,9 @@ class ApiUnblock extends ApiBase {
 	public function getParamDescription() {
 		$p = $this->getModulePrefix();
 		return array(
-			'id' => "ID of the block you want to unblock (obtained through list=blocks). Cannot be used together with {$p}user",
-			'user' => "Username, IP address or IP range you want to unblock. Cannot be used together with {$p}id",
+			'id' => "ID of the block you want to unblock (obtained through list=blocks). Cannot be used together with {$p}user or {$p}userid",
+			'user' => "Username, IP address or IP range you want to unblock. Cannot be used together with {$p}id or {$p}userid",
+			'userid' => "User ID you want to unblock. Cannot be used together with {$p}id or {$p}user",
 			'token' => "An unblock token previously obtained through prop=info",
 			'gettoken' => 'If set, an unblock token will be returned, and no other action will be taken',
 			'reason' => 'Reason for unblock',
@@ -151,13 +158,15 @@ class ApiUnblock extends ApiBase {
 	}
 
 	public function getPossibleErrors() {
-		return array_merge( parent::getPossibleErrors(), array(
-			array( 'unblock-notarget' ),
-			array( 'unblock-idanduser' ),
-			array( 'cantunblock' ),
-			array( 'ipbblocked' ),
-			array( 'ipbnounblockself' ),
-		) );
+		return array_merge(
+			parent::getPossibleErrors(),
+			$this->getRequireOnlyOneParameterErrorMessages( array( 'id', 'user', 'userid' ) ),
+			array(
+				array( 'cantunblock' ),
+				array( 'ipbblocked' ),
+				array( 'ipbnounblockself' ),
+			)
+		);
 	}
 
 	public function needsToken() {
