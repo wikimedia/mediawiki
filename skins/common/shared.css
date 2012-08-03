@@ -124,6 +124,7 @@ div#mw-js-message {
 	padding: 0.5em 2.5%;
 	border: solid 1px #ddd;
 	background-color: #fcfcfc;
+	cursor: pointer;
 }
 
 /* Edit section links */
