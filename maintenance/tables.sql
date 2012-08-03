@@ -637,7 +637,7 @@ CREATE TABLE /*_*/langlinks (
   ll_title varchar(255) binary NOT NULL default ''
 ) /*$wgDBTableOptions*/;
 
-CREATE UNIQUE INDEX /*i*/ll_from ON /*_*/langlinks (ll_from, ll_lang);
+CREATE UNIQUE INDEX /*i*/ll_from ON /*_*/langlinks (ll_from, ll_lang, ll_title);
 CREATE INDEX /*i*/ll_lang ON /*_*/langlinks (ll_lang, ll_title);
 
 

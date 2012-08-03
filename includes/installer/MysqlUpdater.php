@@ -214,6 +214,7 @@ class MysqlUpdater extends DatabaseUpdater {
 			array( 'addField', 'ipblocks',      'ipb_parent_block_id',           'patch-ipb-parent-block-id.sql' ),
 			array( 'addIndex', 'ipblocks',      'ipb_parent_block_id',           'patch-ipb-parent-block-id-index.sql' ),
 			array( 'dropField', 'category',     'cat_hidden',       'patch-cat_hidden.sql' ),
+			array( 'doLanglinkingIndicesUpdate' ),
 		);
 	}
 
@@ -834,5 +835,12 @@ class MysqlUpdater extends DatabaseUpdater {
 		}
 
 		$this->applyPatch( 'patch-user-newtalk-timestamp-null.sql', false, "Making user_last_timestamp nullable" );
+	}
+
+	protected function doLanglinkingIndicesUpdate() {
+		if ( !$this->indexHasField( 'langlinks', 'll_from', 'll_title' ) ) {
+			$this->applyPatch( 'patch-ll_from-index.sql' );
+			$this->output( "...langlinking index updated\n" );
+		}
 	}
 }
