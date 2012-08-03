@@ -430,6 +430,7 @@ $wgMessageStructure = array(
 		'remembermypassword',
 		'securelogin-stick-https',
 		'yourdomainname',
+		'password-change-forbidden',
 		'externaldberror',
 		'login',
 		'nav-login-createaccount',
