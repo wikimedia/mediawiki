@@ -423,15 +423,22 @@ class ApiMain extends ApiBase {
 	 */
 	protected function handleCORS() {
 		global $wgCrossSiteAJAXdomains, $wgCrossSiteAJAXdomainExceptions;
-		$response = $this->getRequest()->response();
+
 		$originParam = $this->getParameter( 'origin' ); // defaults to null
 		if ( $originParam === null ) {
 			// No origin parameter, nothing to do
 			return true;
 		}
+
+		$request = $this->getRequest();
+		$response = $request->response();
 		// Origin: header is a space-separated list of origins, check all of them
-		$originHeader = isset( $_SERVER['HTTP_ORIGIN'] ) ? $_SERVER['HTTP_ORIGIN'] : '';
-		$origins = explode( ' ', $originHeader );
+		$originHeader = $request->getHeader( 'Origin' );
+		if ( $originHeader === false ) {
+			$origins = array();
+		} else {
+			$origins = explode( ' ', $originHeader );
+		}
 		if ( !in_array( $originParam, $origins ) ) {
 			// origin parameter set but incorrect
 			// Send a 403 response
