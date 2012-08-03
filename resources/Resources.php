@@ -696,8 +696,12 @@ return array(
 		'dependencies' => array(
 			'jquery.textSelection',
 			'jquery.byteLimit',
+			'mediawiki.jqueryMsg',
 		),
 		'position' => 'top',
+		'messages' => array(
+			'characters-remaining'
+		),
 	),
 	'mediawiki.action.edit.preview' => array(
 		'scripts' => 'resources/mediawiki.action/mediawiki.action.edit.preview.js',

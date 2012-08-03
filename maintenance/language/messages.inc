@@ -583,6 +583,7 @@ $wgMessageStructure = array(
 	'edit' => array(
 		'summary',
 		'subject',
+		'characters-remaining',
 		'minoredit',
 		'watchthis',
 		'savearticle',
