@@ -85,6 +85,29 @@ This is a simple paragraph.
 !! end
 
 !! test
+Paragraphs with extra newline spacing
+!! input
+foo
+
+bar
+
+
+baz
+
+
+
+booz
+!! result
+<p>foo
+</p><p>bar
+</p><p><br />
+baz
+</p><p><br />
+</p><p>booz
+</p>
+!! end
+
+!! test
 Simple list
 !! input
 * Item 1
