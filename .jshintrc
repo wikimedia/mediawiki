@@ -1,7 +1,6 @@
 {
 	"predef": [
 		"mediaWiki",
-		"mw",
 		"QUnit"
 	],
 

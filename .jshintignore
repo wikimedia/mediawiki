@@ -18,6 +18,3 @@ resources/jquery.ui
 resources/mediawiki.libs/mediawiki.libs.jpegmeta.js
 tests/jasmine/lib/jasmine-1.0.1/jasmine-html.js
 tests/jasmine/lib/jasmine-1.0.1/jasmine.js
-
-# legacy stuff
-skins/common
