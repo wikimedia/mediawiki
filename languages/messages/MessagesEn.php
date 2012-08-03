@@ -3266,6 +3266,7 @@ You cannot create an account',
 Since you do not have the hideuser right, you cannot see or edit the user's block.",
 'ipbblocked'                      => 'You cannot block or unblock other users, because you are yourself blocked',
 'ipbnounblockself'                => 'You are not allowed to unblock yourself',
+'ipb-default-expiry'              => '', # empty so the default is unchanged from previous versions of MediaWiki
 
 # Developer tools
 'lockdb'              => 'Lock database',

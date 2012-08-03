@@ -28,7 +28,7 @@
  *
  * First implemented with MediaWiki 1.17, the Message class is intented to
  * replace the old wfMsg* functions that over time grew unusable.
- * @see https://www.mediawiki.org/wiki/New_messages_API for equivalences
+ * @see https://www.mediawiki.org/wiki/Manual:Messages_API for equivalences
  * between old and new functions.
  *
  * You should use the wfMessage() global function which acts as a wrapper for

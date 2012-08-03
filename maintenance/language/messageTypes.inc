@@ -241,6 +241,7 @@ $wgIgnoredMessages = array(
 	'version-entrypoints-index-php',
 	'version-entrypoints-api-php',
 	'version-entrypoints-load-php',
+	'ipb-default-expiry',
 );
 
 /** Optional messages, which may be translated only if changed in the target language. */
