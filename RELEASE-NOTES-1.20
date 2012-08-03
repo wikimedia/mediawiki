@@ -190,6 +190,7 @@ upgrade PHP if you have not done so prior to upgrading MediaWiki.
   when "from" is filled.
 * (bug 35526) jquery.tablesorter now uses a stable sort.
 * (bug 38953) --memory-limit switch not working for runJobs.php.
+* (bug 34960) drop unused fields rc_moved_to_ns and rc_moved_to_title from recentchanges table.
 
 === API changes in 1.20 ===
 * (bug 34316) Add ability to retrieve maximum upload size from MediaWiki API.

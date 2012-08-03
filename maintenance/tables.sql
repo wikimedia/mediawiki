@@ -1048,10 +1048,6 @@ CREATE TABLE /*_*/recentchanges (
   -- The type of change entry (RC_EDIT,RC_NEW,RC_LOG)
   rc_type tinyint unsigned NOT NULL default 0,
 
-  -- These may no longer be used, with the new move log.
-  rc_moved_to_ns tinyint unsigned NOT NULL default 0,
-  rc_moved_to_title varchar(255) binary NOT NULL default '',
-
   -- If the Recent Changes Patrol option is enabled,
   -- users may mark edits as having been reviewed to
   -- remove a warning flag on the RC list.
