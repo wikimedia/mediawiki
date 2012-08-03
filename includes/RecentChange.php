@@ -163,17 +163,6 @@ class RecentChange {
 	}
 
 	/**
-	 * @return bool|Title
-	 */
-	public function getMovedToTitle() {
-		if( $this->mMovedToTitle === false ) {
-			$this->mMovedToTitle = Title::makeTitle( $this->mAttribs['rc_moved_to_ns'],
-				$this->mAttribs['rc_moved_to_title'] );
-		}
-		return $this->mMovedToTitle;
-	}
-
-	/**
 	 * Get the User object of the person who performed this change.
 	 *
 	 * @return User
@@ -421,8 +410,6 @@ class RecentChange {
 			'rc_this_oldid' => $newId,
 			'rc_last_oldid' => $oldId,
 			'rc_bot'        => $bot ? 1 : 0,
-			'rc_moved_to_ns' => 0,
-			'rc_moved_to_title' => '',
 			'rc_ip'         => self::checkIPAddress( $ip ),
 			'rc_patrolled'  => intval($patrol),
 			'rc_new'        => 0,  # obsolete
@@ -481,8 +468,6 @@ class RecentChange {
 			'rc_this_oldid'     => $newId,
 			'rc_last_oldid'     => 0,
 			'rc_bot'            => $bot ? 1 : 0,
-			'rc_moved_to_ns'    => 0,
-			'rc_moved_to_title' => '',
 			'rc_ip'             => self::checkIPAddress( $ip ),
 			'rc_patrolled'      => intval($patrol),
 			'rc_new'            => 1, # obsolete
@@ -570,8 +555,6 @@ class RecentChange {
 			'rc_this_oldid' => 0,
 			'rc_last_oldid' => 0,
 			'rc_bot'        => $user->isAllowed( 'bot' ) ? $wgRequest->getBool( 'bot', true ) : 0,
-			'rc_moved_to_ns' => 0,
-			'rc_moved_to_title' => '',
 			'rc_ip'         => self::checkIPAddress( $ip ),
 			'rc_patrolled'  => 1,
 			'rc_new'        => 0, # obsolete
@@ -624,8 +607,6 @@ class RecentChange {
 			'rc_this_oldid'	=> $row->rev_id,
 			'rc_last_oldid'	=> isset($row->rc_last_oldid) ? $row->rc_last_oldid : 0,
 			'rc_bot'	=> 0,
-			'rc_moved_to_ns'	=> 0,
-			'rc_moved_to_title'	=> '',
 			'rc_ip' => '',
 			'rc_id' => $row->rc_id,
 			'rc_patrolled' => $row->rc_patrolled,
