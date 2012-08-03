@@ -189,6 +189,7 @@ upgrade PHP if you have not done so prior to upgrading MediaWiki.
   when "from" is filled.
 * (bug 35526) jquery.tablesorter now uses a stable sort.
 * (bug 38953) --memory-limit switch not working for runJobs.php.
+* (bug 32552) Drop unused database field cat_hidden from table category.
 
 === API changes in 1.20 ===
 * (bug 34316) Add ability to retrieve maximum upload size from MediaWiki API.
