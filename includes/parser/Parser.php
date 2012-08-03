@@ -5174,7 +5174,7 @@ class Parser {
 
 		# Linker does the rest
 		$time = isset( $options['time'] ) ? $options['time'] : false;
-		$ret = Linker::makeImageLink2( $title, $file, $params['frame'], $params['handler'],
+		$ret = Linker::makeImageLink( $this, $title, $file, $params['frame'], $params['handler'],
 			$time, $descQuery, $this->mOptions->getThumbSize() );
 
 		# Give the handler a chance to modify the parser object

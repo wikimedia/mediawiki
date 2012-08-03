@@ -513,7 +513,8 @@ class Linker {
 	 * Given parameters derived from [[Image:Foo|options...]], generate the
 	 * HTML that that syntax inserts in the page.
 	 *
-	 * @param $title Title object
+	 * @param $parser Parser object
+	 * @param $title Title object of the file (not the currently viewed page)
 	 * @param $file File object, or false if it doesn't exist
 	 * @param $frameParams Array: associative array of parameters external to the media handler.
 	 *     Boolean parameters are indicated by presence or absence, the value is arbitrary and
@@ -540,9 +541,10 @@ class Linker {
 	 * @param $time String: timestamp of the file, set as false for current
 	 * @param $query String: query params for desc url
 	 * @param $widthOption: Used by the parser to remember the user preference thumbnailsize
+	 * @since 1.20
 	 * @return String: HTML for an image, with links, wrappers, etc.
 	 */
-	public static function makeImageLink2( Title $title, $file, $frameParams = array(),
+	public static function makeImageLink( /*Parser*/ $parser, Title $title, $file, $frameParams = array(),
 		$handlerParams = array(), $time = false, $query = "", $widthOption = null )
 	{
 		$res = null;
@@ -615,16 +617,20 @@ class Linker {
 		}
 
 		if ( isset( $fp['thumbnail'] ) || isset( $fp['manualthumb'] ) || isset( $fp['framed'] ) ) {
-			global $wgContLang;
-			# Create a thumbnail. Alignment depends on language
-			# writing direction, # right aligned for left-to-right-
-			# languages ("Western languages"), left-aligned
-			# for right-to-left-languages ("Semitic languages")
+			# Create a thumbnail. Alignment depends on the writing direction of
+			# the page content language (right-aligned for LTR languages,
+			# left-aligned for RTL languages)
 			#
-			# If  thumbnail width has not been provided, it is set
+			# If a thumbnail width has not been provided, it is set
 			# to the default user option as specified in Language*.php
 			if ( $fp['align'] == '' ) {
-				$fp['align'] = $wgContLang->alignEnd();
+				if( $parser instanceof Parser ) {
+					$fp['align'] = $parser->getTargetLanguage()->alignEnd();
+				} else {
+					# backwards compatibility, remove with makeImageLink2()
+					global $wgContLang;
+					$fp['align'] = $wgContLang->alignEnd();
+				}
 			}
 			return $prefix . self::makeThumbLink2( $title, $file, $fp, $hp, $time, $query ) . $postfix;
 		}
@@ -661,6 +667,17 @@ class Linker {
 			$s = "<div class=\"float{$fp['align']}\">{$s}</div>";
 		}
 		return str_replace( "\n", ' ', $prefix . $s . $postfix );
+	}
+
+	/**
+	 * See makeImageLink()
+	 * When this function is removed, remove if( $parser instanceof Parser ) check there too
+	 * @deprecated since 1.20
+	 */
+	public static function makeImageLink2( Title $title, $file, $frameParams = array(),
+		$handlerParams = array(), $time = false, $query = "", $widthOption = null ) {
+		return self::makeImageLink( null, $title, $file, $frameParams,
+			$handlerParams, $time, $query, $widthOption );
 	}
 
 	/**
