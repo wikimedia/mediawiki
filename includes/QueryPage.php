@@ -45,6 +45,7 @@ $wgQueryPages = array(
 	array( 'MIMEsearchPage',                'MIMEsearch'                    ),
 	array( 'MostcategoriesPage',            'Mostcategories'                ),
 	array( 'MostimagesPage',                'Mostimages'                    ),
+	array( 'MostinterwikisPage',            'Mostinterwikis'                ),
 	array( 'MostlinkedCategoriesPage',      'Mostlinkedcategories'          ),
 	array( 'MostlinkedtemplatesPage',       'Mostlinkedtemplates'           ),
 	array( 'MostlinkedPage',                'Mostlinked'                    ),
