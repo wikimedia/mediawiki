@@ -86,8 +86,8 @@ class LinksUpdate extends SqlDataUpdate {
 		$ill = $parserOutput->getLanguageLinks();
 		$this->mInterlangs = array();
 		foreach ( $ill as $link ) {
-			list( $key, $title ) = explode( ':', $link, 2 );
-			$this->mInterlangs[$key] = $title;
+			list( $lang, $title ) = explode( ':', $link, 2 );
+			$this->mInterlangs[$lang][$title] = 1;
 		}
 
 		foreach ( $this->mCategories as &$sortkey ) {
@@ -315,9 +315,11 @@ class LinksUpdate extends SqlDataUpdate {
 			$fromField = "{$prefix}_from";
 		}
 		$where = array( $fromField => $this->mId );
-		if ( $table == 'pagelinks' || $table == 'templatelinks' || $table == 'iwlinks' ) {
+		if ( $table == 'pagelinks' || $table == 'templatelinks' || $table == 'iwlinks' || $table == 'langlinks' ) {
 			if ( $table == 'iwlinks' ) {
 				$baseKey = 'iwl_prefix';
+			} elseif( $table == 'langlinks' ) {
+				$baseKey = 'll_lang';
 			} else {
 				$baseKey = "{$prefix}_namespace";
 			}
@@ -328,9 +330,7 @@ class LinksUpdate extends SqlDataUpdate {
 				$where = false;
 			}
 		} else {
-			if ( $table == 'langlinks' ) {
-				$toField = 'll_lang';
-			} elseif ( $table == 'page_props' ) {
+			if ( $table == 'page_props' ) {
 				$toField = 'pp_propname';
 			} else {
 				$toField = $prefix . '_to';
@@ -482,14 +482,16 @@ class LinksUpdate extends SqlDataUpdate {
 	 * @return array
 	 */
 	private function getInterlangInsertions( $existing = array() ) {
-		$diffs = array_diff_assoc( $this->mInterlangs, $existing );
 		$arr = array();
-		foreach( $diffs as $lang => $title ) {
-			$arr[] = array(
-				'll_from'  => $this->mId,
-				'll_lang'  => $lang,
-				'll_title' => $title
-			);
+		foreach( $this->mInterlangs as $lang => $dbkeys ) {
+			$diffs = isset( $existing[$lang] ) ? array_diff_key( $dbkeys, $existing[$lang] ) : $dbkeys;
+			foreach ( $diffs as $dbk => $id ) {
+				$arr[] = array(
+					'll_from'  => $this->mId,
+					'll_lang'  => $lang,
+					'll_title' => $dbk
+				);
+			}
 		}
 		return $arr;
 	}
@@ -606,7 +608,15 @@ class LinksUpdate extends SqlDataUpdate {
 	 * @return array
 	 */
 	private function getInterlangDeletions( $existing ) {
-		return array_diff_assoc( $existing, $this->mInterlangs );
+		$del = array();
+		foreach ( $existing as $lang => $dbkeys ) {
+			if ( isset( $this->mInterlangs[$lang] ) ) {
+				$del[$lang] = array_diff_key( $existing[$lang], $this->mInterlangs[$lang] );
+			} else {
+				$del[$lang] = $existing[$lang];
+			}
+		}
+		return $del;
 	}
 
 	/**
@@ -718,17 +728,18 @@ class LinksUpdate extends SqlDataUpdate {
 	}
 
 	/**
-	 * Get an array of existing interlanguage links, with the language code in the key and the
-	 * title in the value.
-	 *
-	 * @return array
+	 * Get an array of existing interlanguage links, as a 2-D array
+	 * @return array (prefix => array(dbkey => 1))
 	 */
 	private function getExistingInterlangs() {
 		$res = $this->mDb->select( 'langlinks', array( 'll_lang', 'll_title' ),
 			array( 'll_from' => $this->mId ), __METHOD__, $this->mOptions );
 		$arr = array();
 		foreach ( $res as $row ) {
-			$arr[$row->ll_lang] = $row->ll_title;
+			if ( !isset( $arr[$row->ll_lang] ) ) {
+				$arr[$row->ll_lang] = array();
+			}
+			$arr[$row->ll_lang][$row->ll_title] = 1;
 		}
 		return $arr;
 	}
