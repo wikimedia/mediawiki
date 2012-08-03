@@ -1279,8 +1279,9 @@ Temporary password: $2',
 'hr_tip'          => 'Horizontal line (use sparingly)',
 
 # Edit pages
-'summary'                          => 'Summary:',
-'subject'                          => 'Subject/headline:',
+'summary'                          => 'Summary $1:',
+'subject'                          => 'Subject/headline $1:',
+'characters-remaining'             => '($1 characters remaining)',
 'minoredit'                        => 'This is a minor edit',
 'watchthis'                        => 'Watch this page',
 'savearticle'                      => 'Save page',
