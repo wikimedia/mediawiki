@@ -213,6 +213,8 @@ class MysqlUpdater extends DatabaseUpdater {
 			array( 'addIndex', 'revision', 'page_user_timestamp', 'patch-revision-user-page-index.sql' ),
 			array( 'addField', 'ipblocks',      'ipb_parent_block_id',           'patch-ipb-parent-block-id.sql' ),
 			array( 'addIndex', 'ipblocks',      'ipb_parent_block_id',           'patch-ipb-parent-block-id-index.sql' ),
+			array( 'addField', 'filearchive',   'fa_sha1',          'patch-fa_sha1.sql' ),
+			array( 'doPopulateFilearchiveSha1Field' ),
 		);
 	}
 
@@ -873,5 +875,17 @@ class MysqlUpdater extends DatabaseUpdater {
 		$this->output( "Making user_last_timestamp nullable... " );
 		$this->applyPatch( 'patch-user-newtalk-timestamp-null.sql' );
 		$this->output( "done.\n" );
+	}
+
+	protected function doPopulateFilearchiveSha1Field() {
+		if ( !$this->updateRowExists( 'populate fa_sha1' ) ) {
+			$this->output(
+				"Populating fa_sha1 field, printing progress markers. For large\n" .
+				"databases, you may want to hit Ctrl-C and do this manually with\n" .
+				"maintenance/populateFaSha1.php.\n" );
+
+			$task = $this->maintenance->runChild( 'PopulateFilearchiveSha1' );
+			$task->execute();
+		}
 	}
 }
