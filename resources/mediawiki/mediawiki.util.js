@@ -433,7 +433,7 @@
 		 */
 		jsMessage: function ( message, className ) {
 			if ( !arguments.length || message === '' || message === null ) {
-				$( '#mw-js-message' ).empty().hide();
+				$( '#mw-js-message' ).empty().hide().trigger( 'mw-hide' );
 				return true; // Emptying and hiding message is intended behaviour, return true
 
 			} else {
@@ -461,7 +461,7 @@
 					$messageDiv.html( message );
 				}
 
-				$messageDiv.slideDown();
+				$messageDiv.slideDown().trigger( 'mw-show' );
 				return true;
 			}
 		},
