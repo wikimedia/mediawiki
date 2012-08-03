@@ -935,7 +935,10 @@ CREATE TABLE /*_*/filearchive (
   fa_timestamp binary(14) default '',
 
   -- Visibility of deleted revisions, bitfield
-  fa_deleted tinyint unsigned NOT NULL default 0
+  fa_deleted tinyint unsigned NOT NULL default 0,
+
+  -- sha1 value of file content
+  fa_sha1 varbinary(32) NOT NULL default ''
 ) /*$wgDBTableOptions*/;
 
 -- pick out by image name
@@ -946,7 +949,7 @@ CREATE INDEX /*i*/fa_storage_group ON /*_*/filearchive (fa_storage_group, fa_sto
 CREATE INDEX /*i*/fa_deleted_timestamp ON /*_*/filearchive (fa_deleted_timestamp);
 -- sort by uploader
 CREATE INDEX /*i*/fa_user_timestamp ON /*_*/filearchive (fa_user_text,fa_timestamp);
-
+CREATE INDEX /*i*/fa_sha1 ON /*_*/filearchive (fa_sha1);
 
 --
 -- Store information about newly uploaded files before they're
