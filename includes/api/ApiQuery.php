@@ -119,9 +119,6 @@ class ApiQuery extends ApiBase {
 		$this->mPropModuleNames = array_keys( $this->mQueryPropModules );
 		$this->mListModuleNames = array_keys( $this->mQueryListModules );
 		$this->mMetaModuleNames = array_keys( $this->mQueryMetaModules );
-
-		$this->makeHelpMsgHelper( $this->mQueryPropModules, 'prop' );
-		$this->makeHelpMsgHelper( $this->mQueryListModules, 'list' );
 	}
 
 	/**
