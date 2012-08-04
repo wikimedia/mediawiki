@@ -1,6 +1,6 @@
 <?php
 /**
- * Scans the deletion log and purges affected files within a timeframe.
+ * Scan the deletion log and purges affected files within a timeframe.
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -17,11 +17,18 @@
  * 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
  * http://www.gnu.org/copyleft/gpl.html
  *
+ * @file
  * @ingroup Maintenance
  */
 
 require_once( dirname( __FILE__ ) . '/Maintenance.php' );
 
+/**
+ * Maintenance script that scans the deletion log and purges affected files
+ * within a timeframe.
+ *
+ * @ingroup Maintenance
+ */
 class PurgeDeletedFiles extends Maintenance {
 	public function __construct() {
 		parent::__construct();
@@ -74,7 +81,7 @@ class PurgeDeletedFiles extends Maintenance {
 
 	protected function purgeFromArchiveTable( LocalFile $file ) {
 		$db = $file->getRepo()->getSlaveDB();
-		$res = $db->select( 'filearchive', 
+		$res = $db->select( 'filearchive',
 			array( 'fa_archive_name' ),
 			array( 'fa_name' => $file->getName() ),
 			__METHOD__
