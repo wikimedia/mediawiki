@@ -113,6 +113,8 @@ upgrade PHP if you have not done so prior to upgrading MediaWiki.
   confirmation is required for changing an email address or not.
 * HTMLForm mutators can now be chained (they return $this)
 * Show change tags when transclude Special:Recentchanges(linked) or Special:Newpages.  
+* (bug 22581) Allow 'tagfilter' option when transclude Special:Newpages
+  or Special:Recentchanges.
 
 === Bug fixes in 1.20 ===
 * (bug 30245) Use the correct way to construct a log page title.

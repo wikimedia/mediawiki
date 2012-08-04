@@ -116,6 +116,9 @@ class SpecialNewpages extends IncludableSpecialPage {
 					$this->opts->setValue( 'namespace',  $ns );
 				}
 			}
+			if ( preg_match( '/^tagfilter=(.*)$/', $bit, $m ) ) {
+				$this->opts->setValue( 'tagfilter', $m[1] );
+			}
 		}
 	}
 
