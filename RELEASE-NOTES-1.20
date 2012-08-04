@@ -34,6 +34,7 @@ upgrade PHP if you have not done so prior to upgrading MediaWiki.
 * Added SpecialPageAfterExecute hook which gets called after SpecialPage::execute.
 * Added ORMTable, ORMRow and ORMResult classes for additional abstraction of
   database interaction.
+* Added CacheHelper and associated SpecialCachedPage and CachedAction helper classes.
 * (bug 32341) Add upload by URL domain limitation.
 * &useskin=default will now always display the default skin. Useful for users with a
   preference for the non-default skin to look at something using the default skin.
