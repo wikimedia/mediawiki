@@ -231,12 +231,25 @@ class SpecialRecentChanges extends IncludableSpecialPage {
 			if( 'hidemyself' === $bit ) {
 				$opts['hidemyself'] = true;
 			}
+			if( 'invert' === $bit ) {
+				$opts['invert'] = true;
+			}
+			if( 'associated' === $bit ) {
+				$opts['associated'] = true;
+			}
 
 			if( is_numeric( $bit ) ) {
 				$opts['limit'] =  $bit;
 			}
 
 			$m = array();
+			if( preg_match( '/^categories=(.+)$/', $bit, $m ) ) {
+				$opts['categories'] = $m[1];
+			}
+			if( 'categories_any' === $bit ) {
+				$opts['categories_any'] = true;
+			}
+
 			if( preg_match( '/^limit=(\d+)$/', $bit, $m ) ) {
 				$opts['limit'] = $m[1];
 			}
