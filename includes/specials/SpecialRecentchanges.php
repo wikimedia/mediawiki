@@ -396,14 +396,15 @@ class SpecialRecentChanges extends IncludableSpecialPage {
 			$fields[] = 'page_latest';
 			$join_conds['page'] = array('LEFT JOIN', 'rc_cur_id=page_id');
 		}
-		if ( !$this->including() ) {
-			// Tag stuff.
-			// Doesn't work when transcluding. See bug 23293
-			ChangeTags::modifyDisplayQuery(
-				$tables, $fields, $conds, $join_conds, $query_options,
-				$opts['tagfilter']
-			);
-		}
+		// Tag stuff.
+		ChangeTags::modifyDisplayQuery(
+			$tables,
+			$fields,
+			$conds,
+			$join_conds,
+			$query_options,
+			$opts['tagfilter']
+		);
 
 		if ( !wfRunHooks( 'SpecialRecentChangesQuery',
 			array( &$conds, &$tables, &$join_conds, $opts, &$query_options, &$fields ) ) )
