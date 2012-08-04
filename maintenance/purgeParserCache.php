@@ -1,6 +1,6 @@
 <?php
 /**
- * Maintenance script to remove old objects from the parser cache.
+ * Remove old objects from the parser cache.
  * This only works when the parser cache is in an SQL database.
  *
  * This program is free software; you can redistribute it and/or modify
@@ -24,17 +24,22 @@
 
 require( dirname( __FILE__ ) . '/Maintenance.php' );
 
+/**
+ * Maintenance script to remove old objects from the parser cache.
+ *
+ * @ingroup Maintenance
+ */
 class PurgeParserCache extends Maintenance {
 	var $lastProgress;
 
 	function __construct() {
 		parent::__construct();
-		$this->addDescription( "Remove old objects from the parser cache. " . 
+		$this->addDescription( "Remove old objects from the parser cache. " .
 			"This only works when the parser cache is in an SQL database." );
 		$this->addOption( 'expiredate', 'Delete objects expiring before this date.', false, true );
-		$this->addOption( 'age', 
+		$this->addOption( 'age',
 			'Delete objects created more than this many seconds ago, assuming $wgParserCacheExpireTime '.
-				'has been consistent.',	
+				'has been consistent.',
 			false, true );
 	}
 
