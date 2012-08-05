@@ -547,7 +547,7 @@ Vaata [[Special:Version|versiooni lehekülge]].',
 
 'ok' => 'Sobib',
 'pagetitle' => '$1 – {{SITENAME}}',
-'retrievedfrom' => 'Välja otsitud andmebaasist "$1"',
+'retrievedfrom' => 'Pärit leheküljelt "$1"',
 'youhavenewmessages' => 'Teile on $1 ($2).',
 'newmessageslink' => 'uusi sõnumeid',
 'newmessagesdifflink' => 'viimane muudatus',
@@ -663,7 +663,7 @@ Palun proovi mõne minuti pärast uuesti.',
 'viewsourcetext' => 'Saad vaadata ja kopeerida lehekülje lähteteksti:',
 'viewyourtext' => "Saad vaadata ja kopeerida sellel leheküljel tehtud '''enda muudatuste '''lähteteksti:",
 'protectedinterface' => 'Sellel leheküljel on tarkvara kasutajaliidese tekst. Kuritahtliku muutmise vältimiseks on lehekülg lukustatud.',
-'editinginterface' => "'''Hoiatus:''' Te redigeerite tarkvara kasutajaliidese tekstiga lehekülge. Muudatused siin mõjutavad kõikide kasutajate kasutajaliidest. Tõlkijad, palun kaaluge MediaWiki tõlkimisprojekti – [//translatewiki.net/wiki/Main_Page?setlang=et translatewiki.net] kasutamist.",
+'editinginterface' => "'''Hoiatus:''' Redigeerid tarkvara kasutajaliidese tekstiga lehekülge. Muudatused siin mõjutavad kõikide kasutajate kasutajaliidest. Tõlkijad, palun kaaluge MediaWiki lokaliseerimisprojekti [//translatewiki.net/wiki/Main_Page?setlang=et translatewiki.net] kasutamist.",
 'sqlhidden' => '(SQL päring peidetud)',
 'cascadeprotected' => 'See lehekülg on muutmise eest kaitstud, sest see on osa {{PLURAL:$1|järgmisest leheküljest|järgmistest lehekülgedest}}, mis on kaskaadkaitse all:
 $2',
@@ -991,12 +991,12 @@ Kui klõpsad nupule \"{{int:savearticle}}\", salvestub '''ainult''' ülemises to
 'storedversion' => 'Salvestatud redaktsioon',
 'nonunicodebrowser' => "'''HOIATUS: Sinu brauser ei toeta unikoodi.'''
 Probleemist möödahiilimiseks, selleks et saaksid lehekülgi turvaliselt redigeerida, näidatakse mitte-ASCII sümboleid toimetuskastis kuueteistkümnendsüsteemi koodidena.",
-'editingold' => "'''ETTEVAATUST! Te redigeerite praegu selle lehekülje vana redaktsiooni.
-Kui Te selle salvestate, siis lähevad kõik vahepealsed muudatused kaduma.'''",
+'editingold' => "'''Ettevaatust: Redigeerid praegu selle lehekülje vana redaktsiooni.'''
+Kui selle salvestad, lähevad kõik vahepealsed muudatused kaduma.",
 'yourdiff' => 'Erinevused',
-'copyrightwarning' => "Pidage silmas, et kogu teie kaastöö võrgukohale {{SITENAME}} loetakse avaldatuks litsentsi $2 all (vaata ka $1). Kui te ei soovi, et teie kirjutatut halastamatult redigeeritakse ja oma äranägemise järgi kasutatakse, siis ärge seda siia salvestage.<br />
-Te kinnitate ka, et kirjutasite selle ise või võtsite selle kopeerimiskitsenduseta allikast.<br />
-'''ÄRGE SAATKE AUTORIÕIGUSEGA KAITSTUD MATERJALI ILMA LOATA!'''",
+'copyrightwarning' => "Pea silmas, et kogu kaastöö võrgukohale {{SITENAME}} loetakse avaldatuks litsentsi $2 all (üksikasjad leheküljel $1). Kui sa ei soovi, et sinu kirjutatut halastamatult redigeeritakse ja oma äranägemise järgi kasutatakse, siis ära seda siia salvesta.<br />
+Kinnitad ka, et kirjutasid selle ise või võtsid selle allikast, mille materjale ei kaitsta autoriõigusega või muust sarnasest vabast allikast.<br />
+'''Ära salvesta autoriõigusega kaitstud materjali ilma loata!'''",
 'copyrightwarning2' => "Pea silmas, et teised kaastöölised võivad kogu {{GRAMMAR:inessive|{{SITENAME}}}} tehtud kaastööd muuta või eemaldada. Kui sa ei soovi, et su kirjutatut halastamatult redigeeritakse, siis ära seda siia salvesta.<br />
 Sa kinnitad ka, et kirjutasid selle ise või võtsid selle kopeerimiskitsenduseta allikast (vaata ka $1).
 '''Ära saada autoriõigusega kaitstud materjali loata!'''",
@@ -1699,9 +1699,9 @@ Eelistatud {{PLURAL:\$3|failitüüp on|failitüübid on}} \$2.",
 'tmp-write-error' => 'Viga ajutise faili kirjutamisel.',
 'large-file' => 'On soovitatav, et üleslaaditavad failid ei oleks suuremad kui $1. Selle faili suurus on $2.',
 'largefileserver' => 'Antud fail on suurem lubatud failisuurusest.',
-'emptyfile' => 'Fail, mille Te üles laadisite, paistab olevat tühi.
+'emptyfile' => 'Fail, mille üles laadisid, paistab olevat tühi.
 See võib olla tingitud vigasest failinimest.
-Palun kaalutlege, kas Te tõesti soovite seda faili üles laadida.',
+Palun veendu, et soovid tõesti seda faili üles laadida.',
 'windows-nonascii-filename' => 'Sellel vikil puudub erimärkidega failinimede tugi.',
 'fileexists' => "Sellise nimega fail on juba olemas. Palun vaata lehekülge '''<tt>[[:$1]]</tt>''', kui sa pole kindel, kas soovid seda muuta.
 [[$1|thumb]]",
@@ -2944,7 +2944,7 @@ Saad vaadata selle lähteteksti.',
 'tooltip-ca-nstab-main' => 'Näita artiklit',
 'tooltip-ca-nstab-user' => 'Näita kasutaja lehte',
 'tooltip-ca-nstab-media' => 'Näita pildi lehte',
-'tooltip-ca-nstab-special' => 'See on erilehekülg, te ei saa seda redigeerida',
+'tooltip-ca-nstab-special' => 'See on erilehekülg, sa ei saa seda lehekülge ennast redigeerida.',
 'tooltip-ca-nstab-project' => 'Näita projekti lehte',
 'tooltip-ca-nstab-image' => 'Näita pildi lehte',
 'tooltip-ca-nstab-mediawiki' => 'Näita süsteemi sõnumit',
@@ -2982,9 +2982,9 @@ Samuti võimaldab see resümee reale põhjenduse lisamist.',
 'siteuser' => '{{GRAMMAR:genitive|{{SITENAME}}}} kasutaja $1',
 'anonuser' => '{{GRAMMAR:genitive|{{SITENAME}}}} anonüümne kasutaja $1',
 'lastmodifiedatby' => 'Viimati muutis lehekülge $3 $2 kell $1.',
-'othercontribs' => 'Põhineb kasutajate $1 tööl.',
+'othercontribs' => 'Põhineb järgmiste kasutajate kaastööl: $1.',
 'others' => 'teiste',
-'siteusers' => 'võrgukoha {{SITENAME}} {{PLURAL:$2|kasutaja|kasutajate}} $1',
+'siteusers' => '{{GRAMMAR:genitive|{{SITENAME}}}} {{PLURAL:$2|kasutaja|kasutajad}} $1',
 'anonusers' => '{{GRAMMAR:genitive|{{SITENAME}}}} {{PLURAL:$2|anonüümne kasutaja|anonüümsed kasutajad}} $1',
 'creditspage' => 'Lehekülje toimetajate loend',
 'nocredits' => 'Selle lehekülje toimetajate loend ei ole kättesaadav.',
