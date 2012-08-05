@@ -13,6 +13,7 @@ $wgAutoloadClasses += array(
 
 	//includes
 	'BlockTest' => "$testFolder/phpunit/includes/BlockTest.php",
+	'MockOutputPage' => "$testFolder/phpunit/includes/MockOutputPage.php",
 
 	//API
 	'ApiFormatTestBase' => "$testFolder/phpunit/includes/api/format/ApiFormatTestBase.php",
@@ -24,6 +25,10 @@ $wgAutoloadClasses += array(
 
 	//Selenium
 	'SeleniumTestConstants' => "$testFolder/selenium/SeleniumTestConstants.php",
+
+	//maintenance
+	'DumpTestCase' => "$testFolder/phpunit/maintenance/DumpTestCase.php",
+	'BackupDumper' => "$testFolder/../maintenance/backup.inc",
 
 	//Generic providers
 	'MediaWikiProvide' => "$testFolder/phpunit/includes/Providers.php",

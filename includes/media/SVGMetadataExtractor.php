@@ -1,6 +1,6 @@
 <?php
 /**
- * SVGMetadataExtractor.php
+ * Extraction of SVG image metadata.
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -19,12 +19,15 @@
  *
  * @file
  * @ingroup Media
- * @author Derk-Jan Hartman <hartman _at_ videolan d0t org>
+ * @author "Derk-Jan Hartman <hartman _at_ videolan d0t org>"
  * @author Brion Vibber
  * @copyright Copyright © 2010-2010 Brion Vibber, Derk-Jan Hartman
  * @license http://www.gnu.org/copyleft/gpl.html GNU General Public License
  */
 
+/**
+ * @ingroup Media
+ */
 class SVGMetadataExtractor {
 	static function getMetadata( $filename ) {
 		$svg = new SVGReader( $filename );
@@ -32,6 +35,9 @@ class SVGMetadataExtractor {
 	}
 }
 
+/**
+ * @ingroup Media
+ */
 class SVGReader {
 	const DEFAULT_WIDTH = 512;
 	const DEFAULT_HEIGHT = 512;
@@ -249,7 +255,7 @@ class SVGReader {
 	/**
 	 * Parse the attributes of an SVG element
 	 *
-	 * The parser has to be in the start element of <svg>
+	 * The parser has to be in the start element of "<svg>"
 	 */
 	private function handleSVGAttribs( ) {
 		$defaultWidth = self::DEFAULT_WIDTH;

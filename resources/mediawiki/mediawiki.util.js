@@ -150,6 +150,7 @@
 		 * Get address to a script in the wiki root.
 		 * For index.php use mw.config.get( 'wgScript' )
 		 *
+		 * @since 1.18
 		 * @param str string Name of script (eg. 'api'), defaults to 'index'
 		 * @return string Address to script (eg. '/w/api.php' )
 		 */
@@ -232,7 +233,7 @@
 			// Get last match, stop at hash
 			var	re = new RegExp( '^[^#]*[&?]' + $.escapeRE( param ) + '=([^&#]*)' ),
 				m = re.exec( url );
-			if ( m && m.length > 1 ) {
+			if ( m ) {
 				// Beware that decodeURIComponent is not required to understand '+'
 				// by spec, as encodeURIComponent does not produce it.
 				return decodeURIComponent( m[1].replace( /\+/g, '%20' ) );
@@ -354,20 +355,21 @@
 					return null;
 				}
 				// Select the first (most likely only) unordered list inside the portlet
-				$ul = $portlet.find( 'ul' );
+				$ul = $portlet.find( 'ul' ).eq( 0 );
 
 				// If it didn't have an unordered list yet, create it
 				if ( $ul.length === 0 ) {
+
+					$ul = $( '<ul>' );
+
 					// If there's no <div> inside, append it to the portlet directly
 					if ( $portlet.find( 'div:first' ).length === 0 ) {
-						$portlet.append( '<ul></ul>' );
+						$portlet.append( $ul );
 					} else {
 						// otherwise if there's a div (such as div.body or div.pBody)
 						// append the <ul> to last (most likely only) div
-						$portlet.find( 'div' ).eq( -1 ).append( '<ul></ul>' );
+						$portlet.find( 'div' ).eq( -1 ).append( $ul );
 					}
-					// Select the created element
-					$ul = $portlet.find( 'ul' ).eq( 0 );
 				}
 				// Just in case..
 				if ( $ul.length === 0 ) {

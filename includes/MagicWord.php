@@ -1,15 +1,30 @@
 <?php
 /**
- * File for magic words
+ * File for magic words.
  *
- * See docs/magicword.txt
+ * See docs/magicword.txt.
+ *
+ * This program is free software; you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation; either version 2 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License along
+ * with this program; if not, write to the Free Software Foundation, Inc.,
+ * 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
+ * http://www.gnu.org/copyleft/gpl.html
  *
  * @file
  * @ingroup Parser
  */
 
 /**
- * This class encapsulates "magic words" such as #redirect, __NOTOC__, etc.
+ * This class encapsulates "magic words" such as "#redirect", __NOTOC__, etc.
  *
  * @par Usage:
  * @code
@@ -27,7 +42,7 @@
  *
  * To add magic words in an extension, use $magicWords in a file listed in
  * $wgExtensionMessagesFiles[].
- * 
+ *
  * @par Example:
  * @code
  * $magicWords = array();
@@ -84,6 +99,7 @@ class MagicWord {
 		'numberoffiles',
 		'numberofedits',
 		'articlepath',
+		'pageid',
 		'sitename',
 		'server',
 		'servername',
@@ -95,6 +111,7 @@ class MagicWord {
 		'fullpagenamee',
 		'namespace',
 		'namespacee',
+		'namespacenumber',
 		'currentweek',
 		'currentdow',
 		'localweek',
@@ -290,8 +307,8 @@ class MagicWord {
 		$wgContLang->getMagic( $this );
 		if ( !$this->mSynonyms ) {
 			$this->mSynonyms = array( 'dkjsagfjsgashfajsh' );
-			#throw new MWException( "Error: invalid magic word '$id'" );
-			wfDebugLog( 'exception', "Error: invalid magic word '$id'\n" );
+			throw new MWException( "Error: invalid magic word '$id'" );
+			#wfDebugLog( 'exception', "Error: invalid magic word '$id'\n" );
 		}
 		wfProfileOut( __METHOD__ );
 	}

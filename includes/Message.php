@@ -1,12 +1,34 @@
 <?php
 /**
+ * Fetching and processing of interface messages.
+ *
+ * This program is free software; you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation; either version 2 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License along
+ * with this program; if not, write to the Free Software Foundation, Inc.,
+ * 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
+ * http://www.gnu.org/copyleft/gpl.html
+ *
+ * @file
+ * @author Niklas Laxström
+ */
+
+/**
  * The Message class provides methods which fullfil two basic services:
  *  - fetching interface messages
  *  - processing messages into a variety of formats
  *
  * First implemented with MediaWiki 1.17, the Message class is intented to
  * replace the old wfMsg* functions that over time grew unusable.
- * @see https://www.mediawiki.org/wiki/New_messages_API for equivalences
+ * @see https://www.mediawiki.org/wiki/Manual:Messages_API for equivalences
  * between old and new functions.
  *
  * You should use the wfMessage() global function which acts as a wrapper for
@@ -133,7 +155,6 @@
  * @see https://www.mediawiki.org/wiki/Localisation
  *
  * @since 1.17
- * @author Niklas Laxström
  */
 class Message {
 	/**

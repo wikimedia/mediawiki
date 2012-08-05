@@ -2,6 +2,21 @@
 /**
  * Preprocessor using PHP arrays
  *
+ * This program is free software; you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation; either version 2 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License along
+ * with this program; if not, write to the Free Software Foundation, Inc.,
+ * 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
+ * http://www.gnu.org/copyleft/gpl.html
+ *
  * @file
  * @ingroup Parser
  */
@@ -9,7 +24,7 @@
 /**
  * Differences from DOM schema:
  *   * attribute nodes are children
- *   * <h> nodes that aren't at the top are replaced with <possible-h>
+ *   * "<h>" nodes that aren't at the top are replaced with <possible-h>
  * @ingroup Parser
  */
 class Preprocessor_Hash implements Preprocessor {
@@ -32,7 +47,7 @@ class Preprocessor_Hash implements Preprocessor {
 	}
 
 	/**
-	 * @param $args
+	 * @param $args array
 	 * @return PPCustomFrame_Hash
 	 */
 	function newCustomFrame( $args ) {
@@ -76,7 +91,7 @@ class Preprocessor_Hash implements Preprocessor {
 	 *
 	 * @param $text String: the text to parse
 	 * @param $flags Integer: bitwise combination of:
-	 *          Parser::PTD_FOR_INCLUSION    Handle <noinclude>/<includeonly> as if the text is being
+	 *          Parser::PTD_FOR_INCLUSION    Handle "<noinclude>" and "<includeonly>" as if the text is being
 	 *                                     included. Default is to assume a direct page view.
 	 *
 	 * The generated DOM tree must depend only on the input text and the flags.
@@ -873,7 +888,7 @@ class PPFrame_Hash implements PPFrame {
 	 *
 	 * @return PPTemplateFrame_Hash
 	 */
-	function newChild( $args = false, $title = false ) {
+	function newChild( $args = false, $title = false, $indexOffset = 0 ) {
 		$namedArgs = array();
 		$numberedArgs = array();
 		if ( $title === false ) {
@@ -889,8 +904,9 @@ class PPFrame_Hash implements PPFrame {
 				$bits = $arg->splitArg();
 				if ( $bits['index'] !== '' ) {
 					// Numbered parameter
-					$numberedArgs[$bits['index']] = $bits['value'];
-					unset( $namedArgs[$bits['index']] );
+					$index = $bits['index'] - $indexOffset;
+					$numberedArgs[$index] = $bits['value'];
+					unset( $namedArgs[$index] );
 				} else {
 					// Named parameter
 					$name = trim( $this->expand( $bits['name'], PPFrame::STRIP_COMMENTS ) );
@@ -915,12 +931,23 @@ class PPFrame_Hash implements PPFrame {
 		}
 
 		if ( ++$this->parser->mPPNodeCount > $this->parser->mOptions->getMaxPPNodeCount() ) {
+			$this->parser->limitationWarn( 'node-count-exceeded',
+					$this->parser->mPPNodeCount,
+					$this->parser->mOptions->getMaxPPNodeCount()
+			);
 			return '<span class="error">Node-count limit exceeded</span>';
 		}
 		if ( $expansionDepth > $this->parser->mOptions->getMaxPPExpandDepth() ) {
+			$this->parser->limitationWarn( 'expansion-depth-exceeded',
+					$expansionDepth,
+					$this->parser->mOptions->getMaxPPExpandDepth()
+			);
 			return '<span class="error">Expansion depth limit exceeded</span>';
 		}
 		++$expansionDepth;
+		if ( $expansionDepth > $this->parser->mHighestExpansionDepth ) {
+			$this->parser->mHighestExpansionDepth = $expansionDepth;
+		}
 
 		$outStack = array( '', '' );
 		$iteratorStack = array( false, $root );
@@ -1470,6 +1497,10 @@ class PPCustomFrame_Hash extends PPFrame_Hash {
 		}
 		return $this->args[$index];
 	}
+
+	function getArguments() {
+		return $this->args;
+	}
 }
 
 /**
@@ -1572,10 +1603,10 @@ class PPNode_Hash_Tree implements PPNode {
 	}
 
 	/**
-	 * Split a <part> node into an associative array containing:
-	 *    name          PPNode name
-	 *    index         String index
-	 *    value         PPNode value
+	 * Split a "<part>" node into an associative array containing:
+	 *  - name          PPNode name
+	 *  - index         String index
+	 *  - value         PPNode value
 	 *
 	 * @return array
 	 */
@@ -1607,7 +1638,7 @@ class PPNode_Hash_Tree implements PPNode {
 	}
 
 	/**
-	 * Split an <ext> node into an associative array containing name, attr, inner and close
+	 * Split an "<ext>" node into an associative array containing name, attr, inner and close
 	 * All values in the resulting array are PPNodes. Inner and close are optional.
 	 *
 	 * @return array
@@ -1635,7 +1666,7 @@ class PPNode_Hash_Tree implements PPNode {
 	}
 
 	/**
-	 * Split an <h> node
+	 * Split an "<h>" node
 	 *
 	 * @return array
 	 */
@@ -1661,7 +1692,7 @@ class PPNode_Hash_Tree implements PPNode {
 	}
 
 	/**
-	 * Split a <template> or <tplarg> node
+	 * Split a "<template>" or "<tplarg>" node
 	 *
 	 * @return array
 	 */

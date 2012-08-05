@@ -4,7 +4,7 @@
  *
  * Created on Oct 16, 2006
  *
- * Copyright © 2006 Yuri Astrakhan <Firstname><Lastname>@gmail.com
+ * Copyright © 2006 Yuri Astrakhan "<Firstname><Lastname>@gmail.com"
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -40,7 +40,7 @@ class ApiQueryBacklinks extends ApiQueryGeneratorBase {
 	private $rootTitle;
 
 	private $params, $contID, $redirID, $redirect;
-	private $bl_ns, $bl_from, $bl_table, $bl_code, $bl_title, $bl_sort, $bl_fields, $hasNS;
+	private $bl_ns, $bl_from, $bl_table, $bl_code, $bl_title, $bl_fields, $hasNS;
 
 	/**
 	 * Maps ns and title to pageid
@@ -91,14 +91,12 @@ class ApiQueryBacklinks extends ApiQueryGeneratorBase {
 		$this->hasNS = $moduleName !== 'imageusage';
 		if ( $this->hasNS ) {
 			$this->bl_title = $prefix . '_title';
-			$this->bl_sort = "{$this->bl_ns}, {$this->bl_title}, {$this->bl_from}";
 			$this->bl_fields = array(
 				$this->bl_ns,
 				$this->bl_title
 			);
 		} else {
 			$this->bl_title = $prefix . '_to';
-			$this->bl_sort = "{$this->bl_title}, {$this->bl_from}";
 			$this->bl_fields = array(
 				$this->bl_title
 			);
@@ -144,7 +142,8 @@ class ApiQueryBacklinks extends ApiQueryGeneratorBase {
 		$this->addWhereFld( 'page_namespace', $this->params['namespace'] );
 
 		if ( !is_null( $this->contID ) ) {
-			$this->addWhere( "{$this->bl_from}>={$this->contID}" );
+			$op = $this->params['dir'] == 'descending' ? '<' : '>';
+			$this->addWhere( "{$this->bl_from}$op={$this->contID}" );
 		}
 
 		if ( $this->params['filterredir'] == 'redirects' ) {
@@ -155,7 +154,8 @@ class ApiQueryBacklinks extends ApiQueryGeneratorBase {
 		}
 
 		$this->addOption( 'LIMIT', $this->params['limit'] + 1 );
-		$this->addOption( 'ORDER BY', $this->bl_from );
+		$sort = ( $this->params['dir'] == 'descending' ? ' DESC' : '' );
+		$this->addOption( 'ORDER BY', $this->bl_from . $sort );
 		$this->addOption( 'STRAIGHT_JOIN' );
 	}
 
@@ -186,28 +186,35 @@ class ApiQueryBacklinks extends ApiQueryGeneratorBase {
 
 		// We can't use LinkBatch here because $this->hasNS may be false
 		$titleWhere = array();
+		$allRedirNs = array();
+		$allRedirDBkey = array();
 		foreach ( $this->redirTitles as $t ) {
-			$titleWhere[] = "{$this->bl_title} = " . $db->addQuotes( $t->getDBkey() ) .
-					( $this->hasNS ? " AND {$this->bl_ns} = '{$t->getNamespace()}'" : '' );
+			$redirNs = $t->getNamespace();
+			$redirDBkey = $t->getDBkey();
+			$titleWhere[] = "{$this->bl_title} = " . $db->addQuotes( $redirDBkey ) .
+					( $this->hasNS ? " AND {$this->bl_ns} = {$redirNs}" : '' );
+			$allRedirNs[] = $redirNs;
+			$allRedirDBkey[] = $redirDBkey;
 		}
 		$this->addWhere( $db->makeList( $titleWhere, LIST_OR ) );
 		$this->addWhereFld( 'page_namespace', $this->params['namespace'] );
 
 		if ( !is_null( $this->redirID ) ) {
+			$op = $this->params['dir'] == 'descending' ? '<' : '>';
 			$first = $this->redirTitles[0];
-			$title = $db->strencode( $first->getDBkey() );
+			$title = $db->addQuotes( $first->getDBkey() );
 			$ns = $first->getNamespace();
 			$from = $this->redirID;
 			if ( $this->hasNS ) {
-				$this->addWhere( "{$this->bl_ns} > $ns OR " .
+				$this->addWhere( "{$this->bl_ns} $op $ns OR " .
 						"({$this->bl_ns} = $ns AND " .
-						"({$this->bl_title} > '$title' OR " .
-						"({$this->bl_title} = '$title' AND " .
-						"{$this->bl_from} >= $from)))" );
+						"({$this->bl_title} $op $title OR " .
+						"({$this->bl_title} = $title AND " .
+						"{$this->bl_from} $op= $from)))" );
 			} else {
-				$this->addWhere( "{$this->bl_title} > '$title' OR " .
-						"({$this->bl_title} = '$title' AND " .
-						"{$this->bl_from} >= $from)" );
+				$this->addWhere( "{$this->bl_title} $op $title OR " .
+						"({$this->bl_title} = $title AND " .
+						"{$this->bl_from} $op= $from)" );
 			}
 		}
 		if ( $this->params['filterredir'] == 'redirects' ) {
@@ -217,7 +224,17 @@ class ApiQueryBacklinks extends ApiQueryGeneratorBase {
 		}
 
 		$this->addOption( 'LIMIT', $this->params['limit'] + 1 );
-		$this->addOption( 'ORDER BY', $this->bl_sort );
+		$orderBy = array();
+		$sort = ( $this->params['dir'] == 'descending' ? ' DESC' : '' );
+		// Don't order by namespace/title if it's constant in the WHERE clause
+		if( $this->hasNS && count( array_unique( $allRedirNs ) ) != 1 ) {
+			$orderBy[] = $this->bl_ns . $sort;
+		}
+		if( count( array_unique( $allRedirDBkey ) ) != 1 ) {
+			$orderBy[] = $this->bl_title . $sort;
+		}
+		$orderBy[] = $this->bl_from . $sort;
+		$this->addOption( 'ORDER BY', $orderBy );
 		$this->addOption( 'USE INDEX', array( 'page' => 'PRIMARY' ) );
 	}
 
@@ -277,7 +294,7 @@ class ApiQueryBacklinks extends ApiQueryGeneratorBase {
 					if ( $this->hasNS ) {
 						$parentID = $this->pageMap[$row-> { $this->bl_ns } ][$row-> { $this->bl_title } ];
 					} else {
-						$parentID = $this->pageMap[NS_IMAGE][$row-> { $this->bl_title } ];
+						$parentID = $this->pageMap[NS_FILE][$row-> { $this->bl_title } ];
 					}
 					$this->continueStr = $this->getContinueRedirStr( $parentID, $row->page_id );
 					break;
@@ -369,14 +386,7 @@ class ApiQueryBacklinks extends ApiQueryGeneratorBase {
 		if ( !is_null( $this->params['continue'] ) ) {
 			$this->parseContinueParam();
 		} else {
-			if ( $this->params['title'] !== '' ) {
-				$title = Title::newFromText( $this->params['title'] );
-				if ( !$title ) {
-					$this->dieUsageMsg( array( 'invalidtitle', $this->params['title'] ) );
-				} else {
-					$this->rootTitle = $title;
-				}
-			}
+			$this->rootTitle = $this->getTitleOrPageId( $this->params )->getTitle();
 		}
 
 		// only image titles are allowed for the root in imageinfo mode
@@ -436,12 +446,21 @@ class ApiQueryBacklinks extends ApiQueryGeneratorBase {
 		$retval = array(
 			'title' => array(
 				ApiBase::PARAM_TYPE => 'string',
-				ApiBase::PARAM_REQUIRED => true
+			),
+			'pageid' => array(
+				ApiBase::PARAM_TYPE => 'integer',
 			),
 			'continue' => null,
 			'namespace' => array(
 				ApiBase::PARAM_ISMULTI => true,
 				ApiBase::PARAM_TYPE => 'namespace'
+			),
+			'dir' => array(
+				ApiBase::PARAM_DFLT => 'ascending',
+				ApiBase::PARAM_TYPE => array(
+					'ascending',
+					'descending'
+				)
 			),
 			'filterredir' => array(
 				ApiBase::PARAM_DFLT => 'all',
@@ -468,9 +487,11 @@ class ApiQueryBacklinks extends ApiQueryGeneratorBase {
 
 	public function getParamDescription() {
 		$retval = array(
-			'title' => 'Title to search',
+			'title' => "Title to search. Cannot be used together with {$this->bl_code}pageid",
+			'pageid' => "Pageid to search. Cannot be used together with {$this->bl_code}title",
 			'continue' => 'When more results are available, use this to continue',
 			'namespace' => 'The namespace to enumerate',
+			'dir' => 'The direction in which to list',
 		);
 		if ( $this->getModuleName() != 'embeddedin' ) {
 			return array_merge( $retval, array(
@@ -483,6 +504,17 @@ class ApiQueryBacklinks extends ApiQueryGeneratorBase {
 			'filterredir' => 'How to filter for redirects',
 			'limit' => 'How many total pages to return'
 		) );
+	}
+
+	public function getResultProperties() {
+		return array(
+			'' => array(
+				'pageid' => 'integer',
+				'ns' => 'namespace',
+				'title' => 'string',
+				'redirect' => 'boolean'
+			)
+		);
 	}
 
 	public function getDescription() {
@@ -499,11 +531,13 @@ class ApiQueryBacklinks extends ApiQueryGeneratorBase {
 	}
 
 	public function getPossibleErrors() {
-		return array_merge( parent::getPossibleErrors(), array(
-			array( 'invalidtitle', 'title' ),
-			array( 'code' => 'bad_image_title', 'info' => "The title for {$this->getModuleName()} query must be an image" ),
-			array( 'code' => '_badcontinue', 'info' => 'Invalid continue param. You should pass the original value returned by the previous query' ),
-		) );
+		return array_merge( parent::getPossibleErrors(),
+			$this->getTitleOrPageIdErrorMessage(),
+			array(
+				array( 'code' => 'bad_image_title', 'info' => "The title for {$this->getModuleName()} query must be an image" ),
+				array( 'code' => '_badcontinue', 'info' => 'Invalid continue param. You should pass the original value returned by the previous query' ),
+			)
+		);
 	}
 
 	public function getExamples() {

@@ -1,7 +1,7 @@
-/*
- * jQuery UI Effects Fold 1.8.17
+/*!
+ * jQuery UI Effects Fold 1.8.22
  *
- * Copyright 2011, AUTHORS.txt (http://jqueryui.com/about)
+ * Copyright 2012, AUTHORS.txt (http://jqueryui.com/about)
  * Dual licensed under the MIT or GPL Version 2 licenses.
  * http://jquery.org/license
  *

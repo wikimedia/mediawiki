@@ -1,6 +1,7 @@
 <?php
 /**
- * CLI script to easily parse some wikitext.
+ * Parse some wikitext.
+ *
  * Wikitext can be given by stdin or using a file. The wikitext will be parsed
  * using 'CLIParser' as a title. This can be overriden with --title option.
  *
@@ -27,12 +28,34 @@
  * </p>$
  * @endcode
  *
+ * This program is free software; you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation; either version 2 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License along
+ * with this program; if not, write to the Free Software Foundation, Inc.,
+ * 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
+ * http://www.gnu.org/copyleft/gpl.html
+ *
+ * @file
  * @ingroup Maintenance
  * @author Antoine Musso <hashar at free dot fr>
  * @license GNU General Public License 2.0 or later
  */
+
 require_once( dirname(__FILE__) . '/Maintenance.php' );
 
+/**
+ * Maintenance script to parse some wikitext.
+ *
+ * @ingroup Maintenance
+ */
 class CLIParser extends Maintenance {
 	protected $parser;
 
@@ -66,7 +89,8 @@ class CLIParser extends Maintenance {
 		$input_file = $this->getArg( 0, $php_stdin );
 
 		if( $input_file === $php_stdin ) {
-			$this->error( basename(__FILE__) .": warning: reading wikitext from STDIN\n" );
+			$ctrl = wfIsWindows() ? 'CTRL+Z' : 'CTRL+D';
+			$this->error( basename(__FILE__) .": warning: reading wikitext from STDIN. Press $ctrl to parse.\n" );
 		}
 
 		return file_get_contents( $input_file );

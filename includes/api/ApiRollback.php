@@ -4,7 +4,7 @@
  *
  * Created on Jun 20, 2007
  *
- * Copyright © 2007 Roan Kattouw <Firstname>.<Lastname>@gmail.com
+ * Copyright © 2007 Roan Kattouw "<Firstname>.<Lastname>@gmail.com"
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -49,7 +49,7 @@ class ApiRollback extends ApiBase {
 		// User and title already validated in call to getTokenSalt from Main
 		$titleObj = $this->getRbTitle();
 		$pageObj = WikiPage::factory( $titleObj );
-		$summary = ( isset( $params['summary'] ) ? $params['summary'] : '' );
+		$summary = $params['summary'];
 		$details = array();
 		$retval = $pageObj->doRollback( $this->getRbUser(), $summary, $params['token'], $params['markbot'], $details, $this->getUser() );
 
@@ -90,8 +90,11 @@ class ApiRollback extends ApiBase {
 				ApiBase::PARAM_TYPE => 'string',
 				ApiBase::PARAM_REQUIRED => true
 			),
-			'token' => null,
-			'summary' => null,
+			'token' => array(
+				ApiBase::PARAM_TYPE => 'string',
+				ApiBase::PARAM_REQUIRED => true
+			),
+			'summary' => '',
 			'markbot' => false,
 			'watchlist' => array(
 				ApiBase::PARAM_DFLT => 'preferences',
@@ -110,9 +113,22 @@ class ApiRollback extends ApiBase {
 			'title' => 'Title of the page you want to rollback.',
 			'user' => 'Name of the user whose edits are to be rolled back. If set incorrectly, you\'ll get a badtoken error.',
 			'token' => "A rollback token previously retrieved through {$this->getModulePrefix()}prop=revisions",
-			'summary' => 'Custom edit summary. If not set, default summary will be used',
+			'summary' => 'Custom edit summary. If empty, default summary will be used',
 			'markbot' => 'Mark the reverted edits and the revert as bot edits',
 			'watchlist' => 'Unconditionally add or remove the page from your watchlist, use preferences or do not change watch',
+		);
+	}
+
+	public function getResultProperties() {
+		return array(
+			'' => array(
+				'title' => 'string',
+				'pageid' => 'integer',
+				'summary' => 'string',
+				'revid' => 'integer',
+				'old_revid' => 'integer',
+				'last_revid' => 'integer'
+			)
 		);
 	}
 

@@ -4,7 +4,7 @@
  *
  * Created on Sep 4, 2006
  *
- * Copyright © 2006 Yuri Astrakhan <Firstname><Lastname>@gmail.com
+ * Copyright © 2006 Yuri Astrakhan "<Firstname><Lastname>@gmail.com"
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -61,9 +61,11 @@ class ApiMain extends ApiBase {
 		'paraminfo' => 'ApiParamInfo',
 		'rsd' => 'ApiRsd',
 		'compare' => 'ApiComparePages',
+		'tokens' => 'ApiTokens',
 
 		// Write modules
 		'purge' => 'ApiPurge',
+		'setnotificationtimestamp' => 'ApiSetNotificationTimestamp',
 		'rollback' => 'ApiRollback',
 		'delete' => 'ApiDelete',
 		'undelete' => 'ApiUndelete',
@@ -79,6 +81,7 @@ class ApiMain extends ApiBase {
 		'patrol' => 'ApiPatrol',
 		'import' => 'ApiImport',
 		'userrights' => 'ApiUserrights',
+		'options' => 'ApiOptions',
 	);
 
 	/**
@@ -352,6 +355,12 @@ class ApiMain extends ApiBase {
 	 * have been accumulated, and replace it with an error message and a help screen.
 	 */
 	protected function executeActionWithErrorHandling() {
+		// Verify the CORS header before executing the action
+		if ( !$this->handleCORS() ) {
+			// handleCORS() has sent a 403, abort
+			return;
+		}
+
 		// In case an error occurs during data output,
 		// clear the output buffer and print just the error information
 		ob_start();
@@ -360,7 +369,7 @@ class ApiMain extends ApiBase {
 			$this->executeAction();
 		} catch ( Exception $e ) {
 			// Log it
-			if ( $e instanceof MWException ) {
+			if ( !( $e instanceof UsageException ) ) {
 				wfDebugLog( 'exception', $e->getLogMessage() );
 			}
 
@@ -400,9 +409,101 @@ class ApiMain extends ApiBase {
 		ob_end_flush();
 	}
 
+	/**
+	 * Check the &origin= query parameter against the Origin: HTTP header and respond appropriately.
+	 *
+	 * If no origin parameter is present, nothing happens.
+	 * If an origin parameter is present but doesn't match the Origin header, a 403 status code
+	 * is set and false is returned.
+	 * If the parameter and the header do match, the header is checked against $wgCrossSiteAJAXdomains
+	 * and $wgCrossSiteAJAXdomainExceptions, and if the origin qualifies, the appropriate CORS
+	 * headers are set.
+	 *
+	 * @return bool False if the caller should abort (403 case), true otherwise (all other cases)
+	 */
+	protected function handleCORS() {
+		global $wgCrossSiteAJAXdomains, $wgCrossSiteAJAXdomainExceptions;
+
+		$originParam = $this->getParameter( 'origin' ); // defaults to null
+		if ( $originParam === null ) {
+			// No origin parameter, nothing to do
+			return true;
+		}
+
+		$request = $this->getRequest();
+		$response = $request->response();
+		// Origin: header is a space-separated list of origins, check all of them
+		$originHeader = $request->getHeader( 'Origin' );
+		if ( $originHeader === false ) {
+			$origins = array();
+		} else {
+			$origins = explode( ' ', $originHeader );
+		}
+		if ( !in_array( $originParam, $origins ) ) {
+			// origin parameter set but incorrect
+			// Send a 403 response
+			$message = HttpStatus::getMessage( 403 );
+			$response->header( "HTTP/1.1 403 $message", true, 403 );
+			$response->header( 'Cache-Control: no-cache' );
+			echo "'origin' parameter does not match Origin header\n";
+			return false;
+		}
+		if ( self::matchOrigin( $originParam, $wgCrossSiteAJAXdomains, $wgCrossSiteAJAXdomainExceptions ) ) {
+			$response->header( "Access-Control-Allow-Origin: $originParam" );
+			$response->header( 'Access-Control-Allow-Credentials: true' );
+			$this->getOutput()->addVaryHeader( 'Origin' );
+		}
+		return true;
+	}
+
+	/**
+	 * Attempt to match an Origin header against a set of rules and a set of exceptions
+	 * @param $value string Origin header
+	 * @param $rules array Set of wildcard rules
+	 * @param $exceptions array Set of wildcard rules
+	 * @return bool True if $value matches a rule in $rules and doesn't match any rules in $exceptions, false otherwise
+	 */
+	protected static function matchOrigin( $value, $rules, $exceptions ) {
+		foreach ( $rules as $rule ) {
+			if ( preg_match( self::wildcardToRegex( $rule ), $value ) ) {
+				// Rule matches, check exceptions
+				foreach ( $exceptions as $exc ) {
+					if ( preg_match( self::wildcardToRegex( $exc ), $value ) ) {
+						return false;
+					}
+				}
+				return true;
+			}
+		}
+		return false;
+	}
+
+	/**
+	 * Helper function to convert wildcard string into a regex
+	 * '*' => '.*?'
+	 * '?' => '.'
+	 *
+	 * @param $wildcard string String with wildcards
+	 * @return string Regular expression
+	 */
+	protected static function wildcardToRegex( $wildcard ) {
+		$wildcard = preg_quote( $wildcard, '/' );
+		$wildcard = str_replace(
+			array( '\*', '\?' ),
+			array( '.*?', '.' ),
+			$wildcard
+		);
+		return "/https?:\/\/$wildcard/";
+	}
+
 	protected function sendCacheHeaders() {
 		global $wgUseXVO, $wgVaryOnXFP;
 		$response = $this->getRequest()->response();
+		$out = $this->getOutput();
+
+		if ( $wgVaryOnXFP ) {
+			$out->addVaryHeader( 'X-Forwarded-Proto' );
+		}
 
 		if ( $this->mCacheMode == 'private' ) {
 			$response->header( 'Cache-Control: private' );
@@ -410,13 +511,9 @@ class ApiMain extends ApiBase {
 		}
 
 		if ( $this->mCacheMode == 'anon-public-user-private' ) {
-			$xfp = $wgVaryOnXFP ? ', X-Forwarded-Proto' : '';
-			$response->header( 'Vary: Accept-Encoding, Cookie' . $xfp );
+			$out->addVaryHeader( 'Cookie' );
+			$response->header( $out->getVaryHeader() );
 			if ( $wgUseXVO ) {
-				$out = $this->getOutput();
-				if ( $wgVaryOnXFP ) {
-					$out->addVaryHeader( 'X-Forwarded-Proto' );
-				}
 				$response->header( $out->getXVO() );
 				if ( $out->haveCacheVaryCookies() ) {
 					// Logged in, mark this request private
@@ -433,12 +530,9 @@ class ApiMain extends ApiBase {
 		}
 
 		// Send public headers
-		if ( $wgVaryOnXFP ) {
-			$response->header( 'Vary: Accept-Encoding, X-Forwarded-Proto' );
-			if ( $wgUseXVO ) {
-				// Bleeeeegh. Our header setting system sucks
-				$response->header( 'X-Vary-Options: Accept-Encoding;list-contains=gzip, X-Forwarded-Proto' );
-			}
+		$response->header( $out->getVaryHeader() );
+		if ( $wgUseXVO ) {
+			$response->header( $out->getXVO() );
 		}
 
 		// If nobody called setCacheMaxAge(), use the (s)maxage parameters
@@ -594,12 +688,18 @@ class ApiMain extends ApiBase {
 		$moduleParams = $module->extractRequestParams();
 
 		// Die if token required, but not provided (unless there is a gettoken parameter)
+		if ( isset( $moduleParams['gettoken'] ) ) {
+			$gettoken = $moduleParams['gettoken'];
+		} else {
+			$gettoken = false;
+		}
+
 		$salt = $module->getTokenSalt();
-		if ( $salt !== false && !$moduleParams['gettoken'] ) {
+		if ( $salt !== false && !$gettoken ) {
 			if ( !isset( $moduleParams['token'] ) ) {
 				$this->dieUsageMsg( array( 'missingparam', 'token' ) );
 			} else {
-				if ( !$this->getUser()->matchEditToken( $moduleParams['token'], $salt, $this->getRequest() ) ) {
+				if ( !$this->getUser()->matchEditToken( $moduleParams['token'], $salt, $this->getContext()->getRequest() ) ) {
 					$this->dieUsageMsg( 'sessionfailure' );
 				}
 			}
@@ -707,6 +807,9 @@ class ApiMain extends ApiBase {
 		$module->profileOut();
 
 		if ( !$this->mInternalMode ) {
+			//append Debug information
+			MWDebug::appendDebugInfoToApiResult( $this->getContext(), $this->getResult() );
+
 			// Print result data
 			$this->printResult( false );
 		}
@@ -773,6 +876,7 @@ class ApiMain extends ApiBase {
 			),
 			'requestid' => null,
 			'servedby'  => false,
+			'origin' => null,
 		);
 	}
 
@@ -798,6 +902,12 @@ class ApiMain extends ApiBase {
 			'maxage' => 'Set the max-age header to this many seconds. Errors are never cached',
 			'requestid' => 'Request ID to distinguish requests. This will just be output back to you',
 			'servedby' => 'Include the hostname that served the request in the results. Unconditionally shown on error',
+			'origin' => array(
+				'When accessing the API using a cross-domain AJAX request (CORS), set this to the originating domain.',
+				'This must match one of the origins in the Origin: header exactly, so it has to be set to something like http://en.wikipedia.org or https://meta.wikimedia.org .',
+				'If this parameter does not match the Origin: header, a 403 response will be returned.',
+				'If this parameter matches the Origin: header and the origin is whitelisted, an Access-Control-Allow-Origin header will be set.',
+			),
 		);
 	}
 
@@ -865,11 +975,11 @@ class ApiMain extends ApiBase {
 	protected function getCredits() {
 		return array(
 			'API developers:',
-			'    Roan Kattouw <Firstname>.<Lastname>@gmail.com (lead developer Sep 2007-present)',
+			'    Roan Kattouw "<Firstname>.<Lastname>@gmail.com" (lead developer Sep 2007-present)',
 			'    Victor Vasiliev - vasilvv at gee mail dot com',
 			'    Bryan Tong Minh - bryan . tongminh @ gmail . com',
 			'    Sam Reed - sam @ reedyboy . net',
-			'    Yuri Astrakhan <Firstname><Lastname>@gmail.com (creator, lead developer Sep 2006-Sep 2007)',
+			'    Yuri Astrakhan "<Firstname><Lastname>@gmail.com" (creator, lead developer Sep 2006-Sep 2007)',
 			'',
 			'Please send your comments, suggestions and questions to mediawiki-api@lists.wikimedia.org',
 			'or file a bug report at https://bugzilla.wikimedia.org/'
@@ -1058,8 +1168,18 @@ class ApiMain extends ApiBase {
 class UsageException extends MWException {
 
 	private $mCodestr;
+
+	/**
+	 * @var null|array
+	 */
 	private $mExtraData;
 
+	/**
+	 * @param $message string
+	 * @param $codestr string
+	 * @param $code int
+	 * @param $extradata array|null
+	 */
 	public function __construct( $message, $codestr, $code = 0, $extradata = null ) {
 		parent::__construct( $message, $code );
 		$this->mCodestr = $codestr;

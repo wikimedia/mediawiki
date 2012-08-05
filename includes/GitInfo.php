@@ -5,6 +5,21 @@
  * of anyone working on large branches in git to setup config that show up only
  * when specific branches are currently checked out.
  *
+ * This program is free software; you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation; either version 2 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License along
+ * with this program; if not, write to the Free Software Foundation, Inc.,
+ * 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
+ * http://www.gnu.org/copyleft/gpl.html
+ *
  * @file
  */
 
@@ -21,7 +36,12 @@ class GitInfo {
 	protected $basedir;
 
 	/**
-	 * @param $dir The root directory of the repo where the .git dir can be found
+	 * Map of repo URLs to viewer URLs. Access via static method getViewers().
+	 */
+	private static $viewers = false;
+
+	/**
+	 * @param $dir string The root directory of the repo where the .git dir can be found
 	 */
 	public function __construct( $dir ) {
 		$this->basedir = "{$dir}/.git/";
@@ -42,7 +62,7 @@ class GitInfo {
 	/**
 	 * Check if a string looks like a hex encoded SHA1 hash
 	 *
-	 * @param $str The string to check
+	 * @param $str string The string to check
 	 * @return bool Whether or not the string looks like a SHA1
 	 */
 	public static function isSHA1( $str ) {
@@ -65,7 +85,7 @@ class GitInfo {
 		if ( preg_match( "/ref: (.*)/", $HEAD, $m ) ) {
 			return rtrim( $m[1] );
 		} else {
-			return $HEAD;
+			return rtrim( $HEAD );
 		}
 	}
 
@@ -106,7 +126,56 @@ class GitInfo {
 	}
 
 	/**
+	 * Get an URL to a web viewer link to the HEAD revision.
+	 *
+	 * @return string|bool string if an URL is available or false otherwise.
+	 */
+	public function getHeadViewUrl() {
+		$config = "{$this->basedir}/config";
+		if ( !is_readable( $config ) ) {
+			return false;
+		}
+
+		$configArray = parse_ini_file( $config, true );
+		$remote = false;
+
+		// Use the "origin" remote repo if available or any other repo if not.
+		if ( isset( $configArray['remote origin'] ) ) {
+			$remote = $configArray['remote origin'];
+		} else {
+			foreach( $configArray as $sectionName => $sectionConf ) {
+				if ( substr( $sectionName, 0, 6 ) == 'remote' ) {
+					$remote = $sectionConf;
+				}
+			}
+		}
+
+		if ( $remote === false || !isset( $remote['url'] ) ) {
+			return false;
+		}
+
+		$url = $remote['url'];
+		if ( substr( $url, -4 ) !== '.git' ) {
+			$url .= '.git';
+		}
+		foreach( self::getViewers() as $repo => $viewer ) {
+			$pattern = '#^' . $repo . '$#';
+			if ( preg_match( $pattern, $url ) ) {
+				$viewerUrl = preg_replace( $pattern, $viewer, $url );
+				$headSHA1 = $this->getHeadSHA1();
+				$replacements = array(
+					'%h' => substr( $headSHA1, 0, 7 ),
+					'%H' => $headSHA1
+				);
+				return strtr( $viewerUrl, $replacements );
+			}
+		}
+		return false;
+	}
+
+	/**
 	 * @see self::getHeadSHA1
+	 * @return string
 	 */
 	public static function headSHA1() {
 		return self::repo()->getHeadSHA1();
@@ -114,9 +183,32 @@ class GitInfo {
 
 	/**
 	 * @see self::getCurrentBranch
+	 * @return string
 	 */
 	public static function currentBranch() {
 		return self::repo()->getCurrentBranch();
 	}
 
+	/**
+	 * @see self::getHeadViewUrl()
+	 * @return bool|string
+	 */
+	public static function headViewUrl() {
+		return self::repo()->getHeadViewUrl();
+	}
+
+	/**
+	 * Gets the list of repository viewers
+	 * @return array
+	 */
+	protected static function getViewers() {
+		global $wgGitRepositoryViewers;
+
+		if( self::$viewers === false ) {
+			self::$viewers = $wgGitRepositoryViewers;
+			wfRunHooks( 'GitViewers', array( &self::$viewers ) );
+		}
+
+		return self::$viewers;
+	}
 }

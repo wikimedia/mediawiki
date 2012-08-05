@@ -4,7 +4,7 @@
  *
  * Created on Sep 25, 2006
  *
- * Copyright © 2006 Yuri Astrakhan <Firstname><Lastname>@gmail.com
+ * Copyright © 2006 Yuri Astrakhan "<Firstname><Lastname>@gmail.com"
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -296,13 +296,14 @@ class ApiQueryWatchlist extends ApiQueryGeneratorBase {
 			$vals['logid'] = intval( $row->rc_logid );
 			$vals['logtype'] = $row->rc_log_type;
 			$vals['logaction'] = $row->rc_log_action;
+			$logEntry = DatabaseLogEntry::newFromRow( (array)$row );
 			ApiQueryLogEvents::addLogParams(
 				$this->getResult(),
 				$vals,
-				$row->rc_params,
-				$row->rc_log_type,
-				$row->rc_log_action,
-				$row->rc_timestamp
+				$logEntry->getParameters(),
+				$logEntry->getType(),
+				$logEntry->getSubtype(),
+				$logEntry->getTimestamp()
 			);
 		}
 
@@ -414,6 +415,76 @@ class ApiQueryWatchlist extends ApiQueryGeneratorBase {
 			),
 			'owner' => 'The name of the user whose watchlist you\'d like to access',
 			'token' => 'Give a security token (settable in preferences) to allow access to another user\'s watchlist'
+		);
+	}
+
+	public function getResultProperties() {
+		global $wgLogTypes;
+		return array(
+			'ids' => array(
+				'pageid' => 'integer',
+				'revid' => 'integer',
+				'old_revid' => 'integer'
+			),
+			'title' => array(
+				'ns' => 'namespace',
+				'title' => 'string'
+			),
+			'user' => array(
+				'user' => 'string',
+				'anon' => 'boolean'
+			),
+			'userid' => array(
+				'userid' => 'integer',
+				'anon' => 'boolean'
+			),
+			'flags' => array(
+				'new' => 'boolean',
+				'minor' => 'boolean',
+				'bot' => 'boolean'
+			),
+			'patrol' => array(
+				'patrolled' => 'boolean'
+			),
+			'timestamp' => array(
+				'timestamp' => 'timestamp'
+			),
+			'sizes' => array(
+				'oldlen' => 'integer',
+				'newlen' => 'integer'
+			),
+			'notificationtimestamp' => array(
+				'notificationtimestamp' => array(
+					ApiBase::PROP_TYPE => 'timestamp',
+					ApiBase::PROP_NULLABLE => true
+				)
+			),
+			'comment' => array(
+				'comment' => array(
+					ApiBase::PROP_TYPE => 'string',
+					ApiBase::PROP_NULLABLE => true
+				)
+			),
+			'parsedcomment' => array(
+				'parsedcomment' => array(
+					ApiBase::PROP_TYPE => 'string',
+					ApiBase::PROP_NULLABLE => true
+				)
+			),
+			'loginfo' => array(
+				'logid' => array(
+					ApiBase::PROP_TYPE => 'integer',
+					ApiBase::PROP_NULLABLE => true
+				),
+				'logtype' => array(
+					ApiBase::PROP_TYPE => $wgLogTypes,
+					ApiBase::PROP_NULLABLE => true
+				),
+				'logaction' => array(
+					ApiBase::PROP_TYPE => 'string',
+					ApiBase::PROP_NULLABLE => true
+				)
+			)
 		);
 	}
 

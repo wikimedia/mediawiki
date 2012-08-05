@@ -1,0 +1,28 @@
+/* Vector screen styles for high definition displays */
+
+div#content {
+	margin-left: 11em;
+	padding: 1.25em 1.5em 1.5em 1.5em;
+}
+#p-logo {
+	left: 0.5em;
+}
+div#footer {
+	margin-left: 11em;
+	padding: 1.25em;
+}
+#mw-panel {
+	padding-left: 0.5em;
+}
+#p-search {
+	margin-right: 1em;
+}
+#left-navigation {
+	left: 11em;
+}
+#p-personal {
+	right: 1em;
+}
+#mw-head-base {
+	margin-left: 11em;
+}

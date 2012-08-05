@@ -4,9 +4,33 @@
  */
 
 /**
+ * Implements Special:EditWatchlist
+ *
+ * This program is free software; you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation; either version 2 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License along
+ * with this program; if not, write to the Free Software Foundation, Inc.,
+ * 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
+ * http://www.gnu.org/copyleft/gpl.html
+ *
+ * @file
+ * @ingroup SpecialPage
+ * @ingroup Watchlist
+ */
+
+/**
  * Provides the UI through which users can perform editing
  * operations on their watchlist
  *
+ * @ingroup SpecialPage
  * @ingroup Watchlist
  * @author Rob Church <robchur@gmail.com>
  */
@@ -105,21 +129,28 @@ class SpecialEditWatchlist extends UnlistedSpecialPage {
 	 * @return array
 	 */
 	private function extractTitles( $list ) {
-		$titles = array();
 		$list = explode( "\n", trim( $list ) );
 		if( !is_array( $list ) ) {
 			return array();
 		}
+		$titles = array();
 		foreach( $list as $text ) {
 			$text = trim( $text );
 			if( strlen( $text ) > 0 ) {
 				$title = Title::newFromText( $text );
 				if( $title instanceof Title && $title->isWatchable() ) {
-					$titles[] = $title->getPrefixedText();
+					$titles[] = $title;
 				}
 			}
 		}
-		return array_unique( $titles );
+
+		GenderCache::singleton()->doTitlesArray( $titles );
+
+		$list = array();
+		foreach( $titles as $title ) {
+			$list[] = $title->getPrefixedText();
+		}
+		return array_unique( $list );
 	}
 
 	public function submitRaw( $data ){
@@ -217,22 +248,30 @@ class SpecialEditWatchlist extends UnlistedSpecialPage {
 		$dbr = wfGetDB( DB_MASTER );
 		$res = $dbr->select(
 			'watchlist',
-			'*',
 			array(
+				'wl_namespace', 'wl_title'
+			), array(
 				'wl_user' => $this->getUser()->getId(),
 			),
 			__METHOD__
 		);
 		if( $res->numRows() > 0 ) {
+			$titles = array();
 			foreach ( $res as $row ) {
 				$title = Title::makeTitleSafe( $row->wl_namespace, $row->wl_title );
 				if ( $this->checkTitle( $title, $row->wl_namespace, $row->wl_title )
 					&& !$title->isTalkPage()
 				) {
-					$list[] = $title->getPrefixedText();
+					$titles[] = $title;
 				}
 			}
 			$res->free();
+
+			GenderCache::singleton()->doTitlesArray( $titles );
+
+			foreach( $titles as $title ) {
+				$list[] = $title->getPrefixedText();
+			}
 		}
 		$this->cleanupWatchlist();
 		return $list;
@@ -253,7 +292,7 @@ class SpecialEditWatchlist extends UnlistedSpecialPage {
 			array( 'wl_namespace',  'wl_title' ),
 			array( 'wl_user' => $this->getUser()->getId() ),
 			__METHOD__,
-			array( 'ORDER BY' => 'wl_namespace, wl_title' )
+			array( 'ORDER BY' => array( 'wl_namespace', 'wl_title' ) )
 		);
 
 		$lb = new LinkBatch();
@@ -273,7 +312,7 @@ class SpecialEditWatchlist extends UnlistedSpecialPage {
 	 *
 	 * @param Title $title
 	 * @param int $namespace
-	 * @param String $dbKey 
+	 * @param String $dbKey
 	 * @return bool: Whether this item is valid
 	 */
 	private function checkTitle( $title, $namespace, $dbKey ) {
@@ -297,16 +336,20 @@ class SpecialEditWatchlist extends UnlistedSpecialPage {
 	 * Attempts to clean up broken items
 	 */
 	private function cleanupWatchlist() {
+		if( !count( $this->badItems ) ) {
+			return; //nothing to do
+		}
 		$dbw = wfGetDB( DB_MASTER );
+		$user = $this->getUser();
 		foreach ( $this->badItems as $row ) {
 			list( $title, $namespace, $dbKey ) = $row;
-			wfDebug( "User {$this->getUser()} has broken watchlist item ns($namespace):$dbKey, "
+			wfDebug( "User {$user->getName()} has broken watchlist item ns($namespace):$dbKey, "
 				. ( $title ? 'cleaning up' : 'deleting' ) . ".\n"
 			);
 
 			$dbw->delete( 'watchlist',
 				array(
-					'wl_user' => $this->getUser()->getId(),
+					'wl_user' => $user->getId(),
 					'wl_namespace' => $namespace,
 					'wl_title' => $dbKey,
 				),
@@ -315,7 +358,7 @@ class SpecialEditWatchlist extends UnlistedSpecialPage {
 
 			// Can't just do an UPDATE instead of DELETE/INSERT due to unique index
 			if ( $title ) {
-				$this->getUser()->addWatch( $title );
+				$user->addWatch( $title );
 			}
 		}
 	}
@@ -409,7 +452,7 @@ class SpecialEditWatchlist extends UnlistedSpecialPage {
 
 		foreach( $data as $titles ) {
 			$this->unwatchTitles( $titles );
-			$removed += $titles;
+			$removed = array_merge( $removed, $titles );
 		}
 
 		if( count( $removed ) > 0 ) {
@@ -446,7 +489,7 @@ class SpecialEditWatchlist extends UnlistedSpecialPage {
 				$title = Title::makeTitleSafe( $namespace, $dbkey );
 				if ( $this->checkTitle( $title, $namespace, $dbkey ) ) {
 					$text = $this->buildRemoveLine( $title );
-					$fields['TitlesNs'.$namespace]['options'][$text] = $title->getEscapedText();
+					$fields['TitlesNs'.$namespace]['options'][$text] = htmlspecialchars( $title->getPrefixedText() );
 					$count++;
 				}
 			}

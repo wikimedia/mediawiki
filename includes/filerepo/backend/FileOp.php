@@ -1,17 +1,35 @@
 <?php
 /**
+ * Helper class for representing operations with transaction support.
+ *
+ * This program is free software; you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation; either version 2 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License along
+ * with this program; if not, write to the Free Software Foundation, Inc.,
+ * 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
+ * http://www.gnu.org/copyleft/gpl.html
+ *
  * @file
  * @ingroup FileBackend
  * @author Aaron Schulz
  */
 
 /**
- * Helper class for representing operations with transaction support.
+ * FileBackend helper class for representing operations.
  * Do not use this class from places outside FileBackend.
  *
- * Methods called from attemptBatch() should avoid throwing exceptions at all costs.
- * FileOp objects should be lightweight in order to support large arrays in memory.
- * 
+ * Methods called from FileOpBatch::attempt() should avoid throwing
+ * exceptions at all costs. FileOp objects should be lightweight in order
+ * to support large arrays in memory and serialization.
+ *
  * @ingroup FileBackend
  * @since 1.19
  */
@@ -23,6 +41,7 @@ abstract class FileOp {
 
 	protected $state = self::STATE_NEW; // integer
 	protected $failed = false; // boolean
+	protected $async = false; // boolean
 	protected $useLatest = true; // boolean
 	protected $batchId; // string
 
@@ -33,10 +52,6 @@ abstract class FileOp {
 	const STATE_NEW = 1;
 	const STATE_CHECKED = 2;
 	const STATE_ATTEMPTED = 3;
-
-	/* Timeout related parameters */
-	const MAX_BATCH_SIZE = 1000;
-	const TIME_LIMIT_SEC = 300; // 5 minutes
 
 	/**
 	 * Build a new file operation transaction
@@ -69,7 +84,7 @@ abstract class FileOp {
 	 * @param $batchId string
 	 * @return void
 	 */
-	final protected function setBatchId( $batchId ) {
+	final public function setBatchId( $batchId ) {
 		$this->batchId = $batchId;
 	}
 
@@ -79,150 +94,13 @@ abstract class FileOp {
 	 * @param $allowStale bool
 	 * @return void
 	 */
-	final protected function allowStaleReads( $allowStale ) {
+	final public function allowStaleReads( $allowStale ) {
 		$this->useLatest = !$allowStale;
 	}
 
 	/**
-	 * Attempt to perform a series of file operations.
-	 * Callers are responsible for handling file locking.
-	 * 
-	 * $opts is an array of options, including:
-	 * 'force'        : Errors that would normally cause a rollback do not.
-	 *                  The remaining operations are still attempted if any fail.
-	 * 'allowStale'   : Don't require the latest available data.
-	 *                  This can increase performance for non-critical writes.
-	 *                  This has no effect unless the 'force' flag is set.
-	 * 'nonJournaled' : Don't log this operation batch in the file journal.
-	 * 
-	 * The resulting Status will be "OK" unless:
-	 *     a) unexpected operation errors occurred (network partitions, disk full...)
-	 *     b) significant operation errors occured and 'force' was not set
-	 * 
-	 * @param $performOps Array List of FileOp operations
-	 * @param $opts Array Batch operation options
-	 * @param $journal FileJournal Journal to log operations to
-	 * @return Status 
-	 */
-	final public static function attemptBatch(
-		array $performOps, array $opts, FileJournal $journal
-	) {
-		$status = Status::newGood();
-
-		$n = count( $performOps );
-		if ( $n > self::MAX_BATCH_SIZE ) {
-			$status->fatal( 'backend-fail-batchsize', $n, self::MAX_BATCH_SIZE );
-			return $status;
-		}
-
-		$batchId = $journal->getTimestampedUUID();
-		$allowStale = !empty( $opts['allowStale'] );
-		$ignoreErrors = !empty( $opts['force'] );
-		$journaled = empty( $opts['nonJournaled'] );
-
-		$entries = array(); // file journal entries
-		$predicates = FileOp::newPredicates(); // account for previous op in prechecks
-		// Do pre-checks for each operation; abort on failure...
-		foreach ( $performOps as $index => $fileOp ) {
-			$fileOp->setBatchId( $batchId );
-			$fileOp->allowStaleReads( $allowStale );
-			$oldPredicates = $predicates;
-			$subStatus = $fileOp->precheck( $predicates ); // updates $predicates
-			$status->merge( $subStatus );
-			if ( $subStatus->isOK() ) {
-				if ( $journaled ) { // journal log entry
-					$entries = array_merge( $entries,
-						self::getJournalEntries( $fileOp, $oldPredicates, $predicates ) );
-				}
-			} else { // operation failed?
-				$status->success[$index] = false;
-				++$status->failCount;
-				if ( !$ignoreErrors ) {
-					return $status; // abort
-				}
-			}
-		}
-
-		// Log the operations in file journal...
-		if ( count( $entries ) ) {
-			$subStatus = $journal->logChangeBatch( $entries, $batchId );
-			if ( !$subStatus->isOK() ) {
-				return $subStatus; // abort
-			}
-		}
-
-		if ( $ignoreErrors ) { // treat precheck() fatals as mere warnings
-			$status->setResult( true, $status->value );
-		}
-
-		// Attempt each operation...
-		foreach ( $performOps as $index => $fileOp ) {
-			if ( $fileOp->failed() ) {
-				continue; // nothing to do
-			}
-			$subStatus = $fileOp->attempt();
-			$status->merge( $subStatus );
-			if ( $subStatus->isOK() ) {
-				$status->success[$index] = true;
-				++$status->successCount;
-			} else {
-				$status->success[$index] = false;
-				++$status->failCount;
-				// We can't continue (even with $ignoreErrors) as $predicates is wrong.
-				// Log the remaining ops as failed for recovery...
-				for ( $i = ($index + 1); $i < count( $performOps ); $i++ ) {
-					$performOps[$i]->logFailure( 'attempt_aborted' );
-				}
-				return $status; // bail out
-			}
-		}
-
-		return $status;
-	}
-
-	/**
-	 * Get the file journal entries for a single file operation
-	 * 
-	 * @param $fileOp FileOp
-	 * @param $oPredicates Array Pre-op information about files
-	 * @param $nPredicates Array Post-op information about files
-	 * @return Array
-	 */
-	final protected static function getJournalEntries(
-		FileOp $fileOp, array $oPredicates, array $nPredicates
-	) {
-		$nullEntries = array();
-		$updateEntries = array();
-		$deleteEntries = array();
-		$pathsUsed = array_merge( $fileOp->storagePathsRead(), $fileOp->storagePathsChanged() );
-		foreach ( $pathsUsed as $path ) {
-			$nullEntries[] = array( // assertion for recovery
-				'op'      => 'null',
-				'path'    => $path,
-				'newSha1' => $fileOp->fileSha1( $path, $oPredicates )
-			);
-		}
-		foreach ( $fileOp->storagePathsChanged() as $path ) {
-			if ( $nPredicates['sha1'][$path] === false ) { // deleted
-				$deleteEntries[] = array(
-					'op'      => 'delete',
-					'path'    => $path,
-					'newSha1' => ''
-				);
-			} else { // created/updated
-				$updateEntries[] = array(
-					'op'      => $fileOp->fileExists( $path, $oPredicates ) ? 'update' : 'create',
-					'path'    => $path,
-					'newSha1' => $nPredicates['sha1'][$path]
-				);
-			}
-		}
-		return array_merge( $nullEntries, $updateEntries, $deleteEntries );
-	}
-
-	/**
 	 * Get the value of the parameter with the given name
-	 * 
+	 *
 	 * @param $name string
 	 * @return mixed Returns null if the parameter is not set
 	 */
@@ -232,8 +110,8 @@ abstract class FileOp {
 
 	/**
 	 * Check if this operation failed precheck() or attempt()
-	 * 
-	 * @return bool 
+	 *
+	 * @return bool
 	 */
 	final public function failed() {
 		return $this->failed;
@@ -242,10 +120,88 @@ abstract class FileOp {
 	/**
 	 * Get a new empty predicates array for precheck()
 	 *
-	 * @return Array 
+	 * @return Array
 	 */
 	final public static function newPredicates() {
 		return array( 'exists' => array(), 'sha1' => array() );
+	}
+
+	/**
+	 * Get a new empty dependency tracking array for paths read/written to
+	 *
+	 * @return Array
+	 */
+	final public static function newDependencies() {
+		return array( 'read' => array(), 'write' => array() );
+	}
+
+	/**
+	 * Update a dependency tracking array to account for this operation
+	 *
+	 * @param $deps Array Prior path reads/writes; format of FileOp::newPredicates()
+	 * @return Array
+	 */
+	final public function applyDependencies( array $deps ) {
+		$deps['read']  += array_fill_keys( $this->storagePathsRead(), 1 );
+		$deps['write'] += array_fill_keys( $this->storagePathsChanged(), 1 );
+		return $deps;
+	}
+
+	/**
+	 * Check if this operation changes files listed in $paths
+	 *
+	 * @param $paths Array Prior path reads/writes; format of FileOp::newPredicates()
+	 * @return boolean
+	 */
+	final public function dependsOn( array $deps ) {
+		foreach ( $this->storagePathsChanged() as $path ) {
+			if ( isset( $deps['read'][$path] ) || isset( $deps['write'][$path] ) ) {
+				return true; // "output" or "anti" dependency
+			}
+		}
+		foreach ( $this->storagePathsRead() as $path ) {
+			if ( isset( $deps['write'][$path] ) ) {
+				return true; // "flow" dependency
+			}
+		}
+		return false;
+	}
+
+	/**
+	 * Get the file journal entries for this file operation
+	 *
+	 * @param $oPredicates Array Pre-op info about files (format of FileOp::newPredicates)
+	 * @param $nPredicates Array Post-op info about files (format of FileOp::newPredicates)
+	 * @return Array
+	 */
+	final public function getJournalEntries( array $oPredicates, array $nPredicates ) {
+		$nullEntries = array();
+		$updateEntries = array();
+		$deleteEntries = array();
+		$pathsUsed = array_merge( $this->storagePathsRead(), $this->storagePathsChanged() );
+		foreach ( $pathsUsed as $path ) {
+			$nullEntries[] = array( // assertion for recovery
+				'op'      => 'null',
+				'path'    => $path,
+				'newSha1' => $this->fileSha1( $path, $oPredicates )
+			);
+		}
+		foreach ( $this->storagePathsChanged() as $path ) {
+			if ( $nPredicates['sha1'][$path] === false ) { // deleted
+				$deleteEntries[] = array(
+					'op'      => 'delete',
+					'path'    => $path,
+					'newSha1' => ''
+				);
+			} else { // created/updated
+				$updateEntries[] = array(
+					'op'      => $this->fileExists( $path, $oPredicates ) ? 'update' : 'create',
+					'path'    => $path,
+					'newSha1' => $nPredicates['sha1'][$path]
+				);
+			}
+		}
+		return array_merge( $nullEntries, $updateEntries, $deleteEntries );
 	}
 
 	/**
@@ -267,7 +223,14 @@ abstract class FileOp {
 	}
 
 	/**
-	 * Attempt the operation, backing up files as needed; this must be reversible
+	 * @return Status
+	 */
+	protected function doPrecheck( array &$predicates ) {
+		return Status::newGood();
+	}
+
+	/**
+	 * Attempt the operation
 	 *
 	 * @return Status
 	 */
@@ -287,8 +250,27 @@ abstract class FileOp {
 	}
 
 	/**
+	 * @return Status
+	 */
+	protected function doAttempt() {
+		return Status::newGood();
+	}
+
+	/**
+	 * Attempt the operation in the background
+	 *
+	 * @return Status
+	 */
+	final public function attemptAsync() {
+		$this->async = true;
+		$result = $this->attempt();
+		$this->async = false;
+		return $result;
+	}
+
+	/**
 	 * Get the file operation parameters
-	 * 
+	 *
 	 * @return Array (required params list, optional params list)
 	 */
 	protected function allowedParams() {
@@ -296,11 +278,29 @@ abstract class FileOp {
 	}
 
 	/**
+	 * Adjust params to FileBackendStore internal file calls
+	 *
+	 * @param $params Array
+	 * @return Array (required params list, optional params list)
+	 */
+	protected function setFlags( array $params ) {
+		return array( 'async' => $this->async ) + $params;
+	}
+
+	/**
 	 * Get a list of storage paths read from for this operation
 	 *
 	 * @return Array
 	 */
-	public function storagePathsRead() {
+	final public function storagePathsRead() {
+		return array_map( 'FileBackend::normalizeStoragePath', $this->doStoragePathsRead() );
+	}
+
+	/**
+	 * @see FileOp::storagePathsRead()
+	 * @return Array
+	 */
+	protected function doStoragePathsRead() {
 		return array();
 	}
 
@@ -309,29 +309,23 @@ abstract class FileOp {
 	 *
 	 * @return Array
 	 */
-	public function storagePathsChanged() {
+	final public function storagePathsChanged() {
+		return array_map( 'FileBackend::normalizeStoragePath', $this->doStoragePathsChanged() );
+	}
+
+	/**
+	 * @see FileOp::storagePathsChanged()
+	 * @return Array
+	 */
+	protected function doStoragePathsChanged() {
 		return array();
-	}
-
-	/**
-	 * @return Status
-	 */
-	protected function doPrecheck( array &$predicates ) {
-		return Status::newGood();
-	}
-
-	/**
-	 * @return Status
-	 */
-	protected function doAttempt() {
-		return Status::newGood();
 	}
 
 	/**
 	 * Check for errors with regards to the destination file already existing.
 	 * This also updates the destSameAsSource and sourceSha1 member variables.
 	 * A bad status will be returned if there is no chance it can be overwritten.
-	 * 
+	 *
 	 * @param $predicates Array
 	 * @return Status
 	 */
@@ -378,10 +372,10 @@ abstract class FileOp {
 
 	/**
 	 * Check if a file will exist in storage when this operation is attempted
-	 * 
+	 *
 	 * @param $source string Storage path
 	 * @param $predicates Array
-	 * @return bool 
+	 * @return bool
 	 */
 	final protected function fileExists( $source, array $predicates ) {
 		if ( isset( $predicates['exists'][$source] ) ) {
@@ -394,7 +388,7 @@ abstract class FileOp {
 
 	/**
 	 * Get the SHA-1 of a file in storage when this operation is attempted
-	 * 
+	 *
 	 * @param $source string Storage path
 	 * @param $predicates Array
 	 * @return string|bool False on failure
@@ -409,12 +403,21 @@ abstract class FileOp {
 	}
 
 	/**
+	 * Get the backend this operation is for
+	 *
+	 * @return FileBackendStore
+	 */
+	public function getBackend() {
+		return $this->backend;
+	}
+
+	/**
 	 * Log a file operation failure and preserve any temp files
-	 * 
+	 *
 	 * @param $action string
 	 * @return void
 	 */
-	final protected function logFailure( $action ) {
+	final public function logFailure( $action ) {
 		$params = $this->params;
 		$params['failedAction'] = $action;
 		try {
@@ -429,16 +432,23 @@ abstract class FileOp {
 /**
  * Store a file into the backend from a file on the file system.
  * Parameters similar to FileBackendStore::storeInternal(), which include:
- *     src           : source path on file system
- *     dst           : destination storage path
- *     overwrite     : do nothing and pass if an identical file exists at destination
- *     overwriteSame : override any existing file at destination
+ *   - src           : source path on file system
+ *   - dst           : destination storage path
+ *   - overwrite     : do nothing and pass if an identical file exists at destination
+ *   - overwriteSame : override any existing file at destination
  */
 class StoreFileOp extends FileOp {
+	/**
+	 * @return array
+	 */
 	protected function allowedParams() {
 		return array( array( 'src', 'dst' ), array( 'overwrite', 'overwriteSame' ) );
 	}
 
+	/**
+	 * @param $predicates array
+	 * @return Status
+	 */
 	protected function doPrecheck( array &$predicates ) {
 		$status = Status::newGood();
 		// Check if the source file exists on the file system
@@ -447,10 +457,13 @@ class StoreFileOp extends FileOp {
 			return $status;
 		// Check if the source file is too big
 		} elseif ( filesize( $this->params['src'] ) > $this->backend->maxFileSizeInternal() ) {
+			$status->fatal( 'backend-fail-maxsize',
+				$this->params['dst'], $this->backend->maxFileSizeInternal() );
 			$status->fatal( 'backend-fail-store', $this->params['src'], $this->params['dst'] );
 			return $status;
 		// Check if a file can be placed at the destination
 		} elseif ( !$this->backend->isPathUsableInternal( $this->params['dst'] ) ) {
+			$status->fatal( 'backend-fail-usable', $this->params['dst'] );
 			$status->fatal( 'backend-fail-store', $this->params['src'], $this->params['dst'] );
 			return $status;
 		}
@@ -464,15 +477,20 @@ class StoreFileOp extends FileOp {
 		return $status; // safe to call attempt()
 	}
 
+	/**
+	 * @return Status
+	 */
 	protected function doAttempt() {
-		$status = Status::newGood();
 		// Store the file at the destination
 		if ( !$this->destSameAsSource ) {
-			$status->merge( $this->backend->storeInternal( $this->params ) );
+			return $this->backend->storeInternal( $this->setFlags( $this->params ) );
 		}
-		return $status;
+		return Status::newGood();
 	}
 
+	/**
+	 * @return bool|string
+	 */
 	protected function getSourceSha1Base36() {
 		wfSuppressWarnings();
 		$hash = sha1_file( $this->params['src'] );
@@ -483,7 +501,7 @@ class StoreFileOp extends FileOp {
 		return $hash;
 	}
 
-	public function storagePathsChanged() {
+	protected function doStoragePathsChanged() {
 		return array( $this->params['dst'] );
 	}
 }
@@ -491,10 +509,10 @@ class StoreFileOp extends FileOp {
 /**
  * Create a file in the backend with the given content.
  * Parameters similar to FileBackendStore::createInternal(), which include:
- *     content       : the raw file contents
- *     dst           : destination storage path
- *     overwrite     : do nothing and pass if an identical file exists at destination
- *     overwriteSame : override any existing file at destination
+ *   - content       : the raw file contents
+ *   - dst           : destination storage path
+ *   - overwrite     : do nothing and pass if an identical file exists at destination
+ *   - overwriteSame : override any existing file at destination
  */
 class CreateFileOp extends FileOp {
 	protected function allowedParams() {
@@ -505,10 +523,13 @@ class CreateFileOp extends FileOp {
 		$status = Status::newGood();
 		// Check if the source data is too big
 		if ( strlen( $this->getParam( 'content' ) ) > $this->backend->maxFileSizeInternal() ) {
+			$status->fatal( 'backend-fail-maxsize',
+				$this->params['dst'], $this->backend->maxFileSizeInternal() );
 			$status->fatal( 'backend-fail-create', $this->params['dst'] );
 			return $status;
 		// Check if a file can be placed at the destination
 		} elseif ( !$this->backend->isPathUsableInternal( $this->params['dst'] ) ) {
+			$status->fatal( 'backend-fail-usable', $this->params['dst'] );
 			$status->fatal( 'backend-fail-create', $this->params['dst'] );
 			return $status;
 		}
@@ -522,20 +543,28 @@ class CreateFileOp extends FileOp {
 		return $status; // safe to call attempt()
 	}
 
+	/**
+	 * @return Status
+	 */
 	protected function doAttempt() {
-		$status = Status::newGood();
-		// Create the file at the destination
 		if ( !$this->destSameAsSource ) {
-			$status->merge( $this->backend->createInternal( $this->params ) );
+			// Create the file at the destination
+			return $this->backend->createInternal( $this->setFlags( $this->params ) );
 		}
-		return $status;
+		return Status::newGood();
 	}
 
+	/**
+	 * @return bool|String
+	 */
 	protected function getSourceSha1Base36() {
 		return wfBaseConvert( sha1( $this->params['content'] ), 16, 36, 31 );
 	}
 
-	public function storagePathsChanged() {
+	/**
+	 * @return array
+	 */
+	protected function doStoragePathsChanged() {
 		return array( $this->params['dst'] );
 	}
 }
@@ -543,16 +572,23 @@ class CreateFileOp extends FileOp {
 /**
  * Copy a file from one storage path to another in the backend.
  * Parameters similar to FileBackendStore::copyInternal(), which include:
- *     src           : source storage path
- *     dst           : destination storage path
- *     overwrite     : do nothing and pass if an identical file exists at destination
- *     overwriteSame : override any existing file at destination
+ *   - src           : source storage path
+ *   - dst           : destination storage path
+ *   - overwrite     : do nothing and pass if an identical file exists at destination
+ *   - overwriteSame : override any existing file at destination
  */
 class CopyFileOp extends FileOp {
+	/**
+	 * @return array
+	 */
 	protected function allowedParams() {
 		return array( array( 'src', 'dst' ), array( 'overwrite', 'overwriteSame' ) );
 	}
 
+	/**
+	 * @param $predicates array
+	 * @return Status
+	 */
 	protected function doPrecheck( array &$predicates ) {
 		$status = Status::newGood();
 		// Check if the source file exists
@@ -561,6 +597,7 @@ class CopyFileOp extends FileOp {
 			return $status;
 		// Check if a file can be placed at the destination
 		} elseif ( !$this->backend->isPathUsableInternal( $this->params['dst'] ) ) {
+			$status->fatal( 'backend-fail-usable', $this->params['dst'] );
 			$status->fatal( 'backend-fail-copy', $this->params['src'], $this->params['dst'] );
 			return $status;
 		}
@@ -574,23 +611,31 @@ class CopyFileOp extends FileOp {
 		return $status; // safe to call attempt()
 	}
 
+	/**
+	 * @return Status
+	 */
 	protected function doAttempt() {
-		$status = Status::newGood();
 		// Do nothing if the src/dst paths are the same
 		if ( $this->params['src'] !== $this->params['dst'] ) {
 			// Copy the file into the destination
 			if ( !$this->destSameAsSource ) {
-				$status->merge( $this->backend->copyInternal( $this->params ) );
+				return $this->backend->copyInternal( $this->setFlags( $this->params ) );
 			}
 		}
-		return $status;
+		return Status::newGood();
 	}
 
-	public function storagePathsRead() {
+	/**
+	 * @return array
+	 */
+	protected function doStoragePathsRead() {
 		return array( $this->params['src'] );
 	}
 
-	public function storagePathsChanged() {
+	/**
+	 * @return array
+	 */
+	protected function doStoragePathsChanged() {
 		return array( $this->params['dst'] );
 	}
 }
@@ -598,16 +643,23 @@ class CopyFileOp extends FileOp {
 /**
  * Move a file from one storage path to another in the backend.
  * Parameters similar to FileBackendStore::moveInternal(), which include:
- *     src           : source storage path
- *     dst           : destination storage path
- *     overwrite     : do nothing and pass if an identical file exists at destination
- *     overwriteSame : override any existing file at destination
+ *   - src           : source storage path
+ *   - dst           : destination storage path
+ *   - overwrite     : do nothing and pass if an identical file exists at destination
+ *   - overwriteSame : override any existing file at destination
  */
 class MoveFileOp extends FileOp {
+	/**
+	 * @return array
+	 */
 	protected function allowedParams() {
 		return array( array( 'src', 'dst' ), array( 'overwrite', 'overwriteSame' ) );
 	}
 
+	/**
+	 * @param $predicates array
+	 * @return Status
+	 */
 	protected function doPrecheck( array &$predicates ) {
 		$status = Status::newGood();
 		// Check if the source file exists
@@ -616,6 +668,7 @@ class MoveFileOp extends FileOp {
 			return $status;
 		// Check if a file can be placed at the destination
 		} elseif ( !$this->backend->isPathUsableInternal( $this->params['dst'] ) ) {
+			$status->fatal( 'backend-fail-usable', $this->params['dst'] );
 			$status->fatal( 'backend-fail-move', $this->params['src'], $this->params['dst'] );
 			return $status;
 		}
@@ -631,44 +684,59 @@ class MoveFileOp extends FileOp {
 		return $status; // safe to call attempt()
 	}
 
+	/**
+	 * @return Status
+	 */
 	protected function doAttempt() {
-		$status = Status::newGood();
 		// Do nothing if the src/dst paths are the same
 		if ( $this->params['src'] !== $this->params['dst'] ) {
 			if ( !$this->destSameAsSource ) {
 				// Move the file into the destination
-				$status->merge( $this->backend->moveInternal( $this->params ) );
+				return $this->backend->moveInternal( $this->setFlags( $this->params ) );
 			} else {
 				// Just delete source as the destination needs no changes
 				$params = array( 'src' => $this->params['src'] );
-				$status->merge( $this->backend->deleteInternal( $params ) );
+				return $this->backend->deleteInternal( $this->setFlags( $params ) );
 			}
 		}
-		return $status;
+		return Status::newGood();
 	}
 
-	public function storagePathsRead() {
+	/**
+	 * @return array
+	 */
+	protected function doStoragePathsRead() {
 		return array( $this->params['src'] );
 	}
 
-	public function storagePathsChanged() {
-		return array( $this->params['dst'] );
+	/**
+	 * @return array
+	 */
+	protected function doStoragePathsChanged() {
+		return array( $this->params['src'], $this->params['dst'] );
 	}
 }
 
 /**
  * Delete a file at the given storage path from the backend.
  * Parameters similar to FileBackendStore::deleteInternal(), which include:
- *     src                 : source storage path
- *     ignoreMissingSource : don't return an error if the file does not exist
+ *   - src                 : source storage path
+ *   - ignoreMissingSource : don't return an error if the file does not exist
  */
 class DeleteFileOp extends FileOp {
+	/**
+	 * @return array
+	 */
 	protected function allowedParams() {
 		return array( array( 'src' ), array( 'ignoreMissingSource' ) );
 	}
 
 	protected $needsDelete = true;
 
+	/**
+	 * @param array $predicates
+	 * @return Status
+	 */
 	protected function doPrecheck( array &$predicates ) {
 		$status = Status::newGood();
 		// Check if the source file exists
@@ -685,16 +753,21 @@ class DeleteFileOp extends FileOp {
 		return $status; // safe to call attempt()
 	}
 
+	/**
+	 * @return Status
+	 */
 	protected function doAttempt() {
-		$status = Status::newGood();
 		if ( $this->needsDelete ) {
 			// Delete the source file
-			$status->merge( $this->backend->deleteInternal( $this->params ) );
+			return $this->backend->deleteInternal( $this->setFlags( $this->params ) );
 		}
-		return $status;
+		return Status::newGood();
 	}
 
-	public function storagePathsChanged() {
+	/**
+	 * @return array
+	 */
+	protected function doStoragePathsChanged() {
 		return array( $this->params['src'] );
 	}
 }

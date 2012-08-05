@@ -1,11 +1,28 @@
 <?php
 /**
- * @defgroup Skins Skins
+ * Base class for all skins.
+ *
+ * This program is free software; you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation; either version 2 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License along
+ * with this program; if not, write to the Free Software Foundation, Inc.,
+ * 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
+ * http://www.gnu.org/copyleft/gpl.html
+ *
+ * @file
  */
 
-if ( !defined( 'MEDIAWIKI' ) ) {
-	die( 1 );
-}
+/**
+ * @defgroup Skins Skins
+ */
 
 /**
  * The main skin class that provide methods and properties for all other skins.
@@ -147,11 +164,6 @@ abstract class Skin extends ContextSource {
 		if ( !MWInit::classExists( $className ) ) {
 
 			if ( !defined( 'MW_COMPILED' ) ) {
-				// Preload base classes to work around APC/PHP5 bug
-				$deps = "{$wgStyleDirectory}/{$skinName}.deps.php";
-				if ( file_exists( $deps ) ) {
-					include_once( $deps );
-				}
 				require_once( "{$wgStyleDirectory}/{$skinName}.php" );
 			}
 
@@ -314,7 +326,7 @@ abstract class Skin extends ContextSource {
 	}
 
 	/**
-	 * Make a <script> tag containing global variables
+	 * Make a "<script>" tag containing global variables
 	 *
 	 * @deprecated in 1.19
 	 * @param $unused
@@ -351,7 +363,7 @@ abstract class Skin extends ContextSource {
 	 * inside ->getOutput() is deprecated. The $out arg is kept
 	 * for compatibility purposes with skins.
 	 * @param $out OutputPage
-	 * @delete
+	 * @todo delete
 	 */
 	abstract function setupSkinUserCss( OutputPage $out );
 
@@ -385,7 +397,7 @@ abstract class Skin extends ContextSource {
 
 	/**
 	 * This will be called by OutputPage::headElement when it is creating the
-	 * <body> tag, skins can override it if they have a need to add in any
+	 * "<body>" tag, skins can override it if they have a need to add in any
 	 * body attributes or classes of their own.
 	 * @param $out OutputPage
 	 * @param $bodyAttrs Array
@@ -624,9 +636,9 @@ abstract class Skin extends ContextSource {
 	}
 
 	/**
-	 * This gets called shortly before the </body> tag.
+	 * This gets called shortly before the "</body>" tag.
 	 *
-	 * @return String HTML-wrapped JS code to be put before </body>
+	 * @return String HTML-wrapped JS code to be put before "</body>"
 	 */
 	function bottomScripts() {
 		// TODO and the suckage continues. This function is really just a wrapper around
@@ -647,10 +659,10 @@ abstract class Skin extends ContextSource {
 	function printSource() {
 		$oldid = $this->getRevisionId();
 		if ( $oldid ) {
-			$url = htmlspecialchars( $this->getTitle()->getCanonicalURL( 'oldid=' . $oldid ) );
+			$url = htmlspecialchars( wfExpandIRI( $this->getTitle()->getCanonicalURL( 'oldid=' . $oldid ) ) );
 		} else {
 			// oldid not available for non existing pages
-			$url = htmlspecialchars( $this->getTitle()->getCanonicalURL() );
+			$url = htmlspecialchars( wfExpandIRI( $this->getTitle()->getCanonicalURL() ) );
 		}
 		return $this->msg( 'retrievedfrom', '<a href="' . $url . '">' . $url . '</a>' )->text();
 	}
@@ -688,6 +700,7 @@ abstract class Skin extends ContextSource {
 	 * @return string
 	 */
 	function subPageSubtitle() {
+		global $wgLang;
 		$out = $this->getOutput();
 		$subpages = '';
 
@@ -709,7 +722,7 @@ abstract class Skin extends ContextSource {
 					$display .= $link;
 					$linkObj = Title::newFromText( $growinglink );
 
-					if ( is_object( $linkObj ) && $linkObj->exists() ) {
+					if ( is_object( $linkObj ) && $linkObj->isKnown() ) {
 						$getlink = Linker::linkKnown(
 							$linkObj,
 							htmlspecialchars( $display )
@@ -718,7 +731,7 @@ abstract class Skin extends ContextSource {
 						$c++;
 
 						if ( $c > 1 ) {
-							$subpages .= $this->msg( 'pipe-separator' )->escaped();
+							$subpages .= $wgLang->getDirMarkEntity() . $this->msg( 'pipe-separator' )->escaped();
 						} else  {
 							$subpages .= '&lt; ';
 						}

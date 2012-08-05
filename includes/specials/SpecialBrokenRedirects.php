@@ -27,7 +27,7 @@
  *
  * @ingroup SpecialPage
  */
-class BrokenRedirectsPage extends PageQueryPage {
+class BrokenRedirectsPage extends QueryPage {
 
 	function __construct( $name = 'BrokenRedirects' ) {
 		parent::__construct( $name );

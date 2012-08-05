@@ -1,6 +1,7 @@
 <?php
 
 /**
+ * @group API
  * @group Database
  */
 class ApiBlockTest extends ApiTestCase {
@@ -25,6 +26,14 @@ class ApiBlockTest extends ApiTestCase {
 		}
 	}
 
+	/**
+	 * This test has probably always been broken and use an invalid token
+	 * Bug tracking brokenness is https://bugzilla.wikimedia.org/35646
+	 *
+	 * Root cause is https://gerrit.wikimedia.org/r/3434
+	 * Which made the Block/Unblock API to actually verify the token
+	 * previously always considered valid (bug 34212).
+	 */
 	function testMakeNormalBlock() {
 
 		$data = $this->getTokens();
@@ -47,7 +56,7 @@ class ApiBlockTest extends ApiTestCase {
 			'action' => 'block',
 			'user' => 'UTApiBlockee',
 			'reason' => 'Some reason',
-			'token' => $pageinfo['blocktoken'] ), $data, false, self::$users['sysop']->user );
+			'token' => $pageinfo['blocktoken'] ), null, false, self::$users['sysop']->user );
 
 		$block = Block::newFromTarget('UTApiBlockee');
 
@@ -59,4 +68,50 @@ class ApiBlockTest extends ApiTestCase {
 
 	}
 
+	/**
+	 * @dataProvider provideBlockUnblockAction
+	 */
+	function testGetTokenUsingABlockingAction( $action ) {
+		$data = $this->doApiRequest(
+			array(
+				'action' => $action,
+				'user' => 'UTApiBlockee',
+				'gettoken' => '' ),
+			null,
+			false,
+			self::$users['sysop']->user
+		);
+		$this->assertEquals( 34, strlen( $data[0][$action]["{$action}token"] ) );
+	}
+
+	/**
+	 * Attempting to block without a token should give a UsageException with
+	 * error message:
+	 *   "The token parameter must be set"
+	 *
+	 * @dataProvider provideBlockUnblockAction
+	 * @expectedException UsageException
+	 */
+	function testBlockingActionWithNoToken( $action ) {
+		$this->doApiRequest(
+			array(
+				'action' => $action,
+				'user' => 'UTApiBlockee',
+				'reason' => 'Some reason',
+				),
+			null,
+			false,
+			self::$users['sysop']->user
+		);
+	}
+
+	/**
+	 * Just provide the 'block' and 'unblock' action to test both API calls
+	 */
+	function provideBlockUnblockAction() {
+		return array(
+			array( 'block'   ),
+			array( 'unblock' ),
+		);
+	}
 }

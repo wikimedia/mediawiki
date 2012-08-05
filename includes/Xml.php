@@ -1,9 +1,28 @@
 <?php
+/**
+ * Methods to generate XML.
+ *
+ * This program is free software; you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation; either version 2 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License along
+ * with this program; if not, write to the Free Software Foundation, Inc.,
+ * 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
+ * http://www.gnu.org/copyleft/gpl.html
+ *
+ * @file
+ */
 
 /**
  * Module of static functions for generating XML
  */
-
 class Xml {
 	/**
 	 * Format an XML element with given attributes and, optionally, text content.
@@ -191,15 +210,18 @@ class Xml {
 	 * @param string $selected The language code of the selected language
 	 * @param boolean $customisedOnly If true only languages which have some content are listed
 	 * @param string $inLanguage The ISO code of the language to display the select list in (optional)
+	 * @param array $overrideAttrs Override the attributes of the select tag (since 1.20)
+	 * @param Message|null $msg Label message key (since 1.20)
 	 * @return array containing 2 items: label HTML and select list HTML
 	 */
-	public static function languageSelector( $selected, $customisedOnly = true, $inLanguage = null ) {
+	public static function languageSelector( $selected, $customisedOnly = true, $inLanguage = null, $overrideAttrs = array(), Message $msg = null ) {
 		global $wgLanguageCode;
 
-		$languages = Language::fetchLanguageNames( $inLanguage, $customisedOnly ? 'mwfile' : 'mw' );
+		$include = $customisedOnly ? 'mwfile' : 'mw';
+		$languages = Language::fetchLanguageNames( $inLanguage, $include );
 
-		// Make sure the site language is in the list; a custom language code might not have a
-		// defined name...
+		// Make sure the site language is in the list;
+		// a custom language code might not have a defined name...
 		if( !array_key_exists( $wgLanguageCode, $languages ) ) {
 			$languages[$wgLanguageCode] = $wgLanguageCode;
 		}
@@ -209,7 +231,7 @@ class Xml {
 		/**
 		 * If a bogus value is set, default to the content language.
 		 * Otherwise, no default is selected and the user ends up
-		 * with an Afrikaans interface since it's first in the list.
+		 * with Afrikaans since it's first in the list.
 		 */
 		$selected = isset( $languages[$selected] ) ? $selected : $wgLanguageCode;
 		$options = "\n";
@@ -217,12 +239,15 @@ class Xml {
 			$options .= Xml::option( "$code - $name", $code, ($code == $selected) ) . "\n";
 		}
 
+		$attrs = array( 'id' => 'wpUserLanguage', 'name' => 'wpUserLanguage' );
+		$attrs = array_merge( $attrs, $overrideAttrs );
+
+		if( $msg === null ) {
+			$msg = wfMessage( 'yourlanguage' );
+		}
 		return array(
-			Xml::label( wfMsg('yourlanguage'), 'wpUserLanguage' ),
-			Xml::tags( 'select',
-				array( 'id' => 'wpUserLanguage', 'name' => 'wpUserLanguage' ),
-				$options
-			)
+			Xml::label( $msg->text(), $attrs['id'] ),
+			Xml::tags( 'select', $attrs, $options )
 		);
 
 	}

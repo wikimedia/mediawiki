@@ -4,7 +4,7 @@
  *
  * Created on May 13, 2007
  *
- * Copyright © 2006 Yuri Astrakhan <Firstname><Lastname>@gmail.com
+ * Copyright © 2006 Yuri Astrakhan "<Firstname><Lastname>@gmail.com"
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -60,35 +60,36 @@ class ApiQueryLangLinks extends ApiQueryBase {
 				$this->dieUsage( 'Invalid continue param. You should pass the ' .
 					'original value returned by the previous query', '_badcontinue' );
 			}
+			$op = $params['dir'] == 'descending' ? '<' : '>';
 			$llfrom = intval( $cont[0] );
-			$lllang = $this->getDB()->strencode( $cont[1] );
+			$lllang = $this->getDB()->addQuotes( $cont[1] );
 			$this->addWhere(
-				"ll_from > $llfrom OR " .
+				"ll_from $op $llfrom OR " .
 				"(ll_from = $llfrom AND " .
-				"ll_lang >= '$lllang')"
+				"ll_lang $op= $lllang)"
 			);
 		}
 
-	    $dir = ( $params['dir'] == 'descending' ? ' DESC' : '' );
-	    if ( isset( $params['lang'] ) ) {
+			$sort = ( $params['dir'] == 'descending' ? ' DESC' : '' );
+			if ( isset( $params['lang'] ) ) {
 			$this->addWhereFld( 'll_lang', $params['lang'] );
 			if ( isset( $params['title'] ) ) {
 				$this->addWhereFld( 'll_title', $params['title'] );
-				$this->addOption( 'ORDER BY', 'll_from' . $dir );
+				$this->addOption( 'ORDER BY', 'll_from' . $sort );
 			} else {
 				$this->addOption( 'ORDER BY', array(
-							'll_title' . $dir,
-							'll_from' . $dir
+							'll_title' . $sort,
+							'll_from' . $sort
 				));
 			}
 		} else {
 			// Don't order by ll_from if it's constant in the WHERE clause
 			if ( count( $this->getPageSet()->getGoodTitles() ) == 1 ) {
-				$this->addOption( 'ORDER BY', 'll_lang' . $dir );
+				$this->addOption( 'ORDER BY', 'll_lang' . $sort );
 			} else {
 				$this->addOption( 'ORDER BY', array(
-							'll_from' . $dir,
-							'll_lang' . $dir
+							'll_from' . $sort,
+							'll_lang' . $sort
 				));
 			}
 		}
@@ -155,6 +156,19 @@ class ApiQueryLangLinks extends ApiQueryBase {
 			'lang' => 'Language code',
 			'title' => "Link to search for. Must be used with {$this->getModulePrefix()}lang",
 			'dir' => 'The direction in which to list',
+		);
+	}
+
+	public function getResultProperties() {
+		return array(
+			'' => array(
+				'lang' => 'string',
+				'url' => array(
+					ApiBase::PROP_TYPE => 'string',
+					ApiBase::PROP_NULLABLE => true
+				),
+				'*' => 'string'
+			)
 		);
 	}
 

@@ -4,7 +4,7 @@
  *
  * Created on Jul 2, 2007
  *
- * Copyright © 2007 Roan Kattouw <Firstname>.<Lastname>@gmail.com
+ * Copyright © 2007 Roan Kattouw "<Firstname>.<Lastname>@gmail.com"
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -155,7 +155,7 @@ class ApiQueryDeletedrevs extends ApiQueryBase {
 			$this->addWhereFld( 'ar_user_text', $params['user'] );
 		} elseif ( !is_null( $params['excludeuser'] ) ) {
 			$this->addWhere( 'ar_user_text != ' .
-				$this->getDB()->addQuotes( $params['excludeuser'] ) );
+				$db->addQuotes( $params['excludeuser'] ) );
 		}
 
 		if ( !is_null( $params['continue'] ) && ( $mode == 'all' || $mode == 'revs' ) ) {
@@ -164,14 +164,14 @@ class ApiQueryDeletedrevs extends ApiQueryBase {
 				$this->dieUsage( 'Invalid continue param. You should pass the original value returned by the previous query', 'badcontinue' );
 			}
 			$ns = intval( $cont[0] );
-			$title = $this->getDB()->strencode( $this->titleToKey( $cont[1] ) );
-			$ts = $this->getDB()->strencode( $cont[2] );
+			$title = $db->addQuotes( $cont[1] );
+			$ts = $db->addQuotes( $db->timestamp( $cont[2] ) );
 			$op = ( $dir == 'newer' ? '>' : '<' );
 			$this->addWhere( "ar_namespace $op $ns OR " .
 					"(ar_namespace = $ns AND " .
-					"(ar_title $op '$title' OR " .
-					"(ar_title = '$title' AND " .
-					"ar_timestamp $op= '$ts')))" );
+					"(ar_title $op $title OR " .
+					"(ar_title = $title AND " .
+					"ar_timestamp $op= $ts)))" );
 		}
 
 		$this->addOption( 'LIMIT', $limit + 1 );
@@ -180,7 +180,11 @@ class ApiQueryDeletedrevs extends ApiQueryBase {
 			if ( $params['unique'] ) {
 				$this->addOption( 'GROUP BY', 'ar_title' );
 			} else {
-				$this->addOption( 'ORDER BY', 'ar_title, ar_timestamp' );
+				$sort = ( $dir == 'newer' ? '' : ' DESC' );
+				$this->addOption( 'ORDER BY', array(
+					'ar_title' . $sort,
+					'ar_timestamp' . $sort
+				));
 			}
 		} else {
 			if ( $mode == 'revs' ) {
@@ -199,7 +203,7 @@ class ApiQueryDeletedrevs extends ApiQueryBase {
 				// We've had enough
 				if ( $mode == 'all' || $mode == 'revs' ) {
 					$this->setContinueEnumParameter( 'continue', intval( $row->ar_namespace ) . '|' .
-						$this->keyToTitle( $row->ar_title ) . '|' . $row->ar_timestamp );
+						$row->ar_title . '|' . $row->ar_timestamp );
 				} else {
 					$this->setContinueEnumParameter( 'start', wfTimestamp( TS_ISO_8601, $row->ar_timestamp ) );
 				}
@@ -265,7 +269,7 @@ class ApiQueryDeletedrevs extends ApiQueryBase {
 			if ( !$fit ) {
 				if ( $mode == 'all' || $mode == 'revs' ) {
 					$this->setContinueEnumParameter( 'continue', intval( $row->ar_namespace ) . '|' .
-						$this->keyToTitle( $row->ar_title ) . '|' . $row->ar_timestamp );
+						$row->ar_title . '|' . $row->ar_timestamp );
 				} else {
 					$this->setContinueEnumParameter( 'start', wfTimestamp( TS_ISO_8601, $row->ar_timestamp ) );
 				}
@@ -334,8 +338,8 @@ class ApiQueryDeletedrevs extends ApiQueryBase {
 
 	public function getParamDescription() {
 		return array(
-			'start' => 'The timestamp to start enumerating from (1,2)',
-			'end' => 'The timestamp to stop enumerating at (1,2)',
+			'start' => 'The timestamp to start enumerating from (1, 2)',
+			'end' => 'The timestamp to stop enumerating at (1, 2)',
 			'dir' => $this->getDirectionDescription( $this->getModulePrefix(), ' (1, 3)' ),
 			'from' => 'Start listing at this title (3)',
 			'to' => 'Stop listing at this title (3)',
@@ -360,6 +364,18 @@ class ApiQueryDeletedrevs extends ApiQueryBase {
 			'excludeuser' => 'Don\'t list revisions by this user',
 			'continue' => 'When more results are available, use this to continue (3)',
 			'unique' => 'List only one revision for each page (3)',
+		);
+	}
+
+	public function getResultProperties() {
+		return array(
+			'' => array(
+				'ns' => 'namespace',
+				'title' => 'string'
+			),
+			'token' => array(
+				'token' => 'string'
+			)
 		);
 	}
 

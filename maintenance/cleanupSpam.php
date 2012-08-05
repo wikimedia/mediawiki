@@ -1,6 +1,6 @@
 <?php
 /**
- * Cleanup all spam from a given hostname
+ * Cleanup all spam from a given hostname.
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -23,12 +23,19 @@
 
 require_once( dirname( __FILE__ ) . '/Maintenance.php' );
 
+/**
+ * Maintenance script to cleanup all spam from a given hostname.
+ *
+ * @ingroup Maintenance
+ */
 class CleanupSpam extends Maintenance {
+
 	public function __construct() {
 		parent::__construct();
 		$this->mDescription = "Cleanup all spam from a given hostname";
 		$this->addOption( 'all', 'Check all wikis in $wgLocalDatabases' );
-		$this->addArg( 'hostname', 'Hostname that was spamming' );
+		$this->addOption( 'delete', 'Delete pages containing only spam instead of blanking them' );
+		$this->addArg( 'hostname', 'Hostname that was spamming, single * wildcard in the beginning allowed' );
 	}
 
 	public function execute() {
@@ -108,15 +115,19 @@ class CleanupSpam extends Maintenance {
 			$dbw = wfGetDB( DB_MASTER );
 			$dbw->begin( __METHOD__ );
 			$page = WikiPage::factory( $title );
-			if ( !$rev ) {
-				// Didn't find a non-spammy revision, blank the page
-				$this->output( "blanking\n" );
-				$page->doEdit( '', wfMsgForContent( 'spam_blanking', $domain ) );
-			} else {
+			if ( $rev ) {
 				// Revert to this revision
 				$this->output( "reverting\n" );
 				$page->doEdit( $rev->getText(), wfMsgForContent( 'spam_reverting', $domain ),
 					EDIT_UPDATE, $rev->getId() );
+			} elseif ( $this->hasOption( 'delete' ) ) {
+				// Didn't find a non-spammy revision, blank the page
+				$this->output( "deleting\n" );
+				$page->doDeleteArticle( wfMsgForContent( 'spam_deleting', $domain ) );
+			} else {
+				// Didn't find a non-spammy revision, blank the page
+				$this->output( "blanking\n" );
+				$page->doEdit( '', wfMsgForContent( 'spam_blanking', $domain ) );
 			}
 			$dbw->commit( __METHOD__ );
 		}

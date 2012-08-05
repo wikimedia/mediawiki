@@ -5,4 +5,4 @@ CREATE TABLE msg_resource (
 	mr_timestamp	TIMESTAMPTZ NOT NULL
 );
 
-CREATE UNIQUE INDEX mr_resource_lang_idx ON msg_resource (mr_resource, mr_lang);
+CREATE UNIQUE INDEX mr_resource_lang ON msg_resource (mr_resource, mr_lang);

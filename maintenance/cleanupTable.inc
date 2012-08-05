@@ -1,6 +1,6 @@
 <?php
 /**
- * Generic table cleanup class. Already subclasses maintenance
+ * Generic class to cleanup a database table.
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -23,6 +23,11 @@
 
 require_once( dirname( __FILE__ ) . '/Maintenance.php' );
 
+/**
+ * Generic class to cleanup a database table. Already subclasses Maintenance.
+ *
+ * @ingroup Maintenance
+ */
 class TableCleanup extends Maintenance {
 	protected $defaultParams = array(
 		'table' => 'page',

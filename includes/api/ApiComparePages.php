@@ -32,8 +32,8 @@ class ApiComparePages extends ApiBase {
 	public function execute() {
 		$params = $this->extractRequestParams();
 
-		$rev1 = $this->revisionOrTitle( $params['fromrev'], $params['fromtitle'] );
-		$rev2 = $this->revisionOrTitle( $params['torev'], $params['totitle'] );
+		$rev1 = $this->revisionOrTitleOrId( $params['fromrev'], $params['fromtitle'], $params['fromid'] );
+		$rev2 = $this->revisionOrTitleOrId( $params['torev'], $params['totitle'], $params['toid'] );
 
 		$de = new DifferenceEngine( $this->getContext(),
 			$rev1,
@@ -46,9 +46,15 @@ class ApiComparePages extends ApiBase {
 		if ( isset( $params['fromtitle'] ) ) {
 			$vals['fromtitle'] = $params['fromtitle'];
 		}
+		if ( isset( $params['fromid'] ) ) {
+			$vals['fromid'] = $params['fromid'];
+		}
 		$vals['fromrevid'] = $rev1;
 		if ( isset( $params['totitle'] ) ) {
 			$vals['totitle'] = $params['totitle'];
+		}
+		if ( isset( $params['toid'] ) ) {
+			$vals['toid'] = $params['toid'];
 		}
 		$vals['torevid'] = $rev2;
 
@@ -67,9 +73,10 @@ class ApiComparePages extends ApiBase {
 	/**
 	 * @param $revision int
 	 * @param $titleText string
+	 * @param $titleId int
 	 * @return int
 	 */
-	private function revisionOrTitle( $revision, $titleText ) {
+	private function revisionOrTitleOrId( $revision, $titleText, $titleId ) {
 		if( $revision ){
 			return $revision;
 		} elseif( $titleText ) {
@@ -78,17 +85,29 @@ class ApiComparePages extends ApiBase {
 				$this->dieUsageMsg( array( 'invalidtitle', $titleText ) );
 			}
 			return $title->getLatestRevID();
+		} elseif ( $titleId ) {
+			$title = Title::newFromID( $titleId );
+			if( !$title ) {
+				$this->dieUsageMsg( array( 'nosuchpageid', $titleId ) );
+			}
+			return $title->getLatestRevID();
 		}
-		$this->dieUsage( 'inputneeded', 'A title or a revision number is needed for both the from and the to parameters' );
+		$this->dieUsage( 'inputneeded', 'A title, a page ID, or a revision number is needed for both the from and the to parameters' );
 	}
 
 	public function getAllowedParams() {
 		return array(
 			'fromtitle' => null,
+			'fromid' => array(
+				ApiBase::PARAM_TYPE => 'integer'
+			),
 			'fromrev' => array(
 				ApiBase::PARAM_TYPE => 'integer'
 			),
 			'totitle' => null,
+			'toid' => array(
+				ApiBase::PARAM_TYPE => 'integer'
+			),
 			'torev' => array(
 				ApiBase::PARAM_TYPE => 'integer'
 			),
@@ -98,15 +117,36 @@ class ApiComparePages extends ApiBase {
 	public function getParamDescription() {
 		return array(
 			'fromtitle' => 'First title to compare',
+			'fromid' => 'First page ID to compare',
 			'fromrev' => 'First revision to compare',
 			'totitle' => 'Second title to compare',
+			'toid' => 'Second page ID to compare',
 			'torev' => 'Second revision to compare',
 		);
 	}
+
+	public function getResultProperties() {
+		return array(
+			'' => array(
+				'fromtitle' => array(
+					ApiBase::PROP_TYPE => 'string',
+					ApiBase::PROP_NULLABLE => true
+				),
+				'fromrevid' => 'integer',
+				'totitle' => array(
+					ApiBase::PROP_TYPE => 'string',
+					ApiBase::PROP_NULLABLE => true
+				),
+				'torevid' => 'integer',
+				'*' => 'string'
+			)
+		);
+	}
+
 	public function getDescription() {
 		return array(
 			'Get the difference between 2 pages',
-			'You must pass a revision number or a page title for each part (1 and 2)'
+			'You must pass a revision number or a page title or a page ID id for each part (1 and 2)'
 		);
 	}
 
@@ -114,6 +154,7 @@ class ApiComparePages extends ApiBase {
 		return array_merge( parent::getPossibleErrors(), array(
 			array( 'code' => 'inputneeded', 'info' => 'A title or a revision is needed' ),
 			array( 'invalidtitle', 'title' ),
+			array( 'nosuchpageid', 'pageid' ),
 			array( 'code' => 'baddiff', 'info' => 'The diff cannot be retrieved. Maybe one or both revisions do not exist or you do not have permission to view them.' ),
 		) );
 	}

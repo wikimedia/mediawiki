@@ -17,11 +17,17 @@
  * 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
  * http://www.gnu.org/copyleft/gpl.html
  *
+ * @file
  * @ingroup Maintenance
  */
 
 require_once( dirname( __FILE__ ) . '/Maintenance.php' );
 
+/**
+ * Maintenance script that re-assigns users from an old group to a new one.
+ *
+ * @ingroup Maintenance
+ */
 class MigrateUserGroup extends Maintenance {
 	public function __construct() {
 		parent::__construct();

@@ -123,6 +123,7 @@ $wgIgnoredMessages = array(
 	'pubmedurl',
 	'randompage-url',
 	'recentchanges-url',
+	'recentchangestext',
 	'revision-info-current',
 	'revision-nav',
 	'rfcurl',
@@ -136,6 +137,7 @@ $wgIgnoredMessages = array(
 	'sitetitle',
 	'sp-contributions-footer',
 	'sp-contributions-footer-anon',
+	'sp-contributions-footer-newbies',
 	'statistics-summary',
 	'statistics-footer',
 	'talkpagetext',
@@ -236,6 +238,10 @@ $wgIgnoredMessages = array(
 	'version-summary',
 	'tags-summary',
 	'comparepages-summary',
+	'version-entrypoints-index-php',
+	'version-entrypoints-api-php',
+	'version-entrypoints-load-php',
+	'ipb-default-expiry',
 );
 
 /** Optional messages, which may be translated only if changed in the target language. */
@@ -447,6 +453,7 @@ $wgOptionalMessages = array(
 	'ellipsis',
 	'percent',
 	'parentheses',
+	'brackets',
 	'autocomment-prefix',
 	'listgrouprights-right-display',
 	'listgrouprights-right-revoked',
@@ -463,6 +470,11 @@ $wgOptionalMessages = array(
 	'metadata-langitem',
 	'metadata-langitem-default',
 	'nocookiesforlogin',
+	'version-entrypoints-articlepath',
+	'version-entrypoints-scriptpath',
+	'mergehistory-revisionrow',
+	'categoryviewer-pagedlinks',
+	'undelete-revisionrow',
 );
 
 /** EXIF messages, which may be set as optional in several checks, but are generally mandatory */

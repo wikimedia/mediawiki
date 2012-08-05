@@ -46,10 +46,30 @@ class MostcategoriesPage extends QueryPage {
 					'COUNT(*) AS value' ),
 			'conds' => array ( 'page_namespace' => MWNamespace::getContentNamespaces() ),
 			'options' => array ( 'HAVING' => 'COUNT(*) > 1',
-				'GROUP BY' => 'page_namespace, page_title' ),
+				'GROUP BY' => array( 'page_namespace', 'page_title' ) ),
 			'join_conds' => array ( 'page' => array ( 'LEFT JOIN',
 					'page_id = cl_from' ) )
 		);
+	}
+
+	/**
+	 * @param $db DatabaseBase
+	 * @param $res
+	 */
+	function preprocessResults( $db, $res ) {
+		# There's no point doing a batch check if we aren't caching results;
+		# the page must exist for it to have been pulled out of the table
+		if ( !$this->isCached() || !$res->numRows() ) {
+			return;
+		}
+
+		$batch = new LinkBatch();
+		foreach ( $res as $row ) {
+			$batch->add( $row->namespace, $row->title );
+		}
+		$batch->execute();
+
+		$res->seek( 0 );
 	}
 
 	/**
@@ -59,9 +79,19 @@ class MostcategoriesPage extends QueryPage {
 	 */
 	function formatResult( $skin, $result ) {
 		$title = Title::makeTitleSafe( $result->namespace, $result->title );
+		if ( !$title ) {
+			return Html::element( 'span', array( 'class' => 'mw-invalidtitle' ),
+				Linker::getInvalidTitleDescription( $this->getContext(), $result->namespace, $result->title ) );
+		}
+
+		if ( $this->isCached() ) {
+			$link = Linker::link( $title );
+		} else {
+			$link = Linker::linkKnown( $title );
+		}
 
 		$count = $this->msg( 'ncategories' )->numParams( $result->value )->escaped();
-		$link = Linker::link( $title );
+
 		return $this->getLanguage()->specialList( $link, $count );
 	}
 }

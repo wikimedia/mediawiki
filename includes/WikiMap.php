@@ -1,4 +1,24 @@
 <?php
+/**
+ * Tools for dealing with other locally-hosted wikis.
+ *
+ * This program is free software; you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation; either version 2 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License along
+ * with this program; if not, write to the Free Software Foundation, Inc.,
+ * 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
+ * http://www.gnu.org/copyleft/gpl.html
+ *
+ * @file
+ */
 
 /**
  * Helper tools for dealing with other locally-hosted wikis
@@ -89,7 +109,7 @@ class WikiMap {
 		$wiki = WikiMap::getWiki( $wikiID );
 
 		if ( $wiki ) {
-			return $wiki->getUrl( $page );
+			return $wiki->getFullUrl( $page );
 		}
 
 		return false;
@@ -106,6 +126,13 @@ class WikiReference {
 	private $mServer; ///< server URL, may be protocol-relative, e.g. '//www.mediawiki.org'
 	private $mPath;   ///< path, '/wiki/$1'
 
+	/**
+	 * @param $major string
+	 * @param $minor string
+	 * @param $canonicalServer string
+	 * @param $path string
+	 * @param $server null|string
+	 */
 	public function __construct( $major, $minor, $canonicalServer, $path, $server = null ) {
 		$this->mMajor = $major;
 		$this->mMinor = $minor;
@@ -167,7 +194,16 @@ class WikiReference {
 	}
 
 	/**
+	 * Get a canonical server URL
+	 * @return string
+	 */
+	public function getCanonicalServer() {
+		return $this->mCanonicalServer;
+	}
+
+	/**
 	 * Alias for getCanonicalUrl(), for backwards compatibility.
+	 * @param $page string
 	 * @return String
 	 */
 	public function getUrl( $page ) {

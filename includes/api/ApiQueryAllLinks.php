@@ -4,7 +4,7 @@
  *
  * Created on July 7, 2007
  *
- * Copyright © 2006 Yuri Astrakhan <Firstname><Lastname>@gmail.com
+ * Copyright © 2006 Yuri Astrakhan "<Firstname><Lastname>@gmail.com"
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -76,17 +76,26 @@ class ApiQueryAllLinks extends ApiQueryGeneratorBase {
 			$this->dieUsage( 'alcontinue and alfrom cannot be used together', 'params' );
 		}
 		if ( !is_null( $params['continue'] ) ) {
-			$arr = explode( '|', $params['continue'] );
-			if ( count( $arr ) != 2 ) {
-				$this->dieUsage( 'Invalid continue parameter', 'badcontinue' );
+			$continueArr = explode( '|', $params['continue'] );
+			$op = $params['dir'] == 'descending' ? '<' : '>';
+			if ( $params['unique'] ) {
+				if ( count( $continueArr ) != 1 ) {
+					$this->dieUsage( 'Invalid continue parameter', 'badcontinue' );
+				}
+				$continueTitle = $db->addQuotes( $continueArr[0] );
+				$this->addWhere( "pl_title $op= $continueTitle" );
+			} else {
+				if ( count( $continueArr ) != 2 ) {
+					$this->dieUsage( 'Invalid continue parameter', 'badcontinue' );
+				}
+				$continueTitle = $db->addQuotes( $continueArr[0] );
+				$continueFrom = intval( $continueArr[1] );
+				$this->addWhere(
+					"pl_title $op $continueTitle OR " .
+					"(pl_title = $continueTitle AND " .
+					"pl_from $op= $continueFrom)"
+				);
 			}
-			$from = $this->getDB()->strencode( $this->titleToKey( $arr[0] ) );
-			$id = intval( $arr[1] );
-			$this->addWhere(
-				"pl_title > '$from' OR " .
-				"(pl_title = '$from' AND " .
-				"pl_from > $id)"
-			);
 		}
 
 		$from = ( is_null( $params['from'] ) ? null : $this->titlePartToKey( $params['from'] ) );
@@ -104,9 +113,13 @@ class ApiQueryAllLinks extends ApiQueryGeneratorBase {
 		$limit = $params['limit'];
 		$this->addOption( 'LIMIT', $limit + 1 );
 
+		$sort = ( $params['dir'] == 'descending' ? ' DESC' : '' );
+		$orderBy = array();
+		$orderBy[] = 'pl_title' . $sort;
 		if ( !$params['unique'] ) {
-			$this->addOption( 'ORDER BY', 'pl_title, pl_from' );
+			$orderBy[] = 'pl_from' . $sort;
 		}
+		$this->addOption( 'ORDER BY', $orderBy );
 
 		$res = $this->select( __METHOD__ );
 
@@ -116,11 +129,10 @@ class ApiQueryAllLinks extends ApiQueryGeneratorBase {
 		foreach ( $res as $row ) {
 			if ( ++ $count > $limit ) {
 				// We've reached the one extra which shows that there are additional pages to be had. Stop here...
-				// TODO: Security issue - if the user has no right to view next title, it will still be shown
 				if ( $params['unique'] ) {
-					$this->setContinueEnumParameter( 'from', $this->keyToTitle( $row->pl_title ) );
+					$this->setContinueEnumParameter( 'continue', $row->pl_title );
 				} else {
-					$this->setContinueEnumParameter( 'continue', $this->keyToTitle( $row->pl_title ) . "|" . $row->pl_from );
+					$this->setContinueEnumParameter( 'continue', $row->pl_title . "|" . $row->pl_from );
 				}
 				break;
 			}
@@ -137,9 +149,9 @@ class ApiQueryAllLinks extends ApiQueryGeneratorBase {
 				$fit = $result->addValue( array( 'query', $this->getModuleName() ), null, $vals );
 				if ( !$fit ) {
 					if ( $params['unique'] ) {
-						$this->setContinueEnumParameter( 'from', $this->keyToTitle( $row->pl_title ) );
+						$this->setContinueEnumParameter( 'continue', $row->pl_title );
 					} else {
-						$this->setContinueEnumParameter( 'continue', $this->keyToTitle( $row->pl_title ) . "|" . $row->pl_from );
+						$this->setContinueEnumParameter( 'continue', $row->pl_title . "|" . $row->pl_from );
 					}
 					break;
 				}
@@ -180,7 +192,14 @@ class ApiQueryAllLinks extends ApiQueryGeneratorBase {
 				ApiBase::PARAM_MIN => 1,
 				ApiBase::PARAM_MAX => ApiBase::LIMIT_BIG1,
 				ApiBase::PARAM_MAX2 => ApiBase::LIMIT_BIG2
-			)
+			),
+			'dir' => array(
+				ApiBase::PARAM_DFLT => 'ascending',
+				ApiBase::PARAM_TYPE => array(
+					'ascending',
+					'descending'
+				)
+			),
 		);
 	}
 
@@ -199,6 +218,19 @@ class ApiQueryAllLinks extends ApiQueryGeneratorBase {
 			'namespace' => 'The namespace to enumerate',
 			'limit' => 'How many total links to return',
 			'continue' => 'When more results are available, use this to continue',
+			'dir' => 'The direction in which to list',
+		);
+	}
+
+	public function getResultProperties() {
+		return array(
+			'ids' => array(
+				'fromid' => 'integer'
+			),
+			'title' => array(
+				'ns' => 'namespace',
+				'title' => 'string'
+			)
 		);
 	}
 

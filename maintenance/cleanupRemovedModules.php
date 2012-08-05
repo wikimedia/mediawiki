@@ -1,7 +1,6 @@
 <?php
 /**
- * Maintenance script to remove cache entries for removed ResourceLoader modules
- * from the database
+ * Remove cache entries for removed ResourceLoader modules from the database.
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -25,6 +24,12 @@
 
 require_once( dirname( __FILE__ ) . '/Maintenance.php' );
 
+/**
+ * Maintenance script to remove cache entries for removed ResourceLoader modules
+ * from the database.
+ *
+ * @ingroup Maintenance
+ */
 class CleanupRemovedModules extends Maintenance {
 
 	public function __construct() {

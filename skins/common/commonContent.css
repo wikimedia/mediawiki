@@ -86,13 +86,11 @@ html .thumbimage {
 }
 html .thumbcaption {
 	border: none;
-	text-align: left;
 	line-height: 1.4em;
 	padding: 3px !important;
 	font-size: 94%;
 }
 div.magnify {
-	float: right;
 	border: none !important;
 	background: none !important;
 }

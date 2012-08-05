@@ -37,7 +37,9 @@ class SpecialChangePassword extends UnlistedSpecialPage {
 	function execute( $par ) {
 		global $wgAuth;
 
-		$this->checkReadOnly();
+		$this->setHeaders();
+		$this->outputHeader();
+		$this->getOutput()->disallowUserJs();
 
 		$request = $this->getRequest();
 		$this->mUserName = trim( $request->getVal( 'wpName' ) );
@@ -45,10 +47,6 @@ class SpecialChangePassword extends UnlistedSpecialPage {
 		$this->mNewpass = $request->getVal( 'wpNewPassword' );
 		$this->mRetype = $request->getVal( 'wpRetype' );
 		$this->mDomain = $request->getVal( 'wpDomain' );
-
-		$this->setHeaders();
-		$this->outputHeader();
-		$this->getOutput()->disallowUserJs();
 
 		$user = $this->getUser();
 		if( !$request->wasPosted() && !$user->isLoggedIn() ) {
@@ -61,12 +59,11 @@ class SpecialChangePassword extends UnlistedSpecialPage {
 			return;
 		}
 
+		$this->checkReadOnly();
+
 		if( $request->wasPosted() && $user->matchEditToken( $request->getVal( 'token' ) ) ) {
 			try {
-				if ( isset( $_SESSION['wsDomain'] ) ) {
-					$this->mDomain = $_SESSION['wsDomain'];
-				}
-				$wgAuth->setDomain( $this->mDomain );
+				$this->mDomain = $wgAuth->getDomain();
 				if( !$wgAuth->allowPasswordChange() ) {
 					$this->error( $this->msg( 'resetpass_forbidden' )->text() );
 					return;
@@ -136,6 +133,15 @@ class SpecialChangePassword extends UnlistedSpecialPage {
 			$oldpassMsg = 'oldpassword';
 			$submitMsg = 'resetpass-submit-loggedin';
 		}
+		$extraFields = array();
+		wfRunHooks( 'ChangePasswordForm', array( &$extraFields ) );
+		$prettyFields = array(
+					array( 'wpName', 'username', 'text', $this->mUserName ),
+					array( 'wpPassword', $oldpassMsg, 'password', $this->mOldpass ),
+					array( 'wpNewPassword', 'newpassword', 'password', null ),
+					array( 'wpRetype', 'retypenew', 'password', null ),
+				);
+		$prettyFields = array_merge( $prettyFields, $extraFields );
 		$this->getOutput()->addHTML(
 			Xml::fieldset( $this->msg( 'resetpass_header' )->text() ) .
 			Xml::openElement( 'form',
@@ -149,12 +155,7 @@ class SpecialChangePassword extends UnlistedSpecialPage {
 			Html::hidden( 'returnto', $this->getRequest()->getVal( 'returnto' ) ) . "\n" .
 			$this->msg( 'resetpass_text' )->parseAsBlock() . "\n" .
 			Xml::openElement( 'table', array( 'id' => 'mw-resetpass-table' ) ) . "\n" .
-			$this->pretty( array(
-				array( 'wpName', 'username', 'text', $this->mUserName ),
-				array( 'wpPassword', $oldpassMsg, 'password', $this->mOldpass ),
-				array( 'wpNewPassword', 'newpassword', 'password', null ),
-				array( 'wpRetype', 'retypenew', 'password', null ),
-			) ) . "\n" .
+			$this->pretty( $prettyFields ) . "\n" .
 			$rememberMe .
 			"<tr>\n" .
 				"<td></td>\n" .

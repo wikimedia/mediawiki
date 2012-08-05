@@ -1,6 +1,6 @@
 <?php
 /**
- * Creates a sitemap for the site
+ * Creates a sitemap for the site.
  *
  * Copyright © 2005, Ævar Arnfjörð Bjarmason, Jens Frank <jeluf@gmx.de> and
  * Brion Vibber <brion@pobox.com>
@@ -28,6 +28,11 @@
 
 require_once( dirname( __FILE__ ) . '/Maintenance.php' );
 
+/**
+ * Maintenance script that generates a sitemap for the site.
+ *
+ * @ingroup Maintenance
+ */
 class GenerateSitemap extends Maintenance {
 	const GS_MAIN = -2;
 	const GS_TALK = -1;
@@ -70,6 +75,13 @@ class GenerateSitemap extends Maintenance {
 	 * @var bool
 	 */
 	var $compress;
+
+	/**
+	 * Whether or not to include redirection pages
+	 *
+	 * @var bool
+	 */
+	var $skipRedirects;
 
 	/**
 	 * The number of entries to save in each sitemap file
@@ -137,6 +149,7 @@ class GenerateSitemap extends Maintenance {
 		$this->addOption( 'fspath', 'The file system path to save to, e.g. /tmp/sitemap; defaults to current directory', false, true );
 		$this->addOption( 'urlpath', 'The URL path corresponding to --fspath, prepended to filenames in the index; defaults to an empty string', false, true );
 		$this->addOption( 'compress', 'Compress the sitemap files, can take value yes|no, default yes', false, true );
+		$this->addOption( 'skip-redirects', 'Do not include redirecting articles in the sitemap' );
 		$this->addOption( 'identifier', 'What site identifier to use for the wiki, defaults to $wgDBname', false, true );
 	}
 
@@ -154,6 +167,7 @@ class GenerateSitemap extends Maintenance {
 		}
 		$this->identifier = $this->getOption( 'identifier', wfWikiID() );
 		$this->compress = $this->getOption( 'compress', 'yes' ) !== 'no';
+		$this->skipRedirects = $this->getOption( 'skip-redirects', false ) !== false ;
 		$this->dbr = wfGetDB( DB_SLAVE );
 		$this->generateNamespaces();
 		$this->timestamp = wfTimestamp( TS_ISO_8601, wfTimestampNow() );
@@ -279,6 +293,7 @@ class GenerateSitemap extends Maintenance {
 				'page_namespace',
 				'page_title',
 				'page_touched',
+				'page_is_redirect'
 			),
 			array( 'page_namespace' => $namespace ),
 			__METHOD__
@@ -302,7 +317,13 @@ class GenerateSitemap extends Maintenance {
 
 			$fns = $wgContLang->getFormattedNsText( $namespace );
 			$this->output( "$namespace ($fns)\n" );
+			$skippedRedirects = 0;  // Number of redirects skipped for that namespace
 			foreach ( $res as $row ) {
+				if ($this->skipRedirects && $row->page_is_redirect ) {
+					$skippedRedirects++;
+					continue;
+				}
+
 				if ( $i++ === 0 || $i === $this->url_limit + 1 || $length + $this->limit[1] + $this->limit[2] > $this->size_limit ) {
 					if ( $this->file !== false ) {
 						$this->write( $this->file, $this->closeFile() );
@@ -332,6 +353,11 @@ class GenerateSitemap extends Maintenance {
 					}
 				}
 			}
+
+			if ($this->skipRedirects && $skippedRedirects > 0) {
+				$this->output( "  skipped $skippedRedirects redirect(s)\n" );
+			}
+
 			if ( $this->file ) {
 				$this->write( $this->file, $this->closeFile() );
 				$this->close( $this->file );

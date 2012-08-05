@@ -1,4 +1,24 @@
 <?php
+/**
+ * Debug toolbar related code
+ *
+ * This program is free software; you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation; either version 2 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License along
+ * with this program; if not, write to the Free Software Foundation, Inc.,
+ * 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
+ * http://www.gnu.org/copyleft/gpl.html
+ *
+ * @file
+ */
 
 /**
  * New debugger system that outputs a toolbar on page view
@@ -7,6 +27,8 @@
  * to explicitly call MWDebug::init() to enabled them.
  *
  * @todo Profiler support
+ *
+ * @since 1.19
  */
 class MWDebug {
 
@@ -49,6 +71,8 @@ class MWDebug {
 	/**
 	 * Enabled the debugger and load resource module.
 	 * This is called by Setup.php when $wgDebugToolbar is true.
+	 *
+	 * @since 1.19
 	 */
 	public static function init() {
 		self::$enabled = true;
@@ -58,6 +82,7 @@ class MWDebug {
 	 * Add ResourceLoader modules to the OutputPage object if debugging is
 	 * enabled.
 	 *
+	 * @since 1.19
 	 * @param $out OutputPage
 	 */
 	public static function addModules( OutputPage $out ) {
@@ -71,6 +96,7 @@ class MWDebug {
 	 *
 	 * @todo Add support for passing objects
 	 *
+	 * @since 1.19
 	 * @param $str string
 	 */
 	public static function log( $str ) {
@@ -87,6 +113,7 @@ class MWDebug {
 
 	/**
 	 * Returns internal log array
+	 * @since 1.19
 	 * @return array
 	 */
 	public static function getLog() {
@@ -95,6 +122,7 @@ class MWDebug {
 
 	/**
 	 * Clears internal log array and deprecation tracking
+	 * @since 1.19
 	 */
 	public static function clearLog() {
 		self::$log = array();
@@ -104,6 +132,7 @@ class MWDebug {
 	/**
 	 * Adds a warning entry to the log
 	 *
+	 * @since 1.19
 	 * @param $msg
 	 * @param int $callerOffset
 	 * @return mixed
@@ -116,9 +145,10 @@ class MWDebug {
 		// Check to see if there was already a deprecation notice, so not to
 		// get a duplicate warning
 		$logCount = count( self::$log );
+		$caller = wfGetCaller( $callerOffset + 1 );
 		if ( $logCount ) {
 			$lastLog = self::$log[ $logCount - 1 ];
-			if ( $lastLog['type'] == 'deprecated' && $lastLog['caller'] == wfGetCaller( $callerOffset + 1 ) ) {
+			if ( $lastLog['type'] == 'deprecated' && $lastLog['caller'] == $caller ) {
 				return;
 			}
 		}
@@ -126,13 +156,14 @@ class MWDebug {
 		self::$log[] = array(
 			'msg' => htmlspecialchars( $msg ),
 			'type' => 'warn',
-			'caller' => wfGetCaller( $callerOffset ),
+			'caller' => $caller,
 		);
 	}
 
 	/**
 	 * Adds a depreciation entry to the log, along with a backtrace
 	 *
+	 * @since 1.19
 	 * @param $function
 	 * @param $version
 	 * @param $component
@@ -172,6 +203,7 @@ class MWDebug {
 	 * This is a method to pass messages from wfDebug to the pretty debugger.
 	 * Do NOT use this method, use MWDebug::log or wfDebug()
 	 *
+	 * @since 1.19
 	 * @param $str string
 	 */
 	public static function debugMsg( $str ) {
@@ -185,6 +217,7 @@ class MWDebug {
 	/**
 	 * Begins profiling on a database query
 	 *
+	 * @since 1.19
 	 * @param $sql string
 	 * @param $function string
 	 * @param $isMaster bool
@@ -210,6 +243,7 @@ class MWDebug {
 	/**
 	 * Calculates how long a query took.
 	 *
+	 * @since 1.19
 	 * @param $id int
 	 */
 	public static function queryTime( $id ) {
@@ -244,6 +278,7 @@ class MWDebug {
 	/**
 	 * Returns the HTML to add to the page for the toolbar
 	 *
+	 * @since 1.19
 	 * @param $context IContextSource
 	 * @return string
 	 */
@@ -252,14 +287,66 @@ class MWDebug {
 			return '';
 		}
 
-		global $wgVersion, $wgRequestTime;
 		MWDebug::log( 'MWDebug output complete' );
+		$debugInfo = self::getDebugInfo( $context );
+
+		// Cannot use OutputPage::addJsConfigVars because those are already outputted
+		// by the time this method is called.
+		$html = Html::inlineScript(
+			ResourceLoader::makeLoaderConditionalScript(
+				ResourceLoader::makeConfigSetScript( array( 'debugInfo' => $debugInfo ) )
+			)
+		);
+
+		return $html;
+	}
+
+	/**
+	 * Append the debug info to given ApiResult
+	 *
+	 * @param $context IContextSource
+	 * @param $result ApiResult
+	 */
+	public static function appendDebugInfoToApiResult( IContextSource $context, ApiResult $result ) {
+		if ( !self::$enabled ) {
+			return;
+		}
+
+		MWDebug::log( 'MWDebug output complete' );
+		$debugInfo = self::getDebugInfo( $context );
+
+		$result->setIndexedTagName( $debugInfo, 'debuginfo' );
+		$result->setIndexedTagName( $debugInfo['log'], 'line' );
+		foreach( $debugInfo['debugLog'] as $index => $debugLogText ) {
+			$vals = array();
+			ApiResult::setContent( $vals, $debugLogText );
+			$debugInfo['debugLog'][$index] = $vals; //replace
+		}
+		$result->setIndexedTagName( $debugInfo['debugLog'], 'msg' );
+		$result->setIndexedTagName( $debugInfo['queries'], 'query' );
+		$result->setIndexedTagName( $debugInfo['includes'], 'queries' );
+		$result->addValue( array(), 'debuginfo', $debugInfo );
+	}
+
+	/**
+	 * Returns the HTML to add to the page for the toolbar
+	 *
+	 * @param $context IContextSource
+	 * @return array
+	 */
+	public static function getDebugInfo( IContextSource $context ) {
+		if ( !self::$enabled ) {
+			return array();
+		}
+
+		global $wgVersion, $wgRequestTime;
 		$request = $context->getRequest();
-		$debugInfo = array(
+		return array(
 			'mwVersion' => $wgVersion,
 			'phpVersion' => PHP_VERSION,
 			'gitRevision' => GitInfo::headSHA1(),
 			'gitBranch' => GitInfo::currentBranch(),
+			'gitViewUrl' => GitInfo::headViewUrl(),
 			'time' => microtime( true ) - $wgRequestTime,
 			'log' => self::$log,
 			'debugLog' => self::$debug,
@@ -274,15 +361,5 @@ class MWDebug {
 			'memoryPeak' => $context->getLanguage()->formatSize( memory_get_peak_usage() ),
 			'includes' => self::getFilesIncluded( $context ),
 		);
-
-		// Cannot use OutputPage::addJsConfigVars because those are already outputted
-		// by the time this method is called.
-		$html = Html::inlineScript(
-			ResourceLoader::makeLoaderConditionalScript(
-				ResourceLoader::makeConfigSetScript( array( 'debugInfo' => $debugInfo ) )
-			)
-		);
-
-		return $html;
 	}
 }

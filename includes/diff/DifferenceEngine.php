@@ -1,6 +1,21 @@
 <?php
 /**
- * User interface for the difference engine
+ * User interface for the difference engine.
+ *
+ * This program is free software; you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation; either version 2 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License along
+ * with this program; if not, write to the Free Software Foundation, Inc.,
+ * 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
+ * http://www.gnu.org/copyleft/gpl.html
  *
  * @file
  * @ingroup DifferenceEngine
@@ -239,8 +254,7 @@ class DifferenceEngine extends ContextSource {
 		# a diff between a version V and its previous version V' AND the version V
 		# is the first version of that article. In that case, V' does not exist.
 		if ( $this->mOldRev === false ) {
-			$out->setPageTitle( $this->mNewPage->getPrefixedText() );
-			$out->addSubtitle( $this->msg( 'difference' ) );
+			$out->setPageTitle( $this->msg( 'difference-title', $this->mNewPage->getPrefixedText() ) );
 			$samePage = true;
 			$oldHeader = '';
 		} else {
@@ -252,11 +266,11 @@ class DifferenceEngine extends ContextSource {
 			}
 
 			if ( $this->mNewPage->equals( $this->mOldPage ) ) {
-				$out->setPageTitle( $this->mNewPage->getPrefixedText() );
-				$out->addSubtitle( $this->msg( 'difference' ) );
+				$out->setPageTitle( $this->msg( 'difference-title', $this->mNewPage->getPrefixedText() ) );
 				$samePage = true;
 			} else {
-				$out->setPageTitle( $this->mOldPage->getPrefixedText() . ', ' . $this->mNewPage->getPrefixedText() );
+				$out->setPageTitle( $this->msg( 'difference-title-multipage', $this->mOldPage->getPrefixedText(),
+					$this->mNewPage->getPrefixedText() ) );
 				$out->addSubtitle( $this->msg( 'difference-multipage' ) );
 				$samePage = false;
 			}
@@ -264,7 +278,7 @@ class DifferenceEngine extends ContextSource {
 			if ( $samePage && $this->mNewPage->quickUserCan( 'edit', $user ) ) {
 				if ( $this->mNewRev->isCurrent() && $this->mNewPage->userCan( 'rollback', $user ) ) {
 					$out->preventClickjacking();
-					$rollback = '&#160;&#160;&#160;' . Linker::generateRollback( $this->mNewRev );
+					$rollback = '&#160;&#160;&#160;' . Linker::generateRollback( $this->mNewRev, $this->getContext() );
 				}
 				if ( !$this->mOldRev->isDeleted( Revision::DELETED_TEXT ) && !$this->mNewRev->isDeleted( Revision::DELETED_TEXT ) ) {
 					$undoLink = ' ' . $this->msg( 'parentheses' )->rawParams(
@@ -598,7 +612,7 @@ class DifferenceEngine extends ContextSource {
 			return false;
 		}
 		// Short-circuit
-		// If mOldRev is false, it means that the 
+		// If mOldRev is false, it means that the
 		if ( $this->mOldRev === false || ( $this->mOldRev && $this->mNewRev
 			&& $this->mOldRev->getID() == $this->mNewRev->getID() ) )
 		{
@@ -706,9 +720,9 @@ class DifferenceEngine extends ContextSource {
 		}
 		if ( $wgExternalDiffEngine != 'wikidiff3' && $wgExternalDiffEngine !== false ) {
 			# Diff via the shell
-			global $wgTmpDirectory;
-			$tempName1 = tempnam( $wgTmpDirectory, 'diff_' );
-			$tempName2 = tempnam( $wgTmpDirectory, 'diff_' );
+			$tmpDir = wfTempDir();
+			$tempName1 = tempnam( $tmpDir, 'diff_' );
+			$tempName2 = tempnam( $tmpDir, 'diff_' );
 
 			$tempFile1 = fopen( $tempName1, "w" );
 			if ( !$tempFile1 ) {
@@ -868,7 +882,8 @@ class DifferenceEngine extends ContextSource {
 			}
 
 			$msg = $this->msg( $title->quickUserCan( 'edit', $user ) ? 'editold' : 'viewsourceold' )->escaped();
-			$header .= ' (' . Linker::linkKnown( $title, $msg, array(), $editQuery ) . ')';
+			$header .= ' ' . $this->msg( 'parentheses' )->rawParams(
+				Linker::linkKnown( $title, $msg, array(), $editQuery ) )->plain();
 			if ( $rev->isDeleted( Revision::DELETED_TEXT ) ) {
 				$header = Html::rawElement( 'span', array( 'class' => 'history-deleted' ), $header );
 			}
@@ -1005,7 +1020,7 @@ class DifferenceEngine extends ContextSource {
 		// Load the new revision object
 		$this->mNewRev = $this->mNewid
 			? Revision::newFromId( $this->mNewid )
-			: Revision::newFromTitle( $this->getTitle() );
+			: Revision::newFromTitle( $this->getTitle(), false, Revision::AVOID_MASTER );
 
 		if ( !$this->mNewRev instanceof Revision ) {
 			return false;

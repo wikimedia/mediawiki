@@ -93,6 +93,13 @@ class SpecialExport extends SpecialPage {
 		elseif( $request->getCheck( 'exportall' ) && $wgExportAllowAll ) {
 			$this->doExport = true;
 			$exportall = true;
+
+			/* Although $page and $history are not used later on, we
+			nevertheless set them to avoid that PHP notices about using
+			undefined variables foul up our XML output (see call to
+			doExport(...) further down) */
+			$page = '';
+			$history = '';
 		}
 		elseif( $request->wasPosted() && $par == '' ) {
 			$page = $request->getText( 'pages' );

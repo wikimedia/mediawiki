@@ -41,10 +41,10 @@ class WithoutInterwikiPage extends PageQueryPage {
 	}
 
 	function getPageHeader() {
-		global $wgScript, $wgMiserMode;
+		global $wgScript;
 
-		# Do not show useless input form if wiki is running in misermode
-		if( $wgMiserMode ) {
+		# Do not show useless input form if special page is cached
+		if( $this->isCached() ) {
 			return '';
 		}
 

@@ -1,25 +1,24 @@
 <?php
 /**
- * SpecialPage: handling special pages and lists thereof.
+ * Parent class for all special pages.
  *
- * To add a special page in an extension, add to $wgSpecialPages either
- * an object instance or an array containing the name and constructor
- * parameters. The latter is preferred for performance reasons.
+ * This program is free software; you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation; either version 2 of the License, or
+ * (at your option) any later version.
  *
- * The object instantiated must be either an instance of SpecialPage or a
- * sub-class thereof. It must have an execute() method, which sends the HTML
- * for the special page to $wgOut. The parent class has an execute() method
- * which distributes the call to the historical global functions. Additionally,
- * execute() also checks if the user has the necessary access privileges
- * and bails out if not.
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+ * GNU General Public License for more details.
  *
- * To add a core special page, use the similar static list in
- * SpecialPage::$mList. To remove a core static special page at runtime, use
- * a SpecialPage_initList hook.
+ * You should have received a copy of the GNU General Public License along
+ * with this program; if not, write to the Free Software Foundation, Inc.,
+ * 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
+ * http://www.gnu.org/copyleft/gpl.html
  *
  * @file
  * @ingroup SpecialPage
- * @defgroup SpecialPage SpecialPage
  */
 
 /**
@@ -124,19 +123,18 @@ class SpecialPage {
 	 *
 	 * @param $page Mixed: SpecialPage or string
 	 * @param $group String
-	 * @return null
 	 * @deprecated since 1.18 call SpecialPageFactory method directly
 	 */
 	static function setGroup( $page, $group ) {
 		wfDeprecated( __METHOD__, '1.18' );
-		return SpecialPageFactory::setGroup( $page, $group );
+		SpecialPageFactory::setGroup( $page, $group );
 	}
 
 	/**
 	 * Get the group that the special page belongs in on Special:SpecialPage
 	 *
 	 * @param $page SpecialPage
-	 * @return null
+	 * @return string
 	 * @deprecated since 1.18 call SpecialPageFactory method directly
 	 */
 	static function getGroup( &$page ) {
@@ -592,14 +590,69 @@ class SpecialPage {
 	}
 
 	/**
+	 * Entry point.
+	 *
+	 * @since 1.20
+	 *
+	 * @param $subPage string|null
+	 */
+	public final function run( $subPage ) {
+		/**
+		 * Gets called before @see SpecialPage::execute.
+		 *
+		 * @since 1.20
+		 *
+		 * @param $special SpecialPage
+		 * @param $subPage string|null
+		 */
+		wfRunHooks( 'SpecialPageBeforeExecute', array( $this, $subPage ) );
+
+		$this->beforeExecute( $subPage );
+		$this->execute( $subPage );
+		$this->afterExecute( $subPage );
+
+		/**
+		 * Gets called after @see SpecialPage::execute.
+		 *
+		 * @since 1.20
+		 *
+		 * @param $special SpecialPage
+		 * @param $subPage string|null
+		 */
+		wfRunHooks( 'SpecialPageAfterExecute', array( $this, $subPage ) );
+	}
+
+	/**
+	 * Gets called before @see SpecialPage::execute.
+	 *
+	 * @since 1.20
+	 *
+	 * @param $subPage string|null
+	 */
+	protected function beforeExecute( $subPage ) {
+		// No-op
+	}
+
+	/**
+	 * Gets called after @see SpecialPage::execute.
+	 *
+	 * @since 1.20
+	 *
+	 * @param $subPage string|null
+	 */
+	protected function afterExecute( $subPage ) {
+		// No-op
+	}
+
+	/**
 	 * Default execute method
 	 * Checks user permissions, calls the function given in mFunction
 	 *
 	 * This must be overridden by subclasses; it will be made abstract in a future version
 	 *
-	 * @param $par String subpage string, if one was specified
+	 * @param $subPage string|null
 	 */
-	function execute( $par ) {
+	public function execute( $subPage ) {
 		$this->setHeaders();
 		$this->checkPermissions();
 
@@ -609,7 +662,7 @@ class SpecialPage {
 			require_once( $this->mFile );
 		}
 		$this->outputHeader();
-		call_user_func( $func, $par, $this );
+		call_user_func( $func, $subPage, $this );
 	}
 
 	/**
@@ -628,7 +681,7 @@ class SpecialPage {
 		} else {
 			$msg = $summaryMessageKey;
 		}
-		if ( !$this->msg( $msg )->isBlank() && !$this->including() ) {
+		if ( !$this->msg( $msg )->isDisabled() && !$this->including() ) {
 			$this->getOutput()->wrapWikiMsg(
 				"<div class='mw-specialpage-summary'>\n$1\n</div>", $msg );
 		}
@@ -1084,16 +1137,102 @@ class SpecialCreateAccount extends SpecialRedirectToSpecial {
  */
 
 /**
+ * Superclass for any RedirectSpecialPage which redirects the user
+ * to a particular article (as opposed to user contributions, logs, etc.).
+ *
+ * For security reasons these special pages are restricted to pass on
+ * the following subset of GET parameters to the target page while
+ * removing all others:
+ *
+ * - useskin, uselang, printable: to alter the appearance of the resulting page
+ *
+ * - redirect: allows viewing one's user page or talk page even if it is a
+ * redirect.
+ *
+ * - rdfrom: allows redirecting to one's user page or talk page from an
+ * external wiki with the "Redirect from..." notice.
+ *
+ * - limit, offset: Useful for linking to history of one's own user page or
+ * user talk page. For example, this would be a link to "the last edit to your
+ * user talk page in the year 2010":
+ * http://en.wikipedia.org/w/index.php?title=Special:MyPage&offset=20110000000000&limit=1&action=history
+ *
+ * - feed: would allow linking to the current user's RSS feed for their user
+ * talk page:
+ * http://en.wikipedia.org/w/index.php?title=Special:MyTalk&action=history&feed=rss
+ *
+ * - preloadtitle: Can be used to provide a default section title for a
+ * preloaded new comment on one's own talk page.
+ *
+ * - summary : Can be used to provide a default edit summary for a preloaded
+ * edit to one's own user page or talk page.
+ *
+ * - preview: Allows showing/hiding preview on first edit regardless of user
+ * preference, useful for preloaded edits where you know preview wouldn't be
+ * useful.
+ *
+ * - internaledit, externaledit, mode: Allows forcing the use of the
+ * internal/external editor, e.g. to force the internal editor for
+ * short/simple preloaded edits.
+ *
+ * - redlink: Affects the message the user sees if their talk page/user talk
+ * page does not currently exist. Avoids confusion for newbies with no user
+ * pages over why they got a "permission error" following this link:
+ * http://en.wikipedia.org/w/index.php?title=Special:MyPage&redlink=1
+ *
+ * - debug: determines whether the debug parameter is passed to load.php,
+ * which disables reformatting and allows scripts to be debugged. Useful
+ * when debugging scripts that manipulate one's own user page or talk page.
+ *
+ * @par Hook extension:
+ * Extensions can add to the redirect parameters list by using the hook
+ * RedirectSpecialArticleRedirectParams
+ *
+ * This hook allows extensions which add GET parameters like FlaggedRevs to
+ * retain those parameters when redirecting using special pages.
+ *
+ * @par Hook extension example:
+ * @code
+ *	$wgHooks['RedirectSpecialArticleRedirectParams'][] =
+ *		'MyExtensionHooks::onRedirectSpecialArticleRedirectParams';
+ *	public static function onRedirectSpecialArticleRedirectParams( &$redirectParams ) {
+ *		$redirectParams[] = 'stable';
+ *		return true;
+ *	}
+ * @endcode
+ * @ingroup SpecialPage
+ */
+abstract class RedirectSpecialArticle extends RedirectSpecialPage {
+	function __construct( $name ) {
+		parent::__construct( $name );
+		$redirectParams = array(
+			'action',
+			'redirect', 'rdfrom',
+			# Options for preloaded edits
+			'preload', 'editintro', 'preloadtitle', 'summary',
+			# Options for overriding user settings
+			'preview', 'internaledit', 'externaledit', 'mode',
+			# Options for history/diffs
+			'section', 'oldid', 'diff', 'dir',
+			'limit', 'offset', 'feed',
+			# Misc options
+			'redlink', 'debug',
+			# Options for action=raw; missing ctype can break JS or CSS in some browsers
+			'ctype', 'maxage', 'smaxage',
+		);
+
+		wfRunHooks( "RedirectSpecialArticleRedirectParams", array(&$redirectParams) );
+		$this->mAllowedRedirectParams = $redirectParams;
+	}
+}
+
+/**
  * Shortcut to construct a special page pointing to current user user's page.
  * @ingroup SpecialPage
  */
-class SpecialMypage extends RedirectSpecialPage {
+class SpecialMypage extends RedirectSpecialArticle {
 	function __construct() {
 		parent::__construct( 'Mypage' );
-		$this->mAllowedRedirectParams = array( 'action', 'preload', 'preloadtitle', 'editintro',
-			'section', 'oldid', 'diff', 'dir',
-			// Options for action=raw; missing ctype can break JS or CSS in some browsers
-			'ctype', 'maxage', 'smaxage' );
 	}
 
 	function getRedirect( $subpage ) {
@@ -1109,11 +1248,9 @@ class SpecialMypage extends RedirectSpecialPage {
  * Shortcut to construct a special page pointing to current user talk page.
  * @ingroup SpecialPage
  */
-class SpecialMytalk extends RedirectSpecialPage {
+class SpecialMytalk extends RedirectSpecialArticle {
 	function __construct() {
 		parent::__construct( 'Mytalk' );
-		$this->mAllowedRedirectParams = array( 'action', 'preload', 'preloadtitle', 'editintro',
-			'section', 'oldid', 'diff', 'dir' );
 	}
 
 	function getRedirect( $subpage ) {

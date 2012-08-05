@@ -4,7 +4,7 @@
  *
  * Created on Sep 7, 2006
  *
- * Copyright © 2006 Yuri Astrakhan <Firstname><Lastname>@gmail.com
+ * Copyright © 2006 Yuri Astrakhan "<Firstname><Lastname>@gmail.com"
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -233,7 +233,7 @@ abstract class ApiQueryBase extends ApiBase {
 	 */
 	protected function addTimestampWhereRange( $field, $dir, $start, $end, $sort = true ) {
 		$db = $this->getDb();
-		return $this->addWhereRange( $field, $dir,
+		$this->addWhereRange( $field, $dir,
 			$db->timestampOrNull( $start ), $db->timestampOrNull( $end ), $sort );
 	}
 
@@ -519,7 +519,7 @@ abstract class ApiQueryBase extends ApiBase {
 			$this->addFields( 'ipb_deleted' );
 
 			if ( $showBlockInfo ) {
-				$this->addFields( array( 'ipb_reason', 'ipb_by_text', 'ipb_expiry' ) );
+				$this->addFields( array( 'ipb_id', 'ipb_by', 'ipb_by_text', 'ipb_reason', 'ipb_expiry' ) );
 			}
 
 			// Don't show hidden names
@@ -571,6 +571,11 @@ abstract class ApiQueryGeneratorBase extends ApiQueryBase {
 
 	private $mIsGenerator;
 
+	/**
+	 * @param $query ApiBase
+	 * @param $moduleName string
+	 * @param $paramPrefix string
+	 */
 	public function __construct( $query, $moduleName, $paramPrefix = '' ) {
 		parent::__construct( $query, $moduleName, $paramPrefix );
 		$this->mIsGenerator = false;

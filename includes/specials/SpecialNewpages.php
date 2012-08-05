@@ -143,7 +143,9 @@ class SpecialNewpages extends IncludableSpecialPage {
 				return $this->feed( $feedType );
 			}
 
-			$out->setFeedAppendQuery( wfArrayToCGI( $this->opts->getAllValues() ) );
+			$allValues = $this->opts->getAllValues();
+			unset( $allValues['feed'] );
+			$out->setFeedAppendQuery( wfArrayToCGI( $allValues ) );
 		}
 
 		$pager = new NewPagesPager( $this, $this->opts );
@@ -165,7 +167,7 @@ class SpecialNewpages extends IncludableSpecialPage {
 		global $wgGroupPermissions;
 
 		// show/hide links
-		$showhide = array( wfMsgHtml( 'show' ), wfMsgHtml( 'hide' ) );
+		$showhide = array( $this->msg( 'show' )->escaped(), $this->msg( 'hide' )->escaped() );
 
 		// Option value -> message mapping
 		$filters = array(
@@ -197,7 +199,7 @@ class SpecialNewpages extends IncludableSpecialPage {
 			$link = Linker::link( $self, $showhide[$onoff], array(),
 					array( $key => $onoff ) + $changed
 			);
-			$links[$key] = wfMsgHtml( $msg, $link );
+			$links[$key] = $this->msg( $msg )->rawParams( $link )->escaped();
 		}
 
 		return $this->getLanguage()->pipeList( $links );
@@ -230,11 +232,11 @@ class SpecialNewpages extends IncludableSpecialPage {
 
 		$form = Xml::openElement( 'form', array( 'action' => $wgScript ) ) .
 			Html::hidden( 'title', $this->getTitle()->getPrefixedDBkey() ) .
-			Xml::fieldset( wfMsg( 'newpages' ) ) .
+			Xml::fieldset( $this->msg( 'newpages' )->text() ) .
 			Xml::openElement( 'table', array( 'id' => 'mw-newpages-table' ) ) .
 			'<tr>
 				<td class="mw-label">' .
-					Xml::label( wfMsg( 'namespace' ), 'namespace' ) .
+					Xml::label( $this->msg( 'namespace' )->text(), 'namespace' ) .
 				'</td>
 				<td class="mw-input">' .
 					Html::namespaceSelector(
@@ -260,7 +262,7 @@ class SpecialNewpages extends IncludableSpecialPage {
 			( $wgEnableNewpagesUserFilter ?
 			'<tr>
 				<td class="mw-label">' .
-					Xml::label( wfMsg( 'newpages-username' ), 'mw-np-username' ) .
+					Xml::label( $this->msg( 'newpages-username' )->text(), 'mw-np-username' ) .
 				'</td>
 				<td class="mw-input">' .
 					Xml::input( 'username', 30, $userText, array( 'id' => 'mw-np-username' ) ) .
@@ -268,7 +270,7 @@ class SpecialNewpages extends IncludableSpecialPage {
 			</tr>' : '' ) .
 			'<tr> <td></td>
 				<td class="mw-submit">' .
-					Xml::submitButton( wfMsg( 'allpagessubmit' ) ) .
+					Xml::submitButton( $this->msg( 'allpagessubmit' )->text() ) .
 				'</td>
 			</tr>' .
 			'<tr>
@@ -292,6 +294,8 @@ class SpecialNewpages extends IncludableSpecialPage {
 	 * @return String
 	 */
 	public function formatRow( $result ) {
+		$title = Title::newFromRow( $result );
+
 		# Revision deletion works on revisions, so we should cast one
 		$row = array(
 					  'comment' => $result->rc_comment,
@@ -300,15 +304,15 @@ class SpecialNewpages extends IncludableSpecialPage {
 					  'user' => $result->rc_user,
 					);
 		$rev = new Revision( $row );
+		$rev->setTitle( $title );
 
 		$classes = array();
 
 		$lang = $this->getLanguage();
 		$dm = $lang->getDirMark();
 
-		$title = Title::newFromRow( $result );
 		$spanTime = Html::element( 'span', array( 'class' => 'mw-newpages-time' ),
-			$lang->timeanddate( $result->rc_timestamp, true )
+			$lang->userTimeAndDate( $result->rc_timestamp, $this->getUser() )
 		);
 		$time = Linker::linkKnown(
 			$title,
@@ -333,14 +337,15 @@ class SpecialNewpages extends IncludableSpecialPage {
 		);
 		$histLink = Linker::linkKnown(
 			$title,
-			wfMsgHtml( 'hist' ),
+			$this->msg( 'hist' )->escaped(),
 			array(),
 			array( 'action' => 'history' )
 		);
-		$hist = Html::rawElement( 'span', array( 'class' => 'mw-newpages-history' ), wfMsg( 'parentheses', $histLink ) );
+		$hist = Html::rawElement( 'span', array( 'class' => 'mw-newpages-history' ),
+			$this->msg( 'parentheses' )->rawParams( $histLink )->escaped() );
 
 		$length = Html::element( 'span', array( 'class' => 'mw-newpages-length' ),
-				'[' . $this->msg( 'nbytes' )->numParams( $result->length )->text() . ']'
+			$this->msg( 'brackets' )->params( $this->msg( 'nbytes' )->numParams( $result->length )->text() )
 		);
 
 		$ulink = Linker::revUserTools( $rev );
@@ -369,7 +374,7 @@ class SpecialNewpages extends IncludableSpecialPage {
 		$oldTitleText = '';
 		$oldTitle = Title::makeTitle( $result->rc_namespace, $result->rc_title );
 		if ( !$title->equals( $oldTitle ) ) {
-			$oldTitleText = wfMessage( 'rc-old-title' )->params( $oldTitle->getPrefixedText() )->escaped();	
+			$oldTitleText = $this->msg( 'rc-old-title' )->params( $oldTitle->getPrefixedText() )->escaped();
 		}
 
 		return "<li{$css}>{$time} {$dm}{$plink} {$hist} {$dm}{$length} {$dm}{$ulink} {$comment} {$tagDisplay} {$oldTitleText}</li>\n";
@@ -405,7 +410,7 @@ class SpecialNewpages extends IncludableSpecialPage {
 
 		$feed = new $wgFeedClasses[$type](
 			$this->feedTitle(),
-			wfMsgExt( 'tagline', 'parsemag' ),
+			$this->msg( 'tagline' )->text(),
 			$this->getTitle()->getFullUrl()
 		);
 
@@ -429,7 +434,7 @@ class SpecialNewpages extends IncludableSpecialPage {
 	}
 
 	protected function feedItem( $row ) {
-		$title = Title::MakeTitle( intval( $row->rc_namespace ), $row->rc_title );
+		$title = Title::makeTitle( intval( $row->rc_namespace ), $row->rc_title );
 		if( $title ) {
 			$date = $row->rc_timestamp;
 			$comments = $title->getTalkPage()->getFullURL();
@@ -454,7 +459,8 @@ class SpecialNewpages extends IncludableSpecialPage {
 	protected function feedItemDesc( $row ) {
 		$revision = Revision::newFromId( $row->rev_id );
 		if( $revision ) {
-			return '<p>' . htmlspecialchars( $revision->getUserText() ) . wfMsgForContent( 'colon-separator' ) .
+			return '<p>' . htmlspecialchars( $revision->getUserText() ) .
+				$this->msg( 'colon-separator' )->inContentLanguage()->escaped() .
 				htmlspecialchars( FeedItem::stripComment( $revision->getComment() ) ) .
 				"</p>\n<hr />\n<div>" .
 				nl2br( htmlspecialchars( $revision->getText() ) ) . "</div>";

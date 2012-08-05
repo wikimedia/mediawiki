@@ -4,7 +4,7 @@
  *
  * Created on Sep 7, 2007
  *
- * Copyright © 2007 Roan Kattouw <Firstname>.<Lastname>@gmail.com
+ * Copyright © 2007 Roan Kattouw "<Firstname>.<Lastname>@gmail.com"
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -44,7 +44,7 @@ class ApiUnblock extends ApiBase {
 		$params = $this->extractRequestParams();
 
 		if ( $params['gettoken'] ) {
-			$res['unblocktoken'] = $user->getEditToken( '', $this->getMain()->getRequest() );
+			$res['unblocktoken'] = $user->getEditToken();
 			$this->getResult()->addValue( null, $this->getModuleName(), $res );
 			return;
 		}
@@ -69,7 +69,7 @@ class ApiUnblock extends ApiBase {
 
 		$data = array(
 			'Target' => is_null( $params['id'] ) ? $params['user'] : "#{$params['id']}",
-			'Reason' => is_null( $params['reason'] ) ? '' : $params['reason']
+			'Reason' => $params['reason']
 		);
 		$block = Block::newFromTarget( $data['Target'] );
 		$retval = SpecialUnblock::processUnblock( $data, $this->getContext() );
@@ -78,7 +78,9 @@ class ApiUnblock extends ApiBase {
 		}
 
 		$res['id'] = $block->getId();
-		$res['user'] = $block->getType() == Block::TYPE_AUTO ? '' : $block->getTarget();
+		$target = $block->getType() == Block::TYPE_AUTO ? '' : $block->getTarget();
+		$res['user'] = $target;
+		$res['userid'] = $target instanceof User ? $target->getId() : 0;
 		$res['reason'] = $params['reason'];
 		$this->getResult()->addValue( null, $this->getModuleName(), $res );
 	}
@@ -98,8 +100,11 @@ class ApiUnblock extends ApiBase {
 			),
 			'user' => null,
 			'token' => null,
-			'gettoken' => false,
-			'reason' => null,
+			'gettoken' => array(
+				ApiBase::PARAM_DFLT => false,
+				ApiBase::PARAM_DEPRECATED => true,
+			),
+			'reason' => '',
 		);
 	}
 
@@ -108,9 +113,36 @@ class ApiUnblock extends ApiBase {
 		return array(
 			'id' => "ID of the block you want to unblock (obtained through list=blocks). Cannot be used together with {$p}user",
 			'user' => "Username, IP address or IP range you want to unblock. Cannot be used together with {$p}id",
-			'token' => "An unblock token previously obtained through the gettoken parameter or {$p}prop=info",
+			'token' => "An unblock token previously obtained through prop=info",
 			'gettoken' => 'If set, an unblock token will be returned, and no other action will be taken',
-			'reason' => 'Reason for unblock (optional)',
+			'reason' => 'Reason for unblock',
+		);
+	}
+
+	public function getResultProperties() {
+		return array(
+			'' => array(
+				'unblocktoken' => array(
+					ApiBase::PROP_TYPE => 'string',
+					ApiBase::PROP_NULLABLE => true
+				),
+				'id' => array(
+					ApiBase::PROP_TYPE => 'integer',
+					ApiBase::PROP_NULLABLE => true
+				),
+				'user' => array(
+					ApiBase::PROP_TYPE => 'string',
+					ApiBase::PROP_NULLABLE => true
+				),
+				'userid' => array(
+					ApiBase::PROP_TYPE => 'integer',
+					ApiBase::PROP_NULLABLE => true
+				),
+				'reason' => array(
+					ApiBase::PROP_TYPE => 'string',
+					ApiBase::PROP_NULLABLE => true
+				)
+			)
 		);
 	}
 

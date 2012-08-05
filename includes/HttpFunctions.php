@@ -1,5 +1,27 @@
 <?php
 /**
+ * Various HTTP related functions.
+ *
+ * This program is free software; you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation; either version 2 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License along
+ * with this program; if not, write to the Free Software Foundation, Inc.,
+ * 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
+ * http://www.gnu.org/copyleft/gpl.html
+ *
+ * @file
+ * @ingroup HTTP
+ */
+
+/**
  * @defgroup HTTP HTTP
  */
 
@@ -134,7 +156,7 @@ class Http {
 	 *
 	 * file:// should not be allowed here for security purpose (r67684)
 	 *
-	 * @fixme this is wildly inaccurate and fails to actually check most stuff
+	 * @todo FIXME this is wildly inaccurate and fails to actually check most stuff
 	 *
 	 * @param $uri Mixed: URI to check for validity
 	 * @return Boolean
@@ -190,7 +212,7 @@ class MWHttpRequest {
 	 * @param $url String: url to use. If protocol-relative, will be expanded to an http:// URL
 	 * @param $options Array: (optional) extra params to pass (see Http::request())
 	 */
-	function __construct( $url, $options = array() ) {
+	protected function __construct( $url, $options = array() ) {
 		global $wgHTTPTimeout;
 
 		$this->url = wfExpandUrl( $url, PROTO_HTTP );
@@ -216,6 +238,11 @@ class MWHttpRequest {
 
 		foreach ( $members as $o ) {
 			if ( isset( $options[$o] ) ) {
+				// ensure that MWHttpRequest::method is always
+				// uppercased. Bug 36137
+				if ( $o == 'method' ) {
+					$options[$o] = strtoupper( $options[$o] );
+				}
 				$this->$o = $options[$o];
 			}
 		}
@@ -885,7 +912,7 @@ class PhpHttpRequest extends MWHttpRequest {
 			return $this->status;
 		}
 
-		// If everything went OK, or we recieved some error code
+		// If everything went OK, or we received some error code
 		// get the response body content.
 		if ( $this->status->isOK()
 				|| (int)$this->respStatus >= 300) {

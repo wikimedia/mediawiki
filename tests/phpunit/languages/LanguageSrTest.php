@@ -14,7 +14,7 @@
 
 require_once dirname( dirname( __FILE__ ) ) . '/bootstrap.php';
 
-/** Tests for MediaWiki languages/LanguageTr.php */
+/** Tests for MediaWiki languages/LanguageSr.php */
 class LanguageSrTest extends MediaWikiTestCase {
 	/* Language object. Initialized before each test */
 	private $lang;
@@ -65,17 +65,37 @@ class LanguageSrTest extends MediaWikiTestCase {
 	 * @author Nikola Smolenski
 	 */
 	function testConversionToCyrillic() {
+		//A simple convertion of Latin to Cyrillic
 		$this->assertEquals( 'абвг',
 			$this->convertToCyrillic( 'abvg' )
 		);
+		//Same as above, but assert that -{}-s must be removed and not converted
+		$this->assertEquals( 'ljабnjвгdž',
+			$this->convertToCyrillic( '-{lj}-ab-{nj}-vg-{dž}-' )
+		);
+		//A simple convertion of Cyrillic to Cyrillic
 		$this->assertEquals( 'абвг',
 			$this->convertToCyrillic( 'абвг' )
 		);
+		//Same as above, but assert that -{}-s must be removed and not converted
+		$this->assertEquals( 'ljабnjвгdž',
+			$this->convertToCyrillic( '-{lj}-аб-{nj}-вг-{dž}-' )
+		);
+		//This text has some Latin, but is recognized as Cyrillic, so it should not be converted
 		$this->assertEquals( 'abvgшђжчћ',
 			$this->convertToCyrillic( 'abvgшђжчћ' )
 		);
+		//Same as above, but assert that -{}-s must be removed
+		$this->assertEquals( 'љabvgњшђжчћџ',
+			$this->convertToCyrillic( '-{љ}-abvg-{њ}-шђжчћ-{џ}-' )
+		);
+		//This text has some Cyrillic, but is recognized as Latin, so it should be converted
 		$this->assertEquals( 'абвгшђжчћ',
 			$this->convertToCyrillic( 'абвгšđžčć' )
+		);
+		//Same as above, but assert that -{}-s must be removed and not converted
+		$this->assertEquals( 'ljабвгnjшђжчћdž',
+			$this->convertToCyrillic( '-{lj}-абвг-{nj}-šđžčć-{dž}-' )
 		);
 		// Roman numerals are not converted
 		$this->assertEquals( 'а I б II в III г IV шђжчћ',
@@ -84,15 +104,19 @@ class LanguageSrTest extends MediaWikiTestCase {
 	}
 
 	function testConversionToLatin() {
+		//A simple convertion of Latin to Latin
 		$this->assertEquals( 'abcd',
 			$this->convertToLatin( 'abcd' )
 		);
+		//A simple convertion of Cyrillic to Latin
 		$this->assertEquals( 'abcd',
 			$this->convertToLatin( 'абцд' )
 		);
+		//This text has some Latin, but is recognized as Cyrillic, so it should be converted
 		$this->assertEquals( 'abcdšđžčć',
 			$this->convertToLatin( 'abcdшђжчћ' )
 		);
+		//This text has some Cyrillic, but is recognized as Latin, so it should not be converted
 		$this->assertEquals( 'абцдšđžčć',
 			$this->convertToLatin( 'абцдšđžčć' )
 		);

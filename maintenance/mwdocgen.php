@@ -57,6 +57,9 @@ $doxygenBin = 'doxygen';
 /** doxygen configuration template for mediawiki */
 $doxygenTemplate = $mwPath . 'maintenance/Doxyfile';
 
+/** doxygen input filter to tweak source file before they are parsed */
+$doxygenInputFilter = "php {$mwPath}maintenance/mwdoc-filter.php";
+
 /** svnstat command, used to get the version of each file */
 $svnstat = $mwPath . 'bin/svnstat';
 
@@ -77,9 +80,9 @@ $mwExcludePaths = array(
 
 /** Variable to get user input */
 $input = '';
-$exclude_patterns = '';
+$excludePatterns = '';
 /** Whether to generates man pages: */
-$wgDoxyGenerateMan = false;
+$doxyGenerateMan = false;
 
 #
 # Functions
@@ -128,16 +131,15 @@ function getSvnRevision( $dir ) {
  * @param $svnstat String: path to the svnstat file
  * @param $input String: Path to analyze.
  * @param $exclude String: Additionals path regex to exclude
- * @param $exclude_patterns String: Additionals path regex to exclude
+ * @param $excludePatterns String: Additionals path regex to exclude
  *                 (LocalSettings.php, AdminSettings.php, .svn and .git directories are always excluded)
+ * @param $doxyGenerateMan Boolean
  * @return string
  */
-function generateConfigFile( $doxygenTemplate, $outputDirectory, $stripFromPath, $currentVersion, $svnstat, $input, $exclude, $exclude_patterns ) {
-
-	global $wgDoxyGenerateMan;
+function generateConfigFile( $doxygenTemplate, $outputDirectory, $stripFromPath, $currentVersion, $svnstat, $input, $exclude, $excludePatterns, $doxyGenerateMan ) {
+	global $doxygenInputFilter;
 
 	$template = file_get_contents( $doxygenTemplate );
-
 	// Replace template placeholders by correct values.
 	$replacements = array(
 		'{{OUTPUT_DIRECTORY}}' => $outputDirectory,
@@ -146,9 +148,10 @@ function generateConfigFile( $doxygenTemplate, $outputDirectory, $stripFromPath,
 		'{{SVNSTAT}}'          => $svnstat,
 		'{{INPUT}}'            => $input,
 		'{{EXCLUDE}}'          => $exclude,
-		'{{EXCLUDE_PATTERNS}}' => $exclude_patterns,
+		'{{EXCLUDE_PATTERNS}}' => $excludePatterns,
 		'{{HAVE_DOT}}'         => `which dot` ? 'YES' : 'NO',
-		'{{GENERATE_MAN}}'     => $wgDoxyGenerateMan ? 'YES' : 'NO',
+		'{{GENERATE_MAN}}'     => $doxyGenerateMan ? 'YES' : 'NO',
+		'{{INPUT_FILTER}}'     => $doxygenInputFilter,
 	);
 	$tmpCfg = str_replace( array_keys( $replacements ), array_values( $replacements ), $template );
 	$tmpFileName = tempnam( wfTempDir(), 'mwdocgen-' );
@@ -186,7 +189,7 @@ if ( is_array( $argv ) ) {
 			}
 			break;
 		case '--generate-man':
-			$wgDoxyGenerateMan = true;
+			$doxyGenerateMan = true;
 			break;
 		case '--help':
 			print <<<END
@@ -252,7 +255,7 @@ case 5:
 	break;
 case 6:
 	$input = $mwPath;
-	$exclude_patterns = 'extensions';
+	$excludePatterns = 'extensions';
 }
 
 $versionNumber = getSvnRevision( $input );
@@ -268,7 +271,7 @@ if ( $versionNumber === false ) { # Not using subversion ?
 $excludedPaths = $mwPath . join( " $mwPath", $mwExcludePaths );
 print "EXCLUDE: $excludedPaths\n\n";
 
-$generatedConf = generateConfigFile( $doxygenTemplate, $doxyOutput, $mwPath, $version, $svnstat, $input, $excludedPaths, $exclude_patterns );
+$generatedConf = generateConfigFile( $doxygenTemplate, $doxyOutput, $mwPath, $version, $svnstat, $input, $excludedPaths, $excludePatterns, $doxyGenerateMan );
 $command = $doxygenBin . ' ' . $generatedConf;
 
 echo <<<TEXT

@@ -20,6 +20,7 @@ class StructureTest extends MediaWikiTestCase {
 			'MediaWikiLangTestCase',
 			'MediaWikiTestCase',
 			'PHPUnit_Framework_TestCase',
+			'DumpTestCase',
 		) );
 		$testClassRegex = "^class .* extends ($testClassRegex)";
 		$finder = "find $rootPath -name '*.php' '!' -name '*Test.php'" .

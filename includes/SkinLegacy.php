@@ -1,11 +1,24 @@
 <?php
 /**
- * @defgroup Skins Skins
+ * Base class for legacy skins.
+ *
+ * This program is free software; you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation; either version 2 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License along
+ * with this program; if not, write to the Free Software Foundation, Inc.,
+ * 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
+ * http://www.gnu.org/copyleft/gpl.html
+ *
+ * @file
  */
-
-if ( !defined( 'MEDIAWIKI' ) ) {
-	die( 1 );
-}
 
 class SkinLegacy extends SkinTemplate {
 	var $useHeadElement = true;
@@ -82,7 +95,7 @@ class LegacyTemplate extends BaseTemplate {
 	}
 
 	/**
-	 * This will be called immediately after the <body> tag.  Split into
+	 * This will be called immediately after the "<body>" tag.  Split into
 	 * two functions to make it easier to subclass.
 	 * @return string
 	 */
@@ -146,8 +159,8 @@ class LegacyTemplate extends BaseTemplate {
 	}
 
 	/**
-	 * This gets called shortly before the </body> tag.
-	 * @return String HTML to be put before </body>
+	 * This gets called shortly before the "</body>" tag.
+	 * @return String HTML to be put before "</body>"
 	 */
 	function afterContent() {
 		return $this->doAfterContent();
@@ -433,13 +446,13 @@ class LegacyTemplate extends BaseTemplate {
 
 		if ( $wgOut->isArticleRelated() ) {
 			if ( $title->getNamespace() == NS_FILE ) {
-				$name = $title->getDBkey();
 				$image = wfFindFile( $title );
 
 				if ( $image ) {
-					$link = htmlspecialchars( $image->getURL() );
-					$style = Linker::getInternalLinkAttributes( $link, $name );
-					$s[] = "<a href=\"{$link}\"{$style}>{$name}</a>";
+					$href = $image->getURL();
+					$s[] = Html::element( 'a', array( 'href' => $href,
+						'title' => $href ), $title->getText() );
+
 				}
 			}
 		}
@@ -625,7 +638,7 @@ class LegacyTemplate extends BaseTemplate {
 		$title = $this->getSkin()->getTitle();
 
 		if ( $wgOut->isArticleRelated() ) {
-			if ( $title->userIsWatching() ) {
+			if ( $wgUser->isWatched( $title ) ) {
 				$text = wfMsg( 'unwatchthispage' );
 				$query = array(
 					'action' => 'unwatch',

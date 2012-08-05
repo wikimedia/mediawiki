@@ -11,13 +11,19 @@
  * @license CC-BY 3.0 <http://creativecommons.org/licenses/by/3.0>
  * @license GPL2 <http://www.gnu.org/licenses/old-licenses/gpl-2.0.html>
  */
-( function( $ ) {
-// @return jQuery object of the message box
-$.messageBoxNew = function( options ) {
+( function ( $ ) {
+
+/** @return jQuery object of the message box */
+$.messageBoxNew = function ( options ) {
 	options = $.extend( {
-		'id': 'js-messagebox', // unique identifier for this message box
-		'parent': 'body', // jQuery/CSS selector
-		'insert': 'prepend' // 'prepend' or 'append'
+		// unique identifier for this message box
+		id: 'js-messagebox',
+
+		// jQuery/CSS selector
+		parent: 'body',
+
+		// 'prepend' or 'append'
+		insert: 'prepend'
 	}, options );
 	var $curBox = $( '#' + options.id );
 	// Only create a new box if it doesn't exist already
@@ -47,17 +53,21 @@ $.messageBoxNew = function( options ) {
 		}
 	}
 };
-// Calling with no message or message set to empty string or null will hide the group,
-// setting 'replace' to true as well will reset and hide the group entirely.
-// If there are no visible groups the main message box is hidden automatically,
-// and shown again once there are messages
-// @return jQuery object of message group
-$.messageBox = function( options ) {
+
+/**
+ * Calling with no message or message set to empty string or null will hide the group,
+ * setting 'replace' to true as well will reset and hide the group entirely.
+ * If there are no visible groups the main message box is hidden automatically,
+ * and shown again once there are messages
+ * @return {jQuery}: jQuery object of message group.
+ */
+$.messageBox = function ( options ) {
 	options = $.extend( {
-		'message': '',
-		'group': 'default',
-		'replace': false, // if true replaces any previous message in this group
-		'target': 'js-messagebox'
+		message: '',
+		group: 'default',
+		// if replace=true, it replaces any previous message in this group
+		replace: false,
+		target: 'js-messagebox'
 	}, options );
 	var $target = $.messageBoxNew( { id: options.target } );
 	var groupID = options.target + '-' + options.group;
@@ -95,4 +105,5 @@ $.messageBox = function( options ) {
 	}
 	return $group;
 };
-} )( jQuery );
+
+}( jQuery ) );

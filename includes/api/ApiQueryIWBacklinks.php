@@ -5,7 +5,7 @@
  * Created on May 14, 2010
  *
  * Copyright © 2010 Sam Reed
- * Copyright © 2006 Yuri Astrakhan <Firstname><Lastname>@gmail.com
+ * Copyright © 2006 Yuri Astrakhan "<Firstname><Lastname>@gmail.com"
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -61,15 +61,17 @@ class ApiQueryIWBacklinks extends ApiQueryGeneratorBase {
 					'original value returned by the previous query', '_badcontinue' );
 			}
 
-			$prefix = $this->getDB()->strencode( $cont[0] );
-			$title = $this->getDB()->strencode( $this->titleToKey( $cont[1] ) );
+			$db = $this->getDB();
+			$op = $params['dir'] == 'descending' ? '<' : '>';
+			$prefix = $db->addQuotes( $cont[0] );
+			$title = $db->addQuotes( $cont[1] );
 			$from = intval( $cont[2] );
 			$this->addWhere(
-				"iwl_prefix > '$prefix' OR " .
-				"(iwl_prefix = '$prefix' AND " .
-				"(iwl_title > '$title' OR " .
-				"(iwl_title = '$title' AND " .
-				"iwl_from >= $from)))"
+				"iwl_prefix $op $prefix OR " .
+				"(iwl_prefix = $prefix AND " .
+				"(iwl_title $op $title OR " .
+				"(iwl_title = $title AND " .
+				"iwl_from $op= $from)))"
 			);
 		}
 
@@ -83,16 +85,24 @@ class ApiQueryIWBacklinks extends ApiQueryGeneratorBase {
 		$this->addFields( array( 'page_id', 'page_title', 'page_namespace', 'page_is_redirect',
 			'iwl_from', 'iwl_prefix', 'iwl_title' ) );
 
+		$sort = ( $params['dir'] == 'descending' ? ' DESC' : '' );
 		if ( isset( $params['prefix'] ) ) {
 			$this->addWhereFld( 'iwl_prefix', $params['prefix'] );
 			if ( isset( $params['title'] ) ) {
 				$this->addWhereFld( 'iwl_title', $params['title'] );
-				$this->addOption( 'ORDER BY', 'iwl_from' );
+				$this->addOption( 'ORDER BY', 'iwl_from' . $sort );
 			} else {
-				$this->addOption( 'ORDER BY', 'iwl_title, iwl_from' );
+				$this->addOption( 'ORDER BY', array(
+					'iwl_title' . $sort,
+					'iwl_from' . $sort
+				));
 			}
 		} else {
-			$this->addOption( 'ORDER BY', 'iwl_prefix, iwl_title, iwl_from' );
+			$this->addOption( 'ORDER BY', array(
+				'iwl_prefix' . $sort,
+				'iwl_title' . $sort,
+				'iwl_from' . $sort
+			));
 		}
 
 		$this->addOption( 'LIMIT', $params['limit'] + 1 );
@@ -170,6 +180,13 @@ class ApiQueryIWBacklinks extends ApiQueryGeneratorBase {
 					'iwtitle',
 				),
 			),
+			'dir' => array(
+				ApiBase::PARAM_DFLT => 'ascending',
+				ApiBase::PARAM_TYPE => array(
+					'ascending',
+					'descending'
+				)
+			),
 		);
 	}
 
@@ -184,6 +201,24 @@ class ApiQueryIWBacklinks extends ApiQueryGeneratorBase {
 				' iwtitle        - Adds the title of the interwiki',
 			),
 			'limit' => 'How many total pages to return',
+			'dir' => 'The direction in which to list',
+		);
+	}
+
+	public function getResultProperties() {
+		return array(
+			'' => array(
+				'pageid' => 'integer',
+				'ns' => 'namespace',
+				'title' => 'string',
+				'redirect' => 'boolean'
+			),
+			'iwprefix' => array(
+				'iwprefix' => 'string'
+			),
+			'iwtitle' => array(
+				'iwtitle' => 'string'
+			)
 		);
 	}
 
@@ -205,7 +240,7 @@ class ApiQueryIWBacklinks extends ApiQueryGeneratorBase {
 	public function getExamples() {
 		return array(
 			'api.php?action=query&list=iwbacklinks&iwbltitle=Test&iwblprefix=wikibooks',
-			'api.php?action=query&generator=iwbacklinks&giwbltitle=Test&iwblprefix=wikibooks&prop=info'
+			'api.php?action=query&generator=iwbacklinks&giwbltitle=Test&giwblprefix=wikibooks&prop=info'
 		);
 	}
 

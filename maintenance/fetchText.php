@@ -1,6 +1,6 @@
 <?php
 /**
- * Communications protocol...
+ * Communications protocol.
  * This is used by dumpTextPass.php when the --spawn option is present.
  *
  * This program is free software; you can redistribute it and/or modify
@@ -18,11 +18,17 @@
  * 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
  * http://www.gnu.org/copyleft/gpl.html
  *
+ * @file
  * @ingroup Maintenance
  */
 
 require_once( dirname( __FILE__ ) . '/Maintenance.php' );
 
+/**
+ * Maintenance script used to fetch page text in a subprocess.
+ *
+ * @ingroup Maintenance
+ */
 class FetchText extends Maintenance {
 	public function __construct() {
 		parent::__construct();

@@ -1,7 +1,7 @@
 ( function ( $ ) {
 	var simpleSample, U_20AC, mbSample;
 
-	module( 'jquery.byteLimit', QUnit.newMwEnvironment() );
+	QUnit.module( 'jquery.byteLimit', QUnit.newMwEnvironment() );
 
 	// Simple sample (20 chars, 20 bytes)
 	simpleSample = '12345678901234567890';
@@ -54,7 +54,7 @@
 			limit: null
 		}, options);
 
-		test( opt.description, function () {
+		QUnit.test( opt.description, function ( assert ) {
 			var rawVal, fn, newVal;
 
 			opt.$input.appendTo( '#qunit-fixture' );
@@ -66,24 +66,24 @@
 			newVal = $.isFunction( fn ) ? fn( rawVal ) : rawVal;
 
 			if ( opt.hasLimit ) {
-				expect(3);
+				QUnit.expect(3);
 
-				QUnit.ltOrEq(
+				assert.ltOrEq(
 					$.byteLength( newVal ),
 					opt.limit,
 					'Prevent keypresses after byteLimit was reached, length never exceeded the limit'
 				);
-				equal(
+				assert.equal(
 					$.byteLength( rawVal ),
 					$.byteLength( opt.expected ),
 					'Not preventing keypresses too early, length has reached the expected length'
 				);
-				equal( rawVal, opt.expected, 'New value matches the expected string' );
+				assert.equal( rawVal, opt.expected, 'New value matches the expected string' );
 
 			} else {
-				expect(2);
-				equal( newVal, opt.expected, 'New value matches the expected string' );
-				equal(
+				QUnit.expect(2);
+				assert.equal( newVal, opt.expected, 'New value matches the expected string' );
+				assert.equal(
 					$.byteLength( newVal ),
 					$.byteLength( opt.expected ),
 					'Unlimited scenarios are not affected, expected length reached'
@@ -92,15 +92,20 @@
 		} );
 	}
 
-	test( '-- Initial check', function () {
-		expect(1);
-		ok( $.fn.byteLimit, 'jQuery.fn.byteLimit defined' );
-	} );
-
 	byteLimitTest({
 		description: 'Plain text input',
 		$input: $( '<input>' )
 			.attr( 'type', 'text' ),
+		sample: simpleSample,
+		hasLimit: false,
+		expected: simpleSample
+	});
+
+	byteLimitTest({
+		description: 'Plain text input. Calling byteLimit with no parameters and no maxLength property (bug 36310)',
+		$input: $( '<input>' )
+			.attr( 'type', 'text' )
+			.byteLimit(),
 		sample: simpleSample,
 		hasLimit: false,
 		expected: simpleSample
@@ -202,10 +207,8 @@
 		expected: 'User:Sample'
 	});
 
-	test( 'Confirm properties and attributes set', function () {
+	QUnit.test( 'Confirm properties and attributes set', 5, function ( assert ) {
 		var $el, $elA, $elB;
-
-		expect(5);
 
 		$el = $( '<input>' )
 			.attr( 'type', 'text' )
@@ -213,7 +216,7 @@
 			.appendTo( '#qunit-fixture' )
 			.byteLimit();
 
-		strictEqual( $el.prop( 'maxLength' ), 7, 'Pre-set maxLength property unchanged' );
+		assert.strictEqual( $el.prop( 'maxLength' ), 7, 'Pre-set maxLength property unchanged' );
 
 		$el = $( '<input>' )
 			.attr( 'type', 'text' )
@@ -221,7 +224,7 @@
 			.appendTo( '#qunit-fixture' )
 			.byteLimit( 12 );
 
-		strictEqual( $el.prop( 'maxLength' ), 12, 'maxLength property updated if value was passed to $.fn.byteLimit' );
+		assert.strictEqual( $el.prop( 'maxLength' ), 12, 'maxLength property updated if value was passed to $.fn.byteLimit' );
 
 		$elA = $( '<input>' )
 			.addClass( 'mw-test-byteLimit-foo' )
@@ -237,7 +240,7 @@
 
 		$el = $( '.mw-test-byteLimit-foo' );
 
-		strictEqual( $el.length, 2, 'Verify that there are no other elements clashing with this test suite' );
+		assert.strictEqual( $el.length, 2, 'Verify that there are no other elements clashing with this test suite' );
 
 		$el.byteLimit();
 
@@ -245,8 +248,8 @@
 		// because $.fn.byteLimit sets:
 		// `limit = limitArg || this.prop( 'maxLength' ); this.prop( 'maxLength', limit )`
 		// and did so outside the each() loop.
-		strictEqual( $elA.prop( 'maxLength' ), 7, 'maxLength was not incorrectly set on #1 when calling byteLimit on multiple elements (bug 35294)' );
-		strictEqual( $elB.prop( 'maxLength' ), 12, 'maxLength was not incorrectly set on #2 when calling byteLimit on multiple elements (bug 35294)' );
+		assert.strictEqual( $elA.prop( 'maxLength' ), 7, 'maxLength was not incorrectly set on #1 when calling byteLimit on multiple elements (bug 35294)' );
+		assert.strictEqual( $elB.prop( 'maxLength' ), 12, 'maxLength was not incorrectly set on #2 when calling byteLimit on multiple elements (bug 35294)' );
 	});
 
 }( jQuery ) );

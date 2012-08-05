@@ -2,6 +2,21 @@
 /**
  * Contains classes for formatting log entries
  *
+ * This program is free software; you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation; either version 2 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License along
+ * with this program; if not, write to the Free Software Foundation, Inc.,
+ * 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
+ * http://www.gnu.org/copyleft/gpl.html
+ *
  * @file
  * @author Niklas Laxström
  * @license http://www.gnu.org/copyleft/gpl.html GNU General Public License 2.0 or later
@@ -481,9 +496,7 @@ class LogFormatter {
 	 * @return Message
 	 */
 	protected function msg( $key ) {
-		return wfMessage( $key )
-			->inLanguage( $this->context->getLanguage() )
-			->title( $this->context->getTitle() );
+		return $this->context->msg( $key );
 	}
 
 	protected function makeUserLink( User $user ) {
@@ -496,11 +509,9 @@ class LogFormatter {
 			);
 
 			if ( $this->linkFlood ) {
-				$element .= Linker::userToolLinks(
+				$element .= Linker::userToolLinksRedContribs(
 					$user->getId(),
 					$user->getName(),
-					true, // Red if no edits
-					0, // Flags
 					$user->getEditCount()
 				);
 			}
@@ -711,5 +722,13 @@ class NewUsersLogFormatter extends LogFormatter {
 			return '';
 		}
 		return parent::getComment();
+	}
+
+	public function getPreloadTitles() {
+		if ( $this->entry->getSubtype() === 'create2' ) {
+			//add the user talk to LinkBatch for the userLink
+			return array( Title::makeTitle( NS_USER_TALK, $this->entry->getTarget()->getText() ) );
+		}
+		return array();
 	}
 }

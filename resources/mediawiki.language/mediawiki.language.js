@@ -1,13 +1,12 @@
 /**
- * Base language object
- *
  * Localized Language support attempts to mirror some of the functionality of
- * Language.php in MediaWiki. This object contains methods for loading and
- * transforming message text.
+ * Language.php in MediaWiki.
+ * This adds methods for transforming message text.
  */
 ( function( $, mw ) {
 
-mw.language = {
+var language = {
+
 	/**
 	 * Process the PLURAL template substitution
 	 *
@@ -27,7 +26,7 @@ mw.language = {
 			}
 			// Restore the count into a Number ( if it got converted earlier )
 			var count = mw.language.convertNumber( template.title, true );
-			// Do convertPlural call 
+			// Do convertPlural call
 			return mw.language.convertPlural( parseInt( count, 10 ), template.parameters );
 		}
 		// Could not process plural return first form or nothing
@@ -100,7 +99,7 @@ mw.language = {
 	 * Provides an alternative text depending on specified gender.
 	 * Usage {{gender:[gender|user object]|masculine|feminine|neutral}}.
 	 * If second or third parameter are not specified, masculine is used.
-	 * 
+	 *
 	 * These details may be overriden per language.
 	 *
 	 * @param gender string male, female, or anything else for neutral.
@@ -122,7 +121,28 @@ mw.language = {
 		return ( forms.length === 3 ) ? forms[2] : forms[0];
 	},
 
+	/**
+	 * Grammatical transformations, needed for inflected languages.
+	 * Invoked by putting {{grammar:form|word}} in a message.
+	 * The rules can be defined in $wgGrammarForms global or grammar
+	 * forms can be computed dynamically by overriding this method per language
+	 *
+	 * @param word {String}
+	 * @param form {String}
+	 * @return {String}
+	 */
+	convertGrammar: function ( word, form ) {
+		var grammarForms = mw.language.getData( mw.config.get( 'wgUserLanguage' ), 'grammarForms' );
+		if ( grammarForms && grammarForms[form] ) {
+			return grammarForms[form][word] || word;
+		}
+		return word;
+	},
+
 	// Digit Transform Table, populated by language classes where applicable
-	'digitTransformTable': null
+	'digitTransformTable': mw.language.getData( mw.config.get( 'wgUserLanguage' ), 'digitTransformTable' )
 };
+
+$.extend( mw.language, language );
+
 } )( jQuery, mediaWiki );

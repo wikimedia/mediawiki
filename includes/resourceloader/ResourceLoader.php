@@ -1,5 +1,7 @@
 <?php
 /**
+ * Base class for resource loading system.
+ *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2 of the License, or
@@ -239,9 +241,9 @@ class ResourceLoader {
 				);
 			}
 
-			// Check $name for illegal characters
-			if ( preg_match( '/[|,!]/', $name ) ) {
-				throw new MWException( "ResourceLoader module name '$name' is invalid. Names may not contain pipes (|), commas (,) or exclamation marks (!)" );
+			// Check $name for validity
+			if ( !self::isValidModuleName( $name ) ) {
+				throw new MWException( "ResourceLoader module name '$name' is invalid, see ResourceLoader::isValidModuleName()" );
 			}
 
 			// Attach module
@@ -500,10 +502,6 @@ class ResourceLoader {
 			$response = $this->makeComment( $warnings ) . $response;
 		}
 
-		// Remove the output buffer and output the response
-		ob_end_clean();
-		echo $response;
-
 		// Save response to file cache unless there are errors
 		if ( isset( $fileCache ) && !$errors && !$missing ) {
 			// Cache single modules...and other requests if there are enough hits
@@ -515,6 +513,10 @@ class ResourceLoader {
 				}
 			}
 		}
+
+		// Remove the output buffer and output the response
+		ob_end_clean();
+		echo $response;
 
 		wfProfileOut( __METHOD__ );
 	}
@@ -599,7 +601,7 @@ class ResourceLoader {
 	/**
 	 * Send out code for a response from file cache if possible
 	 *
-	 * @param $fileCache ObjectFileCache: Cache object for this request URL
+	 * @param $fileCache ResourceFileCache: Cache object for this request URL
 	 * @param $context ResourceLoaderContext: Context in which to generate a response
 	 * @return bool If this found a cache file and handled the response
 	 */
@@ -683,6 +685,7 @@ class ResourceLoader {
 		}
 
 		// Generate output
+		$isRaw = false;
 		foreach ( $modules as $name => $module ) {
 			/**
 			 * @var $module ResourceLoaderModule
@@ -710,12 +713,27 @@ class ResourceLoader {
 				// Styles
 				$styles = array();
 				if ( $context->shouldIncludeStyles() ) {
-					// If we are in debug mode, we'll want to return an array of URLs
-					// See comment near shouldIncludeScripts() for more details
-					if ( $context->getDebug() && !$context->getOnly() && $module->supportsURLLoading() ) {
-						$styles = $module->getStyleURLsForDebug( $context );
-					} else {
-						$styles = $module->getStyles( $context );
+					// Don't create empty stylesheets like array( '' => '' ) for modules
+					// that don't *have* any stylesheets (bug 38024).
+					$stylePairs = $module->getStyles( $context );
+					if ( count ( $stylePairs ) ) {
+						// If we are in debug mode without &only= set, we'll want to return an array of URLs
+						// See comment near shouldIncludeScripts() for more details
+						if ( $context->getDebug() && !$context->getOnly() && $module->supportsURLLoading() ) {
+							$styles = $module->getStyleURLsForDebug( $context );
+						} else {
+							// Minify CSS before embedding in mw.loader.implement call
+							// (unless in debug mode)
+							if ( !$context->getDebug() ) {
+								foreach ( $stylePairs as $media => $style ) {
+									if ( is_string( $style ) ) {
+										$stylePairs[$media] = $this->filter( 'minify-css', $style );
+									}
+								}
+							}
+							// Combine styles into @media groups as one big string
+							$styles = array( '' => self::makeCombinedStyles( $stylePairs ) );
+						}
 					}
 				}
 
@@ -734,23 +752,22 @@ class ResourceLoader {
 						}
 						break;
 					case 'styles':
-						$out .= self::makeCombinedStyles( $styles );
+						// We no longer seperate into media, they are all concatenated now with
+						// custom media type groups into @media .. {} sections.
+						// Module returns either an empty array or an array with '' (no media type) as
+						// only key.
+						$out .= isset( $styles[''] ) ? $styles[''] : '';
 						break;
 					case 'messages':
 						$out .= self::makeMessageSetScript( new XmlJsCode( $messagesBlob ) );
 						break;
 					default:
-						// Minify CSS before embedding in mw.loader.implement call
-						// (unless in debug mode)
-						if ( !$context->getDebug() ) {
-							foreach ( $styles as $media => $style ) {
-								if ( is_string( $style ) ) {
-									$styles[$media] = $this->filter( 'minify-css', $style );
-								}
-							}
-						}
-						$out .= self::makeLoaderImplementScript( $name, $scripts, $styles,
-							new XmlJsCode( $messagesBlob ) );
+						$out .= self::makeLoaderImplementScript(
+							$name,
+							$scripts,
+							$styles,
+							new XmlJsCode( $messagesBlob )
+						);
 						break;
 				}
 			} catch ( Exception $e ) {
@@ -761,15 +778,14 @@ class ResourceLoader {
 				$missing[] = $name;
 				unset( $modules[$name] );
 			}
+			$isRaw |= $module->isRaw();
 			wfProfileOut( __METHOD__ . '-' . $name );
 		}
 
 		// Update module states
-		if ( $context->shouldIncludeScripts() ) {
+		if ( $context->shouldIncludeScripts() && !$context->getRaw() && !$isRaw ) {
 			// Set the state of modules loaded as only scripts to ready
-			if ( count( $modules ) && $context->getOnly() === 'scripts'
-				&& !isset( $modules['startup'] ) )
-			{
+			if ( count( $modules ) && $context->getOnly() === 'scripts' ) {
 				$out .= self::makeLoaderStateScript(
 					array_fill_keys( array_keys( $modules ), 'ready' ) );
 			}
@@ -842,7 +858,7 @@ class ResourceLoader {
 
 	/**
 	 * Combines an associative array mapping media type to CSS into a
-	 * single stylesheet with @media blocks.
+	 * single stylesheet with "@media" blocks.
 	 *
 	 * @param $styles Array: List of CSS strings keyed by media type
 	 *
@@ -1096,5 +1112,18 @@ class ResourceLoader {
 		// Make queries uniform in order
 		ksort( $query );
 		return $query;
+	}
+
+	/**
+	 * Check a module name for validity.
+	 *
+	 * Module names may not contain pipes (|), commas (,) or exclamation marks (!) and can be
+	 * at most 255 bytes.
+	 *
+	 * @param $moduleName string Module name to check
+	 * @return bool Whether $moduleName is a valid module name
+	 */
+	public static function isValidModuleName( $moduleName ) {
+		return !preg_match( '/[|,!]/', $moduleName ) && strlen( $moduleName ) <= 255;
 	}
 }

@@ -76,7 +76,7 @@ class SpecialMergeHistory extends SpecialPage {
 	function preCacheMessages() {
 		// Precache various messages
 		if( !isset( $this->message ) ) {
-			$this->message['last'] = wfMsgExt( 'last', array( 'escape' ) );
+			$this->message['last'] = $this->msg( 'last' )->escaped();
 		}
 	}
 
@@ -90,7 +90,8 @@ class SpecialMergeHistory extends SpecialPage {
 		$this->outputHeader();
 
 		if( $this->mTargetID && $this->mDestID && $this->mAction == 'submit' && $this->mMerge ) {
-			return $this->merge();
+			$this->merge();
+			return;
 		}
 
 		if ( !$this->mSubmitted ) {
@@ -100,23 +101,23 @@ class SpecialMergeHistory extends SpecialPage {
 
 		$errors = array();
 		if ( !$this->mTargetObj instanceof Title ) {
-			$errors[] = wfMsgExt( 'mergehistory-invalid-source', array( 'parse' ) );
+			$errors[] = $this->msg( 'mergehistory-invalid-source' )->parseAsBlock();
 		} elseif( !$this->mTargetObj->exists() ) {
-			$errors[] = wfMsgExt( 'mergehistory-no-source', array( 'parse' ),
+			$errors[] = $this->msg( 'mergehistory-no-source', array( 'parse' ),
 				wfEscapeWikiText( $this->mTargetObj->getPrefixedText() )
-			);
+			)->parseAsBlock();
 		}
 
 		if ( !$this->mDestObj instanceof Title ) {
-			$errors[] = wfMsgExt( 'mergehistory-invalid-destination', array( 'parse' ) );
+			$errors[] = $this->msg( 'mergehistory-invalid-destination' )->parseAsBlock();
 		} elseif( !$this->mDestObj->exists() ) {
-			$errors[] = wfMsgExt( 'mergehistory-no-destination', array( 'parse' ),
+			$errors[] = $this->msg( 'mergehistory-no-destination', array( 'parse' ),
 				wfEscapeWikiText( $this->mDestObj->getPrefixedText() )
-			);
+			)->parseAsBlock();
 		}
 
 		if ( $this->mTargetObj && $this->mDestObj && $this->mTargetObj->equals( $this->mDestObj ) ) {
-			$errors[] = wfMsgExt( 'mergehistory-same-destination', array( 'parse' ) );
+			$errors[] = $this->msg( 'mergehistory-same-destination' )->parseAsBlock();
 		}
 
 		if ( count( $errors ) ) {
@@ -139,19 +140,19 @@ class SpecialMergeHistory extends SpecialPage {
 				'action' => $wgScript ) ) .
 			'<fieldset>' .
 			Xml::element( 'legend', array(),
-				wfMsg( 'mergehistory-box' ) ) .
+				$this->msg( 'mergehistory-box' )->text() ) .
 			Html::hidden( 'title', $this->getTitle()->getPrefixedDbKey() ) .
 			Html::hidden( 'submitted', '1' ) .
 			Html::hidden( 'mergepoint', $this->mTimestamp ) .
 			Xml::openElement( 'table' ) .
 			'<tr>
-				<td>' . Xml::label( wfMsg( 'mergehistory-from' ), 'target' ) . '</td>
+				<td>' . Xml::label( $this->msg( 'mergehistory-from' )->text(), 'target' ) . '</td>
 				<td>' . Xml::input( 'target', 30, $this->mTarget, array( 'id' => 'target' ) ) . '</td>
 			</tr><tr>
-				<td>' . Xml::label( wfMsg( 'mergehistory-into' ), 'dest' ) . '</td>
+				<td>' . Xml::label( $this->msg( 'mergehistory-into' )->text(), 'dest' ) . '</td>
 				<td>' . Xml::input( 'dest', 30, $this->mDest, array( 'id' => 'dest' ) ) . '</td>
 			</tr><tr><td>' .
-			Xml::submitButton( wfMsg( 'mergehistory-go' ) ) .
+			Xml::submitButton( $this->msg( 'mergehistory-go' )->text() ) .
 			'</td></tr>' .
 			Xml::closeElement( 'table' ) .
 			'</fieldset>' .
@@ -187,12 +188,12 @@ class SpecialMergeHistory extends SpecialPage {
 			# in a nice little table
 			$table =
 				Xml::openElement( 'fieldset' ) .
-				wfMsgExt( 'mergehistory-merge', array( 'parseinline' ),
-					$this->mTargetObj->getPrefixedText(), $this->mDestObj->getPrefixedText() ) .
+				$this->msg( 'mergehistory-merge', $this->mTargetObj->getPrefixedText(),
+					$this->mDestObj->getPrefixedText() )->parse() .
 				Xml::openElement( 'table', array( 'id' => 'mw-mergehistory-table' ) ) .
 					'<tr>
 						<td class="mw-label">' .
-							Xml::label( wfMsg( 'mergehistory-reason' ), 'wpComment' ) .
+							Xml::label( $this->msg( 'mergehistory-reason' )->text(), 'wpComment' ) .
 						'</td>
 						<td class="mw-input">' .
 							Xml::input( 'wpComment', 50, $this->mComment, array( 'id' => 'wpComment' ) ) .
@@ -201,7 +202,7 @@ class SpecialMergeHistory extends SpecialPage {
 					<tr>
 						<td>&#160;</td>
 						<td class="mw-submit">' .
-							Xml::submitButton( wfMsg( 'mergehistory-submit' ), array( 'name' => 'merge', 'id' => 'mw-merge-submit' ) ) .
+							Xml::submitButton( $this->msg( 'mergehistory-submit' )->text(), array( 'name' => 'merge', 'id' => 'mw-merge-submit' ) ) .
 						'</td>
 					</tr>' .
 				Xml::closeElement( 'table' ) .
@@ -212,7 +213,7 @@ class SpecialMergeHistory extends SpecialPage {
 
 		$out->addHTML(
 			'<h2 id="mw-mergehistory">' .
-			wfMsgHtml( 'mergehistory-list' ) . "</h2>\n"
+			$this->msg( 'mergehistory-list' )->escaped() . "</h2>\n"
 		);
 
 		if( $haveRevisions ) {
@@ -251,9 +252,11 @@ class SpecialMergeHistory extends SpecialPage {
 		$ts = wfTimestamp( TS_MW, $row->rev_timestamp );
 		$checkBox = Xml::radio( 'mergepoint', $ts, false );
 
+		$user = $this->getUser();
+
 		$pageLink = Linker::linkKnown(
 			$rev->getTitle(),
-			htmlspecialchars( $this->getLanguage()->timeanddate( $ts ) ),
+			htmlspecialchars( $this->getLanguage()->userTimeAndDate( $ts, $user ) ),
 			array(),
 			array( 'oldid' => $rev->getId() )
 		);
@@ -262,7 +265,7 @@ class SpecialMergeHistory extends SpecialPage {
 		}
 
 		# Last link
-		if( !$rev->userCan( Revision::DELETED_TEXT, $this->getUser() ) ) {
+		if( !$rev->userCan( Revision::DELETED_TEXT, $user ) ) {
 			$last = $this->message['last'];
 		} elseif( isset( $this->prevId[$row->rev_id] ) ) {
 			$last = Linker::linkKnown(
@@ -284,7 +287,8 @@ class SpecialMergeHistory extends SpecialPage {
 		}
 		$comment = Linker::revComment( $rev );
 
-		return "<li>$checkBox ($last) $pageLink . . $userLink $stxt $comment</li>";
+		return Html::rawElement( 'li', array(),
+			$this->msg( 'mergehistory-revisionrow' )->rawParams( $checkBox, $last, $pageLink, $userLink, $stxt, $comment )->escaped() );
 	}
 
 	function merge() {
@@ -355,18 +359,18 @@ class SpecialMergeHistory extends SpecialPage {
 		);
 		if( !$haveRevisions ) {
 			if( $this->mComment ) {
-				$comment = wfMsgForContent(
+				$comment = $this->msg(
 					'mergehistory-comment',
 					$targetTitle->getPrefixedText(),
 					$destTitle->getPrefixedText(),
 					$this->mComment
-				);
+				)->inContentLanguage()->text();
 			} else {
-				$comment = wfMsgForContent(
+				$comment = $this->msg(
 					'mergehistory-autocomment',
 					$targetTitle->getPrefixedText(),
 					$destTitle->getPrefixedText()
-				);
+				)->inContentLanguage()->text();
 			}
 			$mwRedir = MagicWord::get( 'redirect' );
 			$redirectText = $mwRedir->getSynonym( 0 ) . ' [[' . $destTitle->getPrefixedText() . "]]\n";
@@ -404,9 +408,8 @@ class SpecialMergeHistory extends SpecialPage {
 			array( $destTitle->getPrefixedText(), $timestampLimit )
 		);
 
-		$this->getOutput()->addHTML(
-			wfMsgExt( 'mergehistory-success', array('parseinline'),
-			$targetTitle->getPrefixedText(), $destTitle->getPrefixedText(), $count ) );
+		$this->getOutput()->addWikiMsg( 'mergehistory-success',
+			$targetTitle->getPrefixedText(), $destTitle->getPrefixedText(), $count );
 
 		wfRunHooks( 'ArticleMergeComplete', array( $targetTitle, $destTitle ) );
 

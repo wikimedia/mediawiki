@@ -1,6 +1,6 @@
 <?php
 /**
- * Deletes a batch of pages
+ * Deletes a batch of pages.
  * Usage: php deleteBatch.php [-u <user>] [-r <reason>] [-i <interval>] [listfile]
  * where
  *	[listfile] is a file where each line contains the title of a page to be
@@ -24,11 +24,17 @@
  * 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
  * http://www.gnu.org/copyleft/gpl.html
  *
+ * @file
  * @ingroup Maintenance
  */
 
 require_once( dirname( __FILE__ ) . '/Maintenance.php' );
 
+/**
+ * Maintenance script to delete a batch of pages.
+ *
+ * @ingroup Maintenance
+ */
 class DeleteBatch extends Maintenance {
 
 	public function __construct() {

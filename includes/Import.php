@@ -1,6 +1,6 @@
 <?php
 /**
- * MediaWiki page data importer
+ * MediaWiki page data importer.
  *
  * Copyright © 2003,2005 Brion Vibber <brion@pobox.com>
  * http://www.mediawiki.org/
@@ -275,7 +275,7 @@ class WikiImporter {
 	}
 
 	/**
-	 * Notify the callback function when a new <page> is reached.
+	 * Notify the callback function when a new "<page>" is reached.
 	 * @param $title Title
 	 */
 	function pageCallback( $title ) {
@@ -285,7 +285,7 @@ class WikiImporter {
 	}
 
 	/**
-	 * Notify the callback function when a </page> is closed.
+	 * Notify the callback function when a "</page>" is closed.
 	 * @param $title Title
 	 * @param $origTitle Title
 	 * @param $revCount Integer
@@ -786,7 +786,9 @@ class WikiImporter {
 		$origTitle = Title::newFromText( $workTitle );
 
 		if( !is_null( $this->mTargetNamespace ) && !is_null( $origTitle ) ) {
-			$title = Title::makeTitle( $this->mTargetNamespace,
+			# makeTitleSafe, because $origTitle can have a interwiki (different setting of interwiki map)
+			# and than dbKey can begin with a lowercase char
+			$title = Title::makeTitleSafe( $this->mTargetNamespace,
 				$origTitle->getDBkey() );
 		} else {
 			$title = Title::newFromText( $workTitle );

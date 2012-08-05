@@ -3,6 +3,22 @@
  * Page history
  *
  * Split off from Article.php and Skin.php, 2003-12-22
+ *
+ * This program is free software; you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation; either version 2 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License along
+ * with this program; if not, write to the Free Software Foundation, Inc.,
+ * 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
+ * http://www.gnu.org/copyleft/gpl.html
+ *
  * @file
  */
 
@@ -71,7 +87,7 @@ class HistoryAction extends FormlessAction {
 	 * Print the history page for an article.
 	 */
 	function onView() {
-		global $wgScript, $wgUseFileCache, $wgSquidMaxage;
+		global $wgScript, $wgUseFileCache;
 
 		$out = $this->getOutput();
 		$request = $this->getRequest();
@@ -84,10 +100,6 @@ class HistoryAction extends FormlessAction {
 		}
 
 		wfProfileIn( __METHOD__ );
-
-		if ( $request->getFullRequestURL() == $this->getTitle()->getInternalURL( 'action=history' ) ) {
-			$out->setSquidMaxage( $wgSquidMaxage );
-		}
 
 		$this->preCacheMessages();
 
@@ -192,6 +204,11 @@ class HistoryAction extends FormlessAction {
 	 * @return ResultWrapper
 	 */
 	function fetchRevisions( $limit, $offset, $direction ) {
+		// Fail if article doesn't exist.
+		if( !$this->getTitle()->exists() ) {
+			return new FakeResultWrapper( array() );
+		}
+
 		$dbr = wfGetDB( DB_SLAVE );
 
 		if ( $direction == HistoryPage::DIR_PREV ) {
@@ -401,32 +418,9 @@ class HistoryPager extends ReverseChronologicalPager {
 				$batch->add( NS_USER_TALK, $row->rev_user_text );
 			}
 		}
-		$this->parentLens = $this->getParentLengths( $revIds );
+		$this->parentLens = Revision::getParentLengths( $this->mDb, $revIds );
 		$batch->execute();
 		$this->mResult->seek( 0 );
-	}
-
-	/**
-	 * Do a batched query to get the parent revision lengths
-	 * @param $revIds array
-	 * @return array
-	 * @TODO: stolen from Contributions, refactor
-	 */
-	private function getParentLengths( array $revIds ) {
-		$revLens = array();
-		if ( !$revIds ) {
-			return $revLens; // empty
-		}
-		wfProfileIn( __METHOD__ );
-		$res = $this->mDb->select( 'revision',
-			array( 'rev_id', 'rev_len' ),
-			array( 'rev_id' => $revIds ),
-			__METHOD__ );
-		foreach ( $res as $row ) {
-			$revLens[$row->rev_id] = $row->rev_len;
-		}
-		wfProfileOut( __METHOD__ );
-		return $revLens;
 	}
 
 	/**
@@ -611,24 +605,24 @@ class HistoryPager extends ReverseChronologicalPager {
 			: 0;
 		$sDiff = ChangesList::showCharacterDifference( $prevSize, $rev->getSize() );
 		$fSize = Linker::formatRevisionSize($rev->getSize());
-		$s .= " . . $fSize $sDiff . . ";
+		$s .= " . . $fSize $sDiff";
 
-		$s .= Linker::revComment( $rev, false, true );
+		# Text following the character difference is added just before running hooks
+		$s2 = Linker::revComment( $rev, false, true );
 
 		if ( $notificationtimestamp && ( $row->rev_timestamp >= $notificationtimestamp ) ) {
-			$s .= ' <span class="updatedmarker">' .  $this->msg( 'updatedmarker' )->escaped() . '</span>';
+			$s2 .= ' <span class="updatedmarker">' .  $this->msg( 'updatedmarker' )->escaped() . '</span>';
+			$classes[] = 'mw-history-line-updated';
 		}
 
 		$tools = array();
 
 		# Rollback and undo links
-		if ( $prevRev &&
-			!count( $this->getTitle()->getUserPermissionsErrors( 'edit', $this->getUser() ) ) )
-		{
-			if ( $latest && !count( $this->getTitle()->getUserPermissionsErrors( 'rollback', $this->getUser() ) ) ) {
+		if ( $prevRev && $this->getTitle()->quickUserCan( 'edit', $user ) ) {
+			if ( $latest && $this->getTitle()->quickUserCan( 'rollback', $user ) ) {
 				$this->preventClickjacking();
 				$tools[] = '<span class="mw-rollback-link">' .
-					Linker::buildRollbackLink( $rev ) . '</span>';
+					Linker::buildRollbackLink( $rev, $this->getContext() ) . '</span>';
 			}
 
 			if ( !$rev->isDeleted( Revision::DELETED_TEXT )
@@ -653,13 +647,20 @@ class HistoryPager extends ReverseChronologicalPager {
 		}
 
 		if ( $tools ) {
-			$s .= ' '. $this->msg( 'parentheses' )->rawParams( $lang->pipeList( $tools ) )->escaped();
+			$s2 .= ' '. $this->msg( 'parentheses' )->rawParams( $lang->pipeList( $tools ) )->escaped();
 		}
 
 		# Tags
 		list( $tagSummary, $newClasses ) = ChangeTags::formatSummaryRow( $row->ts_tags, 'history' );
 		$classes = array_merge( $classes, $newClasses );
-		$s .= " $tagSummary";
+		if ( $tagSummary !== '' ) {
+			$s2 .= " $tagSummary";
+		}
+
+		# Include separator between character difference and following text
+		if ( $s2 !== '' ) {
+			$s .= " . . $s2";
+		}
 
 		wfRunHooks( 'PageHistoryLineEnding', array( $this, &$row , &$s, &$classes ) );
 

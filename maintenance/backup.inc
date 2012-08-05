@@ -28,7 +28,7 @@
  * @ingroup Dump Maintenance
  */
 class DumpDBZip2Output extends DumpPipeOutput {
-	function DumpDBZip2Output( $file ) {
+	function __construct( $file ) {
 		parent::__construct( "dbzip2", $file );
 	}
 }
@@ -59,6 +59,15 @@ class BackupDumper {
 	var $ID = 0;
 
 	var $outputTypes = array(), $filterTypes = array();
+
+	/**
+	 * The dependency-injected database to use.
+	 *
+	 * @var DatabaseBase|null
+	 *
+	 * @see self::setDb
+	 */
+	protected $forcedDb = null;
 
 	/**
 	 * @var LoadBalancer
@@ -245,7 +254,10 @@ class BackupDumper {
 		$table = ( $history == WikiExporter::CURRENT ) ? 'page' : 'revision';
 		$field = ( $history == WikiExporter::CURRENT ) ? 'page_id' : 'rev_id';
 
-		$dbr = wfGetDB( DB_SLAVE );
+		$dbr = $this->forcedDb;
+		if ( $this->forcedDb === null ) {
+			$dbr = wfGetDB( DB_SLAVE );
+		}
 		$this->maxCount = $dbr->selectField( $table, "MAX($field)", '', __METHOD__ );
 		$this->startTime = wfTime();
 		$this->lastTime = $this->startTime;
@@ -259,6 +271,10 @@ class BackupDumper {
 	 * @return DatabaseBase
 	 */
 	function backupDb() {
+		if ( $this->forcedDb !== null ) {
+			return $this->forcedDb;
+		}
+
 		$this->lb = wfGetLBFactory()->newMainLB();
 		$db = $this->lb->getConnection( DB_SLAVE, 'backup' );
 
@@ -267,6 +283,18 @@ class BackupDumper {
 		$db->setSessionOptions( array( 'connTimeout' => 3600 * 24 ) );
 
 		return $db;
+	}
+
+	/**
+	 * Force the dump to use the provided database connection for database
+	 * operations, wherever possible.
+	 *
+	 * @param $db DatabaseBase|null: (Optional) the database connection to
+	 *            use. If null, resort to use the globally provided ways to
+	 *            get database connections.
+	 */
+	function setDb( DatabaseBase $db = null ) {
+		$this->forcedDb = $db;
 	}
 
 	function __destruct() {

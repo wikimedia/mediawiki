@@ -5,16 +5,12 @@
  */
 class ExifRotationTest extends MediaWikiTestCase {
 
-	/** track directories creations. Content will be deleted. */
-	private $createdDirs = array();
-
 	function setUp() {
 		parent::setUp();
 		$this->handler = new BitmapHandler();
 		$filePath = dirname( __FILE__ ) . '/../../data/media';
 
-		$tmpDir = wfTempDir() . '/exif-test-' . time() . '-' . mt_rand();
-		$this->createdDirs[] = $tmpDir;
+		$tmpDir = $this->getNewTempDirectory();
 
 		$this->repo = new FSRepo( array(
 			'name'            => 'temp',
@@ -42,17 +38,7 @@ class ExifRotationTest extends MediaWikiTestCase {
 		$wgShowEXIF = $this->show;
 		$wgEnableAutoRotation = $this->oldAuto;
 
-		$this->tearDownFiles();
-	}
-
-	private function tearDownFiles() {
-		foreach( $this->createdDirs as $dir ) {
-			wfRecursiveRemoveDir( $dir );
-		}
-	}
-
-	function __destruct() {
-		$this->tearDownFiles();
+		parent::tearDown();
 	}
 
 	/**

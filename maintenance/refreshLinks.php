@@ -174,10 +174,10 @@ class RefreshLinks extends Maintenance {
 	 * @param $id int The page_id of the redirect
 	 */
 	private function fixRedirect( $id ) {
-		$title = Title::newFromID( $id );
+		$page = WikiPage::newFromID( $id );
 		$dbw = wfGetDB( DB_MASTER );
 
-		if ( is_null( $title ) ) {
+		if ( $page === null ) {
 			// This page doesn't exist (any more)
 			// Delete any redirect table entry for it
 			$dbw->delete( 'redirect', array( 'rd_from' => $id ),
@@ -185,11 +185,10 @@ class RefreshLinks extends Maintenance {
 			return;
 		}
 
-		$page = WikiPage::factory( $title );
 		$rt = $page->getRedirectTarget();
 
 		if ( $rt === null ) {
-			// $title is not a redirect
+			// The page is not a redirect
 			// Delete any redirect table entry for it
 			$dbw->delete( 'redirect', array( 'rd_from' => $id ),
 				__METHOD__ );
@@ -201,28 +200,29 @@ class RefreshLinks extends Maintenance {
 	 * @param $id int The page_id
 	 */
 	public static function fixLinksFromArticle( $id ) {
-		global $wgParser;
+		global $wgParser, $wgContLang;
 
-		$title = Title::newFromID( $id );
-		$dbw = wfGetDB( DB_MASTER );
+		$page = WikiPage::newFromID( $id );
 
 		LinkCache::singleton()->clear();
 
-		if ( is_null( $title ) ) {
+		if ( $page === null ) {
 			return;
 		}
 
-		$revision = Revision::newFromTitle( $title );
-		if ( !$revision ) {
+		$text = $page->getRawText();
+		if ( $text === false ) {
 			return;
 		}
 
+		$dbw = wfGetDB( DB_MASTER );
 		$dbw->begin( __METHOD__ );
 
-		$options = new ParserOptions;
-		$parserOutput = $wgParser->parse( $revision->getText(), $title, $options, true, true, $revision->getId() );
-		$update = new LinksUpdate( $title, $parserOutput, false );
+		$options = ParserOptions::newFromUserAndLang( new User, $wgContLang );
+		$parserOutput = $wgParser->parse( $text, $page->getTitle(), $options, true, true, $page->getLatest() );
+		$update = new LinksUpdate( $page->getTitle(), $parserOutput, false );
 		$update->doUpdate();
+
 		$dbw->commit( __METHOD__ );
 	}
 
@@ -287,6 +287,7 @@ class RefreshLinks extends Maintenance {
 				$dbw->delete( $table, array( $field => $list ), __METHOD__ );
 			}
 			$this->output( "\n" );
+			wfWaitForSlaves();
 		}
 		$lb->closeAll();
 	}

@@ -28,10 +28,14 @@ class Block {
 
 		$mBlockEmail,
 		$mDisableUsertalk,
-		$mCreateAccount;
+		$mCreateAccount,
+		$mParentBlockId;
 
 	/// @var User|String
 	protected $target;
+
+	// @var Integer Hack for foreign blocking (CentralAuth)
+	protected $forcedTargetID;
 
 	/// @var Block::TYPE_ constant.  Can only be USER, IP or RANGE internally
 	protected $type;
@@ -72,7 +76,7 @@ class Block {
 
 		$this->setTarget( $address );
 		if ( $this->target instanceof User && $user ) {
-			$this->target->setId( $user ); // needed for foreign users
+			$this->forcedTargetID = $user; // needed for foreign users
 		}
 		if ( $by ) { // local user
 			$this->setBlocker( User::newFromID( $by ) );
@@ -122,15 +126,40 @@ class Block {
 		$dbr = wfGetDB( DB_SLAVE );
 		$res = $dbr->selectRow(
 			'ipblocks',
-			'*',
+			self::selectFields(),
 			array( 'ipb_id' => $id ),
 			__METHOD__
 		);
 		if ( $res ) {
-			return Block::newFromRow( $res );
+			return self::newFromRow( $res );
 		} else {
 			return null;
 		}
+	}
+
+	/**
+	 * Return the list of ipblocks fields that should be selected to create
+	 * a new block.
+	 * @return array
+	 */
+	public static function selectFields() {
+		return array(
+			'ipb_id',
+			'ipb_address',
+			'ipb_by',
+			'ipb_by_text',
+			'ipb_reason',
+			'ipb_timestamp',
+			'ipb_auto',
+			'ipb_anon_only',
+			'ipb_create_account',
+			'ipb_enable_autoblock',
+			'ipb_expiry',
+			'ipb_deleted',
+			'ipb_block_email',
+			'ipb_allow_usertalk',
+			'ipb_parent_block_id',
+		);
 	}
 
 	/**
@@ -243,7 +272,7 @@ class Block {
 			}
 		}
 
-		$res = $db->select( 'ipblocks', '*', $conds, __METHOD__ );
+		$res = $db->select( 'ipblocks', self::selectFields(), $conds, __METHOD__ );
 
 		# This result could contain a block on the user, a block on the IP, and a russian-doll
 		# set of rangeblocks.  We want to choose the most specific one, so keep a leader board.
@@ -256,7 +285,7 @@ class Block {
 		$bestBlockPreventsEdit = null;
 
 		foreach( $res as $row ){
-			$block = Block::newFromRow( $row );
+			$block = self::newFromRow( $row );
 
 			# Don't use expired blocks
 			if( $block->deleteIfExpired() ){
@@ -365,6 +394,7 @@ class Block {
 		$this->mAuto = $row->ipb_auto;
 		$this->mHideName = $row->ipb_deleted;
 		$this->mId = $row->ipb_id;
+		$this->mParentBlockId = $row->ipb_parent_block_id;
 
 		// I wish I didn't have to do this
 		$db = wfGetDB( DB_SLAVE );
@@ -408,6 +438,7 @@ class Block {
 		}
 
 		$dbw = wfGetDB( DB_MASTER );
+		$dbw->delete( 'ipblocks', array( 'ipb_parent_block_id' => $this->getId() ), __METHOD__ );
 		$dbw->delete( 'ipblocks', array( 'ipb_id' => $this->getId() ), __METHOD__ );
 
 		return $dbw->affectedRows() > 0;
@@ -483,9 +514,15 @@ class Block {
 		}
 		$expiry = $db->encodeExpiry( $this->mExpiry );
 
+		if ( $this->forcedTargetID ) {
+			$uid = $this->forcedTargetID;
+		} else {
+			$uid = $this->target instanceof User ? $this->target->getID() : 0;
+		}
+
 		$a = array(
 			'ipb_address'          => (string)$this->target,
-			'ipb_user'             => $this->target instanceof User ? $this->target->getID() : 0,
+			'ipb_user'             => $uid,
 			'ipb_by'               => $this->getBy(),
 			'ipb_by_text'          => $this->getByName(),
 			'ipb_reason'           => $this->mReason,
@@ -499,7 +536,8 @@ class Block {
 			'ipb_range_end'        => $this->getRangeEnd(),
 			'ipb_deleted'	       => intval( $this->mHideName ), // typecast required for SQLite
 			'ipb_block_email'      => $this->prevents( 'sendemail' ),
-			'ipb_allow_usertalk'   => !$this->prevents( 'editownusertalk' )
+			'ipb_allow_usertalk'   => !$this->prevents( 'editownusertalk' ),
+			'ipb_parent_block_id'            => $this->mParentBlockId
 		);
 
 		return $a;
@@ -657,6 +695,7 @@ class Block {
 		# Continue suppressing the name if needed
 		$autoblock->mHideName = $this->mHideName;
 		$autoblock->prevents( 'editownusertalk', $this->prevents( 'editownusertalk' ) );
+		$autoblock->mParentBlockId = $this->mId;
 
 		if ( $this->mExpiry == 'infinity' ) {
 			# Original block was indefinite, start an autoblock now
@@ -1066,8 +1105,6 @@ class Block {
 	 * @return array( User|String, Block::TYPE_ constant )
 	 */
 	public static function parseTarget( $target ) {
-		$target = trim( $target );
-
 		# We may have been through this before
 		if( $target instanceof User ){
 			if( IP::isValid( $target->getName() ) ){
@@ -1078,6 +1115,8 @@ class Block {
 		} elseif( $target === null ){
 			return array( null, null );
 		}
+
+		$target = trim( $target );
 
 		if ( IP::isValid( $target ) ) {
 			# We can still create a User if it's an IP address, but we need to turn

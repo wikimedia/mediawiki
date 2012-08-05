@@ -94,11 +94,11 @@ class SpecialPrefixindex extends SpecialAllpages {
 		$out .= Xml::openElement( 'form', array( 'method' => 'get', 'action' => $wgScript ) );
 		$out .= Html::hidden( 'title', $this->getTitle()->getPrefixedText() );
 		$out .= Xml::openElement( 'fieldset' );
-		$out .= Xml::element( 'legend', null, wfMsg( 'allpages' ) );
+		$out .= Xml::element( 'legend', null, $this->msg( 'allpages' )->text() );
 		$out .= Xml::openElement( 'table', array( 'id' => 'nsselect', 'class' => 'allpages' ) );
 		$out .= "<tr>
 				<td class='mw-label'>" .
-				Xml::label( wfMsg( 'allpagesprefix' ), 'nsfrom' ) .
+				Xml::label( $this->msg( 'allpagesprefix' )->text(), 'nsfrom' ) .
 				"</td>
 				<td class='mw-input'>" .
 					Xml::input( 'prefix', 30, str_replace('_',' ',$from), array( 'id' => 'nsfrom' ) ) .
@@ -106,7 +106,7 @@ class SpecialPrefixindex extends SpecialAllpages {
 			</tr>
 			<tr>
 				<td class='mw-label'>" .
-					Xml::label( wfMsg( 'namespace' ), 'namespace' ) .
+					Xml::label( $this->msg( 'namespace' )->text(), 'namespace' ) .
 				"</td>
 				<td class='mw-input'>" .
 				Html::namespaceSelector( array(
@@ -117,12 +117,12 @@ class SpecialPrefixindex extends SpecialAllpages {
 						'class' => 'namespaceselector',
 				) ) .
 				Xml::checkLabel(
-					wfMsg( 'allpages-hide-redirects' ),
+					$this->msg( 'allpages-hide-redirects' )->text(),
 					'hideredirects',
 					'hideredirects',
 					$hideredirects
 				) . ' ' .
-				Xml::submitButton( wfMsg( 'allpagessubmit' ) ) .
+				Xml::submitButton( $this->msg( 'allpagessubmit' )->text() ) .
 				"</td>
 			</tr>";
 		$out .= Xml::closeElement( 'table' );
@@ -150,10 +150,10 @@ class SpecialPrefixindex extends SpecialAllpages {
 		$namespaces = $wgContLang->getNamespaces();
 
 		if ( !$prefixList || !$fromList ) {
-			$out = wfMsgExt( 'allpagesbadtitle', 'parse' );
+			$out = $this->msg( 'allpagesbadtitle' )->parseAsBlock();
 		} elseif ( !in_array( $namespace, array_keys( $namespaces ) ) ) {
 			// Show errormessage and reset to NS_MAIN
-			$out = wfMsgExt( 'allpages-bad-ns', array( 'parseinline' ), $namespace );
+			$out = $this->msg( 'allpages-bad-ns', $namespace )->parse();
 			$namespace = NS_MAIN;
 		} else {
 			list( $namespace, $prefixKey, $prefix ) = $prefixList;
@@ -196,7 +196,8 @@ class SpecialPrefixindex extends SpecialAllpages {
 						$link = ($s->page_is_redirect ? '<div class="allpagesredirect">' : '' ) .
 							Linker::linkKnown(
 								$t,
-								htmlspecialchars( $t->getText() )
+								htmlspecialchars( $t->getText() ),
+								$s->page_is_redirect ? array( 'class' => 'mw-redirect' ) : array()
 							) .
 							($s->page_is_redirect ? '</div>' : '' );
 					} else {
@@ -247,7 +248,7 @@ class SpecialPrefixindex extends SpecialAllpages {
 				}
 				$nextLink = Linker::linkKnown(
 						$self,
-						wfMsgHtml( 'nextpage', str_replace( '_',' ', htmlspecialchars( $s->page_title ) ) ),
+						$this->msg( 'nextpage', str_replace( '_',' ', $s->page_title ) )->escaped(),
 						array(),
 						$query
 					);

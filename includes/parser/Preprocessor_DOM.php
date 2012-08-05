@@ -2,6 +2,21 @@
 /**
  * Preprocessor using PHP's dom extension
  *
+ * This program is free software; you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation; either version 2 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License along
+ * with this program; if not, write to the Free Software Foundation, Inc.,
+ * 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
+ * http://www.gnu.org/copyleft/gpl.html
+ *
  * @file
  * @ingroup Parser
  */
@@ -41,7 +56,7 @@ class Preprocessor_DOM implements Preprocessor {
 	}
 
 	/**
-	 * @param $args
+	 * @param $args array
 	 * @return PPCustomFrame_DOM
 	 */
 	function newCustomFrame( $args ) {
@@ -97,7 +112,7 @@ class Preprocessor_DOM implements Preprocessor {
 	 *
 	 * @param $text String: the text to parse
 	 * @param $flags Integer: bitwise combination of:
-	 *          Parser::PTD_FOR_INCLUSION    Handle <noinclude>/<includeonly> as if the text is being
+	 *          Parser::PTD_FOR_INCLUSION    Handle "<noinclude>" and "<includeonly>" as if the text is being
 	 *                                     included. Default is to assume a direct page view.
 	 *
 	 * The generated DOM tree must depend only on the input text and the flags.
@@ -911,7 +926,7 @@ class PPFrame_DOM implements PPFrame {
 	 *
 	 * @return PPTemplateFrame_DOM
 	 */
-	function newChild( $args = false, $title = false ) {
+	function newChild( $args = false, $title = false, $indexOffset = 0 ) {
 		$namedArgs = array();
 		$numberedArgs = array();
 		if ( $title === false ) {
@@ -923,6 +938,9 @@ class PPFrame_DOM implements PPFrame {
 				$args = $args->node;
 			}
 			foreach ( $args as $arg ) {
+				if ( $arg instanceof PPNode ) {
+					$arg = $arg->node;
+				}
 				if ( !$xpath ) {
 					$xpath = new DOMXPath( $arg->ownerDocument );
 				}
@@ -932,6 +950,7 @@ class PPFrame_DOM implements PPFrame {
 				if ( $nameNodes->item( 0 )->hasAttributes() ) {
 					// Numbered parameter
 					$index = $nameNodes->item( 0 )->attributes->getNamedItem( 'index' )->textContent;
+					$index = $index - $indexOffset;
 					$numberedArgs[$index] = $value->item( 0 );
 					unset( $namedArgs[$index] );
 				} else {
@@ -958,14 +977,25 @@ class PPFrame_DOM implements PPFrame {
 		}
 
 		if ( ++$this->parser->mPPNodeCount > $this->parser->mOptions->getMaxPPNodeCount() ) {
+			$this->parser->limitationWarn( 'node-count-exceeded',
+				$this->parser->mPPNodeCount,
+				$this->parser->mOptions->getMaxPPNodeCount()
+			);
 			return '<span class="error">Node-count limit exceeded</span>';
 		}
 
 		if ( $expansionDepth > $this->parser->mOptions->getMaxPPExpandDepth() ) {
+			$this->parser->limitationWarn( 'expansion-depth-exceeded',
+				$expansionDepth,
+				$this->parser->mOptions->getMaxPPExpandDepth()
+			);
 			return '<span class="error">Expansion depth limit exceeded</span>';
 		}
 		wfProfileIn( __METHOD__ );
 		++$expansionDepth;
+		if ( $expansionDepth > $this->parser->mHighestExpansionDepth ) {
+			$this->parser->mHighestExpansionDepth = $expansionDepth;
+		}
 
 		if ( $root instanceof PPNode_DOM ) {
 			$root = $root->node;
@@ -1523,6 +1553,10 @@ class PPCustomFrame_DOM extends PPFrame_DOM {
 		}
 		return $this->args[$index];
 	}
+
+	function getArguments() {
+		return $this->args;
+	}
 }
 
 /**
@@ -1624,10 +1658,10 @@ class PPNode_DOM implements PPNode {
 	}
 
 	/**
-	 * Split a <part> node into an associative array containing:
-	 *    name          PPNode name
-	 *    index         String index
-	 *    value         PPNode value
+	 * Split a "<part>" node into an associative array containing:
+	 *  - name          PPNode name
+	 *  - index         String index
+	 *  - value         PPNode value
 	 *
 	 * @return array
 	 */
@@ -1647,7 +1681,7 @@ class PPNode_DOM implements PPNode {
 	}
 
 	/**
-	 * Split an <ext> node into an associative array containing name, attr, inner and close
+	 * Split an "<ext>" node into an associative array containing name, attr, inner and close
 	 * All values in the resulting array are PPNodes. Inner and close are optional.
 	 *
 	 * @return array
@@ -1674,7 +1708,7 @@ class PPNode_DOM implements PPNode {
 	}
 
 	/**
-	 * Split a <h> node
+	 * Split a "<h>" node
 	 * @return array
 	 */
 	function splitHeading() {

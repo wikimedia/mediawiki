@@ -1,7 +1,6 @@
 <?php
-
 /**
- * Delete archived (deleted from public) revisions from the database
+ * Helper methods for the deleteArchivedRevisions.php maintenance script.
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -18,9 +17,15 @@
  * 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
  * http://www.gnu.org/copyleft/gpl.html
  *
+ * @file
  * @ingroup Maintenance
  */
 
+/**
+ * Helper methods for the deleteArchivedRevisions.php maintenance script.
+ *
+ * @ingroup Maintenance
+ */
 class DeleteArchivedRevisionsImplementation {
 
 	/**

@@ -1,6 +1,7 @@
 <?php
-
 /**
+ * CLI-based MediaWiki installation and configuration.
+ *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2 of the License, or
@@ -16,12 +17,12 @@
  * 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
  * http://www.gnu.org/copyleft/gpl.html
  *
+ * @file
  * @ingroup Maintenance
- * @see wfWaitForSlaves()
  */
 
-if ( !function_exists( 'version_compare' ) || ( version_compare( phpversion(), '5.2.3' ) < 0 ) ) {
-	echo "You are using PHP version " . phpversion() . " but MediaWiki needs PHP 5.2.3 or higher. ABORTING.\n" .
+if ( !function_exists( 'version_compare' ) || ( version_compare( phpversion(), '5.3.2' ) < 0 ) ) {
+	echo "You are using PHP version " . phpversion() . " but MediaWiki needs PHP 5.3.2 or higher. ABORTING.\n" .
 	"Check if you have a newer php executable with a different name, such as php5.\n";
 	die( 1 );
 }
@@ -31,6 +32,11 @@ define( 'MEDIAWIKI_INSTALL', true );
 
 require_once( dirname( dirname( __FILE__ ) )."/maintenance/Maintenance.php" );
 
+/**
+ * Maintenance script to install and configure MediaWiki
+ *
+ * @ingroup Maintenance
+ */
 class CommandLineInstaller extends Maintenance {
 	function __construct() {
 		parent::__construct();
@@ -39,7 +45,7 @@ class CommandLineInstaller extends Maintenance {
 		$this->addArg( 'name', 'The name of the wiki', true);
 
 		$this->addArg( 'admin', 'The username of the wiki administrator (WikiSysop)', true );
-		$this->addOption( 'pass', 'The password for the wiki administrator. You will be prompted for this if it isn\'t provided', false, true );
+		$this->addOption( 'pass', 'The password for the wiki administrator.', true, true );
 		/* $this->addOption( 'email', 'The email for the wiki administrator', false, true ); */
 		$this->addOption( 'scriptpath', 'The relative path of the wiki in the web server (/wiki)', false, true );
 
@@ -81,7 +87,7 @@ class CommandLineInstaller extends Maintenance {
 		}
 
 		$installer =
-			new CliInstaller( $siteName, $adminName, $this->mOptions );
+			InstallerOverrides::getCliInstaller( $siteName, $adminName, $this->mOptions );
 
 		$status = $installer->doEnvironmentChecks();
 		if( $status->isGood() ) {

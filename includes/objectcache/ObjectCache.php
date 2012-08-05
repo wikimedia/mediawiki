@@ -1,8 +1,29 @@
 <?php
 /**
- * Functions to get cache objects
+ * Functions to get cache objects.
+ *
+ * This program is free software; you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation; either version 2 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License along
+ * with this program; if not, write to the Free Software Foundation, Inc.,
+ * 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
+ * http://www.gnu.org/copyleft/gpl.html
  *
  * @file
+ * @ingroup Cache
+ */
+
+/**
+ * Functions to get cache objects
+ *
  * @ingroup Cache
  */
 class ObjectCache {
@@ -11,9 +32,9 @@ class ObjectCache {
 	/**
 	 * Get a cached instance of the specified type of cache object.
 	 *
-	 * @param $id
+	 * @param $id string
 	 *
-	 * @return object
+	 * @return ObjectCache
 	 */
 	static function getInstance( $id ) {
 		if ( isset( self::$instances[$id] ) ) {
@@ -35,8 +56,9 @@ class ObjectCache {
 	/**
 	 * Create a new cache object of the specified type.
 	 *
-	 * @param $id
+	 * @param $id string
 	 *
+	 * @throws MWException
 	 * @return ObjectCache
 	 */
 	static function newFromId( $id ) {
@@ -55,6 +77,7 @@ class ObjectCache {
 	 *
 	 * @param $params array
 	 *
+	 * @throws MWException
 	 * @return ObjectCache
 	 */
 	static function newFromParams( $params ) {
@@ -78,6 +101,8 @@ class ObjectCache {
 	 * be an alias to the configured cache choice for that.
 	 * If no cache choice is configured (by default $wgMainCacheType is CACHE_NONE),
 	 * then CACHE_ANYTHING will forward to CACHE_DB.
+	 * @param $params array
+	 * @return ObjectCache
 	 */
 	static function newAnything( $params ) {
 		global $wgMainCacheType, $wgMessageCacheType, $wgParserCacheType;
@@ -93,6 +118,8 @@ class ObjectCache {
 	/**
 	 * Factory function referenced from DefaultSettings.php for CACHE_ACCEL.
 	 *
+	 * @param $params array
+	 * @throws MWException
 	 * @return ObjectCache
 	 */
 	static function newAccelerator( $params ) {
@@ -111,8 +138,10 @@ class ObjectCache {
 
 	/**
 	 * Factory function that creates a memcached client object.
-	 * The idea of this is that it might eventually detect and automatically
-	 * support the PECL extension, assuming someone can get it to compile.
+	 *
+	 * This always uses the PHP client, since the PECL client has a different 
+	 * hashing scheme and a different interpretation of the flags bitfield, so 
+	 * switching between the two clients randomly would be disasterous.
 	 *
 	 * @param $params array
 	 *

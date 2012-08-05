@@ -125,11 +125,7 @@ class LoginForm extends SpecialPage {
 		}
 
 		if( !$wgAuth->validDomain( $this->mDomain ) ) {
-			if ( isset( $_SESSION['wsDomain'] ) ) {
-				$this->mDomain = $_SESSION['wsDomain'];
-			} else {
-				$this->mDomain = 'invaliddomain';
-			}
+			$this->mDomain = $wgAuth->getDomain();
 		}
 		$wgAuth->setDomain( $this->mDomain );
 
@@ -278,7 +274,7 @@ class LoginForm extends SpecialPage {
 
 	/**
 	 * @private
-	 * @return bool|\User
+	 * @return bool|User
 	 */
 	function addNewAccountInternal() {
 		global $wgAuth, $wgMemc, $wgAccountCreationThrottle,
@@ -333,6 +329,12 @@ class LoginForm extends SpecialPage {
 		} elseif ( $currentUser->isBlockedFromCreateAccount() ) {
 			$this->userBlockedMessage( $currentUser->isBlockedFromCreateAccount() );
 			return false;
+		}
+
+		# Include checks that will include GlobalBlocking (Bug 38333)
+		$permErrors = $this->getTitle()->getUserPermissionsErrors( 'createaccount', $currentUser, true );
+		if ( count( $permErrors ) ) {
+				throw new PermissionsError( 'createaccount', $permErrors );
 		}
 
 		$ip = $this->getRequest()->getIP();
@@ -1261,6 +1263,10 @@ class LoginForm extends SpecialPage {
 	 * @return string
 	 */
 	function makeLanguageSelectorLink( $text, $lang ) {
+		if( $this->getLanguage()->getCode() == $lang ) {
+			// no link for currently used language
+			return htmlspecialchars( $text );
+		}
 		$attr = array( 'uselang' => $lang );
 		if( $this->mType == 'signup' ) {
 			$attr['type'] = 'signup';

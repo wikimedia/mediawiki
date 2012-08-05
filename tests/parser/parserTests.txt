@@ -59,6 +59,12 @@ MediaWiki:bad image list
 * [[File:Bad.jpg]] except [[Nasty page]]
 !!endarticle
 
+!! article
+Template:inner list
+!! text
+* item 1
+!! endarticle
+
 ###
 ### Basic tests
 ###
@@ -75,6 +81,29 @@ Simple paragraph
 This is a simple paragraph.
 !! result
 <p>This is a simple paragraph.
+</p>
+!! end
+
+!! test
+Paragraphs with extra newline spacing
+!! input
+foo
+
+bar
+
+
+baz
+
+
+
+booz
+!! result
+<p>foo
+</p><p>bar
+</p><p><br />
+baz
+</p><p><br />
+</p><p>booz
 </p>
 !! end
 
@@ -127,6 +156,285 @@ Italics and bold
 </li></ul>
 
 !! end
+
+###
+### 2-quote opening sequence tests
+###
+!! test
+Italics and bold: 2-quote opening sequence: (2,2)
+!! input
+''foo''
+!! result
+<p><i>foo</i>
+</p>
+!!end
+
+
+!! test
+Italics and bold: 2-quote opening sequence: (2,3)
+!! input
+''foo'''
+!! result
+<p><i>foo'</i>
+</p>
+!!end
+
+
+!! test
+Italics and bold: 2-quote opening sequence: (2,4)
+!! input
+''foo''''
+!! result
+<p><i>foo''</i>
+</p>
+!!end
+
+
+!! test
+Italics and bold: 2-quote opening sequence: (2,5)
+!! input
+''foo'''''
+!! result
+<p><i>foo</i>
+</p>
+!!end
+
+
+###
+### 3-quote opening sequence tests
+###
+
+!! test
+Italics and bold: 3-quote opening sequence: (3,2)
+!! input
+'''foo''
+!! result
+<p>'<i>foo</i>
+</p>
+!!end
+
+
+!! test
+Italics and bold: 3-quote opening sequence: (3,3)
+!! input
+'''foo'''
+!! result
+<p><b>foo</b>
+</p>
+!!end
+
+
+!! test
+Italics and bold: 3-quote opening sequence: (3,4)
+!! input
+'''foo''''
+!! result
+<p><b>foo'</b>
+</p>
+!!end
+
+
+!! test
+Italics and bold: 3-quote opening sequence: (3,5)
+!! input
+'''foo'''''
+!! result
+<p><b>foo</b>
+</p>
+!!end
+
+
+###
+### 4-quote opening sequence tests
+###
+
+!! test
+Italics and bold: 4-quote opening sequence: (4,2)
+!! input
+''''foo''
+!! result
+<p>''<i>foo</i>
+</p>
+!!end
+
+
+!! test
+Italics and bold: 4-quote opening sequence: (4,3)
+!! input
+''''foo'''
+!! result
+<p>'<b>foo</b>
+</p>
+!!end
+
+
+!! test
+Italics and bold: 4-quote opening sequence: (4,4)
+!! input
+''''foo''''
+!! result
+<p>'<b>foo'</b>
+</p>
+!!end
+
+
+!! test
+Italics and bold: 4-quote opening sequence: (4,5)
+!! input
+''''foo'''''
+!! result
+<p>'<b>foo</b>
+</p>
+!!end
+
+
+###
+### 5-quote opening sequence tests
+###
+
+!! test
+Italics and bold: 5-quote opening sequence: (5,2)
+!! input
+'''''foo''
+!! result
+<p><b><i>foo</i></b>
+</p>
+!!end
+
+
+!! test
+Italics and bold: 5-quote opening sequence: (5,3)
+!! input
+'''''foo'''
+!! result
+<p><i><b>foo</b></i>
+</p>
+!!end
+
+
+!! test
+Italics and bold: 5-quote opening sequence: (5,4)
+!! input
+'''''foo''''
+!! result
+<p><i><b>foo'</b></i>
+</p>
+!!end
+
+
+!! test
+Italics and bold: 5-quote opening sequence: (5,5)
+!! input
+'''''foo'''''
+!! result
+<p><i><b>foo</b></i>
+</p>
+!!end
+
+###
+### multiple quote sequences in a line
+###
+!! test
+Italics and bold: multiple quote sequences: (2,4,2)
+!! input
+''foo''''bar''
+!! result
+<p><i>foo'<b>bar</b></i>
+</p>
+!!end
+
+
+!! test
+Italics and bold: multiple quote sequences: (2,4,3)
+!! input
+''foo''''bar'''
+!! result
+<p><i>foo'<b>bar</b></i>
+</p>
+!!end
+
+
+!! test
+Italics and bold: multiple quote sequences: (2,4,4)
+!! input
+''foo''''bar''''
+!! result
+<p><i>foo'<b>bar'</b></i>
+</p>
+!!end
+
+
+!! test
+Italics and bold: multiple quote sequences: (3,4,2)
+!! input
+'''foo''''bar''
+!! result
+<p><b>foo'</b>bar
+</p>
+!!end
+
+
+!! test
+Italics and bold: multiple quote sequences: (3,4,3)
+!! input
+'''foo''''bar'''
+!! result
+<p><b>foo'</b>bar
+</p>
+!!end
+
+###
+### other quote tests
+###
+!! test
+Italics and bold: other quote tests: (2,3,5)
+!! input
+''this is about '''foo's family'''''
+!! result
+<p><i>this is about <b>foo's family</b></i>
+</p>
+!!end
+
+
+!! test
+Italics and bold: other quote tests: (2,(3,3),2)
+!! input
+''this is about '''foo's''' family''
+!! result
+<p><i>this is about <b>foo's</b> family</i>
+</p>
+!!end
+
+
+!! test
+Italics and bold: other quote tests: (3,2,3,2)
+!! input
+'''this is about ''foo'''s family''
+!! result
+<p><b>this is about <i>foo</i></b><i>s family</i>
+</p>
+!!end
+
+
+!! test
+Italics and bold: other quote tests: (3,2,3,3)
+!! input
+'''this is about ''foo'''s family'''
+!! result
+<p>'<i>this is about </i>foo<b>s family</b>
+</p>
+!!end
+
+
+
+!! test
+Italics and bold: other quote tests: (3,(2,2),3)
+!! input
+'''this is about ''foo's'' family'''
+!! result
+<p><b>this is about <i>foo's</i> family</b>
+</p>
+!!end
 
 ###
 ### <nowiki> test cases
@@ -634,6 +942,388 @@ Definition and unordered list using wiki syntax nested in unordered list using h
 
 !! end
 
+!! test
+Definition list with empty definition and following paragraph
+!! input
+; term:
+Paragraph text
+!! result
+<dl><dt> term</dt><dd>
+</dd></dl>
+<p>Paragraph text
+</p>
+!! end
+
+!! test
+Definition Lists: No nesting: Multiple dd's
+!! input
+;x
+:a
+:b
+!! result
+<dl><dt>x
+</dt><dd>a
+</dd><dd>b
+</dd></dl>
+
+!! end
+
+!! test
+Definition Lists: Indentation: Regular
+!! input
+:i1
+::i2
+:::i3
+!! result
+<dl><dd>i1
+<dl><dd>i2
+<dl><dd>i3
+</dd></dl>
+</dd></dl>
+</dd></dl>
+
+!! end
+
+!! test
+Definition Lists: Indentation: Missing 1st level
+!! input
+::i2
+:::i3
+!! result
+<dl><dd><dl><dd>i2
+<dl><dd>i3
+</dd></dl>
+</dd></dl>
+</dd></dl>
+
+!! end
+
+!! test
+Definition Lists: Indentation: Multi-level indent
+!! input
+:::i3
+!! result
+<dl><dd><dl><dd><dl><dd>i3
+</dd></dl>
+</dd></dl>
+</dd></dl>
+
+!! end
+
+## The PHP parser treats : items (dd) without a corresponding ; item (dt)
+## as an empty dt item.  It also ignores all but the last ";" when followed
+## by ":" later on.  So, ";" are not ignored in ";;;t3" but are ignored  in
+## ";;;t3 :d1".  So, PHP parser behavior is a little inconsistent wrt multiple
+## ";"s.
+##
+## Ex: ";;t2 ::d2" is transformed into:
+##
+## <dl>
+##   <dt>t2 </dt>
+##   <dd>
+##     <dl>
+##       <dt></dt>
+##       <dd>d2</dd>
+##     </dl>
+##   </dd>
+## </dl>
+##
+## But, Parsoid treats "; :" as a tight atomic unit and excess ":" as plain text
+## So, the same wikitext above (;;t2 ::d2) is transformed into:
+##
+## <dl>
+##   <dt>
+##     <dl>
+##       <dt>t2 </dt>
+##       <dd>:d2</dd>
+##     </dl>
+##    </dt>
+## </dl>
+##
+## All Parsoid only definition list tests have this difference.
+##
+## See also: https://bugzilla.wikimedia.org/show_bug.cgi?id=6569 
+## and http://lists.wikimedia.org/pipermail/wikitext-l/2011-November/000483.html
+
+!! test
+Definition Lists: Nesting: Multi-level (Parsoid only)
+!! options
+disabled
+!! input
+;t1 :d1
+;;t2 ::d2
+;;;t3 :::d3
+!! result
+<dl>
+  <dt>t1 </dt>
+  <dd>d1</dd>
+  <dt>
+    <dl>
+      <dt>t2 </dt>
+      <dd>:d2</dd>
+      <dt>
+        <dl>
+          <dt>t3 </dt>
+          <dd>::d3</dd>
+        </dl>
+      </dt>
+    </dl>
+  </dt>
+</dl>
+
+
+!! end
+
+
+!! test
+Definition Lists: Nesting: Test 2 (Parsoid only)
+!! options
+disabled
+!! input
+;t1
+::d2
+!! result
+<dl>
+  <dt>t1</dt>
+  <dd>
+    <dl>
+      <dd>d2</dd>
+    </dl>
+  </dd>
+</dl>
+
+!! end
+
+
+!! test
+Definition Lists: Nesting: Test 3 (Parsoid only)
+!! options
+disabled
+!! input
+:;t1
+::::d2
+!! result
+<dl>
+  <dd>
+    <dl>
+      <dt>t1</dt>
+      <dd>
+        <dl>
+          <dd>
+            <dl>
+              <dd>d2</dd>
+            </dl>
+          </dd>
+        </dl>
+      </dd>
+    </dl>
+  </dd>
+</dl>
+
+!! end
+
+
+!! test
+Definition Lists: Nesting: Test 4
+!! input
+::;t3
+:::d3
+!! result
+<dl><dd><dl><dd><dl><dt>t3
+</dt><dd>d3
+</dd></dl>
+</dd></dl>
+</dd></dl>
+
+!! end
+
+
+!! test
+Definition Lists: Mixed Lists: Test 1
+!! input
+:;* foo
+::* bar
+:; baz
+!! result
+<dl><dd><dl><dt><ul><li> foo
+</li><li> bar
+</li></ul>
+</dt></dl>
+<dl><dt> baz
+</dt></dl>
+</dd></dl>
+
+!! end
+
+
+!! test
+Definition Lists: Mixed Lists: Test 2
+!! input
+*: d1
+*: d2
+!! result
+<ul><li><dl><dd> d1
+</dd><dd> d2
+</dd></dl>
+</li></ul>
+
+!! end
+
+
+!! test
+Definition Lists: Mixed Lists: Test 3
+!! input
+*::: d1
+*::: d2
+!! result
+<ul><li><dl><dd><dl><dd><dl><dd> d1
+</dd><dd> d2
+</dd></dl>
+</dd></dl>
+</dd></dl>
+</li></ul>
+
+!! end
+
+
+!! test
+Definition Lists: Mixed Lists: Test 4
+!! input
+*;d1 :d2
+*;d3 :d4
+!! result
+<ul><li><dl><dt>d1&#160;</dt><dd>d2
+</dd><dt>d3&#160;</dt><dd>d4
+</dd></dl>
+</li></ul>
+
+!! end
+
+
+!! test
+Definition Lists: Mixed Lists: Test 5
+!! input
+*:d1
+*:: d2
+!! result
+<ul><li><dl><dd>d1
+<dl><dd> d2
+</dd></dl>
+</dd></dl>
+</li></ul>
+
+!! end
+
+
+!! test
+Definition Lists: Mixed Lists: Test 6
+!! input
+#*:d1
+#*::: d3
+!! result
+<ol><li><ul><li><dl><dd>d1
+<dl><dd><dl><dd> d3
+</dd></dl>
+</dd></dl>
+</dd></dl>
+</li></ul>
+</li></ol>
+
+!! end
+
+
+!! test
+Definition Lists: Mixed Lists: Test 7
+!! input
+:* d1
+:* d2
+!! result
+<dl><dd><ul><li> d1
+</li><li> d2
+</li></ul>
+</dd></dl>
+
+!! end
+
+
+!! test
+Definition Lists: Mixed Lists: Test 8
+!! input
+:* d1
+::* d2
+!! result
+<dl><dd><ul><li> d1
+</li></ul>
+<dl><dd><ul><li> d2
+</li></ul>
+</dd></dl>
+</dd></dl>
+
+!! end
+
+
+!! test
+Definition Lists: Mixed Lists: Test 9
+!! input
+*;foo :bar
+!! result
+<ul><li><dl><dt>foo&#160;</dt><dd>bar
+</dd></dl>
+</li></ul>
+
+!! end
+
+
+!! test
+Definition Lists: Mixed Lists: Test 10
+!! input
+*#;foo :bar
+!! result
+<ul><li><ol><li><dl><dt>foo&#160;</dt><dd>bar
+</dd></dl>
+</li></ol>
+</li></ul>
+
+!! end
+
+
+!! test
+Definition Lists: Mixed Lists: Test 11
+!! input
+*#*#;*;;foo :bar
+*#*#;boo :baz
+!! result
+<ul><li><ol><li><ul><li><ol><li><dl><dt>foo&#160;</dt><dd><ul><li><dl><dt><dl><dt>bar
+</dt></dl>
+</dd></dl>
+</li></ul>
+</dd></dl>
+<dl><dt>boo&#160;</dt><dd>baz
+</dd></dl>
+</li></ol>
+</li></ul>
+</li></ol>
+</li></ul>
+
+!! end
+
+
+!! test
+Definition Lists: Weird Ones: Test 1
+!! input
+*#;*::;; foo : bar (who uses this?)
+!! result
+<ul><li><ol><li><dl><dt> foo&#160;</dt><dd><ul><li><dl><dd><dl><dd><dl><dt><dl><dt> bar (who uses this?)
+</dt></dl>
+</dd></dl>
+</dd></dl>
+</dd></dl>
+</li></ul>
+</dd></dl>
+</li></ol>
+</li></ul>
+
+!! end
 
 ###
 ### External links
@@ -1252,6 +1942,8 @@ Normal text.
 '''This year''''s election ''should'' beat '''last year''''s.
 
 ''Tom'''s car is bigger than ''Susan'''s.
+
+Plain ''italic'''s plain
 !! result
 <p><i><b>Bold italic text </b>with bold deactivated<b> in between.</b></i>
 </p><p><b><i>Bold italic text </i>with italic deactivated<i> in between.</i></b>
@@ -1262,6 +1954,7 @@ Normal text.
 </p><p>Normal text.
 </p><p><b>This year'</b>s election <i>should</i> beat <b>last year'</b>s.
 </p><p><i>Tom<b>s car is bigger than </b></i><b>Susan</b>s.
+</p><p>Plain <i>italic'</i>s plain
 </p>
 !! end
 
@@ -2046,18 +2739,56 @@ Failing to transform badly formed HTML into correct XHTML
 </p>
 !!end
 
-!! test 
+!! test
 Horizontal ruler (should it add that extra space?)
-!! input 
+!! input
 <hr>
 <hr >
 foo <hr
 > bar
-!! result 
+!! result
 <hr />
 <hr />
 foo <hr /> bar
 
+!! end
+
+!! test
+Horizontal ruler -- 4+ dashes render hr
+!! input
+----
+!! result
+<hr />
+
+!! end
+
+!! test
+Horizontal ruler -- eats additional dashes on the same line
+!! input
+---------
+!! result
+<hr />
+
+!! end
+
+!! test
+Horizontal ruler -- does not collaps dashes on consecutive lines
+!! input
+----
+----
+!! result
+<hr />
+<hr />
+
+!! end
+
+!! test
+Horizontal ruler -- <4 dashes render as plain text
+!! input
+---
+!! result
+<p>---
+</p>
 !! end
 
 ###
@@ -2107,6 +2838,8 @@ Mixed list
 **#Number on level 3
 *#number level 2
 *Level 1
+*** Level 3
+#** Level 3, but ordered
 !! result
 <ul><li>Mixed list
 <ol><li> with numbers
@@ -2129,9 +2862,125 @@ Mixed list
 <ol><li>number level 2
 </li></ol>
 </li><li>Level 1
+<ul><li><ul><li> Level 3
+</li></ul>
+</li></ul>
+</li></ul>
+<ol><li><ul><li><ul><li> Level 3, but ordered
+</li></ul>
+</li></ul>
+</li></ol>
+
+!! end
+
+!! test
+Nested lists 1
+!! input
+*foo
+**bar
+!! result
+<ul><li>foo
+<ul><li>bar
+</li></ul>
 </li></ul>
 
 !! end
+
+!! test
+Nested lists 2
+!! input
+**foo
+*bar
+!! result
+<ul><li><ul><li>foo
+</li></ul>
+</li><li>bar
+</li></ul>
+
+!! end
+
+!! test
+Nested lists 3 (first element empty)
+!! input
+*
+**bar
+!! result
+<ul><li>
+<ul><li>bar
+</li></ul>
+</li></ul>
+
+!! end
+
+!! test
+Nested lists 4 (first element empty)
+!! input
+**
+*bar
+!! result
+<ul><li><ul><li>
+</li></ul>
+</li><li>bar
+</li></ul>
+
+!! end
+
+!! test
+Nested lists 5 (both elements empty)
+!! input
+**
+*
+!! result
+<ul><li><ul><li>
+</li></ul>
+</li><li>
+</li></ul>
+
+!! end
+
+!! test
+Nested lists 6 (both elements empty)
+!! input
+*
+**
+!! result
+<ul><li>
+<ul><li>
+</li></ul>
+</li></ul>
+
+!! end
+
+!! test
+Nested lists 7 (skip initial nesting levels)
+!! input
+*** foo
+!! result
+<ul><li><ul><li><ul><li> foo
+</li></ul>
+</li></ul>
+</li></ul>
+
+!! end
+
+!! test
+Nested lists 8 (multiple nesting transitions)
+!! input
+* foo
+*** bar
+** baz
+* boo
+!! result
+<ul><li> foo
+<ul><li><ul><li> bar
+</li></ul>
+</li><li> baz
+</li></ul>
+</li><li> boo
+</li></ul>
+
+!! end
+
 
 !! test
 List items are not parsed correctly following a <pre> block (bug 785)
@@ -2146,6 +2995,57 @@ List items are not parsed correctly following a <pre> block (bug 785)
 </li></ul>
 
 !! end
+
+!! test
+List items from template
+!! input
+
+{{inner list}}
+* item 2
+
+* item 0
+{{inner list}}
+* item 2
+
+* item 0
+* notSOL{{inner list}}
+* item 2
+!! result
+<ul><li> item 1
+</li><li> item 2
+</li></ul>
+<ul><li> item 0
+</li><li> item 1
+</li><li> item 2
+</li></ul>
+<ul><li> item 0
+</li><li> notSOL
+</li><li> item 1
+</li><li> item 2
+</li></ul>
+
+!! end
+
+!! test
+List interrupted by empty line or heading
+!! input
+* foo
+
+** bar
+== A heading ==
+* Another list item
+!! result
+<ul><li> foo
+</li></ul>
+<ul><li><ul><li> bar
+</li></ul>
+</li></ul>
+<h2><span class="editsection">[<a href="/index.php?title=Parser_test&amp;action=edit&amp;section=1" title="Edit section: A heading">edit</a>]</span> <span class="mw-headline" id="A_heading"> A heading </span></h2>
+<ul><li> Another list item
+</li></ul>
+
+!!end
+
 
 ###
 ### Magic Words
@@ -2291,6 +3191,17 @@ title=[[User:Ævar Arnfjörð Bjarmason]]
 {{NAMESPACEE}}
 !! result
 <p>User
+</p>
+!! end
+
+!! test
+Magic Word: {{NAMESPACENUMBER}}
+!! options
+title=[[User:Ævar Arnfjörð Bjarmason]]
+!! input
+{{NAMESPACENUMBER}}
+!! result
+<p>2
 </p>
 !! end
 
@@ -3467,15 +4378,15 @@ pst
 [[Bar:Article（context）|]]
 [[:Bar:Article（context）|]]
 [[|Article（context）]]
-[[Bar:X （Y） Z|]]
-[[:Bar:X （Y） Z|]]
+[[Bar:X（Y）Z|]]
+[[:Bar:X（Y）Z|]]
 !! result
 [[Article（context）|Article]]
 [[Bar:Article（context）|Article]]
 [[:Bar:Article（context）|Article]]
 [[Article（context）]]
-[[Bar:X （Y） Z|X （Y） Z]]
-[[:Bar:X （Y） Z|X （Y） Z]]
+[[Bar:X（Y）Z|X（Y）Z]]
+[[:Bar:X（Y）Z|X（Y）Z]]
 !! end
 
 !! test
@@ -3516,6 +4427,26 @@ pst
 [[Article(context)]]
 [[Bar:X(Y)Z|X(Y)Z]]
 [[:Bar:X(Y)Z|X(Y)Z]]
+!! end
+
+!! test
+pre-save transform: context links ("pipe trick") with commas (bug 21660)
+!! options
+pst
+!! input
+[[Article (context), context|]]
+[[Article (context)，context|]]
+[[Bar:Article (context), context|]]
+[[Bar:Article (context)，context|]]
+[[:Bar:Article (context), context|]]
+[[:Bar:Article (context)，context|]]
+!! result
+[[Article (context), context|Article]]
+[[Article (context)，context|Article]]
+[[Bar:Article (context), context|Article]]
+[[Bar:Article (context)，context|Article]]
+[[:Bar:Article (context), context|Article]]
+[[:Bar:Article (context)，context|Article]]
 !! end
 
 !! test
@@ -3664,6 +4595,36 @@ msg
 {{#special:foobarnonexistent}}
 !! result
 No such special page
+!! end
+
+!! test
+{{#speciale:}} page name, known
+!! options
+msg
+!! input
+{{#speciale:Recentchanges}}
+!! result
+Special:RecentChanges
+!! end
+
+!! test
+{{#speciale:}} page name with subpage, known
+!! options
+msg
+!! input
+{{#speciale:Recentchanges/param}}
+!! result
+Special:RecentChanges/param
+!! end
+
+!! test
+{{#speciale:}} page name, unknown
+!! options
+msg
+!! input
+{{#speciale:foobarnonexistent}}
+!! result
+No_such_special_page
 !! end
 
 ###
@@ -5987,8 +6948,6 @@ Special page transclusion
 !! input
 {{Special:Prefixindex/Xyzzyx}}
 !! result
-<p><br />
-</p>
 <table border="0" id="mw-prefixindex-list-table"><tr><td><a href="/wiki/Xyzzyx" title="Xyzzyx">Xyzzyx</a></td></tr></table>
 
 !! end
@@ -6000,11 +6959,7 @@ Special page transclusion twice (bug 5021)
 {{Special:Prefixindex/Xyzzyx}}
 {{Special:Prefixindex/Xyzzyx}}
 !! result
-<p><br />
-</p>
 <table border="0" id="mw-prefixindex-list-table"><tr><td><a href="/wiki/Xyzzyx" title="Xyzzyx">Xyzzyx</a></td></tr></table>
-<p><br />
-</p>
 <table border="0" id="mw-prefixindex-list-table"><tr><td><a href="/wiki/Xyzzyx" title="Xyzzyx">Xyzzyx</a></td></tr></table>
 
 !! end
@@ -8434,6 +9389,17 @@ wgUseDynamicDates=true
 </p>
 !! end
 
+!! test
+formatdate parser function, with default format and on a page of which the content language is always English and different from the wiki content language
+!! options
+language=nl title=[[MediaWiki:Common.css]]
+!! input
+{{#formatdate:2009-03-24|dmy}}
+!! result
+<p><span class="mw-formatted-date" title="2009-03-24">24 March 2009</span>
+</p>
+!! end
+
 #
 #
 #
@@ -9185,11 +10151,115 @@ nowiki inside link inside heading (bug 18295)
 
 !! end
 
+!! test
+new support for bdi element (bug 31817)
+!! input
+<p dir="rtl" lang="he">ולדימיר לנין (ברוסית: <bdi lang="ru">Владимир Ленин</bdi>, 24 באפריל 1870–22 בינואר 1924) הוא מנהיג פוליטי קומוניסטי רוסי.</p>
+!! result
+<p dir="rtl" lang="he">ולדימיר לנין (ברוסית: <bdi lang="ru">Владимир Ленин</bdi>, 24 באפריל 1870–22 בינואר 1924) הוא מנהיג פוליטי קומוניסטי רוסי.</p>
+
+!!end
+
+!! test
+Ignore pipe between table row attributes
+!! input
+{|
+| quux
+|- id=foo | style='color: red'
+| bar
+|}
+!! result
+<table>
+<tr>
+<td> quux
+</td></tr>
+<tr id="foo" style="color: red">
+<td> bar
+</td></tr></table>
+
+!! end
+
+!!test
+Gallery override link with WikiLink (bug 34852)
+!! input
+<gallery>
+File:foobar.jpg|caption|alt=galleryalt|link=InterWikiLink
+</gallery>
+!! result
+<ul class="gallery">
+		<li class="gallerybox" style="width: 155px"><div style="width: 155px">
+			<div class="thumb" style="width: 150px;"><div style="margin:68px auto;"><a href="/wiki/InterWikiLink"><img alt="galleryalt" src="http://example.com/images/3/3a/Foobar.jpg" width="120" height="14" /></a></div></div>
+			<div class="gallerytext">
+<p>caption
+</p>
+			</div>
+		</div></li>
+</ul>
+
+!! end
+
+!!test
+Gallery override link with absolute external link (bug 34852)
+!! input
+<gallery>
+File:foobar.jpg|caption|alt=galleryalt|link=http://www.example.org
+</gallery>
+!! result
+<ul class="gallery">
+		<li class="gallerybox" style="width: 155px"><div style="width: 155px">
+			<div class="thumb" style="width: 150px;"><div style="margin:68px auto;"><a href="http://www.example.org"><img alt="galleryalt" src="http://example.com/images/3/3a/Foobar.jpg" width="120" height="14" /></a></div></div>
+			<div class="gallerytext">
+<p>caption
+</p>
+			</div>
+		</div></li>
+</ul>
+
+!! end
+
+!!test
+Gallery override link with malicious javascript (bug 34852)
+!! input
+<gallery>
+File:foobar.jpg|caption|alt=galleryalt|link=" onclick="alert('malicious javascript code!');
+</gallery>
+!! result
+<ul class="gallery">
+		<li class="gallerybox" style="width: 155px"><div style="width: 155px">
+			<div class="thumb" style="width: 150px;"><div style="margin:68px auto;"><a href="/wiki/%22_onclick%3D%22alert(%27malicious_javascript_code!%27);"><img alt="galleryalt" src="http://example.com/images/3/3a/Foobar.jpg" width="120" height="14" /></a></div></div>
+			<div class="gallerytext">
+<p>caption
+</p>
+			</div>
+		</div></li>
+</ul>
+
+!! end
+
+!!test
+Language parser function
+!! input
+{{#language:ar}}
+!! result
+<p>العربية
+</p>
+!! end
+
+!!test
+Padleft and padright as substr
+!! input
+{{padleft:|3|abcde}}
+{{padright:|3|abcde}}
+!! result
+<p>abc
+abc
+</p>
+!! end
+
 
 TODO:
 more images
 more tables
-math
 character entities
 and much more
 Try for 100% code coverage

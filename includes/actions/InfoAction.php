@@ -50,53 +50,59 @@ class InfoAction extends FormlessAction {
 
 		$title = $this->getTitle()->getSubjectPage();
 
-		$pageInfo = self::pageCountInfo( $title );
-		$talkInfo = self::pageCountInfo( $title->getTalkPage() );
+		$userCanViewUnwatchedPages = $this->getUser()->isAllowed( 'unwatchedpages' );
 
-		return Html::rawElement( 'table', array( 'class' => 'wikitable mw-page-info' ),
+		$pageInfo = self::pageCountInfo( $title, $userCanViewUnwatchedPages, $wgDisableCounters );
+		$talkInfo = self::pageCountInfo( $title->getTalkPage(), $userCanViewUnwatchedPages, $wgDisableCounters );
+
+		$lang = $this->getLanguage();
+
+		$content =
 			Html::rawElement( 'tr', array(),
 				Html::element( 'th', array(), '' ) .
-				Html::element( 'th', array(), $this->msg( 'pageinfo-subjectpage' )->text() ) .
-				Html::element( 'th', array(), $this->msg( 'pageinfo-talkpage' )->text() )
+					Html::element( 'th', array(), $this->msg( 'pageinfo-subjectpage' )->text() ) .
+					Html::element( 'th', array(), $this->msg( 'pageinfo-talkpage' )->text() )
 			) .
 			Html::rawElement( 'tr', array(),
 				Html::element( 'th', array( 'colspan' => 3 ), $this->msg( 'pageinfo-header-edits' )->text() )
 			) .
 			Html::rawElement( 'tr', array(),
 				Html::element( 'td', array(), $this->msg( 'pageinfo-edits' )->text() ) .
-				Html::element( 'td', array(), $this->getLanguage()->formatNum( $pageInfo['edits'] ) ) .
-				Html::element( 'td', array(), $this->getLanguage()->formatNum( $talkInfo['edits'] ) )
+					Html::element( 'td', array(), $lang->formatNum( $pageInfo['edits'] ) ) .
+					Html::element( 'td', array(), $lang->formatNum( $talkInfo['edits'] ) )
 			) .
 			Html::rawElement( 'tr', array(),
 				Html::element( 'td', array(), $this->msg( 'pageinfo-authors' )->text() ) .
-				Html::element( 'td', array(), $this->getLanguage()->formatNum( $pageInfo['authors'] ) ) .
-				Html::element( 'td', array(), $this->getLanguage()->formatNum( $talkInfo['authors'] ) )
+					Html::element( 'td', array(), $lang->formatNum( $pageInfo['authors'] ) ) .
+					Html::element( 'td', array(), $lang->formatNum( $talkInfo['authors'] ) )
+			);
+
+		if ( $userCanViewUnwatchedPages ) {
+			$content .= Html::rawElement( 'tr', array(),
+				Html::element( 'th', array( 'colspan' => 3 ), $this->msg( 'pageinfo-header-watchlist' )->text() )
 			) .
-			( !$this->getUser()->isAllowed( 'unwatchedpages' ) ? '' :
-				Html::rawElement( 'tr', array(),
-					Html::element( 'th', array( 'colspan' => 3 ), $this->msg( 'pageinfo-header-watchlist' )->text() )
-				) .
 				Html::rawElement( 'tr', array(),
 					Html::element( 'td', array(), $this->msg( 'pageinfo-watchers' )->text() ) .
-					Html::element( 'td', array( 'colspan' => 2 ), $this->getLanguage()->formatNum( $pageInfo['watchers'] ) )
-				)
-			).
-			( $wgDisableCounters ? '' :
-				Html::rawElement( 'tr', array(),
-					Html::element( 'th', array( 'colspan' => 3 ), $this->msg( 'pageinfo-header-views' )->text() )
-				) .
+						Html::element( 'td', array( 'colspan' => 2 ), $lang->formatNum( $pageInfo['watchers'] ) )
+				);
+		}
+
+		if ( !$wgDisableCounters ) {
+			$content .= Html::rawElement( 'tr', array(),
+				Html::element( 'th', array( 'colspan' => 3 ), $this->msg( 'pageinfo-header-views' )->text() )
+			) .
 				Html::rawElement( 'tr', array(),
 					Html::element( 'td', array(), $this->msg( 'pageinfo-views' )->text() ) .
-					Html::element( 'td', array(), $this->getLanguage()->formatNum( $pageInfo['views'] ) ) .
-					Html::element( 'td', array(), $this->getLanguage()->formatNum( $talkInfo['views'] ) )
+						Html::element( 'td', array(), $lang->formatNum( $pageInfo['views'] ) ) .
+						Html::element( 'td', array(), $lang->formatNum( $talkInfo['views'] ) )
 				) .
 				Html::rawElement( 'tr', array(),
 					Html::element( 'td', array(), $this->msg( 'pageinfo-viewsperedit' )->text() ) .
-					Html::element( 'td', array(), $this->getLanguage()->formatNum( sprintf( '%.2f', $pageInfo['edits'] ? $pageInfo['views'] / $pageInfo['edits'] : 0 ) ) ) .
-					Html::element( 'td', array(), $this->getLanguage()->formatNum( sprintf( '%.2f', $talkInfo['edits'] ? $talkInfo['views'] / $talkInfo['edits'] : 0 ) ) )
-				)
-			)
-		);
+						Html::element( 'td', array(), $lang->formatNum( sprintf( '%.2f', $pageInfo['edits'] ? $pageInfo['views'] / $pageInfo['edits'] : 0 ) ) ) .
+						Html::element( 'td', array(), $lang->formatNum( sprintf( '%.2f', $talkInfo['edits'] ? $talkInfo['views'] / $talkInfo['edits'] : 0 ) ) )
+				);
+		}
+		return Html::rawElement( 'table', array( 'class' => 'wikitable mw-page-info' ), $content );
 	}
 
 	/**
@@ -104,21 +110,28 @@ class InfoAction extends FormlessAction {
 	 * on a given page. If page does not exist, returns false.
 	 *
 	 * @param $title Title object
-	 * @return mixed array or boolean false
+	 * @param $canViewUnwatched bool
+	 * @param $disableCounter bool
+	 * @return array
 	 */
-	public static function pageCountInfo( $title ) {
+	public static function pageCountInfo( $title, $canViewUnwatched, $disableCounter ) {
+		wfProfileIn( __METHOD__ );
 		$id = $title->getArticleID();
 		$dbr = wfGetDB( DB_SLAVE );
 
-		$watchers = (int)$dbr->selectField(
-			'watchlist',
-			'COUNT(*)',
-			array(
-				'wl_title'     => $title->getDBkey(),
-				'wl_namespace' => $title->getNamespace()
-			),
-			__METHOD__
-		);
+		$result = array();
+		if ( $canViewUnwatched ) {
+			$watchers = (int)$dbr->selectField(
+				'watchlist',
+				'COUNT(*)',
+				array(
+					'wl_namespace' => $title->getNamespace(),
+					'wl_title'     => $title->getDBkey(),
+				),
+				__METHOD__
+			);
+			$result['watchers'] = $watchers;
+		}
 
 		$edits = (int)$dbr->selectField(
 			'revision',
@@ -126,6 +139,7 @@ class InfoAction extends FormlessAction {
 			array( 'rev_page' => $id ),
 			__METHOD__
 		);
+		$result['edits'] = $edits;
 
 		$authors = (int)$dbr->selectField(
 			'revision',
@@ -133,15 +147,19 @@ class InfoAction extends FormlessAction {
 			array( 'rev_page' => $id ),
 			__METHOD__
 		);
+		$result['authors'] = $authors;
 
-		$views = (int)$dbr->selectField(
-			'page',
-			'page_counter',
-			array( 'page_id' => $id ),
-			__METHOD__
-		);
+		if ( !$disableCounter ) {
+			$views = (int)$dbr->selectField(
+				'page',
+				'page_counter',
+				array( 'page_id' => $id ),
+				__METHOD__
+			);
+			$result['views'] = $views;
+		}
 
-		return array( 'watchers' => $watchers, 'edits' => $edits,
-			'authors' => $authors, 'views' => $views );
+		wfProfileOut( __METHOD__ );
+		return $result;
 	}
 }

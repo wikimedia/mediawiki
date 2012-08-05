@@ -23,19 +23,11 @@
  * @file
  */
 
-class LogEventsList {
+class LogEventsList extends ContextSource {
 	const NO_ACTION_LINK = 1;
 	const NO_EXTRA_USER_LINKS = 2;
+	const USE_REVDEL_CHECKBOXES = 4;
 
-	/**
-	 * @var Skin
-	 */
-	private $skin;
-
-	/**
-	 * @var OutputPage
-	 */
-	private $out;
 	public $flags;
 
 	/**
@@ -48,11 +40,36 @@ class LogEventsList {
 	 */
 	protected $mDefaultQuery;
 
-	public function __construct( $skin, $out, $flags = 0 ) {
-		$this->skin = $skin;
-		$this->out = $out;
+	/**
+	 * Constructor.
+	 * The first two parameters used to be $skin and $out, but now only a context
+	 * is needed, that's why there's a second unused parameter.
+	 *
+	 * @param $context IContextSource Context to use; formerly it was Skin object.
+	 * @param $unused void Unused; used to be an OutputPage object.
+	 * @param $flags int flags; can be a combinaison of self::NO_ACTION_LINK,
+	 *        self::NO_EXTRA_USER_LINKS or self::USE_REVDEL_CHECKBOXES.
+	 */
+	public function __construct( $context, $unused = null, $flags = 0 ) {
+		if ( $context instanceof IContextSource ) {
+			$this->setContext( $context );
+		} else {
+			// Old parameters, $context should be a Skin object
+			$this->setContext( $context->getContext() );
+		}
+
 		$this->flags = $flags;
 		$this->preCacheMessages();
+	}
+
+	/**
+	 * Deprecated alias for getTitle(); do not use.
+	 *
+	 * @deprecated in 1.20; use getTitle() instead.
+	 * @return Title object
+	 */
+	public function getDisplayTitle() {
+		return $this->getTitle();
 	}
 
 	/**
@@ -66,7 +83,7 @@ class LogEventsList {
 				'revertmove', 'undeletelink', 'undeleteviewlink', 'revdel-restore', 'hist', 'diff',
 				'pipe-separator', 'revdel-restore-deleted', 'revdel-restore-visible' );
 			foreach( $messages as $msg ) {
-				$this->message[$msg] = wfMsgExt( $msg, array( 'escapenoentities' ) );
+				$this->message[$msg] = $this->msg( $msg )->escaped();
 			}
 		}
 	}
@@ -80,12 +97,13 @@ class LogEventsList {
 		wfDeprecated( __METHOD__, '1.19' );
 		// If only one log type is used, then show a special message...
 		$headerType = (count($type) == 1) ? $type[0] : '';
+		$out = $this->getOutput();
 		if( LogPage::isLogType( $headerType ) ) {
 			$page = new LogPage( $headerType );
-			$this->out->setPageTitle( $page->getName()->text() );
-			$this->out->addHTML( $page->getDescription()->parseAsBlock() );
+			$out->setPageTitle( $page->getName()->text() );
+			$out->addHTML( $page->getDescription()->parseAsBlock() );
 		} else {
-			$this->out->addHTML( wfMsgExt('alllogstext',array('parseinline')) );
+			$out->addHTML( $this->msg( 'alllogstext' )->parse() );
 		}
 	}
 
@@ -105,16 +123,14 @@ class LogEventsList {
 		$month = '', $filter = null, $tagFilter='' ) {
 		global $wgScript, $wgMiserMode;
 
-		$action = $wgScript;
 		$title = SpecialPage::getTitleFor( 'Log' );
-		$special = $title->getPrefixedDBkey();
 
 		// For B/C, we take strings, but make sure they are converted...
 		$types = ($types === '') ? array() : (array)$types;
 
 		$tagSelector = ChangeTags::buildTagFilterSelector( $tagFilter );
 
-		$html = Html::hidden( 'title', $special );
+		$html = Html::hidden( 'title', $title->getPrefixedDBkey() );
 
 		// Basic selectors
 		$html .= $this->getTypeMenu( $types ) . "\n";
@@ -141,15 +157,15 @@ class LogEventsList {
 		}
 
 		// Submit button
-		$html .= Xml::submitButton( wfMsg( 'allpagessubmit' ) );
+		$html .= Xml::submitButton( $this->msg( 'allpagessubmit' )->text() );
 
 		// Fieldset
-		$html = Xml::fieldset( wfMsg( 'log' ), $html );
+		$html = Xml::fieldset( $this->msg( 'log' )->text(), $html );
 
 		// Form wrapping
-		$html = Xml::tags( 'form', array( 'action' => $action, 'method' => 'get' ), $html );
+		$html = Xml::tags( 'form', array( 'action' => $wgScript, 'method' => 'get' ), $html );
 
-		$this->out->addHTML( $html );
+		$this->getOutput()->addHTML( $html );
 	}
 
 	/**
@@ -157,9 +173,8 @@ class LogEventsList {
 	 * @return String: Formatted HTML
 	 */
 	private function getFilterLinks( $filter ) {
-		global $wgLang;
 		// show/hide links
-		$messages = array( wfMsgHtml( 'show' ), wfMsgHtml( 'hide' ) );
+		$messages = array( $this->msg( 'show' )->escaped(), $this->msg( 'hide' )->escaped() );
 		// Option value -> message mapping
 		$links = array();
 		$hiddens = ''; // keep track for "go" button
@@ -172,26 +187,23 @@ class LogEventsList {
 			$hideVal = 1 - intval($val);
 			$query[$queryKey] = $hideVal;
 
-			$link = Linker::link(
+			$link = Linker::linkKnown(
 				$this->getDisplayTitle(),
 				$messages[$hideVal],
 				array(),
-				$query,
-				array( 'known', 'noclasses' )
+				$query
 			);
 
-			$links[$type] = wfMsgHtml( "log-show-hide-{$type}", $link );
+			$links[$type] = $this->msg( "log-show-hide-{$type}" )->rawParams( $link )->escaped();
 			$hiddens .= Html::hidden( "hide_{$type}_log", $val ) . "\n";
 		}
 		// Build links
-		return '<small>'.$wgLang->pipeList( $links ) . '</small>' . $hiddens;
+		return '<small>'.$this->getLanguage()->pipeList( $links ) . '</small>' . $hiddens;
 	}
 
 	private function getDefaultQuery() {
-		global $wgRequest;
-
 		if ( !isset( $this->mDefaultQuery ) ) {
-			$this->mDefaultQuery = $wgRequest->getQueryValues();
+			$this->mDefaultQuery = $this->getRequest()->getQueryValues();
 			unset( $this->mDefaultQuery['title'] );
 			unset( $this->mDefaultQuery['dir'] );
 			unset( $this->mDefaultQuery['offset'] );
@@ -201,20 +213,6 @@ class LogEventsList {
 			unset( $this->mDefaultQuery['year'] );
 		}
 		return $this->mDefaultQuery;
-	}
-
-	/**
-	 * Get the Title object of the page the links should point to.
-	 * This is NOT the Title of the page the entries should be restricted to.
-	 *
-	 * @return Title object
-	 */
-	public function getDisplayTitle() {
-		return $this->out->getTitle();
-	}
-
-	public function getContext() {
-		return $this->out->getContext();
 	}
 
 	/**
@@ -234,14 +232,12 @@ class LogEventsList {
 	 * @since 1.19
 	 */
 	public function getTypeSelector() {
-		global $wgUser;
-
 		$typesByName = array(); // Temporary array
 		// First pass to load the log names
 		foreach(  LogPage::validTypes() as $type ) {
 			$page = new LogPage( $type );
 			$restriction = $page->getRestriction();
-			if ( $wgUser->isAllowed( $restriction ) ) {
+			if ( $this->getUser()->isAllowed( $restriction ) ) {
 				$typesByName[$type] = $page->getName()->text();
 			}
 		}
@@ -268,7 +264,7 @@ class LogEventsList {
 	 */
 	private function getUserInput( $user ) {
 		return '<span style="white-space: nowrap">' .
-			Xml::inputLabel( wfMsg( 'specialloguserlabel' ), 'user', 'mw-log-user', 15, $user ) .
+			Xml::inputLabel( $this->msg( 'specialloguserlabel' )->text(), 'user', 'mw-log-user', 15, $user ) .
 			'</span>';
 	}
 
@@ -278,7 +274,7 @@ class LogEventsList {
 	 */
 	private function getTitleInput( $title ) {
 		return '<span style="white-space: nowrap">' .
-			Xml::inputLabel( wfMsg( 'speciallogtitlelabel' ), 'page', 'mw-log-page', 20, $title ) .
+			Xml::inputLabel( $this->msg( 'speciallogtitlelabel' )->text(), 'page', 'mw-log-page', 20, $title ) .
 			'</span>';
 	}
 
@@ -288,7 +284,7 @@ class LogEventsList {
 	 */
 	private function getTitlePattern( $pattern ) {
 		return '<span style="white-space: nowrap">' .
-			Xml::checkLabel( wfMsg( 'log-title-wildcard' ), 'pattern', 'pattern', $pattern ) .
+			Xml::checkLabel( $this->msg( 'log-title-wildcard' )->text(), 'pattern', 'pattern', $pattern ) .
 			'</span>';
 	}
 
@@ -297,14 +293,13 @@ class LogEventsList {
 	 * @return string
 	 */
 	private function getExtraInputs( $types ) {
-		global $wgRequest;
-		$offender = $wgRequest->getVal('offender');
+		$offender = $this->getRequest()->getVal( 'offender' );
 		$user = User::newFromName( $offender, false );
 		if( !$user || ($user->getId() == 0 && !IP::isIPAddress($offender) ) ) {
 			$offender = ''; // Blank field if invalid
 		}
 		if( count($types) == 1 && $types[0] == 'suppress' ) {
-			return Xml::inputLabel( wfMsg('revdelete-offender'), 'offender',
+			return Xml::inputLabel( $this->msg( 'revdelete-offender' )->text(), 'offender',
 				'mw-log-offender', 20, $offender );
 		}
 		return '';
@@ -331,6 +326,7 @@ class LogEventsList {
 	public function logLine( $row ) {
 		$entry = DatabaseLogEntry::newFromRow( $row );
 		$formatter = LogFormatter::newFromEntry( $entry );
+		$formatter->setContext( $this->getContext() );
 		$formatter->setShowUserToolLinks( !( $this->flags & self::NO_EXTRA_USER_LINKS ) );
 
 		$action = $formatter->getActionText();
@@ -358,22 +354,20 @@ class LogEventsList {
 	}
 
 	private function logTimestamp( LogEntry $entry ) {
-		global $wgLang;
-		$time = $wgLang->timeanddate( wfTimestamp( TS_MW, $entry->getTimestamp() ), true );
-		return htmlspecialchars( $time );
+		return htmlspecialchars( $this->getLanguage()->userTimeAndDate(
+			$entry->getTimestamp(), $this->getUser() ) );
 	}
 
 	/**
-	 * @TODO: split up!
+	 * @todo split up!
 	 *
 	 * @param  $row
 	 * @param Title $title
 	 * @param Array $paramArray
-	 * @param  $comment
+	 * @param String $comment Passed by reference
 	 * @return String
 	 */
 	private function logActionLinks( $row, $title, $paramArray, &$comment ) {
-		global $wgUser;
 		if( ( $this->flags & self::NO_ACTION_LINK ) // we don't want to see the action
 			|| self::isDeleted( $row, LogPage::DELETED_ACTION ) ) // action is hidden
 		{
@@ -383,53 +377,45 @@ class LogEventsList {
 		if( self::typeAction( $row, 'move', 'move', 'move' ) && !empty( $paramArray[0] ) ) {
 			$destTitle = Title::newFromText( $paramArray[0] );
 			if( $destTitle ) {
-				$revert = Linker::link(
+				$revert = Linker::linkKnown(
 					SpecialPage::getTitleFor( 'Movepage' ),
 					$this->message['revertmove'],
 					array(),
 					array(
 						'wpOldTitle' => $destTitle->getPrefixedDBkey(),
 						'wpNewTitle' => $title->getPrefixedDBkey(),
-						'wpReason'   => wfMsgForContent( 'revertmove' ),
+						'wpReason'   => $this->msg( 'revertmove' )->inContentLanguage()->text(),
 						'wpMovetalk' => 0
-					),
-					array( 'known', 'noclasses' )
+					)
 				);
-				$revert = wfMessage( 'parentheses' )->rawParams( $revert )->escaped();
+				$revert = $this->msg( 'parentheses' )->rawParams( $revert )->escaped();
 			}
 		// Show undelete link
 		} elseif( self::typeAction( $row, array( 'delete', 'suppress' ), 'delete', 'deletedhistory' ) ) {
-			if( !$wgUser->isAllowed( 'undelete' ) ) {
+			if( !$this->getUser()->isAllowed( 'undelete' ) ) {
 				$viewdeleted = $this->message['undeleteviewlink'];
 			} else {
 				$viewdeleted = $this->message['undeletelink'];
 			}
-			$revert = Linker::link(
+			$revert = Linker::linkKnown(
 				SpecialPage::getTitleFor( 'Undelete' ),
 				$viewdeleted,
 				array(),
-				array( 'target' => $title->getPrefixedDBkey() ),
-				array( 'known', 'noclasses' )
+				array( 'target' => $title->getPrefixedDBkey() )
 			 );
-			$revert = wfMessage( 'parentheses' )->rawParams( $revert )->escaped();
+			$revert = $this->msg( 'parentheses' )->rawParams( $revert )->escaped();
 		// Show unblock/change block link
 		} elseif( self::typeAction( $row, array( 'block', 'suppress' ), array( 'block', 'reblock' ), 'block' ) ) {
-			$revert = Linker::link(
+			$revert = Linker::linkKnown(
 					SpecialPage::getTitleFor( 'Unblock', $row->log_title ),
-					$this->message['unblocklink'],
-					array(),
-					array(),
-					'known'
+					$this->message['unblocklink']
 				) .
 				$this->message['pipe-separator'] .
-				Linker::link(
+				Linker::linkKnown(
 					SpecialPage::getTitleFor( 'Block', $row->log_title ),
-					$this->message['change-blocklink'],
-					array(),
-					array(),
-					'known'
+					$this->message['change-blocklink']
 				);
-				$revert = wfMessage( 'parentheses' )->rawParams( $revert )->escaped();
+				$revert = $this->msg( 'parentheses' )->rawParams( $revert )->escaped();
 		// Show change protection link
 		} elseif( self::typeAction( $row, 'protect', array( 'modify', 'protect', 'unprotect' ) ) ) {
 			$revert .= Linker::link( $title,
@@ -440,7 +426,7 @@ class LogEventsList {
 						'offset' => $row->log_timestamp
 					)
 				);
-			if( $wgUser->isAllowed( 'protect' ) ) {
+			if( $this->getUser()->isAllowed( 'protect' ) ) {
 				$revert .= $this->message['pipe-separator'] .
 					Linker::link( $title,
 						$this->message['protect_change'],
@@ -448,10 +434,10 @@ class LogEventsList {
 						array( 'action' => 'protect' ),
 						'known' );
 			}
-			$revert = ' ' . wfMessage( 'parentheses' )->rawParams( $revert )->escaped();
+			$revert = ' ' . $this->msg( 'parentheses' )->rawParams( $revert )->escaped();
 		// Show unmerge link
 		} elseif( self::typeAction( $row, 'merge', 'merge', 'mergehistory' ) ) {
-			$revert = Linker::link(
+			$revert = Linker::linkKnown(
 				SpecialPage::getTitleFor( 'MergeHistory' ),
 				$this->message['revertmerge'],
 				array(),
@@ -459,10 +445,9 @@ class LogEventsList {
 					'target' => $paramArray[0],
 					'dest' => $title->getPrefixedDBkey(),
 					'mergepoint' => $paramArray[1]
-				),
-				array( 'known', 'noclasses' )
+				)
 			);
-			$revert = wfMessage( 'parentheses' )->rawParams( $revert )->escaped();
+			$revert = $this->msg( 'parentheses' )->rawParams( $revert )->escaped();
 		// If an edit was hidden from a page give a review link to the history
 		} elseif( self::typeAction( $row, array( 'delete', 'suppress' ), 'revision', 'deletedhistory' ) ) {
 			$revert = RevisionDeleter::getLogLinks( $title, $paramArray,
@@ -474,7 +459,7 @@ class LogEventsList {
 				// $paramArray[1] is a CSV of the IDs
 				$query = $paramArray[0];
 				// Link to each hidden object ID, $paramArray[1] is the url param
-				$revert = Linker::link(
+				$revert = Linker::linkKnown(
 					$revdel,
 					$this->message['revdel-restore'],
 					array(),
@@ -482,10 +467,9 @@ class LogEventsList {
 						'target' => $title->getPrefixedText(),
 						'type' => 'logging',
 						'ids' => $query
-					),
-					array( 'known', 'noclasses' )
+					)
 				);
-				$revert = wfMessage( 'parentheses' )->rawParams( $revert )->escaped();
+				$revert = $this->msg( 'parentheses' )->rawParams( $revert )->escaped();
 			}
 		// Do nothing. The implementation is handled by the hook modifiying the passed-by-ref parameters.
 		} else {
@@ -503,28 +487,33 @@ class LogEventsList {
 	 * @return string
 	 */
 	private function getShowHideLinks( $row ) {
-		global $wgUser;
-		if( ( $this->flags & self::NO_ACTION_LINK ) // we don't want to see the links
+		if( ( $this->flags == self::NO_ACTION_LINK ) // we don't want to see the links
 			|| $row->log_type == 'suppress' ) { // no one can hide items from the suppress log
 			return '';
 		}
 		$del = '';
-		// Don't show useless link to people who cannot hide revisions
-		if( $wgUser->isAllowed( 'deletedhistory' ) ) {
-			if( $row->log_deleted || $wgUser->isAllowed( 'deleterevision' ) ) {
-				$canHide = $wgUser->isAllowed( 'deleterevision' );
-				// If event was hidden from sysops
-				if( !self::userCan( $row, LogPage::DELETED_RESTRICTED ) ) {
-					$del = Linker::revDeleteLinkDisabled( $canHide );
+		$user = $this->getUser();
+		// Don't show useless checkbox to people who cannot hide log entries
+		if( $user->isAllowed( 'deletedhistory' ) ) {
+			if( $row->log_deleted || $user->isAllowed( 'deletelogentry' ) ) {
+				$canHide = $user->isAllowed( 'deletelogentry' );
+				if ( $this->flags & self::USE_REVDEL_CHECKBOXES ) { // Show checkboxes instead of links.
+					if ( !self::userCan( $row, LogPage::DELETED_RESTRICTED, $user ) ) { // If event was hidden from sysops
+						$del = Xml::check( 'deleterevisions', false, array( 'disabled' => 'disabled' ) );
+					} else {
+						$del = Xml::check( 'showhiderevisions', false, array( 'name' => 'ids[' . $row->log_id . ']' ) );
+					}
 				} else {
-					$target = SpecialPage::getTitleFor( 'Log', $row->log_type );
-					$query = array(
-						'target' => $target->getPrefixedDBkey(),
-						'type'   => 'logging',
-						'ids'    => $row->log_id,
-					);
-					$del = Linker::revDeleteLink( $query,
-						self::isDeleted( $row, LogPage::DELETED_RESTRICTED ), $canHide );
+					if ( !self::userCan( $row, LogPage::DELETED_RESTRICTED, $user ) ) { // If event was hidden from sysops
+						$del = Linker::revDeleteLinkDisabled( $canHide );
+					} else {
+						$query = array(
+							'target' => SpecialPage::getTitleFor( 'Log', $row->log_type )->getPrefixedDBkey(),
+							'type'   => 'logging',
+							'ids'    => $row->log_id,
+						);
+						$del = Linker::revDeleteLink( $query, self::isDeleted( $row, LogPage::DELETED_RESTRICTED ), $canHide );
+					}
 				}
 			}
 		}
@@ -615,8 +604,8 @@ class LogEventsList {
 	 *   if set to true (default), "No matching items in log" is displayed if loglist is empty
 	 * - msgKey Array If you want a nice box with a message, set this to the key of the message.
 	 *   First element is the message key, additional optional elements are parameters for the key
-	 *   that are processed with wfMsgExt and option 'parse'
-	 * - offset Set to overwrite offset parameter in $wgRequest
+	 *   that are processed with wfMessage
+	 * - offset Set to overwrite offset parameter in WebRequest
 	 *   set to '' to unset offset
 	 * - wrap String Wrap the message in html (usually something like "<div ...>$1</div>").
 	 * - flags Integer display flags (NO_ACTION_LINK,NO_EXTRA_USER_LINKS)
@@ -654,9 +643,9 @@ class LogEventsList {
 		}
 
 		# Insert list of top 50 (or top $lim) items
-		$loglist = new LogEventsList( $context->getSkin(), $context->getOutput(), $flags );
+		$loglist = new LogEventsList( $context, null, $flags );
 		$pager = new LogPager( $loglist, $types, $user, $page, '', $conds );
-		if ( isset( $param['offset'] ) ) { # Tell pager to ignore $wgRequest offset
+		if ( isset( $param['offset'] ) ) { # Tell pager to ignore WebRequest offset
 			$pager->setOffset( $param['offset'] );
 		}
 		if( $lim > 0 ) $pager->mLimit = $lim;
@@ -667,11 +656,11 @@ class LogEventsList {
 				$s = '<div class="mw-warning-with-logexcerpt">';
 
 				if ( count( $msgKey ) == 1 ) {
-					$s .= wfMsgExt( $msgKey[0], array( 'parse' ) );
+					$s .= $context->msg( $msgKey[0] )->parseAsBlock();
 				} else { // Process additional arguments
 					$args = $msgKey;
 					array_shift( $args );
-					$s .= wfMsgExt( $msgKey[0], array( 'parse' ), $args );
+					$s .= $context->msg( $msgKey[0], $args )->parseAsBlock();
 				}
 			}
 			$s .= $loglist->beginLogEventsList() .
@@ -680,7 +669,7 @@ class LogEventsList {
 		} else {
 			if ( $showIfEmpty ) {
 				$s = Html::rawElement( 'div', array( 'class' => 'mw-warning-logempty' ),
-					wfMsgExt( 'logempty', array( 'parseinline' ) ) );
+					$context->msg( 'logempty' )->parse() );
 			}
 		}
 		if( $pager->getNumRows() > $pager->mLimit ) { # Show "Full log" link
@@ -699,7 +688,7 @@ class LogEventsList {
 				$urlParam['type'] = $types[0];
 			$s .= Linker::link(
 				SpecialPage::getTitleFor( 'Log' ),
-				wfMsgHtml( 'log-fulllog' ),
+				$context->msg( 'log-fulllog' )->escaped(),
 				array(),
 				$urlParam
 			);

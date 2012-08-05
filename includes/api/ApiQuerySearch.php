@@ -4,7 +4,7 @@
  *
  * Created on July 30, 2007
  *
- * Copyright © 2007 Yuri Astrakhan <Firstname><Lastname>@gmail.com
+ * Copyright © 2007 Yuri Astrakhan "<Firstname><Lastname>@gmail.com"
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -277,6 +277,63 @@ class ApiQuerySearch extends ApiQueryGeneratorBase {
 			'redirects' => 'Include redirect pages in the search',
 			'offset' => 'Use this value to continue paging (return by query)',
 			'limit' => 'How many total pages to return'
+		);
+	}
+
+	public function getResultProperties() {
+		return array(
+			'' => array(
+				'ns' => 'namespace',
+				'title' => 'string'
+			),
+			'snippet' => array(
+				'snippet' => 'string'
+			),
+			'size' => array(
+				'size' => 'integer'
+			),
+			'wordcount' => array(
+				'wordcount' => 'integer'
+			),
+			'timestamp' => array(
+				'timestamp' => 'timestamp'
+			),
+			'score' => array(
+				'score' => array(
+					ApiBase::PROP_TYPE => 'string',
+					ApiBase::PROP_NULLABLE => true
+				)
+			),
+			'titlesnippet' => array(
+				'titlesnippet' => 'string'
+			),
+			'redirecttitle' => array(
+				'redirecttitle' => array(
+					ApiBase::PROP_TYPE => 'string',
+					ApiBase::PROP_NULLABLE => true
+				)
+			),
+			'redirectsnippet' => array(
+				'redirectsnippet' => array(
+					ApiBase::PROP_TYPE => 'string',
+					ApiBase::PROP_NULLABLE => true
+				)
+			),
+			'sectiontitle' => array(
+				'sectiontitle' => array(
+					ApiBase::PROP_TYPE => 'string',
+					ApiBase::PROP_NULLABLE => true
+				)
+			),
+			'sectionsnippet' => array(
+				'sectionsnippet' => array(
+					ApiBase::PROP_TYPE => 'string',
+					ApiBase::PROP_NULLABLE => true
+				)
+			),
+			'hasrelated' => array(
+				'hasrelated' => 'boolean'
+			)
 		);
 	}
 

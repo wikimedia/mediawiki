@@ -183,7 +183,7 @@ class SpecialListGroupRights extends SpecialPage {
 			$r[] = $this->msg( 'listgrouprights-removegroup-all' )->escaped();
 		} elseif( is_array( $remove ) && count( $remove ) ) {
 			$remove = array_values( array_unique( $remove ) );
-			$r[] = $this->msg( 'listgrouprights-removegroup', array( 'parseinline' ),
+			$r[] = $this->msg( 'listgrouprights-removegroup',
 				$lang->listToText( array_map( array( 'User', 'makeGroupLinkWiki' ), $remove ) ),
 				count( $remove )
 			)->parse();
@@ -192,7 +192,7 @@ class SpecialListGroupRights extends SpecialPage {
 			$r[] = $this->msg( 'listgrouprights-addgroup-self-all' )->escaped();
 		} elseif( is_array( $addSelf ) && count( $addSelf ) ) {
 			$addSelf = array_values( array_unique( $addSelf ) );
-			$r[] = $this->msg( 'listgrouprights-addgroup-self', array( 'parseinline' ),
+			$r[] = $this->msg( 'listgrouprights-addgroup-self',
 				$lang->listToText( array_map( array( 'User', 'makeGroupLinkWiki' ), $addSelf ) ),
 				count( $addSelf )
 			)->parse();
@@ -201,7 +201,7 @@ class SpecialListGroupRights extends SpecialPage {
 			$r[] = $this->msg( 'listgrouprights-removegroup-self-all' )->parse();
 		} elseif( is_array( $removeSelf ) && count( $removeSelf ) ) {
 			$removeSelf = array_values( array_unique( $removeSelf ) );
-			$r[] = $this->msg( 'listgrouprights-removegroup-self', array( 'parseinline' ),
+			$r[] = $this->msg( 'listgrouprights-removegroup-self',
 				$lang->listToText( array_map( array( 'User', 'makeGroupLinkWiki' ), $removeSelf ) ),
 				count( $removeSelf )
 			)->parse();

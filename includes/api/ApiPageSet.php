@@ -4,7 +4,7 @@
  *
  * Created on Sep 24, 2006
  *
- * Copyright © 2006 Yuri Astrakhan <Firstname><Lastname>@gmail.com
+ * Copyright © 2006 Yuri Astrakhan "<Firstname><Lastname>@gmail.com"
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -52,7 +52,7 @@ class ApiPageSet extends ApiQueryBase {
 
 	/**
 	 * Constructor
-	 * @param $query ApiQueryBase
+	 * @param $query ApiBase
 	 * @param $resolveRedirects bool Whether redirects should be resolved
 	 * @param $convertTitles bool
 	 */
@@ -266,8 +266,8 @@ class ApiPageSet extends ApiQueryBase {
 	}
 
 	/**
-	 * Returns the number of revisions (requested with revids= parameter)\
-	 * @return int
+	 * Returns the number of revisions (requested with revids= parameter).
+	 * @return int Number of revisions.
 	 */
 	public function getRevisionCount() {
 		return count( $this->getRevisionIDs() );
@@ -367,7 +367,7 @@ class ApiPageSet extends ApiQueryBase {
 	 */
 	public function processDbRow( $row ) {
 		// Store Title object in various data structures
-		$title = Title::makeTitle( $row->page_namespace, $row->page_title );
+		$title = Title::newFromRow( $row );
 
 		$pageId = intval( $row->page_id );
 		$this->mAllPages[$row->page_namespace][$row->page_title] = $pageId;
@@ -481,6 +481,7 @@ class ApiPageSet extends ApiQueryBase {
 			ApiBase::dieDebug( __METHOD__, 'Missing $processTitles parameter when $remaining is provided' );
 		}
 
+		$usernames = array();
 		if ( $res ) {
 			foreach ( $res as $row ) {
 				$pageId = intval( $row->page_id );
@@ -496,6 +497,11 @@ class ApiPageSet extends ApiQueryBase {
 
 				// Store any extra fields requested by modules
 				$this->processDbRow( $row );
+
+				// Need gender information
+				if( MWNamespace::hasGenderDistinction( $row->page_namespace ) ) {
+					$usernames[] = $row->page_title;
+				}
 			}
 		}
 
@@ -510,6 +516,11 @@ class ApiPageSet extends ApiQueryBase {
 						$this->mMissingTitles[$this->mFakePageId] = $title;
 						$this->mFakePageId--;
 						$this->mTitles[] = $title;
+
+						// need gender information
+						if( MWNamespace::hasGenderDistinction( $ns ) ) {
+							$usernames[] = $dbkey;
+						}
 					}
 				}
 			} else {
@@ -521,6 +532,10 @@ class ApiPageSet extends ApiQueryBase {
 				}
 			}
 		}
+
+		// Get gender information
+		$genderCache = GenderCache::singleton();
+		$genderCache->doQuery( $usernames, __METHOD__ );
 	}
 
 	/**
@@ -664,6 +679,9 @@ class ApiPageSet extends ApiQueryBase {
 	 * @return LinkBatch
 	 */
 	private function processTitlesArray( $titles ) {
+		$genderCache = GenderCache::singleton();
+		$genderCache->doTitlesArray( $titles, __METHOD__ );
+
 		$linkBatch = new LinkBatch();
 
 		foreach ( $titles as $title ) {

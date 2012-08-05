@@ -1,13 +1,34 @@
 <?php
 /**
+ * Lock manager registration handling.
+ *
+ * This program is free software; you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation; either version 2 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License along
+ * with this program; if not, write to the Free Software Foundation, Inc.,
+ * 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
+ * http://www.gnu.org/copyleft/gpl.html
+ *
+ * @file
+ * @ingroup LockManager
+ */
+
+/**
  * Class to handle file lock manager registration
- * 
+ *
  * @ingroup LockManager
  * @author Aaron Schulz
  * @since 1.19
  */
 class LockManagerGroup {
-
 	/**
 	 * @var LockManagerGroup
 	 */
@@ -17,7 +38,6 @@ class LockManagerGroup {
 	protected $managers = array();
 
 	protected function __construct() {}
-	protected function __clone() {}
 
 	/**
 	 * @return LockManagerGroup
@@ -40,7 +60,7 @@ class LockManagerGroup {
 
 	/**
 	 * Register lock managers from the global variables
-	 * 
+	 *
 	 * @return void
 	 */
 	protected function initFromGlobals() {
@@ -93,5 +113,31 @@ class LockManagerGroup {
 			$this->managers[$name]['instance'] = new $class( $config );
 		}
 		return $this->managers[$name]['instance'];
+	}
+
+	/**
+	 * Get the default lock manager configured for the site.
+	 * Returns NullLockManager if no lock manager could be found.
+	 *
+	 * @return LockManager
+	 */
+	public function getDefault() {
+		return isset( $this->managers['default'] )
+			? $this->get( 'default' )
+			: new NullLockManager( array() );
+	}
+
+	/**
+	 * Get the default lock manager configured for the site
+	 * or at least some other effective configured lock manager.
+	 * Throws an exception if no lock manager could be found.
+	 *
+	 * @return LockManager
+	 * @throws MWException
+	 */
+	public function getAny() {
+		return isset( $this->managers['default'] )
+			? $this->get( 'default' )
+			: $this->get( 'fsLockManager' );
 	}
 }

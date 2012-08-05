@@ -46,7 +46,7 @@ class WantedTemplatesPage extends WantedQueryPage {
 			'conds' => array ( 'page_title IS NULL',
 					'tl_namespace' => NS_TEMPLATE ),
 			'options' => array (
-				'GROUP BY' => 'tl_namespace, tl_title' ),
+				'GROUP BY' => array( 'tl_namespace', 'tl_title' ) ),
 			'join_conds' => array ( 'page' => array ( 'LEFT JOIN',
 					array ( 'page_namespace = tl_namespace',
 						'page_title = tl_title' ) ) )

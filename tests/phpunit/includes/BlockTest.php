@@ -67,7 +67,7 @@ class BlockTest extends MediaWikiLangTestCase {
 		// $this->dumpBlocks();
 
 		$this->assertTrue( $this->block->equals( Block::newFromTarget('UTBlockee') ), "newFromTarget() returns the same block as the one that was made");
-		
+
 		$this->assertTrue( $this->block->equals( Block::newFromID( $this->blockId ) ), "newFromID() returns the same block as the one that was made");
 
 	}
@@ -121,5 +121,110 @@ class BlockTest extends MediaWikiLangTestCase {
 			array( '' ),
 			array( false )
 		);
+	}
+
+	function testBlockedUserCanNotCreateAccount() {
+		$username = 'BlockedUserToCreateAccountWith';
+		$u = User::newFromName( $username );
+		$u->setPassword( 'NotRandomPass' );
+		$u->addToDatabase();
+		unset( $u );
+
+
+		// Sanity check
+		$this->assertNull(
+			Block::newFromTarget( $username ),
+			"$username should not be blocked"
+		);
+
+		// Reload user
+		$u = User::newFromName( $username );
+		$this->assertFalse(
+			$u->isBlockedFromCreateAccount(),
+			"Our sandbox user should be able to create account before being blocked"
+		);
+
+		// Foreign perspective (blockee not on current wiki)...
+		$block = new Block(
+			/* $address */ $username,
+			/* $user */ 14146,
+			/* $by */ 0,
+			/* $reason */ 'crosswiki block...',
+			/* $timestamp */ wfTimestampNow(),
+			/* $auto */ false,
+			/* $expiry */ $this->db->getInfinity(),
+			/* anonOnly */ false,
+			/* $createAccount */ true,
+			/* $enableAutoblock */ true,
+			/* $hideName (ipb_deleted) */ true,
+			/* $blockEmail */ true,
+			/* $allowUsertalk */ false,
+			/* $byName */ 'MetaWikiUser'
+		);
+		$block->insert();
+
+		// Reload block from DB
+		$userBlock = Block::newFromTarget( $username );
+		$this->assertTrue(
+			(bool) $block->prevents( 'createaccount' ),
+			"Block object in DB should prevents 'createaccount'"
+		);
+
+		$this->assertInstanceOf(
+			'Block',
+			$userBlock,
+			"'$username' block block object should be existent"
+		);
+
+		// Reload user
+		$u = User::newFromName( $username );
+		$this->assertTrue(
+			(bool) $u->isBlockedFromCreateAccount(),
+			"Our sandbox user '$username' should NOT be able to create account"
+		);
+	}
+
+	function testCrappyCrossWikiBlocks() {
+		// Delete the last round's block if it's still there
+		$oldBlock = Block::newFromTarget( 'UserOnForeignWiki' );
+		if ( $oldBlock ) {
+			// An old block will prevent our new one from saving.
+			$oldBlock->delete();
+		}
+
+		// Foreign perspective (blockee not on current wiki)...
+		$block = new Block(
+			/* $address */ 'UserOnForeignWiki',
+			/* $user */ 14146,
+			/* $by */ 0,
+			/* $reason */ 'crosswiki block...',
+			/* $timestamp */ wfTimestampNow(),
+			/* $auto */ false,
+			/* $expiry */ $this->db->getInfinity(),
+			/* anonOnly */ false,
+			/* $createAccount */ true,
+			/* $enableAutoblock */ true,
+			/* $hideName (ipb_deleted) */ true,
+			/* $blockEmail */ true,
+			/* $allowUsertalk */ false,
+			/* $byName */ 'MetaWikiUser'
+		);
+
+		$res = $block->insert( $this->db );
+		$this->assertTrue( (bool)$res['id'], 'Block succeeded' );
+
+		// Local perspective (blockee on current wiki)...
+		$user = User::newFromName( 'UserOnForeignWiki' );
+		$user->addToDatabase();
+		// Set user ID to match the test value
+		$this->db->update( 'user', array( 'user_id' => 14146 ), array( 'user_id' => $user->getId() ) );
+		$user = null; // clear
+
+		$block = Block::newFromID( $res['id'] );
+		$this->assertEquals( 'UserOnForeignWiki', $block->getTarget()->getName(), 'Correct blockee name' );
+		$this->assertEquals( '14146',  $block->getTarget()->getId(), 'Correct blockee id' );
+		$this->assertEquals( 'MetaWikiUser', $block->getBlocker(), 'Correct blocker name' );
+		$this->assertEquals( 'MetaWikiUser', $block->getByName(), 'Correct blocker name' );
+		$this->assertEquals( 0, $block->getBy(), 'Correct blocker id' );
 	}
 }

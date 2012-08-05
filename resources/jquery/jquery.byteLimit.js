@@ -4,11 +4,11 @@
  * @author Jan Paul Posma, 2011
  * @author Timo Tijhof, 2011-2012
  */
-( function ( $, undefined ) {
+( function ( $ ) {
 
 	/**
 	 * Enforces a byte limit to a textbox, so that UTF-8 entries are counted as well, when, for example,
-	 * a databae field has a byte limit rather than a character limit.
+	 * a database field has a byte limit rather than a character limit.
 	 * Plugin rationale: Browser has native maxlength for number of characters, this plugin exists to
 	 * limit number of bytes instead.
 	 *
@@ -41,6 +41,13 @@
 			// that affects the next each() iteration as well.
 			elLimit = limit === undefined ? $el.prop( 'maxLength' ) : limit;
 	
+			// If there is no (valid) limit passed or found in the property,
+			// skip this. The < 0 check is required for Firefox, which returns
+			// -1  (instead of undefined) for maxLength if it is not set.
+			if ( !elLimit || elLimit < 0 ) {
+				return;
+			}
+
 			// Update/set attribute value, but only if there is no callback set.
 			// If there's a callback set, it's possible that the limit being enforced
 			// is too low (ie. if the callback would return "Foo" for "User:Foo").
@@ -53,13 +60,8 @@
 				$el.removeProp( 'maxLength' );
 			}
 	
-			// Nothing passed and/or empty attribute, return without binding an event.
-			if ( elLimit === undefined ) {
-				return;
-			}
-	
 			// Save function for reference
-			$el.data( 'byteLimit-callback', fn );
+			$el.data( 'byteLimitCallback', fn );
 	
 			// We've got something, go for it:
 			$el.keypress( function ( e ) {

@@ -1,6 +1,6 @@
 <?php
 /**
- * Protect or unprotect an article.
+ * Protect or unprotect a page.
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -17,15 +17,21 @@
  * 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
  * http://www.gnu.org/copyleft/gpl.html
  *
+ * @file
  * @ingroup Maintenance
  */
 
 require_once( dirname( __FILE__ ) . '/Maintenance.php' );
 
+/**
+ * Maintenance script that protects or unprotects a page.
+ *
+ * @ingroup Maintenance
+ */
 class Protect extends Maintenance {
 	public function __construct() {
 		parent::__construct();
-		$this->mDescription = "Protect or unprotect an article from the command line.";
+		$this->mDescription = "Protect or unprotect a page from the command line.";
 		$this->addOption( 'unprotect', 'Removes protection' );
 		$this->addOption( 'semiprotect', 'Adds semi-protection' );
 		$this->addOption( 'cascade', 'Add cascading protection' );

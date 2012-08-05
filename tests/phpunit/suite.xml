@@ -8,6 +8,9 @@
          convertNoticesToExceptions="true"
          convertWarningsToExceptions="true"
          stopOnFailure="false"
+		 timeoutForSmallTests="2"
+		 timeoutForMediumTests="10"
+		 timeoutForLargeTests="60"
          strict="true"
 		 verbose="true">
 	<testsuites>
@@ -19,6 +22,11 @@
 		</testsuite>
 		<testsuite name="skins">
 			<directory>skins</directory>
+		</testsuite>
+		<!-- As there is a class Maintenance, we cannot use the
+		     name "maintenance" directly -->
+		<testsuite name="maintenance_suite">
+			<directory>maintenance</directory>
 		</testsuite>
 		<testsuite name="structure">
 			<file>StructureTest.php</file>

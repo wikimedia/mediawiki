@@ -1,6 +1,21 @@
 <?php
 /**
- * Prioritized list of file repositories
+ * Prioritized list of file repositories.
+ *
+ * This program is free software; you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation; either version 2 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License along
+ * with this program; if not, write to the Free Software Foundation, Inc.,
+ * 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
+ * http://www.gnu.org/copyleft/gpl.html
  *
  * @file
  * @ingroup FileRepo
@@ -12,7 +27,6 @@
  * @ingroup FileRepo
  */
 class RepoGroup {
-
 	/**
 	 * @var LocalRepo
 	 */
@@ -26,7 +40,7 @@ class RepoGroup {
 	 * @var RepoGroup
 	 */
 	protected static $instance;
-	const MAX_CACHE_SIZE = 1000;
+	const MAX_CACHE_SIZE = 500;
 
 	/**
 	 * Get a RepoGroup instance. At present only one instance of RepoGroup is
@@ -114,50 +128,47 @@ class RepoGroup {
 			&& empty( $options['private'] )
 			&& empty( $options['bypassCache'] ) )
 		{
-			$useCache = true;
 			$time = isset( $options['time'] ) ? $options['time'] : '';
 			$dbkey = $title->getDBkey();
 			if ( isset( $this->cache[$dbkey][$time] ) ) {
 				wfDebug( __METHOD__.": got File:$dbkey from process cache\n" );
 				# Move it to the end of the list so that we can delete the LRU entry later
-				$tmp = $this->cache[$dbkey];
-				unset( $this->cache[$dbkey] );
-				$this->cache[$dbkey] = $tmp;
+				$this->pingCache( $dbkey );
 				# Return the entry
 				return $this->cache[$dbkey][$time];
-			} else {
-				# Add a negative cache entry, may be overridden
-				$this->trimCache();
-				$this->cache[$dbkey][$time] = false;
-				$cacheEntry =& $this->cache[$dbkey][$time];
 			}
+			$useCache = true;
 		} else {
 			$useCache = false;
 		}
 
 		# Check the local repo
 		$image = $this->localRepo->findFile( $title, $options );
-		if ( $image ) {
-			if ( $useCache ) {
-				$cacheEntry = $image;
-			}
-			return $image;
-		}
 
 		# Check the foreign repos
-		foreach ( $this->foreignRepos as $repo ) {
-			$image = $repo->findFile( $title, $options );
-			if ( $image ) {
-				if ( $useCache ) {
-					$cacheEntry = $image;
+		if ( !$image ) {
+			foreach ( $this->foreignRepos as $repo ) {
+				$image = $repo->findFile( $title, $options );
+				if ( $image ) {
+					break;
 				}
-				return $image;
 			}
 		}
-		# Not found, do not override negative cache
-		return false;
+
+		$image = $image ? $image : false; // type sanity
+		# Cache file existence or non-existence
+		if ( $useCache && ( !$image || $image->isCacheable() ) ) {
+			$this->trimCache();
+			$this->cache[$dbkey][$time] = $image;
+		}
+
+		return $image;
 	}
 
+	/**
+	 * @param $inputItems array
+	 * @return array
+	 */
 	function findFiles( $inputItems ) {
 		if ( !$this->reposInitialised ) {
 			$this->initialiseRepos();
@@ -189,6 +200,7 @@ class RepoGroup {
 
 	/**
 	 * Interface for FileRepo::checkRedirect()
+	 * @param $title Title
 	 * @return bool
 	 */
 	function checkRedirect( Title $title ) {
@@ -247,11 +259,35 @@ class RepoGroup {
 		foreach ( $this->foreignRepos as $repo ) {
 			$result = array_merge( $result, $repo->findBySha1( $hash ) );
 		}
+		usort( $result, 'File::compare' );
+		return $result;
+	}
+
+	/**
+	 * Find all instances of files with this keys
+	 *
+	 * @param $hashes Array base 36 SHA-1 hashes
+	 * @return Array of array of File objects
+	 */
+	function findBySha1s( array $hashes ) {
+		if ( !$this->reposInitialised ) {
+			$this->initialiseRepos();
+		}
+
+		$result = $this->localRepo->findBySha1s( $hashes );
+		foreach ( $this->foreignRepos as $repo ) {
+			$result = array_merge_recursive( $result, $repo->findBySha1s( $hashes ) );
+		}
+		//sort the merged (and presorted) sublist of each hash
+		foreach( $result as $hash => $files ) {
+			usort( $result[$hash], 'File::compare' );
+		}
 		return $result;
 	}
 
 	/**
 	 * Get the repo instance with a given key.
+	 * @param $index string|int
 	 * @return bool|LocalRepo
 	 */
 	function getRepo( $index ) {
@@ -266,8 +302,10 @@ class RepoGroup {
 			return false;
 		}
 	}
+
 	/**
 	 * Get the repo instance by its name
+	 * @param $name string
 	 * @return bool
 	 */
 	function getRepoByName( $name ) {
@@ -275,8 +313,9 @@ class RepoGroup {
 			$this->initialiseRepos();
 		}
 		foreach ( $this->foreignRepos as $repo ) {
-			if ( $repo->name == $name)
+			if ( $repo->name == $name ) {
 				return $repo;
+			}
 		}
 		return false;
 	}
@@ -344,6 +383,7 @@ class RepoGroup {
 	/**
 	 * Split a virtual URL into repo, zone and rel parts
 	 * @param $url string
+	 * @throws MWException
 	 * @return array containing repo, zone and rel
 	 */
 	function splitVirtualUrl( $url ) {
@@ -358,6 +398,10 @@ class RepoGroup {
 		return $bits;
 	}
 
+	/**
+	 * @param $fileName string
+	 * @return array
+	 */
 	function getFileProps( $fileName ) {
 		if ( FileRepo::isVirtualUrl( $fileName ) ) {
 			list( $repoName, /* $zone */, /* $rel */ ) = $this->splitVirtualUrl( $fileName );
@@ -368,6 +412,17 @@ class RepoGroup {
 			return $repo->getFileProps( $fileName );
 		} else {
 			return FSFile::getPropsFromPath( $fileName );
+		}
+	}
+
+	/**
+	 * Move a cache entry to the top (such as when accessed)
+	 */
+	protected function pingCache( $key ) {
+		if ( isset( $this->cache[$key] ) ) {
+			$tmp = $this->cache[$key];
+			unset( $this->cache[$key] );
+			$this->cache[$key] = $tmp;
 		}
 	}
 

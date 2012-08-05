@@ -47,6 +47,9 @@ class UserrightsPage extends SpecialPage {
 
 	public function userCanChangeRights( $user, $checkIfSelf = true ) {
 		$available = $this->changeableGroups();
+		if ( $user->getId() == 0 ) {
+			return false;
+		}
 		return !empty( $available['add'] )
 			|| !empty( $available['remove'] )
 			|| ( ( $this->isself || !$checkIfSelf ) &&
@@ -420,12 +423,12 @@ class UserrightsPage extends SpecialPage {
 		$grouplist = '';
 		$count = count( $list );
 		if( $count > 0 ) {
-			$grouplist = $this->msg( 'userrights-groupsmember', $count )->parse();
+			$grouplist = $this->msg( 'userrights-groupsmember', $count, $user->getName() )->parse();
 			$grouplist = '<p>' . $grouplist  . ' ' . $this->getLanguage()->listToText( $list ) . "</p>\n";
 		}
 		$count = count( $autolist );
 		if( $count > 0 ) {
-			$autogrouplistintro = $this->msg( 'userrights-groupsmember-auto', $count )->parse();
+			$autogrouplistintro = $this->msg( 'userrights-groupsmember-auto', $count, $user->getName() )->parse();
 			$grouplist .= '<p>' . $autogrouplistintro  . ' ' . $this->getLanguage()->listToText( $autolist ) . "</p>\n";
 		}
 

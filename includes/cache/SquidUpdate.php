@@ -1,6 +1,22 @@
 <?php
 /**
- * See deferred.txt
+ * Squid cache purging.
+ *
+ * This program is free software; you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation; either version 2 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License along
+ * with this program; if not, write to the Free Software Foundation, Inc.,
+ * 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
+ * http://www.gnu.org/copyleft/gpl.html
+ *
  * @file
  * @ingroup Cache
  */
@@ -12,13 +28,18 @@
 class SquidUpdate {
 	var $urlArr, $mMaxTitles;
 
-	function __construct( $urlArr = Array(), $maxTitles = false ) {
+	/**
+	 * @param $urlArr array
+	 * @param $maxTitles bool|int
+	 */
+	function __construct( $urlArr = array(), $maxTitles = false ) {
 		global $wgMaxSquidPurgeTitles;
 		if ( $maxTitles === false ) {
 			$this->mMaxTitles = $wgMaxSquidPurgeTitles;
 		} else {
 			$this->mMaxTitles = $maxTitles;
 		}
+		$urlArr = array_unique( $urlArr ); // Remove duplicates
 		if ( count( $urlArr ) > $this->mMaxTitles ) {
 			$urlArr = array_slice( $urlArr, 0, $this->mMaxTitles );
 		}
@@ -102,23 +123,19 @@ class SquidUpdate {
 	 * @return void
 	 */
 	static function purge( $urlArr ) {
-		global $wgSquidServers, $wgHTCPMulticastAddress, $wgHTCPPort;
-
-		/*if ( (@$wgSquidServers[0]) == 'echo' ) {
-			echo implode("<br />\n", $urlArr) . "<br />\n";
-			return;
-		}*/
+		global $wgSquidServers, $wgHTCPMulticastRouting;
 
 		if( !$urlArr ) {
 			return;
 		}
 
-		if ( $wgHTCPMulticastAddress && $wgHTCPPort ) {
+		if ( $wgHTCPMulticastRouting ) {
 			SquidUpdate::HTCPPurge( $urlArr );
 		}
 
 		wfProfileIn( __METHOD__ );
 
+		$urlArr = array_unique( $urlArr ); // Remove duplicates
 		$maxSocketsPerSquid = 8; //  socket cap per Squid
 		$urlsPerSocket = 400; // 400 seems to be a good tradeoff, opening a socket takes a while
 		$socketsPerSquid = ceil( count( $urlArr ) / $urlsPerSocket );
@@ -147,7 +164,7 @@ class SquidUpdate {
 	 * @param $urlArr array
 	 */
 	static function HTCPPurge( $urlArr ) {
-		global $wgHTCPMulticastAddress, $wgHTCPMulticastTTL, $wgHTCPPort;
+		global $wgHTCPMulticastRouting, $wgHTCPMulticastTTL;
 		wfProfileIn( __METHOD__ );
 
 		$htcpOpCLR = 4; // HTCP CLR
@@ -168,11 +185,20 @@ class SquidUpdate {
 				socket_set_option( $conn, IPPROTO_IP, IP_MULTICAST_TTL,
 					$wgHTCPMulticastTTL );
 
+			$urlArr = array_unique( $urlArr ); // Remove duplicates
 			foreach ( $urlArr as $url ) {
 				if( !is_string( $url ) ) {
 					throw new MWException( 'Bad purge URL' );
 				}
 				$url = SquidUpdate::expand( $url );
+				$conf = self::getRuleForURL( $url, $wgHTCPMulticastRouting );
+				if ( !$conf ) {
+					wfDebug( "No HTCP rule configured for URL $url , skipping\n" );
+					continue;
+				}
+				if ( !isset( $conf['host'] ) || !isset( $conf['port'] ) ) {
+					throw new MWException( "Invalid HTCP rule for URL $url\n" );
+				}
 
 				// Construct a minimal HTCP request diagram
 				// as per RFC 2756
@@ -196,7 +222,7 @@ class SquidUpdate {
 				// Send out
 				wfDebug( "Purging URL $url via HTCP\n" );
 				socket_sendto( $conn, $htcpPacket, $htcpLen, 0,
-					$wgHTCPMulticastAddress, $wgHTCPPort );
+					$conf['host'], $conf['port'] );
 			}
 		} else {
 			$errstr = socket_strerror( socket_last_error() );
@@ -223,4 +249,20 @@ class SquidUpdate {
 	static function expand( $url ) {
 		return wfExpandUrl( $url, PROTO_INTERNAL );
 	}
+	
+	/**
+	 * Find the HTCP routing rule to use for a given URL.
+	 * @param $url string URL to match
+	 * @param $rules array Array of rules, see $wgHTCPMulticastRouting for format and behavior
+	 * @return mixed Element of $rules that matched, or false if nothing matched
+	 */
+	static function getRuleForURL( $url, $rules ) {
+		foreach ( $rules as $regex => $routing ) {
+			if ( $regex === '' || preg_match( $regex, $url ) ) {
+				return $routing;
+			}
+		}
+		return false;
+	}
+	
 }

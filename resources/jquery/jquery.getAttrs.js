@@ -3,8 +3,8 @@
  *
  * @author Timo Tijhof, 2011
  */
-jQuery.fn.getAttrs = function( all ) {
-	var	map = this[0].attributes,
+jQuery.fn.getAttrs = function ( all ) {
+	var map = this[0].attributes,
 		attrs = {},
 		len = map.length,
 		i, v;

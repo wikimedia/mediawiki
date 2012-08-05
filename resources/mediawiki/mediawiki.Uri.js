@@ -56,7 +56,7 @@
  *
  */
 
-( function( $, mw ) {
+( function ( mw, $ ) {
 
 	/**
 	 * Function that's useful when constructing the URI string -- we frequently encounter the pattern of
@@ -70,9 +70,8 @@
 	function cat( pre, val, post, raw ) {
 		if ( val === undefined || val === null || val === '' ) {
 			return '';
-		} else {
-			return pre + ( raw ? val : mw.Uri.encode( val ) ) + post;
 		}
+		return pre + ( raw ? val : mw.Uri.encode( val ) ) + post;
 	}
 
 	// Regular expressions to parse many common URIs.
@@ -98,13 +97,16 @@
 	 * We use a factory to inject a document location, for relative URLs, including protocol-relative URLs.
 	 * so the library is still testable & purely functional.
 	 */
-	mw.UriRelative = function( documentLocation ) {
+	mw.UriRelative = function ( documentLocation ) {
+		var defaultUri;
 
 		/**
 		 * Constructs URI object. Throws error if arguments are illegal/impossible, or otherwise don't parse.
 		 * @constructor
 		 * @param {Object|String} URI string, or an Object with appropriate properties (especially another URI object to clone).
 		 * Object must have non-blank 'protocol', 'host', and 'path' properties.
+		 * This parameter is optional. If omitted (or set to undefined, null or empty string), then an object will be created
+		 * for the default uri of this constructor (e.g. document.location for mw.Uri in MediaWiki core).
 		 * @param {Object|Boolean} Object with options, or (backwards compatibility) a boolean for strictMode
 		 * - strictMode {Boolean} Trigger strict mode parsing of the url. Default: false
 		 * - overrideKeys {Boolean} Wether to let duplicate query parameters override eachother (true) or automagically
@@ -117,25 +119,48 @@
 				overrideKeys: false
 			}, options );
 
-			if ( uri !== undefined && uri !== null || uri !== '' ) {
+			if ( uri !== undefined && uri !== null && uri !== '' ) {
 				if ( typeof uri === 'string' ) {
-					this._parse( uri, options );
+					this.parse( uri, options );
 				} else if ( typeof uri === 'object' ) {
-					var _this = this;
-					$.each( properties, function( i, property ) {
-						_this[property] = uri[property];
-					} );
-					if ( this.query === undefined ) {
+					// Copy data over from existing URI object
+					for ( var prop in uri ) {
+						// Only copy direct properties, not inherited ones
+						if ( uri.hasOwnProperty( prop ) ) {
+							// Deep copy object properties
+							if ( $.isArray( uri[prop] ) || $.isPlainObject( uri[prop] ) ) {
+								this[prop] = $.extend( true, {}, uri[prop] );
+							} else {
+								this[prop] = uri[prop];
+							}
+						}
+					}
+					if ( !this.query ) {
 						this.query = {};
 					}
 				}
+			} else {
+				// If we didn't get a URI in the constructor, use the default one.
+				return defaultUri.clone();
 			}
 
 			// protocol-relative URLs
 			if ( !this.protocol ) {
-				this.protocol = defaultProtocol;
+				this.protocol = defaultUri.protocol;
 			}
-
+			// No host given:
+			if ( !this.host ) {
+				this.host = defaultUri.host;
+				// port ?
+				if ( !this.port ) {
+					this.port = defaultUri.port;
+				}
+			}
+			if ( this.path && this.path.charAt( 0 ) !== '/' ) {
+				// A real relative URL, relative to defaultUri.path. We can't really handle that since we cannot
+				// figure out whether the last path compoennt of defaultUri.path is a directory or a file.
+				throw new Error( 'Bad constructor arguments' );
+			}
 			if ( !( this.protocol && this.host && this.path ) ) {
 				throw new Error( 'Bad constructor arguments' );
 			}
@@ -147,7 +172,7 @@
 		 * @param {String} string
 		 * @return {String} encoded for URI
 		 */
-		Uri.encode = function( s ) {
+		Uri.encode = function ( s ) {
 			return encodeURIComponent( s )
 				.replace( /!/g, '%21').replace( /'/g, '%27').replace( /\(/g, '%28')
 				.replace( /\)/g, '%29').replace( /\*/g, '%2A')
@@ -159,7 +184,7 @@
 		 * @param {String} string encoded for URI
 		 * @return {String} decoded string
 		 */
-		Uri.decode = function( s ) {
+		Uri.decode = function ( s ) {
 			return decodeURIComponent( s.replace( /\+/g, '%20' ) );
 		};
 
@@ -171,23 +196,25 @@
 			 * @param {Object} options
 			 * @return {Boolean} success
 			 */
-			_parse: function( str, options ) {
-				var matches = parser[ options.strictMode ? 'strict' : 'loose' ].exec( str );
-				var uri = this;
-				$.each( properties, function( i, property ) {
+			parse: function ( str, options ) {
+				var q,
+					uri = this,
+					matches = parser[ options.strictMode ? 'strict' : 'loose' ].exec( str );
+				$.each( properties, function ( i, property ) {
 					uri[ property ] = matches[ i+1 ];
 				} );
 
 				// uri.query starts out as the query string; we will parse it into key-val pairs then make
 				// that object the "query" property.
 				// we overwrite query in uri way to make cloning easier, it can use the same list of properties.
-				var q = {};
+				q = {};
 				// using replace to iterate over a string
 				if ( uri.query ) {
 					uri.query.replace( /(?:^|&)([^&=]*)(?:(=)([^&]*))?/g, function ($0, $1, $2, $3) {
+						var k, v;
 						if ( $1 ) {
-							var k = Uri.decode( $1 );
-							var v = ( $2 === '' || $2 === undefined ) ? null : Uri.decode( $3 );
+							k = Uri.decode( $1 );
+							v = ( $2 === '' || $2 === undefined ) ? null : Uri.decode( $3 );
 
 							// If overrideKeys, always (re)set top level value.
 							// If not overrideKeys but this key wasn't set before, then we set it as well.
@@ -215,7 +242,7 @@
 			 * Returns user and password portion of a URI.
 			 * @return {String}
 			 */
-			getUserInfo: function() {
+			getUserInfo: function () {
 				return cat( '', this.user, cat( ':', this.password, '' ) );
 			},
 
@@ -223,7 +250,7 @@
 			 * Gets host and port portion of a URI.
 			 * @return {String}
 			 */
-			getHostPort: function() {
+			getHostPort: function () {
 				return this.host + cat( ':', this.port, '' );
 			},
 
@@ -232,7 +259,7 @@
 			 * In most real-world URLs, this is simply the hostname, but it is more general.
 			 * @return {String}
 			 */
-			getAuthority: function() {
+			getAuthority: function () {
 				return cat( '', this.getUserInfo(), '@' ) + this.getHostPort();
 			},
 
@@ -241,12 +268,12 @@
 			 * Does not preserve the order of arguments passed into the URI. Does handle escaping.
 			 * @return {String}
 			 */
-			getQueryString: function() {
+			getQueryString: function () {
 				var args = [];
-				$.each( this.query, function( key, val ) {
-					var k = Uri.encode( key );
-					var vals = val === null ? [ null ] : $.makeArray( val );
-					$.each( vals, function( i, v ) {
+				$.each( this.query, function ( key, val ) {
+					var k = Uri.encode( key ),
+						vals = val === null ? [ null ] : $.makeArray( val );
+					$.each( vals, function ( i, v ) {
 						args.push( k + ( v === null ? '' : '=' + Uri.encode( v ) ) );
 					} );
 				} );
@@ -257,7 +284,7 @@
 			 * Returns everything after the authority section of the URI
 			 * @return {String}
 			 */
-			getRelativePath: function() {
+			getRelativePath: function () {
 				return this.path + cat( '?', this.getQueryString(), '', true ) + cat( '#', this.fragment, '' );
 			},
 
@@ -265,7 +292,7 @@
 			 * Gets the entire URI string. May not be precisely the same as input due to order of query arguments.
 			 * @return {String} the URI string
 			 */
-			toString: function() {
+			toString: function () {
 				return this.protocol + '://' + this.getAuthority() + this.getRelativePath();
 			},
 
@@ -273,7 +300,7 @@
 			 * Clone this URI
 			 * @return {Object} new URI object with same properties
 			 */
-			clone: function() {
+			clone: function () {
 				return new Uri( this );
 			},
 
@@ -282,13 +309,13 @@
 			 * @param {Object} query parameters in key-val form to override or add
 			 * @return {Object} this URI object
 			 */
-			extend: function( parameters ) {
+			extend: function ( parameters ) {
 				$.extend( this.query, parameters );
 				return this;
 			}
 		};
 
-		var defaultProtocol = ( new Uri( documentLocation ) ).protocol;
+		defaultUri = new Uri( documentLocation );
 
 		return Uri;	
 	};
@@ -298,4 +325,4 @@
 		mw.Uri = mw.UriRelative( document.location.href );
 	}
 
-} )( jQuery, mediaWiki );
+}( mediaWiki, jQuery ) );

@@ -36,6 +36,11 @@
 
 require_once( dirname( __FILE__ ) . '/Maintenance.php' );
 
+/**
+ * Maintenance script that compares documented and actually present mismatches.
+ *
+ * @ingroup Maintenance
+ */
 class FindHooks extends Maintenance {
 	public function __construct() {
 		parent::__construct();

@@ -1,5 +1,26 @@
 <?php
 /**
+ * Methods to play with strings.
+ *
+ * This program is free software; you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation; either version 2 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License along
+ * with this program; if not, write to the Free Software Foundation, Inc.,
+ * 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
+ * http://www.gnu.org/copyleft/gpl.html
+ *
+ * @file
+ */
+
+/**
  * A collection of static methods to play with strings.
  */
 class StringUtils {
@@ -54,6 +75,7 @@ class StringUtils {
 	 * @param $callback Callback: function to call on each match
 	 * @param $subject String
 	 * @param $flags String: regular expression flags
+	 * @throws MWException
 	 * @return string
 	 */
 	static function delimiterReplaceCallback( $startDelim, $endDelim, $callback, $subject, $flags = '' ) {
@@ -191,7 +213,7 @@ class StringUtils {
 	 * Returns an Iterator
 	 * @param $separator
 	 * @param $subject
-	 * @return ArrayIterator|\ExplodeIterator
+	 * @return ArrayIterator|ExplodeIterator
 	 */
 	static function explode( $separator, $subject ) {
 		if ( substr_count( $subject, $separator ) > 1000 ) {
@@ -207,6 +229,10 @@ class StringUtils {
  * StringUtils::delimiterReplaceCallback()
  */
 class Replacer {
+
+	/**
+	 * @return array
+	 */
 	function cb() {
 		return array( &$this, 'replace' );
 	}
@@ -217,10 +243,18 @@ class Replacer {
  */
 class RegexlikeReplacer extends Replacer {
 	var $r;
+
+	/**
+	 * @param $r string
+	 */
 	function __construct( $r ) {
 		$this->r = $r;
 	}
 
+	/**
+	 * @param $matches array
+	 * @return string
+	 */
 	function replace( $matches ) {
 		$pairs = array();
 		foreach ( $matches as $i => $match ) {
@@ -235,12 +269,22 @@ class RegexlikeReplacer extends Replacer {
  * Class to perform secondary replacement within each replacement string
  */
 class DoubleReplacer extends Replacer {
+
+	/**
+	 * @param $from
+	 * @param $to
+	 * @param $index int
+	 */
 	function __construct( $from, $to, $index = 0 ) {
 		$this->from = $from;
 		$this->to = $to;
 		$this->index = $index;
 	}
 
+	/**
+	 * @param $matches array
+	 * @return mixed
+	 */
 	function replace( $matches ) {
 		return str_replace( $this->from, $this->to, $matches[$this->index] );
 	}
@@ -252,11 +296,19 @@ class DoubleReplacer extends Replacer {
 class HashtableReplacer extends Replacer {
 	var $table, $index;
 
+	/**
+	 * @param $table
+	 * @param $index int
+	 */
 	function __construct( $table, $index = 0 ) {
 		$this->table = $table;
 		$this->index = $index;
 	}
 
+	/**
+	 * @param $matches array
+	 * @return mixed
+	 */
 	function replace( $matches ) {
 		return $this->table[$matches[$this->index]];
 	}
@@ -273,11 +325,15 @@ class ReplacementArray {
 	/**
 	 * Create an object with the specified replacement array
 	 * The array should have the same form as the replacement array for strtr()
+	 * @param array $data
 	 */
 	function __construct( $data = array() ) {
 		$this->data = $data;
 	}
 
+	/**
+	 * @return array
+	 */
 	function __sleep() {
 		return array( 'data' );
 	}
@@ -294,39 +350,61 @@ class ReplacementArray {
 		$this->fss = false;
 	}
 
+	/**
+	 * @return array|bool
+	 */
 	function getArray() {
 		return $this->data;
 	}
 
 	/**
 	 * Set an element of the replacement array
+	 * @param $from string
+	 * @param $to stromg
 	 */
 	function setPair( $from, $to ) {
 		$this->data[$from] = $to;
 		$this->fss = false;
 	}
 
+	/**
+	 * @param $data array
+	 */
 	function mergeArray( $data ) {
 		$this->data = array_merge( $this->data, $data );
 		$this->fss = false;
 	}
 
+	/**
+	 * @param $other
+	 */
 	function merge( $other ) {
 		$this->data = array_merge( $this->data, $other->data );
 		$this->fss = false;
 	}
 
+	/**
+	 * @param $from string
+	 */
 	function removePair( $from ) {
 		unset($this->data[$from]);
 		$this->fss = false;
 	}
 
+	/**
+	 * @param $data array
+	 */
 	function removeArray( $data ) {
-		foreach( $data as $from => $to )
+		foreach( $data as $from => $to ) {
 			$this->removePair( $from );
+		}
 		$this->fss = false;
 	}
 
+	/**
+	 * @param $subject string
+	 * @return string
+	 */
 	function replace( $subject ) {
 		if ( function_exists( 'fss_prep_replace' ) ) {
 			wfProfileIn( __METHOD__.'-fss' );
@@ -369,8 +447,10 @@ class ExplodeIterator implements Iterator {
 	// The current token
 	var $current;
 
-	/** 
+	/**
 	 * Construct a DelimIterator
+	 * @param $delim string
+	 * @param $s string
 	 */
 	function __construct( $delim, $s ) {
 		$this->subject = $s;
@@ -388,7 +468,6 @@ class ExplodeIterator implements Iterator {
 		$this->endPos = strpos( $this->subject, $this->delim );
 		$this->refreshCurrent();
 	}
-
 
 	function refreshCurrent() {
 		if ( $this->curPos === false ) {
@@ -410,6 +489,9 @@ class ExplodeIterator implements Iterator {
 		return $this->curPos;
 	}
 
+	/**
+	 * @return string
+	 */
 	function next() {
 		if ( $this->endPos === false ) {
 			$this->curPos = false;
@@ -425,8 +507,10 @@ class ExplodeIterator implements Iterator {
 		return $this->current;
 	}
 
+	/**
+	 * @return bool
+	 */
 	function valid() {
 		return $this->curPos !== false;
 	}
 }
-

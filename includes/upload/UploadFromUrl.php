@@ -1,5 +1,27 @@
 <?php
 /**
+ * Backend for uploading files from a HTTP resource.
+ *
+ * This program is free software; you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation; either version 2 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License along
+ * with this program; if not, write to the Free Software Foundation, Inc.,
+ * 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
+ * http://www.gnu.org/copyleft/gpl.html
+ *
+ * @file
+ * @ingroup Upload
+ */
+
+/**
  * Implements uploading from a HTTP resource.
  *
  * @ingroup Upload
@@ -14,11 +36,12 @@ class UploadFromUrl extends UploadBase {
 
 	/**
 	 * Checks if the user is allowed to use the upload-by-URL feature. If the
-	 * user is allowed, pass on permissions checking to the parent.
+	 * user is not allowed, return the name of the user right as a string. If
+	 * the user is allowed, have the parent do further permissions checking.
 	 *
 	 * @param $user User
 	 *
-	 * @return bool
+	 * @return true|string
 	 */
 	public static function isAllowed( $user ) {
 		if ( !$user->isAllowed( 'upload_by_url' ) ) {
@@ -93,7 +116,7 @@ class UploadFromUrl extends UploadBase {
 		if ( !$desiredDestName ) {
 			$desiredDestName = $request->getText( 'wpUploadFileURL' );
 		}
-		return $this->initialize(
+		$this->initialize(
 			$desiredDestName,
 			trim( $request->getVal( 'wpUploadFileURL' ) ),
 			false

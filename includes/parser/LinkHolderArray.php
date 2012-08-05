@@ -2,7 +2,23 @@
 /**
  * Holder of replacement pairs for wiki links
  *
+ * This program is free software; you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation; either version 2 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License along
+ * with this program; if not, write to the Free Software Foundation, Inc.,
+ * 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
+ * http://www.gnu.org/copyleft/gpl.html
+ *
  * @file
+ * @ingroup Parser
  */
 
 /**
@@ -193,6 +209,10 @@ class LinkHolderArray {
 	 * article length checks (for stub links) to be bundled into a single query.
 	 *
 	 * @param $nt Title
+	 * @param $text String
+	 * @param $query Array [optional]
+	 * @param $trail String [optional]
+	 * @param $prefix String [optional]
 	 * @return string
 	 */
 	function makeHolder( $nt, $text = '', $query = array(), $trail = '', $prefix = ''  ) {
@@ -437,7 +457,7 @@ class LinkHolderArray {
 			foreach ( $entries as $index => $entry ) {
 				$pdbk = $entry['pdbk'];
 				// we only deal with new links (in its first query)
-				if ( !isset( $colours[$pdbk] ) ) {
+				if ( !isset( $colours[$pdbk] ) || $colours[$pdbk] === 'new' ) {
 					$title = $entry['title'];
 					$titleText = $title->getText();
 					$titlesAttrs[] = array(
@@ -453,7 +473,7 @@ class LinkHolderArray {
 		}
 
 		// Now do the conversion and explode string to text of titles
-		$titlesAllVariants = $wgContLang->autoConvertToAllVariants( $titlesToBeConverted );
+		$titlesAllVariants = $wgContLang->autoConvertToAllVariants( rtrim( $titlesToBeConverted, "\0" ) );
 		$allVariantsName = array_keys( $titlesAllVariants );
 		foreach ( $titlesAllVariants as &$titlesVariant ) {
 			$titlesVariant = explode( "\0", $titlesVariant );
@@ -521,7 +541,7 @@ class LinkHolderArray {
 					$entry =& $this->internals[$ns][$index];
 					$pdbk = $entry['pdbk'];
 
-					if(!isset($colours[$pdbk])){
+					if ( !isset( $colours[$pdbk] ) || $colours[$pdbk] === 'new' ) {
 						// found link in some of the variants, replace the link holder data
 						$entry['title'] = $variantTitle;
 						$entry['pdbk'] = $varPdbk;

@@ -2,6 +2,21 @@
 /**
  * File repository with no files.
  *
+ * This program is free software; you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation; either version 2 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License along
+ * with this program; if not, write to the Free Software Foundation, Inc.,
+ * 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
+ * http://www.gnu.org/copyleft/gpl.html
+ *
  * @file
  * @ingroup FileRepo
  */
@@ -11,40 +26,13 @@
  * @ingroup FileRepo
  */
 class NullRepo extends FileRepo {
+
+	/**
+	 * @param $info array|null
+	 */
 	function __construct( $info ) {}
 
-	function storeBatch( $triplets, $flags = 0 ) {
-		return false;
-	}
-
-	function storeTemp( $originalName, $srcPath ) {
-		return false;
-	}
-	function append( $srcPath, $toAppendPath, $flags = 0 ){
-		return false;
-	}
-	function appendFinish( $toAppendPath ){
-		return false;
-	}
-	function publishBatch( $triplets, $flags = 0 ) {
-		return false;
-	}
-	function deleteBatch( $sourceDestPairs ) {
-		return false;
-	}
-	function fileExistsBatch( $files, $flags = 0 ) {
-		return false;
-	}
-	function getFileProps( $virtualUrl ) {
-		return false;
-	}
-	function newFile( $title, $time = false ) {
-		return false;
-	}
-	function findFile( $title, $options = array() ) {
-		return false;
-	}
-	function concatenate( $fileList, $targetPath, $flags = 0 ) {
-		return false;
+	protected function assertWritableRepo() {
+		throw new MWException( get_class( $this ) . ': write operations are not supported.' );
 	}
 }

@@ -158,7 +158,7 @@ p {
 	line-height: 1.2em;
 }
 
-pre {
+pre, .mw-code {
 	border: 1pt dashed black;
 	white-space: pre;
 	font-size: 8pt;
@@ -246,7 +246,6 @@ span.texhtml {
 /* Galleries (see shared.css for more info) */
 li.gallerybox {
 	vertical-align: top;
-	border: solid 2px white;
 	display: -moz-inline-box;
 	display: inline-block;
 }

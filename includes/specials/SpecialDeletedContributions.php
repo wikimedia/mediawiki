@@ -294,6 +294,7 @@ class DeletedContributionsPage extends SpecialPage {
 			$out->addHTML( $this->getForm( '' ) );
 			return;
 		}
+		$this->getSkin()->setRelevantUser( $userObj );
 
 		$target = $userObj->getName();
 		$out->addSubtitle( $this->getSubTitle( $userObj ) );
@@ -389,6 +390,13 @@ class DeletedContributionsPage extends SpecialPage {
 					)
 				);
 			}
+
+			# Uploads
+			$tools[] = Linker::linkKnown(
+				SpecialPage::getTitleFor( 'Listfiles', $userObj->getName() ),
+				$this->msg( 'sp-contributions-uploads' )->escaped()
+			);
+
 			# Other logs link
 			$tools[] = Linker::linkKnown(
 				SpecialPage::getTitleFor( 'Log' ),
@@ -405,7 +413,7 @@ class DeletedContributionsPage extends SpecialPage {
 			# Add a link to change user rights for privileged users
 			$userrightsPage = new UserrightsPage();
 			$userrightsPage->setContext( $this->getContext() );
-			if( $id !== null && $userrightsPage->userCanChangeRights( User::newFromId( $id ) ) ) {
+			if( $userrightsPage->userCanChangeRights( $userObj ) ) {
 				$tools[] = Linker::linkKnown(
 					SpecialPage::getTitleFor( 'Userrights', $nt->getDBkey() ),
 					$this->msg( 'sp-contributions-userrights' )->escaped()

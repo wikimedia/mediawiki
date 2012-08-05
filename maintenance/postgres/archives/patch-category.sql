@@ -1,8 +1,8 @@
 
-CREATE SEQUENCE category_id_seq;
+CREATE SEQUENCE category_cat_id_seq;
 
 CREATE TABLE category (
-  cat_id       INTEGER  NOT NULL  PRIMARY KEY DEFAULT nextval('category_id_seq'),
+  cat_id       INTEGER  NOT NULL  PRIMARY KEY DEFAULT nextval('category_cat_id_seq'),
   cat_title    TEXT     NOT NULL,
   cat_pages    INTEGER  NOT NULL  DEFAULT 0,
   cat_subcats  INTEGER  NOT NULL  DEFAULT 0,

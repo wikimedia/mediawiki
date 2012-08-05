@@ -1,6 +1,24 @@
 <?php
 /**
- * @defgroup HTTP HTTP
+ * Cookie for HTTP requests.
+ *
+ * This program is free software; you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation; either version 2 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License along
+ * with this program; if not, write to the Free Software Foundation, Inc.,
+ * 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
+ * http://www.gnu.org/copyleft/gpl.html
+ *
+ * @file
+ * @ingroup HTTP
  */
 
 class Cookie {
@@ -62,8 +80,8 @@ class Cookie {
 	 * A better method might be to use a blacklist like
 	 * http://publicsuffix.org/
 	 *
-	 * @fixme fails to detect 3-letter top-level domains
-	 * @fixme fails to detect 2-letter top-level domains for single-domain use (probably not a big problem in practice, but there are test cases)
+	 * @todo fixme fails to detect 3-letter top-level domains
+	 * @todo fixme fails to detect 2-letter top-level domains for single-domain use (probably not a big problem in practice, but there are test cases)
 	 *
 	 * @param $domain String: the domain to validate
 	 * @param $originDomain String: (optional) the domain the cookie originates from

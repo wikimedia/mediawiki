@@ -34,7 +34,11 @@
  */
 class UsersPager extends AlphabeticPager {
 
-	function __construct( IContextSource $context = null, $par = null ) {
+	/**
+	 * @param $context IContextSource
+	 * @param $par null|array
+	 */
+	function __construct( IContextSource $context = null, $par = null, $including = null ) {
 		if ( $context ) {
 			$this->setContext( $context );
 		}
@@ -58,6 +62,7 @@ class UsersPager extends AlphabeticPager {
 		}
 		$this->editsOnly = $request->getBool( 'editsOnly' );
 		$this->creationSort = $request->getBool( 'creationSort' );
+		$this->including = $including;
 
 		$this->requestedUser = '';
 		if ( $un != '' ) {
@@ -69,10 +74,16 @@ class UsersPager extends AlphabeticPager {
 		parent::__construct();
 	}
 
+	/**
+	 * @return string
+	 */
 	function getIndexField() {
 		return $this->creationSort ? 'user_id' : 'user_name';
 	}
 
+	/**
+	 * @return Array
+	 */
 	function getQueryInfo() {
 		$dbr = wfGetDB( DB_SLAVE );
 		$conds = array();
@@ -125,44 +136,45 @@ class UsersPager extends AlphabeticPager {
 		return $query;
 	}
 
+	/**
+	 * @param $row Object
+	 * @return String
+	 */
 	function formatRow( $row ) {
-		if ($row->user_id == 0) #Bug 16487
+		if ( $row->user_id == 0 ) { #Bug 16487
 			return '';
+		}
 
-		$userPage = Title::makeTitle( NS_USER, $row->user_name );
-		$name = Linker::link( $userPage, htmlspecialchars( $userPage->getText() ) );
+		$userName = $row->user_name;
+
+		$ulinks = Linker::userLink( $row->user_id, $userName );
+		$ulinks .= Linker::userToolLinks( $row->user_id, $userName );
 
 		$lang = $this->getLanguage();
 
+		$groups = '';
 		$groups_list = self::getGroups( $row->user_id );
-		if( count( $groups_list ) > 0 ) {
+		if( !$this->including && count( $groups_list ) > 0 ) {
 			$list = array();
 			foreach( $groups_list as $group )
-				$list[] = self::buildGroupLink( $group, $userPage->getText() );
+				$list[] = self::buildGroupLink( $group, $userName );
 			$groups = $lang->commaList( $list );
-		} else {
-			$groups = '';
 		}
 
-		$item = $lang->specialList( $name, $groups );
+		$item = $lang->specialList( $ulinks, $groups );
 		if( $row->ipb_deleted ) {
 			$item = "<span class=\"deleted\">$item</span>";
 		}
 
+		$edits = '';
 		global $wgEdititis;
-		if ( $wgEdititis ) {
+		if ( !$this->including && $wgEdititis ) {
 			$edits = ' [' . $this->msg( 'usereditcount' )->numParams( $row->edits )->escaped() . ']';
-		} else {
-			$edits = '';
 		}
-
-		$userTalkPage = $userPage->getTalkPage();
-		$talk = Linker::link( $userTalkPage, $this->msg( 'talkpagelinktext' )->escaped() );
-		$talk = ' ' . $this->msg( 'parentheses' )->rawParams( $talk )->escaped();
 
 		$created = '';
 		# Some rows may be NULL
-		if( $row->creation ) {
+		if( !$this->including && $row->creation ) {
 			$user = $this->getUser();
 			$d = $lang->userDate( $row->creation, $user );
 			$t = $lang->userTime( $row->creation, $user );
@@ -171,26 +183,26 @@ class UsersPager extends AlphabeticPager {
 		}
 
 		wfRunHooks( 'SpecialListusersFormatRow', array( &$item, $row ) );
-		return "<li>{$item}{$edits}{$talk}{$created}</li>";
+		return "<li>{$item}{$edits}{$created}</li>";
 	}
 
-	function getBody() {
-		if( !$this->mQueryDone ) {
-			$this->doQuery();
-		}
-		$this->mResult->rewind();
-		$batch = new LinkBatch;
+	function doBatchLookups() {
+		$batch = new LinkBatch();
+		# Give some pointers to make user links
 		foreach ( $this->mResult as $row ) {
-			$batch->addObj( Title::makeTitleSafe( NS_USER, $row->user_name ) );
+			$batch->add( NS_USER, $row->user_name );
+			$batch->add( NS_USER_TALK, $row->user_name );
 		}
 		$batch->execute();
 		$this->mResult->rewind();
-		return parent::getBody();
 	}
 
+	/**
+	 * @return string
+	 */
 	function getPageHeader( ) {
 		global $wgScript;
-		// @todo Add a PrefixedBaseDBKey
+
 		list( $self ) = explode( '/', $this->getTitle()->getPrefixedDBkey() );
 
 		# Form tag
@@ -245,10 +257,12 @@ class UsersPager extends AlphabeticPager {
 	 */
 	function getDefaultQuery() {
 		$query = parent::getDefaultQuery();
-		if( $this->requestedGroup != '' )
+		if( $this->requestedGroup != '' ) {
 			$query['group'] = $this->requestedGroup;
-		if( $this->requestedUser != '' )
+		}
+		if( $this->requestedUser != '' ) {
 			$query['username'] = $this->requestedUser;
+		}
 		wfRunHooks( 'SpecialListusersDefaultQuery', array( $this, &$query ) );
 		return $query;
 	}
@@ -287,6 +301,7 @@ class SpecialListUsers extends SpecialPage {
 	 */
 	public function __construct() {
 		parent::__construct( 'Listusers' );
+		$this->mIncludable = true;
 	}
 
 	/**
@@ -298,12 +313,16 @@ class SpecialListUsers extends SpecialPage {
 		$this->setHeaders();
 		$this->outputHeader();
 
-		$up = new UsersPager( $this->getContext(), $par );
+		$up = new UsersPager( $this->getContext(), $par, $this->including() );
 
 		# getBody() first to check, if empty
 		$usersbody = $up->getBody();
 
-		$s = $up->getPageHeader();
+		$s = '';
+		if ( !$this->including() ) {
+			$s = $up->getPageHeader();
+		}
+
 		if( $usersbody ) {
 			$s .= $up->getNavigationBar();
 			$s .= Html::rawElement( 'ul', array(), $usersbody );

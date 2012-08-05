@@ -5,7 +5,7 @@
  * Created on May 14, 2011
  *
  * Copyright © 2011 Sam Reed
- * Copyright © 2006 Yuri Astrakhan <Firstname><Lastname>@gmail.com
+ * Copyright © 2006 Yuri Astrakhan "<Firstname><Lastname>@gmail.com"
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -61,15 +61,17 @@ class ApiQueryLangBacklinks extends ApiQueryGeneratorBase {
 					'original value returned by the previous query', '_badcontinue' );
 			}
 
-			$prefix = $this->getDB()->strencode( $cont[0] );
-			$title = $this->getDB()->strencode( $this->titleToKey( $cont[1] ) );
+			$db = $this->getDB();
+			$op = $params['dir'] == 'descending' ? '<' : '>';
+			$prefix = $db->addQuotes( $cont[0] );
+			$title = $db->addQuotes( $cont[1] );
 			$from = intval( $cont[2] );
 			$this->addWhere(
-				"ll_lang > '$prefix' OR " .
-				"(ll_lang = '$prefix' AND " .
-				"(ll_title > '$title' OR " .
-				"(ll_title = '$title' AND " .
-				"ll_from >= $from)))"
+				"ll_lang $op $prefix OR " .
+				"(ll_lang = $prefix AND " .
+				"(ll_title $op $title OR " .
+				"(ll_title = $title AND " .
+				"ll_from $op= $from)))"
 			);
 		}
 
@@ -83,16 +85,24 @@ class ApiQueryLangBacklinks extends ApiQueryGeneratorBase {
 		$this->addFields( array( 'page_id', 'page_title', 'page_namespace', 'page_is_redirect',
 			'll_from', 'll_lang', 'll_title' ) );
 
+		$sort = ( $params['dir'] == 'descending' ? ' DESC' : '' );
 		if ( isset( $params['lang'] ) ) {
 			$this->addWhereFld( 'll_lang', $params['lang'] );
 			if ( isset( $params['title'] ) ) {
 				$this->addWhereFld( 'll_title', $params['title'] );
-				$this->addOption( 'ORDER BY', 'll_from' );
+				$this->addOption( 'ORDER BY', 'll_from' . $sort );
 			} else {
-				$this->addOption( 'ORDER BY', 'll_title, ll_from' );
+				$this->addOption( 'ORDER BY', array(
+					'll_title' . $sort,
+					'll_from' . $sort
+				));
 			}
 		} else {
-			$this->addOption( 'ORDER BY', 'll_lang, ll_title, ll_from' );
+			$this->addOption( 'ORDER BY', array(
+				'll_lang' . $sort,
+				'll_title' . $sort,
+				'll_from' . $sort
+			));
 		}
 
 		$this->addOption( 'LIMIT', $params['limit'] + 1 );
@@ -170,6 +180,13 @@ class ApiQueryLangBacklinks extends ApiQueryGeneratorBase {
 					'lltitle',
 				),
 			),
+			'dir' => array(
+				ApiBase::PARAM_DFLT => 'ascending',
+				ApiBase::PARAM_TYPE => array(
+					'ascending',
+					'descending'
+				)
+			),
 		);
 	}
 
@@ -184,6 +201,24 @@ class ApiQueryLangBacklinks extends ApiQueryGeneratorBase {
 				' lltitle        - Adds the title of the language ink',
 			),
 			'limit' => 'How many total pages to return',
+			'dir' => 'The direction in which to list',
+		);
+	}
+
+	public function getResultProperties() {
+		return array(
+			'' => array(
+				'pageid' => 'integer',
+				'ns' => 'namespace',
+				'title' => 'string',
+				'redirect' => 'boolean'
+			),
+			'lllang' => array(
+				'lllang' => 'string'
+			),
+			'lltitle' => array(
+				'lltitle' => 'string'
+			)
 		);
 	}
 
@@ -205,7 +240,7 @@ class ApiQueryLangBacklinks extends ApiQueryGeneratorBase {
 	public function getExamples() {
 		return array(
 			'api.php?action=query&list=langbacklinks&lbltitle=Test&lbllang=fr',
-			'api.php?action=query&generator=langbacklinks&glbltitle=Test&lbllang=fr&prop=info'
+			'api.php?action=query&generator=langbacklinks&glbltitle=Test&glbllang=fr&prop=info'
 		);
 	}
 

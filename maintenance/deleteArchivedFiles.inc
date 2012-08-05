@@ -17,9 +17,15 @@
  * 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
  * http://www.gnu.org/copyleft/gpl.html
  *
+ * @file
  * @ingroup Maintenance
  */
 
+/**
+ * Core functions for deleteArchivedFiles.php
+ *
+ * @ingroup Maintenance
+ */
 class DeleteArchivedFilesImplementation {
 	static public function doDelete( $output, $force ) {
 		# Data should come off the master, wrapped in a transaction
@@ -44,8 +50,8 @@ class DeleteArchivedFilesImplementation {
 				__METHOD__,
 				array( 'FOR UPDATE' )
 			);
-			if ( $path && file_exists( $path ) && !$inuse ) {
-				if( unlink( $path ) ) { // delete
+			if ( $path && $repo->fileExists( $path ) && !$inuse ) {
+				if ( $repo->quickPurge( $path ) ) {
 					$count++;
 					$dbw->query( "DELETE FROM $tbl_arch WHERE fa_id = $id" );
 				} else {

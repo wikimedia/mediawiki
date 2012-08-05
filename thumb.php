@@ -1,11 +1,26 @@
 <?php
-
 /**
  * PHP script to stream out an image thumbnail.
+ *
+ * This program is free software; you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation; either version 2 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License along
+ * with this program; if not, write to the Free Software Foundation, Inc.,
+ * 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
+ * http://www.gnu.org/copyleft/gpl.html
  *
  * @file
  * @ingroup Media
  */
+
 define( 'MW_NO_OUTPUT_COMPRESSION', 1 );
 if ( isset( $_SERVER['MW_COMPILED'] ) ) {
 	require( 'core/includes/WebStart.php' );
@@ -50,19 +65,22 @@ function wfThumbHandle404() {
 	# that to the 404 handler, and puts the original request in REDIRECT_URL.
 	if ( isset( $_SERVER['REDIRECT_URL'] ) ) {
 		# The URL is un-encoded, so put it back how it was
-		$uri = str_replace( "%2F", "/", urlencode( $_SERVER['REDIRECT_URL'] ) );
-		# Just get the URI path (REDIRECT_URL is either a full URL or a path)
-		if ( $uri[0] !== '/' ) {
-			$bits = wfParseUrl( $uri );
-			if ( $bits && isset( $bits['path'] ) ) {
-				$uri = $bits['path'];
-			}
-		}
+		$uriPath = str_replace( "%2F", "/", urlencode( $_SERVER['REDIRECT_URL'] ) );
 	} else {
-		$uri = $_SERVER['REQUEST_URI'];
+		$uriPath = $_SERVER['REQUEST_URI'];
+	}
+	# Just get the URI path (REDIRECT_URL/REQUEST_URI is either a full URL or a path)
+	if ( substr( $uriPath, 0, 1 ) !== '/' ) {
+		$bits = wfParseUrl( $uriPath );
+		if ( $bits && isset( $bits['path'] ) ) {
+			$uriPath = $bits['path'];
+		} else {
+			wfThumbError( 404, 'The source file for the specified thumbnail does not exist.' );
+			return;
+		}
 	}
 
-	$params = wfExtractThumbParams( $uri ); // basic wiki URL param extracting
+	$params = wfExtractThumbParams( $uriPath ); // basic wiki URL param extracting
 	if ( $params == null ) {
 		wfThumbError( 404, 'The source file for the specified thumbnail does not exist.' );
 		return;
@@ -97,7 +115,11 @@ function wfStreamThumb( array $params ) {
 
 	// Is this a thumb of an archived file?
 	$isOld = ( isset( $params['archived'] ) && $params['archived'] );
-	unset( $params['archived'] );
+	unset( $params['archived'] ); // handlers don't care
+
+	// Is this a thumb of a temp file?
+	$isTemp = ( isset( $params['temp'] ) && $params['temp'] );
+	unset( $params['temp'] ); // handlers don't care
 
 	// Some basic input validation
 	$fileName = strtr( $fileName, '\\/', '__' );
@@ -118,6 +140,20 @@ function wfStreamThumb( array $params ) {
 			return;
 		}
 		$img = RepoGroup::singleton()->getLocalRepo()->newFromArchiveName( $title, $fileName );
+	} elseif ( $isTemp ) {
+		$repo = RepoGroup::singleton()->getLocalRepo()->getTempRepo();
+		// Format is <timestamp>!<name> or just <name>
+		$bits = explode( '!', $fileName, 2 );
+		// Get the name without the timestamp so hash paths are correctly computed
+		$title = Title::makeTitleSafe( NS_FILE, isset( $bits[1] ) ? $bits[1] : $fileName );
+		if ( !$title ) {
+			wfThumbError( 404, wfMsg( 'badtitletext' ) );
+			wfProfileOut( __METHOD__ );
+			return;
+		}
+		$img = new UnregisteredLocalFile( $title, $repo,
+			$repo->getZonePath( 'public' ) . '/' . $repo->getTempHashPath( $fileName ) . $fileName
+		);
 	} else {
 		$img = wfLocalFile( $fileName );
 	}
@@ -178,7 +214,7 @@ function wfStreamThumb( array $params ) {
 			// Check that the zone relative path matches up so squid caches won't pick
 			// up thumbs that would not be purged on source file deletion (bug 34231).
 			if ( isset( $params['rel404'] ) // thumbnail was handled via 404
-				&& urldecode( $params['rel404'] ) !== $img->getThumbRel( $thumbName ) ) 
+				&& urldecode( $params['rel404'] ) !== $img->getThumbRel( $thumbName ) )
 			{
 				wfThumbError( 404, 'The source file for the specified thumbnail does not exist.' );
 				wfProfileOut( __METHOD__ );
@@ -232,22 +268,22 @@ function wfStreamThumb( array $params ) {
  * Extract the required params for thumb.php from the thumbnail request URI.
  * At least 'width' and 'f' should be set if the result is an array.
  *
- * @param $uri String Thumbnail request URI path
+ * @param $uriPath String Thumbnail request URI path
  * @return Array|null associative params array or null
  */
-function wfExtractThumbParams( $uri ) {
+function wfExtractThumbParams( $uriPath ) {
 	$repo = RepoGroup::singleton()->getLocalRepo();
 
-	$zoneURI = $repo->getZoneUrl( 'thumb' );
-	if ( substr( $zoneURI, 0, 1 ) !== '/' ) {
-		$bits = wfParseUrl( $zoneURI );
-		if ( $bits && isset( $bits['path'] ) ) {
-			$zoneURI = $bits['path'];
-		} else {
-			return null;
-		}
+	$zoneUriPath = $repo->getZoneHandlerUrl( 'thumb' )
+		? $repo->getZoneHandlerUrl( 'thumb' ) // custom URL
+		: $repo->getZoneUrl( 'thumb' ); // default to main URL
+	// URL might be relative ("/images") or protocol-relative ("//lang.site/image")
+	$bits = wfParseUrl( wfExpandUrl( $zoneUriPath, PROTO_INTERNAL ) );
+	if ( $bits && isset( $bits['path'] ) ) {
+		$zoneUriPath = $bits['path'];
+	} else {
+		return null;
 	}
-	$zoneUrlRegex = preg_quote( $zoneURI );
 
 	$hashDirRegex = $subdirRegex = '';
 	for ( $i = 0; $i < $repo->getHashLevels(); $i++ ) {
@@ -255,10 +291,11 @@ function wfExtractThumbParams( $uri ) {
 		$hashDirRegex .= "$subdirRegex/";
 	}
 
-	$thumbUrlRegex = "!^$zoneUrlRegex/((archive/|temp/)?$hashDirRegex([^/]*)/([^/]*))$!";
+	$thumbPathRegex = "!^" . preg_quote( $zoneUriPath ) .
+		"/((archive/|temp/)?$hashDirRegex([^/]*)/([^/]*))$!";
 
 	// Check if this is a valid looking thumbnail request...
-	if ( preg_match( $thumbUrlRegex, $uri, $matches ) ) {
+	if ( preg_match( $thumbPathRegex, $uriPath, $matches ) ) {
 		list( /* all */, $rel, $archOrTemp, $filename, $thumbname ) = $matches;
 		$filename = urldecode( $filename );
 		$thumbname = urldecode( $thumbname );

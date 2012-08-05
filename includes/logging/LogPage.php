@@ -68,7 +68,7 @@ class LogPage {
 	}
 
 	/**
-	 * @return bool|int|null
+	 * @return int log_id of the inserted log entry
 	 */
 	protected function saveContent() {
 		global $wgLogRestrictions;
@@ -105,7 +105,7 @@ class LogPage {
 		} elseif( $this->sendToUDP ) {
 			# Don't send private logs to UDP
 			if( isset( $wgLogRestrictions[$this->type] ) && $wgLogRestrictions[$this->type] != '*' ) {
-				return true;
+				return $newId;
 			}
 
 			# Notify external application via UDP.
@@ -255,9 +255,12 @@ class LogPage {
 					$rightsnone = wfMsgExt( 'rightsnone', array( 'parsemag', 'language' => $langObj ) );
 
 					if( $skin ) {
+						$username = $title->getText();
 						foreach ( $params as &$param ) {
 							$groupArray = array_map( 'trim', explode( ',', $param ) );
-							$groupArray = array_map( array( 'User', 'getGroupMember' ), $groupArray );
+							foreach( $groupArray as &$group ) {
+								$group = User::getGroupMember( $group, $username );
+							}
 							$param = $wgLang->listToText( $groupArray );
 						}
 					}
@@ -417,7 +420,8 @@ class LogPage {
 					# Use the language name for log titles, rather than Log/X
 					if( $name == 'Log' ) {
 						$titleLink = Linker::link( $title, LogPage::logName( $par ) );
-						$titleLink = wfMessage( 'parentheses' )->rawParams( $titleLink )->escaped();
+						$titleLink = wfMessage( 'parentheses' )->inLanguage( $lang )
+							->rawParams( $titleLink )->escaped();
 					} else {
 						$titleLink = Linker::link( $title );
 					}
@@ -438,8 +442,7 @@ class LogPage {
 	 * @param $params Array: parameters passed later to wfMsg.* functions
 	 * @param $doer User object: the user doing the action
 	 *
-	 * @return bool|int|null
-	 * @TODO: make this use LogEntry::saveContent()
+	 * @return int log_id of the inserted log entry
 	 */
 	public function addEntry( $action, $target, $comment, $params = array(), $doer = null ) {
 		global $wgContLang;
@@ -552,7 +555,8 @@ class LogPage {
 			for( $i = 0; $i < count( $flags ); $i++ ) {
 				$flags[$i] = self::formatBlockFlag( $flags[$i], $lang );
 			}
-			return wfMessage( 'parentheses' )->rawParams( $lang->commaList( $flags ) )->escaped();
+			return wfMessage( 'parentheses' )->inLanguage( $lang )
+				->rawParams( $lang->commaList( $flags ) )->escaped();
 		} else {
 			return '';
 		}

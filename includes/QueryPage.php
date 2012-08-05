@@ -1,6 +1,22 @@
 <?php
 /**
- * Contain a class for special pages
+ * Base code for "query" special pages.
+ *
+ * This program is free software; you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation; either version 2 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License along
+ * with this program; if not, write to the Free Software Foundation, Inc.,
+ * 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
+ * http://www.gnu.org/copyleft/gpl.html
+ *
  * @file
  * @ingroup SpecialPage
  */
@@ -360,7 +376,7 @@ abstract class QueryPage extends SpecialPage {
 			$options = isset( $query['options'] ) ? (array)$query['options'] : array();
 			$join_conds = isset( $query['join_conds'] ) ? (array)$query['join_conds'] : array();
 			if ( count( $order ) ) {
-				$options['ORDER BY'] = implode( ', ', $order );
+				$options['ORDER BY'] = $order;
 			}
 			if ( $limit !== false ) {
 				$options['LIMIT'] = intval( $limit );
@@ -467,10 +483,11 @@ abstract class QueryPage extends SpecialPage {
 
 		// TODO: Use doQuery()
 		if ( !$this->isCached() ) {
-			$res = $this->reallyDoQuery( $this->limit, $this->offset );
+			# select one extra row for navigation
+			$res = $this->reallyDoQuery( $this->limit + 1, $this->offset );
 		} else {
-			# Get the cached result
-			$res = $this->fetchFromCache( $this->limit, $this->offset );
+			# Get the cached result, select one extra row for navigation
+			$res = $this->fetchFromCache( $this->limit + 1, $this->offset );
 			if ( !$this->listoutput ) {
 
 				# Fetch the timestamp of this update
@@ -483,7 +500,7 @@ abstract class QueryPage extends SpecialPage {
 					$updateddate = $lang->userDate( $ts, $user );
 					$updatedtime = $lang->userTime( $ts, $user );
 					$out->addMeta( 'Data-Cache-Time', $ts );
-					$out->addInlineScript( "var dataCacheTime = '$ts';" );
+					$out->addJsConfigVars( 'dataCacheTime', $ts );
 					$out->addWikiMsg( 'perfcachedts', $updated, $updateddate, $updatedtime, $maxResults );
 				} else {
 					$out->addWikiMsg( 'perfcached', $maxResults );
@@ -492,7 +509,7 @@ abstract class QueryPage extends SpecialPage {
 				# If updates on this page have been disabled, let the user know
 				# that the data set won't be refreshed for now
 				if ( is_array( $wgDisableQueryPageUpdate ) && in_array( $this->getName(), $wgDisableQueryPageUpdate ) ) {
-					$out->addWikiMsg( 'querypage-no-updates' );
+					$out->wrapWikiMsg( "<div class=\"mw-querypage-no-updates\">\n$1\n</div>", 'querypage-no-updates' );
 				}
 			}
 		}
@@ -512,7 +529,7 @@ abstract class QueryPage extends SpecialPage {
 					$this->numRows, $this->offset + 1 )->parseAsBlock() );
 				# Disable the "next" link when we reach the end
 				$paging = $this->getLanguage()->viewPrevNext( $this->getTitle( $par ), $this->offset,
-					$this->limit, $this->linkParameters(), ( $this->numRows < $this->limit ) );
+					$this->limit, $this->linkParameters(), ( $this->numRows <= $this->limit ) );
 				$out->addHTML( '<p>' . $paging . '</p>' );
 			} else {
 				# No results to show, so don't bother with "showing X of Y" etc.
@@ -530,7 +547,7 @@ abstract class QueryPage extends SpecialPage {
 			$this->getSkin(),
 			$dbr, # Should use a ResultWrapper for this
 			$res,
-			$this->numRows,
+			min( $this->numRows, $this->limit ), # do not format the one extra row, if exist
 			$this->offset );
 
 		# Repeat the paging links at the bottom
@@ -671,7 +688,7 @@ abstract class QueryPage extends SpecialPage {
 		if ( !isset( $row->title ) ) {
 			return null;
 		}
-		$title = Title::MakeTitle( intval( $row->namespace ), $row->title );
+		$title = Title::makeTitle( intval( $row->namespace ), $row->title );
 		if ( $title ) {
 			$date = isset( $row->timestamp ) ? $row->timestamp : '';
 			$comments = '';

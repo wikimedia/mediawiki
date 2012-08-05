@@ -189,7 +189,7 @@ class ImageBuilder extends Maintenance {
 				$filename = $altname;
 				$this->output( "Estimating transcoding... $altname\n" );
 			} else {
-				# @FIXME: create renameFile()
+				# @todo FIXME: create renameFile()
 				$filename = $this->renameFile( $filename );
 			}
 		}

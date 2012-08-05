@@ -1,5 +1,26 @@
 <?php
 /**
+ * Squid and Varnish cache purging.
+ *
+ * This program is free software; you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation; either version 2 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License along
+ * with this program; if not, write to the Free Software Foundation, Inc.,
+ * 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
+ * http://www.gnu.org/copyleft/gpl.html
+ *
+ * @file
+ */
+
+/**
  * An HTTP 1.0 client built for the purposes of purging Squid and Varnish. 
  * Uses asynchronous I/O, allowing purges to be done in a highly parallel 
  * manner. 
@@ -23,7 +44,15 @@ class SquidPurgeClient {
 	 * The socket resource, or null for unconnected, or false for disabled due to error
 	 */
 	var $socket;
-	
+
+	var $readBuffer;
+
+	var $bodyRemaining;
+
+	/**
+	 * @param $server string
+	 * @param $options array
+	 */
 	public function __construct( $server, $options = array() ) {
 		$parts = explode( ':', $server, 2 );
 		$this->host = $parts[0];
@@ -319,6 +348,9 @@ class SquidPurgeClient {
 		$this->bodyRemaining = null;
 	}
 
+	/**
+	 * @param $msg string
+	 */
 	protected function log( $msg ) {
 		wfDebugLog( 'squid', __CLASS__." ($this->host): $msg\n" );
 	}
@@ -332,6 +364,9 @@ class SquidPurgeClientPool {
 	var $clients = array();
 	var $timeout = 5;
 
+	/**
+	 * @param $options array
+	 */
 	function __construct( $options = array() ) {
 		if ( isset( $options['timeout'] ) ) {
 			$this->timeout = $options['timeout'];
@@ -351,6 +386,9 @@ class SquidPurgeClientPool {
 		$startTime = microtime( true );
 		while ( !$done ) {
 			$readSockets = $writeSockets = array();
+			/**
+			 * @var $client SquidPurgeClient
+			 */
 			foreach ( $this->clients as $clientIndex => $client ) {
 				$sockets = $client->getReadSocketsForSelect();
 				foreach ( $sockets as $i => $socket ) {

@@ -4,7 +4,7 @@
  *
  * Created on May 12, 2007
  *
- * Copyright © 2006 Yuri Astrakhan <Firstname><Lastname>@gmail.com
+ * Copyright © 2006 Yuri Astrakhan "<Firstname><Lastname>@gmail.com"
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -116,19 +116,20 @@ class ApiQueryLinks extends ApiQueryGeneratorBase {
 				$this->dieUsage( 'Invalid continue param. You should pass the ' .
 					'original value returned by the previous query', '_badcontinue' );
 			}
+			$op = $params['dir'] == 'descending' ? '<' : '>';
 			$plfrom = intval( $cont[0] );
 			$plns = intval( $cont[1] );
-			$pltitle = $this->getDB()->strencode( $this->titleToKey( $cont[2] ) );
+			$pltitle = $this->getDB()->addQuotes( $cont[2] );
 			$this->addWhere(
-				"{$this->prefix}_from > $plfrom OR " .
+				"{$this->prefix}_from $op $plfrom OR " .
 				"({$this->prefix}_from = $plfrom AND " .
-				"({$this->prefix}_namespace > $plns OR " .
+				"({$this->prefix}_namespace $op $plns OR " .
 				"({$this->prefix}_namespace = $plns AND " .
-				"{$this->prefix}_title >= '$pltitle')))"
+				"{$this->prefix}_title $op= $pltitle)))"
 			);
 		}
 
-		$dir = ( $params['dir'] == 'descending' ? ' DESC' : '' );
+		$sort = ( $params['dir'] == 'descending' ? ' DESC' : '' );
 		// Here's some MySQL craziness going on: if you use WHERE foo='bar'
 		// and later ORDER BY foo MySQL doesn't notice the ORDER BY is pointless
 		// but instead goes and filesorts, because the index for foo was used
@@ -136,13 +137,13 @@ class ApiQueryLinks extends ApiQueryGeneratorBase {
 		// clause from the ORDER BY clause
 		$order = array();
 		if ( count( $this->getPageSet()->getGoodTitles() ) != 1 ) {
-			$order[] = $this->prefix . '_from' . $dir;
+			$order[] = $this->prefix . '_from' . $sort;
 		}
 		if ( count( $params['namespace'] ) != 1 ) {
-			$order[] = $this->prefix . '_namespace' . $dir;
+			$order[] = $this->prefix . '_namespace' . $sort;
 		}
 
-		$order[] = $this->prefix . "_title" . $dir;
+		$order[] = $this->prefix . '_title' . $sort;
 		$this->addOption( 'ORDER BY', $order );
 		$this->addOption( 'USE INDEX', $this->prefix . '_from' );
 		$this->addOption( 'LIMIT', $params['limit'] + 1 );
@@ -156,8 +157,7 @@ class ApiQueryLinks extends ApiQueryGeneratorBase {
 					// We've reached the one extra which shows that
 					// there are additional pages to be had. Stop here...
 					$this->setContinueEnumParameter( 'continue',
-						"{$row->pl_from}|{$row->pl_namespace}|" .
-						$this->keyToTitle( $row->pl_title ) );
+						"{$row->pl_from}|{$row->pl_namespace}|{$row->pl_title}" );
 					break;
 				}
 				$vals = array();
@@ -165,8 +165,7 @@ class ApiQueryLinks extends ApiQueryGeneratorBase {
 				$fit = $this->addPageSubItem( $row->pl_from, $vals );
 				if ( !$fit ) {
 					$this->setContinueEnumParameter( 'continue',
-						"{$row->pl_from}|{$row->pl_namespace}|" .
-						$this->keyToTitle( $row->pl_title ) );
+						"{$row->pl_from}|{$row->pl_namespace}|{$row->pl_title}" );
 					break;
 				}
 			}
@@ -178,8 +177,7 @@ class ApiQueryLinks extends ApiQueryGeneratorBase {
 					// We've reached the one extra which shows that
 					// there are additional pages to be had. Stop here...
 					$this->setContinueEnumParameter( 'continue',
-						"{$row->pl_from}|{$row->pl_namespace}|" .
-						$this->keyToTitle( $row->pl_title ) );
+						"{$row->pl_from}|{$row->pl_namespace}|{$row->pl_title}" );
 					break;
 				}
 				$titles[] = Title::makeTitle( $row->pl_namespace, $row->pl_title );
@@ -223,6 +221,15 @@ class ApiQueryLinks extends ApiQueryGeneratorBase {
 			'continue' => 'When more results are available, use this to continue',
 			$this->titlesParam => $this->titlesParamDescription,
 			'dir' => 'The direction in which to list',
+		);
+	}
+
+	public function getResultProperties() {
+		return array(
+			'' => array(
+				'ns' => 'namespace',
+				'title' => 'string'
+			)
 		);
 	}
 

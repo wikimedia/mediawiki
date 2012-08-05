@@ -1,5 +1,7 @@
 <?php
 /**
+ * Resource loader module for user customizations.
+ *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2 of the License, or
@@ -33,33 +35,40 @@ class ResourceLoaderUserModule extends ResourceLoaderWikiModule {
 	 * @return array
 	 */
 	protected function getPages( ResourceLoaderContext $context ) {
-		if ( $context->getUser() ) {
-			// Get the normalized title of the user's user page
-			$username = $context->getUser();
-			$userpageTitle = Title::makeTitleSafe( NS_USER, $username );
-			$userpage = $userpageTitle->getPrefixedDBkey(); // Needed so $excludepages works
+		$username = $context->getUser();
 
-			$pages = array(
-				"$userpage/common.js" => array( 'type' => 'script' ),
-				"$userpage/" . $context->getSkin() . '.js' =>
-					array( 'type' => 'script' ),
-				"$userpage/common.css" => array( 'type' => 'style' ),
-				"$userpage/" . $context->getSkin() . '.css' =>
-					array( 'type' => 'style' ),
-			);
-
-			// Hack for bug 26283: if we're on a preview page for a CSS/JS page,
-			// we need to exclude that page from this module. In that case, the excludepage
-			// parameter will be set to the name of the page we need to exclude.
-			$excludepage = $context->getRequest()->getVal( 'excludepage' );
-			if ( isset( $pages[$excludepage] ) ) {
-				// This works because $excludepage is generated with getPrefixedDBkey(),
-				// just like the keys in $pages[] above
-				unset( $pages[$excludepage] );
-			}
-			return $pages;
+		if ( $username === null ) {
+			return array();
 		}
-		return array();
+
+		// Get the normalized title of the user's user page
+		$userpageTitle = Title::makeTitleSafe( NS_USER, $username );
+
+		if ( !$userpageTitle instanceof Title ) {
+			return array();
+		}
+
+		$userpage = $userpageTitle->getPrefixedDBkey(); // Needed so $excludepages works
+
+		$pages = array(
+			"$userpage/common.js" => array( 'type' => 'script' ),
+			"$userpage/" . $context->getSkin() . '.js' =>
+				array( 'type' => 'script' ),
+			"$userpage/common.css" => array( 'type' => 'style' ),
+			"$userpage/" . $context->getSkin() . '.css' =>
+				array( 'type' => 'style' ),
+		);
+
+		// Hack for bug 26283: if we're on a preview page for a CSS/JS page,
+		// we need to exclude that page from this module. In that case, the excludepage
+		// parameter will be set to the name of the page we need to exclude.
+		$excludepage = $context->getRequest()->getVal( 'excludepage' );
+		if ( isset( $pages[$excludepage] ) ) {
+			// This works because $excludepage is generated with getPrefixedDBkey(),
+			// just like the keys in $pages[] above
+			unset( $pages[$excludepage] );
+		}
+		return $pages;
 	}
 
 	/* Methods */

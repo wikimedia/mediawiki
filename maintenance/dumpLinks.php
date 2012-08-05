@@ -1,8 +1,5 @@
 <?php
 /**
- * Copyright (C) 2005 Brion Vibber <brion@pobox.com>
- * http://www.mediawiki.org/
- *
  * Quick demo hack to generate a plaintext link dump,
  * per the proposed wiki link database standard:
  * http://www.usemod.com/cgi-bin/mb.pl?LinkDatabase
@@ -10,6 +7,9 @@
  * Includes all (live and broken) intra-wiki links.
  * Does not include interwiki or URL links.
  * Dumps ASCII text to stdout; command-line.
+ *
+ * Copyright © 2005 Brion Vibber <brion@pobox.com>
+ * http://www.mediawiki.org/
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -26,11 +26,17 @@
  * 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
  * http://www.gnu.org/copyleft/gpl.html
  *
+ * @file
  * @ingroup Maintenance
  */
 
 require_once( dirname( __FILE__ ) . '/Maintenance.php' );
 
+/**
+ * Maintenance script that generates a plaintext link dump.
+ *
+ * @ingroup Maintenance
+ */
 class DumpLinks extends Maintenance {
 	public function __construct() {
 		parent::__construct();

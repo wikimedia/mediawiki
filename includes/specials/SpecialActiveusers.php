@@ -40,7 +40,12 @@ class ActiveUsersPager extends UsersPager {
 	/**
 	 * @var Array
 	 */
-	protected $groups;
+	protected $hideGroups = array();
+
+	/**
+	 * @var Array
+	 */
+	protected $hideRights = array();
 
 	/**
 	 * @param $context IContextSource
@@ -73,12 +78,11 @@ class ActiveUsersPager extends UsersPager {
 
 		$this->opts->fetchValuesFromRequest( $this->getRequest() );
 
-		$this->groups = array();
 		if ( $this->opts->getValue( 'hidebots' ) == 1 ) {
-			$this->groups['bot'] = true;
+			$this->hideRights[] = 'bot';
 		}
 		if ( $this->opts->getValue( 'hidesysops' ) == 1 ) {
-			$this->groups['sysop'] = true;
+			$this->hideGroups[] = 'sysop';
 		}
 	}
 
@@ -106,7 +110,7 @@ class ActiveUsersPager extends UsersPager {
 				'MAX(ipb_user) AS blocked'
 			),
 			'options' => array(
-				'GROUP BY' => 'rc_user_text, user_id',
+				'GROUP BY' => array( 'rc_user_text', 'user_id' ),
 				'USE INDEX' => array( 'recentchanges' => 'rc_user_text' )
 			),
 			'join_conds' => array(
@@ -127,12 +131,30 @@ class ActiveUsersPager extends UsersPager {
 		$lang = $this->getLanguage();
 
 		$list = array();
-		foreach( self::getGroups( $row->user_id ) as $group ) {
-			if ( isset( $this->groups[$group] ) ) {
+		$user = User::newFromId( $row->user_id );
+
+		// User right filter
+		foreach( $this->hideRights as $right ) {
+			// Calling User::getRights() within the loop so that
+			// if the hideRights() filter is empty, we don't have to
+			// trigger the lazy-init of the big userrights array in the
+			// User object
+			if ( in_array( $right, $user->getRights() ) ) {
+				return '';
+			}
+		}
+
+		// User group filter
+		// Note: This is a different loop than for user rights,
+		// because we're reusing it to build the group links
+		// at the same time
+		foreach( $user->getGroups() as $group ) {
+			if ( in_array( $group, $this->hideGroups ) ) {
 				return '';
 			}
 			$list[] = self::buildGroupLink( $group, $userName );
 		}
+
 		$groups = $lang->commaList( $list );
 
 		$item = $lang->specialList( $ulinks, $groups );

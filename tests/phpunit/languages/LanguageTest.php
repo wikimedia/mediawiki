@@ -24,43 +24,195 @@ class LanguageTest extends MediaWikiTestCase {
 		);
 	}
 
-	/** @dataProvider provideFormattableTimes */
+	/**
+	 * @dataProvider provideFormattableTimes
+	 */
 	function testFormatTimePeriod( $seconds, $format, $expected, $desc ) {
 		$this->assertEquals( $expected, $this->lang->formatTimePeriod( $seconds, $format ), $desc );
 	}
 
 	function provideFormattableTimes() {
 		return array(
-			array( 9.45, array(), '9.5s', 'formatTimePeriod() rounding (<10s)' ),
-			array( 9.45, array( 'noabbrevs' => true ), '9.5 seconds', 'formatTimePeriod() rounding (<10s)' ),
-			array( 9.95, array(), '10s', 'formatTimePeriod() rounding (<10s)' ),
-			array( 9.95, array( 'noabbrevs' => true ), '10 seconds', 'formatTimePeriod() rounding (<10s)' ),
-			array( 59.55, array(), '1m 0s', 'formatTimePeriod() rounding (<60s)' ),
-			array( 59.55, array( 'noabbrevs' => true ), '1 minute 0 seconds', 'formatTimePeriod() rounding (<60s)' ),
-			array( 119.55, array(), '2m 0s', 'formatTimePeriod() rounding (<1h)' ),
-			array( 119.55, array( 'noabbrevs' => true ), '2 minutes 0 seconds', 'formatTimePeriod() rounding (<1h)' ),
-			array( 3599.55, array(), '1h 0m 0s', 'formatTimePeriod() rounding (<1h)' ),
-			array( 3599.55, array( 'noabbrevs' => true ), '1 hour 0 minutes 0 seconds', 'formatTimePeriod() rounding (<1h)' ),
-			array( 7199.55, array(), '2h 0m 0s', 'formatTimePeriod() rounding (>=1h)' ),
-			array( 7199.55, array( 'noabbrevs' => true ), '2 hours 0 minutes 0 seconds', 'formatTimePeriod() rounding (>=1h)' ),
-			array( 7199.55, 'avoidseconds', '2h 0m', 'formatTimePeriod() rounding (>=1h), avoidseconds' ),
-			array( 7199.55, array( 'avoid' => 'avoidseconds', 'noabbrevs' => true ), '2 hours 0 minutes', 'formatTimePeriod() rounding (>=1h), avoidseconds' ),
-			array( 7199.55, 'avoidminutes', '2h 0m', 'formatTimePeriod() rounding (>=1h), avoidminutes' ),
-			array( 7199.55, array( 'avoid' => 'avoidminutes', 'noabbrevs' => true ), '2 hours 0 minutes', 'formatTimePeriod() rounding (>=1h), avoidminutes' ),
-			array( 172799.55, 'avoidseconds', '48h 0m', 'formatTimePeriod() rounding (=48h), avoidseconds' ),
-			array( 172799.55, array( 'avoid' => 'avoidseconds', 'noabbrevs' => true ), '48 hours 0 minutes', 'formatTimePeriod() rounding (=48h), avoidseconds' ),
-			array( 259199.55, 'avoidminutes', '3d 0h', 'formatTimePeriod() rounding (>48h), avoidminutes' ),
-			array( 259199.55, array( 'avoid' => 'avoidminutes', 'noabbrevs' => true ), '3 days 0 hours', 'formatTimePeriod() rounding (>48h), avoidminutes' ),
-			array( 176399.55, 'avoidseconds', '2d 1h 0m', 'formatTimePeriod() rounding (>48h), avoidseconds' ),
-			array( 176399.55, array( 'avoid' => 'avoidseconds', 'noabbrevs' => true ), '2 days 1 hour 0 minutes', 'formatTimePeriod() rounding (>48h), avoidseconds' ),
-			array( 176399.55, 'avoidminutes', '2d 1h', 'formatTimePeriod() rounding (>48h), avoidminutes' ),
-			array( 176399.55, array( 'avoid' => 'avoidminutes', 'noabbrevs' => true ), '2 days 1 hour', 'formatTimePeriod() rounding (>48h), avoidminutes' ),
-			array( 259199.55, 'avoidseconds', '3d 0h 0m', 'formatTimePeriod() rounding (>48h), avoidseconds' ),
-			array( 259199.55, array( 'avoid' => 'avoidseconds', 'noabbrevs' => true ), '3 days 0 hours 0 minutes', 'formatTimePeriod() rounding (>48h), avoidseconds' ),
-			array( 172801.55, 'avoidseconds', '2d 0h 0m', 'formatTimePeriod() rounding, (>48h), avoidseconds' ),
-			array( 172801.55, array( 'avoid' => 'avoidseconds', 'noabbrevs' => true ), '2 days 0 hours 0 minutes', 'formatTimePeriod() rounding, (>48h), avoidseconds' ),
-			array( 176460.55, array(), '2d 1h 1m 1s', 'formatTimePeriod() rounding, recursion, (>48h)' ),
-			array( 176460.55, array( 'noabbrevs' => true ), '2 days 1 hour 1 minute 1 second', 'formatTimePeriod() rounding, recursion, (>48h)' ),
+			array(
+				9.45,
+				array(),
+				'9.5s',
+				'formatTimePeriod() rounding (<10s)'
+			),
+			array(
+				9.45,
+				array( 'noabbrevs' => true ),
+				'9.5 seconds',
+				'formatTimePeriod() rounding (<10s)'
+			),
+			array(
+				9.95,
+				array(),
+				'10s',
+				'formatTimePeriod() rounding (<10s)'
+			),
+			array(
+				9.95,
+				array( 'noabbrevs' => true ),
+				'10 seconds',
+				'formatTimePeriod() rounding (<10s)'
+			),
+			array(
+				59.55,
+				array(),
+				'1m 0s',
+				'formatTimePeriod() rounding (<60s)'
+			),
+			array(
+				59.55,
+				array( 'noabbrevs' => true ),
+				'1 minute 0 seconds',
+				'formatTimePeriod() rounding (<60s)'
+			),
+			array(
+				119.55,
+				array(),
+				'2m 0s',
+				'formatTimePeriod() rounding (<1h)'
+			),
+			array(
+				119.55,
+				array( 'noabbrevs' => true ),
+				'2 minutes 0 seconds',
+				'formatTimePeriod() rounding (<1h)'
+			),
+			array(
+				3599.55,
+				array(),
+				'1h 0m 0s',
+				'formatTimePeriod() rounding (<1h)'
+			),
+			array(
+				3599.55,
+				array( 'noabbrevs' => true ),
+				'1 hour 0 minutes 0 seconds',
+				'formatTimePeriod() rounding (<1h)'
+			),
+			array(
+				7199.55,
+				array(),
+				'2h 0m 0s',
+				'formatTimePeriod() rounding (>=1h)'
+			),
+			array(
+				7199.55,
+				array( 'noabbrevs' => true ),
+				'2 hours 0 minutes 0 seconds',
+				'formatTimePeriod() rounding (>=1h)'
+			),
+			array(
+				7199.55,
+				'avoidseconds',
+				'2h 0m',
+				'formatTimePeriod() rounding (>=1h), avoidseconds'
+			),
+			array(
+				7199.55,
+				array( 'avoid' => 'avoidseconds', 'noabbrevs' => true ),
+				'2 hours 0 minutes',
+				'formatTimePeriod() rounding (>=1h), avoidseconds'
+			),
+			array(
+				7199.55,
+				'avoidminutes',
+				'2h 0m',
+				'formatTimePeriod() rounding (>=1h), avoidminutes'
+			),
+			array(
+				7199.55,
+				array( 'avoid' => 'avoidminutes', 'noabbrevs' => true ),
+				'2 hours 0 minutes',
+				'formatTimePeriod() rounding (>=1h), avoidminutes'
+			),
+			array(
+				172799.55,
+				'avoidseconds',
+				'48h 0m',
+				'formatTimePeriod() rounding (=48h), avoidseconds'
+			),
+			array(
+				172799.55,
+				array( 'avoid' => 'avoidseconds', 'noabbrevs' => true ),
+				'48 hours 0 minutes',
+				'formatTimePeriod() rounding (=48h), avoidseconds'
+			),
+			array(
+				259199.55,
+				'avoidminutes',
+				'3d 0h',
+				'formatTimePeriod() rounding (>48h), avoidminutes'
+			),
+			array(
+				259199.55,
+				array( 'avoid' => 'avoidminutes', 'noabbrevs' => true ),
+				'3 days 0 hours',
+				'formatTimePeriod() rounding (>48h), avoidminutes'
+			),
+			array(
+				176399.55,
+				'avoidseconds',
+				'2d 1h 0m',
+				'formatTimePeriod() rounding (>48h), avoidseconds'
+			),
+			array(
+				176399.55,
+				array( 'avoid' => 'avoidseconds', 'noabbrevs' => true ),
+				'2 days 1 hour 0 minutes',
+				'formatTimePeriod() rounding (>48h), avoidseconds'
+			),
+			array(
+				176399.55,
+				'avoidminutes',
+				'2d 1h',
+				'formatTimePeriod() rounding (>48h), avoidminutes'
+			),
+			array(
+				176399.55,
+				array( 'avoid' => 'avoidminutes', 'noabbrevs' => true ),
+				'2 days 1 hour',
+				'formatTimePeriod() rounding (>48h), avoidminutes'
+			),
+			array(
+				259199.55,
+				'avoidseconds',
+				'3d 0h 0m',
+				'formatTimePeriod() rounding (>48h), avoidseconds'
+			),
+			array(
+				259199.55,
+				array( 'avoid' => 'avoidseconds', 'noabbrevs' => true ),
+				'3 days 0 hours 0 minutes',
+				'formatTimePeriod() rounding (>48h), avoidseconds'
+			),
+			array(
+				172801.55,
+				'avoidseconds',
+				'2d 0h 0m',
+				'formatTimePeriod() rounding, (>48h), avoidseconds'
+			),
+			array(
+				172801.55,
+				array( 'avoid' => 'avoidseconds', 'noabbrevs' => true ),
+				'2 days 0 hours 0 minutes',
+				'formatTimePeriod() rounding, (>48h), avoidseconds'
+			),
+			array(
+				176460.55,
+				array(),
+				'2d 1h 1m 1s',
+				'formatTimePeriod() rounding, recursion, (>48h)'
+			),
+			array(
+				176460.55,
+				array( 'noabbrevs' => true ),
+				'2 days 1 hour 1 minute 1 second',
+				'formatTimePeriod() rounding, recursion, (>48h)'
+			),
 		);
 
 	}
@@ -98,8 +250,8 @@ class LanguageTest extends MediaWikiTestCase {
 	}
 
 	/**
-	* @dataProvider provideHTMLTruncateData()
-	*/
+	 * @dataProvider provideHTMLTruncateData()
+	 */
 	function testTruncateHtml( $len, $ellipsis, $input, $expected ) {
 		// Actual HTML...
 		$this->assertEquals(
@@ -654,4 +806,264 @@ class LanguageTest extends MediaWikiTestCase {
 			),
 		);
 	}
+
+
+
+	/**
+	 * @dataProvider provideFormatDuration
+	 */
+	function testFormatDuration( $duration, $expected, $intervals = array() ) {
+		$this->assertEquals(
+			$expected,
+			$this->lang->formatDuration( $duration, $intervals ),
+			"formatDuration('$duration'): $expected"
+		);
+	}
+
+	function provideFormatDuration() {
+		return array(
+			array(
+				0,
+				'0 seconds',
+			),
+			array(
+				1,
+				'1 second',
+			),
+			array(
+				2,
+				'2 seconds',
+			),
+			array(
+				60,
+				'1 minute',
+			),
+			array(
+				2 * 60,
+				'2 minutes',
+			),
+			array(
+				3600,
+				'1 hour',
+			),
+			array(
+				2 * 3600,
+				'2 hours',
+			),
+			array(
+				24 * 3600,
+				'1 day',
+			),
+			array(
+				2 * 86400,
+				'2 days',
+			),
+			array(
+				365.25 * 86400, // 365.25 * 86400 = 31557600
+				'1 year',
+			),
+			array(
+				2 * 31557600,
+				'2 years',
+			),
+			array(
+				10 * 31557600,
+				'1 decade',
+			),
+			array(
+				20 * 31557600,
+				'2 decades',
+			),
+			array(
+				100 * 31557600,
+				'1 century',
+			),
+			array(
+				200 * 31557600,
+				'2 centuries',
+			),
+			array(
+				1000 * 31557600,
+				'1 millennium',
+			),
+			array(
+				2000 * 31557600,
+				'2 millennia',
+			),
+			array(
+				9001,
+				'2 hours, 30 minutes and 1 second'
+			),
+			array(
+				3601,
+				'1 hour and 1 second'
+			),
+			array(
+				31557600 + 2 * 86400 + 9000,
+				'1 year, 2 days, 2 hours and 30 minutes'
+			),
+			array(
+				42 * 1000 * 31557600 + 42,
+				'42 millennia and 42 seconds'
+			),
+			array(
+				60,
+				'60 seconds',
+				array( 'seconds' ),
+			),
+			array(
+				61,
+				'61 seconds',
+				array( 'seconds' ),
+			),
+			array(
+				1,
+				'1 second',
+				array( 'seconds' ),
+			),
+			array(
+				31557600 + 2 * 86400 + 9000,
+				'1 year, 2 days and 150 minutes',
+				array( 'years', 'days', 'minutes' ),
+			),
+			array(
+				42,
+				'0 days',
+				array( 'years', 'days' ),
+			),
+			array(
+				31557600 + 2 * 86400 + 9000,
+				'1 year, 2 days and 150 minutes',
+				array( 'minutes', 'days', 'years' ),
+			),
+			array(
+				42,
+				'0 days',
+				array( 'days', 'years' ),
+			),
+		);
+	}
+
+	/**
+	 * @dataProvider provideCheckTitleEncodingData
+	 */
+	function testCheckTitleEncoding( $s ) {
+		$this->assertEquals(
+			$s,
+			$this->lang->checkTitleEncoding($s),
+			"checkTitleEncoding('$s')"
+		);
+	}
+
+	function provideCheckTitleEncodingData() {
+		return array (
+			array( "" ),
+			array( "United States of America" ), // 7bit ASCII
+			array( rawurldecode( "S%C3%A9rie%20t%C3%A9l%C3%A9vis%C3%A9e" ) ),
+			array(
+				rawurldecode(
+					"Acteur%7CAlbert%20Robbins%7CAnglais%7CAnn%20Donahue%7CAnthony%20E.%20Zuiker%7CCarol%20Mendelsohn"
+				)
+			),
+			// The following two data sets come from bug 36839. They fail if checkTitleEncoding uses a regexp to test for
+			// valid UTF-8 encoding and the pcre.recursion_limit is low (like, say, 1024). They succeed if checkTitleEncoding
+			// uses mb_check_encoding for its test.
+			array(
+				rawurldecode(
+					"Acteur%7CAlbert%20Robbins%7CAnglais%7CAnn%20Donahue%7CAnthony%20E.%20Zuiker%7CCarol%20Mendelsohn%7C"
+						. "Catherine%20Willows%7CDavid%20Hodges%7CDavid%20Phillips%7CGil%20Grissom%7CGreg%20Sanders%7CHodges%7C"
+						. "Internet%20Movie%20Database%7CJim%20Brass%7CLady%20Heather%7C"
+						. "Les%20Experts%20(s%C3%A9rie%20t%C3%A9l%C3%A9vis%C3%A9e)%7CLes%20Experts%20:%20Manhattan%7C"
+						. "Les%20Experts%20:%20Miami%7CListe%20des%20personnages%20des%20Experts%7C"
+						. "Liste%20des%20%C3%A9pisodes%20des%20Experts%7CMod%C3%A8le%20discussion:Palette%20Les%20Experts%7C"
+						. "Nick%20Stokes%7CPersonnage%20de%20fiction%7CPersonnage%20fictif%7CPersonnage%20de%20fiction%7C"
+						. "Personnages%20r%C3%A9currents%20dans%20Les%20Experts%7CRaymond%20Langston%7CRiley%20Adams%7C"
+						. "Saison%201%20des%20Experts%7CSaison%2010%20des%20Experts%7CSaison%2011%20des%20Experts%7C"
+						. "Saison%2012%20des%20Experts%7CSaison%202%20des%20Experts%7CSaison%203%20des%20Experts%7C"
+						. "Saison%204%20des%20Experts%7CSaison%205%20des%20Experts%7CSaison%206%20des%20Experts%7C"
+						. "Saison%207%20des%20Experts%7CSaison%208%20des%20Experts%7CSaison%209%20des%20Experts%7C"
+						. "Sara%20Sidle%7CSofia%20Curtis%7CS%C3%A9rie%20t%C3%A9l%C3%A9vis%C3%A9e%7CWallace%20Langham%7C"
+						. "Warrick%20Brown%7CWendy%20Simms%7C%C3%89tats-Unis"
+				),
+			),
+			array(
+				rawurldecode(
+					"Mod%C3%A8le%3AArrondissements%20homonymes%7CMod%C3%A8le%3ABandeau%20standard%20pour%20page%20d'homonymie%7C"
+						. "Mod%C3%A8le%3ABatailles%20homonymes%7CMod%C3%A8le%3ACantons%20homonymes%7C"
+						. "Mod%C3%A8le%3ACommunes%20fran%C3%A7aises%20homonymes%7CMod%C3%A8le%3AFilms%20homonymes%7C"
+						. "Mod%C3%A8le%3AGouvernements%20homonymes%7CMod%C3%A8le%3AGuerres%20homonymes%7CMod%C3%A8le%3AHomonymie%7C"
+						. "Mod%C3%A8le%3AHomonymie%20bateau%7CMod%C3%A8le%3AHomonymie%20d'%C3%A9tablissements%20scolaires%20ou"
+						. "%20universitaires%7CMod%C3%A8le%3AHomonymie%20d'%C3%AEles%7CMod%C3%A8le%3AHomonymie%20de%20clubs%20sportifs%7C"
+						. "Mod%C3%A8le%3AHomonymie%20de%20comt%C3%A9s%7CMod%C3%A8le%3AHomonymie%20de%20monument%7C"
+						. "Mod%C3%A8le%3AHomonymie%20de%20nom%20romain%7CMod%C3%A8le%3AHomonymie%20de%20parti%20politique%7C"
+						. "Mod%C3%A8le%3AHomonymie%20de%20route%7CMod%C3%A8le%3AHomonymie%20dynastique%7C"
+						. "Mod%C3%A8le%3AHomonymie%20vid%C3%A9oludique%7CMod%C3%A8le%3AHomonymie%20%C3%A9difice%20religieux%7C"
+						. "Mod%C3%A8le%3AInternationalisation%7CMod%C3%A8le%3AIsom%C3%A9rie%7CMod%C3%A8le%3AParonymie%7C"
+						. "Mod%C3%A8le%3APatronyme%7CMod%C3%A8le%3APatronyme%20basque%7CMod%C3%A8le%3APatronyme%20italien%7C"
+						. "Mod%C3%A8le%3APatronymie%7CMod%C3%A8le%3APersonnes%20homonymes%7CMod%C3%A8le%3ASaints%20homonymes%7C"
+						. "Mod%C3%A8le%3ATitres%20homonymes%7CMod%C3%A8le%3AToponymie%7CMod%C3%A8le%3AUnit%C3%A9s%20homonymes%7C"
+						. "Mod%C3%A8le%3AVilles%20homonymes%7CMod%C3%A8le%3A%C3%89difices%20religieux%20homonymes"
+				)
+			)
+		);
+	}
+
+	/**
+	 * @dataProvider provideRomanNumeralsData
+	 */
+	function testRomanNumerals( $num, $numerals ) {
+		$this->assertEquals(
+			$numerals,
+			Language::romanNumeral( $num ),
+			"romanNumeral('$num')"
+		);
+	}
+
+	function provideRomanNumeralsData() {
+		return array(
+			array( 1, 'I' ),
+			array( 2, 'II' ),
+			array( 3, 'III' ),
+			array( 4, 'IV' ),
+			array( 5, 'V' ),
+			array( 6, 'VI' ),
+			array( 7, 'VII' ),
+			array( 8, 'VIII' ),
+			array( 9, 'IX' ),
+			array( 10, 'X' ),
+			array( 20, 'XX' ),
+			array( 30, 'XXX' ),
+			array( 40, 'XL' ),
+			array( 49, 'XLIX' ),
+			array( 50, 'L' ),
+			array( 60, 'LX' ),
+			array( 70, 'LXX' ),
+			array( 80, 'LXXX' ),
+			array( 90, 'XC' ),
+			array( 99, 'XCIX' ),
+			array( 100, 'C' ),
+			array( 200, 'CC' ),
+			array( 300, 'CCC' ),
+			array( 400, 'CD' ),
+			array( 500, 'D' ),
+			array( 600, 'DC' ),
+			array( 700, 'DCC' ),
+			array( 800, 'DCCC' ),
+			array( 900, 'CM' ),
+			array( 999, 'CMXCIX' ),
+			array( 1000, 'M' ),
+			array( 1989, 'MCMLXXXIX' ),
+			array( 2000, 'MM' ),
+			array( 3000, 'MMM' ),
+			array( 4000, 'MMMM' ),
+			array( 5000, 'MMMMM' ),
+			array( 6000, 'MMMMMM' ),
+			array( 7000, 'MMMMMMM' ),
+			array( 8000, 'MMMMMMMM' ),
+			array( 9000, 'MMMMMMMMM' ),
+			array( 9999, 'MMMMMMMMMCMXCIX'),
+			array( 10000, 'MMMMMMMMMM' ),
+		);
+	}
 }
+

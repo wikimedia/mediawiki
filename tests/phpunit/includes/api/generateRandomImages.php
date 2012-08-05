@@ -10,9 +10,13 @@ $IP = dirname( dirname( dirname( dirname( dirname( __FILE__ ) ) ) ) );
 
 // Start up MediaWiki in command-line mode
 require_once( "$IP/maintenance/Maintenance.php" );
-require("RandomImageGenerator.php");
+require(  dirname( __FILE__ ) . "/RandomImageGenerator.php" );
 
 class GenerateRandomImages extends Maintenance {
+
+	public function getDbType() {
+		return Maintenance::DB_NONE;
+	}
 
 	public function execute() {
 

@@ -1,6 +1,6 @@
 <?php
 /**
- * See docs/deferred.txt
+ * Updater for link tracking tables after a page edit.
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -17,14 +17,19 @@
  * 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
  * http://www.gnu.org/copyleft/gpl.html
  *
+ * @file
+ */
+
+/**
+ * See docs/deferred.txt
+ *
  * @todo document (e.g. one-sentence top-level class description).
  */
-class LinksUpdate {
+class LinksUpdate extends SqlDataUpdate {
 
-	/**@{{
-	 * @private
-	 */
-	var $mId,            //!< Page ID of the article linked from
+	// @todo: make members protected, but make sure extensions don't break
+
+	public $mId,         //!< Page ID of the article linked from
 		$mTitle,         //!< Title object of the article linked from
 		$mParserOutput,  //!< Parser output
 		$mLinks,         //!< Map of title strings to IDs for the links in the document
@@ -37,7 +42,6 @@ class LinksUpdate {
 		$mDb,            //!< Database connection reference
 		$mOptions,       //!< SELECT options to be used (array)
 		$mRecursive;     //!< Whether to queue jobs for recursive updates
-	/**@}}*/
 
 	/**
 	 * Constructor
@@ -47,21 +51,24 @@ class LinksUpdate {
 	 * @param $recursive Boolean: queue jobs for recursive updates?
 	 */
 	function __construct( $title, $parserOutput, $recursive = true ) {
-		global $wgAntiLockFlags;
+		parent::__construct( );
 
-		if ( $wgAntiLockFlags & ALF_NO_LINK_LOCK ) {
-			$this->mOptions = array();
-		} else {
-			$this->mOptions = array( 'FOR UPDATE' );
+		if ( !( $title instanceof Title ) ) {
+			throw new MWException( "The calling convention to LinksUpdate::LinksUpdate() has changed. " .
+				"Please see Article::editUpdates() for an invocation example.\n" );
 		}
-		$this->mDb = wfGetDB( DB_MASTER );
 
-		if ( !is_object( $title ) ) {
+		if ( !( $parserOutput instanceof ParserOutput ) ) {
 			throw new MWException( "The calling convention to LinksUpdate::__construct() has changed. " .
 				"Please see WikiPage::doEditUpdates() for an invocation example.\n" );
 		}
+
 		$this->mTitle = $title;
 		$this->mId = $title->getArticleID();
+
+		if ( !$this->mId ) {
+			throw new MWException( "The Title object did not provide an article ID. Perhaps the page doesn't exist?" );
+		}
 
 		$this->mParserOutput = $parserOutput;
 		$this->mLinks = $parserOutput->getLinks();
@@ -251,51 +258,6 @@ class LinksUpdate {
 		Job::batchInsert( $jobs );
 
 		wfProfileOut( __METHOD__ );
-	}
-
-	/**
-	 * Invalidate the cache of a list of pages from a single namespace
-	 *
-	 * @param $namespace Integer
-	 * @param $dbkeys Array
-	 */
-	function invalidatePages( $namespace, $dbkeys ) {
-		if ( !count( $dbkeys ) ) {
-			return;
-		}
-
-		/**
-		 * Determine which pages need to be updated
-		 * This is necessary to prevent the job queue from smashing the DB with
-		 * large numbers of concurrent invalidations of the same page
-		 */
-		$now = $this->mDb->timestamp();
-		$ids = array();
-		$res = $this->mDb->select( 'page', array( 'page_id' ),
-			array(
-				'page_namespace' => $namespace,
-				'page_title IN (' . $this->mDb->makeList( $dbkeys ) . ')',
-				'page_touched < ' . $this->mDb->addQuotes( $now )
-			), __METHOD__
-		);
-		foreach ( $res as $row ) {
-			$ids[] = $row->page_id;
-		}
-		if ( !count( $ids ) ) {
-			return;
-		}
-
-		/**
-		 * Do the update
-		 * We still need the page_touched condition, in case the row has changed since
-		 * the non-locking select above.
-		 */
-		$this->mDb->update( 'page', array( 'page_touched' => $now ),
-			array(
-				'page_id IN (' . $this->mDb->makeList( $ids ) . ')',
-				'page_touched < ' . $this->mDb->addQuotes( $now )
-			), __METHOD__
-		);
 	}
 
 	/**
@@ -846,6 +808,75 @@ class LinksUpdate {
 					$update->doUpdate();
 				}
 			}
+		}
+	}
+}
+
+/**
+ * Update object handling the cleanup of links tables after a page was deleted.
+ **/
+class LinksDeletionUpdate extends SqlDataUpdate {
+
+	protected $mPage;     //!< WikiPage the wikipage that was deleted
+
+	/**
+	 * Constructor
+	 *
+	 * @param $page WikiPage Page we are updating
+	 */
+	function __construct( WikiPage $page ) {
+		parent::__construct( );
+
+		$this->mPage = $page;
+	}
+
+	/**
+	 * Do some database updates after deletion
+	 */
+	public function doUpdate() {
+		$title = $this->mPage->getTitle();
+		$id = $this->mPage->getId();
+
+		# Delete restrictions for it
+		$this->mDb->delete( 'page_restrictions', array ( 'pr_page' => $id ), __METHOD__ );
+
+		# Fix category table counts
+		$cats = array();
+		$res = $this->mDb->select( 'categorylinks', 'cl_to', array( 'cl_from' => $id ), __METHOD__ );
+
+		foreach ( $res as $row ) {
+			$cats [] = $row->cl_to;
+		}
+
+		$this->mPage->updateCategoryCounts( array(), $cats );
+
+		# If using cascading deletes, we can skip some explicit deletes
+		if ( !$this->mDb->cascadingDeletes() ) {
+			$this->mDb->delete( 'revision', array( 'rev_page' => $id ), __METHOD__ );
+
+			# Delete outgoing links
+			$this->mDb->delete( 'pagelinks', array( 'pl_from' => $id ), __METHOD__ );
+			$this->mDb->delete( 'imagelinks', array( 'il_from' => $id ), __METHOD__ );
+			$this->mDb->delete( 'categorylinks', array( 'cl_from' => $id ), __METHOD__ );
+			$this->mDb->delete( 'templatelinks', array( 'tl_from' => $id ), __METHOD__ );
+			$this->mDb->delete( 'externallinks', array( 'el_from' => $id ), __METHOD__ );
+			$this->mDb->delete( 'langlinks', array( 'll_from' => $id ), __METHOD__ );
+			$this->mDb->delete( 'iwlinks', array( 'iwl_from' => $id ), __METHOD__ );
+			$this->mDb->delete( 'redirect', array( 'rd_from' => $id ), __METHOD__ );
+			$this->mDb->delete( 'page_props', array( 'pp_page' => $id ), __METHOD__ );
+		}
+
+		# If using cleanup triggers, we can skip some manual deletes
+		if ( !$this->mDb->cleanupTriggers() ) {
+			# Clean up recentchanges entries...
+			$this->mDb->delete( 'recentchanges',
+				array( 'rc_type != ' . RC_LOG,
+					'rc_namespace' => $title->getNamespace(),
+					'rc_title' => $title->getDBkey() ),
+				__METHOD__ );
+			$this->mDb->delete( 'recentchanges',
+				array( 'rc_type != ' . RC_LOG, 'rc_cur_id' => $id ),
+				__METHOD__ );
 		}
 	}
 }

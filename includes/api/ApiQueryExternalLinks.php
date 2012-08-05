@@ -4,7 +4,7 @@
  *
  * Created on May 13, 2007
  *
- * Copyright © 2006 Yuri Astrakhan <Firstname><Lastname>@gmail.com
+ * Copyright © 2006 Yuri Astrakhan "<Firstname><Lastname>@gmail.com"
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -130,6 +130,14 @@ class ApiQueryExternalLinks extends ApiQueryBase {
 				"Leave both this and {$p}query empty to list all external links"
 			),
 			'query' => 'Search string without protocol. Useful for checking whether a certain page contains a certain external url',
+		);
+	}
+
+	public function getResultProperties() {
+		return array(
+			'' => array(
+				'*' => 'string'
+			)
 		);
 	}
 

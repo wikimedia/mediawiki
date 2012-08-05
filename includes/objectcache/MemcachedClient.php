@@ -1,5 +1,7 @@
 <?php
 /**
+ * Memcached client for PHP.
+ *
  * +---------------------------------------------------------------------------+
  * | memcached client, PHP                                                     |
  * +---------------------------------------------------------------------------+
@@ -338,9 +340,10 @@ class MWMemcached {
 			$this->_debugprint( sprintf( "MemCache: delete %s (%s)\n", $key, $res ) );
 		}
 
-		if ( $res == "DELETED" ) {
+		if ( $res == "DELETED" || $res == "NOT_FOUND" ) {
 			return true;
 		}
+
 		return false;
 	}
 
@@ -570,10 +573,10 @@ class MWMemcached {
 	 * output as an array (null array if no output)
 	 *
 	 * NOTE: due to a possible bug in how PHP reads while using fgets(), each
-	 *       line may not be terminated by a \r\n.  More specifically, my testing
+	 *       line may not be terminated by a "\r\n".  More specifically, my testing
 	 *       has shown that, on FreeBSD at least, each line is terminated only
-	 *       with a \n.  This is with the PHP flag auto_detect_line_endings set
-	 *       to falase (the default).
+	 *       with a "\n".  This is with the PHP flag auto_detect_line_endings set
+	 *       to false (the default).
 	 *
 	 * @param $sock Resource: socket to send command on
 	 * @param $cmd String: command to run
@@ -829,7 +832,7 @@ class MWMemcached {
 	 * @access private
 	 */
 	function _hashfunc( $key ) {
-		# Hash function must on [0,0x7ffffff]
+		# Hash function must be in [0,0x7ffffff]
 		# We take the first 31 bits of the MD5 hash, which unlike the hash
 		# function used in a previous version of this client, works
 		return hexdec( substr( md5( $key ), 0, 8 ) ) & 0x7fffffff;
@@ -892,7 +895,10 @@ class MWMemcached {
 	function _load_items( $sock, &$ret ) {
 		while ( 1 ) {
 			$decl = fgets( $sock );
-			if ( $decl == "END\r\n" ) {
+			if( $decl === false ) {
+				$this->_debugprint( "Error reading socket for a memcached response\n" );
+				return 0;
+			} elseif ( $decl == "END\r\n" ) {
 				return true;
 			} elseif ( preg_match( '/^VALUE (\S+) (\d+) (\d+)\r\n$/', $decl, $match ) ) {
 				list( $rkey, $flags, $len ) = array( $match[1], $match[2], $match[3] );
@@ -936,7 +942,8 @@ class MWMemcached {
 				}
 
 			} else {
-				$this->_debugprint( "Error parsing memcached response\n" );
+				$peer = stream_socket_get_name( $sock, true /** remote **/ );
+				$this->_debugprint( "Error parsing memcached response from [{$peer}]\n" );
 				return 0;
 			}
 		}
@@ -974,15 +981,6 @@ class MWMemcached {
 			$this->stats[$cmd]++;
 		} else {
 			$this->stats[$cmd] = 1;
-		}
-
-		// TTLs higher than 30 days will be detected as absolute TTLs
-		// (UNIX timestamps), and will result in the cache entry being
-		// discarded immediately because the expiry is in the past.
-		// Clamp expiries >30d at 30d, unless they're >=1e9 in which
-		// case they are likely to really be absolute (1e9 = 2011-09-09)
-		if ( $exp > 2592000 && $exp < 1000000000 ) {
-			$exp = 2592000;
 		}
 
 		$flags = 0;
@@ -1139,7 +1137,13 @@ class MWMemcached {
 // }}}
 
 class MemCachedClientforWiki extends MWMemcached {
+
 	function _debugprint( $text ) {
-		wfDebug( "memcached: $text" );
+		global $wgDebugLogGroups;
+		if( !isset( $wgDebugLogGroups['memcached'] ) ) {
+			# Prefix message since it will end up in main debug log file
+			$text = "memcached: $text";
+		}
+		wfDebugLog( 'memcached', $text );
 	}
 }

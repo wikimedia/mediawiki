@@ -32,7 +32,7 @@ define( 'DO_MAINTENANCE', RUN_MAINTENANCE_IF_MAIN ); // original name, harmless
 $maintClass = false;
 
 // Make sure we're on PHP5 or better
-if ( !function_exists( 'version_compare' ) || version_compare( PHP_VERSION, '5.2.3' ) < 0 ) {
+if ( !function_exists( 'version_compare' ) || version_compare( PHP_VERSION, '5.3.2' ) < 0 ) {
 	require_once( dirname( __FILE__ ) . '/../includes/PHPVersionError.php' );
 	wfPHPVersionError( 'cli' );
 }
@@ -101,7 +101,10 @@ abstract class Maintenance {
 	// Generic options which might or not be supported by the script
 	private $mDependantParameters = array();
 
-	// Used by getDD() / setDB()
+	/**
+	 * Used by getDD() / setDB()
+	 * @var DatabaseBase
+	 */
 	private $mDb = null;
 
 	/**
@@ -317,11 +320,7 @@ abstract class Maintenance {
 		}
 		if ( $channel === null ) {
 			$this->cleanupChanneled();
-			if( php_sapi_name() == 'cli' ) {
-				fwrite( STDOUT, $out );
-			} else {
-				print( $out );
-			}
+			print( $out );
 		} else {
 			$out = preg_replace( '/\n\z/', '', $out );
 			$this->outputChanneled( $out, $channel );
@@ -355,11 +354,7 @@ abstract class Maintenance {
 	 */
 	public function cleanupChanneled() {
 		if ( !$this->atLineStart ) {
-			if( php_sapi_name() == 'cli' ) {
-				fwrite( STDOUT, "\n" );
-			} else {
-				print "\n";
-			}
+			print "\n";
 			$this->atLineStart = true;
 		}
 	}
@@ -378,31 +373,17 @@ abstract class Maintenance {
 			return;
 		}
 
-		$cli = php_sapi_name() == 'cli';
-
 		// End the current line if necessary
 		if ( !$this->atLineStart && $channel !== $this->lastChannel ) {
-			if( $cli ) {
-				fwrite( STDOUT, "\n" );
-			} else {
-				print "\n";
-			}
+			print "\n";
 		}
 
-		if( $cli ) {
-			fwrite( STDOUT, $msg );
-		} else {
-			print $msg;
-		}
+		print $msg;
 
 		$this->atLineStart = false;
 		if ( $channel === null ) {
 			// For unchanneled messages, output trailing newline immediately
-			if( $cli ) {
-				fwrite( STDOUT, "\n" );
-			} else {
-				print "\n";
-			}
+			print "\n";
 			$this->atLineStart = true;
 		}
 		$this->lastChannel = $channel;

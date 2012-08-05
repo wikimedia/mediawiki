@@ -19,11 +19,18 @@
  * 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
  * http://www.gnu.org/copyleft/gpl.html
  *
+ * @file
  * @ingroup Maintenance
  */
 
 require_once( dirname( __FILE__ ) . '/Maintenance.php' );
 
+/**
+ * Maintenance script that makes the required database updates for rev_parent_id
+ * to be of any use.
+ *
+ * @ingroup Maintenance
+ */
 class PopulateParentId extends LoggedUpdateMaintenance {
 	public function __construct() {
 		parent::__construct();
@@ -61,7 +68,7 @@ class PopulateParentId extends LoggedUpdateMaintenance {
 			$cond = "rev_id BETWEEN $blockStart AND $blockEnd";
 			$res = $db->select( 'revision',
 				array( 'rev_id', 'rev_page', 'rev_timestamp', 'rev_parent_id' ),
-				$cond, __METHOD__ );
+				array( $cond, 'rev_parent_id' => null ), __METHOD__ );
 			# Go through and update rev_parent_id from these rows.
 			# Assume that the previous revision of the title was
 			# the original previous revision of the title when the

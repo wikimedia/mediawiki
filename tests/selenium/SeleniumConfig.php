@@ -24,12 +24,7 @@ class SeleniumConfig {
 			throw new MWException( "Unable to read local Selenium Settings from " . $seleniumConfigFile . "\n" );
 		}
 
-		if ( !defined( 'PHP_VERSION_ID' ) ||
-			( PHP_MAJOR_VERSION == 5 && PHP_MINOR_VERSION < 3 ) ) {
-			$configArray = self::parse_5_2_ini_file( $seleniumConfigFile );
-		} else {
-			$configArray = parse_ini_file( $seleniumConfigFile, true );
-		}
+		$configArray = parse_ini_file( $seleniumConfigFile, true );
 		if ( $configArray === false ) {
 			throw new MWException( "Error parsing " . $seleniumConfigFile . "\n" );
 		}
@@ -59,35 +54,6 @@ class SeleniumConfig {
 			wfRestoreWarnings();
 		}
 		return true;
-	}
-
-	/**
-	 * PHP 5.2 parse_ini_file() doesn't have support for array keys.
-	 * This function parses simple ini files with such syntax using just
-	 * 5.2 functions.
-	 */
-	private static function parse_5_2_ini_file( $ConfigFile ) {
-		$file = fopen( $ConfigFile, "rt" );
-		if ( !$file ) {
-			return false;
-		}
-		$header = '';
-
-		$configArray = array();
-
-		while ( ( $line = fgets( $file ) ) !== false ) {
-			$line = strtok( $line, "\r\n" );
-
-			if ( !$line || $line[0] == ';' ) continue;
-
-			if ( $line[0] == '[' && substr( $line, -1 ) == ']' ) {
-				$header = substr( $line, 1, -1 );
-				$configArray[$header] = array();
-			} else {
-				$configArray[$header] = array_merge_recursive( $configArray[$header], self::parse_ini_line( $line ) );
-			}
-		}
-		return $configArray;
 	}
 
 	private static function parse_ini_line( $iniLine ) {

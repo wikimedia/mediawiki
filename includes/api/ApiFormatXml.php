@@ -4,7 +4,7 @@
  *
  * Created on Sep 19, 2006
  *
- * Copyright © 2006 Yuri Astrakhan <Firstname><Lastname>@gmail.com
+ * Copyright © 2006 Yuri Astrakhan "<Firstname><Lastname>@gmail.com"
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -83,16 +83,40 @@ class ApiFormatXml extends ApiFormatBase {
 
 	/**
 	 * This method takes an array and converts it to XML.
+	 *
 	 * There are several noteworthy cases:
 	 *
-	 *  If array contains a key '_element', then the code assumes that ALL other keys are not important and replaces them with the value['_element'].
-	 *	Example:	name='root',  value = array( '_element'=>'page', 'x', 'y', 'z') creates <root>  <page>x</page>  <page>y</page>  <page>z</page> </root>
+	 * If array contains a key '_element', then the code assumes that ALL
+	 * other keys are not important and replaces them with the
+	 * value['_element'].
 	 *
-	 *  If any of the array's element key is '*', then the code treats all other key->value pairs as attributes, and the value['*'] as the element's content.
-	 *	Example:	name='root',  value = array( '*'=>'text', 'lang'=>'en', 'id'=>10)   creates  <root lang='en' id='10'>text</root>
+	 * @par Example:
+	 * @verbatim
+	 * name='root',  value = array( '_element'=>'page', 'x', 'y', 'z')
+	 * @endverbatim
+	 * creates:
+	 * @verbatim
+	 * <root>  <page>x</page>  <page>y</page>  <page>z</page> </root>
+	 * @endverbatim
 	 *
-	 * If neither key is found, all keys become element names, and values become element content.
-	 * The method is recursive, so the same rules apply to any sub-arrays.
+	 * If any of the array's element key is '*', then the code treats all
+	 * other key->value pairs as attributes, and the value['*'] as the
+	 * element's content.
+	 *
+	 * @par Example:
+	 * @verbatim
+	 * name='root',  value = array( '*'=>'text', 'lang'=>'en', 'id'=>10)
+	 * @endverbatim
+	 * creates:
+	 * @verbatim
+	 * <root lang='en' id='10'>text</root>
+	 * @endverbatim
+	 *
+	 * Finally neither key is found, all keys become element names, and values
+	 * become element content.
+	 *
+	 * @note The method is recursive, so the same rules apply to any
+	 * sub-arrays.
 	 *
 	 * @param $elemName
 	 * @param $elemValue
@@ -215,7 +239,8 @@ class ApiFormatXml extends ApiFormatBase {
 	public function getParamDescription() {
 		return array(
 			'xmldoublequote' => 'If specified, double quotes all attributes and content',
-			'xslt' => 'If specified, adds <xslt> as stylesheet',
+			'xslt' => 'If specified, adds <xslt> as stylesheet. This should be a wiki page '
+				. 'in the MediaWiki namespace whose page name ends with ".xsl"',
 			'includexmlnamespace' => 'If specified, adds an XML namespace'
 		);
 	}

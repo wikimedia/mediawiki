@@ -2,6 +2,21 @@
 /**
  * Foreign file accessible through api.php requests.
  *
+ * This program is free software; you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation; either version 2 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License along
+ * with this program; if not, write to the Free Software Foundation, Inc.,
+ * 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
+ * http://www.gnu.org/copyleft/gpl.html
+ *
  * @file
  * @ingroup FileAbstraction
  */
@@ -39,9 +54,9 @@ class ForeignAPIFile extends File {
 	 */
 	static function newFromTitle( Title $title, $repo ) {
 		$data = $repo->fetchImageQuery( array(
-			'titles' => 'File:' . $title->getDBKey(),
-			'iiprop' => self::getProps(),
-			'prop'   => 'imageinfo',
+			'titles'            => 'File:' . $title->getDBKey(),
+			'iiprop'            => self::getProps(),
+			'prop'              => 'imageinfo',
 			'iimetadataversion' => MediaHandler::getMetadataVersion()
 		) );
 
@@ -75,14 +90,26 @@ class ForeignAPIFile extends File {
 	}
 
 	// Dummy functions...
+
+	/**
+	 * @return bool
+	 */
 	public function exists() {
 		return $this->mExists;
 	}
 
+	/**
+	 * @return bool
+	 */
 	public function getPath() {
 		return false;
 	}
 
+	/**
+	 * @param Array $params
+	 * @param int $flags
+	 * @return bool|MediaTransformOutput
+	 */
 	function transform( $params, $flags = 0 ) {
 		if( !$this->canRender() ) {
 			// show icon
@@ -102,6 +129,11 @@ class ForeignAPIFile extends File {
 	}
 
 	// Info we can get from API...
+
+	/**
+	 * @param $page int
+	 * @return int|number
+	 */
 	public function getWidth( $page = 1 ) {
 		return isset( $this->mInfo['width'] ) ? intval( $this->mInfo['width'] ) : 0;
 	}
@@ -114,6 +146,9 @@ class ForeignAPIFile extends File {
 		return isset( $this->mInfo['height'] ) ? intval( $this->mInfo['height'] ) : 0;
 	}
 
+	/**
+	 * @return bool|null|string
+	 */
 	public function getMetadata() {
 		if ( isset( $this->mInfo['metadata'] ) ) {
 			return serialize( self::parseMetadata( $this->mInfo['metadata'] ) );
@@ -121,6 +156,10 @@ class ForeignAPIFile extends File {
 		return null;
 	}
 
+	/**
+	 * @param $metadata array
+	 * @return array
+	 */
 	public static function parseMetadata( $metadata ) {
 		if( !is_array( $metadata ) ) {
 			return $metadata;
@@ -132,28 +171,47 @@ class ForeignAPIFile extends File {
 		return $ret;
 	}
 
+	/**
+	 * @return bool|int|null
+	 */
 	public function getSize() {
 		return isset( $this->mInfo['size'] ) ? intval( $this->mInfo['size'] ) : null;
 	}
 
+	/**
+	 * @return null|string
+	 */
 	public function getUrl() {
 		return isset( $this->mInfo['url'] ) ? strval( $this->mInfo['url'] ) : null;
 	}
 
+	/**
+	 * @param string $method
+	 * @return int|null|string
+	 */
 	public function getUser( $method='text' ) {
 		return isset( $this->mInfo['user'] ) ? strval( $this->mInfo['user'] ) : null;
 	}
 
-	public function getDescription() {
+	/**
+	 * @return null|string
+	 */
+	public function getDescription( $audience = self::FOR_PUBLIC, User $user = null ) {
 		return isset( $this->mInfo['comment'] ) ? strval( $this->mInfo['comment'] ) : null;
 	}
 
+	/**
+	 * @return null|String
+	 */
 	function getSha1() {
 		return isset( $this->mInfo['sha1'] )
 			? wfBaseConvert( strval( $this->mInfo['sha1'] ), 16, 36, 31 )
 			: null;
 	}
 
+	/**
+	 * @return bool|Mixed|string
+	 */
 	function getTimestamp() {
 		return wfTimestamp( TS_MW,
 			isset( $this->mInfo['timestamp'] )
@@ -162,6 +220,9 @@ class ForeignAPIFile extends File {
 		);
 	}
 
+	/**
+	 * @return string
+	 */
 	function getMimeType() {
 		if( !isset( $this->mInfo['mime'] ) ) {
 			$magic = MimeMagic::singleton();
@@ -170,12 +231,18 @@ class ForeignAPIFile extends File {
 		return $this->mInfo['mime'];
 	}
 
-	/// @todo FIXME: May guess wrong on file types that can be eg audio or video
+	/**
+	 * @todo FIXME: May guess wrong on file types that can be eg audio or video
+	 * @return int|string
+	 */
 	function getMediaType() {
 		$magic = MimeMagic::singleton();
 		return $magic->getMediaType( null, $this->getMimeType() );
 	}
 
+	/**
+	 * @return bool|string
+	 */
 	function getDescriptionUrl() {
 		return isset( $this->mInfo['descriptionurl'] )
 			? $this->mInfo['descriptionurl']
@@ -184,6 +251,7 @@ class ForeignAPIFile extends File {
 
 	/**
 	 * Only useful if we're locally caching thumbs anyway...
+	 * @param $suffix string
 	 * @return null|string
 	 */
 	function getThumbPath( $suffix = '' ) {
@@ -198,6 +266,9 @@ class ForeignAPIFile extends File {
 		}
 	}
 
+	/**
+	 * @return array
+	 */
 	function getThumbnails() {
 		$dir = $this->getThumbPath( $this->getName() );
 		$iter = $this->repo->getBackend()->getFileList( array( 'dir' => $dir ) );
@@ -227,6 +298,9 @@ class ForeignAPIFile extends File {
 		$wgMemc->delete( $key );
 	}
 
+	/**
+	 * @param $options array
+	 */
 	function purgeThumbnails( $options = array() ) {
 		global $wgMemc;
 
@@ -247,8 +321,8 @@ class ForeignAPIFile extends File {
 		}
 
 		# Delete the thumbnails
-		$this->repo->cleanupBatch( $purgeList, FileRepo::SKIP_LOCKING );
+		$this->repo->quickPurgeBatch( $purgeList );
 		# Clear out the thumbnail directory if empty
-		$this->repo->getBackend()->clean( array( 'dir' => $dir ) );
+		$this->repo->quickCleanDir( $dir );
 	}
 }

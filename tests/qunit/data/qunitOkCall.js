@@ -1,2 +1,2 @@
-start();
-ok( true, 'Successfully loaded!');
+QUnit.start();
+QUnit.assert.ok( true, 'Successfully loaded!');

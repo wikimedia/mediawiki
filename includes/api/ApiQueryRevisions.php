@@ -4,7 +4,7 @@
  *
  * Created on Sep 7, 2006
  *
- * Copyright © 2006 Yuri Astrakhan <Firstname><Lastname>@gmail.com
+ * Copyright © 2006 Yuri Astrakhan "<Firstname><Lastname>@gmail.com"
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -224,6 +224,13 @@ class ApiQueryRevisions extends ApiQueryBase {
 			}
 		}
 
+		// add user name, if needed
+		if ( $this->fld_user ) {
+			$this->addTables( 'user' );
+			$this->addJoinConds( array( 'user' => Revision::userJoinCond() ) );
+			$this->addFields( Revision::selectUserFields() );
+		}
+
 		// Bug 24166 - API error when using rvprop=tags
 		$this->addTables( 'revision' );
 
@@ -239,6 +246,16 @@ class ApiQueryRevisions extends ApiQueryBase {
 
 			if ( !is_null( $params['user'] ) && !is_null( $params['excludeuser'] ) ) {
 				$this->dieUsage( 'user and excludeuser cannot be used together', 'badparams' );
+			}
+
+			// Continuing effectively uses startid. But we can't use rvstartid
+			// directly, because there is no way to tell the client to ''not''
+			// send rvstart if it sent it in the original query. So instead we
+			// send the continuation startid as rvcontinue, and ignore both
+			// rvstart and rvstartid when that is supplied.
+			if ( !is_null( $params['continue'] ) ) {
+				$params['startid'] = $params['continue'];
+				unset( $params['start'] );
 			}
 
 			// This code makes an assumption that sorting by rev_id and rev_timestamp produces
@@ -290,7 +307,7 @@ class ApiQueryRevisions extends ApiQueryBase {
 			$this->addWhereFld( 'rev_id', array_keys( $revs ) );
 
 			if ( !is_null( $params['continue'] ) ) {
-				$this->addWhere( "rev_id >= '" . intval( $params['continue'] ) . "'" );
+				$this->addWhere( 'rev_id >= ' . intval( $params['continue'] ) );
 			}
 			$this->addOption( 'ORDER BY', 'rev_id' );
 
@@ -322,12 +339,15 @@ class ApiQueryRevisions extends ApiQueryBase {
 				$pageid = intval( $cont[0] );
 				$revid = intval( $cont[1] );
 				$this->addWhere(
-					"rev_page > '$pageid' OR " .
-					"(rev_page = '$pageid' AND " .
-					"rev_id >= '$revid')"
+					"rev_page > $pageid OR " .
+					"(rev_page = $pageid AND " .
+					"rev_id >= $revid)"
 				);
 			}
-			$this->addOption( 'ORDER BY', 'rev_page, rev_id' );
+			$this->addOption( 'ORDER BY', array(
+				'rev_page',
+				'rev_id'
+			));
 
 			// assumption testing -- we should never get more then $pageCount rows.
 			$limit = $pageCount;
@@ -347,14 +367,14 @@ class ApiQueryRevisions extends ApiQueryBase {
 				if ( !$enumRevMode ) {
 					ApiBase::dieDebug( __METHOD__, 'Got more rows then expected' ); // bug report
 				}
-				$this->setContinueEnumParameter( 'startid', intval( $row->rev_id ) );
+				$this->setContinueEnumParameter( 'continue', intval( $row->rev_id ) );
 				break;
 			}
 
 			$fit = $this->addPageSubItem( $row->rev_page, $this->extractRowInfo( $row ), 'rev' );
 			if ( !$fit ) {
 				if ( $enumRevMode ) {
-					$this->setContinueEnumParameter( 'startid', intval( $row->rev_id ) );
+					$this->setContinueEnumParameter( 'continue', intval( $row->rev_id ) );
 				} elseif ( $revCount > 0 ) {
 					$this->setContinueEnumParameter( 'continue', intval( $row->rev_id ) );
 				} else {
@@ -636,6 +656,66 @@ class ApiQueryRevisions extends ApiQueryBase {
 				"Overrides {$p}diffto. If {$p}section is set, only that section will be diffed against this text" ),
 			'tag' => 'Only list revisions tagged with this tag',
 		);
+	}
+
+	public function getResultProperties() {
+		$props = array(
+			'' => array(),
+			'ids' => array(
+				'revid' => 'integer',
+				'parentid' => array(
+					ApiBase::PROP_TYPE => 'integer',
+					ApiBase::PROP_NULLABLE => true
+				)
+			),
+			'flags' => array(
+				'minor' => 'boolean'
+			),
+			'user' => array(
+				'userhidden' => 'boolean',
+				'user' => 'string',
+				'anon' => 'boolean'
+			),
+			'userid' => array(
+				'userhidden' => 'boolean',
+				'userid' => 'integer',
+				'anon' => 'boolean'
+			),
+			'timestamp' => array(
+				'timestamp' => 'timestamp'
+			),
+			'size' => array(
+				'size' => 'integer'
+			),
+			'sha1' => array(
+				'sha1' => 'string'
+			),
+			'comment' => array(
+				'commenthidden' => 'boolean',
+				'comment' => array(
+					ApiBase::PROP_TYPE => 'string',
+					ApiBase::PROP_NULLABLE => true
+				)
+			),
+			'parsedcomment' => array(
+				'commenthidden' => 'boolean',
+				'parsedcomment' => array(
+					ApiBase::PROP_TYPE => 'string',
+					ApiBase::PROP_NULLABLE => true
+				)
+			),
+			'content' => array(
+				'*' => array(
+					ApiBase::PROP_TYPE => 'string',
+					ApiBase::PROP_NULLABLE => true
+				),
+				'texthidden' => 'boolean'
+			)
+		);
+
+		self::addTokenProperties( $props, $this->getTokenFunctions() );
+
+		return $props;
 	}
 
 	public function getDescription() {

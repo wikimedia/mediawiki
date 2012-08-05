@@ -1,9 +1,16 @@
 <?php
-
 /**
- * API for MediaWiki 1.8+
+ * This file is the entry point for all API queries.
  *
- * Copyright (C) 2006 Yuri Astrakhan <Firstname><Lastname>@gmail.com
+ * It begins by checking whether the API is enabled on this wiki; if not,
+ * it informs the user that s/he should set $wgEnableAPI to true and exits.
+ * Otherwise, it constructs a new ApiMain using the parameter passed to it
+ * as an argument in the URL ('?action=') and with write-enabled set to the
+ * value of $wgEnableWriteAPI as specified in LocalSettings.php.
+ * It then invokes "execute()" on the ApiMain object instance, which
+ * produces output in the format sepecified in the URL.
+ *
+ * Copyright © 2006 Yuri Astrakhan <Firstname><Lastname>@gmail.com
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -23,22 +30,11 @@
  * @file
  */
 
-/**
- * This file is the entry point for all API queries. It begins by checking
- * whether the API is enabled on this wiki; if not, it informs the user that
- * s/he should set $wgEnableAPI to true and exits. Otherwise, it constructs
- * a new ApiMain using the parameter passed to it as an argument in the URL
- * ('?action=') and with write-enabled set to the value of $wgEnableWriteAPI
- * as specified in LocalSettings.php. It then invokes "execute()" on the
- * ApiMain object instance, which produces output in the format sepecified
- * in the URL.
- */
-
 // So extensions (and other code) can check whether they're running in API mode
 define( 'MW_API', true );
 
 // Bail if PHP is too low
-if ( !function_exists( 'version_compare' ) || version_compare( phpversion(), '5.2.3' ) < 0 ) {
+if ( !function_exists( 'version_compare' ) || version_compare( phpversion(), '5.3.2' ) < 0 ) {
 	require( dirname( __FILE__ ) . '/includes/PHPVersionError.php' );
 	wfPHPVersionError( 'api.php' );
 }
@@ -66,43 +62,6 @@ if ( !$wgEnableAPI ) {
 	die(1);
 }
 
-// Selectively allow cross-site AJAX
-
-/**
- * Helper function to convert wildcard string into a regex
- * '*' => '.*?'
- * '?' => '.'
- *
- * @param $search string
- * @return string
- */
-function convertWildcard( $search ) {
-	$search = preg_quote( $search, '/' );
-	$search = str_replace(
-		array( '\*', '\?' ),
-		array( '.*?', '.' ),
-		$search
-	);
-	return "/$search/";
-}
-
-if ( $wgCrossSiteAJAXdomains && isset( $_SERVER['HTTP_ORIGIN'] ) ) {
-	$exceptions = array_map( 'convertWildcard', $wgCrossSiteAJAXdomainExceptions );
-	$regexes = array_map( 'convertWildcard', $wgCrossSiteAJAXdomains );
-	foreach ( $regexes as $regex ) {
-		if ( preg_match( $regex, $_SERVER['HTTP_ORIGIN'] ) ) {
-			foreach ( $exceptions as $exc ) { // Check against exceptions
-				if ( preg_match( $exc, $_SERVER['HTTP_ORIGIN'] ) ) {
-					break 2;
-				}
-			}
-			header( "Access-Control-Allow-Origin: {$_SERVER['HTTP_ORIGIN']}" );
-			header( 'Access-Control-Allow-Credentials: true' );
-			break;
-		}
-	}
-}
-
 // Set a dummy $wgTitle, because $wgTitle == null breaks various things
 // In a perfect world this wouldn't be necessary
 $wgTitle = Title::makeTitle( NS_MAIN, 'API' );
@@ -111,7 +70,7 @@ $wgTitle = Title::makeTitle( NS_MAIN, 'API' );
  * is some form of an ApiMain, possibly even one that produces an error message,
  * but we don't care here, as that is handled by the ctor.
  */
-$processor = new ApiMain( $wgRequest, $wgEnableWriteAPI );
+$processor = new ApiMain( RequestContext::getMain(), $wgEnableWriteAPI );
 
 // Process data & print results
 $processor->execute();

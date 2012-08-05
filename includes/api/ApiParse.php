@@ -2,7 +2,7 @@
 /**
  * Created on Dec 01, 2007
  *
- * Copyright © 2007 Yuri Astrakhan <Firstname><Lastname>@gmail.com
+ * Copyright © 2007 Yuri Astrakhan "<Firstname><Lastname>@gmail.com"
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -59,13 +59,13 @@ class ApiParse extends ApiBase {
 		// The parser needs $wgTitle to be set, apparently the
 		// $title parameter in Parser::parse isn't enough *sigh*
 		// TODO: Does this still need $wgTitle?
-		global $wgParser, $wgTitle, $wgLang;
+		global $wgParser, $wgTitle;
 
 		// Currently unnecessary, code to act as a safeguard against any change in current behaviour of uselang breaks
 		$oldLang = null;
-		if ( isset( $params['uselang'] ) && $params['uselang'] != $wgLang->getCode() ) {
-			$oldLang = $wgLang; // Backup wgLang
-			$wgLang = Language::factory( $params['uselang'] );
+		if ( isset( $params['uselang'] ) && $params['uselang'] != $this->getContext()->getLanguage()->getCode() ) {
+			$oldLang = $this->getContext()->getLanguage(); // Backup language
+			$this->getContext()->setLanguage( Language::factory( $params['uselang'] ) );
 		}
 
 		$popts = ParserOptions::newFromContext( $this->getContext() );
@@ -285,6 +285,21 @@ class ApiParse extends ApiBase {
 				$result->setContent( $result_array['psttext'], $this->pstText );
 			}
 		}
+		if ( isset( $prop['properties'] ) ) {
+			$result_array['properties'] = $this->formatProperties( $p_result->getProperties() );
+		}
+
+		if ( $params['generatexml'] ) {
+			$wgParser->startExternalParse( $titleObj, $popts, OT_PREPROCESS );
+			$dom = $wgParser->preprocessToDom( $this->text );
+			if ( is_callable( array( $dom, 'saveXML' ) ) ) {
+				$xml = $dom->saveXML();
+			} else {
+				$xml = $dom->__toString();
+			}
+			$result_array['parsetree'] = array();
+			$result->setContent( $result_array['parsetree'], $xml );
+		}
 
 		$result_mapping = array(
 			'redirects' => 'r',
@@ -297,12 +312,13 @@ class ApiParse extends ApiBase {
 			'iwlinks' => 'iw',
 			'sections' => 's',
 			'headitems' => 'hi',
+			'properties' => 'pp',
 		);
 		$this->setIndexedTagNames( $result_array, $result_mapping );
 		$result->addValue( null, $this->getModuleName(), $result_array );
 
 		if ( !is_null( $oldLang ) ) {
-			$wgLang = $oldLang; // Reset $wgLang to $oldLang
+			$this->getContext()->setLanguage( $oldLang ); // Reset language to $oldLang
 		}
 	}
 
@@ -328,6 +344,9 @@ class ApiParse extends ApiBase {
 			// Try the parser cache first
 			// getParserOutput will save to Parser cache if able
 			$pout = $page->getParserOutput( $popts );
+			if ( !$pout ) {
+				$this->dieUsage( "There is no revision ID {$page->getLatest()}", 'missingrev' );
+			}
 			if ( $getWikitext ) {
 				$this->text = $page->getRawText();
 			}
@@ -461,6 +480,17 @@ class ApiParse extends ApiBase {
 		return $result;
 	}
 
+	private function formatProperties( $properties ) {
+		$result = array();
+		foreach ( $properties as $name => $value ) {
+			$entry = array();
+			$entry['name'] = $name;
+			$this->getResult()->setContent( $entry, $value );
+			$result[] = $entry;
+		}
+		return $result;
+	}
+
 	private function formatCss( $css ) {
 		$result = array();
 		foreach ( $css as $file => $link ) {
@@ -496,7 +526,7 @@ class ApiParse extends ApiBase {
 				ApiBase::PARAM_TYPE => 'integer',
 			),
 			'prop' => array(
-				ApiBase::PARAM_DFLT => 'text|langlinks|categories|links|templates|images|externallinks|sections|revid|displaytitle',
+				ApiBase::PARAM_DFLT => 'text|langlinks|categories|links|templates|images|externallinks|sections|revid|displaytitle|iwlinks|properties',
 				ApiBase::PARAM_ISMULTI => true,
 				ApiBase::PARAM_TYPE => array(
 					'text',
@@ -515,6 +545,7 @@ class ApiParse extends ApiBase {
 					'headhtml',
 					'iwlinks',
 					'wikitext',
+					'properties',
 				)
 			),
 			'pst' => false,
@@ -522,6 +553,7 @@ class ApiParse extends ApiBase {
 			'uselang' => null,
 			'section' => null,
 			'disablepp' => false,
+			'generatexml' => false,
 		);
 	}
 
@@ -553,6 +585,7 @@ class ApiParse extends ApiBase {
 				' headhtml       - Gives parsed <head> of the page',
 				' iwlinks        - Gives interwiki links in the parsed wikitext',
 				' wikitext       - Gives the original wikitext that was parsed',
+				' properties     - Gives various properties defined in the parsed wikitext',
 			),
 			'pst' => array(
 				'Do a pre-save transform on the input before parsing it',
@@ -565,11 +598,15 @@ class ApiParse extends ApiBase {
 			'uselang' => 'Which language to parse the request in',
 			'section' => 'Only retrieve the content of this section number',
 			'disablepp' => 'Disable the PP Report from the parser output',
+			'generatexml' => 'Generate XML parse tree',
 		);
 	}
 
 	public function getDescription() {
-		return 'Parses wikitext and returns parser output';
+		return array(
+			'Parses wikitext and returns parser output',
+			'See the various prop-Modules of action=query to get information from the current version of a page',
+		);
 	}
 
 	public function getPossibleErrors() {

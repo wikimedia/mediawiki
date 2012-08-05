@@ -4,7 +4,8 @@
  * Used as a base class for CompareParsers and PreprocessDump.
  * We implement below the simple task of searching inside a dump.
  *
- * Copyright (C) 2011 Platonides - http://www.mediawiki.org/
+ * Copyright © 2011 Platonides
+ * http://www.mediawiki.org/
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -27,6 +28,11 @@
 
 require_once( dirname( __FILE__ ) . '/Maintenance.php' );
 
+/**
+ * Base class for interating over a dump.
+ *
+ * @ingroup Maintenance
+ */
 abstract class DumpIterator extends Maintenance {
 
 	private $count = 0;
@@ -141,6 +147,11 @@ abstract class DumpIterator extends Maintenance {
 	abstract public function processRevision( $rev );
 }
 
+/**
+ * Maintenance script that runs a regex in the revisions from a dump.
+ *
+ * @ingroup Maintenance
+ */
 class SearchDump extends DumpIterator {
 
 	public function __construct() {

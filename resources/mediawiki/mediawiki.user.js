@@ -12,6 +12,9 @@
 		/* Private Members */
 
 		var that = this;
+		var api = new mw.Api();
+		var groupsDeferred;
+		var rightsDeferred;
 
 		/* Public Members */
 
@@ -25,7 +28,7 @@
 		 * Generates a random user session ID (32 alpha-numeric characters).
 		 *
 		 * This information would potentially be stored in a cookie to identify a user during a
-		 * session or series of sessions. It's uniqueness should not be depended on.
+		 * session or series of sessions. Its uniqueness should not be depended on.
 		 *
 		 * @return String: Random set of 32 alpha-numeric characters
 		 */
@@ -44,8 +47,15 @@
 		 *
 		 * @return Mixed: User name string or null if users is anonymous
 		 */
-		this.name = function() {
+		this.getName = function () {
 			return mw.config.get( 'wgUserName' );
+		};
+
+		/**
+		 * @deprecated since 1.20 use mw.user.getName() instead
+		 */
+		this.name = function () {
+			return this.getName();
 		};
 
 		/**
@@ -53,8 +63,15 @@
 		 *
 		 * @return Boolean
 		 */
-		this.anonymous = function() {
-			return that.name() ? false : true;
+		this.isAnon = function () {
+			return that.getName() === null;
+		};
+
+		/**
+		 * @deprecated since 1.20 use mw.user.isAnon() instead
+		 */
+		this.anonymous = function () {
+			return that.isAnon();
 		};
 
 		/**
@@ -84,7 +101,7 @@
 		 * @return String: User name or random session ID
 		 */
 		this.id = function() {
-			var name = that.name();
+			var name = that.getName();
 			if ( name ) {
 				return name;
 			}
@@ -173,6 +190,58 @@
 				);
 			}
 			return bucket;
+		};
+
+		/**
+		 * Gets the current user's groups.
+		 */
+		this.getGroups = function ( callback ) {
+			if ( groupsDeferred ) {
+				groupsDeferred.always( callback );
+				return;
+			}
+
+			groupsDeferred = $.Deferred();
+			groupsDeferred.always( callback );
+			api.get( {
+				action: 'query',
+				meta: 'userinfo',
+				uiprop: 'groups'
+			} ).done( function ( data ) {
+				if ( data.query && data.query.userinfo && data.query.userinfo.groups ) {
+					groupsDeferred.resolve( data.query.userinfo.groups );
+				} else {
+					groupsDeferred.reject( [] );
+				}
+			} ).fail( function ( data ) {
+					groupsDeferred.reject( [] );
+			} );
+		};
+
+		/**
+		 * Gets the current user's rights.
+		 */
+		this.getRights = function ( callback ) {
+			if ( rightsDeferred ) {
+				rightsDeferred.always( callback );
+				return;
+			}
+
+			rightsDeferred = $.Deferred();
+			rightsDeferred.always( callback );
+			api.get( {
+				action: 'query',
+				meta: 'userinfo',
+				uiprop: 'rights'
+			} ).done( function ( data ) {
+				if ( data.query && data.query.userinfo && data.query.userinfo.rights ) {
+					rightsDeferred.resolve( data.query.userinfo.rights );
+				} else {
+					rightsDeferred.reject( [] );
+				}
+			} ).fail( function ( data ) {
+				rightsDeferred.reject( [] );
+			} );
 		};
 	}
 

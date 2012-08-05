@@ -1,4 +1,25 @@
 <?php
+/**
+ * Object caching using DBA backend.
+ *
+ * This program is free software; you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation; either version 2 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License along
+ * with this program; if not, write to the Free Software Foundation, Inc.,
+ * 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
+ * http://www.gnu.org/copyleft/gpl.html
+ *
+ * @file
+ * @ingroup Cache
+ */
 
 /**
  * Cache that uses DBA as a backend.
@@ -7,19 +28,21 @@
  * for systems that don't have it.
  *
  * On construction you can pass array( 'dir' => '/some/path' ); as a parameter
- * to override the default DBA files directory (wgTmpDirectory).
+ * to override the default DBA files directory (wfTempDir()).
  *
  * @ingroup Cache
  */
 class DBABagOStuff extends BagOStuff {
 	var $mHandler, $mFile, $mReader, $mWriter, $mDisabled;
 
+	/**
+	 * @param $params array
+	 */
 	public function __construct( $params ) {
 		global $wgDBAhandler;
 
 		if ( !isset( $params['dir'] ) ) {
-			global $wgTmpDirectory;
-			$params['dir'] = $wgTmpDirectory;
+			$params['dir'] = wfTempDir();
 		}
 
 		$this->mFile = $params['dir']."/mw-cache-" . wfWikiID();
@@ -43,6 +66,7 @@ class DBABagOStuff extends BagOStuff {
 	}
 
 	/**
+	 * @param $blob string
 	 * @return array list containing value first and expiry second
 	 */
 	function decode( $blob ) {
@@ -56,6 +80,9 @@ class DBABagOStuff extends BagOStuff {
 		}
 	}
 
+	/**
+	 * @return resource
+	 */
 	function getReader() {
 		if ( file_exists( $this->mFile ) ) {
 			$handle = dba_open( $this->mFile, 'rl', $this->mHandler );
@@ -70,6 +97,9 @@ class DBABagOStuff extends BagOStuff {
 		return $handle;
 	}
 
+	/**
+	 * @return resource
+	 */
 	function getWriter() {
 		$handle = dba_open( $this->mFile, 'cl', $this->mHandler );
 
@@ -80,6 +110,10 @@ class DBABagOStuff extends BagOStuff {
 		return $handle;
 	}
 
+	/**
+	 * @param $key string
+	 * @return mixed|null|string
+	 */
 	function get( $key ) {
 		wfProfileIn( __METHOD__ );
 		wfDebug( __METHOD__ . "($key)\n" );
@@ -109,6 +143,12 @@ class DBABagOStuff extends BagOStuff {
 		return $val;
 	}
 
+	/**
+	 * @param $key string
+	 * @param $value mixed
+	 * @param $exptime int
+	 * @return bool
+	 */
 	function set( $key, $value, $exptime = 0 ) {
 		wfProfileIn( __METHOD__ );
 		wfDebug( __METHOD__ . "($key)\n" );
@@ -128,6 +168,11 @@ class DBABagOStuff extends BagOStuff {
 		return $ret;
 	}
 
+	/**
+	 * @param $key string
+	 * @param $time int
+	 * @return bool
+	 */
 	function delete( $key, $time = 0 ) {
 		wfProfileIn( __METHOD__ );
 		wfDebug( __METHOD__ . "($key)\n" );
@@ -145,6 +190,12 @@ class DBABagOStuff extends BagOStuff {
 		return $ret;
 	}
 
+	/**
+	 * @param $key string
+	 * @param $value mixed
+	 * @param $exptime int
+	 * @return bool
+	 */
 	function add( $key, $value, $exptime = 0 ) {
 		wfProfileIn( __METHOD__ );
 
@@ -177,6 +228,9 @@ class DBABagOStuff extends BagOStuff {
 		return $ret;
 	}
 
+	/**
+	 * @return Array
+	 */
 	function keys() {
 		$reader = $this->getReader();
 		$k1 = dba_firstkey( $reader );

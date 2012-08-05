@@ -1,10 +1,31 @@
 <?php
+/**
+ * File deletion user interface.
+ *
+ * This program is free software; you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation; either version 2 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License along
+ * with this program; if not, write to the Free Software Foundation, Inc.,
+ * 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
+ * http://www.gnu.org/copyleft/gpl.html
+ *
+ * @file
+ * @author Rob Church <robchur@gmail.com>
+ * @ingroup Media
+ */
 
 /**
  * File deletion user interface
  *
  * @ingroup Media
- * @author Rob Church <robchur@gmail.com>
  */
 class FileDeleteForm {
 
@@ -98,10 +119,12 @@ class FileDeleteForm {
 				// file, otherwise go back to the description page
 				$wgOut->addReturnTo( $this->oldimage ? $this->title : Title::newMainPage() );
 
-				if ( $wgRequest->getCheck( 'wpWatch' ) && $wgUser->isLoggedIn() ) {
-					WatchAction::doWatch( $this->title, $wgUser );
-				} elseif ( $this->title->userIsWatching() ) {
-					WatchAction::doUnwatch( $this->title, $wgUser );
+				if ( $wgUser->isLoggedIn() && $wgRequest->getCheck( 'wpWatch' ) != $wgUser->isWatched( $this->title ) ) {
+					if ( $wgRequest->getCheck( 'wpWatch' ) ) {
+						WatchAction::doWatch( $this->title, $wgUser );
+					} else {
+						WatchAction::doUnwatch( $this->title, $wgUser );
+					}
 				}
 			}
 			return;
@@ -133,12 +156,19 @@ class FileDeleteForm {
 			$status = $file->deleteOld( $oldimage, $reason, $suppress );
 			if( $status->ok ) {
 				// Need to do a log item
-				$log = new LogPage( 'delete' );
 				$logComment = wfMsgForContent( 'deletedrevision', $oldimage );
 				if( trim( $reason ) != '' ) {
 					$logComment .= wfMsgForContent( 'colon-separator' ) . $reason;
 				}
-				$log->addEntry( 'delete', $title, $logComment );
+
+				$logtype = $suppress ? 'suppress' : 'delete';
+
+				$logEntry = new ManualLogEntry( $logtype, 'delete' );
+				$logEntry->setPerformer( $user );
+				$logEntry->setTarget( $title );
+				$logEntry->setComment( $logComment );
+				$logid = $logEntry->insert();
+				$logEntry->publish( $logid );
 			}
 		} else {
 			$status = Status::newFatal( 'cannotdelete',
@@ -149,7 +179,10 @@ class FileDeleteForm {
 			try {
 				// delete the associated article first
 				$error = '';
-				if ( $page->doDeleteArticleReal( $reason, $suppress, 0, false, $error, $user ) >= WikiPage::DELETE_SUCCESS ) {
+				$deleteStatus = $page->doDeleteArticleReal( $reason, $suppress, 0, false, $error, $user );
+				// doDeleteArticleReal() returns a non-fatal error status if the page
+				// or revision is missing, so check for isOK() rather than isGood()
+				if ( $deleteStatus->isOK() ) {
 					$status = $file->delete( $reason, $suppress );
 					if( $status->isOK() ) {
 						$dbw->commit( __METHOD__ );
@@ -189,7 +222,7 @@ class FileDeleteForm {
 			$suppress = '';
 		}
 
-		$checkWatch = $wgUser->getBoolOption( 'watchdeletion' ) || $this->title->userIsWatching();
+		$checkWatch = $wgUser->getBoolOption( 'watchdeletion' ) || $wgUser->isWatched( $this->title );
 		$form = Xml::openElement( 'form', array( 'method' => 'post', 'action' => $this->getAction(),
 			'id' => 'mw-img-deleteconfirm' ) ) .
 			Xml::openElement( 'fieldset' ) .

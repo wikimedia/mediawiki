@@ -1,9 +1,4 @@
-module( 'jquery.textSelection', QUnit.newMwEnvironment() );
-
-test( '-- Initial check', function() {
-	expect(1);
-	ok( $.fn.textSelection, 'jQuery.fn.textSelection defined' );
-} );
+QUnit.module( 'jquery.textSelection', QUnit.newMwEnvironment() );
 
 /**
  * Test factory for $.fn.textSelection( 'encapsulateText' )
@@ -16,7 +11,7 @@ test( '-- Initial check', function() {
  *   end {int} ending char for selection
  *   params {object} add'l parameters for $().textSelection( 'encapsulateText' )
  */
-var encapsulateTest = function( options ) {
+function encapsulateTest( options ) {
 	var opt = $.extend({
 		description: '',
 		before: {},
@@ -34,12 +29,12 @@ var encapsulateTest = function( options ) {
 		selected: null
 	}, opt.after);
 
-	test( opt.description, function() {
+	QUnit.test( opt.description, function ( assert ) {
 		var tests = 1;
 		if ( opt.after.selected !== null ) {
 			tests++;
 		}
-		expect( tests );
+		QUnit.expect( tests );
 
 		var $textarea = $( '<textarea>' );
 
@@ -65,15 +60,15 @@ var encapsulateTest = function( options ) {
 
 		var text = $textarea.textSelection( 'getContents' ).replace( /\r\n/g, "\n" );
 
-		equal( text, opt.after.text, 'Checking full text after encapsulation' );
+		assert.equal( text, opt.after.text, 'Checking full text after encapsulation' );
 
 		if (opt.after.selected !== null) {
 			var selected = $textarea.textSelection( 'getSelection' );
-			equal( selected, opt.after.selected, 'Checking selected text after encapsulation.' );
+			assert.equal( selected, opt.after.selected, 'Checking selected text after encapsulation.' );
 		}
 
 	} );
-};
+}
 
 var sig = {
 	'pre': "--~~~~"
@@ -86,7 +81,7 @@ var sig = {
 	'peri': 'Heading 2',
 	'post': ' ==',
 	'regex': /^(\s*)(={1,6})(.*?)\2(\s*)$/,
-	'regexReplace': "\$1==\$3==\$4",
+	'regexReplace': "$1==$3==$4",
 	'ownline': true
 }, ulist = {
 	'pre': "* ",
@@ -222,28 +217,26 @@ encapsulateTest({
 });
 
 
-var caretTest = function(options) {
-	test(options.description, function() {
-		expect(2);
-
-		var $textarea = $( '<textarea>' ).text(options.text);
+function caretTest( options ) {
+	QUnit.test( options.description, 2, function ( assert ) {
+		var $textarea = $( '<textarea>' ).text( options.text );
 
 		$( '#qunit-fixture' ).append( $textarea );
 
-		if (options.mode == 'set') {
+		if ( options.mode === 'set' ) {
 			$textarea.textSelection('setSelection', {
 				start: options.start,
 				end: options.end
 			});
 		}
 
-		var among = function(actual, expected, message) {
-			if ($.isArray(expected)) {
-				ok($.inArray(actual, expected) !== -1 , message + ' (got ' + actual + '; expected one of ' + expected.join(', ') + ')');
+		function among( actual, expected, message ) {
+			if ( $.isArray( expected ) ) {
+				assert.ok( $.inArray( actual, expected ) !== -1 , message + ' (got ' + actual + '; expected one of ' + expected.join(', ') + ')' );
 			} else {
-				equal(actual, expected, message);
+				assert.equal( actual, expected, message );
 			}
-		};
+		}
 
 		var pos = $textarea.textSelection('getCaretPosition', {startAndEnd: true});
 		among(pos[0], options.start, 'Caret start should be where we set it.');

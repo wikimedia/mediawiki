@@ -1,6 +1,7 @@
 <?php
 /**
- * Outputs page text to stdout, useful for command-line editing automation.
+ * Outputs page text to stdout.
+ * Useful for command-line editing automation.
  * Example: php getText.php "page title" | sed -e '...' | php edit.php "page title"
  *
  * This program is free software; you can redistribute it and/or modify
@@ -18,11 +19,17 @@
  * 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
  * http://www.gnu.org/copyleft/gpl.html
  *
+ * @file
  * @ingroup Maintenance
  */
 
 require_once( dirname( __FILE__ ) . '/Maintenance.php' );
 
+/**
+ * Maintenance script that outputs page text to stdout.
+ *
+ * @ingroup Maintenance
+ */
 class GetTextMaint extends Maintenance {
 	public function __construct() {
 		parent::__construct();

@@ -144,6 +144,7 @@ class SpecialBlock extends FormSpecialPage {
 				'tabindex' => '2',
 				'options' => self::getSuggestedDurations(),
 				'other' => $this->msg( 'ipbother' )->text(),
+				'default' => $this->msg( 'ipb-default-expiry' )->inContentLanguage()->text(),
 			),
 			'Reason' => array(
 				'type' => 'selectandother',
@@ -271,13 +272,13 @@ class SpecialBlock extends FormSpecialPage {
 			}
 
 			if( $block->mExpiry == 'infinity' ) {
-				$fields['Expiry']['default'] = 'indefinite';
+				$fields['Expiry']['default'] = 'infinite';
 			} else {
 				$fields['Expiry']['default'] = wfTimestamp( TS_RFC2822, $block->mExpiry );
 			}
 
 			$this->alreadyBlocked = true;
-			$this->preErrors[] = array( 'ipb-needreblock', (string)$block->getTarget() );
+			$this->preErrors[] = array( 'ipb-needreblock', wfEscapeWikiText( (string)$block->getTarget() ) );
 		}
 
 		# We always need confirmation to do HideUser
@@ -300,6 +301,8 @@ class SpecialBlock extends FormSpecialPage {
 	 * @return String
 	 */
 	protected function preText(){
+		$this->getOutput()->addModules( 'mediawiki.special.block' );
+
 		$text = $this->msg( 'blockiptext' )->parse();
 
 		$otherBlockMessages = array();
@@ -338,6 +341,8 @@ class SpecialBlock extends FormSpecialPage {
 	 * @return string
 	 */
 	protected function postText(){
+		$links = array();
+
 		# Link to the user's contributions, if applicable
 		if( $this->target instanceof User ){
 			$contribsPage = SpecialPage::getTitleFor( 'Contributions', $this->target->getName() );
@@ -349,7 +354,7 @@ class SpecialBlock extends FormSpecialPage {
 
 		# Link to unblock the specified user, or to a blank unblock form
 		if( $this->target instanceof User ) {
-			$message = $this->msg( 'ipb-unblock-addr', $this->target->getName() )->parse();
+			$message = $this->msg( 'ipb-unblock-addr', wfEscapeWikiText( $this->target->getName() ) )->parse();
 			$list = SpecialPage::getTitleFor( 'Unblock', $this->target->getName() );
 		} else {
 			$message = $this->msg( 'ipb-unblock' )->parse();
@@ -904,7 +909,7 @@ class SpecialBlock extends FormSpecialPage {
 	public function onSuccess() {
 		$out = $this->getOutput();
 		$out->setPageTitle( $this->msg( 'blockipsuccesssub' ) );
-		$out->addWikiMsg( 'blockipsuccesstext',  $this->target );
+		$out->addWikiMsg( 'blockipsuccesstext', wfEscapeWikiText( $this->target ) );
 	}
 }
 

@@ -4,7 +4,7 @@
  *
  * Created on May 13, 2007
  *
- * Copyright © 2006 Yuri Astrakhan <Firstname><Lastname>@gmail.com
+ * Copyright © 2006 Yuri Astrakhan "<Firstname><Lastname>@gmail.com"
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -25,7 +25,8 @@
  */
 
 /**
- * This query adds an <images> subelement to all pages with the list of images embedded into those pages.
+ * This query adds an "<images>" subelement to all pages with the list of
+ * images embedded into those pages.
  *
  * @ingroup API
  */
@@ -65,23 +66,24 @@ class ApiQueryImages extends ApiQueryGeneratorBase {
 				$this->dieUsage( 'Invalid continue param. You should pass the ' .
 					'original value returned by the previous query', '_badcontinue' );
 			}
+			$op = $params['dir'] == 'descending' ? '<' : '>';
 			$ilfrom = intval( $cont[0] );
-			$ilto = $this->getDB()->strencode( $this->titleToKey( $cont[1] ) );
+			$ilto = $this->getDB()->addQuotes( $cont[1] );
 			$this->addWhere(
-				"il_from > $ilfrom OR " .
+				"il_from $op $ilfrom OR " .
 				"(il_from = $ilfrom AND " .
-				"il_to >= '$ilto')"
+				"il_to $op= $ilto)"
 			);
 		}
 
-		$dir = ( $params['dir'] == 'descending' ? ' DESC' : '' );
+		$sort = ( $params['dir'] == 'descending' ? ' DESC' : '' );
 		// Don't order by il_from if it's constant in the WHERE clause
 		if ( count( $this->getPageSet()->getGoodTitles() ) == 1 ) {
-			$this->addOption( 'ORDER BY', 'il_to' . $dir );
+			$this->addOption( 'ORDER BY', 'il_to' . $sort );
 		} else {
 			$this->addOption( 'ORDER BY', array(
-						'il_from' . $dir,
-						'il_to' . $dir
+						'il_from' . $sort,
+						'il_to' . $sort
 			));
 		}
 		$this->addOption( 'LIMIT', $params['limit'] + 1 );
@@ -107,16 +109,14 @@ class ApiQueryImages extends ApiQueryGeneratorBase {
 				if ( ++$count > $params['limit'] ) {
 					// We've reached the one extra which shows that
 					// there are additional pages to be had. Stop here...
-					$this->setContinueEnumParameter( 'continue', $row->il_from .
-							'|' . $this->keyToTitle( $row->il_to ) );
+					$this->setContinueEnumParameter( 'continue', $row->il_from . '|' . $row->il_to );
 					break;
 				}
 				$vals = array();
 				ApiQueryBase::addTitleInfo( $vals, Title::makeTitle( NS_FILE, $row->il_to ) );
 				$fit = $this->addPageSubItem( $row->il_from, $vals );
 				if ( !$fit ) {
-					$this->setContinueEnumParameter( 'continue', $row->il_from .
-							'|' . $this->keyToTitle( $row->il_to ) );
+					$this->setContinueEnumParameter( 'continue', $row->il_from . '|' . $row->il_to );
 					break;
 				}
 			}
@@ -127,8 +127,7 @@ class ApiQueryImages extends ApiQueryGeneratorBase {
 				if ( ++$count > $params['limit'] ) {
 					// We've reached the one extra which shows that
 					// there are additional pages to be had. Stop here...
-					$this->setContinueEnumParameter( 'continue', $row->il_from .
-							'|' . $this->keyToTitle( $row->il_to ) );
+					$this->setContinueEnumParameter( 'continue', $row->il_from . '|' . $row->il_to );
 					break;
 				}
 				$titles[] = Title::makeTitle( NS_FILE, $row->il_to );
@@ -170,6 +169,15 @@ class ApiQueryImages extends ApiQueryGeneratorBase {
 			'continue' => 'When more results are available, use this to continue',
 			'images' => 'Only list these images. Useful for checking whether a certain page has a certain Image.',
 			'dir' => 'The direction in which to list',
+		);
+	}
+
+	public function getResultProperties() {
+		return array(
+			'' => array(
+				'ns' => 'namespace',
+				'title' => 'string'
+			)
 		);
 	}
 

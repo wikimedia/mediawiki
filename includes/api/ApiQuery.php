@@ -4,7 +4,7 @@
  *
  * Created on Sep 7, 2006
  *
- * Copyright © 2006 Yuri Astrakhan <Firstname><Lastname>@gmail.com
+ * Copyright © 2006 Yuri Astrakhan "<Firstname><Lastname>@gmail.com"
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -64,8 +64,8 @@ class ApiQuery extends ApiBase {
 	);
 
 	private $mQueryListModules = array(
-		'allimages' => 'ApiQueryAllimages',
-		'allpages' => 'ApiQueryAllpages',
+		'allimages' => 'ApiQueryAllImages',
+		'allpages' => 'ApiQueryAllPages',
 		'alllinks' => 'ApiQueryAllLinks',
 		'allcategories' => 'ApiQueryAllCategories',
 		'allusers' => 'ApiQueryAllUsers',
@@ -95,7 +95,7 @@ class ApiQuery extends ApiBase {
 	private $mQueryMetaModules = array(
 		'siteinfo' => 'ApiQuerySiteinfo',
 		'userinfo' => 'ApiQueryUserInfo',
-		'allmessages' => 'ApiQueryAllmessages',
+		'allmessages' => 'ApiQueryAllMessages',
 	);
 
 	private $mSlaveDB = null;
@@ -103,6 +103,10 @@ class ApiQuery extends ApiBase {
 
 	protected $mAllowedGenerators = array();
 
+	/**
+	 * @param $main ApiMain
+	 * @param $action string
+	 */
 	public function __construct( $main, $action ) {
 		parent::__construct( $main, $action );
 
@@ -115,9 +119,6 @@ class ApiQuery extends ApiBase {
 		$this->mPropModuleNames = array_keys( $this->mQueryPropModules );
 		$this->mListModuleNames = array_keys( $this->mQueryListModules );
 		$this->mMetaModuleNames = array_keys( $this->mQueryMetaModules );
-
-		$this->makeHelpMsgHelper( $this->mQueryPropModules, 'prop' );
-		$this->makeHelpMsgHelper( $this->mQueryListModules, 'list' );
 	}
 
 	/**
@@ -202,6 +203,9 @@ class ApiQuery extends ApiBase {
 		return null;
 	}
 
+	/**
+	 * @return ApiFormatRaw|null
+	 */
 	public function getCustomPrinter() {
 		// If &exportnowrap is set, use the raw formatter
 		if ( $this->getParameter( 'export' ) &&
@@ -258,6 +262,9 @@ class ApiQuery extends ApiBase {
 		$this->outputGeneralPageInfo();
 
 		// Execute all requested modules.
+		/**
+		 * @var $module ApiQueryBase
+		 */
 		foreach ( $modules as $module ) {
 			$params = $module->extractRequestParams();
 			$cacheMode = $this->mergeCacheMode(
@@ -303,6 +310,9 @@ class ApiQuery extends ApiBase {
 	 */
 	private function addCustomFldsToPageSet( $modules, $pageSet ) {
 		// Query all requested modules.
+		/**
+		 * @var $module ApiQueryBase
+		 */
 		foreach ( $modules as $module ) {
 			$module->requestExtraData( $pageSet );
 		}
@@ -384,6 +394,9 @@ class ApiQuery extends ApiBase {
 
 		// Show redirect information
 		$redirValues = array();
+		/**
+		 * @var $titleTo Title
+		 */
 		foreach ( $pageSet->getRedirectTitles() as $titleStrFrom => $titleTo ) {
 			$r = array(
 				'from' => strval( $titleStrFrom ),
@@ -674,7 +687,7 @@ class ApiQuery extends ApiBase {
 					'NOTE: generator parameter names must be prefixed with a \'g\', see examples' ),
 			'redirects' => 'Automatically resolve redirects',
 			'converttitles' => array( "Convert titles to other variants if necessary. Only works if the wiki's content language supports variant conversion.",
-					'Languages that support variant conversion include gan, iu, kk, ku, shi, sr, tg, zh' ),
+					'Languages that support variant conversion include ' . implode( ', ', LanguageConverter::$languagesWithVariants ) ),
 			'indexpageids' => 'Include an additional pageids section listing all returned page IDs',
 			'export' => 'Export the current revisions of all given or generated pages',
 			'exportnowrap' => 'Return the export XML without wrapping it in an XML result (same format as Special:Export). Can only be used with export',

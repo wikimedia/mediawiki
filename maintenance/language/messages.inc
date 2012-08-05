@@ -157,6 +157,7 @@ $wgMessageStructure = array(
 		'index-category',
 		'noindex-category',
 		'broken-file-category',
+		'categoryviewer-pagedlinks',
 	),
 	'mainpage' => array(
 		'linkprefix',
@@ -386,6 +387,7 @@ $wgMessageStructure = array(
 		'badarticleerror',
 		'cannotdelete',
 		'cannotdelete-title',
+		'delete-hook-aborted',
 		'badtitle',
 		'badtitletext',
 		'perfcached',
@@ -408,7 +410,11 @@ $wgMessageStructure = array(
 		'customjsprotected',
 		'ns-specialprotected',
 		'titleprotected',
-		'filereadonlyerror'
+		'filereadonlyerror',
+		'invalidtitle-knownnamespace',
+		'invalidtitle-unknownnamespace',
+		'exception-nologin',
+		'exception-nologin-text',
 	),
 	'virus' => array(
 		'virus-badscanner',
@@ -424,6 +430,7 @@ $wgMessageStructure = array(
 		'remembermypassword',
 		'securelogin-stick-https',
 		'yourdomainname',
+		'password-change-forbidden',
 		'externaldberror',
 		'login',
 		'nav-login-createaccount',
@@ -485,6 +492,7 @@ $wgMessageStructure = array(
 		'emailconfirmlink',
 		'invalidemailaddress',
 		'cannotchangeemail',
+		'emaildisabled',
 		'accountcreated',
 		'accountcreatedtext',
 		'createaccount-title',
@@ -622,12 +630,14 @@ $wgMessageStructure = array(
 		'updated',
 		'note',
 		'previewnote',
+		'continue-editing',
 		'previewconflict',
 		'session_fail_preview',
 		'session_fail_preview_html',
 		'token_suffix_mismatch',
 		'edit_form_incomplete',
 		'editing',
+		'creating',
 		'editingsection',
 		'editingcomment',
 		'editconflict',
@@ -673,6 +683,7 @@ $wgMessageStructure = array(
 		'edit-already-exists',
 		'addsection-preload',
 		'addsection-editintro',
+		'defaultmessagetext',
 	),
 	'parserwarnings' => array(
 		'expensive-parserfunction-warning',
@@ -684,6 +695,12 @@ $wgMessageStructure = array(
 		'parser-template-loop-warning',
 		'parser-template-recursion-depth-warning',
 		'language-converter-depth-warning',
+		'node-count-exceeded-category',
+		'node-count-exceeded-warning',
+		'expansion-depth-exceeded-category',
+		'expansion-depth-exceeded-warning',
+		'parser-unstrip-loop-warning',
+		'parser-unstrip-recursion-limit',
 	),
 	'undo' => array(
 		'undo-success',
@@ -820,7 +837,8 @@ $wgMessageStructure = array(
 		'mergehistory-autocomment',
 		'mergehistory-comment',
 		'mergehistory-same-destination',
-		'mergehistory-reason'
+		'mergehistory-reason',
+		'mergehistory-revisionrow'
 	),
 	'mergelog' => array(
 		'mergelog',
@@ -830,7 +848,8 @@ $wgMessageStructure = array(
 	),
 	'diffs' => array(
 		'history-title',
-		'difference',
+		'difference-title',
+		'difference-title-multipage',
 		'difference-multipage',
 		'lineno',
 		'compareselectedversions',
@@ -935,6 +954,7 @@ $wgMessageStructure = array(
 		'prefs-beta',
 		'prefs-datetime',
 		'prefs-labs',
+		'prefs-user-pages',
 		'prefs-personal',
 		'prefs-rc',
 		'prefs-watchlist',
@@ -1115,6 +1135,7 @@ $wgMessageStructure = array(
 		'right-writeapi',
 		'right-delete',
 		'right-bigdelete',
+		'right-deletelogentry',
 		'right-deleterevision',
 		'right-deletedhistory',
 		'right-deletedtext',
@@ -1200,6 +1221,7 @@ $wgMessageStructure = array(
 		'recentchanges',
 		'recentchanges-url',
 		'recentchanges-legend',
+		'recentchanges-summary',
 		'recentchangestext',
 		'recentchanges-feed-description',
 		'recentchanges-label-newpage',
@@ -1375,7 +1397,8 @@ $wgMessageStructure = array(
 		'backend-fail-connect',
 		'backend-fail-internal',
 		'backend-fail-contenttype',
-		'backend-fail-batchsize'
+		'backend-fail-batchsize',
+		'backend-fail-usable'
 	),
 
 	'filejournal-errors' => array(
@@ -1389,9 +1412,11 @@ $wgMessageStructure = array(
 		'lockmanager-fail-deletelock',
 		'lockmanager-fail-acquirelock',
 		'lockmanager-fail-openlock',
+		'lockmanager-fail-acquirelock',
 		'lockmanager-fail-releaselock',
 		'lockmanager-fail-db-bucket',
 		'lockmanager-fail-db-release',
+		'lockmanager-fail-svr-acquire',
 		'lockmanager-fail-svr-release'
 	),
 
@@ -1494,6 +1519,8 @@ $wgMessageStructure = array(
 		'sharedupload',
 		'sharedupload-desc-there',
 		'sharedupload-desc-here',
+		'sharedupload-desc-edit',
+		'sharedupload-desc-create',
 		'shareddescriptionfollows',
 		'filepage-nofile',
 		'filepage-nofile-link',
@@ -1730,6 +1757,7 @@ $wgMessageStructure = array(
 		'alllogstext',
 		'logempty',
 		'log-title-wildcard',
+		'showhideselectedlogentries',
 	),
 	'allpages' => array(
 		'allpages',
@@ -1749,6 +1777,11 @@ $wgMessageStructure = array(
 		'allpagesbadtitle',
 		'allpages-bad-ns',
 		'allpages-hide-redirects',
+	),
+	'cachedspecial' => array(
+		'cachedspecial-viewing-cached-ttl',
+		'cachedspecial-viewing-cached-ts',
+		'cachedspecial-refresh-now',
 	),
 	'categories' => array(
 		'categories',
@@ -1930,6 +1963,8 @@ $wgMessageStructure = array(
 		'rollback',
 		'rollback_short',
 		'rollbacklink',
+		'rollbacklinkcount',
+		'rollbacklinkcount-morethan',
 		'rollbackfailed',
 		'cantrollback',
 		'alreadyrolled',
@@ -2042,6 +2077,7 @@ $wgMessageStructure = array(
 		'undelete-error-long',
 		'undelete-show-file-confirm',
 		'undelete-show-file-submit',
+		'undelete-revisionrow',
 	),
 	'nsform' => array(
 		'namespace',
@@ -2081,6 +2117,7 @@ $wgMessageStructure = array(
 		'sp-contributions-explain',
 		'sp-contributions-footer',
 		'sp-contributions-footer-anon',
+		'sp-contributions-footer-newbies',
 	),
 	'whatlinkshere' => array(
 		'whatlinkshere',
@@ -2217,6 +2254,7 @@ $wgMessageStructure = array(
 		'cant-see-hidden-user',
 		'ipbblocked',
 		'ipbnounblockself',
+		'ipb-default-expiry',
 	),
 	'developertools' => array(
 		'lockdb',
@@ -2606,6 +2644,7 @@ $wgMessageStructure = array(
 		'spambot_username',
 		'spam_reverting',
 		'spam_blanking',
+		'spam_deleting',
 	),
 	'info' => array(
 		'pageinfo-title',
@@ -3297,6 +3336,7 @@ $wgMessageStructure = array(
 		'ellipsis',
 		'percent',
 		'parentheses',
+		'brackets',
 	),
 	'imgmulti' => array(
 		'imgmultipageprev',
@@ -3477,6 +3517,14 @@ $wgMessageStructure = array(
 		'version-software',
 		'version-software-product',
 		'version-software-version',
+		'version-entrypoints',
+		'version-entrypoints-header-entrypoint',
+		'version-entrypoints-header-url',
+		'version-entrypoints-articlepath',
+		'version-entrypoints-scriptpath',
+		'version-entrypoints-index-php',
+		'version-entrypoints-api-php',
+		'version-entrypoints-load-php',
 	),
 	'filepath' => array(
 		'filepath',
@@ -3660,6 +3708,8 @@ $wgMessageStructure = array(
 		'api-error-empty-file',
 		'api-error-emptypage',
 		'api-error-fetchfileerror',
+		'api-error-fileexists-forbidden',
+		'api-error-fileexists-shared-forbidden',
 		'api-error-file-too-large',
 		'api-error-filename-tooshort',
 		'api-error-filetype-banned',
@@ -3686,6 +3736,17 @@ $wgMessageStructure = array(
 		'api-error-unknownerror',
 		'api-error-uploaddisabled',
 		'api-error-verification-error',
+	),
+	'duration' => array(
+		'duration-seconds',
+		'duration-minutes',
+		'duration-hours',
+		'duration-days',
+		'duration-weeks',
+		'duration-years',
+		'duration-decades',
+		'duration-centuries',
+		'duration-millennia'
 	),
 );
 
@@ -3751,6 +3812,7 @@ XHTML id names.",
 	'zip'                 => 'ZipDirectoryReader',
 	'upload-errors'       => '',
 	'filebackend-errors'  => 'File backend',
+	'filejournal-errors'  => 'File journal errors',
 	'lockmanager-errors'  => 'Lock manager',
 	'uploadstash'         => 'Special:UploadStash',
 	'img-auth'            => 'img_auth script messages',
@@ -3924,4 +3986,6 @@ Variants for Chinese language",
 	'logging-irc'           => 'For IRC, see bug 34508. Do not change',
 	'feedback'              => 'Feedback',
 	'apierrors'             => 'API errors',
+	'duration'              => 'Durations',
+	'cachedspecial'         => 'SpecialCachedPage',
 );

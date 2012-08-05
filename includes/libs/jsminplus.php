@@ -1,5 +1,4 @@
 <?php
-
 /**
  * JSMinPlus version 1.4
  *
@@ -25,6 +24,7 @@
  *
  * Latest version of this script: http://files.tweakers.net/jsminplus/jsminplus.zip
  *
+ * @file
  */
 
 /* ***** BEGIN LICENSE BLOCK *****

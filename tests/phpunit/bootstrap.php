@@ -15,11 +15,11 @@ EOF;
 }
 
 // Output a notice when running with older versions of PHPUnit
-if ( !version_compare( PHPUnit_Runner_Version::id(), "3.4.1", ">" ) ) {
+if ( version_compare( PHPUnit_Runner_Version::id(), "3.6.7", "<" ) ) {
   echo <<<EOF
 ********************************************************************************
 
-These tests run best with version PHPUnit 3.4.2 or better. Earlier versions may
+These tests run best with version PHPUnit 3.6.7 or better. Earlier versions may
 show failures because earlier versions of PHPUnit do not properly implement
 dependencies.
 
