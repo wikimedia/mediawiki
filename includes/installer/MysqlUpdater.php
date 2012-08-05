@@ -184,6 +184,8 @@ class MysqlUpdater extends DatabaseUpdater {
 			array( 'doClFieldsUpdate' ),
 			array( 'doCollationUpdate' ),
 			array( 'addTable', 'msg_resource',                      'patch-msg_resource.sql' ),
+      array( 'addIndex', 'msg_resource_links', 'uq61_msg_resource_links', 'patch-uq_61_msg_resource_links.sql' ),
+      array( 'addIndex', 'msg_resource',   'uq81_msg_resource', 'patch-uq_81_msg_resource.sql' ),
 			array( 'addTable', 'module_deps',                       'patch-module_deps.sql' ),
 			array( 'dropIndex', 'archive',      'ar_page_revid',    'patch-archive_kill_ar_page_revid.sql' ),
 			array( 'addIndex', 'archive',       'ar_revid',         'patch-archive_ar_revid.sql' ),
