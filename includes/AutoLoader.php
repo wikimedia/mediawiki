@@ -40,7 +40,6 @@ $wgAutoloadLocalClasses = array(
 	'Autopromote' => 'includes/Autopromote.php',
 	'BacklinkCache' => 'includes/BacklinkCache.php',
 	'BadTitleError' => 'includes/Exception.php',
-	'BasePasswordType' => 'includes/Password.php',
 	'BaseTemplate' => 'includes/SkinTemplate.php',
 	'Block' => 'includes/Block.php',
 	'CacheHelper' => 'includes/CacheHelper.php',
@@ -186,12 +185,7 @@ $wgAutoloadLocalClasses = array(
 	'Page' =>  'includes/WikiPage.php',
 	'PageQueryPage' => 'includes/PageQueryPage.php',
 	'Pager' => 'includes/Pager.php',
-	'Password' => 'includes/Password.php',
 	'PasswordError' => 'includes/User.php',
-	'PasswordType' => 'includes/Password.php',
-	'Password_TypeA' => 'includes/Password.php',
-	'Password_TypeB' => 'includes/Password.php',
-	'Password_TypePBKHM' => 'includes/Password.php',
 	'PathRouter' => 'includes/PathRouter.php',
 	'PathRouterPatternReplacer' => 'includes/PathRouter.php',
 	'PermissionsError' => 'includes/Exception.php',
@@ -792,6 +786,15 @@ $wgAutoloadLocalClasses = array(
 	'Preprocessor_Hash' => 'includes/parser/Preprocessor_Hash.php',
 	'Preprocessor_HipHop' => 'includes/parser/Preprocessor_HipHop.hphp',
 	'StripState' => 'includes/parser/StripState.php',
+
+	# includes/password
+	'BasePasswordType' => 'includes/password/BasePasswordType.php',
+	'Password' => 'includes/password/Password.php',
+	'PasswordStatusException' => 'includes/password/Password.php',
+	'PasswordType' => 'includes/password/PasswordType.php',
+	'Password_TypeA' => 'includes/password/OldTypes.php',
+	'Password_TypeB' => 'includes/password/OldTypes.php',
+	'Password_TypePBKHM' => 'includes/password/PBKDF2-HMAC.php',
 
 	# includes/profiler
 	'Profiler' => 'includes/profiler/Profiler.php',
