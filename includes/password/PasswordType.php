@@ -53,11 +53,9 @@ interface PasswordType {
 	 *
 	 * @param $data string The password data. Same format as outputted by crypt()
 	 * @param $password The plaintext password
-	 * @return Status A Status object;
-	 *         - Good with a value of true for a password match
-	 *         - Good with a value of false for a bad password
-	 *         - Fatal if the password data was badly formed or there was some issue with
-	 *           verifying the passwords which is not the user's fault.
+	 * @return boolean true for a password match, false for a bad password
+	 * @throws PasswordDataError if the password data was badly formed or there was some issue with
+	 *           comparing the passwords which is not the user's fault.
 	 */
 	public function verify( $data, $password );
 

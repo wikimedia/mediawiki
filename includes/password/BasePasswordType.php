@@ -101,9 +101,25 @@ abstract class BasePasswordType implements PasswordType {
 	 */
 	protected static function params( $params, $length ) {
 		if ( count( $params ) != $length ) {
-			throw new PasswordStatusException( Status::newFatal( 'password-crypt-invalidparamlength' ) );
+			throw self::error( 'password-crypt-invalidparamlength' );
 		}
 		return $params;
+	}
+
+	/**
+	 * Helper function for self::run() implementations
+	 * Returns a PasswordDataError that can be thrown when there is an issue with
+	 * the password data that we've been passed from the database.
+	 *
+	 * @param $key String: message key
+	 * @param Varargs: parameters as Strings
+	 * @return PasswordDataError
+	 */
+	protected static function error( $key /* ... */ ) {
+		$params = func_get_args();
+		array_shift( $params );
+		$msg = new Message( $args, $params );
+		return new PasswordDataError( $msg );
 	}
 
 	/**
@@ -114,9 +130,8 @@ abstract class BasePasswordType implements PasswordType {
 	 *
 	 * @param $params The params (without derived key) to the key derivation implementation
 	 * @param $password The raw user inputted password
-	 * @param mixed A string containing the password's derived key or a fatal
-	 *        Status object indicating an error in the params that will be
-	 *        handled by verify().
+	 * @return String A string containing the password's derived key.
+	 * @throws PasswordDataError if there is an error in the params to be handled by verify()
 	 */
 	abstract protected function run( $params, $password );
 
@@ -149,17 +164,19 @@ abstract class BasePasswordType implements PasswordType {
 	 * - Outputs the params and derived key together in a : delimited string
 	 */
 	public function crypt( $password ) {
-		$params = $this->cryptParams();
-		if ( $params instanceof Status ) {
+		try {
+			$params = $this->cryptParams();
+		} catch ( PasswordDataError $e ) {
 			throw new MWException( __METHOD__ . ': Programming error inside the ' . $this->getName() .
 				' password crypt implementation. Implementation\'s cryptParams() method' .
-				' returned a status object.' );
+				' throwed a PasswordDataError object.' );
 		}
-		$dkey = $this->run( $params, $password );
-		if ( $dkey instanceof Status ) {
+		try {
+			$dkey = $this->run( $params, $password );
+		} catch ( PasswordDataError $e ) {
 			throw new MWException( __METHOD__ . ': Programming error inside the ' . $this->getName() .
 				' password crypt implementation. Implementation\'s run() method' .
-				' returned a status object when using default parameters.' );
+				' returned a PasswordDataError object when using default parameters.' );
 		}
 		$out = $params;
 		$out[] = $dkey;
@@ -176,10 +193,7 @@ abstract class BasePasswordType implements PasswordType {
 		$params = explode( ':', $data );
 		$realDK = array_pop( $params );
 		$dkey = $this->run( $params, $password );
-		if ( $dkey instanceof Status ) {
-			return $dkey;
-		}
-		return Status::newGood( $dkey === $realDK );
+		return $dkey === $realDK;
 	}
 
 	/**

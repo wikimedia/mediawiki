@@ -31,17 +31,17 @@
  * @ingroup Password
  * @since 1.20
  */
-class PasswordStatusException extends Exception {
+class PasswordDataError extends Exception {
 
-	protected $status;
+	protected $mwMsg;
 
-	public function __construct( $status ) {
-		$this->status = $status;
-		parent::__construct( $sattus->getWikiText() );
+	public function __construct( $msg ) {
+		$this->mwMsg = clone $msg;
+		parent::__construct( $msg->inLanguage( 'en' )->plain() );
 	}
 
-	public function getStatus() {
-		return $this->status;
+	public function getMWMessage() {
+		return $this->msMsg;
 	}
 
 }
@@ -141,7 +141,8 @@ class Password {
 	 * Used by verify() and isPreferredFormat() to avoid repeating common parsing code.
 	 *
 	 * @param $data string The raw database format password data with all params and types stuck on the front.
-	 * @return Status or an array containing a PasswordType class and the remaining portion of $data
+	 * @return Array An array containing a PasswordType class and the remaining portion of $data
+	 * @throws PasswordDataError
 	 */
 	protected static function parseType( $data ) {
 		$params = explode( ':', $data, 3 );
@@ -152,18 +153,18 @@ class Password {
 			// If the first piece is not '' then this is invalid
 			// Note that old style passwords (oldCrypt) are handled by User internally since they require
 			// data which we do not have.
-			return Status::newFatal( 'password-crypt-invalid' );
+			throw new PasswordDataError( wfMessage( 'password-crypt-invalid' ) );
 		}
 		$type = array_shift( $params );
 		if ( !$type ) {
 			// A type was not specified
-			return Status::newFatal( 'password-crypt-invalid' );
+			throw new PasswordDataError( wfMessage( 'password-crypt-invalid' ) );
 		}
 
 		$cryptType = self::getType( $type );
 		if ( !$cryptType ) {
 			// Crypt type does not exist
-			return Status::newFatal( 'password-crypt-notype' );
+			throw new PasswordDataError( wfMessage( 'password-crypt-notype' ) );
 		}
 
 		return array( $cryptType, $params[0] );
@@ -175,23 +176,13 @@ class Password {
 	 *
 	 * @param $data string The raw database ready password data with all params and types stuck on the front.
 	 * @param $password The plaintext password
-	 * @return Status A Status object;
-	 *         - Good with a value of true for a password match
-	 *         - Good with a value of false for a bad password
-	 *         - Fatal if the password data was badly formed or there was some issue with
+	 * @return boolean true for a password match, false for a bad password
+	 * @throws PasswordDataError if the password data was badly formed or there was some issue with
 	 *           comparing the passwords which is not the user's fault.
 	 */
 	public static function verify( $data, $password ) {
-		$status = self::parseType( $data );
-		if ( $status instanceof Status ) {
-			return $status;
-		}
-		list( $cryptType, $remainingData ) = $status;
-		try {
-			return $cryptType->verify( $remainingData, $password );
-		} catch( PasswordStatusException $e ) {
-			return $e->getStatus();
-		}
+		list( $cryptType, $remainingData ) = self::parseType( $data );
+		return $cryptType->verify( $remainingData, $password );
 	}
 
 	/**
@@ -207,12 +198,12 @@ class Password {
 	 * @return bool
 	 */
 	public static function isPreferredFormat( $data ) {
-		$status = self::parseType( $data );
-		if ( $status instanceof Status ) {
+		try {
+			list( $cryptType, $remainingData ) = self::parseType( $data );
+		} catch( PasswordDataError $e ) {
 			// If parseType had issues then this is naturally not preferred
 			return false;
 		}
-		list( $cryptType, $remainingData ) = $status;
 		
 		if ( $cryptType->getName() !== self::$preferredType ) {
 			// If cryptType's name does not match the preferred type it's not preferred
@@ -224,7 +215,7 @@ class Password {
 				// If cryptType's isPreferredFormat returns false it's not preferred
 				return false;
 			}
-		} catch( PasswordStatusException $e ) {
+		} catch( PasswordDataError $e ) {
 			// If there was an issue with the data, it's not preferred
 			return false;
 		}

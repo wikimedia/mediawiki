@@ -36,7 +36,7 @@ class Password_TypePBKHM extends BasePasswordType {
 		list( $salt, $hashFunc, $iterations, $dkLength ) = self::params( $params, 4 );
 		$salt = base64_decode( $salt );
 		if ( !in_array( $hashFunc, hash_algos() ) ) {
-			return Status::newFatal( 'password-crypt-nohashfunc', $hashFunc );
+			throw self::error( 'password-crypt-nohashfunc', $hashFunc );
 		}
 		$iterations = intval( $iterations );
 		$dkLength = intval( $dkLength );
@@ -77,7 +77,7 @@ class Password_TypePBKHM extends BasePasswordType {
 		// The hash function
 		$hashFunc = $wgPasswordPbkdf2Hmac['hash'];
 		if ( !in_array( $hashFunc, hash_algos() ) ) {
-			return Status::newFatal( 'password-crypt-nohashfunc', $hashFunc );
+			throw self::error( 'password-crypt-nohashfunc', $hashFunc );
 		}
 		// The number of bits to output in the derived key
 		$hashedBits = $wgPasswordPbkdf2Hmac['hashedbits'];
