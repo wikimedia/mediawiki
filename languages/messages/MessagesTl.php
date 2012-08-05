@@ -561,6 +561,7 @@ Huwag kalimutang baguhin ang iyong [[Special:Preferences|mga kagustuhan sa {{SIT
 'remembermypassword' => 'Tandaan ang paglagda ko sa kompyuter na ito (pinakamarami na ang $1 {{PLURAL:$1|araw|mga araw}})',
 'securelogin-stick-https' => 'Manatiling konektado sa HTTPS matapos lumagda',
 'yourdomainname' => 'Dominyo mo:',
+'password-change-forbidden' => 'Hindi mo maaaring palitan ang mga hudyat sa wiking ito.',
 'externaldberror' => 'Maaaring may kamalian sa pagpapatotoo ng kalipunan ng mga dato o kaya hindi ka pinahintulutang isapanahon ng iyong panlabas na kuwenta o patnugutan.',
 'login' => 'Lumagda',
 'nav-login-createaccount' => 'Lumagda / lumikha ng kuwenta',

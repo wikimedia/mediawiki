@@ -258,6 +258,7 @@ $messages = array(
 'jumpto' => 'Куснаш:',
 'jumptonavigation' => 'навигацийыш',
 'jumptosearch' => 'кычалмашшке',
+'pool-errorunknown' => 'Палыдыме йоҥылыш',
 
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
 'aboutsite' => '{{SITENAME}} нерген',
@@ -328,6 +329,7 @@ $messages = array(
 'filecopyerror' => '«$1» гыч «$2» файлыш копийым ышташ лийдыме.',
 'fileexistserror' => '«$1» файлыш возыкым ышташ лийдыме: файл уло.',
 'unexpected' => 'Келшыдыме кугыт: «$1»=«$2».',
+'cannotdelete-title' => '"$1" лаштыкым шӧраш ок лий',
 'badtitle' => 'Сай огыл лӱм',
 'badtitletext' => 'Йодмо лаштыкын лӱмжӧ йоҥылыш, але яра, але йылме кокла але интер-вики лӱмжӧ йоҥылыш. Ала лӱмыштӧ кӱлдымӧ тамга улыт.',
 'viewsource' => 'Тӱҥалтыш текст',

@@ -3478,7 +3478,7 @@ I collegamenti successivi, sulla stessa riga, sono considerati come eccezioni (o
 
 # 'all' in various places, this might be different for inflected languages
 'watchlistall2' => 'tutte',
-'namespacesall' => 'Tutti',
+'namespacesall' => 'tutti',
 'monthsall' => 'tutti',
 'limitall' => 'tutti',
 

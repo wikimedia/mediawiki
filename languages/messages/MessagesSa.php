@@ -2052,40 +2052,92 @@ See https://www.mediawiki.org/wiki/Manual:Image_Authorization.',
 'deadendpagestext' => 'अधो निदेशितपुटानि {{SITENAME}} इत्यस्मिन्  अन्यपुटैः अनुबद्धानि न ।',
 'protectedpages' => 'सुरक्षितानि पुतानि ।',
 'protectedpages-indef' => 'अनिर्दिष्टसुरक्षा केवलम् ।',
+'protectedpages-cascade' => 'प्रपातसंरक्षणं केवलम् ।',
+'protectedpagestext' => 'अधोसूचितपुटानि चालनात् सम्पादनात् वा सुरक्षितानि ।',
+'protectedpagesempty' => 'अनेन विस्तारेण न किमपि पुटं सद्यः न सुरक्षितम् ।',
+'protectedtitles' => 'सुरक्षितानि शीर्षकानि ।',
+'protectedtitlestext' => 'अधो दत्तशीर्षकाणि सर्जनात् रक्षितानि ।',
+'protectedtitlesempty' => 'एतैः विस्तारैः न किमपि शीर्षकं सद्यः परिरक्षितानि ।',
 'listusers' => 'योजक सूचि',
+'listusers-editsonly' => 'केवलं सम्पादनसहितयोजकान् दर्शयतु ।',
+'listusers-creationsort' => 'सर्जनदिनाङ्कैः वर्गीकरोतु ।',
+'usereditcount' => '$1 {{PLURAL:$1|दिनम्|दिनानि}}',
 'usercreated' => '$1 दिने $2 समये रचितम् योजकनाम $3',
 'newpages' => 'नवीनपृष्ठम्',
 'newpages-username' => 'योजकनामन्:',
 'ancientpages' => 'प्राचीनतमानि पृष्ठानि',
 'move' => 'चाल्यताम्',
 'movethispage' => 'इदं पृष्ठं चाल्यताम्',
+'unusedimagestext' => 'अधो दत्तसञ्चिकाः सन्ति किन्तु कस्मिंश्चिदपि पुटे न न्यस्ताः ।',
+'unusedcategoriestext' => 'निम्नलिखितवर्गाः सन्ति तथापि अन्यपुटं वर्गः वा न उपयुङ्क्ते ।',
+'notargettitle' => 'लक्ष्यं नास्ति ।',
+'notargettext' => 'एतत्कार्यं समाचरितुं भवान् लक्षितपुटं योजकं वा न निर्दिष्टवान् ।',
+'nopagetitle' => 'तादृशलक्षितपुटं नास्ति ।',
+'nopagetext' => 'भवता निर्दिष्टं लक्षितपुटं नास्ति ।',
 'pager-newer-n' => '{{PLURAL:$1|नूतनतरम् 1|नूतनतराणि $1}}',
 'pager-older-n' => '{{PLURAL:$1|पुरातनतरम् 1|पुरातनतराणि $1}}',
+'suppress' => 'अलक्ष्यम् ।',
+'querypage-disabled' => 'समाचरणकारणेन एतद्विशेषपुटं निष्क्रियम् ।',
 
 # Book sources
 'booksources' => 'ग्रन्थानां स्रोतः',
 'booksources-search-legend' => 'ग्रन्थस्रोतः अन्विष्यताम्',
 'booksources-go' => 'गम्यताम्',
+'booksources-text' => 'अधस्था आवली नूतनप्राचीनपुस्तकानां विक्रयकेन्द्रस्य अनुबन्धान् सूचयति । यत्र ते  आवश्यकाः अन्यविषयाः अपि उपलभ्याः ।',
+'booksources-invalid-isbn' => 'दत्तं ISBN मान्यम् इति  न भाति । मूलस्रोततः प्रतिकृतीः कर्तुं परिशीलयतु ।',
 
 # Special:Log
+'specialloguserlabel' => 'आचारी :',
+'speciallogtitlelabel' => 'लक्ष्यम् (शीर्षकम् / योजकः)',
 'log' => 'लॉग् इत्येतानि',
+'all-logs-page' => 'सर्वसार्वजनिकप्रवेशः ।',
+'alllogstext' => '{{SITENAME}}इत्यस्य उबलब्धप्रवेशानां  संयुक्तप्रदर्शनम् ।
+प्रवेशप्रकारं चित्वा भवान् दृश्यं क्षाययितुं शक्नोति । योजकनाम,  सदस्य नाम (ह्रस्वदीर्घाक्षरसंवादी) प्रभावितपुटम् ।',
+'logempty' => 'प्रवेशे मेलयुक्तपुटं नास्ति ।',
+'log-title-wildcard' => 'अनेन पाठेन आरब्धानि शीर्षकानि अन्विषतु ।',
+'showhideselectedlogentries' => 'चितप्रवेशावलीः प्रदर्शयतु/गोपयतु ।',
 
 # Special:AllPages
 'allpages' => 'सर्वाणि पृष्ठानि',
 'alphaindexline' => '$1 तः $2 पर्यन्तम्',
+'nextpage' => '($1)अग्रिमपुटम् ।',
 'prevpage' => 'पूर्वपृष्ठम् ($1)',
 'allpagesfrom' => 'इत्यस्मात् आरभ्यमाणानि पृष्ठानि दर्श्यन्ताम्:',
 'allpagesto' => 'तानि पृष्ठानि दर्श्यन्तां येषाम् अन्त्यम् एवम् :',
 'allarticles' => 'सर्वाणि पृष्ठानि',
+'allinnamespace' => 'सर्वपुटानि ($1 नामस्थानम्)',
+'allnotinnamespace' => 'सर्वपुटानि ($1 नामस्थानं विना)',
 'allpagesprev' => 'पूर्वतन',
 'allpagesnext' => 'अग्रिम',
 'allpagessubmit' => 'गम्यताम्',
+'allpagesprefix' => 'उपसर्गयुक्तपुटानि दर्शयतु ।',
+'allpagesbadtitle' => 'दत्तपुटशीर्षकम् अमान्यम् अथवा आन्तर्भाषिकम्, आन्तर्विकीयं वा अस्ति । 
+अस्मिन् एकं नैकं वा अक्षराणि सन्ति येषां प्रयोगं शीर्षकेषु कर्तुम् अशक्यम् ।',
+'allpages-bad-ns' => '{{SITENAME}} इत्यस्मिन् "$1" नामस्थानं नास्ति ।',
+'allpages-hide-redirects' => 'पुनर्निदेशान् गोपयतु ।',
+
+# SpecialCachedPage
+'cachedspecial-viewing-cached-ttl' => ' भवान् अस्यपुटास्य निगूढावृत्तिं पश्यन् अस्ति । यत् $1 कालिकम्  अस्ति ।',
+'cachedspecial-viewing-cached-ts' => 'भवान् निगूढावृत्तेः पुटम् अवलोकयन् अस्ति । यत् परिपूर्णतया वास्तवं न ।',
+'cachedspecial-refresh-now' => 'जघन्यम् अवलोकयतु ।',
 
 # Special:Categories
 'categories' => 'वर्गाः',
+'categoriespagetext' => 'निम्नोक्ताः {{PLURAL:$1|श्रेणी|श्रेणयः}} पुटानि माध्यमान् वा युक्ताः ।
+यस्याः श्रेण्याः [[Special:UnusedCategories|अप्रयुक्तश्रेण्यः]] अत्र न सन्ति ।
+[[Special:WantedCategories|अपेक्षितश्रेण्यः]] अपि पश्यतु ।',
+'categoriesfrom' => 'इत्यस्मात् आरभ्यमाणानि पृष्ठानि दर्श्यन्ताम्:',
+'special-categories-sort-count' => 'गणनानुगुणं वर्गीकरोतु ।',
+'special-categories-sort-abc' => 'अकारदिक्रमेण वर्गीकरोतु ।',
+
+# Special:DeletedContributions
+'deletedcontributions' => 'अपमर्जितानि योजकयोगदानानि ।',
+'deletedcontributions-title' => 'अपमर्जितानि योजकयोगदानानि ।',
+'sp-deletedcontributions-contribs' => 'योगदानानि ।',
 
 # Special:LinkSearch
 'linksearch' => 'बाह्यसम्पर्कतन्तूनाम् अन्वेषणम्',
+'linksearch-pat' => 'अन्वेषणस्य क्रमः ।',
 'linksearch-ok' => 'अन्वेषणम्',
 'linksearch-line' => '$2 पृष्ठं $1 तः सम्पृक्तम् अस्ति।',
 
