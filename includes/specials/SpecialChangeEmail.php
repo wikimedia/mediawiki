@@ -128,7 +128,7 @@ class SpecialChangeEmail extends UnlistedSpecialPage {
 				array( 'wpName', 'username', 'text', $user->getName() ),
 				array( 'wpOldEmail', 'changeemail-oldemail', 'text', $oldEmailText ),
 				array( 'wpNewEmail', 'changeemail-newemail', 'input', $this->mNewEmail ),
-				array( 'wpPassword', 'yourpassword', 'password', $this->mPassword ),
+				array( 'wpPassword', 'changeemail-password', 'password', $this->mPassword ),
 			) ) . "\n" .
 			"<tr>\n" .
 				"<td></td>\n" .
