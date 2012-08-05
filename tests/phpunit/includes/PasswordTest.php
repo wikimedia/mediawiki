@@ -108,7 +108,7 @@ class PasswordTest extends MediaWikiTestCase {
 		$type = PasswordExposed::getType( $typeCode );
 
 		// Test comparison against good password
-		$result = $type->compare( $data, $password );
+		$result = $type->verify( $data, $password );
 		$this->assertInstanceOf( 'Status', $result, 'Result is Status object' );
 		$this->assertTrue( $result->isGood(), 'Status result is not fatal error.' );
 		$this->assertTrue( $result->getValue(), 'Good password is valid.' );
@@ -119,7 +119,7 @@ class PasswordTest extends MediaWikiTestCase {
 				// Skip the good password
 				continue;
 			}
-			$result = $type->compare( $data, $badPass );
+			$result = $type->verify( $data, $badPass );
 			$this->assertInstanceOf( 'Status', $result, 'Result is Status object' );
 			$this->assertTrue( $result->isGood(), 'Status result is not fatal error.' );
 			$this->assertFalse( $result->getValue(), 'Bad password is invalid.' );
@@ -156,7 +156,7 @@ class PasswordTest extends MediaWikiTestCase {
 			for ( $count = 100; $count > 0; --$count ) {
 				$password = $this->generatePasswordFuzz();
 				$data = $cryptType->crypt( $password );
-				$result = $cryptType->compare( $data, $password );
+				$result = $cryptType->verify( $data, $password );
 				$this->assertTrue( $result->getValue(), "Good password is valid for $typeCode test on password $password." );
 				// Fuzz test a bad password too
 				$badPass = $this->generatePasswordFuzz();
@@ -165,7 +165,7 @@ class PasswordTest extends MediaWikiTestCase {
 					// sequentually skip the bad password test
 					continue;
 				}
-				$result = $cryptType->compare( $data, $badPass );
+				$result = $cryptType->verify( $data, $badPass );
 				$this->assertFalse( $result->getValue(), "Bad password is invalid for $typeCode test on password $password with bad password $badPass." );
 			}
 		}
@@ -179,7 +179,7 @@ class PasswordTest extends MediaWikiTestCase {
 		for ( $count = 100; $count > 0; --$count ) {
 			$password = $this->generatePasswordFuzz();
 			$data = PasswordExposed::crypt( $password );
-			$result = PasswordExposed::compare( $data, $password );
+			$result = PasswordExposed::verify( $data, $password );
 			$this->assertTrue( $result->getValue(), "Good password is valid for password $password." );
 			// Fuzz test a bad password too
 			$badPass = $this->generatePasswordFuzz();
@@ -188,7 +188,7 @@ class PasswordTest extends MediaWikiTestCase {
 				// sequentually skip the bad password test
 				continue;
 			}
-			$result = PasswordExposed::compare( $data, $badPass );
+			$result = PasswordExposed::verify( $data, $badPass );
 			$this->assertFalse( $result->getValue(), "Bad password is invalid for password $password with bad password $badPass." );
 		}
 	}
@@ -234,7 +234,7 @@ class PasswordTest extends MediaWikiTestCase {
 		$hash = base64_encode( $hash );
 
 		$data = ":PBKHM:$salt:$hashType:$iterations:$dkLen:$hash";
-		$result = Password::compare( $data, $P );
+		$result = Password::verify( $data, $P );
 		$this->assertInstanceOf( 'Status', $result, 'Result is Status object' );
 		$this->assertTrue( $result->isGood(), 'Status result is not fatal error.' );
 		$this->assertTrue( $result->getValue(), "rfc6070 test vector match ($data - $P)." );

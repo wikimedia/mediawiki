@@ -48,8 +48,8 @@ interface PasswordType {
 	public function crypt( $password );
 
 	/**
-	 * Compare the password output db form of a password with a plaintext password to see if the
-	 * password is correct.
+	 * Verify a plaintext password against the password data of a password
+	 * to see if the password is correct.
 	 *
 	 * @param $data string The password data. Same format as outputted by crypt()
 	 * @param $password The plaintext password
@@ -57,9 +57,9 @@ interface PasswordType {
 	 *         - Good with a value of true for a password match
 	 *         - Good with a value of false for a bad password
 	 *         - Fatal if the password data was badly formed or there was some issue with
-	 *           comparing the passwords which is not the user's fault.
+	 *           verifying the passwords which is not the user's fault.
 	 */
-	public function compare( $data, $password );
+	public function verify( $data, $password );
 
 	/**
 	 * Check and see if the password output data of a password is in preferred format.

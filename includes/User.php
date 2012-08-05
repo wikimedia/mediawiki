@@ -3956,7 +3956,7 @@ class User {
 			return self::oldCrypt( $password, $userId ) === $hash;
 		} else {
 			// Otherwise drop into the new password class system
-			$status = Password::compare( $hash, $password );
+			$status = Password::verify( $hash, $password );
 			// @fixme comparePasswords only supports boolean returns so we can't tell the system
 			//        to output a different error message if something was wrong with the data
 			//        or configuration instead of saying the user entered an invalid password.

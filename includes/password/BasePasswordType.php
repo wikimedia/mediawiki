@@ -7,7 +7,7 @@
  * Among these common elements are:
  *  - Serialization and parsing of parameter lists
  *  - Password validation based on the comparison of a derived key
- *  - crypt() using a set of default params and the same method used by compare()
+ *  - crypt() using a set of default params and the same method used by verify()
  *  - Preferred format checks based on parameters
  *
  * If you are implementing some password storage format yourself you will most
@@ -25,7 +25,7 @@
  *    Simply take the parameters and the plaintext password and create the
  *    derived key for the password.
  *    BasePasswordType will call your key derivation method for both crypt()
- *    and compare() with whatever parameters are needed and will handle the
+ *    and verify() with whatever parameters are needed and will handle the
  *    comparison of derived keys for you.
  *
  *  - protected function cryptParams();
@@ -110,20 +110,20 @@ abstract class BasePasswordType implements PasswordType {
 	 * Abstract method to be defined by password type implementations.
 	 * Is expected to take a set of params and password and then output the
 	 * derived key for the password according to those parameters.
-	 * This is used by both crypt() and compare() implementations
+	 * This is used by both crypt() and verify() implementations
 	 *
 	 * @param $params The params (without derived key) to the key derivation implementation
 	 * @param $password The raw user inputted password
 	 * @param mixed A string containing the password's derived key or a fatal
 	 *        Status object indicating an error in the params that will be
-	 *        handled by compare().
+	 *        handled by verify().
 	 */
 	abstract protected function run( $params, $password );
 
 	/**
 	 * Abstract method to be defined by password type implementations.
 	 * Is expected to output a set of params to be used by run() when called
-	 * from crypt() rather than compare().
+	 * from crypt() rather than verify().
 	 *
 	 * @return Array
 	 */
@@ -167,12 +167,12 @@ abstract class BasePasswordType implements PasswordType {
 	}
 
 	/**
-	 * @see PasswordType::compare
+	 * @see PasswordType::verify
 	 * Default implementation of password comparison that fits most implementations.
-	 * - Data is split by : to create the params, the last one being treated as the real derived key to compare against
+	 * - Data is split by : to create the params, the last one being treated as the real derived key to verify against
 	 * - self::run() is run with the parameters and password in order to do the derived key comparison
 	 */
-	public function compare( $data, $password ) {
+	public function verify( $data, $password ) {
 		$params = explode( ':', $data );
 		$realDK = array_pop( $params );
 		$dkey = $this->run( $params, $password );

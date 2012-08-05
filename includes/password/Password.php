@@ -138,7 +138,7 @@ class Password {
 
 	/**
 	 * Parse the type and rad data out of database ready password data.
-	 * Used by compare() and isPreferredFormat() to avoid repeating common parsing code.
+	 * Used by verify() and isPreferredFormat() to avoid repeating common parsing code.
 	 *
 	 * @param $data string The raw database format password data with all params and types stuck on the front.
 	 * @return Status or an array containing a PasswordType class and the remaining portion of $data
@@ -170,7 +170,7 @@ class Password {
 	}
 
 	/**
-	 * Compare the database ready password data of a password with a plaintext password
+	 * Verify a plaintext password against the database ready password data of a password
 	 * to see if the password is correct.
 	 *
 	 * @param $data string The raw database ready password data with all params and types stuck on the front.
@@ -181,14 +181,14 @@ class Password {
 	 *         - Fatal if the password data was badly formed or there was some issue with
 	 *           comparing the passwords which is not the user's fault.
 	 */
-	public static function compare( $data, $password ) {
+	public static function verify( $data, $password ) {
 		$status = self::parseType( $data );
 		if ( $status instanceof Status ) {
 			return $status;
 		}
 		list( $cryptType, $remainingData ) = $status;
 		try {
-			return $cryptType->compare( $remainingData, $password );
+			return $cryptType->verify( $remainingData, $password );
 		} catch( PasswordStatusException $e ) {
 			return $e->getStatus();
 		}

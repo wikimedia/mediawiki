@@ -30,7 +30,7 @@
  * @ingroup Password
  * @since 1.20
  */
-class Password_TypePBKHM  extends BasePasswordType {
+class Password_TypePBKHM extends BasePasswordType {
 
 	protected function run( $params, $password ) {
 		list( $salt, $hashFunc, $iterations, $dkLength ) = self::params( $params, 4 );
