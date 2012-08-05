@@ -2925,22 +2925,22 @@ Deleting it may disrupt database operations of {{SITENAME}};
 proceed with caution.',
 
 # Rollback
-'rollback'          => 'Roll back edits',
-'rollback_short'    => 'Rollback',
-'rollbacklink'      => 'rollback',
-'rollbacklinkcount' => 'rollback $1 {{PLURAL:$1|edit|edits}}',
+'rollback'                   => 'Roll back edits',
+'rollback_short'             => 'Rollback',
+'rollbacklink'               => 'rollback',
+'rollbacklinkcount'          => 'rollback $1 {{PLURAL:$1|edit|edits}}',
 'rollbacklinkcount-morethan' => 'rollback more than $1 {{PLURAL:$1|edit|edits}}',
-'rollbackfailed'    => 'Rollback failed',
-'cantrollback'      => 'Cannot revert edit;
+'rollbackfailed'             => 'Rollback failed',
+'cantrollback'               => 'Cannot revert edit;
 last contributor is only author of this page.',
-'alreadyrolled'     => 'Cannot rollback last edit of [[:$1]] by [[User:$2|$2]] ([[User talk:$2|talk]]{{int:pipe-separator}}[[Special:Contributions/$2|{{int:contribslink}}]]);
+'alreadyrolled'              => 'Cannot rollback last edit of [[:$1]] by [[User:$2|$2]] ([[User talk:$2|talk]]{{int:pipe-separator}}[[Special:Contributions/$2|{{int:contribslink}}]]);
 someone else has edited or rolled back the page already.
 
 The last edit to the page was by [[User:$3|$3]] ([[User talk:$3|talk]]{{int:pipe-separator}}[[Special:Contributions/$3|{{int:contribslink}}]]).',
-'editcomment'       => "The edit summary was: \"''\$1''\".",
-'revertpage'        => 'Reverted edits by [[Special:Contributions/$2|$2]] ([[User talk:$2|talk]]) to last revision by [[User:$1|$1]]',
-'revertpage-nouser' => 'Reverted edits by (username removed) to last revision by [[User:$1|$1]]',
-'rollback-success'  => 'Reverted edits by $1;
+'editcomment'                => "The edit summary was: \"''\$1''\".",
+'revertpage'                 => 'Reverted edits by [[Special:Contributions/$2|$2]] ([[User talk:$2|talk]]) to last revision by [[User:$1|$1]]',
+'revertpage-nouser'          => 'Reverted edits by (username removed) to last revision by [[User:$1|$1]]',
+'rollback-success'           => 'Reverted edits by $1;
 changed back to last revision by $2.',
 
 # Edit tokens
@@ -3267,7 +3267,7 @@ You cannot create an account',
 Since you do not have the hideuser right, you cannot see or edit the user's block.",
 'ipbblocked'                      => 'You cannot block or unblock other users, because you are yourself blocked',
 'ipbnounblockself'                => 'You are not allowed to unblock yourself',
-'ipb-default-expiry'              => '', # empty so the default is unchanged from previous versions of MediaWiki
+'ipb-default-expiry'              => '', # do not translate or duplicate this message to other languages
 
 # Developer tools
 'lockdb'              => 'Lock database',
