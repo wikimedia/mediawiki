@@ -27,6 +27,7 @@
  * Type :A:, our oldest non-salted password type.
  * Simply md5s the password.
  * @ingroup Password
+ * @since 1.20
  */
 class Password_TypeA extends BasePasswordType {
 
@@ -46,6 +47,7 @@ class Password_TypeA extends BasePasswordType {
  * md5s a combination of a 32bit salt a '-' separator and
  * the md5 of the password.
  * @ingroup Password
+ * @since 1.20
  */
 class Password_TypeB extends BasePasswordType {
 

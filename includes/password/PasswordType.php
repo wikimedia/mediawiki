@@ -27,6 +27,7 @@
  * The basic PasswordType interface
  * Defines the methods that are required of a PasswordType class implementation
  * @ingroup Password
+ * @since 1.20
  */
 interface PasswordType {
 
@@ -40,14 +41,14 @@ interface PasswordType {
 	public function getName();
 
 	/**
-	 * Create a hashed password to be stored in the database given a user's plaintext password.
+	 * Create password output data to be stored in the database given a user's plaintext password.
 	 *
 	 * @param $password The plaintext password
 	 */
 	public function crypt( $password );
 
 	/**
-	 * Compare the hashed db form of a password with a plaintext password to see if the
+	 * Compare the password output db form of a password with a plaintext password to see if the
 	 * password is correct.
 	 *
 	 * @param $data string The password data. Same format as outputted by crypt()
@@ -61,13 +62,13 @@ interface PasswordType {
 	public function compare( $data, $password );
 
 	/**
-	 * Check and see if the hashed data of a password is in preferred format.
-	 * For example if you use a variable hash type and let site config specify what hash
-	 * function to use this could return false if the params in $data does not use
-	 * the hash that was configured.
+	 * Check and see if the password output data of a password is in preferred format.
+	 * For example if you use a variable hash algorithm type in a key derivation algorithm
+	 * and let site config specify what hash function to use this could return false if the
+	 * params in $data does not use the hash that was configured.
 	 *
 	 * When this method returns false the User's password may be 'upgraded' by calling
-	 * crypt() again to generate a new hash for the password.
+	 * crypt() again to generate new password output data for the password.
 	 *
 	 * @param $data string The password data. Same format as outputted by crypt()
 	 * @return bool

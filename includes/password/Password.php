@@ -29,6 +29,7 @@
 
 /**
  * @ingroup Password
+ * @since 1.20
  */
 class PasswordStatusException extends Exception {
 
@@ -125,10 +126,10 @@ class Password {
 	}
 
 	/**
-	 * Create a hashed password we can store in the database given a user's plaintext password.
+	 * Create database ready password storage data we can store in the database given a user's plaintext password.
 	 *
 	 * @param $password The plaintext password
-	 * @return string The raw hashed password output along with parameters and a type.
+	 * @return string The raw database ready password storage data along with parameters and a type.
 	 */
 	public static function crypt( $password ) {
 		$cryptType = self::getType();
@@ -136,14 +137,13 @@ class Password {
 	}
 
 	/**
-	 * Parse the hashed form of a password stored in the database
-	 * Used by compare() and isPreferredFormat() to avoid repeating common
-	 * parsing code.
+	 * Parse the type and rad data out of database ready password data.
+	 * Used by compare() and isPreferredFormat() to avoid repeating common parsing code.
 	 *
-	 * @param $data string The raw hashed password data with all params and types stuck on the front.
+	 * @param $data string The raw database format password data with all params and types stuck on the front.
 	 * @return Status or an array containing a PasswordType class and the remaining portion of $data
 	 */
-	protected static function parseHash( $data ) {
+	protected static function parseType( $data ) {
 		$params = explode( ':', $data, 3 );
 
 		// Shift off the blank (When ":A:..." is split the first : should mean the first element is '')
@@ -170,10 +170,10 @@ class Password {
 	}
 
 	/**
-	 * Compare the hashed db contents of a password with a plaintext password to see if the
-	 * password is correct.
+	 * Compare the database ready password data of a password with a plaintext password
+	 * to see if the password is correct.
 	 *
-	 * @param $data string The raw hashed password data with all params and types stuck on the front.
+	 * @param $data string The raw database ready password data with all params and types stuck on the front.
 	 * @param $password The plaintext password
 	 * @return Status A Status object;
 	 *         - Good with a value of true for a password match
@@ -182,7 +182,7 @@ class Password {
 	 *           comparing the passwords which is not the user's fault.
 	 */
 	public static function compare( $data, $password ) {
-		$status = self::parseHash( $data );
+		$status = self::parseType( $data );
 		if ( $status instanceof Status ) {
 			return $status;
 		}
@@ -195,21 +195,21 @@ class Password {
 	}
 
 	/**
-	 * Check and see if the hashed data of a password is in preferred format.
+	 * Check and see if the database ready password data of a password is in preferred format.
 	 * This may return false when the password type is not the same as the specified preferred type
 	 * or when the password type implementation says that some of the parameters are different than
 	 * what is preferred.
 	 *
 	 * When this method returns false the User's password may be 'upgraded' by calling
-	 * crypt() again to generate a new hash for the password.
+	 * crypt() again to generate new database ready password data for the password.
 	 *
-	 * @param $data string The raw hashed password data with all params and types stuck on the front.
+	 * @param $data string The raw database ready password data with all params and types stuck on the front.
 	 * @return bool
 	 */
 	public static function isPreferredFormat( $data ) {
-		$status = self::parseHash( $data );
+		$status = self::parseType( $data );
 		if ( $status instanceof Status ) {
-			// If parseHash had issues then this is naturally not preferred
+			// If parseType had issues then this is naturally not preferred
 			return false;
 		}
 		list( $cryptType, $remainingData ) = $status;

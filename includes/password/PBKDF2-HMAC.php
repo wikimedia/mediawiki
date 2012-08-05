@@ -25,9 +25,10 @@
  */
 
 /**
- * An implementation of PBKDF2-HMAC password hashing as a MW password storage type.
+ * An implementation of PBKDF2-HMAC key derivation as a MW password storage type.
  * Stored as the :PBKHM: type.
  * @ingroup Password
+ * @since 1.20
  */
 class Password_TypePBKHM  extends BasePasswordType {
 
