@@ -350,9 +350,7 @@ class Article extends Page {
 
 		# Pre-fill content with error message so that if something
 		# fails we'll have something telling us what we intended.
-		$t = $this->getTitle()->getPrefixedText();
-		$d = $oldid ? wfMsgExt( 'missingarticle-rev', array( 'escape' ), $oldid ) : '';
-		$this->mContent = wfMsgNoTrans( 'missing-article', $t, $d ) ;
+		$this->mContent = wfMsgNoTrans( 'missing-revision', $oldid );
 
 		if ( $oldid ) {
 			# $this->mRevision might already be fetched by getOldIDFromRequest()
@@ -1043,9 +1041,7 @@ class Article extends Page {
 		# Show error message
 		$oldid = $this->getOldID();
 		if ( $oldid ) {
-			$text = wfMsgNoTrans( 'missing-article',
-				$this->getTitle()->getPrefixedText(),
-				wfMsgNoTrans( 'missingarticle-rev', $oldid ) );
+			$text = wfMsgNoTrans( 'missing-revision', $oldid );
 		} elseif ( $this->getTitle()->getNamespace() === NS_MEDIAWIKI ) {
 			// Use the default message text
 			$text = $this->getTitle()->getDefaultMessageText();

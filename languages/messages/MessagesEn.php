@@ -1360,6 +1360,10 @@ or [{{fullurl:{{FULLPAGENAME}}|action=edit}} edit this page]</span>.',
 You can [[Special:Search/{{PAGENAME}}|search for this page title]] in other pages,
 or <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} search the related logs]</span>.',
 'noarticletextanon'                => '{{int:noarticletext}}', # do not translate or duplicate this message to other languages
+'missing-revision'                 => 'The revision #$1 of the page named "{{PAGENAME}}" does not exist.
+
+This is usually caused by following an outdated history link to a page that has been deleted.
+Details can be found in the [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} deletion log].',
 'userpage-userdoesnotexist'        => 'User account "$1" is not registered.
 Please check if you want to create/edit this page.',
 'userpage-userdoesnotexist-view'   => 'User account "$1" is not registered.',
@@ -1682,16 +1686,20 @@ Note that using the navigation links will reset this column.',
 'mergelogpagetext'   => 'Below is a list of the most recent merges of one page history into another.',
 
 # Diffs
-'history-title'              => 'Revision history of "$1"',
-'difference-title'           => 'Difference between revisions of "$1"',
-'difference-title-multipage' => 'Difference between pages "$1" and "$2"',
-'difference-multipage'       => '(Difference between pages)',
-'lineno'                     => 'Line $1:',
-'compareselectedversions'    => 'Compare selected revisions',
-'showhideselectedversions'   => 'Show/hide selected revisions',
-'editundo'                   => 'undo',
-'diff-multi'                 => '({{PLURAL:$1|One intermediate revision|$1 intermediate revisions}} by {{PLURAL:$2|one user|$2 users}} not shown)',
-'diff-multi-manyusers'       => '({{PLURAL:$1|One intermediate revision|$1 intermediate revisions}} by more than $2 {{PLURAL:$2|user|users}} not shown)',
+'history-title'               => 'Revision history of "$1"',
+'difference-title'            => 'Difference between revisions of "$1"',
+'difference-title-multipage'  => 'Difference between pages "$1" and "$2"',
+'difference-multipage'        => '(Difference between pages)',
+'lineno'                      => 'Line $1:',
+'compareselectedversions'     => 'Compare selected revisions',
+'showhideselectedversions'    => 'Show/hide selected revisions',
+'editundo'                    => 'undo',
+'diff-multi'                  => '({{PLURAL:$1|One intermediate revision|$1 intermediate revisions}} by {{PLURAL:$2|one user|$2 users}} not shown)',
+'diff-multi-manyusers'        => '({{PLURAL:$1|One intermediate revision|$1 intermediate revisions}} by more than $2 {{PLURAL:$2|user|users}} not shown)',
+'difference-missing-revision' => '{{PLURAL:$2|One revision|$2 revisions}} of this difference ($1) {{PLURAL:$2|was|were}} not found.
+
+This is usually caused by following an outdated diff link to a page that has been deleted.
+Details can be found in the [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} deletion log].',
 
 # Search results
 'search-summary'                   => '', # do not translate or duplicate this message to other languages

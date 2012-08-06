@@ -983,6 +983,11 @@ Parameters:
 
 See also {{msg-mw|Noarticletext-nopermission}}.',
 'noarticletext-nopermission' => 'See also {{msg-mw|Noarticletext}}.',
+'missing-revision' => 'Text displayed when the requested revision does not exist using a permalink.
+
+Example: [http://translatewiki.net/w/i.php?title=Project:News&oldid=9999999 Permalink with invalid revision#]
+
+* $1 is the ID of the missing revision',
 'userpage-userdoesnotexist' => 'Error message displayed when trying to edit or create a page or a subpage that belongs to a user who is not registered on the wiki. Parameters:
 * $1 is a possible username that has not been registered.',
 'userpage-userdoesnotexist-view' => 'Shown in user pages of non existing users. See for example [http://translatewiki.net/wiki/User:Foo User:Foo]. Parameters:
@@ -1306,6 +1311,12 @@ This message has sometimes a tooltip {{msg-mw|tooltip-undo}}',
 'diff-multi-manyusers' => "This message appears in the revision history of a page when comparing two versions which aren't consecutive, and the intermediate revisions have been edited by more than 100 users. Parameters:
 * $1 is the number of revisions, will always be 101 or more.
 * $2 is the number of users that were found, which was limited at 100.",
+'difference-missing-revision' => 'Text displayed when the requested revision does not exist using a diff link.
+
+Example: [http://translatewiki.net/w/i.php?title=Project:News&diff=426850&oldid=99999999 Diff with invalid revision#]
+
+* $1 is the list of missing revisions IDs
+* $2 is the number of items in $1',
 
 # Search results
 'searchresults' => '{{Identical|Search results}}',
