@@ -225,6 +225,7 @@ $wgMessageStructure = array(
 		'editthispage',
 		'create-this-page',
 		'delete',
+		'delete-delete',
 		'deletethispage',
 		'undelete_short',
 		'viewdeleted_short',

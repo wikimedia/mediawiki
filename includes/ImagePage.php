@@ -839,11 +839,11 @@ EOT
 	/**
 	 * Delete the file, or an earlier version of it
 	 */
-	public function delete() {
+	public function delete( $reason = '', $suppress = false ) {
 		$file = $this->mPage->getFile();
 		if ( !$file->exists() || !$file->isLocal() || $file->getRedirected() ) {
 			// Standard article deletion
-			parent::delete();
+			parent::delete( $reason, $suppress );
 			return;
 		}
 
