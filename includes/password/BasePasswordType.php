@@ -1,6 +1,6 @@
 <?php
 /**
- * BasePasswordType abstract class
+ * High-Level BasePasswordType abstract class
  *
  * This class implements the common elements that are used by most custom
  * implemented derived key comparison based password storage schemes.
@@ -27,13 +27,15 @@
  *    BasePasswordType will call your key derivation method for both crypt()
  *    and verify() with whatever parameters are needed and will handle the
  *    comparison of derived keys for you.
+ *    If there is something wrong with the parameters you should `throw self::error( ... );`
+ *    to indicate that the parameters are bad rather than the password being invalid.
  *
- *  - protected function cryptParams();
+ *  protected function cryptParams();
  *    Default params for a new password. This method will be called when running a
  *    password through crypt() these params will be passed to your run() and naturally
  *    any salt included should be a brand new randomly generate salt rather than an old one.
  *
- *  - protected function paramsNeedUpdate( $params );
+ *  protected function paramsNeedUpdate( $params );
  *    This method is optional. If your password implementation has parameters which cryptParams
  *    uses site configuration for you can use this method to return true when the params do not
  *    match the ones used in site configuration. This will trigger an update that will generate
@@ -65,28 +67,7 @@
  * @ingroup Password
  * @since 1.20
  */
-abstract class BasePasswordType implements PasswordType {
-
-	/**
-	 * The name of the password type
-	 */
-	protected $name;
-
-	/**
-	 * Constructors that simply records the password type name we were given
-	 *
-	 * @param $name The password type name.
-	 */
-	function __construct( $name ) {
-		$this->name = $name;
-	}
-
-	/**
-	 * @see PasswordType::getName
-	 */
-	function getName() {
-		return $this->name;
-	}
+abstract class BasePasswordType extends PasswordType {
 
 	/**
 	 * Helper function for self::run() implementations
@@ -104,22 +85,6 @@ abstract class BasePasswordType implements PasswordType {
 			throw self::error( 'password-crypt-invalidparamlength' );
 		}
 		return $params;
-	}
-
-	/**
-	 * Helper function for self::run() implementations
-	 * Returns a PasswordDataError that can be thrown when there is an issue with
-	 * the password data that we've been passed from the database.
-	 *
-	 * @param $key String: message key
-	 * @param Varargs: parameters as Strings
-	 * @return PasswordDataError
-	 */
-	protected static function error( $key /* ... */ ) {
-		$params = func_get_args();
-		array_shift( $params );
-		$msg = new Message( $args, $params );
-		return new PasswordDataError( $msg );
 	}
 
 	/**
@@ -148,12 +113,12 @@ abstract class BasePasswordType implements PasswordType {
 	 * Semi-abstract method to be defined by password type implementations.
 	 * @param $params The params to the key derivation implementation
 	 * @return bool
-	 * @see PasswordType::isPreferredFormat
+	 * @see PasswordType::needsUpdate
 	 */
-	protected function preferredFormat( $params ) {
+	protected function paramsNeedUpdate( $params ) {
 		// Basic implementations don't have internal parameter preferences
-		// so we just return true.
-		return true;
+		// so we just return false.
+		return false;
 	}
 
 	/**

@@ -1,6 +1,31 @@
 <?php
 /**
- * PasswordType interface
+ * Low-Level PasswordType abstract class
+ *
+ * This class implements the lowest level interface a password type implementation
+ * may use to implement a password type. This level gives you direct access
+ * to the raw data with no parameter parsing and direct control over the verify
+ * method. If you are writing a normal hash or derived key comparison based
+ * password type implementation you should use BasePasswordType instead.
+ *
+ * To implement a raw password type implementation you subclass PasswordType
+ * and implement the following methods:
+ *  abstract public function crypt( $password );
+ *    From this method you must take the password given to you by the user and return
+ *    the raw data that will be stored inside the database.
+ *
+ *  abstract public function verify( $data, $password );
+ *    From this method you must accept data in the format you output from crypt() and
+ *    verify a password against it. You must return true or false to indicate whether
+ *    the password is correct or incorrect.
+ *    If there is something wrong with the data you should `throw self::error( ... );`
+ *    to indicate that the data is bad rather than the password being invalid.
+ *
+ *  abstract public function needsUpdate( $data );
+ *    This method is optional. If your password implementation has parameters which use
+ *    site configuration for you can use this method to return true when the params do not
+ *    match the ones used in site configuration. This will trigger an update that will
+ *    regenerate the password data for the password.
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -24,12 +49,26 @@
  */
 
 /**
- * The basic PasswordType interface
+ * The basic PasswordType class
  * Defines the methods that are required of a PasswordType class implementation
  * @ingroup Password
  * @since 1.20
  */
-interface PasswordType {
+abstract class PasswordType {
+
+	/**
+	 * The name of the password type
+	 */
+	protected $name;
+
+	/**
+	 * Constructors that simply records the password type name we were given
+	 *
+	 * @param $name The password type name.
+	 */
+	function __construct( $name ) {
+		$this->name = $name;
+	}
 
 	/**
 	 * Return the name of the PasswordType
@@ -38,14 +77,32 @@ interface PasswordType {
 	 *
 	 * @return string The type name.
 	 */
-	public function getName();
+	public function getName() {
+		return $this->name;
+	}
+
+	/**
+	 * Helper function for password type implementations.
+	 * Returns a PasswordDataError that can be thrown when there is an issue with
+	 * the password data that we've been passed from the database.
+	 *
+	 * @param $key String: message key
+	 * @param Varargs: parameters as Strings
+	 * @return PasswordDataError
+	 */
+	protected static function error( $key /* ... */ ) {
+		$params = func_get_args();
+		array_shift( $params );
+		$msg = new Message( $args, $params );
+		return new PasswordDataError( $msg );
+	}
 
 	/**
 	 * Create password output data to be stored in the database given a user's plaintext password.
 	 *
 	 * @param $password The plaintext password
 	 */
-	public function crypt( $password );
+	abstract public function crypt( $password );
 
 	/**
 	 * Verify a plaintext password against the password data of a password
@@ -57,7 +114,7 @@ interface PasswordType {
 	 * @throws PasswordDataError if the password data was badly formed or there was some issue with
 	 *           comparing the passwords which is not the user's fault.
 	 */
-	public function verify( $data, $password );
+	abstract public function verify( $data, $password );
 
 	/**
 	 * Check and see if the password output data of a password needs to be rehashed.
@@ -71,6 +128,6 @@ interface PasswordType {
 	 * @param $data string The password data. Same format as outputted by crypt()
 	 * @return bool
 	 */
-	public function needsUpdate( $data );
+	abstract public function needsUpdate( $data );
 
 }

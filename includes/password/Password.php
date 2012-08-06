@@ -41,7 +41,7 @@ class PasswordDataError extends Exception {
 	}
 
 	public function getMWMessage() {
-		return $this->msMsg;
+		return $this->mwMsg;
 	}
 
 }
@@ -118,7 +118,7 @@ class Password {
 			if ( $cryptType instanceof PasswordType ) {
 				return $cryptType;
 			}
-			wfWarn( __METHOD__ . ": Password crypt type $type class $className does not implement PasswordType." );
+			wfWarn( __METHOD__ . ": Password crypt type $type class $className is not a PasswordType." );
 			return null;
 		}
 		wfWarn( __METHOD__ . ": Password crypt type $type does not exist." );
