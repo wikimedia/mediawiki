@@ -60,6 +60,46 @@ class SanitizerTest extends MediaWikiTestCase {
 		$this->assertEquals( UTF8_REPLACEMENT, Sanitizer::decodeCharReferences( "&#88888888888888;" ), 'Invalid numbered entity' );
 	}
 
+	/**
+	 * @cover Sanitizer::removeHTMLtags
+	 * @dataProvider provideHtml5Tags
+	 *
+	 * @param String $tag Name of an HTML5 element (ie: 'video')
+	 * @param Boolean $escaped Wheter sanitizer let the tag in or escape it (ie: '&lt;video&gt;')
+	 */
+	function testRemovehtmltagsOnHtml5Tags( $tag, $escaped ) {
+
+		# Enable HTML5 mode
+		global $wgHTML5;
+		$save = $wgHTML5;
+		$wgHTML5 = true;
+
+		if( $escaped ) {
+			$this->assertEquals( "&lt;$tag&gt;",
+				Sanitizer::removeHTMLtags( "<$tag>" )
+			);
+		} else {
+			$this->assertEquals( "<$tag></$tag>\n",
+				Sanitizer::removeHTMLtags( "<$tag>" )
+			);
+		}
+		$wgHTML5 = $save;
+	}
+
+	/**
+	 * Provide HTML5 tags
+	 */
+	function provideHtml5Tags() {
+		$ESCAPED  = true; # We want tag to be escaped
+		$VERBATIM = false;  # We want to keep the tag
+		return array(
+			array( 'data', $VERBATIM ),
+			array( 'mark', $VERBATIM ),
+			array( 'time', $VERBATIM ),
+			array( 'video', $ESCAPED ),
+		);
+	}
+
 	function testSelfClosingTag() {
 		$GLOBALS['wgUseTidy'] = false;
 		$this->assertEquals(
