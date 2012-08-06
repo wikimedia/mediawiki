@@ -115,7 +115,9 @@ class Preprocessor_HipHop implements Preprocessor {
 		// Check cache.
 		global $wgMemc, $wgPreprocessorCacheThreshold;
 
-		$cacheable = ($wgPreprocessorCacheThreshold !== false && strlen( $text ) > $wgPreprocessorCacheThreshold);
+		$lengthText = strlen( $text );
+
+		$cacheable = ($wgPreprocessorCacheThreshold !== false && $lengthText > $wgPreprocessorCacheThreshold);
 		if ( $cacheable ) {
 			wfProfileIn( __METHOD__.'-cacheable' );
 
@@ -239,7 +241,7 @@ class Preprocessor_HipHop implements Preprocessor {
 					$accum->addLiteral( strval( substr( $text, $i, $literalLength ) ) );
 					$i += $literalLength;
 				}
-				if ( $i >= strlen( $text ) ) {
+				if ( $i >= $lengthText ) {
 					if ( $currentClosing === "\n" ) {
 						// Do a past-the-end run to finish off the heading
 						$curChar = '';
@@ -305,12 +307,12 @@ class Preprocessor_HipHop implements Preprocessor {
 						// Unclosed comment in input, runs to end
 						$inner = strval( substr( $text, $i ) );
 						$accum->addNodeWithText( 'comment', $inner );
-						$i = strlen( $text );
+						$i = $lengthText;
 					} else {
 						$endPos = intval( $variantEndPos );
 						// Search backwards for leading whitespace
 						if ( $i ) {
-							$wsStart = $i - intval( strspn( $revText, ' ', strlen( $text ) - $i ) );
+							$wsStart = $i - intval( strspn( $revText, ' ', $lengthText - $i ) );
 						} else {
 							$wsStart = 0;
 						}
@@ -403,7 +405,7 @@ class Preprocessor_HipHop implements Preprocessor {
 					} else {
 						// No end tag -- let it run out to the end of the text.
 						$inner = strval( substr( $text, $tagEndPos + 1 ) );
-						$i = strlen( $text );
+						$i = $lengthText;
 						$haveClose = false;
 					}
 				}
@@ -468,16 +470,16 @@ class Preprocessor_HipHop implements Preprocessor {
 				$part = $piece->getCurrentPart();
 				// Search back through the input to see if it has a proper close
 				// Do this using the reversed string since the other solutions (end anchor, etc.) are inefficient
-				$wsLength = intval( strspn( $revText, " \t", strlen( $text ) - $i ) );
+				$wsLength = intval( strspn( $revText, " \t", $lengthText - $i ) );
 				$searchStart = $i - $wsLength;
 				if ( isset( $part->commentEnd ) && $searchStart - 1 == $part->commentEnd ) {
 					// Comment found at line end
 					// Search for equals signs before the comment
 					$searchStart = intval( $part->visualEnd );
-					$searchStart -= intval( strspn( $revText, " \t", strlen( $text ) - $searchStart ) );
+					$searchStart -= intval( strspn( $revText, " \t", $lengthText - $searchStart ) );
 				}
 				$count = intval( $piece->count );
-				$equalsLength = intval( strspn( $revText, '=', strlen( $text ) - $searchStart ) );
+				$equalsLength = intval( strspn( $revText, '=', $lengthText - $searchStart ) );
 				$isTreeNode = false;
 				$resultAccum = $accum;
 				if ( $equalsLength > 0 ) {
