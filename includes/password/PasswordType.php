@@ -10,22 +10,28 @@
  *
  * To implement a raw password type implementation you subclass PasswordType
  * and implement the following methods:
- *  abstract public function crypt( $password );
+ *  public function crypt( $password );
  *    From this method you must take the password given to you by the user and return
  *    the raw data that will be stored inside the database.
  *
- *  abstract public function verify( $data, $password );
+ *  public function verify( $data, $password );
  *    From this method you must accept data in the format you output from crypt() and
  *    verify a password against it. You must return true or false to indicate whether
  *    the password is correct or incorrect.
  *    If there is something wrong with the data you should `throw self::error( ... );`
  *    to indicate that the data is bad rather than the password being invalid.
  *
- *  abstract public function needsUpdate( $data );
+ *  public function needsUpdate( $data );
  *    This method is optional. If your password implementation has parameters which use
  *    site configuration for you can use this method to return true when the params do not
  *    match the ones used in site configuration. This will trigger an update that will
  *    regenerate the password data for the password.
+ *
+ *  public function knownPasswordData();
+ *    This method should be written after you have finished your password implementation.
+ *    You should generate some password data using your implementation and list that data
+ *    along with the associated password in the output from this method. This will then
+ *    ensure that your password implementation has tests to ensure it is not broken.
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -129,5 +135,16 @@ abstract class PasswordType {
 	 * @return bool
 	 */
 	abstract public function needsUpdate( $data );
+
+	/**
+	 * Return a list of arrays containing password data and the password that matches the data.
+	 * This data will be used in tests to ensure that there is no regression in the password implementation.
+	 *
+	 * @return Array An array containing multiple arrays with password data as the first item and a password as the second.
+	 */
+	public function knownPasswordData() {
+		return array();
+	}
+
 
 }

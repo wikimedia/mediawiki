@@ -20,7 +20,7 @@
  *
  * To implement a derived key based password implementation you subclass BasePasswordType
  * and implement the following methods:
- *  protected function run( $params, $password );
+ *  public function run( $params, $password );
  *    The key derivation implementation of your password storage algorithm.
  *    Simply take the parameters and the plaintext password and create the
  *    derived key for the password.
@@ -30,16 +30,22 @@
  *    If there is something wrong with the parameters you should `throw self::error( ... );`
  *    to indicate that the parameters are bad rather than the password being invalid.
  *
- *  protected function cryptParams();
+ *  public function cryptParams();
  *    Default params for a new password. This method will be called when running a
  *    password through crypt() these params will be passed to your run() and naturally
  *    any salt included should be a brand new randomly generate salt rather than an old one.
  *
- *  protected function paramsNeedUpdate( $params );
+ *  public function paramsNeedUpdate( $params );
  *    This method is optional. If your password implementation has parameters which cryptParams
  *    uses site configuration for you can use this method to return true when the params do not
  *    match the ones used in site configuration. This will trigger an update that will generate
  *    a new derived key for the password using brand new parameters.
+ *
+ *  public function knownPasswordData();
+ *    This method should be written after you have finished your password implementation.
+ *    You should generate some password data using your implementation and list that data
+ *    along with the associated password in the output from this method. This will then
+ *    ensure that your password implementation has tests to ensure it is not broken.
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
