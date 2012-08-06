@@ -469,7 +469,9 @@ class ParserOutput extends CacheTime {
 	 * Adds an update job to the output. Any update jobs added to the output will eventually bexecuted in order to
 	 * store any secondary information extracted from the page's content.
 	 *
-	 * @param StorageUpdate $update
+	 * @since 1.20
+	 *
+	 * @param DataUpdate $update
 	 */
 	public function addSecondaryDataUpdate( DataUpdate $update ) {
 		$this->mSecondaryDataUpdates[] = $update;
@@ -480,19 +482,21 @@ class ParserOutput extends CacheTime {
 	 * extracted from the page's content, including a LinksUpdate object for all links stored in
 	 * this ParserOutput object.
 	 *
+	 * @since 1.20
+	 *
 	 * @param $title Title of the page we're updating. If not given, a title object will be created based on $this->getTitleText()
 	 * @param $recursive Boolean: queue jobs for recursive updates?
 	 *
 	 * @return Array. An array of instances of DataUpdate
 	 */
 	public function getSecondaryDataUpdates( Title $title = null, $recursive = true ) {
-		if ( !$title ) {
+		if ( is_null( $title ) ) {
 			$title = Title::newFromText( $this->getTitleText() );
 		}
 
 		$linksUpdate = new LinksUpdate( $title, $this, $recursive );
 
-		if ( !$this->mSecondaryDataUpdates ) {
+		if ( $this->mSecondaryDataUpdates === array() ) {
 			return array( $linksUpdate );
 		} else {
 			$updates = array_merge( $this->mSecondaryDataUpdates, array( $linksUpdate ) );
@@ -500,4 +504,5 @@ class ParserOutput extends CacheTime {
 
 		return $updates;
 	 }
+
 }
