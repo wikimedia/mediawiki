@@ -1081,7 +1081,7 @@ class SwiftFileBackend extends FileBackendStore {
 		$url = $creds['storage_url'] . '/' . rawurlencode( $contObj->name );
 
 		// Note: 10 second timeout consistent with php-cloudfiles
-		$req = new CurlHttpRequest( $url, array( 'method' => 'POST', 'timeout' => 10 ) );
+		$req = MWHttpRequest::factory( $url, array( 'method' => 'POST', 'timeout' => 10 ) );
 		$req->setHeader( 'X-Auth-Token', $creds['auth_token'] );
 		$req->setHeader( 'X-Container-Read', implode( ',', $readGrps ) );
 		$req->setHeader( 'X-Container-Write', implode( ',', $writeGrps ) );
