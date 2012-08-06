@@ -1861,9 +1861,8 @@ Snaź coš wopisanje na jeje [$2 boku datajowego wopisanja] wobźěłaś.',
 
 'disambiguations' => 'Boki, kótarež wótkazuju na boki wěcejzmysłowosći',
 'disambiguationspage' => 'Template:Rozjasnjenje zapśimjeśow',
-'disambiguations-text' => 'Slědujuce boki wótkazuju na bok za rozjasnjenje zapśimjeśow.
-Wótkazujśo lubjej na pótrjefjony bok.<br />
-Bok wobjadnawa se ako bok wujasnjenja zapśimjeśa, gaž wótkazujo na nju [[MediaWiki:Disambiguationspage]].',
+'disambiguations-text' => 'Slědujuce boki wopśimuju nanejmjenjej jaden wótkaz k bokoju rozjasnjenja zapśimjeśow. Wóne by dejali město togo ku gódnjejšemu bokoju wótkazaś.<br />
+Maju bok za  bok rozjasnjenja zapśimjeśow, gaž wužywa pśedłogu, na kótaruž wótkazujo se wót [[MediaWiki:Disambiguationspage]].',
 
 'doubleredirects' => 'Dwójne dalejpósrědnjenja',
 'doubleredirectstext' => 'Toś ten bok nalicujo boki, kótarež dalej pósrědnjaju na druge dalejpósrědnjenja.

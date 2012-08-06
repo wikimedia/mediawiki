@@ -2161,9 +2161,9 @@ contenttype/subtypeの形式で入力してください（例：<tt>image/jpeg</
 
 'disambiguations' => '曖昧さ回避ページにリンクしているページ',
 'disambiguationspage' => 'Template:曖昧回避',
-'disambiguations-text' => "以下のページは'''曖昧さ回避ページ'''へリンクしています。
-これらのページは、より適した主題のページへリンクされるべきです。<br />
-[[MediaWiki:Disambiguationspage]]からリンクされたテンプレートを使用しているページは、曖昧さ回避ページと見なされます。",
+'disambiguations-text' => "以下のページには、'''曖昧さ回避ページ'''へのリンクが1個以上あります。
+そのようなリンクは、より適切なページへのリンクに変更する必要があります。<br />
+[[MediaWiki:Disambiguationspage]]からリンクされたテンプレートを使用しているページが、曖昧さ回避ページと見なされます。",
 
 'doubleredirects' => '二重転送',
 'doubleredirectstext' => 'これは他のリダイレクトページへのリダイレクトの一覧です。
@@ -2508,6 +2508,8 @@ $UNWATCHURL
 'rollback' => '編集を巻き戻し',
 'rollback_short' => '巻き戻し',
 'rollbacklink' => '巻き戻し',
+'rollbacklinkcount' => '$1個の{{PLURAL:$1|編集|編集}}を巻き戻し',
+'rollbacklinkcount-morethan' => '$1個以上の{{PLURAL:$1|編集|編集}}を巻き戻し',
 'rollbackfailed' => '巻き戻しに失敗しました',
 'cantrollback' => '編集を差し戻せません。
 最後の投稿者が、このページの唯一の作者です。',

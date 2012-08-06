@@ -1779,6 +1779,7 @@ $1',
 'lockmanager-fail-releaselock' => '"$1" साठी लॉक उघडू शकत नाही',
 'lockmanager-fail-db-bucket' => '$1 बास्केट मधील कुलूप बंद डेटाबेसशी पुरेसा संपर्क होवू शकत नाही',
 'lockmanager-fail-db-release' => '"$1" डाटाबेस वरील लॉक उघडू शकत नाही',
+'lockmanager-fail-svr-acquire' => 'सर्व्हर "$1" वरील कुलूप उघडू शकत नाही',
 'lockmanager-fail-svr-release' => 'सर्व्हर "$1" वरील् लॉक उघडू शकत नाही',
 
 # ZipDirectoryReader
@@ -3832,6 +3833,4 @@ $5
 'duration-decades' => '$1 {{PLURAL:$1|दशकापूर्वी|दशकांपूर्वी }}',
 'duration-centuries' => '$1 {{PLURAL:$1|शतकापूर्वी|शतकांपूर्वी }}',
 
-# Unknown messages
-'lockmanager-fail-svr-acquire' => 'सर्व्हर "$1" वरील कुलूप उघडू शकत नाही',
 );

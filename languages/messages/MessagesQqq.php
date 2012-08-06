@@ -500,7 +500,7 @@ For explanation of 'lock' see [http://en.wikipedia.org/wiki/Lock_%28computer_sci
 {{Identical|Copyright}}',
 'currentevents' => 'Standard link in the sidebar, for news. See also {{msg|currentevents-url}} for the link url.',
 'currentevents-url' => "Target page of ''{{Mediawiki:currentevents}}'' in the sidebar. See also {{msg|currentevents}}.
-{{doc-important|Do not translate <tt>Project:</tt> part.}}",
+{{doc-important|Do not translate the \"<tt>Project:</tt>\" part.}}",
 'disclaimers' => 'Used as display name for the link to [[{{MediaWiki:Disclaimerpage}}]] shown at the bottom of every page on the wiki. Example [[{{MediaWiki:Disclaimerpage}}|{{MediaWiki:Disclaimers}}]].',
 'disclaimerpage' => 'Used as page for that contains the site disclaimer. Used at the bottom of every page on the wiki. Example: [[{{MediaWiki:Disclaimerpage}}|{{MediaWiki:Disclaimers}}]].
 {{doc-important|Do not change the "<tt>Project:</tt>" part.}}',
@@ -2304,7 +2304,7 @@ Possible alternatives to the word 'content' are 'subject matter' or 'wiki subjec
 
 * '''Note:''' Do not change the link [[MediaWiki:Disambiguationspage]], even because it is listed as problematic. Be sure the \"D\" is in uppercase, so not \"d\".
 
-* '''Background information:''' Beyond telling about links going to disambiguation pages, that they are generally bad, it should explain which pages in the article namespace are seen as diambiguations: [[MediaWiki:Disambiguationspage]] usually holds a list of diambiguation templates of the local wiki. Pages linking to one of them (by transclusion) will count as disambiguation pages. Pages linking to these disambiguation pages, instead to the disambiguated article itself, are listed on [[:Special:Disambiguations]].",
+* '''Background information:''' Beyond telling about links going to disambiguation pages, that they are generally bad, it should explain which pages in the article namespace are seen as disambiguations: [[MediaWiki:Disambiguationspage]] usually holds a list of disambiguation templates of the local wiki. Pages linking to one of them (by transclusion) will count as disambiguation pages. Pages linking to these disambiguation pages, instead to the disambiguated article itself, are listed on [[:Special:Disambiguations]].",
 
 'doubleredirects' => 'Name of [[Special:DoubleRedirects]] displayed in [[Special:SpecialPages]]',
 'doubleredirectstext' => 'Shown on top of [[Special:Doubleredirects]]',
@@ -2980,6 +2980,7 @@ Example line:
 'ipbotherreason' => '{{Identical|Other/additional reason}}',
 'ipbhidename' => 'This is the label for a checkbox in the user block form on [[Special:Block]].',
 'ipbwatchuser' => 'This is an option on [[Special:BlockIP]] to watch the user page and talk page of the blocked user',
+'ipb-disableusertalk' => '{{doc-singularthey}}',
 'ipb-change-block' => 'Confirmation checkbox required for blocks that would override an earlier block. Appears together with {{msg|ipb-needreblock}}.',
 'badipaddress' => 'An error message shown when one entered an invalid IP address in blocking page.',
 'blockipsuccesstext' => '<nowiki>{{</nowiki>[[Gender|GENDER]]<nowiki>}}</nowiki> is supported.',
@@ -3064,6 +3065,7 @@ See also {{msg-mw|Blocklistline}}.',
 'ipb_already_blocked' => '{{Identical|$1 is already blocked}}',
 'ipb-otherblocks-header' => '[[File:Special.Block with other blocks from GlobalBlocking and TorBlocks.png|thumb|Example]]
 Used on [[Special:Block]] as header for other blocks, i.e. from GlobalBlocking or TorBlocks',
+'unblock-hideuser' => '{{doc-singularthey}}',
 'blockme' => 'The page title of [[Special:Blockme]], a feature which is disabled by default.',
 'proxyblocksuccess' => '{{Identical|Done}}',
 'sorbs' => '{{optional}}',

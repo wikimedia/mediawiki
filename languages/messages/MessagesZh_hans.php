@@ -2077,7 +2077,7 @@ $1',
 # Special:ActiveUsers
 'activeusers' => '活跃用户列表',
 'activeusers-intro' => '这个列表列出了最近$1天进行过操作的用户。',
-'activeusers-count' => '最近$3天编辑了$1次',
+'activeusers-count' => '最近$3天内有$1次编辑',
 'activeusers-from' => '显示用户开始于：',
 'activeusers-hidebots' => '隐藏机器人',
 'activeusers-hidesysops' => '隐藏管理员',

@@ -2155,8 +2155,8 @@ Vergeet niet de "Verwijzingen naar deze pagina" te controleren alvorens dit sjab
 
 'disambiguations' => "Pagina's die verwijzen naar doorverwijspagina's",
 'disambiguationspage' => 'Template:Doorverwijspagina',
-'disambiguations-text' => "Hieronder staan pagina's die verwijzen naar een '''doorverwijspagina'''.
-Deze horen waarschijnlijk direct naar het juiste onderwerp te verwijzen.<br />
+'disambiguations-text' => "Hieronder staan pagina's met tenminste één verwijzing naar een '''doorverwijspagina'''.
+Deze horen waarschijnlijk direct naar een meer toepasselijke pagina te verwijzen.<br />
 Een pagina wordt gezien als doorverwijspagina als er een sjabloon op staat dat opgenomen is op [[MediaWiki:Disambiguationspage]].",
 
 'doubleredirects' => 'Dubbele doorverwijzingen',

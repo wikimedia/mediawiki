@@ -47,6 +47,7 @@
  * @author Raylton P. Sousa
  * @author Rodrigo Calanca Nishino
  * @author Sir Lestaty de Lioncourt
+ * @author Teles
  * @author TheGabrielZaum
  * @author Urhixidur
  * @author Vuln
@@ -835,7 +836,7 @@ Você pode já ter alterado com sucesso a sua senha, ou solicitado uma nova senh
 'passwordreset' => 'Redefinir senha',
 'passwordreset-text' => 'Preencha este formulário para recuperar os dados da sua conta pelo e-mail.',
 'passwordreset-legend' => 'Reiniciar a senha',
-'passwordreset-disabled' => 'Redefinições de senha foram desabilitadas neste wiki.',
+'passwordreset-disabled' => 'Redefinições de senha foram desabilitadas nesta wiki.',
 'passwordreset-pretext' => '{{PLURAL:$1||Introduza um dos dados abaixo}}',
 'passwordreset-username' => 'Nome de usuário:',
 'passwordreset-domain' => 'Domínio:',
@@ -936,7 +937,7 @@ O motivo apresentado foi:
 
 Você pode contatar $1 ou outro [[{{MediaWiki:Grouppage-sysop}}|administrador]] para discutir sobre o bloqueio.
 
-Note que não poderá utilizar a funcionalidade "Contatar usuário" se não possuir uma conta neste wiki ({{SITENAME}}) com um endereço de \'\'e-mail\'\' válido indicado nas suas [[Special:Preferences|preferências de usuário]] ou se tiver sido bloqueado de utilizar tal recurso.
+Note que não poderá utilizar a funcionalidade "Contatar usuário" se não possuir uma conta nesta wiki ({{SITENAME}}) com um endereço de \'\'e-mail\'\' válido indicado nas suas [[Special:Preferences|preferências de usuário]] ou se tiver sido bloqueado de utilizar tal recurso.
 
 Seu endereço de IP no momento é $3 e sua ID de bloqueio é #$5.
 Por favor, inclua tais dados em qualquer tentativa de esclarecimentos que for realizar.',
@@ -1153,15 +1154,15 @@ Você pode visualizá-la; podem existir mais detalhes no [{{fullurl:{{#Special:L
 Poderá haver detalhes no [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} registro de eliminação].",
 'rev-suppressed-no-diff' => "Você não pode ver esta comparação porque uma das revisões foi '''eliminada'''.",
 'rev-deleted-unhide-diff' => "Uma das revisões desta diferença entre revisões foi '''eliminada'''.
-Podem existir mais detalhes no [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} registo de eliminações].
+Podem existir mais detalhes no [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} registro de eliminações].
 Pode mesmo assim [$1 ver estas diferenças] se deseja prosseguir.",
 'rev-suppressed-unhide-diff' => "Uma das revisões desta diferença entre revisões foi '''suprimida'''.
-Podem existir mais detalhes no [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} registo de supressões].
+Podem existir mais detalhes no [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} registro de supressões].
 Pode mesmo assim [$1 ver estas diferenças] se deseja prosseguir.",
 'rev-deleted-diff-view' => "Uma das revisões desta diferença entre revisões foi '''eliminada'''.
-Você pode ver a diferença entre revisões; podem existir mais detalhes no [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} registo de eliminações].",
+Você pode ver a diferença entre revisões; podem existir mais detalhes no [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} registro de eliminações].",
 'rev-suppressed-diff-view' => "Uma das revisões desta comparação foi '''suprimida''''.
-Você pode ver esta comparação; detalhes podem ser encontradas no [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} registro de supressão].",
+Você pode ver esta comparação; detalhes podem ser encontrados no [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} registro de supressão].",
 'rev-delundel' => 'exibir/ocultar',
 'rev-showdeleted' => 'exibir',
 'revisiondelete' => 'Eliminar/restaurar edições',
@@ -1178,7 +1179,7 @@ Você pode ver esta comparação; detalhes podem ser encontradas no [{{fullurl:{
 'logdelete-selected' => "'''{{PLURAL:$1|Evento de registro selecionado|Eventos de registro selecionados}}:'''",
 'revdelete-text' => "'''Revisões eliminadas e eventos continuarão aparecendo no histórico da página e nos registros, apesar de o seu conteúdo textual estar inacessível ao público.'''
 Outros administradores no {{SITENAME}} continuarão podendo acessar ao conteúdo escondido e restaurá-lo através desta mesma ''interface'', a menos que uma restrição adicional seja definida.",
-'revdelete-confirm' => 'Por favor confirme que pretende executar esta acção, que compreende as suas consequências e que o faz em concordância com as [[{{MediaWiki:Policy-url}}|políticas e recomendações]].',
+'revdelete-confirm' => 'Por favor confirme que pretende executar esta ação, que compreende as suas consequências e que o faz em concordância com as [[{{MediaWiki:Policy-url}}|políticas e recomendações]].',
 'revdelete-suppress-text' => "A supressão deverá ser usada '''apenas''' para os seguintes casos:
 * Informação pessoal inapropriada
 *: ''endereços de domicílio e números de telefone, números da segurança social, etc''",
@@ -1216,7 +1217,7 @@ Você não tem acesso a ele.',
 'revdelete-modify-missing' => 'Erro ao modificar o item ID $1: está faltando na base de dados!',
 'revdelete-no-change' => "'''Aviso:''' o item datado de $2, $1 já possui as configurações de visualização requeridas.",
 'revdelete-concurrent-change' => 'Erro ao modificar o item datado de $2, $1: o seu estado parece ter sido alterado por outra pessoa enquanto você tentava modificá-lo.
-Por favor, verifique os registos.',
+Por favor, verifique os registros.',
 'revdelete-only-restricted' => 'Erro ao ocultar o item de $2 às $1: você não pode impedir que itens sejam visualizados por administradores sem também selecionar uma das outras opções de visibilidade.',
 'revdelete-reason-dropdown' => '*Motivos comuns para eliminação
 ** Violação de direitos autorais
@@ -1291,8 +1292,8 @@ Certifique-se de que tal alteração manterá a continuidade das ações.',
 'shown-title' => 'Mostrar $1 {{PLURAL:$1|resultado|resultados}} por página',
 'viewprevnext' => 'Ver ($1 {{int:pipe-separator}} $2) ($3).',
 'searchmenu-legend' => 'Opções de pesquisa',
-'searchmenu-exists' => "'''Há uma página com o nome \"[[:\$1]]\" neste wiki'''",
-'searchmenu-new' => "'''Criar a página \"[[:\$1|\$1]]\" neste wiki!'''",
+'searchmenu-exists' => "'''Há uma página com o nome \"[[:\$1]]\" nesta wiki'''",
+'searchmenu-new' => "'''Criar a página \"[[:\$1|\$1]]\" nesta wiki!'''",
 'searchhelp-url' => 'Help:Conteúdos',
 'searchmenu-prefix' => '[[Special:PrefixIndex/$1|Navegue pelas páginas com este prefixo]]',
 'searchprofile-articles' => 'Páginas de conteúdo',
@@ -1391,7 +1392,7 @@ Note que os índices do sistema de busca externo poderão conter referências de
 'recentchangesdays' => 'Dias a serem exibidos nas Mudanças recentes:',
 'recentchangesdays-max' => '(máximo: $1 {{PLURAL:$1|dia|dias}})',
 'recentchangescount' => 'Número de edições a serem exibidas por padrão:',
-'prefs-help-recentchangescount' => 'Isto inclui mudanças recentes, histórico de páginas e registos.',
+'prefs-help-recentchangescount' => 'Isto inclui mudanças recentes, histórico de páginas e registros.',
 'prefs-help-watchlist-token' => "O preenchimento deste campo com uma senha secreta irá gerar um ''feed'' RSS para a sua lista de páginas vigiadas.
 Qualquer um que conheça a senha deste campo será capaz de ler sua lista de páginas vigiadas, então escolha um valor seguro.
 Eis um valor gerado aleatoriamente que você pode usar: $1",

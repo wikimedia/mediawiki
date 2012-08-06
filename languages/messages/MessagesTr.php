@@ -1112,8 +1112,8 @@ $3 tarafından verilen sebep ''$2''",
 'last' => 'son',
 'page_first' => 'ilk',
 'page_last' => 'son',
-'histlegend' => "Fark seçimi: karşılaştırmayı istediğiniz 2 sürümün önündeki daireleri işaretleyip, enter'a ya da sayfanın en altında bulunan düğmeye basın.<br />
-Tanımlar: '''({{int:cur}})''' = güncel sürümle aradaki fark, '''({{int:last}})''' = bir önceki sürümle aradaki fark, '''{{int:minoreditletter}}''' = küçük değişiklik.",
+'histlegend' => "Fark seçimi: Karşılaştırmayı istediğiniz 2 sürümün önündeki daireleri işaretleyip, \"{{int:Compareselectedversions}}\" düğmesine basın.<br />
+Tanımlar: '''({{int:cur}})''' = son revizyon ile arasındaki fark, '''({{int:last}})''' = bir önceki revizyon ile arasındaki fark, '''{{int:minoreditletter}}''' = küçük değişiklik.",
 'history-fieldset-title' => 'Geçmişe gözat',
 'history-show-deleted' => 'Sadece silinenler',
 'histfirst' => 'En eski',

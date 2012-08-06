@@ -700,6 +700,7 @@ Sinu konto on loodud.
 'remembermypassword' => 'Jäta parool meelde (kuni $1 {{PLURAL:$1|päevaks|päevaks}})',
 'securelogin-stick-https' => 'Jätka pärast sisselogimist HTTPS-ühenduse kasutamist',
 'yourdomainname' => 'Sinu domeen:',
+'password-change-forbidden' => 'Selles vikis ei saa paroole muuta.',
 'externaldberror' => 'Esines autentimistõrge või sul pole õigust konto andmeid muuta.',
 'login' => 'Logi sisse',
 'nav-login-createaccount' => 'Logi sisse või registreeru kasutajaks',
@@ -1998,8 +1999,8 @@ Sisesta kujul tüüp/alamtüüp, näiteks <tt>image/jpeg</tt>.',
 
 'disambiguations' => 'Leheküljed, mis lingivad täpsustuslehekülgedele',
 'disambiguationspage' => 'Template:Täpsustuslehekülg',
-'disambiguations-text' => "Loetletud leheküljed viitavad '''täpsustusleheküljele'''.
-Selle asemel peaks nad olema lingitud sobivasse artiklisse.
+'disambiguations-text' => "Järgmised leheküljed sisaldavad vähemalt üht linki '''täpsustusleheküljele'''.
+Võimalik, et sellised lingid peaks viitama sobivamatele lehekülgedele.
 Lehekülg loetakse täpsustusleheküljeks, kui see kasutab malli, millele viitab sõnum [[MediaWiki:Disambiguationspage]].",
 
 'doubleredirects' => 'Kahekordsed ümbersuunamised',

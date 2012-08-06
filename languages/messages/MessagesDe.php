@@ -2133,10 +2133,9 @@ Vielleicht möchtest du die Beschreibung auf der dortigen [$2 Dateibeschreibungs
 
 'disambiguations' => 'Seiten die auf Begriffsklärungsseiten verlinken',
 'disambiguationspage' => 'Template:Begriffsklärung',
-'disambiguations-text' => 'Die folgenden Seiten verlinken auf eine Seite zur Begriffsklärung. Sie sollten statt dessen auf die eigentlich gemeinte Seite verlinken.
+'disambiguations-text' => "Die folgenden Seiten enthalten mindestens einen Link zur einer '''Begriffsklärungsseite'''. Sie sollten möglicherweise auf die eigentlich gemeinte Seite verlinken.
 
-Eine Seite gilt als Begriffsklärungsseite, wenn sie eine der in [[MediaWiki:Disambiguationspage]] aufgeführte(n) Vorlage(n) einbindet.<br />
-Links aus Namensräumen werden hier nicht aufgelistet.',
+Eine Seite gilt als Begriffsklärungsseite, wenn sie mindestens eine der auf [[MediaWiki:Disambiguationspage]] aufgeführten Vorlagen enthält.",
 
 'doubleredirects' => 'Doppelte Weiterleitungen',
 'doubleredirectstext' => 'Diese Liste enthält Weiterleitungen, die auf Weiterleitungen verlinken.

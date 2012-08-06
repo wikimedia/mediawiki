@@ -2103,9 +2103,9 @@ N’oubliez pas de vérifier s’il n’y a pas d’autres liens vers les modèl
 
 'disambiguations' => 'Pages ayant des liens vers des pages d’homonymie',
 'disambiguationspage' => 'Template:Homonymie',
-'disambiguations-text' => "Les pages suivantes comportent un lien vers une '''page d’homonymie'''.
-Ces liens ambigus devraient plutôt pointer vers le bon article.<br />
-Une page est considérée comme une page d’homonymie si elle inclut (directement ou récursivement) un des modèles listés sur [[MediaWiki:Disambiguationspage]].",
+'disambiguations-text' => "Les pages suivantes comportent au moins un lien vers une '''page d’homonymie'''.
+Elles devraient plutôt pointer vers le bon article.<br />
+Une page est considérée comme une page d’homonymie si elle utilise un modèle lié à [[MediaWiki:Disambiguationspage]]",
 
 'doubleredirects' => 'Doubles redirections',
 'doubleredirectstext' => 'Voici une liste des pages qui redirigent vers des pages qui sont elles-mêmes des pages de redirection.

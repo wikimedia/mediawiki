@@ -1375,7 +1375,7 @@ Etıya şıma rê yew kılito raştameo ke şıma şenê bıgurenê/bıxebetnê:
 'timezoneregion-europe' => 'Ewrope',
 'timezoneregion-indian' => 'Okyanuso Hind',
 'timezoneregion-pacific' => 'Okyanuso Pasifik',
-'allowemail' => 'Karberanê binan ra e-mail qebul bıke',
+'allowemail' => 'Karberê bini wa bışê mı rê e-posta bırışê.',
 'prefs-searchoptions' => 'Tercihê cıgeyrayışi',
 'prefs-namespaces' => 'Caê namey',
 'defaultns' => 'Eke heni, enê cayanê namey de cı geyre (sae ke):',
@@ -2016,7 +2016,7 @@ listeya ke ha ver a têna na {{PLURAL:$1|dosyaya ewwili|dosyaya $1 ewwili}} mocn
 
 'disambiguations' => 'Pelayê ke maneyo bini rê gırey cı esto',
 'disambiguationspage' => 'Template:disambig',
-'disambiguations-text' => 'satıro ewwil de ke peli ca genî; gıreyê pelê ciya-manayi mocneni. İkinci sırada <br />tiya de [[MediaWiki:Disambiguationspage]] gani heme gıreyê şablonê ciya-manayan  re gıre bıdiyo',
+'disambiguations-text' => "Peleyê ke satır da sıteyên dı pelanê '''maneo bin'''i rê esteyina zeregri mocnenê. Nara satırda dıdın dı zi <br />tiya de [[MediaWiki:Disambiguationspage|Pelaya Maneo do bini ]] gani heme gıreyê şablonê ciya-manayan re gıre dayış icab keno.",
 
 'doubleredirects' => 'Hetenayışê dıletıni',
 'doubleredirectstext' => 'no pel pelê ray motışani liste keno.

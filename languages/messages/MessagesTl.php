@@ -1923,9 +1923,9 @@ Marahil ay naisa mong baguhin ang paglalarawan doon sa [$2 pahina ng paglalarawa
 
 'disambiguations' => 'Mga pahinang nakakawing sa mga pahina ng paglilinaw',
 'disambiguationspage' => 'Template:disambig',
-'disambiguations-text' => "Ang sumusunod ay mga pahinang may ugnay (link) sa isang '''pahinang naglilinaw'''.
-Dapat silang umugnay sa tamang paksa<br />
-Tinuturing ang isang pahina bilang pahinang naglilinaw kung ginagamit nito ang isang suleras (template) na nakaugnay mula sa [[MediaWiki:Disambiguationspage]].",
+'disambiguations-text' => "Ang sumusunod na mga pahina ay naglalaman ng kahit na isang kawing na papunta sa isang '''pahina ng paglilinaw'''.
+Sa halip, maaaring kailanganing kumawing ang mga ito sa isang mas naaangkop na pahina.<br />
+Ang isang pahina ay itinuturing bilang pahina ng paglilinaw kung gumagamit ito ng isang suleras na nakakawing magmula sa [[MediaWiki:Disambiguationspage|MediaWiki:Pahina ng mga paglilinaw]].",
 
 'doubleredirects' => 'Mga dobleng karga',
 'doubleredirectstext' => 'Nagtatala ang pahinang ito ng mga pahinang pumupunta sa iba pang mga pahinang nililipatan.  Naglalaman ang bawat hanay ng mga kawing sa una ang pangalawang kapupuntahan, maging ng puntiryang pangalawang kapupuntahan, na karaniwang "tunay" na puntiryang pahina, na dapat kinatuturuan ng unang pupuntahan.

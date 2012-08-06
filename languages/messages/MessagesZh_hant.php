@@ -2068,7 +2068,7 @@ Template:消除歧義',
 # Special:ActiveUsers
 'activeusers' => '活躍用戶列表',
 'activeusers-intro' => '這個是在最近$1天之內有一些動作的用戶列表。',
-'activeusers-count' => '於$3天內的$1次編輯',
+'activeusers-count' => '最近$3天內有$1次編輯',
 'activeusers-from' => '顯示用戶開始於：',
 'activeusers-hidebots' => '隱藏機器人',
 'activeusers-hidesysops' => '隱藏管理員',

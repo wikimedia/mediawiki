@@ -1864,7 +1864,7 @@ Snano chceš wopisanje na jeje [$2 stronje datajoweho wopisanja] wobdźěłać.'
 
 'disambiguations' => 'Strony, kotrež na strony wjacezmyslnosće wotkazuja',
 'disambiguationspage' => 'Template:Wjacezmyslnosć',
-'disambiguations-text' => "Slědowace strony na '''rozjasnjenje wjacezmyslnosće''' wotkazuja. Měli město toho na poprawnu stronu wotkazać.<br />Strona so jako rozjasnjenje wjacezmyslnosće zarjaduje, jeli předłohu wužiwa, na kotruž so wot [[MediaWiki:Disambiguationspage]] wotkazuje.",
+'disambiguations-text' => "Slědowace strony wobsahuja znajmjeńša jedyn wotkaz k stronje '''rozjasnjenja wjacezmyslnosće'''. Měli město toho na poprawnu stronu wotkazać.<br />Maja stronu za stronu rozjasnjenja wjacezmyslnosće, jeli předłohu wužiwa, na kotruž so wot [[MediaWiki:Disambiguationspage]] wotkazuje.",
 
 'doubleredirects' => 'Dwójne daleposrědkowanja',
 'doubleredirectstext' => 'Tuta strona nalistuje strony, kotrež k druhim daleposrědkowanskim stronam dale posrědkuja.

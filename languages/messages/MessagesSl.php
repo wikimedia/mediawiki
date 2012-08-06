@@ -1965,9 +1965,9 @@ Preden jih izbrišete, preverite še druge povezave nanje.',
 
 'disambiguations' => 'Strani s povezavami na razločitvene strani',
 'disambiguationspage' => 'Template:Razločitev',
-'disambiguations-text' => "Naslednje strani se povezujejo na '''razločitvene strani'''.
-Namesto tega bi se naj povezovale na primerno temo.<br />
-Stran se obravnava kot razločitvena, če uporablja predloge povezane iz [[MediaWiki:Disambiguationspage]]",
+'disambiguations-text' => "Naslednje strani vsebujejo vsaj eno povezavo na '''razločitvene strani'''.
+Namesto tega bi morda bilo bolje, da se povezujejo na primernejše strani.<br />
+Stran se obravnava kot razločitvena, če uporablja predloge, povezane z [[MediaWiki:Disambiguationspage]].",
 
 'doubleredirects' => 'Dvojne preusmeritve',
 'doubleredirectstext' => 'Ta stran navaja strani, ki se preusmerjajo na druge preusmeritvene strani.

@@ -2045,9 +2045,9 @@ Lista tipurilor MIME recunoscute de MediaWiki poate fi găsită la [http://svn.w
 
 'disambiguations' => 'Pagini care trimit către pagini de dezambiguizare',
 'disambiguationspage' => 'Template:Dezambiguizare',
-'disambiguations-text' => "Paginile următoare conțin legături către o '''pagină de dezambiguizare'''.
-În locul acesteia ar trebui să conțină legături către un articol.<br />
-O pagină este considerată o pagină de dezambiguizare dacă folosește formate care apar la [[MediaWiki:Disambiguationspage]]",
+'disambiguations-text' => "Paginile următoare conțin cel puțin o legătură către o '''pagină de dezambiguizare'''.
+Acestea ar trebui să conțină legături către un articol mai potrivit.<br />
+O pagină este considerată o pagină de dezambiguizare dacă folosește formate care apar la [[MediaWiki:Disambiguationspage]].",
 
 'doubleredirects' => 'Redirecționări duble',
 'doubleredirectstext' => 'Această listă conține pagini care redirecționează la alte pagini de redirecționare.

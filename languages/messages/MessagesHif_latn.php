@@ -10,6 +10,7 @@
  * @author Abdul Kadir
  * @author AndySingh
  * @author Bihari
+ * @author Brijlal
  * @author Girmitya
  * @author Kaganer
  * @author Malafaya
@@ -1563,6 +1564,7 @@ Agar jo problem fir nai khatam hoe tab [[Special:ListUsers/sysop|administrator]]
 'lockmanager-notlocked' => '"$1" ke  nai khole sakaa hae; ii lock nai hae.',
 'lockmanager-fail-closelock' => '"$1" ke khatir lock file ke nai band kare sakaa hae.',
 'lockmanager-fail-deletelock' => '"$1" ke khatir lock file ke nai mitae sakaa hae.',
+'lockmanager-fail-openlock' => '"$1" ke khatir lock file ke nai khola jaae sake hae',
 
 # Special:UploadStash
 'uploadstash' => 'Gupt file ke upload karo',
@@ -1869,6 +1871,7 @@ Ketna chij dekhae hae ke aap kamti kare saktaa hae sadasya ke naam (case-sensiti
 'allpagesbadtitle' => 'Dewa gias panna ke title kharaab rahaa nai to inter-language nai to inter-wiki ke prefix hai.
 Is me ek nai to jaada akchhar hai jiske title me nai kaam me lawa jaae sake hai.',
 'allpages-bad-ns' => '{{SITENAME}} me namespace "$1" nai hai.',
+'allpages-hide-redirects' => 'Redirects lukao',
 
 # Special:Categories
 'categories' => 'Vibhag',
@@ -2204,6 +2207,7 @@ saait aur koi panna ke pahile jaise kar diis hai.',
 
 Nawaa mitawa gais aur badlao ke ulta karaa gais panna ke dekhe ke khatir [[Special:Log/delete|deletion log]] ke dekho.",
 'undelete-header' => 'Nawaa mitawa gais panna ke dekhe ke khatir [[Special:Log/delete|the deletion log]] ke dekho.',
+'undelete-search-title' => 'Mitawa gais panna ke khojo',
 'undelete-search-box' => 'Mitawa gais panna ke khojo',
 'undelete-search-prefix' => 'Uu panna ke dekhao jon ki isse suruu hoe hai:',
 'undelete-search-submit' => 'Khojo',
@@ -2318,6 +2322,7 @@ Ii rukawat pe fir se bichar kare ke khatir [[Special:BlockList|IP block list]] k
 'ipusubmit' => 'Ii rukawat ke hatao',
 'unblocked' => '[[User:$1|$1]] ke rukawat ke khalaas kar dewa gais hai',
 'unblocked-id' => 'Roko $1 ke khalaas kar dewa gais hai',
+'blocklist' => 'Roka gais sadasya',
 'ipblocklist' => 'Roka gais sadasya',
 'ipblocklist-legend' => 'Ek roka gais sadasya ke khojo',
 'blocklist-userblocks' => 'Roka gais account ke lukao',
@@ -2339,6 +2344,7 @@ Ii rukawat pe fir se bichar kare ke khatir [[Special:BlockList|IP block list]] k
 'unblocklink' => 'rukawat khatam karo',
 'change-blocklink' => 'rukawat ke badlo',
 'contribslink' => 'yogdaan',
+'emaillink' => 'E-mail bhejo',
 'autoblocker' => 'Apne se rokaa gais hai kaahe ki aap ke IP address ke abhi haali "[[User:$1|$1]]" use karis hai.
 $1 ke roke ke kaaran hai: "$2"',
 'blocklogpage' => 'Suchi ke roko',
@@ -2416,6 +2422,17 @@ Database ke khole nai to band kare ke khatir, iske web server se likhe ke laayek
 Puraana title nawaa title pe redirect hoe jaai.
 Aap uu redirect, jon ki pahile waala title pe jawe hai, ke update kare sakta hai.
 Agar aap ii nai kare mangta hai, tab [[Special:DoubleRedirects|double]] nai to [[Special:BrokenRedirects|broken redirects]] ke check karna.
+Aap ke jimewaari hai ki dekho ki links right jagah point kare hai.
+
+Khayal rakhna ki agar jo nawaa title ke naam ke ek panna hai tab panna move '''nai''' hae saki jab tak ki panna khali nahi hai yah to redirect hai yah to koi pahile ke edit itihaas nahi hai.
+Iske matlab ii hai ki aap ek panna ke naam badal ke wahi naam rakh de sakta hai jon naam pahile rahaa aur agar aap mistake karaa tab abhi ke panna ke overwrite nahi kare saktaa.
+
+'''CHETAWANI'''
+Ii ek lokpriye panna ke galti se badal de sake hai;
+meharbaani kar ke aap aapan karya ke natiija ke baare me socho aage kuch kare se pahile.",
+'movepagetext-noredirectfixer' => "Niche ke form kaam me laae se panna ke naam badal jaai aur iske itihass nawaa naam ke niche hoe jaai.
+Puraana title nawaa title pe redirect hoe jaai.
+Ii jaruri hae ki aap  [[Special:DoubleRedirects|double]] nai to [[Special:BrokenRedirects|broken redirects]] ke check karo.
 Aap ke jimewaari hai ki dekho ki links right jagah point kare hai.
 
 Khayal rakhna ki agar jo nawaa title ke naam ke ek panna hai tab panna move '''nai''' hae saki jab tak ki panna khali nahi hai yah to redirect hai yah to koi pahile ke edit itihaas nahi hai.
@@ -2683,7 +2700,11 @@ Ii saait ii kaaran se hoi ki panna ke ek jorr koi blacklisted external site se h
 'spam_blanking' => 'Sab badlao jisme $1 se jorr hai, ke mitawa jaawe hai',
 
 # Info page
+'pageinfo-header-watchlist' => 'Dhyan suchi',
+'pageinfo-header-views' => 'Ketna angle se dekha jaae hae',
 'pageinfo-subjectpage' => 'Panna',
+'pageinfo-edits' => 'Etna badlao rahaa',
+'pageinfo-viewsperedit' => 'Har ek badlao ke ketna dafe dekha gais hae',
 
 # Patrolling
 'markaspatrolleddiff' => 'Mark karo ke pahraa dewa jaawe hai',

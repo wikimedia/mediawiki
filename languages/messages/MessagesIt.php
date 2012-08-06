@@ -677,6 +677,7 @@ L'account è stato creato correttamente. Non dimenticare di personalizzare le [[
 'remembermypassword' => 'Ricorda la password su questo browser (per un massimo di $1 {{PLURAL:$1|giorno|giorni}})',
 'securelogin-stick-https' => 'Resta connesso attraverso HTTPS dopo il login',
 'yourdomainname' => 'Specificare il dominio',
+'password-change-forbidden' => 'Non è possibile modificare le password su questo wiki.',
 'externaldberror' => 'Si è verificato un errore con il server di autenticazione esterno, oppure non si dispone delle autorizzazioni necessarie per aggiornare il proprio accesso esterno.',
 'login' => 'Entra',
 'nav-login-createaccount' => 'Entra / registrati',
