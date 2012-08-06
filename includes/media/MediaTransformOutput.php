@@ -244,6 +244,7 @@ class ThumbnailImage extends MediaTransformOutput {
 	 *     img-class    Class applied to the \<img\> tag, if there is such a tag
 	 *     desc-query   String, description link query params
 	 *     custom-url-link    Custom URL to link to
+	 *     custom-url-link-nofollow Add 'rel=nofollow' to the link
 	 *     custom-title-link  Custom Title object to link to
 	 *     custom target-link Value of the target attribute, for custom-target-link
 	 *
@@ -268,6 +269,9 @@ class ThumbnailImage extends MediaTransformOutput {
 			}
 			if ( !empty( $options['custom-target-link'] ) ) {
 				$linkAttribs['target'] = $options['custom-target-link'];
+			}
+			if ( !empty( $options['custom-url-link-nofollow'] ) ) {
+				$linkAttribs['rel'] = 'nofollow';
 			}
 		} elseif ( !empty( $options['custom-title-link'] ) ) {
 			$title = $options['custom-title-link'];
