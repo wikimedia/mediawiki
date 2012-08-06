@@ -659,7 +659,7 @@ class Linker {
 				'title' => $fp['title'],
 				'valign' => isset( $fp['valign'] ) ? $fp['valign'] : false ,
 				'img-class' => isset( $fp['border'] ) ? 'thumbborder' : false );
-			$params = self::getImageLinkMTOParams( $fp, $query ) + $params;
+			$params = self::getImageLinkMTOParams( $fp, $query, $parser ) + $params;
 
 			$s = $thumb->toHtml( $params );
 		}
@@ -687,12 +687,19 @@ class Linker {
 	 * @param $query string An optional query string to add to description page links
 	 * @return array
 	 */
-	private static function getImageLinkMTOParams( $frameParams, $query = '' ) {
+	private static function getImageLinkMTOParams( $frameParams, $query = '', $parser = null ) {
 		$mtoParams = array();
 		if ( isset( $frameParams['link-url'] ) && $frameParams['link-url'] !== '' ) {
 			$mtoParams['custom-url-link'] = $frameParams['link-url'];
 			if ( isset( $frameParams['link-target'] ) ) {
 				$mtoParams['custom-target-link'] = $frameParams['link-target'];
+			}
+			if ( $parser ) {
+				$extLinkAttrs = $parser->getExternalLinkAttribs( $frameParams['link-url'] );
+				foreach ( $extLinkAttrs as $name => $val ) {
+					// Currently could include 'rel' and 'target'
+					$mtoParams['parser-extlink-'.$name] = $val;
+				}
 			}
 		} elseif ( isset( $frameParams['link-title'] ) && $frameParams['link-title'] !== '' ) {
 			$mtoParams['custom-title-link'] = self::normaliseSpecialPage( $frameParams['link-title'] );

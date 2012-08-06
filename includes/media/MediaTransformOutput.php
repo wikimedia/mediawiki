@@ -246,6 +246,9 @@ class ThumbnailImage extends MediaTransformOutput {
 	 *     custom-url-link    Custom URL to link to
 	 *     custom-title-link  Custom Title object to link to
 	 *     custom target-link Value of the target attribute, for custom-target-link
+	 *     parser-extlink-*   Attributes added by parser for external links:
+	 *          parser-extlink-rel: add rel="nofollow"
+	 *          parser-extlink-target: link target, but overridden by custom-target-link
 	 *
 	 * For images, desc-link and file-link are implemented as a click-through. For
 	 * sounds and videos, they may be displayed in other ways.
@@ -268,6 +271,11 @@ class ThumbnailImage extends MediaTransformOutput {
 			}
 			if ( !empty( $options['custom-target-link'] ) ) {
 				$linkAttribs['target'] = $options['custom-target-link'];
+			} elseif ( !empty( $options['parser-extlink-target'] ) ) {
+				$linkAttribs['target'] = $options['parser-extlink-target'];
+			}
+			if ( !empty( $options['parser-extlink-rel'] ) ) {
+				$linkAttribs['rel'] = $options['parser-extlink-rel'];
 			}
 		} elseif ( !empty( $options['custom-title-link'] ) ) {
 			$title = $options['custom-title-link'];
