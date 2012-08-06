@@ -197,31 +197,29 @@ class Password {
 	 * @param $data string The raw database ready password data with all params and types stuck on the front.
 	 * @return bool
 	 */
-	public static function isPreferredFormat( $data ) {
+	public static function needsUpdate( $data ) {
 		try {
 			list( $cryptType, $remainingData ) = self::parseType( $data );
 		} catch( PasswordDataError $e ) {
-			// If parseType had issues then this is naturally not preferred
-			return false;
+			// If parseType had issues then this naturally needs an update
+			return true;
 		}
 		
 		if ( $cryptType->getName() !== self::$preferredType ) {
-			// If cryptType's name does not match the preferred type it's not preferred
-			return false;
+			// If cryptType's name does not match the preferred type it needs an update
+			return true;
 		}
 
 		try {
-			if ( $cryptType->isPreferredFormat( $remainingData ) === false ) {
-				// If cryptType's isPreferredFormat returns false it's not preferred
-				return false;
-			}
+			// Ask cryptType if an update is needed
+			return (bool)$cryptType->needsUpdate( $remainingData );
 		} catch( PasswordDataError $e ) {
-			// If there was an issue with the data, it's not preferred
-			return false;
+			// If there was an issue with the data so it needs an update
+			return true;
 		}
 
 		// If everything looked fine, then it's preferred
-		return true;
+		return false;
 	}
 
 }

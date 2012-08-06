@@ -33,9 +33,9 @@
  *    password through crypt() these params will be passed to your run() and naturally
  *    any salt included should be a brand new randomly generate salt rather than an old one.
  *
- *  - protected function preferredFormat( $params );
+ *  - protected function paramsNeedUpdate( $params );
  *    This method is optional. If your password implementation has parameters which cryptParams
- *    uses site configuration for you can use this method to return false when the params do not
+ *    uses site configuration for you can use this method to return true when the params do not
  *    match the ones used in site configuration. This will trigger an update that will generate
  *    a new derived key for the password using brand new parameters.
  *
@@ -197,12 +197,12 @@ abstract class BasePasswordType implements PasswordType {
 	}
 
 	/**
-	 * @see PasswordType::isPreferredFormat
+	 * @see PasswordType::needsUpdate
 	 */
-	public function isPreferredFormat( $data ) {
+	public function needsUpdate( $data ) {
 		$params = explode( ':', $data );
 		$realHash = array_pop( $params );
-		return $this->preferredFormat( $params );
+		return $this->paramsNeedUpdate( $params );
 	}
 
 }

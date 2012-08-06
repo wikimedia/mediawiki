@@ -3989,7 +3989,7 @@ class User {
 			// If this is an old style hash then it inevitably needs an update
 			return true;
 		} else {
-			return !Password::isPreferredFormat( $hash );
+			return Password::needsUpdate( $hash );
 		}
 	}
 

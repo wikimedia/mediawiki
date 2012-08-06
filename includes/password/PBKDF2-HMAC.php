@@ -94,27 +94,27 @@ class Password_TypePBKHM extends BasePasswordType {
 		);
 	}
 
-	protected function preferredFormat( $params ) {
+	protected function paramsNeedUpdate( $params ) {
 		global $wgPasswordPbkdf2Hmac;
 		list( $salt, $usedHashFunc, $usedIterations, $dkLength ) = self::params( $params, 4 );
 		
 		$saltBits = max( 32, $wgPasswordPbkdf2Hmac['saltbits'] );
 		if ( strlen( base64_decode( $salt ) ) < ceil( $saltBits / 8 ) ) {
-			// This is not preferred if there are less salt bits than configured
-			return false;
+			// This needs update if there are less salt bits than configured
+			return true;
 		}
 
 		// Number of iterations to make, never use less than 1000 iterations
 		$iterations = max( 1000, $wgPasswordPbkdf2Hmac['iterations'] );
 		if ( $usedIterations < $iterations ) {
-			// This is not preferred if there are less iterations than configured
-			return false;
+			// This needs update if there are less iterations than configured
+			return true;
 		}
 
 		$hashFunc = $wgPasswordPbkdf2Hmac['hash'];
 		if ( in_array( $hashFunc, hash_algos() ) && $usedHashFunc !== $hashFunc ) {
-			// This is not preferred if the hash function does not match configuration
-			return false;
+			// This needs update if the hash function does not match configuration
+			return true;
 		}
 
 		// The number of bits to output in the derived key
@@ -125,11 +125,11 @@ class Password_TypePBKHM extends BasePasswordType {
 		}
 
 		if ( $dkLength < ( $hashedBits / 8 ) ) {
-			// If the key length is less than 
-			return false;
+			// If the key length is less than the preferred key lengh we need an update
+			return true;
 		}
 
-		return true;
+		return false;
 	}
 
 }

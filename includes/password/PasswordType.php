@@ -60,17 +60,17 @@ interface PasswordType {
 	public function verify( $data, $password );
 
 	/**
-	 * Check and see if the password output data of a password is in preferred format.
+	 * Check and see if the password output data of a password needs to be rehashed.
 	 * For example if you use a variable hash algorithm type in a key derivation algorithm
-	 * and let site config specify what hash function to use this could return false if the
+	 * and let site config specify what hash function to use this could return true if the
 	 * params in $data does not use the hash that was configured.
 	 *
-	 * When this method returns false the User's password may be 'upgraded' by calling
+	 * When this method returns true the User's password may be 'upgraded' by calling
 	 * crypt() again to generate new password output data for the password.
 	 *
 	 * @param $data string The password data. Same format as outputted by crypt()
 	 * @return bool
 	 */
-	public function isPreferredFormat( $data );
+	public function needsUpdate( $data );
 
 }
