@@ -1937,6 +1937,7 @@ class Parser {
 				# Interwikis
 				wfProfileIn( __METHOD__."-interwiki" );
 				if ( $iw && $this->mOptions->getInterwikiMagic() && $nottalk && Language::fetchLanguageName( $iw, null, 'mw' ) ) {
+					// FIXME: the above check prevents links to sites with identifiers that are not language codes
 					$this->mOutput->addLanguageLink( $nt->getFullText() );
 					$s = rtrim( $s . $prefix );
 					$s .= trim( $trail, "\n" ) == '' ? '': $prefix . $trail;
