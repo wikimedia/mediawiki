@@ -1458,6 +1458,8 @@ function wfMessageFallback( /*...*/ ) {
  * Use wfMsgForContent() instead if the message should NOT
  * change depending on the user preferences.
  *
+ * @deprecated since 1.18
+ *
  * @param $key String: lookup key for the message, usually
  *    defined in languages/Language.php
  *
@@ -1477,6 +1479,8 @@ function wfMsg( $key ) {
 
 /**
  * Same as above except doesn't transform the message
+ *
+ * @deprecated since 1.18
  *
  * @param $key String
  * @return String
@@ -1506,6 +1510,8 @@ function wfMsgNoTrans( $key ) {
  * customize potentially hundreds of messages in
  * order to, e.g., fix a link in every possible language.
  *
+ * @deprecated since 1.18
+ *
  * @param $key String: lookup key for the message, usually
  *     defined in languages/Language.php
  * @return String
@@ -1526,6 +1532,8 @@ function wfMsgForContent( $key ) {
 /**
  * Same as above except doesn't transform the message
  *
+ * @deprecated since 1.18
+ *
  * @param $key String
  * @return String
  */
@@ -1545,6 +1553,8 @@ function wfMsgForContentNoTrans( $key ) {
 /**
  * Really get a message
  *
+ * @deprecated since 1.18
+ *
  * @param $key String: key to get.
  * @param $args
  * @param $useDB Boolean
@@ -1562,6 +1572,8 @@ function wfMsgReal( $key, $args, $useDB = true, $forContent = false, $transform 
 
 /**
  * Fetch a message string value, but don't replace any keys yet.
+ *
+ * @deprecated since 1.18
  *
  * @param $key String
  * @param $useDB Bool
@@ -1585,6 +1597,8 @@ function wfMsgGetKey( $key, $useDB = true, $langCode = false, $transform = true 
 
 /**
  * Replace message parameter keys on the given formatted output.
+ *
+ * @deprecated since 1.18
  *
  * @param $message String
  * @param $args Array
@@ -1618,6 +1632,8 @@ function wfMsgReplaceArgs( $message, $args ) {
  * to pre-escape them if you really do want plaintext, or just wrap
  * the whole thing in htmlspecialchars().
  *
+ * @deprecated since 1.18
+ *
  * @param $key String
  * @param string ... parameters
  * @return string
@@ -1635,6 +1651,8 @@ function wfMsgHtml( $key ) {
  * to pre-escape them if you really do want plaintext, or just wrap
  * the whole thing in htmlspecialchars().
  *
+ * @deprecated since 1.18
+ *
  * @param $key String
  * @param string ... parameters
  * @return string
@@ -1650,6 +1668,9 @@ function wfMsgWikiHtml( $key ) {
 
 /**
  * Returns message in the requested format
+ *
+ * @deprecated since 1.18
+ *
  * @param $key String: key of the message
  * @param $options Array: processing rules. Can take the following options:
  *   <i>parse</i>: parses wikitext to HTML
@@ -1741,6 +1762,8 @@ function wfMsgExt( $key, $options ) {
  * Since wfMsg() and co suck, they don't return false if the message key they
  * looked up didn't exist but a XHTML string, this function checks for the
  * nonexistance of messages by checking the MessageCache::get() result directly.
+ *
+ * @deprecated since 1.18
  *
  * @param $key      String: the message key looked up
  * @return Boolean True if the message *doesn't* exist.
