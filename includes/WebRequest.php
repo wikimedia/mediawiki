@@ -498,8 +498,7 @@ class WebRequest {
 	public function getCheck( $name ) {
 		# Checkboxes and buttons are only present when clicked
 		# Presence connotes truth, abscense false
-		$val = $this->getVal( $name, null );
-		return isset( $val );
+		return $this->getVal( $name, null ) !== null;
 	}
 
 	/**
