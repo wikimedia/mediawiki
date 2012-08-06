@@ -1858,6 +1858,8 @@ $wgMessageStructure = array(
 		'mailnologin',
 		'mailnologintext',
 		'emailuser',
+		'emailuser-title-target',
+		'emailuser-title-notarget',
 		'emailuser-summary',
 		'emailpage',
 		'emailpagetext',
