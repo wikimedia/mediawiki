@@ -3184,6 +3184,11 @@ class User {
 			return false;
 		}
 		if ( self::comparePasswords( $this->mPassword, $password, $this->mId ) ) {
+			// If password is correct check if the password hash needs a rehash
+			if ( self::passwordNeedsUpdate( $this->mPassword ) ) {
+				$this->mPassword = Password::crypt( $password );
+				$this->saveSettings();
+			}
 			return true;
 		} elseif ( $wgLegacyEncoding ) {
 			# Some wikis were converted from ISO 8859-1 to UTF-8, the passwords can't be converted
@@ -3192,6 +3197,11 @@ class User {
 			if ( $cp1252Password != $password &&
 				self::comparePasswords( $this->mPassword, $cp1252Password, $this->mId ) )
 			{
+				// If password is correct check if the password hash needs a rehash
+				if ( self::passwordNeedsUpdate( $this->mPassword ) ) {
+					$this->mPassword = Password::crypt( $password );
+					$this->saveSettings();
+				}
 				return true;
 			}
 		}
@@ -3964,6 +3974,22 @@ class User {
 			} catch( PasswordDataError $e ) {
 				return false;
 			}
+		}
+	}
+
+	/**
+	 * Check if a password hash should be rehashed on login.
+	 *
+	 * @param $hash String Password hash
+	 *
+	 * @return Boolean
+	 */
+	public static function passwordNeedsUpdate( $hash ) {
+		if ( preg_match( '/^[0-9a-f]{32}$/', $hash ) ) {
+			// If this is an old style hash then it inevitably needs an update
+			return true;
+		} else {
+			return !Password::isPreferredFormat( $hash );
 		}
 	}
 
