@@ -140,7 +140,7 @@ class FileBackendMultiWrite extends FileBackend {
 		// Clear any cache entries (after locks acquired)
 		$this->clearCache();
 		// Do a consistency check to see if the backends agree
-		$status->merge( $this->consistencyCheck( array_merge( $paths['sh'], $paths['ex'] ) ) );
+		$status->merge( $this->consistencyCheck( $this->fileStoragePathsForOps( $ops ) ) );
 		if ( !$status->isOK() ) {
 			return $status; // abort
 		}
@@ -232,6 +232,28 @@ class FileBackendMultiWrite extends FileBackend {
 		}
 
 		return $status;
+	}
+
+	/**
+	 * Get a list of file storage paths to read or write for a list of operations
+	 *
+	 * @param $ops Array Same format as doOperations()
+	 * @return Array List of storage paths to files (does not include directories)
+	 */
+	protected function fileStoragePathsForOps( array $ops ) {
+		$paths = array();
+		foreach ( $ops as $op ) {
+			if ( isset( $op['src'] ) ) {
+				$paths[] = $op['src'];
+			}
+			if ( isset( $op['srcs'] ) ) {
+				$paths = array_merge( $paths, $op['srcs'] );
+			}
+			if ( isset( $op['dst'] ) ) {
+				$paths[] = $op['dst'];
+			}
+		}
+		return array_unique( $paths );
 	}
 
 	/**
