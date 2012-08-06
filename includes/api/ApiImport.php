@@ -68,6 +68,12 @@ class ApiImport extends ApiBase {
 		if ( isset( $params['namespace'] ) ) {
 			$importer->setTargetNamespace( $params['namespace'] );
 		}
+		if ( isset( $params['rootpage'] ) ) {
+			$statusRootPage = $importer->setTargetRootPage( $params['rootpage'] );
+			if( !$statusRootPage->isGood() ) {
+				$this->dieUsageMsg( $statusRootPage->getErrorsArray() );
+			}
+		}
 		$reporter = new ApiImportReporter(
 			$importer,
 			$isUpload,
@@ -112,7 +118,8 @@ class ApiImport extends ApiBase {
 			'templates' => false,
 			'namespace' => array(
 				ApiBase::PARAM_TYPE => 'namespace'
-			)
+			),
+			'rootpage' => null,
 		);
 	}
 
@@ -126,6 +133,7 @@ class ApiImport extends ApiBase {
 			'fullhistory' => 'For interwiki imports: import the full history, not just the current version',
 			'templates' => 'For interwiki imports: import all included templates as well',
 			'namespace' => 'For interwiki imports: import to this namespace',
+			'rootpage' => 'Import as subpage of this page',
 		);
 	}
 
@@ -155,6 +163,8 @@ class ApiImport extends ApiBase {
 			array( 'cantimport-upload' ),
 			array( 'import-unknownerror', 'source' ),
 			array( 'import-unknownerror', 'result' ),
+			array( 'import-rootpage-nosubpage', 'namespace' ),
+			array( 'import-rootpage-invalid' ),
 		) );
 	}
 
