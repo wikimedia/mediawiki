@@ -212,26 +212,25 @@ class PasswordTest extends MediaWikiTestCase {
 	}
 
 	/**
-	 * Test PBKHM with rfc6070's PBKDF2-HMAC-SHA1 test vectors to ensure that
+	 * Test our PBKDF2-HMAC implementation with rfc6070's PBKDF2-HMAC-SHA1 test vectors to ensure that
 	 * our implementation is a valid implementation of PBKDF2
 	 * @dataProvider dataRFC6070
 	 */
 	function testRFC6070( $P, $S, $c, $dkLen, $DK ) {
-		$salt = base64_encode( $S );
-		$hashType = 'sha1';
-		$iterations = $c;
-
-		// Convert the list of ASCII bytes rfc6070 uses into a formatted hash string
-		$hash = '';
+		// Convert the list of ASCII bytes rfc6070 uses into a formatted binary dkey
+		$dkey = '';
 		$DKbytes = preg_split( '/\s+/', $DK );
 		foreach( $DKbytes as $hex ) {
-			$hash .= chr( hexdec( $hex ) );
+			$dkey .= chr( hexdec( $hex ) );
 		}
-		$hash = base64_encode( $hash );
 
-		$data = ":PBKHM:$salt:$hashType:$iterations:$dkLen:$hash";
-		$result = Password::verify( $data, $P );
-		$this->assertTrue( $result, "rfc6070 test vector match ($data - $P)." );
+		$implKey = Password_TypePBKHM::pbkdf2_hmac( 'sha1', $P, $S, $c, $dkLen );
+
+		$result = $implKey === $dkey;
+		$this->assertTrue( $result, "rfc6070 test vector match (Output: " . base64_encode( $implKey )
+			. ") !== (DK: " . base64_encode( $dkey ) . ")" );
 	}
+
+	// @todo When PHP 5.5 is released start testing hash_pbkdf2 with the same tests we use on our own implementation
 
 }

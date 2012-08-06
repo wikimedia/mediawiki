@@ -792,9 +792,9 @@ $wgAutoloadLocalClasses = array(
 	'Password' => 'includes/password/Password.php',
 	'PasswordDataError' => 'includes/password/Password.php',
 	'PasswordType' => 'includes/password/PasswordType.php',
-	'Password_TypeA' => 'includes/password/OldTypes.php',
-	'Password_TypeB' => 'includes/password/OldTypes.php',
-	'Password_TypePBKHM' => 'includes/password/PBKDF2-HMAC.php',
+	'Password_TypeA' => 'includes/password/types/OldTypes.php',
+	'Password_TypeB' => 'includes/password/types/OldTypes.php',
+	'Password_TypePBKHM' => 'includes/password/types/PBKDF2-HMAC.php',
 
 	# includes/profiler
 	'Profiler' => 'includes/profiler/Profiler.php',

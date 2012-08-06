@@ -1,6 +1,6 @@
 <?php
 /**
- * PBKDF2-HMAC password hashing.
+ * PBKDF2-HMAC password key derivation.
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -32,6 +32,42 @@
  */
 class Password_TypePBKHM extends BasePasswordType {
 
+	/**
+	 * A PHP implementation of PBKDF2-HMAC defined by rfc2898.
+	 *
+	 * @param string $algo Name of the hash algorithm to use
+	 * @param string $password The password to create a derived key for
+	 * @param string $salt The raw binary data of the salt
+	 * @param int $iterations The number of internal key derivation iterations to perform
+	 * @param int $dkLength The length of the final dkey to generate
+	 * @return string A raw binary derived key
+	 */
+	public function pbkdf2_hmac( $algo, $password, $salt, $iterations, $dkLength ) {
+		// Compute the hash length (#bytes)
+		$hashLength = strlen( hash( $algo, null, true ) ); 
+		// Calculate the number of blocks to generate to create the correct size of derived key
+		$blocks = ceil( $dkLength / $hashLength );
+
+		$derivedKey = '';
+
+		for ( $block = 1; $block <= $blocks; $block++ ) {
+			// The first iteration of PBKDF2 uses the salt as the hmac key
+			$blockTotal = $blockStep = hash_hmac( $algo, $salt . pack( 'N', $block ), $password, true );
+			// Further iterations use the previous hmac's result as the key
+			// The result is then XORed into the block's total
+			for ( $i = 1; $i < $iterations; $i++ ) {
+				$blockStep = hash_hmac( $algo, $blockStep, $password, true );
+				$blockTotal ^= $blockStep;
+			}
+			// The block total is then finally appended to the derived key
+			$derivedKey .= $blockTotal;
+		}
+
+		// The derived key is then finally truncated to the desired length
+		$derivedKey = substr( $derivedKey, 0, $dkLength );
+		return $derivedKey;
+	}
+
 	protected function run( $params, $password ) {
 		list( $salt, $hashFunc, $iterations, $dkLength ) = self::params( $params, 4 );
 		$salt = base64_decode( $salt );
@@ -41,28 +77,8 @@ class Password_TypePBKHM extends BasePasswordType {
 		$iterations = intval( $iterations );
 		$dkLength = intval( $dkLength );
 
-		// Compute the hash length (#bytes)
-		$hashLength = strlen( hash( $hashFunc, null, true ) ); 
-		// Calculate the number of blocks to generate to create the correct size of derived key
-		$blocks = ceil( $dkLength / $hashLength );
-
-		$derivedKey = '';
-
-		for ( $block = 1; $block <= $blocks; $block++ ) {
-			// The first iteration of PBKDF2 uses the salt as the hmac key
-			$blockTotal = $blockStep = hash_hmac( $hashFunc, $salt . pack( 'N', $block ), $password, true );
-			// Further iterations use the previous hmac's result as the key
-			// The result is then XORed into the block's total
-			for ( $i = 1; $i < $iterations; $i++ ) {
-				$blockStep = hash_hmac( $hashFunc, $blockStep, $password, true );
-				$blockTotal ^= $blockStep;
-			}
-			// The block total is then finally appended to the derived key
-			$derivedKey .= $blockTotal;
-		}
-
-		// The derived key is then finally truncated to the desired length
-		$derivedKey = substr( $derivedKey, 0, $dkLength );
+		// @todo When PHP 5.5 is released conditionally make use of hash_pbkdf2 after re-testing it
+		$derivedKey = self::pbkdf2_hmac( $hashFunc, $password, $salt, $iterations, $dkLength );
 
 		return base64_encode( $derivedKey );
 	}
