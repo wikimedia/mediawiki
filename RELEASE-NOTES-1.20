@@ -114,6 +114,7 @@ upgrade PHP if you have not done so prior to upgrading MediaWiki.
 * HTMLForm mutators can now be chained (they return $this)
 * The <data>, <time>, <meta>, and <link> elements are allowed within WikiText for use
   with Microdata.
+* The HTML5 <mark> tag has been whitelisted.
 
 === Bug fixes in 1.20 ===
 * (bug 30245) Use the correct way to construct a log page title.

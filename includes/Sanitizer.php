@@ -385,7 +385,7 @@ class Sanitizer {
 				'kbd', 'samp'
 			);
 			if ( $wgHtml5 ) {
-				$htmlpairsStatic = array_merge( $htmlpairsStatic, array( 'data', 'time' ) );
+				$htmlpairsStatic = array_merge( $htmlpairsStatic, array( 'data', 'time', 'mark' ) );
 			}
 			$htmlsingle = array(
 				'br', 'hr', 'li', 'dt', 'dd'
@@ -1689,6 +1689,7 @@ class Sanitizer {
 			$whitelist += array(
 				'data' => array_merge( $common, array( 'value' ) ),
 				'time' => array_merge( $common, array( 'datetime' ) ),
+				'mark' => $common,
 
 				// meta and link are only present when Microdata is allowed anyways
 				// so we don't bother adding another condition here
