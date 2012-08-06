@@ -3204,6 +3204,7 @@ Tooltip shown when hovering over a little sign of a thumb image, to go to the im
 'import' => 'The title of the special page [[Special:Import]];',
 'import-interwiki-history' => 'This is an option on [[Special:Import]]. Usually, when unchecked, only the first version of a page is imported. When you check the option, all versions are imported. This is important often to check for licensing reasons.',
 'import-interwiki-submit' => '{{Identical|Import}}',
+'import-interwiki-rootpage' => 'Used on [[Special:Import]] as label',
 'import-upload-filename' => 'Used on [[Special:Import]] as label for upload of an XML file containing the pages to import.',
 'xml-error-string' => ':$1: Some kind of message, perhaps name of the error?
 :$2: line number
@@ -3224,6 +3225,9 @@ See also:
 * $1 is a page name.
 See also:
 * {{msg-mw|import-error-edit}}',
+'import-options-wrong' => 'Used on [[Special:Import]], when one of the option has a error.',
+'import-rootpage-invalid' => 'Used on [[Special:Import]], when the root page is invalid.',
+'import-rootpage-nosubpage' => 'Used on [[Special:Import]], when the import namespace does not support subpages.',
 
 # Import log
 'importlogpage' => '{{doc-logpage}}',

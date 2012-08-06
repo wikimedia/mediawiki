@@ -33,7 +33,7 @@
 class WikiImporter {
 	private $reader = null;
 	private $mLogItemCallback, $mUploadCallback, $mRevisionCallback, $mPageCallback;
-	private $mSiteInfoCallback, $mTargetNamespace, $mPageOutCallback;
+	private $mSiteInfoCallback, $mTargetNamespace, $mTargetRootPage, $mPageOutCallback;
 	private $mNoticeCallback, $mDebug;
 	private $mImportUploads, $mImageBasePath;
 	private $mNoUpdates = false;
@@ -197,6 +197,39 @@ class WikiImporter {
 		} else {
 			return false;
 		}
+	}
+
+	/**
+	 * Set a target root page under which all pages are imported
+	 * @param $rootpage
+	 * @return status object
+	 */
+	public function setTargetRootPage( $rootpage ) {
+		$status = Status::newGood();
+		if( is_null( $rootpage ) ) {
+			// No rootpage
+			$this->mTargetRootPage = null;
+		} elseif( $rootpage !== '' ) {
+			$rootpage = rtrim( $rootpage, '/' ); //avoid double slashes
+			$title = Title::newFromText( $rootpage, !is_null( $this->mTargetNamespace ) ? $this->mTargetNamespace : NS_MAIN );
+			if( !$title || $title->isExternal() ) {
+				$status->fatal( 'import-rootpage-invalid' );
+			} else {
+				if( !MWNamespace::hasSubpages( $title->getNamespace() ) ) {
+					global $wgContLang;
+
+					$displayNSText = $title->getNamespace() == NS_MAIN
+						? wfMessage( 'blanknamespace' )->text()
+						: $wgContLang->getNsText( $title->getNamespace() );
+					$status->fatal( 'import-rootpage-nosubpage', $displayNSText );
+				} else {
+					// set namespace to all, so all other namespace checks can passed
+					$this->setTargetNamespace( null );
+					$this->mTargetRootPage = $title->getPrefixedDBKey();
+				}
+			}
+		}
+		return $status;
 	}
 
 	/**
@@ -791,6 +824,9 @@ class WikiImporter {
 			$title = Title::makeTitleSafe( $this->mTargetNamespace,
 				$origTitle->getDBkey() );
 		} else {
+			if( !is_null( $this->mTargetRootPage ) ) {
+				$workTitle = $this->mTargetRootPage . '/' . $workTitle;
+			}
 			$title = Title::newFromText( $workTitle );
 		}
 
