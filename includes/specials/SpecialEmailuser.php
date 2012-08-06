@@ -33,6 +33,15 @@ class SpecialEmailUser extends UnlistedSpecialPage {
 		parent::__construct( 'Emailuser' );
 	}
 
+	function getDescription() {
+		$target = self::getTarget( $this->mTarget );
+		if( !$target instanceof User ) {
+			return $this->msg( 'emailuser-title-notarget' )->text();
+		}
+
+		return $this->msg( 'emailuser-title-target', $target->getName() )->text();
+	}
+
 	protected function getFormFields() {
 		return array(
 			'From' => array(
