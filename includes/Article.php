@@ -1699,9 +1699,23 @@ class Article extends Page {
 	 */
 	public function getParserOutput( $oldid = null, User $user = null ) {
 		$user = is_null( $user ) ? $this->getContext()->getUser() : $user;
-		$parserOptions = $this->mPage->makeParserOptions( $user );
+		$parserOptions = $this->mPage->makeParserOptions( $user ); //XXX: bypasses mParserOptions and thus setParserOptions()
 
 		return $this->mPage->getParserOutput( $parserOptions, $oldid );
+	}
+
+	/**
+	 * Override the ParserOptions used to render the primary article wikitext.
+	 *
+	 * @param ParserOptions $options
+	 * @throws MWException if the parser options where already initialized.
+	 */
+	public function setParserOptions( ParserOptions $options ) {
+		if ( $this->mParserOptions ) {
+			throw new MWException( "can't change parser options after they have already been set" );
+		}
+
+		$this->mParserOptions = clone $options; // clone, so if $options is modified later, it doesn't confuse the parser cache.
 	}
 
 	/**
