@@ -269,6 +269,7 @@ class ThumbnailImage extends MediaTransformOutput {
 			if ( !empty( $options['custom-target-link'] ) ) {
 				$linkAttribs['target'] = $options['custom-target-link'];
 			}
+			$linkAttribs['rel'] = 'nofollow';
 		} elseif ( !empty( $options['custom-title-link'] ) ) {
 			$title = $options['custom-title-link'];
 			$linkAttribs = array(
