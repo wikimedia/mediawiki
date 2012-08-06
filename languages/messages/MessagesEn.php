@@ -2779,6 +2779,8 @@ There may be [[{{MediaWiki:Listgrouprights-helppage}}|additional information]] a
 'mailnologin'          => 'No send address',
 'mailnologintext'      => 'You must be [[Special:UserLogin|logged in]] and have a valid e-mail address in your [[Special:Preferences|preferences]] to send e-mail to other users.',
 'emailuser'            => 'E-mail this user',
+'emailuser-title-target' => 'E-mail this {{GENDER:$1|user}}',
+'emailuser-title-notarget' => 'E-mail user',
 'emailuser-summary'    => '', # do not translate or duplicate this message to other languages
 'emailpage'            => 'E-mail user',
 'emailpagetext'        => 'You can use the form below to send an e-mail message to this user.
