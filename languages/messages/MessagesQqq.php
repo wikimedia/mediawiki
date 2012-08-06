@@ -425,6 +425,7 @@ Also used as title of [[Special:Search]] page in [[Special:SpecialPages]].
 'delete' => 'Name of the Delete tab shown for admins. Should be in the infinitive mood.
 
 {{Identical|Delete}}',
+'delete-delete' => 'Legend label for the Delete page fieldset.',
 'deletethispage' => 'In the skins Classic/Standard, Cologne Blue and Nostalgia this is the text for link to delete the page in admin view.
 {{Identical|Delete this page}}',
 'undelete_short' => "It is tab label. It's really can be named ''nstab-undelete''.",
