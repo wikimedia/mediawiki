@@ -2059,7 +2059,11 @@ class OutputPage extends ContextSource {
 	 * @param $params Array: message parameters; ignored if $msg is a Message object
 	 */
 	public function showErrorPage( $title, $msg, $params = array() ) {
-		$this->prepareErrorPage( $this->msg( $title ), $this->msg( 'errorpagetitle' ) );
+		if( !$title instanceof Message ) {
+			$title = $this->msg( $title );
+		}
+
+		$this->prepareErrorPage( $title, $this->msg( 'errorpagetitle' ) );
 
 		if ( $msg instanceof Message ){
 			$this->addHTML( $msg->parse() );
