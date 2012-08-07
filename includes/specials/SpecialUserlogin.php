@@ -186,10 +186,13 @@ class LoginForm extends SpecialPage {
 		}
 
 		$u = $this->addNewaccountInternal();
-
-		if ( $u == null ) {
-			return;
-		}
+                if( $u instanceof Status && !$u->isGood() ) {
+                        $messages = $u->getErrorsArray();
+                        $message = array_shift( $messages[0] );
+                        $params = $messages[0];
+                        $this->mainLoginForm( new Message( $message, $params ) );
+                        return false;
+                }
 
 		// Wipe the initial password and mail a temporary one
 		$u->setPassword( null );
@@ -219,7 +222,11 @@ class LoginForm extends SpecialPage {
 
 		# Create the account and abort if there's a problem doing so
 		$u = $this->addNewAccountInternal();
-		if( $u == null ) {
+		if( $u instanceof Status && !$u->isGood() ) {
+			$messages = $u->getErrorsArray();
+			$message = array_shift( $messages[0] );
+			$params = $messages[0];
+			$this->mainLoginForm( new Message( $message, $params ) );
 			return false;
 		}
 
@@ -273,17 +280,16 @@ class LoginForm extends SpecialPage {
 	}
 
 	/**
-	 * @private
-	 * @return bool|User
+	 * Make a new user account using the loaded data.
+	 * @return Status|User
 	 */
-	function addNewAccountInternal() {
+	public function addNewAccountInternal() {
 		global $wgAuth, $wgMemc, $wgAccountCreationThrottle,
 			$wgMinimalPasswordLength, $wgEmailConfirmToEdit;
 
 		// If the user passes an invalid domain, something is fishy
 		if( !$wgAuth->validDomain( $this->mDomain ) ) {
-			$this->mainLoginForm( $this->msg( 'wrongpassword' )->text() );
-			return false;
+			return Status::newFatal( 'wrongpassword' );
 		}
 
 		// If we are not allowing users to login locally, we should be checking
@@ -292,10 +298,12 @@ class LoginForm extends SpecialPage {
 		// create a local account and login as any domain user). We only need
 		// to check this for domains that aren't local.
 		if( 'local' != $this->mDomain && $this->mDomain != '' ) {
-			if( !$wgAuth->canCreateAccounts() && ( !$wgAuth->userExists( $this->mUsername )
-				|| !$wgAuth->authenticate( $this->mUsername, $this->mPassword ) ) ) {
-				$this->mainLoginForm( $this->msg( 'wrongpassword' )->text() );
-				return false;
+			if(
+				!$wgAuth->canCreateAccounts() &&
+				( !$wgAuth->userExists( $this->mUsername ||
+				  !$wgAuth->authenticate( $this->mUsername, $this->mPassword ) ) )
+			) {
+				return Status::newFatal( 'wrongpassword' );
 			}
 		}
 
@@ -306,29 +314,26 @@ class LoginForm extends SpecialPage {
 		# Request forgery checks.
 		if ( !self::getCreateaccountToken() ) {
 			self::setCreateaccountToken();
-			$this->mainLoginForm( $this->msg( 'nocookiesfornew' )->parse() );
-			return false;
+			return Status::newFatal( 'nocookiesfornew' );
 		}
 
 		# The user didn't pass a createaccount token
 		if ( !$this->mToken ) {
-			$this->mainLoginForm( $this->msg( 'sessionfailure' )->text() );
-			return false;
+			return Status::newFatal( 'sessionfailure' );
 		}
 
 		# Validate the createaccount token
 		if ( $this->mToken !== self::getCreateaccountToken() ) {
-			$this->mainLoginForm( $this->msg( 'sessionfailure' )->text() );
-			return false;
+			return Status::newFatal( 'sessionfailure' );
 		}
 
 		# Check permissions
 		$currentUser = $this->getUser();
+		$creationBlock = $currentUser->isBlockedFromCreateAccount();
 		if ( !$currentUser->isAllowed( 'createaccount' ) ) {
 			throw new PermissionsError( 'createaccount' );
-		} elseif ( $currentUser->isBlockedFromCreateAccount() ) {
-			$this->userBlockedMessage( $currentUser->isBlockedFromCreateAccount() );
-			return false;
+		} elseif ( $creationBlock instanceof Block ) {
+			throw new UserBlockedError( $creationBlock );
 		}
 
 		# Include checks that will include GlobalBlocking (Bug 38333)
@@ -339,41 +344,28 @@ class LoginForm extends SpecialPage {
 
 		$ip = $this->getRequest()->getIP();
 		if ( $currentUser->isDnsBlacklisted( $ip, true /* check $wgProxyWhitelist */ ) ) {
-			$this->mainLoginForm( $this->msg( 'sorbs_create_account_reason' )->text() . ' ' . $this->msg( 'parentheses', $ip )->escaped() );
-			return false;
+			return Status::newFatal( 'sorbs_create_account_reason' );
 		}
 
 		# Now create a dummy user ($u) and check if it is valid
 		$name = trim( $this->mUsername );
 		$u = User::newFromName( $name, 'creatable' );
 		if ( !is_object( $u ) ) {
-			$this->mainLoginForm( $this->msg( 'noname' )->text() );
-			return false;
-		}
-
-		if ( 0 != $u->idForName() ) {
-			$this->mainLoginForm( $this->msg( 'userexists' )->text() );
-			return false;
-		}
-
-		if ( 0 != strcmp( $this->mPassword, $this->mRetype ) ) {
-			$this->mainLoginForm( $this->msg( 'badretype' )->text() );
-			return false;
+			return Status::newFatal( 'noname' );
+		} elseif ( 0 != $u->idForName() ) {
+			return Status::newFatal( 'userexists' );
+		} elseif ( 0 != strcmp( $this->mPassword, $this->mRetype ) ) {
+			return Status::newFatal( 'badretype' );
 		}
 
 		# check for minimal password length
 		$valid = $u->getPasswordValidity( $this->mPassword );
 		if ( $valid !== true ) {
 			if ( !$this->mCreateaccountMail ) {
-				if ( is_array( $valid ) ) {
-					$message = array_shift( $valid );
-					$params = $valid;
-				} else {
-					$message = $valid;
-					$params = array( $wgMinimalPasswordLength );
+				if ( !is_array( $valid ) ) {
+					$valid = array( $valid, $wgMinimalPasswordLength );
 				}
-				$this->mainLoginForm( $this->msg( $message, $params )->text() );
-				return false;
+				return call_user_func_array( 'Status::newFatal', $valid );
 			} else {
 				# do not force a password for account creation by email
 				# set invalid password, it will be replaced later by a random generated password
@@ -384,13 +376,11 @@ class LoginForm extends SpecialPage {
 		# if you need a confirmed email address to edit, then obviously you
 		# need an email address.
 		if ( $wgEmailConfirmToEdit && empty( $this->mEmail ) ) {
-			$this->mainLoginForm( $this->msg( 'noemailtitle' )->text() );
-			return false;
+			return Status::newFatal( 'noemailtitle' );
 		}
 
 		if( !empty( $this->mEmail ) && !Sanitizer::validateEmail( $this->mEmail ) ) {
-			$this->mainLoginForm( $this->msg( 'invalidemailaddress' )->text() );
-			return false;
+			return Status::newFatal( 'invalidemailaddress' );
 		}
 
 		# Set some additional data so the AbortNewAccount hook can be used for
@@ -402,8 +392,7 @@ class LoginForm extends SpecialPage {
 		if( !wfRunHooks( 'AbortNewAccount', array( $u, &$abortError ) ) ) {
 			// Hook point to add extra creation throttles and blocks
 			wfDebug( "LoginForm::addNewAccountInternal: a hook blocked creation\n" );
-			$this->mainLoginForm( $abortError );
-			return false;
+			return Status::newFatal( $abortError );
 		}
 
 		// Hook point to check for exempt from account creation throttle
@@ -425,8 +414,7 @@ class LoginForm extends SpecialPage {
 		}
 
 		if( !$wgAuth->addUser( $u, $this->mPassword, $this->mEmail, $this->mRealName ) ) {
-			$this->mainLoginForm( $this->msg( 'externaldberror' )->text() );
-			return false;
+			return Status::newFatal( 'externaldberror' );
 		}
 
 		self::clearCreateaccountToken();
