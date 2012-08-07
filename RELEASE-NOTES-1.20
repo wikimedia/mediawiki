@@ -112,6 +112,10 @@ upgrade PHP if you have not done so prior to upgrading MediaWiki.
 * (bug 37830) Added $wgRequirePasswordforEmailChange to control whether password
   confirmation is required for changing an email address or not.
 * HTMLForm mutators can now be chained (they return $this)
+* A new pluggable password system is implemented in MediaWiki which allows extensions
+  to define new types for password storage. Additionally outdated password hashes
+  using old storage methods will be automatically upgraded on login.
+* PBKDF2-HMAC is the new default method of storing passwords in the database.
 
 === Bug fixes in 1.20 ===
 * (bug 30245) Use the correct way to construct a log page title.
@@ -225,6 +229,8 @@ upgrade PHP if you have not done so prior to upgrading MediaWiki.
 * Watchlist notification timestamp may be queried by page and may be updated via the API.
 * (bug 38904) prop=revisions&rvstart=... no longer blows up when continuing.
 * (bug 39032) ApiQuery generates help in constructor.
+* action=login now returns result=BadPasswordData if the data in the database is corrupt.
+  Any error message from the password system will be put into the 'details' parameter.
 
 === Languages updated in 1.20 ===
 
