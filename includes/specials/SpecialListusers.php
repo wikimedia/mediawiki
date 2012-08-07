@@ -88,8 +88,8 @@ class UsersPager extends AlphabeticPager {
 		$dbr = wfGetDB( DB_SLAVE );
 		$conds = array();
 		// Don't show hidden names
-		if( !$this->getUser()->isAllowed('hideuser') ) {
-			$conds[] = 'ipb_deleted IS NULL';
+		if( !$this->getUser()->isAllowed( 'hideuser' ) ) {
+			$conds[] = 'ipb_deleted IS NULL OR ipb_deleted = 0';
 		}
 
 		$options = array();
@@ -127,7 +127,7 @@ class UsersPager extends AlphabeticPager {
 			'options' => $options,
 			'join_conds' => array(
 				'user_groups' => array( 'LEFT JOIN', 'user_id=ug_user' ),
-				'ipblocks' => array( 'LEFT JOIN', 'user_id=ipb_user AND ipb_deleted=1 AND ipb_auto=0' ),
+				'ipblocks' => array( 'LEFT JOIN', 'user_id=ipb_user' ),
 			),
 			'conds' => $conds
 		);
@@ -181,9 +181,10 @@ class UsersPager extends AlphabeticPager {
 			$created = $this->msg( 'usercreated', $d, $t, $row->user_name )->escaped();
 			$created = ' ' . $this->msg( 'parentheses' )->rawParams( $created )->escaped();
 		}
+		$blocked = !is_null( $row->ipb_deleted ) ? ' ' . $this->msg( 'listusers-blocked', $userName )->escaped() : '';
 
 		wfRunHooks( 'SpecialListusersFormatRow', array( &$item, $row ) );
-		return "<li>{$item}{$edits}{$created}</li>";
+		return Html::rawElement( 'li', array(), "{$item}{$edits}{$created}{$blocked}" );
 	}
 
 	function doBatchLookups() {

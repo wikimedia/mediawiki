@@ -93,9 +93,11 @@ class ActiveUsersPager extends UsersPager {
 	function getQueryInfo() {
 		$dbr = wfGetDB( DB_SLAVE );
 		$conds = array( 'rc_user > 0' ); // Users - no anons
-		$conds[] = 'ipb_deleted IS NULL'; // don't show hidden names
-		$conds[] = "rc_log_type IS NULL OR rc_log_type != 'newusers'";
-		$conds[] = "rc_timestamp >= '{$dbr->timestamp( wfTimestamp( TS_UNIX ) - $this->RCMaxAge*24*3600 )}'";
+		if( !$this->getUser()->isAllowed( 'hideuser' ) ) {
+			$conds[] = 'ipb_deleted IS NULL OR ipb_deleted = 0'; // don't show hidden names
+		}
+		$conds[] = 'rc_log_type IS NULL OR rc_log_type != ' . $dbr->addQuotes( 'newusers' );
+		$conds[] = 'rc_timestamp >= ' . $dbr->addQuotes( $dbr->timestamp( wfTimestamp( TS_UNIX ) - $this->RCMaxAge*24*3600 ) );
 
 		if( $this->requestedUser != '' ) {
 			$conds[] = 'rc_user_text >= ' . $dbr->addQuotes( $this->requestedUser );
@@ -107,7 +109,7 @@ class ActiveUsersPager extends UsersPager {
 				'rc_user_text', // for Pager
 				'user_id',
 				'COUNT(*) AS recentedits',
-				'MAX(ipb_user) AS blocked'
+				'MAX(ipb_deleted) AS ipb_deleted'
 			),
 			'options' => array(
 				'GROUP BY' => array( 'rc_user_text', 'user_id' ),
@@ -115,7 +117,7 @@ class ActiveUsersPager extends UsersPager {
 			),
 			'join_conds' => array(
 				'user' => array( 'INNER JOIN', 'rc_user_text=user_name' ),
-				'ipblocks' => array( 'LEFT JOIN', 'user_id=ipb_user AND ipb_auto=0 AND ipb_deleted=1' ),
+				'ipblocks' => array( 'LEFT JOIN', 'user_id=ipb_user' ),
 			),
 			'conds' => $conds
 		);
@@ -158,9 +160,12 @@ class ActiveUsersPager extends UsersPager {
 		$groups = $lang->commaList( $list );
 
 		$item = $lang->specialList( $ulinks, $groups );
+		if( $row->ipb_deleted ) {
+			$item = "<span class=\"deleted\">$item</span>";
+		}
 		$count = $this->msg( 'activeusers-count' )->numParams( $row->recentedits )
 			->params( $userName )->numParams( $this->RCMaxAge )->escaped();
-		$blocked = $row->blocked ? ' ' . $this->msg( 'listusers-blocked', $userName )->escaped() : '';
+		$blocked = !is_null( $row->ipb_deleted ) ? ' ' . $this->msg( 'listusers-blocked', $userName )->escaped() : '';
 
 		return Html::rawElement( 'li', array(), "{$item} [{$count}]{$blocked}" );
 	}
