@@ -172,6 +172,11 @@ class Message {
 	protected $language = null;
 
 	/**
+	 * An array of possible message keys to try.
+	 */
+	protected $possibleKeys = array();
+
+	/**
 	 * The message key.
 	 */
 	protected $key;
@@ -215,7 +220,7 @@ class Message {
 	 */
 	public function __construct( $key, $params = array() ) {
 		global $wgLang;
-		$this->key = $key;
+		$this->possibleKeys = (array) $key;
 		$this->parameters = array_values( $params );
 		$this->language = $wgLang;
 	}
@@ -253,6 +258,25 @@ class Message {
 			}
 		}
 		return new self( $keys );
+	}
+
+	/**
+	 * Get the message key(s) for this object.
+	 * @return String|Array
+	 */
+	public function getKey() {
+		if( !isset( $this->key ) ) {
+			$this->fetchMessage();
+		}
+		return $this->key;
+	}
+
+	/**
+	 * Get the message's parameters.
+	 * @return Array
+	 */
+	public function getParams() {
+		return $this->parameters;
 	}
 
 	/**
@@ -352,7 +376,7 @@ class Message {
 	 */
 	public function inContentLanguage() {
 		global $wgForceUIMsgAsContentMsg;
-		if ( in_array( $this->key, (array)$wgForceUIMsgAsContentMsg ) ) {
+		if( array_intersect( $this->possibleKeys, (array)$wgForceUIMsgAsContentMsg ) ) {
 			return $this;
 		}
 
@@ -403,7 +427,7 @@ class Message {
 		$string = $this->fetchMessage();
 
 		if ( $string === false ) {
-			$key =  htmlspecialchars( is_array( $this->key ) ? $this->key[0] : $this->key );
+			$key =  htmlspecialchars( $this->key );
 			if ( $this->format === 'plain' ) {
 				return '<' . $key . '>';
 			}
@@ -598,22 +622,23 @@ class Message {
 	protected function fetchMessage() {
 		if ( !isset( $this->message ) ) {
 			$cache = MessageCache::singleton();
-			if ( is_array( $this->key ) ) {
-				if ( !count( $this->key ) ) {
-					throw new MWException( "Given empty message key array." );
-				}
-				foreach ( $this->key as $key ) {
-					$message = $cache->get( $key, $this->useDatabase, $this->language );
-					if ( $message !== false && $message !== '' ) {
-						break;
-					}
-				}
-				$this->message = $message;
-			} else {
-				$this->message = $cache->get( $this->key, $this->useDatabase, $this->language );
+			if ( !count( $this->possibleKeys ) ) {
+				throw new MWException( "Given empty message key array." );
 			}
+
+			foreach( $this->possibleKeys as $key ) {
+				$finalKey = $key;
+				$finalMessage = $cache->get( $key, $this->useDatabase, $this->language );
+
+				if ( $finalMessage !== false && $finalMessage !== '' ) {
+					break;
+				}
+			}
+
+			$this->key = $finalKey;
+			$this->message = $finalMessage;
 		}
+
 		return $this->message;
 	}
-
 }
