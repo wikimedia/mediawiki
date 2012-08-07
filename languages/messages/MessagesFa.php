@@ -4159,7 +4159,6 @@ $5
 'api-error-file-too-large' => 'پرونده‌ای که شما ارسال کردید بیش از اندازه بزرگ بود.',
 'api-error-filename-tooshort' => 'نام پرونده بیش از اندازه کوتاه است.',
 'api-error-filetype-banned' => 'این نوع پرونده ممنوع است.',
-'api-error-filetype-banned-type'=> '&lrm;$1 {{PLURAL:$4|یک نوع پرونده غیرمجاز است|انواعی پرونده غیرمجاز هستند}}. {{PLURAL:$3|نوع پرونده مجاز|انواع پرونده مجاز}} از این قرار است: $2 .',
 'api-error-filetype-missing' => 'پرونده فرمت ندارد.',
 'api-error-hookaborted' => 'اصلاحیه‌ای که شما سعی در ایجاد آن بودید توسط افزونه‌ای به دام افتاد.',
 'api-error-http' => 'خطای داخلی: قادر به اتصال به سرور نیست.',
@@ -4195,4 +4194,6 @@ $5
 'duration-centuries' => '$1 قرن',
 'duration-millennia' => '{{PLURAL:$1|هزار سال |$1 هزار سال}}',
 
+# Unknown messages
+'api-error-filetype-banned-type' => '&lrm;$1 {{PLURAL:$4|یک نوع پرونده غیرمجاز است|انواعی پرونده غیرمجاز هستند}}. {{PLURAL:$3|نوع پرونده مجاز|انواع پرونده مجاز}} از این قرار است: $2 .',
 );

@@ -543,7 +543,7 @@ $1',
 'pool-errorunknown' => 'Fôta encognua',
 
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
-'aboutsite' => 'A propôs de {{SITENAME}}',
+'aboutsite' => 'Sur {{SITENAME}}',
 'aboutpage' => 'Project:A propôs',
 'copyright' => 'Lo contegnu est disponiblo desot licence $1.',
 'copyrightpage' => '{{ns:project}}:Drêts d’ôtor',
@@ -3013,7 +3013,7 @@ Portant, vos en pouede vêre lo tèxto sôrsa.',
 'tooltip-p-logo' => 'Pâge principâla',
 'tooltip-n-mainpage' => 'Visitar la pâge de reçua du seto',
 'tooltip-n-mainpage-description' => 'Alar a la reçua',
-'tooltip-n-portal' => 'A propôs du projèt',
+'tooltip-n-portal' => 'Sur lo projèt, cen que vos pouede fâre, yô que trovar les chouses',
 'tooltip-n-currentevents' => 'Trovar les enformacions de fond sur les dèrriéres novèles',
 'tooltip-n-recentchanges' => 'Lista des dèrriérs changements sur lo vouiqui',
 'tooltip-n-randompage' => 'Fâre vêre una pâge a l’hasârd',
@@ -4074,7 +4074,6 @@ Les émâges sont montrâs dens lor plêna rèsolucion, los ôtros fichiérs son
 'api-error-file-too-large' => 'Lo fichiér que vos éd somês ére trop grant.',
 'api-error-filename-tooshort' => 'Lo nom du fichiér est trop côrt.',
 'api-error-filetype-banned' => 'Cél tipo de fichiér est dèfendu.',
-'api-error-filetype-banned-type'=> "'''« $1 »''' {{PLURAL:$4|est pas un tipo de fichiérs ôtorisâ|sont pas des tipos de fichiérs ôtorisâs}}. {{PLURAL:$3|Lo tipo de fichiérs accèptâ est|Los tipos de fichiérs accèptâs sont}} $2.",
 'api-error-filetype-missing' => 'L’èxtension du fichiér est manquenta.',
 'api-error-hookaborted' => 'Lo changement que vos éd tâchiê de fâre at étâ arrètâ per un grèfon d’una èxtension.',
 'api-error-http' => 'Èrror de dedens : sè pôt pas branchiér u sèrvor.',
@@ -4110,4 +4109,6 @@ Les émâges sont montrâs dens lor plêna rèsolucion, los ôtros fichiérs son
 'duration-centuries' => '$1 sièclo{{PLURAL:$1||s}}',
 'duration-millennia' => '$1 milènèro{{PLURAL:$1||s}}',
 
+# Unknown messages
+'api-error-filetype-banned-type' => "'''« $1 »''' {{PLURAL:$4|est pas un tipo de fichiérs ôtorisâ|sont pas des tipos de fichiérs ôtorisâs}}. {{PLURAL:$3|Lo tipo de fichiérs accèptâ est|Los tipos de fichiérs accèptâs sont}} $2.",
 );

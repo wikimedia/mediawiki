@@ -4008,7 +4008,6 @@ W przeciwnym wypadku można użyć prostego formularza poniżej. Komentarz zosta
 'api-error-file-too-large' => 'Przesłany przez Ciebie plik jest zbyt duży.',
 'api-error-filename-tooshort' => 'Nazwa pliku jest zbyt krótka.',
 'api-error-filetype-banned' => 'Zabroniony format pliku.',
-'api-error-filetype-banned-type'=> "$1 nie {{PLURAL:$4|jest dozwolonym typem pliku|są dozwolonymi typami plików}}. Dopuszczalne są pliki w {{PLURAL:$3|formacie|formatach}} $2.",
 'api-error-filetype-missing' => 'Brak rozszerzenia w nazwie pliku.',
 'api-error-hookaborted' => 'Zmiana, którą próbowałeś wykonać została przerwana przez hak rozszerzenia.',
 'api-error-http' => 'Błąd wewnętrzny – brak połączenia z serwerem.',
@@ -4044,4 +4043,6 @@ W przeciwnym wypadku można użyć prostego formularza poniżej. Komentarz zosta
 'duration-centuries' => '$1 {{PLURAL:$1|stulecie|stulecia|stuleci}}',
 'duration-millennia' => '$1 {{PLURAL:$1|tysiąclecie|tysiąclecia|tysiącleci}}',
 
+# Unknown messages
+'api-error-filetype-banned-type' => '$1 nie {{PLURAL:$4|jest dozwolonym typem pliku|są dozwolonymi typami plików}}. Dopuszczalne są pliki w {{PLURAL:$3|formacie|formatach}} $2.',
 );

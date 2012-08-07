@@ -1021,6 +1021,10 @@ $2
 'noarticletext-nopermission' => 'אין כרגע טקסט בדף זה.
 באפשרותכם [[Special:Search/{{PAGENAME}}|לחפש את כותרת הדף]] בדפים אחרים,
 או <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} לחפש ביומנים הרלוונטיים].</span>',
+'missing-revision' => 'גרסה #$1 של הדף "{{PAGENAME}}" אינה קיימת.
+
+זה בדרך כלל נגרם על־ידי לחיצה על קישור ישן לגרסה קודמת של דף שנמחק.
+אפשר למצוא פרטים ב[{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} יומן המחיקות].',
 'userpage-userdoesnotexist' => 'חשבון המשתמש "$1" אינו רשום.
 אנא בדקו אם ברצונכם ליצור/לערוך דף זה.',
 'userpage-userdoesnotexist-view' => 'חשבון המשתמש "$1" אינו רשום.',
@@ -1333,6 +1337,10 @@ $1",
 'editundo' => 'ביטול',
 'diff-multi' => '({{PLURAL:$1|גרסת ביניים אחת|$1 גרסאות ביניים}} של {{PLURAL:$2|משתמש אחד|$2 משתמשים}} {{PLURAL:$1|אינה מוצגת|אינן מוצגות}})',
 'diff-multi-manyusers' => '({{PLURAL:$1|גרסת ביניים אחת|$1 גרסאות ביניים}} של יותר {{PLURAL:$2|ממשתמש אחד|מ־$2 משתמשים}} {{PLURAL:$1|אינה מוצגת|אינן מוצגות}})',
+'difference-missing-revision' => '{{PLURAL:$2|גרסה אחת|$2 גרסאות}} של ההבדל הזה ($1) {{PLURAL:$2|לא נמצאה|לא נמצאו}}.
+
+זה בדרך כלל נגרם על־ידי לחיצה על קישור מיושן לגרסה קודמת של דף שנמחק.
+אפשר למצוא פרטים ב[{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} יומן המחיקה].',
 
 # Search results
 'searchresults' => 'תוצאות החיפוש',
@@ -4082,7 +4090,6 @@ $5
 'api-error-file-too-large' => 'הקובץ ששלחתם היה גדול מדי.',
 'api-error-filename-tooshort' => 'שם הקובץ קצר מדי.',
 'api-error-filetype-banned' => 'סוג קובץ זה חסום.',
-'api-error-filetype-banned-type'=> '$1 {{PLURAL:$4|הוא סוג קובץ אסור להעלאה|הם סוגי קבצים אסורים להעלאה}}. {{PLURAL:$3|סוג הקובץ המותר הוא|סוגי הקבצים המותרים הם}} $2.',
 'api-error-filetype-missing' => 'חסרה סיומת לשם הקובץ.',
 'api-error-hookaborted' => 'השינוי שניסיתם לעשות נחסם על ידי הרחבה.',
 'api-error-http' => 'שגיאה פנימית: לא ניתן להתחבר לשרת.',
@@ -4118,4 +4125,6 @@ $5
 'duration-centuries' => '{{PLURAL:$1|מאה שנה|$1 מאות שנים|מאתיים שנה}}',
 'duration-millennia' => '{{PLURAL:$1|אלף שנה|$1 אלפי שנים|אלפיים שנה}}',
 
+# Unknown messages
+'api-error-filetype-banned-type' => '$1 {{PLURAL:$4|הוא סוג קובץ אסור להעלאה|הם סוגי קבצים אסורים להעלאה}}. {{PLURAL:$3|סוג הקובץ המותר הוא|סוגי הקבצים המותרים הם}} $2.',
 );

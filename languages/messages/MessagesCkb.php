@@ -3217,7 +3217,6 @@ $5
 # API errors
 'api-error-filename-tooshort' => 'ناوی پەڕگەکە زۆر کورتە.',
 'api-error-filetype-banned' => 'ئەم جۆرە پەڕگەیە قەدەغەیە.',
-'api-error-filetype-banned-type'=> "$1 {{PLURAL:$4|جۆرە پەڕگەی ڕێگە پێ‌نەدراوە‌|جۆرە پەڕگە ڕێگە پێ‌نەدراوە‌کانن}}. $2، ئەو جۆرە {{PLURAL:$3|پەڕگەیە کە ڕێگەی|پەڕگانەیە کە ڕێگەیان}} پێ‌دراوە.",
 'api-error-unclassified' => 'ھەڵەیەکی نەزانراو ڕوویداوە.',
 'api-error-unknown-code' => 'ھەڵەی نەزانراو: «$1».',
 'api-error-unknownerror' => 'ھەڵەی نەزانراو: «$1».',
@@ -3233,4 +3232,6 @@ $5
 'duration-centuries' => '$1 {{PLURAL:$1|سەدە|سەدە}}',
 'duration-millennia' => '$1 {{PLURAL:$1|ھەزارە|ھەزارە}}',
 
+# Unknown messages
+'api-error-filetype-banned-type' => '$1 {{PLURAL:$4|جۆرە پەڕگەی ڕێگە پێ‌نەدراوە‌|جۆرە پەڕگە ڕێگە پێ‌نەدراوە‌کانن}}. $2، ئەو جۆرە {{PLURAL:$3|پەڕگەیە کە ڕێگەی|پەڕگانەیە کە ڕێگەیان}} پێ‌دراوە.',
 );

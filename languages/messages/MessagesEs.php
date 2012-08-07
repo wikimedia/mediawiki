@@ -758,6 +758,7 @@ No olvides personalizar [[Special:Preferences|tus preferencias]].',
 'remembermypassword' => 'Mantenerme conectado en este navegador (hasta $1 {{PLURAL:$1|día|días}})',
 'securelogin-stick-https' => 'Permanecer conectado a HTTPS después de iniciar sesión',
 'yourdomainname' => 'Dominio',
+'password-change-forbidden' => 'No puedes cambiar las contraseñas de este wiki.',
 'externaldberror' => 'Hubo un error de autenticación externa de la base de datos o bien no tienes autorización para actualizar tu cuenta externa.',
 'login' => 'Iniciar sesión',
 'nav-login-createaccount' => 'Iniciar sesión / crear cuenta',
@@ -2099,8 +2100,8 @@ Entrada: contenttype/subtype, p. ej. <tt>image/jpeg</tt>.',
 
 'disambiguations' => 'Páginas que enlazan con páginas de desambiguación',
 'disambiguationspage' => 'Template:Desambiguación',
-'disambiguations-text' => "Las siguientes páginas enlazan con una '''página de desambiguación'''.
-En lugar de ello deberían enlazar con  el tema apropiado.<br />
+'disambiguations-text' => "Las siguientes páginas contienen al menos un enlace a una '''página de desambiguación'''.
+En lugar de ello deberían enlazar a una página más apropiada.<br />
 Una página es considerada página de desambiguación si utiliza la plantilla que está enlazada desde [[MediaWiki:Disambiguationspage]].",
 
 'doubleredirects' => 'Redirecciones dobles',
@@ -3998,7 +3999,6 @@ En otro caso, puedes usar el siguiente formulario. Tu comentario será añadido 
 'api-error-file-too-large' => 'El archivo que enviaste era demasiado grande.',
 'api-error-filename-tooshort' => 'El nombre de archivo es demasiado corto.',
 'api-error-filetype-banned' => 'Este tipo de archivo está prohibido.',
-'api-error-filetype-banned-type'=> '$1 {{PLURAL:$4|no es un tipo de archivo permitido|no son tipos de archivos permitidos}}. {{PLURAL:$3|El tipo de archivo permitido es|Los tipos de archivos permitidos son}} $2.',
 'api-error-filetype-missing' => 'El archivo no tiene extensión de archivo.',
 'api-error-hookaborted' => 'La modificación que intentaste hacer fue cancelada por un gancho de extensión.',
 'api-error-http' => 'Error interno: No se puede conectar al servidor.',
@@ -4034,4 +4034,6 @@ En otro caso, puedes usar el siguiente formulario. Tu comentario será añadido 
 'duration-centuries' => '$1 {{PLURAL:$1|siglo|siglos}}',
 'duration-millennia' => '$1 {{PLURAL:$1|milenio|milenios}}',
 
+# Unknown messages
+'api-error-filetype-banned-type' => '$1 {{PLURAL:$4|no es un tipo de archivo permitido|no son tipos de archivos permitidos}}. {{PLURAL:$3|El tipo de archivo permitido es|Los tipos de archivos permitidos son}} $2.',
 );

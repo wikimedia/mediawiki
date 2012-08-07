@@ -3723,7 +3723,6 @@ Soss kënnt Dir den einfache Formulär hei drënner benotzen. Är Bemierkung gë
 'api-error-file-too-large' => 'De Fichier deen Dir geschéckt hutt war ze grouss.',
 'api-error-filename-tooshort' => 'Den Numm vum Fichier ass ze kuerz.',
 'api-error-filetype-banned' => 'Dësen Typ vu Fichier ass net zougelooss.',
-'api-error-filetype-banned-type'=> '$1 {{PLURAL:$4|is not a permitted file type|si Fichiersformater déi net erlaabt sinn}}. Erlaabt {{PLURAL:$3|ass|sinn}}: $2.',
 'api-error-filetype-missing' => "D'Erweiderung vum Fichier feelt.",
 'api-error-hookaborted' => "D'Ännerung déi Dir versicht hutt ze maachen ass duerch en 'extension-hook' ofgebrach ginn.",
 'api-error-http' => 'Interne Feeler: net méiglech sech op de Server ze connectéieren.',
@@ -3759,4 +3758,6 @@ Soss kënnt Dir den einfache Formulär hei drënner benotzen. Är Bemierkung gë
 'duration-centuries' => '$1 {{PLURAL:$1|Joerhonnert|Joerhonnerten}}',
 'duration-millennia' => '$1 {{PLURAL:$1|Millenaire|Millenairen}}',
 
+# Unknown messages
+'api-error-filetype-banned-type' => '$1 {{PLURAL:$4|is not a permitted file type|si Fichiersformater déi net erlaabt sinn}}. Erlaabt {{PLURAL:$3|ass|sinn}}: $2.',
 );

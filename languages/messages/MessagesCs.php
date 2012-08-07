@@ -765,6 +765,7 @@ Nezapomeňte si upravit své [[Special:Preferences|nastavení {{grammar:2sg|{{SI
 'remembermypassword' => 'Zapamatovat si mé přihlášení na tomto počítači (maximálně $1 {{PLURAL:$1|den|dny|dní}})',
 'securelogin-stick-https' => 'Zůstat po přihlášení připojen přes HTTPS',
 'yourdomainname' => 'Vaše doména',
+'password-change-forbidden' => 'Na této wiki nemůžete měnit hesla.',
 'externaldberror' => 'Buď nastala chyba externí autentizační databáze, nebo nemáte dovoleno měnit svůj externí účet.',
 'login' => 'Přihlaste se',
 'nav-login-createaccount' => 'Přihlášení / vytvoření účtu',
@@ -1004,6 +1005,10 @@ Pokud jste zde omylem, stiskněte ve svém prohlížeči tlačítko ''Zpět''.",
 Můžete [[Special:Search/{{PAGENAME}}|zkusit tento název vyhledat]] na jiných stránkách, <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} prohlédnout si příslušné protokolovací záznamy] nebo [{{fullurl:{{FULLPAGENAME}}|action=edit}} tuto stránku založit]</span>.',
 'noarticletext-nopermission' => 'Tato stránka zatím neobsahuje žádný text.
 Můžete [[Special:Search/{{PAGENAME}}|zkusit tento název vyhledat]] na jiných stránkách nebo <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} si prohlédnout příslušné protokolovací záznamy]</span>.',
+'missing-revision' => 'Revize #$1 stránky s názvem „{{PAGENAME}}“ neexistuje.
+
+Toto je obvykle způsobeno tím, že jste následovali zastaralý odkaz historickou verzi stránky, jež byla smazána.
+Podrobnosti mohou být uvedeny v [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} knize smazaných stránek].',
 'userpage-userdoesnotexist' => 'Uživatelský účet „<nowiki>$1</nowiki>“ není zaregistrován. Zkontrolujte zda skutečně chcete vytvořit či editovat tuto stránku.',
 'userpage-userdoesnotexist-view' => 'Uživatelský účet „$1“ není zaregistrován.',
 'blocked-notice-logextract' => 'Tento uživatel je momentálně zablokován.
@@ -1312,6 +1317,10 @@ Ujistěte se, že tato změna udrží souvislost a posloupnost verzí v historii
 'editundo' => 'zrušit editaci',
 'diff-multi' => '({{PLURAL:$1|Není zobrazena 1 mezilehlá verze|Nejsou zobrazeny $1 mezilehlé verze|Není zobrazeno $1 mezilehlých verzí}} od {{PLURAL:$2|1 uživatele|$2 uživatelů}}.)',
 'diff-multi-manyusers' => '(Není zobrazeno $1 mezilehlých verzí od více než $2 {{PLURAL:$2|uživatele|uživatelů}}.)',
+'difference-missing-revision' => '{{PLURAL:$2|Jedna z revizí|$2 revize|$2 revizí}} k požadovanému porovnání ($1) {{PLURAL:$2|neexistuje|neexistují|neexistuje}}.
+
+Toto je obvykle způsobeno tím, že jste následovali zastaralý odkaz historickou verzi stránky, jež byla smazána.
+Podrobnosti mohou být uvedeny v [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} knize smazaných stránek].',
 
 # Search results
 'searchresults' => 'Výsledky hledání',
@@ -2082,7 +2091,9 @@ Vstup: <code>typ obsahu/podtyp</code>, např. <code>image/jpeg</code>.',
 
 'disambiguations' => 'Stránky odkazující na rozcestníky',
 'disambiguationspage' => 'Template:Rozcestník',
-'disambiguations-text' => 'Odkazy na následujících stránkách vedou na rozcestníky (stránky obsahující některou ze šablon uvedených na [[MediaWiki:Disambiguationspage|seznamu rozcestníkových šablon]]) místo na příslušný článek.',
+'disambiguations-text' => "Následující stránky obsahují nejméně jeden odkaz na '''rozcestník'''.
+Asi by místo toho měly odkazovat na konkrétnější stránku.<br />
+Stránka je považována za rozcestník, pokud používá některou ze šablon odkazovaných na [[MediaWiki:Disambiguationspage]].",
 
 'doubleredirects' => 'Dvojitá přesměrování',
 'doubleredirectstext' => 'Na této stránce je seznam přesměrování vedoucích na další přesměrování.
@@ -4013,7 +4024,6 @@ Jinak můžete využít jednoduchý formulář níže. Váš komentář bude př
 'api-error-file-too-large' => 'Načtený soubor je příliš velký.',
 'api-error-filename-tooshort' => 'Název souboru je příliš krátký.',
 'api-error-filetype-banned' => 'Tento typ souboru je zakázán.',
-'api-error-filetype-banned-type'=> "$1 {{PLURAL:$4|je nedovolený formát souborů|jsou nedovolené formáty souborů}}. {{PLURAL:$3|Povolený formát souborů je|Povolené formáty souborů jsou}} $2.",
 'api-error-filetype-missing' => 'Tento soubor nemá příponu.',
 'api-error-hookaborted' => 'Zamýšlená úprava byla zakázána rozšiřujícím modulem.',
 'api-error-http' => 'Vnitřní chyba: nepodařilo se připojit k serveru.',
@@ -4049,4 +4059,6 @@ Jinak můžete využít jednoduchý formulář níže. Váš komentář bude př
 'duration-centuries' => '$1 {{PLURAL:$1|století}}',
 'duration-millennia' => '$1 {{PLURAL:$1|tisíciletí}}',
 
+# Unknown messages
+'api-error-filetype-banned-type' => '$1 {{PLURAL:$4|je nedovolený formát souborů|jsou nedovolené formáty souborů}}. {{PLURAL:$3|Povolený formát souborů je|Povolené formáty souborů jsou}} $2.',
 );

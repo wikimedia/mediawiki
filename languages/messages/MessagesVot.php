@@ -83,7 +83,8 @@ $messages = array(
 'category-empty' => "''Kase gruppa on tühjä.''",
 'hidden-categories' => '{{PLURAL:$1|Salautõttu gruppa|Salautõtud gruppad}}',
 'category-subcat-count' => '{{PLURAL:$2|Senez gruppaz on ainult vahtiaava alagruppa.|{{PLURAL:$1|Vahtiaava alagruppa kuulub|Vahtiaava $1 alagruppaa kuuluvad}} sihee gruppaa. Alagruppaďďe cisla gruppaza on $2.}}',
-'category-article-count' => '{{PLURAL:$2|Senez gruppaz on ainult vahtiaava cülci.|{{PLURAL:$1|Vahtiaava alagruppa kuulub|Vahtiaava $1 tšültšiä kuuluvad}} sihee gruppaa. Cülcije cisla gruppaza on $2.}}',
+'category-article-count' => '{{PLURAL:$2|Senez gruppaz on ainult vahtiaava cülci.|{{PLURAL:$1|Vahtiaava alagruppa kuulub|Vahtiaava $1 cülciä kuuluvad}} sihee gruppaa. Cülcije cisla gruppaza on $2.}}',
+'category-file-count' => '{{PLURAL:$2|Senez gruppaz on ainult vahtiaava faili.|{{PLURAL:$1|Vahtiaava alagruppa kuulub|Vahtiaava $1 failid kuuluvad}} sihee gruppaa. Cülcije cisla gruppaza on $2.}}',
 'listingcontinuesabbrev' => 'ladvaub',
 
 'about' => 'Täätühsed',
@@ -344,8 +345,10 @@ Võitta loovva cüľľee cirjuttamall alla õlõvasõõ tilaa. Kui että taho lo
 'prevn' => '{{PLURAL:$1|edellinen|$1 entiiss}}',
 'nextn' => '{{PLURAL:$1|$1}} vahtiaava →',
 'viewprevnext' => 'Näüt ($1 {{int:pipe-separator}} $2) ($3)',
+'searchprofile-articles' => 'Pääcülcid',
 'searchprofile-images' => 'Multimedia',
 'searchprofile-everything' => 'Kõik',
+'searchprofile-articles-tooltip' => 'Etsi "$1":az',
 'searchprofile-project-tooltip' => 'Etsi "$1":az',
 'search-result-size' => '$1 ({{PLURAL:$2|1 sõna|$2 sõna}})',
 'search-redirect' => '(mešaituz $1)',
@@ -880,6 +883,9 @@ Kui faili on muutõttu, siiz detaaľid võivad õlla kahõllaizõd muutõtull fa
 'watchlisttools-view' => 'Näüt muutuhsõd',
 'watchlisttools-edit' => 'Muuttaa spiiskaa',
 'watchlisttools-raw' => 'Muut lähtefaili',
+
+# Core parser functions
+'duplicate-defaultsort' => '\'\'\'Warning:\'\'\' Default sort key "$2" overrides earlier default sort key "$1".',
 
 # Special:FilePath
 'filepath-page' => 'Faili:',

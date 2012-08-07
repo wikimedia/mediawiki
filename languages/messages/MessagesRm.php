@@ -3310,7 +3310,6 @@ Questa pagina ha actualmain difficultads tecnicas.',
 'api-error-file-too-large' => 'La datoteca che ti has tramess era memia gronda.',
 'api-error-filename-tooshort' => 'Il num da datoteca è memia curt.',
 'api-error-filetype-banned' => 'Quest tip da datoteca è scumandà.',
-'api-error-filetype-banned-type'=> "\$1 {{PLURAL:\$4|n'è betg in tip da datoteca lubì|n'èn betg tips da datoteca lubids}}. Lubidas èn datotecas {{PLURAL:\$3|dal tip|dals tips}} \$2.",
 'api-error-filetype-missing' => "Il num da datoteca n'ha betg ina finiziun da datoteca.",
 'api-error-hookaborted' => 'La midada che ti has empruvà da far è vegnida interrutta dad ina extensiun.',
 'api-error-http' => 'Errur interna: Betg pussaivel da connectar cun il server.',
@@ -3335,4 +3334,6 @@ Questa pagina ha actualmain difficultads tecnicas.',
 'api-error-uploaddisabled' => 'La funcziun da chargiar datotecas sin quest vichi è deactivada.',
 'api-error-verification-error' => 'Questa datoteca pudess esser corrupta ni avair ina extensiun faussa.',
 
+# Unknown messages
+'api-error-filetype-banned-type' => "$1 {{PLURAL:$4|n'è betg in tip da datoteca lubì|n'èn betg tips da datoteca lubids}}. Lubidas èn datotecas {{PLURAL:$3|dal tip|dals tips}} $2.",
 );

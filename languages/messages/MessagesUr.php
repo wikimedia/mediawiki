@@ -10,6 +10,7 @@
  * @author Chris H
  * @author Istabani
  * @author Meno25
+ * @author Muhammad Shuaib
  * @author O.bangash
  * @author Rachitrali
  * @author Reedy
@@ -959,6 +960,9 @@ HTML tags جانچئے.',
 'recentchangeslinked-feed' => 'متعلقہ تبدیلیاں',
 'recentchangeslinked-toolbox' => 'متعلقہ تبدیلیاں',
 'recentchangeslinked-title' => '"$1" سے متعلقہ تبدیلیاں',
+'recentchangeslinked-summary' => 'یہ ان تبدیلیوں کی فہرست ہے جو حال ہی میں کسی مخصوص صفحہ سے مربوط صفحات (یا مخصوص زمرہ کے اراکین) میں کی گئی ہیںـ 
+
+[[SpecialWatchlist | آپ کی زیر نظر فہرست]] میں یہ صفحات متجل (bold) نظر آئیں گےـ',
 'recentchangeslinked-page' => 'صفحۂ منصوبہ دیکھئے',
 
 # Upload

@@ -3956,7 +3956,6 @@ Om det ikke er tilfellet, kan du bruke det enkle skjemaet som du finner under. K
 'api-error-file-too-large' => 'Filen du la inn var for stor.',
 'api-error-filename-tooshort' => 'Filnavnet er for kort.',
 'api-error-filetype-banned' => 'Denne filtypen er ikke tillatt.',
-'api-error-filetype-banned-type'=> "{{PLURAL:$4|Filtypen|Filtypene}} $1 er ikke {{PLURAL:$4|tillatt|tillatte}}. {{PLURAL:$3|Tillatt filtype|Tillatte filtyper}} er $2.",
 'api-error-filetype-missing' => 'Filen mangler filendelse.',
 'api-error-hookaborted' => 'Endringen du prøvde å gjøre ble avbrutt av en utvidelsestilkobling.',
 'api-error-http' => 'Intern feil: kan ikke få forbindelse til server.',
@@ -3992,4 +3991,6 @@ Om det ikke er tilfellet, kan du bruke det enkle skjemaet som du finner under. K
 'duration-centuries' => '$1 {{PLURAL:$1|århundre|århundrer}}',
 'duration-millennia' => '$1 {{PLURAL:$1|millennium|millennier}}',
 
+# Unknown messages
+'api-error-filetype-banned-type' => '{{PLURAL:$4|Filtypen|Filtypene}} $1 er ikke {{PLURAL:$4|tillatt|tillatte}}. {{PLURAL:$3|Tillatt filtype|Tillatte filtyper}} er $2.',
 );

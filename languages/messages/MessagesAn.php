@@ -3653,7 +3653,6 @@ Si no, puet usar o siguient formulario. O suyo comentario será adhibiu a la pac
 'api-error-file-too-large' => 'O fichero que ninvió yera masiau gran.',
 'api-error-filename-tooshort' => 'O nombre de fichero ye masiau corto.',
 'api-error-filetype-banned' => 'Iste tipo de fichero ye vedau.',
-'api-error-filetype-banned-type'=> "{{PLURAL:$4|Os fichers de tipo $1|Os fichers d'os tipos $1}} no se permiten. {{PLURAL:$3|Nomás s'admeten os fichers d'o tipo|Nomás s'admeten os fichers d'os tipos}} $2.",
 'api-error-filetype-missing' => 'O fichero no tiene extensión de fichero.',
 'api-error-hookaborted' => "A modificación que intentés fer estió cancelada por un gancho d'extensión.",
 'api-error-http' => 'Error interna: No se puede connectar ta o servidor.',
@@ -3678,4 +3677,6 @@ Si no, puet usar o siguient formulario. O suyo comentario será adhibiu a la pac
 'api-error-uploaddisabled' => 'As cargas de fichers son desactivadas en iste wiki.',
 'api-error-verification-error' => 'Iste fichero puede estar danyau, u tiene una extensión incorrecta.',
 
+# Unknown messages
+'api-error-filetype-banned-type' => "{{PLURAL:$4|Os fichers de tipo $1|Os fichers d'os tipos $1}} no se permiten. {{PLURAL:$3|Nomás s'admeten os fichers d'o tipo|Nomás s'admeten os fichers d'os tipos}} $2.",
 );

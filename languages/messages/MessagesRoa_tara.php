@@ -1807,7 +1807,7 @@ Arrecuèrdete de condrollà pe otre collegaminde a le template apprime de scange
 'disambiguationspage' => 'Template:disambigue',
 'disambiguations-text' => "Le pàggene seguende appondene a 'na '''pàgene de disambiguazione'''.
 'Nvece avessere appondà a 'a temateca appropriate.<br />
-'Na pàgene jè trattate cumme pàgene de disambiguazione ce tu ause 'nu template ca è appundate da [[MediaWiki:Disambiguationspage|Pàggene de disambiguazione]]",
+'Na pàgene jè trattate cumme pàgene de disambiguazione ce tu ause 'nu template ca è appundate da [[MediaWiki:Disambiguationspage]]",
 
 'doubleredirects' => 'Ridirezionaminde a doppie',
 'doubleredirectstext' => "Sta pàgene elenghe le pàggene ca se ridirezionane sus a otre pàggene de ridirezionaminde.
@@ -3906,7 +3906,6 @@ Ce nò, tu puè ausà 'u module facile aqquà sotte. 'U commende tune avène agg
 'api-error-file-too-large' => "'U file ca tu è confermate jè troppe granne.",
 'api-error-filename-tooshort' => "'U nome d'u file jè troppe curte.",
 'api-error-filetype-banned' => 'Stu tipe de file jè vietate.',
-'api-error-filetype-banned-type'=> "\$1 {{PLURAL:\$4|ète 'nu tipe de file ca non g'è permesse|sonde tipe de file ca no sonde permesse}}. {{PLURAL:\$3|'U tipe de file permesse ète|Le tipe de file permesse sonde}} \$2.",
 'api-error-filetype-missing' => "'U file jè senze 'n'estenzione.",
 'api-error-hookaborted' => "'U cangiamende ca tu stè pruève a ffà ha state inderrotte da 'n'estenzione.",
 'api-error-http' => "Errore inderne: Non ge se riesce a collegà a 'u server",
@@ -3942,4 +3941,6 @@ Ce nò, tu puè ausà 'u module facile aqquà sotte. 'U commende tune avène agg
 'duration-centuries' => '$1 {{PLURAL:$1|sechele|sechele}}',
 'duration-millennia' => '$1 {{PLURAL:$1|millennie|millennie}}',
 
+# Unknown messages
+'api-error-filetype-banned-type' => "$1 {{PLURAL:$4|ète 'nu tipe de file ca non g'è permesse|sonde tipe de file ca no sonde permesse}}. {{PLURAL:$3|'U tipe de file permesse ète|Le tipe de file permesse sonde}} $2.",
 );

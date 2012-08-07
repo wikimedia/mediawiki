@@ -3859,7 +3859,6 @@ MediaWiki ვრცელდება იმ იმედით, რომ ი�
 'api-error-file-too-large' => 'არჩეული ფაილი ძალიან დიდია.',
 'api-error-filename-tooshort' => 'ფაილის სახელი ზედმეტად მოკლეა',
 'api-error-filetype-banned' => 'ფაილის ეს ტიპი აკრძალულია',
-'api-error-filetype-banned-type'=> '$1 {{PLURAL:$4|მიუღებელი ფაილის ტიპია|მიუღებელი ფაილის ტიპია}}. მიღებული ფაილის {{PLURAL:$3|ტიპია|ტიპებია}} $2.',
 'api-error-filetype-missing' => 'ფაილს აკლია გაფართოვება.',
 'api-error-hookaborted' => 'თქვენ მიერ შემოთავაზებული ცვლილება მოინიშნა გაფართოების დოკუმენტაციაში.',
 'api-error-http' => 'აღმოჩენილია შეცდომა სერვერთან დაკავშირებისას.',
@@ -3895,4 +3894,6 @@ MediaWiki ვრცელდება იმ იმედით, რომ ი�
 'duration-centuries' => '$1 {{PLURAL:$1|საუკუნე|საუკუნე}}',
 'duration-millennia' => '$1 {{PLURAL:$1|ათასწლეული|ათასწლეული}}',
 
+# Unknown messages
+'api-error-filetype-banned-type' => '$1 {{PLURAL:$4|მიუღებელი ფაილის ტიპია|მიუღებელი ფაილის ტიპია}}. მიღებული ფაილის {{PLURAL:$3|ტიპია|ტიპებია}} $2.',
 );

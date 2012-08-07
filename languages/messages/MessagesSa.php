@@ -934,6 +934,9 @@ $2
 'noarticletext-nopermission' => 'अस्मिन् पृष्ठे अधुना किमपि न विद्यते। भवान् विकिपीडियावर्तिषु अन्येषु पृष्ठेषु इदं [[Special:Search/{{PAGENAME}}|शीर्षकम् अन्वेष्टुम् अर्हति]] 
 <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}}  related logs अन्वेष्टुम् अर्हति],
 अथवा [{{fullurl:{{FULLPAGENAME}}|action=edit}} इदं पृष्ठं स्रष्टुम् अर्हति]</span>.',
+'missing-revision' => '{{PAGENAME}} इति नामाङ्कितपुटस्य #$1 इति पुनरावृत्तिः अत्र नाश्ति । 
+पुटेन सह कालातीतानुबन्धकारणेन एतत् अभवत् ।
+विवरणम् अत्र दृश्यते ।[{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} deletion log].',
 'userpage-userdoesnotexist' => '"$1" इति प्रयोक्तृलेखा पञ्जीकृता नास्ति।
 चेद्भवान् एतत्पृष्ठं स्रष्टुमिच्छति सम्पादयितुमिच्छति वा तदा कृपया पुनरीक्षताम्।',
 'userpage-userdoesnotexist-view' => '"$1" इति प्रयोक्तृलेखा पञ्जीकृता नास्ति।',
@@ -1217,6 +1220,8 @@ You can still [$1 view this revision]",
 'editundo' => 'निष्क्रियताम्',
 'diff-multi' => '({{PLURAL:$2|योजकेन|$2 योजकैः}} कृता {{PLURAL:$1|मध्यमा आवृत्तिः|$1 मध्यमा आवृत्तयः}} न दर्शिताः ।)',
 'diff-multi-manyusers' => '({{PLURAL:$2|योजकेन|$2 योजकैः}} कृता {{PLURAL:$1|मध्यमा आवृत्तिः|$1 मध्यमा आवृत्तयः}} न दर्शिताः ।)',
+'difference-missing-revision' => '{{PLURAL:$2|One revision|$2 पुनरावृत्तेः }} व्यत्यासः ($1) {{PLURAL:$2|was|were}} न दृष्टः ।
+कारणम् अत्र दृश्यते । [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} deletion log].',
 
 # Search results
 'searchresults' => 'अन्वेषणस्य फलितानि',
@@ -2225,22 +2230,44 @@ See https://www.mediawiki.org/wiki/Manual:Image_Authorization.',
 'watchlistfor2' => 'हि $1 $2',
 'nowatchlist' => 'अवलोकनावल्यां पदार्थः नास्ति ।',
 'watchlistanontext' => 'अवलोकनपट्टिकायां पुटं दृष्टुं सम्पादयितुं वा  $1  करोतु ।',
+'watchnologin' => 'न नामाभिलितम्',
+'watchnologintext' => 'अवलोकनावलीं परिवर्तयितुं भवता नामाभिलेखनं करणीयम् ।[[Special:UserLogin|logged in]]',
+'addwatch' => 'अवलोकनावलीं योजयतु ।',
 'addedwatchtext' => 'भवतः [[Special:Watchlist|ध्यानसूचिकायां]] "[[:$1]]" इत्येतत् योजितमस्ति।
 इदानींप्रभृति अस्मिन् पृष्ठे तथा अस्य चर्चापृष्ठे सन्तः परिवर्तनानि भवतः निरीक्षासूचिकायां द्रक्ष्यन्ते तथा च [[Special:RecentChanges|सद्यःपरिवर्तितानां सूचिकायां]] इदं पृष्ठं स्थूलाक्षरैः द्रक्ष्यते, यस्मात् भवान् सरलतया इदं पश्यतु <p>निरीक्षासूचिकातः निराकर्तुमिच्छति चेत्, "मा निरीक्षताम्" इत्यसमिन् नोदयतु।',
+'removewatch' => 'अवलोकनावलीतः अपनयतु ।',
 'removedwatchtext' => '"[[:$1]]" इति पृष्ठं [[Special:Watchlist|भवतः निरीक्षासूचिकातः]] निराकृतमस्ति।',
 'watch' => 'निरीक्षताम्',
 'watchthispage' => 'इदं पृष्ठं निरीक्षताम्',
 'unwatch' => 'मा निरीक्षताम्',
+'unwatchthispage' => 'अवलोकनेन अलम् ।',
+'notanarticle' => 'न आधेयं पुटम् ।',
+'notvisiblerev' => 'अन्ययोजकेन कृतम् अवतरणम् अपमर्जितम् ।',
+'watchnochange' => 'दर्शितावधौ अवलोकितपदार्थाः न सम्पादिताः ।',
 'watchlist-details' => '{{PLURAL:$1|$1 पृष्ठं|$1 पृष्ठानि}} भवतः अवेक्षणसूच्यां सन्ति, सम्भाषणपृष्ठानि नात्र गणितानि।',
+'wlheader-enotif' => '* विद्युन्मानपत्रस्य सूचनाः सक्रियाः ।',
+'wlheader-showupdated' => '* भवतः सन्दर्शनस्य पश्चात् परिवर्तितानि पुटानि स्थूलाक्षरैः निर्दिष्टानि ।',
+'watchmethod-recent' => 'अवलोकितपुटानां सद्यः सम्पादनस्य परीक्षणम् ।',
+'watchmethod-list' => 'सद्यः सम्पादनार्थम् अवलोकितपुटानां परीक्षणम् ।',
+'watchlistcontains' => 'भवतः अवलोकनावली $1 युक्तास्ति ।{{PLURAL:$1|page|pages}}.',
+'iteminvalidname' => "समस्या  '$1' इत्यनेन अस्ति । अमान्यं नाम ।",
+'wlnote' => "अधस्तात् {{PLURAL:$1|'''1''' परिवर्तनमस्ति|अन्तिमानि '''$1''' परिवर्तनानि सन्ति}},{{PLURAL:$2|गते दिवसे|'''$2''' गतेषु दिवसेषु}}, $5, $4 इति समये।",
 'wlshowlast' => 'अन्तिमानि ($1 होराः $2 दिनानि) $3 इति दर्श्यन्ताम्',
 'watchlist-options' => 'अवेक्षणसूच्याः विकल्पाः',
 
 # Displayed when you click the "watch" button and it is in the process of watching
 'watching' => 'निरीक्षते...',
 'unwatching' => 'निरीक्षाम् अपाकरोति...',
+'watcherrortext' => ' "$1" कृते अवलोकनावल्याः व्यवस्थापरिवर्तनावसरे दोषः संविधितः ।',
 
+'enotif_mailer' => '{{SITENAME}} सूचितः विद्युन्मानपत्रप्रेषकः ।',
+'enotif_reset' => 'सन्दर्शितानि इति सर्वपुटानि अङ्कयतु ।',
 'enotif_newpagetext' => 'इदम् एकं नवीनपृष्ठम्',
 'enotif_impersonal_salutation' => '{{SITENAME}} योजक',
+'changed' => 'परिवर्तितम् ।',
+'created' => 'सृष्टम् ।',
+'enotif_subject' => '{{SITENAME}}  $ पुटशीर्षकं $ परिवर्तितम्$ इत्यनेन ।',
+'enotif_lastvisited' => 'भवतः पूवसन्दर्शनस्य पश्चात् सवृत्तपरिवर्तनार्थं $1 पश्यतु ।',
 
 # Delete
 'deletepage' => 'पृष्ठं निराकरोतु।',
