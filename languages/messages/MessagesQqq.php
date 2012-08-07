@@ -426,6 +426,7 @@ Also used as title of [[Special:Search]] page in [[Special:SpecialPages]].
 
 {{Identical|Delete}}',
 'delete-delete' => 'Legend label for the Delete page fieldset.',
+'delete-talk' => 'Label for the checkbox allowing users to simultaneously delete an article's talk page when deleting the article.',
 'deletethispage' => 'In the skins Classic/Standard, Cologne Blue and Nostalgia this is the text for link to delete the page in admin view.
 {{Identical|Delete this page}}',
 'undelete_short' => "It is tab label. It's really can be named ''nstab-undelete''.",

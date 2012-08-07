@@ -80,6 +80,15 @@ class DeleteAction extends FormAction {
 			);
 		}
 
+		$namespace = $this->getTitle()->getNamespace();
+		if( !MWNamespace::isTalk( $namespace ) ) {
+			$formDescriptor['DeleteTalk'] = array(
+				'section' => 'delete',
+				'type' => 'check',
+				'label-message' => 'delete-talk'
+			);
+		}
+
 		if( $user->isAllowed( 'suppressrevision' ) ) {
 			$formDescriptor['Suppress'] = array(
 				'section' => 'delete',
@@ -185,8 +194,29 @@ class DeleteAction extends FormAction {
 
 		if( !$error->isGood() ) {
 			// Deletion was unsuccessful.
-			$title = wfMessage( 'cannotdelete-title', $this->getTitle()->getPrefixedText() );
-			throw new ErrorPageError( $title, $error->getMessage() );
+			$msgTitle = wfMessage( 'cannotdelete-title', $this->getTitle()->getPrefixedText() );
+			throw new ErrorPageError( $msgTitle, $error->getMessage() );
+		}
+
+		// If set, delete the talk page.
+		if( $data['DeleteTalk'] && !MWNamespace::isTalk( $title->getNamespace() ) ) {
+			$talkTitle = $title->getTalkPage();
+
+	                // Make sure talk page exists. If it doesn't, ignore it.
+			$dbw = wfGetDB( DB_MASTER );
+			$conds = $talkTitle->pageCond();
+			$latest = $dbw->selectField( 'page', 'page_latest', $conds, __METHOD__ );
+
+			if ( $latest !== false ) {
+				// Talk page exists, delete it.
+				$talkPage = Article::newFromTitle( $talkTitle, $this->getContext() );
+				$error = $talkPage->delete( $data['DeleteReasonList'][0] );
+
+				if( !$error->isGood() ) {
+					$msgTitle = wfMessage( 'cannotdelete-title', $talkTitle->getPrefixedText() );
+					throw new ErrorPageError( $msgTitle, $error->getMessage() );
+				}
+			}
 		}
 
 		return true;

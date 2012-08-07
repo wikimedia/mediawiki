@@ -829,6 +829,7 @@ XHTML id names.
 'editthispage'      => 'Edit this page',
 'create-this-page'  => 'Create this page',
 'delete-delete'     => 'Delete',
+'delete-talk'       => 'Delete the talk page as well (if it exists)',
 'deletethispage'    => 'Delete this page',
 'undelete_short'    => 'Undelete {{PLURAL:$1|one edit|$1 edits}}',
 'viewdeleted_short' => 'View {{PLURAL:$1|one deleted edit|$1 deleted edits}}',
