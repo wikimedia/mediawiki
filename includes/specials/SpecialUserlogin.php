@@ -1198,6 +1198,7 @@ class LoginForm extends SpecialPage {
 		$query = array( 'wpCookieCheck' => $type );
 		if ( $this->mReturnTo ) {
 			$query['returnto'] = $this->mReturnTo;
+			$query['returntoquery'] = $this->mReturnToQuery;
 		}
 		$check = $titleObj->getFullURL( $query );
 
