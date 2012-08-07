@@ -3714,6 +3714,17 @@ $wgBlockDisablesLogin = false;
 $wgWhitelistRead = false;
 
 /**
+ * Pages anonymous user may see, set as an array of regular expressions.
+ *
+ * Example:
+ * $wgWhitelistReadRegexp = array ( "/^Special.*/", "@^User.*@");
+ *
+ * @note This will only work if $wgGroupPermissions['*']['read'] is false --
+ * see below. Otherwise, ALL pages are accessible, regardless of this setting.
+ */
+$wgWhitelistReadRegexp = false;
+
+/**
  * Should editors be required to have a validated e-mail
  * address before being allowed to edit?
  */
