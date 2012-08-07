@@ -1989,7 +1989,7 @@ class Title {
 	 * @return Array list of errors
 	 */
 	private function checkReadPermissions( $action, $user, $errors, $doExpensiveQueries, $short ) {
-		global $wgWhitelistRead, $wgGroupPermissions, $wgRevokePermissions;
+		global $wgWhitelistRead, $wgWhitelistReadRegexp, $wgGroupPermissions, $wgRevokePermissions;
 		static $useShortcut = null;
 
 		# Initialize the $useShortcut boolean, to determine if we can skip quite a bit of code below
@@ -2025,7 +2025,7 @@ class Title {
 		} elseif ( $this->isSpecial( 'Userlogin' )
 			|| $this->isSpecial( 'ChangePassword' )
 			|| $this->isSpecial( 'PasswordReset' )
-		) {
+			) {
 			# Always grant access to the login page.
 			# Even anons need to be able to log in.
 			$whitelisted = true;
@@ -2034,7 +2034,6 @@ class Title {
 			# Only do these checks is there's something to check against
 			$name = $this->getPrefixedText();
 			$dbName = $this->getPrefixedDBKey();
-
 			// Check for explicit whitelisting with and without underscores
 			if ( in_array( $name, $wgWhitelistRead, true ) || in_array( $dbName, $wgWhitelistRead, true ) ) {
 				$whitelisted = true;
@@ -2051,6 +2050,20 @@ class Title {
 				if ( $name !== false ) {
 					$pure = SpecialPage::getTitleFor( $name )->getPrefixedText();
 					if ( in_array( $pure, $wgWhitelistRead, true ) ) {
+						$whitelisted = true;
+					}
+				}
+			}
+		} elseif ( is_array( $wgWhitelistReadRegexp ) && count( $wgWhitelistReadRegexp ) ) {
+			$name = $this->getPrefixedText();
+			$dbName = $this->getPrefixedDBKey();
+			// Check for regex whitelisting
+			foreach ( $wgWhitelistReadRegexp as $listItem ) {
+				// If the listItem starts and ends with forward slashes, we assume
+				// it is intended to be a regex match
+				if ( preg_match( '/^\/.*\/[ui]*$/', $listItem ) ) {
+					if ( preg_match( $listItem.'u' , $name )
+					|| preg_match( $listItem.'u' , $dbName ) ) {
 						$whitelisted = true;
 					}
 				}
