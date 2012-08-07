@@ -77,7 +77,7 @@ class UploadFromChunks extends UploadFromFile {
 
 		// Output a copy of this first to chunk 0 location:
 		$status = $this->outputChunk( $this->mLocalFile->getPath() );
-		
+
 		// Update db table to reflect initial "chunk" state 
 		$this->updateChunkStatus();
 		return $this->mLocalFile;
@@ -91,7 +91,7 @@ class UploadFromChunks extends UploadFromFile {
 		$this->mUpload = $webRequestUpload;
 		// Get the chunk status form the db: 
 		$this->getChunkStatus();
-		
+
 		$metadata = $this->stash->getMetadata( $key );
 		$this->initializePathInfo( $name,
 			$this->getRealPath( $metadata['us_path'] ),
@@ -99,7 +99,7 @@ class UploadFromChunks extends UploadFromFile {
 			false
 		);
 	}
-	
+
 	/**
 	 * Append the final chunk and ready file for parent::performUpload()
 	 * @return FileRepoStatus
@@ -194,7 +194,7 @@ class UploadFromChunks extends UploadFromFile {
 		}
 		return $status;
 	}
-	
+
 	/**
 	 * Update the chunk db table with the current status: 
 	 */
@@ -214,6 +214,7 @@ class UploadFromChunks extends UploadFromFile {
 			__METHOD__
 		);
 	}
+
 	/**
 	 * Get the chunk db state and populate update relevant local values
 	 */
@@ -238,6 +239,7 @@ class UploadFromChunks extends UploadFromFile {
 			$this->mVirtualTempPath = $row->us_path;
 		}
 	}
+
 	/**
 	 * Get the current Chunk index 
 	 * @return Integer index of the current chunk
@@ -248,7 +250,7 @@ class UploadFromChunks extends UploadFromFile {
 		}
 		return 0;
 	}
-	
+
 	/**
 	 * Gets the current offset in fromt the stashedupload table 
 	 * @return Integer current byte offset of the chunk file set 
@@ -259,7 +261,7 @@ class UploadFromChunks extends UploadFromFile {
 		}
 		return 0;
 	}
-	
+
 	/**
 	 * Output the chunk to disk
 	 * 

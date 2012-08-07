@@ -415,7 +415,7 @@ class DBLockManager extends LockManager {
 	 * Make sure remaining locks get cleared for sanity
 	 */
 	function __destruct() {
-		foreach ( $this->conns as $lockDb => $db ) {
+		foreach ( $this->conns as $db ) {
 			if ( $db->trxLevel() ) { // in transaction
 				try {
 					$db->rollback( __METHOD__ ); // finish transaction and kill any rows

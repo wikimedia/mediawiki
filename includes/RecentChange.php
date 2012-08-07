@@ -246,7 +246,7 @@ class RecentChange {
 			if ( wfRunHooks( 'AbortEmailNotification', array($editor, $title) ) ) {
 				# @todo FIXME: This would be better as an extension hook
 				$enotif = new EmailNotification();
-				$status = $enotif->notifyOnPageChange( $editor, $title,
+				$enotif->notifyOnPageChange( $editor, $title,
 					$this->mAttribs['rc_timestamp'],
 					$this->mAttribs['rc_comment'],
 					$this->mAttribs['rc_minor'],

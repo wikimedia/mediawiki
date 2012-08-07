@@ -187,7 +187,6 @@ class LogFormatter {
 	public function getIRCActionText() {
 		$this->plaintext = true;
 		$this->irctext = true;
-		$text = $this->getActionText();
 
 		$entry = $this->entry;
 		$parameters = $entry->getParameters();

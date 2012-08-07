@@ -49,7 +49,6 @@ class ApiSetNotificationTimestamp extends ApiBase {
 		$args = array_merge( array( $params, 'entirewatchlist' ), array_keys( $pageSet->getAllowedParams() ) );
 		call_user_func_array( array( $this, 'requireOnlyOneParameter' ), $args );
 
-		$db = $this->getDB();
 		$dbw = $this->getDB( DB_MASTER );
 
 		$timestamp = null;
@@ -136,7 +135,6 @@ class ApiSetNotificationTimestamp extends ApiBase {
 			}
 
 			// Now, put the valid titles into the result
-			$pages = array();
 			foreach ( $pageSet->getTitles() as $title ) {
 				$ns = $title->getNamespace();
 				$dbkey = $title->getDBkey();
