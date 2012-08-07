@@ -2087,7 +2087,7 @@ class Title {
 	 * @return Array list of errors
 	 */
 	private function checkReadPermissions( $action, $user, $errors, $doExpensiveQueries, $short ) {
-		global $wgWhitelistRead, $wgRevokePermissions;
+		global $wgWhitelistRead, $wgWhitelistReadRegexp, $wgRevokePermissions;
 		static $useShortcut = null;
 
 		# Initialize the $useShortcut boolean, to determine if we can skip quite a bit of code below
@@ -2151,6 +2151,17 @@ class Title {
 					if ( in_array( $pure, $wgWhitelistRead, true ) ) {
 						$whitelisted = true;
 					}
+				}
+			}
+		}
+
+		if( !$whitelisted && is_array( $wgWhitelistReadRegexp ) && !empty( $wgWhitelistReadRegexp ) ) {
+			$name = $this->getPrefixedText();
+			// Check for regex whitelisting
+			foreach ( $wgWhitelistReadRegexp as $listItem ) {
+				if ( preg_match( $listItem, $name ) ) {
+					$whitelisted = true;
+					break;
 				}
 			}
 		}
