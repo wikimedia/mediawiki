@@ -1997,6 +1997,7 @@ Merk at andre internettsider kan ha direkte lenkjer til filer, og difor kan file
 'alllogstext' => 'Kombinert vising av alle loggane på {{SITENAME}}. Du kan avgrense resultatet ved å velje loggtype, brukarnamn eller den sida som er påverka (hugs å skilje mellom store og små bokstavar)',
 'logempty' => 'Ingen treff i loggane.',
 'log-title-wildcard' => 'Søk i titlar som byrjar med denne teksten',
+'showhideselectedlogentries' => 'Vis/gøym valde loggoppføringar',
 
 # Special:AllPages
 'allpages' => 'Alle sider',
@@ -3605,7 +3606,6 @@ Skriv inn filnamnet utan «{{ns:file}}:»-prefikset.',
 'api-error-file-too-large' => 'Fila du sende var for stor.',
 'api-error-filename-tooshort' => 'Filnamnet er for stutt.',
 'api-error-filetype-banned' => 'Denne filtypen er ikkje tillaten.',
-'api-error-filetype-banned-type'=> "$1 er ikkje ein tillaten filtype. {{PLURAL:$3|Tillaten filtype er|Tillatne filtypar er}} $2.",
 'api-error-filetype-missing' => 'Fila saknar ei ending.',
 'api-error-http' => 'Intern feil: kan ikkje kopla til tenaren.',
 'api-error-illegal-filename' => 'Filnamnet er ikkje tillate.',
@@ -3635,4 +3635,6 @@ Skriv inn filnamnet utan «{{ns:file}}:»-prefikset.',
 'duration-centuries' => '$1 {{PLURAL:$1|hundreår|hundreår}}',
 'duration-millennia' => '$1 {{PLURAL:$1|tusenår|tusenår}}',
 
+# Unknown messages
+'api-error-filetype-banned-type' => '$1 er ikkje ein tillaten filtype. {{PLURAL:$3|Tillaten filtype er|Tillatne filtypar er}} $2.',
 );

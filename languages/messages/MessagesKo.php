@@ -339,7 +339,7 @@ $messages = array(
 # User preference toggles
 'tog-underline' => '링크에 밑줄 표시하기:',
 'tog-justify' => '문단 정렬하기',
-'tog-hideminor' => '사소한 편집을 최근 바뀜에서 숨기기',
+'tog-hideminor' => '최근 바뀜에서 사소한 편집을 숨기기',
 'tog-hidepatrolled' => '최근 바뀜에서 검토한 편집을 숨기기',
 'tog-newpageshidepatrolled' => '새 문서 목록에서 검토한 문서를 숨기기',
 'tog-extendwatchlist' => '주시문서 목록에서 가장 최근의 편집만이 아닌 모든 편집을 보기',
@@ -1012,6 +1012,10 @@ IP 주소는 여러 사용자가 공유할 수 있습니다.
 'noarticletext-nopermission' => '이 문서가 존재하지 않습니다.
 이 문서와 제목이 비슷한 문서가 있는지 [[Special:Search/{{PAGENAME}}|검색]]하거나,
 이 문서에 관련된 <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} 기록]을 확인할 수 있습니다.</span>',
+'missing-revision' => '"{{PAGENAME}}"이라는 문서의 #$1판이 존재하지 않습니다.
+
+이 문제는 주로 삭제된 문서를 가리키는 오래된 문서 역사 링크로 인해 발생합니다.
+자세한 내용은 [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} 삭제 기록]에서 확인할 수 있습니다.',
 'userpage-userdoesnotexist' => '"$1" 계정은 등록되어 있지 않습니다.
 이 문서를 만들거나 편집하려면 계정이 존재 하는지 확인해주세요.',
 'userpage-userdoesnotexist-view' => '"$1" 사용자 계정은 등록되지 않았습니다.',
@@ -1133,7 +1137,7 @@ $2개 보다 적게 써야 하지만 지금은 $1개를 쓰고 있습니다.",
 일부 틀은 포함되지 않을 수 있습니다.",
 'post-expand-template-inclusion-category' => '사용한 틀의 크기가 지나치게 큰 문서의 목록',
 'post-expand-template-argument-warning' => "'''경고:''' 이 문서는 전개 후 크기가 너무 큰 틀 변수가 하나 이상 포함되어 있습니다.
-이 변수들은 생략되었습니다.",
+이 변수는 생략했습니다.",
 'post-expand-template-argument-category' => '생략된 틀 변수를 포함한 문서',
 'parser-template-loop-warning' => '재귀적인 틀이 발견되었습니다: [[$1]]',
 'parser-template-recursion-depth-warning' => '틀 반복 횟수 제한을 초과함($1)',
@@ -1333,6 +1337,10 @@ $1",
 'editundo' => '편집 취소',
 'diff-multi' => '({{PLURAL:$2|한 사용자의|사용자 $2명의}} 중간의 편집 $1개 숨겨짐)',
 'diff-multi-manyusers' => '({{PLURAL:$2|한 사용자의|사용자 $2명 이상의}} 중간의 편집 $1개 숨겨짐)',
+'difference-missing-revision' => '문서 비교에서 {{PLURAL:$2|하나|$2개}}의 판($1)을 찾을 수 없습니다.
+
+이 문제는 주로 삭제된 문서를 가리키는 오래된 문서 비교 링크로 인해 발생합니다.
+자세한 내용은 [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} 삭제 기록]에서 확인할 수 있습니다.',
 
 # Search results
 'searchresults' => '찾기 결과',
@@ -1940,7 +1948,7 @@ URL이 올바르고 접근 가능한지를 확인하고 다시 시도해주세�
 
 # Special:UploadStash
 'uploadstash' => '파일 올리기 임시 저장',
-'uploadstash-summary' => '이 문서는 위키에 등록되지는 않았지만 올리는 과정 중에 있는 파일을 열람할 수 있습니다. 이 파일들은 올린이 외에는 볼 수 없습니다.',
+'uploadstash-summary' => '이 문서는 위키에 등록되지는 않았지만 올리는 과정 중에 있는 파일을 접근할 수 있습니다. 이 파일은 올린이 외에는 볼 수 없습니다.',
 'uploadstash-clear' => '임시 저장한 파일 제거하기',
 'uploadstash-nofiles' => '임시 저장한 파일이 없습니다.',
 'uploadstash-badtoken' => '이 동작을 수행하는 데 실패했습니다. 편집 토큰이 만료되었을 가능성이 있습니다. 다시 시도하세요.',
@@ -2130,8 +2138,8 @@ URL이 맞고 해당 웹사이트가 작동하는지 확인해주세요.',
 
 'disambiguations' => '동음이의 문서를 가리키는 문서 목록',
 'disambiguationspage' => 'Template:disambig',
-'disambiguations-text' => "다음의 문서들은 '''동음이의 문서'''를 가리키고 있습니다.
-그 링크를 다른 적절한 문서로 연결해 주어야 합니다.<br />
+'disambiguations-text' => "다음의 문서는 적어도 하나 이상 '''동음이의 문서'''를 가리키고 있습니다.
+그 링크는 다른 적절한 문서로 연결할 필요가 있습니다.<br />
 [[MediaWiki:Disambiguationspage]]에서 링크된 틀을 사용하는 문서를 동음이의 문서로 간주합니다.",
 
 'doubleredirects' => '이중 넘겨주기 목록',
@@ -2199,7 +2207,7 @@ URL이 맞고 해당 웹사이트가 작동하는지 확인해주세요.',
 'protectedpagestext' => '다음의 문서는 이동/편집이 불가능하도록 보호되어 있습니다.',
 'protectedpagesempty' => '보호되어 있는 문서가 없습니다.',
 'protectedtitles' => '만들기 보호된 표제어 목록',
-'protectedtitlestext' => '다음 표제어들은 만들기가 금지되어 있습니다.',
+'protectedtitlestext' => '다음 표제어는 만들기가 금지되어 있습니다.',
 'protectedtitlesempty' => '해당 조건에 맞는 만들기 금지 표제어가 없습니다.',
 'listusers' => '사용자 목록',
 'listusers-editsonly' => '기여가 있는 사용자만 보기',
@@ -2213,7 +2221,7 @@ URL이 맞고 해당 웹사이트가 작동하는지 확인해주세요.',
 'movethispage' => '문서 이동하기',
 'unusedimagestext' => '다음은 어떤 문서도 사용하지 않는 파일의 목록입니다.
 다른 사이트에서 URL 접근을 통해 파일을 사용할 수 있기 때문에, 아래 목록에 있는 파일도 실제로 사용 중일 가능성이 있다는 점을 주의해주세요.',
-'unusedcategoriestext' => '사용하지 않는 분류 문서들의 목록입니다.',
+'unusedcategoriestext' => '사용하지 않는 분류 문서의 목록입니다.',
 'notargettitle' => '해당하는 문서 없음',
 'notargettext' => '기능을 수행할 대상 문서나 사용자를 지정하지 않았습니다.',
 'nopagetitle' => '해당 문서 없음',
@@ -2270,7 +2278,7 @@ URL이 맞고 해당 웹사이트가 작동하는지 확인해주세요.',
 'categoriespagetext' => '{{PLURAL:$1}}문서나 자료를 담고 있는 분류 목록입니다.
 [[Special:UnusedCategories|사용되지 않는 분류]]는 여기에 보이지 않습니다.
 [[Special:WantedCategories|필요한 분류]]도 참고하세요.',
-'categoriesfrom' => '다음으로 시작하는 분류들을 보여주기:',
+'categoriesfrom' => '다음으로 시작하는 분류를 보여주기:',
 'special-categories-sort-count' => '항목 갯수 순으로 정렬',
 'special-categories-sort-abc' => '알파벳순으로 정렬',
 
@@ -2386,7 +2394,7 @@ URL이 맞고 해당 웹사이트가 작동하는지 확인해주세요.',
 'watchnochange' => '주어진 기간 중에 바뀐 주시문서가 없습니다.',
 'watchlist-details' => '토론을 제외하고 문서 $1개를 주시하고 있습니다.',
 'wlheader-enotif' => '* 이메일 알림 기능이 활성화되었습니다.',
-'wlheader-showupdated' => "* 마지막으로 방문한 이후에 바뀐 문서들은 '''굵은 글씨'''로 표시됩니다.",
+'wlheader-showupdated' => "* 마지막으로 방문한 이후에 바뀐 문서는 '''굵은 글씨'''로 표시됩니다.",
 'watchmethod-recent' => '주시된 문서를 확인하고자 최근 편집을 확인',
 'watchmethod-list' => '최근 편집을 확인하고자 주시된 문서 확인',
 'watchlistcontains' => '문서 $1개를 주시하고 있습니다.',
@@ -2581,7 +2589,7 @@ $UNWATCHURL
 'undeleterevdel' => '복구하려는 문서의 최신판이 삭제되어 있는 경우 문서를 복구시킬 수 없습니다.
 이러한 경우, 삭제된 최신판 문서의 체크박스를 선택 해제하거나 숨김을 해제해야 합니다.',
 'undeletehistorynoadmin' => '이 문서는 삭제되었습니다.
-삭제된 이유와 삭제되기 전에 이 문서를 편집한 사용자들이 아래에 나와 있습니다.
+삭제된 이유와 삭제되기 전에 이 문서를 편집한 사용자가 아래에 나와 있습니다.
 삭제된 문서의 내용을 보려면 관리자 권한이 필요합니다.',
 'undelete-revision' => '삭제된 $1 문서의 $4 $5 버전 (기여자 $3):',
 'undeleterevision-missing' => '해당 판이 잘못되었거나 존재하지 않습니다.
@@ -2639,7 +2647,7 @@ $1',
 'year' => '연도:',
 
 'sp-contributions-newbies' => '새 사용자의 기여만 보기',
-'sp-contributions-newbies-sub' => '새 사용자들의 기여',
+'sp-contributions-newbies-sub' => '새 사용자의 기여',
 'sp-contributions-newbies-title' => '새 사용자의 기여',
 'sp-contributions-blocklog' => '차단 기록',
 'sp-contributions-deleted' => '삭제된 기여 목록',
@@ -4073,7 +4081,6 @@ $5
 'api-error-file-too-large' => '당신이 올리려는 파일이 너무 큽니다.',
 'api-error-filename-tooshort' => '파일 이름이 너무 짧습니다.',
 'api-error-filetype-banned' => '이런 형식의 파일은 올릴 수 없습니다.',
-'api-error-filetype-banned-type'=> '{{PLURAL:$3$4}}$1 형식의 파일은 올릴 수 없습니다. $2 형식만 사용할 수 있습니다.',
 'api-error-filetype-missing' => '파일 이름에 확장자가 없습니다.',
 'api-error-hookaborted' => '당신이 시도한 수정이 확장 기능 훅에 의해 중단되었습니다.',
 'api-error-http' => '내부 오류: 서버에 연결할 수 없습니다.',
@@ -4109,4 +4116,6 @@ $5
 'duration-centuries' => '$1{{PLURAL:$1|세기}}',
 'duration-millennia' => '$1{{PLURAL:$1|천년}}',
 
+# Unknown messages
+'api-error-filetype-banned-type' => '{{PLURAL:$3$4}}$1 형식의 파일은 올릴 수 없습니다. $2 형식만 사용할 수 있습니다.',
 );

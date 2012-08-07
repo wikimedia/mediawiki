@@ -371,9 +371,9 @@ $messages = array(
 'print' => 'Udskriv',
 'view' => 'Vis',
 'edit' => 'Redigér',
-'create' => 'opret',
+'create' => 'Opret',
 'editthispage' => 'Redigér side',
-'create-this-page' => 'opret ny side',
+'create-this-page' => 'Opret denne side',
 'delete' => 'Slet',
 'deletethispage' => 'Slet side',
 'undelete_short' => 'Fortryd sletning af {{PLURAL:$1|$1 version|$1 versioner}}',
@@ -411,8 +411,8 @@ $messages = array(
 'jumptonavigation' => 'Navigation',
 'jumptosearch' => 'Søgning',
 'view-pool-error' => 'Beklager, men serverne er i øjeblikket overbelastede.
-For mange brugere prøver at vise denne side.
-Vent et øjeblik, før du prøver at vise denne side ige.
+For mange brugere prøver at se denne side.
+Vent et øjeblik, før du prøver at besøge denne side igen.
 
 $1',
 'pool-timeout' => 'Timeout mens man venter på låsningen',
@@ -512,7 +512,7 @@ Den seneste forsøgte databaseforespørgsel var:
 "$1"
 fra funktionen "$2".
 Databasen returnerede fejlen "$3: $4"',
-'laggedslavemode' => 'Bemærk: Den viste side indeholder muligvis ikke de nyeste ændringer.',
+'laggedslavemode' => "'''Bemærk:''' Den viste side indeholder muligvis ikke de nyeste ændringer.",
 'readonly' => 'Databasen er skrivebeskyttet',
 'enterlockreason' => 'Skriv en begrundelse for skrivebeskyttelsen, med samt en vurdering af, hvornår skrivebeskyttelsen ophæves igen',
 'readonlytext' => 'Databasen er midlertidigt skrivebeskyttet. Forsøg venligst senere.
@@ -598,12 +598,13 @@ Din konto er blevet oprettet. Glem ikke at personliggøre dine [[Special:Prefere
 'remembermypassword' => 'Husk mit brugernavn på denne computer (højst $1 {{PLURAL:$1|dag|dage}})',
 'securelogin-stick-https' => 'Behold forbindelsen til HTTPS efter login',
 'yourdomainname' => 'Dit domænenavn',
+'password-change-forbidden' => 'Du kan ikke ændre adgangskoder på denne wiki.',
 'externaldberror' => 'Der er opstået en fejl i en ekstern adgangsdatabase, eller du har ikke rettigheder til at opdatere denne.',
 'login' => 'Log på',
 'nav-login-createaccount' => 'Opret en konto eller log på',
 'loginprompt' => 'Du skal have cookies slået til for at kunne logge på {{SITENAME}}.',
 'userlogin' => 'Opret en konto eller log på',
-'userloginnocreate' => 'Log ind',
+'userloginnocreate' => 'Log på',
 'logout' => 'Log af',
 'userlogout' => 'Log af',
 'notloggedin' => 'Ikke logget på',
@@ -769,7 +770,7 @@ Midlertidig adgangskode: $2',
 'summary' => 'Beskrivelse:',
 'subject' => 'Emne/overskrift:',
 'minoredit' => 'Dette er en mindre ændring.',
-'watchthis' => 'Overvåg denne artikel',
+'watchthis' => 'Overvåg denne side',
 'savearticle' => 'Gem side',
 'preview' => 'Forhåndsvisning',
 'showpreview' => 'Forhåndsvisning',
@@ -1892,7 +1893,9 @@ Husk at kontrollere for andre henvisninger til skabelonerne før de slettes.',
 
 'disambiguations' => 'Sider, der henviser til flertydige titler',
 'disambiguationspage' => 'Template:Flertydig',
-'disambiguations-text' => 'De følgende sider henviser til en flertydig titel. De bør henvise direkte til det passende emne i stedet. En side behandles som en side med en flertydig titel hvis den bruger en skabelon som er henvist til fra [[MediaWiki:Disambiguationspage]].',
+'disambiguations-text' => "De følgende sider henviser til mindst en side med en '''flertydig titel'''.
+De bør henvise direkte til et mere passende emne i stedet.<br />
+En side behandles som en side med en flertydig titel hvis den bruger en skabelon som der er henvist til fra [[MediaWiki:Disambiguationspage]].",
 
 'doubleredirects' => 'Dobbelte omdirigeringer',
 'doubleredirectstext' => 'Dette er en liste over sider som omdirigerer til andre omdirigeringssider.
@@ -3729,7 +3732,6 @@ Ellers kan du bruge den enkle formular nedenfor. Din kommentar vil blive tilføj
 'api-error-file-too-large' => 'Den fil du indsendte var for stor.',
 'api-error-filename-tooshort' => 'Filnavnet er for kort.',
 'api-error-filetype-banned' => 'Denne type fil er ikke tilladt.',
-'api-error-filetype-banned-type'=> '$1 er {{PLURAL:$4|en uønsket filtype|uønskede filtyper}}. {{PLURAL:$3|Den tilladte filtype|De tilladte filtyper}} er $2.',
 'api-error-filetype-missing' => 'Filen mangler en filendelse.',
 'api-error-hookaborted' => 'Ændringen, du forsøgte at gøre, blev afbrudt af en udvidelsestilkobling.',
 'api-error-http' => 'Intern fejl: Kan ikke forbinde til serveren.',
@@ -3765,4 +3767,6 @@ Ellers kan du bruge den enkle formular nedenfor. Din kommentar vil blive tilføj
 'duration-centuries' => '$1 {{PLURAL:$1|århundrede|århundreder}}',
 'duration-millennia' => '$1 {{PLURAL:$1|årtusind|årtusinder}}',
 
+# Unknown messages
+'api-error-filetype-banned-type' => '$1 er {{PLURAL:$4|en uønsket filtype|uønskede filtyper}}. {{PLURAL:$3|Den tilladte filtype|De tilladte filtyper}} er $2.',
 );

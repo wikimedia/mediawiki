@@ -746,6 +746,10 @@ o [{{fullurl:{{FULLPAGENAME}}|action=edit}} editar esta páxina equí]</span>.',
 'noarticletext-nopermission' => 'Nestos momentos nun hai testu nesta páxina.
 Pues [[Special:Search/{{PAGENAME}}|guetar esti títulu de páxina]] n\'otres páxines,
 o <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} guetar los rexistros rellacionaos]</span>.',
+'missing-revision' => 'La revisión #$1 de la páxina llamada "{{PAGENAME}}" nun esiste.
+
+De vezu la causa d\'esto ye siguir un enllaz antiguu del historial a una páxina que se desanició.
+Se puen alcontrar más detalles nel [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} rexistru de desanicios].',
 'userpage-userdoesnotexist' => "La cuenta d'usuariu «$1» nun ta rexistrada.
 Por favor comprueba si quies crear/editar esta páxina.",
 'userpage-userdoesnotexist-view' => "La cuenta d'usuariu «$1» nun ta rexistrada.",
@@ -1060,6 +1064,10 @@ Asegúrate de qu'esti cambéu caltenga la continuidá del históricu de la páxi
 'editundo' => 'esfacer',
 'diff-multi' => "({{PLURAL:$1|Nun s'amuesa 1 revisión intermedia|Nun s'amuesen $1 revisiones intermedies}} {{PLURAL:$2|d'un usuariu|de $2 usuarios}} )",
 'diff-multi-manyusers' => "({{PLURAL:$1|Nun s'amuesa una revisión intermedia|Nun s'amuesen $1 revisiones intermedies}} de más de $2 {{PLURAL:$2|usuariu|usuarios}})",
+'difference-missing-revision' => "{{PLURAL:$2|Nun s'alcontró|Nun s'alcontraron}} {{PLURAL:$2|una revisión|$2 revisiones}} d'esta diferencia ($1).
+
+De vezu la causa d'esto ye siguir un enllaz de diferencia antiguu a una páxina que se desanició.
+Se puen alcontrar más detalles nel [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} rexistru de desanicios].",
 
 # Search results
 'searchresults' => 'Resultaos de la gueta',
@@ -1847,7 +1855,8 @@ Alcuérdate de comprobar otros enllaces a les plantíes enantes d'esborrales.",
 
 'disambiguations' => "Páxines qu'enllacen con páxines de dixebra",
 'disambiguationspage' => 'Template:dixebra',
-'disambiguations-text' => "Les siguientes páxines enllacien a una '''páxina de dixebra'''. En cuenta d'ello habríen enllaciar al artículu apropiáu.<br />Una páxina considérase de dixebra si usa una plantía que tea enllaciada dende [[MediaWiki:Disambiguationspage]]",
+'disambiguations-text' => "Les siguientes páxines contienen polo menos un enllaz a una '''páxina de dixebra'''. En cuenta d'ello habríen enllaciar a una páxina más apropiada.<br />
+Una páxina tratase como una páxina de dixebra si usa una plantía que tea enllaciada dende [[MediaWiki:Disambiguationspage]]",
 
 'doubleredirects' => 'Redireiciones dobles',
 'doubleredirectstext' => 'Esta páxina llista páxines que redireicionen a otres páxines de redireición.
@@ -3753,7 +3762,6 @@ D\'otra miente, pues usar el formulariu cenciellu d\'abaxo. El to comentariu apa
 'api-error-file-too-large' => "El ficheru qu'unviasti yera demasiao grande.",
 'api-error-filename-tooshort' => 'El nome de ficheru ye demasiao curtiu.',
 'api-error-filetype-banned' => 'Esta triba de ficheru ta torgada.',
-'api-error-filetype-banned-type'=> '$1 {{PLURAL:$4|nun ye una triba de ficheru permitida|nun son tribes de ficheru permitíes}}. {{PLURAL:$3|La triba de ficheru permitida ye|Les tribes de ficheru permitíes son}} $2.',
 'api-error-filetype-missing' => 'Al ficheru falta-y una estensión.',
 'api-error-hookaborted' => 'La conexón con una estensión encaboxó el cambéu que tentasti facer.',
 'api-error-http' => 'Fallu internu: Nun se pudo coneutar col sirvidor.',
@@ -3789,4 +3797,6 @@ D\'otra miente, pues usar el formulariu cenciellu d\'abaxo. El to comentariu apa
 'duration-centuries' => '$1 {{PLURAL:$1|sieglu|sieglos}}',
 'duration-millennia' => '$1 {{PLURAL:$1|mileniu|milenios}}',
 
+# Unknown messages
+'api-error-filetype-banned-type' => '$1 {{PLURAL:$4|nun ye una triba de ficheru permitida|nun son tribes de ficheru permitíes}}. {{PLURAL:$3|La triba de ficheru permitida ye|Les tribes de ficheru permitíes son}} $2.',
 );

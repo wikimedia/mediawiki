@@ -3673,7 +3673,6 @@ Ef ekki, þá getur þú notað einfalt eyðublað hér fyrir neðan. Athugasemd
 'api-error-file-too-large' => 'Skráin sem þú valdir er of stór.',
 'api-error-filename-tooshort' => 'Skráarnafnið er of stutt',
 'api-error-filetype-banned' => 'Þessi gerð skráar er bönnuð.',
-'api-error-filetype-banned-type'=> "$1 {{PLURAL:$4|er ekki leifileg skráargerð|eru ekki leifilegar skráargerðir}}. {{PLURAL:$3|Leyfileg skráargerð er|Leyfilegar skráargerðir eru}} $2.",
 'api-error-filetype-missing' => 'Skráin hefur enga skráarendingu.',
 'api-error-hookaborted' => 'Hætt var við breytinguna sem þú reyndir að gera með viðbót.',
 'api-error-http' => 'Innri villa: Get ekki tengst vefþjón.',
@@ -3709,4 +3708,6 @@ Ef ekki, þá getur þú notað einfalt eyðublað hér fyrir neðan. Athugasemd
 'duration-centuries' => '$1 {{PLURAL:$1|öld|aldir}}',
 'duration-millennia' => '$1 {{PLURAL:$1|árþúsund}}',
 
+# Unknown messages
+'api-error-filetype-banned-type' => '$1 {{PLURAL:$4|er ekki leifileg skráargerð|eru ekki leifilegar skráargerðir}}. {{PLURAL:$3|Leyfileg skráargerð er|Leyfilegar skráargerðir eru}} $2.',
 );

@@ -3014,9 +3014,10 @@ Coba ku sawangan normal.',
 'api-error-file-too-large' => 'Berkas nu dikirim gedé teuing.',
 'api-error-filename-tooshort' => 'Ngaran berkas pondok teuing.',
 'api-error-filetype-banned' => 'Jenis berkas ieu dipahing.',
-'api-error-filetype-banned-type'=> "\$1 kaasup tipeu koropak nu teu dicaram. {{PLURAL:\$3|Nu diwidian nyaéta|Nu diwidian nyaéta}} \$2.",
 'api-error-filetype-missing' => 'Ngaran berkas euweuh éxténsian.',
 'api-error-illegal-filename' => 'Ngaran berkas kitu dipahing.',
 'api-error-mustbeloggedin' => 'Anjeun kudu asup log pikeun ngunggahkeun berkas.',
 
+# Unknown messages
+'api-error-filetype-banned-type' => '$1 kaasup tipeu koropak nu teu dicaram. {{PLURAL:$3|Nu diwidian nyaéta|Nu diwidian nyaéta}} $2.',
 );

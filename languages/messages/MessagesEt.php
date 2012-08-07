@@ -938,6 +938,10 @@ Võid [[Special:Search/{{PAGENAME}}|otsida pealkirjaks olevat fraasi]] teistelt 
 'noarticletext-nopermission' => 'Sellel leheküljel ei ole teksti.
 Sa võid [[Special:Search/{{PAGENAME}}|otsida lehekülje nime]] teistelt lehekülgedelt
 või <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} otsida lehekülje nime logidest]</span>.',
+'missing-revision' => 'Lehekülje "{{PAGENAME}}" redaktsiooni $1 pole.
+
+Harilikult tähendab see seda, et sind siia juhatanud link on vananenud ja siin asunud lehekülg on kustutatud.
+Üksikasjad leiad [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} kustutamislogist].',
 'userpage-userdoesnotexist' => 'Kasutajakontot "<nowiki>$1</nowiki>" pole olemas.
 Palun mõtle järele, kas soovid seda lehte luua või muuta.',
 'userpage-userdoesnotexist-view' => 'Kasutajakonto "$1" pole registreeritud.',
@@ -1242,6 +1246,10 @@ Navigeerimislinkide kasutamine tühistab redaktsioonide valiku.',
 'editundo' => 'eemalda',
 'diff-multi' => '({{PLURAL:$1|Ühte|$1}} vahepealset {{PLURAL:$2|ühe|$2}} kasutaja redaktsiooni ei näidata.)',
 'diff-multi-manyusers' => '({{PLURAL:$1|Ühte|$1}} vahepealset rohkem kui {{PLURAL:$2|ühe|$2}} kasutaja redaktsiooni ei näidata.)',
+'difference-missing-revision' => 'Selle erinevuste vaate {{PLURAL:$2|üht|$2}} redaktsiooni ($1) ei leitud.
+
+Harilikult tähendab see seda, et sind siia juhatanud link on vananenud ja siin asunud lehekülg on kustutatud.
+Üksikasjad leiad [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} kustutamislogist].',
 
 # Search results
 'searchresults' => 'Otsingu tulemused',
@@ -3843,7 +3851,6 @@ Kui ei, kasuta allolevat lihtsat vormi. Sinu kommentaar lisatakse koos kasutajan
 'api-error-file-too-large' => 'Üleslaaditav fail on liiga suur.',
 'api-error-filename-tooshort' => 'Failinimi on liiga lühike.',
 'api-error-filetype-banned' => 'Antud failitüüp on keelatud.',
-'api-error-filetype-banned-type'=> '$1 pole lubatud failitüü{{PLURAL:$4|p|bid}}.  Lubatud {{PLURAL:$3|failitüüp|failitüübid}} on  $2.',
 'api-error-filetype-missing' => 'Failinime tagant puudub laiend.',
 'api-error-hookaborted' => 'Tarkvaralisa katkestas muudatuse tegemise.',
 'api-error-http' => 'Sisetõrge: Serveriga pole võimalik ühendust luua.',
@@ -3879,4 +3886,6 @@ Kui ei, kasuta allolevat lihtsat vormi. Sinu kommentaar lisatakse koos kasutajan
 'duration-centuries' => '$1 {{PLURAL:$1|sajandi}}',
 'duration-millennia' => '$1 {{PLURAL:$1|aastatuhande}}',
 
+# Unknown messages
+'api-error-filetype-banned-type' => '$1 pole lubatud failitüü{{PLURAL:$4|p|bid}}.  Lubatud {{PLURAL:$3|failitüüp|failitüübid}} on  $2.',
 );

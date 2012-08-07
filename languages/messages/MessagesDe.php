@@ -1050,6 +1050,10 @@ oder die zugehörigen <span class="plainlinks">[{{fullurl:{{#special:Log}}|page=
 'noarticletext-nopermission' => 'Diese Seite enthält momentan noch keinen Text.
 Du kannst ihren Titel auf anderen Seiten [[Special:Search/{{PAGENAME}}|suchen]]
 oder die zugehörigen <span class="plainlinks">[{{fullurl:{{#special:Log}}|page={{FULLPAGENAMEE}}}} Logbücher betrachten].</span>',
+'missing-revision' => 'Die Version $1 der Seite namens „{{PAGENAME}}“ ist nicht vorhanden.
+
+Dieser Fehler wird normalerweise von einem veralteten Link zur Versionsgeschichte einer Seite verursacht, die zwischenzeitlich gelöscht wurde.
+Einzelheiten sind im [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} Lösch-Logbuch] einsehbar.',
 'userpage-userdoesnotexist' => 'Das Benutzerkonto „<nowiki>$1</nowiki>“ ist nicht vorhanden. Bitte prüfe, ob du diese Seite wirklich erstellen/bearbeiten willst.',
 'userpage-userdoesnotexist-view' => 'Das Benutzerkonto „$1“ ist nicht vorhanden.',
 'blocked-notice-logextract' => '{{GENDER:$1|Dieser Benutzer|Diese Benutzerin|Dieser Benutzer}} ist zurzeit gesperrt.
@@ -1357,6 +1361,10 @@ Stelle sicher, dass die Versionsgeschichte einer Seite historisch korrekt ist.',
 'editundo' => 'rückgängig machen',
 'diff-multi' => '({{PLURAL:$1|Eine dazwischenliegende Version|$1 dazwischenliegende Versionen}} von {{PLURAL:$2|einem Benutzer|$2 Benutzern}} {{PLURAL:$1|wird|werden}} nicht angezeigt)',
 'diff-multi-manyusers' => '({{PLURAL:$1|$1 dazwischenliegende Versionen}} von mehr als {{PLURAL:$2|$2 Benutzern}}, die nicht angezeigt werden)',
+'difference-missing-revision' => '{{PLURAL:$2|Eine Version|$2 Versionen}} dieser Unterschiedsanzeige ($1) {{PLURAL:$2|wurde|wurden}} nicht gefunden.
+
+Dieser Fehler wird normalerweise von einem veralteten Link zur Versionsgeschichte einer Seite verursacht, die zwischenzeitlich gelöscht wurde.
+Einzelheiten sind im [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} Lösch-Logbuch] vorhanden.',
 
 # Search results
 'searchresults' => 'Suchergebnisse',
@@ -4035,7 +4043,6 @@ Anderenfalls kannst du auch das untenstehende einfache Formular nutzen. Dein Kom
 'api-error-file-too-large' => 'Die hochgeladene Datei war zu groß.',
 'api-error-filename-tooshort' => 'Der Dateiname ist zu kurz.',
 'api-error-filetype-banned' => 'Diese Dateiendung ist gesperrt.',
-'api-error-filetype-banned-type'=> "$1 {{PLURAL:$4|ist ein nicht erlaubter Dateityp|sind nicht erlaubte Dateitypen}}. {{PLURAL:$3|Erlaubter Dateityp ist|Erlaubte Dateitypen sind}} $2.",
 'api-error-filetype-missing' => 'Die hochzuladende Datei hat keine Dateiendung.',
 'api-error-hookaborted' => 'Die von dir vorgesehene Anpassung kann nicht durchgeführt werden (Unterbrechung durch eine Programmschnittstelle).',
 'api-error-http' => 'Interner Fehler: Es konnte keine Verbindung zum Server hergestellt werden.',
@@ -4071,4 +4078,6 @@ Anderenfalls kannst du auch das untenstehende einfache Formular nutzen. Dein Kom
 'duration-centuries' => '$1 {{PLURAL:$1|Jahrhundert|Jahrhunderte}}',
 'duration-millennia' => '$1 {{PLURAL:$1|Jahrtausend|Jahrtausende}}',
 
+# Unknown messages
+'api-error-filetype-banned-type' => '$1 {{PLURAL:$4|ist ein nicht zulässiger Dateityp|sind nicht zulässige Dateitypen}}. {{PLURAL:$3|Ein zulässiger Dateityp ist|Zulässige Dateitypen sind}} $2.',
 );

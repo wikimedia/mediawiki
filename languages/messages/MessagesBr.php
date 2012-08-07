@@ -3815,7 +3815,6 @@ A-hend-all e c'hallit ober gant ar furmskrid eeunaet dindan. Ouzhpennet e vo hoc
 'api-error-file-too-large' => "Ar restr hoc'h eus roet a oa re vras.",
 'api-error-filename-tooshort' => 'Re verr eo anv ar restr.',
 'api-error-filetype-banned' => 'Difennet eo ar seurt restroù',
-'api-error-filetype-banned-type'=> "'''N'eo ket \$1 {{PLURAL:\$4|ur seurt restr aotreet|seurtoù restroù aotreet}}. \$2 eo {{PLURAL:\$3|ar seurt restroù|ar seurtoù restroù}} degemeret.",
 'api-error-filetype-missing' => "Un astenn a vank d'ar restr.",
 'api-error-hookaborted' => "Ar c'hemm hoc'h eus klasket degas zo bet harzet gant ur c'hrog astenn.",
 'api-error-http' => "Fazi diabarzh : dibosupl kevreañ d'ar servijer.",
@@ -3851,4 +3850,6 @@ A-hend-all e c'hallit ober gant ar furmskrid eeunaet dindan. Ouzhpennet e vo hoc
 'duration-centuries' => "$1 {{PLURAL:$1|c'hantved|kantved}}",
 'duration-millennia' => '$1 {{PLURAL:$1|milvloaz|milvoaz}}',
 
+# Unknown messages
+'api-error-filetype-banned-type' => "'''N'eo ket $1 {{PLURAL:$4|ur seurt restr aotreet|seurtoù restroù aotreet}}. $2 eo {{PLURAL:$3|ar seurt restroù|ar seurtoù restroù}} degemeret.",
 );

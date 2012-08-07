@@ -3934,7 +3934,6 @@ Caso contrário, você poderá usar o formulário simplificado a seguir. Seu com
 'api-error-file-too-large' => 'O arquivo que você enviou é muito grande.',
 'api-error-filename-tooshort' => 'O nome do arquivo é curto demais.',
 'api-error-filetype-banned' => 'Este tipo do arquivo é proibido.',
-'api-error-filetype-banned-type'=> '$1 {{PLURAL:$4|não é um tipo de arquivo permitido|não são tipos de arquivos permitidos}}. {{PLURAL:$3|O tipo de arquivo permitido é|Os tipos de arquivos permitidos são}} $2.',
 'api-error-filetype-missing' => 'Falta a extensão de arquivo.',
 'api-error-hookaborted' => 'A modificação que você tentou realizar foi abortada pelo hook de uma extensão.',
 'api-error-http' => 'Erro interno: não foi possível conectar ao servidor.',
@@ -3970,4 +3969,6 @@ Caso contrário, você poderá usar o formulário simplificado a seguir. Seu com
 'duration-centuries' => '$1 {{PLURAL:$1|século|séculos}}',
 'duration-millennia' => '$1 {{PLURAL:$1|milênio|milênios}}',
 
+# Unknown messages
+'api-error-filetype-banned-type' => '$1 {{PLURAL:$4|não é um tipo de arquivo permitido|não são tipos de arquivos permitidos}}. {{PLURAL:$3|O tipo de arquivo permitido é|Os tipos de arquivos permitidos são}} $2.',
 );

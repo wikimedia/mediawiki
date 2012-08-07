@@ -3860,7 +3860,6 @@ Si non, tu pote usar le formulario facile hic infra. Tu commento essera addite a
 'api-error-file-too-large' => 'Le file que tu submitteva es troppo grande.',
 'api-error-filename-tooshort' => 'Le nomine del file es troppo curte.',
 'api-error-filetype-banned' => 'Iste typo de file es prohibite.',
-'api-error-filetype-banned-type'=> '$1 non es {{PLURAL:$4|un typo|typos}} de file permittite. Le {{PLURAL:$3|typo|typos}} de file permittite es $2.',
 'api-error-filetype-missing' => 'Le nomine del file non ha un extension.',
 'api-error-hookaborted' => 'Le modification que tu ha tentate facer ha essite abortate per un extension.',
 'api-error-http' => 'Error interne: impossibile connecter al servitor.',
@@ -3896,4 +3895,6 @@ Si non, tu pote usar le formulario facile hic infra. Tu commento essera addite a
 'duration-centuries' => '$1 {{PLURAL:$1|seculo|seculos}}',
 'duration-millennia' => '$1 {{PLURAL:$1|millennio|millennios}}',
 
+# Unknown messages
+'api-error-filetype-banned-type' => '$1 non es {{PLURAL:$4|un typo|typos}} de file permittite. Le {{PLURAL:$3|typo|typos}} de file permittite es $2.',
 );

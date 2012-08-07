@@ -206,7 +206,7 @@ $messages = array(
 
 'linkprefix' => '/^(.*?)([a-zA-Z\\x80-\\xff]+)$/sD',
 
-'about' => 'İzah',
+'about' => 'Haqqında',
 'article' => 'Mündəricat',
 'newwindow' => '(yeni pəncərədə açılır)',
 'cancel' => 'Ləğv et',
@@ -1459,7 +1459,8 @@ $1',
 ** Keyfiyyətsiz şəkil
 ** İstifadəsiz fayl
 ** Qeyri-ensiklopedik şəxs
-** Lisenziyasız fayl',
+** Lisenziyasız fayl
+** Azad şəkillə əvəz olundu',
 'filedelete-edit-reasonlist' => 'Silmə səbəblərini redaktə et',
 
 # MIME search

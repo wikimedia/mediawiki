@@ -3760,7 +3760,6 @@ $5
 'api-error-file-too-large' => 'તમે ચડાવેલી ફાઈલ ખૂબ મોટી છે',
 'api-error-filename-tooshort' => 'ફાઇલ નામ ખૂબ ટૂંકું છે',
 'api-error-filetype-banned' => 'આ પ્રકારની ફાઈલ પ્રતિબંધિત છે.',
-'api-error-filetype-banned-type'=> '$1 {{PLURAL:$4|એ ફાઇલ પ્રકારને પ્રવાનગી નથી|એ ફાઇલ પ્રકારોને પ્રવાનગી નથી }}. પરવાનગી મેળવેલ {{PLURAL:$3|ફાઇલ પ્રકાર છે|ફાઇલ પ્રકારો  છે}} $2.',
 'api-error-filetype-missing' => 'ફાઈલને ઍક્સટેન્શન નથી',
 'api-error-hookaborted' => 'તમે કરેલ ફેરફારો વિસ્તારીત ખૂંટા દ્વારા રોકી દેવાયા.',
 'api-error-http' => 'આંતરીક ક્ષતિ: સર્વસનો સંપર્ક કરવામાં નિષ્ફળતા',
@@ -3796,4 +3795,6 @@ $5
 'duration-centuries' => '$1 {{PLURAL:$1|શતાબ્દી|શતાબ્દીઓ}}',
 'duration-millennia' => '$1 {{PLURAL:$1|સહસ્ત્રાબ્દી|સહસ્ત્રાબ્દીઓ}}',
 
+# Unknown messages
+'api-error-filetype-banned-type' => '$1 {{PLURAL:$4|એ ફાઇલ પ્રકારને પ્રવાનગી નથી|એ ફાઇલ પ્રકારોને પ્રવાનગી નથી }}. પરવાનગી મેળવેલ {{PLURAL:$3|ફાઇલ પ્રકાર છે|ફાઇલ પ્રકારો  છે}} $2.',
 );

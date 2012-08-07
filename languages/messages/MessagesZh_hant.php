@@ -849,6 +849,10 @@ $2
 或[{{fullurl:{{FULLPAGENAME}}|action=edit}} 編輯此頁]</span>。',
 'noarticletext-nopermission' => '此頁目前沒有內容，您可以在其它頁[[Special:Search/{{PAGENAME}}|搜索此頁標題]]，
 或<span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} 搜索有關日誌]</span>。',
+'missing-revision' => '「{{PAGENAME}}」的#$1修訂版本不存在。
+
+這通常是因為過時的頁面歷史鏈接被刪除。
+詳情請閱[{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} 刪除日誌]。',
 'userpage-userdoesnotexist' => '未曾創建用戶名「<nowiki>$1</nowiki>」。請在創建／編輯這個頁面前先檢查一下。',
 'userpage-userdoesnotexist-view' => '未曾建立用戶名「$1」。',
 'blocked-notice-logextract' => '這位用戶現正被封鎖。
@@ -1143,6 +1147,10 @@ $1",
 'editundo' => '撤銷',
 'diff-multi' => '（由{{PLURAL:$2|1名用戶|$2名用戶}}作出的{{PLURAL:$1|一個中途修訂版本|$1個中途修訂版本}}未被顯示）',
 'diff-multi-manyusers' => '（由多於$2名用戶作出的{{PLURAL:$1|一個中途修訂版本|$1個中途修訂版本}} 未被顯示）',
+'difference-missing-revision' => '{{PLURAL:$2|1次修訂|$2 次修訂}}差異($1)不存在。
+
+這通常是因為過時的頁面修訂差異鏈接被刪除。
+詳情請閱[{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} 刪除日誌]。',
 
 # Search results
 'searchresults' => '搜尋結果',
@@ -1905,7 +1913,7 @@ Template:消歧义
 Template:消除歧义
 Template:消歧義
 Template:消除歧義',
-'disambiguations-text' => "以下的頁面都有到'''消歧義頁'''的鏈接，但它們應該鏈接到適當的頁面。<br />一個頁面如果使用了[[MediaWiki:Disambiguationspage]]內的模板，則會被視為消歧義頁。",
+'disambiguations-text' => "以下的頁面都有至少一個連到'''消歧義頁'''的鏈接，但它們應鏈接到合適的頁面。<br />一個頁面如果使用了[[MediaWiki:Disambiguationspage]]內的模板，則會被視為消歧義頁。",
 
 'doubleredirects' => '雙重重定向頁面',
 'doubleredirectstext' => '這一頁列出所有重定向頁面重定向到另一個重定向頁的頁面。每一行都包含到第一和第二個重定向頁面的連結，以及第二個重定向頁面的目標，通常顯示的都會是"真正"的目標頁面，也就是第一個重定向頁面應該指向的頁面。
@@ -3812,7 +3820,6 @@ MediaWiki是基於使用目的而加以發佈，然而不負任何擔保責任�
 'api-error-file-too-large' => '您提交的檔案太大了。',
 'api-error-filename-tooshort' => '檔案名過短。',
 'api-error-filetype-banned' => '這種類型的檔案是被禁止的。',
-'api-error-filetype-banned-type'=> "$1{{PLURAL:$4|不是允許的檔案類型|是不允許的檔案類型}}。  允許的{{PLURAL:$3|檔案類型|檔案類型}} $2。",
 'api-error-filetype-missing' => '本檔案缺少了副檔名。',
 'api-error-hookaborted' => '你試圖進行的修改被一個擴展鉤子終止。',
 'api-error-http' => '內部錯誤：無法連接到伺服器。',
@@ -3848,4 +3855,6 @@ MediaWiki是基於使用目的而加以發佈，然而不負任何擔保責任�
 'duration-centuries' => '$1世紀',
 'duration-millennia' => '$1千年',
 
+# Unknown messages
+'api-error-filetype-banned-type' => '$1{{PLURAL:$4|不是允許的檔案類型|是不允許的檔案類型}}。  允許的{{PLURAL:$3|檔案類型|檔案類型}} $2。',
 );

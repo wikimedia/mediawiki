@@ -719,6 +719,7 @@ Contul dumneavoatră a fost creat. Nu uitați să vă personalizați [[Special:P
 'remembermypassword' => 'Autentificare automată de la acest calculator (expiră după {{PLURAL:$1|24 de ore|$1 zile|$1 de zile}})',
 'securelogin-stick-https' => 'Rămâi conectat la HTTPS după autentificare',
 'yourdomainname' => 'Domeniul dumneavoastră:',
+'password-change-forbidden' => 'Nu puteți schimba parole pe acest wiki.',
 'externaldberror' => 'A fost fie o eroare de bază de date pentru o autentificare extenă sau nu aveți permisiunea să actualizați contul extern.',
 'login' => 'Autentificare',
 'nav-login-createaccount' => 'Creare cont / Autentificare',
@@ -959,6 +960,10 @@ sau puteți [{{fullurl:{{FULLPAGENAME}}|action=edit}} crea această pagină]</sp
 'noarticletext-nopermission' => 'Actualmente, această pagină este lipsită de conținut.
 Puteți [[Special:Search/{{PAGENAME}}|căuta acest titlu]] în alte pagini
 sau puteți <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} căuta înregistrări în jurnale]</span>.',
+'missing-revision' => 'Versiunea nr. $1 a paginii „{{PAGENAME}}” nu există.
+
+Acest lucru se întâmplă de obicei atunci când se accesează o legătură expirată către istoricul unei pagini șterse.
+Detalii se pot găsi în [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} jurnalul ștergerilor].',
 'userpage-userdoesnotexist' => 'Contul de utilizator „<nowiki>$1</nowiki>” nu este înregistrat.
 Asigurați-vă că doriți să creați/modificați această pagină.',
 'userpage-userdoesnotexist-view' => 'Contul de utilizator „$1” nu este înregistrat.',
@@ -1273,6 +1278,10 @@ Folosirea linkurilor de navigare va reseta această coloană.',
 'editundo' => 'anulare',
 'diff-multi' => '({{PLURAL:$1|O revizie intermediară|$1 revizii intermediare|$1 de revizii intermediare}} efectuată de {{PLURAL:$2|un utilizator|$2 utilizatori|$2 de utilizatori}} {{PLURAL:$1|neafișată|neafișate}})',
 'diff-multi-manyusers' => '({{PLURAL:$1|O versiune intermediară efectuată de|$1 (de) versiuni intermediare efectuate de peste}} $2 {{PLURAL:$2|utilizator|utilizatori}} {{PLURAL:$1|neafișată|neafișate}})',
+'difference-missing-revision' => '{{PLURAL:$2|O versiune a|$2 versiuni ale|$2 de versiuni ale}} acestei diferențe ($1) nu {{PLURAL:$2|a fost găsită|au fost găsite}}.
+
+Acest lucru se întâmplă de obicei atunci când se accesează o legătură expirată către istoricul unei pagini șterse.
+Detalii se pot găsi în [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} jurnalul ștergerilor].',
 
 # Search results
 'searchresults' => 'Rezultatele căutării',
@@ -2389,6 +2398,8 @@ continuă cu atenție.',
 'rollback' => 'Editări de revenire',
 'rollback_short' => 'Revenire',
 'rollbacklink' => 'revenire',
+'rollbacklinkcount' => 'revenire asupra {{PLURAL:$1|unei modificări|a $1 modificări|a $1 de modificări}}',
+'rollbacklinkcount-morethan' => 'revenire asupra a mai mult de {{PLURAL:$1|o modificare|$1 modificări|$1 de modificări}}',
 'rollbackfailed' => 'Revenirea nu s-a putut face',
 'cantrollback' => 'Nu se poate reveni; ultimul contribuitor este autorul acestui articol.',
 'alreadyrolled' => 'Nu se poate reveni peste ultima modificare a articolului [[:$1]] făcută de către [[User:$2|$2]] ([[User talk:$2|discuție]]{{int:pipe-separator}}[[Special:Contributions/$2|{{int:contribslink}}]]); altcineva a modificat articolul sau a revenit deja.
@@ -3923,7 +3934,6 @@ Imaginile sunt afișate la rezoluția lor maximă, în timp ce alte tipuri de fi
 'api-error-file-too-large' => 'Fișierul pe care l-ați trimis este prea mare.',
 'api-error-filename-tooshort' => 'Numele fișierului este prea scurt.',
 'api-error-filetype-banned' => 'Acest tip de fișiere este interzis.',
-'api-error-filetype-banned-type'=> "$1 {{PLURAL:$4|este un tip de fișier nepermis|sunt tipuri de fișier nepermise}}. {{PLURAL:$3|Tip de fișier permis:|Tipuri de fișier permise:}} $2.",
 'api-error-filetype-missing' => 'Fișierului îi lipsește extensia.',
 'api-error-hookaborted' => 'Modificarea pe care ați încercat să o faceți a fost oprită de sesizarea unei extensii.',
 'api-error-http' => 'Eroare internă: nu s-a reușit conectarea la server.',
@@ -3959,4 +3969,6 @@ Imaginile sunt afișate la rezoluția lor maximă, în timp ce alte tipuri de fi
 'duration-centuries' => '$1 {{PLURAL:$1|secol|secole|de secole}}',
 'duration-millennia' => '$1 {{PLURAL:$1|mileniu|milenii|de milenii}}',
 
+# Unknown messages
+'api-error-filetype-banned-type' => '$1 {{PLURAL:$4|este un tip de fișier nepermis|sunt tipuri de fișier nepermise}}. {{PLURAL:$3|Tip de fișier permis:|Tipuri de fișier permise:}} $2.',
 );

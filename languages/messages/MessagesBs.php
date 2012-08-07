@@ -3942,7 +3942,6 @@ Inače, možete ispuniti jednostavan obrazac ispod. Vaš komentar biti će dodan
 'api-error-file-too-large' => 'Datoteka koju ste poslali je bila prevelika.',
 'api-error-filename-tooshort' => 'Ime datoteke je prekratko.',
 'api-error-filetype-banned' => 'Ova vrsta datoteke je zabranjena.',
-'api-error-filetype-banned-type'=> "\$1 nije dopuštena vrsta datoteke. {{PLURAL:\$3|Dopuštena vrsta datoteke je|Dopuštene vrste datoteka su}} \$2.",
 'api-error-filetype-missing' => 'Datoteci nedostaje nastavak.',
 'api-error-hookaborted' => 'Izmjena koji ste pokušali načiniti je obustavljena preko kuke proširenja.',
 'api-error-http' => 'Unutrašnja greška: ne može se spojiti na server.',
@@ -3971,4 +3970,6 @@ Inače, možete ispuniti jednostavan obrazac ispod. Vaš komentar biti će dodan
 'duration-seconds' => '$1 {{PLURAL:$1|sekunda|sekunde}}',
 'duration-days' => '$1 {{PLURAL:$1|dan|dana}}',
 
+# Unknown messages
+'api-error-filetype-banned-type' => '$1 nije dopuštena vrsta datoteke. {{PLURAL:$3|Dopuštena vrsta datoteke je|Dopuštene vrste datoteka su}} $2.',
 );

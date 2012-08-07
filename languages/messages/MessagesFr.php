@@ -1017,6 +1017,10 @@ ou [{{fullurl:{{FULLPAGENAME}}|action=edit}} créer cette page]</span>.',
 'noarticletext-nopermission' => 'Il n’y a pour l’instant aucun texte sur cette page.
 Vous pouvez [[Special:Search/{{PAGENAME}}|faire une recherche sur ce titre]] dans les autres pages,
 ou <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} rechercher dans les journaux associés]</span>.',
+'missing-revision' => "La révision n° $1 de la page intitulée « {{PAGENAME}} » n'existe pas.
+
+Cela survient en général en suivant un lien historique obsolète vers une page qui a été supprimée.
+Vous pouvez trouver plus de détails dans le [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} journal des suppressions].",
 'userpage-userdoesnotexist' => 'Le compte utilisateur « <nowiki>$1</nowiki> » n’est pas enregistré. Veuillez vérifier que vous voulez créer cette page.',
 'userpage-userdoesnotexist-view' => 'Le compte utilisateur « $1 » n’est pas enregistré.',
 'blocked-notice-logextract' => 'Cet utilisateur est actuellement bloqué.
@@ -1322,6 +1326,10 @@ Assurez-vous que cette opération conservera la continuité de l’historique de
 'editundo' => 'défaire',
 'diff-multi' => '({{PLURAL:$1|Une révision intermédiaire|$1 révisions intermédiaires}} par {{PLURAL:$2|un utilisateur|$2 utilisateurs}} {{PLURAL:$1|est masquée|sont masquées}})',
 'diff-multi-manyusers' => '({{PLURAL:$1|Une révision intermédiaire|$1 révisions intermédiaires}} par plus {{PLURAL:$2|d’un utilisateur|de $2 utilisateurs}} {{PLURAL:$1|est masquée|sont masquées}})',
+'difference-missing-revision' => "{{PLURAL:$2|Une révision|$2 révisions}} de cette différence ($1) {{PLURAL:$2|n'a pas été trouvée|n'ont pas été trouvées}}.
+
+Cela survient en général en suivant un lien de différence obsolète vers une page qui a été supprimée.
+Vous pouvez trouver des détails dans le [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} journal des suppressions].",
 
 # Search results
 'searchresults' => 'Résultats de la recherche',
@@ -4032,7 +4040,6 @@ Sinon, vous pouvez utiliser le formulaire simplifié ci-dessous. Votre commentai
 'api-error-file-too-large' => 'Le fichier que vous avez soumis était trop grand.',
 'api-error-filename-tooshort' => 'Le nom du fichier est trop court.',
 'api-error-filetype-banned' => 'Ce type de fichier est interdit.',
-'api-error-filetype-banned-type'=> "''' « $1 » '''{{PLURAL:$4|n’est pas un type de fichier autorisé|ne sont pas des types de fichiers autorisés}}.  {{PLURAL:$3|le type de fichier autorisé est |les types de fichiers autorisés sont}} $2.",
 'api-error-filetype-missing' => 'L’extension du fichier est manquante.',
 'api-error-hookaborted' => 'La modification que vous avez essayé de faire a été arrêtée par un crochet d’une extension.',
 'api-error-http' => 'Erreur interne : ne peut se connecter au serveur.',
@@ -4068,4 +4075,6 @@ Sinon, vous pouvez utiliser le formulaire simplifié ci-dessous. Votre commentai
 'duration-centuries' => '$1 {{PLURAL:$1|siècle|siècles}}',
 'duration-millennia' => '$1 {{PLURAL:$1|millénaire|millénaires}}',
 
+# Unknown messages
+'api-error-filetype-banned-type' => "''' « $1 » '''{{PLURAL:$4|n’est pas un type de fichier autorisé|ne sont pas des types de fichiers autorisés}}.  {{PLURAL:$3|le type de fichier autorisé est |les types de fichiers autorisés sont}} $2.",
 );

@@ -820,6 +820,10 @@ o [{{fullurl:{{FULLPAGENAME}}|action=edit}} baguhin ang pahinang ito]</span>.',
 'noarticletext-nopermission' => 'Kasalukuyang walang teksto sa pahinang ito.
 Maaari mong [[Special:Search/{{PAGENAME}}|hanapin ang pamagat ng pahinang ito]] sa ibang mga pahina,
 o <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} maghanap sa kaugnay na mga talaan]</span>.',
+'missing-revision' => 'Hindi umiiral ang rebisyong #$1 ng pahinang napangalanang "{{PAGENAME}}".
+
+Karaniwang itong dulot ng pagsunod sa isang wala na sa panahong kawing ng kasaysayan na papunta sa isang pahinang nabura na.
+Matatagpuan ang mga detalye sa loob ng [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} talaan ng pagbura].',
 'userpage-userdoesnotexist' => 'Hindi nakatala ang kuwenta ng tagagamit na "<nowiki>$1</nowiki>".
 Pakisuri kung ibig mong likhain/baguhin ang pahinang ito.',
 'userpage-userdoesnotexist-view' => 'Hindi nakatala ang kuwenta ng tagagamit na "$1".',
@@ -1139,6 +1143,10 @@ Tiyakin na ang pagbabago ay makapagpapanatili ng pagkakatuluy-tuloy ng pahinang 
 'editundo' => 'ibalik',
 'diff-multi' => '({{PLURAL:$1|Isang panggitnang pagbabago|$1 panggitnang mga pagbabago}} ng {{PLURAL:$2|isang tagagamit|$2 mga tagagamit}} ang hindi ipinakikita.)',
 'diff-multi-manyusers' => '({{PLURAL:$1|Isang panggitnang pagbabago|$1 panggitnang mga pagbabago}} ng {{PLURAL:$2|isang tagagamit|$2 mga tagagamit}} ang hindi ipinapakikita.)',
+'difference-missing-revision' => 'Hindi natagpuan ang {{PLURAL:$2|isang rebisyon|$2 mga rebisyon}} ng kaibahang ($1) ito.
+
+Karaniwang itong isinanhi ng pagsunod sa isang wala na sa panahong kawing sa pagkakaiba na papunta sa isang pahinang nabura na.
+Matatagpuan ang mga detalye sa loob ng [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} talaan ng pagbura].',
 
 # Search results
 'searchresults' => 'Kinalabasan/Resulta ng paghahanap',
@@ -4027,7 +4035,6 @@ O kaya, maaari mong gamitin ang maginhawang pormularyo sa ibaba. Ang iyong pagpu
 'api-error-file-too-large' => 'Napakalaki ng talaksang ipinasa mo.',
 'api-error-filename-tooshort' => 'Napakaiksi ng pangalan ng talaksan.',
 'api-error-filetype-banned' => 'Ipinagbabawal ang ganitong uri ng talaksan.',
-'api-error-filetype-banned-type'=> 'Ang $1 {{PLURAL:$4|ay isang hindi pinapahintulutang uri ng talaksan|ay mga hindi pinapahintulutang mga uri ng talaksan}}. Ang mga pinapayagang {{PLURAL:$3|uri ng talaksan ay ang|mga uri ng talaksan ay ang mga}} $2.',
 'api-error-filetype-missing' => 'Kulang ng karugtong ang talaksan.',
 'api-error-hookaborted' => 'Ang pagbabagong sinubok mong gawin ay hindi itinuloy ng isang kawil ng dugtong.',
 'api-error-http' => 'Panloob na kamalian: hindi makaugnay sa tagahain.',
@@ -4063,4 +4070,6 @@ O kaya, maaari mong gamitin ang maginhawang pormularyo sa ibaba. Ang iyong pagpu
 'duration-centuries' => '$1 {{PLURAL:$1|daantaon|mga daantaon}}',
 'duration-millennia' => '$1 {{PLURAL:$1|milenyo|mga milenyo}}',
 
+# Unknown messages
+'api-error-filetype-banned-type' => 'Ang $1 {{PLURAL:$4|ay isang hindi pinapahintulutang uri ng talaksan|ay mga hindi pinapahintulutang mga uri ng talaksan}}. Ang mga pinapayagang {{PLURAL:$3|uri ng talaksan ay ang|mga uri ng talaksan ay ang mga}} $2.',
 );

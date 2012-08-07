@@ -4193,7 +4193,6 @@ $5
 'api-error-file-too-large' => 'Поднесената податотека е преголема.',
 'api-error-filename-tooshort' => 'Името на податотеката е прекратко.',
 'api-error-filetype-banned' => 'Овој тип на податотека е забранет.',
-'api-error-filetype-banned-type'=> "$1 не е допуштен тип на податотека. {{PLURAL:$3|Допуштен тип е|Допуштени типови се}} $2.",
 'api-error-filetype-missing' => 'На податотеката ѝ недостасува наставка.',
 'api-error-hookaborted' => 'Измената што се обидовте да ја направите е откажана од кука за наставки.',
 'api-error-http' => 'Внатрешна грешка: не можам да се поврзам со опслужувачот.',
@@ -4229,4 +4228,6 @@ $5
 'duration-centuries' => '$1 {{PLURAL:$1|век|века}}',
 'duration-millennia' => '$1 {{PLURAL:$1|милениум|милениуми}}',
 
+# Unknown messages
+'api-error-filetype-banned-type' => '$1 не е допуштен тип на податотека. {{PLURAL:$3|Допуштен тип е|Допуштени типови се}} $2.',
 );

@@ -4268,7 +4268,6 @@ $5
 'api-error-file-too-large' => 'الملف الذي أرسلته كان كبيرا جدا.',
 'api-error-filename-tooshort' => 'اسم الملف قصير جدا.',
 'api-error-filetype-banned' => 'نوع الملف هذا ممنوع.',
-'api-error-filetype-banned-type'=> '$1 {{PLURAL:$4|ليس نوع ملف مسموح به|ليسوا أنواع ملفات مسموح بها}}. {{PLURAL:$3|نوع الملف المسموح به هو|أنواع الملفات المسموح بها هي}} $2.',
 'api-error-filetype-missing' => 'يفتقد الملفّ ملحق نوعيّته.',
 'api-error-hookaborted' => 'التعديل الذي تحاول أن تقوم به تم إحباطه',
 'api-error-http' => 'خطأ داخلي: تعذر الاتصال بالخادوم.',
@@ -4304,4 +4303,6 @@ $5
 'duration-centuries' => '{{PLURAL: $1||قرن واحد|قرنان|$1 قرون|$1 قرنًا|$1 قرن}}',
 'duration-millennia' => '{{PLURAL: $1||ألفية واحدة|ألفيتان|$1 ألفيات|$1 ألفية}}',
 
+# Unknown messages
+'api-error-filetype-banned-type' => '$1 {{PLURAL:$4|ليس نوع ملف مسموح به|ليسوا أنواع ملفات مسموح بها}}. {{PLURAL:$3|نوع الملف المسموح به هو|أنواع الملفات المسموح بها هي}} $2.',
 );
