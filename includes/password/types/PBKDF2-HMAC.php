@@ -151,26 +151,26 @@ class Password_TypePBKHM extends BasePasswordType {
 	public function knownPasswordData() {
 		return array(
 			## Set 1 (sha256)
-			array( 'PBKHM', 'yCaxCRg0J3I=:sha256:10000:32:IdNMgnu31vxOYZcZw+cuxHEV32AN0E1MUxlHUhI20iw=', 'asdf' ),
-			array( 'PBKHM', '0365j6hCBrU=:sha256:10000:32:Ob/NnzUsA2H4GoztuLQuIknNnas0sUg/sHU2oUjfOzM=', 'test' ),
-			array( 'PBKHM', '8RGGumgq6B4=:sha256:10000:32:/Ud4zVh9Ipn7GRHj9BKkHK2Xvaz1zrRvjEa07FfHAuw=', 'Hello World' ),
-			array( 'PBKHM', 'XAZQ0Fx45JQ=:sha256:10000:32:SUKiNMCzhZ6BrRBdCXSaBY2w18twvPaKH3Eap98XbEo=', 'Passw0rd' ),
-			array( 'PBKHM', 'hhgIP1sNKs8=:sha256:10000:32:rGVfA+2FLC3UeVEKt1GckpGpknGf9Nx87aietmlonHA=', 'D0g.....................' ),
-			array( 'PBKHM', 'EbZ57a06GGw=:sha256:10000:32:WK+BzCnrW6x6PNSvjYK3km1udl14wY33YsV2lt42Gek=', 'KiWVic0F6Le&%Ejn8p3j1vm@#XQclWOV' ),
+			array( 'yCaxCRg0J3I=:sha256:10000:32:IdNMgnu31vxOYZcZw+cuxHEV32AN0E1MUxlHUhI20iw=', 'asdf' ),
+			array( '0365j6hCBrU=:sha256:10000:32:Ob/NnzUsA2H4GoztuLQuIknNnas0sUg/sHU2oUjfOzM=', 'test' ),
+			array( '8RGGumgq6B4=:sha256:10000:32:/Ud4zVh9Ipn7GRHj9BKkHK2Xvaz1zrRvjEa07FfHAuw=', 'Hello World' ),
+			array( 'XAZQ0Fx45JQ=:sha256:10000:32:SUKiNMCzhZ6BrRBdCXSaBY2w18twvPaKH3Eap98XbEo=', 'Passw0rd' ),
+			array( 'hhgIP1sNKs8=:sha256:10000:32:rGVfA+2FLC3UeVEKt1GckpGpknGf9Nx87aietmlonHA=', 'D0g.....................' ),
+			array( 'EbZ57a06GGw=:sha256:10000:32:WK+BzCnrW6x6PNSvjYK3km1udl14wY33YsV2lt42Gek=', 'KiWVic0F6Le&%Ejn8p3j1vm@#XQclWOV' ),
 			## Set 2 (whirlpool)
-			array( 'PBKHM', '4faSJAfABg8=:whirlpool:10000:64:ZC/qLHX0D24wPuznFwb+I4UBkE18JyZ9K1bGOo9J+IUtsuVHDvGhJXMSwvXuxFySuBLofzkjk0ITgcmGYp20yw==', 'asdf' ),
-			array( 'PBKHM', 'QSwzOfVFWmY=:whirlpool:10000:64:Pxkr8D5dVFf/qD0LCmz3angHOeFOBBX6y0UBMAoUdr8IqE2OMe7yXD4rDO2rbdLas152HvUgIwl9LyagTuY89Q==', 'test' ),
-			array( 'PBKHM', 'IgzraxBdmdM=:whirlpool:10000:64:uPwBse+hg2EFQ0s5wxCymC4O3KUfetSI+PRf6362pc8Cl7TlwKoh4KZAl2HukRiqBRXnhUUyl/NGjpveQJC3+w==', 'Hello World' ),
-			array( 'PBKHM', 'rYNd9nHdKVs=:whirlpool:10000:64:V56yyy4XwyRISVhPcGeWpNpYFL4j/5wPEAWxUHDKe3grsE/HzzxVRKdTcO8ny2gttvQ9ofpcS4Ru2oUS7m2ALw==', 'Passw0rd' ),
-			array( 'PBKHM', '2N0JKZRnNjQ=:whirlpool:10000:64:Og83KC5PP0Dxl5XnJ8RIywVF96Wm+GZrAtniE9eDj/znYqJ/JqqK+YDEqLrjaE8nOuozWeBwRd8Gx9KgHCiMzA==', 'D0g.....................' ),
-			array( 'PBKHM', 'PYMVMwXUNn8=:whirlpool:10000:64:htNdMzShGUzqghNGh5K4ihP0K1XbCzDd6qs7X+HfEKUXLAEs06MmqMwWUSmi7IrgJ8kfF6kUjB+MBZPnSXVnZg==', 'KiWVic0F6Le&%Ejn8p3j1vm@#XQclWOV' ),
+			array( '4faSJAfABg8=:whirlpool:10000:64:ZC/qLHX0D24wPuznFwb+I4UBkE18JyZ9K1bGOo9J+IUtsuVHDvGhJXMSwvXuxFySuBLofzkjk0ITgcmGYp20yw==', 'asdf' ),
+			array( 'QSwzOfVFWmY=:whirlpool:10000:64:Pxkr8D5dVFf/qD0LCmz3angHOeFOBBX6y0UBMAoUdr8IqE2OMe7yXD4rDO2rbdLas152HvUgIwl9LyagTuY89Q==', 'test' ),
+			array( 'IgzraxBdmdM=:whirlpool:10000:64:uPwBse+hg2EFQ0s5wxCymC4O3KUfetSI+PRf6362pc8Cl7TlwKoh4KZAl2HukRiqBRXnhUUyl/NGjpveQJC3+w==', 'Hello World' ),
+			array( 'rYNd9nHdKVs=:whirlpool:10000:64:V56yyy4XwyRISVhPcGeWpNpYFL4j/5wPEAWxUHDKe3grsE/HzzxVRKdTcO8ny2gttvQ9ofpcS4Ru2oUS7m2ALw==', 'Passw0rd' ),
+			array( '2N0JKZRnNjQ=:whirlpool:10000:64:Og83KC5PP0Dxl5XnJ8RIywVF96Wm+GZrAtniE9eDj/znYqJ/JqqK+YDEqLrjaE8nOuozWeBwRd8Gx9KgHCiMzA==', 'D0g.....................' ),
+			array( 'PYMVMwXUNn8=:whirlpool:10000:64:htNdMzShGUzqghNGh5K4ihP0K1XbCzDd6qs7X+HfEKUXLAEs06MmqMwWUSmi7IrgJ8kfF6kUjB+MBZPnSXVnZg==', 'KiWVic0F6Le&%Ejn8p3j1vm@#XQclWOV' ),
 			## Set 3 (50000 sha1)
-			array( 'PBKHM', 'zzet1WmGu+M=:sha1:50000:20:l+kWWTrjOjM6J1EObmDjzgyN1lE=', 'asdf' ),
-			array( 'PBKHM', '9l/3BOJW4II=:sha1:50000:20:P00yS3YRcPUCn2yyI9/jlTaC9JA=', 'test' ),
-			array( 'PBKHM', 'kXQjQwZsMY0=:sha1:50000:20:tPFfeEVbdAF9Bq24rD8CBiTaaf0=', 'Hello World' ),
-			array( 'PBKHM', 'XCvqIz5QFjc=:sha1:50000:20:siG9gkUUNka7P9uvBo8dA7ZCZlE=', 'Passw0rd' ),
-			array( 'PBKHM', '9buA3LvsLog=:sha1:50000:20:mAgZxNlL+4dWC8JCsJlq/5Tjn50=', 'D0g.....................' ),
-			array( 'PBKHM', 'FnhgbiEVecw=:sha1:50000:20:0OU+1R0AM7v/0mlULaz366rTgz4=', 'KiWVic0F6Le&%Ejn8p3j1vm@#XQclWOV' ),
+			array( 'zzet1WmGu+M=:sha1:50000:20:l+kWWTrjOjM6J1EObmDjzgyN1lE=', 'asdf' ),
+			array( '9l/3BOJW4II=:sha1:50000:20:P00yS3YRcPUCn2yyI9/jlTaC9JA=', 'test' ),
+			array( 'kXQjQwZsMY0=:sha1:50000:20:tPFfeEVbdAF9Bq24rD8CBiTaaf0=', 'Hello World' ),
+			array( 'XCvqIz5QFjc=:sha1:50000:20:siG9gkUUNka7P9uvBo8dA7ZCZlE=', 'Passw0rd' ),
+			array( '9buA3LvsLog=:sha1:50000:20:mAgZxNlL+4dWC8JCsJlq/5Tjn50=', 'D0g.....................' ),
+			array( 'FnhgbiEVecw=:sha1:50000:20:0OU+1R0AM7v/0mlULaz366rTgz4=', 'KiWVic0F6Le&%Ejn8p3j1vm@#XQclWOV' ),
 		);
 	}
 
