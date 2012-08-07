@@ -1574,7 +1574,7 @@ class PPNode_Hash_Tree implements PPNode {
 		$children = array();
 		for ( $child = $this->firstChild; $child; $child = $child->nextSibling ) {
 			if ( isset( $child->name ) && $child->name === $name ) {
-				$children[] = $name;
+				$children[] = $child;
 			}
 		}
 		return $children;
