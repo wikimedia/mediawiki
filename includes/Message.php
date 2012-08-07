@@ -164,12 +164,22 @@ class Message {
 	protected $interface = true;
 
 	/**
+	 * Whether to request the message in the content language.
+	 */
+	protected $inContLang = false;
+
+	/**
 	 * In which language to get this message. Overrides the $interface
 	 * variable.
 	 *
 	 * @var Language
 	 */
 	protected $language = null;
+
+	/**
+	 * An array of possible message keys to try.
+	 */
+	protected $possibleKeys = array();
 
 	/**
 	 * The message key.
@@ -215,7 +225,7 @@ class Message {
 	 */
 	public function __construct( $key, $params = array() ) {
 		global $wgLang;
-		$this->key = $key;
+		$this->possibleKeys = (array) $key;
 		$this->parameters = array_values( $params );
 		$this->language = $wgLang;
 	}
@@ -253,6 +263,25 @@ class Message {
 			}
 		}
 		return new self( $keys );
+	}
+
+	/**
+	 * Get the message key(s) for this object.
+	 * @return String|Array
+	 */
+	public function getKey() {
+		if( !isset( $this->key ) ) {
+			$this->fetchMessage();
+		}
+		return $this->key;
+	}
+
+	/**
+	 * Get the message's parameters.
+	 * @return Array
+	 */
+	public function getParams() {
+		return $this->parameters;
 	}
 
 	/**
@@ -351,14 +380,7 @@ class Message {
 	 * @return Message: $this
 	 */
 	public function inContentLanguage() {
-		global $wgForceUIMsgAsContentMsg;
-		if ( in_array( $this->key, (array)$wgForceUIMsgAsContentMsg ) ) {
-			return $this;
-		}
-
-		global $wgContLang;
-		$this->interface = false;
-		$this->language = $wgContLang;
+		$this->inContLang = true;
 		return $this;
 	}
 
@@ -403,7 +425,7 @@ class Message {
 		$string = $this->fetchMessage();
 
 		if ( $string === false ) {
-			$key =  htmlspecialchars( is_array( $this->key ) ? $this->key[0] : $this->key );
+			$key =  htmlspecialchars( $this->key );
 			if ( $this->format === 'plain' ) {
 				return '<' . $key . '>';
 			}
@@ -596,24 +618,41 @@ class Message {
 	 * @return string
 	 */
 	protected function fetchMessage() {
+		global $wgForceUIMsgAsContentMsg, $wgContLang;
 		if ( !isset( $this->message ) ) {
 			$cache = MessageCache::singleton();
-			if ( is_array( $this->key ) ) {
-				if ( !count( $this->key ) ) {
-					throw new MWException( "Given empty message key array." );
-				}
-				foreach ( $this->key as $key ) {
-					$message = $cache->get( $key, $this->useDatabase, $this->language );
-					if ( $message !== false && $message !== '' ) {
-						break;
-					}
-				}
-				$this->message = $message;
-			} else {
-				$this->message = $cache->get( $this->key, $this->useDatabase, $this->language );
+			if ( !count( $this->possibleKeys ) ) {
+				throw new MWException( "Given empty message key array." );
 			}
+
+			$interface = $this->interface;
+			$language = $this->language;
+			$inContLang = $this->inContLang;
+			$forcedMsgs = (array) $wgForceUIMsgAsContentMsg;
+			foreach( $this->possibleKeys as $key ) {
+				$finalKey = $key;
+
+				if( $this->inContLang && !in_array( $key, $forcedMsgs ) ) {
+					$language = $wgContLang;
+					$interface = false;
+				} else {
+					$language = $this->language;
+					$interface = $this->interface;
+				}
+
+				$finalMessage = $cache->get( $key, $this->useDatabase, $language );
+
+				if ( $finalMessage !== false && $finalMessage !== '' ) {
+					break;
+				}
+			}
+
+			$this->key = $finalKey;
+			$this->message = $finalMessage;
+			$this->language = $language;
+			$this->interface = $interface;
 		}
+
 		return $this->message;
 	}
-
 }

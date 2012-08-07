@@ -6,6 +6,9 @@ class MessageTest extends MediaWikiLangTestCase {
 		$this->assertTrue( wfMessage( 'mainpage' )->exists() );
 		$this->assertTrue( wfMessage( 'mainpage' )->params( array() )->exists() );
 		$this->assertTrue( wfMessage( 'mainpage' )->rawParams( 'foo', 123 )->exists() );
+		$this->assertTrue( wfMessage( array( 'i-dont-exist-evar', 'mainpage' ) )->exists() );
+		$this->assertTrue( wfMessage( array( 'i-dont-exist-evar', 'mainpage' ) )->params( array() )->exists() );
+		$this->assertTrue( wfMessage( array( 'i-dont-exist-evar', 'mainpage' ) )->rawParams( 'foo', 123 )->exists() );
 		$this->assertFalse( wfMessage( 'i-dont-exist-evar' )->exists() );
 		$this->assertFalse( wfMessage( 'i-dont-exist-evar' )->params( array() )->exists() );
 		$this->assertFalse( wfMessage( 'i-dont-exist-evar' )->rawParams( 'foo', 123 )->exists() );
@@ -13,6 +16,7 @@ class MessageTest extends MediaWikiLangTestCase {
 
 	function testKey() {
 		$this->assertInstanceOf( 'Message', wfMessage( 'mainpage' ) );
+		$this->assertEquals( 'mainpage', wfMessage( 'mainpage' )->getKey() );
 		$this->assertInstanceOf( 'Message', wfMessage( 'i-dont-exist-evar' ) );
 		$this->assertEquals( 'Main Page', wfMessage( 'mainpage' )->text() );
 		$this->assertEquals( '&lt;i-dont-exist-evar&gt;', wfMessage( 'i-dont-exist-evar' )->text() );
