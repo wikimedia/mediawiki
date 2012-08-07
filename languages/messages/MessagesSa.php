@@ -686,6 +686,7 @@ $2',
 'remembermypassword' => 'अस्मिन् सङ्गणके मम प्रवेशः स्मर्यताम् (अधिकतमम् $1 {{PLURAL:$1|दिनम्|दिनानि}})',
 'securelogin-stick-https' => 'प्रवेशोपरान्तं एचटीटीपीएस(HTTPS) इत्यनेन सह संबद्धः तिष्ठतु।',
 'yourdomainname' => 'भवतः प्रक्षेत्रम्:',
+'password-change-forbidden' => 'अस्यां विक्यां निकुञ्चं परिवर्तयितुं न शक्नोति ।',
 'externaldberror' => 'तत्र प्रमाणीकरण समंकाधारे त्रुटिर्जाता, अथवा भवान् स्वकीयां बाह्य-लेखां अद्यतनीकर्तुं अनुमतिं न धारयति।',
 'login' => 'प्रविश्यताम्',
 'nav-login-createaccount' => 'प्रविश्यताम्/ सदस्यता प्राप्यताम्',
@@ -2052,67 +2053,178 @@ See https://www.mediawiki.org/wiki/Manual:Image_Authorization.',
 'deadendpagestext' => 'अधो निदेशितपुटानि {{SITENAME}} इत्यस्मिन्  अन्यपुटैः अनुबद्धानि न ।',
 'protectedpages' => 'सुरक्षितानि पुतानि ।',
 'protectedpages-indef' => 'अनिर्दिष्टसुरक्षा केवलम् ।',
+'protectedpages-cascade' => 'प्रपातसंरक्षणं केवलम् ।',
+'protectedpagestext' => 'अधोसूचितपुटानि चालनात् सम्पादनात् वा सुरक्षितानि ।',
+'protectedpagesempty' => 'अनेन विस्तारेण न किमपि पुटं सद्यः न सुरक्षितम् ।',
+'protectedtitles' => 'सुरक्षितानि शीर्षकानि ।',
+'protectedtitlestext' => 'अधो दत्तशीर्षकाणि सर्जनात् रक्षितानि ।',
+'protectedtitlesempty' => 'एतैः विस्तारैः न किमपि शीर्षकं सद्यः परिरक्षितानि ।',
 'listusers' => 'योजक सूचि',
+'listusers-editsonly' => 'केवलं सम्पादनसहितयोजकान् दर्शयतु ।',
+'listusers-creationsort' => 'सर्जनदिनाङ्कैः वर्गीकरोतु ।',
+'usereditcount' => '$1 {{PLURAL:$1|दिनम्|दिनानि}}',
 'usercreated' => '$1 दिने $2 समये रचितम् योजकनाम $3',
 'newpages' => 'नवीनपृष्ठम्',
 'newpages-username' => 'योजकनामन्:',
 'ancientpages' => 'प्राचीनतमानि पृष्ठानि',
 'move' => 'चाल्यताम्',
 'movethispage' => 'इदं पृष्ठं चाल्यताम्',
+'unusedimagestext' => 'अधो दत्तसञ्चिकाः सन्ति किन्तु कस्मिंश्चिदपि पुटे न न्यस्ताः ।',
+'unusedcategoriestext' => 'निम्नलिखितवर्गाः सन्ति तथापि अन्यपुटं वर्गः वा न उपयुङ्क्ते ।',
+'notargettitle' => 'लक्ष्यं नास्ति ।',
+'notargettext' => 'एतत्कार्यं समाचरितुं भवान् लक्षितपुटं योजकं वा न निर्दिष्टवान् ।',
+'nopagetitle' => 'तादृशलक्षितपुटं नास्ति ।',
+'nopagetext' => 'भवता निर्दिष्टं लक्षितपुटं नास्ति ।',
 'pager-newer-n' => '{{PLURAL:$1|नूतनतरम् 1|नूतनतराणि $1}}',
 'pager-older-n' => '{{PLURAL:$1|पुरातनतरम् 1|पुरातनतराणि $1}}',
+'suppress' => 'अलक्ष्यम् ।',
+'querypage-disabled' => 'समाचरणकारणेन एतद्विशेषपुटं निष्क्रियम् ।',
 
 # Book sources
 'booksources' => 'ग्रन्थानां स्रोतः',
 'booksources-search-legend' => 'ग्रन्थस्रोतः अन्विष्यताम्',
 'booksources-go' => 'गम्यताम्',
+'booksources-text' => 'अधस्था आवली नूतनप्राचीनपुस्तकानां विक्रयकेन्द्रस्य अनुबन्धान् सूचयति । यत्र ते  आवश्यकाः अन्यविषयाः अपि उपलभ्याः ।',
+'booksources-invalid-isbn' => 'दत्तं ISBN मान्यम् इति  न भाति । मूलस्रोततः प्रतिकृतीः कर्तुं परिशीलयतु ।',
 
 # Special:Log
+'specialloguserlabel' => 'आचारी :',
+'speciallogtitlelabel' => 'लक्ष्यम् (शीर्षकम् / योजकः)',
 'log' => 'लॉग् इत्येतानि',
+'all-logs-page' => 'सर्वसार्वजनिकप्रवेशः ।',
+'alllogstext' => '{{SITENAME}}इत्यस्य उबलब्धप्रवेशानां  संयुक्तप्रदर्शनम् ।
+प्रवेशप्रकारं चित्वा भवान् दृश्यं क्षाययितुं शक्नोति । योजकनाम,  सदस्य नाम (ह्रस्वदीर्घाक्षरसंवादी) प्रभावितपुटम् ।',
+'logempty' => 'प्रवेशे मेलयुक्तपुटं नास्ति ।',
+'log-title-wildcard' => 'अनेन पाठेन आरब्धानि शीर्षकानि अन्विषतु ।',
+'showhideselectedlogentries' => 'चितप्रवेशावलीः प्रदर्शयतु/गोपयतु ।',
 
 # Special:AllPages
 'allpages' => 'सर्वाणि पृष्ठानि',
 'alphaindexline' => '$1 तः $2 पर्यन्तम्',
+'nextpage' => '($1)अग्रिमपुटम् ।',
 'prevpage' => 'पूर्वपृष्ठम् ($1)',
 'allpagesfrom' => 'इत्यस्मात् आरभ्यमाणानि पृष्ठानि दर्श्यन्ताम्:',
 'allpagesto' => 'तानि पृष्ठानि दर्श्यन्तां येषाम् अन्त्यम् एवम् :',
 'allarticles' => 'सर्वाणि पृष्ठानि',
+'allinnamespace' => 'सर्वपुटानि ($1 नामस्थानम्)',
+'allnotinnamespace' => 'सर्वपुटानि ($1 नामस्थानं विना)',
 'allpagesprev' => 'पूर्वतन',
 'allpagesnext' => 'अग्रिम',
 'allpagessubmit' => 'गम्यताम्',
+'allpagesprefix' => 'उपसर्गयुक्तपुटानि दर्शयतु ।',
+'allpagesbadtitle' => 'दत्तपुटशीर्षकम् अमान्यम् अथवा आन्तर्भाषिकम्, आन्तर्विकीयं वा अस्ति । 
+अस्मिन् एकं नैकं वा अक्षराणि सन्ति येषां प्रयोगं शीर्षकेषु कर्तुम् अशक्यम् ।',
+'allpages-bad-ns' => '{{SITENAME}} इत्यस्मिन् "$1" नामस्थानं नास्ति ।',
+'allpages-hide-redirects' => 'पुनर्निदेशान् गोपयतु ।',
+
+# SpecialCachedPage
+'cachedspecial-viewing-cached-ttl' => ' भवान् अस्यपुटास्य निगूढावृत्तिं पश्यन् अस्ति । यत् $1 कालिकम्  अस्ति ।',
+'cachedspecial-viewing-cached-ts' => 'भवान् निगूढावृत्तेः पुटम् अवलोकयन् अस्ति । यत् परिपूर्णतया वास्तवं न ।',
+'cachedspecial-refresh-now' => 'जघन्यम् अवलोकयतु ।',
 
 # Special:Categories
 'categories' => 'वर्गाः',
+'categoriespagetext' => 'निम्नोक्ताः {{PLURAL:$1|श्रेणी|श्रेणयः}} पुटानि माध्यमान् वा युक्ताः ।
+यस्याः श्रेण्याः [[Special:UnusedCategories|अप्रयुक्तश्रेण्यः]] अत्र न सन्ति ।
+[[Special:WantedCategories|अपेक्षितश्रेण्यः]] अपि पश्यतु ।',
+'categoriesfrom' => 'इत्यस्मात् आरभ्यमाणानि पृष्ठानि दर्श्यन्ताम्:',
+'special-categories-sort-count' => 'गणनानुगुणं वर्गीकरोतु ।',
+'special-categories-sort-abc' => 'अकारदिक्रमेण वर्गीकरोतु ।',
+
+# Special:DeletedContributions
+'deletedcontributions' => 'अपमर्जितानि योजकयोगदानानि ।',
+'deletedcontributions-title' => 'अपमर्जितानि योजकयोगदानानि ।',
+'sp-deletedcontributions-contribs' => 'योगदानानि ।',
 
 # Special:LinkSearch
 'linksearch' => 'बाह्यसम्पर्कतन्तूनाम् अन्वेषणम्',
+'linksearch-pat' => 'अन्वेषणस्य क्रमः ।',
+'linksearch-ns' => 'नामस्थानम् :',
 'linksearch-ok' => 'अन्वेषणम्',
+'linksearch-text' => '"*.wikipedia.org" सदृशानि वन्यपत्राणि योजयितुं शक्यते । 
+न्यूनातिन्यूनं ".org" सदृशः अत्युन्नतस्तरस्य डोमेन आवश्यकम् अस्ति <br />
+अनुमोदितक्रमागतिः  <tt>$1</tt> (एतेषु कतममपि अन्वेषणे न योजयतु )',
 'linksearch-line' => '$2 पृष्ठं $1 तः सम्पृक्तम् अस्ति।',
+'linksearch-error' => 'वन्यपत्राणि आतिथेयस्य नाम्ना समं केवलं प्रभान्ति ।',
 
 # Special:ListUsers
+'listusersfrom' => 'एतस्मात् आरभमाणान् योजकान् दर्शयतु ।',
 'listusers-submit' => 'दर्श्यताम्',
+'listusers-noresult' => 'योजकः न प्राप्तः ।',
+'listusers-blocked' => 'अवरुद्धम् ।',
+
+# Special:ActiveUsers
+'activeusers' => 'सक्रिययोजकानाम् आवली ।',
+'activeusers-intro' => 'एषा तु गतेषु $1 {{PLURAL:$1|दिनेषु}} कृतकार्याणां योजकाना आवली ।',
+'activeusers-count' => '$1 {{PLURAL:$1|सम्पादनानि}} गतेषु $3 {{PLURAL:$3|दिनेषु}} कृतानि  ।',
+'activeusers-from' => 'एतस्मात् आरभमाणान् योजकान् दर्शयतु ।',
+'activeusers-hidebots' => 'स्वयं चालकान् गोपयतु ।',
+'activeusers-hidesysops' => 'प्रशासकान् गोपयतु ।',
+'activeusers-noresult' => 'योजकः न प्राप्तः ।',
 
 # Special:Log/newusers
 'newuserlogpage' => 'प्रयोक्तृ-सृजन-सूचिका',
+'newuserlogpagetext' => 'अयं योजकनिर्माणास्य प्रवेशः ।',
 
 # Special:ListGroupRights
+'listgrouprights' => 'योजकसमूहाधिकाराः ।',
+'listgrouprights-summary' => 'अधोदत्ता विकिपरिभाषितस्य सङ्गताभिगम्यताधिकारैः सहिता योजकसमूहस्य आवली । [[{{MediaWiki:Listgrouprights-helppage}}|additional information]]',
+'listgrouprights-key' => '* <span class="listgrouprights-granted">दत्ताधिकाराः</span>
+* <span class="listgrouprights-revoked">हृताधिकाराः</span>',
 'listgrouprights-group' => 'वर्ग',
+'listgrouprights-rights' => 'अधिकाराः ।',
+'listgrouprights-helppage' => 'Help: समूहाधिकाराः ।',
 'listgrouprights-members' => '(सदस्यानां सूची)',
+'listgrouprights-addgroup' => '{{PLURAL:$2|समूहः}} योज्यताम् $1',
+'listgrouprights-removegroup' => 'समूहः{{PLURAL:$2|विलोपयतु}}: $1',
+'listgrouprights-addgroup-all' => 'सर्वसमूहान् योजयतु ।',
+'listgrouprights-removegroup-all' => 'सर्वसमूहान् अपनयतु ।',
+'listgrouprights-addgroup-self' => 'स्वस्थाने {{PLURAL:$2|समूहम्}} योजयतु $1',
+'listgrouprights-removegroup-self' => 'स्वस्थाने {{PLURAL:$2|समूहम्}} अपनयतु  $1',
+'listgrouprights-addgroup-self-all' => 'स्वस्थाने सर्वसमूहान योजयतु ।',
+'listgrouprights-removegroup-self-all' => 'स्वस्थानात् सर्वसमूहान् अपनयतु ।',
 
 # E-mail user
+'mailnologin' => 'सम्प्रेषणस्य सङ्केतः नास्ति ।',
+'mailnologintext' => 'अस्य योजकेभ्यः विद्युन्मानपत्रप्रेषणार्थम् [[Special:UserLogin|नामाभिलेखनम्]] आवश्यकम् [[Special:Preferences|आद्यता]]यां प्रेषयितुं विद्युन्मानपत्रसङ्केतः आवश्यकः ।',
 'emailuser' => 'एतस्मै योजकाय ईपत्रं प्रेष्यताम्',
 'emailpage' => 'ई-मेल योजक',
+'emailpagetext' => 'अस्मै योजकाय विद्युन्मानपत्रं प्रेषयितुम् अधो दत्तप्रपत्रम् उपयोक्तुं शक्नोति । 
+[[Special:Preferences|your user preferences]] अत्र भवता विनिवेशितः वि-पत्रसङ्केतः सकाशात् इति स्थाने प्रतिभाति । अनेन स्वीकर्ता साक्षात् प्रत्युत्तरं दातुं प्रभविष्यति ।',
+'usermailererror' => 'पत्राचारपदार्थस्य प्रत्यागतदोषः ।',
+'defemailsubject' => '{{SITENAME}}"$1" इति योजकात् विद्युन्मानपत्रम् ।',
+'usermaildisabled' => 'योजकस्य विद्युन्मानपत्रं निष्क्रियम् ।',
+'usermaildisabledtext' => 'अस्यां विक्याम् अन्ययोजकेभ्यः विद्युन्मानपत्रं प्रेषयितुं नै शक्नोति ।',
+'noemailtitle' => 'विद्युन्मानपत्रसङ्केतः नास्ति ।',
+'noemailtext' => 'अस्य योजकस्य निरिदिष्टः विद्युन्मानपत्रसङ्केतः नास्ति ।',
+'nowikiemailtitle' => 'विद्युन्मानपत्रम् अननुमतम् ।',
+'nowikiemailtext' => 'अयं योजकः अन्ययोजकेभ्यः विद्युन्मानपत्राणि स्वीकार्तुं नेच्छति ।',
+'emailnotarget' => 'स्वीकर्तुः अस्तित्वविहीनम् अथवा अमान्यं योजकनाम  ।',
+'emailtarget' => 'स्वीकर्तुः योजकनाम लिखतु ।',
 'emailusername' => 'योजकनामन्:',
+'emailusernamesubmit' => 'उपस्थाप्यताम्',
+'email-legend' => '{{SITENAME}}  इति अन्ययोजकाय विद्युन्मानपत्रं प्रेषयतु ।',
 'emailfrom' => 'सकाशात्',
 'emailto' => 'सविधे:',
 'emailsubject' => 'विषयः',
 'emailmessage' => 'सन्देशः :',
 'emailsend' => 'प्रेषति',
+'emailccme' => 'सन्देशस्य प्रतिकृतिः मे विद्युन्मानपत्रसङ्केताय अपि प्रेषयतु ।',
+'emailccsubject' => '$1: $2 कृते अपि भवतः सन्देशस्य प्रकृतीः ।',
+'emailsent' => 'विद्युन्मानपत्रं प्रेषितम् ।',
+'emailsenttext' => 'भवतः विद्युन्मानपत्रसन्देशः प्रेषिताः ।',
+'emailuserfooter' => 'एतद्विद्युन्मानपत्रं {{SITENAME}} इत्यस्य योजपत्राचरव्यवस्थाद्वारा  $1 इत्यनेन $2 कृते प्रेषितम् ।',
+
+# User Messenger
+'usermessage-summary' => 'तान्त्रिकसन्देशानां त्यागः ।',
+'usermessage-editor' => 'तान्त्रिकसन्देशवाहकः ।',
 
 # Watchlist
 'watchlist' => 'मम अवेक्षणसूची',
 'mywatchlist' => 'मम अवेक्षणसूची',
 'watchlistfor2' => 'हि $1 $2',
+'nowatchlist' => 'अवलोकनावल्यां पदार्थः नास्ति ।',
+'watchlistanontext' => 'अवलोकनपट्टिकायां पुटं दृष्टुं सम्पादयितुं वा  $1  करोतु ।',
 'addedwatchtext' => 'भवतः [[Special:Watchlist|ध्यानसूचिकायां]] "[[:$1]]" इत्येतत् योजितमस्ति।
 इदानींप्रभृति अस्मिन् पृष्ठे तथा अस्य चर्चापृष्ठे सन्तः परिवर्तनानि भवतः निरीक्षासूचिकायां द्रक्ष्यन्ते तथा च [[Special:RecentChanges|सद्यःपरिवर्तितानां सूचिकायां]] इदं पृष्ठं स्थूलाक्षरैः द्रक्ष्यते, यस्मात् भवान् सरलतया इदं पश्यतु <p>निरीक्षासूचिकातः निराकर्तुमिच्छति चेत्, "मा निरीक्षताम्" इत्यसमिन् नोदयतु।',
 'removedwatchtext' => '"[[:$1]]" इति पृष्ठं [[Special:Watchlist|भवतः निरीक्षासूचिकातः]] निराकृतमस्ति।',

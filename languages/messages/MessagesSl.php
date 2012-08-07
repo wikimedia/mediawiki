@@ -600,6 +600,7 @@ Ne pozabite si prilagoditi vaših [[Special:Preferences|nastavitev {{GRAMMAR:rod
 'remembermypassword' => 'Zapomni si me na tem računalniku (za največ $1 {{PLURAL:$1|dan|dneva|dni}})',
 'securelogin-stick-https' => 'Po prijavi ostani povezan preko HTTPS',
 'yourdomainname' => 'Domena',
+'password-change-forbidden' => 'Na tem wikiju ne morete spreminjati gesel.',
 'externaldberror' => 'Pri potrjevanju istovetnosti je prišlo do notranje napake ali pa za osveževanje zunanjega računa nimate dovoljenja.',
 'login' => 'Prijava',
 'nav-login-createaccount' => 'Prijavite se / registrirajte se',
@@ -1964,9 +1965,9 @@ Preden jih izbrišete, preverite še druge povezave nanje.',
 
 'disambiguations' => 'Strani s povezavami na razločitvene strani',
 'disambiguationspage' => 'Template:Razločitev',
-'disambiguations-text' => "Naslednje strani se povezujejo na '''razločitvene strani'''.
-Namesto tega bi se naj povezovale na primerno temo.<br />
-Stran se obravnava kot razločitvena, če uporablja predloge povezane iz [[MediaWiki:Disambiguationspage]]",
+'disambiguations-text' => "Naslednje strani vsebujejo vsaj eno povezavo na '''razločitvene strani'''.
+Namesto tega bi morda bilo bolje, da se povezujejo na primernejše strani.<br />
+Stran se obravnava kot razločitvena, če uporablja predloge, povezane z [[MediaWiki:Disambiguationspage]].",
 
 'doubleredirects' => 'Dvojne preusmeritve',
 'doubleredirectstext' => 'Ta stran navaja strani, ki se preusmerjajo na druge preusmeritvene strani.

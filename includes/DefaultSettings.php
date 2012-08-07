@@ -1743,7 +1743,7 @@ $wgMemCachedPersistent = false;
 /**
  * Read/write timeout for MemCached server communication, in microseconds.
  */
-$wgMemCachedTimeout = 100000;
+$wgMemCachedTimeout = 500000;
 
 /**
  * Set this to true to make a local copy of the message cache, for use in

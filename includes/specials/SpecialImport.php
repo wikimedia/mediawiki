@@ -177,11 +177,11 @@ class SpecialImport extends SpecialPage {
 		$out = $this->getOutput();
 
 		if( $user->isAllowed( 'importupload' ) ) {
-			$out->addWikiMsg( "importtext" );
 			$out->addHTML(
 				Xml::fieldset( $this->msg( 'import-upload' )->text() ).
 				Xml::openElement( 'form', array( 'enctype' => 'multipart/form-data', 'method' => 'post',
 					'action' => $action, 'id' => 'mw-import-upload-form' ) ) .
+				$this->msg( 'importtext' )->parseAsBlock() .
 				Html::hidden( 'action', 'submit' ) .
 				Html::hidden( 'source', 'upload' ) .
 				Xml::openElement( 'table', array( 'id' => 'mw-import-table' ) ) .

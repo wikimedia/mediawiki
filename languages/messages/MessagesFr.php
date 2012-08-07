@@ -779,6 +779,7 @@ N’oubliez pas de personnaliser vos [[Special:Preferences|préférences sur {{S
 'remembermypassword' => 'Me reconnecter automatiquement aux prochaines visites avec ce navigateur (au maximum $1 {{PLURAL:$1|jour|jours}})',
 'securelogin-stick-https' => 'Rester connecté en HTTPS après la connexion',
 'yourdomainname' => 'Votre domaine :',
+'password-change-forbidden' => 'Vous ne pouvez pas modifier les mots de passe sur ce wiki.',
 'externaldberror' => 'Une erreur s’est produite avec la base de données d’authentification externe, ou bien vous n’êtes pas autorisé{{GENDER:||e|(e)}} à mettre à jour votre compte externe.',
 'login' => 'Connexion',
 'nav-login-createaccount' => 'Créer un compte ou se connecter',
@@ -2102,9 +2103,9 @@ N’oubliez pas de vérifier s’il n’y a pas d’autres liens vers les modèl
 
 'disambiguations' => 'Pages ayant des liens vers des pages d’homonymie',
 'disambiguationspage' => 'Template:Homonymie',
-'disambiguations-text' => "Les pages suivantes comportent un lien vers une '''page d’homonymie'''.
-Ces liens ambigus devraient plutôt pointer vers le bon article.<br />
-Une page est considérée comme une page d’homonymie si elle inclut (directement ou récursivement) un des modèles listés sur [[MediaWiki:Disambiguationspage]].",
+'disambiguations-text' => "Les pages suivantes comportent au moins un lien vers une '''page d’homonymie'''.
+Elles devraient plutôt pointer vers le bon article.<br />
+Une page est considérée comme une page d’homonymie si elle utilise un modèle lié à [[MediaWiki:Disambiguationspage]]",
 
 'doubleredirects' => 'Doubles redirections',
 'doubleredirectstext' => 'Voici une liste des pages qui redirigent vers des pages qui sont elles-mêmes des pages de redirection.
@@ -2446,6 +2447,8 @@ veuiller ne procéder qu’avec prudence.',
 'rollback' => 'Révoquer les modifications',
 'rollback_short' => 'Révoquer',
 'rollbacklink' => 'révoquer',
+'rollbacklinkcount' => 'révoquer $1 {{PLURAL:$1|modification|modifications}}',
+'rollbacklinkcount-morethan' => 'révoquer plus de $1 {{PLURAL:$1|modification|modifications}}',
 'rollbackfailed' => 'La révocation a échoué',
 'cantrollback' => 'Impossible de révoquer la modification ;
 le dernier contributeur est le seul auteur de cette page.',
@@ -3096,7 +3099,10 @@ Permet de rétablir la version précédente et d’ajouter un motif dans la boî
 'simple.js' => '/* Tout JavaScript ici sera chargé avec les pages accédées par les utilisateurs de l’habillage Simple uniquement */',
 'modern.js' => '/* Tout JavaScript ici sera chargé avec les pages accédées par les utilisateurs de l’habillage Moderne uniquement */',
 'vector.js' => '/* Tout code JavaScript placé ici sera chargé pour les utilisateurs de l’habillage Vector */',
+'group-autoconfirmed.js' => '/* Le JavaScript inclus ici n’affectera que les utilisateurs auto-confirmés */',
+'group-bot.js' => '/* Le JavaScript inclus ici n’affectera que les robots */',
 'group-sysop.js' => '/* Le JavaScript inclus ici n’affectera que les administrateurs */',
+'group-bureaucrat.js' => '/* Le JavaScript inclus ici n’affectera que les bureaucrates */',
 
 # Metadata
 'notacceptable' => 'Ce serveur wiki ne peut pas fournir les données dans un format que votre client soit capable de lire.',

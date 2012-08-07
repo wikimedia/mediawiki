@@ -132,17 +132,17 @@ $messages = array(
 'tog-editsectiononrightclick' => 'Galluogi golygu adran drwy dde-glicio ar bennawd yr adran (JavaScript)',
 'tog-showtoc' => 'Dangos y daflen gynnwys (ar gyfer tudalennau sydd â mwy na 3 pennawd)',
 'tog-rememberpassword' => "Y porwr hwn i gofio'r manylion mewngofnodi (hyd at $1 {{PLURAL:$1||diwrnod|ddiwrnod|diwrnod|diwrnod|diwrnod}})",
-'tog-watchcreations' => 'Ychwanegu tudalennau at fy rhestr wylio wrth i mi eu creu',
-'tog-watchdefault' => 'Ychwanegu tudalennau at fy rhestr wylio wrth i mi eu golygu',
-'tog-watchmoves' => 'Ychwanegu tudalennau at fy rhestr wylio wrth i mi eu symud',
-'tog-watchdeletion' => 'Ychwanegu tudalennau at fy rhestr wylio wrth i mi eu dileu',
+'tog-watchcreations' => 'Ychwanegu tudalennau at fy rhestr wylio wrth i mi eu creu a ffeiliau wrth i mi eu huwchlwytho.',
+'tog-watchdefault' => 'Ychwanegu tudalennau a ffeiliau at fy rhestr wylio wrth i mi eu golygu',
+'tog-watchmoves' => 'Ychwanegu tudalennau a ffeiliau at fy rhestr wylio wrth i mi eu symud',
+'tog-watchdeletion' => 'Ychwanegu tudalennau a ffeiliau at fy rhestr wylio wrth i mi eu dileu',
 'tog-minordefault' => 'Marcio pob golygiad fel un bach yn ddiofyn',
 'tog-previewontop' => 'Dangos y rhagolwg cyn y blwch golygu',
 'tog-previewonfirst' => 'Dangos rhagolwg ar y golygiad cyntaf',
 'tog-nocache' => 'Analluogi storio tudalennau yng nghelc y porydd',
-'tog-enotifwatchlistpages' => 'Gyrru e-bost ataf pan fo newid i dudalen ar fy rhestr wylio',
+'tog-enotifwatchlistpages' => 'Gyrru e-bost ataf pan fo newid i dudalen neu ffeil ar fy rhestr wylio',
 'tog-enotifusertalkpages' => "Gyrru e-bost ataf fy hunan pan fo newid i'm tudalen sgwrs",
-'tog-enotifminoredits' => 'Gyrru e-bost ataf hefyd ar gyfer golygiadau bychain i dudalennau',
+'tog-enotifminoredits' => 'Gyrru e-bost ataf hefyd ar gyfer golygiadau bychain i dudalennau a ffeiliau',
 'tog-enotifrevealaddr' => 'Datguddio fy nghyfeiriad e-bost mewn e-byst hysbysu',
 'tog-shownumberswatching' => "Dangos y nifer o ddefnyddwyr sy'n gwylio",
 'tog-oldsig' => 'Llofnod cyfredol:',
@@ -473,6 +473,8 @@ A fyddech gystal â gwneud adroddiad ar hwn at [[Special:ListUsers/sysop|weinydd
 'cannotdelete' => "Mae'n amhosib dileu'r dudalen neu'r ddelwedd \"\$1\".
 Efallai fod rhywun arall eisoes wedi'i dileu.",
 'cannotdelete-title' => "Ni ellir dileu'r dudalen '$1'",
+'delete-hook-aborted' => 'Terfynwyd y dilead cyn pryd gan fachyn.
+Ni roddodd eglurhad.',
 'badtitle' => 'Teitl gwael',
 'badtitletext' => "Mae'r teitl a ofynnwyd amdano yn annilys, yn wag, neu cysylltu'n anghywir rhwng ieithoedd neu wicïau. Gall fod ynddo un nod neu ragor na ellir eu defnyddio mewn teitlau.",
 'perfcached' => "Mae'r wybodaeth ganlynol yn gopi cadw; mae'n bosib nad y fersiwn diweddaraf ydyw. Cedwir hyd at {{PLURAL:$1||un canlyniad yn unig|ddau ganlyniad|dri canlyniad|$1 chanlyniad|$1 canlyniad}} yn y copi cadw.",
@@ -1633,6 +1635,7 @@ Os yw'r broblem yn parhau, cysylltwch â [[Special:ListUsers/sysop|gweinyddwr]].
 'lockmanager-fail-releaselock' => 'Wedi methu agor y clo ar "$1".',
 'lockmanager-fail-db-bucket' => 'Methwyd cysylltu â digon o gronfeydd data cloi yn y bwced $1.',
 'lockmanager-fail-db-release' => 'Wedi methu agor y cloion ar y gronfa ddata $1.',
+'lockmanager-fail-svr-acquire' => 'Wedi methu sicrhau cloion ar y gweinydd $1.',
 'lockmanager-fail-svr-release' => 'Wedi methu agor y cloion ar y gweinydd $1.',
 
 # ZipDirectoryReader
@@ -3678,6 +3681,8 @@ Dangosir delweddau ar eu maint llawn, dechreuir ffeiliau o fathau eraill yn unio
 'api-error-empty-file' => "Mae'r ffeil a gyflwynwyd gennych yn wag.",
 'api-error-emptypage' => "Ni chaniateir dechrau tudalen newydd, a honno'n wag.",
 'api-error-fetchfileerror' => "Gwall mewnol: aeth rhywbeth o'i le tra'n cywain y ffeil.",
+'api-error-fileexists-forbidden' => 'Mae ffeil o\'r enw "$1" ar gael yn barod, ac ni ellir ei throsysgrifo.',
+'api-error-fileexists-shared-forbidden' => 'Mae ffeil o\'r enw "$1" eisoes ar gael yn y storfa ffeiliau gyfrannol, ac ni ellir ei throsysgrifo.',
 'api-error-file-too-large' => "Mae'r ffeil a gyflwynwyd gennych yn rhy fawr.",
 'api-error-filename-tooshort' => "Mae enw'r ffeil yn rhy fyr.",
 'api-error-filetype-banned' => "Mae'r math hwn o ffeil wedi ei wahardd.",
@@ -3716,6 +3721,4 @@ Dangosir delweddau ar eu maint llawn, dechreuir ffeiliau o fathau eraill yn unio
 'duration-centuries' => '$1 {{PLURAL:$1|canmlwydd|ganmlwydd|ganmlwydd|canmlwydd|chanmlwydd|canmlwydd}}',
 'duration-millennia' => '$1 {{PLURAL:$1|milflwydd|filflwydd|filflwydd|milflwydd|milflwydd|milflwydd}}',
 
-# Unknown messages
-'lockmanager-fail-svr-acquire' => 'Wedi methu sicrhau cloion ar y gweinydd $1.',
 );

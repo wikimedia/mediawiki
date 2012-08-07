@@ -766,8 +766,11 @@ $3 tərəfindən verilən səbəb ''$2''",
 'last' => 'son',
 'page_first' => 'birinci',
 'page_last' => 'sonuncu',
-'histlegend' => "Fərqə bax: müqayisə etmək istədiyiniz versiyaların yanındakı dairələri işarələyin və \"Enter\"ə və ya \"müqayisə et\" düyməsinə basın.<br />
-Açıqlama: '''(hh)''' — hal-hazırkı versiya ilə aradakı fərq, '''(son)''' — əvvəlki versiya ilə aradakı fərq, '''k''' — kiçik redaktə.",
+'histlegend' => "<div id=\"histlegend\"><span style=\"white-space:nowrap;\">Aşağıda sadalanan hər hansı bir versiyası görmək üçün, tarixinin üzərinə tıklayın.</span> <span style=\"white-space:nowrap;\">Daha çox kömək üçün, [[Kömək:Səhifə keçmişi|səhifə keçmişi]] səhifəsinə baxın.</span><br /><span style=\"white-space:nowrap;\">Xarici vasitələr: <!-- [http://toolserver.org/~tparis/articleinfo/index.php?article={{FULLPAGENAMEE}}&lang=tr&wiki=wikipedia Təftiş keçmişinin statistikası] '''·'''</span> <span style=\"white-space:nowrap;\"> -->[http://wikipedia.ramselehof.de/wikiblame.php?lang=tr&article={{FULLPAGENAMEE}} Təftiş keçmişini axtarmaq] '''·'''</span> <span style=\"white-space:nowrap;\">[http://toolserver.org/~daniel/WikiSense/Contributors.php?wikilang=tr&wikifam=.wikipedia.org&grouped=on&page={{FULLPAGENAMEE}} Töhfəsi olanlar] '''·'''</span> <span style=\"white-space:nowrap;\">[http://toolserver.org/~mzmcbride/cgi-bin/watcher.py?db=trwiki_p&titles={{FULLPAGENAMEE}} İzləyənlərin sayı] '''·'''</span> <span style=\"white-space:nowrap;\">[http://stats.grok.se/tr/latest/{{FULLPAGENAMEE}} Səhifəyə baxılma statistikası]</span></div>
+----
+Fərqləri seçmə və göstərmə: müqayisə etmək istədiyiniz versiyaların yanındakı radio qutularına işarə qoyun və daxil etmə düyməsinə (enter+a) və ya \"müqayisə et\" düyməsinə vurun.
+
+Açıqlama: '''(hh)''' = hal-hazırkı versiya ilə olan fərqlər, '''(son)''' = əvvəlki versiya ilə olan fərqlər, '''k''' = kiçik redaktələr.</span>",
 'history-fieldset-title' => 'Tarixçəni nəzərdən keçir',
 'history-show-deleted' => 'Yalnız silinənlər',
 'histfirst' => 'Ən əvvəlki',

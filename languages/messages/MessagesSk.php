@@ -695,6 +695,7 @@ Nezabudnite si nastaviť svoje [[Special:Preferences|používateľské nastaveni
 'remembermypassword' => 'Pamätať si prihlásenie na tomto počítači (naviac $1 {{PLURAL:$1|deň|dni|dní}})',
 'securelogin-stick-https' => 'Zostať pripojený cez HTTPS po prihlásení',
 'yourdomainname' => 'Vaša doména:',
+'password-change-forbidden' => 'Na tejto wiki si nemôžete zmeniť heslo.',
 'externaldberror' => 'Buď nastala chyba externej autentifikačnej databázy alebo vám nie je povolené aktualizovať váš externý účet.',
 'login' => 'Prihlásiť',
 'nav-login-createaccount' => 'Vytvorenie konta / prihlásenie',
@@ -1520,6 +1521,7 @@ Musí obsahovať menej ako $1 {{PLURAL:$1|znak|znaky|znakov}}.',
 'right-writeapi' => 'Použitie API na zápis',
 'right-delete' => 'Mazať stránky',
 'right-bigdelete' => 'Mazať stránky s veľkou históriou',
+'right-deletelogentry' => 'Odstrániť a obnoviť špecifické položky',
 'right-deleterevision' => 'Mazať a obnovovať konkrétne revízie stránok',
 'right-deletedhistory' => 'Zobrazovať zmazané položky histórie bez ich plného textu',
 'right-deletedtext' => 'Zobrazovať zmazané texty a zmeny medzi zmazanými verziami',
@@ -1833,6 +1835,7 @@ Ak problém pretrváva, kontaktujte [[Special:ListUsers/sysop|správcu systému]
 'lockmanager-fail-releaselock' => 'Nepodarilo sa uvoľniť zámok „$1“.',
 'lockmanager-fail-db-bucket' => 'Nepodarilo sa kontaktovať dostatok databáz zámkov v buckete $1.',
 'lockmanager-fail-db-release' => 'Nepodarilo sa uvoľniť zámky na databáze $1.',
+'lockmanager-fail-svr-acquire' => 'Nepodarilo sa získať zámky na serveri $1.',
 'lockmanager-fail-svr-release' => 'Nepodarilo sa uvoľniť zámky na serveri $1.',
 
 # ZipDirectoryReader
@@ -2362,9 +2365,11 @@ Na $2 nájdete zoznam posledných zmazaní.',
 'delete-warning-toobig' => 'Táto stránka má veľkú históriu úprav, viac ako $1 {{PLURAL:$1|revíziu|revízie|revízií}}. Jej zmazanie by mohlo narušiť databázové operácie {{GRAMMAR:genitív|{{SITENAME}}}}; postupujte opatrne.',
 
 # Rollback
-'rollback' => 'Rollback úprav',
-'rollback_short' => 'Rollback',
-'rollbacklink' => 'rollback',
+'rollback' => 'Vrátiť späť úpravy',
+'rollback_short' => 'Vrátiť',
+'rollbacklink' => 'vrátiť',
+'rollbacklinkcount' => 'vrátenie $1 {{PLURAL:$1|úpravy|úprav}}',
+'rollbacklinkcount-morethan' => 'vrátiť viac ako $1 {{PLURAL:$1|úpravu|úprav}}',
 'rollbackfailed' => 'Rollback neúspešný',
 'cantrollback' => 'Nie je možné úpravu vrátiť späť, posledný autor je jediný autor tejto stránky.',
 'alreadyrolled' => 'Nemožno vrátiť späť poslednú úpravu [[:$1]] od [[User:$2|$2]] ([[User talk:$2|Diskusia]]{{int:pipe-separator}}[[Special:Contributions/$2|{{int:contribslink}}]]); niekto iný buď upravoval stránku alebo už vrátil úpravy späť.
@@ -3969,6 +3974,4 @@ V opačnom prípade môžete použiť zjednodušený formulár nižšie. Váš k
 'duration-centuries' => '$1 {{PLURAL:$1|storočie|storočia|storočí}}',
 'duration-millennia' => '$1 {{PLURAL:$1|tisícročie|tisícročia|tisícročí}}',
 
-# Unknown messages
-'lockmanager-fail-svr-acquire' => 'Nepodarilo sa získať zámky na serveri $1.',
 );

@@ -37,7 +37,6 @@ class RefreshLinksJob extends Job {
 	 * @return boolean success
 	 */
 	function run() {
-		global $wgParser, $wgContLang;
 		wfProfileIn( __METHOD__ );
 
 		$linkCache = LinkCache::singleton();
@@ -49,25 +48,40 @@ class RefreshLinksJob extends Job {
 			return false;
 		}
 
-		$revision = Revision::newFromTitle( $this->title );
-		if ( !$revision ) {
-			$this->error = 'refreshLinks: Article not found "' . $this->title->getPrefixedDBkey() . '"';
-			wfProfileOut( __METHOD__ );
-			return false;
+		# Wait for the DB of the current/next slave DB handle to catch up to the master.
+		# This way, we get the correct page_latest for templates or files that just changed
+		# milliseconds ago, having triggered this job to begin with.
+		if ( isset( $this->params['masterPos'] ) ) {
+			wfGetLB()->waitFor( $this->params['masterPos'] );
 		}
 
-		wfProfileIn( __METHOD__.'-parse' );
-		$options = ParserOptions::newFromUserAndLang( new User, $wgContLang );
-		$parserOutput = $wgParser->parse( $revision->getText(), $this->title, $options, true, true, $revision->getId() );
-		wfProfileOut( __METHOD__.'-parse' );
-		wfProfileIn( __METHOD__.'-update' );
+		$revision = Revision::newFromTitle( $this->title, 0, Revision::AVOID_MASTER );
+		if ( !$revision ) {
+			$this->error = 'refreshLinks: Article not found "' .
+				$this->title->getPrefixedDBkey() . '"';
+			wfProfileOut( __METHOD__ );
+			return false; // XXX: what if it was just deleted?
+		}
 
-		$updates = $parserOutput->getSecondaryDataUpdates( $this->title, false );
-		DataUpdate::runUpdates( $updates );
+		self::runForTitleInternal( $this->title, $revision, __METHOD__ );
 
-		wfProfileOut( __METHOD__.'-update' );
 		wfProfileOut( __METHOD__ );
 		return true;
+	}
+
+	public static function runForTitleInternal( Title $title, Revision $revision, $fname ) {
+		global $wgParser, $wgContLang;
+
+		wfProfileIn( $fname . '-parse' );
+		$options = ParserOptions::newFromUserAndLang( new User, $wgContLang );
+		$parserOutput = $wgParser->parse(
+			$revision->getText(), $title, $options, true, true, $revision->getId() );
+		wfProfileOut( $fname . '-parse' );
+
+		wfProfileIn( $fname . '-update' );
+		$updates = $parserOutput->getSecondaryDataUpdates( $title, false );
+		DataUpdate::runUpdates( $updates );
+		wfProfileOut( $fname . '-update' );
 	}
 }
 
@@ -78,6 +92,7 @@ class RefreshLinksJob extends Job {
  * @ingroup JobQueue
  */
 class RefreshLinksJob2 extends Job {
+	const MAX_TITLES_RUN = 10;
 
 	function __construct( $title, $params, $id = 0 ) {
 		parent::__construct( 'refreshLinks2', $title, $params, $id );
@@ -88,62 +103,100 @@ class RefreshLinksJob2 extends Job {
 	 * @return boolean success
 	 */
 	function run() {
-		global $wgParser, $wgContLang;
-
 		wfProfileIn( __METHOD__ );
 
 		$linkCache = LinkCache::singleton();
 		$linkCache->clear();
 
-		if( is_null( $this->title ) ) {
+		if ( is_null( $this->title ) ) {
 			$this->error = "refreshLinks2: Invalid title";
 			wfProfileOut( __METHOD__ );
 			return false;
-		}
-		if( !isset($this->params['start']) || !isset($this->params['end']) ) {
+		} elseif ( !isset( $this->params['start'] ) || !isset( $this->params['end'] ) ) {
 			$this->error = "refreshLinks2: Invalid params";
 			wfProfileOut( __METHOD__ );
 			return false;
 		}
+
 		// Back compat for pre-r94435 jobs
 		$table = isset( $this->params['table'] ) ? $this->params['table'] : 'templatelinks';
-		$titles = $this->title->getBacklinkCache()->getLinks( 
-			$table, $this->params['start'], $this->params['end']);
-		
-		# Not suitable for page load triggered job running!
-		# Gracefully switch to refreshLinks jobs if this happens.
-		if( php_sapi_name() != 'cli' ) {
-			$jobs = array();
+
+		// Avoid slave lag when fetching templates
+		if ( isset( $this->params['masterPos'] ) ) {
+			$masterPos = $this->params['masterPos'];
+		} elseif ( wfGetLB()->getServerCount() > 1  ) {
+			$masterPos = wfGetLB()->getMasterPos();
+		} else {
+			$masterPos = false;
+		}
+
+		$titles = $this->title->getBacklinkCache()->getLinks(
+			$table, $this->params['start'], $this->params['end'] );
+
+		if ( $titles->count() > self::MAX_TITLES_RUN ) {
+			# We don't want to parse too many pages per job as it can starve other jobs.
+			# If there are too many pages to parse, break this up into smaller jobs. By passing
+			# in the master position here we can cut down on the time spent waiting for slaves to
+			# catch up by the runners handling these jobs since time will have passed between now
+			# and when they pop these jobs off the queue.
+			$start = 0; // batch start
+			$end   = 0; // batch end
+			$bsize = 0; // batch size
+			$first = true; // first of batch
+			$jobs  = array();
 			foreach ( $titles as $title ) {
-				$jobs[] = new RefreshLinksJob( $title, '' );
+				$start = $first ? $title->getArticleId() : $start;
+				$end   = $title->getArticleId();
+				$first = false;
+				if ( ++$bsize >= self::MAX_TITLES_RUN ) {
+					$jobs[] = new RefreshLinksJob2( $this->title, array(
+						'table'     => $table,
+						'start'     => $start,
+						'end'       => $end,
+						'masterPos' => $masterPos
+					) );
+					$first = true;
+					$start = $end = $bsize = 0;
+				}
+			}
+			if ( $bsize > 0 ) { // group remaining pages into a job
+				$jobs[] = new RefreshLinksJob2( $this->title, array(
+					'table'     => $table,
+					'start'     => $start,
+					'end'       => $end,
+					'masterPos' => $masterPos
+				) );
 			}
 			Job::batchInsert( $jobs );
-
-			wfProfileOut( __METHOD__ );
-			return true;
-		}
-		$options = ParserOptions::newFromUserAndLang( new User, $wgContLang );
-		# Re-parse each page that transcludes this page and update their tracking links...
-		foreach ( $titles as $title ) {
-			$revision = Revision::newFromTitle( $title );
-			if ( !$revision ) {
-				$this->error = 'refreshLinks: Article not found "' . $title->getPrefixedDBkey() . '"';
-				wfProfileOut( __METHOD__ );
-				return false;
+		} elseif ( php_sapi_name() != 'cli' ) {
+			# Not suitable for page load triggered job running!
+			# Gracefully switch to refreshLinks jobs if this happens.
+			$jobs = array();
+			foreach ( $titles as $title ) {
+				$jobs[] = new RefreshLinksJob( $title, array( 'masterPos' => $masterPos ) );
 			}
-			wfProfileIn( __METHOD__.'-parse' );
-			$parserOutput = $wgParser->parse( $revision->getText(), $title, $options, true, true, $revision->getId() );
-			wfProfileOut( __METHOD__.'-parse' );
-			wfProfileIn( __METHOD__.'-update' );
-
-			$updates = $parserOutput->getSecondaryDataUpdates( $title, false );
-			DataUpdate::runUpdates( $updates );
-
-			wfProfileOut( __METHOD__.'-update' );
-			wfWaitForSlaves();
+			Job::batchInsert( $jobs );
+		} else {
+			# Wait for the DB of the current/next slave DB handle to catch up to the master.
+			# This way, we get the correct page_latest for templates or files that just changed
+			# milliseconds ago, having triggered this job to begin with.
+			if ( $masterPos ) {
+				wfGetLB()->waitFor( $masterPos );
+			}
+			# Re-parse each page that transcludes this page and update their tracking links...
+			foreach ( $titles as $title ) {
+				$revision = Revision::newFromTitle( $title, 0, Revision::AVOID_MASTER );
+				if ( !$revision ) {
+					$this->error = 'refreshLinks: Article not found "' .
+						$title->getPrefixedDBkey() . '"';
+					continue; // skip this page
+				}
+				RefreshLinksJob::runForTitleInternal( $title, $revision, __METHOD__ );
+				wfWaitForSlaves();
+			}
 		}
-		wfProfileOut( __METHOD__ );
 
+		wfProfileOut( __METHOD__ );
 		return true;
 	}
 }

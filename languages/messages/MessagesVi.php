@@ -1837,6 +1837,7 @@ Nếu vẫn còn bị lỗi, xin hãy liên hệ với một [[Special:ListUsers
 'lockmanager-fail-releaselock' => 'Không thể thả khóa cho “$1”.',
 'lockmanager-fail-db-bucket' => 'Không thể liên lạc với đủ cơ sở dữ liệu khóa trong nhóm $1.',
 'lockmanager-fail-db-release' => 'Không thể thả các chìa khóa trên cơ sở dữ liệu $1.',
+'lockmanager-fail-svr-acquire' => 'Không thể lấy các chìa khóa trên máy chủ $1.',
 'lockmanager-fail-svr-release' => 'Không thể thả các chìa khóa trên máy chủ $1.',
 
 # ZipDirectoryReader
@@ -4062,6 +4063,4 @@ Nếu không thì bạn có thể điền biểu mẫu đơn giản ở dưới.
 'duration-centuries' => '$1 thế kỷ',
 'duration-millennia' => '$1 thiên niên kỷ',
 
-# Unknown messages
-'lockmanager-fail-svr-acquire' => 'Không thể lấy các chìa khóa trên máy chủ $1.',
 );

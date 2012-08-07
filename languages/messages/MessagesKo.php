@@ -754,6 +754,7 @@ $2',
 'remembermypassword' => '이 컴퓨터에서 로그인 상태를 저장하기 (최대 $1일)',
 'securelogin-stick-https' => '로그인 후에도 HTTPS 연결 상태를 유지합니다',
 'yourdomainname' => '도메인 이름:',
+'password-change-forbidden' => '이 위키에서 비밀번호를 바꿀 수 없습니다.',
 'externaldberror' => '외부 인증 데이터베이스에 오류가 있거나 외부 계정을 새로 고칠 권한이 없습니다.',
 'login' => '로그인',
 'nav-login-createaccount' => '로그인 / 계정 만들기',
@@ -881,7 +882,7 @@ $2',
 'passwordreset-capture' => '발송 결과 이메일을 보시겠습니까?',
 'passwordreset-capture-help' => '이 상자에 체크하면 이메일이 발송된 즉시 임시 비밀번호가 담긴 이메일을 볼 수 있습니다.',
 'passwordreset-email' => '이메일 주소:',
-'passwordreset-emailtitle' => '{{SITENAME}} 계정 상세 정보',
+'passwordreset-emailtitle' => '{{SITENAME}} 계정 자세한 정보',
 'passwordreset-emailtext-ip' => 'IP 주소 $1을 사용하는 누군가(아마도 당신이), {{SITENAME}} ($4)의 비밀번호 찾기를 요청하였습니다.
 이 이메일 주소와 연관된 계정의 목록입니다:
 

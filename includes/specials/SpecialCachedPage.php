@@ -57,6 +57,19 @@ abstract class SpecialCachedPage extends SpecialPage implements ICacheHelper {
 	protected $cacheEnabled = true;
 
 	/**
+	 * Gets called after @see SpecialPage::execute.
+	 *
+	 * @since 1.20
+	 *
+	 * @param $subPage string|null
+	 */
+	protected function afterExecute( $subPage ) {
+		$this->saveCache();
+
+		parent::afterExecute( $subPage );
+	}
+
+	/**
 	 * Sets if the cache should be enabled or not.
 	 *
 	 * @since 1.20
@@ -76,21 +89,23 @@ abstract class SpecialCachedPage extends SpecialPage implements ICacheHelper {
 	 * @param boolean|null $cacheEnabled Sets if the cache should be enabled or not.
 	 */
 	public function startCache( $cacheExpiry = null, $cacheEnabled = null ) {
-		$this->cacheHelper = new CacheHelper();
+		if ( !isset( $this->cacheHelper ) ) {
+			$this->cacheHelper = new CacheHelper();
 
-		$this->cacheHelper->setCacheEnabled( $this->cacheEnabled );
-		$this->cacheHelper->setOnInitializedHandler( array( $this, 'onCacheInitialized' ) );
+			$this->cacheHelper->setCacheEnabled( $this->cacheEnabled );
+			$this->cacheHelper->setOnInitializedHandler( array( $this, 'onCacheInitialized' ) );
 
-		$keyArgs = $this->getCacheKey();
+			$keyArgs = $this->getCacheKey();
 
-		if ( array_key_exists( 'action', $keyArgs ) && $keyArgs['action'] === 'purge' ) {
-			unset( $keyArgs['action'] );
-		}
+			if ( array_key_exists( 'action', $keyArgs ) && $keyArgs['action'] === 'purge' ) {
+				unset( $keyArgs['action'] );
+			}
 
-		$this->cacheHelper->setCacheKey( $keyArgs );
+			$this->cacheHelper->setCacheKey( $keyArgs );
 
-		if ( $this->getRequest()->getText( 'action' ) === 'purge' ) {
-			$this->cacheHelper->rebuildOnDemand();
+			if ( $this->getRequest()->getText( 'action' ) === 'purge' ) {
+				$this->cacheHelper->rebuildOnDemand();
+			}
 		}
 
 		$this->cacheHelper->startCache( $cacheExpiry, $cacheEnabled );

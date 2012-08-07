@@ -236,7 +236,7 @@ class ApiQueryRecentChanges extends ApiQueryGeneratorBase {
 			$this->addFieldsIf( 'rc_comment', $this->fld_comment || $this->fld_parsedcomment );
 			$this->addFieldsIf( 'rc_user', $this->fld_user );
 			$this->addFieldsIf( 'rc_user_text', $this->fld_user || $this->fld_userid );
-			$this->addFieldsIf( array( 'rc_minor', 'rc_new', 'rc_bot' ) , $this->fld_flags );
+			$this->addFieldsIf( array( 'rc_minor', 'rc_type', 'rc_bot' ) , $this->fld_flags );
 			$this->addFieldsIf( array( 'rc_old_len', 'rc_new_len' ), $this->fld_sizes );
 			$this->addFieldsIf( 'rc_patrolled', $this->fld_patrolled );
 			$this->addFieldsIf( array( 'rc_logid', 'rc_log_type', 'rc_log_action', 'rc_params' ), $this->fld_loginfo );
@@ -393,7 +393,7 @@ class ApiQueryRecentChanges extends ApiQueryGeneratorBase {
 			if ( $row->rc_bot ) {
 				$vals['bot'] = '';
 			}
-			if ( $row->rc_new ) {
+			if ( $row->rc_type == RC_NEW ) {
 				$vals['new'] = '';
 			}
 			if ( $row->rc_minor ) {

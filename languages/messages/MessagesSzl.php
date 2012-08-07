@@ -279,7 +279,7 @@ $messages = array(
 'viewtalkpage' => 'Zajta godki',
 'otherlanguages' => 'We inkszych godkach',
 'redirectedfrom' => '(Punkńyńto s $1)',
-'redirectpagesub' => 'Zajta překerowujůnco',
+'redirectpagesub' => 'Zajta przekerowujůnco',
 'lastmodifiedat' => 'Ta zajta bůła uostatńo sprowjano $2, $1.',
 'viewcount' => 'W ta zajta filowano {{PLURAL:$1|tylko roz|$1 rozůw}}.',
 'protectedpage' => 'Zajta zawarto',
@@ -783,7 +783,7 @@ Powinno być myńi jak $2 {{PLURAL:$2|wywouańy|wywouańo|wywouań}}, a terozki 
 'undo-success' => 'Sprowjyńy zostouo wycůfane. Proša pomjarkować ukozane půnižyj dyferencyje mjyndzy wersyjami, coby zweryfikować jejich poprawność, potym zaś naškryflać pomjyńańo coby zakońčyć uoperacyjo.',
 'undo-failure' => 'Sprowjyńo ńy idźe wycofać skuli kůnflikta ze wersyjůma postřednimi.',
 'undo-norev' => 'Sprowjyńo ńy idźe cofnůńć skuli tego, co ńy istńije abo zostouo wyćepane.',
-'undo-summary' => 'Wycůfańy wersyji $1 naškryflanej bez [[Special:Contributions/$2|$2]] ([[User talk:$2|godka]])',
+'undo-summary' => 'Wycůfańy wersyji $1 naszkryflanej bez [[Special:Contributions/$2|$2]] ([[User talk:$2|godka]])',
 
 # Account creation failure
 'cantcreateaccounttitle' => 'Ńy idźe utwořić kůnta',
@@ -806,8 +806,8 @@ Skuli: ''$2''",
 'last' => 'poprz.',
 'page_first' => 'počůnek',
 'page_last' => 'kůńec',
-'histlegend' => 'Wybůr růžńic do porůwnańo: postow kropki we boksach a naćiś enter abo knefel na dole.<br />
-Legynda: (bjež.) - růžńice s wersyjům bježůncům, (popř.) - růžńice s wersyjům popředzajůncům, d - drobne zmjany',
+'histlegend' => 'Wybůr růżńic do porůwnańo: postow kropki we boksach a naćiś enter abo knefel na dole.<br />
+Legynda: (akt.) - růżńice s wersyjům bjeżůncům, (poprz.) - růżńice s wersyjům poprzedzajůncům, d - drobne zmjany',
 'history-fieldset-title' => 'Přeglůndej historyjo',
 'history-show-deleted' => 'Jyno wyćepane',
 'histfirst' => 'uod počůnku',
@@ -1139,7 +1139,7 @@ $1',
 'right-createaccount' => 'Utwořůne nowe kůnta užytkowńikůw',
 'right-minoredit' => 'Uoznoč půmjyńańo kej drobne',
 'right-move' => 'Přećepane zajty',
-'right-move-subpages' => 'Přećep zajty wroz s jejich podzajtůma',
+'right-move-subpages' => 'Przećep zajty wroz s jejich podzajtůma',
 'right-move-rootuserpages' => 'Překludzańy zajtůw uod užytkowńikůw',
 'right-movefile' => 'Przećepańe plikůw',
 'right-suppressredirect' => 'Ńy twůrz przekerowańo ze starygo mjana jak przećepujesz zajta',
@@ -2080,18 +2080,18 @@ Zawjerańy i uodmykańy bazy danych wymogo coby plik můgu być naškreflany bez
 # Move page
 'move-page' => 'Przećep $1',
 'move-page-legend' => 'Přećiś artikel',
-'movepagetext' => "Při půmocy formulařa půńižej možeš půmjyńyć nazwa zajty i přećepnůńć jei historja. Pod downym titlym uostańe zajta překerowujůnca. Zajty adresowane na stary titel uostanům jak bůuy.
+'movepagetext' => "Przi půmocy formularza půńiżej możesz půmjyńyć mjano zajty i przećepnůńć jej gyszichta. Pod downym mjanym uostańe śa zajta przekerowujůnca. Zajty adresowane na stare mjano uostanům jak bůły.
 
-Jak śe na to decyduješ, sprowdź, eli ńy je to [[Special:DoubleRedirects|podwůjne]] abo [[Special:BrokenRedirects|zuomane překerowańy]].
-Uodpowjadoš za to, coby linki wjoduy ku prawiduowym artiklům!
+Jak śe na to decydujesz, sprowdź, eli ńy je to [[Special:DoubleRedirects|podwůjne]] abo [[Special:BrokenRedirects|złomane przekerowańy]].
+Uodpowjadosz za to, coby linki wjodły ku prawym artiklům!
 
-Zajta '''ńy''' bydźe přećepano, jak:
-*je pusto i ńy bůua sprowjano
-*je zajtům překerowujůncą
-*zajta uo takym titlu juž sam jest
+Zajta '''ńy''' bydźe przećepano, jak:
+*je pusto i ńy bůła sprowjano
+*je zajtům przekerowujůncą
+*zajta uo takym mjane już sam je
 
 '''DEJ POZŮR!'''
-To može być drastyčno abo i ńypřewidywalno zmjano, jak přećepńyš jako popularno zajta. Bydź pewny, aže wješ co robiyš, ńim klikńyš knefel \"přećep\"!",
+To może być drastyczno abo ńyprzewidywalno zmjano, jak przećepńysz jako popularno zajta. Bydź pewny, aże wjesz co robiysz, ńim klikńysz knefel \"przećep\"!",
 'movepagetalktext' => 'Uodpowiednio zajta godki, jeśli jest, bydzie přećepano automatyčńe, pod warůnkiem, že:
 *ńy přećepuješ zajty do inkšy přestřeńy mjan
 *ńy ma sam zajty godki o takiym mjańe
