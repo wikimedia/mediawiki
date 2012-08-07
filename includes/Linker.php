@@ -198,6 +198,11 @@ class Linker {
 			wfProfileOut( __METHOD__ );
 			return "<!-- ERROR -->$html";
 		}
+
+		if( is_string( $query ) ) {
+			// some functions withing core using this still hand over query strings
+			wfDeprecated( __METHOD__ . ' with parameter $query as string (should be array)', '1.20' );
+		}
 		$options = (array)$options;
 
 		$dummy = new DummyLinker; // dummy linker instance for bc on the hooks
