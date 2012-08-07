@@ -256,6 +256,22 @@ class Message {
 	}
 
 	/**
+	 * Get the message key(s) for this object.
+	 * @return String|Array
+	 */
+	public function getKey() {
+		return is_array( $this->key ) ? $this->key[0] : $this->key;
+	}
+
+	/**
+	 * Get the message's parameters.
+	 * @return Array
+	 */
+	public function getParams() {
+		return $this->parameters;
+	}
+
+	/**
 	 * Adds parameters to the parameter list of this message.
 	 * @param Varargs: parameters as Strings, or a single argument that is an array of Strings
 	 * @return Message: $this
