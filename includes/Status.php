@@ -169,14 +169,39 @@ class Status {
 	 * @return string
 	 */
 	protected function getItemXML( $item ) {
-		$params = $this->cleanParams( $item['params'] );
-		$xml = "<{$item['type']}>\n" .
-			Xml::element( 'message', null, $item['message'] ) . "\n" .
-			Xml::element( 'text', null, wfMsg( $item['message'], $params ) ) ."\n";
+		if( $item['message'] instanceof Message ) {
+			$msgNames = $item['message']->getKey();
+			$params = $this->cleanParams( $item['message']->getParams() );
+			$msg = $item['message'];
+		} else {
+			$msgNames = $item['message'];
+			$params = $this->cleanParams( $item['params'] );
+			$msg = wfMessage( $msgNames, $params );
+		}
+
+		if( !is_array( $msgNames ) ) {
+			$msgNames = array( $msgNames );
+		}
+
+		// Generate XML: one "message" element for each key, one
+		// "param" element for each parameter, and a "text" element
+		// for the final message. All of this is enclosed in either
+		// a "warning" or "error" element depending on the level.
+		$xml = "<{$item['type']}>\n";
+		foreach( $msgNames as $name ) {
+			$xml .= Xml::element( 'message', null, $name ) . "\n";
+		}
+		$xml .= Xml::element( 'text', null, $msg->plain() ) ."\n";
 		foreach ( $params as $param ) {
-			$xml .= Xml::element( 'param', null, $param );
+			if( is_array( $param ) ) {
+				list( $type, $value ) = each( $param );
+				$xml .= Xml::element( 'param', array( 'type' => $type ), $value );
+			} else {
+				$xml .= Xml::element( 'param', null, $param );
+			}
 		}
 		$xml .= "</{$item['type']}>\n";
+
 		return $xml;
 	}
 
@@ -212,26 +237,26 @@ class Status {
 			}
 		}
 		if ( count( $this->errors ) == 1 ) {
-			$s = $this->getWikiTextForError( $this->errors[0], $this->errors[0]  );
+			$s = $this->getErrorMessage( $this->errors[0] );
 			if ( $shortContext ) {
-				$s = wfMsgNoTrans( $shortContext, $s );
+				$s = wfMessage( $shortContext, $s )->plain();
 			} elseif ( $longContext ) {
-				$s = wfMsgNoTrans( $longContext, "* $s\n" );
+				$s = wfMessage( $longContext, "* $s\n" )->plain();
 			}
 		} else {
 			$s = '* '. implode("\n* ",
-				$this->getWikiTextArray( $this->errors ) ) . "\n";
+				$this->getErrorMessageArray( $this->errors ) ) . "\n";
 			if ( $longContext ) {
-				$s = wfMsgNoTrans( $longContext, $s );
+				$s = wfMessage( $longContext, $s )->plain();
 			} elseif ( $shortContext ) {
-				$s = wfMsgNoTrans( $shortContext, "\n$s\n" );
+				$s = wfMessage( $shortContext, "\n$s\n" )->plain();
 			}
 		}
 		return $s;
 	}
 
 	/**
-	 * Return the wiki text for a single error.
+	 * Return the message for a single error.
 	 * @param $error Mixed With an array & two values keyed by
 	 * 'message' and 'params', use those keys-value pairs.
 	 * Otherwise, if its an array, just use the first value as the
@@ -239,19 +264,22 @@ class Status {
 	 *
 	 * @return String
 	 */
-	protected function getWikiTextForError( $error ) {
+	protected function getErrorMessage( $error ) {
 		if ( is_array( $error ) ) {
-			if ( isset( $error['message'] ) && isset( $error['params'] ) ) {
-				return wfMsgNoTrans( $error['message'],
+			if( isset( $error['message'] ) && $error['message'] instanceof Message ) {
+				$msg = $error['message'];
+			} elseif ( isset( $error['message'] ) && isset( $error['params'] ) ) {
+				$msg = wfMessage( $error['message'],
 					array_map( 'wfEscapeWikiText', $this->cleanParams( $error['params'] ) )  );
 			} else {
-				$message = array_shift($error);
-				return wfMsgNoTrans( $message,
+				$msgName = array_shift( $error );
+				$msg = wfMessage( $msgName,
 					array_map( 'wfEscapeWikiText', $this->cleanParams( $error ) ) );
 			}
 		} else {
-			return wfMsgNoTrans( $error );
+			$msg = wfMessage( $error );
 		}
+		return $msg->plain();
 	}
 
 	/**
@@ -259,8 +287,8 @@ class Status {
 	 * @param $errors Array
 	 * @return Array
 	 */
-	function getWikiTextArray( $errors ) {
-		return array_map( array( $this, 'getWikiTextForError' ), $errors );
+	protected function getErrorMessageArray( $errors ) {
+		return array_map( array( $this, 'getErrorMessage' ), $errors );
 	}
 
 	/**
