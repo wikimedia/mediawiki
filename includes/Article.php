@@ -1002,7 +1002,7 @@ class Article extends Page {
 				LogEventsList::showLogExtract(
 					$outputPage,
 					'block',
-					$user->getUserPage()->getPrefixedText(),
+					$user->getUserPage(),
 					'',
 					array(
 						'lim' => 1,
@@ -1019,7 +1019,7 @@ class Article extends Page {
 		wfRunHooks( 'ShowMissingArticle', array( $this ) );
 
 		# Show delete and move logs
-		LogEventsList::showLogExtract( $outputPage, array( 'delete', 'move' ), $this->getTitle()->getPrefixedText(), '',
+		LogEventsList::showLogExtract( $outputPage, array( 'delete', 'move' ), $this->getTitle(), '',
 			array(  'lim' => 10,
 				'conds' => array( "log_action != 'revision'" ),
 				'showIfEmpty' => false,
@@ -1330,7 +1330,7 @@ class Article extends Page {
 			LogEventsList::showLogExtract(
 				$outputPage,
 				'delete',
-				$title->getPrefixedText()
+				$title
 			);
 
 			return;
@@ -1498,7 +1498,7 @@ class Article extends Page {
 		$outputPage->addHTML( $form );
 		$outputPage->addHTML( Xml::element( 'h2', null, LogPage::logName( 'delete' ) ) );
 		LogEventsList::showLogExtract( $outputPage, 'delete',
-			$this->getTitle()->getPrefixedText()
+			$this->getTitle()
 		);
 	}
 
@@ -1533,7 +1533,7 @@ class Article extends Page {
 				LogEventsList::showLogExtract(
 					$outputPage,
 					'delete',
-					$this->getTitle()->getPrefixedText()
+					$this->getTitle()
 				);
 			} else {
 				$outputPage->addHTML( $error );
