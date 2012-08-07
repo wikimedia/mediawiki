@@ -200,6 +200,7 @@ $wgAutoloadLocalClasses = array(
 	'ProtectionForm' => 'includes/ProtectionForm.php',
 	'QueryPage' => 'includes/QueryPage.php',
 	'QuickTemplate' => 'includes/SkinTemplate.php',
+	'RawMessage' => 'includes/Message.php',
 	'RCCacheEntry' => 'includes/ChangesList.php',
 	'RdfMetaData' => 'includes/Metadata.php',
 	'ReadOnlyError' => 'includes/Exception.php',
