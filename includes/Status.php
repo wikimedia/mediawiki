@@ -47,7 +47,7 @@ class Status {
 	/**
 	 * Factory function for fatal errors
 	 *
-	 * @param $message String: message name
+	 * @param $message String|Message: message name or object
 	 * @return Status
 	 */
 	static function newFatal( $message /*, parameters...*/ ) {
@@ -103,7 +103,7 @@ class Status {
 	/**
 	 * Add a new warning
 	 *
-	 * @param $message String: message name
+	 * @param $message String|Message: message name or object
 	 */
 	function warning( $message /*, parameters... */ ) {
 		$params = array_slice( func_get_args(), 1 );
@@ -117,7 +117,7 @@ class Status {
 	 * Add an error, do not set fatal flag
 	 * This can be used for non-fatal errors
 	 *
-	 * @param $message String: message name
+	 * @param $message String|Message: message name or object
 	 */
 	function error( $message /*, parameters... */ ) {
 		$params = array_slice( func_get_args(), 1 );
@@ -131,7 +131,7 @@ class Status {
 	 * Add an error and set OK to false, indicating that the operation
 	 * as a whole was fatal
 	 *
-	 * @param $message String: message name
+	 * @param $message String|Message: message name or object
 	 */
 	function fatal( $message /*, parameters... */ ) {
 		$params = array_slice( func_get_args(), 1 );
@@ -183,26 +183,26 @@ class Status {
 			}
 		}
 		if ( count( $this->errors ) == 1 ) {
-			$s = $this->getWikiTextForError( $this->errors[0], $this->errors[0]  );
+			$s = $this->getErrorMessage( $this->errors[0] );
 			if ( $shortContext ) {
-				$s = wfMsgNoTrans( $shortContext, $s );
+				$s = wfMessage( $shortContext, $s )->plain();
 			} elseif ( $longContext ) {
-				$s = wfMsgNoTrans( $longContext, "* $s\n" );
+				$s = wfMessage( $longContext, "* $s\n" )->plain();
 			}
 		} else {
 			$s = '* '. implode("\n* ",
-				$this->getWikiTextArray( $this->errors ) ) . "\n";
+				$this->getErrorMessageArray( $this->errors ) ) . "\n";
 			if ( $longContext ) {
-				$s = wfMsgNoTrans( $longContext, $s );
+				$s = wfMessage( $longContext, $s )->plain();
 			} elseif ( $shortContext ) {
-				$s = wfMsgNoTrans( $shortContext, "\n$s\n" );
+				$s = wfMessage( $shortContext, "\n$s\n" )->plain();
 			}
 		}
 		return $s;
 	}
 
 	/**
-	 * Return the wiki text for a single error.
+	 * Return the message for a single error.
 	 * @param $error Mixed With an array & two values keyed by
 	 * 'message' and 'params', use those keys-value pairs.
 	 * Otherwise, if its an array, just use the first value as the
@@ -210,19 +210,22 @@ class Status {
 	 *
 	 * @return String
 	 */
-	protected function getWikiTextForError( $error ) {
+	protected function getErrorMessage( $error ) {
 		if ( is_array( $error ) ) {
-			if ( isset( $error['message'] ) && isset( $error['params'] ) ) {
-				return wfMsgNoTrans( $error['message'],
+			if( isset( $error['message'] ) && $error['message'] instanceof Message ) {
+				$msg = $error['message'];
+			} elseif ( isset( $error['message'] ) && isset( $error['params'] ) ) {
+				$msg = wfMessage( $error['message'],
 					array_map( 'wfEscapeWikiText', $this->cleanParams( $error['params'] ) )  );
 			} else {
-				$message = array_shift($error);
-				return wfMsgNoTrans( $message,
+				$msgName = array_shift( $error );
+				$msg = wfMessage( $msgName,
 					array_map( 'wfEscapeWikiText', $this->cleanParams( $error ) ) );
 			}
 		} else {
-			return wfMsgNoTrans( $error );
+			$msg = wfMessage( $error );
 		}
+		return $msg->plain();
 	}
 
 	/**
@@ -230,8 +233,8 @@ class Status {
 	 * @param $errors Array
 	 * @return Array
 	 */
-	function getWikiTextArray( $errors ) {
-		return array_map( array( $this, 'getWikiTextForError' ), $errors );
+	protected function getErrorMessageArray( $errors ) {
+		return array_map( array( $this, 'getErrorMessage' ), $errors );
 	}
 
 	/**
@@ -278,7 +281,9 @@ class Status {
 		$result = array();
 		foreach ( $this->errors as $error ) {
 			if ( $error['type'] === $type ) {
-				if( $error['params'] ) {
+				if( $error['message'] instanceof Message ) {
+					$result[] = array( $error['message'] );
+				} elseif( $error['params'] ) {
 					$result[] = array_merge( array( $error['message'] ), $error['params'] );
 				} else {
 					$result[] = array( $error['message'] );
@@ -309,6 +314,9 @@ class Status {
 	/**
 	 * Returns true if the specified message is present as a warning or error
 	 *
+	 * Note, due to the lack of tools for comparing Message objects, this
+	 * function will not work when using a Message object as a parameter.
+	 *
 	 * @param $msg String: message name
 	 * @return Boolean
 	 */
@@ -325,9 +333,12 @@ class Status {
 	 * If the specified source message exists, replace it with the specified
 	 * destination message, but keep the same parameters as in the original error.
 	 *
-	 * Return true if the replacement was done, false otherwise.
+	 * Note, due to the lack of tools for comparing Message objects, this
+	 * function will not work when using a Message object as the search parameter.
 	 *
-	 * @return bool
+	 * @param $source Message|String: Message key or object to search for
+	 * @param $dest Message|String: Replacement message key or object
+	 * @return bool Return true if the replacement was done, false otherwise.
 	 */
 	function replaceMessage( $source, $dest ) {
 		$replaced = false;
