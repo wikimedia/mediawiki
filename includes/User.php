@@ -3160,6 +3160,7 @@ class User {
 	 * Check to see if the given clear-text password is one of the accepted passwords
 	 * @param $password String: user password.
 	 * @return Boolean: True if the given password is correct, otherwise False.
+	 * @throws PasswordDataError
 	 */
 	public function checkPassword( $password ) {
 		global $wgAuth, $wgLegacyEncoding;
@@ -3220,13 +3221,19 @@ class User {
 		global $wgNewPasswordExpiry;
 
 		$this->load();
-		if( self::comparePasswords( $this->mNewpassword, $plaintext, $this->getId() ) ) {
-			if ( is_null( $this->mNewpassTime ) ) {
-				return true;
+		try {
+			if( self::comparePasswords( $this->mNewpassword, $plaintext, $this->getId() ) ) {
+				if ( is_null( $this->mNewpassTime ) ) {
+					return true;
+				}
+				$expiry = wfTimestamp( TS_UNIX, $this->mNewpassTime ) + $wgNewPasswordExpiry;
+				return ( time() < $expiry );
+			} else {
+				return false;
 			}
-			$expiry = wfTimestamp( TS_UNIX, $this->mNewpassTime ) + $wgNewPasswordExpiry;
-			return ( time() < $expiry );
-		} else {
+		} catch ( PasswordDataError $e ) {
+			// For temporary passwords we don't care about the unlikely case where the temporary
+			// password data is corrupt. Just say it's wrong and let the user generate a new one.
 			return false;
 		}
 	}
@@ -3952,6 +3959,7 @@ class User {
 	 * @param $userId String|bool User ID for old-style password salt
 	 *
 	 * @return Boolean
+	 * @throws PasswordDataError
 	 */
 	public static function comparePasswords( $hash, $password, $userId = false ) {
 		$type = substr( $hash, 0, 3 );
@@ -3966,14 +3974,7 @@ class User {
 			return self::oldCrypt( $password, $userId ) === $hash;
 		} else {
 			// Otherwise drop into the new password class system
-			try {
-				// @fixme comparePasswords only supports boolean returns so we can't tell the system
-				//        to output a different error message if something was wrong with the data
-				//        or configuration instead of saying the user entered an invalid password.
-				return Password::verify( $hash, $password );
-			} catch( PasswordDataError $e ) {
-				return false;
-			}
+			return Password::verify( $hash, $password );
 		}
 	}
 

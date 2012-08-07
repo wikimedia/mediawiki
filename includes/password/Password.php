@@ -33,15 +33,15 @@
  */
 class PasswordDataError extends Exception {
 
-	protected $mwMsg;
+	protected $msgObj;
 
-	public function __construct( $msg ) {
-		$this->mwMsg = clone $msg;
-		parent::__construct( $msg->inLanguage( 'en' )->plain() );
+	public function __construct( $msgObj, $code = 0, Exception $previous = null ) {
+		$this->msgObj = clone $msgObj;
+		parent::__construct( $msgObj->inLanguage( 'en' )->plain(), $code, $previous );
 	}
 
-	public function getMWMessage() {
-		return $this->mwMsg;
+	public function getMessageObj() {
+		return clone $this->msgObj;
 	}
 
 }
@@ -164,7 +164,7 @@ class Password {
 		$cryptType = self::getType( $type );
 		if ( !$cryptType ) {
 			// Crypt type does not exist
-			throw new PasswordDataError( wfMessage( 'password-crypt-notype' ) );
+			throw new PasswordDataError( wfMessage( 'password-crypt-notype', $type ) );
 		}
 
 		return array( $cryptType, $params[0] );

@@ -42,6 +42,7 @@ class LoginForm extends SpecialPage {
 	const USER_BLOCKED = 11;
 	const NEED_TOKEN = 12;
 	const WRONG_TOKEN = 13;
+	const BAD_PASSWORD_DATA = 14;
 
 	var $mUsername, $mPassword, $mRetype, $mReturnTo, $mCookieCheck, $mPosted;
 	var $mAction, $mCreateaccount, $mCreateaccountMail;
@@ -565,58 +566,63 @@ class LoginForm extends SpecialPage {
 		}
 
 		global $wgBlockDisablesLogin;
-		if ( !$u->checkPassword( $this->mPassword ) ) {
-			if( $u->checkTemporaryPassword( $this->mPassword ) ) {
-				// The e-mailed temporary password should not be used for actu-
-				// al logins; that's a very sloppy habit, and insecure if an
-				// attacker has a few seconds to click "search" on someone's o-
-				// pen mail reader.
-				//
-				// Allow it to be used only to reset the password a single time
-				// to a new value, which won't be in the user's e-mail ar-
-				// chives.
-				//
-				// For backwards compatibility, we'll still recognize it at the
-				// login form to minimize surprises for people who have been
-				// logging in with a temporary password for some time.
-				//
-				// As a side-effect, we can authenticate the user's e-mail ad-
-				// dress if it's not already done, since the temporary password
-				// was sent via e-mail.
-				if( !$u->isEmailConfirmed() ) {
-					$u->confirmEmail();
-					$u->saveSettings();
+		try {
+			if ( !$u->checkPassword( $this->mPassword ) ) {
+				if( $u->checkTemporaryPassword( $this->mPassword ) ) {
+					// The e-mailed temporary password should not be used for actu-
+					// al logins; that's a very sloppy habit, and insecure if an
+					// attacker has a few seconds to click "search" on someone's o-
+					// pen mail reader.
+					//
+					// Allow it to be used only to reset the password a single time
+					// to a new value, which won't be in the user's e-mail ar-
+					// chives.
+					//
+					// For backwards compatibility, we'll still recognize it at the
+					// login form to minimize surprises for people who have been
+					// logging in with a temporary password for some time.
+					//
+					// As a side-effect, we can authenticate the user's e-mail ad-
+					// dress if it's not already done, since the temporary password
+					// was sent via e-mail.
+					if( !$u->isEmailConfirmed() ) {
+						$u->confirmEmail();
+						$u->saveSettings();
+					}
+
+					// At this point we just return an appropriate code/ indicating
+					// that the UI should show a password reset form; bot inter-
+					// faces etc will probably just fail cleanly here.
+					$retval = self::RESET_PASS;
+				} else {
+					$retval = ( $this->mPassword  == '' ) ? self::EMPTY_PASS : self::WRONG_PASS;
+				}
+			} elseif ( $wgBlockDisablesLogin && $u->isBlocked() ) {
+				// If we've enabled it, make it so that a blocked user cannot login
+				$retval = self::USER_BLOCKED;
+			} else {
+				$wgAuth->updateUser( $u );
+				$wgUser = $u;
+				// This should set it for OutputPage and the Skin
+				// which is needed or the personal links will be
+				// wrong.
+				$this->getContext()->setUser( $u );
+
+				// Please reset throttle for successful logins, thanks!
+				if ( $throttleCount ) {
+					self::clearLoginThrottle( $this->mUsername );
 				}
 
-				// At this point we just return an appropriate code/ indicating
-				// that the UI should show a password reset form; bot inter-
-				// faces etc will probably just fail cleanly here.
-				$retval = self::RESET_PASS;
-			} else {
-				$retval = ( $this->mPassword  == '' ) ? self::EMPTY_PASS : self::WRONG_PASS;
-			}
-		} elseif ( $wgBlockDisablesLogin && $u->isBlocked() ) {
-			// If we've enabled it, make it so that a blocked user cannot login
-			$retval = self::USER_BLOCKED;
-		} else {
-			$wgAuth->updateUser( $u );
-			$wgUser = $u;
-			// This should set it for OutputPage and the Skin
-			// which is needed or the personal links will be
-			// wrong.
-			$this->getContext()->setUser( $u );
+				if ( $isAutoCreated ) {
+					// Must be run after $wgUser is set, for correct new user log
+					wfRunHooks( 'AuthPluginAutoCreate', array( $u ) );
+				}
 
-			// Please reset throttle for successful logins, thanks!
-			if ( $throttleCount ) {
-				self::clearLoginThrottle( $this->mUsername );
+				$retval = self::SUCCESS;
 			}
-
-			if ( $isAutoCreated ) {
-				// Must be run after $wgUser is set, for correct new user log
-				wfRunHooks( 'AuthPluginAutoCreate', array( $u ) );
-			}
-
-			$retval = self::SUCCESS;
+		} catch ( PasswordDataError $e ) {
+			$retval = self::BAD_PASSWORD_DATA;
+			$this->mBadPasswordDataErrorMsgObj = $e->getMessageObj()->setContext( $this->getContext() );
 		}
 		wfRunHooks( 'LoginAuthenticateAudit', array( $u, $this->mPassword, $retval ) );
 		return $retval;
@@ -784,6 +790,10 @@ class LoginForm extends SpecialPage {
 				break;
 			case self::EMPTY_PASS:
 				$this->mainLoginForm( $this->msg( 'wrongpasswordempty' )->text() );
+				break;
+			case self::BAD_PASSWORD_DATA:
+				$this->mainLoginForm( $this->msg( 'badpassworddata',
+						$this->mBadPasswordDataErrorMsgObj->text() )->text() );
 				break;
 			case self::RESET_PASS:
 				$this->resetLoginForm( $this->msg( 'resetpass_announce' )->text() );

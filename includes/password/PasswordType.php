@@ -99,7 +99,7 @@ abstract class PasswordType {
 	protected static function error( $key /* ... */ ) {
 		$params = func_get_args();
 		array_shift( $params );
-		$msg = new Message( $args, $params );
+		$msg = new Message( $key, $params );
 		return new PasswordDataError( $msg );
 	}
 

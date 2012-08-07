@@ -131,6 +131,11 @@ class ApiLogin extends ApiBase {
 				$result['result'] = 'EmptyPass';
 				break;
 
+			case LoginForm::BAD_PASSWORD_DATA:
+				$result['result'] = 'BadPasswordData';
+				$result['details'] = $loginForm->mBadPasswordDataErrorMsgObj->text();
+				break;
+
 			case LoginForm::CREATE_BLOCKED:
 				$result['result'] = 'CreateBlocked';
 				$result['details'] = 'Your IP address is blocked from account creation';
@@ -196,6 +201,7 @@ class ApiLogin extends ApiBase {
 						'WrongPluginPass',
 						'NotExists',
 						'WrongPass',
+						'BadPasswordData',
 						'EmptyPass',
 						'CreateBlocked',
 						'Throttled',
@@ -263,6 +269,7 @@ class ApiLogin extends ApiBase {
 			array( 'code' => 'EmptyPass', 'info' => ' You didn\'t set the lgpassword parameter or you left it empty' ),
 			array( 'code' => 'WrongPass', 'info' => ' The password you provided is incorrect' ),
 			array( 'code' => 'WrongPluginPass', 'info' => 'Same as "WrongPass", returned when an authentication plugin rather than MediaWiki itself rejected the password' ),
+			array( 'code' => 'BadPasswordData', 'info' => 'The password data stored in the database for the user is corrupt, password login is impossible.' ),
 			array( 'code' => 'CreateBlocked', 'info' => 'The wiki tried to automatically create a new account for you, but your IP address has been blocked from account creation' ),
 			array( 'code' => 'Throttled', 'info' => 'You\'ve logged in too many times in a short time' ),
 			array( 'code' => 'Blocked', 'info' => 'User is blocked' ),
