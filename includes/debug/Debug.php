@@ -352,7 +352,7 @@ class MWDebug {
 			'debugLog' => self::$debug,
 			'queries' => self::$query,
 			'request' => array(
-				'method' => $_SERVER['REQUEST_METHOD'],
+				'method' => $request->getMethod(),
 				'url' => $request->getRequestURL(),
 				'headers' => $request->getAllHeaders(),
 				'params' => $request->getValues(),

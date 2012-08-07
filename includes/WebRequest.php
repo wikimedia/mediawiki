@@ -564,6 +564,15 @@ class WebRequest {
 	 }
 
 	/**
+	 * Get the HTTP method used for this request.
+	 *
+	 * @return String
+	 */
+	public function getMethod() {
+		return isset( $_SERVER['REQUEST_METHOD'] ) ? $_SERVER['REQUEST_METHOD'] : 'GET';
+	}
+
+	/**
 	 * Returns true if the present request was reached by a POST operation,
 	 * false otherwise (GET, HEAD, or command-line).
 	 *
@@ -573,7 +582,7 @@ class WebRequest {
 	 * @return Boolean
 	 */
 	public function wasPosted() {
-		return isset( $_SERVER['REQUEST_METHOD'] ) && $_SERVER['REQUEST_METHOD'] == 'POST';
+		return $this->getMethod() == 'POST';
 	}
 
 	/**
@@ -1275,6 +1284,10 @@ class FauxRequest extends WebRequest {
 		} else {
 			return $this->data;
 		}
+	}
+
+	public function getMethod() {
+		return $this->wasPosted ? 'POST' : 'GET';
 	}
 
 	/**
