@@ -3755,6 +3755,33 @@ $wgBlockDisablesLogin = false;
 $wgWhitelistRead = false;
 
 /**
+ * Pages anonymous user may see, set as an array of regular expressions.
+ *
+ * This function will match the regexp against the title name, which
+ * is without underscore.
+ *
+ * @par Example:
+ * To whitelist [[Main Page]]:
+ * @code
+ * $wgWhitelistReadRegexp = array( "/Main Page/" );
+ * @endcode
+ *
+ * @par Example:
+ * To allow reading any page starting with 'User' regardless of the case:
+ * @code
+ * $wgWhitelistReadRegexp = array( "@^UsEr.*@i" );
+ * @endcode
+ * Will allow both [[User is banned]] and [[User:JohnDoe]]
+ *
+ * @note This will only work if $wgGroupPermissions['*']['read'] is false --
+ * see below. Otherwise, ALL pages are accessible, regardless of this setting.
+ *
+ * @note Unless ^ and/or $ is specified, a regular expression might match
+ * pages not intended to be whitelisted.
+ */
+$wgWhitelistReadRegexp = false;
+
+/**
  * Should editors be required to have a validated e-mail
  * address before being allowed to edit?
  */
