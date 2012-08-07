@@ -3738,17 +3738,18 @@ function wfGenerateToken( $salt = '' ) {
 
 /**
  * Replace all invalid characters with -
+ * Additional characters can be defined in $wgIllegalFileChars (see bug 20489)
+ * By default, $wgIllegalFileChars = ':'
  *
  * @param $name Mixed: filename to process
  * @return String
  */
 function wfStripIllegalFilenameChars( $name ) {
 	global $wgIllegalFileChars;
+	$illegalFileChars = $wgIllegalFileChars ? "|[" . $wgIllegalFileChars . "]" : '';
 	$name = wfBaseName( $name );
 	$name = preg_replace(
-		"/[^" . Title::legalChars() . "]" .
-			( $wgIllegalFileChars ? "|[" . $wgIllegalFileChars . "]" : '' ) .
-			"/",
+		"/[^" . Title::legalChars() . "]" . $illegalFileChars . "/",
 		'-',
 		$name
 	);
