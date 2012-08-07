@@ -119,6 +119,9 @@ class ApiQuery extends ApiBase {
 		$this->mPropModuleNames = array_keys( $this->mQueryPropModules );
 		$this->mListModuleNames = array_keys( $this->mQueryListModules );
 		$this->mMetaModuleNames = array_keys( $this->mQueryMetaModules );
+
+		$this->makeGeneratorList( $this->mQueryPropModules );
+		$this->makeGeneratorList( $this->mQueryListModules );
 	}
 
 	/**
@@ -615,7 +618,6 @@ class ApiQuery extends ApiBase {
 		// Make sure the internal object is empty
 		// (just in case a sub-module decides to optimize during instantiation)
 		$this->mPageSet = null;
-		$this->mAllowedGenerators = array(); // Will be repopulated
 
 		$querySeparator = str_repeat( '--- ', 12 );
 		$moduleSeparator = str_repeat( '*** ', 14 );
@@ -627,8 +629,6 @@ class ApiQuery extends ApiBase {
 		$msg .= $this->makeHelpMsgHelper( $this->mQueryMetaModules, 'meta' );
 		$msg .= "\n\n$moduleSeparator Modules: continuation  $moduleSeparator\n\n";
 
-		// Perform the base call last because the $this->mAllowedGenerators
-		// will be updated inside makeHelpMsgHelper()
 		// Use parent to make default message for the query module
 		$msg = parent::makeHelpMsg() . $msg;
 
@@ -656,13 +656,25 @@ class ApiQuery extends ApiBase {
 				$msg .= $msg2;
 			}
 			if ( $module instanceof ApiQueryGeneratorBase ) {
-				$this->mAllowedGenerators[] = $moduleName;
 				$msg .= "Generator:\n  This module may be used as a generator\n";
 			}
 			$moduleDescriptions[] = $msg;
 		}
 
 		return implode( "\n", $moduleDescriptions );
+	}
+
+	/**
+	 * Adds any classes that are a subclass of ApiQueryGeneratorBase
+	 * to the allowed generator list
+	 * @param $moduleList array()
+	 */
+	private function makeGeneratorList( $moduleList ) {
+		foreach( $moduleList as  $moduleName => $moduleClass ) {
+			if ( is_subclass_of( $moduleClass, 'ApiQueryGeneratorBase'  ) ) {
+				$this->mAllowedGenerators[] = $moduleName;
+			}
+		}
 	}
 
 	/**
