@@ -619,3 +619,45 @@ class Message {
 	}
 
 }
+
+/**
+ * Variant of the Message class.
+ *
+ * Rather than treating the message key as a lookup
+ * value (which is passed to the MessageCache and
+ * translated as necessary), a RawMessage key is
+ * treated as the actual message.
+ *
+ * All other functionality (parsing, escaping, etc.)
+ * is preserved.
+ *
+ * @since 1.20
+ */
+class RawMessage extends Message {
+	/**
+	 * Call the parent constructor, then store the key as
+	 * the message.
+	 *
+	 * @param $key Message to use
+	 * @param $params Parameters for the message
+	 * @see Message::__construct
+	 */
+	public function __construct( $key, $params = array() ) {
+		parent::__construct( $key, $params );
+		// The key is the message.
+		$this->message = $key;
+	}
+
+	/**
+	 * Fetch the message (in this case, the key).
+	 *
+	 * @return string
+	 */
+	public function fetchMessage() {
+		// Just in case the message is unset somewhere.
+		if( !isset( $this->message ) ) {
+			$this->message = $this->key;
+		}
+		return $this->message;
+	}
+}
