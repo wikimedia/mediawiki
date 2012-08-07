@@ -2087,6 +2087,7 @@ class Title {
 	 * @return Array list of errors
 	 */
 	private function checkReadPermissions( $action, $user, $errors, $doExpensiveQueries, $short ) {
+
 		global $wgWhitelistRead, $wgRevokePermissions;
 		static $useShortcut = null;
 
@@ -2132,7 +2133,6 @@ class Title {
 			# Only do these checks is there's something to check against
 			$name = $this->getPrefixedText();
 			$dbName = $this->getPrefixedDBKey();
-
 			// Check for explicit whitelisting with and without underscores
 			if ( in_array( $name, $wgWhitelistRead, true ) || in_array( $dbName, $wgWhitelistRead, true ) ) {
 				$whitelisted = true;
@@ -2151,6 +2151,17 @@ class Title {
 					if ( in_array( $pure, $wgWhitelistRead, true ) ) {
 						$whitelisted = true;
 					}
+				}
+			}
+		}
+
+		if( !$whitelisted && is_array( $wgWhitelistReadRegexp ) && !empty( $wgWhitelistReadRegexp ) ) {
+			$name = $this->getPrefixedText();
+			// Check for regex whitelisting
+			foreach ( $wgWhitelistReadRegexp as $listItem ) {
+				if ( preg_match( $listItem, $name ) ) {
+					$whitelisted = true;
+					break;
 				}
 			}
 		}
