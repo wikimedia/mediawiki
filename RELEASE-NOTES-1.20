@@ -168,6 +168,7 @@ upgrade PHP if you have not done so prior to upgrading MediaWiki.
   values are used instead of just the fixed values from when the tablesorter
   was initialized.
 * (bug 38093) Gender of changed user groups missing in Special:Log/rights
+* (bug 37331) ResourceLoader modules sometimes execute twice in Firefox
 
 === API changes in 1.20 ===
 * (bug 34316) Add ability to retrieve maximum upload size from MediaWiki API.
