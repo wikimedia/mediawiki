@@ -14,6 +14,36 @@ class PasswordExposed extends Password {
 
 }
 
+// PLAINTEXT Password type this is registered before the others as a test case for basic
+// functionality rather than for testing a password type itself.
+class PasswordTestType_PLAINTEXT extends PasswordType {
+
+	public function crypt( $password ) {
+		return $password;
+	}
+
+	public function verify( $data, $password ) {
+		return $data === $password;
+	}
+
+	public function needsUpdate( $data ) {
+		return false;
+	}
+
+	public function knownPasswordData() {
+		return array(
+			array( 'asdf', 'asdf' ),
+			array( 'test', 'test' ),
+			array( 'Hello World', 'Hello World' ),
+			array( 'Passw0rd', 'Passw0rd' ),
+			array( 'D0g.....................', 'D0g.....................' ),
+			array( 'KiWVic0F6Le&%Ejn8p3j1vm@#XQclWOV', 'KiWVic0F6Le&%Ejn8p3j1vm@#XQclWOV' ),
+		);
+	}
+
+}
+PasswordExposed::registerType( 'PLAINTEXT', 'PasswordTestType_PLAINTEXT' );
+
 class PasswordTest extends MediaWikiTestCase {
 
 	protected $types;
