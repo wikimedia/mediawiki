@@ -1,7 +1,6 @@
 <?php
 
 class TitleTest extends MediaWikiTestCase {
-
 	function testLegalChars() {
 		$titlechars = Title::legalChars();
 
@@ -37,10 +36,10 @@ class TitleTest extends MediaWikiTestCase {
 			array( 'Special:Version/param', 'param' ),
 		);
 	}
-	
+
 	/**
 	 * Auth-less test of Title::isValidMoveOperation
-	 * 
+	 *
 	 * @group Database
 	 * @param string $source
 	 * @param string $target
@@ -61,6 +60,119 @@ class TitleTest extends MediaWikiTestCase {
 		}
 	}
 	
+	/**
+	 * Provides test parameter values for testIsValidMoveOperation()
+	 */
+	function dataTestIsValidMoveOperation() {
+		return array(
+			array( 'Test', 'Test', 'selfmove' ),
+			array( 'File:Test.jpg', 'Page', 'imagenocrossnamespace' )
+		);
+	}
+
+	/**
+	 * Auth-less test of Title::userCan
+	 *
+	 * @param array $whitelistRegexp
+	 * @param string $source
+	 * @param string $action
+	 * @param array|string|true $expected Required error
+	 * @dataProvider dataWgWhitelistReadRegexp
+	 */
+	function testWgWhitelistReadRegexp($whitelistRegexp, $source, $action, $expected) {
+
+		// $wgWhitelistReadRegexp must be an array. Since the provided test cases
+		// usually have only one regex, it is more concise to write the lonely regex
+		// as a string. Thus we cast to an array() to honor $wgWhitelistReadRegexp
+		// type requisite.
+		if( is_string( $whitelistRegexp ) ) {
+			$whitelistRegexp = array( $whitelistRegexp );
+		}
+
+		$title = Title::newFromDBkey( $source );
+
+		global $wgGroupPermissions;
+		$oldPermissions = $wgGroupPermissions;
+		// Disallow all so we can ensure our regex works
+		$wgGroupPermissions = array();
+		$wgGroupPermissions['*']['read'] = false;
+
+		global $wgWhitelistRead;
+		$oldWhitelist = $wgWhitelistRead;
+		// Undo any LocalSettings explicite whitelists so
+		// they won't cause a failing test to succeed
+		$wgWhitelistRead = array();
+
+		global $wgWhitelistReadRegexp;
+		$oldWhitelistRegexp    = $wgWhitelistReadRegexp;
+		$wgWhitelistReadRegexp = $whitelistRegexp ;
+
+		// Just use $wgUser which in test is a user object for '127.0.0.1'
+		global $wgUser;
+		// Invalidate user rights cache to take in account $wgGroupPermissions
+		// change above.
+		$wgUser->clearInstanceCache();
+		$errors = $title->userCan( $action, $wgUser );
+
+		// Restore globals
+		$wgGroupPermissions = $oldPermissions;
+		$wgWhitelistRead = $oldWhitelist;
+		$wgWhitelistReadRegexp = $oldWhitelistRegexp;
+
+		if( is_bool( $expected ) ) {
+			# Forge the assertion message depending on the assertion expectation
+			$allowableness = $expected
+				? " should be allowed"
+				: " should NOT be allowed"
+			;
+			$this->assertEquals( $expected, $errors, "User action '$action' on [[$source]] $allowableness." );
+		} else {
+			$errors = $this->flattenErrorsArray( $errors );
+			foreach ( (array)$expected as $error ) {
+				$this->assertContains( $error, $errors );
+			}
+		}
+	}
+
+	/**
+	 * Provides test parameter values for testWgWhitelistReadRegexp()
+	 */
+	function dataWgWhitelistReadRegexp() {
+		$ALLOWED    = true;
+		$DISALLOWED = false;
+
+		return array(
+			// Everything, if this doesn't work, we're really in trouble
+			array( '/.*/', 'Main_Page', 'read', $ALLOWED ),
+			array( '/.*/', 'Main_Page', 'edit', $DISALLOWED ),
+
+			// We validate against the title name, not the db key
+			array( '/^Main_Page$/', 'Main_Page', 'read', $DISALLOWED ),
+			// Main page
+			array( '/^Main/', 'Main_Page', 'read', $ALLOWED ),
+			array( '/^Main.*/', 'Main_Page', 'read', $ALLOWED ),
+			// With spaces
+			array( '/Mic\sCheck/', 'Mic Check', 'read', $ALLOWED ),
+			// Unicode multibyte
+			// ...without unicode modifier
+			array( '/Unicode Test . Yes/', 'Unicode Test Ñ Yes', 'read', $DISALLOWED ),
+			// ...with unicode modifier
+			array( '/Unicode Test . Yes/u', 'Unicode Test Ñ Yes', 'read', $ALLOWED ),
+			// Case insensitive
+			array( '/MiC ChEcK/', 'mic check', 'read', $DISALLOWED ),
+			array( '/MiC ChEcK/i', 'mic check', 'read', $ALLOWED ),
+
+			// From DefaultSettings.php:
+			array( "@^UsEr.*@i", 'User is banned', 'read', $ALLOWED ),
+			array( "@^UsEr.*@i", 'User:John Doe', 'read', $ALLOWED ),
+
+			// With namespaces:
+			array( '/^Special:NewPages$/', 'Special:NewPages', 'read', $ALLOWED ),
+			array( null, 'Special:Newpages', 'read', $DISALLOWED ),
+
+		);
+	}
+
 	function flattenErrorsArray( $errors ) {
 		$result = array();
 		foreach ( $errors as $error ) {
@@ -69,13 +181,6 @@ class TitleTest extends MediaWikiTestCase {
 		return $result;
 	}
 	
-	function dataTestIsValidMoveOperation() {
-		return array( 
-			array( 'Test', 'Test', 'selfmove' ),
-			array( 'File:Test.jpg', 'Page', 'imagenocrossnamespace' )
-		);
-	}
-
 	/**
 	 * @dataProvider provideCasesForGetpageviewlanguage
 	 */
