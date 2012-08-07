@@ -1,7 +1,6 @@
 <?php
 
 class TitleTest extends MediaWikiTestCase {
-
 	function testLegalChars() {
 		$titlechars = Title::legalChars();
 
@@ -37,10 +36,10 @@ class TitleTest extends MediaWikiTestCase {
 			array( 'Special:Version/param', 'param' ),
 		);
 	}
-	
+
 	/**
 	 * Auth-less test of Title::isValidMoveOperation
-	 * 
+	 *
 	 * @group Database
 	 * @param string $source
 	 * @param string $target
@@ -61,6 +60,88 @@ class TitleTest extends MediaWikiTestCase {
 		}
 	}
 	
+	/**
+	 * Provides test parameter values for testIsValidMoveOperation()
+	 */
+	function dataTestIsValidMoveOperation() {
+		return array(
+			array( 'Test', 'Test', 'selfmove' ),
+			array( 'File:Test.jpg', 'Page', 'imagenocrossnamespace' )
+		);
+	}
+
+	/**
+	 * Auth-less test of Title::userCan
+	 *
+	 * @param array $whitelistRegexp
+	 * @param string $source
+	 * @param string $action
+	 * @param string $user
+	 * @param string $doExpensiveQueries
+	 * @param array|string|true $expected Required error
+	 * @dataProvider dataUserCan
+	 */
+	function testWgWhitelistReadRegexp($whitelistRegexp, $source, $action, $user, $doExpensiveQueries, $expected) {
+		//$title = Title::newFromText( $source );
+		$title = Title::newFromDBkey( $source );
+
+		global $wgGroupPermissions;
+		$oldPermissions = $wgGroupPermissions;
+		// Disallow all so we can ensure our regex works
+		$wgGroupPermissions=array();
+		$wgGroupPermissions['*']['read'] = false;
+
+		global $wgWhitelistRead;
+		$oldWhitelist = $wgWhitelistRead;
+		// Undo any LocalSettings explicite whitelists so
+		// they won't cause a failing test to succeed
+		$wgWhitelistRead=array();
+
+		global $wgWhitelistReadRegexp;
+		$oldWhitelistRegexp = $wgWhitelistReadRegexp;
+		$wgWhitelistReadRegexp=$whitelistRegexp ;
+
+		$errors = $title->userCan( $action, $user, $doExpensiveQueries);
+
+		$wgGroupPermissions = $oldPermissions;
+		$wgWhitelistRead = $oldWhitelist;
+		$wgWhitelistReadRegexp = $oldWhitelistRegexp;
+		if ( $expected === true ) {
+			$this->assertTrue( $errors );
+		} else if ( $expected === false ) {
+			$this->assertFalse ($errors );
+		} else {
+			$errors = $this->flattenErrorsArray( $errors );
+			foreach ( (array)$expected as $error ) {
+				$this->assertContains( $error, $errors );
+			}
+		}
+	}
+
+	/**
+	 * Provides test parameter values for testWgWhitelistReadRegexp()
+	 */
+	function dataWgWhitelistReadRegexp() {
+		return array(
+			// Everything
+			// If this doesn't work, we're really in trouble
+			array( array('/.*/'), 'Main_Page', 'read', '127.0.0.1', 1, true ),
+			// Main page
+			array( array('/^Main/'), 'Main_Page', 'read', '127.0.0.1', 1, true ),
+			array( array('/^Main.*/'), 'Main_Page', 'read', '127.0.0.1', 1, true ),
+			// With spaces
+			array( array('/Mic\sCheck/'), 'Mic Check', 'read', '127.0.0.1', 1, true ),
+			// Unicode multibyte
+			// ...without unicode modifier
+			array( array('/Unicode_Test_._Yes/'), 'Unicode_Test_Ñ_Yes', 'read', '127.0.0.1', 1, false ),
+			// ...with unicode modifier
+			array( array('/Unicode_Test_Ñ_Yes/u'), 'Unicode_Test_Ñ_Yes', 'read', '127.0.0.1', 1, true ),
+			// Case insensitive
+			array( array('/MiC ChEcK/'), 'mic check', 'read', '127.0.0.1', 1, false ),
+			array( array('/MiC ChEcK/i'), 'mic check', 'read', '127.0.0.1', 1, true )
+		);
+	}
+
 	function flattenErrorsArray( $errors ) {
 		$result = array();
 		foreach ( $errors as $error ) {
@@ -68,14 +149,6 @@ class TitleTest extends MediaWikiTestCase {
 		}
 		return $result;
 	}
-	
-	function dataTestIsValidMoveOperation() {
-		return array( 
-			array( 'Test', 'Test', 'selfmove' ),
-			array( 'File:Test.jpg', 'Page', 'imagenocrossnamespace' )
-		);
-	}
-	
 	
 	/**
 	 * @dataProvider provideCasesForGetpageviewlanguage
