@@ -119,6 +119,9 @@ class ApiQuery extends ApiBase {
 		$this->mPropModuleNames = array_keys( $this->mQueryPropModules );
 		$this->mListModuleNames = array_keys( $this->mQueryListModules );
 		$this->mMetaModuleNames = array_keys( $this->mQueryMetaModules );
+
+		$this->makeGeneratorList( $this->mPropModuleNames );
+		$this->makeGeneratorList( $this->mListModuleNames );
 	}
 
 	/**
@@ -663,6 +666,21 @@ class ApiQuery extends ApiBase {
 		}
 
 		return implode( "\n", $moduleDescriptions );
+	}
+
+	/**
+	 * Adds any classes that are a subclass of ApiQueryGeneratorBase
+	 * to the allowed generator array
+	 * @param $moduleList array()
+	 */
+	private function makeGeneratorList( $moduleList ) {
+		foreach( $moduleList as  $moduleName => $moduleClass ) {
+			$class = new $moduleClass( $this, $moduleName, null );
+			if ( $class instanceof ApiQueryGeneratorBase ) {
+			//if ( is_subclass_of( $moduleClass, 'ApiQueryGeneratorBase'  ) ) {
+				$this->mAllowedGenerators[] = $moduleName;
+			}
+		}
 	}
 
 	/**
