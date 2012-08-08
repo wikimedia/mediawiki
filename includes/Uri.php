@@ -45,7 +45,7 @@ class Uri {
 		// parse_url("%0Ahttp://example.com") == array( 'host' => '%0Ahttp', 'path' => 'example.com' )
 		if ( !$bits ||
 		     !isset( $bits['scheme'] ) && strpos( $url, "://" ) !== false ) {
-			wfWarn( __METHOD__ . ": Invalid URL: $url" );
+			wfDebug( __METHOD__ . ": Invalid URL: $url" );
 			return false;
 		} else {
 			$scheme = isset( $bits['scheme'] ) ? $bits['scheme'] : null;
@@ -55,7 +55,7 @@ class Uri {
 		if ( in_array( $scheme . '://', $wgUrlProtocols ) ) {
 			$bits['delimiter'] = '://';
 		} elseif ( !is_null( $scheme ) && !in_array( $scheme . ':', $wgUrlProtocols ) ) {
-			wfWarn( __METHOD__ . ": Invalid scheme in URL: $scheme" );
+			wfDebug( __METHOD__ . ": Invalid scheme in URL: $scheme" );
 			return false;
 		} elseif( !is_null( $scheme ) ) {
 			if( !in_array( $scheme . ':', $wgUrlProtocols ) ) {
@@ -132,12 +132,11 @@ class Uri {
 		foreach ( $components as $name => $value ) {
 			if ( isset( self::$componentAliases[$name] ) ) {
 				$canonical = self::$componentAliases[$name];
-				wfWarn( __METHOD__ . ": Converting alias $name to canonical $canonical." );
+				wfDebug( __METHOD__ . ": Converting alias $name to canonical $canonical." );
 				$components[$canonical] = $value;
 				unset( $components[$name] );
 			} elseif ( !in_array( $name, self::$validComponents ) ) {
-				wfWarn( __METHOD__ . ": $name is not a valid component." );
-				unset( $components[$name] );
+				throw new MWException( __METHOD__ . ": $name is not a valid component." );
 			}
 		}
 
@@ -163,7 +162,7 @@ class Uri {
 			// Component is an alias. Get the actual name.
 			$alias = $name;
 			$name = self::$componentAliases[$name];
-			wfWarn( __METHOD__ . ": Converting alias $alias to canonical $name." );
+			wfDebug( __METHOD__ . ": Converting alias $alias to canonical $name." );
 		}
 
 		if( !in_array( $name, self::$validComponents ) ) {
@@ -187,7 +186,7 @@ class Uri {
 		if ( isset( self::$componentAliases[$name] ) ) {
 			$alias = $name;
 			$name = self::$componentAliases[$name];
-			wfWarn( __METHOD__ . ": Converting alias $alias to canonical $name." );
+			wfDebug( __METHOD__ . ": Converting alias $alias to canonical $name." );
 		} elseif ( !in_array( $name, self::$validComponents ) ) {
 			throw new MWException( __METHOD__ . ": $name is not a valid component." );
 		}
