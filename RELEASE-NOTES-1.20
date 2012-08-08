@@ -199,6 +199,8 @@ upgrade PHP if you have not done so prior to upgrading MediaWiki.
 * (bug 38953) --memory-limit switch not working for runJobs.php.
 * (bug 33037) Make subpage of Special:newfiles control how many files
   are returned, like in previous versions.
+* (bug 32951) Do not register internal externals with absolute protocol,
+  when server has relative protocol.
 
 === API changes in 1.20 ===
 * (bug 34316) Add ability to retrieve maximum upload size from MediaWiki API.
