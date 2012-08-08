@@ -1736,6 +1736,12 @@ $wgSessionsInMemcached = false;
 $wgSessionsInObjectCache = false;
 
 /**
+ * The expiry time to use for session storage when $wgSessionsInObjectCache is
+ * enabled, in seconds.
+ */
+$wgObjectCacheSessionExpiry = 3600;
+
+/**
  * This is used for setting php's session.save_handler. In practice, you will
  * almost never need to change this ever. Other options might be 'user' or
  * 'session_mysql.' Setting to null skips setting this entirely (which might be
