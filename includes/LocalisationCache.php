@@ -180,10 +180,10 @@ class LocalisationCache {
 					$storeClass = 'LCStore_DB';
 					break;
 				case 'accel':
-					$storeClass = 'LCStore_Accel';
+					$storeClass = 'LCStore_Cache';
 					break;
 				case 'detect':
-					$storeClass = $wgCacheDirectory ? 'LCStore_CDB' : 'LCStore_DB';
+					$storeClass = $wgCacheDirectory ? 'LCStore_CDB' : 'LCStore_Cache';
 					break;
 				default:
 					throw new MWException(
@@ -374,7 +374,7 @@ class LocalisationCache {
 		$deps = $this->store->get( $code, 'deps' );
 		$keys = $this->store->get( $code, 'list', 'messages' );
 		$preload = $this->store->get( $code, 'preload' );
-		// Different keys may expire separately, at least in LCStore_Accel
+		// Different keys may expire separately, at least in LCStore_Cache
 		if ( $deps === null || $keys === null || $preload === null ) {
 			wfDebug( __METHOD__."($code): cache missing, need to make one\n" );
 			return true;
@@ -840,16 +840,15 @@ interface LCStore {
 }
 
 /**
- * LCStore implementation which uses PHP accelerator to store data.
- * This will work if one of XCache, WinCache or APC cacher is configured.
+ * LCStore implementation which uses the object cache to store data.
  * (See ObjectCache.php)
  */
-class LCStore_Accel implements LCStore {
+class LCStore_Cache implements LCStore {
 	var $currentLang;
 	var $keys;
 
 	public function __construct() {
-		$this->cache = wfGetCache( CACHE_ACCEL );
+		$this->cache = wfGetCache( CACHE_ANYTHING );
 	}
 
 	public function get( $code, $key ) {
