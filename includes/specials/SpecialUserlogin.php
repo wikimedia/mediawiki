@@ -93,8 +93,6 @@ class LoginForm extends SpecialPage {
 		$this->mRetype = $request->getText( 'wpRetype' );
 		$this->mDomain = $request->getText( 'wpDomain' );
 		$this->mReason = $request->getText( 'wpReason' );
-		$this->mReturnTo = $request->getVal( 'returnto' );
-		$this->mReturnToQuery = $request->getVal( 'returntoquery' );
 		$this->mCookieCheck = $request->getVal( 'wpCookieCheck' );
 		$this->mPosted = $request->wasPosted();
 		$this->mCreateaccount = $request->getCheck( 'wpCreateaccount' );
@@ -111,6 +109,9 @@ class LoginForm extends SpecialPage {
 		if ( $wgRedirectOnLogin ) {
 			$this->mReturnTo = $wgRedirectOnLogin;
 			$this->mReturnToQuery = '';
+		} else {
+			$this->mReturnTo = $request->getVal( 'returnto', '' );
+			$this->mReturnToQuery = $request->getVal( 'returntoquery', '' );
 		}
 
 		if( $wgEnableEmail ) {
@@ -916,7 +917,7 @@ class LoginForm extends SpecialPage {
 
 		$out->addHTML( $injected_html );
 
-		if ( !empty( $this->mReturnTo ) ) {
+		if ( $this->mReturnTo !== '' ) {
 			$out->returnToMain( null, $this->mReturnTo, $this->mReturnToQuery );
 		} else {
 			$out->returnToMain( null );
@@ -1004,9 +1005,9 @@ class LoginForm extends SpecialPage {
 			$linkmsg = 'nologin';
 		}
 
-		if ( !empty( $this->mReturnTo ) ) {
+		if ( $this->mReturnTo !== '' ) {
 			$returnto = '&returnto=' . wfUrlencode( $this->mReturnTo );
-			if ( !empty( $this->mReturnToQuery ) ) {
+			if ( $this->mReturnToQuery !== '' ) {
 				$returnto .= '&returntoquery=' .
 					wfUrlencode( $this->mReturnToQuery );
 			}
@@ -1196,7 +1197,7 @@ class LoginForm extends SpecialPage {
 	function cookieRedirectCheck( $type ) {
 		$titleObj = SpecialPage::getTitleFor( 'Userlogin' );
 		$query = array( 'wpCookieCheck' => $type );
-		if ( $this->mReturnTo ) {
+		if ( $this->mReturnTo !== '' ) {
 			$query['returnto'] = $this->mReturnTo;
 			$query['returntoquery'] = $this->mReturnToQuery;
 		}
