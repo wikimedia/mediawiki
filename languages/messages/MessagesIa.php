@@ -825,6 +825,10 @@ o [{{fullurl:{{FULLPAGENAME}}|action=edit}} modificar iste pagina]</span>.',
 'noarticletext-nopermission' => 'Al momento il non ha texto in iste pagina.
 Tu pote [[Special:Search/{{PAGENAME}}|cercar le titulo de iste pagina]] in altere paginas,
 o <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} cercar in le registros pertinente].</span>',
+'missing-revision' => 'Le version №$1 del pagina nominate "{{PAGENAME}}" non existe.
+
+Isto es generalmente causate per sequer un ligamine de historia obsolete a un pagina que ha essite delite.
+Detalios se trova in le [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} registro de deletiones].',
 'userpage-userdoesnotexist' => 'Le conto de usator "<nowiki>$1</nowiki>" non es registrate. Per favor verifica que tu vole crear/modificar iste pagina.',
 'userpage-userdoesnotexist-view' => 'Le conto de usator "$1" non es registrate.',
 'blocked-notice-logextract' => 'Iste usator es actualmente blocate.
@@ -956,6 +960,7 @@ Iste parametros ha essite omittite.",
 'expansion-depth-exceeded-warning' => 'Le profunditate de expansion in iste pagina excede le limite',
 'parser-unstrip-loop-warning' => 'Bucla de "unstrip" detegite',
 'parser-unstrip-recursion-limit' => 'Limite de recursion de "unstrip" excedite ($1)',
+'converter-manual-rule-error' => 'Error detegite in le regula manual de conversion de lingua',
 
 # "Undo" feature
 'undo-success' => 'Le modification pote esser disfacite.
@@ -1146,6 +1151,10 @@ Nota que le uso del ligamines de navigation causara le perdita de tote cambios i
 'editundo' => 'disfacer',
 'diff-multi' => '({{PLURAL:$1|Un version intermedie|$1 versiones intermedie}} facite per {{PLURAL:$2|un usator|$2 usatores}} non es monstrate)',
 'diff-multi-manyusers' => '({{PLURAL:$1|Un version intermedie|$1 versiones intermedie}} facite per plus de $2 {{PLURAL:$2|usator|usatores}} non es monstrate)',
+'difference-missing-revision' => '{{PLURAL:$2|Un version|$2 versiones}} de iste differentia ($1) non ha essite trovate.
+
+Isto es generalmente causate per sequer un ligamine de diff obsolete a un pagina que ha essite delite.
+Detalios se trova in le [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} registro de deletiones].',
 
 # Search results
 'searchresults' => 'Resultatos del recerca',
@@ -1936,9 +1945,9 @@ Memora verificar que non existe altere ligamines al patronos ante que tu los del
 
 'disambiguations' => 'Paginas con ligamines a paginas de disambiguation',
 'disambiguationspage' => 'Template:Disambiguation',
-'disambiguations-text' => "Le sequente paginas ha ligamines a un '''pagina de disambiguation'''.
-Istes deberea esser reimplaciate con ligamines al topicos appropriate.<br />
-Un pagina se tracta como pagina de disambiguation si illo usa un patrono al qual [[MediaWiki:Disambiguationspage]] ha un ligamine.",
+'disambiguations-text' => "Le sequente paginas contine al minus un ligamine a un '''pagina de disambiguation'''.
+Istes debe forsan ligar directemente al articulo sur le thema in question.<br />
+Un pagina se tracta como pagina de disambiguation si illo usa un patrono que es ligate ab [[MediaWiki:Disambiguationspage]].",
 
 'doubleredirects' => 'Redirectiones duple',
 'doubleredirectstext' => 'Iste pagina lista paginas de redirection verso altere paginas de redirection.

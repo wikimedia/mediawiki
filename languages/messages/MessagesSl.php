@@ -3886,5 +3886,5 @@ V nasprotnem primeru lahko uporabite preprost obrazec spodaj. Vašo pripombo bom
 'duration-millennia' => '$1 {{PLURAL:$1|tisočletje|tisočletji|tisočletja|tisočletij}}',
 
 # Unknown messages
-'api-error-filetype-banned-type' => '$1 {{PLURAL:$4|ni dovoljena datotečna vrsta|nista dovoljeni datotečni vrsti|niso dovoljene datotečne vrste}}. {{PLURAL:$3|Dovoljena datotečna vrsta je|Dovoljeni datotečni vrsti sta|Dovoljene datotečne vrste so|Dovoljene datotečne vrste so}} $2.',
+'api-error-filetype-banned-type' => '$1 {{PLURAL:$4|ni dovoljena datotečna vrsta|nista dovoljeni datotečni vrsti|niso dovoljene datotečne vrste}}. {{PLURAL:$3|Dovoljena datotečna vrsta je|Dovoljeni datotečni vrsti sta|Dovoljene datotečne vrste so}} $2.',
 );

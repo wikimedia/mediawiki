@@ -3887,5 +3887,5 @@ Kui ei, kasuta allolevat lihtsat vormi. Sinu kommentaar lisatakse koos kasutajan
 'duration-millennia' => '$1 {{PLURAL:$1|aastatuhande}}',
 
 # Unknown messages
-'api-error-filetype-banned-type' => '$1 pole lubatud failitüü{{PLURAL:$4|p|bid}}.  Lubatud {{PLURAL:$3|failitüüp|failitüübid}} on  $2.',
+'api-error-filetype-banned-type' => '$1 pole lubatud {{PLURAL:$3|failitüüp|failitüübid}}.  Lubatud {{PLURAL:$3|failitüüp|failitüübid}} on  $2.',
 );

@@ -616,7 +616,7 @@ Databáza vrátila chybu „$3: $4“.',
 Správca, ktorý nariadil uzamknutie, uvádza tento dôvod: $1',
 'missing-article' => 'Text stránky s názvom „$1” $2, ktorú ste požadovali, nebol nájdený v databáze.
 
-To sa zvyčajne stane, keď kliknete na zastaralý odkaz na rozdiel alebo do histórie stránky, ktorá bola zmazaná.
+To sa zvyčajne stane, keď kliknete na zastaraný odkaz na rozdiel alebo do histórie stránky, ktorá bola zmazaná.
 
 Ak to tak nie je, je možné, že ste našli chybu v softvéri.
 Oznámte to prosím [[Special:ListUsers/sysop|správcovi]] a uveďte URL.',
@@ -948,6 +948,10 @@ alebo [{{fullurl:{{FULLPAGENAME}}|action=edit}} upravovať túto stránku]</span
 'noarticletext-nopermission' => 'Táto stránka momentálne neobsahuje žiadny text.
 Môžete [[Special:Search/{{PAGENAME}}|hľadať názov tejto stránky]] v texte iných stránok
 alebo <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} si pozrieť súvisiace záznamy]</span>.',
+'missing-revision' => 'Revízia #$1 stránky s názvom „{{PAGENAME}}“ neexistuje.
+
+Pravdepodobne ste nasledovali zastaraný odkaz na historickú verziu stránky, ktorá bola medzičasom odstránená.
+Podrobnosti nájdete v [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} zázname zmazaní].',
 'userpage-userdoesnotexist' => 'Používateľský účet „<nowiki>$1</nowiki>“ nie je registrovaný. Prosím, skontrolujte, či naozaj chcete vytvoriť/upravovať túto stránku.',
 'userpage-userdoesnotexist-view' => 'Používateľský účet „$1“ nie je registrovaný.',
 'blocked-notice-logextract' => 'Tento používateľ je momentálne zablokovaný.
@@ -1257,6 +1261,10 @@ Uistite sa, že táto zmena zachová historickú kontinuitu zmien stránky.',
 'editundo' => 'vrátiť',
 'diff-multi' => '{{PLURAL:$1|Jedna medziľahlá revízia|$1 medziľahlé revízie|$1 medziľahlých revízií}} od {{PLURAL:$2|jedného používateľa|$2 používateľov}} {{PLURAL:$1|nie je zobrazená|nie sú zobrazené|nie je zobrazených}}.',
 'diff-multi-manyusers' => '({{PLURAL:$1|$1 medziľahlá revízia|$1 medziľahlé revízie|$1 medziľahlých revízií}} od viac ako {{PLURAL:$2|$2 používateľa|$2 používateľov}} {{PLURAL:$1|nie je zobrazená|nie sú zobrazené|nie je zobrazených}})',
+'difference-missing-revision' => '{{PLURAL:$2|$2 revízia|$2 revízie|$2 revízií}} pre požadovaný rozdiel ($1) {{PLURAL:$2|neexistuje|neexistujú|neexistuje}}.
+
+Pravdepodobne ste nasledovali zastaraný odkaz na rozdiel revízií, z ktorých niektorá bola medzičasom odstránená.
+Podrobnosti nájdete v [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} zázname zmazaní].',
 
 # Search results
 'searchresults' => 'Výsledky vyhľadávania',
@@ -2030,7 +2038,7 @@ Možno chcete upraviť popis na jeho [$2 popisnej stránke súboru] tam.',
 'disambiguationspage' => 'Template:Rozlišovacia stránka',
 'disambiguations-text' => "Nasledovné stránky odkazujú na '''rozlišovaciu stránku'''.
 Mali by však odkazovať priamo na príslušnú tému.<br />
-Stránka sa považuje za rozlišovaciu, keď používa šablónu, na ktorú odkazuje [[MediaWiki:Disambiguationspage]]",
+Stránka sa považuje za rozlišovaciu, keď používa šablónu, na ktorú odkazuje [[MediaWiki:Disambiguationspage]].",
 
 'doubleredirects' => 'Dvojité presmerovania',
 'doubleredirectstext' => 'Táto stránka obsahuje zoznam stránok, ktoré presmerovávajú na iné presmerovacie stránky.

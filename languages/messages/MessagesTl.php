@@ -4071,5 +4071,5 @@ O kaya, maaari mong gamitin ang maginhawang pormularyo sa ibaba. Ang iyong pagpu
 'duration-millennia' => '$1 {{PLURAL:$1|milenyo|mga milenyo}}',
 
 # Unknown messages
-'api-error-filetype-banned-type' => 'Ang $1 {{PLURAL:$4|ay isang hindi pinapahintulutang uri ng talaksan|ay mga hindi pinapahintulutang mga uri ng talaksan}}. Ang mga pinapayagang {{PLURAL:$3|uri ng talaksan ay ang|mga uri ng talaksan ay ang mga}} $2.',
+'api-error-filetype-banned-type' => 'Ang $1 {{PLURAL:$4|ay isang hindi pinapahintulutang uri ng talaksan|ay hindi pinapahintulutang mga uri ng talaksan}}. Ang pinapayagang {{PLURAL:$3|uri ng talaksan ay ang|mga uri ng talaksan ay ang mga}} $2.',
 );

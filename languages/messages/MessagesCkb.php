@@ -10,6 +10,7 @@
  * @author Aras Noori
  * @author Arastein
  * @author Asoxor
+ * @author Calak
  * @author Cyrus abdi
  * @author Diyar se
  * @author Haval
@@ -800,7 +801,7 @@ $2
 لەیادت بێ کە لاپەڕەکانی‌ .css و .js لە بابەت بە پیتی بچووک کەڵک وەر ئەگرن. وەک {{ns:user}}:Foo/vector.css نە وەک {{ns:user}}:Foo/Vector.css .",
 'updated' => '(نوێ‌کراوە)',
 'note' => "'''تێبینی:'''",
-'previewnote' => "ە بیرت بێت کە ئەمە تەنھا پێشبینینە.'''
+'previewnote' => "'''لە بیرت نەچێت ئەمە تەنیا پێشبینینە.'''
 گۆڕانکارییەکانت ھێشتا پاشەکەوت نەکراون!",
 'previewconflict' => 'ئەم پێشبینینە بە تۆ نیشان ئەدات ئەو دەقەی لە شوێنی دەستکاری سەرەوە داتناوە چۆن بەرچاو ئەکەوێت ئەگەر پاشەکەوتی بکەیت.',
 'session_fail_preview' => "'''ببوورە! ناتوانین دەستکارییەکەت پێواژۆ بکەین بە ھۆی لەدەستدانی session data.'''

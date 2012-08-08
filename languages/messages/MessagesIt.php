@@ -1168,7 +1168,7 @@ $1",
 'revdelete-offender' => 'Autore della versione:',
 
 # Suppression log
-'suppressionlog' => 'Log delle soppressioni',
+'suppressionlog' => 'Soppressioni',
 'suppressionlogtext' => "Di seguito sono elencate le cancellazioni e i blocchi con del contenuto nascosto agli amministratori.
 Vedi l'[[Special:BlockList|elenco dei blocchi]] per l'elenco dei bandi e dei blocchi attivi al momento.",
 

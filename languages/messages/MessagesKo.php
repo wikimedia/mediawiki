@@ -4080,7 +4080,7 @@ $5
 'api-error-fileexists-shared-forbidden' => '"$1" 이름으로 된 파일이 이미 공용 저장소에 존재하며 덮어쓸 수 없습니다.',
 'api-error-file-too-large' => '당신이 올리려는 파일이 너무 큽니다.',
 'api-error-filename-tooshort' => '파일 이름이 너무 짧습니다.',
-'api-error-filetype-banned' => '이런 형식의 파일은 올릴 수 없습니다.',
+'api-error-filetype-banned' => '이런 파일 형식은 올릴 수 없습니다.',
 'api-error-filetype-missing' => '파일 이름에 확장자가 없습니다.',
 'api-error-hookaborted' => '당신이 시도한 수정이 확장 기능 훅에 의해 중단되었습니다.',
 'api-error-http' => '내부 오류: 서버에 연결할 수 없습니다.',
@@ -4117,5 +4117,5 @@ $5
 'duration-millennia' => '$1{{PLURAL:$1|천년}}',
 
 # Unknown messages
-'api-error-filetype-banned-type' => '{{PLURAL:$3$4}}$1 형식의 파일은 올릴 수 없습니다. $2 형식만 사용할 수 있습니다.',
+'api-error-filetype-banned-type' => '$1 {{PLURAL:$4|파일 형식은 올릴 수 없습니다}}. $2 {{PLURAL:$3|파일 형식만 사용할 수 있습니다}}.',
 );

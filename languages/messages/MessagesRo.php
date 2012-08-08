@@ -634,12 +634,12 @@ Baza de date a returnat eroarea „$3: $4”',
 'readonlytext' => 'Baza de date {{SITENAME}} este momentan blocată la scriere, probabil pentru o operațiune de rutină, după care va fi deblocată și se va reveni la starea normală.
 
 Administratorul care a blocat-o a oferit această explicație: $1',
-'missing-article' => 'Baza de date nu găsește textul unei pagini care ar fi trebuit găsit, numit „$1” $2.
+'missing-article' => 'Baza de date nu găsește textul unei pagini care ar fi trebuit găsită, numită „$1” $2.
 
-În mod normal faptul este cauzat de urmărirea unei dif neactualizată sau a unei legături din istoric spre o pagină care a fost ștearsă.
+În mod normal faptul este cauzat de accesarea unei dif neactualizată sau a unei legături din istoric spre o pagină care a fost ștearsă.
 
 Dacă nu acesta e motivul, s-ar putea să fi găsit un bug în program.
-Te rog anunță acest aspect unui [[Special:ListUsers/sysop|administrator]], indicându-i adresa URL.',
+Vă rugăm să-i semnalați acest aspect unui [[Special:ListUsers/sysop|administrator]], indicându-i adresa URL.',
 'missingarticle-rev' => '(versiunea#: $1)',
 'missingarticle-diff' => '(Dif: $1, $2)',
 'readonly_lag' => 'Baza de date a fost închisă automatic în timp ce serverele secundare ale bazei de date îl urmează pe cel principal.',
@@ -3970,5 +3970,5 @@ Imaginile sunt afișate la rezoluția lor maximă, în timp ce alte tipuri de fi
 'duration-millennia' => '$1 {{PLURAL:$1|mileniu|milenii|de milenii}}',
 
 # Unknown messages
-'api-error-filetype-banned-type' => '$1 {{PLURAL:$4|este un tip de fișier nepermis|sunt tipuri de fișier nepermise}}. {{PLURAL:$3|Tip de fișier permis:|Tipuri de fișier permise:}} $2.',
+'api-error-filetype-banned-type' => '$1 {{PLURAL:$4|este un tip de fișier nepermis|sunt tipuri de fișier nepermise}}. {{PLURAL:$3|Tip de fișier permis este|Tipuri de fișier permise sunt}} $2.',
 );

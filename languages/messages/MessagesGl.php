@@ -898,6 +898,10 @@ ou [{{fullurl:{{FULLPAGENAME}}|action=edit}} editar a páxina]</span>.',
 'noarticletext-nopermission' => 'Actualmente non hai ningún texto nesta páxina.
 Pode [[Special:Search/{{PAGENAME}}|procurar polo título desta páxina]] noutras páxinas
 ou <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} ollar os rexistros relacionados]</span>.',
+'missing-revision' => 'A revisión nº$1 da páxina chamada "{{PAGENAME}}" non existe.
+
+A miúdo, isto está provocado por seguir unha ligazón de historial obsoleta cara a unha páxina que foi borrada.
+O [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} rexistro de borrados] contén máis detalles.',
 'userpage-userdoesnotexist' => 'A conta do usuario "<nowiki>$1</nowiki>" non está rexistrada. Comprobe se desexa crear/editar esta páxina.',
 'userpage-userdoesnotexist-view' => 'A conta de usuario "$1" non está rexistrada.',
 'blocked-notice-logextract' => 'Este usuario está bloqueado.
@@ -1027,6 +1031,7 @@ Estes argumentos foron omitidos.",
 'expansion-depth-exceeded-warning' => 'Páxina que supera a profundidade de expansión',
 'parser-unstrip-loop-warning' => 'Detectouse un bucle inamovible',
 'parser-unstrip-recursion-limit' => 'Excedeuse o límite de recursión inamovible ($1)',
+'converter-manual-rule-error' => 'Detectouse un erro na regra manual de conversión da lingua',
 
 # "Undo" feature
 'undo-success' => 'A edición pódese desfacer.
@@ -1213,6 +1218,10 @@ Asegúrese de que esta modificación da páxina mantén a continuidade históric
 'editundo' => 'desfacer',
 'diff-multi' => '(Non se {{PLURAL:$1|mostra unha revisión|mostran $1 revisións}} do historial {{PLURAL:$1|feita|feitas}} por {{PLURAL:$2|un usuario|$2 usuarios}}.)',
 'diff-multi-manyusers' => '(Non se {{PLURAL:$1|mostra unha revisión|mostran $1 revisións}} do historial {{PLURAL:$1|feita|feitas}} por máis {{PLURAL:$2|dun usuario|de $2 usuarios}}.)',
+'difference-missing-revision' => 'Non se {{PLURAL:$2|atopou revisión ningunha|atoparon $2 revisións}} desta diferenza ($1).
+
+A miúdo, isto está provocado por seguir unha ligazón de diferenzas obsoleta cara a unha páxina que foi borrada.
+O [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} rexistro de borrados] contén máis detalles.',
 
 # Search results
 'searchresults' => 'Resultados da procura',
@@ -2002,7 +2011,7 @@ Lembre verificar outras ligazóns cara aos modelos antes de borralos.',
 
 'disambiguations' => 'Páxinas que ligan con páxinas de homónimos',
 'disambiguationspage' => 'Template:Homónimos',
-'disambiguations-text' => "As seguintes páxinas ligan cunha '''páxina de homónimos'''.
+'disambiguations-text' => "As seguintes páxinas conteñen, polo menos, unha ligazón cara a unha '''páxina de homónimos'''.
 No canto de ligar cos homónimos deben apuntar cara á páxina apropiada.<br />
 Unha páxina trátase como páxina de homónimos cando nela se usa un modelo que está ligado desde [[MediaWiki:Disambiguationspage]].",
 

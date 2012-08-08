@@ -2618,7 +2618,7 @@ Tingueu en compte que la pàgina '''no''' serà traslladada si ja existeix una p
 
 Això significa que si reanomeneu per equivocació una pàgina amb el seu nom anterior no ho podreu fer, ja que no es pot sobreescriure una pàgina existent.
  
-'''Avís:''' Això pot ser un canvi dràstic i inesperat per una pàgina popular; si us plau, assegureu-vos que sabeu el que féu abans de continuar.",
+'''Avís:''' Això pot ser un canvi dràstic i inesperat per una pàgina popular; si us plau, assegureu-vos que sabeu el que feu abans de continuar.",
 'movepagetalktext' => "La pàgina de discussió associada, si existeix, serà traslladada automàticament '''tret dels següents casos''':
 * Ja hi existeix una pàgina de discussió no buida amb el nou nom, o si
 * la opció de davall es troba desactivada

@@ -4076,5 +4076,5 @@ Sinon, vous pouvez utiliser le formulaire simplifié ci-dessous. Votre commentai
 'duration-millennia' => '$1 {{PLURAL:$1|millénaire|millénaires}}',
 
 # Unknown messages
-'api-error-filetype-banned-type' => "''' « $1 » '''{{PLURAL:$4|n’est pas un type de fichier autorisé|ne sont pas des types de fichiers autorisés}}.  {{PLURAL:$3|le type de fichier autorisé est |les types de fichiers autorisés sont}} $2.",
+'api-error-filetype-banned-type' => '$1 {{PLURAL:$4|n’est pas un type de fichier autorisé|ne sont pas des types de fichiers autorisés}}. {{PLURAL:$3|Le type de fichier autorisé est |Les types de fichiers autorisés sont}} $2.',
 );

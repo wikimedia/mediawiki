@@ -1880,9 +1880,9 @@ Dir musst ëmmer de Medien- a Subtyp aginn: z. Bsp. <tt>image/jpeg</tt>.",
 
 'disambiguations' => 'Säiten déi op Homonymie-Säite linken',
 'disambiguationspage' => 'Template:Homonymie',
-'disambiguations-text' => 'Dës Säite si mat enger Homonymie-Säit verlinkt.
-Sie sollten am beschten op déi eigentlech gemengte Säit verlinkt sinn.<br />
-Eng Säite gëtt als Homonymiesäit behandelt, wa si eng Schabloun benotzt déi vu [[MediaWiki:Disambiguationspage]] verlinkt ass.',
+'disambiguations-text' => "Dës Säite ass mat mindestens enger '''Homonymie-Säit''' verlinkt.
+Si sollte am beschten op déi eigentlech gemengte Säit verlinkt sinn.<br />
+Eng Säite gëtt als Homonymie-Säit behandelt, wa si eng Schabloun benotzt déi vu [[MediaWiki:Disambiguationspage]] verlinkt ass.",
 
 'doubleredirects' => 'Duebel Viruleedungen',
 'doubleredirectstext' => 'Op dëser Säit stinn déi Säiten déi op aner Viruleedungssäite viruleeden.
@@ -2227,6 +2227,8 @@ dës Aktioun soll mat Vierssiicht gemaach ginn.",
 'rollback' => 'Ännerungen zrécksetzen',
 'rollback_short' => 'Zrécksetzen',
 'rollbacklink' => 'Zrécksetzen',
+'rollbacklinkcount' => '{{PLURAL:$1|Eng Ännerung|$1 Ännerungen}} zerécksetzen',
+'rollbacklinkcount-morethan' => 'méi wéi {{PLURAL:$1|Eng Ännerung|$1 Ännerungen}} zerécksetzen',
 'rollbackfailed' => 'Zrécksetzen huet net geklappt',
 'cantrollback' => 'Lescht Ännerung kann net zréckgesat ginn. De leschten Auteur ass deen eenzegen Auteur vun dëser Säit.',
 'alreadyrolled' => 'Déi lescht Ännerung vun der Säit [[:$1]] vum [[User:$2|$2]] ([[User talk:$2|talk]]{{int:pipe-separator}}[[Special:Contributions/$2|{{int:contribslink}}]]);; kann net zeréckgesat ginn;
@@ -3759,5 +3761,5 @@ Soss kënnt Dir den einfache Formulär hei drënner benotzen. Är Bemierkung gë
 'duration-millennia' => '$1 {{PLURAL:$1|Millenaire|Millenairen}}',
 
 # Unknown messages
-'api-error-filetype-banned-type' => '$1 {{PLURAL:$4|is not a permitted file type|si Fichiersformater déi net erlaabt sinn}}. Erlaabt {{PLURAL:$3|ass|sinn}}: $2.',
+'api-error-filetype-banned-type' => "$1 {{PLURAL:$4|ass e Fichiersformat deen net erlaabt ass|si Fichiersformater déi net erlaabt sinn}}. Erlaabt {{PLURAL:$3|ass de Fichiersformat|sinn d'Fichiersformater}}: $2.",
 );

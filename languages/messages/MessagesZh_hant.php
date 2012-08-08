@@ -213,8 +213,8 @@ $messages = array(
 'tog-underline' => '連結加底線：',
 'tog-justify' => '段落對齊',
 'tog-hideminor' => '最近更改中隱藏小修改',
-'tog-hidepatrolled' => '於最近更改中隱藏巡查過的編輯',
-'tog-newpageshidepatrolled' => '於新頁面清單中隱藏巡查過的頁面',
+'tog-hidepatrolled' => '最近更改中隱藏巡查過的編輯',
+'tog-newpageshidepatrolled' => '新頁面清單中隱藏巡查過的頁面',
 'tog-extendwatchlist' => '展開監視清單以顯示所有更改，不只是最近的',
 'tog-usenewrc' => '在最近更改和監視列表中整合同一頁的修改 （需要JavaScript）',
 'tog-numberheadings' => '標題自動編號',
@@ -230,10 +230,10 @@ $messages = array(
 'tog-watchdeletion' => '將我刪除的頁面和檔案添加到我的監視列表',
 'tog-minordefault' => '預設將編輯設定為小編輯',
 'tog-previewontop' => '在編輯框上方顯示預覽',
-'tog-previewonfirst' => '第一次編輯時顯示原文內容的預覽',
+'tog-previewonfirst' => '第一次編輯時顯示預覽',
 'tog-nocache' => '禁止瀏覽器頁面快取',
 'tog-enotifwatchlistpages' => '當在我的監視列表中的頁面或檔案改變時發電子郵件給我',
-'tog-enotifusertalkpages' => '當我的對話頁發生改變時發電子郵件給我',
+'tog-enotifusertalkpages' => '當我的對話頁更改時發電子郵件給我',
 'tog-enotifminoredits' => '即使是頁面和檔案的小修改也向我發電子郵件',
 'tog-enotifrevealaddr' => '在通知電子郵件中顯示我的電子郵件位址',
 'tog-shownumberswatching' => '顯示監視用戶的數目',
@@ -252,7 +252,7 @@ $messages = array(
 'tog-watchlisthidepatrolled' => '監視清單中隱藏已巡查的編輯',
 'tog-nolangconversion' => '不進行用字轉換',
 'tog-ccmeonemails' => '當我寄電子郵件給其他用戶時，也寄一份複本到我的信箱。',
-'tog-diffonly' => '在比較兩個修訂版本差異時不顯示頁面內容',
+'tog-diffonly' => '比較版本差異時不顯示頁面內容',
 'tog-showhiddencats' => '顯示隱藏分類',
 'tog-noconvertlink' => '不轉換連結標題',
 'tog-norollbackdiff' => '進行回退後略過差異比較',
@@ -426,16 +426,16 @@ $messages = array(
 'viewtalkpage' => '檢視討論頁面',
 'otherlanguages' => '其他語言',
 'redirectedfrom' => '（重定向自$1）',
-'redirectpagesub' => '重定向頁面',
+'redirectpagesub' => '重定向頁',
 'lastmodifiedat' => '此頁面最後修訂於 $1 $2。',
 'viewcount' => '本頁面已經被瀏覽$1次。',
 'protectedpage' => '受保護頁面',
 'jumpto' => '跳轉到:',
 'jumptonavigation' => '導覽',
 'jumptosearch' => '搜尋',
-'view-pool-error' => '抱歉，伺服器在這段時間中已經超出負荷。
-太多用戶嘗試檢視這個頁面。
-在嘗試訪問這個頁面之前請再稍等一會。
+'view-pool-error' => '抱歉，現時伺服器已超出負荷。
+太多用戶正嘗試檢視此頁。
+請稍等一會後再次訪問此頁。
 
 $1',
 'pool-timeout' => '等待鎖死時超時',
@@ -457,7 +457,7 @@ $1',
 'mainpage' => '首頁',
 'mainpage-description' => '首頁',
 'policy-url' => 'Project:方針',
-'portal' => '社群入口',
+'portal' => '社群主頁',
 'portal-url' => 'Project:社區主頁',
 'privacy' => '隱私權政策',
 'privacypage' => 'Project:隱私權政策',
@@ -467,13 +467,14 @@ $1',
 'badaccess-groups' => '您剛才的請求只有{{PLURAL:$2|這個|這些}}用戶組的用戶才能使用：$1',
 
 'versionrequired' => '需要MediaWiki $1 版',
-'versionrequiredtext' => '需要版本$1的 MediaWiki 才能使用此頁。參見[[Special:Version|版本頁]]。',
+'versionrequiredtext' => '需要版本$1的 MediaWiki 才能使用此頁。
+參見[[Special:Version|版本頁]]。',
 
 'ok' => '確定',
 'retrievedfrom' => '取自「$1」',
 'youhavenewmessages' => '您有$1（$2）。',
 'newmessageslink' => '新訊息',
-'newmessagesdifflink' => '上次更改',
+'newmessagesdifflink' => '最後更改',
 'youhavenewmessagesmulti' => '您在 $1 有一條新訊息',
 'editsection' => '編輯',
 'editold' => '編輯',
@@ -510,7 +511,7 @@ $1',
 'nstab-mediawiki' => '訊息',
 'nstab-template' => '模板',
 'nstab-help' => '幫助頁面',
-'nstab-category' => '類別',
+'nstab-category' => '分類',
 
 # Main script and global functions
 'nosuchaction' => '這個命令不存在',
@@ -531,7 +532,7 @@ $1',
 <blockquote><tt>$1</tt></blockquote>
 來自於函數 "<tt>$2</tt>"。
 數據庫返回錯誤 "<tt>$3: $4</tt>"。',
-'dberrortextcl' => '發生了一個資料庫查詢語法錯誤。
+'dberrortextcl' => '發生資料庫查詢語法錯誤。
 最後一次的資料庫查詢是:
 「$1」
 來自於函數「$2」。
@@ -3856,5 +3857,5 @@ MediaWiki是基於使用目的而加以發佈，然而不負任何擔保責任�
 'duration-millennia' => '$1千年',
 
 # Unknown messages
-'api-error-filetype-banned-type' => '$1{{PLURAL:$4|不是允許的檔案類型|是不允許的檔案類型}}。  允許的{{PLURAL:$3|檔案類型|檔案類型}} $2。',
+'api-error-filetype-banned-type' => '$1{{PLURAL:$4|不是允許的檔案類型|不是允許的檔案類型}}。  允許的{{PLURAL:$3|檔案類型是|檔案類型是}} $2。',
 );

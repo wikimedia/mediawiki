@@ -528,7 +528,8 @@ $1',
 'badaccess-groups' => '您刚才请求的操作只有{{PLURAL:$2|这个用户组|以下用户组}}中的用户才能使用： $1',
 
 'versionrequired' => '需要版本为$1的MediaWiki',
-'versionrequiredtext' => '需要版本为$1的MediaWiki才能使用本页。请见[[Special:Version|版本页面]]。',
+'versionrequiredtext' => '需要版本为$1的MediaWiki才能使用本页。
+请见[[Special:Version|版本页面]]。',
 
 'ok' => '确定',
 'retrievedfrom' => '来自“$1”',

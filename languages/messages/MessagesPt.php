@@ -2087,9 +2087,9 @@ Talvez queira editar a descrição na [$2 página original de descrição do fic
 
 'disambiguations' => 'Páginas com ligações para páginas de desambiguação',
 'disambiguationspage' => 'Template:disambig',
-'disambiguations-text' => 'As páginas abaixo contêm links para uma página de desambiguação.
-Estes links deviam ser desambiguados, apontando-os para a página apropriada.<br />
-Considera-se que uma página é de desambiguação se nela for utilizada uma predefinição que esteja definida em [[MediaWiki:Disambiguationspage]].',
+'disambiguations-text' => "As páginas abaixo contêm pelo menos um link para uma '''página de desambiguação'''.
+Estes links deviam ser desambiguados, apontando-os para uma página mais apropriada.<br />
+Considera-se que uma página é de desambiguação se nela for utilizada uma predefinição que esteja definida em [[MediaWiki:Disambiguationspage]].",
 
 'doubleredirects' => 'Redireccionamentos duplos',
 'doubleredirectstext' => 'Esta página lista todas as páginas que redireccionam para outras páginas de redireccionamento.

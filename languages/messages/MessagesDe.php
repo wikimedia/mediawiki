@@ -1177,6 +1177,7 @@ Sie darf nicht mehr als $2 {{PLURAL:$2|Aufruf|Aufrufe}} haben, es {{PLURAL:$1|is
 'expansion-depth-exceeded-warning' => 'Die Seite hat die Expansionstiefe überschritten.',
 'parser-unstrip-loop-warning' => 'Zirkelbezug festgestellt',
 'parser-unstrip-recursion-limit' => 'Rekursionsgrenze beim Auflösen überschritten ($1)',
+'converter-manual-rule-error' => 'Bei der manuellen Sprachumwandlungsregel wurde ein Fehler entdeckt',
 
 # "Undo" feature
 'undo-success' => 'Die Bearbeitung kann rückgängig gemacht werden.
