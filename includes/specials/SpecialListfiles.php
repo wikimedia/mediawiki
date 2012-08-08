@@ -254,8 +254,9 @@ class ImageListPager extends TablePager {
 		return Html::openElement( 'form',
 				array( 'method' => 'get', 'action' => $wgScript, 'id' => 'mw-listfiles-form' ) ) .
 			Xml::fieldset( $this->msg( 'listfiles' )->text() ) .
+			Html::hidden( 'title', $this->getTitle()->getPrefixedText() ) .
 			Xml::buildForm( $inputForm, 'table_pager_limit_submit' ) .
-			$this->getHiddenFields( array( 'limit', 'ilsearch', 'user' ) ) .
+			$this->getHiddenFields( array( 'limit', 'ilsearch', 'user', 'title' ) ) .
 			Html::closeElement( 'fieldset' ) .
 			Html::closeElement( 'form' ) . "\n";
 	}
@@ -289,5 +290,9 @@ class ImageListPager extends TablePager {
 			$queries['user'] = $this->mUserName;
 		}
 		return $queries;
+	}
+
+	function getTitle() {
+		return SpecialPage::getTitleFor( 'ListFiles', false );
 	}
 }
