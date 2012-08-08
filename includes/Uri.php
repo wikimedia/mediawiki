@@ -258,8 +258,10 @@ class Uri {
 		}
 
 		$query = $this->getQuery();
-		foreach( $parameters as $key => $value ) {
-			$query[$key] = $value;
+		if ( count( $parameters ) ) {
+			foreach( $parameters as $key => $value ) {
+				$query[$key] = $value;
+			}
 		}
 
 		$this->setQuery( $query );
