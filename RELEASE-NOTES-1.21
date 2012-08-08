@@ -71,6 +71,7 @@ production.
 * Added GetDoubleUnderscoreIDs hook, for modifying the list of magic words.
 * DatabaseUpdater class has two new methods to ease extensions schema changes:
   dropExtensionIndex and renameExtensionIndex.
+* Added action=createaccount to allow user account creation.
 
 === Bug fixes in 1.21 ===
 * (bug 40353) SpecialDoubleRedirect should support interwiki redirects.
