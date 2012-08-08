@@ -499,7 +499,7 @@ class SpecialEditWatchlist extends UnlistedSpecialPage {
 		if ( count( $fields ) > 1 && $count > 30 ) {
 			$this->toc = Linker::tocIndent();
 			$tocLength = 0;
-			foreach( $fields as $key => $data ) {
+			foreach( $fields as $data ) {
 
 				# strip out the 'ns' prefix from the section name:
 				$ns = substr( $data['section'], 2 );
