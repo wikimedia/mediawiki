@@ -1660,6 +1660,13 @@ $wgMessageCacheType = CACHE_ANYTHING;
 $wgParserCacheType = CACHE_ANYTHING;
 
 /**
+ * The cache type for storing session data. Used if $wgSessionsInObjectCache is true.
+ *
+ * For available types see $wgMainCacheType.
+ */
+$wgSessionCacheType = CACHE_ANYTHING;
+
+/**
  * The cache type for storing language conversion tables,
  * which are used when parsing certain text and interface messages.
  *
@@ -1714,11 +1721,19 @@ $wgParserCacheExpireTime = 86400;
 $wgDBAhandler = 'db3';
 
 /**
- * Store sessions in MemCached. This can be useful to improve performance, or to
- * avoid the locking behaviour of PHP's default session handler, which tends to
- * prevent multiple requests for the same user from acting concurrently.
+ * Deprecated alias for $wgSessionsInObjectCache.
+ *
+ * @deprecated Use $wgSessionsInObjectCache
  */
 $wgSessionsInMemcached = false;
+
+/**
+ * Store sessions in an object cache, configured by $wgSessionCacheType. This
+ * can be useful to improve performance, or to avoid the locking behaviour of
+ * PHP's default session handler, which tends to prevent multiple requests for
+ * the same user from acting concurrently.
+ */
+$wgSessionsInObjectCache = false;
 
 /**
  * This is used for setting php's session.save_handler. In practice, you will

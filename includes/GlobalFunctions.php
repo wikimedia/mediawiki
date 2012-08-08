@@ -3372,21 +3372,10 @@ function wfFixSessionID() {
  * @param $sessionId Bool
  */
 function wfSetupSession( $sessionId = false ) {
-	global $wgSessionsInMemcached, $wgCookiePath, $wgCookieDomain,
+	global $wgSessionsInMemcached, $wgSessionsInObjectCache, $wgCookiePath, $wgCookieDomain,
 			$wgCookieSecure, $wgCookieHttpOnly, $wgSessionHandler;
-	if( $wgSessionsInMemcached ) {
-		if ( !defined( 'MW_COMPILED' ) ) {
-			global $IP;
-			require_once( "$IP/includes/cache/MemcachedSessions.php" );
-		}
-		session_set_save_handler( 'memsess_open', 'memsess_close', 'memsess_read',
-			'memsess_write', 'memsess_destroy', 'memsess_gc' );
-
-		// It's necessary to register a shutdown function to call session_write_close(),
-		// because by the time the request shutdown function for the session module is
-		// called, $wgMemc has already been destroyed. Shutdown functions registered
-		// this way are called before object destruction.
-		register_shutdown_function( 'memsess_write_close' );
+	if( $wgSessionsInObjectCache || $wgSessionsInMemcached ) {
+		ObjectCacheSessionHandler::install();
 	} elseif( $wgSessionHandler && $wgSessionHandler != ini_get( 'session.save_handler' ) ) {
 		# Only set this if $wgSessionHandler isn't null and session.save_handler
 		# hasn't already been set to the desired value (that causes errors)
