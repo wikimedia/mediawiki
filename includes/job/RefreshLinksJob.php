@@ -55,7 +55,7 @@ class RefreshLinksJob extends Job {
 			wfGetLB()->waitFor( $this->params['masterPos'] );
 		}
 
-		$revision = Revision::newFromTitle( $this->title, 0, Revision::AVOID_MASTER );
+		$revision = Revision::newFromTitle( $this->title, 0, Revision::READ_NORMAL );
 		if ( !$revision ) {
 			$this->error = 'refreshLinks: Article not found "' .
 				$this->title->getPrefixedDBkey() . '"';
@@ -185,7 +185,7 @@ class RefreshLinksJob2 extends Job {
 			}
 			# Re-parse each page that transcludes this page and update their tracking links...
 			foreach ( $titles as $title ) {
-				$revision = Revision::newFromTitle( $title, 0, Revision::AVOID_MASTER );
+				$revision = Revision::newFromTitle( $title, 0, Revision::READ_NORMAL );
 				if ( !$revision ) {
 					$this->error = 'refreshLinks: Article not found "' .
 						$title->getPrefixedDBkey() . '"';

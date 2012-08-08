@@ -1030,7 +1030,7 @@ class DifferenceEngine extends ContextSource {
 		// Load the new revision object
 		$this->mNewRev = $this->mNewid
 			? Revision::newFromId( $this->mNewid )
-			: Revision::newFromTitle( $this->getTitle(), false, Revision::AVOID_MASTER );
+			: Revision::newFromTitle( $this->getTitle(), false, Revision::READ_NORMAL );
 
 		if ( !$this->mNewRev instanceof Revision ) {
 			return false;
