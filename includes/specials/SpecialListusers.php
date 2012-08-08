@@ -89,7 +89,7 @@ class UsersPager extends AlphabeticPager {
 		$conds = array();
 		// Don't show hidden names
 		if( !$this->getUser()->isAllowed( 'hideuser' ) ) {
-			$conds[] = 'ipb_deleted IS NULL';
+			$conds[] = 'ipb_deleted IS NULL OR ipb_deleted = 0';
 		}
 
 		$options = array();
@@ -129,7 +129,6 @@ class UsersPager extends AlphabeticPager {
 				'user_groups' => array( 'LEFT JOIN', 'user_id=ug_user' ),
 				'ipblocks' => array( 'LEFT JOIN', array(
 					'user_id=ipb_user',
-					'ipb_deleted' => 1,
 					'ipb_auto' => 0
 				)),
 			),
@@ -185,9 +184,10 @@ class UsersPager extends AlphabeticPager {
 			$created = $this->msg( 'usercreated', $d, $t, $row->user_name )->escaped();
 			$created = ' ' . $this->msg( 'parentheses' )->rawParams( $created )->escaped();
 		}
+		$blocked = !is_null( $row->ipb_deleted ) ? ' ' . $this->msg( 'listusers-blocked', $userName )->escaped() : '';
 
 		wfRunHooks( 'SpecialListusersFormatRow', array( &$item, $row ) );
-		return Html::rawElement( 'li', array(), "{$item}{$edits}{$created}" );
+		return Html::rawElement( 'li', array(), "{$item}{$edits}{$created}{$blocked}" );
 	}
 
 	function doBatchLookups() {
