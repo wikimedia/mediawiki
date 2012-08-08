@@ -101,7 +101,8 @@ class ObjectCacheSessionHandler {
 	 * @return Boolean: success
 	 */
 	static function write( $id, $data ) {
-		self::getCache()->set( self::getKey( $id ), $data, 3600 );
+		global $wgObjectCacheSessionExpiry;
+		self::getCache()->set( self::getKey( $id ), $data, $wgObjectCacheSessionExpiry );
 		return true;
 	}
 

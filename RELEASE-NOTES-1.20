@@ -111,7 +111,8 @@ upgrade PHP if you have not done so prior to upgrading MediaWiki.
 * Session storage can now configured independently of general object cache 
   storage, by using $wgSessionCacheType. $wgSessionsInMemcached has been 
   renamed to $wgSessionsInObjectCache, with the old name retained for backwards
-  compatibility.
+  compatibility. When this feature is enabled, the expiry time can now be 
+  configured with $wgObjectCacheSessionExpiry.
 * Implemented mw.user.getGroups for getting and caching user groups.
 * (bug 37830) Added $wgRequirePasswordforEmailChange to control whether password
   confirmation is required for changing an email address or not.
