@@ -1502,6 +1502,7 @@ These arguments have been omitted.",
 'expansion-depth-exceeded-warning'        => 'Page exceeded the expansion depth',
 'parser-unstrip-loop-warning'             => 'Unstrip loop detected',
 'parser-unstrip-recursion-limit'          => 'Unstrip recursion limit exceeded ($1)',
+'converter-manual-rule-error'             => 'Error detected in manual language conversion rule',
 
 # "Undo" feature
 'undo-success' => 'The edit can be undone.
