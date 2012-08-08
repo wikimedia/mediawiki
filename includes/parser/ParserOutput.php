@@ -153,8 +153,21 @@ class ParserOutput extends CacheTime {
 	function addExternalLink( $url ) {
 		# We don't register links pointing to our own server, unless... :-)
 		global $wgServer, $wgRegisterInternalExternals;
-		if( $wgRegisterInternalExternals or stripos($url,$wgServer.'/')!==0)
+
+		$registerExternalLink = true;
+		if( !$wgRegisterInternalExternals ) {
+			$registerExternalLink = !preg_match( '/^' .
+				# If server is proto relative, check also for http/https links
+				( substr( $wgServer, 0, 2 ) == '//' ? '(?:https?:)?' : '' ) .
+				preg_quote( $wgServer, '/' ) .
+				# check for query/path/anchor or end of link in each case
+				'(?:[\?\/\#]|$)/i',
+				$url
+			);
+		}
+		if( $registerExternalLink ) {
 			$this->mExternalLinks[$url] = 1;
+		}
 	}
 
 	/**
