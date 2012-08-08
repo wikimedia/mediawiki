@@ -150,11 +150,65 @@ class ParserOutput extends CacheTime {
 		return (bool)$this->mNewSection;
 	}
 
+	static function isLinkInternal( $internal, $url ) {
+		$uri = new Uri( $url );
+		$server = new Uri( $internal );
+		$uriProto = $uri->getProtocol();
+		$serverProto = $server->getProtocol();
+		$uriPort = $uri->getPort();
+		$serverPort = $server->getPort();
+		
+		// Not internal if hosts don't match
+		if ( strtolower( $uri->getHost() ) !== strtolower( $server->getHost() ) ) {
+			return false;
+		}
+
+		// Check if the protocols match
+		$protocolMatches =
+			// if protocols are equal then we have a protocol match
+			( $uriProto === $serverProto ) ||
+			// or if the url is protocol relative we always have a match
+			( !$uriProto ) ||
+			// or if server is protocol relative then http: and https: are always a match
+			( !$serverProto && ( $uriProto === 'http' || $uriProto === 'https' ) );
+
+		// Not internal if the protocols don't match
+		if ( !$protocolMatches ) {
+			return false;
+		}
+
+		// Check if the ports match
+		$isHttp = !$serverProto || $serverProto === 'http';
+		$isHttps = !$serverProto || $serverProto === 'https';
+		$portMatches = 
+			// if both ports are empty (even though http and https use different ports)
+			// or if both ports are the same
+			( $uriPort === $serverPort ) ||
+			// or if the url port is 80 and server has no port and is http/proto-rel
+			( $uriPort === 80 && !$serverPort && $isHttp ) ||
+			// or if the url port is 443 and server has no port and is https/proto-rel
+			( $uriPort === 443 && !$serverPort && $isHttps );
+
+		// Not internal if the ports don't match
+		if ( !$portMatches ) {
+			return false;
+		}
+
+		// If everything matched so far, then it's internal
+		return true;
+	}
+
 	function addExternalLink( $url ) {
 		# We don't register links pointing to our own server, unless... :-)
 		global $wgServer, $wgRegisterInternalExternals;
-		if( $wgRegisterInternalExternals or stripos($url,$wgServer.'/')!==0)
+
+		$registerExternalLink = true;
+		if( !$wgRegisterInternalExternals ) {
+			$registerExternalLink = !self::isLinkInternal( $wgServer, $url );
+		}
+		if( $registerExternalLink ) {
 			$this->mExternalLinks[$url] = 1;
+		}
 	}
 
 	/**
