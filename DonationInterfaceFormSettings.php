@@ -1,4 +1,35 @@
 <?php
+
+/** Mapping of (country, currency, payment method) to gateways and forms **/
+
+$wgDonationInterfaceFormMap = array(
+	'ES' => array(
+		'EUR' => array(
+			'cc' => array(
+				'gateways' => array( 'GlobalCollect' ),
+				'forms' => array( 'cc-vmaj', 'cc-vma', 'cc-vm' )
+			),
+			// TODO: PayPal
+			'dd' => array(
+				'gateways' => array( 'GlobalCollect' ),
+				'forms' => array( 'cc-vmaj', 'cc-vma', 'cc-vm' )
+			),
+			'bt' => array(
+				'gateways' => array( 'GlobalCollect' ),
+				'forms' => array( 'cc-vmaj', 'cc-vma', 'cc-vm' )
+			),
+		)
+	),
+	'default' => array(
+		'USD' => array(
+			'cc' => array(
+				'gateways' => array( 'GlobalCollect' ),
+				'forms' => array( 'cc-vmad', 'cc-vma', 'cc-vm' )
+			)
+		)
+	)
+);
+
 /** Additional DonationInterface Forms **/
 
 /**
@@ -14,7 +45,9 @@
  */
 
 /** Sync up with the gateways again, in such a way that we get all the clobal changes without ditching what we already have.  **/
-if ( !isset( $wgDonationDataAllowedHtmlForms )) $wgDonationDataAllowedHtmlForms = array();
+if ( !isset( $wgDonationDataAllowedHtmlForms ) ){
+	$wgDonationDataAllowedHtmlForms = array();
+}
 $wgGlobalCollectGatewayAllowedHtmlForms = array_merge( $wgGlobalCollectGatewayAllowedHtmlForms, $wgDonationDataAllowedHtmlForms );
 $wgPayflowProGatewayAllowedHtmlForms = array_merge( $wgPayflowProGatewayAllowedHtmlForms, $wgDonationDataAllowedHtmlForms );
 
