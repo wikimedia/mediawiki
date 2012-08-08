@@ -257,7 +257,13 @@ class SpecialBlock extends FormSpecialPage {
 				$fields['DisableUTEdit']['default'] = $block->prevents( 'editownusertalk' );
 			}
 
-			$fields['Reason']['default'] = $block->mReason;
+			// If the username was hidden (ipb_deleted == 1), don't show the reason
+			// unless this user also has rights to hideuser: Bug 35839
+			if ( !$block->mHideName || $this->getUser()->isAllowed( 'hideuser' ) ) {
+				$fields['Reason']['default'] = $block->mReason;
+			} else {
+				$fields['Reason']['default'] = '';
+			}
 
 			if( $this->getRequest()->wasPosted() ){
 				# Ok, so we got a POST submission asking us to reblock a user.  So show the
