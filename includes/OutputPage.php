@@ -1725,7 +1725,7 @@ class OutputPage extends ContextSource {
 	/**
 	 * Return a Vary: header on which to vary caches. Based on the keys of $mVaryHeader,
 	 * such as Accept-Encoding or Cookie
-	 * 
+	 *
 	 * @return String
 	 */
 	public function getVaryHeader() {
@@ -2351,7 +2351,7 @@ $templates
 	 * Add a "return to" link pointing to a specified title
 	 *
 	 * @param $title Title to link
-	 * @param $query String query string
+	 * @param $query Array query string parameters
 	 * @param $text String text of the link (input is not escaped)
 	 */
 	public function addReturnTo( $title, $query = array(), $text = null ) {
@@ -2391,7 +2391,7 @@ $templates
 			$titleObj = Title::newMainPage();
 		}
 
-		$this->addReturnTo( $titleObj, $returntoquery );
+		$this->addReturnTo( $titleObj, wfCgiToArray( $returntoquery ) );
 	}
 
 	/**
