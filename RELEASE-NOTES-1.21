@@ -62,6 +62,7 @@ production.
   group has no key in wgDebugLogGroups, that will help triage the default log.
 * (bug 24620) Add types to LogFormatter.
 * jQuery JSON upgraded from 2.3 to 2.4.0.
+* Added accountcreate action for API to allow account creation.
 
 === Bug fixes in 1.21 ===
 * (bug 40353) SpecialDoubleRedirect should support interwiki redirects.
@@ -139,7 +140,7 @@ changes to languages because of Bugzilla reports.
 * South Azerbaijani (azb) added.
 * (bug 30040) Autonym for nds-nl is now 'Nedersaksies' (was 'Nedersaksisch').
 * (bug 34977) Now formatted numbers in Spanish use space as separator
-  for thousands, as mandated by the Real Academia EspaÃ±ola.
+  for thousands, as mandated by the Real Academia Española.
 * (bug 35031) Kurdish formatted numbers now use period and comma
   as separators for thousands and decimals respectively.
 
