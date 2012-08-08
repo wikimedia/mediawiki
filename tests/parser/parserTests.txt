@@ -5470,6 +5470,30 @@ section 5
 !! end
 
 !! test
+Headers with excess '=' characters
+(Are similar tests necessary beyond the 1st level?)
+!! input
+=foo==
+==foo=
+=''italic'' heading==
+==''italic'' heading=
+!! result
+<table id="toc" class="toc"><tr><td><div id="toctitle"><h2>Contents</h2></div>
+<ul>
+<li class="toclevel-1 tocsection-1"><a href="#foo.3D"><span class="tocnumber">1</span> <span class="toctext">foo=</span></a></li>
+<li class="toclevel-1 tocsection-2"><a href="#.3Dfoo"><span class="tocnumber">2</span> <span class="toctext">=foo</span></a></li>
+<li class="toclevel-1 tocsection-3"><a href="#italic_heading.3D"><span class="tocnumber">3</span> <span class="toctext"><i>italic</i> heading=</span></a></li>
+<li class="toclevel-1 tocsection-4"><a href="#.3Ditalic_heading"><span class="tocnumber">4</span> <span class="toctext">=<i>italic</i> heading</span></a></li>
+</ul>
+</td></tr></table>
+<h1><span class="editsection">[<a href="/index.php?title=Parser_test&amp;action=edit&amp;section=1" title="Edit section: foo=">edit</a>]</span> <span class="mw-headline" id="foo.3D">foo=</span></h1>
+<h1><span class="editsection">[<a href="/index.php?title=Parser_test&amp;action=edit&amp;section=2" title="Edit section: =foo">edit</a>]</span> <span class="mw-headline" id=".3Dfoo">=foo</span></h1>
+<h1><span class="editsection">[<a href="/index.php?title=Parser_test&amp;action=edit&amp;section=3" title="Edit section: italic heading=">edit</a>]</span> <span class="mw-headline" id="italic_heading.3D"><i>italic</i> heading=</span></h1>
+<h1><span class="editsection">[<a href="/index.php?title=Parser_test&amp;action=edit&amp;section=4" title="Edit section: =italic heading">edit</a>]</span> <span class="mw-headline" id=".3Ditalic_heading">=<i>italic</i> heading</span></h1>
+
+!! end
+
+!! test
 BUG 1219 URL next to image (broken)
 !! input
 http://example.com[[Image:foobar.jpg]]
