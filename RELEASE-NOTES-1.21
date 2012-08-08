@@ -71,6 +71,7 @@ production.
 * Added GetDoubleUnderscoreIDs hook, for modifying the list of magic words.
 * DatabaseUpdater class has two new methods to ease extensions schema changes:
   dropExtensionIndex and renameExtensionIndex.
+* Added action=createaccount to allow user account creation.
 
 === Bug fixes in 1.21 ===
 * (bug 40353) SpecialDoubleRedirect should support interwiki redirects.
@@ -166,7 +167,7 @@ changes to languages because of Bugzilla reports.
 * South Azerbaijani (azb) added.
 * (bug 30040) Autonym for nds-nl is now 'Nedersaksies' (was 'Nedersaksisch').
 * (bug 34977) Now formatted numbers in Spanish use space as separator
-  for thousands, as mandated by the Real Academia EspaÃ±ola.
+  for thousands, as mandated by the Real Academia Española.
 * (bug 35031) Kurdish formatted numbers now use period and comma
   as separators for thousands and decimals respectively.
 
