@@ -26,6 +26,7 @@ production.
 * jQuery UI upgraded from 1.8.23 to 1.8.24.
 * Added separate fa_sha1 field to filearchive table. This allows sha1
   searches with the api in miser mode for deleted files.
+* Added accountcreate action for API to allow account creation.
 
 === Bug fixes in 1.21 ===
 * (bug 40353) SpecialDoubleRedirect should support interwiki redirects.
