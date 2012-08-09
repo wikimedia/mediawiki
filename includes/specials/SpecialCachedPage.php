@@ -152,7 +152,9 @@ abstract class SpecialCachedPage extends SpecialPage implements ICacheHelper {
 	 * @since 1.20
 	 */
 	public function saveCache() {
-		$this->cacheHelper->saveCache();
+		if ( isset( $this->cacheHelper ) ) {
+			$this->cacheHelper->saveCache();
+		}
 	}
 
 	/**
