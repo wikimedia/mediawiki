@@ -258,7 +258,7 @@ class Uri {
 		}
 
 		$query = $this->getQuery();
-		if ( count( $parameters ) ) {
+		if ( is_array( $parameters ) ) {
 			foreach( $parameters as $key => $value ) {
 				$query[$key] = $value;
 			}
