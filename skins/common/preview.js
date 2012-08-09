@@ -7,6 +7,9 @@
 
 		$( mw ).trigger( 'LivePreviewPrepare' );
 
+		//Jump to top, this is where the interesting parts will be
+		document.documentElement.scrollTop = 0;
+
 		var postData = $('#editform').formToArray();
 		postData.push( { 'name' : 'wpPreview', 'value' : '1' } );
 
@@ -15,10 +18,12 @@
 							'#catlinks'];
 		var copySelector = copyElements.join(',');
 
-		$.each( copyElements, function(k,v) { $(v).fadeOut('fast'); } );
+		$.each( copyElements, function(k,v) { $(v).fadeTo('fast', 0.4) } );
 
 		// Display a loading graphic
 		var loadSpinner = $('<div class="mw-ajax-loader"/>');
+		// Move away from header (default is -16px)
+		loadSpinner.css('top', '-8px');
 		$('#wikiPreview').before( loadSpinner );
 
 		var page = $('<div/>');
@@ -33,8 +38,8 @@
 
 				for( var i=0; i<copyElements.length; ++i) {
 					// For all the specified elements, find the elements in the loaded page
-					//  and the real page, empty the element in the real page, and fill it
-					//  with the content of the loaded page
+					// and the real page, empty the element in the real page, and fill it
+					// with the content of the loaded page
 					var copyContent = page.find( copyElements[i] ).contents();
 					$(copyElements[i]).empty().append( copyContent );
 					var newClasses = page.find( copyElements[i] ).prop('class');
@@ -43,7 +48,7 @@
 
 				$.each( copyElements, function(k,v) {
 					// Don't belligerently show elements that are supposed to be hidden
-					$(v).fadeIn( 'fast', function() { $(this).css('display', ''); } );
+					$(v).fadeTo( 'fast', 1, function() { $(this).css('display', ''); } );
 				} );
 
 				loadSpinner.remove();
