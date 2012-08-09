@@ -803,9 +803,7 @@ div.gallerytext {
 	background-image: url(images/ajax-loader.gif);
 	background-position: center center;
 	background-repeat: no-repeat;
-	padding: 16px;
-	position: relative;
-	top: -16px;
+	height: 32px;
 }
 
 .mw-small-spinner {
