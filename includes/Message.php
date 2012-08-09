@@ -324,7 +324,11 @@ class Message {
 	 * Request the message in any language that is supported.
 	 * As a side effect interface message status is unconditionally
 	 * turned off.
+	 *
+	 * @since 1.17
+	 *
 	 * @param $lang Mixed: language code or Language object.
+	 *
 	 * @return Message: $this
 	 */
 	public function inLanguage( $lang ) {
@@ -347,7 +351,11 @@ class Message {
 	/**
 	 * Request the message in the wiki's content language,
 	 * unless it is disabled for this message.
+	 *
+	 * @since 1.17
+	 * 
 	 * @see $wgForceUIMsgAsContentMsg
+	 *
 	 * @return Message: $this
 	 */
 	public function inContentLanguage() {
