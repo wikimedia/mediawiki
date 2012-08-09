@@ -25,18 +25,24 @@
  * 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
  * http://www.gnu.org/copyleft/gpl.html
  *
+ * @file
  * @ingroup Maintenance
  */
 
 require_once( dirname( __FILE__ ) . '/Maintenance.php' );
 
+/**
+ * Maintenance script to rebuild the localisation cache.
+ *
+ * @ingroup Maintenance
+ */
 class RebuildLocalisationCache extends Maintenance {
 	public function __construct() {
 		parent::__construct();
 		$this->mDescription = "Rebuild the localisation cache";
 		$this->addOption( 'force', 'Rebuild all files, even ones not out of date' );
 		$this->addOption( 'threads', 'Fork more than one thread', false, true );
-		$this->addOption( 'outdir', 'Override the output directory (normally $wgCacheDirectory)', 
+		$this->addOption( 'outdir', 'Override the output directory (normally $wgCacheDirectory)',
 			false, true );
 	}
 
