@@ -825,7 +825,7 @@ class Title {
 
 	/**
 	 * Returns true if the title is inside the specified namespace.
-	 * 
+	 *
 	 * Please make use of this instead of comparing to getNamespace()
 	 * This function is much more resistant to changes we may make
 	 * to namespaces than code that makes direct comparisons.
@@ -1882,7 +1882,7 @@ class Title {
 					$title_protection['pt_create_perm'] = 'protect'; // B/C
 				}
 				if( $title_protection['pt_create_perm'] == '' ||
-					!$user->isAllowed( $title_protection['pt_create_perm'] ) ) 
+					!$user->isAllowed( $title_protection['pt_create_perm'] ) )
 				{
 					$errors[] = array( 'titleprotected', User::whoIs( $title_protection['pt_user'] ), $title_protection['pt_reason'] );
 				}
@@ -4079,30 +4079,60 @@ class Title {
 	}
 
 	/**
-	 * Get the number of authors between the given revision IDs.
+	 * Get the number of authors between the given revisions or revision IDs.
 	 * Used for diffs and other things that really need it.
 	 *
-	 * @param $old int|Revision Old revision or rev ID (first before range)
-	 * @param $new int|Revision New revision or rev ID (first after range)
-	 * @param $limit Int Maximum number of authors
-	 * @return Int Number of revision authors between these revisions.
+	 * @param $old int|Revision Old revision or rev ID (first before range by default)
+	 * @param $new int|Revision New revision or rev ID (first after range by default)
+	 * @param $limit int Maximum number of authors
+	 * @param $options string|array (Optional): Single option, or an array of options:
+	 *     'include_old' Include $old in the range; $new is excluded.
+	 *     'include_new' Include $new in the range; $old is excluded.
+	 *     'include_both' Include both $old and $new in the range.
+	 *     Unknown option values are ignored.
+	 * @return int Number of revision authors in the range; zero if not both revisions exist
 	 */
-	public function countAuthorsBetween( $old, $new, $limit ) {
+	public function countAuthorsBetween( $old, $new, $limit, $options = array() ) {
 		if ( !( $old instanceof Revision ) ) {
 			$old = Revision::newFromTitle( $this, (int)$old );
 		}
 		if ( !( $new instanceof Revision ) ) {
 			$new = Revision::newFromTitle( $this, (int)$new );
 		}
+		// XXX: what if Revision objects are passed in, but they don't refer to this title?
+		// Add $old->getPage() != $new->getPage() || $old->getPage() != $this->getArticleID()
+		// in the sanity check below?
 		if ( !$old || !$new ) {
 			return 0; // nothing to compare
+		}
+		$old_cmp = '>';
+		$new_cmp = '<';
+		$options = (array) $options;
+		if ( in_array( 'include_old', $options ) ) {
+			$old_cmp = '>=';
+		}
+		if ( in_array( 'include_new', $options ) ) {
+			$new_cmp = '<=';
+		}
+		if ( in_array( 'include_both', $options ) ) {
+			$old_cmp = '>=';
+			$new_cmp = '<=';
+		}
+		// No DB query needed if $old and $new are the same or successive revisions:
+		if ( $old->getId() === $new->getId() ) {
+			return ( $old_cmp === '>' && $new_cmp === '<' ) ? 0 : 1;
+		} else if ( $old->getId() === $new->getParentId() ) {
+			if ( $old_cmp === '>' || $new_cmp === '<' ) {
+				return ( $old_cmp === '>' && $new_cmp === '<' ) ? 0 : 1;
+			}
+			return ( $old->getRawUserText() === $new->getRawUserText() ) ? 1 : 2;
 		}
 		$dbr = wfGetDB( DB_SLAVE );
 		$res = $dbr->select( 'revision', 'DISTINCT rev_user_text',
 			array(
 				'rev_page' => $this->getArticleID(),
-				'rev_timestamp > ' . $dbr->addQuotes( $dbr->timestamp( $old->getTimestamp() ) ),
-				'rev_timestamp < ' . $dbr->addQuotes( $dbr->timestamp( $new->getTimestamp() ) )
+				"rev_timestamp $old_cmp " . $dbr->addQuotes( $dbr->timestamp( $old->getTimestamp() ) ),
+				"rev_timestamp $new_cmp " . $dbr->addQuotes( $dbr->timestamp( $new->getTimestamp() ) )
 			), __METHOD__,
 			array( 'LIMIT' => $limit + 1 ) // add one so caller knows it was truncated
 		);

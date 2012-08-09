@@ -1788,9 +1788,9 @@ class WikiPage extends Page implements IDBAccessObject {
 					wfDebug( __METHOD__ . ": invalid username\n" );
 				} elseif ( User::isIP( $shortTitle ) ) {
 					// An anonymous user
-					$other->setNewtalk( true );
+					$other->setNewtalk( true, $revision );
 				} elseif ( $other->isLoggedIn() ) {
-					$other->setNewtalk( true );
+					$other->setNewtalk( true, $revision );
 				} else {
 					wfDebug( __METHOD__ . ": don't need to notify a nonexistent user\n" );
 				}
