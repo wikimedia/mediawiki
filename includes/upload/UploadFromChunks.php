@@ -29,10 +29,10 @@
  */
 class UploadFromChunks extends UploadFromFile {
 	protected $mOffset, $mChunkIndex, $mFileKey, $mVirtualTempPath;
-	
+
 	/**
 	 * Setup local pointers to stash, repo and user ( similar to UploadFromStash )
-	 * 
+	 *
 	 * @param $user User
 	 * @param $stash UploadStash
 	 * @param $repo FileRepo
@@ -82,7 +82,7 @@ class UploadFromChunks extends UploadFromFile {
 		$this->updateChunkStatus();
 		return $this->mLocalFile;
 	}
-	
+
 	/**
 	 * Continue chunk uploading
 	 */	
@@ -201,7 +201,7 @@ class UploadFromChunks extends UploadFromFile {
 	private function updateChunkStatus(){
 		wfDebug( __METHOD__ . " update chunk status for {$this->mFileKey} offset:" . 
 					$this->getOffset() . ' inx:' . $this->getChunkIndex() . "\n" );
-		
+
 		$dbw = $this->repo->getMasterDb();
 		$dbw->update(
 			'uploadstash',
@@ -264,8 +264,9 @@ class UploadFromChunks extends UploadFromFile {
 
 	/**
 	 * Output the chunk to disk
-	 * 
+	 *
 	 * @param $chunkPath string
+	 * @throws UploadChunkFileException
 	 * @return FileRepoStatus
 	 */
 	private function outputChunk( $chunkPath ){
@@ -291,6 +292,7 @@ class UploadFromChunks extends UploadFromFile {
 		}
 		return $storeStatus;
 	}
+
 	private function getChunkFileKey( $index = null ){
 		if( $index === null ){
 			$index = $this->getChunkIndex();

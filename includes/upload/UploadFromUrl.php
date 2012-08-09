@@ -41,7 +41,7 @@ class UploadFromUrl extends UploadBase {
 	 *
 	 * @param $user User
 	 *
-	 * @return true|string
+	 * @return bool|string
 	 */
 	public static function isAllowed( $user ) {
 		if ( !$user->isAllowed( 'upload_by_url' ) ) {
@@ -92,6 +92,7 @@ class UploadFromUrl extends UploadBase {
 	 * @param $async mixed Whether the download should be performed
 	 * asynchronous. False for synchronous, async or async-leavemessage for
 	 * asynchronous download.
+	 * @throws MWException
 	 */
 	public function initialize( $name, $url, $async = false ) {
 		global $wgAllowAsyncCopyUploads;
@@ -256,6 +257,7 @@ class UploadFromUrl extends UploadBase {
 	/**
 	 * Wrapper around the parent function in order to defer checking protection
 	 * until we are sure that the file can actually be uploaded
+	 * @param $user User
 	 * @return bool|mixed
 	 */
 	public function verifyTitlePermissions( $user ) {
@@ -268,6 +270,10 @@ class UploadFromUrl extends UploadBase {
 	/**
 	 * Wrapper around the parent function in order to defer uploading to the
 	 * job queue for asynchronous uploads
+	 * @param $comment string
+	 * @param $pageText string
+	 * @param $watch bool
+	 * @param $user User
 	 * @return Status
 	 */
 	public function performUpload( $comment, $pageText, $watch, $user ) {
@@ -281,11 +287,11 @@ class UploadFromUrl extends UploadBase {
 	}
 
 	/**
-	 * @param  $comment
-	 * @param  $pageText
-	 * @param  $watch
-	 * @param  $user User
-	 * @return
+	 * @param $comment
+	 * @param $pageText
+	 * @param $watch
+	 * @param $user User
+	 * @return String
 	 */
 	protected function insertJob( $comment, $pageText, $watch, $user ) {
 		$sessionKey = $this->stashSession();
