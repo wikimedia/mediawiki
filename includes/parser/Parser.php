@@ -735,16 +735,22 @@ class Parser {
 	/**
 	 * Get the target language for the content being parsed. This is usually the
 	 * language that the content is in.
+	 *
+	 * @since 1.19
+	 *
+	 * @return Language|null
 	 */
-	function getTargetLanguage() {
+	public function getTargetLanguage() {
 		$target = $this->mOptions->getTargetLanguage();
+
 		if ( $target !== null ) {
 			return $target;
 		} elseif( $this->mOptions->getInterfaceMessage() ) {
 			return $this->mOptions->getUserLangObj();
 		} elseif( is_null( $this->mTitle ) ) {
-			throw new MWException( __METHOD__.': $this->mTitle is null' );
+			throw new MWException( __METHOD__ . ': $this->mTitle is null' );
 		}
+
 		return $this->mTitle->getPageLanguage();
 	}
 
