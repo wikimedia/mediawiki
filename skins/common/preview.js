@@ -12,7 +12,7 @@
 
 		// Hide active diff, used templates, old preview if shown
 		var copyElements = ['#wikiPreview', '.templatesUsed', '.hiddencats',
-							'#catlinks', '#p-lang'];
+							'#catlinks', '#p-lang', '.mw-summary-preview'];
 		var copySelector = copyElements.join(',');
 
 		$.each( copyElements, function(k,v) { $(v).fadeOut('fast'); } );
@@ -128,6 +128,11 @@
 		if ( !document.getElementById( 'p-lang' ) && document.getElementById( 'p-tb' ) ) {
 			// we need not hide this, because it's empty anyway
 			$( '#p-tb' ).after( $( '<div>' ).attr( 'id', 'p-lang' ) );
+		}
+
+		// construct space for summary preview if missing
+		if ( $( '.mw-summary-preview' ).length == 0 ) {
+			$( '.editCheckboxes' ).before( $( '<div>' ).addClass( 'mw-summary-preview' ) );
 		}
 
 		$( '#wpPreview' ).click( doLivePreview );
