@@ -11,6 +11,7 @@
  * @author Agzennay
  * @author Azwaw
  * @author Mmistmurt
+ * @author MoubarikBelkasim
  * @author Teak
  * @author Urhixidur
  */
@@ -654,7 +655,7 @@ Inedbalen wiyaḍ deg wiki-yagi zemren ad ẓren imuren i yettwafren u zemren a 
 'revertmerge' => 'Fru',
 
 # Diffs
-'history-title' => 'Amazray n allasen n "$1"',
+'history-title' => 'Tiẓṛi tiss sint umezruy n "$1"',
 'lineno' => 'Ajerriḍ $1:',
 'compareselectedversions' => 'Ẓer imgerraden ger tisiwal i textareḍ',
 'editundo' => 'ssefsu',

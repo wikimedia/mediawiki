@@ -1329,7 +1329,7 @@ This message has sometimes a tooltip {{msg-mw|tooltip-undo}}',
 Example: [http://translatewiki.net/w/i.php?title=Project:News&diff=426850&oldid=99999999 Diff with invalid revision#]
 
 * $1 is the list of missing revisions IDs
-* $2 is the number of items in $1',
+* $2 is the number of items in $1 (one or two)',
 
 # Search results
 'searchresults' => '{{Identical|Search results}}',

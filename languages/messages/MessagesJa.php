@@ -722,6 +722,8 @@ URL を間違って入力したか、正しくないリンクをたどった可�
 'cannotdelete' => 'ページまたはファイル「$1」を削除できませんでした。
 他の人が既に削除した可能性があります。',
 'cannotdelete-title' => '「$1」というページを削除できません',
+'delete-hook-aborted' => 'フックによって削除が中止されました。
+理由は不明です。',
 'badtitle' => '正しくないページ名',
 'badtitletext' => '要求されたページ名は、無効、空、正しくない言語間リンク/ウィキ間リンクのページ名、のいずれかです。
 ページ名に使用できない文字が1つ以上含まれている可能性があります。',
@@ -757,6 +759,7 @@ $2',
 
 読み取り専用に設定した管理者からの説明：「$3」',
 'exception-nologin' => 'ログインしていません',
+'exception-nologin-text' => 'このページまたは操作には、このウィキへのログインが必要です。',
 
 # Virus scanner
 'virus-badscanner' => "環境設定が不適合です：不明なウイルス検知ソフトウェア：''$1''",
@@ -777,6 +780,7 @@ $2',
 'remembermypassword' => 'このブラウザーにログイン情報を保存 (最長 $1 {{PLURAL:$1|日|日間}})',
 'securelogin-stick-https' => 'ログイン後にHTTPS接続を維持',
 'yourdomainname' => 'ドメイン：',
+'password-change-forbidden' => 'このウィキではパスワードを変更できません。',
 'externaldberror' => '外部の認証データベースでエラーが発生したか、または外部アカウント情報の更新が許可されていません。',
 'login' => 'ログイン',
 'nav-login-createaccount' => 'ログインまたはアカウント作成',
@@ -1174,6 +1178,7 @@ IP アドレスは複数の利用者で共有されている場合がありま�
 'expansion-depth-exceeded-warning' => 'ページが展開の深さ制限を超えました',
 'parser-unstrip-loop-warning' => 'Unstrip のループが検出されました',
 'parser-unstrip-recursion-limit' => 'Unstrip の再帰（$1）が上限を超えました',
+'converter-manual-rule-error' => '手動の言語変換規則でエラーを検出しました。',
 
 # "Undo" feature
 'undo-success' => 'この編集を取り消せます。
@@ -1635,6 +1640,7 @@ $1 {{PLURAL:$1|文字}}以下である必要があります。',
 'right-writeapi' => '書き込みAPIの使用',
 'right-delete' => 'ページの削除',
 'right-bigdelete' => '大きな履歴があるページを削除',
+'right-deletelogentry' => '特定の記録項目の削除と復帰',
 'right-deleterevision' => 'ページの特定の版の削除と復帰',
 'right-deletedhistory' => '削除された履歴項目（関連する本文を除く）を閲覧',
 'right-deletedtext' => '削除された本文と削除された版間の差分を閲覧',
@@ -4212,6 +4218,8 @@ MediaWikiは、有用であることを期待して配布されていますが�
 'api-error-empty-file' => '送信されたファイルは空でした。',
 'api-error-emptypage' => '内容がないページの新規作成は許可されていません。',
 'api-error-fetchfileerror' => '内部エラー：ファイルの取得中に問題が発生しました。',
+'api-error-fileexists-forbidden' => '「$1」という名前のファイルは存在しており、上書きはできません。',
+'api-error-fileexists-shared-forbidden' => '「$1」という名前のファイルは共有ファイルリポジトリに存在しており、上書きはできません。',
 'api-error-file-too-large' => '送信されたファイルは大きすぎます。',
 'api-error-filename-tooshort' => 'ファイル名が短すぎます。',
 'api-error-filetype-banned' => 'この形式のファイルは禁止されています。',
@@ -4251,5 +4259,5 @@ MediaWikiは、有用であることを期待して配布されていますが�
 'duration-millennia' => '$1{{PLURAL:$1|,000 年}}',
 
 # Unknown messages
-'api-error-filetype-banned-type' => '$1 は許可されていないファイル形式です{{PLURAL:$4|}}。 許可されているファイル形式{{PLURAL:$3|}}は$2です。',
+'api-error-filetype-banned-type' => '$1{{PLURAL:$4|は許可されていないファイル形式です}}。許可されている{{PLURAL:$3|ファイル形式}}は$2です。',
 );

@@ -664,6 +664,10 @@ Siehe die [[Special:Version|Versionsseite]]',
 'youhavenewmessages' => 'Du hast $1 ($2).',
 'newmessageslink' => 'neue Nachrichten',
 'newmessagesdifflink' => 'Letzte Änderung',
+'youhavenewmessagesfromusers' => 'Du hast $1 von {{PLURAL:$3|einem anderen Benutzer|$3 Benutzern}} ($2).',
+'youhavenewmessagesmanyusers' => 'Du hast $1 von vielen Benutzern ($2).',
+'newmessageslinkplural' => '{{PLURAL:$1|eine neue Nachricht|neue Nachrichten}}',
+'newmessagesdifflinkplural' => 'letzte {{PLURAL:$1|Änderung|Änderungen}}',
 'youhavenewmessagesmulti' => 'Du hast neue Nachrichten: $1',
 'editsection' => 'Bearbeiten',
 'editold' => 'Bearbeiten',
@@ -1177,7 +1181,7 @@ Sie darf nicht mehr als $2 {{PLURAL:$2|Aufruf|Aufrufe}} haben, es {{PLURAL:$1|is
 'expansion-depth-exceeded-warning' => 'Die Seite hat die Expansionstiefe überschritten.',
 'parser-unstrip-loop-warning' => 'Zirkelbezug festgestellt',
 'parser-unstrip-recursion-limit' => 'Rekursionsgrenze beim Auflösen überschritten ($1)',
-'converter-manual-rule-error' => 'Bei der manuellen Sprachumwandlungsregel wurde ein Fehler entdeckt',
+'converter-manual-rule-error' => 'Bei der manuellen Sprachkonvertierungsregel wurde ein Fehler entdeckt.',
 
 # "Undo" feature
 'undo-success' => 'Die Bearbeitung kann rückgängig gemacht werden.

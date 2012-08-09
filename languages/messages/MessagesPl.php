@@ -707,6 +707,7 @@ Nie zapomnij dostosować [[Special:Preferences|preferencji dla {{GRAMMAR:D.lp|{{
 'remembermypassword' => 'Zapamiętaj moje hasło na tym komputerze (maksymalnie przez $1 {{PLURAL:$1|dzień|dni}})',
 'securelogin-stick-https' => 'Po zalogowaniu utrzymuj połączenie poprzez HTTPS',
 'yourdomainname' => 'Twoja domena',
+'password-change-forbidden' => 'Nie można zmieniać haseł na tej wiki.',
 'externaldberror' => 'Wystąpił błąd zewnętrznej bazy autentyfikacyjnej lub nie posiadasz uprawnień koniecznych do aktualizacji zewnętrznego konta.',
 'login' => 'Zaloguj się',
 'nav-login-createaccount' => 'Logowanie i rejestracja',
@@ -958,6 +959,9 @@ Możesz [[Special:Search/{{PAGENAME}}|poszukać „{{PAGENAME}}” na innych str
 'noarticletext-nopermission' => 'Na tej stronie nie ma jeszcze artykułu.
 Możesz [[Special:Search/{{PAGENAME}}|wyszukać ten tytuł]] w treści innych stron
 lub <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} przeszukać powiązane logi].</span>',
+'missing-revision' => 'Wersja #$1 strony "{{PAGENAME}}" nie istnieje.
+
+Zazwyczaj jest to spowodowane przestarzałym linkiem do usuniętej strony. Powód usunięcia znajduje się w [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} rejestrze].',
 'userpage-userdoesnotexist' => 'Użytkownik „<nowiki>$1</nowiki>” nie jest zarejestrowany.
 Upewnij się, czy na pewno zamierza{{GENDER:|łeś|łaś|sz}} utworzyć lub zmodyfikować właśnie tę stronę.',
 'userpage-userdoesnotexist-view' => 'Konto użytkownika „$1” nie jest zarejestrowane.',
@@ -1086,6 +1090,7 @@ Argument ten będzie pominięty.',
 'expansion-depth-exceeded-warning' => 'Strona przekroczyła głębokość rozbudowy',
 'parser-unstrip-loop-warning' => 'Wykryto nieskończoną pętlę',
 'parser-unstrip-recursion-limit' => 'Przekroczono maksymalną głębokość zagnieżdżania ($1)',
+'converter-manual-rule-error' => 'Błąd w językowych regułach konwersji',
 
 # "Undo" feature
 'undo-success' => 'Edycja może zostać wycofana. Porównaj ukazane poniżej różnice między wersjami, a następnie zapisz zmiany.',
@@ -1271,6 +1276,9 @@ Użycie linków nawigacyjnych kasuje wybór w kolumnie.',
 'editundo' => 'anuluj edycję',
 'diff-multi' => '(Nie pokazano $1 wersji {{PLURAL:$1|utworzonej|utworzonych}} przez {{PLURAL:$2|jednego użytkownika|$2 użytkowników}})',
 'diff-multi-manyusers' => '(Nie pokazano $1 {{PLURAL:$1|pośredniej wersji utworzonej|pośrednich wersji utworzonych}} przez {{PLURAL:$2|jednego użytkownika|$2 użytkowników}})',
+'difference-missing-revision' => '{{PLURAL:$2|Wersja|$2 wersje}} #$1 strony "{{PAGENAME}}" nieznalezione.
+
+Zazwyczaj jest to spowodowane przestarzałym linkiem do usuniętej strony. Powód usunięcia znajduje się w [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} rejestrze].',
 
 # Search results
 'searchresults' => 'Wyniki wyszukiwania',
@@ -1539,6 +1547,7 @@ Jeśli zdecydujesz się je podać, zostaną użyte, by udokumentować Twoje auto
 'right-writeapi' => 'Zapis poprzez interfejs API',
 'right-delete' => 'Usuwanie stron',
 'right-bigdelete' => 'Usuwanie stron z długą historią edycji',
+'right-deletelogentry' => 'Usuwanie i przywracanie wpisów rejestru',
 'right-deleterevision' => 'Usuwanie i odtwarzanie określonej wersji strony',
 'right-deletedhistory' => 'Podgląd usuniętych wersji, bez przypisanego im tekstu',
 'right-deletedtext' => 'Podgląd usuniętego tekstu i zmian pomiędzy usuniętymi wersjami',
@@ -2397,6 +2406,8 @@ Bądź ostrożny, ponieważ usunięcie jej może spowodować zakłócenia w prac
 'rollback' => 'Cofnij edycję',
 'rollback_short' => 'Cofnij',
 'rollbacklink' => 'cofnij',
+'rollbacklinkcount' => 'cofnij $1 {{PLURAL:$1|edycję|edycje}}',
+'rollbacklinkcount-morethan' => 'cofnij więcej niż $1 {{PLURAL:$1|edycję|edycje}}',
 'rollbackfailed' => 'Nie udało się cofnąć zmiany',
 'cantrollback' => 'Nie można cofnąć edycji, ponieważ jest tylko jedna wersja tej strony.',
 'alreadyrolled' => 'Nie można dla strony [[:$1|$1]] cofnąć ostatniej zmiany, którą wykonał [[User:$2|$2]] ([[User talk:$2|dyskusja]]{{int:pipe-separator}}[[Special:Contributions/$2|{{int:contribslink}}]]).

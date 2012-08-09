@@ -695,6 +695,13 @@ $2',
 'ns-specialprotected' => 'A speciális lapok nem szerkeszthetőek.',
 'titleprotected' => "Ilyen címmel nem lehet szócikket készíteni, [[User:$1|$1]] letiltotta.
 A blokkolás oka: „''$2''”.",
+'filereadonlyerror' => 'A(z) "$1" fájl nem módosítható, mert a(z) "$2" fájltároló csak olvasható módban üzemel.
+
+A lezárást végrehajtó rendszergazda az alábbi indoklást adta meg: "$3".',
+'invalidtitle-knownnamespace' => 'Érvénytelen cím "$2" névtérrel és "$3" szöveggel',
+'invalidtitle-unknownnamespace' => 'Érvénytelen cím az ismeretlen $1 névtérszámmal és "$2" szöveggel',
+'exception-nologin' => 'Nem vagy bejelentkezve.',
+'exception-nologin-text' => 'Ezen lap vagy művelet használatához be kell jelenetkezned erre a wikire.',
 
 # Virus scanner
 'virus-badscanner' => "Hibás beállítás: ismeretlen víruskereső: ''$1''",
@@ -715,6 +722,7 @@ Ne felejtsd el átnézni a [[Special:Preferences|személyes beállításaidat]].
 'remembermypassword' => 'Emlékezzen rám ezen a számítógépen (legfeljebb $1 napig)',
 'securelogin-stick-https' => 'Kapcsolódás HTTPS-en keresztül bejelentkezés után is',
 'yourdomainname' => 'A domainneved:',
+'password-change-forbidden' => 'Nem módosíthatod a jelszót ezen a wikin.',
 'externaldberror' => 'Hiba történt a külső adatbázis hitelesítése közben, vagy nem vagy jogosult a külső fiókod frissítésére.',
 'login' => 'Bejelentkezés',
 'nav-login-createaccount' => 'Bejelentkezés / fiók létrehozása',
@@ -956,6 +964,9 @@ Ha úgy látod, hogy az üzenetek, amiket ide kapsz, nem neked szólnak, [[Speci
 vagy [{{fullurl:{{FULLPAGENAME}}|action=edit}} szerkesztheted a lapot].</span>',
 'noarticletext-nopermission' => 'Ez a lap jelenleg nem tartalmaz szöveget.
 [[Special:Search/{{PAGENAME}}|Rákereshetsz a lap címére]] más lapok tartalmában, vagy <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} megtekintheted a kapcsolódó naplófájlokat]</span>.',
+'missing-revision' => 'A(z) "{{PAGENAME}}" nevű oldal #$1 változata nem létezik.
+
+Ezt általában egy elavult, törölt oldalra mutató laptörténeti hivatkozás használata okozza. Részletek a [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} törlési naplóban] találhatóak.',
 'userpage-userdoesnotexist' => 'Nincs „<nowiki>$1</nowiki>” nevű regisztrált felhasználónk.
 Nézd meg, hogy valóban ezt a lapot szeretnéd-e létrehozni vagy szerkeszteni.',
 'userpage-userdoesnotexist-view' => 'Nincs regisztrálva „$1” szerkesztői azonosító.',

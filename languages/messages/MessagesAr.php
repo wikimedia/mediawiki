@@ -879,6 +879,7 @@ $2',
 'remembermypassword' => 'تذكر دخولي بهذا المتصفح (لمدة أقصاها {{PLURAL:$1||يوم واحد|يومان|$1 أيام|$1 يوما|$1 يوم}})',
 'securelogin-stick-https' => 'ابقَ في اتصال HTTPS بعد الدخول.',
 'yourdomainname' => 'نطاقك:',
+'password-change-forbidden' => 'أنت لا يمكنك تغيير كلمات السر على هذا الويكي.',
 'externaldberror' => 'هناك إما خطأ في دخول قاعدة البيانات الخارجية أو أنه غير مسموح لك بتحديث حسابك الخارجي.',
 'login' => 'ادخل',
 'nav-login-createaccount' => 'ادخل / أنشئ حسابا',
@@ -1263,6 +1264,7 @@ $2
 'expansion-depth-exceeded-warning' => 'الصفحة تجاوزت عمق التوسيع',
 'parser-unstrip-loop-warning' => 'حلقة معراة تم الكشف عنها',
 'parser-unstrip-recursion-limit' => 'تعدى حد العودية Unstrip  ($1)',
+'converter-manual-rule-error' => 'خطأ تم اكتشافه في قاعدة تحويل اللغة اليدوية',
 
 # "Undo" feature
 'undo-success' => 'يمكن استرجاع التعديل.
@@ -2245,8 +2247,8 @@ $1',
 
 'disambiguations' => 'الصفحات التي ترتبط بصفحات توضيح',
 'disambiguationspage' => 'Template:توضيح',
-'disambiguations-text' => "الصفحات التالية تصل إلى '''صفحة توضيح'''.
-ينبغي في المقابل أن تصل إلى الصفحة الملائمة. <br />
+'disambiguations-text' => "الصفحات التالية تحتوي على وصلة واحدة على الأقل إلى '''صفحة توضيح'''.
+ربما ينبغي أن تصل إلى صفحة أكثر ملائمة. <br />
 تعامل الصفحة كصفحة توضيح إذا كان بها قالب موجود في [[MediaWiki:Disambiguationspage]]",
 
 'doubleredirects' => 'تحويلات مزدوجة',
@@ -2589,6 +2591,8 @@ $UNWATCHURL
 'rollback' => 'استرجاع التعديلات',
 'rollback_short' => 'استرجع',
 'rollbacklink' => 'استرجع',
+'rollbacklinkcount' => 'استرجاع $1 {{PLURAL:$1|تعديل|تعديلات}}',
+'rollbacklinkcount-morethan' => 'استرجاع أكثر من $1 {{PLURAL:$1|تعديل|تعديلات}}',
 'rollbackfailed' => 'لم ينجح الاسترجاع',
 'cantrollback' => 'لم يمكن استرجاع التعديل؛
 آخر مساهم هو المؤلف الوحيد لهذه الصفحة.',
@@ -3370,9 +3374,10 @@ $1',
 
 # Video information, used by Language::formatTimePeriod() to format lengths in the above messages
 'video-dims' => '$1، $2×$3',
-'seconds-abbrev' => '$1s',
-'minutes-abbrev' => '$1m',
-'hours-abbrev' => '$1h',
+'seconds-abbrev' => '$1ث',
+'minutes-abbrev' => '$1ق',
+'hours-abbrev' => '$1س',
+'days-abbrev' => '$1ي',
 'seconds' => '{{PLURAL:$1||ثانية واحدة|ثانيتين|$1 ثوانٍ|$1 ثانية}}',
 'minutes' => '{{PLURAL:$1||دقيقة واحدة|دقيقتين|$1 دقائق|$1 دقيقة}}',
 'hours' => '{{PLURAL:$1||ساعة واحدة|ساعتين|$1 ساعات|$1 ساعة}}',
@@ -3596,6 +3601,7 @@ $1',
 'exif-compression-2' => 'CCITT المجموعة 3 -1 تعديل طول تشغيل ترميز هوفمان البعدي',
 'exif-compression-3' => 'ترميز فاكس المجموعة 3 CCITT',
 'exif-compression-4' => 'ترميز فاكس المجموعة 4 CCITT',
+'exif-compression-5' => 'إل زد دبليو',
 'exif-compression-6' => 'JPEG (قديم)',
 'exif-compression-7' => 'جيه بي إي جي',
 'exif-compression-8' => 'Deflate (أدوبي)',
@@ -3965,6 +3971,22 @@ $5
 'size-kilobytes' => '$1 كيلوبايت',
 'size-megabytes' => '$1 ميجابايت',
 'size-gigabytes' => '$1 جيجابايت',
+'size-terabytes' => '$1 تيرابايت',
+'size-petabytes' => '$1 بيتابايت',
+'size-exabytes' => '$1 إكسابايت',
+'size-zetabytes' => '$1 زيتابايت',
+'size-yottabytes' => '$1 يوتابايت',
+
+# Bitrate units
+'bitrate-bits' => '$1بيت لكل ثانية',
+'bitrate-kilobits' => '$1كيلوبيت لكل ثانية',
+'bitrate-megabits' => '$1ميجابيت لكل ثانية',
+'bitrate-gigabits' => '$1جيجابيت لكل ثانية',
+'bitrate-terabits' => '$1تيرابيت لكل ثانية',
+'bitrate-petabits' => '$1بيتابيت لكل ثانية',
+'bitrate-exabits' => '$1إكسابيت لكل ثانية',
+'bitrate-zetabits' => '$1زيتابيت لكل ثانية',
+'bitrate-yottabits' => '$1يوتابيت لكل ثانية',
 
 # Live preview
 'livepreview-loading' => 'يُحمّل...',
@@ -4078,6 +4100,7 @@ $5
 'version-variables' => 'المتغيرات',
 'version-antispam' => 'منع البريد المزعج',
 'version-skins' => 'واجهات',
+'version-api' => 'إيه بي آي',
 'version-other' => 'أخرى',
 'version-mediahandlers' => 'متحكمات الميديا',
 'version-hooks' => 'الخطاطيف',
@@ -4102,6 +4125,8 @@ $5
 'version-entrypoints' => 'نقطة دخول روابط المواقع',
 'version-entrypoints-header-entrypoint' => 'تقطة دخول',
 'version-entrypoints-header-url' => 'المسار',
+'version-entrypoints-articlepath' => '[https://www.mediawiki.org/wiki/Manual:$wgArticlePath مسار المقالات]',
+'version-entrypoints-scriptpath' => '[https://www.mediawiki.org/wiki/Manual:$wgScriptPath مسار السكريبت]',
 
 # Special:FilePath
 'filepath' => 'مسار ملف',
@@ -4304,5 +4329,5 @@ $5
 'duration-millennia' => '{{PLURAL: $1||ألفية واحدة|ألفيتان|$1 ألفيات|$1 ألفية}}',
 
 # Unknown messages
-'api-error-filetype-banned-type' => '$1 {{PLURAL:$4|ليس نوع ملف مسموح به|ليسوا أنواع ملفات مسموح بها}}. {{PLURAL:$3|نوع الملف المسموح به هو|أنواع الملفات المسموح بها هي}} $2.',
+'api-error-filetype-banned-type' => '$1 {{PLURAL:$4|ليس نوع ملف مسموح به|ليست أنواع ملفات مسموح بها}}. {{PLURAL:$3|نوع الملف المسموح به هو|أنواع الملفات المسموح بها هي}} $2.',
 );

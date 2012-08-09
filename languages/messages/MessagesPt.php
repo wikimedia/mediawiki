@@ -724,6 +724,7 @@ Não se esqueça de personalizar as suas [[Special:Preferences|preferências na 
 'remembermypassword' => 'Recordar os meus dados neste computador (no máximo, por $1 {{PLURAL:$1|dia|dias}})',
 'securelogin-stick-https' => 'Manter a ligação HTTPS após a autenticação',
 'yourdomainname' => 'O seu domínio:',
+'password-change-forbidden' => 'Não podes alterar senhas nesta wiki.',
 'externaldberror' => 'Ocorreu um erro externo à base de dados durante a autenticação ou não lhe é permitido actualizar a sua conta externa.',
 'login' => 'Autenticação',
 'nav-login-createaccount' => 'Entrar / criar conta',

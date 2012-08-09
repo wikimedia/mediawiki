@@ -913,6 +913,7 @@ Njesmějo daś wěcej nježli $2 {{PLURAL:$2|wołanja|wołanjowu|wołanjow|woła
 'expansion-depth-exceeded-warning' => 'Bok jo ekspansisku dłymokosć pśekšocył',
 'parser-unstrip-loop-warning' => 'Njeskóńcna kokula namakana',
 'parser-unstrip-recursion-limit' => 'Rekursiska granica pśekšocona ($1)',
+'converter-manual-rule-error' => 'Zmólka w manuelnem pšawidle rěcnego konwertěrowanja namakana',
 
 # "Undo" feature
 'undo-success' => 'Wobźěłanje móžo se wótpóraś. Pšosym pśeglěduj dołojcne pśirownowanje aby se wěsty był, až to wót wěrnosći coš, a pón składuj změny, aby se wobźěłanje doskóńcnje wótpórało.',

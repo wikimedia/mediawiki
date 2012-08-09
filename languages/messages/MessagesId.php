@@ -721,6 +721,8 @@ Alasan yang diberikan adalah ''$2''.",
 Administrator yang terkunci menawarkan penjelasan ini: " $3 ".',
 'invalidtitle-knownnamespace' => 'Judul yang tidak sah dengan ruangnama "$2" dan teks "$3"',
 'invalidtitle-unknownnamespace' => 'Judul yang tidak sah dengan nomor ruang nama tidak diketahui $1 dan teks "$2"',
+'exception-nologin' => 'Belum masuk log',
+'exception-nologin-text' => 'Halaman atau tindakan ini mengharuskan Anda masuk log di wiki ini.',
 
 # Virus scanner
 'virus-badscanner' => "Kesalahan konfigurasi: pemindai virus tidak dikenal: ''$1''",
@@ -741,6 +743,7 @@ Akun Anda telah dibuat. Jangan lupa mengatur konfigurasi [[Special:Preferences|p
 'remembermypassword' => 'Ingat kata sandi saya di komputer ini (selama $1 {{PLURAL:$1|hari|hari}})',
 'securelogin-stick-https' => 'Tetap terhubung ke HTTPS setelah masuk',
 'yourdomainname' => 'Domain Anda:',
+'password-change-forbidden' => 'Anda tidak dapat mengubah kata sandi pada wiki ini.',
 'externaldberror' => 'Telah terjadi kesalahan otentikasi basis data eksternal atau Anda tidak diizinkan melakukan kemaskini terhadap akun eksternal Anda.',
 'login' => 'Masuk log',
 'nav-login-createaccount' => 'Masuk log / buat akun',
@@ -981,6 +984,10 @@ Jika Anda adalah seorang pengguna anonim dan merasa mendapatkan komentar-komenta
 Anda dapat [[Special:Search/{{PAGENAME}}|melakukan pencarian untuk judul halaman ini]] di halaman-halaman lain, <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} mencari log terkait], atau [{{fullurl:{{FULLPAGENAME}}|action=edit}} menyunting halaman ini]</span>.',
 'noarticletext-nopermission' => 'Saat ini tidak ada teks di halaman ini.
 Anda dapat [[Special:Search/{{PAGENAME}}|melakukan pencarian untuk judul halaman ini]] di halaman-halaman lain, <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} mencari log terkait], atau [{{fullurl:{{FULLPAGENAME}}|action=edit}} menyunting halaman ini]</span>.',
+'missing-revision' => 'Revisi #$1 halaman berjudul "{{PAGENAME}}" tidak eksks.
+
+Hal ini biasanya disebabkan oleh tautan versi terdahulu menuju halaman yang sudah dihapus.
+Rinciannya dapat ditemukan di [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} log penghapusan].',
 'userpage-userdoesnotexist' => 'Akun pengguna "<nowiki>$1</nowiki>" tidak terdaftar.',
 'userpage-userdoesnotexist-view' => 'Pengguna "$1" tidak terdaftar.',
 'blocked-notice-logextract' => 'Pengguna ini sedang diblokir.
@@ -2388,6 +2395,8 @@ Menghapus halaman ini dapat menyebabkan masalah dalam operasional basis data {{S
 'rollback' => 'Kembalikan suntingan',
 'rollback_short' => 'Kembalikan',
 'rollbacklink' => 'kembalikan',
+'rollbacklinkcount' => 'kembalikan $1 {{PLURAL:$1|suntingan|suntingan}}',
+'rollbacklinkcount-morethan' => 'kembalikan lebih dari $1 {{PLURAL:$1|suntingan|suntingan}}',
 'rollbackfailed' => 'Pengembalian gagal dilakukan',
 'cantrollback' => 'Tidak dapat mengembalikan suntingan;
 kontributor terakhir adalah satu-satunya penulis halaman ini.',

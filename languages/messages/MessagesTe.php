@@ -658,7 +658,7 @@ $2',
 'passwordreset-legend' => 'సంకేతపదాన్ని మార్చుకోండి',
 'passwordreset-disabled' => 'ఈ వికీలో సంకేతపదాల మార్పును అచేతనం చేసాం.',
 'passwordreset-pretext' => '{{PLURAL:$1||డేటా శకలాల్లోంచి ఒకదాన్ని ఇవ్వండి}}',
-'passwordreset-username' => 'వాడుకరిపేరు:',
+'passwordreset-username' => 'వాడుకరి పేరు:',
 'passwordreset-domain' => 'డొమైన్:',
 'passwordreset-email' => 'ఈ-మెయిలు చిరునామా:',
 'passwordreset-emailtitle' => '{{SITENAME}}లో ఖాతా వివరాలు',
@@ -873,6 +873,7 @@ $2
 'edit-no-change' => 'పాఠ్యంలో ఏమీ మార్పులు లేవు గనక, మీ మార్పుని పట్టించుకోవట్లేదు.',
 'edit-already-exists' => 'కొత్త పేజీని సృష్టించలేము.
 అది ఇప్పటికే ఉంది.',
+'defaultmessagetext' => 'అప్రమేయ సందేశపు పాఠ్యం',
 
 # Parser/template warnings
 'expensive-parserfunction-warning' => 'హెచ్చరిక: ఈ పేజీలో ఖరీదైన పార్సరు పిలుపులు చాలా ఉన్నాయి.
@@ -2147,6 +2148,7 @@ $UNWATCHURL కి వెళ్ళండి.
 'protect-level-sysop' => 'నిర్వాహకులు మాత్రమే',
 'protect-summary-cascade' => 'కాస్కేడింగు',
 'protect-expiring' => '$1 (UTC)న కాలంచెల్లుతుంది',
+'protect-expiring-local' => '$1న కాలంచెల్లుతుంది',
 'protect-expiry-indefinite' => 'నిరవధికం',
 'protect-cascade' => 'ఈ పేజీకి జతపరిచిన పేజీలను కూడా రక్షించు (కాస్కేడింగు రక్షణ)',
 'protect-cantedit' => 'ఈ పేజీ యొక్క సంరక్షణా స్థాయిని మీరు మార్చలేరు, ఎందుకంటే దాన్ని మార్చే అనుమతి మీకు లేదు.',
@@ -2537,7 +2539,7 @@ $UNWATCHURL కి వెళ్ళండి.
 # Namespace 8 related
 'allmessages' => 'అన్ని సిస్టం సందేశాలు',
 'allmessagesname' => 'పేరు',
-'allmessagesdefault' => 'డీఫాల్టు పాఠ్యం',
+'allmessagesdefault' => 'అప్రమేయ సందేశపు పాఠ్యం',
 'allmessagescurrent' => 'ప్రస్తుత పాఠ్యం',
 'allmessagestext' => 'మీడియావికీ పేరుబరిలో ఉన్న అంతరవర్తి సందేశాల జాబితా ఇది.
 సాధారణ మీడియావికీ స్థానికీకరణకి మీరు తోడ్పడాలనుకుంటే, దయచేసి [//www.mediawiki.org/wiki/Localisation మీడియావికీ స్థానికీకరణ] మరియు [//translatewiki.net ట్రాన్స్&zwnj;లేట్&zwnj;వికీ.నెట్] సైట్లను చూడండి.',
@@ -3513,8 +3515,9 @@ $5
 'api-error-nomodule' => 'అంతర్గత దోషము: ఎక్కింపు పర్వికము అమర్చబడలేదు.',
 'api-error-ok-but-empty' => 'అంతర్గత దోషము: సేవకము నుండి ఎటువంటి స్పందనా లేదు.',
 'api-error-unclassified' => 'ఒక తెలియని దోషము సంభవించినది',
-'api-error-unknown-code' => 'తెలియని దోషము: $1',
+'api-error-unknown-code' => 'తెలియని పొరపాటు: "$1".',
 'api-error-unknown-warning' => 'తెలియని హెచ్చరిక: $1',
+'api-error-unknownerror' => 'తెలియని పొరపాటు: "$1".',
 'api-error-uploaddisabled' => 'ఈ వికీలో ఎక్కింపులని అచేతనం చేసారు.',
 'api-error-verification-error' => 'ఈ ఫైల్ పాడైవుండవచ్చు, లేదా తప్పుడు పొడిగింతను కలిగివుండవచ్చు.',
 

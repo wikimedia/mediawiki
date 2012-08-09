@@ -1151,6 +1151,7 @@ $2
 'expansion-depth-exceeded-warning' => 'עומק ההרחבה בדף גדול מדי',
 'parser-unstrip-loop-warning' => 'נמצאה לולאה בפריסה',
 'parser-unstrip-recursion-limit' => 'עומק הרקורסיה של הפריסה עבר את המגבלה ($1)',
+'converter-manual-rule-error' => 'התגלתה שגיאה בכלל המרת שפה ידני',
 
 # "Undo" feature
 'undo-success' => 'ניתן לבטל את העריכה. אנא בִדקו את השוואת הגרסאות למטה כדי לוודא שזה מה שאתם רוצים לעשות, ואז שמרו את השינויים למטה כדי לבצע את ביטול העריכה.',

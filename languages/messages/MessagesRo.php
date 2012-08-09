@@ -1092,6 +1092,11 @@ Acsete argumente au fost omise.',
 'language-converter-depth-warning' => 'Limita adâncimii convertorului de limbă a fost depășită ($1)',
 'node-count-exceeded-category' => 'Pagini unde numărul de noduri este depășit',
 'node-count-exceeded-warning' => 'Pagina a depășit numărul de noduri',
+'expansion-depth-exceeded-category' => 'Pagini unde profunzimea de expansiune este depășită',
+'expansion-depth-exceeded-warning' => 'Pagina depășește profunzimea de expansiune',
+'parser-unstrip-loop-warning' => 'Buclă nedetașabilă detectată',
+'parser-unstrip-recursion-limit' => 'Limita de recursivitate nedetașabilă depășită ($1)',
+'converter-manual-rule-error' => 'Eroare detectată în regula manuală de conversie a limbii',
 
 # "Undo" feature
 'undo-success' => 'Modificarea poate fi anulată. Verificați diferența de dedesupt și apoi salvați pentru a termina anularea modificării.',
@@ -1831,8 +1836,17 @@ Dacă problema persistă, contactați un [[Special:ListUsers/sysop|administrator
 'backend-fail-read' => 'Imposibil de citit fișierul $1.',
 'backend-fail-create' => 'Imposibil de scris fișierul $1.',
 'backend-fail-maxsize' => 'Nu s-a putut scrie fișierul $1 pentru că acesta este mai mare de {{PLURAL:$2|un octet|$2 octeți|$2 de octeți}}.',
+'backend-fail-readonly' => "Suportul de stocare „$1” este în prezent doar în citire. Motivul dat este: „''$2''”",
+'backend-fail-synced' => 'Fișierul „$1” este într-o stare de inconsistență în suporturile de stocare internă',
+'backend-fail-connect' => 'Imposibil de conectat la suportul de stocare „$1”.',
+'backend-fail-internal' => 'O eroare necunoscută s-a produs în suportul de stocare „$1”.',
 'backend-fail-contenttype' => 'Nu s-a putut determina tipul de conținut al fișierului de stocat la „$1”.',
+'backend-fail-batchsize' => 'Suportul de stocare a furnizat un lot de $1 {{PLURAL:$1|operațiune|operațiuni|de operațiuni}} de fișier; limita este $2 {{PLURAL:$2|operațiune|operațiuni|de operațiuni}}.',
 'backend-fail-usable' => 'Imposibil de scris fișierul $1 din cauza permisiunilor insuficiente sau din cauza directoarelor/containerelor lipsă.',
+
+# File journal errors
+'filejournal-fail-dbconnect' => 'Imposibil de conectat la baza de date a jurnalului pentru terminatul de stocare „$1”.',
+'filejournal-fail-dbquery' => 'Imposibil de actualizat baza de date a jurnalului pentru terminalul de stocare „$1”.',
 
 # Lock manager
 'lockmanager-notlocked' => 'Imposibil de deblocat „$1”; nu este blocată.',
@@ -1843,6 +1857,7 @@ Dacă problema persistă, contactați un [[Special:ListUsers/sysop|administrator
 'lockmanager-fail-releaselock' => 'Imposibil de eliberat blocarea pentru „$1”.',
 'lockmanager-fail-db-bucket' => 'Imposibil de contactat suficient baza de date cu blocări în găleata $1.',
 'lockmanager-fail-db-release' => 'Imposibil de eliberat blocările din baza de date $1.',
+'lockmanager-fail-svr-acquire' => 'Imposibil de obținut blocări pe serverul $1.',
 'lockmanager-fail-svr-release' => 'Imposibil de eliberat blocările de pe serverul $1.',
 
 # ZipDirectoryReader
@@ -1927,7 +1942,7 @@ Când acestei pagini îi este aplicat filtrul de utilizator, sunt afișate doar 
 'filehist' => 'Istoricul fișierului',
 'filehist-help' => "Apăsați pe '''Data și ora''' pentru a vedea versiunea fișierului trimisă la momentul respectiv.",
 'filehist-deleteall' => 'șterge tot',
-'filehist-deleteone' => 'șterge',
+'filehist-deleteone' => 'ștergere',
 'filehist-revert' => 'revenire',
 'filehist-current' => 'actuală',
 'filehist-datetime' => 'Data și ora',
@@ -2069,7 +2084,7 @@ Intrările <del>tăiate</del> au fost rezolvate.',
 'brokenredirects' => 'Redirecționări greșite',
 'brokenredirectstext' => 'Următoarele redirecționări conduc spre articole inexistente:',
 'brokenredirects-edit' => 'modificare',
-'brokenredirects-delete' => 'șterge',
+'brokenredirects-delete' => 'ștergere',
 
 'withoutinterwiki' => 'Pagini fără legături interwiki',
 'withoutinterwiki-summary' => 'Următoarele pagini nu se leagă la versiuni ale lor în alte limbi:',

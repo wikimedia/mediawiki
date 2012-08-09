@@ -12,6 +12,7 @@
  * @author Alhen
  * @author Alpertron
  * @author Alvaro qc
+ * @author Amire80
  * @author Armando-Martin
  * @author Ascánder
  * @author Baiji
@@ -46,6 +47,7 @@
  * @author Invadinado
  * @author Jatrobat
  * @author Jens Liebenau
+ * @author Jewbask
  * @author Jurock
  * @author Kaganer
  * @author Lin linao
@@ -1010,6 +1012,8 @@ o [{{fullurl:{{FULLPAGENAME}}|action=edit}} editar esta página]</span>.',
 'noarticletext-nopermission' => 'Actualmente no hay texto en esta página.
 Puedes [[Special:Search/{{PAGENAME}}|buscar este título de página]] en otras páginas,
 o <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} buscar en los registros relacionados]</span>.',
+'missing-revision' => 'La revisión # $1  de la página denominada "{{PAGENAME}}" no existe.
+!¡ N!Esto es generalmente causado al seguir un enlace de historia obsoleto a una página que se ha borrado.!¡ N!Los detalles pueden encontrarse en el [{{fullurl: {{#Special:Log}} / delete|page = {{FULLPAGENAMEE}}}} registro de borrado].',
 'userpage-userdoesnotexist' => 'La cuenta de usuario «<nowiki>$1</nowiki>» no está registrada. Por favor comprueba si quieres crear o editar esta página.',
 'userpage-userdoesnotexist-view' => 'La cuenta de usuario «$1» no está registrada.',
 'blocked-notice-logextract' => 'Este usuario está actualmente bloqueado.
@@ -1097,7 +1101,7 @@ Puede volver atrás y editar una página existente, [[Special:UserLogin|identifi
 'sectioneditnotsupported-text' => 'La edición de sección no es compatible con esta página.',
 'permissionserrors' => 'Errores de permisos',
 'permissionserrorstext' => 'No tienes permiso para hacer eso, por {{PLURAL:$1|el siguiente motivo|los siguientes motivos}}:',
-'permissionserrorstext-withaction' => 'No tienes permiso para $2, por los siguientes {{PLURAL:$1|motivo|motivos}}:',
+'permissionserrorstext-withaction' => 'No tienes permiso para $2, por {{PLURAL:$1|el siguiente motivo|los siguientes motivos}}:',
 'recreate-moveddeleted-warn' => "'''Atención: estás volviendo a crear una página que ha sido borrada anteriormente.'''
 
 Deberías considerar si es apropiado continuar editando esta página.
@@ -1135,6 +1139,7 @@ Ese o esos parámetros han sido omitidos.',
 'expansion-depth-exceeded-warning' => 'Página que ha superado la profundidad de expansión',
 'parser-unstrip-loop-warning' => 'Se ha detectado un bucle "unstrip"',
 'parser-unstrip-recursion-limit' => 'Se ha superado el límite de recursión de "unstrip" ($1)',
+'converter-manual-rule-error' => 'Error detectado en la regla de conversión manual del lenguaje',
 
 # "Undo" feature
 'undo-success' => 'La edición puede deshacerse. Antes de deshacer la edición, comprueba la siguiente comparación para verificar que realmente es lo que quieres hacer, y entonces guarda los cambios para así deshacer la edición.',
@@ -1323,6 +1328,8 @@ Nota que usar los enlaces de navegación borrará las selecciones de esta column
 'editundo' => 'deshacer',
 'diff-multi' => '(No se {{PLURAL:$1|muestra una edición intermedia realizada|muestran $1 ediciones intermedias realizadas}} por {{PLURAL:$2|un usuario|$2 usuarios}})',
 'diff-multi-manyusers' => '(No se {{PLURAL:$1|muestra una edición intermedia|muestran $1 ediciones intermedias}} de {{PLURAL:$2|un usuario|$2 usuarios}})',
+'difference-missing-revision' => '{{PLURAL:$2|Un revisión| $2  revisiones}} de esta diferencia ( $1 )  no {{PLURAL:$2| ha siado encontrada|han sido encontradas}}.
+!¡ N!Esto es generalmente causado por seguir un enlace de diffs obsoletas a una página que ha sido borrada.!¡ N!Los detalles pueden encontrarse en el [{{fullurl:{{#Special:log}} / delete|page = {{FULLPAGENAMEE}}}} registro de borrado].',
 
 # Search results
 'searchresults' => 'Resultados de la búsqueda',

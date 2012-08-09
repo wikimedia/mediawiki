@@ -22,6 +22,7 @@
  * @author Dodoïste
  * @author Elfix
  * @author Enzoreg
+ * @author Erkethan
  * @author Esbardu
  * @author Fryed-peach
  * @author Giro720
@@ -1142,6 +1143,7 @@ Il devrait y avoir moins de $2 appel{{PLURAL:$2||s}}, alors qu’il y en a maint
 'expansion-depth-exceeded-warning' => "Page dépassant la profondeur d'expansion",
 'parser-unstrip-loop-warning' => 'Boucle non démontable détectée',
 'parser-unstrip-recursion-limit' => 'Limite de récursion non démontable dépassée ($1)',
+'converter-manual-rule-error' => 'Erreur détectée dans la règle manuelle de conversion de langue',
 
 # "Undo" feature
 'undo-success' => 'Cette modification va être défaite. Veuillez vérifier les modifications ci-dessous, puis publier si c’est bien ce que vous voulez faire.',

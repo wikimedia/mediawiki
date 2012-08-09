@@ -933,6 +933,10 @@ ya zi [{{fullurl:{{FULLPAGENAME}}|action=edit}} ena pele bıvurne]</span>.',
 'noarticletext-nopermission' => 'No pel nıka veng o.
 No sernuşte şıma [[Special:Search/{{PAGENAME}}|pelanê binan de eşkeni bıgeri]]
 ya zi <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} itara eşekeni bıgere].</span>',
+'missing-revision' => 'Rewizyonê name dê pela da #$1 "{{PAGENAME}}" dı çıniyo.
+
+No normal de tarix dê pelanê besterneyan dı ena xırabin asena.
+Detayê besternayışi [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} tiya dı] aseno.',
 'userpage-userdoesnotexist' => 'Hesabê karberi "<nowiki>$1</nowiki>" qeyd nêbiyo.
 Kerem ke, tı ke wazenay na pele bafernê/bıvurnê, qontrol ke.',
 'userpage-userdoesnotexist-view' => 'Hesabê karberi "$1" qeyd nêbiyo.',
@@ -1050,6 +1054,7 @@ Taye şabloni zerre pel de nêmociyayeni.',
 'expansion-depth-exceeded-warning' => 'Ravêriya pela xori herayêna',
 'parser-unstrip-loop-warning' => 'Unstrip lete vineya',
 'parser-unstrip-recursion-limit' => 'Sinorê limit dê qayış dê ($1) ravêrya',
+'converter-manual-rule-error' => 'Rehberê zıwan açarnayışi dı xırabin tesbit biya',
 
 # "Undo" feature
 'undo-success' => 'No vurnayiş tepeye geryeno. pêverronayişêyê cêrıni kontrol bıkeri.',
@@ -1236,6 +1241,10 @@ no vurnayişo ke şıma keni kontrol bıkere yew pelo kehen nêbo.',
 'editundo' => 'peyser bia',
 'diff-multi' => '({{PLURAL:$1|Yew revizyono miyanên|$1 revizyonê miyanêni}} terefê {{PLURAL:$2|yew karberi|$2 karberan}} nêmocno)',
 'diff-multi-manyusers' => '({{PLURAL:$1|jew timar kerdışo qıckeko|$1 timar kerdışo qıckeko}} timar kerdo, $2 {{PLURAL:$2|Karber|karberi}} memocne)',
+'difference-missing-revision' => 'Ferqê {{PLURAL:$2|Yew rewizyonê|$2 rewizyonê}} {{PLURAL:$2|dı|dı}} ($1) sero çıniyo.
+
+No normal de werênayış dê pelanê besterneyan dı ena xırabin asena.
+Detayê besternayışi [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} tiya dı] aseno.',
 
 # Search results
 'searchresults' => 'Neticeyê geyrayışi',
@@ -1466,7 +1475,7 @@ Kaberê bini ke şıma de kewti irtıbat, adresa e-postey şıma eşkera nêbena
 'group-bot' => 'Boti',
 'group-sysop' => 'İdarekari',
 'group-bureaucrat' => 'Burokrati',
-'group-suppress' => 'Çımpawiyayeni',
+'group-suppress' => 'Çımpawıteni',
 'group-all' => '(pêro)',
 
 'group-user-member' => '{{GENDER:$1|karber}}',
@@ -2103,7 +2112,7 @@ Xo vira mekerê ke, sıteyê webiê bini şenê direkt ebe URLi yew dosya ra gı
 'nopagetext' => 'pelê hedefi ke şıma nişane kerdo çin o.',
 'pager-newer-n' => '{{PLURAL:$1|newiyer 1|newiyer $1}}',
 'pager-older-n' => '{{PLURAL:$1|Kıhanyer 1|Kıhanyer $1}}',
-'suppress' => 'Kontrol',
+'suppress' => 'Çımpawıten',
 'querypage-disabled' => 'Na pelaya xısusi,sebeb de performansi ra qefılneyê.',
 
 # Book sources
@@ -4122,5 +4131,5 @@ Ena sita dı newke xırabiya teknik esta.',
 'duration-millennia' => '$1 {{PLURAL:$1|milenyum|milenyumi}}',
 
 # Unknown messages
-'api-error-filetype-banned-type' => '$1 {{PLURAL:$4|Ena babeta dosya qebul ne vinena|Ena babeta dosya qebul ne vinena|Ena babeta dosya qebul ne vinena}}. Eke cırê izin deyayo $2. {{PLURAL:$3|Babatan dosyayan|babeta dosyayan}}',
+'api-error-filetype-banned-type' => '$1 {{PLURAL:$4|Dosya qebul ne vinena|dosya qebul ne vinena|Ena babeta dosya qebul ne vinena}}. Eke cırê izin deyayo se {{PLURAL:$3|Babatan dosyayan|babeta dosyayan}} de $2 bıvin.',
 );

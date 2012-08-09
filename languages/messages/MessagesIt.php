@@ -1033,6 +1033,7 @@ Alcuni template non verranno inclusi.",
 'expansion-depth-exceeded-warning' => 'Questa pagina ha superato la profondità di espansione',
 'parser-unstrip-loop-warning' => 'Rilevato ciclo di Unstrip',
 'parser-unstrip-recursion-limit' => 'Superati i limiti di ricorsione di Unstrip ($1)',
+'converter-manual-rule-error' => 'Rilevato errore nella regola manuale di conversione della lingua',
 
 # "Undo" feature
 'undo-success' => 'Questa modifica può essere annullata. Verificare il confronto presentato di seguito per accertarsi che il contenuto corrisponda a quanto desiderato e quindi salvare le modifiche per completare la procedura di annullamento.',

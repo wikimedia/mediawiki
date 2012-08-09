@@ -2507,6 +2507,9 @@ $3
 'watchlisttools-edit' => 'Դիտել և խմբագրել հսկացանկը',
 'watchlisttools-raw' => 'Խմբագրել հում հսկացանկը',
 
+# Signatures
+'signature' => '[[{{ns:user}}:$1|$2]] ([[{{ns:user_talk}}:$1|քննարկում]])',
+
 # Special:Version
 'version' => 'ՄեդիաՎիքի տարբերակը',
 
