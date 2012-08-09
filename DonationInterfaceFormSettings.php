@@ -10,13 +10,13 @@ $wgDonationInterfaceFormMap = array(
 				'forms' => array( 'cc-vmaj', 'cc-vma', 'cc-vm' )
 			),
 			// TODO: PayPal
-			'dd' => array(
-				'gateways' => array( 'GlobalCollect' ),
-				'forms' => array( 'cc-vmaj', 'cc-vma', 'cc-vm' )
-			),
+//			'dd' => array(
+//				'gateways' => array( 'GlobalCollect' ),
+//				'forms' => array( 'dd-ES', )
+//			),
 			'bt' => array(
 				'gateways' => array( 'GlobalCollect' ),
-				'forms' => array( 'cc-vmaj', 'cc-vma', 'cc-vm' )
+				'forms' => array( 'bt' )
 			),
 		)
 	),
@@ -56,12 +56,16 @@ $wgPayflowProGatewayAllowedHtmlForms = array_merge( $wgPayflowProGatewayAllowedH
  */
 
 // default
+/** DISABLING 2012-08-08 PG
 $wgGlobalCollectGatewayAllowedHtmlForms['default'] = $wgGlobalCollectGatewayHtmlFormDir . '/cc/cc-vm.html';
-
+*/
 // Bank Xfer - Two Step
 $wgGlobalCollectGatewayAllowedHtmlForms['bt'] = $wgGlobalCollectGatewayHtmlFormDir . '/bt/bt.html';
 $wgGlobalCollectGatewayAllowedHtmlForms['bt-CA'] = $wgGlobalCollectGatewayHtmlFormDir . '/bt/bt-CA.html';
 $wgGlobalCollectGatewayAllowedHtmlForms['bt-US'] = $wgGlobalCollectGatewayHtmlFormDir . '/bt/bt-US.html';
+
+// Direct Debit
+$wgGlobalCollectGatewayAllowedHtmlForms['dd-ES'] = $wgGlobalCollectGatewayHtmlFormDir . '/dd/dd-ES.html';
 
 //Electronic Wallet - Webmoney
 $wgGlobalCollectGatewayAllowedHtmlForms['ew-webmoney'] = $wgGlobalCollectGatewayHtmlFormDir .'/ew/ew-webmoney.html';
@@ -79,6 +83,7 @@ $wgGlobalCollectGatewayAllowedHtmlForms['rtbt-ideal-noadd'] = $wgGlobalCollectGa
 $wgGlobalCollectGatewayAllowedHtmlForms['obt-bpay'] = $wgGlobalCollectGatewayHtmlFormDir . '/obt/obt-bpay.html';
 
 // RCC
+/** DISABLING 2012-08-08 PG
 $wgGlobalCollectGatewayAllowedHtmlForms['rcc'] = $wgGlobalCollectGatewayHtmlFormDir . '/rcc/rcc.html';
 $wgGlobalCollectGatewayAllowedHtmlForms['rcc-vm'] = $wgGlobalCollectGatewayHtmlFormDir . '/rcc/rcc-vm.html';
 $wgGlobalCollectGatewayAllowedHtmlForms['rcc-vma'] = $wgGlobalCollectGatewayHtmlFormDir . '/rcc/rcc-vma.html';
@@ -117,6 +122,7 @@ $wgGlobalCollectGatewayAllowedHtmlForms['cc-CA'] = $wgGlobalCollectGatewayHtmlFo
 $wgGlobalCollectGatewayAllowedHtmlForms['email-cc-vm'] = $wgGlobalCollectGatewayHtmlFormDir .'/cc-emailonly/cc-vm.html';
 $wgGlobalCollectGatewayAllowedHtmlForms['email-cc-vma'] = $wgGlobalCollectGatewayHtmlFormDir .'/cc-emailonly/cc-vma.html';
 $wgGlobalCollectGatewayAllowedHtmlForms['email-cc-vmaj'] = $wgGlobalCollectGatewayHtmlFormDir .'/cc-emailonly/cc-vmaj.html';
+*/
 
 /**
  * PayflowPro RapidHTML whitelist additions
@@ -125,19 +131,19 @@ $wgGlobalCollectGatewayAllowedHtmlForms['email-cc-vmaj'] = $wgGlobalCollectGatew
 //$wgPayflowProGatewayAllowedHtmlForms['lightbox1'] = $wgPayflowProGatewayHtmlFormDir .'/lightbox1.html';
 // Credit Card - Single Step
 //$wgPayflowProGatewayAllowedHtmlForms['webitects_2_3step'] = $wgPayflowProGatewayHtmlFormDir .'/webitects_2_3step.html';
-$wgPayflowProGatewayAllowedHtmlForms['webitects_2_3step-CA'] = $wgPayflowProGatewayHtmlFormDir .'/webitects_2_3step-CA.html';
+//$wgPayflowProGatewayAllowedHtmlForms['webitects_2_3step-CA'] = $wgPayflowProGatewayHtmlFormDir .'/webitects_2_3step-CA.html';
 
 // Credit Card - Two Step
-$wgPayflowProGatewayAllowedHtmlForms['webitects_2_2step-US'] = $wgPayflowProGatewayHtmlFormDir .'/webitects_2_2step-US.html';
-$wgPayflowProGatewayAllowedHtmlForms['webitects_2_2stepB-US'] = $wgPayflowProGatewayHtmlFormDir .'/webitects_2_2stepB-US.html';
-$wgPayflowProGatewayAllowedHtmlForms['webitects2nd_green-US'] = $wgPayflowProGatewayHtmlFormDir . '/webitects2nd_green-US.html';
+//$wgPayflowProGatewayAllowedHtmlForms['webitects_2_2step-US'] = $wgPayflowProGatewayHtmlFormDir .'/webitects_2_2step-US.html';
+//$wgPayflowProGatewayAllowedHtmlForms['webitects_2_2stepB-US'] = $wgPayflowProGatewayHtmlFormDir .'/webitects_2_2stepB-US.html';
+//$wgPayflowProGatewayAllowedHtmlForms['webitects2nd_green-US'] = $wgPayflowProGatewayHtmlFormDir . '/webitects2nd_green-US.html';
 
-$wgPayflowProGatewayAllowedHtmlForms['TwoStepTwoColumnLetter3'] = $wgPayflowProGatewayHtmlFormDir . '/TwoStepTwoColumnLetter3.html';
-$wgPayflowProGatewayAllowedHtmlForms['TwoStepTwoColumnLetter3-legal'] = $wgPayflowProGatewayHtmlFormDir . '/TwoStepTwoColumnLetter3-legal.html';
-$wgPayflowProGatewayAllowedHtmlForms['TwoStepTwoColumnLetter3-nolabels'] = $wgPayflowProGatewayHtmlFormDir . '/TwoStepTwoColumnLetter3-nolabels.html';
-$wgPayflowProGatewayAllowedHtmlForms['TwoStepTwoColumnLetter3-order'] = $wgPayflowProGatewayHtmlFormDir . '/TwoStepTwoColumnLetter3-order.html';
-$wgPayflowProGatewayAllowedHtmlForms['TwoStepTwoColumnLetter3-noheader'] = $wgPayflowProGatewayHtmlFormDir . '/TwoStepTwoColumnLetter3-noheader.html';
-$wgPayflowProGatewayAllowedHtmlForms['TwoStepTwoColumnLetter3-simpleamount'] = $wgPayflowProGatewayHtmlFormDir . '/TwoStepTwoColumnLetter3-simpleamount.html';
-$wgPayflowProGatewayAllowedHtmlForms['TwoStepTwoColumnLetter3-smallbutton'] = $wgPayflowProGatewayHtmlFormDir . '/TwoStepTwoColumnLetter3-smallbutton.html';
-$wgPayflowProGatewayAllowedHtmlForms['TwoStepTwoColumnLetter3-orig'] = $wgPayflowProGatewayHtmlFormDir . '/TwoStepTwoColumnLetter3-orig.html';
-$wgPayflowProGatewayAllowedHtmlForms['lightbox1'] = $wgPayflowProGatewayHtmlFormDir .'/lightbox1.html';
+//$wgPayflowProGatewayAllowedHtmlForms['TwoStepTwoColumnLetter3'] = $wgPayflowProGatewayHtmlFormDir . '/TwoStepTwoColumnLetter3.html';
+//$wgPayflowProGatewayAllowedHtmlForms['TwoStepTwoColumnLetter3-legal'] = $wgPayflowProGatewayHtmlFormDir . '/TwoStepTwoColumnLetter3-legal.html';
+//$wgPayflowProGatewayAllowedHtmlForms['TwoStepTwoColumnLetter3-nolabels'] = $wgPayflowProGatewayHtmlFormDir . '/TwoStepTwoColumnLetter3-nolabels.html';
+//$wgPayflowProGatewayAllowedHtmlForms['TwoStepTwoColumnLetter3-order'] = $wgPayflowProGatewayHtmlFormDir . '/TwoStepTwoColumnLetter3-order.html';
+//$wgPayflowProGatewayAllowedHtmlForms['TwoStepTwoColumnLetter3-noheader'] = $wgPayflowProGatewayHtmlFormDir . '/TwoStepTwoColumnLetter3-noheader.html';
+//$wgPayflowProGatewayAllowedHtmlForms['TwoStepTwoColumnLetter3-simpleamount'] = $wgPayflowProGatewayHtmlFormDir . '/TwoStepTwoColumnLetter3-simpleamount.html';
+//$wgPayflowProGatewayAllowedHtmlForms['TwoStepTwoColumnLetter3-smallbutton'] = $wgPayflowProGatewayHtmlFormDir . '/TwoStepTwoColumnLetter3-smallbutton.html';
+//$wgPayflowProGatewayAllowedHtmlForms['TwoStepTwoColumnLetter3-orig'] = $wgPayflowProGatewayHtmlFormDir . '/TwoStepTwoColumnLetter3-orig.html';
+//$wgPayflowProGatewayAllowedHtmlForms['lightbox1'] = $wgPayflowProGatewayHtmlFormDir .'/lightbox1.html';
