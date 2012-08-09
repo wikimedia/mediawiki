@@ -63,6 +63,10 @@ abstract class UploadBase {
 	const WINDOWS_NONASCII_FILENAME = 13;
 	const FILENAME_TOO_LONG = 14;
 
+	/**
+	 * @param $error int
+	 * @return string
+	 */
 	public function getVerificationErrorCode( $error ) {
 		$code_to_status = array(self::EMPTY_FILE => 'empty-file',
 								self::FILE_TOO_LARGE => 'file-too-large',
@@ -165,6 +169,7 @@ abstract class UploadBase {
 
 	/**
 	 * Check whether a request if valid for this handler
+	 * @param $request
 	 * @return bool
 	 */
 	public static function isValidRequest( $request ) {
@@ -187,7 +192,7 @@ abstract class UploadBase {
 	 * @param $tempPath string the temporary path
 	 * @param $fileSize int the file size
 	 * @param $removeTempFile bool (false) remove the temporary file?
-	 * @return null
+	 * @throws MWException
 	 */
 	public function initializePathInfo( $name, $tempPath, $fileSize, $removeTempFile = false ) {
 		$this->mDesiredDestName = $name;
@@ -230,7 +235,7 @@ abstract class UploadBase {
 
 	/**
 	 * @param $srcPath String: the source path
-	 * @return stringthe real path if it was a virtual URL
+	 * @return string the real path if it was a virtual URL
 	 */
 	function getRealPath( $srcPath ) {
 		wfProfileIn( __METHOD__ );
@@ -761,7 +766,7 @@ abstract class UploadBase {
 	/**
 	 * Return the local file and initializes if necessary.
 	 *
-	 * @return LocalFile
+	 * @return LocalFile|null
 	 */
 	public function getLocalFile() {
 		if( is_null( $this->mLocalFile ) ) {
@@ -833,6 +838,7 @@ abstract class UploadBase {
 	 * earlier pseudo-'extensions' to determine type and execute
 	 * scripts, so the blacklist needs to check them all.
 	 *
+	 * @param $filename string
 	 * @return array
 	 */
 	public static function splitExtensions( $filename ) {
@@ -1031,6 +1037,10 @@ abstract class UploadBase {
 		return false;
 	}
 
+	/**
+	 * @param $filename string
+	 * @return bool
+	 */
 	protected function detectScriptInSvg( $filename ) {
 		$check = new XmlTypeCheck( $filename, array( $this, 'checkSvgScriptCallback' ) );
 		return $check->filterMatch;
@@ -1038,6 +1048,8 @@ abstract class UploadBase {
 
 	/**
 	 * @todo Replace this with a whitelist filter!
+	 * @param $element string
+	 * @param $attribs array
 	 * @return bool
 	 */
 	public function checkSvgScriptCallback( $element, $attribs ) {
@@ -1137,6 +1149,10 @@ abstract class UploadBase {
 		return false; //No scripts detected
 	}
 
+	/**
+	 * @param $name string
+	 * @return string
+	 */
 	private function stripXmlNamespace( $name ) {
 		// 'http://www.w3.org/2000/svg:script' -> 'script'
 		$parts = explode( ':', strtolower( $name ) );
@@ -1388,6 +1404,7 @@ abstract class UploadBase {
 
 	/**
 	 * Helper function that checks whether the filename looks like a thumbnail
+	 * @param $filename string
 	 * @return bool
 	 */
 	public static function isThumbName( $filename ) {
@@ -1451,13 +1468,20 @@ abstract class UploadBase {
 		return $info;
 	}
 
-
+	/**
+	 * @param $error array
+	 * @return Status
+	 */
 	public function convertVerifyErrorToStatus( $error ) {
 		$code = $error['status'];
 		unset( $code['status'] );
 		return Status::newFatal( $this->getVerificationErrorCode( $code ), $error );
 	}
 
+	/**
+	 * @param $forType null|string
+	 * @return int
+	 */
 	public static function getMaxUploadSize( $forType = null ) {
 		global $wgMaxUploadSize;
 

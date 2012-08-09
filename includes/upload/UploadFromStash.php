@@ -62,8 +62,6 @@ class UploadFromStash extends UploadBase {
 
 			$this->stash = new UploadStash( $this->repo, $this->user );
 		}
-
-		return true;
 	}
 
 	/**
