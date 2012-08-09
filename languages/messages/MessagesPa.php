@@ -64,30 +64,63 @@ $messages = array(
 'tog-hidepatrolled' => 'ਮੌਨਜੁਦਾ ਬਦਲਾਬ ਮੈ ਸੈ ਸਹੀਤਕ ਬਦਲਾਬ ਕੌ ਛੁਪਾ ਕਰ ਰਖੇ.',
 'tog-newpageshidepatrolled' => 'ਨਵੀ ਸੁਚੀ ਮੈ ਸੈ ਗਸ਼ਤ ਪਰਚੇ ਕੌ ਛੁਪਾਏ.',
 'tog-extendwatchlist' => 'ਸਾਰੀ ਨਵੀ ਤਬਦੀਲੀਆ ਹੀ ਨਹੀ ,ਪੂਰਾਣੀ ਤਬਦੀਲੀਆ ਨੂੰ ਵੀ ਨਵੀ ਸੂਚੀ ਵਿਚ ਵਧਾ ਕੈ ਸ਼ਾਮੀਲ ਕਰੌ.',
-'tog-usenewrc' => 'ਸੁਦਾਰ ਕੀਤੇ ਹੌਂਂਞੇ ਰੂਚੀ ਦੀ  ਵਰਤੌ ਕਰੌ (ਜਰੂਰਤ ਹੈ ਜਾਵਾ ਸਕ੍ਰਿਪ੍ਟ ਕੀ)',
+'tog-usenewrc' => 'ਤਾਜ਼ਾ ਤਬਦੀਲੀਆਂ ਅਤੇ ਨਿਗਰਾਨੀ ਲਿਸਟ ਵਿਚ ਤਬਦੀਲੀਆਂ ਸਫ਼ੇ ਮੁਤਾਬਕ (ਜਾਵਾ ਸਕ੍ਰਿਪਟ ਲੋੜੀਂਦੀ ਹੈ)',
 'tog-numberheadings' => 'ਆਟੋ-ਨੰਬਰ ਹੈਡਿੰਗ',
 'tog-showtoolbar' => 'ਐਡਿਟ ਟੂਲਬਾਰ ਵੇਖੋ (JavaScript)',
+'tog-editondblclick' => 'ਦੋਹਰੇ ਕਲਿੱਕ ਨਾਲ਼ ਸਫ਼ਾ ਸੋਧੋ (ਜਾਵਾ ਸਕ੍ਰਿਪਟ ਲੋੜੀਂਦੀ ਹੈ)',
+'tog-editsection' => '[ਸੋਧੋ] ਲਿੰਕਾਂ ਜ਼ਰੀਏ ਸੈਕਸ਼ਨ ਸੋਧ ਯੋਗ ਕਰੋ',
+'tog-editsectiononrightclick' => 'ਸੈਕਸ਼ਨ ਸਿਰਲੇਖਾਂ ਤੇ ਸੱਜੀ ਕਲਿੱਕ ਦੁਆਰਾ ਸੋਧ ਯੋਗ ਕਰੋ (ਜਾਵਾ ਸਕ੍ਰਿਪਟ ਲੋੜੀਂਦੀ ਹੈ)',
 'tog-showtoc' => 'ਟੇਬਲ ਆਫ਼ ਕੰਨਟੈੱਟ ਵੇਖਾਓ (for pages with more than 3 headings)',
 'tog-rememberpassword' => 'ਇਸ ਬਰਾਊਜ਼ਰ ਉੱਤੇ ਮੇਰਾ ਲਾਗਇਨ ਯਾਦ ਰੱਖੋ ($1 {{PLURAL:$1|ਦਿਨ|ਦਿਨਾਂ}} ਲਈ ਵੱਧ ਤੋਂ ਵੱਧ)',
-'tog-watchcreations' => 'ਮੇਰੇ ਵਲੋਂ ਬਣਾਏ ਗਏ ਨਵੇਂ ਸਫ਼ੇ ਮੇਰੀ ਵਾਚ-ਲਿਸਟ ਵਿੱਚ ਪਾਓ',
-'tog-watchdefault' => 'ਜੋ ਸਫ਼ੇ ਮੈਂ ਸੋਧਦਾ ਹਾਂ, ਓਹ ਪੇਜ ਮੇਰੀ ਵਾਚ-ਲਿਸਟ ਵਿੱਚ ਪਾਓ',
-'tog-watchmoves' => 'ਮੇਰੇ ਵਲੋਂ ਭੇਜੇ ਕਿਤੇ ਸਫ਼ੇ ਨੂੰ ਮੇਰੀ ਵਾਚ-ਲਿਸਟ ਵਿੱਚ ਪਾਓ',
+'tog-watchcreations' => 'ਮੇਰੇ ਵਲੋਂ ਬਣਾਏ ਗਏ ਨਵੇਂ ਸਫ਼ੇ ਅਤੇ ਅੱਪਲੋਡ ਕੀਤੀਆਂ ਫ਼ਾਈਲਾਂ ਮੇਰੀ ਨਿਗਰਾਨੀ-ਲਿਸਟ ਵਿੱਚ ਪਾਓ',
+'tog-watchdefault' => 'ਮੇਰੇ ਵੱਲੋਂ ਸੋਧੇ ਸਫ਼ੇ ਅਤੇ ਫ਼ਾਈਲਾਂ ਮੇਰੀ ਨਿਗਰਾਨੀ-ਲਿਸਟ ਵਿੱਚ ਪਾਓ',
+'tog-watchmoves' => 'ਮੇਰੇ ਵੱਲੋਂ ਬਦਲੇ ਸਿਰਲੇਖਾਂ ਵਾਲ਼ੇ ਸਫ਼ੇ ਅਤੇ ਫ਼ਾਈਲਾਂ ਮੇਰੀ ਨਿਗਰਾਨੀ-ਲਿਸਟ ਵਿੱਚ ਪਾਓ',
 'tog-watchdeletion' => 'ਮੇਰੇ ਵਲੋਂ ਹਟਾਏ ਗਏ ਸਫ਼ੇ ਮੇਰੀ ਵਾਚ-ਲਿਸਟ ਵਿੱਚ ਪਾਓ',
+'tog-minordefault' => 'ਸਾਰੀਆਂ ਸੋਧਾਂ ਤੇ ਮੂਲ ਰੂਪ ਵਿਚ ਛੋਟੀਆਂ ਹੋਣ ਦਾ ਨਿਸ਼ਾਨ ਲਾਓ',
 'tog-previewontop' => 'ਐਡਿਟ ਬਕਸੇ ਤੋਂ ਪਹਿਲਾਂ ਝਲਕ ਵੇਖਾਓ',
 'tog-previewonfirst' => 'ਪਹਿਲੇ ਐਡਿਟ ਉੱਤੇ ਝਲਕ ਵੇਖਾਓ',
 'tog-nocache' => 'ਬਰਾਊਜ਼ਰ ਸਫ਼ਾ ਕੈਸ਼ ਕਰਨਾ ਬੰਦ ਕਰੋ',
-'tog-enotifwatchlistpages' => 'ਜਦੋਂ ਮੇਰੀ ਵਾਚ-ਲਿਸਟ ਵਿੱਚੋਂ ਸਫ਼ਾ ਬਦਲਿਆ ਜਾਵੇ ਤਾਂ ਮੈਨੂੰ ਈਮੇਲ ਭੇਜੋ',
+'tog-enotifwatchlistpages' => 'ਜਦੋਂ ਮੇਰੀ ਵਾਚ-ਲਿਸਟ ਵਿਚ ਦਰਜ ਕੋਈ ਸਫ਼ਾ ਬਦਲਿਆ ਜਾਵੇ ਯਾ ਮਿਸਲ ਬਦਲੀ ਜਾਵੇ ਤਾਂ ਮੈਨੂੰ ਈਮੇਲ ਭੇਜੋ',
+'tog-enotifusertalkpages' => 'ਜਦੋਂ ਮੇਰਾ ਗੱਲ-ਬਾਤ ਸਫ਼ਾ ਬਦਲਿਆ ਜਾਵੇ ਤਾਂ ਮੈਨੂੰ ਈ-ਮੇਲ ਭੇਜੋ',
+'tog-enotifminoredits' => 'ਸਫ਼ਿਆਂ ਅਤੇ ਫ਼ਾਈਲਾਂ ਦੀਆਂ ਛੋਟੀਆਂ ਤਬਦੀਲੀਆਂ ਲਈ ਵੀ ਮੈਨੂੰ ਈ-ਮੇਲ ਭੇਜੋ',
+'tog-enotifrevealaddr' => 'ਜਾਣੂ ਕਰਵਾਉਣ ਵਾਲ਼ੀਆਂ ਈ-ਮੇਲਾਂ ਵਿਚ ਮੇਰਾ ਈ-ਮੇਲ ਪਤਾ ਜ਼ਾਹਰ ਕਰੋ',
+'tog-shownumberswatching' => 'ਨਜ਼ਰ ਰੱਖ ਰਹੇ ਮੈਂਬਰਾਂ ਦੀ ਗਿਣਤੀ ਵਖਾਓ',
 'tog-oldsig' => 'ਮੌਜੂਦਾ ਦਸਤਖਤ:',
+'tog-fancysig' => 'ਦਸਤਖ਼ਤ ਨੂੰ ਵਿਕੀਲਿਖਤ ਦੇ ਤੌਰ ਤੇ ਵਰਤੋ (ਬਿਨਾਂ ਆਟੋਮੈਟਿਕ ਲਿੰਕ)',
+'tog-externaleditor' => 'ਪਹਿਲਾਂ ਤੋਂ ਹੀ ਬਾਹਰੀ ਸੋਧਕ ਵਰਤੋ (ਸਿਰਫ਼ ਮਾਹਿਰਾਂ ਲਈ ਹੈ, ਤੁਹਾਡੇ ਕੰਪਿਊਟਰ ਤੇ ਖ਼ਾਸ ਸੈਟਿੰਗਾਂ ਲੋੜੀਂਦੀਆਂ ਹਨ। [//
+www.mediawiki.org/wiki/
+Manual:External_editors More
+information.])',
+'tog-externaldiff' => 'ਪਹਿਲਾਂ ਤੋਂ ਹੀ ਬਾਹਰੀ ਫ਼ਰਕ ਵਰਤੋ (ਸਿਰਫ਼
+ਮਾਹਿਰਾਂ ਲਈ ਹੈ, ਤੁਹਾਡੇ ਕੰਪਿਊਟਰ ਤੇ ਖ਼ਾਸ
+ਸੈਟਿੰਗਾਂ ਲੋੜੀਂਦੀਆਂ ਹਨ। [//
+www.mediawiki.org/wiki/
+Manual:External_editors More
+information.])',
+'tog-showjumplinks' => '"ਇਸ ਤੇ ਜਾਓ" ਦੇ ਲਿੰਕ ਦਿਖਾਣਾ ਸਮਰੱਥ ਕਰੋ',
+'tog-uselivepreview' => 'ਸਿੱਧੀ ਝਲਕ ਵਰਤੋ (ਜਾਵਾਸਕ੍ਰਿਪਟ ਲੋੜੀਂਦੀ ਹੈ) (ਤਜਰਬੇਕਾਰੀ)',
+'tog-forceeditsummary' => 'ਜਦੋਂ ਮੈਂ ਖ਼ਾਲੀ ਸੋਧ ਸਾਰ ਦਾਖ਼ਲ ਕਰਾਂ ਤਾਂ ਮੈਨੂੰ ਖ਼ਬਰਦਾਰ ਕਰੋ',
 'tog-watchlisthideown' => 'ਮੇਰੀ ਵਾਚ-ਲਿਸਟ ਵਿੱਚੋਂ ਮੇਰੀਆਂ ਸੋਧਾਂ ਹਟਾਓ',
 'tog-watchlisthidebots' => 'ਮੇਰੀ ਵਾਚ-ਲਿਸਟ ਵਿੱਚੋਂ ਰੋਬਾਟ ਦਿਆਂ ਸੋਧਾਂ ਹਟਾਓ',
 'tog-watchlisthideminor' => 'ਛੋਟੇ ਸੋਧ ਵਾਚ-ਲਿਸਟ ਤੋਂ ਓਹਲੇ ਰੱਖੋ',
+'tog-watchlisthideliu' => 'ਨਿਗਰਾਨੀ-ਲਿਸਟ ਵਿਚੋਂ ਲਾਗ ਇਨ ਕੀਤੇ ਮੈਂਬਰਾਂ ਦੀਆਂ ਸੋਧਾਂ ਲੁਕਾਓ',
+'tog-watchlisthideanons' => 'ਨਿਗਰਾਨੀ-ਲਿਸਟ ਵਿਚ ਗੁਮਨਾਮ ਮੈਂਬਰਾਂ ਦੀਆਂ ਕੀਤੀਆਂ ਸੋਧਾਂ ਲੁਕਾਓ',
+'tog-watchlisthidepatrolled' => 'ਵੇਖੀਆਂ ਜਾ ਚੁੱਕੀਆਂ ਸੋਧਾਂ ਨਿਗਰਾਨੀ-ਲਿਸਟ ਵਿਚੋਂ ਲੁਕਾਓ',
+'tog-ccmeonemails' => 'ਜੋ ਈ-ਮੇਲਾਂ ਮੈਂ ਦੂਜੇ ਮੈਂਬਰਾਂ ਨੂੰ ਭੇਜਦਾ ਹਾਂ ਓਹਨਾਂ ਦੀਆਂ ਨਕਲਾਂ ਮੈਨੂੰ ਭੇਜੋ',
+'tog-diffonly' => 'ਫ਼ਰਕਾਂ ਤੋਂ ਹੇਠ ਸਫ਼ੇ ਦੀ ਸਮੱਗਰੀ ਨਾ ਵਖਾਓ',
+'tog-showhiddencats' => 'ਲੁਕੀਆਂ ਸ਼੍ਰੇਣੀਆਂ ਵਖਾਓ',
+'tog-norollbackdiff' => '"ਵਾਪਸ ਮੋੜੌ"ਅਮਲ ਵਿਚ ਲਿਆਣ ਬਾਦ ਫ਼ਰਕ ਨਾ ਦਿਖਾਓ',
 
 'underline-always' => 'ਹਮੇਸ਼ਾਂ',
 'underline-never' => 'ਕਦੇ ਨਹੀਂ',
 'underline-default' => 'ਬਰਾਊਜ਼ਰ ਡਿਫਾਲਟ',
 
 # Font style option in Special:Preferences
+'editfont-style' => 'ਸੰਪਾਦਨ ਖੇਤਰ ਦੇ ਅੱਖਰਾਂ ਦੀ ਫ਼ੌਂਟ ਰੀਤੀ',
 'editfont-default' => 'ਬਰਾਊਜ਼ਰ ਡਿਫਾਲਟ',
+'editfont-monospace' => 'ਇੱਕੋ ਜਿਹੀ ਖ਼ਾਲੀ ਥਾਂ ਵਾਲ਼ਾ ਅੱਖਰ',
+'editfont-sansserif' => 'Sans-serif ਨਾਂ ਦਾ ਫ਼ੌਂਟ',
+'editfont-serif' => 'ਨੋਕਦਾਰ ਅੱਖਰ',
 
 # Dates
 'sunday' => 'ਐਤਵਾਰ',
@@ -148,11 +181,17 @@ $messages = array(
 'category-media-header' => 'ਕੈਟਾਗਰੀ "$1" ਵਿੱਚ ਮੀਡੀਆ',
 'category-empty' => "''ਇਸ ਕੈਟਾਗਰੀ ਵਿੱਚ ਇਸ ਵੇਲ਼ੇ ਕੋਈ ਵੀ ਲੇਖ ਜਾਂ ਮੀਡੀਆ ਨਹੀਂ ਹੈ।''",
 'hidden-categories' => '{{PLURAL:$1|ਲੁਕੀਵੀਂ ਸ਼੍ਰੇਣੀ|ਲੁਕਵੀਂਆਂ ਸ਼੍ਰੇਣੀਆਂ}}',
+'hidden-category-category' => 'ਲੁਕੀਆਂ ਸ਼੍ਰੇਣੀਆਂ',
 'category-subcat-count' => '{{ਕੁੱਲ $2 ਸ਼੍ਰੇਣੀਆਂ ਵਿਚੋਂ, PLURAL:$2|ਇਸ ਸ਼੍ਰੇਣੀ ਵਿਚ ਸਿਰਫ਼ ਹੇਠ ਲਿਖੀ ਸ਼੍ਰੇਣੀ ਹੈ| ਇਸ ਸ਼੍ਰੇਣੀ ਵਿਚ {{PLURAL:$1|ਉਪ ਸ਼੍ਰੇਣੀ ਹੈ|$1 ਉਪ-ਸ਼੍ਰੇਣੀਆਂ ਹਨ}}}}',
+'category-subcat-count-limited' => 'ਇਸ ਸ਼੍ਰੇਣੀ ਵਿਚ {{PLURAL:$1|ਉਪ-ਸ਼੍ਰੇਣੀ ਹੈ।|$1 ਉਪ-ਸ਼੍ਰੇਣੀਆਂ ਹਨ।}}',
 'category-article-count' => '{{PLURAL:$2|ਇਸ ਸ਼੍ਰੇਣੀ ਵਿਚ ਸਿਰਫ਼ ਇਹ ਸਫ਼ਾ ਹੈ|ਇਸ ਸ਼੍ਰੇਣੀ ਵਿਚ, ਕੁੱਲ $2 ਵਿਚੋਂ, ਇਹ {{PLURAL:$1|ਸਫ਼ਾ ਹੈ|$1 ਸਫ਼ੇ}} ਹਨ}}',
+'category-article-count-limited' => 'ਇਸ ਸ਼੍ਰੇਣੀ ਵਿਚ ਇਹ {{PLURAL:$1|ਸਫ਼ਾ ਹੈ|$1 ਸਫ਼ੇ ਹਨ।}}',
 'category-file-count' => '{{PLURAL:$2|ਇਸ ਸ਼੍ਰੇਣੀ ਵਿਚ ਸਿਰਫ਼ ਇਹ ਫ਼ਾਈਲ ਹੈ।| ਇਸ ਸ਼੍ਰੇਣੀ ਵਿਚ {{PLURAL:$1|ਫ਼ਾਈਲ ਹੈ|$1 ਫ਼ਾਈਲਾਂ ਹਨ।}}}}',
+'category-file-count-limited' => 'ਇਸ ਸ਼੍ਰੇਣੀ ਵਿਚ ਇਹ {{PLURAL:$1|ਫ਼ਾਈਲ ਹੈ|$1 ਫ਼ਾਈਲਾਂ ਹਨ।}}',
 'listingcontinuesabbrev' => 'ਜਾਰੀ',
+'index-category' => 'ਤਤਕਰੇ ਵਾਲ਼ੇ ਸਫ਼ੇ',
 'noindex-category' => 'ਕ੍ਰਮਸੂਚੀ ਰਹਿਤ ਸਫ਼ੇ',
+'broken-file-category' => 'ਟੁੱਟੇ ਹੋਏ ਫ਼ਾਈਲ ਜੋੜਾਂ ਵਾਲ਼ੇ ਸਫ਼ੇ',
 
 'about' => 'ਇਸ ਬਾਰੇ',
 'article' => 'ਸਮੱਗਰੀ ਪੇਜ',
@@ -183,6 +222,7 @@ $messages = array(
 'vector-action-protect' => 'ਸੁਰੱਖਿਅਤ ਬਣਾਓ',
 'vector-action-undelete' => 'ਹਟਾਉਣਾ ਵਾਪਸ',
 'vector-action-unprotect' => 'ਸੁਰੱਖਿਆ ਬਦਲੋ',
+'vector-simplesearch-preference' => 'ਵਾਧੂ ਖੋਜ ਸਲਾਹਾਂ ਯੋਗ ਕਰੋ (ਸਿਰਫ਼ ਵਿਕਟਰ ਸਕਿੰਨ ਵਿਚ)',
 'vector-view-create' => 'ਬਣਾਓ',
 'vector-view-edit' => 'ਸੋਧ',
 'vector-view-history' => 'ਅਤੀਤ ਵੇਖੋ',
@@ -214,6 +254,7 @@ $messages = array(
 'delete' => 'ਮਿਟਾਓ',
 'deletethispage' => 'ਇਹ ਪੇਜ ਹਟਾਓ',
 'undelete_short' => 'ਅਣ-ਹਟਾਓ {{PLURAL:$1|one edit|$1 edits}}',
+'viewdeleted_short' => '{{PLURAL:$1|ਇਕ ਮਿਟਾਈ ਸੋਧ|$1 ਮਿਟਾਈਆਂ ਸੋਧਾਂ}} ਵੇਖੋ',
 'protect' => 'ਸੁਰੱਖਿਆ',
 'protect_change' => 'ਤਬਦੀਲੀ',
 'protectthispage' => 'ਇਹ ਪੇਜ ਸੁਰੱਖਿਅਤ ਕਰੋ',
@@ -246,6 +287,12 @@ $messages = array(
 'jumpto' => 'ਇਸ ’ਤੇ ਜਾਓ:',
 'jumptonavigation' => 'ਰਹਿਨੁਮਾਈ',
 'jumptosearch' => 'ਖੋਜੋ',
+'view-pool-error' => 'ਆਫ਼ਸੋਸ, ਸਰਵਰ ਇਸ ਵੇਲ਼ੇ ਓਵਰਲੋਡ ਹੈ।
+ਬਹੁਤ ਸਾਰੇ ਮੈਂਬਰ ਇਸ ਸਫ਼ੇ ਨੂੰ ਵੇਖਣ ਦੀ ਕੋਸ਼ਿਸ਼ ਕਰ ਰਹੇ ਹਨ।
+ਮਿਹਰਬਾਨੀ ਕਰਕੇ ਦੁਬਾਰਾ ਕੋਸ਼ਿਸ਼ ਕਰਨ ਤੋਂ ਪਹਿਲਾਂ ਥੋੜੀ ਉਡੀਕ ਕਰੋ।
+$1',
+'pool-timeout' => 'ਲੌਕ ਲਈ ਉਡੀਕ ਦਾ ਵਕਤ ਖ਼ਤਮ ਹੋ ਗਿਆ ਹੈ',
+'pool-queuefull' => 'ਪੂਲ ਕਤਾਰ ਪੂਰੀ ਲੱਦੀ ਹੈ',
 'pool-errorunknown' => 'ਅਣਜਾਣ ਗਲਤੀ',
 
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
@@ -270,6 +317,11 @@ $messages = array(
 
 'badaccess' => 'ਅਧਿਕਾਰ ਗਲਤੀ',
 'badaccess-group0' => 'ਤੁਹਾਨੂੰ ਉਹ ਐਕਸ਼ਨ ਕਰਨ ਦੀ ਮਨਜ਼ੂਰੀ ਨਹੀਂ, ਜਿਸ ਦੀ ਤੁਸੀਂ ਮੰਗ ਕੀਤੀ ਹੈ।',
+'badaccess-groups' => 'ਜੋ ਕੰਮ ਤੁਸੀਂ ਕਰਨਾ ਚਾਹਿਆ ਹੈ ਓਹ {{PLURAL:$2|ਇਸ ਗਰੁੱਪ|ਇਹਨਾਂ ਗਰੁੱਪਾਂ}} ਦੇ ਮੈਂਬਰ ਹੀ ਕਰ ਸਕਦੇ ਹਨ: $1',
+
+'versionrequired' => 'ਮੀਡੀਆਵਿਕੀ ਦੇ $1 ਵਰਜਨ ਦੀ ਲੋੜ ਹੈ',
+'versionrequiredtext' => 'ਇਸ ਸਫ਼ੇ ਦੀ ਵਰਤੋਂ ਕਰਨ ਲਈ ਮੀਡੀਆਵਿਕੀ ਦੇ $1 ਵਰਜਨ ਦੀ ਲੋੜ ਹੈ।
+ਵੇਖੋ [[Special:Version|ਵਰਜਨ ਸਫ਼ੇ]]।',
 
 'ok' => 'ਠੀਕ ਹੈ',
 'retrievedfrom' => '"$1" ਤੋਂ ਲਿਆ',
@@ -290,7 +342,11 @@ $messages = array(
 'collapsible-expand' => 'ਫੈਲਾਓ',
 'thisisdeleted' => 'ਵੇਖੋ ਜਾਂ $1 ਰੀਸਟੋਰ?',
 'viewdeleted' => '$1 ਵੇਖਣਾ?',
+'restorelink' => '{{PLURAL:$1|ਇਕ ਮਿਟਾਈ ਹੋਈ ਸੋਧ|$1
+ਮਿਟਾਈਆਂ ਹੋਈਆਂ ਸੋਧਾਂ}}',
 'feedlinks' => 'ਫੀਡ:',
+'feed-invalid' => 'ਸਬਸਕ੍ਰਿਪਸ਼ਨ ਫ਼ੀਡ ਦੀ ਅਵੈਧ ਕਿਸਮ',
+'feed-unavailable' => 'ਸੰਘ ਦੀ ਖੁਰਾਕ ਉਪਲਬਧ ਨਹੀਂ',
 'site-rss-feed' => '$1 RSS ਫੀਡ',
 'site-atom-feed' => '$1 ਐਟਮ ਫੀਡ',
 'page-rss-feed' => '"$1" RSS ਫੀਡ',
@@ -313,6 +369,9 @@ $messages = array(
 
 # Main script and global functions
 'nosuchaction' => 'ਕੋਈ ਇੰਝ ਦਾ ਐਕਸ਼ਨ ਨਹੀਂ',
+'nosuchactiontext' => 'URL ਦੁਆਰਾ ਦੱਸਿਆ ਕੰਮ ਗ਼ਲਤ ਹੈ।
+ਸ਼ਾਇਦ ਤੁਸੀਂ URL ਸਹੀ ਨਹੀਂ ਲਿਖਿਆ ਜਾਂ ਕਿਸੇ ਗ਼ਲਤ ਲਿੰਕ ਤੇ ਆਏ ਹੋ।
+ਇਹ ਵੀ ਹੋ ਸਕਦਾ ਹੈ ਕਿ ਇਹ {{SITENAME}} ਦੁਆਰੇ ਵਰਤੇ ਜਾਂਦੇ ਸਾਫ਼ਟਵੇਅਰ ਵਿਚਲੀ ਗ਼ਲਤੀ ਵੱਲ ਇਸ਼ਾਰਾ ਹੋਵੇ।',
 'nosuchspecialpage' => 'ਕੋਈ ਇੰਝ ਦਾ ਖਾਸ ਪੇਜ ਨਹੀਂ',
 'nospecialpagetext' => '<strong>ਤੁਸੀਂ ਇੱਕ ਅਵੈਧ ਖਾਸ ਪੇਜ ਦੀ ਮੰਗ ਕੀਤੀ ਹੈ।</strong>
 
@@ -321,12 +380,29 @@ A list of valid special pages can be found at [[Special:SpecialPages]].',
 # General errors
 'error' => 'ਗਲਤੀ',
 'databaseerror' => 'ਡਾਟਾਬੇਸ ਗਲਤੀ',
+'laggedslavemode' => "'''ਖ਼ਬਰਦਾਰ:''' ਹੋ ਸਕਦਾ ਹੈ ਸਫ਼ੇ ਵਿਚ ਤਾਜ਼ਾ ਤਬਦੀਲੀਆਂ ਸ਼ਾਮਲ ਨਾ ਹੋਣ।",
 'readonly' => 'ਡਾਟਾਬੇਸ ਲਾਕ ਹੈ',
+'enterlockreason' => 'ਤਾਲਾ-ਬੰਦੀ ਲਈ ਕਾਰਨ ਦਾਖ਼ਲ ਕਰੋ, ਨਾਲ਼ ਹੀ ਤਾਲਾ-ਬੰਦੀ ਦੇ ਰਿਲੀਜ਼ ਹੋਣ ਦਾ ਅੰਦਾਜ਼ਨ ਵਕਤ',
+'readonlytext' => 'ਡੈਟਾਬੇਸ ਨੂੰ ਇਸ ਵੇਲ਼ੇ ਤਾਲਾ ਲੱਗਾ ਹੋਇਆ ਹੈ, ਸ਼ਾਇਦ ਆਮ ਰੱਖ-ਰਖਾਵ ਲਈ, ਇਸਤੋਂ ਬਾਅਦ ਇਹ ਆਮ ਵਾਂਗ ਉਪਲੱਬਧ ਹੋਵੇਗਾ।
+ਜਿਸ ਪ੍ਰਬੰਧਕ ਨੇ ਇਸਨੂੰ ਤਾਲਾ ਲਾਇਆ ਹੈ ਉਸਦਾ ਕਹਿਣਾ ਹੈ ਕਿ: $1',
 'missing-article' => "ਡਾਟਾਬੇਸ ਨੂੰ ''$1'' $2 ਨਾਮ ਦਾ ਕੋਈ ਸਫ਼ਾ ਨਹੀਂ ਮਿਲਿਆ।
 ਆਮ ਤੌਰ ਤੇ ਮਿਟਾਏ ਜਾ ਚੁੱਕੇ ਸਫ਼ੇ ਦੀ ਅਤੀਤ ਕੜੀ ਦੀ ਵਰਤੋਂ ਕਰਨ ਨਾਲ਼ ਇੰਝ ਹੁੰਦਾ ਹੈ।
 ਜੇ ਇਹ ਗੱਲ ਨਹੀਂ ਤਾਂ ਹੋ ਸਕਦਾ ਹੈ ਤੁਹਾਨੂੰ ਸਾਫ਼ਟਵੇਅਰ ਵਿਚ ਖ਼ਾਮੀ ਮਿਲ ਗਈ ਹੈ। ਮਿਹਰਬਾਨੀ ਕਰਕੇ ਸਫ਼ੇ ਦੇ ਪਤੇ ਸਮੇਤ [[Special:ListUsers/sysop|administrator]] ਨੂੰ ਇਤਲਾਹ ਦਿਓ।",
+'missingarticle-diff' => '(ਫ਼ਰਕ: $1, $2)',
 'internalerror' => 'ਅੰਦਰੂਨੀ ਗਲਤੀ',
 'internalerror_info' => 'ਅੰਦਰੂਨੀ ਗਲਤੀ: $1',
+'fileappenderror' => "''$1'' ''$2'' ਨਾਲ਼ ਜੋੜਿਆ ਨਹੀ ਜਾ ਸਕਦਾ",
+'filecopyerror' => "'''$1''' ਫ਼ਾਈਲ '''$2''' ਵਿਚ ਨਕਲ ਨਹੀਂ ਹੋ ਸਕੀ।",
+'filerenameerror' => "ਫ਼ਾਈਲ ''$1'' ਦਾ ਨਾਮ ਬਦਲ ਕੇ ''$2'' ਨਹੀਂ ਰੱਖਿਆ ਜਾ ਸਕਿਆ।",
+'filedeleteerror' => "ਫ਼ਾਈਲ ''$1'' ਮਿਟਾਈ ਨਹੀਂ ਜਾ ਸਕੀ।",
+'directorycreateerror' => "''$1'' ਬਣਾਈ ਨਹੀਂ ਜਾ ਸਕੀ।",
+'filenotfound' => "ਫ਼ਾਈਲ ''$1'' ਲੱਭੀ ਨਹੀਂ ਜਾ ਸਕੀ।",
+'badarticleerror' => 'ਇਹ ਕਾਰਵਾਈ ਇਸ ਸਫ਼ੇ ਤੇ ਨਹੀਂ ਕੀਤੀ ਜਾ ਸਕਦੀ।',
+'cannotdelete' => "ਫ਼ਾਈਲ ਜਾਂ ਸਫ਼ਾ ''$1'' ਨੂੰ ਮਿਟਾਇਆ ਨਹੀਂ ਜਾ ਸਕਿਆ।
+ਸ਼ਾਇਦ ਕੋਈ ਪਹਿਲਾਂ ਹੀ ਇਸਨੂੰ ਮਿਟਾ ਚੁੱਕਾ ਹੈ।",
+'cannotdelete-title' => "ਸਫ਼ਾ ''$1'' ਨੂੰ ਮਿਟਾਇਆ ਨਹੀਂ ਜਾ ਸਕਿਆ",
+'delete-hook-aborted' => 'ਹੁੱਕ ਨੇ ਮਿਟਾਉਣਾ ਨਾਕਾਮ ਕੀਤਾ।
+ਇਸਨੇ ਕੋਈ ਕਾਰਨ ਨਹੀਂ ਦੱਸਿਆ।',
 'badtitle' => 'ਗ਼ਲਤ ਸਿਰਲੇਖ',
 'badtitletext' => 'ਤੁਹਾਡਾ ਦਰਖ਼ਾਸਤਸ਼ੁਦਾ ਸਿਰਲੇਖ ਨਾਕਾਬਿਲ, ਖ਼ਾਲੀ ਜਾਂ ਗ਼ਲਤ ਜੁੜਿਆ ਹੋਇਆ inter-languagd ਜਾਂ inter-wiki ਸਿਰਲੇਖ ਹੈ। ਇਹ ਵੀ ਹੋ ਸਕਦਾ ਹੈ ਕਿ ਇਸ ਵਿਚ ਇਕ-ਦੋ ਅੱਖਰ ਐਸੇ ਹੋਣ ਜੋ ਸਿਰਲੇਖ ਵਿਚ ਵਰਤੇ ਨਹੀਂ ਜਾ ਸਕਦੇ।',
 'viewsource' => 'ਸਰੋਤ ਵੇਖੋ',
@@ -336,20 +412,31 @@ A list of valid special pages can be found at [[Special:SpecialPages]].',
 'protectedinterface' => 'ਇਹ ਪੰਨਾ ਸਾਫ਼ਟਵੇਅਰ ਇੰਟਰਫ਼ੇਸ ਦਾ ਮੂਲ ਪਾਠ ਹੈ ,ਅਤੇ ਦੁਰਵਰਤੌਂ ਤੌਂ ਬਚਾਅ ਲਈ ਰਾਖਵਾਂ ਕੀਤਾ ਗਿਆ ਹੈ।',
 'editinginterface' => "'''ਚਿਤਾਵਨੀ''' ਤੁਸੀਂ ਐਸੇ ਪੰਨੇ ਨੂੰ ਬਦਲ ਰਹੇ ਹੋ ਜੋ ਸਾਫ਼ਟਵੇਅਰ ਇੰਟਰਫ਼ੇਸ ਦੇ ਮੂਲ ਪਾਠ ਲਈ ਵਰਤਿਆ ਗਿਆ ਹੈ।
 ਇਸ ਪੰਨੇ ਦੇ ਬਦਲਾਅ ਦੁਸਰੇ ਵਰਤੋਂ ਕਰਣ ਵਾਲਿਆਂ ਲਈ ਵਰਤੇ ਜਾਣ ਵਾਲੇ ਇੰਟਰਫਲੇਸ ਦੀ ਸ਼ਕਲ ਤੇ ਅਸਰ ਪਾ ਦੇਣਗੇ।ਅਨੁਵਾਦ ਕਰਣ ਲਈ ,ਕਿਰਪਾ ਕਰਕੇ [//translatewiki.net/wiki/Main_Page?setlang=pa ਟ੍ਰਾਂਸਲੇਟਵਿਕੀ.ਨੈਟ] ਦੀ ਵਰਤੌਂ ਕਰੋ,ਇਹ ਮੀਡੀਆਵਿਕੀ ਦੀ ਸਥਾਨਕੀਕਰਣ ਯੋਜਨਾ ਹੈ।",
+'namespaceprotected' => "ਤੁਹਾਨੂੰ '''$1''' ਥਾਂ-ਨਾਮ ਵਾਲ਼ੇ ਸਫ਼ਿਆਂ ਵਿਚ ਸੋਧ ਕਰਨ ਦੀ ਇਜਾਜ਼ਤ ਨਹੀਂ ਹੈ।",
+'customcssprotected' => 'ਤੁਹਾਨੂੰ ਇਸ CSS ਸਫ਼ੇ ਵਿਚ ਸੋਧ ਕਰਨ ਦੀ ਇਜਾਜ਼ਤ ਨਹੀਂ ਹੈ ਕਿਉਂਕਿ ਇਸ ਵਿਚ ਕਿਸੇ ਹੋਰ ਮੈਂਬਰ ਦੀਆਂ ਨਿੱਜੀ ਸੈਟਿੰਗਾਂ ਹਨ।',
+'customjsprotected' => 'ਤੁਹਾਨੂੰ ਇਸ CSS ਸਫ਼ੇ ਵਿਚ ਸੋਧ ਕਰਨ ਦੀ ਇਜਾਜ਼ਤ ਨਹੀਂ ਹੈ ਕਿਉਂਕਿ ਇਸ ਵਿਚ ਕਿਸੇ ਹੋਰ ਮੈਂਬਰ ਦੀਆਂ ਨਿੱਜੀ ਸੈਟਿੰਗਾਂ ਹਨ।',
+'ns-specialprotected' => 'ਖ਼ਾਸ ਸਫ਼ੇ ਸੋਧੇ ਨਹੀਂ ਜਾ ਸਕਦੇ।',
+'titleprotected' => 'ਇਹ ਸਿਰਲੇਖ [[User:$1|$1]] ਵੱਲੋਂ ਸੁਰੱਖਿਅਤ ਕੀਤਾ ਗਿਆ ਹੈ ਅਤੇ ਵਰਤਿਆ ਨਹੀਂ ਜਾ ਸਕਦਾ। ਦਿੱਤਾ ਹੋਇਆ ਕਾਰਨ ਹੈ, "\'\'$2\'\'"।',
+'invalidtitle-knownnamespace' => 'ਥਾਂ-ਨਾਮ "$2" ਅਤੇ ਲਿਖਤ "$3" ਵਾਲ਼ਾ ਗ਼ਲਤ ਸਿਰਲੇਖ',
+'exception-nologin-text' => 'ਇਹ ਸਫ਼ਾ ਜਾਂ ਕਾਰਵਾਈ ਤੁਹਾਡਾ ਇਸ ਵਿਕੀ ਤੇ ਲਾਗਇਨ ਹੋਣਾ ਲੋੜਦੀ ਹੈ।',
+
+# Virus scanner
+'virus-unknownscanner' => 'ਅਣਪਛਾਤਾ ਐਂਟੀਵਾਇਰਸ:',
 
 # Login and logout pages
 'logouttext' => "'''ਹੁਣ ਤੁਸੀਂ ਲਾਗਆਉਟ ਹੋ ਗਏ ਹੋ।'''
 
 You can continue to use {{SITENAME}} anonymously, or you can log in again as the same or as a different user.
 Note that some pages may continue to be displayed as if you were still logged in, until you clear your browser cache.",
-'welcomecreation' => '== ਜੀ ਆਇਆਂ ਨੂੰ! ==
+'welcomecreation' => '== ਜੀ ਆਇਆਂ ਨੂੰ, $1! ==
 
-ਤੁਹਾਡਾ ਖ਼ਾਤਾ ਬਣ ਚੁੱਕਾ ਹੈ। ਆਪਣੀ [[Special:ਪਸੰਦ|{{SITENAME}} ਪਸੰਦ]] ਬਦਲਣੀ ਨਾ ਭੁੱਲੋ।',
+ਤੁਹਾਡਾ ਖਾਤਾ ਬਣ ਚੁੱਕਾ ਹੈ। ਆਪਣੀਆਂ [[Special:Preferences|{{SITENAME}} ਪਸੰਦਾਂ]] ਬਦਲਣੀਆਂ ਨਾ ਭੁੱਲੋ।',
 'yourname' => 'ਮੈਂਬਰ ਨਾਂ:',
 'yourpassword' => 'ਪਾਸਵਰਡ:',
 'yourpasswordagain' => 'ਪਾਸਵਰਡ ਦੁਬਾਰਾ ਲਿਖੋ:',
 'remembermypassword' => 'ਇਸ ਕੰਪਿਊਟਰ ’ਤੇ ਮੇਰਾ ਲਾਗਇਨ ਯਾਦ ਰੱਖੋ (ਵੱਧ ਤੋਂ ਵੱਧ $1 {{PLURAL:$1|ਦਿਨ|ਦਿਨਾਂ}} ਲਈ)',
 'yourdomainname' => 'ਤੁਹਾਡੀ ਡੋਮੇਨ:',
+'password-change-forbidden' => 'ਇਸ ਵਿਕੀ ਤੇ ਤੁਸੀਂ ਪਾਸਵਰਡ ਨਹੀਂ ਬਦਲ ਸਕਦੇ।',
 'login' => 'ਲਾਗ ਇਨ',
 'nav-login-createaccount' => 'ਲਾਗ ਇਨ/ਖਾਤਾ ਬਣਾਓ',
 'loginprompt' => 'ਤੁਹਾਨੂੰ {{SITENAME}} ’ਤੇ ਲਾਗਇਨ ਕਰਨ ਲਈ ਕੂਕੀਜ਼ ਯੋਗ ਕਰਨੇ ਜ਼ਰੂਰੀ ਹਨ।',
@@ -376,29 +463,31 @@ Note that some pages may continue to be displayed as if you were still logged in
 'noname' => 'ਤੁਸੀਂ ਇੱਕ ਵੈਧ ਯੂਜ਼ਰ ਨਾਂ ਨਹੀਂ ਦਿੱਤਾ ਹੈ।',
 'loginsuccesstitle' => 'ਲਾਗਇਨ ਸਫ਼ਲ ਰਿਹਾ',
 'loginsuccess' => "'''ਤੁਸੀਂ {{SITENAME}} ਉੱਤੇ \"\$1\" ਵਾਂਗ ਲਾਗਇਨ ਕਰ ਚੁੱਕੇ ਹੋ।'''",
-'nosuchuser' => '"$1" ਨਾਂ ਨਾਲ ਕੋਈ ਯੂਜ਼ਰ ਨਹੀਂ ਹੈ। ਆਪਣੇ ਸ਼ਬਦ ਧਿਆਨ ਨਾਲ ਚੈੱਕ ਕਰੋ ਜਾਂ ਨਵਾਂ ਅਕਾਊਂਟ ਬਣਾਓ।',
+'nosuchuser' => '!"$1" ਨਾਂ ਨਾਲ ਕੋਈ ਯੂਜ਼ਰ ਨਹੀਂ ਹੈ। ਆਪਣੇ ਸ਼ਬਦ ਜੋੜ ਧਿਆਨ ਨਾਲ ਚੈਕ ਕਰੋ ਉਪਰ ਹੇਠਾਂ ਦਾ ਕੇਸ ਵਰਤਣ ਨਾਲ ਫ਼ਰਕ ਪੈਂਦਾ ਹੈ ਜਾਂ [[Special:UserLogin/signup|ਨਵਾਂ ਖਾਤਾ ਬਣਾਓ]]',
 'nosuchusershort' => '"$1" ਨਾਂ ਨਾਲ ਕੋਈ ਵੀ ਯੂਜ਼ਰ ਨਹੀਂ ਹੈ। ਆਪਣੇ ਸ਼ਬਦ ਧਿਆਨ ਨਾਲ ਚੈੱਕ ਕਰੋ।',
 'nouserspecified' => 'ਤੁਹਾਨੂੰ ਇੱਕ ਯੂਜ਼ਰ-ਨਾਂ ਦੇਣਾ ਪਵੇਗਾ।',
+'login-userblocked' => 'ਇਹ ਮੈਂਬਰ ਪਾਬੰਦੀਸ਼ੁਦਾ ਹੈ। ਲਾਗਇਨ ਦੀ ਇਜਾਜ਼ਤ ਨਹੀਂ ਹੈ।',
 'wrongpassword' => 'ਗਲਤ ਪਾਸਵਰਡ ਦਿੱਤਾ ਹੈ। ਮੁੜ-ਟਰਾਈ ਕਰੋ ਜੀ।',
 'wrongpasswordempty' => 'ਖਾਲੀ ਪਾਸਵਰਡ ਦਿੱਤਾ ਹੈ। ਮੁੜ-ਟਰਾਈ ਕਰੋ ਜੀ।',
 'passwordtooshort' => 'ਪਾਸਵਰਡ {{PLURAL:$1|1 ਅੱਖਰ|$1 ਅੱਖਰਾਂ}} ਦਾ ਹੋਣਾ ਲਾਜ਼ਮੀ ਹੈ।',
 'password-name-match' => 'ਤੁਹਾਡਾ ਪਾਸਵਰਡ ਤੁਹਾਡੇ ਯੂਜ਼ਰ ਨਾਂ ਤੋਂ ਵੱਖਰਾ ਹੋਣਾ ਚਾਹੀਦਾ ਹੈ।',
+'password-login-forbidden' => 'ਇਹ ਮੈਂਬਰ-ਨਾਮ ਅਤੇ ਪਾਸਵਰਡ ਵਰਤਣ ਦੀ ਮਨਾਹੀ ਹੈ।',
 'mailmypassword' => 'ਨਵਾਂ ਪਾਸਵਰਡ ਈ-ਮੇਲ ਕਰੋ',
 'passwordremindertitle' => '{{SITENAME}} ਲਈ ਪਾਸਵਰਡ ਯਾਦ ਰੱਖੋ',
-'passwordremindertext' => 'ਕਿਸੇ ਨੇ (ਸ਼ਾਇਦ ਤੁਸੀਂ, IP ਐਡਰੈੱਸ $1 ਤੋਂ)
-ਮੰਗ ਕੀਤੀ ਸੀ ਕਿ ਅਸੀਂ ਤੁਹਾਨੂੰ {{SITENAME}} ($4) ਲਈ ਪਾਸਵਰਡ ਭੇਜੀਏ।
-ਯੂਜ਼ਰ "$2" ਲਈ ਹੁਣ ਪਾਸਵਰਡ "$3" ਹੈ।
-ਤੁਹਾਨੂੰ ਹੁਣ ਲਾਗਇਨ ਕਰਕੇ ਆਪਣਾ ਪਾਸਵਰਡ ਹੁਣੇ ਬਦਲਣਾ ਚਾਹੀਦਾ ਹੈ।
+'passwordremindertext' => 'ਕਿਸੇ ਨੇ (ਸ਼ਾਇਦ ਤੁਸੀਂ, IP ਪਤਾ $1 ਤੋਂ) {{SITENAME}} ਲਈ ਪਾਸਵਰਡ ਬਦਲਣ ਦੀ ਬੇਨਤੀ ਕੀਤੀ ਹੈ ($4)।
+ਮੈਂਬਰ "$2" ਲਈ ਆਰਜ਼ੀ ਪਾਸਵਰਡ ਬਣਾ ਕੇ "$3" ਤੇ ਭੇਜ ਦਿੱਤਾ ਗਿਆ ਹੈ।
+ਜੇ ਤੁਹਾਡਾ ਇਹੀ ਇਰਾਦਾ ਸੀ ਤਾਂ ਤੁਹਾਨੂੰ ਚਾਹੀਦਾ ਹੈ ਹੁਣੇ ਲਾਗਇਨ ਕਰਕੇ ਆਪਣਾ ਪਾਸਵਰਡ ਲਓ।
+ਤੁਹਾਡਾ ਆਰਜ਼ੀ ਪਾਸਵਰਡ {{PLURAL:$5|ਇਕ ਦਿਨ|$5 ਦਿਨਾਂ}} ਵਿਚ ਖ਼ਤਮ ਹੋ ਜਾਵੇਗਾ।
 
-If someone else made this request or if you have remembered your password and
-you no longer wish to change it, you may ignore this message and continue using
-your old password.',
+ਜੇ ਕਿਸੇ ਹੋਰ ਨੇ ਇਹ ਬੇਨਤੀ ਕੀਤੀ ਸੀ ਜਾਂ ਜੇ ਤੁਹਾਨੂੰ ਆਪਣਾ ਪਾਸਵਰਡ ਯਾਦ ਹੈ ਅਤੇ ਤੁਸੀਂ ਇਸਨੂੰ ਬਦਲਣਾ ਨਹੀਂ ਚਾਹੁੰਦੇ ਤਾਂ ਤੁਸੀਂ ਇਸ ਸੁਨੇਹੇ ਨੂੰ ਨਜ਼ਰਅੰਦਾਜ਼ ਕਰ ਕੇ ਆਪਣਾ ਪੁਰਾਣਾ ਪਾਸਵਰਡ ਵਰਤਣਾ ਜਾਰੀ ਰੱਖ ਸਕਦੇ ਹੋ।',
 'noemail' => 'ਯੂਜ਼ਰ "$1" ਲਈ ਰਿਕਾਰਡ ਵਿੱਚ ਕੋਈ ਈਮੇਲ ਐਡਰੈੱਸ ਨਹੀਂ ਹੈ।',
 'noemailcreate' => 'ਤੁਹਾਨੂੰ ਠੀਕ ਈਮੇਲ ਐਡਰੈੱਸ ਦੇਣਾ ਪਵੇਗਾ',
 'passwordsent' => '"$1" ਨਾਲ ਰਜਿਸਟਰ ਕੀਤੇ ਈਮੇਲ ਐਡਰੈੱਸ ਉੱਤੇ ਈਮੇਲ ਭੇਜੀ ਗਈ ਹੈ।
 ਇਹ ਮਿਲ ਦੇ ਬਾਅਦ ਮੁੜ ਲਾਗਇਨ ਕਰੋ ਜੀ।',
-'throttled-mailpassword' => 'ਇੱਕ ਪਾਸਵਰਡ ਰੀਮਾਈਡਰ ਪਹਿਲਾਂ ਹੀ ਭੇਜਿਆ ਗਿਆ ਹੈ, ਆਖਰੀ
-$1 ਘੰਟੇ ਵਿੱਚ। ਨੁਕਸਾਨ ਤੋਂ ਬਚਣ ਲਈ, $1 ਘੰਟਿਆਂ ਵਿੱਚ ਇੱਕ ਹੀ ਪਾਸਵਰਡ ਰੀਮਾਈਡਰ ਭੇਜਿਆ ਜਾਂਦਾ ਹੈ।',
+'eauthentsent' => 'ਇਕ ਤਸਦੀਕੀ ਈ-ਮੇਲ ਨਾਮਜ਼ਦ ਕੀਤੇ ਈ-ਮੇਲ ਪਤੇ ਤੇ ਭੇਜੀ ਜਾ ਚੁੱਕੀ ਹੈ।
+ਤੁਹਾਡੇ ਪਤੇ ਤੇ ਕੋਈ ਹੋਰ ਈ-ਮੇਲ ਭੇਜਣ ਤੋਂ ਪਹਿਲਾਂ, ਇਹ ਤਸਦੀਕ ਕਰਨ ਲਈ ਕਿ ਖਾਤਾ ਅਸਲ ਵਿਚ ਤੁਹਾਡਾ ਹੀ ਹੈ, ਤੁਹਾਨੂੰ ਉਸ ਈ-ਮੇਲ ਵਿਚਲੀਆਂ ਹਦਾਇਤਾਂ ਤੇ ਅਮਲ ਕਰਨਾ ਹੋਵੇਗਾ।',
+'throttled-mailpassword' => 'ਆਖ਼ਰੀ {{PLURAL:$1|ਇੱਕ ਘੰਟੇ|$1 ਘੰਟਿਆਂ}} ਵਿਚ ਇੱਕ ਪਾਸਵਰਡ ਯਾਦ-ਦਹਾਨੀ ਪਹਿਲਾਂ ਹੀ ਭੇਜੀ ਜਾ ਚੁੱਕੀ ਹੈ।
+ਗ਼ਲਤ ਵਰਤੋਂ ਤੋਂ ਬਚਣ ਲਈ, {{PLURAL:$1|ਇੱਕ ਘੰਟੇ|$1 ਘੰਟਿਆਂ}} ਵਿੱਚ ਸਿਰਫ਼ ਇੱਕ ਹੀ ਪਾਸਵਰਡ ਯਾਦ-ਦਹਾਨੀ ਭੇਜੀ ਜਾਂਦੀ ਹੈ।',
 'mailerror' => 'ਈਮੇਲ ਭੇਜਣ ਦੌਰਾਨ ਗਲਤੀ: $1',
 'acct_creation_throttle_hit' => 'ਅਫਸੋਸ ਹੈ, ਪਰ ਤੁਸੀਂ ਪਹਿਲਾਂ ਹੀ $1 ਅਕਾਊਂਟ ਬਣਾ ਚੁੱਕੇ ਹੋ। ਤੁਸੀਂ ਹੋਰ ਨਹੀਂ ਬਣਾ ਸਕਦੇ।',
 'emailauthenticated' => 'ਤੁਹਾਡਾ ਈਮੇਲ ਐਡਰੈੱਸ $1 ਉੱਤੇ ਪਰਮਾਣਿਤ ਕੀਤਾ ਗਿਆ ਹੈ।',
@@ -406,10 +495,23 @@ $1 ਘੰਟੇ ਵਿੱਚ। ਨੁਕਸਾਨ ਤੋਂ ਬਚਣ ਲਈ, $
 'noemailprefs' => 'ਇਹ ਫੀਚਰ ਵਰਤਣ ਲਈ ਇੱਕ ਈਮੇਲ ਐਡਰੈੱਸ ਦਿਓ।।',
 'emailconfirmlink' => 'ਆਪਣਾ ਈ-ਮੇਲ ਐਡਰੈੱਸ ਕਨਫਰਮ ਕਰੋ।',
 'invalidemailaddress' => 'ਈਮੇਲ ਐਡਰੈੱਸ ਮਨਜ਼ੂਰ ਨਹੀਂ ਕੀਤਾ ਜਾ ਸਕਦਾ ਹੈ ਕਿਉਂਕਿ ਇਹ ਠੀਕ ਫਾਰਮੈਟ ਨਹੀਂ ਜਾਪਦਾ ਹੈ। ਇੱਕ ਠੀਕ ਫਾਰਮੈਟ ਵਿੱਚ ਦਿਓ ਜਾਂ ਇਹ ਖੇਤਰ ਖਾਲੀ ਛੱਡ ਦਿਓ।',
+'cannotchangeemail' => 'ਇਸ ਵਿਕੀ ਤੇ ਈ-ਮੇਲ ਪਤੇ ਬਦਲੇ ਨਹੀਂ ਜਾ ਸਕਦੇ।',
+'emaildisabled' => 'ਇਹ ਸਾਈਟ ਈ-ਮੇਲਾਂ ਨਹੀਂ ਭੇਜ ਸਕਦੀ।',
 'accountcreated' => 'ਅਕਾਊਂਟ ਬਣਾਇਆ',
 'accountcreatedtext' => '$1 ਲਈ ਯੂਜ਼ਰ ਅਕਾਊਂਟ ਬਣਾਇਆ ਗਿਆ।',
 'createaccount-title' => '{{SITENAME}} ਲਈ ਅਕਾਊਂਟ ਬਣਾਉਣਾ',
+'createaccount-text' => 'ਕਿਸੇ ਨੇ "$2" ਮੈਂਬਰ-ਨਾਮ ਅਤੇ "$3" ਪਾਸਵਰਡ ਨਾਲ਼ {{SITENAME}} ($4) ਤੇ, ਤੁਹਾਡਾ ਈ-ਮੇਲ ਪਤਾ ਵਰਤਦੇ ਹੋਏ, ਖਾਤਾ ਬਣਾਇਆ ਹੈ।
+ਤੁਹਾਨੂੰ ਹੁਣੇ ਲਾਗਇਨ ਕਰਕੇ ਆਪਣਾ ਪਾਸਵਰਡ ਬਦਲਣਾ ਚਾਹੀਦਾ ਹੈ।
+
+ਜੇ ਇਹ ਖਾਤਾ ਗ਼ਲਤੀ ਨਾਲ਼ ਬਣ ਗਿਆ ਹੈ ਤਾਂ ਤੁਸੀਂ ਇਸ ਸੁਨੇਹੇ ਨੂੰ ਨਜ਼ਰਅੰਦਾਜ਼ ਕਰ ਸਕਦੇ ਹੋ।',
+'usernamehasherror' => 'ਮੈਂਬਰ-ਨਾਮ ਵਿਚ ਹੈਸ਼ ਅੱਖਰ ਨਹੀਂ ਹੋ ਸਕਦੇ',
+'login-throttled' => 'ਤੁਸੀਂ ਬਹੁਤ ਸਾਰੀਆਂ ਤਾਜ਼ਾ ਲਾਗਇਨ ਕੋਸ਼ਿਸ਼ਾਂ ਕੀਤੀਆਂ ਹਨ।
+ਮਿਹਰਬਾਨੀ ਕਰਕੇ ਦੁਬਾਰਾ ਕੋਸ਼ਿਸ਼ ਕਰਨ ਤੋਂ ਪਹਿਲਾਂ ਥੋੜੀ ਉਡੀਕ ਕਰੋ।',
+'login-abort-generic' => 'ਤੁਹਾਡੀ ਲਾਗਇਨ ਨਾਕਾਮ ਸੀ - ਰੱਦ',
 'loginlanguagelabel' => 'ਬੋਲੀ: $1',
+
+# E-mail sending
+'user-mail-no-addy' => 'ਬਿਨਾਂ ਈ-ਮੇਲ ਪਤਾ ਦਿੱਤੇ ਈ-ਮੇਲ ਭੇਜਣ ਦੀ ਕੋਸ਼ਿਸ਼ ਕੀਤੀ।',
 
 # Change password dialog
 'resetpass' => 'ਪਾਸਵਰਡ ਬਦਲੋ',
@@ -421,9 +523,35 @@ $1 ਘੰਟੇ ਵਿੱਚ। ਨੁਕਸਾਨ ਤੋਂ ਬਚਣ ਲਈ, $
 'resetpass_submit' => 'ਪਾਸਵਰਡ ਸੈੱਟ ਕਰੋ ਅਤੇ ਲਾਗਇਨ ਕਰੋ',
 'resetpass_success' => 'ਤੁਹਾਡਾ ਪਾਸਵਰਡ ਠੀਕ ਤਰਾਂ ਬਦਲਿਆ ਗਿਆ ਹੈ! ਹੁਣ ਤੁਸੀਂ ਲਾਗਇਨ ਕਰ ਸਕਦੇ ਹੋ...',
 'resetpass_forbidden' => 'ਪਾਸਵਰਡ ਬਦਲਿਆ ਨਹੀਂ ਜਾ ਸਕਦਾ',
+'resetpass-no-info' => 'ਇਸ ਸਫ਼ੇ ਨੂੰ ਸਿੱਧੇ ਹੀ ਵੇਖਣ ਲਈ ਤੁਹਾਨੂੰ ਲਾਗਇਨ ਕਰਨਾ ਪਵੇਗਾ।',
 'resetpass-submit-loggedin' => 'ਪਾਸਵਰਡ ਬਦਲੋ',
 'resetpass-submit-cancel' => 'ਰੱਦ ਕਰੋ',
+'resetpass-wrong-oldpass' => 'ਗ਼ਲਤ ਆਰਜ਼ੀ ਜਾਂ ਚਾਲੂ ਪਾਸਵਰਡ।
+ਸ਼ਾਇਦ ਤੁਸੀਂ ਕਾਮਯਾਬੀ ਨਾਲ਼ ਆਪਣਾ ਪਾਸਵਰਡ ਬਦਲ ਚੁੱਕੇ ਹੋ ਜਾਂ ਆਰਜ਼ੀ ਪਾਸਵਰਡ ਲਈ ਬੇਨਤੀ ਕੀਤੀ ਸੀ।',
 'resetpass-temp-password' => 'ਆਰਜ਼ੀ ਪਾਸਵਰਡ:',
+
+# Special:PasswordReset
+'passwordreset' => 'ਪਾਸਵਰਡ ਰੀਸੈੱਟ ਕਰੋ',
+'passwordreset-text' => 'ਆਪਣੇ ਖਾਤੇ ਦੀ ਤਫ਼ਸੀਲ ਦੀ ਈ-ਮੇਲ ਹਾਸਲ ਕਰਨ ਲਈ ਇਹ ਫ਼ਾਰਮ ਮੁਕੰਮਲ ਕਰੋ।',
+'passwordreset-legend' => 'ਪਾਸਵਰਡ ਰੀਸੈੱਟ ਕਰੋ',
+'passwordreset-disabled' => 'ਇਸ ਵਿਕੀ ਤੇ ਪਾਸਵਰਡ ਰੀਸੈੱਟ ਬੰਦ ਕੀਤੇ ਗਏ ਹਨ।',
+'passwordreset-username' => 'ਮੈਂਬਰ-ਨਾਂ:',
+'passwordreset-domain' => 'ਡੋਮੇਨ:',
+'passwordreset-email' => 'ਈ-ਮੇਲ ਪਤਾ:',
+'passwordreset-emailtitle' => '{{SITENAME}} ਤੇ ਖਾਤੇ ਦੀ ਜਾਣਕਾਰੀ',
+'passwordreset-emailelement' => 'ਮੈਂਬਰ-ਨਾਂ: $1
+ਆਰਜ਼ੀ ਪਾਸਵਰਡ: $2',
+
+# Special:ChangeEmail
+'changeemail' => 'ਈ-ਮੇਲ ਪਤਾ ਬਦਲੋ',
+'changeemail-header' => 'ਖਾਤੇ ਵਾਲ਼ਾ ਈ-ਮੇਲ ਪਤਾ ਬਦਲੋ',
+'changeemail-text' => 'ਆਪਣਾ ਈ-ਮੇਲ ਪਤਾ ਬਦਲਣ ਲਈ ਇਹ ਫ਼ਾਰਮ ਮੁਕੰਮਲ ਕਰੋ। ਇਸ ਤਬਦੀਲੀ ਨੂੰ ਤਸਦੀਕ ਕਰਨ ਲਈ ਤੁਹਾਨੂੰ ਆਪਣਾ ਪਾਸਵਰਡ ਦਾਖ਼ਲ ਕਰਨਾ ਪਵੇਗਾ।',
+'changeemail-no-info' => 'ਇਸ ਸਫ਼ੇ ਨੂੰ ਸਿੱਧੇ ਹੀ ਵੇਖਣ ਲਈ ਤੁਹਾਨੂੰ ਲਾਗਇਨ ਕਰਨਾ ਪਵੇਗਾ।',
+'changeemail-oldemail' => 'ਚਾਲੂ ਈ-ਮੇਲ ਪਤਾ:',
+'changeemail-newemail' => 'ਨਵਾਂ ਈ-ਮੇਲ ਪਤਾ:',
+'changeemail-none' => '(ਕੋਈ ਨਹੀਂ)',
+'changeemail-submit' => 'ਈ-ਮੇਲ ਬਦਲੋ',
+'changeemail-cancel' => 'ਰੱਦ ਕਰੋ',
 
 # Edit page toolbar
 'bold_sample' => 'ਗੂੜ੍ਹੀ ਲਿਖਾਈ',
@@ -454,6 +582,8 @@ $1 ਘੰਟੇ ਵਿੱਚ। ਨੁਕਸਾਨ ਤੋਂ ਬਚਣ ਲਈ, $
 'showlivepreview' => 'ਲਾਈਵ ਝਲਕ',
 'showdiff' => 'ਤਬਦੀਲੀ ਵੇਖੋ',
 'anoneditwarning' => "'''ਚੇਤਾਵਨੀ:''' ਤੁਸੀਂ ਲਾਗਇਨ ਨਹੀਂ ਕੀਤਾ ਹੈ। ਤੁਹਾਡਾ IP ਐਡਰੈੱਸ ਇਸ ਸਫ਼ੇ ਦੇ ਅਤੀਤ ਵਿੱਚ ਰਿਕਾਰਡ ਕੀਤਾ ਜਾਵੇਗਾ।",
+'anonpreviewwarning' => "''ਤੁਸੀਂ ਲਾਗਇਨ ਨਹੀਂ ਕੀਤਾ। ਤਬਦੀਲੀ ਸਾਂਭਣ ਨਾਲ਼ ਤੁਹਾਡਾ IP ਪਤਾ ਸਫ਼ੇ ਦੇ ਸੋਧ ਅਤੀਤ ਵਿਚ ਰਿਕਾਰਡ ਹੋ ਜਾਵੇਗਾ।''",
+'missingsummary' => "'''ਯਾਦ-ਦਹਾਨੀ:''' ਤੁਸੀਂ ਸੋਧ ਸਾਰ ਮੁਹੱਈਆ ਨਹੀਂ ਕਰਵਾਇਆ। ਜੇ ਤੁਸੀਂ \"{{int:savearticle}}\" ਤੇ ਦੁਬਾਰਾ ਕਲਿੱਕ ਕੀਤਾ ਤਾਂ ਤੁਹਾਡਾ ਸਫ਼ਾ ਇਸਦੇ ਬਿਨਾਂ ਹੀ ਸਾਂਭਿਆ ਜਾਵੇਗਾ।",
 'missingcommenttext' => 'ਹੇਠਾਂ ਇੱਕ ਟਿੱਪਣੀ ਦਿਓ।',
 'summary-preview' => 'ਸੰਖੇਪ ਝਲਕ:',
 'subject-preview' => 'ਵਿਸ਼ਾ/ਹੈੱਡਲਾਈਨ ਝਲਕ:',

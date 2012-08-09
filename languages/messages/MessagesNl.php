@@ -1031,6 +1031,10 @@ U kunt [[Special:Search/{{PAGENAME}}|naar deze term zoeken]] in andere pagina\'s
 'noarticletext-nopermission' => 'Deze pagina bevat geen tekst.
 U kunt [[Special:Search/{{PAGENAME}}|naar deze term zoeken]] in andere pagina\'s of
 <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} de logboeken doorzoeken]</span>.',
+'missing-revision' => 'De versie #$1 van de pagina "{{PAGENAME}} bestaat niet.
+
+Dit wordt meestal veroorzaakt door het volgen van een verouderde verwijzing naar een pagina die is verwijderd.
+Meer gegevens zijn mogelijk te vinden in het [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} verwijderlogboek].',
 'userpage-userdoesnotexist' => 'U bewerkt een gebruikerspagina van een gebruiker die niet bestaat (gebruiker "<nowiki>$1</nowiki>").
 Controleer of u deze pagina wel wilt aanmaken of bewerken.',
 'userpage-userdoesnotexist-view' => 'De gebruiker "$1" is niet geregistreerd.',
@@ -1164,6 +1168,7 @@ Deze parameters zijn weggelaten.',
 'expansion-depth-exceeded-warning' => 'De pagina bevat te veel sjablonen',
 'parser-unstrip-loop-warning' => 'Er is een "unstrip"-lus gedetecteerd',
 'parser-unstrip-recursion-limit' => 'De recursielimiet ($1) voor "unstrip" is overschreden',
+'converter-manual-rule-error' => 'Er is een fout gedetecteerd in een handmatig toegevoegde taalconversieregel.',
 
 # "Undo" feature
 'undo-success' => 'Deze bewerking kan ongedaan gemaakt worden.
@@ -1353,6 +1358,10 @@ Let op dat het gebruiken van de navigatieverwijzingen deze kolom opnieuw instelt
 'editundo' => 'ongedaan maken',
 'diff-multi' => '({{PLURAL:$1|Eén tussenliggende versie|$1 tussenliggende versies}} door {{PLURAL:$2|één gebruiker|$2 gebruikers}} {{PLURAL:$1|wordt|worden}} niet weergegeven)',
 'diff-multi-manyusers' => '($1 tussenliggende {{PLURAL:$1|versie|versies}} door meer dan $2 {{PLURAL:$2|gebruiker|gebruikers}}  worden niet weergegeven)',
+'difference-missing-revision' => '{{PLURAL:$2|Eén versie|$2 versies}} van deze verschillen ($1) {{PLURAL:$2|is|zijn}} niet aangetroffen.
+
+Dit wordt meestal veroorzaakt door het volgen van een verouderde verwijzing verschillen voor een pagina die is verwijderd.
+Meer gegevens zijn mogelijk te vinden in het [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} verwijderlogboek].',
 
 # Search results
 'searchresults' => 'Zoekresultaten',

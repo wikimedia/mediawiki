@@ -35,6 +35,7 @@
  * @author Mirzali
  * @author Mskyrider
  * @author Myildirim2007
+ * @author Nazif İLBEK
  * @author Reedy
  * @author Runningfridgesrule
  * @author Sadrettin
@@ -682,8 +683,8 @@ Başka bir kullanıcı tarafından silinmiş olabilir.',
 Hiçbir açıklama yapılmadı.',
 'badtitle' => 'Geçersiz başlık',
 'badtitletext' => 'Girilen sayfa adı ya hatalı ya boş ya da diller arası bağlantı veya vikiler arası bağlantı içerdiğinden geçerli değil. Başlıklarda kullanılması yasak olan bir ya da daha çok karakter içeriyor olabilir.',
-'perfcached' => 'Veriler daha önceden hazırlanmış olabilir. Bu sebeple güncel olmayabilir! A maximum of {{PLURAL:$1|one result is|$1 results are}} available in the cache.',
-'perfcachedts' => 'Aşağıda saklanmış bilgiler bulunmaktadır, son güncelleme tarihi: $1. A maximum of {{PLURAL:$4|one result is|$4 results are}} available in the cache.',
+'perfcached' => 'Aşağıdaki veriler önbellekten alınmıştır ve güncel olmayabilir. Önbellekte en fazla {{PLURAL:$1|bir sonuç|$1 sonuç}} mevcut.',
+'perfcachedts' => 'Aşağıdaki veri önbelleklenmiştir, son güncelleme tarihi: $1. Önbellekte en fazla {{PLURAL:$1|bir sonuç|$4 sonuç}} mevcut.',
 'querypage-no-updates' => 'Şu an için güncellemeler devre dışı bırakıldı. Buradaki veri hemen yenilenmeyecektir.',
 'wrong_wfQuery_params' => 'wfQuery() ye yanlış parametre<br />
 Fonksiyon: $1<br />
@@ -707,6 +708,9 @@ $2',
 'ns-specialprotected' => '{{ns:special}} alanadı içindeki sayfalar değiştirilemez.',
 'titleprotected' => "[[User:$1|$1]] tarafından oluşturulması engellenmesi için bu sayfa koruma altına alınmıştır.
 Verilen sebep: ''$2''.",
+'invalidtitle-knownnamespace' => '"$2" alan adı için "$3" metni geçersiz bir başlık',
+'exception-nologin' => 'Giriş yapılmamış',
+'exception-nologin-text' => 'Bu sayfa ya da eylem için bu vikide oturum açmış olmanız gerekir.',
 
 # Virus scanner
 'virus-badscanner' => "Yanlış ayarlama: bilinmeyen virüs tarayıcı: ''$1''",
@@ -728,6 +732,7 @@ Hesabınız açıldı.
 'remembermypassword' => 'Girişimi bu tarayıcıda hatırla (en fazla $1 {{PLURAL:$1|gün|gün}} için)',
 'securelogin-stick-https' => "Giriş yaptıktan sonra HTTPS'e bağlı kal",
 'yourdomainname' => 'Alan adınız:',
+'password-change-forbidden' => 'Bu vikide parolanızı değiştiremezsiniz.',
 'externaldberror' => 'Ya doğrulama veritabanı hatası var ya da kullanıcı hesabınızı güncellemeye yetkiniz yok.',
 'login' => 'Oturum aç',
 'nav-login-createaccount' => 'Oturum aç / hesap oluştur',
@@ -1025,8 +1030,8 @@ Yaptığınız katkının başka katılımcılar tarafından acımasızca deği�
 Ayrıca buraya katkıda bulunarak, bu katkının kendiniz tarafından yazıldığına ya da kamuya açık bir kaynaktan ya da başka bir özgür/ücretsiz kaynaktan kopyalandığına güvence vermiş oluyorsunuz. '''Buraya, telif sahibinin izni olmadan telif hakkı ile korunan eserleri eklemeyiz! '''",
 'copyrightwarning2' => 'Lütfen, {{SITENAME}} sitesine bulunacağınız tüm katkıların diğer üyeler tarafından düzenlenebileceğini, değiştirilebileceğini ya da silinebileceğini hatırlayın. Yazılarınızın merhametsizce değiştirilebilmesine rıza göstermiyorsanız buraya katkıda bulunmayın. <br />
 Ayrıca bu ekleyeceğiniz yazıyı sizin yazdığınızı ya da serbest kopyalama izni veren bir kaynaktan kopyaladığınızı bize taahhüt etmektesiniz (ayrıntılar için referans: $1).',
-'longpageerror' => "'''HATA: Girdiğiniz metnin uzunluğu {{PLURAL:$1|bir kilobayt|$1 kilobayt}}, ve en fazla uzunluktan {{PLURAL:$2|bir kilobayt|$2 kilobayt}} daha fazladır.
-Kaydedilmesi mümkün değildir.'''",
+'longpageerror' => "'''Hata: Girdiğiniz metnin uzunluğu kabul edilebilir en fazla uzunluk olan {{PLURAL:$2|bir kilobayt|$2 kilobayt}}tan fazladır ve {{PLURAL:$1|bir kilobayt|$1 kilobayt}} büyüklüğündedir.'''
+Değişikliğiniz kaydedilemez.",
 'readonlywarning' => "'''DİKKAT: Bakım nedeni ile veritabanı şu anda kilitlidir. Bu sebeple değişiklikleriniz şu anda kaydedilememektedir. Yazdıklarınızı başka bir editöre alıp saklayabilir ve daha sonra tekrar buraya getirip kaydedebilirsiniz'''
 
 Kilitleyen hizmetli şu açıklamayı eklemiştir: $1",

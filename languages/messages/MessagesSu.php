@@ -136,7 +136,7 @@ $messages = array(
 'tog-hidepatrolled' => 'Sumputkeun anu geus diroris ti béréndélan nu anyar robah',
 'tog-newpageshidepatrolled' => 'Sumputkeun nu geus diroris tina béréndélan kaca anyar',
 'tog-extendwatchlist' => 'Legaan béréndélan ngarah sakabéh parobahanana kaawaskeun',
-'tog-usenewrc' => 'Nu anyar robah dina wanda séjén (maké JavaScript)',
+'tog-usenewrc' => 'Parobahan grup dumasar kaca dina béréndélan anyar robah jeung awaskeuneun (maké JavaScript)',
 'tog-numberheadings' => 'Nomeran lulugu sacara otomatis',
 'tog-showtoolbar' => "Témbongkeun ''toolbar'' édit (JavaScript)",
 'tog-editondblclick' => 'Édit kaca ku klik ganda (JavaScript)',
@@ -144,17 +144,17 @@ $messages = array(
 'tog-editsectiononrightclick' => 'Fungsikeun ngédit sub-bagean kalawan klik-katuhu dina judul bagean (JavaScript)',
 'tog-showtoc' => 'Témbongkeun daptar eusi<br />(pikeun kaca nu leuwih ti tilu subjudul)',
 'tog-rememberpassword' => 'Apalkeun login kuring dina ieu panyungsi (pikeun paling lila $1 {{PLURAL:$1|poé|poé}})',
-'tog-watchcreations' => 'Awaskeun kaca jieunan kuring',
-'tog-watchdefault' => 'Tambahkeun kaca nu diédit ku anjeun kana awaskeuneun anjeun',
-'tog-watchmoves' => 'Awaskeun kaca nu dipindahkeun ku kuring',
-'tog-watchdeletion' => 'Awaskeun kaca nu dihapus ku kuring',
+'tog-watchcreations' => 'Tambahkeun kaca-kaca jieunan kuring jeung berkas muatan kuring kana awaskeuneun',
+'tog-watchdefault' => 'Tambahkeun kaca jeung berkas anu diédit ku kuring kana awaskeuneun',
+'tog-watchmoves' => 'Tambahkeun kaca jeung berkas anu dipindahkeun ka awaskeuneun',
+'tog-watchdeletion' => 'Tambahkeun kaca jeung berkas anu dihapus kana awaskeuneun',
 'tog-minordefault' => 'Tandaan sadaya éditan salaku minor luyu jeung ti dituna',
 'tog-previewontop' => 'Témbongkeun sawangan méméh kotak édit (lain sanggeusna)',
 'tog-previewonfirst' => 'Témbongkeun sawangan dina éditan munggaran',
 'tog-nocache' => "Tumpurkeun ''cache'' kaca dina pangaprak",
-'tog-enotifwatchlistpages' => 'Surélékan mun robah',
+'tog-enotifwatchlistpages' => 'Lamun aya kaca atawa berkas anu diawaskeun robah, béjaan ngaliwatan surélék',
 'tog-enotifusertalkpages' => 'Mun kaca obrolan kuring robah, béjaan ngaliwatan surélék',
-'tog-enotifminoredits' => 'Béjaan ogé (ngaliwatan surélék) mun aya parobahan leutik dina kacana',
+'tog-enotifminoredits' => 'Béjaan ogé (ngaliwatan surélék) lamun aya parobahan leutik dina kaca jeung berkasna',
 'tog-enotifrevealaddr' => 'Témbongkeun alamat surélék kuring dina surat émbaran',
 'tog-shownumberswatching' => 'Témbongkeun jumlah nu ngawaskeun',
 'tog-oldsig' => 'Paraf nu geus aya:',
@@ -2786,6 +2786,12 @@ Nu séjénna bakal disumputkeun sakumaha asalna.
 'exif-gpslongitude-e' => 'Gurat Wétan',
 'exif-gpslongitude-w' => 'Gurat Kulon',
 
+# Pseudotags used for GPSAltitudeRef
+'exif-gpsaltitude-above-sealevel' => '$1 {{PLURAL:$1|méter|méter}} luhureun beungeut laut',
+'exif-gpsaltitude-below-sealevel' => '$1 {{PLURAL:$1|méter|méter}} handapeun beungeut laut',
+
+'exif-gpsstatus-a' => 'Keur ngukur',
+
 'exif-gpsmeasuremode-2' => 'Ukuran 2-diménsi',
 'exif-gpsmeasuremode-3' => 'Ukuran 3-diménsi',
 
@@ -2794,8 +2800,52 @@ Nu séjénna bakal disumputkeun sakumaha asalna.
 'exif-gpsspeed-m' => 'Mil per jam',
 'exif-gpsspeed-n' => 'Knot',
 
+# Pseudotags used for GPSDestDistanceRef
+'exif-gpsdestdistance-k' => 'Kilométer',
+'exif-gpsdestdistance-m' => 'Mil',
+'exif-gpsdestdistance-n' => 'Mil laut',
+
+'exif-gpsdop-excellent' => 'Sampurna ($1)',
+'exif-gpsdop-good' => 'Alus ($1)',
+'exif-gpsdop-moderate' => 'Moderat ($1)',
+'exif-gpsdop-fair' => 'Cukup ($1)',
+'exif-gpsdop-poor' => 'Awon ($1)',
+
+'exif-objectcycle-a' => 'Isuk-isuk wungkul',
+'exif-objectcycle-p' => 'Soré wungkul',
+'exif-objectcycle-b' => 'Isuk jeung beurang',
+
 # Pseudotags used for GPSTrackRef, GPSImgDirectionRef and GPSDestBearingRef
+'exif-gpsdirection-t' => 'Arah sajati',
 'exif-gpsdirection-m' => 'Arah magnétik',
+
+'exif-ycbcrpositioning-1' => 'Nengah',
+
+'exif-dc-contributor' => 'Kontributor',
+'exif-dc-date' => 'Titimangsa',
+'exif-dc-publisher' => 'Pamedal',
+'exif-dc-relation' => 'Média anu tumali',
+'exif-dc-rights' => 'Hak',
+'exif-dc-source' => 'Média sumber',
+'exif-dc-type' => 'Jenis média',
+
+'exif-rating-rejected' => 'Ditolak',
+
+'exif-isospeedratings-overflow' => 'Leuwih ti 65535',
+
+'exif-iimcategory-ace' => 'Seni, budaya, jeung hiburan',
+'exif-iimcategory-clj' => 'Hukum jeung kajahatan',
+'exif-iimcategory-dis' => 'Bencana jeung kacilakaan',
+'exif-iimcategory-edu' => 'Atikan',
+'exif-iimcategory-evn' => 'Lingkungan',
+'exif-iimcategory-hth' => 'Kawaluyaan',
+'exif-iimcategory-pol' => 'Politik',
+'exif-iimcategory-rel' => 'Ageman jeung kayakinan',
+'exif-iimcategory-soi' => 'Isu sosial',
+'exif-iimcategory-spo' => 'Olahraga',
+'exif-iimcategory-wea' => 'Cuaca',
+
+'exif-urgency-normal' => 'Normal ($1)',
 
 # External editor support
 'edit-externally' => 'Édit koropak ieu migunakeun aplikasi éksternal',
@@ -3010,6 +3060,11 @@ Coba ku sawangan normal.',
 'revdelete-unrestricted' => 'Watesan akses kuncén dihapuskeun',
 'newuserlog-byemail' => 'Sandi geus dikirim maké surélék.',
 
+# Feedback
+'feedback-subject' => 'Ngeunaan:',
+'feedback-message' => 'Surat:',
+'feedback-cancel' => 'Bolay',
+
 # API errors
 'api-error-file-too-large' => 'Berkas nu dikirim gedé teuing.',
 'api-error-filename-tooshort' => 'Ngaran berkas pondok teuing.',
@@ -3017,6 +3072,17 @@ Coba ku sawangan normal.',
 'api-error-filetype-missing' => 'Ngaran berkas euweuh éxténsian.',
 'api-error-illegal-filename' => 'Ngaran berkas kitu dipahing.',
 'api-error-mustbeloggedin' => 'Anjeun kudu asup log pikeun ngunggahkeun berkas.',
+
+# Durations
+'duration-seconds' => '$1 {{PLURAL:$1|detik|detik}}',
+'duration-minutes' => '$1 {{PLURAL:$1|menit|menit}}',
+'duration-hours' => '$1 {{PLURAL:$1|jam|jam}}',
+'duration-days' => '$1 {{PLURAL:$1|poé|poé}}',
+'duration-weeks' => '$1 {{PLURAL:$1|minggu|minggu}}',
+'duration-years' => '$1 {{PLURAL:$1|taun|taun}}',
+'duration-decades' => '$1 {{PLURAL:$1|dékadeu|dékadeu}}',
+'duration-centuries' => '$1 {{PLURAL:$1|abad|abad}}',
+'duration-millennia' => '$1 {{PLURAL:$1|milénium|milénium}}',
 
 # Unknown messages
 'api-error-filetype-banned-type' => '$1 kaasup tipeu koropak nu teu dicaram. {{PLURAL:$3|Nu diwidian nyaéta|Nu diwidian nyaéta}} $2.',

@@ -423,6 +423,8 @@ $2',
 'ns-specialprotected' => 'Le pàgene speciale no ponne essere cangete.',
 'titleprotected' => "Stu titele ha state prutette da 'a ccreazione da [[User:$1|$1]].
 'U mutive jè ''$2''.",
+'exception-nologin' => 'Non ge sì collegate',
+'exception-nologin-text' => "Sta pàgene o azione richiede ca a trasè jndr'à sta uicchi.",
 
 # Virus scanner
 'virus-badscanner' => "Configurazione ca fece schife: Virus scanner scanusciute: ''$1''",
@@ -1607,6 +1609,7 @@ Ce 'u probbleme angore jè presende, condatte 'n'[[Special:ListUsers/sysop|ammin
 'lockmanager-fail-releaselock' => 'Non ge pozze relassà blocche pe "$1".',
 'lockmanager-fail-db-bucket' => "Non ge pozze condattà 'u database purcé stonne troppe blocche jndr'à $1.",
 'lockmanager-fail-db-release' => "Non ge pozze relassà le blocche sus a 'u database $1.",
+'lockmanager-fail-svr-acquire' => "Non ge pozze pigghià le blocche sus a 'u server $1.",
 'lockmanager-fail-svr-release' => "Non ge pozze relassà le blocche sus a 'u server $1.",
 
 # ZipDirectoryReader
@@ -1913,6 +1916,7 @@ Pe piacere note ca otre site de Indernette ponne appondà a 'nu file cu 'na URL 
 Tu puè restringere 'a viste selezionanne 'u tipe de archivije, 'u nome utende (senzibbile a le maiuscole), o le pàggene coinvolte (pure chiste senzibbile a le maiuscole).",
 'logempty' => "Non ge stè 'n'anema de priatorie jndr'à l'archivije.",
 'log-title-wildcard' => 'Cirche le titele ca accumenzene cu stu teste',
+'showhideselectedlogentries' => "Fà vedè/scunne le righe scacchiate de l'archivije",
 
 # Special:AllPages
 'allpages' => 'Tutte le pàggene',
@@ -2154,6 +2158,8 @@ và cunge cunge!",
 'rollback' => 'Annulle le cangiaminde',
 'rollback_short' => 'Annulle',
 'rollbacklink' => "annulle 'u cangiaminde",
+'rollbacklinkcount' => 'annulle $1 {{PLURAL:$1|cangiamende|cangiaminde}}',
+'rollbacklinkcount-morethan' => 'annulle cchiù de $1 {{PLURAL:$1|cangiamende|cangiaminde}}',
 'rollbackfailed' => 'Annullamende fallite',
 'cantrollback' => "Non ge se pò annullà stu cangiamende;
 l'urteme condrebbutore jè sulamende l'autore de sta pàgene.",
@@ -2847,6 +2853,7 @@ Stu fatte ha state causate da 'nu collegamende a 'nu site esterne ca appartene a
 'spambot_username' => "Sdevacatore d'u spam de MediaUicchi",
 'spam_reverting' => "Turnanne a l'urtema revisione no ge condiene collegaminde a $1",
 'spam_blanking' => 'Tutte le revisiune condènene collegaminde a $1, vacande',
+'spam_deleting' => 'Tutte le revisiune condènene collegaminde a $1, stoche a scangelle',
 
 # Info page
 'pageinfo-title' => '\'Mbormaziune pe "$1"',

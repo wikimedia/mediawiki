@@ -1148,6 +1148,7 @@ $2개 보다 적게 써야 하지만 지금은 $1개를 쓰고 있습니다.",
 'expansion-depth-exceeded-warning' => '페이지가 확장 깊이를 초과하였습니다',
 'parser-unstrip-loop-warning' => '스트립하지 않는 반복이 감지되었습니다',
 'parser-unstrip-recursion-limit' => '스트립하지 않는 재귀 한도가 초과됨 ($1)',
+'converter-manual-rule-error' => '언어 변환 규칙을 수동으로 지정하는 도중 오류',
 
 # "Undo" feature
 'undo-success' => '편집을 되돌릴 수 있습니다.

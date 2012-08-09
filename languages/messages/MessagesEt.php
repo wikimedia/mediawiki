@@ -3651,7 +3651,7 @@ Sa võid [[Special:EditWatchlist|kasutada ka harilikku tekstiredaktorit]].',
 'signature' => '[[{{ns:user}}:$1|$2]] ([[{{ns:user_talk}}:$1|arutelu]])',
 
 # Core parser functions
-'unknown_extension_tag' => 'Tundmatu lisa märgend "$1".',
+'unknown_extension_tag' => 'Tundmatu lisa silt "$1".',
 'duplicate-defaultsort' => '\'\'\'Hoiatus:\'\'\' Järjestamisvõti "$2" tühistab eespool oleva järjestamisvõtme "$1".',
 
 # Special:Version
@@ -3887,5 +3887,5 @@ Kui ei, kasuta allolevat lihtsat vormi. Sinu kommentaar lisatakse koos kasutajan
 'duration-millennia' => '$1 {{PLURAL:$1|aastatuhande}}',
 
 # Unknown messages
-'api-error-filetype-banned-type' => '$1 pole lubatud {{PLURAL:$3|failitüüp|failitüübid}}.  Lubatud {{PLURAL:$3|failitüüp|failitüübid}} on  $2.',
+'api-error-filetype-banned-type' => '$1 pole lubatud {{PLURAL:$4|failitüüp|failitüübid}}.  Lubatud {{PLURAL:$3|failitüüp|failitüübid}} on  $2.',
 );

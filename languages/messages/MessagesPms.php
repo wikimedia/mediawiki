@@ -453,6 +453,7 @@ Che as dësmentia pa ëd cambié ij [[Special:Preferences|"sò gust" an {{SITENA
 'remembermypassword' => "Vis-te mia ciav ansima a st'ordinator-sì (për al pi $1 {{PLURAL:$1|di|di}})",
 'securelogin-stick-https' => "Resté colegà an HTTPS apress d'esse intrà ant ël sistema",
 'yourdomainname' => 'Sò domini',
+'password-change-forbidden' => 'It peule pa cangé le ciav dzora a sta wiki-sì.',
 'externaldberror' => "Ò che a l'é rivaje n'eror d'autenticassion esterna, ò pura a l'é chiel (chila) che a l'é nen autorisà a agiornesse sò cont estern.",
 'login' => 'Rintré ant ël sistema',
 'nav-login-createaccount' => 'rintré ant ël sistema',
@@ -693,6 +694,9 @@ o purament [{{fullurl:{{FULLPAGENAME}}|action=edit}} modìfiché la pàgina ades
 'noarticletext-nopermission' => 'Al moment a-i é pa gnun test an sta pàgina-sì.
 It peule [[Special:Search/{{PAGENAME}}|sërché sto tìtol ëd pàgina-sì]] an d\'àutre pàgine,
 o <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} sërché j\'argistrassion colegà]</span>.',
+'missing-revision' => "La revision #\$1 dla pagina ciamà \"{{PAGENAME}}\" a esist pa.
+
+Sòn a l'é normalment causà da l'andé dré a un vej colegament stòrich a na pagina ch'a l'é staita canselà. Ij detaj a peulo esse trovà ant ël [registr ëd le canselassion ëd {{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}}].",
 'userpage-userdoesnotexist' => 'Lë stranòm "<nowiki>$1</nowiki>" a l\'é pa registrà. Për piasì ch\'a varda se da bon a veul creé/modifiché sta pàgina.',
 'userpage-userdoesnotexist-view' => 'Ël cont utent "$1" a l\'é pa registrà.',
 'blocked-notice-logextract' => "S'utent a l'é al moment blocà.
@@ -818,6 +822,7 @@ Costi paràmeter a son stàit lassà fòra.",
 'expansion-depth-exceeded-warning' => "La pàgina a l'ha sorpassà la profondità d'espansion",
 'parser-unstrip-loop-warning' => 'Trovà un sicl nen dësmontàbil',
 'parser-unstrip-recursion-limit' => "Sorpassà ël lìmit d'arcorensa nen dësmontàbil: $1",
+'converter-manual-rule-error' => 'Eror trovà ant la régola ëd conversion manual ëd la lenga',
 
 # "Undo" feature
 'undo-success' => "Sta modìfica-sì as peul scancelesse. Për piasì, ch'a contròla ambelessì sota për esse sigur che a l'é pro lòn che a veul fé, e peuj ch'as salva lòn ch'a l'ha butà chiel/chila për finì dë scancelé la modìfica ch'a-i era.",
@@ -1002,6 +1007,11 @@ Ch'a varda mach che a-i ven-a nen fòra un rabel ant la continuità stòrica.",
 'editundo' => "buta 'me ch'a l'era",
 'diff-multi' => "({{PLURAL:$1|Na revision antërmedia|$1 revision antërmedie}} ëd {{PLURAL:$2|n'utent|$2 utent}} pa mostrà)",
 'diff-multi-manyusers' => "({{PLURAL:$1|Na revision antërmedia|$1 revision antërmedie}} da pi che $2 {{PLURAL:$2|n'utent|utent}} pa mostrà)",
+'difference-missing-revision' => "{{PLURAL:$2|Na revision|$2 revision}} dë sta diferensa ($1) a {{PLURAL:$2|l'é pa stàita|son pa stàite}} trovà.
+
+
+
+Sòn a l'é normalment causà da l'andé dré a un vej colegament stòrich a na pagina ch'a l'é staita canselà. Ij detaj a peulo esse trovà ant ël [registr ëd le canselassion ëd {{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}}].",
 
 # Search results
 'searchresults' => "Arzultà dl'arserca",
@@ -1272,6 +1282,7 @@ Costa anformassion a sarà pùblica.",
 'right-writeapi' => "Dovré l'API dë scritura",
 'right-delete' => 'Scancelé dle pàgine',
 'right-bigdelete' => 'Scancelé dle pàgine con na stòria longa',
+'right-deletelogentry' => 'Cansela e riprìstina vos ëd registr specìfiche',
 'right-deleterevision' => 'Scancelé e disdëscancelé na version ëspessìfica ëd na pàgina',
 'right-deletedhistory' => 'Vardé le revision ëscancelà ëd la stòria, sensa sò test',
 'right-deletedtext' => 'Vëdde ël test ëscancelà e le modìfiche antra le revision ëscancelà',
@@ -2133,6 +2144,8 @@ ch'a daga da ment a lòn ch'a fa.",
 'rollback' => 'Gavé via le modìfiche',
 'rollback_short' => 'Ripristiné',
 'rollbacklink' => "ripristiné j'archivi",
+'rollbacklinkcount' => 'rollback ëd $1 {{PLURAL:$1|modìfica|modìfiche}}',
+'rollbacklinkcount-morethan' => 'rollback ëd pi che $1 {{PLURAL:$1|modìfica|modìfiche}}',
 'rollbackfailed' => "A l'é pa podusse ripristiné",
 'cantrollback' => "As peul pa tornesse a na version pì veja: l'ùltima modìfica a l'ha fala l'ùnich utent che a l'abia travajà a cost artìcol-sì.",
 'alreadyrolled' => "As peulo pa anulé j'ultime modìfiche ëd [[:$1]] fàite da [[User:$2|$2]] ([[User talk:$2|Talk]]{{int:pipe-separator}}[[Special:Contributions/$2|{{int:contribslink}}]]);

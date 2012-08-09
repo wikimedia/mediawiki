@@ -956,6 +956,7 @@ Hindi isasama ang ilang mga suleras.',
 'expansion-depth-exceeded-warning' => 'Lumampas ang pahina sa lalim ng paglawak',
 'parser-unstrip-loop-warning' => 'Napansin ang silo ng hindi pagtalop',
 'parser-unstrip-recursion-limit' => 'Nalampasan ang hangganan ng rekursiyon ng hindi pagtalop ($1)',
+'converter-manual-rule-error' => 'Napansin ang kamalian sa alituntunin ng kinakamay na pagpapalit ng wika',
 
 # "Undo" feature
 'undo-success' => 'Matatanggal ang pagbabago.

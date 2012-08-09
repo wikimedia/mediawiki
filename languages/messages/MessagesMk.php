@@ -1143,6 +1143,7 @@ $2
 'expansion-depth-exceeded-warning' => 'Страницата ја надмина длабочината на проширувањето',
 'parser-unstrip-loop-warning' => 'Утврдена е јамка',
 'parser-unstrip-recursion-limit' => 'Пречекорена е границата на рекурзија ($1)',
+'converter-manual-rule-error' => 'Пронајдов грешка во правилото за рачно претворање на јазик',
 
 # "Undo" feature
 'undo-success' => 'Уредувањето може да се откаже.

@@ -706,6 +706,7 @@ Tài khoản của bạn đã mở.
 'remembermypassword' => 'Nhớ thông tin đăng nhập của tôi trên máy tính này (cho đến $1 ngày)',
 'securelogin-stick-https' => 'Giữ kết nối với HTTPS sau khi đăng nhập',
 'yourdomainname' => 'Tên miền của bạn:',
+'password-change-forbidden' => 'Bạn không thể đổi mật khẩu trên wiki này.',
 'externaldberror' => 'Có lỗi khi xác nhận cơ sở dữ liệu bên ngoài hoặc bạn không được phép cập nhật tài khoản bên ngoài.',
 'login' => 'Đăng nhập',
 'nav-login-createaccount' => 'Đăng nhập / Mở tài khoản',
@@ -947,6 +948,10 @@ hoặc [{{fullurl:{{FULLPAGENAME}}|action=edit}} sửa đổi trang này]</span>
 'noarticletext-nopermission' => 'Trang này hiện đang trống.
 Bạn có thể [[Special:Search/{{PAGENAME}}|tìm kiếm tựa trang này]] tại các trang khác,
 hoặc <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} tìm kiếm các nhật trình liên quan]</span>.',
+'missing-revision' => 'Phiên bản #$1 của trang có tên “{{PAGENAME}}” không tồn tại.
+
+Lỗi này thường xuất hiện đối khi theo dõi liên kết lỗi thời đến phiên bản cũ của một trang đã bị xóa.
+Xem chi tiết trong [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} nhật trình xóa].',
 'userpage-userdoesnotexist' => 'Tài khoản mang tên “<nowiki>$1</nowiki>” chưa được đăng ký. Xin hãy kiểm tra lại nếu bạn muốn tạo/sửa trang này.',
 'userpage-userdoesnotexist-view' => 'Tài khoản “$1” chưa được đăng ký.',
 'blocked-notice-logextract' => 'Người dùng này hiện đang bị cấm sửa đổi. Nhật trình cấm gần nhất được ghi ở dưới để tiện theo dõi:',
@@ -1071,6 +1076,7 @@ Những giá trị này sẽ bị bỏ đi.',
 'expansion-depth-exceeded-warning' => 'Trang bung bản mẫu sâu quá',
 'parser-unstrip-loop-warning' => 'Vòng lặp unstrip',
 'parser-unstrip-recursion-limit' => 'Đã vượt quá giới hạn về độ sâu đệ quy unstrip ($1)',
+'converter-manual-rule-error' => 'Lỗi được phát hiện trong quy tắc chuyển đổi ngôn ngữ thủ công',
 
 # "Undo" feature
 'undo-success' => 'Các sửa đổi có thể được lùi lại. Xin hãy kiểm tra phần so sánh bên dưới để xác nhận lại những gì bạn muốn làm, sau đó lưu thay đổi ở dưới để hoàn tất việc lùi lại sửa đổi.',
@@ -1257,6 +1263,10 @@ Xin hãy bảo đảm giữ vững tính liên tục của lịch sử trang.',
 'editundo' => 'lùi sửa',
 'diff-multi' => '(Không hiển thị {{PLURAL:$1||$1}} phiên bản {{PLURAL:$2||của $2 thành viên}} ở giữa)',
 'diff-multi-manyusers' => '(Không hiển thị {{PLURAL:$1||$1}} phiên bản của hơn $2 thành viên ở giữa)',
+'difference-missing-revision' => 'Không tìm thấy {{PLURAL:$2|một phiên bản|$2 phiên bản}} trong khác biệt này ($1).
+
+Lỗi này thường xuất hiện đối khi theo dõi liên kết lỗi thời đến khác biệt giữa các bản của trang đã bị xóa.
+Xem chi tiết trong [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} nhật trình xóa].',
 
 # Search results
 'searchresults' => 'Kết quả tìm kiếm',
@@ -1524,12 +1534,13 @@ Nếu bạn đồng ý cung cấp, nó sẽ dùng để ghi nhận công lao c�
 'right-writeapi' => 'Sử dụng API để viết',
 'right-delete' => 'Xóa trang',
 'right-bigdelete' => 'Xóa trang có lịch sử lớn',
+'right-deletelogentry' => 'Xóa và phục hồi khoản mục nhật trình nào đó',
 'right-deleterevision' => 'Xóa và phục hồi phiên bản nào đó của trang',
 'right-deletedhistory' => 'Xem phần lịch sử đã xóa, mà không xem nội dung đi kèm',
 'right-deletedtext' => 'Xem văn bản đã xóa và các thay đổi giữa phiên bản đã xóa',
 'right-browsearchive' => 'Tìm kiếm trang đã bị xóa',
 'right-undelete' => 'Phục hồi trang',
-'right-suppressrevision' => 'Xem lại và phục hồi phiên bản mà Sysop không thấy',
+'right-suppressrevision' => 'Xem và phục hồi phiên bản mà bảo quản viên không thấy',
 'right-suppressionlog' => 'Xem nhật trình riêng tư',
 'right-block' => 'Cấm thành viên khác sửa đổi',
 'right-blockemail' => 'Cấm người dùng gửi thư điện tử',
@@ -1588,7 +1599,7 @@ Nếu bạn đồng ý cung cấp, nó sẽ dùng để ghi nhận công lao c�
 'action-deletedhistory' => 'xem các phiên bản đã bị xóa của trang này',
 'action-browsearchive' => 'tìm kiếm trang đã bị xóa',
 'action-undelete' => 'phục hồi trang này',
-'action-suppressrevision' => 'duyệt và phục hồi phiên bản bị giấu này',
+'action-suppressrevision' => 'xem và phục hồi phiên bản ẩn này',
 'action-suppressionlog' => 'xem nhật trình ẩn giấu này',
 'action-block' => 'cấm không cho người dùng này sửa đổi',
 'action-protect' => 'thay đổi mức khóa của trang này',
@@ -2036,7 +2047,7 @@ Hãy nhớ kiểm tra các liên kết khác đến bản mẫu trước khi xó
 
 'disambiguations' => 'Trang liên kết đến trang định hướng',
 'disambiguationspage' => 'Template:disambig',
-'disambiguations-text' => "Các trang này có liên kết đến một '''trang định hướng'''. Nên sửa các liên kết này để chỉ đến một trang đúng nghĩa hơn.<br />Các trang định hướng là trang sử dụng những bản mẫu được liệt kê ở [[MediaWiki:Disambiguationspage]].",
+'disambiguations-text' => "Các trang này có liên kết đến ít nhất một '''trang định hướng''', những trang này có thể có liên kết đến các trang đúng nghĩa hơn.<br />Các trang định hướng là trang sử dụng những bản mẫu được liệt kê ở [[MediaWiki:Disambiguationspage]].",
 
 'doubleredirects' => 'Đổi hướng kép',
 'doubleredirectstext' => 'Trang này liệt kê các trang đổi hướng đến một trang đổi hướng khác.
@@ -2377,6 +2388,8 @@ hãy cẩn trọng khi thực hiện.',
 'rollback' => 'Lùi tất cả sửa đổi',
 'rollback_short' => 'Lùi tất cả',
 'rollbacklink' => 'lùi tất cả',
+'rollbacklinkcount' => 'lùi tất cả $1 sửa đổi',
+'rollbacklinkcount-morethan' => 'lùi tất cả hơn $1 sửa đổi',
 'rollbackfailed' => 'Lùi sửa đổi không thành công',
 'cantrollback' => 'Không lùi sửa đổi được;
 người viết trang cuối cùng cũng là tác giả duy nhất của trang này.',
@@ -2984,7 +2997,7 @@ Lưu nó vào máy tính của bạn rồi tải nó lên đây.',
 'tooltip-watchlistedit-raw-submit' => 'Cập nhật danh sách theo dõi',
 'tooltip-recreate' => 'Tạo lại trang dù cho nó vừa bị xóa',
 'tooltip-upload' => 'Bắt đầu tải lên',
-'tooltip-rollback' => '"Lùi tất cả" sẽ lùi mọi sửa đổi của người sửa đổi cuối cùng chỉ bằng một cú nhấp chuột.',
+'tooltip-rollback' => '“Lùi tất cả” sẽ lùi mọi sửa đổi của người sửa đổi cuối cùng chỉ bằng một cú nhấp chuột.',
 'tooltip-undo' => '"Lùi lại" sẽ lùi sửa đổi này và mở trang sửa đổi ở chế độ xem thử. Cho phép thêm lý do vào tóm lược.',
 'tooltip-preferences-save' => 'Lưu tùy chọn',
 'tooltip-summary' => 'Hãy nhập câu tóm lược',

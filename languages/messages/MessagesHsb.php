@@ -913,6 +913,7 @@ Dyrbjała mjenje hač $2 {{PLURAL:$2|wołanje|wołanjej|wołanja|wołanjow}} mě
 'expansion-depth-exceeded-warning' => 'Strona je ekspansisku hłubokosć překročił',
 'parser-unstrip-loop-warning' => 'Njeskónčna sekla namakana',
 'parser-unstrip-recursion-limit' => 'Rekursiska hranica překročena ($1)',
+'converter-manual-rule-error' => 'Zmylk w manuelnym prawidle rěčneho konwertowanja namakany',
 
 # "Undo" feature
 'undo-success' => 'Wersija je so wuspěšnje wotstroniła. Prošu přepruwuj deleka w přirunanskim napohledźe, hač twoja změna bu přewzata a klikń potom na „Składować”, zo by změnu składował.',

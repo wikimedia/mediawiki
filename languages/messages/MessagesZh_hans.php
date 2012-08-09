@@ -673,6 +673,7 @@ $2',
 'remembermypassword' => '在此浏览器上保留我的登录信息（最长$1{{PLURAL:$1|日|日}}）',
 'securelogin-stick-https' => '登陆后继续使用 HTTPS 连接',
 'yourdomainname' => '您的域名：',
+'password-change-forbidden' => '您不能更改此wiki上的密码。',
 'externaldberror' => '这可能是由于验证数据库错误或您被禁止更新您的外部账号。',
 'login' => '登录',
 'nav-login-createaccount' => '登录/创建账户',
@@ -1003,6 +1004,7 @@ $2
 'expansion-depth-exceeded-warning' => '页面超过了扩展深度',
 'parser-unstrip-loop-warning' => '检测到回圈',
 'parser-unstrip-recursion-limit' => '递归超过限制 ($1)',
+'converter-manual-rule-error' => '手动语言转换规则中检测到错误',
 
 # "Undo" feature
 'undo-success' => '此编辑可以被撤销。请检查以下比较以核实这正是您想做的，然后保存以下更改完成撤销编辑。',
@@ -1431,6 +1433,7 @@ $1",
 'right-writeapi' => '使用书写API',
 'right-delete' => '删除页面',
 'right-bigdelete' => '删除有大型历史的页面',
+'right-deletelogentry' => '删除和恢复特定的日志项目',
 'right-deleterevision' => '删除和恢复页面的特定版本',
 'right-deletedhistory' => '查看被删除的历史条目，无其相关文字',
 'right-deletedtext' => '查看被删除的版本间的被删除的文字和更改',
@@ -1916,7 +1919,7 @@ $1',
 
 'disambiguations' => '链接至消歧义页的页面',
 'disambiguationspage' => 'Template:消歧义',
-'disambiguations-text' => "以下的页面都有到'''消歧义页'''的链接，但它们应该链接到适当的页面。<br />一个页面如果使用了[[MediaWiki:Disambiguationspage]]内的模板，则会被视为消歧义页。",
+'disambiguations-text' => "以下的页面都有到'''消歧义页'''的链接，但它们可能可以链接到更适当的页面。<br />一个页面如果使用了[[MediaWiki:Disambiguationspage]]内的模板，则会被视为消歧义页。",
 
 'doubleredirects' => '双重重定向页',
 'doubleredirectstext' => '此页列出了所有重定向到另一重定向页面的页面。每一行都包含有到第一和第二个重定向页面的链接，以及第二个重定向页面的目标——通常就是“真正的”目标页面，亦即是第一个重定向页面应该指向的页面。<del>已划去</del>的为已经解决的项目。',
@@ -2247,6 +2250,8 @@ $UNWATCHURL
 'rollback' => '回退编辑',
 'rollback_short' => '回退',
 'rollbacklink' => '回退',
+'rollbacklinkcount' => '回退$1次编辑',
+'rollbacklinkcount-morethan' => '回退超过$1次的编辑',
 'rollbackfailed' => '回退失败',
 'cantrollback' => '无法恢复编辑。最后的贡献者是本文的唯一作者。',
 'alreadyrolled' => '无法回退[[User:$2|$2]]（[[User talk:$2|讨论]]{{int:pipe-separator}}[[Special:Contributions/$2|{{int:contribslink}}]]）对[[:$1]]的编辑，其他人已经编辑或者回退了该页。
@@ -3833,5 +3838,5 @@ MediaWiki是基于使用目的而加以发布，然而不负任何担保责任�
 'duration-millennia' => '$1千年',
 
 # Unknown messages
-'api-error-filetype-banned-type' => '$1{{PLURAL:$4|不是一个允许的文件类型|不是一个允许的文件类型}}。 允许 {{PLURAL:$3|文件类型是|文件类型是}} $2。',
+'api-error-filetype-banned-type' => '$1{{PLURAL:$4|不是允许的文件类型}}。允许的{{PLURAL:$3|文件类型是|文件类型有}}$2。',
 );

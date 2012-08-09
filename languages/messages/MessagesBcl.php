@@ -1186,8 +1186,12 @@ Ini dae tabi matitingkog.',
 'prefs-help-realname' => 'Opsyonal an totoong pangaran asin kun itatao mo ini, gagamiton ini yangarig an mga sinurat mo maatribuir saimo.',
 'prefs-help-email' => 'Opsyonal an e-koreo, alagad pwede ka na masosog kan iba sa paagi kan saimong pahina o pahina nin olay na dai kinakaipuhan na ipabisto an identidad mo.',
 'prefs-help-email-required' => 'Kaipuhan an e-koreo.',
+'prefs-displaysearchoptions' => 'Ipahiling ang mga pagpipilian',
+'prefs-displaywatchlist' => 'Ipahiling ang mga pagpipilian',
+'prefs-diffs' => 'Diffs',
 
 # User preference: e-mail validation using jQuery
+'email-address-validity-valid' => 'An e-koreo nagpapahiling na balido',
 'email-address-validity-invalid' => 'Magkaag nin sarong balidong e-koreong address',
 
 # User rights
@@ -1261,6 +1265,7 @@ Ini dae tabi matitingkog.',
 'right-writeapi' => 'Gamit kan pagsurat sa API',
 'right-delete' => 'Puraon an mga pahina',
 'right-bigdelete' => 'Puraon an mga pahina na igwang darakulang mga historiya',
+'right-deletelogentry' => 'Puraon asin dae pagpuran an espesipikong mga entrada sa log',
 'right-deleterevision' => 'Puraon asin dae puraon an espisipikong pagbabago kan mga pahina',
 'right-deletedhistory' => 'Tanawon an pinagpurang mga entradang historiya, na dae kan saindang asosyadong teksto',
 'right-deletedtext' => 'Tanawon an pinagpurang teksto asin mga karibay sa tahaw kan mga pagbabagong pinagpura na',
@@ -1453,6 +1458,10 @@ An pinagtutugutan na {{PLURAL:$3|tipo nin sagunson|mga tipo nin mga sagunson}} $
 'emptyfile' => "Garo mayong laog an ''file'' na kinarga mo. Pwede ser na salâ ining tipo nin ''filename''. Isegurado tabî kun talagang boot mong ikarga ining ''file''.",
 'windows-nonascii-filename' => 'Ining wiki dae tabi nagsusuporta kan mga pangaran kan sagunson na igwang espesyal na mga karakter.',
 'fileexists' => "Igwa nang ''file'' na may parehong pangaran sa ini, sosogon tabî an '''<tt>[[:$1]]</tt>''' kun dai ka seguradong ribayan ini.
+[[$1|thumb]]",
+'filepageexists' => "An pahinang pandeskripsyon kaining sagunson pinagmukna na tabi sa '''<tt>[[:$1]]</tt>''', alagad mayong sagunson na igwa kaining pangaran sa ngunyan nag-eeksister.
+An sumaryong na saimong ipinaglaog dae minaluwas sa pahina kan deskription.
+Tanganing gibohon na an saimong sumaryo magluwas duman, kaipohan mong manwal na pagliliwat kaini.
 [[$1|thumb]]",
 'fileexists-extension' => "May ''file'' na may parehong pangaran: [[$2|thumb]]
 * Pangaran kan pigkakargang ''file'': '''<tt>[[:$1]]</tt>'''

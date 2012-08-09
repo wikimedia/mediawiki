@@ -753,6 +753,7 @@ $1',
 'previewnote' => "'''هېر مو نه شي چې دا يواځې يوه مخليدنه ده.'''
 ستاسې لخوا ترسره شوي بدلونونه لا تر اوسه پورې نه دي خوندي شوي!!",
 'editing' => 'د $1 سمونه',
+'creating' => '$1 جوړېدنې کې دی',
 'editingsection' => 'سمونه $1 (برخه)',
 'editingcomment' => 'د $1 سمون (نوې برخه)',
 'editconflict' => 'په سمادولو کې خنډ: $1',
@@ -804,6 +805,9 @@ $1',
 'post-expand-template-inclusion-warning' => "'''ګواښنه:''' دا کينډۍ د خپل ټاکلي بريد نه ډېره لويه ده.
 ځينې کينډۍ به په کې ګډې نه شي.",
 'post-expand-template-inclusion-category' => 'هغه مخونه چې په کې د کارېدلو کينډيو شمېر له ټاکلې کچې ډېر دی',
+'post-expand-template-argument-warning' => "'''ګواښنه:''' دا مخ لږ تر لږه د يوې کينډۍ عاملين لري چې بې حده لوی دی.
+دا عاملين ړنګ شول.",
+'post-expand-template-argument-category' => 'هغه مخونه چې د کينډۍ ړنګ شوي عاملين لري.',
 
 # "Undo" feature
 'undo-norev' => 'دا سمون ناکړ کېدلای نه شي دا ځکه چې دا سمون نشته او يا هم ړنګ شوی.',
@@ -996,7 +1000,7 @@ $1',
 'saveprefs' => 'خوندي کول',
 'resetprefs' => 'بيا سمول',
 'restoreprefs' => 'ټولې تلواليزې امستنې پرځای کول',
-'prefs-editing' => 'د سمولو په حال کې',
+'prefs-editing' => 'سمېدنې کې دی',
 'prefs-edit-boxsize' => 'د سمون کړکۍ کچه.',
 'rows' => 'ليکې:',
 'columns' => 'ستنې:',
@@ -2391,7 +2395,7 @@ $5
 'autosumm-new' => 'د "$1" تورو مخ جوړ شو',
 
 # Live preview
-'livepreview-loading' => 'د برسېرېدلو په حال کې...',
+'livepreview-loading' => 'برسېرېدنې کې دی...',
 'livepreview-ready' => 'برسېرېدنه ... چمتو ده!',
 
 # Watchlist editor
