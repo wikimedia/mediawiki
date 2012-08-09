@@ -12,7 +12,7 @@
 
 		// Hide active diff, used templates, old preview if shown
 		var copyElements = ['#wikiPreview', '.templatesUsed', '.hiddencats',
-							'#catlinks'];
+							'#catlinks', '#p-lang'];
 		var copySelector = copyElements.join(',');
 
 		$.each( copyElements, function(k,v) { $(v).fadeOut('fast'); } );
@@ -123,6 +123,17 @@
 	};
 
 	$(document).ready( function() {
+		// construct space for interwiki links if missing
+		// (it is usually not shown when action=edit, but shown if action=submit)
+		if(!document.getElementById('p-lang') && document.getElementById('p-tb'))
+		{
+			// out of all skins with a sidebar, only Vector uses different class name
+			var className = (mw.config.get('skin') == 'vector' ? 'portal' : 'portlet')
+			
+			// we need not hide this, because it's empty anyway
+			$('#p-tb').after( $('<div>').addClass(className).attr('id', 'p-lang') )
+		}
+		
 		$('#wpPreview').click( doLivePreview );
 	} );
 }) ( jQuery );
