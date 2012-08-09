@@ -7,6 +7,9 @@
 
 		$( mw ).trigger( 'LivePreviewPrepare' );
 
+		// Jump to the preview
+		$( '#wikiPreview' )[0].scrollIntoView();
+
 		var postData = $('#editform').formToArray();
 		postData.push( { 'name' : 'wpPreview', 'value' : '1' } );
 
@@ -15,7 +18,9 @@
 							'#catlinks'];
 		var copySelector = copyElements.join(',');
 
-		$.each( copyElements, function(k,v) { $(v).fadeOut('fast'); } );
+		$.each( copyElements, function( k, v ) {
+			$( v ).fadeTo( 'fast', 0.4 );
+		} );
 
 		// Display a loading graphic
 		var loadSpinner = $('<div class="mw-ajax-loader"/>');
@@ -41,9 +46,11 @@
 					$(copyElements[i]).prop( 'class', newClasses );
 				}
 
-				$.each( copyElements, function(k,v) {
+				$.each( copyElements, function( k, v ) {
 					// Don't belligerently show elements that are supposed to be hidden
-					$(v).fadeIn( 'fast', function() { $(this).css('display', ''); } );
+					$( v ).fadeTo( 'fast', 1, function() {
+						$( this ).css( 'display', '' );
+					} );
 				} );
 
 				loadSpinner.remove();
