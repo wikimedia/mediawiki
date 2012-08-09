@@ -253,15 +253,13 @@ class Uri {
 	 * @return Uri this URI object
 	 */
 	public function extendQuery( $parameters ) {
-		if ( is_string( $parameters ) ) {
+		if ( !is_array( $parameters ) ) {
 			$parameters = wfCgiToArray( $parameters );
 		}
 
 		$query = $this->getQuery();
-		if ( count( $parameters ) ) {
-			foreach( $parameters as $key => $value ) {
-				$query[$key] = $value;
-			}
+		foreach( $parameters as $key => $value ) {
+			$query[$key] = $value;
 		}
 
 		$this->setQuery( $query );
