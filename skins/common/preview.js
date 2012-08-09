@@ -7,6 +7,15 @@
 
 		$( mw ).trigger( 'LivePreviewPrepare' );
 
+		var $wikiPreview = $( '#wikiPreview' );
+		
+		// show #wikiPreview if it's hidden (if it is hidden, it's also empty, so nothing changes in the rendering)
+		// to be able to scroll to it
+		$wikiPreview.show();
+		
+		// Jump to where the preview will appear
+		$wikiPreview[0].scrollIntoView();
+
 		var postData = $('#editform').formToArray();
 		postData.push( { 'name' : 'wpPreview', 'value' : '1' } );
 
@@ -15,11 +24,15 @@
 							'#catlinks'];
 		var copySelector = copyElements.join(',');
 
-		$.each( copyElements, function(k,v) { $(v).fadeOut('fast'); } );
+		$.each( copyElements, function( k, v ) {
+			$( v ).fadeTo( 'fast', 0.4 );
+		} );
 
 		// Display a loading graphic
 		var loadSpinner = $('<div class="mw-ajax-loader"/>');
-		$('#wikiPreview').before( loadSpinner );
+		// Move away from header (default is -16px)
+		loadSpinner.css('top', '0');
+		$wikiPreview.before( loadSpinner );
 
 		var page = $('<div/>');
 		var target = $('#editform').attr('action');
@@ -41,9 +54,11 @@
 					$(copyElements[i]).prop( 'class', newClasses );
 				}
 
-				$.each( copyElements, function(k,v) {
+				$.each( copyElements, function( k, v ) {
 					// Don't belligerently show elements that are supposed to be hidden
-					$(v).fadeIn( 'fast', function() { $(this).css('display', ''); } );
+					$( v ).fadeTo( 'fast', 1, function() {
+						$( this ).css( 'display', '' );
+					} );
 				} );
 
 				loadSpinner.remove();
