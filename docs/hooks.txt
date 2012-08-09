@@ -266,7 +266,7 @@ $reason: the reason for the move (added in 1.13)
 
 'AbortNewAccount': Return false to cancel explicit account creation.
 $user: the User object about to be created (read-only, incomplete)
-&$msg: out parameter: name of error message to display on abort
+&$msg: out parameter: HTML to display on abort
 
 'ActionBeforeFormDisplay': before executing the HTMLForm object
 $name: name of the action
