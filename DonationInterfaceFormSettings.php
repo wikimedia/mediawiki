@@ -65,7 +65,7 @@ $wgGlobalCollectGatewayAllowedHtmlForms['bt-CA'] = $wgGlobalCollectGatewayHtmlFo
 $wgGlobalCollectGatewayAllowedHtmlForms['bt-US'] = $wgGlobalCollectGatewayHtmlFormDir . '/bt/bt-US.html';
 
 // Direct Debit
-$wgGlobalCollectGatewayAllowedHtmlForms['dd-ES'] = $wgGlobalCollectGatewayHtmlFormDir . '/dd/dd-ES.html';
+//$wgGlobalCollectGatewayAllowedHtmlForms['dd-ES'] = $wgGlobalCollectGatewayHtmlFormDir . '/dd/dd-ES.html';
 
 //Electronic Wallet - Webmoney
 $wgGlobalCollectGatewayAllowedHtmlForms['ew-webmoney'] = $wgGlobalCollectGatewayHtmlFormDir .'/ew/ew-webmoney.html';
@@ -83,7 +83,6 @@ $wgGlobalCollectGatewayAllowedHtmlForms['rtbt-ideal-noadd'] = $wgGlobalCollectGa
 $wgGlobalCollectGatewayAllowedHtmlForms['obt-bpay'] = $wgGlobalCollectGatewayHtmlFormDir . '/obt/obt-bpay.html';
 
 // RCC
-/** DISABLING 2012-08-08 PG
 $wgGlobalCollectGatewayAllowedHtmlForms['rcc'] = $wgGlobalCollectGatewayHtmlFormDir . '/rcc/rcc.html';
 $wgGlobalCollectGatewayAllowedHtmlForms['rcc-vm'] = $wgGlobalCollectGatewayHtmlFormDir . '/rcc/rcc-vm.html';
 $wgGlobalCollectGatewayAllowedHtmlForms['rcc-vma'] = $wgGlobalCollectGatewayHtmlFormDir . '/rcc/rcc-vma.html';
@@ -122,7 +121,6 @@ $wgGlobalCollectGatewayAllowedHtmlForms['cc-CA'] = $wgGlobalCollectGatewayHtmlFo
 $wgGlobalCollectGatewayAllowedHtmlForms['email-cc-vm'] = $wgGlobalCollectGatewayHtmlFormDir .'/cc-emailonly/cc-vm.html';
 $wgGlobalCollectGatewayAllowedHtmlForms['email-cc-vma'] = $wgGlobalCollectGatewayHtmlFormDir .'/cc-emailonly/cc-vma.html';
 $wgGlobalCollectGatewayAllowedHtmlForms['email-cc-vmaj'] = $wgGlobalCollectGatewayHtmlFormDir .'/cc-emailonly/cc-vmaj.html';
-*/
 
 /**
  * PayflowPro RapidHTML whitelist additions
