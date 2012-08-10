@@ -3806,6 +3806,7 @@ $wgGroupPermissions['sysop']['unwatchedpages']   = true;
 $wgGroupPermissions['sysop']['autoconfirmed']    = true;
 $wgGroupPermissions['sysop']['ipblock-exempt']   = true;
 $wgGroupPermissions['sysop']['blockemail']       = true;
+$wgGroupPermissions['sysop']['blockemailrecv']   = true;
 $wgGroupPermissions['sysop']['markbotedits']     = true;
 $wgGroupPermissions['sysop']['apihighlimits']    = true;
 $wgGroupPermissions['sysop']['browsearchive']    = true;

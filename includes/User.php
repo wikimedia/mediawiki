@@ -3133,6 +3133,15 @@ class User {
 	}
 
 	/**
+	 * Get whether the user is blocked from receiving email.
+	 * @return bool
+	 */
+	public function isBlockedFromReceivingEmail() {
+		$this->getBlockedStatus();
+		return $this->mBlock && $this->mBlock->prevents( 'receiveemail' );
+	}
+
+	/**
 	 * Get whether the user is allowed to create an account.
 	 * @return Bool
 	 */

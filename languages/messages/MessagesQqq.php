@@ -1735,6 +1735,7 @@ See also
 * {{msg|right-deleterevision|pl=yes}}',
 'right-block' => '{{doc-right|block}}',
 'right-blockemail' => '{{doc-right|blockemail}}',
+'right-blockemailrecv' => '{{doc-right|blockemailrecv}}',
 'right-hideuser' => '{{doc-right|hideuser}}
 This user right is part of the [[mw:RevisionDelete|RevisionDelete]] feature.
 It can be given to the group {{msg|group-suppress|pl=yes}}, although that group is disabled by default.
@@ -2992,6 +2993,7 @@ Example line:
 'ipbreasonotherlist' => '{{Identical|Other reason}}',
 'ipbcreateaccount' => '{{Identical|Prevent account creation}}',
 'ipbemailban' => '{{Identical|Prevent user from sending e-mail}}',
+'ipbemailrecvban' => 'Label for the checkbox allowing privileged users to block another user from receiving email',
 'ipbenableautoblock' => '{{Identical|Automatically block ...}}',
 'ipbsubmit' => '{{Identical|Block this user}}',
 'ipbother' => '{{Identical|Other time}}',
@@ -3051,6 +3053,7 @@ Usage:
 {{Identical|Anon only}}',
 'noautoblockblock' => '{{Identical|Autoblock disabled}}',
 'emailblock' => '{{Identical|E-mail blocked}}',
+'emailrecvblock' => 'Description of blocking email reception for Special:BlockList',
 'blocklist-nousertalk' => 'Used in [[Special:IPBlockList]] when "Allow this user to edit own talk page while blocked" option hasn\'t been flagged. See also {{msg-mw|Block-log-flags-nousertalk}}.',
 'ipblocklist-empty' => 'Shown on page [[Special:Blocklist]], if no blocks are to be shown.',
 'blocklink' => "Display name for a link that, when selected, leads to a form where a user can be blocked. Used in page history and recent changes pages. Example: \"''UserName (Talk | contribs | '''block''')''\".",
