@@ -250,6 +250,7 @@ class BlockListPager extends TablePager {
 				'createaccountblock',
 				'noautoblockblock',
 				'emailblock',
+				'emailrecvblock',
 				'blocklist-nousertalk',
 				'unblocklink',
 				'change-blocklink',
@@ -348,6 +349,10 @@ class BlockListPager extends TablePager {
 					$properties[] = $msg['emailblock'];
 				}
 
+				if ( $row->ipb_block_email_recv ) {
+					$properties[] = $msg['emailrecvblock'];
+				}
+
 				if ( !$row->ipb_allow_usertalk ) {
 					$properties[] = $msg['blocklist-nousertalk'];
 				}
@@ -384,6 +389,7 @@ class BlockListPager extends TablePager {
 				'ipb_range_end',
 				'ipb_deleted',
 				'ipb_block_email',
+				'ipb_block_email_recv',
 				'ipb_allow_usertalk',
 			),
 			'conds' => $this->conds,
