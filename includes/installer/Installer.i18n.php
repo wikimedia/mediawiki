@@ -627,6 +627,8 @@ Add dir="ltr" to the <nowiki><code></nowiki> for right-to-left languages.',
 	'config-type-postgres' => '{{optional}}',
 	'config-type-sqlite' => '{{optional}}',
 	'config-type-oracle' => '{{optional}}',
+	'config-support-info' => 'Parameters:
+* $1 - a list of DBMSs that MediaWiki supports, composed with other config-type-* and config-support-* messages.',
 	'config-support-mysql' => 'Parameters:
 * $1 - a link to the MySQL home page having the anchor text "MySQL".',
 	'config-support-postgres' => 'Parameters:
