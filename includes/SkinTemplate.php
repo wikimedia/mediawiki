@@ -639,15 +639,11 @@ class SkinTemplate extends Skin {
 			}
 			global $wgServer, $wgSecureLogin;
 			if( substr( $wgServer, 0, 5 ) === 'http:' && $wgSecureLogin ) {
-				$title = SpecialPage::getTitleFor( 'Userlogin' );
-				$https_url = preg_replace( '/^http:/', 'https:', $title->getFullURL() );
-				$login_url['href']  = $https_url;
+				$login_url['href'] = preg_replace( '/^http:/', 'https:', $login_url['href'] );
 				# @todo FIXME: Class depends on skin
 				$login_url['class'] = 'link-https';
 				if ( isset( $createaccount_url ) ) {
-					$https_url = preg_replace( '/^http:/', 'https:',
-						$title->getFullURL( 'type=signup' ) );
-					$createaccount_url['href']  = $https_url;
+					$createaccount_url['href'] = preg_replace( '/^http:/', 'https:', $createaccount_url['href'] );
 					# @todo FIXME: Class depends on skin
 					$createaccount_url['class'] = 'link-https';
 				}
