@@ -165,6 +165,13 @@ class SpecialBlock extends FormSpecialPage {
 			);
 		}
 
+		if( self::canBlockEmailRecv( $user ) ) {
+			$a['DisableRecvEmail'] = array(
+				'type' => 'check',
+				'label-message' => 'ipbemailrecvban',
+			);
+		}
+
 		if( $wgBlockAllowsUTEdit ){
 			$a['DisableUTEdit'] = array(
 				'type' => 'check',
@@ -248,6 +255,10 @@ class SpecialBlock extends FormSpecialPage {
 
 			if( isset( $fields['DisableEmail'] ) ){
 				$fields['DisableEmail']['default'] = $block->prevents( 'sendemail' );
+			}
+
+			if( isset( $fields['DisableRecvEmail'] ) ){
+				$fields['DisableRecvEmail']['default'] = $block->prevents( 'receiveemail' );
 			}
 
 			if( isset( $fields['HideUser'] ) ){
@@ -614,6 +625,14 @@ class SpecialBlock extends FormSpecialPage {
 
 		if( !isset( $data['DisableEmail'] ) ){
 			$data['DisableEmail'] = false;
+		} elseif( !self::canBlockEmail( $performer ) ) {
+			throw new PermissionsError( 'blockemail' );
+		}
+
+		if( !isset( $data['DisableRecvEmail'] ) ){
+			$data['DisableRecvEmail'] = false;
+		} elseif( !self::canBlockEmailRecv( $performer ) ) {
+			throw new PermissionsError( 'blockemailrecv' );
 		}
 
 		# If the user has done the form 'properly', they won't even have been given the
@@ -655,6 +674,7 @@ class SpecialBlock extends FormSpecialPage {
 		$block->prevents( 'createaccount', $data['CreateAccount'] );
 		$block->prevents( 'editownusertalk', ( !$wgBlockAllowsUTEdit || $data['DisableUTEdit'] ) );
 		$block->prevents( 'sendemail', $data['DisableEmail'] );
+		$block->prevents( 'receiveemail', $data['DisableRecvEmail'] );
 		$block->isHardblock( $data['HardBlock'] );
 		$block->isAutoblocking( $data['AutoBlock'] );
 		$block->mHideName = $data['HideUser'];
@@ -812,6 +832,16 @@ class SpecialBlock extends FormSpecialPage {
 	}
 
 	/**
+	 * Cam we do an email reception block?
+	 * @param $user User: the sysop wanting to make a block
+	 * @return bool
+	 */
+	public static function canBlockEmailRecv( User $user ) {
+		global $wgEnableUserEmail, $wgSysopEmailBans;
+		return $wgEnableUserEmail && $wgSysopEmailBans && $user->isAllowed( 'blockemailrecv' );
+	}
+
+	/**
 	 * bug 15810: blocked admins should not be able to block/unblock
 	 * others, and probably shouldn't be able to unblock themselves
 	 * either.
@@ -877,6 +907,11 @@ class SpecialBlock extends FormSpecialPage {
 		if( $data['DisableEmail'] ){
 			// For grepping: message block-log-flags-noemail
 			$flags[] = 'noemail';
+		}
+
+		if( $data['DisableRecvEmail'] ){
+			// For grepping: message block-log-flags-noemail
+			$flags[] = 'noemailrecv';
 		}
 
 		if( $wgBlockAllowsUTEdit && $data['DisableUTEdit'] ){

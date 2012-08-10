@@ -91,26 +91,7 @@ class SpecialEmailUser extends UnlistedSpecialPage {
 		$this->mTarget = is_null( $par )
 			? $this->getRequest()->getVal( 'wpTarget', $this->getRequest()->getVal( 'target', '' ) )
 			: $par;
-		// error out if sending user cannot do this
-		$error = self::getPermissionsError( $this->getUser(), $this->getRequest()->getVal( 'wpEditToken' ) );
-		switch ( $error ) {
-			case null:
-				# Wahey!
-				break;
-			case 'badaccess':
-				throw new PermissionsError( 'sendemail' );
-			case 'blockedemailuser':
-				throw new UserBlockedError( $this->getUser()->mBlock );
-			case 'actionthrottledtext':
-				throw new ThrottledError;
-			case 'mailnologin':
-			case 'usermaildisabled':
-				throw new  ErrorPageError( $error, "{$error}text" );
-			default:
-				# It's a hook error
-				list( $title, $msg, $params ) = $error;
-				throw new  ErrorPageError( $title, $msg, $params );
-		}
+
 		// Got a valid target user name? Else ask for one.
 		$ret = self::getTarget( $this->mTarget );
 		if( !$ret instanceof User ) {
@@ -120,6 +101,30 @@ class SpecialEmailUser extends UnlistedSpecialPage {
 			}
 			$out->addHTML( $this->userForm( $this->mTarget ) );
 			return false;
+		}
+
+		// error out if sending user cannot do this
+		$editToken = $this->getRequest()->getVal( 'wpEditToken' );
+		$error = self::getPermissionsError( $this->getUser(), $editToken, $ret );
+		switch ( $error ) {
+			case null:
+				# Wahey!
+				break;
+			case 'badaccess':
+				throw new PermissionsError( 'sendemail' );
+			case 'blockedemailuser':
+				throw new UserBlockedError( $this->getUser()->mBlock );
+			case 'blockedemailrecv':
+				throw new UserBlockedError( $ret->mBlock );
+			case 'actionthrottledtext':
+				throw new ThrottledError;
+			case 'mailnologin':
+			case 'usermaildisabled':
+				throw new  ErrorPageError( $error, "{$error}text" );
+			default:
+				# It's a hook error
+				list( $title, $msg, $params ) = $error;
+				throw new  ErrorPageError( $title, $msg, $params );
 		}
 
 		$this->mTargetObj = $ret;
@@ -178,9 +183,10 @@ class SpecialEmailUser extends UnlistedSpecialPage {
 	 *
 	 * @param $user User object
 	 * @param $editToken String: edit token
+	 * @param $recvUser User receiving the email (null by default for compat purposes)
 	 * @return null on success or string on error
 	 */
-	public static function getPermissionsError( $user, $editToken ) {
+	public static function getPermissionsError( $user, $editToken, $recvUser = null ) {
 		global $wgEnableEmail, $wgEnableUserEmail;
 		if( !$wgEnableEmail || !$wgEnableUserEmail ) {
 			return 'usermaildisabled';
@@ -204,8 +210,14 @@ class SpecialEmailUser extends UnlistedSpecialPage {
 			return 'actionthrottledtext';
 		}
 
+		if( $recvUser instanceof User && $recvUser->isBlockedFromReceivingEmail() ) {
+			wfDebug( "Receiving user is blocked from getting e-mail.\n" );
+			return 'blockedemailrecv';
+		}
+
 		$hookErr = false;
 		wfRunHooks( 'UserCanSendEmail', array( &$user, &$hookErr ) );
+		wfRunHooks( 'UserCanReceiveEmail', array( &$recvUser, &$hookErr ) );
 		wfRunHooks( 'EmailUserPermissionsErrors', array( $user, $editToken, &$hookErr ) );
 		if ( $hookErr ) {
 			return $hookErr;
