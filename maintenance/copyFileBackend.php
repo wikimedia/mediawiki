@@ -45,6 +45,7 @@ class CopyFileBackend extends Maintenance {
 		$this->addOption( 'ratefile', 'File to check periodically for batch size', false, true );
 		$this->addOption( 'skiphash', 'Skip SHA-1 sync checks for files' );
 		$this->addOption( 'missingonly', 'Only copy files missing from destination listing' );
+		$this->addOption( 'utf8only', 'Skip source files that do not have valid UTF-8 names' );
 		$this->setBatchSize( 50 );
 	}
 
@@ -132,7 +133,10 @@ class CopyFileBackend extends Maintenance {
 		foreach ( $srcPathsRel as $srcPathRel ) {
 			$srcPath = $src->getRootStoragePath() . "/$backendRel/$srcPathRel";
 			$dstPath = $dst->getRootStoragePath() . "/$backendRel/$srcPathRel";
-			if ( $this->filesAreSame( $src, $dst, $srcPath, $dstPath ) ) {
+			if ( $this->hasOption( 'utf8only' ) && !mb_check_encoding( $srcPath, 'UTF-8' ) ) {
+				$this->error( "Detected illegal (non-UTF8) path for $srcPath." );
+				continue;
+			} elseif ( $this->filesAreSame( $src, $dst, $srcPath, $dstPath ) ) {
 				$this->output( "Already have $srcPathRel.\n" );
 				continue; // assume already copied...
 			}
