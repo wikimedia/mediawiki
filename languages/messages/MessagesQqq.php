@@ -546,18 +546,6 @@ The format is: "{{int:youhavenewmessages| [[MediaWiki:Newmessageslink/{{SUBPAGEN
 
 {{Identical|New messages}}',
 'newmessagesdifflink' => 'This is the second link displayed in an orange rectangle when a user gets a message on his talk page. Used in message {{msg-mw|youhavenewmessages}} (as parameter $2).',
-'youhavenewmessagesfromusers' => 'New talk inidcator message: the message appearing when someone edited your user talk page.
-The message takes three parameters, {{msg-mw|newmessageslinkplural}}, {{msg-mw|newmessagesdifflinkplurl}}, and the number of authors
-that have edited the talk page since the owning user last viewed it.',
-'youhavenewmessagesmanyusers' => 'New talk inidcator message: the message appearing when someone edited your user talk page.
-Like {{msg-mw|youhavenewmessages}}, but getting {{msg-mw|newmessageslinkplural}} and {{msg-mw|newmessagesdifflinkplurl}} as parameters $1 and $2, respectively. Used when more than 10 users
-edited the user talk page since the owning user last viewed it.',
-'newmessageslinkplural' => 'Like {{msg-mw|newmessageslink}} but supporting pluralization. Used in message {{msg-mw|youhavenewmessagesfromusers}} (as parameter $1).
-This message itself takes one parameter, $1, which is 1 if there was one new edit, or 2 if there was more than one new edit
-since the last time the user has seen his or her talk page.',
-'newmessagesdifflinkplural' => 'Like {{msg-mw|newmessagesdifflink}} but supporting pluralization. Used in message {{msg-mw|youhavenewmessagesfromusers}} (as parameter $2).
-This message itself takes one parameter, $1, which is 1 if there was one new edit, or 2 if there was more than one new edit
-since the last time the user has seen his or her talk page.',
 'youhavenewmessagesmulti' => 'The alternative of {{msg|youhavenewmessages}} as used on wikis with a special setup so they can receive the "new message" notice on other wikis as well. Used on [http://www.wikia.com/ Wikia].
 The format is: "{{int:youhavenewmessagesmulti| [[MediaWiki:Newmessageslink/{{SUBPAGENAME}}|{{int:newmessageslink}}]]}}"',
 'editsection' => 'Display name of link to edit a section on a content page. Example: [{{MediaWiki:Editsection}}].

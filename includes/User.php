@@ -1778,20 +1778,14 @@ class User {
 	 */
 	public function getNewMessageLinks() {
 		$talks = array();
-		if( !wfRunHooks( 'UserRetrieveNewTalks', array( &$this, &$talks ) ) ) {
+		if( !wfRunHooks( 'UserRetrieveNewTalks', array( &$this, &$talks ) ) )
 			return $talks;
-		} elseif( !$this->getNewtalk() ) {
+
+		if( !$this->getNewtalk() )
 			return array();
-		}
-		$utp = $this->getTalkPage();
-		$dbr = wfGetDB( DB_SLAVE );
-		// Get the "last viewed rev" timestamp from the oldest message notification
-		$timestamp = $dbr->selectField( 'user_newtalk',
-			'MIN(user_last_timestamp)',
-			$this->isAnon() ? array( 'user_ip' => $this->getName() ) : array( 'user_id' => $this->getID() ),
-			__METHOD__ );
-		$rev = $timestamp ? Revision::loadFromTimestamp( $dbr, $utp, $timestamp ) : null;
-		return array( array( 'wiki' => wfWikiID(), 'link' => $utp->getLocalURL(), 'rev' => $rev ) );
+		$up = $this->getUserPage();
+		$utp = $up->getTalkPage();
+		return array( array( 'wiki' => wfWikiID(), 'link' => $utp->getLocalURL() ) );
 	}
 
 	/**
@@ -1818,17 +1812,12 @@ class User {
 	 * Add or update the new messages flag
 	 * @param $field String 'user_ip' for anonymous users, 'user_id' otherwise
 	 * @param $id String|Int User's IP address for anonymous users, User ID otherwise
-	 * @param $curRev Revision new, as yet unseen revision of the user talk page. Ignored if null.
 	 * @return Bool True if successful, false otherwise
 	 */
-	protected function updateNewtalk( $field, $id, $curRev = null ) {
-		// Get timestamp of the talk page revision prior to the current one
-		$prevRev = $curRev ? $curRev->getPrevious() : false;
-		$ts = $prevRev ? $prevRev->getTimestamp() : null;
-		// Mark the user as having new messages since this revision
+	protected function updateNewtalk( $field, $id ) {
 		$dbw = wfGetDB( DB_MASTER );
 		$dbw->insert( 'user_newtalk',
-			array( $field => $id, 'user_last_timestamp' => $dbw->timestampOrNull( $ts ) ),
+			array( $field => $id ),
 			__METHOD__,
 			'IGNORE' );
 		if ( $dbw->affectedRows() ) {
@@ -1863,9 +1852,8 @@ class User {
 	/**
 	 * Update the 'You have new messages!' status.
 	 * @param $val Bool Whether the user has new messages
-	 * @param $curRev Revision new, as yet unseen revision of the user talk page. Ignored if null or !$val.
 	 */
-	public function setNewtalk( $val, $curRev = null ) {
+	public function setNewtalk( $val ) {
 		if( wfReadOnly() ) {
 			return;
 		}
@@ -1883,7 +1871,7 @@ class User {
 		global $wgMemc;
 
 		if( $val ) {
-			$changed = $this->updateNewtalk( $field, $id, $curRev );
+			$changed = $this->updateNewtalk( $field, $id );
 		} else {
 			$changed = $this->deleteNewtalk( $field, $id );
 		}
