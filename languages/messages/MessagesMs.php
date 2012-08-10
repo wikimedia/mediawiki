@@ -460,6 +460,10 @@ $1',
 'youhavenewmessages' => 'Anda mempunyai $1 ($2).',
 'newmessageslink' => 'pesanan baru',
 'newmessagesdifflink' => 'perubahan terakhir',
+'youhavenewmessagesfromusers' => 'Anda menerima $1 daripada {{PLURAL:$3|seorang|$3 orang}} pengguna lain ($2).',
+'youhavenewmessagesmanyusers' => 'Anda menerima $1 daripada ramai pengguna ($2).',
+'newmessageslinkplural' => '{{PLURAL:$1|pesanan|pesanan-pesanan}} baru',
+'newmessagesdifflinkplural' => '{{PLURAL:$1|perubahan|perubahan-perubahan}} terkini',
 'youhavenewmessagesmulti' => 'Anda telah menerima pesanan baru pada $1',
 'editsection' => 'sunting',
 'editsection-brackets' => '[$1]',
@@ -608,6 +612,7 @@ Akaun anda telah dibuka. Jangan lupa untuk mengubah [[Special:Preferences|keutam
 'remembermypassword' => 'Ingat log masuk saya pada pelayar ini (tidak melebihi $1 {{PLURAL:$1|hari|hari}})',
 'securelogin-stick-https' => 'Kekal disambungkan ke HTTPS selepas log masuk',
 'yourdomainname' => 'Domain anda:',
+'password-change-forbidden' => 'Anda tidak dapat mengubah kata laluan di wiki ini.',
 'externaldberror' => 'Berlaku ralat pangkalan data bagi pengesahan luar atau anda tidak dibenarkan mengemaskinikan akaun luar anda.',
 'login' => 'Log masuk',
 'nav-login-createaccount' => 'Log masuk / buka akaun',
@@ -842,6 +847,10 @@ Sekiranya anda adalah seorang pengguna tanpa nama dan berasa bahawa komen yang t
 'noarticletext-nopermission' => 'Tiada teks dalam laman ini ketika ini.
 Anda boleh [[Special:Search/{{PAGENAME}}|mencari tajuk laman ini]] dalam laman lain,
 atau <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} mencari log yang berkaitan]</span>.',
+'missing-revision' => 'Semakan #$1 pada halaman "{{PAGENAME}}" tidak wujud.
+
+Hal ini biasanya disebabkan oleh pautan sejarah yang lapuk ke halaman yang sudah dihapuskan.
+Butirannya boleh didapati di [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} log penghapusan].',
 'userpage-userdoesnotexist' => 'Akaun pengguna "<nowiki>$1</nowiki>" tidak berdaftar. Sila pastikan sama ada anda mahu mencipta/menyunting laman ini.',
 'userpage-userdoesnotexist-view' => 'Akaun pengguna "$1" tidak berdaftar.',
 'blocked-notice-logextract' => 'Pengguna ini sedang disekat.
@@ -965,6 +974,7 @@ Argumen-argumen ini telah ditinggalkan.',
 'expansion-depth-exceeded-warning' => 'Laman terlebih dalam peluasan',
 'parser-unstrip-loop-warning' => 'Gelung unstrip dikesan',
 'parser-unstrip-recursion-limit' => 'Had rekursi unstrip dilampaui ($1)',
+'converter-manual-rule-error' => 'Ralat dikesan dalam aturan penukaran bahasa manual',
 
 # "Undo" feature
 'undo-success' => 'Suntingan ini boleh dibatalkan. Sila semak perbandingan di bawah untuk mengesahkan bahawa anda betul-betul mahu melakukan tindakan ini, kemudian simpan perubahan tersebut.',
@@ -1153,6 +1163,10 @@ Sila pastikan bahawa perubahan ini akan mengekalkan kesinambungan sejarah laman.
 'editundo' => 'batal',
 'diff-multi' => '($1 {{PLURAL:$1|semakan pertengahan|semakan pertengahan}} oleh $2 {{PLURAL:$2|pengguna|pengguna}} tidak dipaparkan)',
 'diff-multi-manyusers' => '($1 {{PLURAL:$1|semakan pertengahan|semakan pertengahan}} oleh lebih daripada $2 {{PLURAL:$2|pengguna|pengguna}} tidak dipaparkan)',
+'difference-missing-revision' => '{{PLURAL:$2|Satu semakan|$2 semakan}} bagi perbezaan ini ($1) tidak ditemui.
+
+Hal ini biasanya disebabkan oleh pautan perbezaan yang lapuk ke halaman yang sudah dihapuskan.
+Butirannya boleh didapati di [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} log penghapusan].',
 
 # Search results
 'searchresults' => 'Hasil carian',
@@ -1927,7 +1941,9 @@ Mungkin anda ingin menyunting keterangan pada [$2 laman penerangan failnya] di s
 
 'disambiguations' => 'Laman-laman yang berpaut dengan laman penyahkekaburan',
 'disambiguationspage' => 'Template:disambig',
-'disambiguations-text' => "Laman-laman berikut mengandungi pautan ke '''laman penyahtaksaan'''. Pautan ini sepatutnya ditujukan kepada topik yang sepatutnya.<br />Sesebuah laman dianggap sebagai laman penyahtaksaan jika ia menggunakan templat yang dipaut dari [[MediaWiki:Disambiguationspage]]",
+'disambiguations-text' => "Laman-laman berikut mengandungi sekurang-kurangnya satu pautan ke '''laman penyahkekaburan'''.
+Pautan ini sepatutnya ditujukan ke topik yang sepatutnya.<br />
+Sesebuah laman dianggap sebagai laman penyahkekaburan jika ia menggunakan templat yang dipaut dari [[MediaWiki:Disambiguationspage]]",
 
 'doubleredirects' => 'Lencongan berganda',
 'doubleredirectstext' => 'Yang berikut ialah senarai laman yang melencong ke laman lencongan lain. Setiap baris mengandungi pautan ke laman lencongan pertama dan kedua, serta baris pertama bagi teks lencongan kedua, lazimnya merupakan laman sasaran "sebenar", yang sepatutnya ditujui oleh lencongan pertama.
@@ -3852,5 +3868,5 @@ Ataupun, anda boleh menggunakan borang yang mudah di bawah. Ulasan anda akan dic
 'duration-millennia' => '$1 alaf',
 
 # Unknown messages
-'api-error-filetype-banned-type' => '$1 adalah {{PLURAL:$4|jenis|jenis-jenis}} fail yang dilarang. {{PLURAL:$3|Jenis|Jenis-jenis}} fail yang dibenarkan ialah $2.',
+'api-error-filetype-banned-type' => '$1 merupakan {{PLURAL:$4|jenis|jenis-jenis}} fail yang dilarang. {{PLURAL:$3|Jenis|Jenis-jenis}} fail yang dibenarkan ialah $2.',
 );

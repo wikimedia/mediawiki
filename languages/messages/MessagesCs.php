@@ -7,6 +7,7 @@
  * @ingroup Language
  * @file
  *
+ * @author Chmee2
  * @author Danny B.
  * @author Dontlietome7
  * @author Helix84
@@ -620,6 +621,10 @@ $1',
 'youhavenewmessages' => 'Máte $1 ($2).',
 'newmessageslink' => 'nové zprávy',
 'newmessagesdifflink' => 'rozdíl oproti předchozí verzi',
+'youhavenewmessagesfromusers' => 'Máte $1 od {{PLURAL:$3|jiného uživatele|$3 jiných uživatelů}} ($2).',
+'youhavenewmessagesmanyusers' => 'Máte $1 od mnoha dalších uživatelů ($2).',
+'newmessageslinkplural' => '{{PLURAL:$1|novou zprávu|nové zprávy}}',
+'newmessagesdifflinkplural' => 'poslední {{PLURAL:$1|změna|změny}}',
 'youhavenewmessagesmulti' => 'Na $1 máte nové zprávy',
 'editsection' => 'editovat',
 'editold' => 'editovat',

@@ -577,6 +577,9 @@ További információkat a [[Special:Version|verzióinformációs lapon]] talál
 'youhavenewmessages' => 'Új üzenet vár $1! (Az üzenetet $2.)',
 'newmessageslink' => 'a vitalapodon',
 'newmessagesdifflink' => 'külön is megtekintheted',
+'youhavenewmessagesmanyusers' => '$1ed van több szerkesztőtől ($2).',
+'newmessageslinkplural' => '{{PLURAL:$1|egy|$1}} új üzenet',
+'newmessagesdifflinkplural' => 'utolsó {{PLURAL:$1|egy|$1}} változtatás',
 'youhavenewmessagesmulti' => 'Új üzenetet vár a(z) $1 wikin',
 'editsection' => 'szerkesztés',
 'editold' => 'szerkesztés',
@@ -3918,6 +3921,8 @@ A képek teljes méretben jelennek meg, más fájltípusok közvetlenül a hozz�
 'api-error-empty-file' => 'Az általad elküldött fájl üres volt.',
 'api-error-emptypage' => 'Új, üres lap létrehozása nem engedélyezett.',
 'api-error-fetchfileerror' => 'Belső hiba: valami baj történt a fájl beolvasása közben.',
+'api-error-fileexists-forbidden' => 'Már létezik „$1” nevű fájl, és nem lehet felülírni.',
+'api-error-fileexists-shared-forbidden' => 'Már létezik „$1” nevű fájl a megosztott fájlok között, és nem lehet felülírni.',
 'api-error-file-too-large' => 'Az általad elküldött fájl túl nagy.',
 'api-error-filename-tooshort' => 'A fájlnév túl rövid.',
 'api-error-filetype-banned' => 'Tiltott fájltípus.',
@@ -3957,5 +3962,5 @@ A képek teljes méretben jelennek meg, más fájltípusok közvetlenül a hozz�
 'duration-millennia' => '{{PLURAL:$1|egy|$1}} évezred',
 
 # Unknown messages
-'api-error-filetype-banned-type' => 'A következő {{PLURAL:$4|fájltípus nem engedélyezett|fájltípusok nem engedélyezettek}}: $1 Engedélyezett {{PLURAL:$3|típus|típusok}}: $2.',
+'api-error-filetype-banned-type' => '!A következő {{PLURAL:$4|fájltípus nem engedélyezett|fájltípusok nem engedélyezettek}}: $1. Engedélyezett {{PLURAL:$3|típus|típusok}}: $2.',
 );

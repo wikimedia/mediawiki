@@ -139,17 +139,17 @@ $messages = array(
 'tog-editsectiononrightclick' => 'Wezesha sehemu ya kuandikia kwa kubonyeza kitufe cha kulia cha puku yako juu ya sehemu ya majina husika (JavaScript)',
 'tog-showtoc' => 'Onyesha mistari ya yaliyomo (kwa kila kurasa iliyo na zaidi ya vichwa vya habari 3)',
 'tog-rememberpassword' => 'Kumbuka kuingia kwangu pamoja na neno la siri katika kivinjari hiki (kwa muda usiozidi {{PLURAL:$1|siku}} $1)',
-'tog-watchcreations' => 'Weka kurasa nilizoumba katika maangalizi yangu',
-'tog-watchdefault' => 'Weka kurasa zote nilizohariri katika maangalizi yangu',
-'tog-watchmoves' => 'Weka kurasa zote nilizohamisha katika maangalizi yangu',
-'tog-watchdeletion' => 'Weka kurasa zote nilizofuta katika maangalizi yangu',
+'tog-watchcreations' => 'Ongeza kurasa nilizoumba katika maangalizi yangu',
+'tog-watchdefault' => 'Ongeza kurasa zote nilizohariri katika maangalizi yangu',
+'tog-watchmoves' => 'Ongeza kurasa zote nilizohamisha katika maangalizi yangu',
+'tog-watchdeletion' => 'Ongeza kurasa zote nilizofuta katika maangalizi yangu',
 'tog-minordefault' => 'Weka alama zote za mabadiliko madogo kama matumizi mbadala',
 'tog-previewontop' => 'Onyesha mandhari kabla ya sanduku la kuhariria',
 'tog-previewonfirst' => 'Onyesha mandhari unapoanza kuhariri',
 'tog-nocache' => 'Kurasa zisiwekwe katika kache (akiba ya muda) ya kivinjari',
-'tog-enotifwatchlistpages' => 'Nitumie barua pepe pale kurasa zilizopo katika maangalizi yangu zikibadilishwa',
+'tog-enotifwatchlistpages' => 'Nitumie barua pepe pale kurasa zilizopo katika maangalizi yangu zinabadilishwa',
 'tog-enotifusertalkpages' => 'Nitumie barua pepe pale ukurasa wangu wa majadiliano ukiwa na mabadiliko',
-'tog-enotifminoredits' => 'Pia nitumie barua pale mabadiliko ya ukurasa yanapokuwa madogo tu',
+'tog-enotifminoredits' => 'Pia nitumie barua pale mabadiliko ya ukurasa yanapokuwa madogo tu.',
 'tog-enotifrevealaddr' => 'Onyesha anwani ya barua pepe yangu katika barua pepe za taarifa',
 'tog-shownumberswatching' => 'Onyesha idadi ya watumiaji waangalizi',
 'tog-oldsig' => 'Sahihi iliyopo:',
@@ -390,6 +390,10 @@ Tazama [[Special:Version|ukurasa wa toleo]].',
 'youhavenewmessages' => 'Una $1 ($2).',
 'newmessageslink' => 'ujumbe mpya',
 'newmessagesdifflink' => 'badiliko la mwisho',
+'youhavenewmessagesfromusers' => 'Una $1 kutoka {{PLURAL:$3|another user|$3 users}} ($2)',
+'youhavenewmessagesmanyusers' => 'Una $1 kutoka kwa watumiaji wengi $2',
+'newmessageslinkplural' => '{{PLURAL:$1|a new message|ujumbe mpya}}',
+'newmessagesdifflinkplural' => 'last {{PLURAL:$1|change|mabadiliko}}',
 'youhavenewmessagesmulti' => 'Umepokea jumbe mpya kule $1',
 'editsection' => 'hariri',
 'editold' => 'hariri',
@@ -513,6 +517,8 @@ $2',
 'ns-specialprotected' => 'Kurasa maalumu haziwezi kuhaririwa.',
 'titleprotected' => 'Jina hili limekingwa lisiumbwe na [[User:$1|$1]].
 Sababu zilizotolewa ni "\'\'$2\'\'".',
+'exception-nologin' => 'Hujaingia',
+'exception-nologin-text' => 'Ukurasa huu unahitaji kuwa mtumiaji awe ameingia katika wiki hii.',
 
 # Virus scanner
 'virus-badscanner' => "Usanidi mbaya: kiskani virusi hakijulikani: ''$1''",
@@ -532,6 +538,7 @@ Usisahau kubadilisha mapendekezo yako ya [[Special:Preferences|{{SITENAME}}]].',
 'remembermypassword' => 'Kumbuka kuingia kwangu katika kivinjari hiki (kwa muda usiozidi {{PLURAL:$1|siku}} $1)',
 'securelogin-stick-https' => 'Endelea kuunganishwa na HTTPS baada ya kuingia',
 'yourdomainname' => 'Tovuti yako:',
+'password-change-forbidden' => 'Hauwezi kubadili nywila katika Wiki hii.',
 'externaldberror' => 'Huenda kulikuwa na hitilafu ya database au labda hauruhusiwi kubadilisha akaunti yako ya nje.',
 'login' => 'Ingia',
 'nav-login-createaccount' => 'Ingia/ sajili akaunti',
@@ -801,6 +808,7 @@ Kumbuka kwamba desturi ya kurasa za .css na .js hutumia herufi ndogo, yaani, {{n
 'note' => "'''Taarifa:'''",
 'previewnote' => "'''Hii ni hakikisho tu.''' 
 Mabadiliko hayajahifadhiwa bado!",
+'continue-editing' => 'Endelea kuhariri',
 'previewconflict' => 'Hakikisho hii inaonyesha maandiko yaliyopo sanduku la juu yataonekayo ukiyahifadhi.',
 'session_fail_preview' => "'''Pole! Hatukuweza kuhifadhi sahihisho lako kwa sababu data za kipindi zilipotelewa.'''
 Tafadhali jaribu tena.
@@ -949,6 +957,9 @@ Bado unaweza [$1 kutazama sahihisho hili] iwapo utapenda kuendelea.",
 Unaweza kulitazama; maelezo mengine yapo kwenye [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} kumbukumbu ya ufutaji].",
 'rev-suppressed-text-view' => "Pitio la ukurasa huu '''limefichwa'''.
 Unaweza kulitazama; maelezo mengine yapo kwenye [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} kumbukumbu ya ufichaji].",
+'rev-deleted-unhide-diff' => "Pitio la ukurasa huu '''limefutwa'''.
+Maelezo yanaweza kupatikana kwenye [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} kumbukumbu ya ufutaji].
+Bado unaweza [$1 kutazama sahihisho hili] iwapo utapenda kuendelea.",
 'rev-delundel' => 'onyesha/ficha',
 'rev-showdeleted' => 'onyesha',
 'revisiondelete' => 'Kufuta/kurudisha mapitio',
@@ -1126,6 +1137,7 @@ Ujue lakini kwamba kumbukumbu za {{SITENAME}} kule Google labda zilipitwa na wak
 'datedefault' => 'Chaguo-msingi',
 'prefs-beta' => 'Zana za Beta',
 'prefs-datetime' => 'Tarehe na saa',
+'prefs-labs' => 'Maumbile ya maabara',
 'prefs-user-pages' => 'Kurasa za watumiaji',
 'prefs-personal' => 'Kuhusu mtumiaji',
 'prefs-rc' => 'Mabadiliko ya karibuni',
@@ -1366,6 +1378,7 @@ Taarifa hii itakuwa wazi.',
 'action-userrights' => 'kubadilisha wezo zote za watumiaji',
 'action-userrights-interwiki' => 'kuhariri wezo za watumiaji kwenye wiki zingine',
 'action-siteadmin' => 'kufunga na kufungua hifadhidata',
+'action-sendemail' => 'tuma barua pepe',
 
 # Recent changes
 'nchanges' => '{{PLURAL:$1|badiliko|mabadiliko}} $1',
@@ -1551,7 +1564,18 @@ Tatizo likiendelea, uwasiliane na [[Special:ListUsers/sysop|mkabidhi]].',
 'upload-http-error' => 'Imetokea hitilafu ya HTTP: $1',
 
 # File backend
+'backend-fail-stream' => 'Haikuweza kutafuta faili "$1".',
+'backend-fail-notexists' => 'faili $1 haipo',
+'backend-fail-delete' => 'Haikuweza kufuta faili "$1".',
 'backend-fail-alreadyexists' => 'Faili $1 linapatikana tayari.',
+'backend-fail-store' => 'Haikuweza kunakili faili "$1" kwa "$2".',
+'backend-fail-copy' => 'Haikuweza kunakili faili "$1" kwa "$2".',
+'backend-fail-move' => 'Haikuweza kuhamisha faili "$1" kwa "$2".',
+'backend-fail-opentemp' => 'Haikuweza kuanzisha faili ya muda.',
+'backend-fail-writetemp' => 'Haikuweza kuandika kwa faili ya muda.',
+'backend-fail-closetemp' => 'Haikuweza kufunga faili ya muda.',
+'backend-fail-read' => 'Haikuweza kusoma faili "$1".',
+'backend-fail-create' => 'Haikuweza kuandika faili "$1".',
 
 # ZipDirectoryReader
 'zip-file-open-error' => 'Ilitokea hitilafu wakati wa kufungua faili kwa ajili ya ukaguzi wa ZIP.',
@@ -1938,6 +1962,9 @@ Anwani yako ya barua pepe ulioitaja katika [[Special:Preferences|mapendekezo yak
 'emailsent' => 'Barua pepe imetumwa',
 'emailsenttext' => 'Barua pepe yako imetumwa.',
 'emailuserfooter' => 'Barua pepe hii imetumwa na $1 kwa $2 kwa kutumia zana ya "Kumtumia mtumiaji barua pepe" iliyopo {{SITENAME}}.',
+
+# User Messenger
+'usermessage-editor' => 'Jumbe za mfumo',
 
 # Watchlist
 'watchlist' => 'Maangalizi yangu',

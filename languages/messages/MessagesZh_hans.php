@@ -536,6 +536,10 @@ $1',
 'youhavenewmessages' => '你有$1（$2）。',
 'newmessageslink' => '新信息',
 'newmessagesdifflink' => '最后更改',
+'youhavenewmessagesfromusers' => '你有来自{{PLURAL:$3| 另一位用户| $3位用户}}的$1（$2）。',
+'youhavenewmessagesmanyusers' => '你有来自多位用户的$1（$2）。',
+'newmessageslinkplural' => '{{PLURAL:$1|一条新信息|$1条信息}}',
+'newmessagesdifflinkplural' => '最新$1次更改',
 'youhavenewmessagesmulti' => '你在$1有新信息',
 'editsection' => '编辑',
 'editold' => '编辑',
@@ -884,6 +888,10 @@ $2
 'noarticletext' => '本页面目前没有内容。你可以在其他页面中[[Special:Search/{{PAGENAME}}|搜索该页标题]]、<span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} 搜索相关日志]或[{{fullurl:{{FULLPAGENAME}}|action=edit}} 编辑本页面]。</span>',
 'noarticletext-nopermission' => '此页目前没有内容，您可以在其它页[[Special:Search/{{PAGENAME}}|搜索此页标题]]，
 或<span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} 搜索有关日志]</span>。',
+'missing-revision' => '“{{PAGENAME}}”的修订#$1不存在。
+
+这通常是因为进入了一个已被删除的页面的历史链接。
+详细信息可以在[{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} 删除日志]中找到。',
 'userpage-userdoesnotexist' => '用户账户"$1"未注册。
 请在创建／编辑该页之前进行核对。',
 'userpage-userdoesnotexist-view' => '用户账户“$1”未曾创建。',
@@ -1172,6 +1180,10 @@ $1",
 'editundo' => '撤销',
 'diff-multi' => '（未显示$2个用户的$1个中间版本）',
 'diff-multi-manyusers' => '（未显示超过$2个用户的$1个中间版本）',
+'difference-missing-revision' => '此差异对比的{{PLURAL:$2|一个修订|$2个修订}}（$1）{{PLURAL:$2|没有}}找到。
+
+这通常是因为进入了一个已被删除的页面的修订差异对比链接。
+详细信息可以在[{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} 删除日志]中找到。',
 
 # Search results
 'searchresults' => '搜索结果',

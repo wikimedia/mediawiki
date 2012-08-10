@@ -324,7 +324,7 @@ $messages = array(
 
 # Font style option in Special:Preferences
 'editfont-style' => 'Cayê vurnayışi de tipê nuştışi:',
-'editfont-default' => 'Fereziya cıgeyrayoği',
+'editfont-default' => 'Hesıbyayiya rovıteri',
 'editfont-monospace' => 'Tipê nustey sabıtcagırewtoği',
 'editfont-sansserif' => 'Tipê nustey Sans-serifi',
 'editfont-serif' => 'Tipê nustey Serifi',
@@ -416,7 +416,7 @@ $messages = array(
 
 # Cologne Blue skin
 'qbfind' => 'Bıvêne',
-'qbbrowse' => 'Çım ra viyarne',
+'qbbrowse' => 'Rovete',
 'qbedit' => 'Bıvurne',
 'qbpageoptions' => 'Ena pele',
 'qbpageinfo' => 'Gıre',
@@ -542,6 +542,10 @@ $1',
 'youhavenewmessages' => 'To rê estê $1 ($2).',
 'newmessageslink' => 'mesacê newey',
 'newmessagesdifflink' => 'vurnayışo peyên',
+'youhavenewmessagesfromusers' => 'Zey $1 ra {{PLURAL:$3|zewbi karber|$3 karberi}} ($2) esto.',
+'youhavenewmessagesmanyusers' => '$1 ra tay karberi ($2) dı estê.',
+'newmessageslinkplural' => '{{PLURAL:$1|yew mesac|mesacê newey}}',
+'newmessagesdifflinkplural' => 'peyni {{PLURAL:$1|vurnayış|vurnayışi}}',
 'youhavenewmessagesmulti' => '$1 mesaco newe esto',
 'editsection' => 'bıvurne',
 'editsection-brackets' => '[$1]',
@@ -2144,7 +2148,7 @@ tipa rocaneyi, nameyê karberi (herfa pil u qıci re hessas a), ya zi peli (reyn
 'allarticles' => 'Peli pêro',
 'allinnamespace' => 'Peli pênro ( $1 cayênameyî)',
 'allnotinnamespace' => 'Pelanê hemî ($1 cayênameyî de niyo)',
-'allpagesprev' => 'Verêni',
+'allpagesprev' => 'Verên',
 'allpagesnext' => 'ver şo',
 'allpagessubmit' => 'Biya',
 'allpagesprefix' => 'herfê ke şıma tiya de nuşti, pê ney herfan pelê ke destpêkenê liste ker:',

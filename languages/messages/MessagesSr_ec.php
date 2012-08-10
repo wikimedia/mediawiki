@@ -669,7 +669,11 @@ $1',
 'retrievedfrom' => 'Преузето из „$1“',
 'youhavenewmessages' => 'Имате $1 ($2).',
 'newmessageslink' => 'нових порука',
-'newmessagesdifflink' => 'последња измена',
+'newmessagesdifflink' => 'последњу измену',
+'youhavenewmessagesfromusers' => 'Имате $1 од {{PLURAL:$3|другог корисника|$3 корисника|$3 корисника}} ($2).',
+'youhavenewmessagesmanyusers' => 'Имате $1 од много корисника ($2).',
+'newmessageslinkplural' => '{{PLURAL:$1|нову поруку|нове поруке}}',
+'newmessagesdifflinkplural' => '{{PLURAL:$1|последњу измену|последње измене}}',
 'youhavenewmessagesmulti' => 'Имате нових порука на $1',
 'editsection' => 'уреди',
 'editsection-brackets' => '[$1]',
@@ -1175,7 +1179,7 @@ $2
 'sectioneditnotsupported-text' => 'Уређивање одељка није подржано на овој страници.',
 'permissionserrors' => 'Грешке у дозволама',
 'permissionserrorstext' => 'Немате овлашћење за ту радњу из {{PLURAL:$1|следећег|следећих}} разлога:',
-'permissionserrorstext-withaction' => 'Немате овлашћења за $2 због {{PLURAL:$1|следећег|следећих}} разлога:',
+'permissionserrorstext-withaction' => 'Немате дозволу да $2 из {{PLURAL:$1|следећег|следећих}} разлога:',
 'recreate-moveddeleted-warn' => "'''Упозорење: поново правите страницу која је претходно обрисана.'''
 
 Размотрите да ли је прикладно да наставите с уређивањем ове странице.

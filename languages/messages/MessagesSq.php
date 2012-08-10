@@ -15,6 +15,7 @@
  * @author Eagleal
  * @author Ergon
  * @author Euriditi
+ * @author FatosMorina
  * @author Kaganer
  * @author Marinari
  * @author Mdupont
@@ -1120,7 +1121,7 @@ Ju lutemi kontrolloni regjistrat.',
 
 # Suppression log
 'suppressionlog' => 'Regjistri i ndalimeve',
-'suppressionlogtext' => 'Më poshtë është një listë e grisjeve dhe bllokimeve duke përfshirë përmnajtjen e fshehur nga administratorët.
+'suppressionlogtext' => 'Më poshtë është një listë e grisjeve dhe bllokimeve duke përfshirë përmbajtjen e fshehur nga administratorët.
 Shiko [[Special:BlockList|listën e bllokimeve IP]] për listën e përjashtimeve operacionale dhe bllokimeve aktuale.',
 
 # History merging

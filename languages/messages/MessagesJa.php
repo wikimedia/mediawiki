@@ -2238,7 +2238,7 @@ contenttype/subtypeの形式で入力してください（例：<tt>image/jpeg</
 'protectedtitles' => '作成保護されているページ名',
 'protectedtitlestext' => '以下のページは新規作成が禁止されています',
 'protectedtitlesempty' => 'これらの引数で現在保護されているページはありません。',
-'listusers' => '利用者の一覧',
+'listusers' => '利用者一覧',
 'listusers-editsonly' => '投稿記録のある利用者のみを表示',
 'listusers-creationsort' => '作成日順に並べ替え',
 'usereditcount' => '$1{{PLURAL:$1|回の編集}}',
@@ -2394,7 +2394,7 @@ contenttype/subtypeの形式で入力してください（例：<tt>image/jpeg</
 'emailccsubject' => '$1に送信したメールの控え：$2',
 'emailsent' => 'メールを送信しました',
 'emailsenttext' => 'メールを送信しました。',
-'emailuserfooter' => 'このメールは {{SITENAME}} の「利用者にメール送信」機能が、「$1」から「$2」に送信したものです。',
+'emailuserfooter' => 'このメールは$1から$2へ、{{SITENAME}}の「利用者にメール送信」機能を使って送られました。',
 
 # User Messenger
 'usermessage-summary' => 'システムメッセージを残す。',
