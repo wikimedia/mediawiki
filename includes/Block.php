@@ -27,6 +27,7 @@ class Block {
 		$mFromMaster,
 
 		$mBlockEmail,
+		$mBlockEmailReceive,
 		$mDisableUsertalk,
 		$mCreateAccount,
 		$mParentBlockId;
@@ -63,7 +64,7 @@ class Block {
 	 */
 	function __construct( $address = '', $user = 0, $by = 0, $reason = '',
 		$timestamp = 0, $auto = 0, $expiry = '', $anonOnly = 0, $createAccount = 0, $enableAutoblock = 0,
-		$hideName = 0, $blockEmail = 0, $allowUsertalk = 0, $byText = '' )
+		$hideName = 0, $blockEmail = 0, $allowUsertalk = 0, $byText = '', $blockEmailReceive = 0 )
 	{
 		if( $timestamp === 0 ){
 			$timestamp = wfTimestampNow();
@@ -96,6 +97,7 @@ class Block {
 		$this->isAutoblocking( $enableAutoblock );
 		$this->mHideName = $hideName;
 		$this->prevents( 'sendemail', $blockEmail );
+		$this->prevents( 'receiveemail', $blockEmailReceive );
 		$this->prevents( 'editownusertalk', !$allowUsertalk );
 
 		$this->mFromMaster = false;
@@ -157,6 +159,7 @@ class Block {
 			'ipb_expiry',
 			'ipb_deleted',
 			'ipb_block_email',
+			'ipb_block_email_recv',
 			'ipb_allow_usertalk',
 			'ipb_parent_block_id',
 		);
@@ -181,6 +184,7 @@ class Block {
 			&& $this->isAutoblocking() == $block->isAutoblocking()
 			&& $this->mHideName == $block->mHideName
 			&& $this->prevents( 'sendemail' ) == $block->prevents( 'sendemail' )
+			&& $this->prevents( 'receiveemail' ) == $block->prevents( 'receiveemail' )
 			&& $this->prevents( 'editownusertalk' ) == $block->prevents( 'editownusertalk' )
 			&& $this->mReason == $block->mReason
 		);
@@ -409,6 +413,7 @@ class Block {
 
 		$this->prevents( 'createaccount', $row->ipb_create_account );
 		$this->prevents( 'sendemail', $row->ipb_block_email );
+		$this->prevents( 'receiveemail', $row->ipb_block_email_recv );
 		$this->prevents( 'editownusertalk', !$row->ipb_allow_usertalk );
 	}
 
@@ -536,6 +541,7 @@ class Block {
 			'ipb_range_end'        => $this->getRangeEnd(),
 			'ipb_deleted'	       => intval( $this->mHideName ), // typecast required for SQLite
 			'ipb_block_email'      => $this->prevents( 'sendemail' ),
+			'ipb_block_email_recv' => $this->prevents( 'receiveemail' ),
 			'ipb_allow_usertalk'   => !$this->prevents( 'editownusertalk' ),
 			'ipb_parent_block_id'            => $this->mParentBlockId
 		);
@@ -906,6 +912,9 @@ class Block {
 
 			case 'sendemail':
 				return wfSetVar( $this->mBlockEmail, $x );
+
+			case 'receiveemail':
+				return wfSetVar( $this->mBlockEmailReceive, $x );
 
 			case 'editownusertalk':
 				return wfSetVar( $this->mDisableUsertalk, $x );

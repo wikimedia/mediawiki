@@ -65,7 +65,8 @@ class ApiBlock extends ApiBase {
 		if ( $params['hidename'] && !$user->isAllowed( 'hideuser' ) ) {
 			$this->dieUsageMsg( 'canthide' );
 		}
-		if ( $params['noemail'] && !SpecialBlock::canBlockEmail( $user ) ) {
+		if ( ( $params['noemail'] || $params['norecvemail'] )
+		     && !SpecialBlock::canBlockEmail( $user ) ) {
 			$this->dieUsageMsg( 'cantblock-email' );
 		}
 
@@ -81,6 +82,7 @@ class ApiBlock extends ApiBase {
 			'CreateAccount' => $params['nocreate'],
 			'AutoBlock' => $params['autoblock'],
 			'DisableEmail' => $params['noemail'],
+			'DisableRecvEmail' => $params['norecvemail'],
 			'HideUser' => $params['hidename'],
 			'DisableUTEdit' => !$params['allowusertalk'],
 			'AlreadyBlocked' => $params['reblock'],
@@ -123,6 +125,9 @@ class ApiBlock extends ApiBase {
 		if ( $params['noemail'] ) {
 			$res['noemail'] = '';
 		}
+		if ( $params['norecvemail'] ) {
+			$res['norecvemail'] = '';
+		}
 		if ( $params['hidename'] ) {
 			$res['hidename'] = '';
 		}
@@ -161,6 +166,7 @@ class ApiBlock extends ApiBase {
 			'nocreate' => false,
 			'autoblock' => false,
 			'noemail' => false,
+			'norecvemail' => false,
 			'hidename' => false,
 			'allowusertalk' => false,
 			'reblock' => false,
@@ -179,6 +185,7 @@ class ApiBlock extends ApiBase {
 			'nocreate' => 'Prevent account creation',
 			'autoblock' => 'Automatically block the last used IP address, and any subsequent IP addresses they try to login from',
 			'noemail' => 'Prevent user from sending e-mail through the wiki. (Requires the "blockemail" right.)',
+			'norecvemail' => 'Prevent user from receiving e-mail through the wiki. (Requires the "blockemail" right.)',
 			'hidename' => 'Hide the username from the block log. (Requires the "hideuser" right.)',
 			'allowusertalk' => 'Allow the user to edit their own talk page (depends on $wgBlockAllowsUTEdit)',
 			'reblock' => 'If the user is already blocked, overwrite the existing block',
@@ -217,6 +224,7 @@ class ApiBlock extends ApiBase {
 				'nocreate' => 'boolean',
 				'autoblock' => 'boolean',
 				'noemail' => 'boolean',
+				'norecvemail' => 'boolean',
 				'hidename' => 'boolean',
 				'allowusertalk' => 'boolean',
 				'watchuser' => 'boolean'

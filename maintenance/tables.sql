@@ -771,6 +771,9 @@ CREATE TABLE /*_*/ipblocks (
   -- Block prevents user from accessing Special:Emailuser
   ipb_block_email bool NOT NULL default 0,
 
+  -- Block prevents user from receiving email
+  ipb_block_email_recv bool NOT NULL default 0,
+
   -- Block allows user to edit their own talk page
   ipb_allow_usertalk bool NOT NULL default 0,
 

@@ -163,6 +163,11 @@ class SpecialBlock extends FormSpecialPage {
 				'type' => 'check',
 				'label-message' => 'ipbemailban',
 			);
+
+			$a['DisableRecvEmail'] = array(
+				'type' => 'check',
+				'label-message' => 'ipbemailrecvban',
+			);
 		}
 
 		if( $wgBlockAllowsUTEdit ){
@@ -248,6 +253,10 @@ class SpecialBlock extends FormSpecialPage {
 
 			if( isset( $fields['DisableEmail'] ) ){
 				$fields['DisableEmail']['default'] = $block->prevents( 'sendemail' );
+			}
+
+			if( isset( $fields['DisableRecvEmail'] ) ){
+				$fields['DisableRecvEmail']['default'] = $block->prevents( 'receiveemail' );
 			}
 
 			if( isset( $fields['HideUser'] ) ){
@@ -616,6 +625,10 @@ class SpecialBlock extends FormSpecialPage {
 			$data['DisableEmail'] = false;
 		}
 
+		if( !isset( $data['DisableRecvEmail'] ) ){
+			$data['DisableRecvEmail'] = false;
+		}
+
 		# If the user has done the form 'properly', they won't even have been given the
 		# option to suppress-block unless they have the 'hideuser' permission
 		if( !isset( $data['HideUser'] ) ){
@@ -655,6 +668,7 @@ class SpecialBlock extends FormSpecialPage {
 		$block->prevents( 'createaccount', $data['CreateAccount'] );
 		$block->prevents( 'editownusertalk', ( !$wgBlockAllowsUTEdit || $data['DisableUTEdit'] ) );
 		$block->prevents( 'sendemail', $data['DisableEmail'] );
+		$block->prevents( 'receiveemail', $data['DisableRecvEmail'] );
 		$block->isHardblock( $data['HardBlock'] );
 		$block->isAutoblocking( $data['AutoBlock'] );
 		$block->mHideName = $data['HideUser'];
@@ -877,6 +891,11 @@ class SpecialBlock extends FormSpecialPage {
 		if( $data['DisableEmail'] ){
 			// For grepping: message block-log-flags-noemail
 			$flags[] = 'noemail';
+		}
+
+		if( $data['DisableRecvEmail'] ){
+			// For grepping: message block-log-flags-noemail
+			$flags[] = 'noemailrecv';
 		}
 
 		if( $wgBlockAllowsUTEdit && $data['DisableUTEdit'] ){
