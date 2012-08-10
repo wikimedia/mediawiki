@@ -34,6 +34,7 @@ foreach( array_filter( explode( '/', $_SERVER['PHP_SELF'] ) ) as $part ) {
 		$path .= "$part/";
 	} else {
 		$ext = $matches[1] == 'php5' ? 'php5' : 'php';
+		break;
 	}
 }
 
