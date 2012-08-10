@@ -525,31 +525,7 @@ $wgAutoloadLocalClasses = array(
 	'ExternalUser_MediaWiki' => 'includes/extauth/MediaWiki.php',
 	'ExternalUser_vB' => 'includes/extauth/vB.php',
 
-	# includes/filerepo
-	'FileRepo' => 'includes/filerepo/FileRepo.php',
-	'FileRepoStatus' => 'includes/filerepo/FileRepoStatus.php',
-	'ForeignAPIRepo' => 'includes/filerepo/ForeignAPIRepo.php',
-	'ForeignDBRepo' => 'includes/filerepo/ForeignDBRepo.php',
-	'ForeignDBViaLBRepo' => 'includes/filerepo/ForeignDBViaLBRepo.php',
-	'FSRepo' => 'includes/filerepo/FSRepo.php',
-	'LocalRepo' => 'includes/filerepo/LocalRepo.php',
-	'NullRepo' => 'includes/filerepo/NullRepo.php',
-	'RepoGroup' => 'includes/filerepo/RepoGroup.php',
-	'TempFileRepo' => 'includes/filerepo/FileRepo.php',
-
-	# includes/filerepo/file
-	'ArchivedFile' => 'includes/filerepo/file/ArchivedFile.php',
-	'File' => 'includes/filerepo/file/File.php',
-	'ForeignAPIFile' => 'includes/filerepo/file/ForeignAPIFile.php',
-	'ForeignDBFile' => 'includes/filerepo/file/ForeignDBFile.php',
-	'LocalFile' => 'includes/filerepo/file/LocalFile.php',
-	'LocalFileDeleteBatch' => 'includes/filerepo/file/LocalFile.php',
-	'LocalFileMoveBatch' => 'includes/filerepo/file/LocalFile.php',
-	'LocalFileRestoreBatch' => 'includes/filerepo/file/LocalFile.php',
-	'OldLocalFile' => 'includes/filerepo/file/OldLocalFile.php',
-	'UnregisteredLocalFile' => 'includes/filerepo/file/UnregisteredLocalFile.php',
-
-	# includes/filerepo/backend
+	# includes/filebackend
 	'FileBackendGroup' => 'includes/filebackend/FileBackendGroup.php',
 	'FileBackend' => 'includes/filebackend/FileBackend.php',
 	'FileBackendStore' => 'includes/filebackend/FileBackendStore.php',
@@ -592,6 +568,30 @@ $wgAutoloadLocalClasses = array(
 	'ConcatenateFileOp' => 'includes/filebackend/FileOp.php',
 	'CreateFileOp' => 'includes/filebackend/FileOp.php',
 	'NullFileOp' => 'includes/filebackend/FileOp.php',
+
+	# includes/filerepo
+	'FileRepo' => 'includes/filerepo/FileRepo.php',
+	'FileRepoStatus' => 'includes/filerepo/FileRepoStatus.php',
+	'ForeignAPIRepo' => 'includes/filerepo/ForeignAPIRepo.php',
+	'ForeignDBRepo' => 'includes/filerepo/ForeignDBRepo.php',
+	'ForeignDBViaLBRepo' => 'includes/filerepo/ForeignDBViaLBRepo.php',
+	'FSRepo' => 'includes/filerepo/FSRepo.php',
+	'LocalRepo' => 'includes/filerepo/LocalRepo.php',
+	'NullRepo' => 'includes/filerepo/NullRepo.php',
+	'RepoGroup' => 'includes/filerepo/RepoGroup.php',
+	'TempFileRepo' => 'includes/filerepo/FileRepo.php',
+
+	# includes/filerepo/file
+	'ArchivedFile' => 'includes/filerepo/file/ArchivedFile.php',
+	'File' => 'includes/filerepo/file/File.php',
+	'ForeignAPIFile' => 'includes/filerepo/file/ForeignAPIFile.php',
+	'ForeignDBFile' => 'includes/filerepo/file/ForeignDBFile.php',
+	'LocalFile' => 'includes/filerepo/file/LocalFile.php',
+	'LocalFileDeleteBatch' => 'includes/filerepo/file/LocalFile.php',
+	'LocalFileMoveBatch' => 'includes/filerepo/file/LocalFile.php',
+	'LocalFileRestoreBatch' => 'includes/filerepo/file/LocalFile.php',
+	'OldLocalFile' => 'includes/filerepo/file/OldLocalFile.php',
+	'UnregisteredLocalFile' => 'includes/filerepo/file/UnregisteredLocalFile.php',
 
 	# includes/installer
 	'CliInstaller' => 'includes/installer/CliInstaller.php',
