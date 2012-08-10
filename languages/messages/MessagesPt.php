@@ -574,6 +574,10 @@ Consulte a página da [[Special:Version|versão do sistema]].',
 'youhavenewmessages' => 'Tem $1 ($2).',
 'newmessageslink' => 'mensagens novas',
 'newmessagesdifflink' => 'comparar com a penúltima revisão',
+'youhavenewmessagesfromusers' => 'Você tem $1 de {{PLURAL:$3|outro utilizador|$3 utilizadores}} ($2).',
+'youhavenewmessagesmanyusers' => 'Você tem $1 de muitos utilizadores ($2).',
+'newmessageslinkplural' => '{{PLURAL:$1|uma mensagem nova|mensagens novas}}',
+'newmessagesdifflinkplural' => '{{PLURAL:$1|última alteração|últimas alterações}}',
 'youhavenewmessagesmulti' => 'Tem mensagens novas em $1',
 'editsection' => 'editar',
 'editold' => 'editar',
@@ -974,6 +978,10 @@ ou [{{fullurl:{{FULLPAGENAME}}|action=edit}} editar esta página]</span>.',
 'noarticletext-nopermission' => 'Ainda não existe texto nesta página.
 Pode [[Special:Search/{{PAGENAME}}|pesquisar o título desta página]] noutras páginas
 ou <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} procurar registos relacionados]</span>.',
+'missing-revision' => 'A revisão #$1 da página denominada "{{PAGENAME}}" não existe.
+
+Isto é geralmente causado por seguir um link de histórico desatualizado para uma página que foi eliminada.
+Os detalhes podem ser encontrados no [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} registo de eliminação].',
 'userpage-userdoesnotexist' => 'A conta "<nowiki>$1</nowiki>" não se encontra registada.
 Verifique se deseja realmente criar ou editar esta página, por favor.',
 'userpage-userdoesnotexist-view' => 'A conta de utilizador "$1" não está registada.',
@@ -1106,6 +1114,7 @@ Estes argumentos foram omitidos.',
 'expansion-depth-exceeded-warning' => 'A página excedeu a profundidade de expansão',
 'parser-unstrip-loop-warning' => 'Foi detectado um ciclo infinito unstrip',
 'parser-unstrip-recursion-limit' => 'Limite de recursão do unstrip excedido ($1)',
+'converter-manual-rule-error' => 'Erro detetado na regra de conversão de língua manual',
 
 # "Undo" feature
 'undo-success' => 'É possível desfazer a edição.
@@ -1299,6 +1308,10 @@ Note que, se usar os links de navegação, os botões de opção voltarão aos v
 'editundo' => 'desfazer',
 'diff-multi' => '({{PLURAL:$1|Uma edição intermédia|$1 edições intermédias}} de {{PLURAL:$2|um utilizador|$2 utilizadores}} {{PLURAL:$1|não apresentada|não apresentadas}})',
 'diff-multi-manyusers' => '({{PLURAL:$1|Uma edição intermédia|$1 edições intermédias}} de mais de {{PLURAL:$2|um utilizador|$2 utilizadores}} não {{PLURAL:$1|apresentada|apresentadas}})',
+'difference-missing-revision' => '{{PLURAL:$2|Uma revisão|$2 revisões}} desta diferença ($1) não {{PLURAL:$2|foi encontrada|foram encontradas}}.
+
+Isto é geralmente causado por seguir um link de histórico desatualizado para uma página que foi eliminada.
+Os detalhes podem ser encontrados no [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} registo de eliminação].',
 
 # Search results
 'searchresults' => 'Resultados da pesquisa',
@@ -2437,6 +2450,8 @@ prossiga com precaução.',
 'rollback' => 'Reverter edições',
 'rollback_short' => 'Voltar',
 'rollbacklink' => 'voltar',
+'rollbacklinkcount' => 'reverter $1 {{PLURAL:$1|edição|edições}}',
+'rollbacklinkcount-morethan' => 'reverter mais do que $1 {{PLURAL:$1|edição|edições}}',
 'rollbackfailed' => 'A reversão falhou',
 'cantrollback' => 'Não foi possível reverter a edição; o último contribuidor é o único autor desta página',
 'alreadyrolled' => 'Não foi possível reverter as edições de [[:$1]] por [[User:$2|$2]] ([[User talk:$2|discussão]]{{int:pipe-separator}}[[Special:Contributions/$2|{{int:contribslink}}]]);

@@ -2437,7 +2437,7 @@ Síðasta færsla vistfangsins úr bönnunarskrá er sýnd hér fyrir neðan til
 'whatlinkshere-links' => '← tenglar',
 'whatlinkshere-hideredirs' => '$1 tilvísanir',
 'whatlinkshere-hidetrans' => '$1 ítengingar',
-'whatlinkshere-hidelinks' => '$1 tenglar',
+'whatlinkshere-hidelinks' => '$1 tengla',
 'whatlinkshere-hideimages' => '$1 myndatenglar',
 'whatlinkshere-filters' => 'Síur',
 

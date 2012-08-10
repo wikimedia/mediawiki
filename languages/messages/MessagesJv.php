@@ -11,6 +11,7 @@
  * @author Helix84
  * @author Kaganer
  * @author Meursault2004
+ * @author NoiX180
  * @author Pras
  * @author Rex
  * @author StefanusRA
@@ -814,6 +815,8 @@ $1",
 'logdelete-failure' => "'''Aturan pandhelikan ora bisa disèt:'''
 $1",
 'revdel-restore' => 'Ngowahi visiblitas (pangatonan)',
+'revdel-restore-deleted' => 'revisi kabusak',
+'revdel-restore-visible' => 'revisi kétok',
 'pagehist' => 'Sajarah kaca',
 'deletedhist' => 'Sajarah sing dibusak',
 'revdelete-hide-current' => 'Gagal ndhelikaké révisi tanggal $2, $1: iki arupa révisi paling anyar.

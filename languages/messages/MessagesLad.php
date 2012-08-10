@@ -588,6 +588,9 @@ Los tus trokamientos no se tienen guadrados!",
 'hiddencategories' => 'Esta hoja es un miembro de {{PLURAL:$1|1 kateggoría escondida|$1 kateggorías escondidas}}:',
 'nocreate-loggedin' => 'No tienes el permisso de creas hojas nuevas.',
 'permissionserrorstext-withaction' => 'No tienes el permiso para $2, por las {{PLURAL:$1|razón|razones}} venideras:',
+'recreate-moveddeleted-warn' => "'''Aviso: Estas kriando una oja la kuala fue efassada antes.'''
+Kale ke penses si es menesterozo editar esta oja.
+El enrejistro de efassado i taxireado para esta oja puede ser meldado aki:",
 'moveddeleted-notice' => "Esta ója fue efassada.
 El ''log'' de efassado i taxireado de la ója es amostrado abasho para dar referensia.",
 
@@ -595,6 +598,9 @@ El ''log'' de efassado i taxireado de la ója es amostrado abasho para dar refer
 'post-expand-template-inclusion-warning' => "'''Avizo:''' La contenencia de xablon está muy grande.
 Algunos xablones no van á ser comprendidos.",
 'post-expand-template-inclusion-category' => 'Hojas ande la contenencia de xablones está sovrepassada',
+'post-expand-template-argument-warning' => "'''Aviso:''' Esta oja tiene kuanto menos un kampo enel xablon muy lungo.
+Este o estos kampos no van ser amostrados",
+'post-expand-template-argument-category' => 'Ojas ke tienen xablones kon parametros no uzados',
 
 # History pages
 'viewpagelogs' => 'Ver los registros de esta hoja',
@@ -649,6 +655,7 @@ Leyenda: (act) = diferencias con la versión actual,
 'lineno' => 'Shurá $1:',
 'compareselectedversions' => 'Comparar versiones escogidas',
 'editundo' => 'deshaze',
+'diff-multi' => '(No {{PLURAL:$1|es amostrado un trokamiento intermedio echo|son amostrados $1 trokamientos intermedios echos}} por {{PLURAL:$2|un usador|$2 usadores}})',
 
 # Search results
 'searchresults' => 'Resultados de la búsqueda',
@@ -678,6 +685,7 @@ Leyenda: (act) = diferencias con la versión actual,
 'searchprofile-everything-tooltip' => 'Buscar en todo el contènido (y también hojas de diskusyón)',
 'searchprofile-advanced-tooltip' => 'Buscar en espacios de nombres particůlares',
 'search-result-size' => '$1 ({{PLURAL:$2|1 biervo|$2 biervos}})',
+'search-result-category-size' => '{{PLURAL:$1|1 miembro|$1 miembros}} ({{PLURAL:$2|1 basho-kateggoria|$2 basho-kateggoria}}, {{PLURAL:$3|1 dossia|$3 dossias}})',
 'search-redirect' => '(direksión desde $1)',
 'search-section' => '(capítůlo $1)',
 'search-suggest' => 'Quisites dezir: $1',
@@ -728,6 +736,8 @@ Las búsquedas producen más o munco a buscar biervos comunes como «la» o «de
 'yourlanguage' => 'Lingua:',
 'yournick' => 'Firma mueva:',
 'email' => 'Letral',
+'prefs-help-email' => 'El adreso de e-posta es menester para alimpiar la tu parola, si la olvidates',
+'prefs-help-email-others' => 'Endemas puedes eskojer si keres dar pueder a otros usadores de azer kontakto kon ti por modre de e-posta, a  traverso de un atamiento en tus ojas de usador i de diskusyon.',
 'prefs-signature' => 'Firma',
 
 # Groups
@@ -762,6 +772,7 @@ Las búsquedas producen más o munco a buscar biervos comunes como «la» o «de
 'recentchanges-label-bot' => 'Este trokamiento fue echo por un bot',
 'recentchanges-label-unpatrolled' => 'Estre trokamiento no esta akavidado',
 'rcnote' => "Debaxo {{PLURAL:$1|ay '''1''' trocamiento realizado|están los dal cabo '''$1''' trocamientos realizados}} en  {{PLURAL:$2|el dal cabo día|los dal cabo '''$2''' días}}, hasta el $4, $5.",
+'rcnotefrom' => "Debasho se amostran los trokamientos desde '''$2''' (amostrados fina <b>$1</b>)",
 'rclistfrom' => 'Mostra los trocamientos nuevos empeçando desde $1',
 'rcshowhideminor' => '$1 trocamientos chiquiticos',
 'rcshowhidebots' => '$1 bots',
@@ -832,10 +843,13 @@ La descripción en su [$2 hoja de descripción del arxivo] está amostrada debax
 # Statistics
 'statistics' => 'Estatísticas',
 
+'disambiguationspage' => 'Template:Aklarasion',
+
 # Miscellaneous special pages
 'nbytes' => '$1 {{PLURAL:$1|bayt|baytes}}',
 'nmembers' => '$1 {{PLURAL:$1|miembro|miembros}}',
 'prefixindex' => 'Todas las hojas con prefixo',
+'usercreated' => '{{GENDER:$3|Enrejistrado|Enrejistrada}} el $1 a las $2',
 'newpages' => 'Hojas muevas',
 'ancientpages' => 'Artikolos mas viejos',
 'move' => 'taxirea',
@@ -966,6 +980,7 @@ A continuación se mostran las opciones actuales de la hoja '''$1''':",
 'sp-contributions-newbies' => 'Mostrar solo las ajustamientos de los usuarios nuevos',
 'sp-contributions-blocklog' => 'registro de bloqueos',
 'sp-contributions-uploads' => 'suvidas',
+'sp-contributions-logs' => 'enrejistros',
 'sp-contributions-talk' => 'Diskusyón',
 'sp-contributions-search' => 'Buscar ajustamientos',
 'sp-contributions-username' => 'Dirección IP o nombre de usuario:',
@@ -1217,6 +1232,9 @@ Los otros campos se van a guardar por defecto.
 'watchlisttools-view' => 'Ver los trocamientos',
 'watchlisttools-edit' => 'Ver i trocar tu lista de escogidas',
 'watchlisttools-raw' => 'Troca tu lista de escogidas en crudo',
+
+# Core parser functions
+'duplicate-defaultsort' => '\'\'\'Aviso:\'\'\' la klave primaria para ordenamiento "$2" anula la primera "$1"',
 
 # Special:Version
 'version' => 'Versión',

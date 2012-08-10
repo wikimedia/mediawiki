@@ -9,9 +9,11 @@
  *
  * @author Agzennay
  * @author Arkanosis
+ * @author Brunoperel
  * @author Cedric31
  * @author ChrisPtDe
  * @author Coyau
+ * @author Cquoi
  * @author Crochet.david
  * @author Csisc
  * @author Damouns
@@ -630,6 +632,9 @@ $1',
 'youhavenewmessages' => 'Vous avez $1 ($2).',
 'newmessageslink' => 'de nouveaux messages',
 'newmessagesdifflink' => 'dernière modification',
+'youhavenewmessagesfromusers' => "Vous avez  $1  d'{{PLURAL:$3| un autre utilisateur|$3 autres utilisateurs}} ( $2 ).",
+'newmessageslinkplural' => '{{PLURAL:$1|un message|nouveaux messages}}',
+'newmessagesdifflinkplural' => 'dernières {{PLURAL:$1|modification|modifications}}',
 'youhavenewmessagesmulti' => 'Vous avez de nouveaux messages sur $1.',
 'editsection' => 'modifier',
 'editold' => 'modifier',

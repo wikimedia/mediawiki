@@ -451,6 +451,10 @@ $1',
 'youhavenewmessages' => 'Du har $1 ($2).',
 'newmessageslink' => 'nye beskeder',
 'newmessagesdifflink' => 'ændringer siden sidste visning',
+'youhavenewmessagesfromusers' => 'Du har $1 fra {{PLURAL:$3|en anden bruger| $3 brugere}} ($2).',
+'youhavenewmessagesmanyusers' => 'Du har $1 fra mange brugere ($2).',
+'newmessageslinkplural' => '{{PLURAL:$1|en ny besked|nye beskeder}}',
+'newmessagesdifflinkplural' => 'seneste {{PLURAL:$1|ændring|ændringer}}',
 'youhavenewmessagesmulti' => 'Du har nye beskeder på $1',
 'editsection' => 'redigér',
 'editold' => 'redigér',
@@ -842,6 +846,10 @@ eller [{{fullurl:{{FULLPAGENAME}}|action=edit}} oprette siden]</span>.',
 'noarticletext-nopermission' => 'Der er i øjeblikket ikke noget tekst på denne side.
 Du kan [[Special:Search/{{PAGENAME}}|søge efter denne sides titel]] på andre sider,
 eller <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} se de relaterede loglister]</span>.',
+'missing-revision' => 'Revision #$1 af siden med navnet "{{PAGENAME}}" eksisterer ikke.
+
+Dette skyldes normalt at et forældet historik-link er fulgt til en side der er slettet.
+Detaljer kan findes i [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} sletningsloggen].',
 'userpage-userdoesnotexist' => 'Brugerkontoen "<nowiki>$1</nowiki>" findes ikke. Overvej om du ønsker at oprette eller redigere denne side.',
 'userpage-userdoesnotexist-view' => 'Brugerkontoen "$1" er ikke oprettet.',
 'blocked-notice-logextract' => 'Denne bruger er i øjeblikket blokeret.
@@ -955,8 +963,13 @@ Der bør være færre end {{PLURAL:$2|$2 kald}}, lige nu er der {{PLURAL:$1|$1 k
 'parser-template-loop-warning' => 'Skabelonløkke fundet: [[$1]]',
 'parser-template-recursion-depth-warning' => 'En skabelon er rekursivt inkluderet for mange gange ($1)',
 'language-converter-depth-warning' => 'Dybdegrænse for sprogkonvertering overskredet ($1)',
+'node-count-exceeded-category' => 'Sider hvor antal noder er overskredet',
+'node-count-exceeded-warning' => 'Sider der har overskredet antallet af noder',
 'expansion-depth-exceeded-category' => 'Sider, der overskrider ekspansionsdybden',
 'expansion-depth-exceeded-warning' => 'Siden overskred ekspansionsdybden',
+'parser-unstrip-loop-warning' => 'Unstrip-loop opdaget',
+'parser-unstrip-recursion-limit' => 'Unstrip rekursionsgrænse er nået ($1)',
+'converter-manual-rule-error' => 'Fejl opdaget i manuel sprogkonvertingsregel',
 
 # "Undo" feature
 'undo-success' => 'Redigeringen kan fjernes.
@@ -1140,6 +1153,10 @@ Vær opmæksom på at bevare kontinuiteten i sidehistorikken.
 'editundo' => 'fjern redigering',
 'diff-multi' => '({{PLURAL:$1|En mellemliggende version|$1 mellemliggende versioner}} af {{PLURAL:$2|en bruger|$2 brugere}} ikke vist)',
 'diff-multi-manyusers' => '({{PLURAL:$1|En mellemliggende version|$1 mellemliggende versioner}} af mere end $2 {{PLURAL:$2|bruger|brugere}} ikke vist)',
+'difference-missing-revision' => '{{PLURAL:$2|En revision|$2 revisioner}} af denne forskel ($1) {{PLURAL:$2|blev|blev}} ikke fundet.
+
+Dette skyldes normalt et forældet diff link til en side der er slettet.
+Detaljer kan findes i [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} sletningsloggen].',
 
 # Search results
 'searchresults' => 'Søgeresultater',
@@ -1406,6 +1423,7 @@ Hvis du vælger at oplyse dit navn, vil det blive brugt til at tilskrive dig dit
 'right-writeapi' => 'Bruge redigeringsdelen af API',
 'right-delete' => 'Slette sider',
 'right-bigdelete' => 'Slette sider med mange versioner',
+'right-deletelogentry' => 'Slet og gendan specifikke log-poster',
 'right-deleterevision' => 'Slette og gendanne enkelte versioner af sider',
 'right-deletedhistory' => 'Se slettede verioner, uden at vise versionens indhold.',
 'right-deletedtext' => 'Vise slettet tekst og ændringer i slettede revisioner',
@@ -1686,6 +1704,11 @@ Informer venligst en [[Special:ListUsers/sysop|systemadministrator]].',
 'backend-fail-internal' => 'En ukendt fejl opstod i filbackend "$1".',
 'backend-fail-contenttype' => 'Kunne ikke bestemme typen af indhold i filen, der skal gemmes på "$1".',
 'backend-fail-batchsize' => 'Lagringsbackend gav en batch på $1 fil{{PLURAL:$1|operation|operationer}}; grænsen er $2 {{PLURAL:$2|operation|operationer}}.',
+'backend-fail-usable' => 'Kunne ikke skrive til filen "$1" på grund af manglende rettigheder eller manglende mapper/containere.',
+
+# File journal errors
+'filejournal-fail-dbconnect' => 'Kunne ikke tilslutte til journal databasen for lager backenden "$1".',
+'filejournal-fail-dbquery' => 'Kunne ikke opdatere journal databasen for lager backenden "$1".',
 
 # Lock manager
 'lockmanager-notlocked' => 'Kunne ikke låse "$1" op, da den ikke er låst.',
@@ -1696,6 +1719,7 @@ Informer venligst en [[Special:ListUsers/sysop|systemadministrator]].',
 'lockmanager-fail-releaselock' => 'Kunne ikke frigive låsen for "$1".',
 'lockmanager-fail-db-bucket' => 'Kunne ikke kontakte nok låsedatabaser i bøtten $1.',
 'lockmanager-fail-db-release' => 'Kunne ikke frigive lås til databasen $1.',
+'lockmanager-fail-svr-acquire' => 'Kunne ikke hente lås på serveren $1.',
 'lockmanager-fail-svr-release' => 'Kunne ikke frigive låse til serveren $1.',
 
 # ZipDirectoryReader
@@ -2235,6 +2259,8 @@ Bekræft venligst at du virkelig vil gøre dette, at du forstår konsekvenserne,
 'rollback' => 'Fjern redigeringer',
 'rollback_short' => 'Fjern redigering',
 'rollbacklink' => 'rul tilbage',
+'rollbacklinkcount' => 'tilbagefør $1 {{PLURAL:$1|redigering|redigeringer}}',
+'rollbacklinkcount-morethan' => 'tilbagefør mere end $1 {{PLURAL:$1|redigering|redigeringer}}',
 'rollbackfailed' => 'Kunne ikke fjerne redigeringen',
 'cantrollback' => 'Kan ikke fjerne redigering; den sidste bruger er den eneste forfatter.',
 'alreadyrolled' => 'Kan ikke fjerne den seneste redigering af [[:$1]] foretaget af [[User:$2|$2]] ([[User talk:$2|diskussion]]{{int:pipe-separator}}[[Special:Contributions/$2|{{int:contribslink}}]]);
@@ -3729,6 +3755,7 @@ Ellers kan du bruge den enkle formular nedenfor. Din kommentar vil blive tilføj
 'api-error-emptypage' => 'Det er ikke tilladt at oprette nye, tomme sider.',
 'api-error-fetchfileerror' => 'Intern fejl: noget gik galt under hentningen af filen.',
 'api-error-fileexists-forbidden' => 'En fil med navnet "$1" findes allerede, og den kan ikke overskrives.',
+'api-error-fileexists-shared-forbidden' => 'En fil med navnet "$1" eksisterer allerede i det delte filsystem og kan ikke overskrives.',
 'api-error-file-too-large' => 'Den fil du indsendte var for stor.',
 'api-error-filename-tooshort' => 'Filnavnet er for kort.',
 'api-error-filetype-banned' => 'Denne type fil er ikke tilladt.',
@@ -3768,5 +3795,5 @@ Ellers kan du bruge den enkle formular nedenfor. Din kommentar vil blive tilføj
 'duration-millennia' => '$1 {{PLURAL:$1|årtusind|årtusinder}}',
 
 # Unknown messages
-'api-error-filetype-banned-type' => '$1 er {{PLURAL:$4|en uønsket filtype|uønskede filtyper}}. {{PLURAL:$3|Den tilladte filtype|De tilladte filtyper}} er $2.',
+'api-error-filetype-banned-type' => '$1 {{PLURAL:$4|er ikke en tilladt filtype|er ikke tilladte filtyper}}. Tilladt {{PLURAL:$3|filtype er|filtyper er}} $2.',
 );
