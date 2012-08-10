@@ -273,7 +273,7 @@ abstract class DatabaseInstaller {
 			$up = DatabaseUpdater::newForDB( $this->db );
 			$up->doUpdates();
 		} catch ( MWException $e ) {
-			echo "\nAn error occured:\n";
+			echo "\nAn error occurred:\n";
 			echo $e->getText();
 			$ret = false;
 		}

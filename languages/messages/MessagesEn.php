@@ -2195,7 +2195,7 @@ Permitted {{PLURAL:$3|file type is|file types are}} $2.',
 'hookaborted'                 => 'The modification you tried to make was aborted by an extension.',
 'illegal-filename'            => 'The filename is not allowed.',
 'overwrite'                   => 'Overwriting an existing file is not allowed.',
-'unknown-error'               => 'An unknown error occured.',
+'unknown-error'               => 'An unknown error occurred.',
 'tmp-create-error'            => 'Could not create temporary file.',
 'tmp-write-error'             => 'Error writing temporary file.',
 'large-file'                  => 'It is recommended that files are no larger than $1;
@@ -2293,7 +2293,7 @@ Please verify that the URL is valid and accessible and try again.
 If the problem persists, contact an [[Special:ListUsers/sysop|administrator]].',
 'upload-too-many-redirects'         => 'The URL contained too many redirects',
 'upload-unknown-size'               => 'Unknown size',
-'upload-http-error'                 => 'An HTTP error occured: $1',
+'upload-http-error'                 => 'An HTTP error occurred: $1',
 'upload-copy-upload-invalid-domain' => 'Copy uploads are not available from this domain.',
 
 # File backend

@@ -185,7 +185,7 @@ class MWException extends Exception {
 
 	/**
 	 * Return the requested URL and point to file and line number from which the
-	 * exception occured
+	 * exception occurred
 	 *
 	 * @return string
 	 */

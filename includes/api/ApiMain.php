@@ -393,7 +393,7 @@ class ApiMain extends ApiBase {
 			// Reset and print just the error message
 			ob_clean();
 
-			// If the error occured during printing, do a printer->profileOut()
+			// If the error occurred during printing, do a printer->profileOut()
 			$this->mPrinter->safeProfileOut();
 			$this->printResult( true );
 		}

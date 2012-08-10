@@ -254,13 +254,13 @@ abstract class FileBackend {
 	 *
 	 * @par Return value:
 	 *
-	 * This returns a Status, which contains all warnings and fatals that occured
+	 * This returns a Status, which contains all warnings and fatals that occurred
 	 * during the operation. The 'failCount', 'successCount', and 'success' members
 	 * will reflect each operation attempted.
 	 *
 	 * The status will be "OK" unless:
 	 *   - a) unexpected operation errors occurred (network partitions, disk full...)
-	 *   - b) significant operation errors occured and 'force' was not set
+	 *   - b) significant operation errors occurred and 'force' was not set
 	 *
 	 * @param $ops Array List of operations to execute in order
 	 * @param $opts Array Batch operation options
@@ -447,10 +447,10 @@ abstract class FileBackend {
 	 *   - bypassReadOnly      : Allow writes in read-only mode (since 1.20)
 	 *
 	 * @par Return value:
-	 * This returns a Status, which contains all warnings and fatals that occured
+	 * This returns a Status, which contains all warnings and fatals that occurred
 	 * during the operation. The 'failCount', 'successCount', and 'success' members
 	 * will reflect each operation attempted for the given files. The status will be
-	 * considered "OK" as long as no fatal errors occured.
+	 * considered "OK" as long as no fatal errors occurred.
 	 *
 	 * @param $ops Array Set of operations to execute
 	 * @param $opts Array Batch operation options
