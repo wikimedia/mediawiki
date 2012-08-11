@@ -68,10 +68,6 @@ class ApiParse extends ApiBase {
 			$this->getContext()->setLanguage( Language::factory( $params['uselang'] ) );
 		}
 
-		$popts = ParserOptions::newFromContext( $this->getContext() );
-		$popts->setTidy( true );
-		$popts->enableLimitReport( !$params['disablepp'] );
-
 		$redirValues = null;
 
 		// Return result
@@ -89,13 +85,15 @@ class ApiParse extends ApiBase {
 				}
 
 				$titleObj = $rev->getTitle();
-
 				$wgTitle = $titleObj;
+				$pageObj = WikiPage::factory( $titleObj );
+				$popts = $pageObj->makeParserOptions( $this->getContext() );
+				$popts->enableLimitReport( !$params['disablepp'] );
 
 				// If for some reason the "oldid" is actually the current revision, it may be cached
 				if ( $titleObj->getLatestRevID() === intval( $oldid ) )  {
 					// May get from/save to parser cache
-					$p_result = $this->getParsedSectionOrText( $titleObj, $popts, $pageid,
+					$p_result = $this->getParsedSectionOrText( $pageObj, $popts, $pageid,
 						 isset( $prop['wikitext'] ) ) ;
 				} else { // This is an old revision, so get the text differently
 					$this->text = $rev->getText( Revision::FOR_THIS_USER, $this->getUser() );
@@ -129,32 +127,26 @@ class ApiParse extends ApiBase {
 					foreach ( (array)$redirValues as $r ) {
 						$to = $r['to'];
 					}
-					$titleObj = Title::newFromText( $to );
-				} else {
-					if ( !is_null ( $pageid ) ) {
-						$reqParams['pageids'] = $pageid;
-						$titleObj = Title::newFromID( $pageid );
-					} else { // $page
-						$to = $page;
-						$titleObj = Title::newFromText( $to );
-					}
+					$page = array( 'title' => $to );
+				} elseif ( !is_null( $pageid ) ) {
+					$pageParams = array( 'pageid' => $pageid );
+				} else { // $page
+					$pageParams = array( 'title' => $page );
 				}
-				if ( !is_null ( $pageid ) ) {
-					if ( !$titleObj ) {
-						// Still throw nosuchpageid error if pageid was provided
-						$this->dieUsageMsg( array( 'nosuchpageid', $pageid ) );
-					}
-				} elseif ( !$titleObj || !$titleObj->exists() ) {
-					$this->dieUsage( "The page you specified doesn't exist", 'missingtitle' );
-				}
+
+				$pageObj = $this->getTitleOrPageId( $pageParams, 'fromdb' );
+				$titleObj = $pageObj->getTitle();
 				$wgTitle = $titleObj;
 
 				if ( isset( $prop['revid'] ) ) {
-					$oldid = $titleObj->getLatestRevID();
+					$oldid = $pageObj->getLatest();
 				}
 
+				$popts = $pageObj->makeParserOptions( $this->getContext() );
+				$popts->enableLimitReport( !$params['disablepp'] );
+
 				// Potentially cached
-				$p_result = $this->getParsedSectionOrText( $titleObj, $popts, $pageid,
+				$p_result = $this->getParsedSectionOrText( $pageObj, $popts, $pageid,
 					 isset( $prop['wikitext'] ) ) ;
 			}
 		} else { // Not $oldid, $pageid, $page. Hence based on $text
@@ -168,6 +160,10 @@ class ApiParse extends ApiBase {
 				$this->dieUsageMsg( array( 'invalidtitle', $title ) );
 			}
 			$wgTitle = $titleObj;
+			$pageObj = WikiPage::factory( $titleObj );
+
+			$popts = $pageObj->makeParserOptions( $this->getContext() );
+			$popts->enableLimitReport( !$params['disablepp'] );
 
 			if ( $this->section !== false ) {
 				$this->text = $this->getSectionText( $this->text, $titleObj->getText() );
@@ -323,23 +319,21 @@ class ApiParse extends ApiBase {
 	}
 
 	/**
-	 * @param $titleObj Title
+	 * @param $page WikiPage
 	 * @param $popts ParserOptions
 	 * @param $pageId Int
 	 * @param $getWikitext Bool
 	 * @return ParserOutput
 	 */
-	private function getParsedSectionOrText( $titleObj, $popts, $pageId = null, $getWikitext = false ) {
+	private function getParsedSectionOrText( $page, $popts, $pageId = null, $getWikitext = false ) {
 		global $wgParser;
-
-		$page = WikiPage::factory( $titleObj );
 
 		if ( $this->section !== false ) {
 			$this->text = $this->getSectionText( $page->getRawText(), !is_null( $pageId )
-					? 'page id ' . $pageId : $titleObj->getText() );
+					? 'page id ' . $pageId : $page->getTitle()->getPrefixedText() );
 
 			// Not cached (save or load)
-			return $wgParser->parse( $this->text, $titleObj, $popts );
+			return $wgParser->parse( $this->text, $page->getTitle(), $popts );
 		} else {
 			// Try the parser cache first
 			// getParserOutput will save to Parser cache if able
