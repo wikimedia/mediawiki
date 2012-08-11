@@ -1617,8 +1617,11 @@ class Article extends Page {
 	 * @return ParserOutput or false if the given revsion ID is not found
 	 */
 	public function getParserOutput( $oldid = null, User $user = null ) {
-		$user = is_null( $user ) ? $this->getContext()->getUser() : $user;
-		$parserOptions = $this->mPage->makeParserOptions( $user );
+		if ( $user === null ) {
+			$parserOptions = $this->getParserOptions();
+		} else {
+			$parserOptions = $this->mPage->makeParserOptions( $user );
+		}
 
 		return $this->mPage->getParserOutput( $parserOptions, $oldid );
 	}
@@ -1629,7 +1632,7 @@ class Article extends Page {
 	 */
 	public function getParserOptions() {
 		if ( !$this->mParserOptions ) {
-			$this->mParserOptions = $this->mPage->makeParserOptions( $this->getContext()->getUser() );
+			$this->mParserOptions = $this->mPage->makeParserOptions( $this->getContext() );
 		}
 		// Clone to allow modifications of the return value without affecting cache
 		return clone $this->mParserOptions;
