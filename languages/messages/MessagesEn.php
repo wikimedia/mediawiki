@@ -4706,7 +4706,7 @@ Images are shown in full resolution, other file types are started with their ass
 * <span class="mw-specialpagerestricted">Restricted special pages.</span>',
 'specialpages-group-maintenance' => 'Maintenance reports',
 'specialpages-group-other'       => 'Other special pages',
-'specialpages-group-login'       => 'Login / sign up',
+'specialpages-group-login'       => 'Login / create account',
 'specialpages-group-changes'     => 'Recent changes and logs',
 'specialpages-group-media'       => 'Media reports and uploads',
 'specialpages-group-users'       => 'Users and rights',
