@@ -1109,7 +1109,7 @@ abstract class HTMLFormField {
 	 * @return Mixed Bool true on success, or String error to display.
 	 */
 	function validate( $value, $alldata ) {
-		if ( isset( $this->mParams['required'] ) && $value === '' ) {
+		if ( isset( $this->mParams['required'] ) && $this->mParams['required'] !== false && $value === '' ) {
 			return wfMsgExt( 'htmlform-required', 'parseinline' );
 		}
 
@@ -2153,7 +2153,7 @@ class HTMLSelectAndOtherField extends HTMLSelectField {
 			return $p;
 		}
 
-		if ( isset( $this->mParams['required'] ) && $value[1] === '' ) {
+		if ( isset( $this->mParams['required'] ) && $this->mParams['required'] !== false && $value[1] === '' ) {
 			return wfMsgExt( 'htmlform-required', 'parseinline' );
 		}
 
