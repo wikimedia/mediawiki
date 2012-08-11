@@ -2402,7 +2402,7 @@ $5
 'watchlistedit-noitems' => 'ستاسې کتنلړ کې هېڅ کوم سرليک نشته.',
 'watchlistedit-normal-title' => 'کتنلړ سمول',
 'watchlistedit-normal-legend' => 'د کتنلړ نه سرليکونه لرې کول',
-'watchlistedit-normal-submit' => 'سرليکونه لرکول',
+'watchlistedit-normal-submit' => 'سرليکونه لرې کول',
 'watchlistedit-normal-done' => '{{PLURAL:$1|1 سرليک ستاسې له کتنلړ نه ليري شو|$1 سرليکونه ستاسې له کتنلړ نه ليري شوه}}:',
 'watchlistedit-raw-title' => 'خام کتنلړ سمول',
 'watchlistedit-raw-legend' => 'خام کتنلړ سمول',

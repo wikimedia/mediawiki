@@ -479,6 +479,10 @@ $1",
 'youhavenewmessages' => 'Ju keni $1 ($2).',
 'newmessageslink' => 'mesazhe të reja',
 'newmessagesdifflink' => 'ndryshimi i fundit',
+'youhavenewmessagesfromusers' => 'Ju keni $1 nga {{Shumës:$3|përdorues tjetër|përdoruesit $3}} ($2).',
+'youhavenewmessagesmanyusers' => 'Ju keni 1$ nga shumë përdorues (2$).',
+'newmessageslinkplural' => '{{SHUMËS:1$|një porosi e re|porosi të reja}}',
+'newmessagesdifflinkplural' => 'i fundit {{SHUMËS:$1|ndryshimi|ndryshimet}}',
 'youhavenewmessagesmulti' => 'Ju keni mesazhe të reja në $1',
 'editsection' => 'redakto',
 'editold' => 'redaktoni',
@@ -573,6 +577,8 @@ Nëse nuk është kjo arsyeja, ateherë ju mund të keni gjetur një gabim në p
 'cannotdelete' => 'Faqja ose skeda $1 nuk mund të fshihej.
 Mund të jetë fshirë nga dikush tjetër.',
 'cannotdelete-title' => 'Faqja "$1" nuk mund të fshihet',
+'delete-hook-aborted' => 'Fshirja u anulua nga togëza.
+Nuk jipet shpjegim.',
 'badtitle' => 'Titull i pasaktë',
 'badtitletext' => 'Titulli i faqes që kërkuat nuk ishte i saktë, ishte bosh, ose ishte një titull ndër-gjuhësor/inter-wiki me lidhje të pasaktë.
 Mund të përmbajë një ose më shumë germa, të cilat nuk mund të përdoren në tituj.',
@@ -604,6 +610,13 @@ $2',
 'ns-specialprotected' => 'Faqet speciale nuk mund të redaktohen.',
 'titleprotected' => "Ky titull është mbrojtur nga [[User:$1|$1]] dhe nuk mund të krijohet.
 Arsyeja e dhënë është ''$2''.",
+'filereadonlyerror' => 'Nuk është në gjendje që të ndryshojë skedarin "$1" sepse depoja e skedarit "$2" është në formën vetëm-lexim.
+
+Administratori i cili e mbylli atë e dha këtë shpjegim: "$3".',
+'invalidtitle-knownnamespace' => 'Titull jo i vlefshëm me hapësirën "$2" dhe teksti "$3"',
+'invalidtitle-unknownnamespace' => 'Titull jo i vlefshëm me numrin e panjohur të hapësirës së emrit $1 dhe tekstit "$2"',
+'exception-nologin' => 'I paqasur',
+'exception-nologin-text' => 'Kjo faqe ose ky veprim ju kërkon që të qaseni në këtë wiki.',
 
 # Virus scanner
 'virus-badscanner' => "Konfiguracion i parregullt: Skaner i panjohur virusesh: ''$1''",
@@ -624,6 +637,7 @@ Arsyeja e dhënë është ''$2''.",
 'remembermypassword' => 'Mbaj mënd fjalëkalimin tim për tërë vizitat e ardhshme (për një kohë maksimale prej $1 {{PLURAL:$1|dite|ditësh}})',
 'securelogin-stick-https' => 'Qëndro i lidhur me HTTPS pas hyrjes me emrin përkatës',
 'yourdomainname' => 'Faqja juaj',
+'password-change-forbidden' => 'Ju nuk mund të ndryshoni fjalëkalimet në këtë wiki.',
 'externaldberror' => 'Ose kishte një gabim tek regjistri i identifikimit të jashtëm, ose nuk ju lejohet të përtërini llogarinë tuaje të jashtme.',
 'login' => 'Hyni',
 'nav-login-createaccount' => 'Hyni ose hapni një llogari',
@@ -689,6 +703,7 @@ Ju lutemi ndiqni këshillat në eMailin e pranuar.',
 'emailconfirmlink' => 'Vërtetoni adresën tuaj',
 'invalidemailaddress' => 'Posta elektronike nuk mund të pranohet kështu si është pasi ka format jo valid. Ju lutemi, vendoni një postë mirë të formatuar, ose zbrazeni fushën.',
 'cannotchangeemail' => 'Adresat e-mail të llogarive nuk mund të ndryshohen në këtë wiki.',
+'emaildisabled' => 'Kjo faqe nuk mund të dërgojë e-maila.',
 'accountcreated' => 'Llogarija e Përdoruesit u krijua',
 'accountcreatedtext' => 'Llogarija e Përdoruesit për $1 u krijua',
 'createaccount-title' => 'Hapja e llogarive për {{SITENAME}}',
@@ -862,6 +877,9 @@ ose [{{fullurl:{{FULLPAGENAME}}|action=edit}} të redaktoni këtë faqe]</span>.
 Ju mundeni [[Special:Search/{{PAGENAME}}|me kërku këtë titull]] në faqe tjera,
 <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} me kërku në regjistrat tematikisht të afërm],
 apo [{{fullurl:{{FULLPAGENAME}}|action=edit}} me redaktu këtë faqe]</span>.',
+'missing-revision' => 'Inspektimi #$1 i faqes me emrin "{{PAGENAME}}" nuk ekziston.
+
+Kjo zakonisht shkaktuar duke ndjekur një lidhje të vjetër tek një faqe që është fshirë. Hollësitë mund të gjenden në [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} regjistrin e fshirjeve].',
 'userpage-userdoesnotexist' => 'Llogaria e përdoruesit "<nowiki>$1</nowiki>" nuk është e regjistruar. 
 Ju lutem kontrolloni nëse dëshironi të krijoni/redaktoni këtë faqe.',
 'userpage-userdoesnotexist-view' => 'Llogaria i përdoruesit "$1" nuk është e regjistruar.',
@@ -887,6 +905,7 @@ Më poshtë mund t'i referoheni shënimit të regjistruar për bllokimin e fundi
 'note' => "'''Shënim:'''",
 'previewnote' => "'''Vini re! Kjo faqe është vetëm për shqyrtim.'''
 Ndryshimet tuaja nuk janë ruajtur ende!",
+'continue-editing' => 'Vazhdo ndryshimin',
 'previewconflict' => 'Kjo parapamje reflekton tekstin sipër kutisë së redaktimit siç do të duket kur të kryeni ndryshimin.',
 'session_fail_preview' => "'''Ju kërkojmë ndjesë! Redaktimi juaj nuk mund të perpunohej për shkak të humbjes së të dhënave të seancës.'''
 Ju lutemi, provojeni përsëri.
@@ -900,6 +919,7 @@ Redaktimi nuk u pranua për të parandaluar korruptimin e tekstit në faqe.
 Kjo ndodh ndonjëherë kur përdoret server anonim dytësor me gabime.",
 'edit_form_incomplete' => "'''Disa pjesë të formularit të redaktimit nuk arritën në server; kontrolloni edhe një herë nëse redaktimet tuaja janë të paprekura dhe provojeni përsëri.'''",
 'editing' => 'Duke redaktuar $1',
+'creating' => 'Duke krijuar $1',
 'editingsection' => 'Duke redaktuar $1 (paragraf)',
 'editingcomment' => 'Duke redaktuar (paragraf i ri) $1',
 'editconflict' => 'Konflikt redaktimi: $1',
@@ -965,6 +985,7 @@ Duket se është grisur.',
 'edit-no-change' => 'Redaktimi juaj është anashkaluar pasi që asnjë ndryshim nuk u bë në tekst.',
 'edit-already-exists' => 'Faqja nuk mundej të hapet.
 Ajo tanimë ekziston.',
+'defaultmessagetext' => 'Teksti i porosisë së parazgjedhur',
 
 # Parser/template warnings
 'expensive-parserfunction-warning' => 'Kujdes: Kjo faqe ka shumë kërkesa që kërkojnë analizë gramatikore të kushtueshme për sistemin.
@@ -1157,6 +1178,8 @@ Kini kujdes se përdorimi i lidhjeve të shfletimit do të ndryshojë përzgjedh
 
 # Diffs
 'history-title' => 'Historiku i redaktimeve te "$1"',
+'difference-title' => 'Ndryshimi mes inspektimeve të "$1"',
+'difference-title-multipage' => 'Ndryshimi mes faqeve "$1" dhe "$2"',
 'difference-multipage' => '(Ndryshimi midis faqeve)',
 'lineno' => 'Rreshti $1:',
 'compareselectedversions' => 'Krahasoni versionet e zgjedhura',
@@ -1251,6 +1274,7 @@ Kini kujdes se përdorimi i lidhjeve të shfletimit do të ndryshojë përzgjedh
 'prefs-beta' => 'Karakteristikat Beta',
 'prefs-datetime' => 'Data dhe Ora',
 'prefs-labs' => 'Karakteristikat laboratorik',
+'prefs-user-pages' => 'Faqet e përdoruesit',
 'prefs-personal' => 'Përdoruesi',
 'prefs-rc' => 'Ndryshime së fundmi',
 'prefs-watchlist' => 'Lista mbikqyrëse',
@@ -1429,6 +1453,7 @@ Kjo informatë është publike.',
 'right-writeapi' => 'Përdorimi i shkrimit API',
 'right-delete' => 'Gris faqet',
 'right-bigdelete' => 'Gris faqet me histori të gjata',
+'right-deletelogentry' => 'Fshij dhe mos i fshij shënimet në regjistrat e veçantë',
 'right-deleterevision' => 'Grisi dhe riktheji revizionet specifike të faqeve',
 'right-deletedhistory' => 'Shiko shënimet e grisura të historikut, pa tekstet e tyre të shoqëruara',
 'right-deletedtext' => 'Shiko tekstin dhe ndryshimet e grisura ndërmjet versioneve të grisura',
@@ -1539,9 +1564,11 @@ Kjo informatë është publike.',
 'number_of_watching_users_pageview' => '[$1 duke u mbikqyrur nga {{PLURAL:$1|përdorues|përdorues}}]',
 'rc_categories' => 'Kufizimi i kategorive (të ndara me "|")',
 'rc_categories_any' => 'Të gjitha',
+'rc-change-size-new' => '$1 {{PLURAL:$1|bajt|bajtë}} pas ndryshimit',
 'newsectionsummary' => '/* $1 */ seksion i ri',
 'rc-enhanced-expand' => 'Trego detajet (kërkon JavaScript)',
 'rc-enhanced-hide' => 'Fshih detajet',
+'rc-old-title' => 'fillimisht i krijuar si "$1"',
 
 # Recent changes linked
 'recentchangeslinked' => 'Ndryshime të ndërvarura',
@@ -1689,6 +1716,7 @@ Nëse problemi vazhdon atëherë kontaktoni një [[Special:ListUsers/sysop|admin
 'upload-too-many-redirects' => 'Adresa URL përmbante shumë përcjellime.',
 'upload-unknown-size' => 'Madhësia e panjohur',
 'upload-http-error' => 'Ndodhi një gabim HTTP: $1',
+'upload-copy-upload-invalid-domain' => 'Ngarkesat e kopjimit nuk janë në dispozicion nga ky domein.',
 
 # File backend
 'backend-fail-stream' => 'Nuk mund të kalojë skedën $1.',
@@ -1707,6 +1735,12 @@ Nëse problemi vazhdon atëherë kontaktoni një [[Special:ListUsers/sysop|admin
 'backend-fail-closetemp' => 'Nuk mund të mbyllë skedën e përkohshme.',
 'backend-fail-read' => 'Nuk mund të lexojë skedën $1.',
 'backend-fail-create' => 'Nuk mund të krijojë skedën $1.',
+'backend-fail-maxsize' => 'Nuk mund të shkruante skedarin "$1" sepse ai është më i madh se {{SHUMËS:$2|një bajt|$2 bajtë}}',
+'backend-fail-readonly' => 'Shërbimi i depos "$1" është për momentin vetëm-për-lexim. Arsyeja e dhënë është: "\'\'$2\'\'"',
+'backend-fail-synced' => 'Skedari "$1" është në një gjendje të parregullt brenda proceseve të depos së brendshme',
+'backend-fail-connect' => 'Nuk u arrit lidhja me shërbimin e depos "$1".',
+'backend-fail-internal' => 'Një problem i panjohur ndodhi në shërbimin e depos "$1".',
+'backend-fail-contenttype' => 'Nuk mundi të përcaktojë llojin e përmbajtjes së skedarit për ta ruajtur në "$1".',
 
 # Lock manager
 'lockmanager-notlocked' => 'Nuk mund të zhbllokojë "$1"; nuk është e bllokuar.',
@@ -1961,6 +1995,8 @@ Secili rresht përmban lidhjet tek përcjellimi i parë dhe përcjellimi i dytë
 'wantedpages' => 'Artikuj më të dëshiruar',
 'wantedpages-badtitle' => 'Titull i pavlefshëm në vendosjen e rezultateve: $1',
 'wantedfiles' => 'Skedat e dëshiruara',
+'wantedfiletext-cat' => 'Skedarët vijues janë përdorur por nuk ekzistojnë. Skedarët nga depot e panjohura mund të listohen megjithëse nuk ekzistojnë. Ndonjë gjë pozitive e pavërtetë e tillë do të <del>largohet</del>. Për më tepër, faqet që vendosin skedarë që nuk ekzistojnë janë listuar në [[:$1]].',
+'wantedfiletext-nocat' => 'Skedarët vijues janë përdorur por nuk ekzistojnë. Skedarët nga depot e panjohura mund të listohen megjithëse nuk ekzistojnë. Ndonjë gjë pozitive e pavërtetë e tillë do të <del>largohet</del>.',
 'wantedtemplates' => 'Stampat e dëshiruara',
 'mostlinked' => 'Artikuj më të lidhur',
 'mostlinkedcategories' => 'Kategori më të lidhura',
@@ -2020,6 +2056,7 @@ Ju lutemi, vini re se faqe të tjera në rrjet si mund të lidhin një figurë m
 Ju mund të kufizoni pamje sipas tipit të regjistrit, emrit të përdoruesit (shumë i ndjeshëm), dhe faqes në çështje (edhe rastet e ndjeshme)',
 'logempty' => 'Nuk ka asnjë përputhje në regjistër.',
 'log-title-wildcard' => 'Kërko tituj që fillojnë me këtë tekst',
+'showhideselectedlogentries' => 'Paraqit/fshih shënimet e përzgjedhura të regjistruara.',
 
 # Special:AllPages
 'allpages' => 'Të gjitha faqet',
@@ -2038,6 +2075,12 @@ Ju mund të kufizoni pamje sipas tipit të regjistrit, emrit të përdoruesit (s
 'allpagesbadtitle' => 'Titulli i dhënë ishte i pavlefshë ose kishte një parashtesë ndër-gjuhe ose ndër-wiki.
 Mund të përmbajë një ose më shumë karktere të cilat nuk mund të përdoren në tituj.',
 'allpages-bad-ns' => '{{SITENAME}} nuk ka hapësirë "$1".',
+'allpages-hide-redirects' => 'Fshih përcjelljet',
+
+# SpecialCachedPage
+'cachedspecial-viewing-cached-ttl' => 'Ju jeni duke e parë një version të ruajtur të kësaj faqe, që mund të jetë deri $1 e vjetër',
+'cachedspecial-viewing-cached-ts' => 'Ju jeni duke e parë një version të ruajtur të kësaj faqe, që mund të mos jetë tërësisht e pranishme.',
+'cachedspecial-refresh-now' => 'Shikoni të fundit.',
 
 # Special:Categories
 'categories' => 'Kategori',
@@ -2273,6 +2316,8 @@ vazhdoni me kujdes.',
 'rollback' => 'Riktheji mbrapsh redaktimet',
 'rollback_short' => 'Riktheje',
 'rollbacklink' => 'riktheje',
+'rollbacklinkcount' => 'riktheni $1 {{PLURAL:$1|ndryshimin|ndryshiemt}}',
+'rollbacklinkcount-morethan' => 'riktheni më tepër $1 {{PLURAL:$1|ndryshim|ndryshime}}',
 'rollbackfailed' => 'Rikthimi dështoi',
 'cantrollback' => 'Redaktimi nuk mund të kthehej;
 redaktori i fundit është i vetmi autor i këtij artikulli.',
@@ -2707,6 +2752,7 @@ Ju lutemi zgjidhni në emët tjetër.',
 'exporttext' => 'Mund të eksportoni tekstin dhe historinë e redaktimit e një faqeje ose disa faqesh të mbështjesha në XML; kjo mund të importohet në një wiki tjetër që përdor softuerin MediaWiki (tani për tani, ky opsion nuk është përfshirë tek {{SITENAME}}).
 
 Për të eksportuar faqe, thjesht shtypni një emër për çdo rresht, ose krijoni lidhje të tipit [[{{#Special:Export}}/{{MediaWiki:Mainpage}}]] si [[{{MediaWiki:Mainpage}}]].',
+'exportall' => 'Eksportoni të gjitha faqet',
 'exportcuronly' => 'Përfshi vetëm versionin e fundit, jo të gjithë historinë',
 'exportnohistory' => "'''Shënim:''' Eksportimi i historisë së faqes për shkaqe të rendimentit nuk është e mundshme.",
 'exportlistauthors' => 'Përfshij një listë të plotë të kontribuesve për secilën faqe',
@@ -2793,6 +2839,9 @@ Ju lutemi provoni përsëri.',
 'import-invalid-interwiki' => 'Nuk mund të importohet nga wiki i specifikuar.',
 'import-error-edit' => 'Faqja "$1" nuk është importuar sepse ju nuk lejoheni ta redaktoni atë.',
 'import-error-create' => 'Faqja "$1" nuk është importuar sepse ju nuk lejoheni ta krijoni atë.',
+'import-error-interwiki' => 'Faqja "$1" nuk është importuar sepse emri i saj është rezervuar për lidhje të jashtme (interwiki)',
+'import-error-special' => 'Faqja "$1" nuk është importuar sepse ajo i përket një hapësire të veçantë që nuk i lejon faqet.',
+'import-error-invalid' => 'Faqja "$1" nuk është importuar sepse emri i saj është i palejueshëm.',
 
 # Import log
 'importlogpage' => 'Regjistri i importeve',
@@ -2803,7 +2852,15 @@ Ju lutemi provoni përsëri.',
 'import-logentry-interwiki-detail' => '$1 {{PLURAL:$!1|version|versione}} nga $2',
 
 # JavaScriptTest
+'javascripttest' => 'Duke testuar JavaScript',
+'javascripttest-disabled' => 'Ky funksion nuk është mundësuar në këtë wiki.',
+'javascripttest-title' => 'Duke kryer testet $1',
+'javascripttest-pagetext-noframework' => 'Kjo faqe është rezervuar për kryerjen e testimeve JavaScript.',
+'javascripttest-pagetext-unknownframework' => 'Kornizë pune e panjohur testuese "$1".',
+'javascripttest-pagetext-frameworks' => 'Ju lutemi zgjidhni njërën nga kornizat vijuese punuese të testimit: $1',
+'javascripttest-pagetext-skins' => "Zgjidhni një mostër për t'i kryer testimet:",
 'javascripttest-qunit-intro' => 'Shiko [$1 dokumentacionin e testimit] në mediawiki.org.',
+'javascripttest-qunit-heading' => 'Platforma testuese JavaScript QUnit',
 
 # Tooltip help for the actions
 'tooltip-pt-userpage' => 'Faqja juaj e përdoruesit',
@@ -2899,6 +2956,7 @@ Ju lutemi provoni përsëri.',
 'spambot_username' => 'MediaWiki spam-pastrues',
 'spam_reverting' => "U kthye tek versioni i fundit që s'ka lidhje tek $1",
 'spam_blanking' => 'U boshatis sepse të gjitha versionet kanë lidhje tek $1',
+'spam_deleting' => 'Të gjitha inspektimet përmbanin lidhje në $1, duke fshirë',
 
 # Info page
 'pageinfo-title' => 'Informacion për " $1 "',
@@ -3599,6 +3657,7 @@ Ju duhet të keni marrë [{{SERVER}}{{SCRIPTPATH}}/COPYING një kopje të GNU Ge
 'version-software' => 'Softuerët e instaluar',
 'version-software-product' => 'Produkti',
 'version-software-version' => 'Versioni',
+'version-entrypoints-header-url' => 'URL',
 
 # Special:FilePath
 'filepath' => 'Vendndodhja e skedave',
@@ -3760,6 +3819,8 @@ Përndryshe, ju mund të formularin e thjeshtë më poshtë. Komenti juaj do të
 'api-error-empty-file' => 'Skeda që paraqitët ishte bosh.',
 'api-error-emptypage' => 'Nuk lejohet krijimi i faqeve të reja bosh.',
 'api-error-fetchfileerror' => 'Gabim i brendshëm: Diçka shkoi keq gjatë marrjes së skedës.',
+'api-error-fileexists-forbidden' => 'Një skedar me emrin "$1" tashmë ekziston dhe nuk mund të mbishkruhet.',
+'api-error-fileexists-shared-forbidden' => 'Një skedar me emrin "$1" tashmë ekziston në depon për skedarët e shpërndarë dhe nuk mund të mbishkruhet.',
 'api-error-file-too-large' => 'Skeda që paraqitët ishte shumë e madhe.',
 'api-error-filename-tooshort' => 'Emri i skedës është shumë i shkurtër.',
 'api-error-filetype-banned' => 'Ky lloj i skedës është përjashtuar.',
@@ -3786,6 +3847,17 @@ Përndryshe, ju mund të formularin e thjeshtë më poshtë. Komenti juaj do të
 'api-error-unknownerror' => 'Gabim i papërcaktuar: "$1".',
 'api-error-uploaddisabled' => 'Ngarkimi është i çaktivizuar në këte wiki.',
 'api-error-verification-error' => 'Skeda mund të jetë e korruptuar ose ka shtesë të gabuar.',
+
+# Durations
+'duration-seconds' => '$1 {{PLURAL:$1|sekondë|sekonda}}',
+'duration-minutes' => '$1 {{PLURAL:$1|minutë|minuta}}',
+'duration-hours' => '$1 {{PLURAL:$1|orë|orë}}',
+'duration-days' => '$1 {{PLURAL:$1|ditë|ditë}}',
+'duration-weeks' => '$1 {{PLURAL:$1|javë|javë}}',
+'duration-years' => '$1 {{PLURAL:$1|vit|vite}}',
+'duration-decades' => '$1 {{PLURAL:$1|dekadë|dekada}}',
+'duration-centuries' => '$1 {{PLURAL:$1|shekull|shekuj}}',
+'duration-millennia' => '$1 {{PLURAL:$1|milennium|mileniume}}',
 
 # Unknown messages
 'api-error-filetype-banned-type' => '$1 {{PLURAL:$4|nuk është një lloj i skedës së lejuar|nuk janë lloje të lejuara të skedave}}. {{PLURAL:$3|Lloji i lejuar i skedës është|Llojet e lejuara të skedave janë}} $2.',

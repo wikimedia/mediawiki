@@ -1349,7 +1349,7 @@ Her er det framlegg til eit tal som kan nyttast, tilfelleleg henta fram: $1',
 'prefs-custom-js' => 'Eigendefinert JavaScript',
 'prefs-common-css-js' => 'Delt CSS/JavaScript for alle draktene:',
 'prefs-reset-intro' => 'Du kan nytta denne sida til å tilbakestilla innstillingane dine til standardinnstillingane.
-Dette kan ikke tilbakestillast.',
+Dette kan ikkje tilbakestillast.',
 'prefs-emailconfirm-label' => 'Stadfesting av e-post:',
 'prefs-textboxsize' => 'Storleiken til redigeringsvindauga',
 'youremail' => 'E-post:',

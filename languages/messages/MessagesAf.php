@@ -215,7 +215,7 @@ $messages = array(
 'tog-hidepatrolled' => 'Versteek gepatrolleerde wysigings in onlangse wysigingslys',
 'tog-newpageshidepatrolled' => 'Versteek gepatrolleerde wysigings van nuwe bladsy lys',
 'tog-extendwatchlist' => 'Brei dophoulys uit om alle wysigings te wys, nie slegs die nuutste nie',
-'tog-usenewrc' => 'Verbeterde onlangse wysigingslys (benodig JavaScript)',
+'tog-usenewrc' => 'Groepeer wysigings per bladsy in onlangse wysigings en dophoulys (benodig JavaScript)',
 'tog-numberheadings' => 'Nommer opskrifte outomaties',
 'tog-showtoolbar' => 'Wys redigeergereedskap (benodig JavaScript)',
 'tog-editondblclick' => 'Dubbelkliek om blaaie te wysig (benodig JavaScript)',
@@ -223,17 +223,17 @@ $messages = array(
 'tog-editsectiononrightclick' => 'Wysig afdeling met regskliek op afdeling se titel (JavaScript)',
 'tog-showtoc' => 'Wys inhoudsopgawe (by bladsye met meer as drie opskrifte)',
 'tog-rememberpassword' => 'Onthou dat ek op hierdie rekenaar ingeteken het (vir \'n maksimum van $1 {{PLURAL:$|dag|dae}})',
-'tog-watchcreations' => 'Voeg bladsye wat ek skep by my dophoulys',
-'tog-watchdefault' => 'Lys nuwe en gewysigde bladsye.',
-'tog-watchmoves' => 'Voeg die bladsye wat ek skuif by my dophoulys',
-'tog-watchdeletion' => 'Voeg bladsye wat ek verwyder by my dophoulys',
+'tog-watchcreations' => 'Voeg bladsye wat ek skep en lêers wat ek oplaai by my dophoulys',
+'tog-watchdefault' => 'Voeg bladsye en lêers wat ek wysig by my dophoulys',
+'tog-watchmoves' => 'Voeg bladsye en lêers wat ek skuif by my dophoulys',
+'tog-watchdeletion' => 'Voeg bladsye en lêers wat ek skrap by my dophoulys',
 'tog-minordefault' => 'Merk alle wysigings automaties as klein by verstek.',
 'tog-previewontop' => 'Wys voorskou bo wysigingsboks.',
 'tog-previewonfirst' => 'Wys voorskou met eerste wysiging',
 'tog-nocache' => 'Deaktiveer blaaier se bladsykas',
-'tog-enotifwatchlistpages' => 'Stuur vir my e-pos met bladsyveranderings',
+'tog-enotifwatchlistpages' => "Stuur my e-pos as 'n bladsye of lêer op my dophoulys verander",
 'tog-enotifusertalkpages' => 'Stuur vir my e-pos as my eie besprekingsblad verander word',
-'tog-enotifminoredits' => 'Stuur ook e-pos vir klein bladsywysigings',
+'tog-enotifminoredits' => 'Stuur my ook e-pos vir klein wysigings aan bladsye en lêers',
 'tog-enotifrevealaddr' => 'Stel my e-posadres bloot in kennisgewingspos',
 'tog-shownumberswatching' => 'Wys die aantal gebruikers wat dophou',
 'tog-oldsig' => 'Bestaande handtekening:',
@@ -471,6 +471,10 @@ $1",
 'youhavenewmessages' => 'U het $1 (sien $2).',
 'newmessageslink' => 'nuwe boodskappe',
 'newmessagesdifflink' => 'die laaste wysiging',
+'youhavenewmessagesfromusers' => "U het $1 van {{PLURAL:$3|'n ander gebruiker|$3 gebruikers}} ($2).",
+'youhavenewmessagesmanyusers' => 'U het $1 van baie gebruikers ($2).',
+'newmessageslinkplural' => "{{PLURAL:$1|'n nuwe boodskap|nuwe boodskappe}}",
+'newmessagesdifflinkplural' => 'laaste {{PLURAL:$1|wysiging|wysigings}}',
 'youhavenewmessagesmulti' => 'U het nuwe boodskappe op $1',
 'editsection' => 'wysig',
 'editold' => 'wysig',
@@ -567,6 +571,8 @@ Indien dit nie die geval is nie, het u moontlik 'n fout in die sagteware ontdek.
 'cannotdelete' => 'Die bladsy of lêer "$1" kon nie skrap word nie.
 Iemand anders het dit moontlik reeds geskrap.',
 'cannotdelete-title' => 'Bladsy "$1" kan nie verwyder word nie',
+'delete-hook-aborted' => "Die wysiging is deur 'n hoek gekanselleer.
+Geen verduideliking is verskaf nie.",
 'badtitle' => 'Ongeldige titel',
 'badtitletext' => "Die bladsytitel waarvoor gevra is, is ongeldig, leeg, of
 'n verkeerd geskakelde tussen-taal of tussen-wiki titel.",
@@ -594,7 +600,7 @@ Probeer asseblief weer oor 'n paar minute.",
 'ns-specialprotected' => 'Spesiale bladsye kan nie geredigeer word nie.',
 'titleprotected' => "Hierdie titel is beskerm teen skepping deur [[User:$1|$1]].
 Die rede gegee is ''$2''.",
-'filereadonlyerror' => 'Dit was nie moontlik om die lêer "$1" te wysig nie lêerstoor tans lees-alleen is.
+'filereadonlyerror' => 'Dit was nie moontlik om die lêer "$1" te wysig nie omdat die lêerstoor "$2" tans lees-alleen is.
 
 Die rede hiervoor is "\'\'$3\'\'".',
 'invalidtitle-knownnamespace' => 'Ongeldige titel met naamruimte "$2" en teks "$3"',
@@ -621,6 +627,7 @@ moenie vergeet om u [[Special:Preferences|persoonlike voorkeure vir {{SITENAME}}
 'remembermypassword' => 'Onthou dat ek op hierdie rekenaar ingeteken het (vir \'n maksimum van $1 {{PLURAL:$|dag|dae}})',
 'securelogin-stick-https' => 'Bly verbind met HTTPS na aanmelding',
 'yourdomainname' => 'U domein:',
+'password-change-forbidden' => 'U kan nie wagwoorde op hierdie wiki verander nie.',
 'externaldberror' => "'n Databasis fout het voorgekom tydens aanmelding of u het nie toestemming om u eksterne rekening op te dateer nie.",
 'login' => 'Teken in',
 'nav-login-createaccount' => 'Teken in',
@@ -861,13 +868,17 @@ U kan [[Special:Search/{{PAGENAME}}|vir die bladsytitel in ander bladsye soek]],
 of [{{fullurl:{{FULLPAGENAME}}|action=edit}} hierdie bladsy wysig]</span>.',
 'noarticletext-nopermission' => 'Daar is tans geen teks in hierdie bladsy nie. U kan vir die bladsytitel [[Special:Search/{{PAGENAME}}|in ander bladsye soek]] of
 <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} die verwante logboeke deursoek]</span>.',
+'missing-revision' => 'Die weergawe #$1 van die bladsy "{{PAGENAME}} bestaan nie.
+
+Dit word meestal veroorsaak deur die volg van \'n verouderde verwysing na \'n bladsy wat verwyder is.
+Meer gegewens kan moontlik in die [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} skraplogboek] gevind word.',
 'userpage-userdoesnotexist' => 'U is besig om \'n gebruikersblad wat nie bestaan nie te wysig (gebruiker "<nowiki>$1</nowiki>"). Maak asseblief seker of u die bladsy wil skep/ wysig.',
 'userpage-userdoesnotexist-view' => 'Die gebruiker "$1" is nie geregistreer nie.',
 'blocked-notice-logextract' => 'Hierdie gebruiker is tans geblokkeer.
 Die laaste inskrywing in die blokkeerlogboek word hieronder vertoon:',
 'clearyourcache' => "'''Let wel''': Na die voorkeure gestoor is, moet u blaaier se kasgeheue verfris word om die veranderinge te sien:
-* '''Firefox / Safari:''' hou ''Shift'' en kliek ''Reload'', of druk ''Ctrl-F5'' of ''Ctrl-R'' (''Command-R'' op 'n Mac)
-* '''Google Chrome:''' druk ''Ctrl-Shift-R'' (''Command-Shift-R'' op 'n Mac)
+* '''Firefox / Safari:''' hou ''Shift'' en kliek ''Reload'', of druk ''Ctrl-F5'' of ''Ctrl-R'' (''⌘-R'' op 'n Mac)
+* '''Google Chrome:''' druk ''Ctrl-Shift-R'' (''⌘-Shift-R'' op 'n Mac)
 * '''Internet Explorer:''' hou ''Ctrl'' en kliek ''Refresh'', of druk ''Ctrl-F5''
 * '''Konqueror:''' kliek ''Reload'' of druk ''F5''
 * '''Opera:''' maak die kas skoon by ''Tools → Preferences''",
@@ -986,6 +997,7 @@ Hierdie parameters is uitgelaat.",
 'expansion-depth-exceeded-warning' => 'Die bladsy bevat te veel sjablone',
 'parser-unstrip-loop-warning' => '\'n "Unstrip"-lus is bespreur.',
 'parser-unstrip-recursion-limit' => 'Die rekursielimiet ($1) vir "unstrip" is oorskry',
+'converter-manual-rule-error' => "'n Fout is in 'n handmatig toegevoegde taalomskalelingsreël gevind.",
 
 # "Undo" feature
 'undo-success' => 'Die wysiging kan ongedaan gemaak word.
@@ -1390,7 +1402,7 @@ Die inligting is vir ander gebruikers sigbaar.',
 'userrights-no-interwiki' => 'U het nie toestemming om gebruikersregte op ander wikis te verander nie.',
 'userrights-nodatabase' => 'Databasis $1 bestaan nie of is nie hier beskikbaar nie.',
 'userrights-nologin' => "U moet [[Special:UserLogin|aanteken]] as 'n administrateur om gebruikersregte te mag toeken.",
-'userrights-notallowed' => 'U het nie die toestemming om gebruikersregte toe te ken nie.',
+'userrights-notallowed' => 'U het nie magtiging om gebruikersregte by te sit of weg te neem nie.',
 'userrights-changeable-col' => 'Groepe wat u kan verander',
 'userrights-unchangeable-col' => 'Groepe wat u nie kan verander nie',
 
@@ -1736,6 +1748,17 @@ As daar steeds probleme is, kontak 'n [[Special:ListUsers/sysop|administrateur]]
 'backend-fail-read' => 'Kon nie lêer $1 lees nie.',
 'backend-fail-create' => 'Kon nie lêer $1 uitskryf nie.',
 
+# Lock manager
+'lockmanager-notlocked' => 'Kon nie "$1" ontgrendel nie omdat dit nie gesluit is nie.',
+'lockmanager-fail-closelock' => 'Kon nie die slotlêer vir "$1" te sluit nie.',
+'lockmanager-fail-deletelock' => 'Kon nie die slotlêer vir "$1" skrap nie.',
+'lockmanager-fail-acquirelock' => 'Kon nie "$1" vergrendel nie.',
+'lockmanager-fail-openlock' => 'Kon nie die slotlêer vir "$1" oopmaak nie.',
+'lockmanager-fail-releaselock' => 'Kon nie "$1" ontgrendel nie.',
+'lockmanager-fail-db-release' => "Kon nie 'n vergrendeling op databasis $1 ophef nie.",
+'lockmanager-fail-svr-acquire' => "Kon nie 'n vergrendeling op bediener $1 verkry nie.",
+'lockmanager-fail-svr-release' => 'Kon nie vergrandeling op bediener $1 ophef nie.',
+
 # ZipDirectoryReader
 'zip-file-open-error' => "'n Fout het voorgekom met die opening van die lêer vir ZIP toetsing.",
 'zip-wrong-format' => "Die gespesifiseerde lêer was nie 'n zip-lêer nie.",
@@ -2036,6 +2059,7 @@ Dit is dus moontlik dat 'n lêer hier gelys word terwyl dit tog in gebruik is.",
 U kan die resultate vernou deur 'n boekstaaftipe, gebruikersnaam (kas-sensitief) of spesifieke blad (ook kas-sensitief) te kies.",
 'logempty' => 'Geen inskrywings in die logboek voldoen aan die kriteria nie.',
 'log-title-wildcard' => 'Soek bladsye wat met die naam begin',
+'showhideselectedlogentries' => 'Wys/versteek gekose logboekreëls',
 
 # Special:AllPages
 'allpages' => 'Alle bladsye',
@@ -2273,6 +2297,8 @@ Tree asseblief versigtig op.",
 'rollback' => 'Rol veranderinge terug',
 'rollback_short' => 'Rol terug',
 'rollbacklink' => 'Rol terug',
+'rollbacklinkcount' => 'rol {{PLURAL:$1|een wysiging|$1 wysigings}} terug',
+'rollbacklinkcount-morethan' => 'rol meer as {{PLURAL:$1|een wysiging|$1 wysigings}} terug',
 'rollbackfailed' => 'Terugrol onsuksesvol',
 'cantrollback' => 'Kan nie na verandering terug keer nie; die laaste bydraer is die enigste outer van hierdie bladsy.',
 'alreadyrolled' => "Dit is nie moontlik om die laaste wysiging van die bladsy [[:$1]] deur [[User:$2|$2]] ([[User talk:$2|bespreking]]{{int:pipe-separator}}[[Special:Contributions/$2|bydraes]]) ongedaan te maak nie.
@@ -2822,6 +2848,7 @@ Die lêer is slegs gedeeltelik opgelaai.',
 'javascripttest-pagetext-frameworks' => 'Kies een van die volgende toetsraamwerke: $1',
 'javascripttest-pagetext-skins' => "Kies 'n omslag waarmee die toets uitgevoer moet word:",
 'javascripttest-qunit-intro' => 'Sien die [$1 toetsdokumentasie] op mediawiki.org.',
+'javascripttest-qunit-heading' => 'QUnit toetssuite vir MediaWiki JavaScript',
 
 # Tooltip help for the actions
 'tooltip-pt-userpage' => 'U gebruikerbladsy',
@@ -3783,6 +3810,8 @@ Beelde word in hulle volle resolusie gewys. Ander lêertipes word direk met hull
 'api-error-empty-file' => 'Die lêer wat u probeer oplaai is leeg.',
 'api-error-emptypage' => 'Die skep van leë nuwe bladsye word nie toegelaat nie.',
 'api-error-fetchfileerror' => 'Interne fout: Iets het verkeerd gegaan met die haal van die lêer.',
+'api-error-fileexists-forbidden' => 'Daar is reeds \'n lêer met die naam "$1" wat nie oorskryf kan word nie.',
+'api-error-fileexists-shared-forbidden' => 'Daar is reeds \'n lêer met die naam "$1" in die gedeelde lêerstoor, en kan nie oorskryf word nie.',
 'api-error-file-too-large' => 'Die lêer wat u probeer oplaai is te groot.',
 'api-error-filename-tooshort' => 'Die lêernaam is te kort.',
 'api-error-filetype-banned' => 'Hierdie tipe lêer is verban en word nie toegelaat nie.',
@@ -3822,5 +3851,5 @@ Beelde word in hulle volle resolusie gewys. Ander lêertipes word direk met hull
 'duration-millennia' => '$1 {{PLURAL:$1|millennium|millennia}}',
 
 # Unknown messages
-'api-error-filetype-banned-type' => 'Die {{PLURAL:$4|lêertipe|lêertipes}} word $1 nie toegelaat nie. Toelaatbare {{PLURAL:$3|lêertipes|lêertipes}} is $2.',
+'api-error-filetype-banned-type' => 'Die {{PLURAL:$4|lêertipe|lêertipes}} $1 word nie toegelaat nie. Toelaatbare {{PLURAL:$3|lêertipes|lêertipes}} is $2.',
 );

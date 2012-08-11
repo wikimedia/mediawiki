@@ -2247,7 +2247,7 @@ qey heqê şexsi de [[{{MediaWiki:Listgrouprights-helppage}}|hema malumato ziyed
 'email-legend' => 'karberê {{SITENAME}} binan re e-posta bıerşaw',
 'emailfrom' => 'Rışten:',
 'emailto' => 'Geren:',
-'emailsubject' => 'behs/mesela:',
+'emailsubject' => 'Mersel:',
 'emailmessage' => 'Mesaj',
 'emailsend' => 'bıerşawê/bıruşnê',
 'emailccme' => 'kopyayekê mesaji mı re bıerşaw',
@@ -4070,7 +4070,7 @@ Ena sita dı newke xırabiya teknik esta.',
 
 # Feedback
 'feedback-bugornote' => 'Jew mersela teferruato teknik esta şıma reca malumatê şıma hazıro se [ $1  jew xırab rapor] bıvinê.Zewbi zi, formê cerê xo rê şenê karfiyê. Vatışê xo pela da "[ $3  $2 ]", namey karber dê xoya piya u wasteriya karfiye.',
-'feedback-subject' => 'Muhtewa:',
+'feedback-subject' => 'Mersel:',
 'feedback-message' => 'Mesac:',
 'feedback-cancel' => 'Bıterkne',
 'feedback-submit' => 'Peyxeberdar Bırşe',

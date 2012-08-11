@@ -162,17 +162,17 @@ $messages = array(
 'tog-editsectiononrightclick' => 'વિભાગના મથાળાં ને રાઇટ ક્લિક દ્વારા ફેરફાર કરવાની રીત અપનાવો. (જાવાસ્ક્રિપ્ટ જરૂરી)',
 'tog-showtoc' => 'અનુક્રમણિકા દર્શાવો (૩થી વધુ પેટા-મથાળા વાળા લેખો માટે)',
 'tog-rememberpassword' => 'આ કમ્પ્યૂટર પર મારી લોગ-ઇન વિગતો યાદ રાખો (મહત્તમ $1 {{PLURAL:$1|દિવસ|દિવસ}} માટે)',
-'tog-watchcreations' => 'મેં લખેલા નવા લેખો મારી ધ્યાનસૂચિમાં ઉમેરો',
-'tog-watchdefault' => 'હું ફેરફાર કરૂં તે પાના મારી ધ્યાનસૂચિમાં ઉમેરો',
-'tog-watchmoves' => 'હું જેનું નામ બદલું તે પાના મારી ધ્યાનસૂચિમાં ઉમેરો',
-'tog-watchdeletion' => 'હું હટાવું તે પાના મારી ધ્યાનસૂચિમાં ઉમેરો',
+'tog-watchcreations' => 'મેં ઉમેરેલા પાનાંઓ અને અપલોડ કરેલ ફાઇલ્સ મારી ધ્યાનસૂચિમાં ઉમેરો',
+'tog-watchdefault' => 'હું ફેરફાર કરૂં તે પાનાં અને ફાઇલ્સ મારી ધ્યાનસૂચિમાં ઉમેરો',
+'tog-watchmoves' => 'હું ખસેડું તે પાનાં અને ફાઇલ્સ મારી ધ્યાનસૂચિમાં ઉમેરો',
+'tog-watchdeletion' => 'હું દૂર કરું તે પાનાં અને ફાઇલ્સ મારી ધ્યાનસૂચિમાં ઉમેરો',
 'tog-minordefault' => 'બધા નવા ફેરફારો નાના તરીકે માર્ક કરો.',
 'tog-previewontop' => 'એડીટ બોક્સ પહેલાં પ્રિવ્યુ બતાવો.',
 'tog-previewonfirst' => 'પ્રથમ ફેરફાર વખતે પ્રિવ્યુ બતાવો.',
 'tog-nocache' => 'બ્રાઉઝરનું પેજ કેશિંગ અક્રિય કરો',
-'tog-enotifwatchlistpages' => 'મારી ધ્યાનસૂચિમાંનાં પાનામાં ફેરફાર થાય ત્યારે મને ઇ-મેલ મોકલો',
+'tog-enotifwatchlistpages' => 'મારી ધ્યાનસૂચિમાંનું પાનુ અને ફાઇલમાં ફેરફાર થાય ત્યારે મને ઇ-મેલ મોકલો',
 'tog-enotifusertalkpages' => 'મારી ચર્ચાનાં પાનામાં ફેરફાર થાય ત્યારે મને ઇ-મેલ મોકલો',
-'tog-enotifminoredits' => 'પાનામાં નાનાં ફેરફાર થાય ત્યારે પણ મને ઇ-મેલ મોકલો',
+'tog-enotifminoredits' => 'પાનાં અનેફાઇલ્સમાં નાનાં ફેરફાર થાય તો પણ મને ઇ-મેલ મોકલો',
 'tog-enotifrevealaddr' => 'નોટીફીકેશનના ઇમેલમાં મારૂ ઇમેલ એડ્રેસ બતાવો',
 'tog-shownumberswatching' => 'ધ્યાનમાં રાખતા સભ્યોની સંખ્યા બતાવો',
 'tog-oldsig' => 'હાલના હસ્તાક્ષર',
@@ -419,6 +419,8 @@ $1',
 'youhavenewmessages' => 'તમારા માટે $1 ($2).',
 'newmessageslink' => 'નવીન સંદેશ',
 'newmessagesdifflink' => 'છેલ્લો ફેરફાર',
+'newmessageslinkplural' => '{{PLURAL:$1|નવો સંદેશ|નવાં સંદેશાઓ}}',
+'newmessagesdifflinkplural' => 'છેલ્લા {{PLURAL:$1|ફેરફાર|ફેરફારો}}',
 'youhavenewmessagesmulti' => '$1 ઉપર તમારા માટે નવો સંદેશ છે.',
 'editsection' => 'ફેરફાર કરો',
 'editsection-brackets' => '[$1]',
@@ -448,7 +450,7 @@ $1',
 
 # Short words for each namespace, by default used in the namespace tab in monobook
 'nstab-main' => 'લેખ',
-'nstab-user' => 'મારા વિષે',
+'nstab-user' => 'સભ્ય પાનું',
 'nstab-media' => 'મિડીયા પાનું',
 'nstab-special' => 'ખાસ પાનું',
 'nstab-project' => 'પરિયોજનાનું પાનું',
@@ -543,6 +545,7 @@ $2',
 'ns-specialprotected' => 'ખાસ પાનાંમાં ફેરફાર ન થઇ શકે.',
 'titleprotected' => 'આ મથાળું (વિષય) [[User:$1|$1]] બનાવવા માટે સુરક્ષિત કરવામાં આવ્યો છે.
 આ માટેનું કારણ છે-- "\'\'$2\'\'".',
+'exception-nologin' => 'પ્રવેશ કરેલ નથી',
 
 # Virus scanner
 'virus-badscanner' => "ખરાબ રૂપરેખા: અજાણ્યું વાઇરસ સ્કેનર: ''$1''",
@@ -563,6 +566,7 @@ $2',
 'remembermypassword' => 'આ કોમ્યૂટર પર મારી લૉગ ઇન વિગતો ધ્યાનમાં રાખો (વધુમાં વધુ $1 {{PLURAL:$1|દિવસ|દિવસ}} માટે)',
 'securelogin-stick-https' => 'લોગ-ઈન કર્યા પછી  HTTPS સાથે જોડાયેલા રહો.',
 'yourdomainname' => 'તમારૂં ડોમેઇન:',
+'password-change-forbidden' => 'તમે આ વિકિ માટે પાસવર્ડ્સ બદલી શકતા નથી.',
 'externaldberror' => 'પ્રમાણભૂતતાની ત્રુટી આવી અથવા તમારૂ બહારનુ ખાતું અપડેટ કરવાનો અધિકાર તમને નથી.',
 'login' => 'પ્રવેશ કરો',
 'nav-login-createaccount' => 'પ્રવેશ કરો / નવું ખાતું ખોલો',
@@ -642,6 +646,7 @@ Please log in again after you receive it.
 'invalidemailaddress' => 'આ ઈ-મેલ અયોગ્ય માળખું ધરાવ્હે છે  માટે સ્વીકારી શકાશે નહીં
 કૃપયા યોગ્ય માળખામાં ઇ-મેલ લખો',
 'cannotchangeemail' => 'એકાઉન્ટ ઈ મેલ એડ્રસ આ વીકી પર નહિ બદલી શકાય.',
+'emaildisabled' => 'આ સાઇટ ઇ-મેલ્સ મોકલી શકતી નથી.',
 'accountcreated' => 'ખાતું ખોલવામાં આવ્યું છે',
 'accountcreatedtext' => '$1 માટે સભ્ય ખાતુ બનાવ્યું.',
 'createaccount-title' => '{{SITENAME}} માટે ખાતુ બનાવ્યું',
@@ -842,6 +847,7 @@ $2
 'note' => "'''નોંધ:'''",
 'previewnote' => "'''આ ફક્ત પૂર્વાવલોકન છે;'''
 તમારા ફેરફારો હજુ સાચવવામાં નથી આવ્યા!",
+'continue-editing' => 'વાંચવાનું ચાલુ રાખો',
 'previewconflict' => 'જો તમે આ પાનું સાચવશો તો આ પ્રિવ્યુમાં દેખાય છે તેવું સચવાશે.',
 'session_fail_preview' => "'''અફસોસ છે! સત્ર માહિતી ખોઇ દેવાને કારણે અમે તમારું કાર્ય સાચવી ન શક્યાં.'''
 કૃપયા ફરી પ્રયત્ન કરો.
@@ -857,6 +863,7 @@ $2
 જ્યારે તમે વેબ આધારિત  અજ્ઞાત પ્રોક્સી વાપરતા હોવ ત્યારે આવું બની શકે છે.",
 'edit_form_incomplete' => "'''ફેરફાર પત્રનો અમુક ભાગ સર્વર સુધી ન પહોંચ્યો; ખાત્રી કરો કે તમે કરેલા ફેરફાર બરાબર છે અને ફરી પ્રયત્ન કરો.'''",
 'editing' => '$1નો ફેરફાર કરી રહ્યા છે',
+'creating' => '$1 બનાવે છે',
 'editingsection' => '$1 (પરિચ્છેદ)નો ફેરફાર કરી રહ્યા છો',
 'editingcomment' => '$1 (પરિચ્છેદ)નો ફેરફાર કરી રહ્યા છો',
 'editconflict' => 'ફેરફારમાં વિસંગતતા: $1',
@@ -923,6 +930,7 @@ $2
 'edit-no-change' => 'તમારા ફેરફારો અવગણાયા, કેમકે અક્ષરકાયામાં કોઈ ફેરફારાના હતો',
 'edit-already-exists' => 'નવું પાનું બનાવી ન શકાયું
 તે પહેલેથી હાજર છે.',
+'defaultmessagetext' => 'મૂળભૂત સંદેશ લખાણ',
 
 # Parser/template warnings
 'expensive-parserfunction-warning' => "'''ચેતવણી:''' આ પાનું ખૂબ ખર્ચાળ પદચ્છેદ સૂત્ર ધરાવે છે.
@@ -1119,6 +1127,8 @@ $1",
 
 # Diffs
 'history-title' => '"$1"ના ફેરફારોનો ઇતિહાસ',
+'difference-title' => '"$1" ની આવૃત્તિઓ વચ્ચેનો તફાવત',
+'difference-title-multipage' => '"$1" અને "$2" પાનાંઓ વચ્ચેનો તફાવત',
 'difference-multipage' => '(પાનાઓ વચ્ચેનો ફેરફાર)',
 'lineno' => 'લીટી $1:',
 'compareselectedversions' => 'પસંદ કરેલા સરખાવો',
@@ -1216,6 +1226,7 @@ $1",
 'prefs-beta' => 'બીટા લક્ષણો',
 'prefs-datetime' => 'તારીખ અને સમય',
 'prefs-labs' => 'પ્રયોગશાળા લક્ષણો',
+'prefs-user-pages' => 'સભ્ય પાનાંઓ',
 'prefs-personal' => 'સભ્ય ઓળખ',
 'prefs-rc' => 'તાજા ફેરફારો',
 'prefs-watchlist' => 'ધ્યાનસૂચિ',
@@ -1441,7 +1452,7 @@ HTML નાકું ચકાસો',
 
 # Associated actions - in the sentence "You do not have permission to X"
 'action-read' => 'આ પાનું વાંચો.',
-'action-edit' => 'આ પાનામાં ફેરફાર કરવાની',
+'action-edit' => 'આ પાનામાં ફેરફાર કરો',
 'action-createpage' => 'નવો લેખ શરૂ કરો',
 'action-createtalk' => 'ચર્ચાનું પાનું બનાવો',
 'action-createaccount' => ' ખાતું ખોલો',
@@ -1893,9 +1904,9 @@ https://www.mediawiki.org/wiki/Manual:Image_Authorization. જુઓ',
 
 'disambiguations' => 'સંદિગ્ધ શીર્ષકવાળાં પાનાં સાથે જોડાતાં પૃષ્ઠો',
 'disambiguationspage' => 'Template:અસંદિગ્ધ',
-'disambiguations-text' => "નીચેના પાના  '''સંદિગ્ધ વાક્યો વાળા પાના''' સાથે કડી દ્વારા જોડાયેલા છે.
-તેના કરતા તેને યોગ્ય તે વિષ્ય સાથે જોડાયેલા હોવા જોઇએ.<br />
-આ પાનાને સંદિગ્ધ  વાક્યો વાળા પાના ત્યારે કહી શકાય જ્યારે તે [[MediaWiki:Disambiguationspage]] નામના ઢાંચા સાથે જોડાયેલા હોય.",
+'disambiguations-text' => "નીચેના પાના  '''સંદિગ્ધ વાક્યો વાળા પાના''' સાથે ઓછામાં ઓછી એક કડી દ્વારા જોડાયેલા છે.
+તેઓ વધુ યોગ્ય પાનાં સાથે જોડાયેલા હોવા જોઇએ.<br />
+પાનાને સંદિગ્ધ વાક્યો વાળું પાનું ત્યારે કહી શકાય જ્યારે તે [[MediaWiki:Disambiguationspage]] નામના માળખા સાથે જોડાયેલું હોય.",
 
 'doubleredirects' => 'બમણું દિશાનિર્દેશન',
 'doubleredirectstext' => 'આ પાનું દિશા નિર્દેશિત પાના પર થયેલા દિશા નિર્દેશિત પાનાની યાદિ બતાવે છે.
@@ -2242,6 +2253,8 @@ Deleting it may disrupt database operations of {{SITENAME}};',
 'rollback' => 'ફેરફારો ઉલટાવો',
 'rollback_short' => 'ઉલટાવો',
 'rollbacklink' => 'પાછું વાળો',
+'rollbacklinkcount' => '$1 {{PLURAL:$1|ફેરફાર|ફેરફારો}} કરતાં વધુ પાછાં લાવો',
+'rollbacklinkcount-morethan' => '$1 {{PLURAL:$1|ફેરફાર|ફેરફારો}} કરતાં ઓછું પાછું લાવો',
 'rollbackfailed' => 'ઉલટાવવું નિષ્ફળ',
 'cantrollback' => 'આ ફેરફારો ઉલટાવી નહી શકાય
 છેલ્લો ફેરફાર આ પાના ના રચયિતા દ્વારા જ થયો હતો',
@@ -2407,7 +2420,7 @@ To perform a selective restoration, check the boxes corresponding to the revisio
 'sp-contributions-deleted' => 'સભ્યનું ભૂંસેલું યોગદાન',
 'sp-contributions-uploads' => 'ખાસ યોગદાન / ચડાવેલ ફાઇલ',
 'sp-contributions-logs' => 'લૉગ',
-'sp-contributions-talk' => 'યોગદાનકર્તાની ચર્ચા',
+'sp-contributions-talk' => 'ચર્ચા',
 'sp-contributions-userrights' => 'સભ્ય હક્ક પ્રબંધન',
 'sp-contributions-blocked-notice' => 'આ સભ્ય પ્રતિબંધિત છે
 તમારા સંદર્ભ માટે પ્રતિબંધિત સભ્યોની યાદિ આપી છે',
@@ -3596,6 +3609,7 @@ $5
 'version-software-product' => 'ઉત્પાદ',
 'version-software-version' => 'આવૃત્તિ',
 'version-entrypoints-header-entrypoint' => 'પ્રવેશ સ્થળ',
+'version-entrypoints-header-url' => 'URL',
 
 # Special:FilePath
 'filepath' => 'ફાઈલ પથ',
@@ -3785,7 +3799,7 @@ $5
 'api-error-verification-error' => 'ફાઈલ યાતો ખરાબ થઈ ગઈ છે યાતો તેનું ઍક્સટેન્શન (વિસ્તરક) ખોટો છે.',
 
 # Durations
-'duration-seconds' => '$1 {{PLURAL:$1|સેકંડ|સેકંડ}}',
+'duration-seconds' => '$1 {{PLURAL:$1|સેકંડ|સેકંડો}}',
 'duration-minutes' => '$1 {{PLURAL:$1|મિનિટ|મિનિટો}}',
 'duration-hours' => '$1 {{PLURAL:$1|કલાક|કલાકો}}',
 'duration-days' => '$1 {{PLURAL:$1|દિવસ|દિવસો}}',
@@ -3796,5 +3810,5 @@ $5
 'duration-millennia' => '$1 {{PLURAL:$1|સહસ્ત્રાબ્દી|સહસ્ત્રાબ્દીઓ}}',
 
 # Unknown messages
-'api-error-filetype-banned-type' => '$1 {{PLURAL:$4|એ ફાઇલ પ્રકારને પ્રવાનગી નથી|એ ફાઇલ પ્રકારોને પ્રવાનગી નથી }}. પરવાનગી મેળવેલ {{PLURAL:$3|ફાઇલ પ્રકાર છે|ફાઇલ પ્રકારો  છે}} $2.',
+'api-error-filetype-banned-type' => '$1 {{PLURAL:$4| માન્ય ફાઇલ પ્રકાર નથી| માન્ય ફાઇલ પ્રકારો નથી }}. માન્ય {{PLURAL:$3|ફાઇલ પ્રકાર છે|ફાઇલ પ્રકારો  છે}} $2.',
 );

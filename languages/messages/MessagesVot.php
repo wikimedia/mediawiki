@@ -281,6 +281,8 @@ Võitta loovva cüľľee cirjuttamall alla õlõvasõõ tilaa. Kui että taho lo
 'noarticletext' => '{{GRAMMAR:inessive|{{SITENAME}}}} ebõõ sene nimissä cülciä.
 * Võid [[Special:Search/{{PAGENAME}}|ettsiä cüľľee nimellä]] muilta cüľľeltä.
 * Võid cirjuttõma uuvvõõ cüľľee <span class="plainlinks">[{{fullurl:{{FULLPAGENAME}}|action=edit}} {{PAGENAME}}]</span>.',
+'noarticletext-nopermission' => 'Paraika kazell lehocüllell eb õõ teksta.
+Tüü võittõ [[Special:Search/{{PAGENAME}}|kaze nime nimettamizõ löütä]] muiss artikkeliiss, ehci <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}}löütä azjakõhaizõd cirjauhsõd žurnaaliiss]</span>.',
 'previewnote' => "'''Kase on ainult prestavleńńa.''' Cülciä ebõõ veel salvotõttu!",
 'editing' => 'Muutun $1',
 'editingsection' => 'Muuttõmizõll on õsa cüľľess $1',
@@ -297,6 +299,7 @@ Võitta loovva cüľľee cirjuttamall alla õlõvasõõ tilaa. Kui että taho lo
 'post-expand-template-inclusion-warning' => "'''Etetäätämin:''' lizettävije šabloonije summaarin koko on liiga suuri.
 Mõnõd šabloonad eväd lee lizettü.",
 'post-expand-template-inclusion-category' => 'Lehocülled, jõgõit vart lizettävije šabloonije sallittu koko on ületettü',
+'post-expand-template-argument-category' => 'Lehocülled, jõgad sisälletä väl’l’ä-jätettü šabloonije argumentad.',
 
 # History pages
 'viewpagelogs' => 'Näüt sene cüľľee logid',
@@ -310,6 +313,7 @@ Mõnõd šabloonad eväd lee lizettü.",
 'last' => 'entin',
 'histlegend' => "Merkid: ({{int:cur}}) = vahõ nütšüizese verzijaa, ({{int:last}}) = vahõ entiizese verzijaa, '''{{int:minoreditletter}}''' = peeni muutuz",
 'history-fieldset-title' => 'Ľistvoit muutuzistoria',
+'history-show-deleted' => "Tol'ko poisõttu",
 'histfirst' => 'Kõikkõa varaizõpid',
 'histlast' => 'Kõikkõa viimõizõpid',
 
@@ -355,6 +359,7 @@ Mõnõd šabloonad eväd lee lizettü.",
 'nextn-title' => '{{PLURAL:$1|Sõurava cirjauz|$1 sõurava cirjaussa}}',
 'shown-title' => 'Näüttä $1 {{PLURAL:$1|cirjauz|cirjaussa}} lehocüllell',
 'viewprevnext' => 'Näüt ($1 {{int:pipe-separator}} $2) ($3)',
+'searchmenu-exists' => 'Kazez viki-projeektaz on lehocülci «[[:$1]]» õõmaz',
 'searchmenu-new' => 'Tehä lehocülci «[[:$1]]» senez viki-projeektaz!',
 'searchprofile-articles' => 'Pääcülcid',
 'searchprofile-project' => 'Selvitühse ja projeekta lehocülled',
@@ -438,7 +443,10 @@ Proovvi lizät etsün alkuu ''all:'', nii ettsü etsib kõikkõõ sisältoo (taa
 'recentchanges' => 'Viimõizõd muutussõd',
 'recentchanges-legend' => 'Viimass muutuhsõss valimizõd',
 'recentchanges-feed-description' => 'Sell sivull võib vahtia uutizijõ muutuhsiit.',
+'recentchanges-label-newpage' => 'Kaze kirjauhsõka õli muu lehocülci lootu.',
 'recentchanges-label-minor' => 'Kase on peeni muutuz',
+'recentchanges-label-bot' => 'Kase kõrjauz on robotaka lootu',
+'recentchanges-label-unpatrolled' => 'Kasta kõrjaussa eb tarkisõtti veel',
 'rcnote' => 'Alla on {{PLURAL:$1|ühsi muutuz|viimeiziit $1 muutussiit}} viimeize {{PLURAL:$2|ühee päivää|$2 päivää}}, $4 $5.',
 'rclistfrom' => 'Näüt uuvvõd muutuhsõd $1 alguss',
 'rcshowhideminor' => '$1 peened muutussõd',
@@ -462,6 +470,7 @@ Proovvi lizät etsün alkuu ''all:'', nii ettsü etsib kõikkõõ sisältoo (taa
 'recentchangeslinked-feed' => 'Sukulaizõd muutussõd',
 'recentchangeslinked-toolbox' => 'Sukulaizõd muutussõd',
 'recentchangeslinked-title' => 'Cüľľelt $1 linkitettüďďe cülcije muutuhsõd.',
+'recentchangeslinked-noresult' => 'Cüseizez aigakõhaz eväd õltu milliziitäid muuttumiziit.',
 'recentchangeslinked-summary' => "Kase osoobennoi cülci näütteb muutusõd cülcillä, kummalõõ on seltä cüľľeltä näüteltü.
 Cüľľed, kummad õmad teďďellä [[Special:Watchlist|kattsõspiizgalla]] on cirjuttõnnu '''pimmiässi'''.",
 'recentchangeslinked-page' => 'Cüľľee nimi:',
@@ -501,6 +510,7 @@ Cüľľed, kummad õmad teďďellä [[Special:Watchlist|kattsõspiizgalla]] on c
 'filehist-comment' => 'Zametšańńa',
 'imagelinks' => 'Faililinkid',
 'linkstoimage' => 'Selle kuvallõ {{PLURAL:$1|näütteeb kase сülсi|näütteväd kaned сüľľed}}:',
+'nolinkstoimage' => 'Eb ühelläid lehocüllell cäütetä kase faila.',
 'sharedupload' => 'Kase faili on $1:lt ja muud projektõd saavad cäüttää sitä.',
 'sharedupload-desc-here' => 'Se fajla on $1-ss ja võib muiz projeektiz õlla cäütettävänä.
 Seness [$2 kuvauhsõ lehocülless] informaattsija on alapallõ annõttu.',
@@ -566,6 +576,7 @@ Seness [$2 kuvauhsõ lehocülless] informaattsija on alapallõ annõttu.',
 'linksearch' => 'Ulkopoolizõd linkid',
 'linksearch-ns' => 'Nimiruumi:',
 'linksearch-ok' => 'Etsi',
+'linksearch-line' => 'Linki $1-sõ $2-ss',
 
 # Special:ListUsers
 'listusers-submit' => 'Näüt väľľää',
@@ -919,6 +930,7 @@ Kui faili on muutõttu, siiz detaaľid võivad õlla kahõllaizõd muutõtull fa
 'specialpages' => 'Osoobenoid cüľľed',
 
 # Special:Tags
+'tag-filter' => "[[Special:Tags|Deskriptorije]] fil'tra:",
 'tags-edit' => 'muuttaa',
 
 # HTML forms

@@ -8,6 +8,7 @@
  * @file
  *
  * @author Aleator
+ * @author Arnaugir
  * @author Avm99963
  * @author BroOk
  * @author Cedric31
@@ -458,6 +459,10 @@ $1",
 'youhavenewmessages' => 'Tens $1 ($2).',
 'newmessageslink' => 'nous missatges',
 'newmessagesdifflink' => 'últims canvis',
+'youhavenewmessagesfromusers' => "Tens $1 {{PLURAL:$3|d'un altre usuari|de $3 usuaris}} ($2).",
+'youhavenewmessagesmanyusers' => 'Tens $1 de molts usuaris ($2).',
+'newmessageslinkplural' => '{{PLURAL:$1|un nou missatge|nous missatges}}',
+'newmessagesdifflinkplural' => '{{PLURAL:$1|darrer canvi|darrers canvis}}',
 'youhavenewmessagesmulti' => 'Teniu nous missatges a $1',
 'editsection' => 'modifica',
 'editold' => 'modifica',
@@ -840,6 +845,10 @@ Podeu [[Special:Search/{{PAGENAME}}|cercar aquest títol]] en altres pàgines,
 o [{{fullurl:{{FULLPAGENAME}}|action=edit}} crear-la ara]</span>.',
 'noarticletext-nopermission' => 'Actualment no hi ha text en aquesta pàgina.
 Podeu [[Special:Search/{{PAGENAME}}|cercar aquest títol]] en altres pàgines o bé <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} cercar en els registres relacionats]</span>.',
+'missing-revision' => 'La revisió # $1  de la pàgina anomenada "{{PAGENAME}}" no existeix.
+
+Això és normalment provocat per després d\'un enllaç d\'història antiquat a una pàgina que s\'ha suprimit.
+Detalls es poden trobar en el [{{fullurl: {{# especial: registre}} / delete|page = {{FULLPAGENAMEE}}}} registre de supressió].',
 'userpage-userdoesnotexist' => "Atenció: El compte d'usuari «<nowiki>$1</nowiki>» no està registrat. En principi no hauríeu de crear ni editar aquesta pàgina.",
 'userpage-userdoesnotexist-view' => 'El compte d\'usuari "$1" no està registrat.',
 'blocked-notice-logextract' => "En aquests moments aquest compte d'usuari es troba blocat.
@@ -966,6 +975,7 @@ Se n'han omès els arguments.",
 'expansion-depth-exceeded-warning' => "La pàgina ha excedit la profunditat d'expansió",
 'parser-unstrip-loop-warning' => "S'ha detectat un bucle no desmuntable",
 'parser-unstrip-recursion-limit' => "S'ha excedit el límit ($1) de recursivitat no desmuntable",
+'converter-manual-rule-error' => 'Error detectat a la norma de conversió de llengua manual',
 
 # "Undo" feature
 'undo-success' => "Pot desfer-se la modificació. Si us plau, reviseu la comparació de sota per a assegurar-vos que és el que voleu fer; llavors deseu els canvis per a finalitzar la desfeta de l'edició.",

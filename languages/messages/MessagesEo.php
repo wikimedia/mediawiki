@@ -576,6 +576,10 @@ $1',
 'youhavenewmessages' => 'Por vi estas $1 ($2).',
 'newmessageslink' => 'novaj mesaĝoj',
 'newmessagesdifflink' => 'ŝanĝoj kompare kun antaŭlasta versio',
+'youhavenewmessagesfromusers' => 'Riceviĝis $1 de {{PLURAL:$3|alia uzanto|$3 uzantoj}} ($2).',
+'youhavenewmessagesmanyusers' => 'Riceviĝis $1 de multaj uzantoj ($2).',
+'newmessageslinkplural' => '{{PLURAL:$1|nova mesaĝo|novaj mesaĝoj}}',
+'newmessagesdifflinkplural' => '{{PLURAL:$1|lasta ŝanĝo|lastaj ŝanĝoj}}',
 'youhavenewmessagesmulti' => 'Vi havas novajn mesaĝojn ĉe $1',
 'editsection' => 'redakti',
 'editold' => 'redakti',
@@ -703,9 +707,13 @@ $2',
 'ns-specialprotected' => 'Paĝoj en la {{ns:special}} nomspaco ne povas esti redaktataj.',
 'titleprotected' => "Ĉi titolo estas protektita de kreado de [[User:$1|$1]].
 La kialo donata estis ''$2''.",
+'filereadonlyerror' => 'La dosiero "$1" ne estas modifebla, ĉar la datumbazujo "$2" estas en nurlegebla modo.
+
+La administranto kiu ŝlosis ĝin proponis tiun klarigon: "$3".',
 'invalidtitle-knownnamespace' => 'Nevalida titolo kun nomspaco "$2" kaj teksto "$3"',
 'invalidtitle-unknownnamespace' => 'Nevalida titolo kun nekonata nomspaca numero $1 kaj teksto "$2"',
 'exception-nologin' => 'Ne ensalutita',
+'exception-nologin-text' => 'Vi devas ensaluti ĉi tiun vikion por fari ĉi tiun agon.',
 
 # Virus scanner
 'virus-badscanner' => "Malbona konfiguro: nekonata virusa skanilo: ''$1''",
@@ -974,6 +982,10 @@ aŭ [{{fullurl:{{FULLPAGENAME}}|action=edit}} redakti ĉi tiun paĝon]</span>.',
 'noarticletext-nopermission' => 'Estas neniom da teksto en ĉi tiu paĝo.
 Vi povas [[Special:Search/{{PAGENAME}}|serĉi ĉi tiun paĝan titolon]] en aliaj paĝoj,
 aŭ <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} serĉi la rilatajn protokolojn]</span>.',
+'missing-revision' => 'La revizio n-ro $1 de la paĝo nomata "{{PAGENAME}}" ne ekzistas.
+
+La kutima kaŭzo estas sekvi malaktualan historio-ligilon al paĝo forviŝita.
+Detaloj troveblos en la [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} registro de forviŝoj].',
 'userpage-userdoesnotexist' => 'Uzantokonto "<nowiki>$1</nowiki>" ne estas registrita. Bonvolu konfirmi se vi volas krei/redakti ĉi tiun paĝon.',
 'userpage-userdoesnotexist-view' => 'Uzanto-konto "$1" ne estas registrita.',
 'blocked-notice-logextract' => 'Ĉi tiu uzanto estas ĉi-momente forbarita.
@@ -1080,6 +1092,7 @@ Verŝajne ĝi estis forigita.',
 'edit-no-change' => 'Via redakto estis ignorita, ĉar neniu ŝanĝo estis farita al la teksto.',
 'edit-already-exists' => 'Ne eblis krei novan paĝon.
 Ĝi jam ekzistas.',
+'defaultmessagetext' => 'Defaŭlta teksto',
 
 # Parser/template warnings
 'expensive-parserfunction-warning' => 'Averto: Ĉi tiu paĝo enhavas tro da multekostaj sintaksaj funkcio-vokoj.
@@ -1099,6 +1112,9 @@ Iuj ŝablonoj ne estos inkluzivitaj.',
 'node-count-exceeded-warning' => 'Paĝo preterpasis la nombron da nodoj.',
 'expansion-depth-exceeded-category' => 'Paĝoj en kiuj la ekpansiprofundo estas preterpasita',
 'expansion-depth-exceeded-warning' => 'Paĝo preterpasis la ekpansiprofundon.',
+'parser-unstrip-loop-warning' => 'Cirkloreferencon detektis',
+'parser-unstrip-recursion-limit' => 'Rikurlimiton de analizopoj ($1) superis',
+'converter-manual-rule-error' => 'Eraron detektis en mana lingvokonverta regulo',
 
 # "Undo" feature
 'undo-success' => 'La redakto estas malfarebla.
@@ -1285,6 +1301,10 @@ Certigu ke ĉi tiu ŝanĝo tenos kontinuecon de la historia paĝo.',
 'editundo' => 'malfari',
 'diff-multi' => '({{PLURAL:$1|Unu intermeza versio|$1 intermezaj versioj}} de {{PLURAL:$2|unu uzanto|$2 uzantoj}} ne estas {{PLURAL:$1|montrata|montrataj}}.)',
 'diff-multi-manyusers' => '({{PLURAL:$1|Unu intermeza versio|$1 intermezaj versioj}} de pli ol {{PLURAL:$2|unu uzanto|$2 uzantoj}} ne estas {{PLURAL:$1|montrata|montrataj}}.)',
+'difference-missing-revision' => '{{PLURAL:$2|Unu revizio|$2 revizioj}} de ĉi tiu malsameco ($1) ne {{PLURAL:$2|estis|estis}} trovebla.
+
+La kutima kaŭzo estas sekvi malaktualan malsamo-ligilon al paĝo forviŝita.
+Detaloj troveblos en la [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} registro de forviŝoj].',
 
 # Search results
 'searchresults' => 'Serĉrezultoj',
@@ -1552,6 +1572,7 @@ Jen hazarde generita valoro por via uzo: $1',
 'right-writeapi' => 'Uzi la API por modifi la vikion',
 'right-delete' => 'Forigi paĝojn',
 'right-bigdelete' => 'Forigi paĝojn kun grandaj historioj',
+'right-deletelogentry' => 'Forigi kaj malforigi specifajn enmetojn en la registro.',
 'right-deleterevision' => 'Forigi kaj malforigi specifajn versiojn de paĝoj',
 'right-deletedhistory' => 'Rigardi listanojn de forigitaj historioj, sen ties asociaj tekstoj',
 'right-deletedtext' => 'Rigardi forigitan tekston kaj ŝanĝojn inter forigitaj revizioj.',
@@ -1810,6 +1831,7 @@ Se la problemo kontinuas, kontaku [[Special:ListUsers/sysop|sisteman administran
 'upload-too-many-redirects' => 'La URL-o enhavis tro multajn alidirektilojn',
 'upload-unknown-size' => 'Nekonata grandeco',
 'upload-http-error' => 'HTTP-eraro okazis: $1',
+'upload-copy-upload-invalid-domain' => 'Kopio-alŝutoj ne disponiĝas el ĉi tiu domajno.',
 
 # File backend
 'backend-fail-stream' => 'Ne povis fluigi dosieron $1.',
@@ -1828,11 +1850,18 @@ Se la problemo kontinuas, kontaku [[Special:ListUsers/sysop|sisteman administran
 'backend-fail-closetemp' => 'Ne povis fermi provizoran dosieron.',
 'backend-fail-read' => 'Ne povas legi dosieron "$1".',
 'backend-fail-create' => 'Ne povas skribi dosieron $1.',
+'backend-fail-maxsize' => 'Ne povis skribi la dosieron "$1," ĉar ĝi estas pli granda ol {{plural: $2|bitoko|$2 bitokoj}}.',
 'backend-fail-readonly' => 'La interna konservujo "$1" nune estas nurlega. La indikata kialo estas: "\'\'$2\'\'"',
 'backend-fail-synced' => 'La dosiero "$1" estas en nekohera stato kun la internaj konservujoj',
 'backend-fail-connect' => 'Ne eblis konekti la internan konservujon "$1".',
 'backend-fail-internal' => 'Nekonata eraro okazis en interna konservujo "$1".',
 'backend-fail-contenttype' => 'Ne eblis determini la enhavo-tipo de la dosiero por konservi ĉe "$1".',
+'backend-fail-batchsize' => 'Interna konservujo estis donita komandaron de $1 {{PLURAL:$1|dosiera operacio|dosieraj operacioj}}; la limo estas $2 {{PLURAL:$2|operacio|operacioj}}.',
+'backend-fail-usable' => 'Ne eblis skribi dosieron "$1" pro malsufiĉaj permesoj aŭ mankantaj dosierujoj.',
+
+# File journal errors
+'filejournal-fail-dbconnect' => 'Ne eblis konekti la protokolan datumbazon por la ekstera konservujo "$1".',
+'filejournal-fail-dbquery' => 'Ne eblis ĝisdatigi la protokolan datumbazon por la ekstera konservujo "$1".',
 
 # Lock manager
 'lockmanager-notlocked' => 'Ne povis malŝlosi "$1"; ĝi ne estas ŝlosita.',
@@ -1843,6 +1872,7 @@ Se la problemo kontinuas, kontaku [[Special:ListUsers/sysop|sisteman administran
 'lockmanager-fail-releaselock' => 'Ne povis liberigi ŝlosadon por "$1".',
 'lockmanager-fail-db-bucket' => 'Ne povis kontakti sufiĉajn ŝlos-datumbazojn en ujo $1.',
 'lockmanager-fail-db-release' => 'Ne povis liberigi ŝlosadojn de datumbazao $1.',
+'lockmanager-fail-svr-acquire' => 'Ne povis akiri ŝlosadojn de servilo $1.',
 'lockmanager-fail-svr-release' => 'Ne povis liberigi ŝlosadojn de servilo $1.',
 
 # ZipDirectoryReader
@@ -1950,6 +1980,10 @@ La jena listo montras la {{PLURAL:$1|unua paĝligilo|unuaj $1 paĝligiloj}} al n
 Bonvolu vidi la [$2 dosier-priskriban paĝon] por plua informo.',
 'sharedupload-desc-here' => 'Ĉi tiu dosiero estas de $1 kaj estas uzebla de aliaj projektoj.
 Jen la priskribo en ties [$2 dosier-priskriba paĝo].',
+'sharedupload-desc-edit' => 'Ĉi tiu dosiero estas el $1 kaj estas uzebla en aliaj projektoj.
+Eble vi volas redakti la priskribon ĉe ties [$2 dosier-priskriba paĝo].',
+'sharedupload-desc-create' => 'Ĉi tiu dosiero estas el $1 kaj estas uzebla en aliaj projektoj.
+Eble vi volas redakti la priskribon ĉe ties [$2 dosier-priskriba paĝo].',
 'filepage-nofile' => 'Neniu dosiero de ĉi tiu nomo ekzistas.',
 'filepage-nofile-link' => 'Neniu dosiero de ĉi tiu nomo ekzistas, sed vi povas [$1 alŝuti ĝin].',
 'uploadnewversion-linktext' => 'Alŝuti novan version de ĉi tiu dosiero',
@@ -2082,6 +2116,7 @@ Paĝo estas traktata kiel apartigilo se ĝi uzas ŝablonon kiu estas ligita de [
 'wantedpages' => 'Dezirataj paĝoj',
 'wantedpages-badtitle' => 'Malvalida titolo en rezulta aro: $1',
 'wantedfiles' => 'Dezirataj dosieroj',
+'wantedfiletext-cat' => 'La jenaj dosieroj estas uzataj sed ne ekzistas. Dosieroj de eksteraj konservujoj eble estos listigita malgraŭ ne ekzistante. Tia malprave pozitivaj rezultoj estos <del>forstrekita</del>. Ankaŭ, paĝoj kiuj enmetas dosierojn kiuj ne ekzistas estas listigita en [[:$1]].',
 'wantedfiletext-nocat' => 'La jenaj dosieroj estas uzataj sed ne ekzistas. Dosieroj de eksteraj dosierujoj eble estas listigitaj malgraŭ eksistado. Tia malprave pozitiva rezulto estos <del>forstrekita</del>.',
 'wantedtemplates' => 'Dezirataj ŝablonoj',
 'mostlinked' => 'Plej ligitaj paĝoj',
@@ -2166,6 +2201,8 @@ Vi povas plistrikti la mendon per selektado de protokola speco, la salutnomo (in
 'allpages-hide-redirects' => 'Kaŝi alidirektilojn',
 
 # SpecialCachedPage
+'cachedspecial-viewing-cached-ttl' => 'Vi vidas version de la paĝo el kaŝmemoro, kiu eble estis aktuala ekde $1.',
+'cachedspecial-viewing-cached-ts' => 'Vi vidas version de la paĝo el kaŝmemoro, kiu eble ne estas la plej aktuala.',
 'cachedspecial-refresh-now' => 'Vidas plej nova.',
 
 # Special:Categories
@@ -2375,6 +2412,7 @@ Vidu la paĝon $2 por registro de lastatempaj forigoj.',
 'rollback_short' => 'Malfari',
 'rollbacklink' => 'malfari',
 'rollbacklinkcount' => 'nuligi $1 {{PLURAL:$1|redakton|redaktojn}}',
+'rollbacklinkcount-morethan' => 'nuligi pli ol $1 {{PLURAL:$1|redakton|redaktojn}}',
 'rollbackfailed' => 'Malfaro malsukcesis',
 'cantrollback' => 'Ne povas restarigi antaŭan redakton; la redaktinto lasta estas la sola aŭtoro de la paĝo.',
 'alreadyrolled' => 'Ne povas restarigi la lastan redakton de [[:$1]] de la [[User:$2|$2]] ([[User talk:$2|diskuto]]{{int:pipe-separator}}[[Special:Contributions/$2|{{int:contribslink}}]]);
@@ -3048,6 +3086,7 @@ Datoj de versioj kaj nomoj de redaktantoj estos preservitaj.
 'spambot_username' => 'Trudmesaĝa forigo de MediaWiki',
 'spam_reverting' => 'Restarigo de lasta versio ne entenante ligilojn al $1',
 'spam_blanking' => 'Forviŝo de ĉiuj versioj entenantaj ligilojn al $1',
+'spam_deleting' => 'Ĉiuj versioj enhavis ligilojn al $1 - forigante',
 
 # Info page
 'pageinfo-title' => 'Informoj por "$1"',
@@ -3753,6 +3792,8 @@ Oni devis doni al vi [{{SERVER}}{{SCRIPTPATH}}/COPYING ekzempleron de la GNU Gen
 'version-software' => 'Instalita programaro',
 'version-software-product' => 'Produkto',
 'version-software-version' => 'Versio',
+'version-entrypoints' => 'Eniropunktaj URL-oj',
+'version-entrypoints-header-entrypoint' => 'Eniropunkto',
 'version-entrypoints-header-url' => 'Retadreso',
 
 # Special:FilePath
@@ -3915,6 +3956,8 @@ Aŭ vi povas uzi la facilan formularon sube. Via komento estos aldonita al la pa
 'api-error-empty-file' => 'La dosiero kiun vi sendis estis malplena.',
 'api-error-emptypage' => 'Kreo de novaj malplenaj paĝoj ne estas permesita.',
 'api-error-fetchfileerror' => 'Interna eraro: io misfunkciis dum la dosiera prenado.',
+'api-error-fileexists-forbidden' => 'Dosiero nomata "$1" jam existas kaj ne estas surskribebla.',
+'api-error-fileexists-shared-forbidden' => 'Dosiero nomata "$1" jam existas en la kunhavata dosier-datumbazo kaj ne estas surskribebla.',
 'api-error-file-too-large' => 'La dosiero kiun vi alŝutis estis tro granda.',
 'api-error-filename-tooshort' => 'La dosiernomo estas tro mallonga.',
 'api-error-filetype-banned' => 'Ĉi tiu tipo de dosiero estas malpermesita.',

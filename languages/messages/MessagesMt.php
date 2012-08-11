@@ -2487,7 +2487,7 @@ Indika r-raġuni speċifika għalfejn tixtieq tipproċedi bil-blokk (per eżempj
 'ipbcreateaccount' => "Impedixxi ħolqien ta' kontijiet oħrajn",
 'ipbemailban' => 'Impedixxi utenti milli jkunu jistgħu jibgħatu posta elettronika',
 'ipbenableautoblock' => 'Awtomatikament blokka l-aħħar indirizz tal-IP użat minn dan l-utent, u IP suċċessivi li jipprovaw jagħmlu modifiki',
-'ipbsubmit' => 'Imblokk lil dan l-utent',
+'ipbsubmit' => 'Imblokka lil dan l-utent',
 'ipbother' => 'Ħin ieħor:',
 'ipboptions' => 'sagħtejn:2 hours,ġurnata 1:1 day,3 ġranet:3 days,ġimgħa 1:1 week,ġimgħatejn:2 weeks,xahar 1:1 month,3 xhur:3 months,6 xhur:6 months,sena 1:1 year,infinita:infinite',
 'ipbotheroption' => 'ieħor',

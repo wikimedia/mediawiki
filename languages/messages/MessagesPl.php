@@ -7,6 +7,7 @@
  * @ingroup Language
  * @file
  *
+ * @author Ankry
  * @author Bartek50003
  * @author BdgwksxD
  * @author Beau
@@ -558,6 +559,10 @@ $1',
 'youhavenewmessages' => 'Masz $1 ($2).',
 'newmessageslink' => 'nowe wiadomości',
 'newmessagesdifflink' => 'różnica z poprzednią wersją',
+'youhavenewmessagesfromusers' => 'Masz $1 od {{PLURAL:$3|innego użytkownika|$3 innych użytkowników}} ($2).',
+'youhavenewmessagesmanyusers' => 'Masz $1 od wielu użytkowników ($2).',
+'newmessageslinkplural' => '{{PLURAL:$1|jedną wiadomość|$1 wiadomości}}',
+'newmessagesdifflinkplural' => '{{PLURAL:$1|ostatnia zmiana|ostatnie $1 zmiany|ostatnie $1 zmian}}',
 'youhavenewmessagesmulti' => 'Masz nowe wiadomości na $1',
 'editsection' => 'edytuj',
 'editold' => 'edytuj',
@@ -1276,7 +1281,7 @@ Użycie linków nawigacyjnych kasuje wybór w kolumnie.',
 'editundo' => 'anuluj edycję',
 'diff-multi' => '(Nie pokazano $1 wersji {{PLURAL:$1|utworzonej|utworzonych}} przez {{PLURAL:$2|jednego użytkownika|$2 użytkowników}})',
 'diff-multi-manyusers' => '(Nie pokazano $1 {{PLURAL:$1|pośredniej wersji utworzonej|pośrednich wersji utworzonych}} przez {{PLURAL:$2|jednego użytkownika|$2 użytkowników}})',
-'difference-missing-revision' => '{{PLURAL:$2|Wersja|$2 wersje}} #$1 strony "{{PAGENAME}}" nieznalezione.
+'difference-missing-revision' => '{{PLURAL:$2|Wersja|$2 wersje|$2 wersji}} #$1 strony "{{PAGENAME}}" nie {{PLURAL:$2|została znaleziona|zostały znalezione|zostało znalezionych}}.
 
 Zazwyczaj jest to spowodowane przestarzałym linkiem do usuniętej strony. Powód usunięcia znajduje się w [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} rejestrze].',
 
@@ -1850,7 +1855,7 @@ Jeśli problem będzie się powtarzał, skontaktuj się z [[Special:ListUsers/sy
 'backend-fail-connect' => 'Nie można nawiązać połączenia do wewnętrznych funkcji magazynowania "$1".',
 'backend-fail-internal' => 'Wystąpił nieznany błąd w wewnętrznych funkcjach magazynowania "$1".',
 'backend-fail-contenttype' => 'Nie można określić typ zawartości pliku do przechowywania w "$1".',
-'backend-fail-batchsize' => 'Wewnętrzne funkcje magazynowania otrzymały $1 {{PLURAL:$1|operację|operacje|operacji}} na pliku; limit wynosi $2 {{PLURAL:$2| operacja|operacje|operacji}}.',
+'backend-fail-batchsize' => 'Wewnętrzne funkcje magazynowania otrzymały $1 {{PLURAL:$1|operację|operacje|operacji}} na pliku; limit to $2 {{PLURAL:$2|operacja|operacje|operacji}}.',
 'backend-fail-usable' => 'Nie można zapisać pliku $1 ze względu na niewystarczające uprawnienia lub brak katalogów/kontenerów.',
 
 # File journal errors
@@ -2378,7 +2383,7 @@ Pomoc
 'exblank' => 'Strona była pusta',
 'delete-confirm' => 'Usuwanie „$1”',
 'delete-legend' => 'Usuń',
-'historywarning' => "'''Uwaga!''' Strona, którą chcesz usunąć, ma w przybliżeniu {{PLURAL:$1|starszą wersję|$1 starsze wersje|$1 starszych wersji}}:",
+'historywarning' => "'''Uwaga!''' Strona, którą chcesz usunąć, ma w przybliżeniu {{PLURAL:$1|jedną starszą wersję|$1 starsze wersje|$1 starszych wersji}}:",
 'confirmdeletetext' => 'Zamierzasz usunąć stronę razem z całą dotyczącą jej historią.
 Upewnij się, czy na pewno chcesz to zrobić, że rozumiesz konsekwencje i że robisz to w zgodzie z [[{{MediaWiki:Policy-url}}|zasadami]].',
 'actioncomplete' => 'Operacja wykonana',
@@ -2406,8 +2411,8 @@ Bądź ostrożny, ponieważ usunięcie jej może spowodować zakłócenia w prac
 'rollback' => 'Cofnij edycję',
 'rollback_short' => 'Cofnij',
 'rollbacklink' => 'cofnij',
-'rollbacklinkcount' => 'cofnij $1 {{PLURAL:$1|edycję|edycje}}',
-'rollbacklinkcount-morethan' => 'cofnij więcej niż $1 {{PLURAL:$1|edycję|edycje}}',
+'rollbacklinkcount' => 'cofnij $1 {{PLURAL:$1|edycję|edycje|edycji}}',
+'rollbacklinkcount-morethan' => 'cofnij więcej niż $1 {{PLURAL:$1|edycję|edycje|edycji}}',
 'rollbackfailed' => 'Nie udało się cofnąć zmiany',
 'cantrollback' => 'Nie można cofnąć edycji, ponieważ jest tylko jedna wersja tej strony.',
 'alreadyrolled' => 'Nie można dla strony [[:$1|$1]] cofnąć ostatniej zmiany, którą wykonał [[User:$2|$2]] ([[User talk:$2|dyskusja]]{{int:pipe-separator}}[[Special:Contributions/$2|{{int:contribslink}}]]).
@@ -2495,7 +2500,7 @@ Obecne ustawienia dla strony '''$1''' to:",
 'undeletepage' => 'Odtwarzanie usuniętych stron',
 'undeletepagetitle' => "'''Poniżej znajdują się usunięte wersje strony [[:$1]]'''.",
 'viewdeletedpage' => 'Zobacz usunięte wersje',
-'undeletepagetext' => '{{PLURAL:$1|Następująca strona została usunięta, ale jej|Następujące $1 strony zostały usunięte, ale ich}} kopia wciąż znajduje się w archiwum.
+'undeletepagetext' => '{{PLURAL:$1|Następująca strona została usunięta, ale jej kopia wciąż znajduje|Następujące $1 strony zostały usunięte, ale ich kopie wciąż znajdują|Następujące $1 stron zostało usuniętych, ale ich kopie wciąż znajdują}} się w archiwum.
 Archiwum co jakiś czas może być oczyszczane.',
 'undelete-fieldset-title' => 'Odtwarzanie wersji',
 'undeleteextrahelp' => "Jeśli chcesz odtworzyć całą historię edycji strony, pozostaw wszystkie pola niezaznaczone i kliknij '''''{{int:undeletebtn}}'''''.
@@ -4010,7 +4015,7 @@ W przeciwnym wypadku można użyć prostego formularza poniżej. Komentarz zosta
 'api-error-duplicate' => '{{PLURAL:$1|Jest już [$2 inny plik]|Są już [$2 inne pliki]}} o tej samej zawartości',
 'api-error-duplicate-archive' => '{{PLURAL:$1|Był już [$2 inny plik]|Były już [$2 inne pliki]}} o takiej samej zawartości, ale {{PLURAL:$1|został usunięty|zostały usunięte}}.',
 'api-error-duplicate-archive-popup-title' => '{{PLURAL:$1|Zdublowany plik, który został już usunięty|Zdublowane pliki, które zostały już usunięte}}',
-'api-error-duplicate-popup-title' => '{{PLURAL:$1|Zdublowany plik|Zdublowane plik}}',
+'api-error-duplicate-popup-title' => '{{PLURAL:$1|Zdublowany plik|Zdublowane pliki}}',
 'api-error-empty-file' => 'Przesłany przez Ciebie plik jest pusty.',
 'api-error-emptypage' => 'Tworzenie nowych, pustych stron jest niedozwolone.',
 'api-error-fetchfileerror' => 'Błąd wewnętrzny – wystąpił błąd w trakcie pobierania pliku.',

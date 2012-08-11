@@ -887,6 +887,7 @@ Inaonekana kwamba ukurasa umefutwa.',
 'edit-no-change' => 'Uhariri wako haukufanikiwa, kwa sababu hapakuwa na mabadiliko yoyote kwenye maandishi.',
 'edit-already-exists' => 'Haikufanikiwa kuanzisha ukurasa mpya.
 Ukurasa wa jina hilo unapatikana tayari.',
+'defaultmessagetext' => 'Ujumbe uliopo',
 
 # Parser/template warnings
 'post-expand-template-inclusion-warning' => "'''Ilani:''' Kigezo kinajumlisha ukubwa uliozidi mno.
@@ -1753,9 +1754,9 @@ Kumbuka kuhakikisha kwamba hakuna viungo vingine vinavyoelekea kigezo fulani kab
 
 'disambiguations' => 'Kurasa zinazoungana na kurasa za uanishaji',
 'disambiguationspage' => 'Template:Maana',
-'disambiguations-text' => "Kurasa zinazofuata zina viungo vinavyoelekea '''kurasa ya kutofautishana maana'''.
-Ni afadhali kiungo kiende makala inayostahili moja kwa moja.<br />
-Kurasa za kutofautishana maana ni zile zinazotumia kigezo kinachoorodheshwa katika ukurasa wa [[MediaWiki:Disambiguationspage]].",
+'disambiguations-text' => "Kurasa zinazofuata zina angalau kiungo kimoja kinachoelekea kwa '''kurasa ya kutofautishana maana'''.
+Ni afadhali kiungo kiende makala yanayostahili moja kwa moja.<br />
+Ukurasa unatibiwa kama ukurasa wa kutofautishana maana inazotumia kigezo kinachoorodheshwa katika ukurasa wa [[MediaWiki:Disambiguationspage]].",
 
 'doubleredirects' => 'Maelekezo mawilimawili',
 'doubleredirectstext' => 'Ukurasa huu unaorodhesha kurasa zinazoelekeza kurasa zingine za kuelekeza.
@@ -1869,6 +1870,9 @@ Inaweza kuwa na herufi isiyoweza kutumiwa ndani ya majina ya kurasa.',
 'allpages-bad-ns' => 'Eneo la "$1" halipatikani kwenye {{SITENAME}}.',
 'allpages-hide-redirects' => 'Ficha kurasa za kuelekeza',
 
+# SpecialCachedPage
+'cachedspecial-refresh-now' => 'Tazama ya hivi karibuni.',
+
 # Special:Categories
 'categories' => 'Jamii',
 'categoriespagetext' => 'Jamii {{PLURAL:$1|inayofuata ina|zinazofuata zina}} kurasa au mafaili ya picha au sauti.
@@ -1964,6 +1968,7 @@ Anwani yako ya barua pepe ulioitaja katika [[Special:Preferences|mapendekezo yak
 'emailuserfooter' => 'Barua pepe hii imetumwa na $1 kwa $2 kwa kutumia zana ya "Kumtumia mtumiaji barua pepe" iliyopo {{SITENAME}}.',
 
 # User Messenger
+'usermessage-summary' => 'Inawacha ujumbe wa mfumo.',
 'usermessage-editor' => 'Jumbe za mfumo',
 
 # Watchlist
@@ -1994,9 +1999,9 @@ Ukitaka kufuta ukurasa huo kutoka maangalizi yako baadaye, bonyeza \"Acha kufuat
 'wlheader-enotif' => '* Huduma ya kuarifu kwa barua pepe imewezeshwa.',
 'wlheader-showupdated' => "* Kurasa zilizobadilika tangu ulivyotembelea mara ya mwisho zinaonyeshwa katika hali ya '''kukooza'''",
 'watchmethod-recent' => 'kupitia madabiliko ya karibuni ili kupata kurasa za maangalizi',
-'watchmethod-list' => 'kupitia kurasa za maangalizi ili kupata madabiliko ya karibuni',
-'watchlistcontains' => 'Orodha ya maangalizi yako ina {{PLURAL:$1|kitu|vitu}} $1.',
-'iteminvalidname' => "Kitu '$1' kina tatizo la jina batili...",
+'watchmethod-list' => 'Kupitia kurasa za maangalizi ili kupata madabiliko ya karibuni',
+'watchlistcontains' => 'Orodha ya maangalizi yako ina {{PLURAL:$1|pages|kurasa}}.',
+'iteminvalidname' => "Shida na kitu  '$1' ,  jina batili...",
 'wlnote' => "{{PLURAL:$1|Badiliko la|Mabadiliko '''$1''' ya}} mwisho katika {{PLURAL:$2|saa iliyopita linaonyeshwa|masaa '''$2''' yaliyopita yanaonyeshwa}} chini, ilivyokuwa saa $4, tarehe $3.",
 'wlshowlast' => 'Onyesha kutoka masaa $1 siku $2 $3',
 'watchlist-options' => 'Hitiari za maangalizi',
@@ -2004,16 +2009,16 @@ Ukitaka kufuta ukurasa huo kutoka maangalizi yako baadaye, bonyeza \"Acha kufuat
 # Displayed when you click the "watch" button and it is in the process of watching
 'watching' => 'Unafuatilia...',
 'unwatching' => 'Umeacha kufuatilia...',
-'watcherrortext' => 'Hitilafu ilitokea ulipojaribu kubadilisha vipimo vya maangalizi yako kwa ajili ya "$1".',
+'watcherrortext' => 'Hitilafu ilitokea ulipojaribu kubadilisha mpangilio wa maangalizi yako ya "$1".',
 
 'enotif_mailer' => 'Huduma ya taarifa ya barua pepe kutoka kwa {{SITENAME}}',
-'enotif_reset' => 'Weka alama ya kutembelewa kwenye kurasa zote',
+'enotif_reset' => 'Weka alama kwa kurasa zote zilizotembelewa',
 'enotif_newpagetext' => 'Ukurasa huu ni mpya.',
 'enotif_impersonal_salutation' => 'Kwa mtumiaji wa {{SITENAME}}',
 'changed' => 'alibadilisha',
 'created' => 'alianzisha',
 'enotif_subject' => '$PAGEEDITOR $CHANGEDORCREATED ukurasa wa $PAGETITLE kwenye {{SITENAME}}',
-'enotif_lastvisited' => 'Tazama mabadiliko yote tangu ziara yako iliyopita kwenye ukurasa wa $1.',
+'enotif_lastvisited' => 'Tazama $1 kwa mabadiliko yote tangu ziara yako ya mwisho.',
 'enotif_lastdiff' => 'Tazama badiliko hili hapo $1.',
 'enotif_anon_editor' => 'mtumiaji bila jina $1',
 'enotif_body' => 'Mpendwa $WATCHINGUSERNAME,
@@ -2048,7 +2053,7 @@ Kutoa maoni yako au kupata msaada mwingine:
 'deletepage' => 'Futa ukurasa',
 'confirm' => 'Yakinisha',
 'excontent' => "iliyokuwemo: '$1'",
-'excontentauthor' => 'yaliyomo yalikuwa: "$1" (yaliyechangiwa na mchangiaji mmoja tu anayeitwa "[[Special:Contributions/$2|$2]]")',
+'excontentauthor' => 'Yaliyomo yalikuwa: "$1" (na mchangiaji mmoja tu anayeitwa "[[Special:Contributions/$2|$2]]")',
 'exbeforeblank' => 'maandishi kabla hayajafutwa yote yalikuwa: "$1"',
 'exblank' => 'ukurasa ulikuwa tupu',
 'delete-confirm' => 'Futa "$1"',
@@ -2060,7 +2065,7 @@ Tafadhali hakikisha kwamba unalenga kufanya hivyo, na kwamba unaelewa matokeo ya
 'actionfailed' => 'Tendo halikufaulu',
 'deletedtext' => '"$1" imefutwa. Ona $2 kwa historia ya kurasa zilizofutwa hivi karibuni.',
 'dellogpage' => 'Kumbukumbu ya ufutaji',
-'dellogpagetext' => 'Kurasa na mafaili zilizofutwa hivi karibuni zinaorodheshwa chini.',
+'dellogpagetext' => 'Hapa chini ni orodha ya mafaili yaliyofutwa hivi karibuni.',
 'deletionlog' => 'kumbukumbu za kufuta',
 'reverted' => 'Ilirejeshwa hadi pitio la zamani',
 'deletecomment' => 'Sababu:',
@@ -2090,16 +2095,16 @@ ukurasa huu una mhariri mmoja tu.',
 'rollback-success' => 'Masahihisho aliyeyafanya $1 yalirejeshwa hadi kufika sahihisho la mwisho aliyefanya $2.',
 
 # Edit tokens
-'sessionfailure-title' => 'Kushindikana cha kipindi',
+'sessionfailure-title' => 'Kushindikana kwa kipindi',
 
 # Protect
 'protectlogpage' => 'Kumbukumbu ya ulindaji',
 'protectedarticle' => 'aliulinda "[[$1]]"',
 'modifiedarticleprotection' => 'alibadilisha kiwango cha ulindaji kwa ajili ya "[[$1]]"',
-'unprotectedarticle' => 'alitoa ulindaji wa "[[$1]]"',
-'movedarticleprotection' => 'alihamisha ulindaji wa "[[$2]]" hadi "[[$1]]"',
+'unprotectedarticle' => 'ulindaji ulitolewa kutoka kwa "[[$1]]"',
+'movedarticleprotection' => 'mpangilio wa ulindaji wa kuhamishwa kutoka "[[$2]]" hadi "[[$1]]"',
 'protect-title' => 'Kubadilisha kiwango cha ulindaji wa "$1"',
-'protect-title-notallowed' => 'Tazama kiwango cha ulindaji wa "$1"',
+'protect-title-notallowed' => 'Tazama kiwango cha ulindaji cha "$1"',
 'prot_1movedto2' => 'alihamisha [[$1]] hadi [[$2]]',
 'protect-badnamespace-title' => 'Eneo la wiki lisiloweza kulindwa',
 'protect-badnamespace-text' => 'Kurasa zilizopo katika eneo hili la wiki haziwezi kulindwa',
@@ -2108,7 +2113,7 @@ ukurasa huu una mhariri mmoja tu.',
 'protectexpiry' => 'Itakwisha:',
 'protect_expiry_invalid' => 'Muda wa kwisha ni batilifu.',
 'protect_expiry_old' => 'Muda wa kuishi umepita tayari.',
-'protect-unchain-permissions' => 'Fungua chaguzi zingine za ulinzi',
+'protect-unchain-permissions' => 'Fungua chaguzi zingine za ulindaji',
 'protect-text' => "Unaweza kutazama na kubadilisha kiwango cha ulindaji hapa kwa ukurasa '''$1'''.",
 'protect-locked-dblock' => "Viwango vya ulindaji haviwezi kubadilishwa kwa sababu hifadhidata imefungwa.
 Hapo panaandikwa viwango vya ulindaji wa ukurasa '''$1''':",

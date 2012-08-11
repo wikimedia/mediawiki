@@ -1255,6 +1255,16 @@ Los otros campos se van a guardar por defecto.
 'specialpages' => 'Hojas especiales',
 'specialpages-group-users' => 'Usadores y derechos',
 
+# External image whitelist
+'external_image_whitelist' => ' #Desha esta linea ansina komo esta<pre>
+#Mete partes de frasas (solo la parte ke va entre los //) enbasho
+#Eyas van ser komparadas kon las URLs de las dossias ekternas (hotlinked)
+#Akeyos iguales van ser amostrados komo una imej; si no, solo el su atamientoque 
+#Las lineas ke empiezan kor «#» son konsideradas komentarios
+#Esta no aze diferente el senso se la letra
+
+#Mete todas las partes de frasas regex enriva de esta linea. Desha esta ansina komo se topa</pre>',
+
 # Special:Tags
 'tag-filter' => 'Filtro de [[Special:Tags|etiquetas]]:',
 'tag-filter-submit' => 'Filtro',
