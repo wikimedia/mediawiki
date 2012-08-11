@@ -1109,7 +1109,7 @@ abstract class HTMLFormField {
 	 * @return Mixed Bool true on success, or String error to display.
 	 */
 	function validate( $value, $alldata ) {
-		if ( isset( $this->mParams['required'] ) && $value === '' ) {
+		if ( isset( $this->mParams['required'] ) && $this->mParams['required'] !== false && $value === '' ) {
 			return wfMsgExt( 'htmlform-required', 'parseinline' );
 		}
 
