@@ -2614,9 +2614,9 @@ HTML
 				' [[#' . self::EDITFORM_ID . '|' . $wgLang->getArrow() . ' ' . wfMsg( 'continue-editing' ) . ']]';
 		}
 
-		$parserOptions = ParserOptions::newFromUser( $wgUser );
+		$parserOptions = $this->mArticle->makeParserOptions( $this->mArticle->getContext() );
+
 		$parserOptions->setEditSection( false );
-		$parserOptions->setTidy( true );
 		$parserOptions->setIsPreview( true );
 		$parserOptions->setIsSectionPreview( !is_null( $this->section ) && $this->section !== '' );
 
@@ -2660,8 +2660,6 @@ HTML
 			}
 
 			wfRunHooks( 'EditPageGetPreviewText', array( $this, &$toparse ) );
-
-			$parserOptions->enableLimitReport();
 
 			$toparse = $wgParser->preSaveTransform( $toparse, $this->mTitle, $wgUser, $parserOptions );
 			$parserOutput = $wgParser->parse( $toparse, $this->mTitle, $parserOptions );

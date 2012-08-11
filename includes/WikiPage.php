@@ -1637,18 +1637,30 @@ class WikiPage extends Page implements IDBAccessObject {
 
 	/**
 	 * Get parser options suitable for rendering the primary article wikitext
-	 * @param User|string $user User object or 'canonical'
+	 *
+	 * @param IContextSource|User|string $context One of the following:
+	 *        - IContextSource: Use the User and the Language of the provided
+	 *          context
+	 *        - User: Use the provided User object and $wgLang for the language,
+	 *          so use an IContextSource object if possible.
+	 *        - 'canonical': Canonical options (anonymous user with default
+	 *          preferences and content language).
 	 * @return ParserOptions
 	 */
-	public function makeParserOptions( $user ) {
+	public function makeParserOptions( $context ) {
 		global $wgContLang;
-		if ( $user instanceof User ) { // settings per user (even anons)
-			$options = ParserOptions::newFromUser( $user );
+
+		if ( $context instanceof IContextSource ) {
+			$options = ParserOptions::newFromContext( $context );
+		} elseif ( $context instanceof User ) { // settings per user (even anons)
+			$options = ParserOptions::newFromUser( $context );
 		} else { // canonical settings
 			$options = ParserOptions::newFromUserAndLang( new User, $wgContLang );
 		}
+
 		$options->enableLimitReport(); // show inclusion/loop reports
 		$options->setTidy( true ); // fix bad HTML
+
 		return $options;
 	}
 
