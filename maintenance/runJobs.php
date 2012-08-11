@@ -1,8 +1,8 @@
 <?php
 /**
- * This script starts pending jobs.
+ * Run pending jobs.
  *
- * Usage:
+ * Options:
  *  --maxjobs <num> (default 10000)
  *  --type <job_cmd>
  *
@@ -21,11 +21,17 @@
  * 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
  * http://www.gnu.org/copyleft/gpl.html
  *
+ * @file
  * @ingroup Maintenance
  */
 
 require_once( dirname( __FILE__ ) . '/Maintenance.php' );
 
+/**
+ * Maintenance script that runs pending jobs.
+ *
+ * @ingroup Maintenance
+ */
 class RunJobs extends Maintenance {
 	public function __construct() {
 		parent::__construct();
