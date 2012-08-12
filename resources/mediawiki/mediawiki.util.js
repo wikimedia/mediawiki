@@ -65,25 +65,48 @@
 			}
 
 			/* Fill $content var */
-			if ( $( '#bodyContent' ).length ) {
-				// Vector, Monobook, Chick etc.
-				util.$content = $( '#bodyContent' );
+			util.$content = ( function() {
+				var $content, selectors = [
+					// The preferred standard for setting $content (class="mw-body")
+					// You may also use (class="mw-body mw-body-primary") if you use
+					// mw-body in multiple locations.
+					// Or class="mw-body-primary" if you want $content to be deeper
+					// in the dom than mw-body
+					'.mw-body-primary',
+					'.mw-body',
 
-			} else if ( $( '#mw_contentholder' ).length ) {
-				// Modern
-				util.$content = $( '#mw_contentholder' );
+					/* Legacy fallbacks for setting the content */
+					// Vector, Monobook, Chick, etc... based skins
+					'#bodyContent',
 
-			} else if ( $( '#article' ).length ) {
-				// Standard, CologneBlue
-				util.$content = $( '#article' );
+					// Modern based skins
+					'#mw_contentholder',
 
-			} else {
-				// #content is present on almost all if not all skins. Most skins (the above cases)
-				// have #content too, but as an outer wrapper instead of the article text container.
-				// The skins that don't have an outer wrapper do have #content for everything
-				// so it's a good fallback
-				util.$content = $( '#content' );
-			}
+					// Standard, CologneBlue
+					'#article',
+
+					// #content is present on almost all if not all skins. Most skins (the above cases)
+					// have #content too, but as an outer wrapper instead of the article text container.
+					// The skins that don't have an outer wrapper do have #content for everything
+					// so it's a good fallback
+					'#content',
+
+					// If nothing better is found fall back to our bodytext div that is guaranteed to be here
+					'#mw-content-text'
+				];
+				for ( var i = 0, l = selectors.length; i < l; i++ ) {
+					$content = $( selectors[i] ).first();
+					if ( $content.length ) {
+						return $content;
+					}
+				}
+
+				// Make sure we don't unset util.$content if it was preset and we don't find anything
+				return util.$content;
+			} )();
+
+			/* Fill $contentText var */
+			util.$contentText = $( '#mw-content-text' );
 
 			// Table of contents toggle
 			$tocTitle = $( '#toctitle' );
@@ -293,10 +316,17 @@
 
 		/*
 		 * @var jQuery
-		 * A jQuery object that refers to the page-content element
+		 * A jQuery object that refers to the content area element
 		 * Populated by init().
 		 */
 		$content: null,
+
+		/*
+		 * @var jQuery
+		 * A jQuery object that refers to the body text container element
+		 * Populated by init().
+		 */
+		$contentText: null,
 
 		/**
 		 * Add a link to a portlet menu on the page, such as:
