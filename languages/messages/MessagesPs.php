@@ -2010,7 +2010,7 @@ $UNWATCHURL  نه ليدنه وکړۍ
 'tooltip-ca-move' => 'همدا مخ لېږدول',
 'tooltip-ca-watch' => 'دا مخ په خپل کتنلړکې ګډول',
 'tooltip-ca-unwatch' => 'همدا مخ خپل کتنلړ نه لرې کول',
-'tooltip-search' => 'د {{SITENAME}} لټون',
+'tooltip-search' => '{{SITENAME}} پلټل',
 'tooltip-search-go' => 'په دې نوم د کټ مټ ورته مخ شتون په صورت کې، هماغه مخ ته ورځه',
 'tooltip-search-fulltext' => 'په مخونو کې دا متن وپلټه',
 'tooltip-p-logo' => 'لومړی مخ',
@@ -2433,6 +2433,9 @@ $5
 
 # Signatures
 'signature' => '[[{{ns:user}}:$1|$2]] ([[{{ns:user_talk}}:$1|خبرې اترې]])',
+
+# Core parser functions
+'duplicate-defaultsort' => '\'\'\'ګواښنه:\'\'\'د "$2" تلواليزه اوډون تڼۍ تر دې پخوا ټاکلې تلواليزه اوډون تڼۍ "$1" پر ځای چارنه کېږي.',
 
 # Special:Version
 'version' => 'بڼه',

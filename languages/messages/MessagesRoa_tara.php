@@ -427,6 +427,8 @@ $2',
 'ns-specialprotected' => 'Le pàgene speciale no ponne essere cangete.',
 'titleprotected' => "Stu titele ha state prutette da 'a ccreazione da [[User:$1|$1]].
 'U mutive jè ''$2''.",
+'invalidtitle-knownnamespace' => 'Titole invalide cu \'u namespace "$2" e teste "$3"',
+'invalidtitle-unknownnamespace' => 'Titele invalide cu numere de namespace scanusciute $1 e teste "$2"',
 'exception-nologin' => 'Non ge sì collegate',
 'exception-nologin-text' => "Sta pàgene o azione richiede ca a trasè jndr'à sta uicchi.",
 
@@ -449,6 +451,7 @@ No te sce scurdanne de cangià le [[Special:Preferences|{{SITENAME}} preferenze 
 'remembermypassword' => "Arrencuerdete 'u nome mije sus a stu combiuter (pe 'nu massime de $1 {{PLURAL:$1|sciurne|sciurne}})",
 'securelogin-stick-https' => "Statte collegate ô HTTPS apprisse 'a trasute",
 'yourdomainname' => "'U nome d'u dominie tue:",
+'password-change-forbidden' => 'Non ge puè cangià le passuord sus a sta uicchi.',
 'externaldberror' => "Vide bbuene, o stè 'n'errore de autendicazione a 'u database oppure tu non ge puè aggiorna 'u cunde tue esterne.",
 'login' => 'Tràse',
 'nav-login-createaccount' => 'Tràse / Reggistrete',
@@ -836,6 +839,8 @@ Ste argumende onne state luete.",
 'node-count-exceeded-warning' => "Pagene ha sbunnate 'u condegge de le node",
 'expansion-depth-exceeded-category' => "Pàggene addò 'a profonnetà de l'espanzione jè supranate",
 'expansion-depth-exceeded-warning' => "Pàggene ca sbonnane 'a profonnetà de espanzione",
+'parser-unstrip-loop-warning' => 'Cicle infinite acchiate',
+'parser-unstrip-recursion-limit' => 'Limite de ricorsione infinite sbunnate ($1)',
 'converter-manual-rule-error' => "Errore assute jndr'à le regole de conversione d'a lènghe manuale",
 
 # "Undo" feature
@@ -1605,6 +1610,11 @@ Ce 'u probbleme angore jè presende, condatte 'n'[[Special:ListUsers/sysop|ammin
 'backend-fail-connect' => 'Non ge pozze connettere \'a memorie de rrete "$1".',
 'backend-fail-internal' => "'N'errore scanusciute s'à verificate jndr'à l'archivije de rrete \"\$1\".",
 'backend-fail-contenttype' => 'Non ge pozze capìe \'u tipe de condenute d\'u file da reggistrà sus a "$1".',
+'backend-fail-usable' => 'Non ge pozze scrivere \'u file "$1" purcé mangane le permesse sufficiende o non g\'esiste \'a cartelle/contenitore.',
+
+# File journal errors
+'filejournal-fail-dbconnect' => 'Non ge pozze collegà a l\'archivije d\'u database pe memorizzà \'u rrete "$1".',
+'filejournal-fail-dbquery' => 'Non ge pozze aggiornà l\'archivije d\'u database pe memorizzà \'u rrete "$1".',
 
 # Lock manager
 'lockmanager-notlocked' => 'Non ge pozze sbloccà "$1"; jidde non g\'è bloccate.',

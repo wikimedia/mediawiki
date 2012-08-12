@@ -450,6 +450,10 @@ $1',
 'youhavenewmessages' => 'איר האט $1 ($2).',
 'newmessageslink' => 'נייע מעלדונגען',
 'newmessagesdifflink' => 'לעצטע ענדערונג',
+'youhavenewmessagesfromusers' => 'איר האט $1 פון {{PLURAL:$3|אן אנדער באניצער|$3 באניצער}} ($2).',
+'youhavenewmessagesmanyusers' => 'איר האט $1 פון אסאך באניצער ($2).',
+'newmessageslinkplural' => '{{PLURAL:$1|א נייע מעלדונג|נייע מעלדונגען}}',
+'newmessagesdifflinkplural' => 'לעצטע {{PLURAL:$1|ענדערונג|ענדערונגען}}',
 'youhavenewmessagesmulti' => 'איר האט נייע מעלדונגען אין $1',
 'editsection' => 'באַאַרבעטן',
 'editold' => 'רעדאַקטירן',
@@ -578,6 +582,8 @@ $2',
 דער סיסאפ וואס האט זי פארשפארט האט געגעבן דעם הסבר:  "$3"',
 'invalidtitle-knownnamespace' => 'אומגילטירער טיטל מיט נאמענטייל "$2" און טעקסט "$3"',
 'invalidtitle-unknownnamespace' => 'אומגילטיקער טיטל מיט אומבאוואוסטן נאמענטייל נומער $1 און טעקסט "$2"',
+'exception-nologin' => 'נישט אַרײַנלאגירט',
+'exception-nologin-text' => 'דער בלאט אדער אקציע פֿאדערט אז איר זענט אריינלאגירט ביי דער וויקי.',
 
 # Virus scanner
 'virus-badscanner' => "שלעכטע קאנפֿיגוראציע: אומבאוואוסטער ווירוס איבערקוקער: ''$1''",
@@ -596,6 +602,7 @@ $2',
 'remembermypassword' => 'געדיינק מײַן אַרײַנלאגירן אויף דעם קאמפיוטער (ביז  $1 {{PLURAL:$1|טאָג|טעג}})',
 'securelogin-stick-https' => 'בלייַבן פארבונדן צו HTTPS נאָכן ארײַנלאָגירן',
 'yourdomainname' => 'אײַער געביט:',
+'password-change-forbidden' => 'איר קען נישט ענדערן פאסווערטער אויף דער וויקי.',
 'externaldberror' => 'עס איז אדער פארגעקומען אן אויטענטיקאציע דאטנבאזע פעלער אדער איר זענט נישט ערמעגליכט צו דערהיינטיגן אייער דרויסנדיגע קאנטע.',
 'login' => 'אַרײַנלאָגירן',
 'nav-login-createaccount' => 'ארײַנלאָגירן / זיך אײַנשרײַבן',
@@ -1600,8 +1607,9 @@ $1",
 'tmp-write-error' => 'טעות בײַם שרייַבן צייַטווייַליקע טעקע.',
 'large-file' => 'רעקאמענדירט אז טעקעס זאל נישט זײַן גרעסער פֿון$1;
 די טעקע איז $2.',
+'largefileserver' => 'די טעקע איז גרעסער פונעם מאקסימום פאר דעם סערווער.',
 'emptyfile' => 'די טעקע וואס איר האט ארויפֿלגעלאָדן איז ליידיג.
-עס קען זיין אז די סיבה איז פשוט א טייפא.
+עס קען זיין אז די סיבה איז פשוט א טייפא אינעם טעקע־נאמען.
 ביטע קוקט איבער צי איר ווילט ארויפֿלאדן  די דאזיקע טעקע.',
 'windows-nonascii-filename' => 'די וויקי שטיצט נישט טעקע־נעמען מיט ספעציעלע צייכענען.',
 'fileexists' => "א טעקע מיט דעם נאָמען עקזיסטירט שוין, ביטע זײַט בודק '''<tt>[[:$1]]</tt>''' ווען איר זענט נישט זיכער אַז איר ווילט זי ענדערן.
@@ -1835,7 +1843,7 @@ $1",
 
 'disambiguations' => 'בלעטער וואס פֿארבינדן מיט באדייטן בלעטער',
 'disambiguationspage' => 'Template:באדייטן',
-'disambiguations-text' => "די קומענדיגע בלעטער פארבינדען צו א '''באדייטן בלאט'''. זיי ברויכן ענדערשט פֿארבינדן צו דער רעלעוואנטער טעמע בלאט.<br />א בלאט ווערט פאררעכענט אלס א בלאט ווערט גערעכנט פאר א באדײַטן בלאט אויב ער באניצט זיך מיט א מוסטער וואס איז פארבינדען פון [[MediaWiki:Disambiguationspage]].",
+'disambiguations-text' => "די קומענדיגע בלעטער פארבינדן צו א '''באדייטן בלאט'''. זיי ברויכן ענדערשט פֿארבינדן צו דעם רעלעוואנטן טעמע בלאט.<br />א בלאט ווערט פאררעכענט פאר א באדײַטן בלאט אויב ער באניצט זיך מיט א מוסטער וואס איז פארבינדען פון [[MediaWiki:Disambiguationspage]].",
 
 'doubleredirects' => 'געטאפלטע ווײַטערפֿירונגען',
 'doubleredirectstext' => 'דער בלאט רעכנט אויס בלעטער וואס פירן ווייטער צו אנדערע ווייטערפירן בלעטער.
@@ -1880,6 +1888,7 @@ $1",
 'wantedpages' => 'געזוכטע בלעטער',
 'wantedpages-badtitle' => 'אומגילטיקער טיטל אין רעזולטאַט: $1',
 'wantedfiles' => 'געזוכטע טעקעס',
+'wantedfiletext-cat' => 'די פֿאלגנדע טעקעס ווערן געניצט אבער זיי עקזיסטירן נישט. טעקעס פון פֿרעמדע רעפאזיטאריעס קענען ווערן אריינגערעכנט טראץ זיי עקזיסטירן יא. אזעלכע גרייזן וועלן ווערן <del>אויסגעשריכן </del>. דערצו, בלעטער וואס ניצן אומעקזיסטירנדע טעקעס ווערן אריינגערעכנט אין [[:$1]].',
 'wantedtemplates' => 'געזוכטע מוסטערן',
 'mostlinked' => 'מערסט פֿארבינדענע בלעטער',
 'mostlinkedcategories' => 'מערסט פֿארבינדענע קאטעגאריעס',
@@ -1939,6 +1948,7 @@ $1",
 מען קען פֿאַרשמעלרן די אויסוואל דורך אויסוויילן א סארט לאג, באַניצער נאמען אדער אנרירנדע בלעטער.',
 'logempty' => 'נישטא קיין פאַסנדיקע זאכן אין לאג.',
 'log-title-wildcard' => 'זוכן טיטלען וואס הייבן אָן מיט דעם טעקסט',
+'showhideselectedlogentries' => 'ווײַזן/באַהאַלטן געקליבענע לאגבוך אקציעס',
 
 # Special:AllPages
 'allpages' => 'אַלע בלעטער',
@@ -2169,6 +2179,8 @@ $UNWATCHURL
 'rollback' => 'צוריקדרייען רעדאַקטירונגען',
 'rollback_short' => 'צוריקדרייען',
 'rollbacklink' => 'צוריקדרייען',
+'rollbacklinkcount' => 'צוריקדרייען $1 {{PLURAL:$1|רעדאקטירונג|רעדאקטירונגען}}',
+'rollbacklinkcount-morethan' => 'צוריקדרייען מער ווי $1 {{PLURAL:$1|רעדאקטירונג|רעדאקטירונגען}}',
 'rollbackfailed' => 'צוריקדרייען דורכגעפֿאַלן',
 'cantrollback' => 'מען קען נישט צוריקדרייען די ענדערונג – דער לעצטער בײַשטייערער איז דער איינציגסטער שרײַבער אין דעם בלאַט.',
 'alreadyrolled' => 'מען קען נישט צוריקדרייען די לעצטע ענדערונג פון בלאט [[:$1]] פֿון
@@ -2553,6 +2565,7 @@ $1',
 'movepage-page-exists' => "דער בלאַט $1 עקזיסטירט שוין און מ'קען אים נישט אויטאָמאַטיש איבערשרײַבן.",
 'movepage-page-moved' => 'דער בלאַט $1 איז געוורן באַוועגט צו $2.',
 'movepage-page-unmoved' => 'מען קען נישט באוועגן בלאט $1 צו $2.',
+'movepage-max-pages' => 'דער מאקסימום פון $1 {{PLURAL:$1|בלאט|בלעטער}} האט מען שוין באוועגט און נאך בלעטער וועט מען נישט באוועגן אויטאמאטיש.',
 'movelogpage' => 'באוועגן לאג',
 'movelogpagetext' => 'פֿאלגנד איז א ליסטע פֿון  בלעטער באוועגט.',
 'movesubpage' => '{{PLURAL:$1|אונטערבלאַט|אונטערבלעטער}}',
@@ -2993,7 +3006,9 @@ $1',
 'exif-scenecapturetype' => 'סצענע אויפנעם טיפ',
 'exif-gaincontrol' => 'סצענע קאנטראל',
 'exif-contrast' => 'קאנטראסט',
-'exif-devicesettingdescription' => 'זאך סעטינגס אראפמאלונג',
+'exif-saturation' => 'זעטיקונג',
+'exif-sharpness' => 'שארף',
+'exif-devicesettingdescription' => 'אפאראט שטעלונגען אראפמאלונג',
 'exif-gpslatituderef' => 'צפון אדער דרום גארטל־ליניע',
 'exif-gpslatitude' => 'גארטל־ליניע',
 'exif-gpslongituderef' => 'מזרח אדער מערב לענג',
@@ -3031,6 +3046,9 @@ $1',
 'exif-provinceorstatedest' => 'פראווינץ אדער שטאַט געוויזן',
 'exif-citydest' => 'געוויזענע שטָאט',
 'exif-objectname' => 'קורצער טיטל',
+'exif-specialinstructions' => 'באזונדערע אנווייזונגען',
+'exif-headline' => 'קעפל',
+'exif-credit' => 'קרעדיט/פארזארגער',
 'exif-source' => 'מקור',
 'exif-editstatus' => 'רעדאקציאנעלער סטאטוס פון בילד',
 'exif-urgency' => 'דרינגלעכקייט',
@@ -3110,6 +3128,8 @@ $1',
 
 'exif-focalplaneresolutionunit-2' => 'אינטשעס',
 
+'exif-sensingmethod-1' => 'אומדעפינירט',
+
 'exif-customrendered-0' => 'נארמאלער פראצעס',
 'exif-customrendered-1' => 'קאסטעם פראצעס',
 
@@ -3139,17 +3159,20 @@ $1',
 'exif-sharpness-2' => 'הארט',
 
 'exif-subjectdistancerange-0' => 'אומבאַוויסט',
+'exif-subjectdistancerange-1' => 'מאקרא',
+'exif-subjectdistancerange-2' => 'נאנטע ווייזונג',
+'exif-subjectdistancerange-3' => 'ווײַטע ווײַזונג',
 
 # Pseudotags used for GPSLatitudeRef and GPSDestLatitudeRef
-'exif-gpslatitude-n' => 'צפון לעטיטוד',
-'exif-gpslatitude-s' => 'דרום לאטיטוד',
+'exif-gpslatitude-n' => 'צפון ברייט',
+'exif-gpslatitude-s' => 'דרום ברייט',
 
 # Pseudotags used for GPSLongitudeRef and GPSDestLongitudeRef
 'exif-gpslongitude-e' => 'מזרח לענג',
 'exif-gpslongitude-w' => 'מערב לענג',
 
 # Pseudotags used for GPSAltitudeRef
-'exif-gpsaltitude-above-sealevel' => '$1 {{PLURAL:$1|ngמעטער|מעטער}} איבערן ים־שפיגלl',
+'exif-gpsaltitude-above-sealevel' => '$1 {{PLURAL:$1|מעטער|מעטער}} איבערן ים־שפיגלl',
 'exif-gpsaltitude-below-sealevel' => '$1 {{PLURAL:$1|מעטער|מעטער}} אונטערן ים־שפיגל',
 
 # Pseudotags used for GPSSpeedRef
@@ -3406,6 +3429,7 @@ $5
 
 # Special:Version
 'version' => 'ווערסיע',
+'version-extensions' => 'אינסטאלירטע פארברייטערונגען',
 'version-specialpages' => 'ספעציעלע בלעטער',
 'version-variables' => 'וואַריאַבלען',
 'version-skins' => 'באניצער־אייבערפלאכן',

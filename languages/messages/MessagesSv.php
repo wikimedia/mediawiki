@@ -583,6 +583,10 @@ $1',
 'youhavenewmessages' => 'Du har $1 ($2).',
 'newmessageslink' => 'nya meddelanden',
 'newmessagesdifflink' => 'senaste ändringen',
+'youhavenewmessagesfromusers' => 'Du har $1 från {{PLURAL:$3|en annan användare|$3 användare}} ($2).',
+'youhavenewmessagesmanyusers' => 'Du har $1 från många användare ($2).',
+'newmessageslinkplural' => '{{PLURAL:$1|ett nytt meddelande|nya meddelanden}}',
+'newmessagesdifflinkplural' => 'senaste {{PLURAL:$1|ändring|ändringar}}',
 'youhavenewmessagesmulti' => 'Du har nya meddelanden på $1',
 'editsection' => 'redigera',
 'editold' => 'redigera',
@@ -970,6 +974,10 @@ Du kan [[Special:Search/{{PAGENAME}}|söka efter denna sidtitel]] på andra sido
 'noarticletext-nopermission' => 'Det finns för tillfället ingen text på denna sida.
 Du kan [[Special:Search/{{PAGENAME}}|söka efter denna sidas titel]] i andra sidor,
 eller <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} söka i relevanta loggar]</span>.',
+'missing-revision' => 'Revisionen #$1 av sidan med namnet "{{PAGENAME}}" finns inte.
+
+Detta orsakas vanligen av efter en gammal historiklänk till en sida som har raderats.
+Detaljer kan hittas i [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} raderingsloggen].',
 'userpage-userdoesnotexist' => '"<nowiki>$1</nowiki>" är inte ett registrerat användarkonto. Tänk efter om du vill skapa/redigera den här sidan.',
 'userpage-userdoesnotexist-view' => 'Kontot "$1" är inte registrerat.',
 'blocked-notice-logextract' => 'Användaren är blockerad.
@@ -1097,6 +1105,7 @@ Dessa parametrar har uteslutits.',
 'expansion-depth-exceeded-warning' => 'Sidan överskrider expansionsdjupet',
 'parser-unstrip-loop-warning' => 'Tagavskalningsloop upptäcktes',
 'parser-unstrip-recursion-limit' => 'Tagavskalningsloop överskred rekursionsgränsen ($1)',
+'converter-manual-rule-error' => 'Fel upptäcktes i manuell språkkonverteringsregel',
 
 # "Undo" feature
 'undo-success' => 'Redigeringen kan göras ogjord.
@@ -4001,5 +4010,5 @@ Annars kan du använda det enkla formuläret nedan. Din kommentar kommer att lä
 'duration-millennia' => '$1 {{PLURAL:$1|millennium|millennier}}',
 
 # Unknown messages
-'api-error-filetype-banned-type' => '$1 är inte {{PLURAL:$4|en tillåten filtyp|tillåtna filtyper}}. {{PLURAL:$3|Tillåtna filtyper|Tillåten filtyp}} är $2.',
+'api-error-filetype-banned-type' => '$1 är inte {{PLURAL:$4|en tillåten filtyp|tillåtna filtyper}}. {{PLURAL:$3|Tillåten filtyp|Tillåtna filtyper}} är $2.',
 );

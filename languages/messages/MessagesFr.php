@@ -9,6 +9,7 @@
  *
  * @author Agzennay
  * @author Arkanosis
+ * @author Boniface
  * @author Brunoperel
  * @author Cedric31
  * @author ChrisPtDe
@@ -65,6 +66,7 @@
  * @author Sherbrooke
  * @author Skalman
  * @author The Evil IP address
+ * @author Tititou36
  * @author TouzaxA
  * @author Tpt
  * @author Urhixidur
@@ -633,6 +635,7 @@ $1',
 'newmessageslink' => 'de nouveaux messages',
 'newmessagesdifflink' => 'dernière modification',
 'youhavenewmessagesfromusers' => "Vous avez  $1  d'{{PLURAL:$3| un autre utilisateur|$3 autres utilisateurs}} ( $2 ).",
+'youhavenewmessagesmanyusers' => 'Vous avez $1 de nombreux utilisateurs ($2).',
 'newmessageslinkplural' => '{{PLURAL:$1|un message|nouveaux messages}}',
 'newmessagesdifflinkplural' => 'dernières {{PLURAL:$1|modification|modifications}}',
 'youhavenewmessagesmulti' => 'Vous avez de nouveaux messages sur $1.',
@@ -939,7 +942,7 @@ Mot de passe temporaire : $2',
 'link_tip' => 'Lien interne',
 'extlink_sample' => 'http://www.example.com titre du lien',
 'extlink_tip' => 'Lien externe (n’oubliez pas le préfixe http://)',
-'headline_sample' => 'Texte de sous-titre',
+'headline_sample' => 'Texte du titre',
 'headline_tip' => 'Sous-titre niveau 2',
 'nowiki_sample' => 'Entrez le texte non formaté ici',
 'nowiki_tip' => 'Ignorer la syntaxe wiki',
@@ -1414,7 +1417,7 @@ Essayez en utilisant le préfixe ''all:'' pour rechercher dans tout le contenu (
 
 # Preferences page
 'preferences' => 'Préférences',
-'mypreferences' => 'Préférences',
+'mypreferences' => 'Mes préférences',
 'prefs-edits' => 'Nombre de modifications :',
 'prefsnologin' => 'Non connecté',
 'prefsnologintext' => 'Vous devez être <span class="plainlinks">[{{fullurl:{{#Special:UserLogin}}|returnto=$1}} connecté]</span> pour modifier vos préférences d’utilisateur.',
@@ -2004,7 +2007,7 @@ Quand elle est filtrée par utilisateur, seuls les fichiers dont la version la p
 'filehist-revert' => 'rétablir',
 'filehist-current' => 'actuel',
 'filehist-datetime' => 'Date et heure',
-'filehist-thumb' => 'Miniature',
+'filehist-thumb' => 'Vignette',
 'filehist-thumbtext' => 'Vignette pour la version du $1',
 'filehist-nothumb' => 'Pas de miniature',
 'filehist-user' => 'Utilisateur',
@@ -2024,7 +2027,7 @@ Une [[Special:WhatLinksHere/$2|liste complète]] est disponible.',
 'sharedupload' => 'Ce fichier provient de : $1. Il peut être utilisé par d’autres projets.',
 'sharedupload-desc-there' => 'Ce fichier provient de : $1. Il peut être utilisé par d’autres projets.
 Veuillez consulter [$2 sa page de description] pour plus d’informations.',
-'sharedupload-desc-here' => 'Ce fichier provient de : $1. Il peut être utilisé par d’autres projets.
+'sharedupload-desc-here' => 'Ce fichier provient de $1. Il peut être utilisé par d’autres projets.
 Sa description sur sa [$2 page de description] est affichée ci-dessous.',
 'sharedupload-desc-edit' => 'Ce fichier provient de : $1. Il peut être utilisé par d’autres projets.
 Vous voulez peut-être modifier la description sur sa [$2 page de description].',

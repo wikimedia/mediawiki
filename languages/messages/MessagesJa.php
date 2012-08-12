@@ -2394,7 +2394,7 @@ contenttype/subtypeの形式で入力してください（例：<tt>image/jpeg</
 'emailccsubject' => '$1に送信したメールの控え：$2',
 'emailsent' => 'メールを送信しました',
 'emailsenttext' => 'メールを送信しました。',
-'emailuserfooter' => 'このメールは$1から$2へ、{{SITENAME}}の「利用者にメール送信」機能を使って送られました。',
+'emailuserfooter' => 'このメールは$1から$2へ、{{SITENAME}}の「利用者にメールを送信」機能でお送りしました。',
 
 # User Messenger
 'usermessage-summary' => 'システムメッセージを残す。',
