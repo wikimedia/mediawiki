@@ -326,10 +326,6 @@ abstract class MediaWikiTestCase extends PHPUnit_Framework_TestCase {
 
 	}
 
-	public static function disableInterwikis( $prefix, &$data ) {
-		return false;
-	}
-
 	/**
 	 * Don't throw a warning if $function is deprecated and called later
 	 *
