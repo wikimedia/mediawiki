@@ -348,6 +348,8 @@ abstract class MediaWikiTestCase extends PHPUnit_Framework_TestCase {
 	 * the values given in the order of the columns in the $fields parameter.
 	 * Note that the rows are sorted by the columns given in $fields.
 	 *
+	 * @since 1.20
+	 *
 	 * @param $table String|Array the table(s) to query
 	 * @param $fields String|Array the columns to include in the result (and to sort by)
 	 * @param $condition String|Array "where" condition(s)
@@ -421,14 +423,20 @@ abstract class MediaWikiTestCase extends PHPUnit_Framework_TestCase {
 	 * Useful to turn a database result row as returned by fetchRow() into
 	 * a pure indexed array.
 	 *
-	 * @static
+	 * @since 1.20
+	 *
 	 * @param $r mixed the array to remove string keys from.
 	 */
 	protected static function stripStringKeys( &$r ) {
-		if ( !is_array( $r ) ) return;
+		if ( !is_array( $r ) ) {
+			return;
+		}
 
 		foreach ( $r as $k => $v ) {
-			if ( is_string( $k ) ) unset( $r[$k] );
+			if ( is_string( $k ) ) {
+				unset( $r[$k] );
+			}
 		}
 	}
+
 }
