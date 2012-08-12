@@ -2328,7 +2328,7 @@ Il-Preferenzi kurrenti ta' din il-paġni huma '''$1''':",
 'protect-othertime' => 'Ħin ieħor:',
 'protect-othertime-op' => 'ħin ieħor',
 'protect-existing-expiry' => 'Skadenza attwali: $2, $3',
-'protect-otherreason' => 'Raġunijiet oħra/addizjonali:',
+'protect-otherreason' => 'Raġunijiet oħra/addizzjonali:',
 'protect-otherreason-op' => 'Raġuni oħra',
 'protect-dropdown' => '*Raġunijiet komuni għall-protezzjoni
 ** Vandaliżmu eċċessiv

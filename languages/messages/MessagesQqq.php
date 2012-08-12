@@ -94,6 +94,7 @@
  * @author Purodha
  * @author Rancher
  * @author Raymond
+ * @author Reedy
  * @author Robby
  * @author Rotemliss
  * @author Ryan Schmidt
@@ -549,16 +550,17 @@ The format is: "{{int:youhavenewmessages| [[MediaWiki:Newmessageslink/{{SUBPAGEN
 {{Identical|New messages}}',
 'newmessagesdifflink' => 'This is the second link displayed in an orange rectangle when a user gets a message on his talk page. Used in message {{msg-mw|youhavenewmessages}} (as parameter $2).',
 'youhavenewmessagesfromusers' => 'New talk indicator message: the message appearing when someone edited your user talk page.
-The message takes three parameters, {{msg-mw|newmessageslinkplural}}, {{msg-mw|newmessagesdifflinkplural}}, and the number of authors
-that have edited the talk page since the owning user last viewed it.',
+The message takes three parameters; 
+*$1 {{msg-mw|newmessageslinkplural}}, 
+*$2 {{msg-mw|newmessagesdifflinkplural}}, and 
+*$3 the number of authors who have edited the talk page since the owning user last viewed it.',
 'youhavenewmessagesmanyusers' => 'New talk indicator message: the message appearing when someone edited your user talk page.
 Like {{msg-mw|youhavenewmessages}}, but getting {{msg-mw|newmessageslinkplural}} and {{msg-mw|newmessagesdifflinkplurl}} as parameters $1 and $2, respectively. Used when more than 10 users edited the user talk page since the owning user last viewed it.',
 'newmessageslinkplural' => 'Like {{msg-mw|newmessageslink}} but supporting pluralization. Used in message {{msg-mw|youhavenewmessagesfromusers}} (as parameter $1).
 This message itself takes one parameter, $1, which is 1 if there was one new edit, or 2 if there was more than one new edit
 since the last time the user has seen his or her talk page.',
 'newmessagesdifflinkplural' => 'Like {{msg-mw|newmessagesdifflink}} but supporting pluralization. Used in message {{msg-mw|youhavenewmessagesfromusers}} (as parameter $2).
-This message itself takes one parameter, $1, which is 1 if there was one new edit, or 2 if there was more than one new edit
-since the last time the user has seen his or her talk page.',
+This message itself takes one parameter, $1, which is the number of new edits since the last time the user has seen his or her talk page.',
 'youhavenewmessagesmulti' => 'The alternative of {{msg|youhavenewmessages}} as used on wikis with a special setup so they can receive the "new message" notice on other wikis as well. Used on [http://www.wikia.com/ Wikia].
 The format is: "{{int:youhavenewmessagesmulti| [[MediaWiki:Newmessageslink/{{SUBPAGENAME}}|{{int:newmessageslink}}]]}}"',
 'editsection' => 'Display name of link to edit a section on a content page. Example: [{{MediaWiki:Editsection}}].
@@ -1331,7 +1333,9 @@ Example: [http://translatewiki.net/w/i.php?title=Project:News&diff=426850&oldid=
 * $2 is the number of items in $1 (one or two)',
 
 # Search results
-'searchresults' => '{{Identical|Search results}}',
+'searchresults' => 'This is the title of the page that contains the results of a search.
+
+{{Identical|Search results}}',
 'searchresults-title' => 'Appears as page title in the html header of the search result special page.',
 'notitlematches' => 'Header of results page after a search for a title for which no page exists',
 'textmatches' => 'When displaying search results',
@@ -4818,5 +4822,10 @@ $4 is the gender of the target user.',
 'api-error-verification-error' => 'The word "extension" refers to the part behind the last dot in a file name, that by convention gives a hint about the kind of data format which a files contents are in.',
 
 # Unknown messages
-'api-error-filetype-banned-type' => 'API error message that can be used for client side localisation of API errors.',
+'api-error-filetype-banned-type' => "API error message that can be used for client side localisation of API errors.
+
+* $1 is the extension(s) of the file which cannot be uploaded
+* $2 is the list of file extensions that can be uploaded (Example: ''png, gif, jpg, jpeg, ogg, pdf, svg.'')
+* $3 is the number of allowed file formats (to be used for the PLURAL function)
+* $4 is the number of extensions that could not be uploaded (to be used for the PLURAL function)",
 );

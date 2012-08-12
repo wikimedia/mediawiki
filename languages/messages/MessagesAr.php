@@ -2603,7 +2603,7 @@ $UNWATCHURL
 'rollback' => 'استرجاع التعديلات',
 'rollback_short' => 'استرجع',
 'rollbacklink' => 'استرجع',
-'rollbacklinkcount' => 'استرجاع $1 {{PLURAL:$1|تعديل|تعديلات}}',
+'rollbacklinkcount' => 'استرجع {{PLURAL:$1|لا تعديلات|تعديلاً واحداً|تعديلين|$1 تعديلات|$1 تعديل}}',
 'rollbacklinkcount-morethan' => 'استرجاع أكثر من $1 {{PLURAL:$1|تعديل|تعديلات}}',
 'rollbackfailed' => 'لم ينجح الاسترجاع',
 'cantrollback' => 'لم يمكن استرجاع التعديل؛

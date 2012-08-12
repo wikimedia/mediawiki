@@ -1054,15 +1054,13 @@ Vir meer besonderhede, raadpleeg die [{{fullurl:{{#Special:Log}}/delete|page={{F
 'rev-deleted-text-unhide' => "Hierdie weergawe van die bladsy is '''verwyder'''.
 Details kan in die [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} skraplogboek] gevind word.
 U kan steeds na [$1 die weergawe kyk] as u wil voortgaan.",
-'rev-suppressed-text-unhide' => "Hierdie weergawe van die blad word '''onderdruk'''.
-Details kan moontlik in die [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} logboek van onderdrukte weergawes] gesien word.
-As administrateur kan u, as u wil, na [$1 die verskille kyk].",
+'rev-suppressed-text-unhide' => "Hierdie weergawe van die bladsy word '''onderdruk'''.
+Details kan in die [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} logboek van onderdrukte weergawes] gevind word.
+As u wil voortgaan kan u steeds [$1 die weergawe sien].",
 'rev-deleted-text-view' => "Hierdie weergawe is '''verwyder'''.
-As administrateur kan u dit wel sien.
-Details kan moontlik in die [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} skraplogboek] aanwesig wees.",
+U dit wel sien. Details kan in die [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} skraplogboek] gevind word.",
 'rev-suppressed-text-view' => "Hierdie weergawe van die bladsy word '''onderdruk'''.
-As administrateur kan u dit sien.
-Details kan moontlik in die [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} logboek van onderdrukte weergawes] gesien word.",
+U kan dit wel sien. Details kan in die [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} logboek van onderdrukte weergawes] gevind word.",
 'rev-deleted-no-diff' => "U kan nie die verskille sien nie omdat een van die weergawes '''verwyder''' is.
 Details kan moontlik in die [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} skraplogboek] aanwesig wees.",
 'rev-suppressed-no-diff' => "U kan nie hierdie verskil sien nie omdat een van die weergawes '''geskrap''' is.",
@@ -1075,7 +1073,7 @@ As administrateur kan u steeds [$1 hierdie weergawe sien] as u wil voortgaan.",
 'rev-deleted-diff-view' => "Een van die weergawes van die verskil wat u aangevra het is '''verwyder'''.
 As administrateur kan u hierdie verskil sien. Meer details mag moontlik is die [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} verwyderingslogboek] beskikbaar wees.",
 'rev-suppressed-diff-view' => "Een van die weergawes vir die verskil wat u aangevra het is '''onderdruk'''.
-As administrateur kan u hierdie verskil sien. Meer details mag moontlik in die [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} verbergingslogboek] beskikbaar wees.",
+U kan wel hierdie verskil sien. Meer details kan in die [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} verbergingslogboek] gevind word.",
 'rev-delundel' => 'wys/versteek',
 'rev-showdeleted' => 'wys',
 'revisiondelete' => 'Verwyder/herstel weergawes',
@@ -1141,8 +1139,8 @@ Kontroleer asseblief die logboeke.",
 
 # Suppression log
 'suppressionlog' => 'Verbergingslogboek',
-'suppressionlogtext' => 'Die onderstaande lys bevat verwyderings en blokkades wat vir administrateurs verborge is.
-Kyk na die [[Special:IPBlockList|IP-blokkeerlys]] om die huidige blokkades te sien.',
+'suppressionlogtext' => 'Die onderstaande lys bevat verwyderings en blokkades wat vir administrateurs versteek is.
+Kyk na die [[Special:BlockList|blokkeerlys]] om die huidige blokkades te sien.',
 
 # History merging
 'mergehistory' => 'Geskiedenis van bladsy samesmeltings',
@@ -1782,7 +1780,7 @@ Dit kan nie behoorlik vir sekuriteit nagegaan word nie.",
 'img-auth-nopathinfo' => 'PATH_INFO word vermis.
 U bediener is nie ingestel om hierdie inligting deur te stuur nie.
 Miskien gebruik dit CGI, waartydens img_auth nie ondersteun word nie.
-[https://www.mediawiki.org/wiki/Manual:Image_Authorization Sien regte vir beelde] vir meer inligting.',
+Sien https://www.mediawiki.org/wiki/Manual:Image_Authorization vir meer inligting.',
 'img-auth-notindir' => 'Die aangevraagde pad is nie die ingestelde oplaaigids nie.',
 'img-auth-badtitle' => 'Dit was nie moontlik om \'n geldige bladsynaam van "$1" te maak nie.',
 'img-auth-nologinnWL' => 'U is nie aangeteken en "$1" is nie op die witlys nie.',
@@ -1952,8 +1950,8 @@ Die beskrywing op die [$2 lêer se inligtingsblad] word hieronder weergegee.',
 
 'disambiguations' => 'Bladsye wat na dubbelsinnigheidsbladsye skakel',
 'disambiguationspage' => 'Template:Dubbelsinnig',
-'disambiguations-text' => "Die volgende bladsye skakel na '''dubbelsinnigheidsbladsye'''.
-Die bladsye moet gewysig word om eerder direk na die regte onderwerpe te skakel.<br />
+'disambiguations-text' => "Die volgende bladsye het ten minste een skakel na 'n '''dubbelsinnigheidsbladsy'''.
+Hulle moet gewysig word om eerder direk na die regte onderwerpe te skakel.<br />
 'n Bladsy word beskou as 'n dubbelsinnigheidsbladsy as dit 'n sjabloon bevat wat geskakel is vanaf [[MediaWiki:Disambiguationspage]]",
 
 'doubleredirects' => 'Dubbele aansture',
@@ -2104,8 +2102,9 @@ Sie ook [[Special:WantedCategories|nie-bestaande kategorieë met verwysings]].',
 'linksearch-pat' => 'Soekpatroon:',
 'linksearch-ns' => 'Naamruimte:',
 'linksearch-ok' => 'Soek',
-'linksearch-text' => 'Patrone soos "*.wikipedia.org" of "*.org" kan gebruik word.<br />
-Ondersteunde protokolle: <tt>$1</tt>',
+'linksearch-text' => 'Patrone soos "*.wikipedia.org" kan gebruik word.<br />
+Benodig ten minste een topvlakdomein, soos byvoorbeeld "*.org".<br />
+Ondersteunde protokolle: <tt>$1</tt> (moenie hierdie in u soektog gebruik nie)',
 'linksearch-line' => '$1 geskakel vanaf $2',
 'linksearch-error' => 'Patrone kan slegs aan die begin van die rekenaarnaam geplaas word.',
 
@@ -2527,8 +2526,8 @@ Vul 'n spesifieke rede hier onder in (haal byvoorbeeld spesifieke bladsye wat ge
 'ipb-confirm' => 'Bevestig blokkade',
 'badipaddress' => 'Die IP-adres is nie in die regte formaat nie.',
 'blockipsuccesssub' => 'Blokkering het geslaag',
-'blockipsuccesstext' => "[[Special:Contributions/$1|$1]] is geblokkeer.<br />
-Sien die [[Special:BlockList|IP-bloklys]] vir 'n oorsig van blokkerings.",
+'blockipsuccesstext' => '[[Special:Contributions/$1|$1]] is geblokkeer.<br />
+Sien die [[Special:BlockList|bloklys]] vir onlangse blokkades.',
 'ipb-blockingself' => 'U is besig om uself te blokkeer! Is u seker u wil dit doen?',
 'ipb-confirmhideuser' => 'U staan op die punt om \'n "versteekte gebruiker" te blokkeer. Dit sal die gebruiker se naam vanaf alle lyste en logboeke onderdruk. Is u seker u wil om dit te doen?',
 'ipb-edit-dropdown' => 'Werk lys van redes by',
@@ -2580,8 +2579,9 @@ Die blokkeerlogboek word hieronder ter verwysing weergegee:',
 Die verbergingslogboek word hieronder ter verwysing weergegee:',
 'blocklogentry' => '"[[$1]]" is vir \'n periode van $2 $3 geblok',
 'reblock-logentry' => 'het die instellings vir die blokkade vir [[$1]] gewysig. Dit verval nou op $2 om $3',
-'blocklogtext' => "Hier is 'n lys van onlangse blokkeer en deblokkeer aksies. Outomaties geblokkeerde IP-adresse word nie vertoon nie.
-Sien die [[Special:BlockList|IP-bloklys]] vir geblokkeerde adresse.",
+'blocklogtext' => "Hierdie is 'n lys van onlangse blokkeer- en deblokkeer-aksies.
+Outomaties geblokkeerde IP-adresse word nie vertoon nie.
+Sien die [[Special:BlockList|bloklys]] vir tans geblokkeerde adresse.",
 'unblocklogentry' => 'blokkade van $1 is opgehef:',
 'block-log-flags-anononly' => 'anonieme gebruikers alleenlik',
 'block-log-flags-nocreate' => 'registrasie van gebruikers geblokkeer',

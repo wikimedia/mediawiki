@@ -1795,7 +1795,7 @@ $1',
 'backend-fail-writetemp' => 'ଅସ୍ଥାୟୀ ଫାଇଲ ତିଆରି କରିପାରିଲୁ ନାହିଁ ।',
 'backend-fail-closetemp' => 'ଅସ୍ଥାୟୀ ଫାଇଲ ବନ୍ଦ କରିହେଲା ନାହିଁ ।',
 'backend-fail-read' => '$1 ଫାଇଲଟି ପଢ଼ିପାରିଲୁ ନାହିଁ ।',
-'backend-fail-create' => '$1 ଫାଇଲଟି ତିଆରି କରିପାରିଲୁ ନାହିଁ ।',
+'backend-fail-create' => '$1 ଫାଇଲରେ କିଛି ଲେଖି ହେଲା ନାହିଁ ।',
 
 # Lock manager
 'lockmanager-notlocked' => 'କିଳାଯାଇଥିବା "$1"କୁ ଖୋଲିପାରିଲୁ ନାହିଁ; ଏହା ପ୍ରକୃତରେ କିଳାଯାଇନାହିଁ ।',

@@ -3674,7 +3674,7 @@ $5
 'version-api' => 'API',
 'version-other' => 'სხვა',
 'version-mediahandlers' => 'მედია დამუშავება',
-'version-hooks' => 'ჰუკებш',
+'version-hooks' => 'ჰუკები',
 'version-extension-functions' => 'გაფართოებათა ფუნქციები',
 'version-parser-extensiontags' => 'სინტაქსური ანალიზატორის თეგი',
 'version-parser-function-hooks' => 'სინტაქსური ანალიზატორის ჰუკი',

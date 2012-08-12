@@ -380,6 +380,10 @@ $1',
 'youhavenewmessages' => 'Mae gennych chi $1 ($2).',
 'newmessageslink' => 'Neges(eueon) newydd',
 'newmessagesdifflink' => 'y newid diweddaraf',
+'youhavenewmessagesfromusers' => 'Mae gennych $1 oddi wrth {{PLURAL:$3||ddefnyddiwr arall|$2 ddefnyddiwr arall|$3 defnyddiwr arall|$3 defnyddiwr arall|$3 defnyddiwr arall}} ($2).',
+'youhavenewmessagesmanyusers' => 'Mae gennych $1 oddi wrth lu o ddefnyddwyr eraill ($2).',
+'newmessageslinkplural' => '{{PLURAL:$1|neges newydd|neges newydd|negeseuon newydd}}',
+'newmessagesdifflinkplural' => 'y {{PLURAL:$1||newid diweddaraf|newidiadau diweddaraf}}',
 'youhavenewmessagesmulti' => 'Mae negeseuon newydd gennych ar $1',
 'editsection' => 'golygu',
 'editold' => 'golygu',
@@ -529,6 +533,7 @@ Cofiwch osod y [[Special:Preferences|dewisiadau]] sydd fwyaf hwylus i chi ar {{S
 'remembermypassword' => "Y porwr hwn i gofio'r manylion mewngofnodi (am hyd at $1 {{PLURAL:$1||diwrnod|ddiwrnod|diwrnod|diwrnod|diwrnod}})",
 'securelogin-stick-https' => "Cadw'r cyswllt â HTTPS ar ôl mewngofnodi",
 'yourdomainname' => 'Eich parth',
+'password-change-forbidden' => 'Ni allwch newid cyfrineiriau ar y wici hwn.',
 'externaldberror' => "Naill ai: cafwyd gwall dilysu allanol ar databas neu: ar y llaw arall efallai nad oes hawl gennych chi i ddiwygio'ch cyfrif allanol.",
 'login' => 'Mewngofnodi',
 'nav-login-createaccount' => 'Mewngofnodi',
@@ -758,6 +763,10 @@ Os daethoch yma ar ddamwain, cliciwch botwm '''n&ocirc;l''' y porwr.",
 Gallwch [[Special:Search/{{PAGENAME}}|chwilio am y teitl hwn]] ar dudalennau eraill, <span class=\"plainlinks\">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} chwilio drwy'r logiau perthnasol], neu [{{fullurl:{{FULLPAGENAME}}|action=edit}} golygu'r dudalen]</span>.",
 'noarticletext-nopermission' => 'Mae\'r dudalen hon yn wag ar hyn o bryd.
 Gallwch [[Special:Search/{{PAGENAME}}|chwilio am y teitl hwn]] ar dudalennau eraill, neu gallwch <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} chwilio drwy\'r logiau perthnasol]</span>.',
+'missing-revision' => 'Nid yw\'r diwygiad #$1 o\'r dudalen "{{PAGENAME}}" ar gael.
+
+Fel arfer, fe ddigwydd hyn wrth ddilyn hen gyswllt i dudalen sydd wedi ei dileu.
+Gallwch weld y manylion yn y [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} lòg dileu].',
 'userpage-userdoesnotexist' => 'Nid oes defnyddiwr a\'r enw "<nowiki>$1</nowiki>" yn bod. Gwnewch yn siwr eich bod am greu/golygu\'r dudalen hon.',
 'userpage-userdoesnotexist-view' => 'Nid yw\'r cyfrif defnyddiwr "$1" wedi ei gofrestri.',
 'blocked-notice-logextract' => "Mae'r defnyddiwr hwn wedi ei flocio ar hyn o bryd.
@@ -882,6 +891,7 @@ Cafodd yr argiau hyn eu hepgor.",
 'expansion-depth-exceeded-warning' => "Mae dyfnder ehangu'r dudalen y tu hwnt i'r terfyn",
 'parser-unstrip-loop-warning' => 'Wedi darganfod dolen dad-blicio (unstrip loop)',
 'parser-unstrip-recursion-limit' => 'Wedi mynd dros ben y terfyn ar ddychweliad dad-blicio (unstrip recursion) ($1)',
+'converter-manual-rule-error' => 'Cafwyd hyd i wall yn y rheol trosi iaith â llaw',
 
 # "Undo" feature
 'undo-success' => "Gellir dadwneud y golygiad. Byddwch gystal â gwirio'r gymhariaeth isod i sicrhau mai dyma sydd arnoch eisiau gwneud, ac yna rhowch y newidiadau ar gadw i gwblhau'r gwaith o ddadwneud y golygiad.",
@@ -1335,6 +1345,7 @@ Mae'r wybodaeth hon ar gael i'r cyhoedd.",
 'right-writeapi' => "Defnyddio'r API i ysgrifennu a thrin y tudalennau",
 'right-delete' => 'Dileu tudalennau',
 'right-bigdelete' => 'Dileu tudalennau a hanes llwythog iddynt',
+'right-deletelogentry' => 'Dileu a dad-ddileu cofnodion lòg penodedig',
 'right-deleterevision' => 'Dileu a dad-ddileu golygiadau arbennig o dudalennau',
 'right-deletedhistory' => 'Gweld cofnodion fersiynau sydd wedi eu dileu, heb y testun ynddynt',
 'right-deletedtext' => 'Gweld ysgrifen sydd wedi ei ddileu a newidiadau rhwng fersiynau ar ôl eu dileu',
@@ -1836,7 +1847,7 @@ Cofiwch chwilio am gysylltiadau eraill at nodyn a'u hystyried cyn ei ddileu.",
 
 'disambiguations' => "Tudalennau sy'n cysylltu â thudalennau gwahaniaethu",
 'disambiguationspage' => 'Template:Gwahaniaethu',
-'disambiguations-text' => "Mae'r tudalennau canlynol yn cynnwys un neu ragor o gysylltau wici, sydd yn cysylltu â '''thudalennau gwahaniaethu'''. Yn hytrach dylent arwain yn syth at yr erthygl briodol.<br />
+'disambiguations-text' => "Mae'r tudalennau canlynol yn cynnwys un neu ragor o gysylltau, sydd yn arwain at '''dudalennau gwahaniaethu'''. Hwyrach y byddai'n hwylusach petai'r cyswllt yn arwain yn syth at y dudalen briodol.<br />
 Diffinir tudalen yn dudalen gwahaniaethu pan mae'n cynnwys un o'r nodiadau '[[MediaWiki:Disambiguationspage|tudalen gwahaniaethu]]'.",
 
 'doubleredirects' => 'Ailgyfeiriadau dwbl',
@@ -2181,6 +2192,8 @@ Gallai dileu tudalen, gyda hanes golygu cymaint â hyn iddi, beri dryswch i weit
 'rollback' => 'Gwrthdroi golygiadau',
 'rollback_short' => 'Gwrthdroi',
 'rollbacklink' => 'gwrthdroi',
+'rollbacklinkcount' => 'gwrthdröer $1 {{PLURAL:$1||golygiad|olygiad|golygiad|golygiad|golygiad}}',
+'rollbacklinkcount-morethan' => 'gwrthdröer mwy na $1 {{PLURAL:$1||golygiad|olygiad|golygiad|golygiad|golygiad}}',
 'rollbackfailed' => 'Methodd y gwrthdroi',
 'cantrollback' => "Wedi methu gwrthdroi'r golygiad; y cyfrannwr diwethaf oedd unig awdur y dudalen hon.",
 'alreadyrolled' => "Nid yw'n bosib dadwneud y golygiad diwethaf i'r dudalen [[:$1|$1]] gan [[User:$2|$2]] ([[User talk:$2|Sgwrs]]{{int:pipe-separator}}[[Special:Contributions/$2|{{int:contribslink}}]]);

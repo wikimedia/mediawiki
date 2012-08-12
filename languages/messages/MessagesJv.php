@@ -809,7 +809,7 @@ Pangurus {{SITENAME}} liyané bakal tetep bisa ngaksès isi sing kadhelikaké ik
 'revdelete-log' => 'Alesan:',
 'revdelete-submit' => 'Trapna ing {{PLURAL:$1|révisi|révisi}} kapilih',
 'revdelete-success' => 'Aturan pandhelikan revisi bisa kasil ditrapaké.',
-'revdelete-failure' => "'''Mode tampilan révisi ora bisa disèt:'''
+'revdelete-failure' => "'''Panampakan rèvisi ora bisa dianyari:'''
 $1",
 'logdelete-success' => 'Aturan pandhelikan tindhakan bisa kasil ditrapaké.',
 'logdelete-failure' => "'''Aturan pandhelikan ora bisa disèt:'''
@@ -877,7 +877,7 @@ Gunakna tombol radio kanggo nggabungaké révisi-révisi sing digawé sadurungé
 'compareselectedversions' => 'Bandhingna vèrsi kapilih',
 'showhideselectedversions' => 'Tampilaké/dhelikaké révisi kapilih',
 'editundo' => 'batalna',
-'diff-multi' => '({{PLURAL:$1|Sawiji|$1}} revisi antara sing ora dituduhaké.)',
+'diff-multi' => '({{PLURAL:$1Siji rèvisi sedhengan|$1 rèvisi sedhengan}} déning {{PLURAL:$2|sak panganggo|$2 panganggo}} ora dituduhaké)',
 
 # Search results
 'searchresults' => 'Kasil panggolèkan',
