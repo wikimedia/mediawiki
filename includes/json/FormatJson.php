@@ -45,7 +45,11 @@ class FormatJson {
 			$json = new Services_JSON();
 			return $json->encode( $value, $isHtml );
 		} else {
-			return json_encode( $value );
+			return json_encode( $value,
+				$isHtml && version_compare( PHP_VERSION, '5.4.0', '>=' )
+					? JSON_PRETTY_PRINT
+					: 0
+			);
 		}
 	}
 
