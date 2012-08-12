@@ -401,8 +401,8 @@ abstract class MediaWikiTestCase extends PHPUnit_Framework_TestCase {
 	 */
 	protected function assertArrayEquals( array $expected, array $actual, $ordered = false, $named = false ) {
 		if ( !$ordered ) {
-			asort( $expected );
-			asort( $actual );
+			$this->objectAssociativeSort( $expected );
+			$this->objectAssociativeSort( $actual );
 		}
 
 		if ( !$named ) {
@@ -413,6 +413,22 @@ abstract class MediaWikiTestCase extends PHPUnit_Framework_TestCase {
 		call_user_func_array(
 			array( $this, 'assertEquals' ),
 			array_merge( array( $expected, $actual ), array_slice( func_get_args(), 4 ) )
+		);
+	}
+
+	/**
+	 * Does an associative sort that works for objects.
+	 *
+	 * @since 1.20
+	 *
+	 * @param array $array
+	 */
+	protected function objectAssociativeSort( array &$array ) {
+		uasort(
+			$array,
+			function( $a, $b ) {
+				return serialize( $a ) > serialize( $b ) ? 1 : -1;
+			}
 		);
 	}
 
