@@ -66,14 +66,14 @@ class SpecialEmailUser extends UnlistedSpecialPage {
 				'label-message' => 'emailsubject',
 				'maxlength' => 200,
 				'size' => 60,
-				'required' => 1,
+				'required' => true,
 			),
 			'Text' => array(
 				'type' => 'textarea',
 				'rows' => 20,
 				'cols' => 80,
 				'label-message' => 'emailmessage',
-				'required' => 1,
+				'required' => true,
 			),
 			'CCMe' => array(
 				'type' => 'check',
