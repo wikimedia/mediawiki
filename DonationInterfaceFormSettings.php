@@ -1,6 +1,7 @@
 <?php
 
 /** Mapping of (country, currency, payment method) to gateways and forms **/
+//This is going away as soon as I can wire in what I've just done with the way we define forms.
 
 $wgDonationInterfaceFormMap = array(
 	'ES' => array(
@@ -32,116 +33,331 @@ $wgDonationInterfaceFormMap = array(
 
 /** Additional DonationInterface Forms **/
 
-/**
- * Include optional form classes here. 
- * All these exist, but are disabled by default. 
- * Uncomment to enable.
- */
-
 
 /**
- * DonationInterface RapidHTML whitelist additions
- * These will apply to all enabled adapters 
+ * Some setup vars to make our lives a little easier. 
+ * These are unset at the end of the file. 
  */
+$forms_whitelist = array();
+$form_dirs = array(
+	'default' => $wgDonationInterfaceHtmlFormDir,
+	'gc' => $wgGlobalCollectGatewayHtmlFormDir,
+	'pfp' => $wgPayflowProGatewayHtmlFormDir,
+);
 
-/** Sync up with the gateways again, in such a way that we get all the clobal changes without ditching what we already have.  **/
-if ( !isset( $wgDonationDataAllowedHtmlForms ) ){
-	$wgDonationDataAllowedHtmlForms = array();
-}
-$wgGlobalCollectGatewayAllowedHtmlForms = array_merge( $wgGlobalCollectGatewayAllowedHtmlForms, $wgDonationDataAllowedHtmlForms );
-$wgPayflowProGatewayAllowedHtmlForms = array_merge( $wgPayflowProGatewayAllowedHtmlForms, $wgDonationDataAllowedHtmlForms );
 
-/**
- * GlobalCollect RapidHTML whitelist additions
- */
+/****************************
+ * Bank Transfer - Two-Step *
+ ****************************/
 
-// default
-/** DISABLING 2012-08-08 PG
-$wgGlobalCollectGatewayAllowedHtmlForms['default'] = $wgGlobalCollectGatewayHtmlFormDir . '/cc/cc-vm.html';
+$forms_whitelist['bt'] = array(
+	'file' => $form_dirs['gc'] . '/bt/bt.html',
+	'gateway' => 'globalcollect',
+	'countries' => array(
+	//	'+' => 'ALL',
+		'-' => array('CA','US'),
+	),
+	//'currencies' => array('+' => 'ALL'),
+	'payment_methods' => array('bt' => 'ALL')
+);
+
+$forms_whitelist['bt-CA'] = array(
+	'file' => $form_dirs['gc'] . '/bt/bt-CA.html',
+	'gateway' => 'globalcollect',
+	'countries' => array(
+		'+' => 'CA',
+	),
+	'payment_methods' => array('bt' => 'ALL')
+);
+
+$forms_whitelist['bt-US'] = array(
+	'file' => $form_dirs['gc'] . '/bt/bt-US.html',
+	'gateway' => 'globalcollect',
+	'countries' => array(
+		'+' => 'US',
+	),
+	'payment_methods' => array('bt' => 'ALL')
+);
+
+
+/****************
+ * Direct Debit *
+ ****************/
+/*
+$forms_whitelist['dd-ES'] = array(
+	'file' => $form_dirs['gc'] . '/dd/dd-ES.html',
+	'gateway' => 'globalcollect',
+	'countries' => array(
+		'+' => 'ES',
+	),
+	'payment_methods' => array('dd' => 'ALL')
+); */
+
+
+/*********************
+ * Electronic Wallet *
+ *********************/
+
+$forms_whitelist['ew-webmoney'] = array(
+	'file' => $form_dirs['gc'] . '/ew/ew-webmoney.html',
+	'gateway' => 'globalcollect',
+	'payment_methods' => array('ew' => 'ew_webmoney')
+);
+
+$forms_whitelist['ew-yandex'] = array(
+	'file' => $form_dirs['gc'] . '/ew/ew-yandex.html',
+	'gateway' => 'globalcollect',
+	'payment_methods' => array('ew' => 'ew_yandex')
+);
+
+
+/*******************************
+ * RealTime Banking - Two Step *
+ *******************************/
+
+$forms_whitelist['rtbt-sofo'] = array(
+	'file' => $form_dirs['gc'] . '/rtbt/rtbt-sofo.html',
+	'gateway' => 'globalcollect',
+	'countries' => array( '-' => 'GB' ),
+	'payment_methods' => array('rtbt' => 'rtbt_sofortuberweisung')
+);
+
+$forms_whitelist['rtbt-sofo-GB'] = array(
+	'file' => $form_dirs['gc'] . '/rtbt/rtbt-sofo-GB.html',
+	'gateway' => 'globalcollect',
+	'countries' => array( '+' => 'GB' ),
+	'payment_methods' => array('rtbt' => 'rtbt_sofortuberweisung')
+);
+
+$forms_whitelist['rtbt-ideal'] = array(
+	'file' => $form_dirs['gc'] . '/rtbt/rtbt-ideal.html',
+	'gateway' => 'globalcollect',
+	'payment_methods' => array('rtbt' => 'rtbt_ideal')
+);
+
+$forms_whitelist['rtbt-enets'] = array(
+	'file' => $form_dirs['gc'] . '/rtbt/rtbt-enets.html',
+	'gateway' => 'globalcollect',
+	'payment_methods' => array('rtbt' => 'rtbt_enets')
+);
+
+$forms_whitelist['rtbt-eps'] = array(
+	'file' => $form_dirs['gc'] . '/rtbt/rtbt-eps.html',
+	'gateway' => 'globalcollect',
+	'payment_methods' => array('rtbt' => 'rtbt_eps')
+);
+
+$forms_whitelist['rtbt-ideal-noadd'] = array(
+	'file' => $form_dirs['gc'] . '/rtbt/rtbt-ideal-noadd.html',
+	'gateway' => 'globalcollect',
+	'payment_methods' => array('rtbt' => 'rtbt_ideal')
+);
+
+
+/********
+ * BPAY *
+ ********/
+
+$forms_whitelist['obt-bpay'] = array(
+	'file' => $form_dirs['gc'] . '/obt/obt-bpay.html',
+	'gateway' => 'globalcollect',
+	'countries' => array( '+' => 'AU'),
+	'currencies' => array( '+' => 'AUD'),
+	'payment_methods' => array('obt' => 'bpay')
+);
+
+
+/*************************
+ * Recurring Credit Card *
+ *************************/
+
+$forms_whitelist['rcc'] = array(
+	'file' => $form_dirs['gc'] . '/rcc/rcc.html',
+	'gateway' => 'globalcollect',
+	'payment_methods' => array('cc' => 'ALL')
+);
+
+$forms_whitelist['rcc-vm'] = array(
+	'file' => $form_dirs['gc'] . '/rcc/rcc-vm.html',
+	'gateway' => 'globalcollect',
+	'payment_methods' => array('cc' => array( 'visa', 'mc' ))
+);
+
+$forms_whitelist['rcc-vma'] = array(
+	'file' => $form_dirs['gc'] . '/rcc/rcc-vma.html',
+	'gateway' => 'globalcollect',
+	'payment_methods' => array('cc' => array( 'visa', 'mc', 'amex' ))
+);
+
+$forms_whitelist['rcc-vmad'] = array(
+	'file' => $form_dirs['gc'] . '/rcc/rcc-vmad.html',
+	'gateway' => 'globalcollect',
+	'payment_methods' => array('cc' => array( 'visa', 'mc', 'amex', 'discover' ))
+);
+
+$forms_whitelist['rcc-vmaj'] = array(
+	'file' => $form_dirs['gc'] . '/rcc/rcc-vmaj.html',
+	'gateway' => 'globalcollect',
+	'payment_methods' => array('cc' => array( 'visa', 'mc', 'amex', 'jcb' ))
+);
+
+$forms_whitelist['rcc-vmd'] = array(
+	'file' => $form_dirs['gc'] . '/rcc/rcc-vmd.html',
+	'gateway' => 'globalcollect',
+	'payment_methods' => array('cc' => array( 'visa', 'mc', 'discover' ))
+);
+
+$forms_whitelist['rcc-vmj'] = array(
+	'file' => $form_dirs['gc'] . '/rcc/rcc-vmj.html',
+	'gateway' => 'globalcollect',
+	'payment_methods' => array('cc' => array( 'visa', 'mc', 'jcb' ))
+);
+
+
+/*****************************
+ * Credit Card - Single Step *
+ *****************************/
+/*
+$forms_whitelist['webitects_2_3step'] = array(
+	'file' => $form_dirs['gc'] . '/webitects_2_3step.html',
+	'gateway' => 'globalcollect',
+	'payment_methods' => array('cc' => array( 'visa', 'mc' ))
+);
+
+$forms_whitelist['webitects_2_3step-CA'] = array(
+	'file' => $form_dirs['gc'] . '/webitects_2_3step-CA.html',
+	'gateway' => 'globalcollect',
+	'countries' => array( '+' => 'CA' ),
+	'payment_methods' => array('cc' => array( 'visa', 'mc' ))
+);
+
+$forms_whitelist['webitects_2_3stepB-US'] = array(
+	'file' => $form_dirs['gc'] . '/webitects_2_3stepB-US.html',
+	'gateway' => 'globalcollect',
+	'countries' => array( '+' => 'US' ),
+	'payment_methods' => array('cc' => array( 'visa', 'mc' ))
+); 
 */
-// Bank Xfer - Two Step
-$wgGlobalCollectGatewayAllowedHtmlForms['bt'] = $wgGlobalCollectGatewayHtmlFormDir . '/bt/bt.html';
-$wgGlobalCollectGatewayAllowedHtmlForms['bt-CA'] = $wgGlobalCollectGatewayHtmlFormDir . '/bt/bt-CA.html';
-$wgGlobalCollectGatewayAllowedHtmlForms['bt-US'] = $wgGlobalCollectGatewayHtmlFormDir . '/bt/bt-US.html';
 
-// Direct Debit
-//$wgGlobalCollectGatewayAllowedHtmlForms['dd-ES'] = $wgGlobalCollectGatewayHtmlFormDir . '/dd/dd-ES.html';
 
-//Electronic Wallet - Webmoney
-$wgGlobalCollectGatewayAllowedHtmlForms['ew-webmoney'] = $wgGlobalCollectGatewayHtmlFormDir .'/ew/ew-webmoney.html';
-$wgGlobalCollectGatewayAllowedHtmlForms['ew-yandex'] = $wgGlobalCollectGatewayHtmlFormDir .'/ew/ew-yandex.html';
+/**************************
+ * Credit Card - Two Step *
+ **************************/
 
-// RealTime Banking - Two Step
-$wgGlobalCollectGatewayAllowedHtmlForms['rtbt-sofo'] = $wgGlobalCollectGatewayHtmlFormDir . '/rtbt/rtbt-sofo.html';
-$wgGlobalCollectGatewayAllowedHtmlForms['rtbt-sofo-GB'] = $wgGlobalCollectGatewayHtmlFormDir . '/rtbt/rtbt-sofo-GB.html';
-$wgGlobalCollectGatewayAllowedHtmlForms['rtbt-ideal'] = $wgGlobalCollectGatewayHtmlFormDir . '/rtbt/rtbt-ideal.html';
-$wgGlobalCollectGatewayAllowedHtmlForms['rtbt-enets'] = $wgGlobalCollectGatewayHtmlFormDir . '/rtbt/rtbt-enets.html';
-$wgGlobalCollectGatewayAllowedHtmlForms['rtbt-eps'] = $wgGlobalCollectGatewayHtmlFormDir . '/rtbt/rtbt-eps.html';
-$wgGlobalCollectGatewayAllowedHtmlForms['rtbt-ideal-noadd'] = $wgGlobalCollectGatewayHtmlFormDir . '/rtbt/rtbt-ideal-noadd.html';
+$forms_whitelist['webitects2nd'] = array(
+	'file' => $form_dirs['gc'] . '/webitects2nd.html',
+	'gateway' => 'globalcollect',
+	'payment_methods' => array('cc' => array( 'visa', 'mc' ))
+);
 
-//BPAY
-$wgGlobalCollectGatewayAllowedHtmlForms['obt-bpay'] = $wgGlobalCollectGatewayHtmlFormDir . '/obt/obt-bpay.html';
+$forms_whitelist['webitects2nd-US'] = array(
+	'file' => $form_dirs['gc'] . '/webitects2nd-US.html',
+	'gateway' => 'globalcollect',
+	'payment_methods' => array('cc' => array( 'visa', 'mc' ))
+);
 
-// RCC
-$wgGlobalCollectGatewayAllowedHtmlForms['rcc'] = $wgGlobalCollectGatewayHtmlFormDir . '/rcc/rcc.html';
-$wgGlobalCollectGatewayAllowedHtmlForms['rcc-vm'] = $wgGlobalCollectGatewayHtmlFormDir . '/rcc/rcc-vm.html';
-$wgGlobalCollectGatewayAllowedHtmlForms['rcc-vma'] = $wgGlobalCollectGatewayHtmlFormDir . '/rcc/rcc-vma.html';
-$wgGlobalCollectGatewayAllowedHtmlForms['rcc-vmad'] = $wgGlobalCollectGatewayHtmlFormDir . '/rcc/rcc-vmad.html';
-$wgGlobalCollectGatewayAllowedHtmlForms['rcc-vmaj'] = $wgGlobalCollectGatewayHtmlFormDir . '/rcc/rcc-vmaj.html';
-$wgGlobalCollectGatewayAllowedHtmlForms['rcc-vmd'] = $wgGlobalCollectGatewayHtmlFormDir . '/rcc/rcc-vmd.html';
-$wgGlobalCollectGatewayAllowedHtmlForms['rcc-vmj'] = $wgGlobalCollectGatewayHtmlFormDir . '/rcc/rcc-vmj.html';
+$forms_whitelist['webitects2nd_green-US'] = array(
+	'file' => $form_dirs['gc'] . '/webitects2nd_green-US.html',
+	'gateway' => 'globalcollect',
+	'payment_methods' => array('cc' => array( 'visa', 'mc' ))
+);
 
-// Credit Card - Single Step
-//$wgGlobalCollectGatewayAllowedHtmlForms['webitects_2_3step'] = $wgGlobalCollectGatewayHtmlFormDir . '/webitects_2_3step.html';
-//$wgGlobalCollectGatewayAllowedHtmlForms['webitects_2_3step-CA'] = $wgGlobalCollectGatewayHtmlFormDir . '/webitects_2_3step-CA.html';
-//$wgGlobalCollectGatewayAllowedHtmlForms['webitects_2_3stepB-US'] = $wgGlobalCollectGatewayHtmlFormDir . '/webitects_2_3stepB-US.html';
+$forms_whitelist['webitects2nd-amex'] = array(
+	'file' => $form_dirs['gc'] . '/webitects2nd-amex.html',
+	'gateway' => 'globalcollect',
+	'payment_methods' => array('cc' => array( 'visa', 'mc', 'amex' ))
+);
 
-// Credit Card - Two Step
-$wgGlobalCollectGatewayAllowedHtmlForms['webitects2nd'] = $wgGlobalCollectGatewayHtmlFormDir . '/webitects2nd.html';
-$wgGlobalCollectGatewayAllowedHtmlForms['webitects2nd-US'] = $wgGlobalCollectGatewayHtmlFormDir . '/webitects2nd-US.html';
-$wgGlobalCollectGatewayAllowedHtmlForms['webitects2nd_green-US'] = $wgGlobalCollectGatewayHtmlFormDir . '/webitects2nd_green-US.html';
-$wgGlobalCollectGatewayAllowedHtmlForms['webitects2nd-amex'] = $wgGlobalCollectGatewayHtmlFormDir . '/webitects2nd-amex.html';
 
-//Credit Card - misc.
-$wgGlobalCollectGatewayAllowedHtmlForms['cc'] = $wgGlobalCollectGatewayHtmlFormDir .'/cc/cc.html';
-$wgGlobalCollectGatewayAllowedHtmlForms['cc-a'] = $wgGlobalCollectGatewayHtmlFormDir .'/cc/cc-a.html';
-$wgGlobalCollectGatewayAllowedHtmlForms['cc-vm'] = $wgGlobalCollectGatewayHtmlFormDir .'/cc/cc-vm.html';
-$wgGlobalCollectGatewayAllowedHtmlForms['cc-vma'] = $wgGlobalCollectGatewayHtmlFormDir .'/cc/cc-vma.html';
-$wgGlobalCollectGatewayAllowedHtmlForms['cc-vmd'] = $wgGlobalCollectGatewayHtmlFormDir .'/cc/cc-vmd.html';
-$wgGlobalCollectGatewayAllowedHtmlForms['cc-vmad'] = $wgGlobalCollectGatewayHtmlFormDir .'/cc/cc-vmad.html';
-$wgGlobalCollectGatewayAllowedHtmlForms['cc-vmaj'] = $wgGlobalCollectGatewayHtmlFormDir .'/cc/cc-vmaj.html';
-$wgGlobalCollectGatewayAllowedHtmlForms['cc-vmj'] = $wgGlobalCollectGatewayHtmlFormDir .'/cc/cc-vmj.html';
+/**********************
+ * Credit Card - Misc *
+ **********************/
 
-$wgGlobalCollectGatewayAllowedHtmlForms['cc-damv'] = $wgGlobalCollectGatewayHtmlFormDir .'/cc/cc-vmad.html';
+$forms_whitelist['cc'] = array(
+	'file' => $form_dirs['gc'] . '/cc/cc.html',
+	'gateway' => 'globalcollect',
+	'payment_methods' => array('cc' => 'ALL')
+);
 
-$wgGlobalCollectGatewayAllowedHtmlForms['cc-US'] = $wgGlobalCollectGatewayHtmlFormDir .'/cc/cc-vmad.html';
-$wgGlobalCollectGatewayAllowedHtmlForms['cc-CA'] = $wgGlobalCollectGatewayHtmlFormDir .'/cc/cc-vm.html';
+$forms_whitelist['cc-a'] = array(
+	'file' => $form_dirs['gc'] . '/cc/cc-a.html',
+	'gateway' => 'globalcollect',
+	'payment_methods' => array('cc' => array( 'amex' ))
+);
 
-// name and email-only test
-$wgGlobalCollectGatewayAllowedHtmlForms['email-cc-vm'] = $wgGlobalCollectGatewayHtmlFormDir .'/cc-emailonly/cc-vm.html';
-$wgGlobalCollectGatewayAllowedHtmlForms['email-cc-vma'] = $wgGlobalCollectGatewayHtmlFormDir .'/cc-emailonly/cc-vma.html';
-$wgGlobalCollectGatewayAllowedHtmlForms['email-cc-vmaj'] = $wgGlobalCollectGatewayHtmlFormDir .'/cc-emailonly/cc-vmaj.html';
+$forms_whitelist['cc-vm'] = array(
+	'file' => $form_dirs['gc'] . '/cc/cc-vm.html',
+	'gateway' => 'globalcollect',
+	'payment_methods' => array('cc' => array( 'visa', 'mc' ))
+);
 
-/**
- * PayflowPro RapidHTML whitelist additions
- */
-//The following example is hard-coded as a default. Just a sample line. 
-//$wgPayflowProGatewayAllowedHtmlForms['lightbox1'] = $wgPayflowProGatewayHtmlFormDir .'/lightbox1.html';
-// Credit Card - Single Step
-//$wgPayflowProGatewayAllowedHtmlForms['webitects_2_3step'] = $wgPayflowProGatewayHtmlFormDir .'/webitects_2_3step.html';
-//$wgPayflowProGatewayAllowedHtmlForms['webitects_2_3step-CA'] = $wgPayflowProGatewayHtmlFormDir .'/webitects_2_3step-CA.html';
+$forms_whitelist['cc-vma'] = array(
+	'file' => $form_dirs['gc'] . '/cc/cc-vma.html',
+	'gateway' => 'globalcollect',
+	'payment_methods' => array('cc' => array( 'visa', 'mc', 'amex' ))
+);
 
-// Credit Card - Two Step
-//$wgPayflowProGatewayAllowedHtmlForms['webitects_2_2step-US'] = $wgPayflowProGatewayHtmlFormDir .'/webitects_2_2step-US.html';
-//$wgPayflowProGatewayAllowedHtmlForms['webitects_2_2stepB-US'] = $wgPayflowProGatewayHtmlFormDir .'/webitects_2_2stepB-US.html';
-//$wgPayflowProGatewayAllowedHtmlForms['webitects2nd_green-US'] = $wgPayflowProGatewayHtmlFormDir . '/webitects2nd_green-US.html';
+$forms_whitelist['cc-vmd'] = array(
+	'file' => $form_dirs['gc'] . '/cc/cc-vmd.html',
+	'gateway' => 'globalcollect',
+	'payment_methods' => array('cc' => array( 'visa', 'mc', 'discover' ))
+);
 
-//$wgPayflowProGatewayAllowedHtmlForms['TwoStepTwoColumnLetter3'] = $wgPayflowProGatewayHtmlFormDir . '/TwoStepTwoColumnLetter3.html';
-//$wgPayflowProGatewayAllowedHtmlForms['TwoStepTwoColumnLetter3-legal'] = $wgPayflowProGatewayHtmlFormDir . '/TwoStepTwoColumnLetter3-legal.html';
-//$wgPayflowProGatewayAllowedHtmlForms['TwoStepTwoColumnLetter3-nolabels'] = $wgPayflowProGatewayHtmlFormDir . '/TwoStepTwoColumnLetter3-nolabels.html';
-//$wgPayflowProGatewayAllowedHtmlForms['TwoStepTwoColumnLetter3-order'] = $wgPayflowProGatewayHtmlFormDir . '/TwoStepTwoColumnLetter3-order.html';
-//$wgPayflowProGatewayAllowedHtmlForms['TwoStepTwoColumnLetter3-noheader'] = $wgPayflowProGatewayHtmlFormDir . '/TwoStepTwoColumnLetter3-noheader.html';
-//$wgPayflowProGatewayAllowedHtmlForms['TwoStepTwoColumnLetter3-simpleamount'] = $wgPayflowProGatewayHtmlFormDir . '/TwoStepTwoColumnLetter3-simpleamount.html';
-//$wgPayflowProGatewayAllowedHtmlForms['TwoStepTwoColumnLetter3-smallbutton'] = $wgPayflowProGatewayHtmlFormDir . '/TwoStepTwoColumnLetter3-smallbutton.html';
-//$wgPayflowProGatewayAllowedHtmlForms['TwoStepTwoColumnLetter3-orig'] = $wgPayflowProGatewayHtmlFormDir . '/TwoStepTwoColumnLetter3-orig.html';
-//$wgPayflowProGatewayAllowedHtmlForms['lightbox1'] = $wgPayflowProGatewayHtmlFormDir .'/lightbox1.html';
+$forms_whitelist['cc-vmad'] = array(
+	'file' => $form_dirs['gc'] . '/cc/cc-vmad.html',
+	'gateway' => 'globalcollect',
+	'payment_methods' => array('cc' => array( 'visa', 'mc', 'amex', 'discover' ))
+);
+
+$forms_whitelist['cc-vmaj'] = array(
+	'file' => $form_dirs['gc'] . '/cc/cc-vmaj.html',
+	'gateway' => 'globalcollect',
+	'payment_methods' => array('cc' => array( 'visa', 'mc', 'amex', 'jcb' ))
+);
+
+$forms_whitelist['cc-vmj'] = array(
+	'file' => $form_dirs['gc'] . '/cc/cc-vmj.html',
+	'gateway' => 'globalcollect',
+	'payment_methods' => array('cc' => array( 'visa', 'mc', 'jcb' ))
+);
+
+//ffname aliases
+$forms_whitelist['cc-US'] = $forms_whitelist['cc-vmad'];
+$forms_whitelist['cc-CA'] = $forms_whitelist['cc-vm'];
+$forms_whitelist['cc-damv'] = $forms_whitelist['cc-vmad'];
+
+
+/****************************
+ * Name and Email-Only Test *
+ ****************************/
+
+$forms_whitelist['email-cc-vmaj'] = array(
+	'file' => $form_dirs['gc'] . '/cc-emailonly/cc-vmaj.html',
+	'gateway' => 'globalcollect',
+	'countries' => array( '-' => array( 'US', 'CA', 'GB') ),
+	'payment_methods' => array('cc' => array( 'visa', 'mc', 'amex', 'jcb' ))
+);
+
+$forms_whitelist['email-cc-vma'] = array(
+	'file' => $form_dirs['gc'] . '/cc-emailonly/cc-vma.html',
+	'gateway' => 'globalcollect',
+	'countries' => array( '-' => array( 'US', 'CA', 'GB') ),
+	'payment_methods' => array('cc' => array( 'visa', 'mc', 'amex' ))
+);
+
+$forms_whitelist['email-cc-vm'] = array(
+	'file' => $form_dirs['gc'] . '/cc-emailonly/cc-vm.html',
+	'gateway' => 'globalcollect',
+	'countries' => array( '-' => array( 'US', 'CA', 'GB') ),
+	'payment_methods' => array('cc' => array( 'visa', 'mc' ))
+);
+
+
+//Yes: We definitely want to blow away everything that didn't come from this file. 
+$wgDonationInterfaceAllowedHtmlForms = $forms_whitelist;
+$wgDonationInterfaceFormDirs = $form_dirs;
+
+unset( $forms_whitelist );
+unset( $form_dirs );
+unset( $wgGlobalCollectGatewayAllowedHtmlForms );
+unset( $wgPayflowProGatewayAllowedHtmlForms );
