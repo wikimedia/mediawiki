@@ -149,7 +149,7 @@ div.vectorTabs ul li {
 	background-image: url(images/tab-normal-fade.png);
 	background-position: bottom left;
 	background-repeat: repeat-x;
-	white-space:nowrap;
+	white-space: nowrap;
 }
 /* IGNORED BY IE6 */
 div.vectorTabs ul > li {
@@ -797,6 +797,7 @@ div#mw-js-message {
 	z-index: 10000;
 	border: solid 1px #a7d7f9;
 	border-radius: 0.75em;
+	-moz-box-shadow: 0px 2px 10px 0px rgba(0, 0, 0, 0.125);
 	-webkit-box-shadow: 0px 2px 10px 0px rgba(0, 0, 0, 0.125);
 	box-shadow: 0px 2px 10px 0px rgba(0, 0, 0, 0.125);
 }
@@ -848,9 +849,9 @@ div#bodyContent {
 }
 div.vectorTabs ul {
 	/* @embed */
-	background-image:url(images/tab-break.png);
-	background-position:right bottom;
-	background-repeat:no-repeat;
+	background-image: url(images/tab-break.png);
+	background-position: right bottom;
+	background-repeat: no-repeat;
 }
 
 /* Tooltips are outside of the normal body code, so this helps make the size of the text sensible */
@@ -862,39 +863,39 @@ div.vectorTabs ul {
 
 body.vector-animateLayout div#content,
 body.vector-animateLayout div#footer {
-	transition: margin-left 250ms, padding 250ms;
 	-moz-transition: margin-left 250ms, padding 250ms;
 	-webkit-transition: margin-left 250ms, padding 250ms;
 	-o-transition: margin-left 250ms, padding 250ms;
+	transition: margin-left 250ms, padding 250ms;
 }
 body.vector-animateLayout #p-logo,
 body.vector-animateLayout #left-navigation {
-	transition: left 250ms;
 	-moz-transition: left 250ms;
 	-webkit-transition: left 250ms;
 	-o-transition: left 250ms;
+	transition: left 250ms;
 }
 body.vector-animateLayout #mw-panel {
-	transition: padding-left 250ms;
 	-moz-transition: padding-left 250ms;
 	-webkit-transition: padding-left 250ms;
 	-o-transition: padding-left 250ms;
+	transition: padding-left 250ms;
 }
 body.vector-animateLayout #p-search {
-	transition: margin-right 250ms;
 	-moz-transition: margin-right 250ms;
 	-webkit-transition: margin-right 250ms;
 	-o-transition: margin-right 250ms;
+	transition: margin-right 250ms;
 }
 body.vector-animateLayout #p-personal {
-	transition: right 250ms;
 	-moz-transition: right 250ms;
 	-webkit-transition: right 250ms;
 	-o-transition: right 250ms;
+	transition: right 250ms;
 }
 body.vector-animateLayout #mw-head-base {
-	transition: margin-left 250ms;
 	-moz-transition: margin-left 250ms;
 	-webkit-transition: margin-left 250ms;
 	-o-transition: margin-left 250ms;
+	transition: margin-left 250ms;
 }
