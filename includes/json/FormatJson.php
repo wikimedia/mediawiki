@@ -41,11 +41,11 @@ class FormatJson {
 	 * @return string
 	 */
 	public static function encode( $value, $isHtml = false ) {
-		if ( !function_exists( 'json_encode' ) || $isHtml ) {
+		if ( !function_exists( 'json_encode' ) || ( $isHtml && version_compare( PHP_VERSION, '5.4.0', '<' ) ) ) {
 			$json = new Services_JSON();
 			return $json->encode( $value, $isHtml );
 		} else {
-			return json_encode( $value );
+			return json_encode( $value, $isHtml ? JSON_PRETTY_PRINT : 0 );
 		}
 	}
 
