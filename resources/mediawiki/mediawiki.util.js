@@ -454,13 +454,12 @@
 				}
 
 				if ( !messageBoxEvents ) {
+					messageBoxEvents = true;
 					$messageDiv
 						.on( {
 							'mouseenter': stopHideMessageTimeout,
 							'mouseleave': startHideMessageTimeout,
-							'click': function() {
-								$(this).fadeOut( 'slow' );
-							}
+							'click': hideMessage
 						} )
 						.on( 'click', 'a', function ( e ) {
 							// Prevent links, even those that don't exist yet, from causing the
