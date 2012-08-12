@@ -134,6 +134,8 @@ upgrade PHP if you have not done so prior to upgrading MediaWiki.
 * SVG files will now show the actual width in the SVG's specified units
   in the metadata box.
 * Added ResourceLoader module "jquery.jStorage".
+* mw.util.$content now points to the overall content area in the skin rather than just
+  page text content area. If you need the old behaviour please use $( '#mw-content-text').
 
 === Bug fixes in 1.20 ===
 * (bug 30245) Use the correct way to construct a log page title.
