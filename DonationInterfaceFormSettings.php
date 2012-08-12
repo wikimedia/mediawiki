@@ -174,43 +174,50 @@ $forms_whitelist['obt-bpay'] = array(
 $forms_whitelist['rcc'] = array(
 	'file' => $form_dirs['gc'] . '/rcc/rcc.html',
 	'gateway' => 'globalcollect',
-	'payment_methods' => array('cc' => 'ALL')
+	'payment_methods' => array('cc' => 'ALL'),
+	'recurring'
 );
 
 $forms_whitelist['rcc-vm'] = array(
 	'file' => $form_dirs['gc'] . '/rcc/rcc-vm.html',
 	'gateway' => 'globalcollect',
-	'payment_methods' => array('cc' => array( 'visa', 'mc' ))
+	'payment_methods' => array('cc' => array( 'visa', 'mc' )),
+	'recurring'
 );
 
 $forms_whitelist['rcc-vma'] = array(
 	'file' => $form_dirs['gc'] . '/rcc/rcc-vma.html',
 	'gateway' => 'globalcollect',
-	'payment_methods' => array('cc' => array( 'visa', 'mc', 'amex' ))
+	'payment_methods' => array('cc' => array( 'visa', 'mc', 'amex' )),
+	'recurring'
 );
 
 $forms_whitelist['rcc-vmad'] = array(
 	'file' => $form_dirs['gc'] . '/rcc/rcc-vmad.html',
 	'gateway' => 'globalcollect',
-	'payment_methods' => array('cc' => array( 'visa', 'mc', 'amex', 'discover' ))
+	'payment_methods' => array('cc' => array( 'visa', 'mc', 'amex', 'discover' )),
+	'recurring'
 );
 
 $forms_whitelist['rcc-vmaj'] = array(
 	'file' => $form_dirs['gc'] . '/rcc/rcc-vmaj.html',
 	'gateway' => 'globalcollect',
-	'payment_methods' => array('cc' => array( 'visa', 'mc', 'amex', 'jcb' ))
+	'payment_methods' => array('cc' => array( 'visa', 'mc', 'amex', 'jcb' )),
+	'recurring'
 );
 
 $forms_whitelist['rcc-vmd'] = array(
 	'file' => $form_dirs['gc'] . '/rcc/rcc-vmd.html',
 	'gateway' => 'globalcollect',
-	'payment_methods' => array('cc' => array( 'visa', 'mc', 'discover' ))
+	'payment_methods' => array('cc' => array( 'visa', 'mc', 'discover' )),
+	'recurring'
 );
 
 $forms_whitelist['rcc-vmj'] = array(
 	'file' => $form_dirs['gc'] . '/rcc/rcc-vmj.html',
 	'gateway' => 'globalcollect',
-	'payment_methods' => array('cc' => array( 'visa', 'mc', 'jcb' ))
+	'payment_methods' => array('cc' => array( 'visa', 'mc', 'jcb' )),
+	'recurring'
 );
 
 
