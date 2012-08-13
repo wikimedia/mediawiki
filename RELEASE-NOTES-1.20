@@ -113,6 +113,7 @@ upgrade PHP if you have not done so prior to upgrading MediaWiki.
   renamed to $wgSessionsInObjectCache, with the old name retained for backwards
   compatibility. When this feature is enabled, the expiry time can now be 
   configured with $wgObjectCacheSessionExpiry.
+* Added a Redis client for object caching.
 * Implemented mw.user.getGroups for getting and caching user groups.
 * (bug 37830) Added $wgRequirePasswordforEmailChange to control whether password
   confirmation is required for changing an email address or not.

@@ -732,6 +732,7 @@ $wgAutoloadLocalClasses = array(
 	'MWMemcached' => 'includes/objectcache/MemcachedClient.php',
 	'ObjectCache' => 'includes/objectcache/ObjectCache.php',
 	'ObjectCacheSessionHandler' => 'includes/objectcache/ObjectCacheSessionHandler.php',
+	'RedisBagOStuff' => 'includes/objectcache/RedisBagOStuff.php',
 	'SqlBagOStuff' => 'includes/objectcache/SqlBagOStuff.php',
 	'WinCacheBagOStuff' => 'includes/objectcache/WinCacheBagOStuff.php',
 	'XCacheBagOStuff' => 'includes/objectcache/XCacheBagOStuff.php',
