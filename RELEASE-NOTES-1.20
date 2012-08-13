@@ -120,6 +120,11 @@ upgrade PHP if you have not done so prior to upgrading MediaWiki.
 * A new message, "api-error-filetype-banned-type", is available for formatting
   API upload errors due to the file extension blacklist.
 * jsMessage: Redesigned in Vector/Monobook as floating bubble with auto-hide.
+* Whenever a content area is loaded into the page MediaWiki now fires a
+  "mw-content-ready" event on the root container that the content was inserted into.
+  This includes firing the event on body when the DOM is ready on first load of the page.
+  Instead of using jQuery.ready scripts should use mw.onContentReady to setup dynamic
+  elements inside content elements.
 
 === Bug fixes in 1.20 ===
 * (bug 30245) Use the correct way to construct a log page title.

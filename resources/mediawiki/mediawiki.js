@@ -1536,6 +1536,27 @@ var mw = ( function ( $, undefined ) {
 			};
 		}() ),
 
+		/**
+		 * Helper function to bind a mw-content-ready event. This must be used by all scripts that
+		 * make content elements dynamic -- Such as making things collapsible -- instead of the .ready event.
+		 * mw-content-ready will be called on dom-ready and will also be called any other time that a content
+		 * area is dynamically loaded into the page such as with an ajax preview.
+		 *
+		 * `this` inside the callback will be a jQuery object pointing to the root where the content was loaded
+		 * into. ie: For dom-ready it will be body, while for an ajax preview it will be the preview container.
+		 *
+		 * Callbacks should NOT use broad `$( '...' )` queries when looking for elements to turn dynamic. Instead
+		 * they should use `this.find( '...' )` to specifically target the contents of the container that was loaded.
+		 * Otherwise a script may break things it has already made dynamic by trying to overwrite it's previous work.
+		 *
+		 * @param callback Function Callback function accepting `this` as a jQuery object and the event arguments.
+		 */
+		onContentReady: function( callback ) {
+			$( document ).on( 'mw-content-ready', function( e ) {
+				return callback.apply( $( e.target ), arguments );
+			} );
+		},
+
 		// Skeleton user object. mediawiki.user.js extends this
 		user: {
 			options: new Map(),

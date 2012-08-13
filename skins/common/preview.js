@@ -49,6 +49,7 @@
 				loadSpinner.remove();
 
 				$( mw ).trigger( 'LivePreviewDone', [copyElements] );
+				$( '#wikiPreview' ).trigger( 'mw-content-ready' );
 			} );
 	};
 
