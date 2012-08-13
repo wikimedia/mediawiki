@@ -1,24 +1,33 @@
-jQuery( document ).ready( function( $ ) {
+( function ( mw, $ ) {
+	mw.onContentReady( function() {
+		/* Emulate placeholder if not supported by browser */
+		if ( !( 'placeholder' in document.createElement( 'input' ) ) ) {
+			this.find( 'input[placeholder]' ).placeholder();
+		}
 
-	/* Emulate placeholder if not supported by browser */
-	if ( !( 'placeholder' in document.createElement( 'input' ) ) ) {
-		$( 'input[placeholder]' ).placeholder();
-	}
+		/* Enable makeCollapsible */
+		this.find( '.mw-collapsible' ).makeCollapsible();
 
-	/* Enable makeCollapsible */
-	$( '.mw-collapsible' ).makeCollapsible();
+		/* Lazy load jquery.tablesorter */
+		if ( this.find( 'table.sortable' ).length ) {
+			mw.loader.using( 'jquery.tablesorter', function() {
+				this.find( 'table.sortable' ).tablesorter();
+			});
+		}
 
-	/* Lazy load jquery.tablesorter */
-	if ( $( 'table.sortable' ).length ) {
-		mw.loader.using( 'jquery.tablesorter', function() {
-			$( 'table.sortable' ).tablesorter();
-		});
-	}
+		/* Enable CheckboxShiftClick */
+		this.find( 'input[type=checkbox]:not(.noshiftselect)' ).checkboxShiftClick();
 
-	/* Enable CheckboxShiftClick */
-	$( 'input[type=checkbox]:not(.noshiftselect)' ).checkboxShiftClick();
+	} );
 
-	/* Add accesskey hints to the tooltips */
-	mw.util.updateTooltipAccessKeys();
+	$( document ).ready( function() {
 
-} );
+		/* Add accesskey hints to the tooltips */
+		mw.util.updateTooltipAccessKeys();
+
+		/* On ready trigger the first mw-content-ready event */
+		$( 'body' ).trigger( 'mw-content-ready' );
+
+	} );
+
+}( mediaWiki, jQuery ) );
