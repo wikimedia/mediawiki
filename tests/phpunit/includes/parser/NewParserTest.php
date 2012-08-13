@@ -345,6 +345,9 @@ class NewParserTest extends MediaWikiTestCase {
 
 		$this->savedGlobals = array();
 
+		/** @since 1.20 */
+		wfRunHooks( 'ParserTestGlobals', array( &$settings ) );
+
 		foreach ( $settings as $var => $val ) {
 			if ( array_key_exists( $var, $GLOBALS ) ) {
 				$this->savedGlobals[$var] = $GLOBALS[$var];
