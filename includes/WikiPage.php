@@ -2078,11 +2078,8 @@ class WikiPage extends Page implements IDBAccessObject {
 	 * Deletes the article with database consistency, writes logs, purges caches
 	 *
 	 * @param $reason string delete reason for deletion log
-	 * @param $suppress int bitfield
-	 * 	Revision::DELETED_TEXT
-	 * 	Revision::DELETED_COMMENT
-	 * 	Revision::DELETED_USER
-	 * 	Revision::DELETED_RESTRICTED
+	 * @param $suppress boolean suppress all revisions and log the deletion in
+	 *        the suppression log instead of the deletion log
 	 * @param $id int article ID
 	 * @param $commit boolean defaults to true, triggers transaction end
 	 * @param &$error Array of errors to append to
@@ -2100,13 +2097,11 @@ class WikiPage extends Page implements IDBAccessObject {
 	 * Back-end article deletion
 	 * Deletes the article with database consistency, writes logs, purges caches
 	 *
+	 * @since 1.19
+	 *
 	 * @param $reason string delete reason for deletion log
-	 * @param $suppress int bitfield
-	 * 	Revision::DELETED_TEXT
-	 * 	Revision::DELETED_COMMENT
-	 * 	Revision::DELETED_USER
-	 * 	Revision::DELETED_RESTRICTED
-	 * @param $id int article ID
+	 * @param $suppress boolean suppress all revisions and log the deletion in
+	 *        the suppression log instead of the deletion log
 	 * @param $commit boolean defaults to true, triggers transaction end
 	 * @param &$error Array of errors to append to
 	 * @param $user User The deleting user
