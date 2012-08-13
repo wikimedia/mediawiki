@@ -141,6 +141,7 @@ class User {
 		'noratelimit',
 		'override-export-depth',
 		'patrol',
+		'patrolmarks',
 		'protect',
 		'proxyunbannable',
 		'purge',
