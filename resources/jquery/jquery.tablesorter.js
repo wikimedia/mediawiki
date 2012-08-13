@@ -330,11 +330,11 @@
 	}
 
 	function sortText( a, b ) {
-		return ( (a < b) ? false : ((a > b) ? true : 0) );
+		return ( (a < b) ? -1 : ((a > b) ? 1 : 0) );
 	}
 
 	function sortTextDesc( a, b ) {
-		return ( (b < a) ? false : ((b > a) ? true : 0) );
+		return ( (b < a) ? -1 : ((b > a) ? 1 : 0) );
 	}
 
 	function multisort( table, sortList, cache ) {
