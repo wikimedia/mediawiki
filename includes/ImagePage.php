@@ -654,12 +654,15 @@ EOT
 		}
 
 		$out = $this->getContext()->getOutput();
-		$out->addHTML( "<br /><ul>\n" );
+		$out->addHTML( "<ul>\n" );
 
 		# "Upload a new version of this file" link
-		if ( UploadBase::userCanReUpload( $this->getContext()->getUser(), $this->mPage->getFile()->name ) ) {
+		$canUpload = $this->getTitle()->userCan( 'upload', $this->getContext()->getUser() );
+		if ( $canUpload && UploadBase::userCanReUpload( $this->getContext()->getUser(), $this->mPage->getFile()->name ) ) {
 			$ulink = Linker::makeExternalLink( $this->getUploadUrl(), wfMessage( 'uploadnewversion-linktext' )->text() );
 			$out->addHTML( "<li id=\"mw-imagepage-reupload-link\"><div class=\"plainlinks\">{$ulink}</div></li>\n" );
+		} else {
+			$out->addHTML( "<li id=\"mw-imagepage-upload-disallowed\">" . $this->msg( 'upload-disallowed-here' )->escaped() . "</li>\n" );
 		}
 
 		# External editing link
