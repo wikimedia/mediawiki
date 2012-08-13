@@ -396,6 +396,8 @@ Pe piacere manne 'na comunicazzione a 'n'[[Special:ListUsers/sysop|amministrator
 'cannotdelete' => '\'A pàgene o \'u file "$1" non ge pò essere scangellate.
 Pò essere ca ggià ha state scangellete da quacche otre.',
 'cannotdelete-title' => 'Non ge puè scangellà \'a pàgene "$1"',
+'delete-hook-aborted' => "Cangiamende annullete da  'nu ''hook''.
+Non g'à date nisciune mutive.",
 'badtitle' => 'Titele sbagliete',
 'badtitletext' => "'A pàgene ca è cerchete tène 'nu titele errete, vacande, o jè 'nu collegamende inter-lènghe o inter-uicchi errete.
 Pò essere ca tène une o cchiù carattere ca non ge ponne essere ausete jndr'à le titele.",
@@ -427,6 +429,9 @@ $2',
 'ns-specialprotected' => 'Le pàgene speciale no ponne essere cangete.',
 'titleprotected' => "Stu titele ha state prutette da 'a ccreazione da [[User:$1|$1]].
 'U mutive jè ''$2''.",
+'filereadonlyerror' => 'Non ge pozze cangià \'u file "$1" purcé l\'archivije de le file "$2" ste in mode sola letture.
+
+L\'amministratore ca l\'ha bloccate dèje sta spiegazione: "$3".',
 'invalidtitle-knownnamespace' => 'Titole invalide cu \'u namespace "$2" e teste "$3"',
 'invalidtitle-unknownnamespace' => 'Titele invalide cu numere de namespace scanusciute $1 e teste "$2"',
 'exception-nologin' => 'Non ge sì collegate',
@@ -708,6 +713,10 @@ Tu puè [[Special:Search/{{PAGENAME}}|cercà pe quiste titele]] jndr\'à otre p�
 'noarticletext-nopermission' => "Pe mò non ge stè teste jndr'à sta pàgene.
 Tu puè [[Special:Search/{{PAGENAME}}|cercà pe stu titele]]  jndr'à otre pàggene,
 o <span class=\"plainlinks\">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} cirche jndr'à l'archivije cullegate]</span>.",
+'missing-revision' => "'A revisione #\$1 d'a pàgene chiamate \"{{PAGENAME}}\" non g'esiste.
+
+Quiste succede normalmende purcé 'u cunde jè collegate a 'na pàgene ca ha state scangellate.
+Le dettaglie le puè acchià jndr'à l'[{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} archivije de le scangellaziune].",
 'userpage-userdoesnotexist' => '\'U cunde utende "<nowiki>$1</nowiki>" non g\'è reggistrete.
 Pe piacere, condrolle ce tu vuè cu ccreje/cange sta pàgene.',
 'userpage-userdoesnotexist-view' => '\'U cunde utende "$1" non g\'è reggistrate.',
@@ -1031,6 +1040,10 @@ Vide Bbuene ca ausanne le collegaminde de navigazzione sta culonne avène azzera
 'editundo' => 'annulle',
 'diff-multi' => "({{PLURAL:$1|'na versione de mmienze|$1 cchiù versiune de mmienze}} de {{PLURAL:$2|'n'utende|$2 utinde}} non ge se vèdene)",
 'diff-multi-manyusers' => "({{PLURAL:$1|'Na revisione de 'mmienze|$1 revisiune de 'mmienze}} non g'è viste da cchiù de $2 {{PLURAL:$2|utende|utinde}})",
+'difference-missing-revision' => "{{PLURAL:$2|'Na revisione|$2 revisiune}} de sta differenze ($1) {{PLURAL:$2|non g'onne|non g'onne}} state acchiate.
+
+Quiste succede normalmende purcé 'u cunde jè collegate a 'na pàgene ca ha state scangellate.
+Le dettaglie le puè acchià jndr'à l'[{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} archivije de le scangellaziune].",
 
 # Search results
 'searchresults' => "Resultete d'a ricerche",
@@ -1605,11 +1618,13 @@ Ce 'u probbleme angore jè presende, condatte 'n'[[Special:ListUsers/sysop|ammin
 'backend-fail-closetemp' => 'Non ge pozze achiudere file temboranèe.',
 'backend-fail-read' => "Non ge pozze leggere 'u file $1.",
 'backend-fail-create' => "Non ge pozze scrivere 'u file $1.",
+'backend-fail-maxsize' => 'Non ge pozze scrivere \'u file "$1" purcé jè cchiù granne de {{PLURAL:$2|\'nu byte|$2 byte}}',
 'backend-fail-readonly' => 'L\'archivije de rete "$1" jè pe stu mumende in sole letture. \'U mutive ha state: "$2"',
 'backend-fail-synced' => "'U file \"\$1\" jè jndr'à 'nu state ingonsistende jndr'à l'archivije inderne",
 'backend-fail-connect' => 'Non ge pozze connettere \'a memorie de rrete "$1".',
 'backend-fail-internal' => "'N'errore scanusciute s'à verificate jndr'à l'archivije de rrete \"\$1\".",
 'backend-fail-contenttype' => 'Non ge pozze capìe \'u tipe de condenute d\'u file da reggistrà sus a "$1".',
+'backend-fail-batchsize' => "L'archivije de rrete ha date 'nu processe de $1 {{PLURAL:$1|operazione|operaziune}} sus a le file; 'u limite jè $2 {{PLURAL:$2|operazione|operaziune}}.",
 'backend-fail-usable' => 'Non ge pozze scrivere \'u file "$1" purcé mangane le permesse sufficiende o non g\'esiste \'a cartelle/contenitore.',
 
 # File journal errors
@@ -1736,6 +1751,10 @@ Quanne jè filtrate da l'utende, sulamende le file ca quidde utende ave carecate
 Pe piacere vide 'a [$2 pàgene de descrizione d'u file] pe maggiore 'mbormaziune.",
 'sharedupload-desc-here' => "Stu file è da $1 e pò essere ausate pe otre pruggette.<br />
 'A descriziona sus a [$2 pàgene de descrizione d'u file] ste aqquà sotte.",
+'sharedupload-desc-edit' => "Stu file avène da $1 e pò essere ausate da otre pruggette.
+Pò essere ca tu vuè cangià 'a descrizione de jidde [$2 pàgene de descrizione d'u file] aqquà.",
+'sharedupload-desc-create' => "Stu file avène da $1 e pò essere ausate da otre pruggette.
+Pò essere ca tu vuè cangià 'a descrizione de jidde [$2 pàgene de descrizione d'u file] aqquà.",
 'filepage-nofile' => 'Nisciune file cu stu nome esiste.',
 'filepage-nofile-link' => "Nisciune file cu stu nome esiste, ma tu 'u puè [$1 carecà].",
 'uploadnewversion-linktext' => "Careche 'na versiona nove de stu fail",
@@ -1872,6 +1891,8 @@ Mò s'avène redirette a [[$2]].",
 'wantedpages' => 'Pàggene cchiù cerchete',
 'wantedpages-badtitle' => "Titele invalide in mmienze a l'inzieme de le resultate: $1",
 'wantedfiles' => 'File cchiù cerchete',
+'wantedfiletext-cat' => "Le seguende file onne state ausate ma non g'esistene, Le file de le archivije de fore ponne essere elengate fine ca esistene. Ogne false allarme avène <del>signate</del>. In aggiunde, le pàggene ca tènene ste file ca non g'esistene avène elengate jndr'à [[:$1]]",
+'wantedfiletext-nocat' => "Le file seguende onne state ausate ma non g'esistene. Le file da le archivije esterne ponne stà in liste fine ca esistente. Ogne false allarme avène <del>segnalate</del>.",
 'wantedtemplates' => 'Template cchiù ausete',
 'mostlinked' => 'Pàggene cchiù appundete',
 'mostlinkedcategories' => 'Categorije cchiù appundete',
@@ -3793,7 +3814,7 @@ Le immaggine sonde fatte vedè jndr'à resoluziona megghie, otre tipe de file re
 * <span class="mw-specialpagecached">Pàggene speciale in memorie cache (ponne essere vecchie).</span>',
 'specialpages-group-maintenance' => "Report d'a manutenzione",
 'specialpages-group-other' => 'Otre pàggene speciele',
-'specialpages-group-login' => 'Tràse / Reggistrete',
+'specialpages-group-login' => 'Tràse / Reggistrate',
 'specialpages-group-changes' => 'Cangiaminde recende e archivie',
 'specialpages-group-media' => 'Riepileghe de media e carecaminde',
 'specialpages-group-users' => 'Utinde e deritte',
@@ -3921,6 +3942,7 @@ Ce nò, tu puè ausà 'u module facile aqquà sotte. 'U commende tune avène agg
 'api-error-badtoken' => 'Errore inderne: Gettone errate.',
 'api-error-copyuploaddisabled' => "'U carecamende da URL jè disabbilitate sus a stu server.",
 'api-error-duplicate' => "{{PLURAL:$1|Stè [$2 'n'otre file]|Stonne [$2 otre file]}} sus a 'u site cu 'u stesse condenute.",
+'api-error-duplicate-archive' => "{{PLURAL:$1|Stave [$2 'n'otre file]|Stavane [$2 otre file]}} già sus a 'u site cu 'u stesse condenute, ma {{PLURAL:$1|ha state|onne state}} scangellate.",
 'api-error-duplicate-archive-popup-title' => "Dupliche {{PLURAL:$1|'u file ca ha state|le file ca onne state}} scangellate.",
 'api-error-duplicate-popup-title' => 'Dupleche {{PLURAL:$1|file|file}}',
 'api-error-empty-file' => "'U file ca tu è confermate ere vacande.",

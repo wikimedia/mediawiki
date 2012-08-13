@@ -2140,6 +2140,7 @@ további információkat lelhetsz ott az általad keresett könyvekről:',
 A napló típusának, a szerkesztő nevének (kis- és nagybetűérzékeny), vagy az érintett lap kiválasztásával (ez is kis- és nagybetűérzékeny) szűkítheted a találatok listáját.',
 'logempty' => 'Nincs illeszkedő naplóbejegyzés.',
 'log-title-wildcard' => 'Így kezdődő címek keresése',
+'showhideselectedlogentries' => 'Kijelölt napló bejegyzések megjelenítése/elrejtése',
 
 # Special:AllPages
 'allpages' => 'Az összes lap listája',

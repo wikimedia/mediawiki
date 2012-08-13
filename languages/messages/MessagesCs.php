@@ -29,6 +29,7 @@
  * @author Tchoř
  * @author Urhixidur
  * @author Utar
+ * @author Vks
  * @author לערי ריינהארט
  */
 
@@ -1136,6 +1137,7 @@ Tyto argumenty byly vynechány.',
 'expansion-depth-exceeded-warning' => 'Stránka překročila hloubku expanze',
 'parser-unstrip-loop-warning' => 'Detekováno zacyklení unstrip',
 'parser-unstrip-recursion-limit' => 'Překročen limit rekurze unstrip ($1)',
+'converter-manual-rule-error' => 'Detekována chyba v pravidlech manuální jazykové konverze',
 
 # "Undo" feature
 'undo-success' => 'Editace může být zrušena. Zkontrolujte a pak potvrďte změny zobrazené níže.',
@@ -3890,7 +3892,7 @@ Obrázky se zobrazí v plném rozlišení, jiné typy souborů se otevřenou v p
 * <span class="mw-specialpagecached">Speciální stránky z&nbsp;cache (mohou být zastaralé)</span>',
 'specialpages-group-maintenance' => 'Údržba',
 'specialpages-group-other' => 'Ostatní',
-'specialpages-group-login' => 'Přihlašování / registrace',
+'specialpages-group-login' => 'Přihlášení / vytvoření účtu',
 'specialpages-group-changes' => 'Poslední změny a záznamy',
 'specialpages-group-media' => 'Média',
 'specialpages-group-users' => 'Uživatelé a skupiny',

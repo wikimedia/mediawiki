@@ -555,6 +555,7 @@ Ita-nia mudansa la armazenadu seidauk!",
 'filehist-user' => "Uza-na'in",
 'filehist-comment' => 'Komentáriu',
 'imagelinks' => "Pájina iha ne'ebá fixeiru ne'e",
+'uploadnewversion-linktext' => 'Tau versaun foun imajen nian',
 
 # File reversion
 'filerevert-comment' => 'Razaun:',

@@ -3559,7 +3559,7 @@ Le figure a së smon-o a amzura pijn-a, j'àotre sòrt d'archivi a ven-o fàite 
 * <span class="mw-specialpagecached">Pàgine speciaj mach an memòria local (a peulo esse veje).</span>',
 'specialpages-group-maintenance' => 'Rapòrt ëd manutension',
 'specialpages-group-other' => 'Àutre pàgine speciaj',
-'specialpages-group-login' => 'Login / registrassion',
+'specialpages-group-login' => 'Intra / crea un cont',
 'specialpages-group-changes' => 'Ùltime modìfiche e registr',
 'specialpages-group-media' => 'Rapòrt dij file multimediaj e dle carie',
 'specialpages-group-users' => 'Utent e drit',

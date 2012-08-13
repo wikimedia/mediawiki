@@ -3814,7 +3814,7 @@ Imaginile sunt afișate la rezoluția lor maximă, în timp ce alte tipuri de fi
 * <span class="mw-specialpagecached">Pagini speciale aflate doar în memoria cache (pot fi neactualizate).</span>',
 'specialpages-group-maintenance' => 'Întreținere',
 'specialpages-group-other' => 'Alte pagini speciale',
-'specialpages-group-login' => 'Autentificare / Înregistrare',
+'specialpages-group-login' => 'Autentificare / creare cont',
 'specialpages-group-changes' => 'Schimbări recente și jurnale',
 'specialpages-group-media' => 'Fișiere',
 'specialpages-group-users' => 'Utilizatori și permisiuni',
@@ -3922,8 +3922,8 @@ Imaginile sunt afișate la rezoluția lor maximă, în timp ce alte tipuri de fi
 'newuserlog-byemail' => 'parola trimisă prin e-mail',
 
 # Feedback
-'feedback-bugornote' => 'Dacă sunteți pregătit să descrieți o problemă tehnică în detaliu vă rugăm să [ $1 raportați un bug].
-În caz contrar, puteți utiliza formularul de mai jos. Comentariul dumneavoastră va fi adăugat pe pagina „[ $3  $2 ]”, împreună cu numele de utilizator și numele navigatorului pe care îl folosiți.',
+'feedback-bugornote' => 'Dacă sunteți pregătit să descrieți o problemă tehnică în detaliu vă rugăm să [$1 raportați un bug].
+În caz contrar, puteți utiliza formularul de mai jos. Comentariul dumneavoastră va fi adăugat pe pagina „[$3 $2]”, împreună cu numele de utilizator și numele navigatorului pe care îl folosiți.',
 'feedback-subject' => 'Subiect:',
 'feedback-message' => 'Mesaj:',
 'feedback-cancel' => 'Revocare',

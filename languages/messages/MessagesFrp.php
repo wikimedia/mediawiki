@@ -575,6 +575,10 @@ Vêde la [[Special:Version|pâge de les vèrsions]].',
 'youhavenewmessages' => 'Vos avéd de $1 ($2).',
 'newmessageslink' => 'mèssâjos novéls',
 'newmessagesdifflink' => 'dèrriér changement',
+'youhavenewmessagesfromusers' => 'Vos avéd $1 {{PLURAL:$3|d’un ôtro utilisator|de $3 ôtros utilisators}} ($2).',
+'youhavenewmessagesmanyusers' => 'Vos avéd $1 d’un mouél d’utilisators ($2).',
+'newmessageslinkplural' => '{{PLURAL:$1|un mèssâjo novél|de mèssâjos novéls}}',
+'newmessagesdifflinkplural' => '{{PLURAL:$1|dèrriér changement|dèrriérs changements}}',
 'youhavenewmessagesmulti' => 'Vos avéd de mèssâjos novéls sur $1',
 'editsection' => 'changiér',
 'editold' => 'changiér',
@@ -720,6 +724,7 @@ Oubliâd pas de pèrsonalisar voutres [[Special:Preferences|prèferences dessus 
 'remembermypassword' => 'Sè rapelar de mon contresegno sur cél navigator (por lo més $1 jorn{{PLURAL:$1||s}})',
 'securelogin-stick-https' => 'Réstar branchiê en HTTPS aprés lo branchement',
 'yourdomainname' => 'Voutron domêno :',
+'password-change-forbidden' => 'Vos pouede pas changiér los contresegnos sur ceti vouiqui.',
 'externaldberror' => 'Ou ben na fôta est arrevâye avouéc la bâsa de donâs d’ôtentificacion de defôr ou ben vos éte pas ôtorisâ{{GENDER:||ye|(ye)}} a betar a jorn voutron compto de defôr.',
 'login' => 'Branchement',
 'nav-login-createaccount' => 'Sè branchiér / fâre un compto',
@@ -1570,6 +1575,7 @@ Ceta enformacion serat publica.',
 'right-writeapi' => 'Utilisar l’API d’ècritura',
 'right-delete' => 'Suprimar des pâges',
 'right-bigdelete' => 'Suprimar des pâges qu’ont un grant historico',
+'right-deletelogentry' => 'Suprimar et refâre n’entrâ spècifica du jornal',
 'right-deleterevision' => 'Suprimar ou refâre una vèrsion spècefica d’una pâge',
 'right-deletedhistory' => 'Vêre les entrâs des historicos suprimâs mas sen lor tèxto',
 'right-deletedtext' => 'Vêre lo tèxto suprimâ et les difèrences entre les vèrsions suprimâs',
@@ -2079,9 +2085,9 @@ Oubliâd pas de controlar s’y at pas d’ôtros lims de vers los modèlos deva
 
 'disambiguations' => 'Pâges qu’ont des lims de vers des pâges d’homonimia',
 'disambiguationspage' => 'Template:Homonimia',
-'disambiguations-text' => "Cetes pâges ont un lim de vers una '''pâge d’homonimia'''.
-Devriant pletout pouentar vers una pâge que vat avouéc.<br />
-Una pâge est trètâ coment una pâge d’homonimia s’encllut (tot drêt ou ben rècursivament) yon des modèlos listâs dessus [[MediaWiki:Disambiguationspage]].",
+'disambiguations-text' => "Cetes pâges ont u muens yon lim de vers na '''pâge d’homonimia'''.
+Devriant pletout pouentar vers na pâge que vat avouéc.<br />
+Na pâge est trètâye coment na pâge d’homonimia s’empleye un modèlo liyê a [[MediaWiki:Disambiguationspage]].",
 
 'doubleredirects' => 'Redirèccions dobles',
 'doubleredirectstext' => 'Vê-que la lista de les pâges que redirijont vers des pâges que sont lor-mémes des pâges de redirèccion.
@@ -2188,6 +2194,7 @@ Volyéd notar que d’ôtros setos pôvont avêr un lim drêt de vers un fichié
 Vos pouede rètrendre la vua en chouèséssent un tipo de jornal, un nom d’usanciér (sensiblo a la câssa) ou ben una pâge afèctâ (sensibla a la câssa avouéc).',
 'logempty' => 'Nion èlèment d’ense at étâ trovâ dens lo jornal.',
 'log-title-wildcard' => 'Chèrchiér permié los titros que començont per ceti tèxto',
+'showhideselectedlogentries' => 'Fâre vêre / cachiér les entrâs de jornal chouèsies',
 
 # Special:AllPages
 'allpages' => 'Totes les pâges',
@@ -2425,6 +2432,8 @@ a fâre avouéc prudence.',
 'rollback' => 'Rèvocar los changements',
 'rollback_short' => 'Rèvocar',
 'rollbacklink' => 'rèvocar',
+'rollbacklinkcount' => 'rèvocar $1 changement{{PLURAL:$1||s}}',
+'rollbacklinkcount-morethan' => 'rèvocar més de $1 changement{{PLURAL:$1||s}}',
 'rollbackfailed' => 'La rèvocacion at pas reussia',
 'cantrollback' => 'Empossiblo de rèvocar lo changement ;
 lo dèrriér contributor est lo solèt ôtor de ceta pâge.',
@@ -2978,6 +2987,7 @@ Volyéd tornar èprovar.',
 
 # JavaScriptTest
 'javascripttest' => 'Èprôva de JavaScript',
+'javascripttest-disabled' => 'Cela fonccion-que est pas étâye activâye sur ceti vouiqui.',
 'javascripttest-title' => 'Èprôves de $1 en cors',
 'javascripttest-qunit-intro' => 'Vêde la [$1 documentacion de les èprôves] dessus mediawiki.org.',
 'javascripttest-qunit-heading' => 'Suita d’èprôva QUnit de JavaScript dessus MediaWiki',
@@ -3937,7 +3947,7 @@ Les émâges sont montrâs dens lor plêna rèsolucion, los ôtros fichiérs son
 * <span class="mw-specialpagecached">Pâges spèciâles solament en cache (porriant étre dèpassâs).</span>',
 'specialpages-group-maintenance' => 'Rapôrts de mantegnence',
 'specialpages-group-other' => 'Ôtres pâges spèciâles',
-'specialpages-group-login' => 'Branchement / encartâjo',
+'specialpages-group-login' => 'Sè branchiér / fâre un compto',
 'specialpages-group-changes' => 'Dèrriérs changements et jornals',
 'specialpages-group-media' => 'Rapôrts et tèlèchargements de fichiérs mèdia',
 'specialpages-group-users' => 'Usanciérs et drêts apondus',
@@ -4110,5 +4120,5 @@ Les émâges sont montrâs dens lor plêna rèsolucion, los ôtros fichiérs son
 'duration-millennia' => '$1 milènèro{{PLURAL:$1||s}}',
 
 # Unknown messages
-'api-error-filetype-banned-type' => "'''« $1 »''' {{PLURAL:$4|est pas un tipo de fichiérs ôtorisâ|sont pas des tipos de fichiérs ôtorisâs}}. {{PLURAL:$3|Lo tipo de fichiérs accèptâ est|Los tipos de fichiérs accèptâs sont}} $2.",
+'api-error-filetype-banned-type' => '$1 {{PLURAL:$4|est pas un tipo de fichiér ôtorisâ|sont pas des tipos de fichiérs ôtorisâs}}. {{PLURAL:$3|Lo tipo de fichiér ôtorisâ est|Los tipos de fichiérs ôtorisâs sont}} $2.',
 );

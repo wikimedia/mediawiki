@@ -56,7 +56,7 @@ $messages = array(
 'tog-hidepatrolled' => 'Slēpt apstiprinātās izmaņas pēdējo izmaiņu sarakstā',
 'tog-newpageshidepatrolled' => 'Paslēpt pārbaudītās lapas jauno lapu sarakstā',
 'tog-extendwatchlist' => 'Izvērst uzraugāmo lapu sarakstu, lai parādītu visas veiktās izmaiņas (ne tikai pašas svaigākās)',
-'tog-usenewrc' => "Lietot uzlaboto pēdējo izmaiņu lapu (izmanto ''JavaScript'')",
+'tog-usenewrc' => "Grupēt izmaiņas pēc lapas pēdējās izmaiņās un uzraugāmo lapu sarakstā  (izmanto ''JavaScript'')",
 'tog-numberheadings' => 'Automātiski numurēt virsrakstus',
 'tog-showtoolbar' => 'Rādīt rediģēšanas rīkjoslu',
 'tog-editondblclick' => "Atvērt rediģēšanas lapu ar dubultklikšķi (izmanto ''JavaScript'')",
@@ -744,6 +744,7 @@ Izskatās, ka lapa ir dzēsta.',
 'edit-no-change' => 'Tavs labojums tika ignorēts, jo tekstā netika izdarītas izmaiņas.',
 'edit-already-exists' => 'Nevar izveidot jaunu lapu.
 Tā jau eksistē.',
+'defaultmessagetext' => 'Noklusētais ziņojuma teksts',
 
 # Parser/template warnings
 'expensive-parserfunction-category' => 'Lapas ar pārāk daudz laikietilpīgiem apstrādes funkciju izsaukumiem',
@@ -882,6 +883,7 @@ $1",
 
 # Diffs
 'history-title' => '"$1" versiju hronoloģija',
+'difference-title' => 'Atšķirības starp "$1" versijām',
 'difference-multipage' => '(Atšķirības starp lapām)',
 'lineno' => '$1. rindiņa:',
 'compareselectedversions' => 'Salīdzināt izvēlētās versijas',
@@ -2264,7 +2266,7 @@ Pirmajā gadījumā var arī lietot šādu metodi, piem., [[{{#Special:Export}}/
 # Namespace 8 related
 'allmessages' => 'Visi sistēmas paziņojumi',
 'allmessagesname' => 'Nosaukums',
-'allmessagesdefault' => 'Sākotnējais teksts',
+'allmessagesdefault' => 'Noklusētais ziņojuma teksts',
 'allmessagescurrent' => 'Pašreizējais teksts',
 'allmessagestext' => "Šajā lapā ir visu \"'''MediaWiki:'''\" lapās atrodamo sistēmas paziņojumu uzskaitījums.
 Šos paziņojumus var izmainīt tikai admini. Izmainot tos šeit, tie tiks izmainīti tikai šajā mediawiki instalācijā. Lai tos izmainītu visām pārējām, apskatieties [//www.mediawiki.org/wiki/Localisation MediaWiki Localisation] un [//translatewiki.net translatewiki.net].",

@@ -3687,7 +3687,7 @@ MediaWiki是基於使用目的而加以發佈，然而不負任何擔保責任�
 * <span class="mw-specialpagecached">用於重新整理的特殊頁面（可能過時）。</span>',
 'specialpages-group-maintenance' => '維護報告',
 'specialpages-group-other' => '其它特殊頁面',
-'specialpages-group-login' => '登入／創建',
+'specialpages-group-login' => '登入/建立新帳號',
 'specialpages-group-changes' => '最近更改和日誌',
 'specialpages-group-media' => '媒體報告和上傳',
 'specialpages-group-users' => '用戶和權限',

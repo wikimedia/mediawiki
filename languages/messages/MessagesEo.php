@@ -3822,7 +3822,7 @@ Bildoj montriĝas en plena distingivo, aliaj dosiertipoj estas malfermataj rekte
 * <span class="mw-specialpagecached">Memorkaŝitaj specialaj paĝoj (eble malaktualaj).</span>',
 'specialpages-group-maintenance' => 'Raportoj pri prizorgado',
 'specialpages-group-other' => 'Aliaj specialaj paĝoj',
-'specialpages-group-login' => 'Ensaluti / Krei novan konton',
+'specialpages-group-login' => 'Ensaluti /  registriĝi',
 'specialpages-group-changes' => 'Lastaj ŝanĝoj kaj protokoloj',
 'specialpages-group-media' => 'Raportoj pri dosieroj kaj alŝutoj',
 'specialpages-group-users' => 'Uzantoj kaj rajtoj',

@@ -3902,7 +3902,7 @@ Ipinapakita ang mga larawan sa buong kalinawan, tuwirang sinisimulan ang ibang u
 * <span class="mw-specialpagerestricted">Pinaghihigpitang natatanging mga pahina.</span>',
 'specialpages-group-maintenance' => 'Mga pagpapanatiling ulat',
 'specialpages-group-other' => 'Iba pang natatanging mga pahina',
-'specialpages-group-login' => 'Lumagda/tumala',
+'specialpages-group-login' => 'Lumagda / lumikha ng akawnt',
 'specialpages-group-changes' => 'Mga huling binago at mga tala',
 'specialpages-group-media' => 'Mga ulat ng midya at mga pagkarga',
 'specialpages-group-users' => 'Mga tagagamit at mga karapatan',

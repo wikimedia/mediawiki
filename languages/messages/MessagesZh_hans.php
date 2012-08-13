@@ -3675,7 +3675,7 @@ MediaWiki是基于使用目的而加以发布，然而不负任何担保责任�
 *<span class="mw-specialpagerestricted">非公开特殊页面。</span>',
 'specialpages-group-maintenance' => '维护报告',
 'specialpages-group-other' => '其它特殊页面',
-'specialpages-group-login' => '登录/注册',
+'specialpages-group-login' => '登录/创建账户',
 'specialpages-group-changes' => '最近更改与日志',
 'specialpages-group-media' => '媒体文件报告与上传',
 'specialpages-group-users' => '用户与权限',

@@ -8,6 +8,7 @@
  * @file
  *
  * @author Agzennay
+ * @author Amqui
  * @author Arkanosis
  * @author Boniface
  * @author Brunoperel

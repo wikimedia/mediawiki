@@ -51,6 +51,8 @@ $messages = array(
 'tog-watchlisthidebots' => 'Нијо кардеј ботон дәгишон ноғо доә сијоһиәдә',
 'tog-watchlisthideminor' => 'Нијо кардеј гәдә дәгишон ноғо доә сијоһиәдә',
 
+'underline-always' => 'Һежо',
+
 # Dates
 'sunday' => 'Ишамбә',
 'monday' => 'Дышанбә',

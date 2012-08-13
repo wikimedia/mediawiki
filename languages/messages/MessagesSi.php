@@ -460,6 +460,10 @@ $1",
 'youhavenewmessages' => 'ඔබ හට $1 ($2)',
 'newmessageslink' => 'නව පණිවුඩ',
 'newmessagesdifflink' => 'අවසාන වෙනස',
+'youhavenewmessagesfromusers' => '{{PLURAL:$3|තවත් එක් පරිශීලකයෙකුගෙන්|පරිශීලකයන් $3 දෙනෙකුගෙන්}} ඔබ හට $1 ඇත ($2).',
+'youhavenewmessagesmanyusers' => 'බොහෝ පරිශීලකයන් වෙතින් ඔබ හට $1 ඇත ($2).',
+'newmessageslinkplural' => '{{PLURAL:$1|නව පණිවුඩයක්|නව පණිවුඩ}}',
+'newmessagesdifflinkplural' => 'අවසන් {{PLURAL:$1|වෙනස්වීම|වෙනස්වීම්}}',
 'youhavenewmessagesmulti' => 'ඔබ හට $1 හි නව පණිවුඩ ඇත',
 'editsection' => 'සංස්කරණය',
 'editsection-brackets' => '[$1]',
@@ -556,6 +560,8 @@ URL  සඳහන් කරමින්, මෙම කරුණ [[Special:ListUs
 'cannotdelete' => '"$1" පිටුව හෝ ගොනුව හෝ මකා දැමිය නොහැකි විය.
 අනෙකෙකු විසින් දැනටමත් ‍මකා දැමීම සිදු කර ඇතිවා විය හැක.',
 'cannotdelete-title' => '"$1" පිටුව මැකිය නොහැක',
+'delete-hook-aborted' => 'හසුර මගින් මකාදැමුම රෝධනය කෙරිණි.
+එයට පැහැදිලි කිරීමක් ලබා නොදුනි.',
 'badtitle' => 'නුසුදුසු ශීර්ෂයක්',
 'badtitletext' => 'අයැද ඇති පිටු ශීර්ෂය අනීතික, හිස් හෝ වැරදි ලෙස සබැඳි අන්තර්-භාෂා/අන්තර්-විකී ශීර්ෂයකි.
 ශීර්ෂයන්හි භාවිතා කල නොහැකි අක්ෂර එකක් හෝ කිහිපයක් හෝ එහි අඩංගු වී ඇතිවා විය හැක.',

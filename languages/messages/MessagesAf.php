@@ -1064,14 +1064,14 @@ U kan dit wel sien. Details kan in die [{{fullurl:{{#Special:Log}}/suppress|page
 'rev-deleted-no-diff' => "U kan nie die verskille sien nie omdat een van die weergawes '''verwyder''' is.
 Details kan moontlik in die [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} skraplogboek] aanwesig wees.",
 'rev-suppressed-no-diff' => "U kan nie hierdie verskil sien nie omdat een van die weergawes '''geskrap''' is.",
-'rev-deleted-unhide-diff' => "Een van die weergawes vir hierdie verskil wat u aangevra het is '''verwyder'''.
-Meer details mag moontlik in die [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} verwyderingslogboek] aanwesig wees.
-As administrateur kan u steeds [$1 die verskille sien] as u wil voortgaan.",
-'rev-suppressed-unhide-diff' => "Een van die weergawes vir hierdie verskil wat u aangevra het is '''onderdruk'''.
-Meer details mag moontlik in die [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} verbergingslogboek] aanwesig wees.
-As administrateur kan u steeds [$1 hierdie weergawe sien] as u wil voortgaan.",
+'rev-deleted-unhide-diff' => "Een van die weergawes vir die verskil wat u aangevra het is '''verwyder'''.
+Details kan in die [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} skraplogboek] gevind word.
+U kan steeds [$1 die verskille sien] as u wil voortgaan.",
+'rev-suppressed-unhide-diff' => "Een van die weergawes vir die verskil wat u aangevra het is '''onderdruk'''.
+Details kan in die [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} verbergingslogboek] gesien word.
+U kan steeds [$1 hierdie weergawe sien] as u wil voortgaan.",
 'rev-deleted-diff-view' => "Een van die weergawes van die verskil wat u aangevra het is '''verwyder'''.
-As administrateur kan u hierdie verskil sien. Meer details mag moontlik is die [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} verwyderingslogboek] beskikbaar wees.",
+U kan steeds hierdie verskil sien. Details kan in die [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} skraplogboek] gevind word.",
 'rev-suppressed-diff-view' => "Een van die weergawes vir die verskil wat u aangevra het is '''onderdruk'''.
 U kan wel hierdie verskil sien. Meer details kan in die [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} verbergingslogboek] gevind word.",
 'rev-delundel' => 'wys/versteek',
@@ -1184,6 +1184,10 @@ Let op dat die gebruik van navigasieskakels hierdie kolom se waardes sal herstel
 'editundo' => 'maak ongedaan',
 'diff-multi' => '({{PLURAL:$1|Een tussenin wysiging|$1 tussenin wysigings}} deur {{PLURAL:$2|een gebruiker|$2 gebruikers}} word nie gewys nie)',
 'diff-multi-manyusers' => '({{PLURAL:$1|Een tussenin wysiging|$1 tussenin wysigings}} deur meer as $2 {{PLURAL:$2|gebruiker|gebruikers}} nie gewys nie)',
+'difference-missing-revision' => "{{PLURAL:$2|'n Weergawe|$2 weergawes}} van die verskil ($1) {{PLURAL:$2|is|is}} nie gevind nie.
+
+Dit word meestal veroorsaak deur die volg van 'n verouderde verwysing na 'n bladsy wat verwyder is.
+Details kan in die [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} skraplogboek] gevind word.",
 
 # Search results
 'searchresults' => 'soekresultate',
@@ -1453,6 +1457,7 @@ Die inligting is vir ander gebruikers sigbaar.',
 'right-writeapi' => 'Bewerkings m.b.v. die API',
 'right-delete' => 'Vee bladsye uit',
 'right-bigdelete' => 'Skrap bladsye met groot geskiedenisse',
+'right-deletelogentry' => 'Skrap en terugplaas van spesifieke logboekreëls',
 'right-deleterevision' => 'Skrap en ontskrap spesifieke hersienings van bladsye',
 'right-deletedhistory' => 'Wys geskrapte geskiedenis-inskrywings, sonder hul teks',
 'right-deletedtext' => 'Wys verwyderde teks en veranderings tussen geskrapte weergawes',
@@ -1728,11 +1733,13 @@ As daar steeds probleme is, kontak 'n [[Special:ListUsers/sysop|administrateur]]
 'upload-too-many-redirects' => 'Die URL bevat te veel aansture',
 'upload-unknown-size' => 'Onbekende grootte',
 'upload-http-error' => "'n HTTP-fout het voorgekom: $1",
+'upload-copy-upload-invalid-domain' => 'Gekopieerde oplaaie word nie vanuit die domein toegelaat nie.',
 
 # File backend
 'backend-fail-stream' => 'Kon nie die lêer $1 uitstroom nie.',
 'backend-fail-backup' => "Kon nie 'n rugsteunkopie van die lêer $1 maak nie.",
 'backend-fail-notexists' => 'Die lêer $1 bestaan nie.',
+'backend-fail-hashes' => 'Kon nie "hashes" vir die lêer vir die vergelyking kry nie.',
 'backend-fail-notsame' => "'n Nie-identiese lêer bestaan al reeds by $1.",
 'backend-fail-invalidpath' => "$1 is nie 'n geldige stoorplek nie.",
 'backend-fail-delete' => 'Die lêer $1 kon nie geskrap word nie.',
@@ -1745,6 +1752,18 @@ As daar steeds probleme is, kontak 'n [[Special:ListUsers/sysop|administrateur]]
 'backend-fail-closetemp' => 'Kon nie tydelike lêer sluit nie.',
 'backend-fail-read' => 'Kon nie lêer $1 lees nie.',
 'backend-fail-create' => 'Kon nie lêer $1 uitskryf nie.',
+'backend-fail-maxsize' => 'Kon nie lêer "$1" uitskryf nie omdat dit groter as {{PLURAL:$2|een greep|$2 grepe}} is.',
+'backend-fail-readonly' => 'Die agterliggende stoorspasie "$1" is lees-alleen. Die rede verskaf is: "\'\'$2\'\'"',
+'backend-fail-synced' => 'Die lêer "$1" is tans in \'n onbestendige toestand in die interne stoorspasie.',
+'backend-fail-connect' => 'Kon nie aan die agterliggende stoorspasie konnekteer nie "$1".',
+'backend-fail-internal' => "'n Onbekende fout het in die agterliggende stoorspasie $1 voorgekom.",
+'backend-fail-contenttype' => 'Kon nie die inhoudstipe van die lêer bepaal om na "$1" te stoor nie.',
+'backend-fail-batchsize' => "Die agterliggende stoorspasie het 'n groep van $1 {{PLURAL:$1|operasie|operasies}} ontvang; die limiet is $2 {{PLURAL:$2|operasie|operasies}}.",
+'backend-fail-usable' => 'Kon nie na die lêer "$1" skryf nie vanweë onvoldoende regte of gidse wat nie bestaan nie.',
+
+# File journal errors
+'filejournal-fail-dbconnect' => 'Kon nie na die joernaal-databasis op die agterliggende stoorspasie "$1" konnekteer nie.',
+'filejournal-fail-dbquery' => 'Kon nie die joernaal-databasis op die agterliggende stoorspasie "$1" bywerk nie.',
 
 # Lock manager
 'lockmanager-notlocked' => 'Kon nie "$1" ontgrendel nie omdat dit nie gesluit is nie.',
@@ -1753,6 +1772,7 @@ As daar steeds probleme is, kontak 'n [[Special:ListUsers/sysop|administrateur]]
 'lockmanager-fail-acquirelock' => 'Kon nie "$1" vergrendel nie.',
 'lockmanager-fail-openlock' => 'Kon nie die slotlêer vir "$1" oopmaak nie.',
 'lockmanager-fail-releaselock' => 'Kon nie "$1" ontgrendel nie.',
+'lockmanager-fail-db-bucket' => 'Dit was nie moontlik om voldoende vergrendel-databasisse in die houer $1 te kontak nie.',
 'lockmanager-fail-db-release' => "Kon nie 'n vergrendeling op databasis $1 ophef nie.",
 'lockmanager-fail-svr-acquire' => "Kon nie 'n vergrendeling op bediener $1 verkry nie.",
 'lockmanager-fail-svr-release' => 'Kon nie vergrandeling op bediener $1 ophef nie.',
@@ -1866,6 +1886,10 @@ Die volgende lys vertoon slegs die eerste {{PLURAL:$1|skakel|$1 skakels}} wat na
 Sien die [$2 lêer se beskrywingsblad] vir meer inligting.',
 'sharedupload-desc-here' => 'Hierdie lêer kom vanaf $1 en kan ook in ander projekte gebruik word.
 Die beskrywing op die [$2 lêer se inligtingsblad] word hieronder weergegee.',
+'sharedupload-desc-edit' => 'Hierdie lêer kom van $1 en kan ook in ander projekte gebruik word.
+Miskien wil u eerder die beskrywing daar op die [$2 lêerbeskrywing] bywerk.',
+'sharedupload-desc-create' => 'Hierdie lêer kom van $1 en kan ook in ander projekte gebruik word.
+Miskien wil u eerder die beskrywing daar op die [$2 lêerbeskrywing] bywerk.',
 'filepage-nofile' => "Daar bestaan nie 'n lêer met die naam nie.",
 'filepage-nofile-link' => "Daar bestaan nie 'n lêer met die naam nie, maar u kan een [$1 oplaai].",
 'uploadnewversion-linktext' => "Laai 'n nuwe weergawe van hierdie lêer",
@@ -1997,6 +2021,8 @@ Elke ry bevat skakels na die eerste en die tweede aanstuur, asook die eerste re�
 'wantedpages' => 'Begeerde bladsye',
 'wantedpages-badtitle' => 'Ongeldige bladsynaam in resultate: $1',
 'wantedfiles' => 'Begeerde lêers',
+'wantedfiletext-cat' => 'Die volgende lêers word gebruik, maar bestaan nie. Lêers van eksterne biblioteke kan, ondanks die feit dat hulle wel bestaan, ook hier gelys wees. Hierdie vals positiewes word as <del>deurgehaal aangedui</del>. Bladsye met lêers wat nie bestaan nie word aangegee by [[:$1]].',
+'wantedfiletext-nocat' => 'Die volgende lêers word gebruik, maar bestaan nie. Lêers van eksterne biblioteke kan, ondanks die feit dat hulle wel bestaan, ook hier gelys wees. Hierdie vals positiewes word as <del>deurgehaal aangedui</del>.',
 'wantedtemplates' => 'Begeerde sjablone',
 'mostlinked' => 'Bladsye met meeste skakels daarheen',
 'mostlinkedcategories' => 'Kategorieë met die meeste skakels daarheen',
@@ -3681,7 +3707,7 @@ Beelde word in hulle volle resolusie gewys. Ander lêertipes word direk met hull
 * <span class="mw-specialpagecached">Spesiale bladsye met gegewens uit die kas (kan verouderd wees).</span>',
 'specialpages-group-maintenance' => 'Onderhoud verslae',
 'specialpages-group-other' => 'Ander spesiale bladsye',
-'specialpages-group-login' => 'Inteken / aansluit',
+'specialpages-group-login' => 'Meld aan / registreer',
 'specialpages-group-changes' => 'Onlangse wysigings en boekstawings',
 'specialpages-group-media' => 'Media verslae en oplaai',
 'specialpages-group-users' => 'Gebruikers en regte',
@@ -3764,6 +3790,7 @@ Beelde word in hulle volle resolusie gewys. Ander lêertipes word direk met hull
 'logentry-delete-event-legacy' => '$1 het die sigbaarheid van logboekreëls van $3 gewysig',
 'logentry-delete-revision-legacy' => '$1 het die sigbaarheid van weergawes van die bladsy $3 gewysig.',
 'logentry-suppress-delete' => '$1 het die bladsy $3 onderdruk',
+'logentry-suppress-event' => "$1 het in die geheim die sigbaarheid van {{PLURAL:$5|'n logboekreël|$5 logboekreëls}} van $3 gewysig: $4",
 'logentry-suppress-revision' => "$1 het in die geheim die sigbaarheid van {{PLURAL:$5|'n weergawe|$5 weergawes}} van die bladsy $3 gewysig: $4",
 'logentry-suppress-event-legacy' => '$1 het in die geheim die sigbaarheid van logboekreëls van $3 gewysig',
 'logentry-suppress-revision-legacy' => '$1 het in die geheim die sigbaarheid van weergawes van die bladsy $3 gewysig',
@@ -3788,6 +3815,8 @@ Beelde word in hulle volle resolusie gewys. Ander lêertipes word direk met hull
 'newuserlog-byemail' => 'wagwoord is per e-pos versend',
 
 # Feedback
+'feedback-bugornote' => 'As u reg is om \'n tegniese probleem in detail te beskryf, [$1 rapporteer \'n fout].
+Anders kan u die eenvoudige vorm hieronder gebruik. U kommentaar sal by die bladsy "[$3 $2]", saam met u gebruikersnaam en die webblaaier wat u gebruik gevoeg word.',
 'feedback-subject' => 'Onderwerp:',
 'feedback-message' => 'Boodskap:',
 'feedback-cancel' => 'Kanselleer',
@@ -3805,6 +3834,8 @@ Beelde word in hulle volle resolusie gewys. Ander lêertipes word direk met hull
 'api-error-badaccess-groups' => 'U word nie toegelaat om lêers te laai op hierdie wiki.',
 'api-error-badtoken' => 'Interne fout: slegte teken.',
 'api-error-copyuploaddisabled' => 'Oplaai via URL is gedeaktiveer op hierdie bediener.',
+'api-error-duplicate' => "Daar {{PLURAL:$1|is al [$2 'n lêer]|is al [$2 lêers]}} met dieselfde inhoud op die wiki.",
+'api-error-duplicate-archive' => "Daar {{PLURAL:$1|was [$2 'n ander lêer]|was [$2 ander lêers]}} op hierdie webtuiste met dieselfde inhoud, maar {{PLURAL:$1|dit is|dit is}} geskrap.",
 'api-error-duplicate-archive-popup-title' => 'Duplikaat {{PLURAL:$1|lêer|lêers}} wat al verwyder is.',
 'api-error-duplicate-popup-title' => 'Duplikaat {{PLURAL:$1|lêer|lêers}}',
 'api-error-empty-file' => 'Die lêer wat u probeer oplaai is leeg.',

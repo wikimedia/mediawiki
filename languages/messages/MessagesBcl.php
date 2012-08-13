@@ -1186,6 +1186,10 @@ Ini dae tabi matitingkog.',
 'prefs-help-realname' => 'Opsyonal an totoong pangaran asin kun itatao mo ini, gagamiton ini yangarig an mga sinurat mo maatribuir saimo.',
 'prefs-help-email' => 'Opsyonal an e-koreo, alagad pwede ka na masosog kan iba sa paagi kan saimong pahina o pahina nin olay na dai kinakaipuhan na ipabisto an identidad mo.',
 'prefs-help-email-required' => 'Kaipuhan an e-koreo.',
+'prefs-advancedrendering' => 'Abantidong mga pagpipilian',
+'prefs-advancedsearchoptions' => 'Abantidong mga pagpipilian',
+'prefs-advancedwatchlist' => 'Abantidong mga pagpipilian',
+'prefs-displayrc' => 'Ihayag an mga pagpipilian',
 'prefs-displaysearchoptions' => 'Ipahiling ang mga pagpipilian',
 'prefs-displaywatchlist' => 'Ipahiling ang mga pagpipilian',
 'prefs-diffs' => 'Diffs',
@@ -1470,16 +1474,27 @@ Magpili tabî nin ibang pangaran.",
 'fileexists-thumbnail-yes' => "An ''file'' garo ladawan kan pinasadit ''(thumbnail)''. [[$1|thumb]]
 Sosogon tabî an ''file'' '''<tt>[[:$1]]</tt>'''.
 Kun an sinosog na ''file'' iyo an parehong ladawan na nasa dating sokol, dai na kaipuhan magkarga nin iba pang retratito.",
-'file-thumbnail-no' => "An ''filename'' nagpopoon sa '''<tt>$1</tt>'''. Garo ladawan na pinasadit ini ''(thumbnail)''.
-Kun igwa ka nin ladawan na may resolusyón na maximo ikarga tabî ini, kun dai, bâgohon tabî an pangaran nin ''file''.",
-'fileexists-forbidden' => "Igwa nang ''file'' na may parehong pangaran; bumalik tabi asin ikarga an ''file'' sa bâgong pangaran [[File:$1|thumb|center|$1]]",
-'fileexists-shared-forbidden' => "Igwa nang ''file'' na may parehong pangaran sa repositoryo nin mga bakas na ''file''; bumalik tabî asin ikarga an ''file'' sa bâgong pangaran. [[File:$1|thumb|center|$1]]",
+'file-thumbnail-no' => "An sagunson minapoon sa '''<tt>$1</tt>'''.
+Garo baga ini sarong imaheng pinasadit an sukol ''(thumbnail)''.
+Kun igwa ka kaining imahe sa kabilogang resolusyon ikarga ini, kun laen pakiribayi an ngaran kan sagunson.",
+'fileexists-forbidden' => 'May sagunson na sa arog kaining ngaran, asin dae puwedeng mapapatungan.
+Kun gusto mo pang ipagkarga an saimong sagunson, pakibalik lang asin gumamit nin bagong ngaran.
+[[File:$1|thumb|center|$1]]',
+'fileexists-shared-forbidden' => 'May sagunson na sa arog kaining ngaran sa repositoryo kan pinagheras na sagunson.
+Kun gusto mo pang ipagkarga an saimong sagunson, pakibalik lang asin gumamit nin bagong ngaran.
+[[File:$1|thumb|center|$1]]',
+'file-exists-duplicate' => 'An sagunson na ini sarong duplikado kan minasunod na {{PLURAL:$1|file|files}}:',
+'file-deleted-duplicate' => 'Sarong sagunson na kapareho kaini ([[:$1]]) na dati nang pinagpura.
+Kaipuhan mong aramon an historiya kan pagpura bago ka man magpadagos sa pagkarga kaini giraray.',
 'uploadwarning' => 'Patanid sa pagkarga',
+'uploadwarning-text' => 'Pakibaguha tabi an deskripsyon kan sagunson sa ibaba asin paki-otroha giraray.',
 'savefile' => "Itagama an ''file''",
 'uploadedimage' => 'Ikinarga "[[$1]]"',
 'overwroteimage' => 'kinarga an bagong bersión kan "[[$1]]"',
 'uploaddisabled' => 'Pigpopondó an mga pagkargá',
-'uploaddisabledtext' => "Pigpopogolan an pagkarga nin mga ''file'' o sa ining wiki.",
+'copyuploaddisabled' => 'An pagkarga sa paagi kan kilyawan pinagpondo.',
+'uploadfromurl-queued' => 'An saimong pagkarga pinagpahalat.',
+'uploaddisabledtext' => 'An pagkarga kan mga sagunson pinagpondo tabi.',
 'uploadscripted' => "Ining ''file'' igwang HTML o kodang eskritura na pwede ser na salang mainterpretar kan ''browser''.",
 'uploadvirus' => "May virus an ''file''! Mga detalye: $1",
 'sourcefilename' => 'Ginikanan kan pangaran nin sagunson:',

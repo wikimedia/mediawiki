@@ -13,6 +13,7 @@
  * @author Eirik
  * @author Finnrind
  * @author Frokor
+ * @author Geitost
  * @author Gunnernett
  * @author Guttorm Flatabø
  * @author H92
@@ -1477,7 +1478,7 @@ Dette kan ikkje tilbakestillast.',
 'right-ipblock-exempt' => 'Kan gjere endringar frå blokkerte IP-adresser',
 'right-proxyunbannable' => 'Kan gjere endringar frå blokkerte proxyar',
 'right-unblockself' => 'Avblokkera seg sjølve',
-'right-protect' => 'Endre vernenivå',
+'right-protect' => 'Endre vernenivå<!-- og redigera beskyttete sider-->',
 'right-editprotected' => 'Endre verna sider',
 'right-editinterface' => 'Redigere brukargrensesnittet',
 'right-editusercssjs' => 'Endre andre brukarar sine CSS- og JS-filer',

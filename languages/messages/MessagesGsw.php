@@ -9,6 +9,7 @@
  *
  * @author Als-Chlämens
  * @author Als-Holder
+ * @author Geitost
  * @author Hendergassler
  * @author J. 'mach' wust
  * @author Kaganer

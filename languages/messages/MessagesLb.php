@@ -3594,7 +3594,7 @@ Den ugefrote Fichier gëtt direkt gewise respektiv mat enger verbonner Applikati
 * <span class="mw-specialpagecached">Spezialsäiten aus dem Tëschespäicher (ka vereelst sinn).</span>',
 'specialpages-group-maintenance' => 'Maintenance-Rapporten',
 'specialpages-group-other' => 'Aner Spezialsäiten',
-'specialpages-group-login' => 'Aloggen / Umellen',
+'specialpages-group-login' => 'Aloggen / Benotzerkont uleeën',
 'specialpages-group-changes' => 'Rezent Ännerungen a Lëschten',
 'specialpages-group-media' => 'Medie-Rapporten an eropgeluede Fichieren',
 'specialpages-group-users' => 'Benotzer a Rechter',

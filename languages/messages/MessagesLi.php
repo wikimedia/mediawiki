@@ -10,6 +10,7 @@
  * @author Aelske
  * @author Benopat
  * @author Cicero
+ * @author Geitost
  * @author Kaganer
  * @author Matthias
  * @author Ooswesthoesbes

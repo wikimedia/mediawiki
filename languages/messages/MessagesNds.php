@@ -7,6 +7,7 @@
  * @ingroup Language
  * @file
  *
+ * @author Geitost
  * @author Kaganer
  * @author Purodha
  * @author Slomox

@@ -50,6 +50,7 @@
  * @author Jewbask
  * @author Jurock
  * @author Kaganer
+ * @author Larjona
  * @author Lin linao
  * @author Linterweb
  * @author Locos epraix
@@ -3867,7 +3868,7 @@ Las imágenes se muestran en resolución máxima, otros tipos de archivo se inic
 * <span class="mw-specialpagecached">Páginas especiales en caché (podrían ser obsoletas).</span>',
 'specialpages-group-maintenance' => 'Reportes de mantenimiento',
 'specialpages-group-other' => 'Otras páginas especiales',
-'specialpages-group-login' => 'Iniciar sesión / Registrarse',
+'specialpages-group-login' => 'Iniciar sesión / Crear cuenta',
 'specialpages-group-changes' => 'Cambios recientes y registros',
 'specialpages-group-media' => 'Páginas sobre archivos',
 'specialpages-group-users' => 'Usuarios y permisos',

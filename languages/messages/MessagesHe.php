@@ -3956,7 +3956,7 @@ $5
 * <span class="mw-specialpagerestricted">דפים מיוחדים מוגבלים.</span>',
 'specialpages-group-maintenance' => 'דיווחי תחזוקה',
 'specialpages-group-other' => 'דפים מיוחדים אחרים',
-'specialpages-group-login' => 'כניסה / הרשמה לחשבון',
+'specialpages-group-login' => 'כניסה לחשבון / הרשמה',
 'specialpages-group-changes' => 'שינויים אחרונים ויומנים',
 'specialpages-group-media' => 'קובצי מדיה והעלאות',
 'specialpages-group-users' => 'משתמשים והרשאות',

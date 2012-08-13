@@ -4087,7 +4087,7 @@ Slike su prikazane u punoj veličini, a druge vrste datoteka se pokreću pomoću
 * <span class="mw-specialpagecached">privremeno memorisane posebne stranice</span>',
 'specialpages-group-maintenance' => 'Izveštaji održavanja',
 'specialpages-group-other' => 'Ostale posebne stranice',
-'specialpages-group-login' => 'Otvaranje naloga i prijavljivanje',
+'specialpages-group-login' => 'Prijava/registracija',
 'specialpages-group-changes' => 'Skorašnje izmene i dnevnici',
 'specialpages-group-media' => 'Izveštaji o multimedijalnom sadržaju i otpremanja',
 'specialpages-group-users' => 'Korisnici i korisnička prava',

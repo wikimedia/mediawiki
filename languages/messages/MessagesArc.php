@@ -1585,6 +1585,9 @@ $1',
 
 # Special:SpecialPages
 'specialpages' => 'ܦܐܬܬ̈ܐ ܕ̈ܝܠܢܝܬܐ',
+'specialpages-note' => '----
+* ܦܐܬܬ̈ܐ ܕ̈ܝܠܢܝܬܐ ܥܝܕ̈ܝܬܐ.
+* <span class="mw-specialpagerestricted">ܦܐܬܬ̈ܐ ܕ̈ܝܠܢܝܬܐ ܕܩܝܘܡ̈ܐ ܒܠܚܘܕ.</span>',
 'specialpages-group-maintenance' => 'ܬܫܪܪܐ ܕܚܕܬܘܬܐ',
 'specialpages-group-other' => 'ܦܐܬܬ̈ܐ ܕ̈ܝܠܢܝܬܐ ܐܚܪ̈ܢܝܬܐ',
 'specialpages-group-login' => 'ܥܘܠ / ܒܪܝ',
@@ -1604,6 +1607,8 @@ $1',
 'tags-hitcount' => '$1 {{PLURAL:$1|ܫܘܚܠܦܐ|ܫܘܚܠܦ̈ܐ}}',
 
 # Special:ComparePages
+'comparepages' => 'ܦܚܘܡ ܒܝܢܝ ܦܐܬܬ̈ܐ',
+'compare-selector' => 'ܦܚܘܡ ܒܝܢܝ ܬܢܝܬ̈ܐ ܕܦܐܬܬ̈ܐ',
 'compare-page1' => 'ܦܐܬܐ 1',
 'compare-page2' => 'ܦܐܬܐ 2',
 'compare-rev1' => 'ܬܢܝܬܐ 1',

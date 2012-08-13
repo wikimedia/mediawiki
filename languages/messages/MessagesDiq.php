@@ -3960,7 +3960,7 @@ Resımi be tam asayış mocniyayê, tipê dosyaê bini be programê cıyo elaqed
 * <strong class="mw-specialpagerestricted">Peleya xısusiya ke grota verhefıza.</strong>',
 'specialpages-group-maintenance' => 'Raporê pak tepiştîşî',
 'specialpages-group-other' => 'Pelê xasiyê bini',
-'specialpages-group-login' => 'Cıkewtış / Hesab vıraştış',
+'specialpages-group-login' => 'Cı kewe / hesab vıraze',
 'specialpages-group-changes' => 'Vurnayişê peni u logan',
 'specialpages-group-media' => 'Raporê medya u bar kerdîşî',
 'specialpages-group-users' => 'Karber u heqqî',

@@ -1162,6 +1162,10 @@ Assegureu-vos que aquest canvi mantindrà la continuïtat històrica de la pàgi
 'editundo' => 'desfés',
 'diff-multi' => '({{PLURAL:$1|Hi ha una revisió intermèdia |Hi ha $1 revisions intermèdies}} sense mostrar fetes per {{PLURAL:$2|un usuari|$2 usuaris}})',
 'diff-multi-manyusers' => "({{PLURAL:$1|Hi ha una revisió intermèdia|Hi ha $1 revisions intermèdies}} sense mostrar fetes per més {{PLURAL:$2|d'un usuari|de $2 usuaris}})",
+'difference-missing-revision' => "{{PLURAL:$2|Una revisió|$2 revisions}} d'aquesta diferència ($1) no {{PLURAL:$2|s'ha|s'han}} trobat.
+
+Això passa generalment en seguir un enllaç obsolet de diferències a una pàgina que ha estat esborrada.
+Es pot trobar més informació en el [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} registre de supressions].",
 
 # Search results
 'searchresults' => 'Resultats de la cerca',
@@ -1916,9 +1920,9 @@ Potser voleu modificar-ne la descripció en la seva [$2 pàgina de descripció].
 
 'disambiguations' => 'Pàgines que enllacen a pàgines de desambiguació',
 'disambiguationspage' => 'Template:Desambiguació',
-'disambiguations-text' => "Les següents pàgines enllacen a una '''pàgina de desambiguació'''.
-Per això, caldria que enllacessin al tema apropiat.<br />
-Una pàgina es tracta com de desambiguació si utilitza una plantilla que està enllaçada a [[MediaWiki:Disambiguationspage]]",
+'disambiguations-text' => "Les següents pàgines tenen algun enllaç a una '''pàgina de desambiguació'''.
+És possible que hagin d'enllaçar a una altra pàgina més apropiada.<br />
+Una pàgina es tracta com de desambiguació si utilitza una plantilla que està enllaçada a [[MediaWiki:Disambiguationspage]].",
 
 'doubleredirects' => 'Redireccions dobles',
 'doubleredirectstext' => 'Aquesta pàgina llista les pàgines que redirigeixen a altres pàgines de redirecció.
@@ -3826,5 +3830,5 @@ Altrament, podeu fer servir un senzill formulari a continuació. El vostre comen
 'duration-millennia' => '$1 {{PLURAL:$1|mil·leni|mil·lenis}}',
 
 # Unknown messages
-'api-error-filetype-banned-type' => "{{PLURAL:$4|Els fitxers del tipus $1|Els fitxers dels tipus $1}} no estan permesos. {{PLURAL:$3|Només s'admeten els fitxers del tipus|Els tipus de fitxer permesos són}} $2.",
+'api-error-filetype-banned-type' => '$1 {{PLURAL:$4|no és un tipus de fitxer permès|no són tipus de fitxer permesos}}. {{PLURAL:$3|El tipus de fitxer permès és|Els tipus de fitxer permesos són}} $2.',
 );
