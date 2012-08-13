@@ -146,6 +146,7 @@ class User {
 		'purge',
 		'read',
 		'reupload',
+		'reupload-own',
 		'reupload-shared',
 		'rollback',
 		'sendemail',
