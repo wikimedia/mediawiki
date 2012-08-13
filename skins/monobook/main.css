@@ -840,7 +840,7 @@ div#searchTargetHide {
 }
 
 #powersearch p {
-	margin-top:0px;
+	margin-top: 0;
 }
 
 div.multipageimagenavbox {
@@ -914,16 +914,8 @@ div.mw-lag-warn-high {
 	font-size: 127%;
 }
 
-/* jsMessage */
-
-div#mw-js-message {
-	position: absolute;
-	margin: 0;
-	padding: 0.25em 1em;
-	right: 1em;
-	top: 1em;
-	width: 20em;
-	z-index: 10000;
-	-webkit-box-shadow: 0px 2px 5px 0px rgba(0, 0, 0, 0.125);
-	box-shadow: 0px 2px 5px 0px rgba(0, 0, 0, 0.125);
+/* mw.notification */
+.mw-notification {
+	-webkit-box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.125);
+	box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.125);
 }

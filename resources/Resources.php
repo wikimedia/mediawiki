@@ -175,10 +175,6 @@ return array(
 		'styles' => 'resources/jquery/jquery.makeCollapsible.css',
 		'messages' => array( 'collapsible-expand', 'collapsible-collapse' ),
 	),
-	'jquery.messageBox' => array(
-		'scripts' => 'resources/jquery/jquery.messageBox.js',
-		'styles' => 'resources/jquery/jquery.messageBox.css',
-	),
 	'jquery.mockjax' => array(
 		'scripts' => 'resources/jquery/jquery.mockjax.js',
 	),
@@ -602,6 +598,13 @@ return array(
 	'mediawiki.htmlform' => array(
 		'scripts' => 'resources/mediawiki/mediawiki.htmlform.js',
 	),
+	'mediawiki.notification' => array(
+		'scripts' => 'resources/mediawiki/mediawiki.notification.js',
+		'dependencies' => array(
+			'jquery',
+			'mediawiki.util',
+		),
+	),
 	'mediawiki.Title' => array(
 		'scripts' => 'resources/mediawiki/mediawiki.Title.js',
 		'dependencies' => 'mediawiki.util',
@@ -621,7 +624,6 @@ return array(
 		'dependencies' => array(
 			'jquery.client',
 			'jquery.cookie',
-			'jquery.messageBox',
 			'jquery.mwExtension',
 		),
 		'messages' => array( 'showtoc', 'hidetoc' ),
