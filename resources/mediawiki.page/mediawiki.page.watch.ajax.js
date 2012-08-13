@@ -134,7 +134,7 @@
 					otherAction = action === 'watch' ? 'unwatch' : 'watch';
 					$li = $link.closest( 'li' );
 
-					mw.util.jsMessage( watchResponse.message, 'ajaxwatch' );
+					mw.notify( $.parseHTML( watchResponse.message ), { tag: 'watch-self' } );
 
 					// Set link to opposite
 					updateWatchLink( $link, otherAction );
@@ -149,7 +149,7 @@
 				},
 				// Error
 				function () {
-					var cleanTitle, html, link;
+					var cleanTitle, msg, link;
 
 					// Reset link to non-loading mode
 					updateWatchLink( $link, action );
@@ -162,10 +162,10 @@
 							title: cleanTitle
 						}, cleanTitle
 					);
-					html = mw.msg( 'watcherrortext', link );
+					msg = mw.messsage( 'watcherrortext', link );
 
 					// Report to user about the error
-					mw.util.jsMessage( html, 'ajaxwatch' );
+					mw.notify( msg, { tag: 'watch-self' } );
 
 				}
 			);
