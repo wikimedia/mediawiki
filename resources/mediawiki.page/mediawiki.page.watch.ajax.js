@@ -134,7 +134,7 @@
 					otherAction = action === 'watch' ? 'unwatch' : 'watch';
 					$li = $link.closest( 'li' );
 
-					mw.util.jsMessage( watchResponse.message, 'ajaxwatch' );
+					mw.util.notify( $.parseHTML( watchResponse.message ), { tag: 'watch-self' } );
 
 					// Set link to opposite
 					updateWatchLink( $link, otherAction );
@@ -162,10 +162,10 @@
 							title: cleanTitle
 						}, cleanTitle
 					);
-					html = mw.msg( 'watcherrortext', link );
+					html = mw.messsage( 'watcherrortext', link );
 
 					// Report to user about the error
-					mw.util.jsMessage( html, 'ajaxwatch' );
+					mw.util.notify( html, { tag: 'watch-self' } );
 
 				}
 			);

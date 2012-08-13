@@ -515,11 +515,8 @@ window.redirectToFragment = function( fragment ) {
  * Add a cute little box at the top of the screen to inform the user of
  * something, replacing any preexisting message.
  *
- * @deprecated since 1.17 Use mw.util.jsMessage instead.
+ * @deprecated since 1.17 Use mw.util.notify instead.
  * @param {String|HTMLElement} message To be put inside the message box.
- * @param {String} className Used in adding a class; Can be used to selectively
- *  apply CSS to a certain category of messages.  null = no class used.
- * @return {Boolean} True on success, false on failure
  */
 window.jsMsg = function () {
 	return mw.util.jsMessage.apply( mw.util, arguments );

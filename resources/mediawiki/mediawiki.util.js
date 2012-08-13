@@ -5,9 +5,7 @@
 	'use strict';
 
 	// Local cache and alias
-	var hideMessageTimeout,
-		messageBoxEvents = false,
-		util = {
+	var util = {
 
 		/**
 		 * Initialisation
@@ -15,12 +13,6 @@
 		 */
 		init: function () {
 			var profile, $tocTitle, $tocToggleLink, hideTocCookie;
-
-			/* Set up $.messageBox */
-			$.messageBoxNew( {
-				id: 'mw-js-message',
-				parent: '#content'
-			} );
 
 			/* Set tooltipAccessKeyPrefix */
 			profile = $.client.profile();
@@ -92,7 +84,11 @@
 					'#content',
 
 					// If nothing better is found fall back to our bodytext div that is guaranteed to be here
-					'#mw-content-text'
+					'#mw-content-text',
+
+					// Should never happen... well, it could if someone is not finished writing a skin and has
+					// not inserted bodytext yet. But in any case <body> should always exist
+					'body'
 				];
 				for ( var i = 0, l = selectors.length; i < l; i++ ) {
 					$content = $( selectors[i] ).first();
@@ -454,65 +450,33 @@
 		},
 
 		/**
+		 * @see mw.notification.notify
+		 */
+		notify: function( message, options ) {
+			// Don't bother loading the whole notification system if we never use it.
+			mw.loader.using( 'mediawiki.notification', function() {
+				mw.notification.notify( message, options );
+			} );
+		},
+
+		/**
 		 * Add a little box at the top of the screen to inform the user of
 		 * something, replacing any previous message.
 		 * Calling with no arguments, with an empty string or null will hide the message
 		 *
 		 * @param message {mixed} The DOM-element, jQuery object or HTML-string to be put inside the message box.
-		 * @param className {String} Used in adding a class; should be different for each call
 		 * to allow CSS/JS to hide different boxes. null = no class used.
-		 * @return {Boolean} True on success, false on failure.
+		 * @depreceated Use mw.util.notify
 		 */
-		jsMessage: function ( message, className ) {
-			var $messageDiv = $( '#mw-js-message' );
-
+		jsMessage: function ( message ) {
 			if ( !arguments.length || message === '' || message === null ) {
-				$messageDiv.empty().hide();
-				stopHideMessageTimeout();
-				return true; // Emptying and hiding message is intended behaviour, return true
-			} else {
-				// We special-case skin structures provided by the software. Skins that
-				// choose to abandon or significantly modify our formatting can just define
-				// an mw-js-message div to start with.
-				if ( !$messageDiv.length ) {
-					$messageDiv = $( '<div id="mw-js-message"></div>' );
-					if ( util.$content.parent().length ) {
-						util.$content.parent().prepend( $messageDiv );
-					} else {
-						return false;
-					}
-				}
-
-				if ( !messageBoxEvents ) {
-					messageBoxEvents = true;
-					$messageDiv
-						.on( {
-							'mouseenter': stopHideMessageTimeout,
-							'mouseleave': startHideMessageTimeout,
-							'click': hideMessage
-						} )
-						.on( 'click', 'a', function ( e ) {
-							// Prevent links, even those that don't exist yet, from causing the
-							// message box to close when clicked
-							e.stopPropagation();
-						} );
-				}
-
-				if ( className ) {
-					$messageDiv.prop( 'className', 'mw-js-message-' + className );
-				}
-
-				if ( typeof message === 'object' ) {
-					$messageDiv.empty();
-					$messageDiv.append( message );
-				} else {
-					$messageDiv.html( message );
-				}
-
-				$messageDiv.slideDown();
-				startHideMessageTimeout();
 				return true;
 			}
+			if ( typeof message !== 'object' ) {
+				message = $.parseHTML( message );
+			}
+			mw.util.notify( message, { autoHide: true, tag: 'legacy' } );
+			return true;
 		},
 
 		/**
@@ -647,18 +611,6 @@
 				&& address.search( /::/ ) !== -1 && address.search( /::.*::/ ) === -1;
 		}
 	};
-
-	// Message auto-hide helpers
-	function hideMessage() {
-		$( '#mw-js-message' ).fadeOut( 'slow' );
-	}
-	function stopHideMessageTimeout() {
-		clearTimeout( hideMessageTimeout );
-	}
-	function startHideMessageTimeout() {
-		clearTimeout( hideMessageTimeout );
-		hideMessageTimeout = setTimeout( hideMessage, 5000 );
-	}
 
 	mw.util = util;
 
