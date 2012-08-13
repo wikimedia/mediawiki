@@ -140,6 +140,7 @@ class User {
 		'nominornewtalk',
 		'noratelimit',
 		'override-export-depth',
+		'passwordreset',
 		'patrol',
 		'protect',
 		'proxyunbannable',
