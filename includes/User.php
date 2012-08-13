@@ -123,6 +123,7 @@ class User {
 		'deleterevision',
 		'edit',
 		'editinterface',
+		'editprotected',
 		'editusercssjs', #deprecated
 		'editusercss',
 		'edituserjs',
