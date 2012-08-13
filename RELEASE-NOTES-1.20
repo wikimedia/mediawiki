@@ -122,7 +122,6 @@ upgrade PHP if you have not done so prior to upgrading MediaWiki.
 * HTMLForm mutators can now be chained (they return $this)
 * A new message, "api-error-filetype-banned-type", is available for formatting
   API upload errors due to the file extension blacklist.
-* jsMessage: Redesigned in Vector/Monobook as floating bubble with auto-hide.
 * New hook 'ParserTestGlobals' allows to set globals before running parser tests.
 * Allow importing pages as subpage.
 * Add lang and hreflang attributes to language links on Login page.
@@ -138,6 +137,10 @@ upgrade PHP if you have not done so prior to upgrading MediaWiki.
 * Added ResourceLoader module "jquery.badge".
 * mw.util.$content now points to the overall content area in the skin rather than just
   page text content area. If you need the old behaviour please use $( '#mw-content-text').
+* jsMessage has been replaced with a floating bubble notification system complete
+  with auto-hide, multi-message support, and message replacement tags.
+* jquery.messageBox which appears to be unused by both core and extensions has
+  been removed.
 
 === Bug fixes in 1.20 ===
 * (bug 30245) Use the correct way to construct a log page title.
