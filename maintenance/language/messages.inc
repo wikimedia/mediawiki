@@ -1536,6 +1536,7 @@ $wgMessageStructure = array(
 		'shared-repo',
 		'shared-repo-name-wikimediacommons',
 		'filepage.css',
+		'upload-disallowed-here',
 	),
 	'filerevert' => array(
 		'filerevert',
