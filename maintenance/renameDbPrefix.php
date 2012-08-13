@@ -1,5 +1,6 @@
 <?php
 /**
+ * Change the prefix of database tables.
  * Run this script to after changing $wgDBprefix on a wiki.
  * The wiki will have to get downtime to do this correctly.
  *
@@ -18,11 +19,17 @@
  * 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
  * http://www.gnu.org/copyleft/gpl.html
  *
+ * @file
  * @ingroup Maintenance
  */
 
 require_once( dirname( __FILE__ ) . '/Maintenance.php' );
 
+/**
+ * Maintenance script that changes the prefix of database tables.
+ *
+ * @ingroup Maintenance
+ */
 class RenameDbPrefix extends Maintenance {
 	public function __construct() {
 		parent::__construct();
