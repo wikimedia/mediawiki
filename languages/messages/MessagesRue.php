@@ -276,7 +276,7 @@ $1',
 'pool-errorunknown' => 'Незнама хыба',
 
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
-'aboutsite' => 'О&nbsp;{{grammar:6sg|{{SITENAME}}}}',
+'aboutsite' => 'О&nbsp;{{grammar:genitive|{{SITENAME}}}}',
 'aboutpage' => 'Project:О проєктї',
 'copyright' => 'Обсяг є доступный з $1.',
 'copyrightpage' => '{{ns:project}}:Авторьске право',
@@ -2251,9 +2251,9 @@ $1',
 
 # Contributions
 'contributions' => 'Приспівок хоснователя',
-'contributions-title' => 'Приспевок хоснователя $1',
+'contributions-title' => 'Приспівок хоснователя $1',
 'mycontris' => 'Мої приспівкы',
-'contribsub2' => 'Приспевок $1 ($2)',
+'contribsub2' => 'Приспівок $1 ($2)',
 'nocontribs' => 'Ненайджены жадны зміны за тыма крітеріями.',
 'uctop' => ' (послїдня)',
 'month' => 'Од місяця (і скоре):',

@@ -3693,7 +3693,7 @@ Imej ditunjuk dalam leraian penuh, jenis fail yang lain dibuka dengan atur cara 
 * <span class="mw-specialpagecached">Laman khas tercache (mungkin lapuk).</span>',
 'specialpages-group-maintenance' => 'Laporan penyenggaraan',
 'specialpages-group-other' => 'Laman khas lain',
-'specialpages-group-login' => 'Log masuk / daftar',
+'specialpages-group-login' => 'Log masuk / buka akaun',
 'specialpages-group-changes' => 'Perubahan terkini dan log',
 'specialpages-group-media' => 'Laporan media dan muat naik',
 'specialpages-group-users' => 'Pengguna dan hak',

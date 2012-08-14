@@ -3249,7 +3249,7 @@ To perform a selective restoration, check the boxes corresponding to the revisio
 'exif-meteringmode-4' => 'બિંદુઓ',
 'exif-meteringmode-5' => 'ભાત',
 'exif-meteringmode-6' => 'આશિંક',
-'exif-meteringmode-255' => 'બીજું કઈ',
+'exif-meteringmode-255' => 'અન્ય',
 
 'exif-lightsource-0' => 'અજાણ્યો',
 'exif-lightsource-1' => 'દિવસ પ્રકાશ',

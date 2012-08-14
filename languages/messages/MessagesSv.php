@@ -3835,7 +3835,7 @@ Bilder visas i full upplösning, andra filtyper öppnas direkt i de program som 
 * <span class="mw-specialpagecached">Cachade specialsidor (kan vara föråldrade).</span>',
 'specialpages-group-maintenance' => 'Underhållsrapporter',
 'specialpages-group-other' => 'Övriga specialsidor',
-'specialpages-group-login' => 'Inloggning/registrering',
+'specialpages-group-login' => 'Logga in / skapa konto',
 'specialpages-group-changes' => 'Senaste ändringar och loggar',
 'specialpages-group-media' => 'Filer och uppladdning',
 'specialpages-group-users' => 'Användare och behörigheter',

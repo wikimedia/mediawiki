@@ -3418,7 +3418,7 @@ Variants for Chinese language
 'exif-whitebalance' => 'Рамнотежа на бело',
 'exif-digitalzoomratio' => 'Сооднос на дигиталното приближување (зум)',
 'exif-focallengthin35mmfilm' => 'Еквивалентно фокусно растојание за 35 мм филм',
-'exif-scenecapturetype' => 'Тип на сликање сцена',
+'exif-scenecapturetype' => 'Тип на сликаната сцена',
 'exif-gaincontrol' => 'Контрола на сцената',
 'exif-contrast' => 'Контраст',
 'exif-saturation' => 'Заситеност',

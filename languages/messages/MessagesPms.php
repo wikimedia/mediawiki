@@ -698,9 +698,9 @@ o purament [{{fullurl:{{FULLPAGENAME}}|action=edit}} modìfiché la pàgina ades
 'noarticletext-nopermission' => 'Al moment a-i é pa gnun test an sta pàgina-sì.
 It peule [[Special:Search/{{PAGENAME}}|sërché sto tìtol ëd pàgina-sì]] an d\'àutre pàgine,
 o <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} sërché j\'argistrassion colegà]</span>.',
-'missing-revision' => "La revision #\$1 dla pagina ciamà \"{{PAGENAME}}\" a esist pa.
+'missing-revision' => "La revision #\$1 dla pàgina ciamà \"{{PAGENAME}}\" a esist pa.
 
-Sòn a l'é normalment causà da l'andé dré a un vej colegament stòrich a na pagina ch'a l'é staita canselà. Ij detaj a peulo esse trovà ant ël [registr ëd le canselassion ëd {{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}}].",
+Sòn a l'é normalment causà da l'andèje dapress a na vej liura stòrica a na pàgina ch'a l'é stàita scancelà. Ij detaj a peulo esse trovà ant ël [registr ëd jë scancelament ëd {{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}}].",
 'userpage-userdoesnotexist' => 'Lë stranòm "<nowiki>$1</nowiki>" a l\'é pa registrà. Për piasì ch\'a varda se da bon a veul creé/modifiché sta pàgina.',
 'userpage-userdoesnotexist-view' => 'Ël cont utent "$1" a l\'é pa registrà.',
 'blocked-notice-logextract' => "S'utent a l'é al moment blocà.
@@ -1015,7 +1015,7 @@ Ch'a varda mach che a-i ven-a nen fòra un rabel ant la continuità stòrica.",
 
 
 
-Sòn a l'é normalment causà da l'andé dré a un vej colegament stòrich a na pagina ch'a l'é staita canselà. Ij detaj a peulo esse trovà ant ël [registr ëd le canselassion ëd {{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}}].",
+Sòn a l'é normalment causà da l'andèje dapress a na veja liura stòrica a na pàgina ch'a l'é stàita scancelà. Ij detaj a peulo esse trovà ant ël [registr ëd jë scanselament ëd {{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}}].",
 
 # Search results
 'searchresults' => "Arzultà dl'arserca",
@@ -2707,8 +2707,8 @@ Për piasì, ch'a preuva torna.",
 'tooltip-pt-preferences' => 'Coma che i veuj mia {{SITENAME}}.',
 'tooltip-pt-watchlist' => 'Lista dle pàgine che chiel as ten sot euj.',
 'tooltip-pt-mycontris' => 'Lista ëd soe contribussion',
-'tooltip-pt-login' => "Un a l'é nen obligà a rintré ant al sistema, ma se a lo fa a l",
-'tooltip-pt-anonlogin' => "Un a l'é nen obligà a rintré ant al sistema, ma se a lo fa a l",
+'tooltip-pt-login' => "Un a l'é nen obligà a rintré ant al sistema, ma se a lo fa a l'é mej",
+'tooltip-pt-anonlogin' => "Un a l'é nen obligà a rintré ant al sistema, ma se a lo fa a l'é mej",
 'tooltip-pt-logout' => 'Seurte da',
 'tooltip-ca-talk' => 'Discussion ansima a sta pàgina ëd contnù.',
 'tooltip-ca-edit' => 'Modifiché sta pàgina-sì. Për piasì, che as fasa na preuva anans che salvé .',

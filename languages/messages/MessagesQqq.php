@@ -556,7 +556,7 @@ The message takes three parameters;
 *$3 the number of authors who have edited the talk page since the owning user last viewed it.',
 'youhavenewmessagesmanyusers' => 'New talk indicator message: the message appearing when someone edited your user talk page. Used when more than 10 users edited the user talk page since the owning user last viewed it, similar to{{msg-mw|youhavenewmessages}}. Parameters:
 * $1 is {{msg-mw|newmessageslinkplural}},
-* $2 is  {{msg-mw|newmessagesdifflinkplurl}}.',
+* $2 is  {{msg-mw|newmessagesdifflinkplural}}.',
 'newmessageslinkplural' => 'Like {{msg-mw|newmessageslink}} but supporting pluralization. Used in message {{msg-mw|youhavenewmessagesfromusers}} (as parameter $1).
 This message itself takes one parameter, $1, which is 1 if there was one new edit, or 2 if there was more than one new edit
 since the last time the user has seen his or her talk page.',

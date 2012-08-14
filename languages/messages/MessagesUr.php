@@ -165,6 +165,7 @@ $messages = array(
 'category-subcat-count' => '{{PLURAL:$2|اِس زمرہ میں صرف درج ذیل ذیلی زمرہ ہے.|اِس زمرہ میں درج ذیل {{PLURAL:$1|ذیلی زمرہ|$1 ذیلی زمرہ جات}}, کل $2 میں سے.}}',
 'category-subcat-count-limited' => 'اِس زمرہ میں درج ذیل {{PLURAL:$1|ذیلی زمرہ ہے|$1 ذیلی زمرہ جات ہیں}}.',
 'listingcontinuesabbrev' => '۔جاری',
+'noindex-category' => 'غیر مندرج صفحات',
 
 'about' => 'تعارف',
 'article' => 'صفحۂ مشمول',
@@ -936,6 +937,7 @@ HTML tags جانچئے.',
 'recentchanges-label-newpage' => 'اِس ترمیم نے نیا صفحہ تخلیق کردیا',
 'recentchanges-label-minor' => 'یہ ایک معمولی ترمیم ہے',
 'recentchanges-label-bot' => 'یہ ایک روبالہ سے سرانجام شدہ ترمیم ہے',
+'recentchanges-label-unpatrolled' => 'اس ترمیم کی اب تک مراجعت نہیں کی گئی',
 'rcnote' => "درج ذیل گزشتہ {{PLURAL:$2|دِن|'''$2''' ایام}} میں ہونے والی {{PLURAL:$1|'''ایک''' تبدیلی ہے|آخری '''$1''' تبدیلیاں ہیں}}، $5، $4.",
 'rcnotefrom' => "ذیل میں '''$2''' سے کی گئی تبدیلیاں ہیں ('''$1''' تبدیلیاں دکھائی جارہی ہیں)۔",
 'rclistfrom' => '$1 سےنئی تبدیلیاں دکھانا شروع کریں',
@@ -943,6 +945,7 @@ HTML tags جانچئے.',
 'rcshowhidebots' => 'خودکار صارف $1',
 'rcshowhideliu' => 'داخل شدہ صارف $1',
 'rcshowhideanons' => 'گمنام صارف $1',
+'rcshowhidepatr' => '$1 مراجعت شدہ ترامیم',
 'rcshowhidemine' => 'ذاتی ترامیم $1',
 'rclinks' => 'آخری $2 روز میں ہونے والی $1 تبدیلیوں کا مشاہدہ کریں<br />$3',
 'diff' => 'فرق',
@@ -1049,6 +1052,7 @@ HTML tags جانچئے.',
 'statistics-header-users' => 'ارکان کے اعداد و شمار',
 
 'disambiguations' => 'ضد ابہام صفحات',
+'disambiguationspage' => 'سانچہ:ضدابہام',
 
 'doubleredirects' => 'دوہرے متبادل ربط',
 
@@ -1227,6 +1231,7 @@ Also see [[Special:WantedCategories|wanted categories]].',
 'nolinkshere' => "'''[[:$1]]''' سے کوئی روابط نہیں۔",
 'isredirect' => 'لوٹایا گیا صفحہ',
 'isimage' => 'ربطِ ملف',
+'whatlinkshere-links' => 'روابط',
 'whatlinkshere-hideredirs' => 'رجوع مکررات $1',
 'whatlinkshere-hidelinks' => 'روابط $1',
 'whatlinkshere-hideimages' => 'روابطِ تصویر $1',
@@ -1343,6 +1348,7 @@ Also see [[Special:WantedCategories|wanted categories]].',
 'tooltip-diff' => 'دیکھئے کہ اپنے متن میں کیا تبدیلیاں کیں',
 'tooltip-compareselectedversions' => 'اِس صفحہ کی دو منتخب نظرثانیوں میں فرق دیکھئے',
 'tooltip-watch' => 'اِس صفحہ کو اپنی زیرِنظرفہرست میں شامل کریں',
+'tooltip-undo' => "''استرجع'' اس ترمیم کو پچھلی ترمیم کے جانب واپس کردیگا اور نمائشی انداز میں خانہ ترمیم کھول دے گا۔ آپ مختصراً سبب بیان کرنے کے بھی مجاز ہونگے۔",
 'tooltip-summary' => 'مختصر خلاصہ درج کریں',
 
 # Attribution
@@ -1355,6 +1361,10 @@ Also see [[Special:WantedCategories|wanted categories]].',
 # Browsing diffs
 'previousdiff' => '← پُرانی تدوین',
 'nextdiff' => 'صفحہ کا نام:',
+
+# Media information
+'file-nohires' => 'اس سے بڑی تصمیم دستیاب نہیں۔',
+'show-big-image' => 'مکمل تصمیم',
 
 # Special:NewFiles
 'newimages' => 'نئی فائلوں کی گیلری',
