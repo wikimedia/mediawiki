@@ -1202,10 +1202,12 @@ abstract class DatabaseBase implements DatabaseType {
 	 * @param $vars string|array
 	 *
 	 * May be either a field name or an array of field names. The field names
-	 * here are complete fragments of SQL, for direct inclusion into the SELECT
-	 * query. Expressions and aliases may be specified as in SQL, for example:
+	 * can be complete fragments of SQL, for direct inclusion into the SELECT
+	 * query. If an array is given, field aliases can be specified, for example:
 	 *
-	 *   array( 'MAX(rev_id) AS maxrev' )
+	 *   array( 'maxrev' => 'MAX(rev_id)' )
+	 *
+	 * This includes a expression with the alias "maxrev" in the query.
 	 *
 	 * If an expression is given, care must be taken to ensure that it is
 	 * DBMS-independent.
@@ -1335,7 +1337,7 @@ abstract class DatabaseBase implements DatabaseType {
 		$options = array(), $join_conds = array() )
 	{
 		if ( is_array( $vars ) ) {
-			$vars = implode( ',', $vars );
+			$vars = implode( ',', $this->fieldNamesWithAlias( $vars ) );
 		}
 
 		$options = (array)$options;
@@ -1442,7 +1444,7 @@ abstract class DatabaseBase implements DatabaseType {
 		$fname = 'DatabaseBase::estimateRowCount', $options = array() )
 	{
 		$rows = 0;
-		$res = $this->select( $table, 'COUNT(*) AS rowcount', $conds, $fname, $options );
+		$res = $this->select( $table, array( 'rowcount' => 'COUNT(*)' ), $conds, $fname, $options );
 
 		if ( $res ) {
 			$row = $this->fetchRow( $res );
@@ -2040,6 +2042,39 @@ abstract class DatabaseBase implements DatabaseType {
 				$alias = $table;
 			}
 			$retval[] = $this->tableNameWithAlias( $table, $alias );
+		}
+		return $retval;
+	}
+
+	/**
+	 * Get an aliased field name
+	 * e.g. fieldName AS newFieldName
+	 *
+	 * @param $name string Field name
+	 * @param $alias string|bool Alias (optional)
+	 * @return string SQL name for aliased field. Will not alias a field to its own name
+	 */
+	public function fieldNameWithAlias( $name, $alias = false ) {
+		if ( !$alias || $alias == $name ) {
+			return $name;
+		} else {
+			return $name . ' AS ' . $alias; //PostgreSQL needs AS
+		}
+	}
+
+	/**
+	 * Gets an array of aliased field names
+	 *
+	 * @param $fields array( [alias] => field )
+	 * @return array of strings, see fieldNameWithAlias()
+	 */
+	public function fieldNamesWithAlias( $fields ) {
+		$retval = array();
+		foreach ( $fields as $alias => $field ) {
+			if ( is_numeric( $alias ) ) {
+				$alias = $field;
+			}
+			$retval[] = $this->fieldNameWithAlias( $field, $alias );
 		}
 		return $retval;
 	}

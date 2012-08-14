@@ -103,7 +103,7 @@ class ApiQueryAllCategories extends ApiQueryGeneratorBase {
 					'pp_page=page_id',
 					'pp_propname' => 'hiddencat' ) ),
 			) );
-			$this->addFields( 'pp_propname AS cat_hidden' );
+			$this->addFields( array( 'cat_hidden' => 'pp_propname' ) );
 		}
 
 		$res = $this->select( __METHOD__ );

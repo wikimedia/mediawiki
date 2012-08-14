@@ -47,9 +47,9 @@ class UnusedimagesPage extends ImageQueryPage {
 		global $wgCountCategorizedImagesAsUsed;
 		$retval = array (
 			'tables' => array ( 'image', 'imagelinks' ),
-			'fields' => array ( "'" . NS_FILE . "' AS namespace",
-					'img_name AS title',
-					'img_timestamp AS value',
+			'fields' => array ( 'namespace' => NS_FILE,
+					'title' => 'img_name',
+					'value' => 'img_timestamp',
 					'img_user', 'img_user_text',
 					'img_description' ),
 			'conds' => array ( 'il_to IS NULL' ),
