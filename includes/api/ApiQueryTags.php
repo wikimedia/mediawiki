@@ -73,7 +73,7 @@ class ApiQueryTags extends ApiQueryBase {
 			if ( !$ok ) {
 				break;
 			}
-			$ok = $this->doTag( $row->ct_tag, $row->hitcount );
+			$ok = $this->doTag( $row->ct_tag, $this->fld_hitcount ? $row->hitcount : 0 );
 		}
 
 		// include tags with no hits yet
