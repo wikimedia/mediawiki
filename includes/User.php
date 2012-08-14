@@ -1766,16 +1766,22 @@ class User {
 			# Check memcached separately for anons, who have no
 			# entire User object stored in there.
 			if( !$this->mId ) {
-				global $wgMemc;
-				$key = wfMemcKey( 'newtalk', 'ip', $this->getName() );
-				$newtalk = $wgMemc->get( $key );
-				if( strval( $newtalk ) !== '' ) {
-					$this->mNewtalk = (bool)$newtalk;
+				global $wgDisableAnonTalk;
+				if( $wgDisableAnonTalk ) {
+					// Anon newtalk disabled by configuration.
+					$this->mNewtalk = false;
 				} else {
-					// Since we are caching this, make sure it is up to date by getting it
-					// from the master
-					$this->mNewtalk = $this->checkNewtalk( 'user_ip', $this->getName(), true );
-					$wgMemc->set( $key, (int)$this->mNewtalk, 1800 );
+					global $wgMemc;
+					$key = wfMemcKey( 'newtalk', 'ip', $this->getName() );
+					$newtalk = $wgMemc->get( $key );
+					if( strval( $newtalk ) !== '' ) {
+						$this->mNewtalk = (bool)$newtalk;
+					} else {
+						// Since we are caching this, make sure it is up to date by getting it
+						// from the master
+						$this->mNewtalk = $this->checkNewtalk( 'user_ip', $this->getName(), true );
+						$wgMemc->set( $key, (int)$this->mNewtalk, 1800 );
+					}
 				}
 			} else {
 				$this->mNewtalk = $this->checkNewtalk( 'user_id', $this->mId );
