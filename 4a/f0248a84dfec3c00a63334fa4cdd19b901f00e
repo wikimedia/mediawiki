@@ -1,0 +1,8 @@
+Verified+1: jenkins-bot
+Code-Review+2: Siebrand <siebrand@wikimedia.org>
+Code-Review+1: CSteipp <csteipp@wikimedia.org>
+Submitted-by: Siebrand <siebrand@wikimedia.org>
+Submitted-at: Tue, 14 Aug 2012 10:28:32 +0000
+Reviewed-on: https://gerrit.wikimedia.org/r/16274
+Project: mediawiki/core
+Branch: refs/heads/master
