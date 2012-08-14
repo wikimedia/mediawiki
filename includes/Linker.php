@@ -874,7 +874,7 @@ class Linker {
 
 			if ( $redir ) {
 				wfProfileOut( __METHOD__ );
-				return self::linkKnown( $title, "$prefix$html$inside", array(), $query ) . $trail;
+				return self::linkKnown( $title, "$prefix$html$inside", array(), wfCgiToArray( $query ) ) . $trail;
 			}
 
 			$href = self::getUploadUrl( $title, $query );
@@ -885,7 +885,7 @@ class Linker {
 				"$prefix$html$inside</a>$trail";
 		} else {
 			wfProfileOut( __METHOD__ );
-			return self::linkKnown( $title, "$prefix$html$inside", array(), $query ) . $trail;
+			return self::linkKnown( $title, "$prefix$html$inside", array(), wfCgiToArray( $query ) ) . $trail;
 		}
 	}
 
