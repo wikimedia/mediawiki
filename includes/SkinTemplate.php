@@ -628,6 +628,7 @@ class SkinTemplate extends Skin {
 			global $wgSecureLogin;
 			$proto = $wgSecureLogin ? PROTO_HTTPS : null;
 
+			$login_id = $this->showIPinHeader() ? 'anonlogin' : 'login';
 			$login_url = array(
 				'text' => $this->msg( $loginlink )->text(),
 				'href' => self::makeSpecialUrl( 'Userlogin', $returnto, $proto ),
@@ -640,10 +641,6 @@ class SkinTemplate extends Skin {
 				'active' => $title->isSpecial( 'Userlogin' ) && $is_signup,
 				'class' => $wgSecureLogin ? 'link-https' : ''
 			);
-
-			if ( $this->getUser()->isAllowed( 'createaccount' ) && !$useCombinedLoginLink ) {
-				$personal_urls['createaccount'] = $createaccount_url;
-			}
 
 			if( $this->showIPinHeader() ) {
 				$href = &$this->userpageUrlDetails['href'];
@@ -661,10 +658,13 @@ class SkinTemplate extends Skin {
 					'class' => $usertalkUrlDetails['exists'] ? false : 'new',
 					'active' => ( $pageurl == $href )
 				);
-				$personal_urls['anonlogin'] = $login_url;
-			} else {
-				$personal_urls['login'] = $login_url;
 			}
+
+			if ( $this->getUser()->isAllowed( 'createaccount' ) && !$useCombinedLoginLink ) {
+				$personal_urls['createaccount'] = $createaccount_url;
+			}
+
+			$personal_urls[$login_id] = $login_url;
 		}
 
 		wfRunHooks( 'PersonalUrls', array( &$personal_urls, &$title ) );
