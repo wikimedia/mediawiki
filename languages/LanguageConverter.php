@@ -1331,6 +1331,35 @@ class ConverterRule {
 	}
 
 	/**
+	 * Similar to getRuleConvertedStr(), but this prefers to use original
+	 * page title if $variant === $this->mConverter->mMainLanguageCode
+	 * and may return false in this case (so this title conversion rule
+	 * will be ignored and the original title is shown).
+	 *
+	 * @param $variant The variant code to display page title in
+	 * @return String|false The converted title or false if just page name
+	 */
+	function getRuleConvertedTitle( $variant ) {
+		if ( $variant === $this->mConverter->mMainLanguageCode ) {
+			// If a string targeting exactly this variant is set,
+			// use it. Otherwise, just return false, so the real
+			// page name can be shown (and because variant === main,
+			// there'll be no further automatic conversion).
+			if ( ( $disp = $this->getTextInBidtable( $variant ) ) ) {
+				return $disp;
+			}
+			if ( array_key_exists( $variant, $this->mUnidtable ) ) {
+				$disp = array_values( $this->mUnidtable[$variant] );
+				$disp = $disp[0];
+			}
+			// Assigned above or still false.
+			return $disp;
+		} else {
+			return $this->getRuleConvertedStr( $variant );
+		}
+	}
+
+	/**
 	 * Generate conversion table for all text.
 	 * @private
 	 */
@@ -1482,7 +1511,7 @@ class ConverterRule {
 					$this->mRuleDisplay = $this->getRuleConvertedStr( $variant );
 					break;
 				case 'T':
-					$this->mRuleTitle = $this->getRuleConvertedStr( $variant );
+					$this->mRuleTitle = $this->getRuleConvertedTitle( $variant );
 					$this->mRuleDisplay = '';
 					break;
 				default:
