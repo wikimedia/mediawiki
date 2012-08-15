@@ -432,9 +432,9 @@ abstract class QueryPage extends SpecialPage {
 			$options['ORDER BY'] = 'qc_value ASC';
 		}
 		$res = $dbr->select( 'querycache', array( 'qc_type',
-				'qc_namespace AS namespace',
-				'qc_title AS title',
-				'qc_value AS value' ),
+				'namespace' => 'qc_namespace',
+				'title' => 'qc_title',
+				'value' => 'qc_value' ),
 				array( 'qc_type' => $this->getName() ),
 				__METHOD__, $options
 		);

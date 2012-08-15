@@ -45,9 +45,9 @@ class BrokenRedirectsPage extends QueryPage {
 		return array(
 			'tables' => array( 'redirect', 'p1' => 'page',
 					'p2' => 'page' ),
-			'fields' => array( 'p1.page_namespace AS namespace',
-					'p1.page_title AS title',
-					'p1.page_title AS value',
+			'fields' => array( 'namespace' => 'p1.page_namespace',
+					'title' => 'p1.page_title',
+					'value' => 'p1.page_title',
 					'rd_namespace',
 					'rd_title'
 			),

@@ -103,11 +103,11 @@ class ActiveUsersPager extends UsersPager {
 
 		$query = array(
 			'tables' => array( 'recentchanges', 'user', 'ipblocks' ),
-			'fields' => array( 'rc_user_text AS user_name', // inheritance
+			'fields' => array( 'user_name' => 'rc_user_text', // inheritance
 				'rc_user_text', // for Pager
 				'user_id',
-				'COUNT(*) AS recentedits',
-				'MAX(ipb_user) AS blocked'
+				'recentedits' => 'COUNT(*)',
+				'blocked' => 'MAX(ipb_user)'
 			),
 			'options' => array(
 				'GROUP BY' => array( 'rc_user_text', 'user_id' ),

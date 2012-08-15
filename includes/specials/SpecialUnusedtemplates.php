@@ -42,9 +42,9 @@ class UnusedtemplatesPage extends QueryPage {
 	function getQueryInfo() {
 		return array (
 			'tables' => array ( 'page', 'templatelinks' ),
-			'fields' => array ( 'page_namespace AS namespace',
-					'page_title AS title',
-					'page_title AS value' ),
+			'fields' => array ( 'namespace' => 'page_namespace',
+					'title' => 'page_title',
+					'value' => 'page_title' ),
 			'conds' => array ( 'page_namespace' => NS_TEMPLATE,
 					'tl_from IS NULL',
 					'page_is_redirect' => 0 ),

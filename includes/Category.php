@@ -301,9 +301,9 @@ class Category {
 		$cond2 = $dbw->conditional( 'page_namespace=' . NS_FILE, 1, 'NULL' );
 		$result = $dbw->selectRow(
 			array( 'categorylinks', 'page' ),
-			array( 'COUNT(*) AS pages',
-				   "COUNT($cond1) AS subcats",
-				   "COUNT($cond2) AS files"
+			array( 'pages' => 'COUNT(*)',
+				   'subcats' => "COUNT($cond1)",
+				   'files' => "COUNT($cond2)"
 			),
 			array( 'cl_to' => $this->mName, 'page_id = cl_from' ),
 			__METHOD__,
