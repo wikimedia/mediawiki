@@ -25,6 +25,8 @@ upgrade PHP if you have not done so prior to upgrading MediaWiki.
 * Removed f-prot support from $wgAntivirusSetup.
 * New variable $wgDBerrorLogTZ to provide dates in the error log in a
   different timezone than the wiki timezone set by $wgLocalTimezone.
+* $wgUseCombinedLoginLink now defaults to false, making MediaWiki output separate
+  login and create account links by default.
 
 === New features in 1.20 ===
 * Added TitleIsAlwaysKnown hook which gets called when determining if a page exists.
