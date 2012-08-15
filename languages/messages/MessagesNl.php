@@ -387,7 +387,6 @@ $messages = array(
 'tog-watchlisthideliu' => 'Bewerkingen van aangemelde gebruikers op mijn volglijst verbergen',
 'tog-watchlisthideanons' => 'Bewerkingen van anonieme gebruikers op mijn volglijst verbergen',
 'tog-watchlisthidepatrolled' => 'Gemarkeerde wijzigingen op mijn volglijst verbergen',
-'tog-nolangconversion' => 'Variantomzetting uitschakelen',
 'tog-ccmeonemails' => 'Mij een kopie zenden van e-mails die ik naar andere gebruikers stuur',
 'tog-diffonly' => 'Pagina-inhoud onder wijzigingen niet weergeven',
 'tog-showhiddencats' => 'Verborgen categorieën weergeven',

@@ -128,7 +128,6 @@ $messages = array(
 'tog-watchlisthideliu' => 'Peitta sistemha tulnuziden kävutajiden redakcijad kaclendnimikirjutesespäi',
 'tog-watchlisthideanons' => 'Peitta anonimoiden redakcijad kaclendnimikirjutesespäi',
 'tog-watchlisthidepatrolled' => 'Peitta patruliruidud redakcijad kaclendnimikirjutesespäi',
-'tog-nolangconversion' => 'Saubata kirjutandsistemoiden toižetand',
 'tog-ccmeonemails' => 'Oigeta minei kaikiden minai kirjutadud kirjeižiden kopijad',
 'tog-diffonly' => 'Ala ozuta lehtpolen süadäimištod versijoiden rindatandan al',
 'tog-showhiddencats' => 'Ozutada peittud kategorijad',

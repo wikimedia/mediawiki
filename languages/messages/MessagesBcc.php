@@ -181,7 +181,6 @@ $messages = array(
 'tog-watchlisthideliu' => 'اصلاحات چه وارد بوتگین کاربران چه لیست چارگان پناه کن',
 'tog-watchlisthideanons' => 'اصلاحات ناشناسین کاربرانء چه لیست چارگ پناه کن',
 'tog-watchlisthidepatrolled' => 'ته لیست چارگ اصلاحاتی که گردگ بیتگن پناه کن',
-'tog-nolangconversion' => 'غیر فعال کتن بدل کتن مغایرت آن',
 'tog-ccmeonemails' => 'په من یک کپی چه ایمیل آنی که من په دگه کاربران راه داته دیم دی',
 'tog-diffonly' => 'چیر تفاوت محتوای صفحه ی پیش مدار',
 'tog-showhiddencats' => 'پناه ین دسته یان پیش دار',

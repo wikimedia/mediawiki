@@ -359,7 +359,6 @@ $messages = array(
 'tog-watchlisthideliu' => 'Visa inte redigeringar av inloggade användare i bevakningslistan',
 'tog-watchlisthideanons' => 'Visa inte redigeringar av anonyma användare i bevakningslistan',
 'tog-watchlisthidepatrolled' => 'Göm patrullerade redigeringar från bevakningslistan',
-'tog-nolangconversion' => 'Konvertera inte mellan språkvarianter',
 'tog-ccmeonemails' => 'Skicka kopior till mig av e-post jag skickar till andra användare',
 'tog-diffonly' => 'Visa inte sidinnehåll under diffar',
 'tog-showhiddencats' => 'Visa dolda kategorier',

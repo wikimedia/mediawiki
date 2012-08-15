@@ -322,7 +322,6 @@ $messages = array(
 'tog-watchlisthideliu' => 'Skryť úpravy prihlásených používateľov zo zoznamu sledovaných stránok',
 'tog-watchlisthideanons' => 'Skryť úpravy anonymných používateľov zo zoznamu sledovaných stránok',
 'tog-watchlisthidepatrolled' => 'Skryť strážené úpravy Zozname sledovaných stránok',
-'tog-nolangconversion' => 'Vypnúť konverziu variantov',
 'tog-ccmeonemails' => 'Posielať mi kópie mojich emailov, ktoré pošlem ostatným používateľom',
 'tog-diffonly' => 'Nezobrazovať obsah stránky pod rozdielmi',
 'tog-showhiddencats' => 'Zobraziť skryté kategórie',

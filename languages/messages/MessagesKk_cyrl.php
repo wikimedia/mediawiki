@@ -30,10 +30,6 @@ $separatorTransformTable = array(
 	'.' => ',',
 );
 
-$extraUserToggles = array(
-	'nolangconversion'
-);
-
 $fallback8bitEncoding = 'windows-1251';
 
 $linkTrail = '/^([a-zäçéğıïñöşüýʺʹа-яёәғіқңөұүһٴابپتجحدرزسشعفقكلمنڭەوۇۋۆىيچھ“»]+)(.*)$/sDu';
@@ -403,7 +399,6 @@ $messages = array(
 'tog-watchlisthideliu' => 'Бақылау тізіміндегі қатысушылардың өңдеулерін көрсетпеу',
 'tog-watchlisthideanons' => 'Бақылау тізіміндегі жасырын қатысушылардың өңдеулерін көрсетпеу',
 'tog-watchlisthidepatrolled' => 'Бақылау тізімінде тексерілген өңдеулерді көрсетпеу',
-'tog-nolangconversion' => 'Тіл нұсқаларын ауыстырма',
 'tog-ccmeonemails' => 'Басқа қатысушыға жіберген хатымның көшірмесін маған да жөнелт',
 'tog-diffonly' => 'Айырма астында бет мағлұматын көрсетпе',
 'tog-showhiddencats' => 'Жасырын санаттарды көрсету',

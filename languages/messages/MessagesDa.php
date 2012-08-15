@@ -227,7 +227,6 @@ $messages = array(
 'tog-watchlisthideliu' => 'Skjul indloggede brugeres redigeringer i overvågningslisten',
 'tog-watchlisthideanons' => 'Skjul anonyme brugeres redigeringer i overvågningslisten',
 'tog-watchlisthidepatrolled' => 'Skjul patrujerede ændringer fra overvågningslisten',
-'tog-nolangconversion' => 'Deaktiver konverteringer af sprogvarianter',
 'tog-ccmeonemails' => 'Send mig kopier af e-mails som jeg sender til andre brugere',
 'tog-diffonly' => 'Vis ved versionssammenligninger kun forskelle, ikke hele siden',
 'tog-showhiddencats' => 'Vis skjulte kategorier',

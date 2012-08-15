@@ -404,7 +404,6 @@ $messages = array(
 'tog-watchlisthideliu' => 'ウォッチリストにログイン利用者の編集を表示しない',
 'tog-watchlisthideanons' => 'ウォッチリストに匿名利用者の編集を表示しない',
 'tog-watchlisthidepatrolled' => 'ウォッチリストに巡回済みの編集を表示しない',
-'tog-nolangconversion' => '言語変種変換を無効にする',
 'tog-ccmeonemails' => '他の利用者に送信したメールの控えを自分にも送信',
 'tog-diffonly' => '差分の下にページ内容を表示しない',
 'tog-showhiddencats' => '隠しカテゴリを表示',

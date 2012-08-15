@@ -128,7 +128,6 @@ $messages = array(
 'tog-watchlisthideliu' => 'Без паказу правак удзельнікаў з ліку назіранага',
 'tog-watchlisthideanons' => 'Без паказу ананімных правак з ліку назіранага',
 'tog-watchlisthidepatrolled' => 'Без паказу ўхваленых правак у пераліку назіранага',
-'tog-nolangconversion' => 'Выключыць пераўтварэнні варыянтаў',
 'tog-ccmeonemails' => 'Слаць мне копіі маіх лістоў',
 'tog-diffonly' => 'Не паказваць рэшты старонкі пад розніцай',
 'tog-showhiddencats' => 'Паказаць схаваныя катэгорыі',

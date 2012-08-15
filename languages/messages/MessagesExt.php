@@ -60,7 +60,6 @@ $messages = array(
 'tog-watchlisthideliu' => "Açonchal eicionis d'usuárius rustrius ena lista de seguimientu",
 'tog-watchlisthideanons' => "Açonchal eicionis d'usuárius anónimus ena lista de seguimientu",
 'tog-watchlisthidepatrolled' => 'Açonchal eicionis vegilás ena lista de seguimientu',
-'tog-nolangconversion' => 'Desatival conversionis de luenguahis',
 'tog-ccmeonemails' => 'Envialmi copias de los emails que enviu a otrus usuárius',
 'tog-diffonly' => 'Nu muestral el continiu la páhina embahu las defs',
 'tog-showhiddencats' => 'Muestral categorias açonchás',

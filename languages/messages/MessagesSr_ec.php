@@ -73,11 +73,6 @@ $namespaceAliases = array(
 	'Разговор_о_МедијаВикију' => NS_MEDIAWIKI_TALK,
 );
 
-
-$extraUserToggles = array(
-	'nolangconversion',
-);
-
 $datePreferenceMigrationMap = array(
 	'default',
 	'hh:mm d. month y.',
@@ -440,7 +435,6 @@ $messages = array(
 'tog-watchlisthideliu' => 'Сакриј измене пријављених корисника са списка надгледања',
 'tog-watchlisthideanons' => 'Сакриј измене анонимних корисника са списка надгледања',
 'tog-watchlisthidepatrolled' => 'Сакриј прегледане измене са списка надгледања',
-'tog-nolangconversion' => 'Онемогући претварање писама',
 'tog-ccmeonemails' => 'Пошаљи ми примерке е-порука које пошаљем другим корисницима',
 'tog-diffonly' => 'Не приказуј садржај странице испод разлика',
 'tog-showhiddencats' => 'Прикажи скривене категорије',

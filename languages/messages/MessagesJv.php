@@ -91,7 +91,6 @@ $messages = array(
 'tog-watchlisthideliu' => 'Ngumpetaké suntingan panganggo sing mlebu log seka daftar pangawasan',
 'tog-watchlisthideanons' => 'Ngumpetaké suntingan panganggo anonim seka daftar pangawasan',
 'tog-watchlisthidepatrolled' => 'Delikna suntingan sing wis dipatroli saka daftar pangawasan',
-'tog-nolangconversion' => 'Patènana konvèrsi varian',
 'tog-ccmeonemails' => 'Kirimana aku salinan layang e-mail sing tak-kirimaké menyang wong liya',
 'tog-diffonly' => 'Aja dituduhaké isi kaca ing ngisor bédané suntingan',
 'tog-showhiddencats' => 'Tuduhna kategori sing didelikaké',

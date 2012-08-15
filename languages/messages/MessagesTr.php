@@ -362,7 +362,6 @@ $messages = array(
 'tog-watchlisthideliu' => 'İzleme listemde, kayıtlı kullanıcılar tarafından yapılan değişiklikleri gösterme',
 'tog-watchlisthideanons' => 'İzleme listemde, anonim kullanıcılar tarafından yapılan değişiklikleri gizle',
 'tog-watchlisthidepatrolled' => 'İzleme listesinde kontrol edilmiş değişiklikleri gizle',
-'tog-nolangconversion' => 'Varyant dönüştürmesini devre dışı bırak',
 'tog-ccmeonemails' => 'Diğer kullanıcılara gönderdiğim e-postaların kopyalarını bana da gönder',
 'tog-diffonly' => 'Sayfa içeriğini sürüm farklarının altında gösterme',
 'tog-showhiddencats' => 'Gizli kategorileri göster',

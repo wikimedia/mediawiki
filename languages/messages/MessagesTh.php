@@ -224,7 +224,6 @@ $messages = array(
 'tog-watchlisthideliu' => 'ซ่อนการแก้ไขโดยผู้ใช้ล็อกอินจากรายการเฝ้าดู',
 'tog-watchlisthideanons' => 'ซ่อนการแก้ไขโดยผู้ใช้นิรนามจากรายการเฝ้าดู',
 'tog-watchlisthidepatrolled' => 'ซ่อนการแก้ไขที่ตรวจแล้วจากรายการเฝ้าดู',
-'tog-nolangconversion' => 'ปิดใช้งานการแปลงอักษรต่างรูป',
 'tog-ccmeonemails' => 'ส่งสำเนาอีเมลกลับมาทุกครั้งที่ส่งหาคนอื่น',
 'tog-diffonly' => 'ไม่แสดงเนื้อหาใต้ส่วนต่างการแก้ไข',
 'tog-showhiddencats' => 'แสดงหมวดหมู่ที่ซ่อนอยู่',

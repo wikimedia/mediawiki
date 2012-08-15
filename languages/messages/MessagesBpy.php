@@ -87,7 +87,6 @@ $messages = array(
 'tog-watchlisthideliu' => 'তালাবিত থুৱাসি পাতার মা হমাসি আতাকুরার পতানি গুর',
 'tog-watchlisthideanons' => 'তালাবিত থুৱাসি পাতার মা বেনাঙর আতাকুরার পতানি গুর',
 'tog-watchlisthidepatrolled' => 'পরীক্ষিত অসে পতা অতা তালাবিত থুৱাসি পাতার মা গুর',
-'tog-nolangconversion' => 'সারুকর সিলপা থেপকর',
 'tog-ccmeonemails' => 'আরতারে দিয়াপেঠাউরি ইমেইল মরাঙউ কপি আহান যাকগা',
 'tog-diffonly' => 'ফারাকর তলে পাতাহানর বিষয়বস্তু নাদেখাদি',
 'tog-showhiddencats' => 'আরুমে আসে থাকহানি ফংকর',

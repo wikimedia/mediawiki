@@ -349,7 +349,6 @@ $messages = array(
 'tog-watchlisthideliu' => 'Bewarkingen van an-emelde gebrukers op mien volglieste verbargen',
 'tog-watchlisthideanons' => 'Bewarkingen van anonieme gebrukers op mien volglieste verbargen',
 'tog-watchlisthidepatrolled' => 'Wiezigingen die emarkeerd bin op volglieste verbargen',
-'tog-nolangconversion' => 't Ummezetten van variaanten uutschakelen',
 'tog-ccmeonemails' => 'Stuur mien kopieën van berichten an aandere gebrukers',
 'tog-diffonly' => 'Laot de inhoud van ziejen niet onder de an-egeven wiezigingen zien.',
 'tog-showhiddencats' => 'Laot verbörgen kategorieën zien',

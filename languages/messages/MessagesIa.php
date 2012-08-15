@@ -183,7 +183,6 @@ $messages = array(
 'tog-watchlisthideliu' => 'Celar modificationes de usatores registrate in le observatorio',
 'tog-watchlisthideanons' => 'Celar modificationes de usatores anonyme in le observatorio',
 'tog-watchlisthidepatrolled' => 'Celar le modificationes patruliate in le observatorio',
-'tog-nolangconversion' => 'Disactivar conversion de variantes',
 'tog-ccmeonemails' => 'Inviar me copias del messages de e-mail que io invia a altere usatores',
 'tog-diffonly' => 'Non monstrar le contento del pagina sub le comparation de duo versiones',
 'tog-showhiddencats' => 'Monstrar categorias celate',

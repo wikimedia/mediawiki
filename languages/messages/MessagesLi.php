@@ -198,7 +198,6 @@ $messages = array(
 'tog-watchlisthideliu' => 'Bewirkinge van aangemelde gebroekers op mien volglies versjtaeke',
 'tog-watchlisthideanons' => 'Bewirkinge van anonieme gebroekers op mien volglies versjtaeke',
 'tog-watchlisthidepatrolled' => 'Gemarkeerde wieziginge op mien volglies verberge',
-'tog-nolangconversion' => 'Variantconversie oetsjakele',
 'tog-ccmeonemails' => "'n Kopie nao mich versjikke van de e-mail dae ich nao anger gebroekers sjik",
 'tog-diffonly' => 'Pagina-inhaud zónger verangeringe neet tuine',
 'tog-showhiddencats' => 'Verbórge categorië tuine',

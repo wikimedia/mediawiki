@@ -307,7 +307,6 @@ $messages = array(
 'tog-watchlisthideliu' => "Rakiqunayuq ruraqkunap llamk'apusqankunata watiqay sutisuyupi pakay",
 'tog-watchlisthideanons' => "Rakiqunannaq ruraqkunap llamk'apusqankunata watiqay sutisuyupi pakay",
 'tog-watchlisthidepatrolled' => "Patrullasqa llamk'apusqakunata watiqasqakunapi pakay",
-'tog-nolangconversion' => 'Simi kutiyman ama niy',
 'tog-ccmeonemails' => 'Huk ruraqkunaman kachasqay e-chaskikunamanta iskaychasqakunata kachamuway',
 'tog-diffonly' => "Huk kaykunap uranpi kaq p'anqap samiqninta ama rikuchiychu",
 'tog-showhiddencats' => 'Pakasqa katiguriyakunata rikuchiy',

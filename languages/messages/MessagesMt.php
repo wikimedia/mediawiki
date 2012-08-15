@@ -313,7 +313,6 @@ $messages = array(
 'tog-watchlisthideliu' => "Aħbi modifiki minn utenti illogjati mil-lista ta' osservazzjoni tiegħi",
 'tog-watchlisthideanons' => "Aħbi modifiki minn utenti anonimi mil-lista ta' osservazzjoni",
 'tog-watchlisthidepatrolled' => "Aħbi l-modifiki verifikati mil-lista ta' osservazzjoni",
-'tog-nolangconversion' => 'Disattiva konversazzjonijiet fost varjanti lingwistiċi',
 'tog-ccmeonemails' => "Ibgħatli kopji tal-ittri-e li nibgħat 'l utenti oħrajn",
 'tog-diffonly' => 'Turiex kontenut tal-paġni wara li tkun għamilt paragun bejn il-verżjonijiet',
 'tog-showhiddencats' => 'Uri kategoriji moħbija',

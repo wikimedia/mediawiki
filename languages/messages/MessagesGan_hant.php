@@ -96,7 +96,6 @@ $messages = array(
 'tog-watchlisthideliu' => '到監視清單裡頭弆到登入用戶',
 'tog-watchlisthideanons' => '到監視清單裡頭弆到匿名用戶',
 'tog-watchlisthidepatrolled' => '到監視清單裡頭弆到巡查過嗰編輯',
-'tog-nolangconversion' => '嫑字轉換',
 'tog-ccmeonemails' => '我發email到人家時也發封副本到我',
 'tog-diffonly' => '比較兩隻版本差異嗰時間伓顯示文章嗰內容',
 'tog-showhiddencats' => '顯示弆到嗰分類',

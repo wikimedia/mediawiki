@@ -354,7 +354,6 @@ $messages = array(
 'tog-watchlisthideliu' => 'Skjul endringer av innloggede brukere fra overvåkningslisten',
 'tog-watchlisthideanons' => 'Skjul endringer av anonyme brukere fra overvåkningslisten',
 'tog-watchlisthidepatrolled' => 'Skjul patruljerte endringer fra overvåkningslisten',
-'tog-nolangconversion' => 'Slå av konvertering mellom språkvarianter',
 'tog-ccmeonemails' => 'Send meg kopier av e-poster jeg sender til andre brukere',
 'tog-diffonly' => 'Ikke vis sideinnhold under differ',
 'tog-showhiddencats' => 'Vis skjulte kategorier',

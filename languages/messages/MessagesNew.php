@@ -79,7 +79,6 @@ $messages = array(
 'tog-watchlisthideminor'      => 'वाचलिस्टं चीधंगु सम्पादन सुचुकादिसँ',
 'tog-watchlisthideliu'        => 'वाचलिस्टं लग्ड इन छ्यलामितेगु सम्पादन सुचुकादिसँ',
 'tog-watchlisthideanons'      => 'वाचलिस्टं अज्ञात छ्यलामिया सम्पादन सुचुकादिसँ',
-'tog-nolangconversion'        => 'भेरियन्ट (variant) कन्भर्जन डिसेबल यानादिसँ',
 'tog-ccmeonemails'            => 'जिं मेपिं छ्यलामितेगु छ्वइगु इ-मेलतेगु कपि जित नं छ्वयादिसँ',
 'tog-diffonly'                => 'पाःगु (diffs) स्वया क्वेया पौया कण्टेण्ट क्यनादिमते',
 'tog-showhiddencats'          => 'सुचुकातगु पुचःत क्यनादिसँ',

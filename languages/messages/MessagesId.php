@@ -377,7 +377,6 @@ $messages = array(
 'tog-watchlisthideliu' => 'Sembunyikan suntingan pengguna masuk log di daftar pantauan',
 'tog-watchlisthideanons' => 'Sembunyikan suntingan pengguna anonim di daftar pantauan',
 'tog-watchlisthidepatrolled' => 'Sembunyikan suntingan terpatroli di daftar pantauan',
-'tog-nolangconversion' => 'Matikan konversi varian',
 'tog-ccmeonemails' => 'Kirimkan saya salinan surel yang saya kirimkan ke orang lain',
 'tog-diffonly' => 'Jangan tampilkan isi halaman di bawah perbedaan suntingan',
 'tog-showhiddencats' => 'Tampilkan kategori tersembunyi',

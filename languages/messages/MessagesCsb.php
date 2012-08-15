@@ -79,7 +79,6 @@ $messages = array(
 'tog-watchlisthideliu' => 'Zatacë edicëje wlogòwónych brëkòwników na lësce ùzérónych artiklów',
 'tog-watchlisthideanons' => 'Zatacë edicëje anonimòwich brëkòwników na lësce ùzérónych artiklów',
 'tog-watchlisthidepatrolled' => 'Zatacë sprôwdzoné edicëje z lëstë ùzérónych artiklów',
-'tog-nolangconversion' => 'Wëłączë kònwersëjã wariantów',
 'tog-ccmeonemails' => 'Sélôj do mie kòpije e-mailów, chtërné sélóm do jinych brëkòwników',
 'tog-diffonly' => 'Nie wëskrzëniôj zamkłoscë starnë niżi przërónaniô zjinaków',
 'tog-showhiddencats' => 'Wëskrzëni zataconé kategòrëje',

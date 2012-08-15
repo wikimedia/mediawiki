@@ -438,7 +438,6 @@ $messages = array(
 'tog-watchlisthideliu' => 'Bearbeitungen angemeldeter Benutzer in der Beobachtungsliste ausblenden',
 'tog-watchlisthideanons' => 'Bearbeitungen anonymer Benutzer (IP-Adressen) in der Beobachtungsliste ausblenden',
 'tog-watchlisthidepatrolled' => 'Kontrollierte Änderungen in der Beobachtungsliste ausblenden',
-'tog-nolangconversion' => 'Konvertierung von Sprachvarianten deaktivieren',
 'tog-ccmeonemails' => 'Schicke mir Kopien der E-Mails, die ich anderen Benutzern sende',
 'tog-diffonly' => 'Beim Versionsvergleich nur die Unterschiede und nicht die vollständige Seite anzeigen',
 'tog-showhiddencats' => 'Anzeige versteckter Kategorien',

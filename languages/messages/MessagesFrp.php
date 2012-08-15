@@ -350,7 +350,6 @@ $messages = array(
 'tog-watchlisthideliu' => 'Cachiér los changements fêts per des utilisators branchiês dedens la lista de survelyence',
 'tog-watchlisthideanons' => 'Cachiér los changements fêts per des utilisators anonimos dedens la lista de survelyence',
 'tog-watchlisthidepatrolled' => 'Cachiér los changements survelyês dedens la lista de survelyence',
-'tog-nolangconversion' => 'Dèsactivar la convèrsion de les variantes lengouistiques',
 'tog-ccmeonemails' => 'Mè mandar na copia des mèssâjos que mando ux ôtros utilisators',
 'tog-diffonly' => 'Pas fâre vêre lo contegnu de les pâges desot los difs',
 'tog-showhiddencats' => 'Fâre vêre les catègories cachiêyes',

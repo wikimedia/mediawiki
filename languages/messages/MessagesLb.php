@@ -216,7 +216,6 @@ $messages = array(
 'tog-watchlisthideliu' => 'Ännerunge vun ugemellte Benotzer verstoppen',
 'tog-watchlisthideanons' => 'Ännerunge vun anonyme Benotzer (IP-Adressen) verstoppen',
 'tog-watchlisthidepatrolled' => 'Iwwerkuckten Ännerungen op der Iwwerwaachungslëscht verstoppen',
-'tog-nolangconversion' => 'Ëmwandlung vu Sproochvarianten ausschalten',
 'tog-ccmeonemails' => 'Schéck mir eng Kopie vun de Mailen, déi ech anere Benotzer schécken.',
 'tog-diffonly' => "Weis bei Versiounsvergläicher just d'Ënnerscheeder an net déi ganz Säit",
 'tog-showhiddencats' => 'Verstoppt Kategorië weisen',

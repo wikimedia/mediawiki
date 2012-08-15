@@ -389,7 +389,6 @@ $messages = array(
 'tog-watchlisthideliu' => 'Ocultar ediciones de usuarios registrados en la lista de seguimiento',
 'tog-watchlisthideanons' => 'Ocultar ediciones de usuarios anónimos en la lista de seguimiento',
 'tog-watchlisthidepatrolled' => 'Ocultar las ediciones patrulladas en la lista de seguimiento',
-'tog-nolangconversion' => 'Deshabilitar conversión de lenguajes',
 'tog-ccmeonemails' => 'Recibir copias de los correos que envío a otros usuarios',
 'tog-diffonly' => 'No mostrar el contenido de la página bajo las diferencias',
 'tog-showhiddencats' => 'Mostrar categorías escondidas',

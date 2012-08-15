@@ -172,7 +172,6 @@ $messages = array(
 'tog-watchlisthideliu' => 'Amagar en a lista de seguimiento as edicions feitas por usuarios rechistratos',
 'tog-watchlisthideanons' => 'Amagar en a lista de seguimiento as edicions feitas por usuarios anonimos.',
 'tog-watchlisthidepatrolled' => 'Amagar as edicions patrullatas en a lista de seguimiento',
-'tog-nolangconversion' => 'Desautibar conversión de bariants',
 'tog-ccmeonemails' => 'Recibir copias de os correus que ninvío ta atros usuarios',
 'tog-diffonly' => "No amostrar o conteniu d'a pachina debaixo d'as esferencias",
 'tog-showhiddencats' => 'Amostrar categorías amagatas',

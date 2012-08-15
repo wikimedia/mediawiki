@@ -74,7 +74,6 @@ $messages = array(
 'tog-watchlisthideliu' => '到监视清单里头弆到登入用户',
 'tog-watchlisthideanons' => '到监视清单里头弆到匿名用户',
 'tog-watchlisthidepatrolled' => '到监视清单里头弆到巡查过𠮶编辑',
-'tog-nolangconversion' => '嫑字转换',
 'tog-ccmeonemails' => '偶发email到人家时也发封副本到偶',
 'tog-diffonly' => '比较两只版本差异𠮶时间伓显示文章𠮶内容',
 'tog-showhiddencats' => '显示弆到𠮶分类',
