@@ -356,6 +356,10 @@ class DatabasePostgres extends DatabaseBase {
 		if ( $port != false && $port != '' ) {
 			$connectVars['port'] = $port;
 		}
+		if( $this->mFlags & DBO_SSL ) {
+			$connectVars['sslmode'] = 1;
+		}
+
 		$this->connectString = $this->makeConnectionString( $connectVars, PGSQL_CONNECT_FORCE_NEW );
 		$this->close();
 		$this->installErrorHandler();

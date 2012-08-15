@@ -191,6 +191,16 @@ class LBFactory_Simple extends LBFactory {
 			$servers = $wgDBservers;
 		} else {
 			global $wgDBserver, $wgDBuser, $wgDBpassword, $wgDBname, $wgDBtype, $wgDebugDumpSql;
+			global $wgDBssl, $wgDBcompress;
+
+			$flags = ( $wgDebugDumpSql ? DBO_DEBUG : 0 ) | DBO_DEFAULT;
+			if( $wgDBssl ) {
+				$flags |= DBO_SSL;
+			}
+			if( $wgDBcompress ) {
+				$flags |= DBO_COMPRESS;
+			}
+
 			$servers = array(array(
 				'host' => $wgDBserver,
 				'user' => $wgDBuser,
@@ -198,7 +208,7 @@ class LBFactory_Simple extends LBFactory {
 				'dbname' => $wgDBname,
 				'type' => $wgDBtype,
 				'load' => 1,
-				'flags' => ($wgDebugDumpSql ? DBO_DEBUG : 0) | DBO_DEFAULT
+				'flags' => $flags
 			));
 		}
 

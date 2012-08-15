@@ -44,6 +44,8 @@ define( 'DBO_DEFAULT', 16 );
 define( 'DBO_PERSISTENT', 32 );
 define( 'DBO_SYSDBA', 64 ); //for oracle maintenance
 define( 'DBO_DDLMODE', 128 ); // when using schema files: mostly for Oracle
+define( 'DBO_SSL', 256 );
+define( 'DBO_COMPRESS', 512 );
 /**@}*/
 
 /**@{

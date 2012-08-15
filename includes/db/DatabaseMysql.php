@@ -83,6 +83,14 @@ class DatabaseMysql extends DatabaseBase {
 		$this->mPassword = $password;
 		$this->mDBname = $dbName;
 
+		$connFlags = 0;
+		if( $this->mFlags & DBO_SSL ) {
+			$connFlags |= MYSQL_CLIENT_SSL;
+		}
+		if( $this->mFlags & DBO_COMPRESS ) {
+			$connFlags |= MYSQL_CLIENT_COMPRESS;
+		}
+
 		wfProfileIn("dbconnect-$server");
 
 		# The kernel's default SYN retransmission period is far too slow for us,
@@ -100,10 +108,10 @@ class DatabaseMysql extends DatabaseBase {
 				usleep( 1000 );
 			}
 			if ( $this->mFlags & DBO_PERSISTENT ) {
-				$this->mConn = mysql_pconnect( $realServer, $user, $password );
+				$this->mConn = mysql_pconnect( $realServer, $user, $password, $connFlags );
 			} else {
 				# Create a new connection...
-				$this->mConn = mysql_connect( $realServer, $user, $password, true );
+				$this->mConn = mysql_connect( $realServer, $user, $password, true, $connFlags );
 			}
 			#if ( $this->mConn === false ) {
 				#$iplus = $i + 1;

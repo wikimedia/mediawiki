@@ -1308,6 +1308,10 @@ $wgDBuser = 'wikiuser';
 $wgDBpassword = '';
 /** Database type */
 $wgDBtype = 'mysql';
+/** Whether to use SSL in DB connection. */
+$wgDBssl = false;
+/** Whether to use compression in DB connection. */
+$wgDBcompress = false;
 
 /** Separate username for maintenance tasks. Leave as null to use the default. */
 $wgDBadminuser = null;
@@ -1393,6 +1397,8 @@ $wgSharedTables = array( 'user', 'user_properties' );
  *                  - DBO_IGNORE -- ignore errors (not useful in LocalSettings.php)
  *                  - DBO_NOBUFFER -- turn off buffering (not useful in LocalSettings.php)
  *                  - DBO_PERSISTENT -- enables persistent database connections
+ *                  - DBO_SSL -- uses SSL/TLS encryption in database connections, if available
+ *                  - DBO_COMPRESS -- uses internal compression in database connections, if available
  *
  *   - max lag:     (optional) Maximum replication lag before a slave will taken out of rotation
  *   - max threads: (optional) Maximum number of running threads
