@@ -1604,6 +1604,23 @@ External links: [IDN ignored character reference in hostname; strip it right off
 </p>
 !! end
 
+# FIXME: This test (the IDN characters in the text of a link) is an inconsistency.
+# Where an external link could easily circumvent the sanitization of the text of
+# a link like this (where an IDN-ignore character is in the URL somewhere), this
+# test demands a higher standard. That's a bit strange.
+#
+# Example:
+#
+# http://e‌xample.com -> [http://example.com|http://example.com]
+# [http://example.com|http://e‌xample.com] -> [http://example.com|http://e‌xample.com]
+#
+# The first example is sanitized, but the second is not. Any security benefits
+# from this production are trivial to circumvent. Either remove this test and
+# let the parser(s) do their thing unaccosted, or fix the inconsistency and change
+# the test accordingly.
+#
+# All our love,
+# The Parsoid team.
 !! test
 External links: IDN ignored character reference in hostname; strip it right off
 !! input
