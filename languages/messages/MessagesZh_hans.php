@@ -242,9 +242,6 @@ $magicWords = array(
 
 $linkTrail = '/^()(.*)$/sD';
 
-$extraUserToggles = array(
-	'nolangconversion',
-);
 $datePreferences = array(
 	'default',
 	'ISO 8601',

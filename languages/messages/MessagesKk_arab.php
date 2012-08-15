@@ -46,10 +46,6 @@ $separatorTransformTable = array(
 	',' => '٬', # &#x066c;
 );
 
-$extraUserToggles = array(
-	'nolangconversion'
-);
-
 $fallback8bitEncoding = 'windows-1256';
 
 $namespaceNames = array(

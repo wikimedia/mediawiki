@@ -73,11 +73,6 @@ $namespaceAliases = array(
 	'Разговор_о_МедијаВикију' => NS_MEDIAWIKI_TALK,
 );
 
-
-$extraUserToggles = array(
-	'nolangconversion',
-);
-
 $datePreferenceMigrationMap = array(
 	'default',
 	'hh:mm d. month y.',

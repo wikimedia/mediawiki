@@ -30,10 +30,6 @@ $separatorTransformTable = array(
 	'.' => ',',
 );
 
-$extraUserToggles = array(
-	'nolangconversion'
-);
-
 $fallback8bitEncoding = 'windows-1251';
 
 $linkTrail = '/^([a-zäçéğıïñöşüýʺʹа-яёәғіқңөұүһٴابپتجحدرزسشعفقكلمنڭەوۇۋۆىيچھ“»]+)(.*)$/sDu';
