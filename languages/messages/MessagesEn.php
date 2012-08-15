@@ -679,7 +679,7 @@ XHTML id names.
 'tog-ccmeonemails'            => 'Send me copies of e-mails I send to other users',
 'tog-diffonly'                => 'Do not show page content below diffs',
 'tog-showhiddencats'          => 'Show hidden categories',
-'tog-noconvertlink'           => 'Disable link title conversion', # only translate this message to other languages if you have to change it
+'tog-noconvertlink'           => 'Don\'t find an alternative title when a nonexistent title is accessed', # only translate this message to other languages if you have to change it
 'tog-norollbackdiff'          => 'Omit diff after performing a rollback',
 
 'underline-always'  => 'Always',
