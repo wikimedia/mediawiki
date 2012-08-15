@@ -2683,7 +2683,7 @@ $wgFooterIcons = array(
  *  - true = use a combined login / create account link
  *  - false = split login and create account into two separate links
  */
-$wgUseCombinedLoginLink = true;
+$wgUseCombinedLoginLink = false;
 
 /**
  * Search form behavior for Vector skin only.
