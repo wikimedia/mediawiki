@@ -1957,23 +1957,37 @@ class WikiPage extends Page implements IDBAccessObject {
 				$cascade = false;
 			}
 
+			global $wgMemc;
+			$memcKey = wfMemcKey( 'page_restrictions', $id );
+			$memcVal = array();
+
 			# Update restrictions table
 			foreach ( $limit as $action => $restrictions ) {
 				if ( $restrictions != '' ) {
-					$dbw->replace( 'page_restrictions', array( array( 'pr_page', 'pr_type' ) ),
-						array( 'pr_page' => $id,
-							'pr_type' => $action,
-							'pr_level' => $restrictions,
-							'pr_cascade' => ( $cascade && $action == 'edit' ) ? 1 : 0,
-							'pr_expiry' => $encodedExpiry[$action]
-						),
+					$info = array(
+						'pr_page' => $id,
+						'pr_type' => $action,
+						'pr_level' => $restrictions,
+						'pr_cascade' => ( $cascade && $action == 'edit' ) ? 1 : 0,
+						'pr_expiry' => $encodedExpiry[$action]
+					);
+
+					// Submit DB query, then add to memcached value array.
+					$dbw->replace(
+						'page_restrictions',
+						array( array( 'pr_page', 'pr_type' ) ),
+						$info,
 						__METHOD__
 					);
+					$memcVal[] = (object) $info;
 				} else {
 					$dbw->delete( 'page_restrictions', array( 'pr_page' => $id,
 						'pr_type' => $action ), __METHOD__ );
 				}
 			}
+
+			// Update the cache.
+			$wgMemc->set( $memcKey, $memcVal );
 
 			# Prepare a null revision to be added to the history
 			$editComment = $wgContLang->ucfirst( wfMsgForContent( $revCommentMsg, $this->mTitle->getPrefixedText() ) );

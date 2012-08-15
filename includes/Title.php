@@ -2623,14 +2623,23 @@ class Title {
 		global $wgContLang;
 		if ( !$this->mRestrictionsLoaded ) {
 			if ( $this->exists() ) {
-				$dbr = wfGetDB( DB_SLAVE );
+				global $wgMemc;
+				$memcKey = wfMemcKey( 'page_restrictions', $this->getArticleID() );
+				$res = $wgMemc->get( $memcKey );
 
-				$res = $dbr->select(
-					'page_restrictions',
-					'*',
-					array( 'pr_page' => $this->getArticleID() ),
-					__METHOD__
-				);
+				if( $res === false ) {
+					$dbr = wfGetDB( DB_SLAVE );
+
+					$res = $dbr->select(
+						'page_restrictions',
+						'*',
+						array( 'pr_page' => $this->getArticleID() ),
+						__METHOD__
+					);
+
+					$memcVal = iterator_to_array( $res );
+					$wgMemc->set( $memcKey, $memcVal );
+				}
 
 				$this->loadRestrictionsFromResultWrapper( $res, $oldFashionedRestrictions );
 			} else {

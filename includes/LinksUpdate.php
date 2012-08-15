@@ -838,7 +838,10 @@ class LinksDeletionUpdate extends SqlDataUpdate {
 		$id = $this->mPage->getId();
 
 		# Delete restrictions for it
+		global $wgMemc;
 		$this->mDb->delete( 'page_restrictions', array ( 'pr_page' => $id ), __METHOD__ );
+		$memcKey = wfMemcKey( 'page_restrictions', $id );
+		$wgMemc->delete( $memcKey );
 
 		# Fix category table counts
 		$cats = array();
