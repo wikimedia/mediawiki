@@ -254,25 +254,25 @@ $forms_whitelist['webitects_2_3stepB-US'] = array(
 $forms_whitelist['webitects2nd'] = array(
 	'file' => $form_dirs['gc'] . '/webitects2nd.html',
 	'gateway' => 'globalcollect',
-	'payment_methods' => array('cc' => array( 'visa', 'mc' ))
+//	'payment_methods' => array('cc' => array( 'visa', 'mc' ))
 );
 
 $forms_whitelist['webitects2nd-US'] = array(
 	'file' => $form_dirs['gc'] . '/webitects2nd-US.html',
 	'gateway' => 'globalcollect',
-	'payment_methods' => array('cc' => array( 'visa', 'mc' ))
+//	'payment_methods' => array('cc' => array( 'visa', 'mc' ))
 );
 
 $forms_whitelist['webitects2nd_green-US'] = array(
 	'file' => $form_dirs['gc'] . '/webitects2nd_green-US.html',
 	'gateway' => 'globalcollect',
-	'payment_methods' => array('cc' => array( 'visa', 'mc' ))
+//	'payment_methods' => array('cc' => array( 'visa', 'mc' ))
 );
 
 $forms_whitelist['webitects2nd-amex'] = array(
 	'file' => $form_dirs['gc'] . '/webitects2nd-amex.html',
 	'gateway' => 'globalcollect',
-	'payment_methods' => array('cc' => array( 'visa', 'mc', 'amex' ))
+//	'payment_methods' => array('cc' => array( 'visa', 'mc', 'amex' ))
 );
 
 
