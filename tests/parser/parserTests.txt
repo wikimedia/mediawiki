@@ -8905,6 +8905,30 @@ This won't take interferes with the title rule.
 !! end
 
 !! test
+Partly disable title conversion if variant == main language code
+!! options
+language=zh variant=zh title=[[ZH]] showtitle
+!! input
+-{T|zh-cn:CN;zh-tw:TW}-
+!! result
+ZH
+<p>
+</p>
+!! end
+
+!! test
+Partly disable title conversion if variant == main language code, more
+!! options
+language=zh variant=zh title=[[ZH]] showtitle
+!! input
+-{T|TW}-
+!! result
+ZH
+<p>
+</p>
+!! end
+
+!! test
 Raw output of variant escape tags (R flag)
 !! options
 language=zh variant=zh-tw
