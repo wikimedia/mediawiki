@@ -45,9 +45,9 @@ class MIMEsearchPage extends QueryPage {
 	public function getQueryInfo() {
 		return array(
 			'tables' => array( 'image' ),
-			'fields' => array( "'" . NS_FILE . "' AS namespace",
-					'img_name AS title',
-					'img_major_mime AS value',
+			'fields' => array( 'namespace' => NS_FILE,
+					'title' => 'img_name',
+					'value' => 'img_major_mime',
 					'img_size',
 					'img_width',
 					'img_height',

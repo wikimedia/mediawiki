@@ -40,9 +40,9 @@ class WantedTemplatesPage extends WantedQueryPage {
 	function getQueryInfo() {
 		return array (
 			'tables' => array ( 'templatelinks', 'page' ),
-			'fields' => array ( 'tl_namespace AS namespace',
-					'tl_title AS title',
-					'COUNT(*) AS value' ),
+			'fields' => array ( 'namespace' => 'tl_namespace',
+					'title' => 'tl_title',
+					'value' => 'COUNT(*)' ),
 			'conds' => array ( 'page_title IS NULL',
 					'tl_namespace' => NS_TEMPLATE ),
 			'options' => array (

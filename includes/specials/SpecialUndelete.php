@@ -92,7 +92,7 @@ class PageArchive {
 				array(
 					'ar_namespace',
 					'ar_title',
-					'COUNT(*) AS count'
+					'count' => 'COUNT(*)'
 				),
 				$condition,
 				__METHOD__,

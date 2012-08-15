@@ -158,8 +158,8 @@ abstract class Job {
 		if ( !$affected ) {
 			// Failed, someone else beat us to it
 			// Try getting a random row
-			$row = $dbw->selectRow( 'job', array( 'MIN(job_id) as minjob',
-				'MAX(job_id) as maxjob' ), '1=1', __METHOD__ );
+			$row = $dbw->selectRow( 'job', array( 'minjob' => 'MIN(job_id)',
+				'maxjob' => 'MAX(job_id)' ), '1=1', __METHOD__ );
 			if ( $row === false || is_null( $row->minjob ) || is_null( $row->maxjob ) ) {
 				// No jobs to get
 				wfProfileOut( __METHOD__ );

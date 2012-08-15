@@ -50,9 +50,9 @@ class LonelyPagesPage extends PageQueryPage {
 		return array (
 			'tables' => array ( 'page', 'pagelinks',
 					'templatelinks' ),
-			'fields' => array ( 'page_namespace AS namespace',
-					'page_title AS title',
-					'page_title AS value' ),
+			'fields' => array ( 'namespace' => 'page_namespace',
+					'title' => 'page_title',
+					'value' => 'page_title' ),
 			'conds' => array ( 'pl_namespace IS NULL',
 					'page_namespace' => MWNamespace::getContentNamespaces(),
 					'page_is_redirect' => 0,

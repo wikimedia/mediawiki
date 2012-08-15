@@ -152,7 +152,7 @@ class ApiQueryAllUsers extends ApiQueryBase {
 				'INNER JOIN', 'rc_user_text=user_name'
 			) ) );
 
-			$this->addFields( 'COUNT(*) AS recentedits' );
+			$this->addFields( array( 'recentedits' => 'COUNT(*)' ) );
 
 			$this->addWhere( 'rc_log_type IS NULL OR rc_log_type != ' . $db->addQuotes( 'newusers' ) );
 			$timestamp = $db->timestamp( wfTimestamp( TS_UNIX ) - $wgActiveUserDays*24*3600 );
