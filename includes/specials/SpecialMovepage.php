@@ -629,8 +629,9 @@ class MovePageForm extends UnlistedSpecialPage {
 	}
 
 	function showLogFragment( $title ) {
+		$moveLogPage = new LogPage( 'move' );
 		$out = $this->getOutput();
-		$out->addHTML( Xml::element( 'h2', null, LogPage::logName( 'move' ) ) );
+		$out->addHTML( Xml::element( 'h2', null, $moveLogPage->getName()->text() ) );
 		LogEventsList::showLogExtract( $out, 'move', $title );
 	}
 
