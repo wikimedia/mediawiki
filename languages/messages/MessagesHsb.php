@@ -194,7 +194,6 @@ $messages = array(
 'tog-watchlisthideliu' => 'Změny přizjewjenych wužiwarjow z wobkedźbowankow schować',
 'tog-watchlisthideanons' => 'Změny anonymnych wužiwarjow z wobkedźbowankow schować',
 'tog-watchlisthidepatrolled' => 'Dohladowane změny we wobkedźbowankach schować',
-'tog-nolangconversion' => 'Konwertowanje rěčnych wariantow znjemóžnić',
 'tog-ccmeonemails' => 'Mi kopije e-mejlkow pósłać, kotrež druhim wužiwarjam pósćelu',
 'tog-diffonly' => 'Jenož rozdźěle pokazać (nic pak zbytny wobsah)',
 'tog-showhiddencats' => 'Schowane kategorije pokazać',

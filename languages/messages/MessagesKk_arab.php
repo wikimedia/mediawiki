@@ -46,10 +46,6 @@ $separatorTransformTable = array(
 	',' => '٬', # &#x066c;
 );
 
-$extraUserToggles = array(
-	'nolangconversion'
-);
-
 $fallback8bitEncoding = 'windows-1256';
 
 $namespaceNames = array(
@@ -432,7 +428,6 @@ $messages = array(
 'tog-watchlisthideown' => 'وڭدەمەلەرىمدى باقىلاۋ تىزىمنەن جاسىر',
 'tog-watchlisthidebots' => 'بوت وڭدەمەلەرىن باقىلاۋ تىزىمنەن جاسىر',
 'tog-watchlisthideminor' => 'شاعىن وڭدەمەلەردى باقىلاۋ تىزىمىندە كورسەتپە',
-'tog-nolangconversion' => 'ٴتىل ٴتۇرى اۋدارىسىن ٴوشىر',
 'tog-ccmeonemails' => 'باسقا قاتىسۋشىعا جىبەرگەن حاتىمنىڭ كوشىرمەسىن ماعان دا جونەلت',
 'tog-diffonly' => 'ايىرما استىندا بەت ماعلۇماتىن كورسەتپە',
 'tog-showhiddencats' => 'جاسىرىن ساناتتاردى كورسەت',

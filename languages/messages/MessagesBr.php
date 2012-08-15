@@ -219,7 +219,6 @@ $messages = array(
 'tog-watchlisthideliu' => 'Er roll evezhiañ, kuzhat kemmoù an implijerien kevreet.',
 'tog-watchlisthideanons' => 'Er roll evezhiañ, kuzhat kemmoù an implijerien dianav',
 'tog-watchlisthidepatrolled' => "Kuzhat ar c'hemmoù evezhiet diouzh ar roll evezhiañ",
-'tog-nolangconversion' => 'Diweredekaat amdroadur an adstummoù yezh',
 'tog-ccmeonemails' => 'Kas din un eilskrid eus ar posteloù a gasan da implijerien all',
 'tog-diffonly' => "Arabat diskouez danvez ar pennadoù dindan an diforc'hioù",
 'tog-showhiddencats' => 'Diskouez ar rummadoù kuzhet',

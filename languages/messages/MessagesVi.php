@@ -335,7 +335,6 @@ $messages = array(
 'tog-watchlisthideliu' => 'Ẩn sửa đổi của thành viên đã đăng nhập khỏi danh sách theo dõi',
 'tog-watchlisthideanons' => 'Ẩn sửa đổi của người dùng vô danh khỏi danh sách theo dõi',
 'tog-watchlisthidepatrolled' => 'Ẩn sửa đổi đã tuần tra trong danh sách theo dõi',
-'tog-nolangconversion' => 'Tắt chuyển đổi biến thể',
 'tog-ccmeonemails' => 'Gửi bản sao cho tôi khi gửi thư điện tử cho người khác',
 'tog-diffonly' => 'Không hiển thị nội dung trang dưới phần so sánh phiên bản',
 'tog-showhiddencats' => 'Hiển thị thể loại ẩn',

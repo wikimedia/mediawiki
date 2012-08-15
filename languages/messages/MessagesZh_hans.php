@@ -242,9 +242,6 @@ $magicWords = array(
 
 $linkTrail = '/^()(.*)$/sD';
 
-$extraUserToggles = array(
-	'nolangconversion',
-);
 $datePreferences = array(
 	'default',
 	'ISO 8601',
@@ -311,7 +308,6 @@ $messages = array(
 'tog-watchlisthideliu' => '在监视列表中隐藏登录用户',
 'tog-watchlisthideanons' => '在监视列表中隐藏匿名用户',
 'tog-watchlisthidepatrolled' => '在监视列表中隐藏已巡查的编辑',
-'tog-nolangconversion' => '停用字词转换',
 'tog-ccmeonemails' => '把我给其他用户发送的电子邮件的副本发送给我',
 'tog-diffonly' => '比较差异时不显示页面内容',
 'tog-showhiddencats' => '显示隐藏分类',

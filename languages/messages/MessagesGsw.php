@@ -174,7 +174,6 @@ $messages = array(
 'tog-watchlisthideliu' => 'Bearbeitige vu aagmäldete Benutzer usblände',
 'tog-watchlisthideanons' => 'Bearbeitige vu anonyme Benutzer (IP-Adresse) usblände',
 'tog-watchlisthidepatrolled' => 'vum Fäldhieter aagluegti Änderige in dr Beobachtigslischt usblände',
-'tog-nolangconversion' => 'Konvertierig vu Sprachvariante abschalte',
 'tog-ccmeonemails' => 'Schick mr Kopie vo de E-Mails, won i andere schick.',
 'tog-diffonly' => 'Numme Versionsunterschiid aazeige, ohni d Syte',
 'tog-showhiddencats' => 'Zeig di versteckte Kategorie',

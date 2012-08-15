@@ -133,7 +133,6 @@ $messages = array(
 'tog-watchlisthideliu' => 'Avtorizatsiäne uzğan qullanuçılarnıñ üzgärtüläre küzätü isemlegennän yäşerelsen',
 'tog-watchlisthideanons' => 'Anonim qullanuçılarnıñ üzgärtüläre küzätü isemlegennän yäşerelsen',
 'tog-watchlisthidepatrolled' => 'Tikşerelgän üzgärtülär küzätü isemlegennän yäşerelsen',
-'tog-nolangconversion' => 'Yazu sistemalarınıñ üzgärtüen sünderü',
 'tog-ccmeonemails' => 'Başqa qullanuçılarğa cibärgän xatlarımnıñ kopiäläre miña da cibärelsen',
 'tog-diffonly' => 'Yurama çağıştıru astında bit eçtälege kürsätelmäsen',
 'tog-showhiddencats' => 'Yäşeren törkemnär kürsätelsen',

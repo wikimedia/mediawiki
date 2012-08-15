@@ -397,7 +397,6 @@ $messages = array(
 'tog-watchlisthideliu' => 'Na seznamu sledovaných stránek skrýt editace přihlášených uživatelů',
 'tog-watchlisthideanons' => 'Na seznamu sledovaných stránek skrýt editace nepřihlášených uživatelů',
 'tog-watchlisthidepatrolled' => 'Skrýt patrolované editace ve sledovaných stránkách',
-'tog-nolangconversion' => 'Vypnout konverzi variant',
 'tog-ccmeonemails' => 'Zasílat mi kopie e-mailů, které pošlu jiným uživatelům',
 'tog-diffonly' => 'Nezobrazovat obsah stránky pod rozdílem verzí',
 'tog-showhiddencats' => 'Zobrazit skryté kategorie',

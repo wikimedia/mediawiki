@@ -177,7 +177,6 @@ $messages = array(
 'tog-watchlisthideliu' => "Ammuccia li canciamenti di l'utilizzatura riggistrati nti l'ussirvati spiciali",
 'tog-watchlisthideanons' => "Ammuccia li canciamenti di l'utilizzatura anònimi nti l'ussirvati spiciali",
 'tog-watchlisthidepatrolled' => "Ammuccia li mudìfichi virificati nta l'ussirvati spiciali",
-'tog-nolangconversion' => 'Disattiva la cunvirsioni tra varianti linguìstichi',
 'tog-ccmeonemails' => "Mànnami na copia dî missaggi spiditi a l'àutri utenti",
 'tog-diffonly' => "Nun visualizzari lu cuntinutu dâ pàggina quannu s'esequi na ''diff'' tra dui virsioni",
 'tog-showhiddencats' => 'Ammustra li catigurìi ammucciati.',

@@ -59,7 +59,6 @@ $messages = array(
 'tog-watchlisthideliu' => 'Logged in sadasya ke badlao ke dhyan suchi se lukao',
 'tog-watchlisthideanons' => 'Bina naam ke sadasya ke badlao ke dhyan suchi se lukao',
 'tog-watchlisthidepatrolled' => 'Pahraa dewa gais badlao ke dhyan suchi me se lukao',
-'tog-nolangconversion' => 'Variants conversion ke disable karo',
 'tog-ccmeonemails' => 'Jon e-mail ham duusra sadasya ke lage bhejtaa hai uske copy hamaar lage bhi bhejo',
 'tog-diffonly' => 'Diff ke niche panna ke content ke nai dekhao',
 'tog-showhiddencats' => 'Lukawal waala vibhag ke dekhao',

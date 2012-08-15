@@ -256,7 +256,6 @@ $messages = array(
 'tog-watchlisthideliu' => 'Ännern vun anmellt Brukers nich wiesen',
 'tog-watchlisthideanons' => 'Ännern vun anonyme Brukers nich wiesen',
 'tog-watchlisthidepatrolled' => 'Nakeken Ännern op de Oppasslist nich wiesen',
-'tog-nolangconversion' => 'Variantenkonverschoon utschalten',
 'tog-ccmeonemails' => 'vun Nettbreven, de ik wegschick, mi sülvst Kopien tostüren',
 'tog-diffonly' => "Na ''{{int:showdiff}}'' nich de kumplette Sied wiesen",
 'tog-showhiddencats' => 'Wies verstekene Kategorien',

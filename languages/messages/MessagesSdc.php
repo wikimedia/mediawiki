@@ -141,7 +141,6 @@ $messages = array(
 'tog-watchlisthideown' => "Cua li me' mudìfigghi i' l'abbaidaddi ippiziari",
 'tog-watchlisthidebots' => "Cua li mudìfigghi di li bot i' l'abbaidaddi ippiziari",
 'tog-watchlisthideminor' => "Cua li mudìfigghi minori i' l'abbaidaddi ippiziari",
-'tog-nolangconversion' => "Disattiba lu cunvirthimentu i' li varianti linghìsthighi",
 'tog-ccmeonemails' => "Inviammi una còpia di l'imbasciaddi ippididdi a l'althri utenti",
 'tog-diffonly' => 'No visuarizzà lu cuntinuddu di la pàgina daboi lu cunfrontu tra versioni',
 'tog-showhiddencats' => 'Musthrà li categuri cuaddi',

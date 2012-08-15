@@ -500,7 +500,6 @@ $messages = array(
 'tog-watchlisthideliu' => 'أخف تعديلات المستخدمين المسجلين من قائمة المراقبة',
 'tog-watchlisthideanons' => 'أخف تعديلات المستخدمين المجهولين من قائمة المراقبة',
 'tog-watchlisthidepatrolled' => 'أخف التعديلات المراجعة من قائمة المراقبة',
-'tog-nolangconversion' => 'عطل تحويل اللهجات',
 'tog-ccmeonemails' => 'أرسل لي نسخا من رسائل البريد الإلكتروني التي أرسلها للمستخدمين الآخرين',
 'tog-diffonly' => 'لا تعرض محتوى الصفحة أسفل الفروقات',
 'tog-showhiddencats' => 'أظهر التصنيفات المخفية',

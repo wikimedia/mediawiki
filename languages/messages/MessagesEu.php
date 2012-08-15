@@ -165,7 +165,6 @@ $messages = array(
 'tog-watchlisthideliu' => 'Ezkutatu izena emana duten lankideen aldaketak, jarraitze-zerrendan',
 'tog-watchlisthideanons' => 'Ezkutatu lankide anonimoen aldaketak, jarraitze-zerrendan',
 'tog-watchlisthidepatrolled' => 'Ezkutatu patruilatutako aldaketak jarraitze-zerrendan',
-'tog-nolangconversion' => 'Aldaeren arteko konbertsioa ezgaitu',
 'tog-ccmeonemails' => 'Beste erabiltzaileei bidaltzen dizkiedan mezuen kopiak niri ere bidali',
 'tog-diffonly' => "''Diff''-ak agertzen direnean, orrialdearen edukiera ezkutatu",
 'tog-showhiddencats' => 'Ikusi kategoria ezkutuak',

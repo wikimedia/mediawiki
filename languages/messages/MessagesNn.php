@@ -329,7 +329,6 @@ $messages = array(
 'tog-watchlisthideliu' => 'Gøym endringar av innlogga brukarar i overvakingslista.',
 'tog-watchlisthideanons' => 'Gøym endringar av anonyme brukarar i overvakingslista.',
 'tog-watchlisthidepatrolled' => 'Gøym patruljerte endringar i overvakingslista',
-'tog-nolangconversion' => 'Slå av variantkonvertering',
 'tog-ccmeonemails' => 'Send meg kopi av e-postane eg sender til andre brukarar',
 'tog-diffonly' => 'Ikkje vis sideinnhaldet under skilnadene mellom versjonane',
 'tog-showhiddencats' => 'Vis gøymde kategoriar',

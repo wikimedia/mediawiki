@@ -304,7 +304,6 @@ $messages = array(
 'tog-watchlisthideliu' => 'Nascondi le modifiche degli utenti registrati negli osservati speciali',
 'tog-watchlisthideanons' => 'Nascondi le modifiche degli utenti anonimi negli osservati speciali',
 'tog-watchlisthidepatrolled' => 'Nascondi le modifiche verificate negli osservati speciali',
-'tog-nolangconversion' => 'Disattiva la conversione tra varianti linguistiche',
 'tog-ccmeonemails' => 'Inviami una copia dei messaggi spediti agli altri utenti',
 'tog-diffonly' => 'Non visualizzare il contenuto della pagina dopo il confronto tra versioni',
 'tog-showhiddencats' => 'Mostra categorie nascoste',

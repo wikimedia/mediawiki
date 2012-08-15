@@ -223,7 +223,6 @@ $messages = array(
 'tog-watchlisthideliu' => 'Slėpti prisijungusių naudotojų keitimus stebimųjų sąraše',
 'tog-watchlisthideanons' => 'Slėpti anoniminių naudotojų keitimus stebimųjų sąraše',
 'tog-watchlisthidepatrolled' => 'Slėpti patikrintus keitimus stebimųjų sąraše',
-'tog-nolangconversion' => 'Išjungti variantų keitimą',
 'tog-ccmeonemails' => 'Siųsti man laiškų, kuriuos siunčiu kitiems naudotojams, kopijas',
 'tog-diffonly' => 'Nerodyti puslapio turinio po skirtumais',
 'tog-showhiddencats' => 'Rodyti paslėptas kategorijas',

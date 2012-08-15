@@ -349,7 +349,6 @@ $messages = array(
 'tog-watchlisthideliu' => 'Esconder edições de utilizadores autenticados ao listar mudanças às páginas vigiadas',
 'tog-watchlisthideanons' => 'Esconder edições de utilizadores anónimos ao listar mudanças às páginas vigiadas',
 'tog-watchlisthidepatrolled' => 'Esconder edições patrulhadas ao listar mudanças às páginas vigiadas',
-'tog-nolangconversion' => 'Impossibilitar a conversão de variantes da língua',
 'tog-ccmeonemails' => 'Enviar-me cópias das mensagens por correio electrónico que eu enviar a outros utilizadores',
 'tog-diffonly' => 'Não mostrar o conteúdo da página ao comparar duas edições',
 'tog-showhiddencats' => 'Mostrar categorias ocultas',

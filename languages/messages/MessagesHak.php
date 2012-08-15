@@ -47,7 +47,6 @@ $messages = array(
 'tog-watchlisthideown' => 'Kam-sṳ lie̍t-péu chûng yún-chhòng ngô-ke phiên-cho',
 'tog-watchlisthidebots' => 'Kam-sṳ lie̍t-péu chûng yún-chhòng kî-hi-ngìn ke phiên-chho',
 'tog-watchlisthideminor' => 'Kam-sṳ lie̍t-péu chûng yún-chhòng séu-siû-kói',
-'tog-nolangconversion' => 'Put-yeu chin-hàng ngî-ngièn chón-von',
 'tog-ccmeonemails' => 'Tông ngô-ki email pûn khì-thâ yung-fu sṳ̀, ya-ki yit-fun fuk-pún to ngô-ke sin-siông.',
 'tog-diffonly' => 'Chhai pí-káu lióng-ke siû-thin pán-pún chhâ-yi sṳ̀ put hién-sṳ vùn-chông nui-yùng.',
 

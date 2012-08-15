@@ -411,7 +411,6 @@ $messages = array(
 'tog-watchlisthideliu' => 'Masquer les modifications faites par des utilisateurs inscrits dans la liste de suivi',
 'tog-watchlisthideanons' => 'Masquer les modifications anonymes dans la liste de suivi',
 'tog-watchlisthidepatrolled' => 'Masquer les modifications surveillées dans la liste de suivi',
-'tog-nolangconversion' => 'Désactiver la conversion des variantes linguistiques',
 'tog-ccmeonemails' => 'M’envoyer une copie des courriels que j’envoie aux autres utilisateurs',
 'tog-diffonly' => 'Ne pas afficher le contenu des pages sous les diffs',
 'tog-showhiddencats' => 'Afficher les catégories cachées',

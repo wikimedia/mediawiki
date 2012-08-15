@@ -272,7 +272,6 @@ $messages = array(
 'tog-watchlisthideliu' => '響監視清單度隱藏登入用戶',
 'tog-watchlisthideanons' => '響監視清單度隱藏匿名用戶',
 'tog-watchlisthidepatrolled' => '響監視清單度隱藏巡查過嘅編輯',
-'tog-nolangconversion' => '唔要用字轉換',
 'tog-ccmeonemails' => '當我寄電郵畀其他人嗰陣寄返封副本畀我',
 'tog-diffonly' => '響差異下面唔顯示頁面內容',
 'tog-showhiddencats' => '顯示隱藏類',

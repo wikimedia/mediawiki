@@ -355,7 +355,6 @@ $messages = array(
 'tog-watchlisthideliu' => 'Sakrij uređivanja prijavljenih s popisa praćenja',
 'tog-watchlisthideanons' => 'Sakrij uređivanja neprijavljenih s popisa praćenja',
 'tog-watchlisthidepatrolled' => 'Sakrij pregledane izmjene u popisu praćenja',
-'tog-nolangconversion' => 'Isključi pretvaranje pisma (latinica-ćirilica, kineske varijante itd.) ako to wiki podržava',
 'tog-ccmeonemails' => 'Pošalji mi kopiju e-maila kojeg pošaljem drugim suradnicima',
 'tog-diffonly' => 'Ne prikazuj sadržaj stranice prilikom usporedbe inačica',
 'tog-showhiddencats' => 'Prikaži skrivene kategorije',

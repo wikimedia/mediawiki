@@ -64,10 +64,6 @@ $namespaceAliases = array(
 	'Razgovor_o_slici'        => NS_FILE_TALK,
 );
 
-$extraUserToggles = array(
-	'nolangconversion',
-);
-
 $datePreferenceMigrationMap = array(
 	'default',
 	'hh:mm d. month y.',
@@ -348,7 +344,6 @@ $messages = array(
 'tog-watchlisthideliu' => 'Sakrij izmene prijavljenih korisnika sa spiska nadgledanja',
 'tog-watchlisthideanons' => 'Sakrij izmene anonimnih korisnika sa spiska nadgledanja',
 'tog-watchlisthidepatrolled' => 'Sakrij pregledane izmene sa spiska nadgledanja',
-'tog-nolangconversion' => 'Onemogući pretvaranje pisama',
 'tog-ccmeonemails' => 'Pošalji mi primerke e-poruka koje pošaljem drugim korisnicima',
 'tog-diffonly' => 'Ne prikazuj sadržaj stranice ispod razlika',
 'tog-showhiddencats' => 'Prikaži skrivene kategorije',

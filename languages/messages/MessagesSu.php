@@ -170,7 +170,6 @@ $messages = array(
 'tog-watchlisthideliu' => 'Sumputkeun éditan pamaké nu asup log tina daptar awaskeun',
 'tog-watchlisthideanons' => 'Sumputkeun éditan pamaké anonim tina daptar awaskeun',
 'tog-watchlisthidepatrolled' => 'Sumputkeun éditan nu geus diroris tina béréndélan awaskeuneun',
-'tog-nolangconversion' => 'Tumpurkeun konversi varian',
 'tog-ccmeonemails' => 'Kirimkeun ogé salinan surélékna ka alamat kuring',
 'tog-diffonly' => 'Ulah némbongkeun eusi kaca di handapeun béda éditan',
 'tog-showhiddencats' => 'Témbongkeun kategori nyumput',

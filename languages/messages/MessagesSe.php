@@ -120,7 +120,6 @@ $messages = array(
 'tog-watchlisthideown' => 'Čiega mu iežan rievdadusaid',
 'tog-watchlisthidebots' => 'Čiega bot-prográmmaid rievdadusaid',
 'tog-watchlisthideminor' => 'Čiega unna rievdadusaid',
-'tog-nolangconversion' => 'Ále daga rievdadusaid giellavariánttaid gaskal',
 'tog-ccmeonemails' => 'Sádde munnje kopiija e-poasttain, maid sádden eará geavaheddjiide',
 
 'underline-always' => 'Álo',

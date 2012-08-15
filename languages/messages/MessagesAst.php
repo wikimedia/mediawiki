@@ -99,7 +99,6 @@ $messages = array(
 'tog-watchlisthideliu' => "Anubrir les ediciones d'usuarios identificaos na llista de vixilancia",
 'tog-watchlisthideanons' => "Anubrir les ediciones d'usuarios anónimos na llista de vixilancia",
 'tog-watchlisthidepatrolled' => 'Anubrir les ediciones vixilaes de la llista de vixilancia',
-'tog-nolangconversion' => 'Desactivar la conversión de variantes',
 'tog-ccmeonemails' => "Mandame copies de los correos qu'unvio a otros usuarios",
 'tog-diffonly' => 'Nun amosar el conteníu de la páxina embaxo de les diferencies',
 'tog-showhiddencats' => 'Amosar categoríes anubríes',

@@ -353,7 +353,6 @@ $messages = array(
 'tog-watchlisthideliu' => 'Bejelentkezett szerkesztők módosításainak elrejtése a figyelőlistáról',
 'tog-watchlisthideanons' => 'Névtelen szerkesztések elrejtése',
 'tog-watchlisthidepatrolled' => 'Az ellenőrzött szerkesztések elrejtése',
-'tog-nolangconversion' => 'Nyelvvariánsok közötti átalakítás letiltása',
 'tog-ccmeonemails' => 'A másoknak küldött e-mailjeimről kapjak én is másolatot',
 'tog-diffonly' => 'Ne mutassa a lap tartalmát lapváltozatok közötti eltérések megtekintésekor',
 'tog-showhiddencats' => 'Rejtett kategóriák megjelenítése',

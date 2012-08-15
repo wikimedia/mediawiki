@@ -66,7 +66,6 @@ $messages = array(
 'tog-watchlisthideliu' => "Scunne le cangiaminde de l'utinde canusciute da 'a liste de le pàgene condrollete",
 'tog-watchlisthideanons' => "Scunne le cangiaminde de l'utinde scanusciute da 'a liste de le pàgene condrollete",
 'tog-watchlisthidepatrolled' => "Scunne le cangiaminde condrollete jndr'à liste de le pàggene condrollete",
-'tog-nolangconversion' => 'Disabbilete le variande de conversione',
 'tog-ccmeonemails' => "Manneme 'na copie de le mail ca je manne a l'ôtre utinde",
 'tog-diffonly' => 'No fà vedè le pàggene cu le condenute sotte a le differenze',
 'tog-showhiddencats' => 'Fa vedè le categorije scunnute',

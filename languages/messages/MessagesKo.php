@@ -377,7 +377,6 @@ $messages = array(
 'tog-watchlisthideliu' => '주시문서 목록에서 로그인한 사용자의 편집을 숨기기',
 'tog-watchlisthideanons' => '주시문서 목록에서 익명 사용자의 편집을 숨기기',
 'tog-watchlisthidepatrolled' => '주시문서 목록에서 검토한 편집을 숨기기',
-'tog-nolangconversion' => '변형 변환을 비활성화',
 'tog-ccmeonemails' => '이메일을 보낼 때 내 이메일로 복사본을 보내기',
 'tog-diffonly' => '편집 차이를 비교할 때 문서 내용을 보지 않기',
 'tog-showhiddencats' => '숨은 분류 보기',

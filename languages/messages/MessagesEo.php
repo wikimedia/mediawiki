@@ -353,7 +353,6 @@ $messages = array(
 'tog-watchlisthideliu' => 'Kaŝi redaktojn de ensalutitaj uzantoj de la atentaro',
 'tog-watchlisthideanons' => 'Kaŝi redaktojn de anonimuloj de la atentaro',
 'tog-watchlisthidepatrolled' => 'Kaŝi patrolitajn redaktojn de la atentaro',
-'tog-nolangconversion' => 'Malŝalti konvertadon de variantoj',
 'tog-ccmeonemails' => 'Sendi al mi kopiojn de retpoŝtaĵoj, kiujn mi sendis al aliaj uzantoj.',
 'tog-diffonly' => 'Ne montri paĝan enhavon sub la ŝanĝoj',
 'tog-showhiddencats' => 'Montri kaŝitajn kategoriojn',

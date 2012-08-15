@@ -137,7 +137,6 @@ $messages = array(
 'tog-watchlisthideliu' => 'Tagoon an mga pagbabagong nahimo kan mga nakalaog na paragamit gikan sa bantayang listahan',
 'tog-watchlisthideanons' => 'Tagoon an mga pagbabagong nahimo kan mga bakong bistadong paragamit gikan sa bantayang listahan',
 'tog-watchlisthidepatrolled' => 'Tagoon an mga patrolyadong pagbabago gikan sa bantayang listahan',
-'tog-nolangconversion' => 'Pundoha an mga palaen na pagbabago',
 'tog-ccmeonemails' => 'Ipadara sako an mga kopya kan e-koreo na pinadara ko sa ibang mga paragamit',
 'tog-diffonly' => 'Dai tabi ihayag an laog kan pahina sa ibaba nin mga diffs',
 'tog-showhiddencats' => 'Ihayag an nakatagong mga kategorya',

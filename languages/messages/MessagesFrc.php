@@ -60,7 +60,6 @@ $messages = array(
 'tog-watchlisthideliu'        => 'Cacher édites de useurs anonymes du liste de pages guettées',
 'tog-watchlisthideanons'      => 'Cacher édites de useurs anonymes du liste de pages guettées',
 'tog-watchlisthidepatrolled'  => 'Cacher les changements faits par les bots dans la liste des pages guettées',
-'tog-nolangconversion'        => 'Arrêter le changement des différences de langue',
 'tog-ccmeonemails'            => "Envoyer une copie des e-mails que j'envoye aux autres useurs",
 'tog-diffonly'                => 'Couper la page sous les diffs',
 

@@ -182,7 +182,6 @@ $messages = array(
 'tog-watchlisthideliu' => 'Bewurkings fan oanmelde brûkers op myn folchlist ferbergje',
 'tog-watchlisthideanons' => 'Bewurkings fa anonyme brûkers op myn folchlist ferbergje',
 'tog-watchlisthidepatrolled' => 'Markearre feroarings op myn folchlist ferskûlje',
-'tog-nolangconversion' => 'Fariantomsetting útskeakelje',
 'tog-ccmeonemails' => "Stjoer my in kopy fan e-mails dy't ik nei oare brûkers stjoer",
 'tog-diffonly' => "Side-ynhâld dy't feroare wurdt net sjen litte",
 'tog-showhiddencats' => 'Ferburgen kategoryen werjaan',

@@ -188,7 +188,6 @@ $messages = array(
 'tog-watchlisthideliu' => 'લોગ થયેલા સભ્ય દ્વારા કરવામાં આવેલ ફેરફાર ધ્યાનસુચીમાં છુપાવો.',
 'tog-watchlisthideanons' => 'અજાણ્યાસભ્ય દ્વારા થયેલ ફેરફાર મારી ધ્યાનસુચીમાં છુપાવો.',
 'tog-watchlisthidepatrolled' => 'સુરક્ષા કાજે કરવામાં આવેલ ફેરફાર મારી ધ્યાનસુચીમાં છુપાવો.',
-'tog-nolangconversion' => 'Variants conversion અક્ષમ કરો',
 'tog-ccmeonemails' => 'મે અન્યોને મોકલેલા ઇ-મેઇલની નકલ મને મોકલો',
 'tog-diffonly' => 'તફાવતની નીચે લેખ ન બતાવશો.',
 'tog-showhiddencats' => 'છુપી શ્રેણીઓ દર્શાવો',

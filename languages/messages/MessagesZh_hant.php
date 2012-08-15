@@ -250,7 +250,6 @@ $messages = array(
 'tog-watchlisthideliu' => '監視列表中隱藏登入用戶',
 'tog-watchlisthideanons' => '監視列表中隱藏匿名用戶',
 'tog-watchlisthidepatrolled' => '監視清單中隱藏已巡查的編輯',
-'tog-nolangconversion' => '不進行用字轉換',
 'tog-ccmeonemails' => '當我寄電子郵件給其他用戶時，也寄一份複本到我的信箱。',
 'tog-diffonly' => '比較版本差異時不顯示頁面內容',
 'tog-showhiddencats' => '顯示隱藏分類',

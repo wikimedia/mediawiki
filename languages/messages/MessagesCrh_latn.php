@@ -142,7 +142,6 @@ $messages = array(
 'tog-watchlisthideliu' => 'Közetüv cedvelimde qaydlı qullanıcılar tarafından yapılğan deñişmelerni kösterme',
 'tog-watchlisthideanons' => 'Közetüv cedvelimde qaydsız (anonim) qullanıcılar tarafından yapılğan deñişmelerni kösterme',
 'tog-watchlisthidepatrolled' => 'Közetüv cedvelinde teşkerilgen deñişmelerni gizle',
-'tog-nolangconversion' => 'Yazuv sisteması variantları deñiştirüvni işletme',
 'tog-ccmeonemails' => 'Diger qullanıcılarğa yollağan mektüplerimniñ kopiyalarını maña da yolla',
 'tog-diffonly' => 'Teñeştirme saifelerinde saifeniñ esas mündericesini kösterme',
 'tog-showhiddencats' => 'Gizli kategoriyalarnı köster',
