@@ -27,6 +27,8 @@ upgrade PHP if you have not done so prior to upgrading MediaWiki.
   different timezone than the wiki timezone set by $wgLocaltimezone.
 * New variables $wgDBssl and $wgDBcompress to enable SSL and compression for database
   connections, if either are available for the selected DB type.
+* $wgUseCombinedLoginLink now defaults to false, making MediaWiki output separate
+  login and create account links by default.
 
 === New features in 1.20 ===
 * Added TitleIsAlwaysKnown hook which gets called when determining if a page exists.
