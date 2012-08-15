@@ -1270,6 +1270,8 @@ abstract class ApiBase extends ContextSource {
 		'nouserspecified' => array( 'code' => 'invaliduser', 'info' => "Invalid username \"\$1\"" ),
 		'noname' => array( 'code' => 'invaliduser', 'info' => "Invalid username \"\$1\"" ),
 		'summaryrequired' => array( 'code' => 'summaryrequired', 'info' => 'Summary required' ),
+		'import-rootpage-invalid' => array( 'code' => 'import-rootpage-invalid', 'info' => 'Root page is an invalid title' ),
+		'import-rootpage-nosubpage' => array( 'code' => 'import-rootpage-nosubpage', 'info' => 'Namespace "$1" of the root page does not allow subpages' ),
 
 		// API-specific messages
 		'readrequired' => array( 'code' => 'readapidenied', 'info' => "You need read permission to use this module" ),
