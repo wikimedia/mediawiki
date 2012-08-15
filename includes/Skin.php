@@ -1067,13 +1067,23 @@ abstract class Skin extends ContextSource {
 	}
 
 	/**
-	 * @param $name string
-	 * @param $urlaction string
+	 * Make a URL for a Special Page using the given query and protocol.
+	 *
+	 * If $proto is set to null, make a local URL. Otherwise, make a full
+	 * URL with the protocol specified.
+	 *
+	 * @param $name string Name of the Special page
+	 * @param $urlaction string Query to append
+	 * @param $proto Protocol to use or null for a local URL
 	 * @return String
 	 */
-	static function makeSpecialUrl( $name, $urlaction = '' ) {
+	static function makeSpecialUrl( $name, $urlaction = '', $proto = null ) {
 		$title = SpecialPage::getSafeTitleFor( $name );
-		return $title->getLocalURL( $urlaction );
+		if( is_null( $proto ) ) {
+			return $title->getLocalURL( $urlaction );
+		} else {
+			return $title->getFullURL( $urlaction, false, $proto );
+		}
 	}
 
 	/**

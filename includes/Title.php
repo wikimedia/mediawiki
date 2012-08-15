@@ -1270,9 +1270,11 @@ class Title {
 	 * See getLocalURL for the arguments.
 	 *
 	 * @see self::getLocalURL
+	 * @see wfExpandUrl
+	 * @param $proto Protocol type to use in URL
 	 * @return String the URL
 	 */
-	public function getFullURL( $query = '', $query2 = false ) {
+	public function getFullURL( $query = '', $query2 = false, $proto = PROTO_RELATIVE ) {
 		$query = self::fixUrlQueryArgs( $query, $query2 );
 
 		# Hand off all the decisions on urls to getLocalURL
@@ -1281,7 +1283,7 @@ class Title {
 		# Expand the url to make it a full url. Note that getLocalURL has the
 		# potential to output full urls for a variety of reasons, so we use
 		# wfExpandUrl instead of simply prepending $wgServer
-		$url = wfExpandUrl( $url, PROTO_RELATIVE );
+		$url = wfExpandUrl( $url, $proto );
 
 		# Finally, add the fragment.
 		$url .= $this->getFragmentForURL();
