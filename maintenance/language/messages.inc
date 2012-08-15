@@ -3720,6 +3720,7 @@ $wgMessageStructure = array(
 		'api-error-file-too-large',
 		'api-error-filename-tooshort',
 		'api-error-filetype-banned',
+		'api-error-filetype-banned-type',
 		'api-error-filetype-missing',
 		'api-error-hookaborted',
 		'api-error-http',
