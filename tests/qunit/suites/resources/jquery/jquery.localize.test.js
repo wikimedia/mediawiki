@@ -112,3 +112,22 @@ QUnit.test( 'Options', 7, function ( assert ) {
 	assert.strictEqual( $lc.text(), 'The Bazz (Wikipedia)', 'Combination of options prefix, params and keys - text' );
 	assert.strictEqual( $lc.attr( 'title' ), 'Read more about bazz at Wikipedia (last modified: 3 minutes ago)', 'Combination of options prefix, params and keys - attr' );
 } );
+
+QUnit.test( 'Handle data text', 2, function ( assert ) {
+	var html, $lc;
+	mw.messages.set( 'option-one', 'Item 1' );
+	mw.messages.set( 'option-two', 'Item 2' );
+	html = '<select><option data-msg-text="option-one"></option><option data-msg-text="option-two"></option></select>';
+	$lc = $( html ).localize().find( 'option' );
+	assert.strictEqual( $lc.eq( 0 ).text(), mw.msg( 'option-one' ), 'data-msg-text becomes text of options' );
+	assert.strictEqual( $lc.eq( 1 ).text(), mw.msg( 'option-two' ), 'data-msg-text becomes text of options' );
+} );
+
+QUnit.test( 'Handle data html', 2, function ( assert ) {
+	var html, $lc;
+	mw.messages.set( 'html', 'behold... there is a <a>link</a> here!!' );
+	html = '<div><div data-msg-html="html"></div></div>';
+	$lc = $( html ).localize().find( 'a' );
+	assert.strictEqual( $lc.length, 1, 'link is created' );
+	assert.strictEqual( $lc.text(), 'link', 'the link text got added' );
+} );
