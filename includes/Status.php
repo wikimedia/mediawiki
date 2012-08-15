@@ -165,35 +165,6 @@ class Status {
 	}
 
 	/**
-	 * @param $item
-	 * @return string
-	 */
-	protected function getItemXML( $item ) {
-		$params = $this->cleanParams( $item['params'] );
-		$xml = "<{$item['type']}>\n" .
-			Xml::element( 'message', null, $item['message'] ) . "\n" .
-			Xml::element( 'text', null, wfMsg( $item['message'], $params ) ) ."\n";
-		foreach ( $params as $param ) {
-			$xml .= Xml::element( 'param', null, $param );
-		}
-		$xml .= "</{$item['type']}>\n";
-		return $xml;
-	}
-
-	/**
-	 * Get the error list as XML
-	 * @return string
-	 */
-	function getXML() {
-		$xml = "<errors>\n";
-		foreach ( $this->errors as $error ) {
-			$xml .= $this->getItemXML( $error );
-		}
-		$xml .= "</errors>\n";
-		return $xml;
-	}
-
-	/**
 	 * Get the error list as a wikitext formatted list
 	 *
 	 * @param $shortContext String: a short enclosing context message name, to
