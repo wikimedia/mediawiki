@@ -891,10 +891,10 @@ class WikiPage extends Page implements IDBAccessObject {
 		$tables = array( 'revision', 'user' );
 
 		$fields = array(
-			'rev_user as user_id',
-			'rev_user_text AS user_name',
+			'user_id' => 'rev_user',
+			'user_name' => 'rev_user_text',
 			$realNameField,
-			'MAX(rev_timestamp) AS timestamp',
+			'timestamp' => 'MAX(rev_timestamp)',
 		);
 
 		$conds = array( 'rev_page' => $this->getId() );

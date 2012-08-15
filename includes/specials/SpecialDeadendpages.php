@@ -59,9 +59,9 @@ class DeadendPagesPage extends PageQueryPage {
 	function getQueryInfo() {
 		return array(
 			'tables' => array( 'page', 'pagelinks' ),
-			'fields' => array( 'page_namespace AS namespace',
-					'page_title AS title',
-					'page_title AS value'
+			'fields' => array( 'namespace' => 'page_namespace',
+					'title' => 'page_title',
+					'value' => 'page_title'
 			),
 			'conds' => array( 'pl_from IS NULL',
 					'page_namespace' => MWNamespace::getContentNamespaces(),

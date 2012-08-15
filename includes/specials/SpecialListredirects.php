@@ -41,14 +41,14 @@ class ListredirectsPage extends QueryPage {
 	function getQueryInfo() {
 		return array(
 			'tables' => array( 'p1' => 'page', 'redirect', 'p2' => 'page' ),
-			'fields' => array( 'p1.page_namespace AS namespace',
-					'p1.page_title AS title',
-					'p1.page_title AS value',
+			'fields' => array( 'namespace' => 'p1.page_namespace',
+					'title' => 'p1.page_title',
+					'value' => 'p1.page_title',
 					'rd_namespace',
 					'rd_title',
 					'rd_fragment',
 					'rd_interwiki',
-					'p2.page_id AS redirid' ),
+					'redirid' => 'p2.page_id' ),
 			'conds' => array( 'p1.page_is_redirect' => 1 ),
 			'join_conds' => array( 'redirect' => array(
 					'LEFT JOIN', 'rd_from=p1.page_id' ),

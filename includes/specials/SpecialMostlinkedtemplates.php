@@ -64,9 +64,9 @@ class MostlinkedTemplatesPage extends QueryPage {
 	public function getQueryInfo() {
 		return array (
 			'tables' => array ( 'templatelinks' ),
-			'fields' => array ( 'tl_namespace AS namespace',
-					'tl_title AS title',
-					'COUNT(*) AS value' ),
+			'fields' => array ( 'namespace' => 'tl_namespace',
+					'title' => 'tl_title',
+					'value' => 'COUNT(*)' ),
 			'conds' => array ( 'tl_namespace' => NS_TEMPLATE ),
 			'options' => array( 'GROUP BY' => array( 'tl_namespace', 'tl_title' ) )
 		);

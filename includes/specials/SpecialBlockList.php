@@ -372,7 +372,7 @@ class BlockListPager extends TablePager {
 				'ipb_user',
 				'ipb_by',
 				'ipb_by_text',
-				'user_name AS by_user_name',
+				'by_user_name' => 'user_name',
 				'ipb_reason',
 				'ipb_timestamp',
 				'ipb_auto',

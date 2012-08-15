@@ -308,7 +308,7 @@ abstract class ORMTable implements IORMTable {
 	 */
 	public function count( array $conditions = array(), array $options = array() ) {
 		$res = $this->rawSelectRow(
-			array( 'COUNT(*) AS rowcount' ),
+			array( 'rowcount' => 'COUNT(*)' ),
 			$this->getPrefixedValues( $conditions ),
 			$options
 		);

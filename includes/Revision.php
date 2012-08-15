@@ -1268,7 +1268,7 @@ class Revision implements IDBAccessObject {
 	 * @return Integer
 	 */
 	static function countByPageId( $db, $id ) {
-		$row = $db->selectRow( 'revision', 'COUNT(*) AS revCount',
+		$row = $db->selectRow( 'revision', array( 'revCount' => 'COUNT(*)' ),
 			array( 'rev_page' => $id ), __METHOD__ );
 		if( $row ) {
 			return $row->revCount;
