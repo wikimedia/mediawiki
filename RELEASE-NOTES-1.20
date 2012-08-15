@@ -122,6 +122,7 @@ upgrade PHP if you have not done so prior to upgrading MediaWiki.
   API upload errors due to the file extension blacklist.
 * jsMessage: Redesigned in Vector/Monobook as floating bubble with auto-hide.
 * New hook 'ParserTestGlobals' allows to set globals before running parser tests.
+* (bug 39376) jquery.form upgraded to 3.14
 
 === Bug fixes in 1.20 ===
 * (bug 30245) Use the correct way to construct a log page title.
