@@ -353,7 +353,6 @@ $messages = array(
 'tog-watchlisthideliu' => 'Piilota kirjautuneiden käyttäjien muokkaukset tarkkailulistalta',
 'tog-watchlisthideanons' => 'Piilota anonyymien käyttäjien muokkaukset tarkkailulistalta',
 'tog-watchlisthidepatrolled' => 'Piilota tarkastetut muokkaukset tarkkailulistalta',
-'tog-nolangconversion' => 'Älä tee muunnoksia kielivarianttien välillä',
 'tog-ccmeonemails' => 'Lähetä minulle kopio MediaWikin kautta lähetetyistä sähköposteista',
 'tog-diffonly' => 'Älä näytä sivun sisältöä versioita vertailtaessa',
 'tog-showhiddencats' => 'Näytä piilotetut luokat',
@@ -578,6 +577,10 @@ $1',
 'youhavenewmessages' => 'Sinulle on $1 ($2).',
 'newmessageslink' => 'uusia viestejä',
 'newmessagesdifflink' => 'viimeisin muutos',
+'youhavenewmessagesfromusers' => 'Sinulle on $1 {{PLURAL:$3|toiselta käyttäjältä|$3 käyttäjältä}} ($2).',
+'youhavenewmessagesmanyusers' => 'Sinulle on $1 uusia viestejä useilta käyttäjiltä ($2).',
+'newmessageslinkplural' => '{{PLURAL:$1|uusi viesti|uusia viestejä}}',
+'newmessagesdifflinkplural' => '{{PLURAL:$1|viimeinen muutos|viimeiset muutokset}}',
 'youhavenewmessagesmulti' => 'Sinulla on uusia viestejä sivuilla $1',
 'editsection' => 'muokkaa',
 'editold' => 'muokkaa',
@@ -1065,6 +1068,9 @@ Nämä muuttujat on jätetty käsittelemättä.",
 'node-count-exceeded-warning' => 'Sivu ylitti solmumäärän',
 'expansion-depth-exceeded-category' => 'Sivut, joissa laajentamissyvyys on ylitetty',
 'expansion-depth-exceeded-warning' => 'Sivu ylitti laajentamissyvyyden.',
+'parser-unstrip-loop-warning' => 'Unstrip-silmukka havaittiin',
+'parser-unstrip-recursion-limit' => 'Unstrip-rekursion enimmäissyvyys ($1) ylitettiin',
+'converter-manual-rule-error' => 'Kielivarianttisäännössä on virhe',
 
 # "Undo" feature
 'undo-success' => 'Kumoaminen onnistui. Valitse <em>tallenna</em> toteuttaaksesi muutokset.',
@@ -1814,6 +1820,7 @@ $1',
 'lockmanager-fail-releaselock' => 'Tiedoston $1 lukituksen avaaminen epäonnistui.',
 'lockmanager-fail-db-bucket' => 'Ei voitu yhdistää riittävästi tietokantoja kohdassa $1.',
 'lockmanager-fail-db-release' => 'Lukitusten vapauttaminen epäonnistui tietokannassa $1.',
+'lockmanager-fail-svr-acquire' => 'Lukkojen hankkiminen palvelimelta $1 epäonnistui.',
 'lockmanager-fail-svr-release' => 'Lukitusten vapauttaminen epäonnistui palvelimella $1.',
 
 # ZipDirectoryReader
@@ -2009,7 +2016,9 @@ Voit tarvittaessa muokata [$2 tiedoston kuvaussivua] kohteessa.',
 
 'disambiguations' => 'Linkit täsmennyssivuihin',
 'disambiguationspage' => 'Template:Täsmennyssivu',
-'disambiguations-text' => "Seuraavat artikkelit linkittävät ''täsmennyssivuun''. Täsmennyssivun sijaan niiden pitäisi linkittää asianomaiseen aiheeseen.<br />Sivua kohdellaan täsmennyssivuna jos se käyttää mallinetta, johon on linkki sivulta [[MediaWiki:Disambiguationspage]].",
+'disambiguations-text' => "Seuraavilla sivuilla on linkkejä ''täsmennyssivuihin''.
+Täsmennyssivun sijaan ne voisivat linkittää suoraan asianomaiseen aiheeseen.<br />
+Sivua kohdellaan täsmennyssivuna, jos se käyttää mallinetta, johon on linkki sivulta [[MediaWiki:Disambiguationspage]].",
 
 'doubleredirects' => 'Kaksinkertaiset ohjaukset',
 'doubleredirectstext' => 'Tässä listassa on ohjaussivut, jotka ohjaavat toiseen ohjaussivuun.
@@ -2346,6 +2355,8 @@ Sivulla $2 on lista viimeaikaisista poistoista.',
 'rollback' => 'palauta aiempaan versioon',
 'rollback_short' => 'Palautus',
 'rollbacklink' => 'palauta',
+'rollbacklinkcount' => 'kumoa {{PLURAL:$1|muokkaus|$1 muokkausta}}',
+'rollbacklinkcount-morethan' => 'kumoa yli $1 {{PLURAL:$1|muutos|muutosta}}',
 'rollbackfailed' => 'Palautus epäonnistui',
 'cantrollback' => 'Aiempaan versioon ei voi palauttaa, koska viimeisin kirjoittaja on sivun ainoa tekijä.',
 'alreadyrolled' => 'Käyttäjän [[User:$2|$2]] ([[User talk:$2|keskustelu]]{{int:pipe-separator}}[[Special:Contributions/$2|{{int:contribslink}}]]) tekemiä muutoksia sivuun [[:$1]] ei voi kumota, koska joku muu on muuttanut sivua.
@@ -2991,6 +3002,7 @@ Tallenna tiedot koneellesi ja tuo ne tällä sivulla.',
 'spambot_username' => 'MediaWikin mainospoistaja',
 'spam_reverting' => 'Palautettu viimeisimpään versioon, joka ei sisällä linkkejä kohteeseen $1.',
 'spam_blanking' => 'Kaikki versiot sisälsivät linkkejä kohteeseen $1. Sivu tyhjennetty.',
+'spam_deleting' => 'Sivun poisto: kaikki versiot sisälsivät linkkejä palvelimeen $1',
 
 # Info page
 'pageinfo-title' => 'Tietoja sivusta $1',
@@ -3726,7 +3738,7 @@ Kuvat näytetään täysikokoisina. Muut tiedostot avataan niille määritetyss�
 * <span class="mw-specialpagerestricted">Rajoitetut toimintosivut.</span>',
 'specialpages-group-maintenance' => 'Ylläpito',
 'specialpages-group-other' => 'Muut',
-'specialpages-group-login' => 'Kirjautuminen ja tunnusten luonti',
+'specialpages-group-login' => 'Sisäänkirjautuminen ja tunnusten luonti',
 'specialpages-group-changes' => 'Muutokset ja lokit',
 'specialpages-group-media' => 'Media',
 'specialpages-group-users' => 'Käyttäjät',
@@ -3865,6 +3877,7 @@ Muussa tapauksessa voit käyttää alla olevaa helpompaa lomaketta. Kommenttisi 
 'api-error-file-too-large' => 'Määrittämäsi tiedosto on liian iso.',
 'api-error-filename-tooshort' => 'Tiedoston nimi on liian lyhyt.',
 'api-error-filetype-banned' => 'Tämän tyyppisiä tiedosta ei voi tallentaa.',
+'api-error-filetype-banned-type' => '$1 {{PLURAL:$4|ei ole sallittu tiedostomuoto|eivät ole sallittuja tiedostomuotoja}}. {{PLURAL:$3|Sallittu tiedostomuoto on|Sallittuja tiedostomuotoja ovat}} $2.',
 'api-error-filetype-missing' => 'Tiedostolta puuttuu tiedostopääte.',
 'api-error-hookaborted' => 'Laajennuskoodi esti yrittämäsi muutoksen.',
 'api-error-http' => 'Sisäinen virhe: palvelimeen ei saatu yhteyttä.',
@@ -3900,6 +3913,4 @@ Muussa tapauksessa voit käyttää alla olevaa helpompaa lomaketta. Kommenttisi 
 'duration-centuries' => '$1 {{PLURAL:$1|vuosisata|vuosisataa}}',
 'duration-millennia' => '$1 {{PLURAL:$1|vuosituhat|vuosituhatta}}',
 
-# Unknown messages
-'api-error-filetype-banned-type' => '$1 {{PLURAL:$4|ei ole sallittu tiedostomuoto|eivät ole sallittuja tiedostomuotoja}}. {{PLURAL:$3|Sallittu tiedostomuoto on|Sallittuja tiedostomuotoja ovat}} $2.',
 );

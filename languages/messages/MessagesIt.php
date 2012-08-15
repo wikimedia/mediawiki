@@ -304,7 +304,6 @@ $messages = array(
 'tog-watchlisthideliu' => 'Nascondi le modifiche degli utenti registrati negli osservati speciali',
 'tog-watchlisthideanons' => 'Nascondi le modifiche degli utenti anonimi negli osservati speciali',
 'tog-watchlisthidepatrolled' => 'Nascondi le modifiche verificate negli osservati speciali',
-'tog-nolangconversion' => 'Disattiva la conversione tra varianti linguistiche',
 'tog-ccmeonemails' => 'Inviami una copia dei messaggi spediti agli altri utenti',
 'tog-diffonly' => 'Non visualizzare il contenuto della pagina dopo il confronto tra versioni',
 'tog-showhiddencats' => 'Mostra categorie nascoste',
@@ -3860,6 +3859,7 @@ Le immagini vengono mostrate alla massima risoluzione disponibile, per gli altri
 'api-error-file-too-large' => 'Il file selezionato era troppo grande.',
 'api-error-filename-tooshort' => 'Il nome del file è troppo breve.',
 'api-error-filetype-banned' => 'Questo tipo di file non è accettato.',
+'api-error-filetype-banned-type' => '$1 {{PLURAL:$4|non è un tipo di file consentito|non sono tipi di file consentiti}}. {{PLURAL:$3|Il tipo di file consentito è|I tipi di file consentiti sono}} $2.',
 'api-error-filetype-missing' => "Al file manca l'estensione.",
 'api-error-hookaborted' => "La modifica hai tentato di fare è stata interrotta da un passaggio dell'estensione.",
 'api-error-http' => 'Errore interno: impossibile connettersi al server.',
@@ -3895,6 +3895,4 @@ Le immagini vengono mostrate alla massima risoluzione disponibile, per gli altri
 'duration-centuries' => '$1 {{PLURAL:$1|secolo|secoli}}',
 'duration-millennia' => '$1 {{PLURAL:$1|millennio|millenni}}',
 
-# Unknown messages
-'api-error-filetype-banned-type' => '$1 {{PLURAL:$4|non è un tipo di file consentito|non sono tipi di file consentiti}}. {{PLURAL:$3|Il tipo di file consentito è|I tipi di file consentiti sono}} $2.',
 );

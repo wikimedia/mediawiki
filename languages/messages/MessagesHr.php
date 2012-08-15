@@ -355,7 +355,6 @@ $messages = array(
 'tog-watchlisthideliu' => 'Sakrij uređivanja prijavljenih s popisa praćenja',
 'tog-watchlisthideanons' => 'Sakrij uređivanja neprijavljenih s popisa praćenja',
 'tog-watchlisthidepatrolled' => 'Sakrij pregledane izmjene u popisu praćenja',
-'tog-nolangconversion' => 'Isključi pretvaranje pisma (latinica-ćirilica, kineske varijante itd.) ako to wiki podržava',
 'tog-ccmeonemails' => 'Pošalji mi kopiju e-maila kojeg pošaljem drugim suradnicima',
 'tog-diffonly' => 'Ne prikazuj sadržaj stranice prilikom usporedbe inačica',
 'tog-showhiddencats' => 'Prikaži skrivene kategorije',
@@ -3835,6 +3834,7 @@ Inače, možete ispuniti jednostavan obrazac u nastavku. Vaš komentar biti će 
 'api-error-file-too-large' => 'Datoteka koju ste poslali bila je prevelika.',
 'api-error-filename-tooshort' => 'Ime datoteke je prekratko.',
 'api-error-filetype-banned' => 'Ova vrsta datoteke je zabranjena.',
+'api-error-filetype-banned-type' => '$1 {{PLURAL:$4|je nedopušteni tip datoteke|su nedopušteni tipovi datoteke}}. Dopušteni {{PLURAL:$3|tip datoteke je|tipovi datoteke su}} $2.',
 'api-error-filetype-missing' => 'Datoteci nedostaje nastavak.',
 'api-error-hookaborted' => 'Izmjena koji ste pokušali načiniti je otkazana preko "kuke" proširenja mediawiki softvera.',
 'api-error-http' => 'Interna pogreška: Ne može se povezati na poslužitelj.',
@@ -3857,6 +3857,4 @@ Inače, možete ispuniti jednostavan obrazac u nastavku. Vaš komentar biti će 
 'api-error-uploaddisabled' => 'Postavljanje datoteka je onemogućeno na ovom wikiprojektu.',
 'api-error-verification-error' => 'Ova datoteka je možda oštećena ili ima pogrešan nastavak.',
 
-# Unknown messages
-'api-error-filetype-banned-type' => '$1 {{PLURAL:$4|je nedopušteni tip datoteke|su nedopušteni tipovi datoteke}}. Dopušteni {{PLURAL:$3|tip datoteke je|tipovi datoteke su}} $2.',
 );

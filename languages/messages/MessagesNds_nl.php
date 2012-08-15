@@ -349,7 +349,6 @@ $messages = array(
 'tog-watchlisthideliu' => 'Bewarkingen van an-emelde gebrukers op mien volglieste verbargen',
 'tog-watchlisthideanons' => 'Bewarkingen van anonieme gebrukers op mien volglieste verbargen',
 'tog-watchlisthidepatrolled' => 'Wiezigingen die emarkeerd bin op volglieste verbargen',
-'tog-nolangconversion' => 't Ummezetten van variaanten uutschakelen',
 'tog-ccmeonemails' => 'Stuur mien kopieën van berichten an aandere gebrukers',
 'tog-diffonly' => 'Laot de inhoud van ziejen niet onder de an-egeven wiezigingen zien.',
 'tog-showhiddencats' => 'Laot verbörgen kategorieën zien',
@@ -3887,6 +3886,7 @@ Aanders ku\'j oek t eenvoudige formulier hieronder gebruken. Joew opmarkingen zu
 'api-error-file-too-large' => "t Bestaand da'j op-estuurd hebben is te groot.",
 'api-error-filename-tooshort' => 'De bestaandsnaam is te kort.',
 'api-error-filetype-banned' => 'Dit bestaandstype is niet toe-estaon.',
+'api-error-filetype-banned-type' => '{{PLURAL:$4|t Bestaandstype $1 wordt|De bestandstypes $1 worden}} niet toegelaten. {{PLURAL:$3|t Toe-estaone bestaandstype is|De toe-estaone bestaandstypen bin}} $2.',
 'api-error-filetype-missing' => 't Bestaand hef gien extensie.',
 'api-error-hookaborted' => "De wieziging die'j proberen deur te voeren is aofebreuken deur n extra uutbreiding.",
 'api-error-http' => 'Interne fout: der kon gien verbiending emaakt wörden mit de server.',
@@ -3922,6 +3922,4 @@ Aanders ku\'j oek t eenvoudige formulier hieronder gebruken. Joew opmarkingen zu
 'duration-centuries' => '$1 {{PLURAL:$1|eeuw|eeuwen}}',
 'duration-millennia' => '$1 {{PLURAL:$1|millennium|millennia}}',
 
-# Unknown messages
-'api-error-filetype-banned-type' => '{{PLURAL:$4|t Bestaandstype $1 wordt|De bestandstypes $1 worden}} niet toegelaten. {{PLURAL:$3|t Toe-estaone bestaandstype is|De toe-estaone bestaandstypen bin}} $2.',
 );

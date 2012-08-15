@@ -3824,6 +3824,7 @@ Përndryshe, ju mund të formularin e thjeshtë më poshtë. Komenti juaj do të
 'api-error-file-too-large' => 'Skeda që paraqitët ishte shumë e madhe.',
 'api-error-filename-tooshort' => 'Emri i skedës është shumë i shkurtër.',
 'api-error-filetype-banned' => 'Ky lloj i skedës është përjashtuar.',
+'api-error-filetype-banned-type' => '$1 {{PLURAL:$4|nuk është një lloj i skedës së lejuar|nuk janë lloje të lejuara të skedave}}. {{PLURAL:$3|Lloji i lejuar i skedës është|Llojet e lejuara të skedave janë}} $2.',
 'api-error-filetype-missing' => 'Skedës i mungon një shtesë.',
 'api-error-hookaborted' => 'Modifikimi që provuat të bëni u ndërpre nga një goditje shtese.',
 'api-error-http' => 'Gabim i brendshëm: Nuk mund të lidhet me serverin.',
@@ -3859,6 +3860,4 @@ Përndryshe, ju mund të formularin e thjeshtë më poshtë. Komenti juaj do të
 'duration-centuries' => '$1 {{PLURAL:$1|shekull|shekuj}}',
 'duration-millennia' => '$1 {{PLURAL:$1|milennium|mileniume}}',
 
-# Unknown messages
-'api-error-filetype-banned-type' => '$1 {{PLURAL:$4|nuk është një lloj i skedës së lejuar|nuk janë lloje të lejuara të skedave}}. {{PLURAL:$3|Lloji i lejuar i skedës është|Llojet e lejuara të skedave janë}} $2.',
 );

@@ -555,6 +555,7 @@ o <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} 
 'previewnote' => "'''Hinumdumi nga pahiuna-nga-paggawas pa la ini.'''
 ¡Waray pa katipig an imo mga ginbag-o!",
 'editing' => 'Ginliliwat an $1',
+'creating' => 'Ginhihimo an $1',
 'editingsection' => 'Ginliliwat an $1 (bahin)',
 'editingcomment' => 'Ginliliwat an $1 (bag-o nga bahin)',
 'editconflict' => 'Diri pagkakauroyon han pagliwat: $1',

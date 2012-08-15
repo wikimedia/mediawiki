@@ -332,7 +332,6 @@ $messages = array(
 'tog-watchlisthideliu' => 'Amaga, de la tièra, las modificacions pels utilizaires connectats',
 'tog-watchlisthideanons' => 'Amaga, de la tièra, las modificacions anonimas',
 'tog-watchlisthidepatrolled' => 'Amagar las modificacions susvelhadas de la lista de seguiment',
-'tog-nolangconversion' => 'Desactivar la conversion de las variantas de lenga',
 'tog-ccmeonemails' => 'Me mandar una còpia dels corrièrs electronics que mandi als autres utilizaires',
 'tog-diffonly' => 'Far pas veire lo contengut de las paginas jos las difs',
 'tog-showhiddencats' => 'Afichar las categorias amagadas',

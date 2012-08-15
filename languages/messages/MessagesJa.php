@@ -404,7 +404,6 @@ $messages = array(
 'tog-watchlisthideliu' => 'ウォッチリストにログイン利用者の編集を表示しない',
 'tog-watchlisthideanons' => 'ウォッチリストに匿名利用者の編集を表示しない',
 'tog-watchlisthidepatrolled' => 'ウォッチリストに巡回済みの編集を表示しない',
-'tog-nolangconversion' => '言語変種変換を無効にする',
 'tog-ccmeonemails' => '他の利用者に送信したメールの控えを自分にも送信',
 'tog-diffonly' => '差分の下にページ内容を表示しない',
 'tog-showhiddencats' => '隠しカテゴリを表示',
@@ -1317,7 +1316,7 @@ $1",
 ** 名誉毀損のおそれ
 ** 非公開個人情報',
 'revdelete-otherreason' => '他の、または追加の理由：',
-'revdelete-reasonotherlist' => '他の理由',
+'revdelete-reasonotherlist' => 'その他の理由',
 'revdelete-edit-reasonlist' => '削除理由を編集',
 'revdelete-offender' => '指定版の投稿者：',
 
@@ -2404,7 +2403,7 @@ contenttype/subtypeの形式で入力してください（例：<tt>image/jpeg</
 'watchlist' => 'ウォッチリスト',
 'mywatchlist' => 'ウォッチリスト',
 'watchlistfor2' => '利用者: $1 $2',
-'nowatchlist' => 'ウォッチリストに項目がありません。',
+'nowatchlist' => 'ウォッチリストには何も項目がありません。',
 'watchlistanontext' => 'ウォッチリストにある項目を閲覧または編集するには、$1してください。',
 'watchnologin' => 'ログインしていません',
 'watchnologintext' => 'ウォッチリストを変更するためには、[[Special:UserLogin|ログイン]]している必要があります。',
@@ -4223,6 +4222,7 @@ MediaWikiは、有用であることを期待して配布されていますが�
 'api-error-file-too-large' => '送信されたファイルは大きすぎます。',
 'api-error-filename-tooshort' => 'ファイル名が短すぎます。',
 'api-error-filetype-banned' => 'この形式のファイルは禁止されています。',
+'api-error-filetype-banned-type' => '$1{{PLURAL:$4|は許可されていないファイル形式です}}。許可されている{{PLURAL:$3|ファイル形式}}は$2です。',
 'api-error-filetype-missing' => 'ファイルに拡張子がありません。',
 'api-error-hookaborted' => '拡張機能のフックによって、修正が中断されました。',
 'api-error-http' => '内部エラー：サービスへの接続で問題が発生しました。',
@@ -4258,6 +4258,4 @@ MediaWikiは、有用であることを期待して配布されていますが�
 'duration-centuries' => '$1 {{PLURAL:$1|世紀}}',
 'duration-millennia' => '$1{{PLURAL:$1|,000 年}}',
 
-# Unknown messages
-'api-error-filetype-banned-type' => '$1{{PLURAL:$4|は許可されていないファイル形式です}}。許可されている{{PLURAL:$3|ファイル形式}}は$2です。',
 );

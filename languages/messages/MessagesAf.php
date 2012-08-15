@@ -3846,6 +3846,7 @@ Anders kan u die eenvoudige vorm hieronder gebruik. U kommentaar sal by die blad
 'api-error-file-too-large' => 'Die lêer wat u probeer oplaai is te groot.',
 'api-error-filename-tooshort' => 'Die lêernaam is te kort.',
 'api-error-filetype-banned' => 'Hierdie tipe lêer is verban en word nie toegelaat nie.',
+'api-error-filetype-banned-type' => 'Die {{PLURAL:$4|lêertipe|lêertipes}} $1 word nie toegelaat nie. Toelaatbare {{PLURAL:$3|lêertipes|lêertipes}} is $2.',
 'api-error-filetype-missing' => "Die lêer het nie 'n uitbreiding nie.",
 'api-error-hookaborted' => "Die wysiging wat jy probeer maak, is deur 'n uitbreiding haak geaborteer.",
 'api-error-http' => "Interne fout: Kan nie 'n verbinding met die bediener maak nie.",
@@ -3881,6 +3882,4 @@ Anders kan u die eenvoudige vorm hieronder gebruik. U kommentaar sal by die blad
 'duration-centuries' => '$1 {{PLURAL:$1|eeu|eeue}}',
 'duration-millennia' => '$1 {{PLURAL:$1|millennium|millennia}}',
 
-# Unknown messages
-'api-error-filetype-banned-type' => 'Die {{PLURAL:$4|lêertipe|lêertipes}} $1 word nie toegelaat nie. Toelaatbare {{PLURAL:$3|lêertipes|lêertipes}} is $2.',
 );

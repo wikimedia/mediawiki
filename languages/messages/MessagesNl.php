@@ -387,7 +387,6 @@ $messages = array(
 'tog-watchlisthideliu' => 'Bewerkingen van aangemelde gebruikers op mijn volglijst verbergen',
 'tog-watchlisthideanons' => 'Bewerkingen van anonieme gebruikers op mijn volglijst verbergen',
 'tog-watchlisthidepatrolled' => 'Gemarkeerde wijzigingen op mijn volglijst verbergen',
-'tog-nolangconversion' => 'Variantomzetting uitschakelen',
 'tog-ccmeonemails' => 'Mij een kopie zenden van e-mails die ik naar andere gebruikers stuur',
 'tog-diffonly' => 'Pagina-inhoud onder wijzigingen niet weergeven',
 'tog-showhiddencats' => 'Verborgen categorieën weergeven',
@@ -4111,6 +4110,7 @@ Anders kunt u ook het eenvoudige formulier hieronder gebruiken. Uw reactie wordt
 'api-error-file-too-large' => 'Het bestand dat u hebt geüpload is te groot.',
 'api-error-filename-tooshort' => 'De bestandsnaam is te kort.',
 'api-error-filetype-banned' => 'Dit bestandstype mag niet geüpload worden.',
+'api-error-filetype-banned-type' => '{{PLURAL:$4|Het bestandstype $1 wordt|De bestandstypes $1 worden}} niet toegelaten. {{PLURAL:$3|Het toegelaten bestandstype is|De toegelaten bestandstypes zijn}} $2.',
 'api-error-filetype-missing' => 'Het bestand heeft geen extensie.',
 'api-error-hookaborted' => 'De wijziging die u probeert te maken is afgebroken door een uitbreiding.',
 'api-error-http' => 'Interne fout: er kon geen verbinding gemaakt worden met de server.',
@@ -4146,6 +4146,4 @@ Anders kunt u ook het eenvoudige formulier hieronder gebruiken. Uw reactie wordt
 'duration-centuries' => '$1 {{PLURAL:$1|eeuw|eeuwen}}',
 'duration-millennia' => '$1 {{PLURAL:$1|millennium|millennia}}',
 
-# Unknown messages
-'api-error-filetype-banned-type' => '{{PLURAL:$4|Het bestandstype $1 wordt|De bestandstypes $1 worden}} niet toegelaten. {{PLURAL:$3|Het toegelaten bestandstype is|De toegelaten bestandstypes zijn}} $2.',
 );

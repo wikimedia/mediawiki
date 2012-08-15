@@ -411,7 +411,6 @@ $messages = array(
 'tog-watchlisthideliu' => 'Masquer les modifications faites par des utilisateurs inscrits dans la liste de suivi',
 'tog-watchlisthideanons' => 'Masquer les modifications anonymes dans la liste de suivi',
 'tog-watchlisthidepatrolled' => 'Masquer les modifications surveillées dans la liste de suivi',
-'tog-nolangconversion' => 'Désactiver la conversion des variantes linguistiques',
 'tog-ccmeonemails' => 'M’envoyer une copie des courriels que j’envoie aux autres utilisateurs',
 'tog-diffonly' => 'Ne pas afficher le contenu des pages sous les diffs',
 'tog-showhiddencats' => 'Afficher les catégories cachées',
@@ -4051,6 +4050,7 @@ Sinon, vous pouvez utiliser le formulaire simplifié ci-dessous. Votre commentai
 'api-error-file-too-large' => 'Le fichier que vous avez soumis était trop grand.',
 'api-error-filename-tooshort' => 'Le nom du fichier est trop court.',
 'api-error-filetype-banned' => 'Ce type de fichier est interdit.',
+'api-error-filetype-banned-type' => '$1 {{PLURAL:$4|n’est pas un type de fichier autorisé|ne sont pas des types de fichiers autorisés}}. {{PLURAL:$3|Le type de fichier autorisé est |Les types de fichiers autorisés sont}} $2.',
 'api-error-filetype-missing' => 'L’extension du fichier est manquante.',
 'api-error-hookaborted' => 'La modification que vous avez essayé de faire a été arrêtée par un crochet d’une extension.',
 'api-error-http' => 'Erreur interne : ne peut se connecter au serveur.',
@@ -4086,6 +4086,4 @@ Sinon, vous pouvez utiliser le formulaire simplifié ci-dessous. Votre commentai
 'duration-centuries' => '$1 {{PLURAL:$1|siècle|siècles}}',
 'duration-millennia' => '$1 {{PLURAL:$1|millénaire|millénaires}}',
 
-# Unknown messages
-'api-error-filetype-banned-type' => '$1 {{PLURAL:$4|n’est pas un type de fichier autorisé|ne sont pas des types de fichiers autorisés}}. {{PLURAL:$3|Le type de fichier autorisé est |Les types de fichiers autorisés sont}} $2.',
 );

@@ -362,7 +362,6 @@ $messages = array(
 'tog-watchlisthideliu' => 'İzleme listemde, kayıtlı kullanıcılar tarafından yapılan değişiklikleri gösterme',
 'tog-watchlisthideanons' => 'İzleme listemde, anonim kullanıcılar tarafından yapılan değişiklikleri gizle',
 'tog-watchlisthidepatrolled' => 'İzleme listesinde kontrol edilmiş değişiklikleri gizle',
-'tog-nolangconversion' => 'Varyant dönüştürmesini devre dışı bırak',
 'tog-ccmeonemails' => 'Diğer kullanıcılara gönderdiğim e-postaların kopyalarını bana da gönder',
 'tog-diffonly' => 'Sayfa içeriğini sürüm farklarının altında gösterme',
 'tog-showhiddencats' => 'Gizli kategorileri göster',
@@ -3831,6 +3830,7 @@ Resimler tam çözünürlükte görüntülenir, diğer dosya tipleri ilgili prog
 'api-error-file-too-large' => 'Gönderdiğiniz dosya çok büyük.',
 'api-error-filename-tooshort' => 'Dosya adı çok kısa.',
 'api-error-filetype-banned' => 'Bu dosya biçimi yasaklanmıştır.',
+'api-error-filetype-banned-type' => '$1 {{PLURAL:$4|izin verilen bir dosya türü değil|izin verilen bir dosya türü değil}}. İzin verilen {{PLURAL:$3|dosya türü|dosya türleri}} $2.',
 'api-error-filetype-missing' => 'Dosya uzantısı eksik.',
 'api-error-http' => 'İç hata: sunucu ile bağlantı kurulamıyor.',
 'api-error-illegal-filename' => 'Bu dosya adına izin verilmiyor.',
@@ -3849,6 +3849,4 @@ Resimler tam çözünürlükte görüntülenir, diğer dosya tipleri ilgili prog
 'api-error-uploaddisabled' => 'Yükleme bu vikide devre dışı bırakılmıştır.',
 'api-error-verification-error' => 'Dosya bozuk veya yanlış uzantıya sahip olabilir.',
 
-# Unknown messages
-'api-error-filetype-banned-type' => '$1 {{PLURAL:$4|izin verilen bir dosya türü değil|izin verilen bir dosya türü değil}}. İzin verilen {{PLURAL:$3|dosya türü|dosya türleri}} $2.',
 );

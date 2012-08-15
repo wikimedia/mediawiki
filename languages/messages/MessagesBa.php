@@ -3688,6 +3688,7 @@ MediaWiki файҙалы булыр, тигән өмөттә, ләкин БЕР 
 'api-error-file-too-large' => 'Һеҙ ебәргән файл үтә ҙур.',
 'api-error-filename-tooshort' => 'Файл исеме бик ҡыҫҡа.',
 'api-error-filetype-banned' => 'Был файл төрө тыйылған.',
+'api-error-filetype-banned-type' => '$1 {{PLURAL:$4|тыйылған файл төрө|тыйылған файл төрҙәре}}. Рөхсәт ителгән {{PLURAL:$3|файл төрө|файл төрҙәре}} $2.',
 'api-error-filetype-missing' => 'Был файлдың ҡушымтаһы юҡ',
 'api-error-hookaborted' => 'Һеҙ эшләргә теләгән үҙгәртеүҙәр ҡушымтаны тикшереүсе тарафынан өҙөлдө',
 'api-error-http' => 'Эске хата: серверға бәйләнеп булмай.',
@@ -3723,6 +3724,4 @@ MediaWiki файҙалы булыр, тигән өмөттә, ләкин БЕР 
 'duration-centuries' => '$1 {{PLURAL:$1|быуат|быуаттар}}',
 'duration-millennia' => '$1 {{PLURAL:$1|меңйыллыҡ|меңйыллыҡтар}}',
 
-# Unknown messages
-'api-error-filetype-banned-type' => '$1 {{PLURAL:$4|тыйылған файл төрө|тыйылған файл төрҙәре}}. Рөхсәт ителгән {{PLURAL:$3|файл төрө|файл төрҙәре}} $2.',
 );

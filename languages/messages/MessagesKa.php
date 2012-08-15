@@ -190,7 +190,6 @@ $messages = array(
 'tog-watchlisthideliu' => 'დამალეთ დარეგისტრირებულ მოხმარებელთა ცვლილებები ჩემი კონტროლის სიიდან',
 'tog-watchlisthideanons' => 'დამალეთ ანონიმურ მომხმარებელთა შესწორებები ჩემი კონტროლის სიიდან',
 'tog-watchlisthidepatrolled' => 'დამალეთ საკონტროლო სიიდან პატრულირებული რედაქტირებები',
-'tog-nolangconversion' => 'წერილების სისტემის გარდაქმნის გამორთვა',
 'tog-ccmeonemails' => 'გამომიგზავნე ელფოსტების ასლები, რომლებსაც მე სხვა მომხმარებლებს ვუგზავნი',
 'tog-diffonly' => 'დამალე გვერდის შიგთავსი ცვლილების ქვევით',
 'tog-showhiddencats' => 'დამალული კატეგორიების ჩვენება',
@@ -3670,7 +3669,7 @@ $5
 'version-extensions' => 'დაყენებული გაფართოებები',
 'version-specialpages' => 'სპეციალური გვერდები',
 'version-parserhooks' => 'სინტაქსური ანალიზატორის ჰუკები',
-'version-variables' => 'смфдуифвуиш',
+'version-variables' => 'ცვალებადი',
 'version-antispam' => 'სპამის პრევენცია',
 'version-skins' => 'იერსახე',
 'version-api' => 'API',
@@ -3862,6 +3861,7 @@ MediaWiki ვრცელდება იმ იმედით, რომ ი�
 'api-error-file-too-large' => 'არჩეული ფაილი ძალიან დიდია.',
 'api-error-filename-tooshort' => 'ფაილის სახელი ზედმეტად მოკლეა',
 'api-error-filetype-banned' => 'ფაილის ეს ტიპი აკრძალულია',
+'api-error-filetype-banned-type' => '$1 {{PLURAL:$4|მიუღებელი ფაილის ტიპია|მიუღებელი ფაილის ტიპებია}}. მისაღებიი ფაილის {{PLURAL:$3|ტიპია|ტიპებია}} $2.',
 'api-error-filetype-missing' => 'ფაილს აკლია გაფართოვება.',
 'api-error-hookaborted' => 'თქვენ მიერ შემოთავაზებული ცვლილება მოინიშნა გაფართოების დოკუმენტაციაში.',
 'api-error-http' => 'აღმოჩენილია შეცდომა სერვერთან დაკავშირებისას.',
@@ -3897,6 +3897,4 @@ MediaWiki ვრცელდება იმ იმედით, რომ ი�
 'duration-centuries' => '$1 {{PLURAL:$1|საუკუნე|საუკუნე}}',
 'duration-millennia' => '$1 {{PLURAL:$1|ათასწლეული|ათასწლეული}}',
 
-# Unknown messages
-'api-error-filetype-banned-type' => '$1 {{PLURAL:$4|მიუღებელი ფაილის ტიპია|მიუღებელი ფაილის ტიპებია}}. მისაღებიი ფაილის {{PLURAL:$3|ტიპია|ტიპებია}} $2.',
 );

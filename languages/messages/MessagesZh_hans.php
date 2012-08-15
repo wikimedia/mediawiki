@@ -308,7 +308,6 @@ $messages = array(
 'tog-watchlisthideliu' => '在监视列表中隐藏登录用户',
 'tog-watchlisthideanons' => '在监视列表中隐藏匿名用户',
 'tog-watchlisthidepatrolled' => '在监视列表中隐藏已巡查的编辑',
-'tog-nolangconversion' => '停用字词转换',
 'tog-ccmeonemails' => '把我给其他用户发送的电子邮件的副本发送给我',
 'tog-diffonly' => '比较差异时不显示页面内容',
 'tog-showhiddencats' => '显示隐藏分类',
@@ -1257,7 +1256,7 @@ $1",
 
 # Preferences page
 'preferences' => '系统设置',
-'mypreferences' => '设置',
+'mypreferences' => '我的参数设置',
 'prefs-edits' => '编辑数量：',
 'prefsnologin' => '尚未登录',
 'prefsnologintext' => '您必须先<span class="plainlinks">[{{fullurl:{{#Special:UserLogin}}|returnto=$1}} 登录]</span>才能设置个人参数。',
@@ -2397,7 +2396,7 @@ $1',
 # Contributions
 'contributions' => '用户贡献',
 'contributions-title' => '$1的用户贡献',
-'mycontris' => '贡献',
+'mycontris' => '我的贡献',
 'contribsub2' => '$1的贡献（$2）',
 'nocontribs' => '没有找到符合特征的更改。',
 'uctop' => '（最后更改）',
@@ -3811,6 +3810,7 @@ MediaWiki是基于使用目的而加以发布，然而不负任何担保责任�
 'api-error-file-too-large' => '您提交的文件过大。',
 'api-error-filename-tooshort' => '文件名过短。',
 'api-error-filetype-banned' => '此类文件被禁止。',
+'api-error-filetype-banned-type' => '$1{{PLURAL:$4|不是允许的文件类型}}。允许的{{PLURAL:$3|文件类型是|文件类型有}}$2。',
 'api-error-filetype-missing' => '该文件没有扩展名。',
 'api-error-hookaborted' => '你试图进行的修改被一个扩展钩子终止。',
 'api-error-http' => '内部错误：无法连接到服务器。',
@@ -3846,6 +3846,4 @@ MediaWiki是基于使用目的而加以发布，然而不负任何担保责任�
 'duration-centuries' => '$1个世纪',
 'duration-millennia' => '$1千年',
 
-# Unknown messages
-'api-error-filetype-banned-type' => '$1{{PLURAL:$4|不是允许的文件类型}}。允许的{{PLURAL:$3|文件类型是|文件类型有}}$2。',
 );

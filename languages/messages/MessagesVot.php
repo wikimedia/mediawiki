@@ -10,6 +10,7 @@
  * @author 2Q
  * @author Andrijko Z.
  * @author Comp1089
+ * @author Erdemaslancan
  * @author Paivud
  * @author Trần Nguyễn Minh Huy
  */
@@ -666,6 +667,7 @@ Cüľľellä $2 on spiiska viimeiziss pühcimühsiiss.',
 'undeletecomment' => 'Süü:',
 'undelete-search-submit' => 'Etsi',
 'undelete-show-file-submit' => 'Daa',
+'undelete-revisionrow' => '$1 $2 ($3) $4 . . $5 $6 $7',
 
 # Namespace form on various pages
 'namespace' => 'Nimiruumi:',

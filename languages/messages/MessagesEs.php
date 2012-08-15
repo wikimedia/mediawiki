@@ -389,7 +389,6 @@ $messages = array(
 'tog-watchlisthideliu' => 'Ocultar ediciones de usuarios registrados en la lista de seguimiento',
 'tog-watchlisthideanons' => 'Ocultar ediciones de usuarios anónimos en la lista de seguimiento',
 'tog-watchlisthidepatrolled' => 'Ocultar las ediciones patrulladas en la lista de seguimiento',
-'tog-nolangconversion' => 'Deshabilitar conversión de lenguajes',
 'tog-ccmeonemails' => 'Recibir copias de los correos que envío a otros usuarios',
 'tog-diffonly' => 'No mostrar el contenido de la página bajo las diferencias',
 'tog-showhiddencats' => 'Mostrar categorías escondidas',
@@ -4009,6 +4008,7 @@ En otro caso, puedes usar el siguiente formulario. Tu comentario será añadido 
 'api-error-file-too-large' => 'El archivo que enviaste era demasiado grande.',
 'api-error-filename-tooshort' => 'El nombre de archivo es demasiado corto.',
 'api-error-filetype-banned' => 'Este tipo de archivo está prohibido.',
+'api-error-filetype-banned-type' => '$1 {{PLURAL:$4|no es un tipo de archivo permitido|no son tipos de archivos permitidos}}. {{PLURAL:$3|El tipo de archivo permitido es|Los tipos de archivos permitidos son}} $2.',
 'api-error-filetype-missing' => 'El archivo no tiene extensión de archivo.',
 'api-error-hookaborted' => 'La modificación que intentaste hacer fue cancelada por un gancho de extensión.',
 'api-error-http' => 'Error interno: No se puede conectar al servidor.',
@@ -4044,6 +4044,4 @@ En otro caso, puedes usar el siguiente formulario. Tu comentario será añadido 
 'duration-centuries' => '$1 {{PLURAL:$1|siglo|siglos}}',
 'duration-millennia' => '$1 {{PLURAL:$1|milenio|milenios}}',
 
-# Unknown messages
-'api-error-filetype-banned-type' => '$1 {{PLURAL:$4|no es un tipo de archivo permitido|no son tipos de archivos permitidos}}. {{PLURAL:$3|El tipo de archivo permitido es|Los tipos de archivos permitidos son}} $2.',
 );

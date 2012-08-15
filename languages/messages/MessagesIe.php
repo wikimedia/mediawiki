@@ -173,7 +173,6 @@ $messages = array(
 'tog-watchlisthideliu' => 'Ocultar redactiones de usatores registrat del liste de págines vigilat',
 'tog-watchlisthideanons' => 'Ocultar redactiones de usatores anonim del liste de págines vigilat',
 'tog-watchlisthidepatrolled' => 'Ocultar redactiones vigilat del liste de págines vigilat',
-'tog-nolangconversion' => 'Desvalidar conversion de variantes',
 'tog-ccmeonemails' => 'Inviar me copies de e-mailes que yo invia por altri usatores',
 'tog-diffonly' => 'Ne monstrar li contenete de págine in infra del changes',
 'tog-showhiddencats' => 'Monstrar categories ne visibil',

@@ -227,7 +227,6 @@ $messages = array(
 'tog-watchlisthideliu' => 'Skjul indloggede brugeres redigeringer i overvågningslisten',
 'tog-watchlisthideanons' => 'Skjul anonyme brugeres redigeringer i overvågningslisten',
 'tog-watchlisthidepatrolled' => 'Skjul patrujerede ændringer fra overvågningslisten',
-'tog-nolangconversion' => 'Deaktiver konverteringer af sprogvarianter',
 'tog-ccmeonemails' => 'Send mig kopier af e-mails som jeg sender til andre brugere',
 'tog-diffonly' => 'Vis ved versionssammenligninger kun forskelle, ikke hele siden',
 'tog-showhiddencats' => 'Vis skjulte kategorier',
@@ -3759,6 +3758,7 @@ Ellers kan du bruge den enkle formular nedenfor. Din kommentar vil blive tilføj
 'api-error-file-too-large' => 'Den fil du indsendte var for stor.',
 'api-error-filename-tooshort' => 'Filnavnet er for kort.',
 'api-error-filetype-banned' => 'Denne type fil er ikke tilladt.',
+'api-error-filetype-banned-type' => '$1 {{PLURAL:$4|er ikke en tilladt filtype|er ikke tilladte filtyper}}. Tilladt {{PLURAL:$3|filtype er|filtyper er}} $2.',
 'api-error-filetype-missing' => 'Filen mangler en filendelse.',
 'api-error-hookaborted' => 'Ændringen, du forsøgte at gøre, blev afbrudt af en udvidelsestilkobling.',
 'api-error-http' => 'Intern fejl: Kan ikke forbinde til serveren.',
@@ -3794,6 +3794,4 @@ Ellers kan du bruge den enkle formular nedenfor. Din kommentar vil blive tilføj
 'duration-centuries' => '$1 {{PLURAL:$1|århundrede|århundreder}}',
 'duration-millennia' => '$1 {{PLURAL:$1|årtusind|årtusinder}}',
 
-# Unknown messages
-'api-error-filetype-banned-type' => '$1 {{PLURAL:$4|er ikke en tilladt filtype|er ikke tilladte filtyper}}. Tilladt {{PLURAL:$3|filtype er|filtyper er}} $2.',
 );

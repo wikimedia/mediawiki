@@ -3855,6 +3855,7 @@ Kui ei, kasuta allolevat lihtsat vormi. Sinu kommentaar lisatakse koos kasutajan
 'api-error-file-too-large' => 'Üleslaaditav fail on liiga suur.',
 'api-error-filename-tooshort' => 'Failinimi on liiga lühike.',
 'api-error-filetype-banned' => 'Antud failitüüp on keelatud.',
+'api-error-filetype-banned-type' => '$1 pole lubatud {{PLURAL:$4|failitüüp|failitüübid}}.  Lubatud {{PLURAL:$3|failitüüp|failitüübid}} on  $2.',
 'api-error-filetype-missing' => 'Failinime tagant puudub laiend.',
 'api-error-hookaborted' => 'Tarkvaralisa katkestas muudatuse tegemise.',
 'api-error-http' => 'Sisetõrge: Serveriga pole võimalik ühendust luua.',
@@ -3890,6 +3891,4 @@ Kui ei, kasuta allolevat lihtsat vormi. Sinu kommentaar lisatakse koos kasutajan
 'duration-centuries' => '$1 {{PLURAL:$1|sajandi}}',
 'duration-millennia' => '$1 {{PLURAL:$1|aastatuhande}}',
 
-# Unknown messages
-'api-error-filetype-banned-type' => '$1 pole lubatud {{PLURAL:$4|failitüüp|failitüübid}}.  Lubatud {{PLURAL:$3|failitüüp|failitüübid}} on  $2.',
 );

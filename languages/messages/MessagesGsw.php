@@ -174,7 +174,6 @@ $messages = array(
 'tog-watchlisthideliu' => 'Bearbeitige vu aagmäldete Benutzer usblände',
 'tog-watchlisthideanons' => 'Bearbeitige vu anonyme Benutzer (IP-Adresse) usblände',
 'tog-watchlisthidepatrolled' => 'vum Fäldhieter aagluegti Änderige in dr Beobachtigslischt usblände',
-'tog-nolangconversion' => 'Konvertierig vu Sprachvariante abschalte',
 'tog-ccmeonemails' => 'Schick mr Kopie vo de E-Mails, won i andere schick.',
 'tog-diffonly' => 'Numme Versionsunterschiid aazeige, ohni d Syte',
 'tog-showhiddencats' => 'Zeig di versteckte Kategorie',
@@ -3649,6 +3648,7 @@ Sunscht chasch au s eifach Formular unte nutze. Dyy Kommentar wird, zämme mit D
 'api-error-file-too-large' => 'D Datei, wu Du ibertrait hesch, isch z groß.',
 'api-error-filename-tooshort' => 'Dr Dateiname isch z churz.',
 'api-error-filetype-banned' => 'Dää Dateityp isch gsperrt.',
+'api-error-filetype-banned-type' => '$1 {{PLURAL:$4|isch e Dateiformat, wu nit erlaubt isch|sin Dateitype, wu nit erlaubt sin}}.  Erlaubt {{PLURAL:$3|isch s Dateiformat|sin d Dateiformat}} $2.',
 'api-error-filetype-missing' => 'D Datei het kei Dateinameerwyterig.',
 'api-error-hookaborted' => 'D Änderig, wu Du versuecht hesch, isch wäg eme Erwyterigs-Hooks abbroche wore.',
 'api-error-http' => 'Intärne Fähler: S het kei Verbindig zum Server chenne härgstellt wäre.',
@@ -3684,6 +3684,4 @@ Sunscht chasch au s eifach Formular unte nutze. Dyy Kommentar wird, zämme mit D
 'duration-centuries' => '$1 {{PLURAL:$1|Johrhundert|Johrhundert}}',
 'duration-millennia' => '$1 {{PLURAL:$1|Jahrtöusert|Jahrtöusert}}',
 
-# Unknown messages
-'api-error-filetype-banned-type' => '$1 {{PLURAL:$4|isch e Dateiformat, wu nit erlaubt isch|sin Dateitype, wu nit erlaubt sin}}.  Erlaubt {{PLURAL:$3|isch s Dateiformat|sin d Dateiformat}} $2.',
 );

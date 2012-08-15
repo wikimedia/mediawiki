@@ -307,7 +307,6 @@ $messages = array(
 'tog-watchlisthideliu' => "Rakiqunayuq ruraqkunap llamk'apusqankunata watiqay sutisuyupi pakay",
 'tog-watchlisthideanons' => "Rakiqunannaq ruraqkunap llamk'apusqankunata watiqay sutisuyupi pakay",
 'tog-watchlisthidepatrolled' => "Patrullasqa llamk'apusqakunata watiqasqakunapi pakay",
-'tog-nolangconversion' => 'Simi kutiyman ama niy',
 'tog-ccmeonemails' => 'Huk ruraqkunaman kachasqay e-chaskikunamanta iskaychasqakunata kachamuway',
 'tog-diffonly' => "Huk kaykunap uranpi kaq p'anqap samiqninta ama rikuchiychu",
 'tog-showhiddencats' => 'Pakasqa katiguriyakunata rikuchiy',
@@ -3771,6 +3770,7 @@ Mana chayqa, kay qatiqpi kaq hunt'ana p'anqatam llamk'achiyta atinki. Willapuyni
 'api-error-file-too-large' => 'Kachasqayki willañiqiqa nisyu hatunmi.',
 'api-error-filename-tooshort' => 'Kay willañiqi sutiqa nisyu pisillam.',
 'api-error-filetype-banned' => 'Kay willañiqi layaqa manam saqillasqachu.',
+'api-error-filetype-banned-type' => '$1 nisqaqa manam saqillasqachu willañiqi {{PLURAL:$4|laya|layakuna}}.  Saqillasqa willañiqi {{PLURAL:$3|layaqa|layakunaqa}} kaymi: $2.',
 'api-error-filetype-missing' => "Kay willañiqi sutiqa manam k'askaqniyuqchu.",
 'api-error-hookaborted' => "Wakinchaykachasqaykitaqa mast'ari ch'iwinam puchukachirqan.",
 'api-error-http' => "Ukhupi pantasqa: Manam sirwiqwan t'inkinakuyta atinichu.",
@@ -3806,6 +3806,4 @@ Mana chayqa, kay qatiqpi kaq hunt'ana p'anqatam llamk'achiyta atinki. Willapuyni
 'duration-centuries' => '{{PLURAL:$1|pachakwata|pachakwatakuna}}',
 'duration-millennia' => '{{PLURAL:$1|waranqawata|waranqawatakuna}}',
 
-# Unknown messages
-'api-error-filetype-banned-type' => '$1 nisqaqa manam saqillasqachu willañiqi {{PLURAL:$4|laya|layakuna}}.  Saqillasqa willañiqi {{PLURAL:$3|layaqa|layakunaqa}} kaymi: $2.',
 );

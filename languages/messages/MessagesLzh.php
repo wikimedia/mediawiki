@@ -186,7 +186,6 @@ $messages = array(
 'tog-watchlisthideliu' => '不哨有簿',
 'tog-watchlisthideanons' => '不哨無簿',
 'tog-watchlisthidepatrolled' => '不哨已巡',
-'tog-nolangconversion' => '非轉',
 'tog-ccmeonemails' => '凡所遺書，請存副本。',
 'tog-diffonly' => '異下無示頁',
 'tog-showhiddencats' => '示隱類',

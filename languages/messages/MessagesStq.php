@@ -86,7 +86,6 @@ $messages = array(
 'tog-watchlisthideliu' => 'Beoarbaidengen truch ounmäldede Benutsere in ju Beoboachtengslieste uutbländje',
 'tog-watchlisthideanons' => 'Beoarbaidengen truch anonyme Benutsere (IP) in ju Beoboachtengslieste uutbländje',
 'tog-watchlisthidepatrolled' => 'Kontrollierde Annerengen in ju Beooboachtengslieste "Lääste Annerengen" uutbländje',
-'tog-nolangconversion' => 'Konvertierenge fon Sproakvarianten deaktivierje',
 'tog-ccmeonemails' => 'Seend mie Kopien fon do E-Maile, do iek uur Benutsere seende.',
 'tog-diffonly' => 'Wies bie dän Versionsfergliek bloot do Unnerskeede, nit ju fulboodige Siede',
 'tog-showhiddencats' => 'Wies ferstatte Kategorien',

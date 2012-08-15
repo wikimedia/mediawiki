@@ -107,7 +107,6 @@ $messages = array(
 'tog-watchlisthideminor' => 'Tiquintlātīz tlapatlalitzintli motlachiyalizpan',
 'tog-watchlisthideliu' => 'Tiquintlātīz tlācah ōmocalacqueh īntlapatlaliz motlachiyalizpan',
 'tog-watchlisthideanons' => 'Tiquintlātīz tlācah ahtōcāitl īntlapatlaliz motlachiyalizpan',
-'tog-nolangconversion' => 'Ahmo tictēquitiltia tlahtōlcuepaliztli',
 'tog-ccmeonemails' => 'Nō xinēch-mailīz ihcuāc nitē-mailīz tlatequitiltilīlli',
 'tog-diffonly' => 'Ahmo tiquittāz zāzanilli ītlapiyaliz ahneneuhquilitzīntlan',
 'tog-showhiddencats' => 'Mà monèxtìkàn in tlatlatìltìn tlaìxmatkàtlàlilòmë',

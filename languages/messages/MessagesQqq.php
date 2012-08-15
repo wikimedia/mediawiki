@@ -180,8 +180,6 @@ Is only shown if {{msg-mw|tog-enotifusertalkpages}} or/and {{msg-mw|tog-enotifwa
 'tog-watchlisthideliu' => "Option in tab 'Watchlist' of [[Special:Preferences]]. {{Gender}}",
 'tog-watchlisthideanons' => "Option in tab 'Watchlist' of [[Special:Preferences]]. {{Gender}}",
 'tog-watchlisthidepatrolled' => 'Option in Watchlist tab of [[Special:Preferences]]. {{Gender}}',
-'tog-nolangconversion' => '{{optional}}
-In user preferences.',
 'tog-ccmeonemails' => 'Option in [[Special:Preferences]] > {{int:prefs-personal}} > {{int:email}}. {{Gender}}',
 'tog-diffonly' => 'Toggle option used in [[Special:Preferences]]. {{Gender}}',
 'tog-showhiddencats' => 'Toggle option used in [[Special:Preferences]]. {{Gender}}',
@@ -3234,7 +3232,6 @@ Tooltip shown when hovering over a little sign of a thumb image, to go to the im
 'import' => 'The title of the special page [[Special:Import]];',
 'import-interwiki-history' => 'This is an option on [[Special:Import]]. Usually, when unchecked, only the first version of a page is imported. When you check the option, all versions are imported. This is important often to check for licensing reasons.',
 'import-interwiki-submit' => '{{Identical|Import}}',
-'import-interwiki-rootpage' => 'Used on [[Special:Import]] as label',
 'import-upload-filename' => 'Used on [[Special:Import]] as label for upload of an XML file containing the pages to import.',
 'xml-error-string' => ':$1: Some kind of message, perhaps name of the error?
 :$2: line number
@@ -3255,9 +3252,6 @@ See also:
 * $1 is a page name.
 See also:
 * {{msg-mw|import-error-edit}}',
-'import-options-wrong' => 'Used on [[Special:Import]], when one of the options has an error.',
-'import-rootpage-invalid' => 'Used on [[Special:Import]], when the root page is invalid.',
-'import-rootpage-nosubpage' => 'Used on [[Special:Import]], when the import namespace does not support subpages.',
 
 # Import log
 'importlogpage' => '{{doc-logpage}}',
@@ -4801,6 +4795,12 @@ $4 is the gender of the target user.',
 'api-error-file-too-large' => 'API error message that can be used for client side localisation of API errors.',
 'api-error-filename-tooshort' => 'API error message that can be used for client side localisation of API errors.',
 'api-error-filetype-banned' => 'API error message that can be used for client side localisation of API errors.',
+'api-error-filetype-banned-type' => "API error message that can be used for client side localisation of API errors.
+
+* $1 is the extension(s) of the file which cannot be uploaded
+* $2 is the list of file extensions that can be uploaded (Example: ''png, gif, jpg, jpeg, ogg, pdf, svg.'')
+* $3 is the number of allowed file formats (to be used for the PLURAL function)
+* $4 is the number of extensions that could not be uploaded (to be used for the PLURAL function)",
 'api-error-filetype-missing' => 'The word "extension" refers to the part behind the last dot in a file name, that by convention gives a hint about the kind of data format which a files contents are in.',
 'api-error-hookaborted' => 'The word "extension" here refers to a [[:mw:Manual:Extensions|MediaWiki Extension]] which extends the functionality of the basic wiki by adding something to its capabilities. "… aborted by an extension" implies that an operation could not be performed successfully or was not allowed to continue to its intended end.',
 'api-error-http' => 'API error message that can be used for client side localisation of API errors.',
@@ -4827,10 +4827,8 @@ $4 is the gender of the target user.',
 'api-error-verification-error' => 'The word "extension" refers to the part behind the last dot in a file name, that by convention gives a hint about the kind of data format which a files contents are in.',
 
 # Unknown messages
-'api-error-filetype-banned-type' => "API error message that can be used for client side localisation of API errors.
-
-* $1 is the extension(s) of the file which cannot be uploaded
-* $2 is the list of file extensions that can be uploaded (Example: ''png, gif, jpg, jpeg, ogg, pdf, svg.'')
-* $3 is the number of allowed file formats (to be used for the PLURAL function)
-* $4 is the number of extensions that could not be uploaded (to be used for the PLURAL function)",
+'import-interwiki-rootpage' => 'Used on [[Special:Import]] as label',
+'import-options-wrong' => 'Used on [[Special:Import]], when one of the options has an error.',
+'import-rootpage-invalid' => 'Used on [[Special:Import]], when the root page is invalid.',
+'import-rootpage-nosubpage' => 'Used on [[Special:Import]], when the import namespace does not support subpages.',
 );

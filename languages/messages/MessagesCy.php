@@ -3699,6 +3699,7 @@ Dangosir delweddau ar eu maint llawn, dechreuir ffeiliau o fathau eraill yn unio
 'api-error-file-too-large' => "Mae'r ffeil a gyflwynwyd gennych yn rhy fawr.",
 'api-error-filename-tooshort' => "Mae enw'r ffeil yn rhy fyr.",
 'api-error-filetype-banned' => "Mae'r math hwn o ffeil wedi ei wahardd.",
+'api-error-filetype-banned-type' => "Ni chaniateir ffeiliau o'r {{PLURAL:$4|math|math|mathau|mathau|mathau|mathau}} $1.  $2 yw'r {{PLURAL:$3|math|math|mathau|mathau|mathau|mathau}} o ffeil a ganiateir.",
 'api-error-filetype-missing' => 'Mae estyniad yn eisiau ar y ffeil.',
 'api-error-hookaborted' => 'Cafodd y darpar newid ei derfynu gan estyniad.',
 'api-error-http' => "Gwall mewnol: ni ellir cysylltu â'r gweinydd.",
@@ -3734,6 +3735,4 @@ Dangosir delweddau ar eu maint llawn, dechreuir ffeiliau o fathau eraill yn unio
 'duration-centuries' => '$1 {{PLURAL:$1|canmlwydd|ganmlwydd|ganmlwydd|canmlwydd|chanmlwydd|canmlwydd}}',
 'duration-millennia' => '$1 {{PLURAL:$1|milflwydd|filflwydd|filflwydd|milflwydd|milflwydd|milflwydd}}',
 
-# Unknown messages
-'api-error-filetype-banned-type' => "Ni chaniateir ffeiliau o'r {{PLURAL:$4|math|math|mathau|mathau|mathau|mathau}} $1.  $2 yw'r {{PLURAL:$3|math|math|mathau|mathau|mathau|mathau}} o ffeil a ganiateir.",
 );

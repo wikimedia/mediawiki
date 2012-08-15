@@ -3817,6 +3817,7 @@ U suprotnom, poslužite se jednostavnim obrascem ispod. Vaš komentar će stajat
 'api-error-file-too-large' => 'Datoteka koju ste poslali je bila prevelika.',
 'api-error-filename-tooshort' => 'Ime datoteke je prekratko.',
 'api-error-filetype-banned' => 'Ova vrsta datoteke je zabranjena.',
+'api-error-filetype-banned-type' => '$1 {{PLURAL:$4|nije dopušten tip datoteke|nisu dopušteni tipovi datoteka}}. {{PLURAL:$3|Dopuštena vrsta datoteke je|Dopuštene vrste datoteka su}} $2.',
 'api-error-filetype-missing' => 'Datoteci nedostaje nastavak.',
 'api-error-hookaborted' => 'Izmjena koji ste pokušali načiniti je otkazana preko "kuke" proširenja mediawiki softvera.',
 'api-error-http' => 'Unutrašnja greška: ne može se spojiti na server.',
@@ -3852,6 +3853,4 @@ U suprotnom, poslužite se jednostavnim obrascem ispod. Vaš komentar će stajat
 'duration-centuries' => '$1 {{PLURAL:$1|vijek|vijekova}}',
 'duration-millennia' => '$1 {{PLURAL:$1|milenijum|milenijuma}}',
 
-# Unknown messages
-'api-error-filetype-banned-type' => '$1 {{PLURAL:$4|nije dopušten tip datoteke|nisu dopušteni tipovi datoteka}}. {{PLURAL:$3|Dopuštena vrsta datoteke je|Dopuštene vrste datoteka su}} $2.',
 );

@@ -128,7 +128,6 @@ $messages = array(
 'tog-watchlisthideliu' => 'Peitta sistemha tulnuziden kävutajiden redakcijad kaclendnimikirjutesespäi',
 'tog-watchlisthideanons' => 'Peitta anonimoiden redakcijad kaclendnimikirjutesespäi',
 'tog-watchlisthidepatrolled' => 'Peitta patruliruidud redakcijad kaclendnimikirjutesespäi',
-'tog-nolangconversion' => 'Saubata kirjutandsistemoiden toižetand',
 'tog-ccmeonemails' => 'Oigeta minei kaikiden minai kirjutadud kirjeižiden kopijad',
 'tog-diffonly' => 'Ala ozuta lehtpolen süadäimištod versijoiden rindatandan al',
 'tog-showhiddencats' => 'Ozutada peittud kategorijad',
@@ -3070,12 +3069,11 @@ Kävutagat normaline ezikacund.',
 'api-error-empty-file' => "Teil oigetud fail om pall'az.",
 'api-error-filename-tooshort' => 'Lühudahk failannimi.',
 'api-error-filetype-banned' => "Nece failtip om kel'tud.",
+'api-error-filetype-banned-type' => '$1 {{PLURAL:$4|om laskmatoi failantip|oma laskmatomad failantipad}}. Lasktud {{PLURAL:$3|failantip om|failantipad oma}} $2.',
 'api-error-illegal-filename' => "Kel'tud failannimi.",
 'api-error-unclassified' => 'Tundmatoi petuz.',
 'api-error-unknown-code' => 'Tundmatoi petuz: "$1"',
 'api-error-unknown-warning' => 'Tadmatoi varutuz: $1',
 'api-error-unknownerror' => 'Tundmatoi petuz: "$1"',
 
-# Unknown messages
-'api-error-filetype-banned-type' => '$1 {{PLURAL:$4|om laskmatoi failantip|oma laskmatomad failantipad}}. Lasktud {{PLURAL:$3|failantip om|failantipad oma}} $2.',
 );

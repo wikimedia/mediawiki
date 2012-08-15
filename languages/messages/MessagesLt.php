@@ -223,7 +223,6 @@ $messages = array(
 'tog-watchlisthideliu' => 'Slėpti prisijungusių naudotojų keitimus stebimųjų sąraše',
 'tog-watchlisthideanons' => 'Slėpti anoniminių naudotojų keitimus stebimųjų sąraše',
 'tog-watchlisthidepatrolled' => 'Slėpti patikrintus keitimus stebimųjų sąraše',
-'tog-nolangconversion' => 'Išjungti variantų keitimą',
 'tog-ccmeonemails' => 'Siųsti man laiškų, kuriuos siunčiu kitiems naudotojams, kopijas',
 'tog-diffonly' => 'Nerodyti puslapio turinio po skirtumais',
 'tog-showhiddencats' => 'Rodyti paslėptas kategorijas',
@@ -2226,8 +2225,8 @@ Paskutinių šalinimų istorija - $2.',
 'rollback' => 'Atmesti keitimus',
 'rollback_short' => 'Atmesti',
 'rollbacklink' => 'atmesti',
-'rollbacklinkcount' => 'atšaukti $1 {{PLURAL:$1|redagavimą|redagavimus}}',
-'rollbacklinkcount-morethan' => 'atšaukti daugiau nei $1 {{PLURAL:$1|redagavimą|redagavimus}}',
+'rollbacklinkcount' => 'atmesti $1 {{PLURAL:$1|keitimą|keitimus}}',
+'rollbacklinkcount-morethan' => 'atmesti daugiau nei $1 {{PLURAL:$1|keitimą|keitimus}}',
 'rollbackfailed' => 'Atmetimas nepavyko',
 'cantrollback' => 'Negalima atmesti redagavimo; paskutinis keitęs naudotojas yra šio puslapio autorius.',
 'alreadyrolled' => 'Nepavyko atmesti paskutinio [[User:$2|$2]] ([[User talk:$2|Aptarimas]]{{int:pipe-separator}}[[Special:Contributions/$2|{{int:contribslink}}]]) daryto puslapio [[:$1]] keitimo;
@@ -2852,7 +2851,7 @@ Išsaugokite jį savo kompiuteryje ir įkelkite jį čia.',
 'tooltip-watchlistedit-raw-submit' => 'Atnaujinti stebimųjų sąrašą',
 'tooltip-recreate' => 'Atkurti puslapį nepaisant to, kad jis buvo ištrintas',
 'tooltip-upload' => 'Pradėti įkėlimą',
-'tooltip-rollback' => 'Atšaukti atmestus šio puslapio pakeitimus į paskutinę versiją vienu spustelėjimu',
+'tooltip-rollback' => 'Vienu spustelėjimu grąžinama prieš tai redagavusio naudotojo versija',
 'tooltip-undo' => '„Anuliuoti“ atmeta šį keitimą ir atveria ankstesnės versijos redagavimo formą.
 Leidžia pridėti atmetimo priežastį komentaruose',
 'tooltip-preferences-save' => 'Išsaugoti nustatymus',
@@ -3773,6 +3772,7 @@ Kitu atveju, galite naudotis žemiau esančia paprastesne forma. Jūsų komentar
 'api-error-file-too-large' => 'Failą, kurį pateikėte buvo per didelis.',
 'api-error-filename-tooshort' => 'Failo vardas yra per trumpas.',
 'api-error-filetype-banned' => 'Šis failų tipas yra uždraustas.',
+'api-error-filetype-banned-type' => '$1 nėra {{PLURAL:$4|leistinas failo tipas|leistini failo tipai}}. {{PLURAL:$3|Leistinas failų tipas|Leistini failų tipai}} yra $2.',
 'api-error-filetype-missing' => 'Failas neturi galūnės.',
 'api-error-hookaborted' => 'Pakeitimą, kurį bandėte atlikti, nutraukė priedas.',
 'api-error-http' => 'Vidinė klaida: nepavyko prisijungti prie serverio.',
@@ -3808,6 +3808,4 @@ Kitu atveju, galite naudotis žemiau esančia paprastesne forma. Jūsų komentar
 'duration-centuries' => '$1 {{PLURAL:$1|amžius|amžiai|amžių}}',
 'duration-millennia' => '$1 {{PLURAL:$1|tūkstantmetis|tūkstantmečiai|tūkstantmečių}}',
 
-# Unknown messages
-'api-error-filetype-banned-type' => '$1 nėra {{PLURAL:$4|leistinas failo tipas|leistini failo tipai}}. {{PLURAL:$3|Leistinas failų tipas|Leistini failų tipai}} yra $2.',
 );

@@ -170,7 +170,6 @@ $messages = array(
 'tog-watchlisthideliu' => 'Sumputkeun éditan pamaké nu asup log tina daptar awaskeun',
 'tog-watchlisthideanons' => 'Sumputkeun éditan pamaké anonim tina daptar awaskeun',
 'tog-watchlisthidepatrolled' => 'Sumputkeun éditan nu geus diroris tina béréndélan awaskeuneun',
-'tog-nolangconversion' => 'Tumpurkeun konversi varian',
 'tog-ccmeonemails' => 'Kirimkeun ogé salinan surélékna ka alamat kuring',
 'tog-diffonly' => 'Ulah némbongkeun eusi kaca di handapeun béda éditan',
 'tog-showhiddencats' => 'Témbongkeun kategori nyumput',
@@ -3069,6 +3068,7 @@ Coba ku sawangan normal.',
 'api-error-file-too-large' => 'Berkas nu dikirim gedé teuing.',
 'api-error-filename-tooshort' => 'Ngaran berkas pondok teuing.',
 'api-error-filetype-banned' => 'Jenis berkas ieu dipahing.',
+'api-error-filetype-banned-type' => '$1 kaasup tipeu koropak nu teu dicaram. {{PLURAL:$3|Nu diwidian nyaéta|Nu diwidian nyaéta}} $2.',
 'api-error-filetype-missing' => 'Ngaran berkas euweuh éxténsian.',
 'api-error-illegal-filename' => 'Ngaran berkas kitu dipahing.',
 'api-error-mustbeloggedin' => 'Anjeun kudu asup log pikeun ngunggahkeun berkas.',
@@ -3084,6 +3084,4 @@ Coba ku sawangan normal.',
 'duration-centuries' => '$1 {{PLURAL:$1|abad|abad}}',
 'duration-millennia' => '$1 {{PLURAL:$1|milénium|milénium}}',
 
-# Unknown messages
-'api-error-filetype-banned-type' => '$1 kaasup tipeu koropak nu teu dicaram. {{PLURAL:$3|Nu diwidian nyaéta|Nu diwidian nyaéta}} $2.',
 );

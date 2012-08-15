@@ -349,7 +349,6 @@ $messages = array(
 'tog-watchlisthideliu' => 'Esconder edições de utilizadores autenticados ao listar mudanças às páginas vigiadas',
 'tog-watchlisthideanons' => 'Esconder edições de utilizadores anónimos ao listar mudanças às páginas vigiadas',
 'tog-watchlisthidepatrolled' => 'Esconder edições patrulhadas ao listar mudanças às páginas vigiadas',
-'tog-nolangconversion' => 'Impossibilitar a conversão de variantes da língua',
 'tog-ccmeonemails' => 'Enviar-me cópias das mensagens por correio electrónico que eu enviar a outros utilizadores',
 'tog-diffonly' => 'Não mostrar o conteúdo da página ao comparar duas edições',
 'tog-showhiddencats' => 'Mostrar categorias ocultas',
@@ -4007,6 +4006,7 @@ Caso contrário, pode facilmente usar o formulário abaixo. O seu comentário se
 'api-error-file-too-large' => 'O ficheiro que enviou era demasiado grande.',
 'api-error-filename-tooshort' => 'O nome do ficheiro é demasiado curto.',
 'api-error-filetype-banned' => 'Este tipo de ficheiro é proibido.',
+'api-error-filetype-banned-type' => '$1 {{PLURAL:$4|não é um tipo de ficheiro permitido|não são tipos de ficheiro permitidos}}. {{PLURAL:$3|O tipo de ficheiro permitido é|Os tipos de ficheiro permitidos são}} $2.',
 'api-error-filetype-missing' => 'Falta a extensão do ficheiro.',
 'api-error-hookaborted' => 'A modificação que tentou fazer foi cancelada por uma extensão.',
 'api-error-http' => 'Erro interno: Ocorreu um problema na ligação ao servidor.',
@@ -4042,6 +4042,4 @@ Caso contrário, pode facilmente usar o formulário abaixo. O seu comentário se
 'duration-centuries' => '$1 {{PLURAL:$1|século|séculos}}',
 'duration-millennia' => '$1 {{PLURAL:$1|milénio|milénios}}',
 
-# Unknown messages
-'api-error-filetype-banned-type' => '$1 {{PLURAL:$4|não é um tipo de ficheiro permitido|não são tipos de ficheiro permitidos}}. {{PLURAL:$3|O tipo de ficheiro permitido é|Os tipos de ficheiro permitidos são}} $2.',
 );

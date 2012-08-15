@@ -353,7 +353,6 @@ $messages = array(
 'tog-watchlisthideliu' => 'Kaŝi redaktojn de ensalutitaj uzantoj de la atentaro',
 'tog-watchlisthideanons' => 'Kaŝi redaktojn de anonimuloj de la atentaro',
 'tog-watchlisthidepatrolled' => 'Kaŝi patrolitajn redaktojn de la atentaro',
-'tog-nolangconversion' => 'Malŝalti konvertadon de variantoj',
 'tog-ccmeonemails' => 'Sendi al mi kopiojn de retpoŝtaĵoj, kiujn mi sendis al aliaj uzantoj.',
 'tog-diffonly' => 'Ne montri paĝan enhavon sub la ŝanĝoj',
 'tog-showhiddencats' => 'Montri kaŝitajn kategoriojn',
@@ -3961,6 +3960,7 @@ Aŭ vi povas uzi la facilan formularon sube. Via komento estos aldonita al la pa
 'api-error-file-too-large' => 'La dosiero kiun vi alŝutis estis tro granda.',
 'api-error-filename-tooshort' => 'La dosiernomo estas tro mallonga.',
 'api-error-filetype-banned' => 'Ĉi tiu tipo de dosiero estas malpermesita.',
+'api-error-filetype-banned-type' => '$1 ne estas {{PLURAL:$4|permesita dosiero-tipo|permesitaj dosiero-tipoj}}. {{PLURAL:$3|Permesita dosiero-tipo|Permesitaj dosiero-tipoj}} estas $2.',
 'api-error-filetype-missing' => 'Mankas sufikso de la dosiero.',
 'api-error-hookaborted' => 'La ŝanĝo kiun vi provis fari estis haltigita de etendaĵa hoko.',
 'api-error-http' => 'Interna eraro: ne eblas konektiĝi al la servilo.',
@@ -3996,6 +3996,4 @@ Aŭ vi povas uzi la facilan formularon sube. Via komento estos aldonita al la pa
 'duration-centuries' => '$1 {{PLURAL:$1|jarcento|jarcentoj}}',
 'duration-millennia' => '$1 {{PLURAL:$1|jarmilo|jarmiloj}}',
 
-# Unknown messages
-'api-error-filetype-banned-type' => '$1 ne estas {{PLURAL:$4|permesita dosiero-tipo|permesitaj dosiero-tipoj}}. {{PLURAL:$3|Permesita dosiero-tipo|Permesitaj dosiero-tipoj}} estas $2.',
 );

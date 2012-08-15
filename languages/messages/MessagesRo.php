@@ -340,7 +340,6 @@ pe titlul secțiunii (JavaScript)',
 'tog-watchlisthideliu' => 'Ascunde modificările făcute de utilizatori anonimi din lista de pagini urmărite',
 'tog-watchlisthideanons' => 'Ascunde modificările făcute de utilizatori anonimi din lista de pagini urmărite',
 'tog-watchlisthidepatrolled' => 'Ascunde paginile patrulate din lista de pagini urmărite',
-'tog-nolangconversion' => 'Dezactivează conversia variabilelor',
 'tog-ccmeonemails' => 'Doresc să primesc o copie a mesajelor e-mail pe care le trimit',
 'tog-diffonly' => 'Nu arăta conținutul paginii sub dif',
 'tog-showhiddencats' => 'Arată categoriile ascunse',
@@ -3953,6 +3952,7 @@ Imaginile sunt afișate la rezoluția lor maximă, în timp ce alte tipuri de fi
 'api-error-file-too-large' => 'Fișierul pe care l-ați trimis este prea mare.',
 'api-error-filename-tooshort' => 'Numele fișierului este prea scurt.',
 'api-error-filetype-banned' => 'Acest tip de fișiere este interzis.',
+'api-error-filetype-banned-type' => '$1 {{PLURAL:$4|este un tip de fișier nepermis|sunt tipuri de fișier nepermise}}. {{PLURAL:$3|Tip de fișier permis este|Tipuri de fișier permise sunt}} $2.',
 'api-error-filetype-missing' => 'Fișierului îi lipsește extensia.',
 'api-error-hookaborted' => 'Modificarea pe care ați încercat să o faceți a fost oprită de sesizarea unei extensii.',
 'api-error-http' => 'Eroare internă: nu s-a reușit conectarea la server.',
@@ -3988,6 +3988,4 @@ Imaginile sunt afișate la rezoluția lor maximă, în timp ce alte tipuri de fi
 'duration-centuries' => '$1 {{PLURAL:$1|secol|secole|de secole}}',
 'duration-millennia' => '$1 {{PLURAL:$1|mileniu|milenii|de milenii}}',
 
-# Unknown messages
-'api-error-filetype-banned-type' => '$1 {{PLURAL:$4|este un tip de fișier nepermis|sunt tipuri de fișier nepermise}}. {{PLURAL:$3|Tip de fișier permis este|Tipuri de fișier permise sunt}} $2.',
 );

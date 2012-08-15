@@ -448,6 +448,7 @@ $1',
 'youhavenewmessages' => 'Imate $1 ($2)',
 'newmessageslink' => 'nova sporočila',
 'newmessagesdifflink' => 'zadnja sprememba',
+'newmessageslinkplural' => '{{PLURAL:$1|novo sporočilo|nova sporočila}}',
 'youhavenewmessagesmulti' => 'Na $1 imate novo sporočilo',
 'editsection' => 'uredi',
 'editold' => 'spremeni',
@@ -3850,6 +3851,7 @@ V nasprotnem primeru lahko uporabite preprost obrazec spodaj. Vašo pripombo bom
 'api-error-file-too-large' => 'Poslana datoteka je prevelika.',
 'api-error-filename-tooshort' => 'Ime datoteke je prekratko.',
 'api-error-filetype-banned' => 'Ta vrsta datoteke je prepovedana.',
+'api-error-filetype-banned-type' => '$1 {{PLURAL:$4|ni dovoljena datotečna vrsta|nista dovoljeni datotečni vrsti|niso dovoljene datotečne vrste}}. {{PLURAL:$3|Dovoljena datotečna vrsta je|Dovoljeni datotečni vrsti sta|Dovoljene datotečne vrste so}} $2.',
 'api-error-filetype-missing' => 'Datoteki manjka končnica.',
 'api-error-hookaborted' => 'Spremembo, ki ste jo poskušali narediti, je prekinila razširitev.',
 'api-error-http' => 'Notranja napaka: ni mogoče vzpostaviti povezave s strežnikom.',
@@ -3885,6 +3887,4 @@ V nasprotnem primeru lahko uporabite preprost obrazec spodaj. Vašo pripombo bom
 'duration-centuries' => '$1 {{PLURAL:$1|stoletje|stoletji|stoletja|stoletij}}',
 'duration-millennia' => '$1 {{PLURAL:$1|tisočletje|tisočletji|tisočletja|tisočletij}}',
 
-# Unknown messages
-'api-error-filetype-banned-type' => '$1 {{PLURAL:$4|ni dovoljena datotečna vrsta|nista dovoljeni datotečni vrsti|niso dovoljene datotečne vrste}}. {{PLURAL:$3|Dovoljena datotečna vrsta je|Dovoljeni datotečni vrsti sta|Dovoljene datotečne vrste so}} $2.',
 );

@@ -359,7 +359,6 @@ $messages = array(
 'tog-watchlisthideliu' => 'Visa inte redigeringar av inloggade användare i bevakningslistan',
 'tog-watchlisthideanons' => 'Visa inte redigeringar av anonyma användare i bevakningslistan',
 'tog-watchlisthidepatrolled' => 'Göm patrullerade redigeringar från bevakningslistan',
-'tog-nolangconversion' => 'Konvertera inte mellan språkvarianter',
 'tog-ccmeonemails' => 'Skicka kopior till mig av e-post jag skickar till andra användare',
 'tog-diffonly' => 'Visa inte sidinnehåll under diffar',
 'tog-showhiddencats' => 'Visa dolda kategorier',
@@ -3974,6 +3973,7 @@ Annars kan du använda det enkla formuläret nedan. Din kommentar kommer att lä
 'api-error-file-too-large' => 'Filen du skickade var för stor.',
 'api-error-filename-tooshort' => 'Filnamnet är för kort.',
 'api-error-filetype-banned' => 'Denna typ av fil är förbjuden.',
+'api-error-filetype-banned-type' => '$1 är inte {{PLURAL:$4|en tillåten filtyp|tillåtna filtyper}}. {{PLURAL:$3|Tillåten filtyp|Tillåtna filtyper}} är $2.',
 'api-error-filetype-missing' => 'Filen saknar en filändelse.',
 'api-error-hookaborted' => 'Ändringen du försökte göra avbröts av en extension hook.',
 'api-error-http' => 'Internt fel: Det gick inte att ansluta till servern.',
@@ -4009,6 +4009,4 @@ Annars kan du använda det enkla formuläret nedan. Din kommentar kommer att lä
 'duration-centuries' => '$1 {{PLURAL:$1|sekel|sekel}}',
 'duration-millennia' => '$1 {{PLURAL:$1|millennium|millennier}}',
 
-# Unknown messages
-'api-error-filetype-banned-type' => '$1 är inte {{PLURAL:$4|en tillåten filtyp|tillåtna filtyper}}. {{PLURAL:$3|Tillåten filtyp|Tillåtna filtyper}} är $2.',
 );

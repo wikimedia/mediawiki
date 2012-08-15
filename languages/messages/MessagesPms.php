@@ -82,7 +82,6 @@ $messages = array(
 'tog-watchlisthideliu' => "Stërma le modìfiche fàite da j'utent registrà ant la lista dle ròbe che im ten-o sot euj",
 'tog-watchlisthideanons' => "Stërma le modìfiche fàite da j'utent anònim da 'nt lòn che im ten-o sot euj",
 'tog-watchlisthidepatrolled' => "Stërma le modìfiche verificà da 'nt la ròba che im ten-o sot euj",
-'tog-nolangconversion' => 'Fërma la conversion antra variant lenghìstiche',
 'tog-ccmeonemails' => "Mand-me còpia dij messagi ëd pòsta eletrònica che i-j mando a j'àotri utent",
 'tog-diffonly' => 'Smon pa ël contnù dla pàgina dapress a le diferense',
 'tog-showhiddencats' => 'Smon le categorìe stërmà',
@@ -3698,6 +3697,7 @@ Dësnò, a peule dovré ël formlari semplificà sì-sota. Sò coment a sarà gi
 'api-error-file-too-large' => "L'archivi ch'a l'ha mandà a l'era tròp gròss.",
 'api-error-filename-tooshort' => "Ël nòm ëd l'archivi a l'é tròp curt.",
 'api-error-filetype-banned' => "Costa sòrt d'archivi a l'é proibìa.",
+'api-error-filetype-banned-type' => "$1 {{PLURAL:$4|a l'é na sòrt d'archivi proibìa|a son ëd sòrt d'archivi proibìe}}. {{PLURAL:$3|Sòrt d'archivi consentìa a l'é|Sòrt d'archivi consentìe a son}} $2.",
 'api-error-filetype-missing' => "L'archivi a l'é sensa estension.",
 'api-error-hookaborted' => "La modìfica ch'a l'ha provà a fé a l'é stàita blocà dal gancio ëd n'estension.",
 'api-error-http' => 'Eror antern: as peul pa coleghesse al sërvent.',
@@ -3733,6 +3733,4 @@ Dësnò, a peule dovré ël formlari semplificà sì-sota. Sò coment a sarà gi
 'duration-centuries' => '$1 {{PLURAL:$1|sécol|sécoj}}',
 'duration-millennia' => '$1 {{PLURAL:$1|milenari|milenari}}',
 
-# Unknown messages
-'api-error-filetype-banned-type' => "$1 {{PLURAL:$4|a l'é na sòrt d'archivi proibìa|a son ëd sòrt d'archivi proibìe}}. {{PLURAL:$3|Sòrt d'archivi consentìa a l'é|Sòrt d'archivi consentìe a son}} $2.",
 );

@@ -397,7 +397,6 @@ $messages = array(
 'tog-watchlisthideliu' => 'Na seznamu sledovaných stránek skrýt editace přihlášených uživatelů',
 'tog-watchlisthideanons' => 'Na seznamu sledovaných stránek skrýt editace nepřihlášených uživatelů',
 'tog-watchlisthidepatrolled' => 'Skrýt patrolované editace ve sledovaných stránkách',
-'tog-nolangconversion' => 'Vypnout konverzi variant',
 'tog-ccmeonemails' => 'Zasílat mi kopie e-mailů, které pošlu jiným uživatelům',
 'tog-diffonly' => 'Nezobrazovat obsah stránky pod rozdílem verzí',
 'tog-showhiddencats' => 'Zobrazit skryté kategorie',
@@ -4031,6 +4030,7 @@ Jinak můžete využít jednoduchý formulář níže. Váš komentář bude př
 'api-error-file-too-large' => 'Načtený soubor je příliš velký.',
 'api-error-filename-tooshort' => 'Název souboru je příliš krátký.',
 'api-error-filetype-banned' => 'Tento typ souboru je zakázán.',
+'api-error-filetype-banned-type' => '$1 {{PLURAL:$4|je nedovolený formát souborů|jsou nedovolené formáty souborů}}. {{PLURAL:$3|Povolený formát souborů je|Povolené formáty souborů jsou}} $2.',
 'api-error-filetype-missing' => 'Tento soubor nemá příponu.',
 'api-error-hookaborted' => 'Zamýšlená úprava byla zakázána rozšiřujícím modulem.',
 'api-error-http' => 'Vnitřní chyba: nepodařilo se připojit k serveru.',
@@ -4066,6 +4066,4 @@ Jinak můžete využít jednoduchý formulář níže. Váš komentář bude př
 'duration-centuries' => '$1 {{PLURAL:$1|století}}',
 'duration-millennia' => '$1 {{PLURAL:$1|tisíciletí}}',
 
-# Unknown messages
-'api-error-filetype-banned-type' => '$1 {{PLURAL:$4|je nedovolený formát souborů|jsou nedovolené formáty souborů}}. {{PLURAL:$3|Povolený formát souborů je|Povolené formáty souborů jsou}} $2.',
 );

@@ -57,7 +57,6 @@ $messages = array(
 'tog-watchlisthideliu' => 'khbi tadilat lmostkhdimin lmsjlin mn qaaimat lmoraqaba',
 'tog-watchlisthideanons' => 'khbi taadilat lmostkhdimin lmjholin mn qaaimat lmoraqaba',
 'tog-watchlisthidepatrolled' => 'khbi tadilat lmorajaaa  mn qaaimat lmoraqaba',
-'tog-nolangconversion' => 'attl thwil lahajat',
 'tog-ccmeonemails' => 'sift liya noskha mn rasaail lbarid lelectroni likansiftha lmostkhdimin lkhrin',
 'tog-diffonly' => 'matbiynch mohtawa sfha tht lforoqat',
 'tog-showhiddencats' => 'biyn tsnifat lmkhfiya',

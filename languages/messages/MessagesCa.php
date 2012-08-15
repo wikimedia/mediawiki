@@ -234,7 +234,6 @@ $messages = array(
 'tog-watchlisthideliu' => "Amaga a la llista les edicions d'usuaris registrats",
 'tog-watchlisthideanons' => "Amaga a la llista les edicions d'usuaris anònims",
 'tog-watchlisthidepatrolled' => 'Amaga edicions patrullades de la llista de seguiment',
-'tog-nolangconversion' => 'Inhabilita la conversió de variants',
 'tog-ccmeonemails' => "Envia'm còpia dels missatges que enviï als altres usuaris",
 'tog-diffonly' => 'Amaga el contingut de la pàgina davall de la taula de diferències',
 'tog-showhiddencats' => 'Mostra les categories ocultes',
@@ -3794,6 +3793,7 @@ Altrament, podeu fer servir un senzill formulari a continuació. El vostre comen
 'api-error-file-too-large' => 'El fitxer que heu tramès és massa gran.',
 'api-error-filename-tooshort' => 'El nom del fitxer és massa curt.',
 'api-error-filetype-banned' => 'Aquest tipus de fitxer està prohibit.',
+'api-error-filetype-banned-type' => '$1 {{PLURAL:$4|no és un tipus de fitxer permès|no són tipus de fitxer permesos}}. {{PLURAL:$3|El tipus de fitxer permès és|Els tipus de fitxer permesos són}} $2.',
 'api-error-filetype-missing' => 'El nom de fitxer no té extensió.',
 'api-error-hookaborted' => "La modificació que heu intentat fer ha estat canceŀlada per un mòdul d'extensió.",
 'api-error-http' => 'Error intern: no es pot connectar al servidor.',
@@ -3829,6 +3829,4 @@ Altrament, podeu fer servir un senzill formulari a continuació. El vostre comen
 'duration-centuries' => '$1 {{PLURAL:$1|segle|segles}}',
 'duration-millennia' => '$1 {{PLURAL:$1|mil·leni|mil·lenis}}',
 
-# Unknown messages
-'api-error-filetype-banned-type' => '$1 {{PLURAL:$4|no és un tipus de fitxer permès|no són tipus de fitxer permesos}}. {{PLURAL:$3|El tipus de fitxer permès és|Els tipus de fitxer permesos són}} $2.',
 );

@@ -76,7 +76,6 @@ $messages = array(
 'tog-watchlisthideown' => 'Ffer ibeddlen inu seg wumuɣ n uɛessi inu',
 'tog-watchlisthidebots' => 'Ffer ibeddlen n iboṭiyen seg wumuɣ n uɛessi inu',
 'tog-watchlisthideminor' => 'Ffer ibeddlen ifessasen seg wumuɣ n uɛessi inu',
-'tog-nolangconversion' => 'Kkes abeddel n yimeskilen',
 'tog-ccmeonemails' => 'Azen-iyi-d email n wayen uzneɣ i imseqdacen wiyaḍ',
 'tog-diffonly' => 'Ur temliḍ-iyi-d ara ayen yellan seddaw imgerraden',
 

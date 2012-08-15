@@ -334,7 +334,6 @@ $messages = array(
 'tog-watchlisthideliu' => 'Ukryj edycje zalogowanych użytkowników na liście obserwowanych',
 'tog-watchlisthideanons' => 'Ukryj edycje anonimowych użytkowników na liście obserwowanych',
 'tog-watchlisthidepatrolled' => 'Ukryj sprawdzone edycje na liście obserwowanych',
-'tog-nolangconversion' => 'Wyłącz odmianę',
 'tog-ccmeonemails' => 'Przesyłaj mi kopie wiadomości, które wysyłam do innych użytkowników',
 'tog-diffonly' => 'Nie pokazuj treści stron pod porównaniami zmian',
 'tog-showhiddencats' => 'Pokazuj ukryte kategorie',
@@ -3885,7 +3884,7 @@ Grafiki są pokazywane w pełnej rozdzielczości. Inne typy plików są otwieran
 * <span class="mw-specialpagerestricted">Zastrzeżone strony specjalne.</span>',
 'specialpages-group-maintenance' => 'Raporty konserwacyjne',
 'specialpages-group-other' => 'Inne strony specjalne',
-'specialpages-group-login' => 'Logowanie i rejestracja',
+'specialpages-group-login' => 'Zaloguj się / utwórz konto',
 'specialpages-group-changes' => 'Ostatnie zmiany i rejestry',
 'specialpages-group-media' => 'Pliki',
 'specialpages-group-users' => 'Użytkownicy i uprawnienia',
@@ -4024,6 +4023,7 @@ W przeciwnym wypadku można użyć prostego formularza poniżej. Komentarz zosta
 'api-error-file-too-large' => 'Przesłany przez Ciebie plik jest zbyt duży.',
 'api-error-filename-tooshort' => 'Nazwa pliku jest zbyt krótka.',
 'api-error-filetype-banned' => 'Zabroniony format pliku.',
+'api-error-filetype-banned-type' => '$1 nie {{PLURAL:$4|jest dozwolonym typem pliku|są dozwolonymi typami plików}}. Dopuszczalne są pliki w {{PLURAL:$3|formacie|formatach}} $2.',
 'api-error-filetype-missing' => 'Brak rozszerzenia w nazwie pliku.',
 'api-error-hookaborted' => 'Zmiana, którą próbowałeś wykonać została przerwana przez hak rozszerzenia.',
 'api-error-http' => 'Błąd wewnętrzny – brak połączenia z serwerem.',
@@ -4059,6 +4059,4 @@ W przeciwnym wypadku można użyć prostego formularza poniżej. Komentarz zosta
 'duration-centuries' => '$1 {{PLURAL:$1|stulecie|stulecia|stuleci}}',
 'duration-millennia' => '$1 {{PLURAL:$1|tysiąclecie|tysiąclecia|tysiącleci}}',
 
-# Unknown messages
-'api-error-filetype-banned-type' => '$1 nie {{PLURAL:$4|jest dozwolonym typem pliku|są dozwolonymi typami plików}}. Dopuszczalne są pliki w {{PLURAL:$3|formacie|formatach}} $2.',
 );

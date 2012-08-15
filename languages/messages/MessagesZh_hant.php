@@ -250,7 +250,6 @@ $messages = array(
 'tog-watchlisthideliu' => '監視列表中隱藏登入用戶',
 'tog-watchlisthideanons' => '監視列表中隱藏匿名用戶',
 'tog-watchlisthidepatrolled' => '監視清單中隱藏已巡查的編輯',
-'tog-nolangconversion' => '不進行用字轉換',
 'tog-ccmeonemails' => '當我寄電子郵件給其他用戶時，也寄一份複本到我的信箱。',
 'tog-diffonly' => '比較版本差異時不顯示頁面內容',
 'tog-showhiddencats' => '顯示隱藏分類',
@@ -3826,6 +3825,7 @@ MediaWiki是基於使用目的而加以發佈，然而不負任何擔保責任�
 'api-error-file-too-large' => '您提交的檔案太大了。',
 'api-error-filename-tooshort' => '檔案名過短。',
 'api-error-filetype-banned' => '這種類型的檔案是被禁止的。',
+'api-error-filetype-banned-type' => '$1{{PLURAL:$4|不是允許的檔案類型|不是允許的檔案類型}}。  允許的{{PLURAL:$3|檔案類型是|檔案類型是}} $2。',
 'api-error-filetype-missing' => '本檔案缺少了副檔名。',
 'api-error-hookaborted' => '你試圖進行的修改被一個擴展鉤子終止。',
 'api-error-http' => '內部錯誤：無法連接到伺服器。',
@@ -3861,6 +3861,4 @@ MediaWiki是基於使用目的而加以發佈，然而不負任何擔保責任�
 'duration-centuries' => '$1世紀',
 'duration-millennia' => '$1千年',
 
-# Unknown messages
-'api-error-filetype-banned-type' => '$1{{PLURAL:$4|不是允許的檔案類型|不是允許的檔案類型}}。  允許的{{PLURAL:$3|檔案類型是|檔案類型是}} $2。',
 );

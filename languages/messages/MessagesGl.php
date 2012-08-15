@@ -263,7 +263,6 @@ $messages = array(
 'tog-watchlisthideliu' => 'Agochar as edicións dos usuarios rexistrados na lista de vixilancia',
 'tog-watchlisthideanons' => 'Agochar as edicións dos usuarios anónimos na lista de vixilancia',
 'tog-watchlisthidepatrolled' => 'Agochar as edicións patrulladas na lista de vixilancia',
-'tog-nolangconversion' => 'Desactivar a conversión de variantes',
 'tog-ccmeonemails' => 'Enviádeme ao meu enderezo unha copia das mensaxes de correo electrónico que envíe a outros usuarios',
 'tog-diffonly' => 'Non mostrar o contido da páxina debaixo das diferenzas entre edicións',
 'tog-showhiddencats' => 'Mostrar as categorías ocultas',
@@ -3927,6 +3926,7 @@ En caso contrario, pode empregar o formulario sinxelo inferior. O seu comentario
 'api-error-file-too-large' => 'O ficheiro que enviou era grande de máis.',
 'api-error-filename-tooshort' => 'O nome do ficheiro é curto de máis.',
 'api-error-filetype-banned' => 'Este tipo de ficheiro está prohibido.',
+'api-error-filetype-banned-type' => '$1 non {{PLURAL:$4|é un tipo de ficheiro permitido|son tipos de ficheiro permitidos}}. {{PLURAL:$3|O tipo de ficheiro permitido é|Os tipos de ficheiro permitidos son}} $2.',
 'api-error-filetype-missing' => 'Fáltalle a extensión ao ficheiro.',
 'api-error-hookaborted' => 'O asociador da extensión cancelou a modificación que intentou realizar.',
 'api-error-http' => 'Erro interno: Non se puido conectar co servidor.',
@@ -3962,6 +3962,4 @@ En caso contrario, pode empregar o formulario sinxelo inferior. O seu comentario
 'duration-centuries' => '$1 {{PLURAL:$1|século|séculos}}',
 'duration-millennia' => '$1 {{PLURAL:$1|milenio|milenios}}',
 
-# Unknown messages
-'api-error-filetype-banned-type' => '$1 non {{PLURAL:$4|é un tipo de ficheiro permitido|son tipos de ficheiro permitidos}}. {{PLURAL:$3|O tipo de ficheiro permitido é|Os tipos de ficheiro permitidos son}} $2.',
 );

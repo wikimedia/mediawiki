@@ -194,7 +194,6 @@ $messages = array(
 'tog-watchlisthideliu' => 'Změny přizjewjenych wužiwarjow z wobkedźbowankow schować',
 'tog-watchlisthideanons' => 'Změny anonymnych wužiwarjow z wobkedźbowankow schować',
 'tog-watchlisthidepatrolled' => 'Dohladowane změny we wobkedźbowankach schować',
-'tog-nolangconversion' => 'Konwertowanje rěčnych wariantow znjemóžnić',
 'tog-ccmeonemails' => 'Mi kopije e-mejlkow pósłać, kotrež druhim wužiwarjam pósćelu',
 'tog-diffonly' => 'Jenož rozdźěle pokazać (nic pak zbytny wobsah)',
 'tog-showhiddencats' => 'Schowane kategorije pokazać',
@@ -3705,6 +3704,7 @@ Hewak móžeš slědowacy jednory formular wužiwać. Twój komentar přida so s
 'api-error-file-too-large' => 'Dataja, kotruž sy nahrał, bě přewulka.',
 'api-error-filename-tooshort' => 'Datajowe mjeno překrótko',
 'api-error-filetype-banned' => 'Tutón datajowy typ je zawrjeny.',
+'api-error-filetype-banned-type' => '$1 {{PLURAL:$4|dowoleny datajowy typ njeje|dowolenej datajowej typaj njejstej|dowolene datajowe typy njejsu|dowolene datajowe typy njejsu}}. {{PLURAL:$3|Dowoleny datajowy typ je|Dowolenej datajowej typaj stej|Dowolene datajowe typy su|Dowolene datajowe typy su}} $2.',
 'api-error-filetype-missing' => 'Dataja nima datajowu kóncowku.',
 'api-error-hookaborted' => 'Změna, kotruž pospytowaše přewjesć, bu přez rozšěrjensku hoku přetorhnjena.',
 'api-error-http' => 'Nutřkowny zmylk: Zwisk ze serwerom njemóžno.',
@@ -3740,6 +3740,4 @@ Hewak móžeš slědowacy jednory formular wužiwać. Twój komentar přida so s
 'duration-centuries' => '$1 {{PLURAL:$1|lětstotk|lětstotkaj|lětstotki|lětstotkow}}',
 'duration-millennia' => '$1 {{PLURAL:$1|lěttysac|lěttysacaj|lěttysacy|lěttysacow}}',
 
-# Unknown messages
-'api-error-filetype-banned-type' => '$1 {{PLURAL:$4|dowoleny datajowy typ njeje|dowolenej datajowej typaj njejstej|dowolene datajowe typy njejsu|dowolene datajowe typy njejsu}}. {{PLURAL:$3|Dowoleny datajowy typ je|Dowolenej datajowej typaj stej|Dowolene datajowe typy su|Dowolene datajowe typy su}} $2.',
 );

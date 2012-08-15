@@ -322,7 +322,6 @@ $messages = array(
 'tog-watchlisthideliu' => 'Skryť úpravy prihlásených používateľov zo zoznamu sledovaných stránok',
 'tog-watchlisthideanons' => 'Skryť úpravy anonymných používateľov zo zoznamu sledovaných stránok',
 'tog-watchlisthidepatrolled' => 'Skryť strážené úpravy Zozname sledovaných stránok',
-'tog-nolangconversion' => 'Vypnúť konverziu variantov',
 'tog-ccmeonemails' => 'Posielať mi kópie mojich emailov, ktoré pošlem ostatným používateľom',
 'tog-diffonly' => 'Nezobrazovať obsah stránky pod rozdielmi',
 'tog-showhiddencats' => 'Zobraziť skryté kategórie',
@@ -3947,6 +3946,7 @@ V opačnom prípade môžete použiť zjednodušený formulár nižšie. Váš k
 'api-error-file-too-large' => 'Súbor, ktorý ste poslali bol príliš veľký.',
 'api-error-filename-tooshort' => 'Názov súboru je príliš krátky.',
 'api-error-filetype-banned' => 'Tento typ súboru je zakázaný.',
+'api-error-filetype-banned-type' => '$1 {{PLURAL:$4|nie je povolený typ súboru|nie sú povolené typy súboru}}. {{PLURAL:$3|Povolený typ súborov je|Povolené typy súborov sú}} $2.',
 'api-error-filetype-missing' => 'Súboru chýba prípona.',
 'api-error-hookaborted' => 'Zmena, ktorú ste sa pokúsili vykonať bola zrušená prípojným bodom rozšírenia.',
 'api-error-http' => 'Vnútorná chyba: Nepodarilo sa pripojiť k serveru.',
@@ -3982,6 +3982,4 @@ V opačnom prípade môžete použiť zjednodušený formulár nižšie. Váš k
 'duration-centuries' => '$1 {{PLURAL:$1|storočie|storočia|storočí}}',
 'duration-millennia' => '$1 {{PLURAL:$1|tisícročie|tisícročia|tisícročí}}',
 
-# Unknown messages
-'api-error-filetype-banned-type' => '$1 {{PLURAL:$4|nie je povolený typ súboru|nie sú povolené typy súboru}}. {{PLURAL:$3|Povolený typ súborov je|Povolené typy súborov sú}} $2.',
 );

@@ -252,7 +252,6 @@ $messages = array(
 'tog-watchlisthideliu' => 'Enjeloggte Metmaacher ier Änderunge jedesmol <strong>nit</strong> en minger Oppassliss aanzeije',
 'tog-watchlisthideanons' => 'Namelose Metmaacher ier Änderunge jedesmol <strong>nit</strong> en minger Oppassliss aanzeije',
 'tog-watchlisthidepatrolled' => 'Dun de nohjeloorte Änderunge et eez ens <strong>nit</strong> en minger Oppassliss aanzeije',
-'tog-nolangconversion' => 'Sprochevariante nit ömwandele',
 'tog-ccmeonemails' => 'Scheck mer en Kopie, wann ich en <i lang="en">e-mail</i> an ene andere Metmaacher scheck',
 'tog-diffonly' => 'Zeich beim Versione Verjliche nur de Ungerscheide aan (ävver pack nit noch de janze Sigg dodronger)',
 'tog-showhiddencats' => 'Donn de verstoche Saachjroppe aanzeije',
@@ -4138,6 +4137,7 @@ Wat De doh enjiß, kütt met Dingem Metmaachername un Dingem Brauser op die Sigg
 'api-error-file-too-large' => 'De huhjelaade Dattei wohr ze jruß.',
 'api-error-filename-tooshort' => 'Der Name för di Dattei es ze koot.',
 'api-error-filetype-banned' => 'Di Zoot Dattei es nit zohjelohße.',
+'api-error-filetype-banned-type' => '{{PLURAL:$4|Dat Dateifommaat|De Dateifommaate|}} $1 wulle mer nit huhjelaade krijje. Älaup {{PLURAL:$3|es|sin_er|}}: $2',
 'api-error-filetype-missing' => 'Dä Dattei iehre Naame hät kein Endong.',
 'api-error-hookaborted' => 'Ding Änderung wood vun enem Zohsazprojramm nit zohjelohße.',
 'api-error-http' => 'Fähler: Mer krijje kein Verbendung mem ẞööver.',
@@ -4173,6 +4173,4 @@ Wat De doh enjiß, kütt met Dingem Metmaachername un Dingem Brauser op die Sigg
 'duration-centuries' => '{{PLURAL:$1|e Johrhondert|$1 Johrhonderte|kei Johrhondert}}',
 'duration-millennia' => '{{PLURAL:$1|e Johrdousend|$1 Johrdousende|kei Johrdousend}}',
 
-# Unknown messages
-'api-error-filetype-banned-type' => '{{PLURAL:$4|Dat Dateifommaat|De Dateifommaate|}} $1 wulle mer nit huhjelaade krijje. Älaup {{PLURAL:$3|es|sin_er|}}: $2',
 );

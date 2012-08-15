@@ -391,7 +391,6 @@ $messages = array(
 'tog-watchlisthideown' => 'Öñdemelerimdi baqılaw tizimnen jasır',
 'tog-watchlisthidebots' => 'Bot öñdemelerin baqılaw tizimnen jasır',
 'tog-watchlisthideminor' => 'Şağın öñdemelerdi baqılaw tiziminde körsetpe',
-'tog-nolangconversion' => 'Til türi awdarısın öşir',
 'tog-ccmeonemails' => 'Basqa qatıswşığa jibergen xatımnıñ köşirmesin mağan da jönelt',
 'tog-diffonly' => 'Aýırma astında bet mağlumatın körsetpe',
 'tog-showhiddencats' => 'Jasırın sanattardı körset',

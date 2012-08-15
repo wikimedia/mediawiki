@@ -393,7 +393,6 @@ $messages = array(
 'tog-watchlisthideliu' => 'הסתרת עריכות של משתמשים רשומים ברשימת המעקב',
 'tog-watchlisthideanons' => 'הסתרת עריכות של משתמשים אנונימיים ברשימת המעקב',
 'tog-watchlisthidepatrolled' => 'הסתרת עריכות בדוקות ברשימת המעקב',
-'tog-nolangconversion' => 'ביטול המרת גרסאות שפה',
 'tog-ccmeonemails' => 'לשלוח אליי העתקים של הודעות דואר אלקטרוני ששלחתי למשתמשים אחרים',
 'tog-diffonly' => 'ביטול הצגת תוכן הדף מתחת להשוואות הגרסאות',
 'tog-showhiddencats' => 'הצגת קטגוריות מוסתרות',
@@ -4095,6 +4094,7 @@ $5
 'api-error-file-too-large' => 'הקובץ ששלחתם היה גדול מדי.',
 'api-error-filename-tooshort' => 'שם הקובץ קצר מדי.',
 'api-error-filetype-banned' => 'סוג קובץ זה חסום.',
+'api-error-filetype-banned-type' => '$1 {{PLURAL:$4|הוא סוג קובץ אסור להעלאה|הם סוגי קבצים אסורים להעלאה}}. {{PLURAL:$3|סוג הקובץ המותר הוא|סוגי הקבצים המותרים הם}} $2.',
 'api-error-filetype-missing' => 'חסרה סיומת לשם הקובץ.',
 'api-error-hookaborted' => 'השינוי שניסיתם לעשות נחסם על ידי הרחבה.',
 'api-error-http' => 'שגיאה פנימית: לא ניתן להתחבר לשרת.',
@@ -4130,6 +4130,4 @@ $5
 'duration-centuries' => '{{PLURAL:$1|מאה שנה|$1 מאות שנים|מאתיים שנה}}',
 'duration-millennia' => '{{PLURAL:$1|אלף שנה|$1 אלפי שנים|אלפיים שנה}}',
 
-# Unknown messages
-'api-error-filetype-banned-type' => '$1 {{PLURAL:$4|הוא סוג קובץ אסור להעלאה|הם סוגי קבצים אסורים להעלאה}}. {{PLURAL:$3|סוג הקובץ המותר הוא|סוגי הקבצים המותרים הם}} $2.',
 );

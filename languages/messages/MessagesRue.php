@@ -277,7 +277,7 @@ $1',
 
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
 'aboutsite' => 'О&nbsp;{{grammar:genitive|{{SITENAME}}}}',
-'aboutpage' => 'Project:О проєктї',
+'aboutpage' => 'Project:{{SITENAME}}',
 'copyright' => 'Обсяг є доступный з $1.',
 'copyrightpage' => '{{ns:project}}:Авторьске право',
 'currentevents' => 'Актуалны подїї',
@@ -3463,7 +3463,7 @@ MediaWiki є дістрібуована в надїї, же буде хосно�
 * <span class="mw-specialpagecached">Кешованы шпеціалны сторінкы</span>',
 'specialpages-group-maintenance' => 'Технічны репорты',
 'specialpages-group-other' => 'Іншы',
-'specialpages-group-login' => 'Приголошіня / реґістрація',
+'specialpages-group-login' => 'Приголошіня / створїня конта',
 'specialpages-group-changes' => 'Послїднї зміны а лоґы',
 'specialpages-group-media' => 'Файлы',
 'specialpages-group-users' => 'Хоснователї і права',
@@ -3602,6 +3602,7 @@ MediaWiki є дістрібуована в надїї, же буде хосно�
 'api-error-file-too-large' => 'Заладованый файл є барз великый.',
 'api-error-filename-tooshort' => 'Назва файлу є барз курта.',
 'api-error-filetype-banned' => 'Тот тіп файлу є заказаный.',
+'api-error-filetype-banned-type' => '$1 {{PLURAL:$4|є недозволеный формат файлів|суть недозволены форматы файлів}}. {{PLURAL:$3|Дозволеный формат фалів є|Дозволены форматы файлів суть}} $2.',
 'api-error-filetype-missing' => 'Тот файл не мать росшырїня.',
 'api-error-hookaborted' => 'Пожадована вами зміна была одмітнута дакотрым росшырінём.',
 'api-error-http' => 'Внутрїшня хыба: не вдало ся припоїти к серверу.',
@@ -3637,6 +3638,4 @@ MediaWiki є дістрібуована в надїї, же буде хосно�
 'duration-centuries' => '$1 {{PLURAL:$1|стороча|стороча|стороч}}',
 'duration-millennia' => '$1 {{PLURAL:$1|тісячроча|тісячроча|тісячроч}}',
 
-# Unknown messages
-'api-error-filetype-banned-type' => '$1 {{PLURAL:$4|є недозволеный формат файлів|суть недозволены форматы файлів}}. {{PLURAL:$3|Дозволеный формат фалів є|Дозволены форматы файлів суть}} $2.',
 );

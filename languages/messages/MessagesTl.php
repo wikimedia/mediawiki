@@ -174,7 +174,6 @@ $messages = array(
 'tog-watchlisthideliu' => 'Itago ang mga pagbabago ng mga nakalagdang tagagamit mula sa tala ng mga binabantayan',
 'tog-watchlisthideanons' => 'Itago ang mga pagbabago ng hindi nakikilalang mga tagagamit mula sa tala ng mga binabantayan',
 'tog-watchlisthidepatrolled' => 'Itago ang napatrolyang mga pagbabago mula sa tala ng mga binabantayan',
-'tog-nolangconversion' => 'Huwag paganahin ang pagpapalit ng mga halagang nagkakaibaiba (baryante)',
 'tog-ccmeonemails' => 'Padalahan ako ng mga kopya ng mga ipinadala kong e-liham sa ibang mga tagagamit',
 'tog-diffonly' => 'Huwag ipakita ang nilalaman ng pahinang nasa ilalim ng mga pagkakaiba',
 'tog-showhiddencats' => 'Ipakita ang mga nakatagong kategorya',
@@ -4040,6 +4039,7 @@ O kaya, maaari mong gamitin ang maginhawang pormularyo sa ibaba. Ang iyong pagpu
 'api-error-file-too-large' => 'Napakalaki ng talaksang ipinasa mo.',
 'api-error-filename-tooshort' => 'Napakaiksi ng pangalan ng talaksan.',
 'api-error-filetype-banned' => 'Ipinagbabawal ang ganitong uri ng talaksan.',
+'api-error-filetype-banned-type' => 'Ang $1 {{PLURAL:$4|ay isang hindi pinapahintulutang uri ng talaksan|ay hindi pinapahintulutang mga uri ng talaksan}}. Ang pinapayagang {{PLURAL:$3|uri ng talaksan ay ang|mga uri ng talaksan ay ang mga}} $2.',
 'api-error-filetype-missing' => 'Kulang ng karugtong ang talaksan.',
 'api-error-hookaborted' => 'Ang pagbabagong sinubok mong gawin ay hindi itinuloy ng isang kawil ng dugtong.',
 'api-error-http' => 'Panloob na kamalian: hindi makaugnay sa tagahain.',
@@ -4075,6 +4075,4 @@ O kaya, maaari mong gamitin ang maginhawang pormularyo sa ibaba. Ang iyong pagpu
 'duration-centuries' => '$1 {{PLURAL:$1|daantaon|mga daantaon}}',
 'duration-millennia' => '$1 {{PLURAL:$1|milenyo|mga milenyo}}',
 
-# Unknown messages
-'api-error-filetype-banned-type' => 'Ang $1 {{PLURAL:$4|ay isang hindi pinapahintulutang uri ng talaksan|ay hindi pinapahintulutang mga uri ng talaksan}}. Ang pinapayagang {{PLURAL:$3|uri ng talaksan ay ang|mga uri ng talaksan ay ang mga}} $2.',
 );

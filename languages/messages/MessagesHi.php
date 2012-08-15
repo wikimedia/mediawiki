@@ -219,7 +219,6 @@ $messages = array(
 'tog-watchlisthideliu' => 'मेरी ध्यानसूची में सत्रारम्भित सदस्यों के सम्पादन न दिखाएँ',
 'tog-watchlisthideanons' => 'आइ॰पी सदस्यों द्वारा किए सम्पादनों को मेरी ध्यानसूची में न दिखाएँ',
 'tog-watchlisthidepatrolled' => 'जाँचे गए सम्पादनों को मेरी ध्यानसूची में न दिखाएँ',
-'tog-nolangconversion' => 'वेरियंट्स के बदलाव बंद करें',
 'tog-ccmeonemails' => 'मेरे द्वारा अन्य सदस्यों को भेजे ई-मेलों की प्रतियाँ मुझे भी भेजें',
 'tog-diffonly' => 'अवतरणों में अन्तर दर्शाते समय पुराने अवतरण न दिखाएँ',
 'tog-showhiddencats' => 'छिपाई हुई श्रेणियाँ दिखाएँ',
@@ -3825,6 +3824,7 @@ $5
 'api-error-file-too-large' => 'प्रस्तुत फ़ाइल बहुत बड़ी थी।',
 'api-error-filename-tooshort' => 'फ़ाइल का नाम बहुत छोटा है।',
 'api-error-filetype-banned' => 'इस प्रकार की फ़ाइल पर प्रतिबंध लगा दिया है।',
+'api-error-filetype-banned-type' => '$1 फ़ाइल {{PLURAL:$4|प्रकार|प्रकारों}} की अनुमति नहीं है। फ़ाइल प्रकार {{PLURAL:$3|जिसकी|जिनकी}} अनुमति है: $2।',
 'api-error-filetype-missing' => 'फाईल की एक्सटेंशन लापता है.',
 'api-error-hookaborted' => 'आपके द्वारा प्रयासरत संशोधन विस्तार हूक द्वारा निरस्त किया गया।',
 'api-error-http' => 'आंतरिक त्रुटि: सर्वर से कनेक्ट करने में असमर्थ।',
@@ -3860,6 +3860,4 @@ $5
 'duration-centuries' => '$1 {{PLURAL:$1|शताब्दी}}',
 'duration-millennia' => '$1 {{PLURAL:$1|सहस्राब्दी}}',
 
-# Unknown messages
-'api-error-filetype-banned-type' => '$1 फ़ाइल {{PLURAL:$4|प्रकार|प्रकारों}} की अनुमति नहीं है। फ़ाइल प्रकार {{PLURAL:$3|जिसकी|जिनकी}} अनुमति है: $2।',
 );

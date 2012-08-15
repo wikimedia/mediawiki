@@ -377,7 +377,6 @@ $messages = array(
 'tog-watchlisthideliu' => '주시문서 목록에서 로그인한 사용자의 편집을 숨기기',
 'tog-watchlisthideanons' => '주시문서 목록에서 익명 사용자의 편집을 숨기기',
 'tog-watchlisthidepatrolled' => '주시문서 목록에서 검토한 편집을 숨기기',
-'tog-nolangconversion' => '변형 변환을 비활성화',
 'tog-ccmeonemails' => '이메일을 보낼 때 내 이메일로 복사본을 보내기',
 'tog-diffonly' => '편집 차이를 비교할 때 문서 내용을 보지 않기',
 'tog-showhiddencats' => '숨은 분류 보기',
@@ -4086,6 +4085,7 @@ $5
 'api-error-file-too-large' => '당신이 올리려는 파일이 너무 큽니다.',
 'api-error-filename-tooshort' => '파일 이름이 너무 짧습니다.',
 'api-error-filetype-banned' => '이런 파일 형식은 올릴 수 없습니다.',
+'api-error-filetype-banned-type' => '$1 {{PLURAL:$4|파일 형식은 올릴 수 없습니다}}. $2 {{PLURAL:$3|파일 형식만 사용할 수 있습니다}}.',
 'api-error-filetype-missing' => '파일 이름에 확장자가 없습니다.',
 'api-error-hookaborted' => '당신이 시도한 수정이 확장 기능 훅에 의해 중단되었습니다.',
 'api-error-http' => '내부 오류: 서버에 연결할 수 없습니다.',
@@ -4121,6 +4121,4 @@ $5
 'duration-centuries' => '$1{{PLURAL:$1|세기}}',
 'duration-millennia' => '$1{{PLURAL:$1|천년}}',
 
-# Unknown messages
-'api-error-filetype-banned-type' => '$1 {{PLURAL:$4|파일 형식은 올릴 수 없습니다}}. $2 {{PLURAL:$3|파일 형식만 사용할 수 있습니다}}.',
 );

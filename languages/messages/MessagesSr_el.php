@@ -344,7 +344,6 @@ $messages = array(
 'tog-watchlisthideliu' => 'Sakrij izmene prijavljenih korisnika sa spiska nadgledanja',
 'tog-watchlisthideanons' => 'Sakrij izmene anonimnih korisnika sa spiska nadgledanja',
 'tog-watchlisthidepatrolled' => 'Sakrij pregledane izmene sa spiska nadgledanja',
-'tog-nolangconversion' => 'Onemogući pretvaranje pisama',
 'tog-ccmeonemails' => 'Pošalji mi primerke e-poruka koje pošaljem drugim korisnicima',
 'tog-diffonly' => 'Ne prikazuj sadržaj stranice ispod razlika',
 'tog-showhiddencats' => 'Prikaži skrivene kategorije',
@@ -4222,6 +4221,7 @@ U suprotnom, poslužite se jednostavnim obrascem ispod. Vaš komentar će stajat
 'api-error-file-too-large' => 'Poslata datoteka je prevelika.',
 'api-error-filename-tooshort' => 'Naziv datoteke je prekratak.',
 'api-error-filetype-banned' => 'Ova vrsta datoteke je zabranjena.',
+'api-error-filetype-banned-type' => '$1 {{PLURAL:$4|je zabranjena vrsta datoteke|su zabranjene vrste datoteka}}. {{PLURAL:$3|Dozvoljena je|Dozvoljene su}} $2.',
 'api-error-filetype-missing' => 'Datoteci nedostaje nastavak.',
 'api-error-hookaborted' => 'Izmena je odbačena od kuke za proširenja.',
 'api-error-http' => 'Unutrašnja greška: ne mogu da se povežem sa serverom.',
@@ -4257,6 +4257,4 @@ U suprotnom, poslužite se jednostavnim obrascem ispod. Vaš komentar će stajat
 'duration-centuries' => '$1 {{PLURAL:$1|vek|veka|vekova}}',
 'duration-millennia' => '$1 {{PLURAL:$1|milenijum|milenijuma|milenijuma}}',
 
-# Unknown messages
-'api-error-filetype-banned-type' => '$1 {{PLURAL:$4|je zabranjena vrsta datoteke|su zabranjene vrste datoteka}}. {{PLURAL:$3|Dozvoljena je|Dozvoljene su}} $2.',
 );

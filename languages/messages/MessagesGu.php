@@ -188,7 +188,6 @@ $messages = array(
 'tog-watchlisthideliu' => 'લોગ થયેલા સભ્ય દ્વારા કરવામાં આવેલ ફેરફાર ધ્યાનસુચીમાં છુપાવો.',
 'tog-watchlisthideanons' => 'અજાણ્યાસભ્ય દ્વારા થયેલ ફેરફાર મારી ધ્યાનસુચીમાં છુપાવો.',
 'tog-watchlisthidepatrolled' => 'સુરક્ષા કાજે કરવામાં આવેલ ફેરફાર મારી ધ્યાનસુચીમાં છુપાવો.',
-'tog-nolangconversion' => 'Variants conversion અક્ષમ કરો',
 'tog-ccmeonemails' => 'મે અન્યોને મોકલેલા ઇ-મેઇલની નકલ મને મોકલો',
 'tog-diffonly' => 'તફાવતની નીચે લેખ ન બતાવશો.',
 'tog-showhiddencats' => 'છુપી શ્રેણીઓ દર્શાવો',
@@ -3774,6 +3773,7 @@ $5
 'api-error-file-too-large' => 'તમે ચડાવેલી ફાઈલ ખૂબ મોટી છે',
 'api-error-filename-tooshort' => 'ફાઇલ નામ ખૂબ ટૂંકું છે',
 'api-error-filetype-banned' => 'આ પ્રકારની ફાઈલ પ્રતિબંધિત છે.',
+'api-error-filetype-banned-type' => '$1 {{PLURAL:$4| માન્ય ફાઇલ પ્રકાર નથી| માન્ય ફાઇલ પ્રકારો નથી }}. માન્ય {{PLURAL:$3|ફાઇલ પ્રકાર છે|ફાઇલ પ્રકારો  છે}} $2.',
 'api-error-filetype-missing' => 'ફાઈલને ઍક્સટેન્શન નથી',
 'api-error-hookaborted' => 'તમે કરેલ ફેરફારો વિસ્તારીત ખૂંટા દ્વારા રોકી દેવાયા.',
 'api-error-http' => 'આંતરીક ક્ષતિ: સર્વસનો સંપર્ક કરવામાં નિષ્ફળતા',
@@ -3809,6 +3809,4 @@ $5
 'duration-centuries' => '$1 {{PLURAL:$1|શતાબ્દી|શતાબ્દીઓ}}',
 'duration-millennia' => '$1 {{PLURAL:$1|સહસ્ત્રાબ્દી|સહસ્ત્રાબ્દીઓ}}',
 
-# Unknown messages
-'api-error-filetype-banned-type' => '$1 {{PLURAL:$4| માન્ય ફાઇલ પ્રકાર નથી| માન્ય ફાઇલ પ્રકારો નથી }}. માન્ય {{PLURAL:$3|ફાઇલ પ્રકાર છે|ફાઇલ પ્રકારો  છે}} $2.',
 );

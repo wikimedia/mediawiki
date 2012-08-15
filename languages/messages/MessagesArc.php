@@ -949,6 +949,8 @@ $1',
 # Statistics
 'statistics' => 'ܡܢܝܢܘܬ',
 'statistics-pages' => 'ܦܐܬܬ̈ܐ',
+'statistics-views-peredit' => 'ܚܘܘܝ̈ܐ ܠܟܠ ܫܘܚܠܦܐ',
+'statistics-users' => '[[Special:ListUsers|ܡܦܠܚܢ̈ܐ]] ܡܣܓܠ̈ܐ',
 'statistics-users-active' => 'ܡܦܠܚܢ̈ܐ ܙܪ̄ܝܙܐ',
 
 'disambiguations' => 'ܦܐܬܬ̈ܐ ܐܣܝܪ̈ܬܐ ܒܦܐܬܬ̈ܐ ܕܬܘܚܡܐ ܐܚܪܢܐ',
@@ -1032,6 +1034,7 @@ $1',
 'log' => 'ܣܓܠ̈ܐ',
 'all-logs-page' => 'ܟܠ ܣܓܠ̈ܐ ܓܘܢܝ̈ܐ',
 'log-title-wildcard' => 'ܒܨܝ ܥܠ ܟܘܢܝ̈ܐ ܕܫܪܝܢ ܥܡ ܟܬܒܬܐ ܗܕܐ',
+'showhideselectedlogentries' => 'ܚܘܝ/ܛܫܝ ܣܓܠ̈ܐ ܕܥܠܠܐ ܓܒܝ̈ܐ',
 
 # Special:AllPages
 'allpages' => 'ܟܠ ܦܐܬܬ̈ܐ',
@@ -1048,6 +1051,10 @@ $1',
 'allpagessubmit' => 'ܙܠ',
 'allpagesprefix' => 'ܚܘܝ ܦܐܬܬ̈ܐ ܕܫܪܝܢ ܒ:',
 'allpages-bad-ns' => '{{SITENAME}} ܠܝܬ ܠܗ ܚܩܠܐ "$1".',
+'allpages-hide-redirects' => 'ܛܫܝ ܨܘܝܒ̈ܐ',
+
+# SpecialCachedPage
+'cachedspecial-refresh-now' => 'ܚܙܝ ܐܚܪܝ ܟܠ',
 
 # Special:Categories
 'categories' => 'ܣܕܪ̈ܐ',
