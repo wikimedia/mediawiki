@@ -1273,8 +1273,9 @@ class LoginForm extends SpecialPage {
 		if( $this->mType == 'signup' ) {
 			$attr['type'] = 'signup';
 		}
-		if( $this->mReturnTo ) {
+		if( $this->mReturnTo !== '' ) {
 			$attr['returnto'] = $this->mReturnTo;
+			$attr['returntoquery'] = $this->mReturnToQuery;
 		}
 		return Linker::linkKnown(
 			$this->getTitle(),
