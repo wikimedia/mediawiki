@@ -2,19 +2,19 @@
 	min-width: 8px;
 	height: 14px;
 	border: 1px solid white;
-	border-radius: 8px;
 	-moz-border-radius: 8px;
 	-webkit-border-radius: 8px;
-	box-shadow: 0px 1px 4px #ccc;
+	border-radius: 8px;
 	-moz-box-shadow: 0px 1px 4px #ccc;
 	-webkit-box-shadow: 0px 1px 4px #ccc;
+	box-shadow: 0px 1px 4px #ccc;
 	background-color: #b60a00;
-	background-image: linear-gradient(bottom, #a70802 0%, #cf0e00 100%);
 	background-image: -o-linear-gradient(bottom, #a70802 0%, #cf0e00 100%);
 	background-image: -moz-linear-gradient(bottom, #a70802 0%, #cf0e00 100%);
 	background-image: -webkit-linear-gradient(bottom, #a70802 0%, #cf0e00 100%);
 	background-image: -ms-linear-gradient(bottom, #a70802 0%, #cf0e00 100%);
 	background-image: -webkit-gradient(linear, left bottom, left top, color-stop(0, #a70802), color-stop(1, #cf0e00));
+	background-image: linear-gradient(bottom, #a70802 0%, #cf0e00 100%);
 	padding: 0 3px;
 	text-align: center;
 }
