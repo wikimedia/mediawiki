@@ -5663,6 +5663,7 @@ $wgSpecialPageGroups = array(
 	'Mostlinkedtemplates'       => 'highuse',
 	'Mostcategories'            => 'highuse',
 	'Mostimages'                => 'highuse',
+	'Mostinterwikis'            => 'highuse',
 	'Mostrevisions'             => 'highuse',
 
 	'Allpages'                  => 'pages',
