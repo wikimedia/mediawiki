@@ -19,10 +19,10 @@
 
 (function( $ ) {
 	$.fn.badge = function( badge, options ) {
+		var oldBadge;
 		var existingBadge = this.find( '.mw-badge' );
 		options = $.extend( {}, options );
 
-		badge = String(badge);
 		if ( badge.charAt(0) === '+' ) {
 			if ( existingBadge.length > 0 ) {
 				oldBadge = existingBadge.text();
@@ -48,29 +48,22 @@
 			if ( existingBadge.length > 0 ) {
 				this.find( '.mw-badge-content' ).text( badge );
 			} else {
-				$badge = $('<div/>')
-					.addClass('mw-badge')
-					.addClass('mw-badge-overlay')
+				$badge = $('<div class="mw-badge mw-badge-overlay"></div>')
 					.append(
-						$('<span/>')
-							.addClass('mw-badge-content')
+						$('<span class="mw-badge-content"></span>')
 							.text(badge)
 					);
 				this.append($badge);
 			}
 
-			if ( options.type ) {
-				if ( options.type == 'inline' ) {
-					$badge.removeClass('mw-badge-overlay')
-						.addClass('mw-badge-inline');
-				} else if ( options.type == 'overlay' ) {
-					$badge.removeClass('mw-badge-inline')
-						.addClass('mw-badge-overlay');
-				}
+			//change $badge classes if inline, use defaults (overlay) otherwise
+			if ( options.type && options.type === 'inline' ) {
+				$badge.removeClass('mw-badge-overlay')
+					.addClass('mw-badge-inline');
 			}
 
-			// If a callback was specified, call it with the badge number
-			if ( options.callback ) {
+			// If a callback was specified and is a function, call it with the badge number
+			if ( typeof( options.callback ) === 'function' ) {
 				options.callback( badge );
 			}
 		}
